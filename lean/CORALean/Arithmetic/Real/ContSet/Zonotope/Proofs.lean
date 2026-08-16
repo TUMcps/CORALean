@@ -1,3 +1,4 @@
+import CORALean.Arithmetic.Real.ContSet.Zonotope.Proofs.Coefficient
 import CORALean.Arithmetic.Real.ContSet.Zonotope.Proofs.PlusSound
 import CORALean.Arithmetic.Real.ContSet.Zonotope.Proofs.MtimesSound
 import CORALean.Arithmetic.Real.ContSet.Zonotope.Proofs.IntervalSound

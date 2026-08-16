@@ -6,6 +6,10 @@ import CORALean.Arithmetic.Float.ContSet.InflatedContSet.API
 Set addition is commutative and associative, so the two nominal parts and the
 two boxes regroup and each side is weakened once. Every binary operation that
 computes its nominal part approximately reduces to this.
+
+The three representations are separately typed: a zonotope `plus` returns
+`h + k` generators, so its arguments and its result are three different types
+that agree only on the dimension.
 -/
 
 -- Authors:       Tobias Ladner
@@ -17,10 +21,10 @@ namespace CORALean.Arithmetic.Float.InflatedContSet.Proofs
 
 open Pointwise
 
-variable {F S : Type} [FloatOps F] [SoundFloatArithmetic F] {n : ℕ}
-variable [InflatedContSet S F n]
+variable {F S₁ S₂ T : Type} [FloatOps F] [SoundFloatArithmetic F] {n : ℕ}
+variable [InflatedContSet S₁ F n] [InflatedContSet S₂ F n] [InflatedContSet T F n]
 
-theorem plus_subset {s₁ s₂ t : S} {D : Set (Vec ℝ n)}
+theorem plus_subset {s₁ : S₁} {s₂ : S₂} {t : T} {D : Set (Vec ℝ n)}
     (hnominal : nominal s₁ + nominal s₂ ⊆ nominal t + D)
     (herror : (error s₁).construct + (error s₂).construct + D ⊆ (error t).construct) :
     construct s₁ + construct s₂ ⊆ construct t := by

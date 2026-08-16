@@ -33,6 +33,7 @@ lean/CORALean/
       Instances/   Real (rounding trivial), Dyadic (rounding real)
       ContSet/
         Interval/
+        Zonotope/
         InflatedContSet/   nominal part + error box, and its shared lemmas
 ```
 
