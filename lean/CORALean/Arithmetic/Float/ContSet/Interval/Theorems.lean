@@ -19,11 +19,11 @@ variable {F : Type} [FloatOps F] [SoundFloatArithmetic F] {n m : ℕ}
 
 theorem Interval.plus_sound (I₁ I₂ : Interval F n) :
     I₁.construct + I₂.construct ⊆ (I₁.plus I₂).construct :=
-  subset_trans (Real.Interval.plus_sound I₁.toExact I₂.toExact) (Interval.Proofs.plus_refines I₁ I₂)
+  subset_trans (Real.Interval.plus_sound I₁.nominal I₂.nominal) (Interval.Proofs.plus_refines I₁ I₂)
 
 theorem Interval.mtimes_sound (M : Mat F m n) (I : Interval F n) :
     ((toRealMat M) *ᵥ ·) '' I.construct ⊆ (Interval.mtimes M I).construct :=
-  subset_trans (Real.Interval.mtimes_sound (toRealMat M) I.toExact)
+  subset_trans (Real.Interval.mtimes_sound (toRealMat M) I.nominal)
     (Interval.Proofs.mtimes_refines M I)
 
 end CORALean.Arithmetic.Float

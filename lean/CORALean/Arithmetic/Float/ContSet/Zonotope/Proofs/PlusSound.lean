@@ -19,14 +19,14 @@ witness — with the centre displaced. The error obligation is two applications 
 
 namespace CORALean.Arithmetic.Float.Zonotope.Proofs
 
-open Pointwise FloatOps SoundFloatArithmetic
+open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {F : Type} [FloatOps F] [SoundFloatArithmetic F] {n h k : ℕ}
 
 /-- The concatenated generators account for everything but the centre rounding. -/
 theorem plus_nominal (Z₁ : Zonotope F n h) (Z₂ : Zonotope F n k) :
-    Z₁.toExact.construct + Z₂.toExact.construct ⊆
-      (Z₁.plus Z₂).toExact.construct + (Zonotope.centerResidual Z₁.c Z₂.c).construct := by
+    (nominal Z₁).construct + (nominal Z₂).construct ⊆
+      (nominal (Z₁.plus Z₂)).construct + (Zonotope.centerResidual Z₁.c Z₂.c).construct := by
   rintro _ ⟨z₁, ⟨β₁, hβ₁, hz₁⟩, z₂, ⟨β₂, hβ₂, hz₂⟩, rfl⟩
   refine ⟨fun i => toReal ((Z₁.plus Z₂).c i)
             + ∑ j, toReal ((Z₁.plus Z₂).G i j) * Fin.append β₁ β₂ j,
@@ -38,7 +38,7 @@ theorem plus_nominal (Z₁ : Zonotope F n h) (Z₂ : Zonotope F n k) :
   · exact InflatedContSet.sub_mem_residual
       (fun i => ⟨addDown_le_add _ _, add_le_addUp _ _⟩)
   · funext i
-    simp only [Zonotope.plus, Zonotope.toExact, toRealMat, toRealVec, Pi.add_apply, hz₁ i, hz₂ i,
+    simp only [Zonotope.plus, Zonotope.nominal_c, Zonotope.nominal_G, toRealMat, toRealVec, Pi.add_apply, hz₁ i, hz₂ i,
       Fin.sum_univ_add, Fin.append_left, Fin.append_right]
     ring
 

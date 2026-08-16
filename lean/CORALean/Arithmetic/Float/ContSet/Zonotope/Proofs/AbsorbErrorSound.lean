@@ -76,7 +76,7 @@ theorem absorbError_sound (Z : Zonotope F n h) :
         (abs_sub_mid_le_errorRadius Z he l)
   · exact InflatedContSet.sub_mem_residual (shift_brackets_mid Z)
   · funext i
-    simp only [Zonotope.absorbError, Zonotope.toExact, toRealMat, toRealVec, Pi.add_apply,
+    simp only [Zonotope.absorbError, Zonotope.nominal_c, Zonotope.nominal_G, toRealMat, toRealVec, Pi.add_apply,
       Fin.sum_univ_add, Fin.append_left, Fin.append_right, toReal_diagonalBlock, hz i]
     rw [sum_diagonal_mul]
     simp only [toRealVec]

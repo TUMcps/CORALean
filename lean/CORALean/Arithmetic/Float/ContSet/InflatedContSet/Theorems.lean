@@ -12,7 +12,7 @@ namespace CORALean.Arithmetic.Float.InflatedContSet
 
 open Pointwise FloatOps SoundFloatArithmetic
 
-variable {F S₁ S₂ T : Type} [FloatOps F] [SoundFloatArithmetic F] {n h : ℕ}
+variable {F S₁ S₂ T N₁ N₂ N : Type} [FloatOps F] [SoundFloatArithmetic F] {n h : ℕ}
 
 theorem sub_mem_residual {lo hi stored : Vec F n} {x : Vec ℝ n}
     (h : ∀ i, toReal (lo i) ≤ x i ∧ x i ≤ toReal (hi i)) :
@@ -24,9 +24,11 @@ theorem mem_generatorError {d : Mat F n h} {Δ : Mat ℝ n h} {β : Vec ℝ h}
     (fun i => ∑ j, Δ i j * β j) ∈ (generatorError d).construct :=
   Proofs.mem_generatorError hd hβ
 
-theorem plus_subset [InflatedContSet S₁ F n] [InflatedContSet S₂ F n] [InflatedContSet T F n]
+theorem plus_subset [Real.ContSet N₁ n] [Real.ContSet N₂ n] [Real.ContSet N n]
+    [InflatedContSet S₁ N₁ F n] [InflatedContSet S₂ N₂ F n] [InflatedContSet T N F n]
     {s₁ : S₁} {s₂ : S₂} {t : T} {D : Set (Vec ℝ n)}
-    (hnominal : nominal s₁ + nominal s₂ ⊆ nominal t + D)
+    (hnominal : nominalSet s₁ + nominalSet s₂ ⊆
+      nominalSet t + D)
     (herror : (error s₁).construct + (error s₂).construct + D ⊆ (error t).construct) :
     construct s₁ + construct s₂ ⊆ construct t :=
   Proofs.plus_subset hnominal herror

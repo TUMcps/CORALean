@@ -7,7 +7,7 @@ import CORALean.Arithmetic.Real.ContSet.Interval.Theorems
 CORA's `interval` again, with the same `inf` and `sup` fields, but held in `F`
 rather than ℝ. The scalar is a parameter, so nothing here is tied to a format.
 
-There is no second notion of what an interval denotes. `toExact` reads the
+There is no second notion of what an interval denotes. `nominal` reads the
 bounds through `toReal`, and `construct` is the exact layer's `construct` of
 that — so a floating-point interval means the real interval its bounds describe,
 by definition rather than by a lemma.
@@ -38,12 +38,12 @@ structure Interval (F : Type) (n : ℕ) where
   inf : Vec F n
   sup : Vec F n
 
-def Interval.toExact [SoundFloatArithmetic F] (I : Interval F n) :
+def Interval.nominal [SoundFloatArithmetic F] (I : Interval F n) :
     CORALean.Arithmetic.Real.Interval n :=
   ⟨toRealVec I.inf, toRealVec I.sup⟩
 
 def Interval.construct [SoundFloatArithmetic F] (I : Interval F n) : Set (Vec ℝ n) :=
-  I.toExact.construct
+  I.nominal.construct
 
 instance [SoundFloatArithmetic F] : Real.ContSet (Interval F n) n := ⟨Interval.construct⟩
 

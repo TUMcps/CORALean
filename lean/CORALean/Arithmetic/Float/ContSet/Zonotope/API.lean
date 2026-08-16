@@ -38,14 +38,18 @@ structure Zonotope (F : Type) (n h : ℕ) where
   G : Mat F n h
   E : Interval F n
 
-/-- The zonotope the stored floats describe, box aside. -/
-def Zonotope.toExact [SoundFloatArithmetic F] (Z : Zonotope F n h) :
-    CORALean.Arithmetic.Real.Zonotope n h :=
-  ⟨toRealVec Z.c, toRealMat Z.G⟩
-
-instance [SoundFloatArithmetic F] : InflatedContSet (Zonotope F n h) F n where
-  nominal Z := Z.toExact.construct
+instance [SoundFloatArithmetic F] :
+    InflatedContSet (Zonotope F n h) (CORALean.Arithmetic.Real.Zonotope n h) F n where
+  nominal Z := ⟨toRealVec Z.c, toRealMat Z.G⟩
   error Z := Z.E
+
+/-! The nominal zonotope's fields, so proofs can see through the instance. -/
+
+theorem Zonotope.nominal_c [SoundFloatArithmetic F] (Z : Zonotope F n h) :
+    (InflatedContSet.nominal Z).c = toRealVec Z.c := rfl
+
+theorem Zonotope.nominal_G [SoundFloatArithmetic F] (Z : Zonotope F n h) :
+    (InflatedContSet.nominal Z).G = toRealMat Z.G := rfl
 
 /-- Inherited from `InflatedContSet`; named here so statements read locally. -/
 abbrev Zonotope.construct [SoundFloatArithmetic F] (Z : Zonotope F n h) : Set (Vec ℝ n) :=

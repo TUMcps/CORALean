@@ -17,12 +17,18 @@ count is what reachability costs; absorbed into the box it does not.
 its bounds round outward directly, and giving it an error term would nest a box
 inside a box.
 
-`nominal` is deliberately not called *exact*: the stored centre and generators
-are themselves rounded values, and `Arithmetic.Real` has already claimed that
-word. The class carries the nominal part only as the set it denotes. Refinement
-proofs still need its *representation* to invoke `Arithmetic.Real`, but each has
-its own `toExact` for that, and asking for it here would need the representation
-type as a further parameter for no gain.
+`nominal` is a representation from `Arithmetic.Real`, not the set it denotes:
+what a representation means is `s.nominal.construct`. Keeping the representation
+rather than only its denotation is what lets a refinement proof reach the exact
+layer's theorem about it. The word is deliberately not *exact* — the stored
+centre and generators are themselves rounded values, and `Arithmetic.Real` has
+already claimed that word.
+
+What a representation denotes is `s.nominal.construct`. Generic code cannot say
+it that way — dot notation resolves through a type's head constant and `N` is a
+variable — so `nominalSet` names it instead. It is reducible, so the two are
+interchangeable, and a representation's own proofs, where `N` is concrete, write
+`(nominal Z).construct`.
 
 `residual` and `generatorError` are the two ways a nominal part can be wrong: a
 stored vector that should have been something else, and a stored matrix whose
@@ -40,19 +46,22 @@ namespace CORALean.Arithmetic.Float
 
 open Pointwise FloatOps SoundFloatArithmetic
 
-class InflatedContSet (S : Type) (F : outParam Type) (n : outParam ℕ)
-    [FloatOps F] [SoundFloatArithmetic F] where
-  /-- What the nominal part denotes, before inflation. -/
-  nominal : S → Set (Vec ℝ n)
+class InflatedContSet (S : Type) (N : outParam Type) (F : outParam Type) (n : outParam ℕ)
+    [FloatOps F] [SoundFloatArithmetic F] [Real.ContSet N n] where
+  /-- The exact-layer representation the stored floats describe. -/
+  nominal : S → N
   /-- Everything rounding has cost, as a box in the same coordinates. -/
   error : S → Interval F n
 
 namespace InflatedContSet
 
-variable {F S : Type} [FloatOps F] [SoundFloatArithmetic F] {n : ℕ}
-variable [InflatedContSet S F n]
+variable {F S N : Type} [FloatOps F] [SoundFloatArithmetic F] {n : ℕ}
+variable [Real.ContSet N n] [InflatedContSet S N F n]
 
-def construct (s : S) : Set (Vec ℝ n) := nominal s + (error s).construct
+/-- What the nominal part denotes. -/
+abbrev nominalSet (s : S) : Set (Vec ℝ n) := Real.ContSet.construct (nominal s)
+
+def construct (s : S) : Set (Vec ℝ n) := nominalSet s + (error s).construct
 
 instance : Real.ContSet S n := ⟨construct⟩
 

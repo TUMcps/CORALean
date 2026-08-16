@@ -20,7 +20,7 @@ open FloatOps SoundFloatArithmetic
 variable {F : Type} [FloatOps F] [SoundFloatArithmetic F] {n : ℕ}
 
 theorem plus_refines (I₁ I₂ : Interval F n) :
-    (I₁.toExact.plus I₂.toExact).construct ⊆ (I₁.plus I₂).construct := by
+    (I₁.nominal.plus I₂.nominal).construct ⊆ (I₁.plus I₂).construct := by
   intro x hx i
   exact ⟨le_trans (addDown_le_add _ _) (hx i).1, le_trans (hx i).2 (add_le_addUp _ _)⟩
 

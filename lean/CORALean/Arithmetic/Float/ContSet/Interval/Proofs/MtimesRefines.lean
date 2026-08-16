@@ -23,12 +23,12 @@ open FloatOps SoundFloatArithmetic
 variable {F : Type} [FloatOps F] [SoundFloatArithmetic F] {n m : ℕ}
 
 theorem mtimes_refines (M : Mat F m n) (I : Interval F n) :
-    (Real.Interval.mtimes (toRealMat M) I.toExact).construct ⊆
+    (Real.Interval.mtimes (toRealMat M) I.nominal).construct ⊆
       (Interval.mtimes M I).construct := by
   intro x hx i
   -- the exact bound has to be a visible sum before it can be compared termwise
   have h := hx i
-  simp only [Real.Interval.mtimes, toRealMat, Interval.toExact, toRealVec] at h
+  simp only [Real.Interval.mtimes, toRealMat, Interval.nominal, toRealVec] at h
   have hinf : ∀ k, toReal (minimum (mulDown (M i k) (I.inf k)) (mulDown (M i k) (I.sup k)))
       ≤ min (toReal (M i k) * toReal (I.inf k)) (toReal (M i k) * toReal (I.sup k)) := by
     intro k
