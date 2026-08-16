@@ -1,6 +1,6 @@
 // Splitting generator indices into a kept part and a dropped part.
 //
-// Specification: lean/CORALean/Global/Partition.lean
+// Specification: lean/src/CORALean/Global/Partition.lean
 //
 // Lean's `Split` is an equivalence, so "names every index exactly once" holds by
 // construction. Here it is a run-time invariant that `isValid` checks, and the

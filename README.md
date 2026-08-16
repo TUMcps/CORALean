@@ -10,7 +10,8 @@ Two halves. `lean/` holds the definitions and their proofs; `targets/` holds
 code that runs, one directory per language.
 
 ```
-lean/            the formalization — definitions, theorems, proofs
+lean/
+  src/           the formalization — definitions, theorems, proofs
 targets/
   c/             Lean's own compiler output, copied out of .lake  (generated)
     src/                 the exported C, mirroring the Lean modules
@@ -18,12 +19,8 @@ targets/
   cpp/           written by hand against the Lean sources         (transcribed)
 ```
 
-Every target follows that shape: sources in `src/`, and a README recording how
-the code came to be. The C is generated and serves as the reference; the C++ is
-written for speed and checked against it. See
-[targets/README.md](targets/README.md) for why both exist, what a generated C++
-backend would take, and which floating-point assumptions the proofs do not
-cover.
+The C code is generated from lean and serves as the reference.
+Every other languange should be generated or at least checked against the C implementation. 
 
 ### The formalization
 
@@ -43,7 +40,7 @@ that keeps the class honest — for ℝ itself.
 
 
 ```
-lean/CORALean/
+lean/src/CORALean/
   Global/          shared: array types, index partitions, the Mathlib surface
   Arithmetic/
     Real/          the specification: exact arithmetic over ℝ

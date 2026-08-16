@@ -1,6 +1,6 @@
 // Floating-point operations, and the ones derived from them.
 //
-// Specification: lean/CORALean/Arithmetic/Float/FloatOps.lean
+// Specification: lean/src/CORALean/Arithmetic/Float/FloatOps.lean
 //
 // `FloatOps<F>` is the C++ form of the Lean class: specialize it for a scalar
 // type and every algorithm below works over it. What makes those directions

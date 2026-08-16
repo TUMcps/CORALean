@@ -1,6 +1,6 @@
 // Array types.
 //
-// Specification: lean/CORALean/Global/Tensor.lean
+// Specification: lean/src/CORALean/Global/Tensor.lean
 //
 // Lean carries the dimensions in the type (`Mat F n h`); here they are fields,
 // because `h` changes with every operation and C++ would need the sizes at

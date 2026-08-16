@@ -10,7 +10,8 @@ reference to check this against.
 
 ## Correspondence
 
-Each header names its specification in its first lines.
+Each header names its specification in its first lines; paths below are relative
+to `lean/src/CORALean/`.
 
 | header           | specification                                             |
 | ---------------- | --------------------------------------------------------- |

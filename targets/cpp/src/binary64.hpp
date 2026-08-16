@@ -1,6 +1,6 @@
 // The binary64 instance of FloatOps.
 //
-// Specification: lean/CORALean/Arithmetic/Float/Instances/ — by analogy only.
+// Specification: lean/src/CORALean/Arithmetic/Float/Instances/ — by analogy only.
 // Lean's instances are Dyadic and ℝ; binary64 has no Lean counterpart because
 // it cannot have one. Every property `SoundFloatArithmetic` demands is an
 // assumption about this file and the toolchain, listed in ../README.md.

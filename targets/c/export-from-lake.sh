@@ -14,6 +14,7 @@ set -euo pipefail
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 repo_root="$(cd "$script_dir/../.." && pwd)"
 lean_dir="$repo_root/lean"
+src_dir="$lean_dir/src"
 ir_dir="$lean_dir/.lake/build/ir"
 dest_dir="$script_dir/src"
 
@@ -32,11 +33,12 @@ if [[ ! -d "$ir_dir" ]]; then
 fi
 
 # Driven by the sources, so a module missing its C is an error, not a silent gap.
+# Paths are relative to srcDir, which is what the module names mirror.
 module_list="$(mktemp)"
 trap 'rm -f "$module_list"' EXIT
 (
-  cd "$lean_dir"
-  [[ -f CORALean.lean ]] && echo CORALean
+  cd "$src_dir"
+  if [[ -f CORALean.lean ]]; then echo CORALean; fi
   find CORALean -name '*.lean' | sed 's/\.lean$//'
 ) | sort > "$module_list"
 
