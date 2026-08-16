@@ -58,7 +58,7 @@ abbrev Zonotope.construct [SoundFloatArithmetic F] (Z : Zonotope F n h) : Set (V
 /-- The centre sum is bracketed by its two directed roundings; storing the lower
 one leaves this much to pay. -/
 def Zonotope.centerResidual (a b : Vec F n) : Interval F n :=
-  InflatedContSet.residual (fun i => addDown (a i) (b i)) (fun i => addUp (a i) (b i))
+  Interval.residual (fun i => addDown (a i) (b i)) (fun i => addUp (a i) (b i))
     (fun i => addDown (a i) (b i))
 
 /-- One generator per coordinate. Spelt out rather than `Matrix.diagonal`, which
@@ -86,7 +86,7 @@ behind rather than the box becoming `[0, 0]`. -/
 def Zonotope.absorbError (Z : Zonotope F n h) : Zonotope F n (h + n) where
   c := Z.shiftDown
   G := fun i => Fin.append (Z.G i) (diagonalBlock Z.errorRadius i)
-  E := InflatedContSet.residual Z.shiftDown Z.shiftUp Z.shiftDown
+  E := Interval.residual Z.shiftDown Z.shiftUp Z.shiftDown
 
 /-! ## Rounded linear algebra
 
@@ -109,8 +109,8 @@ def matMulDiff (M : Mat F m n) (G : Mat F n h) : Mat F m h :=
 /-- What `mtimes` owes beyond its nominal part: the centre it could not store
 exactly, and the generators it could not either. -/
 def Zonotope.mtimesResidual (M : Mat F m n) (Z : Zonotope F n h) : Interval F m :=
-  (InflatedContSet.residual (mulVecDown M Z.c) (mulVecUp M Z.c) (mulVecDown M Z.c)).plus
-    (InflatedContSet.generatorError (matMulDiff M Z.G))
+  (Interval.residual (mulVecDown M Z.c) (mulVecUp M Z.c) (mulVecDown M Z.c)).plus
+    (Interval.generatorError (matMulDiff M Z.G))
 
 /-- The generator count is untouched: a linear map neither adds nor removes
 generators, and its rounding is paid into the box. The old box travels through

@@ -66,8 +66,8 @@ theorem mtimes_nominal (M : Mat F m n) (Z : Zonotope F n h) :
   refine ⟨fun i => toReal ((Zonotope.mtimes M Z).c i)
             + ∑ j, toReal ((Zonotope.mtimes M Z).G i j) * β j, ⟨β, hβ, fun _ => rfl⟩,
           _, Interval.plus_sound _ _
-            ⟨_, sub_mem_residual (fun i => ⟨dotDown_le (M i) Z.c, le_dotUp (M i) Z.c⟩),
-             _, mem_generatorError hgen hβ, rfl⟩, ?_⟩
+            ⟨_, Interval.sub_mem_residual (fun i => ⟨dotDown_le (M i) Z.c, le_dotUp (M i) Z.c⟩),
+             _, Interval.mem_generatorError hgen hβ, rfl⟩, ?_⟩
   funext i
   -- the stored generators and their errors recombine into the exact ones
   have hsum : (∑ j, toReal (matMulDown M Z.G i j) * β j)

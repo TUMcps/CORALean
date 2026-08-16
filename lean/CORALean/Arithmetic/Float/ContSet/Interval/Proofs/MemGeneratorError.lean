@@ -1,4 +1,4 @@
-import CORALean.Arithmetic.Float.ContSet.InflatedContSet.API
+import CORALean.Arithmetic.Float.ContSet.Interval.API
 
 /-!
 # What an inexact matrix costs
@@ -13,7 +13,7 @@ above the total.
 -- Last update:   ---
 -- Last revision: ---
 
-namespace CORALean.Arithmetic.Float.InflatedContSet.Proofs
+namespace CORALean.Arithmetic.Float.Interval.Proofs
 
 open FloatOps SoundFloatArithmetic
 
@@ -21,7 +21,7 @@ variable {F : Type} [FloatOps F] [SoundFloatArithmetic F] {n h : ℕ}
 
 theorem mem_generatorError {d : Mat F n h} {Δ : Mat ℝ n h} {β : Vec ℝ h}
     (hd : ∀ i j, |Δ i j| ≤ toReal (d i j)) (hβ : ∀ j, |β j| ≤ 1) :
-    (fun i => ∑ j, Δ i j * β j) ∈ (generatorError d).construct := by
+    (fun i => ∑ j, Δ i j * β j) ∈ (Interval.generatorError d).construct := by
   intro i
   have key : |∑ j, Δ i j * β j| ≤ toReal (sumUp fun j => d i j) := by
     refine le_trans (Finset.abs_sum_le_sum_abs _ _) ?_
@@ -33,4 +33,4 @@ theorem mem_generatorError {d : Mat F n h} {Δ : Mat ℝ n h} {β : Vec ℝ h}
   rw [toReal_neg]
   exact neg_le_of_abs_le key
 
-end CORALean.Arithmetic.Float.InflatedContSet.Proofs
+end CORALean.Arithmetic.Float.Interval.Proofs

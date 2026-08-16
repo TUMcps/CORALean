@@ -47,6 +47,24 @@ def Interval.construct [SoundFloatArithmetic F] (I : Interval F n) : Set (Vec �
 
 instance [SoundFloatArithmetic F] : Real.ContSet (Interval F n) n := ⟨Interval.construct⟩
 
+/-! ## Boxes built from rounding data
+
+Neither mentions a representation: they take what an operation knows about how
+wrong its stored values are, and return the box that covers it. `Zonotope` is
+the only caller today, but nothing here is about zonotopes. -/
+
+/-- The intended vector lies in `[lo, hi]` but `stored` was written down; this is
+what has to be added back. -/
+def Interval.residual (lo hi stored : Vec F n) : Interval F n :=
+  ⟨fun i => subDown (lo i) (stored i), fun i => subUp (hi i) (stored i)⟩
+
+/-- A matrix known only entrywise to within `d`, whose coefficients then range
+over `[-1, 1]`, costs this symmetric box: each row sums, because every
+coefficient can conspire. It is the interval hull of the zonotope centred at
+zero with generators `d`, which is what makes the row sum the right bound. -/
+def Interval.generatorError {h : ℕ} (d : Mat F n h) : Interval F n :=
+  ⟨fun i => neg (sumUp fun j => d i j), fun i => sumUp fun j => d i j⟩
+
 def Interval.plus (I₁ I₂ : Interval F n) : Interval F n where
   inf := fun i => addDown (I₁.inf i) (I₂.inf i)
   sup := fun i => addUp (I₁.sup i) (I₂.sup i)

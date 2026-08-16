@@ -35,7 +35,7 @@ theorem plus_nominal (Z₁ : Zonotope F n h) (Z₂ : Zonotope F n k) :
   · refine Fin.addCases (fun l => ?_) (fun l => ?_)
     · simpa using hβ₁ l
     · simpa using hβ₂ l
-  · exact InflatedContSet.sub_mem_residual
+  · exact Interval.sub_mem_residual
       (fun i => ⟨addDown_le_add _ _, add_le_addUp _ _⟩)
   · funext i
     simp only [Zonotope.plus, Zonotope.nominal_c, Zonotope.nominal_G, toRealMat, toRealVec, Pi.add_apply, hz₁ i, hz₂ i,

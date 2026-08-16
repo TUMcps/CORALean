@@ -3,9 +3,9 @@ import CORALean.Arithmetic.Float.ContSet.InflatedContSet.Proofs
 /-!
 # What the error box guarantees
 
-The two ways of paying into it are sound, and composing a nominal part with it
-is sound — for a binary operation through `plus_subset`, for a unary one through
-`map_subset`. A representation instantiating the class discharges its operations
+Composing a nominal part with its box is sound: for a binary operation through
+`plus_subset`, for a unary one through `map_subset`. Building the box is
+`Interval`'s business, not this class's. A representation instantiating the class discharges its operations
 through these three and never reasons about set addition itself.
 -/
 
@@ -14,16 +14,6 @@ namespace CORALean.Arithmetic.Float.InflatedContSet
 open Pointwise FloatOps SoundFloatArithmetic
 
 variable {F S₁ S₂ T N₁ N₂ N : Type} [FloatOps F] [SoundFloatArithmetic F] {n h : ℕ}
-
-theorem sub_mem_residual {lo hi stored : Vec F n} {x : Vec ℝ n}
-    (h : ∀ i, toReal (lo i) ≤ x i ∧ x i ≤ toReal (hi i)) :
-    (fun i => x i - toReal (stored i)) ∈ (residual lo hi stored).construct :=
-  Proofs.sub_mem_residual h
-
-theorem mem_generatorError {d : Mat F n h} {Δ : Mat ℝ n h} {β : Vec ℝ h}
-    (hd : ∀ i j, |Δ i j| ≤ toReal (d i j)) (hβ : ∀ j, |β j| ≤ 1) :
-    (fun i => ∑ j, Δ i j * β j) ∈ (generatorError d).construct :=
-  Proofs.mem_generatorError hd hβ
 
 theorem map_subset {M T' : Type} {m : ℕ} [Real.ContSet N₁ n] [Real.ContSet M m]
     [InflatedContSet S₁ N₁ F n] [InflatedContSet T' M F m]
