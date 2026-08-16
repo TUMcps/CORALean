@@ -1,4 +1,4 @@
-# CORALean
+# CORALean 🪸
 
 A Lean 4 formalization of [CORA](https://cora.in.tum.de), the Continuous
 Reachability Analyzer.

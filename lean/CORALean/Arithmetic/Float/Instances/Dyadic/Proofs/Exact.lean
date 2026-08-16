@@ -23,6 +23,11 @@ private theorem two_zpow_align {e f : ℤ} (h : e ≤ f) :
   rw [← zpow_natCast (2 : ℝ) (f - e).toNat, Int.toNat_of_nonneg (sub_nonneg.mpr h),
     ← zpow_add₀ (two_ne_zero), sub_add_cancel]
 
+/-- Any exponent, since a zero mantissa reads as zero at every scale. -/
+theorem toReal_mk_zero (e : ℤ) : toReal (⟨0, e⟩ : Dyadic p) = 0 := by
+  show ((0 : ℤ) : ℝ) * 2 ^ e = 0
+  rw [Int.cast_zero, zero_mul]
+
 theorem toReal_neg (d : Dyadic p) : toReal (neg d) = -toReal d := by
   rw [toReal, toReal, neg, Int.cast_neg, neg_mul]
 

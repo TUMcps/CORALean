@@ -1,14 +1,13 @@
-import CORALean.Global.API
+import CORALean.Arithmetic.Float.FloatOps
 
 /-!
 # Sound floating-point arithmetic
 
-`SoundFloatArithmetic F` is what the floating-point layer assumes of its scalar:
-a real interpretation `toReal`, and arithmetic that rounds in a stated direction
-— `addUp` never returns less than the exact sum, `addDown` never more. Nothing
-here fixes a format, so the proofs above it hold for binary64, for any other
-precision, and for the exact arithmetic of `Arithmetic.Real`, which is the
-instance at the bottom of this file.
+What the floating-point layer assumes of its scalar: a real interpretation
+`toReal`, and `FloatOps` that rounds in the direction its name claims — `addUp`
+never returns less than the exact sum, `addDown` never more. Nothing here fixes
+a format, so the proofs above it hold for binary64, for any other precision, and
+for the exact arithmetic of `Arithmetic.Real`.
 
 Deliberately not IEEE 754. Rounding *to nearest* is not enough to bound anything
 in a stated direction, and the axioms say nothing about how the bound is
@@ -19,6 +18,10 @@ Since `toReal` is total and lands in ℝ, no instance can represent NaN or an
 infinity. Overflow is thereby assumed away rather than modelled, and an
 implementation owes a range argument for that. It is the one gap between these
 axioms and a machine.
+
+A mixin over `FloatOps` rather than an extension of it: as a parent field the
+operations would sit inside a structure that `toReal` makes noncomputable, and
+nothing reached through the class could run.
 -/
 
 -- Authors:       Tobias Ladner
@@ -28,57 +31,30 @@ axioms and a machine.
 
 namespace CORALean.Arithmetic.Float
 
-class SoundFloatArithmetic (F : Type) where
+open FloatOps
+
+class SoundFloatArithmetic (F : Type) [FloatOps F] where
   toReal : F → ℝ
-  zero : F
-  neg : F → F
-  addUp : F → F → F
-  addDown : F → F → F
-  mulUp : F → F → F
-  mulDown : F → F → F
-  /-- Sign is a bit; negation loses nothing. -/
   toReal_neg (a : F) : toReal (neg a) = -toReal a
-  toReal_zero : toReal zero = 0
+  toReal_zero : toReal (zero : F) = 0
   add_le_addUp (a b : F) : toReal a + toReal b ≤ toReal (addUp a b)
   addDown_le_add (a b : F) : toReal (addDown a b) ≤ toReal a + toReal b
   mul_le_mulUp (a b : F) : toReal a * toReal b ≤ toReal (mulUp a b)
   mulDown_le_mul (a b : F) : toReal (mulDown a b) ≤ toReal a * toReal b
 
-export SoundFloatArithmetic (toReal zero neg addUp addDown mulUp mulDown
-  toReal_neg toReal_zero add_le_addUp addDown_le_add mul_le_mulUp mulDown_le_mul)
+open SoundFloatArithmetic
 
-variable {F : Type} [SoundFloatArithmetic F] {n : ℕ}
+variable {F : Type} [FloatOps F] [SoundFloatArithmetic F] {n : ℕ}
 
-/-! ## Subtraction
-
-Derived rather than assumed: negation is exact, so a directed difference is a
-directed sum. -/
-
-def subUp (a b : F) : F := addUp a (neg b)
-def subDown (a b : F) : F := addDown a (neg b)
+/-! ## What the derived operations inherit -/
 
 theorem sub_le_subUp (a b : F) : toReal a - toReal b ≤ toReal (subUp a b) := by
-  rw [sub_eq_add_neg, ← toReal_neg b]
+  rw [sub_eq_add_neg, ← toReal_neg b, subUp]
   exact add_le_addUp a (neg b)
 
 theorem subDown_le_sub (a b : F) : toReal (subDown a b) ≤ toReal a - toReal b := by
-  rw [sub_eq_add_neg, ← toReal_neg b]
+  rw [sub_eq_add_neg, ← toReal_neg b, subDown]
   exact addDown_le_add a (neg b)
-
-/-! ## Summation
-
-A `Finset.sum` of rounded scalars is not available: `addUp` is not associative,
-so the sum has to name its own bracketing. This one is right-nested, matching
-`Fin.sum_univ_succ`, which is what makes the bounds provable by a single
-induction. -/
-
-def sumUp : {n : ℕ} → (Fin n → F) → F
-  | 0, _ => zero
-  | _ + 1, f => addUp (f 0) (sumUp fun i => f i.succ)
-
-def sumDown : {n : ℕ} → (Fin n → F) → F
-  | 0, _ => zero
-  | _ + 1, f => addDown (f 0) (sumDown fun i => f i.succ)
 
 theorem sum_le_sumUp (f : Fin n → F) : ∑ i, toReal (f i) ≤ toReal (sumUp f) := by
   induction n with

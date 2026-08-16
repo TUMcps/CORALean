@@ -19,14 +19,16 @@ is what `Dyadic` is for.
 
 namespace CORALean.Arithmetic.Float
 
-instance : SoundFloatArithmetic ℝ where
-  toReal := id
+instance : FloatOps ℝ where
   zero := 0
   neg := Neg.neg
   addUp := (· + ·)
   addDown := (· + ·)
   mulUp := (· * ·)
   mulDown := (· * ·)
+
+instance : SoundFloatArithmetic ℝ where
+  toReal := id
   toReal_neg _ := rfl
   toReal_zero := rfl
   add_le_addUp _ _ := le_refl _

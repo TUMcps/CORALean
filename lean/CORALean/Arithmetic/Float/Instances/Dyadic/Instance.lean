@@ -11,6 +11,9 @@ separately in `Proofs`, and nothing else needed. In particular no bound on the
 mantissa is required: rounding may leave the grid without threatening
 soundness, exactly as a bad partition may cost a zonotope precision without
 threatening its.
+
+`FloatOps` is computable and separate, so `Dyadic` arithmetic still runs when
+reached through the class; only `toReal`, which nothing computes with, does not.
 -/
 
 -- Authors:       Tobias Ladner
@@ -20,16 +23,18 @@ threatening its.
 
 namespace CORALean.Arithmetic.Float
 
-noncomputable instance {p : ℕ} : SoundFloatArithmetic (Dyadic p) where
-  toReal := Dyadic.toReal
+instance {p : ℕ} : FloatOps (Dyadic p) where
   zero := ⟨0, 0⟩
   neg := Dyadic.neg
   addUp := Dyadic.addUp
   addDown := Dyadic.addDown
   mulUp := Dyadic.mulUp
   mulDown := Dyadic.mulDown
+
+noncomputable instance {p : ℕ} : SoundFloatArithmetic (Dyadic p) where
+  toReal := Dyadic.toReal
   toReal_neg := Dyadic.toReal_neg
-  toReal_zero := by rw [Dyadic.toReal, Int.cast_zero, zero_mul]
+  toReal_zero := Dyadic.toReal_mk_zero 0
   add_le_addUp a b := Dyadic.toReal_exactAdd a b ▸ Dyadic.le_roundUp _
   addDown_le_add a b := Dyadic.toReal_exactAdd a b ▸ Dyadic.roundDown_le _
   mul_le_mulUp a b := Dyadic.toReal_exactMul a b ▸ Dyadic.le_roundUp _
