@@ -1,4 +1,4 @@
-import CORALean.Arithmetic.Float.ContSet.Zonotope.API
+import CORALean.Arithmetic.Float.ContSet.Zonotope.Proofs.MemGeneratorError
 
 /-!
 # `Zonotope.mtimes` over-approximates the image under a linear map
@@ -67,7 +67,7 @@ theorem mtimes_nominal (M : Mat F m n) (Z : Zonotope F n h) :
             + ∑ j, toReal ((Zonotope.mtimes M Z).G i j) * β j, ⟨β, hβ, fun _ => rfl⟩,
           _, Interval.plus_sound _ _
             ⟨_, Interval.sub_mem_residual (fun i => ⟨dotDown_le (M i) Z.c, le_dotUp (M i) Z.c⟩),
-             _, Interval.mem_generatorError hgen hβ, rfl⟩, ?_⟩
+             _, mem_generatorError hgen hβ, rfl⟩, ?_⟩
   funext i
   -- the stored generators and their errors recombine into the exact ones
   have hsum : (∑ j, toReal (matMulDown M Z.G i j) * β j)

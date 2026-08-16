@@ -32,14 +32,8 @@ theorem abs_absorbed_le_radius (Z : Zonotope F n h)
     (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) :
     |∑ l, toReal (Z.G i (part.right l)) * β (part.right l)|
       ≤ toReal (radius (fun i l => Z.G i (part.right l)) i) := by
-  calc |∑ l, toReal (Z.G i (part.right l)) * β (part.right l)|
-      ≤ ∑ l, |toReal (Z.G i (part.right l)) * β (part.right l)| := Finset.abs_sum_le_sum_abs _ _
-    _ ≤ ∑ l, |toReal (Z.G i (part.right l))| := Finset.sum_le_sum fun l _ => by
-        rw [abs_mul]
-        exact mul_le_of_le_one_right (abs_nonneg _) (hβ _)
-    _ = ∑ l, toReal (absolute (Z.G i (part.right l))) :=
-        Finset.sum_congr rfl fun l _ => (toReal_absolute _).symm
-    _ ≤ toReal (radius (fun i l => Z.G i (part.right l)) i) := sum_le_sumUp _
+  exact abs_sum_le_radius (d := fun i l => Z.G i (part.right l))
+    (fun _ _ => le_refl _) (fun l => hβ (part.right l)) i
 
 theorem reduce_nominal (Z : Zonotope F n h)
     (part : Split (Fin h) into (Fin q) and (Fin r)) :

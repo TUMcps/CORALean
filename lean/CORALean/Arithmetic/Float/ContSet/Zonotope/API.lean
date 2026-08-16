@@ -55,6 +55,14 @@ theorem Zonotope.nominal_G [SoundFloatArithmetic F] (Z : Zonotope F n h) :
 abbrev Zonotope.construct [SoundFloatArithmetic F] (Z : Zonotope F n h) : Set (Vec ℝ n) :=
   InflatedContSet.construct Z
 
+/-- Generators known only to within `G` entrywise cost this symmetric box: their
+coefficients range over `[-1, 1]`, so each row sums with no cancellation and
+every generator can conspire.
+
+It is the interval hull of the zonotope centred at zero with generators `G`,
+which is why `radius` is the right bound here and in `reduce` alike. -/
+def Zonotope.generatorError (G : Mat F n h) : Interval F n := Interval.symmetric (radius G)
+
 /-- The centre sum is bracketed by its two directed roundings; storing the lower
 one leaves this much to pay. -/
 def Zonotope.centerResidual (a b : Vec F n) : Interval F n :=
@@ -132,6 +140,16 @@ def Zonotope.reduceAndAbsorb (Z : Zonotope F n h)
                     (Z.errorRadius i)) i)
   E := Interval.residual Z.shiftDown Z.shiftUp Z.shiftDown
 
+/-- CORA's `@zonotope/interval`: the hull `c ± radius G`, then inflated by the
+box, since the result has nowhere else to keep it.
+
+Every rounding goes outward and none is charged anywhere — an `Interval` has no
+box, so the bounds themselves absorb it. `radius` rounding up widens both ends
+at once, which is why the same `radius` serves here as in `reduce`. -/
+def Zonotope.interval (Z : Zonotope F n h) : Interval F n where
+  inf := fun i => addDown (subDown (Z.c i) (radius Z.G i)) (Z.E.inf i)
+  sup := fun i => addUp (addUp (Z.c i) (radius Z.G i)) (Z.E.sup i)
+
 /-! ## Rounded linear algebra
 
 Each entry is a dot product, so a matrix-vector product and a matrix product
@@ -154,7 +172,7 @@ def matMulDiff (M : Mat F m n) (G : Mat F n h) : Mat F m h :=
 exactly, and the generators it could not either. -/
 def Zonotope.mtimesResidual (M : Mat F m n) (Z : Zonotope F n h) : Interval F m :=
   (Interval.residual (mulVecDown M Z.c) (mulVecUp M Z.c) (mulVecDown M Z.c)).plus
-    (Interval.generatorError (matMulDiff M Z.G))
+    (Zonotope.generatorError (matMulDiff M Z.G))
 
 /-- The generator count is untouched: a linear map neither adds nor removes
 generators, and its rounding is paid into the box. The old box travels through

@@ -47,7 +47,7 @@ class SoundFloatArithmetic (F : Type) [FloatOps F] where
 
 open SoundFloatArithmetic
 
-variable {F : Type} [FloatOps F] [SoundFloatArithmetic F] {n m : ℕ}
+variable {F : Type} [FloatOps F] [SoundFloatArithmetic F] {n m h : ℕ}
 
 /-! ## Reading arrays
 
@@ -94,5 +94,20 @@ theorem dotDown_le (a b : Vec F n) :
 theorem le_dotUp (a b : Vec F n) :
     ∑ k, toReal (a k) * toReal (b k) ≤ toReal (dotUp a b) :=
   le_trans (Finset.sum_le_sum fun _ _ => mul_le_mulUp _ _) (sum_le_sumUp _)
+
+/-- What a matrix can reach on the unit ball, which is what `radius` bounds. The
+matrix is given only to within `d` entrywise, so this covers both an exact
+matrix and one known by enclosure. -/
+theorem abs_sum_le_radius {d : Mat F n h} {Δ : Mat ℝ n h} {β : Vec ℝ h}
+    (hd : ∀ i j, |Δ i j| ≤ |toReal (d i j)|) (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) :
+    |∑ j, Δ i j * β j| ≤ toReal (radius d i) :=
+  calc |∑ j, Δ i j * β j|
+      ≤ ∑ j, |Δ i j * β j| := Finset.abs_sum_le_sum_abs _ _
+    _ ≤ ∑ j, |toReal (d i j)| := Finset.sum_le_sum fun j _ => by
+        rw [abs_mul]
+        exact le_trans (mul_le_of_le_one_right (abs_nonneg _) (hβ j)) (hd i j)
+    _ = ∑ j, toReal (absolute (d i j)) :=
+        Finset.sum_congr rfl fun j _ => (toReal_absolute _).symm
+    _ ≤ toReal (radius d i) := sum_le_sumUp _
 
 end CORALean.Arithmetic.Float
