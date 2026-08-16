@@ -4,16 +4,16 @@ Executable code, one directory per language.
 
 ```
 targets/
-  c/     Lean's own compiler output, copied verbatim  
-  cpp/   written by hand against the Lean sources     
+  c/     Lean's own compiler output, copied verbatim
+  cpp/   written by hand against the Lean sources
   ...
 ```
 
-Please note that hand-written code might trade soundness against performance.
+Please note that hand-written code may trade soundness against performance.
 
 ## Obtaining guarantees
 
-There are generally four ways to get to a (sound-ish) implementation, 
+There are generally four ways to get to a (sound-ish) implementation,
 in increasing order of what they cost and what they guarantee:
 
 **A — link Lean's generated C.** No transcription, so it *is* the verified
@@ -22,7 +22,7 @@ linking needs the Lean runtime and GMP. Realized in [`c/`](c/), not as a product
 but as the reference to test against.
 
 **B — write the C++ by hand, Lean as specification.** Fast and idiomatic. The
-lean theorems become documentation of what the C++ must satisfy, tied to reality by
+Lean theorems become documentation of what the C++ must satisfy, tied to reality by
 differential testing against A rather than by proof. Realized in [`cpp/`](cpp/).
 
 **C — generate the C++ from the Lean definitions.** The computable fragment is
@@ -34,13 +34,13 @@ is then the code the theorems are about, modulo the printer and the C++ compiler
 The reason B is written as templates over a `FloatOps` traits struct is so that C
 has a fixed target to emit rather than a design problem to solve.
 Moreover, B is more flexible as we can trade soundness against performance,
-and deal with implementation details such as cpu/gpu explicitly.
+and deal with implementation details such as CPU/GPU explicitly.
 
-**D — deep embedding with a verified printer.** 
+**D — deep embedding with a verified printer.**
 Define an imperative intermediate representation (IR) in Lean,
 prove the algorithms against it, verify the IR → C++ printer. The only option
 where "the C++ is verified" is literally true, and several times the work of
-everything built so far. 
+everything built so far.
 
 ## What none of them close
 

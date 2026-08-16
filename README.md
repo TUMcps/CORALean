@@ -16,7 +16,7 @@ automatically.
 ## Layout
 
 Two halves. `lean/` holds the definitions and their proofs; `targets/` holds
-one directory per languages implementing actual code.
+one directory per language implementing actual code.
 
 ```
 lean/
@@ -28,22 +28,22 @@ targets/
   cpp/           written by hand against the Lean sources         (transcribed)
 ```
 
-The C code is generated from lean and serves as the reference.
-Every other languange should be generated or at least checked against the C implementation. 
+The C code is generated from Lean and serves as the reference.
+Every other language should be generated or at least checked against the C implementation.
 
 ### The formalization
 
 Mirrors CORA's structure and naming convention.
 
 Set representations and their operations are defined over ℝ and proved
-sound — e.g., each operation over-approximates the set it claims to. 
+sound — e.g., each operation over-approximates the set it claims to.
 
-Lean also fromalizes the floating point computations so it can be implemented in actual code (see generated c code).
+Lean also formalizes the floating-point computations so it can be implemented in actual code (see the generated C code).
 Thus, all theorems are first stated in ℝ under `lean/src/CORALean/Arithmetic/Real` and then refined in `.../Float`.
 The floating-point layer assumes no format. `SoundFloatArithmetic F` asks only
 for a real interpretation and arithmetic that rounds in a stated direction, so
-its proofs hold for binary64, for any other precision.
-The proofs of `Float` then just refines the theorems in `Real`, which gives soundness by transitivity.
+its proofs hold for binary64 and for any other precision.
+The proofs of `Float` then just refine the theorems in `Real`, which gives soundness by transitivity.
 
 
 ```

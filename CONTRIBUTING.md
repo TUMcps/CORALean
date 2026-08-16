@@ -11,14 +11,14 @@ Per representation, four kinds of file, and a file does only its own job:
 | `Proofs/*.lean` | one proof each, plus the lemmas only it needs |
 | `Proofs.lean` | just imports of the above for convenience |
 
-*`Theorems` restates the type and delegates to the lemma of the same name in `Proofs`. 
+*`Theorems` restates the type and delegates to the lemma of the same name in `Proofs`.
 The restatement is checked against the proved one, so the two cannot drift.
 
-Naming convention follows the CORA repositoy: `plus`, `mtimes`, `reduce`, `interval`, ...
+Naming convention follows the CORA repository: `plus`, `mtimes`, `reduce`, `interval`, ...
 
 ## The two layers
 
-`Real` is the specification, `Float` the refinement which obtains soundness guarantees through transitivity. 
+`Real` is the specification, `Float` the refinement which obtains soundness guarantees through transitivity.
 Thus, `Float` imports `Real`, never the reverse.
 New float operations pay their rounding into an interval error box via `InflatedContSet`.
 
@@ -34,10 +34,10 @@ new lemma may mean a new import there.
 ## Documentation
 
 Every file opens with a module docstring saying what it is for and what is
-non-obvious about it. Keep it, and all other comments, short and precise (ideally one line); 
+non-obvious about it. Keep it, and all other comments, short and precise (ideally one line).
 State how the code is now — not what it used to be, or what was tried instead.
 
-There are no per-directory READMEs. 
+There are no per-directory READMEs.
 The module docstring of a directory's `API.lean` is its entry point.
 
 ## Author blocks

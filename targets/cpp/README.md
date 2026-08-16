@@ -1,8 +1,8 @@
 # cpp — written by hand against the Lean sources
 
-`src/` is a header-only C++20 transcription of the float layer in `lean/`. 
-This C++ implementation is implemented by hand (i.e., not generated from lean) and trades soundness against performance.
-
+`src/` is a header-only C++20 transcription of the float layer in `lean/`.
+It is written rather than generated from Lean, so nothing enforces the
+correspondence to the Lean sources — it is maintained by hand.
 
 ## Building
 
@@ -15,8 +15,8 @@ g++ -std=c++20 -Wall -Wextra -Werror -frounding-math -ffp-contract=off -O2 \
 
 ## Tests
 
-Tests live in `tests/`. 
-*TODO:* comparing against `../c` implementation (and ideally even verifying!)
+Tests live in `tests/`.
+*TODO:* compare against the `../c` implementation (and ideally even verify!)
 
 
 ## Correspondence
