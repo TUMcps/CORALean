@@ -10,12 +10,43 @@ Header-only; compile against `src/`.
 
 ```bash
 g++ -std=c++20 -Wall -Wextra -Werror -frounding-math -ffp-contract=off -O2 \
-    -Isrc -o smoke tests/smoke.cpp && ./smoke
+    -Isrc -o zonotope tests/zonotope.cpp && ./zonotope
 ```
 
 ## Tests
 
-Tests live in `tests/`.
+`./tests/run.sh` builds and runs everything. One suite per concern, sharing the
+harness in `check.hpp` — no framework, so a test reads next to the Lean theorem
+it stands for.
+
+| suite | what it checks |
+| --- | --- |
+| `examples.cpp` | worked cases with hand-computed answers |
+| `float_ops.cpp` | the `SoundFloatArithmetic` axioms, over random doubles |
+| `interval.cpp` | each operation encloses what it claims to |
+| `zonotope.cpp` | the soundness theorems, and the key lemma of each proof |
+
+Two patterns worth reusing:
+
+**Exactly representable data.** The enclosure suites draw integer centres and
+generators and coefficients that are multiples of 1/1024, so the reference point
+is computed without rounding and every check is an equality or a strict bound —
+no tolerances anywhere. Rounding is exercised in `float_ops.cpp`, where it is
+the subject rather than a nuisance.
+
+**Check the proof's lemma, not just the conclusion.** Deciding membership in a
+zonotope means solving for coefficients, so the sampled-point tests settle for
+the interval hull, which is necessary but not sufficient. The proofs, though,
+all turn on a step of the form "this radius covers what that part can
+contribute" — a comparison of two numbers. `zonotope.cpp` reads those radii off
+the block the operation actually produced and checks them directly, which is
+exact and as strong as the proof step it mirrors.
+
+The suites were checked against mutants rather than assumed to work: flipping
+`addDown` to round up fails 305 checks in `float_ops`, pointing `reduce` at the
+kept generators instead of the dropped ones fails 783 in `zonotope`, and
+dropping the sign handling from `Interval::mtimes` fails 388 in `interval`.
+
 *TODO:* compare against the `../c` implementation (and ideally even verify!)
 
 

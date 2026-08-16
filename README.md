@@ -26,6 +26,7 @@ targets/
     src/                 the exported C, mirroring the Lean modules
     export-from-lake.sh  clean rebuild, then copy
   cpp/           written by hand against the Lean sources         (transcribed)
+  ...
 ```
 
 The C code is generated from Lean and serves as the reference.
