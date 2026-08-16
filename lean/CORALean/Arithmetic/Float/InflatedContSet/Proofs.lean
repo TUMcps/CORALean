@@ -1,3 +1,0 @@
-import CORALean.Arithmetic.Float.InflatedContSet.Proofs.SubMemResidual
-import CORALean.Arithmetic.Float.InflatedContSet.Proofs.MemGeneratorError
-import CORALean.Arithmetic.Float.InflatedContSet.Proofs.PlusSubset

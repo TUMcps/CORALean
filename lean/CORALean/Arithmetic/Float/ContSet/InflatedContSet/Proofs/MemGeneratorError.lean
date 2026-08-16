@@ -1,4 +1,4 @@
-import CORALean.Arithmetic.Float.InflatedContSet.API
+import CORALean.Arithmetic.Float.ContSet.InflatedContSet.API
 
 /-!
 # What an inexact matrix costs

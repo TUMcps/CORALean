@@ -21,17 +21,19 @@ Mirrors CORA's, and its names: `plus`, `mtimes`, `reduce`, `interval`.
 
 ```
 lean/CORALean/
-  Global/          shared: array types, index partitions, the ContSet
-                   interface, the Mathlib surface
+  Global/          shared: array types, index partitions, the Mathlib surface
   Arithmetic/
     Real/          the specification: exact arithmetic over ℝ
-      ContSet/     one directory per representation
+      ContSet/     API.lean is the ContSet interface itself, then one
+                   directory per representation
         Interval/  API.lean (definitions), Theorems.lean (guarantees), Proofs/
         Zonotope/
     Float/         the refinement: the same representations, rounded
       FloatOps / SoundFloatArithmetic   operations, then their guarantees
       Instances/   Real (rounding trivial), Dyadic (rounding real)
-      ContSet/     Interval/
+      ContSet/
+        Interval/
+        InflatedContSet/   nominal part + error box, and its shared lemmas
 ```
 
 Per representation, `API` defines, `Theorems` states one guarantee per
@@ -40,6 +42,11 @@ operation, and `Proofs/` holds one file per proof.
 `Real` and `Float` are siblings on disk but not in the import graph. `Float`
 imports `Real`, and a float representation does not define what it denotes: its
 `construct` *is* the exact one, applied to the bounds read through `toReal`.
+
+`ContSet` lives in `Real` rather than somewhere neutral because the set a
+representation denotes is always over ℝ. `Float` instantiates it as
+`Real.ContSet`, which says what a floating-point representation is: something
+denoting a real continuous set.
 
 So a float operation never proves soundness directly. It proves only that it
 encloses the exact operation — `plus_refines`, `mtimes_refines` — and soundness

@@ -45,7 +45,7 @@ def Interval.toExact [SoundFloatArithmetic F] (I : Interval F n) :
 def Interval.construct [SoundFloatArithmetic F] (I : Interval F n) : Set (Vec ℝ n) :=
   I.toExact.construct
 
-instance [SoundFloatArithmetic F] : ContSet (Interval F n) n := ⟨Interval.construct⟩
+instance [SoundFloatArithmetic F] : Real.ContSet (Interval F n) n := ⟨Interval.construct⟩
 
 def Interval.plus (I₁ I₂ : Interval F n) : Interval F n where
   inf := fun i => addDown (I₁.inf i) (I₂.inf i)

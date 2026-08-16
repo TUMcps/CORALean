@@ -54,7 +54,7 @@ variable [InflatedContSet S F n]
 
 def construct (s : S) : Set (Vec ℝ n) := nominal s + (error s).construct
 
-instance : ContSet S n := ⟨construct⟩
+instance : Real.ContSet S n := ⟨construct⟩
 
 /-- The intended vector lies in `[lo, hi]` but `stored` was written down; this is
 what has to be added back. -/

@@ -1,4 +1,4 @@
-import CORALean.Global.API
+import CORALean.Arithmetic.Real.ContSet.API
 
 /-!
 # Intervals: representation and operations
