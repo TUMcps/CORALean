@@ -38,6 +38,10 @@ theorem toReal_align (d : Dyadic p) {e : ℤ} (h : e ≤ d.exponent) :
 theorem toReal_neg (d : Dyadic p) : toReal (neg d) = -toReal d := by
   rw [toReal, toReal, neg, Int.cast_neg, neg_mul]
 
+theorem toReal_half (a : Dyadic p) : toReal (half a) = toReal a / 2 := by
+  rw [toReal, toReal, half, zpow_sub₀ (two_ne_zero), zpow_one]
+  ring
+
 theorem toReal_exactAdd (a b : Dyadic p) :
     toReal (exactAdd a b) = toReal a + toReal b := by
   rw [toReal, toReal, toReal, exactAdd]

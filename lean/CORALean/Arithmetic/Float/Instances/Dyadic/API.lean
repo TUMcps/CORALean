@@ -77,6 +77,9 @@ def le (a b : Dyadic p) : Bool :=
   a.mantissa * 2 ^ (a.exponent - min a.exponent b.exponent).toNat ≤
     b.mantissa * 2 ^ (b.exponent - min a.exponent b.exponent).toNat
 
+/-- Exact: the mantissa is untouched. -/
+def half (a : Dyadic p) : Dyadic p := ⟨a.mantissa, a.exponent - 1⟩
+
 def minimum (a b : Dyadic p) : Dyadic p := if le a b then a else b
 def maximum (a b : Dyadic p) : Dyadic p := if le a b then b else a
 

@@ -7,6 +7,9 @@ Both rounding directions are exact, so this is the class at infinite precision
 and `Arithmetic.Real` is what the layer collapses to. It keeps the class
 demonstrably non-vacuous.
 
+Noncomputable, unlike `Dyadic`: ℝ division is. Nothing is lost, since nothing
+computes with this instance.
+
 It cannot do the other job an instance has, though: because rounding never
 widens anything here, an axiom that only floats violate would go unnoticed. That
 is what `Dyadic` is for.
@@ -19,7 +22,7 @@ is what `Dyadic` is for.
 
 namespace CORALean.Arithmetic.Float
 
-instance : FloatOps ℝ where
+noncomputable instance : FloatOps ℝ where
   zero := 0
   neg := Neg.neg
   addUp := (· + ·)
@@ -28,8 +31,9 @@ instance : FloatOps ℝ where
   mulDown := (· * ·)
   minimum := min
   maximum := max
+  half := (· / 2)
 
-instance : SoundFloatArithmetic ℝ where
+noncomputable instance : SoundFloatArithmetic ℝ where
   toReal := id
   toReal_neg _ := rfl
   toReal_zero := rfl
@@ -39,5 +43,6 @@ instance : SoundFloatArithmetic ℝ where
   mulDown_le_mul _ _ := le_refl _
   toReal_minimum _ _ := rfl
   toReal_maximum _ _ := rfl
+  toReal_half _ := rfl
 
 end CORALean.Arithmetic.Float

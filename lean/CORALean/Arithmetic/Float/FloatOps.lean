@@ -31,6 +31,9 @@ class FloatOps (F : Type) where
   /-- Exact, like `neg`: choosing between two floats invents no digits. -/
   minimum : F → F → F
   maximum : F → F → F
+  /-- Exact in a binary format, where halving only moves the exponent. An
+  instance in some other radix could not provide this. -/
+  half : F → F
 
 open FloatOps
 

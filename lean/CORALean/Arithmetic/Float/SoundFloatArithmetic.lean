@@ -43,6 +43,7 @@ class SoundFloatArithmetic (F : Type) [FloatOps F] where
   mulDown_le_mul (a b : F) : toReal (mulDown a b) ≤ toReal a * toReal b
   toReal_minimum (a b : F) : toReal (minimum a b) = min (toReal a) (toReal b)
   toReal_maximum (a b : F) : toReal (maximum a b) = max (toReal a) (toReal b)
+  toReal_half (a : F) : toReal (half a) = toReal a / 2
 
 open SoundFloatArithmetic
 
