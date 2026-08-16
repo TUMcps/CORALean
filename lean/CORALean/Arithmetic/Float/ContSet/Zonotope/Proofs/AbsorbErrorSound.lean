@@ -52,13 +52,6 @@ theorem shift_brackets_mid (Z : Zonotope F n h) (i : Fin n) :
     rw [toReal_half] at h1
     simpa only [Zonotope.shiftUp] using by linarith
 
-theorem toReal_diagonalBlock (v : Vec F n) (i l : Fin n) :
-    toReal (diagonalBlock v i l) = Matrix.diagonal (toRealVec v) i l := by
-  by_cases hil : i = l
-  · rw [diagonalBlock, if_pos hil, hil, Matrix.diagonal_apply_eq]
-    rfl
-  · rw [diagonalBlock, if_neg hil, Matrix.diagonal_apply_ne _ hil, toReal_zero]
-
 theorem absorbError_sound (Z : Zonotope F n h) :
     Z.construct ⊆ Z.absorbError.construct := by
   rintro _ ⟨z, ⟨β, hβ, hz⟩, e, he, rfl⟩

@@ -62,6 +62,10 @@ def sumDown : {n : ℕ} → (Fin n → F) → F
   | 0, _ => zero
   | _ + 1, f => addDown (f 0) (sumDown fun i => f i.succ)
 
+/-- Exact, being a choice between two exact values. Not called `abs`: that would
+make the `|·|` notation ambiguous in every file that opens this namespace. -/
+def absolute (a : F) : F := maximum a (neg a)
+
 /-! ## Dot products
 
 Round the products and the sum the same way. Every matrix operation below is
@@ -70,5 +74,10 @@ matrix-vector product are the same call. -/
 
 def dotDown {n : ℕ} (a b : Vec F n) : F := sumDown fun k => mulDown (a k) (b k)
 def dotUp {n : ℕ} (a b : Vec F n) : F := sumUp fun k => mulUp (a k) (b k)
+
+/-- Row sums of absolute values, rounded up: the interval hull's radius of a
+zonotope centred at zero with these generators. Rounding up is always safe here,
+since every use of it is a bound. -/
+def radius {n h : ℕ} (G : Mat F n h) : Vec F n := fun i => sumUp fun j => absolute (G i j)
 
 end CORALean.Arithmetic.Float

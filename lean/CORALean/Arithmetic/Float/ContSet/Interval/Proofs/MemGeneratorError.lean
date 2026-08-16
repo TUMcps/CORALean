@@ -23,13 +23,15 @@ theorem mem_generatorError {d : Mat F n h} {Δ : Mat ℝ n h} {β : Vec ℝ h}
     (hd : ∀ i j, |Δ i j| ≤ toReal (d i j)) (hβ : ∀ j, |β j| ≤ 1) :
     (fun i => ∑ j, Δ i j * β j) ∈ (Interval.generatorError d).construct := by
   intro i
-  have key : |∑ j, Δ i j * β j| ≤ toReal (sumUp fun j => d i j) := by
+  have key : |∑ j, Δ i j * β j| ≤ toReal (radius d i) := by
     refine le_trans (Finset.abs_sum_le_sum_abs _ _) ?_
     refine le_trans (Finset.sum_le_sum fun j _ => ?_) (sum_le_sumUp _)
     rw [abs_mul]
-    exact le_trans (mul_le_of_le_one_right (abs_nonneg _) (hβ j)) (hd i j)
+    refine le_trans (mul_le_of_le_one_right (abs_nonneg _) (hβ j)) ?_
+    rw [toReal_absolute]
+    exact le_trans (hd i j) (le_abs_self _)
   refine ⟨?_, le_of_abs_le key⟩
-  show toReal (neg (sumUp fun j => d i j)) ≤ ∑ j, Δ i j * β j
+  show toReal (neg (radius d i)) ≤ ∑ j, Δ i j * β j
   rw [toReal_neg]
   exact neg_le_of_abs_le key
 

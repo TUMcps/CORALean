@@ -59,6 +59,10 @@ def toRealMat (M : Mat F m n) : Mat ℝ m n := fun i j => toReal (M i j)
 
 /-! ## What the derived operations inherit -/
 
+theorem toReal_absolute (a : F) : toReal (absolute a) = |toReal a| := by
+  rw [absolute, toReal_maximum, toReal_neg]
+  exact (abs_eq_max_neg).symm
+
 theorem sub_le_subUp (a b : F) : toReal a - toReal b ≤ toReal (subUp a b) := by
   rw [sub_eq_add_neg, ← toReal_neg b, subUp]
   exact add_le_addUp a (neg b)
@@ -85,10 +89,10 @@ theorem sumDown_le_sum (f : Fin n → F) : toReal (sumDown f) ≤ ∑ i, toReal 
 direction preserved through both steps. -/
 theorem dotDown_le (a b : Vec F n) :
     toReal (dotDown a b) ≤ ∑ k, toReal (a k) * toReal (b k) :=
-  le_trans (sumDown_le_sum _) (Finset.sum_le_sum fun k _ => mulDown_le_mul _ _)
+  le_trans (sumDown_le_sum _) (Finset.sum_le_sum fun _ _ => mulDown_le_mul _ _)
 
 theorem le_dotUp (a b : Vec F n) :
     ∑ k, toReal (a k) * toReal (b k) ≤ toReal (dotUp a b) :=
-  le_trans (Finset.sum_le_sum fun k _ => mul_le_mulUp _ _) (sum_le_sumUp _)
+  le_trans (Finset.sum_le_sum fun _ _ => mul_le_mulUp _ _) (sum_le_sumUp _)
 
 end CORALean.Arithmetic.Float

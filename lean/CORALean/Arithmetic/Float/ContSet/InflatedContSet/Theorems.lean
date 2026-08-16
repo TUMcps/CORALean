@@ -15,6 +15,13 @@ open Pointwise FloatOps SoundFloatArithmetic
 
 variable {F S₁ S₂ T N₁ N₂ N : Type} [FloatOps F] [SoundFloatArithmetic F] {n h : ℕ}
 
+theorem mono_subset {M : Type} [Real.ContSet N₁ n] [Real.ContSet M n]
+    [InflatedContSet S₁ N₁ F n] [InflatedContSet T M F n] {s : S₁} {t : T}
+    (hnominal : nominalSet s ⊆ nominalSet t)
+    (herror : (error s).construct ⊆ (error t).construct) :
+    construct s ⊆ construct t :=
+  Proofs.mono_subset hnominal herror
+
 theorem map_subset {M T' : Type} {m : ℕ} [Real.ContSet N₁ n] [Real.ContSet M m]
     [InflatedContSet S₁ N₁ F n] [InflatedContSet T' M F m]
     {s : S₁} {t : T'} {f : Vec ℝ n → Vec ℝ m} {D : Set (Vec ℝ m)}

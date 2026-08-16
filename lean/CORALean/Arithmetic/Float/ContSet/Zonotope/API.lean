@@ -31,7 +31,7 @@ namespace CORALean.Arithmetic.Float
 
 open FloatOps SoundFloatArithmetic
 
-variable {F : Type} [FloatOps F] {n m h k : ℕ}
+variable {F : Type} [FloatOps F] {n m h k q r : ℕ}
 
 structure Zonotope (F : Type) (n h : ℕ) where
   c : Vec F n
@@ -66,6 +66,16 @@ needs `Zero F`: giving `F` one would collide with ℝ's on the instance that rea
 this layer back as exact arithmetic. -/
 def diagonalBlock (v : Vec F n) : Mat F n n := fun i l => if i = l then v i else zero
 
+/-- Read as reals, a diagonal block is Mathlib's `Matrix.diagonal`, which is what
+lets the exact layer's lemmas about it apply. -/
+theorem toReal_diagonalBlock [SoundFloatArithmetic F] (v : Vec F n) (i l : Fin n) :
+    toReal (diagonalBlock v i l) = Matrix.diagonal (toRealVec v) i l := by
+  by_cases hil : i = l
+  · rw [diagonalBlock, if_pos hil, hil, Matrix.diagonal_apply_eq]
+    rfl
+  · rw [diagonalBlock, if_neg hil, Matrix.diagonal_apply_ne _ hil, toReal_zero]
+
+
 /-- The box midpoint added to the centre, rounded each way. The exact midpoint
 need not be a float — `[5, 6]` has midpoint 5.5 — so both roundings are kept and
 the gap between them is what `absorbError` leaves behind. -/
@@ -86,6 +96,40 @@ behind rather than the box becoming `[0, 0]`. -/
 def Zonotope.absorbError (Z : Zonotope F n h) : Zonotope F n (h + n) where
   c := Z.shiftDown
   G := fun i => Fin.append (Z.G i) (diagonalBlock Z.errorRadius i)
+  E := Interval.residual Z.shiftDown Z.shiftUp Z.shiftDown
+
+/-- CORA's `reduce`, unchanged in shape: the partition names the `q` generators
+kept and the `r` absorbed into a diagonal block, and soundness holds for every
+partition, so selection carries no proof obligation here either.
+
+Nothing is charged to the box. The centre is untouched and the kept generators
+are copied, both exact; the diagonal block rounds *up*, which only enlarges a
+result that was already an over-approximation. Rounding is free whenever it goes
+the way the operation was already going — the same reason `Interval.plus` needs
+no box. -/
+def Zonotope.reduce (Z : Zonotope F n h) (part : Split (Fin h) into (Fin q) and (Fin r)) :
+    Zonotope F n (q + n) where
+  c := Z.c
+  G := fun i => Fin.append (fun l => Z.G i (part.left l))
+                  (diagonalBlock (radius fun i l => Z.G i (part.right l)) i)
+  E := Z.E
+
+/-- `reduce` and `absorbError` in one pass, and the reason to prefer it.
+
+Each alone ends in a diagonal block, and two diagonal blocks merge into one with
+summed radii — per coordinate they are independent, so `diag a` then `diag b`
+reaches exactly what `diag (a + b)` reaches. Doing both therefore costs the
+`q + n` generators that `reduce` alone would, and the box is emptied for free.
+Running them separately would cost `q + n + n`.
+
+What remains in the box is only what the rounded centre shift still owes, as in
+`absorbError`; the radii round up, which is free. -/
+def Zonotope.reduceAndAbsorb (Z : Zonotope F n h)
+    (part : Split (Fin h) into (Fin q) and (Fin r)) : Zonotope F n (q + n) where
+  c := Z.shiftDown
+  G := fun i => Fin.append (fun l => Z.G i (part.left l))
+                  (diagonalBlock (fun i => addUp (radius (fun i l => Z.G i (part.right l)) i)
+                    (Z.errorRadius i)) i)
   E := Interval.residual Z.shiftDown Z.shiftUp Z.shiftDown
 
 /-! ## Rounded linear algebra
