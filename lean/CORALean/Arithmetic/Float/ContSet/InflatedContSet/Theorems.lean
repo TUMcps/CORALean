@@ -4,7 +4,8 @@ import CORALean.Arithmetic.Float.ContSet.InflatedContSet.Proofs
 # What the error box guarantees
 
 The two ways of paying into it are sound, and composing a nominal part with it
-is sound. A representation instantiating the class discharges its operations
+is sound — for a binary operation through `plus_subset`, for a unary one through
+`map_subset`. A representation instantiating the class discharges its operations
 through these three and never reasons about set addition itself.
 -/
 
@@ -23,6 +24,15 @@ theorem mem_generatorError {d : Mat F n h} {Δ : Mat ℝ n h} {β : Vec ℝ h}
     (hd : ∀ i j, |Δ i j| ≤ toReal (d i j)) (hβ : ∀ j, |β j| ≤ 1) :
     (fun i => ∑ j, Δ i j * β j) ∈ (generatorError d).construct :=
   Proofs.mem_generatorError hd hβ
+
+theorem map_subset {M T' : Type} {m : ℕ} [Real.ContSet N₁ n] [Real.ContSet M m]
+    [InflatedContSet S₁ N₁ F n] [InflatedContSet T' M F m]
+    {s : S₁} {t : T'} {f : Vec ℝ n → Vec ℝ m} {D : Set (Vec ℝ m)}
+    (hadd : ∀ x y, f (x + y) = f x + f y)
+    (hnominal : f '' nominalSet s ⊆ nominalSet t + D)
+    (herror : f '' (error s).construct + D ⊆ (error t).construct) :
+    f '' construct s ⊆ construct t :=
+  Proofs.map_subset hadd hnominal herror
 
 theorem plus_subset [Real.ContSet N₁ n] [Real.ContSet N₂ n] [Real.ContSet N n]
     [InflatedContSet S₁ N₁ F n] [InflatedContSet S₂ N₂ F n] [InflatedContSet T N F n]

@@ -11,13 +11,17 @@ operation that spends generators, `h + n`, and it is the caller's choice.
 
 namespace CORALean.Arithmetic.Float
 
-open Pointwise
+open Pointwise Matrix SoundFloatArithmetic
 
-variable {F : Type} [FloatOps F] [SoundFloatArithmetic F] {n h k : ℕ}
+variable {F : Type} [FloatOps F] [SoundFloatArithmetic F] {n m h k : ℕ}
 
 theorem Zonotope.plus_sound (Z₁ : Zonotope F n h) (Z₂ : Zonotope F n k) :
     Z₁.construct + Z₂.construct ⊆ (Z₁.plus Z₂).construct :=
   Zonotope.Proofs.plus_sound Z₁ Z₂
+
+theorem Zonotope.mtimes_sound (M : Mat F m n) (Z : Zonotope F n h) :
+    ((toRealMat M) *ᵥ ·) '' Z.construct ⊆ (Zonotope.mtimes M Z).construct :=
+  Zonotope.Proofs.mtimes_sound M Z
 
 theorem Zonotope.absorbError_sound (Z : Zonotope F n h) :
     Z.construct ⊆ Z.absorbError.construct :=

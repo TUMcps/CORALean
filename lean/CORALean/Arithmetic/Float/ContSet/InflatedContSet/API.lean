@@ -50,7 +50,9 @@ class InflatedContSet (S : Type) (N : outParam Type) (F : outParam Type) (n : ou
     [FloatOps F] [SoundFloatArithmetic F] [Real.ContSet N n] where
   /-- The exact-layer representation the stored floats describe. -/
   nominal : S → N
-  /-- Everything rounding has cost, as a box in the same coordinates. -/
+  /-- Everything rounding has cost, as a box in the same coordinates. Held in
+  `F`, since operations compute it and round it outward; a real interval here
+  could not be computed with. -/
   error : S → Interval F n
 
 namespace InflatedContSet

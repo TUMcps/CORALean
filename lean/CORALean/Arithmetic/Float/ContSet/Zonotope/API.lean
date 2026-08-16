@@ -31,7 +31,7 @@ namespace CORALean.Arithmetic.Float
 
 open FloatOps SoundFloatArithmetic
 
-variable {F : Type} [FloatOps F] {n h k : ℕ}
+variable {F : Type} [FloatOps F] {n m h k : ℕ}
 
 structure Zonotope (F : Type) (n h : ℕ) where
   c : Vec F n
@@ -87,6 +87,38 @@ def Zonotope.absorbError (Z : Zonotope F n h) : Zonotope F n (h + n) where
   c := Z.shiftDown
   G := fun i => Fin.append (Z.G i) (diagonalBlock Z.errorRadius i)
   E := InflatedContSet.residual Z.shiftDown Z.shiftUp Z.shiftDown
+
+/-! ## Rounded linear algebra
+
+Each entry is a dot product, so a matrix-vector product and a matrix product
+differ only in which vector is fed in. Both directions are kept: the stored
+value is the lower one, and the gap to the upper is what the box is charged. -/
+
+def mulVecDown (M : Mat F m n) (v : Vec F n) : Vec F m := fun i => dotDown (M i) v
+def mulVecUp (M : Mat F m n) (v : Vec F n) : Vec F m := fun i => dotUp (M i) v
+
+def matMulDown (M : Mat F m n) (G : Mat F n h) : Mat F m h :=
+  fun i j => dotDown (M i) (fun k => G k j)
+def matMulUp (M : Mat F m n) (G : Mat F n h) : Mat F m h :=
+  fun i j => dotUp (M i) (fun k => G k j)
+
+/-- How far a stored generator entry can be from the exact product. -/
+def matMulDiff (M : Mat F m n) (G : Mat F n h) : Mat F m h :=
+  fun i j => subUp (matMulUp M G i j) (matMulDown M G i j)
+
+/-- What `mtimes` owes beyond its nominal part: the centre it could not store
+exactly, and the generators it could not either. -/
+def Zonotope.mtimesResidual (M : Mat F m n) (Z : Zonotope F n h) : Interval F m :=
+  (InflatedContSet.residual (mulVecDown M Z.c) (mulVecUp M Z.c) (mulVecDown M Z.c)).plus
+    (InflatedContSet.generatorError (matMulDiff M Z.G))
+
+/-- The generator count is untouched: a linear map neither adds nor removes
+generators, and its rounding is paid into the box. The old box travels through
+the map as a box, by `Interval.mtimes`. -/
+def Zonotope.mtimes (M : Mat F m n) (Z : Zonotope F n h) : Zonotope F m h where
+  c := mulVecDown M Z.c
+  G := matMulDown M Z.G
+  E := (Interval.mtimes M Z.E).plus (Zonotope.mtimesResidual M Z)
 
 def Zonotope.plus (Z₁ : Zonotope F n h) (Z₂ : Zonotope F n k) : Zonotope F n (h + k) where
   c := fun i => addDown (Z₁.c i) (Z₂.c i)

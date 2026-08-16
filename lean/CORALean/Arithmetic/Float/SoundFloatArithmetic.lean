@@ -81,4 +81,14 @@ theorem sumDown_le_sum (f : Fin n → F) : toReal (sumDown f) ≤ ∑ i, toReal 
     rw [Fin.sum_univ_succ, sumDown]
     exact le_trans (addDown_le_add _ _) (add_le_add (le_refl _) (ih _))
 
+/-- A rounded dot product brackets the exact one: products then sum, each
+direction preserved through both steps. -/
+theorem dotDown_le (a b : Vec F n) :
+    toReal (dotDown a b) ≤ ∑ k, toReal (a k) * toReal (b k) :=
+  le_trans (sumDown_le_sum _) (Finset.sum_le_sum fun k _ => mulDown_le_mul _ _)
+
+theorem le_dotUp (a b : Vec F n) :
+    ∑ k, toReal (a k) * toReal (b k) ≤ toReal (dotUp a b) :=
+  le_trans (Finset.sum_le_sum fun k _ => mul_le_mulUp _ _) (sum_le_sumUp _)
+
 end CORALean.Arithmetic.Float

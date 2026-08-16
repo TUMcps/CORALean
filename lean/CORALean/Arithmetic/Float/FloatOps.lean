@@ -62,4 +62,13 @@ def sumDown : {n : ℕ} → (Fin n → F) → F
   | 0, _ => zero
   | _ + 1, f => addDown (f 0) (sumDown fun i => f i.succ)
 
+/-! ## Dot products
+
+Round the products and the sum the same way. Every matrix operation below is
+built from these two, so a row of a matrix product and a coordinate of a
+matrix-vector product are the same call. -/
+
+def dotDown {n : ℕ} (a b : Vec F n) : F := sumDown fun k => mulDown (a k) (b k)
+def dotUp {n : ℕ} (a b : Vec F n) : F := sumUp fun k => mulUp (a k) (b k)
+
 end CORALean.Arithmetic.Float
