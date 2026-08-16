@@ -68,6 +68,18 @@ def roundDown (d : Dyadic p) : Dyadic p :=
 def roundUp (d : Dyadic p) : Dyadic p :=
   ⟨-(-d.mantissa / 2 ^ d.shift), d.exponent + d.shift⟩
 
+/-! ## Comparison
+
+Exact, and needing no rounding: aligned to the common exponent, the order on
+dyadics is the order on their mantissas. -/
+
+def le (a b : Dyadic p) : Bool :=
+  a.mantissa * 2 ^ (a.exponent - min a.exponent b.exponent).toNat ≤
+    b.mantissa * 2 ^ (b.exponent - min a.exponent b.exponent).toNat
+
+def minimum (a b : Dyadic p) : Dyadic p := if le a b then a else b
+def maximum (a b : Dyadic p) : Dyadic p := if le a b then b else a
+
 /-! ## Rounded arithmetic -/
 
 def addUp (a b : Dyadic p) : Dyadic p := roundUp (exactAdd a b)

@@ -26,6 +26,8 @@ instance : FloatOps ℝ where
   addDown := (· + ·)
   mulUp := (· * ·)
   mulDown := (· * ·)
+  minimum := min
+  maximum := max
 
 instance : SoundFloatArithmetic ℝ where
   toReal := id
@@ -35,5 +37,7 @@ instance : SoundFloatArithmetic ℝ where
   addDown_le_add _ _ := le_refl _
   mul_le_mulUp _ _ := le_refl _
   mulDown_le_mul _ _ := le_refl _
+  toReal_minimum _ _ := rfl
+  toReal_maximum _ _ := rfl
 
 end CORALean.Arithmetic.Float

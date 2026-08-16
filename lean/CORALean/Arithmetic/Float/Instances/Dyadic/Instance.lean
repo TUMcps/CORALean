@@ -30,6 +30,8 @@ instance {p : ℕ} : FloatOps (Dyadic p) where
   addDown := Dyadic.addDown
   mulUp := Dyadic.mulUp
   mulDown := Dyadic.mulDown
+  minimum := Dyadic.minimum
+  maximum := Dyadic.maximum
 
 noncomputable instance {p : ℕ} : SoundFloatArithmetic (Dyadic p) where
   toReal := Dyadic.toReal
@@ -39,5 +41,7 @@ noncomputable instance {p : ℕ} : SoundFloatArithmetic (Dyadic p) where
   addDown_le_add a b := Dyadic.toReal_exactAdd a b ▸ Dyadic.roundDown_le _
   mul_le_mulUp a b := Dyadic.toReal_exactMul a b ▸ Dyadic.le_roundUp _
   mulDown_le_mul a b := Dyadic.toReal_exactMul a b ▸ Dyadic.roundDown_le _
+  toReal_minimum := Dyadic.toReal_minimum
+  toReal_maximum := Dyadic.toReal_maximum
 
 end CORALean.Arithmetic.Float

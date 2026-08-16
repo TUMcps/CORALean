@@ -41,10 +41,20 @@ class SoundFloatArithmetic (F : Type) [FloatOps F] where
   addDown_le_add (a b : F) : toReal (addDown a b) ≤ toReal a + toReal b
   mul_le_mulUp (a b : F) : toReal a * toReal b ≤ toReal (mulUp a b)
   mulDown_le_mul (a b : F) : toReal (mulDown a b) ≤ toReal a * toReal b
+  toReal_minimum (a b : F) : toReal (minimum a b) = min (toReal a) (toReal b)
+  toReal_maximum (a b : F) : toReal (maximum a b) = max (toReal a) (toReal b)
 
 open SoundFloatArithmetic
 
-variable {F : Type} [FloatOps F] [SoundFloatArithmetic F] {n : ℕ}
+variable {F : Type} [FloatOps F] [SoundFloatArithmetic F] {n m : ℕ}
+
+/-! ## Reading arrays
+
+Pointwise, so a representation's fields denote the real array they describe and
+nothing else has to be said about shape. -/
+
+def toRealVec (v : Vec F n) : Vec ℝ n := fun i => toReal (v i)
+def toRealMat (M : Mat F m n) : Mat ℝ m n := fun i j => toReal (M i j)
 
 /-! ## What the derived operations inherit -/
 

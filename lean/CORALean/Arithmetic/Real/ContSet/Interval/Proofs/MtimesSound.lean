@@ -3,9 +3,12 @@ import CORALean.Arithmetic.Real.ContSet.Interval.API
 /-!
 # `Interval.mtimes` over-approximates the image under a linear map
 
-Each summand `M i k * x k` lies between the two endpoint products; `min`/`max`
-absorb the sign of `M i k`, leaving one case split inside `key`. Summing over
-`k` finishes it.
+Each summand `M i k * x k` lies between the two endpoint products;
+`mul_between_endpoints` is where `min`/`max` absorb the sign of `M i k`, leaving
+one case split. Summing over `k` finishes it.
+
+That lemma says nothing about intervals and is used again by the floating-point
+layer, where the endpoints are rounded before being compared.
 -/
 
 -- Authors:       Tobias Ladner
@@ -19,18 +22,21 @@ open Matrix
 
 variable {n m : ℕ}
 
+/-- Scaling a point between two endpoints lands between the scaled endpoints,
+whichever way the scale points. -/
+theorem mul_between_endpoints {c lo hi x : ℝ} (h₁ : lo ≤ x) (h₂ : x ≤ hi) :
+    min (c * lo) (c * hi) ≤ c * x ∧ c * x ≤ max (c * lo) (c * hi) := by
+  rcases le_total 0 c with hc | hc
+  · exact ⟨(min_le_left _ _).trans (mul_le_mul_of_nonneg_left h₁ hc),
+           (mul_le_mul_of_nonneg_left h₂ hc).trans (le_max_right _ _)⟩
+  · exact ⟨(min_le_right _ _).trans (mul_le_mul_of_nonpos_left h₂ hc),
+           (mul_le_mul_of_nonpos_left h₁ hc).trans (le_max_left _ _)⟩
+
 theorem mtimes_sound (M : Mat ℝ m n) (I : Interval n) :
     (M *ᵥ ·) '' I.construct ⊆ (Interval.mtimes M I).construct := by
   rintro _ ⟨x, hx, rfl⟩ i
-  have key : ∀ k, min (M i k * I.inf k) (M i k * I.sup k) ≤ M i k * x k ∧
-      M i k * x k ≤ max (M i k * I.inf k) (M i k * I.sup k) := by
-    intro k
-    rcases le_total 0 (M i k) with hM | hM
-    · exact ⟨(min_le_left _ _).trans (by nlinarith [(hx k).1]),
-             le_trans (by nlinarith [(hx k).2]) (le_max_right _ _)⟩
-    · exact ⟨(min_le_right _ _).trans (by nlinarith [(hx k).2]),
-             le_trans (by nlinarith [(hx k).1]) (le_max_left _ _)⟩
   simp only [Interval.mtimes, Matrix.mulVec, dotProduct]
-  exact ⟨Finset.sum_le_sum fun k _ => (key k).1, Finset.sum_le_sum fun k _ => (key k).2⟩
+  exact ⟨Finset.sum_le_sum fun k _ => (mul_between_endpoints (hx k).1 (hx k).2).1,
+         Finset.sum_le_sum fun k _ => (mul_between_endpoints (hx k).1 (hx k).2).2⟩
 
 end CORALean.Arithmetic.Real.Interval.Proofs

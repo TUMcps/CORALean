@@ -29,17 +29,23 @@ lean/CORALean/
         Interval/  API.lean (definitions), Theorems.lean (guarantees), Proofs/
         Zonotope/
     Float/         the refinement: the same representations, rounded
-      SoundFloatArithmetic.lean   what the layer assumes of its scalar
+      FloatOps / SoundFloatArithmetic   operations, then their guarantees
       Instances/   Real (rounding trivial), Dyadic (rounding real)
+      ContSet/     Interval/
 ```
 
 Per representation, `API` defines, `Theorems` states one guarantee per
 operation, and `Proofs/` holds one file per proof.
 
 `Real` and `Float` are siblings on disk but not in the import graph. `Float`
-imports `Real`, because a rounded operation is proved sound by composing the
-exact guarantee with the direction the rounding went. Deleting `Float` leaves
-`Real` standing; the reverse does not hold.
+imports `Real`, and a float representation does not define what it denotes: its
+`construct` *is* the exact one, applied to the bounds read through `toReal`.
+
+So a float operation never proves soundness directly. It proves only that it
+encloses the exact operation — `plus_refines`, `mtimes_refines` — and soundness
+follows by transitivity. Set-level reasoning (Minkowski sums, images under a
+linear map, the sign of a coefficient) is written once, in `Real`, and never
+repeated. Deleting `Float` leaves `Real` standing; the reverse does not hold.
 
 ## Build
 

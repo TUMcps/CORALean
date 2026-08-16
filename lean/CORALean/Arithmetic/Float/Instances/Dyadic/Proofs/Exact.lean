@@ -28,6 +28,13 @@ theorem toReal_mk_zero (e : ℤ) : toReal (⟨0, e⟩ : Dyadic p) = 0 := by
   show ((0 : ℤ) : ℝ) * 2 ^ e = 0
   rw [Int.cast_zero, zero_mul]
 
+/-- A dyadic read at any exponent at or below its own. -/
+theorem toReal_align (d : Dyadic p) {e : ℤ} (h : e ≤ d.exponent) :
+    toReal d = ((d.mantissa * 2 ^ (d.exponent - e).toNat : ℤ) : ℝ) * 2 ^ e := by
+  rw [toReal]
+  push_cast
+  rw [mul_assoc, two_zpow_align h]
+
 theorem toReal_neg (d : Dyadic p) : toReal (neg d) = -toReal d := by
   rw [toReal, toReal, neg, Int.cast_neg, neg_mul]
 

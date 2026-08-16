@@ -28,6 +28,9 @@ class FloatOps (F : Type) where
   addDown : F → F → F
   mulUp : F → F → F
   mulDown : F → F → F
+  /-- Exact, like `neg`: choosing between two floats invents no digits. -/
+  minimum : F → F → F
+  maximum : F → F → F
 
 open FloatOps
 
