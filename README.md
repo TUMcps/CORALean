@@ -29,6 +29,8 @@ lean/CORALean/
         Interval/  API.lean (definitions), Theorems.lean (guarantees), Proofs/
         Zonotope/
     Float/         the refinement: the same representations, rounded
+      SoundFloatArithmetic.lean   what the layer assumes of its scalar
+      Instances/   Real (rounding trivial), Dyadic (rounding real)
 ```
 
 Per representation, `API` defines, `Theorems` states one guarantee per

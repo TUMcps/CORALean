@@ -94,25 +94,4 @@ theorem sumDown_le_sum (f : Fin n → F) : toReal (sumDown f) ≤ ∑ i, toReal 
     rw [Fin.sum_univ_succ, sumDown]
     exact le_trans (addDown_le_add _ _) (add_le_add (le_refl _) (ih _))
 
-/-! ## Exact arithmetic as an instance
-
-ℝ satisfies the axioms with both directions equal, so `Arithmetic.Real` is this
-layer at infinite precision. It keeps the class demonstrably non-vacuous, and
-any proof written against `SoundFloatArithmetic` can be read back on ℝ. -/
-
-instance : SoundFloatArithmetic ℝ where
-  toReal := id
-  zero := 0
-  neg := Neg.neg
-  addUp := (· + ·)
-  addDown := (· + ·)
-  mulUp := (· * ·)
-  mulDown := (· * ·)
-  toReal_neg _ := rfl
-  toReal_zero := rfl
-  add_le_addUp _ _ := le_refl _
-  addDown_le_add _ _ := le_refl _
-  mul_le_mulUp _ _ := le_refl _
-  mulDown_le_mul _ _ := le_refl _
-
 end CORALean.Arithmetic.Float
