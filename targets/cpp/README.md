@@ -1,12 +1,23 @@
 # cpp — written by hand against the Lean sources
 
-`src/` is a header-only C++20 transcription of the float layer in `lean/`. It is
-written, not generated: the Lean sources are its specification, and the
-correspondence is maintained by hand.
+`src/` is a header-only C++20 transcription of the float layer in `lean/`. 
+This C++ implementation is implemented by hand (i.e., not generated from lean) and trades soundness against performance.
 
-This is the code meant to run. [`../c`](../c) is the same algorithms as Lean
-itself compiles them — correct but boxed and closure-heavy — and serves as the
-reference to check this against.
+
+## Building
+
+Header-only; compile against `src/`.
+
+```bash
+g++ -std=c++20 -Wall -Wextra -Werror -frounding-math -ffp-contract=off -O2 \
+    -Isrc -o smoke tests/smoke.cpp && ./smoke
+```
+
+## Tests
+
+Tests live in `tests/`. 
+*TODO:* comparing against `../c` implementation (and ideally even verifying!)
+
 
 ## Correspondence
 
@@ -79,18 +90,3 @@ theorem. It requires:
   if wrong: `-frounding-math` (the optimizer may otherwise fold constants under
   the wrong mode), `-ffp-contract=off` (an FMA rounds once, not twice), no
   `-ffast-math`, and SSE rather than x87 excess precision.
-
-## Building
-
-Header-only; compile against `src/`.
-
-```bash
-g++ -std=c++20 -Wall -Wextra -Werror -frounding-math -ffp-contract=off -O2 \
-    -Isrc -o smoke tests/smoke.cpp && ./smoke
-```
-
-`tests/smoke.cpp` checks that directed rounding reaches the hardware and that
-each operation keeps the generator count and the enclosure its Lean counterpart
-promises. It does not compare against `../c`; that differential harness is the
-next step, and until it exists the tie between this code and the theorems rests
-on the transcription being read carefully.
