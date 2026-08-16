@@ -7,11 +7,10 @@ import CORALean.Arithmetic.Float.ContSet.Zonotope.Proofs.MemGeneratorError
 box is easy: the old one travels through the map as a box, by
 `Interval.mtimes_sound`, and the spill is added on.
 
-The nominal obligation is the first place the float layer pays for arithmetic
-rather than bookkeeping. Both the centre and the generators are computed, so
-both are wrong, and they are wrong in different ways: the centre by a fixed
-vector, which `residual` holds, and the generators by an entrywise amount that
-the coefficients then scale, which `generatorError` sums across each row.
+The nominal obligation is where the float layer pays for arithmetic rather than
+bookkeeping. Centre and generators are both computed, and wrong in different
+ways: the centre by a fixed vector, which `residual` holds, the generators by an
+entrywise amount the coefficients then scale, which `generatorError` sums.
 
 Expanding the image is a sum swap: `∑ k, M i k * (c k + ∑ j, G k j * β j)`
 regroups into a centre term and one generator term per `j`.

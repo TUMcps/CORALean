@@ -3,10 +3,10 @@ import CORALean.Arithmetic.Float.ContSet.Zonotope.API
 /-!
 # What inexact generators cost
 
-Immediate from `abs_sum_le_radius`, which is the same bound `reduce` uses: what
-a matrix can reach on the unit ball is its row sums of absolute values. Here the
-generators are known only to within `G` entrywise, there they are exact, and the
-bound does not care which.
+Immediate from `abs_sum_le_radius`, the same bound `reduce` uses: what a matrix
+reaches on the unit ball is its row sums of absolute values. Here the generators
+are known only to within `G` entrywise, there they are exact; the bound does not
+care which.
 -/
 
 -- Authors:       Tobias Ladner

@@ -4,13 +4,12 @@ import CORALean.Arithmetic.Real.ContSet.Zonotope.Proofs.Coefficient
 /-!
 # `Zonotope.reduce` keeps the set it had
 
-The exact argument, with one inequality where it had an equality: the diagonal
+The exact argument with one inequality where it had an equality: the diagonal
 block need only *cover* the absorbed generators, so rounding its radius up costs
-precision and nothing else. The box is untouched, which is why this needs
-`mono_subset` rather than anything that moves content between the two parts.
+precision and nothing else. The box is untouched, hence `mono_subset`.
 
-Soundness holds for every partition, exactly as over ℝ. Rounding does not change
-that: a selection rule still carries no proof obligation.
+Soundness holds for every partition, exactly as over ℝ; a selection rule still
+carries no proof obligation.
 -/
 
 -- Authors:       Tobias Ladner
@@ -25,8 +24,7 @@ open CORALean.Arithmetic.Real.Zonotope.Proofs
 
 variable {F : Type} [FloatOps F] [SoundFloatArithmetic F] {n h q r : ℕ}
 
-/-- What the absorbed generators can contribute, which is what the diagonal
-block must cover. Shared with `reduceAndAbsorb`. -/
+/-- What the absorbed generators contribute, so what the block must cover. -/
 theorem abs_absorbed_le_radius (Z : Zonotope F n h)
     (part : Split (Fin h) into (Fin q) and (Fin r)) {β : Vec ℝ h}
     (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) :

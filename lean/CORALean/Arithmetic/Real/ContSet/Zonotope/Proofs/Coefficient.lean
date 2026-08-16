@@ -4,13 +4,12 @@ import CORALean.Arithmetic.Real.ContSet.Zonotope.API
 # Hitting a target with one symmetric generator
 
 A generator of radius `R` reaches exactly `[-R, R]`, so any `D` with `|D| ≤ R`
-is `R * coefficient R D` for a coefficient the unit ball allows. The `R = 0`
-branch is not a degenerate case to be excused: it is forced, since `|D| ≤ 0`
-pins `D` to zero and any coefficient would do.
+is `R * coefficient R D` for a coefficient the unit ball allows. At `R = 0` the
+same bound pins `D` to zero, so any coefficient does.
 
-Proof devices rather than operations, so they live here and not in `API`, and
-`coefficient` is noncomputable — deciding `R = 0` over ℝ is. Nothing runs it;
-it only witnesses an existential.
+Proof devices, not operations, hence here rather than in `API`. `coefficient` is
+noncomputable — deciding `R = 0` over ℝ is — but nothing runs it; it only
+witnesses an existential.
 
 Both `reduce` and the floating-point `absorbError` need these: each moves a box
 into one diagonal block of generators.

@@ -4,18 +4,12 @@ import CORALean.Arithmetic.Real.ContSet.Interval.Theorems
 /-!
 # Intervals over a floating-point scalar
 
-CORA's `interval` again, with the same `inf` and `sup` fields, but held in `F`
-rather than ℝ. The scalar is a parameter, so nothing here is tied to a format.
+CORA's `interval` with the same `inf` and `sup`, held in `F` rather than ℝ.
 
-There is no second notion of what an interval denotes. `nominal` reads the
-bounds through `toReal`, and `construct` is the exact layer's `construct` of
-that — so a floating-point interval means the real interval its bounds describe,
-by definition rather than by a lemma.
-
-What each operation then owes is only that it encloses the exact one:
-`plus_refines`, `mtimes_refines`. Soundness follows by transitivity, and the
-set-level argument — Minkowski sums, images under a linear map, the sign of
-`M i k` — is never repeated here.
+`nominal` reads the bounds through `toReal` and `construct` is the exact layer's
+`construct` of that, so what an interval denotes is fixed by definition, not by
+a lemma. Each operation then owes only that it encloses the exact one; soundness
+follows by transitivity, and no set-level argument is repeated here.
 
 Each bound rounds away from the interval: `inf` down, `sup` up. That is the
 whole of the floating-point content.
@@ -49,12 +43,10 @@ instance [SoundFloatArithmetic F] : Real.ContSet (Interval F n) n := ⟨Interval
 
 /-! ## Boxes built from rounding data
 
-`residual` takes what an operation knows about how wrong a stored vector is and
-returns the box covering it; `symmetric` is the box `[-r, r]`. Neither mentions
-a representation. The generator counterpart does, and lives with `Zonotope`. -/
+Neither mentions a representation; the generator counterpart does, and lives
+with `Zonotope`. -/
 
-/-- The intended vector lies in `[lo, hi]` but `stored` was written down; this is
-what has to be added back. -/
+/-- The intended vector is in `[lo, hi]` but `stored` was written down. -/
 def Interval.residual (lo hi stored : Vec F n) : Interval F n :=
   ⟨fun i => subDown (lo i) (stored i), fun i => subUp (hi i) (stored i)⟩
 
@@ -65,8 +57,7 @@ def Interval.plus (I₁ I₂ : Interval F n) : Interval F n where
   inf := fun i => addDown (I₁.inf i) (I₂.inf i)
   sup := fun i => addUp (I₁.sup i) (I₂.sup i)
 
-/-- `minimum`/`maximum` absorb the sign of `M i k` exactly as `min`/`max` do
-over ℝ; the products round outward first, and the sum after. -/
+/-- `minimum`/`maximum` absorb the sign of `M i k` as `min`/`max` do over ℝ. -/
 def Interval.mtimes (M : Mat F m n) (I : Interval F n) : Interval F m where
   inf := fun i => sumDown fun k => minimum (mulDown (M i k) (I.inf k)) (mulDown (M i k) (I.sup k))
   sup := fun i => sumUp fun k => maximum (mulUp (M i k) (I.inf k)) (mulUp (M i k) (I.sup k))

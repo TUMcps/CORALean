@@ -3,16 +3,13 @@ import CORALean.Global.API
 /-!
 # Set representations
 
-`ContSet` is CORA's `contSet`: one field, `construct`, sending a representation
-to the set it denotes.
+CORA's `contSet`: one field, `construct`, sending a representation to the set it
+denotes.
 
-It lives in this layer because the set it denotes is always over ℝ, whichever
-arithmetic the representation is written in — a float is a real. So
-`Arithmetic.Float` instantiates it too, spelt `Real.ContSet`, which says exactly
-what a floating-point representation is: something denoting a real continuous
-set. Over-approximation and refinement are then the one relation
-`X ⊆ ContSet.construct S`, the two layers compose by transitivity, and the cost
-is that every operation must be monotone in `⊆`.
+It lives in the real layer because that set is always over ℝ, whichever
+arithmetic the representation is written in. `Arithmetic.Float` instantiates it
+too, so over-approximation and refinement are the single relation
+`X ⊆ ContSet.construct S`, and the two layers compose by transitivity.
 -/
 
 -- Authors:       Tobias Ladner

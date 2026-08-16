@@ -3,9 +3,9 @@ import CORALean.Arithmetic.Real.ContSet.Zonotope.API
 /-!
 # `Zonotope.mtimes` over-approximates the image under a linear map
 
-The same coefficients work -- a linear map introduces no new freedom -- so what
-is left is distributing the sum and swapping the two summations. The inclusion
-is an equality: a linear image of a zonotope is a zonotope, which is what the
+The same coefficients work — a linear map introduces no new freedom — so what is
+left is distributing the sum and swapping the two summations. The inclusion is
+an equality: a linear image of a zonotope is a zonotope, which is what the
 propagation loop rests on.
 -/
 

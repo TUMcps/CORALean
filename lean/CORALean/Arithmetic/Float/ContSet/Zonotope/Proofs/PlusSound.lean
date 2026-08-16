@@ -3,13 +3,13 @@ import CORALean.Arithmetic.Float.ContSet.Zonotope.API
 /-!
 # `Zonotope.plus` over-approximates the Minkowski sum
 
-`InflatedContSet.plus_subset` reduces this to two obligations, and the split is
-exactly the design: the nominal parts spill only by the centre rounding, and the
-box absorbs that spill along with the two incoming boxes.
+`InflatedContSet.plus_subset` reduces this to two obligations: the nominal parts
+spill only by the centre rounding, and the box absorbs that spill along with the
+two incoming boxes.
 
 The nominal obligation is the exact `plus` argument — `Fin.append β₁ β₂` as the
-witness — with the centre displaced. The error obligation is two applications of
-`Interval.plus_sound` and nothing else.
+witness — with the centre displaced; the error obligation is two applications of
+`Interval.plus_sound`.
 -/
 
 -- Authors:       Tobias Ladner
@@ -38,8 +38,8 @@ theorem plus_nominal (Z₁ : Zonotope F n h) (Z₂ : Zonotope F n k) :
   · exact Interval.sub_mem_residual
       (fun i => ⟨addDown_le_add _ _, add_le_addUp _ _⟩)
   · funext i
-    simp only [Zonotope.plus, Zonotope.nominal_c, Zonotope.nominal_G, toRealMat, toRealVec, Pi.add_apply, hz₁ i, hz₂ i,
-      Fin.sum_univ_add, Fin.append_left, Fin.append_right]
+    simp only [Zonotope.plus, Zonotope.nominal_c, Zonotope.nominal_G, toRealMat, toRealVec,
+      Pi.add_apply, hz₁ i, hz₂ i, Fin.sum_univ_add, Fin.append_left, Fin.append_right]
     ring
 
 /-- The box absorbs the two incoming boxes and the centre rounding. -/

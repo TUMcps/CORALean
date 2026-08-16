@@ -10,10 +10,9 @@ The scalar is explicit because it is what separates the two arithmetic layers:
 `Vec ℝ n` is a point, `Vec F n` its machine representation. Every signature
 therefore says which arithmetic it is written in.
 
-`Mat` is the order-two case up to `rfl`, but is spelt as Mathlib's `Matrix`:
-that wrapper is what keeps `*` matrix multiplication rather than the pointwise
-product every function type carries, and instance search will not see through it
-in either direction. Everything else about `Mat` is `Tensor α [n, m]`.
+`Mat` is the order-two case up to `rfl`, but spelt as Mathlib's `Matrix`: that
+wrapper keeps `*` matrix multiplication rather than the pointwise product every
+function type carries, and instance search sees through it in neither direction.
 
 Higher orders carry no such structure and appear as coefficient stores, e.g. the
 third-order term of a Taylor remainder.

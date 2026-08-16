@@ -5,13 +5,12 @@ import CORALean.Arithmetic.Float.ContSet.Zonotope.Proofs.AbsorbErrorSound
 # `reduceAndAbsorb` keeps the set it had
 
 The two arguments meet in one coefficient. The absorbed generators contribute at
-most `radius`, the box at most `errorRadius`, and the single merged block has
-radius at least their sum, so one coefficient places both at once.
+most `radius`, the box at most `errorRadius`, and the merged block has radius at
+least their sum, so one coefficient places both at once.
 
-Neither `mono_subset` nor `map_subset` applies: this operation moves content
-*out* of the box and into the nominal part, which those two rule out by
-construction — they send nominal to nominal and box to box. What is left in the
-box is only the rounded centre shift, exactly as in `absorbError`.
+Neither `mono_subset` nor `map_subset` applies: they send nominal to nominal and
+box to box, whereas this moves content *out* of the box into the nominal part.
+What is left in the box is the rounded centre shift, as in `absorbError`.
 -/
 
 -- Authors:       Tobias Ladner

@@ -17,8 +17,7 @@ namespace CORALean.Arithmetic.Float.Dyadic
 
 variable {p : ℕ}
 
-/-- Reading a shifted mantissa: dropping `k` bits and raising the exponent by
-`k` scales the mantissa by `2 ^ k`, leaving only the mantissas to compare. -/
+/-- Dropping `k` bits and raising the exponent by `k` leaves only mantissas to compare. -/
 private theorem toReal_shift (m e : ℤ) (k : ℕ) :
     toReal (⟨m, e + k⟩ : Dyadic p) = ((m * 2 ^ k : ℤ) : ℝ) * 2 ^ e := by
   rw [toReal, zpow_add₀ (two_ne_zero), zpow_natCast]

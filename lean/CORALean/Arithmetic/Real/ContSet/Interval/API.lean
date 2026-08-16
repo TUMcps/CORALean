@@ -13,6 +13,11 @@ split on the sign of `M`.
 Guarantees live in `Theorems`.
 -/
 
+-- Authors:       Tobias Ladner
+-- Written:       16-August-2026
+-- Last update:   ---
+-- Last revision: ---
+
 namespace CORALean.Arithmetic.Real
 
 variable {n m : ℕ}

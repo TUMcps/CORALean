@@ -5,7 +5,8 @@ defaultTargets = ["CORALean"]
 pp.unicode.fun = true
 autoImplicit = false
 relaxedAutoImplicit = false
-# ensure that a search tactic fails loudly rather than quietly costing seconds. Override per declaration when justified.
+# Well under Lean's default, so a search tactic fails loudly rather than
+# quietly costing seconds. Override per declaration when justified.
 maxHeartbeats = 5000
 
 [[require]]

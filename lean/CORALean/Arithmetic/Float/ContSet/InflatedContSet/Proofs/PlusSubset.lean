@@ -9,12 +9,7 @@ computes its nominal part approximately reduces to this.
 
 The three representations are separately typed: a zonotope `plus` returns
 `h + k` generators, so its arguments and its result are three different types
-that agree only on the dimension.
-
-`nominalSet s` is `s.nominal.construct`, which cannot be written that way here:
-`Nᵢ` is a type variable and dot notation resolves through a type's head
-constant. A representation's own proofs, where it is concrete, write
-`(nominal Z).construct`.
+agreeing only on the dimension.
 -/
 
 -- Authors:       Tobias Ladner

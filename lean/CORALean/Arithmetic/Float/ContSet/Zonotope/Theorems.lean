@@ -4,9 +4,10 @@ import CORALean.Arithmetic.Float.ContSet.Zonotope.Proofs
 # What the floating-point `Zonotope` guarantees
 
 Stated exactly as `Arithmetic.Real` states it, over the same sets of real
-points. Only the generator count differs from nothing at all: `plus` returns `h + k`, as
-over ℝ, because the rounding went into the box instead. `absorbError` is the one
-operation that spends generators, `h + n`, and it is the caller's choice.
+points, and with the same generator counts: `plus` returns `h + k` here too,
+because its rounding went into the box rather than into new generators.
+`absorbError` is the one operation that spends generators, `h + n`, and spending
+them is what the caller asked for.
 -/
 
 namespace CORALean.Arithmetic.Float

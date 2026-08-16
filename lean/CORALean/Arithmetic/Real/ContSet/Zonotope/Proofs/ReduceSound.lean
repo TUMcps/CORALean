@@ -8,8 +8,8 @@ Kept generators keep their coefficients. The dropped ones contribute `D` in row
 that row's box radius; `hbound` bounds `|D|` by `R`, so the coefficient is
 admissible.
 
-`hcoef` and `hbox` isolate that rescaling as two facts about reals, including
-the degenerate `R = 0` case, where the same bound forces `D` to vanish.
+`coefficient` isolates that rescaling as a fact about reals, including the
+degenerate `R = 0` case, where the same bound forces `D` to vanish.
 
 `Partition.sum_split₂` is where the partition pays: the sum over all generators
 splits into kept and dropped with no side condition.

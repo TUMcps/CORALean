@@ -70,5 +70,7 @@ Heuristics carry no proof obligation. `reduce` takes a partition of the
 generator indices and is sound for *every* partition, so CORA's twenty-odd
 generator-selection rules are one definition with different inputs.
 
-Proofs are written explicitly rather than by search — `maxHeartbeats` is set to
-5000, well under Lean's default, so a proof that starts searching fails loudly.
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for file roles, the layering rule, and
+the conventions proofs and docstrings follow.

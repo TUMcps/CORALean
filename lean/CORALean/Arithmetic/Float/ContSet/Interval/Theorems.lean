@@ -4,11 +4,8 @@ import CORALean.Arithmetic.Float.ContSet.Interval.Proofs
 # What the floating-point `Interval` guarantees
 
 Stated exactly as `Arithmetic.Real` states it — the same `⊆`, over the same sets
-of real points — and proved the same way each time: the exact guarantee, then
-the refinement, composed.
-
-`Proofs` therefore contains no set-level reasoning at all. That is the point of
-stating soundness as `⊆` once.
+of real points — and proved the same way each time: the exact guarantee composed
+with the refinement. `Proofs` therefore holds no set-level reasoning at all.
 -/
 
 namespace CORALean.Arithmetic.Float

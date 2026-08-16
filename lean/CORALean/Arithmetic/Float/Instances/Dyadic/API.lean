@@ -4,22 +4,20 @@ import CORALean.Arithmetic.Float.SoundFloatArithmetic
 # Dyadic numbers at a fixed precision
 
 `Dyadic p` is `mantissa * 2 ^ exponent` with the mantissa held to `p` bits. The
-bound is what makes this a float model at all: dyadic numbers of unbounded
-mantissa are closed under `+` and `*`, so rounding them would never do anything
-and the instance would be as degenerate as ℝ.
+bound is what makes it a float model: unbounded dyadics are closed under `+` and
+`*`, so rounding them would do nothing and the instance would be as degenerate
+as ℝ.
 
 Every operation is exact-then-round. The exact step may overflow `p` bits — a
-product needs `2p` — so it is a separate definition, and `roundUp`/`roundDown`
-put the result back on the grid by shifting the mantissa right and taking the
-floor or the ceiling of the discarded part.
+product needs `2p` — so it is separate, and `roundUp`/`roundDown` return to the
+grid by shifting the mantissa right, taking the floor or the ceiling.
 
-Precision is a phantom parameter rather than a field bound: the class only
-constrains `toReal` of a result, never its representation, so carrying a proof
-would burden every definition to prove nothing extra. Values off the grid are
-representable but never produced.
+Precision is a phantom parameter, not a field bound: the class constrains only
+`toReal` of a result, so carrying a proof would prove nothing extra. Values off
+the grid are representable but never produced.
 
-Unbounded exponent, so nothing overflows. That is exactly the assumption
-`SoundFloatArithmetic` makes, which is why this instance needs no axioms and a
+The exponent is unbounded, so nothing overflows — exactly what
+`SoundFloatArithmetic` assumes, and why this instance needs no axioms where a
 binary64 one would.
 -/
 
@@ -56,9 +54,8 @@ def exactMul (a b : Dyadic p) : Dyadic p :=
 
 /-! ## The rounding step
 
-`shift` is how far the mantissa exceeds `p` bits; the rounding direction is the
-floor or the ceiling of the division that drops them. Integer `/` is floor
-division on ℤ, and the ceiling is the floor of the negation. -/
+`shift` is how far the mantissa exceeds `p` bits. Integer `/` is floor division
+on ℤ, and the ceiling is the floor of the negation. -/
 
 def shift (d : Dyadic p) : ℕ := Nat.log2 d.mantissa.natAbs + 1 - p
 

@@ -16,8 +16,7 @@ namespace CORALean.Arithmetic.Float.Dyadic
 
 variable {p : ℕ}
 
-/-- Re-associating an alignment: a mantissa scaled by `2 ^ (f - e)` and read at
-exponent `e` is the same number read at exponent `f`. -/
+/-- A mantissa scaled by `2 ^ (f - e)` and read at `e` is that number read at `f`. -/
 private theorem two_zpow_align {e f : ℤ} (h : e ≤ f) :
     (2 : ℝ) ^ (f - e).toNat * 2 ^ e = 2 ^ f := by
   rw [← zpow_natCast (2 : ℝ) (f - e).toNat, Int.toNat_of_nonneg (sub_nonneg.mpr h),

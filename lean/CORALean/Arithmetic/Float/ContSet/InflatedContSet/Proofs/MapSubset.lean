@@ -4,12 +4,10 @@ import CORALean.Arithmetic.Float.ContSet.InflatedContSet.API
 # Pushing a nominal part and its box through an additive map
 
 The unary counterpart of `plus_subset`. An additive map sends a Minkowski sum to
-the sum of the images, so the nominal part and the box travel separately: the
-nominal part may spill by `D`, and the box must absorb `D` together with its own
-image.
+the sum of the images, so the two parts travel separately: the nominal part may
+spill by `D`, and the box must absorb `D` along with its own image.
 
-Only additivity is needed, not linearity — the map is applied to a sum of two
-sets and nothing else.
+Additivity suffices; the map is applied to a sum of two sets and nothing else.
 -/
 
 -- Authors:       Tobias Ladner

@@ -11,5 +11,5 @@ The refinement layer: the same representations, computed with rounded
 arithmetic. Soundness is stated in the same `⊆` as `Arithmetic.Real`, because a
 float zonotope denotes a set of real points just as an exact one does.
 
-Currently the scalar model and its instances; the representations follow.
+The scalar model and its instances, then the representations built over it.
 -/

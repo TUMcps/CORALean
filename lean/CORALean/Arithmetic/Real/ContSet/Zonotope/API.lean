@@ -18,6 +18,11 @@ and none carries a proof obligation.
 Guarantees live in `Theorems`.
 -/
 
+-- Authors:       Tobias Ladner
+-- Written:       16-August-2026
+-- Last update:   ---
+-- Last revision: ---
+
 namespace CORALean.Arithmetic.Real
 
 open Matrix

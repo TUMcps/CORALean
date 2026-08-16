@@ -4,14 +4,13 @@ import CORALean.Arithmetic.Real.ContSet.Zonotope.Proofs.Coefficient
 /-!
 # `absorbError` keeps the set it had
 
-Over ℝ this is an identity — a box is a zonotope about its own midpoint, so
-trading it for `n` generators moves nothing. What makes it an inclusion here is
-that the shifted centre has to be stored as a float and the midpoint need not be
-one, which is why the box does not become `[0, 0]`.
+Over ℝ an identity — a box is a zonotope about its own midpoint. It is only an
+inclusion here because the shifted centre must be stored as a float and the
+midpoint need not be one, which is why the box does not become `[0, 0]`.
 
 The witness is `Fin.append β γ`: the old coefficients, then one per coordinate
-placing that coordinate's error inside its new generator. `coefficient` supplies
-it, and the radius rounds up so it always fits.
+placing that coordinate's error in its new generator. `coefficient` supplies it,
+and the radius rounds up so it always fits.
 -/
 
 -- Authors:       Tobias Ladner
@@ -37,8 +36,7 @@ theorem abs_sub_mid_le_errorRadius (Z : Zonotope F n h) {e : Vec ℝ n}
   rw [abs_le]
   exact ⟨by linarith, by linarith⟩
 
-/-- The stored centre brackets the exact shifted one, which is what the leftover
-box is built from. -/
+/-- The stored centres bracket the exact shifted one, which is what is left. -/
 theorem shift_brackets_mid (Z : Zonotope F n h) (i : Fin n) :
     toReal (Z.shiftDown i) ≤ toReal (Z.c i) + (toReal (Z.E.inf i) + toReal (Z.E.sup i)) / 2 ∧
       toReal (Z.c i) + (toReal (Z.E.inf i) + toReal (Z.E.sup i)) / 2 ≤ toReal (Z.shiftUp i) := by
@@ -69,8 +67,9 @@ theorem absorbError_sound (Z : Zonotope F n h) :
         (abs_sub_mid_le_errorRadius Z he l)
   · exact Interval.sub_mem_residual (shift_brackets_mid Z)
   · funext i
-    simp only [Zonotope.absorbError, Zonotope.nominal_c, Zonotope.nominal_G, toRealMat, toRealVec, Pi.add_apply,
-      Fin.sum_univ_add, Fin.append_left, Fin.append_right, toReal_diagonalBlock, hz i]
+    simp only [Zonotope.absorbError, Zonotope.nominal_c, Zonotope.nominal_G, toRealMat,
+      toRealVec, Pi.add_apply, Fin.sum_univ_add, Fin.append_left, Fin.append_right,
+      toReal_diagonalBlock, hz i]
     rw [sum_diagonal_mul]
     simp only [toRealVec]
     rw [mul_coefficient (abs_sub_mid_le_errorRadius Z he i)]

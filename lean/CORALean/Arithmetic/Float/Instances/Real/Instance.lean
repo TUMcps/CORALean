@@ -3,16 +3,12 @@ import CORALean.Arithmetic.Float.SoundFloatArithmetic
 /-!
 # ℝ as a degenerate instance
 
-Both rounding directions are exact, so this is the class at infinite precision
-and `Arithmetic.Real` is what the layer collapses to. It keeps the class
-demonstrably non-vacuous.
+Both rounding directions are exact, so this is the class at infinite precision:
+the layer collapses to `Arithmetic.Real`, and the class is demonstrably
+non-vacuous.
 
-Noncomputable, unlike `Dyadic`: ℝ division is. Nothing is lost, since nothing
-computes with this instance.
-
-It cannot do the other job an instance has, though: because rounding never
-widens anything here, an axiom that only floats violate would go unnoticed. That
-is what `Dyadic` is for.
+Rounding never widens anything here, so an axiom only floats can violate would
+go unnoticed. That is what `Dyadic` is for.
 -/
 
 -- Authors:       Tobias Ladner
@@ -22,6 +18,7 @@ is what `Dyadic` is for.
 
 namespace CORALean.Arithmetic.Float
 
+-- noncomputable, unlike `Dyadic`: ℝ division is. Nothing computes with it.
 noncomputable instance : FloatOps ℝ where
   zero := 0
   neg := Neg.neg

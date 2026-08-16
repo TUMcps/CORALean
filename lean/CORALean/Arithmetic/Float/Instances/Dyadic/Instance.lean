@@ -4,16 +4,14 @@ import CORALean.Arithmetic.Float.Instances.Dyadic.Proofs
 # What `Dyadic` guarantees
 
 The instance is this representation's `Theorems` file: the class fields *are*
-the obligations, one per operation, so there is nothing to restate.
+the obligations, so there is nothing to restate.
 
-Each is exactness composed with a rounding direction — the two halves proved
-separately in `Proofs`, and nothing else needed. In particular no bound on the
-mantissa is required: rounding may leave the grid without threatening
-soundness, exactly as a bad partition may cost a zonotope precision without
-threatening its.
+Each is exactness composed with a rounding direction, the two halves proved
+separately in `Proofs`. No bound on the mantissa is needed: leaving the grid
+costs precision, never soundness, as a bad partition does to `reduce`.
 
-`FloatOps` is computable and separate, so `Dyadic` arithmetic still runs when
-reached through the class; only `toReal`, which nothing computes with, does not.
+`FloatOps` is computable and separate, so `Dyadic` arithmetic still runs through
+the class; only `toReal` does not, and nothing computes with it.
 -/
 
 -- Authors:       Tobias Ladner
