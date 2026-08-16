@@ -3,6 +3,32 @@
 A Lean 4 formalization of [CORA](https://cora.in.tum.de), the Continuous
 Reachability Analyzer.
 
+
+## Layout
+
+Two halves. `lean/` holds the definitions and their proofs; `targets/` holds
+code that runs, one directory per language.
+
+```
+lean/            the formalization — definitions, theorems, proofs
+targets/
+  c/             Lean's own compiler output, copied out of .lake  (generated)
+    src/                 the exported C, mirroring the Lean modules
+    export-from-lake.sh  clean rebuild, then copy
+  cpp/           written by hand against the Lean sources         (transcribed)
+```
+
+Every target follows that shape: sources in `src/`, and a README recording how
+the code came to be. The C is generated and serves as the reference; the C++ is
+written for speed and checked against it. See
+[targets/README.md](targets/README.md) for why both exist, what a generated C++
+backend would take, and which floating-point assumptions the proofs do not
+cover.
+
+### The formalization
+
+Mirrors CORA's structure and naming convention.
+
 Set representations and their operations are defined over ℝ and proved
 sound — each operation over-approximates the set it claims to. Soundness is
 stated once, as `⊆`, so the floating-point layer refines this one along the same
@@ -15,9 +41,6 @@ for a real interpretation and arithmetic that rounds in a stated direction, so
 its proofs hold for binary64, for any other precision, and — as the instance
 that keeps the class honest — for ℝ itself.
 
-## Layout
-
-Mirrors CORA's, and its names: `plus`, `mtimes`, `reduce`, `interval`.
 
 ```
 lean/CORALean/
