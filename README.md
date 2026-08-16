@@ -24,8 +24,8 @@ lean/CORALean/
   Global/          shared: array types, index partitions, the Mathlib surface
   Arithmetic/
     Real/          the specification: exact arithmetic over ℝ
-      ContSet/     API.lean is the ContSet interface itself, then one
-                   directory per representation
+      ContSet/     one directory per concept
+        ContSet/   the interface every representation instantiates
         Interval/  API.lean (definitions), Theorems.lean (guarantees), Proofs/
         Zonotope/
     Float/         the refinement: the same representations, rounded
