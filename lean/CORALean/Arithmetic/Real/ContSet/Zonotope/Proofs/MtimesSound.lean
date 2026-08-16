@@ -1,4 +1,4 @@
-import CORALean.ContSet.Zonotope.API
+import CORALean.Arithmetic.Real.ContSet.Zonotope.API
 
 /-!
 # `Zonotope.mtimes` over-approximates the image under a linear map
@@ -14,13 +14,13 @@ propagation loop rests on.
 -- Last update:   ---
 -- Last revision: ---
 
-namespace CORALean.Zonotope.Proofs
+namespace CORALean.Arithmetic.Real.Zonotope.Proofs
 
 open Matrix
 
 variable {n m h : ℕ}
 
-theorem mtimes_sound (M : Mat m n) (Z : Zonotope n h) :
+theorem mtimes_sound (M : Mat ℝ m n) (Z : Zonotope n h) :
     (M *ᵥ ·) '' Z.construct ⊆ (Zonotope.mtimes M Z).construct := by
   rintro _ ⟨x, ⟨β, hβ, hx⟩, rfl⟩
   refine ⟨β, hβ, fun i => ?_⟩
@@ -34,4 +34,4 @@ theorem mtimes_sound (M : Mat m n) (Z : Zonotope n h) :
   congr 1
   exact Finset.sum_comm
 
-end CORALean.Zonotope.Proofs
+end CORALean.Arithmetic.Real.Zonotope.Proofs

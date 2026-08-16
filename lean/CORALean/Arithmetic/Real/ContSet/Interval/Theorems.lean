@@ -1,4 +1,4 @@
-import CORALean.ContSet.Interval.Proofs
+import CORALean.Arithmetic.Real.ContSet.Interval.Proofs
 
 /-!
 # What `Interval` guarantees
@@ -10,7 +10,7 @@ Nothing claims exactness even where the operation is exact: callers may rely
 only on over-approximation.
 -/
 
-namespace CORALean
+namespace CORALean.Arithmetic.Real
 
 open Matrix Pointwise
 
@@ -20,8 +20,8 @@ theorem Interval.plus_sound (I₁ I₂ : Interval n) :
     I₁.construct + I₂.construct ⊆ (I₁.plus I₂).construct :=
   Interval.Proofs.plus_sound I₁ I₂
 
-theorem Interval.mtimes_sound (M : Mat m n) (I : Interval n) :
+theorem Interval.mtimes_sound (M : Mat ℝ m n) (I : Interval n) :
     (M *ᵥ ·) '' I.construct ⊆ (Interval.mtimes M I).construct :=
   Interval.Proofs.mtimes_sound M I
 
-end CORALean
+end CORALean.Arithmetic.Real

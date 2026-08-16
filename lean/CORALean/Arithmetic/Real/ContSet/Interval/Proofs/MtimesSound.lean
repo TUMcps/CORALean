@@ -1,4 +1,4 @@
-import CORALean.ContSet.Interval.API
+import CORALean.Arithmetic.Real.ContSet.Interval.API
 
 /-!
 # `Interval.mtimes` over-approximates the image under a linear map
@@ -13,13 +13,13 @@ absorb the sign of `M i k`, leaving one case split inside `key`. Summing over
 -- Last update:   ---
 -- Last revision: ---
 
-namespace CORALean.Interval.Proofs
+namespace CORALean.Arithmetic.Real.Interval.Proofs
 
 open Matrix
 
 variable {n m : ℕ}
 
-theorem mtimes_sound (M : Mat m n) (I : Interval n) :
+theorem mtimes_sound (M : Mat ℝ m n) (I : Interval n) :
     (M *ᵥ ·) '' I.construct ⊆ (Interval.mtimes M I).construct := by
   rintro _ ⟨x, hx, rfl⟩ i
   have key : ∀ k, min (M i k * I.inf k) (M i k * I.sup k) ≤ M i k * x k ∧
@@ -33,4 +33,4 @@ theorem mtimes_sound (M : Mat m n) (I : Interval n) :
   simp only [Interval.mtimes, Matrix.mulVec, dotProduct]
   exact ⟨Finset.sum_le_sum fun k _ => (key k).1, Finset.sum_le_sum fun k _ => (key k).2⟩
 
-end CORALean.Interval.Proofs
+end CORALean.Arithmetic.Real.Interval.Proofs

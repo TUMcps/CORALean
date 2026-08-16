@@ -1,4 +1,4 @@
-import CORALean.ContSet.Interval.API
+import CORALean.Arithmetic.Real.ContSet.Interval.API
 
 /-!
 # `Interval.plus` over-approximates the Minkowski sum
@@ -12,7 +12,7 @@ recorded.
 -- Last update:   ---
 -- Last revision: ---
 
-namespace CORALean.Interval.Proofs
+namespace CORALean.Arithmetic.Real.Interval.Proofs
 
 open Pointwise
 
@@ -23,4 +23,4 @@ theorem plus_sound (I₁ I₂ : Interval n) :
   rintro _ ⟨x₁, hx₁, x₂, hx₂, rfl⟩ i
   exact ⟨add_le_add (hx₁ i).1 (hx₂ i).1, add_le_add (hx₁ i).2 (hx₂ i).2⟩
 
-end CORALean.Interval.Proofs
+end CORALean.Arithmetic.Real.Interval.Proofs

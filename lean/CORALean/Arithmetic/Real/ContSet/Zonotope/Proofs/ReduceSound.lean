@@ -1,4 +1,4 @@
-import CORALean.ContSet.Zonotope.API
+import CORALean.Arithmetic.Real.ContSet.Zonotope.API
 
 /-!
 # `Zonotope.reduce` over-approximates the zonotope
@@ -20,7 +20,7 @@ splits into kept and dropped with no side condition.
 -- Last update:   ---
 -- Last revision: ---
 
-namespace CORALean.Zonotope.Proofs
+namespace CORALean.Arithmetic.Real.Zonotope.Proofs
 
 variable {n h q r : ℕ}
 
@@ -39,7 +39,7 @@ theorem reduce_sound (Z : Zonotope n h) (part : Split (Fin h) into (Fin q) and (
     · simp only [h0, if_pos, zero_mul]
       exact (abs_eq_zero.mp (le_antisymm (h0 ▸ hDR) (abs_nonneg _))).symm
     · rw [if_neg h0]; field_simp
-  have hdiag : ∀ (v g : Vec n) (i : Fin n),
+  have hdiag : ∀ (v g : Vec ℝ n) (i : Fin n),
       ∑ i', Matrix.diagonal v i i' * g i' = v i * g i := by
     intro v g i
     rw [Finset.sum_eq_single i, Matrix.diagonal_apply_eq]
@@ -70,4 +70,4 @@ theorem reduce_sound (Z : Zonotope n h) (part : Split (Fin h) into (Fin q) and (
     simp only [Zonotope.reduce, Fin.sum_univ_add, Fin.append_left, Fin.append_right]
     rw [hdiag, hbox _ _ (hbound i)]
 
-end CORALean.Zonotope.Proofs
+end CORALean.Arithmetic.Real.Zonotope.Proofs

@@ -1,4 +1,4 @@
-import CORALean.ContSet.Zonotope.API
+import CORALean.Arithmetic.Real.ContSet.Zonotope.API
 
 /-!
 # `Zonotope.interval` over-approximates the zonotope
@@ -13,7 +13,7 @@ centre at most the row sum of `|G|`, which is the half-width the hull was given.
 -- Last update:   ---
 -- Last revision: ---
 
-namespace CORALean.Zonotope.Proofs
+namespace CORALean.Arithmetic.Real.Zonotope.Proofs
 
 variable {n h : ℕ}
 
@@ -31,4 +31,4 @@ theorem interval_sound (Z : Zonotope n h) : Z.construct ⊆ Z.interval.construct
   exact ⟨by simp only [Zonotope.interval]; linarith [key.1],
          by simp only [Zonotope.interval]; linarith [key.2]⟩
 
-end CORALean.Zonotope.Proofs
+end CORALean.Arithmetic.Real.Zonotope.Proofs

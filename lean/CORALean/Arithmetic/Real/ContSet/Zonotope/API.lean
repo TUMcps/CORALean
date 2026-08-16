@@ -1,4 +1,4 @@
-import CORALean.ContSet.Interval.API
+import CORALean.Arithmetic.Real.ContSet.Interval.API
 
 /-!
 # Zonotopes: representation and operations
@@ -18,18 +18,18 @@ and none carries a proof obligation.
 Guarantees live in `Theorems`.
 -/
 
-namespace CORALean
+namespace CORALean.Arithmetic.Real
 
 open Matrix
 
 variable {n m h k q r : ℕ}
 
 structure Zonotope (n h : ℕ) where
-  c : Vec n
-  G : Mat n h
+  c : Vec ℝ n
+  G : Mat ℝ n h
 
-def Zonotope.construct (Z : Zonotope n h) : Set (Vec n) :=
-  {x | ∃ β : Vec h, (∀ j, |β j| ≤ 1) ∧ ∀ i, x i = Z.c i + ∑ j, Z.G i j * β j}
+def Zonotope.construct (Z : Zonotope n h) : Set (Vec ℝ n) :=
+  {x | ∃ β : Vec ℝ h, (∀ j, |β j| ≤ 1) ∧ ∀ i, x i = Z.c i + ∑ j, Z.G i j * β j}
 
 instance : ContSet (Zonotope n h) n := ⟨Zonotope.construct⟩
 
@@ -37,7 +37,7 @@ def Zonotope.plus (Z₁ : Zonotope n h) (Z₂ : Zonotope n k) : Zonotope n (h + 
   c := Z₁.c + Z₂.c
   G := fun i => Fin.append (Z₁.G i) (Z₂.G i)
 
-def Zonotope.mtimes (M : Mat m n) (Z : Zonotope n h) : Zonotope m h where
+def Zonotope.mtimes (M : Mat ℝ m n) (Z : Zonotope n h) : Zonotope m h where
   c := M *ᵥ Z.c
   G := M * Z.G
 
@@ -51,4 +51,4 @@ def Zonotope.reduce (Z : Zonotope n h) (part : Split (Fin h) into (Fin q) and (F
   G := fun i => Fin.append (fun l => Z.G i (part.left l))
                            (Matrix.diagonal (fun i => ∑ l, |Z.G i (part.right l)|) i)
 
-end CORALean
+end CORALean.Arithmetic.Real

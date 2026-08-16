@@ -1,4 +1,4 @@
-import CORALean.ContSet.Zonotope.API
+import CORALean.Arithmetic.Real.ContSet.Zonotope.API
 
 /-!
 # `Zonotope.plus` over-approximates the Minkowski sum
@@ -13,7 +13,7 @@ the same way. The inclusion is an equality; only this direction is recorded.
 -- Last update:   ---
 -- Last revision: ---
 
-namespace CORALean.Zonotope.Proofs
+namespace CORALean.Arithmetic.Real.Zonotope.Proofs
 
 open Pointwise
 
@@ -30,4 +30,4 @@ theorem plus_sound (Z₁ : Zonotope n h) (Z₂ : Zonotope n k) :
       Fin.append_left, Fin.append_right]
     ring
 
-end CORALean.Zonotope.Proofs
+end CORALean.Arithmetic.Real.Zonotope.Proofs
