@@ -5,14 +5,14 @@ Reachability Analyzer.
 
 ## Installation
 
-Follow the [Lean](https://lean-lang.org/) installation.
+1. Follow the [Lean](https://lean-lang.org/) installation.
 
-Lean works best in combination with [VS Code](https://code.visualstudio.com) with its [Lean 4 extension](https://marketplace.visualstudio.com/items?itemName=leanprover.lean4), 
-which provides the goal view and diagnostics as you type:
+2. Lean works best in combination with [VS Code](https://code.visualstudio.com) and its [Lean 4 extension](https://marketplace.visualstudio.com/items?itemName=leanprover.lean4), 
+which provides diagnostics and open goals in the Lean infoView as you type.
 
-Clone this repository and open it in VS Code.
+3. Clone this repository and open it in VS Code.
 
-  git clone https://gitlab.lrz.de/cps/CORALean.git
+       git clone https://gitlab.lrz.de/cps/CORALean.git
 
 ## Build
 
