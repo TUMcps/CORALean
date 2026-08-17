@@ -1,6 +1,6 @@
 // Lean compiler output
 // Module: CORALean.Arithmetic.Real.ContSet.Interval.Proofs
-// Imports: public import Init public meta import Init public import CORALean.Arithmetic.Real.ContSet.Interval.Proofs.PlusExact public import CORALean.Arithmetic.Real.ContSet.Interval.Proofs.MtimesOuter
+// Imports: public import Init public meta import Init public import CORALean.Arithmetic.Real.ContSet.Interval.Proofs.IsNonempty public import CORALean.Arithmetic.Real.ContSet.Interval.Proofs.PlusExact public import CORALean.Arithmetic.Real.ContSet.Interval.Proofs.MtimesOuter
 #include <lean/lean.h>
 #if defined(__clang__)
 #pragma clang diagnostic ignored "-Wunused-parameter"
@@ -15,6 +15,7 @@ extern "C" {
 #endif
 lean_object* initialize_Init(uint8_t builtin);
 lean_object* initialize_Init(uint8_t builtin);
+lean_object* initialize_CORALean_CORALean_Arithmetic_Real_ContSet_Interval_Proofs_IsNonempty(uint8_t builtin);
 lean_object* initialize_CORALean_CORALean_Arithmetic_Real_ContSet_Interval_Proofs_PlusExact(uint8_t builtin);
 lean_object* initialize_CORALean_CORALean_Arithmetic_Real_ContSet_Interval_Proofs_MtimesOuter(uint8_t builtin);
 static bool _G_initialized = false;
@@ -26,6 +27,9 @@ res = initialize_Init(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 res = initialize_Init(builtin);
+if (lean_io_result_is_error(res)) return res;
+lean_dec_ref(res);
+res = initialize_CORALean_CORALean_Arithmetic_Real_ContSet_Interval_Proofs_IsNonempty(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 res = initialize_CORALean_CORALean_Arithmetic_Real_ContSet_Interval_Proofs_PlusExact(builtin);

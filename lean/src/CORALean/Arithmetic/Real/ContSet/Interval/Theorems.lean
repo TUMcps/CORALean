@@ -13,8 +13,13 @@ open Matrix Pointwise
 
 variable {n m : ℕ}
 
-theorem Interval.plus_exact (I₁ I₂ : Interval n) (h₁ : I₁.construct.Nonempty)
-    (h₂ : I₂.construct.Nonempty) :
+theorem Interval.isNonempty_iff (I : Interval n) : I.IsNonempty ↔ I.construct.Nonempty :=
+  Interval.Proofs.isNonempty_iff I
+
+theorem Interval.not_isNonempty_iff (I : Interval n) : ¬I.IsNonempty ↔ I.construct = ∅ :=
+  Interval.Proofs.not_isNonempty_iff I
+
+theorem Interval.plus_exact (I₁ I₂ : Interval n) (h₁ : I₁.IsNonempty) (h₂ : I₂.IsNonempty) :
     I₁.construct + I₂.construct = (I₁.plus I₂).construct :=
   Interval.Proofs.plus_exact I₁ I₂ h₁ h₂
 
