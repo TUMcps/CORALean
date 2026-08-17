@@ -16,6 +16,22 @@ The restatement is checked against the proved one, so the two cannot drift.
 
 Naming convention follows the CORA repository: `plus`, `mtimes`, `reduce`, `interval`, ...
 
+A suffix says what a guarantee claims, and a file in `Proofs/` is named after the
+theorem it proves:
+
+| Suffix | Claim |
+| --- | --- |
+| `_outer` | the result contains the exact set |
+| `_inner` | the result is contained in it |
+| `_exact` | both, so the operation loses nothing |
+
+`_outer` rather than `_sound`, since an inner approximation is sound too.
+`_exact` only when equality holds for every input.
+
+`_refines` measures against the real counterpart instead of the exact set, and
+takes the direction too: `_outer_refines`. Composing the two gives the float
+guarantee, the weaker direction winning.
+
 ## The two layers
 
 `Real` is the specification, `Float` the refinement which obtains soundness guarantees through transitivity.

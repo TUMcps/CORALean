@@ -14,16 +14,6 @@ reachability costs; paid into the box it does not.
 `Interval` deliberately has no instance: it *is* the box, so an error term would
 nest a box inside a box.
 
-`nominal` is a representation from `Arithmetic.Real`, not the set it denotes —
-keeping the representation is what lets a refinement proof reach the exact
-layer's theorem about it. Not called *exact*: the stored fields are themselves
-rounded values.
-
-What it denotes is `s.nominal.construct`, which generic code cannot write, since
-dot notation resolves through a type's head constant and `N` is a variable.
-`nominalSet` names it instead, reducibly; concrete proofs write
-`(nominal Z).construct`.
-
 Boxes are built by whoever knows what was rounded — `Interval.residual`,
 `Interval.symmetric`, `Zonotope.generatorError` — and none mentions this class.
 
@@ -41,7 +31,9 @@ open Pointwise FloatOps SoundFloatArithmetic
 
 class InflatedContSet (S : Type) (N : outParam Type) (F : outParam Type) (n : outParam ℕ)
     [FloatOps F] [SoundFloatArithmetic F] [Real.ContSet N n] where
-  /-- The exact-layer representation the stored floats describe. -/
+  /-- The exact-layer representation the stored floats describe, not the set it
+  denotes — keeping the representation is what lets a refinement proof reach the
+  theorem about it. Not *exact*: the stored fields are rounded. -/
   nominal : S → N
   /-- Everything rounding has cost, as a box. Held in `F`, since operations
   compute it; a real interval here could not be computed with. -/
@@ -52,7 +44,9 @@ namespace InflatedContSet
 variable {F S N : Type} [FloatOps F] [SoundFloatArithmetic F] {n : ℕ}
 variable [Real.ContSet N n] [InflatedContSet S N F n]
 
-/-- What the nominal part denotes. -/
+/-- What the nominal part denotes. Generic code cannot write
+`s.nominal.construct`: dot notation resolves through a head constant, and `N` is
+a variable. Concrete proofs write `(nominal Z).construct`. -/
 abbrev nominalSet (s : S) : Set (Vec ℝ n) := Real.ContSet.construct (nominal s)
 
 def construct (s : S) : Set (Vec ℝ n) := nominalSet s + (error s).construct

@@ -1,6 +1,6 @@
 // Lean compiler output
 // Module: CORALean.Arithmetic.Real.ContSet.Zonotope.Proofs
-// Imports: public import Init public meta import Init public import CORALean.Arithmetic.Real.ContSet.Zonotope.Proofs.Coefficient public import CORALean.Arithmetic.Real.ContSet.Zonotope.Proofs.PlusSound public import CORALean.Arithmetic.Real.ContSet.Zonotope.Proofs.MtimesSound public import CORALean.Arithmetic.Real.ContSet.Zonotope.Proofs.IntervalSound public import CORALean.Arithmetic.Real.ContSet.Zonotope.Proofs.ReduceSound
+// Imports: public import Init public meta import Init public import CORALean.Arithmetic.Real.ContSet.Zonotope.Proofs.Coefficient public import CORALean.Arithmetic.Real.ContSet.Zonotope.Proofs.PlusExact public import CORALean.Arithmetic.Real.ContSet.Zonotope.Proofs.MtimesExact public import CORALean.Arithmetic.Real.ContSet.Zonotope.Proofs.IntervalOuter public import CORALean.Arithmetic.Real.ContSet.Zonotope.Proofs.ReduceOuter
 #include <lean/lean.h>
 #if defined(__clang__)
 #pragma clang diagnostic ignored "-Wunused-parameter"
@@ -16,10 +16,10 @@ extern "C" {
 lean_object* initialize_Init(uint8_t builtin);
 lean_object* initialize_Init(uint8_t builtin);
 lean_object* initialize_CORALean_CORALean_Arithmetic_Real_ContSet_Zonotope_Proofs_Coefficient(uint8_t builtin);
-lean_object* initialize_CORALean_CORALean_Arithmetic_Real_ContSet_Zonotope_Proofs_PlusSound(uint8_t builtin);
-lean_object* initialize_CORALean_CORALean_Arithmetic_Real_ContSet_Zonotope_Proofs_MtimesSound(uint8_t builtin);
-lean_object* initialize_CORALean_CORALean_Arithmetic_Real_ContSet_Zonotope_Proofs_IntervalSound(uint8_t builtin);
-lean_object* initialize_CORALean_CORALean_Arithmetic_Real_ContSet_Zonotope_Proofs_ReduceSound(uint8_t builtin);
+lean_object* initialize_CORALean_CORALean_Arithmetic_Real_ContSet_Zonotope_Proofs_PlusExact(uint8_t builtin);
+lean_object* initialize_CORALean_CORALean_Arithmetic_Real_ContSet_Zonotope_Proofs_MtimesExact(uint8_t builtin);
+lean_object* initialize_CORALean_CORALean_Arithmetic_Real_ContSet_Zonotope_Proofs_IntervalOuter(uint8_t builtin);
+lean_object* initialize_CORALean_CORALean_Arithmetic_Real_ContSet_Zonotope_Proofs_ReduceOuter(uint8_t builtin);
 static bool _G_initialized = false;
 LEAN_EXPORT lean_object* initialize_CORALean_CORALean_Arithmetic_Real_ContSet_Zonotope_Proofs(uint8_t builtin) {
 lean_object * res;
@@ -34,16 +34,16 @@ lean_dec_ref(res);
 res = initialize_CORALean_CORALean_Arithmetic_Real_ContSet_Zonotope_Proofs_Coefficient(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
-res = initialize_CORALean_CORALean_Arithmetic_Real_ContSet_Zonotope_Proofs_PlusSound(builtin);
+res = initialize_CORALean_CORALean_Arithmetic_Real_ContSet_Zonotope_Proofs_PlusExact(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
-res = initialize_CORALean_CORALean_Arithmetic_Real_ContSet_Zonotope_Proofs_MtimesSound(builtin);
+res = initialize_CORALean_CORALean_Arithmetic_Real_ContSet_Zonotope_Proofs_MtimesExact(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
-res = initialize_CORALean_CORALean_Arithmetic_Real_ContSet_Zonotope_Proofs_IntervalSound(builtin);
+res = initialize_CORALean_CORALean_Arithmetic_Real_ContSet_Zonotope_Proofs_IntervalOuter(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
-res = initialize_CORALean_CORALean_Arithmetic_Real_ContSet_Zonotope_Proofs_ReduceSound(builtin);
+res = initialize_CORALean_CORALean_Arithmetic_Real_ContSet_Zonotope_Proofs_ReduceOuter(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 return lean_io_result_mk_ok(lean_box(0));

@@ -1,8 +1,8 @@
 import CORALean.Arithmetic.Real.ContSet.Zonotope.Proofs.Coefficient
-import CORALean.Arithmetic.Real.ContSet.Zonotope.Proofs.PlusSound
-import CORALean.Arithmetic.Real.ContSet.Zonotope.Proofs.MtimesSound
-import CORALean.Arithmetic.Real.ContSet.Zonotope.Proofs.IntervalSound
-import CORALean.Arithmetic.Real.ContSet.Zonotope.Proofs.ReduceSound
+import CORALean.Arithmetic.Real.ContSet.Zonotope.Proofs.PlusExact
+import CORALean.Arithmetic.Real.ContSet.Zonotope.Proofs.MtimesExact
+import CORALean.Arithmetic.Real.ContSet.Zonotope.Proofs.IntervalOuter
+import CORALean.Arithmetic.Real.ContSet.Zonotope.Proofs.ReduceOuter
 
 /-!
 # Zonotope proofs, collected

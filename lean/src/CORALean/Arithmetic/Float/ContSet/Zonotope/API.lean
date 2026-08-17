@@ -8,16 +8,6 @@ CORA's `zonotope` with its centre and generator matrix, plus the error box that
 makes it an `InflatedContSet`. The nominal part is the zonotope those stored
 floats describe; the box holds what rounding has cost.
 
-`plus` is where the design pays. Generators concatenate exactly — appending two
-lists invents no digits — so only the centre rounds, and its `residual` goes
-into the box. The generator count is therefore `h + k`, exactly as over ℝ.
-Routing the rounding into new generators instead would make every addition cost
-`n` more of them, and generator count is what reachability costs.
-
-`absorbError` goes the other way, spending `n` generators to empty the box.
-`reduce` drops generators without touching the box, and `reduceAndAbsorb` does
-both for the price of one diagonal block.
-
 Guarantees live in `Theorems`.
 -/
 
@@ -158,6 +148,9 @@ def Zonotope.mtimes (M : Mat F m n) (Z : Zonotope F n h) : Zonotope F m h where
   G := matMulDown M Z.G
   E := (Interval.mtimes M Z.E).plus (Zonotope.mtimesResidual M Z)
 
+/-- Generators concatenate exactly, so only the centre rounds and its `residual`
+goes into the box, leaving the count at `h + k` as over ℝ. Paying into new
+generators instead would cost `n` more on every addition. -/
 def Zonotope.plus (Z₁ : Zonotope F n h) (Z₂ : Zonotope F n k) : Zonotope F n (h + k) where
   c := fun i => addDown (Z₁.c i) (Z₂.c i)
   G := fun i => Fin.append (Z₁.G i) (Z₂.G i)

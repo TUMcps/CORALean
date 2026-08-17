@@ -1,5 +1,5 @@
-import CORALean.Arithmetic.Float.ContSet.Interval.Proofs.PlusRefines
-import CORALean.Arithmetic.Float.ContSet.Interval.Proofs.MtimesRefines
+import CORALean.Arithmetic.Float.ContSet.Interval.Proofs.PlusOuterRefines
+import CORALean.Arithmetic.Float.ContSet.Interval.Proofs.MtimesOuterRefines
 import CORALean.Arithmetic.Float.ContSet.Interval.Proofs.SubMemResidual
 
 /-!

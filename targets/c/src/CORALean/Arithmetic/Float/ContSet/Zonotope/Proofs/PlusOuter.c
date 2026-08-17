@@ -1,6 +1,6 @@
 // Lean compiler output
-// Module: CORALean.Arithmetic.Float.ContSet.Zonotope.Proofs.AbsorbErrorSound
-// Imports: public import Init public meta import Init public import CORALean.Arithmetic.Float.ContSet.Zonotope.API public import CORALean.Arithmetic.Real.ContSet.Zonotope.Proofs.Coefficient
+// Module: CORALean.Arithmetic.Float.ContSet.Zonotope.Proofs.PlusOuter
+// Imports: public import Init public meta import Init public import CORALean.Arithmetic.Float.ContSet.Zonotope.API
 #include <lean/lean.h>
 #if defined(__clang__)
 #pragma clang diagnostic ignored "-Wunused-parameter"
@@ -16,9 +16,8 @@ extern "C" {
 lean_object* initialize_Init(uint8_t builtin);
 lean_object* initialize_Init(uint8_t builtin);
 lean_object* initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Zonotope_API(uint8_t builtin);
-lean_object* initialize_CORALean_CORALean_Arithmetic_Real_ContSet_Zonotope_Proofs_Coefficient(uint8_t builtin);
 static bool _G_initialized = false;
-LEAN_EXPORT lean_object* initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Zonotope_Proofs_AbsorbErrorSound(uint8_t builtin) {
+LEAN_EXPORT lean_object* initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Zonotope_Proofs_PlusOuter(uint8_t builtin) {
 lean_object * res;
 if (_G_initialized) return lean_io_result_mk_ok(lean_box(0));
 _G_initialized = true;
@@ -29,9 +28,6 @@ res = initialize_Init(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 res = initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Zonotope_API(builtin);
-if (lean_io_result_is_error(res)) return res;
-lean_dec_ref(res);
-res = initialize_CORALean_CORALean_Arithmetic_Real_ContSet_Zonotope_Proofs_Coefficient(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 return lean_io_result_mk_ok(lean_box(0));

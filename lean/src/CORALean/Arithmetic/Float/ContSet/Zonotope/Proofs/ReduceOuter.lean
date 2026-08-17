@@ -54,7 +54,7 @@ theorem reduce_nominal (Z : Zonotope F n h)
     simp only [toRealVec]
     rw [mul_coefficient (hbound i)]
 
-theorem reduce_sound (Z : Zonotope F n h)
+theorem reduce_outer (Z : Zonotope F n h)
     (part : Split (Fin h) into (Fin q) and (Fin r)) :
     Z.construct ⊆ (Z.reduce part).construct :=
   mono_subset (reduce_nominal Z part) (subset_refl _)

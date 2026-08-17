@@ -24,7 +24,7 @@ it stands for.
 | `examples.cpp` | worked cases with hand-computed answers |
 | `float_ops.cpp` | the `SoundFloatArithmetic` axioms, over random doubles |
 | `interval.cpp` | each operation encloses what it claims to |
-| `zonotope.cpp` | the soundness theorems, and the key lemma of each proof |
+| `zonotope.cpp` | the `_outer` theorems, and the key lemma of each proof |
 
 Two patterns worth reusing:
 

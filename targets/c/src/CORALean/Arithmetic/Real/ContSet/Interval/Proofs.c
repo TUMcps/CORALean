@@ -1,6 +1,6 @@
 // Lean compiler output
 // Module: CORALean.Arithmetic.Real.ContSet.Interval.Proofs
-// Imports: public import Init public meta import Init public import CORALean.Arithmetic.Real.ContSet.Interval.Proofs.PlusSound public import CORALean.Arithmetic.Real.ContSet.Interval.Proofs.MtimesSound
+// Imports: public import Init public meta import Init public import CORALean.Arithmetic.Real.ContSet.Interval.Proofs.PlusExact public import CORALean.Arithmetic.Real.ContSet.Interval.Proofs.MtimesOuter
 #include <lean/lean.h>
 #if defined(__clang__)
 #pragma clang diagnostic ignored "-Wunused-parameter"
@@ -15,8 +15,8 @@ extern "C" {
 #endif
 lean_object* initialize_Init(uint8_t builtin);
 lean_object* initialize_Init(uint8_t builtin);
-lean_object* initialize_CORALean_CORALean_Arithmetic_Real_ContSet_Interval_Proofs_PlusSound(uint8_t builtin);
-lean_object* initialize_CORALean_CORALean_Arithmetic_Real_ContSet_Interval_Proofs_MtimesSound(uint8_t builtin);
+lean_object* initialize_CORALean_CORALean_Arithmetic_Real_ContSet_Interval_Proofs_PlusExact(uint8_t builtin);
+lean_object* initialize_CORALean_CORALean_Arithmetic_Real_ContSet_Interval_Proofs_MtimesOuter(uint8_t builtin);
 static bool _G_initialized = false;
 LEAN_EXPORT lean_object* initialize_CORALean_CORALean_Arithmetic_Real_ContSet_Interval_Proofs(uint8_t builtin) {
 lean_object * res;
@@ -28,10 +28,10 @@ lean_dec_ref(res);
 res = initialize_Init(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
-res = initialize_CORALean_CORALean_Arithmetic_Real_ContSet_Interval_Proofs_PlusSound(builtin);
+res = initialize_CORALean_CORALean_Arithmetic_Real_ContSet_Interval_Proofs_PlusExact(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
-res = initialize_CORALean_CORALean_Arithmetic_Real_ContSet_Interval_Proofs_MtimesSound(builtin);
+res = initialize_CORALean_CORALean_Arithmetic_Real_ContSet_Interval_Proofs_MtimesOuter(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 return lean_io_result_mk_ok(lean_box(0));

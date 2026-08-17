@@ -7,14 +7,6 @@ CORA's `zonotope`, with the same centre `c` and generator matrix `G`. The
 generator count `h` sits in the type, so each signature reports what the
 operation does to the representation.
 
-`reduce` partitions the generator indices rather than choosing them: `part.left`
-names the `q` generators kept, `part.right` the `r` absorbed into a diagonal
-block holding their interval hull. Soundness holds for every `part`, so CORA's
-twenty-odd selection rules are this one definition with a different partition
-and none carries a proof obligation.
-
-`interval` is the interval hull, CORA's `@zonotope/interval.m`.
-
 Guarantees live in `Theorems`.
 -/
 
@@ -46,10 +38,14 @@ def Zonotope.mtimes (M : Mat ℝ m n) (Z : Zonotope n h) : Zonotope m h where
   c := M *ᵥ Z.c
   G := M * Z.G
 
+/-- The interval hull, CORA's `@zonotope/interval.m`. -/
 def Zonotope.interval (Z : Zonotope n h) : Interval n where
   inf := fun i => Z.c i - ∑ j, |Z.G i j|
   sup := fun i => Z.c i + ∑ j, |Z.G i j|
 
+/-- Partitions the generator indices rather than choosing them: `part.left` is
+kept, `part.right` absorbed into a diagonal block. CORA's twenty-odd selection
+rules are this definition with a different partition. -/
 def Zonotope.reduce (Z : Zonotope n h) (part : Split (Fin h) into (Fin q) and (Fin r)) :
     Zonotope n (q + n) where
   c := Z.c

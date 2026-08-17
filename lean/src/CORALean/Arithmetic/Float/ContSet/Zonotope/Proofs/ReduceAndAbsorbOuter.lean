@@ -1,5 +1,5 @@
-import CORALean.Arithmetic.Float.ContSet.Zonotope.Proofs.ReduceSound
-import CORALean.Arithmetic.Float.ContSet.Zonotope.Proofs.AbsorbErrorSound
+import CORALean.Arithmetic.Float.ContSet.Zonotope.Proofs.ReduceOuter
+import CORALean.Arithmetic.Float.ContSet.Zonotope.Proofs.AbsorbErrorOuter
 
 /-!
 # `reduceAndAbsorb` keeps the set it had
@@ -37,7 +37,7 @@ theorem abs_merged_le_radius (Z : Zonotope F n h)
   have hsum := add_le_addUp (radius (fun i l => Z.G i (part.right l)) i) (Z.errorRadius i)
   exact le_trans (abs_add_le _ _) (by linarith)
 
-theorem reduceAndAbsorb_sound (Z : Zonotope F n h)
+theorem reduceAndAbsorb_outer (Z : Zonotope F n h)
     (part : Split (Fin h) into (Fin q) and (Fin r)) :
     Z.construct ⊆ (Z.reduceAndAbsorb part).construct := by
   rintro _ ⟨z, ⟨β, hβ, hz⟩, e, he, rfl⟩

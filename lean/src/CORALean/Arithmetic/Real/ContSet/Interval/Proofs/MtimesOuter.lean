@@ -32,7 +32,7 @@ theorem mul_between_endpoints {c lo hi x : ℝ} (h₁ : lo ≤ x) (h₂ : x ≤ 
   · exact ⟨(min_le_right _ _).trans (mul_le_mul_of_nonpos_left h₂ hc),
            (mul_le_mul_of_nonpos_left h₁ hc).trans (le_max_left _ _)⟩
 
-theorem mtimes_sound (M : Mat ℝ m n) (I : Interval n) :
+theorem mtimes_outer (M : Mat ℝ m n) (I : Interval n) :
     (M *ᵥ ·) '' I.construct ⊆ (Interval.mtimes M I).construct := by
   rintro _ ⟨x, hx, rfl⟩ i
   simp only [Interval.mtimes, Matrix.mulVec, dotProduct]

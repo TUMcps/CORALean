@@ -9,7 +9,7 @@
 // so these check membership in the interval hull instead — necessary, not
 // sufficient, but enough to catch a transcription error.
 //
-// The second checks the key lemma of each soundness proof directly. Those
+// The second checks the key lemma of each `_outer` proof directly. Those
 // lemmas are all of the form "this radius covers what that part can
 // contribute", which is a comparison of two numbers, so the test is exact and
 // as strong as the proof step it mirrors.
@@ -104,10 +104,10 @@ int main() {
     const Vec<double> e = sampleError(rng, Z.E);
     const Vec<double> p = buildPoint(Z, beta, e);
 
-    // interval_sound.
+    // interval_outer.
     check("interval encloses", contains(Z.interval(), p));
 
-    // absorbError_sound: the point survives, and the generator count grows by n.
+    // absorbError_outer: the point survives, and the generator count grows by n.
     const Zonotope<double> A = Z.absorbError();
     check("absorbError count", A.numGenerators() == h + n);
     check("absorbError encloses", contains(A.interval(), p));
@@ -121,7 +121,7 @@ int main() {
     }
     check("errorRadius covers box", errOk);
 
-    // plus_sound: generators concatenate, so the count is h + k.
+    // plus_outer: generators concatenate, so the count is h + k.
     const std::size_t k = static_cast<std::size_t>(rng.intIn(1, 6));
     const Zonotope<double> Z2 = randomZonotope(rng, n, k);
     const Vec<double> beta2 = sampleCoeffs(rng, k);
@@ -133,7 +133,7 @@ int main() {
     check("plus count", P.numGenerators() == h + k);
     check("plus encloses", contains(P.interval(), psum));
 
-    // mtimes_sound: the count is untouched, the rounding paid into the box.
+    // mtimes_outer: the count is untouched, the rounding paid into the box.
     Mat<double> M(n, n);
     for (std::size_t i = 0; i < n; ++i)
       for (std::size_t l = 0; l < n; ++l) M(i, l) = rng.smallInt(20);
@@ -144,7 +144,7 @@ int main() {
     check("mtimes count", T.numGenerators() == h);
     check("mtimes encloses", contains(T.interval(), Mp));
 
-    // reduce_sound, and the lemma behind it: the diagonal block covers what the
+    // reduce_outer, and the lemma behind it: the diagonal block covers what the
     // dropped generators can contribute.
     const Split part = randomSplit(rng, h);
     check("split is a partition", part.isValid(h));

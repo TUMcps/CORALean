@@ -9,7 +9,8 @@ two incoming boxes.
 
 The nominal obligation is the exact `plus` argument — `Fin.append β₁ β₂` as the
 witness — with the centre displaced; the error obligation is two applications of
-`Interval.plus_sound`.
+`Interval.plus_outer`. The generator count is therefore still `h + k`: the
+rounding went into the box, not into new generators.
 -/
 
 -- Authors:       Tobias Ladner
@@ -46,10 +47,10 @@ theorem plus_nominal (Z₁ : Zonotope F n h) (Z₂ : Zonotope F n k) :
 theorem plus_error (Z₁ : Zonotope F n h) (Z₂ : Zonotope F n k) :
     Z₁.E.construct + Z₂.E.construct + (Zonotope.centerResidual Z₁.c Z₂.c).construct ⊆
       (Z₁.plus Z₂).E.construct :=
-  subset_trans (Set.add_subset_add_right (Interval.plus_sound Z₁.E Z₂.E))
-    (Interval.plus_sound _ _)
+  subset_trans (Set.add_subset_add_right (Interval.plus_outer Z₁.E Z₂.E))
+    (Interval.plus_outer _ _)
 
-theorem plus_sound (Z₁ : Zonotope F n h) (Z₂ : Zonotope F n k) :
+theorem plus_outer (Z₁ : Zonotope F n h) (Z₂ : Zonotope F n k) :
     Z₁.construct + Z₂.construct ⊆ (Z₁.plus Z₂).construct :=
   InflatedContSet.plus_subset (plus_nominal Z₁ Z₂) (plus_error Z₁ Z₂)
 

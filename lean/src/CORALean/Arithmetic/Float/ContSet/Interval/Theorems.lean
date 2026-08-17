@@ -14,14 +14,14 @@ open Pointwise Matrix FloatOps SoundFloatArithmetic
 
 variable {F : Type} [FloatOps F] [SoundFloatArithmetic F] {n m h : ℕ}
 
-theorem Interval.plus_sound (I₁ I₂ : Interval F n) :
+theorem Interval.plus_outer (I₁ I₂ : Interval F n) :
     I₁.construct + I₂.construct ⊆ (I₁.plus I₂).construct :=
-  subset_trans (Real.Interval.plus_sound I₁.nominal I₂.nominal) (Interval.Proofs.plus_refines I₁ I₂)
+  subset_trans (Real.Interval.plus_outer I₁.nominal I₂.nominal) (Interval.Proofs.plus_outer_refines I₁ I₂)
 
-theorem Interval.mtimes_sound (M : Mat F m n) (I : Interval F n) :
+theorem Interval.mtimes_outer (M : Mat F m n) (I : Interval F n) :
     ((toRealMat M) *ᵥ ·) '' I.construct ⊆ (Interval.mtimes M I).construct :=
-  subset_trans (Real.Interval.mtimes_sound (toRealMat M) I.nominal)
-    (Interval.Proofs.mtimes_refines M I)
+  subset_trans (Real.Interval.mtimes_outer (toRealMat M) I.nominal)
+    (Interval.Proofs.mtimes_outer_refines M I)
 
 theorem Interval.sub_mem_residual {lo hi stored : Vec F n} {x : Vec ℝ n}
     (h : ∀ i, toReal (lo i) ≤ x i ∧ x i ≤ toReal (hi i)) :

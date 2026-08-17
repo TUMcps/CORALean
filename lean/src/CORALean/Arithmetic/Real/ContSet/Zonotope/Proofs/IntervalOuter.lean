@@ -17,7 +17,7 @@ namespace CORALean.Arithmetic.Real.Zonotope.Proofs
 
 variable {n h : ℕ}
 
-theorem interval_sound (Z : Zonotope n h) : Z.construct ⊆ Z.interval.construct := by
+theorem interval_outer (Z : Zonotope n h) : Z.construct ⊆ Z.interval.construct := by
   rintro x ⟨β, hβ, hx⟩ i
   have key : |x i - Z.c i| ≤ ∑ j, |Z.G i j| := by
     rw [hx i, add_sub_cancel_left]

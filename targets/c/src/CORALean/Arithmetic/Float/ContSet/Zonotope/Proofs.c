@@ -1,6 +1,6 @@
 // Lean compiler output
 // Module: CORALean.Arithmetic.Float.ContSet.Zonotope.Proofs
-// Imports: public import Init public meta import Init public import CORALean.Arithmetic.Float.ContSet.Zonotope.Proofs.MemGeneratorError public import CORALean.Arithmetic.Float.ContSet.Zonotope.Proofs.PlusSound public import CORALean.Arithmetic.Float.ContSet.Zonotope.Proofs.AbsorbErrorSound public import CORALean.Arithmetic.Float.ContSet.Zonotope.Proofs.MtimesSound public import CORALean.Arithmetic.Float.ContSet.Zonotope.Proofs.ReduceSound public import CORALean.Arithmetic.Float.ContSet.Zonotope.Proofs.ReduceAndAbsorbSound public import CORALean.Arithmetic.Float.ContSet.Zonotope.Proofs.IntervalSound
+// Imports: public import Init public meta import Init public import CORALean.Arithmetic.Float.ContSet.Zonotope.Proofs.MemGeneratorError public import CORALean.Arithmetic.Float.ContSet.Zonotope.Proofs.PlusOuter public import CORALean.Arithmetic.Float.ContSet.Zonotope.Proofs.AbsorbErrorOuter public import CORALean.Arithmetic.Float.ContSet.Zonotope.Proofs.MtimesOuter public import CORALean.Arithmetic.Float.ContSet.Zonotope.Proofs.ReduceOuter public import CORALean.Arithmetic.Float.ContSet.Zonotope.Proofs.ReduceAndAbsorbOuter public import CORALean.Arithmetic.Float.ContSet.Zonotope.Proofs.IntervalOuter
 #include <lean/lean.h>
 #if defined(__clang__)
 #pragma clang diagnostic ignored "-Wunused-parameter"
@@ -16,12 +16,12 @@ extern "C" {
 lean_object* initialize_Init(uint8_t builtin);
 lean_object* initialize_Init(uint8_t builtin);
 lean_object* initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Zonotope_Proofs_MemGeneratorError(uint8_t builtin);
-lean_object* initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Zonotope_Proofs_PlusSound(uint8_t builtin);
-lean_object* initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Zonotope_Proofs_AbsorbErrorSound(uint8_t builtin);
-lean_object* initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Zonotope_Proofs_MtimesSound(uint8_t builtin);
-lean_object* initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Zonotope_Proofs_ReduceSound(uint8_t builtin);
-lean_object* initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Zonotope_Proofs_ReduceAndAbsorbSound(uint8_t builtin);
-lean_object* initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Zonotope_Proofs_IntervalSound(uint8_t builtin);
+lean_object* initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Zonotope_Proofs_PlusOuter(uint8_t builtin);
+lean_object* initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Zonotope_Proofs_AbsorbErrorOuter(uint8_t builtin);
+lean_object* initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Zonotope_Proofs_MtimesOuter(uint8_t builtin);
+lean_object* initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Zonotope_Proofs_ReduceOuter(uint8_t builtin);
+lean_object* initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Zonotope_Proofs_ReduceAndAbsorbOuter(uint8_t builtin);
+lean_object* initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Zonotope_Proofs_IntervalOuter(uint8_t builtin);
 static bool _G_initialized = false;
 LEAN_EXPORT lean_object* initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Zonotope_Proofs(uint8_t builtin) {
 lean_object * res;
@@ -36,22 +36,22 @@ lean_dec_ref(res);
 res = initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Zonotope_Proofs_MemGeneratorError(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
-res = initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Zonotope_Proofs_PlusSound(builtin);
+res = initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Zonotope_Proofs_PlusOuter(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
-res = initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Zonotope_Proofs_AbsorbErrorSound(builtin);
+res = initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Zonotope_Proofs_AbsorbErrorOuter(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
-res = initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Zonotope_Proofs_MtimesSound(builtin);
+res = initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Zonotope_Proofs_MtimesOuter(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
-res = initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Zonotope_Proofs_ReduceSound(builtin);
+res = initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Zonotope_Proofs_ReduceOuter(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
-res = initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Zonotope_Proofs_ReduceAndAbsorbSound(builtin);
+res = initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Zonotope_Proofs_ReduceAndAbsorbOuter(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
-res = initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Zonotope_Proofs_IntervalSound(builtin);
+res = initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Zonotope_Proofs_IntervalOuter(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 return lean_io_result_mk_ok(lean_box(0));

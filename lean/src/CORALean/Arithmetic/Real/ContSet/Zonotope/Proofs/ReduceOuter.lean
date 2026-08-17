@@ -12,7 +12,8 @@ admissible.
 degenerate `R = 0` case, where the same bound forces `D` to vanish.
 
 `Partition.sum_split₂` is where the partition pays: the sum over all generators
-splits into kept and dropped with no side condition.
+splits into kept and dropped with no side condition. Hence no hypothesis on
+`part` anywhere: bad selection costs precision, never soundness.
 -/
 
 -- Authors:       Tobias Ladner
@@ -24,7 +25,7 @@ namespace CORALean.Arithmetic.Real.Zonotope.Proofs
 
 variable {n h q r : ℕ}
 
-theorem reduce_sound (Z : Zonotope n h) (part : Split (Fin h) into (Fin q) and (Fin r)) :
+theorem reduce_outer (Z : Zonotope n h) (part : Split (Fin h) into (Fin q) and (Fin r)) :
     Z.construct ⊆ (Z.reduce part).construct := by
   rintro x ⟨β, hβ, hx⟩
   have hbound : ∀ i, |∑ l, Z.G i (part.right l) * β (part.right l)|

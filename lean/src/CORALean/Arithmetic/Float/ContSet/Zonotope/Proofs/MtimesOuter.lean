@@ -5,7 +5,7 @@ import CORALean.Arithmetic.Float.ContSet.Zonotope.Proofs.MemGeneratorError
 
 `InflatedContSet.map_subset` splits this into the nominal part and the box. The
 box is easy: the old one travels through the map as a box, by
-`Interval.mtimes_sound`, and the spill is added on.
+`Interval.mtimes_outer`, and the spill is added on.
 
 The nominal obligation is where the float layer pays for arithmetic rather than
 bookkeeping. Centre and generators are both computed, and wrong in different
@@ -64,7 +64,7 @@ theorem mtimes_nominal (M : Mat F m n) (Z : Zonotope F n h) :
     exact ⟨by simp only [matMulDiff]; linarith, by simp only [matMulDiff]; linarith⟩
   refine ⟨fun i => toReal ((Zonotope.mtimes M Z).c i)
             + ∑ j, toReal ((Zonotope.mtimes M Z).G i j) * β j, ⟨β, hβ, fun _ => rfl⟩,
-          _, Interval.plus_sound _ _
+          _, Interval.plus_outer _ _
             ⟨_, Interval.sub_mem_residual (fun i => ⟨dotDown_le (M i) Z.c, le_dotUp (M i) Z.c⟩),
              _, mem_generatorError hgen hβ, rfl⟩, ?_⟩
   funext i
@@ -88,10 +88,10 @@ theorem mtimes_nominal (M : Mat F m n) (Z : Zonotope F n h) :
 theorem mtimes_error (M : Mat F m n) (Z : Zonotope F n h) :
     (toRealMat M *ᵥ ·) '' (error Z).construct + (Zonotope.mtimesResidual M Z).construct ⊆
       (error (Zonotope.mtimes M Z)).construct :=
-  subset_trans (Set.add_subset_add_right (Interval.mtimes_sound M Z.E))
-    (Interval.plus_sound _ _)
+  subset_trans (Set.add_subset_add_right (Interval.mtimes_outer M Z.E))
+    (Interval.plus_outer _ _)
 
-theorem mtimes_sound (M : Mat F m n) (Z : Zonotope F n h) :
+theorem mtimes_outer (M : Mat F m n) (Z : Zonotope F n h) :
     (toRealMat M *ᵥ ·) '' Z.construct ⊆ (Zonotope.mtimes M Z).construct :=
   map_subset (fun x y => Matrix.mulVec_add _ x y) (mtimes_nominal M Z) (mtimes_error M Z)
 

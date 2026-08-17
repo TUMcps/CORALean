@@ -8,7 +8,7 @@ are exact, so both layers pick the same endpoint; `sumDown`/`sumUp` then enclose
 the sum.
 
 The sign of `M i k` is never examined. That case split lives once, in
-`Arithmetic.Real`, and is reached through `mtimes_sound`.
+`Arithmetic.Real`, and is reached through `mtimes_outer`.
 -/
 
 -- Authors:       Tobias Ladner
@@ -22,7 +22,7 @@ open FloatOps SoundFloatArithmetic
 
 variable {F : Type} [FloatOps F] [SoundFloatArithmetic F] {n m : ℕ}
 
-theorem mtimes_refines (M : Mat F m n) (I : Interval F n) :
+theorem mtimes_outer_refines (M : Mat F m n) (I : Interval F n) :
     (Real.Interval.mtimes (toRealMat M) I.nominal).construct ⊆
       (Interval.mtimes M I).construct := by
   intro x hx i

@@ -1,6 +1,6 @@
 // Lean compiler output
 // Module: CORALean.Arithmetic.Float.ContSet.Interval.Proofs
-// Imports: public import Init public meta import Init public import CORALean.Arithmetic.Float.ContSet.Interval.Proofs.PlusRefines public import CORALean.Arithmetic.Float.ContSet.Interval.Proofs.MtimesRefines public import CORALean.Arithmetic.Float.ContSet.Interval.Proofs.SubMemResidual
+// Imports: public import Init public meta import Init public import CORALean.Arithmetic.Float.ContSet.Interval.Proofs.PlusOuterRefines public import CORALean.Arithmetic.Float.ContSet.Interval.Proofs.MtimesOuterRefines public import CORALean.Arithmetic.Float.ContSet.Interval.Proofs.SubMemResidual
 #include <lean/lean.h>
 #if defined(__clang__)
 #pragma clang diagnostic ignored "-Wunused-parameter"
@@ -15,8 +15,8 @@ extern "C" {
 #endif
 lean_object* initialize_Init(uint8_t builtin);
 lean_object* initialize_Init(uint8_t builtin);
-lean_object* initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Interval_Proofs_PlusRefines(uint8_t builtin);
-lean_object* initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Interval_Proofs_MtimesRefines(uint8_t builtin);
+lean_object* initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Interval_Proofs_PlusOuterRefines(uint8_t builtin);
+lean_object* initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Interval_Proofs_MtimesOuterRefines(uint8_t builtin);
 lean_object* initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Interval_Proofs_SubMemResidual(uint8_t builtin);
 static bool _G_initialized = false;
 LEAN_EXPORT lean_object* initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Interval_Proofs(uint8_t builtin) {
@@ -29,10 +29,10 @@ lean_dec_ref(res);
 res = initialize_Init(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
-res = initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Interval_Proofs_PlusRefines(builtin);
+res = initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Interval_Proofs_PlusOuterRefines(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
-res = initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Interval_Proofs_MtimesRefines(builtin);
+res = initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Interval_Proofs_MtimesOuterRefines(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 res = initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Interval_Proofs_SubMemResidual(builtin);

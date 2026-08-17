@@ -11,6 +11,9 @@ midpoint need not be one, which is why the box does not become `[0, 0]`.
 The witness is `Fin.append β γ`: the old coefficients, then one per coordinate
 placing that coordinate's error in its new generator. `coefficient` supplies it,
 and the radius rounds up so it always fits.
+
+This is the one operation that spends generators, `h + n`, and spending them is
+what the caller asked for.
 -/
 
 -- Authors:       Tobias Ladner
@@ -50,7 +53,7 @@ theorem shift_brackets_mid (Z : Zonotope F n h) (i : Fin n) :
     rw [toReal_half] at h1
     simpa only [Zonotope.shiftUp] using by linarith
 
-theorem absorbError_sound (Z : Zonotope F n h) :
+theorem absorbError_outer (Z : Zonotope F n h) :
     Z.construct ⊆ Z.absorbError.construct := by
   rintro _ ⟨z, ⟨β, hβ, hz⟩, e, he, rfl⟩
   refine ⟨fun i => toReal (Z.absorbError.c i)

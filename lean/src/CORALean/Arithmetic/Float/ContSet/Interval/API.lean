@@ -6,11 +6,6 @@ import CORALean.Arithmetic.Real.ContSet.Interval.Theorems
 
 CORA's `interval` with the same `inf` and `sup`, held in `F` rather than ℝ.
 
-`nominal` reads the bounds through `toReal` and `construct` is the exact layer's
-`construct` of that, so what an interval denotes is fixed by definition, not by
-a lemma. Each operation then owes only that it encloses the exact one; soundness
-follows by transitivity, and no set-level argument is repeated here.
-
 Each bound rounds away from the interval: `inf` down, `sup` up. That is the
 whole of the floating-point content.
 
@@ -36,6 +31,8 @@ def Interval.nominal [SoundFloatArithmetic F] (I : Interval F n) :
     CORALean.Arithmetic.Real.Interval n :=
   ⟨toRealVec I.inf, toRealVec I.sup⟩
 
+/-- The exact layer's `construct` of `nominal`, so what an interval denotes is
+fixed by definition, not by a lemma. Each operation then owes only enclosure. -/
 def Interval.construct [SoundFloatArithmetic F] (I : Interval F n) : Set (Vec ℝ n) :=
   I.nominal.construct
 

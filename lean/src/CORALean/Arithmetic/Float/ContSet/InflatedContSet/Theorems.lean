@@ -3,11 +3,10 @@ import CORALean.Arithmetic.Float.ContSet.InflatedContSet.Proofs
 /-!
 # What the error box guarantees
 
-Three ways to weaken a nominal part together with its box, by how the operation
-moves content: `mono_subset` when nothing moves between the two, `map_subset`
-when an additive map pushes both through, `plus_subset` for a binary operation.
-A representation discharges its operations through these and never reasons about
-set addition itself. Building the box is `Interval`'s business, not this class's.
+Three ways to weaken a nominal part together with its box, told apart by how the
+operation moves content between the two. A representation discharges its
+operations through these and never reasons about set addition itself. Building
+the box is `Interval`'s business, not this class's.
 -/
 
 namespace CORALean.Arithmetic.Float.InflatedContSet

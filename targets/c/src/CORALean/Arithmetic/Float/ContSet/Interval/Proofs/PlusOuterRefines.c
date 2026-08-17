@@ -1,5 +1,5 @@
 // Lean compiler output
-// Module: CORALean.Arithmetic.Float.ContSet.Interval.Proofs.PlusRefines
+// Module: CORALean.Arithmetic.Float.ContSet.Interval.Proofs.PlusOuterRefines
 // Imports: public import Init public meta import Init public import CORALean.Arithmetic.Float.ContSet.Interval.API
 #include <lean/lean.h>
 #if defined(__clang__)
@@ -17,7 +17,7 @@ lean_object* initialize_Init(uint8_t builtin);
 lean_object* initialize_Init(uint8_t builtin);
 lean_object* initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Interval_API(uint8_t builtin);
 static bool _G_initialized = false;
-LEAN_EXPORT lean_object* initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Interval_Proofs_PlusRefines(uint8_t builtin) {
+LEAN_EXPORT lean_object* initialize_CORALean_CORALean_Arithmetic_Float_ContSet_Interval_Proofs_PlusOuterRefines(uint8_t builtin) {
 lean_object * res;
 if (_G_initialized) return lean_io_result_mk_ok(lean_box(0));
 _G_initialized = true;
