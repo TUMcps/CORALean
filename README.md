@@ -3,14 +3,24 @@
 A Lean 4 formalization of [CORA](https://cora.in.tum.de), the Continuous
 Reachability Analyzer.
 
+## Installation
+
+Follow the [Lean](https://lean-lang.org/) installation.
+
+Lean works best in combination with [VS Code](https://code.visualstudio.com) with its [Lean 4 extension](https://marketplace.visualstudio.com/items?itemName=leanprover.lean4), 
+which provides the goal view and diagnostics as you type:
+
+Clone this repository and open it in VS Code.
+
+  git clone https://gitlab.lrz.de/cps/CORALean.git
+
 ## Build
+
+To build the project, run
 
 ```
 cd lean && lake exe cache get && lake build
 ```
-
-Requires the toolchain in `lean/lean-toolchain`; `elan` installs it
-automatically.
 
 
 ## Layout
@@ -68,5 +78,5 @@ lean/src/CORALean/
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for file roles, the layering rule, and
-the conventions proofs and docstrings follow.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for tooling, file roles, the layering
+rule, and the conventions proofs and docstrings follow.

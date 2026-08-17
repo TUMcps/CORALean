@@ -1,5 +1,16 @@
 # Contributing
 
+## Tooling
+
+`.mcp.json` registers the [lean-lsp](https://github.com/oOo0oOo/lean-lsp-mcp)
+MCP server, which gives an AI agent goal state, diagnostics, and Mathlib search
+without a rebuild. It needs [`uv`](https://docs.astral.sh/uv/) on `PATH`; `uvx`
+fetches the server itself.
+
+The Lean project root is `lean/`, not the repository root, hence the
+`--lean-project-path` flag. Build once before first use, since the server starts
+`lake serve` and otherwise builds from cold.
+
 ## File roles
 
 Per representation, four kinds of file, and a file does only its own job:
