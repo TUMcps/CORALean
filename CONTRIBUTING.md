@@ -60,7 +60,7 @@ new lemma may mean a new import there.
 
 ## Documentation
 
-Every file opens with a module docstring saying what it is for and what is
+Every file opens with a brief module docstring saying what it is for and what is
 non-obvious about it. Keep it, and all other comments, short and precise (ideally one line).
 State how the code is now — not what it used to be, or what was tried instead.
 

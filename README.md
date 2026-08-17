@@ -5,18 +5,17 @@ Reachability Analyzer.
 
 ## Installation
 
-1. Follow the [Lean](https://lean-lang.org/) installation.
-
-2. Lean works best in combination with [VS Code](https://code.visualstudio.com) and its [Lean 4 extension](https://marketplace.visualstudio.com/items?itemName=leanprover.lean4), 
+Follow the [Lean](https://lean-lang.org/) installation. <br/>
+Lean works best in combination with [VS Code](https://code.visualstudio.com) and its [Lean 4 extension](https://marketplace.visualstudio.com/items?itemName=leanprover.lean4), 
 which provides diagnostics and open goals in the Lean infoView as you type.
 
-3. Clone this repository and open it in VS Code.
+Then, clone this repository:
 
-       git clone https://gitlab.lrz.de/cps/CORALean.git
+```
+git clone https://gitlab.lrz.de/cps/CORALean.git
+```
 
-## Build
-
-To build the project, run
+and open it in VS Code. Finally, to build the project, run
 
 ```
 cd lean && lake exe cache get && lake build
@@ -44,17 +43,13 @@ Every other language should be generated or at least checked against the C imple
 
 ### The formalization
 
-Mirrors CORA's structure and naming convention.
+The setup mirrors CORA's structure and naming convention.
+In general, all set representations and their operations are defined over ℝ and proved sound — e.g., each operation over-approximates the set it claims to.
+These proofs can be found under `lean/src/CORALean/Arithmetic/Real`.
 
-Set representations and their operations are defined over ℝ and proved
-sound — e.g., each operation over-approximates the set it claims to.
-
-Lean also formalizes the floating-point computations so it can be implemented in actual code (see the generated C code).
-Thus, all theorems are first stated in ℝ under `lean/src/CORALean/Arithmetic/Real` and then refined in `.../Float`.
-The floating-point layer assumes no format. `SoundFloatArithmetic F` asks only
-for a real interpretation and arithmetic that rounds in a stated direction, so
-its proofs hold for binary64 and for any other precision.
-The proofs of `Float` then just refine the theorems in `Real`, which gives soundness by transitivity.
+Lean also formalizes the floating-point computations by soundly rounding "outward" to remain sound.
+Thus, all theorems first stated in ℝ are refined in `lean/src/CORALean/Arithmetic/Float` to deal with floating point arithmetic.
+This refinement can then be used to test any implementation against.
 
 
 ```
@@ -68,7 +63,7 @@ lean/src/CORALean/
         ...
     Float/         the refinement: the same representations, rounded
       FloatOps / SoundFloatArithmetic   operations, then their guarantees
-      Instances/   Real (rounding trivial), Dyadic (rounding real)
+      Instances/   Dyadic (outward rounding)  Real (trivial)
       ContSet/
         InflatedContSet/   nominal part + error box, and its shared lemmas
         Interval/  Floating point formalization of Interval in Real
@@ -78,5 +73,4 @@ lean/src/CORALean/
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for tooling, file roles, the layering
-rule, and the conventions proofs and docstrings follow.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for tooling, file roles, the layering rule, and the conventions proofs and docstrings follow.
