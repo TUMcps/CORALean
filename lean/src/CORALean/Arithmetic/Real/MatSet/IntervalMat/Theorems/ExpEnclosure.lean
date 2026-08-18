@@ -55,6 +55,28 @@ theorem aux_factorial_mul_pow_le (a k : ℕ) :
       _ = Nat.factorial (a + (k + 1))               := by rw [hstep]; ring
 
 set_option maxHeartbeats 40000 in
+/-- The scalar core of the tail estimate: the factorial outgrows the power fast
+enough that the tail is dominated by a geometric series. Stated on its own
+because the correction matrix bounds a different series with the same shape. -/
+theorem aux_scalar_term_le {c : ℝ} (hc : 0 ≤ c) (η i : ℕ) :
+    (Nat.factorial (i + (η + 1)) : ℝ)⁻¹ * c ^ (i + (η + 1))
+      ≤ (c ^ (η + 1) / Nat.factorial (η + 1)) * (c / ((η : ℝ) + 2)) ^ i := by
+  rw [Nat.add_comm i (η + 1)]
+  have hfac : ((Nat.factorial (η + 1) : ℝ) * ((η : ℝ) + 2) ^ i)
+      ≤ (Nat.factorial ((η + 1) + i) : ℝ) := by
+    have hcast : ((Nat.factorial (η + 1) * ((η + 1) + 1) ^ i : ℕ) : ℝ)
+        ≤ ((Nat.factorial ((η + 1) + i) : ℕ) : ℝ) :=
+      Nat.cast_le.mpr (aux_factorial_mul_pow_le (η + 1) i)
+    push_cast at hcast
+    convert hcast using 3
+    ring
+  calc (Nat.factorial ((η + 1) + i) : ℝ)⁻¹ * c ^ ((η + 1) + i)
+      ≤ ((Nat.factorial (η + 1) : ℝ) * ((η : ℝ) + 2) ^ i)⁻¹ * c ^ ((η + 1) + i) := by gcongr
+    _ = (c ^ (η + 1) / Nat.factorial (η + 1)) * (c / ((η : ℝ) + 2)) ^ i := by
+        rw [div_pow, pow_add]
+        field_simp
+
+set_option maxHeartbeats 40000 in
 theorem aux_term_le (x : Mat ℝ n n) (η i : ℕ) :
     ‖((Nat.factorial (i + (η + 1)) : ℝ)⁻¹) • x ^ (i + (η + 1))‖
       ≤ (‖x‖ ^ (η + 1) / Nat.factorial (η + 1)) * (‖x‖ / ((η : ℝ) + 2)) ^ i := by

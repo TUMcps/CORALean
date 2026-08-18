@@ -1,4 +1,5 @@
 import CORALean.Arithmetic.Real.MatSet.IntervalMat.Theorems.CorrCoeffBound
+import CORALean.Arithmetic.Real.MatSet.IntervalMat.Theorems.CorrectionMatrix
 import CORALean.Arithmetic.Real.MatSet.IntervalMat.Theorems.ExpDiff
 import CORALean.Arithmetic.Real.MatSet.IntervalMat.Theorems.ExpEnclosure
 

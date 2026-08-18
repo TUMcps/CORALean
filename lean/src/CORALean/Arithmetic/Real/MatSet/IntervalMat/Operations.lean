@@ -54,4 +54,22 @@ the exponent is a natural number and the bound is provable as stated. -/
 noncomputable def IntervalMat.corrCoeff (i : ℕ) : ℝ :=
   IntervalMat.corrCritical i ^ i - IntervalMat.corrCritical i
 
+/-- What order `i` contributes to the correction, at the far end of its range.
+The interval it spans is between this and zero, on whichever side its sign puts
+it. -/
+noncomputable def IntervalMat.corrTerm (A : Mat ℝ n n) (r : ℝ) (i : ℕ) (j k : Fin n) : ℝ :=
+  IntervalMat.corrCoeff i * r ^ i * (((Nat.factorial i : ℝ))⁻¹ * (A ^ i) j k)
+
+/-- Althoff's `F`: the orders up to `η` exactly, and everything past `η` in the
+same remainder that bounds the exponential.
+
+Indexed from `2`, since the constant and linear terms of the interpolation error
+cancel; `range (η-1)` at offset `2` is orders `2` through `η`. -/
+noncomputable def IntervalMat.correctionMatrix (A : Mat ℝ n n) (r : ℝ) (η : ℕ) :
+    IntervalMat n n where
+  inf := fun j k => (∑ i ∈ Finset.range (η - 1), min (IntervalMat.corrTerm A r (i + 2) j k) 0)
+    - IntervalMat.expRemainderBound (r • A) η
+  sup := fun j k => (∑ i ∈ Finset.range (η - 1), max (IntervalMat.corrTerm A r (i + 2) j k) 0)
+    + IntervalMat.expRemainderBound (r • A) η
+
 end CORALean.Arithmetic.Real

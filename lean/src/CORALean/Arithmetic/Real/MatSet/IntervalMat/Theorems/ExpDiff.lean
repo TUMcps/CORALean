@@ -47,6 +47,18 @@ theorem aux_summable_smul (A : Mat ℝ n n) (t : ℝ) :
   rw [smul_pow, smul_smul]
 
 set_option maxHeartbeats 400000 in
+theorem IntervalMat.summable_expDiff (A : Mat ℝ n n) (t r : ℝ) :
+    Summable (fun i : ℕ => (((Nat.factorial (i + 2) : ℝ))⁻¹
+      * (t ^ (i + 2) - (t / r) * r ^ (i + 2))) • A ^ (i + 2)) := by
+  have hst := aux_summable_smul A t
+  have hsr : Summable (fun i : ℕ => (t / r) • ((((Nat.factorial i : ℝ))⁻¹ * r ^ i) • A ^ i)) :=
+    (aux_summable_smul A r).const_smul _
+  have hg : Summable
+      (fun i : ℕ => (((Nat.factorial i : ℝ))⁻¹ * (t ^ i - (t / r) * r ^ i)) • A ^ i) :=
+    (hst.sub hsr).congr fun i => by simp only [smul_smul, ← sub_smul]; ring_nf
+  exact (summable_nat_add_iff 2).mpr hg
+
+set_option maxHeartbeats 400000 in
 theorem IntervalMat.expDiff_eq_tsum (A : Mat ℝ n n) (t r : ℝ) (hr : r ≠ 0) :
     exp (t • A) - 1 - (t / r) • (exp (r • A) - 1)
       = ∑' i : ℕ, (((Nat.factorial (i + 2) : ℝ))⁻¹
