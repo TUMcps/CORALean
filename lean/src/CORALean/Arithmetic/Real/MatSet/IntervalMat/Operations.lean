@@ -43,4 +43,15 @@ noncomputable def IntervalMat.expEnclosure (x : Mat ℝ n n) (η : ℕ) : Interv
   inf := fun i j => IntervalMat.expTaylor x η i j - IntervalMat.expRemainderBound x η
   sup := fun i j => IntervalMat.expTaylor x η i j + IntervalMat.expRemainderBound x η
 
+/-- Where `s ↦ s ^ i - s` bottoms out: `i ^ (-1/(i-1))`, the only stationary
+point, and the minimum because the map is convex. -/
+noncomputable def IntervalMat.corrCritical (i : ℕ) : ℝ :=
+  (i : ℝ) ^ (-(1:ℝ) / ((i : ℝ) - 1))
+
+/-- How far below zero `s ^ i - s` reaches on `[0,1]`. Althoff's thesis writes
+this `i^(-i/(i-1)) - i^(-1/(i-1))`, which `corrCoeff_eq` confirms; in this form
+the exponent is a natural number and the bound is provable as stated. -/
+noncomputable def IntervalMat.corrCoeff (i : ℕ) : ℝ :=
+  IntervalMat.corrCritical i ^ i - IntervalMat.corrCritical i
+
 end CORALean.Arithmetic.Real

@@ -1,3 +1,4 @@
+import CORALean.Arithmetic.Real.MatSet.IntervalMat.Theorems.CorrCoeffBound
 import CORALean.Arithmetic.Real.MatSet.IntervalMat.Theorems.ExpEnclosure
 
 /-!
