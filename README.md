@@ -62,6 +62,8 @@ lean/src/CORALean/
         Interval/  API.lean (definitions), Theorems.lean (guarantees), Proofs/,
                    Instance.lean (the interface, instantiated)
         ...
+      ContDynamics/  algorithms, written against the interface alone
+        LinearSysDT/ discrete-time linear systems, and reachability
     Float/         the refinement: the same representations, rounded
       FloatOps / SoundFloatArithmetic   operations, then their guarantees
       Instances/   Dyadic (outward rounding)  Real (trivial)
