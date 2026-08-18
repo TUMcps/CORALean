@@ -30,4 +30,10 @@ instance : OuterContSet Interval ℝ where
     exact Interval.mtimes_outer M I
   reduce_outer _ _ := subset_rfl
 
+/-- The box around both, so an algorithm wanting a segment enclosure runs at
+intervals too and not only at zonotopes. -/
+instance : LinComb Interval where
+  linComb := Interval.linComb
+  linComb_outer := Interval.linComb_outer
+
 end CORALean.Arithmetic.Real

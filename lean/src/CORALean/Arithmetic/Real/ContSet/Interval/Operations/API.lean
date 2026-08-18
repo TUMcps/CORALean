@@ -1,4 +1,5 @@
 import CORALean.Arithmetic.Real.ContSet.Interval.Operations.Plus
+import CORALean.Arithmetic.Real.ContSet.Interval.Operations.LinComb
 import CORALean.Arithmetic.Real.ContSet.Interval.Operations.Mtimes
 
 /-!

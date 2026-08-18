@@ -1,5 +1,6 @@
 import CORALean.Arithmetic.Real.ContSet.Interval.Theorems.IsNonempty
 import CORALean.Arithmetic.Real.ContSet.Interval.Theorems.PlusExact
+import CORALean.Arithmetic.Real.ContSet.Interval.Theorems.LinCombOuter
 import CORALean.Arithmetic.Real.ContSet.Interval.Theorems.MtimesOuter
 
 /-!
