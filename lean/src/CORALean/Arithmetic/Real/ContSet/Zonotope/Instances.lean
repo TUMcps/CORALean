@@ -34,4 +34,12 @@ noncomputable instance : OuterContSet Zonotope ℝ where
     exact (Zonotope.mtimes_exact M Z).subset
   reduce_outer := Zonotope.reduce_outer
 
+/-- The same operation at an interval matrix, which `OuterContSet` does not ask
+for: a zonotope carries it, and a discretization is what wants it. -/
+noncomputable instance : Mtimes IntervalMat Zonotope where
+  mtimes := Zonotope.mtimesIntervalMat
+  mtimes_outer IM Z := by
+    simp only [IntervalMat.denote_eq]
+    exact Zonotope.mtimesIntervalMat_outer IM Z
+
 end CORALean.Arithmetic.Real

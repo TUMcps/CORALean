@@ -1,3 +1,4 @@
+import CORALean.Arithmetic.Real.MatSet.API
 import CORALean.Arithmetic.Real.ContSet.API
 import CORALean.Arithmetic.Real.ContDynamics.API
 
