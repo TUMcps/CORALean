@@ -1,3 +1,5 @@
+import CORALean.Arithmetic.Real.ContDynamics.LinearSys.Theorems.Discretize
+import CORALean.Arithmetic.Real.ContDynamics.LinearSys.Theorems.ReachOuter
 import CORALean.Arithmetic.Real.ContDynamics.LinearSys.Theorems.VariationOfConstants
 
 /-!

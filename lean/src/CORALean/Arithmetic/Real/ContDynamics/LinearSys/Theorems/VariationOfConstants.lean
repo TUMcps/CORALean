@@ -71,48 +71,53 @@ theorem aux_hasDerivWithinAt_expNeg_mulVec (A : Mat ℝ n n) (x u : ℝ → Vec 
 set_option maxHeartbeats 10000 in
 /-- The substituted form, straight from the fundamental theorem of calculus. -/
 theorem aux_expNeg_mulVec_sub {sys : LinearSys 𝕋 n} {R₀ U : S n} {x u : ℝ → Vec ℝ n}
-    {t : ℝ} (traj : sys.Trajectory R₀ U x u) (ht : 0 ≤ t)
-    (hu : IntervalIntegrable (fun s => exp ((-s) • toRealMat sys.A) *ᵥ u s) volume 0 t) :
-    exp ((-t) • toRealMat sys.A) *ᵥ x t - x 0
-      = ∫ s in (0)..t, exp ((-s) • toRealMat sys.A) *ᵥ u s := by
+    {a b : ℝ} (traj : sys.Trajectory R₀ U x u) (ha : 0 ≤ a) (hab : a ≤ b)
+    (hu : IntervalIntegrable (fun s => exp ((-s) • toRealMat sys.A) *ᵥ u s) volume a b) :
+    exp ((-b) • toRealMat sys.A) *ᵥ x b - exp ((-a) • toRealMat sys.A) *ᵥ x a
+      = ∫ s in a..b, exp ((-s) • toRealMat sys.A) *ᵥ u s := by
   set A := toRealMat sys.A
-  have hcont : ContinuousOn (fun r : ℝ => exp ((-r) • A) *ᵥ x r) (Set.uIcc 0 t) := by
-    rw [Set.uIcc_of_le ht]
+  have hcont : ContinuousOn (fun r : ℝ => exp ((-r) • A) *ᵥ x r) (Set.uIcc a b) := by
+    rw [Set.uIcc_of_le hab]
     intro r hr
     exact ((aux_hasDerivWithinAt_expNeg_mulVec A x u (Set.Ici 0) r
-      (traj.flow r hr.1)).continuousWithinAt).mono (fun y hy => hy.1)
-  have hderiv : ∀ s ∈ Set.Ioo (min 0 t) (max 0 t),
+      (traj.flow r (le_trans ha hr.1))).continuousWithinAt).mono
+      (fun y hy => le_trans ha hy.1)
+  have hderiv : ∀ s ∈ Set.Ioo (min a b) (max a b),
       HasDerivWithinAt (fun r : ℝ => exp ((-r) • A) *ᵥ x r)
         (exp ((-s) • A) *ᵥ u s) (Set.Ioi s) s := by
     intro s hs
-    rw [min_eq_left ht, max_eq_right ht] at hs
+    rw [min_eq_left hab, max_eq_right hab] at hs
     exact aux_hasDerivWithinAt_expNeg_mulVec A x u (Set.Ioi s) s
-      ((traj.flow s (le_of_lt hs.1)).mono (fun y hy => le_of_lt (lt_trans hs.1 hy)))
-  simpa using (integral_eq_sub_of_hasDeriv_right hcont hderiv hu).symm
+      ((traj.flow s (le_trans ha (le_of_lt hs.1))).mono
+        (fun y hy => le_trans ha (le_of_lt (lt_trans hs.1 hy))))
+  exact (integral_eq_sub_of_hasDeriv_right hcont hderiv hu).symm
 
 set_option maxHeartbeats 10000 in
+/-- From any time on, not only from 0: `a = 0` gives the familiar statement, and
+one step of a sampled trajectory is the case `a = kΔt`, `b = (k+1)Δt`. -/
 theorem LinearSys.Trajectory.variation_of_constants {sys : LinearSys 𝕋 n} {R₀ U : S n}
-    {x u : ℝ → Vec ℝ n} {t : ℝ} (traj : sys.Trajectory R₀ U x u) (ht : 0 ≤ t)
-    (hu : IntervalIntegrable (fun s => exp ((-s) • toRealMat sys.A) *ᵥ u s) volume 0 t) :
-    x t = exp (t • toRealMat sys.A) *ᵥ x 0
-      + ∫ s in (0)..t, exp ((t - s) • toRealMat sys.A) *ᵥ u s := by
+    {x u : ℝ → Vec ℝ n} {a b : ℝ} (traj : sys.Trajectory R₀ U x u) (ha : 0 ≤ a) (hab : a ≤ b)
+    (hu : IntervalIntegrable (fun s => exp ((-s) • toRealMat sys.A) *ᵥ u s) volume a b) :
+    x b = exp ((b - a) • toRealMat sys.A) *ᵥ x a
+      + ∫ s in a..b, exp ((b - s) • toRealMat sys.A) *ᵥ u s := by
   set A := toRealMat sys.A
-  have hmul : ∀ a b : ℝ, exp (a • A) * exp (b • A) = exp ((a + b) • A) := by
-    intro a b
-    have hc : Commute (a • A) (b • A) := ((Commute.refl A).smul_left a).smul_right b
+  have hmul : ∀ c d : ℝ, exp (c • A) * exp (d • A) = exp ((c + d) • A) := by
+    intro c d
+    have hc : Commute (c • A) (d • A) := ((Commute.refl A).smul_left c).smul_right d
     rw [add_smul]
     exact (exp_add_of_commute hc).symm
-  have hint : aux_mulVecL (exp (t • A)) (∫ s in (0)..t, exp ((-s) • A) *ᵥ u s)
-      = ∫ s in (0)..t, exp ((t - s) • A) *ᵥ u s := by
+  have hint : aux_mulVecL (exp (b • A)) (∫ s in a..b, exp ((-s) • A) *ᵥ u s)
+      = ∫ s in a..b, exp ((b - s) • A) *ᵥ u s := by
     rw [← ContinuousLinearMap.intervalIntegral_comp_comm _ hu]
     congr 1
     funext s
-    show exp (t • A) *ᵥ (exp ((-s) • A) *ᵥ u s) = _
+    show exp (b • A) *ᵥ (exp ((-s) • A) *ᵥ u s) = _
     rw [Matrix.mulVec_mulVec, hmul]
     congr 2
-  rw [← hint, ← aux_expNeg_mulVec_sub traj ht hu]
-  show x t = exp (t • A) *ᵥ x 0 + exp (t • A) *ᵥ (exp ((-t) • A) *ᵥ x t - x 0)
-  rw [Matrix.mulVec_sub, Matrix.mulVec_mulVec, hmul]
-  simp
+  rw [← hint, ← aux_expNeg_mulVec_sub traj ha hab hu]
+  show x b = exp ((b - a) • A) *ᵥ x a
+    + exp (b • A) *ᵥ (exp ((-b) • A) *ᵥ x b - exp ((-a) • A) *ᵥ x a)
+  rw [Matrix.mulVec_sub, Matrix.mulVec_mulVec, Matrix.mulVec_mulVec, hmul, hmul]
+  simp [sub_eq_add_neg]
 
 end CORALean.Arithmetic.Real

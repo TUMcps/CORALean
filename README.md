@@ -66,7 +66,8 @@ lean/src/CORALean/
         ...
       ContDynamics/  algorithms, written against the interface alone
         LinearSysDT/ discrete-time linear systems, and reachability
-        LinearSys/   continuous-time linear systems (the dynamics so far)
+        LinearSys/   continuous-time linear systems, and reachability at the
+                     sample times, by sampling into LinearSysDT
     Float/         the refinement: the same representations, rounded
       FloatOps / SoundFloatArithmetic   operations, then their guarantees
       Instances/   Dyadic (outward rounding)  Real (trivial)
