@@ -21,9 +21,9 @@ namespace CORALean.Arithmetic.Float.InflatedContSet.Proofs
 
 open Pointwise
 
-variable {F S₁ S₂ T N₁ N₂ N : Type} [FloatOps F] [SoundFloatArithmetic F] {n : ℕ}
+variable {𝕋 S₁ S₂ T N₁ N₂ N : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 variable [Real.ContSet N₁ n] [Real.ContSet N₂ n] [Real.ContSet N n]
-variable [InflatedContSet S₁ N₁ F n] [InflatedContSet S₂ N₂ F n] [InflatedContSet T N F n]
+variable [InflatedContSet S₁ N₁ 𝕋 n] [InflatedContSet S₂ N₂ 𝕋 n] [InflatedContSet T N 𝕋 n]
 
 theorem plus_subset {s₁ : S₁} {s₂ : S₂} {t : T} {D : Set (Vec ℝ n)}
     (hnominal : nominalSet s₁ + nominalSet s₂ ⊆

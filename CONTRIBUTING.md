@@ -13,7 +13,7 @@ The Lean project root is `lean/`, not the repository root, hence the
 
 ## File roles
 
-Per representation, four kinds of file, and a file does only its own job:
+Per representation, five kinds of file, and a file does only its own job:
 
 | File | Holds |
 | --- | --- |
@@ -21,6 +21,7 @@ Per representation, four kinds of file, and a file does only its own job:
 | `Theorems.lean` | guarantees per operation, stated in full with proofs outsourced* |
 | `Proofs/*.lean` | one proof each, plus the lemmas only it needs |
 | `Proofs.lean` | just imports of the above for convenience |
+| `Instance.lean` | the class instances, whose fields *are* the guarantees |
 
 *`Theorems` restates the type and delegates to the lemma of the same name in `Proofs`.
 The restatement is checked against the proved one, so the two cannot drift.
@@ -48,6 +49,10 @@ guarantee, the weaker direction winning.
 `Real` is the specification, `Float` the refinement which obtains soundness guarantees through transitivity.
 Thus, `Float` imports `Real`, never the reverse.
 New float operations pay their rounding into an interval error box via `InflatedContSet`.
+
+`𝕋` is the scalar a layer computes in — ℝ in `Real`, a machine scalar in `Float`.
+`Global.Scalar` reads a matrix of it as a real one, which is how a guarantee
+stated once covers both layers.
 
 ## Proofs
 

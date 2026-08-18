@@ -10,6 +10,9 @@ read `Split α into βₗ and βᵣ`, with `P.left` and `P.right`.
 `sum_split` is why the type exists — a sum over `α` splits along the parts with
 no side condition, since the equivalence already rules out overlap.
 
+`split` is the only constructor: every selection rule is it composed with a
+permutation, via `reindex`.
+
 The type is `Partition`; `Split` is only its notation. Naming the two alike
 would make `Partition` a keyword, and `Partition.left` would print quoted.
 -/
@@ -41,7 +44,27 @@ instance {β γ : Type v} [Fintype β] [Fintype γ] : (b : Bool) → Fintype (Pa
   | true => inferInstanceAs (Fintype β)
   | false => inferInstanceAs (Fintype γ)
 
-variable {α κ M : Type*} {β : κ → Type*} {βₗ βᵣ : Type v}
+variable {α α' κ M : Type*} {β : κ → Type*} {βₗ βᵣ : Type v}
+
+def Pair.equivSum (β γ : Type v) : (Σ b, Pair β γ b) ≃ β ⊕ γ where
+  toFun := fun ⟨b, x⟩ => match b, x with
+    | true, x => Sum.inl x
+    | false, x => Sum.inr x
+  invFun := fun s => match s with
+    | Sum.inl x => ⟨true, x⟩
+    | Sum.inr x => ⟨false, x⟩
+  left_inv := by rintro ⟨(_ | _), x⟩ <;> rfl
+  right_inv := by rintro (x | x) <;> rfl
+
+/-- Split at `q`, first part first: `left` is `Fin.castAdd` and `right` is
+`Fin.natAdd`, both by `rfl`. -/
+def Partition.split (q r : ℕ) : Split (Fin (q + r)) into (Fin q) and (Fin r) where
+  index := (Pair.equivSum (Fin q) (Fin r)).trans finSumFinEquiv
+
+/-- Rename what a partition splits. A selection rule is `split` composed with the
+permutation that orders the indices. -/
+def Partition.reindex (P : Split α into βₗ and βᵣ) (e : α' ≃ α) : Split α' into βₗ and βᵣ where
+  index := P.index.trans e.symm
 
 def Partition.on (P : Split α into β) (k : κ) (l : β k) : α := P.index ⟨k, l⟩
 

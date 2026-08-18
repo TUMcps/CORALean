@@ -3,6 +3,7 @@ import CORALean.Arithmetic.Float.ContSet.Zonotope.Proofs.PlusOuter
 import CORALean.Arithmetic.Float.ContSet.Zonotope.Proofs.AbsorbErrorOuter
 import CORALean.Arithmetic.Float.ContSet.Zonotope.Proofs.MtimesOuter
 import CORALean.Arithmetic.Float.ContSet.Zonotope.Proofs.ReduceOuter
+import CORALean.Arithmetic.Float.ContSet.Zonotope.Proofs.ReduceOrderOuter
 import CORALean.Arithmetic.Float.ContSet.Zonotope.Proofs.ReduceAndAbsorbOuter
 import CORALean.Arithmetic.Float.ContSet.Zonotope.Proofs.IntervalOuter
 

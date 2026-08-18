@@ -25,10 +25,10 @@ namespace CORALean.Arithmetic.Float.Zonotope.Proofs
 
 open Pointwise Matrix FloatOps SoundFloatArithmetic InflatedContSet
 
-variable {F : Type} [FloatOps F] [SoundFloatArithmetic F] {n m h : ℕ}
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m h : ℕ}
 
 /-- The exact image, regrouped so the centre and each generator appear once. -/
-theorem mulVec_nominal (M : Mat F m n) (Z : Zonotope F n h) (β : Vec ℝ h)
+theorem mulVec_nominal (M : Mat 𝕋 m n) (Z : Zonotope 𝕋 n) (β : Vec ℝ Z.h)
     {x : Vec ℝ n} (hx : ∀ k, x k = toReal (Z.c k) + ∑ j, toReal (Z.G k j) * β j) (i : Fin m) :
     (toRealMat M *ᵥ x) i = (∑ k, toReal (M i k) * toReal (Z.c k))
       + ∑ j, (∑ k, toReal (M i k) * toReal (Z.G k j)) * β j := by
@@ -46,10 +46,11 @@ theorem mulVec_nominal (M : Mat F m n) (Z : Zonotope F n h) (β : Vec ℝ h)
         rw [Finset.sum_comm]
         exact congrArg _ (Finset.sum_congr rfl fun j _ => (Finset.sum_mul _ _ _).symm)
 
-theorem mtimes_nominal (M : Mat F m n) (Z : Zonotope F n h) :
+theorem mtimes_nominal (M : Mat 𝕋 m n) (Z : Zonotope 𝕋 n) :
     (toRealMat M *ᵥ ·) '' nominalSet Z ⊆
       nominalSet (Zonotope.mtimes M Z) + (Zonotope.mtimesResidual M Z).construct := by
-  rintro _ ⟨x, ⟨β, hβ, hx⟩, rfl⟩
+  rintro _ ⟨x, hx', rfl⟩
+  obtain ⟨β, hβ, hx⟩ := Zonotope.mem_nominalSet_iff.mp hx'
   -- the generators are wrong by this much, entrywise
   have hgen : ∀ i j, |(∑ k, toReal (M i k) * toReal (Z.G k j))
       - toReal (matMulDown M Z.G i j)| ≤ toReal (matMulDiff M Z.G i j) := by
@@ -63,7 +64,8 @@ theorem mtimes_nominal (M : Mat F m n) (Z : Zonotope F n h) :
     rw [abs_le]
     exact ⟨by simp only [matMulDiff]; linarith, by simp only [matMulDiff]; linarith⟩
   refine ⟨fun i => toReal ((Zonotope.mtimes M Z).c i)
-            + ∑ j, toReal ((Zonotope.mtimes M Z).G i j) * β j, ⟨β, hβ, fun _ => rfl⟩,
+            + ∑ j : Fin Z.h, toReal ((Zonotope.mtimes M Z).G i j) * β j,
+          Zonotope.mem_nominalSet_iff.mpr ⟨β, hβ, fun _ => rfl⟩,
           _, Interval.plus_outer _ _
             ⟨_, Interval.sub_mem_residual (fun i => ⟨dotDown_le (M i) Z.c, le_dotUp (M i) Z.c⟩),
              _, mem_generatorError hgen hβ, rfl⟩, ?_⟩
@@ -75,7 +77,8 @@ theorem mtimes_nominal (M : Mat F m n) (Z : Zonotope F n h) :
       = ∑ j, (∑ k, toReal (M i k) * toReal (Z.G k j)) * β j := by
     rw [← Finset.sum_add_distrib]
     exact Finset.sum_congr rfl fun j _ => by ring
-  show toReal ((Zonotope.mtimes M Z).c i) + ∑ j, toReal ((Zonotope.mtimes M Z).G i j) * β j
+  show toReal ((Zonotope.mtimes M Z).c i)
+        + ∑ j : Fin Z.h, toReal ((Zonotope.mtimes M Z).G i j) * β j
       + ((∑ k, toReal (M i k) * toReal (Z.c k) - toReal (mulVecDown M Z.c i))
         + ∑ j, (∑ k, toReal (M i k) * toReal (Z.G k j)
             - toReal (matMulDown M Z.G i j)) * β j)
@@ -85,13 +88,13 @@ theorem mtimes_nominal (M : Mat F m n) (Z : Zonotope F n h) :
   linarith [hsum]
 
 /-- The old box travels through the map as a box, and the spill is added on. -/
-theorem mtimes_error (M : Mat F m n) (Z : Zonotope F n h) :
+theorem mtimes_error (M : Mat 𝕋 m n) (Z : Zonotope 𝕋 n) :
     (toRealMat M *ᵥ ·) '' (error Z).construct + (Zonotope.mtimesResidual M Z).construct ⊆
       (error (Zonotope.mtimes M Z)).construct :=
   subset_trans (Set.add_subset_add_right (Interval.mtimes_outer M Z.E))
     (Interval.plus_outer _ _)
 
-theorem mtimes_outer (M : Mat F m n) (Z : Zonotope F n h) :
+theorem mtimes_outer (M : Mat 𝕋 m n) (Z : Zonotope 𝕋 n) :
     (toRealMat M *ᵥ ·) '' Z.construct ⊆ (Zonotope.mtimes M Z).construct :=
   map_subset (fun x y => Matrix.mulVec_add _ x y) (mtimes_nominal M Z) (mtimes_error M Z)
 

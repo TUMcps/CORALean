@@ -17,9 +17,9 @@ namespace CORALean.Arithmetic.Float.Interval.Proofs
 
 open FloatOps SoundFloatArithmetic
 
-variable {F : Type} [FloatOps F] [SoundFloatArithmetic F] {n : ℕ}
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
-theorem plus_outer_refines (I₁ I₂ : Interval F n) :
+theorem plus_outer_refines (I₁ I₂ : Interval 𝕋 n) :
     (I₁.nominal.plus I₂.nominal).construct ⊆ (I₁.plus I₂).construct := by
   intro x hx i
   exact ⟨le_trans (addDown_le_add _ _) (hx i).1, le_trans (hx i).2 (add_le_addUp _ _)⟩

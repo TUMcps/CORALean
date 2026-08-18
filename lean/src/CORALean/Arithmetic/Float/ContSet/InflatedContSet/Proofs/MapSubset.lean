@@ -19,9 +19,9 @@ namespace CORALean.Arithmetic.Float.InflatedContSet.Proofs
 
 open Pointwise
 
-variable {F S T N M : Type} [FloatOps F] [SoundFloatArithmetic F] {n m : ℕ}
+variable {𝕋 S T N M : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 variable [Real.ContSet N n] [Real.ContSet M m]
-variable [InflatedContSet S N F n] [InflatedContSet T M F m]
+variable [InflatedContSet S N 𝕋 n] [InflatedContSet T M 𝕋 m]
 
 theorem map_subset {s : S} {t : T} {f : Vec ℝ n → Vec ℝ m} {D : Set (Vec ℝ m)}
     (hadd : ∀ x y, f (x + y) = f x + f y)

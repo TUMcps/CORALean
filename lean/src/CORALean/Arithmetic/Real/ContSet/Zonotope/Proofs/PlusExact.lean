@@ -21,9 +21,16 @@ namespace CORALean.Arithmetic.Real.Zonotope.Proofs
 
 open Pointwise
 
-variable {n h k : ℕ}
+variable {n : ℕ}
 
-theorem plus_exact (Z₁ : Zonotope n h) (Z₂ : Zonotope n k) :
+/-- `Fin.sum_univ_add` at `plus`'s generator count, stated through the projection
+because that is the form the goal has and simp will not rewrite a binder's type. -/
+theorem sum_univ_plus {Z₁ Z₂ : Zonotope n} (f : Fin (Z₁.h + Z₂.h) → ℝ) :
+    ∑ j : Fin (Z₁.plus Z₂).h, f j
+      = ∑ j, f (Fin.castAdd Z₂.h j) + ∑ j, f (Fin.natAdd Z₁.h j) :=
+  Fin.sum_univ_add f
+
+theorem plus_exact (Z₁ Z₂ : Zonotope n) :
     Z₁.construct + Z₂.construct = (Z₁.plus Z₂).construct := by
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨x₁, ⟨β₁, hβ₁, hx₁⟩, x₂, ⟨β₂, hβ₂, hx₂⟩, rfl⟩
@@ -31,17 +38,17 @@ theorem plus_exact (Z₁ : Zonotope n h) (Z₂ : Zonotope n k) :
     · refine Fin.addCases (fun l => ?_) (fun l => ?_)
       · simpa using hβ₁ l
       · simpa using hβ₂ l
-    · simp only [Zonotope.plus, Pi.add_apply, hx₁ i, hx₂ i, Fin.sum_univ_add,
-        Fin.append_left, Fin.append_right]
+    · rw [sum_univ_plus]
+      simp only [Zonotope.plus, Pi.add_apply, hx₁ i, hx₂ i, Fin.append_left, Fin.append_right]
       ring
   · rintro x ⟨β, hβ, hx⟩
-    refine ⟨fun i => Z₁.c i + ∑ j, Z₁.G i j * β (Fin.castAdd k j),
-            ⟨fun j => β (Fin.castAdd k j), fun j => hβ _, fun _ => rfl⟩,
-            fun i => Z₂.c i + ∑ j, Z₂.G i j * β (Fin.natAdd h j),
-            ⟨fun j => β (Fin.natAdd h j), fun j => hβ _, fun _ => rfl⟩, ?_⟩
+    refine ⟨fun i => Z₁.c i + ∑ j, Z₁.G i j * β (Fin.castAdd Z₂.h j),
+            ⟨fun j => β (Fin.castAdd Z₂.h j), fun j => hβ _, fun _ => rfl⟩,
+            fun i => Z₂.c i + ∑ j, Z₂.G i j * β (Fin.natAdd Z₁.h j),
+            ⟨fun j => β (Fin.natAdd Z₁.h j), fun j => hβ _, fun _ => rfl⟩, ?_⟩
     funext i
-    simp only [Pi.add_apply, hx i, Zonotope.plus, Fin.sum_univ_add,
-      Fin.append_left, Fin.append_right]
+    rw [hx i, sum_univ_plus]
+    simp only [Pi.add_apply, Zonotope.plus, Fin.append_left, Fin.append_right]
     ring
 
 end CORALean.Arithmetic.Real.Zonotope.Proofs

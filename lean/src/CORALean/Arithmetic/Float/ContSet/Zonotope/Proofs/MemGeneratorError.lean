@@ -18,9 +18,9 @@ namespace CORALean.Arithmetic.Float.Zonotope.Proofs
 
 open FloatOps SoundFloatArithmetic
 
-variable {F : Type} [FloatOps F] [SoundFloatArithmetic F] {n h : ℕ}
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n h : ℕ}
 
-theorem mem_generatorError {G : Mat F n h} {Δ : Mat ℝ n h} {β : Vec ℝ h}
+theorem mem_generatorError {G : Mat 𝕋 n h} {Δ : Mat ℝ n h} {β : Vec ℝ h}
     (hG : ∀ i j, |Δ i j| ≤ toReal (G i j)) (hβ : ∀ j, |β j| ≤ 1) :
     (fun i => ∑ j, Δ i j * β j) ∈ (Zonotope.generatorError G).construct := by
   intro i

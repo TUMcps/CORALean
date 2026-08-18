@@ -25,8 +25,6 @@ structure Interval (n : ℕ) where
 def Interval.construct (I : Interval n) : Set (Vec ℝ n) :=
   {x | ∀ i, I.inf i ≤ x i ∧ x i ≤ I.sup i}
 
-instance : ContSet (Interval n) n := ⟨Interval.construct⟩
-
 /-- checked in `Theorems.isNonempty_iff` -/
 def Interval.IsNonempty (I : Interval n) : Prop := ∀ i, I.inf i ≤ I.sup i
 

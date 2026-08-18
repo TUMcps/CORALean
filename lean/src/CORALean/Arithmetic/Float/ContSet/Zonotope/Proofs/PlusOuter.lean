@@ -22,16 +22,26 @@ namespace CORALean.Arithmetic.Float.Zonotope.Proofs
 
 open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 
-variable {F : Type} [FloatOps F] [SoundFloatArithmetic F] {n h k : ℕ}
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n h k : ℕ}
+
+omit [SoundFloatArithmetic 𝕋] in
+/-- `Fin.sum_univ_add` at `plus`'s generator count, stated through the projection
+because that is the form the goal has and simp will not rewrite a binder's type. -/
+theorem sum_univ_plus {Z₁ Z₂ : Zonotope 𝕋 n} (f : Fin (Z₁.h + Z₂.h) → ℝ) :
+    ∑ j : Fin (Z₁.plus Z₂).h, f j
+      = ∑ j, f (Fin.castAdd Z₂.h j) + ∑ j, f (Fin.natAdd Z₁.h j) :=
+  Fin.sum_univ_add f
 
 /-- The concatenated generators account for everything but the centre rounding. -/
-theorem plus_nominal (Z₁ : Zonotope F n h) (Z₂ : Zonotope F n k) :
+theorem plus_nominal (Z₁ : Zonotope 𝕋 n) (Z₂ : Zonotope 𝕋 n) :
     (nominal Z₁).construct + (nominal Z₂).construct ⊆
       (nominal (Z₁.plus Z₂)).construct + (Zonotope.centerResidual Z₁.c Z₂.c).construct := by
-  rintro _ ⟨z₁, ⟨β₁, hβ₁, hz₁⟩, z₂, ⟨β₂, hβ₂, hz₂⟩, rfl⟩
+  rintro _ ⟨z₁, hz₁', z₂, hz₂', rfl⟩
+  obtain ⟨β₁, hβ₁, hz₁⟩ := Zonotope.mem_nominalSet_iff.mp hz₁'
+  obtain ⟨β₂, hβ₂, hz₂⟩ := Zonotope.mem_nominalSet_iff.mp hz₂'
   refine ⟨fun i => toReal ((Z₁.plus Z₂).c i)
             + ∑ j, toReal ((Z₁.plus Z₂).G i j) * Fin.append β₁ β₂ j,
-          ⟨Fin.append β₁ β₂, ?_, fun _ => rfl⟩,
+          Zonotope.mem_nominalSet_iff.mpr ⟨Fin.append β₁ β₂, ?_, fun _ => rfl⟩,
           fun i => toReal (Z₁.c i) + toReal (Z₂.c i) - toReal ((Z₁.plus Z₂).c i), ?_, ?_⟩
   · refine Fin.addCases (fun l => ?_) (fun l => ?_)
     · simpa using hβ₁ l
@@ -39,18 +49,19 @@ theorem plus_nominal (Z₁ : Zonotope F n h) (Z₂ : Zonotope F n k) :
   · exact Interval.sub_mem_residual
       (fun i => ⟨addDown_le_add _ _, add_le_addUp _ _⟩)
   · funext i
-    simp only [Zonotope.plus, Zonotope.nominal_c, Zonotope.nominal_G, toRealMat, toRealVec,
-      Pi.add_apply, hz₁ i, hz₂ i, Fin.sum_univ_add, Fin.append_left, Fin.append_right]
+    simp only [Pi.add_apply]
+    rw [sum_univ_plus]
+    simp only [Zonotope.plus, hz₁ i, hz₂ i, Fin.append_left, Fin.append_right]
     ring
 
 /-- The box absorbs the two incoming boxes and the centre rounding. -/
-theorem plus_error (Z₁ : Zonotope F n h) (Z₂ : Zonotope F n k) :
+theorem plus_error (Z₁ : Zonotope 𝕋 n) (Z₂ : Zonotope 𝕋 n) :
     Z₁.E.construct + Z₂.E.construct + (Zonotope.centerResidual Z₁.c Z₂.c).construct ⊆
       (Z₁.plus Z₂).E.construct :=
   subset_trans (Set.add_subset_add_right (Interval.plus_outer Z₁.E Z₂.E))
     (Interval.plus_outer _ _)
 
-theorem plus_outer (Z₁ : Zonotope F n h) (Z₂ : Zonotope F n k) :
+theorem plus_outer (Z₁ : Zonotope 𝕋 n) (Z₂ : Zonotope 𝕋 n) :
     Z₁.construct + Z₂.construct ⊆ (Z₁.plus Z₂).construct :=
   InflatedContSet.plus_subset (plus_nominal Z₁ Z₂) (plus_error Z₁ Z₂)
 

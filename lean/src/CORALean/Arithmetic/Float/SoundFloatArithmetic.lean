@@ -29,51 +29,55 @@ namespace CORALean.Arithmetic.Float
 
 open FloatOps
 
-class SoundFloatArithmetic (F : Type) [FloatOps F] where
-  toReal : F → ℝ
-  toReal_neg (a : F) : toReal (neg a) = -toReal a
-  toReal_zero : toReal (zero : F) = 0
-  add_le_addUp (a b : F) : toReal a + toReal b ≤ toReal (addUp a b)
-  addDown_le_add (a b : F) : toReal (addDown a b) ≤ toReal a + toReal b
-  mul_le_mulUp (a b : F) : toReal a * toReal b ≤ toReal (mulUp a b)
-  mulDown_le_mul (a b : F) : toReal (mulDown a b) ≤ toReal a * toReal b
-  toReal_minimum (a b : F) : toReal (minimum a b) = min (toReal a) (toReal b)
-  toReal_maximum (a b : F) : toReal (maximum a b) = max (toReal a) (toReal b)
-  toReal_half (a : F) : toReal (half a) = toReal a / 2
+class SoundFloatArithmetic (𝕋 : Type) [FloatOps 𝕋] where
+  toReal : 𝕋 → ℝ
+  toReal_neg (a : 𝕋) : toReal (neg a) = -toReal a
+  toReal_zero : toReal (zero : 𝕋) = 0
+  add_le_addUp (a b : 𝕋) : toReal a + toReal b ≤ toReal (addUp a b)
+  addDown_le_add (a b : 𝕋) : toReal (addDown a b) ≤ toReal a + toReal b
+  mul_le_mulUp (a b : 𝕋) : toReal a * toReal b ≤ toReal (mulUp a b)
+  mulDown_le_mul (a b : 𝕋) : toReal (mulDown a b) ≤ toReal a * toReal b
+  toReal_minimum (a b : 𝕋) : toReal (minimum a b) = min (toReal a) (toReal b)
+  toReal_maximum (a b : 𝕋) : toReal (maximum a b) = max (toReal a) (toReal b)
+  toReal_half (a : 𝕋) : toReal (half a) = toReal a / 2
 
 open SoundFloatArithmetic
 
-variable {F : Type} [FloatOps F] [SoundFloatArithmetic F] {n m h : ℕ}
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m h : ℕ}
 
 /-! ## Reading arrays
 
 Pointwise, so nothing has to be said about shape. -/
 
-def toRealVec (v : Vec F n) : Vec ℝ n := fun i => toReal (v i)
-def toRealMat (M : Mat F m n) : Mat ℝ m n := fun i j => toReal (M i j)
+def toRealVec (v : Vec 𝕋 n) : Vec ℝ n := fun i => toReal (v i)
+def toRealMat (M : Mat 𝕋 m n) : Mat ℝ m n := fun i j => toReal (M i j)
+
+/-- What the exact layer needs of the scalar, and all it needs. -/
+instance : Scalar 𝕋 where
+  toRealMat M := CORALean.Arithmetic.Float.toRealMat M
 
 /-! ## What the derived operations inherit -/
 
-theorem toReal_absolute (a : F) : toReal (absolute a) = |toReal a| := by
+theorem toReal_absolute (a : 𝕋) : toReal (absolute a) = |toReal a| := by
   rw [absolute, toReal_maximum, toReal_neg]
   exact (abs_eq_max_neg).symm
 
-theorem sub_le_subUp (a b : F) : toReal a - toReal b ≤ toReal (subUp a b) := by
+theorem sub_le_subUp (a b : 𝕋) : toReal a - toReal b ≤ toReal (subUp a b) := by
   rw [sub_eq_add_neg, ← toReal_neg b, subUp]
   exact add_le_addUp a (neg b)
 
-theorem subDown_le_sub (a b : F) : toReal (subDown a b) ≤ toReal a - toReal b := by
+theorem subDown_le_sub (a b : 𝕋) : toReal (subDown a b) ≤ toReal a - toReal b := by
   rw [sub_eq_add_neg, ← toReal_neg b, subDown]
   exact addDown_le_add a (neg b)
 
-theorem sum_le_sumUp (f : Fin n → F) : ∑ i, toReal (f i) ≤ toReal (sumUp f) := by
+theorem sum_le_sumUp (f : Fin n → 𝕋) : ∑ i, toReal (f i) ≤ toReal (sumUp f) := by
   induction n with
   | zero => rw [Finset.univ_eq_empty, Finset.sum_empty, sumUp, toReal_zero]
   | succ n ih =>
     rw [Fin.sum_univ_succ, sumUp]
     exact le_trans (add_le_add (le_refl _) (ih _)) (add_le_addUp _ _)
 
-theorem sumDown_le_sum (f : Fin n → F) : toReal (sumDown f) ≤ ∑ i, toReal (f i) := by
+theorem sumDown_le_sum (f : Fin n → 𝕋) : toReal (sumDown f) ≤ ∑ i, toReal (f i) := by
   induction n with
   | zero => rw [Finset.univ_eq_empty, Finset.sum_empty, sumDown, toReal_zero]
   | succ n ih =>
@@ -81,17 +85,17 @@ theorem sumDown_le_sum (f : Fin n → F) : toReal (sumDown f) ≤ ∑ i, toReal 
     exact le_trans (addDown_le_add _ _) (add_le_add (le_refl _) (ih _))
 
 /-- Products then sum, the direction preserved through both steps. -/
-theorem dotDown_le (a b : Vec F n) :
+theorem dotDown_le (a b : Vec 𝕋 n) :
     toReal (dotDown a b) ≤ ∑ k, toReal (a k) * toReal (b k) :=
   le_trans (sumDown_le_sum _) (Finset.sum_le_sum fun _ _ => mulDown_le_mul _ _)
 
-theorem le_dotUp (a b : Vec F n) :
+theorem le_dotUp (a b : Vec 𝕋 n) :
     ∑ k, toReal (a k) * toReal (b k) ≤ toReal (dotUp a b) :=
   le_trans (Finset.sum_le_sum fun _ _ => mul_le_mulUp _ _) (sum_le_sumUp _)
 
 /-- What a matrix known only to within `d` entrywise can reach on the unit ball;
 `d` exact is the special case. -/
-theorem abs_sum_le_radius {d : Mat F n h} {Δ : Mat ℝ n h} {β : Vec ℝ h}
+theorem abs_sum_le_radius {d : Mat 𝕋 n h} {Δ : Mat ℝ n h} {β : Vec ℝ h}
     (hd : ∀ i j, |Δ i j| ≤ |toReal (d i j)|) (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) :
     |∑ j, Δ i j * β j| ≤ toReal (radius d i) :=
   calc |∑ j, Δ i j * β j|

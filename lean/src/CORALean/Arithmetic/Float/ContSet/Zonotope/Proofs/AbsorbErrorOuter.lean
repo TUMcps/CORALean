@@ -25,10 +25,10 @@ namespace CORALean.Arithmetic.Float.Zonotope.Proofs
 
 open Pointwise FloatOps SoundFloatArithmetic CORALean.Arithmetic.Real.Zonotope.Proofs
 
-variable {F : Type} [FloatOps F] [SoundFloatArithmetic F] {n h : ℕ}
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n h : ℕ}
 
 /-- The new generators reach every point the box did. -/
-theorem abs_sub_mid_le_errorRadius (Z : Zonotope F n h) {e : Vec ℝ n}
+theorem abs_sub_mid_le_errorRadius (Z : Zonotope 𝕋 n) {e : Vec ℝ n}
     (he : e ∈ Z.E.construct) (i : Fin n) :
     |e i - (toReal (Z.E.inf i) + toReal (Z.E.sup i)) / 2| ≤ toReal (Z.errorRadius i) := by
   have hwidth := sub_le_subUp (Z.E.sup i) (Z.E.inf i)
@@ -40,7 +40,7 @@ theorem abs_sub_mid_le_errorRadius (Z : Zonotope F n h) {e : Vec ℝ n}
   exact ⟨by linarith, by linarith⟩
 
 /-- The stored centres bracket the exact shifted one, which is what is left. -/
-theorem shift_brackets_mid (Z : Zonotope F n h) (i : Fin n) :
+theorem shift_brackets_mid (Z : Zonotope 𝕋 n) (i : Fin n) :
     toReal (Z.shiftDown i) ≤ toReal (Z.c i) + (toReal (Z.E.inf i) + toReal (Z.E.sup i)) / 2 ∧
       toReal (Z.c i) + (toReal (Z.E.inf i) + toReal (Z.E.sup i)) / 2 ≤ toReal (Z.shiftUp i) := by
   constructor
@@ -53,14 +53,22 @@ theorem shift_brackets_mid (Z : Zonotope F n h) (i : Fin n) :
     rw [toReal_half] at h1
     simpa only [Zonotope.shiftUp] using by linarith
 
-theorem absorbError_outer (Z : Zonotope F n h) :
+omit [SoundFloatArithmetic 𝕋] in
+/-- `Fin.sum_univ_add` at `absorbError`'s generator count. -/
+theorem sum_univ_absorbError {Z : Zonotope 𝕋 n} (f : Fin (Z.h + n) → ℝ) :
+    ∑ j : Fin Z.absorbError.h, f j
+      = ∑ j, f (Fin.castAdd n j) + ∑ j, f (Fin.natAdd Z.h j) :=
+  Fin.sum_univ_add f
+
+theorem absorbError_outer (Z : Zonotope 𝕋 n) :
     Z.construct ⊆ Z.absorbError.construct := by
-  rintro _ ⟨z, ⟨β, hβ, hz⟩, e, he, rfl⟩
+  rintro _ ⟨z, hz', e, he, rfl⟩
+  obtain ⟨β, hβ, hz⟩ := Zonotope.mem_nominalSet_iff.mp hz'
   refine ⟨fun i => toReal (Z.absorbError.c i)
             + ∑ j, toReal (Z.absorbError.G i j)
                 * Fin.append β (fun l => coefficient (toReal (Z.errorRadius l))
                     (e l - (toReal (Z.E.inf l) + toReal (Z.E.sup l)) / 2)) j,
-          ⟨_, ?_, fun _ => rfl⟩,
+          Zonotope.mem_nominalSet_iff.mpr ⟨_, ?_, fun _ => rfl⟩,
           fun i => toReal (Z.c i) + (toReal (Z.E.inf i) + toReal (Z.E.sup i)) / 2
             - toReal (Z.shiftDown i), ?_, ?_⟩
   · refine Fin.addCases (fun l => ?_) (fun l => ?_)
@@ -70,8 +78,9 @@ theorem absorbError_outer (Z : Zonotope F n h) :
         (abs_sub_mid_le_errorRadius Z he l)
   · exact Interval.sub_mem_residual (shift_brackets_mid Z)
   · funext i
-    simp only [Zonotope.absorbError, Zonotope.nominal_c, Zonotope.nominal_G, toRealMat,
-      toRealVec, Pi.add_apply, Fin.sum_univ_add, Fin.append_left, Fin.append_right,
+    simp only [Pi.add_apply]
+    rw [sum_univ_absorbError]
+    simp only [Zonotope.absorbError, Fin.append_left, Fin.append_right,
       toReal_diagonalBlock, hz i]
     rw [sum_diagonal_mul]
     simp only [toRealVec]

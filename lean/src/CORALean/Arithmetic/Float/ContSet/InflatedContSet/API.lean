@@ -29,20 +29,20 @@ namespace CORALean.Arithmetic.Float
 
 open Pointwise FloatOps SoundFloatArithmetic
 
-class InflatedContSet (S : Type) (N : outParam Type) (F : outParam Type) (n : outParam ℕ)
-    [FloatOps F] [SoundFloatArithmetic F] [Real.ContSet N n] where
+class InflatedContSet (S : Type) (N : outParam Type) (𝕋 : outParam Type) (n : outParam ℕ)
+    [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [Real.ContSet N n] where
   /-- The exact-layer representation the stored floats describe, not the set it
   denotes — keeping the representation is what lets a refinement proof reach the
   theorem about it. Not *exact*: the stored fields are rounded. -/
   nominal : S → N
-  /-- Everything rounding has cost, as a box. Held in `F`, since operations
+  /-- Everything rounding has cost, as a box. Held in `𝕋`, since operations
   compute it; a real interval here could not be computed with. -/
-  error : S → Interval F n
+  error : S → Interval 𝕋 n
 
 namespace InflatedContSet
 
-variable {F S N : Type} [FloatOps F] [SoundFloatArithmetic F] {n : ℕ}
-variable [Real.ContSet N n] [InflatedContSet S N F n]
+variable {𝕋 S N : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+variable [Real.ContSet N n] [InflatedContSet S N 𝕋 n]
 
 /-- What the nominal part denotes. Generic code cannot write
 `s.nominal.construct`: dot notation resolves through a head constant, and `N` is

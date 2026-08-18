@@ -7,7 +7,7 @@ import CORALean.Global.Mathlib
 applying one index per axis. `Vec` is its order-one case outright.
 
 The scalar is explicit because it is what separates the two arithmetic layers:
-`Vec ℝ n` is a point, `Vec F n` its machine representation. Every signature
+`Vec ℝ n` is a point, `Vec 𝕋 n` its machine representation. Every signature
 therefore says which arithmetic it is written in.
 
 `Mat` is the order-two case up to `rfl`, but spelt as Mathlib's `Matrix`: that

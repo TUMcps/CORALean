@@ -23,9 +23,16 @@ splits into kept and dropped with no side condition. Hence no hypothesis on
 
 namespace CORALean.Arithmetic.Real.Zonotope.Proofs
 
-variable {n h q r : ℕ}
+variable {n q r : ℕ}
 
-theorem reduce_outer (Z : Zonotope n h) (part : Split (Fin h) into (Fin q) and (Fin r)) :
+/-- `Fin.sum_univ_add` at `reduce`'s generator count, stated through the projection
+because that is the form the goal has and simp will not rewrite a binder's type. -/
+theorem sum_univ_reduce {Z : Zonotope n} {part : Split (Fin Z.h) into (Fin q) and (Fin r)}
+    (f : Fin (q + n) → ℝ) :
+    ∑ j : Fin (Z.reduce part).h, f j = ∑ j, f (Fin.castAdd n j) + ∑ j, f (Fin.natAdd q j) :=
+  Fin.sum_univ_add f
+
+theorem reduce_outer (Z : Zonotope n) (part : Split (Fin Z.h) into (Fin q) and (Fin r)) :
     Z.construct ⊆ (Z.reduce part).construct := by
   rintro x ⟨β, hβ, hx⟩
   have hbound : ∀ i, |∑ l, Z.G i (part.right l) * β (part.right l)|
@@ -46,8 +53,8 @@ theorem reduce_outer (Z : Zonotope n h) (part : Split (Fin h) into (Fin q) and (
     · simpa using hβ (part.left l)
     · simp only [Fin.append_right]
       exact abs_coefficient_le_one (hnonneg i) (hbound i)
-  · rw [hx i, part.sum_split₂ fun j => Z.G i j * β j]
-    simp only [Zonotope.reduce, Fin.sum_univ_add, Fin.append_left, Fin.append_right]
+  · rw [hx i, part.sum_split₂ fun j => Z.G i j * β j, sum_univ_reduce]
+    simp only [Zonotope.reduce, Fin.append_left, Fin.append_right]
     rw [sum_diagonal_mul, mul_coefficient (hbound i)]
 
 end CORALean.Arithmetic.Real.Zonotope.Proofs

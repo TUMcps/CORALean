@@ -54,12 +54,13 @@ This refinement can then be used to test any implementation against.
 
 ```
 lean/src/CORALean/
-  Global/          shared: array types, index partitions, the Mathlib surface
+  Global/          shared: array types, the scalar, index partitions, Mathlib
   Arithmetic/
     Real/          the specification: exact arithmetic over ℝ
       ContSet/     one directory per concept
         ContSet/   the interface every representation instantiates
-        Interval/  API.lean (definitions), Theorems.lean (guarantees), Proofs/
+        Interval/  API.lean (definitions), Theorems.lean (guarantees), Proofs/,
+                   Instance.lean (the interface, instantiated)
         ...
     Float/         the refinement: the same representations, rounded
       FloatOps / SoundFloatArithmetic   operations, then their guarantees

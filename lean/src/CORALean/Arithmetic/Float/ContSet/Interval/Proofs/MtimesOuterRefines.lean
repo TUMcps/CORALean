@@ -20,9 +20,9 @@ namespace CORALean.Arithmetic.Float.Interval.Proofs
 
 open FloatOps SoundFloatArithmetic
 
-variable {F : Type} [FloatOps F] [SoundFloatArithmetic F] {n m : ℕ}
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
-theorem mtimes_outer_refines (M : Mat F m n) (I : Interval F n) :
+theorem mtimes_outer_refines (M : Mat 𝕋 m n) (I : Interval 𝕋 n) :
     (Real.Interval.mtimes (toRealMat M) I.nominal).construct ⊆
       (Interval.mtimes M I).construct := by
   intro x hx i

@@ -22,40 +22,47 @@ namespace CORALean.Arithmetic.Float.Zonotope.Proofs
 open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 open CORALean.Arithmetic.Real.Zonotope.Proofs
 
-variable {F : Type} [FloatOps F] [SoundFloatArithmetic F] {n h q r : ℕ}
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n h q r : ℕ}
 
 /-- What the absorbed generators contribute, so what the block must cover. -/
-theorem abs_absorbed_le_radius (Z : Zonotope F n h)
-    (part : Split (Fin h) into (Fin q) and (Fin r)) {β : Vec ℝ h}
+theorem abs_absorbed_le_radius (Z : Zonotope 𝕋 n)
+    (part : Split (Fin Z.h) into (Fin q) and (Fin r)) {β : Vec ℝ Z.h}
     (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) :
     |∑ l, toReal (Z.G i (part.right l)) * β (part.right l)|
       ≤ toReal (radius (fun i l => Z.G i (part.right l)) i) := by
   exact abs_sum_le_radius (d := fun i l => Z.G i (part.right l))
     (fun _ _ => le_refl _) (fun l => hβ (part.right l)) i
 
-theorem reduce_nominal (Z : Zonotope F n h)
-    (part : Split (Fin h) into (Fin q) and (Fin r)) :
+omit [SoundFloatArithmetic 𝕋] in
+/-- `Fin.sum_univ_add` at `reduce`'s generator count; see `Zonotope.sum_split_nominal`. -/
+theorem sum_univ_reduce {Z : Zonotope 𝕋 n} {part : Split (Fin Z.h) into (Fin q) and (Fin r)}
+    (f : Fin (q + n) → ℝ) :
+    ∑ j : Fin (Z.reduce part).h, f j = ∑ j, f (Fin.castAdd n j) + ∑ j, f (Fin.natAdd q j) :=
+  Fin.sum_univ_add f
+
+theorem reduce_nominal (Z : Zonotope 𝕋 n)
+    (part : Split (Fin Z.h) into (Fin q) and (Fin r)) :
     nominalSet Z ⊆ nominalSet (Z.reduce part) := by
-  rintro x ⟨β, hβ, hx⟩
+  rintro x hx'
+  obtain ⟨β, hβ, hx⟩ := Zonotope.mem_nominalSet_iff.mp hx'
   have hbound := abs_absorbed_le_radius Z part hβ
   have hnonneg : ∀ i, (0:ℝ) ≤ toReal (radius (fun i l => Z.G i (part.right l)) i) :=
     fun i => (abs_nonneg _).trans (hbound i)
-  refine ⟨Fin.append (fun l => β (part.left l)) (fun i =>
+  refine Zonotope.mem_nominalSet_iff.mpr ⟨Fin.append (fun l => β (part.left l)) (fun i =>
       coefficient (toReal (radius (fun i l => Z.G i (part.right l)) i))
         (∑ l, toReal (Z.G i (part.right l)) * β (part.right l))), ?_, fun i => ?_⟩
   · refine Fin.addCases (fun l => ?_) (fun i => ?_)
     · simpa using hβ (part.left l)
     · simp only [Fin.append_right]
       exact abs_coefficient_le_one (hnonneg i) (hbound i)
-  · rw [hx i, part.sum_split₂ fun j => (nominal Z).G i j * β j]
-    simp only [Zonotope.reduce, Zonotope.nominal_c, Zonotope.nominal_G, toRealVec, toRealMat,
-      Fin.sum_univ_add, Fin.append_left, Fin.append_right, toReal_diagonalBlock]
+  · rw [hx i, part.sum_split₂ fun j => toReal (Z.G i j) * β j, sum_univ_reduce]
+    simp only [Zonotope.reduce, Fin.append_left, Fin.append_right, toReal_diagonalBlock]
     rw [sum_diagonal_mul]
     simp only [toRealVec]
     rw [mul_coefficient (hbound i)]
 
-theorem reduce_outer (Z : Zonotope F n h)
-    (part : Split (Fin h) into (Fin q) and (Fin r)) :
+theorem reduce_outer (Z : Zonotope 𝕋 n)
+    (part : Split (Fin Z.h) into (Fin q) and (Fin r)) :
     Z.construct ⊆ (Z.reduce part).construct :=
   mono_subset (reduce_nominal Z part) (subset_refl _)
 

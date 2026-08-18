@@ -15,9 +15,9 @@ centre at most the row sum of `|G|`, which is the half-width the hull was given.
 
 namespace CORALean.Arithmetic.Real.Zonotope.Proofs
 
-variable {n h : ℕ}
+variable {n : ℕ}
 
-theorem interval_outer (Z : Zonotope n h) : Z.construct ⊆ Z.interval.construct := by
+theorem interval_outer (Z : Zonotope n) : Z.construct ⊆ Z.interval.construct := by
   rintro x ⟨β, hβ, hx⟩ i
   have key : |x i - Z.c i| ≤ ∑ j, |Z.G i j| := by
     rw [hx i, add_sub_cancel_left]

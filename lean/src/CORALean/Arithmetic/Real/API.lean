@@ -1,5 +1,5 @@
-import CORALean.Arithmetic.Real.ContSet.Interval.Theorems
-import CORALean.Arithmetic.Real.ContSet.Zonotope.Theorems
+import CORALean.Arithmetic.Real.ContSet.Interval.Instance
+import CORALean.Arithmetic.Real.ContSet.Zonotope.Instance
 
 /-!
 # Real arithmetic, collected

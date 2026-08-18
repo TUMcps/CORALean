@@ -17,9 +17,9 @@ namespace CORALean.Arithmetic.Float.Zonotope.Proofs
 
 open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 
-variable {F : Type} [FloatOps F] [SoundFloatArithmetic F] {n h : ℕ}
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n h : ℕ}
 
-theorem interval_outer (Z : Zonotope F n h) : Z.construct ⊆ Z.interval.construct := by
+theorem interval_outer (Z : Zonotope 𝕋 n) : Z.construct ⊆ Z.interval.construct := by
   rintro _ ⟨z, ⟨β, hβ, hz⟩, e, he, rfl⟩ i
   have hgen := abs_sum_le_radius (d := Z.G) (Δ := fun i j => toReal (Z.G i j))
     (fun _ _ => le_refl _) hβ i

@@ -21,10 +21,10 @@ namespace CORALean.Arithmetic.Real.Zonotope.Proofs
 
 open Matrix
 
-variable {n m h : ℕ}
+variable {n m : ℕ}
 
 /-- Mapping a point of `Z` reads the same coefficients against `mtimes M Z`. -/
-theorem mulVec_apply (M : Mat ℝ m n) (Z : Zonotope n h) {x : Vec ℝ n} {β : Vec ℝ h}
+theorem mulVec_apply (M : Mat ℝ m n) (Z : Zonotope n) {x : Vec ℝ n} {β : Vec ℝ Z.h}
     (hx : ∀ l, x l = Z.c l + ∑ j, Z.G l j * β j) (i : Fin m) :
     (M *ᵥ x) i = (Zonotope.mtimes M Z).c i + ∑ j, (Zonotope.mtimes M Z).G i j * β j := by
   have expand : ∀ l, M i l * x l = M i l * Z.c l + ∑ j, M i l * Z.G l j * β j := by
@@ -37,7 +37,7 @@ theorem mulVec_apply (M : Mat ℝ m n) (Z : Zonotope n h) {x : Vec ℝ n} {β : 
   congr 1
   exact Finset.sum_comm
 
-theorem mtimes_exact (M : Mat ℝ m n) (Z : Zonotope n h) :
+theorem mtimes_exact (M : Mat ℝ m n) (Z : Zonotope n) :
     (M *ᵥ ·) '' Z.construct = (Zonotope.mtimes M Z).construct := by
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨x, ⟨β, hβ, hx⟩, rfl⟩

@@ -16,9 +16,9 @@ namespace CORALean.Arithmetic.Float.Interval.Proofs
 
 open FloatOps SoundFloatArithmetic
 
-variable {F : Type} [FloatOps F] [SoundFloatArithmetic F] {n : ℕ}
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
-theorem sub_mem_residual {lo hi stored : Vec F n} {x : Vec ℝ n}
+theorem sub_mem_residual {lo hi stored : Vec 𝕋 n} {x : Vec ℝ n}
     (h : ∀ i, toReal (lo i) ≤ x i ∧ x i ≤ toReal (hi i)) :
     (fun i => x i - toReal (stored i)) ∈ (Interval.residual lo hi stored).construct := fun i =>
   ⟨le_trans (subDown_le_sub _ _) (sub_le_sub_right (h i).1 _),

@@ -13,17 +13,17 @@ namespace CORALean.Arithmetic.Float.InflatedContSet
 
 open Pointwise FloatOps SoundFloatArithmetic
 
-variable {F S₁ S₂ T N₁ N₂ N : Type} [FloatOps F] [SoundFloatArithmetic F] {n h : ℕ}
+variable {𝕋 S₁ S₂ T N₁ N₂ N : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n h : ℕ}
 
 theorem mono_subset {M : Type} [Real.ContSet N₁ n] [Real.ContSet M n]
-    [InflatedContSet S₁ N₁ F n] [InflatedContSet T M F n] {s : S₁} {t : T}
+    [InflatedContSet S₁ N₁ 𝕋 n] [InflatedContSet T M 𝕋 n] {s : S₁} {t : T}
     (hnominal : nominalSet s ⊆ nominalSet t)
     (herror : (error s).construct ⊆ (error t).construct) :
     construct s ⊆ construct t :=
   Proofs.mono_subset hnominal herror
 
 theorem map_subset {M T' : Type} {m : ℕ} [Real.ContSet N₁ n] [Real.ContSet M m]
-    [InflatedContSet S₁ N₁ F n] [InflatedContSet T' M F m]
+    [InflatedContSet S₁ N₁ 𝕋 n] [InflatedContSet T' M 𝕋 m]
     {s : S₁} {t : T'} {f : Vec ℝ n → Vec ℝ m} {D : Set (Vec ℝ m)}
     (hadd : ∀ x y, f (x + y) = f x + f y)
     (hnominal : f '' nominalSet s ⊆ nominalSet t + D)
@@ -32,7 +32,7 @@ theorem map_subset {M T' : Type} {m : ℕ} [Real.ContSet N₁ n] [Real.ContSet M
   Proofs.map_subset hadd hnominal herror
 
 theorem plus_subset [Real.ContSet N₁ n] [Real.ContSet N₂ n] [Real.ContSet N n]
-    [InflatedContSet S₁ N₁ F n] [InflatedContSet S₂ N₂ F n] [InflatedContSet T N F n]
+    [InflatedContSet S₁ N₁ 𝕋 n] [InflatedContSet S₂ N₂ 𝕋 n] [InflatedContSet T N 𝕋 n]
     {s₁ : S₁} {s₂ : S₂} {t : T} {D : Set (Vec ℝ n)}
     (hnominal : nominalSet s₁ + nominalSet s₂ ⊆
       nominalSet t + D)
