@@ -1,0 +1,122 @@
+import CORALean.Arithmetic.Real.MatSet.IntervalMat.Operations
+
+/-!
+# The matrix exponential lies in its enclosure
+
+Althoff's thesis (2010), Eq. (3.2)–(3.3). The tail past `η` is dominated term by
+term by a geometric series of ratio `‖x‖ / (η + 2)`, because `(η+1+i)!` outgrows
+`(η+1)!` by at least `(η+2)` a step. Summing that geometric series is where the
+`1 / (1 - ε)` comes from, and where `ε < 1` is needed.
+
+The bound is on the operator norm and the enclosure is entrywise, which is sound
+because under the `l∞` operator norm an entry never exceeds its row sum, and a
+row sum never exceeds the norm.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       18-August-2026
+-- Last update:   ---
+-- Last revision: ---
+
+namespace CORALean.Arithmetic.Real
+
+open Matrix NormedSpace
+
+attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
+  Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
+
+variable {n : ℕ}
+
+set_option maxHeartbeats 40000 in
+/-- Under the `l∞` operator norm an entry never exceeds the whole norm. -/
+theorem aux_abs_entry_le_norm {m k : ℕ} (M : Mat ℝ m k) (i : Fin m) (j : Fin k) :
+    |M i j| ≤ ‖M‖ := by
+  have h : ‖M i j‖₊ ≤ ‖M‖₊ := by
+    rw [Matrix.linfty_opNNNorm_def]
+    exact le_trans (Finset.single_le_sum (f := fun j => ‖M i j‖₊)
+      (fun _ _ => zero_le) (Finset.mem_univ j))
+      (Finset.le_sup (f := fun i => ∑ j, ‖M i j‖₊) (Finset.mem_univ i))
+  rw [← Real.norm_eq_abs]
+  exact_mod_cast h
+
+/-- `(a+k)!` outgrows `a` factorial by at least `(a+1)` each step, which is what
+makes the tail geometric. -/
+theorem aux_factorial_mul_pow_le (a k : ℕ) :
+    Nat.factorial a * (a + 1) ^ k ≤ Nat.factorial (a + k) := by
+  induction k with
+  | zero => simp
+  | succ k ih =>
+    have hstep : Nat.factorial (a + (k + 1)) = (a + k + 1) * Nat.factorial (a + k) := by
+      rw [← Nat.add_assoc]; exact Nat.factorial_succ _
+    calc Nat.factorial a * (a + 1) ^ (k + 1)
+        = (Nat.factorial a * (a + 1) ^ k) * (a + 1) := by ring
+      _ ≤ Nat.factorial (a + k) * (a + 1)           := Nat.mul_le_mul_right _ ih
+      _ ≤ Nat.factorial (a + k) * (a + k + 1)       := Nat.mul_le_mul_left _ (by omega)
+      _ = Nat.factorial (a + (k + 1))               := by rw [hstep]; ring
+
+set_option maxHeartbeats 40000 in
+theorem aux_term_le (x : Mat ℝ n n) (η i : ℕ) :
+    ‖((Nat.factorial (i + (η + 1)) : ℝ)⁻¹) • x ^ (i + (η + 1))‖
+      ≤ (‖x‖ ^ (η + 1) / Nat.factorial (η + 1)) * (‖x‖ / ((η : ℝ) + 2)) ^ i := by
+  rw [Nat.add_comm i (η + 1)]
+  have hfac : ((Nat.factorial (η + 1) : ℝ) * ((η : ℝ) + 2) ^ i)
+      ≤ (Nat.factorial ((η + 1) + i) : ℝ) := by
+    have hcast : ((Nat.factorial (η + 1) * ((η + 1) + 1) ^ i : ℕ) : ℝ)
+        ≤ ((Nat.factorial ((η + 1) + i) : ℕ) : ℝ) :=
+      Nat.cast_le.mpr (aux_factorial_mul_pow_le (η + 1) i)
+    push_cast at hcast
+    convert hcast using 3
+    ring
+  rw [norm_smul, norm_inv, Real.norm_natCast]
+  have hnp : ‖x ^ ((η + 1) + i)‖ ≤ ‖x‖ ^ ((η + 1) + i) := norm_pow_le' x (by omega)
+  calc (Nat.factorial ((η + 1) + i) : ℝ)⁻¹ * ‖x ^ ((η + 1) + i)‖
+      ≤ (Nat.factorial ((η + 1) + i) : ℝ)⁻¹ * ‖x‖ ^ ((η + 1) + i) := by gcongr
+    _ ≤ ((Nat.factorial (η + 1) : ℝ) * ((η : ℝ) + 2) ^ i)⁻¹ * ‖x‖ ^ ((η + 1) + i) := by gcongr
+    _ = (‖x‖ ^ (η + 1) / Nat.factorial (η + 1)) * (‖x‖ / ((η : ℝ) + 2)) ^ i := by
+        rw [div_pow, pow_add]
+        field_simp
+
+-- Summability and tsum over a matrix algebra is what costs here, not the
+-- estimate: every step re-finds the normed-algebra instance on `Mat`.
+set_option maxHeartbeats 1000000 in
+theorem aux_norm_exp_sub_expTaylor_le (x : Mat ℝ n n) (η : ℕ)
+    (hε : ‖x‖ / ((η : ℝ) + 2) < 1) :
+    ‖exp x - IntervalMat.expTaylor x η‖ ≤ IntervalMat.expRemainderBound x η := by
+  show ‖exp x - ∑ i ∈ Finset.range (η + 1), ((Nat.factorial i : ℝ)⁻¹) • x ^ i‖
+      ≤ (‖x‖ ^ (η + 1) / Nat.factorial (η + 1)) * (1 - ‖x‖ / ((η : ℝ) + 2))⁻¹
+  set f : ℕ → Mat ℝ n n := fun i => ((Nat.factorial i : ℝ)⁻¹) • x ^ i with hf
+  have hsum : Summable f := expSeries_summable' (𝕂 := ℝ) x
+  have hnorm : Summable (fun i => ‖f i‖) := norm_expSeries_summable' (𝕂 := ℝ) x
+  have hε0 : (0:ℝ) ≤ ‖x‖ / ((η : ℝ) + 2) := by positivity
+  have hgeo : Summable (fun i : ℕ => (‖x‖ / ((η : ℝ) + 2)) ^ i) :=
+    summable_geometric_of_lt_one hε0 hε
+  have hx : exp x = ∑' i : ℕ, f i := by rw [exp_eq_tsum (𝕂 := ℝ)]
+  have htail : exp x - ∑ i ∈ Finset.range (η + 1), f i = ∑' i : ℕ, f (i + (η + 1)) := by
+    rw [hx, ← hsum.sum_add_tsum_nat_add (η + 1)]
+    abel
+  rw [htail]
+  calc ‖∑' i : ℕ, f (i + (η + 1))‖
+      ≤ ∑' i : ℕ, ‖f (i + (η + 1))‖ :=
+        norm_tsum_le_tsum_norm ((summable_nat_add_iff (η + 1)).mpr hnorm)
+    _ ≤ ∑' i : ℕ, (‖x‖ ^ (η + 1) / Nat.factorial (η + 1)) * (‖x‖ / ((η : ℝ) + 2)) ^ i :=
+        Summable.tsum_le_tsum (fun i => aux_term_le x η i)
+          ((summable_nat_add_iff (η + 1)).mpr hnorm) (hgeo.mul_left _)
+    _ = (‖x‖ ^ (η + 1) / Nat.factorial (η + 1)) * (1 - ‖x‖ / ((η : ℝ) + 2))⁻¹ := by
+        rw [tsum_mul_left, tsum_geometric_of_lt_one hε0 hε]
+
+set_option maxHeartbeats 40000 in
+theorem IntervalMat.exp_mem_expEnclosure (x : Mat ℝ n n) (η : ℕ)
+    (hε : ‖x‖ / ((η : ℝ) + 2) < 1) :
+    exp x ∈ (IntervalMat.expEnclosure x η).construct := by
+  intro i j
+  have h : |exp x i j - IntervalMat.expTaylor x η i j|
+      ≤ IntervalMat.expRemainderBound x η := by
+    calc |exp x i j - IntervalMat.expTaylor x η i j|
+        = |(exp x - IntervalMat.expTaylor x η) i j| := by rw [Matrix.sub_apply]
+      _ ≤ ‖exp x - IntervalMat.expTaylor x η‖ := aux_abs_entry_le_norm _ i j
+      _ ≤ IntervalMat.expRemainderBound x η := aux_norm_exp_sub_expTaylor_le x η hε
+  rw [abs_le] at h
+  exact ⟨by simp only [IntervalMat.expEnclosure]; linarith [h.1],
+    by simp only [IntervalMat.expEnclosure]; linarith [h.2]⟩
+
+end CORALean.Arithmetic.Real
