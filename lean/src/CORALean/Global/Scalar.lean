@@ -25,4 +25,7 @@ class Scalar (𝕋 : Type) where
 instance : Scalar ℝ where
   toRealMat M := M
 
+/-- True by `rfl`, but a proof about the real layer has to rewrite with it. -/
+@[simp] theorem Scalar.toRealMat_real {m n : ℕ} (M : Mat ℝ m n) : toRealMat M = M := rfl
+
 end CORALean

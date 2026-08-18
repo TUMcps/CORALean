@@ -40,13 +40,11 @@ theorem LinearSys.Trajectory.discretize {sys : LinearSys 𝕋 n} {R₀ U Ud : S 
   init := by simpa using traj.init
   input k := hUd k
   step k := by
-    -- `toRealMat` is the identity at ℝ, but nothing states that as a rewrite
-    have hreal : ∀ M : Mat ℝ n n, toRealMat M = M := fun _ => rfl
     have ha : (0 : ℝ) ≤ (k : ℝ) * Δt := mul_nonneg (Nat.cast_nonneg k) hΔt
     have hab : (k : ℝ) * Δt ≤ ((k : ℝ) + 1) * Δt := by nlinarith [Nat.cast_nonneg (α := ℝ) k]
     have h := traj.variation_of_constants ha hab (hu k)
     have hstep : ((k : ℝ) + 1) * Δt - (k : ℝ) * Δt = Δt := by ring
     rw [hstep] at h
-    simpa [LinearSys.discretize, LinearSys.stepInput, hreal] using h
+    simpa [LinearSys.discretize, LinearSys.stepInput] using h
 
 end CORALean.Arithmetic.Real

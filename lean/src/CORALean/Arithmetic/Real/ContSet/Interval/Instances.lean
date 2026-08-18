@@ -25,7 +25,9 @@ instance : OuterContSet Interval ℝ where
   mtimes := Interval.mtimes
   reduce I _ := I
   plus_outer := Interval.plus_outer
-  mtimes_outer := Interval.mtimes_outer
+  mtimes_outer M I := by
+    simp only [MatSet.denote_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
+    exact Interval.mtimes_outer M I
   reduce_outer _ _ := subset_rfl
 
 end CORALean.Arithmetic.Real

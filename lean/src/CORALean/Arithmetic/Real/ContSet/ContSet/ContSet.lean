@@ -46,22 +46,32 @@ open ContSet
 
 open Scalar
 
+/-- Multiplication by anything `MatSet` reads as matrices, covering the interval
+matrix a discretization produces as well as the plain one.
+
+The guarantee is over everything the argument denotes, which at a plain matrix
+is the one matrix it is, so this says exactly what a single map did. -/
+class Mtimes (𝕄 : ℕ → ℕ → Type) (S : ℕ → Type) [MatSet 𝕄] [∀ n, ContSet (S n) n] where
+  mtimes {m n : ℕ} : 𝕄 m n → S n → S m
+  mtimes_outer {m n : ℕ} (M : 𝕄 m n) (s : S n) :
+    (⋃ A ∈ MatSet.denote M, (A *ᵥ ·) '' construct s) ⊆ construct (mtimes M s)
+
 /-- Outer only, so an algorithm proved against this says nothing about how much
 precision a representation loses.
 
 `𝕋` is an `outParam`: it is fixed by the representation and does not appear in
-`plus` or `reduce`, so instance search must read it off `S`, not the use site. -/
+`plus` or `reduce`, so instance search must read it off `S`, not the use site.
+
+`mtimes` is inherited rather than declared, so a representation may also carry
+it at other matrix types without this class knowing. -/
 class OuterContSet (S : ℕ → Type) (𝕋 : outParam Type) [∀ n, ContSet (S n) n]
-    [Scalar 𝕋] where
+    [Scalar 𝕋] extends Mtimes (Mat 𝕋) S where
   plus {n : ℕ} : S n → S n → S n
-  mtimes {m n : ℕ} : Mat 𝕋 m n → S n → S m
   /-- To a maximum order, read in the representation's own terms. Sound for any
   target, so the order is a precision knob and never a correctness one. -/
   reduce {n : ℕ} : S n → ℕ → S n
   plus_outer {n : ℕ} (s₁ s₂ : S n) :
     construct s₁ + construct s₂ ⊆ construct (plus s₁ s₂)
-  mtimes_outer {m n : ℕ} (M : Mat 𝕋 m n) (s : S n) :
-    (toRealMat M *ᵥ ·) '' construct s ⊆ construct (mtimes M s)
   reduce_outer {n : ℕ} (s : S n) (o : ℕ) :
     construct s ⊆ construct (reduce s o)
 

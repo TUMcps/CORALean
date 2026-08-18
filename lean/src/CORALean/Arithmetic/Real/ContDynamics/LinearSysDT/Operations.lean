@@ -19,7 +19,7 @@ Guarantees live in `Theorems`.
 
 namespace CORALean.Arithmetic.Real
 
-open Matrix ContSet Scalar OuterContSet
+open Matrix ContSet Scalar OuterContSet Mtimes
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) n] [OuterContSet S 𝕋]

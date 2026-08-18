@@ -29,7 +29,9 @@ noncomputable instance : OuterContSet Zonotope ℝ where
   mtimes := Zonotope.mtimes
   reduce := Zonotope.reduce
   plus_outer Z₁ Z₂ := (Zonotope.plus_exact Z₁ Z₂).subset
-  mtimes_outer M Z := (Zonotope.mtimes_exact M Z).subset
+  mtimes_outer M Z := by
+    simp only [MatSet.denote_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
+    exact (Zonotope.mtimes_exact M Z).subset
   reduce_outer := Zonotope.reduce_outer
 
 end CORALean.Arithmetic.Real

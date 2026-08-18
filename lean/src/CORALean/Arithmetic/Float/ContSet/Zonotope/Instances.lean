@@ -24,7 +24,9 @@ instance : Real.OuterContSet (Zonotope 𝕋) 𝕋 where
   mtimes := Zonotope.mtimes
   reduce := Zonotope.reduce
   plus_outer := Zonotope.plus_outer
-  mtimes_outer := Zonotope.mtimes_outer
+  mtimes_outer M Z := by
+    simp only [MatSet.denote_mat, Set.biUnion_singleton]
+    exact Zonotope.mtimes_outer M Z
   reduce_outer := Zonotope.reduce_outer
 
 end CORALean.Arithmetic.Float
