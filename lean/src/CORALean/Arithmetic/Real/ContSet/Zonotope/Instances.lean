@@ -34,6 +34,11 @@ noncomputable instance : OuterContSet Zonotope ℝ where
     exact (Zonotope.mtimes_exact M Z).subset
   reduce_outer := Zonotope.reduce_outer
 
+/-- What a time-interval enclosure needs, and `OuterContSet` does not ask for. -/
+noncomputable instance : LinComb Zonotope where
+  linComb := Zonotope.linComb
+  linComb_outer := Zonotope.linComb_outer
+
 /-- The same operation at an interval matrix, which `OuterContSet` does not ask
 for: a zonotope carries it, and a discretization is what wants it. -/
 noncomputable instance : Mtimes IntervalMat Zonotope where

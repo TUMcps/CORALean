@@ -56,6 +56,16 @@ class Mtimes (𝕄 : ℕ → ℕ → Type) (S : ℕ → Type) [MatSet 𝕄] [∀
   mtimes_outer {m n : ℕ} (M : 𝕄 m n) (s : S n) :
     (⋃ A ∈ MatSet.denote M, (A *ᵥ ·) '' construct s) ⊆ construct (mtimes M s)
 
+/-- CORA's `linComb`: every point on a segment running from one set to the
+other. Not the convex hull — the two agree only when both sets are convex, and
+`linComb` is the one a time-interval enclosure needs, since it is what keeps a
+non-convex representation non-convex. -/
+class LinComb (S : ℕ → Type) [∀ n, ContSet (S n) n] where
+  linComb {n : ℕ} : S n → S n → S n
+  linComb_outer {n : ℕ} (s₁ s₂ : S n) :
+    {x | ∃ y₁ ∈ construct s₁, ∃ y₂ ∈ construct s₂, ∃ lam ∈ Set.Icc (0:ℝ) 1,
+      x = lam • y₁ + (1 - lam) • y₂} ⊆ construct (linComb s₁ s₂)
+
 /-- Outer only, so an algorithm proved against this says nothing about how much
 precision a representation loses.
 
