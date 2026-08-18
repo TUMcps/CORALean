@@ -9,12 +9,14 @@ CORA's `linearSys`: `ẋ(t) = A x(t) + u(t)`, carrying only the matrix.
 appear — one admissible run, with an input at every time, so a disturbance is
 one too.
 
-Forward time only, as in `LinearSysDT`, which is why the derivative is one-sided:
-`HasDerivWithinAt` on `Set.Ici t` is also the form Mathlib's ODE uniqueness
-takes, so a trajectory is usable there as it stands.
+Forward time only, as in `LinearSysDT`, so the derivative is taken within
+`Set.Ici 0` — two-sided at every positive time, one-sided at 0. Within `Ici t`
+it would be a right derivative everywhere, which does not force continuity, and
+a run free to jump is not a trajectory.
 
 `u` carries no regularity hypothesis. It needs none: `x` is differentiable
-wherever the flow holds, so `u t = ẋ(t) - A x(t)` is already pinned there.
+wherever the flow holds, so `u t = ẋ(t) - A x(t)` is already pinned there. What
+integrates `u` is a hypothesis of the theorem that integrates it.
 -/
 
 -- Authors:       Tobias Ladner
@@ -37,6 +39,6 @@ structure LinearSys.Trajectory (sys : LinearSys 𝕋 n) (R₀ U : S n)
   init : x 0 ∈ construct R₀
   input (t : ℝ) (ht : 0 ≤ t) : u t ∈ construct U
   flow (t : ℝ) (ht : 0 ≤ t) :
-    HasDerivWithinAt x (toRealMat sys.A *ᵥ x t + u t) (Set.Ici t) t
+    HasDerivWithinAt x (toRealMat sys.A *ᵥ x t + u t) (Set.Ici 0) t
 
 end CORALean.Arithmetic.Real
