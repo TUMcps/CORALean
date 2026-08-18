@@ -13,29 +13,53 @@ The Lean project root is `lean/`, not the repository root, hence the
 
 ## File roles
 
-Per representation, six kinds of file plus `Helper/` where an operation needs it,
-and a file does only its own job. Scalar models and systems follow the same shape:
+Per representation, four kinds of file, and a file does only its own job. Scalar
+models and systems follow the same shape:
 
 | File | Holds |
 | --- | --- |
-| `Structure.lean` | the structure, and what it denotes: `construct`, `toReal`, `Trajectory` |
-| `Helper/*.lean` | what one operation is built from, when `API` should not carry it |
-| `API.lean` | the operations |
-| `Theorems.lean` | guarantees per operation, stated in full with proofs outsourced* |
-| `Proofs/*.lean` | one proof each, plus the lemmas only it needs |
-| `Proofs/API.lean` | just imports of the above for convenience |
-| `Instance.lean` | the class instances, whose fields *are* the guarantees |
+| `<Name>.lean` | the structure it is named for, and what it denotes: `construct`, `toReal`, `Trajectory` |
+| `Operations/*.lean` | one operation each, as CORA gives it a file each |
+| `Theorems/*.lean` | one guarantee each, stated and proved together |
+| `Instances.lean` | the class instances, whose fields *are* the guarantees |
 
-A directory collects itself in its own `API.lean`, `Proofs/` and `Helper/` included,
-so an import never names a file that sits beside the directory it belongs to.
+A file is named after what it declares, not after the role it plays:
+`Zonotope/Zonotope.lean` and `Operations/Reduce.lean`, as in CORA's
+`@zonotope/zonotope.m` and `@zonotope/reduce.m`. `Instances.lean` is the
+exception, because a Lean instance has no name to use.
 
-*`Theorems` restates the type and delegates to the lemma of the same name in `Proofs`.
-The restatement is checked against the proved one, so the two cannot drift.
+`Operations` stays a single file where splitting would not pay: `LinearSysDT`
+has one operation, and `Dyadic`'s are one-line compositions of an exact step and
+a rounding.
 
-Naming convention follows the CORA repository: `plus`, `mtimes`, `reduce`, `interval`, ...
+### `aux_`
 
-A suffix says what a guarantee claims, and a file in `Proofs/` is named after the
-theorem it proves:
+What a file needs and nothing else uses carries the `aux_` prefix, as in CORA —
+`aux_girardSplit`, `aux_plus_nominal`. Everything else is public, so the
+distinction is visible at each use site rather than kept in a list somewhere.
+The test is mechanical: used outside its own file, or not.
+
+### `API.lean`
+
+Holds nothing but imports: a directory collects itself there, `Operations/`,
+`Theorems/` and `Instances` included. Two rules keep it acyclic and make it the
+only name anything outside needs:
+
+- inside a directory, a file imports its siblings by name —
+  `Theorems/PlusExact.lean` imports `Operations.API`, never its own `API`;
+- across directories, an import names an `API.lean` and nothing else, so reaching
+  another representation's lemma never names the file it happens to sit in.
+
+Note that an import cannot filter: `Theorems/API.lean` re-exports the `aux_`
+lemmas too. The prefix is the only thing marking them, which is why it is a
+naming rule and not a file boundary.
+
+### Naming
+
+Follows the CORA repository: `plus`, `mtimes`, `reduce`, `interval`, ...
+
+A suffix says what a guarantee claims, and a file in `Theorems/` is named after
+the theorem it states:
 
 | Suffix | Claim |
 | --- | --- |
@@ -90,5 +114,5 @@ code:
 -- Last revision: ---
 ```
 
-Files that only collect or re-export do not: `Theorems.lean`, every collecting
-`API.lean`, `Global/Mathlib.lean`, `CORALean.lean`.
+Files that only collect or re-export do not: every `API.lean`,
+`Global/Mathlib.lean`, `CORALean.lean`.

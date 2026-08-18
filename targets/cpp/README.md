@@ -61,8 +61,8 @@ to `lean/src/CORALean/`.
 | `partition.hpp`  | `Global/Partition.lean`                                    |
 | `float_ops.hpp`  | `Arithmetic/Float/FloatOps.lean`                           |
 | `binary64.hpp`   | no counterpart — see *Assumptions*                         |
-| `interval.hpp`   | `Arithmetic/Float/ContSet/Interval/API.lean`               |
-| `zonotope.hpp`   | `Arithmetic/Float/ContSet/Zonotope/API.lean`               |
+| `interval.hpp`   | `Arithmetic/Float/ContSet/Interval/Operations.lean`        |
+| `zonotope.hpp`   | `Arithmetic/Float/ContSet/Zonotope/Operations.lean`        |
 
 Names follow CORA and Lean exactly — `plus`, `mtimes`, `reduce`,
 `reduceAndAbsorb`, `absorbError`, `interval` — so a definition can be compared

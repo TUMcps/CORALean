@@ -1,6 +1,6 @@
 // Intervals over a floating-point scalar.
 //
-// Specification: lean/src/CORALean/Arithmetic/Float/ContSet/Interval/API.lean
+// Specification: lean/src/CORALean/Arithmetic/Float/ContSet/Interval/Operations.lean
 //
 // Each bound rounds away from the interval: `inf` down, `sup` up. That is the
 // whole of the floating-point content.

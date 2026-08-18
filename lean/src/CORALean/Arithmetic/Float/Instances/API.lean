@@ -1,5 +1,5 @@
-import CORALean.Arithmetic.Float.Instances.Real.Instance
-import CORALean.Arithmetic.Float.Instances.Dyadic.Instance
+import CORALean.Arithmetic.Float.Instances.Real.API
+import CORALean.Arithmetic.Float.Instances.Dyadic.API
 
 /-!
 # Models of `SoundFloatArithmetic`

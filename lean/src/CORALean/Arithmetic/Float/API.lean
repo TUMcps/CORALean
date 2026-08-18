@@ -1,8 +1,7 @@
+import CORALean.Arithmetic.Float.FloatOps
 import CORALean.Arithmetic.Float.SoundFloatArithmetic
 import CORALean.Arithmetic.Float.Instances.API
-import CORALean.Arithmetic.Float.ContSet.Interval.Instance
-import CORALean.Arithmetic.Float.ContSet.Zonotope.Instance
-import CORALean.Arithmetic.Float.ContSet.InflatedContSet.Theorems
+import CORALean.Arithmetic.Float.ContSet.API
 
 /-!
 # Floating-point arithmetic, collected

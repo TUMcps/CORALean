@@ -1,6 +1,6 @@
 // Zonotopes over a floating-point scalar.
 //
-// Specification: lean/src/CORALean/Arithmetic/Float/ContSet/Zonotope/API.lean
+// Specification: lean/src/CORALean/Arithmetic/Float/ContSet/Zonotope/Operations.lean
 //
 // CORA's `zonotope` with its centre and generator matrix, plus the error box
 // that makes it an `InflatedContSet`. The nominal part is the zonotope the
