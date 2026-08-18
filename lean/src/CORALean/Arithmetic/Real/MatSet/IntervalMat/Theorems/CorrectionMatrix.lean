@@ -101,4 +101,52 @@ theorem aux_norm_expDiff_tail_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) (η : 
     _ = IntervalMat.expRemainderBound (r • A) η := by
         rw [tsum_mul_left, tsum_geometric_of_lt_one hε0 hε, IntervalMat.expRemainderBound]
 
+set_option maxHeartbeats 1000000 in
+theorem IntervalMat.expDiff_mem_correctionMatrix (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) {m : ℕ}
+    (hε : ‖r • A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) :
+    exp (t • A) - 1 - (t / r) • (exp (r • A) - 1)
+      ∈ (IntervalMat.correctionMatrix A r (m + 2)).construct := by
+  have hs0 : 0 ≤ t / r := div_nonneg ht0 hr.le
+  have hs1 : t / r ≤ 1 := (div_le_one hr).mpr htr
+  set f : ℕ → Mat ℝ n n := fun i =>
+    (((Nat.factorial (i + 2) : ℝ))⁻¹ * (t ^ (i + 2) - (t / r) * r ^ (i + 2))) • A ^ (i + 2)
+    with hf
+  have hsum : Summable f := IntervalMat.summable_expDiff A t r
+  have hsplit := hsum.sum_add_tsum_nat_add (m + 1)
+  have heq : exp (t • A) - 1 - (t / r) • (exp (r • A) - 1)
+      = (∑ i ∈ Finset.range (m + 1), f i) + ∑' i : ℕ, f (i + (m + 1)) := by
+    rw [IntervalMat.expDiff_eq_tsum A t r hr.ne', ← hsplit]
+  have htail := aux_norm_expDiff_tail_le A hr (m + 2) hε ht0 htr
+  intro j k
+  -- each order between `2` and `η` stays inside the interval `corrTerm` spans
+  have hfin : ∀ i ∈ Finset.range (m + 1),
+      min (IntervalMat.corrTerm A r (i + 2) j k) 0 ≤ (f i) j k
+        ∧ (f i) j k ≤ max (IntervalMat.corrTerm A r (i + 2) j k) 0 := by
+    intro i _
+    have hlow := IntervalMat.corrCoeff_le_sub (i := i + 2) (by omega) hs0
+    have hupp := IntervalMat.sub_le_zero (i := i + 2) (by omega) hs0 hs1
+    have hw : (f i) j k = ((t / r) ^ (i + 2) - (t / r))
+        * (((Nat.factorial (i + 2) : ℝ))⁻¹ * r ^ (i + 2) * (A ^ (i + 2)) j k) := by
+      simp only [hf, Matrix.smul_apply, smul_eq_mul, aux_pow_sub_eq hr]
+      ring
+    have hct : IntervalMat.corrTerm A r (i + 2) j k = IntervalMat.corrCoeff (i + 2)
+        * (((Nat.factorial (i + 2) : ℝ))⁻¹ * r ^ (i + 2) * (A ^ (i + 2)) j k) := by
+      simp only [IntervalMat.corrTerm]
+      ring
+    rw [hw, hct]
+    exact aux_mul_mem_minmax hlow hupp
+  -- the tail is inside the remainder, entrywise because an entry never exceeds the norm
+  have hT : |(∑' i : ℕ, f (i + (m + 1))) j k|
+      ≤ IntervalMat.expRemainderBound (r • A) (m + 2) :=
+    le_trans (aux_abs_entry_le_norm _ j k) htail
+  rw [abs_le] at hT
+  rw [heq]
+  simp only [Matrix.add_apply, Matrix.sum_apply, IntervalMat.correctionMatrix,
+    show m + 2 - 1 = m + 1 from rfl]
+  constructor
+  · have := Finset.sum_le_sum fun i hi => (hfin i hi).1
+    linarith [hT.1]
+  · have := Finset.sum_le_sum fun i hi => (hfin i hi).2
+    linarith [hT.2]
+
 end CORALean.Arithmetic.Real

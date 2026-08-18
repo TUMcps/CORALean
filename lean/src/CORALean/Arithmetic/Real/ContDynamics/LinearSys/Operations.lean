@@ -1,5 +1,6 @@
 import CORALean.Arithmetic.Real.ContDynamics.LinearSys.LinearSys
 import CORALean.Arithmetic.Real.ContDynamics.LinearSysDT.API
+import CORALean.Arithmetic.Real.MatSet.API
 
 /-!
 # Continuous-time linear systems: sampling
@@ -25,12 +26,13 @@ operator norm — or the terms will not match.
 
 namespace CORALean.Arithmetic.Real
 
-open Matrix Scalar NormedSpace MeasureTheory intervalIntegral
+open Matrix ContSet Scalar NormedSpace MeasureTheory intervalIntegral
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
+variable {S : ℕ → Type} [∀ n, ContSet (S n) n] [OuterContSet S ℝ]
 
 /-- The system a step of `Δt` leaves behind. -/
 noncomputable def LinearSys.discretize (sys : LinearSys 𝕋 n) (Δt : ℝ) : LinearSysDT ℝ n :=
@@ -40,5 +42,15 @@ noncomputable def LinearSys.discretize (sys : LinearSys 𝕋 n) (Δt : ℝ) : Li
 noncomputable def LinearSys.stepInput (sys : LinearSys 𝕋 n) (u : ℝ → Vec ℝ n) (Δt : ℝ)
     (k : ℕ) : Vec ℝ n :=
   ∫ s in (k * Δt)..((k + 1) * Δt), exp (((k + 1) * Δt - s) • toRealMat sys.A) *ᵥ u s
+
+/-- CORA's `CH(X₀, e^{Ar}X₀) ⊕ F X₀`, over a whole step rather than at its ends:
+the segment from the set to its image, widened by what the curvature of the flow
+adds. `linComb` rather than a convex hull, so a non-convex representation keeps
+its shape. -/
+noncomputable def LinearSys.timeIntervalStep [LinComb S] [Mtimes IntervalMat S]
+    (sys : LinearSys 𝕋 n) (r : ℝ) (η : ℕ) (X₀ : S n) : S n :=
+  OuterContSet.plus
+    (LinComb.linComb X₀ (Mtimes.mtimes (exp (r • toRealMat sys.A)) X₀))
+    (Mtimes.mtimes (IntervalMat.correctionMatrix (toRealMat sys.A) r η) X₀)
 
 end CORALean.Arithmetic.Real
