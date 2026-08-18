@@ -1,6 +1,7 @@
 import CORALean.Arithmetic.Real.ContDynamics.LinearSys.Theorems.Discretize
 import CORALean.Arithmetic.Real.ContDynamics.LinearSys.Theorems.ReachOuter
 import CORALean.Arithmetic.Real.ContDynamics.LinearSys.Theorems.TimeIntervalOuter
+import CORALean.Arithmetic.Real.ContDynamics.LinearSys.Theorems.TrajectoryTimeIntervalOuter
 import CORALean.Arithmetic.Real.ContDynamics.LinearSys.Theorems.VariationOfConstants
 
 /-!
