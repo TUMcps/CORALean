@@ -1,6 +1,7 @@
 import Mathlib.Algebra.BigOperators.Fin
 import Mathlib.Algebra.Group.Pointwise.Set.Basic
 import Mathlib.Algebra.Order.BigOperators.Group.Finset
+import Mathlib.Data.Fin.Tuple.Sort
 import Mathlib.Data.Fintype.BigOperators
 import Mathlib.Data.Matrix.Mul
 import Mathlib.Data.Real.Basic

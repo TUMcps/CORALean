@@ -1,4 +1,4 @@
-import CORALean.Arithmetic.Float.ContSet.Interval.Proofs
+import CORALean.Arithmetic.Float.ContSet.Interval.Proofs.API
 
 /-!
 # What the floating-point `Interval` guarantees

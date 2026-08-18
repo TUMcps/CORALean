@@ -1,5 +1,5 @@
 import CORALean.Arithmetic.Float.SoundFloatArithmetic
-import CORALean.Arithmetic.Float.Instances
+import CORALean.Arithmetic.Float.Instances.API
 import CORALean.Arithmetic.Float.ContSet.Interval.Instance
 import CORALean.Arithmetic.Float.ContSet.Zonotope.Instance
 import CORALean.Arithmetic.Float.ContSet.InflatedContSet.Theorems

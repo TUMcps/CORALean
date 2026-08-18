@@ -1,8 +1,8 @@
-import CORALean.Arithmetic.Float.ContSet.Zonotope.Proofs.ReduceOuter
+import CORALean.Arithmetic.Float.ContSet.Zonotope.Proofs.ReduceByOuter
 import CORALean.Arithmetic.Float.ContSet.Zonotope.Proofs.AbsorbErrorOuter
 
 /-!
-# `reduceAndAbsorb` keeps the set it had
+# `reduceAndAbsorbBy` keeps the set it had
 
 The two arguments meet in one coefficient. The absorbed generators contribute at
 most `radius`, the box at most `errorRadius`, and the merged block has radius at
@@ -38,24 +38,24 @@ theorem abs_merged_le_radius (Z : Zonotope 𝕋 n)
   exact le_trans (abs_add_le _ _) (by linarith)
 
 omit [SoundFloatArithmetic 𝕋] in
-/-- `Fin.sum_univ_add` at `reduceAndAbsorb`'s generator count. -/
-theorem sum_univ_reduceAndAbsorb {Z : Zonotope 𝕋 n}
+/-- `Fin.sum_univ_add` at `reduceAndAbsorbBy`'s generator count. -/
+theorem sum_univ_reduceAndAbsorbBy {Z : Zonotope 𝕋 n}
     {part : Split (Fin Z.h) into (Fin q) and (Fin r)} (f : Fin (q + n) → ℝ) :
-    ∑ j : Fin (Z.reduceAndAbsorb part).h, f j
+    ∑ j : Fin (Z.reduceAndAbsorbBy part).h, f j
       = ∑ j, f (Fin.castAdd n j) + ∑ j, f (Fin.natAdd q j) :=
   Fin.sum_univ_add f
 
-theorem reduceAndAbsorb_outer (Z : Zonotope 𝕋 n)
+theorem reduceAndAbsorbBy_outer (Z : Zonotope 𝕋 n)
     (part : Split (Fin Z.h) into (Fin q) and (Fin r)) :
-    Z.construct ⊆ (Z.reduceAndAbsorb part).construct := by
+    Z.construct ⊆ (Z.reduceAndAbsorbBy part).construct := by
   rintro _ ⟨z, hz', e, he, rfl⟩
   obtain ⟨β, hβ, hz⟩ := Zonotope.mem_nominalSet_iff.mp hz'
   have hmerged := abs_merged_le_radius Z part hβ he
   have hnonneg : ∀ i, (0:ℝ) ≤
       toReal (addUp (radius (fun i l => Z.G i (part.right l)) i) (Z.errorRadius i)) :=
     fun i => (abs_nonneg _).trans (hmerged i)
-  refine ⟨fun i => toReal ((Z.reduceAndAbsorb part).c i)
-            + ∑ j, toReal ((Z.reduceAndAbsorb part).G i j)
+  refine ⟨fun i => toReal ((Z.reduceAndAbsorbBy part).c i)
+            + ∑ j, toReal ((Z.reduceAndAbsorbBy part).G i j)
                 * Fin.append (fun l => β (part.left l)) (fun i =>
                     coefficient (toReal (addUp (radius (fun i l => Z.G i (part.right l)) i)
                         (Z.errorRadius i)))
@@ -70,8 +70,8 @@ theorem reduceAndAbsorb_outer (Z : Zonotope 𝕋 n)
       exact abs_coefficient_le_one (hnonneg i) (hmerged i)
   · exact Interval.sub_mem_residual (shift_brackets_mid Z)
   · funext i
-    show toReal ((Z.reduceAndAbsorb part).c i)
-        + ∑ j, toReal ((Z.reduceAndAbsorb part).G i j)
+    show toReal ((Z.reduceAndAbsorbBy part).c i)
+        + ∑ j, toReal ((Z.reduceAndAbsorbBy part).G i j)
             * Fin.append (fun l => β (part.left l)) (fun i =>
                 coefficient (toReal (addUp (radius (fun i l => Z.G i (part.right l)) i)
                     (Z.errorRadius i)))
@@ -80,8 +80,8 @@ theorem reduceAndAbsorb_outer (Z : Zonotope 𝕋 n)
         + (toReal (Z.c i) + (toReal (Z.E.inf i) + toReal (Z.E.sup i)) / 2
             - toReal (Z.shiftDown i))
       = z i + e i
-    rw [hz i, part.sum_split₂ fun j => toReal (Z.G i j) * β j, sum_univ_reduceAndAbsorb]
-    simp only [Zonotope.reduceAndAbsorb, Fin.append_left, Fin.append_right,
+    rw [hz i, part.sum_split₂ fun j => toReal (Z.G i j) * β j, sum_univ_reduceAndAbsorbBy]
+    simp only [Zonotope.reduceAndAbsorbBy, Fin.append_left, Fin.append_right,
       toReal_diagonalBlock]
     rw [sum_diagonal_mul]
     simp only [toRealVec]

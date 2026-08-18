@@ -13,15 +13,21 @@ The Lean project root is `lean/`, not the repository root, hence the
 
 ## File roles
 
-Per representation, five kinds of file, and a file does only its own job:
+Per representation, six kinds of file plus `Helper/` where an operation needs it,
+and a file does only its own job. Scalar models and systems follow the same shape:
 
 | File | Holds |
 | --- | --- |
-| `API.lean` | the structure, `construct`, the operations |
+| `Structure.lean` | the structure, and what it denotes: `construct`, `toReal`, `Trajectory` |
+| `Helper/*.lean` | what one operation is built from, when `API` should not carry it |
+| `API.lean` | the operations |
 | `Theorems.lean` | guarantees per operation, stated in full with proofs outsourced* |
 | `Proofs/*.lean` | one proof each, plus the lemmas only it needs |
-| `Proofs.lean` | just imports of the above for convenience |
+| `Proofs/API.lean` | just imports of the above for convenience |
 | `Instance.lean` | the class instances, whose fields *are* the guarantees |
+
+A directory collects itself in its own `API.lean`, `Proofs/` and `Helper/` included,
+so an import never names a file that sits beside the directory it belongs to.
 
 *`Theorems` restates the type and delegates to the lemma of the same name in `Proofs`.
 The restatement is checked against the proved one, so the two cannot drift.
@@ -84,5 +90,5 @@ code:
 -- Last revision: ---
 ```
 
-Files that only collect or re-export do not: `Proofs.lean`, `Theorems.lean`, the
-layer-level `API.lean` files, `Global/Mathlib.lean`, `CORALean.lean`.
+Files that only collect or re-export do not: `Theorems.lean`, every collecting
+`API.lean`, `Global/Mathlib.lean`, `CORALean.lean`.

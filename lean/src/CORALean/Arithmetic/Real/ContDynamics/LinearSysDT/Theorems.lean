@@ -1,4 +1,4 @@
-import CORALean.Arithmetic.Real.ContDynamics.LinearSysDT.Proofs
+import CORALean.Arithmetic.Real.ContDynamics.LinearSysDT.Proofs.API
 
 /-!
 # What `LinearSysDT` guarantees

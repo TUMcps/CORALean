@@ -1,4 +1,4 @@
-import CORALean.Arithmetic.Real.ContSet.Interval.Proofs
+import CORALean.Arithmetic.Real.ContSet.Interval.Proofs.API
 
 /-!
 # What `Interval` guarantees

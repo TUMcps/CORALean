@@ -29,7 +29,7 @@ theorem reach_outer (sys : LinearSysDT 𝕋 n) (o : ℕ) (R₀ U : S n) {x u : �
   induction k with
   | zero => exact traj.init
   | succ k ih =>
-    show x (k + 1) ∈ construct (reduce o (plus (mtimes sys.A (sys.reach o R₀ U k)) U))
+    show x (k + 1) ∈ construct (reduce (plus (mtimes sys.A (sys.reach o R₀ U k)) U) o)
     rw [traj.step k]
     exact reduce_outer _ _ (plus_outer _ _
       (Set.add_mem_add (mtimes_outer sys.A _ (Set.mem_image_of_mem _ ih)) (traj.input k)))

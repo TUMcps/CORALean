@@ -1,24 +1,11 @@
-import CORALean.Arithmetic.Float.SoundFloatArithmetic
+import CORALean.Arithmetic.Float.Instances.Dyadic.Structure
 
 /-!
-# Dyadic numbers at a fixed precision
-
-`Dyadic p` is `mantissa * 2 ^ exponent` with the mantissa held to `p` bits. The
-bound is what makes it a float model: unbounded dyadics are closed under `+` and
-`*`, so rounding them would do nothing and the instance would be as degenerate
-as ℝ.
+# Dyadic numbers at a fixed precision: the operations
 
 Every operation is exact-then-round. The exact step may overflow `p` bits — a
 product needs `2p` — so it is separate, and `roundUp`/`roundDown` return to the
 grid by shifting the mantissa right, taking the floor or the ceiling.
-
-Precision is a phantom parameter, not a field bound: the class constrains only
-`toReal` of a result, so carrying a proof would prove nothing extra. Values off
-the grid are representable but never produced.
-
-The exponent is unbounded, so nothing overflows — exactly what
-`SoundFloatArithmetic` assumes, and why this instance needs no axioms where a
-binary64 one would.
 -/
 
 -- Authors:       Tobias Ladner
@@ -28,15 +15,9 @@ binary64 one would.
 
 namespace CORALean.Arithmetic.Float
 
-structure Dyadic (p : ℕ) where
-  mantissa : ℤ
-  exponent : ℤ
-
 namespace Dyadic
 
 variable {p : ℕ}
-
-noncomputable def toReal (d : Dyadic p) : ℝ := (d.mantissa : ℝ) * 2 ^ d.exponent
 
 def neg (d : Dyadic p) : Dyadic p := ⟨-d.mantissa, d.exponent⟩
 

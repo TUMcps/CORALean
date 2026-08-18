@@ -62,6 +62,15 @@ theorem toReal_absolute (a : 𝕋) : toReal (absolute a) = |toReal a| := by
   rw [absolute, toReal_maximum, toReal_neg]
   exact (abs_eq_max_neg).symm
 
+/-- Read as reals `diagonalBlock` is `Matrix.diagonal`, so the exact layer's
+lemmas apply. -/
+theorem toReal_diagonalBlock (v : Vec 𝕋 n) (i l : Fin n) :
+    toReal (diagonalBlock v i l) = Matrix.diagonal (toRealVec v) i l := by
+  by_cases hil : i = l
+  · rw [diagonalBlock, if_pos hil, hil, Matrix.diagonal_apply_eq]
+    rfl
+  · rw [diagonalBlock, if_neg hil, Matrix.diagonal_apply_ne _ hil, toReal_zero]
+
 theorem sub_le_subUp (a b : 𝕋) : toReal a - toReal b ≤ toReal (subUp a b) := by
   rw [sub_eq_add_neg, ← toReal_neg b, subUp]
   exact add_le_addUp a (neg b)
@@ -93,6 +102,14 @@ theorem le_dotUp (a b : Vec 𝕋 n) :
     ∑ k, toReal (a k) * toReal (b k) ≤ toReal (dotUp a b) :=
   le_trans (Finset.sum_le_sum fun _ _ => mul_le_mulUp _ _) (sum_le_sumUp _)
 
+/-- Rounding up is what the row sum costs: the exact one never exceeds it. -/
+theorem sum_abs_le_radius {d : Mat 𝕋 n h} (i : Fin n) :
+    ∑ j, |toReal (d i j)| ≤ toReal (radius d i) :=
+  calc ∑ j, |toReal (d i j)|
+      = ∑ j, toReal (absolute (d i j)) :=
+        Finset.sum_congr rfl fun _ _ => (toReal_absolute _).symm
+    _ ≤ toReal (radius d i) := sum_le_sumUp _
+
 /-- What a matrix known only to within `d` entrywise can reach on the unit ball;
 `d` exact is the special case. -/
 theorem abs_sum_le_radius {d : Mat 𝕋 n h} {Δ : Mat ℝ n h} {β : Vec ℝ h}
@@ -103,8 +120,6 @@ theorem abs_sum_le_radius {d : Mat 𝕋 n h} {Δ : Mat ℝ n h} {β : Vec ℝ h}
     _ ≤ ∑ j, |toReal (d i j)| := Finset.sum_le_sum fun j _ => by
         rw [abs_mul]
         exact le_trans (mul_le_of_le_one_right (abs_nonneg _) (hβ j)) (hd i j)
-    _ = ∑ j, toReal (absolute (d i j)) :=
-        Finset.sum_congr rfl fun j _ => (toReal_absolute _).symm
-    _ ≤ toReal (radius d i) := sum_le_sumUp _
+    _ ≤ toReal (radius d i) := sum_abs_le_radius i
 
 end CORALean.Arithmetic.Float

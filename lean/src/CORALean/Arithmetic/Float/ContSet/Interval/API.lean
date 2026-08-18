@@ -1,10 +1,7 @@
-import CORALean.Arithmetic.Float.SoundFloatArithmetic
-import CORALean.Arithmetic.Real.ContSet.Interval.Theorems
+import CORALean.Arithmetic.Float.ContSet.Interval.Structure
 
 /-!
-# Intervals over a floating-point scalar
-
-CORA's `interval` with the same `inf` and `sup`, held in `𝕋` rather than ℝ.
+# Intervals over a floating-point scalar: the operations
 
 Each bound rounds away from the interval: `inf` down, `sup` up. That is the
 whole of the floating-point content.
@@ -22,20 +19,6 @@ namespace CORALean.Arithmetic.Float
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
-
-structure Interval (𝕋 : Type) (n : ℕ) where
-  inf : Vec 𝕋 n
-  sup : Vec 𝕋 n
-
-def Interval.nominal [SoundFloatArithmetic 𝕋] (I : Interval 𝕋 n) :
-    CORALean.Arithmetic.Real.Interval n :=
-  ⟨toRealVec I.inf, toRealVec I.sup⟩
-
-/-- The exact layer's `construct` of `nominal`, so what an interval denotes is
-fixed by definition, not by a lemma. Each operation then owes only enclosure. -/
-def Interval.construct [SoundFloatArithmetic 𝕋] (I : Interval 𝕋 n) : Set (Vec ℝ n) :=
-  I.nominal.construct
-
 
 /-! ## Boxes built from rounding data
 

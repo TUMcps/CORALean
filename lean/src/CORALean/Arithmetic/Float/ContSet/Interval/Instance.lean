@@ -24,7 +24,7 @@ instance : Real.ContSet (Interval 𝕋 n) n := ⟨Interval.construct⟩
 instance : Real.OuterContSet (Interval 𝕋) 𝕋 where
   plus := Interval.plus
   mtimes := Interval.mtimes
-  reduce _ I := I
+  reduce I _ := I
   plus_outer := Interval.plus_outer
   mtimes_outer := Interval.mtimes_outer
   reduce_outer _ _ := subset_rfl

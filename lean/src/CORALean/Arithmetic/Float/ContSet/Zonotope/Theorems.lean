@@ -1,4 +1,4 @@
-import CORALean.Arithmetic.Float.ContSet.Zonotope.Proofs
+import CORALean.Arithmetic.Float.ContSet.Zonotope.Proofs.API
 
 /-!
 # What the floating-point `Zonotope` guarantees
@@ -46,31 +46,35 @@ theorem Zonotope.interval_outer (Z : Zonotope 𝕋 n) :
 /-! ### reduce -/
 
 omit [SoundFloatArithmetic 𝕋] in
-@[simp] theorem Zonotope.reduce_h (Z : Zonotope 𝕋 n)
-    (part : Split (Fin Z.h) into (Fin q) and (Fin r)) : (Z.reduce part).h = q + n := rfl
+@[simp] theorem Zonotope.reduceBy_h (Z : Zonotope 𝕋 n)
+    (part : Split (Fin Z.h) into (Fin q) and (Fin r)) : (Z.reduceBy part).h = q + n := rfl
 
-theorem Zonotope.reduce_outer (Z : Zonotope 𝕋 n)
+theorem Zonotope.reduceBy_outer (Z : Zonotope 𝕋 n)
     (part : Split (Fin Z.h) into (Fin q) and (Fin r)) :
-    Z.construct ⊆ (Z.reduce part).construct :=
-  Zonotope.Proofs.reduce_outer Z part
+    Z.construct ⊆ (Z.reduceBy part).construct :=
+  Zonotope.Proofs.reduceBy_outer Z part
 
-/-! ### reduceOrder -/
+theorem Zonotope.reduceGirard_outer (Z : Zonotope 𝕋 n) (o : ℕ) :
+    Z.construct ⊆ (Z.reduceGirard o).construct :=
+  Zonotope.Proofs.reduceGirard_outer Z o
 
-theorem Zonotope.reduceOrder_outer (o : ℕ) (Z : Zonotope 𝕋 n) :
-    Z.construct ⊆ (Z.reduceOrder o).construct :=
-  Zonotope.Proofs.reduceOrder_outer o Z
+/-- Girard's is the rule `reduce` runs, and this line is the whole of that
+choice: any other would discharge it too. -/
+theorem Zonotope.reduce_outer (Z : Zonotope 𝕋 n) (o : ℕ) :
+    Z.construct ⊆ (Z.reduce o).construct :=
+  Zonotope.reduceGirard_outer Z o
 
-/-! ### reduceAndAbsorb -/
+/-! ### reduceAndAbsorbBy -/
 
 omit [SoundFloatArithmetic 𝕋] in
-@[simp] theorem Zonotope.reduceAndAbsorb_h (Z : Zonotope 𝕋 n)
+@[simp] theorem Zonotope.reduceAndAbsorbBy_h (Z : Zonotope 𝕋 n)
     (part : Split (Fin Z.h) into (Fin q) and (Fin r)) :
-    (Z.reduceAndAbsorb part).h = q + n := rfl
+    (Z.reduceAndAbsorbBy part).h = q + n := rfl
 
-theorem Zonotope.reduceAndAbsorb_outer (Z : Zonotope 𝕋 n)
+theorem Zonotope.reduceAndAbsorbBy_outer (Z : Zonotope 𝕋 n)
     (part : Split (Fin Z.h) into (Fin q) and (Fin r)) :
-    Z.construct ⊆ (Z.reduceAndAbsorb part).construct :=
-  Zonotope.Proofs.reduceAndAbsorb_outer Z part
+    Z.construct ⊆ (Z.reduceAndAbsorbBy part).construct :=
+  Zonotope.Proofs.reduceAndAbsorbBy_outer Z part
 
 /-! ### absorbError -/
 

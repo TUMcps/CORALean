@@ -59,7 +59,8 @@ lean/src/CORALean/
     Real/          the specification: exact arithmetic over ℝ
       ContSet/     one directory per concept
         ContSet/   the interface every representation instantiates
-        Interval/  API.lean (definitions), Theorems.lean (guarantees), Proofs/,
+        Interval/  Structure.lean (the type), API.lean (operations),
+                   Theorems.lean (guarantees), Proofs/,
                    Instance.lean (the interface, instantiated)
         ...
       ContDynamics/  algorithms, written against the interface alone

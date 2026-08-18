@@ -1,4 +1,4 @@
-import CORALean.Arithmetic.Float.ContSet.InflatedContSet.Proofs
+import CORALean.Arithmetic.Float.ContSet.InflatedContSet.Proofs.API
 
 /-!
 # What the error box guarantees

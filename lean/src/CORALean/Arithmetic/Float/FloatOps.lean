@@ -31,6 +31,10 @@ class FloatOps (𝕋 : Type) where
   /-- Exact, like `neg`: choosing between two floats invents no digits. -/
   minimum : 𝕋 → 𝕋 → 𝕋
   maximum : 𝕋 → 𝕋 → 𝕋
+  /-- Comparison, and `SoundFloatArithmetic` asks nothing of it. Only the order
+  in which a reduction ranks generators depends on it, and every ranking is
+  sound, so a wrong answer here costs precision and never correctness. -/
+  le : 𝕋 → 𝕋 → Bool
   /-- Exact in a binary format, where halving only moves the exponent. -/
   half : 𝕋 → 𝕋
 
@@ -61,6 +65,12 @@ def sumDown : {n : ℕ} → (Fin n → 𝕋) → 𝕋
   | 0, _ => zero
   | _ + 1, f => addDown (f 0) (sumDown fun i => f i.succ)
 
+/-- The largest of `n` values, `zero` below none. Exact, as `maximum` is, so it
+needs no direction. -/
+def maximumOver : {n : ℕ} → (Fin n → 𝕋) → 𝕋
+  | 0, _ => zero
+  | _ + 1, f => maximum (f 0) (maximumOver fun i => f i.succ)
+
 /-- Exact. Not named `abs`, which would make `|·|` ambiguous wherever this
 namespace is open. -/
 def absolute (a : 𝕋) : 𝕋 := maximum a (neg a)
@@ -77,6 +87,11 @@ def dotUp {n : ℕ} (a b : Vec 𝕋 n) : 𝕋 := sumUp fun k => mulUp (a k) (b k
 /-- Row sums of absolute values, rounded up: the half-width of the hull of a
 zonotope centred at zero with these generators. Every use of it is a bound. -/
 def radius {n h : ℕ} (G : Mat 𝕋 n h) : Vec 𝕋 n := fun i => sumUp fun j => absolute (G i j)
+
+/-- One generator per coordinate. Not `Matrix.diagonal`, which needs `Zero 𝕋`,
+and giving `𝕋` one would collide with ℝ's on the `SoundFloatArithmetic ℝ`
+instance. -/
+def diagonalBlock {n : ℕ} (v : Vec 𝕋 n) : Mat 𝕋 n n := fun i l => if i = l then v i else zero
 
 /-! ## Rounded linear algebra
 

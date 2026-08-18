@@ -1,4 +1,4 @@
-import CORALean.Arithmetic.Float.Instances.Dyadic.Proofs
+import CORALean.Arithmetic.Float.Instances.Dyadic.Proofs.API
 
 /-!
 # What `Dyadic` guarantees
@@ -30,6 +30,7 @@ instance {p : ℕ} : FloatOps (Dyadic p) where
   mulDown := Dyadic.mulDown
   minimum := Dyadic.minimum
   maximum := Dyadic.maximum
+  le := Dyadic.le
   half := Dyadic.half
 
 noncomputable instance {p : ℕ} : SoundFloatArithmetic (Dyadic p) where

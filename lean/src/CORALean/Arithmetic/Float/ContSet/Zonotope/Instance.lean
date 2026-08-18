@@ -22,9 +22,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 instance : Real.OuterContSet (Zonotope 𝕋) 𝕋 where
   plus := Zonotope.plus
   mtimes := Zonotope.mtimes
-  reduce := Zonotope.reduceOrder
+  reduce := Zonotope.reduce
   plus_outer := Zonotope.plus_outer
   mtimes_outer := Zonotope.mtimes_outer
-  reduce_outer := Zonotope.reduceOrder_outer
+  reduce_outer := Zonotope.reduce_outer
 
 end CORALean.Arithmetic.Float

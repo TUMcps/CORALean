@@ -28,6 +28,7 @@ noncomputable instance : FloatOps ℝ where
   mulDown := (· * ·)
   minimum := min
   maximum := max
+  le := fun a b => decide (a ≤ b)
   half := (· / 2)
 
 noncomputable instance : SoundFloatArithmetic ℝ where

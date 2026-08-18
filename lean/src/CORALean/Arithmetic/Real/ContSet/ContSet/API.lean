@@ -57,12 +57,12 @@ class OuterContSet (S : ℕ → Type) (𝕋 : outParam Type) [∀ n, ContSet (S 
   mtimes {m n : ℕ} : Mat 𝕋 m n → S n → S m
   /-- To a maximum order, read in the representation's own terms. Sound for any
   target, so the order is a precision knob and never a correctness one. -/
-  reduce {n : ℕ} : ℕ → S n → S n
+  reduce {n : ℕ} : S n → ℕ → S n
   plus_outer {n : ℕ} (s₁ s₂ : S n) :
     construct s₁ + construct s₂ ⊆ construct (plus s₁ s₂)
   mtimes_outer {m n : ℕ} (M : Mat 𝕋 m n) (s : S n) :
     (toRealMat M *ᵥ ·) '' construct s ⊆ construct (mtimes M s)
-  reduce_outer {n : ℕ} (o : ℕ) (s : S n) :
-    construct s ⊆ construct (reduce o s)
+  reduce_outer {n : ℕ} (s : S n) (o : ℕ) :
+    construct s ⊆ construct (reduce s o)
 
 end CORALean.Arithmetic.Real

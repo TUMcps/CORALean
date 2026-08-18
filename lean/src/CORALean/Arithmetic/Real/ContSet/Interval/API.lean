@@ -1,9 +1,9 @@
-import CORALean.Arithmetic.Real.ContSet.ContSet.API
+import CORALean.Arithmetic.Real.ContSet.Interval.Structure
 
 /-!
-# Intervals: representation and operations
+# Intervals: the operations
 
-CORA's `interval`, with the same `inf` and `sup` fields.
+CORA's `interval` operations over the structure in `Structure`.
 
 Guarantees live in `Theorems`.
 -/
@@ -16,17 +16,6 @@ Guarantees live in `Theorems`.
 namespace CORALean.Arithmetic.Real
 
 variable {n m : ℕ}
-
-structure Interval (n : ℕ) where
-  inf : Vec ℝ n
-  sup : Vec ℝ n
-
-/-- `sup i < inf i` denotes the empty set `∅` -/
-def Interval.construct (I : Interval n) : Set (Vec ℝ n) :=
-  {x | ∀ i, I.inf i ≤ x i ∧ x i ≤ I.sup i}
-
-/-- checked in `Theorems.isNonempty_iff` -/
-def Interval.IsNonempty (I : Interval n) : Prop := ∀ i, I.inf i ≤ I.sup i
 
 def Interval.plus (I₁ I₂ : Interval n) : Interval n where
   inf := I₁.inf + I₂.inf
