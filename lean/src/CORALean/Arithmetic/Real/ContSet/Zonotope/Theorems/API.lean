@@ -2,7 +2,9 @@ import CORALean.Arithmetic.Real.ContSet.Zonotope.Theorems.Coefficient
 import CORALean.Arithmetic.Real.ContSet.Zonotope.Theorems.PlusExact
 import CORALean.Arithmetic.Real.ContSet.Zonotope.Theorems.MtimesExact
 import CORALean.Arithmetic.Real.ContSet.Zonotope.Theorems.IntervalOuter
+import CORALean.Arithmetic.Real.ContSet.Zonotope.Theorems.Convex
 import CORALean.Arithmetic.Real.ContSet.Zonotope.Theorems.IsBounded
+import CORALean.Arithmetic.Real.ContSet.Zonotope.Theorems.IsCompact
 import CORALean.Arithmetic.Real.ContSet.Zonotope.Theorems.LinCombOuter
 import CORALean.Arithmetic.Real.ContSet.Zonotope.Theorems.MtimesIntervalMatOuter
 import CORALean.Arithmetic.Real.ContSet.Zonotope.Theorems.ReduceOuter
