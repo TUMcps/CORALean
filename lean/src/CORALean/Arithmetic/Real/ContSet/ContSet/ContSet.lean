@@ -56,32 +56,34 @@ class Mtimes (𝕄 : ℕ → ℕ → Type) (S : ℕ → Type) [MatSet 𝕄] [∀
   mtimes_outer {m n : ℕ} (M : 𝕄 m n) (s : S n) :
     (⋃ A ∈ MatSet.denote M, (A *ᵥ ·) '' construct s) ⊆ construct (mtimes M s)
 
-/-- CORA's `linComb`: every point on a segment running from one set to the
-other. Not the convex hull — the two agree only when both sets are convex, and
-`linComb` is the one a time-interval enclosure needs, since it is what keeps a
-non-convex representation non-convex. -/
-class LinComb (S : ℕ → Type) [∀ n, ContSet (S n) n] where
-  linComb {n : ℕ} : S n → S n → S n
-  linComb_outer {n : ℕ} (s₁ s₂ : S n) :
-    {x | ∃ y₁ ∈ construct s₁, ∃ y₂ ∈ construct s₂, ∃ lam ∈ Set.Icc (0:ℝ) 1,
-      x = lam • y₁ + (1 - lam) • y₂} ⊆ construct (linComb s₁ s₂)
+/-- Every point on a segment running from one set to the other. Named because
+`linComb`, each instance and the float refinement all state it. -/
+def segments {n : ℕ} (X Y : Set (Vec ℝ n)) : Set (Vec ℝ n) :=
+  {x | ∃ y₁ ∈ X, ∃ y₂ ∈ Y, ∃ lam ∈ Set.Icc (0:ℝ) 1, x = lam • y₁ + (1 - lam) • y₂}
 
 /-- Outer only, so an algorithm proved against this says nothing about how much
 precision a representation loses.
 
-`𝕋` is an `outParam`: it is fixed by the representation and does not appear in
-`plus` or `reduce`, so instance search must read it off `S`, not the use site.
+`𝕋` is an `outParam`: it is fixed by the representation and appears in none of
+`plus`, `linComb` or `reduce`, so instance search must read it off `S`, not the
+use site.
 
 `mtimes` is inherited rather than declared, so a representation may also carry
 it at other matrix types without this class knowing. -/
 class OuterContSet (S : ℕ → Type) (𝕋 : outParam Type) [∀ n, ContSet (S n) n]
     [Scalar 𝕋] extends Mtimes (Mat 𝕋) S where
   plus {n : ℕ} : S n → S n → S n
+  /-- CORA's `linComb`. Not the convex hull — the two agree only when both sets
+  are convex, and this is the one a time-interval enclosure needs, since it is
+  what keeps a non-convex representation non-convex. -/
+  linComb {n : ℕ} : S n → S n → S n
   /-- To a maximum order, read in the representation's own terms. Sound for any
   target, so the order is a precision knob and never a correctness one. -/
   reduce {n : ℕ} : S n → ℕ → S n
   plus_outer {n : ℕ} (s₁ s₂ : S n) :
     construct s₁ + construct s₂ ⊆ construct (plus s₁ s₂)
+  linComb_outer {n : ℕ} (s₁ s₂ : S n) :
+    segments (construct s₁) (construct s₂) ⊆ construct (linComb s₁ s₂)
   reduce_outer {n : ℕ} (s : S n) (o : ℕ) :
     construct s ⊆ construct (reduce s o)
 

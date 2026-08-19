@@ -22,18 +22,14 @@ instance : ContSet (Interval n) n := ⟨Interval.construct⟩
 
 instance : OuterContSet Interval ℝ where
   plus := Interval.plus
+  linComb := Interval.linComb
   mtimes := Interval.mtimes
   reduce I _ := I
   plus_outer := Interval.plus_outer
+  linComb_outer := Interval.linComb_outer
   mtimes_outer M I := by
     simp only [MatSet.denote_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact Interval.mtimes_outer M I
   reduce_outer _ _ := subset_rfl
-
-/-- The box around both, so an algorithm wanting a segment enclosure runs at
-intervals too and not only at zonotopes. -/
-instance : LinComb Interval where
-  linComb := Interval.linComb
-  linComb_outer := Interval.linComb_outer
 
 end CORALean.Arithmetic.Real

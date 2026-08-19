@@ -37,8 +37,7 @@ theorem Zonotope.aux_sum_univ_linComb {Z₁ Z₂ : Zonotope n}
 
 set_option maxHeartbeats 400000 in
 theorem Zonotope.linComb_outer (Z₁ Z₂ : Zonotope n) :
-    {x | ∃ y₁ ∈ Z₁.construct, ∃ y₂ ∈ Z₂.construct, ∃ lam ∈ Set.Icc (0:ℝ) 1,
-      x = lam • y₁ + (1 - lam) • y₂} ⊆ (Z₁.linComb Z₂).construct := by
+    segments Z₁.construct Z₂.construct ⊆ (Z₁.linComb Z₂).construct := by
   rintro x ⟨y₁, ⟨β₁, hβ₁, hy₁⟩, y₂, ⟨β₂, hβ₂, hy₂⟩, lam, ⟨hl0, hl1⟩, rfl⟩
   refine ⟨Fin.append (Fin.append (fun j => lam * β₁ j) (fun j => (1 - lam) * β₂ j))
       (fun _ : Fin 1 => 2 * lam - 1), ?_, fun i => ?_⟩

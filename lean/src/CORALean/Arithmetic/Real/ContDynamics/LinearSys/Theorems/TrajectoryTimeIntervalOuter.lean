@@ -29,7 +29,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) n] [OuterContSet S ℝ]
-variable [LinComb S] [Mtimes IntervalMat S]
+variable [Mtimes IntervalMat S]
 
 set_option maxHeartbeats 1000000 in
 theorem LinearSys.Trajectory.timeInterval_outer {sys : LinearSys 𝕋 n} {R₀ U Ud : S n}

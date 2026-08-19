@@ -1,5 +1,6 @@
 import CORALean.Arithmetic.Float.ContSet.Zonotope.Theorems.MemGeneratorError
 import CORALean.Arithmetic.Float.ContSet.Zonotope.Theorems.PlusOuter
+import CORALean.Arithmetic.Float.ContSet.Zonotope.Theorems.LinCombOuter
 import CORALean.Arithmetic.Float.ContSet.Zonotope.Theorems.MtimesOuter
 import CORALean.Arithmetic.Float.ContSet.Zonotope.Theorems.IntervalOuter
 import CORALean.Arithmetic.Float.ContSet.Zonotope.Theorems.AbsorbErrorOuter

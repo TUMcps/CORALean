@@ -1,4 +1,5 @@
 import CORALean.Arithmetic.Float.ContSet.Interval.Theorems.PlusOuter
+import CORALean.Arithmetic.Float.ContSet.Interval.Theorems.LinCombOuter
 import CORALean.Arithmetic.Float.ContSet.Interval.Theorems.MtimesOuter
 import CORALean.Arithmetic.Float.ContSet.Interval.Theorems.SubMemResidual
 

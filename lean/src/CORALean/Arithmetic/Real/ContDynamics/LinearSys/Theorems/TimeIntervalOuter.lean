@@ -29,7 +29,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) n] [OuterContSet S ℝ]
-variable [LinComb S] [Mtimes IntervalMat S]
+variable [Mtimes IntervalMat S]
 
 set_option maxHeartbeats 1000000 in
 theorem LinearSys.timeIntervalStep_outer (sys : LinearSys 𝕋 n) {r : ℝ} (hr : 0 < r) {m : ℕ}
@@ -51,7 +51,7 @@ theorem LinearSys.timeIntervalStep_outer (sys : LinearSys 𝕋 n) {r : ℝ} (hr 
   rw [hdecomp]
   refine OuterContSet.plus_outer _ _ (Set.add_mem_add ?_ ?_)
   · -- the straight line is a segment between `X₀` and its image
-    refine LinComb.linComb_outer _ _ ⟨x₀, hx₀, exp (r • A) *ᵥ x₀, ?_, 1 - t / r, ?_, ?_⟩
+    refine OuterContSet.linComb_outer _ _ ⟨x₀, hx₀, exp (r • A) *ᵥ x₀, ?_, 1 - t / r, ?_, ?_⟩
     · exact Mtimes.mtimes_outer _ _ (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hx₀))
     · exact ⟨by linarith, by linarith⟩
     · rw [sub_sub_cancel]

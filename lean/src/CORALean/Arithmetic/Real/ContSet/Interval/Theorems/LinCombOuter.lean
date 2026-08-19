@@ -17,8 +17,7 @@ namespace CORALean.Arithmetic.Real
 variable {n : ℕ}
 
 theorem Interval.linComb_outer (I₁ I₂ : Interval n) :
-    {x | ∃ y₁ ∈ I₁.construct, ∃ y₂ ∈ I₂.construct, ∃ lam ∈ Set.Icc (0:ℝ) 1,
-      x = lam • y₁ + (1 - lam) • y₂} ⊆ (I₁.linComb I₂).construct := by
+    segments I₁.construct I₂.construct ⊆ (I₁.linComb I₂).construct := by
   rintro x ⟨y₁, h₁, y₂, h₂, lam, ⟨hl0, hl1⟩, rfl⟩
   intro i
   have a1 := h₁ i

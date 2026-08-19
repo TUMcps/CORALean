@@ -47,10 +47,10 @@ noncomputable def LinearSys.stepInput (sys : LinearSys 𝕋 n) (u : ℝ → Vec 
 the segment from the set to its image, widened by what the curvature of the flow
 adds. `linComb` rather than a convex hull, so a non-convex representation keeps
 its shape. -/
-noncomputable def LinearSys.timeIntervalStep [LinComb S] [Mtimes IntervalMat S]
+noncomputable def LinearSys.timeIntervalStep [Mtimes IntervalMat S]
     (sys : LinearSys 𝕋 n) (r : ℝ) (η : ℕ) (X₀ : S n) : S n :=
   OuterContSet.plus
-    (LinComb.linComb X₀ (Mtimes.mtimes (exp (r • toRealMat sys.A)) X₀))
+    (OuterContSet.linComb X₀ (Mtimes.mtimes (exp (r • toRealMat sys.A)) X₀))
     (Mtimes.mtimes (IntervalMat.correctionMatrix (toRealMat sys.A) r η) X₀)
 
 end CORALean.Arithmetic.Real

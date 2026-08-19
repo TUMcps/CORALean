@@ -21,9 +21,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 instance : Real.OuterContSet (Zonotope 𝕋) 𝕋 where
   plus := Zonotope.plus
+  linComb := Zonotope.linComb
   mtimes := Zonotope.mtimes
   reduce := Zonotope.reduce
   plus_outer := Zonotope.plus_outer
+  linComb_outer := Zonotope.linComb_outer
   mtimes_outer M Z := by
     simp only [MatSet.denote_mat, Set.biUnion_singleton]
     exact Zonotope.mtimes_outer M Z

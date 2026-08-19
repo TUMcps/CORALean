@@ -26,18 +26,15 @@ instance : ContSet (Zonotope n) n := ⟨Zonotope.construct⟩
 
 noncomputable instance : OuterContSet Zonotope ℝ where
   plus := Zonotope.plus
+  linComb := Zonotope.linComb
   mtimes := Zonotope.mtimes
   reduce := Zonotope.reduce
   plus_outer Z₁ Z₂ := (Zonotope.plus_exact Z₁ Z₂).subset
+  linComb_outer := Zonotope.linComb_outer
   mtimes_outer M Z := by
     simp only [MatSet.denote_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact (Zonotope.mtimes_exact M Z).subset
   reduce_outer := Zonotope.reduce_outer
-
-/-- What a time-interval enclosure needs, and `OuterContSet` does not ask for. -/
-noncomputable instance : LinComb Zonotope where
-  linComb := Zonotope.linComb
-  linComb_outer := Zonotope.linComb_outer
 
 /-- The same operation at an interval matrix, which `OuterContSet` does not ask
 for: a zonotope carries it, and a discretization is what wants it. -/

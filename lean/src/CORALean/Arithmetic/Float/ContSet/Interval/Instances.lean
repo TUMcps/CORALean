@@ -23,9 +23,11 @@ instance : Real.ContSet (Interval 𝕋 n) n := ⟨Interval.construct⟩
 
 instance : Real.OuterContSet (Interval 𝕋) 𝕋 where
   plus := Interval.plus
+  linComb := Interval.linComb
   mtimes := Interval.mtimes
   reduce I _ := I
   plus_outer := Interval.plus_outer
+  linComb_outer := Interval.linComb_outer
   mtimes_outer M I := by
     simp only [MatSet.denote_mat, Set.biUnion_singleton]
     exact Interval.mtimes_outer M I
