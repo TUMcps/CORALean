@@ -41,7 +41,7 @@ set_option maxHeartbeats 10000 in
 /-- Matrix-vector multiplication as a continuous linear map in the matrix, which
 is what lets the product rule apply to `e^{-As} x(s)`. Finite dimension is what
 makes every piece of it continuous. -/
-noncomputable def aux_mulVecL : Mat ℝ n n →L[ℝ] (Vec ℝ n →L[ℝ] Vec ℝ n) :=
+noncomputable def mulVecL : Mat ℝ n n →L[ℝ] (Vec ℝ n →L[ℝ] Vec ℝ n) :=
   LinearMap.toContinuousLinearMap
     { toFun := fun M => LinearMap.toContinuousLinearMap (Matrix.mulVecLin M)
       map_add' := by intro M N; ext v i; simp
@@ -58,12 +58,12 @@ theorem hasDerivWithinAt_expNeg_mulVec (A : Mat ℝ n n) (x u : ℝ → Vec ℝ 
     have h := hasDerivAt_exp_smul_const (𝕂 := ℝ) (-A) t
     simp only [smul_neg, ← neg_smul, mul_neg] at h
     exact h
-  have hC : HasDerivWithinAt (fun s : ℝ => aux_mulVecL (exp ((-s) • A)))
-      (aux_mulVecL (-(exp ((-t) • A) * A))) T t :=
-    HasFDerivAt.comp_hasDerivWithinAt t (ContinuousLinearMap.hasFDerivAt aux_mulVecL)
+  have hC : HasDerivWithinAt (fun s : ℝ => mulVecL (exp ((-s) • A)))
+      (mulVecL (-(exp ((-t) • A) * A))) T t :=
+    HasFDerivAt.comp_hasDerivWithinAt t (ContinuousLinearMap.hasFDerivAt mulVecL)
       hE.hasDerivWithinAt
-  have key : aux_mulVecL (-(exp ((-t) • A) * A)) (x t)
-      + aux_mulVecL (exp ((-t) • A)) (A *ᵥ x t + u t) = exp ((-t) • A) *ᵥ u t := by
+  have key : mulVecL (-(exp ((-t) • A) * A)) (x t)
+      + mulVecL (exp ((-t) • A)) (A *ᵥ x t + u t) = exp ((-t) • A) *ᵥ u t := by
     show (-(exp ((-t) • A) * A)) *ᵥ x t + exp ((-t) • A) *ᵥ (A *ᵥ x t + u t) = _
     rw [Matrix.neg_mulVec, Matrix.mulVec_add, Matrix.mulVec_mulVec]
     abel
@@ -107,7 +107,7 @@ theorem LinearSys.Trajectory.variation_of_constants {sys : LinearSys 𝕋 n} {R�
     have hc : Commute (c • A) (d • A) := ((Commute.refl A).smul_left c).smul_right d
     rw [add_smul]
     exact (exp_add_of_commute hc).symm
-  have hint : aux_mulVecL (exp (b • A)) (∫ s in a..b, exp ((-s) • A) *ᵥ u s)
+  have hint : mulVecL (exp (b • A)) (∫ s in a..b, exp ((-s) • A) *ᵥ u s)
       = ∫ s in a..b, exp ((b - s) • A) *ᵥ u s := by
     rw [← ContinuousLinearMap.intervalIntegral_comp_comm _ hu]
     congr 1

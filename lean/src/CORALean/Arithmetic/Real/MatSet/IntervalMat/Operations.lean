@@ -43,6 +43,16 @@ noncomputable def IntervalMat.expEnclosure (x : Mat ℝ n n) (η : ℕ) : Interv
   inf := fun i j => IntervalMat.expTaylor x η i j - IntervalMat.expRemainderBound x η
   sup := fun i j => IntervalMat.expTaylor x η i j + IntervalMat.expRemainderBound x η
 
+/-- What the orders past `η` can contribute to an input solution over a whole
+step: the exponential's own remainder bound, spread symmetrically over every
+entry and scaled by the step, since the input acts for the whole of it.
+
+Althoff's `E(r) · r`. Constant in the entry, as the bound is on the norm. -/
+noncomputable def IntervalMat.inputRemainder (A : Mat ℝ n n) (r : ℝ) (η : ℕ) :
+    IntervalMat n n where
+  inf := fun _ _ => -(r * IntervalMat.expRemainderBound (r • A) η)
+  sup := fun _ _ => r * IntervalMat.expRemainderBound (r • A) η
+
 /-- Where `s ↦ s ^ i - s` bottoms out: `i ^ (-1/(i-1))`, the only stationary
 point, and the minimum because the map is convex. -/
 noncomputable def IntervalMat.corrCritical (i : ℕ) : ℝ :=

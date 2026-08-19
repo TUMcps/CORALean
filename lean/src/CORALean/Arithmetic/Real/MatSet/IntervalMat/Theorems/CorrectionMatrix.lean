@@ -138,7 +138,7 @@ theorem IntervalMat.expDiff_mem_correctionMatrix (A : Mat ℝ n n) {r : ℝ} (hr
   -- the tail is inside the remainder, entrywise because an entry never exceeds the norm
   have hT : |(∑' i : ℕ, f (i + (m + 1))) j k|
       ≤ IntervalMat.expRemainderBound (r • A) (m + 2) :=
-    le_trans (aux_abs_entry_le_norm _ j k) htail
+    le_trans (abs_entry_le_norm _ j k) htail
   rw [abs_le] at hT
   rw [heq]
   simp only [Matrix.add_apply, Matrix.sum_apply, IntervalMat.correctionMatrix,

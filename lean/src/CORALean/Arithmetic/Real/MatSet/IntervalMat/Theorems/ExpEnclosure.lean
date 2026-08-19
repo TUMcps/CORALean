@@ -29,7 +29,7 @@ variable {n : ℕ}
 
 set_option maxHeartbeats 40000 in
 /-- Under the `l∞` operator norm an entry never exceeds the whole norm. -/
-theorem aux_abs_entry_le_norm {m k : ℕ} (M : Mat ℝ m k) (i : Fin m) (j : Fin k) :
+theorem abs_entry_le_norm {m k : ℕ} (M : Mat ℝ m k) (i : Fin m) (j : Fin k) :
     |M i j| ≤ ‖M‖ := by
   have h : ‖M i j‖₊ ≤ ‖M‖₊ := by
     rw [Matrix.linfty_opNNNorm_def]
@@ -101,7 +101,7 @@ theorem aux_term_le (x : Mat ℝ n n) (η i : ℕ) :
 -- Summability and tsum over a matrix algebra is what costs here, not the
 -- estimate: every step re-finds the normed-algebra instance on `Mat`.
 set_option maxHeartbeats 1000000 in
-theorem aux_norm_exp_sub_expTaylor_le (x : Mat ℝ n n) (η : ℕ)
+theorem norm_exp_sub_expTaylor_le (x : Mat ℝ n n) (η : ℕ)
     (hε : ‖x‖ / ((η : ℝ) + 2) < 1) :
     ‖exp x - IntervalMat.expTaylor x η‖ ≤ IntervalMat.expRemainderBound x η := by
   show ‖exp x - ∑ i ∈ Finset.range (η + 1), ((Nat.factorial i : ℝ)⁻¹) • x ^ i‖
@@ -127,6 +127,22 @@ theorem aux_norm_exp_sub_expTaylor_le (x : Mat ℝ n n) (η : ℕ)
         rw [tsum_mul_left, tsum_geometric_of_lt_one hε0 hε]
 
 set_option maxHeartbeats 40000 in
+/-- Monotone in the norm of its argument, which is what lets one bound taken at
+the end of a step stand for every time inside it. -/
+theorem IntervalMat.expRemainderBound_mono {x y : Mat ℝ n n} (η : ℕ) (hxy : ‖x‖ ≤ ‖y‖)
+    (hy : ‖y‖ / ((η : ℝ) + 2) < 1) :
+    IntervalMat.expRemainderBound x η ≤ IntervalMat.expRemainderBound y η := by
+  have h2 : (0:ℝ) < (η : ℝ) + 2 := by positivity
+  have hfrac : ‖x‖ / ((η : ℝ) + 2) ≤ ‖y‖ / ((η : ℝ) + 2) := by gcongr
+  have hdy : 0 < 1 - ‖y‖ / ((η : ℝ) + 2) := by linarith
+  have hdx : 0 < 1 - ‖x‖ / ((η : ℝ) + 2) := by linarith
+  have hnum : ‖x‖ ^ (η + 1) / (Nat.factorial (η + 1) : ℝ)
+      ≤ ‖y‖ ^ (η + 1) / (Nat.factorial (η + 1) : ℝ) := by gcongr
+  have hinv : (1 - ‖x‖ / ((η : ℝ) + 2))⁻¹ ≤ (1 - ‖y‖ / ((η : ℝ) + 2))⁻¹ :=
+    inv_anti₀ hdy (by linarith)
+  exact mul_le_mul hnum hinv (inv_nonneg.mpr hdx.le) (by positivity)
+
+set_option maxHeartbeats 40000 in
 theorem IntervalMat.exp_mem_expEnclosure (x : Mat ℝ n n) (η : ℕ)
     (hε : ‖x‖ / ((η : ℝ) + 2) < 1) :
     exp x ∈ (IntervalMat.expEnclosure x η).construct := by
@@ -135,8 +151,8 @@ theorem IntervalMat.exp_mem_expEnclosure (x : Mat ℝ n n) (η : ℕ)
       ≤ IntervalMat.expRemainderBound x η := by
     calc |exp x i j - IntervalMat.expTaylor x η i j|
         = |(exp x - IntervalMat.expTaylor x η) i j| := by rw [Matrix.sub_apply]
-      _ ≤ ‖exp x - IntervalMat.expTaylor x η‖ := aux_abs_entry_le_norm _ i j
-      _ ≤ IntervalMat.expRemainderBound x η := aux_norm_exp_sub_expTaylor_le x η hε
+      _ ≤ ‖exp x - IntervalMat.expTaylor x η‖ := abs_entry_le_norm _ i j
+      _ ≤ IntervalMat.expRemainderBound x η := norm_exp_sub_expTaylor_le x η hε
   rw [abs_le] at h
   exact ⟨by simp only [IntervalMat.expEnclosure]; linarith [h.1],
     by simp only [IntervalMat.expEnclosure]; linarith [h.2]⟩
