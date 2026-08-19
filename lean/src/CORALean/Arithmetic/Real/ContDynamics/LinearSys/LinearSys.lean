@@ -15,8 +15,8 @@ it would be a right derivative everywhere, which does not force continuity, and
 a run free to jump is not a trajectory.
 
 `u` carries no regularity hypothesis. It needs none: `x` is differentiable
-wherever the flow holds, so `u t = ẋ(t) - A x(t)` is already pinned there. What
-integrates `u` is a hypothesis of the theorem that integrates it.
+wherever the flow holds, so `u t = ẋ(t) - A x(t)` is already pinned there — and
+that is enough to integrate it, as `InputIntegrable` shows.
 -/
 
 -- Authors:       Tobias Ladner

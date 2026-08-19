@@ -49,8 +49,9 @@ noncomputable def aux_mulVecL : Mat ℝ n n →L[ℝ] (Vec ℝ n →L[ℝ] Vec �
 
 set_option maxHeartbeats 10000 in
 /-- The substitution that cancels the dynamics: along a solution, `e^{-As} x(s)`
-moves only as the input pushes it. -/
-theorem aux_hasDerivWithinAt_expNeg_mulVec (A : Mat ℝ n n) (x u : ℝ → Vec ℝ n)
+moves only as the input pushes it. Shared with `InputIntegrable`, where it says
+the integrand below is itself a derivative. -/
+theorem hasDerivWithinAt_expNeg_mulVec (A : Mat ℝ n n) (x u : ℝ → Vec ℝ n)
     (T : Set ℝ) (t : ℝ) (hx : HasDerivWithinAt x (A *ᵥ x t + u t) T t) :
     HasDerivWithinAt (fun r : ℝ => exp ((-r) • A) *ᵥ x r) (exp ((-t) • A) *ᵥ u t) T t := by
   have hE : HasDerivAt (fun s : ℝ => exp ((-s) • A)) (-(exp ((-t) • A) * A)) t := by
@@ -79,7 +80,7 @@ theorem aux_expNeg_mulVec_sub {sys : LinearSys 𝕋 n} {R₀ U : S n} {x u : ℝ
   have hcont : ContinuousOn (fun r : ℝ => exp ((-r) • A) *ᵥ x r) (Set.uIcc a b) := by
     rw [Set.uIcc_of_le hab]
     intro r hr
-    exact ((aux_hasDerivWithinAt_expNeg_mulVec A x u (Set.Ici 0) r
+    exact ((hasDerivWithinAt_expNeg_mulVec A x u (Set.Ici 0) r
       (traj.flow r (le_trans ha hr.1))).continuousWithinAt).mono
       (fun y hy => le_trans ha hy.1)
   have hderiv : ∀ s ∈ Set.Ioo (min a b) (max a b),
@@ -87,7 +88,7 @@ theorem aux_expNeg_mulVec_sub {sys : LinearSys 𝕋 n} {R₀ U : S n} {x u : ℝ
         (exp ((-s) • A) *ᵥ u s) (Set.Ioi s) s := by
     intro s hs
     rw [min_eq_left hab, max_eq_right hab] at hs
-    exact aux_hasDerivWithinAt_expNeg_mulVec A x u (Set.Ioi s) s
+    exact hasDerivWithinAt_expNeg_mulVec A x u (Set.Ioi s) s
       ((traj.flow s (le_trans ha (le_of_lt hs.1))).mono
         (fun y hy => le_trans ha (le_of_lt (lt_trans hs.1 hy))))
   exact (integral_eq_sub_of_hasDeriv_right hcont hderiv hu).symm

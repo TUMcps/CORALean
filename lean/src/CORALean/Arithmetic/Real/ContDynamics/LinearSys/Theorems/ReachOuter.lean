@@ -31,10 +31,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) n] [OuterContSet S ℝ]
 set_option maxHeartbeats 10000 in
 theorem LinearSys.Trajectory.reach_outer {sys : LinearSys 𝕋 n} {R₀ U Ud : S n}
     {x u : ℝ → Vec ℝ n} {Δt : ℝ} (traj : sys.Trajectory R₀ U x u) (hΔt : 0 ≤ Δt)
-    (hu : ∀ k : ℕ, IntervalIntegrable
-      (fun s => exp ((-s) • toRealMat sys.A) *ᵥ u s) volume (k * Δt) ((k + 1) * Δt))
+    (hU : Bornology.IsBounded (construct U))
     (hUd : ∀ k : ℕ, sys.stepInput u Δt k ∈ construct Ud) (o k : ℕ) :
     x (k * Δt) ∈ construct ((sys.discretize Δt).reach o R₀ Ud k) :=
-  LinearSysDT.reach_outer _ o R₀ Ud (traj.discretize hΔt hu hUd) k
+  LinearSysDT.reach_outer _ o R₀ Ud (traj.discretize hΔt hU hUd) k
 
 end CORALean.Arithmetic.Real

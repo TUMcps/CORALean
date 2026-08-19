@@ -1,3 +1,4 @@
+import CORALean.Arithmetic.Real.ContSet.Interval.Theorems.IsBounded
 import CORALean.Arithmetic.Real.ContSet.Interval.Theorems.IsNonempty
 import CORALean.Arithmetic.Real.ContSet.Interval.Theorems.PlusExact
 import CORALean.Arithmetic.Real.ContSet.Interval.Theorems.LinCombOuter

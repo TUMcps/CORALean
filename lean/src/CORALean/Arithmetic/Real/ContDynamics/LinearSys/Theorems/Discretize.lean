@@ -1,5 +1,5 @@
 import CORALean.Arithmetic.Real.ContDynamics.LinearSys.Operations
-import CORALean.Arithmetic.Real.ContDynamics.LinearSys.Theorems.VariationOfConstants
+import CORALean.Arithmetic.Real.ContDynamics.LinearSys.Theorems.InputIntegrable
 
 /-!
 # A sampled trajectory is a trajectory of the sampled system
@@ -13,6 +13,8 @@ is `e^{AΔt}` whatever `k` is.
 
 The input set is a hypothesis: `stepInput` is an integral, and enclosing it is
 where convexity of the input set is needed, which `ContSet` does not offer.
+Boundedness of `U` is asked for instead of integrability of `u`, which
+`InputIntegrable` derives from it.
 -/
 
 -- Authors:       Tobias Ladner
@@ -33,8 +35,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) n]
 set_option maxHeartbeats 10000 in
 theorem LinearSys.Trajectory.discretize {sys : LinearSys 𝕋 n} {R₀ U Ud : S n}
     {x u : ℝ → Vec ℝ n} {Δt : ℝ} (traj : sys.Trajectory R₀ U x u) (hΔt : 0 ≤ Δt)
-    (hu : ∀ k : ℕ, IntervalIntegrable
-      (fun s => exp ((-s) • toRealMat sys.A) *ᵥ u s) volume (k * Δt) ((k + 1) * Δt))
+    (hU : Bornology.IsBounded (construct U))
     (hUd : ∀ k : ℕ, sys.stepInput u Δt k ∈ construct Ud) :
     (sys.discretize Δt).Trajectory R₀ Ud (fun k : ℕ => x (k * Δt)) (sys.stepInput u Δt) where
   init := by simpa using traj.init
@@ -42,7 +43,7 @@ theorem LinearSys.Trajectory.discretize {sys : LinearSys 𝕋 n} {R₀ U Ud : S 
   step k := by
     have ha : (0 : ℝ) ≤ (k : ℝ) * Δt := mul_nonneg (Nat.cast_nonneg k) hΔt
     have hab : (k : ℝ) * Δt ≤ ((k : ℝ) + 1) * Δt := by nlinarith [Nat.cast_nonneg (α := ℝ) k]
-    have h := traj.variation_of_constants ha hab (hu k)
+    have h := traj.variation_of_constants ha hab (traj.intervalIntegrable_input ha hab hU)
     have hstep : ((k : ℝ) + 1) * Δt - (k : ℝ) * Δt = Δt := by ring
     rw [hstep] at h
     simpa [LinearSys.discretize, LinearSys.stepInput] using h
