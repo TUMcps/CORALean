@@ -4,6 +4,7 @@ import CORALean.Arithmetic.Real.ContDynamics.LinearSys.Theorems.ReachOuter
 import CORALean.Arithmetic.Real.ContDynamics.LinearSys.Theorems.TimeIntervalOuter
 import CORALean.Arithmetic.Real.ContDynamics.LinearSys.Theorems.TrajectoryTimeIntervalOuter
 import CORALean.Arithmetic.Real.ContDynamics.LinearSys.Theorems.VariationOfConstants
+import CORALean.Arithmetic.Real.ContDynamics.LinearSys.Theorems.WeightedIntegral
 
 /-!
 # What `LinearSys` guarantees

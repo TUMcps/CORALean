@@ -3,9 +3,12 @@ import Mathlib.Algebra.Group.Pointwise.Set.Basic
 import Mathlib.Algebra.Order.BigOperators.Group.Finset
 import Mathlib.Analysis.Calculus.Deriv.Comp
 import Mathlib.Analysis.Calculus.Deriv.Mul
+import Mathlib.Analysis.Convex.Integral
 import Mathlib.Analysis.Matrix.Normed
 import Mathlib.Analysis.Normed.Algebra.MatrixExponential
 import Mathlib.Analysis.SpecialFunctions.Exponential
+import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
+import Mathlib.MeasureTheory.Integral.Bochner.ContinuousLinearMap
 import Mathlib.Data.Fin.Tuple.Sort
 import Mathlib.Data.Fintype.BigOperators
 import Mathlib.Data.Matrix.Mul
