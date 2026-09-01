@@ -12,36 +12,37 @@ goes into the same remainder that bounds the exponential.
 Substituting `t = s·r` turns order `i` into `r^i (s^i - s)`, which `corrCoeff`
 bounds exactly — so the finite part is as tight as the thesis claims.
 
-## Where this proof departs from the thesis, and why it has to
+## Why the tail is bounded as one series
 
-The proposition is true as stated. Its proof, as given, does not establish it,
-and the gap is a factor of two in the tail.
+The proposition is true as stated, and the finite part is proved here as the
+thesis proves it. The tail is not, and the difference is a factor of two.
 
-Write `φ(x) := ∑_{i>η} (‖A‖x)^i / i!` for what the orders past `η` can amount
-to, so the claimed remainder is `E(r)`, of radius `φ(r)`. The quantity being
-enclosed is
+The thesis argues, for `Φ(t)` the scalar tail bound and `E(t) = [-1,1]Φ(t)`:
 
-  `D(t) = e^{At} - I - (t/r)(e^{Ar} - I) = ∑_{i≥2} (A^i / i!) (t^i - t·r^(i-1))`
+  `Φ(t) ∈ [0,1]Φ(r)`, so `Φ(t) - (t/r)Φ(r) ∈ [0,1]Φ(r) - [0,1]Φ(r) ⊆ [-1,1]Φ(r)`,
+  thus `E(t) - (t/r)E(r) = [-1,1](Φ(t) - (t/r)Φ(r)) ⊆ [-1,1][-1,1]Φ(r) = E(r)`.
 
-for `t ∈ [0,r]`, the `i = 1` terms cancelling because `t - (t/r)·r = 0`.
+The last step pulls a *single* `[-1,1]` out of both remainders. `E(t)` and `E(r)`
+are remainders of the same `A` at two times, so they are not independent — but
+neither are they a common `λ` scaled by `Φ(t)` and `Φ(r)`, which is what the
+factoring asserts. Read as two independent interval matrices, the standard
+reading, the difference has radius `Φ(t) + (t/r)Φ(r)`, which at `t = r` is
+`2Φ(r)`: twice what `E(r)` allows. This is interval arithmetic's dependency
+problem, in the direction that flatters the result.
 
-The thesis bounds the tail by splitting `D(t)` back into its two exponentials,
-bounding `e^{At} - Taylor_η(At)` by `φ(t)` and `(t/r)(e^{Ar} - Taylor_η(Ar))` by
-`(t/r)·φ(r)`, and adding. That gives radius `φ(t) + (t/r)φ(r)`, which at `t = r`
-is `2φ(r)` — twice what `E(r)` allows. The bound is therefore not reached by
-this route at the one endpoint that matters.
-
-Keeping both exponentials in a single series instead, as `ExpDiff` does, bounds
-each tail term *once*: the two share `A^i`, and for `0 ≤ t ≤ r`
+What does hold, and what `ExpDiff` sets up, is that the two share `A^i` term by
+term. Never splitting them leaves one series, and for `0 ≤ t ≤ r`
 
   `|t^i - t·r^(i-1)| = t·(r^(i-1) - t^(i-1)) ≤ r·r^(i-1) = r^i`,
 
-so the whole tail is dominated by `∑_{i>η} ‖A‖^i r^i / i! = φ(r)`. The
-proposition's own bound, with nothing to spare.
+so the tail is dominated by `∑_{i>η} ‖A‖^i r^i / i!` — the proposition's own
+bound, with nothing to spare and no dependency assumed.
 
-So the correction is the sharing of `A^i` between the two exponentials, which
-the split discards. Worth reporting to the author: the statement stands, the
-argument for it needs this step.
+CORA reaches the same conclusion the same way. `manual/complememntary`
+`Documentation/inputErrorBounds` proves the matching statement for the
+integrated remainder `Ê` by exactly this argument, bounding
+`|t^(i+1) - t·r^i| ≤ r^(i+1)` inside a single sum. So this is the settled form
+of the result; it is the thesis proof that takes the shortcut.
 -/
 
 -- Authors:       Tobias Ladner

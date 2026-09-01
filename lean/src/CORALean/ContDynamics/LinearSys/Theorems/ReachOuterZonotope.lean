@@ -4,10 +4,11 @@ import CORALean.ContSet.Zonotope.Real.API
 /-!
 # Reachability at a zonotope, with nothing left to assume
 
-The one file where a `ContDynamics` statement names a representation. The
-algorithms above it do not, and cannot: they are written against `OuterContSet`
-alone. This says what happens when a representation that *does* have the
-properties `inputSolution_outer` needs is substituted in.
+One of two files where a `ContDynamics` statement names a representation, the
+other being `TimeIntervalOuterZonotope`. The algorithms do not, and cannot: they
+are written against `OuterContSet` alone. This says what happens when a
+representation that *does* have the properties `inputSolution_outer` needs is
+substituted in.
 
 `Zonotope` has all of them, and the same three lemmas discharge all six
 hypotheses: `mtimes` at an interval matrix returns a zonotope, so the remainder
