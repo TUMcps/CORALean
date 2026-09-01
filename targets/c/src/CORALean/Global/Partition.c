@@ -27,6 +27,9 @@ lean_object* l_Lean_addMacroScope(lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_Syntax_node2(lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_Syntax_node6(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_Lean_Syntax_node3(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* lp_mathlib_finSumFinEquiv(lean_object*, lean_object*);
+lean_object* lp_mathlib_Equiv_trans___redArg(lean_object*, lean_object*);
+lean_object* lp_mathlib_Equiv_symm___redArg(lean_object*);
 static const lean_string_object lp_CORALean_CORALean_termSplit__Into___00__closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 9, .m_capacity = 9, .m_length = 8, .m_data = "CORALean"};
 static const lean_object* lp_CORALean_CORALean_termSplit__Into___00__closed__0 = (const lean_object*)&lp_CORALean_CORALean_termSplit__Into___00__closed__0_value;
 static const lean_string_object lp_CORALean_CORALean_termSplit__Into___00__closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = 0, .m_other = 0, .m_tag = 249}, .m_size = 16, .m_capacity = 16, .m_length = 15, .m_data = "termSplit_Into_"};
@@ -148,6 +151,22 @@ LEAN_EXPORT lean_object* lp_CORALean_CORALean_instFintypePair___redArg(lean_obje
 LEAN_EXPORT lean_object* lp_CORALean_CORALean_instFintypePair___redArg___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* lp_CORALean_CORALean_instFintypePair(lean_object*, lean_object*, lean_object*, lean_object*, uint8_t);
 LEAN_EXPORT lean_object* lp_CORALean_CORALean_instFintypePair___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Pair_equivSum___lam__0(lean_object*);
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Pair_equivSum___lam__0___boxed(lean_object*);
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Pair_equivSum___lam__1(lean_object*);
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Pair_equivSum___lam__1___boxed(lean_object*);
+static const lean_closure_object lp_CORALean_CORALean_Pair_equivSum___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)lp_CORALean_CORALean_Pair_equivSum___lam__0___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
+static const lean_object* lp_CORALean_CORALean_Pair_equivSum___closed__0 = (const lean_object*)&lp_CORALean_CORALean_Pair_equivSum___closed__0_value;
+static const lean_closure_object lp_CORALean_CORALean_Pair_equivSum___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)lp_CORALean_CORALean_Pair_equivSum___lam__1___boxed, .m_arity = 1, .m_num_fixed = 0, .m_objs = {} };
+static const lean_object* lp_CORALean_CORALean_Pair_equivSum___closed__1 = (const lean_object*)&lp_CORALean_CORALean_Pair_equivSum___closed__1_value;
+static const lean_ctor_object lp_CORALean_CORALean_Pair_equivSum___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*2 + 0, .m_other = 2, .m_tag = 0}, .m_objs = {((lean_object*)&lp_CORALean_CORALean_Pair_equivSum___closed__0_value),((lean_object*)&lp_CORALean_CORALean_Pair_equivSum___closed__1_value)}};
+static const lean_object* lp_CORALean_CORALean_Pair_equivSum___closed__2 = (const lean_object*)&lp_CORALean_CORALean_Pair_equivSum___closed__2_value;
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Pair_equivSum(lean_object*, lean_object*);
+static lean_once_cell_t lp_CORALean_CORALean_Partition_split___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_CORALean_CORALean_Partition_split___closed__0;
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Partition_split(lean_object*, lean_object*);
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Partition_reindex___redArg(lean_object*, lean_object*);
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Partition_reindex(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* lp_CORALean_CORALean_Partition_on___redArg(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* lp_CORALean_CORALean_Partition_on(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* lp_CORALean_CORALean_Partition_left___redArg(lean_object*, lean_object*);
@@ -612,99 +631,215 @@ lean_dec(v_inst_275_);
 return v_res_279_;
 }
 }
-LEAN_EXPORT lean_object* lp_CORALean_CORALean_Partition_on___redArg(lean_object* v_P_280_, lean_object* v_k_281_, lean_object* v_l_282_){
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Pair_equivSum___lam__0(lean_object* v_x_280_){
 _start:
 {
-lean_object* v_toFun_283_; lean_object* v___x_285_; uint8_t v_isShared_286_; uint8_t v_isSharedCheck_291_; 
-v_toFun_283_ = lean_ctor_get(v_P_280_, 0);
-v_isSharedCheck_291_ = !lean_is_exclusive(v_P_280_);
-if (v_isSharedCheck_291_ == 0)
+lean_object* v_fst_281_; uint8_t v___x_282_; 
+v_fst_281_ = lean_ctor_get(v_x_280_, 0);
+v___x_282_ = lean_unbox(v_fst_281_);
+if (v___x_282_ == 0)
 {
-lean_object* v_unused_292_; 
-v_unused_292_ = lean_ctor_get(v_P_280_, 1);
-lean_dec(v_unused_292_);
-v___x_285_ = v_P_280_;
-v_isShared_286_ = v_isSharedCheck_291_;
-goto v_resetjp_284_;
+lean_object* v_snd_283_; lean_object* v___x_284_; 
+v_snd_283_ = lean_ctor_get(v_x_280_, 1);
+lean_inc(v_snd_283_);
+v___x_284_ = lean_alloc_ctor(1, 1, 0);
+lean_ctor_set(v___x_284_, 0, v_snd_283_);
+return v___x_284_;
 }
 else
 {
-lean_inc(v_toFun_283_);
-lean_dec(v_P_280_);
-v___x_285_ = lean_box(0);
-v_isShared_286_ = v_isSharedCheck_291_;
-goto v_resetjp_284_;
+lean_object* v_snd_285_; lean_object* v___x_286_; 
+v_snd_285_ = lean_ctor_get(v_x_280_, 1);
+lean_inc(v_snd_285_);
+v___x_286_ = lean_alloc_ctor(0, 1, 0);
+lean_ctor_set(v___x_286_, 0, v_snd_285_);
+return v___x_286_;
 }
-v_resetjp_284_:
+}
+}
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Pair_equivSum___lam__0___boxed(lean_object* v_x_287_){
+_start:
 {
-lean_object* v___x_288_; 
-if (v_isShared_286_ == 0)
+lean_object* v_res_288_; 
+v_res_288_ = lp_CORALean_CORALean_Pair_equivSum___lam__0(v_x_287_);
+lean_dec_ref(v_x_287_);
+return v_res_288_;
+}
+}
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Pair_equivSum___lam__1(lean_object* v_s_289_){
+_start:
 {
-lean_ctor_set(v___x_285_, 1, v_l_282_);
-lean_ctor_set(v___x_285_, 0, v_k_281_);
-v___x_288_ = v___x_285_;
-goto v_reusejp_287_;
+if (lean_obj_tag(v_s_289_) == 0)
+{
+lean_object* v_val_290_; uint8_t v___x_291_; lean_object* v___x_292_; lean_object* v___x_293_; 
+v_val_290_ = lean_ctor_get(v_s_289_, 0);
+v___x_291_ = 1;
+v___x_292_ = lean_box(v___x_291_);
+lean_inc(v_val_290_);
+v___x_293_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_293_, 0, v___x_292_);
+lean_ctor_set(v___x_293_, 1, v_val_290_);
+return v___x_293_;
 }
 else
 {
-lean_object* v_reuseFailAlloc_290_; 
-v_reuseFailAlloc_290_ = lean_alloc_ctor(0, 2, 0);
-lean_ctor_set(v_reuseFailAlloc_290_, 0, v_k_281_);
-lean_ctor_set(v_reuseFailAlloc_290_, 1, v_l_282_);
-v___x_288_ = v_reuseFailAlloc_290_;
-goto v_reusejp_287_;
-}
-v_reusejp_287_:
-{
-lean_object* v___x_289_; 
-v___x_289_ = lean_apply_1(v_toFun_283_, v___x_288_);
-return v___x_289_;
+lean_object* v_val_294_; uint8_t v___x_295_; lean_object* v___x_296_; lean_object* v___x_297_; 
+v_val_294_ = lean_ctor_get(v_s_289_, 0);
+v___x_295_ = 0;
+v___x_296_ = lean_box(v___x_295_);
+lean_inc(v_val_294_);
+v___x_297_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v___x_297_, 0, v___x_296_);
+lean_ctor_set(v___x_297_, 1, v_val_294_);
+return v___x_297_;
 }
 }
 }
-}
-LEAN_EXPORT lean_object* lp_CORALean_CORALean_Partition_on(lean_object* v_00_u03b1_293_, lean_object* v_00_u03ba_294_, lean_object* v_00_u03b2_295_, lean_object* v_P_296_, lean_object* v_k_297_, lean_object* v_l_298_){
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Pair_equivSum___lam__1___boxed(lean_object* v_s_298_){
 _start:
 {
-lean_object* v___x_299_; 
-v___x_299_ = lp_CORALean_CORALean_Partition_on___redArg(v_P_296_, v_k_297_, v_l_298_);
-return v___x_299_;
+lean_object* v_res_299_; 
+v_res_299_ = lp_CORALean_CORALean_Pair_equivSum___lam__1(v_s_298_);
+lean_dec_ref(v_s_298_);
+return v_res_299_;
 }
 }
-LEAN_EXPORT lean_object* lp_CORALean_CORALean_Partition_left___redArg(lean_object* v_P_300_, lean_object* v_l_301_){
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Pair_equivSum(lean_object* v_00_u03b2_305_, lean_object* v_00_u03b3_306_){
 _start:
 {
-uint8_t v___x_302_; lean_object* v___x_303_; lean_object* v___x_304_; 
-v___x_302_ = 1;
-v___x_303_ = lean_box(v___x_302_);
-v___x_304_ = lp_CORALean_CORALean_Partition_on___redArg(v_P_300_, v___x_303_, v_l_301_);
-return v___x_304_;
+lean_object* v___x_307_; 
+v___x_307_ = ((lean_object*)(lp_CORALean_CORALean_Pair_equivSum___closed__2));
+return v___x_307_;
 }
 }
-LEAN_EXPORT lean_object* lp_CORALean_CORALean_Partition_left(lean_object* v_00_u03b1_305_, lean_object* v_00_u03b2_u2097_306_, lean_object* v_00_u03b2_u1d63_307_, lean_object* v_P_308_, lean_object* v_l_309_){
+static lean_object* _init_lp_CORALean_CORALean_Partition_split___closed__0(void){
 _start:
 {
-lean_object* v___x_310_; 
-v___x_310_ = lp_CORALean_CORALean_Partition_left___redArg(v_P_308_, v_l_309_);
-return v___x_310_;
+lean_object* v___x_308_; 
+v___x_308_ = lp_CORALean_CORALean_Pair_equivSum(lean_box(0), lean_box(0));
+return v___x_308_;
 }
 }
-LEAN_EXPORT lean_object* lp_CORALean_CORALean_Partition_right___redArg(lean_object* v_P_311_, lean_object* v_l_312_){
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Partition_split(lean_object* v_q_309_, lean_object* v_r_310_){
 _start:
 {
-uint8_t v___x_313_; lean_object* v___x_314_; lean_object* v___x_315_; 
-v___x_313_ = 0;
-v___x_314_ = lean_box(v___x_313_);
-v___x_315_ = lp_CORALean_CORALean_Partition_on___redArg(v_P_311_, v___x_314_, v_l_312_);
-return v___x_315_;
+lean_object* v___x_311_; lean_object* v___x_312_; lean_object* v___x_313_; 
+v___x_311_ = lean_obj_once(&lp_CORALean_CORALean_Partition_split___closed__0, &lp_CORALean_CORALean_Partition_split___closed__0_once, _init_lp_CORALean_CORALean_Partition_split___closed__0);
+v___x_312_ = lp_mathlib_finSumFinEquiv(v_q_309_, v_r_310_);
+v___x_313_ = lp_mathlib_Equiv_trans___redArg(v___x_311_, v___x_312_);
+return v___x_313_;
 }
 }
-LEAN_EXPORT lean_object* lp_CORALean_CORALean_Partition_right(lean_object* v_00_u03b1_316_, lean_object* v_00_u03b2_u2097_317_, lean_object* v_00_u03b2_u1d63_318_, lean_object* v_P_319_, lean_object* v_l_320_){
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Partition_reindex___redArg(lean_object* v_P_314_, lean_object* v_e_315_){
 _start:
 {
-lean_object* v___x_321_; 
-v___x_321_ = lp_CORALean_CORALean_Partition_right___redArg(v_P_319_, v_l_320_);
-return v___x_321_;
+lean_object* v___x_316_; lean_object* v___x_317_; 
+v___x_316_ = lp_mathlib_Equiv_symm___redArg(v_e_315_);
+v___x_317_ = lp_mathlib_Equiv_trans___redArg(v_P_314_, v___x_316_);
+return v___x_317_;
+}
+}
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Partition_reindex(lean_object* v_00_u03b1_318_, lean_object* v_00_u03b1_x27_319_, lean_object* v_00_u03b2_u2097_320_, lean_object* v_00_u03b2_u1d63_321_, lean_object* v_P_322_, lean_object* v_e_323_){
+_start:
+{
+lean_object* v___x_324_; 
+v___x_324_ = lp_CORALean_CORALean_Partition_reindex___redArg(v_P_322_, v_e_323_);
+return v___x_324_;
+}
+}
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Partition_on___redArg(lean_object* v_P_325_, lean_object* v_k_326_, lean_object* v_l_327_){
+_start:
+{
+lean_object* v_toFun_328_; lean_object* v___x_330_; uint8_t v_isShared_331_; uint8_t v_isSharedCheck_336_; 
+v_toFun_328_ = lean_ctor_get(v_P_325_, 0);
+v_isSharedCheck_336_ = !lean_is_exclusive(v_P_325_);
+if (v_isSharedCheck_336_ == 0)
+{
+lean_object* v_unused_337_; 
+v_unused_337_ = lean_ctor_get(v_P_325_, 1);
+lean_dec(v_unused_337_);
+v___x_330_ = v_P_325_;
+v_isShared_331_ = v_isSharedCheck_336_;
+goto v_resetjp_329_;
+}
+else
+{
+lean_inc(v_toFun_328_);
+lean_dec(v_P_325_);
+v___x_330_ = lean_box(0);
+v_isShared_331_ = v_isSharedCheck_336_;
+goto v_resetjp_329_;
+}
+v_resetjp_329_:
+{
+lean_object* v___x_333_; 
+if (v_isShared_331_ == 0)
+{
+lean_ctor_set(v___x_330_, 1, v_l_327_);
+lean_ctor_set(v___x_330_, 0, v_k_326_);
+v___x_333_ = v___x_330_;
+goto v_reusejp_332_;
+}
+else
+{
+lean_object* v_reuseFailAlloc_335_; 
+v_reuseFailAlloc_335_ = lean_alloc_ctor(0, 2, 0);
+lean_ctor_set(v_reuseFailAlloc_335_, 0, v_k_326_);
+lean_ctor_set(v_reuseFailAlloc_335_, 1, v_l_327_);
+v___x_333_ = v_reuseFailAlloc_335_;
+goto v_reusejp_332_;
+}
+v_reusejp_332_:
+{
+lean_object* v___x_334_; 
+v___x_334_ = lean_apply_1(v_toFun_328_, v___x_333_);
+return v___x_334_;
+}
+}
+}
+}
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Partition_on(lean_object* v_00_u03b1_338_, lean_object* v_00_u03ba_339_, lean_object* v_00_u03b2_340_, lean_object* v_P_341_, lean_object* v_k_342_, lean_object* v_l_343_){
+_start:
+{
+lean_object* v___x_344_; 
+v___x_344_ = lp_CORALean_CORALean_Partition_on___redArg(v_P_341_, v_k_342_, v_l_343_);
+return v___x_344_;
+}
+}
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Partition_left___redArg(lean_object* v_P_345_, lean_object* v_l_346_){
+_start:
+{
+uint8_t v___x_347_; lean_object* v___x_348_; lean_object* v___x_349_; 
+v___x_347_ = 1;
+v___x_348_ = lean_box(v___x_347_);
+v___x_349_ = lp_CORALean_CORALean_Partition_on___redArg(v_P_345_, v___x_348_, v_l_346_);
+return v___x_349_;
+}
+}
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Partition_left(lean_object* v_00_u03b1_350_, lean_object* v_00_u03b2_u2097_351_, lean_object* v_00_u03b2_u1d63_352_, lean_object* v_P_353_, lean_object* v_l_354_){
+_start:
+{
+lean_object* v___x_355_; 
+v___x_355_ = lp_CORALean_CORALean_Partition_left___redArg(v_P_353_, v_l_354_);
+return v___x_355_;
+}
+}
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Partition_right___redArg(lean_object* v_P_356_, lean_object* v_l_357_){
+_start:
+{
+uint8_t v___x_358_; lean_object* v___x_359_; lean_object* v___x_360_; 
+v___x_358_ = 0;
+v___x_359_ = lean_box(v___x_358_);
+v___x_360_ = lp_CORALean_CORALean_Partition_on___redArg(v_P_356_, v___x_359_, v_l_357_);
+return v___x_360_;
+}
+}
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Partition_right(lean_object* v_00_u03b1_361_, lean_object* v_00_u03b2_u2097_362_, lean_object* v_00_u03b2_u1d63_363_, lean_object* v_P_364_, lean_object* v_l_365_){
+_start:
+{
+lean_object* v___x_366_; 
+v___x_366_ = lp_CORALean_CORALean_Partition_right___redArg(v_P_364_, v_l_365_);
+return v___x_366_;
 }
 }
 lean_object* initialize_Init(uint8_t builtin);

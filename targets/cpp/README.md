@@ -59,10 +59,10 @@ to `lean/src/CORALean/`.
 | ---------------- | --------------------------------------------------------- |
 | `tensor.hpp`     | `Global/Tensor.lean`                                       |
 | `partition.hpp`  | `Global/Partition.lean`                                    |
-| `float_ops.hpp`  | `Arithmetic/Float/FloatOps.lean`                           |
+| `float_ops.hpp`  | `Float/FloatOps.lean`                                      |
 | `binary64.hpp`   | no counterpart — see *Assumptions*                         |
-| `interval.hpp`   | `Arithmetic/Float/ContSet/Interval/Operations.lean`        |
-| `zonotope.hpp`   | `Arithmetic/Float/ContSet/Zonotope/Operations.lean`        |
+| `interval.hpp`   | `Float/ContSet/Interval/Operations/`                       |
+| `zonotope.hpp`   | `Float/ContSet/Zonotope/Operations/`                       |
 
 Names follow CORA and Lean exactly — `plus`, `mtimes`, `reduce`,
 `reduceAndAbsorb`, `absorbError`, `interval` — so a definition can be compared
@@ -74,7 +74,7 @@ template over it, exactly as the Lean definitions are generic in `F`.
 
 ## What is not here, and why
 
-**`Arithmetic/Real/` and `SoundFloatArithmetic`.** Denotations and proofs do not
+**`Real/` and `SoundFloatArithmetic`.** Denotations and proofs do not
 run. That the float layer erases to something executable is the point of the
 split, and this directory is what is left after the erasure.
 

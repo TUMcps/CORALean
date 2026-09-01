@@ -35,7 +35,7 @@ applications. Linking needs the Lean runtime and GMP. That cost is why
 
 ## Layout
 
-Mirrors the Lean modules: `src/CORALean/Arithmetic/Float/ContSet/Zonotope/API.c`
+Mirrors the Lean modules: `src/CORALean/Float/ContSet/Zonotope/API.c`
 comes from the `.lean` file at the same path. Proof modules are included despite
 compiling to nothing — theorems are erased, but each module still emits the
 initializer the link needs.
