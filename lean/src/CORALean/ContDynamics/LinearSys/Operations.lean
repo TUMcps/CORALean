@@ -77,9 +77,9 @@ noncomputable def LinearSys.inputTaylorSum (sys : LinearSys 𝕋 n) (r : ℝ) (U
 past `η` in the same remainder that bounds the exponential. -/
 noncomputable def LinearSys.inputSolution [Mtimes (fun m n => Interval (Mat ℝ m n)) S]
     (sys : LinearSys 𝕋 n) (r : ℝ) (η : ℕ) (U : S n) : S n :=
-  OuterContSet.plus (sys.inputTaylorSum r U η)
-    (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
-      (MatExp.inputRemainder (toRealMat sys.A) r η) U)
+  sys.inputTaylorSum r U η ⊞
+    Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+      (MatExp.inputRemainder (toRealMat sys.A) r η) U
 
 /-- CORA's `CH(X₀, e^{Ar}X₀) ⊕ F X₀`, over a whole step rather than at its ends:
 the segment from the set to its image, widened by what the curvature of the flow
@@ -87,9 +87,8 @@ adds. `linComb` rather than a convex hull, so a non-convex representation keeps
 its shape. -/
 noncomputable def LinearSys.timeIntervalStep [Mtimes (fun m n => Interval (Mat ℝ m n)) S]
     (sys : LinearSys 𝕋 n) (r : ℝ) (η : ℕ) (X₀ : S n) : S n :=
-  OuterContSet.plus
-    (OuterContSet.linComb X₀ (Mtimes.mtimes (exp (r • toRealMat sys.A)) X₀))
-    (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
-      (MatExp.correctionMatrix (toRealMat sys.A) r η) X₀)
+  OuterContSet.linComb X₀ (Mtimes.mtimes (exp (r • toRealMat sys.A)) X₀) ⊞
+    Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+      (MatExp.correctionMatrix (toRealMat sys.A) r η) X₀
 
 end CORALean.Real

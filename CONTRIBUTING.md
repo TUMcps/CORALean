@@ -57,6 +57,17 @@ types, so it stays its own class, `Mtimes`, over a family. An algorithm that
 travels between dimensions asks for both; one that does not asks for
 `OuterContSet` alone.
 
+### Notation
+
+`x ∈ s` is membership in what a representation denotes, and `s₁ ⊞ s₂` is
+`plus`. `⊞` and not `+` on purpose: `plus` is only *outer*, so
+`construct (s₁ ⊞ s₂)` merely contains `construct s₁ + construct s₂`, and with
+`Pointwise` open both would otherwise read as `+` in one goal.
+
+Bundling the binders of a generic file into a `class abbrev` was tried and
+reverted: each use adds an unfolding step to instance search, which at 5000
+heartbeats produces timeouts rather than slow proofs.
+
 ## Tooling
 
 `.mcp.json` registers the [lean-lsp](https://github.com/oOo0oOo/lean-lsp-mcp)

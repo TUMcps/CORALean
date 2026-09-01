@@ -51,6 +51,14 @@ class ContSet (S : Type) (α : outParam Type) where
 
 open ContSet
 
+/-- `x ∈ s` for a representation means what it denotes. Membership is what
+nearly every guarantee states, so it is worth the notation; `construct` stays
+available for the times a proof has to name the set itself. -/
+instance {S α : Type} [ContSet S α] : Membership α S := ⟨fun s x => x ∈ construct s⟩
+
+theorem ContSet.mem_iff {S α : Type} [ContSet S α] {s : S} {x : α} :
+    x ∈ s ↔ x ∈ construct s := Iff.rfl
+
 open Scalar
 
 /-- A matrix denotes itself, read into ℝ by the layer's scalar. What makes a
@@ -140,6 +148,19 @@ class OuterContSet (S : Type) (α : outParam Type) [AddCommGroup α] [Module ℝ
     segments (construct s₁) (construct s₂) ⊆ construct (linComb s₁ s₂)
   reduce_outer (s : S) (o : ℕ) :
     construct s ⊆ construct (reduce s o)
+
+/-- Althoff's and CORA's symbol for the Minkowski sum, and deliberately not `+`:
+`plus` is only *outer*, so `construct (s₁ ⊞ s₂)` merely contains
+`construct s₁ + construct s₂`, and with `Pointwise` open both would otherwise
+appear as `+` in one goal with only their arguments telling them apart. -/
+scoped infixl:65 " ⊞ " => OuterContSet.plus
+
+-- No `class abbrev` bundling these binders. It reads well, but every use adds an
+-- unfolding step to instance search, and at the 5000-heartbeat budget that turns
+-- `LinearSysDT.reach` and `Interval.abs_sub_center_le` into timeouts rather than
+-- into slow proofs. The budget exists to make searching fail loudly; the
+-- convenience is what gives way.
+
 
 /-- Multiplication by anything denoting linear maps, at any pair of ambient
 types. `Mtimes` is this at vectors, kept separate because there the dimension
