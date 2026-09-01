@@ -4,9 +4,7 @@
       "type": "stdio",
       "command": "uvx",
       "args": [
-        "lean-lsp-mcp",
-        "--lean-project-path",
-        "lean"
+        "lean-lsp-mcp"
       ],
       "env": {}
     }

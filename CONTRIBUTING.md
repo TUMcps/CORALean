@@ -3,7 +3,7 @@
 ## Source layout
 
 ```
-lean/src/CORALean/
+src/CORALean/
   Global/          shared: array types, the scalar, index partitions, Mathlib
     Float/         the floating-point scalar, and models of it
   ContSet/         set representations, over whichever ambient type they suit
@@ -75,9 +75,8 @@ MCP server, which gives an AI agent goal state, diagnostics, and Mathlib search
 without a rebuild. It needs [`uv`](https://docs.astral.sh/uv/) on `PATH`; `uvx`
 fetches the server itself.
 
-The Lean project root is `lean/`, not the repository root, hence the
-`--lean-project-path` flag. Build once before first use, since the server starts
-`lake serve` and otherwise builds from cold.
+Build once before first use, since the server starts `lake serve` and otherwise
+builds from cold.
 
 ## File roles
 
