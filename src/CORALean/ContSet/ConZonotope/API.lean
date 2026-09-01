@@ -13,7 +13,8 @@ mapped, `HPolytope` for what the coefficients range over.
 What it buys over a zonotope is `and`: intersection, exactly, which no zonotope
 can represent.
 
-The specification only. A float layer would pay its rounding into an error box,
-as the zonotope's does, and would additionally have to round the constraints —
-which cannot be done outward, an equality having no slack to give.
+The specification only. A float layer would pay its rounding into an error box as
+the zonotope's does, and would additionally have to round `A β = b` — which
+cannot be done outward, an equality having no slack to give. That is the decision
+`HPolytope` records, and this representation follows it.
 -/

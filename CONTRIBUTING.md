@@ -21,6 +21,7 @@ src/CORALean/
     ConZonotope/   a zonotope whose coefficients an HPolytope cuts down
   ContDynamics/    algorithms, written against the interfaces alone
     LinearSysDT/   discrete-time linear systems, and reachability
+    NonlinearSys/  the representation and its trajectories; no reachability yet
     LinearSys/     continuous-time linear systems: the flow in closed form,
                    reachability at the sample times by sampling into
                    LinearSysDT, and an enclosure over a whole step
