@@ -32,7 +32,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, OuterContSet (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
-variable [Mtimes IntervalMat S]
+variable [Mtimes (fun m n => Interval (Mat ℝ m n)) S]
 
 set_option maxHeartbeats 1000000 in
 theorem LinearSys.Trajectory.timeInterval_outer {sys : LinearSys 𝕋 n} {R₀ U Ud : S n}
@@ -61,12 +61,12 @@ theorem LinearSys.Trajectory.timeInterval_outer_inputSolution {sys : LinearSys �
     (ht0 : 0 ≤ t) (htr : t ≤ r)
     (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
     (hbdd : Bornology.IsBounded (construct U))
-    (hRconv : Convex ℝ (construct (Mtimes.mtimes
-      (IntervalMat.inputRemainder (toRealMat sys.A) r (m + 2)) U)))
-    (hRclosed : IsClosed (construct (Mtimes.mtimes
-      (IntervalMat.inputRemainder (toRealMat sys.A) r (m + 2)) U)))
-    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes
-      (IntervalMat.inputRemainder (toRealMat sys.A) r (m + 2)) U)))
+    (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+      (MatExp.inputRemainder (toRealMat sys.A) r (m + 2)) U)))
+    (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+      (MatExp.inputRemainder (toRealMat sys.A) r (m + 2)) U)))
+    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+      (MatExp.inputRemainder (toRealMat sys.A) r (m + 2)) U)))
     (h0 : (0 : Vec ℝ n) ∈ construct U) :
     x t ∈ construct (OuterContSet.plus (sys.timeIntervalStep r (m + 2) R₀)
       (sys.inputSolution r (m + 2) U)) :=

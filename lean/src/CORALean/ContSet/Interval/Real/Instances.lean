@@ -18,9 +18,13 @@ namespace CORALean.Real
 
 variable {n : ℕ}
 
-instance : ContSet (Interval n) (Vec ℝ n) := ⟨Interval.construct⟩
+/-- At every ambient type that has coordinates, so an interval matrix is an
+instance too. `OuterContSet` stays at `Vec`, because `mtimes` moves a
+dimension and the family it needs is a family of vector types. -/
+instance {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι] :
+    ContSet (Interval α) α := ⟨Interval.construct⟩
 
-instance : OuterContSet (Interval n) (Vec ℝ n) where
+instance : OuterContSet (Interval (Vec ℝ n)) (Vec ℝ n) where
   plus := Interval.plus
   linComb := Interval.linComb
   reduce I _ := I
@@ -28,7 +32,7 @@ instance : OuterContSet (Interval n) (Vec ℝ n) where
   linComb_outer := Interval.linComb_outer
   reduce_outer _ _ := subset_rfl
 
-instance : Mtimes (Mat ℝ) Interval where
+instance : Mtimes (Mat ℝ) (fun n => Interval (Vec ℝ n)) where
   mtimes := Interval.mtimes
   mtimes_outer M I := by
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]

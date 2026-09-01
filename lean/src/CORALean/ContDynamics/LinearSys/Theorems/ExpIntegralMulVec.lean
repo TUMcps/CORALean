@@ -1,10 +1,10 @@
 import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
-import CORALean.MatSet.IntervalMat.API
+import CORALean.ContDynamics.LinearSys.MatExp.API
 
 /-!
 # The integrated exponential, applied to a vector, is the integral
 
-`IntervalMat.expIntegral` is a series; this is what makes it the integral it is
+`MatExp.expIntegral` is a series; this is what makes it the integral it is
 named for. Only ever against a vector: `Matrix` has no metrizable-space instance
 for Bochner integration to use, so `∫ e^{Aσ} dσ` does not exist as a matrix
 here, while `∫ (e^{Aσ} v) dσ` exists perfectly well in `Vec`.
@@ -78,7 +78,7 @@ set_option maxHeartbeats 400000 in
 theorem aux_summable_expIntegral_mulVec (A : Mat ℝ n n) (v : Vec ℝ n) (t : ℝ) :
     Summable (fun i : ℕ =>
       (((Nat.factorial (i + 1) : ℝ))⁻¹ * t ^ (i + 1)) • (A ^ i *ᵥ v)) :=
-  aux_summable_smul_mulVec A v (IntervalMat.summable_norm_expIntegral A t)
+  aux_summable_smul_mulVec A v (MatExp.summable_norm_expIntegral A t)
 
 /-- Each partial sum of the exponential series is continuous in the time. -/
 theorem aux_continuous_expPartial (A : Mat ℝ n n) (v : Vec ℝ n) (N : ℕ) :
@@ -89,12 +89,12 @@ theorem aux_continuous_expPartial (A : Mat ℝ n n) (v : Vec ℝ n) (N : ℕ) :
 
 set_option maxHeartbeats 1000000 in
 /-- `expIntegral` is what its name says, once a vector is supplied. -/
-theorem IntervalMat.expIntegral_mulVec (A : Mat ℝ n n) (v : Vec ℝ n) {t : ℝ} (ht : 0 ≤ t) :
-    IntervalMat.expIntegral A t *ᵥ v = ∫ σ in (0:ℝ)..t, exp (σ • A) *ᵥ v := by
-  have hseries : IntervalMat.expIntegral A t *ᵥ v
+theorem MatExp.expIntegral_mulVec (A : Mat ℝ n n) (v : Vec ℝ n) {t : ℝ} (ht : 0 ≤ t) :
+    MatExp.expIntegral A t *ᵥ v = ∫ σ in (0:ℝ)..t, exp (σ • A) *ᵥ v := by
+  have hseries : MatExp.expIntegral A t *ᵥ v
       = ∑' i : ℕ, (((Nat.factorial (i + 1) : ℝ))⁻¹ * t ^ (i + 1)) • (A ^ i *ᵥ v) := by
-    rw [← mulVecR_apply v, IntervalMat.expIntegral,
-      ContinuousLinearMap.map_tsum (mulVecR v) (IntervalMat.summable_expIntegral A t)]
+    rw [← mulVecR_apply v, MatExp.expIntegral,
+      ContinuousLinearMap.map_tsum (mulVecR v) (MatExp.summable_expIntegral A t)]
     exact tsum_congr fun i => by rw [mulVecR_apply, Matrix.smul_mulVec]
   -- each partial sum is the integral of the truncated series
   have hpartial : ∀ N : ℕ, (∑ i ∈ Finset.range N,

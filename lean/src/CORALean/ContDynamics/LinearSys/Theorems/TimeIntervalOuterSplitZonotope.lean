@@ -33,6 +33,9 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 `S : ℕ → Type` and the elaborator cannot read that family off one member. -/
 local notation "𝒵" => fun n => Zonotope (Vec ℝ n)
 
+/-- The interval-matrix family, named for the same reason. -/
+local notation "ℐ" => fun m n => Interval (Mat ℝ m n)
+
 /-- The zonotope moved to the origin, keeping its generators. -/
 def aux_centered (Z : Zonotope (Vec ℝ n)) : Zonotope (Vec ℝ n) := ⟨Z.h, 0, Z.G⟩
 
@@ -88,9 +91,10 @@ theorem LinearSys.Trajectory.timeInterval_outer_split_zonotope {sys : LinearSys 
       (sys.timeIntervalStep (S := 𝒵) r (m + 2) R₀)
       (OuterContSet.plus
         (OuterContSet.plus
-          (Mtimes.mtimes (S := 𝒵) (IntervalMat.expIntegral (toRealMat sys.A) r) (aux_segment U.c))
-          (Mtimes.mtimes (S := 𝒵)
-            (IntervalMat.constCorrectionMatrix (toRealMat sys.A) r (m + 2)) (aux_point U.c)))
+          (Mtimes.mtimes (𝕄 := Mat ℝ) (S := 𝒵)
+            (MatExp.expIntegral (toRealMat sys.A) r) (aux_segment U.c))
+          (Mtimes.mtimes (𝕄 := ℐ) (S := 𝒵)
+            (MatExp.constCorrectionMatrix (toRealMat sys.A) r (m + 2)) (aux_point U.c)))
         (sys.inputSolution (S := 𝒵) r (m + 2) (aux_centered U)))) :=
   traj.timeInterval_outer hr hε ht0 htr U.isBounded_construct
     (traj.inputSolution_timeInterval_outer_split hr (m + 2) hε
@@ -100,11 +104,11 @@ theorem LinearSys.Trajectory.timeInterval_outer_split_zonotope {sys : LinearSys 
       (aux_zero_mem_centered U)
       (aux_centered U).convex_construct (aux_centered U).isClosed_construct
       (aux_centered U).isBounded_construct
-      (Mtimes.mtimes (S := 𝒵) (IntervalMat.inputRemainder (toRealMat sys.A) r (m + 2))
+      (Mtimes.mtimes (𝕄 := ℐ) (S := 𝒵) (MatExp.inputRemainder (toRealMat sys.A) r (m + 2))
         (aux_centered U)).convex_construct
-      (Mtimes.mtimes (S := 𝒵) (IntervalMat.inputRemainder (toRealMat sys.A) r (m + 2))
+      (Mtimes.mtimes (𝕄 := ℐ) (S := 𝒵) (MatExp.inputRemainder (toRealMat sys.A) r (m + 2))
         (aux_centered U)).isClosed_construct
-      (Mtimes.mtimes (S := 𝒵) (IntervalMat.inputRemainder (toRealMat sys.A) r (m + 2))
+      (Mtimes.mtimes (𝕄 := ℐ) (S := 𝒵) (MatExp.inputRemainder (toRealMat sys.A) r (m + 2))
         (aux_centered U)).isBounded_construct
       ht0 htr)
 

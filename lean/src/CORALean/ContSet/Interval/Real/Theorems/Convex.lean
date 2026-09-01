@@ -18,19 +18,22 @@ combinations, so it lands in the set only if the set is convex.
 
 namespace CORALean.Real
 
-variable {n : ℕ}
+open Entrywise
 
-theorem Interval.convex_construct (I : Interval n) : Convex ℝ I.construct := by
+variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
+
+theorem Interval.convex_construct (I : Interval α) : Convex ℝ I.construct := by
   intro x hx y hy a b ha hb hab i
   have h1 := hx i
   have h2 := hy i
+  rw [Entrywise.entry_add, Entrywise.entry_smul, Entrywise.entry_smul]
   -- the weights sum to one, so a constant is its own weighted average
-  have hinf : a * I.inf i + b * I.inf i = I.inf i := by rw [← add_mul, hab, one_mul]
-  have hsup : a * I.sup i + b * I.sup i = I.sup i := by rw [← add_mul, hab, one_mul]
+  have hinf : a * entry I.inf i + b * entry I.inf i = entry I.inf i := by
+    rw [← add_mul, hab, one_mul]
+  have hsup : a * entry I.sup i + b * entry I.sup i = entry I.sup i := by
+    rw [← add_mul, hab, one_mul]
   constructor
-  · show I.inf i ≤ a * x i + b * y i
-    linarith [mul_le_mul_of_nonneg_left h1.1 ha, mul_le_mul_of_nonneg_left h2.1 hb]
-  · show a * x i + b * y i ≤ I.sup i
-    linarith [mul_le_mul_of_nonneg_left h1.2 ha, mul_le_mul_of_nonneg_left h2.2 hb]
+  · linarith [mul_le_mul_of_nonneg_left h1.1 ha, mul_le_mul_of_nonneg_left h2.1 hb]
+  · linarith [mul_le_mul_of_nonneg_left h1.2 ha, mul_le_mul_of_nonneg_left h2.2 hb]
 
 end CORALean.Real

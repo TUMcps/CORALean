@@ -1,5 +1,5 @@
-import CORALean.MatSet.IntervalMat.Theorems.CorrectionMatrix
-import CORALean.MatSet.IntervalMat.Theorems.ExpIntegral
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrectionMatrix
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegral
 
 /-!
 # The constant input's interpolation error lies in `constCorrectionMatrix`
@@ -36,16 +36,16 @@ variable {n : ℕ}
 set_option maxHeartbeats 400000 in
 /-- The interpolation error of the integrated exponential, as one series from
 order `1` up. -/
-theorem IntervalMat.expIntegralDiff_eq_tsum (A : Mat ℝ n n) (t r : ℝ) (hr : r ≠ 0) :
-    IntervalMat.expIntegral A t - (t / r) • IntervalMat.expIntegral A r
+theorem MatExp.expIntegralDiff_eq_tsum (A : Mat ℝ n n) (t r : ℝ) (hr : r ≠ 0) :
+    MatExp.expIntegral A t - (t / r) • MatExp.expIntegral A r
       = ∑' i : ℕ, (((Nat.factorial (i + 2) : ℝ))⁻¹
           * (t ^ (i + 2) - (t / r) * r ^ (i + 2))) • A ^ (i + 1) := by
   set g : ℕ → Mat ℝ n n := fun i =>
     (((Nat.factorial (i + 1) : ℝ))⁻¹ * (t ^ (i + 1) - (t / r) * r ^ (i + 1))) • A ^ i with hg
-  have hst := IntervalMat.summable_expIntegral A t
+  have hst := MatExp.summable_expIntegral A t
   have hsr : Summable (fun i : ℕ =>
       (t / r) • ((((Nat.factorial (i + 1) : ℝ))⁻¹ * r ^ (i + 1)) • A ^ i)) :=
-    (IntervalMat.summable_expIntegral A r).const_smul _
+    (MatExp.summable_expIntegral A r).const_smul _
   have hcongr : ∀ i : ℕ,
       (((Nat.factorial (i + 1) : ℝ))⁻¹ * t ^ (i + 1)) • A ^ i
         - (t / r) • ((((Nat.factorial (i + 1) : ℝ))⁻¹ * r ^ (i + 1)) • A ^ i) = g i := by
@@ -55,8 +55,8 @@ theorem IntervalMat.expIntegralDiff_eq_tsum (A : Mat ℝ n n) (t r : ℝ) (hr : 
     ring_nf
   have hgsum : Summable g := (hst.sub hsr).congr hcongr
   have htsum : ∑' i : ℕ, g i
-      = IntervalMat.expIntegral A t - (t / r) • IntervalMat.expIntegral A r := by
-    rw [IntervalMat.expIntegral, IntervalMat.expIntegral, ← tsum_const_smul'' (t / r),
+      = MatExp.expIntegral A t - (t / r) • MatExp.expIntegral A r := by
+    rw [MatExp.expIntegral, MatExp.expIntegral, ← tsum_const_smul'' (t / r),
       ← Summable.tsum_sub hst hsr]
     exact tsum_congr fun i => (hcongr i).symm
   have hshift := hgsum.sum_add_tsum_nat_add 1
@@ -67,13 +67,13 @@ theorem IntervalMat.expIntegralDiff_eq_tsum (A : Mat ℝ n n) (t r : ℝ) (hr : 
 
 set_option maxHeartbeats 400000 in
 /-- The same series, shifted past `η`, is summable. -/
-theorem IntervalMat.summable_expIntegralDiff (A : Mat ℝ n n) (t r : ℝ) :
+theorem MatExp.summable_expIntegralDiff (A : Mat ℝ n n) (t r : ℝ) :
     Summable (fun i : ℕ => (((Nat.factorial (i + 2) : ℝ))⁻¹
       * (t ^ (i + 2) - (t / r) * r ^ (i + 2))) • A ^ (i + 1)) := by
-  have hst := IntervalMat.summable_expIntegral A t
+  have hst := MatExp.summable_expIntegral A t
   have hsr : Summable (fun i : ℕ =>
       (t / r) • ((((Nat.factorial (i + 1) : ℝ))⁻¹ * r ^ (i + 1)) • A ^ i)) :=
-    (IntervalMat.summable_expIntegral A r).const_smul _
+    (MatExp.summable_expIntegral A r).const_smul _
   have hg : Summable (fun i : ℕ =>
       (((Nat.factorial (i + 1) : ℝ))⁻¹ * (t ^ (i + 1) - (t / r) * r ^ (i + 1))) • A ^ i) :=
     (hst.sub hsr).congr fun i => by simp only [smul_smul, ← sub_smul]; ring_nf
@@ -86,7 +86,7 @@ theorem aux_norm_constTail_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) (η : ℕ
     (hε : ‖r • A‖ / ((η : ℝ) + 2) < 1) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) :
     ‖∑' i : ℕ, (((Nat.factorial (i + η + 2) : ℝ))⁻¹
         * (t ^ (i + η + 2) - (t / r) * r ^ (i + η + 2))) • A ^ (i + η + 1)‖
-      ≤ r * IntervalMat.expRemainderBound (r • A) η := by
+      ≤ r * MatExp.expRemainderBound (r • A) η := by
   have hs0 : 0 ≤ t / r := div_nonneg ht0 hr.le
   have hs1 : t / r ≤ 1 := (div_le_one hr).mpr htr
   have hrA : ‖r • A‖ = r * ‖A‖ := by rw [norm_smul, Real.norm_eq_abs, abs_of_pos hr]
@@ -144,53 +144,53 @@ theorem aux_norm_constTail_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) (η : ℕ
     _ ≤ ∑' i : ℕ, r * ((‖r • A‖ ^ (η + 1) / Nat.factorial (η + 1))
           * (‖r • A‖ / ((η : ℝ) + 2)) ^ i) :=
         Summable.tsum_le_tsum hterm hnorm ((hgeo.mul_left _).mul_left _)
-    _ = r * IntervalMat.expRemainderBound (r • A) η := by
+    _ = r * MatExp.expRemainderBound (r • A) η := by
         rw [tsum_mul_left, tsum_mul_left, tsum_geometric_of_lt_one hε0 hε,
-          IntervalMat.expRemainderBound]
+          MatExp.expRemainderBound]
 
 set_option maxHeartbeats 1000000 in
 /-- Althoff's `F̃` contains the constant input's interpolation error, at every
 time of the step. -/
-theorem IntervalMat.expIntegralDiff_mem_constCorrectionMatrix (A : Mat ℝ n n) {r : ℝ}
+theorem MatExp.expIntegralDiff_mem_constCorrectionMatrix (A : Mat ℝ n n) {r : ℝ}
     (hr : 0 < r) (η : ℕ) (hε : ‖r • A‖ / ((η : ℝ) + 2) < 1) {t : ℝ}
     (ht0 : 0 ≤ t) (htr : t ≤ r) :
-    IntervalMat.expIntegral A t - (t / r) • IntervalMat.expIntegral A r
-      ∈ (IntervalMat.constCorrectionMatrix A r η).construct := by
+    MatExp.expIntegral A t - (t / r) • MatExp.expIntegral A r
+      ∈ (MatExp.constCorrectionMatrix A r η).construct := by
   have hs0 : 0 ≤ t / r := div_nonneg ht0 hr.le
   have hs1 : t / r ≤ 1 := (div_le_one hr).mpr htr
   set f : ℕ → Mat ℝ n n := fun i =>
     (((Nat.factorial (i + 2) : ℝ))⁻¹ * (t ^ (i + 2) - (t / r) * r ^ (i + 2))) • A ^ (i + 1)
     with hf
-  have hsum : Summable f := IntervalMat.summable_expIntegralDiff A t r
+  have hsum : Summable f := MatExp.summable_expIntegralDiff A t r
   have hsplit := hsum.sum_add_tsum_nat_add η
-  have heq : IntervalMat.expIntegral A t - (t / r) • IntervalMat.expIntegral A r
+  have heq : MatExp.expIntegral A t - (t / r) • MatExp.expIntegral A r
       = (∑ i ∈ Finset.range η, f i) + ∑' i : ℕ, f (i + η) := by
-    rw [IntervalMat.expIntegralDiff_eq_tsum A t r hr.ne', ← hsplit]
-  have htail : ‖∑' i : ℕ, f (i + η)‖ ≤ r * IntervalMat.expRemainderBound (r • A) η :=
+    rw [MatExp.expIntegralDiff_eq_tsum A t r hr.ne', ← hsplit]
+  have htail : ‖∑' i : ℕ, f (i + η)‖ ≤ r * MatExp.expRemainderBound (r • A) η :=
     aux_norm_constTail_le A hr η hε ht0 htr
-  intro j k
+  refine Interval.mem_mat_iff.mpr fun j k => ?_
   -- each kept order stays inside the interval `constCorrTerm` spans
   have hfin : ∀ i ∈ Finset.range η,
-      min (IntervalMat.constCorrTerm A r i j k) 0 ≤ (f i) j k
-        ∧ (f i) j k ≤ max (IntervalMat.constCorrTerm A r i j k) 0 := by
+      min (MatExp.constCorrTerm A r i j k) 0 ≤ (f i) j k
+        ∧ (f i) j k ≤ max (MatExp.constCorrTerm A r i j k) 0 := by
     intro i _
-    have hlow := IntervalMat.corrCoeff_le_sub (i := i + 2) (by omega) hs0
-    have hupp := IntervalMat.sub_le_zero (i := i + 2) (by omega) hs0 hs1
+    have hlow := MatExp.corrCoeff_le_sub (i := i + 2) (by omega) hs0
+    have hupp := MatExp.sub_le_zero (i := i + 2) (by omega) hs0 hs1
     have hw : (f i) j k = ((t / r) ^ (i + 2) - (t / r))
         * (((Nat.factorial (i + 2) : ℝ))⁻¹ * r ^ (i + 2) * (A ^ (i + 1)) j k) := by
       simp only [hf, Matrix.smul_apply, smul_eq_mul, aux_pow_sub_eq hr]
       ring
-    have hct : IntervalMat.constCorrTerm A r i j k = IntervalMat.corrCoeff (i + 2)
+    have hct : MatExp.constCorrTerm A r i j k = MatExp.corrCoeff (i + 2)
         * (((Nat.factorial (i + 2) : ℝ))⁻¹ * r ^ (i + 2) * (A ^ (i + 1)) j k) := by
-      simp only [IntervalMat.constCorrTerm]
+      simp only [MatExp.constCorrTerm]
       ring
     rw [hw, hct]
     exact aux_mul_mem_minmax hlow hupp
-  have hT : |(∑' i : ℕ, f (i + η)) j k| ≤ r * IntervalMat.expRemainderBound (r • A) η :=
+  have hT : |(∑' i : ℕ, f (i + η)) j k| ≤ r * MatExp.expRemainderBound (r • A) η :=
     le_trans (abs_entry_le_norm _ j k) htail
   rw [abs_le] at hT
   rw [heq]
-  simp only [Matrix.add_apply, Matrix.sum_apply, IntervalMat.constCorrectionMatrix]
+  simp only [Matrix.add_apply, Matrix.sum_apply, MatExp.constCorrectionMatrix]
   constructor
   · have := Finset.sum_le_sum fun i hi => (hfin i hi).1
     linarith [hT.1]

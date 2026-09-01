@@ -16,7 +16,7 @@ namespace CORALean.Real
 
 variable {n m : ℕ}
 
-def Interval.mtimes (M : Mat ℝ m n) (I : Interval n) : Interval m where
+def Interval.mtimes (M : Mat ℝ m n) (I : Interval (Vec ℝ n)) : Interval (Vec ℝ m) where
   inf := fun i => ∑ k, min (M i k * I.inf k) (M i k * I.sup k)
   sup := fun i => ∑ k, max (M i k * I.inf k) (M i k * I.sup k)
 

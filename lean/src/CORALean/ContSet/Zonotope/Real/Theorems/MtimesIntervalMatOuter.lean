@@ -30,7 +30,7 @@ variable {m n : ℕ}
 
 /-- `Fin.sum_univ_add` at this operation's generator count, stated through the
 projection because that is the form the goal has. -/
-theorem Zonotope.aux_sum_univ_mtimesIntervalMat {IM : IntervalMat m n} {Z : Zonotope (Vec ℝ n)}
+theorem Zonotope.aux_sum_univ_mtimesIntervalMat {IM : Interval (Mat ℝ m n)} {Z : Zonotope (Vec ℝ n)}
     (f : Fin (Z.h + m) → ℝ) :
     ∑ j : Fin (Zonotope.mtimesIntervalMat IM Z).h, f j
       = ∑ j, f (Fin.castAdd m j) + ∑ j, f (Fin.natAdd Z.h j) :=
@@ -50,7 +50,7 @@ theorem Zonotope.aux_abs_le_absBound {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n} 
         simpa using mul_le_mul_of_nonneg_left (hβ l) (abs_nonneg (Z.G l j))
 
 set_option maxHeartbeats 40000 in
-theorem Zonotope.mtimesIntervalMat_outer (IM : IntervalMat m n) (Z : Zonotope (Vec ℝ n)) :
+theorem Zonotope.mtimesIntervalMat_outer (IM : Interval (Mat ℝ m n)) (Z : Zonotope (Vec ℝ n)) :
     (⋃ A ∈ IM.construct, (A *ᵥ ·) '' Z.construct)
       ⊆ (Zonotope.mtimesIntervalMat IM Z).construct := by
   rintro y hy
@@ -58,7 +58,7 @@ theorem Zonotope.mtimesIntervalMat_outer (IM : IntervalMat m n) (Z : Zonotope (V
   obtain ⟨A, hA, x, hxmem, rfl⟩ := hy
   obtain ⟨β, hβ, hx⟩ := Zonotope.mem_construct_iff.mp hxmem
   have hrad : ∀ i j, 0 ≤ IM.radius i j :=
-    fun i j => (abs_nonneg _).trans (IM.abs_sub_center_le hA i j)
+    fun i j => (abs_nonneg _).trans (IM.abs_sub_center_le hA (i, j))
   have hxb := Zonotope.aux_abs_le_absBound hβ hx
   -- what the radius is allowed to add to coordinate `i`
   set err : Fin m → ℝ := fun i => ∑ j, (A i j - IM.center i j) * x j with herr
@@ -68,7 +68,7 @@ theorem Zonotope.mtimesIntervalMat_outer (IM : IntervalMat m n) (Z : Zonotope (V
         ≤ ∑ j, |(A i j - IM.center i j) * x j| := Finset.abs_sum_le_sum_abs _ _
       _ = ∑ j, |A i j - IM.center i j| * |x j| := by simp_rw [abs_mul]
       _ ≤ ∑ j, IM.radius i j * Z.absBound j := Finset.sum_le_sum fun j _ =>
-          mul_le_mul (IM.abs_sub_center_le hA i j) (hxb j) (abs_nonneg _) (hrad i j)
+          mul_le_mul (IM.abs_sub_center_le hA (i, j)) (hxb j) (abs_nonneg _) (hrad i j)
       _ = Zonotope.radiusReach IM Z i := rfl
   have hreachnn : ∀ i, 0 ≤ Zonotope.radiusReach IM Z i :=
     fun i => (abs_nonneg _).trans (herrb i)

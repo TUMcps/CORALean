@@ -26,7 +26,7 @@ structure Interval (𝕋 : Type) (n : ℕ) where
   sup : Vec 𝕋 n
 
 def Interval.nominal [SoundFloatArithmetic 𝕋] (I : Interval 𝕋 n) :
-    CORALean.Real.Interval n :=
+    CORALean.Real.Interval (Vec ℝ n) :=
   ⟨toRealVec I.inf, toRealVec I.sup⟩
 
 def Interval.construct [SoundFloatArithmetic 𝕋] (I : Interval 𝕋 n) : Set (Vec ℝ n) :=

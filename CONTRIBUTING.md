@@ -6,7 +6,7 @@
 lean/src/CORALean/
   Global/          shared: array types, the scalar, index partitions, Mathlib
     Float/         the floating-point scalar, and models of it
-  ContSet/         representations of a set of points
+  ContSet/         set representations, over whichever ambient type they suit
     ContSet/       the interface every representation instantiates
     InflatedContSet/  nominal part + error box, what a float representation adds
     Interval/
@@ -16,19 +16,18 @@ lean/src/CORALean/
                    API.lean (the whole directory, and nothing but imports)
       Float/       the same representation, rounded
     Zonotope/      Real/ and Float/, as above
-  MatSet/          representations of a *set of matrices*, same interface
-    IntervalMat/   what an enclosed matrix exponential needs
   ContDynamics/    algorithms, written against the interfaces alone
     LinearSysDT/   discrete-time linear systems, and reachability
     LinearSys/     continuous-time linear systems: the flow in closed form,
                    reachability at the sample times by sampling into
                    LinearSysDT, and an enclosure over a whole step
+      MatExp/      enclosing e^{A dt}, which is what a step is taken against
 ```
 
 A representation present in both arithmetic layers holds one directory per
 layer, named for the namespace it declares. One present in a single layer stays
 flat, and then only the namespace says which: `InflatedContSet` is float-only,
-`IntervalMat` and `ContDynamics` real-only.
+`ContDynamics` and its `MatExp` enclosures real-only.
 
 The remaining directory names — `ContSet`, `Interval`, `Operations` — are
 organizational and appear in no namespace. So a path never contradicts a
@@ -37,12 +36,19 @@ namespace, but a flat directory does leave the layer to the file itself.
 `ContSet` itself belongs to neither layer — it denotes a set over ℝ whichever
 scalar the representation computes in — and so sits in namespace `CORALean`.
 
-The class is indexed by the ambient type, so `ContSet/` and `MatSet/` hold
-instances of one interface and the directory only says which type a
-representation denotes into: `Vec ℝ n` for the first, `Mat ℝ m n` for the
-second. Not indexed by a `Tensor` shape — `Mat` is Mathlib's `Matrix`, which
-carries the ring structure the exponential needs and which instance search does
-not identify with `Tensor ℝ [m, n]`.
+The class is indexed by the ambient type, so a representation is written once
+and instantiated wherever it makes sense: `Zonotope (Mat ℝ n m)` is CORA's
+`matZonotope` and `Interval (Mat ℝ m n)` its `intervalMatrix`, neither needing a
+development or a name of its own. Not indexed by a `Tensor` shape — `Mat` is
+Mathlib's `Matrix`, which carries the ring structure the exponential needs and
+which instance search does not identify with `Tensor ℝ [m, n]`; `*` on the one
+is matrix multiplication and on the other is pointwise.
+
+An operation generalizes as far as the structure it uses. `plus` and `map` need
+only a module; `Entrywise` is what an interval hull, a generator ranking or an
+entrywise bound needs, and both `Vec` and `Mat` have it; `reduce` and `mtimes`
+stay at `Vec`, since one ranks generators by coordinate and the other moves a
+dimension.
 
 `OuterContSet` follows: `plus`, `linComb` and `reduce` take and return the same
 ambient type, so it is a class over one representation rather than a family

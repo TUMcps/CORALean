@@ -32,7 +32,10 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 `S : ℕ → Type` and the elaborator cannot read that family off one member. -/
 local notation "𝒵" => fun n => Zonotope (Vec ℝ n)
 
-set_option maxHeartbeats 40000 in
+/-- The interval-matrix family, named for the same reason. -/
+local notation "ℐ" => fun m n => Interval (Mat ℝ m n)
+
+set_option maxHeartbeats 1000000 in
 /-- Every trajectory whose initial and input sets are zonotopes stays in the
 step enclosure at every time of the step, not only at its end. -/
 theorem LinearSys.Trajectory.timeInterval_outer_zonotope {sys : LinearSys 𝕋 n}
@@ -46,11 +49,11 @@ theorem LinearSys.Trajectory.timeInterval_outer_zonotope {sys : LinearSys 𝕋 n
       (sys.inputSolution (S := 𝒵) r (m + 2) U)) :=
   traj.timeInterval_outer_inputSolution hr hε ht0 htr
     U.convex_construct U.isClosed_construct U.isBounded_construct
-    (Mtimes.mtimes (S := 𝒵) (IntervalMat.inputRemainder (toRealMat sys.A) r (m + 2))
+    (Mtimes.mtimes (𝕄 := ℐ) (S := 𝒵) (MatExp.inputRemainder (toRealMat sys.A) r (m + 2))
       U).convex_construct
-    (Mtimes.mtimes (S := 𝒵) (IntervalMat.inputRemainder (toRealMat sys.A) r (m + 2))
+    (Mtimes.mtimes (𝕄 := ℐ) (S := 𝒵) (MatExp.inputRemainder (toRealMat sys.A) r (m + 2))
       U).isClosed_construct
-    (Mtimes.mtimes (S := 𝒵) (IntervalMat.inputRemainder (toRealMat sys.A) r (m + 2))
+    (Mtimes.mtimes (𝕄 := ℐ) (S := 𝒵) (MatExp.inputRemainder (toRealMat sys.A) r (m + 2))
       U).isBounded_construct
     h0
 

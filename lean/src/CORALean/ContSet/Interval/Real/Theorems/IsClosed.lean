@@ -17,11 +17,12 @@ namespace CORALean.Real
 
 variable {n : ℕ}
 
-theorem Interval.isClosed_construct (I : Interval n) : IsClosed I.construct := by
+theorem Interval.isClosed_construct (I : Interval (Vec ℝ n)) : IsClosed I.construct := by
   have hinter : I.construct
       = ⋂ i, ({x : Vec ℝ n | I.inf i ≤ x i} ∩ {x : Vec ℝ n | x i ≤ I.sup i}) := by
     ext x
-    simp only [Interval.construct, Set.mem_setOf_eq, Set.mem_iInter, Set.mem_inter_iff]
+    simp only [Set.mem_iInter, Set.mem_inter_iff, Set.mem_setOf_eq]
+    exact Iff.rfl
   rw [hinter]
   refine isClosed_iInter fun i => IsClosed.inter ?_ ?_
   · exact isClosed_le continuous_const (continuous_apply i)

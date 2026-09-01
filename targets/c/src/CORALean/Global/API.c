@@ -1,6 +1,6 @@
 // Lean compiler output
 // Module: CORALean.Global.API
-// Imports: public import Init public meta import Init public import CORALean.Global.Mathlib public import CORALean.Global.Tensor public import CORALean.Global.Scalar public import CORALean.Global.Partition public import CORALean.Global.Sort
+// Imports: public import Init public meta import Init public import CORALean.Global.Mathlib public import CORALean.Global.Tensor public import CORALean.Global.Scalar public import CORALean.Global.Entrywise public import CORALean.Global.Partition public import CORALean.Global.Sort
 #include <lean/lean.h>
 #if defined(__clang__)
 #pragma clang diagnostic ignored "-Wunused-parameter"
@@ -18,6 +18,7 @@ lean_object* initialize_Init(uint8_t builtin);
 lean_object* initialize_CORALean_CORALean_Global_Mathlib(uint8_t builtin);
 lean_object* initialize_CORALean_CORALean_Global_Tensor(uint8_t builtin);
 lean_object* initialize_CORALean_CORALean_Global_Scalar(uint8_t builtin);
+lean_object* initialize_CORALean_CORALean_Global_Entrywise(uint8_t builtin);
 lean_object* initialize_CORALean_CORALean_Global_Partition(uint8_t builtin);
 lean_object* initialize_CORALean_CORALean_Global_Sort(uint8_t builtin);
 static bool _G_initialized = false;
@@ -38,6 +39,9 @@ res = initialize_CORALean_CORALean_Global_Tensor(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 res = initialize_CORALean_CORALean_Global_Scalar(builtin);
+if (lean_io_result_is_error(res)) return res;
+lean_dec_ref(res);
+res = initialize_CORALean_CORALean_Global_Entrywise(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 res = initialize_CORALean_CORALean_Global_Partition(builtin);

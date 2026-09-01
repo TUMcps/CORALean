@@ -1,5 +1,5 @@
 import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
-import CORALean.MatSet.API
+import CORALean.ContDynamics.LinearSys.MatExp.API
 
 /-!
 # Zonotopes: multiplication by an interval matrix
@@ -29,11 +29,11 @@ def Zonotope.absBound (Z : Zonotope (Vec ℝ n)) (j : Fin n) : ℝ :=
   |Z.c j| + ∑ l, |Z.G l j|
 
 /-- What the radius can add to coordinate `i`, over every matrix denoted. -/
-noncomputable def Zonotope.radiusReach (IM : IntervalMat m n) (Z : Zonotope (Vec ℝ n))
+noncomputable def Zonotope.radiusReach (IM : Interval (Mat ℝ m n)) (Z : Zonotope (Vec ℝ n))
     (i : Fin m) : ℝ :=
   ∑ j, IM.radius i j * Z.absBound j
 
-noncomputable def Zonotope.mtimesIntervalMat (IM : IntervalMat m n) (Z : Zonotope (Vec ℝ n)) :
+noncomputable def Zonotope.mtimesIntervalMat (IM : Interval (Mat ℝ m n)) (Z : Zonotope (Vec ℝ n)) :
     Zonotope (Vec ℝ m) where
   h := Z.h + m
   c := IM.center *ᵥ Z.c

@@ -1,4 +1,4 @@
-import CORALean.MatSet.IntervalMat.Operations
+import CORALean.ContDynamics.LinearSys.MatExp.Enclosures
 
 /-!
 # The interpolation error of a matrix exponential, as one series
@@ -49,7 +49,7 @@ theorem summable_exp_smul (A : Mat ℝ n n) (t : ℝ) :
   rw [smul_pow, smul_smul]
 
 set_option maxHeartbeats 400000 in
-theorem IntervalMat.summable_expDiff (A : Mat ℝ n n) (t r : ℝ) :
+theorem MatExp.summable_expDiff (A : Mat ℝ n n) (t r : ℝ) :
     Summable (fun i : ℕ => (((Nat.factorial (i + 2) : ℝ))⁻¹
       * (t ^ (i + 2) - (t / r) * r ^ (i + 2))) • A ^ (i + 2)) := by
   have hst := summable_exp_smul A t
@@ -61,7 +61,7 @@ theorem IntervalMat.summable_expDiff (A : Mat ℝ n n) (t r : ℝ) :
   exact (summable_nat_add_iff 2).mpr hg
 
 set_option maxHeartbeats 400000 in
-theorem IntervalMat.expDiff_eq_tsum (A : Mat ℝ n n) (t r : ℝ) (hr : r ≠ 0) :
+theorem MatExp.expDiff_eq_tsum (A : Mat ℝ n n) (t r : ℝ) (hr : r ≠ 0) :
     exp (t • A) - 1 - (t / r) • (exp (r • A) - 1)
       = ∑' i : ℕ, (((Nat.factorial (i + 2) : ℝ))⁻¹
           * (t ^ (i + 2) - (t / r) * r ^ (i + 2))) • A ^ (i + 2) := by

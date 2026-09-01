@@ -54,17 +54,18 @@ set_option maxHeartbeats 400000 in
 `c := (k+1)Δt` is where the step ends, and reflecting about it is what the
 substitution inside `inputSolution_outer` leaves behind — measurable for free,
 by `aestronglyMeasurable_input_reflected`. -/
-theorem LinearSys.Trajectory.stepInput_outer [Mtimes IntervalMat S] {sys : LinearSys 𝕋 n}
+theorem LinearSys.Trajectory.stepInput_outer [Mtimes (fun m n => Interval (Mat ℝ m n)) S]
+    {sys : LinearSys 𝕋 n}
     {R₀ U : S n} {x u : ℝ → Vec ℝ n} {Δt : ℝ} (traj : sys.Trajectory R₀ U x u)
     (hΔt : 0 < Δt) (η : ℕ) (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
     (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
     (hbdd : Bornology.IsBounded (construct U))
-    (hRconv : Convex ℝ (construct (Mtimes.mtimes
-      (IntervalMat.inputRemainder (toRealMat sys.A) Δt η) U)))
-    (hRclosed : IsClosed (construct (Mtimes.mtimes
-      (IntervalMat.inputRemainder (toRealMat sys.A) Δt η) U)))
-    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes
-      (IntervalMat.inputRemainder (toRealMat sys.A) Δt η) U)))
+    (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+      (MatExp.inputRemainder (toRealMat sys.A) Δt η) U)))
+    (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+      (MatExp.inputRemainder (toRealMat sys.A) Δt η) U)))
+    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+      (MatExp.inputRemainder (toRealMat sys.A) Δt η) U)))
     (k : ℕ) :
     sys.stepInput u Δt k ∈ construct (sys.inputSolution Δt η U) := by
   have hk : (0 : ℝ) ≤ (k : ℝ) * Δt := mul_nonneg (Nat.cast_nonneg k) hΔt.le

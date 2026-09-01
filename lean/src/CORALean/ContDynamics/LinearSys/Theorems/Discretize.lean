@@ -57,18 +57,18 @@ theorem LinearSys.Trajectory.discretize {sys : LinearSys 𝕋 n} {R₀ U Ud : S 
 set_option maxHeartbeats 40000 in
 /-- The same, with the input set named rather than assumed. Available to a
 representation that is convex and closed; `Zonotope` is both. -/
-theorem LinearSys.Trajectory.discretize_inputSolution [Mtimes IntervalMat S]
+theorem LinearSys.Trajectory.discretize_inputSolution [Mtimes (fun m n => Interval (Mat ℝ m n)) S]
     {sys : LinearSys 𝕋 n} {R₀ U : S n} {x u : ℝ → Vec ℝ n} {Δt : ℝ}
     (traj : sys.Trajectory R₀ U x u) (hΔt : 0 < Δt) (η : ℕ)
     (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
     (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
     (hbdd : Bornology.IsBounded (construct U))
-    (hRconv : Convex ℝ (construct (Mtimes.mtimes
-      (IntervalMat.inputRemainder (toRealMat sys.A) Δt η) U)))
-    (hRclosed : IsClosed (construct (Mtimes.mtimes
-      (IntervalMat.inputRemainder (toRealMat sys.A) Δt η) U)))
-    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes
-      (IntervalMat.inputRemainder (toRealMat sys.A) Δt η) U))) :
+    (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+      (MatExp.inputRemainder (toRealMat sys.A) Δt η) U)))
+    (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+      (MatExp.inputRemainder (toRealMat sys.A) Δt η) U)))
+    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+      (MatExp.inputRemainder (toRealMat sys.A) Δt η) U))) :
     (sys.discretize Δt).Trajectory R₀ (sys.inputSolution Δt η U)
       (fun k : ℕ => x (k * Δt)) (sys.stepInput u Δt) :=
   traj.discretize hΔt.le hbdd

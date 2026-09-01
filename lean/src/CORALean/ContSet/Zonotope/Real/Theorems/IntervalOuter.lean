@@ -31,7 +31,10 @@ theorem Zonotope.interval_outer (Z : Zonotope (Vec ℝ n)) :
           refine Finset.sum_le_sum fun j _ => ?_
           simpa using mul_le_mul_of_nonneg_left (hβ j) (abs_nonneg (Z.G j i))
   rw [abs_le] at key
-  exact ⟨by simp only [Zonotope.interval]; linarith [key.1],
-         by simp only [Zonotope.interval]; linarith [key.2]⟩
+  constructor
+  · show Z.c i - ∑ j, |Z.G j i| ≤ x i
+    linarith [key.1]
+  · show x i ≤ Z.c i + ∑ j, |Z.G j i|
+    linarith [key.2]
 
 end CORALean.Real

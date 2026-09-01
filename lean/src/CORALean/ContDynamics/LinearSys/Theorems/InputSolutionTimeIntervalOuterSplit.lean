@@ -51,19 +51,19 @@ theorem aux_mtimes_mem {M : Mat ℝ n n} {W : S n} {y : Vec ℝ n} (hy : y ∈ c
 
 omit [∀ n, OuterContSet (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] in
 /-- The same for any matrix an interval matrix denotes. -/
-theorem aux_mtimesIM_mem [Mtimes IntervalMat S] {IM : IntervalMat n n} {W : S n}
+theorem aux_mtimesIM_mem [Mtimes (fun m n => Interval (Mat ℝ m n)) S]
+    {IM : Interval (Mat ℝ n n)} {W : S n}
     {M : Mat ℝ n n} (hM : M ∈ IM.construct) {y : Vec ℝ n} (hy : y ∈ construct W) :
-    M *ᵥ y ∈ construct (Mtimes.mtimes IM W) := by
+    M *ᵥ y ∈ construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n)) IM W) := by
   refine Mtimes.mtimes_outer _ _ ?_
-  simp only [IntervalMat.construct_eq]
   exact Set.mem_biUnion hM (Set.mem_image_of_mem _ hy)
 
 set_option maxHeartbeats 400000 in
 /-- What a constant input contributes over `[0,t]`, in closed form. The
 substitution `σ = t - s` turns the propagator into the integrated exponential. -/
 theorem aux_const_integral (A : Mat ℝ n n) (c : Vec ℝ n) {t : ℝ} (ht : 0 ≤ t) :
-    (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ c) = IntervalMat.expIntegral A t *ᵥ c := by
-  rw [IntervalMat.expIntegral_mulVec A c ht]
+    (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ c) = MatExp.expIntegral A t *ᵥ c := by
+  rw [MatExp.expIntegral_mulVec A c ht]
   have h := intervalIntegral.integral_comp_sub_left (a := (0:ℝ)) (b := t)
     (fun σ : ℝ => exp (σ • A) *ᵥ c) t
   simpa using h
@@ -71,7 +71,8 @@ theorem aux_const_integral (A : Mat ℝ n n) (c : Vec ℝ n) {t : ℝ} (ht : 0 �
 set_option maxHeartbeats 1000000 in
 /-- The input's contribution at every time of the step, split along
 `U ⊆ {c} ⊕ U₀`. Neither piece needs `0 ∈ U`. -/
-theorem LinearSys.Trajectory.inputSolution_timeInterval_outer_split [Mtimes IntervalMat S]
+theorem LinearSys.Trajectory.inputSolution_timeInterval_outer_split
+    [Mtimes (fun m n => Interval (Mat ℝ m n)) S]
     {sys : LinearSys 𝕋 n} {R₀ U U₀ P Sg : S n} {x u : ℝ → Vec ℝ n} {c : Vec ℝ n} {r : ℝ}
     (traj : sys.Trajectory R₀ U x u) (hr : 0 < r) (η : ℕ)
     (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
@@ -84,18 +85,20 @@ theorem LinearSys.Trajectory.inputSolution_timeInterval_outer_split [Mtimes Inte
     (h0₀ : (0 : Vec ℝ n) ∈ construct U₀)
     (hconv₀ : Convex ℝ (construct U₀)) (hclosed₀ : IsClosed (construct U₀))
     (hbdd₀ : Bornology.IsBounded (construct U₀))
-    (hRconv₀ : Convex ℝ (construct (Mtimes.mtimes
-      (IntervalMat.inputRemainder (toRealMat sys.A) r η) U₀)))
-    (hRclosed₀ : IsClosed (construct (Mtimes.mtimes
-      (IntervalMat.inputRemainder (toRealMat sys.A) r η) U₀)))
-    (hRbdd₀ : Bornology.IsBounded (construct (Mtimes.mtimes
-      (IntervalMat.inputRemainder (toRealMat sys.A) r η) U₀)))
+    (hRconv₀ : Convex ℝ (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+      (MatExp.inputRemainder (toRealMat sys.A) r η) U₀)))
+    (hRclosed₀ : IsClosed (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+      (MatExp.inputRemainder (toRealMat sys.A) r η) U₀)))
+    (hRbdd₀ : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+      (MatExp.inputRemainder (toRealMat sys.A) r η) U₀)))
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) :
     (∫ s in (0:ℝ)..t, exp ((t - s) • toRealMat sys.A) *ᵥ u s)
       ∈ construct (OuterContSet.plus
           (OuterContSet.plus
-            (Mtimes.mtimes (IntervalMat.expIntegral (toRealMat sys.A) r) Sg)
-            (Mtimes.mtimes (IntervalMat.constCorrectionMatrix (toRealMat sys.A) r η) P))
+            (Mtimes.mtimes (𝕄 := Mat ℝ)
+              (MatExp.expIntegral (toRealMat sys.A) r) Sg)
+            (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+              (MatExp.constCorrectionMatrix (toRealMat sys.A) r η) P))
           (sys.inputSolution r η U₀)) := by
   set A := toRealMat sys.A with hA
   have hs0 : 0 ≤ t / r := div_nonneg ht0 hr.le
@@ -123,16 +126,16 @@ theorem LinearSys.Trajectory.inputSolution_timeInterval_outer_split [Mtimes Inte
   refine OuterContSet.plus_outer _ _ (Set.add_mem_add ?_ ?_)
   · -- the constant part: the straight line, widened by the interpolation error
     rw [aux_const_integral A c ht0]
-    have hdecomp : IntervalMat.expIntegral A t *ᵥ c
-        = (IntervalMat.expIntegral A r *ᵥ ((t / r) • c))
-          + (IntervalMat.expIntegral A t - (t / r) • IntervalMat.expIntegral A r) *ᵥ c := by
+    have hdecomp : MatExp.expIntegral A t *ᵥ c
+        = (MatExp.expIntegral A r *ᵥ ((t / r) • c))
+          + (MatExp.expIntegral A t - (t / r) • MatExp.expIntegral A r) *ᵥ c := by
       rw [Matrix.mulVec_smul, Matrix.sub_mulVec, Matrix.smul_mulVec]
       abel
     rw [hdecomp]
     refine OuterContSet.plus_outer _ _ (Set.add_mem_add ?_ ?_)
     · exact aux_mtimes_mem (hcS _ ⟨hs0, hs1⟩)
     · exact aux_mtimesIM_mem
-        (IntervalMat.expIntegralDiff_mem_constCorrectionMatrix A hr η hε ht0 htr) hcP
+        (MatExp.expIntegralDiff_mem_constCorrectionMatrix A hr η hε ht0 htr) hcP
   · -- the centred part: Prop. 3.3, unchanged
     exact sys.inputReach_subset_inputSolution hr η hε hconv₀ hclosed₀ hbdd₀
       hRconv₀ hRclosed₀ hRbdd₀

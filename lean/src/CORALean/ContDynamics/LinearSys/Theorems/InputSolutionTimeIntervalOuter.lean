@@ -36,17 +36,17 @@ variable [∀ n, OuterContSet (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 set_option maxHeartbeats 400000 in
 /-- Thm. 3.1 as a statement about `inputReach`: the enclosure holds for every
 admissible input at once, which is the form Prop. 3.3 composes with. -/
-theorem LinearSys.inputReach_subset_inputSolution [Mtimes IntervalMat S]
+theorem LinearSys.inputReach_subset_inputSolution [Mtimes (fun m n => Interval (Mat ℝ m n)) S]
     (sys : LinearSys 𝕋 n) {r : ℝ} (hr : 0 < r) (η : ℕ)
     (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) {U : S n}
     (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
     (hbdd : Bornology.IsBounded (construct U))
-    (hRconv : Convex ℝ (construct (Mtimes.mtimes
-      (IntervalMat.inputRemainder (toRealMat sys.A) r η) U)))
-    (hRclosed : IsClosed (construct (Mtimes.mtimes
-      (IntervalMat.inputRemainder (toRealMat sys.A) r η) U)))
-    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes
-      (IntervalMat.inputRemainder (toRealMat sys.A) r η) U))) :
+    (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+      (MatExp.inputRemainder (toRealMat sys.A) r η) U)))
+    (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+      (MatExp.inputRemainder (toRealMat sys.A) r η) U)))
+    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+      (MatExp.inputRemainder (toRealMat sys.A) r η) U))) :
     sys.inputReach U r ⊆ construct (sys.inputSolution r η U) := by
   rintro _ ⟨u, hmem, hmeas, rfl⟩
   refine sys.inputSolution_outer hr η hε hconv hclosed hbdd hRconv hRclosed hRbdd ?_
@@ -57,18 +57,19 @@ theorem LinearSys.inputReach_subset_inputSolution [Mtimes IntervalMat S]
 set_option maxHeartbeats 400000 in
 /-- Everything the input contributed up to any time in the step lies in the
 enclosure computed for the whole step, once `U` contains the origin. -/
-theorem LinearSys.Trajectory.inputSolution_timeInterval_outer [Mtimes IntervalMat S]
+theorem LinearSys.Trajectory.inputSolution_timeInterval_outer
+    [Mtimes (fun m n => Interval (Mat ℝ m n)) S]
     {sys : LinearSys 𝕋 n} {R₀ U : S n} {x u : ℝ → Vec ℝ n} {r : ℝ}
     (traj : sys.Trajectory R₀ U x u) (hr : 0 < r) (η : ℕ)
     (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
     (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
     (hbdd : Bornology.IsBounded (construct U))
-    (hRconv : Convex ℝ (construct (Mtimes.mtimes
-      (IntervalMat.inputRemainder (toRealMat sys.A) r η) U)))
-    (hRclosed : IsClosed (construct (Mtimes.mtimes
-      (IntervalMat.inputRemainder (toRealMat sys.A) r η) U)))
-    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes
-      (IntervalMat.inputRemainder (toRealMat sys.A) r η) U)))
+    (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+      (MatExp.inputRemainder (toRealMat sys.A) r η) U)))
+    (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+      (MatExp.inputRemainder (toRealMat sys.A) r η) U)))
+    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+      (MatExp.inputRemainder (toRealMat sys.A) r η) U)))
     (h0 : (0 : Vec ℝ n) ∈ construct U)
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) :
     (∫ s in (0:ℝ)..t, exp ((t - s) • toRealMat sys.A) *ᵥ u s)

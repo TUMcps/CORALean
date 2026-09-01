@@ -18,7 +18,7 @@ namespace CORALean.Real
 
 variable {n : ℕ}
 
-def Zonotope.interval (Z : Zonotope (Vec ℝ n)) : Interval n where
+def Zonotope.interval (Z : Zonotope (Vec ℝ n)) : Interval (Vec ℝ n) where
   inf := fun i => Z.c i - ∑ j, |Z.G j i|
   sup := fun i => Z.c i + ∑ j, |Z.G j i|
 

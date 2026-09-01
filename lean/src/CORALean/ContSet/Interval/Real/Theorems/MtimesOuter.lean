@@ -29,11 +29,16 @@ theorem Interval.aux_mul_between_endpoints {c lo hi x : ℝ} (h₁ : lo ≤ x) (
   · exact ⟨(min_le_right _ _).trans (mul_le_mul_of_nonpos_left h₂ hc),
            (mul_le_mul_of_nonpos_left h₁ hc).trans (le_max_left _ _)⟩
 
-theorem Interval.mtimes_outer (M : Mat ℝ m n) (I : Interval n) :
+theorem Interval.mtimes_outer (M : Mat ℝ m n) (I : Interval (Vec ℝ n)) :
     (M *ᵥ ·) '' I.construct ⊆ (Interval.mtimes M I).construct := by
   rintro _ ⟨x, hx, rfl⟩ i
-  simp only [Interval.mtimes, Matrix.mulVec, dotProduct]
-  exact ⟨Finset.sum_le_sum fun k _ => (Interval.aux_mul_between_endpoints (hx k).1 (hx k).2).1,
-         Finset.sum_le_sum fun k _ => (Interval.aux_mul_between_endpoints (hx k).1 (hx k).2).2⟩
+  -- `entry` at a vector is the coordinate, definitionally
+  have hxk : ∀ k, I.inf k ≤ x k ∧ x k ≤ I.sup k := fun k => hx k
+  show (∑ k, min (M i k * I.inf k) (M i k * I.sup k)) ≤ ∑ k, M i k * x k
+      ∧ (∑ k, M i k * x k) ≤ ∑ k, max (M i k * I.inf k) (M i k * I.sup k)
+  exact ⟨Finset.sum_le_sum fun k _ =>
+           (Interval.aux_mul_between_endpoints (hxk k).1 (hxk k).2).1,
+         Finset.sum_le_sum fun k _ =>
+           (Interval.aux_mul_between_endpoints (hxk k).1 (hxk k).2).2⟩
 
 end CORALean.Real

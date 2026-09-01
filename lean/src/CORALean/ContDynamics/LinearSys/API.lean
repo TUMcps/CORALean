@@ -1,4 +1,5 @@
 import CORALean.ContDynamics.LinearSys.LinearSys
+import CORALean.ContDynamics.LinearSys.MatExp.API
 import CORALean.ContDynamics.LinearSys.Operations
 import CORALean.ContDynamics.LinearSys.Theorems.API
 

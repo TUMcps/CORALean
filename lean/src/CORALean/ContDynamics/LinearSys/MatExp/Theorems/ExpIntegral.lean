@@ -1,4 +1,4 @@
-import CORALean.MatSet.IntervalMat.Theorems.ExpDiff
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpDiff
 
 /-!
 # The integrated exponential series converges
@@ -30,7 +30,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 variable {n : ℕ}
 
 set_option maxHeartbeats 400000 in
-theorem IntervalMat.summable_norm_expIntegral (A : Mat ℝ n n) (t : ℝ) :
+theorem MatExp.summable_norm_expIntegral (A : Mat ℝ n n) (t : ℝ) :
     Summable (fun i : ℕ => ‖(((Nat.factorial (i + 1) : ℝ))⁻¹ * t ^ (i + 1)) • A ^ i‖) := by
   have hg : Summable
       (fun i : ℕ => |t| * ‖((Nat.factorial i : ℝ))⁻¹ • (t • A) ^ i‖) :=
@@ -48,8 +48,8 @@ theorem IntervalMat.summable_norm_expIntegral (A : Mat ℝ n n) (t : ℝ) :
       ≤ ((Nat.factorial i : ℝ))⁻¹ * (|t| ^ i * |t|) * ‖A ^ i‖ := by gcongr
     _ = |t| * (((Nat.factorial i : ℝ))⁻¹ * |t| ^ i * ‖A ^ i‖) := by ring
 
-theorem IntervalMat.summable_expIntegral (A : Mat ℝ n n) (t : ℝ) :
+theorem MatExp.summable_expIntegral (A : Mat ℝ n n) (t : ℝ) :
     Summable (fun i : ℕ => (((Nat.factorial (i + 1) : ℝ))⁻¹ * t ^ (i + 1)) • A ^ i) :=
-  (IntervalMat.summable_norm_expIntegral A t).of_norm
+  (MatExp.summable_norm_expIntegral A t).of_norm
 
 end CORALean.Real

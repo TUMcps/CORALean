@@ -1,7 +1,6 @@
 import CORALean.Global.API
 import CORALean.Global.Float.API
 import CORALean.ContSet.API
-import CORALean.MatSet.API
 import CORALean.ContDynamics.API
 
 /-!

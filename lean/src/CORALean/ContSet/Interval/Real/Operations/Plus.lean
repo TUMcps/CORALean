@@ -3,19 +3,19 @@ import CORALean.ContSet.Interval.Real.Interval
 /-!
 # `Interval.plus`
 
-CORA's `@interval/plus`: bounds add coordinatewise.
+CORA's `@interval/plus`: bounds add.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       16-August-2026
--- Last update:   ---
+-- Last update:   01-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
 
-variable {n : ℕ}
+variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 
-def Interval.plus (I₁ I₂ : Interval n) : Interval n where
+def Interval.plus (I₁ I₂ : Interval α) : Interval α where
   inf := I₁.inf + I₂.inf
   sup := I₁.sup + I₂.sup
 

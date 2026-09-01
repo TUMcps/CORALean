@@ -59,10 +59,10 @@ instance {𝕋 : Type} [Scalar 𝕋] {p q r : ℕ} :
 
 /-- The same operation at an interval matrix, which `OuterContSet` does not ask
 for: a zonotope carries it, and a discretization is what wants it. -/
-noncomputable instance : Mtimes IntervalMat (fun n => Zonotope (Vec ℝ n)) where
+noncomputable instance :
+    Mtimes (fun m n => Interval (Mat ℝ m n)) (fun n => Zonotope (Vec ℝ n)) where
   mtimes := Zonotope.mtimesIntervalMat
   mtimes_outer IM Z := by
-    simp only [IntervalMat.construct_eq]
     exact Zonotope.mtimesIntervalMat_outer IM Z
 
 end CORALean.Real

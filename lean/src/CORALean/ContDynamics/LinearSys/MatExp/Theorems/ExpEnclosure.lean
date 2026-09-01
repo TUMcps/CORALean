@@ -1,4 +1,4 @@
-import CORALean.MatSet.IntervalMat.Operations
+import CORALean.ContDynamics.LinearSys.MatExp.Enclosures
 
 /-!
 # The matrix exponential lies in its enclosure
@@ -103,7 +103,7 @@ theorem aux_term_le (x : Mat ℝ n n) (η i : ℕ) :
 set_option maxHeartbeats 1000000 in
 theorem norm_exp_sub_expTaylor_le (x : Mat ℝ n n) (η : ℕ)
     (hε : ‖x‖ / ((η : ℝ) + 2) < 1) :
-    ‖exp x - IntervalMat.expTaylor x η‖ ≤ IntervalMat.expRemainderBound x η := by
+    ‖exp x - MatExp.expTaylor x η‖ ≤ MatExp.expRemainderBound x η := by
   show ‖exp x - ∑ i ∈ Finset.range (η + 1), ((Nat.factorial i : ℝ)⁻¹) • x ^ i‖
       ≤ (‖x‖ ^ (η + 1) / Nat.factorial (η + 1)) * (1 - ‖x‖ / ((η : ℝ) + 2))⁻¹
   set f : ℕ → Mat ℝ n n := fun i => ((Nat.factorial i : ℝ)⁻¹) • x ^ i with hf
@@ -129,9 +129,9 @@ theorem norm_exp_sub_expTaylor_le (x : Mat ℝ n n) (η : ℕ)
 set_option maxHeartbeats 40000 in
 /-- Monotone in the norm of its argument, which is what lets one bound taken at
 the end of a step stand for every time inside it. -/
-theorem IntervalMat.expRemainderBound_mono {x y : Mat ℝ n n} (η : ℕ) (hxy : ‖x‖ ≤ ‖y‖)
+theorem MatExp.expRemainderBound_mono {x y : Mat ℝ n n} (η : ℕ) (hxy : ‖x‖ ≤ ‖y‖)
     (hy : ‖y‖ / ((η : ℝ) + 2) < 1) :
-    IntervalMat.expRemainderBound x η ≤ IntervalMat.expRemainderBound y η := by
+    MatExp.expRemainderBound x η ≤ MatExp.expRemainderBound y η := by
   have h2 : (0:ℝ) < (η : ℝ) + 2 := by positivity
   have hfrac : ‖x‖ / ((η : ℝ) + 2) ≤ ‖y‖ / ((η : ℝ) + 2) := by gcongr
   have hdy : 0 < 1 - ‖y‖ / ((η : ℝ) + 2) := by linarith
@@ -143,18 +143,21 @@ theorem IntervalMat.expRemainderBound_mono {x y : Mat ℝ n n} (η : ℕ) (hxy :
   exact mul_le_mul hnum hinv (inv_nonneg.mpr hdx.le) (by positivity)
 
 set_option maxHeartbeats 40000 in
-theorem IntervalMat.exp_mem_expEnclosure (x : Mat ℝ n n) (η : ℕ)
+theorem MatExp.exp_mem_expEnclosure (x : Mat ℝ n n) (η : ℕ)
     (hε : ‖x‖ / ((η : ℝ) + 2) < 1) :
-    exp x ∈ (IntervalMat.expEnclosure x η).construct := by
-  intro i j
-  have h : |exp x i j - IntervalMat.expTaylor x η i j|
-      ≤ IntervalMat.expRemainderBound x η := by
-    calc |exp x i j - IntervalMat.expTaylor x η i j|
-        = |(exp x - IntervalMat.expTaylor x η) i j| := by rw [Matrix.sub_apply]
-      _ ≤ ‖exp x - IntervalMat.expTaylor x η‖ := abs_entry_le_norm _ i j
-      _ ≤ IntervalMat.expRemainderBound x η := norm_exp_sub_expTaylor_le x η hε
+    exp x ∈ (MatExp.expEnclosure x η).construct := by
+  refine Interval.mem_mat_iff.mpr fun i j => ?_
+  have h : |exp x i j - MatExp.expTaylor x η i j|
+      ≤ MatExp.expRemainderBound x η := by
+    calc |exp x i j - MatExp.expTaylor x η i j|
+        = |(exp x - MatExp.expTaylor x η) i j| := by rw [Matrix.sub_apply]
+      _ ≤ ‖exp x - MatExp.expTaylor x η‖ := abs_entry_le_norm _ i j
+      _ ≤ MatExp.expRemainderBound x η := norm_exp_sub_expTaylor_le x η hε
   rw [abs_le] at h
-  exact ⟨by simp only [IntervalMat.expEnclosure]; linarith [h.1],
-    by simp only [IntervalMat.expEnclosure]; linarith [h.2]⟩
+  constructor
+  · show MatExp.expTaylor x η i j - MatExp.expRemainderBound x η ≤ exp x i j
+    linarith [h.1]
+  · show exp x i j ≤ MatExp.expTaylor x η i j + MatExp.expRemainderBound x η
+    linarith [h.2]
 
 end CORALean.Real

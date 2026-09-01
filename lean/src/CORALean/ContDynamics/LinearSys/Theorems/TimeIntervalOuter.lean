@@ -30,7 +30,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, OuterContSet (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
-variable [Mtimes IntervalMat S]
+variable [Mtimes (fun m n => Interval (Mat ℝ m n)) S]
 
 set_option maxHeartbeats 1000000 in
 theorem LinearSys.timeIntervalStep_outer (sys : LinearSys 𝕋 n) {r : ℝ} (hr : 0 < r) {m : ℕ}
@@ -58,7 +58,7 @@ theorem LinearSys.timeIntervalStep_outer (sys : LinearSys 𝕋 n) {r : ℝ} (hr 
     · rw [sub_sub_cancel]
   · -- and the curvature term is the correction matrix acting on `X₀`
     exact Mtimes.mtimes_outer _ _ (Set.mem_biUnion
-      (IntervalMat.expDiff_mem_correctionMatrix A hr hε ht0 htr)
+      (MatExp.expDiff_mem_correctionMatrix A hr hε ht0 htr)
       (Set.mem_image_of_mem _ hx₀))
 
 end CORALean.Real

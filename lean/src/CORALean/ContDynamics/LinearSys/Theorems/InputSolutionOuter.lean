@@ -1,7 +1,7 @@
 import CORALean.ContDynamics.LinearSys.Operations
 import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 import CORALean.ContDynamics.LinearSys.Theorems.WeightedIntegral
-import CORALean.MatSet.IntervalMat.API
+import CORALean.ContDynamics.LinearSys.MatExp.API
 
 /-!
 # `inputSolution` contains everything the input can contribute over a step
@@ -69,9 +69,9 @@ theorem LinearSys.aux_inputTaylorSum_outer (sys : LinearSys 𝕋 n) (r : ℝ) (U
 /-- The exponential's first `η+1` orders, applied to a vector, with the powers
 of `τ` pulled out as scalars. -/
 theorem aux_expTaylor_smul_mulVec (A : Mat ℝ n n) (η : ℕ) (τ : ℝ) (v : Vec ℝ n) :
-    IntervalMat.expTaylor (τ • A) η *ᵥ v
+    MatExp.expTaylor (τ • A) η *ᵥ v
       = ∑ i ∈ Finset.range (η + 1), ((Nat.factorial i : ℝ)⁻¹ * τ ^ i) • (A ^ i *ᵥ v) := by
-  rw [IntervalMat.expTaylor, Matrix.sum_mulVec]
+  rw [MatExp.expTaylor, Matrix.sum_mulVec]
   refine Finset.sum_congr rfl fun i _ => ?_
   rw [smul_pow, Matrix.smul_mulVec, Matrix.smul_mulVec, mul_smul]
 
@@ -79,8 +79,8 @@ theorem aux_expTaylor_smul_mulVec (A : Mat ℝ n n) (η : ℕ) (τ : ℝ) (v : V
 step: the bound grows with `‖τ • A‖`, so the value at `r` covers all of `[0,r]`. -/
 theorem aux_remainder_entry_le (A : Mat ℝ n n) {r τ : ℝ} (η : ℕ) (hr : 0 < r)
     (hτ0 : 0 ≤ τ) (hτr : τ ≤ r) (hε : ‖r • A‖ / ((η : ℝ) + 2) < 1) (j k : Fin n) :
-    |(exp (τ • A) - IntervalMat.expTaylor (τ • A) η) j k|
-      ≤ IntervalMat.expRemainderBound (r • A) η := by
+    |(exp (τ • A) - MatExp.expTaylor (τ • A) η) j k|
+      ≤ MatExp.expRemainderBound (r • A) η := by
   have hnorm : ‖τ • A‖ ≤ ‖r • A‖ := by
     rw [norm_smul, norm_smul, Real.norm_eq_abs, Real.norm_eq_abs, abs_of_nonneg hτ0,
       abs_of_nonneg hr.le]
@@ -89,34 +89,35 @@ theorem aux_remainder_entry_le (A : Mat ℝ n n) {r τ : ℝ} (η : ℕ) (hr : 0
     have h2 : (0:ℝ) < (η : ℝ) + 2 := by positivity
     calc ‖τ • A‖ / ((η : ℝ) + 2) ≤ ‖r • A‖ / ((η : ℝ) + 2) := by gcongr
       _ < 1 := hε
-  calc |(exp (τ • A) - IntervalMat.expTaylor (τ • A) η) j k|
-      ≤ ‖exp (τ • A) - IntervalMat.expTaylor (τ • A) η‖ := abs_entry_le_norm _ j k
-    _ ≤ IntervalMat.expRemainderBound (τ • A) η := norm_exp_sub_expTaylor_le _ η hετ
-    _ ≤ IntervalMat.expRemainderBound (r • A) η :=
-        IntervalMat.expRemainderBound_mono η hnorm hε
+  calc |(exp (τ • A) - MatExp.expTaylor (τ • A) η) j k|
+      ≤ ‖exp (τ • A) - MatExp.expTaylor (τ • A) η‖ := abs_entry_le_norm _ j k
+    _ ≤ MatExp.expRemainderBound (τ • A) η := norm_exp_sub_expTaylor_le _ η hετ
+    _ ≤ MatExp.expRemainderBound (r • A) η :=
+        MatExp.expRemainderBound_mono η hnorm hε
 
 /-- The exponential and its truncation are continuous in the time, so their
 difference is too and the remainder integrand is measurable. -/
 theorem aux_continuous_expDiff (A : Mat ℝ n n) (η : ℕ) :
-    Continuous fun τ : ℝ => exp (τ • A) - IntervalMat.expTaylor (τ • A) η := by
+    Continuous fun τ : ℝ => exp (τ • A) - MatExp.expTaylor (τ • A) η := by
   have hsmul : Continuous fun τ : ℝ => τ • A := continuous_id.smul continuous_const
   refine (exp_continuous.comp hsmul).sub ?_
-  simp only [IntervalMat.expTaylor]
+  simp only [MatExp.expTaylor]
   refine continuous_finsetSum _ fun i _ => ?_
   exact (continuous_const : Continuous fun _ : ℝ => ((Nat.factorial i : ℝ)⁻¹)).smul (hsmul.pow i)
 
 set_option maxHeartbeats 1000000 in
-theorem LinearSys.inputSolution_outer [Mtimes IntervalMat S] (sys : LinearSys 𝕋 n)
+theorem LinearSys.inputSolution_outer [Mtimes (fun m n => Interval (Mat ℝ m n)) S]
+    (sys : LinearSys 𝕋 n)
     {r : ℝ} (hr : 0 < r) (η : ℕ)
     (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) {U : S n}
     (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
     (hbdd : Bornology.IsBounded (construct U))
-    (hRconv : Convex ℝ (construct (Mtimes.mtimes
-      (IntervalMat.inputRemainder (toRealMat sys.A) r η) U)))
-    (hRclosed : IsClosed (construct (Mtimes.mtimes
-      (IntervalMat.inputRemainder (toRealMat sys.A) r η) U)))
-    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes
-      (IntervalMat.inputRemainder (toRealMat sys.A) r η) U)))
+    (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+      (MatExp.inputRemainder (toRealMat sys.A) r η) U)))
+    (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+      (MatExp.inputRemainder (toRealMat sys.A) r η) U)))
+    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+      (MatExp.inputRemainder (toRealMat sys.A) r η) U)))
     {u : ℝ → Vec ℝ n}
     (hu : ∀ τ ∈ Set.Ioc (0:ℝ) r, u (r - τ) ∈ construct U)
     (hmeas : AEStronglyMeasurable (fun τ => u (r - τ)) (volume.restrict (Set.Ioc 0 r))) :
@@ -144,7 +145,7 @@ theorem LinearSys.inputSolution_outer [Mtimes IntervalMat S] (sys : LinearSys �
   -- the integrand, split into the exact orders and the remainder
   have hsplit : ∀ τ : ℝ, exp (τ • A) *ᵥ g τ
       = (∑ i ∈ Finset.range (η + 1), ((Nat.factorial i : ℝ)⁻¹ * τ ^ i) • (A ^ i *ᵥ g τ))
-        + (exp (τ • A) - IntervalMat.expTaylor (τ • A) η) *ᵥ g τ := by
+        + (exp (τ • A) - MatExp.expTaylor (τ • A) η) *ᵥ g τ := by
     intro τ
     rw [← aux_expTaylor_smul_mulVec A η τ (g τ), Matrix.sub_mulVec]
     abel
@@ -197,30 +198,31 @@ theorem LinearSys.inputSolution_outer [Mtimes IntervalMat S] (sys : LinearSys �
     rw [aestronglyMeasurable_iff_aemeasurable]
     exact (aemeasurable_pi_iff.mp (aestronglyMeasurable_iff_aemeasurable.mp hmeas)) k
   have hRmeas : AEStronglyMeasurable
-      (fun τ => (exp (τ • A) - IntervalMat.expTaylor (τ • A) η) *ᵥ g τ)
+      (fun τ => (exp (τ • A) - MatExp.expTaylor (τ • A) η) *ᵥ g τ)
       (volume.restrict (Set.Ioc 0 r)) := by
     rw [aestronglyMeasurable_iff_aemeasurable]
     refine aemeasurable_pi_iff.mpr fun j => ?_
-    have hj : ∀ τ : ℝ, ((exp (τ • A) - IntervalMat.expTaylor (τ • A) η) *ᵥ g τ) j
-        = ∑ k, (exp (τ • A) - IntervalMat.expTaylor (τ • A) η) j k * g τ k := fun _ => rfl
+    have hj : ∀ τ : ℝ, ((exp (τ • A) - MatExp.expTaylor (τ • A) η) *ᵥ g τ) j
+        = ∑ k, (exp (τ • A) - MatExp.expTaylor (τ • A) η) j k * g τ k := fun _ => rfl
     simp only [hj]
     rw [← aestronglyMeasurable_iff_aemeasurable]
     -- `Finset.aestronglyMeasurable_sum` sums functions, the goal sums values
     have heq : (∑ k : Fin n, (fun τ : ℝ =>
-          (exp (τ • A) - IntervalMat.expTaylor (τ • A) η) j k * g τ k))
-        = fun τ : ℝ => ∑ k, (exp (τ • A) - IntervalMat.expTaylor (τ • A) η) j k * g τ k := by
+          (exp (τ • A) - MatExp.expTaylor (τ • A) η) j k * g τ k))
+        = fun τ : ℝ => ∑ k, (exp (τ • A) - MatExp.expTaylor (τ • A) η) j k * g τ k := by
       funext τ
       simp only [Finset.sum_apply]
     rw [← heq]
     exact Finset.aestronglyMeasurable_sum _ fun k _ =>
       (((aux_continuous_expDiff A η).matrix_elem j k).aestronglyMeasurable).mul (hgk k)
   have hpt : ∀ τ ∈ Set.Ioc (0:ℝ) r,
-      r • ((exp (τ • A) - IntervalMat.expTaylor (τ • A) η) *ᵥ g τ)
-        ∈ construct (Mtimes.mtimes (IntervalMat.inputRemainder A r η) U) := by
+      r • ((exp (τ • A) - MatExp.expTaylor (τ • A) η) *ᵥ g τ)
+        ∈ construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+        (MatExp.inputRemainder A r η) U) := by
     intro τ hτ
-    have hM : (r • (exp (τ • A) - IntervalMat.expTaylor (τ • A) η))
-        ∈ (IntervalMat.inputRemainder A r η).construct := by
-      intro j k
+    have hM : (r • (exp (τ • A) - MatExp.expTaylor (τ • A) η))
+        ∈ (MatExp.inputRemainder A r η).construct := by
+      refine Interval.mem_mat_iff.mpr fun j k => ?_
       have hb := aux_remainder_entry_le A η hr hτ.1.le hτ.2 hε j k
       rw [abs_le] at hb
       refine ⟨?_, ?_⟩
@@ -230,20 +232,21 @@ theorem LinearSys.inputSolution_outer [Mtimes IntervalMat S] (sys : LinearSys �
         nlinarith [hb.2, hr.le]
     rw [← Matrix.smul_mulVec]
     exact Mtimes.mtimes_outer _ _ (Set.mem_biUnion hM (Set.mem_image_of_mem _ (hu τ hτ)))
-  have hrem : (∫ τ in (0:ℝ)..r, (exp (τ • A) - IntervalMat.expTaylor (τ • A) η) *ᵥ g τ)
-      ∈ construct (Mtimes.mtimes (IntervalMat.inputRemainder A r η) U) := by
+  have hrem : (∫ τ in (0:ℝ)..r, (exp (τ • A) - MatExp.expTaylor (τ • A) η) *ᵥ g τ)
+      ∈ construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+        (MatExp.inputRemainder A r η) U) := by
     have hI := integral_pow_smul_mem hRconv hRclosed hRbdd hr 0
-      (f := fun τ => r • ((exp (τ • A) - IntervalMat.expTaylor (τ • A) η) *ᵥ g τ))
+      (f := fun τ => r • ((exp (τ • A) - MatExp.expTaylor (τ • A) η) *ᵥ g τ))
       (hmeas := hRmeas.fun_const_smul r) (hmem := hpt)
     simp only [pow_zero, one_smul, pow_one, Nat.cast_zero, zero_add, div_one,
       intervalIntegral.integral_smul] at hI
     obtain ⟨y, hy, hyeq⟩ := hI
-    have hinj : y = ∫ τ in (0:ℝ)..r, (exp (τ • A) - IntervalMat.expTaylor (τ • A) η) *ᵥ g τ :=
+    have hinj : y = ∫ τ in (0:ℝ)..r, (exp (τ • A) - MatExp.expTaylor (τ • A) η) *ᵥ g τ :=
       smul_right_injective _ hr.ne' hyeq
     rwa [← hinj]
   -- everything is integrable, so the split survives the integral
   have hRint : IntervalIntegrable
-      (fun τ => (exp (τ • A) - IntervalMat.expTaylor (τ • A) η) *ᵥ g τ) volume 0 r := by
+      (fun τ => (exp (τ • A) - MatExp.expTaylor (τ • A) η) *ᵥ g τ) volume 0 r := by
     obtain ⟨D, hD⟩ := (isCompact_Icc (a := (0:ℝ)) (b := r)).exists_bound_of_continuousOn
       (aux_continuous_expDiff A η).continuousOn
     refine hint _ (D * C) hRmeas fun τ hτ => ?_

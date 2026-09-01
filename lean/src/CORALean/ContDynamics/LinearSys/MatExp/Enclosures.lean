@@ -1,4 +1,4 @@
-import CORALean.MatSet.IntervalMat.IntervalMat
+import CORALean.ContSet.Interval.Real.API
 
 /-!
 # Interval matrices: enclosing a matrix exponential
@@ -30,28 +30,28 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 variable {n : ℕ}
 
 /-- The series truncated at `η`, which is the centre of the enclosure. -/
-noncomputable def IntervalMat.expTaylor (x : Mat ℝ n n) (η : ℕ) : Mat ℝ n n :=
+noncomputable def MatExp.expTaylor (x : Mat ℝ n n) (η : ℕ) : Mat ℝ n n :=
   ∑ i ∈ Finset.range (η + 1), ((Nat.factorial i : ℝ)⁻¹) • x ^ i
 
 /-- What the neglected terms can still amount to, which is the radius. Sound
 only under `‖x‖ / (η + 2) < 1`; without it the geometric bound diverges and this
 is meaningless rather than merely loose. -/
-noncomputable def IntervalMat.expRemainderBound (x : Mat ℝ n n) (η : ℕ) : ℝ :=
+noncomputable def MatExp.expRemainderBound (x : Mat ℝ n n) (η : ℕ) : ℝ :=
   (‖x‖ ^ (η + 1) / Nat.factorial (η + 1)) * (1 - ‖x‖ / ((η : ℝ) + 2))⁻¹
 
-noncomputable def IntervalMat.expEnclosure (x : Mat ℝ n n) (η : ℕ) : IntervalMat n n where
-  inf := fun i j => IntervalMat.expTaylor x η i j - IntervalMat.expRemainderBound x η
-  sup := fun i j => IntervalMat.expTaylor x η i j + IntervalMat.expRemainderBound x η
+noncomputable def MatExp.expEnclosure (x : Mat ℝ n n) (η : ℕ) : Interval (Mat ℝ n n) where
+  inf := fun i j => MatExp.expTaylor x η i j - MatExp.expRemainderBound x η
+  sup := fun i j => MatExp.expTaylor x η i j + MatExp.expRemainderBound x η
 
 /-- What the orders past `η` can contribute to an input solution over a whole
 step: the exponential's own remainder bound, spread symmetrically over every
 entry and scaled by the step, since the input acts for the whole of it.
 
 Althoff's `E(r) · r`. Constant in the entry, as the bound is on the norm. -/
-noncomputable def IntervalMat.inputRemainder (A : Mat ℝ n n) (r : ℝ) (η : ℕ) :
-    IntervalMat n n where
-  inf := fun _ _ => -(r * IntervalMat.expRemainderBound (r • A) η)
-  sup := fun _ _ => r * IntervalMat.expRemainderBound (r • A) η
+noncomputable def MatExp.inputRemainder (A : Mat ℝ n n) (r : ℝ) (η : ℕ) :
+    Interval (Mat ℝ n n) where
+  inf := fun _ _ => -(r * MatExp.expRemainderBound (r • A) η)
+  sup := fun _ _ => r * MatExp.expRemainderBound (r • A) η
 
 /-- `∫₀ᵗ e^{Aσ} dσ`, as the series `∑ᵢ Aⁱ t^{i+1}/(i+1)!` rather than as an
 integral.
@@ -61,32 +61,32 @@ integration can see, so a matrix-valued integral is out of reach here — and
 because the series is the form every bound on it is proved in anyway.
 `expIntegral_mulVec` is what ties it back to the integral, one vector at a time,
 which is all the dynamics ever need. -/
-noncomputable def IntervalMat.expIntegral (A : Mat ℝ n n) (t : ℝ) : Mat ℝ n n :=
+noncomputable def MatExp.expIntegral (A : Mat ℝ n n) (t : ℝ) : Mat ℝ n n :=
   ∑' i : ℕ, (((Nat.factorial (i + 1) : ℝ))⁻¹ * t ^ (i + 1)) • A ^ i
 
 /-- Where `s ↦ s ^ i - s` bottoms out: `i ^ (-1/(i-1))`, the only stationary
 point, and the minimum because the map is convex. -/
-noncomputable def IntervalMat.corrCritical (i : ℕ) : ℝ :=
+noncomputable def MatExp.corrCritical (i : ℕ) : ℝ :=
   (i : ℝ) ^ (-(1:ℝ) / ((i : ℝ) - 1))
 
 /-- How far below zero `s ^ i - s` reaches on `[0,1]`. Althoff's thesis writes
 this `i^(-i/(i-1)) - i^(-1/(i-1))`, which `corrCoeff_eq` confirms; in this form
 the exponent is a natural number and the bound is provable as stated. -/
-noncomputable def IntervalMat.corrCoeff (i : ℕ) : ℝ :=
-  IntervalMat.corrCritical i ^ i - IntervalMat.corrCritical i
+noncomputable def MatExp.corrCoeff (i : ℕ) : ℝ :=
+  MatExp.corrCritical i ^ i - MatExp.corrCritical i
 
 /-- What order `i` contributes to the correction, at the far end of its range.
 The interval it spans is between this and zero, on whichever side its sign puts
 it. -/
-noncomputable def IntervalMat.corrTerm (A : Mat ℝ n n) (r : ℝ) (i : ℕ) (j k : Fin n) : ℝ :=
-  IntervalMat.corrCoeff i * r ^ i * (((Nat.factorial i : ℝ))⁻¹ * (A ^ i) j k)
+noncomputable def MatExp.corrTerm (A : Mat ℝ n n) (r : ℝ) (i : ℕ) (j k : Fin n) : ℝ :=
+  MatExp.corrCoeff i * r ^ i * (((Nat.factorial i : ℝ))⁻¹ * (A ^ i) j k)
 
 /-- What order `i+2` contributes to the *integrated* correction. The same shape
 as `corrTerm`, one factorial further along and one matrix power back, which is
 what integrating each order of the exponential does to it. -/
-noncomputable def IntervalMat.constCorrTerm (A : Mat ℝ n n) (r : ℝ) (i : ℕ) (j k : Fin n) :
+noncomputable def MatExp.constCorrTerm (A : Mat ℝ n n) (r : ℝ) (i : ℕ) (j k : Fin n) :
     ℝ :=
-  IntervalMat.corrCoeff (i + 2) * r ^ (i + 2)
+  MatExp.corrCoeff (i + 2) * r ^ (i + 2)
     * (((Nat.factorial (i + 2) : ℝ))⁻¹ * (A ^ (i + 1)) j k)
 
 /-- Althoff's `F̃ = A⁻¹F`, without the inverse: what the interpolation error of a
@@ -95,23 +95,23 @@ noncomputable def IntervalMat.constCorrTerm (A : Mat ℝ n n) (r : ℝ) (i : ℕ
 Orders `1` through `η` of `∫₀ᵗ e^{Aσ}dσ - (t/r)∫₀ʳ e^{Aσ}dσ` exactly, and
 everything past `η` in `E(r)·r` — the same remainder an input solution uses,
 since integrating the exponential's tail scales it by at most the step. -/
-noncomputable def IntervalMat.constCorrectionMatrix (A : Mat ℝ n n) (r : ℝ) (η : ℕ) :
-    IntervalMat n n where
-  inf := fun j k => (∑ i ∈ Finset.range η, min (IntervalMat.constCorrTerm A r i j k) 0)
-    - r * IntervalMat.expRemainderBound (r • A) η
-  sup := fun j k => (∑ i ∈ Finset.range η, max (IntervalMat.constCorrTerm A r i j k) 0)
-    + r * IntervalMat.expRemainderBound (r • A) η
+noncomputable def MatExp.constCorrectionMatrix (A : Mat ℝ n n) (r : ℝ) (η : ℕ) :
+    Interval (Mat ℝ n n) where
+  inf := fun j k => (∑ i ∈ Finset.range η, min (MatExp.constCorrTerm A r i j k) 0)
+    - r * MatExp.expRemainderBound (r • A) η
+  sup := fun j k => (∑ i ∈ Finset.range η, max (MatExp.constCorrTerm A r i j k) 0)
+    + r * MatExp.expRemainderBound (r • A) η
 
 /-- Althoff's `F`: the orders up to `η` exactly, and everything past `η` in the
 same remainder that bounds the exponential.
 
 Indexed from `2`, since the constant and linear terms of the interpolation error
 cancel; `range (η-1)` at offset `2` is orders `2` through `η`. -/
-noncomputable def IntervalMat.correctionMatrix (A : Mat ℝ n n) (r : ℝ) (η : ℕ) :
-    IntervalMat n n where
-  inf := fun j k => (∑ i ∈ Finset.range (η - 1), min (IntervalMat.corrTerm A r (i + 2) j k) 0)
-    - IntervalMat.expRemainderBound (r • A) η
-  sup := fun j k => (∑ i ∈ Finset.range (η - 1), max (IntervalMat.corrTerm A r (i + 2) j k) 0)
-    + IntervalMat.expRemainderBound (r • A) η
+noncomputable def MatExp.correctionMatrix (A : Mat ℝ n n) (r : ℝ) (η : ℕ) :
+    Interval (Mat ℝ n n) where
+  inf := fun j k => (∑ i ∈ Finset.range (η - 1), min (MatExp.corrTerm A r (i + 2) j k) 0)
+    - MatExp.expRemainderBound (r • A) η
+  sup := fun j k => (∑ i ∈ Finset.range (η - 1), max (MatExp.corrTerm A r (i + 2) j k) 0)
+    + MatExp.expRemainderBound (r • A) η
 
 end CORALean.Real
