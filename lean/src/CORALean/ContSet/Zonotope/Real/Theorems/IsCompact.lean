@@ -13,42 +13,40 @@ Closedness is the half an integral needs; compactness is what proves it.
 
 -- Authors:       Tobias Ladner
 -- Written:       19-August-2026
--- Last update:   ---
+-- Last update:   01-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
 
-variable {n : ℕ}
+variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
 
 /-- The coefficient cube, as a ball, which is the form `isCompact_closedBall`
 speaks about. -/
 theorem Zonotope.aux_closedBall_eq (h : ℕ) :
-    Metric.closedBall (0 : Vec ℝ h) 1 = {β : Vec ℝ h | ∀ j, |β j| ≤ 1} := by
+    Metric.closedBall (0 : Fin h → ℝ) 1 = {β : Fin h → ℝ | ∀ j, |β j| ≤ 1} := by
   ext β
   rw [Metric.mem_closedBall, dist_zero_right, pi_norm_le_iff_of_nonneg zero_le_one]
   simp only [Real.norm_eq_abs, Set.mem_setOf_eq]
 
-theorem Zonotope.aux_continuous_affine (Z : Zonotope n) :
-    Continuous fun β : Vec ℝ Z.h => (fun i => Z.c i + ∑ j, Z.G i j * β j : Vec ℝ n) :=
-  continuous_pi fun _ =>
-    continuous_const.add (continuous_finsetSum _ fun j _ =>
-      continuous_const.mul (continuous_apply j))
+theorem Zonotope.aux_continuous_affine (Z : Zonotope α) :
+    Continuous fun β : Fin Z.h → ℝ => Z.c + ∑ j, β j • Z.G j :=
+  continuous_const.add (continuous_finsetSum _ fun j _ =>
+    (continuous_apply j).smul continuous_const)
 
-theorem Zonotope.isCompact_construct (Z : Zonotope n) : IsCompact Z.construct := by
+theorem Zonotope.isCompact_construct (Z : Zonotope α) : IsCompact Z.construct := by
   have himg : Z.construct
-      = (fun β : Vec ℝ Z.h => (fun i => Z.c i + ∑ j, Z.G i j * β j : Vec ℝ n))
-        '' Metric.closedBall 0 1 := by
+      = (fun β : Fin Z.h → ℝ => Z.c + ∑ j, β j • Z.G j) '' Metric.closedBall 0 1 := by
     rw [Zonotope.aux_closedBall_eq]
     ext x
     constructor
-    · rintro ⟨β, hβ, hx⟩
-      exact ⟨β, hβ, (funext fun i => (hx i).symm)⟩
     · rintro ⟨β, hβ, rfl⟩
-      exact ⟨β, hβ, fun _ => rfl⟩
+      exact ⟨β, hβ, rfl⟩
+    · rintro ⟨β, hβ, rfl⟩
+      exact ⟨β, hβ, rfl⟩
   rw [himg]
   exact (isCompact_closedBall 0 1).image Z.aux_continuous_affine
 
-theorem Zonotope.isClosed_construct (Z : Zonotope n) : IsClosed Z.construct :=
+theorem Zonotope.isClosed_construct (Z : Zonotope α) : IsClosed Z.construct :=
   Z.isCompact_construct.isClosed
 
 end CORALean.Real

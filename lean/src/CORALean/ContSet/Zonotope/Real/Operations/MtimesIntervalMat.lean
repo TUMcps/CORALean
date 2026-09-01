@@ -25,18 +25,19 @@ open Matrix
 variable {m n : ℕ}
 
 /-- How far coordinate `j` can reach from the origin. -/
-def Zonotope.absBound (Z : Zonotope n) (j : Fin n) : ℝ :=
-  |Z.c j| + ∑ l, |Z.G j l|
+def Zonotope.absBound (Z : Zonotope (Vec ℝ n)) (j : Fin n) : ℝ :=
+  |Z.c j| + ∑ l, |Z.G l j|
 
 /-- What the radius can add to coordinate `i`, over every matrix denoted. -/
-noncomputable def Zonotope.radiusReach (IM : IntervalMat m n) (Z : Zonotope n) (i : Fin m) : ℝ :=
+noncomputable def Zonotope.radiusReach (IM : IntervalMat m n) (Z : Zonotope (Vec ℝ n))
+    (i : Fin m) : ℝ :=
   ∑ j, IM.radius i j * Z.absBound j
 
-noncomputable def Zonotope.mtimesIntervalMat (IM : IntervalMat m n) (Z : Zonotope n) :
-    Zonotope m where
+noncomputable def Zonotope.mtimesIntervalMat (IM : IntervalMat m n) (Z : Zonotope (Vec ℝ n)) :
+    Zonotope (Vec ℝ m) where
   h := Z.h + m
   c := IM.center *ᵥ Z.c
-  G := fun i => Fin.append ((IM.center * Z.G) i)
-                  (Matrix.diagonal (fun i => Zonotope.radiusReach IM Z i) i)
+  G := Fin.append (fun l => IM.center *ᵥ Z.G l)
+        (Matrix.diagonal fun i => Zonotope.radiusReach IM Z i)
 
 end CORALean.Real

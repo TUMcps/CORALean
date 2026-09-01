@@ -19,17 +19,17 @@ turns their formula back into this one, with each generator twice over.
 
 -- Authors:       Tobias Ladner
 -- Written:       18-August-2026
--- Last update:   ---
+-- Last update:   01-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
 
-variable {n : ℕ}
+variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
-noncomputable def Zonotope.linComb (Z₁ Z₂ : Zonotope n) : Zonotope n where
+noncomputable def Zonotope.linComb (Z₁ Z₂ : Zonotope α) : Zonotope α where
   h := Z₁.h + Z₂.h + 1
-  c := fun i => (Z₁.c i + Z₂.c i) / 2
-  G := fun i => Fin.append (Fin.append (Z₁.G i) (Z₂.G i))
-                  (fun _ : Fin 1 => (Z₁.c i - Z₂.c i) / 2)
+  c := (2:ℝ)⁻¹ • (Z₁.c + Z₂.c)
+  G := Fin.append (Fin.append Z₁.G Z₂.G)
+        (fun _ : Fin 1 => (2:ℝ)⁻¹ • (Z₁.c - Z₂.c))
 
 end CORALean.Real

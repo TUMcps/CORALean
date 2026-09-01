@@ -1,6 +1,6 @@
 // Lean compiler output
 // Module: CORALean.ContSet.Zonotope.Real.Operations.API
-// Imports: public import Init public meta import Init public import CORALean.ContSet.Zonotope.Real.Operations.Plus public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes public import CORALean.ContSet.Zonotope.Real.Operations.Interval public import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat public import CORALean.ContSet.Zonotope.Real.Operations.LinComb public import CORALean.ContSet.Zonotope.Real.Operations.Reduce
+// Imports: public import Init public meta import Init public import CORALean.ContSet.Zonotope.Real.Operations.Map public import CORALean.ContSet.Zonotope.Real.Operations.Plus public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes public import CORALean.ContSet.Zonotope.Real.Operations.Interval public import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat public import CORALean.ContSet.Zonotope.Real.Operations.LinComb public import CORALean.ContSet.Zonotope.Real.Operations.Reduce
 #include <lean/lean.h>
 #if defined(__clang__)
 #pragma clang diagnostic ignored "-Wunused-parameter"
@@ -15,6 +15,7 @@ extern "C" {
 #endif
 lean_object* initialize_Init(uint8_t builtin);
 lean_object* initialize_Init(uint8_t builtin);
+lean_object* initialize_CORALean_CORALean_ContSet_Zonotope_Real_Operations_Map(uint8_t builtin);
 lean_object* initialize_CORALean_CORALean_ContSet_Zonotope_Real_Operations_Plus(uint8_t builtin);
 lean_object* initialize_CORALean_CORALean_ContSet_Zonotope_Real_Operations_Mtimes(uint8_t builtin);
 lean_object* initialize_CORALean_CORALean_ContSet_Zonotope_Real_Operations_Interval(uint8_t builtin);
@@ -30,6 +31,9 @@ res = initialize_Init(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 res = initialize_Init(builtin);
+if (lean_io_result_is_error(res)) return res;
+lean_dec_ref(res);
+res = initialize_CORALean_CORALean_ContSet_Zonotope_Real_Operations_Map(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 res = initialize_CORALean_CORALean_ContSet_Zonotope_Real_Operations_Plus(builtin);

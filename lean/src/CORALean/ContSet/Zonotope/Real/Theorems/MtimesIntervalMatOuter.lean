@@ -30,32 +30,33 @@ variable {m n : ℕ}
 
 /-- `Fin.sum_univ_add` at this operation's generator count, stated through the
 projection because that is the form the goal has. -/
-theorem Zonotope.aux_sum_univ_mtimesIntervalMat {IM : IntervalMat m n} {Z : Zonotope n}
+theorem Zonotope.aux_sum_univ_mtimesIntervalMat {IM : IntervalMat m n} {Z : Zonotope (Vec ℝ n)}
     (f : Fin (Z.h + m) → ℝ) :
     ∑ j : Fin (Zonotope.mtimesIntervalMat IM Z).h, f j
       = ∑ j, f (Fin.castAdd m j) + ∑ j, f (Fin.natAdd Z.h j) :=
   Fin.sum_univ_add f
 
 /-- A coordinate of a zonotope never leaves `absBound`. -/
-theorem Zonotope.aux_abs_le_absBound {Z : Zonotope n} {x : Vec ℝ n} {β : Vec ℝ Z.h}
-    (hβ : ∀ j, |β j| ≤ 1) (hx : ∀ i, x i = Z.c i + ∑ j, Z.G i j * β j) (j : Fin n) :
+theorem Zonotope.aux_abs_le_absBound {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n} {β : Vec ℝ Z.h}
+    (hβ : ∀ j, |β j| ≤ 1) (hx : ∀ i, x i = Z.c i + ∑ j, Z.G j i * β j) (j : Fin n) :
     |x j| ≤ Z.absBound j := by
   rw [hx j, Zonotope.absBound]
   refine (abs_add_le _ _).trans ?_
   gcongr
-  calc |∑ l, Z.G j l * β l|
-      ≤ ∑ l, |Z.G j l * β l|   := Finset.abs_sum_le_sum_abs _ _
-    _ = ∑ l, |Z.G j l| * |β l| := by simp_rw [abs_mul]
-    _ ≤ ∑ l, |Z.G j l|         := Finset.sum_le_sum fun l _ => by
-        simpa using mul_le_mul_of_nonneg_left (hβ l) (abs_nonneg (Z.G j l))
+  calc |∑ l, Z.G l j * β l|
+      ≤ ∑ l, |Z.G l j * β l|   := Finset.abs_sum_le_sum_abs _ _
+    _ = ∑ l, |Z.G l j| * |β l| := by simp_rw [abs_mul]
+    _ ≤ ∑ l, |Z.G l j|         := Finset.sum_le_sum fun l _ => by
+        simpa using mul_le_mul_of_nonneg_left (hβ l) (abs_nonneg (Z.G l j))
 
 set_option maxHeartbeats 40000 in
-theorem Zonotope.mtimesIntervalMat_outer (IM : IntervalMat m n) (Z : Zonotope n) :
+theorem Zonotope.mtimesIntervalMat_outer (IM : IntervalMat m n) (Z : Zonotope (Vec ℝ n)) :
     (⋃ A ∈ IM.construct, (A *ᵥ ·) '' Z.construct)
       ⊆ (Zonotope.mtimesIntervalMat IM Z).construct := by
   rintro y hy
   simp only [Set.mem_iUnion, Set.mem_image, exists_prop] at hy
-  obtain ⟨A, hA, x, ⟨β, hβ, hx⟩, rfl⟩ := hy
+  obtain ⟨A, hA, x, hxmem, rfl⟩ := hy
+  obtain ⟨β, hβ, hx⟩ := Zonotope.mem_construct_iff.mp hxmem
   have hrad : ∀ i j, 0 ≤ IM.radius i j :=
     fun i j => (abs_nonneg _).trans (IM.abs_sub_center_le hA i j)
   have hxb := Zonotope.aux_abs_le_absBound hβ hx
@@ -71,7 +72,8 @@ theorem Zonotope.mtimesIntervalMat_outer (IM : IntervalMat m n) (Z : Zonotope n)
       _ = Zonotope.radiusReach IM Z i := rfl
   have hreachnn : ∀ i, 0 ≤ Zonotope.radiusReach IM Z i :=
     fun i => (abs_nonneg _).trans (herrb i)
-  refine ⟨Fin.append β (fun i => Zonotope.coefficient (Zonotope.radiusReach IM Z i) (err i)),
+  refine Zonotope.mem_construct_iff.mpr
+    ⟨Fin.append β (fun i => Zonotope.coefficient (Zonotope.radiusReach IM Z i) (err i)),
     ?_, fun i => ?_⟩
   · refine Fin.addCases (fun l => ?_) (fun i => ?_)
     · simpa using hβ l
@@ -79,11 +81,11 @@ theorem Zonotope.mtimesIntervalMat_outer (IM : IntervalMat m n) (Z : Zonotope n)
       exact Zonotope.abs_coefficient_le_one (hreachnn i) (herrb i)
   · rw [Zonotope.aux_sum_univ_mtimesIntervalMat]
     simp only [Zonotope.mtimesIntervalMat, Fin.append_left, Fin.append_right]
-    rw [Zonotope.sum_diagonal_mul, Zonotope.mul_coefficient (herrb i)]
+    rw [Zonotope.sum_diagonal_mul', Zonotope.mul_coefficient (herrb i)]
     -- centre acts exactly, and the leftover is `err`
-    have hcentre : ∑ l, (IM.center * Z.G) i l * β l
-        = ∑ j, IM.center i j * (∑ l, Z.G j l * β l) := by
-      simp_rw [Matrix.mul_apply, Finset.sum_mul, Finset.mul_sum]
+    have hcentre : ∑ l, (IM.center *ᵥ Z.G l) i * β l
+        = ∑ j, IM.center i j * (∑ l, Z.G l j * β l) := by
+      simp_rw [Matrix.mulVec, dotProduct, Finset.sum_mul, Finset.mul_sum]
       rw [Finset.sum_comm]
       simp_rw [mul_assoc]
     rw [hcentre]
@@ -92,7 +94,7 @@ theorem Zonotope.mtimesIntervalMat_outer (IM : IntervalMat m n) (Z : Zonotope n)
       rw [← Finset.sum_add_distrib]
       exact Finset.sum_congr rfl fun j _ => by ring
     have hcx : ∑ j, IM.center i j * x j
-        = (IM.center *ᵥ Z.c) i + ∑ j, IM.center i j * (∑ l, Z.G j l * β l) := by
+        = (IM.center *ᵥ Z.c) i + ∑ j, IM.center i j * (∑ l, Z.G l j * β l) := by
       simp only [Matrix.mulVec, dotProduct]
       rw [← Finset.sum_add_distrib]
       exact Finset.sum_congr rfl fun j _ => by rw [hx j]; ring

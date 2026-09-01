@@ -27,8 +27,9 @@ structure Zonotope (𝕋 : Type) (n : ℕ) where
   E : Interval 𝕋 n
 
 instance [SoundFloatArithmetic 𝕋] :
-    InflatedContSet (Zonotope 𝕋 n) (CORALean.Real.Zonotope n) 𝕋 n where
-  nominal Z := ⟨Z.h, toRealVec Z.c, toRealMat Z.G⟩
+    InflatedContSet (Zonotope 𝕋 n) (CORALean.Real.Zonotope (Vec ℝ n)) 𝕋 n where
+  -- generators transpose: stored as a matrix here, a family of vectors there
+  nominal Z := ⟨Z.h, toRealVec Z.c, fun j i => toReal (Z.G i j)⟩
   error Z := Z.E
 
 /-! The nominal zonotope's fields, so proofs can see through the instance. -/
@@ -40,7 +41,7 @@ theorem Zonotope.nominal_c [SoundFloatArithmetic 𝕋] (Z : Zonotope 𝕋 n) :
     (InflatedContSet.nominal Z).c = toRealVec Z.c := rfl
 
 theorem Zonotope.nominal_G [SoundFloatArithmetic 𝕋] (Z : Zonotope 𝕋 n) :
-    (InflatedContSet.nominal Z).G = toRealMat Z.G := rfl
+    (InflatedContSet.nominal Z).G = fun j i => toReal (Z.G i j) := rfl
 
 /-- The nominal set spelt in this zonotope's own fields. Definitional, and the
 reason proofs never mention `nominal`: through it every count is `Z.h`, where
@@ -50,7 +51,7 @@ theorem Zonotope.mem_nominalSet_iff [SoundFloatArithmetic 𝕋] {Z : Zonotope �
     {x : Vec ℝ n} :
     x ∈ InflatedContSet.nominalSet Z ↔ ∃ β : Vec ℝ Z.h, (∀ j, |β j| ≤ 1) ∧
       ∀ i, x i = toReal (Z.c i) + ∑ j, toReal (Z.G i j) * β j :=
-  Iff.rfl
+  Real.Zonotope.mem_construct_iff
 
 /-- Inherited from `InflatedContSet`; named here so statements read locally. -/
 abbrev Zonotope.construct [SoundFloatArithmetic 𝕋] (Z : Zonotope 𝕋 n) : Set (Vec ℝ n) :=

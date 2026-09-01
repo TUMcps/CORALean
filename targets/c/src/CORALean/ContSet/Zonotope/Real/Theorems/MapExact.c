@@ -1,5 +1,5 @@
 // Lean compiler output
-// Module: CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+// Module: CORALean.ContSet.Zonotope.Real.Theorems.MapExact
 // Imports: public import Init public meta import Init public import CORALean.ContSet.Zonotope.Real.Operations.API
 #include <lean/lean.h>
 #if defined(__clang__)
@@ -17,7 +17,7 @@ lean_object* initialize_Init(uint8_t builtin);
 lean_object* initialize_Init(uint8_t builtin);
 lean_object* initialize_CORALean_CORALean_ContSet_Zonotope_Real_Operations_API(uint8_t builtin);
 static bool _G_initialized = false;
-LEAN_EXPORT lean_object* initialize_CORALean_CORALean_ContSet_Zonotope_Real_Theorems_MtimesExact(uint8_t builtin) {
+LEAN_EXPORT lean_object* initialize_CORALean_CORALean_ContSet_Zonotope_Real_Theorems_MapExact(uint8_t builtin) {
 lean_object * res;
 if (_G_initialized) return lean_io_result_mk_ok(lean_box(0));
 _G_initialized = true;

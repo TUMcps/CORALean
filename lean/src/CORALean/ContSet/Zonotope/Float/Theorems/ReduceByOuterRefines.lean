@@ -39,7 +39,8 @@ theorem Zonotope.aux_sum_univ_reduceBy {Z : Zonotope 𝕋 n}
 theorem Zonotope.reduceBy_outer_refines (Z : Zonotope 𝕋 n)
     (part : Split (Fin Z.h) into (Fin q) and (Fin r)) :
     ((nominal Z).reduceBy part).construct ⊆ nominalSet (Z.reduceBy part) := by
-  rintro x ⟨β, hβ, hx⟩
+  intro x hxmem
+  obtain ⟨β, hβ, hx⟩ := Real.Zonotope.mem_construct_iff.mp hxmem
   have hnonneg : ∀ i, (0:ℝ) ≤ ∑ l, |toReal (Z.G i (part.right l))| :=
     fun i => Finset.sum_nonneg fun l _ => abs_nonneg _
   have hle : ∀ i, (∑ l, |toReal (Z.G i (part.right l))|)
@@ -58,11 +59,13 @@ theorem Zonotope.reduceBy_outer_refines (Z : Zonotope 𝕋 n)
     · simp only [Fin.append_right]
       exact Real.Zonotope.abs_coefficient_le_one ((hnonneg i).trans (hle i)) (hbound i)
   · rw [hx i, Real.Zonotope.sum_univ_reduceBy, Zonotope.aux_sum_univ_reduceBy]
-    simp only [Real.Zonotope.reduceBy, Zonotope.reduceBy,
-      Zonotope.nominal_c, Zonotope.nominal_G, Fin.append_left, Fin.append_right,
-      toReal_diagonalBlock, toRealVec, toRealMat]
-    rw [Real.Zonotope.sum_diagonal_mul, Real.Zonotope.sum_diagonal_mul]
+    simp only [Real.Zonotope.reduceBy, Zonotope.reduceBy, Fin.append_left, Fin.append_right,
+      toReal_diagonalBlock]
+    -- the exact block is indexed generator-first, the float one coordinate-first
+    rw [Real.Zonotope.sum_diagonal_mul', Real.Zonotope.sum_diagonal_mul]
     simp only [toRealVec]
     rw [Real.Zonotope.mul_coefficient (hbound i)]
+    -- what is left is the `nominal` projections, which are definitional
+    rfl
 
 end CORALean.Float

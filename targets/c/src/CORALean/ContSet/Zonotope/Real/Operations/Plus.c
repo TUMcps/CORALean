@@ -13,133 +13,89 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-lean_object* l_Fin_addCases___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
-lean_object* lp_mathlib_Real_definition___lam__0_00___x40_Mathlib_Data_Real_Basic_1138242547____hygCtx___hyg_8_(lean_object*, lean_object*, lean_object*);
 lean_object* lean_nat_add(lean_object*, lean_object*);
-LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_Zonotope_plus___redArg___lam__0(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_Zonotope_plus___redArg___lam__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
-LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_Zonotope_plus___redArg___lam__1(lean_object*, lean_object*, lean_object*);
-LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_Zonotope_plus___redArg(lean_object*, lean_object*);
-LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_Zonotope_plus(lean_object*, lean_object*, lean_object*);
-LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_Zonotope_plus___boxed(lean_object*, lean_object*, lean_object*);
-LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_Zonotope_plus___redArg___lam__0(lean_object* v_G_1_, lean_object* v_G_2_, lean_object* v_h_3_, lean_object* v_i_4_, lean_object* v___y_5_){
+lean_object* lp_mathlib_Fin_append___boxed(lean_object*, lean_object*, lean_object*, lean_object*, lean_object*, lean_object*);
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_Zonotope_plus___redArg(lean_object*, lean_object*, lean_object*);
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_Zonotope_plus(lean_object*, lean_object*, lean_object*, lean_object*);
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_Zonotope_plus___redArg(lean_object* v_inst_1_, lean_object* v_Z_u2081_2_, lean_object* v_Z_u2082_3_){
 _start:
 {
-lean_object* v___x_6_; lean_object* v___x_7_; lean_object* v___x_8_; 
-lean_inc(v_i_4_);
-v___x_6_ = lean_apply_1(v_G_1_, v_i_4_);
-v___x_7_ = lean_apply_1(v_G_2_, v_i_4_);
-v___x_8_ = l_Fin_addCases___redArg(v_h_3_, v___x_6_, v___x_7_, v___y_5_);
-return v___x_8_;
-}
-}
-LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_Zonotope_plus___redArg___lam__0___boxed(lean_object* v_G_9_, lean_object* v_G_10_, lean_object* v_h_11_, lean_object* v_i_12_, lean_object* v___y_13_){
-_start:
+lean_object* v_toAddMonoid_4_; lean_object* v_h_5_; lean_object* v_c_6_; lean_object* v_G_7_; lean_object* v_h_8_; lean_object* v_c_9_; lean_object* v_G_10_; lean_object* v___x_12_; uint8_t v_isShared_13_; uint8_t v_isSharedCheck_21_; 
+v_toAddMonoid_4_ = lean_ctor_get(v_inst_1_, 0);
+lean_inc_ref(v_toAddMonoid_4_);
+lean_dec_ref(v_inst_1_);
+v_h_5_ = lean_ctor_get(v_Z_u2081_2_, 0);
+lean_inc(v_h_5_);
+v_c_6_ = lean_ctor_get(v_Z_u2081_2_, 1);
+lean_inc(v_c_6_);
+v_G_7_ = lean_ctor_get(v_Z_u2081_2_, 2);
+lean_inc(v_G_7_);
+lean_dec_ref(v_Z_u2081_2_);
+v_h_8_ = lean_ctor_get(v_Z_u2082_3_, 0);
+v_c_9_ = lean_ctor_get(v_Z_u2082_3_, 1);
+v_G_10_ = lean_ctor_get(v_Z_u2082_3_, 2);
+v_isSharedCheck_21_ = !lean_is_exclusive(v_Z_u2082_3_);
+if (v_isSharedCheck_21_ == 0)
 {
-lean_object* v_res_14_; 
-v_res_14_ = lp_CORALean_CORALean_Real_Zonotope_plus___redArg___lam__0(v_G_9_, v_G_10_, v_h_11_, v_i_12_, v___y_13_);
-lean_dec(v_h_11_);
-return v_res_14_;
-}
-}
-LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_Zonotope_plus___redArg___lam__1(lean_object* v_c_15_, lean_object* v_c_16_, lean_object* v___y_17_){
-_start:
-{
-lean_object* v___x_18_; lean_object* v___x_19_; lean_object* v___f_20_; 
-lean_inc(v___y_17_);
-v___x_18_ = lean_apply_1(v_c_15_, v___y_17_);
-v___x_19_ = lean_apply_1(v_c_16_, v___y_17_);
-v___f_20_ = lean_alloc_closure((void*)(lp_mathlib_Real_definition___lam__0_00___x40_Mathlib_Data_Real_Basic_1138242547____hygCtx___hyg_8_), 3, 2);
-lean_closure_set(v___f_20_, 0, v___x_18_);
-lean_closure_set(v___f_20_, 1, v___x_19_);
-return v___f_20_;
-}
-}
-LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_Zonotope_plus___redArg(lean_object* v_Z_u2081_21_, lean_object* v_Z_u2082_22_){
-_start:
-{
-lean_object* v_h_23_; lean_object* v_c_24_; lean_object* v_G_25_; lean_object* v_h_26_; lean_object* v_c_27_; lean_object* v_G_28_; lean_object* v___x_30_; uint8_t v_isShared_31_; uint8_t v_isSharedCheck_38_; 
-v_h_23_ = lean_ctor_get(v_Z_u2081_21_, 0);
-lean_inc(v_h_23_);
-v_c_24_ = lean_ctor_get(v_Z_u2081_21_, 1);
-lean_inc(v_c_24_);
-v_G_25_ = lean_ctor_get(v_Z_u2081_21_, 2);
-lean_inc(v_G_25_);
-lean_dec_ref(v_Z_u2081_21_);
-v_h_26_ = lean_ctor_get(v_Z_u2082_22_, 0);
-v_c_27_ = lean_ctor_get(v_Z_u2082_22_, 1);
-v_G_28_ = lean_ctor_get(v_Z_u2082_22_, 2);
-v_isSharedCheck_38_ = !lean_is_exclusive(v_Z_u2082_22_);
-if (v_isSharedCheck_38_ == 0)
-{
-v___x_30_ = v_Z_u2082_22_;
-v_isShared_31_ = v_isSharedCheck_38_;
-goto v_resetjp_29_;
+v___x_12_ = v_Z_u2082_3_;
+v_isShared_13_ = v_isSharedCheck_21_;
+goto v_resetjp_11_;
 }
 else
 {
-lean_inc(v_G_28_);
-lean_inc(v_c_27_);
-lean_inc(v_h_26_);
-lean_dec(v_Z_u2082_22_);
-v___x_30_ = lean_box(0);
-v_isShared_31_ = v_isSharedCheck_38_;
-goto v_resetjp_29_;
+lean_inc(v_G_10_);
+lean_inc(v_c_9_);
+lean_inc(v_h_8_);
+lean_dec(v_Z_u2082_3_);
+v___x_12_ = lean_box(0);
+v_isShared_13_ = v_isSharedCheck_21_;
+goto v_resetjp_11_;
 }
-v_resetjp_29_:
+v_resetjp_11_:
 {
-lean_object* v___f_32_; lean_object* v___f_33_; lean_object* v___x_34_; lean_object* v___x_36_; 
-lean_inc(v_h_23_);
-v___f_32_ = lean_alloc_closure((void*)(lp_CORALean_CORALean_Real_Zonotope_plus___redArg___lam__0___boxed), 5, 3);
-lean_closure_set(v___f_32_, 0, v_G_25_);
-lean_closure_set(v___f_32_, 1, v_G_28_);
-lean_closure_set(v___f_32_, 2, v_h_23_);
-v___f_33_ = lean_alloc_closure((void*)(lp_CORALean_CORALean_Real_Zonotope_plus___redArg___lam__1), 3, 2);
-lean_closure_set(v___f_33_, 0, v_c_24_);
-lean_closure_set(v___f_33_, 1, v_c_27_);
-v___x_34_ = lean_nat_add(v_h_23_, v_h_26_);
-lean_dec(v_h_26_);
-lean_dec(v_h_23_);
-if (v_isShared_31_ == 0)
+lean_object* v_toAddSemigroup_14_; lean_object* v___x_15_; lean_object* v___x_16_; lean_object* v___x_17_; lean_object* v___x_19_; 
+v_toAddSemigroup_14_ = lean_ctor_get(v_toAddMonoid_4_, 0);
+lean_inc(v_toAddSemigroup_14_);
+lean_dec_ref(v_toAddMonoid_4_);
+v___x_15_ = lean_nat_add(v_h_5_, v_h_8_);
+v___x_16_ = lean_apply_2(v_toAddSemigroup_14_, v_c_6_, v_c_9_);
+v___x_17_ = lean_alloc_closure((void*)(lp_mathlib_Fin_append___boxed), 6, 5);
+lean_closure_set(v___x_17_, 0, v_h_5_);
+lean_closure_set(v___x_17_, 1, v_h_8_);
+lean_closure_set(v___x_17_, 2, lean_box(0));
+lean_closure_set(v___x_17_, 3, v_G_7_);
+lean_closure_set(v___x_17_, 4, v_G_10_);
+if (v_isShared_13_ == 0)
 {
-lean_ctor_set(v___x_30_, 2, v___f_32_);
-lean_ctor_set(v___x_30_, 1, v___f_33_);
-lean_ctor_set(v___x_30_, 0, v___x_34_);
-v___x_36_ = v___x_30_;
-goto v_reusejp_35_;
+lean_ctor_set(v___x_12_, 2, v___x_17_);
+lean_ctor_set(v___x_12_, 1, v___x_16_);
+lean_ctor_set(v___x_12_, 0, v___x_15_);
+v___x_19_ = v___x_12_;
+goto v_reusejp_18_;
 }
 else
 {
-lean_object* v_reuseFailAlloc_37_; 
-v_reuseFailAlloc_37_ = lean_alloc_ctor(0, 3, 0);
-lean_ctor_set(v_reuseFailAlloc_37_, 0, v___x_34_);
-lean_ctor_set(v_reuseFailAlloc_37_, 1, v___f_33_);
-lean_ctor_set(v_reuseFailAlloc_37_, 2, v___f_32_);
-v___x_36_ = v_reuseFailAlloc_37_;
-goto v_reusejp_35_;
+lean_object* v_reuseFailAlloc_20_; 
+v_reuseFailAlloc_20_ = lean_alloc_ctor(0, 3, 0);
+lean_ctor_set(v_reuseFailAlloc_20_, 0, v___x_15_);
+lean_ctor_set(v_reuseFailAlloc_20_, 1, v___x_16_);
+lean_ctor_set(v_reuseFailAlloc_20_, 2, v___x_17_);
+v___x_19_ = v_reuseFailAlloc_20_;
+goto v_reusejp_18_;
 }
-v_reusejp_35_:
+v_reusejp_18_:
 {
-return v___x_36_;
+return v___x_19_;
 }
 }
 }
 }
-LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_Zonotope_plus(lean_object* v_n_39_, lean_object* v_Z_u2081_40_, lean_object* v_Z_u2082_41_){
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_Zonotope_plus(lean_object* v_00_u03b1_22_, lean_object* v_inst_23_, lean_object* v_Z_u2081_24_, lean_object* v_Z_u2082_25_){
 _start:
 {
-lean_object* v___x_42_; 
-v___x_42_ = lp_CORALean_CORALean_Real_Zonotope_plus___redArg(v_Z_u2081_40_, v_Z_u2082_41_);
-return v___x_42_;
-}
-}
-LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_Zonotope_plus___boxed(lean_object* v_n_43_, lean_object* v_Z_u2081_44_, lean_object* v_Z_u2082_45_){
-_start:
-{
-lean_object* v_res_46_; 
-v_res_46_ = lp_CORALean_CORALean_Real_Zonotope_plus(v_n_43_, v_Z_u2081_44_, v_Z_u2082_45_);
-lean_dec(v_n_43_);
-return v_res_46_;
+lean_object* v___x_26_; 
+v___x_26_ = lp_CORALean_CORALean_Real_Zonotope_plus___redArg(v_inst_23_, v_Z_u2081_24_, v_Z_u2082_25_);
+return v___x_26_;
 }
 }
 lean_object* initialize_Init(uint8_t builtin);

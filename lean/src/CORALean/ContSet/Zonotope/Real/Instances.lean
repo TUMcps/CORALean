@@ -22,9 +22,9 @@ open Matrix
 
 variable {n : ℕ}
 
-instance : ContSet (Zonotope n) (Vec ℝ n) := ⟨Zonotope.construct⟩
+instance : ContSet (Zonotope (Vec ℝ n)) (Vec ℝ n) := ⟨Zonotope.construct⟩
 
-noncomputable instance : OuterContSet (Zonotope n) (Vec ℝ n) where
+noncomputable instance : OuterContSet (Zonotope (Vec ℝ n)) (Vec ℝ n) where
   plus := Zonotope.plus
   linComb := Zonotope.linComb
   reduce := Zonotope.reduce
@@ -32,7 +32,7 @@ noncomputable instance : OuterContSet (Zonotope n) (Vec ℝ n) where
   linComb_outer := Zonotope.linComb_outer
   reduce_outer := Zonotope.reduce_outer
 
-instance : Mtimes (Mat ℝ) Zonotope where
+instance : Mtimes (Mat ℝ) (fun n => Zonotope (Vec ℝ n)) where
   mtimes := Zonotope.mtimes
   mtimes_outer M Z := by
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
@@ -40,7 +40,7 @@ instance : Mtimes (Mat ℝ) Zonotope where
 
 /-- The same operation at an interval matrix, which `OuterContSet` does not ask
 for: a zonotope carries it, and a discretization is what wants it. -/
-noncomputable instance : Mtimes IntervalMat Zonotope where
+noncomputable instance : Mtimes IntervalMat (fun n => Zonotope (Vec ℝ n)) where
   mtimes := Zonotope.mtimesIntervalMat
   mtimes_outer IM Z := by
     simp only [IntervalMat.construct_eq]

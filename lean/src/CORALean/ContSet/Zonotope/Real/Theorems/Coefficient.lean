@@ -51,4 +51,14 @@ theorem Zonotope.sum_diagonal_mul (v g : Vec ℝ n) (i : Fin n) :
   · intro hi
     exact absurd (Finset.mem_univ i) hi
 
+/-- The same read down a column, which is the form a diagonal block takes when
+generators carry the first index. -/
+theorem Zonotope.sum_diagonal_mul' (v g : Vec ℝ n) (i : Fin n) :
+    ∑ l, Matrix.diagonal v l i * g l = v i * g i := by
+  rw [Finset.sum_eq_single i, Matrix.diagonal_apply_eq]
+  · intro b _ hb
+    rw [Matrix.diagonal_apply_ne _ hb, zero_mul]
+  · intro hi
+    exact absurd (Finset.mem_univ i) hi
+
 end CORALean.Real

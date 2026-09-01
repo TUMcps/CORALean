@@ -32,20 +32,29 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 
+/-- The zonotope family, named locally because a generic theorem quantifies over
+`S : ℕ → Type` and the elaborator cannot read that family off one member. -/
+local notation "𝒵" => fun n => Zonotope (Vec ℝ n)
+
 set_option maxHeartbeats 40000 in
 /-- Every trajectory of a linear system whose initial and input sets are
 zonotopes stays in `reach`, at every sample time. The step, the Taylor order and
 the bound `hε` relating them are all that is left to supply. -/
-theorem LinearSys.Trajectory.reach_outer_zonotope {sys : LinearSys 𝕋 n} {R₀ U : Zonotope n}
-    {x u : ℝ → Vec ℝ n} {Δt : ℝ} (traj : sys.Trajectory R₀ U x u) (hΔt : 0 < Δt) (η : ℕ)
+theorem LinearSys.Trajectory.reach_outer_zonotope {sys : LinearSys 𝕋 n}
+    {R₀ U : Zonotope (Vec ℝ n)}
+    {x u : ℝ → Vec ℝ n} {Δt : ℝ} (traj : sys.Trajectory (S := 𝒵) R₀ U x u) (hΔt : 0 < Δt) (η : ℕ)
     (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) (o k : ℕ) :
     x (k * Δt) ∈ construct
-      ((sys.discretize Δt).reach o R₀ (sys.inputSolution Δt η U) k) :=
+      ((sys.discretize Δt).reach (S := 𝒵) o R₀
+        (sys.inputSolution (S := 𝒵) Δt η U) k) :=
   traj.reach_outer_inputSolution hΔt η hε
     U.convex_construct U.isClosed_construct U.isBounded_construct
-    (Mtimes.mtimes (IntervalMat.inputRemainder (toRealMat sys.A) Δt η) U).convex_construct
-    (Mtimes.mtimes (IntervalMat.inputRemainder (toRealMat sys.A) Δt η) U).isClosed_construct
-    (Mtimes.mtimes (IntervalMat.inputRemainder (toRealMat sys.A) Δt η) U).isBounded_construct
+    (Mtimes.mtimes (S := 𝒵) (IntervalMat.inputRemainder (toRealMat sys.A) Δt η)
+      U).convex_construct
+    (Mtimes.mtimes (S := 𝒵) (IntervalMat.inputRemainder (toRealMat sys.A) Δt η)
+      U).isClosed_construct
+    (Mtimes.mtimes (S := 𝒵) (IntervalMat.inputRemainder (toRealMat sys.A) Δt η)
+      U).isBounded_construct
     o k
 
 end CORALean.Real

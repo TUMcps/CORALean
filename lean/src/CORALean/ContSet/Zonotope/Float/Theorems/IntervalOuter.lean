@@ -20,7 +20,8 @@ open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Zonotope.interval_outer (Z : Zonotope 𝕋 n) : Z.construct ⊆ Z.interval.construct := by
-  rintro _ ⟨z, ⟨β, hβ, hz⟩, e, he, rfl⟩ i
+  rintro _ ⟨z, hzmem, e, he, rfl⟩ i
+  obtain ⟨β, hβ, hz⟩ := Zonotope.mem_nominalSet_iff.mp hzmem
   have hgen := abs_sum_le_radius (d := Z.G) (Δ := fun i j => toReal (Z.G i j))
     (fun _ _ => le_refl _) hβ i
   have hlo : toReal (Z.E.inf i) ≤ e i := (he i).1

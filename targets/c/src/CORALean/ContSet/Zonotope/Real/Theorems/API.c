@@ -1,6 +1,6 @@
 // Lean compiler output
 // Module: CORALean.ContSet.Zonotope.Real.Theorems.API
-// Imports: public import Init public meta import Init public import CORALean.ContSet.Zonotope.Real.Theorems.Coefficient public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact public import CORALean.ContSet.Zonotope.Real.Theorems.IntervalOuter public import CORALean.ContSet.Zonotope.Real.Theorems.Convex public import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded public import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact public import CORALean.ContSet.Zonotope.Real.Theorems.LinCombOuter public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesIntervalMatOuter public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOuter
+// Imports: public import Init public meta import Init public import CORALean.ContSet.Zonotope.Real.Theorems.Coefficient public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact public import CORALean.ContSet.Zonotope.Real.Theorems.MapExact public import CORALean.ContSet.Zonotope.Real.Theorems.IntervalOuter public import CORALean.ContSet.Zonotope.Real.Theorems.Convex public import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded public import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact public import CORALean.ContSet.Zonotope.Real.Theorems.LinCombOuter public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesIntervalMatOuter public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOuter
 #include <lean/lean.h>
 #if defined(__clang__)
 #pragma clang diagnostic ignored "-Wunused-parameter"
@@ -17,7 +17,7 @@ lean_object* initialize_Init(uint8_t builtin);
 lean_object* initialize_Init(uint8_t builtin);
 lean_object* initialize_CORALean_CORALean_ContSet_Zonotope_Real_Theorems_Coefficient(uint8_t builtin);
 lean_object* initialize_CORALean_CORALean_ContSet_Zonotope_Real_Theorems_PlusExact(uint8_t builtin);
-lean_object* initialize_CORALean_CORALean_ContSet_Zonotope_Real_Theorems_MtimesExact(uint8_t builtin);
+lean_object* initialize_CORALean_CORALean_ContSet_Zonotope_Real_Theorems_MapExact(uint8_t builtin);
 lean_object* initialize_CORALean_CORALean_ContSet_Zonotope_Real_Theorems_IntervalOuter(uint8_t builtin);
 lean_object* initialize_CORALean_CORALean_ContSet_Zonotope_Real_Theorems_Convex(uint8_t builtin);
 lean_object* initialize_CORALean_CORALean_ContSet_Zonotope_Real_Theorems_IsBounded(uint8_t builtin);
@@ -42,7 +42,7 @@ lean_dec_ref(res);
 res = initialize_CORALean_CORALean_ContSet_Zonotope_Real_Theorems_PlusExact(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
-res = initialize_CORALean_CORALean_ContSet_Zonotope_Real_Theorems_MtimesExact(builtin);
+res = initialize_CORALean_CORALean_ContSet_Zonotope_Real_Theorems_MapExact(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 res = initialize_CORALean_CORALean_ContSet_Zonotope_Real_Theorems_IntervalOuter(builtin);
