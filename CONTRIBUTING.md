@@ -16,9 +16,9 @@ src/CORALean/
                    API.lean (the whole directory, and nothing but imports)
       Float/       the same representation, rounded
     Zonotope/      Real/ and Float/, as above
-    Polytope/      Polytope.lean by halfspaces, VPolytope.lean by vertices,
-                   each with the operations it computes exactly
-    ConZonotope/   a zonotope whose coefficients a polytope cuts down
+    HPolytope/     polytopes by halfspaces: exact under intersection and preimage
+    VPolytope/     the same sets by vertices: exact under sum, image and hull
+    ConZonotope/   a zonotope whose coefficients an HPolytope cuts down
   ContDynamics/    algorithms, written against the interfaces alone
     LinearSysDT/   discrete-time linear systems, and reachability
     LinearSys/     continuous-time linear systems: the flow in closed form,
@@ -75,6 +75,11 @@ fetches the server itself.
 
 Build once before first use, since the server starts `lake serve` and otherwise
 builds from cold.
+
+`.gitlab-ci.yml` rebuilds the project on every push to the default branch and on
+every merge request, and fails on a warning as well as on an error. Mathlib is
+cached by `lake-manifest.json` and the toolchain by `lean-toolchain`, so a normal
+commit downloads nothing.
 
 ## File roles
 
@@ -152,9 +157,10 @@ stated once covers both layers.
 
 ## Proofs
 
-Write them explicitly. `maxHeartbeats` is 5000 in `lakefile.toml`, well under
+Write them explicitly. `maxHeartbeats` is 40000 in `lakefile.toml`, a fifth of
 Lean's default, so a proof that starts searching fails rather than quietly
-costing seconds. Override per declaration when justified.
+costing seconds. Override per declaration when justified — and only then, since
+an override is meant to read as a deliberate cost.
 
 Mathlib is imported only in `Global/Mathlib.lean`, one lemma group at a time. A
 new lemma may mean a new import there.

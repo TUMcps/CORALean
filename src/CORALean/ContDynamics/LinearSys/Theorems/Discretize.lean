@@ -32,7 +32,6 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, OuterContSet (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 
 omit [∀ n, OuterContSet (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] in
-set_option maxHeartbeats 10000 in
 theorem LinearSys.Trajectory.discretize {sys : LinearSys 𝕋 n} {R₀ U Ud : S n}
     {x u : ℝ → Vec ℝ n} {Δt : ℝ} (traj : sys.Trajectory R₀ U x u) (hΔt : 0 ≤ Δt)
     (hU : Bornology.IsBounded (construct U))
@@ -48,7 +47,6 @@ theorem LinearSys.Trajectory.discretize {sys : LinearSys 𝕋 n} {R₀ U Ud : S 
     rw [hstep] at h
     simpa [LinearSys.discretize, LinearSys.stepInput] using h
 
-set_option maxHeartbeats 40000 in
 /-- The same, with the input set named rather than assumed. Available to a
 representation that is convex and closed; `Zonotope` is both. -/
 theorem LinearSys.Trajectory.discretize_inputSolution [Mtimes ℐ S]

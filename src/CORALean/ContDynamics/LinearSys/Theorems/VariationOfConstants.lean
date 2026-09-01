@@ -36,7 +36,6 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- Every declaration here needs twice the project default: the matrix exponential
 -- and the finite-dimensional `toContinuousLinearMap` both cost instance search.
-set_option maxHeartbeats 10000 in
 /-- Matrix-vector multiplication as a continuous linear map in the matrix, which
 is what lets the product rule apply to `e^{-As} x(s)`. Finite dimension is what
 makes every piece of it continuous. -/
@@ -46,7 +45,6 @@ noncomputable def mulVecL : Mat ℝ n n →L[ℝ] (Vec ℝ n →L[ℝ] Vec ℝ n
       map_add' := by intro M N; ext v i; simp
       map_smul' := by intro c M; ext v i; simp }
 
-set_option maxHeartbeats 10000 in
 /-- The substitution that cancels the dynamics: along a solution, `e^{-As} x(s)`
 moves only as the input pushes it. Shared with `InputIntegrable`, where it says
 the integrand below is itself a derivative. -/
@@ -68,7 +66,6 @@ theorem hasDerivWithinAt_expNeg_mulVec (A : Mat ℝ n n) (x u : ℝ → Vec ℝ 
     abel
   exact key ▸ HasDerivWithinAt.clm_apply hC hx
 
-set_option maxHeartbeats 10000 in
 /-- The substituted form, straight from the fundamental theorem of calculus. -/
 theorem aux_expNeg_mulVec_sub {sys : LinearSys 𝕋 n} {R₀ U : S n} {x u : ℝ → Vec ℝ n}
     {a b : ℝ} (traj : sys.Trajectory R₀ U x u) (ha : 0 ≤ a) (hab : a ≤ b)
@@ -92,7 +89,6 @@ theorem aux_expNeg_mulVec_sub {sys : LinearSys 𝕋 n} {R₀ U : S n} {x u : ℝ
         (fun y hy => le_trans ha (le_of_lt (lt_trans hs.1 hy))))
   exact (integral_eq_sub_of_hasDeriv_right hcont hderiv hu).symm
 
-set_option maxHeartbeats 10000 in
 /-- From any time on, not only from 0: `a = 0` gives the familiar statement, and
 one step of a sampled trajectory is the case `a = kΔt`, `b = (k+1)Δt`. -/
 theorem LinearSys.Trajectory.variation_of_constants {sys : LinearSys 𝕋 n} {R₀ U : S n}

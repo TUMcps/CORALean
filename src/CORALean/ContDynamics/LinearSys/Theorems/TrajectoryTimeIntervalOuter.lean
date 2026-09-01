@@ -50,7 +50,6 @@ theorem LinearSys.Trajectory.timeInterval_outer {sys : LinearSys 𝕋 n} {R₀ U
   exact sys.timeIntervalStep_outer hr hε R₀ ht0 htr
     (Set.mem_image_of_mem _ traj.init)
 
-set_option maxHeartbeats 40000 in
 /-- The same, with the input set named rather than assumed. `0 ∈ U` is what buys
 a single enclosure for the whole step; everything else is a property of `U` that
 a representation supplies. -/

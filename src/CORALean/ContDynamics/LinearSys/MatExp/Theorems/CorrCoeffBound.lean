@@ -25,11 +25,9 @@ namespace CORALean.Real
 
 variable {i : ℕ}
 
-set_option maxHeartbeats 40000 in
 theorem aux_corrCritical_pos (hi : 2 ≤ i) : 0 < MatExp.corrCritical i :=
   Real.rpow_pos_of_pos (by exact_mod_cast Nat.lt_of_lt_of_le two_pos hi) _
 
-set_option maxHeartbeats 40000 in
 theorem aux_corrCritical_le_one (hi : 2 ≤ i) : MatExp.corrCritical i ≤ 1 := by
   have hi1 : (1:ℝ) ≤ (i : ℝ) := by exact_mod_cast Nat.one_le_of_lt hi
   have hsub : (0:ℝ) < (i : ℝ) - 1 := by
@@ -39,7 +37,6 @@ theorem aux_corrCritical_le_one (hi : 2 ≤ i) : MatExp.corrCritical i ≤ 1 := 
   apply Real.rpow_le_one_of_one_le_of_nonpos hi1
   apply div_nonpos_of_nonpos_of_nonneg <;> linarith
 
-set_option maxHeartbeats 40000 in
 /-- The stationary point is where `a ^ (i-1) = 1/i`, which is the whole reason
 the constant sum below comes to exactly `1`. -/
 theorem aux_corrCritical_pow (hi : 2 ≤ i) :
@@ -55,7 +52,6 @@ theorem aux_corrCritical_pow (hi : 2 ≤ i) :
     ← Real.rpow_mul hipos.le, hcast, div_mul_cancel₀ _ hsub, Real.rpow_neg_one]
   exact (one_div _).symm
 
-set_option maxHeartbeats 40000 in
 /-- The form Althoff's thesis states the coefficient in. -/
 theorem MatExp.corrCoeff_eq (hi : 2 ≤ i) :
     MatExp.corrCoeff i

@@ -49,7 +49,6 @@ theorem Zonotope.aux_abs_le_absBound {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n} 
     _ ≤ ∑ l, |Z.G l j|         := Finset.sum_le_sum fun l _ => by
         simpa using mul_le_mul_of_nonneg_left (hβ l) (abs_nonneg (Z.G l j))
 
-set_option maxHeartbeats 40000 in
 theorem Zonotope.mtimesIntervalMat_outer (IM : Interval (Mat ℝ m n)) (Z : Zonotope (Vec ℝ n)) :
     (⋃ A ∈ IM.construct, (A *ᵥ ·) '' Z.construct)
       ⊆ (Zonotope.mtimesIntervalMat IM Z).construct := by

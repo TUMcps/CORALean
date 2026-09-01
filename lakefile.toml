@@ -5,9 +5,10 @@ defaultTargets = ["CORALean"]
 pp.unicode.fun = true
 autoImplicit = false
 relaxedAutoImplicit = false
-# Well under Lean's default, so a search tactic fails loudly rather than
-# quietly costing seconds. Override per declaration when justified.
-maxHeartbeats = 5000
+# A fifth of Lean's default: enough for an explicit proof of any length written
+# so far, so a search tactic still fails loudly rather than quietly costing
+# seconds. Override per declaration when justified.
+maxHeartbeats = 40000
 
 [[require]]
 name = "mathlib"

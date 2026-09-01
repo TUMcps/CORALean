@@ -30,7 +30,6 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, OuterContSet (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 
 omit [∀ n, OuterContSet (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] in
-set_option maxHeartbeats 40000 in
 /-- Holding the input at the origin is admissible when `U` contains it, and
 contributes nothing. -/
 theorem LinearSys.zero_mem_inputReach (sys : LinearSys 𝕋 n) {U : S n} (τ : ℝ)
@@ -39,7 +38,6 @@ theorem LinearSys.zero_mem_inputReach (sys : LinearSys 𝕋 n) {U : S n} (τ : �
   simp
 
 omit [∀ n, OuterContSet (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] in
-set_option maxHeartbeats 40000 in
 /-- Althoff's Prop. 3.3: with the origin in the input set, a longer window
 contributes at least everything a shorter one can. -/
 theorem LinearSys.inputReach_mono (sys : LinearSys 𝕋 n) {U : S n} {t r : ℝ}

@@ -1,0 +1,59 @@
+# Rebuilds CORALean on every push and merge request.
+#
+# Mathlib is not re-downloaded per commit. Two caches carry it:
+#   .elan          keyed on lean-toolchain    — the Lean toolchain
+#   .lake/packages keyed on lake-manifest.json — Mathlib's source and its oleans
+# Both keys change only when the pinned versions do, so a normal commit does no
+# downloading at all. On a runner with a distributed cache the caches are shared
+# across machines; on a plain runner they are per host, so the first job on a new
+# host pays the download once.
+#
+# `lake exe cache get` fetches Mathlib's prebuilt oleans rather than compiling
+# them — without it a cold job would build Mathlib from source and take hours.
+
+variables:
+  # Must sit under the project directory: GitLab only caches paths inside it.
+  ELAN_HOME: "$CI_PROJECT_DIR/.elan"
+  GIT_DEPTH: "1"
+
+build:
+  image: debian:bookworm-slim
+  interruptible: true
+  cache:
+    - key:
+        files:
+          - lean-toolchain
+      paths:
+        - .elan
+    - key:
+        files:
+          - lake-manifest.json
+      paths:
+        - .lake/packages
+  before_script:
+    - apt-get update -qq && apt-get install -y -qq --no-install-recommends curl git ca-certificates
+    - export PATH="$ELAN_HOME/bin:$PATH"
+    - |
+      if ! command -v elan > /dev/null; then
+        curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
+          | sh -s -- -y --default-toolchain none
+      fi
+    - elan toolchain install "$(cat lean-toolchain)"
+    - lake --version
+  script:
+    - lake exe cache get
+    # A warning is a failure: the tree is warning-free, and Mathlib's linters are
+    # what catch unused hypotheses and stray `Try this` suggestions. Matched on
+    # `src/` so that a partial Mathlib cache, which compiles Mathlib and may warn,
+    # does not fail the job for someone else's code.
+    - set -o pipefail
+    - lake build 2>&1 | tee build.log
+    - "! grep -q '^warning: src/' build.log"
+  artifacts:
+    when: on_failure
+    paths:
+      - build.log
+    expire_in: 1 week
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

@@ -32,7 +32,6 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, OuterContSet (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 
-set_option maxHeartbeats 40000 in
 /-- Step `k` shifted to start at zero. The propagator only ever sees the elapsed
 part of the step, so the shift leaves it alone and lands on exactly the integral
 `inputSolution_outer` speaks about. -/

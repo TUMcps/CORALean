@@ -32,7 +32,6 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
-set_option maxHeartbeats 10000 in
 /-- The integrand is the derivative of the substituted trajectory. Taken within
 `Ici s` rather than `Ici 0`, which is the form Mathlib's measurability lemma
 speaks about, and no weaker here: the two agree for `s ≥ 0`. -/
@@ -44,7 +43,6 @@ theorem LinearSys.Trajectory.aux_integrand_eq_derivWithin {sys : LinearSys 𝕋 
     ((traj.flow s hs).mono (Set.Ici_subset_Ici.mpr hs))).derivWithin
       (uniqueDiffWithinAt_Ici s)).symm
 
-set_option maxHeartbeats 10000 in
 /-- Measurable with nothing assumed of `u`: `stronglyMeasurable_derivWithin_Ici`
 holds for every function, and the integrand is a derivative of that shape. -/
 theorem LinearSys.Trajectory.aux_aestronglyMeasurable {sys : LinearSys 𝕋 n} {R₀ U : S n}
@@ -56,7 +54,6 @@ theorem LinearSys.Trajectory.aux_aestronglyMeasurable {sys : LinearSys 𝕋 n} {
   refine (ae_restrict_iff' measurableSet_Ioc).mpr (Filter.Eventually.of_forall fun s hs => ?_)
   exact (traj.aux_integrand_eq_derivWithin (le_trans ha hs.1.le)).symm
 
-set_option maxHeartbeats 10000 in
 /-- The exponential is continuous, so it is bounded over a compact step. -/
 theorem aux_continuous_expNeg (A : Mat ℝ n n) : Continuous fun s : ℝ => exp ((-s) • A) :=
   exp_continuous.comp (continuous_neg.smul continuous_const)
@@ -81,13 +78,11 @@ theorem LinearSys.Trajectory.intervalIntegrable_input {sys : LinearSys 𝕋 n} {
     _ ≤ CE * CU := mul_le_mul (hCE s ⟨hs.1.le, hs.2⟩)
         (hCU _ (traj.input s (le_trans ha hs.1.le))) (norm_nonneg _) hCE0
 
-set_option maxHeartbeats 10000 in
 /-- Differentiable where the flow holds, hence continuous there. -/
 theorem LinearSys.Trajectory.aux_continuousOn_state {sys : LinearSys 𝕋 n} {R₀ U : S n}
     {x u : ℝ → Vec ℝ n} (traj : sys.Trajectory R₀ U x u) : ContinuousOn x (Set.Ici 0) :=
   fun t ht => (traj.flow t ht).continuousWithinAt
 
-set_option maxHeartbeats 10000 in
 /-- `u` as a derivative minus the drift. The flow states the sum; this is the
 rearrangement that leaves `u` alone on one side, which is what carries
 measurability to `u` itself rather than to the integrand. -/
@@ -98,7 +93,6 @@ theorem LinearSys.Trajectory.aux_input_eq_derivWithin {sys : LinearSys 𝕋 n} {
     (uniqueDiffWithinAt_Ici t)]
   abel
 
-set_option maxHeartbeats 40000 in
 /-- `u` is measurable on any window inside `[0,∞)`, with nothing assumed of it:
 the derivative term is strongly measurable for every function, and the drift is
 a continuous map of a continuous state. -/
@@ -118,7 +112,6 @@ theorem LinearSys.Trajectory.aestronglyMeasurable_input {sys : LinearSys 𝕋 n}
   refine (ae_restrict_iff' measurableSet_Icc).mpr (Filter.Eventually.of_forall fun s hs => ?_)
   exact (traj.aux_input_eq_derivWithin (le_trans ha hs.1)).symm
 
-set_option maxHeartbeats 40000 in
 /-- What `inputSolution_outer` asks of the input, in the reflected form the
 substitution `τ = c - s` leaves behind. Nothing is assumed of `u`: the
 derivative term is strongly measurable for every function and stays so through
