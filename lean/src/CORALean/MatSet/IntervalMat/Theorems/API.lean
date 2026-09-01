@@ -2,6 +2,7 @@ import CORALean.MatSet.IntervalMat.Theorems.CorrCoeffBound
 import CORALean.MatSet.IntervalMat.Theorems.CorrectionMatrix
 import CORALean.MatSet.IntervalMat.Theorems.ExpDiff
 import CORALean.MatSet.IntervalMat.Theorems.ExpEnclosure
+import CORALean.MatSet.IntervalMat.Theorems.ExpIntegral
 
 /-!
 # What `IntervalMat` guarantees

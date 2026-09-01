@@ -34,7 +34,7 @@ variable {n : ℕ}
 
 set_option maxHeartbeats 200000 in
 /-- The exponential of a scaled matrix, with the scalar pulled out of the power. -/
-theorem aux_exp_smul_eq (A : Mat ℝ n n) (t : ℝ) :
+theorem exp_smul_tsum (A : Mat ℝ n n) (t : ℝ) :
     exp (t • A) = ∑' i : ℕ, (((Nat.factorial i : ℝ))⁻¹ * t ^ i) • A ^ i := by
   have h : exp (t • A) = ∑' i : ℕ, ((Nat.factorial i : ℝ))⁻¹ • (t • A) ^ i := by
     rw [exp_eq_tsum (𝕂 := ℝ)]
@@ -42,7 +42,7 @@ theorem aux_exp_smul_eq (A : Mat ℝ n n) (t : ℝ) :
   exact tsum_congr fun i => by rw [smul_pow, smul_smul]
 
 set_option maxHeartbeats 200000 in
-theorem aux_summable_smul (A : Mat ℝ n n) (t : ℝ) :
+theorem summable_exp_smul (A : Mat ℝ n n) (t : ℝ) :
     Summable (fun i : ℕ => (((Nat.factorial i : ℝ))⁻¹ * t ^ i) • A ^ i) := by
   have h := expSeries_summable' (𝕂 := ℝ) (t • A)
   refine h.congr fun i => ?_
@@ -52,9 +52,9 @@ set_option maxHeartbeats 400000 in
 theorem IntervalMat.summable_expDiff (A : Mat ℝ n n) (t r : ℝ) :
     Summable (fun i : ℕ => (((Nat.factorial (i + 2) : ℝ))⁻¹
       * (t ^ (i + 2) - (t / r) * r ^ (i + 2))) • A ^ (i + 2)) := by
-  have hst := aux_summable_smul A t
+  have hst := summable_exp_smul A t
   have hsr : Summable (fun i : ℕ => (t / r) • ((((Nat.factorial i : ℝ))⁻¹ * r ^ i) • A ^ i)) :=
-    (aux_summable_smul A r).const_smul _
+    (summable_exp_smul A r).const_smul _
   have hg : Summable
       (fun i : ℕ => (((Nat.factorial i : ℝ))⁻¹ * (t ^ i - (t / r) * r ^ i)) • A ^ i) :=
     (hst.sub hsr).congr fun i => by simp only [smul_smul, ← sub_smul]; ring_nf
@@ -67,9 +67,9 @@ theorem IntervalMat.expDiff_eq_tsum (A : Mat ℝ n n) (t r : ℝ) (hr : r ≠ 0)
           * (t ^ (i + 2) - (t / r) * r ^ (i + 2))) • A ^ (i + 2) := by
   set g : ℕ → Mat ℝ n n :=
     fun i => (((Nat.factorial i : ℝ))⁻¹ * (t ^ i - (t / r) * r ^ i)) • A ^ i with hg
-  have hst := aux_summable_smul A t
+  have hst := summable_exp_smul A t
   have hsr : Summable (fun i : ℕ => (t / r) • ((((Nat.factorial i : ℝ))⁻¹ * r ^ i) • A ^ i)) :=
-    (aux_summable_smul A r).const_smul _
+    (summable_exp_smul A r).const_smul _
   have hcongr : ∀ i : ℕ,
       (((Nat.factorial i : ℝ))⁻¹ * t ^ i) • A ^ i
         - (t / r) • ((((Nat.factorial i : ℝ))⁻¹ * r ^ i) • A ^ i) = g i := by
@@ -79,7 +79,7 @@ theorem IntervalMat.expDiff_eq_tsum (A : Mat ℝ n n) (t r : ℝ) (hr : r ≠ 0)
     ring_nf
   have hgsum : Summable g := (hst.sub hsr).congr hcongr
   have htsum : ∑' i : ℕ, g i = exp (t • A) - (t / r) • exp (r • A) := by
-    rw [aux_exp_smul_eq A t, aux_exp_smul_eq A r, ← tsum_const_smul'' (t / r),
+    rw [exp_smul_tsum A t, exp_smul_tsum A r, ← tsum_const_smul'' (t / r),
       ← Summable.tsum_sub hst hsr]
     exact tsum_congr fun i => (hcongr i).symm
   have hshift := hgsum.sum_add_tsum_nat_add 2

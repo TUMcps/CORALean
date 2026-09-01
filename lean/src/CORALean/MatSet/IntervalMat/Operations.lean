@@ -53,6 +53,17 @@ noncomputable def IntervalMat.inputRemainder (A : Mat ℝ n n) (r : ℝ) (η : �
   inf := fun _ _ => -(r * IntervalMat.expRemainderBound (r • A) η)
   sup := fun _ _ => r * IntervalMat.expRemainderBound (r • A) η
 
+/-- `∫₀ᵗ e^{Aσ} dσ`, as the series `∑ᵢ Aⁱ t^{i+1}/(i+1)!` rather than as an
+integral.
+
+A series because `Matrix` carries no metrizable-space instance that Bochner
+integration can see, so a matrix-valued integral is out of reach here — and
+because the series is the form every bound on it is proved in anyway.
+`expIntegral_mulVec` is what ties it back to the integral, one vector at a time,
+which is all the dynamics ever need. -/
+noncomputable def IntervalMat.expIntegral (A : Mat ℝ n n) (t : ℝ) : Mat ℝ n n :=
+  ∑' i : ℕ, (((Nat.factorial (i + 1) : ℝ))⁻¹ * t ^ (i + 1)) • A ^ i
+
 /-- Where `s ↦ s ^ i - s` bottoms out: `i ^ (-1/(i-1))`, the only stationary
 point, and the minimum because the map is convex. -/
 noncomputable def IntervalMat.corrCritical (i : ℕ) : ℝ :=
