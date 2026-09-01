@@ -8,11 +8,17 @@ The closed form splits a run into what the initial set carries and what the
 inputs contributed, and the two are enclosed separately: `timeIntervalStep` for
 the first, and a set the caller supplies for the second.
 
-The input enclosure is a hypothesis, as it is for the sampled version. What
-would discharge it is Althoff's Thm. 3.1 — and that needs the input set to be
-convex and closed, since an integral is a limit of convex combinations and
-lands in the convex hull whatever the set looks like. `ContSet` offers neither,
-by design, so the obligation belongs to a representation rather than here.
+The input enclosure is a hypothesis, and unlike the sampled version it stays
+one. `inputSolution_outer` encloses the contribution at the *end* of a step,
+which is all `discretize` needs, since every step ends. Here `t` ranges over the
+whole step, and one set has to cover every `t` at once.
+
+That is Althoff's Prop. 3.3, and it needs `0 ∈ U`: only then is the enclosure at
+`t` inside the one at `r`, each term scaling by `t^(i+1)` against `r^(i+1)`.
+Proving it is not a matter of composing what is here — `plus` and `mtimes` carry
+enclosure guarantees, not monotonicity, so a smaller enclosure cannot be lifted
+into a larger one at the level of representations. It would take the Thm. 3.1
+proof rerun over `[0,t]` with the target sets left at `r`.
 
 Integrability is not a hypothesis: `InputIntegrable` derives it from `U` being
 bounded, which every representation of a set of points is.
