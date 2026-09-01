@@ -38,6 +38,18 @@ structure ConZonotope (α : Type) where
 def ConZonotope.construct (C : ConZonotope α) : Set α :=
   {x | ∃ β : Fin C.h → ℝ, (∀ j, |β j| ≤ 1) ∧ C.A *ᵥ β = C.b ∧ x = C.c + ∑ j, β j • C.G j}
 
+/-- The same membership read coordinatewise, which is the form the operations
+that need coordinates are stated in. -/
+theorem ConZonotope.mem_construct_iff {n : ℕ} {C : ConZonotope (Vec ℝ n)} {x : Vec ℝ n} :
+    x ∈ C.construct ↔ ∃ β : Fin C.h → ℝ, (∀ j, |β j| ≤ 1) ∧ C.A *ᵥ β = C.b
+      ∧ ∀ i, x i = C.c i + ∑ j, C.G j i * β j := by
+  constructor
+  · rintro ⟨β, hβ, hA, rfl⟩
+    exact ⟨β, hβ, hA, Entrywise.add_sum_smul_apply C.c C.G β⟩
+  · rintro ⟨β, hβ, hA, hx⟩
+    exact ⟨β, hβ, hA,
+      funext fun i => (hx i).trans (Entrywise.add_sum_smul_apply C.c C.G β i).symm⟩
+
 /-- The coefficients the representation admits, as a polytope. -/
 def ConZonotope.domain (C : ConZonotope α) : HPolytope (Vec ℝ C.h) :=
   (HPolytope.unitBox C.h).and (HPolytope.eqs C.A C.b)

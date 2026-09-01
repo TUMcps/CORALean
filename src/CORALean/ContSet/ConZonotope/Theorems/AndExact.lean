@@ -23,13 +23,6 @@ open Matrix
 
 variable {n : ℕ}
 
-/-- A point of a zonotope read coordinatewise, which is the form the agreement
-rows are stated in. -/
-theorem ConZonotope.aux_coord {m : ℕ} (c : Vec ℝ n) (G : Fin m → Vec ℝ n) (β : Fin m → ℝ)
-    (i : Fin n) : (c + ∑ j, β j • G j) i = c i + ∑ j, G j i * β j := by
-  simp only [Pi.add_apply, Finset.sum_apply, Pi.smul_apply, smul_eq_mul]
-  exact congrArg _ (Finset.sum_congr rfl fun j _ => mul_comm _ _)
-
 theorem ConZonotope.aux_and_A_left (C₁ C₂ : ConZonotope (Vec ℝ n)) (i : Fin (C₁.q + C₂.q)) :
     (C₁.and C₂).A (Fin.castAdd n i) = (C₁.plus C₂).A i := by
   simp only [ConZonotope.and, ConZonotope.plus, Fin.append_left]
@@ -112,9 +105,9 @@ theorem ConZonotope.and_exact (C₁ C₂ : ConZonotope (Vec ℝ n)) :
             = ∑ j, C₂.G j i * β₂ j :=
           Finset.sum_congr rfl fun j _ => by rw [Fin.append_right]
         have e₁ : x i = C₁.c i + ∑ j, C₁.G j i * β₁ j := by
-          rw [hx₁, ConZonotope.aux_coord]
+          rw [hx₁, Entrywise.add_sum_smul_apply]
         have e₂ : x i = C₂.c i + ∑ j, C₂.G j i * β₂ j := by
-          rw [hx₂, ConZonotope.aux_coord]
+          rw [hx₂, Entrywise.add_sum_smul_apply]
         rw [s₁, s₂]
         linarith
     · have hs : (∑ j, Fin.append β₁ β₂ (Fin.castAdd C₂.h j) • C₁.G j) = ∑ j, β₁ j • C₁.G j :=
@@ -128,9 +121,9 @@ theorem ConZonotope.and_exact (C₁ C₂ : ConZonotope (Vec ℝ n)) :
     refine ⟨⟨fun j => β (Fin.castAdd C₂.h j), fun j => hβ _, hA₁, hx₁⟩,
       fun j => β (Fin.natAdd C₁.h j), fun j => hβ _, hA₂, ?_⟩
     funext i
-    rw [ConZonotope.aux_coord]
+    rw [Entrywise.add_sum_smul_apply]
     have e₁ : x i = C₁.c i + ∑ j, C₁.G j i * β (Fin.castAdd C₂.h j) := by
-      rw [hx₁, ConZonotope.aux_coord]
+      rw [hx₁, Entrywise.add_sum_smul_apply]
     linarith [hagree i]
 
 end CORALean.Real

@@ -1,4 +1,5 @@
 import CORALean.ContSet.Zonotope.Real.Operations.LinComb
+import CORALean.ContSet.Zonotope.Real.Theorems.Coefficient
 
 /-!
 # `linComb` contains every segment between the two zonotopes
@@ -20,12 +21,6 @@ namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
-/-- Scaling a coefficient by a weight in `[0,1]` keeps it a coefficient. -/
-theorem aux_abs_mul_le_one {a b : ℝ} (ha0 : 0 ≤ a) (ha1 : a ≤ 1) (hb : |b| ≤ 1) :
-    |a * b| ≤ 1 := by
-  rw [abs_mul, abs_of_nonneg ha0]
-  nlinarith [abs_nonneg b]
-
 /-- `Fin.sum_univ_add` at this operation's generator count, stated through the
 projection because that is the form the goal has and simp will not rewrite a
 binder's type. -/
@@ -44,9 +39,9 @@ theorem Zonotope.linComb_outer (Z₁ Z₂ : Zonotope α) :
   · refine Fin.addCases ?_ ?_
     · refine Fin.addCases ?_ ?_
       · intro j
-        simpa using aux_abs_mul_le_one hl0 hl1 (hβ₁ j)
+        simpa using Zonotope.abs_mul_le_one hl0 hl1 (hβ₁ j)
       · intro j
-        simpa using aux_abs_mul_le_one (by linarith) (by linarith) (hβ₂ j)
+        simpa using Zonotope.abs_mul_le_one (by linarith) (by linarith) (hβ₂ j)
     · intro _
       simp only [Fin.append_right]
       rw [abs_le]

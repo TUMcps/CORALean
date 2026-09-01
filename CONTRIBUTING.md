@@ -165,6 +165,16 @@ an override is meant to read as a deliberate cost.
 Mathlib is imported only in `Global/Mathlib.lean`, one lemma group at a time. A
 new lemma may mean a new import there.
 
+### `aux_sum_univ_<op>`
+
+A size-changing operation needs one of these, and it is not copy-paste that
+could be factored out: `Fin.sum_univ_add` cannot rewrite a sum whose index type
+reads `Fin (Z₁.plus Z₂).h` rather than `Fin (Z₁.h + Z₂.h)`, since unifying the
+two is not type-correct at the elaborator's transparency. The restatement names
+the operation, so it has to live with it; the proof is always
+`Fin.sum_univ_add f`. Ascribe the binder in any statement that sums over an
+operation's result, or the lemma will not match there either.
+
 ## Documentation
 
 Every file opens with a module docstring saying what it is for and what is

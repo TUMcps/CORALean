@@ -41,12 +41,6 @@ theorem Zonotope.aux_sum_univ_linComb {Z₁ Z₂ : Zonotope 𝕋 n}
       = ∑ j, f (Fin.castAdd 1 j) + ∑ j, f (Fin.natAdd (Z₁.h + Z₂.h) j) :=
   Fin.sum_univ_add f
 
-/-- Scaling a coefficient by a weight in `[0,1]` keeps it a coefficient. -/
-theorem aux_abs_mul_le_one {a b : ℝ} (ha0 : 0 ≤ a) (ha1 : a ≤ 1) (hb : |b| ≤ 1) :
-    |a * b| ≤ 1 := by
-  rw [abs_mul, abs_of_nonneg ha0]
-  nlinarith [abs_nonneg b]
-
 /-- A non-negative shortfall stays inside the symmetric box its own bound spans,
 whatever a coefficient in `[-1,1]` does with it. -/
 theorem aux_mul_mem_symmetric {q R s : ℝ} (hq0 : 0 ≤ q) (hqR : q ≤ R)
@@ -118,9 +112,9 @@ theorem Zonotope.aux_linComb_nominal (Z₁ Z₂ : Zonotope 𝕋 n) :
   · refine Fin.addCases ?_ ?_
     · refine Fin.addCases ?_ ?_
       · intro j
-        simpa using aux_abs_mul_le_one hl0 hl1 (hβ₁ j)
+        simpa using Real.Zonotope.abs_mul_le_one hl0 hl1 (hβ₁ j)
       · intro j
-        simpa using aux_abs_mul_le_one (by linarith) (by linarith) (hβ₂ j)
+        simpa using Real.Zonotope.abs_mul_le_one (by linarith) (by linarith) (hβ₂ j)
     · intro _
       simp only [Fin.append_right]
       rw [abs_le]

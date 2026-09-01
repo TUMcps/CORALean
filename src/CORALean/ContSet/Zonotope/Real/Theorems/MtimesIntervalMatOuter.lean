@@ -37,7 +37,7 @@ theorem Zonotope.aux_sum_univ_mtimesIntervalMat {IM : Interval (Mat ℝ m n)} {Z
   Fin.sum_univ_add f
 
 /-- A coordinate of a zonotope never leaves `absBound`. -/
-theorem Zonotope.aux_abs_le_absBound {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n} {β : Vec ℝ Z.h}
+theorem Zonotope.abs_le_absBound {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n} {β : Vec ℝ Z.h}
     (hβ : ∀ j, |β j| ≤ 1) (hx : ∀ i, x i = Z.c i + ∑ j, Z.G j i * β j) (j : Fin n) :
     |x j| ≤ Z.absBound j := by
   rw [hx j, Zonotope.absBound]
@@ -58,7 +58,7 @@ theorem Zonotope.mtimesIntervalMat_outer (IM : Interval (Mat ℝ m n)) (Z : Zono
   obtain ⟨β, hβ, hx⟩ := Zonotope.mem_construct_iff.mp hxmem
   have hrad : ∀ i j, 0 ≤ IM.radius i j :=
     fun i j => (abs_nonneg _).trans (IM.abs_sub_center_le hA (i, j))
-  have hxb := Zonotope.aux_abs_le_absBound hβ hx
+  have hxb := Zonotope.abs_le_absBound hβ hx
   -- what the radius is allowed to add to coordinate `i`
   set err : Fin m → ℝ := fun i => ∑ j, (A i j - IM.center i j) * x j with herr
   have herrb : ∀ i, |err i| ≤ Zonotope.radiusReach IM Z i := by

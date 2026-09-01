@@ -1,5 +1,4 @@
 import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
-import CORALean.ContDynamics.LinearSys.MatExp.API
 
 /-!
 # Zonotopes: multiplication by an interval matrix

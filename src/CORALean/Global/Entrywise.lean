@@ -54,6 +54,24 @@ theorem entry_sub (a b : α) (i : ι) : entry (a - b) i = entry a i - entry b i 
 theorem ext {a b : α} (h : ∀ i, entry a i = entry b i) : a = b :=
   entry_injective (funext h)
 
+/-- Reading one coordinate, bundled, which is what lets it pass a sum. -/
+def entryHom (i : ι) : α →+ ℝ where
+  toFun a := entry a i
+  map_zero' := entry_zero i
+  map_add' a b := entry_add a b i
+
+theorem entry_sum {κ : Type} (s : Finset κ) (f : κ → α) (i : ι) :
+    entry (∑ x ∈ s, f x) i = ∑ x ∈ s, entry (f x) i :=
+  map_sum (entryHom i) f s
+
+/-- A centre plus a scaled family, read coordinatewise, with the scalar on the
+right — the form every generator-based representation states its membership in.
+Shared so that each of them states it once. -/
+theorem entry_add_sum_smul {m : ℕ} (c : α) (G : Fin m → α) (β : Fin m → ℝ) (i : ι) :
+    entry (c + ∑ j, β j • G j) i = entry c i + ∑ j, entry (G j) i * β j := by
+  rw [entry_add, entry_sum]
+  exact congrArg _ (Finset.sum_congr rfl fun j _ => by rw [entry_smul, mul_comm])
+
 end Entrywise
 
 /-- A vector is its own coordinates. -/
@@ -81,5 +99,12 @@ instance {m n : ℕ} : Entrywise (Mat ℝ m n) (Fin m × Fin n) where
 
 @[simp] theorem Entrywise.entry_mat {m n : ℕ} (A : Mat ℝ m n) (p : Fin m × Fin n) :
     Entrywise.entry A p = A p.1 p.2 := rfl
+
+/-- `entry_add_sum_smul` at `Vec`, where a coordinate is an application. This is
+the spelling a generator-based representation states `mem_construct_iff` in, so
+it is stated once here rather than per representation. -/
+theorem Entrywise.add_sum_smul_apply {n m : ℕ} (c : Vec ℝ n) (G : Fin m → Vec ℝ n)
+    (β : Fin m → ℝ) (i : Fin n) : (c + ∑ j, β j • G j) i = c i + ∑ j, G j i * β j :=
+  Entrywise.entry_add_sum_smul c G β i
 
 end CORALean

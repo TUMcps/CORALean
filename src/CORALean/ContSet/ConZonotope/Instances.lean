@@ -37,4 +37,16 @@ instance : Mtimes (Mat ℝ) (fun n => ConZonotope (Vec ℝ n)) where
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact (ConZonotope.mtimes_exact M C).subset
 
+/-- The constrained-zonotope family over vectors. A generic theorem quantifies
+over `S : ℕ → Type` and the elaborator cannot read that family off one member, so
+a use site has to name it: `(S := 𝒞)`. -/
+scoped notation "𝒞" => fun n => ConZonotope (Vec ℝ n)
+
+/-- The same operation at an interval matrix, which a discretization wants and
+`OuterContSet` does not ask for. This is the last instance `LinearSys`
+reachability needs, so a constrained zonotope now runs it. -/
+noncomputable instance : Mtimes ℐ 𝒞 where
+  mtimes := ConZonotope.mtimesIntervalMat
+  mtimes_outer IM C := ConZonotope.mtimesIntervalMat_outer IM C
+
 end CORALean.Real

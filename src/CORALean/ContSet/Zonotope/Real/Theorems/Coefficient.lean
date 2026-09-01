@@ -21,6 +21,13 @@ namespace CORALean.Real
 
 variable {n : ℕ}
 
+/-- Scaling a coefficient by a weight in `[0,1]` keeps it a coefficient. What
+every `linComb` needs, in both arithmetic layers. -/
+theorem Zonotope.abs_mul_le_one {a b : ℝ} (ha0 : 0 ≤ a) (ha1 : a ≤ 1) (hb : |b| ≤ 1) :
+    |a * b| ≤ 1 := by
+  rw [abs_mul, abs_of_nonneg ha0]
+  nlinarith [abs_nonneg b]
+
 noncomputable def Zonotope.coefficient (R D : ℝ) : ℝ := if R = 0 then 0 else D / R
 
 theorem Zonotope.abs_coefficient_le_one {R D : ℝ} (hR : 0 ≤ R) (hDR : |D| ≤ R) :

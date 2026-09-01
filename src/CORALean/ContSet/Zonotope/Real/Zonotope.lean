@@ -42,13 +42,8 @@ theorem Zonotope.mem_construct_iff {n : ℕ} {Z : Zonotope (Vec ℝ n)} {x : Vec
       ∃ β : Fin Z.h → ℝ, (∀ j, |β j| ≤ 1) ∧ ∀ i, x i = Z.c i + ∑ j, Z.G j i * β j := by
   constructor
   · rintro ⟨β, hβ, rfl⟩
-    refine ⟨β, hβ, fun i => ?_⟩
-    simp only [Pi.add_apply, Finset.sum_apply, Pi.smul_apply, smul_eq_mul]
-    exact congrArg _ (Finset.sum_congr rfl fun j _ => mul_comm _ _)
+    exact ⟨β, hβ, Entrywise.add_sum_smul_apply Z.c Z.G β⟩
   · rintro ⟨β, hβ, hx⟩
-    refine ⟨β, hβ, funext fun i => ?_⟩
-    rw [hx i]
-    simp only [Pi.add_apply, Finset.sum_apply, Pi.smul_apply, smul_eq_mul]
-    exact congrArg _ (Finset.sum_congr rfl fun j _ => mul_comm _ _)
+    exact ⟨β, hβ, funext fun i => (hx i).trans (Entrywise.add_sum_smul_apply Z.c Z.G β i).symm⟩
 
 end CORALean.Real
