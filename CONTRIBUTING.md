@@ -85,9 +85,10 @@ Build once before first use, since the server starts `lake serve` and otherwise
 builds from cold.
 
 `.gitlab-ci.yml` rebuilds the project on every push to the default branch and on
-every merge request, and fails on a warning as well as on an error. Mathlib is
-cached by `lake-manifest.json` and the toolchain by `lean-toolchain`, so a normal
-commit downloads nothing.
+every merge request, and fails on a warning as well as on an error. It caches
+nothing: `lake exe cache get` fetches Mathlib's prebuilt oleans from Mathlib's
+own CDN, which beats moving 7.6 GB of packages through GitLab's cache. The file
+carries the measurements behind that choice.
 
 ## File roles
 

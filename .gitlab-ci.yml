@@ -1,43 +1,37 @@
-# Rebuilds CORALean on every push and merge request.
+# Rebuilds CORALean on every push to the default branch and on merge requests.
 #
-# Mathlib is not re-downloaded per commit. Two caches carry it:
-#   .elan          keyed on lean-toolchain    — the Lean toolchain
-#   .lake/packages keyed on lake-manifest.json — Mathlib's source and its oleans
-# Both keys change only when the pinned versions do, so a normal commit does no
-# downloading at all. On a runner with a distributed cache the caches are shared
-# across machines; on a plain runner they are per host, so the first job on a new
-# host pays the download once.
+# No caches, deliberately. Measured on 2026-09-01:
 #
-# `lake exe cache get` fetches Mathlib's prebuilt oleans rather than compiling
-# them — without it a cold job would build Mathlib from source and take hours.
+#   .lake/packages        7.6 GB   (Mathlib oleans are 5.8 GB of it)
+#   a Lean toolchain      3.0 GB
+#   .lake/build           1.1 GB   (57 MB of oleans, 1 GB of emitted C)
+#
+# All three are larger than what they would save. `lake exe cache get` is the
+# mechanism for Mathlib: it pulls prebuilt oleans from Mathlib's own CDN, which
+# is faster than zipping and unzipping 7.6 GB through GitLab's cache, and it is
+# what keeps a job from compiling Mathlib from source — which would take hours.
+# elan's toolchain download is compressed and costs about a minute.
+#
+# Caching .lake/build would make a job incremental, and is safe (lake's traces
+# are content hashes), but lake regenerates every module when the emitted C is
+# absent — verified 2026-09-01 — so it means carrying the full 1.1 GB, not the
+# 57 MB of oleans. Worth revisiting only if pipeline time starts to matter.
+#
+# Expect roughly half an hour: a few minutes to fetch, then ~20 minutes to build.
 
 variables:
-  # Must sit under the project directory: GitLab only caches paths inside it.
   ELAN_HOME: "$CI_PROJECT_DIR/.elan"
   GIT_DEPTH: "1"
 
 build:
   image: debian:bookworm-slim
   interruptible: true
-  cache:
-    - key:
-        files:
-          - lean-toolchain
-      paths:
-        - .elan
-    - key:
-        files:
-          - lake-manifest.json
-      paths:
-        - .lake/packages
   before_script:
     - apt-get update -qq && apt-get install -y -qq --no-install-recommends curl git ca-certificates
     - export PATH="$ELAN_HOME/bin:$PATH"
     - |
-      if ! command -v elan > /dev/null; then
-        curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
-          | sh -s -- -y --default-toolchain none
-      fi
+      curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
+        | sh -s -- -y --default-toolchain none
     - elan toolchain install "$(cat lean-toolchain)"
     - lake --version
   script:
