@@ -2,6 +2,7 @@ import CORALean.ContSet.ContSet.API
 import CORALean.ContSet.InflatedContSet.API
 import CORALean.ContSet.Interval.API
 import CORALean.ContSet.Zonotope.API
+import CORALean.ContSet.Polytope.API
 
 /-!
 # Set representations, collected
