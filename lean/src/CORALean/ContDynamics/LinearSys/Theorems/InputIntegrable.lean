@@ -34,7 +34,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) n]
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 set_option maxHeartbeats 10000 in
 /-- The integrand is the derivative of the substituted trajectory. Taken within

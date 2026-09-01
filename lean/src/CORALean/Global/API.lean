@@ -1,7 +1,6 @@
 import CORALean.Global.Mathlib
 import CORALean.Global.Tensor
 import CORALean.Global.Scalar
-import CORALean.Global.MatSet
 import CORALean.Global.Partition
 import CORALean.Global.Sort
 

@@ -18,7 +18,7 @@ namespace CORALean.Float.InflatedContSet
 open Pointwise
 
 variable {𝕋 S T N M : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
-variable [ContSet N n] [ContSet M n]
+variable [ContSet N (Vec ℝ n)] [ContSet M (Vec ℝ n)]
 variable [InflatedContSet S N 𝕋 n] [InflatedContSet T M 𝕋 n]
 
 theorem mono_subset {s : S} {t : T} (hnominal : nominalSet s ⊆ nominalSet t)

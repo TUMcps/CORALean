@@ -20,7 +20,7 @@ namespace CORALean.Real
 open Matrix ContSet Scalar
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) n]
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 structure LinearSysDT (𝕋 : Type) (n : ℕ) where
   A : Mat 𝕋 n n

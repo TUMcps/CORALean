@@ -19,7 +19,7 @@ namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
-instance : ContSet (Interval 𝕋 n) n := ⟨Interval.construct⟩
+instance : ContSet (Interval 𝕋 n) (Vec ℝ n) := ⟨Interval.construct⟩
 
 instance : OuterContSet (Interval 𝕋) 𝕋 where
   plus := Interval.plus
@@ -29,7 +29,7 @@ instance : OuterContSet (Interval 𝕋) 𝕋 where
   plus_outer := Interval.plus_outer
   linComb_outer := Interval.linComb_outer
   mtimes_outer M I := by
-    simp only [MatSet.denote_mat, Set.biUnion_singleton]
+    simp only [ContSet.construct_mat, Set.biUnion_singleton]
     exact Interval.mtimes_outer M I
   reduce_outer _ _ := subset_rfl
 

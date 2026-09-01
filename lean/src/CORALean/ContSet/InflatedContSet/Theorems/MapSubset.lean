@@ -20,7 +20,7 @@ namespace CORALean.Float.InflatedContSet
 open Pointwise
 
 variable {𝕋 S T N M : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
-variable [ContSet N n] [ContSet M m]
+variable [ContSet N (Vec ℝ n)] [ContSet M (Vec ℝ m)]
 variable [InflatedContSet S N 𝕋 n] [InflatedContSet T M 𝕋 m]
 
 theorem map_subset {s : S} {t : T} {f : Vec ℝ n → Vec ℝ m} {D : Set (Vec ℝ m)}

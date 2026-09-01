@@ -33,7 +33,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) n]
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- Every declaration here needs twice the project default: the matrix exponential
 -- and the finite-dimensional `toContinuousLinearMap` both cost instance search.

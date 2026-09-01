@@ -18,7 +18,7 @@ namespace CORALean.Real
 
 variable {n : ℕ}
 
-instance : ContSet (Interval n) n := ⟨Interval.construct⟩
+instance : ContSet (Interval n) (Vec ℝ n) := ⟨Interval.construct⟩
 
 instance : OuterContSet Interval ℝ where
   plus := Interval.plus
@@ -28,7 +28,7 @@ instance : OuterContSet Interval ℝ where
   plus_outer := Interval.plus_outer
   linComb_outer := Interval.linComb_outer
   mtimes_outer M I := by
-    simp only [MatSet.denote_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
+    simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact Interval.mtimes_outer M I
   reduce_outer _ _ := subset_rfl
 

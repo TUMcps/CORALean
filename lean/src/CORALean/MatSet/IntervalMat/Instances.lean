@@ -3,20 +3,23 @@ import CORALean.MatSet.IntervalMat.IntervalMat
 /-!
 # What `IntervalMat` instantiates
 
-`MatSet` only: an interval matrix denotes matrices, so it is the argument of an
-operation and never the result of one.
+`ContSet` at `Mat ℝ m n`: an interval matrix denotes matrices, so it is the
+argument of an operation and never the result of one, and it carries no
+`OuterContSet`.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       18-August-2026
--- Last update:   ---
+-- Last update:   01-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
 
-instance : MatSet IntervalMat := ⟨IntervalMat.construct⟩
+variable {m n : ℕ}
 
-@[simp] theorem IntervalMat.denote_eq {m n : ℕ} (IM : IntervalMat m n) :
-    MatSet.denote IM = IM.construct := rfl
+instance : ContSet (IntervalMat m n) (Mat ℝ m n) := ⟨IntervalMat.construct⟩
+
+@[simp] theorem IntervalMat.construct_eq (IM : IntervalMat m n) :
+    ContSet.construct IM = IM.construct := rfl
 
 end CORALean.Real

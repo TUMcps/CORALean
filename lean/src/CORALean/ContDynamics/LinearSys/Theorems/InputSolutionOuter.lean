@@ -35,7 +35,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) n] [OuterContSet S ℝ]
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OuterContSet S ℝ]
 
 /-- A matrix applied to a scaled point is the scaled matrix applied to it, which
 is how a constant in front of an integral is absorbed into the operation. -/
@@ -46,7 +46,7 @@ theorem aux_smul_mtimes_mem {M : Mat ℝ n n} {c : ℝ} {U : S n} {y : Vec ℝ n
     rw [Matrix.mulVec_smul, Matrix.smul_mulVec]
   rw [hM]
   refine Mtimes.mtimes_outer _ _ ?_
-  simp only [MatSet.denote_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
+  simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
   exact Set.mem_image_of_mem _ hy
 
 /-- The Taylor part, by induction on the order: `plus` absorbs one term at a
@@ -185,7 +185,7 @@ theorem LinearSys.inputSolution_outer [Mtimes IntervalMat S] (sys : LinearSys �
       field_simp
     rw [hcomb]
     refine Mtimes.mtimes_outer _ _ ?_
-    simp only [MatSet.denote_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
+    simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact Set.mem_image_of_mem _ hz
   -- the remainder: `R(τ)` varies, so the convex closed set is the product itself
   -- `Matrix` blocks instance search, so the remainder's measurability is taken

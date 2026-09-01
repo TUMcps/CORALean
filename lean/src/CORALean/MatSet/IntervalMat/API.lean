@@ -8,7 +8,7 @@ import CORALean.MatSet.IntervalMat.Theorems.API
 
 The representation and what it denotes in `IntervalMat`, the enclosure of a
 matrix exponential in `Operations`, its guarantee in `Theorems`, and the
-`MatSet` instance in `Instances`.
+`ContSet` instance in `Instances`.
 
 Multiplying a set by one is the set representation's operation, so it lives with
 the representation and not here.

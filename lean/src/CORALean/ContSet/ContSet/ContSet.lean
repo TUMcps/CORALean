@@ -24,37 +24,52 @@ machine scalar in a `Float` one. `Global.Scalar` says how to read a matrix of
 them, and is its own class so a statement about the matrix alone — a trajectory,
 say — need not name a set representation.
 
-The carrier is a family, one member per dimension, because `mtimes` moves the
-dimension and the result has to land somewhere. Size is not in the index: a
+The class is indexed by the ambient type rather than by a dimension, so a
+representation of a set of *matrices* is an instance like any other and a plain
+matrix denotes the singleton it is. Not by a `Tensor` shape: `Mat` is Mathlib's
+`Matrix`, equal to `Tensor ℝ [m, n]` only up to `rfl`, and instance search sees
+through that in neither direction.
+
+The operation classes still take a family indexed by ℕ, because `mtimes` moves
+the dimension and the result has to land somewhere. Size is not in the index: a
 representation grows as it is operated on, and `reduce` is what brings it back,
 where the algorithm asks for it rather than after every operation.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       16-August-2026
--- Last update:   ---
+-- Last update:   01-September-2026
 -- Last revision: ---
 
 namespace CORALean
 
 open Matrix Pointwise
 
-class ContSet (S : Type) (n : outParam ℕ) where
-  construct : S → Set (Vec ℝ n)
+class ContSet (S : Type) (α : outParam Type) where
+  construct : S → Set α
 
 open ContSet
 
 open Scalar
 
-/-- Multiplication by anything `MatSet` reads as matrices, covering the interval
-matrix a discretization produces as well as the plain one.
+/-- A matrix denotes itself, read into ℝ by the layer's scalar. What makes a
+statement about a set of matrices cover the plain one for free. -/
+instance {𝕋 : Type} [Scalar 𝕋] {m n : ℕ} : ContSet (Mat 𝕋 m n) (Mat ℝ m n) where
+  construct M := {toRealMat M}
+
+@[simp] theorem ContSet.construct_mat {𝕋 : Type} [Scalar 𝕋] {m n : ℕ} (M : Mat 𝕋 m n) :
+    construct M = {toRealMat M} := rfl
+
+/-- Multiplication by anything denoting matrices, covering the interval matrix a
+discretization produces as well as the plain one.
 
 The guarantee is over everything the argument denotes, which at a plain matrix
 is the one matrix it is, so this says exactly what a single map did. -/
-class Mtimes (𝕄 : ℕ → ℕ → Type) (S : ℕ → Type) [MatSet 𝕄] [∀ n, ContSet (S n) n] where
+class Mtimes (𝕄 : ℕ → ℕ → Type) (S : ℕ → Type)
+    [∀ m n, ContSet (𝕄 m n) (Mat ℝ m n)] [∀ n, ContSet (S n) (Vec ℝ n)] where
   mtimes {m n : ℕ} : 𝕄 m n → S n → S m
   mtimes_outer {m n : ℕ} (M : 𝕄 m n) (s : S n) :
-    (⋃ A ∈ MatSet.denote M, (A *ᵥ ·) '' construct s) ⊆ construct (mtimes M s)
+    (⋃ A ∈ construct M, (A *ᵥ ·) '' construct s) ⊆ construct (mtimes M s)
 
 /-- Every point on a segment running from one set to the other. Named because
 `linComb`, each instance and the float refinement all state it. -/
@@ -70,7 +85,7 @@ use site.
 
 `mtimes` is inherited rather than declared, so a representation may also carry
 it at other matrix types without this class knowing. -/
-class OuterContSet (S : ℕ → Type) (𝕋 : outParam Type) [∀ n, ContSet (S n) n]
+class OuterContSet (S : ℕ → Type) (𝕋 : outParam Type) [∀ n, ContSet (S n) (Vec ℝ n)]
     [Scalar 𝕋] extends Mtimes (Mat 𝕋) S where
   plus {n : ℕ} : S n → S n → S n
   /-- CORA's `linComb`. Not the convex hull — the two agree only when both sets

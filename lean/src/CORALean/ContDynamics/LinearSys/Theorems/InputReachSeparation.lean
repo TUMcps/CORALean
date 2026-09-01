@@ -33,7 +33,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) n] [OuterContSet S ℝ]
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OuterContSet S ℝ]
 
 /-- A continuous matrix applied to a measurable vector, entry by entry. -/
 theorem aestronglyMeasurable_mulVec {M : ℝ → Mat ℝ n n} {v : ℝ → Vec ℝ n} {μ : Measure ℝ}

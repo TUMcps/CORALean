@@ -27,7 +27,7 @@ instance : OuterContSet (Zonotope 𝕋) 𝕋 where
   plus_outer := Zonotope.plus_outer
   linComb_outer := Zonotope.linComb_outer
   mtimes_outer M Z := by
-    simp only [MatSet.denote_mat, Set.biUnion_singleton]
+    simp only [ContSet.construct_mat, Set.biUnion_singleton]
     exact Zonotope.mtimes_outer M Z
   reduce_outer := Zonotope.reduce_outer
 

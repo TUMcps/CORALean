@@ -30,7 +30,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) n] [OuterContSet S ℝ]
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OuterContSet S ℝ]
 
 set_option maxHeartbeats 400000 in
 /-- Thm. 3.1 as a statement about `inputReach`: the enclosure holds for every

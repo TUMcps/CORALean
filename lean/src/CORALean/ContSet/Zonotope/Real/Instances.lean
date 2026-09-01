@@ -22,7 +22,7 @@ open Matrix
 
 variable {n : ℕ}
 
-instance : ContSet (Zonotope n) n := ⟨Zonotope.construct⟩
+instance : ContSet (Zonotope n) (Vec ℝ n) := ⟨Zonotope.construct⟩
 
 noncomputable instance : OuterContSet Zonotope ℝ where
   plus := Zonotope.plus
@@ -32,7 +32,7 @@ noncomputable instance : OuterContSet Zonotope ℝ where
   plus_outer Z₁ Z₂ := (Zonotope.plus_exact Z₁ Z₂).subset
   linComb_outer := Zonotope.linComb_outer
   mtimes_outer M Z := by
-    simp only [MatSet.denote_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
+    simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact (Zonotope.mtimes_exact M Z).subset
   reduce_outer := Zonotope.reduce_outer
 
@@ -41,7 +41,7 @@ for: a zonotope carries it, and a discretization is what wants it. -/
 noncomputable instance : Mtimes IntervalMat Zonotope where
   mtimes := Zonotope.mtimesIntervalMat
   mtimes_outer IM Z := by
-    simp only [IntervalMat.denote_eq]
+    simp only [IntervalMat.construct_eq]
     exact Zonotope.mtimesIntervalMat_outer IM Z
 
 end CORALean.Real

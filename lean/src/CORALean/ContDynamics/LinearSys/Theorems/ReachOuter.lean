@@ -29,7 +29,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) n] [OuterContSet S ℝ]
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OuterContSet S ℝ]
 
 set_option maxHeartbeats 10000 in
 theorem LinearSys.Trajectory.reach_outer {sys : LinearSys 𝕋 n} {R₀ U Ud : S n}

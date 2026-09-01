@@ -16,7 +16,7 @@ lean/src/CORALean/
                    API.lean (the whole directory, and nothing but imports)
       Float/       the same representation, rounded
     Zonotope/      Real/ and Float/, as above
-  MatSet/          representations of a *set of matrices*, as ContSet holds
+  MatSet/          representations of a *set of matrices*, same interface
     IntervalMat/   what an enclosed matrix exponential needs
   ContDynamics/    algorithms, written against the interfaces alone
     LinearSysDT/   discrete-time linear systems, and reachability
@@ -36,6 +36,13 @@ namespace, but a flat directory does leave the layer to the file itself.
 
 `ContSet` itself belongs to neither layer — it denotes a set over ℝ whichever
 scalar the representation computes in — and so sits in namespace `CORALean`.
+
+The class is indexed by the ambient type, so `ContSet/` and `MatSet/` hold
+instances of one interface and the directory only says which type a
+representation denotes into: `Vec ℝ n` for the first, `Mat ℝ m n` for the
+second. Not indexed by a `Tensor` shape — `Mat` is Mathlib's `Matrix`, which
+carries the ring structure the exponential needs and which instance search does
+not identify with `Tensor ℝ [m, n]`.
 
 ## Tooling
 

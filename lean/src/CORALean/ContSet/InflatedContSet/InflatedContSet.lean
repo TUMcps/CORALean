@@ -30,7 +30,7 @@ namespace CORALean.Float
 open Pointwise FloatOps SoundFloatArithmetic
 
 class InflatedContSet (S : Type) (N : outParam Type) (𝕋 : outParam Type) (n : outParam ℕ)
-    [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ContSet N n] where
+    [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ContSet N (Vec ℝ n)] where
   /-- The exact-layer representation the stored floats describe, not the set it
   denotes — keeping the representation is what lets a refinement proof reach the
   theorem about it. Not *exact*: the stored fields are rounded. -/
@@ -42,7 +42,7 @@ class InflatedContSet (S : Type) (N : outParam Type) (𝕋 : outParam Type) (n :
 namespace InflatedContSet
 
 variable {𝕋 S N : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
-variable [ContSet N n] [InflatedContSet S N 𝕋 n]
+variable [ContSet N (Vec ℝ n)] [InflatedContSet S N 𝕋 n]
 
 /-- What the nominal part denotes. Generic code cannot write
 `s.nominal.construct`: dot notation resolves through a head constant, and `N` is
@@ -51,7 +51,7 @@ abbrev nominalSet (s : S) : Set (Vec ℝ n) := ContSet.construct (nominal s)
 
 def construct (s : S) : Set (Vec ℝ n) := nominalSet s + (error s).construct
 
-instance : ContSet S n := ⟨construct⟩
+instance : ContSet S (Vec ℝ n) := ⟨construct⟩
 
 end InflatedContSet
 

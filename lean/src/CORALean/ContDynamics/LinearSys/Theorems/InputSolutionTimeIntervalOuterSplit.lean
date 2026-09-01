@@ -38,13 +38,13 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) n] [OuterContSet S ℝ]
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OuterContSet S ℝ]
 
 /-- A plain matrix applied to a point of a set lands in the set's image. -/
 theorem aux_mtimes_mem {M : Mat ℝ n n} {W : S n} {y : Vec ℝ n} (hy : y ∈ construct W) :
     M *ᵥ y ∈ construct (Mtimes.mtimes M W) := by
   refine Mtimes.mtimes_outer _ _ ?_
-  simp only [MatSet.denote_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
+  simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
   exact Set.mem_image_of_mem _ hy
 
 omit [OuterContSet S ℝ] in
@@ -53,7 +53,7 @@ theorem aux_mtimesIM_mem [Mtimes IntervalMat S] {IM : IntervalMat n n} {W : S n}
     {M : Mat ℝ n n} (hM : M ∈ IM.construct) {y : Vec ℝ n} (hy : y ∈ construct W) :
     M *ᵥ y ∈ construct (Mtimes.mtimes IM W) := by
   refine Mtimes.mtimes_outer _ _ ?_
-  simp only [IntervalMat.denote_eq]
+  simp only [IntervalMat.construct_eq]
   exact Set.mem_biUnion hM (Set.mem_image_of_mem _ hy)
 
 set_option maxHeartbeats 400000 in
