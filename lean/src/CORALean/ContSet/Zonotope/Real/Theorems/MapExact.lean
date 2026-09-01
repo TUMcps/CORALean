@@ -43,4 +43,23 @@ theorem Zonotope.mtimes_exact {n m : ℕ} (M : Mat ℝ m n) (Z : Zonotope (Vec �
     (M *ᵥ ·) '' Z.construct = (Zonotope.mtimes M Z).construct :=
   Zonotope.map_exact (Matrix.mulVecLin M) Z
 
+/-- What `LinMtimes` asks of `mapOf`: a set holding one map is that map. -/
+theorem Zonotope.lmtimes_singleton_outer (f : α →ₗ[ℝ] β) (Z : Zonotope α) :
+    (⋃ g ∈ ({f} : Set (α →ₗ[ℝ] β)), g '' Z.construct) ⊆ (Zonotope.mapOf f Z).construct := by
+  refine Set.iUnion₂_subset fun g hg => ?_
+  rw [Set.mem_singleton_iff] at hg
+  rw [hg]
+  exact (Zonotope.map_exact f Z).subset
+
+/-- CORA's matZonotope times a matrix, exactly, from either side. Both are
+`map_exact` at a different linear map — the whole of what the matrix case
+needs. -/
+theorem Zonotope.matMulLeft_exact {p q r : ℕ} (M : Mat ℝ p q) (Z : Zonotope (Mat ℝ q r)) :
+    (M * ·) '' Z.construct = (Zonotope.mapOf (matMulLeft M) Z).construct :=
+  Zonotope.map_exact (matMulLeft M) Z
+
+theorem Zonotope.matMulRight_exact {p q r : ℕ} (M : Mat ℝ q r) (Z : Zonotope (Mat ℝ p q)) :
+    (· * M) '' Z.construct = (Zonotope.mapOf (matMulRight M) Z).construct :=
+  Zonotope.map_exact (matMulRight M) Z
+
 end CORALean.Real

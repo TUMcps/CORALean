@@ -15,7 +15,7 @@ extern "C" {
 #endif
 lean_object* lp_mathlib_abs___at___00EReal_abs_spec__0(lean_object*);
 lean_object* l_List_finRange(lean_object*);
-lean_object* lp_CORALean_Finset_sum___at___00CORALean_Real_Interval_mtimes_spec__0___redArg(lean_object*, lean_object*);
+lean_object* lp_CORALean_Finset_sum___at___00dotProduct___at___00CORALean_matMulLeft_spec__0_spec__0___redArg(lean_object*, lean_object*);
 lean_object* lp_mathlib_Real_definition___lam__0_00___x40_Mathlib_Data_Real_Basic_1138242547____hygCtx___hyg_8_(lean_object*, lean_object*, lean_object*);
 lean_object* lp_mathlib_Real_definition___lam__0_00___x40_Mathlib_Data_Real_Basic_2451848184____hygCtx___hyg_8_(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_Zonotope_interval___redArg___lam__0(lean_object*, lean_object*, lean_object*);
@@ -50,7 +50,7 @@ lean_closure_set(v___f_11_, 0, v_G_10_);
 lean_closure_set(v___f_11_, 1, v_i_7_);
 v___x_12_ = lean_apply_1(v_c_9_, v_i_7_);
 v___x_13_ = l_List_finRange(v_h_8_);
-v___x_14_ = lp_CORALean_Finset_sum___at___00CORALean_Real_Interval_mtimes_spec__0___redArg(v___x_13_, v___f_11_);
+v___x_14_ = lp_CORALean_Finset_sum___at___00dotProduct___at___00CORALean_matMulLeft_spec__0_spec__0___redArg(v___x_13_, v___f_11_);
 v___f_15_ = lean_alloc_closure((void*)(lp_mathlib_Real_definition___lam__0_00___x40_Mathlib_Data_Real_Basic_1138242547____hygCtx___hyg_8_), 3, 2);
 lean_closure_set(v___f_15_, 0, v___x_12_);
 lean_closure_set(v___f_15_, 1, v___x_14_);
@@ -74,7 +74,7 @@ lean_closure_set(v___f_21_, 0, v_G_20_);
 lean_closure_set(v___f_21_, 1, v_i_17_);
 v___x_22_ = lean_apply_1(v_c_19_, v_i_17_);
 v___x_23_ = l_List_finRange(v_h_18_);
-v___x_24_ = lp_CORALean_Finset_sum___at___00CORALean_Real_Interval_mtimes_spec__0___redArg(v___x_23_, v___f_21_);
+v___x_24_ = lp_CORALean_Finset_sum___at___00dotProduct___at___00CORALean_matMulLeft_spec__0_spec__0___redArg(v___x_23_, v___f_21_);
 v___f_25_ = lean_alloc_closure((void*)(lp_mathlib_Real_definition___lam__0_00___x40_Mathlib_Data_Real_Basic_2451848184____hygCtx___hyg_8_), 2, 1);
 lean_closure_set(v___f_25_, 0, v___x_24_);
 v___f_26_ = lean_alloc_closure((void*)(lp_mathlib_Real_definition___lam__0_00___x40_Mathlib_Data_Real_Basic_1138242547____hygCtx___hyg_8_), 3, 2);

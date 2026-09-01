@@ -22,7 +22,10 @@ open Matrix
 
 variable {n : ℕ}
 
-instance : ContSet (Zonotope (Vec ℝ n)) (Vec ℝ n) := ⟨Zonotope.construct⟩
+/-- At every ambient type, not only `Vec`: what a zonotope denotes needs no
+coordinates. `OuterContSet` below stays at `Vec`, because `reduce` does. -/
+instance {α : Type} [AddCommGroup α] [Module ℝ α] : ContSet (Zonotope α) α :=
+  ⟨Zonotope.construct⟩
 
 noncomputable instance : OuterContSet (Zonotope (Vec ℝ n)) (Vec ℝ n) where
   plus := Zonotope.plus
@@ -37,6 +40,22 @@ instance : Mtimes (Mat ℝ) (fun n => Zonotope (Vec ℝ n)) where
   mtimes_outer M Z := by
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact (Zonotope.mtimes_exact M Z).subset
+
+set_option maxHeartbeats 400000 in
+/-- Multiplication by a plain matrix at any ambient type it acts on. At `Vec`
+this repeats `mtimes`; at `Mat` it is matrix multiplication of a matrix
+zonotope, which needs no development of its own. -/
+instance {𝕋 : Type} [Scalar 𝕋] {p q : ℕ} :
+    LinMtimes (Mat 𝕋 p q) (Zonotope (Vec ℝ q)) (Zonotope (Vec ℝ p)) (Vec ℝ q) (Vec ℝ p) where
+  lmtimes M Z := Zonotope.mapOf (Matrix.mulVecLin (Scalar.toRealMat M)) Z
+  lmtimes_outer _M Z := Zonotope.lmtimes_singleton_outer _ Z
+
+set_option maxHeartbeats 400000 in
+instance {𝕋 : Type} [Scalar 𝕋] {p q r : ℕ} :
+    LinMtimes (Mat 𝕋 p q) (Zonotope (Mat ℝ q r)) (Zonotope (Mat ℝ p r))
+      (Mat ℝ q r) (Mat ℝ p r) where
+  lmtimes M Z := Zonotope.mapOf (matMulLeft (Scalar.toRealMat M)) Z
+  lmtimes_outer _M Z := Zonotope.lmtimes_singleton_outer _ Z
 
 /-- The same operation at an interval matrix, which `OuterContSet` does not ask
 for: a zonotope carries it, and a discretization is what wants it. -/

@@ -21,7 +21,7 @@ lean_object* lp_CORALean_CORALean_Partition_right___redArg(lean_object*, lean_ob
 lean_object* lp_mathlib_abs___at___00EReal_abs_spec__0(lean_object*);
 lean_object* l_Fin_addCases___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
 lean_object* l_List_finRange(lean_object*);
-lean_object* lp_CORALean_Finset_sum___at___00CORALean_Real_Interval_mtimes_spec__0___redArg(lean_object*, lean_object*);
+lean_object* lp_CORALean_Finset_sum___at___00dotProduct___at___00CORALean_matMulLeft_spec__0_spec__0___redArg(lean_object*, lean_object*);
 lean_object* lean_nat_add(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* lp_CORALean_Matrix_diagonal___at___00CORALean_Real_Zonotope_reduceBy_spec__0___redArg___lam__0(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* lp_CORALean_Matrix_diagonal___at___00CORALean_Real_Zonotope_reduceBy_spec__0___redArg___lam__0___boxed(lean_object*, lean_object*, lean_object*);
@@ -134,7 +134,7 @@ lean_closure_set(v___f_46_, 0, v_part_42_);
 lean_closure_set(v___f_46_, 1, v_G_43_);
 lean_closure_set(v___f_46_, 2, v_i_45_);
 v___x_47_ = l_List_finRange(v_r_44_);
-v___x_48_ = lp_CORALean_Finset_sum___at___00CORALean_Real_Interval_mtimes_spec__0___redArg(v___x_47_, v___f_46_);
+v___x_48_ = lp_CORALean_Finset_sum___at___00dotProduct___at___00CORALean_matMulLeft_spec__0_spec__0___redArg(v___x_47_, v___f_46_);
 return v___x_48_;
 }
 }

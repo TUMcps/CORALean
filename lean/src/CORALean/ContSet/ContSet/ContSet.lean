@@ -61,11 +61,47 @@ instance {𝕋 : Type} [Scalar 𝕋] {m n : ℕ} : ContSet (Mat 𝕋 m n) (Mat �
 @[simp] theorem ContSet.construct_mat {𝕋 : Type} [Scalar 𝕋] {m n : ℕ} (M : Mat 𝕋 m n) :
     construct M = {toRealMat M} := rfl
 
+/-- What `M` stands for as a map: the set of linear maps `α → β` it denotes. A
+plain matrix denotes one, an interval matrix denotes all the matrices between
+its bounds.
+
+`α` is an input and only `β` an `outParam`, which is what lets one matrix type
+act on several ambient types: `Mat ℝ p q` sends `Vec ℝ q` to `Vec ℝ p` and
+`Mat ℝ q r` to `Mat ℝ p r`, and the two instances are told apart by the ambient
+type they are applied at. That matching is MATLAB's `pagemtimes` condition. -/
+class LinMapSet (M : Type) (α : Type) (β : outParam Type)
+    [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Module ℝ β] where
+  denote : M → Set (α →ₗ[ℝ] β)
+
+/-- Left multiplication by a matrix, on matrices. -/
+def matMulLeft {p q r : ℕ} (M : Mat ℝ p q) : Mat ℝ q r →ₗ[ℝ] Mat ℝ p r where
+  toFun B := M * B
+  map_add' := Matrix.mul_add M
+  map_smul' c B := Matrix.mul_smul M c B
+
+/-- Right multiplication by a matrix, on matrices. The other side of
+`pagemtimes`, and a different instance because it matches a different ambient
+type. -/
+def matMulRight {p q r : ℕ} (M : Mat ℝ q r) : Mat ℝ p q →ₗ[ℝ] Mat ℝ p r where
+  toFun B := B * M
+  map_add' B C := Matrix.add_mul B C M
+  map_smul' c B := Matrix.smul_mul c B M
+
+/-- A matrix acting on vectors. -/
+instance {𝕋 : Type} [Scalar 𝕋] {p q : ℕ} : LinMapSet (Mat 𝕋 p q) (Vec ℝ q) (Vec ℝ p) where
+  denote M := {Matrix.mulVecLin (toRealMat M)}
+
+/-- The same matrix acting on matrices, from the left. Distinguished from the
+vector instance by the ambient type it is applied at. -/
+instance {𝕋 : Type} [Scalar 𝕋] {p q r : ℕ} :
+    LinMapSet (Mat 𝕋 p q) (Mat ℝ q r) (Mat ℝ p r) where
+  denote M := {matMulLeft (toRealMat M)}
+
 /-- Multiplication by anything denoting matrices, covering the interval matrix a
 discretization produces as well as the plain one.
 
 The guarantee is over everything the argument denotes, which at a plain matrix
-is the one matrix it is, so this says exactly what a single map did. -/
+is the one map it is, so this says exactly what a single map did. -/
 class Mtimes (𝕄 : ℕ → ℕ → Type) (S : ℕ → Type)
     [∀ m n, ContSet (𝕄 m n) (Mat ℝ m n)] [∀ n, ContSet (S n) (Vec ℝ n)] where
   mtimes {m n : ℕ} : 𝕄 m n → S n → S m
@@ -104,5 +140,18 @@ class OuterContSet (S : Type) (α : outParam Type) [AddCommGroup α] [Module ℝ
     segments (construct s₁) (construct s₂) ⊆ construct (linComb s₁ s₂)
   reduce_outer (s : S) (o : ℕ) :
     construct s ⊆ construct (reduce s o)
+
+/-- Multiplication by anything denoting linear maps, at any pair of ambient
+types. `Mtimes` is this at vectors, kept separate because there the dimension
+moves and the family index is what says where the result lands.
+
+`T`, `α` and `β` are all read off `M` and `S`, so a use site names none of
+them. -/
+class LinMtimes (M S : Type) (T : outParam Type) (α : outParam Type) (β : outParam Type)
+    [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Module ℝ β]
+    [ContSet S α] [ContSet T β] [LinMapSet M α β] where
+  lmtimes : M → S → T
+  lmtimes_outer (m : M) (s : S) :
+    (⋃ f ∈ LinMapSet.denote (β := β) m, f '' construct s) ⊆ construct (lmtimes m s)
 
 end CORALean

@@ -15,7 +15,7 @@ extern "C" {
 #endif
 lean_object* lp_mathlib_abs___at___00EReal_abs_spec__0(lean_object*);
 lean_object* l_List_finRange(lean_object*);
-lean_object* lp_CORALean_Finset_sum___at___00CORALean_Real_Interval_mtimes_spec__0___redArg(lean_object*, lean_object*);
+lean_object* lp_CORALean_Finset_sum___at___00dotProduct___at___00CORALean_matMulLeft_spec__0_spec__0___redArg(lean_object*, lean_object*);
 lean_object* lp_mathlib_Real_definition___lam__0_00___x40_Mathlib_Data_Real_Basic_1138242547____hygCtx___hyg_8_(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_Zonotope_absBound___redArg___lam__0(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_Zonotope_absBound___redArg(lean_object*, lean_object*);
@@ -48,7 +48,7 @@ lean_closure_set(v___f_11_, 1, v_j_7_);
 v___x_12_ = lean_apply_1(v_c_9_, v_j_7_);
 v___x_13_ = lp_mathlib_abs___at___00EReal_abs_spec__0(v___x_12_);
 v___x_14_ = l_List_finRange(v_h_8_);
-v___x_15_ = lp_CORALean_Finset_sum___at___00CORALean_Real_Interval_mtimes_spec__0___redArg(v___x_14_, v___f_11_);
+v___x_15_ = lp_CORALean_Finset_sum___at___00dotProduct___at___00CORALean_matMulLeft_spec__0_spec__0___redArg(v___x_14_, v___f_11_);
 v___f_16_ = lean_alloc_closure((void*)(lp_mathlib_Real_definition___lam__0_00___x40_Mathlib_Data_Real_Basic_1138242547____hygCtx___hyg_8_), 3, 2);
 lean_closure_set(v___f_16_, 0, v___x_13_);
 lean_closure_set(v___f_16_, 1, v___x_15_);
