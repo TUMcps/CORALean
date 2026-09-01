@@ -1,4 +1,5 @@
 import CORALean.MatSet.IntervalMat.Theorems.CorrCoeffBound
+import CORALean.MatSet.IntervalMat.Theorems.ConstCorrectionMatrix
 import CORALean.MatSet.IntervalMat.Theorems.CorrectionMatrix
 import CORALean.MatSet.IntervalMat.Theorems.ExpDiff
 import CORALean.MatSet.IntervalMat.Theorems.ExpEnclosure

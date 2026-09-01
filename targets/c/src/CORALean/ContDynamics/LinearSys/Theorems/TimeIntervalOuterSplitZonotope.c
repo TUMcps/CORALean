@@ -21,6 +21,13 @@ static const lean_object* lp_CORALean_CORALean_Real_aux__centered___redArg___clo
 LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_aux__centered___redArg(lean_object*);
 LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_aux__centered(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_aux__centered___boxed(lean_object*, lean_object*);
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_aux__point___redArg___lam__0(lean_object*, lean_object*);
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_aux__point___redArg___lam__0___boxed(lean_object*, lean_object*);
+static const lean_closure_object lp_CORALean_CORALean_Real_aux__point___redArg___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)lp_CORALean_CORALean_Real_aux__point___redArg___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
+static const lean_object* lp_CORALean_CORALean_Real_aux__point___redArg___closed__0 = (const lean_object*)&lp_CORALean_CORALean_Real_aux__point___redArg___closed__0_value;
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_aux__point___redArg(lean_object*);
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_aux__point(lean_object*, lean_object*);
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_aux__point___boxed(lean_object*, lean_object*);
 LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_aux__centered___redArg___lam__0(lean_object* v_x_1_){
 _start:
 {
@@ -105,6 +112,54 @@ lean_object* v_res_23_;
 v_res_23_ = lp_CORALean_CORALean_Real_aux__centered(v_n_21_, v_Z_22_);
 lean_dec(v_n_21_);
 return v_res_23_;
+}
+}
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_aux__point___redArg___lam__0(lean_object* v_x_24_, lean_object* v_x_25_){
+_start:
+{
+lean_object* v___x_26_; 
+v___x_26_ = lp_mathlib_Real_definition_00___x40_Mathlib_Data_Real_Basic_1850581184____hygCtx___hyg_8_;
+return v___x_26_;
+}
+}
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_aux__point___redArg___lam__0___boxed(lean_object* v_x_27_, lean_object* v_x_28_){
+_start:
+{
+lean_object* v_res_29_; 
+v_res_29_ = lp_CORALean_CORALean_Real_aux__point___redArg___lam__0(v_x_27_, v_x_28_);
+lean_dec(v_x_28_);
+lean_dec(v_x_27_);
+return v_res_29_;
+}
+}
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_aux__point___redArg(lean_object* v_v_31_){
+_start:
+{
+lean_object* v___f_32_; lean_object* v___x_33_; lean_object* v___x_34_; 
+v___f_32_ = ((lean_object*)(lp_CORALean_CORALean_Real_aux__point___redArg___closed__0));
+v___x_33_ = lean_unsigned_to_nat(0u);
+v___x_34_ = lean_alloc_ctor(0, 3, 0);
+lean_ctor_set(v___x_34_, 0, v___x_33_);
+lean_ctor_set(v___x_34_, 1, v_v_31_);
+lean_ctor_set(v___x_34_, 2, v___f_32_);
+return v___x_34_;
+}
+}
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_aux__point(lean_object* v_n_35_, lean_object* v_v_36_){
+_start:
+{
+lean_object* v___x_37_; 
+v___x_37_ = lp_CORALean_CORALean_Real_aux__point___redArg(v_v_36_);
+return v___x_37_;
+}
+}
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_aux__point___boxed(lean_object* v_n_38_, lean_object* v_v_39_){
+_start:
+{
+lean_object* v_res_40_; 
+v_res_40_ = lp_CORALean_CORALean_Real_aux__point(v_n_38_, v_v_39_);
+lean_dec(v_n_38_);
+return v_res_40_;
 }
 }
 lean_object* initialize_Init(uint8_t builtin);

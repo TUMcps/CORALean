@@ -81,6 +81,27 @@ it. -/
 noncomputable def IntervalMat.corrTerm (A : Mat ℝ n n) (r : ℝ) (i : ℕ) (j k : Fin n) : ℝ :=
   IntervalMat.corrCoeff i * r ^ i * (((Nat.factorial i : ℝ))⁻¹ * (A ^ i) j k)
 
+/-- What order `i+2` contributes to the *integrated* correction. The same shape
+as `corrTerm`, one factorial further along and one matrix power back, which is
+what integrating each order of the exponential does to it. -/
+noncomputable def IntervalMat.constCorrTerm (A : Mat ℝ n n) (r : ℝ) (i : ℕ) (j k : Fin n) :
+    ℝ :=
+  IntervalMat.corrCoeff (i + 2) * r ^ (i + 2)
+    * (((Nat.factorial (i + 2) : ℝ))⁻¹ * (A ^ (i + 1)) j k)
+
+/-- Althoff's `F̃ = A⁻¹F`, without the inverse: what the interpolation error of a
+*constant* input can amount to over a step.
+
+Orders `1` through `η` of `∫₀ᵗ e^{Aσ}dσ - (t/r)∫₀ʳ e^{Aσ}dσ` exactly, and
+everything past `η` in `E(r)·r` — the same remainder an input solution uses,
+since integrating the exponential's tail scales it by at most the step. -/
+noncomputable def IntervalMat.constCorrectionMatrix (A : Mat ℝ n n) (r : ℝ) (η : ℕ) :
+    IntervalMat n n where
+  inf := fun j k => (∑ i ∈ Finset.range η, min (IntervalMat.constCorrTerm A r i j k) 0)
+    - r * IntervalMat.expRemainderBound (r • A) η
+  sup := fun j k => (∑ i ∈ Finset.range η, max (IntervalMat.constCorrTerm A r i j k) 0)
+    + r * IntervalMat.expRemainderBound (r • A) η
+
 /-- Althoff's `F`: the orders up to `η` exactly, and everything past `η` in the
 same remainder that bounds the exponential.
 

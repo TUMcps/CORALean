@@ -1,6 +1,6 @@
 // Lean compiler output
 // Module: CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuterSplit
-// Imports: public import Init public meta import Init public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuter
+// Imports: public import Init public meta import Init public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuter public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMulVec
 #include <lean/lean.h>
 #if defined(__clang__)
 #pragma clang diagnostic ignored "-Wunused-parameter"
@@ -16,6 +16,7 @@ extern "C" {
 lean_object* initialize_Init(uint8_t builtin);
 lean_object* initialize_Init(uint8_t builtin);
 lean_object* initialize_CORALean_CORALean_ContDynamics_LinearSys_Theorems_InputSolutionTimeIntervalOuter(uint8_t builtin);
+lean_object* initialize_CORALean_CORALean_ContDynamics_LinearSys_Theorems_ExpIntegralMulVec(uint8_t builtin);
 static bool _G_initialized = false;
 LEAN_EXPORT lean_object* initialize_CORALean_CORALean_ContDynamics_LinearSys_Theorems_InputSolutionTimeIntervalOuterSplit(uint8_t builtin) {
 lean_object * res;
@@ -28,6 +29,9 @@ res = initialize_Init(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 res = initialize_CORALean_CORALean_ContDynamics_LinearSys_Theorems_InputSolutionTimeIntervalOuter(builtin);
+if (lean_io_result_is_error(res)) return res;
+lean_dec_ref(res);
+res = initialize_CORALean_CORALean_ContDynamics_LinearSys_Theorems_ExpIntegralMulVec(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 return lean_io_result_mk_ok(lean_box(0));
