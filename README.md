@@ -24,63 +24,21 @@ cd lean && lake exe cache get && lake build
 
 ## Layout
 
-Two halves. `lean/` holds the definitions and their proofs; `targets/` holds
-one directory per language implementing actual code.
-
 ```
-lean/
-  src/           the formalization — definitions, theorems, proofs
-targets/
+lean/            the formalization — definitions, theorems, proofs
+targets/         one directory per language implementing actual code
   c/             Lean's own compiler output, copied out of .lake  (generated)
-    src/                 the exported C, mirroring the Lean modules
-    export-from-lake.sh  clean rebuild, then copy
   cpp/           written by hand against the Lean sources         (transcribed)
-  ...
 ```
+
+The setup mirrors CORA's structure and naming convention.
+Set representations and their operations are defined over ℝ and proved sound — e.g., each operation over-approximates the set it claims to.
+Every such theorem is then refined for floating-point arithmetic by rounding "outward", which an implementation can be tested against.
 
 The C code is generated from Lean and serves as the reference.
 Every other language should be generated or at least checked against the C implementation.
 
-### The formalization
-
-The setup mirrors CORA's structure and naming convention.
-In general, all set representations and their operations are defined over ℝ and proved sound — e.g., each operation over-approximates the set it claims to.
-These proofs can be found under `lean/src/CORALean/Real`.
-
-Lean also formalizes the floating-point computations by soundly rounding "outward" to remain sound.
-Thus, all theorems first stated in ℝ are refined in `lean/src/CORALean/Float` to deal with floating point arithmetic.
-This refinement can then be used to test any implementation against.
-
-
-```
-lean/src/CORALean/
-  Global/          shared: array types, the scalar, index partitions, Mathlib
-  Real/            the specification: exact arithmetic over ℝ
-    ContSet/       one directory per concept
-      ContSet/     the interface every representation instantiates
-      Interval/    Interval.lean (the type), Operations/ (one per operation),
-                   Theorems/ (one per guarantee),
-                   Instances.lean (the interface, instantiated),
-                   API.lean (the whole directory, and nothing but imports)
-      ...
-    ContDynamics/  algorithms, written against the interface alone
-      LinearSysDT/ discrete-time linear systems, and reachability
-      LinearSys/   continuous-time linear systems: the flow in closed form,
-                   reachability at the sample times by sampling into
-                   LinearSysDT, and an enclosure over a whole step
-    MatSet/        representations of a *set of matrices*, as ContSet holds
-      IntervalMat/ representations of a set of points; what an enclosed
-                   matrix exponential needs
-  Float/           the refinement: the same representations, rounded
-    FloatOps / SoundFloatArithmetic   operations, then their guarantees
-    Instances/     Dyadic (outward rounding)  Real (trivial)
-    ContSet/
-      InflatedContSet/   nominal part + error box, and its shared lemmas
-      Interval/    Floating point formalization of Interval in Real
-      ...
-```
-
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for tooling, file roles, the layering rule, and the conventions proofs and docstrings follow.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the source layout, tooling, file roles, the layering rule, and the conventions proofs and docstrings follow.

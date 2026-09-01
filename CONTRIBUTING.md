@@ -1,5 +1,42 @@
 # Contributing
 
+## Source layout
+
+```
+lean/src/CORALean/
+  Global/          shared: array types, the scalar, index partitions, Mathlib
+    Float/         the floating-point scalar, and models of it
+  ContSet/         representations of a set of points
+    ContSet/       the interface every representation instantiates
+    InflatedContSet/  nominal part + error box, what a float representation adds
+    Interval/
+      Real/        Interval.lean (the type), Operations/ (one per operation),
+                   Theorems/ (one per guarantee),
+                   Instances.lean (the interface, instantiated),
+                   API.lean (the whole directory, and nothing but imports)
+      Float/       the same representation, rounded
+    Zonotope/      Real/ and Float/, as above
+  MatSet/          representations of a *set of matrices*, as ContSet holds
+    IntervalMat/   what an enclosed matrix exponential needs
+  ContDynamics/    algorithms, written against the interfaces alone
+    LinearSysDT/   discrete-time linear systems, and reachability
+    LinearSys/     continuous-time linear systems: the flow in closed form,
+                   reachability at the sample times by sampling into
+                   LinearSysDT, and an enclosure over a whole step
+```
+
+A representation present in both arithmetic layers holds one directory per
+layer, named for the namespace it declares. One present in a single layer stays
+flat, and then only the namespace says which: `InflatedContSet` is float-only,
+`IntervalMat` and `ContDynamics` real-only.
+
+The remaining directory names — `ContSet`, `Interval`, `Operations` — are
+organizational and appear in no namespace. So a path never contradicts a
+namespace, but a flat directory does leave the layer to the file itself.
+
+`ContSet` itself belongs to neither layer — it denotes a set over ℝ whichever
+scalar the representation computes in — and so sits in namespace `CORALean`.
+
 ## Tooling
 
 `.mcp.json` registers the [lean-lsp](https://github.com/oOo0oOo/lean-lsp-mcp)
@@ -49,6 +86,11 @@ only name anything outside needs:
   `Theorems/PlusExact.lean` imports `Operations.API`, never its own `API`;
 - across directories, an import names an `API.lean` and nothing else, so reaching
   another representation's lemma never names the file it happens to sit in.
+
+`Global/API.lean` is the one file that does not collect its whole directory: it
+leaves out `Global/Float/`. Every `Real` file imports `Global.API`, so reaching
+the float scalar through it would break the rule below that deleting `Float`
+leaves the specification standing.
 
 Note that an import cannot filter: `Theorems/API.lean` re-exports the `aux_`
 lemmas too. The prefix is the only thing marking them, which is why it is a
