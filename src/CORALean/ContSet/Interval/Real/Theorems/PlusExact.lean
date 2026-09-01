@@ -41,7 +41,7 @@ theorem Interval.plus_exact (I₁ I₂ : Interval α) (h₁ : I₁.IsNonempty) (
     rwa [show (I₁.plus I₂).sup = I₁.sup + I₂.sup from rfl, Entrywise.entry_add] at h
   -- the first summand, built from coordinates and then read back off
   set f : ι → ℝ := fun i => min (entry I₁.sup i) (entry x i - entry I₂.inf i) with hf
-  refine ⟨ofEntry f, fun i => ?_, x - ofEntry f, fun i => ?_, by abel⟩
+  refine ⟨ofEntry f, fun i => ?_, x - ofEntry f, fun i => ?_, add_sub_cancel _ _⟩
   · rw [Entrywise.entry_ofEntry]
     exact ⟨le_min (h₁ i) (by linarith [hlo i]), min_le_left _ _⟩
   · rw [Entrywise.entry_sub, Entrywise.entry_ofEntry, hf]
