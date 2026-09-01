@@ -4,10 +4,12 @@ import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
 import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparation
 import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionOuter
 import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuter
+import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuterSplit
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOuter
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterZonotope
 import CORALean.ContDynamics.LinearSys.Theorems.StepInputOuter
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuter
+import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterSplitZonotope
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterZonotope
 import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryTimeIntervalOuter
 import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
