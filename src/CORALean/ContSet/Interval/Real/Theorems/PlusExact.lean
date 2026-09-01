@@ -8,8 +8,6 @@ Coordinatewise. Splitting a point of the sum is the only work: `I₁` takes
 
 Both boxes must be `IsNonempty`: `[1, 0] + [0, 10]` is `∅` as a set but `[1, 10]`
 by the definition.
-
-`plus_outer` is what the float layer composes with.
 -/
 
 -- Authors:       Tobias Ladner

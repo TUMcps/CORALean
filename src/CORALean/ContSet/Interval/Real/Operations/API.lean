@@ -5,5 +5,5 @@ import CORALean.ContSet.Interval.Real.Operations.Mtimes
 /-!
 # What `Interval` computes
 
-One file per operation, named as CORA names it.
+CORA's `plus`, `linComb` and `mtimes`, one file each.
 -/

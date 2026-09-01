@@ -25,44 +25,39 @@ src/CORALean/
 ```
 
 A representation present in both arithmetic layers holds one directory per
-layer, named for the namespace it declares. One present in a single layer stays
-flat, and then only the namespace says which: `InflatedContSet` is float-only,
-`ContDynamics` and its `MatExp` enclosures real-only.
+layer, named for the namespace it declares; one present in a single layer stays
+flat, and then only the namespace says which. The remaining directory names —
+`ContSet`, `Interval`, `Operations` — are organizational and appear in no
+namespace, so a path never contradicts a namespace. `ContSet` itself belongs to
+neither layer and sits in namespace `CORALean`.
 
-The remaining directory names — `ContSet`, `Interval`, `Operations` — are
-organizational and appear in no namespace. So a path never contradicts a
-namespace, but a flat directory does leave the layer to the file itself.
+### The ambient type
 
-`ContSet` itself belongs to neither layer — it denotes a set over ℝ whichever
-scalar the representation computes in — and so sits in namespace `CORALean`.
-
-The class is indexed by the ambient type, so a representation is written once
-and instantiated wherever it makes sense: `Zonotope (Mat ℝ n m)` is CORA's
+`ContSet` is indexed by the ambient type, so a representation is written once and
+instantiated wherever it makes sense: `Zonotope (Mat ℝ n m)` is CORA's
 `matZonotope` and `Interval (Mat ℝ m n)` its `intervalMatrix`, neither needing a
 development or a name of its own. Not indexed by a `Tensor` shape — `Mat` is
 Mathlib's `Matrix`, which carries the ring structure the exponential needs and
-which instance search does not identify with `Tensor ℝ [m, n]`; `*` on the one
-is matrix multiplication and on the other is pointwise.
+which instance search does not identify with `Tensor ℝ [m, n]`.
 
-An operation generalizes as far as the structure it uses. `plus` and `map` need
-only a module; `Entrywise` is what an interval hull, a generator ranking or an
-entrywise bound needs, and both `Vec` and `Mat` have it; `reduce` and `mtimes`
-stay at `Vec`, since one ranks generators by coordinate and the other moves a
-dimension.
+An operation then generalizes as far as the structure it uses. `plus` and `map`
+need only a module; an interval hull, a generator ranking and an entrywise bound
+need `Entrywise`, which both `Vec` and `Mat` have; `reduce` and `mtimes` stay at
+`Vec`, one ranking generators by coordinate and the other moving a dimension.
 
-`OuterContSet` follows: `plus`, `linComb` and `reduce` take and return the same
-ambient type, so it is a class over one representation rather than a family
-indexed by dimension. `mtimes` is the only operation that moves between ambient
-types, so it stays its own class, `Mtimes`, over a family. An algorithm that
-travels between dimensions asks for both; one that does not asks for
-`OuterContSet` alone.
+`OuterContSet` follows: its operations take and return the same ambient type, so
+it is a class over one representation rather than a family indexed by dimension.
+`mtimes` is the only operation that moves between ambient types, so it stays its
+own class `Mtimes`, over a family, and an algorithm that travels between
+dimensions asks for both.
 
 ### Notation
 
-`x ∈ s` is membership in what a representation denotes, and `s₁ ⊞ s₂` is
-`plus`. `⊞` and not `+` on purpose: `plus` is only *outer*, so
-`construct (s₁ ⊞ s₂)` merely contains `construct s₁ + construct s₂`, and with
-`Pointwise` open both would otherwise read as `+` in one goal.
+| | |
+| --- | --- |
+| `x ∈ s` | membership in what a representation denotes |
+| `s₁ ⊞ s₂` | `plus`, and deliberately not `+`: it is only *outer*, so `construct (s₁ ⊞ s₂)` merely contains `construct s₁ + construct s₂` |
+| `𝒵`, `ℐ` | the zonotope and interval-matrix families, for pinning `(S := 𝒵)` where the elaborator cannot read a family off one member |
 
 Bundling the binders of a generic file into a `class abbrev` was tried and
 reverted: each use adds an unfolding step to instance search, which at 5000
@@ -93,17 +88,14 @@ models and systems follow the same shape:
 A file is named after what it declares, not after the role it plays:
 `Zonotope/Zonotope.lean` and `Operations/Reduce.lean`, as in CORA's
 `@zonotope/zonotope.m` and `@zonotope/reduce.m`. `Instances.lean` is the
-exception, because a Lean instance has no name to use.
+exception, a Lean instance having no name to use.
 
-`Operations` stays a single file where splitting would not pay: `LinearSysDT`
-has one operation, and `Dyadic`'s are one-line compositions of an exact step and
-a rounding.
+`Operations` stays a single file where splitting would not pay — `LinearSysDT`
+has one operation, and `Dyadic`'s are one-line compositions.
 
 ### `aux_`
 
-What a file needs and nothing else uses carries the `aux_` prefix, as in CORA —
-`aux_girardSplit`, `aux_plus_nominal`. Everything else is public, so the
-distinction is visible at each use site rather than kept in a list somewhere.
+What a file needs and nothing else uses carries the `aux_` prefix, as in CORA.
 The test is mechanical: used outside its own file, or not.
 
 ### `API.lean`
@@ -118,13 +110,11 @@ only name anything outside needs:
   another representation's lemma never names the file it happens to sit in.
 
 `Global/API.lean` is the one file that does not collect its whole directory: it
-leaves out `Global/Float/`. Every `Real` file imports `Global.API`, so reaching
-the float scalar through it would break the rule below that deleting `Float`
-leaves the specification standing.
+leaves out `Global/Float/`, which every `Real` file would otherwise reach,
+breaking the rule below that deleting `Float` leaves the specification standing.
 
-Note that an import cannot filter: `Theorems/API.lean` re-exports the `aux_`
-lemmas too. The prefix is the only thing marking them, which is why it is a
-naming rule and not a file boundary.
+An import cannot filter, so `Theorems/API.lean` re-exports the `aux_` lemmas
+too. The prefix is the only thing marking them.
 
 ### Naming
 
@@ -148,9 +138,10 @@ guarantee, the weaker direction winning.
 
 ## The two layers
 
-`Real` is the specification, `Float` the refinement which obtains soundness guarantees through transitivity.
-Thus, `Float` imports `Real`, never the reverse.
-New float operations pay their rounding into an interval error box via `InflatedContSet`.
+`Real` is the specification, `Float` the refinement, which obtains its soundness
+guarantees by transitivity — so `Float` imports `Real`, never the reverse. A new
+float operation pays its rounding into an interval error box via
+`InflatedContSet`.
 
 `𝕋` is the scalar a layer computes in — ℝ in `Real`, a machine scalar in `Float`.
 `Global.Scalar` reads a matrix of it as a real one, which is how a guarantee
@@ -167,9 +158,14 @@ new lemma may mean a new import there.
 
 ## Documentation
 
-Every file opens with a brief module docstring saying what it is for and what is
-non-obvious about it. Keep it, and all other comments, short and precise (ideally one line).
-State how the code is now — not what it used to be, or what was tried instead.
+Every file opens with a module docstring saying what it is for and what is
+non-obvious about it: where it departs from CORA or from Althoff's thesis, which
+hypothesis is doing the work, which Lean detail a reader would otherwise trip
+over. Not the file's role in the layout, which is this document's job, and not
+what the code already says.
+
+Keep every comment short and precise — one line where one will do — and state
+how the code is now, not what it used to be or what was tried instead.
 
 There are no per-directory READMEs.
 The module docstring of a directory's `API.lean` is its entry point.

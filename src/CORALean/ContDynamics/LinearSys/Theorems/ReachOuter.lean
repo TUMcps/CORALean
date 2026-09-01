@@ -5,16 +5,14 @@ import CORALean.ContDynamics.LinearSys.Theorems.Discretize
 
 The whole proof is `Discretize` handed to `LinearSysDT.reach_outer`: once a
 sampled run is a discrete run, the discrete guarantee is the continuous one at
-`0, Δt, 2Δt, ...` and there is nothing left to show.
-
-Between the sample times it says nothing. Covering those needs a set enclosing
-the curve over a step, which no operation offers yet.
+`0, Δt, 2Δt, ...`. Between the sample times it says nothing — that is
+`TimeIntervalOuter`.
 
 `Mtimes (Mat ℝ) S`, not `Mat 𝕋`: the propagated matrix is `e^{AΔt}`, which is
 real whatever the system stores.
 
 `reach_outer_inputSolution` is the same statement with the input enclosure named
-rather than assumed, leaving `R₀`, `U` and the step as the only inputs.
+rather than assumed.
 -/
 
 -- Authors:       Tobias Ladner
@@ -45,17 +43,17 @@ set_option maxHeartbeats 40000 in
 /-- The same, with the input set named rather than assumed: `inputSolution Δt η U`
 encloses every step's contribution, so nothing about the input is left to the
 caller beyond the properties of `U` itself. -/
-theorem LinearSys.Trajectory.reach_outer_inputSolution [Mtimes (fun m n => Interval (Mat ℝ m n)) S]
+theorem LinearSys.Trajectory.reach_outer_inputSolution [Mtimes ℐ S]
     {sys : LinearSys 𝕋 n} {R₀ U : S n} {x u : ℝ → Vec ℝ n} {Δt : ℝ}
     (traj : sys.Trajectory R₀ U x u) (hΔt : 0 < Δt) (η : ℕ)
     (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
     (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
     (hbdd : Bornology.IsBounded (construct U))
-    (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+    (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) Δt η) U)))
-    (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+    (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) Δt η) U)))
-    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) Δt η) U))) (o k : ℕ) :
     x (k * Δt) ∈ construct
       ((sys.discretize Δt).reach o R₀ (sys.inputSolution Δt η U) k) :=

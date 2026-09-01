@@ -3,8 +3,6 @@ import CORALean.ContSet.Interval.Real.Theorems.API
 /-!
 # What `Interval` instantiates
 
-The class fields *are* the obligations, so there is nothing to restate.
-
 `reduce` is the identity: an interval holds two bounds per coordinate whatever
 order is asked for, so it has nothing to give up.
 -/
@@ -19,8 +17,8 @@ namespace CORALean.Real
 variable {n : ℕ}
 
 /-- At every ambient type that has coordinates, so an interval matrix is an
-instance too. `OuterContSet` stays at `Vec`, because `mtimes` moves a
-dimension and the family it needs is a family of vector types. -/
+instance too. The `OuterContSet` instance below is stated only at `Vec`, which
+is where an algorithm asks for it. -/
 instance {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι] :
     ContSet (Interval α) α := ⟨Interval.construct⟩
 
@@ -37,5 +35,10 @@ instance : Mtimes (Mat ℝ) (fun n => Interval (Vec ℝ n)) where
   mtimes_outer M I := by
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact Interval.mtimes_outer M I
+
+/-- The interval-matrix family. A generic theorem quantifies over `𝕄 : ℕ → ℕ → Type`
+and the elaborator cannot read that family off one member, so a use site has to
+name it: `(𝕄 := ℐ)`. -/
+scoped notation "ℐ" => fun m n => Interval (Mat ℝ m n)
 
 end CORALean.Real

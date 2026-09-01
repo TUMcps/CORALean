@@ -3,15 +3,9 @@ import CORALean.Global.Float.Instances.Dyadic.Theorems.API
 /-!
 # `Dyadic` as a sound float model
 
-The class fields *are* the obligations, so the instance is where they are
-discharged and nothing is restated.
-
-Each is exactness composed with a rounding direction, the two halves proved
-separately in `Theorems`. No bound on the mantissa is needed: leaving the grid
-costs precision, never soundness, as a bad partition does to `reduce`.
-
-`FloatOps` is computable and separate, so `Dyadic` arithmetic still runs through
-the class; only `toReal` does not, and nothing computes with it.
+Each obligation is exactness composed with a rounding direction, the two halves
+proved separately in `Theorems`. No bound on the mantissa is needed: leaving the
+grid costs precision, never soundness.
 -/
 
 -- Authors:       Tobias Ladner

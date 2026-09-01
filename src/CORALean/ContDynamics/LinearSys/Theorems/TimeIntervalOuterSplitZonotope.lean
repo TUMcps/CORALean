@@ -11,8 +11,7 @@ constant, itself recentred is the part holding the origin, and a zonotope with
 no generators or with one gives the point and the segment the constant part is
 enclosed against.
 
-So Althoff's second case costs the caller nothing here — the statement assumes
-nothing at all about where the input set sits.
+So Althoff's second case assumes nothing at all about where the input set sits.
 -/
 
 -- Authors:       Tobias Ladner
@@ -28,13 +27,6 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-
-/-- The zonotope family, named locally because a generic theorem quantifies over
-`S : ℕ → Type` and the elaborator cannot read that family off one member. -/
-local notation "𝒵" => fun n => Zonotope (Vec ℝ n)
-
-/-- The interval-matrix family, named for the same reason. -/
-local notation "ℐ" => fun m n => Interval (Mat ℝ m n)
 
 /-- The zonotope moved to the origin, keeping its generators. -/
 def aux_centered (Z : Zonotope (Vec ℝ n)) : Zonotope (Vec ℝ n) := ⟨Z.h, 0, Z.G⟩

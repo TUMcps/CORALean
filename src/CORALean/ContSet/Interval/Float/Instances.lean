@@ -3,9 +3,9 @@ import CORALean.ContSet.Interval.Float.Theorems.API
 /-!
 # What `Interval` instantiates
 
-The class fields *are* the obligations, so there is nothing to restate. They are
-the exact layer's, because a float interval denotes a set of real points just as
-an exact one does; only the scalar the operations run in differs.
+The same obligations the exact layer discharges, since a float interval denotes a
+set of real points just as an exact one does; only the scalar the operations run
+in differs.
 
 `reduce` is the identity, as over ℝ: an interval has no order to give up.
 -/

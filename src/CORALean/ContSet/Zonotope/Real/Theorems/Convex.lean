@@ -7,9 +7,8 @@ The affine image of a cube, so a weighted average of two points is the image of
 the same average of their coefficients — which is still a coefficient, `[-1,1]`
 being convex.
 
-What an integral valued in the set needs. Unlike `linComb`, which is stated so a
-non-convex representation can make it too, this is a property only some
-representations have.
+What an integral valued in the set needs, and a property only some
+representations have — unlike `linComb`, stated so a non-convex one can make it.
 -/
 
 -- Authors:       Tobias Ladner

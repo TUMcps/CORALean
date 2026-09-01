@@ -8,10 +8,8 @@ import CORALean.ContSet.Zonotope.Real.API
 `ReachOuterZonotope` does for the sample times. The same three zonotope lemmas
 discharge all six properties of `U` and of the remainder product.
 
-`0 ∈ U` does not follow from being a zonotope and stays a hypothesis, which is
-the same split Althoff makes: the thesis treats an input set containing the
-origin and one not containing it as separate cases, and only the first has a
-single enclosure for the whole step.
+`0 ∈ U` does not follow from being a zonotope and stays a hypothesis — Althoff's
+first case, the only one with a single enclosure for the whole step.
 -/
 
 -- Authors:       Tobias Ladner
@@ -27,13 +25,6 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-
-/-- The zonotope family, named locally because a generic theorem quantifies over
-`S : ℕ → Type` and the elaborator cannot read that family off one member. -/
-local notation "𝒵" => fun n => Zonotope (Vec ℝ n)
-
-/-- The interval-matrix family, named for the same reason. -/
-local notation "ℐ" => fun m n => Interval (Mat ℝ m n)
 
 set_option maxHeartbeats 1000000 in
 /-- Every trajectory whose initial and input sets are zonotopes stays in the

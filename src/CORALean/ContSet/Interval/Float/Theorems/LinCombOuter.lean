@@ -3,10 +3,9 @@ import CORALean.ContSet.Interval.Float.Operations.API
 /-!
 # `Interval.linComb` contains every segment between the two intervals
 
-The exact guarantee composed with the refinement, as every float guarantee is.
-Here the refinement is an equality in disguise — `toReal_minimum` and
-`toReal_maximum` say the stored bounds are exactly the exact ones — so no
-precision is lost and the inclusion holds in both directions.
+The refinement here is an equality in disguise: `toReal_minimum` and
+`toReal_maximum` say the stored bounds are exactly the exact ones, so no
+precision is lost.
 -/
 
 -- Authors:       Tobias Ladner

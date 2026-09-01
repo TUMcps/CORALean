@@ -7,12 +7,9 @@ A generator of radius `R` reaches exactly `[-R, R]`, so any `D` with `|D| ≤ R`
 is `R * coefficient R D` for a coefficient the unit ball allows. At `R = 0` the
 same bound pins `D` to zero, so any coefficient does.
 
-Proof devices, not operations, hence here rather than in `Operations`.
-`coefficient` is noncomputable — deciding `R = 0` over ℝ is — but nothing runs
-it; it only witnesses an existential.
-
-Both `reduce` and the floating-point `absorbError` need these: each moves a box
-into one diagonal block of generators.
+What `reduce` and the float `absorbError` both need, each moving a box into one
+diagonal block of generators. Proof devices rather than operations, hence here;
+`coefficient` only ever witnesses an existential and is never run.
 -/
 
 -- Authors:       Tobias Ladner

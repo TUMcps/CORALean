@@ -5,16 +5,13 @@ import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
 /-!
 # `inputSolution` contains the input's contribution at every time in the step
 
-Thm. 3.1 encloses what the input contributes at the *end* of a step, which is
-all a sampled guarantee needs. A time-interval enclosure needs one set covering
-every `t ∈ [0,r]`, and Prop. 3.3 says `0 ∈ U` makes those the same set.
+Thm. 3.1 encloses what the input contributes at the *end* of a step. A
+time-interval enclosure needs one set covering every `t ∈ [0,r]`, and Prop. 3.3
+says `0 ∈ U` makes those the same set.
 
-Assembled as the thesis assembles it: `inputReach_subset_inputSolution` is
-Thm. 3.1 read as a statement about `inputReach`, and `inputReach_mono` is
-Prop. 3.3. Composing them needs nothing about the representation beyond what
-Thm. 3.1 already asked, because the monotonicity happens among sets of points
-and never among their enclosures — which is what makes it available at all, as
-`plus` and `mtimes` carry enclosure guarantees rather than monotonicity.
+Composing the two costs nothing beyond what Thm. 3.1 already asked, because the
+monotonicity happens among sets of points and never among their enclosures —
+`plus` and `mtimes` carry enclosure guarantees, not monotonicity.
 -/
 
 -- Authors:       Tobias Ladner
@@ -36,16 +33,16 @@ variable [∀ n, OuterContSet (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 set_option maxHeartbeats 400000 in
 /-- Thm. 3.1 as a statement about `inputReach`: the enclosure holds for every
 admissible input at once, which is the form Prop. 3.3 composes with. -/
-theorem LinearSys.inputReach_subset_inputSolution [Mtimes (fun m n => Interval (Mat ℝ m n)) S]
+theorem LinearSys.inputReach_subset_inputSolution [Mtimes ℐ S]
     (sys : LinearSys 𝕋 n) {r : ℝ} (hr : 0 < r) (η : ℕ)
     (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) {U : S n}
     (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
     (hbdd : Bornology.IsBounded (construct U))
-    (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+    (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) r η) U)))
-    (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+    (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) r η) U)))
-    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) r η) U))) :
     sys.inputReach U r ⊆ construct (sys.inputSolution r η U) := by
   rintro _ ⟨u, hmem, hmeas, rfl⟩
@@ -58,17 +55,17 @@ set_option maxHeartbeats 400000 in
 /-- Everything the input contributed up to any time in the step lies in the
 enclosure computed for the whole step, once `U` contains the origin. -/
 theorem LinearSys.Trajectory.inputSolution_timeInterval_outer
-    [Mtimes (fun m n => Interval (Mat ℝ m n)) S]
+    [Mtimes ℐ S]
     {sys : LinearSys 𝕋 n} {R₀ U : S n} {x u : ℝ → Vec ℝ n} {r : ℝ}
     (traj : sys.Trajectory R₀ U x u) (hr : 0 < r) (η : ℕ)
     (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
     (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
     (hbdd : Bornology.IsBounded (construct U))
-    (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+    (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) r η) U)))
-    (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+    (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) r η) U)))
-    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) r η) U)))
     (h0 : (0 : Vec ℝ n) ∈ construct U)
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) :

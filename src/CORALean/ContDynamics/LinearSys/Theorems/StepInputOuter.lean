@@ -4,17 +4,16 @@ import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
 /-!
 # `inputSolution` contains what the input contributed over a step
 
-Althoff's Thm. 3.1 applied to a trajectory, which is what turns the input
-enclosure of the sampled guarantees from a hypothesis into a theorem.
+Althoff's Thm. 3.1 applied to a trajectory, which is what turns the sampled
+guarantees' input enclosure from a hypothesis into a theorem.
 
 Every step has the same length, so the enclosing set does not depend on `k`:
 shifting `u` by `kΔt` leaves an integral over `[0, Δt]` of the same shape, and
-`inputSolution Δt η U` covers every step at once. That is what lets `discretize`
-name a single input set rather than one per step.
+`inputSolution Δt η U` covers every step at once.
 
-The cost is convexity and closedness of `U`, which `ContSet` does not offer. A
-representation supplies them — `Zonotope` does — and one that cannot keeps the
-general form, where the enclosure stays a hypothesis.
+The cost is convexity and closedness of `U`, which `ContSet` does not offer; a
+representation that cannot supply them keeps the general form, where the
+enclosure stays a hypothesis.
 -/
 
 -- Authors:       Tobias Ladner
@@ -54,17 +53,17 @@ set_option maxHeartbeats 400000 in
 `c := (k+1)Δt` is where the step ends, and reflecting about it is what the
 substitution inside `inputSolution_outer` leaves behind — measurable for free,
 by `aestronglyMeasurable_input_reflected`. -/
-theorem LinearSys.Trajectory.stepInput_outer [Mtimes (fun m n => Interval (Mat ℝ m n)) S]
+theorem LinearSys.Trajectory.stepInput_outer [Mtimes ℐ S]
     {sys : LinearSys 𝕋 n}
     {R₀ U : S n} {x u : ℝ → Vec ℝ n} {Δt : ℝ} (traj : sys.Trajectory R₀ U x u)
     (hΔt : 0 < Δt) (η : ℕ) (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
     (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
     (hbdd : Bornology.IsBounded (construct U))
-    (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+    (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) Δt η) U)))
-    (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+    (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) Δt η) U)))
-    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) Δt η) U)))
     (k : ℕ) :
     sys.stepInput u Δt k ∈ construct (sys.inputSolution Δt η U) := by

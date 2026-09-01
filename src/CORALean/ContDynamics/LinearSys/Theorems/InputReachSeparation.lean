@@ -8,16 +8,13 @@ Althoff's Prop. 3.2, in the direction the enclosures need: concatenating an
 input over `[0,a]` with one over `[0,b]` gives an input over `[0,a+b]`, and what
 it contributes is `e^{Ab}` applied to the first contribution plus the second.
 
-The thesis states this as an equality. Only `⊇` is used downstream — it says a
-shorter run is realizable inside a longer one — and it is the direction that has
-to build an input rather than take one apart.
+The thesis states this as an equality; only `⊇` is used downstream, and it is
+the direction that has to build an input rather than take one apart.
 
-Two measurability facts do the bookkeeping. `Matrix` is a plain `def`, so
-instance search finds no metrizable structure on it and a matrix-valued factor
-never gets `Continuous.aestronglyMeasurable`; `aestronglyMeasurable_mulVec` goes
-one entry at a time instead, where everything is a real-valued product. And
-reflection and translation of the line are measure preserving, which is what
-lets an input be moved to a different window at all.
+`Matrix` is a plain `def`, so instance search finds no metrizable structure on it
+and a matrix-valued factor never gets `Continuous.aestronglyMeasurable`;
+`aestronglyMeasurable_mulVec` goes one entry at a time instead. Moving an input
+to a different window is then measure-preserving reflection and translation.
 -/
 
 -- Authors:       Tobias Ladner

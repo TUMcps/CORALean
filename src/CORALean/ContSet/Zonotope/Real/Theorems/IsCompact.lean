@@ -3,12 +3,11 @@ import CORALean.ContSet.Zonotope.Real.Zonotope
 /-!
 # A zonotope is compact, hence closed
 
-Not closed for the reason an interval is: an affine image of a merely closed set
-need not be closed, so compactness is what does the work. The coefficient cube
-is the closed unit ball in the supremum norm, compact because the coefficient
-space is finite-dimensional, and the map onto the zonotope is continuous.
-
-Closedness is the half an integral needs; compactness is what proves it.
+Closedness is what an integral needs, but not for the reason an interval is
+closed: an affine image of a merely closed set need not be closed, so
+compactness does the work. The coefficient cube is the closed unit ball in the
+supremum norm, compact because the coefficient space is finite-dimensional, and
+the map onto the zonotope is continuous.
 -/
 
 -- Authors:       Tobias Ladner

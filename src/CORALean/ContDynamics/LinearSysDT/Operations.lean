@@ -4,12 +4,10 @@ import CORALean.ContDynamics.LinearSysDT.LinearSysDT
 # Discrete-time linear systems: reachability
 
 `reach` is written against `OuterContSet`, so it runs at any representation
-offering the three operations, over the system in `LinearSysDT`.
+offering the three operations.
 
 `reduce` is called once per step, which is what holds the representation at
 order `o`; nothing in the types enforces that, and nothing needs to.
-
-Guarantees live in `Theorems`.
 -/
 
 -- Authors:       Tobias Ladner

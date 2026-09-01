@@ -8,8 +8,7 @@ partition drops over-approximates, and `reduceBy_outer_refines` that rounding th
 block up only enlarges the result. Composing them gives the nominal inclusion,
 and the box is untouched, hence `mono_subset`.
 
-Soundness holds for every partition, exactly as over ℝ; a selection rule still
-carries no proof obligation.
+Sound at every partition, as over ℝ, so a selection rule still owes no proof.
 -/
 
 -- Authors:       Tobias Ladner

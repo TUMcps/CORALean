@@ -5,10 +5,8 @@ import CORALean.ContSet.Interval.Float.Operations.API
 
 Termwise the rounded products enclose the exact ones, and `minimum`/`maximum`
 are exact, so both layers pick the same endpoint; `sumDown`/`sumUp` then enclose
-the sum.
-
-The sign of `M i k` is never examined. That case split lives once, in
-`Real`, and is reached by composing with its `mtimes_outer`.
+the sum. The sign of `M i k` is never examined — that case split lives once, in
+`Real`.
 -/
 
 -- Authors:       Tobias Ladner

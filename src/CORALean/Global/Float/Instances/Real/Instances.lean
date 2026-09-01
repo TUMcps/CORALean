@@ -3,12 +3,10 @@ import CORALean.Global.Float.SoundFloatArithmetic
 /-!
 # ℝ as a degenerate instance
 
-Both rounding directions are exact, so this is the class at infinite precision:
-the layer collapses to `Real`, and the class is demonstrably
-non-vacuous.
-
-Rounding never widens anything here, so an axiom only floats can violate would
-go unnoticed. That is what `Dyadic` is for.
+Both rounding directions are exact, so this is the class at infinite precision
+and the float layer collapses to `Real`. Rounding never widens anything here, so
+an axiom only floats can violate would go unnoticed — that is what `Dyadic` is
+for.
 -/
 
 -- Authors:       Tobias Ladner

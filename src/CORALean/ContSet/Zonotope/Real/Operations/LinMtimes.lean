@@ -3,14 +3,12 @@ import CORALean.ContSet.Zonotope.Real.Operations.Map
 /-!
 # Zonotopes: multiplication by a single linear map
 
-`map` at the one map a plain matrix denotes. What makes this an operation rather
-than a use of `map` is that a caller holds *matrix data*, not a linear map, and
-`LinMapSet` is what turns the one into the other — an abstract map is nothing an
-algorithm could compute with.
+`map` at the one map a plain matrix denotes. An operation of its own rather than
+a use of `map` because a caller holds *matrix data*, which is what an algorithm
+can compute with, and `LinMapSet` is what turns that into a map.
 
-At `Vec` this is `mtimes`. At `Mat` it is matrix multiplication of a matrix
-zonotope, from either side, which is the same operation only because the
-ambient type is a parameter.
+At `Vec` this is `mtimes`; at `Mat` it is matrix multiplication of a matrix
+zonotope, from either side.
 -/
 
 -- Authors:       Tobias Ladner

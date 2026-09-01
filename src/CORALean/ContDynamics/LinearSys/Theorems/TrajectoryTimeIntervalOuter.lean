@@ -6,15 +6,15 @@ import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuter
 
 The closed form splits a run into what the initial set carries and what the
 inputs contributed, and the two are enclosed separately: `timeIntervalStep` for
-the first, and a set the caller supplies for the second.
+the first, a set the caller supplies for the second.
 
-The input enclosure is a hypothesis here, and `timeInterval_outer_inputSolution`
-discharges it: `t` ranges over the whole step, so one set has to cover every `t`
-at once, which is Althoff's Prop. 3.3 and costs `0 ∈ U` on top of what the
-sampled version needs.
+That input enclosure is a hypothesis, discharged by
+`timeInterval_outer_inputSolution`: `t` ranges over the whole step, so one set
+has to cover every `t` at once, which is Prop. 3.3 and costs `0 ∈ U` on top of
+what the sampled version needs.
 
-Integrability is not a hypothesis: `InputIntegrable` derives it from `U` being
-bounded, which every representation of a set of points is.
+Integrability is not a hypothesis — `InputIntegrable` derives it from `U` being
+bounded.
 -/
 
 -- Authors:       Tobias Ladner
@@ -32,7 +32,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, OuterContSet (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
-variable [Mtimes (fun m n => Interval (Mat ℝ m n)) S]
+variable [Mtimes ℐ S]
 
 set_option maxHeartbeats 1000000 in
 theorem LinearSys.Trajectory.timeInterval_outer {sys : LinearSys 𝕋 n} {R₀ U Ud : S n}
@@ -61,11 +61,11 @@ theorem LinearSys.Trajectory.timeInterval_outer_inputSolution {sys : LinearSys �
     (ht0 : 0 ≤ t) (htr : t ≤ r)
     (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
     (hbdd : Bornology.IsBounded (construct U))
-    (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+    (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) r (m + 2)) U)))
-    (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+    (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) r (m + 2)) U)))
-    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) r (m + 2)) U)))
     (h0 : (0 : Vec ℝ n) ∈ construct U) :
     x t ∈ construct (OuterContSet.plus (sys.timeIntervalStep r (m + 2) R₀)

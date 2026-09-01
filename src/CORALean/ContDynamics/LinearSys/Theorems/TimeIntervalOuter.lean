@@ -6,13 +6,12 @@ import CORALean.ContDynamics.LinearSys.Operations
 CORA's `HR([0,r]) = CH(X₀, e^{Ar}X₀) ⊕ F X₀`, and the guarantee that makes it
 usable: not just at the sample times, but at every `t` in `[0, r]`.
 
-The flow splits into the straight line from `X₀` to `e^{Ar}X₀`, which is a
-`linComb` at weight `1 - t/r`, and the interpolation error, which is the
-correction matrix acting on `X₀`. Neither half knows what representation it is
-over — the two operations carry their own guarantees.
+The flow splits into the straight line from `X₀` to `e^{Ar}X₀`, a `linComb` at
+weight `1 - t/r`, and the interpolation error, the correction matrix acting on
+`X₀`.
 
 Homogeneous only: with a non-zero input a trajectory also picks up the input
-integral, which is a separate term and a separate theorem.
+integral, which is `TrajectoryTimeIntervalOuter`.
 -/
 
 -- Authors:       Tobias Ladner
@@ -30,7 +29,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, OuterContSet (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
-variable [Mtimes (fun m n => Interval (Mat ℝ m n)) S]
+variable [Mtimes ℐ S]
 
 set_option maxHeartbeats 1000000 in
 theorem LinearSys.timeIntervalStep_outer (sys : LinearSys 𝕋 n) {r : ℝ} (hr : 0 < r) {m : ℕ}

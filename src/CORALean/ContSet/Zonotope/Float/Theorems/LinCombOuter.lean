@@ -12,8 +12,8 @@ The nominal obligation is the exact `linComb` argument — `λβ₁`, `(1-λ)β�
 Neither stored value is unfolded: they cancel against their own residuals, so
 what remains is the same identity the exact proof closes with.
 
-The generator count is therefore still `h₁ + h₂ + 1`: both roundings went into
-the box, not into new generators.
+The count is therefore still `h₁ + h₂ + 1`, both roundings having gone into the
+box.
 -/
 
 -- Authors:       Tobias Ladner

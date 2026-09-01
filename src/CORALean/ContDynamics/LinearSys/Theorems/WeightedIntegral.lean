@@ -7,15 +7,13 @@ import CORALean.ContDynamics.LinearSys.LinearSys
 convex and closed — the total weight `∫₀ʳ τⁱ dτ` scaling the set, and nothing
 worse. Every term of Althoff's input solution is one instance of it.
 
-Convexity is what the statement really rests on: an integral is a limit of
-convex combinations of values of `f`, so it lands in `S` only when combinations
-of points of `S` do. Closedness turns the limit into membership. Boundedness is
-here only to make `f` integrable and could be dropped for an integrability
-hypothesis instead.
+An integral is a limit of convex combinations of values of `f`, so convexity is
+what puts it in `S` and closedness is what turns the limit into membership.
+Boundedness only makes `f` integrable.
 
 Proved by putting the weight into the measure rather than the integrand, so
-`Convex.set_average_mem` applies to `f` itself: `⨍` against `τⁱ dτ` is exactly
-the normalised integral wanted, and the normalisation is the total weight.
+`Convex.set_average_mem` applies to `f` itself: `⨍` against `τⁱ dτ` is the
+normalised integral wanted, normalised by the total weight.
 -/
 
 -- Authors:       Tobias Ladner

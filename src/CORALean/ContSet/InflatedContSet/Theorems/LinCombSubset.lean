@@ -3,14 +3,12 @@ import CORALean.ContSet.InflatedContSet.InflatedContSet
 /-!
 # Composing a nominal part with its box along a segment
 
-The `linComb` counterpart of `plus_subset`. A segment between two inflated sets
-splits into a segment between the nominal parts and a segment between the boxes,
-because both weights act on the sum at once: `λ(n₁+e₁) + (1-λ)(n₂+e₂)` regroups
-as `(λn₁ + (1-λ)n₂) + (λe₁ + (1-λ)e₂)`.
+The `linComb` counterpart of `plus_subset`:
+`λ(n₁+e₁) + (1-λ)(n₂+e₂)` regroups as `(λn₁ + (1-λ)n₂) + (λe₁ + (1-λ)e₂)`, so
+the nominal part may spill by `D` and the box must absorb `D` along with the
+segment between the two incoming boxes.
 
-So the nominal part may spill by `D`, and the box must absorb `D` along with the
-segment between the two incoming boxes — one weight, shared by both halves,
-which is why this is not an instance of `plus_subset`.
+Not an instance of `plus_subset`: one weight is shared by both halves.
 -/
 
 -- Authors:       Tobias Ladner

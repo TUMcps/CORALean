@@ -7,12 +7,11 @@ The exact layer's `reduce`, rounded: `reduceBy` keeps the generators a partition
 names and boxes the rest, `aux_girardMetric` ranks them by what boxing would
 cost, and `aux_girardSplit` turns that ranking into the partition.
 
-The ranking is where the two layers must part company. `Tuple.sort` wants a
+The ranking is where the two layers part company. `Tuple.sort` wants a
 `LinearOrder`, which no float type has — distinct representations of one value
 compare equal each way, so antisymmetry fails — hence `sortPerm`, which asks its
-comparator for nothing. It can afford to: `reduceBy_outer` holds at every
-partition, so `le` needs no axiom and the metric no rounding argument. A
-misranking costs precision alone.
+comparator for nothing. It can afford to, since `reduceBy_outer` holds at every
+partition: a misranking costs precision alone.
 -/
 
 -- Authors:       Tobias Ladner

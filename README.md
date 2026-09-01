@@ -27,10 +27,13 @@ lake exe cache get && lake build
 The formalization lives in `src/CORALean/`, mirroring CORA's structure and
 naming convention.
 
-Set representations and their operations are defined over ℝ and proved sound — e.g., each operation over-approximates the set it claims to.
-Every such theorem is then refined for floating-point arithmetic by rounding "outward", which an implementation can be tested against.
+Set representations and their operations are defined over ℝ and proved sound —
+each operation over-approximates the set it claims to. Every such theorem is
+then refined for floating-point arithmetic by rounding "outward", which an
+implementation can be tested against.
 
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for the source layout, tooling, file roles, the layering rule, and the conventions proofs and docstrings follow.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the source layout, tooling, file
+roles, the layering rule, and the conventions proofs and docstrings follow.

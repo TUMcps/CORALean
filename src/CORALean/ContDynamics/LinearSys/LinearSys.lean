@@ -9,14 +9,14 @@ CORA's `linearSys`: `ẋ(t) = A x(t) + u(t)`, carrying only the matrix.
 appear — one admissible run, with an input at every time, so a disturbance is
 one too.
 
-Forward time only, as in `LinearSysDT`, so the derivative is taken within
-`Set.Ici 0` — two-sided at every positive time, one-sided at 0. Within `Ici t`
-it would be a right derivative everywhere, which does not force continuity, and
-a run free to jump is not a trajectory.
+Forward time only, so the derivative is taken within `Set.Ici 0`: two-sided at
+every positive time, one-sided at 0. Within `Ici t` it would be a right
+derivative everywhere, which does not force continuity, and a run free to jump
+is not a trajectory.
 
-`u` carries no regularity hypothesis. It needs none: `x` is differentiable
-wherever the flow holds, so `u t = ẋ(t) - A x(t)` is already pinned there — and
-that is enough to integrate it, as `InputIntegrable` shows.
+`u` needs no regularity hypothesis: `x` is differentiable wherever the flow
+holds, so `u t = ẋ(t) - A x(t)` is already pinned there, which is enough to
+integrate it — see `InputIntegrable`.
 -/
 
 -- Authors:       Tobias Ladner

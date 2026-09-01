@@ -9,8 +9,8 @@ two incoming boxes.
 
 The nominal obligation is the exact `plus` argument — `Fin.append β₁ β₂` as the
 witness — with the centre displaced; the error obligation is two applications of
-`Interval.plus_outer`. The generator count is therefore still `h + k`: the
-rounding went into the box, not into new generators.
+`Interval.plus_outer`. The count is therefore still `h + k`, the rounding having
+gone into the box.
 -/
 
 -- Authors:       Tobias Ladner

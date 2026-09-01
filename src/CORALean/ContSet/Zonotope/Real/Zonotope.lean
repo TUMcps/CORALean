@@ -8,17 +8,14 @@ every point the generators reach from `c` with coefficients in `[-1, 1]`.
 
 Over any real module, not just `Vec ℝ n`: nothing about a centre plus a bounded
 combination of generators mentions coordinates. So `Zonotope (Mat ℝ n m)` is
-CORA's `matZonotope` and needs no separate development, and an operation is
-written once for both.
+CORA's `matZonotope` and needs no separate development.
 
-Generators are a family rather than a matrix, since a matrix is only available
-when the ambient type has coordinates. At `Vec ℝ n` the two differ by
-transposition: `G j i` is coordinate `i` of generator `j`.
+Generators are a family rather than a matrix, a matrix being available only when
+the ambient type has coordinates. At `Vec ℝ n` the two differ by transposition:
+`G j i` is coordinate `i` of generator `j`.
 
 The generator count is a field, not a type index: operations grow it freely and
 `reduce` is what bounds it, where the algorithm asks rather than everywhere.
-
-Separate from `Operations`, which every operation file builds on.
 -/
 
 -- Authors:       Tobias Ladner

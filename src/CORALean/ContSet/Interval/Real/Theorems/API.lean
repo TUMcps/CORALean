@@ -9,6 +9,6 @@ import CORALean.ContSet.Interval.Real.Theorems.MtimesOuter
 /-!
 # What `Interval` guarantees
 
-One file per guarantee, named after the theorem it states. Auxiliary lemmas a
-proof needs carry the `aux_` prefix and are used nowhere else.
+An enclosure per operation — `plus` exactly so — and the topological facts a
+set-valued integral needs: convex, closed, bounded.
 -/

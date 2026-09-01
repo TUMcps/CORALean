@@ -4,11 +4,8 @@ import CORALean.ContDynamics.LinearSysDT.Operations
 # `LinearSysDT.reach` contains every trajectory
 
 Induction on the step count, applying the two guarantees in the order `reach`
-applies the operations.
-
-No representation can be named here: the only facts about `construct` are the
-two `OuterContSet` fields. A representation buys into the theorem by proving
-them.
+applies the operations. The only facts used about `construct` are the
+`OuterContSet` fields, so a representation buys into this by proving them.
 -/
 
 -- Authors:       Tobias Ladner

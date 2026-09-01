@@ -14,35 +14,20 @@ bounds exactly — so the finite part is as tight as the thesis claims.
 
 ## Why the tail is bounded as one series
 
-The proposition is true as stated, and the finite part is proved here as the
-thesis proves it. The tail is not, and the difference is a factor of two.
+The proposition is true as stated and the finite part is proved as the thesis
+proves it, but the tail argument is not the thesis's. For `Φ(t)` the scalar tail
+bound and `E(t) = [-1,1]Φ(t)`, the thesis concludes
+`E(t) - (t/r)E(r) = [-1,1](Φ(t) - (t/r)Φ(r)) ⊆ E(r)` — pulling a *single*
+`[-1,1]` out of both remainders. Read as two independent interval matrices, the
+standard reading, that difference has radius `Φ(t) + (t/r)Φ(r)`, twice what
+`E(r)` allows at `t = r`.
 
-The thesis argues, for `Φ(t)` the scalar tail bound and `E(t) = [-1,1]Φ(t)`:
-
-  `Φ(t) ∈ [0,1]Φ(r)`, so `Φ(t) - (t/r)Φ(r) ∈ [0,1]Φ(r) - [0,1]Φ(r) ⊆ [-1,1]Φ(r)`,
-  thus `E(t) - (t/r)E(r) = [-1,1](Φ(t) - (t/r)Φ(r)) ⊆ [-1,1][-1,1]Φ(r) = E(r)`.
-
-The last step pulls a *single* `[-1,1]` out of both remainders. `E(t)` and `E(r)`
-are remainders of the same `A` at two times, so they are not independent — but
-neither are they a common `λ` scaled by `Φ(t)` and `Φ(r)`, which is what the
-factoring asserts. Read as two independent interval matrices, the standard
-reading, the difference has radius `Φ(t) + (t/r)Φ(r)`, which at `t = r` is
-`2Φ(r)`: twice what `E(r)` allows. This is interval arithmetic's dependency
-problem, in the direction that flatters the result.
-
-What does hold, and what `ExpDiff` sets up, is that the two share `A^i` term by
-term. Never splitting them leaves one series, and for `0 ≤ t ≤ r`
-
-  `|t^i - t·r^(i-1)| = t·(r^(i-1) - t^(i-1)) ≤ r·r^(i-1) = r^i`,
-
-so the tail is dominated by `∑_{i>η} ‖A‖^i r^i / i!` — the proposition's own
-bound, with nothing to spare and no dependency assumed.
-
-CORA reaches the same conclusion the same way. `manual/complememntary`
-`Documentation/inputErrorBounds` proves the matching statement for the
-integrated remainder `Ê` by exactly this argument, bounding
-`|t^(i+1) - t·r^i| ≤ r^(i+1)` inside a single sum. So this is the settled form
-of the result; it is the thesis proof that takes the shortcut.
+What does hold, and what `ExpDiff` sets up, is that the two remainders share
+`A^i` term by term. Never splitting them leaves one series, and for `0 ≤ t ≤ r`
+`|t^i - t·r^(i-1)| = t·(r^(i-1) - t^(i-1)) ≤ r^i`, so the tail is dominated by
+`∑_{i>η} ‖A‖^i r^i / i!` — the proposition's own bound, with no dependency
+assumed. CORA's `manual/complementary` `Documentation/inputErrorBounds` argues
+the integrated remainder `Ê` the same way.
 -/
 
 -- Authors:       Tobias Ladner

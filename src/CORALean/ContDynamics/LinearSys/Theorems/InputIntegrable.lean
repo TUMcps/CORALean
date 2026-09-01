@@ -4,21 +4,17 @@ import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 # What `variation_of_constants` assumes about the input, discharged
 
 `Trajectory` puts no regularity on `u`, and none has to be added: the flow pins
-`u` to the derivative of `x`, so the whole integrand `e^{-As} u(s)` is itself a
-derivative — of `e^{-As} x(s)`, by the substitution that proves the closed form.
-A derivative within `Ici s` is measurable in `s` for *any* function whatsoever,
-so measurability costs nothing.
+`u` to the derivative of `x`, so the integrand `e^{-As} u(s)` is itself a
+derivative — of `e^{-As} x(s)`. A derivative within `Ici s` is measurable in `s`
+for *any* function, so measurability costs nothing.
 
-Boundedness is the one thing that comes from outside, and it comes from the
-input set rather than from `u`: `u s ∈ construct U`, so a bounded `U` bounds the
-integrand together with the exponential, which is continuous over a compact
-step. Representations supply that bound; `ContSet` does not ask for it.
+Boundedness is the one thing that comes from outside, and from the input set
+rather than from `u`: a bounded `U` bounds the integrand together with the
+exponential, which is continuous over a compact step.
 
-`u` itself is measurable for the same reason, and stays so after the reflection
-`τ ↦ c - τ` that `inputSolution_outer` integrates against: the derivative term
-is strongly measurable rather than merely almost-everywhere so, and that
-survives composition with a measurable map without any argument about which
-measure the reflection preserves.
+Measurability survives the reflection `τ ↦ c - τ` that `inputSolution_outer`
+integrates against, the derivative term being strongly measurable rather than
+merely almost-everywhere so.
 -/
 
 -- Authors:       Tobias Ladner

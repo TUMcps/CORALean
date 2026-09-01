@@ -8,11 +8,9 @@ power of `t` against a factorial one step further along, so it converges
 wherever the exponential does — and the comparison needs nothing about `A`
 beyond `‖A^i‖ ≥ 0`.
 
-Bounding `‖A^i‖` by `‖A‖^i` would be the obvious route and is not available at
-`i = 0`: that power is the identity, whose operator norm is `1` only when the
-dimension is positive.
-
-Stated in norm first, since every use downstream compares against it.
+Bounding `‖A^i‖` by `‖A‖^i` would be the obvious route and fails at `i = 0`:
+that power is the identity, whose operator norm is `1` only when the dimension
+is positive.
 -/
 
 -- Authors:       Tobias Ladner

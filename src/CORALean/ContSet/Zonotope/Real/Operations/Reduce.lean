@@ -4,13 +4,12 @@ import CORALean.ContSet.Zonotope.Real.Zonotope
 # `Zonotope.reduce`
 
 CORA's `@zonotope/reduce`: bring the generator count down to a maximum order.
-`reduceBy` keeps the generators a partition names and boxes the rest, which is
-that reduction whatever rule chose the partition. Girard's is the rule
-implemented: rank by what boxing a generator would cost, keep the dearest.
+`reduceBy` keeps the generators a partition names and boxes the rest; Girard's
+is the rule that chooses the partition, ranking by what boxing a generator would
+cost and keeping the dearest.
 
-Any partition gives an over-approximation, so a rule owes no proof of its own
-and is free to be a heuristic. A second one would be another `aux_girardSplit`
-and nothing else — which is why `reduce` takes an order and not a choice of rule.
+Any partition over-approximates, so a rule is free to be a heuristic and owes no
+proof — a second one would be another `aux_girardSplit` and nothing else.
 -/
 
 -- Authors:       Tobias Ladner

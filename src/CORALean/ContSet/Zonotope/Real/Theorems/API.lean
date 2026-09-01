@@ -12,7 +12,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOuter
 /-!
 # What `Zonotope` guarantees
 
-One file per guarantee, named after the theorem it states. Auxiliary lemmas a
-proof needs carry the `aux_` prefix and are used nowhere else; `Coefficient`
-holds the shared devices, which the float layer needs too.
+`plus` and `map` exactly, `reduce` and the interval hull as enclosures, and the
+topological facts a set-valued integral needs. `Coefficient` holds the shared
+proof devices, which the float layer needs too.
 -/

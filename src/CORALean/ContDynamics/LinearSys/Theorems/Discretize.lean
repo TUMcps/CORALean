@@ -5,20 +5,14 @@ import CORALean.ContDynamics.LinearSys.Theorems.StepInputOuter
 # A sampled trajectory is a trajectory of the sampled system
 
 Reading a continuous run at `0, Δt, 2Δt, ...` gives a run of `discretize`, so
-every guarantee `LinearSysDT` already carries applies at the sample times and
-none of it is proved twice.
+every guarantee `LinearSysDT` already carries applies at the sample times. Each
+step is variation of constants over `[kΔt, (k+1)Δt]`, where the propagator is
+`e^{AΔt}` whatever `k` is.
 
-Each step is variation of constants over `[kΔt, (k+1)Δt]`, where the propagator
-is `e^{AΔt}` whatever `k` is.
-
-The input set is a hypothesis, because enclosing an integral needs convexity and
-closedness of `U`, which `ContSet` does not offer. Boundedness of `U` is asked
-for instead of integrability of `u`, which `InputIntegrable` derives from it.
-
-`discretize_inputSolution` discharges that hypothesis where the representation
-does offer them, naming `inputSolution Δt η U` — one set for every step, since
-every step is `Δt` long. The general form stays for representations that are
-not convex.
+The set enclosing the input is a hypothesis, since enclosing an integral needs
+`U` convex and closed and `ContSet` does not offer that.
+`discretize_inputSolution` discharges it where the representation does, naming
+`inputSolution Δt η U` — one set for every step, all steps being `Δt` long.
 -/
 
 -- Authors:       Tobias Ladner
@@ -57,17 +51,17 @@ theorem LinearSys.Trajectory.discretize {sys : LinearSys 𝕋 n} {R₀ U Ud : S 
 set_option maxHeartbeats 40000 in
 /-- The same, with the input set named rather than assumed. Available to a
 representation that is convex and closed; `Zonotope` is both. -/
-theorem LinearSys.Trajectory.discretize_inputSolution [Mtimes (fun m n => Interval (Mat ℝ m n)) S]
+theorem LinearSys.Trajectory.discretize_inputSolution [Mtimes ℐ S]
     {sys : LinearSys 𝕋 n} {R₀ U : S n} {x u : ℝ → Vec ℝ n} {Δt : ℝ}
     (traj : sys.Trajectory R₀ U x u) (hΔt : 0 < Δt) (η : ℕ)
     (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
     (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
     (hbdd : Bornology.IsBounded (construct U))
-    (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+    (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) Δt η) U)))
-    (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+    (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) Δt η) U)))
-    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) Δt η) U))) :
     (sys.discretize Δt).Trajectory R₀ (sys.inputSolution Δt η U)
       (fun k : ℕ => x (k * Δt)) (sys.stepInput u Δt) :=

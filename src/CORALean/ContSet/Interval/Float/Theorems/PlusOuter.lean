@@ -3,10 +3,8 @@ import CORALean.ContSet.Interval.Float.Operations.API
 /-!
 # `Interval.plus` contains the Minkowski sum
 
-Proved as every float guarantee is: the exact one composed with the refinement.
-The refinement is the whole obligation, since `Real` has already
-proved that the exact sum contains the Minkowski sum. Nothing about sums of sets
-appears here — only that each bound rounded the right way.
+Nothing about sums of sets appears here — `Real` has already proved that. The
+whole obligation is that each bound rounded the right way.
 -/
 
 -- Authors:       Tobias Ladner

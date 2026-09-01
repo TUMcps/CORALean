@@ -3,16 +3,15 @@ import CORALean.Global.Float.SoundFloatArithmetic
 /-!
 # Dyadic numbers at a fixed precision: the representation
 
-`Dyadic p` is `mantissa * 2 ^ exponent` with the mantissa held to `p` bits, and
-`toReal` is the number it stands for. The bound is what makes it a float model:
-unbounded dyadics are closed under `+` and `*`, so rounding them would do
-nothing and the instance would be as degenerate as ℝ.
+`Dyadic p` is `mantissa * 2 ^ exponent` with the mantissa held to `p` bits. The
+bound is what makes it a float model: unbounded dyadics are closed under `+`
+and `*`, so rounding them would do nothing.
 
-Precision is a phantom parameter, not a field bound: the class constrains only
-`toReal` of a result, so carrying a proof would prove nothing extra. Values off
-the grid are representable but never produced.
+`p` is a phantom parameter rather than a field bound — the class constrains only
+`toReal` of a result, so values off the grid are representable but never
+produced.
 
-The exponent is unbounded, so nothing overflows — exactly what
+The exponent is unbounded, so nothing overflows. That is exactly what
 `SoundFloatArithmetic` assumes, and why this instance needs no axioms where a
 binary64 one would.
 -/

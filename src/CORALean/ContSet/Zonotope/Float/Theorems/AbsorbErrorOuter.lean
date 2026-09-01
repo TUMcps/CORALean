@@ -12,8 +12,8 @@ The witness is `Fin.append β γ`: the old coefficients, then one per coordinate
 placing that coordinate's error in its new generator. `coefficient` supplies it,
 and the radius rounds up so it always fits.
 
-This is the one operation that spends generators, `h + n`, and spending them is
-what the caller asked for.
+The one operation that spends generators, `h + n`, which is what the caller
+asked for.
 -/
 
 -- Authors:       Tobias Ladner

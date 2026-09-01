@@ -10,6 +10,5 @@ import CORALean.ContSet.Zonotope.Real.Operations.Reduce
 /-!
 # What `Zonotope` computes
 
-One file per operation, named as CORA names it. Only `reduce` bounds the
-generator count; the others grow it freely.
+Only `reduce` bounds the generator count; the others grow it freely.
 -/

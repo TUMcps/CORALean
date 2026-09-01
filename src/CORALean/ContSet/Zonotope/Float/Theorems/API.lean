@@ -12,7 +12,7 @@ import CORALean.ContSet.Zonotope.Float.Theorems.ReduceAndAbsorbByOuter
 /-!
 # What `Zonotope` guarantees
 
-Stated exactly as `Real` states it, over the same sets of real points
-and with the same generator counts. One file per guarantee; auxiliary lemmas a
-proof needs carry the `aux_` prefix and are used nowhere else.
+Stated exactly as `Real` states it, over the same sets of real points and with
+the same generator counts — rounding is paid into the error box, so no operation
+but `absorbError` spends a generator on it.
 -/

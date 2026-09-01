@@ -9,9 +9,9 @@ becomes the sliding generator. Each pays into the error box, leaving the count
 at `h₁ + h₂ + 1` as over ℝ.
 
 Halving is exact, so a directed sum or difference is the only rounding in
-either. The two are charged differently: the midpoint is stored in place of a
-known bracket, which is a `residual`, while the sliding generator carries a
-coefficient ranging over `[-1,1]`, so its shortfall pulls both ways and needs a
+either, but the two are charged differently: the midpoint is stored in place of
+a known bracket, which is a `residual`, while the sliding generator's
+coefficient ranges over `[-1,1]`, so its shortfall pulls both ways and needs a
 symmetric box.
 -/
 

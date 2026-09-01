@@ -6,20 +6,19 @@ import CORALean.ContDynamics.LinearSys.MatExp.API
 /-!
 # `inputSolution` contains everything the input can contribute over a step
 
-Althoff's Thm. 3.1, and the last hypothesis continuous-time reachability was
-carrying. Substituting `τ = r - s` turns `∫₀ʳ e^{A(r-s)}u(s)ds` into
+Althoff's Thm. 3.1. Substituting `τ = r - s` turns `∫₀ʳ e^{A(r-s)}u(s)ds` into
 `∫₀ʳ e^{Aτ}u(r-τ)dτ`, and the exponential splits into its first `η+1` orders
 plus a remainder — a *finite* sum, so linearity of the integral does the whole
 split and no series has to be exchanged with an integral.
 
-Each exact order comes out as `Aⁱ/i!` applied to `∫₀ʳ τⁱ u(r-τ)dτ`, and the
-matrix leaves the integral before `integral_pow_smul_mem` is used, so convexity
-is only ever asked of `U` itself. The remainder cannot: `R(τ)` varies with `τ`,
-so there the convex closed set has to be the product `E(r)·r·U`, which is why
-that hypothesis is about the operation's result rather than its argument.
+Each exact order comes out as `Aⁱ/i!` applied to `∫₀ʳ τⁱ u(r-τ)dτ`, the matrix
+leaving the integral before `integral_pow_smul_mem` is used, so convexity is
+asked only of `U`. The remainder cannot do that — `R(τ)` varies with `τ` — so
+there the convex closed set is the product `E(r)·r·U`, which is why that
+hypothesis is about the operation's result rather than its argument.
 
-`0 ∈ U` is not needed. Althoff's Prop. 3.3 uses it to identify the enclosure
-over `[0,r]` with the one at `r`; this is the enclosure at `r`.
+`0 ∈ U` is not needed: this is the enclosure at `r`, and Prop. 3.3 is what would
+extend it to all of `[0,r]`.
 -/
 
 -- Authors:       Tobias Ladner
@@ -106,17 +105,17 @@ theorem aux_continuous_expDiff (A : Mat ℝ n n) (η : ℕ) :
   exact (continuous_const : Continuous fun _ : ℝ => ((Nat.factorial i : ℝ)⁻¹)).smul (hsmul.pow i)
 
 set_option maxHeartbeats 1000000 in
-theorem LinearSys.inputSolution_outer [Mtimes (fun m n => Interval (Mat ℝ m n)) S]
+theorem LinearSys.inputSolution_outer [Mtimes ℐ S]
     (sys : LinearSys 𝕋 n)
     {r : ℝ} (hr : 0 < r) (η : ℕ)
     (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) {U : S n}
     (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
     (hbdd : Bornology.IsBounded (construct U))
-    (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+    (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) r η) U)))
-    (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+    (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) r η) U)))
-    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) r η) U)))
     {u : ℝ → Vec ℝ n}
     (hu : ∀ τ ∈ Set.Ioc (0:ℝ) r, u (r - τ) ∈ construct U)
@@ -217,7 +216,7 @@ theorem LinearSys.inputSolution_outer [Mtimes (fun m n => Interval (Mat ℝ m n)
       (((aux_continuous_expDiff A η).matrix_elem j k).aestronglyMeasurable).mul (hgk k)
   have hpt : ∀ τ ∈ Set.Ioc (0:ℝ) r,
       r • ((exp (τ • A) - MatExp.expTaylor (τ • A) η) *ᵥ g τ)
-        ∈ construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+        ∈ construct (Mtimes.mtimes (𝕄 := ℐ)
         (MatExp.inputRemainder A r η) U) := by
     intro τ hτ
     have hM : (r • (exp (τ • A) - MatExp.expTaylor (τ • A) η))
@@ -233,7 +232,7 @@ theorem LinearSys.inputSolution_outer [Mtimes (fun m n => Interval (Mat ℝ m n)
     rw [← Matrix.smul_mulVec]
     exact Mtimes.mtimes_outer _ _ (Set.mem_biUnion hM (Set.mem_image_of_mem _ (hu τ hτ)))
   have hrem : (∫ τ in (0:ℝ)..r, (exp (τ • A) - MatExp.expTaylor (τ • A) η) *ᵥ g τ)
-      ∈ construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+      ∈ construct (Mtimes.mtimes (𝕄 := ℐ)
         (MatExp.inputRemainder A r η) U) := by
     have hI := integral_pow_smul_mem hRconv hRclosed hRbdd hr 0
       (f := fun τ => r • ((exp (τ • A) - MatExp.expTaylor (τ • A) η) *ᵥ g τ))

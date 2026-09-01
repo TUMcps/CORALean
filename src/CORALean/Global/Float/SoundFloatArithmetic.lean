@@ -7,17 +7,13 @@ What the layer assumes of its scalar: a real interpretation `toReal`, and
 `FloatOps` rounding in the direction its name claims. No format is fixed, so the
 proofs hold for binary64, for any other precision, and for ℝ itself.
 
-Not IEEE 754: rounding *to nearest* bounds nothing in a stated direction. How
-the direction is achieved is left open — a hardware rounding mode, or nearest
-plus one ulp outward, both discharge these obligations.
+Not IEEE 754 — rounding *to nearest* bounds nothing in a stated direction. How
+the direction is achieved is left open: a hardware rounding mode and nearest
+plus one ulp outward both discharge these obligations.
 
-`toReal` is total into ℝ, so no instance has NaN or an infinity: overflow is
-assumed away rather than modelled, and an implementation owes a range argument.
-That is the one gap between these axioms and a machine.
-
-A mixin over `FloatOps`, not an extension: as a parent field the operations
-would sit inside a structure `toReal` makes noncomputable, and nothing reached
-through the class could run.
+`toReal` is total into ℝ, so no instance has NaN or an infinity. Overflow is
+assumed away rather than modelled, and an implementation owes a range argument;
+that is the one gap between these axioms and a machine.
 -/
 
 -- Authors:       Tobias Ladner
@@ -45,9 +41,7 @@ open SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m h : ℕ}
 
-/-! ## Reading arrays
-
-Pointwise, so nothing has to be said about shape. -/
+/-! ## Reading arrays -/
 
 def toRealVec (v : Vec 𝕋 n) : Vec ℝ n := fun i => toReal (v i)
 def toRealMat (M : Mat 𝕋 m n) : Mat ℝ m n := fun i j => toReal (M i j)
@@ -62,8 +56,7 @@ theorem toReal_absolute (a : 𝕋) : toReal (absolute a) = |toReal a| := by
   rw [absolute, toReal_maximum, toReal_neg]
   exact (abs_eq_max_neg).symm
 
-/-- Read as reals `diagonalBlock` is `Matrix.diagonal`, so the exact layer's
-lemmas apply. -/
+/-- Read as reals it is `Matrix.diagonal`, so the exact layer's lemmas apply. -/
 theorem toReal_diagonalBlock (v : Vec 𝕋 n) (i l : Fin n) :
     toReal (diagonalBlock v i l) = Matrix.diagonal (toRealVec v) i l := by
   by_cases hil : i = l
@@ -102,7 +95,6 @@ theorem le_dotUp (a b : Vec 𝕋 n) :
     ∑ k, toReal (a k) * toReal (b k) ≤ toReal (dotUp a b) :=
   le_trans (Finset.sum_le_sum fun _ _ => mul_le_mulUp _ _) (sum_le_sumUp _)
 
-/-- Rounding up is what the row sum costs: the exact one never exceeds it. -/
 theorem sum_abs_le_radius {d : Mat 𝕋 n h} (i : Fin n) :
     ∑ j, |toReal (d i j)| ≤ toReal (radius d i) :=
   calc ∑ j, |toReal (d i j)|

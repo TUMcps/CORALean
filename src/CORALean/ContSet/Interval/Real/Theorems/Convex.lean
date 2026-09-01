@@ -7,8 +7,7 @@ Each coordinate is bounded independently, so a weighted average of two admissibl
 points is admissible coordinate by coordinate. Holds for any bounds, the empty
 case included.
 
-What an integral valued in the set needs: an integral is a limit of convex
-combinations, so it lands in the set only if the set is convex.
+What an integral valued in the set needs, being a limit of convex combinations.
 -/
 
 -- Authors:       Tobias Ladner

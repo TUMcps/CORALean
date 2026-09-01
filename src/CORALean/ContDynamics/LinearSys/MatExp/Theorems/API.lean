@@ -6,8 +6,9 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpEnclosure
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegral
 
 /-!
-# What `IntervalMat` guarantees
+# What the exponential enclosures guarantee
 
-One file per guarantee, named after the theorem it states. Auxiliary lemmas a
-proof needs carry the `aux_` prefix and are used nowhere else.
+That `e^{Ar}` lies in `expEnclosure`, that the two interpolation errors lie in
+the correction matrices, and that the integrated series converges. Each holds
+only under `‖A‖r / (η + 2) < 1`.
 -/

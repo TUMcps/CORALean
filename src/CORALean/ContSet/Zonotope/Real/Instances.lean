@@ -3,9 +3,8 @@ import CORALean.ContSet.Zonotope.Real.Theorems.API
 /-!
 # What `Zonotope` instantiates
 
-The class fields *are* the obligations, so there is nothing to restate. Each is a
-theorem from `Theorems`: the two exact ones give their `⊆` direction, and
-`reduce_outer` is already one.
+Each obligation is a theorem from `Theorems`, the exact ones read in the `⊆`
+direction.
 
 Noncomputable, as `reduce` is: it ranks generators, and ordering reals cannot be
 computed.
@@ -41,6 +40,11 @@ instance : Mtimes (Mat ℝ) (fun n => Zonotope (Vec ℝ n)) where
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact (Zonotope.mtimes_exact M Z).subset
 
+/-- The zonotope family over vectors. A generic theorem quantifies over
+`S : ℕ → Type` and the elaborator cannot read that family off one member, so a
+use site has to name it: `(S := 𝒵)`. -/
+scoped notation "𝒵" => fun n => Zonotope (Vec ℝ n)
+
 set_option maxHeartbeats 400000 in
 /-- Multiplication by a plain matrix at any ambient type it acts on. At `Vec`
 this repeats `mtimes`; at `Mat` it is matrix multiplication of a matrix
@@ -60,7 +64,7 @@ instance {𝕋 : Type} [Scalar 𝕋] {p q r : ℕ} :
 /-- The same operation at an interval matrix, which `OuterContSet` does not ask
 for: a zonotope carries it, and a discretization is what wants it. -/
 noncomputable instance :
-    Mtimes (fun m n => Interval (Mat ℝ m n)) (fun n => Zonotope (Vec ℝ n)) where
+    Mtimes ℐ 𝒵 where
   mtimes := Zonotope.mtimesIntervalMat
   mtimes_outer IM Z := by
     exact Zonotope.mtimesIntervalMat_outer IM Z

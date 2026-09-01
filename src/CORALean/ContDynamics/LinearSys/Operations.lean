@@ -8,10 +8,10 @@ import CORALean.ContDynamics.LinearSys.MatExp.API
 Sampling every `Δt` turns the system into the discrete-time one whose matrix is
 `e^{AΔt}`, so reachability at the sample times is `LinearSysDT`'s and needs
 nothing new. What the inputs contribute over a step is `stepInput`, an integral
-rather than a set: enclosing it is the representation's job, not this file's.
+rather than a set: enclosing it is the representation's job.
 
 The result is a `LinearSysDT ℝ`, never `LinearSysDT 𝕋`: `e^{AΔt}` is
-transcendental, so no machine scalar holds it. A float layer has to carry an
+transcendental, so no machine scalar holds it, and a float layer has to carry an
 interval matrix here instead.
 
 `exp` needs a norm on `Mat`, which is a choice rather than an instance, so every
@@ -45,12 +45,11 @@ noncomputable def LinearSys.stepInput (sys : LinearSys 𝕋 n) (u : ℝ → Vec 
   ∫ s in (k * Δt)..((k + 1) * Δt), exp (((k + 1) * Δt - s) • toRealMat sys.A) *ᵥ u s
 
 /-- CORA's `P^R(τ)`: every point the input can drive the system to over `[0, τ]`,
-as a set of points rather than a representation of one.
+as a set of points rather than a representation of one. Admissible inputs are
+those staying in `U` and measurable enough to integrate, no more.
 
-The admissible inputs are those staying in `U` and measurable enough to
-integrate — no more, since nothing here has to solve the dynamics. Stated over
-`Icc`, which the reflection `s ↦ τ - s` maps to itself, so the substitution the
-input solution runs on costs no endpoint bookkeeping. -/
+Stated over `Icc`, which the reflection `s ↦ τ - s` maps to itself, so the
+substitution the input solution runs on costs no endpoint bookkeeping. -/
 noncomputable def LinearSys.inputReach (sys : LinearSys 𝕋 n) (U : S n) (τ : ℝ) :
     Set (Vec ℝ n) :=
   {y | ∃ u : ℝ → Vec ℝ n,
@@ -64,9 +63,8 @@ noncomputable def LinearSys.inputTerm (sys : LinearSys 𝕋 n) (r : ℝ) (i : �
   (r ^ (i + 1) / (Nat.factorial (i + 1) : ℝ)) • (toRealMat sys.A) ^ i
 
 /-- The exact orders of the input solution, `0` through `η`, summed. Recursive
-rather than a fold over `Finset`, so that `plus` — which is only an enclosure,
-not an associative operation — never has to be reassociated, and the guarantee
-is one induction. -/
+rather than a fold over `Finset`, since `plus` is only an enclosure and never has
+to be reassociated this way; the guarantee is then one induction. -/
 noncomputable def LinearSys.inputTaylorSum (sys : LinearSys 𝕋 n) (r : ℝ) (U : S n) : ℕ → S n
   | 0 => Mtimes.mtimes (sys.inputTerm r 0) U
   | i + 1 => OuterContSet.plus (sys.inputTaylorSum r U i)
@@ -75,20 +73,18 @@ noncomputable def LinearSys.inputTaylorSum (sys : LinearSys 𝕋 n) (r : ℝ) (U
 /-- Althoff's Thm. 3.1: everything the input can contribute over one step,
 `⊕ᵢ Aⁱr^{i+1}/(i+1)! U ⊕ E(r)·r·U`. The orders up to `η` exactly, and everything
 past `η` in the same remainder that bounds the exponential. -/
-noncomputable def LinearSys.inputSolution [Mtimes (fun m n => Interval (Mat ℝ m n)) S]
+noncomputable def LinearSys.inputSolution [Mtimes ℐ S]
     (sys : LinearSys 𝕋 n) (r : ℝ) (η : ℕ) (U : S n) : S n :=
   sys.inputTaylorSum r U η ⊞
-    Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
-      (MatExp.inputRemainder (toRealMat sys.A) r η) U
+    Mtimes.mtimes (𝕄 := ℐ) (MatExp.inputRemainder (toRealMat sys.A) r η) U
 
 /-- CORA's `CH(X₀, e^{Ar}X₀) ⊕ F X₀`, over a whole step rather than at its ends:
 the segment from the set to its image, widened by what the curvature of the flow
 adds. `linComb` rather than a convex hull, so a non-convex representation keeps
 its shape. -/
-noncomputable def LinearSys.timeIntervalStep [Mtimes (fun m n => Interval (Mat ℝ m n)) S]
+noncomputable def LinearSys.timeIntervalStep [Mtimes ℐ S]
     (sys : LinearSys 𝕋 n) (r : ℝ) (η : ℕ) (X₀ : S n) : S n :=
   OuterContSet.linComb X₀ (Mtimes.mtimes (exp (r • toRealMat sys.A)) X₀) ⊞
-    Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
-      (MatExp.correctionMatrix (toRealMat sys.A) r η) X₀
+    Mtimes.mtimes (𝕄 := ℐ) (MatExp.correctionMatrix (toRealMat sys.A) r η) X₀
 
 end CORALean.Real

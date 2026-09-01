@@ -19,6 +19,7 @@ import CORALean.ContDynamics.LinearSys.Theorems.WeightedIntegral
 /-!
 # What `LinearSys` guarantees
 
-One file per guarantee, named after the theorem it states. Auxiliary lemmas a
-proof needs carry the `aux_` prefix and are used nowhere else.
+The closed form of a trajectory, then the two enclosures built on it: `reach` at
+the sample times and `timeIntervalStep` over a whole step. The rest are the
+input-integral facts those two rest on.
 -/

@@ -6,9 +6,9 @@ import CORALean.ContSet.Zonotope.Real.Zonotope
 A linear map applies to centre and generators alike, which is why a zonotope is
 closed under one and the generator count is untouched.
 
-Every multiplication a zonotope carries is this operation at a particular map:
-`mtimes` at `A *ᵥ ·`, and matrix multiplication of a `Zonotope (Mat ℝ n m)` at
-`A * ·` or `· * A`. Each therefore needs no exactness proof of its own.
+Every multiplication a zonotope carries is this at a particular map — `mtimes`
+at `A *ᵥ ·`, matrix multiplication at `A * ·` or `· * A` — so none of them needs
+an exactness proof of its own.
 -/
 
 -- Authors:       Tobias Ladner

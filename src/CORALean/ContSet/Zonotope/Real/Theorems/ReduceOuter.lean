@@ -3,16 +3,14 @@ import CORALean.ContSet.Zonotope.Real.Theorems.Coefficient
 /-!
 # `Zonotope.reduce` over-approximates the zonotope
 
-Girard's metric appears nowhere below. All `reduceGirard` does with it is choose
-a partition, and `reduceBy_outer` holds for every partition, which is what lets
-the ranking be a heuristic.
+`reduceBy_outer` is the whole argument, and it holds at *every* partition, which
+is what lets the ranking be a heuristic — Girard's metric appears nowhere below.
 
-That lemma is the argument: kept generators keep their coefficients, and the
-dropped ones contribute `D` in row `i`, which the diagonal block reproduces with
-coefficient `D / R` where `R` is that row's box radius. `hbound` bounds `|D|` by
-`R`, so the coefficient is admissible, and `coefficient` isolates the rescaling
-as a fact about reals, including the degenerate `R = 0` case where the same bound
-forces `D` to vanish.
+Kept generators keep their coefficients; the dropped ones contribute `D` in row
+`i`, which the diagonal block reproduces with coefficient `D / R` for `R` that
+row's box radius. `hbound` bounds `|D|` by `R`, so the coefficient is
+admissible, and `coefficient` handles the rescaling, degenerate `R = 0`
+included.
 
 `Partition.sum_split₂` is where the partition pays: the sum over all generators
 splits into kept and dropped with no side condition.

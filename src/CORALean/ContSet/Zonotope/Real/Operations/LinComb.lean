@@ -12,9 +12,8 @@ and `(1-λ) β₂` are coefficients of the original generator blocks and no new
 ones are needed for them.
 
 CORA takes `½(G₁+G₂)` and `½(G₁-G₂)` instead, which is tighter when the two
-generator matrices correspond column by column. That needs equal generator
-counts, which `h` being a field cannot promise — and padding to equal counts
-turns their formula back into this one, with each generator twice over.
+generator matrices correspond column by column — but that needs equal generator
+counts, which `h` being a field cannot promise.
 -/
 
 -- Authors:       Tobias Ladner

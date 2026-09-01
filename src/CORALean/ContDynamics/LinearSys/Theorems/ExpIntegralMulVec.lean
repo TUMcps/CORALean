@@ -9,10 +9,9 @@ named for. Only ever against a vector: `Matrix` has no metrizable-space instance
 for Bochner integration to use, so `∫ e^{Aσ} dσ` does not exist as a matrix
 here, while `∫ (e^{Aσ} v) dσ` exists perfectly well in `Vec`.
 
-The exchange is dominated convergence over the partial sums, whose dominating
-function is the constant `e^{‖A‖t}‖v‖` — so nothing about `A` beyond its norm
-enters. Termwise `∫₀ᵗ σⁱ/i! dσ = t^{i+1}/(i+1)!`, which is where the shifted
-factorial in `expIntegral` comes from.
+The exchange is dominated convergence over the partial sums, dominated by the
+constant `e^{‖A‖t}‖v‖`. Termwise `∫₀ᵗ σⁱ/i! dσ = t^{i+1}/(i+1)!`, which is
+where the shifted factorial in `expIntegral` comes from.
 -/
 
 -- Authors:       Tobias Ladner

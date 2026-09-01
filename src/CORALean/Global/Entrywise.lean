@@ -3,18 +3,12 @@ import CORALean.Global.Tensor
 /-!
 # Ambient types that have coordinates
 
-An axis-aligned box, a generator ranking and an entrywise radius bound all read
-a point coordinate by coordinate. This says which ambient types allow that, and
-what an index is: `Fin n` for a vector, `Fin m × Fin n` for a matrix.
+Which ambient types can be read coordinate by coordinate, and what an index then
+is: `Fin n` for a vector, `Fin m × Fin n` for a matrix. An axis-aligned box, a
+generator ranking and an entrywise bound all need this.
 
-`entry` is required linear and injective, which is what lets an operation be
-defined entrywise and still be the operation on the space — `Interval.plus`
-adds bounds, and the sum of what two boxes denote is what the summed box
-denotes only because reading entries commutes with addition.
-
-Not a `LinearEquiv`: nothing here needs to build a point *from* coordinates, and
-requiring surjectivity would exclude an ambient type whose coordinates are
-constrained.
+`entry` is linear and injective, which is what makes an entrywise definition the
+operation on the space itself rather than merely one that agrees with it.
 -/
 
 -- Authors:       Tobias Ladner
@@ -26,8 +20,8 @@ namespace CORALean
 
 class Entrywise (α : Type) (ι : outParam Type) [AddCommGroup α] [Module ℝ α] where
   entry : α → ι → ℝ
-  /-- The point with the given coordinates. `linComb` needs it: the bounds it
-  produces are a `min` and a `max` read off two others. -/
+  /-- The point with the given coordinates; `Interval.linComb` builds bounds
+  this way. -/
   ofEntry : (ι → ℝ) → α
   entry_ofEntry (f : ι → ℝ) (i : ι) : entry (ofEntry f) i = f i
   ofEntry_entry (a : α) : ofEntry (entry a) = a
@@ -57,7 +51,6 @@ theorem entry_injective : Function.Injective (entry : α → ι → ℝ) := by
 theorem entry_sub (a b : α) (i : ι) : entry (a - b) i = entry a i - entry b i := by
   rw [sub_eq_add_neg, entry_add, entry_neg, sub_eq_add_neg]
 
-/-- Two points with the same coordinates are the same point. -/
 theorem ext {a b : α} (h : ∀ i, entry a i = entry b i) : a = b :=
   entry_injective (funext h)
 
@@ -76,8 +69,8 @@ instance {n : ℕ} : Entrywise (Vec ℝ n) (Fin n) where
 @[simp] theorem Entrywise.entry_vec {n : ℕ} (v : Vec ℝ n) (i : Fin n) :
     Entrywise.entry v i = v i := rfl
 
-/-- A matrix is indexed by a pair. Its own type former, not `Tensor`, so this
-instance does not collide with the vector one. -/
+/-- Indexed by a pair. `Mat` is its own type former, not `Tensor`, so this does
+not collide with the vector instance. -/
 instance {m n : ℕ} : Entrywise (Mat ℝ m n) (Fin m × Fin n) where
   entry A p := A p.1 p.2
   ofEntry f := fun i j => f (i, j)

@@ -9,19 +9,17 @@ when that fails the thesis splits the input set into a constant `ũ` and a set
 `Ũ` containing the origin, encloses each contribution, and adds them.
 
 `Ũ` goes through Prop. 3.3 unchanged. The constant does not need it: what it
-contributes is known in closed form, `∫₀ᵗ e^{Aσ}dσ` applied to it, so the
-enclosure is the straight line to its value at `r` widened by the interpolation
-error — Althoff's `(t/r)x̃_p(r) ⊕ F̃ũ`, with `F̃` the `constCorrectionMatrix` and
-no matrix inverse anywhere.
+contributes is `∫₀ᵗ e^{Aσ}dσ` applied to it, so the enclosure is the straight
+line to its value at `r` widened by the interpolation error — Althoff's
+`(t/r)x̃_p(r) ⊕ F̃ũ`, with `F̃` the `constCorrectionMatrix` and no matrix inverse
+anywhere.
 
-The two pieces want different sets. `F̃` multiplies a set holding the constant
-alone, since the constant is what it corrects; the propagated part multiplies a
-set holding the segment from the origin to it, since `M` applied to that segment
-is exactly the range of `(t/r)·M ũ`. Splitting them this way is what keeps the
-result as tight as the thesis rather than allowing every input in a segment at
-every time.
+The two pieces want different sets: `F̃` multiplies a set holding the constant
+alone, the propagated part one holding the segment from the origin to it, since
+`M` applied to that segment is exactly the range of `(t/r)·M ũ`. Keeping them
+apart is what keeps the result as tight as the thesis.
 
-The split itself is a hypothesis: `ContSet` cannot name a centre, so which `c`
+The split itself is a hypothesis — `ContSet` cannot name a centre — so which `c`
 and which sets is the representation's business. A zonotope has all three.
 -/
 
@@ -51,10 +49,10 @@ theorem aux_mtimes_mem {M : Mat ℝ n n} {W : S n} {y : Vec ℝ n} (hy : y ∈ c
 
 omit [∀ n, OuterContSet (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] in
 /-- The same for any matrix an interval matrix denotes. -/
-theorem aux_mtimesIM_mem [Mtimes (fun m n => Interval (Mat ℝ m n)) S]
+theorem aux_mtimesIM_mem [Mtimes ℐ S]
     {IM : Interval (Mat ℝ n n)} {W : S n}
     {M : Mat ℝ n n} (hM : M ∈ IM.construct) {y : Vec ℝ n} (hy : y ∈ construct W) :
-    M *ᵥ y ∈ construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n)) IM W) := by
+    M *ᵥ y ∈ construct (Mtimes.mtimes (𝕄 := ℐ) IM W) := by
   refine Mtimes.mtimes_outer _ _ ?_
   exact Set.mem_biUnion hM (Set.mem_image_of_mem _ hy)
 
@@ -72,7 +70,7 @@ set_option maxHeartbeats 1000000 in
 /-- The input's contribution at every time of the step, split along
 `U ⊆ {c} ⊕ U₀`. Neither piece needs `0 ∈ U`. -/
 theorem LinearSys.Trajectory.inputSolution_timeInterval_outer_split
-    [Mtimes (fun m n => Interval (Mat ℝ m n)) S]
+    [Mtimes ℐ S]
     {sys : LinearSys 𝕋 n} {R₀ U U₀ P Sg : S n} {x u : ℝ → Vec ℝ n} {c : Vec ℝ n} {r : ℝ}
     (traj : sys.Trajectory R₀ U x u) (hr : 0 < r) (η : ℕ)
     (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
@@ -85,11 +83,11 @@ theorem LinearSys.Trajectory.inputSolution_timeInterval_outer_split
     (h0₀ : (0 : Vec ℝ n) ∈ construct U₀)
     (hconv₀ : Convex ℝ (construct U₀)) (hclosed₀ : IsClosed (construct U₀))
     (hbdd₀ : Bornology.IsBounded (construct U₀))
-    (hRconv₀ : Convex ℝ (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+    (hRconv₀ : Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) r η) U₀)))
-    (hRclosed₀ : IsClosed (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+    (hRclosed₀ : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) r η) U₀)))
-    (hRbdd₀ : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
+    (hRbdd₀ : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) r η) U₀)))
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) :
     (∫ s in (0:ℝ)..t, exp ((t - s) • toRealMat sys.A) *ᵥ u s)
@@ -97,8 +95,7 @@ theorem LinearSys.Trajectory.inputSolution_timeInterval_outer_split
           (OuterContSet.plus
             (Mtimes.mtimes (𝕄 := Mat ℝ)
               (MatExp.expIntegral (toRealMat sys.A) r) Sg)
-            (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat ℝ m n))
-              (MatExp.constCorrectionMatrix (toRealMat sys.A) r η) P))
+            (Mtimes.mtimes (𝕄 := ℐ) (MatExp.constCorrectionMatrix (toRealMat sys.A) r η) P))
           (sys.inputSolution r η U₀)) := by
   set A := toRealMat sys.A with hA
   have hs0 : 0 ≤ t / r := div_nonneg ht0 hr.le

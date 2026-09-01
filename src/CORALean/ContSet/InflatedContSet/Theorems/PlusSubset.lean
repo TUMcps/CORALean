@@ -7,9 +7,8 @@ Set addition is commutative and associative, so the two nominal parts and the
 two boxes regroup and each side is weakened once. Every binary operation that
 computes its nominal part approximately reduces to this.
 
-The three representations are separately typed: a zonotope `plus` returns
-`h + k` generators, so its arguments and its result are three different types
-agreeing only on the dimension.
+The three representations are separately typed, since an operation may take and
+return different ones.
 -/
 
 -- Authors:       Tobias Ladner

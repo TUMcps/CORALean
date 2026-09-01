@@ -7,10 +7,9 @@ The arithmetic a machine float offers, with no claim about what it computes:
 two rounding directions per operation, and the exact operations that need none.
 `SoundFloatArithmetic` is what says the directions are honest.
 
-The split is what keeps the layer executable. A real interpretation cannot be
-compiled, so any class carrying one is noncomputable, and so is every operation
-reached through it. Definitions therefore assume only this class and run;
-theorems assume both.
+Kept separate from that class so the layer stays executable — a real
+interpretation is noncomputable, and so is everything reached through a class
+carrying one. Definitions assume this class alone; theorems assume both.
 -/
 
 -- Authors:       Tobias Ladner
@@ -31,9 +30,8 @@ class FloatOps (𝕋 : Type) where
   /-- Exact, like `neg`: choosing between two floats invents no digits. -/
   minimum : 𝕋 → 𝕋 → 𝕋
   maximum : 𝕋 → 𝕋 → 𝕋
-  /-- Comparison, and `SoundFloatArithmetic` asks nothing of it. Only the order
-  in which a reduction ranks generators depends on it, and every ranking is
-  sound, so a wrong answer here costs precision and never correctness. -/
+  /-- Unconstrained by `SoundFloatArithmetic`: only a generator ranking depends
+  on it, and every ranking is sound, so a wrong answer costs precision. -/
   le : 𝕋 → 𝕋 → Bool
   /-- Exact in a binary format, where halving only moves the exponent. -/
   half : 𝕋 → 𝕋
@@ -52,10 +50,9 @@ def subDown (a b : 𝕋) : 𝕋 := addDown a (neg b)
 
 /-! ## Summation
 
-A `Finset.sum` of rounded scalars is not available: `addUp` is not associative,
-so the sum has to name its own bracketing. This one is right-nested, matching
-`Fin.sum_univ_succ`, which is what makes the bounds provable by a single
-induction. -/
+`addUp` is not associative, so a sum has to name its own bracketing rather than
+go through `Finset.sum`. Right-nested, matching `Fin.sum_univ_succ`, so the
+bounds are one induction. -/
 
 def sumUp : {n : ℕ} → (Fin n → 𝕋) → 𝕋
   | 0, _ => zero
@@ -77,15 +74,14 @@ def absolute (a : 𝕋) : 𝕋 := maximum a (neg a)
 
 /-! ## Dot products
 
-Round the products and the sum the same way. Every matrix operation in the layer
-is built from these two, so a row of a matrix product and a coordinate of a
-matrix-vector product are the same call. -/
+Products and sum rounded the same way. Every matrix operation in the layer is
+built from these two. -/
 
 def dotDown {n : ℕ} (a b : Vec 𝕋 n) : 𝕋 := sumDown fun k => mulDown (a k) (b k)
 def dotUp {n : ℕ} (a b : Vec 𝕋 n) : 𝕋 := sumUp fun k => mulUp (a k) (b k)
 
 /-- Row sums of absolute values, rounded up: the half-width of the hull of a
-zonotope centred at zero with these generators. Every use of it is a bound. -/
+zonotope centred at zero with these generators. -/
 def radius {n h : ℕ} (G : Mat 𝕋 n h) : Vec 𝕋 n := fun i => sumUp fun j => absolute (G i j)
 
 /-- One generator per coordinate. Not `Matrix.diagonal`, which needs `Zero 𝕋`,
@@ -96,7 +92,7 @@ def diagonalBlock {n : ℕ} (v : Vec 𝕋 n) : Mat 𝕋 n n := fun i l => if i =
 /-! ## Rounded linear algebra
 
 Each entry is a dot product. Both directions are kept: the stored value is the
-lower one, and the gap to the upper is what a caller is charged. -/
+lower one, the gap to the upper what a caller is charged. -/
 
 def mulVecDown {m n : ℕ} (M : Mat 𝕋 m n) (v : Vec 𝕋 n) : Vec 𝕋 m := fun i => dotDown (M i) v
 def mulVecUp {m n : ℕ} (M : Mat 𝕋 m n) (v : Vec 𝕋 n) : Vec 𝕋 m := fun i => dotUp (M i) v

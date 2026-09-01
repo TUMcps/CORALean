@@ -9,15 +9,14 @@ inputs contributed.
 
 Proved by the substitution `y(s) = e^{-As} x(s)`, whose derivative is
 `e^{-As} u(s)` — the dynamics cancel — so the fundamental theorem of calculus
-gives the integral outright. Differentiating under the integral sign is what
-this avoids.
+gives the integral outright, with nothing differentiated under an integral sign.
 
-The input must be integrable against the exponential; nothing forces that, as
-`Trajectory` constrains `u` pointwise only, so it is a hypothesis here.
+Integrability of the input against the exponential is a hypothesis, `Trajectory`
+constraining `u` pointwise only.
 
 Mathlib's matrix exponential needs a norm on `Mat`, which is a choice rather
-than an instance. The `l∞` operator norm is the local one, and only its
-completeness is used, so any other would serve.
+than an instance. Only completeness of the `l∞` operator norm is used here, so
+any other would serve.
 -/
 
 -- Authors:       Tobias Ladner

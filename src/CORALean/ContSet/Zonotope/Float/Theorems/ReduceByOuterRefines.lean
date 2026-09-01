@@ -9,12 +9,11 @@ the kept generators are copied either way, and `radius` rounds the block *up*,
 so it covers the exact row sum. `coefficient` rescales by the ratio of the two,
 which the unit ball allows because the exact radius is the smaller.
 
-This is what `aux_plus_outer_refines` is for its operation, and it is as far as
-the refinement goes. At the *order* level there is none: `reduce` picks its
-partition by a metric computed in `𝕋`, so the layers can keep different
-generators, and two reductions of one zonotope are in general incomparable —
-boxing a generator loses the correlation between coordinates that keeping it
-preserves, so neither result need enclose the other.
+As far as the refinement goes. At the *order* level there is none: `reduce`
+picks its partition by a metric computed in `𝕋`, so the layers can keep
+different generators, and two reductions of one zonotope are in general
+incomparable — boxing a generator loses a correlation between coordinates that
+keeping it preserves.
 -/
 
 -- Authors:       Tobias Ladner

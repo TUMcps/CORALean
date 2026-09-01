@@ -13,10 +13,9 @@ cancels — one order lower than for `F`, where the constant *and* linear terms
 go. Orders `1` through `η` are kept exactly, through the same `corrCoeff` bound
 read at one index higher, and everything past `η` goes into `E(r)·r`.
 
-The tail is bounded as one series, never as two remainders added: each term
-carries `|t^{i+2} - t·r^{i+1}| ≤ r^{i+2}`, and pulling one factor of `r` out
-leaves exactly the exponential's own tail. Splitting instead would cost a factor
-of two, for the reason `CorrectionMatrix` documents.
+The tail is bounded as one series, for the reason `CorrectionMatrix` documents:
+each term carries `|t^{i+2} - t·r^{i+1}| ≤ r^{i+2}`, and pulling one factor of
+`r` out leaves exactly the exponential's own tail.
 -/
 
 -- Authors:       Tobias Ladner

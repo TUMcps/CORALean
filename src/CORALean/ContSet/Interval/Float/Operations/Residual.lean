@@ -5,8 +5,7 @@ import CORALean.ContSet.Interval.Float.Interval
 
 The box an operation owes when it stores a rounded vector: the intended value
 lies in `[lo, hi]` but `stored` was written down, so `[lo - stored, hi - stored]`
-covers the difference. Mentions no representation — `Zonotope` builds its error
-boxes from this.
+covers the difference.
 -/
 
 -- Authors:       Tobias Ladner

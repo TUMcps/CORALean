@@ -3,11 +3,9 @@ import CORALean.ContSet.Zonotope.Float.Theorems.API
 /-!
 # What `Zonotope` instantiates
 
-The class fields *are* the obligations, so there is nothing to restate.
-
-`ContSet` is not among them: `InflatedContSet` supplies it, which is what makes
-this the same class the exact layer instantiates. An algorithm written against
-`OuterContSet` therefore runs here with no float counterpart to write.
+`ContSet` is not among them — `InflatedContSet` supplies it, which is what makes
+this the same class the exact layer instantiates. So an algorithm written against
+`OuterContSet` runs here with no float counterpart to write.
 -/
 
 -- Authors:       Tobias Ladner

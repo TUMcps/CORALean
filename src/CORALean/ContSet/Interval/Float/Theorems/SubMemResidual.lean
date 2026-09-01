@@ -3,8 +3,8 @@ import CORALean.ContSet.Interval.Float.Operations.API
 /-!
 # What is left over after storing a rounded vector
 
-Both bounds are one directed subtraction away from the bracket the caller
-already has. Every float representation reaches its error box through this.
+Both bounds are one directed subtraction away from the bracket the caller already
+has. How every float representation reaches its error box.
 -/
 
 -- Authors:       Tobias Ladner

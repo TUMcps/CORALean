@@ -8,7 +8,6 @@ import CORALean.Global.Float.Instances.API
 `FloatOps` gives the rounded operations, `SoundFloatArithmetic` says their
 directions are honest, and `Instances` supplies models of both.
 
-`Global.API` does not import this. Every `Real` file imports `Global.API`, so
-pulling the float scalar in there would make deleting `Float` break the
-specification layer. A float representation imports this directly instead.
+Not reachable through `Global.API`: a float representation imports this
+directly, so that the specification layer never depends on it.
 -/

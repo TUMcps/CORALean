@@ -6,16 +6,12 @@ import CORALean.Global.Mathlib
 `Tensor α s` is an array of `α` of shape `s`, curried, so an entry is read by
 applying one index per axis. `Vec` is its order-one case outright.
 
-The scalar is explicit because it is what separates the two arithmetic layers:
-`Vec ℝ n` is a point, `Vec 𝕋 n` its machine representation. Every signature
-therefore says which arithmetic it is written in.
+The scalar is explicit because it separates the two arithmetic layers: `Vec ℝ n`
+is a point, `Vec 𝕋 n` its machine representation.
 
 `Mat` is the order-two case up to `rfl`, but spelt as Mathlib's `Matrix`: that
 wrapper keeps `*` matrix multiplication rather than the pointwise product every
 function type carries, and instance search sees through it in neither direction.
-
-Higher orders carry no such structure and appear as coefficient stores, e.g. the
-third-order term of a Taylor remainder.
 -/
 
 -- Authors:       Tobias Ladner

@@ -5,12 +5,11 @@ import CORALean.ContDynamics.LinearSys.MatExp.API
 # Zonotopes: multiplication by an interval matrix
 
 CORA writes this as `mtimes` too, dispatching on the argument. The centre acts
-exactly, as a matrix does, and everything the radius allows is boxed into `n`
-fresh generators — one per coordinate, so the cost is `n` generators a step and
-not more.
+exactly, as a matrix does, and everything the radius allows is boxed into one
+fresh generator per coordinate — so a step costs `n` generators and no more.
 
 `absBound` is what makes that box computable: a coordinate of a zonotope never
-leaves `|c| + Σ|g|`, which is the interval hull read off without building it.
+leaves `|c| + Σ|g|`, the interval hull read off without building it.
 -/
 
 -- Authors:       Tobias Ladner

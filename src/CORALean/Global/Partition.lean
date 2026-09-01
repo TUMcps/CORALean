@@ -3,18 +3,15 @@ import CORALean.Global.Mathlib
 /-!
 # Splitting an index type into parts
 
-`Split α into β` names every index of `α` exactly once as `P.on k l`, where
-`k` picks a part and `l` an index within it. Two parts are the common case and
-read `Split α into βₗ and βᵣ`, with `P.left` and `P.right`.
+`Split α into β` names every index of `α` exactly once as `P.on k l`, where `k`
+picks a part and `l` an index within it. Two parts are the common case and read
+`Split α into βₗ and βᵣ`, with `P.left` and `P.right`.
 
-`sum_split` is why the type exists — a sum over `α` splits along the parts with
+`sum_split` is why the type exists: a sum over `α` splits along the parts with
 no side condition, since the equivalence already rules out overlap.
 
-`split` is the only constructor: every selection rule is it composed with a
-permutation, via `reindex`.
-
-The type is `Partition`; `Split` is only its notation. Naming the two alike
-would make `Partition` a keyword, and `Partition.left` would print quoted.
+The type is `Partition`; `Split` is only its notation, since naming the two
+alike would make `Partition` a keyword.
 -/
 
 -- Authors:       Tobias Ladner
@@ -34,7 +31,7 @@ def Pair (β γ : Type v) : Bool → Type v
   | true => β
   | false => γ
 
-/-- Two parts, the common case. Its own name is what makes it print as one. -/
+/-- Two parts, the common case. -/
 abbrev Partition₂ (α : Type*) (β γ : Type v) := Partition α (Pair β γ)
 
 notation:50 "Split " α:max " into " β:max => CORALean.Partition α β
@@ -61,8 +58,8 @@ def Pair.equivSum (β γ : Type v) : (Σ b, Pair β γ b) ≃ β ⊕ γ where
 def Partition.split (q r : ℕ) : Split (Fin (q + r)) into (Fin q) and (Fin r) where
   index := (Pair.equivSum (Fin q) (Fin r)).trans finSumFinEquiv
 
-/-- Rename what a partition splits. A selection rule is `split` composed with the
-permutation that orders the indices. -/
+/-- Rename what a partition splits: every selection rule is `split` composed with
+the permutation that orders the indices. -/
 def Partition.reindex (P : Split α into βₗ and βᵣ) (e : α' ≃ α) : Split α' into βₗ and βᵣ where
   index := P.index.trans e.symm
 
