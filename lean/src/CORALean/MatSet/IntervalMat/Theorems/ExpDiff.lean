@@ -13,7 +13,9 @@ is needed, since at `r = 0` Lean's `t/r` is `0` and that cancellation fails.
 
 Keeping the two exponentials in one series is what makes Althoff's `E(r)` bound
 provable: the tail terms share `A^i`, so `t^i - t·r^(i-1)` is bounded once,
-rather than each remainder being bounded on its own and the two added.
+rather than each remainder being bounded on its own and the two added. Splitting
+them costs a factor of two and misses the bound at `t = r`; `CorrectionMatrix`
+spells that out, as it is a gap in the thesis proof rather than a choice here.
 -/
 
 -- Authors:       Tobias Ladner

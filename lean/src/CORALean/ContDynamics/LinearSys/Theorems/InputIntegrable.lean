@@ -13,6 +13,12 @@ Boundedness is the one thing that comes from outside, and it comes from the
 input set rather than from `u`: `u s ∈ construct U`, so a bounded `U` bounds the
 integrand together with the exponential, which is continuous over a compact
 step. Representations supply that bound; `ContSet` does not ask for it.
+
+`u` itself is measurable for the same reason, and stays so after the reflection
+`τ ↦ c - τ` that `inputSolution_outer` integrates against: the derivative term
+is strongly measurable rather than merely almost-everywhere so, and that
+survives composition with a measurable map without any argument about which
+measure the reflection preserves.
 -/
 
 -- Authors:       Tobias Ladner
@@ -78,5 +84,54 @@ theorem LinearSys.Trajectory.intervalIntegrable_input {sys : LinearSys 𝕋 n} {
       ≤ ‖exp ((-s) • toRealMat sys.A)‖ * ‖u s‖ := Matrix.linfty_opNorm_mulVec _ _
     _ ≤ CE * CU := mul_le_mul (hCE s ⟨hs.1.le, hs.2⟩)
         (hCU _ (traj.input s (le_trans ha hs.1.le))) (norm_nonneg _) hCE0
+
+set_option maxHeartbeats 10000 in
+/-- Differentiable where the flow holds, hence continuous there. -/
+theorem LinearSys.Trajectory.aux_continuousOn_state {sys : LinearSys 𝕋 n} {R₀ U : S n}
+    {x u : ℝ → Vec ℝ n} (traj : sys.Trajectory R₀ U x u) : ContinuousOn x (Set.Ici 0) :=
+  fun t ht => (traj.flow t ht).continuousWithinAt
+
+set_option maxHeartbeats 10000 in
+/-- `u` as a derivative minus the drift. The flow states the sum; this is the
+rearrangement that leaves `u` alone on one side, which is what carries
+measurability to `u` itself rather than to the integrand. -/
+theorem LinearSys.Trajectory.aux_input_eq_derivWithin {sys : LinearSys 𝕋 n} {R₀ U : S n}
+    {x u : ℝ → Vec ℝ n} (traj : sys.Trajectory R₀ U x u) {t : ℝ} (ht : 0 ≤ t) :
+    u t = derivWithin x (Set.Ici t) t - toRealMat sys.A *ᵥ x t := by
+  rw [((traj.flow t ht).mono (Set.Ici_subset_Ici.mpr ht)).derivWithin
+    (uniqueDiffWithinAt_Ici t)]
+  abel
+
+set_option maxHeartbeats 40000 in
+/-- What `inputSolution_outer` asks of the input, in the reflected form the
+substitution `τ = c - s` leaves behind. Nothing is assumed of `u`: the
+derivative term is strongly measurable for every function and stays so through
+`τ ↦ c - τ`, and the drift term is a continuous map of a continuous state.
+
+`r ≤ c` keeps the reflected argument in `Ici 0`, which is the only place the
+flow — and so the identity above — holds. -/
+theorem LinearSys.Trajectory.aestronglyMeasurable_input_reflected {sys : LinearSys 𝕋 n}
+    {R₀ U : S n} {x u : ℝ → Vec ℝ n} (traj : sys.Trajectory R₀ U x u) {c r : ℝ} (hrc : r ≤ c) :
+    AEStronglyMeasurable (fun τ => u (c - τ)) (volume.restrict (Set.Ioc 0 r)) := by
+  have hrefl : Continuous fun τ : ℝ => c - τ := continuous_const.sub continuous_id
+  have hmaps : Set.MapsTo (fun τ : ℝ => c - τ) (Set.Ioc 0 r) (Set.Ici 0) := by
+    intro τ hτ
+    simp only [Set.mem_Ici, sub_nonneg]
+    exact le_trans hτ.2 hrc
+  have hderiv : AEStronglyMeasurable
+      (fun τ : ℝ => derivWithin x (Set.Ici (c - τ)) (c - τ))
+      (volume.restrict (Set.Ioc 0 r)) :=
+    ((stronglyMeasurable_derivWithin_Ici x).comp_measurable
+      hrefl.measurable).aestronglyMeasurable
+  have hstate : AEStronglyMeasurable (fun τ : ℝ => x (c - τ))
+      (volume.restrict (Set.Ioc 0 r)) :=
+    (traj.aux_continuousOn_state.comp hrefl.continuousOn hmaps).aestronglyMeasurable
+      measurableSet_Ioc
+  have hdrift : AEStronglyMeasurable (fun τ : ℝ => toRealMat sys.A *ᵥ x (c - τ))
+      (volume.restrict (Set.Ioc 0 r)) :=
+    (mulVecL (toRealMat sys.A)).continuous.comp_aestronglyMeasurable hstate
+  refine (hderiv.sub hdrift).congr ?_
+  refine (ae_restrict_iff' measurableSet_Ioc).mpr (Filter.Eventually.of_forall fun τ hτ => ?_)
+  exact (traj.aux_input_eq_derivWithin (sub_nonneg.mpr (le_trans hτ.2 hrc))).symm
 
 end CORALean.Real

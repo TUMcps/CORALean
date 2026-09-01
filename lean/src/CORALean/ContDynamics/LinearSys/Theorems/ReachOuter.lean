@@ -11,6 +11,9 @@ Between the sample times it says nothing. Covering those needs a set enclosing
 the curve over a step, which no operation offers yet.
 
 `OuterContSet S ℝ`, not `S 𝕋`: the propagated matrix is `e^{AΔt}`, which is real.
+
+`reach_outer_inputSolution` is the same statement with the input enclosure named
+rather than assumed, leaving `R₀`, `U` and the step as the only inputs.
 -/
 
 -- Authors:       Tobias Ladner
@@ -35,5 +38,26 @@ theorem LinearSys.Trajectory.reach_outer {sys : LinearSys 𝕋 n} {R₀ U Ud : S
     (hUd : ∀ k : ℕ, sys.stepInput u Δt k ∈ construct Ud) (o k : ℕ) :
     x (k * Δt) ∈ construct ((sys.discretize Δt).reach o R₀ Ud k) :=
   LinearSysDT.reach_outer _ o R₀ Ud (traj.discretize hΔt hU hUd) k
+
+set_option maxHeartbeats 40000 in
+/-- The same, with the input set named rather than assumed: `inputSolution Δt η U`
+encloses every step's contribution, so nothing about the input is left to the
+caller beyond the properties of `U` itself. -/
+theorem LinearSys.Trajectory.reach_outer_inputSolution [Mtimes IntervalMat S]
+    {sys : LinearSys 𝕋 n} {R₀ U : S n} {x u : ℝ → Vec ℝ n} {Δt : ℝ}
+    (traj : sys.Trajectory R₀ U x u) (hΔt : 0 < Δt) (η : ℕ)
+    (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
+    (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
+    (hbdd : Bornology.IsBounded (construct U))
+    (hRconv : Convex ℝ (construct (Mtimes.mtimes
+      (IntervalMat.inputRemainder (toRealMat sys.A) Δt η) U)))
+    (hRclosed : IsClosed (construct (Mtimes.mtimes
+      (IntervalMat.inputRemainder (toRealMat sys.A) Δt η) U)))
+    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes
+      (IntervalMat.inputRemainder (toRealMat sys.A) Δt η) U))) (o k : ℕ) :
+    x (k * Δt) ∈ construct
+      ((sys.discretize Δt).reach o R₀ (sys.inputSolution Δt η U) k) :=
+  LinearSysDT.reach_outer _ o R₀ _
+    (traj.discretize_inputSolution hΔt η hε hconv hclosed hbdd hRconv hRclosed hRbdd) k
 
 end CORALean.Real

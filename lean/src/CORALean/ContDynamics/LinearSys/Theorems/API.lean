@@ -2,6 +2,8 @@ import CORALean.ContDynamics.LinearSys.Theorems.Discretize
 import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
 import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionOuter
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOuter
+import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterZonotope
+import CORALean.ContDynamics.LinearSys.Theorems.StepInputOuter
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuter
 import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryTimeIntervalOuter
 import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants

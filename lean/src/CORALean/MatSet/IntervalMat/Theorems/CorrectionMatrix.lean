@@ -12,10 +12,36 @@ goes into the same remainder that bounds the exponential.
 Substituting `t = s·r` turns order `i` into `r^i (s^i - s)`, which `corrCoeff`
 bounds exactly — so the finite part is as tight as the thesis claims.
 
-The tail is bounded with both exponentials kept in one series. Each term carries
-`|t^i - t·r^(i-1)| ≤ r^i`, so the whole tail is dominated by the same geometric
-series as the exponential remainder. Bounding the two remainders separately and
-adding them, as the thesis proof does, would give twice this.
+## Where this proof departs from the thesis, and why it has to
+
+The proposition is true as stated. Its proof, as given, does not establish it,
+and the gap is a factor of two in the tail.
+
+Write `φ(x) := ∑_{i>η} (‖A‖x)^i / i!` for what the orders past `η` can amount
+to, so the claimed remainder is `E(r)`, of radius `φ(r)`. The quantity being
+enclosed is
+
+  `D(t) = e^{At} - I - (t/r)(e^{Ar} - I) = ∑_{i≥2} (A^i / i!) (t^i - t·r^(i-1))`
+
+for `t ∈ [0,r]`, the `i = 1` terms cancelling because `t - (t/r)·r = 0`.
+
+The thesis bounds the tail by splitting `D(t)` back into its two exponentials,
+bounding `e^{At} - Taylor_η(At)` by `φ(t)` and `(t/r)(e^{Ar} - Taylor_η(Ar))` by
+`(t/r)·φ(r)`, and adding. That gives radius `φ(t) + (t/r)φ(r)`, which at `t = r`
+is `2φ(r)` — twice what `E(r)` allows. The bound is therefore not reached by
+this route at the one endpoint that matters.
+
+Keeping both exponentials in a single series instead, as `ExpDiff` does, bounds
+each tail term *once*: the two share `A^i`, and for `0 ≤ t ≤ r`
+
+  `|t^i - t·r^(i-1)| = t·(r^(i-1) - t^(i-1)) ≤ r·r^(i-1) = r^i`,
+
+so the whole tail is dominated by `∑_{i>η} ‖A‖^i r^i / i! = φ(r)`. The
+proposition's own bound, with nothing to spare.
+
+So the correction is the sharing of `A^i` between the two exponentials, which
+the split discards. Worth reporting to the author: the statement stands, the
+argument for it needs this step.
 -/
 
 -- Authors:       Tobias Ladner

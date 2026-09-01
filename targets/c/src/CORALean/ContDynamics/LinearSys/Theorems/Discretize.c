@@ -1,6 +1,6 @@
 // Lean compiler output
 // Module: CORALean.ContDynamics.LinearSys.Theorems.Discretize
-// Imports: public import Init public meta import Init public import CORALean.ContDynamics.LinearSys.Operations public import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
+// Imports: public import Init public meta import Init public import CORALean.ContDynamics.LinearSys.Operations public import CORALean.ContDynamics.LinearSys.Theorems.StepInputOuter
 #include <lean/lean.h>
 #if defined(__clang__)
 #pragma clang diagnostic ignored "-Wunused-parameter"
@@ -16,7 +16,7 @@ extern "C" {
 lean_object* initialize_Init(uint8_t builtin);
 lean_object* initialize_Init(uint8_t builtin);
 lean_object* initialize_CORALean_CORALean_ContDynamics_LinearSys_Operations(uint8_t builtin);
-lean_object* initialize_CORALean_CORALean_ContDynamics_LinearSys_Theorems_InputIntegrable(uint8_t builtin);
+lean_object* initialize_CORALean_CORALean_ContDynamics_LinearSys_Theorems_StepInputOuter(uint8_t builtin);
 static bool _G_initialized = false;
 LEAN_EXPORT lean_object* initialize_CORALean_CORALean_ContDynamics_LinearSys_Theorems_Discretize(uint8_t builtin) {
 lean_object * res;
@@ -31,7 +31,7 @@ lean_dec_ref(res);
 res = initialize_CORALean_CORALean_ContDynamics_LinearSys_Operations(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
-res = initialize_CORALean_CORALean_ContDynamics_LinearSys_Theorems_InputIntegrable(builtin);
+res = initialize_CORALean_CORALean_ContDynamics_LinearSys_Theorems_StepInputOuter(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 return lean_io_result_mk_ok(lean_box(0));
