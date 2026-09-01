@@ -35,8 +35,10 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OuterContSet S ℝ]
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable [∀ n, OuterContSet (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 
+omit [∀ n, OuterContSet (S n) (Vec ℝ n)] in
 /-- A matrix applied to a scaled point is the scaled matrix applied to it, which
 is how a constant in front of an integral is absorbed into the operation. -/
 theorem aux_smul_mtimes_mem {M : Mat ℝ n n} {c : ℝ} {U : S n} {y : Vec ℝ n}

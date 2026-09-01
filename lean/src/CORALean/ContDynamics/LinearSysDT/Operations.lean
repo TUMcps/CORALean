@@ -22,7 +22,8 @@ namespace CORALean.Real
 open Matrix ContSet Scalar OuterContSet Mtimes
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OuterContSet S 𝕋]
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable [∀ n, OuterContSet (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
 
 /-- The reachable set after `k` steps, from initial set `R₀` under inputs `U`,
 held at maximum order `o`. -/

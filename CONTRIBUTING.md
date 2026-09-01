@@ -44,6 +44,13 @@ second. Not indexed by a `Tensor` shape — `Mat` is Mathlib's `Matrix`, which
 carries the ring structure the exponential needs and which instance search does
 not identify with `Tensor ℝ [m, n]`.
 
+`OuterContSet` follows: `plus`, `linComb` and `reduce` take and return the same
+ambient type, so it is a class over one representation rather than a family
+indexed by dimension. `mtimes` is the only operation that moves between ambient
+types, so it stays its own class, `Mtimes`, over a family. An algorithm that
+travels between dimensions asks for both; one that does not asks for
+`OuterContSet` alone.
+
 ## Tooling
 
 `.mcp.json` registers the [lean-lsp](https://github.com/oOo0oOo/lean-lsp-mcp)

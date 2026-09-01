@@ -14,25 +14,20 @@
 extern "C" {
 #endif
 lean_object* lp_CORALean_CORALean_Real_Interval_mtimes___redArg(lean_object*, lean_object*, lean_object*);
-lean_object* lp_CORALean_CORALean_Real_Interval_linComb___boxed(lean_object*, lean_object*, lean_object*);
 lean_object* lp_CORALean_CORALean_Real_Interval_plus___boxed(lean_object*, lean_object*, lean_object*);
+lean_object* lp_CORALean_CORALean_Real_Interval_linComb___boxed(lean_object*, lean_object*, lean_object*);
 LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_instContSetIntervalVecReal(lean_object*);
 LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_instContSetIntervalVecReal___boxed(lean_object*);
-LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_instOuterContSetIntervalReal___lam__0(lean_object*, lean_object*, lean_object*);
-LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_instOuterContSetIntervalReal___lam__0___boxed(lean_object*, lean_object*, lean_object*);
-LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_instOuterContSetIntervalReal___lam__1(lean_object*, lean_object*, lean_object*, lean_object*);
-LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_instOuterContSetIntervalReal___lam__1___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
-static const lean_closure_object lp_CORALean_CORALean_Real_instOuterContSetIntervalReal___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)lp_CORALean_CORALean_Real_instOuterContSetIntervalReal___lam__0___boxed, .m_arity = 3, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* lp_CORALean_CORALean_Real_instOuterContSetIntervalReal___closed__0 = (const lean_object*)&lp_CORALean_CORALean_Real_instOuterContSetIntervalReal___closed__0_value;
-static const lean_closure_object lp_CORALean_CORALean_Real_instOuterContSetIntervalReal___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)lp_CORALean_CORALean_Real_instOuterContSetIntervalReal___lam__1___boxed, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* lp_CORALean_CORALean_Real_instOuterContSetIntervalReal___closed__1 = (const lean_object*)&lp_CORALean_CORALean_Real_instOuterContSetIntervalReal___closed__1_value;
-static const lean_closure_object lp_CORALean_CORALean_Real_instOuterContSetIntervalReal___closed__2_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)lp_CORALean_CORALean_Real_Interval_plus___boxed, .m_arity = 3, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* lp_CORALean_CORALean_Real_instOuterContSetIntervalReal___closed__2 = (const lean_object*)&lp_CORALean_CORALean_Real_instOuterContSetIntervalReal___closed__2_value;
-static const lean_closure_object lp_CORALean_CORALean_Real_instOuterContSetIntervalReal___closed__3_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)lp_CORALean_CORALean_Real_Interval_linComb___boxed, .m_arity = 3, .m_num_fixed = 0, .m_objs = {} };
-static const lean_object* lp_CORALean_CORALean_Real_instOuterContSetIntervalReal___closed__3 = (const lean_object*)&lp_CORALean_CORALean_Real_instOuterContSetIntervalReal___closed__3_value;
-static const lean_ctor_object lp_CORALean_CORALean_Real_instOuterContSetIntervalReal___closed__4_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_ctor_object) + sizeof(void*)*4 + 0, .m_other = 4, .m_tag = 0}, .m_objs = {((lean_object*)&lp_CORALean_CORALean_Real_instOuterContSetIntervalReal___closed__1_value),((lean_object*)&lp_CORALean_CORALean_Real_instOuterContSetIntervalReal___closed__2_value),((lean_object*)&lp_CORALean_CORALean_Real_instOuterContSetIntervalReal___closed__3_value),((lean_object*)&lp_CORALean_CORALean_Real_instOuterContSetIntervalReal___closed__0_value)}};
-static const lean_object* lp_CORALean_CORALean_Real_instOuterContSetIntervalReal___closed__4 = (const lean_object*)&lp_CORALean_CORALean_Real_instOuterContSetIntervalReal___closed__4_value;
-LEAN_EXPORT const lean_object* lp_CORALean_CORALean_Real_instOuterContSetIntervalReal = (const lean_object*)&lp_CORALean_CORALean_Real_instOuterContSetIntervalReal___closed__4_value;
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_instOuterContSetIntervalVecReal___lam__0(lean_object*, lean_object*);
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_instOuterContSetIntervalVecReal___lam__0___boxed(lean_object*, lean_object*);
+static const lean_closure_object lp_CORALean_CORALean_Real_instOuterContSetIntervalVecReal___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)lp_CORALean_CORALean_Real_instOuterContSetIntervalVecReal___lam__0___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
+static const lean_object* lp_CORALean_CORALean_Real_instOuterContSetIntervalVecReal___closed__0 = (const lean_object*)&lp_CORALean_CORALean_Real_instOuterContSetIntervalVecReal___closed__0_value;
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_instOuterContSetIntervalVecReal(lean_object*);
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_instMtimesMatRealInterval___lam__0(lean_object*, lean_object*, lean_object*, lean_object*);
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_instMtimesMatRealInterval___lam__0___boxed(lean_object*, lean_object*, lean_object*, lean_object*);
+static const lean_closure_object lp_CORALean_CORALean_Real_instMtimesMatRealInterval___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)lp_CORALean_CORALean_Real_instMtimesMatRealInterval___lam__0___boxed, .m_arity = 4, .m_num_fixed = 0, .m_objs = {} };
+static const lean_object* lp_CORALean_CORALean_Real_instMtimesMatRealInterval___closed__0 = (const lean_object*)&lp_CORALean_CORALean_Real_instMtimesMatRealInterval___closed__0_value;
+LEAN_EXPORT const lean_object* lp_CORALean_CORALean_Real_instMtimesMatRealInterval = (const lean_object*)&lp_CORALean_CORALean_Real_instMtimesMatRealInterval___closed__0_value;
 LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_instContSetIntervalVecReal(lean_object* v_n_1_){
 _start:
 {
@@ -50,39 +45,55 @@ lean_dec(v_n_3_);
 return v_res_4_;
 }
 }
-LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_instOuterContSetIntervalReal___lam__0(lean_object* v_n_5_, lean_object* v_I_6_, lean_object* v_x_7_){
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_instOuterContSetIntervalVecReal___lam__0(lean_object* v_I_5_, lean_object* v_x_6_){
 _start:
 {
-lean_inc_ref(v_I_6_);
-return v_I_6_;
+lean_inc_ref(v_I_5_);
+return v_I_5_;
 }
 }
-LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_instOuterContSetIntervalReal___lam__0___boxed(lean_object* v_n_8_, lean_object* v_I_9_, lean_object* v_x_10_){
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_instOuterContSetIntervalVecReal___lam__0___boxed(lean_object* v_I_7_, lean_object* v_x_8_){
 _start:
 {
-lean_object* v_res_11_; 
-v_res_11_ = lp_CORALean_CORALean_Real_instOuterContSetIntervalReal___lam__0(v_n_8_, v_I_9_, v_x_10_);
-lean_dec(v_x_10_);
-lean_dec_ref(v_I_9_);
-lean_dec(v_n_8_);
-return v_res_11_;
+lean_object* v_res_9_; 
+v_res_9_ = lp_CORALean_CORALean_Real_instOuterContSetIntervalVecReal___lam__0(v_I_7_, v_x_8_);
+lean_dec(v_x_8_);
+lean_dec_ref(v_I_7_);
+return v_res_9_;
 }
 }
-LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_instOuterContSetIntervalReal___lam__1(lean_object* v_m_12_, lean_object* v_n_13_, lean_object* v___y_14_, lean_object* v___y_15_){
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_instOuterContSetIntervalVecReal(lean_object* v_n_11_){
 _start:
 {
-lean_object* v___x_16_; 
-v___x_16_ = lp_CORALean_CORALean_Real_Interval_mtimes___redArg(v_n_13_, v___y_14_, v___y_15_);
-return v___x_16_;
+lean_object* v___f_12_; lean_object* v___x_13_; lean_object* v___x_14_; lean_object* v___x_15_; 
+v___f_12_ = ((lean_object*)(lp_CORALean_CORALean_Real_instOuterContSetIntervalVecReal___closed__0));
+lean_inc(v_n_11_);
+v___x_13_ = lean_alloc_closure((void*)(lp_CORALean_CORALean_Real_Interval_plus___boxed), 3, 1);
+lean_closure_set(v___x_13_, 0, v_n_11_);
+v___x_14_ = lean_alloc_closure((void*)(lp_CORALean_CORALean_Real_Interval_linComb___boxed), 3, 1);
+lean_closure_set(v___x_14_, 0, v_n_11_);
+v___x_15_ = lean_alloc_ctor(0, 3, 0);
+lean_ctor_set(v___x_15_, 0, v___x_13_);
+lean_ctor_set(v___x_15_, 1, v___x_14_);
+lean_ctor_set(v___x_15_, 2, v___f_12_);
+return v___x_15_;
 }
 }
-LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_instOuterContSetIntervalReal___lam__1___boxed(lean_object* v_m_17_, lean_object* v_n_18_, lean_object* v___y_19_, lean_object* v___y_20_){
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_instMtimesMatRealInterval___lam__0(lean_object* v_m_16_, lean_object* v_n_17_, lean_object* v___y_18_, lean_object* v___y_19_){
 _start:
 {
-lean_object* v_res_21_; 
-v_res_21_ = lp_CORALean_CORALean_Real_instOuterContSetIntervalReal___lam__1(v_m_17_, v_n_18_, v___y_19_, v___y_20_);
-lean_dec(v_m_17_);
-return v_res_21_;
+lean_object* v___x_20_; 
+v___x_20_ = lp_CORALean_CORALean_Real_Interval_mtimes___redArg(v_n_17_, v___y_18_, v___y_19_);
+return v___x_20_;
+}
+}
+LEAN_EXPORT lean_object* lp_CORALean_CORALean_Real_instMtimesMatRealInterval___lam__0___boxed(lean_object* v_m_21_, lean_object* v_n_22_, lean_object* v___y_23_, lean_object* v___y_24_){
+_start:
+{
+lean_object* v_res_25_; 
+v_res_25_ = lp_CORALean_CORALean_Real_instMtimesMatRealInterval___lam__0(v_m_21_, v_n_22_, v___y_23_, v___y_24_);
+lean_dec(v_m_21_);
+return v_res_25_;
 }
 }
 lean_object* initialize_Init(uint8_t builtin);

@@ -30,9 +30,10 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OuterContSet S ℝ]
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable [∀ n, OuterContSet (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 
-omit [OuterContSet S ℝ] in
+omit [∀ n, OuterContSet (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] in
 set_option maxHeartbeats 40000 in
 /-- Holding the input at the origin is admissible when `U` contains it, and
 contributes nothing. -/
@@ -41,7 +42,7 @@ theorem LinearSys.zero_mem_inputReach (sys : LinearSys 𝕋 n) {U : S n} (τ : �
   refine ⟨fun _ => 0, fun _ _ => h0, aestronglyMeasurable_const, ?_⟩
   simp
 
-omit [OuterContSet S ℝ] in
+omit [∀ n, OuterContSet (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] in
 set_option maxHeartbeats 40000 in
 /-- Althoff's Prop. 3.3: with the origin in the input set, a longer window
 contributes at least everything a shorter one can. -/

@@ -24,17 +24,19 @@ variable {n : ℕ}
 
 instance : ContSet (Zonotope n) (Vec ℝ n) := ⟨Zonotope.construct⟩
 
-noncomputable instance : OuterContSet Zonotope ℝ where
+noncomputable instance : OuterContSet (Zonotope n) (Vec ℝ n) where
   plus := Zonotope.plus
   linComb := Zonotope.linComb
-  mtimes := Zonotope.mtimes
   reduce := Zonotope.reduce
   plus_outer Z₁ Z₂ := (Zonotope.plus_exact Z₁ Z₂).subset
   linComb_outer := Zonotope.linComb_outer
+  reduce_outer := Zonotope.reduce_outer
+
+instance : Mtimes (Mat ℝ) Zonotope where
+  mtimes := Zonotope.mtimes
   mtimes_outer M Z := by
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact (Zonotope.mtimes_exact M Z).subset
-  reduce_outer := Zonotope.reduce_outer
 
 /-- The same operation at an interval matrix, which `OuterContSet` does not ask
 for: a zonotope carries it, and a discretization is what wants it. -/

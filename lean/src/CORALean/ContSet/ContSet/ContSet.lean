@@ -30,10 +30,11 @@ matrix denotes the singleton it is. Not by a `Tensor` shape: `Mat` is Mathlib's
 `Matrix`, equal to `Tensor ℝ [m, n]` only up to `rfl`, and instance search sees
 through that in neither direction.
 
-The operation classes still take a family indexed by ℕ, because `mtimes` moves
-the dimension and the result has to land somewhere. Size is not in the index: a
-representation grows as it is operated on, and `reduce` is what brings it back,
-where the algorithm asks for it rather than after every operation.
+`Mtimes` alone keeps a family indexed by ℕ, because it is the one operation that
+moves between ambient types and the result has to land somewhere. Size is not in
+the index: a representation grows as it is operated on, and `reduce` is what
+brings it back, where the algorithm asks for it rather than after every
+operation.
 -/
 
 -- Authors:       Tobias Ladner
@@ -73,33 +74,35 @@ class Mtimes (𝕄 : ℕ → ℕ → Type) (S : ℕ → Type)
 
 /-- Every point on a segment running from one set to the other. Named because
 `linComb`, each instance and the float refinement all state it. -/
-def segments {n : ℕ} (X Y : Set (Vec ℝ n)) : Set (Vec ℝ n) :=
+def segments {α : Type} [AddCommGroup α] [Module ℝ α] (X Y : Set α) : Set α :=
   {x | ∃ y₁ ∈ X, ∃ y₂ ∈ Y, ∃ lam ∈ Set.Icc (0:ℝ) 1, x = lam • y₁ + (1 - lam) • y₂}
 
 /-- Outer only, so an algorithm proved against this says nothing about how much
 precision a representation loses.
 
-`𝕋` is an `outParam`: it is fixed by the representation and appears in none of
-`plus`, `linComb` or `reduce`, so instance search must read it off `S`, not the
-use site.
+Every operation here takes and returns the same ambient type, so the class is
+over a single representation rather than a family indexed by dimension.
+`mtimes` is the one operation that moves between ambient types, and it is
+`Mtimes` for that reason: an algorithm that travels between dimensions asks for
+both, and one that does not asks for this alone.
 
-`mtimes` is inherited rather than declared, so a representation may also carry
-it at other matrix types without this class knowing. -/
-class OuterContSet (S : ℕ → Type) (𝕋 : outParam Type) [∀ n, ContSet (S n) (Vec ℝ n)]
-    [Scalar 𝕋] extends Mtimes (Mat 𝕋) S where
-  plus {n : ℕ} : S n → S n → S n
+The scalar the representation computes in appears in none of these, so it is not
+a parameter either. -/
+class OuterContSet (S : Type) (α : outParam Type) [AddCommGroup α] [Module ℝ α]
+    [ContSet S α] where
+  plus : S → S → S
   /-- CORA's `linComb`. Not the convex hull — the two agree only when both sets
   are convex, and this is the one a time-interval enclosure needs, since it is
   what keeps a non-convex representation non-convex. -/
-  linComb {n : ℕ} : S n → S n → S n
+  linComb : S → S → S
   /-- To a maximum order, read in the representation's own terms. Sound for any
   target, so the order is a precision knob and never a correctness one. -/
-  reduce {n : ℕ} : S n → ℕ → S n
-  plus_outer {n : ℕ} (s₁ s₂ : S n) :
+  reduce : S → ℕ → S
+  plus_outer (s₁ s₂ : S) :
     construct s₁ + construct s₂ ⊆ construct (plus s₁ s₂)
-  linComb_outer {n : ℕ} (s₁ s₂ : S n) :
+  linComb_outer (s₁ s₂ : S) :
     segments (construct s₁) (construct s₂) ⊆ construct (linComb s₁ s₂)
-  reduce_outer {n : ℕ} (s : S n) (o : ℕ) :
+  reduce_outer (s : S) (o : ℕ) :
     construct s ⊆ construct (reduce s o)
 
 end CORALean
