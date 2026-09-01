@@ -43,6 +43,20 @@ noncomputable def LinearSys.stepInput (sys : LinearSys 𝕋 n) (u : ℝ → Vec 
     (k : ℕ) : Vec ℝ n :=
   ∫ s in (k * Δt)..((k + 1) * Δt), exp (((k + 1) * Δt - s) • toRealMat sys.A) *ᵥ u s
 
+/-- CORA's `P^R(τ)`: every point the input can drive the system to over `[0, τ]`,
+as a set of points rather than a representation of one.
+
+The admissible inputs are those staying in `U` and measurable enough to
+integrate — no more, since nothing here has to solve the dynamics. Stated over
+`Icc`, which the reflection `s ↦ τ - s` maps to itself, so the substitution the
+input solution runs on costs no endpoint bookkeeping. -/
+noncomputable def LinearSys.inputReach (sys : LinearSys 𝕋 n) (U : S n) (τ : ℝ) :
+    Set (Vec ℝ n) :=
+  {y | ∃ u : ℝ → Vec ℝ n,
+      (∀ s ∈ Set.Icc (0:ℝ) τ, u s ∈ construct U) ∧
+      AEStronglyMeasurable u (volume.restrict (Set.Icc 0 τ)) ∧
+      y = ∫ s in (0:ℝ)..τ, exp ((τ - s) • toRealMat sys.A) *ᵥ u s}
+
 /-- The matrix order `i` contributes to the input solution: `Aⁱ r^{i+1}/(i+1)!`,
 the `i`-th term of the exponential integrated once over the step. -/
 noncomputable def LinearSys.inputTerm (sys : LinearSys 𝕋 n) (r : ℝ) (i : ℕ) : Mat ℝ n n :=

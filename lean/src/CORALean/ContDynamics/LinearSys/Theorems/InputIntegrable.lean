@@ -103,6 +103,26 @@ theorem LinearSys.Trajectory.aux_input_eq_derivWithin {sys : LinearSys 𝕋 n} {
   abel
 
 set_option maxHeartbeats 40000 in
+/-- `u` is measurable on any window inside `[0,∞)`, with nothing assumed of it:
+the derivative term is strongly measurable for every function, and the drift is
+a continuous map of a continuous state. -/
+theorem LinearSys.Trajectory.aestronglyMeasurable_input {sys : LinearSys 𝕋 n} {R₀ U : S n}
+    {x u : ℝ → Vec ℝ n} (traj : sys.Trajectory R₀ U x u) {a b : ℝ} (ha : 0 ≤ a) :
+    AEStronglyMeasurable u (volume.restrict (Set.Icc a b)) := by
+  have hderiv : AEStronglyMeasurable (fun s : ℝ => derivWithin x (Set.Ici s) s)
+      (volume.restrict (Set.Icc a b)) :=
+    (stronglyMeasurable_derivWithin_Ici x).aestronglyMeasurable
+  have hstate : AEStronglyMeasurable x (volume.restrict (Set.Icc a b)) :=
+    (traj.aux_continuousOn_state.mono fun s hs => le_trans ha hs.1).aestronglyMeasurable
+      measurableSet_Icc
+  have hdrift : AEStronglyMeasurable (fun s : ℝ => toRealMat sys.A *ᵥ x s)
+      (volume.restrict (Set.Icc a b)) :=
+    (mulVecL (toRealMat sys.A)).continuous.comp_aestronglyMeasurable hstate
+  refine (hderiv.sub hdrift).congr ?_
+  refine (ae_restrict_iff' measurableSet_Icc).mpr (Filter.Eventually.of_forall fun s hs => ?_)
+  exact (traj.aux_input_eq_derivWithin (le_trans ha hs.1)).symm
+
+set_option maxHeartbeats 40000 in
 /-- What `inputSolution_outer` asks of the input, in the reflected form the
 substitution `τ = c - s` leaves behind. Nothing is assumed of `u`: the
 derivative term is strongly measurable for every function and stays so through

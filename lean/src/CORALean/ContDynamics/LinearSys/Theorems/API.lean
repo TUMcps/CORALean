@@ -1,5 +1,7 @@
 import CORALean.ContDynamics.LinearSys.Theorems.Discretize
 import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
+import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
+import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparation
 import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionOuter
 import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuter
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOuter

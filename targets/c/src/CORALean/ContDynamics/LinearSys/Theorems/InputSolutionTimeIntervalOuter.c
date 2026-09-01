@@ -1,6 +1,6 @@
 // Lean compiler output
 // Module: CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuter
-// Imports: public import Init public meta import Init public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionOuter public import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
+// Imports: public import Init public meta import Init public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionOuter public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono public import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
 #include <lean/lean.h>
 #if defined(__clang__)
 #pragma clang diagnostic ignored "-Wunused-parameter"
@@ -16,6 +16,7 @@ extern "C" {
 lean_object* initialize_Init(uint8_t builtin);
 lean_object* initialize_Init(uint8_t builtin);
 lean_object* initialize_CORALean_CORALean_ContDynamics_LinearSys_Theorems_InputSolutionOuter(uint8_t builtin);
+lean_object* initialize_CORALean_CORALean_ContDynamics_LinearSys_Theorems_InputReachMono(uint8_t builtin);
 lean_object* initialize_CORALean_CORALean_ContDynamics_LinearSys_Theorems_InputIntegrable(uint8_t builtin);
 static bool _G_initialized = false;
 LEAN_EXPORT lean_object* initialize_CORALean_CORALean_ContDynamics_LinearSys_Theorems_InputSolutionTimeIntervalOuter(uint8_t builtin) {
@@ -29,6 +30,9 @@ res = initialize_Init(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 res = initialize_CORALean_CORALean_ContDynamics_LinearSys_Theorems_InputSolutionOuter(builtin);
+if (lean_io_result_is_error(res)) return res;
+lean_dec_ref(res);
+res = initialize_CORALean_CORALean_ContDynamics_LinearSys_Theorems_InputReachMono(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 res = initialize_CORALean_CORALean_ContDynamics_LinearSys_Theorems_InputIntegrable(builtin);
