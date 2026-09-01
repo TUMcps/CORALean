@@ -35,7 +35,7 @@ theorem LinearSys.Trajectory.timeInterval_outer_zonotope {sys : LinearSys 𝕋 n
     (hr : 0 < r) {m : ℕ}
     (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}
     (ht0 : 0 ≤ t) (htr : t ≤ r) (h0 : (0 : Vec ℝ n) ∈ construct U) :
-    x t ∈ construct (OuterContSet.plus
+    x t ∈ construct (Plus.plus
       (sys.timeIntervalStep (S := 𝒵) r (m + 2) R₀)
       (sys.inputSolution (S := 𝒵) r (m + 2) U)) :=
   traj.timeInterval_outer_inputSolution hr hε ht0 htr

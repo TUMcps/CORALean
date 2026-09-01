@@ -3,8 +3,9 @@ import CORALean.ContDynamics.LinearSysDT.LinearSysDT
 /-!
 # Discrete-time linear systems: reachability
 
-`reach` is written against `OuterContSet`, so it runs at any representation
-offering the three operations.
+`reach` is written against `Plus` and `Reduce` and names no other operation, so
+it runs at a representation that has no `linComb` — which is the point of an
+operation being a class of its own.
 
 `reduce` is called once per step, which is what holds the representation at
 order `o`; nothing in the types enforces that, and nothing needs to.
@@ -17,11 +18,11 @@ order `o`; nothing in the types enforces that, and nothing needs to.
 
 namespace CORALean.Real
 
-open Matrix ContSet Scalar OuterContSet Mtimes
+open Matrix ContSet Scalar Plus Reduce Mtimes
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
-variable [∀ n, OuterContSet (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
+variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
 
 /-- The reachable set after `k` steps, from initial set `R₀` under inputs `U`,
 held at maximum order `o`. -/

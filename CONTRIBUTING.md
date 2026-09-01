@@ -48,11 +48,18 @@ need only a module; an interval hull, a generator ranking and an entrywise bound
 need `Entrywise`, which both `Vec` and `Mat` have; `reduce` and `mtimes` stay at
 `Vec`, one ranking generators by coordinate and the other moving a dimension.
 
-`OuterContSet` follows: its operations take and return the same ambient type, so
-it is a class over one representation rather than a family indexed by dimension.
-`mtimes` is the only operation that moves between ambient types, so it stays its
-own class `Mtimes`, over a family, and an algorithm that travels between
-dimensions asks for both.
+One class per operation — `Plus`, `LinComb`, `Reduce` — as CORA gives each
+representation one method per operation. A representation instantiates what it
+computes; an algorithm asks for what it calls, so `LinearSysDT.reach` wants
+`Plus` and `Reduce` and runs at a representation with no `linComb` at all.
+`OuterContSet` collects the three that continuous-time reachability calls, and
+is a bundle rather than a concept: another algorithm wants another list.
+
+Each of these takes and returns the same ambient type, so each is a class over
+one representation rather than a family indexed by dimension. `mtimes` is the
+only operation that moves between ambient types, so it stays its own class
+`Mtimes`, over a family, and an algorithm that travels between dimensions asks
+for it on top.
 
 ### Notation
 

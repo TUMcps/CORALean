@@ -91,8 +91,8 @@ theorem LinearSys.Trajectory.inputSolution_timeInterval_outer_split
       (MatExp.inputRemainder (toRealMat sys.A) r η) U₀)))
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) :
     (∫ s in (0:ℝ)..t, exp ((t - s) • toRealMat sys.A) *ᵥ u s)
-      ∈ construct (OuterContSet.plus
-          (OuterContSet.plus
+      ∈ construct (Plus.plus
+          (Plus.plus
             (Mtimes.mtimes (𝕄 := Mat ℝ)
               (MatExp.expIntegral (toRealMat sys.A) r) Sg)
             (Mtimes.mtimes (𝕄 := ℐ) (MatExp.constCorrectionMatrix (toRealMat sys.A) r η) P))
@@ -120,7 +120,7 @@ theorem LinearSys.Trajectory.inputSolution_timeInterval_outer_split
     congr 1
     abel
   rw [hsum]
-  refine OuterContSet.plus_outer _ _ (Set.add_mem_add ?_ ?_)
+  refine Plus.plus_outer _ _ (Set.add_mem_add ?_ ?_)
   · -- the constant part: the straight line, widened by the interpolation error
     rw [aux_const_integral A c ht0]
     have hdecomp : MatExp.expIntegral A t *ᵥ c
@@ -129,7 +129,7 @@ theorem LinearSys.Trajectory.inputSolution_timeInterval_outer_split
       rw [Matrix.mulVec_smul, Matrix.sub_mulVec, Matrix.smul_mulVec]
       abel
     rw [hdecomp]
-    refine OuterContSet.plus_outer _ _ (Set.add_mem_add ?_ ?_)
+    refine Plus.plus_outer _ _ (Set.add_mem_add ?_ ?_)
     · exact aux_mtimes_mem (hcS _ ⟨hs0, hs1⟩)
     · exact aux_mtimesIM_mem
         (MatExp.expIntegralDiff_mem_constCorrectionMatrix A hr η hε ht0 htr) hcP

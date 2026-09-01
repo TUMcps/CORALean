@@ -79,10 +79,10 @@ theorem LinearSys.Trajectory.timeInterval_outer_split_zonotope {sys : LinearSys 
     (hr : 0 < r) {m : ℕ}
     (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}
     (ht0 : 0 ≤ t) (htr : t ≤ r) :
-    x t ∈ construct (OuterContSet.plus
+    x t ∈ construct (Plus.plus
       (sys.timeIntervalStep (S := 𝒵) r (m + 2) R₀)
-      (OuterContSet.plus
-        (OuterContSet.plus
+      (Plus.plus
+        (Plus.plus
           (Mtimes.mtimes (𝕄 := Mat ℝ) (S := 𝒵)
             (MatExp.expIntegral (toRealMat sys.A) r) (aux_segment U.c))
           (Mtimes.mtimes (𝕄 := ℐ) (S := 𝒵)

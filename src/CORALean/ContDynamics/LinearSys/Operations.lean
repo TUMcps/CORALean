@@ -67,7 +67,7 @@ rather than a fold over `Finset`, since `plus` is only an enclosure and never ha
 to be reassociated this way; the guarantee is then one induction. -/
 noncomputable def LinearSys.inputTaylorSum (sys : LinearSys 𝕋 n) (r : ℝ) (U : S n) : ℕ → S n
   | 0 => Mtimes.mtimes (sys.inputTerm r 0) U
-  | i + 1 => OuterContSet.plus (sys.inputTaylorSum r U i)
+  | i + 1 => Plus.plus (sys.inputTaylorSum r U i)
       (Mtimes.mtimes (sys.inputTerm r (i + 1)) U)
 
 /-- Althoff's Thm. 3.1: everything the input can contribute over one step,
@@ -84,7 +84,7 @@ adds. `linComb` rather than a convex hull, so a non-convex representation keeps
 its shape. -/
 noncomputable def LinearSys.timeIntervalStep [Mtimes ℐ S]
     (sys : LinearSys 𝕋 n) (r : ℝ) (η : ℕ) (X₀ : S n) : S n :=
-  OuterContSet.linComb X₀ (Mtimes.mtimes (exp (r • toRealMat sys.A)) X₀) ⊞
+  LinComb.linComb X₀ (Mtimes.mtimes (exp (r • toRealMat sys.A)) X₀) ⊞
     Mtimes.mtimes (𝕄 := ℐ) (MatExp.correctionMatrix (toRealMat sys.A) r η) X₀
 
 end CORALean.Real

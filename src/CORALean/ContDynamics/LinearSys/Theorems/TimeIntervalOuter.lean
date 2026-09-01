@@ -49,9 +49,9 @@ theorem LinearSys.timeIntervalStep_outer (sys : LinearSys 𝕋 n) {r : ℝ} (hr 
     abel
   show exp (t • A) *ᵥ x₀ ∈ _
   rw [hdecomp]
-  refine OuterContSet.plus_outer _ _ (Set.add_mem_add ?_ ?_)
+  refine Plus.plus_outer _ _ (Set.add_mem_add ?_ ?_)
   · -- the straight line is a segment between `X₀` and its image
-    refine OuterContSet.linComb_outer _ _ ⟨x₀, hx₀, exp (r • A) *ᵥ x₀, ?_, 1 - t / r, ?_, ?_⟩
+    refine LinComb.linComb_outer _ _ ⟨x₀, hx₀, exp (r • A) *ᵥ x₀, ?_, 1 - t / r, ?_, ?_⟩
     · exact Mtimes.mtimes_outer _ _ (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hx₀))
     · exact ⟨by linarith, by linarith⟩
     · rw [sub_sub_cancel]

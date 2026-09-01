@@ -61,7 +61,7 @@ theorem LinearSys.aux_inputTaylorSum_outer (sys : LinearSys 𝕋 n) (r : ℝ) (U
     exact hx 0 (le_refl 0)
   | m + 1, hx => by
     rw [Finset.sum_range_succ]
-    exact OuterContSet.plus_outer _ _ (Set.add_mem_add
+    exact Plus.plus_outer _ _ (Set.add_mem_add
       (sys.aux_inputTaylorSum_outer r U x m fun i hi => hx i (le_trans hi (Nat.le_succ m)))
       (hx (m + 1) (le_refl _)))
 
@@ -278,7 +278,7 @@ theorem LinearSys.inputSolution_outer [Mtimes ℐ S]
     exact IntervalIntegrable.sum _ hTint
   rw [intervalIntegral.integral_add hSint hRint,
     intervalIntegral.integral_finsetSum hTint]
-  exact OuterContSet.plus_outer _ _ (Set.add_mem_add
+  exact Plus.plus_outer _ _ (Set.add_mem_add
     (sys.aux_inputTaylorSum_outer r U _ η hterm) hrem)
 
 end CORALean.Real

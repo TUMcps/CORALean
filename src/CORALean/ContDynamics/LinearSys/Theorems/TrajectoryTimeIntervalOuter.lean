@@ -41,12 +41,12 @@ theorem LinearSys.Trajectory.timeInterval_outer {sys : LinearSys 𝕋 n} {R₀ U
     (ht0 : 0 ≤ t) (htr : t ≤ r)
     (hU : Bornology.IsBounded (construct U))
     (hUd : (∫ s in (0:ℝ)..t, exp ((t - s) • toRealMat sys.A) *ᵥ u s) ∈ construct Ud) :
-    x t ∈ construct (OuterContSet.plus (sys.timeIntervalStep r (m + 2) R₀) Ud) := by
+    x t ∈ construct (Plus.plus (sys.timeIntervalStep r (m + 2) R₀) Ud) := by
   have hvoc := traj.variation_of_constants (le_refl (0:ℝ)) ht0
     (traj.intervalIntegrable_input (le_refl (0:ℝ)) ht0 hU)
   rw [sub_zero] at hvoc
   rw [hvoc]
-  refine OuterContSet.plus_outer _ _ (Set.add_mem_add ?_ hUd)
+  refine Plus.plus_outer _ _ (Set.add_mem_add ?_ hUd)
   exact sys.timeIntervalStep_outer hr hε R₀ ht0 htr
     (Set.mem_image_of_mem _ traj.init)
 
@@ -67,7 +67,7 @@ theorem LinearSys.Trajectory.timeInterval_outer_inputSolution {sys : LinearSys �
     (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) r (m + 2)) U)))
     (h0 : (0 : Vec ℝ n) ∈ construct U) :
-    x t ∈ construct (OuterContSet.plus (sys.timeIntervalStep r (m + 2) R₀)
+    x t ∈ construct (Plus.plus (sys.timeIntervalStep r (m + 2) R₀)
       (sys.inputSolution r (m + 2) U)) :=
   traj.timeInterval_outer hr hε ht0 htr hbdd
     (traj.inputSolution_timeInterval_outer hr (m + 2) hε hconv hclosed hbdd

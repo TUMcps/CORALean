@@ -22,7 +22,7 @@ rather than assumed.
 
 namespace CORALean.Real
 
-open Matrix ContSet Scalar NormedSpace MeasureTheory OuterContSet
+open Matrix ContSet Scalar NormedSpace MeasureTheory Plus LinComb Reduce
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
