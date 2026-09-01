@@ -1,4 +1,4 @@
-import CORALean.ContSet.Polytope.Polytope
+import CORALean.ContSet.Interval.Real.API
 
 /-!
 # Polytopes: the vertex representation

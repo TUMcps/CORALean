@@ -1,5 +1,5 @@
-import CORALean.ContSet.Polytope.Operations.LinComb
-import CORALean.ContSet.Polytope.Theorems.ConvexHull
+import CORALean.ContSet.VPolytope.Operations.LinComb
+import CORALean.ContSet.VPolytope.Theorems.ConvexHull
 
 /-!
 # `VPolytope.linComb` encloses every segment between the two

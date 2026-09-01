@@ -24,7 +24,7 @@ namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
-structure Polytope (α : Type) [AddCommGroup α] [Module ℝ α] where
+structure HPolytope (α : Type) [AddCommGroup α] [Module ℝ α] where
   m : ℕ
   A : Fin m → (α →ₗ[ℝ] ℝ)
   b : Fin m → ℝ
@@ -32,14 +32,14 @@ structure Polytope (α : Type) [AddCommGroup α] [Module ℝ α] where
   Ae : Fin me → (α →ₗ[ℝ] ℝ)
   be : Fin me → ℝ
 
-def Polytope.construct (P : Polytope α) : Set α :=
+def HPolytope.construct (P : HPolytope α) : Set α :=
   {x | (∀ i, P.A i x ≤ P.b i) ∧ ∀ i, P.Ae i x = P.be i}
 
-theorem Polytope.mem_construct_iff {P : Polytope α} {x : α} :
+theorem HPolytope.mem_construct_iff {P : HPolytope α} {x : α} :
     x ∈ P.construct ↔ (∀ i, P.A i x ≤ P.b i) ∧ ∀ i, P.Ae i x = P.be i := Iff.rfl
 
 /-- No constraints, so every point qualifies: the unit of `and`. -/
-def Polytope.fullspace (α : Type) [AddCommGroup α] [Module ℝ α] : Polytope α where
+def HPolytope.fullspace (α : Type) [AddCommGroup α] [Module ℝ α] : HPolytope α where
   m := 0
   A := Fin.elim0
   b := Fin.elim0
@@ -47,7 +47,7 @@ def Polytope.fullspace (α : Type) [AddCommGroup α] [Module ℝ α] : Polytope 
   Ae := Fin.elim0
   be := Fin.elim0
 
-theorem Polytope.construct_fullspace : (Polytope.fullspace α).construct = Set.univ := by
+theorem HPolytope.construct_fullspace : (HPolytope.fullspace α).construct = Set.univ := by
   ext x
   exact ⟨fun _ => trivial, fun _ => ⟨fun i => i.elim0, fun i => i.elim0⟩⟩
 

@@ -1,16 +1,10 @@
-import CORALean.ContSet.Polytope.Theorems.API
+import CORALean.ContSet.VPolytope.Theorems.API
 
 /-!
-# What the two polytope representations instantiate
+# What `VPolytope` instantiates
 
-Only the vertex description instantiates `OuterContSet`: its three operations are
-exactly the ones a halfspace description cannot compute without enumerating
-vertices. A halfspace description gets `ContSet` and keeps `and` and `comap` as
-named operations, which is what a constrained zonotope reuses.
-
-`reduce` is the identity for both. Neither representation has an order to reduce
-to — dropping a vertex or a constraint shrinks the set, and an inner
-approximation is not what `reduce` may return.
+`reduce` is the identity: there is no order to reduce to, and dropping a vertex
+shrinks the set, which is not what `reduce` may return.
 -/
 
 -- Authors:       Tobias Ladner
@@ -23,9 +17,6 @@ namespace CORALean.Real
 open Matrix
 
 variable {n : ℕ}
-
-instance {α : Type} [AddCommGroup α] [Module ℝ α] : ContSet (Polytope α) α :=
-  ⟨Polytope.construct⟩
 
 instance {α : Type} [AddCommGroup α] [Module ℝ α] : ContSet (VPolytope α) α :=
   ⟨VPolytope.construct⟩

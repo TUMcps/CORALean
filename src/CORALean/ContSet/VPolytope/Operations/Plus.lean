@@ -1,4 +1,4 @@
-import CORALean.ContSet.Polytope.VPolytope
+import CORALean.ContSet.VPolytope.VPolytope
 
 /-!
 # `VPolytope.plus`

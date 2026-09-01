@@ -1,4 +1,4 @@
-import CORALean.ContSet.Polytope.API
+import CORALean.ContSet.HPolytope.API
 import CORALean.ContSet.Zonotope.Real.API
 
 /-!
@@ -39,15 +39,15 @@ def ConZonotope.construct (C : ConZonotope α) : Set α :=
   {x | ∃ β : Fin C.h → ℝ, (∀ j, |β j| ≤ 1) ∧ C.A *ᵥ β = C.b ∧ x = C.c + ∑ j, β j • C.G j}
 
 /-- The coefficients the representation admits, as a polytope. -/
-def ConZonotope.domain (C : ConZonotope α) : Polytope (Vec ℝ C.h) :=
-  (Polytope.unitBox C.h).and (Polytope.eqs C.A C.b)
+def ConZonotope.domain (C : ConZonotope α) : HPolytope (Vec ℝ C.h) :=
+  (HPolytope.unitBox C.h).and (HPolytope.eqs C.A C.b)
 
 omit [AddCommGroup α] [Module ℝ α] in
 theorem ConZonotope.mem_domain_iff {C : ConZonotope α} {β : Vec ℝ C.h} :
     β ∈ C.domain.construct ↔ (∀ j, |β j| ≤ 1) ∧ C.A *ᵥ β = C.b := by
-  have hand : β ∈ C.domain.construct ↔ β ∈ (Polytope.unitBox C.h).construct
-      ∧ β ∈ (Polytope.eqs C.A C.b).construct := Polytope.mem_and_iff
-  rw [hand, Polytope.mem_unitBox_iff, Polytope.mem_eqs_iff, funext_iff]
+  have hand : β ∈ C.domain.construct ↔ β ∈ (HPolytope.unitBox C.h).construct
+      ∧ β ∈ (HPolytope.eqs C.A C.b).construct := HPolytope.mem_and_iff
+  rw [hand, HPolytope.mem_unitBox_iff, HPolytope.mem_eqs_iff, funext_iff]
 
 /-- A constrained zonotope is the zonotope's affine map applied to a polytope
 rather than to a box. Every guarantee below is one of the two halves of this. -/

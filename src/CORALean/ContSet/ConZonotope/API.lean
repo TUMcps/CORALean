@@ -8,7 +8,7 @@ import CORALean.ContSet.ConZonotope.Instances
 
 A zonotope whose coefficients are cut down by a polytope, so the two earlier
 representations are both prerequisites: `Zonotope` for what is enclosed and
-mapped, `Polytope` for what the coefficients range over.
+mapped, `HPolytope` for what the coefficients range over.
 
 What it buys over a zonotope is `and`: intersection, exactly, which no zonotope
 can represent.

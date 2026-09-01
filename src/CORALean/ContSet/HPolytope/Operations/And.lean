@@ -1,7 +1,7 @@
-import CORALean.ContSet.Polytope.Polytope
+import CORALean.ContSet.HPolytope.HPolytope
 
 /-!
-# `Polytope.and`
+# `HPolytope.and`
 
 CORA's `@polytope/and_`: the constraint lists concatenate, so an intersection
 costs nothing and loses nothing. The operation halfspaces are for.
@@ -16,7 +16,7 @@ namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
-def Polytope.and (P₁ P₂ : Polytope α) : Polytope α where
+def HPolytope.and (P₁ P₂ : HPolytope α) : HPolytope α where
   m := P₁.m + P₂.m
   A := Fin.append P₁.A P₂.A
   b := Fin.append P₁.b P₂.b

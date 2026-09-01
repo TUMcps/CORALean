@@ -1,7 +1,7 @@
-import CORALean.ContSet.Polytope.Operations.Comap
+import CORALean.ContSet.HPolytope.Operations.Comap
 
 /-!
-# `Polytope.comap` is exactly the preimage
+# `HPolytope.comap` is exactly the preimage
 
 By `rfl`: precomposing every constraint with `f` is what asking the constraints
 about `f x` means.
@@ -16,7 +16,7 @@ namespace CORALean.Real
 
 variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Module ℝ β]
 
-theorem Polytope.comap_exact (f : β →ₗ[ℝ] α) (P : Polytope α) :
-    (Polytope.comap f P).construct = f ⁻¹' P.construct := rfl
+theorem HPolytope.comap_exact (f : β →ₗ[ℝ] α) (P : HPolytope α) :
+    (HPolytope.comap f P).construct = f ⁻¹' P.construct := rfl
 
 end CORALean.Real

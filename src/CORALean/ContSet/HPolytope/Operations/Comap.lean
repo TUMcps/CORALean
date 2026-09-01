@@ -1,7 +1,7 @@
-import CORALean.ContSet.Polytope.Polytope
+import CORALean.ContSet.HPolytope.HPolytope
 
 /-!
-# `Polytope.comap`
+# `HPolytope.comap`
 
 The preimage under a linear map: every constraint is precomposed, the counts
 untouched. Exact, and the reason CORA's `mtimes` on a halfspace description asks
@@ -20,7 +20,7 @@ namespace CORALean.Real
 
 variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Module ℝ β]
 
-def Polytope.comap (f : β →ₗ[ℝ] α) (P : Polytope α) : Polytope β where
+def HPolytope.comap (f : β →ₗ[ℝ] α) (P : HPolytope α) : HPolytope β where
   m := P.m
   A := fun i => (P.A i).comp f
   b := P.b

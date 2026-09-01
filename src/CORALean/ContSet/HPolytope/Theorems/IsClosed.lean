@@ -1,4 +1,4 @@
-import CORALean.ContSet.Polytope.Polytope
+import CORALean.ContSet.HPolytope.HPolytope
 
 /-!
 # A halfspace description is closed
@@ -21,7 +21,7 @@ namespace CORALean.Real
 
 variable {n : ℕ}
 
-theorem Polytope.isClosed_construct (P : Polytope (Vec ℝ n)) : IsClosed P.construct := by
+theorem HPolytope.isClosed_construct (P : HPolytope (Vec ℝ n)) : IsClosed P.construct := by
   have hinter : P.construct = (⋂ i, {x : Vec ℝ n | P.A i x ≤ P.b i})
       ∩ ⋂ i, {x : Vec ℝ n | P.Ae i x = P.be i} := by
     ext x
