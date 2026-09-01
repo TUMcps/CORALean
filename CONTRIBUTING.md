@@ -16,6 +16,9 @@ src/CORALean/
                    API.lean (the whole directory, and nothing but imports)
       Float/       the same representation, rounded
     Zonotope/      Real/ and Float/, as above
+    Polytope/      Polytope.lean by halfspaces, VPolytope.lean by vertices,
+                   each with the operations it computes exactly
+    ConZonotope/   a zonotope whose coefficients a polytope cuts down
   ContDynamics/    algorithms, written against the interfaces alone
     LinearSysDT/   discrete-time linear systems, and reachability
     LinearSys/     continuous-time linear systems: the flow in closed form,
