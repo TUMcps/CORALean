@@ -20,11 +20,9 @@ variable {n m : ℕ}
 
 def ConZonotope.mtimes (M : Mat ℝ m n) (C : ConZonotope (Vec ℝ n)) : ConZonotope (Vec ℝ m) where
   h := C.h
-  q := C.q
   c := M *ᵥ C.c
   G := fun j => M *ᵥ C.G j
-  A := C.A
-  b := C.b
+  P := C.P
 
 /-- True by `rfl`, and what lets `mtimes` inherit `map`'s exactness. -/
 theorem ConZonotope.mtimes_eq_map (M : Mat ℝ m n) (C : ConZonotope (Vec ℝ n)) :

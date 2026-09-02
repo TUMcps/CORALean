@@ -25,10 +25,8 @@ def ConZonotope.zonotope (C : ConZonotope α) : Zonotope α where
 
 def Zonotope.conZonotope (Z : Zonotope α) : ConZonotope α where
   h := Z.h
-  q := 0
   c := Z.c
   G := Z.G
-  A := 0
-  b := 0
+  P := HPolytope.fullspace _
 
 end CORALean.Real

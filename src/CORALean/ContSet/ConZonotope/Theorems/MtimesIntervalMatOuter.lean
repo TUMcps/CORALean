@@ -6,9 +6,9 @@ import CORALean.ContSet.Zonotope.Real.Theorems.MtimesIntervalMatOuter
 
 The zonotope argument unchanged — the centre acts exactly and the leftover
 `(A - centre) x` fits in the diagonal block because a coordinate never exceeds
-`absBound` — with one step added: the padded constraint block asks of the
-concatenated coefficients exactly what the original asked of the original ones,
-so the witness still satisfies it.
+`absBound` — with one step added: the constraints were pulled back along the
+projection onto the original coefficients, so the concatenated witness satisfies
+them exactly when the original half did, which is `blockLeft_append`.
 
 Outer and never exact, for the zonotope's reason: the boxed generators let
 different coordinates use the radius independently, which the matrices denoted
@@ -17,7 +17,7 @@ do not.
 
 -- Authors:       Tobias Ladner
 -- Written:       01-September-2026
--- Last update:   ---
+-- Last update:   02-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -34,17 +34,6 @@ theorem ConZonotope.aux_sum_univ_mtimesIntervalMat {IM : Interval (Mat ℝ m n)}
       = ∑ j, f (Fin.castAdd m j) + ∑ j, f (Fin.natAdd C.h j) :=
   Fin.sum_univ_add f
 
-/-- The fresh generators are unconstrained, so the padded block asks of the
-concatenated coefficients exactly what the original asked of the original. -/
-theorem ConZonotope.aux_mulVec_mtimesIntervalMat (IM : Interval (Mat ℝ m n))
-    (C : ConZonotope (Vec ℝ n)) (β : Fin C.h → ℝ) (γ : Fin m → ℝ) (i : Fin C.q) :
-    ((ConZonotope.mtimesIntervalMat IM C).A *ᵥ Fin.append β γ) i = (C.A *ᵥ β) i := by
-  show ∑ j : Fin (C.h + m), (ConZonotope.mtimesIntervalMat IM C).A i j * Fin.append β γ j
-    = ∑ j, C.A i j * β j
-  rw [Fin.sum_univ_add]
-  simp only [ConZonotope.mtimesIntervalMat, Fin.append_left, Fin.append_right, Pi.zero_apply,
-    zero_mul, Finset.sum_const_zero, add_zero]
-
 set_option maxHeartbeats 400000 in
 theorem ConZonotope.mtimesIntervalMat_outer (IM : Interval (Mat ℝ m n))
     (C : ConZonotope (Vec ℝ n)) :
@@ -53,7 +42,7 @@ theorem ConZonotope.mtimesIntervalMat_outer (IM : Interval (Mat ℝ m n))
   rintro y hy
   simp only [Set.mem_iUnion, Set.mem_image, exists_prop] at hy
   obtain ⟨A, hA, x, hxmem, rfl⟩ := hy
-  obtain ⟨β, hβ, hAβ, hx⟩ := ConZonotope.mem_construct_iff.mp hxmem
+  obtain ⟨β, hβ, hP, hx⟩ := ConZonotope.mem_construct_iff.mp hxmem
   have hrad : ∀ i j, 0 ≤ IM.radius i j :=
     fun i j => (abs_nonneg _).trans (IM.abs_sub_center_le hA (i, j))
   have hxb := Zonotope.abs_le_absBound (Z := C.zonotope) hβ hx
@@ -72,13 +61,13 @@ theorem ConZonotope.mtimesIntervalMat_outer (IM : Interval (Mat ℝ m n))
   refine ConZonotope.mem_construct_iff.mpr
     ⟨Fin.append β fun i => Zonotope.coefficient (Zonotope.radiusReach IM C.zonotope i) (err i),
       ?_, ?_, fun i => ?_⟩
-  · refine Fin.addCases (fun l => ?_) fun i => ?_
+  · refine Fin.addCases (fun l => ?_) fun l => ?_
     · rw [Fin.append_left]; exact hβ l
     · rw [Fin.append_right]
-      exact Zonotope.abs_coefficient_le_one (hreachnn i) (herrb i)
-  · funext i
-    rw [ConZonotope.aux_mulVec_mtimesIntervalMat, hAβ]
-    rfl
+      exact Zonotope.abs_coefficient_le_one (hreachnn l) (herrb l)
+  · show blockLeft C.h m (Fin.append β _) ∈ C.P.construct
+    rw [blockLeft_append]
+    exact hP
   · rw [ConZonotope.aux_sum_univ_mtimesIntervalMat]
     simp only [ConZonotope.mtimesIntervalMat, Fin.append_left, Fin.append_right]
     rw [Zonotope.sum_diagonal_mul', Zonotope.mul_coefficient (herrb i)]

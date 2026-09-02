@@ -26,7 +26,7 @@ theorem ConZonotope.zonotope_outer (C : ConZonotope α) : C.construct ⊆ C.zono
 theorem Zonotope.conZonotope_exact (Z : Zonotope α) : Z.construct = Z.conZonotope.construct := by
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨β, hβ, rfl⟩
-    exact ⟨β, hβ, funext fun i => i.elim0, rfl⟩
+    exact ⟨β, hβ, ⟨fun i => i.elim0, fun i => i.elim0⟩, rfl⟩
   · rintro _ ⟨β, hβ, -, rfl⟩
     exact ⟨β, hβ, rfl⟩
 
