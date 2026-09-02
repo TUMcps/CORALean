@@ -1,17 +1,19 @@
 import CORALean.Global.Float.Instances.Dyadic.Theorems.Order
 import CORALean.Global.Float.Instances.Dyadic.Theorems.Rounding
+import CORALean.Global.Float.Instances.Dyadic.Theorems.Division
 
 /-!
 # `Dyadic` as a sound float model
 
 Each obligation is exactness composed with a rounding direction, the two halves
-proved separately in `Theorems`. No bound on the mantissa is needed: leaving the
-grid costs precision, never soundness.
+proved separately in `Theorems`. Division has no exact half to compose with and
+arrives already directed. No bound on the mantissa is needed: leaving the grid
+costs precision, never soundness.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       16-August-2026
--- Last update:   ---
+-- Last update:   02-September-2026
 -- Last revision: ---
 
 namespace CORALean.Float
@@ -24,6 +26,8 @@ instance {p : ℕ} : FloatOps (Dyadic p) where
   addDown := Dyadic.addDown
   mulUp := Dyadic.mulUp
   mulDown := Dyadic.mulDown
+  divUp := Dyadic.divUp
+  divDown := Dyadic.divDown
   minimum := Dyadic.minimum
   maximum := Dyadic.maximum
   le := Dyadic.le
@@ -38,6 +42,8 @@ noncomputable instance {p : ℕ} : SoundFloatArithmetic (Dyadic p) where
   addDown_le_add a b := Dyadic.toReal_exactAdd a b ▸ Dyadic.roundDown_le _
   mul_le_mulUp a b := Dyadic.toReal_exactMul a b ▸ Dyadic.le_roundUp _
   mulDown_le_mul a b := Dyadic.toReal_exactMul a b ▸ Dyadic.roundDown_le _
+  div_le_divUp := Dyadic.le_divUp
+  divDown_le_div := Dyadic.divDown_le_div
   toReal_minimum := Dyadic.toReal_minimum
   toReal_maximum := Dyadic.toReal_maximum
   toReal_half := Dyadic.toReal_half

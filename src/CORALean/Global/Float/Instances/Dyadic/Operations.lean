@@ -6,11 +6,15 @@ import CORALean.Global.Float.Instances.Dyadic.Dyadic
 Every operation is exact-then-round. The exact step may overflow `p` bits — a
 product needs `2p` — so it is separate, and `roundUp`/`roundDown` return to the
 grid by shifting the mantissa right, taking the floor or the ceiling.
+
+Division is the exception, and the only operation here that is not a wrapper
+around an exact one: a quotient of dyadics is not dyadic, so `quotUp`/`quotDown`
+round while dividing rather than afterwards.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       16-August-2026
--- Last update:   ---
+-- Last update:   02-September-2026
 -- Last revision: ---
 
 namespace CORALean.Float
@@ -46,6 +50,23 @@ def roundDown (d : Dyadic p) : Dyadic p :=
 def roundUp (d : Dyadic p) : Dyadic p :=
   ⟨-(-d.mantissa / 2 ^ d.shift), d.exponent + d.shift⟩
 
+/-! ## The quotient
+
+The one operation with no exact step: a quotient of dyadics is a general
+rational, so the direction has to be chosen while the integers are still there.
+The dividend is shifted left by `p` bits first, which is what buys the quotient
+its mantissa; `quotUp` negates twice, turning the floor into a ceiling exactly
+as `roundUp` does.
+
+A divisor of zero divides by zero in ℤ, which is `0` — and bounds nothing, which
+is why `SoundFloatArithmetic` asks for a positive one. -/
+
+def quotDown (a b : Dyadic p) : Dyadic p :=
+  ⟨a.mantissa * 2 ^ p / b.mantissa, a.exponent - b.exponent - p⟩
+
+def quotUp (a b : Dyadic p) : Dyadic p :=
+  ⟨-(-(a.mantissa * 2 ^ p) / b.mantissa), a.exponent - b.exponent - p⟩
+
 /-! ## Comparison
 
 Exact, and needing no rounding: aligned to the common exponent, the order on
@@ -67,6 +88,11 @@ def addUp (a b : Dyadic p) : Dyadic p := roundUp (exactAdd a b)
 def addDown (a b : Dyadic p) : Dyadic p := roundDown (exactAdd a b)
 def mulUp (a b : Dyadic p) : Dyadic p := roundUp (exactMul a b)
 def mulDown (a b : Dyadic p) : Dyadic p := roundDown (exactMul a b)
+
+-- Rounded again, so a wide dividend leaves the grid no more than any other
+-- operation does; the shift alone would keep `p` bits only for a `p`-bit input.
+def divUp (a b : Dyadic p) : Dyadic p := roundUp (quotUp a b)
+def divDown (a b : Dyadic p) : Dyadic p := roundDown (quotDown a b)
 
 end Dyadic
 

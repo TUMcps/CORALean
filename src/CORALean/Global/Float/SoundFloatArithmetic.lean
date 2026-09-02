@@ -19,7 +19,7 @@ that is the one gap between these axioms and a machine.
 
 -- Authors:       Tobias Ladner
 -- Written:       16-August-2026
--- Last update:   ---
+-- Last update:   02-September-2026
 -- Last revision: ---
 
 namespace CORALean.Float
@@ -35,6 +35,10 @@ class SoundFloatArithmetic (𝕋 : Type) [FloatOps 𝕋] where
   addDown_le_add (a b : 𝕋) : toReal (addDown a b) ≤ toReal a + toReal b
   mul_le_mulUp (a b : 𝕋) : toReal a * toReal b ≤ toReal (mulUp a b)
   mulDown_le_mul (a b : 𝕋) : toReal (mulDown a b) ≤ toReal a * toReal b
+  /-- The one partial guarantee: a divisor of zero bounds nothing, and a
+  negative one is the caller's own negation away, `neg` being exact. -/
+  div_le_divUp (a b : 𝕋) (hb : 0 < toReal b) : toReal a / toReal b ≤ toReal (divUp a b)
+  divDown_le_div (a b : 𝕋) (hb : 0 < toReal b) : toReal (divDown a b) ≤ toReal a / toReal b
   toReal_minimum (a b : 𝕋) : toReal (minimum a b) = min (toReal a) (toReal b)
   toReal_maximum (a b : 𝕋) : toReal (maximum a b) = max (toReal a) (toReal b)
   toReal_half (a : 𝕋) : toReal (half a) = toReal a / 2

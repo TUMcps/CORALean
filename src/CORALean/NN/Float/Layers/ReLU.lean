@@ -5,27 +5,27 @@ import CORALean.NN.Layers.ReLU
 # The ReLU layer over a floating-point scalar
 
 The one standard activation that needs no transcendental function, and the one
-carrying a nonzero slope. Over ℝ that slope is the secant `u / (u - l)`, which
-is a *division* — and `FloatOps` has no division at all, in either direction.
+carrying a nonzero slope. Over ℝ that slope is the secant `u / (u - l)`.
 
-That turns out not to matter, and the reason is the whole shape of the float
-layer. The slope is a precision knob and never a correctness condition: any
-value in `[0, 1]` is sound, and the error is measured against the value actually
-stored. So the slope may be produced by anything whatever, and `clampUnit`
-brings it into range with `minimum` and `maximum`, both of which are exact. No
-rounding axiom is consulted, no test on the candidate is needed, and an
-unverified guess at the secant — from a division the scalar does not have, or
-from a table — is used as it stands.
+Which direction that division rounds is of no consequence, and the reason is the
+whole shape of the float layer. The slope is a precision knob and never a
+correctness condition: any value in `[0, 1]` is sound, and the error is measured
+against the value actually stored. So the slope may be produced by anything
+whatever, and `clampUnit` brings it into range with `minimum` and `maximum`,
+both of which are exact. No rounding axiom is consulted, no test on the
+candidate is needed, and an unverified guess at the secant — from `divUp`, from
+a table, or from a search — is used as it stands.
 
 What does have to round is the gap, and it rounds up: `(1 - λ) u` from the
 directed difference and `-λ l` from the negated rounded-down product, the larger
 of the two. Halving it is exact, so the recentred relaxation is `± gap / 2` with
 no further loss.
 
-`reluSlope` is the division-free default: exact on a stable neuron, where the
-slope is `1` or `0` and the gap is zero, and the secant of a symmetric neuron on
-a crossing one. It reads `le`, which `SoundFloatArithmetic` constrains in no way
-— and it does not have to, precisely because no branch of it can be wrong.
+`reluSlope` is the default: exact on a stable neuron, where the slope is `1` or
+`0` and the gap is zero, and the secant on a crossing one, rounded whichever way
+`divUp` happens to round. It reads `le`, which `SoundFloatArithmetic` constrains
+in no way — and it does not have to, precisely because no branch of it can be
+wrong.
 -/
 
 -- Authors:       Tobias Ladner
@@ -84,11 +84,11 @@ def reluRelaxation (lam : 𝕋 → 𝕋 → 𝕋) : Relaxation 𝕋 Real.relu wh
     rw [toReal_half, abs_le]
     exact ⟨by linarith, by linarith⟩
 
-/-- Exact on a stable neuron; the secant of a symmetric one where the neuron
-crosses, the true secant needing a division `FloatOps` does not have. A caller
-with one passes it to `Layer.relu` instead, and pays nothing for the change. -/
+/-- Exact on a stable neuron; the secant where the neuron crosses. A caller with
+a better candidate passes it to `Layer.relu` instead, and pays nothing for the
+change. -/
 def reluSlope (l u : 𝕋) : 𝕋 :=
-  if le u zero then zero else if le zero l then one else half one
+  if le u zero then zero else if le zero l then one else divUp u (subDown u l)
 
 namespace Layer
 

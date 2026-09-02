@@ -20,13 +20,13 @@ hence a derivative bound, which is a piece of analysis this layer does not yet
 have. The `Relaxation` field is where it would go, and nothing else would
 change.
 
-No float counterpart, and the obstacle is not the relaxation:
-`Float.Relaxation.ofMonotone` is this one, and asks only for the value of `σ` at
-the two ends of a neuron's range. `FloatOps` cannot supply it — no `exp`, no
-division, no series — so there is no `Float.Enclosure 𝕋 sigmoid` to hand it, and
-the only enclosure available without one is the constant range `[0, 1]`. What
-closes it is a directed-rounding `exp` in `Global/Float`, tail bound and all: a
-piece of the scalar rather than of this layer.
+The float counterpart is `Float.Layer.sigmoid`, and it is this relaxation
+again: `Float.Relaxation.ofMonotone` asks only for `σ` at the two ends of a
+neuron's range, and `Float.sigmoidEnclosure` supplies it from `Global/Float`'s
+directed `expDown` and a division. Stating `σ` as `1 - 1/(1 + eᵗ)` for the lower
+end and `1/(1 + e⁻ᵗ)` for the upper leaves both directions needing a *lower*
+bound on an exponential, which is the direction that holds at every argument —
+so that enclosure carries no hypothesis.
 -/
 
 -- Authors:       Tobias Ladner
