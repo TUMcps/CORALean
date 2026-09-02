@@ -12,5 +12,7 @@ representation that does have the required properties is substituted in.
 
 `NonlinearSys` computes nothing of its own: conservative linearization hands a
 confined run to `LinearSys`, so every reachability guarantee in the directory is
-a linear one applied to a widened input set.
+a linear one applied to a widened input set. Re-linearizing is that step
+iterated with a fresh certificate each time, and the chaining is an induction on
+the step count.
 -/

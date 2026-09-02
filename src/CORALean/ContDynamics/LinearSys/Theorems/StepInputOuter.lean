@@ -2,6 +2,7 @@ import CORALean.ContDynamics.LinearSys.Operations.InputSolution
 import CORALean.ContDynamics.LinearSys.Operations.StepInput
 import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionOuter
 import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
+import CORALean.ContDynamics.LinearSys.Theorems.StepInputShift
 
 /-!
 # `inputSolution` contains what the input contributed over a step
@@ -34,20 +35,6 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 variable [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
-
-/-- Step `k` shifted to start at zero. The propagator only ever sees the elapsed
-part of the step, so the shift leaves it alone and lands on exactly the integral
-`inputSolution_outer` speaks about. -/
-theorem LinearSys.aux_stepInput_eq (sys : LinearSys 𝕋 n) (u : ℝ → Vec ℝ n) (Δt : ℝ) (k : ℕ) :
-    sys.stepInput u Δt k
-      = ∫ σ in (0:ℝ)..Δt, exp ((Δt - σ) • toRealMat sys.A) *ᵥ u ((k : ℝ) * Δt + σ) := by
-  have hsplit : ((k : ℝ) + 1) * Δt = (k : ℝ) * Δt + Δt := by ring
-  have hshift : ∀ σ : ℝ, (k : ℝ) * Δt + Δt - ((k : ℝ) * Δt + σ) = Δt - σ := fun σ => by ring
-  have key := intervalIntegral.integral_comp_add_left (a := (0 : ℝ)) (b := Δt)
-    (fun s : ℝ => exp (((k : ℝ) * Δt + Δt - s) • toRealMat sys.A) *ᵥ u s) ((k : ℝ) * Δt)
-  simp only [add_zero, hshift] at key
-  rw [LinearSys.stepInput, hsplit]
-  exact key.symm
 
 omit [∀ n, LinComb (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] in
 set_option maxHeartbeats 400000 in
@@ -84,7 +71,7 @@ theorem LinearSys.Trajectory.stepInput_outer [Mtimes ℐ S]
     refine traj.aestronglyMeasurable_input_reflected ?_
     rw [show (k : ℝ) * Δt + Δt - Δt = (k : ℝ) * Δt from by ring]
     exact hT
-  rw [sys.aux_stepInput_eq u Δt k]
+  rw [sys.stepInput_eq_shifted u Δt k]
   exact sys.inputSolution_outer hΔt η hε hconv hclosed hbdd hRconv hRclosed hRbdd hu hmeas
 
 end CORALean.Real

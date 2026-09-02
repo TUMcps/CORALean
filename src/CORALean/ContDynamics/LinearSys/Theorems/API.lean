@@ -10,6 +10,7 @@ import CORALean.ContDynamics.LinearSys.Theorems.ReachOuter
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterConvexCompact
 import CORALean.ContDynamics.LinearSys.Theorems.Restrict
 import CORALean.ContDynamics.LinearSys.Theorems.StepInputOuter
+import CORALean.ContDynamics.LinearSys.Theorems.StepInputShift
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuter
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterConvexCompact
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterSplitZonotope

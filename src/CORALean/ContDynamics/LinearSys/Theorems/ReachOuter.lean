@@ -73,7 +73,7 @@ theorem LinearSys.Trajectory.reach_outer_inputSolution [Mtimes ℐ S]
     (traj.discretize_inputSolution hΔt hT η hε hconv hclosed hbdd hRconv hRclosed hRbdd) k
 
 /-- Step `k` of a run of `K` steps lies inside the horizon. -/
-theorem aux_step_subset_horizon {T : Set ℝ} {Δt : ℝ} {K k : ℕ} (hΔt : 0 ≤ Δt)
+theorem step_subset_horizon {T : Set ℝ} {Δt : ℝ} {K k : ℕ} (hΔt : 0 ≤ Δt)
     (hT : Set.Icc 0 ((K : ℝ) * Δt) ⊆ T) (hk : k < K) :
     Set.Icc ((k : ℝ) * Δt) (((k : ℝ) + 1) * Δt) ⊆ T := by
   refine fun s hs => hT ⟨le_trans (mul_nonneg (Nat.cast_nonneg k) hΔt) hs.1, ?_⟩
@@ -106,7 +106,7 @@ theorem LinearSys.Trajectory.reach_outer_horizon {sys : LinearSys 𝕋 n} {T : S
     have hcast : ((k + 1 : ℕ) : ℝ) = (k : ℝ) + 1 := by push_cast; ring
     show x (((k + 1 : ℕ) : ℝ) * Δt) ∈ construct (reduce (plus
       (Mtimes.mtimes (sys.discretize Δt).A ((sys.discretize Δt).reach o R₀ Ud k)) Ud) o)
-    rw [hcast, traj.discretize_step hΔt hU k (aux_step_subset_horizon hΔt hT hkK)]
+    rw [hcast, traj.discretize_step hΔt hU k (step_subset_horizon hΔt hT hkK)]
     exact reduce_outer _ _ (plus_outer _ _
       (Set.add_mem_add
         (Mtimes.mtimes_outer _ _ (Set.mem_biUnion rfl (Set.mem_image_of_mem _ (ih hkK.le))))
@@ -133,6 +133,6 @@ theorem LinearSys.Trajectory.reach_outer_horizon_inputSolution [Mtimes ℐ S]
       ((sys.discretize Δt).reach o R₀ (sys.inputSolution Δt η U) k) :=
   traj.reach_outer_horizon hΔt.le hT hbdd
     (fun k hk => traj.stepInput_outer hΔt η hε hconv hclosed hbdd hRconv hRclosed hRbdd k
-      (aux_step_subset_horizon hΔt.le hT hk)) o
+      (step_subset_horizon hΔt.le hT hk)) o
 
 end CORALean.Real
