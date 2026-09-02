@@ -6,6 +6,8 @@
 src/CORALean/
   Global/          shared: array types, the scalar, index partitions, Mathlib
     Float/         the floating-point scalar, and models of it
+    LinProg/       bounds on a linear objective, and what certifies them
+      Float/       the same bound with a machine-representable value
   ContSet/         set representations, over whichever ambient type they suit
     ContSet/       the interface every representation instantiates
     InflatedContSet/  nominal part + error box, what a float representation adds
@@ -22,6 +24,8 @@ src/CORALean/
                    Real/ and Float/, the latter paying rounding into an error box
     ConZonotope/   a zonotope whose coefficients an HPolytope cuts down;
                    Real/ and Float/, the latter splitting its rounding two ways
+    Polytope/      conversions between the two polytope representations, so that
+                   neither depends on the other; Real/ and Float/
   ContDynamics/    algorithms, written against the interfaces alone
     LinearSysDT/   discrete-time linear systems, and reachability
     NonlinearSys/  the representation and its trajectories; no reachability yet
@@ -177,6 +181,32 @@ float operation pays its rounding into an interval error box via
 `𝕋` is the scalar a layer computes in — ℝ in `Real`, a machine scalar in `Float`.
 `Global.Scalar` reads a matrix of it as a real one, which is how a guarantee
 stated once covers both layers.
+
+## Certificates, not algorithms
+
+Several operations have no definition — a Minkowski sum of halfspace
+descriptions, a bounding box, a conversion. What they have in common is one
+question: how far does this set reach in direction `c`? For a polytope that is a
+linear program, and `Global/LinProg` answers it once.
+
+A `SupportBound S c` is a real number together with the fact that no point of
+`S` exceeds it in direction `c`. It says nothing about where the number came
+from. That is the point: a simplex implementation supplies the dual solution,
+weak duality turns the dual solution into the proof, and the proof is what gets
+carried — so an unverified solver stays outside the trusted base, and a wrong
+dual solution yields no bound rather than a wrong one. Nothing here is
+axiomatised and nothing is `sorry`.
+
+Write a new operation of this kind as `ofBounds` over directions the caller
+names, and let `Composition` do the work: a direction sees a sum as a sum of
+extents, a union as the larger of two, an image as the direction pulled back,
+a hull as no further than its points. Soundness never depends on the directions,
+only precision does, so enumerating the true facets stays outside as an
+optimisation.
+
+`FloatBound` is the same object with a float value. Its composition rules are
+these with `+` replaced by `addUp` and `max` by `maximum` — a bound only stays
+sound by growing.
 
 ## Proofs
 
