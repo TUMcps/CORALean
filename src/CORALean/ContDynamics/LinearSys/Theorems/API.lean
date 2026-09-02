@@ -8,6 +8,7 @@ import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuter
 import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuterSplit
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOuter
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterConvexCompact
+import CORALean.ContDynamics.LinearSys.Theorems.Restrict
 import CORALean.ContDynamics.LinearSys.Theorems.StepInputOuter
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuter
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterConvexCompact
@@ -26,4 +27,9 @@ input-integral facts those two rest on.
 Both enclosures are stated once, over `ConvexSet` and `CompactSet`, and name no
 representation. `TimeIntervalOuterSplitZonotope` is the exception: dropping
 `0 ∈ U` means splitting the input set, which no interface offers.
+
+`Restrict` is what makes the time domain a parameter worth having: a guarantee
+over one step applies to a run over all forward time by throwing the rest away.
+Each statement asks for the window it speaks about, and only `discretize` and
+the `reach` statements built on it ask for `Set.Ici 0`.
 -/

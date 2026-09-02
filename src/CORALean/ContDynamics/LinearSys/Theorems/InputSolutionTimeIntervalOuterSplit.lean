@@ -28,7 +28,7 @@ and which sets is the representation's business. A zonotope has all three.
 
 -- Authors:       Tobias Ladner
 -- Written:       01-September-2026
--- Last update:   ---
+-- Last update:   02-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -78,8 +78,9 @@ set_option maxHeartbeats 1000000 in
 `U ⊆ {c} ⊕ U₀`. Neither piece needs `0 ∈ U`. -/
 theorem LinearSys.Trajectory.inputSolution_timeInterval_outer_split
     [Mtimes ℐ S]
-    {sys : LinearSys 𝕋 n} {R₀ U U₀ P Sg : S n} {x u : ℝ → Vec ℝ n} {c : Vec ℝ n} {r : ℝ}
-    (traj : sys.Trajectory R₀ U x u) (hr : 0 < r) (η : ℕ)
+    {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U U₀ P Sg : S n} {x u : ℝ → Vec ℝ n}
+    {c : Vec ℝ n} {r : ℝ}
+    (traj : sys.Trajectory T R₀ U x u) (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) (η : ℕ)
     (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
     -- the split, and the two sets the constant part is enclosed against
     (hsplit : ∀ y ∈ construct U, y - c ∈ construct U₀)
@@ -105,15 +106,16 @@ theorem LinearSys.Trajectory.inputSolution_timeInterval_outer_split
             (Mtimes.mtimes (𝕄 := ℐ) (MatExp.constCorrectionMatrix (toRealMat sys.A) r η) P))
           (sys.inputSolution r η U₀)) := by
   set A := toRealMat sys.A with hA
+  have hTt : Set.Icc (0:ℝ) t ⊆ T := fun s hs => hT ⟨hs.1, le_trans hs.2 htr⟩
   have hs0 : 0 ≤ t / r := div_nonneg ht0 hr.le
   have hs1 : t / r ≤ 1 := (div_le_one hr).mpr htr
   -- the two admissible pieces
   have hmemP : ∀ s ∈ Set.Icc (0:ℝ) t, (fun _ : ℝ => c) s ∈ construct P := fun _ _ => hcP
   have hmem₀ : ∀ s ∈ Set.Icc (0:ℝ) t, (fun σ => u σ - c) s ∈ construct U₀ :=
-    fun s hs => hsplit _ (traj.input s hs.1)
+    fun s hs => hsplit _ (traj.input s (hTt hs))
   have hmeas₀ : AEStronglyMeasurable (fun σ => u σ - c)
       (volume.restrict (Set.Icc 0 t)) :=
-    (traj.aestronglyMeasurable_input le_rfl).sub aestronglyMeasurable_const
+    (traj.aestronglyMeasurable_input hTt).sub aestronglyMeasurable_const
   have hint₁ := intervalIntegrable_expSub_mulVec (A := A) (c := t) ht0 hbddP hmemP
     aestronglyMeasurable_const
   have hint₀ := intervalIntegrable_expSub_mulVec (A := A) (c := t) ht0 hbdd₀ hmem₀ hmeas₀

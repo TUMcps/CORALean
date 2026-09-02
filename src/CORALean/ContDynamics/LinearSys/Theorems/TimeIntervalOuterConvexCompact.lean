@@ -38,13 +38,13 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 stays in the step enclosure at every time of the step, not only at its end. -/
 theorem LinearSys.Trajectory.timeInterval_outer_convexCompact
     [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ n)]
-    {sys : LinearSys 𝕋 n} {R₀ U : S n} {x u : ℝ → Vec ℝ n} {r : ℝ}
-    (traj : sys.Trajectory R₀ U x u) (hr : 0 < r) {m : ℕ}
+    {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n} {r : ℝ}
+    (traj : sys.Trajectory T R₀ U x u) (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
     (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}
     (ht0 : 0 ≤ t) (htr : t ≤ r) (h0 : (0 : Vec ℝ n) ∈ construct U) :
     x t ∈ construct (Plus.plus
       (sys.timeIntervalStep r (m + 2) R₀) (sys.inputSolution r (m + 2) U)) :=
-  traj.timeInterval_outer_inputSolution hr hε ht0 htr
+  traj.timeInterval_outer_inputSolution hr hT hε ht0 htr
     (ConvexSet.convex_construct U) (CompactSet.isClosed_construct U)
     (CompactSet.isBounded_construct U)
     (ConvexSet.convex_construct _) (CompactSet.isClosed_construct _)

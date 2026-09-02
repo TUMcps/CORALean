@@ -38,15 +38,18 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 
 /-- Every trajectory of a linear system whose input set is convex and compact
 stays in `reach`, at every sample time. The step, the Taylor order and the bound
-`hε` relating them are all that is left to supply. -/
+`hε` relating them are all that is left to supply.
+
+All of forward time, since every sample time is spoken about at once; the
+bounded-horizon form is `reach_outer_horizon_inputSolution`. -/
 theorem LinearSys.Trajectory.reach_outer_convexCompact [Mtimes ℐ S]
     [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ n)]
-    {sys : LinearSys 𝕋 n} {R₀ U : S n} {x u : ℝ → Vec ℝ n} {Δt : ℝ}
-    (traj : sys.Trajectory R₀ U x u) (hΔt : 0 < Δt) (η : ℕ)
+    {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n} {Δt : ℝ}
+    (traj : sys.Trajectory T R₀ U x u) (hΔt : 0 < Δt) (hT : Set.Ici 0 ⊆ T) (η : ℕ)
     (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) (o k : ℕ) :
     x (k * Δt) ∈ construct
       ((sys.discretize Δt).reach o R₀ (sys.inputSolution Δt η U) k) :=
-  traj.reach_outer_inputSolution hΔt η hε
+  traj.reach_outer_inputSolution hΔt hT η hε
     (ConvexSet.convex_construct U) (CompactSet.isClosed_construct U)
     (CompactSet.isBounded_construct U)
     (ConvexSet.convex_construct _) (CompactSet.isClosed_construct _)

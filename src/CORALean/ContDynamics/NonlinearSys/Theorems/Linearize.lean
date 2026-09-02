@@ -1,5 +1,6 @@
 import CORALean.ContDynamics.NonlinearSys.Operations.Linearize
 import CORALean.ContDynamics.NonlinearSys.Theorems.LinInputOuter
+import CORALean.ContDynamics.NonlinearSys.Theorems.Restrict
 
 /-!
 # A nonlinear run is a linear run over a widened input
@@ -15,18 +16,17 @@ CORA computes a candidate `R` from an initial guess and *checks afterwards*
 that the step's reachable set is inside it, enlarging and retrying when it is
 not; nothing in a certificate can supply that check.
 
-`hR` is asked for on all of `Set.Ici 0`, not on one step `[0, τ]`, and that is
-forced rather than chosen: `LinearSys.Trajectory` constrains its input at every
-forward time, so a run that leaves `R` after `τ` has no reason to keep `ũ(t)`
-inside `linInput` and the conclusion would be false. `linInput_outer` is the
-one-step content, stated without any time at all; quantifying it over a
-bounded interval instead would need a time-restricted `Trajectory`, which
-`LinearSys` does not have.
+`hR` is asked for on the time domain and nowhere else, which is the whole reason
+that domain is a parameter: the linear run this produces constrains its input on
+exactly the same set, so confinement over one step buys a linear run over one
+step. `linearize_horizon` is that instance — restrict to `[0, τ]`, then
+linearize — and it is the honest one-step statement conservative linearization
+is, CORA re-linearizing at every step rather than trusting one `R` forever.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   02-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -37,15 +37,15 @@ variable {n m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [OfInterval S]
 
-/-- Every trajectory of `sys` confined to `R` is a trajectory of `linearize A`
-whose input ranges over `linInput`. -/
-theorem NonlinearSys.Trajectory.linearize {sys : NonlinearSys n m} {R₀ : S n}
+/-- Every trajectory of `sys` confined to `R` over its own time domain is a
+trajectory of `linearize A` over that same domain, with input in `linInput`. -/
+theorem NonlinearSys.Trajectory.linearize {sys : NonlinearSys n m} {T : Set ℝ} {R₀ : S n}
     {U : S m} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {A : Mat ℝ n n}
     {B : Mat ℝ n m} {xs : Vec ℝ n} {us : Vec ℝ m} {R : Set (Vec ℝ n)} {L : S n}
-    (traj : sys.Trajectory R₀ U x u)
+    (traj : sys.Trajectory T R₀ U x u)
     (cert : AbstractionError sys A B xs us R (construct U) L)
-    (hR : ∀ t : ℝ, 0 ≤ t → x t ∈ R) :
-    (NonlinearSys.linearize A).Trajectory R₀ (sys.linInput A B xs us U L) x
+    (hR : ∀ t ∈ T, x t ∈ R) :
+    (NonlinearSys.linearize A).Trajectory T R₀ (sys.linInput A B xs us U L) x
       (fun t => sys.f (x t) (u t) - A *ᵥ x t) where
   init := traj.init
   input t ht := NonlinearSys.linInput_outer cert (hR t ht) (traj.input t ht)
@@ -55,8 +55,22 @@ theorem NonlinearSys.Trajectory.linearize {sys : NonlinearSys n m} {R₀ : S n}
       show A *ᵥ x t + (sys.f (x t) (u t) - A *ᵥ x t) = sys.f (x t) (u t)
       abel
     show HasDerivWithinAt x (toRealMat (NonlinearSys.linearize A).A *ᵥ x t
-      + (sys.f (x t) (u t) - A *ᵥ x t)) (Set.Ici 0) t
+      + (sys.f (x t) (u t) - A *ᵥ x t)) T t
     rw [he]
     exact traj.flow t ht
+
+/-- The one-step statement: confinement on `[0, τ]` alone yields a linear run on
+`[0, τ]`, whatever the nonlinear run does afterwards. This is what a
+re-linearization loop consumes and what a hybrid location asks for; the run
+being longer than the step costs nothing, `restrict` throwing the rest away. -/
+theorem NonlinearSys.Trajectory.linearize_horizon {sys : NonlinearSys n m} {T : Set ℝ}
+    {R₀ : S n} {U : S m} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {A : Mat ℝ n n}
+    {B : Mat ℝ n m} {xs : Vec ℝ n} {us : Vec ℝ m} {R : Set (Vec ℝ n)} {L : S n} {τ : ℝ}
+    (traj : sys.Trajectory T R₀ U x u)
+    (cert : AbstractionError sys A B xs us R (construct U) L)
+    (hT : Set.Icc 0 τ ⊆ T) (hR : ∀ t ∈ Set.Icc (0 : ℝ) τ, x t ∈ R) :
+    (NonlinearSys.linearize A).Trajectory (Set.Icc 0 τ) R₀ (sys.linInput A B xs us U L) x
+      (fun t => sys.f (x t) (u t) - A *ᵥ x t) :=
+  (traj.restrict hT).linearize cert hR
 
 end CORALean.Real
