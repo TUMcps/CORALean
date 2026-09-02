@@ -1,4 +1,6 @@
+import CORALean.ContSet.VPolytope.Real.Operations.And
 import CORALean.ContSet.VPolytope.Real.Operations.Interval
+import CORALean.ContSet.VPolytope.Real.Operations.OfInterval
 import CORALean.ContSet.VPolytope.Real.Operations.LinComb
 import CORALean.ContSet.VPolytope.Real.Operations.Map
 import CORALean.ContSet.VPolytope.Real.Operations.Mtimes
@@ -18,6 +20,9 @@ requiring no certificate. `interval` is that at the `2n` coordinate directions,
 and the one operation that loses something: a box around the vertices is a box
 around the hull, and wider.
 
-Intersection is the operation missing, and it is the one a halfspace description
-computes for free; `HPolytope` is for that.
+`ofInterval` is a box as its `2ⁿ` corners, which is what `and` goes through:
+intersection is the operation vertices are worst at, its result's vertices being
+generally none of either operand's, so each hull is boxed, the boxes intersected
+exactly, and the corners taken. Sound and loose, and exact when both operands
+were boxes. The tight version is the conversion `Polytope` does not have.
 -/

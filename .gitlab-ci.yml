@@ -22,6 +22,12 @@
 variables:
   ELAN_HOME: "$CI_PROJECT_DIR/.elan"
   GIT_DEPTH: "1"
+  # Dependency resolution clones Mathlib and its own dependencies from GitHub
+  # anonymously. A rate-limited anonymous clone answers 403, which git reads as
+  # "needs credentials" and then blocks asking for them; without this the job
+  # hangs until timeout instead of failing. Shared runners share an IP, so this
+  # is a matter of who else is building, not of anything in the tree.
+  GIT_TERMINAL_PROMPT: "0"
 
 build:
   image: debian:bookworm-slim
@@ -43,6 +49,15 @@ build:
     - set -o pipefail
     - lake build 2>&1 | tee build.log
     - "! grep -q '^warning: src/' build.log"
+  # The clone above is the only step that fails for reasons outside the tree, and
+  # it fails immediately, so a retry costs seconds when it succeeds and one
+  # wasted minute when it does not.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
+      - script_failure
   artifacts:
     when: on_failure
     paths:

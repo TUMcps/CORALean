@@ -1,0 +1,68 @@
+import CORALean.Global.Tensor
+
+/-!
+# Choosing one of two per coordinate
+
+A box has `2ⁿ` corners, one per choice of end per coordinate, and any weighting
+over those choices that is a product of per-coordinate factors behaves the same
+way: the weights sum to the product of the per-coordinate sums, and weighting
+them by one coordinate's own choice leaves that coordinate's average, every
+other coordinate's factors having summed away.
+
+Both facts are stated here rather than at the box, being about `Fin n → Bool`
+and nothing else. `signEquiv` is the bookkeeping that lets a list indexed by
+`Fin k` hold something indexed by those choices.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       02-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+namespace CORALean
+
+variable {n : ℕ}
+
+/-- Computable, and deliberately: the float layer stores a corner list and has
+to be able to produce one. -/
+def signEquiv (n : ℕ) : Fin (2 ^ n) ≃ (Fin n → Bool) :=
+  finFunctionFinEquiv.symm.trans (Equiv.arrowCongr (Equiv.refl (Fin n)) finTwoEquiv)
+
+theorem sum_prod_bool (f g : Fin n → ℝ) :
+    ∑ σ : Fin n → Bool, ∏ j, (if σ j then f j else g j) = ∏ j, (f j + g j) := by
+  rw [show (∏ j, (f j + g j)) = ∏ j, ∑ b : Bool, (if b then f j else g j) from
+        Finset.prod_congr rfl fun j _ => by simp,
+      Finset.prod_univ_sum, Fintype.piFinset_univ]
+
+theorem sum_prod_bool_mul (t u v : Fin n → ℝ) (i : Fin n) :
+    ∑ σ : Fin n → Bool,
+        (∏ j, (if σ j then t j else 1 - t j)) * (if σ i then u i else v i)
+      = t i * u i + (1 - t i) * v i := by
+  -- one coordinate's factor absorbs its endpoint; the rest are untouched
+  have key : ∀ σ : Fin n → Bool,
+      (∏ j, (if σ j then t j else 1 - t j)) * (if σ i then u i else v i)
+        = ∏ j, (if σ j then (if j = i then t i * u i else t j)
+                       else if j = i then (1 - t i) * v i else 1 - t j) := by
+    intro σ
+    have hsplitL := Finset.mul_prod_erase Finset.univ
+      (fun j => if σ j then t j else 1 - t j) (Finset.mem_univ i)
+    have hsplitR := Finset.mul_prod_erase Finset.univ
+      (fun j => if σ j then (if j = i then t i * u i else t j)
+                       else if j = i then (1 - t i) * v i else 1 - t j) (Finset.mem_univ i)
+    have hrest : ∏ j ∈ Finset.univ.erase i,
+          (if σ j then (if j = i then t i * u i else t j)
+                  else if j = i then (1 - t i) * v i else 1 - t j)
+        = ∏ j ∈ Finset.univ.erase i, (if σ j then t j else 1 - t j) :=
+      Finset.prod_congr rfl fun j hj => by
+        rw [if_neg (Finset.ne_of_mem_erase hj), if_neg (Finset.ne_of_mem_erase hj)]
+    rw [← hsplitL, ← hsplitR, hrest]
+    cases hb : σ i <;> simp <;> ring
+  rw [Finset.sum_congr rfl fun σ _ => key σ, sum_prod_bool, Finset.prod_eq_single i]
+  · simp
+  · intro j _ hj
+    rw [if_neg hj, if_neg hj]
+    ring
+  · intro h
+    exact absurd (Finset.mem_univ i) h
+
+end CORALean
