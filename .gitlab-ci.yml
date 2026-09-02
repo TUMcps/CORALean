@@ -66,28 +66,34 @@ build:
       else
         echo "github: anonymous — set GH_TOKEN to lift the rate limit"
       fi
-    # Clone Mathlib ourselves, blobless. `lake exe cache get` otherwise clones it
-    # from inside dependency resolution, taking the whole history — over a
-    # gigabyte — with no progress output, which is what looks like a hang. A
-    # blobless clone fetches file contents only for the revision checked out, and
-    # `--progress` makes the job say what it is doing.
+    # Fetch Mathlib ourselves, shallow and by revision. `lake exe cache get`
+    # otherwise clones it from inside dependency resolution, taking the whole
+    # history — over a gigabyte — with no progress output, which is what looks
+    # like a hang.
+    #
+    # By revision rather than blobless: `--filter=blob:none` defers file contents
+    # to a second fetch at checkout time, so one network operation becomes two,
+    # and the second one is a lazy fetch from the promisor remote that no retry
+    # loop around the clone can cover. `--depth 1` of the one revision needs no
+    # history and no second trip, and is a tenth of the bytes.
     - |
       REV=$(sed -n 's/.*"rev": "\([0-9a-f]\{40\}\)".*/\1/p' lake-manifest.json | head -1)
       echo "mathlib rev: $REV"
-      mkdir -p .lake/packages
+      mkdir -p .lake/packages/mathlib
+      git init -q .lake/packages/mathlib
+      git -C .lake/packages/mathlib remote add origin \
+        https://github.com/leanprover-community/mathlib4.git
       n=0
-      until git clone --filter=blob:none --no-checkout --progress \
-          https://github.com/leanprover-community/mathlib4.git .lake/packages/mathlib; do
+      until git -C .lake/packages/mathlib fetch --depth 1 --progress origin "$REV"; do
         n=$((n + 1))
-        if [ "$n" -ge 3 ]; then
-          echo "mathlib clone failed three times — GitHub is refusing this runner"
+        if [ "$n" -ge 4 ]; then
+          echo "mathlib fetch failed four times — GitHub is refusing this runner"
           exit 1
         fi
-        rm -rf .lake/packages/mathlib
-        echo "clone failed; waiting $((n * 120))s for the rate-limit window"
+        echo "fetch failed; waiting $((n * 120))s for the rate-limit window"
         sleep $((n * 120))
       done
-      git -C .lake/packages/mathlib checkout --progress "$REV"
+      git -C .lake/packages/mathlib checkout -q FETCH_HEAD
     - export PATH="$ELAN_HOME/bin:$PATH"
     - |
       curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
