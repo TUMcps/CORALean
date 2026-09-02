@@ -10,10 +10,11 @@ the state.
 State and input dimensions are separate, which CORA's are and `LinearSys`'s are
 not: there the input enters additively and so has to match the state.
 
-`Trajectory` mirrors `LinearSys.Trajectory` field for field — the same
-forward-time derivative within `Set.Ici 0`, the same reading of the input set as
+`Trajectory` mirrors `LinearSys.Trajectory` field for field — the same time
+domain `T` carrying the derivative, the same reading of the input set as
 covering disturbances — so the two agree by definition at a linear field, which
-is `LinearSys.trajectory_iff_nonlinearSys`.
+is `LinearSys.trajectory_iff_nonlinearSys`. A bounded `T` is what makes
+`linearize` a one-step statement.
 
 Reachability is not here and is not its own algorithm: an `AbstractionError`
 certificate turns a run of this system into a run of a linear one, and
@@ -35,11 +36,11 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 structure NonlinearSys (n m : ℕ) where
   f : Vec ℝ n → Vec ℝ m → Vec ℝ n
 
-structure NonlinearSys.Trajectory (sys : NonlinearSys n m) (R₀ : S n) (U : S m)
-    (x : ℝ → Vec ℝ n) (u : ℝ → Vec ℝ m) : Prop where
+structure NonlinearSys.Trajectory (sys : NonlinearSys n m) (T : Set ℝ) (R₀ : S n)
+    (U : S m) (x : ℝ → Vec ℝ n) (u : ℝ → Vec ℝ m) : Prop where
   init : x 0 ∈ construct R₀
-  input (t : ℝ) (ht : 0 ≤ t) : u t ∈ construct U
-  flow (t : ℝ) (ht : 0 ≤ t) :
-    HasDerivWithinAt x (sys.f (x t) (u t)) (Set.Ici 0) t
+  input (t : ℝ) (ht : t ∈ T) : u t ∈ construct U
+  flow (t : ℝ) (ht : t ∈ T) :
+    HasDerivWithinAt x (sys.f (x t) (u t)) T t
 
 end CORALean.Real

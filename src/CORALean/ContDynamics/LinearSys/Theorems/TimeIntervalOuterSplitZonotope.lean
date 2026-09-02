@@ -23,7 +23,7 @@ So Althoff's second case assumes nothing at all about where the input set sits.
 
 -- Authors:       Tobias Ladner
 -- Written:       01-September-2026
--- Last update:   ---
+-- Last update:   02-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -81,9 +81,9 @@ set_option maxHeartbeats 400000 in
 /-- Every trajectory whose initial and input sets are zonotopes stays in the
 step enclosure at every time of the step, wherever the input set sits. -/
 theorem LinearSys.Trajectory.timeInterval_outer_split_zonotope {sys : LinearSys 𝕋 n}
-    {R₀ U : Zonotope (Vec ℝ n)} {x u : ℝ → Vec ℝ n} {r : ℝ}
-    (traj : sys.Trajectory (S := 𝒵) R₀ U x u)
-    (hr : 0 < r) {m : ℕ}
+    {T : Set ℝ} {R₀ U : Zonotope (Vec ℝ n)} {x u : ℝ → Vec ℝ n} {r : ℝ}
+    (traj : sys.Trajectory (S := 𝒵) T R₀ U x u)
+    (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
     (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}
     (ht0 : 0 ≤ t) (htr : t ≤ r) :
     x t ∈ construct (Plus.plus
@@ -95,8 +95,8 @@ theorem LinearSys.Trajectory.timeInterval_outer_split_zonotope {sys : LinearSys 
           (Mtimes.mtimes (𝕄 := ℐ) (S := 𝒵)
             (MatExp.constCorrectionMatrix (toRealMat sys.A) r (m + 2)) (aux_point U.c)))
         (sys.inputSolution (S := 𝒵) r (m + 2) (aux_centered U)))) :=
-  traj.timeInterval_outer hr hε ht0 htr U.isBounded_construct
-    (traj.inputSolution_timeInterval_outer_split hr (m + 2) hε
+  traj.timeInterval_outer hr hT hε ht0 htr U.isBounded_construct
+    (traj.inputSolution_timeInterval_outer_split hr hT (m + 2) hε
       (fun _ hy => aux_sub_mem_centered hy) (aux_self_mem_point U.c)
       (fun _ hlam => aux_smul_mem_segment U.c hlam)
       (aux_point U.c).isBounded_construct

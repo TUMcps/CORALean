@@ -21,7 +21,7 @@ bounded.
 
 -- Authors:       Tobias Ladner
 -- Written:       18-August-2026
--- Last update:   ---
+-- Last update:   02-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -39,15 +39,20 @@ variable [Mtimes ℐ S]
 
 omit [∀ n, Reduce (S n) (Vec ℝ n)] in
 set_option maxHeartbeats 1000000 in
-theorem LinearSys.Trajectory.timeInterval_outer {sys : LinearSys 𝕋 n} {R₀ U Ud : S n}
-    {x u : ℝ → Vec ℝ n} {r : ℝ} (traj : sys.Trajectory R₀ U x u) (hr : 0 < r) {m : ℕ}
+/-- One step and nothing more: the domain has to cover `[0, r]` only, which is
+what makes this a statement about a hybrid location or a single linearization
+step rather than about a whole run. -/
+theorem LinearSys.Trajectory.timeInterval_outer {sys : LinearSys 𝕋 n} {T : Set ℝ}
+    {R₀ U Ud : S n} {x u : ℝ → Vec ℝ n} {r : ℝ} (traj : sys.Trajectory T R₀ U x u)
+    (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
     (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}
     (ht0 : 0 ≤ t) (htr : t ≤ r)
     (hU : Bornology.IsBounded (construct U))
     (hUd : (∫ s in (0:ℝ)..t, exp ((t - s) • toRealMat sys.A) *ᵥ u s) ∈ construct Ud) :
     x t ∈ construct (Plus.plus (sys.timeIntervalStep r (m + 2) R₀) Ud) := by
-  have hvoc := traj.variation_of_constants (le_refl (0:ℝ)) ht0
-    (traj.intervalIntegrable_input (le_refl (0:ℝ)) ht0 hU)
+  have hTt : Set.Icc (0:ℝ) t ⊆ T := fun s hs => hT ⟨hs.1, le_trans hs.2 htr⟩
+  have hvoc := traj.variation_of_constants hTt ht0
+    (traj.intervalIntegrable_input hTt ht0 hU)
   rw [sub_zero] at hvoc
   rw [hvoc]
   refine Plus.plus_outer _ _ (Set.add_mem_add ?_ hUd)
@@ -59,8 +64,8 @@ omit [∀ n, Reduce (S n) (Vec ℝ n)] in
 a single enclosure for the whole step; everything else is a property of `U` that
 a representation supplies. -/
 theorem LinearSys.Trajectory.timeInterval_outer_inputSolution {sys : LinearSys 𝕋 n}
-    {R₀ U : S n} {x u : ℝ → Vec ℝ n} {r : ℝ} (traj : sys.Trajectory R₀ U x u)
-    (hr : 0 < r) {m : ℕ}
+    {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n} {r : ℝ} (traj : sys.Trajectory T R₀ U x u)
+    (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
     (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}
     (ht0 : 0 ≤ t) (htr : t ≤ r)
     (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
@@ -74,8 +79,8 @@ theorem LinearSys.Trajectory.timeInterval_outer_inputSolution {sys : LinearSys �
     (h0 : (0 : Vec ℝ n) ∈ construct U) :
     x t ∈ construct (Plus.plus (sys.timeIntervalStep r (m + 2) R₀)
       (sys.inputSolution r (m + 2) U)) :=
-  traj.timeInterval_outer hr hε ht0 htr hbdd
-    (traj.inputSolution_timeInterval_outer hr (m + 2) hε hconv hclosed hbdd
+  traj.timeInterval_outer hr hT hε ht0 htr hbdd
+    (traj.inputSolution_timeInterval_outer hr hT (m + 2) hε hconv hclosed hbdd
       hRconv hRclosed hRbdd h0 ht0 htr)
 
 end CORALean.Real

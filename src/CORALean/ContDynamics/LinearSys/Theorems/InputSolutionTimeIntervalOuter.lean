@@ -18,7 +18,7 @@ monotonicity happens among sets of points and never among their enclosures —
 
 -- Authors:       Tobias Ladner
 -- Written:       01-September-2026
--- Last update:   ---
+-- Last update:   02-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -61,8 +61,8 @@ set_option maxHeartbeats 400000 in
 enclosure computed for the whole step, once `U` contains the origin. -/
 theorem LinearSys.Trajectory.inputSolution_timeInterval_outer
     [Mtimes ℐ S]
-    {sys : LinearSys 𝕋 n} {R₀ U : S n} {x u : ℝ → Vec ℝ n} {r : ℝ}
-    (traj : sys.Trajectory R₀ U x u) (hr : 0 < r) (η : ℕ)
+    {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n} {r : ℝ}
+    (traj : sys.Trajectory T R₀ U x u) (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) (η : ℕ)
     (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
     (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
     (hbdd : Bornology.IsBounded (construct U))
@@ -76,9 +76,10 @@ theorem LinearSys.Trajectory.inputSolution_timeInterval_outer
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) :
     (∫ s in (0:ℝ)..t, exp ((t - s) • toRealMat sys.A) *ᵥ u s)
       ∈ construct (sys.inputSolution r η U) := by
+  have hTt : Set.Icc (0:ℝ) t ⊆ T := fun s hs => hT ⟨hs.1, le_trans hs.2 htr⟩
   have hmemt : (∫ s in (0:ℝ)..t, exp ((t - s) • toRealMat sys.A) *ᵥ u s)
       ∈ sys.inputReach U t :=
-    ⟨u, fun s hs => traj.input s hs.1, traj.aestronglyMeasurable_input le_rfl, rfl⟩
+    ⟨u, fun s hs => traj.input s (hTt hs), traj.aestronglyMeasurable_input hTt, rfl⟩
   exact sys.inputReach_subset_inputSolution hr η hε hconv hclosed hbdd hRconv hRclosed hRbdd
     (sys.inputReach_mono hbdd h0 ht0 htr hmemt)
 
