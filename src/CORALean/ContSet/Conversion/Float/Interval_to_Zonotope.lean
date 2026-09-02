@@ -53,53 +53,57 @@ def Interval.zonotope (I : Interval 𝕋 n) : Zonotope 𝕋 n where
   G := diagonalBlock I.radiusFrom
   E := ⟨fun _ => zero, fun _ => zero⟩
 
-theorem Interval.subset_zonotope (I : Interval 𝕋 n) :
-    I.construct ⊆ I.zonotope.construct := by
+/-- The generators alone already cover the box, before the error box is even
+consulted — which is what lets a caller read off coefficients directly. -/
+theorem Interval.subset_nominal_zonotope (I : Interval 𝕋 n) :
+    I.construct ⊆ InflatedContSet.nominalSet I.zonotope := by
   intro x hx
   have hlo : ∀ i, toReal (I.inf i) ≤ x i := fun i => (hx i).1
   have hhi : ∀ i, x i ≤ toReal (I.sup i) := fun i => (hx i).2
   have hreach : ∀ i, toReal (I.center i) - toReal (I.radiusFrom i) ≤ x i
       ∧ x i ≤ toReal (I.center i) + toReal (I.radiusFrom i) := fun i =>
     ⟨le_trans (I.reaches i).1 (hlo i), le_trans (hhi i) (I.reaches i).2⟩
-  have hnom : x ∈ InflatedContSet.nominalSet I.zonotope := by
-    refine ⟨fun i => if toReal (I.radiusFrom i) = 0 then 0
-        else (x i - toReal (I.center i)) / toReal (I.radiusFrom i), fun i => ?_, ?_⟩
-    · by_cases h : toReal (I.radiusFrom i) = 0
-      · simp only [if_pos h, abs_zero]
-        norm_num
-      · have hpos : 0 < toReal (I.radiusFrom i) :=
-          lt_of_le_of_ne (by linarith [(hreach i).1, (hreach i).2]) (Ne.symm h)
-        simp only [if_neg h]
-        rw [abs_div, abs_of_pos hpos, div_le_one hpos, abs_le]
-        constructor <;> linarith [(hreach i).1, (hreach i).2]
-    · funext i
-      have hsum : (∑ j : Fin n, (if toReal (I.radiusFrom j) = 0 then (0:ℝ)
-            else (x j - toReal (I.center j)) / toReal (I.radiusFrom j)) •
-              (fun i => toReal (diagonalBlock I.radiusFrom i j) : Vec ℝ n)) i
-          = (if toReal (I.radiusFrom i) = 0 then (0:ℝ)
-              else (x i - toReal (I.center i)) / toReal (I.radiusFrom i))
-            * toReal (I.radiusFrom i) := by
-        rw [Finset.sum_apply, Finset.sum_eq_single i]
-        · simp [toReal_diagonalBlock, Matrix.diagonal_apply_eq, toRealVec]
-        · intro j _ hj
-          have hij : i ≠ j := Ne.symm hj
-          simp [toReal_diagonalBlock, Matrix.diagonal_apply_ne _ hij]
-        · intro hc
-          exact absurd (Finset.mem_univ i) hc
-      show x i = ((fun i => toReal (I.center i) : Vec ℝ n)
-        + ∑ j : Fin n, (if toReal (I.radiusFrom j) = 0 then (0:ℝ)
+  refine ⟨fun i => if toReal (I.radiusFrom i) = 0 then 0
+      else (x i - toReal (I.center i)) / toReal (I.radiusFrom i), fun i => ?_, ?_⟩
+  · by_cases h : toReal (I.radiusFrom i) = 0
+    · simp only [if_pos h, abs_zero]
+      norm_num
+    · have hpos : 0 < toReal (I.radiusFrom i) :=
+        lt_of_le_of_ne (by linarith [(hreach i).1, (hreach i).2]) (Ne.symm h)
+      simp only [if_neg h]
+      rw [abs_div, abs_of_pos hpos, div_le_one hpos, abs_le]
+      constructor <;> linarith [(hreach i).1, (hreach i).2]
+  · funext i
+    have hsum : (∑ j : Fin n, (if toReal (I.radiusFrom j) = 0 then (0:ℝ)
           else (x j - toReal (I.center j)) / toReal (I.radiusFrom j)) •
             (fun i => toReal (diagonalBlock I.radiusFrom i j) : Vec ℝ n)) i
-      rw [Pi.add_apply, hsum]
-      by_cases h : toReal (I.radiusFrom i) = 0
-      · rw [if_pos h, zero_mul, add_zero]
-        have h₁ := (hreach i).1
-        have h₂ := (hreach i).2
-        rw [h] at h₁ h₂
-        linarith
-      · rw [if_neg h, div_mul_cancel₀ _ h]
-        ring
-  exact ⟨x, hnom, 0, fun i => by
+        = (if toReal (I.radiusFrom i) = 0 then (0:ℝ)
+            else (x i - toReal (I.center i)) / toReal (I.radiusFrom i))
+          * toReal (I.radiusFrom i) := by
+      rw [Finset.sum_apply, Finset.sum_eq_single i]
+      · simp [toReal_diagonalBlock, Matrix.diagonal_apply_eq, toRealVec]
+      · intro j _ hj
+        have hij : i ≠ j := Ne.symm hj
+        simp [toReal_diagonalBlock, Matrix.diagonal_apply_ne _ hij]
+      · intro hc
+        exact absurd (Finset.mem_univ i) hc
+    show x i = ((fun i => toReal (I.center i) : Vec ℝ n)
+      + ∑ j : Fin n, (if toReal (I.radiusFrom j) = 0 then (0:ℝ)
+        else (x j - toReal (I.center j)) / toReal (I.radiusFrom j)) •
+          (fun i => toReal (diagonalBlock I.radiusFrom i j) : Vec ℝ n)) i
+    rw [Pi.add_apply, hsum]
+    by_cases h : toReal (I.radiusFrom i) = 0
+    · rw [if_pos h, zero_mul, add_zero]
+      have h₁ := (hreach i).1
+      have h₂ := (hreach i).2
+      rw [h] at h₁ h₂
+      linarith
+    · rw [if_neg h, div_mul_cancel₀ _ h]
+      ring
+
+theorem Interval.subset_zonotope (I : Interval 𝕋 n) :
+    I.construct ⊆ I.zonotope.construct := fun x hx =>
+  ⟨x, I.subset_nominal_zonotope hx, 0, fun i => by
     show toReal (zero : 𝕋) ≤ (0 : Vec ℝ n) i ∧ (0 : Vec ℝ n) i ≤ toReal (zero : 𝕋)
     rw [toReal_zero]
     exact ⟨le_refl 0, le_refl 0⟩, by show x + 0 = x; rw [add_zero]⟩

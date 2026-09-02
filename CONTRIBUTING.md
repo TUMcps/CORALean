@@ -41,8 +41,8 @@ representations of equal standing cannot each import the other, so
 is a cycle Lean rejects. One file per ordered pair keeps a new pair to a file
 rather than a directory, and keeps every representation independent of every
 other. All twenty ordered pairs of `Interval`, `Zonotope`, `HPolytope`,
-`VPolytope` and `ConZonotope` are there in the exact layer, eighteen in the
-float one; the declaration is named for the target, as in CORA, where
+`VPolytope` and `ConZonotope` are there in both layers; the declaration is
+named for the target, as in CORA, where
 `interval(zonotope)` is how a zonotope becomes a box.
 
 An operation may be *implemented* by conversion — `VPolytope.and` goes out to
