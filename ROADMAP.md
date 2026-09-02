@@ -9,7 +9,7 @@ no dependencies are the ones that can start.
 | Branch | Work |
 | --- | --- |
 | `feat/float-polyzono` | The float layer for polynomial zonotopes, constrained and not |
-| `feat/float-nn` | The float layer for the network layers, where every relaxation constant rounds |
+| `feat/float-transcendental` | A directed-rounding exponential, which is all that stands between sigmoid and tanh and a float layer |
 
 Next after those: the float layers that remain, the conversions the newest
 representations do not yet have, more layers, and `restructure`.
@@ -95,6 +95,19 @@ set. Separating directions and halfspace bounds discharge it.
 enclosure, and the standard layers: linear, ReLU, sigmoid, tanh. Robust
 classification as a specification.
 
+In float: the relaxation, the activation layer, linear and ReLU. The relaxation
+absorbs the rounding by itself — `sound` states an inequality against `error`,
+so nothing constrains the slope or the offset, and the float structure is the
+exact one with the scalar swapped. Only the layer constructors needed
+duplicating: `Layer` is a structure over any `ContSet` at a real vector, which a
+float representation is through `InflatedContSet`, so the network, propagation
+and the robustness bounds run at a float zonotope unchanged.
+
+ReLU's secant is a division and the float scalar has none. It does not need one:
+the slope is a precision knob, never a correctness condition, so any candidate
+becomes legal by clamping into `[0,1]` with `minimum` and `maximum`, which are
+exact. Only the gap rounds.
+
 **Closed loops.** `NeurNetContrSysDT`, a network controlling a discrete plant,
 and `NeurNetContrSys`, the sampled continuous one: the controller has its own
 sampling time and the input is held across it, so `reach` recurses on the
@@ -164,9 +177,9 @@ Ordered roughly by what unblocks the most.
   order-reduction choice is a precision knob throughout reachability. Only one
   is formalized.
 - **Float layers** for the representations that do not have one. `Interval`,
-  `Zonotope`, `HPolytope`, `VPolytope` and `ConZonotope` carry both; `Ellipsoid`,
-  `PolyZonotope` and `ConPolyZono` carry only `Real`, as do the reduction
-  methods. This is the largest gap in the repository, and it is a gap in kind
+  `Zonotope`, `HPolytope`, `VPolytope` and `ConZonotope` carry both; `Ellipsoid`
+  carries only `Real`, as do the reduction methods, and `PolyZonotope` with
+  `ConPolyZono` are in flight. This is the largest gap in the repository, and it is a gap in kind
   rather than in coverage: a `Real` definition specifies something no machine
   runs. New work is expected to carry both layers — see `CONTRIBUTING.md`.
 
@@ -213,10 +226,11 @@ Ordered roughly by what unblocks the most.
 
 ### Neural networks
 
-- **The float layer** — needs the two box classes at `Interval 𝕋 n`. Every layer
-  is affected: a relaxation's slope, offset and error are all real numbers a
-  machine has to round, and the rounding belongs in the error term where the
-  soundness argument already absorbs it.
+- **Sigmoid and tanh in float** — in flight, and blocked on the scalar rather
+  than on the layer. `ofMonotone` asks only for the activation's value at the
+  ends of a neuron's range, and `FloatOps` has no `exp`, no division and no
+  series with which to enclose it. The only enclosure available without one is
+  the constant range, which discards everything the layer computes bounds for.
 - **More layers** — softmax, batch normalization, convolution, pooling,
   reshape, and the composite layers CORA builds from them.
 - **A constant-input step.** The closed loop's trajectory carries the constancy
@@ -231,6 +245,16 @@ Ordered roughly by what unblocks the most.
   `Relaxation` field is already where it would go.
 - **Verification beyond propagation** — refinement by splitting the input set,
   which is what makes the method complete in practice.
+
+### The float scalar
+
+- **Division.** `FloatOps` has none, in either direction. Two things have wanted
+  it — ReLU's secant, which worked around its absence because a slope is only a
+  precision knob, and an exponential series, which cannot. Adding it enlarges an
+  interface every instance must satisfy, and for `Dyadic` a quotient of two
+  dyadic rationals is not dyadic, so directed rounding there is a real
+  definition rather than a wrapper.
+- **The transcendental functions** beyond `exp`, once `exp` lands.
 
 ### Infrastructure
 
