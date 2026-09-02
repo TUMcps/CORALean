@@ -1,6 +1,7 @@
 import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombOuter
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MapExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.PlusExact
+import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceOuter
 
 /-!
 # What `PolyZonotope` instantiates
@@ -8,20 +9,22 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.PlusExact
 Each obligation is a theorem from `Theorems`, the exact ones read in the `⊆`
 direction.
 
-`Plus` and `LinComb` sit at every ambient type rather than at `Vec`, unlike
-`Zonotope`'s, which `reduce` pins down: nothing this representation computes
-needs coordinates. `Mtimes` is the exception, since its whole point is moving
-between dimensions.
+`Plus` and `LinComb` sit at every ambient type rather than at `Vec`: neither
+needs coordinates. `Reduce` pins down `Vec`, as `Zonotope`'s does, since a
+generator ranking and a box are both entrywise. `Mtimes` is the exception again,
+its whole point being to move between dimensions.
 
 `quadMap` has no class to instantiate and gets none: no other representation
 here computes it, and a class one representation implements is a name, not an
 interface. A caller that wants it names `PolyZonotope.quadMap`.
 
-No `Reduce`. Order reduction here is not the zonotope's generator ranking: it
-also has to merge equal exponent columns and drop the factors that fall out of
-use, and an unreduced exponent matrix is what makes the bound on the order
-meaningless. Left out rather than faked — a representation owes nothing it
-cannot compute.
+`Reduce` bounds the *dependent* generator count. That is what the class field
+offers — one number — and what the independent block does under an order bound
+is a second question `reduce` does not answer; the operation's docstring says
+so.
+
+Noncomputable, twice over: `compact` decides whether a generator of a real
+module is zero, and the ranking orders reals.
 -/
 
 -- Authors:       Tobias Ladner
@@ -44,6 +47,10 @@ instance : Plus (PolyZonotope α) α where
 noncomputable instance : LinComb (PolyZonotope α) α where
   linComb := PolyZonotope.linComb
   linComb_outer := PolyZonotope.linComb_outer
+
+noncomputable instance : Reduce (PolyZonotope (Vec ℝ n)) (Vec ℝ n) where
+  reduce := PolyZonotope.reduce
+  reduce_outer := PolyZonotope.reduce_outer
 
 instance : Mtimes (Mat ℝ) (fun n => PolyZonotope (Vec ℝ n)) where
   mtimes := PolyZonotope.mtimes
