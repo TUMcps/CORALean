@@ -1,0 +1,62 @@
+import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+import CORALean.NN.NeuralNetwork
+
+/-!
+# A neural network in the loop of a discrete-time plant: the representation
+
+CORA's `neurNetContrSys` at a `LinearSysDT`: the controller reads the state and
+produces the input, `u(k) = π(x(k))`, and the plant advances
+`x(k+1) = A x(k) + u(k)`. One controller invocation per plant step, so the
+sampling rate is the plant's rate and there is no inter-sample behaviour to
+describe. `NeurNetContrSys` is the continuous-time loop, where the two rates
+come apart.
+
+No `B`. `LinearSysDT` carries only `A`, so the plant's input is already in state
+coordinates, and `B u` is `Layer.linear B 0`, exact at every representation the
+controller's own linear layers already ask for. A controller with `m` actuators
+is therefore an `m`-wide network with that layer appended, and giving the loop a
+`B` field would put an actuation matrix in it that the plant it drives does not
+have.
+
+The system is indexed by the set representation, which no other system class in
+`ContDynamics` is. That is `Layer` carrying `propagate` and its soundness as
+fields: a network here is an object over a representation rather than a
+function, so a loop containing one inherits the index.
+
+`Trajectory` is the substantive departure from the rest of `ContDynamics`. There
+is no input set and no free input — the controller is a function, so a run is
+the orbit of `map` from a point of `R₀` and the predicate says nothing beyond
+where it started. `Theorems.TrajectoryIterate` states exactly that, rather than
+leaving it implied.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       02-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+namespace CORALean.Real
+
+open Matrix ContSet Scalar
+
+variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+
+structure NeurNetContrSysDT (𝕋 : Type) (S : ℕ → Type)
+    [∀ n, ContSet (S n) (Vec ℝ n)] (n : ℕ) where
+  plant : LinearSysDT 𝕋 n
+  contr : NeuralNetwork S n n
+
+/-- One step of the closed loop, and it is a function: the controller reads the
+state, so nothing along a run is chosen. -/
+def NeurNetContrSysDT.map (sys : NeurNetContrSysDT 𝕋 S n) (x : Vec ℝ n) : Vec ℝ n :=
+  toRealMat sys.plant.A *ᵥ x + sys.contr.eval x
+
+/-- One admissible run. No `input` field and no input set: the only freedom is
+the initial state. -/
+structure NeurNetContrSysDT.Trajectory (sys : NeurNetContrSysDT 𝕋 S n) (R₀ : S n)
+    (x : ℕ → Vec ℝ n) : Prop where
+  init : x 0 ∈ construct R₀
+  step (k : ℕ) : x (k + 1) = toRealMat sys.plant.A *ᵥ x k + sys.contr.eval (x k)
+
+end CORALean.Real

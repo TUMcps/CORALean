@@ -1,6 +1,7 @@
 import CORALean.Examples.BouncingBall
 import CORALean.Examples.ConversionRoundTrip
 import CORALean.Examples.FeedForward
+import CORALean.Examples.NeurNetControl
 import CORALean.Examples.PolyZonotopeReach
 import CORALean.Examples.ReachSpecializations
 
