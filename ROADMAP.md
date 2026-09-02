@@ -149,7 +149,12 @@ Ordered roughly by what unblocks the most.
 - **`Reduce` methods** — CORA has `girard`, `pca`, `combastel`, `methC`, and the
   order-reduction choice is a precision knob throughout reachability. Only one
   is formalized.
-- **Float layers** for every representation added above.
+- **Float layers** for the representations that do not have one. `Interval`,
+  `Zonotope`, `HPolytope`, `VPolytope` and `ConZonotope` carry both; `Ellipsoid`,
+  `PolyZonotope` and `ConPolyZono` carry only `Real`, as do the reduction
+  methods. This is the largest gap in the repository, and it is a gap in kind
+  rather than in coverage: a `Real` definition specifies something no machine
+  runs. New work is expected to carry both layers — see `CONTRIBUTING.md`.
 
 ### Dynamics
 
@@ -178,6 +183,7 @@ Ordered roughly by what unblocks the most.
 
 ### Hybrid systems
 
+- **The float layer** — a location's sets, a guard and a reset all round.
 - **A bounded-horizon invariant.** What chains today is an *inductive* invariant:
   a set per location closed under flowing and under jumping. Once jumps are in
   play there is no step index, so a location visited twice is answered by the
@@ -193,7 +199,10 @@ Ordered roughly by what unblocks the most.
 
 ### Neural networks
 
-- **The float layer** — needs the two box classes at `Interval 𝕋 n`.
+- **The float layer** — needs the two box classes at `Interval 𝕋 n`. Every layer
+  is affected: a relaxation's slope, offset and error are all real numbers a
+  machine has to round, and the rounding belongs in the error term where the
+  soundness argument already absorbs it.
 - **More layers** — softmax, batch normalization, convolution, pooling,
   reshape, and the composite layers CORA builds from them.
 - **`NeurNetContrSys`** — a network in the loop of a continuous system, which is

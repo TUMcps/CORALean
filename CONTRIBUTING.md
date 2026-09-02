@@ -265,6 +265,15 @@ float operation pays its rounding into an interval error box via
 `Global.Scalar` reads a matrix of it as a real one, which is how a guarantee
 stated once covers both layers.
 
+**The float layer is part of the work, not a follow-up.** New work carries both
+layers wherever it can, and a contribution that lands only the `Real` half must
+say why in its module docstring — not as an apology, but because the reason is
+usually informative: the operation is a specification with nothing to round, or
+it needs a decidable order the float scalar has and ℝ does not, or the rounding
+has a genuine design choice behind it. A real definition alone is a specification
+of something no machine runs, and it is far cheaper to refine an operation while
+its proof is still in hand than to come back to it.
+
 ## Certificates, not algorithms
 
 Several operations have no definition — a Minkowski sum of halfspace
