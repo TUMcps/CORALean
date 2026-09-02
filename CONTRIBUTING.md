@@ -36,6 +36,8 @@ src/CORALean/
                    reachability at the sample times by sampling into
                    LinearSysDT, and an enclosure over a whole step
       MatExp/      enclosing e^{A dt}, which is what a step is taken against
+  HybridDynamics/  locations, transitions and the automaton; a run alternates
+                   flowing inside a location with jumping between them
   NN/              neural network verification: propagating an input set through
                    a graph of layers, and checking the result
     Layers/        the standard layers, one file each; every activation is a
