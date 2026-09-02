@@ -42,9 +42,6 @@ build:
         echo "https://oauth2:${GH_TOKEN}@github.com" > ~/.git-credentials
         chmod 600 ~/.git-credentials
       fi
-    # Mathlib's history is over a gigabyte and `index-pack` is the memory-hungry
-    # part of receiving it. One thread is slower and survives a small runner.
-    - git config --global pack.threads 1
     - export PATH="$ELAN_HOME/bin:$PATH"
     - |
       curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
