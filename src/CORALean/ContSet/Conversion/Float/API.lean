@@ -2,11 +2,13 @@ import CORALean.ContSet.Conversion.Float.ConZonotope_to_HPolytope
 import CORALean.ContSet.Conversion.Float.ConZonotope_to_Interval
 import CORALean.ContSet.Conversion.Float.ConZonotope_to_VPolytope
 import CORALean.ContSet.Conversion.Float.ConZonotope_to_Zonotope
+import CORALean.ContSet.Conversion.Float.ContSet_to_Interval
 import CORALean.ContSet.Conversion.Float.HPolytope_to_ConZonotope
 import CORALean.ContSet.Conversion.Float.HPolytope_to_Interval
 import CORALean.ContSet.Conversion.Float.HPolytope_to_VPolytope
 import CORALean.ContSet.Conversion.Float.HPolytope_to_Zonotope
 import CORALean.ContSet.Conversion.Float.Interval_to_ConZonotope
+import CORALean.ContSet.Conversion.Float.Interval_to_ContSet
 import CORALean.ContSet.Conversion.Float.Interval_to_HPolytope
 import CORALean.ContSet.Conversion.Float.Interval_to_VPolytope
 import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
@@ -40,6 +42,11 @@ box can turn that entrywise gap into.
 
 Several round nowhere at all: corners of a box are stored bounds copied, and a
 hull becomes a constrained zonotope by renaming its fields.
+
+`ContSet_to_Interval` and `Interval_to_ContSet` are the two pairs whose other
+side is a variable, as in the exact layer. Here the box comes back in the scalar
+the representation stores, so the class carries `𝕋` as an `outParam` and a
+caller still writes only `IntervalOuter S`.
 
 One pair is weaker than its exact counterpart. `ConZonotope.vPolytopeBox` goes
 through a box, where the exact layer enumerates the coefficient domain's
