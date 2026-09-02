@@ -1,10 +1,17 @@
+import CORALean.ContDynamics.NonlinearSys.AbstractionError
 import CORALean.ContDynamics.NonlinearSys.NonlinearSys
+import CORALean.ContDynamics.NonlinearSys.Operations.API
 import CORALean.ContDynamics.NonlinearSys.Theorems.API
 
 /-!
 # Nonlinear systems, collected
 
-The representation and what a trajectory of it is, and nothing more. Fixing that
-interface is what the reachability development will be stated against, so it is
-worth having settled before the algorithms arrive.
+The representation and what a trajectory of it is, and then reachability by
+conservative linearization: `AbstractionError` is the certificate the method
+runs on, `Operations` computes the linear system and the input set it has to be
+given, and `Theorems` shows a confined run is a run of that linear system.
+
+No derivative appears anywhere in the directory. What CORA obtains from an
+interval Hessian is asked for as a certificate instead, so how the abstraction
+error was computed is outside the trusted base.
 -/

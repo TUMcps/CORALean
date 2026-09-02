@@ -165,7 +165,19 @@ report "$out"
 
 # Every module reachable from the root, so a file that was written but never
 # collected is caught rather than silently left out of the build.
-out=$(printf '%s\n' "$files" | xargs awk '
+#
+# The file list reaches awk through a list file rather than the command line.
+# `xargs` splits an argument list that does not fit — on Windows the limit is
+# 32 KB, and the environment a git hook adds is enough to cross it at this
+# repository size — and each batch would then walk a partial import graph and
+# report every module it happened not to see an importer for. The per-file pass
+# above tolerates a split; this one cannot, since it is global by nature.
+list=$(mktemp)
+trap 'rm -f "$list"' EXIT INT TERM
+printf '%s\n' "$files" > "$list"
+
+out=$(awk -v LIST="$list" '
+BEGIN { while ((getline f < LIST) > 0) if (f != "") ARGV[ARGC++] = f }
 function moduleOf(path,   m) {
   m = path; sub(/^src\//, "", m); sub(/\.lean$/, "", m); gsub("/", ".", m)
   return m
