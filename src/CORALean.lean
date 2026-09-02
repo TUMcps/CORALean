@@ -4,6 +4,7 @@ import CORALean.ContSet.API
 import CORALean.Specification.API
 import CORALean.ContDynamics.API
 import CORALean.NN.API
+import CORALean.Examples.API
 
 /-!
 # CORALean
