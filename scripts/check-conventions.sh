@@ -12,6 +12,12 @@
 
 set -eu
 
+# Byte semantics everywhere, so the checks read the same under gawk and mawk;
+# `charlen` is what turns bytes back into characters where that is what is
+# meant. Without this a line of ℝ and ⊆ counts as over-long in CI and not here.
+LC_ALL=C
+export LC_ALL
+
 cd "$(dirname "$0")/.."
 
 status=0
@@ -28,6 +34,12 @@ files=$(find src -name '*.lean' | sed 's#\\#/#g' | sort)
 # Per-file conventions, one pass. `depth` tracks nesting of `/- -/` across
 # lines, so a docstring mentioning `aux_` or `sorry` is not mistaken for code.
 out=$(printf '%s\n' "$files" | xargs awk '
+BEGIN { CONT = "[\200-\277]" }
+
+# Characters, not bytes: every byte of a UTF-8 sequence but the first is a
+# continuation byte, so dropping those counts the characters.
+function charlen(s,   t) { t = s; gsub(CONT, "", t); return length(t) }
+
 function strip(line,   out, i, c, n) {
   out = ""; i = 1; n = length(line)
   while (i <= n) {
@@ -100,13 +112,14 @@ FNR == 1 {
   if (prev != "") check(prev)
   prev = FILENAME
   depth = 0; nimp = 0; docLine = 0; authorLine = 0; codeLine = 0
-  delete declAux; delete useAux; delete imp; delete impLine
+  # `split("", a)` rather than `delete a`, which older mawk does not have
+  split("", declAux); split("", useAux); split("", imp); split("", impLine)
 }
 
 {
   raw = $0
-  if (length(raw) > 100)
-    say(FILENAME ":" FNR ": line is " length(raw) " characters, over the limit of 100")
+  if (charlen(raw) > 100)
+    say(FILENAME ":" FNR ": line is " charlen(raw) " characters, over the limit of 100")
   if (raw ~ /[ \t]$/)
     say(FILENAME ":" FNR ": trailing whitespace")
   if (raw ~ /\t/)

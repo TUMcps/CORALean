@@ -3,7 +3,8 @@
 # a second — it does not build, and a commit that passes here can still fail to
 # compile.
 #
-# Enable with:  git config core.hooksPath .githooks
-# Skip once with:  git commit --no-verify
+# Required, not optional: `git config core.hooksPath .githooks` is part of
+# setting the repository up, and CI runs the same script so a commit that
+# bypasses it fails there instead.
 
 exec sh "$(git rev-parse --show-toplevel)/scripts/check-conventions.sh"

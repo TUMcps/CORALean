@@ -133,12 +133,16 @@ that nothing is `sorry` or `axiom`, and that every module is reachable from the
 root, so a file written but never collected is caught rather than silently left
 out of the build.
 
-It is text only: no Lean, no build, no network, about a second. Run it directly,
-or install it as a hook with
+It is text only: no Lean, no build, no network, about a second — which is why it
+runs on every commit rather than on request. Setting a clone up means
 
 ```
 git config core.hooksPath .githooks
 ```
+
+That line is required, not a convenience: git cannot ship an enabled hook in a
+repository, so this is the one setup step. CI runs the same script as its own
+job, so a commit that bypasses the hook fails there instead.
 
 The parsing is deliberately shallow — comments are stripped by a two-character
 scanner and declarations are matched at the start of a line — which is what
