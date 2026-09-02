@@ -51,6 +51,21 @@ build:
   interruptible: false
   before_script:
     - apt-get update -qq && apt-get install -y -qq --no-install-recommends curl git ca-certificates
+    # GitHub rate-limits anonymous clones per IP, and a shared university runner
+    # reaches that limit. It answers 403, git reads that as "needs credentials",
+    # and with prompts disabled the job dies at the ref listing. A token lifts
+    # the limit by two orders of magnitude and is the actual fix; without one the
+    # backoff below is what gets through, since the limit is per window and the
+    # job-level `retry` restarts immediately rather than waiting.
+    - |
+      if [ -n "${GH_TOKEN:-}" ]; then
+        git config --global credential.helper store
+        printf 'https://oauth2:%s@github.com\n' "$GH_TOKEN" > ~/.git-credentials
+        chmod 600 ~/.git-credentials
+        echo "github: authenticated"
+      else
+        echo "github: anonymous — set GH_TOKEN to lift the rate limit"
+      fi
     # Clone Mathlib ourselves, blobless. `lake exe cache get` otherwise clones it
     # from inside dependency resolution, taking the whole history — over a
     # gigabyte — with no progress output, which is what looks like a hang. A
@@ -60,7 +75,18 @@ build:
       REV=$(sed -n 's/.*"rev": "\([0-9a-f]\{40\}\)".*/\1/p' lake-manifest.json | head -1)
       echo "mathlib rev: $REV"
       mkdir -p .lake/packages
-      git clone --filter=blob:none --no-checkout --progress https://github.com/leanprover-community/mathlib4.git .lake/packages/mathlib
+      n=0
+      until git clone --filter=blob:none --no-checkout --progress \
+          https://github.com/leanprover-community/mathlib4.git .lake/packages/mathlib; do
+        n=$((n + 1))
+        if [ "$n" -ge 3 ]; then
+          echo "mathlib clone failed three times — GitHub is refusing this runner"
+          exit 1
+        fi
+        rm -rf .lake/packages/mathlib
+        echo "clone failed; waiting $((n * 120))s for the rate-limit window"
+        sleep $((n * 120))
+      done
       git -C .lake/packages/mathlib checkout --progress "$REV"
     - export PATH="$ELAN_HOME/bin:$PATH"
     - |
@@ -69,7 +95,19 @@ build:
     - elan toolchain install "$(cat lean-toolchain)"
     - lake --version
   script:
-    - lake exe cache get
+    # This resolves the eight remaining dependencies, so it clones from GitHub
+    # too and hits the same limit; the same backoff applies.
+    - |
+      n=0
+      until lake exe cache get; do
+        n=$((n + 1))
+        if [ "$n" -ge 3 ]; then
+          echo "dependency resolution failed three times"
+          exit 1
+        fi
+        echo "cache get failed; waiting $((n * 120))s for the rate-limit window"
+        sleep $((n * 120))
+      done
     # A warning is a failure: the tree is warning-free, and Mathlib's linters are
     # what catch unused hypotheses and stray `Try this` suggestions. Matched on
     # `src/` so that a partial Mathlib cache, which compiles Mathlib and may warn,
