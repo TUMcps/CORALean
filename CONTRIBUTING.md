@@ -114,6 +114,34 @@ Bundling the binders of a generic file into a `class abbrev` was tried and
 reverted: each use adds an unfolding step to instance search, which produced
 timeouts rather than slow proofs at the heartbeat limit of the time.
 
+## Landing work
+
+Nothing is pushed to `main`. Every change — a new representation, a CI fix, a
+one-line typo — reaches it through a merge request, so that what landed and why
+is reviewable after the fact rather than reconstructible from a commit message.
+
+```
+git switch -c <topic>
+git push -u origin <topic> -o merge_request.create \
+  -o merge_request.target=main \
+  -o merge_request.title="..." -o merge_request.description="..."
+```
+
+Pass the description. Without it GitLab fills one in from the body of the
+branch's *first* commit, which describes an early step rather than the change,
+and drags the commit trailers in with it. Push options reject newlines, so a
+multi-paragraph description is folded with `<br>`.
+
+Merge requests are squashed on merge: a branch lands as one commit, and the
+merge request keeps the history of how it got there. Merge through GitLab rather
+than locally — a local `git merge --squash` produces content GitLab cannot match
+to the branch, so the merge request ends up *closed* rather than *merged* and
+its review is lost.
+
+`.githooks/pre-push` refuses a direct push to `main`, and the protected-branch
+setting on the server is what enforces it for a clone that has not run the
+`core.hooksPath` line below.
+
 ## Tooling
 
 `.mcp.json` registers the [lean-lsp](https://github.com/oOo0oOo/lean-lsp-mcp)

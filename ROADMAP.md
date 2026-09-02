@@ -6,15 +6,14 @@ no dependencies are the ones that can start.
 
 ## In flight
 
-| Branch | Work |
+| Merge request | Work |
 | --- | --- |
-| `refactor/dynamics-interfaces` | One file per operation in `ContDynamics`, and reachability stated once against a convexity/compactness class instead of once per representation |
-| `feat/poly-zonotope` | `PolyZonotope`, `Real` layer: the type, `plus`, `map`, and the three conversions that check the definition |
-| `feat/ellipsoid` | `Ellipsoid`, `Real` layer, stored by generator matrix rather than shape matrix; the support function in closed form, and the tight box that follows from it |
+| !3 `feat/ellipsoid` | `Ellipsoid`, `Real` layer, stored by generator matrix rather than shape matrix; the support function in closed form, and the tight box that follows from it. Reviewed and built clean; awaiting merge. |
+| !4 `feat/poly-zonotope` | `PolyZonotope`, `Real` layer, including `quadMap` exact. Awaiting review. |
 
-Next up, in rough order: conversions for the two new representations, a
-curvature-based relaxation for sigmoid and tanh, nonlinear reachability by
-conservative linearization, and the float layers.
+Next up, in rough order: the conversions the two new representations do not yet
+have, a curvature-based relaxation for sigmoid and tanh, nonlinear reachability
+by conservative linearization, and the float layers.
 
 ## Done
 
@@ -29,7 +28,8 @@ conversions in each layer. `InflatedContSet` is what the float layer adds.
 
 **Dynamics.** `LinearSysDT` with reachability. `LinearSys`: the flow in closed
 form, the matrix exponential enclosure, discretization, the input solution, the
-time-interval enclosure, and reachability at the sample times.
+time-interval enclosure, and reachability at the sample times — stated once
+against `ConvexSet` and `CompactSet` rather than once per representation.
 `NonlinearSys` has the representation and its trajectories only.
 
 **Verification.** `Specification` — a safe set or an unsafe one — and the
