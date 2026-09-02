@@ -7,6 +7,7 @@ import CORALean.ContSet.HPolytope.API
 import CORALean.ContSet.VPolytope.API
 import CORALean.ContSet.Conversion.API
 import CORALean.ContSet.ConZonotope.API
+import CORALean.ContSet.PolyZonotope.API
 
 /-!
 # Set representations, collected
@@ -23,5 +24,6 @@ without a linear program.
 `HPolytope` and `VPolytope` describe the same sets, by halfspaces and by
 vertices, and are separate representations because converting between them is
 vertex enumeration. `ConZonotope` builds on two of the others: it is a zonotope
-whose coefficients a halfspace description cuts down.
+whose coefficients a halfspace description cuts down. `PolyZonotope` is the one
+representation here that need not be convex, and so far the one layer.
 -/
