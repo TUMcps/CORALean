@@ -2,7 +2,9 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.LinInputOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.LinearEmbedding
 import CORALean.ContDynamics.NonlinearSys.Theorems.Linearize
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachOuter
+import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.Restrict
+import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
 
 /-!
 # What `NonlinearSys` guarantees
@@ -16,6 +18,12 @@ run to the linear reachability already proved.
 confinement on `[0, τ]` and gives back a linear run on `[0, τ]`, which is
 conservative linearization as CORA runs it.
 
-One linearization all the same. Re-linearizing along a horizon, and the
-polynomialization variant, are not here.
+`Shift` and `RelinReachOuter` are the loop. A step is proved on a clock starting
+at zero, so `Shift` re-anchors the run and `RelinReachOuter` chains the steps by
+induction on the step count, each step's enclosure becoming the next one's
+initial set. Confinement stays a hypothesis per step, on that step's window
+alone.
+
+The polynomialization variant, which propagates a `PolyZonotope` rather than
+re-linearizing, is not here.
 -/
