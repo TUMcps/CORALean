@@ -19,6 +19,14 @@ side exactly as convexity bounds ReLU. The other side then needs the tangent,
 hence a derivative bound, which is a piece of analysis this layer does not yet
 have. The `Relaxation` field is where it would go, and nothing else would
 change.
+
+No float counterpart, and the obstacle is not the relaxation:
+`Float.Relaxation.ofMonotone` is this one, and asks only for the value of `σ` at
+the two ends of a neuron's range. `FloatOps` cannot supply it — no `exp`, no
+division, no series — so there is no `Float.Enclosure 𝕋 sigmoid` to hand it, and
+the only enclosure available without one is the constant range `[0, 1]`. What
+closes it is a directed-rounding `exp` in `Global/Float`, tail bound and all: a
+piece of the scalar rather than of this layer.
 -/
 
 -- Authors:       Tobias Ladner

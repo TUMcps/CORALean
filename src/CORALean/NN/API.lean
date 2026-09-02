@@ -1,3 +1,4 @@
+import CORALean.NN.Float.API
 import CORALean.NN.Layer
 import CORALean.NN.Layers.API
 import CORALean.NN.NeuralNetwork
@@ -23,4 +24,9 @@ bounds itself.
 Precision lives entirely in `Layers/Activation`. Everything else is exact at a
 representation closed under the two operations it uses, and the enclosure a
 network returns is as good as the relaxations its activations chose.
+
+Only the layers sit in two arithmetic layers. Everything outside `Layers/` is
+already indifferent to the scalar — `Layer` is a structure over any `ContSet`
+whose ambient type is `Vec ℝ n`, so the graph and its induction run over a float
+representation unchanged, and `Float/` holds the layer constructors alone.
 -/

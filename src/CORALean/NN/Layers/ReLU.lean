@@ -33,9 +33,13 @@ def relu (t : ℝ) : ℝ := max t 0
 noncomputable def reluSlope (l u : ℝ) : ℝ :=
   if u ≤ 0 then 0 else if 0 ≤ l then 1 else u / (u - l)
 
-/-- How far `relu` rises above the line of that slope through the origin. -/
-noncomputable def reluGap (l u : ℝ) : ℝ :=
-  max ((1 - reluSlope l u) * u) (-(reluSlope l u) * l)
+/-- How far `relu` rises above the line of slope `lam` through the origin, over
+`[l, u]`. A function of the slope and not of `reluSlope`, since that is what a
+layer choosing its slope some other way — a float one, which has no division to
+compute the secant with — measures its own error against. -/
+def reluGapOfSlope (lam l u : ℝ) : ℝ := max ((1 - lam) * u) (-(lam * l))
+
+noncomputable def reluGap (l u : ℝ) : ℝ := reluGapOfSlope (reluSlope l u) l u
 
 theorem reluSlope_nonneg (l u : ℝ) : 0 ≤ reluSlope l u := by
   rw [reluSlope]
@@ -63,20 +67,25 @@ theorem reluSlope_le_one (l u : ℝ) : reluSlope l u ≤ 1 := by
       linarith
 
 /-- Above the line, and below it raised by the gap — the two ends of the
-relaxation, before it is recentred. -/
-theorem aux_relu_bounds {l u t : ℝ} (hl : l ≤ t) (hu : t ≤ u) :
-    0 ≤ relu t - reluSlope l u * t ∧ relu t - reluSlope l u * t ≤ reluGap l u := by
-  have h0 := reluSlope_nonneg l u
-  have h1 := reluSlope_le_one l u
+relaxation, before it is recentred. Stated for an arbitrary slope in `[0,1]`,
+which is all convexity gives and all either layer needs: the choice of slope
+never enters. -/
+theorem relu_bounds_of_slope {lam l u t : ℝ} (h0 : 0 ≤ lam) (h1 : lam ≤ 1)
+    (hl : l ≤ t) (hu : t ≤ u) :
+    0 ≤ relu t - lam * t ∧ relu t - lam * t ≤ reluGapOfSlope lam l u := by
   rcases le_total 0 t with ht | ht
   · have hrt : relu t = t := max_eq_left ht
     refine ⟨by rw [hrt]; nlinarith, ?_⟩
-    rw [hrt, reluGap]
+    rw [hrt, reluGapOfSlope]
     exact le_trans (by nlinarith) (le_max_left _ _)
   · have hrt : relu t = 0 := max_eq_right ht
     refine ⟨by rw [hrt]; nlinarith, ?_⟩
-    rw [hrt, reluGap]
+    rw [hrt, reluGapOfSlope]
     exact le_trans (by nlinarith) (le_max_right _ _)
+
+theorem aux_relu_bounds {l u t : ℝ} (hl : l ≤ t) (hu : t ≤ u) :
+    0 ≤ relu t - reluSlope l u * t ∧ relu t - reluSlope l u * t ≤ reluGap l u :=
+  relu_bounds_of_slope (reluSlope_nonneg l u) (reluSlope_le_one l u) hl hu
 
 /-- Recentred, so that the error is half the gap in each direction. -/
 noncomputable def reluRelaxation : Relaxation relu where

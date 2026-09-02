@@ -11,6 +11,12 @@ The relaxation is the monotone one, with slope zero, for the same reason as
 sigmoid: monotonicity alone certifies the output range and no slope beyond it.
 Tanh is a rescaled sigmoid, so a curvature-based relaxation would carry over to
 both at once.
+
+No float counterpart, and for the same reason as sigmoid: the relaxation is
+`Float.Relaxation.ofMonotone`, which needs `σ` at the ends of a neuron's range,
+and `FloatOps` has no `exp` to compute it with. That is one missing piece for
+both layers, since a directed-rounding `exp` in `Global/Float` would answer here
+and there alike.
 -/
 
 -- Authors:       Tobias Ladner
