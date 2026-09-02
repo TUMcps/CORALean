@@ -56,7 +56,7 @@ theorem aux_factorial_mul_pow_le (a k : ℕ) :
 /-- The scalar core of the tail estimate: the factorial outgrows the power fast
 enough that the tail is dominated by a geometric series. Stated on its own
 because the correction matrix bounds a different series with the same shape. -/
-theorem aux_scalar_term_le {c : ℝ} (hc : 0 ≤ c) (η i : ℕ) :
+theorem scalar_term_le {c : ℝ} (hc : 0 ≤ c) (η i : ℕ) :
     (Nat.factorial (i + (η + 1)) : ℝ)⁻¹ * c ^ (i + (η + 1))
       ≤ (c ^ (η + 1) / Nat.factorial (η + 1)) * (c / ((η : ℝ) + 2)) ^ i := by
   rw [Nat.add_comm i (η + 1)]

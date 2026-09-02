@@ -1,0 +1,9 @@
+#!/bin/sh
+# Runs the convention checks before a commit is written. Text only, so it costs
+# a second — it does not build, and a commit that passes here can still fail to
+# compile.
+#
+# Enable with:  git config core.hooksPath .githooks
+# Skip once with:  git commit --no-verify
+
+exec sh "$(git rev-parse --show-toplevel)/scripts/check-conventions.sh"

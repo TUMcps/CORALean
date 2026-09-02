@@ -12,8 +12,8 @@ import CORALean.Global.LinProg.API
 
 What both arithmetic layers share: the array types, the scalar they compute in,
 index partitions, the sort that chooses them, the corner combinatorics a box
-needs, and the linear programming every set representation ends up asking for. Mathlib enters the project
-only through this directory.
+needs, and the linear programming every set representation ends up asking for.
+Mathlib enters the project only through this directory.
 
 `Float/` is deliberately not collected here — it holds the floating-point
 scalar, and importing it would put that in reach of every `Real` file.

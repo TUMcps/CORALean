@@ -22,18 +22,18 @@ variable {n q₁ q₂ : ℕ}
 theorem VPolytope.and_outer (P₁ P₂ : VPolytope (Vec ℝ n))
     (Aq₁ : Fin q₁ → (Vec ℝ n →ₗ[ℝ] ℝ)) (Aq₂ : Fin q₂ → (Vec ℝ n →ₗ[ℝ] ℝ)) :
     P₁.construct ∩ P₂.construct ⊆ (P₁.and P₂ Aq₁ Aq₂).construct := by
-  have hsub : P₁.construct ∩ P₂.construct ⊆ (VPolytope.aux_andH P₁ P₂ Aq₁ Aq₂).construct := by
+  have hsub : P₁.construct ∩ P₂.construct ⊆ (VPolytope.andH P₁ P₂ Aq₁ Aq₂).construct := by
     rintro x ⟨hx₁, hx₂⟩
     refine HPolytope.mem_and_iff.mpr ⟨HPolytope.mem_and_iff.mpr ⟨?_, ?_⟩, ?_⟩
     · exact P₁.subset_hPolytope Aq₁ hx₁
     · exact P₂.subset_hPolytope Aq₂ hx₂
     · rw [Interval.hPolytope_exact]
       exact P₁.interval_outer hx₁
-  by_cases h : (VPolytope.aux_andH P₁ P₂ Aq₁ Aq₂).construct.Nonempty
-  · have he : P₁.and P₂ Aq₁ Aq₂ = (VPolytope.aux_andH P₁ P₂ Aq₁ Aq₂).vPolytope h := dif_pos h
+  by_cases h : (VPolytope.andH P₁ P₂ Aq₁ Aq₂).construct.Nonempty
+  · have he : P₁.and P₂ Aq₁ Aq₂ = (VPolytope.andH P₁ P₂ Aq₁ Aq₂).vPolytope h := dif_pos h
     rw [he]
     exact subset_trans hsub
-      (HPolytope.subset_vPolytope _ (VPolytope.aux_andH_isCompact P₁ P₂ Aq₁ Aq₂) h)
+      (HPolytope.subset_vPolytope _ (VPolytope.andH_isCompact P₁ P₂ Aq₁ Aq₂) h)
   · have he : P₁.and P₂ Aq₁ Aq₂ = VPolytope.emptySet (Vec ℝ n) := dif_neg h
     rw [he, VPolytope.construct_emptySet]
     rw [Set.not_nonempty_iff_eq_empty.mp h] at hsub

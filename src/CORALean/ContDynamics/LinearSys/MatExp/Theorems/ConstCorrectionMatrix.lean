@@ -102,7 +102,7 @@ theorem aux_norm_constTail_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) (η : ℕ
     have hfle : (Nat.factorial (i + η + 1) : ℝ) ≤ (Nat.factorial (i + η + 2) : ℝ) := by
       exact_mod_cast Nat.factorial_le (by omega)
     have hscal : |t ^ (i + η + 2) - (t / r) * r ^ (i + η + 2)| ≤ r ^ (i + η + 2) := by
-      rw [aux_pow_sub_eq hr (i + η + 2), abs_mul,
+      rw [pow_sub_eq hr (i + η + 2), abs_mul,
         abs_of_nonneg (by positivity : (0:ℝ) ≤ r ^ (i + η + 2))]
       have h1 : |(t / r) ^ (i + η + 2) - (t / r)| ≤ 1 := by
         rw [abs_le]
@@ -126,7 +126,7 @@ theorem aux_norm_constTail_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) (η : ℕ
       _ ≤ r * ((‖r • A‖ ^ (η + 1) / Nat.factorial (η + 1))
             * (‖r • A‖ / ((η : ℝ) + 2)) ^ i) := by
           refine mul_le_mul_of_nonneg_left ?_ hr.le
-          have h := aux_scalar_term_le hcnn η i
+          have h := scalar_term_le hcnn η i
           rwa [show i + (η + 1) = i + η + 1 from by omega] at h
   have hgeo : Summable (fun i : ℕ => (‖r • A‖ / ((η : ℝ) + 2)) ^ i) :=
     summable_geometric_of_lt_one hε0 hε
@@ -177,14 +177,14 @@ theorem MatExp.expIntegralDiff_mem_constCorrectionMatrix (A : Mat ℝ n n) {r : 
     have hupp := MatExp.sub_le_zero (i := i + 2) (by omega) hs0 hs1
     have hw : (f i) j k = ((t / r) ^ (i + 2) - (t / r))
         * (((Nat.factorial (i + 2) : ℝ))⁻¹ * r ^ (i + 2) * (A ^ (i + 1)) j k) := by
-      simp only [hf, Matrix.smul_apply, smul_eq_mul, aux_pow_sub_eq hr]
+      simp only [hf, Matrix.smul_apply, smul_eq_mul, pow_sub_eq hr]
       ring
     have hct : MatExp.constCorrTerm A r i j k = MatExp.corrCoeff (i + 2)
         * (((Nat.factorial (i + 2) : ℝ))⁻¹ * r ^ (i + 2) * (A ^ (i + 1)) j k) := by
       simp only [MatExp.constCorrTerm]
       ring
     rw [hw, hct]
-    exact aux_mul_mem_minmax hlow hupp
+    exact mul_mem_minmax hlow hupp
   have hT : |(∑' i : ℕ, f (i + η)) j k| ≤ r * MatExp.expRemainderBound (r • A) η :=
     le_trans (abs_entry_le_norm _ j k) htail
   rw [abs_le] at hT

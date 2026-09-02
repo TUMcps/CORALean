@@ -39,6 +39,13 @@ theorem Interval.mem_mat_iff {m n : ℕ} {I : Interval (Mat ℝ m n)} {A : Mat �
     A ∈ I.construct ↔ ∀ i j, I.inf i j ≤ A i j ∧ A i j ≤ I.sup i j :=
   ⟨fun h i j => h (i, j), fun h p => h p.1 p.2⟩
 
+/-- Zero width, which is the singleton. Composed with `plus` this is a
+translation, so the representation needs no separate one. -/
+def Interval.point (v : α) : Interval α := ⟨v, v⟩
+
+theorem Interval.mem_point (v : α) : v ∈ (Interval.point v).construct :=
+  fun _ => ⟨le_rfl, le_rfl⟩
+
 /-- The midpoint and half the width: a point the box denotes is the centre off
 by at most the radius, which is how every enclosure proof splits it. -/
 noncomputable def Interval.center (I : Interval α) : α := (2:ℝ)⁻¹ • (I.inf + I.sup)

@@ -2,11 +2,13 @@ import CORALean.ContSet.Conversion.Real.ConZonotope_to_HPolytope
 import CORALean.ContSet.Conversion.Real.ConZonotope_to_Interval
 import CORALean.ContSet.Conversion.Real.ConZonotope_to_VPolytope
 import CORALean.ContSet.Conversion.Real.ConZonotope_to_Zonotope
+import CORALean.ContSet.Conversion.Real.ContSet_to_Interval
 import CORALean.ContSet.Conversion.Real.HPolytope_to_ConZonotope
 import CORALean.ContSet.Conversion.Real.HPolytope_to_Interval
 import CORALean.ContSet.Conversion.Real.HPolytope_to_VPolytope
 import CORALean.ContSet.Conversion.Real.HPolytope_to_Zonotope
 import CORALean.ContSet.Conversion.Real.Interval_to_ConZonotope
+import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
 import CORALean.ContSet.Conversion.Real.Interval_to_HPolytope
 import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
 import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
@@ -39,6 +41,11 @@ programs and no tighter than its certificates. Anything reaching a zonotope goes
 through a box, a tighter zonotope enclosure being a fitting problem rather than a
 conversion. And anything leaving a constrained zonotope by dropping its
 constraints loses exactly those.
+
+`ContSet_to_Interval` and `Interval_to_ContSet` are the two pairs whose other
+side is a variable: an algorithm that has to reach a box, or come back from one,
+without naming what it is propagating asks for those as classes. Only the
+representations that can do it without certificates instantiate them.
 
 Conversions live here rather than in either representation because two
 representations of equal standing cannot each import the other. An operation may

@@ -37,14 +37,14 @@ open scoped Classical
 variable {n q₁ q₂ : ℕ}
 
 /-- The intersection as halfspaces, kept bounded by one operand's own box. -/
-noncomputable def VPolytope.aux_andH (P₁ P₂ : VPolytope (Vec ℝ n))
+noncomputable def VPolytope.andH (P₁ P₂ : VPolytope (Vec ℝ n))
     (Aq₁ : Fin q₁ → (Vec ℝ n →ₗ[ℝ] ℝ)) (Aq₂ : Fin q₂ → (Vec ℝ n →ₗ[ℝ] ℝ)) :
     HPolytope (Vec ℝ n) :=
   ((P₁.hPolytope Aq₁).and (P₂.hPolytope Aq₂)).and (Interval.hPolytope P₁.interval)
 
-theorem VPolytope.aux_andH_isCompact (P₁ P₂ : VPolytope (Vec ℝ n))
+theorem VPolytope.andH_isCompact (P₁ P₂ : VPolytope (Vec ℝ n))
     (Aq₁ : Fin q₁ → (Vec ℝ n →ₗ[ℝ] ℝ)) (Aq₂ : Fin q₂ → (Vec ℝ n →ₗ[ℝ] ℝ)) :
-    IsCompact (VPolytope.aux_andH P₁ P₂ Aq₁ Aq₂).construct := by
+    IsCompact (VPolytope.andH P₁ P₂ Aq₁ Aq₂).construct := by
   refine HPolytope.isCompact_of_subset (W := P₁.interval.vPolytope) fun x hx => ?_
   have h := (HPolytope.mem_and_iff.mp hx).2
   rw [Interval.hPolytope_exact] at h
@@ -53,8 +53,8 @@ theorem VPolytope.aux_andH_isCompact (P₁ P₂ : VPolytope (Vec ℝ n))
 noncomputable def VPolytope.and (P₁ P₂ : VPolytope (Vec ℝ n))
     (Aq₁ : Fin q₁ → (Vec ℝ n →ₗ[ℝ] ℝ)) (Aq₂ : Fin q₂ → (Vec ℝ n →ₗ[ℝ] ℝ)) :
     VPolytope (Vec ℝ n) :=
-  if h : (VPolytope.aux_andH P₁ P₂ Aq₁ Aq₂).construct.Nonempty then
-    (VPolytope.aux_andH P₁ P₂ Aq₁ Aq₂).vPolytope h
+  if h : (VPolytope.andH P₁ P₂ Aq₁ Aq₂).construct.Nonempty then
+    (VPolytope.andH P₁ P₂ Aq₁ Aq₂).vPolytope h
   else VPolytope.emptySet _
 
 end CORALean.Real

@@ -26,6 +26,9 @@ src/CORALean/
                    Real/ and Float/, the latter splitting its rounding two ways
     Conversion/    one file per ordered pair, `<Source>_to_<Target>.lean`;
                    Real/ and Float/
+  Specification/   what a computed set is checked against — a safe set or an
+                   unsafe one — and why checking it on an outer approximation
+                   answers for the exact set
   ContDynamics/    algorithms, written against the interfaces alone
     LinearSysDT/   discrete-time linear systems, and reachability
     NonlinearSys/  the representation and its trajectories; no reachability yet
@@ -33,6 +36,10 @@ src/CORALean/
                    reachability at the sample times by sampling into
                    LinearSysDT, and an enclosure over a whole step
       MatExp/      enclosing e^{A dt}, which is what a step is taken against
+  NN/              neural network verification: propagating an input set through
+                   a graph of layers, and checking the result
+    Layers/        the standard layers, one file each; every activation is a
+                   `Relaxation` and nothing else
 ```
 
 A conversion goes in `Conversion/`, not in either representation: two
@@ -44,6 +51,12 @@ other. All twenty ordered pairs of `Interval`, `Zonotope`, `HPolytope`,
 `VPolytope` and `ConZonotope` are there in both layers; the declaration is
 named for the target, as in CORA, where
 `interval(zonotope)` is how a zonotope becomes a box.
+
+Two of those files hold a class instead of a conversion: `ContSet_to_Interval`
+and `Interval_to_ContSet` are the pairs whose other side is a variable, for an
+algorithm that must reach a box, or come back from one, without naming what it
+is propagating. Only the representations that can do it without certificates
+instantiate them, which is the same rule as everywhere else.
 
 An operation may be *implemented* by conversion — `VPolytope.and` goes out to
 halfspaces, where intersection is free, and comes back — and then imports these
@@ -111,8 +124,29 @@ fetches the server itself.
 Build once before first use, since the server starts `lake serve` and otherwise
 builds from cold.
 
-`.gitlab-ci.yml` rebuilds the project on every push to the default branch and on
-every merge request, and fails on a warning as well as on an error. It caches
+`scripts/check-conventions.sh` checks the conventions on this page that the
+compiler cannot: that an `aux_` name is used only in the file that declares it,
+that an `API.lean` holds nothing but imports, that no file imports its own
+directory's collector, that no `Real` file reaches into `Float`, that every file
+carries a module docstring and — unless it is a collector — an author block,
+that nothing is `sorry` or `axiom`, and that every module is reachable from the
+root, so a file written but never collected is caught rather than silently left
+out of the build.
+
+It is text only: no Lean, no build, no network, about a second. Run it directly,
+or install it as a hook with
+
+```
+git config core.hooksPath .githooks
+```
+
+The parsing is deliberately shallow — comments are stripped by a two-character
+scanner and declarations are matched at the start of a line — which is what
+keeps it fast and dependency-free. It reports; it never rewrites.
+
+`.gitlab-ci.yml` runs the same script as its own job, and rebuilds the project
+on every push to the default branch and on every merge request, failing on a
+warning as well as on an error. It caches
 nothing: `lake exe cache get` fetches Mathlib's prebuilt oleans from Mathlib's
 own CDN, which beats moving 7.6 GB of packages through GitLab's cache. The file
 carries the measurements behind that choice.
@@ -222,6 +256,25 @@ optimisation.
 `FloatBound` is the same object with a float value. Its composition rules are
 these with `+` replaced by `addUp` and `max` by `maximum` — a bound only stays
 sound by growing.
+
+## Verification
+
+An algorithm here returns a superset of a set nothing computes: the reachable
+set of a system, the output set of a network. `Specification` is what turns that
+into an answer — a safe set every point must lie in, or an unsafe set no point
+may — and `holds_of_outer` says a check passed on the superset is passed by
+everything inside it. One theorem, both directions, and it knows nothing about
+what produced either set, which is why `LinearSysDT.holds_of_reach` and
+`NeuralNetwork.holds_of_propagate` are a line each.
+
+The converse fails, and that is the method's whole cost: a specification that
+fails on the computed set is not a counterexample, and the answer to it is a
+tighter enclosure rather than an argument about the system.
+
+Discharging the check is `Global.LinProg` again — a separating direction proves
+disjointness from an unsafe set, a bound per halfspace proves containment in a
+safe one, and `m - 1` bounds prove a classifier picks the same label across a
+whole input set.
 
 ## Proofs
 

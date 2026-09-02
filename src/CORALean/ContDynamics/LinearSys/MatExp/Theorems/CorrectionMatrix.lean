@@ -46,14 +46,14 @@ variable {n : ℕ}
 
 /-- A value between `L` and `0`, scaled by anything, stays between `L * w` and `0`
 on whichever side the sign puts it. -/
-theorem aux_mul_mem_minmax {L u w : ℝ} (hLu : L ≤ u) (hu0 : u ≤ 0) :
+theorem mul_mem_minmax {L u w : ℝ} (hLu : L ≤ u) (hu0 : u ≤ 0) :
     min (L * w) 0 ≤ u * w ∧ u * w ≤ max (L * w) 0 := by
   rcases le_total 0 w with hw | hw
   · exact ⟨le_trans (min_le_left _ _) (by nlinarith), le_trans (by nlinarith) (le_max_right _ _)⟩
   · exact ⟨le_trans (min_le_right _ _) (by nlinarith), le_trans (by nlinarith) (le_max_left _ _)⟩
 
 /-- Rewriting one order of the interpolation error through `s = t/r`. -/
-theorem aux_pow_sub_eq {t r : ℝ} (hr : 0 < r) (m : ℕ) :
+theorem pow_sub_eq {t r : ℝ} (hr : 0 < r) (m : ℕ) :
     t ^ m - (t / r) * r ^ m = r ^ m * ((t / r) ^ m - (t / r)) := by
   rw [div_pow]
   field_simp
@@ -80,7 +80,7 @@ theorem aux_norm_expDiff_tail_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) (η : 
     intro i
     set m := i + (η + 1) with hm
     have hscal : |t ^ m - (t / r) * r ^ m| ≤ r ^ m := by
-      rw [aux_pow_sub_eq hr m, abs_mul, abs_of_nonneg (by positivity : (0:ℝ) ≤ r ^ m)]
+      rw [pow_sub_eq hr m, abs_mul, abs_of_nonneg (by positivity : (0:ℝ) ≤ r ^ m)]
       have h1 : |(t / r) ^ m - (t / r)| ≤ 1 := by
         rw [abs_le]
         constructor
@@ -95,7 +95,7 @@ theorem aux_norm_expDiff_tail_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) (η : 
           gcongr
           · exact norm_pow_le' A (by omega)
       _ = ((Nat.factorial m : ℝ))⁻¹ * ‖r • A‖ ^ m := by rw [hrA, mul_pow]; ring
-      _ ≤ _ := aux_scalar_term_le hcnn η i
+      _ ≤ _ := scalar_term_le hcnn η i
   have hgeo : Summable (fun i : ℕ => (‖r • A‖ / ((η : ℝ) + 2)) ^ i) :=
     summable_geometric_of_lt_one hε0 hε
   have hnorm : Summable (fun i : ℕ =>
@@ -139,14 +139,14 @@ theorem MatExp.expDiff_mem_correctionMatrix (A : Mat ℝ n n) {r : ℝ} (hr : 0 
     have hupp := MatExp.sub_le_zero (i := i + 2) (by omega) hs0 hs1
     have hw : (f i) j k = ((t / r) ^ (i + 2) - (t / r))
         * (((Nat.factorial (i + 2) : ℝ))⁻¹ * r ^ (i + 2) * (A ^ (i + 2)) j k) := by
-      simp only [hf, Matrix.smul_apply, smul_eq_mul, aux_pow_sub_eq hr]
+      simp only [hf, Matrix.smul_apply, smul_eq_mul, pow_sub_eq hr]
       ring
     have hct : MatExp.corrTerm A r (i + 2) j k = MatExp.corrCoeff (i + 2)
         * (((Nat.factorial (i + 2) : ℝ))⁻¹ * r ^ (i + 2) * (A ^ (i + 2)) j k) := by
       simp only [MatExp.corrTerm]
       ring
     rw [hw, hct]
-    exact aux_mul_mem_minmax hlow hupp
+    exact mul_mem_minmax hlow hupp
   -- the tail is inside the remainder, entrywise because an entry never exceeds the norm
   have hT : |(∑' i : ℕ, f (i + (m + 1))) j k|
       ≤ MatExp.expRemainderBound (r • A) (m + 2) :=

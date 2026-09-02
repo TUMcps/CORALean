@@ -120,7 +120,7 @@ omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 set_option maxHeartbeats 400000 in
 /-- An admissible input has an integrable solution over its window: bounded by
 `U`, and measurable because the exponential factor is continuous. -/
-theorem aux_intervalIntegrable_input {A : Mat ℝ n n} {U : S n} {c τ : ℝ} (hτ : 0 ≤ τ)
+theorem intervalIntegrable_expSub_mulVec {A : Mat ℝ n n} {U : S n} {c τ : ℝ} (hτ : 0 ≤ τ)
     (hbdd : Bornology.IsBounded (construct U)) {u : ℝ → Vec ℝ n}
     (hu : ∀ s ∈ Set.Icc (0:ℝ) τ, u s ∈ construct U)
     (hmeas : AEStronglyMeasurable u (volume.restrict (Set.Icc 0 τ))) :
@@ -164,8 +164,8 @@ theorem LinearSys.inputReach_separation (sys : LinearSys 𝕋 n) {U : S n} {a b 
   obtain ⟨u₁, hu₁mem, hu₁meas, rfl⟩ := hy₁
   obtain ⟨u₂, hu₂mem, hu₂meas, rfl⟩ := hy₂
   have hab : a ≤ a + b := by linarith
-  have hu₁int := aux_intervalIntegrable_input (A := A) (c := a) ha hbdd hu₁mem hu₁meas
-  have hu₂int := aux_intervalIntegrable_input (A := A) (c := b) hb hbdd hu₂mem hu₂meas
+  have hu₁int := intervalIntegrable_expSub_mulVec (A := A) (c := a) ha hbdd hu₁mem hu₁meas
+  have hu₂int := intervalIntegrable_expSub_mulVec (A := A) (c := b) hb hbdd hu₂mem hu₂meas
   -- the concatenation is admissible on the joined window
   have hmem : ∀ s ∈ Set.Icc (0:ℝ) (a + b), aux_concat u₁ u₂ a s ∈ construct U := by
     intro s hs
@@ -194,7 +194,7 @@ theorem LinearSys.inputReach_separation (sys : LinearSys 𝕋 n) {U : S n} {a b 
   -- and what it contributes is the propagated first plus the second
   have hconcat_int : IntervalIntegrable
       (fun s => exp ((a + b - s) • A) *ᵥ aux_concat u₁ u₂ a s) volume 0 (a + b) :=
-    aux_intervalIntegrable_input (A := A) (c := a + b) (by linarith) hbdd hmem hmeas
+    intervalIntegrable_expSub_mulVec (A := A) (c := a + b) (by linarith) hbdd hmem hmeas
   have hab0 : (0:ℝ) ≤ a + b := by linarith
   have hsub₁ : Set.uIcc (0:ℝ) a ⊆ Set.uIcc (0:ℝ) (a + b) := by
     rw [Set.uIcc_of_le ha, Set.uIcc_of_le hab0]

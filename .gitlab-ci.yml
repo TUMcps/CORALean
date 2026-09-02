@@ -27,6 +27,19 @@ variables:
   # below gets a turn rather than the job sitting until timeout.
   GIT_TERMINAL_PROMPT: "0"
 
+conventions:
+  image: debian:bookworm-slim
+  # Text only — no toolchain, no Mathlib, no network — so it answers in seconds
+  # and says what a green build cannot: whether `aux_` stayed in its file,
+  # whether an `API.lean` holds anything but imports, whether a `Real` file
+  # reached into `Float`. The same script runs on the pre-commit hook.
+  interruptible: true
+  script:
+    - sh scripts/check-conventions.sh
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
 build:
   image: debian:bookworm-slim
   # A push while a job is running does not cancel it. The project's "Auto-cancel

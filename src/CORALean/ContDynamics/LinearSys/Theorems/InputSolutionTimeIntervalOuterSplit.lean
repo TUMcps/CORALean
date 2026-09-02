@@ -112,9 +112,9 @@ theorem LinearSys.Trajectory.inputSolution_timeInterval_outer_split
   have hmeas₀ : AEStronglyMeasurable (fun σ => u σ - c)
       (volume.restrict (Set.Icc 0 t)) :=
     (traj.aestronglyMeasurable_input le_rfl).sub aestronglyMeasurable_const
-  have hint₁ := aux_intervalIntegrable_input (A := A) (c := t) ht0 hbddP hmemP
+  have hint₁ := intervalIntegrable_expSub_mulVec (A := A) (c := t) ht0 hbddP hmemP
     aestronglyMeasurable_const
-  have hint₀ := aux_intervalIntegrable_input (A := A) (c := t) ht0 hbdd₀ hmem₀ hmeas₀
+  have hint₀ := intervalIntegrable_expSub_mulVec (A := A) (c := t) ht0 hbdd₀ hmem₀ hmeas₀
   -- linearity splits the integral along the split of `U`
   have hsum : (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ u s)
       = (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ c)
