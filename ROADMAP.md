@@ -8,7 +8,7 @@ no dependencies are the ones that can start.
 
 | Branch | Work |
 | --- | --- |
-| `feat/float-polyzono` | The float layer for polynomial zonotopes, constrained and not |
+| `feat/float-ellipsoid` | The last representation without a float layer, and a support function that wants a square root |
 | `feat/float-transcendental` | A directed-rounding exponential, which is all that stands between sigmoid and tanh and a float layer |
 
 Next after those: the float layers that remain, the conversions the newest
@@ -33,6 +33,28 @@ program, and its bounding box tight.
 
 `PolyZonotope`, `Real` layer, with `quadMap` exact — the operation the
 representation exists for, and the one that needs its factors to be shared.
+Both carry a float layer. The monomial costs it nothing, which is the surprise:
+a product of many rounded powers would accumulate error with the total degree,
+but no monomial is ever computed — the coefficients are what the set quantifies
+over, and what is stored of a monomial is its exponent column over ℕ, where
+every operation is exact. So a monomial enters only through lying in `[-1,1]`,
+exactly as a zonotope's free coefficient does, and a rounded generator costs one
+radius of the error whatever the degree. The cost is in the number of generators
+summed rather than the size of each, which is why `compact` is worth running
+before `quadMap` rather than after.
+
+`quadMap` is where directed rounding stops composing: an inner product comes
+back as an interval, and multiplying by a generator cannot round in one
+direction without knowing its sign, so the bounds travel as a pair and are
+chosen per term. A quadratic map is also not additive, so the error box cannot
+ride alongside and has to be emptied into generators first.
+
+`ConPolyZono`'s constraints stop at something real — an equality has no
+direction to round in. Perturb the right-hand side and the admissible factors
+are a disjoint slice of the same cube rather than a superset, so neither
+inclusion holds. `plus` and `mtimes` refine because they touch the constraint
+system only by copying; `and` cannot be refined at all.
+
 `compact` merges equal exponent columns, drops the generators that leaves at
 zero and drops the factors nothing uses — all exact, and all of it needed before
 an order bound counts anything real, since `plus` and `quadMap` grow the
@@ -176,10 +198,16 @@ Ordered roughly by what unblocks the most.
 - **`Reduce` methods** — CORA has `girard`, `pca`, `combastel`, `methC`, and the
   order-reduction choice is a precision knob throughout reachability. Only one
   is formalized.
-- **Float layers** for the representations that do not have one. `Interval`,
-  `Zonotope`, `HPolytope`, `VPolytope` and `ConZonotope` carry both; `Ellipsoid`
-  carries only `Real`, as do the reduction methods, and `PolyZonotope` with
-  `ConPolyZono` are in flight. This is the largest gap in the repository, and it is a gap in kind
+- **Float `compact`, and float `linComb` for `PolyZonotope`.** The decidability
+  obstacle inverts at a machine scalar — deciding a generator is zero and
+  ordering columns both become decidable, which is why float `reduce` is
+  computable where the real one is not — but arithmetic takes its place, merging
+  two columns adding their entries. So a float `compact` owes an error box where
+  the exact one is an equality, and the float order bounds *stored* columns
+  rather than distinct monomials.
+- **`ConPolyZono.and` in float** — blocked on the `Real` layer admitting either a
+  slack factor with a bound or an interval right-hand side, since an equality
+  constraint has no direction to round in. This is the largest gap in the repository, and it is a gap in kind
   rather than in coverage: a `Real` definition specifies something no machine
   runs. New work is expected to carry both layers — see `CONTRIBUTING.md`.
 
@@ -248,6 +276,10 @@ Ordered roughly by what unblocks the most.
 
 ### The float scalar
 
+- **Square root**, if an ellipsoid's support function turns out to need one
+  rather than a checkable candidate. An upper bound on `√x` is any `s` with
+  `x ≤ s·s`, which is a multiplication the scalar already has, so this may cost
+  nothing — in flight.
 - **Division.** `FloatOps` has none, in either direction. Two things have wanted
   it — ReLU's secant, which worked around its absence because a slope is only a
   precision knob, and an exponential series, which cannot. Adding it enlarges an
