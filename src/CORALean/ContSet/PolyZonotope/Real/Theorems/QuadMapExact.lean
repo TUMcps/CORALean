@@ -14,11 +14,16 @@ The same coefficients work in both directions, so the image is reproduced and
 not enclosed. `quadMapDep` needs an empty independent block, which its statement
 asks for; `quadMap` supplies it by running `dependent` first, and `dependent` is
 exact, so nothing is lost on the way in either.
+
+`sum_ext_eq_point` and `quadEval_sum_ext` carry no `aux_` prefix because they are
+used outside this file: they are the pointwise halves of the claim, and the
+constrained representation needs them at a fixed factor vector, which the set
+equality below cannot give it.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   02-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -29,7 +34,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {n m : ℕ}
 
 /-- A point of the set as one sum, the centre being generator zero at the
 all-zero exponent column. -/
-theorem PolyZonotope.aux_ext_point (S : PolyZonotope α) (a : Fin S.p → ℝ) :
+theorem PolyZonotope.sum_ext_eq_point (S : PolyZonotope α) (a : Fin S.p → ℝ) :
     ∑ l, extM S a l • extG S l = S.c + ∑ i, monomial S.E a i • S.G i := by
   have h0 : extM S a 0 = 1 := by
     show ∏ k, a k ^ PolyZonotope.extE S k 0 = 1
@@ -52,7 +57,7 @@ theorem PolyZonotope.aux_ext_point (S : PolyZonotope α) (a : Fin S.p → ℝ) :
 
 /-- The map of a sum, expanded over pairs. Bilinearity on the left, and
 `monomial_add` on the right, meet at the same double sum. -/
-theorem PolyZonotope.aux_quad_expand (Q : Fin m → Mat ℝ n n) (S : PolyZonotope (Vec ℝ n))
+theorem PolyZonotope.quadEval_sum_ext (Q : Fin m → Mat ℝ n n) (S : PolyZonotope (Vec ℝ n))
     (a : Fin S.p → ℝ) :
     quadEval Q (∑ l, extM S a l • extG S l)
       = ∑ l, monomial (quadMapE S) a l • quadMapG Q S l := by
@@ -110,8 +115,8 @@ theorem PolyZonotope.quadMapDep_exact (Q : Fin m → Mat ℝ n n) (S : PolyZonot
       quadEval Q (S.c + ∑ i, monomial S.E a i • S.G i)
         = ∑ l, monomial (quadMapE S) a l • quadMapG Q S l := by
     intro a
-    rw [← PolyZonotope.aux_ext_point S a]
-    exact PolyZonotope.aux_quad_expand Q S a
+    rw [← PolyZonotope.sum_ext_eq_point S a]
+    exact PolyZonotope.quadEval_sum_ext Q S a
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨_, ⟨a, b, ha, _, rfl⟩, rfl⟩
     refine ⟨a, fun _ => 0, ha, fun j => j.elim0, ?_⟩
