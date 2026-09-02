@@ -40,9 +40,15 @@ representations of equal standing cannot each import the other, so
 `VPolytope → HPolytope` inside `VPolytope/` and the reverse inside `HPolytope/`
 is a cycle Lean rejects. One file per ordered pair keeps a new pair to a file
 rather than a directory, and keeps every representation independent of every
-other. The exception is a conversion a representation needs for its *own*
-operations, which has to sit below it — `VPolytope.ofInterval` stays in
-`VPolytope/` because `VPolytope.and` is built from it.
+other. All twenty ordered pairs of `Interval`, `Zonotope`, `HPolytope`,
+`VPolytope` and `ConZonotope` are there in the exact layer, eighteen in the
+float one; the declaration is named for the target, as in CORA, where
+`interval(zonotope)` is how a zonotope becomes a box.
+
+An operation may be *implemented* by conversion — `VPolytope.and` goes out to
+halfspaces, where intersection is free, and comes back — and then imports these
+files by exact path. That is a dependency, not a cycle: the conversion imports
+the representation's own files, never its `API.lean`.
 
 A representation present in both arithmetic layers holds one directory per
 layer, named for the namespace it declares; one present in a single layer stays
