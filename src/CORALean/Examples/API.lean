@@ -1,4 +1,8 @@
+import CORALean.Examples.BouncingBall
+import CORALean.Examples.ConversionRoundTrip
 import CORALean.Examples.FeedForward
+import CORALean.Examples.PolyZonotopeReach
+import CORALean.Examples.ReachSpecializations
 
 /-!
 # Worked examples, collected
