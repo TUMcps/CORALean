@@ -1,4 +1,5 @@
 import CORALean.ContSet.InflatedContSet.InflatedContSet
+import CORALean.ContSet.InflatedContSet.Operations.Bound
 import CORALean.ContSet.InflatedContSet.Theorems.API
 
 /-!

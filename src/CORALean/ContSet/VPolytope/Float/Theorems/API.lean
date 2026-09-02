@@ -1,6 +1,7 @@
 import CORALean.ContSet.VPolytope.Float.Theorems.PlusOuter
 import CORALean.ContSet.VPolytope.Float.Theorems.MtimesOuter
 import CORALean.ContSet.VPolytope.Float.Theorems.LinCombOuter
+import CORALean.ContSet.VPolytope.Float.Theorems.IntervalOuter
 
 /-!
 # What the float `VPolytope` guarantees

@@ -1,6 +1,8 @@
 import CORALean.ContSet.VPolytope.Float.Operations.Plus
 import CORALean.ContSet.VPolytope.Float.Operations.Mtimes
 import CORALean.ContSet.VPolytope.Float.Operations.LinComb
+import CORALean.ContSet.VPolytope.Float.Operations.SupportBound
+import CORALean.ContSet.VPolytope.Float.Operations.Interval
 
 /-!
 # What the float `VPolytope` computes

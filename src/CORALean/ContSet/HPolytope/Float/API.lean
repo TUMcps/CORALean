@@ -1,5 +1,6 @@
 import CORALean.ContSet.HPolytope.Float.HPolytope
 import CORALean.ContSet.HPolytope.Float.Operations.API
+import CORALean.ContSet.HPolytope.Float.Theorems.API
 import CORALean.ContSet.HPolytope.Float.Instances
 
 /-!

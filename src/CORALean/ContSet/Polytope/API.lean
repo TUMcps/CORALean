@@ -1,8 +1,10 @@
 import CORALean.ContSet.Polytope.Real.API
+import CORALean.ContSet.Polytope.Float.API
 
 /-!
 # Between the two polytope representations, both layers
 
-The specification only for now; a float conversion rounds the bounds outward and
-is otherwise the same argument.
+Vertices to halfspaces at both layers, the float one rounding each bound
+outward and otherwise running the same argument. The other direction is absent
+at both, and for the same reason.
 -/

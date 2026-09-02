@@ -19,8 +19,9 @@ open Matrix
 
 variable {q n : ℕ}
 
-/-- Row `i` of `M`, as the functional a constraint is. -/
-def HPolytope.aux_rowLin (M : Mat ℝ q n) (i : Fin q) : Vec ℝ n →ₗ[ℝ] ℝ where
+/-- Row `i` of `M`, as the functional a constraint is. Named rather than
+file-local: the float layer states its own bounds against these rows. -/
+def HPolytope.rowLin (M : Mat ℝ q n) (i : Fin q) : Vec ℝ n →ₗ[ℝ] ℝ where
   toFun x := (M *ᵥ x) i
   map_add' x y := by rw [Matrix.mulVec_add]; rfl
   map_smul' c x := by rw [RingHom.id_apply, Matrix.mulVec_smul]; rfl
@@ -28,7 +29,7 @@ def HPolytope.aux_rowLin (M : Mat ℝ q n) (i : Fin q) : Vec ℝ n →ₗ[ℝ] �
 /-- CORA's `polytope(A, b)`: one inequality per row. -/
 def HPolytope.ineqs (A : Mat ℝ q n) (b : Vec ℝ q) : HPolytope (Vec ℝ n) where
   m := q
-  A := HPolytope.aux_rowLin A
+  A := HPolytope.rowLin A
   b := b
   me := 0
   Ae := Fin.elim0
@@ -40,7 +41,7 @@ def HPolytope.eqs (Ae : Mat ℝ q n) (be : Vec ℝ q) : HPolytope (Vec ℝ n) wh
   A := Fin.elim0
   b := Fin.elim0
   me := q
-  Ae := HPolytope.aux_rowLin Ae
+  Ae := HPolytope.rowLin Ae
   be := be
 
 theorem HPolytope.mem_ineqs_iff {A : Mat ℝ q n} {b : Vec ℝ q} {x : Vec ℝ n} :

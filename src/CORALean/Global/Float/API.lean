@@ -1,6 +1,7 @@
 import CORALean.Global.Float.FloatOps
 import CORALean.Global.Float.SoundFloatArithmetic
 import CORALean.Global.Float.Instances.API
+import CORALean.Global.LinProg.Float.API
 
 /-!
 # The floating-point scalar, collected
