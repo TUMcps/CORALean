@@ -1,4 +1,5 @@
-import CORALean.ContSet.VPolytope.Float.Operations.OfInterval
+import CORALean.ContSet.Conversion.Float.Interval_to_VPolytope
+import CORALean.ContSet.Conversion.Float.HPolytope_to_Interval
 import CORALean.ContSet.HPolytope.Float.Theorems.CertifiedOuter
 
 /-!
@@ -20,13 +21,13 @@ open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ} {P : HPolytope 𝕋 n}
 
-def HPolytope.toVPolytopeBox (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
+def HPolytope.vPolytopeBox (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
     (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) : VPolytope 𝕋 n :=
-  VPolytope.ofInterval (HPolytope.intervalOf up lo)
+  Interval.vPolytope (HPolytope.interval up lo)
 
-theorem HPolytope.subset_toVPolytopeBox (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
+theorem HPolytope.subset_vPolytopeBox (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
     (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) :
-    P.construct ⊆ (HPolytope.toVPolytopeBox up lo).construct :=
-  subset_trans (HPolytope.intervalOf_outer up lo) (VPolytope.subset_ofInterval _)
+    P.construct ⊆ (HPolytope.vPolytopeBox up lo).construct :=
+  subset_trans (HPolytope.interval_outer up lo) (Interval.subset_vPolytope _)
 
 end CORALean.Float

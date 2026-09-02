@@ -1,11 +1,10 @@
 import CORALean.ContSet.VPolytope.Float.Operations.SupportBound
 
 /-!
-# `VPolytope.interval`, over a floating-point scalar
+# A hull as a box, over a floating-point scalar
 
 The box around the vertices, widened by the error box. Both bounds come from
-`SupportBound`, so nothing is computed here — the file exists to give CORA's
-`interval(polytope)` a name at this layer.
+`SupportBound`, so nothing is computed here.
 -/
 
 -- Authors:       Tobias Ladner
@@ -21,5 +20,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 def VPolytope.interval (P : VPolytope 𝕋 n) : Interval 𝕋 n :=
   Interval.ofBounds P.boundProj P.boundNegProj
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+theorem VPolytope.interval_outer (P : VPolytope 𝕋 n) :
+    P.construct ⊆ P.interval.construct :=
+  Interval.subset_ofBounds _ _
 
 end CORALean.Float

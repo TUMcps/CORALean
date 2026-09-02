@@ -37,10 +37,4 @@ theorem HPolytope.mtimesOf_outer (M : Mat 𝕋 p n) (Aq : Mat 𝕋 q p)
     (toRealMat M *ᵥ ·) '' P.construct ⊆ (HPolytope.mtimesOf M Aq u).construct :=
   HPolytope.subset_ofBounds _ _
 
-theorem HPolytope.intervalOf_outer
-    (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
-    (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) :
-    P.construct ⊆ (HPolytope.intervalOf up lo).construct :=
-  Interval.subset_ofBounds up lo
-
 end CORALean.Float

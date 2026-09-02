@@ -1,6 +1,7 @@
 import CORALean.ContSet.ConZonotope.Real.Operations.LinComb
 import CORALean.ContSet.Zonotope.Real.Theorems.LinCombOuter
-import CORALean.ContSet.ConZonotope.Real.Theorems.ZonotopeOuter
+import CORALean.ContSet.Conversion.Real.ConZonotope_to_Zonotope
+import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
 
 /-!
 # `ConZonotope.linComb` encloses every segment between the two

@@ -1,4 +1,3 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.Zonotope
 import CORALean.ContSet.ConZonotope.Real.Operations.Plus
 import CORALean.ContSet.ConZonotope.Real.Operations.And
 import CORALean.ContSet.ConZonotope.Real.Operations.Map

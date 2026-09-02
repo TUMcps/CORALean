@@ -1,6 +1,7 @@
 import CORALean.ContSet.ConZonotope.Real.Operations.Reduce
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOuter
-import CORALean.ContSet.ConZonotope.Real.Theorems.ZonotopeOuter
+import CORALean.ContSet.Conversion.Real.ConZonotope_to_Zonotope
+import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
 
 /-!
 # `ConZonotope.reduce` over-approximates

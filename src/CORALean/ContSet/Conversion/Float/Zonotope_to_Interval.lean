@@ -1,20 +1,27 @@
-import CORALean.ContSet.Zonotope.Float.Operations.Interval
+import CORALean.ContSet.Zonotope.Float.Zonotope
 import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
 
 /-!
-# `Zonotope.interval` contains the zonotope
+# A zonotope as a box, over a floating-point scalar
 
-The generators reach at most `radius` either way, and the box adds its own
-bounds. Both roundings go outward, and an `Interval` has no box to charge, so
-they widen the bounds themselves.
+The centre give or take the generators' total reach, each end rounded away from
+the zonotope.
 -/
 
 -- Authors:       Tobias Ladner
--- Written:       16-August-2026
+-- Written:       02-September-2026
 -- Last update:   ---
 -- Last revision: ---
 
 namespace CORALean.Float
+
+open FloatOps
+
+variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+def Zonotope.interval (Z : Zonotope 𝕋 n) : Interval 𝕋 n where
+  inf := fun i => addDown (subDown (Z.c i) (radius Z.G i)) (Z.E.inf i)
+  sup := fun i => addUp (addUp (Z.c i) (radius Z.G i)) (Z.E.sup i)
 
 open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 

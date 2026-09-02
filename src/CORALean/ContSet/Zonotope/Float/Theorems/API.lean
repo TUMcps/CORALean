@@ -2,7 +2,6 @@ import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
 import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.LinCombOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.IntervalOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.AbsorbErrorOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.ReduceByOuterRefines
 import CORALean.ContSet.Zonotope.Float.Theorems.ReduceByOuter

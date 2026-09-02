@@ -2,7 +2,6 @@ import CORALean.ContSet.Zonotope.Real.Operations.Map
 import CORALean.ContSet.Zonotope.Real.Operations.LinMtimes
 import CORALean.ContSet.Zonotope.Real.Operations.Plus
 import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
-import CORALean.ContSet.Zonotope.Real.Operations.Interval
 import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
 import CORALean.ContSet.Zonotope.Real.Operations.LinComb
 import CORALean.ContSet.Zonotope.Real.Operations.Reduce

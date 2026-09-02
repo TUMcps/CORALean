@@ -1,21 +1,30 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Interval
+import CORALean.ContSet.Zonotope.Real.Zonotope
+import CORALean.ContSet.Interval.Real.Interval
 
 /-!
-# `Zonotope.interval` over-approximates the zonotope
+# A zonotope as a box
 
-Triangle inequality: coefficients bounded by one make the displacement from the
-centre at most the row sum of `|G|`, which is the half-width the hull was given.
-`abs_le` turns that into the `inf`/`sup` pair `Interval.construct` asks for.
+CORA's `interval(zonotope)`: the centre give or take the generators' total reach
+in each coordinate. Not exact — a zonotope is generally not a box — but tight,
+since each coordinate's extreme is attained by taking every generator at its own
+sign.
+
+No linear program: a zonotope answers a direction by summing absolute values,
+which is the reason it is the representation reachability runs on.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       16-August-2026
--- Last update:   ---
+-- Last update:   02-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+def Zonotope.interval (Z : Zonotope (Vec ℝ n)) : Interval (Vec ℝ n) where
+  inf := fun i => Z.c i - ∑ j, |Z.G j i|
+  sup := fun i => Z.c i + ∑ j, |Z.G j i|
 
 theorem Zonotope.interval_outer (Z : Zonotope (Vec ℝ n)) :
     Z.construct ⊆ Z.interval.construct := by

@@ -1,4 +1,5 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.Zonotope
+import CORALean.ContSet.Conversion.Real.ConZonotope_to_Zonotope
+import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
 import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
 
 /-!

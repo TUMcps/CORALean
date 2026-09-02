@@ -1,7 +1,7 @@
 import CORALean.ContSet.HPolytope.Real.Operations.BasicPoint
 import CORALean.ContSet.HPolytope.Real.Theorems.ExtremePoints
-import CORALean.ContSet.HPolytope.Real.Theorems.CertifiedOuter
-import CORALean.ContSet.VPolytope.Real.Theorems.OfIntervalOuter
+import CORALean.ContSet.Conversion.Real.HPolytope_to_Interval
+import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
 import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
 import CORALean.ContSet.VPolytope.Real.Theorems.IsCompact
 
@@ -10,7 +10,7 @@ import CORALean.ContSet.VPolytope.Real.Theorems.IsCompact
 
 Two routes, and they trade opposite exponentials.
 
-`toVPolytope` is the real conversion and is **exact**. A bounded polytope is the
+`vPolytope` is the real conversion and is **exact**. A bounded polytope is the
 closure of the hull of its extreme points, and at an extreme point no direction
 is free, so the rows tight there admit exactly one solution — which means every
 extreme point is named by its own tight set. Enumerating the subsets of rows
@@ -18,7 +18,7 @@ therefore reaches all of them. Costs `2^m`, and needs the polytope nonempty, for
 the same reason CORA needs a feasible point: a subset of rows that names nothing
 usable has to fall back on something inside.
 
-`toVPolytopeBox` goes through a box instead — `2n` linear programs, then `2ⁿ`
+`vPolytopeBox` goes through a box instead — `2n` linear programs, then `2ⁿ`
 corners. Never tight unless the polytope was a box, but polynomial in the number
 of rows, which is the case that matters when a step has accumulated many.
 
@@ -67,15 +67,15 @@ theorem HPolytope.subset_of_pinned (hc : IsCompact P.construct) (W : VPolytope (
 replaced by a point of the polytope when it is not — so every vertex listed is a
 point of the polytope, which is what makes the conversion exact rather than
 merely enclosing. -/
-noncomputable def HPolytope.toVPolytope (P : HPolytope (Vec ℝ n)) (hne : P.construct.Nonempty) :
+noncomputable def HPolytope.vPolytope (P : HPolytope (Vec ℝ n)) (hne : P.construct.Nonempty) :
     VPolytope (Vec ℝ n) where
   k := 2 ^ P.m
   V := fun l =>
     if P.basicPoint (signEquiv P.m l) ∈ P.construct then P.basicPoint (signEquiv P.m l)
     else hne.choose
 
-theorem HPolytope.toVPolytope_subset (P : HPolytope (Vec ℝ n)) (hne : P.construct.Nonempty) :
-    (P.toVPolytope hne).construct ⊆ P.construct := by
+theorem HPolytope.vPolytope_subset (P : HPolytope (Vec ℝ n)) (hne : P.construct.Nonempty) :
+    (P.vPolytope hne).construct ⊆ P.construct := by
   rw [VPolytope.construct_eq_convexHull]
   refine convexHull_min ?_ P.convex_construct
   rintro _ ⟨l, rfl⟩
@@ -85,28 +85,28 @@ theorem HPolytope.toVPolytope_subset (P : HPolytope (Vec ℝ n)) (hne : P.constr
   · assumption
   · exact hne.choose_spec
 
-theorem HPolytope.subset_toVPolytope (P : HPolytope (Vec ℝ n)) (hc : IsCompact P.construct)
-    (hne : P.construct.Nonempty) : P.construct ⊆ (P.toVPolytope hne).construct := by
+theorem HPolytope.subset_vPolytope (P : HPolytope (Vec ℝ n)) (hc : IsCompact P.construct)
+    (hne : P.construct.Nonempty) : P.construct ⊆ (P.vPolytope hne).construct := by
   refine HPolytope.subset_of_pinned hc _ fun x hx hpin => ?_
   refine ⟨(signEquiv P.m).symm (P.tightAt x), ?_⟩
   show (if P.basicPoint (signEquiv P.m ((signEquiv P.m).symm (P.tightAt x))) ∈ P.construct then
       P.basicPoint (signEquiv P.m ((signEquiv P.m).symm (P.tightAt x))) else hne.choose) = x
   rw [Equiv.apply_symm_apply, P.basicPoint_tightAt hx hpin, if_pos hx]
 
-theorem HPolytope.toVPolytope_exact (P : HPolytope (Vec ℝ n)) (hc : IsCompact P.construct)
-    (hne : P.construct.Nonempty) : (P.toVPolytope hne).construct = P.construct :=
-  Set.Subset.antisymm (P.toVPolytope_subset hne) (P.subset_toVPolytope hc hne)
+theorem HPolytope.vPolytope_exact (P : HPolytope (Vec ℝ n)) (hc : IsCompact P.construct)
+    (hne : P.construct.Nonempty) : (P.vPolytope hne).construct = P.construct :=
+  Set.Subset.antisymm (P.vPolytope_subset hne) (P.subset_vPolytope hc hne)
 
 /-- The cheap route: a box from `2n` certificates, then its corners. -/
-noncomputable def HPolytope.toVPolytopeBox
+noncomputable def HPolytope.vPolytopeBox
     (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
     (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) : VPolytope (Vec ℝ n) :=
-  VPolytope.ofInterval (HPolytope.intervalOf up lo)
+  Interval.vPolytope (HPolytope.interval up lo)
 
-theorem HPolytope.subset_toVPolytopeBox
+theorem HPolytope.subset_vPolytopeBox
     (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
     (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) :
-    P.construct ⊆ (HPolytope.toVPolytopeBox up lo).construct :=
-  subset_trans (HPolytope.intervalOf_outer up lo) (VPolytope.subset_ofInterval _)
+    P.construct ⊆ (HPolytope.vPolytopeBox up lo).construct :=
+  subset_trans (HPolytope.interval_outer up lo) (Interval.subset_vPolytope _)
 
 end CORALean.Real

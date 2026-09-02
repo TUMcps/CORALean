@@ -1,4 +1,3 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.Zonotope
 import CORALean.ContSet.ConZonotope.Float.Operations.Plus
 import CORALean.ContSet.ConZonotope.Float.Operations.LinComb
 import CORALean.ContSet.ConZonotope.Float.Operations.Reduce

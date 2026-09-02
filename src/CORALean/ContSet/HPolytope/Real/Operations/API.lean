@@ -1,8 +1,7 @@
 import CORALean.ContSet.HPolytope.Real.Operations.And
-import CORALean.ContSet.HPolytope.Real.Operations.Box
+import CORALean.ContSet.HPolytope.Real.Operations.BasicPoint
 import CORALean.ContSet.HPolytope.Real.Operations.Comap
 import CORALean.ContSet.HPolytope.Real.Operations.DualBound
-import CORALean.ContSet.HPolytope.Real.Operations.IntervalOf
 import CORALean.ContSet.HPolytope.Real.Operations.LinComb
 import CORALean.ContSet.HPolytope.Real.Operations.MapEquiv
 import CORALean.ContSet.HPolytope.Real.Operations.Mtimes

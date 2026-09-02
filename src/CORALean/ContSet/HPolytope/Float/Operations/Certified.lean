@@ -44,8 +44,4 @@ def HPolytope.mtimesOf (M : Mat 𝕋 p n) (Aq : Mat 𝕋 q p)
     HPolytope 𝕋 p :=
   HPolytope.ofBounds Aq fun i => FloatBound.image _ (u i)
 
-def HPolytope.intervalOf (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
-    (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) : Interval 𝕋 n :=
-  Interval.ofBounds up lo
-
 end CORALean.Float

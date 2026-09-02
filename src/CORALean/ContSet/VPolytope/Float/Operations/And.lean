@@ -1,5 +1,5 @@
-import CORALean.ContSet.VPolytope.Float.Operations.OfInterval
-import CORALean.ContSet.VPolytope.Float.Operations.Interval
+import CORALean.ContSet.Conversion.Float.Interval_to_VPolytope
+import CORALean.ContSet.Conversion.Float.VPolytope_to_Interval
 import CORALean.ContSet.Interval.Float.Operations.And
 
 /-!
@@ -24,6 +24,6 @@ open FloatOps SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 def VPolytope.and (P₁ P₂ : VPolytope 𝕋 n) : VPolytope 𝕋 n :=
-  VPolytope.ofInterval (P₁.interval.and P₂.interval)
+  Interval.vPolytope (P₁.interval.and P₂.interval)
 
 end CORALean.Float

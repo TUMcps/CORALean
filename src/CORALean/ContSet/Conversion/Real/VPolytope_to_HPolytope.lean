@@ -25,12 +25,12 @@ namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α] {q : ℕ}
 
-noncomputable def VPolytope.toHPolytope (P : VPolytope α) (Aq : Fin q → (α →ₗ[ℝ] ℝ)) :
+noncomputable def VPolytope.hPolytope (P : VPolytope α) (Aq : Fin q → (α →ₗ[ℝ] ℝ)) :
     HPolytope α :=
   HPolytope.ofBounds Aq fun i => P.supportBound (Aq i)
 
-theorem VPolytope.subset_toHPolytope (P : VPolytope α) (Aq : Fin q → (α →ₗ[ℝ] ℝ)) :
-    P.construct ⊆ (P.toHPolytope Aq).construct :=
+theorem VPolytope.subset_hPolytope (P : VPolytope α) (Aq : Fin q → (α →ₗ[ℝ] ℝ)) :
+    P.construct ⊆ (P.hPolytope Aq).construct :=
   HPolytope.subset_ofBounds _ _
 
 end CORALean.Real

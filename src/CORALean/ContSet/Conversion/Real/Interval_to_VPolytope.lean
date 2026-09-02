@@ -1,17 +1,23 @@
-import CORALean.ContSet.VPolytope.Real.Operations.OfInterval
+import CORALean.ContSet.VPolytope.Real.VPolytope
+import CORALean.ContSet.Interval.Real.Interval
+import CORALean.Global.Corners
 
 /-!
-# A box is the hull of its corners
+# A box as its corners
 
-Exactly, though only the enclosing direction is proved here — that is the one
-the conversion needs, and the other is `interval_outer` at the corners.
+`2ⁿ` vertices, exponential and inherently so: a box in `n` dimensions has that
+many corners and a vertex description has to name them all.
 
-The witness is explicit: each coordinate sits some fraction `t j` of the way up
+The witness is explicit. Each coordinate sits some fraction `t j` of the way up
 its own range, and a corner's weight is the product over coordinates of `t j` or
 `1 - t j` according to which end that corner took. Both obligations are then the
 same combinatorial identity — the weights sum to one because each coordinate's
 pair does, and they reproduce `x` because for one coordinate at a time every
 other coordinate's pair sums away.
+
+A flat coordinate is the case to watch: `t j` divides by the range's width, so it
+is set to zero there, which is correct because a flat range leaves `x j` no
+choice.
 -/
 
 -- Authors:       Tobias Ladner
@@ -23,8 +29,16 @@ namespace CORALean.Real
 
 variable {n : ℕ}
 
-theorem VPolytope.subset_ofInterval (I : Interval (Vec ℝ n)) :
-    I.construct ⊆ (VPolytope.ofInterval I).construct := by
+/-- The corner that takes each coordinate's upper end where `σ` says so. -/
+def Interval.corner (I : Interval (Vec ℝ n)) (σ : Fin n → Bool) : Vec ℝ n :=
+  fun j => if σ j then I.sup j else I.inf j
+
+noncomputable def Interval.vPolytope (I : Interval (Vec ℝ n)) : VPolytope (Vec ℝ n) where
+  k := 2 ^ n
+  V := fun l => I.corner (signEquiv n l)
+
+theorem Interval.subset_vPolytope (I : Interval (Vec ℝ n)) :
+    I.construct ⊆ I.vPolytope.construct := by
   intro x hx
   have hlo : ∀ j, I.inf j ≤ x j := fun j => (hx j).1
   have hhi : ∀ j, x j ≤ I.sup j := fun j => (hx j).2
@@ -58,15 +72,13 @@ theorem VPolytope.subset_ofInterval (I : Interval (Vec ℝ n)) :
     simp
   · funext i
     have hsum : (∑ l : Fin (2 ^ n),
-          (∏ j, (if signEquiv n l j then t j else 1 - t j)) •
-            boxCorner I (signEquiv n l)) i
+          (∏ j, (if signEquiv n l j then t j else 1 - t j)) • I.corner (signEquiv n l)) i
         = ∑ l : Fin (2 ^ n), (∏ j, (if signEquiv n l j then t j else 1 - t j))
             * (if signEquiv n l i then I.sup i else I.inf i) := by
       simp only [Finset.sum_apply, Pi.smul_apply, smul_eq_mul]
       rfl
     show x i = (∑ l : Fin (2 ^ n),
-      (∏ j, (if signEquiv n l j then t j else 1 - t j)) •
-        boxCorner I (signEquiv n l)) i
+      (∏ j, (if signEquiv n l j then t j else 1 - t j)) • I.corner (signEquiv n l)) i
     rw [hsum, Fintype.sum_equiv (signEquiv n) _
         (fun σ : Fin n → Bool => (∏ j, (if σ j then t j else 1 - t j))
           * (if σ i then I.sup i else I.inf i)) fun _ => rfl,

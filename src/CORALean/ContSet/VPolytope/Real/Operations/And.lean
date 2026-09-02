@@ -1,33 +1,60 @@
-import CORALean.ContSet.VPolytope.Real.Operations.OfInterval
-import CORALean.ContSet.VPolytope.Real.Operations.Interval
-import CORALean.ContSet.Interval.Real.Operations.And
+import CORALean.ContSet.Conversion.Real.VPolytope_to_HPolytope
+import CORALean.ContSet.Conversion.Real.HPolytope_to_VPolytope
+import CORALean.ContSet.Conversion.Real.Interval_to_HPolytope
+import CORALean.ContSet.Conversion.Real.VPolytope_to_Interval
+import CORALean.ContSet.HPolytope.Real.Theorems.AndExact
 
 /-!
 # `VPolytope.and`
 
-Intersection, which is the one operation vertices are bad at: the intersection's
-vertices are generally none of either operand's, and finding them is facet
-enumeration on both sides followed by vertex enumeration on the result.
+Intersection is the operation vertices are worst at — the result's vertices are
+generally none of either operand's — so it goes out to halfspaces, where
+intersection is free, and comes back.
 
-So this goes through boxes — each polytope's own box, intersected, back to
-corners. Sound, exponential in the dimension rather than in the vertex counts,
-and loose: the answer is a box, and everything the two hulls did not fill is
-kept. Exact when both operands were boxes to begin with.
+Both steps are already available and neither is a placeholder: out on directions
+the caller names, and back by vertex enumeration, which is exact. So `and` is
+exact whenever the directions given contain each operand's facet normals, and
+merely encloses otherwise. The directions are the whole of the imprecision.
 
-A tighter version needs the conversion `Polytope` does not have, and would be an
-algorithm rather than a definition.
+One extra row goes in on the way out: one operand's own box, so that the
+halfspace description is bounded and can be converted back at all. It costs
+nothing, the operand already being inside it.
+
+Empty is handled rather than assumed. If the halfspace description turns out to
+denote nothing then so does the intersection, and the answer is the empty vertex
+list.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   02-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
 
-variable {n : ℕ}
+open scoped Classical
 
-noncomputable def VPolytope.and (P₁ P₂ : VPolytope (Vec ℝ n)) : VPolytope (Vec ℝ n) :=
-  VPolytope.ofInterval (P₁.interval.and P₂.interval)
+variable {n q₁ q₂ : ℕ}
+
+/-- The intersection as halfspaces, kept bounded by one operand's own box. -/
+noncomputable def VPolytope.aux_andH (P₁ P₂ : VPolytope (Vec ℝ n))
+    (Aq₁ : Fin q₁ → (Vec ℝ n →ₗ[ℝ] ℝ)) (Aq₂ : Fin q₂ → (Vec ℝ n →ₗ[ℝ] ℝ)) :
+    HPolytope (Vec ℝ n) :=
+  ((P₁.hPolytope Aq₁).and (P₂.hPolytope Aq₂)).and (Interval.hPolytope P₁.interval)
+
+theorem VPolytope.aux_andH_isCompact (P₁ P₂ : VPolytope (Vec ℝ n))
+    (Aq₁ : Fin q₁ → (Vec ℝ n →ₗ[ℝ] ℝ)) (Aq₂ : Fin q₂ → (Vec ℝ n →ₗ[ℝ] ℝ)) :
+    IsCompact (VPolytope.aux_andH P₁ P₂ Aq₁ Aq₂).construct := by
+  refine HPolytope.isCompact_of_subset (W := P₁.interval.vPolytope) fun x hx => ?_
+  have h := (HPolytope.mem_and_iff.mp hx).2
+  rw [Interval.hPolytope_exact] at h
+  exact Interval.subset_vPolytope _ h
+
+noncomputable def VPolytope.and (P₁ P₂ : VPolytope (Vec ℝ n))
+    (Aq₁ : Fin q₁ → (Vec ℝ n →ₗ[ℝ] ℝ)) (Aq₂ : Fin q₂ → (Vec ℝ n →ₗ[ℝ] ℝ)) :
+    VPolytope (Vec ℝ n) :=
+  if h : (VPolytope.aux_andH P₁ P₂ Aq₁ Aq₂).construct.Nonempty then
+    (VPolytope.aux_andH P₁ P₂ Aq₁ Aq₂).vPolytope h
+  else VPolytope.emptySet _
 
 end CORALean.Real

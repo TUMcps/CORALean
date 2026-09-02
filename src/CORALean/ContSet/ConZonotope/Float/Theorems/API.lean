@@ -1,4 +1,3 @@
-import CORALean.ContSet.ConZonotope.Float.Theorems.ZonotopeOuter
 import CORALean.ContSet.ConZonotope.Float.Theorems.PlusOuter
 import CORALean.ContSet.ConZonotope.Float.Theorems.LinCombOuter
 import CORALean.ContSet.ConZonotope.Float.Theorems.ReduceOuter

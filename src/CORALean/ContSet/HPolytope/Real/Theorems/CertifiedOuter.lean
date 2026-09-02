@@ -1,7 +1,6 @@
 import CORALean.ContSet.HPolytope.Real.Operations.Plus
 import CORALean.ContSet.HPolytope.Real.Operations.LinComb
 import CORALean.ContSet.HPolytope.Real.Operations.Mtimes
-import CORALean.ContSet.HPolytope.Real.Operations.IntervalOf
 
 /-!
 # The certified operations enclose
@@ -26,7 +25,7 @@ namespace CORALean.Real
 open Pointwise
 
 variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Module ℝ β]
-variable {q n : ℕ}
+variable {q : ℕ}
 
 theorem HPolytope.plusOf_outer {P₁ P₂ : HPolytope α} (Aq : Fin q → (α →ₗ[ℝ] ℝ))
     (u₁ : ∀ i, SupportBound P₁.construct (Aq i))
@@ -44,11 +43,5 @@ theorem HPolytope.mtimesOf_outer {P : HPolytope α} (M : α →ₗ[ℝ] β)
     (Aq : Fin q → (β →ₗ[ℝ] ℝ)) (u : ∀ i, SupportBound P.construct ((Aq i).comp M)) :
     ⇑M '' P.construct ⊆ (HPolytope.mtimesOf M Aq u).construct :=
   HPolytope.subset_ofBounds _ _
-
-theorem HPolytope.intervalOf_outer {P : HPolytope (Vec ℝ n)}
-    (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
-    (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) :
-    P.construct ⊆ (HPolytope.intervalOf up lo).construct :=
-  Interval.subset_ofBounds up lo
 
 end CORALean.Real

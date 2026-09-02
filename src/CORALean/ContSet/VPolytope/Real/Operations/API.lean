@@ -1,6 +1,4 @@
 import CORALean.ContSet.VPolytope.Real.Operations.And
-import CORALean.ContSet.VPolytope.Real.Operations.Interval
-import CORALean.ContSet.VPolytope.Real.Operations.OfInterval
 import CORALean.ContSet.VPolytope.Real.Operations.LinComb
 import CORALean.ContSet.VPolytope.Real.Operations.Map
 import CORALean.ContSet.VPolytope.Real.Operations.Mtimes

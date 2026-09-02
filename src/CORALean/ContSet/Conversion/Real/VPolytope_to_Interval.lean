@@ -1,15 +1,16 @@
-import CORALean.ContSet.VPolytope.Real.Operations.Interval
 import CORALean.ContSet.VPolytope.Real.Operations.SupportBound
+import CORALean.ContSet.Interval.Real.Interval
 
 /-!
-# `VPolytope.interval` contains the polytope
+# A hull as a box
 
-Coordinatewise, and the same argument at both ends, which is
-`le_of_forall_le` at `±eⱼ`: a convex combination of values each below the
-supremum is below it too.
+CORA's `interval(polytope)` on a vertex description: the smallest box holding
+every vertex, which is the smallest box holding their hull — a combination of
+points never leaves a box all of them are in.
 
-Nothing here needs the vertex set to be nonempty — at no vertices the weights
-cannot sum to one, so there is nothing to bound.
+With no vertices the bounds are whatever `⨅` and `⨆` give over an empty index,
+which is sound however it lands: the polytope is `∅` then, and `∅` sits inside
+any box.
 -/
 
 -- Authors:       Tobias Ladner
@@ -20,6 +21,10 @@ cannot sum to one, so there is nothing to bound.
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+noncomputable def VPolytope.interval (P : VPolytope (Vec ℝ n)) : Interval (Vec ℝ n) where
+  inf := fun i => ⨅ l, P.V l i
+  sup := fun i => ⨆ l, P.V l i
 
 theorem VPolytope.interval_outer (P : VPolytope (Vec ℝ n)) :
     P.construct ⊆ P.interval.construct := by

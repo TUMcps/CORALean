@@ -1,4 +1,3 @@
-import CORALean.ContSet.ConZonotope.Real.Theorems.ZonotopeOuter
 import CORALean.ContSet.ConZonotope.Real.Theorems.PlusExact
 import CORALean.ContSet.ConZonotope.Real.Theorems.AndExact
 import CORALean.ContSet.ConZonotope.Real.Theorems.MapExact
