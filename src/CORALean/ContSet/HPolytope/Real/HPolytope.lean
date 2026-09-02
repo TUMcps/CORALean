@@ -51,4 +51,22 @@ theorem HPolytope.construct_fullspace : (HPolytope.fullspace α).construct = Set
   ext x
   exact ⟨fun _ => trivial, fun _ => ⟨fun i => i.elim0, fun i => i.elim0⟩⟩
 
+/-- One unsatisfiable row, `0 ≤ -1`: the absorbing element of `and`, and what a
+halfspace description says when it has nothing. -/
+def HPolytope.emptySet (α : Type) [AddCommGroup α] [Module ℝ α] : HPolytope α where
+  m := 1
+  A := fun _ => 0
+  b := fun _ => -1
+  me := 0
+  Ae := Fin.elim0
+  be := Fin.elim0
+
+theorem HPolytope.construct_emptySet : (HPolytope.emptySet α).construct = ∅ := by
+  ext x
+  simp only [Set.mem_empty_iff_false, iff_false]
+  rintro ⟨hle, -⟩
+  -- the row index ascribed at `Fin 1`, the count's reduced spelling
+  have h : (0:ℝ) ≤ -1 := hle (0 : Fin 1)
+  linarith
+
 end CORALean.Real

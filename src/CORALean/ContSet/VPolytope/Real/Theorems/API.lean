@@ -1,9 +1,10 @@
 import CORALean.ContSet.VPolytope.Real.Theorems.Convex
 import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
+import CORALean.ContSet.VPolytope.Real.Theorems.IntervalOuter
 import CORALean.ContSet.VPolytope.Real.Theorems.IsCompact
-import CORALean.ContSet.VPolytope.Real.Theorems.PlusExact
-import CORALean.ContSet.VPolytope.Real.Theorems.MapExact
 import CORALean.ContSet.VPolytope.Real.Theorems.LinCombOuter
+import CORALean.ContSet.VPolytope.Real.Theorems.MapExact
+import CORALean.ContSet.VPolytope.Real.Theorems.PlusExact
 
 /-!
 # What `VPolytope` guarantees

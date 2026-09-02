@@ -44,4 +44,39 @@ theorem VPolytope.vertex_mem (P : VPolytope α) (j : Fin P.k) : P.V j ∈ P.cons
       if_pos (Finset.mem_univ j)]
   exact ⟨fun l => if l = j then 1 else 0, hnn, hsum, hval.symm⟩
 
+/-- No vertices: there is no coefficient family over an empty index summing to
+one, so this denotes `∅`. -/
+def VPolytope.emptySet (α : Type) : VPolytope α := ⟨0, Fin.elim0⟩
+
+theorem VPolytope.construct_emptySet : (VPolytope.emptySet α).construct = ∅ := by
+  ext x
+  simp only [Set.mem_empty_iff_false, iff_false]
+  rintro ⟨β, -, hsum, -⟩
+  -- ascribed at the projection spelling of the count, which is `0` only by defeq
+  have hz : ∑ j : Fin (VPolytope.emptySet α).k, β j = 0 := Fin.sum_univ_zero _
+  rw [hz] at hsum
+  linarith
+
+/-- One vertex, which is the singleton. Composed with `plus` this is a
+translation, so the representation needs no separate one. -/
+def VPolytope.point (v : α) : VPolytope α := ⟨1, fun _ => v⟩
+
+theorem VPolytope.construct_point (v : α) : (VPolytope.point v).construct = {v} := by
+  ext x
+  constructor
+  · rintro ⟨β, -, hsum, rfl⟩
+    refine Set.mem_singleton_iff.mpr ?_
+    -- shown at `Fin 1`, the count's reduced spelling, so `Fin.sum_univ_one` matches
+    have h1 : β (0 : Fin 1) = 1 := by
+      rw [← hsum]
+      exact (Fin.sum_univ_one (β : Fin 1 → ℝ)).symm
+    show ∑ j : Fin 1, β j • v = v
+    rw [Fin.sum_univ_one, h1, one_smul]
+  · rintro rfl
+    refine ⟨fun _ => 1, fun _ => zero_le_one, ?_, ?_⟩
+    · show ∑ _j : Fin 1, (1:ℝ) = 1
+      rw [Fin.sum_univ_one]
+    · show x = ∑ _j : Fin 1, (1:ℝ) • x
+      rw [Fin.sum_univ_one, one_smul]
+
 end CORALean.Real
