@@ -45,7 +45,7 @@ theorem PolyZonotope.aux_sum_univ_linComb_q {PZ₁ PZ₂ : PolyZonotope α}
   Fin.sum_univ_add f
 
 /-- Scaling a coefficient by a weight in `[0,1]` keeps it a coefficient. -/
-theorem PolyZonotope.aux_abs_mul_le_one {a b : ℝ} (ha0 : 0 ≤ a) (ha1 : a ≤ 1)
+theorem PolyZonotope.abs_mul_le_one {a b : ℝ} (ha0 : 0 ≤ a) (ha1 : a ≤ 1)
     (hb : |b| ≤ 1) : |a * b| ≤ 1 := by
   rw [abs_mul, abs_of_nonneg ha0]
   nlinarith [abs_nonneg b]
@@ -93,9 +93,9 @@ theorem PolyZonotope.linComb_outer (PZ₁ PZ₂ : PolyZonotope α) :
       constructor <;> linarith
   · refine Fin.addCases ?_ ?_
     · intro j
-      simpa using PolyZonotope.aux_abs_mul_le_one hl0 hl1 (hβ₁ j)
+      simpa using PolyZonotope.abs_mul_le_one hl0 hl1 (hβ₁ j)
     · intro j
-      simpa using PolyZonotope.aux_abs_mul_le_one (by linarith) (by linarith) (hβ₂ j)
+      simpa using PolyZonotope.abs_mul_le_one (by linarith) (by linarith) (hβ₂ j)
   · rw [PolyZonotope.aux_sum_univ_linComb_h, PolyZonotope.aux_sum_univ_linComb_q]
     simp only [PolyZonotope.linComb, Fin.sum_univ_add, Fin.sum_univ_one,
       PolyZonotope.monomial_linCombE_fst, PolyZonotope.monomial_linCombE_snd,

@@ -1,4 +1,4 @@
-import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
+import CORALean.ContSet.PolyZonotope.Float.Operations.Compact
 import CORALean.Global.Partition
 import CORALean.Global.Sort
 
@@ -12,20 +12,15 @@ metric; `sortPerm` asks its comparator for nothing, so `le` on a machine scalar
 suffices. It can afford to: `reduceBy_outer` holds at every partition, so a
 misranking costs precision and never soundness.
 
-Nothing is charged to the error box. The centre, the kept generators and their
-exponent columns are copied exactly, and the diagonal block rounds *up*, which
-only enlarges a result that was already an over-approximation.
+`reduceBy` charges nothing to the error box. The centre, the kept generators and
+their exponent columns are copied exactly, and the diagonal block rounds *up*,
+which only enlarges a result that was already an over-approximation. `compact`,
+which `reduce` runs first as over ℝ, does charge one: merging two columns adds
+their entries.
 
-Not the exact layer's `reduce`, which is `compact` and then this. `compact` is
-left out, and the reason is worth stating because it inverts the usual one.
-Deciding whether a generator is zero and ordering the columns are both decidable
-over a machine scalar and neither is over ℝ, so *that* obstacle disappears; what
-appears instead is arithmetic. Merging two columns with the same exponent
-adds their entries, which rounds, so a float `compact` — unlike the exact one —
-would owe an error box, and it would need a directed sum over a `Finset` where
-this layer has one only over `Fin n`. Both are ordinary work; neither is done
-here, so `reduce` bounds the count of stored columns rather than the count of
-distinct monomials.
+Running it is what makes the order bound mean what it means over ℝ — a count of
+distinct monomials rather than of stored columns, which `plus` and `quadMap`
+inflate while the set stands still.
 -/
 
 -- Authors:       Tobias Ladner
@@ -84,6 +79,6 @@ def PolyZonotope.reduceGirard (PZ : PolyZonotope 𝕋 n) (o : ℕ) : PolyZonotop
 sees fit. Girard's is the one here, as over ℝ, and which it is goes no further —
 a caller names an order and gets an over-approximation. -/
 def PolyZonotope.reduce (PZ : PolyZonotope 𝕋 n) (o : ℕ) : PolyZonotope 𝕋 n :=
-  PZ.reduceGirard o
+  PZ.compact.reduceGirard o
 
 end CORALean.Float

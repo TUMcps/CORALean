@@ -1,5 +1,6 @@
 import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
 import CORALean.ContSet.PolyZonotope.Float.Operations.Reduce
+import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.Coefficient
 
 /-!
@@ -111,6 +112,7 @@ theorem PolyZonotope.reduceGirard_outer (PZ : PolyZonotope 𝕋 n) (o : ℕ) :
 choice: any other would discharge it too. -/
 theorem PolyZonotope.reduce_outer (PZ : PolyZonotope 𝕋 n) (o : ℕ) :
     PZ.construct ⊆ (PZ.reduce o).construct :=
-  PolyZonotope.reduceGirard_outer PZ o
+  subset_trans (PolyZonotope.compact_outer PZ)
+    (PolyZonotope.reduceGirard_outer PZ.compact o)
 
 end CORALean.Float

@@ -3,12 +3,14 @@ import CORALean.ContSet.Conversion.Float.ConZonotope_to_Interval
 import CORALean.ContSet.Conversion.Float.ConZonotope_to_VPolytope
 import CORALean.ContSet.Conversion.Float.ConZonotope_to_Zonotope
 import CORALean.ContSet.Conversion.Float.ContSet_to_Interval
+import CORALean.ContSet.Conversion.Float.Ellipsoid_to_Interval
 import CORALean.ContSet.Conversion.Float.HPolytope_to_ConZonotope
 import CORALean.ContSet.Conversion.Float.HPolytope_to_Interval
 import CORALean.ContSet.Conversion.Float.HPolytope_to_VPolytope
 import CORALean.ContSet.Conversion.Float.HPolytope_to_Zonotope
 import CORALean.ContSet.Conversion.Float.Interval_to_ConZonotope
 import CORALean.ContSet.Conversion.Float.Interval_to_ContSet
+import CORALean.ContSet.Conversion.Float.Interval_to_Ellipsoid
 import CORALean.ContSet.Conversion.Float.Interval_to_HPolytope
 import CORALean.ContSet.Conversion.Float.Interval_to_VPolytope
 import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
@@ -42,6 +44,12 @@ box can turn that entrywise gap into.
 
 Several round nowhere at all: corners of a box are stored bounds copied, and a
 hull becomes a constrained zonotope by renaming its fields.
+
+The two ellipsoid pairs are where a square root would have been, and neither
+takes one. A box read off an ellipsoid needs one proposed row length per
+coordinate — the pullback of a coordinate direction is a stored row of `G`
+outright, so nothing rounds before the check. A box read *as* an ellipsoid needs
+one proposed `√n`. Both are checked by a multiplication and neither is trusted.
 
 `ContSet_to_Interval` and `Interval_to_ContSet` are the two pairs whose other
 side is a variable, as in the exact layer. Here the box comes back in the scalar

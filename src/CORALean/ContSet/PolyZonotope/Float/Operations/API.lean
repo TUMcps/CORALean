@@ -1,21 +1,27 @@
 import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
 import CORALean.ContSet.PolyZonotope.Float.Operations.Plus
 import CORALean.ContSet.PolyZonotope.Float.Operations.Mtimes
+import CORALean.ContSet.PolyZonotope.Float.Operations.Compact
 import CORALean.ContSet.PolyZonotope.Float.Operations.Dependent
+import CORALean.ContSet.PolyZonotope.Float.Operations.LinComb
 import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMap
 import CORALean.ContSet.PolyZonotope.Float.Operations.Reduce
 
 /-!
 # What `PolyZonotope` computes
 
-`plus` and `mtimes` pay their rounding into the error box rather than into new
-generators. `quadMap` cannot: a quadratic map is not additive, so a box cannot
+`plus`, `linComb` and `mtimes` pay their rounding into the error box rather than
+into new generators. `linComb` pays least of the three: halving and negation are
+exact, so all three dependent blocks are copies and only the two centre-derived
+vectors round. `quadMap` cannot: a quadratic map is not additive, so a box cannot
 travel through it beside the nominal part, and `dependent` empties the box into
 generators first — the one operation here that spends any.
 
-`reduce` is the one that runs where the exact layer only specifies: ranking
-generators needs a decidable order, which a machine scalar has and ℝ does not.
-Its docstring says why `compact` did not follow it across.
+`reduce` and the `compact` it runs first both *run* where the exact layer only
+specifies: ranking generators needs a decidable order and merging columns needs
+a decidable equality on them, and a machine scalar has both where ℝ has neither.
+`compact` is the one operation whose two layers differ in what they cost —
+merging adds entries, so it encloses here where over ℝ it is an equality.
 
 None of the operations touches the exponent matrix numerically. It is a matrix of
 naturals, every operation on it is exact, and the monomials of the nominal set
