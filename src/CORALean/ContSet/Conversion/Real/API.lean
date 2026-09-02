@@ -13,8 +13,11 @@ import CORALean.ContSet.Conversion.Real.Interval_to_ConZonotope
 import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
 import CORALean.ContSet.Conversion.Real.Interval_to_Ellipsoid
 import CORALean.ContSet.Conversion.Real.Interval_to_HPolytope
+import CORALean.ContSet.Conversion.Real.Interval_to_PolyZonotope
 import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
 import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+import CORALean.ContSet.Conversion.Real.PolyZonotope_to_Interval
+import CORALean.ContSet.Conversion.Real.PolyZonotope_to_Zonotope
 import CORALean.ContSet.Conversion.Real.VPolytope_to_ConZonotope
 import CORALean.ContSet.Conversion.Real.VPolytope_to_HPolytope
 import CORALean.ContSet.Conversion.Real.VPolytope_to_Interval
@@ -23,6 +26,7 @@ import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
 import CORALean.ContSet.Conversion.Real.Zonotope_to_Ellipsoid
 import CORALean.ContSet.Conversion.Real.Zonotope_to_HPolytope
 import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
+import CORALean.ContSet.Conversion.Real.Zonotope_to_PolyZonotope
 import CORALean.ContSet.Conversion.Real.Zonotope_to_VPolytope
 
 /-!
@@ -33,15 +37,27 @@ Every ordered pair of `Interval`, `Zonotope`, `HPolytope`, `VPolytope` and
 the target — CORA's convention, where `interval(zonotope)` is how a zonotope
 becomes a box.
 
-`Ellipsoid` is a later arrival and is not paired with all of them. It reaches a
-box in closed form and tightly, and a zonotope through that box; a box and a
-zonotope reach it by the `√k` inflation a Euclidean ball needs to cover a cube.
-The pairs with the two polytopes are missing rather than impossible.
+The two later arrivals are not paired with all of them, and the gaps differ in
+kind.
+
+`Ellipsoid` reaches a box in closed form and tightly, and a zonotope through
+that box; a box and a zonotope reach it by the `√k` inflation a Euclidean ball
+needs to cover a cube. Its pairs with the two polytopes are missing rather than
+impossible.
+
+`PolyZonotope` has four of its ten. Both directions against `Zonotope`, and both
+against `Interval` — the latter composed through `Zonotope`, which is why they
+are only as tight as that route. The six against `HPolytope`, `VPolytope` and
+`ConZonotope` are missing for a reason: a polynomial zonotope is generally not
+convex, so a halfspace, vertex or constrained-zonotope description of one is an
+enclosure with a precision knob rather than a conversion, and the reverse asks
+which factors to invent.
 
 Exact: a box to a zonotope, to halfspaces, to a constrained zonotope; a zonotope
 to a constrained zonotope and to its `2ʰ` sign corners; a hull to a constrained
 zonotope; a bounded halfspace description to a constrained zonotope and to its
-vertices; a constrained zonotope to its vertices.
+vertices; a constrained zonotope to its vertices; and a zonotope to a polynomial
+zonotope, one factor per generator.
 
 Enclosing, and each for a reason worth knowing. A hull or a zonotope reaching
 halfspaces is exact only on the directions the caller names, facet enumeration
@@ -49,7 +65,8 @@ being left outside. A halfspace description reaching a box is `2n` linear
 programs and no tighter than its certificates. Anything reaching a zonotope goes
 through a box, a tighter zonotope enclosure being a fitting problem rather than a
 conversion. And anything leaving a constrained zonotope by dropping its
-constraints loses exactly those.
+constraints loses exactly those, as anything leaving a polynomial zonotope by
+freeing its dependent generators loses exactly the sharing between them.
 
 `ContSet_to_Interval` and `Interval_to_ContSet` are the two pairs whose other
 side is a variable: an algorithm that has to reach a box, or come back from one,
