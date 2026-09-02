@@ -8,11 +8,11 @@ no dependencies are the ones that can start.
 
 | Branch | Work |
 | --- | --- |
-| `feat/poly-zono-reduce` | Exact compaction first — merging equal exponent columns, dropping unused factors — and only then the ranking |
-| `feat/hybrid-automaton` | Locations, transitions and a run that alternates flowing with jumping |
+| `feat/relinearize` | Nonlinear reachability beyond one step: a fresh expansion point and a fresh certificate at each |
+| `feat/examples` | Use sites, so a broken instance fails the build — a library cannot notice one from the inside |
 
-Next after those: the re-linearization loop, the conversions the newest
-representations do not yet have, and the float layers.
+Next after those: the conversions the newest representations do not yet have,
+`restructure`, and the float layers.
 
 ## Done
 
@@ -33,7 +33,16 @@ program, and its bounding box tight.
 
 `PolyZonotope`, `Real` layer, with `quadMap` exact — the operation the
 representation exists for, and the one that needs its factors to be shared.
-`reduce` is deliberately absent; see below.
+`compact` merges equal exponent columns, drops the generators that leaves at
+zero and drops the factors nothing uses — all exact, and all of it needed before
+an order bound counts anything real, since `plus` and `quadMap` grow the
+generator count while the set stands still. `reduce` then ranks by Girard's
+metric and boxes what it drops into the independent block. Its merging core is
+stated over exponent data alone, so a constrained polynomial zonotope reuses it
+unchanged at its generators *and* at its constraint columns.
+
+With `Reduce` instantiated, linear reachability runs on `PolyZonotope` — the
+first non-convex representation it does.
 
 `ConPolyZono`, `Real` layer: the same factors additionally constrained by
 polynomial equalities `A μ(α) = b`, the constraint monomials read off one
@@ -79,6 +88,17 @@ set. Separating directions and halfspace bounds discharge it.
 enclosure, and the standard layers: linear, ReLU, sigmoid, tanh. Robust
 classification as a specification.
 
+**Hybrid systems.** Locations, transitions and the automaton. A run is an
+inductive chain of stays joined by jumps, so chaining is the family's own
+recursion and the safety statement is `Specification.holds_of_outer` in a line.
+Each stay runs on a local clock, which is what lets every `LinearSys` statement
+apply unchanged; global time is the sum of dwell times and never appears. The
+alternative — a predicate over global time — was rejected because it would have
+had to assert the jump times are discrete and increasing, putting a Zeno
+condition inside the definition of a run. Guard intersection is a hypothesis
+carrying its own proof rather than a class, and `ConZonotope` discharges it with
+an equality.
+
 ## Open
 
 Ordered roughly by what unblocks the most.
@@ -86,8 +106,14 @@ Ordered roughly by what unblocks the most.
 ### Representations
 
 - **`PolyZonotope.restructure`** — the other half of order control, moving
-  independent generators back to dependent. `reduce` and the exact compaction it
-  rests on are in flight; this is not.
+  independent generators back to dependent.
+- **The independent block under an order bound.** `reduce` bounds the dependent
+  count, and the box it drops adds `n` independent generators per call, so a
+  reachability loop still grows one of the two counts without limit. Bounding it
+  is `Zonotope.reduce`'s shape over a second partition.
+- **Compaction for `ConPolyZono`.** The merging half carries over unchanged;
+  dropping factors does not, since `p` is shared between the generator and
+  constraint exponent matrices and only a factor unused by both may go.
 - **`ConPolyZono`: `linComb`, `reduce`, `CompactSet`** — the first would have to
   relax the independent block, the second needs compaction in the constraint
   matrix as well as the generators, and the third is true but unproved: the sets
@@ -144,6 +170,17 @@ Ordered roughly by what unblocks the most.
 
 ### Hybrid systems
 
+- **A bounded-horizon invariant.** What chains today is an *inductive* invariant:
+  a set per location closed under flowing and under jumping. Once jumps are in
+  play there is no step index, so a location visited twice is answered by the
+  same set both times. The bounded reading — a set per step as well as per
+  location — is the same induction with an extra argument.
+- **Computing an invariant.** `Invariant` states what a fixpoint iteration would
+  have to produce; the iteration itself is not written.
+- **`ConPolyZono` at a jump.** The reset is `mtimes` and `plus` with the offset
+  as a zero-width box, so it asks for `OfInterval`, which `ConPolyZono` does not
+  instantiate. Its exact non-convex intersection is therefore one conversion
+  instance away from the guard, not one theorem.
 - **`ParallelHybridAutomaton`** — composition. Waits on the single automaton.
 
 ### Neural networks
@@ -162,10 +199,10 @@ Ordered roughly by what unblocks the most.
 
 ### Infrastructure
 
-- **A worked example per component.** `Examples/FeedForward.lean` is the first,
-  and it exists because a library cannot notice a broken instance from the
-  inside — only a use site can. One per representation and per algorithm is the
-  target.
+- **A worked example per component.** In flight. `Examples/FeedForward.lean` was
+  the only use site, and one is not enough: the fact that linear reachability now
+  runs on `PolyZonotope` was discovered by trying it, not by reading the
+  instances.
 - **Specializations as regression tests.** Reachability is now stated once over
   `ConvexSet` and `CompactSet`, and the old per-representation statements were
   checked to follow with `:=` and then discarded. They belong in `Examples/`,
