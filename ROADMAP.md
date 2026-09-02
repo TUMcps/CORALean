@@ -10,6 +10,7 @@ no dependencies are the ones that can start.
 | --- | --- |
 | `feat/float-ellipsoid` | The last representation without a float layer, and a support function that wants a square root |
 | `feat/nn-more-layers` | The layers CORA has beyond the four here — reshape, pooling, convolution, batch norm, softmax |
+| `feat/operation-params` | Whether an operation class may carry a precision knob — the question three open items point at |
 
 Next after those: the float layers that remain, the conversions the newest
 representations do not yet have, more layers, and `restructure`.
@@ -25,11 +26,20 @@ operations, and the float counterpart.
 `ConZonotope`, each in both arithmetic layers, with all twenty ordered
 conversions in each layer. `InflatedContSet` is what the float layer adds.
 
-`Ellipsoid`, `Real` layer: stored as the affine image of a Euclidean ball rather
+`Ellipsoid`, both layers: stored as the affine image of a Euclidean ball rather
 than by a shape matrix, so no inverse, no positive-semi-definiteness condition
 and no matrix square root. Its support function is closed form and attained,
 which makes it the only representation that answers a direction without a linear
 program, and its bounding box tight.
+
+That closed form is where the float layer meets a square root, and it needs no
+new scalar operation: an upper bound on a root is any `s` with `x ≤ s·s`, which
+is a multiplication the scalar has, so an unverified routine proposes and one
+inequality is the proof. The contrast with the exponential is the general rule —
+no composition of the scalar's operations dominates `exp`, so it had to be
+constructed; a square root is dominated by one, so it only has to be checked.
+
+**Every representation now carries both arithmetic layers.**
 
 `PolyZonotope`, `Real` layer, with `quadMap` exact — the operation the
 representation exists for, and the one that needs its factors to be shared.
@@ -204,21 +214,19 @@ Ordered roughly by what unblocks the most.
   inequalities, while a `ConPolyZono` admits equalities only — the conversion
   would need a slack factor per inequality together with a bound on it. CORA's
   `conZonotope` carries equalities and maps straight across.
-- **`Ellipsoid.plus` as an interface.** It is implemented and proved, but
-  `Plus` is not instantiated: the class field has no room for the free parameter
-  `l`, and fixing a value would bury a precision choice in an interface. Whether
-  the operation classes should carry a knob is a real design question and this
-  is the first representation to raise it.
+
 - **`Reduce` methods** — CORA has `girard`, `pca`, `combastel`, `methC`, and the
   order-reduction choice is a precision knob throughout reachability. Only one
   is formalized.
-- **Float `compact`, and float `linComb` for `PolyZonotope`.** The decidability
-  obstacle inverts at a machine scalar — deciding a generator is zero and
-  ordering columns both become decidable, which is why float `reduce` is
-  computable where the real one is not — but arithmetic takes its place, merging
-  two columns adding their entries. So a float `compact` owes an error box where
-  the exact one is an equality, and the float order bounds *stored* columns
-  rather than distinct monomials.
+- **`Ellipsoid.plus`'s parameter.** The float work found the honest parameter is
+  the two scalings rather than the single number they derive from: the condition
+  they owe is met with equality by the derived pair, so taking the pair widens
+  the family rather than approximating it. Whether an operation class can hold
+  it at all is in flight.
+- **`ofSupportBound` where the exact value is noncomputable.** An ellipsoid's
+  support bound is a root, so passing the exact bound as an argument infects the
+  float result; using it inside the proof costs nothing, proofs being erased.
+  Worth knowing for any future operation of that shape.
 - **`ConPolyZono.and` in float** — blocked on the `Real` layer admitting either a
   slack factor with a bound or an interval right-hand side, since an equality
   constraint has no direction to round in. This is the largest gap in the repository, and it is a gap in kind
