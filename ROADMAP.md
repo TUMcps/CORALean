@@ -8,11 +8,11 @@ no dependencies are the ones that can start.
 
 | Branch | Work |
 | --- | --- |
-| `feat/nn-controlled` | A network in the loop of a plant — where the two halves of this repository meet |
-| `feat/interface-gaps` | The instances the first real use sites found missing |
+| `feat/float-polyzono` | The float layer for polynomial zonotopes, constrained and not |
+| `feat/float-nn` | The float layer for the network layers, where every relaxation constant rounds |
 
-Next after those: the conversions the newest representations do not yet have,
-more layers, `restructure`, and the float layers.
+Next after those: the float layers that remain, the conversions the newest
+representations do not yet have, more layers, and `restructure`.
 
 ## Done
 
@@ -94,6 +94,20 @@ set. Separating directions and halfspace bounds discharge it.
 **Neural networks.** The layer interface, the graph, propagation and its
 enclosure, and the standard layers: linear, ReLU, sigmoid, tanh. Robust
 classification as a specification.
+
+**Closed loops.** `NeurNetContrSysDT`, a network controlling a discrete plant,
+and `NeurNetContrSys`, the sampled continuous one: the controller has its own
+sampling time and the input is held across it, so `reach` recurses on the
+control period and each period is several reachability steps under one held
+input. The two rates are separate throughout.
+
+The finding that shaped it is worth keeping: a zero-order-hold run is *not* a
+`LinearSys.Trajectory` over all forward time. At a sampling instant the input
+jumps, so the state has a left and a right derivative and is not differentiable
+there — asking for a two-sided derivative would silently force the two inputs
+equal and forbid the controller from ever switching. The flow is therefore
+stated per period, within that closed period, where the endpoints are exactly
+where it becomes one-sided.
 
 **Hybrid systems.** Locations, transitions and the automaton. A run is an
 inductive chain of stays joined by jumps, so chaining is the family's own
@@ -205,8 +219,12 @@ Ordered roughly by what unblocks the most.
   soundness argument already absorbs it.
 - **More layers** — softmax, batch normalization, convolution, pooling,
   reshape, and the composite layers CORA builds from them.
-- **`NeurNetContrSys`** — a network in the loop of a continuous system, which is
-  where the two halves of this repository meet.
+- **A constant-input step.** The closed loop's trajectory carries the constancy
+  a zero-order hold provides; `reach` does not exploit it, handing `LinearSys` a
+  *set* of admissible inputs that readmits every jittering input inside it.
+  Recovering it means the exponential integral applied to one vector rather than
+  `inputSolution`'s set-valued one, which `MatExp` does not offer. This is the
+  single largest precision item for a controlled system.
 - **A curvature relaxation for sigmoid and tanh** — both carry slope zero,
   which is all monotonicity certifies: the range of `σt - λt` only widens as `λ`
   leaves zero. A useful slope needs second-order information, and the
@@ -218,14 +236,20 @@ Ordered roughly by what unblocks the most.
 
 - **A worked example per component.** Four exist and each found something. The
   target is one per representation and per algorithm.
-- **Instances the use sites found missing.** In flight. `Interval` reaches only
-  the plain reachability statement, for want of `Mtimes ℐ` and of `ConvexSet` /
-  `CompactSet` instances its own theorems already support. `PolyZonotope` has no
-  family notation where `Zonotope` and `ConZonotope` both do. `HPolytope`
-  instantiates only `ContSet` and `Reduce`, so it cannot take a hybrid jump —
-  which is why the bouncing ball's guard is a bounded floor rather than the
-  halfspace it should be. And `Location.dynamics` drops the set family, so a
-  hybrid use site must re-ascribe `S` that the location already pinned.
+- **`HPolytope` instantiates almost nothing**, and the reason is the class shape
+  rather than a missing operation. `plusOf`, `linCombOf` and `mtimesOf` all
+  exist, but each takes the directions to describe the result on together with a
+  bound in each — and `Plus.plus : S → S → S` has room for neither. Supplying
+  them internally means solving a linear program per direction, and nothing here
+  solves one: `Global/LinProg` consumes a dual solution rather than producing
+  it. So a halfspace description cannot take a hybrid jump, which is why the
+  bouncing ball's guard is a bounded floor rather than the halfspace it should
+  be. This is the same design question `Ellipsoid.plus` and an `And` class raise:
+  whether an operation class may carry a precision knob.
+- **`Interval` has no vector-family notation**, `ℐ` being the interval *matrix*
+  family, so its use sites spell the family out. `PolyZonotope` reaches only the
+  plain reachability statement, for want of an `Mtimes ℐ` that would need a fresh
+  independent generator per coordinate.
 - **A location's sets share one representation** — its invariant, its input set
   and every guard. A guard is often the one thing that wants halfspaces while
   the rest wants a zonotope; separating them means a second type parameter on
