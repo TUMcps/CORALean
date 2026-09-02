@@ -32,6 +32,17 @@ build:
   interruptible: true
   before_script:
     - apt-get update -qq && apt-get install -y -qq --no-install-recommends curl git ca-certificates
+    # Clone Mathlib ourselves, blobless. `lake exe cache get` otherwise clones it
+    # from inside dependency resolution, taking the whole history — over a
+    # gigabyte — with no progress output, which is what looks like a hang. A
+    # blobless clone fetches file contents only for the revision checked out, and
+    # `--progress` makes the job say what it is doing.
+    - |
+      REV=$(sed -n 's/.*"rev": "\([0-9a-f]\{40\}\)".*/\1/p' lake-manifest.json | head -1)
+      echo "mathlib rev: $REV"
+      mkdir -p .lake/packages
+      git clone --filter=blob:none --no-checkout --progress https://github.com/leanprover-community/mathlib4.git .lake/packages/mathlib
+      git -C .lake/packages/mathlib checkout --progress "$REV"
     - export PATH="$ELAN_HOME/bin:$PATH"
     - |
       curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
