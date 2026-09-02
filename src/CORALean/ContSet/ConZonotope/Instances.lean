@@ -1,4 +1,9 @@
-import CORALean.ContSet.ConZonotope.Theorems.API
+import CORALean.ContSet.Interval.Real.Instances
+import CORALean.ContSet.ConZonotope.Theorems.LinCombOuter
+import CORALean.ContSet.ConZonotope.Theorems.MapExact
+import CORALean.ContSet.ConZonotope.Theorems.MtimesIntervalMatOuter
+import CORALean.ContSet.ConZonotope.Theorems.PlusExact
+import CORALean.ContSet.ConZonotope.Theorems.ReduceOuter
 
 /-!
 # What `ConZonotope` instantiates

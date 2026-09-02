@@ -1,4 +1,7 @@
-import CORALean.ContSet.Interval.Float.Operations.API
+import CORALean.ContSet.ContSet.ContSet
+import CORALean.ContSet.Interval.Float.Operations.LinComb
+import CORALean.ContSet.Interval.Real.Operations.LinComb
+import CORALean.ContSet.Interval.Real.Theorems.LinCombOuter
 
 /-!
 # `Interval.linComb` contains every segment between the two intervals

@@ -1,4 +1,4 @@
-import CORALean.ContSet.ContSet.API
+import CORALean.ContSet.ContSet.ContSet
 
 /-!
 # Discrete-time linear systems: the representation

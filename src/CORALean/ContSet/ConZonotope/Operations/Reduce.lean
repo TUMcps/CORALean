@@ -1,4 +1,5 @@
 import CORALean.ContSet.ConZonotope.Operations.Zonotope
+import CORALean.ContSet.Zonotope.Real.Operations.Reduce
 
 /-!
 # `ConZonotope.reduce`

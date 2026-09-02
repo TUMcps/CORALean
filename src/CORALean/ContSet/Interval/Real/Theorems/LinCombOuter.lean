@@ -1,3 +1,4 @@
+import CORALean.ContSet.ContSet.ContSet
 import CORALean.ContSet.Interval.Real.Operations.LinComb
 
 /-!

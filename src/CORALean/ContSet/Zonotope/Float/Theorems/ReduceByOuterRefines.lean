@@ -1,5 +1,5 @@
-import CORALean.ContSet.Zonotope.Float.Operations.API
-import CORALean.ContSet.Zonotope.Real.API
+import CORALean.ContSet.Zonotope.Float.Operations.Reduce
+import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOuter
 
 /-!
 # `Zonotope.reduceBy` encloses the exact reduction

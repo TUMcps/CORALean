@@ -1,5 +1,6 @@
-import CORALean.ContSet.Zonotope.Float.Operations.API
-import CORALean.ContSet.Zonotope.Real.API
+import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
+import CORALean.ContSet.Zonotope.Float.Operations.AbsorbError
+import CORALean.ContSet.Zonotope.Real.Theorems.Coefficient
 
 /-!
 # `absorbError` keeps the set it had

@@ -1,5 +1,8 @@
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOuter
-import CORALean.ContSet.Zonotope.Real.API
+import CORALean.ContSet.Zonotope.Real.Instances
+import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
+import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
 
 /-!
 # Reachability at a zonotope, with nothing left to assume

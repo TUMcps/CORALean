@@ -1,4 +1,7 @@
-import CORALean.ContSet.Zonotope.Float.Operations.API
+import CORALean.ContSet.InflatedContSet.Theorems.PlusSubset
+import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
+import CORALean.ContSet.Zonotope.Float.Operations.Plus
 
 /-!
 # `Zonotope.plus` over-approximates the Minkowski sum

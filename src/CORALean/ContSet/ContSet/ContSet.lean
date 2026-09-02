@@ -1,4 +1,4 @@
-import CORALean.Global.API
+import CORALean.Global.Scalar
 
 /-!
 # Set representations

@@ -1,4 +1,4 @@
-import CORALean.ContSet.Interval.Real.Operations.API
+import CORALean.ContSet.Interval.Real.Operations.Mtimes
 
 /-!
 # `Interval.mtimes` over-approximates the image under a linear map

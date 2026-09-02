@@ -118,13 +118,19 @@ The test is mechanical: used outside its own file, or not.
 ### `API.lean`
 
 Holds nothing but imports: a directory collects itself there, `Operations/`,
-`Theorems/` and `Instances` included. Two rules keep it acyclic and make it the
-only name anything outside needs:
+`Theorems/` and `Instances` included. It is the entry point *into* the library —
+one import puts a whole representation in scope, which is what someone using
+CORALean, or trying something out, wants.
 
-- inside a directory, a file imports its siblings by name —
-  `Theorems/PlusExact.lean` imports `Operations.API`, never its own `API`;
-- across directories, an import names an `API.lean` and nothing else, so reaching
-  another representation's lemma never names the file it happens to sit in.
+Inside the project, a file imports the exact modules it names and never a
+collector: `Theorems/PlusExact.lean` imports `Operations/Plus.lean`, not
+`Operations/API.lean`. Importing a collector makes a file wait for everything in
+that directory, and the build is bound by the longest such chain rather than by
+the work — it was 37 files deep under the old rule and is 20 under this one, on
+a machine with 16 cores that were idle either way.
+
+A file still never imports its own directory's `API.lean`, which would be a
+cycle.
 
 `Global/API.lean` is the one file that does not collect its whole directory: it
 leaves out `Global/Float/`, which every `Real` file would otherwise reach,

@@ -1,3 +1,8 @@
+import CORALean.ContSet.InflatedContSet.Theorems.MapSubset
+import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
+import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
+import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
 import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
 
 /-!

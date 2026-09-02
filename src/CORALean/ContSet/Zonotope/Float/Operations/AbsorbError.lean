@@ -1,3 +1,4 @@
+import CORALean.ContSet.Interval.Float.Operations.Residual
 import CORALean.ContSet.Zonotope.Float.Zonotope
 
 /-!

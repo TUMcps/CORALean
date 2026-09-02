@@ -1,7 +1,7 @@
 import CORALean.ContDynamics.LinearSys.Operations
 import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 import CORALean.ContDynamics.LinearSys.Theorems.WeightedIntegral
-import CORALean.ContDynamics.LinearSys.MatExp.API
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpEnclosure
 
 /-!
 # `inputSolution` contains everything the input can contribute over a step

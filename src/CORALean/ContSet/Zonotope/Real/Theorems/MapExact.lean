@@ -1,4 +1,6 @@
-import CORALean.ContSet.Zonotope.Real.Operations.API
+import CORALean.ContSet.ContSet.ContSet
+import CORALean.ContSet.Zonotope.Real.Operations.LinMtimes
+import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
 
 /-!
 # `Zonotope.map` is exactly the image under a linear map

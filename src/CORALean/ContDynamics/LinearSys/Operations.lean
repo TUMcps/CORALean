@@ -1,6 +1,7 @@
 import CORALean.ContDynamics.LinearSys.LinearSys
-import CORALean.ContDynamics.LinearSysDT.API
-import CORALean.ContDynamics.LinearSys.MatExp.API
+import CORALean.ContDynamics.LinearSysDT.Operations
+import CORALean.ContDynamics.LinearSys.MatExp.Enclosures
+import CORALean.ContSet.Interval.Real.Instances
 
 /-!
 # Continuous-time linear systems: sampling

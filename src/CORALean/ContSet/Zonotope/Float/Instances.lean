@@ -1,4 +1,7 @@
-import CORALean.ContSet.Zonotope.Float.Theorems.API
+import CORALean.ContSet.Zonotope.Float.Theorems.LinCombOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.ReduceOuter
 
 /-!
 # What `Zonotope` instantiates

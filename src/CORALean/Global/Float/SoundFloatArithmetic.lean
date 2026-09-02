@@ -1,4 +1,5 @@
 import CORALean.Global.Float.FloatOps
+import CORALean.Global.Scalar
 
 /-!
 # Sound floating-point arithmetic

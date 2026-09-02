@@ -1,3 +1,6 @@
+import CORALean.ContSet.Interval.Float.Operations.Mtimes
+import CORALean.ContSet.Interval.Float.Operations.Plus
+import CORALean.ContSet.Interval.Float.Operations.Residual
 import CORALean.ContSet.Zonotope.Float.Operations.GeneratorError
 
 /-!

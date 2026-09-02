@@ -1,4 +1,4 @@
-import CORALean.ContSet.Interval.Real.API
+import CORALean.ContSet.Interval.Real.Interval
 
 /-!
 # Zonotopes: the representation

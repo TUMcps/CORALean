@@ -1,5 +1,7 @@
-import CORALean.ContSet.HPolytope.API
-import CORALean.ContSet.Zonotope.Real.API
+import CORALean.ContSet.HPolytope.Operations.OfMat
+import CORALean.ContSet.HPolytope.Operations.UnitBox
+import CORALean.ContSet.HPolytope.Theorems.AndExact
+import CORALean.ContSet.Zonotope.Real.Zonotope
 
 /-!
 # Constrained zonotopes: the representation

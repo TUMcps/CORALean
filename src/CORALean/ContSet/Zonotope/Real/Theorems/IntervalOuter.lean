@@ -1,4 +1,4 @@
-import CORALean.ContSet.Zonotope.Real.Operations.API
+import CORALean.ContSet.Zonotope.Real.Operations.Interval
 
 /-!
 # `Zonotope.interval` over-approximates the zonotope

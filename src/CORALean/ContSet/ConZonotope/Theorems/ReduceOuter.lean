@@ -1,4 +1,5 @@
 import CORALean.ContSet.ConZonotope.Operations.Reduce
+import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOuter
 import CORALean.ContSet.ConZonotope.Theorems.ZonotopeOuter
 
 /-!

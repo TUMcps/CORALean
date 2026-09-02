@@ -1,4 +1,5 @@
-import CORALean.Global.Float.Instances.Dyadic.Theorems.API
+import CORALean.Global.Float.Instances.Dyadic.Theorems.Order
+import CORALean.Global.Float.Instances.Dyadic.Theorems.Rounding
 
 /-!
 # `Dyadic` as a sound float model

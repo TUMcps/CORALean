@@ -1,4 +1,6 @@
 import CORALean.ContSet.Zonotope.Real.Zonotope
+import CORALean.Global.Partition
+import CORALean.Global.Sort
 
 /-!
 # `Zonotope.reduce`

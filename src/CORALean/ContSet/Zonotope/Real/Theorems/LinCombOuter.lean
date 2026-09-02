@@ -1,3 +1,4 @@
+import CORALean.ContSet.ContSet.ContSet
 import CORALean.ContSet.Zonotope.Real.Operations.LinComb
 import CORALean.ContSet.Zonotope.Real.Theorems.Coefficient
 

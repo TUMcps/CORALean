@@ -1,6 +1,9 @@
 import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuterSplit
 import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryTimeIntervalOuter
-import CORALean.ContSet.Zonotope.Real.API
+import CORALean.ContSet.Zonotope.Real.Instances
+import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
+import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
 
 /-!
 # The step enclosure at a zonotope whose input set misses the origin

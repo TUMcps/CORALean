@@ -1,4 +1,4 @@
-import CORALean.ContSet.Interval.Real.API
+import CORALean.ContSet.ContSet.ContSet
 
 /-!
 # Polytopes: the halfspace representation

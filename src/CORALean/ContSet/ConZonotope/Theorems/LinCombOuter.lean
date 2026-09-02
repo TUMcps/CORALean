@@ -1,4 +1,5 @@
 import CORALean.ContSet.ConZonotope.Operations.LinComb
+import CORALean.ContSet.Zonotope.Real.Theorems.LinCombOuter
 import CORALean.ContSet.ConZonotope.Theorems.ZonotopeOuter
 
 /-!

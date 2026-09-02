@@ -1,4 +1,5 @@
 import CORALean.ContSet.ConZonotope.Operations.MtimesIntervalMat
+import CORALean.ContSet.Zonotope.Real.Theorems.MtimesIntervalMatOuter
 
 /-!
 # Multiplying a constrained zonotope by an interval matrix over-approximates

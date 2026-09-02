@@ -1,3 +1,4 @@
+import CORALean.ContSet.Zonotope.Float.Operations.Interval
 import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
 
 /-!

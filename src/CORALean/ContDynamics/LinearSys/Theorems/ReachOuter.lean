@@ -1,4 +1,5 @@
 import CORALean.ContDynamics.LinearSys.Theorems.Discretize
+import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOuter
 
 /-!
 # `reach` contains every trajectory at the sample times

@@ -1,4 +1,4 @@
-import CORALean.ContSet.ContSet.API
+import CORALean.ContSet.ContSet.ContSet
 
 /-!
 # Continuous-time nonlinear systems: the representation

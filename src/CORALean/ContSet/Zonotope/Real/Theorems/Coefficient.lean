@@ -1,4 +1,4 @@
-import CORALean.ContSet.Zonotope.Real.Operations.API
+import CORALean.ContSet.Zonotope.Real.Zonotope
 
 /-!
 # Hitting a target with one symmetric generator

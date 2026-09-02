@@ -1,4 +1,4 @@
-import CORALean.ContSet.Zonotope.Float.Operations.API
+import CORALean.ContSet.Zonotope.Float.Operations.GeneratorError
 
 /-!
 # What inexact generators cost

@@ -1,4 +1,4 @@
-import CORALean.ContSet.HPolytope.Theorems.API
+import CORALean.ContSet.HPolytope.HPolytope
 
 /-!
 # What `HPolytope` instantiates

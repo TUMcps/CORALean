@@ -1,4 +1,6 @@
-import CORALean.ContSet.VPolytope.Theorems.API
+import CORALean.ContSet.VPolytope.Theorems.LinCombOuter
+import CORALean.ContSet.VPolytope.Theorems.MapExact
+import CORALean.ContSet.VPolytope.Theorems.PlusExact
 
 /-!
 # What `VPolytope` instantiates

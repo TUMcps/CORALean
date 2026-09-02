@@ -1,4 +1,6 @@
-import CORALean.ContSet.Interval.Float.Theorems.API
+import CORALean.ContSet.Interval.Float.Theorems.LinCombOuter
+import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
+import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 
 /-!
 # What `Interval` instantiates

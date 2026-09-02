@@ -1,5 +1,5 @@
 import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
-import CORALean.ContDynamics.LinearSys.MatExp.API
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegral
 
 /-!
 # The integrated exponential, applied to a vector, is the integral

@@ -1,4 +1,4 @@
-import CORALean.ContSet.ContSet.API
+import CORALean.Global.Entrywise
 
 /-!
 # Intervals: the representation

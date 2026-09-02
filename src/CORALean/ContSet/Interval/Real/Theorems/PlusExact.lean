@@ -1,4 +1,4 @@
-import CORALean.ContSet.Interval.Real.Operations.API
+import CORALean.ContSet.Interval.Real.Operations.Plus
 
 /-!
 # `Interval.plus` is exactly the Minkowski sum

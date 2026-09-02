@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Float.Operations.API
+import CORALean.ContSet.InflatedContSet.Theorems.LinCombSubset
+import CORALean.ContSet.Interval.Float.Theorems.LinCombOuter
+import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
+import CORALean.ContSet.Zonotope.Float.Operations.LinComb
 
 /-!
 # `Zonotope.linComb` contains every segment between the two zonotopes
