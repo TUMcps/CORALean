@@ -1,3 +1,4 @@
+import CORALean.ContSet.PolyZonotope.Float.Theorems.LinCombOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.MtimesOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.PlusOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceOuter
@@ -16,13 +17,14 @@ machine scalar answers it. Soundness never depended on the ranking —
 `reduceBy_outer` holds at every partition — so the unconstrained comparator
 costs precision and nothing else.
 
-The instance bounds the count of *stored* columns rather than of distinct
-monomials, the exact layer's `reduce` running `compact` first and this one not.
-`Operations/Reduce` says why, and the reason inverts again: what stops a float
-`compact` is arithmetic, not decidability.
+`compact` runs first, as over ℝ, so the count bounded is of distinct monomials
+and not merely of stored columns. It is the one operation whose float layer is
+weaker in kind than its exact one: merging two columns adds their entries, so it
+encloses where the exact one is an equality.
 
-`LinComb` is missing where the exact layer has it; it has no float counterpart
-yet.
+`LinComb` is here and, unlike over ℝ, is *computable*: the exact one is
+noncomputable only because `Reduce` in the same file is, and nothing in
+`linComb` itself needs a classical choice.
 
 `quadMap` has no class to instantiate and gets none, as over ℝ: no other
 representation computes it, and a class one representation implements is a name
@@ -41,6 +43,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 instance {n : ℕ} : Plus (PolyZonotope 𝕋 n) (Vec ℝ n) where
   plus := PolyZonotope.plus
   plus_outer := PolyZonotope.plus_outer
+
+instance {n : ℕ} : LinComb (PolyZonotope 𝕋 n) (Vec ℝ n) where
+  linComb := PolyZonotope.linComb
+  linComb_outer := PolyZonotope.linComb_outer
 
 instance {n : ℕ} : Reduce (PolyZonotope 𝕋 n) (Vec ℝ n) where
   reduce := PolyZonotope.reduce

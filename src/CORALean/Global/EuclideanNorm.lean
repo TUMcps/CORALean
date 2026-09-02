@@ -50,14 +50,18 @@ theorem norm₂_smul (r : ℝ) (x : Vec ℝ n) : ‖r • x‖₂ = |r| * ‖x�
     exact Finset.sum_congr rfl fun i _ => by rw [Pi.smul_apply, smul_eq_mul, mul_pow]
   rw [norm₂, norm₂, h, Real.sqrt_mul (sq_nonneg r), Real.sqrt_sq_eq_abs]
 
-/-- Cauchy–Schwarz, which is the whole of the ellipsoid's support function. -/
-theorem dotProduct_le_norm₂_mul_norm₂ (x y : Vec ℝ n) : x ⬝ᵥ y ≤ ‖x‖₂ * ‖y‖₂ := by
+/-- Cauchy–Schwarz in magnitude. The two-sided form is what a box conversion
+needs, a coordinate reaching as far in one direction as in the other. -/
+theorem abs_dotProduct_le_norm₂_mul_norm₂ (x y : Vec ℝ n) : |x ⬝ᵥ y| ≤ ‖x‖₂ * ‖y‖₂ := by
   have hcs : (∑ i, x i * y i) ^ 2 ≤ (∑ i, x i ^ 2) * ∑ i, y i ^ 2 :=
     Finset.sum_mul_sq_le_sq_mul_sq Finset.univ x y
-  calc x ⬝ᵥ y ≤ |∑ i, x i * y i| := le_abs_self _
-    _ = Real.sqrt ((∑ i, x i * y i) ^ 2) := (Real.sqrt_sq_eq_abs _).symm
+  calc |x ⬝ᵥ y| = Real.sqrt ((∑ i, x i * y i) ^ 2) := (Real.sqrt_sq_eq_abs _).symm
     _ ≤ Real.sqrt ((∑ i, x i ^ 2) * ∑ i, y i ^ 2) := Real.sqrt_le_sqrt hcs
     _ = ‖x‖₂ * ‖y‖₂ := Real.sqrt_mul (aux_sum_sq_nonneg x) _
+
+/-- Cauchy–Schwarz, which is the whole of the ellipsoid's support function. -/
+theorem dotProduct_le_norm₂_mul_norm₂ (x y : Vec ℝ n) : x ⬝ᵥ y ≤ ‖x‖₂ * ‖y‖₂ :=
+  le_trans (le_abs_self _) (abs_dotProduct_le_norm₂_mul_norm₂ x y)
 
 theorem norm₂_add_le (x y : Vec ℝ n) : ‖x + y‖₂ ≤ ‖x‖₂ + ‖y‖₂ := by
   have hexp : ∑ i, (x + y) i ^ 2 = (∑ i, x i ^ 2) + 2 * (x ⬝ᵥ y) + ∑ i, y i ^ 2 := by
