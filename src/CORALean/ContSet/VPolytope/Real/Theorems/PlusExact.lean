@@ -1,5 +1,5 @@
-import CORALean.ContSet.VPolytope.Operations.Plus
-import CORALean.ContSet.VPolytope.Theorems.ConvexHull
+import CORALean.ContSet.VPolytope.Real.Operations.Plus
+import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
 
 /-!
 # `VPolytope.plus` is exactly the Minkowski sum

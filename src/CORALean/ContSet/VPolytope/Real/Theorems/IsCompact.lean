@@ -1,4 +1,4 @@
-import CORALean.ContSet.VPolytope.Theorems.ConvexHull
+import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
 
 /-!
 # A vertex description is compact, hence closed and bounded

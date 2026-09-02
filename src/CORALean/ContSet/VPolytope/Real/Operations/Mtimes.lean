@@ -1,4 +1,4 @@
-import CORALean.ContSet.VPolytope.Operations.Map
+import CORALean.ContSet.VPolytope.Real.Operations.Map
 
 /-!
 # `VPolytope.mtimes`

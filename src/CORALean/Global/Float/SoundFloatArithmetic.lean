@@ -73,6 +73,20 @@ theorem subDown_le_sub (a b : 𝕋) : toReal (subDown a b) ≤ toReal a - toReal
   rw [sub_eq_add_neg, ← toReal_neg b, subDown]
   exact addDown_le_add a (neg b)
 
+/-- `maximumOver` bounds every entry, which is what lets one box cover a whole
+list of roundings. -/
+theorem le_maximumOver : ∀ {k : ℕ} (f : Fin k → 𝕋) (l : Fin k),
+    toReal (f l) ≤ toReal (maximumOver f) := by
+  intro k
+  induction k with
+  | zero => exact fun _ l => absurd l.isLt (Nat.not_lt_zero _)
+  | succ m ih =>
+    intro f l
+    rw [maximumOver, toReal_maximum]
+    refine Fin.cases ?_ (fun l' => ?_) l
+    · exact le_max_left _ _
+    · exact le_trans (ih (fun i => f i.succ) l') (le_max_right _ _)
+
 theorem sum_le_sumUp (f : Fin n → 𝕋) : ∑ i, toReal (f i) ≤ toReal (sumUp f) := by
   induction n with
   | zero => rw [Finset.univ_eq_empty, Finset.sum_empty, sumUp, toReal_zero]

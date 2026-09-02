@@ -1,7 +1,7 @@
-import CORALean.ContSet.VPolytope.Operations.Map
-import CORALean.ContSet.VPolytope.Operations.Mtimes
-import CORALean.ContSet.VPolytope.Operations.Plus
-import CORALean.ContSet.VPolytope.Operations.LinComb
+import CORALean.ContSet.VPolytope.Real.Operations.Map
+import CORALean.ContSet.VPolytope.Real.Operations.Mtimes
+import CORALean.ContSet.VPolytope.Real.Operations.Plus
+import CORALean.ContSet.VPolytope.Real.Operations.LinComb
 
 /-!
 # What `VPolytope` computes

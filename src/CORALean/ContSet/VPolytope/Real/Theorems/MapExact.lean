@@ -1,5 +1,5 @@
-import CORALean.ContSet.VPolytope.Operations.Mtimes
-import CORALean.ContSet.VPolytope.Theorems.ConvexHull
+import CORALean.ContSet.VPolytope.Real.Operations.Mtimes
+import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
 
 /-!
 # `VPolytope.map` is exactly the image

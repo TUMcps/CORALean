@@ -1,16 +1,9 @@
-import CORALean.ContSet.VPolytope.VPolytope
-import CORALean.ContSet.VPolytope.Operations.API
-import CORALean.ContSet.VPolytope.Theorems.API
-import CORALean.ContSet.VPolytope.Instances
+import CORALean.ContSet.VPolytope.Real.API
+import CORALean.ContSet.VPolytope.Float.API
 
 /-!
-# Polytopes by vertices, collected
+# Polytopes by vertices, both layers
 
-CORA's `polytope` with `isVRep` set. `HPolytope` is the same sets described by
-halfspaces; the two are separate representations here, with no conversion
-between them — converting either way is vertex enumeration, an algorithm in its
-own right.
-
-The specification only. A float layer would round the vertices outward into a
-hull, which no algorithm here needs yet.
+The specification in `Real`, and in `Float` the refinement that pays its rounding
+into an error box rather than into the vertices.
 -/

@@ -17,7 +17,8 @@ src/CORALean/
       Float/       the same representation, rounded
     Zonotope/      Real/ and Float/, as above
     HPolytope/     polytopes by halfspaces: exact under intersection and preimage
-    VPolytope/     the same sets by vertices: exact under sum, image and hull
+    VPolytope/     the same sets by vertices: exact under sum, image and hull;
+                   Real/ and Float/, the latter paying rounding into an error box
     ConZonotope/   a zonotope whose coefficients an HPolytope cuts down
   ContDynamics/    algorithms, written against the interfaces alone
     LinearSysDT/   discrete-time linear systems, and reachability

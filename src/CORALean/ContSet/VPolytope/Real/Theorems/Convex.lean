@@ -1,4 +1,4 @@
-import CORALean.ContSet.VPolytope.VPolytope
+import CORALean.ContSet.VPolytope.Real.VPolytope
 
 /-!
 # A vertex description is convex

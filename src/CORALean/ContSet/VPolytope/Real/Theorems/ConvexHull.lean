@@ -1,4 +1,4 @@
-import CORALean.ContSet.VPolytope.Theorems.Convex
+import CORALean.ContSet.VPolytope.Real.Theorems.Convex
 
 /-!
 # A vertex description denotes the convex hull of its vertices
