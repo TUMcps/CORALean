@@ -1,8 +1,8 @@
-import CORALean.ContSet.HPolytope.Operations.Comap
-import CORALean.ContSet.HPolytope.Operations.OfMat
-import CORALean.ContSet.HPolytope.Operations.UnitBox
-import CORALean.ContSet.HPolytope.Theorems.AndExact
-import CORALean.ContSet.HPolytope.Theorems.Convex
+import CORALean.ContSet.HPolytope.Real.Operations.Comap
+import CORALean.ContSet.HPolytope.Real.Operations.OfMat
+import CORALean.ContSet.HPolytope.Real.Operations.UnitBox
+import CORALean.ContSet.HPolytope.Real.Theorems.AndExact
+import CORALean.ContSet.HPolytope.Real.Theorems.Convex
 import CORALean.ContSet.Zonotope.Real.Zonotope
 import CORALean.Global.Block
 

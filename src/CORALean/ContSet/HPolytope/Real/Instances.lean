@@ -1,4 +1,4 @@
-import CORALean.ContSet.HPolytope.HPolytope
+import CORALean.ContSet.HPolytope.Real.HPolytope
 
 /-!
 # What `HPolytope` instantiates

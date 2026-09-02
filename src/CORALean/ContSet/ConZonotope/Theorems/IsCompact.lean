@@ -1,5 +1,5 @@
 import CORALean.ContSet.ConZonotope.Operations.Zonotope
-import CORALean.ContSet.HPolytope.Theorems.IsClosed
+import CORALean.ContSet.HPolytope.Real.Theorems.IsClosed
 import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
 
 /-!

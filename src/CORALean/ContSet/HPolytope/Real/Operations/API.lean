@@ -1,7 +1,8 @@
-import CORALean.ContSet.HPolytope.Operations.And
-import CORALean.ContSet.HPolytope.Operations.Comap
-import CORALean.ContSet.HPolytope.Operations.OfMat
-import CORALean.ContSet.HPolytope.Operations.UnitBox
+import CORALean.ContSet.HPolytope.Real.Operations.And
+import CORALean.ContSet.HPolytope.Real.Operations.Comap
+import CORALean.ContSet.HPolytope.Real.Operations.OfMat
+import CORALean.ContSet.HPolytope.Real.Operations.Slab
+import CORALean.ContSet.HPolytope.Real.Operations.UnitBox
 
 /-!
 # What `HPolytope` computes

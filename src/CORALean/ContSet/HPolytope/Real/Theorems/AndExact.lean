@@ -1,4 +1,4 @@
-import CORALean.ContSet.HPolytope.Operations.And
+import CORALean.ContSet.HPolytope.Real.Operations.And
 
 /-!
 # `HPolytope.and` is exactly the intersection

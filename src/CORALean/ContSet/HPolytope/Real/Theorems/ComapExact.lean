@@ -1,4 +1,4 @@
-import CORALean.ContSet.HPolytope.Operations.Comap
+import CORALean.ContSet.HPolytope.Real.Operations.Comap
 
 /-!
 # `HPolytope.comap` is exactly the preimage

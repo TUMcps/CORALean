@@ -1,7 +1,7 @@
-import CORALean.ContSet.HPolytope.Theorems.AndExact
-import CORALean.ContSet.HPolytope.Theorems.ComapExact
-import CORALean.ContSet.HPolytope.Theorems.Convex
-import CORALean.ContSet.HPolytope.Theorems.IsClosed
+import CORALean.ContSet.HPolytope.Real.Theorems.AndExact
+import CORALean.ContSet.HPolytope.Real.Theorems.ComapExact
+import CORALean.ContSet.HPolytope.Real.Theorems.Convex
+import CORALean.ContSet.HPolytope.Real.Theorems.IsClosed
 
 /-!
 # What `HPolytope` guarantees
