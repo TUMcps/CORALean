@@ -28,8 +28,10 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
-variable [∀ n, OuterContSet (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
+variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
+variable [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 
+omit [∀ n, LinComb (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] in
 set_option maxHeartbeats 400000 in
 /-- Thm. 3.1 as a statement about `inputReach`: the enclosure holds for every
 admissible input at once, which is the form Prop. 3.3 composes with. -/
@@ -51,6 +53,7 @@ theorem LinearSys.inputReach_subset_inputSolution [Mtimes ℐ S]
   intro σ hσ
   exact hmem _ ⟨by linarith [hσ.2], by linarith [hσ.1]⟩
 
+omit [∀ n, LinComb (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] in
 set_option maxHeartbeats 400000 in
 /-- Everything the input contributed up to any time in the step lies in the
 enclosure computed for the whole step, once `U` contains the origin. -/

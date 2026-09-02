@@ -28,12 +28,19 @@ coefficient space whatever the generators point into. -/
 instance {α : Type} [AddCommGroup α] [Module ℝ α] : ContSet (ConZonotope α) α :=
   ⟨ConZonotope.construct⟩
 
-noncomputable instance : OuterContSet (ConZonotope (Vec ℝ n)) (Vec ℝ n) where
+instance : Plus (ConZonotope (Vec ℝ n)) (Vec ℝ n) where
   plus := ConZonotope.plus
-  linComb := ConZonotope.linComb
-  reduce := ConZonotope.reduce
   plus_outer C₁ C₂ := (ConZonotope.plus_exact C₁ C₂).subset
+
+/-- Relaxed to the enclosing zonotopes, which is the one operation a constrained
+zonotope does not compute in its own terms. Now a separate instance, so a caller
+that never combines does not depend on the relaxation. -/
+noncomputable instance : LinComb (ConZonotope (Vec ℝ n)) (Vec ℝ n) where
+  linComb := ConZonotope.linComb
   linComb_outer := ConZonotope.linComb_outer
+
+noncomputable instance : Reduce (ConZonotope (Vec ℝ n)) (Vec ℝ n) where
+  reduce := ConZonotope.reduce
   reduce_outer := ConZonotope.reduce_outer
 
 instance : Mtimes (Mat ℝ) (fun n => ConZonotope (Vec ℝ n)) where
@@ -48,7 +55,7 @@ a use site has to name it: `(S := 𝒞)`. -/
 scoped notation "𝒞" => fun n => ConZonotope (Vec ℝ n)
 
 /-- The same operation at an interval matrix, which a discretization wants and
-`OuterContSet` does not ask for. This is the last instance `LinearSys`
+no other class asks for. This is the last instance `LinearSys`
 reachability needs, so a constrained zonotope now runs it. -/
 noncomputable instance : Mtimes ℐ 𝒞 where
   mtimes := ConZonotope.mtimesIntervalMat

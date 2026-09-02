@@ -35,9 +35,11 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
-variable [∀ n, OuterContSet (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
+variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
+variable [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 
-omit [∀ n, OuterContSet (S n) (Vec ℝ n)] in
+omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
+  [∀ n, Reduce (S n) (Vec ℝ n)] in
 /-- A matrix applied to a scaled point is the scaled matrix applied to it, which
 is how a constant in front of an integral is absorbed into the operation. -/
 theorem aux_smul_mtimes_mem {M : Mat ℝ n n} {c : ℝ} {U : S n} {y : Vec ℝ n}
@@ -50,6 +52,7 @@ theorem aux_smul_mtimes_mem {M : Mat ℝ n n} {c : ℝ} {U : S n} {y : Vec ℝ n
   simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
   exact Set.mem_image_of_mem _ hy
 
+omit [∀ n, LinComb (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] in
 /-- The Taylor part, by induction on the order: `plus` absorbs one term at a
 time, exactly as the operation builds it. -/
 theorem LinearSys.aux_inputTaylorSum_outer (sys : LinearSys 𝕋 n) (r : ℝ) (U : S n)
@@ -104,6 +107,7 @@ theorem aux_continuous_expDiff (A : Mat ℝ n n) (η : ℕ) :
   refine continuous_finsetSum _ fun i _ => ?_
   exact (continuous_const : Continuous fun _ : ℝ => ((Nat.factorial i : ℝ)⁻¹)).smul (hsmul.pow i)
 
+omit [∀ n, LinComb (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] in
 set_option maxHeartbeats 1000000 in
 theorem LinearSys.inputSolution_outer [Mtimes ℐ S]
     (sys : LinearSys 𝕋 n)

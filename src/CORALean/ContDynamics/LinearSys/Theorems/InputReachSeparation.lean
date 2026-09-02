@@ -31,7 +31,8 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
-variable [∀ n, OuterContSet (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
+variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
+variable [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 
 /-- A continuous matrix applied to a measurable vector, entry by entry. -/
 theorem aestronglyMeasurable_mulVec {M : ℝ → Mat ℝ n n} {v : ℝ → Vec ℝ n} {μ : Measure ℝ}
@@ -114,7 +115,8 @@ theorem aestronglyMeasurable_reflect_Ioc {u : ℝ → Vec ℝ n} {τ : ℝ}
   rw [sub_zero, sub_self] at h
   exact h.mono_measure (Measure.restrict_mono Set.Ioc_subset_Icc_self le_rfl)
 
-omit [∀ n, OuterContSet (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] in
+omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
+  [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] in
 set_option maxHeartbeats 400000 in
 /-- An admissible input has an integrable solution over its window: bounded by
 `U`, and measurable because the exponential factor is continuous. -/
@@ -142,7 +144,8 @@ that follows. Strict `<` so each piece is exact on its own half-open window. -/
 noncomputable def aux_concat (u₁ u₂ : ℝ → Vec ℝ n) (a : ℝ) : ℝ → Vec ℝ n :=
   fun s => if a < s then u₂ (s - a) else u₁ s
 
-omit [∀ n, OuterContSet (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] in
+omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
+  [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] in
 set_option maxHeartbeats 1000000 in
 /-- Althoff's Prop. 3.2: what a run over `[0, a+b]` can contribute includes
 everything a run over `[0,a]` can contribute, propagated across the remaining

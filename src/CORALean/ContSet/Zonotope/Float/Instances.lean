@@ -8,7 +8,7 @@ import CORALean.ContSet.Zonotope.Float.Theorems.ReduceOuter
 
 `ContSet` is not among them — `InflatedContSet` supplies it, which is what makes
 this the same class the exact layer instantiates. So an algorithm written against
-`OuterContSet` runs here with no float counterpart to write.
+the three operation classes run here with no float counterpart to write.
 -/
 
 -- Authors:       Tobias Ladner
@@ -20,12 +20,16 @@ namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
-instance {n : ℕ} : OuterContSet (Zonotope 𝕋 n) (Vec ℝ n) where
+instance {n : ℕ} : Plus (Zonotope 𝕋 n) (Vec ℝ n) where
   plus := Zonotope.plus
-  linComb := Zonotope.linComb
-  reduce := Zonotope.reduce
   plus_outer := Zonotope.plus_outer
+
+instance {n : ℕ} : LinComb (Zonotope 𝕋 n) (Vec ℝ n) where
+  linComb := Zonotope.linComb
   linComb_outer := Zonotope.linComb_outer
+
+instance {n : ℕ} : Reduce (Zonotope 𝕋 n) (Vec ℝ n) where
+  reduce := Zonotope.reduce
   reduce_outer := Zonotope.reduce_outer
 
 instance : Mtimes (Mat 𝕋) (Zonotope 𝕋) where

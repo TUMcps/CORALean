@@ -31,9 +31,11 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
-variable [∀ n, OuterContSet (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
+variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
+variable [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 variable [Mtimes ℐ S]
 
+omit [∀ n, Reduce (S n) (Vec ℝ n)] in
 set_option maxHeartbeats 1000000 in
 theorem LinearSys.Trajectory.timeInterval_outer {sys : LinearSys 𝕋 n} {R₀ U Ud : S n}
     {x u : ℝ → Vec ℝ n} {r : ℝ} (traj : sys.Trajectory R₀ U x u) (hr : 0 < r) {m : ℕ}
@@ -50,6 +52,7 @@ theorem LinearSys.Trajectory.timeInterval_outer {sys : LinearSys 𝕋 n} {R₀ U
   exact sys.timeIntervalStep_outer hr hε R₀ ht0 htr
     (Set.mem_image_of_mem _ traj.init)
 
+omit [∀ n, Reduce (S n) (Vec ℝ n)] in
 /-- The same, with the input set named rather than assumed. `0 ∈ U` is what buys
 a single enclosure for the whole step; everything else is a property of `U` that
 a representation supplies. -/

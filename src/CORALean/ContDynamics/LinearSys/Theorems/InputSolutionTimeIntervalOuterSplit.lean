@@ -38,9 +38,11 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
-variable [∀ n, OuterContSet (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
+variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
+variable [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 
-omit [∀ n, OuterContSet (S n) (Vec ℝ n)] in
+omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
+  [∀ n, Reduce (S n) (Vec ℝ n)] in
 /-- A plain matrix applied to a point of a set lands in the set's image. -/
 theorem aux_mtimes_mem {M : Mat ℝ n n} {W : S n} {y : Vec ℝ n} (hy : y ∈ construct W) :
     M *ᵥ y ∈ construct (Mtimes.mtimes M W) := by
@@ -48,7 +50,8 @@ theorem aux_mtimes_mem {M : Mat ℝ n n} {W : S n} {y : Vec ℝ n} (hy : y ∈ c
   simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
   exact Set.mem_image_of_mem _ hy
 
-omit [∀ n, OuterContSet (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] in
+omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
+  [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] in
 /-- The same for any matrix an interval matrix denotes. -/
 theorem aux_mtimesIM_mem [Mtimes ℐ S]
     {IM : Interval (Mat ℝ n n)} {W : S n}
@@ -67,6 +70,7 @@ theorem aux_const_integral (A : Mat ℝ n n) (c : Vec ℝ n) {t : ℝ} (ht : 0 �
     (fun σ : ℝ => exp (σ • A) *ᵥ c) t
   simpa using h
 
+omit [∀ n, LinComb (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] in
 set_option maxHeartbeats 1000000 in
 /-- The input's contribution at every time of the step, split along
 `U ⊆ {c} ⊕ U₀`. Neither piece needs `0 ∈ U`. -/

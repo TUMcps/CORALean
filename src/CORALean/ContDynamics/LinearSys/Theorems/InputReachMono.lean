@@ -27,9 +27,11 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
-variable [∀ n, OuterContSet (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
+variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
+variable [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 
-omit [∀ n, OuterContSet (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] in
+omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
+  [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] in
 /-- Holding the input at the origin is admissible when `U` contains it, and
 contributes nothing. -/
 theorem LinearSys.zero_mem_inputReach (sys : LinearSys 𝕋 n) {U : S n} (τ : ℝ)
@@ -37,7 +39,8 @@ theorem LinearSys.zero_mem_inputReach (sys : LinearSys 𝕋 n) {U : S n} (τ : �
   refine ⟨fun _ => 0, fun _ _ => h0, aestronglyMeasurable_const, ?_⟩
   simp
 
-omit [∀ n, OuterContSet (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] in
+omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
+  [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] in
 /-- Althoff's Prop. 3.3: with the origin in the input set, a longer window
 contributes at least everything a shorter one can. -/
 theorem LinearSys.inputReach_mono (sys : LinearSys 𝕋 n) {U : S n} {t r : ℝ}

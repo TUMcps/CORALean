@@ -30,8 +30,12 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
-variable [∀ n, OuterContSet (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
+variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
+variable [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 
+omit [∀ n, LinComb (S n) (Vec ℝ n)] in
+/-- Sampling and then running the discrete-time recursion; nothing here
+combines, which is why `LinComb` is not asked for. -/
 theorem LinearSys.Trajectory.reach_outer {sys : LinearSys 𝕋 n} {R₀ U Ud : S n}
     {x u : ℝ → Vec ℝ n} {Δt : ℝ} (traj : sys.Trajectory R₀ U x u) (hΔt : 0 ≤ Δt)
     (hU : Bornology.IsBounded (construct U))
@@ -39,6 +43,7 @@ theorem LinearSys.Trajectory.reach_outer {sys : LinearSys 𝕋 n} {R₀ U Ud : S
     x (k * Δt) ∈ construct ((sys.discretize Δt).reach o R₀ Ud k) :=
   LinearSysDT.reach_outer _ o R₀ Ud (traj.discretize hΔt hU hUd) k
 
+omit [∀ n, LinComb (S n) (Vec ℝ n)] in
 /-- The same, with the input set named rather than assumed: `inputSolution Δt η U`
 encloses every step's contribution, so nothing about the input is left to the
 caller beyond the properties of `U` itself. -/

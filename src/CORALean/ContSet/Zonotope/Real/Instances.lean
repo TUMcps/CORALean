@@ -27,16 +27,21 @@ open Matrix
 variable {n : ℕ}
 
 /-- At every ambient type, not only `Vec`: what a zonotope denotes needs no
-coordinates. `OuterContSet` below stays at `Vec`, because `reduce` does. -/
+coordinates. The operation instances below stay at `Vec`, because `reduce`
+does. -/
 instance {α : Type} [AddCommGroup α] [Module ℝ α] : ContSet (Zonotope α) α :=
   ⟨Zonotope.construct⟩
 
-noncomputable instance : OuterContSet (Zonotope (Vec ℝ n)) (Vec ℝ n) where
+instance : Plus (Zonotope (Vec ℝ n)) (Vec ℝ n) where
   plus := Zonotope.plus
-  linComb := Zonotope.linComb
-  reduce := Zonotope.reduce
   plus_outer Z₁ Z₂ := (Zonotope.plus_exact Z₁ Z₂).subset
+
+noncomputable instance : LinComb (Zonotope (Vec ℝ n)) (Vec ℝ n) where
+  linComb := Zonotope.linComb
   linComb_outer := Zonotope.linComb_outer
+
+noncomputable instance : Reduce (Zonotope (Vec ℝ n)) (Vec ℝ n) where
+  reduce := Zonotope.reduce
   reduce_outer := Zonotope.reduce_outer
 
 instance : Mtimes (Mat ℝ) (fun n => Zonotope (Vec ℝ n)) where
@@ -66,7 +71,7 @@ instance {𝕋 : Type} [Scalar 𝕋] {p q r : ℕ} :
   lmtimes M Z := Zonotope.mapOf (matMulLeft (Scalar.toRealMat M)) Z
   lmtimes_outer _M Z := Zonotope.lmtimes_singleton_outer _ Z
 
-/-- The same operation at an interval matrix, which `OuterContSet` does not ask
+/-- The same operation at an interval matrix, which no other class asks
 for: a zonotope carries it, and a discretization is what wants it. -/
 noncomputable instance :
     Mtimes ℐ 𝒵 where

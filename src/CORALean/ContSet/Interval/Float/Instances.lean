@@ -23,12 +23,16 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 instance : ContSet (Interval 𝕋 n) (Vec ℝ n) := ⟨Interval.construct⟩
 
-instance : OuterContSet (Interval 𝕋 n) (Vec ℝ n) where
+instance : Plus (Interval 𝕋 n) (Vec ℝ n) where
   plus := Interval.plus
-  linComb := Interval.linComb
-  reduce I _ := I
   plus_outer := Interval.plus_outer
+
+instance : LinComb (Interval 𝕋 n) (Vec ℝ n) where
+  linComb := Interval.linComb
   linComb_outer := Interval.linComb_outer
+
+instance : Reduce (Interval 𝕋 n) (Vec ℝ n) where
+  reduce I _ := I
   reduce_outer _ _ := subset_rfl
 
 instance : Mtimes (Mat 𝕋) (Interval 𝕋) where

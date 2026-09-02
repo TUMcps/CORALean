@@ -30,7 +30,8 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
-variable [∀ n, OuterContSet (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
+variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
+variable [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 
 /-- Step `k` shifted to start at zero. The propagator only ever sees the elapsed
 part of the step, so the shift leaves it alone and lands on exactly the integral
@@ -46,6 +47,7 @@ theorem LinearSys.aux_stepInput_eq (sys : LinearSys 𝕋 n) (u : ℝ → Vec ℝ
   rw [LinearSys.stepInput, hsplit]
   exact key.symm
 
+omit [∀ n, LinComb (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] in
 set_option maxHeartbeats 400000 in
 /-- What a step's input contributed lies in `inputSolution`, for every step.
 

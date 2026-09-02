@@ -20,17 +20,21 @@ namespace CORALean.Real
 variable {n : ℕ}
 
 /-- At every ambient type that has coordinates, so an interval matrix is an
-instance too. The `OuterContSet` instance below is stated only at `Vec`, which
-is where an algorithm asks for it. -/
+instance too. The operation instances below are stated only at `Vec`, which is
+where an algorithm asks for them. -/
 instance {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι] :
     ContSet (Interval α) α := ⟨Interval.construct⟩
 
-instance : OuterContSet (Interval (Vec ℝ n)) (Vec ℝ n) where
+instance : Plus (Interval (Vec ℝ n)) (Vec ℝ n) where
   plus := Interval.plus
-  linComb := Interval.linComb
-  reduce I _ := I
   plus_outer := Interval.plus_outer
+
+instance : LinComb (Interval (Vec ℝ n)) (Vec ℝ n) where
+  linComb := Interval.linComb
   linComb_outer := Interval.linComb_outer
+
+instance : Reduce (Interval (Vec ℝ n)) (Vec ℝ n) where
+  reduce I _ := I
   reduce_outer _ _ := subset_rfl
 
 instance : Mtimes (Mat ℝ) (fun n => Interval (Vec ℝ n)) where

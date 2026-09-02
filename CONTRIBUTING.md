@@ -53,8 +53,13 @@ One class per operation — `Plus`, `LinComb`, `Reduce` — as CORA gives each
 representation one method per operation. A representation instantiates what it
 computes; an algorithm asks for what it calls, so `LinearSysDT.reach` wants
 `Plus` and `Reduce` and runs at a representation with no `linComb` at all.
-`OuterContSet` collects the three that continuous-time reachability calls, and
-is a bundle rather than a concept: another algorithm wants another list.
+
+There is deliberately no class collecting them. A bundle would make every
+representation owe every operation, so the one that cannot compute an operation
+would have to invent it — which is what `HPolytope` would have had to do, and
+what pushed `ConZonotope`'s `linComb` through its enclosing zonotope. A theorem
+that does not call an operation says so with `omit`, and that line is worth
+reading: it is the record of which interfaces the algorithm actually needs.
 
 Each of these takes and returns the same ambient type, so each is a class over
 one representation rather than a family indexed by dimension. `mtimes` is the

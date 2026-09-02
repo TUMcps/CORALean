@@ -14,8 +14,9 @@ guarantee that makes the operation usable. Separate from `ContSet`, since
 zonotope denotes a set over any real module, but `reduce` needs coordinates, and
 a plain matrix denotes the singleton it is without being closed under anything.
 Separate from each other, so that a representation instantiates what it computes
-rather than all of it, and an algorithm names what it calls. `OuterContSet`
-collects the three that `LinearSys` reachability happens to call.
+rather than all of it, and an algorithm names what it calls. There is
+deliberately no class collecting them: a bundle would make every representation
+owe every operation, and the one that cannot compute one would have to invent it.
 
 Indexed by the ambient type rather than by a dimension, so a representation of a
 set of *matrices* is an instance like any other. Not by a `Tensor` shape: `Mat`
@@ -130,12 +131,9 @@ class Reduce (S : Type) (α : outParam Type) [AddCommGroup α] [Module ℝ α]
   reduce_outer (s : S) (o : ℕ) :
     construct s ⊆ construct (reduce s o)
 
-/-- The three operations `LinearSys` reachability calls, under the one name its
-theorems ask for. A bundle and not a concept: a different algorithm wants a
-different list, and a representation that computes only some of these still
-instantiates those. -/
-class OuterContSet (S : Type) (α : outParam Type) [AddCommGroup α] [Module ℝ α]
-    [ContSet S α] extends Plus S α, LinComb S α, Reduce S α
+-- No class bundling these three. An algorithm names the operations it calls, a
+-- representation instantiates the ones it computes, and neither has to pretend:
+-- a representation with no `linComb` still runs everything that never combines.
 
 /-- Althoff's and CORA's symbol for the Minkowski sum, and deliberately not `+`:
 `plus` is only *outer*, so `construct (s₁ ⊞ s₂)` merely contains

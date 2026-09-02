@@ -23,12 +23,16 @@ variable {n : ℕ}
 instance {α : Type} [AddCommGroup α] [Module ℝ α] : ContSet (VPolytope α) α :=
   ⟨VPolytope.construct⟩
 
-instance : OuterContSet (VPolytope (Vec ℝ n)) (Vec ℝ n) where
+instance : Plus (VPolytope (Vec ℝ n)) (Vec ℝ n) where
   plus := VPolytope.plus
-  linComb := VPolytope.linComb
-  reduce P _ := P
   plus_outer P₁ P₂ := (VPolytope.plus_exact P₁ P₂).subset
+
+instance : LinComb (VPolytope (Vec ℝ n)) (Vec ℝ n) where
+  linComb := VPolytope.linComb
   linComb_outer := VPolytope.linComb_outer
+
+instance : Reduce (VPolytope (Vec ℝ n)) (Vec ℝ n) where
+  reduce P _ := P
   reduce_outer _ _ := subset_rfl
 
 instance : Mtimes (Mat ℝ) (fun n => VPolytope (Vec ℝ n)) where
