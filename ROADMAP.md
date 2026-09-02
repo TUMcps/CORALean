@@ -9,7 +9,7 @@ no dependencies are the ones that can start.
 | Branch | Work |
 | --- | --- |
 | `feat/float-ellipsoid` | The last representation without a float layer, and a support function that wants a square root |
-| `feat/float-transcendental` | A directed-rounding exponential, which is all that stands between sigmoid and tanh and a float layer |
+| `feat/nn-more-layers` | The layers CORA has beyond the four here — reshape, pooling, convolution, batch norm, softmax |
 
 Next after those: the float layers that remain, the conversions the newest
 representations do not yet have, more layers, and `restructure`.
@@ -125,10 +125,24 @@ duplicating: `Layer` is a structure over any `ContSet` at a real vector, which a
 float representation is through `InflatedContSet`, so the network, propagation
 and the robustness bounds run at a float zonotope unchanged.
 
-ReLU's secant is a division and the float scalar has none. It does not need one:
-the slope is a precision knob, never a correctness condition, so any candidate
-becomes legal by clamping into `[0,1]` with `minimum` and `maximum`, which are
-exact. Only the gap rounds.
+All four activations are there in float, sigmoid and tanh included. The
+exponential that unblocked them evaluates no series: argument reduction removes
+the division a truncated series would need, `half` being exact, and the two
+seeds are one lemma used twice. There is no tail to bound because there is
+nothing truncated.
+
+The asymmetry it leaves is worth keeping in mind. `expDown` is total; `expUp`
+asks that its argument be bounded, and that cannot be discharged inside the
+class — every expression `FloatOps` builds is a composition of addition,
+multiplication, min, max and halving, hence polynomially bounded, and no
+polynomial dominates the exponential. A total upper bound would have to branch
+on argument size, and `le` is deliberately unconstrained. The sigmoid and tanh
+enclosures ask for the lower bound alone and are total.
+
+ReLU's secant is a division, which the scalar now has; before it did not, and it
+did not need one, since a slope is a precision knob rather than a correctness
+condition and any candidate becomes legal by clamping into `[0,1]` with the
+exact `minimum` and `maximum`. Only the gap rounds.
 
 **Closed loops.** `NeurNetContrSysDT`, a network controlling a discrete plant,
 and `NeurNetContrSys`, the sampled continuous one: the controller has its own
@@ -254,13 +268,13 @@ Ordered roughly by what unblocks the most.
 
 ### Neural networks
 
-- **Sigmoid and tanh in float** — in flight, and blocked on the scalar rather
-  than on the layer. `ofMonotone` asks only for the activation's value at the
-  ends of a neuron's range, and `FloatOps` has no `exp`, no division and no
-  series with which to enclose it. The only enclosure available without one is
-  the constant range, which discards everything the layer computes bounds for.
-- **More layers** — softmax, batch normalization, convolution, pooling,
-  reshape, and the composite layers CORA builds from them.
+- **More layers** — in flight: reshape, pooling, convolution, batch
+  normalization, softmax. Several may turn out to be `Layer.linear` at a
+  particular matrix, which is a result about the library rather than a
+  shortfall. Softmax is the one that is genuinely new — the first layer whose
+  output coordinate depends on every input coordinate through a normalization,
+  which a coordinatewise relaxation cannot express. The composite layers CORA
+  builds from these come after.
 - **A constant-input step.** The closed loop's trajectory carries the constancy
   a zero-order hold provides; `reach` does not exploit it, handing `LinearSys` a
   *set* of admissible inputs that readmits every jittering input inside it.
@@ -276,17 +290,19 @@ Ordered roughly by what unblocks the most.
 
 ### The float scalar
 
+- **A sound comparison.** `le` is deliberately unconstrained by
+  `SoundFloatArithmetic`, which is right where only a generator ranking depends
+  on it. But `expUp` needs its argument bounded and there is nothing sound to
+  branch on, so the hypothesis is passed to the caller instead. A constrained
+  comparison would make the upper exponential total.
 - **Square root**, if an ellipsoid's support function turns out to need one
   rather than a checkable candidate. An upper bound on `√x` is any `s` with
   `x ≤ s·s`, which is a multiplication the scalar already has, so this may cost
   nothing — in flight.
-- **Division.** `FloatOps` has none, in either direction. Two things have wanted
-  it — ReLU's secant, which worked around its absence because a slope is only a
-  precision knob, and an exponential series, which cannot. Adding it enlarges an
-  interface every instance must satisfy, and for `Dyadic` a quotient of two
-  dyadic rationals is not dyadic, so directed rounding there is a real
-  definition rather than a wrapper.
-- **The transcendental functions** beyond `exp`, once `exp` lands.
+- **The transcendental functions beyond `exp`.** Division and the exponential
+  are both there now; a logarithm, a root and the trigonometric functions are
+  not, and each has the same shape of question — whether an identity removes the
+  series the way argument reduction did for `exp`.
 
 ### Infrastructure
 
