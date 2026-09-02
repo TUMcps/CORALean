@@ -54,8 +54,9 @@ structure Relaxation (𝕋 : Type) [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] (
     |σ t - (toReal (slope l u) * t + toReal (offset l u))| ≤ toReal (error l u)
 
 /-- A machine enclosure of `σ` at a stored float, which is what a slope-zero
-relaxation needs and what `FloatOps` cannot supply for a transcendental `σ`: the
-class computes with `+`, `*`, `min`, `max` and a halving, and nothing else. -/
+relaxation needs. `FloatOps` evaluates no transcendental function itself, so
+this is where one arrives: `Global/Float/Exp` builds a directed exponential on
+top of the class, and the sigmoid and tanh layers turn it into an instance. -/
 structure Enclosure (𝕋 : Type) [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] (σ : ℝ → ℝ) where
   lo : 𝕋 → 𝕋
   hi : 𝕋 → 𝕋
@@ -85,7 +86,7 @@ carrying no slope and so keeping none of the neurons' dependence on the input.
 
 Optimal at slope zero for the same reason it is there — the range of `σ t - λ t`
 only widens as `λ` leaves zero — but unlike over ℝ it needs the endpoint values
-handed to it, since `FloatOps` evaluates no transcendental function. -/
+handed to it, `FloatOps` having no transcendental function of its own. -/
 def Relaxation.ofMonotone (hσ : Monotone σ) (E : Enclosure 𝕋 σ) : Relaxation 𝕋 σ where
   slope _ _ := zero
   offset := E.mid

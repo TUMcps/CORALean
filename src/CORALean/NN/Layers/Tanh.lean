@@ -4,7 +4,7 @@ import CORALean.NN.Layers.Activation
 # The tanh layer
 
 CORA's `nnTanhLayer`, over Mathlib's `Real.tanh`, which has no monotonicity
-lemma; `aux_tanh_mono` supplies one by clearing the two denominators, where what
+lemma; `tanh_mono` supplies one by clearing the two denominators, where what
 is left is `e^{b-a} ≥ e^{a-b}`.
 
 The relaxation is the monotone one, with slope zero, for the same reason as
@@ -12,11 +12,11 @@ sigmoid: monotonicity alone certifies the output range and no slope beyond it.
 Tanh is a rescaled sigmoid, so a curvature-based relaxation would carry over to
 both at once.
 
-No float counterpart, and for the same reason as sigmoid: the relaxation is
-`Float.Relaxation.ofMonotone`, which needs `σ` at the ends of a neuron's range,
-and `FloatOps` has no `exp` to compute it with. That is one missing piece for
-both layers, since a directed-rounding `exp` in `Global/Float` would answer here
-and there alike.
+The float counterpart is `Float.Layer.tanh`, and it takes the rescaling
+literally: `tanh t = 2 σ(2t) - 1`, so `Float.sigmoidEnclosure` is reused rather
+than a second exponential enclosure written. Only the doubled argument is new,
+and it rounds outward in whichever direction is being bounded, which
+monotonicity then carries into `σ`.
 -/
 
 -- Authors:       Tobias Ladner
@@ -29,7 +29,7 @@ namespace CORALean.Real
 open Matrix ContSet
 
 /-- Both denominators are positive, so the claim is `e^{a-b} ≤ e^{b-a}`. -/
-theorem aux_tanh_mono : Monotone Real.tanh := by
+theorem tanh_mono : Monotone Real.tanh := by
   intro a b hab
   rw [Real.tanh_eq, Real.tanh_eq, div_le_div_iff₀ (by positivity) (by positivity)]
   have h₁ : Real.exp a * Real.exp (-b) = Real.exp (a - b) := by
@@ -40,7 +40,7 @@ theorem aux_tanh_mono : Monotone Real.tanh := by
   linarith
 
 noncomputable def tanhRelaxation : Relaxation Real.tanh :=
-  Relaxation.ofMonotone aux_tanh_mono
+  Relaxation.ofMonotone tanh_mono
 
 namespace Layer
 

@@ -14,7 +14,7 @@ carrying one. Definitions assume this class alone; theorems assume both.
 
 -- Authors:       Tobias Ladner
 -- Written:       16-August-2026
--- Last update:   ---
+-- Last update:   02-September-2026
 -- Last revision: ---
 
 namespace CORALean.Float
@@ -30,6 +30,10 @@ class FloatOps (𝕋 : Type) where
   addDown : 𝕋 → 𝕋 → 𝕋
   mulUp : 𝕋 → 𝕋 → 𝕋
   mulDown : 𝕋 → 𝕋 → 𝕋
+  /-- Constrained only for a positive divisor, which costs nothing: `neg` is
+  exact, so a caller dividing by a negative `b` negates both arguments. -/
+  divUp : 𝕋 → 𝕋 → 𝕋
+  divDown : 𝕋 → 𝕋 → 𝕋
   /-- Exact, like `neg`: choosing between two floats invents no digits. -/
   minimum : 𝕋 → 𝕋 → 𝕋
   maximum : 𝕋 → 𝕋 → 𝕋

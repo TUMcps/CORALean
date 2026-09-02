@@ -11,7 +11,7 @@ for.
 
 -- Authors:       Tobias Ladner
 -- Written:       16-August-2026
--- Last update:   ---
+-- Last update:   02-September-2026
 -- Last revision: ---
 
 namespace CORALean.Float
@@ -25,6 +25,8 @@ noncomputable instance : FloatOps ℝ where
   addDown := (· + ·)
   mulUp := (· * ·)
   mulDown := (· * ·)
+  divUp := (· / ·)
+  divDown := (· / ·)
   minimum := min
   maximum := max
   le := fun a b => decide (a ≤ b)
@@ -39,6 +41,8 @@ noncomputable instance : SoundFloatArithmetic ℝ where
   addDown_le_add _ _ := le_refl _
   mul_le_mulUp _ _ := le_refl _
   mulDown_le_mul _ _ := le_refl _
+  div_le_divUp _ _ _ := le_refl _
+  divDown_le_div _ _ _ := le_refl _
   toReal_minimum _ _ := rfl
   toReal_maximum _ _ := rfl
   toReal_half _ := rfl
