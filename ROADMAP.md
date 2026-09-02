@@ -6,14 +6,14 @@ no dependencies are the ones that can start.
 
 ## In flight
 
-| Merge request | Work |
+| Branch | Work |
 | --- | --- |
-| !3 `feat/ellipsoid` | `Ellipsoid`, `Real` layer, stored by generator matrix rather than shape matrix; the support function in closed form, and the tight box that follows from it. Reviewed and built clean; awaiting merge. |
-| !4 `feat/poly-zonotope` | `PolyZonotope`, `Real` layer, including `quadMap` exact. Awaiting review. |
+| `feat/nonlinear-reach` | Conservative linearization: the abstraction error as a certificate, and the step that is sound whatever produced it |
+| `feat/con-poly-zono` | `ConPolyZono`, `Real` layer, and the intersection that justifies a constrained representation |
+| `feat/nn-curvature` | A second-order relaxation for sigmoid and tanh, from derivative bounds rather than monotonicity |
 
-Next up, in rough order: the conversions the two new representations do not yet
-have, a curvature-based relaxation for sigmoid and tanh, nonlinear reachability
-by conservative linearization, and the float layers.
+Next after those: the conversions the three newest representations do not yet
+have, `PolyZonotope.reduce`, the float layers, and hybrid automata.
 
 ## Done
 
@@ -25,6 +25,16 @@ operations, and the float counterpart.
 **Representations.** `Interval`, `Zonotope`, `HPolytope`, `VPolytope`,
 `ConZonotope`, each in both arithmetic layers, with all twenty ordered
 conversions in each layer. `InflatedContSet` is what the float layer adds.
+
+`Ellipsoid`, `Real` layer: stored as the affine image of a Euclidean ball rather
+than by a shape matrix, so no inverse, no positive-semi-definiteness condition
+and no matrix square root. Its support function is closed form and attained,
+which makes it the only representation that answers a direction without a linear
+program, and its bounding box tight.
+
+`PolyZonotope`, `Real` layer, with `quadMap` exact — the operation the
+representation exists for, and the one that needs its factors to be shared.
+`reduce` is deliberately absent; see below.
 
 **Dynamics.** `LinearSysDT` with reachability. `LinearSys`: the flow in closed
 form, the matrix exponential enclosure, discretization, the input solution, the
@@ -46,21 +56,22 @@ Ordered roughly by what unblocks the most.
 
 ### Representations
 
-- **`PolyZonotope`** — Kochdumper & Althoff, *Sparse polynomial zonotopes*
-  (2021). The representation nonlinear reachability needs; nothing below that
-  mentions non-convexity can start without it. Real layer first: the type,
-  `plus`, `mtimes`, `linComb`, `reduce`, `quadMap`, `restructure`, and the
-  interval enclosure.
-- **`ConPolyZono`** — constrained polynomial zonotopes, Kochdumper & Althoff
-  (2020). Depends on `PolyZonotope`.
-- **`Ellipsoid`** — Kurzhanski & Varaiya. Minkowski sum and intersection are
-  both outer approximations with a free parameter, which makes it the first
-  representation whose operations have a precision knob in the definition.
+- **`PolyZonotope.reduce`** — absent on purpose rather than overlooked. It is
+  not the zonotope's generator ranking: it also has to merge equal exponent
+  columns and drop factors that fall out of use, and without that compaction an
+  order bound means nothing. `restructure` likewise.
 - **`Capsule`**, **`ZonoBundle`**, **`SpectraShadow`**, **`Taylm`** — CORA has
   them; none blocks anything else.
-- **Conversions** for each new representation. Twenty pairs exist for five
-  representations; a sixth adds ten more, so these are their own tasks and need
-  not land with the representation.
+- **Conversions** for the late arrivals. `Ellipsoid` has four of its ten pairs
+  and `PolyZonotope` four of its ten; the gaps differ in kind, an ellipsoid's
+  polytope pairs being merely absent while a polynomial zonotope's are
+  enclosures with a precision knob rather than conversions, its sets not being
+  convex.
+- **`Ellipsoid.plus` as an interface.** It is implemented and proved, but
+  `Plus` is not instantiated: the class field has no room for the free parameter
+  `l`, and fixing a value would bury a precision choice in an interface. Whether
+  the operation classes should carry a knob is a real design question and this
+  is the first representation to raise it.
 - **`Reduce` methods** — CORA has `girard`, `pca`, `combastel`, `methC`, and the
   order-reduction choice is a precision knob throughout reachability. Only one
   is formalized.
@@ -68,13 +79,12 @@ Ordered roughly by what unblocks the most.
 
 ### Dynamics
 
-- **Unified reachability over the interfaces** — one theorem stated against
-  `Plus`, `Mtimes`, `LinComb` and the topological properties, rather than one
-  per representation. `ReachOuterZonotope` and `ReachOuterConZonotope` are the
-  same proof twice.
-- **Nonlinear reachability by conservative linearization** — Althoff's thesis,
-  ch. 3. Needs the Lagrange remainder as an interval matrix, and
-  `PolyZonotope` for the polynomialization variant.
+- **`TimeIntervalOuterSplitZonotope`** — the one reachability statement still
+  tied to a representation. Dropping `0 ∈ U` takes the input set apart into a
+  centre, a remainder, a point and a segment, and no interface offers those.
+  Either a class earns them or it stays where it is.
+- **Nonlinear reachability, beyond one step** — the polynomialization variant
+  that uses `PolyZonotope`, and the loop that re-linearizes.
 - **`NonlinearSysDT`**, **`LinParamSys`**, **`NonlinParamSys`**,
   **`NonlinDASys`** — the remaining system classes.
 - **Adaptive reachability** — Wetzlinger et al., parameter tuning with a
@@ -92,10 +102,6 @@ Ordered roughly by what unblocks the most.
 
 ### Neural networks
 
-- **A curvature-based relaxation for sigmoid and tanh** — both currently carry
-  slope zero, which is all monotonicity certifies. Convexity on each half-line
-  plus a derivative bound is what CORA uses, and the `Relaxation` field is where
-  it goes.
 - **The float layer** — needs the two box classes at `Interval 𝕋 n`.
 - **More layers** — softmax, batch normalization, convolution, pooling,
   reshape, and the composite layers CORA builds from them.
@@ -106,8 +112,15 @@ Ordered roughly by what unblocks the most.
 
 ### Infrastructure
 
-- **A worked example per component**, executable, so that a representation's
-  operations are exercised end to end rather than only proved about.
+- **A worked example per component.** `Examples/FeedForward.lean` is the first,
+  and it exists because a library cannot notice a broken instance from the
+  inside — only a use site can. One per representation and per algorithm is the
+  target.
+- **Specializations as regression tests.** Reachability is now stated once over
+  `ConvexSet` and `CompactSet`, and the old per-representation statements were
+  checked to follow with `:=` and then discarded. They belong in `Examples/`,
+  where they would fail the build if the generalization ever stopped covering
+  them.
 - **Benchmarks** — the ARCH competition instances CORA reports on.
 
 ## Conventions
