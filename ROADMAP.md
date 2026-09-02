@@ -8,12 +8,11 @@ no dependencies are the ones that can start.
 
 | Branch | Work |
 | --- | --- |
-| `feat/nonlinear-reach` | Conservative linearization: the abstraction error as a certificate, and the step that is sound whatever produced it |
 | `feat/con-poly-zono` | `ConPolyZono`, `Real` layer, and the intersection that justifies a constrained representation |
-| `feat/nn-curvature` | A second-order relaxation for sigmoid and tanh, from derivative bounds rather than monotonicity |
+| `feat/trajectory-domain` | A time domain on `Trajectory`, so a bounded horizon is sayable — what the re-linearization loop and hybrid automata both wait on |
 
-Next after those: the conversions the three newest representations do not yet
-have, `PolyZonotope.reduce`, the float layers, and hybrid automata.
+Next after those: hybrid automata, the conversions the newest representations do
+not yet have, `PolyZonotope.reduce`, and the float layers.
 
 ## Done
 
@@ -40,7 +39,14 @@ representation exists for, and the one that needs its factors to be shared.
 form, the matrix exponential enclosure, discretization, the input solution, the
 time-interval enclosure, and reachability at the sample times — stated once
 against `ConvexSet` and `CompactSet` rather than once per representation.
-`NonlinearSys` has the representation and its trajectories only.
+
+`NonlinearSys`, one step by conservative linearization. The abstraction error is
+a certificate rather than a derivative: a set together with the proof that it
+encloses what is left of the field once the affine part is subtracted. Nothing
+downstream mentions a derivative, so `A` and `B` need not be the Jacobians and a
+linearization computed in float arithmetic is covered without a word about how
+far it is from the true one. A confined run is then a linear run over a widened
+input, and reachability is the linear theorem unchanged.
 
 **Verification.** `Specification` — a safe set or an unsafe one — and the
 theorem that a check passed on an outer approximation is passed by the exact
@@ -84,7 +90,12 @@ Ordered roughly by what unblocks the most.
   centre, a remainder, a point and a segment, and no interface offers those.
   Either a class earns them or it stays where it is.
 - **Nonlinear reachability, beyond one step** — the polynomialization variant
-  that uses `PolyZonotope`, and the loop that re-linearizes.
+  that uses `PolyZonotope`, and the loop that re-linearizes. The loop is blocked
+  on `feat/trajectory-domain`: re-linearizing means each step is sound only on
+  its own interval, and a `Trajectory` cannot yet name one.
+- **Discharging confinement** — the linearization step assumes the run stays
+  where its certificate holds. CORA computes a candidate, checks the step's
+  reachable set against it and enlarges on failure; nothing here does.
 - **`NonlinearSysDT`**, **`LinParamSys`**, **`NonlinParamSys`**,
   **`NonlinDASys`** — the remaining system classes.
 - **Adaptive reachability** — Wetzlinger et al., parameter tuning with a
@@ -107,6 +118,10 @@ Ordered roughly by what unblocks the most.
   reshape, and the composite layers CORA builds from them.
 - **`NeurNetContrSys`** — a network in the loop of a continuous system, which is
   where the two halves of this repository meet.
+- **A curvature relaxation for sigmoid and tanh** — both carry slope zero,
+  which is all monotonicity certifies: the range of `σt - λt` only widens as `λ`
+  leaves zero. A useful slope needs second-order information, and the
+  `Relaxation` field is already where it would go.
 - **Verification beyond propagation** — refinement by splitting the input set,
   which is what makes the method complete in practice.
 
