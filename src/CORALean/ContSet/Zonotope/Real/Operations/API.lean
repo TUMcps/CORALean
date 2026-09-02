@@ -1,3 +1,4 @@
+import CORALean.ContSet.Zonotope.Real.Operations.GenMap
 import CORALean.ContSet.Zonotope.Real.Operations.Map
 import CORALean.ContSet.Zonotope.Real.Operations.LinMtimes
 import CORALean.ContSet.Zonotope.Real.Operations.Plus
