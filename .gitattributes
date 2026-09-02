@@ -1,0 +1,4 @@
+# Shell scripts are LF whatever the checkout platform: a `\r` in `scripts/` or
+# `.githooks/` is a syntax error to the shell that runs them in CI.
+*.sh text eol=lf
+.githooks/* text eol=lf

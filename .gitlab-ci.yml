@@ -34,6 +34,9 @@ conventions:
   # whether an `API.lean` holds anything but imports, whether a `Real` file
   # reached into `Float`. The same script runs on the pre-commit hook.
   interruptible: true
+  before_script:
+    # `slim` carries no guarantee of an awk, and the script is mostly awk.
+    - apt-get update -qq && apt-get install -y -qq --no-install-recommends mawk findutils
   script:
     - sh scripts/check-conventions.sh
   rules:
