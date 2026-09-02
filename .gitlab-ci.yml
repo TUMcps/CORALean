@@ -42,12 +42,24 @@ build:
         echo "https://oauth2:${GH_TOKEN}@github.com" > ~/.git-credentials
         chmod 600 ~/.git-credentials
       fi
+    # Mathlib's history is over a gigabyte and `index-pack` is the memory-hungry
+    # part of receiving it. One thread is slower and survives a small runner.
+    - git config --global pack.threads 1
     - export PATH="$ELAN_HOME/bin:$PATH"
     - |
       curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
         | sh -s -- -y --default-toolchain none
     - elan toolchain install "$(cat lean-toolchain)"
     - lake --version
+  # The clone is the long pole — minutes, and nothing is printed while it runs —
+  # so it happens once per dependency change rather than once per push. Keyed on
+  # the manifest, which is what decides the revisions.
+  cache:
+    key:
+      files:
+        - lake-manifest.json
+    paths:
+      - .lake/packages
   script:
     - lake exe cache get
     # A warning is a failure: the tree is warning-free, and Mathlib's linters are
@@ -66,6 +78,11 @@ build:
       - runner_system_failure
       - stuck_or_timeout_failure
       - script_failure
+  after_script:
+    # Keep the cache to sources. Mathlib's oleans come back from its own CDN in
+    # seconds, while its history does not, so caching the build output would pay
+    # gigabytes to save nothing.
+    - rm -rf .lake/packages/mathlib/.lake/build
   artifacts:
     when: on_failure
     paths:
