@@ -1,10 +1,12 @@
 import CORALean.ContSet.VPolytope.Real.Operations.Interval
+import CORALean.ContSet.VPolytope.Real.Operations.SupportBound
 
 /-!
 # `VPolytope.interval` contains the polytope
 
-Coordinatewise, and the same argument at both ends: a convex combination of
-values each below the supremum is below it too, the weights summing to one.
+Coordinatewise, and the same argument at both ends, which is
+`le_of_forall_le` at `±eⱼ`: a convex combination of values each below the
+supremum is below it too.
 
 Nothing here needs the vertex set to be nonempty — at no vertices the weights
 cannot sum to one, so there is nothing to bound.
@@ -21,23 +23,16 @@ variable {n : ℕ}
 
 theorem VPolytope.interval_outer (P : VPolytope (Vec ℝ n)) :
     P.construct ⊆ P.interval.construct := by
-  rintro _ ⟨β, hβ, hsum, rfl⟩ i
+  intro x hx i
   have hbddA : BddAbove (Set.range fun l => P.V l i) := (Set.finite_range _).bddAbove
   have hbddB : BddBelow (Set.range fun l => P.V l i) := (Set.finite_range _).bddBelow
-  have hx : (∑ l, β l • P.V l) i = ∑ l, β l * P.V l i := by
-    simp only [Finset.sum_apply, Pi.smul_apply, smul_eq_mul]
   constructor
-  · show (⨅ l, P.V l i) ≤ (∑ l, β l • P.V l) i
-    rw [hx]
-    calc (⨅ l, P.V l i) = (∑ l, β l) * ⨅ l, P.V l i := by rw [hsum, one_mul]
-      _ = ∑ l, β l * ⨅ l', P.V l' i := by rw [Finset.sum_mul]
-      _ ≤ ∑ l, β l * P.V l i := Finset.sum_le_sum fun l _ =>
-          mul_le_mul_of_nonneg_left (ciInf_le hbddB l) (hβ l)
-  · show (∑ l, β l • P.V l) i ≤ ⨆ l, P.V l i
-    rw [hx]
-    calc ∑ l, β l * P.V l i ≤ ∑ l, β l * ⨆ l', P.V l' i := Finset.sum_le_sum fun l _ =>
-          mul_le_mul_of_nonneg_left (le_ciSup hbddA l) (hβ l)
-      _ = (∑ l, β l) * ⨆ l, P.V l i := by rw [Finset.sum_mul]
-      _ = ⨆ l, P.V l i := by rw [hsum, one_mul]
+  · -- the lower bound as an upper bound in direction `-eᵢ`, which is the form
+    -- `le_of_forall_le` takes
+    have h : -(x i) ≤ -(⨅ l, P.V l i) :=
+      P.le_of_forall_le (-LinearMap.proj i) (fun l => neg_le_neg (ciInf_le hbddB l)) hx
+    show (⨅ l, P.V l i) ≤ x i
+    linarith
+  · exact P.le_of_forall_le (LinearMap.proj i) (fun l => le_ciSup hbddA l) hx
 
 end CORALean.Real

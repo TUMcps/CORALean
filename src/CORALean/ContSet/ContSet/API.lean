@@ -1,4 +1,5 @@
 import CORALean.ContSet.ContSet.ContSet
+import CORALean.ContSet.ContSet.SupportBound
 
 /-!
 # The set interface, collected

@@ -4,6 +4,7 @@ import CORALean.Global.Scalar
 import CORALean.Global.Entrywise
 import CORALean.Global.Partition
 import CORALean.Global.Sort
+import CORALean.Global.LinProg.API
 
 /-!
 # Global definitions, collected

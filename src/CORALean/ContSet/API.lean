@@ -4,6 +4,7 @@ import CORALean.ContSet.Interval.API
 import CORALean.ContSet.Zonotope.API
 import CORALean.ContSet.HPolytope.API
 import CORALean.ContSet.VPolytope.API
+import CORALean.ContSet.Polytope.API
 import CORALean.ContSet.ConZonotope.API
 
 /-!
