@@ -1,0 +1,82 @@
+import CORALean.ContDynamics.LinearSys.Theorems.ReachOuter
+import CORALean.ContDynamics.NonlinearSys.Theorems.Linearize
+
+/-!
+# The nonlinear reachable set is the linearized one
+
+The payoff: nothing new is computed for a nonlinear system. Once `linearize`
+has turned the run into a linear one, `LinearSys.Trajectory.reach_outer` is the
+whole proof, and the enclosing set is the linear system's `reach` — the same
+`discretize`, the same `LinearSysDT` recursion, the same order reduction.
+
+The nonlinearity is paid for entirely in `linInput`, which is why the two
+statements below differ from their linear counterparts only in that `U` has
+been widened and a confinement hypothesis has been added.
+
+`reach_outer` leaves the discrete input set to the caller;
+`reach_outer_inputSolution` names it, and is the statement with no trajectory
+left in it — `x` appears only in the conclusion. Its price is that `linInput`
+has to be convex, closed and bounded, which the interfaces do not supply.
+
+`exp` needs a norm on `Mat`, which is a choice rather than an instance, so this
+file makes the same one as everything else reasoning about `discretize` — the
+`l∞` operator norm — or the terms would not match.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       02-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+namespace CORALean.Real
+
+open Matrix ContSet Scalar NormedSpace Plus Mtimes OfInterval
+
+attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
+  Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
+
+variable {n m : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
+variable [Mtimes (Mat ℝ) S] [OfInterval S]
+
+/-- A confined nonlinear run is inside the linearized system's reachable set at
+every sample time. -/
+theorem NonlinearSys.Trajectory.reach_outer {sys : NonlinearSys n m}
+    {R₀ Ud L : S n} {U : S m} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m}
+    {A : Mat ℝ n n} {B : Mat ℝ n m} {xs : Vec ℝ n} {us : Vec ℝ m}
+    {R : Set (Vec ℝ n)} {Δt : ℝ} (traj : sys.Trajectory R₀ U x u)
+    (cert : AbstractionError sys A B xs us R (construct U) L)
+    (hR : ∀ t : ℝ, 0 ≤ t → x t ∈ R) (hΔt : 0 ≤ Δt)
+    (hU : Bornology.IsBounded (construct (sys.linInput A B xs us U L)))
+    (hUd : ∀ k : ℕ, (NonlinearSys.linearize A).stepInput
+      (fun t => sys.f (x t) (u t) - A *ᵥ x t) Δt k ∈ construct Ud) (o k : ℕ) :
+    x (k * Δt) ∈
+      construct (((NonlinearSys.linearize A).discretize Δt).reach o R₀ Ud k) :=
+  (traj.linearize cert hR).reach_outer hΔt hU hUd o k
+
+/-- The same with the input enclosure named, so no quantity depending on the
+trajectory survives into the hypotheses. -/
+theorem NonlinearSys.Trajectory.reach_outer_inputSolution [Mtimes ℐ S]
+    {sys : NonlinearSys n m} {R₀ L : S n} {U : S m} {x : ℝ → Vec ℝ n}
+    {u : ℝ → Vec ℝ m} {A : Mat ℝ n n} {B : Mat ℝ n m} {xs : Vec ℝ n}
+    {us : Vec ℝ m} {R : Set (Vec ℝ n)} {Δt : ℝ} (traj : sys.Trajectory R₀ U x u)
+    (cert : AbstractionError sys A B xs us R (construct U) L)
+    (hR : ∀ t : ℝ, 0 ≤ t → x t ∈ R) (hΔt : 0 < Δt) (η : ℕ)
+    (hε : ‖Δt • A‖ / ((η : ℝ) + 2) < 1)
+    (hconv : Convex ℝ (construct (sys.linInput A B xs us U L)))
+    (hclosed : IsClosed (construct (sys.linInput A B xs us U L)))
+    (hbdd : Bornology.IsBounded (construct (sys.linInput A B xs us U L)))
+    (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ)
+      (MatExp.inputRemainder A Δt η) (sys.linInput A B xs us U L))))
+    (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
+      (MatExp.inputRemainder A Δt η) (sys.linInput A B xs us U L))))
+    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
+      (MatExp.inputRemainder A Δt η) (sys.linInput A B xs us U L)))) (o k : ℕ) :
+    x (k * Δt) ∈ construct (((NonlinearSys.linearize A).discretize Δt).reach o R₀
+      ((NonlinearSys.linearize A).inputSolution Δt η
+        (sys.linInput A B xs us U L)) k) :=
+  (traj.linearize cert hR).reach_outer_inputSolution hΔt η hε hconv hclosed hbdd
+    hRconv hRclosed hRbdd o k
+
+end CORALean.Real

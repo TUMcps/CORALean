@@ -15,13 +15,14 @@ forward-time derivative within `Set.Ici 0`, the same reading of the input set as
 covering disturbances — so the two agree by definition at a linear field, which
 is `LinearSys.trajectory_iff_nonlinearSys`.
 
-No reachability yet. That needs an abstraction error, which is where CORA's
-conservative linearization begins and where the next development goes.
+Reachability is not here and is not its own algorithm: an `AbstractionError`
+certificate turns a run of this system into a run of a linear one, and
+`LinearSys` does the rest.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       01-September-2026
--- Last update:   ---
+-- Last update:   02-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real

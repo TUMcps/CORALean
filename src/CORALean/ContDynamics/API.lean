@@ -10,6 +10,7 @@ interfaces alone, so none names a representation. The `*Zonotope` and
 `*ConZonotope` theorems are the exceptions: they say what is left once a
 representation that does have the required properties is substituted in.
 
-`NonlinearSys` so far holds only the representation and what a trajectory of it
-is; it has no reachability yet.
+`NonlinearSys` computes nothing of its own: conservative linearization hands a
+confined run to `LinearSys`, so every reachability guarantee in the directory is
+a linear one applied to a widened input set.
 -/
