@@ -22,11 +22,9 @@
 variables:
   ELAN_HOME: "$CI_PROJECT_DIR/.elan"
   GIT_DEPTH: "1"
-  # Dependency resolution clones Mathlib and its own dependencies from GitHub
-  # anonymously. A rate-limited anonymous clone answers 403, which git reads as
-  # "needs credentials" and then blocks asking for them; without this the job
-  # hangs until timeout instead of failing. Shared runners share an IP, so this
-  # is a matter of who else is building, not of anything in the tree.
+  # Belt and braces with the token below: a clone that still fails to authenticate
+  # answers 403, which git reads as "needs credentials" and then blocks asking for
+  # them. Without this the job hangs until timeout instead of failing.
   GIT_TERMINAL_PROMPT: "0"
 
 build:
@@ -34,6 +32,16 @@ build:
   interruptible: true
   before_script:
     - apt-get update -qq && apt-get install -y -qq --no-install-recommends curl git ca-certificates
+    # Authenticate the GitHub clones. Anonymous clones are rate-limited per IP and
+    # shared runners share one, which is what was failing; a token raises the limit
+    # by two orders of magnitude. Guarded, so a fork without the variable still runs
+    # and merely takes its chances with the anonymous limit.
+    - |
+      if [ -n "$GH_TOKEN" ]; then
+        git config --global credential.helper store
+        echo "https://oauth2:${GH_TOKEN}@github.com" > ~/.git-credentials
+        chmod 600 ~/.git-credentials
+      fi
     - export PATH="$ELAN_HOME/bin:$PATH"
     - |
       curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
