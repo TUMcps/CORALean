@@ -8,12 +8,11 @@ no dependencies are the ones that can start.
 
 | Branch | Work |
 | --- | --- |
-| `feat/trajectory-domain` | A time domain on `Trajectory`, so a bounded horizon is sayable — what the re-linearization loop and hybrid automata both wait on |
 | `feat/poly-zono-reduce` | Exact compaction first — merging equal exponent columns, dropping unused factors — and only then the ranking |
+| `feat/hybrid-automaton` | Locations, transitions and a run that alternates flowing with jumping |
 
-Next after those: hybrid automata, now that an exact intersection exists for the
-guard, the conversions the newest representations do not yet have, and the float
-layers.
+Next after those: the re-linearization loop, the conversions the newest
+representations do not yet have, and the float layers.
 
 ## Done
 
@@ -50,13 +49,27 @@ form, the matrix exponential enclosure, discretization, the input solution, the
 time-interval enclosure, and reachability at the sample times — stated once
 against `ConvexSet` and `CompactSet` rather than once per representation.
 
-`NonlinearSys`, one step by conservative linearization. The abstraction error is
+A trajectory carries the time domain it runs on, so each guarantee asks for the
+window it actually speaks about and a bounded horizon is sayable at all. The
+subtlety is one-sided derivatives: `HasDerivWithinAt` at `t` within `Ici t` does
+not follow from a bounded domain by monotonicity, only where the domain still
+extends to the right of `t` — so the identity pinning the input runs out at the
+right endpoint, and the measurability arguments moved to the open window, the
+missing point being null. `discretize` and sample-time reachability still ask
+for all forward time, not through the flow but through the target:
+`LinearSysDT.Trajectory` is total in the step count. `reach_outer_horizon`
+unrolls the recursion itself to avoid that.
+
+`NonlinearSys`, genuinely one step by conservative linearization. The abstraction error is
 a certificate rather than a derivative: a set together with the proof that it
 encloses what is left of the field once the affine part is subtracted. Nothing
 downstream mentions a derivative, so `A` and `B` need not be the Jacobians and a
 linearization computed in float arithmetic is covered without a word about how
 far it is from the true one. A confined run is then a linear run over a widened
-input, and reachability is the linear theorem unchanged.
+input, and reachability is the linear theorem unchanged. Confinement is asked
+for on the run's own domain, so confinement over `[0, τ]` buys a linear run over
+`[0, τ]` and nothing is assumed about what happens afterwards — which is what
+re-linearizing from the enclosure reached at `τ` will consume.
 
 **Verification.** `Specification` — a safe set or an unsafe one — and the
 theorem that a check passed on an outer approximation is passed by the exact
@@ -107,14 +120,17 @@ Ordered roughly by what unblocks the most.
 
 ### Dynamics
 
+- **A bounded `LinearSysDT.Trajectory`** — the discrete run is total in the step
+  count, which is why sample-time reachability cannot take a bounded domain
+  directly and `reach_outer_horizon` unrolls the recursion by hand instead.
 - **`TimeIntervalOuterSplitZonotope`** — the one reachability statement still
   tied to a representation. Dropping `0 ∈ U` takes the input set apart into a
   centre, a remainder, a point and a segment, and no interface offers those.
   Either a class earns them or it stays where it is.
 - **Nonlinear reachability, beyond one step** — the polynomialization variant
-  that uses `PolyZonotope`, and the loop that re-linearizes. The loop is blocked
-  on `feat/trajectory-domain`: re-linearizing means each step is sound only on
-  its own interval, and a `Trajectory` cannot yet name one.
+  that uses `PolyZonotope`, and the loop that re-linearizes. The loop is now
+  unblocked — a step is sound on its own interval and says nothing beyond it —
+  and what it still needs is the confinement check below.
 - **Discharging confinement** — the linearization step assumes the run stays
   where its certificate holds. CORA computes a candidate, checks the step's
   reachable set against it and enlarges on failure; nothing here does.
@@ -128,10 +144,7 @@ Ordered roughly by what unblocks the most.
 
 ### Hybrid systems
 
-- **`Location`, `Transition`, `HybridAutomaton`** — guard intersection and the
-  jump map. Guard intersection wants `ConZonotope`, which exists, and the
-  time-triggered case wants nothing else.
-- **`ParallelHybridAutomaton`** — composition.
+- **`ParallelHybridAutomaton`** — composition. Waits on the single automaton.
 
 ### Neural networks
 
