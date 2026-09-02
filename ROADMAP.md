@@ -8,11 +8,11 @@ no dependencies are the ones that can start.
 
 | Branch | Work |
 | --- | --- |
-| `feat/relinearize` | Nonlinear reachability beyond one step: a fresh expansion point and a fresh certificate at each |
-| `feat/examples` | Use sites, so a broken instance fails the build — a library cannot notice one from the inside |
+| `feat/nn-controlled` | A network in the loop of a plant — where the two halves of this repository meet |
+| `feat/interface-gaps` | The instances the first real use sites found missing |
 
 Next after those: the conversions the newest representations do not yet have,
-`restructure`, and the float layers.
+more layers, `restructure`, and the float layers.
 
 ## Done
 
@@ -75,7 +75,14 @@ encloses what is left of the field once the affine part is subtracted. Nothing
 downstream mentions a derivative, so `A` and `B` need not be the Jacobians and a
 linearization computed in float arithmetic is covered without a word about how
 far it is from the true one. A confined run is then a linear run over a widened
-input, and reachability is the linear theorem unchanged. Confinement is asked
+input, and reachability is the linear theorem unchanged, and the loop that
+re-linearizes chains those steps: a fresh expansion point, matrices and
+certificate at each, bundled as a `LinStep` so a certificate travels with the
+data it certifies. A chain is a function of the step index rather than a list or
+an inductive family — the enclosures have to be *data* a caller hands to
+`Specification`, and a set that exists only once a proof has been built is not
+one. The run is re-anchored at each step rather than the windows made absolute,
+which costs two proved shift lemmas and keeps every existing statement usable. Confinement is asked
 for on the run's own domain, so confinement over `[0, τ]` buys a linear run over
 `[0, τ]` and nothing is assumed about what happens afterwards — which is what
 re-linearizing from the enclosure reached at `τ` will consume.
@@ -153,10 +160,11 @@ Ordered roughly by what unblocks the most.
   tied to a representation. Dropping `0 ∈ U` takes the input set apart into a
   centre, a remainder, a point and a segment, and no interface offers those.
   Either a class earns them or it stays where it is.
-- **Nonlinear reachability, beyond one step** — the polynomialization variant
-  that uses `PolyZonotope`, and the loop that re-linearizes. The loop is now
-  unblocked — a step is sound on its own interval and says nothing beyond it —
-  and what it still needs is the confinement check below.
+- **Nonlinear reachability: the polynomialization variant** that uses
+  `PolyZonotope`. The re-linearization loop itself is done.
+- **The time between the samples, along a chain.** The re-linearization loop
+  encloses the step boundaries only. Covering the interior needs each step's
+  time-interval enclosure chained the same way.
 - **Discharging confinement** — the linearization step assumes the run stays
   where its certificate holds. CORA computes a candidate, checks the step's
   reachable set against it and enlarges on failure; nothing here does.
@@ -199,15 +207,20 @@ Ordered roughly by what unblocks the most.
 
 ### Infrastructure
 
-- **A worked example per component.** In flight. `Examples/FeedForward.lean` was
-  the only use site, and one is not enough: the fact that linear reachability now
-  runs on `PolyZonotope` was discovered by trying it, not by reading the
-  instances.
-- **Specializations as regression tests.** Reachability is now stated once over
-  `ConvexSet` and `CompactSet`, and the old per-representation statements were
-  checked to follow with `:=` and then discarded. They belong in `Examples/`,
-  where they would fail the build if the generalization ever stopped covering
-  them.
+- **A worked example per component.** Four exist and each found something. The
+  target is one per representation and per algorithm.
+- **Instances the use sites found missing.** In flight. `Interval` reaches only
+  the plain reachability statement, for want of `Mtimes ℐ` and of `ConvexSet` /
+  `CompactSet` instances its own theorems already support. `PolyZonotope` has no
+  family notation where `Zonotope` and `ConZonotope` both do. `HPolytope`
+  instantiates only `ContSet` and `Reduce`, so it cannot take a hybrid jump —
+  which is why the bouncing ball's guard is a bounded floor rather than the
+  halfspace it should be. And `Location.dynamics` drops the set family, so a
+  hybrid use site must re-ascribe `S` that the location already pinned.
+- **A location's sets share one representation** — its invariant, its input set
+  and every guard. A guard is often the one thing that wants halfspaces while
+  the rest wants a zonotope; separating them means a second type parameter on
+  `Location`, and nothing has yet needed it enough.
 - **Benchmarks** — the ARCH competition instances CORA reports on.
 
 ## Conventions
