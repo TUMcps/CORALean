@@ -1,0 +1,55 @@
+import CORALean.ContDynamics.LinearSys.Operations.Discretize
+import CORALean.ContDynamics.LinearSys.Operations.InputSolution
+import CORALean.ContDynamics.LinearSys.Theorems.ReachOuter
+import CORALean.ContSet.ContSet.CompactSet
+import CORALean.ContSet.ContSet.ConvexSet
+
+/-!
+# Reachability at any convex, compact representation
+
+`reach_outer_inputSolution` with its six topological hypotheses read off the
+representation instead of supplied per use. `ConvexSet` and `CompactSet` are
+quantified over every element of the family, which is what covers the remainder
+product as well as `U` — `mtimes` at an interval matrix lands back in `S n`, so
+the same two instances answer for both.
+
+Six hypotheses from two fields: over a normed space compactness is closedness
+and boundedness together, and `CompactSet` proves both once.
+
+No representation is named here. `Zonotope` and `ConZonotope` get their own
+statement by instantiating this, and any later one does the same.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       02-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+namespace CORALean.Real
+
+open Matrix ContSet Scalar NormedSpace MeasureTheory
+
+attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
+  Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
+
+variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
+
+/-- Every trajectory of a linear system whose input set is convex and compact
+stays in `reach`, at every sample time. The step, the Taylor order and the bound
+`hε` relating them are all that is left to supply. -/
+theorem LinearSys.Trajectory.reach_outer_convexCompact [Mtimes ℐ S]
+    [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ n)]
+    {sys : LinearSys 𝕋 n} {R₀ U : S n} {x u : ℝ → Vec ℝ n} {Δt : ℝ}
+    (traj : sys.Trajectory R₀ U x u) (hΔt : 0 < Δt) (η : ℕ)
+    (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) (o k : ℕ) :
+    x (k * Δt) ∈ construct
+      ((sys.discretize Δt).reach o R₀ (sys.inputSolution Δt η U) k) :=
+  traj.reach_outer_inputSolution hΔt η hε
+    (ConvexSet.convex_construct U) (CompactSet.isClosed_construct U)
+    (CompactSet.isBounded_construct U)
+    (ConvexSet.convex_construct _) (CompactSet.isClosed_construct _)
+    (CompactSet.isBounded_construct _) o k
+
+end CORALean.Real

@@ -1,5 +1,5 @@
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrectionMatrix
-import CORALean.ContDynamics.LinearSys.Operations
+import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
 
 /-!
 # `timeIntervalStep` contains the flow at every time in the step

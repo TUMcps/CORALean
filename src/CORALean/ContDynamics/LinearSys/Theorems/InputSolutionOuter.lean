@@ -1,4 +1,5 @@
-import CORALean.ContDynamics.LinearSys.Operations
+import CORALean.ContDynamics.LinearSys.Operations.InputSolution
+import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSum
 import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 import CORALean.ContDynamics.LinearSys.Theorems.WeightedIntegral
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpEnclosure

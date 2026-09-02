@@ -1,3 +1,5 @@
+import CORALean.ContDynamics.LinearSys.Operations.InputSolution
+import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuter
 import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuter
 

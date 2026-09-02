@@ -1,4 +1,5 @@
-import CORALean.ContDynamics.LinearSys.Operations
+import CORALean.ContDynamics.LinearSys.Operations.InputReach
+import CORALean.ContDynamics.LinearSys.Operations.InputSolution
 import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 
 /-!

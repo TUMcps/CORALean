@@ -1,3 +1,5 @@
+import CORALean.ContDynamics.LinearSys.Operations.InputSolution
+import CORALean.ContDynamics.LinearSys.Operations.StepInput
 import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionOuter
 import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
 

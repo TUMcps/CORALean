@@ -1,3 +1,5 @@
+import CORALean.ContDynamics.LinearSys.Operations.InputSolution
+import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
 import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuterSplit
 import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryTimeIntervalOuter
 import CORALean.ContSet.Zonotope.Real.Instances
@@ -8,11 +10,13 @@ import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
 /-!
 # The step enclosure at a zonotope whose input set misses the origin
 
-`timeInterval_outer_zonotope` needs `0 ∈ U`, which no zonotope has to satisfy.
-A zonotope carries everything the split needs for free: its centre is the
-constant, itself recentred is the part holding the origin, and a zonotope with
-no generators or with one gives the point and the segment the constant part is
-enclosed against.
+`timeInterval_outer_convexCompact` needs `0 ∈ U`, which no zonotope has to
+satisfy. This is the one reachability statement that stays per representation:
+the split needs the input set taken apart, and a zonotope carries every piece
+for free — its centre is the constant, itself recentred is the part holding the
+origin, and a zonotope with no generators or with one gives the point and the
+segment the constant part is enclosed against. No `ContSet` interface offers
+any of that.
 
 So Althoff's second case assumes nothing at all about where the input set sits.
 -/

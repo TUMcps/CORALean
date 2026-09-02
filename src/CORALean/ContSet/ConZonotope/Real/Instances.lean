@@ -1,4 +1,8 @@
+import CORALean.ContSet.ContSet.CompactSet
+import CORALean.ContSet.ContSet.ConvexSet
 import CORALean.ContSet.Interval.Real.Instances
+import CORALean.ContSet.ConZonotope.Real.Theorems.Convex
+import CORALean.ContSet.ConZonotope.Real.Theorems.IsCompact
 import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombOuter
 import CORALean.ContSet.ConZonotope.Real.Theorems.MapExact
 import CORALean.ContSet.ConZonotope.Real.Theorems.MtimesIntervalMatOuter
@@ -27,6 +31,14 @@ variable {n : ℕ}
 coefficient space whatever the generators point into. -/
 instance {α : Type} [AddCommGroup α] [Module ℝ α] : ContSet (ConZonotope α) α :=
   ⟨ConZonotope.construct⟩
+
+instance {α : Type} [AddCommGroup α] [Module ℝ α] : ConvexSet (ConZonotope α) α :=
+  ⟨ConZonotope.convex_construct⟩
+
+/-- Compactness comes from `domain` being a bounded polytope, not from the
+coefficient cube the constraints cut down. -/
+instance {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α] : CompactSet (ConZonotope α) α :=
+  ⟨ConZonotope.isCompact_construct⟩
 
 instance : Plus (ConZonotope (Vec ℝ n)) (Vec ℝ n) where
   plus := ConZonotope.plus

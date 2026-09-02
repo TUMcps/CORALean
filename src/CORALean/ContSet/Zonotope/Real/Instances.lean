@@ -1,4 +1,8 @@
+import CORALean.ContSet.ContSet.CompactSet
+import CORALean.ContSet.ContSet.ConvexSet
 import CORALean.ContSet.Interval.Real.Instances
+import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
 import CORALean.ContSet.Zonotope.Real.Theorems.LinCombOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
 import CORALean.ContSet.Zonotope.Real.Theorems.MtimesIntervalMatOuter
@@ -31,6 +35,14 @@ coordinates. The operation instances below stay at `Vec`, because `reduce`
 does. -/
 instance {α : Type} [AddCommGroup α] [Module ℝ α] : ContSet (Zonotope α) α :=
   ⟨Zonotope.construct⟩
+
+instance {α : Type} [AddCommGroup α] [Module ℝ α] : ConvexSet (Zonotope α) α :=
+  ⟨Zonotope.convex_construct⟩
+
+/-- Compactness, not the closed-and-bounded pair: an affine image of the
+coefficient cube is what a zonotope is, and only compactness survives it. -/
+instance {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α] : CompactSet (Zonotope α) α :=
+  ⟨Zonotope.isCompact_construct⟩
 
 instance : Plus (Zonotope (Vec ℝ n)) (Vec ℝ n) where
   plus := Zonotope.plus

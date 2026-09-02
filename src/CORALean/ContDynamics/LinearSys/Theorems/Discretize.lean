@@ -1,4 +1,6 @@
-import CORALean.ContDynamics.LinearSys.Operations
+import CORALean.ContDynamics.LinearSys.Operations.Discretize
+import CORALean.ContDynamics.LinearSys.Operations.InputSolution
+import CORALean.ContDynamics.LinearSys.Operations.StepInput
 import CORALean.ContDynamics.LinearSys.Theorems.StepInputOuter
 
 /-!
