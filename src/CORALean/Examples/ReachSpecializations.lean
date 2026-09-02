@@ -1,4 +1,3 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ReachOuter
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterConvexCompact
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterConvexCompact
 import CORALean.ContSet.ConZonotope.Real.Instances
@@ -18,18 +17,15 @@ the generalization has lost it, and this file is where the build says so.
 things left to supply are the step, the Taylor order and the bound relating
 them.
 
-`Interval` reaches the plain `reach_outer` and no further, and the gap is two
-missing instances rather than a fact about boxes: `inputSolution` needs
-`Mtimes ℐ` — an interval matrix acting on the representation — which exists
-only at `𝒵` and `𝒞`, and `ConvexSet`/`CompactSet` are not instantiated for
-`Interval` although `Theorems.Convex`, `IsClosed` and `IsBounded` prove exactly
-their fields. So the interval statement takes the input contribution as a
-hypothesis, as a non-convex representation has to.
+`Interval` reaches them too, now that it has `Mtimes ℐ` and the two topological
+instances. It is the one representation here that has to spell its family out —
+`𝒵` and `𝒞` are notation their own `Instances` file declares, and `ℐ` is the
+interval *matrix* family, not this one.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   02-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -60,17 +56,17 @@ example {n : ℕ} {sys : LinearSys ℝ n} {T : Set ℝ} {R₀ U : ConZonotope (V
       (sys.inputSolution (S := 𝒞) Δt η U) k) :=
   traj.reach_outer_convexCompact hΔt hT η hε o k
 
-/-- Reachability at an interval, where the input contribution is a hypothesis:
-`reduce` is the identity there, so the enclosure never widens for an order
-bound. -/
-example {n : ℕ} {sys : LinearSys ℝ n} {T : Set ℝ} {R₀ U Ud : Interval (Vec ℝ n)}
+/-- The same at an interval, where `reduce` is the identity, so the enclosure
+never widens for an order bound and the whole width is the input solution's. -/
+example {n : ℕ} {sys : LinearSys ℝ n} {T : Set ℝ} {R₀ U : Interval (Vec ℝ n)}
     {x u : ℝ → Vec ℝ n} {Δt : ℝ}
     (traj : sys.Trajectory (S := fun m => Interval (Vec ℝ m)) T R₀ U x u)
-    (hΔt : 0 ≤ Δt) (hT : Set.Ici 0 ⊆ T) (hU : Bornology.IsBounded (construct U))
-    (hUd : ∀ k : ℕ, sys.stepInput u Δt k ∈ construct Ud) (o k : ℕ) :
+    (hΔt : 0 < Δt) (hT : Set.Ici 0 ⊆ T) (η : ℕ)
+    (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) (o k : ℕ) :
     x (k * Δt) ∈ construct ((sys.discretize Δt).reach
-      (S := fun m => Interval (Vec ℝ m)) o R₀ Ud k) :=
-  traj.reach_outer hΔt hT hU hUd o k
+      (S := fun m => Interval (Vec ℝ m)) o R₀
+      (sys.inputSolution (S := fun m => Interval (Vec ℝ m)) Δt η U) k) :=
+  traj.reach_outer_convexCompact hΔt hT η hε o k
 
 /-- The step enclosure at a zonotope: every time of the step, not only its end.
 `0 ∈ U` is a fact about where the input set sits, so no class supplies it. -/
@@ -81,6 +77,19 @@ example {n : ℕ} {sys : LinearSys ℝ n} {T : Set ℝ} {R₀ U : Zonotope (Vec 
     (ht0 : 0 ≤ t) (htr : t ≤ r) (h0 : (0 : Vec ℝ n) ∈ construct U) :
     x t ∈ construct (Plus.plus (sys.timeIntervalStep (S := 𝒵) r (m + 2) R₀)
       (sys.inputSolution (S := 𝒵) r (m + 2) U)) :=
+  traj.timeInterval_outer_convexCompact hr hT hε ht0 htr h0
+
+/-- The step enclosure at an interval, which is what `Mtimes ℐ` was the last
+instance missing for. -/
+example {n : ℕ} {sys : LinearSys ℝ n} {T : Set ℝ} {R₀ U : Interval (Vec ℝ n)}
+    {x u : ℝ → Vec ℝ n} {r : ℝ}
+    (traj : sys.Trajectory (S := fun m => Interval (Vec ℝ m)) T R₀ U x u)
+    (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
+    (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}
+    (ht0 : 0 ≤ t) (htr : t ≤ r) (h0 : (0 : Vec ℝ n) ∈ construct U) :
+    x t ∈ construct (Plus.plus
+      (sys.timeIntervalStep (S := fun m => Interval (Vec ℝ m)) r (m + 2) R₀)
+      (sys.inputSolution (S := fun m => Interval (Vec ℝ m)) r (m + 2) U)) :=
   traj.timeInterval_outer_convexCompact hr hT hε ht0 htr h0
 
 end CORALean.Real

@@ -29,7 +29,7 @@ module is zero, and the ranking orders reals.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   02-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -57,5 +57,11 @@ instance : Mtimes (Mat ℝ) (fun n => PolyZonotope (Vec ℝ n)) where
   mtimes_outer M PZ := by
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact (PolyZonotope.mtimes_exact M PZ).subset
+
+/-- The polynomial-zonotope family over vectors. A generic theorem quantifies
+over `S : ℕ → Type` and the elaborator cannot read that family off one member, so a
+use site has to name it: `(S := 𝒫𝒵)`. Two letters, `𝒫` alone being Mathlib's
+powerset. -/
+scoped notation "𝒫𝒵" => fun n => PolyZonotope (Vec ℝ n)
 
 end CORALean.Real
