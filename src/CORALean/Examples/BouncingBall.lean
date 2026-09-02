@@ -22,8 +22,14 @@ than this example's:
 
 The guard is a *bounded* set — the floor met with a speed of at most `v` —
 because a location's sets share one representation and a zonotope cannot be the
-unbounded halfspace `p = 0`. Splitting the two would mean a second type
+unbounded halfspace `p = 0 ∧ v ≤ 0`. Splitting the two would mean a second type
 parameter on `Location`, which nothing yet asks for.
+
+`HPolytope` states that halfspace exactly and still cannot take the jump, which
+is a fact about `Plus` rather than about polytopes: `jump` asks for `Plus`,
+`Mtimes` and `OfInterval`, and a halfspace description computes the first two
+only on directions the caller names, with a certified bound in each. The class
+fields have nowhere to put either.
 
 Nothing here intersects. `Location.inv` is data the automaton carries and the
 theorems never cut a reachable set down with it, exactly as `Transition.guard`
@@ -33,7 +39,7 @@ is only ever tested pointwise; both are the missing `And` interface, and
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   02-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -88,7 +94,7 @@ example (ℓ : Location 𝒵 Unit ℝ 2) {τ : ℝ} {x u : ℝ → Vec ℝ 2}
     (ht0 : 0 ≤ t) (htτ : t ≤ τ) (hU : Bornology.IsBounded (construct ℓ.U))
     (hUd : (∫ s in (0 : ℝ)..t, exp ((t - s) • toRealMat ℓ.dynamics.A) *ᵥ u s)
       ∈ construct Ud) :
-    x t ∈ construct (Plus.plus (ℓ.dynamics.timeIntervalStep (S := 𝒵) τ (m + 2) R₀) Ud) :=
+    x t ∈ construct (Plus.plus (ℓ.timeIntervalStep τ (m + 2) R₀) Ud) :=
   traj.timeInterval_outer h₀ hτ hε ht0 htτ hU hUd
 
 /-- The reset image, once the caller has cut the incoming set down to the

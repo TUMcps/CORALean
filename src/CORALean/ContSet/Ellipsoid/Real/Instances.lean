@@ -15,11 +15,16 @@ caller.
 
 At `Vec ℝ n` only: an ellipsoid is described by a Euclidean norm, which a
 general real module has none of.
+
+No family notation, and none is missing: `Ellipsoid` is already indexed by the
+dimension, so a use site pinning the family writes `(S := Ellipsoid)`. The other
+representations need one because their family is a lambda the elaborator cannot
+read off `S n`.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   02-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real

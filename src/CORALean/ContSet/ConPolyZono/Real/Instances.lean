@@ -28,7 +28,7 @@ class is left unwritten until something calls for it generically.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   02-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -48,5 +48,12 @@ instance : Mtimes (Mat ℝ) (fun n => ConPolyZono (Vec ℝ n)) where
   mtimes_outer M C := by
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact (ConPolyZono.mtimes_exact M C).subset
+
+/-- The constrained-polynomial-zonotope family over vectors. A generic theorem
+quantifies over `S : ℕ → Type` and the elaborator cannot read that family off one
+member, so a use site has to name it: `(S := 𝒞𝒫𝒵)` — the constrained zonotope's
+`𝒞` in front of the polynomial one's `𝒫𝒵`, which is what the representation
+is. -/
+scoped notation "𝒞𝒫𝒵" => fun n => ConPolyZono (Vec ℝ n)
 
 end CORALean.Real

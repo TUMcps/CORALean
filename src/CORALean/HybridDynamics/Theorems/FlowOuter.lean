@@ -1,4 +1,5 @@
 import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryTimeIntervalOuter
+import CORALean.HybridDynamics.Operations.TimeIntervalStep
 import CORALean.HybridDynamics.Theorems.LinearEmbedding
 
 /-!
@@ -17,11 +18,15 @@ caller with a representation that can do it, exactly as in `JumpOuter`.
 `0 < τ` rather than `0 ≤ τ`: `timeIntervalStep` divides by the step length. A
 zero-length stay needs no enclosure of its own, the state being the one it
 entered with.
+
+Stated through `Location.timeIntervalStep` rather than through the dynamics'
+own: `ℓ.dynamics` drops `S`, and a use site would have to name the family back
+in a statement its `ℓ` already pinned.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   02-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -45,7 +50,7 @@ theorem Location.Trajectory.timeInterval_outer {ℓ : Location S L 𝕋 n} {τ :
     (ht0 : 0 ≤ t) (htτ : t ≤ τ) (hU : Bornology.IsBounded (construct ℓ.U))
     (hUd : (∫ s in (0:ℝ)..t, exp ((t - s) • toRealMat ℓ.dynamics.A) *ᵥ u s)
       ∈ construct Ud) :
-    x t ∈ construct (Plus.plus (ℓ.dynamics.timeIntervalStep τ (m + 2) R₀) Ud) :=
+    x t ∈ construct (Plus.plus (ℓ.timeIntervalStep τ (m + 2) R₀) Ud) :=
   (traj.linearSys h₀).timeInterval_outer hτ subset_rfl hε ht0 htτ hU hUd
 
 end CORALean.Real
