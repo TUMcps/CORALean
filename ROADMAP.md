@@ -8,11 +8,12 @@ no dependencies are the ones that can start.
 
 | Branch | Work |
 | --- | --- |
-| `feat/con-poly-zono` | `ConPolyZono`, `Real` layer, and the intersection that justifies a constrained representation |
 | `feat/trajectory-domain` | A time domain on `Trajectory`, so a bounded horizon is sayable — what the re-linearization loop and hybrid automata both wait on |
+| `feat/poly-zono-reduce` | Exact compaction first — merging equal exponent columns, dropping unused factors — and only then the ranking |
 
-Next after those: hybrid automata, the conversions the newest representations do
-not yet have, `PolyZonotope.reduce`, and the float layers.
+Next after those: hybrid automata, now that an exact intersection exists for the
+guard, the conversions the newest representations do not yet have, and the float
+layers.
 
 ## Done
 
@@ -34,6 +35,15 @@ program, and its bounding box tight.
 `PolyZonotope`, `Real` layer, with `quadMap` exact — the operation the
 representation exists for, and the one that needs its factors to be shared.
 `reduce` is deliberately absent; see below.
+
+`ConPolyZono`, `Real` layer: the same factors additionally constrained by
+polynomial equalities `A μ(α) = b`, the constraint monomials read off one
+exponent matrix over the same factors as the generators. `and` is exact with no
+hypotheses, and is the only place in this repository where two non-convex sets
+intersect without loss — the agreement rows are constraints of the kind already
+carried, so their coefficients can be monomials, which a constrained zonotope's
+linear rows cannot express. `plus`, `map`, `mtimes`, `quadMap` and `dependent`
+are exact as well; nothing in its `Theorems/` is `_outer`.
 
 **Dynamics.** `LinearSysDT` with reachability. `LinearSys`: the flow in closed
 form, the matrix exponential enclosure, discretization, the input solution, the
@@ -62,17 +72,29 @@ Ordered roughly by what unblocks the most.
 
 ### Representations
 
-- **`PolyZonotope.reduce`** — absent on purpose rather than overlooked. It is
-  not the zonotope's generator ranking: it also has to merge equal exponent
-  columns and drop factors that fall out of use, and without that compaction an
-  order bound means nothing. `restructure` likewise.
+- **`PolyZonotope.restructure`** — the other half of order control, moving
+  independent generators back to dependent. `reduce` and the exact compaction it
+  rests on are in flight; this is not.
+- **`ConPolyZono`: `linComb`, `reduce`, `CompactSet`** — the first would have to
+  relax the independent block, the second needs compaction in the constraint
+  matrix as well as the generators, and the third is true but unproved: the sets
+  are compact and the argument is simply not written.
+- **An `And` class.** `ConPolyZono.and` is exact and is what a guard or an
+  invariant asks for, but the only other implementor is `ConZonotope`, which
+  could state it at convex sets only. The class stays unwritten until something
+  needs an intersection generically — the same question `Ellipsoid.plus` raises
+  from the other side.
 - **`Capsule`**, **`ZonoBundle`**, **`SpectraShadow`**, **`Taylm`** — CORA has
   them; none blocks anything else.
-- **Conversions** for the late arrivals. `Ellipsoid` has four of its ten pairs
-  and `PolyZonotope` four of its ten; the gaps differ in kind, an ellipsoid's
+- **Conversions** for the late arrivals. `Ellipsoid` has four of its ten pairs,
+  `PolyZonotope` five, `ConPolyZono` two; the gaps differ in kind, an ellipsoid's
   polytope pairs being merely absent while a polynomial zonotope's are
   enclosures with a precision knob rather than conversions, its sets not being
-  convex.
+  convex. `ConZonotope → ConPolyZono` is blocked by a choice of ours rather than
+  by mathematics: our `ConZonotope` carries an `HPolytope`, so it admits
+  inequalities, while a `ConPolyZono` admits equalities only — the conversion
+  would need a slack factor per inequality together with a bound on it. CORA's
+  `conZonotope` carries equalities and maps straight across.
 - **`Ellipsoid.plus` as an interface.** It is implemented and proved, but
   `Plus` is not instantiated: the class field has no room for the free parameter
   `l`, and fixing a value would bury a precision choice in an interface. Whether
