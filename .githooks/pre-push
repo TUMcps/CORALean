@@ -1,0 +1,25 @@
+#!/bin/sh
+# Refuses a direct push to the default branch. Work reaches `main` through a
+# merge request and nothing else — including the work that fixes CI, and
+# including a one-line change.
+#
+# This is the local half. The enforcing half is the protected-branch setting on
+# the server, which is what stops a clone that has not set `core.hooksPath`.
+
+PROTECTED="main"
+
+while read -r _local_ref _local_sha remote_ref _remote_sha; do
+  case "$remote_ref" in
+    "refs/heads/$PROTECTED")
+      echo "pre-push: refusing to push to $PROTECTED."
+      echo "  Open a merge request instead:"
+      echo "    git switch -c <topic>"
+      echo "    git push -u origin <topic> -o merge_request.create \\"
+      echo "      -o merge_request.target=$PROTECTED \\"
+      echo "      -o merge_request.title=\"...\" -o merge_request.description=\"...\""
+      exit 1
+      ;;
+  esac
+done
+
+exit 0
