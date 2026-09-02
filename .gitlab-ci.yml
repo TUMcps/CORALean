@@ -22,9 +22,9 @@
 variables:
   ELAN_HOME: "$CI_PROJECT_DIR/.elan"
   GIT_DEPTH: "1"
-  # Belt and braces with the token below: a clone that still fails to authenticate
-  # answers 403, which git reads as "needs credentials" and then blocks asking for
-  # them. Without this the job hangs until timeout instead of failing.
+  # A rate-limited anonymous clone answers 403, which git reads as "needs
+  # credentials" and then blocks asking for them. Fail instead, so the retry
+  # below gets a turn rather than the job sitting until timeout.
   GIT_TERMINAL_PROMPT: "0"
 
 build:
@@ -32,31 +32,12 @@ build:
   interruptible: true
   before_script:
     - apt-get update -qq && apt-get install -y -qq --no-install-recommends curl git ca-certificates
-    # Authenticate the GitHub clones. Anonymous clones are rate-limited per IP and
-    # shared runners share one, which is what was failing; a token raises the limit
-    # by two orders of magnitude. Guarded, so a fork without the variable still runs
-    # and merely takes its chances with the anonymous limit.
-    - |
-      if [ -n "$GH_TOKEN" ]; then
-        git config --global credential.helper store
-        echo "https://oauth2:${GH_TOKEN}@github.com" > ~/.git-credentials
-        chmod 600 ~/.git-credentials
-      fi
     - export PATH="$ELAN_HOME/bin:$PATH"
     - |
       curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
         | sh -s -- -y --default-toolchain none
     - elan toolchain install "$(cat lean-toolchain)"
     - lake --version
-  # The clone is the long pole — minutes, and nothing is printed while it runs —
-  # so it happens once per dependency change rather than once per push. Keyed on
-  # the manifest, which is what decides the revisions.
-  cache:
-    key:
-      files:
-        - lake-manifest.json
-    paths:
-      - .lake/packages
   script:
     - lake exe cache get
     # A warning is a failure: the tree is warning-free, and Mathlib's linters are
@@ -75,11 +56,6 @@ build:
       - runner_system_failure
       - stuck_or_timeout_failure
       - script_failure
-  after_script:
-    # Keep the cache to sources. Mathlib's oleans come back from its own CDN in
-    # seconds, while its history does not, so caching the build output would pay
-    # gigabytes to save nothing.
-    - rm -rf .lake/packages/mathlib/.lake/build
   artifacts:
     when: on_failure
     paths:
