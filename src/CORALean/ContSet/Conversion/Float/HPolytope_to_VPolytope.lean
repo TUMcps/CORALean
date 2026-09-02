@@ -20,13 +20,13 @@ open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ} {P : HPolytope 𝕋 n}
 
-def HPolytope.toV (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
+def HPolytope.toVPolytopeBox (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
     (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) : VPolytope 𝕋 n :=
   VPolytope.ofInterval (HPolytope.intervalOf up lo)
 
-theorem HPolytope.subset_toV (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
+theorem HPolytope.subset_toVPolytopeBox (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
     (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) :
-    P.construct ⊆ (HPolytope.toV up lo).construct :=
+    P.construct ⊆ (HPolytope.toVPolytopeBox up lo).construct :=
   subset_trans (HPolytope.intervalOf_outer up lo) (VPolytope.subset_ofInterval _)
 
 end CORALean.Float

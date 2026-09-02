@@ -24,11 +24,11 @@ open Matrix FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {q n : ℕ}
 
-def VPolytope.toH (P : VPolytope 𝕋 n) (Aq : Mat 𝕋 q n) : HPolytope 𝕋 n :=
+def VPolytope.toHPolytope (P : VPolytope 𝕋 n) (Aq : Mat 𝕋 q n) : HPolytope 𝕋 n :=
   HPolytope.ofBounds Aq fun i => P.boundDot (Aq i) fun _ => rfl
 
-theorem VPolytope.subset_toH (P : VPolytope 𝕋 n) (Aq : Mat 𝕋 q n) :
-    P.construct ⊆ (P.toH Aq).construct :=
+theorem VPolytope.subset_toHPolytope (P : VPolytope 𝕋 n) (Aq : Mat 𝕋 q n) :
+    P.construct ⊆ (P.toHPolytope Aq).construct :=
   HPolytope.subset_ofBounds _ _
 
 end CORALean.Float
