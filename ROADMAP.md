@@ -8,7 +8,13 @@ no dependencies are the ones that can start.
 
 | Branch | Work |
 | --- | --- |
-| — | — |
+| `refactor/dynamics-interfaces` | One file per operation in `ContDynamics`, and reachability stated once against a convexity/compactness class instead of once per representation |
+| `feat/poly-zonotope` | `PolyZonotope`, `Real` layer: the type, `plus`, `map`, and the three conversions that check the definition |
+| `feat/ellipsoid` | `Ellipsoid`, `Real` layer, stored by generator matrix rather than shape matrix; the support function in closed form, and the tight box that follows from it |
+
+Next up, in rough order: conversions for the two new representations, a
+curvature-based relaxation for sigmoid and tanh, nonlinear reachability by
+conservative linearization, and the float layers.
 
 ## Done
 
