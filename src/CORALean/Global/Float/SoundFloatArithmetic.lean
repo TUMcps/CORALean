@@ -30,6 +30,7 @@ class SoundFloatArithmetic (𝕋 : Type) [FloatOps 𝕋] where
   toReal : 𝕋 → ℝ
   toReal_neg (a : 𝕋) : toReal (neg a) = -toReal a
   toReal_zero : toReal (zero : 𝕋) = 0
+  toReal_one : toReal (one : 𝕋) = 1
   add_le_addUp (a b : 𝕋) : toReal a + toReal b ≤ toReal (addUp a b)
   addDown_le_add (a b : 𝕋) : toReal (addDown a b) ≤ toReal a + toReal b
   mul_le_mulUp (a b : 𝕋) : toReal a * toReal b ≤ toReal (mulUp a b)

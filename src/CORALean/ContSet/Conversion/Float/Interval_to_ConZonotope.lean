@@ -1,0 +1,30 @@
+import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+import CORALean.ContSet.Conversion.Float.Zonotope_to_ConZonotope
+
+/-!
+# A box as a constrained zonotope, over a floating-point scalar
+
+Through the zonotope. The generators absorb the centre's rounding there, and the
+constraint list stays empty here, so nothing further is paid.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       02-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+namespace CORALean.Float
+
+open FloatOps SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+def Interval.conZonotope (I : Interval 𝕋 n) : ConZonotope 𝕋 n :=
+  I.zonotope.conZonotope
+
+theorem Interval.subset_conZonotope (I : Interval 𝕋 n) :
+    I.construct ⊆ I.conZonotope.construct :=
+  subset_trans I.subset_zonotope (Zonotope.conZonotope_outer _)
+
+
+end CORALean.Float

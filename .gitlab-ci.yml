@@ -29,7 +29,10 @@ variables:
 
 build:
   image: debian:bookworm-slim
-  interruptible: true
+  # A push while a job is running does not cancel it. The project's "Auto-cancel
+  # redundant pipelines" setting only cancels jobs that opt in here, and a job
+  # that has already spent minutes cloning is not worth restarting.
+  interruptible: false
   before_script:
     - apt-get update -qq && apt-get install -y -qq --no-install-recommends curl git ca-certificates
     # Clone Mathlib ourselves, blobless. `lake exe cache get` otherwise clones it

@@ -19,6 +19,7 @@ namespace CORALean.Float
 -- noncomputable, unlike `Dyadic`: ℝ division is. Nothing computes with it.
 noncomputable instance : FloatOps ℝ where
   zero := 0
+  one := 1
   neg := Neg.neg
   addUp := (· + ·)
   addDown := (· + ·)
@@ -33,6 +34,7 @@ noncomputable instance : SoundFloatArithmetic ℝ where
   toReal := id
   toReal_neg _ := rfl
   toReal_zero := rfl
+  toReal_one := rfl
   add_le_addUp _ _ := le_refl _
   addDown_le_add _ _ := le_refl _
   mul_le_mulUp _ _ := le_refl _

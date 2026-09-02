@@ -21,6 +21,9 @@ namespace CORALean.Float
 
 class FloatOps (𝕋 : Type) where
   zero : 𝕋
+  /-- Every format has it exactly, and a constraint matrix cannot name a
+  coordinate without it. -/
+  one : 𝕋
   /-- Sign is a bit, so negation needs no direction. -/
   neg : 𝕋 → 𝕋
   addUp : 𝕋 → 𝕋 → 𝕋

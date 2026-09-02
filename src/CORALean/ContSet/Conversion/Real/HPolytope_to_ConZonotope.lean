@@ -52,7 +52,10 @@ theorem HPolytope.conZonotope_exact
       rw [h]
       simpa using hy
     · intro h
-      exact ⟨(HPolytope.zonotope up lo).c + (HPolytope.zonotope up lo).genMap β, h, by abel⟩
+      refine ⟨(HPolytope.zonotope up lo).c + (HPolytope.zonotope up lo).genMap β, h, ?_⟩
+      show -(HPolytope.zonotope up lo).c
+        + ((HPolytope.zonotope up lo).c + (HPolytope.zonotope up lo).genMap β) = _
+      rw [neg_add_cancel_left]
   ext x
   constructor
   · rintro ⟨β, -, hP, rfl⟩
