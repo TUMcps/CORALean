@@ -1,4 +1,4 @@
-import CORALean.ContSet.ConZonotope.Operations.Map
+import CORALean.ContSet.ConZonotope.Real.Operations.Map
 
 /-!
 # `ConZonotope.mtimes`

@@ -16,10 +16,12 @@ src/CORALean/
                    API.lean (the whole directory, and nothing but imports)
       Float/       the same representation, rounded
     Zonotope/      Real/ and Float/, as above
-    HPolytope/     polytopes by halfspaces: exact under intersection and preimage
+    HPolytope/     polytopes by halfspaces: exact under intersection and preimage;
+                   Real/ and Float/, the latter with an interval right-hand side
     VPolytope/     the same sets by vertices: exact under sum, image and hull;
                    Real/ and Float/, the latter paying rounding into an error box
-    ConZonotope/   a zonotope whose coefficients an HPolytope cuts down
+    ConZonotope/   a zonotope whose coefficients an HPolytope cuts down;
+                   Real/ and Float/, the latter splitting its rounding two ways
   ContDynamics/    algorithms, written against the interfaces alone
     LinearSysDT/   discrete-time linear systems, and reachability
     NonlinearSys/  the representation and its trajectories; no reachability yet
@@ -77,8 +79,8 @@ for it on top.
 | `𝒵`, `ℐ` | the zonotope and interval-matrix families, for pinning `(S := 𝒵)` where the elaborator cannot read a family off one member |
 
 Bundling the binders of a generic file into a `class abbrev` was tried and
-reverted: each use adds an unfolding step to instance search, which at 5000
-heartbeats produces timeouts rather than slow proofs.
+reverted: each use adds an unfolding step to instance search, which produced
+timeouts rather than slow proofs at the heartbeat limit of the time.
 
 ## Tooling
 

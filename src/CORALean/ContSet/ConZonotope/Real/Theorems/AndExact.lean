@@ -1,5 +1,5 @@
-import CORALean.ContSet.ConZonotope.Operations.And
-import CORALean.ContSet.ConZonotope.Theorems.PlusExact
+import CORALean.ContSet.ConZonotope.Real.Operations.And
+import CORALean.ContSet.ConZonotope.Real.Theorems.PlusExact
 
 /-!
 # `ConZonotope.and` is exactly the intersection

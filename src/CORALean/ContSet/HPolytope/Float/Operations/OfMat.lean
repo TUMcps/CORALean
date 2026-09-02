@@ -35,7 +35,21 @@ def HPolytope.eqs (Ae : Mat 𝕋 q n) (be : Interval 𝕋 q) : HPolytope 𝕋 n 
   Ae := Ae
   be := be
 
+/-- No constraints, so every point qualifies: what a zonotope's coefficients
+answer to beyond the unit box. -/
+def HPolytope.fullspace (𝕋 : Type) [FloatOps 𝕋] (n : ℕ) : HPolytope 𝕋 n where
+  m := 0
+  A := fun i => i.elim0
+  b := fun i => i.elim0
+  me := 0
+  Ae := fun i => i.elim0
+  be := ⟨fun i => i.elim0, fun i => i.elim0⟩
+
 variable [SoundFloatArithmetic 𝕋]
+
+theorem HPolytope.mem_fullspace (x : Vec ℝ n) :
+    x ∈ (HPolytope.fullspace 𝕋 n).construct :=
+  HPolytope.mem_construct_iff.mpr ⟨fun i => i.elim0, fun i => i.elim0⟩
 
 theorem HPolytope.mem_ineqs_iff {A : Mat 𝕋 q n} {b : Vec 𝕋 q} {x : Vec ℝ n} :
     x ∈ (HPolytope.ineqs A b).construct ↔ ∀ i, (toRealMat A *ᵥ x) i ≤ toReal (b i) :=

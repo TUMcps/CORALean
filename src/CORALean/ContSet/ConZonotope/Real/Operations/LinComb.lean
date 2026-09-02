@@ -1,4 +1,4 @@
-import CORALean.ContSet.ConZonotope.Operations.Zonotope
+import CORALean.ContSet.ConZonotope.Real.Operations.Zonotope
 import CORALean.ContSet.Zonotope.Real.Operations.LinComb
 
 /-!

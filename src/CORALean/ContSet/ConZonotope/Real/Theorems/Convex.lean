@@ -1,4 +1,4 @@
-import CORALean.ContSet.ConZonotope.ConZonotope
+import CORALean.ContSet.ConZonotope.Real.ConZonotope
 
 /-!
 # A constrained zonotope is convex

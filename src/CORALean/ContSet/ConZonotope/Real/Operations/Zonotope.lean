@@ -1,4 +1,4 @@
-import CORALean.ContSet.ConZonotope.ConZonotope
+import CORALean.ContSet.ConZonotope.Real.ConZonotope
 
 /-!
 # Between a zonotope and a constrained one
