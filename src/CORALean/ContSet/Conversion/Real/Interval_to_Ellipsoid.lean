@@ -1,0 +1,33 @@
+import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+import CORALean.ContSet.Conversion.Real.Zonotope_to_Ellipsoid
+
+/-!
+# A box as an ellipsoid
+
+Through the zonotope, which loses nothing: a box is a zonotope with `n`
+axis-aligned generators, so what comes out is the centre with generator matrix
+`√n · diag(radius)` — the smallest ellipsoid containing the box, `√n` times the
+inscribed one, and the classical bound is met rather than approached.
+
+Only the enclosing direction, for the same reason `Interval_to_Zonotope` gives
+only that one: a box whose `sup` falls below its `inf` denotes nothing while the
+ellipsoid built from it denotes the box with the two swapped.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       02-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+namespace CORALean.Real
+
+variable {n : ℕ}
+
+noncomputable def Interval.ellipsoid (I : Interval (Vec ℝ n)) : Ellipsoid n :=
+  I.zonotope.ellipsoid
+
+theorem Interval.ellipsoid_outer (I : Interval (Vec ℝ n)) :
+    I.construct ⊆ I.ellipsoid.construct :=
+  subset_trans I.subset_zonotope (Zonotope.ellipsoid_outer _)
+
+end CORALean.Real

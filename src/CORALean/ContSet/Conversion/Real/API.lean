@@ -3,12 +3,15 @@ import CORALean.ContSet.Conversion.Real.ConZonotope_to_Interval
 import CORALean.ContSet.Conversion.Real.ConZonotope_to_VPolytope
 import CORALean.ContSet.Conversion.Real.ConZonotope_to_Zonotope
 import CORALean.ContSet.Conversion.Real.ContSet_to_Interval
+import CORALean.ContSet.Conversion.Real.Ellipsoid_to_Interval
+import CORALean.ContSet.Conversion.Real.Ellipsoid_to_Zonotope
 import CORALean.ContSet.Conversion.Real.HPolytope_to_ConZonotope
 import CORALean.ContSet.Conversion.Real.HPolytope_to_Interval
 import CORALean.ContSet.Conversion.Real.HPolytope_to_VPolytope
 import CORALean.ContSet.Conversion.Real.HPolytope_to_Zonotope
 import CORALean.ContSet.Conversion.Real.Interval_to_ConZonotope
 import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
+import CORALean.ContSet.Conversion.Real.Interval_to_Ellipsoid
 import CORALean.ContSet.Conversion.Real.Interval_to_HPolytope
 import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
 import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
@@ -17,6 +20,7 @@ import CORALean.ContSet.Conversion.Real.VPolytope_to_HPolytope
 import CORALean.ContSet.Conversion.Real.VPolytope_to_Interval
 import CORALean.ContSet.Conversion.Real.VPolytope_to_Zonotope
 import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
+import CORALean.ContSet.Conversion.Real.Zonotope_to_Ellipsoid
 import CORALean.ContSet.Conversion.Real.Zonotope_to_HPolytope
 import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
 import CORALean.ContSet.Conversion.Real.Zonotope_to_VPolytope
@@ -28,6 +32,11 @@ Every ordered pair of `Interval`, `Zonotope`, `HPolytope`, `VPolytope` and
 `ConZonotope`, one file each, named for the pair, with the declaration named for
 the target — CORA's convention, where `interval(zonotope)` is how a zonotope
 becomes a box.
+
+`Ellipsoid` is a later arrival and is not paired with all of them. It reaches a
+box in closed form and tightly, and a zonotope through that box; a box and a
+zonotope reach it by the `√k` inflation a Euclidean ball needs to cover a cube.
+The pairs with the two polytopes are missing rather than impossible.
 
 Exact: a box to a zonotope, to halfspaces, to a constrained zonotope; a zonotope
 to a constrained zonotope and to its `2ʰ` sign corners; a hull to a constrained
