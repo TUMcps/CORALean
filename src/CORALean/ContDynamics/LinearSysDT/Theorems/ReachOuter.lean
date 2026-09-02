@@ -1,12 +1,12 @@
-import CORALean.ContDynamics.LinearSysDT.Operations
+import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOneOuter
 
 /-!
 # `LinearSysDT.reach` contains every trajectory
 
-Induction on the step count, applying the two guarantees in the order `reach`
-applies the operations. The only facts used about `construct` are `plus_outer`,
-`reduce_outer` and `mtimes_outer`, so a representation buys into this by proving
-those three and nothing else.
+Induction on the step count, whose step is `reach_one_outer` at the enclosure
+the induction hypothesis supplies. The only facts used about `construct` are the
+three that theorem uses — `plus_outer`, `reduce_outer` and `mtimes_outer` — so a
+representation buys into this by proving those and nothing else.
 -/
 
 -- Authors:       Tobias Ladner
@@ -28,11 +28,8 @@ theorem LinearSysDT.reach_outer (sys : LinearSysDT 𝕋 n) (o : ℕ) (R₀ U : S
   induction k with
   | zero => exact traj.init
   | succ k ih =>
-    show x (k + 1) ∈ construct (reduce (plus (mtimes sys.A (sys.reach o R₀ U k)) U) o)
+    show x (k + 1) ∈ construct (sys.reach o (sys.reach o R₀ U k) U 1)
     rw [traj.step k]
-    exact reduce_outer _ _ (plus_outer _ _
-      (Set.add_mem_add
-        (mtimes_outer sys.A _ (Set.mem_biUnion rfl (Set.mem_image_of_mem _ ih)))
-        (traj.input k)))
+    exact sys.reach_one_outer o _ _ ih (traj.input k)
 
 end CORALean.Real
