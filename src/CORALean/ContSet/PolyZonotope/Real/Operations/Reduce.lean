@@ -29,11 +29,16 @@ apart from the `n` generators the box adds. Reducing that block too is
 `Zonotope.reduce`'s shape over a second partition, and is not here: a caller
 that also needs the independent count bounded still has to say so. Any partition
 over-approximates, so a rule is free to be a heuristic and owes no proof.
+
+CORA's `reduce` differs in both respects: it counts dependent and independent
+generators together against `n·o`, ranks them by squared length rather than by
+Girard's metric, and boxes the dropped ones through a zonotope reduced to order
+one by the named method. The guarantee is the same for every such choice.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   03-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real

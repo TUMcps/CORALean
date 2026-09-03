@@ -5,7 +5,8 @@ import CORALean.ContSet.ContSet.ContSet
 
 CORA's `nonlinearSys`: `ẋ(t) = f(x(t), u(t))`, carrying only the vector field.
 Time-invariant, as CORA's is — a time-varying field is this with time carried in
-the state.
+the state. CORA's class also carries an output equation `y = g(x, u)`, which has
+no counterpart here, as it has none for `LinearSys`.
 
 State and input dimensions are separate, which CORA's are and `LinearSys`'s are
 not: there the input enters additively and so has to match the state.
@@ -23,7 +24,7 @@ certificate turns a run of this system into a run of a linear one, and
 
 -- Authors:       Tobias Ladner
 -- Written:       01-September-2026
--- Last update:   02-September-2026
+-- Last update:   03-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
