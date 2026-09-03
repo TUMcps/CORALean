@@ -1,5 +1,7 @@
 import CORALean.Examples.BouncingBall
 import CORALean.Examples.ConversionRoundTrip
+import CORALean.Examples.ConvNet
+import CORALean.Examples.ConvNetFloat
 import CORALean.Examples.FeedForward
 import CORALean.Examples.FeedForwardFloat
 import CORALean.Examples.NeurNetControl

@@ -16,11 +16,19 @@ What a float layer encloses is the exact function the stored floats denote:
 guarantee is the same image inclusion the exact layer proves, and composing it
 along the network is the same induction.
 
-The rounding enters in three places and no others: the representation's own
+The rounding enters in four places and no others: the representation's own
 operations, which charge it to their error box; a relaxation's error, widened
-outward by `Relaxation.box`; and the relaxation's own arithmetic, where `ReLU`
-rounds its gap up and `Sigmoid` rounds an exponential and a reciprocal. Slope
-and offset are never constrained — `Relaxation.sound` states an inequality
-against `error`, so anything stored in them is sound as it stands, and that is
-why this layer costs so much less than it looks.
+outward by `Relaxation.box`; the relaxation's own arithmetic, where `ReLU`
+rounds its gap up and `Sigmoid` rounds an exponential and a reciprocal; and the
+two layers that are neither linear nor relaxations, where max pooling rounds its
+window gap up and softmax rounds a denominator down. Slope and offset are never
+constrained — `Relaxation.sound` states an inequality against `error`, so
+anything stored in them is sound as it stands, and that is why this layer costs
+so much less than it looks.
+
+The layers that round *nowhere* are the ones whose weights are placed rather
+than computed: `Linear`, `Convolution`, and the selection matrix max pooling
+propagates through. A stencil matrix's entry is one kernel weight or zero, so
+`toRealMat_tapMat` is an equality with no hypothesis and the stored kernel
+denotes the convolution exactly.
 -/
