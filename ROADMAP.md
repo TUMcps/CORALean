@@ -6,15 +6,11 @@ no dependencies are the ones that can start.
 
 ## In flight
 
-| Branch | Work |
-| --- | --- |
-| `feat/conpolyzono-inequalities` | Give a constrained polynomial zonotope's constraints a direction to round in, which is what blocks float `and` and `ConZonotope → ConPolyZono` alike |
-| `feat/nn-more-layers` | The layers CORA has beyond the four here — reshape, pooling, convolution, batch norm, softmax |
-| `feat/operation-params` | Whether an operation class may carry a precision knob — the question three open items point at |
-
-Next after those: the conversions the newest representations do not yet have,
-`restructure`, bounding the independent block, and the reduction methods beyond
-the one.
+Nothing. The last three branches landed on 3 September 2026: an interval
+right-hand side for `ConPolyZono`'s constraints, the layers beyond the four
+activations, and the precision-knob question. Candidates for what comes next:
+the conversions the newest representations do not yet have, `restructure`,
+bounding the independent block, and the reduction methods beyond the one.
 
 ## Done
 
@@ -40,6 +36,16 @@ inequality is the proof. The contrast with the exponential is the general rule �
 no composition of the scalar's operations dominates `exp`, so it had to be
 constructed; a square root is dominated by one, so it only has to be checked.
 
+`Ellipsoid.plus` carries a free scaling and has a `Plus` anyway:
+`plusInstance` is a `def` returning the class at a scaling the caller names,
+never an `instance`, so search makes no precision choice and every algorithm
+written against `Plus` runs at an ellipsoid the moment `l` is fixed. The finding
+underneath is where that construction stops: a parameter that is legal whatever
+the operands are can be closed over, and one that names its operands cannot,
+because `plus : S → S → S` is total and a recursive algorithm sums sets the
+caller never sees. No operation class carries a parameter, and `ContSet.lean`
+records why each way of adding one costs more than it buys.
+
 **Every representation now carries both arithmetic layers.**
 
 `PolyZonotope`, `Real` layer, with `quadMap` exact — the operation the
@@ -60,11 +66,13 @@ direction without knowing its sign, so the bounds travel as a pair and are
 chosen per term. A quadratic map is also not additive, so the error box cannot
 ride alongside and has to be emptied into generators first.
 
-`ConPolyZono`'s constraints stop at something real — an equality has no
-direction to round in. Perturb the right-hand side and the admissible factors
-are a disjoint slice of the same cube rather than a superset, so neither
-inclusion holds. `plus` and `mtimes` refine because they touch the constraint
-system only by copying; `and` cannot be refined at all.
+`ConPolyZono`'s constraints carry an interval right-hand side, `A μ(α) ∈ b`,
+and that is what gives them a direction to round in. An equality has none:
+perturb its right-hand side and the admissible factors are a disjoint slice of
+the same cube rather than a superset. Widening the interval is an enclosure, so
+float `and` refines the exact one by rounding `b` outward. The same interval is
+what makes `ConZonotope → ConPolyZono` exact: an inequality row is a row with a
+free lower bound rather than a slack factor to invent.
 
 `compact` merges equal exponent columns, drops the generators that leaves at
 zero and drops the factors nothing uses — all exact, and all of it needed before
@@ -127,6 +135,18 @@ set. Separating directions and halfspace bounds discharge it.
 **Neural networks.** The layer interface, the graph, propagation and its
 enclosure, and the standard layers: linear, ReLU, sigmoid, tanh. Robust
 classification as a specification.
+
+The layers beyond those, and the division among them is the result.
+Convolution, average pooling and batch normalization are each `Layer.linear` at
+a constructed matrix, by definition rather than up to a lemma, so they
+contribute a matrix and a proof it computes what the layer is named after, and
+no soundness argument of their own. Reshape is a relabelling and the one layer
+that is exact rather than outer; it asks for `Reindex`, the first class whose
+guarantee is an equality. Max pooling and softmax need enclosures of their own,
+the first because its output depends on a window, the second because its output
+depends on every coordinate at once through the normalization. Softmax's
+enclosure is the reciprocal form `(1 + Σ_{j≠i} e^{x_j - x_i})⁻¹`, monotone in
+each difference, tightened by the fact that the outputs sum to one.
 
 In float: the relaxation, the activation layer, linear and ReLU. The relaxation
 absorbs the rounding by itself — `sound` states an inequality against `error`,
@@ -199,40 +219,32 @@ Ordered roughly by what unblocks the most.
   relax the independent block, the second needs compaction in the constraint
   matrix as well as the generators, and the third is true but unproved: the sets
   are compact and the argument is simply not written.
-- **An `And` class.** `ConPolyZono.and` is exact and is what a guard or an
-  invariant asks for, but the only other implementor is `ConZonotope`, which
-  could state it at convex sets only. The class stays unwritten until something
-  needs an intersection generically — the same question `Ellipsoid.plus` raises
-  from the other side.
+- **An `And` class.** `Interval`, `HPolytope`, `ConZonotope` and `ConPolyZono`
+  all have an `and` of type `S → S → S` and would be plain instances;
+  `VPolytope.and` takes two families of directions, operand-independent, so it
+  would get an `andInstance` the way `Ellipsoid.plus` did. The class stays
+  unwritten until something needs an intersection generically — a missing
+  consumer, no longer a design question.
 - **`Capsule`**, **`ZonoBundle`**, **`SpectraShadow`**, **`Taylm`** — CORA has
   them; none blocks anything else.
 - **Conversions** for the late arrivals. `Ellipsoid` has four of its ten pairs,
-  `PolyZonotope` five, `ConPolyZono` two; the gaps differ in kind, an ellipsoid's
-  polytope pairs being merely absent while a polynomial zonotope's are
-  enclosures with a precision knob rather than conversions, its sets not being
-  convex. `ConZonotope → ConPolyZono` is blocked by a choice of ours rather than
-  by mathematics: our `ConZonotope` carries an `HPolytope`, so it admits
-  inequalities, while a `ConPolyZono` admits equalities only — the conversion
-  would need a slack factor per inequality together with a bound on it. CORA's
-  `conZonotope` carries equalities and maps straight across.
+  `PolyZonotope` five, `ConPolyZono` three; the gaps differ in kind, an
+  ellipsoid's polytope pairs being merely absent while a polynomial zonotope's
+  are enclosures with a precision knob rather than conversions, its sets not
+  being convex.
 
 - **`Reduce` methods** — CORA has `girard`, `pca`, `combastel`, `methC`, and the
   order-reduction choice is a precision knob throughout reachability. Only one
   is formalized.
-- **`Ellipsoid.plus`'s parameter.** The float work found the honest parameter is
-  the two scalings rather than the single number they derive from: the condition
-  they owe is met with equality by the derived pair, so taking the pair widens
-  the family rather than approximating it. Whether an operation class can hold
-  it at all is in flight.
+- **`Ellipsoid.plus`'s two layers disagree on the parameter.** The float layer
+  takes the two scalings with the inequality they owe, which is the honest
+  parameter — the derived pair meets the condition with equality, so `l` reaches
+  a proper subset of the admissible pairs. The `Real` layer still takes `l`.
+  Making them uniform changes a proved operation and its theorem.
 - **`ofSupportBound` where the exact value is noncomputable.** An ellipsoid's
   support bound is a root, so passing the exact bound as an argument infects the
   float result; using it inside the proof costs nothing, proofs being erased.
   Worth knowing for any future operation of that shape.
-- **`ConPolyZono.and` in float** — blocked on the `Real` layer admitting either a
-  slack factor with a bound or an interval right-hand side, since an equality
-  constraint has no direction to round in. This is the largest gap in the repository, and it is a gap in kind
-  rather than in coverage: a `Real` definition specifies something no machine
-  runs. New work is expected to carry both layers — see `CONTRIBUTING.md`.
 
 ### Dynamics
 
@@ -277,13 +289,12 @@ Ordered roughly by what unblocks the most.
 
 ### Neural networks
 
-- **More layers** — in flight: reshape, pooling, convolution, batch
-  normalization, softmax. Several may turn out to be `Layer.linear` at a
-  particular matrix, which is a result about the library rather than a
-  shortfall. Softmax is the one that is genuinely new — the first layer whose
-  output coordinate depends on every input coordinate through a normalization,
-  which a coordinatewise relaxation cannot express. The composite layers CORA
-  builds from these come after.
+- **The composite layers** CORA builds from the standard ones, now that those
+  are all here.
+- **Float softmax's lower bound.** The float layer computes no raw lower bound
+  per output, so the whole lower bound comes from the sum-to-one tightening and
+  degenerates to zero on a wide box. Reshape and batch normalization have no
+  float file by design, being exact relabellings of `Reindex` and `Layer.linear`.
 - **A constant-input step.** The closed loop's trajectory carries the constancy
   a zero-order hold provides; `reach` does not exploit it, handing `LinearSys` a
   *set* of admissible inputs that readmits every jittering input inside it.
@@ -304,29 +315,27 @@ Ordered roughly by what unblocks the most.
   on it. But `expUp` needs its argument bounded and there is nothing sound to
   branch on, so the hypothesis is passed to the caller instead. A constrained
   comparison would make the upper exponential total.
-- **Square root**, if an ellipsoid's support function turns out to need one
-  rather than a checkable candidate. An upper bound on `√x` is any `s` with
-  `x ≤ s·s`, which is a multiplication the scalar already has, so this may cost
-  nothing — in flight.
 - **The transcendental functions beyond `exp`.** Division and the exponential
-  are both there now; a logarithm, a root and the trigonometric functions are
-  not, and each has the same shape of question — whether an identity removes the
-  series the way argument reduction did for `exp`.
+  are both there now; a logarithm and the trigonometric functions are not, and
+  each has the same shape of question — whether an identity removes the series
+  the way argument reduction did for `exp`. The root needed none: an ellipsoid
+  checks a candidate against one multiplication instead.
 
 ### Infrastructure
 
 - **A worked example per component.** Four exist and each found something. The
   target is one per representation and per algorithm.
-- **`HPolytope` instantiates almost nothing**, and the reason is the class shape
-  rather than a missing operation. `plusOf`, `linCombOf` and `mtimesOf` all
-  exist, but each takes the directions to describe the result on together with a
-  bound in each — and `Plus.plus : S → S → S` has room for neither. Supplying
-  them internally means solving a linear program per direction, and nothing here
-  solves one: `Global/LinProg` consumes a dual solution rather than producing
-  it. So a halfspace description cannot take a hybrid jump, which is why the
-  bouncing ball's guard is a bounded floor rather than the halfspace it should
-  be. This is the same design question `Ellipsoid.plus` and an `And` class raise:
-  whether an operation class may carry a precision knob.
+- **`HPolytope` instantiates almost nothing**, and the reason is neither the
+  class shape nor a missing operation: the type admits unbounded sets. `plusOf`,
+  `linCombOf` and `mtimesOf` all exist and take a `SupportBound` per direction,
+  and closing those over the way `Ellipsoid.plusInstance` does would need a
+  bound for *every* polytope, since a recursive algorithm sums sets the caller
+  never sees. A description with no rows is the whole space, which has no bound
+  in any non-zero direction, so that oracle is uninhabited rather than merely
+  unwritten. A useful `Plus` there needs a type excluding unbounded sets before
+  it needs a linear program. Until then a halfspace description cannot take a
+  hybrid jump, which is why the bouncing ball's guard is a bounded floor rather
+  than the halfspace it should be.
 - **`Interval` has no vector-family notation**, `ℐ` being the interval *matrix*
   family, so its use sites spell the family out. `PolyZonotope` reaches only the
   plain reachability statement, for want of an `Mtimes ℐ` that would need a fresh
