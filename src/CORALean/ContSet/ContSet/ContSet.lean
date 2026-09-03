@@ -29,11 +29,81 @@ move between ambient types, where the result has to land somewhere.
 `Reindex` is the only class here whose field is an *equality*. That is what it
 is for: relabelling coordinates loses nothing, and a permutation matrix pushed
 through `mtimes` would compute the same set without any way to say so.
+
+## A precision parameter, and where it goes
+
+Several operations take one. `Ellipsoid.plus` takes the scaling that decides how
+tight the enclosure of the sum is — two of them at the float layer, that being
+the honest parameter and `l` the number they are derived from —
+`HPolytope.plusOf` the directions the result is described on together with a
+bound in each, `VPolytope.and` two families of directions, and `Reduce` carries
+its knob, the order `o`, in the signature. None of the operation classes takes
+one, and the reason divides in two: whether the parameter depends on the
+operands.
+
+*Operand-independent.* `Ellipsoid.plus_outer` holds at one fixed `l > 0` for
+every pair of ellipsoids, so the parameter can simply be closed over.
+`Ellipsoid.plusInstance` is a `def` returning `Plus`, never an `instance`:
+search does not find it, so the caller writes `letI := Ellipsoid.plusInstance hl`
+and the choice is theirs and visible. The class is unchanged, the twelve `Plus`
+instances already here are untouched, no use site moves, and every algorithm
+written against `Plus` runs at an ellipsoid the moment the scaling is named.
+It is `SupportBound`'s own discipline one level up — a value together with the
+proof that makes it legal, supplied by whoever holds it. `Reduce`'s `o` is the
+degenerate case of the same thing, absorbed into the signature because a natural
+number is a parameter every representation already has.
+
+*Operand-dependent.* `HPolytope.plusOf` wants a `SupportBound P.construct (Aq i)`
+for each operand, and no class field reaches that. `plus : S → S → S` is total,
+so an instance needs bounds for *every* polytope, not for the two a caller holds
+— a recursive algorithm sums sets produced inside the recursion, step `k+1` of
+`LinearSysDT.reach` naming a set the caller never sees. That is an oracle, and
+here not even a missing one: a halfspace description with no rows denotes the
+whole space, which has no support bound in any non-zero direction, so outside
+the degenerate zero direction the oracle is uninhabited. A *useful* `Plus` at
+`HPolytope` needs a type excluding unbounded sets before it needs a linear
+program. So the obstacle there is neither the class shape nor a class field.
+
+That leaves nothing for a parameter in the class to buy, and three ways of
+putting one there that each cost something.
+
+*A `Param` field* — `Param : Type := Unit` and `plus : Param → S → S → S` —
+fails twice. `HPolytope`'s parameter names its operand, so the field would have
+to read `Param : S → S → Type` and `plus` become dependently typed, which `⊞`
+and every rewrite through `plus` would carry from there on. And the value has to
+come from somewhere: a generic algorithm cannot produce one, so `Param` becomes
+an argument of the algorithm and then of every theorem naming it — `Plus` is a
+binder in forty-seven files and is called in sixteen.
+
+*An `outParam Param`* fixes only the first half of that. Search would infer
+`Unit` wherever no knob is needed, so no representation invents one; but an
+`outParam` names the type and never the value, so every call site still grows an
+argument and every algorithm still has to be handed one.
+
+*A second class `PlusParam`, with `Plus` derived by fixing a default*, leaves
+those sites alone and buys nothing: the derivation is exactly the buried
+precision choice, so the representation that has a knob never uses it.
+
+The price of the choice is that one instance fixes the parameter for a whole
+run, where the tightest scalings depend on the two operands and on the
+direction. That is precision and never soundness, and a caller wanting it per
+call names `Ellipsoid.plus` directly. What it does not buy is a reachability
+loop at an ellipsoid: today only `LinearSys.inputTaylorSum` runs, the loops
+still wanting `Reduce`, `LinComb`, `OfInterval` and `Mtimes ℐ`. Those are
+missing operations rather than missing room for a parameter, and keeping the two
+apart is what this section is for.
+
+`And` is answered in advance. `Interval.and`, `HPolytope.and`, `ConZonotope.and`
+and `ConPolyZono.and` are all `S → S → S` and would be plain instances;
+`VPolytope.and` takes two families of directions, because it goes out through
+halfspaces and comes back, and its parameter is operand-independent, so it would
+get an `andInstance`. The class stays unwritten because nothing yet intersects
+generically — a missing consumer, not a missing knob.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       16-August-2026
--- Last update:   02-September-2026
+-- Last update:   03-September-2026
 -- Last revision: ---
 
 namespace CORALean
