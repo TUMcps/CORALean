@@ -9,10 +9,12 @@ representation grows every step. `reduce o` returns at most `n·o` generators �
 dependent and independent together — however often it is called and whatever it
 is called on.
 
-Counting the two blocks together is what makes that true. Bounding the
-dependent block alone leaves the statement below false: each call adds `n`
-independent generators and removes none, so a reachability loop grows `q`
-without limit while every order bound it claims holds.
+Counting the two blocks together is what makes that true, and it is the whole of
+what separates `reduce` from `reduceDependent`. The statement below is false of
+the latter, and deliberately so: it is the tighter rule per step, and each call
+adds `n` independent generators and removes none, so a reachability loop grows
+`q` without limit while every order bound it claims holds. A caller wanting that
+trade names it and bounds the count some other way.
 
 The proof is arithmetic and nothing else. Both budgets are clamped — to their
 block, and to `K = (o-1)·n` between them — so the bound never appeals to the

@@ -26,6 +26,12 @@ entries.
 Running it is what makes the order bound mean what it means over ℝ — a count of
 distinct monomials rather than of stored columns, which `plus` and `quadMap`
 inflate while the set stands still.
+
+`reduceDependent` is the dependent-only accounting, kept and named rather than
+dropped: tighter per step, since a generator kept is a generator not boxed, and
+bounding nothing. Both are `reduceBy` at a different pair of partitions and both
+are sound; only one of them bounds an order, and that is the one `Reduce`
+instantiates.
 -/
 
 -- Authors:       Tobias Ladner
@@ -91,6 +97,11 @@ def PolyZonotope.aux_girardSplit {m : ℕ} (metric : Fin m → 𝕋) (k : ℕ) :
     ((sortPerm fun l₁ l₂ => le (metric l₂) (metric l₁)).symm.trans
       (finCongr (Nat.add_sub_cancel' (min_le_right k m)).symm))
 
+/-- Nothing dropped: what a rule hands `reduceBy` for a block it leaves
+alone. -/
+def PolyZonotope.aux_keepAll (m : ℕ) : Split (Fin m) into (Fin m) and (Fin 0) :=
+  (Partition.split m 0).reindex (finCongr (Nat.add_zero m).symm)
+
 /-- How many of the `K` best-ranked generators overall are dependent ones: the
 whole of CORA's joint accounting, as one number. `rank` is CORA's
 `sort(len,'descend')` on `[G, GI]`, read as a rank rather than as an order, and
@@ -131,5 +142,28 @@ sees fit. Girard's is the one here, as over ℝ, and which it is goes no further
 a caller names an order and gets an over-approximation of bounded size. -/
 def PolyZonotope.reduce (PZ : PolyZonotope 𝕋 n) (o : ℕ) : PolyZonotope 𝕋 n :=
   PZ.compact.reduceGirard o
+
+/-- The same rule with the independent block left out of the accounting: cut the
+dependent generators alone against `n·o` and keep every independent one.
+
+Tighter per step than `reduceGirard`, since a generator kept is a generator not
+boxed, and bounded in nothing: the box adds `n` independent generators at every
+call and this rule removes none, so `q` grows without limit along a loop that
+calls it — here in memory and time per step, not only in the specification. That
+is why `reduce` is the other one and why `Reduce` instantiates that.
+
+The box it builds is the joint rule's with an empty second block, so it pays one
+`addUp` against a `radius` of no columns. A sound `zero` makes that no wider
+than the sum it rounds, and never narrower. -/
+def PolyZonotope.reduceGirardDependent (PZ : PolyZonotope 𝕋 n) (o : ℕ) : PolyZonotope 𝕋 n :=
+  if o * n < PZ.h then
+    PZ.reduceBy
+      (PolyZonotope.aux_girardSplit (PolyZonotope.aux_girardMetric PZ.G) ((o - 1) * n))
+      (PolyZonotope.aux_keepAll PZ.q)
+  else PZ
+
+/-- `reduce`'s shape at the dependent-only rule: compact, then rank. -/
+def PolyZonotope.reduceDependent (PZ : PolyZonotope 𝕋 n) (o : ℕ) : PolyZonotope 𝕋 n :=
+  PZ.compact.reduceGirardDependent o
 
 end CORALean.Float

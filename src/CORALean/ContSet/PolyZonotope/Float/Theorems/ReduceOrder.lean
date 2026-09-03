@@ -11,7 +11,8 @@ which is what leaves `sortPerm`'s unconstrained comparator free.
 
 This is the guarantee the float layer needs most and the exact layer least: over
 ℝ an unbounded generator count is a specification that grows, here it is memory
-and time per step.
+and time per step. It is false of `reduceDependent`, which is what that rule
+trades for a tighter step.
 
 At `o = 0` there is nothing to state: CORA's `K = max(0, N·order - N)` floors
 the budget at nothing and the box of `n` is added regardless, so order zero

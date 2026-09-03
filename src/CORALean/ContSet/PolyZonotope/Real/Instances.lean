@@ -23,6 +23,10 @@ class field's `o` means everywhere else too. `reduce_order_le` states it; the
 class carries only the enclosure, since a representation whose order is read
 differently — a zonotope's, an interval's — still instantiates the same field.
 
+`reduceDependent` is the tighter rule and is deliberately not the instance: it
+bounds no count, so an algorithm reaching it through `Reduce` would get a
+representation that grows. A caller who wants it names it.
+
 Noncomputable, twice over: `compact` decides whether a generator of a real
 module is zero, and the ranking orders reals.
 -/
