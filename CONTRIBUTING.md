@@ -143,7 +143,8 @@ git push -u origin <topic> -o merge_request.create \
 Pass the description. Without it GitLab fills one in from the body of the
 branch's *first* commit, which describes an early step rather than the change,
 and drags the commit trailers in with it. Push options reject newlines, so a
-multi-paragraph description is folded with `<br>`.
+multi-paragraph description is either folded with `<br>` or, better, passed as
+a file to `scripts/gl.py mr new`.
 
 Merge requests are squashed on merge: a branch lands as one commit, and the
 merge request keeps the history of how it got there. Merge through GitLab rather
@@ -195,6 +196,24 @@ keeps it fast and dependency-free. It reports; it never rewrites.
 the size of the state space satisfies all of them, so a widening is invisible to
 the compiler and visible in that file. It needs a built tree, which is why it is
 not on the pre-commit hook.
+
+`scripts/gl.py` is the GitLab client: issues, merge requests and pipelines from
+the command line, so that reading an issue or leaving a comment is not a
+hand-rolled `curl`. The token is never an argument and never in the tree. It is
+read from `$CORALEAN_GITLAB_TOKEN`, then `$GITLAB_TOKEN`, then
+`~/.config/coralean/gl.token`, so every clone, worktree and agent on a machine
+reaches the API the same way with nothing to pass along. `git push` needs none
+of it — the credential helper answers for that.
+
+```
+python scripts/gl.py issue show 11
+python scripts/gl.py mr new <branch> "<title>" desc.md
+python scripts/gl.py mr merge 42
+```
+
+It takes a merge-request description as a *file*, which is the one thing the
+push options above cannot do, and it comments before it closes anything, since
+an issue or a merge request closed without a reason leaves no record of one.
 
 `.gitlab-ci.yml` runs the conventions script as its own job, and rebuilds the
 project on every push to the default branch and on every merge request, failing
