@@ -12,11 +12,18 @@ The construction is `plus`'s, plus one block of rows. Factors, generators and
 constraint systems all concatenate as they do for a sum; what intersection adds
 is `n` rows saying the two points agree,
 
-  `Σ μ₁(α₁) G₁ − Σ μ₂(α₂) G₂ = c₂ − c₁`,
+  `Σ μ₁(α₁) G₁ − Σ μ₂(α₂) G₂ ∈ c₂ − c₁ + D`,
 
 one per coordinate. Only the first generator block then survives — the second is
 pinned to it, and is kept at zero rather than dropped so that the agreement rows
 have columns to read it in.
+
+`D` is how far apart the two points may stand, and `and` takes it to be zero,
+which is agreement. It is an argument rather than a constant because a float
+layer cannot ask for exact agreement: there each set is a nominal one plus an
+error box, the two nominal points differ by whatever the two boxes admit, and
+`D` is where that difference goes. This is the whole reason the right-hand side
+of a constraint is an interval — see the representation's docstring.
 
 Those rows are where the representation does something a `ConZonotope` cannot:
 their coefficients are *monomials*, so the constraint they impose is polynomial
@@ -60,8 +67,17 @@ def ConPolyZono.andA (C₁ C₂ : ConPolyZono (Vec ℝ n)) :
     (fun r => Fin.append (ConPolyZono.plusA C₁.A C₂.A r) (0 : Fin (C₁.h + C₂.h) → ℝ))
     (fun r => Fin.append (0 : Fin (C₁.s + C₂.s) → ℝ) (ConPolyZono.agreeRow C₁ C₂ r)) i
 
-/-- Exact where both independent blocks are empty; `and` arranges that. -/
-def ConPolyZono.andDep (C₁ C₂ : ConPolyZono (Vec ℝ n)) : ConPolyZono (Vec ℝ n) where
+/-- The right-hand side of `andDep`: the two systems' own bounds, then the
+agreement rows' `c₂ − c₁` widened by the tolerance. -/
+def ConPolyZono.andB (C₁ C₂ : ConPolyZono (Vec ℝ n)) (D : Interval (Vec ℝ n)) :
+    Interval (Vec ℝ (C₁.m + C₂.m + n)) :=
+  ⟨Fin.append (ConPolyZono.plusB C₁.b C₂.b).inf fun i => C₂.c i - C₁.c i + D.inf i,
+   Fin.append (ConPolyZono.plusB C₁.b C₂.b).sup fun i => C₂.c i - C₁.c i + D.sup i⟩
+
+/-- Exact where both independent blocks are empty; `and` arranges that. `D` is
+how far apart the two points may stand. -/
+def ConPolyZono.andDep (C₁ C₂ : ConPolyZono (Vec ℝ n)) (D : Interval (Vec ℝ n)) :
+    ConPolyZono (Vec ℝ n) where
   p := C₁.p + C₂.p
   h := C₁.h + C₂.h
   q := 0
@@ -72,12 +88,13 @@ def ConPolyZono.andDep (C₁ C₂ : ConPolyZono (Vec ℝ n)) : ConPolyZono (Vec 
   E := PolyZonotope.plusE C₁.E C₂.E
   GI := Fin.elim0
   A := ConPolyZono.andA C₁ C₂
-  b := Fin.append (Fin.append C₁.b C₂.b) fun i => C₂.c i - C₁.c i
+  b := ConPolyZono.andB C₁ C₂ D
   EC := ConPolyZono.appendE (PolyZonotope.plusE C₁.EC C₂.EC)
           (PolyZonotope.plusE C₁.E C₂.E)
 
+/-- Zero tolerance: the two points agree exactly. -/
 def ConPolyZono.and (C₁ C₂ : ConPolyZono (Vec ℝ n)) : ConPolyZono (Vec ℝ n) :=
-  ConPolyZono.andDep C₁.dependent C₂.dependent
+  ConPolyZono.andDep C₁.dependent C₂.dependent (Interval.point 0)
 
 theorem ConPolyZono.mulVec_andA_left (C₁ C₂ : ConPolyZono (Vec ℝ n))
     (v : Fin (C₁.s + C₂.s + (C₁.h + C₂.h)) → ℝ) (i : Fin (C₁.m + C₂.m)) :
@@ -105,17 +122,22 @@ theorem ConPolyZono.mulVec_andA_agree (C₁ C₂ : ConPolyZono (Vec ℝ n))
   rw [Finset.sum_neg_distrib, ← sub_eq_add_neg]
 
 /-- What `andDep`'s constraint system says: each set's own constraints, and that
-the two points agree coordinate by coordinate. -/
+the two points agree coordinate by coordinate to within `D`. -/
 theorem ConPolyZono.satisfies_andDep_iff (C₁ C₂ : ConPolyZono (Vec ℝ n))
-    (a : Fin (C₁.p + C₂.p) → ℝ) :
-    (C₁.andDep C₂).satisfies a ↔
+    (D : Interval (Vec ℝ n)) (a : Fin (C₁.p + C₂.p) → ℝ) :
+    (C₁.andDep C₂ D).satisfies a ↔
       (C₁.satisfies (fun k => a (Fin.castAdd C₂.p k))
         ∧ C₂.satisfies (fun k => a (Fin.natAdd C₁.p k)))
-      ∧ ∀ i, (∑ l, C₁.G l i
+      ∧ ∀ i, C₂.c i - C₁.c i + D.inf i
+            ≤ (∑ l, C₁.G l i
               * PolyZonotope.monomial C₁.E (fun k => a (Fin.castAdd C₂.p k)) l)
             - ∑ l, C₂.G l i
               * PolyZonotope.monomial C₂.E (fun k => a (Fin.natAdd C₁.p k)) l
-          = C₂.c i - C₁.c i := by
+          ∧ (∑ l, C₁.G l i
+              * PolyZonotope.monomial C₁.E (fun k => a (Fin.castAdd C₂.p k)) l)
+            - ∑ l, C₂.G l i
+              * PolyZonotope.monomial C₂.E (fun k => a (Fin.natAdd C₁.p k)) l
+          ≤ C₂.c i - C₁.c i + D.sup i := by
   have hcol : (fun l => PolyZonotope.monomial (ConPolyZono.appendE
         (PolyZonotope.plusE C₁.EC C₂.EC) (PolyZonotope.plusE C₁.E C₂.E)) a
           (Fin.castAdd (C₁.h + C₂.h) l))
@@ -145,24 +167,31 @@ theorem ConPolyZono.satisfies_andDep_iff (C₁ C₂ : ConPolyZono (Vec ℝ n))
     · exact Finset.sum_congr rfl fun l _ => by
         rw [ConPolyZono.monomial_appendE_right, PolyZonotope.monomial_plusE_right]
   constructor
-  · intro hsat
+  · intro hsat'
+    -- the projections are read away first, or `Fin.castAdd` does not fit the
+    -- index type `Fin (andDep ..).m` they carry
+    have hsat : ConPolyZono.holds (ConPolyZono.andA C₁ C₂) (ConPolyZono.andB C₁ C₂ D)
+        (ConPolyZono.appendE (PolyZonotope.plusE C₁.EC C₂.EC)
+          (PolyZonotope.plusE C₁.E C₂.E)) a := hsat'
     refine ⟨(ConPolyZono.holds_plus_iff C₁.A C₁.b C₁.EC C₂.A C₂.b C₂.EC a).mp
         (fun i => ?_), fun i => ?_⟩
-    -- the right-hand vector is spelt out: the expected type reads `b` off the
-    -- structure, so unification has nothing to read the second block from
-    · exact (hC i).symm.trans ((hsat (Fin.castAdd n i)).trans
-        (Fin.append_left (Fin.append C₁.b C₂.b) (fun j => C₂.c j - C₁.c j) i))
-    · exact (hG i).symm.trans ((hsat (Fin.natAdd (C₁.m + C₂.m) i)).trans
-        (Fin.append_right (Fin.append C₁.b C₂.b) (fun j => C₂.c j - C₁.c j) i))
+    · have h := hsat (Fin.castAdd n i)
+      rw [hC i] at h
+      simpa only [ConPolyZono.andB, Fin.append_left] using h
+    · have h := hsat (Fin.natAdd (C₁.m + C₂.m) i)
+      rw [hG i] at h
+      simpa only [ConPolyZono.andB, Fin.append_right] using h
   · rintro ⟨hcon, hagree⟩
     have hplus := (ConPolyZono.holds_plus_iff C₁.A C₁.b C₁.EC C₂.A C₂.b C₂.EC a).mpr hcon
-    show ∀ i, (ConPolyZono.andA C₁ C₂ *ᵥ PolyZonotope.monomial (ConPolyZono.appendE
-        (PolyZonotope.plusE C₁.EC C₂.EC) (PolyZonotope.plusE C₁.E C₂.E)) a) i
-      = Fin.append (Fin.append C₁.b C₂.b) (fun i => C₂.c i - C₁.c i) i
+    -- through the projections the index type reads `Fin (andDep ..).m`, which
+    -- `Fin.castAdd` does not fit
+    show ConPolyZono.holds (ConPolyZono.andA C₁ C₂) (ConPolyZono.andB C₁ C₂ D)
+      (ConPolyZono.appendE (PolyZonotope.plusE C₁.EC C₂.EC)
+        (PolyZonotope.plusE C₁.E C₂.E)) a
     refine Fin.addCases (fun i => ?_) fun i => ?_
-    · rw [hC i, Fin.append_left]
-      exact hplus i
-    · rw [hG i, Fin.append_right]
-      exact hagree i
+    · rw [hC i]
+      simpa only [ConPolyZono.andB, Fin.append_left] using hplus i
+    · rw [hG i]
+      simpa only [ConPolyZono.andB, Fin.append_right] using hagree i
 
 end CORALean.Real

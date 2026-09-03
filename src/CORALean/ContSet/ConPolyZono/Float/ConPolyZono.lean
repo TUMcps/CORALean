@@ -5,36 +5,30 @@ import CORALean.ContSet.InflatedContSet.InflatedContSet
 # Constrained polynomial zonotopes over a floating-point scalar: the representation
 
 CORA's `conPolyZono` with its five counts, its two generator blocks and its
-constraint system `A μ(α) = b`, plus the error box that makes it an
+constraint system `A μ(α) ∈ b`, plus the error box that makes it an
 `InflatedContSet`.
 
 `A` and `b` move to `𝕋` and are read back exactly. That is sound because the
 nominal set is *defined* as what the stored floats denote — the constraint of
 the nominal set is the constraint those floats state, not a rounding of some
-other one. It is the operations that have to be careful, and one of them cannot
-be: see below.
+other one.
 
-## Why the constraint block admits no rounding
+## Two places to pay, and which pays what
 
-An equality has no direction to round in. Perturb `b`, and the factor vectors
-satisfying `A μ(α) = b̂` are not a superset of those satisfying `A μ(α) = b` —
-they are generally a disjoint slice of the same factor cube, so neither
-inclusion holds and no error box can repair it, an error box moving points and
-not admissibility.
+The centre and the generators have no slack, so their rounding goes into the
+ambient box, as it does for every representation here. The constraint bounds do
+have slack, now that `b` is an interval, and theirs goes into `b` — widened
+outward, which admits more factor vectors and hence encloses. That second
+channel is what an equality right-hand side denied, and denying it is what left
+`and` without a float counterpart until now.
 
-Every operation this directory carries is therefore one that touches `A` and `b`
-only by copying: `plus` lays the two systems out block-diagonally, and `mtimes`
-leaves them alone, the constraints living on the factors and a map of the
-ambient space moving no factor. Both refine exactly as a polynomial zonotope's
-do.
-
-`and` is the one that does not, and it is the operation the representation
-exists for: its agreement rows carry `b = c₂ - c₁`, a subtraction, and there is
-nowhere sound to put its rounding. Making it work needs the exact layer to admit
-either a slack factor with a bound on it or an interval right-hand side, the way
-the float `HPolytope` has one — and both are changes to what `Real` states, so
-neither is made here. `and` has no float counterpart, and that is a fact about
-the specification rather than a gap in the refinement.
+`plus` and `mtimes` still touch the constraint block only by copying, so neither
+pays anything there. `and` is the operation that needs both channels at once:
+its agreement rows say the two points coincide, and in this layer each point is
+a nominal one plus an error box, so the two nominal points stand as far apart as
+the two boxes allow. That distance is the exact layer's tolerance `D`, and the
+rounding of `c₂ - c₁` is added to it — one interval, computed downward on the
+low side and upward on the high.
 -/
 
 -- Authors:       Tobias Ladner
@@ -64,7 +58,9 @@ structure ConPolyZono (𝕋 : Type) (n : ℕ) where
   E : Fin p → Fin h → ℕ
   GI : Mat 𝕋 n q
   A : Mat 𝕋 m s
-  b : Vec 𝕋 m
+  /-- Interval-valued, as over ℝ, and this is one of the two places a float
+  operation may pay its rounding. -/
+  b : Interval 𝕋 m
   EC : Fin p → Fin s → ℕ
   err : Interval 𝕋 n
 
@@ -72,13 +68,13 @@ instance [SoundFloatArithmetic 𝕋] :
     InflatedContSet (ConPolyZono 𝕋 n) (CORALean.Real.ConPolyZono (Vec ℝ n)) 𝕋 n where
   -- generators transpose: stored as a matrix here, a family of vectors there
   nominal C := ⟨C.p, C.h, C.q, C.m, C.s, toRealVec C.c, fun l i => toReal (C.G i l), C.E,
-    fun j i => toReal (C.GI i j), toRealMat C.A, toRealVec C.b, C.EC⟩
+    fun j i => toReal (C.GI i j), toRealMat C.A, C.b.nominal, C.EC⟩
   error C := C.err
 
 /-- What this set's own factors must satisfy, spelt in its own fields. -/
 def ConPolyZono.satisfies [SoundFloatArithmetic 𝕋] (C : ConPolyZono 𝕋 n)
     (a : Fin C.p → ℝ) : Prop :=
-  Real.ConPolyZono.holds (toRealMat C.A) (toRealVec C.b) C.EC a
+  Real.ConPolyZono.holds (toRealMat C.A) C.b.nominal C.EC a
 
 /-! The nominal set's fields, so proofs can see through the instance. -/
 
@@ -86,7 +82,7 @@ theorem ConPolyZono.nominal_A [SoundFloatArithmetic 𝕋] (C : ConPolyZono 𝕋 
     (InflatedContSet.nominal C).A = toRealMat C.A := rfl
 
 theorem ConPolyZono.nominal_b [SoundFloatArithmetic 𝕋] (C : ConPolyZono 𝕋 n) :
-    (InflatedContSet.nominal C).b = toRealVec C.b := rfl
+    (InflatedContSet.nominal C).b = C.b.nominal := rfl
 
 theorem ConPolyZono.nominal_EC [SoundFloatArithmetic 𝕋] (C : ConPolyZono 𝕋 n) :
     (InflatedContSet.nominal C).EC = C.EC := rfl

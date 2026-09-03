@@ -38,7 +38,7 @@ def PolyZonotope.conPolyZono (PZ : PolyZonotope α) : ConPolyZono α where
   E := PZ.E
   GI := PZ.GI
   A := 0
-  b := 0
+  b := Interval.point 0
   EC := fun _ => Fin.elim0
 
 theorem PolyZonotope.conPolyZono_exact (PZ : PolyZonotope α) :

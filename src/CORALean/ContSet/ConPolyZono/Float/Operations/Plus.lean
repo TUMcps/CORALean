@@ -12,9 +12,8 @@ places the two matrices block-diagonally with `zero` in the off-blocks and `b`
 concatenates, so not one entry of the constraint system is computed. Only the
 centre rounds, exactly as for an unconstrained polynomial zonotope.
 
-That is the general rule for this representation — an equality constraint has no
-direction to round in, so an operation on it must copy or not exist. `plus`
-copies.
+The interval right-hand side is where an operation that computes a bound pays for
+it; `plus` computes none, and `plusB` concatenates two of them unchanged.
 -/
 
 -- Authors:       Tobias Ladner
@@ -36,6 +35,11 @@ def ConPolyZono.plusA {m₁ s₁ m₂ s₂ : ℕ} (A₁ : Mat 𝕋 m₁ s₁) (A
   Fin.append (fun r => Fin.append (A₁ r) (fun _ => zero))
     (fun r => Fin.append (fun _ => zero) (A₂ r)) i
 
+/-- The two right-hand sides side by side. Copied, so nothing here rounds. -/
+def ConPolyZono.plusB {m₁ m₂ : ℕ} (b₁ : Interval 𝕋 m₁) (b₂ : Interval 𝕋 m₂) :
+    Interval 𝕋 (m₁ + m₂) :=
+  ⟨Fin.append b₁.inf b₂.inf, Fin.append b₁.sup b₂.sup⟩
+
 def ConPolyZono.plus (C₁ C₂ : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n where
   p := C₁.p + C₂.p
   h := C₁.h + C₂.h
@@ -47,7 +51,7 @@ def ConPolyZono.plus (C₁ C₂ : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n where
   E := Real.PolyZonotope.plusE C₁.E C₂.E
   GI := fun i => Fin.append (C₁.GI i) (C₂.GI i)
   A := ConPolyZono.plusA C₁.A C₂.A
-  b := Fin.append C₁.b C₂.b
+  b := ConPolyZono.plusB C₁.b C₂.b
   EC := Real.PolyZonotope.plusE C₁.EC C₂.EC
   err := (C₁.err.plus C₂.err).plus (PolyZonotope.centerResidual C₁.c C₂.c)
 

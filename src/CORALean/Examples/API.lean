@@ -1,4 +1,5 @@
 import CORALean.Examples.BouncingBall
+import CORALean.Examples.ConPolyZonoGuard
 import CORALean.Examples.ConversionRoundTrip
 import CORALean.Examples.ConvNet
 import CORALean.Examples.ConvNetFloat

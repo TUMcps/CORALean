@@ -47,6 +47,11 @@ theorem ConPolyZono.toRealVec_append {m₁ m₂ : ℕ} (b₁ : Vec 𝕋 m₁) (b
   refine funext (Fin.addCases (fun i => ?_) (fun i => ?_)) <;>
     simp only [toRealVec, Fin.append_left, Fin.append_right]
 
+theorem ConPolyZono.nominal_plusB {m₁ m₂ : ℕ} (b₁ : Interval 𝕋 m₁) (b₂ : Interval 𝕋 m₂) :
+    (ConPolyZono.plusB b₁ b₂).nominal = Real.ConPolyZono.plusB b₁.nominal b₂.nominal := by
+  simp only [ConPolyZono.plusB, Interval.nominal, Real.ConPolyZono.plusB]
+  rw [ConPolyZono.toRealVec_append, ConPolyZono.toRealVec_append]
+
 /-- Two constraint systems side by side hold exactly when each holds on the
 factors it came with — the exact layer's lemma, at the read-back data. -/
 theorem ConPolyZono.satisfies_plus_iff (C₁ C₂ : ConPolyZono 𝕋 n)
@@ -55,8 +60,8 @@ theorem ConPolyZono.satisfies_plus_iff (C₁ C₂ : ConPolyZono 𝕋 n)
       ↔ C₁.satisfies (fun k => a (Fin.castAdd C₂.p k))
         ∧ C₂.satisfies (fun k => a (Fin.natAdd C₁.p k)) := by
   show Real.ConPolyZono.holds (toRealMat (ConPolyZono.plusA C₁.A C₂.A))
-      (toRealVec (Fin.append C₁.b C₂.b)) (Real.PolyZonotope.plusE C₁.EC C₂.EC) a ↔ _
-  rw [ConPolyZono.toRealMat_plusA, ConPolyZono.toRealVec_append]
+      (ConPolyZono.plusB C₁.b C₂.b).nominal (Real.PolyZonotope.plusE C₁.EC C₂.EC) a ↔ _
+  rw [ConPolyZono.toRealMat_plusA, ConPolyZono.nominal_plusB]
   exact Real.ConPolyZono.holds_plus_iff _ _ _ _ _ _ a
 
 /-! ## The enclosure -/
