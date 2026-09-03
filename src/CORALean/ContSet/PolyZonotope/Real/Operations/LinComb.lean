@@ -1,4 +1,5 @@
 import CORALean.ContSet.PolyZonotope.Real.Operations.Plus
+import CORALean.ContSet.Zonotope.Real.Operations.LinComb
 
 /-!
 # `PolyZonotope.linComb`
@@ -17,11 +18,14 @@ blocks and sets the fresh factor's row to `1` on exactly the second.
 
 The independent generators are where exactness stops. Their coefficients come
 out as `½(1±α)βⱼ`, a product of a dependent factor with an independent one,
-which the representation cannot express; that product still lies in `[-1,1]`, so
-each `GIⱼ` is kept at full width instead. CORA runs the zonotope `enclose` on
-the two independent blocks, `[½(GI₁+GI₂), ½(GI₁-GI₂), GI_excess]`, which is
-tighter — it keeps the two coefficients tied through one `λ` — at the same
-count.
+which the representation cannot express; the two independent blocks are enclosed
+instead, and the containment is one-way.
+
+That enclosure is CORA's: `@polyZonotope/linComb` runs `zonotope/enclose` on the
+two independent blocks at a zero centre, which is `Zonotope.pairSum` and
+`Zonotope.pairDiff` — the same pairing, and tighter than keeping each `GIⱼ` at
+full width, at the same count `q₁ + q₂`. A zero centre contributes no generator,
+so CORA's all-zero centre column is dropped.
 -/
 
 -- Authors:       Tobias Ladner
@@ -55,7 +59,7 @@ noncomputable def PolyZonotope.linComb (PZ₁ PZ₂ : PolyZonotope α) : PolyZon
           (Fin.append (fun i => (2:ℝ)⁻¹ • PZ₁.G i) (fun i => (-(2:ℝ)⁻¹ : ℝ) • PZ₂.G i))
           (fun _ : Fin 1 => (2:ℝ)⁻¹ • (PZ₁.c - PZ₂.c)))
   E := PolyZonotope.linCombE PZ₁.E PZ₂.E
-  GI := Fin.append PZ₁.GI PZ₂.GI
+  GI := Fin.append (Zonotope.pairSum PZ₁.GI PZ₂.GI) (Zonotope.pairDiff PZ₁.GI PZ₂.GI)
 
 variable {p₁ h₁ p₂ h₂ : ℕ} (E₁ : Fin p₁ → Fin h₁ → ℕ) (E₂ : Fin p₂ → Fin h₂ → ℕ)
 

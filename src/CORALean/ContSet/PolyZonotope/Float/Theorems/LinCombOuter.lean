@@ -4,18 +4,22 @@ import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
 import CORALean.ContSet.PolyZonotope.Float.Operations.LinComb
 import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.LinCombOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
+import CORALean.ContSet.Zonotope.Real.Theorems.LinCombOuter
 
 /-!
 # `PolyZonotope.linComb` contains every segment between the two sets
 
 `InflatedContSet.linComb_subset` reduces this to two obligations: the nominal
-parts spill only by the two centre roundings, and the box absorbs that spill
-along with the segment between the two incoming boxes.
+parts spill only by what rounded, and the box absorbs that spill along with the
+segment between the two incoming boxes.
 
 The nominal obligation is the exact `linComb` argument — `2λ-1` on the fresh
-factor, `λβ₁` and `(1-λ)β₂` on the independent coefficients — with the centre
-and the sliding generator displaced. Neither stored value is unfolded: they
-cancel against their own residuals, so what remains is the exact identity.
+factor, `pairCoeffSum` and `pairCoeffDiff` on the independent block — with the
+centre, the sliding generator and the paired independent generators displaced.
+No stored value is unfolded: each cancels against its own residual or against
+`linCombGIDiff`, so what remains is the exact identity.
 
 The three dependent blocks contribute nothing to the spill. Halving and negation
 are exact, so `½G₁`, `½G₂` and `-½G₂` are the exact layer's blocks and not
@@ -23,14 +27,13 @@ roundings of them, and the monomials are exponent data over ℕ throughout. Both
 counts are therefore what they are over ℝ.
 
 Only `_outer`, as over ℝ, and for the exact layer's reason rather than for a
-rounding one: the independent coefficients come out as `λβ₁` and `(1-λ)β₂`,
-which the representation cannot record as tied to the same `λ` as the dependent
-part.
+rounding one: the independent coefficients cannot be recorded as tied to the
+same `λ` as the dependent part.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   03-September-2026
 -- Last revision: ---
 
 namespace CORALean.Float
@@ -59,12 +62,60 @@ theorem PolyZonotope.aux_sum_univ_linComb_h {PZ₁ PZ₂ : PolyZonotope 𝕋 n}
   Fin.sum_univ_add f
 
 omit [SoundFloatArithmetic 𝕋] in
-/-- The same at the independent generator count. -/
+/-- The independent count read off the projection, which is the only thing the
+goal and the pairing lemmas disagree about: the block is not split here, the
+pairing crossing the two halves rather than closing on each. -/
 theorem PolyZonotope.aux_sum_univ_linComb_q {PZ₁ PZ₂ : PolyZonotope 𝕋 n}
     (f : Fin (PZ₁.q + PZ₂.q) → ℝ) :
-    ∑ j : Fin (PZ₁.linComb PZ₂).q, f j
-      = ∑ j, f (Fin.castAdd PZ₂.q j) + ∑ j, f (Fin.natAdd PZ₁.q j) :=
-  Fin.sum_univ_add f
+    ∑ j : Fin (PZ₁.linComb PZ₂).q, f j = ∑ j : Fin (PZ₁.q + PZ₂.q), f j := rfl
+
+/-- The independent block `linComb` would store if nothing rounded. -/
+noncomputable def PolyZonotope.linCombGIReal (PZ₁ PZ₂ : PolyZonotope 𝕋 n) (i : Fin n) :
+    Fin (PZ₁.q + PZ₂.q) → ℝ :=
+  Fin.append
+    (Real.Zonotope.pairSum (fun j => toReal (PZ₁.GI i j)) (fun j => toReal (PZ₂.GI i j)))
+    (Real.Zonotope.pairDiff (fun j => toReal (PZ₁.GI i j)) (fun j => toReal (PZ₂.GI i j)))
+
+/-- What the stored independent generators are wrong by, entrywise, which is
+what `linCombGIDiff` records. -/
+theorem PolyZonotope.aux_linCombGI_error (PZ₁ PZ₂ : PolyZonotope 𝕋 n) (i : Fin n)
+    (j : Fin (PZ₁.q + PZ₂.q)) :
+    |PolyZonotope.linCombGIReal PZ₁ PZ₂ i j
+        - toReal (PolyZonotope.linCombGI addDown subDown PZ₁ PZ₂ i j)|
+      ≤ toReal (PolyZonotope.linCombGIDiff PZ₁ PZ₂ i j) := by
+  have hbr : ∀ j : Fin (PZ₁.q + PZ₂.q),
+      toReal (PolyZonotope.linCombGI addDown subDown PZ₁ PZ₂ i j)
+          ≤ PolyZonotope.linCombGIReal PZ₁ PZ₂ i j
+        ∧ PolyZonotope.linCombGIReal PZ₁ PZ₂ i j
+          ≤ toReal (PolyZonotope.linCombGI addUp subUp PZ₁ PZ₂ i j) := by
+    simp only [PolyZonotope.linCombGI, PolyZonotope.linCombGIReal]
+    refine Fin.addCases ?_ ?_
+    · intro k
+      simp only [Fin.append_left]
+      exact Zonotope.pairSum_bracket (PZ₁.GI i) (PZ₂.GI i) k
+    · intro k
+      simp only [Fin.append_right]
+      exact Zonotope.pairDiff_bracket (PZ₁.GI i) (PZ₂.GI i) k
+  obtain ⟨hlo, hhi⟩ := hbr j
+  have hgap := sub_le_subUp (PolyZonotope.linCombGI addUp subUp PZ₁ PZ₂ i j)
+    (PolyZonotope.linCombGI addDown subDown PZ₁ PZ₂ i j)
+  simp only [PolyZonotope.linCombGIDiff]
+  rw [abs_le]
+  constructor <;> linarith
+
+/-- One row of the exact independent generators against the coefficients the
+segment supplies: the pairing gives back the two sets' own sums. -/
+theorem PolyZonotope.aux_linCombGI_row (PZ₁ PZ₂ : PolyZonotope 𝕋 n) (i : Fin n)
+    (β₁ : Fin PZ₁.q → ℝ) (β₂ : Fin PZ₂.q → ℝ) (lam : ℝ) :
+    (∑ j, PolyZonotope.linCombGIReal PZ₁ PZ₂ i j
+        * Fin.append (Real.Zonotope.pairCoeffSum β₁ β₂ lam)
+            (Real.Zonotope.pairCoeffDiff β₁ β₂ lam) j)
+      = lam * (∑ j, toReal (PZ₁.GI i j) * β₁ j)
+        + (1 - lam) * ∑ j, toReal (PZ₂.GI i j) * β₂ j := by
+  rw [Fin.sum_univ_add]
+  simp only [PolyZonotope.linCombGIReal, Fin.append_left, Fin.append_right]
+  exact Zonotope.sum_pair_mul (fun j => toReal (PZ₁.GI i j))
+    (fun j => toReal (PZ₂.GI i j)) β₁ β₂ lam
 
 /-- The two directed midpoints bracket the exact one, halving being exact. -/
 theorem PolyZonotope.aux_midpoint_mem_residual (a b : Vec 𝕋 n) :
@@ -144,22 +195,35 @@ theorem PolyZonotope.aux_linComb_nominal (PZ₁ PZ₂ : PolyZonotope 𝕋 n) :
     segments (nominalSet PZ₁) (nominalSet PZ₂) ⊆
       nominalSet (PZ₁.linComb PZ₂)
         + ((PolyZonotope.midpointResidual PZ₁.c PZ₂.c).construct
-            + (PolyZonotope.halfDiffError PZ₁.c PZ₂.c).construct) := by
+            + ((PolyZonotope.halfDiffError PZ₁.c PZ₂.c).construct
+                + (Zonotope.generatorError
+                    (PolyZonotope.linCombGIDiff PZ₁ PZ₂)).construct)) := by
   rintro _ ⟨y₁, hy₁', y₂, hy₂', lam, ⟨hl0, hl1⟩, rfl⟩
   obtain ⟨a₁, β₁, ha₁, hβ₁, hy₁⟩ := PolyZonotope.mem_nominalSet_iff.mp hy₁'
   obtain ⟨a₂, β₂, ha₂, hβ₂, hy₂⟩ := PolyZonotope.mem_nominalSet_iff.mp hy₂'
+  have hcf : ∀ j : Fin (PZ₁.q + PZ₂.q),
+      |Fin.append (Real.Zonotope.pairCoeffSum β₁ β₂ lam)
+        (Real.Zonotope.pairCoeffDiff β₁ β₂ lam) j| ≤ 1 := by
+    refine Fin.addCases ?_ ?_
+    · intro j
+      simpa using Real.Zonotope.abs_pairCoeffSum_le_one hβ₁ hβ₂ hl0 hl1 j
+    · intro j
+      simpa using Real.Zonotope.abs_pairCoeffDiff_le_one hβ₁ hβ₂ hl0 hl1 j
   refine ⟨fun i => toReal ((PZ₁.linComb PZ₂).c i)
             + (∑ l, toReal ((PZ₁.linComb PZ₂).G i l)
                 * Real.PolyZonotope.monomial (PZ₁.linComb PZ₂).E
                     (Fin.append (Fin.append a₁ a₂) (fun _ : Fin 1 => 2 * lam - 1)) l)
             + ∑ j, toReal ((PZ₁.linComb PZ₂).GI i j)
-                * Fin.append (fun j => lam * β₁ j) (fun j => (1 - lam) * β₂ j) j,
+                * Fin.append (Real.Zonotope.pairCoeffSum β₁ β₂ lam)
+                    (Real.Zonotope.pairCoeffDiff β₁ β₂ lam) j,
           PolyZonotope.mem_nominalSet_iff.mpr
-            ⟨Fin.append (Fin.append a₁ a₂) (fun _ : Fin 1 => 2 * lam - 1),
-             Fin.append (fun j => lam * β₁ j) (fun j => (1 - lam) * β₂ j), ?_, ?_,
+            ⟨Fin.append (Fin.append a₁ a₂) (fun _ : Fin 1 => 2 * lam - 1), _, ?_, hcf,
              fun _ => rfl⟩,
           _, ⟨_, PolyZonotope.aux_midpoint_mem_residual PZ₁.c PZ₂.c,
-              _, PolyZonotope.aux_halfDiff_mem_error PZ₁.c PZ₂.c hl0 hl1, rfl⟩, ?_⟩
+              _, ⟨_, PolyZonotope.aux_halfDiff_mem_error PZ₁.c PZ₂.c hl0 hl1,
+                  _, Zonotope.mem_generatorError
+                       (fun i j => PolyZonotope.aux_linCombGI_error PZ₁ PZ₂ i j) hcf,
+                  rfl⟩, rfl⟩, ?_⟩
   · refine Fin.addCases ?_ ?_
     · refine Fin.addCases ?_ ?_
       · intro k
@@ -170,12 +234,24 @@ theorem PolyZonotope.aux_linComb_nominal (PZ₁ PZ₂ : PolyZonotope 𝕋 n) :
       simp only [Fin.append_right]
       rw [abs_le]
       constructor <;> linarith
-  · refine Fin.addCases ?_ ?_
-    · intro j
-      simpa using Real.PolyZonotope.abs_mul_le_one hl0 hl1 (hβ₁ j)
-    · intro j
-      simpa using Real.PolyZonotope.abs_mul_le_one (by linarith) (by linarith) (hβ₂ j)
   · funext i
+    -- the stored independent generators and their shortfalls recombine
+    have hGI : (∑ j : Fin (PZ₁.q + PZ₂.q),
+          toReal (PolyZonotope.linCombGI addDown subDown PZ₁ PZ₂ i j)
+            * Fin.append (Real.Zonotope.pairCoeffSum β₁ β₂ lam)
+                (Real.Zonotope.pairCoeffDiff β₁ β₂ lam) j)
+        + (∑ j, (PolyZonotope.linCombGIReal PZ₁ PZ₂ i j
+              - toReal (PolyZonotope.linCombGI addDown subDown PZ₁ PZ₂ i j))
+            * Fin.append (Real.Zonotope.pairCoeffSum β₁ β₂ lam)
+                (Real.Zonotope.pairCoeffDiff β₁ β₂ lam) j)
+        = ∑ j, PolyZonotope.linCombGIReal PZ₁ PZ₂ i j
+            * Fin.append (Real.Zonotope.pairCoeffSum β₁ β₂ lam)
+                (Real.Zonotope.pairCoeffDiff β₁ β₂ lam) j := by
+      rw [← Finset.sum_add_distrib]
+      exact Finset.sum_congr rfl fun j _ => by ring
+    rw [PolyZonotope.aux_linCombGI_row PZ₁ PZ₂ i β₁ β₂ lam] at hGI
+    -- split as the goal is split, or the two block sums are different atoms
+    simp only [Fin.sum_univ_add, Fin.append_left, Fin.append_right] at hGI
     simp only [Pi.add_apply, Pi.smul_apply, smul_eq_mul]
     rw [hy₁ i, hy₂ i, PolyZonotope.aux_sum_univ_linComb_h,
       PolyZonotope.aux_sum_univ_linComb_q]
@@ -185,16 +261,21 @@ theorem PolyZonotope.aux_linComb_nominal (PZ₁ PZ₂ : PolyZonotope 𝕋 n) :
       Real.PolyZonotope.monomial_plusE_right, Fin.append_left, Fin.append_right,
       PolyZonotope.aux_sum_mul, PolyZonotope.aux_sum_half,
       PolyZonotope.aux_sum_neg_half]
-    ring
+    linarith [hGI]
 
-/-- The box absorbs the two incoming boxes and both centre roundings. -/
+/-- The box absorbs the two incoming boxes, both centre roundings and the
+independent block's. -/
 theorem PolyZonotope.aux_linComb_error (PZ₁ PZ₂ : PolyZonotope 𝕋 n) :
     segments PZ₁.err.construct PZ₂.err.construct
         + ((PolyZonotope.midpointResidual PZ₁.c PZ₂.c).construct
-            + (PolyZonotope.halfDiffError PZ₁.c PZ₂.c).construct)
+            + ((PolyZonotope.halfDiffError PZ₁.c PZ₂.c).construct
+                + (Zonotope.generatorError
+                    (PolyZonotope.linCombGIDiff PZ₁ PZ₂)).construct))
       ⊆ (PZ₁.linComb PZ₂).err.construct :=
   subset_trans
-    (Set.add_subset_add (Interval.linComb_outer PZ₁.err PZ₂.err) (Interval.plus_outer _ _))
+    (Set.add_subset_add (Interval.linComb_outer PZ₁.err PZ₂.err)
+      (subset_trans (Set.add_subset_add_left (Interval.plus_outer _ _))
+        (Interval.plus_outer _ _)))
     (Interval.plus_outer _ _)
 
 theorem PolyZonotope.linComb_outer (PZ₁ PZ₂ : PolyZonotope 𝕋 n) :

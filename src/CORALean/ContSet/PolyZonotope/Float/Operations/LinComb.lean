@@ -4,35 +4,38 @@ import CORALean.ContSet.Interval.Float.Operations.Residual
 import CORALean.ContSet.Interval.Float.Operations.Symmetric
 import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
 import CORALean.ContSet.PolyZonotope.Real.Operations.LinComb
+import CORALean.ContSet.Zonotope.Float.Operations.GeneratorError
+import CORALean.ContSet.Zonotope.Float.Operations.LinComb
 
 /-!
 # `PolyZonotope.linComb`
 
-The exact layer's three dependent blocks, and only two vectors round in all of
-them. Halving is exact and so is negation, so `½G₁`, `½G₂` and `-½G₂` are
-copies, and the exponent matrix is `linCombE` over ℕ — reused rather than
-restated, nothing about it rounding. The independent block concatenates.
+The exact layer's three dependent blocks, and nothing in any of them rounds.
+Halving is exact and so is negation, so `½G₁`, `½G₂` and `-½G₂` are copies, and
+the exponent matrix is `linCombE` over ℕ — reused rather than restated, nothing
+about it rounding.
 
-What is left is what a zonotope's `linComb` already pays: the midpoint that
-becomes the new centre, and the half-difference that becomes the sliding
-generator. They are charged differently — the midpoint is stored in place of a
-known bracket, which is a `residual`, while the sliding generator's coefficient
-is the fresh factor and ranges over `[-1,1]`, so its shortfall pulls both ways
-and needs a symmetric box.
+Three vectors' worth of rounding is what is left, in two kinds. The centre and
+the sliding generator are what a zonotope's `linComb` already pays: the midpoint
+is stored in place of a known bracket, which is a `residual`, while the sliding
+generator's coefficient is the fresh factor and ranges over `[-1,1]`, so its
+shortfall pulls both ways and needs a symmetric box. The independent block is
+the third: it pairs, and a pairing is arithmetic, so `generatorError` charges its
+whole matrix at once.
 
-So the float `linComb` costs exactly one centre rounding more than the exact
-one, independently of `p`, of the degree and of both generator counts. That is
-the same statement `MemGeneratorError` makes about `plus` and `mtimes`, and here
-it is sharper still: the dependent blocks are not merely cheap to round, they do
-not round at all.
+The dependent side is therefore still free, and both counts are what they are
+over ℝ, independently of `p` and of the degree.
 
-Not `Zonotope.midpoint` and friends, which are the same expressions: the two
-representations stay independent of each other.
+`Zonotope.pairSum`, `Zonotope.pairDiff` and `Zonotope.generatorError` are
+borrowed rather than restated, which is what CORA does too: its
+`@polyZonotope/linComb` runs `zonotope/enclose` on the independent blocks. The
+midpoint and the sliding generator stay local — those are one-line expressions
+that happen to coincide, not a shared operation.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   03-September-2026
 -- Last revision: ---
 
 namespace CORALean.Float
@@ -60,6 +63,20 @@ def PolyZonotope.halfDiffError (a b : Vec 𝕋 n) : Interval 𝕋 n :=
   Interval.symmetric fun i =>
     subUp (half (subUp (a i) (b i))) (half (subDown (a i) (b i)))
 
+/-- The independent block at one rounding: CORA's `zonotope/enclose` on the two
+independent blocks, which is the exact layer's pairing at a zero centre. -/
+def PolyZonotope.linCombGI (add sub : 𝕋 → 𝕋 → 𝕋) (PZ₁ PZ₂ : PolyZonotope 𝕋 n) :
+    Mat 𝕋 n (PZ₁.q + PZ₂.q) :=
+  fun i => Fin.append (Zonotope.pairSum add (PZ₁.GI i) (PZ₂.GI i))
+    (Zonotope.pairDiff sub (PZ₁.GI i) (PZ₂.GI i))
+
+/-- What the stored independent generators fall short by: the gap between the
+two directed roundings, which a coefficient in `[-1,1]` then spreads either
+way. -/
+def PolyZonotope.linCombGIDiff (PZ₁ PZ₂ : PolyZonotope 𝕋 n) : Mat 𝕋 n (PZ₁.q + PZ₂.q) :=
+  fun i j => subUp (PolyZonotope.linCombGI addUp subUp PZ₁ PZ₂ i j)
+    (PolyZonotope.linCombGI addDown subDown PZ₁ PZ₂ i j)
+
 def PolyZonotope.linComb (PZ₁ PZ₂ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 n where
   p := PZ₁.p + PZ₂.p + 1
   h := PZ₁.h + PZ₂.h + (PZ₁.h + PZ₂.h + 1)
@@ -71,9 +88,10 @@ def PolyZonotope.linComb (PZ₁ PZ₂ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋
           (Fin.append (fun l => half (PZ₁.G i l)) (fun l => neg (half (PZ₂.G i l))))
           (fun _ : Fin 1 => PolyZonotope.halfDiff PZ₁.c PZ₂.c i))
   E := Real.PolyZonotope.linCombE PZ₁.E PZ₂.E
-  GI := fun i => Fin.append (PZ₁.GI i) (PZ₂.GI i)
+  GI := PolyZonotope.linCombGI addDown subDown PZ₁ PZ₂
   err := (PZ₁.err.linComb PZ₂.err).plus
     ((PolyZonotope.midpointResidual PZ₁.c PZ₂.c).plus
-      (PolyZonotope.halfDiffError PZ₁.c PZ₂.c))
+      ((PolyZonotope.halfDiffError PZ₁.c PZ₂.c).plus
+        (Zonotope.generatorError (PolyZonotope.linCombGIDiff PZ₁ PZ₂))))
 
 end CORALean.Float
