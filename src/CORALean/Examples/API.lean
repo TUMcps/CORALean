@@ -8,6 +8,7 @@ import CORALean.Examples.FeedForward
 import CORALean.Examples.FeedForwardFloat
 import CORALean.Examples.NeurNetControl
 import CORALean.Examples.PolyZonotopeReach
+import CORALean.Examples.ReachFloat
 import CORALean.Examples.ReachSpecializations
 
 /-!
