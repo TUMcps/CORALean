@@ -47,7 +47,7 @@ def ConPolyZono.dependent (C : ConPolyZono α) : ConPolyZono α where
 
 /-- Fresh factors at exponent zero constrain nothing, so the system says of the
 widened factor vector exactly what it said of the original. -/
-theorem ConPolyZono.holds_padE_iff {p m s : ℕ} (A : Mat ℝ m s) (b : Vec ℝ m)
+theorem ConPolyZono.holds_padE_iff {p m s : ℕ} (A : Mat ℝ m s) (b : Interval (Vec ℝ m))
     (EC : Fin p → Fin s → ℕ) (r : ℕ) (a : Fin (p + r) → ℝ) :
     ConPolyZono.holds A b (ConPolyZono.padE EC r) a
       ↔ ConPolyZono.holds A b EC (fun k => a (Fin.castAdd r k)) := by

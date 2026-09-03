@@ -11,8 +11,8 @@ The representation and its error box in `ConPolyZono`, the operations in
 `Instances` — the `InflatedContSet` one is in `ConPolyZono`, being what the
 error box means.
 
-The representation's docstring is where to read why the list of operations stops
-where it does: `and`, the operation this representation exists for, computes new
-constraint data, and an equality constraint admits no rounding in either
-direction.
+The representation's docstring is where to read where a float operation may pay:
+into the ambient error box, as everywhere else, and — this representation alone —
+into the interval a constraint's right-hand side is. `and` is the operation that
+needs both at once, and the one this representation exists for.
 -/

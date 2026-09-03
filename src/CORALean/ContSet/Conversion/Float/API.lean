@@ -1,3 +1,4 @@
+import CORALean.ContSet.Conversion.Float.ConZonotope_to_ConPolyZono
 import CORALean.ContSet.Conversion.Float.ConZonotope_to_HPolytope
 import CORALean.ContSet.Conversion.Float.ConZonotope_to_Interval
 import CORALean.ContSet.Conversion.Float.ConZonotope_to_VPolytope
@@ -43,7 +44,11 @@ widened by `radius (matMulDiff …)` — the most a coefficient vector in the un
 box can turn that entrywise gap into.
 
 Several round nowhere at all: corners of a box are stored bounds copied, and a
-hull becomes a constrained zonotope by renaming its fields.
+hull becomes a constrained zonotope by renaming its fields. A constrained
+zonotope becomes a constrained polynomial zonotope almost as cheaply — the
+constraint matrix is its two blocks stacked and the upper bounds are its own,
+the one value computed being the lower bound an inequality does not carry, and
+that is `radius` rounded upward, so it bounds rather than cuts.
 
 The two ellipsoid pairs are where a square root would have been, and neither
 takes one. A box read off an ellipsoid needs one proposed row length per

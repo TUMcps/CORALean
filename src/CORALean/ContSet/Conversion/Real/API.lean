@@ -1,4 +1,5 @@
 import CORALean.ContSet.Conversion.Real.ConPolyZono_to_PolyZonotope
+import CORALean.ContSet.Conversion.Real.ConZonotope_to_ConPolyZono
 import CORALean.ContSet.Conversion.Real.ConZonotope_to_HPolytope
 import CORALean.ContSet.Conversion.Real.ConZonotope_to_Interval
 import CORALean.ContSet.Conversion.Real.ConZonotope_to_VPolytope
@@ -70,15 +71,15 @@ conversion. And anything leaving a constrained zonotope by dropping its
 constraints loses exactly those, as anything leaving a polynomial zonotope by
 freeing its dependent generators loses exactly the sharing between them.
 
-`ConPolyZono` has two, and they are the pair that pins its definition down: a
-polynomial zonotope is one with no constraints, exactly, and a constrained one
-becomes a polynomial zonotope by dropping them, which frees the factors from the
-subvariety the equalities confined them to. Its remaining pairs are the
-polynomial zonotope's gaps for the same reason, one non-convexity further along.
-`ConZonotope` is the pair that looks cheap and is not: this `ConZonotope` cuts
-its coefficients down with a halfspace description, inequalities included, and a
-constrained polynomial zonotope admits equalities only, so the conversion would
-have to introduce a slack factor per inequality together with a bound on it.
+`ConPolyZono` has three. Two pin its definition down: a polynomial zonotope is
+one with no constraints, exactly, and a constrained one becomes a polynomial
+zonotope by dropping them, which frees the factors from the subvariety the
+constraints confined them to. The third is from `ConZonotope`, and it is exact:
+that representation cuts its coefficients down with a halfspace description,
+inequalities included, and a constrained polynomial zonotope now carries an
+interval right-hand side, so an inequality is a row with a free lower bound
+rather than a slack factor to invent. Its remaining pairs are the polynomial
+zonotope's gaps for the same reason, one non-convexity further along.
 
 `ContSet_to_Interval` and `Interval_to_ContSet` are the two pairs whose other
 side is a variable: an algorithm that has to reach a box, or come back from one,

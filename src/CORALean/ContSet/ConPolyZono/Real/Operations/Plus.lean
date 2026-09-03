@@ -36,6 +36,12 @@ def ConPolyZono.plusA {m₁ s₁ m₂ s₂ : ℕ} (A₁ : Mat ℝ m₁ s₁) (A�
   Fin.append (fun r => Fin.append (A₁ r) (0 : Fin s₂ → ℝ))
     (fun r => Fin.append (0 : Fin s₁ → ℝ) (A₂ r)) i
 
+/-- The two right-hand sides side by side, each bound concatenated with its
+own. -/
+def ConPolyZono.plusB {m₁ m₂ : ℕ} (b₁ : Interval (Vec ℝ m₁)) (b₂ : Interval (Vec ℝ m₂)) :
+    Interval (Vec ℝ (m₁ + m₂)) :=
+  ⟨Fin.append b₁.inf b₂.inf, Fin.append b₁.sup b₂.sup⟩
+
 def ConPolyZono.plus (C₁ C₂ : ConPolyZono α) : ConPolyZono α where
   p := C₁.p + C₂.p
   h := C₁.h + C₂.h
@@ -47,7 +53,7 @@ def ConPolyZono.plus (C₁ C₂ : ConPolyZono α) : ConPolyZono α where
   E := PolyZonotope.plusE C₁.E C₂.E
   GI := Fin.append C₁.GI C₂.GI
   A := ConPolyZono.plusA C₁.A C₂.A
-  b := Fin.append C₁.b C₂.b
+  b := ConPolyZono.plusB C₁.b C₂.b
   EC := PolyZonotope.plusE C₁.EC C₂.EC
 
 theorem ConPolyZono.mulVec_plusA_left {m₁ s₁ m₂ s₂ : ℕ} (A₁ : Mat ℝ m₁ s₁)
@@ -75,9 +81,10 @@ factors it came with. The block-diagonal exponent matrix is what makes the
 right-to-left direction work: neither system's monomials see the other's
 factors. -/
 theorem ConPolyZono.holds_plus_iff {p₁ p₂ m₁ s₁ m₂ s₂ : ℕ} (A₁ : Mat ℝ m₁ s₁)
-    (b₁ : Vec ℝ m₁) (EC₁ : Fin p₁ → Fin s₁ → ℕ) (A₂ : Mat ℝ m₂ s₂) (b₂ : Vec ℝ m₂)
+    (b₁ : Interval (Vec ℝ m₁)) (EC₁ : Fin p₁ → Fin s₁ → ℕ) (A₂ : Mat ℝ m₂ s₂)
+    (b₂ : Interval (Vec ℝ m₂))
     (EC₂ : Fin p₂ → Fin s₂ → ℕ) (a : Fin (p₁ + p₂) → ℝ) :
-    ConPolyZono.holds (ConPolyZono.plusA A₁ A₂) (Fin.append b₁ b₂)
+    ConPolyZono.holds (ConPolyZono.plusA A₁ A₂) (ConPolyZono.plusB b₁ b₂)
         (PolyZonotope.plusE EC₁ EC₂) a
       ↔ ConPolyZono.holds A₁ b₁ EC₁ (fun k => a (Fin.castAdd p₂ k))
         ∧ ConPolyZono.holds A₂ b₂ EC₂ (fun k => a (Fin.natAdd p₁ k)) := by
@@ -103,18 +110,21 @@ theorem ConPolyZono.holds_plus_iff {p₁ p₂ m₁ s₁ m₂ s₂ : ℕ} (A₁ :
     rw [ConPolyZono.mulVec_plusA_right, hm]
   constructor
   · intro hsat
-    exact ⟨fun i => (hL i).symm.trans
-        ((hsat (Fin.castAdd m₂ i)).trans (Fin.append_left b₁ b₂ i)),
-      fun i => (hR i).symm.trans
-        ((hsat (Fin.natAdd m₁ i)).trans (Fin.append_right b₁ b₂ i))⟩
+    constructor
+    · intro i
+      have h := hsat (Fin.castAdd m₂ i)
+      rw [hL i] at h
+      simpa only [ConPolyZono.plusB, Fin.append_left] using h
+    · intro i
+      have h := hsat (Fin.natAdd m₁ i)
+      rw [hR i] at h
+      simpa only [ConPolyZono.plusB, Fin.append_right] using h
   · rintro ⟨h₁, h₂⟩
-    show ∀ i, (ConPolyZono.plusA A₁ A₂ *ᵥ
-        PolyZonotope.monomial (PolyZonotope.plusE EC₁ EC₂) a) i = Fin.append b₁ b₂ i
     refine Fin.addCases (fun i => ?_) fun i => ?_
-    · rw [hL i, Fin.append_left]
-      exact h₁ i
-    · rw [hR i, Fin.append_right]
-      exact h₂ i
+    · rw [hL i]
+      simpa only [ConPolyZono.plusB, Fin.append_left] using h₁ i
+    · rw [hR i]
+      simpa only [ConPolyZono.plusB, Fin.append_right] using h₂ i
 
 omit [Module ℝ α] in
 /-- The same at a sum, where the two systems are the two sets'. -/

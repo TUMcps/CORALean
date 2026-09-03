@@ -29,8 +29,9 @@ whose coefficients a halfspace description cuts down. `PolyZonotope` is the
 first representation here that need not be convex, and `ConPolyZono` builds on
 it the same way `ConZonotope` builds on `Zonotope` — with the difference that
 its constraints are polynomial in the factors and so cannot be a polytope.
-Both have a float layer, `ConPolyZono`'s stopping at the operations that copy
-its constraints: an equality admits no rounding in either direction.
+Both have a float layer, `ConPolyZono`'s down to its intersection: the
+right-hand side of a constraint is an interval, so a rounded bound has a
+direction to be widened in.
 
 Two of the six intersect exactly, and they are exactly the two constrained
 ones. That is not a coincidence: an intersection is a constraint, and a

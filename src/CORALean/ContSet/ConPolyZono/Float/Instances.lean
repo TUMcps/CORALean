@@ -8,14 +8,14 @@ import CORALean.ContSet.ConPolyZono.Float.Theorems.PlusOuter
 `InflatedContSet` supplies it, which is what makes this the same class the exact
 layer instantiates.
 
-`and` has no class to instantiate over ℝ either, and here it has no definition:
-its agreement rows carry `c₂ - c₁`, and rounding a constraint's right-hand side
-moves which factor vectors are admissible rather than enlarging the set.
+`and` is computed here but instantiates nothing, exactly as over ℝ: there is no
+`And` class to instantiate, and a class one or two representations implement is
+a name rather than an interface. A caller names `ConPolyZono.and`.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   03-September-2026
 -- Last revision: ---
 
 namespace CORALean.Float
