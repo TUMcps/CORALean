@@ -1,3 +1,4 @@
+import CORALean.ContDynamics.LinearSysDT.Theorems.HoldsOfOutput
 import CORALean.ContDynamics.LinearSysDT.Theorems.HoldsOfReach
 import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachOuter
 import CORALean.ContSet.Interval.Float.Instances
@@ -59,7 +60,7 @@ namespace CORALean.Float
 
 open Matrix ContSet
 
-variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ} {L : Type}
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n r : ℕ} {L : Type}
 
 /-! ## A discrete-time linear system
 
@@ -100,6 +101,28 @@ example (sys : Real.LinearSysDT 𝕋 n) (o : ℕ) (R₀ U : Zonotope 𝕋 n)
     (h : spec.Holds (construct (sys.reach (S := Zonotope 𝕋) o R₀ U k))) :
     spec.Holds {x k} :=
   sys.holds_of_reach o R₀ U spec traj k h
+
+/-! ## An output equation
+
+`OutputEq` names no scalar operation of its own either — two `mtimes` and one
+`plus` — so the output set is the same definition here as at an exact
+representation, and its matrices are stored floats like the plant's. -/
+
+/-- The output set at step `k`, at a float zonotope. The output dimension `r` is
+free of the state dimension, which is what an output is for. -/
+def Example.outputZonotopeFloat (sys : Real.LinearSysDT 𝕋 n) (out : Real.OutputEq 𝕋 n n r)
+    (o : ℕ) (R₀ U : Zonotope 𝕋 n) (k : ℕ) : Zonotope 𝕋 r :=
+  out.outputSet (sys.reach (S := Zonotope 𝕋) o R₀ U k) U
+
+/-- A specification checked on the output set answers for the output — the one
+question this repository could not ask before. -/
+example (sys : Real.LinearSysDT 𝕋 n) (out : Real.OutputEq 𝕋 n n r) (o : ℕ)
+    (R₀ U : Zonotope 𝕋 n) (spec : Specification (Vec ℝ r)) {x u : ℕ → Vec ℝ n}
+    (traj : sys.Trajectory (S := Zonotope 𝕋) R₀ U x u) (k : ℕ)
+    (h : spec.Holds (construct
+      (out.outputSet (sys.reach (S := Zonotope 𝕋) o R₀ U k) U))) :
+    spec.Holds {out.eval (x k) (u k)} :=
+  sys.holds_of_output out o R₀ U spec traj k h
 
 /-! ## A network controlling a discrete plant
 

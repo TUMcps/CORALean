@@ -5,8 +5,15 @@ import CORALean.ContSet.ContSet.ContSet
 
 CORA's `nonlinearSys`: `ẋ(t) = f(x(t), u(t))`, carrying only the vector field.
 Time-invariant, as CORA's is — a time-varying field is this with time carried in
-the state. CORA's class also carries an output equation `y = g(x, u)`, which has
-no counterpart here, as it has none for `LinearSys`.
+the state.
+
+CORA's class also carries an output equation `y = g(x, u)`, which has no
+counterpart here, and the reason is the reason there is no reachability here
+either: an output *set* needs an enclosure of `g`, which is the problem of
+enclosing `f` over again and gets the same answer. A run reaches `LinearSys`
+through `linearize` and an `AbstractionError` certificate, and the linear
+system's `OutputEq` is what a specification is then checked on. A `g` field with
+no way to propagate a set through it would be a field nothing could use.
 
 State and input dimensions are separate, which CORA's are and `LinearSys`'s are
 not: there the input enters additively and so has to match the state.
