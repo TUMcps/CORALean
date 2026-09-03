@@ -118,18 +118,30 @@ build:
     # what catch unused hypotheses and stray `Try this` suggestions. Matched on
     # `src/` so that a partial Mathlib cache, which compiles Mathlib and may warn,
     # does not fail the job for someone else's code.
+    # Builds every target `lakefile.toml` names: the library, the worked
+    # examples and the demo.
     - set -o pipefail
     - lake build 2>&1 | tee build.log
     - "! grep -q '^warning: src/' build.log"
-  # The clone above is the only step that fails for reasons outside the tree, and
-  # it fails immediately, so a retry costs seconds when it succeeds and one
-  # wasted minute when it does not.
+    # What a green build cannot say: whether an enclosure is any good. Runs the
+    # demo and diffs it against the committed numbers, so a change that widens
+    # one fails here.
+    #
+    # In this job rather than one of its own. There are no caches, so a second
+    # job would clone Mathlib again — the step that already fails for reasons
+    # outside the tree — and rebuild the library from scratch, twenty minutes
+    # for the sake of a step that costs under a second once the tree is built.
+    - sh scripts/check-demo.sh
+  # Only for a failure of the runner itself. Not `script_failure`: the clone is
+  # the one step that fails for reasons outside the tree and it retries itself
+  # above, so a script failure here is a compile error, a warning or a demo whose
+  # numbers moved — all deterministic, and retrying one costs three minutes to
+  # reach the same answer.
   retry:
     max: 2
     when:
       - runner_system_failure
       - stuck_or_timeout_failure
-      - script_failure
   artifacts:
     when: on_failure
     paths:

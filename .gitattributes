@@ -2,3 +2,7 @@
 # `.githooks/` is a syntax error to the shell that runs them in CI.
 *.sh text eol=lf
 .githooks/* text eol=lf
+
+# The demo's committed output is compared with a run's, line by line, and a `\r`
+# on one side and not the other makes every line differ.
+*.txt text eol=lf

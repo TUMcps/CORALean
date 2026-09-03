@@ -1,5 +1,5 @@
 name = "CORALean"
-defaultTargets = ["CORALean"]
+defaultTargets = ["CORALean", "Examples", "Demo"]
 
 [leanOptions]
 pp.unicode.fun = true
@@ -18,3 +18,24 @@ rev = "v4.32.0"
 [[lean_lib]]
 name = "CORALean"
 srcDir = "src"
+
+# The worked examples, built alongside the library rather than inside it, so the
+# library carries no use sites of its own and an executable has somewhere to
+# live.
+[[lean_lib]]
+name = "Examples"
+srcDir = "src"
+roots = ["CORALean.Examples.API"]
+
+# The demo twice over: as a library, so `lake build` elaborates it for the price
+# of an olean, and as an executable, so a human can run it. Only `lake exe demo`
+# links, and linking against Mathlib compiles its emitted C — which is why the
+# check in CI runs the interpreter instead.
+[[lean_lib]]
+name = "Demo"
+srcDir = "src"
+
+[[lean_exe]]
+name = "demo"
+srcDir = "src"
+root = "Demo"

@@ -163,8 +163,10 @@ END { if (prev != "") check(prev) }
 ')
 report "$out"
 
-# Every module reachable from the root, so a file that was written but never
-# collected is caught rather than silently left out of the build.
+# Every module reachable from a root, so a file that was written but never
+# collected is caught rather than silently left out of the build. The roots are
+# the roots of the targets `lakefile.toml` names, and a new target belongs in
+# both places.
 #
 # The file list reaches awk through a list file rather than the command line.
 # `xargs` splits an argument list that does not fit — on Windows the limit is
@@ -176,7 +178,7 @@ list=$(mktemp)
 trap 'rm -f "$list"' EXIT INT TERM
 printf '%s\n' "$files" > "$list"
 
-out=$(awk -v LIST="$list" '
+out=$(awk -v LIST="$list" -v ROOTS="CORALean CORALean.Examples.API Demo" '
 BEGIN { while ((getline f < LIST) > 0) if (f != "") ARGV[ARGC++] = f }
 function moduleOf(path,   m) {
   m = path; sub(/^src\//, "", m); sub(/\.lean$/, "", m); gsub("/", ".", m)
@@ -188,8 +190,9 @@ FNR == 1 { mod = moduleOf(FILENAME); known[mod] = 1; depth = 0 }
   edge[mod] = edge[mod] " " dep
 }
 END {
-  seen["CORALean"] = 1
-  queue[1] = "CORALean"; head = 1; tail = 1
+  nroots = split(ROOTS, roots, " ")
+  head = 1; tail = 0
+  for (i = 1; i <= nroots; i++) { seen[roots[i]] = 1; queue[++tail] = roots[i] }
   while (head <= tail) {
     cur = queue[head]; head++
     n = split(edge[cur], deps, " ")
@@ -197,7 +200,7 @@ END {
       if (deps[i] != "" && !(deps[i] in seen)) { seen[deps[i]] = 1; queue[++tail] = deps[i] }
   }
   for (m in known)
-    if (!(m in seen)) print m ": not reachable from `CORALean` — nothing imports it"
+    if (!(m in seen)) print m ": not reachable from a target root — nothing imports it"
 }
 ' | sort)
 report "$out"

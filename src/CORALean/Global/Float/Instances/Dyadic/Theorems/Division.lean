@@ -23,10 +23,12 @@ namespace CORALean.Float.Dyadic
 
 variable {p : ℕ}
 
-private theorem toReal_mk (m e : ℤ) : toReal (⟨m, e⟩ : Dyadic p) = (m : ℝ) * 2 ^ e := rfl
+private theorem toReal_mk (m e : ℤ) : toReal (⟨m, e⟩ : Dyadic p) = (m : ℝ) * 2 ^ e :=
+  toReal_def _
 
 /-- The scale is positive, so the sign is the mantissa's. -/
 private theorem mantissa_pos {b : Dyadic p} (hb : 0 < toReal b) : 0 < b.mantissa := by
+  rw [toReal_def] at hb
   by_contra h
   have hc : ((b.mantissa : ℝ)) ≤ 0 := Int.cast_nonpos.mpr (not_lt.mp h)
   have hz := mul_le_mul_of_nonneg_right hc (le_of_lt (zpow_pos two_pos b.exponent))
@@ -43,7 +45,7 @@ private theorem toReal_div_eq (a b : Dyadic p) (hb : (b.mantissa : ℝ) ≠ 0) :
   have hea : ((2 : ℝ) ^ a.exponent) ≠ 0 := zpow_ne_zero _ h2
   have heb : ((2 : ℝ) ^ b.exponent) ≠ 0 := zpow_ne_zero _ h2
   have hpp : ((2 : ℝ) ^ p) ≠ 0 := pow_ne_zero _ h2
-  rw [toReal, toReal, zpow_sub₀ h2, zpow_sub₀ h2, zpow_natCast]
+  rw [toReal_def, toReal_def, zpow_sub₀ h2, zpow_sub₀ h2, zpow_natCast]
   push_cast
   field_simp
 

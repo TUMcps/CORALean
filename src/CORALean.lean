@@ -5,7 +5,6 @@ import CORALean.Specification.API
 import CORALean.ContDynamics.API
 import CORALean.HybridDynamics.API
 import CORALean.NN.API
-import CORALean.Examples.API
 
 /-!
 # CORALean
@@ -21,4 +20,7 @@ Set representations in `ContSet`, algorithms over them in `ContDynamics`,
 `HybridDynamics` and `NN`, and in `Specification` the step that makes any of it
 a verification result: a check passed on a computed superset is passed by the
 exact set it encloses.
+
+`CORALean.Examples` and `Demo` are targets of their own, so the library holds
+the development and nothing that merely uses it.
 -/
