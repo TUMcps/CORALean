@@ -116,6 +116,17 @@ Bundling the binders of a generic file into a `class abbrev` was tried and
 reverted: each use adds an unfolding step to instance search, which produced
 timeouts rather than slow proofs at the heartbeat limit of the time.
 
+## What is left
+
+Open work is one [issue](https://gitlab.lrz.de/cps/CORALean/-/issues) per task,
+labelled by area: `whole-repository`, `representations`, `dynamics`, `hybrid`,
+`neural-networks`, `float-scalar`, `infrastructure`. Close them from the merge
+request that does the work.
+
+There is no roadmap file. What is *done* is the code and its docstrings, which
+say what each file is for and where it departs from CORA or from the paper it
+cites; a second account of that in prose only drifts from it.
+
 ## Landing work
 
 Nothing is pushed to `main`. Every change — a new representation, a CI fix, a
