@@ -5,6 +5,7 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.DependentExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.CompactExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceOuter
+import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceOrder
 
 /-!
 # What `PolyZonotope` guarantees
@@ -12,6 +13,11 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceOuter
 `plus`, `map`, `dependent`, `quadMap` and `compact` exactly; `linComb` and
 `reduce` as enclosures, and the module docstring there says which coefficients,
 respectively which dropped generators, cost the other direction.
+
+`reduce` is the one operation with two guarantees, and it needs both: an
+enclosure alone is satisfied by a set that grows every step, so
+`reduce_order_le` is what says the representation stays the size it was asked
+for.
 
 `quadMap_exact` is the one that distinguishes the representation: no convex
 representation here can state it. `compact_exact` is the one an order bound

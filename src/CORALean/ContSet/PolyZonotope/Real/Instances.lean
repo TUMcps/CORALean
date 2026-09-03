@@ -18,10 +18,10 @@ its whole point being to move between dimensions.
 here computes it, and a class one representation implements is a name, not an
 interface. A caller that wants it names `PolyZonotope.quadMap`.
 
-`Reduce` bounds the *dependent* generator count. That is what the class field
-offers — one number — and what the independent block does under an order bound
-is a second question `reduce` does not answer; the operation's docstring says
-so.
+`Reduce`'s one number bounds both generator blocks together, which is what the
+class field's `o` means everywhere else too. `reduce_order_le` states it; the
+class carries only the enclosure, since a representation whose order is read
+differently — a zonotope's, an interval's — still instantiates the same field.
 
 Noncomputable, twice over: `compact` decides whether a generator of a real
 module is zero, and the ranking orders reals.
