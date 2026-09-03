@@ -24,33 +24,32 @@ private theorem two_zpow_align {e f : ℤ} (h : e ≤ f) :
 
 /-- Any exponent, since a zero mantissa reads as zero at every scale. -/
 theorem toReal_mk_zero (e : ℤ) : toReal (⟨0, e⟩ : Dyadic p) = 0 := by
-  show ((0 : ℤ) : ℝ) * 2 ^ e = 0
-  rw [Int.cast_zero, zero_mul]
+  rw [toReal_def, Int.cast_zero, zero_mul]
 
 /-- A dyadic read at any exponent at or below its own. -/
 theorem toReal_align (d : Dyadic p) {e : ℤ} (h : e ≤ d.exponent) :
     toReal d = ((d.mantissa * 2 ^ (d.exponent - e).toNat : ℤ) : ℝ) * 2 ^ e := by
-  rw [toReal]
+  rw [toReal_def]
   push_cast
   rw [mul_assoc, two_zpow_align h]
 
 theorem toReal_neg (d : Dyadic p) : toReal (neg d) = -toReal d := by
-  rw [toReal, toReal, neg, Int.cast_neg, neg_mul]
+  rw [toReal_def, toReal_def, neg, Int.cast_neg, neg_mul]
 
 theorem toReal_half (a : Dyadic p) : toReal (half a) = toReal a / 2 := by
-  rw [toReal, toReal, half, zpow_sub₀ (two_ne_zero), zpow_one]
+  rw [toReal_def, toReal_def, half, zpow_sub₀ (two_ne_zero), zpow_one]
   ring
 
 theorem toReal_exactAdd (a b : Dyadic p) :
     toReal (exactAdd a b) = toReal a + toReal b := by
-  rw [toReal, toReal, toReal, exactAdd]
+  rw [toReal_def, toReal_def, toReal_def, exactAdd]
   push_cast
   rw [add_mul, mul_assoc, mul_assoc, two_zpow_align (min_le_left a.exponent b.exponent),
     two_zpow_align (min_le_right a.exponent b.exponent)]
 
 theorem toReal_exactMul (a b : Dyadic p) :
     toReal (exactMul a b) = toReal a * toReal b := by
-  rw [toReal, toReal, toReal, exactMul, Int.cast_mul, zpow_add₀ (two_ne_zero)]
+  rw [toReal_def, toReal_def, toReal_def, exactMul, Int.cast_mul, zpow_add₀ (two_ne_zero)]
   ring
 
 end CORALean.Float.Dyadic

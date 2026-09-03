@@ -170,9 +170,9 @@ compiler cannot: that an `aux_` name is used only in the file that declares it,
 that an `API.lean` holds nothing but imports, that no file imports its own
 directory's collector, that no `Real` file reaches into `Float`, that every file
 carries a module docstring and — unless it is a collector — an author block,
-that nothing is `sorry` or `axiom`, and that every module is reachable from the
-root, so a file written but never collected is caught rather than silently left
-out of the build.
+that nothing is `sorry` or `axiom`, and that every module is reachable from one
+of the target roots, so a file written but never collected is caught rather than
+silently left out of the build.
 
 It is text only: no Lean, no build, no network, about a second — which is why it
 runs on every commit rather than on request. Setting a clone up means
@@ -189,12 +189,37 @@ The parsing is deliberately shallow — comments are stripped by a two-character
 scanner and declarations are matched at the start of a line — which is what
 keeps it fast and dependency-free. It reports; it never rewrites.
 
-`.gitlab-ci.yml` runs the same script as its own job, and rebuilds the project
-on every push to the default branch and on every merge request, failing on a
-warning as well as on an error. It caches
+`scripts/check-demo.sh` runs the demo and diffs what it prints against
+`scripts/demo-expected.txt`. It is the only check here that measures
+*precision*: every theorem in this repository is an enclosure, and an enclosure
+the size of the state space satisfies all of them, so a widening is invisible to
+the compiler and visible in that file. It needs a built tree, which is why it is
+not on the pre-commit hook.
+
+`.gitlab-ci.yml` runs the conventions script as its own job, and rebuilds the
+project on every push to the default branch and on every merge request, failing
+on a warning as well as on an error, then runs the demo check in the same job.
+It caches
 nothing: `lake exe cache get` fetches Mathlib's prebuilt oleans from Mathlib's
 own CDN, which beats moving 7.6 GB of packages through GitLab's cache. The file
-carries the measurements behind that choice.
+carries the measurements behind that choice, and behind keeping the demo check
+out of a job of its own — with no cache a second job rebuilds everything.
+
+## Targets
+
+Three, all named in `lakefile.toml`, and `check-conventions.sh` walks the import
+graph from each of their roots, so a new one belongs in both files.
+
+`CORALean` is the development. `Examples` is the worked examples, built
+alongside the library rather than inside it, so the library carries no use sites
+of its own. `Demo` runs `LinearSysDT.reach` and `NeuralNetwork.propagate` at
+`Dyadic` and prints what comes out — the definitions the theorems are about, not
+copies of them.
+
+`lake exe demo` builds it as an executable, which has to link, and linking
+against Mathlib means compiling the C emitted for every module it reaches. CI
+and `check-demo.sh` therefore run the same `main` through the interpreter with
+`lake env lean --run src/Demo.lean`, which needs only the oleans.
 
 ## File roles
 
