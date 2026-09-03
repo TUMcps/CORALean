@@ -21,7 +21,7 @@ computed.
 
 -- Authors:       Tobias Ladner
 -- Written:       18-August-2026
--- Last update:   ---
+-- Last update:   02-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -55,6 +55,12 @@ noncomputable instance : LinComb (Zonotope (Vec ℝ n)) (Vec ℝ n) where
 noncomputable instance : Reduce (Zonotope (Vec ℝ n)) (Vec ℝ n) where
   reduce := Zonotope.reduce
   reduce_outer := Zonotope.reduce_outer
+
+/-- `map` at the relabelling, and no operation of its own: a reindexing *is* a
+linear map, and a zonotope is exactly closed under one. -/
+instance : Reindex (fun n => Zonotope (Vec ℝ n)) where
+  reindex e Z := Zonotope.map (reindexLin e) Z
+  reindex_exact e Z := (Zonotope.map_exact (reindexLin e) Z).symm
 
 instance : Mtimes (Mat ℝ) (fun n => Zonotope (Vec ℝ n)) where
   mtimes := Zonotope.mtimes

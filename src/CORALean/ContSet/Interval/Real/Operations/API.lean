@@ -4,6 +4,7 @@ import CORALean.ContSet.Interval.Real.Operations.LinComb
 import CORALean.ContSet.Interval.Real.Operations.Mtimes
 import CORALean.ContSet.Interval.Real.Operations.MtimesIntervalMat
 import CORALean.ContSet.Interval.Real.Operations.OfBounds
+import CORALean.ContSet.Interval.Real.Operations.Reindex
 
 /-!
 # What `Interval` computes

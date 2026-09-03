@@ -23,13 +23,17 @@ set of *matrices* is an instance like any other. Not by a `Tensor` shape: `Mat`
 is Mathlib's `Matrix`, equal to `Tensor ℝ [m, n]` only up to `rfl`, and instance
 search sees through that in neither direction.
 
-`Mtimes` alone keeps a family indexed by ℕ, since it is the one operation that
-moves between ambient types and the result has to land somewhere.
+`Mtimes` and `Reindex` keep a family indexed by ℕ, being the operations that
+move between ambient types, where the result has to land somewhere.
+
+`Reindex` is the only class here whose field is an *equality*. That is what it
+is for: relabelling coordinates loses nothing, and a permutation matrix pushed
+through `mtimes` would compute the same set without any way to say so.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       16-August-2026
--- Last update:   01-September-2026
+-- Last update:   02-September-2026
 -- Last revision: ---
 
 namespace CORALean
@@ -96,6 +100,28 @@ class Mtimes (𝕄 : ℕ → ℕ → Type) (S : ℕ → Type)
   mtimes {m n : ℕ} : 𝕄 m n → S n → S m
   mtimes_outer {m n : ℕ} (M : 𝕄 m n) (s : S n) :
     (⋃ A ∈ construct M, (A *ᵥ ·) '' construct s) ⊆ construct (mtimes M s)
+
+/-- Relabelling coordinates, bundled: a reindexing is a linear map, which is
+what lets a representation closed under `map` discharge the guarantee below with
+the exactness proof it already has. -/
+def reindexLin {n m : ℕ} (e : Fin m ≃ Fin n) : Vec ℝ n →ₗ[ℝ] Vec ℝ m where
+  toFun x := fun i => x (e i)
+  map_add' _ _ := rfl
+  map_smul' _ _ := rfl
+
+/-- Reading a set's coordinates in a different order, and the one operation
+class here whose guarantee is an *equality*. That is why it is not `Mtimes` at a
+permutation matrix: the matrix product computes the same set, but `mtimes_outer`
+has no room to say so, and a reshape layer's whole content is that it loses
+nothing.
+
+`Fin m ≃ Fin n` rather than a plain `Fin m → Fin n`: a zonotope is exact under
+any reindexing, but a box is not — duplicating a coordinate constrains the two
+copies to agree, and an axis-aligned box cannot say that. -/
+class Reindex (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] where
+  reindex {n m : ℕ} : (Fin m ≃ Fin n) → S n → S m
+  reindex_exact {n m : ℕ} (e : Fin m ≃ Fin n) (s : S n) :
+    construct (reindex e s) = reindexLin e '' construct s
 
 /-- Every point on a segment running from one set to the other. -/
 def segments {α : Type} [AddCommGroup α] [Module ℝ α] (X Y : Set α) : Set α :=

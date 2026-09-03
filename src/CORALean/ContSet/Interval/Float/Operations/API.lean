@@ -5,6 +5,7 @@ import CORALean.ContSet.Interval.Float.Operations.And
 import CORALean.ContSet.Interval.Float.Operations.Plus
 import CORALean.ContSet.Interval.Float.Operations.LinComb
 import CORALean.ContSet.Interval.Float.Operations.Mtimes
+import CORALean.ContSet.Interval.Float.Operations.Reindex
 
 /-!
 # What `Interval` computes

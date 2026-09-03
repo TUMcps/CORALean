@@ -5,6 +5,7 @@ import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
 import CORALean.ContSet.Zonotope.Float.Operations.AbsorbError
 import CORALean.ContSet.Zonotope.Float.Operations.Reduce
 import CORALean.ContSet.Zonotope.Float.Operations.ReduceAndAbsorb
+import CORALean.ContSet.Zonotope.Float.Operations.Reindex
 
 /-!
 # What `Zonotope` computes

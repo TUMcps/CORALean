@@ -1,6 +1,7 @@
 import CORALean.ContSet.Interval.Float.Theorems.LinCombOuter
 import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
 import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+import CORALean.ContSet.Interval.Float.Theorems.ReindexExact
 
 /-!
 # What `Interval` instantiates
@@ -14,7 +15,7 @@ in differs.
 
 -- Authors:       Tobias Ladner
 -- Written:       18-August-2026
--- Last update:   ---
+-- Last update:   02-September-2026
 -- Last revision: ---
 
 namespace CORALean.Float
@@ -34,6 +35,12 @@ instance : LinComb (Interval 𝕋 n) (Vec ℝ n) where
 instance : Reduce (Interval 𝕋 n) (Vec ℝ n) where
   reduce I _ := I
   reduce_outer _ _ := subset_rfl
+
+/-- The one field here that is an equality: a relabelling does no arithmetic, so
+the float box loses exactly what the exact one does, namely nothing. -/
+instance : Reindex (Interval 𝕋) where
+  reindex := Interval.reindex
+  reindex_exact := Interval.reindex_exact
 
 instance : Mtimes (Mat 𝕋) (Interval 𝕋) where
   mtimes := Interval.mtimes

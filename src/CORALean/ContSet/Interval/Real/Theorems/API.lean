@@ -7,6 +7,7 @@ import CORALean.ContSet.Interval.Real.Theorems.PlusExact
 import CORALean.ContSet.Interval.Real.Theorems.LinCombOuter
 import CORALean.ContSet.Interval.Real.Theorems.MtimesIntervalMatOuter
 import CORALean.ContSet.Interval.Real.Theorems.MtimesOuter
+import CORALean.ContSet.Interval.Real.Theorems.ReindexExact
 
 /-!
 # What `Interval` guarantees

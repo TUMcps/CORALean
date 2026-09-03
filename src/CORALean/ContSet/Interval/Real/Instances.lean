@@ -6,6 +6,7 @@ import CORALean.ContSet.Interval.Real.Theorems.LinCombOuter
 import CORALean.ContSet.Interval.Real.Theorems.MtimesIntervalMatOuter
 import CORALean.ContSet.Interval.Real.Theorems.MtimesOuter
 import CORALean.ContSet.Interval.Real.Theorems.PlusExact
+import CORALean.ContSet.Interval.Real.Theorems.ReindexExact
 
 /-!
 # What `Interval` instantiates
@@ -53,6 +54,13 @@ instance : LinComb (Interval (Vec ℝ n)) (Vec ℝ n) where
 instance : Reduce (Interval (Vec ℝ n)) (Vec ℝ n) where
   reduce I _ := I
   reduce_outer _ _ := subset_rfl
+
+/-- The one instance here whose field is an equality: a reshape layer's content
+is that it loses nothing, and `Mtimes` at a permutation matrix has no room to
+say so. -/
+instance : Reindex (fun n => Interval (Vec ℝ n)) where
+  reindex := Interval.reindex
+  reindex_exact := Interval.reindex_exact
 
 instance : Mtimes (Mat ℝ) (fun n => Interval (Vec ℝ n)) where
   mtimes := Interval.mtimes
