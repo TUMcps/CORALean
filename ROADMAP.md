@@ -8,12 +8,13 @@ no dependencies are the ones that can start.
 
 | Branch | Work |
 | --- | --- |
-| `feat/float-ellipsoid` | The last representation without a float layer, and a support function that wants a square root |
+| `feat/conpolyzono-inequalities` | Give a constrained polynomial zonotope's constraints a direction to round in, which is what blocks float `and` and `ConZonotope → ConPolyZono` alike |
 | `feat/nn-more-layers` | The layers CORA has beyond the four here — reshape, pooling, convolution, batch norm, softmax |
 | `feat/operation-params` | Whether an operation class may carry a precision knob — the question three open items point at |
 
-Next after those: the float layers that remain, the conversions the newest
-representations do not yet have, more layers, and `restructure`.
+Next after those: the conversions the newest representations do not yet have,
+`restructure`, bounding the independent block, and the reduction methods beyond
+the one.
 
 ## Done
 
