@@ -26,10 +26,12 @@ open CORALean CORALean.Float
 
 abbrev D := Dyadic 24
 
-/-- `m · 2 ^ e`, so every constant below is written the way it is stored. -/
-def dy (m e : ℤ) : D := ⟨m, e⟩
+/-- `m · 2 ^ e`, so every constant below is written the way it is stored. Precision
+`p` is implicit and inferred from the expected type, so the same literal serves
+`Dyadic 24` and a run at a smaller precision alike. -/
+def dy {p : ℕ} (m e : ℤ) : Dyadic p := ⟨m, e⟩
 
 /-- Zero width in every coordinate: what a set that has not rounded yet owes. -/
-def zeroBox (n : ℕ) : Interval D n := ⟨fun _ => dy 0 0, fun _ => dy 0 0⟩
+def zeroBox {p : ℕ} (n : ℕ) : Interval (Dyadic p) n := ⟨fun _ => dy 0 0, fun _ => dy 0 0⟩
 
 end Demo
