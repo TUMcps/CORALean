@@ -35,7 +35,9 @@ own. `appendE` puts them beside the constraint columns, over the same factors.
 independent coefficient is not one — an independent generator could move the two
 points apart with nothing in the system to forbid it. `andDep` alone is
 therefore exact only where both independent blocks are empty, and its theorem
-says so.
+says so. CORA's `and_` leaves the independent blocks outside the constraints
+and encloses the pair by the zonotope `enclose`; freeing them into factors first
+is what makes this one exact.
 
 At `Vec` only, since the agreement rows read a generator coordinate by
 coordinate.
@@ -43,7 +45,7 @@ coordinate.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   03-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real

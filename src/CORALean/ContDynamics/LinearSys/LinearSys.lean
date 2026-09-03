@@ -3,7 +3,12 @@ import CORALean.ContSet.ContSet.ContSet
 /-!
 # Continuous-time linear systems: the representation
 
-CORA's `linearSys`: `ẋ(t) = A x(t) + u(t)`, carrying only the matrix.
+CORA's `linearSys`, reduced to `ẋ(t) = A x(t) + u(t)`: the class there is
+`ẋ = A x + B u + c` with an output `y = C x + D u + k`, and here only `A` is
+kept, the input entering in state coordinates as in Althoff's thesis, whose
+reachability algorithms are stated in that form. `B U ⊕ c` is one `mtimes` and
+one `plus` on the input set, so nothing is lost by folding it in there; the
+output equation has no counterpart.
 
 `Trajectory` is what such a system denotes and the only place the dynamics
 appear — one admissible run, with an input at every time, so a disturbance is
@@ -25,7 +30,7 @@ integrate it — see `InputIntegrable`.
 
 -- Authors:       Tobias Ladner
 -- Written:       18-August-2026
--- Last update:   02-September-2026
+-- Last update:   03-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real

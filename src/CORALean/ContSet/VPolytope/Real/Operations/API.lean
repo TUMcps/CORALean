@@ -18,9 +18,10 @@ requiring no certificate. `interval` is that at the `2n` coordinate directions,
 and the one operation that loses something: a box around the vertices is a box
 around the hull, and wider.
 
-`ofInterval` is a box as its `2ⁿ` corners, which is what `and` goes through:
-intersection is the operation vertices are worst at, its result's vertices being
-generally none of either operand's, so each hull is boxed, the boxes intersected
-exactly, and the corners taken. Sound and loose, and exact when both operands
-were boxes. The tight version is the conversion `Polytope` does not have.
+`and` is the operation vertices are worst at, its result's vertices being
+generally none of either operand's, so it goes out to halfspaces on directions
+the caller names, intersects there for free, and comes back by vertex
+enumeration. Exact when the directions carry both operands' facets, enclosing
+otherwise; the float layer, which cannot enumerate vertices, goes through boxes
+instead.
 -/

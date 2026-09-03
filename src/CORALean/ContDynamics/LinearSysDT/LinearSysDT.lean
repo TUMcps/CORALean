@@ -3,7 +3,11 @@ import CORALean.ContSet.ContSet.ContSet
 /-!
 # Discrete-time linear systems: the representation
 
-CORA's `linearSysDT`: `x(k+1) = A x(k) + u(k)`, carrying only the matrix.
+CORA's `linearSysDT`, reduced to `x(k+1) = A x(k) + u(k)`: the class there is
+`x(k+1) = A x(k) + B u(k) + c` with an output `y = C x + D u + k`, and here only
+`A` is kept, the input entering in state coordinates as in Althoff's thesis.
+`B U ⊕ c` is one `mtimes` and one `plus` on the input set, so nothing is lost
+by folding it in there; the output equation has no counterpart.
 
 `Trajectory` is what such a system denotes and the only place the dynamics
 appear — one admissible run, with an input per step, so a disturbance is one
@@ -12,7 +16,7 @@ too.
 
 -- Authors:       Tobias Ladner
 -- Written:       18-August-2026
--- Last update:   ---
+-- Last update:   03-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real

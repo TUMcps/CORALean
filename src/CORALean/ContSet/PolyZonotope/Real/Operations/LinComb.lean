@@ -18,13 +18,15 @@ blocks and sets the fresh factor's row to `1` on exactly the second.
 The independent generators are where exactness stops. Their coefficients come
 out as `½(1±α)βⱼ`, a product of a dependent factor with an independent one,
 which the representation cannot express; that product still lies in `[-1,1]`, so
-each `GIⱼ` is kept at full width instead. CORA splits the block into scaled
-copies, which denotes the same set with more generators.
+each `GIⱼ` is kept at full width instead. CORA runs the zonotope `enclose` on
+the two independent blocks, `[½(GI₁+GI₂), ½(GI₁-GI₂), GI_excess]`, which is
+tighter — it keeps the two coefficients tied through one `λ` — at the same
+count.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   03-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real

@@ -11,14 +11,17 @@ Sound because `λ ∈ [0,1]` scales a coefficient into `[-1,1]` again, so `λ β
 and `(1-λ) β₂` are coefficients of the original generator blocks and no new
 ones are needed for them.
 
-CORA takes `½(G₁+G₂)` and `½(G₁-G₂)` instead, which is tighter when the two
-generator matrices correspond column by column — but that needs equal generator
-counts, which `h` being a field cannot promise.
+CORA has no `linComb` for zonotopes; its `enclose` computes this set as
+`⟨½(c₁+c₂), [½(G₁+G₂), ½(c₁-c₂), ½(G₁-G₂), G_excess]⟩`, pairing generators
+column by column and keeping the larger set's surplus at full width. That has
+the same count `h₁ + h₂ + 1` and is tighter, since it records that `λ β₁` and
+`(1-λ) β₂` share one `λ`; keeping the two blocks whole is the looser choice
+this file makes.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       18-August-2026
--- Last update:   01-September-2026
+-- Last update:   03-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
