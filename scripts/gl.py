@@ -10,6 +10,7 @@ machine reaches the API the same way, with nothing to pass along.
 
   gl.py issue list [label]         open issues, newest first
   gl.py issue show <iid>
+  gl.py issue new <label> <title> <desc-file>
   gl.py issue note <iid> <text>    comment
   gl.py issue close <iid> <text>   comment, then close -- never close silently
 
@@ -81,6 +82,12 @@ if group == "issue":
         for n in call("GET", "/issues/%s/notes?sort=asc" % rest[0]):
             if not n["system"]:
                 print("\n--- %s:\n%s" % (n["author"]["username"], n["body"]))
+    elif cmd == "new":
+        with open(rest[2], encoding="utf-8") as f:
+            desc = f.read()
+        i = call("POST", "/issues",
+                 {"title": rest[1], "description": desc, "labels": rest[0]})
+        print("#%d %s" % (i["iid"], i["web_url"]))
     elif cmd == "note":
         note("issues", rest[0], rest[1])
     elif cmd == "close":
