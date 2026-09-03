@@ -135,4 +135,19 @@ theorem PolyZonotope.reduce_outer (PZ : PolyZonotope (Vec ℝ n)) (o : ℕ) :
   (PolyZonotope.compact_exact PZ).subset.trans
     (PolyZonotope.reduceGirard_outer PZ.compact o)
 
+theorem PolyZonotope.reduceGirardDependent_outer (PZ : PolyZonotope (Vec ℝ n)) (o : ℕ) :
+    PZ.construct ⊆ (PZ.reduceGirardDependent o).construct := by
+  unfold PolyZonotope.reduceGirardDependent
+  split_ifs with hlt
+  · exact PolyZonotope.reduceBy_outer PZ _ _
+  · exact subset_rfl
+
+/-- The tighter rule is sound on the same line as the bounded one, which is the
+point of `reduceBy_outer` holding at every pair of partitions: what separates
+the two is the order bound and nothing here. -/
+theorem PolyZonotope.reduceDependent_outer (PZ : PolyZonotope (Vec ℝ n)) (o : ℕ) :
+    PZ.construct ⊆ (PZ.reduceDependent o).construct :=
+  (PolyZonotope.compact_exact PZ).subset.trans
+    (PolyZonotope.reduceGirardDependent_outer PZ.compact o)
+
 end CORALean.Real

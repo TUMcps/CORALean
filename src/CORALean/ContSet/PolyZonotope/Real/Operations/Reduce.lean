@@ -38,6 +38,12 @@ the guarantee, so it is left out.
 being reduced has to be a count of monomials the set actually has, or the order
 bounds noise.
 
+`reduceDependent` is the dependent-only accounting, kept and named rather than
+dropped: it is tighter per step, since a generator kept is a generator not
+boxed, and it bounds nothing. Both are `reduceBy` at a different pair of
+partitions and both are sound; only one of them bounds an order, and that is the
+one `Reduce` instantiates.
+
 Two departures from CORA remain, both deliberate. It ranks by `sum(G.^2)`,
 where Girard's `‖g‖₁ - ‖g‖∞` is precisely what boxing a generator costs and is
 zero on an axis-aligned one, which a squared length is not — and CORA's own
@@ -105,6 +111,11 @@ noncomputable def PolyZonotope.aux_girardSplit {m : ℕ} (metric : Fin m → ℝ
     ((Tuple.sort fun l => -metric l).symm.trans
       (finCongr (Nat.add_sub_cancel' (min_le_right k m)).symm))
 
+/-- Nothing dropped: what a rule hands `reduceBy` for a block it leaves
+alone. -/
+noncomputable def PolyZonotope.aux_keepAll (m : ℕ) : Split (Fin m) into (Fin m) and (Fin 0) :=
+  (Partition.split m 0).reindex (finCongr (Nat.add_zero m).symm)
+
 /-- How many of the `K` best-ranked generators overall are dependent ones: the
 whole of CORA's joint accounting, as one number. `rank` is CORA's
 `sort(len,'descend')` on the concatenation `[G, GI]`, read as a rank rather than
@@ -144,5 +155,27 @@ merging would spend the budget twice on it. -/
 noncomputable def PolyZonotope.reduce (PZ : PolyZonotope (Vec ℝ n)) (o : ℕ) :
     PolyZonotope (Vec ℝ n) :=
   PZ.compact.reduceGirard o
+
+/-- The same rule with the independent block left out of the accounting: cut the
+dependent generators alone against `n·o` and keep every independent one.
+
+Tighter per step than `reduceGirard`, since a generator kept is a generator not
+boxed, and bounded in nothing: the box adds `n` independent generators at every
+call and this rule removes none, so `q` grows without limit along a loop that
+calls it. That is why `reduce` is the other one and why `Reduce` instantiates
+that. This is for a caller that wants the tighter step and bounds the count some
+other way — a fixed number of steps, or an `interval` at the end. -/
+noncomputable def PolyZonotope.reduceGirardDependent (PZ : PolyZonotope (Vec ℝ n)) (o : ℕ) :
+    PolyZonotope (Vec ℝ n) :=
+  if o * n < PZ.h then
+    PZ.reduceBy
+      (PolyZonotope.aux_girardSplit (PolyZonotope.aux_girardMetric PZ.G) ((o - 1) * n))
+      (PolyZonotope.aux_keepAll PZ.q)
+  else PZ
+
+/-- `reduce`'s shape at the dependent-only rule: compact, then rank. -/
+noncomputable def PolyZonotope.reduceDependent (PZ : PolyZonotope (Vec ℝ n)) (o : ℕ) :
+    PolyZonotope (Vec ℝ n) :=
+  PZ.compact.reduceGirardDependent o
 
 end CORALean.Real
