@@ -3,14 +3,21 @@ import CORALean.ContDynamics.LinearSysDT.API
 import CORALean.ContDynamics.NeurNetContrSys.API
 import CORALean.ContDynamics.NeurNetContrSysDT.API
 import CORALean.ContDynamics.NonlinearSys.API
+import CORALean.ContDynamics.OutputEq.API
 
 /-!
 # Systems and their reachability, collected
 
-One directory per system class. The algorithms are written against the `ContSet`
-interfaces alone, so none names a representation. The `*Zonotope` and
-`*ConZonotope` theorems are the exceptions: they say what is left once a
-representation that does have the required properties is substituted in.
+One directory per system class, and `OutputEq`, which is not one. The algorithms
+are written against the `ContSet` interfaces alone, so none names a
+representation. The `*Zonotope` and `*ConZonotope` theorems are the exceptions:
+they say what is left once a representation that does have the required
+properties is substituted in.
+
+`OutputEq` is CORA's `y = C x + D u`, kept out of the system classes so that it
+applies to all of them: it is paired with a reachable set and an input set at
+the point of use, which is what lets a sampled system read `u` from the set its
+run was described by rather than from the one its discretization steps with.
 
 `NonlinearSys` computes nothing of its own: conservative linearization hands a
 confined run to `LinearSys`, so every reachability guarantee in the directory is

@@ -7,8 +7,15 @@ CORA's `linearSys`, reduced to `ẋ(t) = A x(t) + u(t)`: the class there is
 `ẋ = A x + B u + c` with an output `y = C x + D u + k`, and here only `A` is
 kept, the input entering in state coordinates as in Althoff's thesis, whose
 reachability algorithms are stated in that form. `B U ⊕ c` is one `mtimes` and
-one `plus` on the input set, so nothing is lost by folding it in there; the
-output equation has no counterpart.
+one `plus` on the input set, and the folded form reaches the same states, so the
+flow loses nothing by it.
+
+The output equation is `OutputEq`, paired with a computed set rather than stored
+here, and the pairing is where a sampled system needs it to be: `discretize`
+hands `LinearSysDT` an input set of state contributions over a step, not of
+inputs, so `y(kΔt) = C x(kΔt) + D u(kΔt)` is read at `U` — this system's input
+set — with the state taken from `reach_outer`. A `D` stored on either system
+would multiply the wrong set at one of them.
 
 `Trajectory` is what such a system denotes and the only place the dynamics
 appear — one admissible run, with an input at every time, so a disturbance is

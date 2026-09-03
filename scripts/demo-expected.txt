@@ -27,6 +27,17 @@ the error box alone, as a width per coordinate:
    5     0.000000000    0.000000000
    6     0.000000000    0.000000000
 
+OutputEq.outputSet for y = x1 + u2, as Zonotope.interval:
+
+   k  gens  y
+   0      4  [   0.859375000,    1.140625000 ]
+   1      6  [   0.773437500,    1.101562500 ]
+   2      8  [   0.678222656,    1.048339844 ]
+   3      8  [   0.576568603,    0.983489991 ]
+   4      8  [   0.470651626,    0.909994126 ]
+   5      8  [   0.362471222,    0.830718399 ]
+   6      8  [   0.253827780,    0.748372019 ]
+
 == NeuralNetwork.propagate at Dyadic 24 ==
 
 affine 2 -> 3, ReLU, affine 3 -> 2, as in Examples.FeedForwardFloat

@@ -1,4 +1,5 @@
 import CORALean.ContDynamics.LinearSysDT.Operations
+import CORALean.ContDynamics.OutputEq.Operations
 import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
 import CORALean.ContSet.Zonotope.Float.Instances
 import Demo.Decimal
@@ -13,10 +14,17 @@ the input set is a small box, so the true reachable sets converge to a bounded
 attractor. Everything the table shows growing is therefore the enclosure and not
 the system.
 
-The two tables are the two halves of what a float zonotope carries. The first is
-`Zonotope.interval` of the reachable set — the nominal part and the error box
-together, the box a specification would actually be checked against. The second
-is the error box alone, which is what `reduce` never touches.
+The first two tables are the two halves of what a float zonotope carries. The
+first is `Zonotope.interval` of the reachable set — the nominal part and the
+error box together, the box a specification would actually be checked against.
+The second is the error box alone, which is what `reduce` never touches.
+
+The third is an `OutputEq`: a one-dimensional sensor reading the first state
+coordinate and the second input coordinate, `y = x₁ + u₂`. Read it against the
+first table — every row is that table's `x1` column widened by exactly the
+`0.015625` the input contributes on each side, `mtimes` at a row of a selection
+matrix and `plus` on two zonotopes both being exact here. A row wider than that
+would be a widening in `outputSet` rather than in `reach`.
 
 The second table reads zero throughout, and that is a result rather than a bug:
 at 24 bits and this horizon every product and sum is exact, so `mtimes` pays
@@ -79,6 +87,21 @@ def errorRow (k : ℕ) : String :=
   let E := (R k).E
   pad 4 (toString k) ++ "  " ++ pad 14 (showWidth E 0) ++ pad 15 (showWidth E 1)
 
+/-- `y = x₁ + u₂`: a scalar sensor reading one state coordinate, with the second
+input coordinate entering it directly. Both matrices are selection rows, so
+nothing here rounds and the table is the enclosure alone. -/
+def out : Real.OutputEq D 2 2 1 where
+  C := !![dy 1 0, dy 0 0]
+  D := !![dy 0 0, dy 1 0]
+
+/-- The output set at step `k`, from the reachable set and the same input set
+the step was taken with. -/
+def Y (k : ℕ) : Zonotope D 1 := out.outputSet (R k) U
+
+def outputRow (k : ℕ) : String :=
+  let Z := Y k
+  pad 4 (toString k) ++ pad 7 (toString Z.h) ++ "  " ++ showBox Z.interval
+
 def reachReport : String :=
   String.intercalate "\n" ([
     "== LinearSysDT.reach at Dyadic 24 ==",
@@ -96,6 +119,11 @@ def reachReport : String :=
     "the error box alone, as a width per coordinate:",
     "",
     "   k  width 1       width 2"] ++
-    (List.range (steps + 1)).map errorRow)
+    (List.range (steps + 1)).map errorRow ++ [
+    "",
+    "OutputEq.outputSet for y = x1 + u2, as Zonotope.interval:",
+    "",
+    "   k  gens  y"] ++
+    (List.range (steps + 1)).map outputRow)
 
 end Demo
