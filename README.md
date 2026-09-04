@@ -22,6 +22,25 @@ lake exe cache get && lake build
 ```
 
 
+## The generated C
+
+`lake build` also emits Lean's own C for every module, into `.lake/build/ir/`
+along the module path: `src/CORALean/ContSet/Zonotope/Float/API.lean` becomes
+`.lake/build/ir/CORALean/ContSet/Zonotope/Float/API.c`. It is a build product
+and is not checked in — rebuilding is what keeps it in step with the sources.
+
+Compile it with the toolchain's own `leanc`, which supplies the runtime headers
+and links the Lean runtime and GMP:
+
+```
+"$(lean --print-prefix)/bin/leanc" -c .lake/build/ir/CORALean/ContSet/Zonotope/Float/API.c
+```
+
+Use that `leanc` rather than a system compiler: the C is written against the
+runtime of the toolchain `lean-toolchain` pins, and other versions are not
+expected to accept it.
+
+
 ## Layout
 
 The formalization lives in `src/CORALean/`, mirroring CORA's structure and
