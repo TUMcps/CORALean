@@ -1,4 +1,5 @@
 import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstruct
+import CORALean.ContSet.Ellipsoid.Real.Theorems.QMemConstruct
 import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqImage
 import CORALean.ContSet.Ellipsoid.Real.Theorems.Convex
 import CORALean.ContSet.Ellipsoid.Real.Theorems.IsBounded

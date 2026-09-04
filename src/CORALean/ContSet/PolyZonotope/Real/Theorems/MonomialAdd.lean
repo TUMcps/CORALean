@@ -1,0 +1,27 @@
+import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
+
+/-!
+# `PolyZonotope.monomial_add`
+
+Exponent columns add where monomials multiply — what keeps the representation
+closed under a quadratic map, which sums exponent columns pairwise.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+namespace CORALean.Real
+
+/-- Exponent columns add where monomials multiply, which is what keeps the
+representation closed under a quadratic map. -/
+theorem PolyZonotope.monomial_add {p h : ℕ} (E₁ E₂ : Fin p → Fin h → ℕ) (a : Fin p → ℝ)
+    (i : Fin h) :
+    PolyZonotope.monomial (fun k i => E₁ k i + E₂ k i) a i
+      = PolyZonotope.monomial E₁ a i * PolyZonotope.monomial E₂ a i := by
+  rw [PolyZonotope.monomial, PolyZonotope.monomial, PolyZonotope.monomial,
+    ← Finset.prod_mul_distrib]
+  exact Finset.prod_congr rfl fun k _ => pow_add (a k) (E₁ k i) (E₂ k i)
+
+end CORALean.Real

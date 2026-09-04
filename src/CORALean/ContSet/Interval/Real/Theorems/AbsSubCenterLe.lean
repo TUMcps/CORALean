@@ -1,14 +1,13 @@
-import CORALean.ContSet.Interval.Real.Interval
+import CORALean.ContSet.Interval.Real.Operations.Center
+import CORALean.ContSet.Interval.Real.Operations.Radius
 
 /-!
-# `Interval.center` and `Interval.radius`
+# `Interval.abs_sub_center_le`
 
-The midpoint and half the width: CORA's `center` and `rad`, the pair a box is
-read as when an enclosure proof splits a point into a centre plus a bounded
-deviation.
-
-The two are one line each and the bound relating them names both, so they share
-a file rather than each taking one of their own.
+What makes `center` and `radius` a genuine split of a box's point rather than
+two unrelated readings: every point the box denotes is off from the centre by
+at most the radius, coordinate by coordinate — how every enclosure proof off a
+box reads it.
 -/
 
 -- Authors:       Tobias Ladner
@@ -21,10 +20,6 @@ namespace CORALean.Real
 open Entrywise
 
 variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
-
-noncomputable def Interval.center (I : Interval α) : α := (2:ℝ)⁻¹ • (I.inf + I.sup)
-
-noncomputable def Interval.radius (I : Interval α) : α := (2:ℝ)⁻¹ • (I.sup - I.inf)
 
 /-- A point the box denotes is the centre off by at most the radius, which is
 how every enclosure proof splits it. -/
