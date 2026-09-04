@@ -24,7 +24,7 @@ states the constraint over the data, which an operation assembling one needs.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   04-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -75,6 +75,16 @@ theorem ConPolyZono.holds_mono {p m s : ℕ} {A : Mat ℝ m s} {b b' : Interval 
     (hsup : ∀ i, b.sup i ≤ b'.sup i) (h : ConPolyZono.holds A b EC a) :
     ConPolyZono.holds A b' EC a :=
   fun i => ⟨le_trans (hinf i) (h i).1, le_trans (h i).2 (hsup i)⟩
+
+/-- The constraint reads its data only through the vector `A μ(α)`, so a
+rewriting of the constraint block that leaves that vector alone leaves the
+constraint alone — which is what compacting `A` and `EC` does. -/
+theorem ConPolyZono.holds_congr {p p' m s s' : ℕ} {A : Mat ℝ m s} {A' : Mat ℝ m s'}
+    {b : Interval (Vec ℝ m)} {EC : Fin p → Fin s → ℕ} {EC' : Fin p' → Fin s' → ℕ}
+    {a : Fin p → ℝ} {a' : Fin p' → ℝ}
+    (h : A' *ᵥ PolyZonotope.monomial EC' a' = A *ᵥ PolyZonotope.monomial EC a) :
+    ConPolyZono.holds A b EC a ↔ ConPolyZono.holds A' b EC' a' := by
+  rw [ConPolyZono.holds, ConPolyZono.holds, h]
 
 /-- What a set's own factors must satisfy. -/
 def ConPolyZono.satisfies (C : ConPolyZono α) (a : Fin C.p → ℝ) : Prop :=

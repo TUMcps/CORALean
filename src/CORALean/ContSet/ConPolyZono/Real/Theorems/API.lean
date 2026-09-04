@@ -1,4 +1,5 @@
 import CORALean.ContSet.ConPolyZono.Real.Theorems.AndExact
+import CORALean.ContSet.ConPolyZono.Real.Theorems.CompactExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.DependentExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.MapExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.PlusExact
@@ -7,9 +8,14 @@ import CORALean.ContSet.ConPolyZono.Real.Theorems.QuadMapExact
 /-!
 # What `ConPolyZono` guarantees
 
-`and`, `plus`, `map`, `quadMap` and `dependent`, all five exactly. Nothing here
-is an enclosure, which is unusual and is the constraints paying for themselves:
-the operations that would have to relax something are the ones left out.
+`and`, `plus`, `map`, `quadMap`, `dependent` and `compact`, all six exactly.
+Nothing here is an enclosure, which is unusual and is the constraints paying for
+themselves: the operations that would have to relax something are the ones left
+out.
+
+`compact_exact` is three equalities in a row and no hypothesis anywhere, which
+is what makes it bookkeeping: merging the generators, merging the constraint
+columns, and dropping the factors neither block reads.
 
 `and_exact` is the one that distinguishes the representation. It is the only
 exact intersection in this repository that is not of convex sets, and together

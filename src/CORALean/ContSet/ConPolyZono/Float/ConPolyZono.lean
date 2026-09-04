@@ -16,15 +16,15 @@ other one.
 Rounding therefore has two channels. The centre and the generators have no
 slack, so theirs goes into the ambient error box; the constraint bounds do, `b`
 being an interval, so theirs goes into `b`, widened outward and hence enclosing.
-`plus` and `mtimes` copy the constraint block and pay nothing. `and` needs both:
-its agreement rows relate two nominal points that stand as far apart as their
-error boxes allow, and the rounding of `c₂ - c₁` is added to that tolerance, one
-interval computed downward on the low side and upward on the high.
+`plus` and `mtimes` copy the constraint block and pay nothing; `and` and
+`compact` need both at once. `and`'s agreement rows relate two nominal points as
+far apart as their error boxes allow, and the rounding of `c₂ - c₁` is added to
+that tolerance, downward on the low side and upward on the high.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   04-September-2026
 -- Last revision: ---
 
 namespace CORALean.Float

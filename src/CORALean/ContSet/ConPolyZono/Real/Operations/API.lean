@@ -1,4 +1,5 @@
 import CORALean.ContSet.ConPolyZono.Real.Operations.And
+import CORALean.ContSet.ConPolyZono.Real.Operations.Compact
 import CORALean.ContSet.ConPolyZono.Real.Operations.Dependent
 import CORALean.ContSet.ConPolyZono.Real.Operations.Map
 import CORALean.ContSet.ConPolyZono.Real.Operations.Mtimes
@@ -8,12 +9,16 @@ import CORALean.ContSet.ConPolyZono.Real.Operations.QuadMap
 /-!
 # What `ConPolyZono` computes
 
-`and`, `plus`, `map` and `quadMap` exactly, and `dependent`, which moves the
-independent block into the dependent one and is what makes both `and` and
-`quadMap` exact rather than merely sound.
+`and`, `plus`, `map`, `quadMap` and `compact` exactly, and `dependent`, which
+moves the independent block into the dependent one and is what makes both `and`
+and `quadMap` exact rather than merely sound.
 
 `and` is the one to read: everything else a polynomial zonotope already
 computes, and this is what the constraints buy.
+
+`compact` is the one that has to know about the sharing. Merging is
+`PolyZonotope`'s at both blocks, but a factor is dropped only when neither `E`
+nor `EC` reads it, so the two exponent matrices are dropped from together.
 
 `quadMap` carries over from `PolyZonotope` unchanged, and that it does is worth
 knowing — a quadratic map reads the generators and the exponent matrix, and the
