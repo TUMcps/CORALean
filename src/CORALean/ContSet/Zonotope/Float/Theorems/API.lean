@@ -6,6 +6,7 @@ import CORALean.ContSet.Zonotope.Float.Theorems.AbsorbErrorOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.ReduceByOuterRefines
 import CORALean.ContSet.Zonotope.Float.Theorems.ReduceByOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.ReduceOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.ReduceOrder
 import CORALean.ContSet.Zonotope.Float.Theorems.ReduceAndAbsorbByOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.ReindexExact
 
