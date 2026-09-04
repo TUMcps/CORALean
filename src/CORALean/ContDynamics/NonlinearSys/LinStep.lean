@@ -1,4 +1,5 @@
 import CORALean.ContDynamics.NonlinearSys.AbstractionError
+import CORALean.ContDynamics.NonlinearSys.NonlinearSys
 import CORALean.ContDynamics.NonlinearSys.Operations.LinInput
 
 /-!
@@ -24,7 +25,7 @@ set is what a step is *run* with rather than what the linearization *is*.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   04-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -44,11 +45,11 @@ structure NonlinearSys.LinStep (sys : NonlinearSys n m) (U : S m) where
   us : Vec ℝ m
   R : Set (Vec ℝ n)
   L : S n
-  cert : AbstractionError sys A B xs us R (construct U) L
+  cert : AbstractionError sys.f A B xs us R (construct U) L
 
 /-- The input set this step's linear system has to be given. -/
 def NonlinearSys.LinStep.linInput {sys : NonlinearSys n m} {U : S m}
     (step : sys.LinStep U) : S n :=
-  sys.linInput step.A step.B step.xs step.us U step.L
+  CORALean.Real.linInput sys.f step.A step.B step.xs step.us U step.L
 
 end CORALean.Real

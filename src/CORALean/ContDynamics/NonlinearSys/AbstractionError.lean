@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.NonlinearSys.NonlinearSys
+import CORALean.ContSet.ContSet.ContSet
 
 /-!
 # The abstraction error of a linearization
@@ -28,7 +28,7 @@ having to enter a computed set, and a parameter rather than a field.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   04-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -40,10 +40,10 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- `L` encloses what is left of `f` once the affine part at `(xs, us)` is
 subtracted, everywhere on `R × U`. -/
-structure AbstractionError (sys : NonlinearSys n m) (A : Mat ℝ n n) (B : Mat ℝ n m)
-    (xs : Vec ℝ n) (us : Vec ℝ m) (R : Set (Vec ℝ n)) (U : Set (Vec ℝ m))
+structure AbstractionError (f : Vec ℝ n → Vec ℝ m → Vec ℝ n) (A : Mat ℝ n n)
+    (B : Mat ℝ n m) (xs : Vec ℝ n) (us : Vec ℝ m) (R : Set (Vec ℝ n)) (U : Set (Vec ℝ m))
     (L : S n) : Prop where
   encloses : ∀ x ∈ R, ∀ u ∈ U,
-    sys.f x u - (sys.f xs us + A *ᵥ (x - xs) + B *ᵥ (u - us)) ∈ construct L
+    f x u - (f xs us + A *ᵥ (x - xs) + B *ᵥ (u - us)) ∈ construct L
 
 end CORALean.Real

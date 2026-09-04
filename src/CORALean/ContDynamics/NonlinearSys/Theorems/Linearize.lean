@@ -23,7 +23,7 @@ that instance — restrict to `[0, τ]`, then linearize.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   02-September-2026
+-- Last update:   04-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -40,12 +40,12 @@ theorem NonlinearSys.Trajectory.linearize {sys : NonlinearSys n m} {T : Set ℝ}
     {U : S m} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {A : Mat ℝ n n}
     {B : Mat ℝ n m} {xs : Vec ℝ n} {us : Vec ℝ m} {R : Set (Vec ℝ n)} {L : S n}
     (traj : sys.Trajectory T R₀ U x u)
-    (cert : AbstractionError sys A B xs us R (construct U) L)
+    (cert : AbstractionError sys.f A B xs us R (construct U) L)
     (hR : ∀ t ∈ T, x t ∈ R) :
-    (NonlinearSys.linearize A).Trajectory T R₀ (sys.linInput A B xs us U L) x
+    (NonlinearSys.linearize A).Trajectory T R₀ (linInput sys.f A B xs us U L) x
       (fun t => sys.f (x t) (u t) - A *ᵥ x t) where
   init := traj.init
-  input t ht := NonlinearSys.linInput_outer cert (hR t ht) (traj.input t ht)
+  input t ht := linInput_outer cert (hR t ht) (traj.input t ht)
   flow t ht := by
     have he : toRealMat (NonlinearSys.linearize A).A *ᵥ x t
         + (sys.f (x t) (u t) - A *ᵥ x t) = sys.f (x t) (u t) := by
@@ -63,9 +63,9 @@ theorem NonlinearSys.Trajectory.linearize_horizon {sys : NonlinearSys n m} {T : 
     {R₀ : S n} {U : S m} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {A : Mat ℝ n n}
     {B : Mat ℝ n m} {xs : Vec ℝ n} {us : Vec ℝ m} {R : Set (Vec ℝ n)} {L : S n} {τ : ℝ}
     (traj : sys.Trajectory T R₀ U x u)
-    (cert : AbstractionError sys A B xs us R (construct U) L)
+    (cert : AbstractionError sys.f A B xs us R (construct U) L)
     (hT : Set.Icc 0 τ ⊆ T) (hR : ∀ t ∈ Set.Icc (0 : ℝ) τ, x t ∈ R) :
-    (NonlinearSys.linearize A).Trajectory (Set.Icc 0 τ) R₀ (sys.linInput A B xs us U L) x
+    (NonlinearSys.linearize A).Trajectory (Set.Icc 0 τ) R₀ (linInput sys.f A B xs us U L) x
       (fun t => sys.f (x t) (u t) - A *ᵥ x t) :=
   (traj.restrict hT).linearize cert hR
 
