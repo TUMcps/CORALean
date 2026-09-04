@@ -58,6 +58,7 @@ def toRealMat (M : Mat 𝕋 m n) : Mat ℝ m n := fun i j => toReal (M i j)
 /-- What the exact layer needs of the scalar, and all it needs. -/
 instance : Scalar 𝕋 where
   toRealMat M := CORALean.Float.toRealMat M
+  toRealVec v := CORALean.Float.toRealVec v
 
 /-! ## What the derived operations inherit -/
 

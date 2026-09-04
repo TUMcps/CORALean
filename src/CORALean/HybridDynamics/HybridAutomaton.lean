@@ -23,7 +23,7 @@ and a jump has no meaning without the stay that brought the state to the guard.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   04-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -41,7 +41,7 @@ inductive HybridAutomaton.Run {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ 
     L → Vec ℝ n → L → Vec ℝ n → Prop where
   | flow {ℓ : L} {τ : ℝ} {x u : ℝ → Vec ℝ n} (h : (HA.loc ℓ).Trajectory τ x u) :
       HA.Run ℓ (x 0) ℓ (x τ)
-  | jump {ℓ ℓ' : L} {τ : ℝ} {x u : ℝ → Vec ℝ n} {y : Vec ℝ n} {e : Transition S L n}
+  | jump {ℓ ℓ' : L} {τ : ℝ} {x u : ℝ → Vec ℝ n} {y : Vec ℝ n} {e : Transition S L 𝕋 n}
       (h : (HA.loc ℓ).Trajectory τ x u) (hmem : e ∈ (HA.loc ℓ).trans)
       (hguard : x τ ∈ construct e.guard)
       (rest : HA.Run e.target (e.reset (x τ)) ℓ' y) :

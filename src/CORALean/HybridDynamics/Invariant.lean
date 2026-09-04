@@ -23,7 +23,7 @@ file states what such an iteration would have to produce.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   04-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -37,7 +37,7 @@ structure HybridAutomaton.Invariant (HA : HybridAutomaton S L 𝕋 n) (R : L →
   flow {ℓ : L} {τ : ℝ} {x u : ℝ → Vec ℝ n} (h : (HA.loc ℓ).Trajectory τ x u)
     (h₀ : x 0 ∈ construct (R ℓ)) {t : ℝ} (ht : t ∈ Set.Icc 0 τ) :
     x t ∈ construct (R ℓ)
-  jump {ℓ : L} {e : Transition S L n} (hmem : e ∈ (HA.loc ℓ).trans) {z : Vec ℝ n}
+  jump {ℓ : L} {e : Transition S L 𝕋 n} (hmem : e ∈ (HA.loc ℓ).trans) {z : Vec ℝ n}
     (hz : z ∈ construct (R ℓ)) (hguard : z ∈ construct e.guard) :
     e.reset z ∈ construct (R e.target)
 
