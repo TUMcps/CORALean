@@ -1,5 +1,7 @@
+import CORALean.ContSet.ConPolyZono.Real.Operations.AppendE
 import CORALean.ContSet.ConPolyZono.Real.Operations.Dependent
 import CORALean.ContSet.ConPolyZono.Real.Operations.Plus
+import CORALean.ContSet.Interval.Real.Operations.Point
 
 /-!
 # `ConPolyZono.and`

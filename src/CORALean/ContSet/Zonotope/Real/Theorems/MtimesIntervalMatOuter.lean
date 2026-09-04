@@ -1,5 +1,7 @@
+import CORALean.ContSet.Interval.Real.Operations.CenterRadius
 import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
 import CORALean.ContSet.Zonotope.Real.Theorems.Coefficient
+import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
 
 /-!
 # Multiplying by an interval matrix over-approximates every matrix in it

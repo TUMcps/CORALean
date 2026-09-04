@@ -1,3 +1,4 @@
+import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
 import CORALean.ContSet.ConPolyZono.Float.Theorems.AndOuter
 import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactOuter
 import CORALean.ContSet.ConPolyZono.Float.Theorems.DependentExact
@@ -22,5 +23,6 @@ matrices, and `satisfies_mtimes` is `Iff.rfl`.
 The two nominal points it has to make agree differ by whatever the two error
 boxes admit, so the agreement rows carry an interval wide enough for that
 difference — which leaves the rounding of the centres nowhere to go but into an
-interval that was going to be widened anyway.
+interval that was going to be widened anyway. `MemNominalSet` is how each of
+them reads the nominal half of a point.
 -/

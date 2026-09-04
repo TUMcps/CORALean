@@ -1,4 +1,6 @@
 import CORALean.ContSet.ConPolyZono.Real.Operations.Dependent
+import CORALean.ContSet.ConPolyZono.Real.Operations.PadE
+import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
 
 /-!
 # Making the independent generators dependent loses nothing

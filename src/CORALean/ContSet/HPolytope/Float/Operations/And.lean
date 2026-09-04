@@ -1,4 +1,4 @@
-import CORALean.ContSet.HPolytope.Float.HPolytope
+import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 
 /-!
 # `HPolytope.and`

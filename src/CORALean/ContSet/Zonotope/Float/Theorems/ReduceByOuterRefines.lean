@@ -1,4 +1,6 @@
 import CORALean.ContSet.Zonotope.Float.Operations.Reduce
+import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOuter
 
 /-!

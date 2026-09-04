@@ -1,5 +1,5 @@
 import CORALean.ContSet.Zonotope.Float.Zonotope
-import CORALean.ContSet.VPolytope.Float.VPolytope
+import CORALean.ContSet.VPolytope.Float.Operations.ColumnGap
 import CORALean.ContSet.Conversion.Real.Zonotope_to_VPolytope
 import CORALean.ContSet.VPolytope.Real.Theorems.PerturbSubset
 import CORALean.ContSet.Interval.Real.Theorems.Convex

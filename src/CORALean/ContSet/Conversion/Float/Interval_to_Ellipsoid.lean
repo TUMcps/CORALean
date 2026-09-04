@@ -1,5 +1,5 @@
 import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
-import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
+import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
 
 /-!
 # A box as an ellipsoid, over a floating-point scalar

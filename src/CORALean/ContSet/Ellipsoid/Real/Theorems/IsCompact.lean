@@ -1,4 +1,4 @@
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqImage
 
 /-!
 # An ellipsoid is compact, hence closed

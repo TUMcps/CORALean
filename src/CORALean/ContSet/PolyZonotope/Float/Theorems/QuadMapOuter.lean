@@ -1,6 +1,8 @@
 import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMap
 import CORALean.ContSet.PolyZonotope.Float.Theorems.DependentNominal
 import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorError
+import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+import CORALean.ContSet.PolyZonotope.Real.Theorems.MemConstruct
 import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapExact
 
 /-!

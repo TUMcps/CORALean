@@ -1,3 +1,4 @@
+import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
 import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.LinCombOuter
@@ -15,5 +16,6 @@ import CORALean.ContSet.Zonotope.Float.Theorems.ReindexExact
 
 Stated exactly as `Real` states it, over the same sets of real points and with
 the same generator counts — rounding is paid into the error box, so no operation
-but `absorbError` spends a generator on it.
+but `absorbError` spends a generator on it. `MemNominalSet` is what every one of
+them reads the nominal half of a point in.
 -/

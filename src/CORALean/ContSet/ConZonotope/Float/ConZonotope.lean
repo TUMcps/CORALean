@@ -21,7 +21,7 @@ of its own.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   04-September-2026
 -- Last revision: ---
 
 namespace CORALean.Float
@@ -42,15 +42,6 @@ instance [SoundFloatArithmetic 𝕋] :
   -- generators transpose: stored as a matrix here, a family of vectors there
   nominal C := ⟨C.h, toRealVec C.c, fun j i => toReal (C.G i j), C.P.nominal⟩
   error C := C.E
-
-/-- The nominal set spelt in this representation's own fields, so proofs never
-mention `nominal` and every count reads `C.h`. -/
-theorem ConZonotope.mem_nominalSet_iff [SoundFloatArithmetic 𝕋] {C : ConZonotope 𝕋 n}
-    {x : Vec ℝ n} :
-    x ∈ InflatedContSet.nominalSet C ↔ ∃ β : Vec ℝ C.h, (∀ j, |β j| ≤ 1)
-      ∧ β ∈ C.P.construct
-      ∧ ∀ i, x i = toReal (C.c i) + ∑ j, toReal (C.G i j) * β j :=
-  Real.ConZonotope.mem_construct_iff
 
 /-- Inherited from `InflatedContSet`; named here so statements read locally. -/
 abbrev ConZonotope.construct [SoundFloatArithmetic 𝕋] (C : ConZonotope 𝕋 n) : Set (Vec ℝ n) :=

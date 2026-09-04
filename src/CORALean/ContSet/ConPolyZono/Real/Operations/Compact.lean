@@ -1,4 +1,4 @@
-import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
+import CORALean.ContSet.ConPolyZono.Real.Operations.AppendE
 import CORALean.ContSet.PolyZonotope.Real.Operations.Compact
 
 /-!

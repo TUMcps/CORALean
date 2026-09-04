@@ -1,6 +1,7 @@
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrCoeffBound
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpDiff
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpEnclosure
+import CORALean.ContSet.Interval.Real.Theorems.MemMat
 
 /-!
 # The interpolation error lies in the correction matrix

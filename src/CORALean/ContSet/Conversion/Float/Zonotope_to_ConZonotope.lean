@@ -1,5 +1,6 @@
-import CORALean.ContSet.ConZonotope.Float.ConZonotope
+import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
 import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
+import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 
 /-!
 # A zonotope as a constrained one, over a floating-point scalar

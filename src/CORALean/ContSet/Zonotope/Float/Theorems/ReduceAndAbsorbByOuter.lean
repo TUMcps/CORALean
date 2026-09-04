@@ -1,6 +1,7 @@
 import CORALean.ContSet.Zonotope.Float.Operations.ReduceAndAbsorb
 import CORALean.ContSet.Zonotope.Float.Theorems.ReduceByOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.AbsorbErrorOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 
 /-!
 # `reduceAndAbsorbBy` keeps the set it had

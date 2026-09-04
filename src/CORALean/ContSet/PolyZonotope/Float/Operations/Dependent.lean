@@ -1,5 +1,6 @@
 import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
 import CORALean.ContSet.PolyZonotope.Real.Operations.Dependent
+import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
 
 /-!
 # `PolyZonotope.dependent`

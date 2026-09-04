@@ -1,4 +1,5 @@
 import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
+import CORALean.ContSet.PolyZonotope.Real.Theorems.Monomial
 
 /-!
 # What a monomial costs the float layer

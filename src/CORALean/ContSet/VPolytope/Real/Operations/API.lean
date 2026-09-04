@@ -1,3 +1,5 @@
+import CORALean.ContSet.VPolytope.Real.Operations.EmptySet
+import CORALean.ContSet.VPolytope.Real.Operations.Point
 import CORALean.ContSet.VPolytope.Real.Operations.And
 import CORALean.ContSet.VPolytope.Real.Operations.LinComb
 import CORALean.ContSet.VPolytope.Real.Operations.Map
@@ -24,4 +26,7 @@ the caller names, intersects there for free, and comes back by vertex
 enumeration. Exact when the directions carry both operands' facets, enclosing
 otherwise; the float layer, which cannot enumerate vertices, goes through boxes
 instead.
+
+`EmptySet` and `Point` are the two vertex lists short enough to name: none, and
+one.
 -/

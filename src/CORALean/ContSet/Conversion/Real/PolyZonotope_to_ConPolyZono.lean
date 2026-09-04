@@ -1,4 +1,5 @@
 import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
+import CORALean.ContSet.Interval.Real.Operations.Point
 
 /-!
 # A polynomial zonotope as a constrained one

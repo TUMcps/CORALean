@@ -1,6 +1,8 @@
 import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
 import CORALean.ContSet.PolyZonotope.Float.Operations.Reduce
 import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactOuter
+import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+import CORALean.ContSet.PolyZonotope.Real.Theorems.Monomial
 import CORALean.ContSet.Zonotope.Real.Theorems.Coefficient
 
 /-!

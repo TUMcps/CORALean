@@ -1,4 +1,4 @@
-import CORALean.ContSet.Zonotope.Float.Zonotope
+import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
 
 /-!

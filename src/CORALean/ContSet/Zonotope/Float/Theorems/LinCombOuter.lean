@@ -4,6 +4,7 @@ import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
 import CORALean.ContSet.Zonotope.Float.Operations.LinComb
 import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
+import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 import CORALean.ContSet.Zonotope.Real.Theorems.LinCombOuter
 
 /-!

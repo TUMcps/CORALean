@@ -1,3 +1,4 @@
+import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructEqImage
 import CORALean.ContSet.Conversion.Real.ConZonotope_to_Zonotope
 import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
 import CORALean.ContSet.HPolytope.Real.Theorems.IsClosed

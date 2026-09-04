@@ -1,4 +1,5 @@
 import CORALean.ContSet.Ellipsoid.Real.Operations.SupportBound
+import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstruct
 
 /-!
 # The support bound is the support function

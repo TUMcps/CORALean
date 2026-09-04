@@ -2,6 +2,7 @@ import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
 import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 import CORALean.ContSet.PolyZonotope.Float.Operations.Compact
 import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorError
+import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
 import CORALean.ContSet.PolyZonotope.Real.Theorems.CompactExact
 
 /-!

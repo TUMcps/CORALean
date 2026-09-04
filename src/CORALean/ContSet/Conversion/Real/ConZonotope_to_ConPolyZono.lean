@@ -1,5 +1,6 @@
 import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
 import CORALean.ContSet.ConZonotope.Real.ConZonotope
+import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
 
 /-!
 # A constrained zonotope as a constrained polynomial zonotope

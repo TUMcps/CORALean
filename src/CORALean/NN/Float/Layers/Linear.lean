@@ -1,4 +1,5 @@
 import CORALean.ContSet.Conversion.Float.Interval_to_ContSet
+import CORALean.ContSet.Interval.Float.Operations.Point
 import CORALean.NN.Layer
 
 /-!

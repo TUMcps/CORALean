@@ -1,3 +1,5 @@
+import CORALean.ContSet.ConZonotope.Real.Theorems.MemConstruct
+import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructEqImage
 import CORALean.ContSet.ConZonotope.Real.Theorems.PlusExact
 import CORALean.ContSet.ConZonotope.Real.Theorems.AndExact
 import CORALean.ContSet.ConZonotope.Real.Theorems.MapExact
@@ -12,8 +14,8 @@ import CORALean.ContSet.ConZonotope.Real.Theorems.IsCompact
 
 `and`, `plus` and `map` exactly; the interval-matrix product, `linComb` and
 `reduce` as enclosures — the last two by way of `zonotope_outer`. The
-topological facts go through `domain` and so through the polytope, which is
-where they differ from a zonotope's.
+topological facts go through `ConstructEqImage` and so through the polytope,
+which is where they differ from a zonotope's.
 
 Together these are everything `LinearSys` reachability asks of a representation.
 -/

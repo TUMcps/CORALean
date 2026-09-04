@@ -1,5 +1,6 @@
 import CORALean.ContSet.ContSet.ContSet
 import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
+import CORALean.ContSet.Interval.Real.Operations.Point
 
 /-!
 # The input set a linearization widens to
