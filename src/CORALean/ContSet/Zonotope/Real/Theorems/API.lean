@@ -7,6 +7,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
 import CORALean.ContSet.Zonotope.Real.Theorems.LinCombOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.MtimesIntervalMatOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOrder
 
 /-!
 # What `Zonotope` guarantees
