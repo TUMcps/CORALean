@@ -40,4 +40,24 @@ def Interval.point (v : Vec 𝕋 n) : Interval 𝕋 n := ⟨v, v⟩
 theorem Interval.mem_point [SoundFloatArithmetic 𝕋] (v : Vec 𝕋 n) :
     toRealVec v ∈ (Interval.point v).construct := fun _ => ⟨le_rfl, le_rfl⟩
 
+/-! ## Storage
+
+Both bounds are function types, so the interval an operation returns is a
+closure over the one it was given and a loop pays for its whole history on every
+read. `materialise` stores them, and `materialise_eq` says it is the identity,
+so what it changes is only what running a definition costs. `Global/Tensor` says
+why the vectors are built here rather than by a helper.
+
+This is also the storage of five other representations, which carry an error box
+of this type and materialise it through here. -/
+
+def Interval.materialise (I : Interval 𝕋 n) : Interval 𝕋 n :=
+  let lo : Vector 𝕋 n := Vector.ofFn I.inf
+  let hi : Vector 𝕋 n := Vector.ofFn I.sup
+  ⟨fun i => lo[i.val]'i.isLt, fun i => hi[i.val]'i.isLt⟩
+
+omit [FloatOps 𝕋] in
+@[simp] theorem Interval.materialise_eq (I : Interval 𝕋 n) : I.materialise = I := by
+  simp [Interval.materialise]
+
 end CORALean.Float

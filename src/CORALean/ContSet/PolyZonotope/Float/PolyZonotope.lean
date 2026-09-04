@@ -80,4 +80,32 @@ theorem PolyZonotope.mem_nominalSet_iff [SoundFloatArithmetic 𝕋] {PZ : PolyZo
 abbrev PolyZonotope.construct [SoundFloatArithmetic 𝕋] (PZ : PolyZonotope 𝕋 n) :
     Set (Vec ℝ n) := InflatedContSet.construct PZ
 
+/-! ## Storage
+
+Every field is a function type, so the representation an operation returns is a
+closure over the one it was given. `materialise` stores them and `materialise_eq`
+says it is the identity; `Global/Tensor` says why the vectors are built here.
+
+`E` is stored along with the floats: it is a curried function rather than a
+`Mat`, and `compact` reads it through two index maps, so it is where an
+unstored exponent matrix costs the most. -/
+
+def PolyZonotope.materialise (PZ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 n :=
+  let c : Vector 𝕋 n := Vector.ofFn PZ.c
+  let G : Vector (Vector 𝕋 PZ.h) n := Vector.ofFn fun i => Vector.ofFn fun l => PZ.G i l
+  let E : Vector (Vector ℕ PZ.h) PZ.p := Vector.ofFn fun k => Vector.ofFn fun l => PZ.E k l
+  let GI : Vector (Vector 𝕋 PZ.q) n := Vector.ofFn fun i => Vector.ofFn fun j => PZ.GI i j
+  { p := PZ.p
+    h := PZ.h
+    q := PZ.q
+    c := fun i => c[i.val]'i.isLt
+    G := fun i l => (G[i.val]'i.isLt)[l.val]'l.isLt
+    E := fun k l => (E[k.val]'k.isLt)[l.val]'l.isLt
+    GI := fun i j => (GI[i.val]'i.isLt)[j.val]'j.isLt
+    err := PZ.err.materialise }
+
+omit [FloatOps 𝕋] in
+@[simp] theorem PolyZonotope.materialise_eq (PZ : PolyZonotope 𝕋 n) : PZ.materialise = PZ := by
+  simp [PolyZonotope.materialise]
+
 end CORALean.Float

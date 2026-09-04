@@ -17,9 +17,13 @@ namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
+/-- The one computable field here, and so the only one storage can reach: the two
+below go through a linear program and are `noncomputable`. -/
 instance : Plus (ConZonotope 𝕋 n) (Vec ℝ n) where
-  plus := ConZonotope.plus
-  plus_outer := ConZonotope.plus_outer
+  plus C₁ C₂ := (C₁.plus C₂).materialise
+  plus_outer C₁ C₂ := by
+    rw [ConZonotope.materialise_eq]
+    exact ConZonotope.plus_outer C₁ C₂
 
 noncomputable instance : LinComb (ConZonotope 𝕋 n) (Vec ℝ n) where
   linComb := ConZonotope.linComb

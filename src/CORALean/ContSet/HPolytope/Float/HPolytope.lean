@@ -64,4 +64,25 @@ theorem HPolytope.mem_construct_iff [SoundFloatArithmetic 𝕋] {P : HPolytope �
   rw [hand, Real.HPolytope.mem_ineqs_iff, Real.HPolytope.mem_slab_iff]
   exact Iff.rfl
 
+/-! ## Storage
+
+Every field is a function type, so the polytope an operation returns is a closure
+over the one it was given. `materialise` stores them and `materialise_eq` says it
+is the identity; `Global/Tensor` says why the vectors are built here. -/
+
+def HPolytope.materialise (P : HPolytope 𝕋 n) : HPolytope 𝕋 n :=
+  let A : Vector (Vector 𝕋 n) P.m := Vector.ofFn fun i => Vector.ofFn fun j => P.A i j
+  let b : Vector 𝕋 P.m := Vector.ofFn P.b
+  let Ae : Vector (Vector 𝕋 n) P.me := Vector.ofFn fun i => Vector.ofFn fun j => P.Ae i j
+  { m := P.m
+    A := fun i j => (A[i.val]'i.isLt)[j.val]'j.isLt
+    b := fun i => b[i.val]'i.isLt
+    me := P.me
+    Ae := fun i j => (Ae[i.val]'i.isLt)[j.val]'j.isLt
+    be := P.be.materialise }
+
+omit [FloatOps 𝕋] in
+@[simp] theorem HPolytope.materialise_eq (P : HPolytope 𝕋 n) : P.materialise = P := by
+  simp [HPolytope.materialise]
+
 end CORALean.Float

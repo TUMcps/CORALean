@@ -38,13 +38,15 @@ makes them sound. Deliberately not an `instance`, as over ℝ. -/
     (hne₁ : toReal s₁ ≠ 0) (hne₂ : toReal s₂ ≠ 0)
     (hs : 1 / toReal s₁ ^ 2 + 1 / toReal s₂ ^ 2 ≤ 1) :
     ∀ n, Plus (Ellipsoid 𝕋 n) (Vec ℝ n) := fun _ =>
-  { plus := Ellipsoid.plus s₁ s₂
-    plus_outer := fun E₁ E₂ => Ellipsoid.plus_outer s₁ s₂ E₁ E₂ hne₁ hne₂ hs }
+  { plus := fun E₁ E₂ => (Ellipsoid.plus s₁ s₂ E₁ E₂).materialise
+    plus_outer := fun E₁ E₂ => by
+      rw [Ellipsoid.materialise_eq]
+      exact Ellipsoid.plus_outer s₁ s₂ E₁ E₂ hne₁ hne₂ hs }
 
 instance : Mtimes (Mat 𝕋) (Ellipsoid 𝕋) where
-  mtimes := Ellipsoid.mtimes
+  mtimes M E := (Ellipsoid.mtimes M E).materialise
   mtimes_outer M E := by
-    simp only [ContSet.construct_mat, Set.biUnion_singleton]
+    simp only [ContSet.construct_mat, Set.biUnion_singleton, Ellipsoid.materialise_eq]
     exact Ellipsoid.mtimes_outer M E
 
 end CORALean.Float

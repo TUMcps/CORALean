@@ -12,6 +12,16 @@ is a point, `Vec 𝕋 n` its machine representation.
 `Mat` is the order-two case up to `rfl`, but spelt as Mathlib's `Matrix`: that
 wrapper keeps `*` matrix multiplication rather than the pointwise product every
 function type carries, and instance search sees through it in neither direction.
+
+Being curried also makes a tensor a closure, so the one an operation returns
+carries its whole history and every read walks it again. A representation stores
+its fields with `Vector.ofFn`, in the `materialise` it keeps for that, and never
+through a `Vec → Vec` helper: a definition whose result type is a function is
+eta-expanded to that arity, so a helper of that shape recomputes its storage on
+every entry read and is slower than storing nothing. Only a definition returning
+a structure lets the closure hold the vector. A stored entry is indexed with
+`i.isLt` for the same reason — a bound proved from the vector substitutes it
+back inside the closure.
 -/
 
 -- Authors:       Tobias Ladner

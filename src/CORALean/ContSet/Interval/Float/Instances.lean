@@ -10,7 +10,14 @@ The same obligations the exact layer discharges, since a float interval denotes 
 set of real points just as an exact one does; only the scalar the operations run
 in differs.
 
-`reduce` is the identity, as over ℝ: an interval has no order to give up.
+`reduce` gives up no order, as over ℝ: an interval has none to give up.
+
+Every field returns a `materialise`d interval. The bounds are function types, so
+the one an operation returns is a closure over the one it was given, and a loop
+that iterates operations would rebuild its whole history on every read.
+`materialise_eq` is the identity, so each proof below is the operation's own
+guarantee after one rewrite. It is here rather than in `Operations/` because this
+is where a set is handed back to a caller that may loop.
 -/
 
 -- Authors:       Tobias Ladner
@@ -25,27 +32,36 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 instance : ContSet (Interval 𝕋 n) (Vec ℝ n) := ⟨Interval.construct⟩
 
 instance : Plus (Interval 𝕋 n) (Vec ℝ n) where
-  plus := Interval.plus
-  plus_outer := Interval.plus_outer
+  plus I₁ I₂ := (Interval.plus I₁ I₂).materialise
+  plus_outer I₁ I₂ := by
+    rw [Interval.materialise_eq]
+    exact Interval.plus_outer I₁ I₂
 
 instance : LinComb (Interval 𝕋 n) (Vec ℝ n) where
-  linComb := Interval.linComb
-  linComb_outer := Interval.linComb_outer
+  linComb I₁ I₂ := (Interval.linComb I₁ I₂).materialise
+  linComb_outer I₁ I₂ := by
+    rw [Interval.materialise_eq]
+    exact Interval.linComb_outer I₁ I₂
 
+/-- Nothing to reduce — a box is its own order — so this is storage and no more,
+which is exactly what a loop calling `reduce` every step wants of it. -/
 instance : Reduce (Interval 𝕋 n) (Vec ℝ n) where
-  reduce I _ := I
-  reduce_outer _ _ := subset_rfl
+  reduce I _ := I.materialise
+  reduce_outer I _ := by
+    rw [Interval.materialise_eq]
 
 /-- The one field here that is an equality: a relabelling does no arithmetic, so
 the float box loses exactly what the exact one does, namely nothing. -/
 instance : Reindex (Interval 𝕋) where
-  reindex := Interval.reindex
-  reindex_exact := Interval.reindex_exact
+  reindex e I := (Interval.reindex e I).materialise
+  reindex_exact e I := by
+    rw [Interval.materialise_eq]
+    exact Interval.reindex_exact e I
 
 instance : Mtimes (Mat 𝕋) (Interval 𝕋) where
-  mtimes := Interval.mtimes
+  mtimes M I := (Interval.mtimes M I).materialise
   mtimes_outer M I := by
-    simp only [ContSet.construct_mat, Set.biUnion_singleton]
+    simp only [ContSet.construct_mat, Set.biUnion_singleton, Interval.materialise_eq]
     exact Interval.mtimes_outer M I
 
 end CORALean.Float

@@ -17,9 +17,9 @@ compares the two, so an enclosure that silently widens fails the build.
 machine, the compiler or the order of anything.
 
 `LinearSysDT.reach` runs twice, at `Dyadic 24` and at the smaller
-`Dyadic Demo.smallP`: at 24 bits every product over the demo's horizon is
-exact, so the error box a float zonotope carries never grows and directed
-rounding is never exercised. The second run is where it is.
+`Dyadic Demo.smallP`: at 24 bits the first six steps are exact and what rounding
+the rest pay is five decimal orders under the enclosure, so the second run is
+where directed rounding is put under any real load.
 -/
 
 -- Authors:       Tobias Ladner

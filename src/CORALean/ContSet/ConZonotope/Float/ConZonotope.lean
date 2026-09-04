@@ -56,4 +56,24 @@ theorem ConZonotope.mem_nominalSet_iff [SoundFloatArithmetic 𝕋] {C : ConZonot
 abbrev ConZonotope.construct [SoundFloatArithmetic 𝕋] (C : ConZonotope 𝕋 n) : Set (Vec ℝ n) :=
   InflatedContSet.construct C
 
+/-! ## Storage
+
+Every field is a function type, so the representation an operation returns is a
+closure over the one it was given. `materialise` stores them and `materialise_eq`
+says it is the identity; `Global/Tensor` says why the vectors are built here. The
+constraint polytope goes through its own `materialise`. -/
+
+def ConZonotope.materialise (C : ConZonotope 𝕋 n) : ConZonotope 𝕋 n :=
+  let c : Vector 𝕋 n := Vector.ofFn C.c
+  let G : Vector (Vector 𝕋 C.h) n := Vector.ofFn fun i => Vector.ofFn fun j => C.G i j
+  { h := C.h
+    c := fun i => c[i.val]'i.isLt
+    G := fun i j => (G[i.val]'i.isLt)[j.val]'j.isLt
+    P := C.P.materialise
+    E := C.E.materialise }
+
+omit [FloatOps 𝕋] in
+@[simp] theorem ConZonotope.materialise_eq (C : ConZonotope 𝕋 n) : C.materialise = C := by
+  simp [ConZonotope.materialise]
+
 end CORALean.Float

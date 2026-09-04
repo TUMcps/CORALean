@@ -23,13 +23,15 @@ namespace CORALean.Float
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 instance {n : ℕ} : Plus (ConPolyZono 𝕋 n) (Vec ℝ n) where
-  plus := ConPolyZono.plus
-  plus_outer := ConPolyZono.plus_outer
+  plus C₁ C₂ := (C₁.plus C₂).materialise
+  plus_outer C₁ C₂ := by
+    rw [ConPolyZono.materialise_eq]
+    exact ConPolyZono.plus_outer C₁ C₂
 
 instance : Mtimes (Mat 𝕋) (ConPolyZono 𝕋) where
-  mtimes := ConPolyZono.mtimes
+  mtimes M C := (ConPolyZono.mtimes M C).materialise
   mtimes_outer M C := by
-    simp only [ContSet.construct_mat, Set.biUnion_singleton]
+    simp only [ContSet.construct_mat, Set.biUnion_singleton, ConPolyZono.materialise_eq]
     exact ConPolyZono.mtimes_outer M C
 
 end CORALean.Float
