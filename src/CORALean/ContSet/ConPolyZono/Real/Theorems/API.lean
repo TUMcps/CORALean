@@ -4,11 +4,17 @@ import CORALean.ContSet.ConPolyZono.Real.Theorems.HoldsCongr
 import CORALean.ContSet.ConPolyZono.Real.Theorems.MemConstruct
 import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendELeft
 import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendERight
+import CORALean.ContSet.ConPolyZono.Real.Theorems.AndDepExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.AndExact
+import CORALean.ContSet.ConPolyZono.Real.Theorems.CompactGensExact
+import CORALean.ContSet.ConPolyZono.Real.Theorems.CompactConsExact
+import CORALean.ContSet.ConPolyZono.Real.Theorems.CompactFactorsExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.CompactExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.DependentExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.MapExact
+import CORALean.ContSet.ConPolyZono.Real.Theorems.MtimesExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.PlusExact
+import CORALean.ContSet.ConPolyZono.Real.Theorems.QuadMapDepExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.QuadMapExact
 
 /-!

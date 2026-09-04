@@ -1,4 +1,4 @@
-import CORALean.ContSet.ConPolyZono.Real.Theorems.MapExact
+import CORALean.ContSet.ConPolyZono.Real.Theorems.MtimesExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.PlusExact
 
 /-!

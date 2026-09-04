@@ -3,8 +3,11 @@ import CORALean.ContSet.VPolytope.Real.Theorems.AndOuter
 import CORALean.ContSet.VPolytope.Real.Theorems.Convex
 import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
 import CORALean.ContSet.VPolytope.Real.Theorems.IsCompact
+import CORALean.ContSet.VPolytope.Real.Theorems.IsClosed
+import CORALean.ContSet.VPolytope.Real.Theorems.IsBounded
 import CORALean.ContSet.VPolytope.Real.Theorems.LinCombOuter
 import CORALean.ContSet.VPolytope.Real.Theorems.MapExact
+import CORALean.ContSet.VPolytope.Real.Theorems.MtimesExact
 import CORALean.ContSet.VPolytope.Real.Theorems.PlusExact
 
 /-!

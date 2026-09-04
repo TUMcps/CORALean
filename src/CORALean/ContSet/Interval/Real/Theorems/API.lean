@@ -4,8 +4,11 @@ import CORALean.ContSet.Interval.Real.Theorems.IsBounded
 import CORALean.ContSet.Interval.Real.Theorems.IsClosed
 import CORALean.ContSet.Interval.Real.Theorems.IsCompact
 import CORALean.ContSet.Interval.Real.Theorems.IsNonempty
+import CORALean.ContSet.Interval.Real.Theorems.NotIsNonempty
 import CORALean.ContSet.Interval.Real.Theorems.AbsSubCenterLe
+import CORALean.ContSet.Interval.Real.Theorems.PlusOuter
 import CORALean.ContSet.Interval.Real.Theorems.PlusExact
+import CORALean.ContSet.Interval.Real.Theorems.MulBetweenEndpoints
 import CORALean.ContSet.Interval.Real.Theorems.LinCombOuter
 import CORALean.ContSet.Interval.Real.Theorems.MtimesIntervalMatOuter
 import CORALean.ContSet.Interval.Real.Theorems.MtimesOuter

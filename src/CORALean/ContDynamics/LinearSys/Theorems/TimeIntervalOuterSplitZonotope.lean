@@ -5,6 +5,7 @@ import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryTimeIntervalOuter
 import CORALean.ContSet.Zonotope.Real.Instances
 import CORALean.ContSet.Zonotope.Real.Theorems.Convex
 import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
+import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed
 import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
 
 /-!

@@ -1,9 +1,11 @@
 import CORALean.ContSet.Interval.Real.Operations.Center
 import CORALean.ContSet.Interval.Real.Operations.Radius
 import CORALean.ContSet.Interval.Real.Theorems.AbsSubCenterLe
-import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
-import CORALean.ContSet.Zonotope.Real.Theorems.Coefficient
+import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
+import CORALean.ContSet.Zonotope.Real.Theorems.AbsLeAbsBound
 import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
+import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMul
 
 /-!
 # Multiplying by an interval matrix over-approximates every matrix in it
@@ -23,7 +25,7 @@ prove.
 
 -- Authors:       Tobias Ladner
 -- Written:       18-August-2026
--- Last update:   ---
+-- Last update:   04-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -39,19 +41,6 @@ theorem Zonotope.aux_sum_univ_mtimesIntervalMat {IM : Interval (Mat ℝ m n)} {Z
     ∑ j : Fin (Zonotope.mtimesIntervalMat IM Z).h, f j
       = ∑ j, f (Fin.castAdd m j) + ∑ j, f (Fin.natAdd Z.h j) :=
   Fin.sum_univ_add f
-
-/-- A coordinate of a zonotope never leaves `absBound`. -/
-theorem Zonotope.abs_le_absBound {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n} {β : Vec ℝ Z.h}
-    (hβ : ∀ j, |β j| ≤ 1) (hx : ∀ i, x i = Z.c i + ∑ j, Z.G j i * β j) (j : Fin n) :
-    |x j| ≤ Z.absBound j := by
-  rw [hx j, Zonotope.absBound]
-  refine (abs_add_le _ _).trans ?_
-  gcongr
-  calc |∑ l, Z.G l j * β l|
-      ≤ ∑ l, |Z.G l j * β l|   := Finset.abs_sum_le_sum_abs _ _
-    _ = ∑ l, |Z.G l j| * |β l| := by simp_rw [abs_mul]
-    _ ≤ ∑ l, |Z.G l j|         := Finset.sum_le_sum fun l _ => by
-        simpa using mul_le_mul_of_nonneg_left (hβ l) (abs_nonneg (Z.G l j))
 
 -- the image sits in the centre's zonotope widened by what the radius can reach
 theorem Zonotope.mtimesIntervalMat_outer (IM : Interval (Mat ℝ m n)) (Z : Zonotope (Vec ℝ n)) :

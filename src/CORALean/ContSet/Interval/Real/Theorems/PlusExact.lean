@@ -1,5 +1,5 @@
-import CORALean.ContSet.Interval.Real.Operations.Plus
 import CORALean.ContSet.Interval.Real.Operations.IsNonempty
+import CORALean.ContSet.Interval.Real.Theorems.PlusOuter
 
 /-!
 # `Interval.plus` is exactly the Minkowski sum
@@ -8,12 +8,12 @@ Coordinatewise. Splitting a point of the sum is the only work: `I₁` takes
 `min (I₁.sup i) (x i - I₂.inf i)`, and the bounds leave a remainder `I₂` holds.
 
 Both boxes must be `IsNonempty`: `[1, 0] + [0, 10]` is `∅` as a set but `[1, 10]`
-by the definition.
+by the definition. `plus_outer` is the half that needs no such hypothesis.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       16-August-2026
--- Last update:   17-August-2026
+-- Last update:   04-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -21,12 +21,6 @@ namespace CORALean.Real
 open Pointwise Entrywise
 
 variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
-
-theorem Interval.plus_outer (I₁ I₂ : Interval α) :
-    I₁.construct + I₂.construct ⊆ (I₁.plus I₂).construct := by
-  rintro _ ⟨x₁, hx₁, x₂, hx₂, rfl⟩ i
-  rw [Interval.plus, Entrywise.entry_add, Entrywise.entry_add, Entrywise.entry_add]
-  exact ⟨add_le_add (hx₁ i).1 (hx₂ i).1, add_le_add (hx₁ i).2 (hx₂ i).2⟩
 
 -- every `Entrywise` rewrite unfolds `plus` by `rfl`, and the four `linarith` calls pay for it
 set_option maxHeartbeats 400000 in

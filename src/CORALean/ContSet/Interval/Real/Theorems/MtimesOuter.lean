@@ -1,4 +1,5 @@
 import CORALean.ContSet.Interval.Real.Operations.Mtimes
+import CORALean.ContSet.Interval.Real.Theorems.MulBetweenEndpoints
 
 /-!
 # `Interval.mtimes` over-approximates the image under a linear map
@@ -10,7 +11,7 @@ leaving one case split. Summing over `k` finishes it.
 
 -- Authors:       Tobias Ladner
 -- Written:       16-August-2026
--- Last update:   02-September-2026
+-- Last update:   04-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -18,16 +19,6 @@ namespace CORALean.Real
 open Matrix
 
 variable {n m : ℕ}
-
-/-- Scaling a point between two endpoints lands between the scaled endpoints,
-whichever way the scale points. -/
-theorem Interval.mul_between_endpoints {c lo hi x : ℝ} (h₁ : lo ≤ x) (h₂ : x ≤ hi) :
-    min (c * lo) (c * hi) ≤ c * x ∧ c * x ≤ max (c * lo) (c * hi) := by
-  rcases le_total 0 c with hc | hc
-  · exact ⟨(min_le_left _ _).trans (mul_le_mul_of_nonneg_left h₁ hc),
-           (mul_le_mul_of_nonneg_left h₂ hc).trans (le_max_right _ _)⟩
-  · exact ⟨(min_le_right _ _).trans (mul_le_mul_of_nonpos_left h₂ hc),
-           (mul_le_mul_of_nonpos_left h₁ hc).trans (le_max_left _ _)⟩
 
 theorem Interval.mtimes_outer (M : Mat ℝ m n) (I : Interval (Vec ℝ n)) :
     (M *ᵥ ·) '' I.construct ⊆ (Interval.mtimes M I).construct := by
