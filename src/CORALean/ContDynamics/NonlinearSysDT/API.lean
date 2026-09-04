@@ -7,8 +7,9 @@ import CORALean.ContDynamics.NonlinearSysDT.Theorems.API
 # Discrete-time nonlinear systems, collected
 
 The representation and what a trajectory of it is, then reachability by
-re-linearization: `LinStep` reuses `NonlinearSys`'s `AbstractionError` and
-`linInput`, which read no more of a system than its field, `Operations` runs
+re-linearization: `LinStep` certifies against `sys.f` with `AbstractionError`
+and `linInput`, both stated over the map rather than a system, so nothing here
+claims a flow that a discrete step does not have. `Operations` runs
 `LinearSysDT.reach` one step per linearization, and `Theorems` shows the loop
 contains every trajectory.
 

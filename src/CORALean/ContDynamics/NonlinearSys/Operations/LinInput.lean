@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.NonlinearSys.NonlinearSys
+import CORALean.ContSet.ContSet.ContSet
 import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
 
 /-!
@@ -22,7 +22,7 @@ additive and so state-dimensional, take it unchanged.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   04-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -33,11 +33,11 @@ variable {n m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [OfInterval S]
 
-/-- Every input the linearized system needs in order to reproduce a run of `sys`
+/-- Every input the linearized system needs in order to reproduce a run of `f`
 that stays where the certificate holds. -/
-def NonlinearSys.linInput (sys : NonlinearSys n m) (A : Mat ℝ n n) (B : Mat ℝ n m)
+def linInput (f : Vec ℝ n → Vec ℝ m → Vec ℝ n) (A : Mat ℝ n n) (B : Mat ℝ n m)
     (xs : Vec ℝ n) (us : Vec ℝ m) (U : S m) (L : S n) : S n :=
-  ofInterval (Interval.point (sys.f xs us - A *ᵥ xs))
+  ofInterval (Interval.point (f xs us - A *ᵥ xs))
     ⊞ mtimes B (U ⊞ ofInterval (Interval.point (-us)))
     ⊞ L
 

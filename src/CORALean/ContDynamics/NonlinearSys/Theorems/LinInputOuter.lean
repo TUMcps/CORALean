@@ -21,7 +21,7 @@ terms cancel.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   04-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -33,14 +33,14 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [OfInterval S]
 
 /-- The remainder of the split lies in `linInput` wherever the certificate holds. -/
-theorem NonlinearSys.linInput_outer {sys : NonlinearSys n m} {A : Mat ℝ n n}
+theorem linInput_outer {f : Vec ℝ n → Vec ℝ m → Vec ℝ n} {A : Mat ℝ n n}
     {B : Mat ℝ n m} {xs : Vec ℝ n} {us : Vec ℝ m} {R : Set (Vec ℝ n)}
-    {U : S m} {L : S n} (cert : AbstractionError sys A B xs us R (construct U) L)
+    {U : S m} {L : S n} (cert : AbstractionError f A B xs us R (construct U) L)
     {x : Vec ℝ n} {u : Vec ℝ m} (hx : x ∈ R) (hu : u ∈ construct U) :
-    sys.f x u - A *ᵥ x ∈ construct (sys.linInput A B xs us U L) := by
-  have hsplit : sys.f x u - A *ᵥ x
-      = ((sys.f xs us - A *ᵥ xs) + B *ᵥ (u - us))
-        + (sys.f x u - (sys.f xs us + A *ᵥ (x - xs) + B *ᵥ (u - us))) := by
+    f x u - A *ᵥ x ∈ construct (linInput f A B xs us U L) := by
+  have hsplit : f x u - A *ᵥ x
+      = ((f xs us - A *ᵥ xs) + B *ᵥ (u - us))
+        + (f x u - (f xs us + A *ᵥ (x - xs) + B *ᵥ (u - us))) := by
     simp only [Matrix.mulVec_sub]
     abel
   have hshift : u - us ∈ construct (U ⊞ ofInterval (Interval.point (-us))) := by

@@ -19,7 +19,7 @@ set against it afterwards, which no certificate can supply.
 
 -- Authors:       Tobias Ladner
 -- Written:       04-September-2026
--- Last update:   ---
+-- Last update:   04-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -59,8 +59,7 @@ theorem NonlinearSysDT.reach_outer_on (sys : NonlinearSysDT n m) {U : S m} (o : 
     rw [traj.step k hkK]
     -- the certificate's whole job: `f(x,u) - A x` lies in the widened input
     have hu : sys.f (x k) (u k) - (steps k).A *ᵥ x k ∈ construct (steps k).linInput :=
-      NonlinearSys.linInput_outer (sys := ⟨sys.f⟩) (steps k).cert (hR k hkK)
-        (traj.input k hkK)
+      linInput_outer (f := sys.f) (steps k).cert (hR k hkK) (traj.input k hkK)
     have key := LinearSysDT.reach_one_outer (NonlinearSysDT.linearize (steps k).A) o
       (sys.reach o steps R₀ k) (steps k).linInput (ih hkK.le) hu
     -- `A x + (f(x,u) - A x)` is `f(x,u)`, so `key` already says what is wanted
