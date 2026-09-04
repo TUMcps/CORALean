@@ -4,9 +4,10 @@ import CORALean.Global.Scalar
 /-!
 # Sound floating-point arithmetic
 
-What the layer assumes of its scalar: a real interpretation `toReal`, and
-`FloatOps` rounding in the direction its name claims. No format is fixed, so the
-proofs hold for binary64, for any other precision, and for ℝ itself.
+What the layer assumes of its scalar: a real interpretation `toReal`,
+`FloatOps` rounding in the direction its name claims, and `le` agreeing with
+`toReal` in one direction only. No format is fixed, so the proofs hold for
+binary64, for any other precision, and for ℝ itself.
 
 Not IEEE 754 — rounding *to nearest* bounds nothing in a stated direction. How
 the direction is achieved is left open: a hardware rounding mode and nearest
@@ -19,7 +20,7 @@ that is the one gap between these axioms and a machine.
 
 -- Authors:       Tobias Ladner
 -- Written:       16-August-2026
--- Last update:   02-September-2026
+-- Last update:   04-September-2026
 -- Last revision: ---
 
 namespace CORALean.Float
@@ -41,6 +42,8 @@ class SoundFloatArithmetic (𝕋 : Type) [FloatOps 𝕋] where
   divDown_le_div (a b : 𝕋) (hb : 0 < toReal b) : toReal (divDown a b) ≤ toReal a / toReal b
   toReal_minimum (a b : 𝕋) : toReal (minimum a b) = min (toReal a) (toReal b)
   toReal_maximum (a b : 𝕋) : toReal (maximum a b) = max (toReal a) (toReal b)
+  /-- One direction only, see the module docstring for why. -/
+  toReal_le_of_le {a b : 𝕋} (h : le a b = true) : toReal a ≤ toReal b
   toReal_half (a : 𝕋) : toReal (half a) = toReal a / 2
 
 open SoundFloatArithmetic

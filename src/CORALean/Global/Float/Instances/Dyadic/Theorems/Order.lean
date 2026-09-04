@@ -10,14 +10,14 @@ exact, which is what lets them absorb a sign without widening anything.
 
 -- Authors:       Tobias Ladner
 -- Written:       16-August-2026
--- Last update:   ---
+-- Last update:   04-September-2026
 -- Last revision: ---
 
 namespace CORALean.Float.Dyadic
 
 variable {p : ℕ}
 
-theorem aux_le_iff (a b : Dyadic p) : le a b = true ↔ toReal a ≤ toReal b := by
+private theorem aux_le_iff (a b : Dyadic p) : le a b = true ↔ toReal a ≤ toReal b := by
   rw [le, decide_eq_true_eq, toReal_align a (min_le_left a.exponent b.exponent),
     toReal_align b (min_le_right a.exponent b.exponent)]
   exact ⟨fun h => mul_le_mul_of_nonneg_right (Int.cast_le.mpr h) (le_of_lt (zpow_pos two_pos _)),
@@ -34,5 +34,10 @@ theorem toReal_maximum (a b : Dyadic p) :
   by_cases h : le a b = true
   · rw [maximum, if_pos h, max_eq_right ((aux_le_iff a b).mp h)]
   · rw [maximum, if_neg h, max_eq_left (not_le.mp (h ∘ (aux_le_iff a b).mpr)).le]
+
+/-- The direction `SoundFloatArithmetic` asks for; the converse holds too
+(`aux_le_iff`), but nothing here needs it. -/
+theorem toReal_le_of_le {a b : Dyadic p} (h : le a b = true) : toReal a ≤ toReal b :=
+  (aux_le_iff a b).mp h
 
 end CORALean.Float.Dyadic
