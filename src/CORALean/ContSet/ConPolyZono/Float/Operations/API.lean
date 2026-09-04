@@ -1,4 +1,5 @@
 import CORALean.ContSet.ConPolyZono.Float.Operations.And
+import CORALean.ContSet.ConPolyZono.Float.Operations.Compact
 import CORALean.ContSet.ConPolyZono.Float.Operations.Dependent
 import CORALean.ContSet.ConPolyZono.Float.Operations.Plus
 import CORALean.ContSet.ConPolyZono.Float.Operations.Mtimes
@@ -16,4 +17,8 @@ exists for. It is possible here only because the right-hand side of a constraint
 is an interval: its agreement rows have to admit the difference of two nominal
 points that each carry an error box, so they were never going to be an equality,
 and the rounding of the centres rides along inside the same interval.
+
+`compact` is the operation that pays into both places at once, and the only one
+that does: merging generator columns rounds into the error box, merging
+constraint columns into `b`, and dropping factors into neither.
 -/

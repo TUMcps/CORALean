@@ -13,9 +13,9 @@ wants the constraint set to be closed and bounded and is not written here.
 
 No `LinComb` and no `Reduce`. CORA computes both, and neither is faked: a
 `linComb` would have to relax the independent block as `PolyZonotope`'s does,
-and order reduction here is not the zonotope's generator ranking — it has to
-merge equal exponent columns and drop the factors that fall out of use, in the
-constraint matrix as well as in the generators.
+and order reduction here still owes the generator ranking on top of `compact`,
+which `Operations` now supplies and which is what carries the exponent side —
+both merges and the factors neither block reads.
 
 `and` and `quadMap` have no class to instantiate, so a caller names
 `ConPolyZono.and` and `ConPolyZono.quadMap`. `and` would deserve one most, but
@@ -24,7 +24,7 @@ the second implementor, `ConZonotope`, could state it at convex sets only.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   02-September-2026
+-- Last update:   04-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
