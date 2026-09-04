@@ -12,18 +12,18 @@ the need for one: `exp x = (exp (x / 2ⁿ))^(2ⁿ)`, `half` is exact, and at
 and `exp y ≤ 1/(1-y) ≤ 1 + y + 2y²` for `y ≤ 1/2`.
 
 The asymmetry is real. `expDown` holds at every argument, `maximum zero` keeping
-it non-negative across the squarings. `expUp n a` asks `toReal a ≤ 2ⁿ / 2`, and
-that cannot be discharged here: every expression `FloatOps` builds is bounded by
-a polynomial, no polynomial dominates `exp`, and a total upper bound would have
-to branch on the size of its argument with nothing sound to branch on — which is
-why the sigmoid and tanh enclosures ask for `expDown` alone.
-
+it non-negative across the squarings; `expUp n a` keeps its hypothesis
+`toReal a ≤ 2ⁿ / 2`. A sound `le` (issue #46) does not remove that: it lets a
+caller *branch* on range, but the out-of-range branch still needs a sound value
+to return, and no float bounds `exp` above at every argument — that needs
+overflow handling (issue #48), not a comparison. What `le` buys is
+`le_expUp_of_le`: discharging the hypothesis against a bound known in advance.
 `(1 + x/2ⁿ)^(2ⁿ)` is `exp (x - x²/2ⁿ⁺¹ + …)`, under `10⁻¹²` relative at `n = 50`.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   04-September-2026
 -- Last revision: ---
 
 namespace CORALean.Float
@@ -195,5 +195,12 @@ theorem le_expUp (n : ℕ) (a : 𝕋) (ha : toReal a ≤ 2 ^ n / 2) :
   rw [show (2:ℝ) ^ n * (toReal a / 2 ^ n) = toReal a by field_simp] at hstep
   rw [expUp]
   exact hstep
+
+/-- The comparison earning its place: a caller holding a float `b` known to sit
+at or below `2ⁿ / 2` discharges `le_expUp`'s hypothesis by comparing `a` against
+it, rather than arguing about `toReal a` directly. -/
+theorem le_expUp_of_le (n : ℕ) (a b : 𝕋) (hb : toReal b ≤ 2 ^ n / 2)
+    (h : le a b = true) : Real.exp (toReal a) ≤ toReal (expUp n a) :=
+  le_expUp n a (le_trans (toReal_le_of_le h) hb)
 
 end CORALean.Float

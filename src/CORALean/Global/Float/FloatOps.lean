@@ -14,7 +14,7 @@ carrying one. Definitions assume this class alone; theorems assume both.
 
 -- Authors:       Tobias Ladner
 -- Written:       16-August-2026
--- Last update:   02-September-2026
+-- Last update:   04-September-2026
 -- Last revision: ---
 
 namespace CORALean.Float
@@ -37,8 +37,9 @@ class FloatOps (𝕋 : Type) where
   /-- Exact, like `neg`: choosing between two floats invents no digits. -/
   minimum : 𝕋 → 𝕋 → 𝕋
   maximum : 𝕋 → 𝕋 → 𝕋
-  /-- Unconstrained by `SoundFloatArithmetic`: only a generator ranking depends
-  on it, and every ranking is sound, so a wrong answer costs precision. -/
+  /-- `SoundFloatArithmetic` constrains a `true` answer only: that is what a
+  generator ranking spends, and what lets a caller elsewhere discharge a bound
+  hypothesis it already suspects holds. -/
   le : 𝕋 → 𝕋 → Bool
   /-- Exact in a binary format, where halving only moves the exponent. -/
   half : 𝕋 → 𝕋

@@ -7,13 +7,13 @@ import CORALean.Global.Float.Instances.Dyadic.Theorems.Division
 
 Each obligation is exactness composed with a rounding direction, the two halves
 proved separately in `Theorems`. Division has no exact half to compose with and
-arrives already directed. No bound on the mantissa is needed: leaving the grid
-costs precision, never soundness.
+arrives already directed. `le` is exact and needs no rounding at all. No bound
+on the mantissa is needed: leaving the grid costs precision, never soundness.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       16-August-2026
--- Last update:   02-September-2026
+-- Last update:   04-September-2026
 -- Last revision: ---
 
 namespace CORALean.Float
@@ -52,6 +52,7 @@ instance {p : ℕ} : SoundFloatArithmetic (Dyadic p) where
   divDown_le_div := Dyadic.divDown_le_div
   toReal_minimum := Dyadic.toReal_minimum
   toReal_maximum := Dyadic.toReal_maximum
+  toReal_le_of_le := Dyadic.toReal_le_of_le
   toReal_half := Dyadic.toReal_half
 
 end CORALean.Float

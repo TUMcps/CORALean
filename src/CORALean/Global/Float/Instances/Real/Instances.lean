@@ -11,7 +11,7 @@ for.
 
 -- Authors:       Tobias Ladner
 -- Written:       16-August-2026
--- Last update:   02-September-2026
+-- Last update:   04-September-2026
 -- Last revision: ---
 
 namespace CORALean.Float
@@ -46,6 +46,7 @@ noncomputable instance : SoundFloatArithmetic ℝ where
   divDown_le_div _ _ _ := le_refl _
   toReal_minimum _ _ := rfl
   toReal_maximum _ _ := rfl
+  toReal_le_of_le h := of_decide_eq_true h
   toReal_half _ := rfl
 
 end CORALean.Float
