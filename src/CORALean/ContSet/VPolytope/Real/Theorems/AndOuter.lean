@@ -1,4 +1,5 @@
 import CORALean.ContSet.VPolytope.Real.Operations.And
+import CORALean.ContSet.VPolytope.Real.Operations.EmptySet
 
 /-!
 # `VPolytope.and` contains the intersection

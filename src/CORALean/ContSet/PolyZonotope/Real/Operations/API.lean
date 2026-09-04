@@ -1,3 +1,4 @@
+import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
 import CORALean.ContSet.PolyZonotope.Real.Operations.Map
 import CORALean.ContSet.PolyZonotope.Real.Operations.Mtimes
 import CORALean.ContSet.PolyZonotope.Real.Operations.Plus
@@ -22,5 +23,7 @@ names, which is the one operation here that loses something.
 
 `plusE`, `linCombE` and `quadMapE` are the exponent matrices the size-changing
 operations assemble, kept in the files of the operations that build them so that
-their lemmas are stated at plain counts rather than at a projection.
+their lemmas are stated at plain counts rather than at a projection. `identE` is
+the exception, being the block `dependent` appends and a conversion's whole
+answer.
 -/

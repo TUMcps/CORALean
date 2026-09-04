@@ -1,6 +1,6 @@
 import CORALean.ContSet.Interval.Float.Operations.Mtimes
 import CORALean.ContSet.Interval.Float.Operations.Plus
-import CORALean.ContSet.VPolytope.Float.VPolytope
+import CORALean.ContSet.VPolytope.Float.Operations.ColumnGap
 
 /-!
 # `VPolytope.mtimes`

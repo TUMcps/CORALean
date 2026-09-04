@@ -1,5 +1,7 @@
 import CORALean.ContSet.ConPolyZono.Float.Theorems.AndOuter
 import CORALean.ContSet.ConPolyZono.Real.Theorems.AndExact
+import CORALean.ContSet.ConPolyZono.Real.Theorems.Holds
+import CORALean.ContSet.Interval.Real.Operations.Point
 import CORALean.ContSet.Conversion.Float.ConZonotope_to_ConPolyZono
 import CORALean.ContSet.Conversion.Real.ConZonotope_to_ConPolyZono
 

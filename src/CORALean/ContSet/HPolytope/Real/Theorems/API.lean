@@ -1,3 +1,4 @@
+import CORALean.ContSet.HPolytope.Real.Theorems.MemConstruct
 import CORALean.ContSet.HPolytope.Real.Theorems.AndExact
 import CORALean.ContSet.HPolytope.Real.Theorems.CertifiedOuter
 import CORALean.ContSet.HPolytope.Real.Theorems.ComapExact
@@ -13,4 +14,6 @@ import CORALean.ContSet.HPolytope.Real.Theorems.TranslateExact
 The operations whose rows the inputs determine, exactly; the rest enclosing,
 each in one line off `subset_ofBounds`. Convex and closed, but not bounded:
 unbounded is what this representation admits and a vertex one cannot.
+`MemConstruct` names the pair of constraint blocks every one of them is stated
+against.
 -/

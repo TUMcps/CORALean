@@ -1,5 +1,6 @@
 import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
 import CORALean.ContSet.Zonotope.Float.Operations.AbsorbError
+import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 import CORALean.ContSet.Zonotope.Real.Theorems.Coefficient
 
 /-!

@@ -23,7 +23,7 @@ carries the supremum norm.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   04-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -39,29 +39,5 @@ structure Ellipsoid (n : ℕ) where
 
 def Ellipsoid.construct (E : Ellipsoid n) : Set (Vec ℝ n) :=
   {x | ∃ u : Vec ℝ E.k, ‖u‖₂ ≤ 1 ∧ x = E.q + E.G *ᵥ u}
-
-/-- CORA's shape matrix, so the correspondence can be checked rather than taken
-on trust. Nothing below uses it: every operation and every guarantee is stated
-against `G`. -/
-def Ellipsoid.shape (E : Ellipsoid n) : Mat ℝ n n := E.G * E.Gᵀ
-
-theorem Ellipsoid.mem_construct {E : Ellipsoid n} {u : Vec ℝ E.k} (hu : ‖u‖₂ ≤ 1) :
-    E.q + E.G *ᵥ u ∈ E.construct := ⟨u, hu, rfl⟩
-
-/-- Never empty, which is what the support function's maximum is attained at
-when the direction is one `G` collapses. -/
-theorem Ellipsoid.q_mem_construct (E : Ellipsoid n) : E.q ∈ E.construct :=
-  ⟨0, by rw [norm₂_zero]; exact zero_le_one, by rw [Matrix.mulVec_zero, add_zero]⟩
-
-/-- The affine image the definition already is, spelt as an image so that
-convexity and compactness transfer from the ball in one step. -/
-theorem Ellipsoid.construct_eq_image (E : Ellipsoid n) :
-    E.construct = (fun u : Vec ℝ E.k => E.q + E.G *ᵥ u) '' unitBall₂ E.k := by
-  ext x
-  constructor
-  · rintro ⟨u, hu, rfl⟩
-    exact ⟨u, hu, rfl⟩
-  · rintro ⟨u, hu, rfl⟩
-    exact ⟨u, hu, rfl⟩
 
 end CORALean.Real

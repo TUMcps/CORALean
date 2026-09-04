@@ -1,4 +1,4 @@
-import CORALean.ContSet.ConZonotope.Float.ConZonotope
+import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
 import CORALean.ContSet.VPolytope.Float.VPolytope
 import CORALean.ContSet.Conversion.Float.Interval_to_HPolytope
 import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset

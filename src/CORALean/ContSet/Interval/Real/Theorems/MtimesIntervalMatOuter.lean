@@ -1,4 +1,5 @@
 import CORALean.ContSet.Interval.Real.Operations.MtimesIntervalMat
+import CORALean.ContSet.Interval.Real.Theorems.MemMat
 import CORALean.ContSet.Interval.Real.Theorems.MtimesOuter
 
 /-!

@@ -22,7 +22,7 @@ tighter bound is the one worth not taking.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   04-September-2026
 -- Last revision: ---
 
 namespace CORALean.Float
@@ -55,19 +55,6 @@ theorem Ellipsoid.nominal_q [SoundFloatArithmetic 𝕋] (E : Ellipsoid 𝕋 n) :
 
 theorem Ellipsoid.nominal_G [SoundFloatArithmetic 𝕋] (E : Ellipsoid 𝕋 n) :
     (InflatedContSet.nominal E).G = toRealMat E.G := rfl
-
-/-- The nominal set in this ellipsoid's own fields, coordinatewise and
-definitionally. Proofs use it rather than `nominal`, through which the count is
-the equal-but-distinct `(nominal E).k` that `rw` and `linarith` read apart. -/
-theorem Ellipsoid.mem_nominalSet_iff [SoundFloatArithmetic 𝕋] {E : Ellipsoid 𝕋 n}
-    {x : Vec ℝ n} :
-    x ∈ InflatedContSet.nominalSet E ↔ ∃ u : Vec ℝ E.k, ‖u‖₂ ≤ 1 ∧
-      ∀ i, x i = toReal (E.q i) + ∑ j, toReal (E.G i j) * u j := by
-  constructor
-  · rintro ⟨u, hu, rfl⟩
-    exact ⟨u, hu, fun _ => rfl⟩
-  · rintro ⟨u, hu, hx⟩
-    exact ⟨u, hu, funext hx⟩
 
 /-- Inherited from `InflatedContSet`; named here so statements read locally. -/
 abbrev Ellipsoid.construct [SoundFloatArithmetic 𝕋] (E : Ellipsoid 𝕋 n) : Set (Vec ℝ n) :=

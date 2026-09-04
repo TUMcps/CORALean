@@ -3,6 +3,7 @@ import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSum
 import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 import CORALean.ContDynamics.LinearSys.Theorems.WeightedIntegral
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpEnclosure
+import CORALean.ContSet.Interval.Real.Theorems.MemMat
 
 /-!
 # `inputSolution` contains everything the input can contribute over a step

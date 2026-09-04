@@ -1,5 +1,6 @@
 import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMap
 import CORALean.ContSet.PolyZonotope.Real.Theorems.DependentExact
+import CORALean.ContSet.PolyZonotope.Real.Theorems.Monomial
 
 /-!
 # `PolyZonotope.quadMap` is exactly the image under a quadratic map

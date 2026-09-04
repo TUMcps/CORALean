@@ -22,7 +22,7 @@ definition rather than by a lemma, and every operation owes only enclosure.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   04-September-2026
 -- Last revision: ---
 
 namespace CORALean.Float
@@ -48,21 +48,6 @@ def HPolytope.nominal [SoundFloatArithmetic 𝕋] (P : HPolytope 𝕋 n) :
 
 def HPolytope.construct [SoundFloatArithmetic 𝕋] (P : HPolytope 𝕋 n) : Set (Vec ℝ n) :=
   P.nominal.construct
-
-/-- Membership in this polytope's own fields, which is the form every operation
-below states its obligation in. -/
-theorem HPolytope.mem_construct_iff [SoundFloatArithmetic 𝕋] {P : HPolytope 𝕋 n}
-    {x : Vec ℝ n} :
-    x ∈ P.construct ↔
-      (∀ i, (toRealMat P.A *ᵥ x) i ≤ toReal (P.b i))
-        ∧ ∀ i, toReal (P.be.inf i) ≤ (toRealMat P.Ae *ᵥ x) i
-               ∧ (toRealMat P.Ae *ᵥ x) i ≤ toReal (P.be.sup i) := by
-  have hand : x ∈ P.construct ↔
-      x ∈ (Real.HPolytope.ineqs (toRealMat P.A) (toRealVec P.b)).construct
-        ∧ x ∈ (Real.HPolytope.slab (toRealMat P.Ae) (toRealVec P.be.inf)
-            (toRealVec P.be.sup)).construct := Real.HPolytope.mem_and_iff
-  rw [hand, Real.HPolytope.mem_ineqs_iff, Real.HPolytope.mem_slab_iff]
-  exact Iff.rfl
 
 /-! ## Storage
 

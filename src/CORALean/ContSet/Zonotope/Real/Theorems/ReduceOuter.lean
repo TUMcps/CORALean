@@ -1,5 +1,6 @@
 import CORALean.ContSet.Zonotope.Real.Operations.Reduce
 import CORALean.ContSet.Zonotope.Real.Theorems.Coefficient
+import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
 
 /-!
 # `Zonotope.reduce` over-approximates the zonotope

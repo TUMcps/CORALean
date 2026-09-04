@@ -1,4 +1,5 @@
 import CORALean.ContSet.ConPolyZono.Float.Operations.Plus
+import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
 import CORALean.ContSet.InflatedContSet.Theorems.PlusSubset
 import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual

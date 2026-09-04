@@ -2,6 +2,8 @@ import CORALean.ContSet.HPolytope.Real.Operations.And
 import CORALean.ContSet.HPolytope.Real.Operations.BasicPoint
 import CORALean.ContSet.HPolytope.Real.Operations.Comap
 import CORALean.ContSet.HPolytope.Real.Operations.DualBound
+import CORALean.ContSet.HPolytope.Real.Operations.EmptySet
+import CORALean.ContSet.HPolytope.Real.Operations.Fullspace
 import CORALean.ContSet.HPolytope.Real.Operations.LinComb
 import CORALean.ContSet.HPolytope.Real.Operations.MapEquiv
 import CORALean.ContSet.HPolytope.Real.Operations.Mtimes
@@ -29,4 +31,7 @@ names directions instead and each bound comes from a certificate —
 `ofBounds` is the shape they share, `DualBound` where a halfspace description's
 own certificates come from. Soundness never depends on the directions, only
 precision does, so enumerating the true facets stays outside as an optimisation.
+
+`Fullspace` and `EmptySet` are the unit and the absorbing element of the first
+group, each written out as the rows that denote it.
 -/

@@ -1,3 +1,5 @@
+import CORALean.ContSet.PolyZonotope.Real.Theorems.Monomial
+import CORALean.ContSet.PolyZonotope.Real.Theorems.MemConstruct
 import CORALean.ContSet.PolyZonotope.Real.Theorems.PlusExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MapExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombOuter
@@ -22,5 +24,6 @@ for.
 `quadMap_exact` is the one that distinguishes the representation: no convex
 representation here can state it. `compact_exact` is the one an order bound
 rests on: it says the generator count may fall without the set moving, which is
-what `reduce_outer` then trades against precision.
+what `reduce_outer` then trades against precision. `Monomial` and `MemConstruct`
+are what every one of them is stated over.
 -/

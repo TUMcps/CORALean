@@ -3,6 +3,7 @@ import CORALean.ContSet.Conversion.Real.HPolytope_to_VPolytope
 import CORALean.ContSet.Conversion.Real.Interval_to_HPolytope
 import CORALean.ContSet.Conversion.Real.VPolytope_to_Interval
 import CORALean.ContSet.HPolytope.Real.Theorems.AndExact
+import CORALean.ContSet.VPolytope.Real.Operations.EmptySet
 
 /-!
 # `VPolytope.and`

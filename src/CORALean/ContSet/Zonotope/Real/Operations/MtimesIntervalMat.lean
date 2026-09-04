@@ -1,3 +1,4 @@
+import CORALean.ContSet.Interval.Real.Operations.CenterRadius
 import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
 
 /-!

@@ -5,11 +5,15 @@ import CORALean.ContSet.Interval.Real.Interval
 
 `inf` is the witness one way, transitivity through any point the other. Negated,
 it is the claim that crossed bounds denote `∅`.
+
+The predicate itself is stated here rather than beside the structure: it is one
+line, nothing but this file gives it a meaning, and every use of it is a use of
+the equivalence below.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       17-August-2026
--- Last update:   ---
+-- Last update:   04-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -17,6 +21,9 @@ namespace CORALean.Real
 open Entrywise
 
 variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
+
+/-- Bounds that do not cross, coordinate by coordinate. -/
+def Interval.IsNonempty (I : Interval α) : Prop := ∀ i : ι, entry I.inf i ≤ entry I.sup i
 
 theorem Interval.isNonempty_iff (I : Interval α) : I.IsNonempty ↔ I.construct.Nonempty := by
   constructor

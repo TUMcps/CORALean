@@ -1,5 +1,7 @@
 import CORALean.ContSet.ConPolyZono.Float.Operations.Dependent
+import CORALean.ContSet.ConPolyZono.Real.Operations.PadE
 import CORALean.ContSet.ConPolyZono.Real.Theorems.DependentExact
+import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
 
 /-!
 # Making the independent generators dependent loses nothing here either

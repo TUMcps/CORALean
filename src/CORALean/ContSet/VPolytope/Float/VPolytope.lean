@@ -19,7 +19,7 @@ and the nominal reading transposes.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   04-September-2026
 -- Last revision: ---
 
 namespace CORALean.Float
@@ -48,27 +48,6 @@ theorem VPolytope.nominal_eq [SoundFloatArithmetic 𝕋] (P : VPolytope 𝕋 n) 
 /-- Inherited from `InflatedContSet`; named here so statements read locally. -/
 abbrev VPolytope.construct [SoundFloatArithmetic 𝕋] (P : VPolytope 𝕋 n) : Set (Vec ℝ n) :=
   InflatedContSet.construct P
-
-/-- A box wide enough for every column's rounding at once: the operations here
-store a whole vertex list, so one box has to cover all of it. -/
-def VPolytope.columnGap {k : ℕ} (lo hi : Mat 𝕋 n k) : Interval 𝕋 n :=
-  ⟨fun _ => zero, fun i => maximumOver fun l => subUp (hi i l) (lo i l)⟩
-
-/-- Storing the lower rounding of column `l` leaves a residual the gap admits. -/
-theorem VPolytope.mem_columnGap [SoundFloatArithmetic 𝕋] {k : ℕ} {lo hi : Mat 𝕋 n k}
-    {p : Vec ℝ n} {l : Fin k}
-    (h : ∀ i, toReal (lo i l) ≤ p i ∧ p i ≤ toReal (hi i l)) :
-    (fun i => p i - toReal (lo i l)) ∈ (VPolytope.columnGap lo hi).construct := by
-  refine fun i => ⟨?_, ?_⟩
-  · show toReal (zero : 𝕋) ≤ p i - toReal (lo i l)
-    rw [toReal_zero]
-    linarith [(h i).1]
-  · show p i - toReal (lo i l) ≤ toReal (maximumOver fun l' => subUp (hi i l') (lo i l'))
-    calc p i - toReal (lo i l)
-        ≤ toReal (hi i l) - toReal (lo i l) := by linarith [(h i).2]
-      _ ≤ toReal (subUp (hi i l) (lo i l)) := sub_le_subUp _ _
-      _ ≤ toReal (maximumOver fun l' => subUp (hi i l') (lo i l')) :=
-          le_maximumOver (fun l' => subUp (hi i l') (lo i l')) l
 
 /-! ## Storage
 

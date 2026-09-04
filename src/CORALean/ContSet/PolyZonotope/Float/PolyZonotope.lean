@@ -21,7 +21,7 @@ The error box is `err` rather than `E`, which the exponent matrix has taken.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   04-September-2026
 -- Last revision: ---
 
 namespace CORALean.Float
@@ -63,17 +63,6 @@ theorem PolyZonotope.nominal_q [SoundFloatArithmetic 𝕋] (PZ : PolyZonotope �
 
 theorem PolyZonotope.nominal_E [SoundFloatArithmetic 𝕋] (PZ : PolyZonotope 𝕋 n) :
     (InflatedContSet.nominal PZ).E = PZ.E := rfl
-
-/-- The nominal set in this representation's own fields, definitionally. Proofs
-use it rather than `nominal` because through it every count is `PZ.h`, where the
-instance gives the equal-but-distinct `(nominal PZ).h` that `rw` reads apart. -/
-theorem PolyZonotope.mem_nominalSet_iff [SoundFloatArithmetic 𝕋] {PZ : PolyZonotope 𝕋 n}
-    {x : Vec ℝ n} :
-    x ∈ InflatedContSet.nominalSet PZ ↔ ∃ a : Fin PZ.p → ℝ, ∃ β : Fin PZ.q → ℝ,
-      (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1) ∧ ∀ i, x i = toReal (PZ.c i)
-        + (∑ l, toReal (PZ.G i l) * Real.PolyZonotope.monomial PZ.E a l)
-        + ∑ j, toReal (PZ.GI i j) * β j :=
-  Real.PolyZonotope.mem_construct_iff
 
 /-- Inherited from `InflatedContSet`; named here so statements read locally. -/
 abbrev PolyZonotope.construct [SoundFloatArithmetic 𝕋] (PZ : PolyZonotope 𝕋 n) :

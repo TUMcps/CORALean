@@ -1,5 +1,5 @@
 import CORALean.Specification.Specification
-import CORALean.ContSet.HPolytope.Real.HPolytope
+import CORALean.ContSet.HPolytope.Real.Theorems.MemConstruct
 import CORALean.Global.LinProg.LinProg
 
 /-!

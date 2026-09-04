@@ -1,5 +1,6 @@
 import CORALean.ContDynamics.NonlinearSys.AbstractionError
 import CORALean.ContDynamics.NonlinearSys.Operations.LinInput
+import CORALean.ContSet.Interval.Real.Operations.Point
 
 /-!
 # The widened input set holds every input the field can demand

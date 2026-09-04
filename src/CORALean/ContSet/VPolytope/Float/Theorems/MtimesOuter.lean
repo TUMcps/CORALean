@@ -2,6 +2,7 @@ import CORALean.ContSet.InflatedContSet.Theorems.MapSubset
 import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
 import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 import CORALean.ContSet.Interval.Real.Theorems.Convex
+import CORALean.ContSet.VPolytope.Float.Operations.ColumnGap
 import CORALean.ContSet.VPolytope.Float.Operations.Mtimes
 
 /-!

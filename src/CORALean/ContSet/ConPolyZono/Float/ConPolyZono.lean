@@ -62,7 +62,9 @@ instance [SoundFloatArithmetic 𝕋] :
     fun j i => toReal (C.GI i j), toRealMat C.A, C.b.nominal, C.EC⟩
   error C := C.err
 
-/-- What this set's own factors must satisfy, spelt in its own fields. -/
+/-- What this set's own factors must satisfy, spelt in its own fields: the
+instance's constraint block unfolded, as the three equations below unfold the
+rest of it. -/
 def ConPolyZono.satisfies [SoundFloatArithmetic 𝕋] (C : ConPolyZono 𝕋 n)
     (a : Fin C.p → ℝ) : Prop :=
   Real.ConPolyZono.holds (toRealMat C.A) C.b.nominal C.EC a
@@ -77,17 +79,6 @@ theorem ConPolyZono.nominal_b [SoundFloatArithmetic 𝕋] (C : ConPolyZono 𝕋 
 
 theorem ConPolyZono.nominal_EC [SoundFloatArithmetic 𝕋] (C : ConPolyZono 𝕋 n) :
     (InflatedContSet.nominal C).EC = C.EC := rfl
-
-/-- The nominal set in this representation's own fields, definitionally. Proofs
-use it rather than `nominal` because through it every count is `C.h`, where the
-instance gives the equal-but-distinct `(nominal C).h` that `rw` reads apart. -/
-theorem ConPolyZono.mem_nominalSet_iff [SoundFloatArithmetic 𝕋] {C : ConPolyZono 𝕋 n}
-    {x : Vec ℝ n} :
-    x ∈ InflatedContSet.nominalSet C ↔ ∃ a : Fin C.p → ℝ, ∃ β : Fin C.q → ℝ,
-      (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1) ∧ C.satisfies a ∧ ∀ i, x i = toReal (C.c i)
-        + (∑ l, toReal (C.G i l) * Real.PolyZonotope.monomial C.E a l)
-        + ∑ j, toReal (C.GI i j) * β j :=
-  Real.ConPolyZono.mem_construct_iff
 
 /-- Inherited from `InflatedContSet`; named here so statements read locally. -/
 abbrev ConPolyZono.construct [SoundFloatArithmetic 𝕋] (C : ConPolyZono 𝕋 n) :

@@ -1,3 +1,4 @@
+import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
 import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorError
 import CORALean.ContSet.PolyZonotope.Float.Theorems.PlusOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.MtimesOuter
@@ -25,5 +26,5 @@ representation from growing a box per step.
 
 `mem_generatorError` is the one that answers the question the representation
 raises — what a monomial costs a float layer — and its docstring is where that
-is argued.
+is argued. `MemNominalSet` is how each of them reads the nominal half of a point.
 -/

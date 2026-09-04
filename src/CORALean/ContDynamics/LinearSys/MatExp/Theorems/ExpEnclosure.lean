@@ -1,4 +1,5 @@
 import CORALean.ContDynamics.LinearSys.MatExp.Enclosures
+import CORALean.ContSet.Interval.Real.Theorems.MemMat
 
 /-!
 # The matrix exponential lies in its enclosure

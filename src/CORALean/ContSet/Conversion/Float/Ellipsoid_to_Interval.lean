@@ -1,4 +1,4 @@
-import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
+import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
 import CORALean.Global.Float.EuclideanNorm
 
 /-!

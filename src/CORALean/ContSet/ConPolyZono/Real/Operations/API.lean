@@ -1,3 +1,5 @@
+import CORALean.ContSet.ConPolyZono.Real.Operations.PadE
+import CORALean.ContSet.ConPolyZono.Real.Operations.AppendE
 import CORALean.ContSet.ConPolyZono.Real.Operations.And
 import CORALean.ContSet.ConPolyZono.Real.Operations.Compact
 import CORALean.ContSet.ConPolyZono.Real.Operations.Dependent
@@ -24,6 +26,9 @@ nor `EC` reads it, so the two exponent matrices are dropped from together.
 knowing — a quadratic map reads the generators and the exponent matrix, and the
 constraints read neither, so they pass through and constrain the image exactly
 as they constrained the argument.
+
+`PadE` and `AppendE` are the two ways a constraint block is reshaped — widened
+by factors it does not read, and set beside another over the same factors.
 
 No `linComb` and no `reduce`; `Instances` says why.
 -/

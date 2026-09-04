@@ -1,6 +1,8 @@
-import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
-import CORALean.ContSet.ConZonotope.Float.ConZonotope
+import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
+import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
 import CORALean.ContSet.Conversion.Real.ConZonotope_to_ConPolyZono
+import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
 import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
 
 /-!

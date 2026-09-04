@@ -1,6 +1,7 @@
 import CORALean.ContSet.ConPolyZono.Float.Operations.Dependent
 import CORALean.ContSet.ConPolyZono.Float.Operations.Plus
 import CORALean.ContSet.ConPolyZono.Real.Operations.And
+import CORALean.ContSet.ConPolyZono.Real.Operations.AppendE
 
 /-!
 # `ConPolyZono.and`

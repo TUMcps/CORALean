@@ -1,4 +1,4 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
+import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
 import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 
 /-!

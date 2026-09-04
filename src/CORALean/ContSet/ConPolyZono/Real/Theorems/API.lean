@@ -1,3 +1,5 @@
+import CORALean.ContSet.ConPolyZono.Real.Theorems.Holds
+import CORALean.ContSet.ConPolyZono.Real.Theorems.MemConstruct
 import CORALean.ContSet.ConPolyZono.Real.Theorems.AndExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.CompactExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.DependentExact
@@ -21,4 +23,6 @@ columns, and dropping the factors neither block reads.
 exact intersection in this repository that is not of convex sets, and together
 with `quadMap_exact` it is what a nonlinear reachability step needs: propagate
 through a quadratic map, then cut by a guard, neither losing anything.
+
+`Holds` and `MemConstruct` are what all six are stated over.
 -/

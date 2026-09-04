@@ -4,6 +4,7 @@ import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
 import CORALean.ContSet.PolyZonotope.Float.Operations.Mtimes
 import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorError
+import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
 
 /-!
 # `PolyZonotope.mtimes` over-approximates the image under a linear map
