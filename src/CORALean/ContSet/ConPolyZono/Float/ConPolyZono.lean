@@ -103,4 +103,37 @@ theorem ConPolyZono.mem_nominalSet_iff [SoundFloatArithmetic 𝕋] {C : ConPolyZ
 abbrev ConPolyZono.construct [SoundFloatArithmetic 𝕋] (C : ConPolyZono 𝕋 n) :
     Set (Vec ℝ n) := InflatedContSet.construct C
 
+/-! ## Storage
+
+Every field is a function type, so the representation an operation returns is a
+closure over the one it was given. `materialise` stores them and `materialise_eq`
+says it is the identity; `Global/Tensor` says why the vectors are built here.
+Both exponent matrices are stored along with the floats, being curried functions
+rather than `Mat`s. -/
+
+def ConPolyZono.materialise (C : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n :=
+  let c : Vector 𝕋 n := Vector.ofFn C.c
+  let G : Vector (Vector 𝕋 C.h) n := Vector.ofFn fun i => Vector.ofFn fun l => C.G i l
+  let E : Vector (Vector ℕ C.h) C.p := Vector.ofFn fun k => Vector.ofFn fun l => C.E k l
+  let GI : Vector (Vector 𝕋 C.q) n := Vector.ofFn fun i => Vector.ofFn fun j => C.GI i j
+  let A : Vector (Vector 𝕋 C.s) C.m := Vector.ofFn fun i => Vector.ofFn fun l => C.A i l
+  let EC : Vector (Vector ℕ C.s) C.p := Vector.ofFn fun k => Vector.ofFn fun l => C.EC k l
+  { p := C.p
+    h := C.h
+    q := C.q
+    m := C.m
+    s := C.s
+    c := fun i => c[i.val]'i.isLt
+    G := fun i l => (G[i.val]'i.isLt)[l.val]'l.isLt
+    E := fun k l => (E[k.val]'k.isLt)[l.val]'l.isLt
+    GI := fun i j => (GI[i.val]'i.isLt)[j.val]'j.isLt
+    A := fun i l => (A[i.val]'i.isLt)[l.val]'l.isLt
+    b := C.b.materialise
+    EC := fun k l => (EC[k.val]'k.isLt)[l.val]'l.isLt
+    err := C.err.materialise }
+
+omit [FloatOps 𝕋] in
+@[simp] theorem ConPolyZono.materialise_eq (C : ConPolyZono 𝕋 n) : C.materialise = C := by
+  simp [ConPolyZono.materialise]
+
 end CORALean.Float

@@ -70,4 +70,20 @@ theorem VPolytope.mem_columnGap [SoundFloatArithmetic 𝕋] {k : ℕ} {lo hi : M
       _ ≤ toReal (maximumOver fun l' => subUp (hi i l') (lo i l')) :=
           le_maximumOver (fun l' => subUp (hi i l') (lo i l')) l
 
+/-! ## Storage
+
+Every field is a function type, so the polytope an operation returns is a closure
+over the one it was given. `materialise` stores them and `materialise_eq` says it
+is the identity; `Global/Tensor` says why the vectors are built here. -/
+
+def VPolytope.materialise (P : VPolytope 𝕋 n) : VPolytope 𝕋 n :=
+  let V : Vector (Vector 𝕋 P.k) n := Vector.ofFn fun i => Vector.ofFn fun l => P.V i l
+  { k := P.k
+    V := fun i l => (V[i.val]'i.isLt)[l.val]'l.isLt
+    E := P.E.materialise }
+
+omit [FloatOps 𝕋] in
+@[simp] theorem VPolytope.materialise_eq (P : VPolytope 𝕋 n) : P.materialise = P := by
+  simp [VPolytope.materialise]
+
 end CORALean.Float

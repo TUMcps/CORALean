@@ -26,21 +26,22 @@ first table — every row is that table's `x1` column widened by exactly the
 matrix and `plus` on two zonotopes both being exact here. A row wider than that
 would be a widening in `outputSet` rather than in `reach`.
 
-At `Dyadic 24` the second table reads zero throughout: every product and sum
-over this horizon is exact, so `mtimes` pays nothing into the box and all the
-widening in the first table is order reduction — Girard's rule boxing the
-generators it drops. That checks the algorithms and the reduction, but nothing
-about directed rounding, which is the reason the float layer exists.
+At `Dyadic 24` the second table reads zero for six steps and is nonzero after
+them. A generator's mantissa gains the four bits of an `A` entry every step, so
+the seventh product is the first to overflow 24 bits: up to it every product and
+sum is exact, `mtimes` pays nothing into the box, and all the widening in the
+first table is order reduction — Girard's rule boxing the generators it drops.
+Past it the box also carries directed rounding, at about `2.7e-6` by the last
+row, five decimal orders under the enclosure it sits inside.
 
-So `main` runs the same system twice, at `Dyadic 24` and at `Dyadic smallP`.
-`smallP` is `8`: `A`'s entries need 4 bits and `R₀`/`U`'s need 1, so two steps
-of products still fit, and the mantissa first overflows on the third — late
-enough to see the exact algorithm run for a while, early enough that four of
-the seven rows carry a genuinely rounded box. The error widths climb from
-`0` to about `0.045` and `0.037` by the last row, a few percent of the box
-itself and nowhere near swamping it, which is what keeps the run legible
-rather than an explosion. Everything below is written once, at an implicit
-precision `p`, and `reachReport` picks it by which `Dyadic p` it is called at.
+That is a thin test of rounding, so `main` runs the same system twice, at
+`Dyadic 24` and at `Dyadic smallP`. `smallP` is `8`: `A`'s entries need 4 bits
+and `R₀`/`U`'s need 1, so two steps of products still fit and the mantissa first
+overflows on the third — early enough that all but three rows carry a genuinely
+rounded box. Those error widths climb from `0` to about `0.28`, a quarter of the
+enclosure and not a swamping of it, which is what keeps the run legible rather
+than an explosion. Everything below is written once, at an implicit precision
+`p`, and `reachReport` picks it by which `Dyadic p` it is called at.
 -/
 
 -- Authors:       Tobias Ladner
@@ -80,17 +81,16 @@ def U : Zonotope (Dyadic p) 2 where
 /-- Maximum order: at most `3 * 2` generators survive a step. -/
 def order : ℕ := 3
 
-/-- Six, and the ceiling is evaluation cost rather than anything about the sets.
-`Vec` and `Mat` are function types, so a generator entry of step `k` is a
-closure over step `k-1` and nothing memoizes it: every use walks the whole
-history again. Measured on this system, steps 0 to 6 print in well under a
-second and steps 7 to 10 take five and three quarter minutes between them, the
-cost roughly tripling per step. -/
-def steps : ℕ := 6
+/-- Twenty, and the ceiling is the table's length rather than the cost of
+reaching it: a representation stores what an operation returns, so a step is a
+few milliseconds however many precede it. Twenty is where the damped rotation
+has visibly turned and where the `Dyadic 8` error box has grown to a quarter of
+the enclosure without swamping it. -/
+def steps : ℕ := 20
 
-/-- The reachable set after `k` steps. Recomputed per row rather than folded,
-which costs `k²` steps of a twelve-step run and keeps the table one call to the
-definition the theorems are about. -/
+/-- The reachable set after `k` steps. Recomputed per row rather than folded, so
+a table of `k` rows costs `k²/2` steps where a fold would cost `k`, and every
+row is one call to the definition the theorems are about. -/
 def R (k : ℕ) : Zonotope (Dyadic p) 2 :=
   (sys p).reach (S := Zonotope (Dyadic p)) order (R₀ p) (U p) k
 

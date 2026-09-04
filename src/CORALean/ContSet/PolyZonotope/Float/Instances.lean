@@ -41,21 +41,27 @@ namespace CORALean.Float
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 instance {n : ℕ} : Plus (PolyZonotope 𝕋 n) (Vec ℝ n) where
-  plus := PolyZonotope.plus
-  plus_outer := PolyZonotope.plus_outer
+  plus PZ₁ PZ₂ := (PZ₁.plus PZ₂).materialise
+  plus_outer PZ₁ PZ₂ := by
+    rw [PolyZonotope.materialise_eq]
+    exact PolyZonotope.plus_outer PZ₁ PZ₂
 
 instance {n : ℕ} : LinComb (PolyZonotope 𝕋 n) (Vec ℝ n) where
-  linComb := PolyZonotope.linComb
-  linComb_outer := PolyZonotope.linComb_outer
+  linComb PZ₁ PZ₂ := (PZ₁.linComb PZ₂).materialise
+  linComb_outer PZ₁ PZ₂ := by
+    rw [PolyZonotope.materialise_eq]
+    exact PolyZonotope.linComb_outer PZ₁ PZ₂
 
 instance {n : ℕ} : Reduce (PolyZonotope 𝕋 n) (Vec ℝ n) where
-  reduce := PolyZonotope.reduce
-  reduce_outer := PolyZonotope.reduce_outer
+  reduce PZ o := (PZ.reduce o).materialise
+  reduce_outer PZ o := by
+    rw [PolyZonotope.materialise_eq]
+    exact PolyZonotope.reduce_outer PZ o
 
 instance : Mtimes (Mat 𝕋) (PolyZonotope 𝕋) where
-  mtimes := PolyZonotope.mtimes
+  mtimes M PZ := (PolyZonotope.mtimes M PZ).materialise
   mtimes_outer M PZ := by
-    simp only [ContSet.construct_mat, Set.biUnion_singleton]
+    simp only [ContSet.construct_mat, Set.biUnion_singleton, PolyZonotope.materialise_eq]
     exact PolyZonotope.mtimes_outer M PZ
 
 end CORALean.Float
