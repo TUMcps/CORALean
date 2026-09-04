@@ -7,7 +7,7 @@ import CORALean.ContDynamics.LinearSys.Theorems.StepInputShift
 /-!
 # `inputSolution` contains what the input contributed over a step
 
-Althoff's Thm. 3.1 applied to a trajectory, which is what turns the sampled
+[1, Thm. 3.1] applied to a trajectory, which is what turns the sampled
 guarantees' input enclosure from a hypothesis into a theorem.
 
 Every step has the same length, so the enclosing set does not depend on `k`:
@@ -17,6 +17,11 @@ shifting `u` by `kΔt` leaves an integral over `[0, Δt]` of the same shape, and
 The cost is convexity and closedness of `U`, which `ContSet` does not offer; a
 representation that cannot supply them keeps the general form, where the
 enclosure stays a hypothesis.
+
+## References
+
+* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
+      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
 -/
 
 -- Authors:       Tobias Ladner
@@ -37,13 +42,11 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 variable [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 
 omit [∀ n, LinComb (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] in
+-- nine hypotheses passed through to `inputSolution_outer`, each fixing `Mtimes` at `ℐ`
 set_option maxHeartbeats 400000 in
 /-- What a step's input contributed lies in `inputSolution`, for every step.
-
-`c := (k+1)Δt` is where the step ends, and reflecting about it is what the
-substitution inside `inputSolution_outer` leaves behind — measurable for free,
-by `aestronglyMeasurable_input_reflected`. Only step `k` is spoken about, so a
-domain covering that step is all the trajectory has to be defined on. -/
+Reflecting about the step's end is what the substitution inside
+`inputSolution_outer` leaves behind, and only step `k` is spoken about. -/
 theorem LinearSys.Trajectory.stepInput_outer [Mtimes ℐ S]
     {sys : LinearSys 𝕋 n} {T : Set ℝ}
     {R₀ U : S n} {x u : ℝ → Vec ℝ n} {Δt : ℝ} (traj : sys.Trajectory T R₀ U x u)

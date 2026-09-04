@@ -3,35 +3,22 @@ import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
 /-!
 # What a monomial costs the float layer
 
-The question the representation raises: a zonotope scales a generator by one
-coefficient, a polynomial zonotope by `∏ₖ αₖ^Eₖᵢ`. A product of `p` rounded
-powers would accumulate rounding the way a single multiplication does not, and
-the bound would have to be `(1+ε)^{∑ₖ Eₖᵢ}` or worse — growing with the total
-degree, and needing a relative-error model this layer deliberately does not
-assume.
+A zonotope scales a generator by one coefficient, a polynomial zonotope by
+`∏ₖ αₖ^Eₖᵢ`. A product of `p` rounded powers would accumulate rounding as a
+single multiplication does not, and the bound would grow with the total degree.
 
 None of that is paid, because **no monomial is ever computed**. `αₖ` is a
-coefficient the *set* quantifies over, not a value the implementation holds: the
-denoted set ranges over every admissible `α`, so the monomial is an exact real
-in every one of `plus`, `mtimes` and `quadMap`. What the float layer stores of a
-monomial is its exponent column, over ℕ, and every operation on exponents —
-`plusE`'s block-diagonal append, `quadMapE`'s column addition, dropping a column
-or a factor — is exact in ℕ. So the nominal set's monomials are the exact
-layer's monomials and not roundings of them.
+coefficient the *set* quantifies over, not a value the implementation holds, so
+the monomial is an exact real in every one of `plus`, `mtimes` and `quadMap`.
+What the float layer stores of a monomial is its exponent column, over ℕ, and
+every operation on exponents is exact there, so the nominal set's monomials are
+the exact layer's and not roundings of them.
 
-The monomial therefore enters here through one fact and no other:
-`|∏ₖ αₖ^Eₖᵢ| ≤ 1`, which is exactly what a zonotope's free coefficient
-satisfies. `abs_sum_le_radius` needs nothing more, so a rounded dependent
-generator costs precisely what a rounded zonotope generator costs — one `radius`
-of the entrywise error, independent of `p` and of the degree.
-
-The cost is in the *count* of generators rather than in the size of each. A
-zonotope's `mtimes` sums `h` errors per coordinate; `quadMap` sums `(h+1)²`,
-which is where a polynomial zonotope's rounding actually accumulates, and why
-`compact` is worth running before rather than after.
-
-The `_monomial` form is the general one specialised, so a caller reading the
-statement at a dependent block never has to produce the bound itself.
+The monomial therefore enters through one fact and no other: `|∏ₖ αₖ^Eₖᵢ| ≤ 1`,
+which is what a zonotope's free coefficient satisfies, so a rounded dependent
+generator costs one `radius` of entrywise error, independent of `p` and degree.
+The cost is in the *count*: `quadMap` sums `(h+1)²` errors per coordinate where
+`mtimes` sums `h`, which is why `compact` is worth running before, not after.
 -/
 
 -- Authors:       Tobias Ladner

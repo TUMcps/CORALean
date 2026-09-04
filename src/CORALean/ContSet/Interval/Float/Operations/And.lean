@@ -32,6 +32,7 @@ theorem Interval.and_exact (I₁ I₂ : Interval 𝕋 n) :
     intro x j
     rw [toReal_maximum, toReal_minimum, max_le_iff, le_min_iff]
     tauto
+  -- `max` of the lower ends against `min` of the upper ones is exactly meeting both boxes
   ext x
   constructor
   · intro h

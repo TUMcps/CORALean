@@ -43,10 +43,9 @@ theorem Zonotope.nominal_c [SoundFloatArithmetic 𝕋] (Z : Zonotope 𝕋 n) :
 theorem Zonotope.nominal_G [SoundFloatArithmetic 𝕋] (Z : Zonotope 𝕋 n) :
     (InflatedContSet.nominal Z).G = fun j i => toReal (Z.G i j) := rfl
 
-/-- The nominal set spelt in this zonotope's own fields. Definitional, and the
-reason proofs never mention `nominal`: through it every count is `Z.h`, where
-going via the instance gives the equal-but-distinct `(nominal Z).h` that `rw`,
-`ring` and `linarith` all read as a different term. -/
+/-- The nominal set in this zonotope's own fields, definitionally. Proofs use it
+rather than `nominal` because through it every count is `Z.h`, where the
+instance gives the equal-but-distinct `(nominal Z).h` that `rw` reads apart. -/
 theorem Zonotope.mem_nominalSet_iff [SoundFloatArithmetic 𝕋] {Z : Zonotope 𝕋 n}
     {x : Vec ℝ n} :
     x ∈ InflatedContSet.nominalSet Z ↔ ∃ β : Vec ℝ Z.h, (∀ j, |β j| ≤ 1) ∧

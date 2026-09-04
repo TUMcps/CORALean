@@ -22,9 +22,8 @@ usable has to fall back on something inside.
 corners. Never tight unless the polytope was a box, but polynomial in the number
 of rows, which is the case that matters when a step has accumulated many.
 
-Neither enumerates facets. Nothing here identifies *which* subsets give
-vertices, which is what a double-description implementation spends its time on;
-that is a question of cost, and the enclosure does not depend on the answer.
+Neither enumerates facets: nothing here identifies *which* subsets give
+vertices, which is a question of cost the enclosure does not depend on.
 -/
 
 -- Authors:       Tobias Ladner
@@ -44,10 +43,9 @@ theorem HPolytope.isCompact_of_subset {W : VPolytope (Vec ℝ n)} (h : P.constru
     IsCompact P.construct :=
   Metric.isCompact_of_isClosed_isBounded P.isClosed_construct (W.isBounded_construct.subset h)
 
-/-- The soundness half of vertex enumeration, and the only part that needs a
-theorem: a list holding every point the rows pin down encloses the polytope.
-What a particular implementation must then show is that it found those points —
-never that its search was exhaustive in any other sense. -/
+/-- The soundness half of vertex enumeration: a list holding every point the
+rows pin down encloses the polytope. An implementation must then show it found
+those points, never that its search was exhaustive in any other sense. -/
 theorem HPolytope.subset_of_pinned (hc : IsCompact P.construct) (W : VPolytope (Vec ℝ n))
     (hW : ∀ x ∈ P.construct,
         (∀ d : Vec ℝ n, (∀ i, P.A i x = P.b i → P.A i d = 0) → (∀ i, P.Ae i d = 0) → d = 0) →
@@ -63,10 +61,9 @@ theorem HPolytope.subset_of_pinned (hc : IsCompact P.construct) (W : VPolytope (
     _ = convexHull ℝ (Set.range W.V) := hclosed.closure_eq
     _ = W.construct := W.construct_eq_convexHull.symm
 
-/-- One candidate per subset of the inequality rows, kept when it is feasible and
-replaced by a point of the polytope when it is not — so every vertex listed is a
-point of the polytope, which is what makes the conversion exact rather than
-merely enclosing. -/
+/-- One candidate per subset of the inequality rows, kept when feasible and
+replaced by a point of the polytope when not — so every vertex listed is a point
+of the polytope, which is what makes the conversion exact. -/
 noncomputable def HPolytope.vPolytope (P : HPolytope (Vec ℝ n)) (hne : P.construct.Nonempty) :
     VPolytope (Vec ℝ n) where
   k := 2 ^ P.m
@@ -85,6 +82,7 @@ theorem HPolytope.vPolytope_subset (P : HPolytope (Vec ℝ n)) (hne : P.construc
   · assumption
   · exact hne.choose_spec
 
+-- the other way: `subset_of_pinned` asks only that every extreme point be listed
 theorem HPolytope.subset_vPolytope (P : HPolytope (Vec ℝ n)) (hc : IsCompact P.construct)
     (hne : P.construct.Nonempty) : P.construct ⊆ (P.vPolytope hne).construct := by
   refine HPolytope.subset_of_pinned hc _ fun x hx hpin => ?_

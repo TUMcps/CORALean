@@ -52,6 +52,7 @@ theorem Zonotope.aux_mulVec_nominal (M : Mat 𝕋 m n) (Z : Zonotope 𝕋 n) (β
         rw [Finset.sum_comm]
         exact congrArg _ (Finset.sum_congr rfl fun j _ => (Finset.sum_mul _ _ _).symm)
 
+-- the image's nominal part, with the generator rounding charged to a box
 theorem Zonotope.aux_mtimes_nominal (M : Mat 𝕋 m n) (Z : Zonotope 𝕋 n) :
     (toRealMat M *ᵥ ·) '' nominalSet Z ⊆
       nominalSet (Zonotope.mtimes M Z) + (Zonotope.mtimesResidual M Z).construct := by

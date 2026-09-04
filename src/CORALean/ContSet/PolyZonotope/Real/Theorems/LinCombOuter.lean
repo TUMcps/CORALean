@@ -29,9 +29,8 @@ namespace CORALean.Real
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- `Fin.sum_univ_add` at `linComb`'s dependent generator count, stated through
-the projection because that is the form the goal has and simp will not rewrite a
-binder's type. Only the outermost split needs it; the blocks it produces have
-plain counts that simp can split for itself. -/
+the projection because that is the form the goal has. Only the outermost split
+needs it; the blocks it produces have plain counts simp can split itself. -/
 theorem PolyZonotope.aux_sum_univ_linComb_h {PZ₁ PZ₂ : PolyZonotope α}
     (f : Fin (PZ₁.h + PZ₂.h + (PZ₁.h + PZ₂.h + 1)) → α) :
     ∑ i : Fin (PZ₁.linComb PZ₂).h, f i
@@ -71,6 +70,7 @@ theorem PolyZonotope.linComb_outer (PZ₁ PZ₂ : PolyZonotope α) :
   refine ⟨Fin.append (Fin.append a₁ a₂) (fun _ : Fin 1 => 2 * lam - 1),
     Fin.append (Zonotope.pairCoeffSum β₁ β₂ lam) (Zonotope.pairCoeffDiff β₁ β₂ lam),
     ?_, ?_, ?_⟩
+  -- the fresh factor is `2λ-1`, which stays in `[-1,1]` for `λ` in the unit interval
   · refine Fin.addCases ?_ ?_
     · refine Fin.addCases ?_ ?_
       · intro k
@@ -86,6 +86,7 @@ theorem PolyZonotope.linComb_outer (PZ₁ PZ₂ : PolyZonotope α) :
       simpa using Zonotope.abs_pairCoeffSum_le_one hβ₁ hβ₂ hl0 hl1 j
     · intro j
       simpa using Zonotope.abs_pairCoeffDiff_le_one hβ₁ hβ₂ hl0 hl1 j
+  -- the value: the three dependent blocks and the paired independent one recombine
   · rw [PolyZonotope.aux_sum_univ_linComb_h, PolyZonotope.aux_sum_univ_linComb_q]
     simp only [PolyZonotope.linComb, Fin.sum_univ_add, Fin.sum_univ_one,
       PolyZonotope.monomial_linCombE_fst, PolyZonotope.monomial_linCombE_snd,

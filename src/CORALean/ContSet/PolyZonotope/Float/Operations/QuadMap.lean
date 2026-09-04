@@ -6,26 +6,21 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMap
 # `PolyZonotope.quadMap`
 
 The operation the representation exists for, rounded. The bookkeeping is the
-exact layer's and none of it rounds: `extE` widens the exponent matrix by the
-centre's zero column, `quadMapE` adds two columns over ℕ, and pairs are indexed
-through `finProdFinEquiv`. Only the `(h+1)²` generators `Gᵢᵀ Q Gⱼ` are computed,
-and only they are charged.
+exact layer's and none of it rounds: `extE`, `quadMapE` and `finProdFinEquiv`
+are all over ℕ. Only the `(h+1)²` generators `Gᵢᵀ Q Gⱼ` are computed and only
+they are charged.
 
 Each is a bilinear form and so two rounded steps, which is where a directed
 rounding stops composing: `Q *ᵥ Gⱼ` comes back as an *interval*, and multiplying
 an interval by `Gᵢ` cannot round in one direction without knowing the sign of
 `Gᵢ`. `quadDown`/`quadUp` therefore take the middle vector as a pair of bounds
-and pick per term with `minimum`/`maximum`, which is `Interval.mtimes`'s shape
-for exactly this reason.
+and pick per term with `minimum`/`maximum`, which is `Interval.mtimes`'s shape.
 
 `quadMapDep` needs an empty independent block *and* an empty error box — a
-quadratic map is not additive, so a box cannot be carried through it beside the
-nominal part. `dependent` supplies both, which is why it is the first thing
-`quadMap` does.
-
-The error box holds `(h+1)²` terms per coordinate where `mtimes` holds `h`. That
-is where a polynomial zonotope's rounding actually accumulates, and it is a
-reason to `compact` before mapping rather than after.
+quadratic map is not additive — which `dependent` supplies, and which is why it
+is the first thing `quadMap` does. The error box then holds `(h+1)²` terms per
+coordinate where `mtimes` holds `h`, which is a reason to `compact` before
+mapping rather than after.
 -/
 
 -- Authors:       Tobias Ladner

@@ -169,11 +169,18 @@ builds from cold.
 `scripts/check-conventions.sh` checks the conventions on this page that the
 compiler cannot: that an `aux_` name is used only in the file that declares it,
 that an `API.lean` holds nothing but imports, that no file imports its own
-directory's collector, that no `Real` file reaches into `Float`, that every file
-carries a module docstring and — unless it is a collector — an author block,
-that nothing is `sorry` or `axiom`, and that every module is reachable from one
-of the target roots, so a file written but never collected is caught rather than
-silently left out of the build.
+directory's collector, that no `Real` file reaches into `Float`, that a file
+under `Real/` or `Float/` declares the namespace its directory claims, that every
+file carries a module docstring and — unless it is a collector — a well-formed
+author block one line under it, that nothing is `sorry`, `axiom` or a search
+tactic, that every `maxHeartbeats` bump carries a reason, that every `[N]` cited
+resolves, that the comment lengths and the comment density above are respected,
+and that every module is reachable from one of the target roots, so a file
+written but never collected is caught rather than silently left out of the build.
+
+Every limit it applies is a named variable at the top of the script, set from
+what the tree actually contains, so raising one is a decision rather than a
+drift. Every message says what to do, not only what is wrong.
 
 It is text only: no Lean, no build, no network, about a second — which is why it
 runs on every commit rather than on request. Setting a clone up means
@@ -378,8 +385,15 @@ whole input set.
 
 Write them explicitly. `maxHeartbeats` is 40000 in `lakefile.toml`, a fifth of
 Lean's default, so a proof that starts searching fails rather than quietly
-costing seconds. Override per declaration when justified — and only then, since
-an override is meant to read as a deliberate cost.
+costing seconds. `aesop`, `decide`, `exact?` and the rest of the search tactics
+are refused outright, in tactic position.
+
+Override the limit per declaration when justified, and say in one line above the
+`set_option` what is expensive — the cost is visible in the number, but what
+causes it is the part a later reader cannot reconstruct.
+
+`set_option ... in` goes above the docstring. Between the docstring and the
+declaration it silently detaches the two.
 
 Mathlib is imported only in `Global/Mathlib.lean`, one lemma group at a time. A
 new lemma may mean a new import there.
@@ -397,16 +411,48 @@ operation's result, or the lemma will not match there either.
 ## Documentation
 
 Every file opens with a module docstring saying what it is for and what is
-non-obvious about it: where it departs from CORA or from Althoff's thesis, which
-hypothesis is doing the work, which Lean detail a reader would otherwise trip
-over. Not the file's role in the layout, which is this document's job, and not
-what the code already says.
+non-obvious about it: where it departs from CORA or from the paper it cites,
+which hypothesis is doing the work, which Lean detail a reader would otherwise
+trip over. Not the file's role in the layout, which is this document's job, and
+not what the code already says.
 
 Keep every comment short and precise — one line where one will do — and state
-how the code is now, not what it used to be or what was tried instead.
+how the code is now, not what it used to be or what was tried instead. Where the
+comparison of alternatives is worth keeping at all, keep the *current* design
+positively and drop the post-mortem.
 
 There are no per-directory READMEs.
 The module docstring of a directory's `API.lean` is its entry point.
+
+### Lengths, which `check-conventions.sh` enforces
+
+| | |
+| --- | --- |
+| module docstring, content file | 20 lines |
+| module docstring, collector | 25 lines — it is the directory's entry point |
+| docstring above a declaration | 3 lines; longer explanation belongs in the header |
+| inline `--` comment | 1 line; two in a row is a paragraph in the wrong place |
+| code with no comment | 20 lines, which is a *minimum* density and aimed at proofs |
+
+The module-docstring cap measures the prose only, up to a `## References`
+heading: a bibliography is not text that grows the way an explanation does.
+
+### References
+
+A publication named in prose cannot be checked and cannot be looked up, so cite
+it as CORA does — `[1]`, or `[1, Prop. 3.1]` — and define the number at the end
+of the module docstring:
+
+```
+## References
+
+* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
+      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+```
+
+Every `[N]` cited is defined, every one defined is cited, and the numbering is
+dense from 1. An identifier that happens to carry a name — `reduceGirard` — is
+not a citation.
 
 ## Author blocks
 

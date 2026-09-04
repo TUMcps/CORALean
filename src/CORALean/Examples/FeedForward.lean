@@ -38,8 +38,7 @@ noncomputable def Example.feedForward (W₁ : Mat ℝ 3 2) (b₁ : Vec ℝ 3) (W
     (b₂ : Vec ℝ 2) : NeuralNetwork 𝒵 2 2 :=
   .cons (Layer.linear (S := 𝒵) W₁ b₁) (.cons Layer.relu (.cons (Layer.linear W₂ b₂) .nil))
 
--- Anonymous, since their content is that they elaborate: each is a general
--- theorem at this network, and none of them is worth a name of its own.
+-- anonymous, since their content is that they elaborate at this network
 
 /-- Every output over the whole input set is in the zonotope that comes back. -/
 example (nn : NeuralNetwork 𝒵 2 2) (X : Zonotope (Vec ℝ 2)) {x : Vec ℝ 2}

@@ -75,6 +75,7 @@ theorem Zonotope.absorbError_outer (Z : Zonotope 𝕋 n) :
           Zonotope.mem_nominalSet_iff.mpr ⟨_, ?_, fun _ => rfl⟩,
           fun i => toReal (Z.c i) + (toReal (Z.E.inf i) + toReal (Z.E.sup i)) / 2
             - toReal (Z.shiftDown i), ?_, ?_⟩
+  -- the fresh coefficients read the box from its own midpoint outward
   · refine Fin.addCases (fun l => ?_) (fun l => ?_)
     · simpa using hβ l
     · simpa using Real.Zonotope.abs_coefficient_le_one

@@ -42,6 +42,7 @@ def HPolytope.boundOfDual (P : HPolytope 𝕋 n) {c : Vec ℝ n →ₗ[ℝ] ℝ}
         - ∑ i, toReal (zl i) * (toRealMat P.Ae *ᵥ x) i) :
     FloatBound 𝕋 P.construct c where
   val := addUp (dotUp y P.b) (addUp (dotUp zu P.be.sup) (dotUp zl fun i => neg (P.be.inf i)))
+  -- weak duality: every dual weight is nonnegative, so each term is capped by its own row
   le x hx := by
     obtain ⟨hle, heq⟩ := HPolytope.mem_construct_iff.mp hx
     have h1 : (∑ i, toReal (y i) * (toRealMat P.A *ᵥ x) i) ≤ toReal (dotUp y P.b) :=
@@ -56,8 +57,7 @@ def HPolytope.boundOfDual (P : HPolytope 𝕋 n) {c : Vec ℝ n →ₗ[ℝ] ℝ}
       refine le_trans (Finset.sum_le_sum fun i _ => ?_) (le_dotUp _ _)
       rw [toReal_neg]
       exact mul_le_mul_of_nonneg_left (neg_le_neg (heq i).1) (hzl i)
-    -- the negated sum related to its own negation, `Finset.sum_add_distrib` being
-    -- the only step the two spellings share
+    -- the negated sum against its own negation, joined only by `Finset.sum_add_distrib`
     have hcancel : (∑ i, toReal (zl i) * (-(toRealMat P.Ae *ᵥ x) i))
         + ∑ i, toReal (zl i) * (toRealMat P.Ae *ᵥ x) i = 0 := by
       rw [← Finset.sum_add_distrib]

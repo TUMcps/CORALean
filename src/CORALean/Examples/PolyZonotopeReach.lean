@@ -17,10 +17,9 @@ representation makes. Discharging it needs `Mtimes ℐ`, an interval matrix acti
 on a polynomial zonotope, which no instance supplies.
 
 The Lean detail is `FeedForward.lean`'s: `S : ℕ → Type` cannot be read off `S n`,
-so a use site has to name the family. `PolyZonotope` ships `𝒫𝒵` for that, as
-`Zonotope` and `ConZonotope` ship `𝒵` and `𝒞`. It names the family and not the
-binders: a notation is a lambda, and `𝒫𝒵 n` left standing is an application the
-elaborator will not unify against a metavariable applied to `n`.
+so a use site has to name the family, and `PolyZonotope` ships `𝒫𝒵` for that. It
+names the family and not the binders — a notation is a lambda, and `𝒫𝒵 n` left
+standing will not unify against a metavariable applied to `n`.
 -/
 
 -- Authors:       Tobias Ladner

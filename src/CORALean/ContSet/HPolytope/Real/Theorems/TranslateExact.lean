@@ -29,6 +29,7 @@ theorem HPolytope.translate_exact (t : α) (P : HPolytope α) :
     · show P.Ae i (t + y) = P.be i + P.Ae i t
       rw [map_add, hey i]
       ring
+  -- back: subtracting `t` again, each shifted bound returning to its own
   · rintro ⟨hle, heq⟩
     refine ⟨x - t, ⟨fun i => ?_, fun i => ?_⟩, ?_⟩
     · have h : P.A i x ≤ P.b i + P.A i t := hle i

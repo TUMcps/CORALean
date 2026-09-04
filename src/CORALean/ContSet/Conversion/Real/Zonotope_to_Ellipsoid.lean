@@ -52,6 +52,7 @@ theorem Zonotope.ellipsoid_outer (Z : Zonotope (Vec ℝ n)) :
   intro x hx
   obtain ⟨β, hβ, hxeq⟩ := Zonotope.mem_construct_iff.mp hx
   refine ⟨fun j => β j / Real.sqrt Z.h, ?_, ?_⟩
+  -- `h` coefficients each within `1/h` of the budget fill the ball exactly
   · have hsum : ∑ j : Fin Z.h, (β j / Real.sqrt Z.h) ^ 2 ≤ 1 := by
       calc ∑ j : Fin Z.h, (β j / Real.sqrt Z.h) ^ 2
           ≤ ∑ _j : Fin Z.h, 1 / (Z.h : ℝ) :=
@@ -67,6 +68,7 @@ theorem Zonotope.ellipsoid_outer (Z : Zonotope (Vec ℝ n)) :
               rw [mul_one_div, div_self (ne_of_gt hh)]
     calc ‖fun j => β j / Real.sqrt Z.h‖₂ ≤ Real.sqrt 1 := Real.sqrt_le_sqrt hsum
       _ = 1 := Real.sqrt_one
+  -- and the value: the `√h` in the generator cancels the one in the coefficient
   · funext i
     show x i = Z.c i + ∑ j, Real.sqrt Z.h * Z.G j i * (β j / Real.sqrt Z.h)
     rw [hxeq i]

@@ -5,12 +5,17 @@ import CORALean.ContSet.Interval.Real.Instances
 /-!
 # The set every input contributes over one step
 
-Althoff's Thm. 3.1: the orders up to `η` exactly, and everything past `η` in the
+[1, Thm. 3.1]: the orders up to `η` exactly, and everything past `η` in the
 same remainder that bounds the exponential — so the tail costs a second product
 rather than a second argument about convergence.
 
 `Mtimes ℐ S` is what the remainder needs: it is an interval matrix, so the
 representation must multiply by one of those and not only by a plain matrix.
+
+## References
+
+* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
+      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
 -/
 
 -- Authors:       Tobias Ladner

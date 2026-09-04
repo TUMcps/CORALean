@@ -10,18 +10,13 @@ carries the free parameter every enclosure of it does. Over ℝ that parameter i
 Kurzhanski and Varaiya's `l > 0` and the generator matrix is
 `[√(1+1/l) G₁ | √(1+l) G₂]`.
 
-Here the parameter is the *two scalings themselves*, `s₁` and `s₂`, and that is
-not a workaround for a missing square root and a missing division: it is what
-the exact layer already computes with. `l` never appears in `plus_outer` over ℝ
-except through those two numbers, and the condition they have to satisfy is
-`1/s₁² + 1/s₂² ≤ 1`, which `l`'s pair meets with equality. Taking the pair as
-the parameter therefore *widens* the family rather than approximating it — every
-sound enclosure of this shape is reachable, and the classical one is the case of
-equality.
-
-So the parameter is a real hypothesis the caller discharges, in the shape
-`HPolytope.boundOfDual`'s dual feasibility has: an unverified routine proposes
-the two scalings and the inequality is what makes them a bound.
+Here the parameter is the *two scalings themselves*, `s₁` and `s₂`, which is
+what the exact layer already computes with: `l` reaches `plus_outer` only
+through them, and the condition they must satisfy is `1/s₁² + 1/s₂² ≤ 1`, which
+`l`'s pair meets with equality. Taking the pair widens the family rather than
+approximating it. It is a real hypothesis the caller discharges, in the shape of
+`HPolytope.boundOfDual`'s dual feasibility: an unverified routine proposes the
+two scalings and the inequality is what makes them a bound.
 
 Both blocks concatenate as over ℝ and the generator count adds. Only the centre
 and the two scalings round, the first into a `residual` and the second into a

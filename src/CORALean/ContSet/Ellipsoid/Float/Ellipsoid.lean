@@ -56,10 +56,9 @@ theorem Ellipsoid.nominal_q [SoundFloatArithmetic 𝕋] (E : Ellipsoid 𝕋 n) :
 theorem Ellipsoid.nominal_G [SoundFloatArithmetic 𝕋] (E : Ellipsoid 𝕋 n) :
     (InflatedContSet.nominal E).G = toRealMat E.G := rfl
 
-/-- The nominal set spelt in this ellipsoid's own fields, coordinatewise.
-Definitional, and the reason proofs never mention `nominal`: through it the
-generator count is `(nominal E).k`, which `rw` and `linarith` read as a term
-distinct from the equal `E.k`. -/
+/-- The nominal set in this ellipsoid's own fields, coordinatewise and
+definitionally. Proofs use it rather than `nominal`, through which the count is
+the equal-but-distinct `(nominal E).k` that `rw` and `linarith` read apart. -/
 theorem Ellipsoid.mem_nominalSet_iff [SoundFloatArithmetic 𝕋] {E : Ellipsoid 𝕋 n}
     {x : Vec ℝ n} :
     x ∈ InflatedContSet.nominalSet E ↔ ∃ u : Vec ℝ E.k, ‖u‖₂ ≤ 1 ∧

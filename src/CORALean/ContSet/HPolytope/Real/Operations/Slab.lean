@@ -34,6 +34,7 @@ theorem HPolytope.mem_slab_iff {Ae : Mat ℝ q n} {lo hi : Vec ℝ q} {x : Vec �
       x ∈ (HPolytope.ineqs Ae hi).construct
         ∧ x ∈ (HPolytope.ineqs (-Ae) (-lo)).construct := HPolytope.mem_and_iff
   rw [hand, HPolytope.mem_ineqs_iff, HPolytope.mem_ineqs_iff]
+  -- both directions, the lower bound being the negated row read back
   constructor
   · rintro ⟨hhi, hlo⟩ i
     have h := hlo i

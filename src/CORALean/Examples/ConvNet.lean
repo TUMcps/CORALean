@@ -11,28 +11,20 @@ import CORALean.NN.Theorems.Robustness
 
 `Examples.FeedForward` at the rest of `Layers/`: reshape, convolution, ReLU, max
 pooling, batch normalization and softmax, chained at `Zonotope` with nothing
-supplied but the instances that representation already had. Compiled, so it is a
-regression test — a layer whose instances stop resolving fails the build here
-rather than at whoever tries the library next.
+supplied but the instances that representation already had. Compiled, so a layer
+whose instances stop resolving fails the build here.
 
-What the chain is meant to show is that the layers' *interfaces* compose, and
-they do so unevenly: the reshape asks for `Reindex` alone, the softmax for the
-two box conversions alone, and the four in between for `Mtimes` and `Plus` as
-well. A representation short of any one of those would fail exactly at the layer
-that wants it.
+What the chain shows is that the layers' *interfaces* compose, and unevenly: the
+reshape asks for `Reindex` alone, the softmax for the two box conversions alone,
+and the four in between for `Mtimes` and `Plus` as well.
 
-The two `_eval` checks below are the other half. A layer's soundness field is
-discharged by construction and says nothing about *which* function was enclosed,
-so a convolution defined as `Layer.linear` at a stencil is only a convolution
-because `conv_eval` says the stencil computes one — and that is the theorem with
-a hypothesis on the taps, injectivity being what a window reading one input
-twice would break. `reshape_exact` is the opposite case and the only equality in
-`NN`: no hypothesis, and an equality rather than an inclusion.
-
-The taps are written out rather than generated, since what is being checked is
-that the index function is *all* a convolution needs to say about padding,
-stride and layout — a 1-D stencil of width two here, and a 2-D one would differ
-in nothing but this line.
+The two `_eval` checks below are the other half. A layer's soundness field says
+nothing about *which* function was enclosed, so a convolution defined as
+`Layer.linear` at a stencil is only a convolution because `conv_eval` says the
+stencil computes one. `reshape_exact` is the opposite case, the only equality in
+`NN`. The taps are written out rather than generated, since what is checked is
+that the index function is *all* a convolution needs to say about padding, stride
+and layout.
 -/
 
 -- Authors:       Tobias Ladner
@@ -68,8 +60,7 @@ noncomputable def Example.convNet (K : Fin 1 → Fin 2 → ℝ) (b : Vec ℝ 5)
           (.cons (Layer.batchNorm id gamma beta mean var 1e-5)
             (.cons Layer.softmax .nil)))))
 
--- Anonymous, since their content is that they elaborate: each is a general
--- theorem at this network, and none of them is worth a name of its own.
+-- anonymous, since their content is that they elaborate at this network
 
 /-- The whole chain is a network, which is the only thing left to check. -/
 noncomputable example (K : Fin 1 → Fin 2 → ℝ) (b : Vec ℝ 5)

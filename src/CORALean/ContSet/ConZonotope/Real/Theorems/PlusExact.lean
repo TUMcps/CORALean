@@ -32,11 +32,9 @@ theorem ConZonotope.aux_sum_univ_plus {M : Type} [AddCommMonoid M] {C₁ C₂ : 
   Fin.sum_univ_add f
 
 omit [Module ℝ α] in
-/-- Each block answers to its own polytope, and to nothing else.
-
-`β` is ascribed at the projection spelling of the count: at `Vec ℝ (C₁.h + C₂.h)`
-the module instance `HPolytope` needs is not found, the two spellings being
-distinct terms. -/
+/-- Each block answers to its own polytope. `β` is ascribed at the projection
+spelling of the count: at `Vec ℝ (C₁.h + C₂.h)` the module instance `HPolytope`
+needs is not found, the two spellings being distinct terms. -/
 theorem ConZonotope.mem_plus_P_iff (C₁ C₂ : ConZonotope α) (β : Vec ℝ (C₁.plus C₂).h) :
     β ∈ (C₁.plus C₂).P.construct ↔
       blockLeft C₁.h C₂.h β ∈ C₁.P.construct
@@ -58,6 +56,7 @@ theorem ConZonotope.aux_value_plus (C₁ C₂ : ConZonotope α)
   rw [ConZonotope.aux_value_plus']
   simp only [Fin.append_left, Fin.append_right]
 
+-- both inclusions come off `aux_value_plus`, the polytope splitting with the blocks
 theorem ConZonotope.plus_exact (C₁ C₂ : ConZonotope α) :
     C₁.construct + C₂.construct = (C₁.plus C₂).construct := by
   apply Set.eq_of_subset_of_subset

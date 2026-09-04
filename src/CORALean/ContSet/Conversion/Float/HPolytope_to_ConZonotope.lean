@@ -67,6 +67,7 @@ theorem aux_prod_error (M : Mat 𝕋 q n) (G : Mat 𝕋 n h) (β : Vec ℝ h)
         ≤ toReal (matMulDiff M G i' j) := sub_le_subUp _ _
     rw [abs_of_nonneg (by linarith), abs_of_nonneg (by linarith)]
     linarith
+  -- the difference reshaped into one sum, so `abs_sum_le_radius` applies to it
   have hshape : (∑ j, (∑ k, toReal (M i k) * toReal (G k j)) * β j)
       - (toRealMat (matMulDown M G) *ᵥ β) i
       = ∑ j, ((∑ k, toReal (M i k) * toReal (G k j)) - toReal (matMulDown M G i j)) * β j := by
@@ -96,6 +97,7 @@ def HPolytope.conZonotopeOf (P : HPolytope 𝕋 n) (Z : Zonotope 𝕋 n) : ConZo
   P := P.onCoefficients Z
   E := Z.E
 
+-- the coefficients meet the carried rows because the widening covers the carrying error
 theorem HPolytope.subset_nominal_conZonotopeOf (P : HPolytope 𝕋 n) (Z : Zonotope 𝕋 n)
     (hZ : P.construct ⊆ nominalSet Z) :
     P.construct ⊆ nominalSet (P.conZonotopeOf Z) := by
@@ -115,6 +117,7 @@ theorem HPolytope.subset_nominal_conZonotopeOf (P : HPolytope 𝕋 n) (Z : Zonot
     have h := hle i
     rw [hsplit] at h
     linarith [herr.1, herr.2]
+  -- an equality's lower end, widened downward
   · show toReal (subDown (subDown (P.be.inf i) (dotUp (P.Ae i) Z.c))
           (radius (matMulDiff P.Ae Z.G) i))
         ≤ (toRealMat (matMulDown P.Ae Z.G) *ᵥ β) i
@@ -127,6 +130,7 @@ theorem HPolytope.subset_nominal_conZonotopeOf (P : HPolytope 𝕋 n) (Z : Zonot
     have h := (heq i).1
     rw [hsplit] at h
     linarith [herr.1, herr.2]
+  -- and its upper end, widened upward
   · show (toRealMat (matMulDown P.Ae Z.G) *ᵥ β) i
         ≤ toReal (addUp (subUp (P.be.sup i) (dotDown (P.Ae i) Z.c))
           (radius (matMulDiff P.Ae Z.G) i))
@@ -140,6 +144,7 @@ theorem HPolytope.subset_nominal_conZonotopeOf (P : HPolytope 𝕋 n) (Z : Zonot
     rw [hsplit] at h
     linarith [herr.1, herr.2]
 
+-- with certificates in hand: a box from the bounds, a zonotope from the box, these rows on it
 noncomputable def HPolytope.conZonotope {P : HPolytope 𝕋 n}
     (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
     (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) : ConZonotope 𝕋 n :=

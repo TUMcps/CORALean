@@ -11,8 +11,6 @@ import CORALean.ContSet.Zonotope.Float.Theorems.ReindexExact
 this the same class the exact layer instantiates. So an algorithm written against
 the three operation classes run here with no float counterpart to write.
 
-## Why every field is `materialise`d
-
 A zonotope's four fields are function types, so the one an operation returns is a
 closure over the one it was given and nothing stores the numbers in between: a
 loop that iterates operations rebuilds its whole history on every entry read, and
@@ -20,12 +18,11 @@ costs geometrically in the number of iterations rather than linearly.
 `Zonotope.materialise` stores them, and `materialise_eq` says it is the identity,
 so each proof below is the operation's own guarantee after one rewrite.
 
-Here rather than in `Operations/`, and that is the point of the class: an
-algorithm reaches a representation through these five fields and through nothing
-else, so this is the one place that knows a set is about to be handed back to a
-loop. Putting it in the operations would instead have to guess which of them a
-loop calls — `LinearSysDT.reach` happens to call `reduce` every step, but nothing
-says it must, and `NeuralNetwork.propagate` calls neither `reduce` nor `linComb`.
+It goes here rather than in `Operations/`: an algorithm reaches a representation
+through these five fields and through nothing else, so this is the one place
+that knows a set is about to be handed back to a loop. In the operations it
+would have to guess which of them a loop calls — `NeuralNetwork.propagate` calls
+neither `reduce` nor `linComb`.
 -/
 
 -- Authors:       Tobias Ladner

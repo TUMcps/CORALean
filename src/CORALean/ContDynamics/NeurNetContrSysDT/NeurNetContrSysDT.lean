@@ -6,28 +6,20 @@ import CORALean.NN.NeuralNetwork
 
 CORA's `neurNetContrSys` at a `LinearSysDT`: the controller reads the state and
 produces the input, `u(k) = π(x(k))`, and the plant advances
-`x(k+1) = A x(k) + u(k)`. One controller invocation per plant step, so the
-sampling rate is the plant's rate and there is no inter-sample behaviour to
-describe. `NeurNetContrSys` is the continuous-time loop, where the two rates
-come apart.
+`x(k+1) = A x(k) + u(k)`. One controller invocation per plant step, so there is no
+inter-sample behaviour to describe; `NeurNetContrSys` is the continuous-time loop.
 
 No `B`. `LinearSysDT` carries only `A`, so the plant's input is already in state
-coordinates, and `B u` is `Layer.linear B 0`, exact at every representation the
-controller's own linear layers already ask for. A controller with `m` actuators
-is therefore an `m`-wide network with that layer appended, and giving the loop a
-`B` field would put an actuation matrix in it that the plant it drives does not
-have.
+coordinates and `B u` is `Layer.linear B 0`, exact at every representation the
+controller's own linear layers already ask for.
 
 The system is indexed by the set representation, which no other system class in
 `ContDynamics` is. That is `Layer` carrying `propagate` and its soundness as
-fields: a network here is an object over a representation rather than a
-function, so a loop containing one inherits the index.
+fields: a network is an object over a representation rather than a function.
 
-`Trajectory` is the substantive departure from the rest of `ContDynamics`. There
-is no input set and no free input — the controller is a function, so a run is
-the orbit of `map` from a point of `R₀` and the predicate says nothing beyond
-where it started. `Theorems.TrajectoryIterate` states exactly that, rather than
-leaving it implied.
+`Trajectory` is the substantive departure from the rest of `ContDynamics`: there
+is no input set and no free input, so a run is the orbit of `map` from a point of
+`R₀`, which `Theorems.TrajectoryIterate` states rather than leaves implied.
 -/
 
 -- Authors:       Tobias Ladner

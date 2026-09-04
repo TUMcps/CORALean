@@ -67,6 +67,7 @@ theorem ConZonotope.subset_vPolytope (C : ConZonotope α) (hne : C.domain.constr
   refine congrArg (fun y => C.c + y) (Finset.sum_congr rfl fun j _ => ?_)
   rw [← Finset.sum_smul, ← hcoef j]
 
+-- back: each listed vertex comes from a domain vertex, hence from a point of the set
 theorem ConZonotope.vPolytope_subset (C : ConZonotope α) (hne : C.domain.construct.Nonempty) :
     (C.vPolytope hne).construct ⊆ C.construct := by
   rw [VPolytope.construct_eq_convexHull]

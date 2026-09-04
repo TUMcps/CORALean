@@ -15,13 +15,11 @@ and a box cannot travel through it separately: `(x+e)ᵀQ(x+e)` is not
 `xᵀQx + eᵀQe`, and the cross term has to be bounded against the whole set. Empty
 the box first and the question does not arise.
 
-Emptying it costs no rounding at all, which is why `errorBound` takes the larger
+Emptying it costs no rounding, which is why `errorBound` takes the larger
 magnitude of the two endpoints rather than the box's midpoint and radius:
 `maximum` and `absolute` are exact, where a midpoint would have to be stored as
-a float and would leave a residual behind — a box that is small rather than the
-empty one this needs. The price is a generator up to twice as wide as the box on
-a coordinate where the box is off-centre, which for a box holding rounding error
-is nothing.
+a float and leave a residual behind. The price is a generator up to twice as
+wide on an off-centre coordinate, which for a box of rounding error is nothing.
 -/
 
 -- Authors:       Tobias Ladner

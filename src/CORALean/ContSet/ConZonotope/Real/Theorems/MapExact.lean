@@ -26,6 +26,7 @@ theorem ConZonotope.map_exact (f : α →ₗ[ℝ] β) (C : ConZonotope α) :
     intro b
     rw [map_add, map_sum]
     exact congrArg _ (Finset.sum_congr rfl fun j _ => map_smul f (b j) (C.G j))
+  -- both inclusions are `hf` read in the two directions; the polytope never moves
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨x, ⟨b, hb, hA, rfl⟩, rfl⟩
     exact ⟨b, hb, hA, hf b⟩

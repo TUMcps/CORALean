@@ -17,13 +17,9 @@ and order reduction here is not the zonotope's generator ranking — it has to
 merge equal exponent columns and drop the factors that fall out of use, in the
 constraint matrix as well as in the generators.
 
-`and` and `quadMap` get no instance because there is no class to instantiate,
-and for the usual reason: a class one or two representations implement is a
-name, not an interface. A caller that wants them names `ConPolyZono.and` and
-`ConPolyZono.quadMap`. `and` is the one that would most deserve a class — an
-exact intersection is what a guard or an invariant asks for — and the second
-implementor, `ConZonotope`, would have to state it at convex sets only, so the
-class is left unwritten until something calls for it generically.
+`and` and `quadMap` have no class to instantiate, so a caller names
+`ConPolyZono.and` and `ConPolyZono.quadMap`. `and` would deserve one most, but
+the second implementor, `ConZonotope`, could state it at convex sets only.
 -/
 
 -- Authors:       Tobias Ladner
@@ -49,11 +45,8 @@ instance : Mtimes (Mat ℝ) (fun n => ConPolyZono (Vec ℝ n)) where
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact (ConPolyZono.mtimes_exact M C).subset
 
-/-- The constrained-polynomial-zonotope family over vectors. A generic theorem
-quantifies over `S : ℕ → Type` and the elaborator cannot read that family off one
-member, so a use site has to name it: `(S := 𝒞𝒫𝒵)` — the constrained zonotope's
-`𝒞` in front of the polynomial one's `𝒫𝒵`, which is what the representation
-is. -/
+/-- The constrained-polynomial-zonotope family over vectors. The elaborator
+cannot read the family off one member, so a use site names it: `(S := 𝒞𝒫𝒵)`. -/
 scoped notation "𝒞𝒫𝒵" => fun n => ConPolyZono (Vec ℝ n)
 
 end CORALean.Real

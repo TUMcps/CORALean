@@ -49,6 +49,7 @@ private theorem toReal_div_eq (a b : Dyadic p) (hb : (b.mantissa : ℝ) ≠ 0) :
   push_cast
   field_simp
 
+/-- Integer division truncates toward zero, which for a positive divisor is down. -/
 theorem quotDown_le_div (a b : Dyadic p) (hb : 0 < toReal b) :
     toReal (quotDown a b) ≤ toReal a / toReal b := by
   have hm : 0 < b.mantissa := mantissa_pos hb
@@ -58,6 +59,7 @@ theorem quotDown_le_div (a b : Dyadic p) (hb : 0 < toReal b) :
   rw [le_div_iff₀ hmR]
   exact_mod_cast Int.ediv_mul_le (a.mantissa * 2 ^ p) (ne_of_gt hm)
 
+/-- The upward direction is the downward one at a negated dividend. -/
 theorem le_quotUp (a b : Dyadic p) (hb : 0 < toReal b) :
     toReal a / toReal b ≤ toReal (quotUp a b) := by
   have hm : 0 < b.mantissa := mantissa_pos hb
@@ -72,6 +74,7 @@ theorem le_quotUp (a b : Dyadic p) (hb : 0 < toReal b) :
     linarith
   exact_mod_cast h'
 
+/-- And the grid rounding on top of it only moves the bound further out. -/
 theorem divDown_le_div (a b : Dyadic p) (hb : 0 < toReal b) :
     toReal (divDown a b) ≤ toReal a / toReal b :=
   le_trans (roundDown_le _) (quotDown_le_div a b hb)

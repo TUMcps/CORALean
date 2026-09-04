@@ -3,36 +3,22 @@ import CORALean.NN.Layers.Linear
 /-!
 # The convolution layer
 
-CORA's `nnConv2DLayer`, and the conclusion is that it is not a layer at all: a
-convolution is `Layer.linear` at a particular matrix, by definition and not up
-to a lemma. `Layer.conv` unfolds to `Layer.linear`, contributes no `propagate`
-of its own and no soundness proof of its own; what it contributes is the matrix
-and `conv_eval`, the proof that the matrix computes the convolution.
-
-## Why the matrix, and not the structure
+CORA's `nnConv2DLayer`, which is not a layer at all: a convolution is
+`Layer.linear` at a particular matrix, by definition. `Layer.conv` contributes no
+`propagate` and no soundness proof — only the matrix and `conv_eval`.
 
 A convolution's weights are shared and its matrix is sparse, and neither buys
-anything here. Sharing is a property of the *argument*: `tapMat` takes a weight
-per output and per tap, and a convolution passes `fun j l => K (chan j) l`,
-which is what "shared across positions" means. Sparsity is a property of the
-arithmetic, and the arithmetic is the representation's — `mtimes` at a zonotope
-costs one product per nonzero if it exploits the structure and `m · n` if it
-does not, and neither changes the set. So exploiting either is an optimisation
-of `Mtimes`, in the layer below this one, and the specification is finished when
-it names the matrix.
-
-## The taps
+anything here. Sharing is a property of the *argument*, `tapMat` taking a weight
+per output and per tap; sparsity is a property of the arithmetic, so exploiting
+it is an optimisation of `Mtimes` one layer below.
 
 `tap j l` is the input coordinate that tap `l` of output `j` reads, which puts
-padding, stride, dilation and the channel layout into one index function and
-keeps them out of the layer. Everything asked of it is `Function.Injective
-(tap j)`: a window reads each input at most once.
+padding, stride, dilation and the channel layout into one index function, all
+that is asked of it being `Function.Injective (tap j)`.
 
-`tapEntry` is a recursion rather than `∑ l, if tap j l = i then w j l else 0`,
-and the reason is the float layer. The two agree — that is `tapEntry_dot` — but
-a sum of `k` terms rounds and picking the one that matches does not, so the
-float matrix built this way holds the kernel's floats *exactly* as they were
-read in, and the float convolution rounds nowhere, as its linear layer does not.
+`tapEntry` is a recursion rather than `∑ l, if tap j l = i then w j l else 0`: the
+two agree — `tapEntry_dot` — but a sum of `k` terms rounds where picking the one
+that matches does not, and the float layer needs the stored kernel exactly.
 -/
 
 -- Authors:       Tobias Ladner
@@ -66,10 +52,9 @@ theorem tapEntry_eq_zero {n : ℕ} :
     rw [if_neg (h 0)]
     exact ih _ _ _ fun l => h l.succ
 
-/-- The row read against a vector is the weighted sum over the taps, which is
-what makes `tapMat` the matrix of a stencil. Injectivity is where a window
-reading one input twice would break it: the matrix holds one weight per entry
-and the sum would hold two. -/
+/-- The row read against a vector is the weighted sum over the taps, which makes
+`tapMat` the matrix of a stencil. Injectivity is what a window reading one input
+twice would break: the matrix holds one weight per entry, the sum two. -/
 theorem tapEntry_dot {n : ℕ} :
     ∀ {k : ℕ} (t : Fin k → Fin n) (v : Fin k → ℝ) (x : Vec ℝ n),
       Function.Injective t → ∑ i, tapEntry t v i * x i = ∑ l, v l * x (t l) := by
@@ -83,6 +68,7 @@ theorem tapEntry_dot {n : ℕ} :
     rw [Finset.sum_congr rfl fun i _ => h0 i, Finset.sum_const_zero, Fin.sum_univ_zero]
   | succ k ih =>
     intro t v x ht
+    -- injectivity is what makes the first tap's entry vanish from the rest
     have hz : tapEntry (fun l => t l.succ) (fun l => v l.succ) (t 0) = 0 :=
       tapEntry_eq_zero _ _ _ fun l hl => Fin.succ_ne_zero l (ht hl)
     have key : ∀ i, tapEntry t v i * x i

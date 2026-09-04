@@ -40,6 +40,7 @@ theorem Ellipsoid.supportBound_attained (E : Ellipsoid n) (c : Vec ℝ n →ₗ[
       rw [map_add, E.apply_mulVec c, dotProduct_smul, smul_eq_mul, dotProduct_self, pow_two,
         ← mul_assoc, inv_mul_cancel₀ hv, one_mul]
 
+-- attained, so the bound is the maximum rather than merely an upper bound
 theorem Ellipsoid.isGreatest_support (E : Ellipsoid n) (c : Vec ℝ n →ₗ[ℝ] ℝ) :
     IsGreatest (c '' E.construct) (E.supportBound c).val := by
   obtain ⟨x, hx, hcx⟩ := E.supportBound_attained c

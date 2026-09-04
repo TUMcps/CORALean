@@ -3,9 +3,9 @@ import CORALean.ContSet.Interval.Real.Interval
 /-!
 # Interval matrices: enclosing a matrix exponential
 
-Althoff's thesis (2010), Sec. 3.2, Eq. (3.2)–(3.3): truncate the exponential
-series at `η` and widen by what the tail can still amount to. The truncation is
-the centre, the tail bound the radius.
+[1, Sec. 3.2, Eq. (3.2)–(3.3)]: truncate the exponential series at `η` and widen
+by what the tail can still amount to. The truncation is the centre, the tail
+bound the radius.
 
 The bound holds only where the series is dominated by a geometric one, which is
 `‖x‖ / (η + 2) < 1` — a joint condition on the step and the order, and the
@@ -13,6 +13,11 @@ hypothesis of every theorem here.
 
 `exp` needs a norm on `Mat`, which is a choice rather than an instance, so every
 file reasoning about these must make the same one — the `l∞` operator norm.
+
+## References
+
+* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
+      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
 -/
 
 -- Authors:       Tobias Ladner
@@ -43,24 +48,17 @@ noncomputable def MatExp.expEnclosure (x : Mat ℝ n n) (η : ℕ) : Interval (M
   inf := fun i j => MatExp.expTaylor x η i j - MatExp.expRemainderBound x η
   sup := fun i j => MatExp.expTaylor x η i j + MatExp.expRemainderBound x η
 
-/-- What the orders past `η` can contribute to an input solution over a whole
-step: the exponential's own remainder bound, spread symmetrically over every
-entry and scaled by the step, since the input acts for the whole of it.
-
-Althoff's `E(r) · r`. Constant in the entry, as the bound is on the norm. -/
+/-- The `E(r) · r` of [1]: what the orders past `η` contribute to an input
+solution over a step, the exponential's remainder bound scaled by the step and
+constant in the entry, the bound being on the norm. -/
 noncomputable def MatExp.inputRemainder (A : Mat ℝ n n) (r : ℝ) (η : ℕ) :
     Interval (Mat ℝ n n) where
   inf := fun _ _ => -(r * MatExp.expRemainderBound (r • A) η)
   sup := fun _ _ => r * MatExp.expRemainderBound (r • A) η
 
-/-- `∫₀ᵗ e^{Aσ} dσ`, as the series `∑ᵢ Aⁱ t^{i+1}/(i+1)!` rather than as an
-integral.
-
-A series because `Matrix` carries no metrizable-space instance that Bochner
-integration can see, so a matrix-valued integral is out of reach here — and
-because the series is the form every bound on it is proved in anyway.
-`expIntegral_mulVec` is what ties it back to the integral, one vector at a time,
-which is all the dynamics ever need. -/
+/-- `∫₀ᵗ e^{Aσ} dσ`, as the series `∑ᵢ Aⁱ t^{i+1}/(i+1)!`: `Matrix` carries no
+metrizable-space instance Bochner integration can see, so `expIntegral_mulVec`
+ties it back to the integral one vector at a time. -/
 noncomputable def MatExp.expIntegral (A : Mat ℝ n n) (t : ℝ) : Mat ℝ n n :=
   ∑' i : ℕ, (((Nat.factorial (i + 1) : ℝ))⁻¹ * t ^ (i + 1)) • A ^ i
 
@@ -69,9 +67,9 @@ point, and the minimum because the map is convex. -/
 noncomputable def MatExp.corrCritical (i : ℕ) : ℝ :=
   (i : ℝ) ^ (-(1:ℝ) / ((i : ℝ) - 1))
 
-/-- How far below zero `s ^ i - s` reaches on `[0,1]`. Althoff's thesis writes
-this `i^(-i/(i-1)) - i^(-1/(i-1))`, which `corrCoeff_eq` confirms; in this form
-the exponent is a natural number and the bound is provable as stated. -/
+/-- How far below zero `s ^ i - s` reaches on `[0,1]`. [1] writes this
+`i^(-i/(i-1)) - i^(-1/(i-1))`, which `corrCoeff_eq` confirms; in this form the
+exponent is a natural number and the bound is provable as stated. -/
 noncomputable def MatExp.corrCoeff (i : ℕ) : ℝ :=
   MatExp.corrCritical i ^ i - MatExp.corrCritical i
 
@@ -89,12 +87,9 @@ noncomputable def MatExp.constCorrTerm (A : Mat ℝ n n) (r : ℝ) (i : ℕ) (j 
   MatExp.corrCoeff (i + 2) * r ^ (i + 2)
     * (((Nat.factorial (i + 2) : ℝ))⁻¹ * (A ^ (i + 1)) j k)
 
-/-- Althoff's `F̃ = A⁻¹F`, without the inverse: what the interpolation error of a
-*constant* input can amount to over a step.
-
-Orders `1` through `η` of `∫₀ᵗ e^{Aσ}dσ - (t/r)∫₀ʳ e^{Aσ}dσ` exactly, and
-everything past `η` in `E(r)·r` — the same remainder an input solution uses,
-since integrating the exponential's tail scales it by at most the step. -/
+/-- The `F̃ = A⁻¹F` of [1], without the inverse: orders `1` through `η` of
+`∫₀ᵗ e^{Aσ}dσ - (t/r)∫₀ʳ e^{Aσ}dσ` exactly, and everything past `η` in `E(r)·r`,
+integrating the exponential's tail scaling it by at most the step. -/
 noncomputable def MatExp.constCorrectionMatrix (A : Mat ℝ n n) (r : ℝ) (η : ℕ) :
     Interval (Mat ℝ n n) where
   inf := fun j k => (∑ i ∈ Finset.range η, min (MatExp.constCorrTerm A r i j k) 0)
@@ -102,11 +97,9 @@ noncomputable def MatExp.constCorrectionMatrix (A : Mat ℝ n n) (r : ℝ) (η :
   sup := fun j k => (∑ i ∈ Finset.range η, max (MatExp.constCorrTerm A r i j k) 0)
     + r * MatExp.expRemainderBound (r • A) η
 
-/-- Althoff's `F`: the orders up to `η` exactly, and everything past `η` in the
-same remainder that bounds the exponential.
-
-Indexed from `2`, since the constant and linear terms of the interpolation error
-cancel; `range (η-1)` at offset `2` is orders `2` through `η`. -/
+/-- The `F` of [1]: the orders up to `η` exactly, everything past `η` in the same
+remainder that bounds the exponential, and indexed from `2`, the constant and
+linear terms of the interpolation error cancelling. -/
 noncomputable def MatExp.correctionMatrix (A : Mat ℝ n n) (r : ℝ) (η : ℕ) :
     Interval (Mat ℝ n n) where
   inf := fun j k => (∑ i ∈ Finset.range (η - 1), min (MatExp.corrTerm A r (i + 2) j k) 0)

@@ -33,6 +33,7 @@ theorem HPolytope.mem_and_iff {P₁ P₂ : HPolytope α} {x : α} :
     · have h := heq (Fin.natAdd P₁.me i)
       simp only [HPolytope.and, Fin.append_right] at h
       exact h
+  -- back: the two memberships are the two halves of one row list
   · rintro ⟨⟨h₁, he₁⟩, h₂, he₂⟩
     constructor
     · refine Fin.addCases (fun i => ?_) fun i => ?_

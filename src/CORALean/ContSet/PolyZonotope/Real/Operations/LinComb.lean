@@ -7,25 +7,19 @@ import CORALean.ContSet.Zonotope.Real.Operations.LinComb
 CORA's `@polyZonotope/linComb`, and the operation the representation is good at:
 one fresh dependent factor `α` carries the whole segment parameter. Writing
 `λ = (1+α)/2` turns `λ y₁ + (1-λ) y₂` into `½(y₁+y₂) + ½α(y₁-y₂)`, and both
-halves are again polynomial in the factors — so the dependent part loses
-nothing, where a zonotope has to spend a generator on the centre difference and
-give up everything else.
+halves are again polynomial in the factors, so the dependent part loses nothing
+where a zonotope has to spend a generator on the centre difference.
 
 Three dependent blocks come out of that: `½G₁ ++ ½G₂` at the original monomials,
 `½G₁ ++ -½G₂` at the same monomials times `α`, and one generator `½(c₁-c₂)` at
 `α` alone. `linCombE` repeats the block-diagonal `plusE` across the first two
 blocks and sets the fresh factor's row to `1` on exactly the second.
 
-The independent generators are where exactness stops. Their coefficients come
-out as `½(1±α)βⱼ`, a product of a dependent factor with an independent one,
-which the representation cannot express; the two independent blocks are enclosed
-instead, and the containment is one-way.
-
-That enclosure is CORA's: `@polyZonotope/linComb` runs `zonotope/enclose` on the
-two independent blocks at a zero centre, which is `Zonotope.pairSum` and
-`Zonotope.pairDiff` — the same pairing, and tighter than keeping each `GIⱼ` at
-full width, at the same count `q₁ + q₂`. A zero centre contributes no generator,
-so CORA's all-zero centre column is dropped.
+The independent generators are where exactness stops: their coefficients come
+out as `½(1±α)βⱼ`, which the representation cannot express, so the two blocks
+are enclosed instead. That enclosure is CORA's `zonotope/enclose` at a zero
+centre, which is `Zonotope.pairSum` and `Zonotope.pairDiff` — tighter than
+keeping each `GIⱼ` at full width, at the same count `q₁ + q₂`.
 -/
 
 -- Authors:       Tobias Ladner

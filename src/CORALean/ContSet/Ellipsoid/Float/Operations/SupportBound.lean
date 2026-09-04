@@ -10,20 +10,16 @@ import CORALean.Global.Float.EuclideanNorm
 The exact value is `⟨d, q⟩ + ‖Gᵀd‖₂`, and the norm is a square root the scalar
 has not got. It needs none: the caller hands in a proposed length `s`, and
 `Global.Float.EuclideanNorm` turns `s` into a bound by one multiplication in
-each rounding direction. So an ellipsoid costs the layer no new scalar
-operation — unlike an activation function, which is blocked on a missing `exp`
-rather than on a missing check.
+each rounding direction, so an ellipsoid costs the layer no new scalar operation.
 
 The candidate is not trusted and is not required to be a square root of
 anything, nor even to be positive: a wrong one fails the check and yields no
-bound, and a negative one certifies through `absolute`. Where it comes from is
-outside — a hardware `sqrt`, a Newton step, a table.
+bound, and a negative one certifies through `absolute`.
 
-Two roundings are chosen before the check is reached. The direction is pulled
-back through `Gᵀ` by a dot product, whose exact value has either sign, so its
-magnitude is the larger of the up rounding and the negated down one — the same
-two-sided choice `Zonotope.nominalBoundDot` makes. And the centre's dot product
-rounds up, once.
+Two roundings are chosen before the check. The direction is pulled back through
+`Gᵀ` by a dot product whose exact value has either sign, so its magnitude is the
+larger of the up rounding and the negated down one — `Zonotope.nominalBoundDot`'s
+two-sided choice. The centre's dot product rounds up, once.
 
 The direction arrives as a float vector together with the fact that it denotes
 the dot product with it, which a matrix row satisfies by `rfl`.
@@ -97,14 +93,9 @@ theorem Ellipsoid.aux_supportBound_le (E : Ellipsoid 𝕋 n) {c : Vec ℝ n →�
   show c (InflatedContSet.nominal E).q + ‖(InflatedContSet.nominal E).pullback c‖₂ ≤ _
   linarith
 
-/-- The nominal bound. `hs` is the whole of what the candidate owes, and it is
-one float comparison.
-
-Not `FloatBound.ofSupportBound`, which every other representation reaches the
-exact layer through: the exact bound's *value* is a square root and so
-noncomputable, and passing it as an argument would carry that to the float bound
-whose point is to be a float. Used inside the proof it costs nothing, proofs
-being erased. -/
+/-- The nominal bound; `hs` is the whole of what the candidate owes, and it is
+one float comparison. Not `FloatBound.ofSupportBound`: the exact bound's value
+is a square root, which would carry noncomputability into a float bound. -/
 def Ellipsoid.nominalBoundDot (E : Ellipsoid 𝕋 n) {c : Vec ℝ n →ₗ[ℝ] ℝ} (a : Vec 𝕋 n)
     (hc : ∀ x : Vec ℝ n, c x = ∑ i, toReal (a i) * x i) (s : 𝕋)
     (hs : toReal (sqSumUp (E.pullbackAbs a)) ≤ toReal (mulDown s s)) :

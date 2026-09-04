@@ -58,6 +58,7 @@ def VPolytope.conZonotope (P : VPolytope α) : ConZonotope α where
   G := P.V
   P := VPolytope.simplex P.k
 
+-- the vertices become generators at a zero centre, so the two sets coincide
 theorem VPolytope.conZonotope_exact (P : VPolytope α) :
     P.construct = P.conZonotope.construct := by
   ext x

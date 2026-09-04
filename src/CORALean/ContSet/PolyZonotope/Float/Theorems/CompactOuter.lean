@@ -34,11 +34,11 @@ open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n p h : ℕ}
 
+-- each `min'_le` re-elaborates the decidability instance of the filter it ranges over
 set_option maxHeartbeats 400000 in
-/-- The least index of a class is the least index of its own class, which is
-what makes a non-representative's fibre empty. The two finsets are named rather
-than left to unification: `rep` unfolds to a `min'` over a filter whose
-decidability instance is expensive to guess at. -/
+/-- The least index of a class is the least index of its own class, which makes
+a non-representative's fibre empty. The two finsets are named rather than left
+to unification, `rep` unfolding to a `min'` over a filter. -/
 theorem PolyZonotope.rep_idem (E : Fin p → Fin h → ℕ) (i : Fin h) :
     Real.PolyZonotope.rep E (Real.PolyZonotope.rep E i) = Real.PolyZonotope.rep E i := by
   have hcol : Real.PolyZonotope.col E (Real.PolyZonotope.rep E (Real.PolyZonotope.rep E i))
@@ -87,6 +87,7 @@ theorem PolyZonotope.aux_sum_mask (r : Fin h → Fin h) (G : Mat 𝕋 n h) (i : 
   · rw [if_pos hl, if_pos hl]
   · rw [if_neg hl, if_neg hl, toReal_zero]
 
+-- so the two directed masked sums bracket the exact fibre from either side
 theorem PolyZonotope.fiberDown_le (r : Fin h → Fin h) (G : Mat 𝕋 n h) (i : Fin n)
     (j : Fin h) :
     toReal (PolyZonotope.fiberDown r G i j)
@@ -109,6 +110,7 @@ theorem PolyZonotope.aux_merge (PZ : PolyZonotope 𝕋 n) (a : Fin PZ.p → ℝ)
           Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep PZ.E)
               (fun l => toReal (PZ.G i l)) (PolyZonotope.keepIdx PZ.E j)
             * Real.PolyZonotope.monomial PZ.compactGens.E a j := by
+  -- the merge is the exact layer's, the stored columns being exact reals here
   calc (∑ l, toReal (PZ.G i l) * Real.PolyZonotope.monomial PZ.E a l)
       = ∑ l, Real.PolyZonotope.monomial PZ.E a l • toReal (PZ.G i l) :=
         Finset.sum_congr rfl fun l _ => by rw [smul_eq_mul]; exact mul_comm _ _
@@ -150,6 +152,7 @@ theorem PolyZonotope.aux_compactGap (PZ : PolyZonotope 𝕋 n) (i : Fin n)
   simp only [PolyZonotope.compactGap]
   constructor <;> linarith
 
+-- the merged column is stored downward, and that gap is what the box pays for
 theorem PolyZonotope.aux_compactGens_nominal (PZ : PolyZonotope 𝕋 n) :
     nominalSet PZ ⊆ nominalSet PZ.compactGens
       + (PolyZonotope.generatorError (PolyZonotope.compactGap PZ)).construct := by
@@ -177,6 +180,7 @@ theorem PolyZonotope.aux_compactGens_nominal (PZ : PolyZonotope 𝕋 n) :
             * Real.PolyZonotope.monomial PZ.compactGens.E a j := by
     rw [← Finset.sum_add_distrib]
     exact Finset.sum_congr rfl fun j _ => by ring
+  -- the goal spelled out, so `hsum` and `aux_merge` line up with it
   show toReal (PZ.c i)
         + (∑ j : Fin (PolyZonotope.repKeep PZ.E).card, toReal (PZ.mergedCol i j)
             * Real.PolyZonotope.monomial PZ.compactGens.E a j)

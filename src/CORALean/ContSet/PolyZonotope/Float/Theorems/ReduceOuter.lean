@@ -96,6 +96,7 @@ theorem PolyZonotope.abs_dropped_le_dropRadius (PZ : PolyZonotope 𝕋 n)
   simp only [PolyZonotope.dropRadius]
   linarith
 
+-- the dropped columns become one diagonal block, at the coefficient that reaches them
 theorem PolyZonotope.aux_reduceBy_nominal (PZ : PolyZonotope 𝕋 n)
     (partD : Split (Fin PZ.h) into (Fin d) and (Fin r))
     (partI : Split (Fin PZ.q) into (Fin dI) and (Fin rI)) :
@@ -110,6 +111,7 @@ theorem PolyZonotope.aux_reduceBy_nominal (PZ : PolyZonotope 𝕋 n)
             * Real.PolyZonotope.monomial PZ.E a (partD.right l))
           + ∑ j, toReal (PZ.GI i (partI.right j)) * β (partI.right j))),
       ha, ?_, fun i => ?_⟩
+  -- the kept coefficients are unchanged; the fresh ones are scaled to that box
   · refine Fin.addCases (fun j => ?_) (fun i => ?_)
     · simpa using hβ (partI.left j)
     · simp only [Fin.append_right]

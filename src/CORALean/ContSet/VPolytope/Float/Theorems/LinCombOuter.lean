@@ -33,6 +33,7 @@ theorem VPolytope.nominal_linComb (P₁ P₂ : VPolytope 𝕋 n) :
       simp only [VPolytope.linComb, Fin.append_left, Fin.append_right]
   exact congrArg (Real.VPolytope.mk (P₁.k + P₂.k)) hV
 
+-- the segment splits into a nominal segment and a segment of the two error boxes
 theorem VPolytope.linComb_outer (P₁ P₂ : VPolytope 𝕋 n) :
     segments P₁.construct P₂.construct ⊆ (P₁.linComb P₂).construct := by
   rintro _ ⟨_, ⟨v₁, hv₁, e₁, he₁, rfl⟩, _, ⟨v₂, hv₂, e₂, he₂, rfl⟩, lam, hlam, rfl⟩

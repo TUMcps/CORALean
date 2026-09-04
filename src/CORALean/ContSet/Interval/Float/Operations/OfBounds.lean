@@ -53,11 +53,8 @@ def Interval.boundNegProj (I : Interval 𝕋 n) (j : Fin n) :
     linarith⟩
 
 /-- A box answers an arbitrary direction too: a linear function of one
-coordinate is largest at one end of its range, so each term is bounded by
-whichever endpoint the sign picks, and the terms are summed upward.
-
-The direction arrives as a float vector plus the fact that it denotes the dot
-product with it, which a matrix row satisfies by `rfl`. -/
+coordinate is largest at one end of its range, so each term takes the endpoint
+its sign picks and the terms are summed upward. -/
 def Interval.boundDot (I : Interval 𝕋 n) {c : Vec ℝ n →ₗ[ℝ] ℝ} (a : Vec 𝕋 n)
     (hc : ∀ x : Vec ℝ n, c x = ∑ j, toReal (a j) * x j) : FloatBound 𝕋 I.construct c where
   val := sumUp fun j => maximum (mulUp (a j) (I.sup j)) (mulUp (a j) (I.inf j))

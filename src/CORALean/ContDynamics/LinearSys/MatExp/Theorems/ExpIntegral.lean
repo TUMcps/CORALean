@@ -27,7 +27,9 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 variable {n : ℕ}
 
+-- `norm_expSeries_summable'` at the local matrix norm instances, then a four-step `calc`
 set_option maxHeartbeats 400000 in
+/-- The integrated series is dominated by `|t|` times the exponential's own. -/
 theorem MatExp.summable_norm_expIntegral (A : Mat ℝ n n) (t : ℝ) :
     Summable (fun i : ℕ => ‖(((Nat.factorial (i + 1) : ℝ))⁻¹ * t ^ (i + 1)) • A ^ i‖) := by
   have hg : Summable
@@ -46,6 +48,7 @@ theorem MatExp.summable_norm_expIntegral (A : Mat ℝ n n) (t : ℝ) :
       ≤ ((Nat.factorial i : ℝ))⁻¹ * (|t| ^ i * |t|) * ‖A ^ i‖ := by gcongr
     _ = |t| * (((Nat.factorial i : ℝ))⁻¹ * |t| ^ i * ‖A ^ i‖) := by ring
 
+/-- And so summable in the matrix algebra, which is complete. -/
 theorem MatExp.summable_expIntegral (A : Mat ℝ n n) (t : ℝ) :
     Summable (fun i : ℕ => (((Nat.factorial (i + 1) : ℝ))⁻¹ * t ^ (i + 1)) • A ^ i) :=
   (MatExp.summable_norm_expIntegral A t).of_norm

@@ -6,12 +6,10 @@ import CORALean.ContSet.ContSet.ContSet
 CORA's `transition`: the guard a run must meet to take it, the reset applied on
 the way through, and the location it lands in.
 
-The reset is affine, `x ↦ W x + w`, and stored as its coefficients rather than
-as a function. That is not generality withheld for its own sake: `Mtimes` and
-`Plus` are what an arbitrary representation propagates, so an enclosure of the
-reset image is two existing operations and nothing new, whereas a general reset
-would have to carry an enclosure of its own — `Layer`'s bargain, and not one to
-make before something asks for it.
+The reset is affine, `x ↦ W x + w`, and stored as its coefficients rather than as
+a function: `Mtimes` and `Plus` are what an arbitrary representation propagates,
+so an enclosure of the reset image is two existing operations, where a general
+reset would have to carry an enclosure of its own — `Layer`'s bargain.
 
 Over ℝ rather than over a layer's scalar, as `Layer.linear` is: the reset acts
 on the exact state, and a float layer would store it rounded and pay the

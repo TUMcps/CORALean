@@ -5,17 +5,22 @@ import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 /-!
 # The input reach set splits at any intermediate time
 
-Althoff's Prop. 3.2, in the direction the enclosures need: concatenating an
-input over `[0,a]` with one over `[0,b]` gives an input over `[0,a+b]`, and what
-it contributes is `e^{Ab}` applied to the first contribution plus the second.
+[1, Prop. 3.2], in the direction the enclosures need: concatenating an input over
+`[0,a]` with one over `[0,b]` gives an input over `[0,a+b]`, and what it
+contributes is `e^{Ab}` applied to the first contribution plus the second.
 
-The thesis states this as an equality; only `⊇` is used downstream, and it is
-the direction that has to build an input rather than take one apart.
+[1] states this as an equality; only `⊇` is used downstream, and it is the
+direction that has to build an input rather than take one apart.
 
 `Matrix` is a plain `def`, so instance search finds no metrizable structure on it
 and a matrix-valued factor never gets `Continuous.aestronglyMeasurable`;
 `aestronglyMeasurable_mulVec` goes one entry at a time instead. Moving an input
 to a different window is then measure-preserving reflection and translation.
+
+## References
+
+* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
+      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
 -/
 
 -- Authors:       Tobias Ladner
@@ -118,6 +123,7 @@ theorem aestronglyMeasurable_reflect_Ioc {u : ℝ → Vec ℝ n} {τ : ℝ}
 
 omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
   [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] in
+-- the bound is built from two `exists_bound` witnesses over the local norm instances
 set_option maxHeartbeats 400000 in
 /-- An admissible input has an integrable solution over its window: bounded by
 `U`, and measurable because the exponential factor is continuous. -/
@@ -147,10 +153,11 @@ noncomputable def aux_concat (u₁ u₂ : ℝ → Vec ℝ n) (a : ℝ) : ℝ →
 
 omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
   [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] in
+-- the concatenated input is measured by splitting the window and rebuilding it
 set_option maxHeartbeats 1000000 in
-/-- Althoff's Prop. 3.2: what a run over `[0, a+b]` can contribute includes
-everything a run over `[0,a]` can contribute, propagated across the remaining
-`b`, plus everything a run over `[0,b]` can. -/
+/-- [1, Prop. 3.2]: what a run over `[0, a+b]` can contribute includes everything
+a run over `[0,a]` can contribute, propagated across the remaining `b`, plus
+everything a run over `[0,b]` can. -/
 theorem LinearSys.inputReach_separation (sys : LinearSys 𝕋 n) {U : S n} {a b : ℝ}
     (ha : 0 ≤ a) (hb : 0 ≤ b) (hbdd : Bornology.IsBounded (construct U)) :
     (fun y => exp (b • toRealMat sys.A) *ᵥ y) '' sys.inputReach U a + sys.inputReach U b
@@ -174,6 +181,7 @@ theorem LinearSys.inputReach_separation (sys : LinearSys 𝕋 n) {U : S n} {a b 
     split_ifs with h
     · exact hu₂mem _ ⟨by linarith, by linarith [hs.2]⟩
     · exact hu₁mem _ ⟨hs.1, not_lt.mp h⟩
+  -- measurable on each half of the split window, and the two halves are disjoint
   have hmeas : AEStronglyMeasurable (aux_concat u₁ u₂ a)
       (volume.restrict (Set.Icc 0 (a + b))) := by
     have hsplit : Set.Icc (0:ℝ) (a + b) = Set.Icc 0 a ∪ Set.Ioc a (a + b) :=

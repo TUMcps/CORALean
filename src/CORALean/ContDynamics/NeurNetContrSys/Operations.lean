@@ -15,16 +15,14 @@ it is `LinearSys`'s own machinery — `discretize` samples the flow, `reach ... 
 takes the steps, `inputSolution` encloses what the input contributes to each.
 
 `Δt` and `N` are separate parameters and the control period is `N Δt`. Passing
-`N = 1` recovers a controller running at the integrator's rate, which is the
-case that does not arise in practice and is why the two are not one parameter.
+`N = 1` recovers a controller running at the integrator's rate, the case that
+does not arise in practice and the reason the two are not one parameter.
 
-Nothing new is computed, again: every operation called here was written for the
-open-loop system, and the loop only chooses what to hand them.
-
-Sample times of the *inner* grid are what `reach` speaks about, but only the
-period boundaries are reachable by this recursion, since only there does an
-enclosure exist to hand the network. Covering the times inside a period is
-`timeIntervalStep` per step, and it is not here — the same gap `relinReach` has.
+Nothing new is computed: every operation called here was written for the
+open-loop system, and the loop only chooses what to hand them. Only the period
+boundaries are reachable by this recursion, since only there does an enclosure
+exist to hand the network; covering the times inside a period is the same gap
+`relinReach` has.
 -/
 
 -- Authors:       Tobias Ladner

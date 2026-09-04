@@ -47,6 +47,7 @@ theorem Interval.reaches (I : Interval 𝕋 n) (i : Fin n) :
       le_trans hhi (le_max_left _ _)
     linarith
 
+-- the stored centre, and one diagonal generator per coordinate
 def Interval.zonotope (I : Interval 𝕋 n) : Zonotope 𝕋 n where
   h := n
   c := I.center
@@ -63,6 +64,7 @@ theorem Interval.subset_nominal_zonotope (I : Interval 𝕋 n) :
   have hreach : ∀ i, toReal (I.center i) - toReal (I.radiusFrom i) ≤ x i
       ∧ x i ≤ toReal (I.center i) + toReal (I.radiusFrom i) := fun i =>
     ⟨le_trans (I.reaches i).1 (hlo i), le_trans (hhi i) (I.reaches i).2⟩
+  -- the coefficient a coordinate needs, zero where the box has no width there
   refine ⟨fun i => if toReal (I.radiusFrom i) = 0 then 0
       else (x i - toReal (I.center i)) / toReal (I.radiusFrom i), fun i => ?_, ?_⟩
   · by_cases h : toReal (I.radiusFrom i) = 0
@@ -73,6 +75,7 @@ theorem Interval.subset_nominal_zonotope (I : Interval 𝕋 n) :
       simp only [if_neg h]
       rw [abs_div, abs_of_pos hpos, div_le_one hpos, abs_le]
       constructor <;> linarith [(hreach i).1, (hreach i).2]
+  -- the value: only the diagonal entry `i` reaches coordinate `i`
   · funext i
     have hsum : (∑ j : Fin n, (if toReal (I.radiusFrom j) = 0 then (0:ℝ)
           else (x j - toReal (I.center j)) / toReal (I.radiusFrom j)) •
@@ -87,6 +90,7 @@ theorem Interval.subset_nominal_zonotope (I : Interval 𝕋 n) :
         simp [toReal_diagonalBlock, Matrix.diagonal_apply_ne _ hij]
       · intro hc
         exact absurd (Finset.mem_univ i) hc
+    -- the goal spelled out, so `hsum` matches it
     show x i = ((fun i => toReal (I.center i) : Vec ℝ n)
       + ∑ j : Fin n, (if toReal (I.radiusFrom j) = 0 then (0:ℝ)
         else (x j - toReal (I.center j)) / toReal (I.radiusFrom j)) •
@@ -101,6 +105,7 @@ theorem Interval.subset_nominal_zonotope (I : Interval 𝕋 n) :
     · rw [if_neg h, div_mul_cancel₀ _ h]
       ring
 
+-- the error box adds nothing, the generators already covering the box
 theorem Interval.subset_zonotope (I : Interval 𝕋 n) :
     I.construct ⊆ I.zonotope.construct := fun x hx =>
   ⟨x, I.subset_nominal_zonotope hx, 0, fun i => by

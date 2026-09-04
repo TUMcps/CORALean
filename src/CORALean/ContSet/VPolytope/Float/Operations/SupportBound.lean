@@ -33,6 +33,7 @@ def VPolytope.nominalBoundProj (P : VPolytope 𝕋 n) (j : Fin n) :
     (InflatedContSet.nominal P).le_of_forall_le (LinearMap.proj j)
       (fun l => le_maximumOver (fun l => P.V j l) l) hx
 
+-- the opposite direction, where the negation is taken before the maximum
 def VPolytope.nominalBoundNegProj (P : VPolytope 𝕋 n) (j : Fin n) :
     FloatBound 𝕋 (nominalSet P) (-LinearMap.proj j) where
   val := maximumOver fun l => neg (P.V j l)

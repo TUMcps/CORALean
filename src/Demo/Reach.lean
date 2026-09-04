@@ -8,40 +8,22 @@ import Demo.Scalar
 /-!
 # `LinearSysDT.reach` at `Dyadic`, run
 
-The system is a damped rotation, chosen so that nothing in the *exact* reachable
-set grows: `A` has eigenvalues of modulus `√((15/16)² + (1/8)²) ≈ 0.9458`, and
-the input set is a small box, so the true reachable sets converge to a bounded
-attractor. Everything the table shows growing is therefore the enclosure and not
-the system.
+A damped rotation — `A`'s eigenvalues have modulus `≈ 0.9458` and the input box
+is small — so nothing in the *exact* reachable set grows and everything the
+tables show growing is the enclosure.
 
-The first two tables are the two halves of what a float zonotope carries. The
-first is `Zonotope.interval` of the reachable set — the nominal part and the
-error box together, the box a specification would actually be checked against.
-The second is the error box alone, which is what `reduce` never touches.
+`Zonotope.interval` of the reachable set first, nominal part and error box
+together, then the error box alone, which `reduce` never touches, then an
+`OutputEq`, `y = x₁ + u₂`. Read the third against the first: every row is that
+table's `x1` column widened by exactly the `0.015625` the input contributes on
+each side, so a wider row is a widening in `outputSet` rather than in `reach`.
 
-The third is an `OutputEq`: a one-dimensional sensor reading the first state
-coordinate and the second input coordinate, `y = x₁ + u₂`. Read it against the
-first table — every row is that table's `x1` column widened by exactly the
-`0.015625` the input contributes on each side, `mtimes` at a row of a selection
-matrix and `plus` on two zonotopes both being exact here. A row wider than that
-would be a widening in `outputSet` rather than in `reach`.
-
-At `Dyadic 24` the second table reads zero for six steps and is nonzero after
-them. A generator's mantissa gains the four bits of an `A` entry every step, so
-the seventh product is the first to overflow 24 bits: up to it every product and
-sum is exact, `mtimes` pays nothing into the box, and all the widening in the
-first table is order reduction — Girard's rule boxing the generators it drops.
-Past it the box also carries directed rounding, at about `2.7e-6` by the last
-row, five decimal orders under the enclosure it sits inside.
-
-That is a thin test of rounding, so `main` runs the same system twice, at
-`Dyadic 24` and at `Dyadic smallP`. `smallP` is `8`: `A`'s entries need 4 bits
-and `R₀`/`U`'s need 1, so two steps of products still fit and the mantissa first
-overflows on the third — early enough that all but three rows carry a genuinely
-rounded box. Those error widths climb from `0` to about `0.28`, a quarter of the
-enclosure and not a swamping of it, which is what keeps the run legible rather
-than an explosion. Everything below is written once, at an implicit precision
-`p`, and `reachReport` picks it by which `Dyadic p` it is called at.
+At `Dyadic 24` the error box reads zero throughout. A generator's mantissa gains
+the four bits of an `A` entry every step and nothing overflows 24 bits this soon,
+so every product and sum is exact and all the widening above is order reduction.
+`main` therefore runs the system a second time at `Dyadic smallP`, where `smallP`
+is `8`: `A`'s entries need 4 bits and `R₀`/`U`'s need 1, so the mantissa first
+overflows on the third step and half the rows carry a rounded box.
 -/
 
 -- Authors:       Tobias Ladner
@@ -81,12 +63,9 @@ def U : Zonotope (Dyadic p) 2 where
 /-- Maximum order: at most `3 * 2` generators survive a step. -/
 def order : ℕ := 3
 
-/-- Twenty, and the ceiling is the table's length rather than the cost of
-reaching it: a representation stores what an operation returns, so a step is a
-few milliseconds however many precede it. Twenty is where the damped rotation
-has visibly turned and where the `Dyadic 8` error box has grown to a quarter of
-the enclosure without swamping it. -/
-def steps : ℕ := 20
+/-- Five: enough rows to carry `Dyadic 8` past the step where its mantissa first
+overflows, and short enough that all three tables stay readable at once. -/
+def steps : ℕ := 5
 
 /-- The reachable set after `k` steps. Recomputed per row rather than folded, so
 a table of `k` rows costs `k²/2` steps where a fold would cost `k`, and every
@@ -131,6 +110,7 @@ def reachReport : String :=
     "Zonotope.interval of the reachable set, nominal part and error box together:",
     "",
     "   k  gens  x1                              x2"] ++
+    -- `steps + 1` rows, since step 0 is the initial set and is worth showing
     (List.range (steps + 1)).map (reachRow p) ++ [
     "",
     "the error box alone, as a width per coordinate:",

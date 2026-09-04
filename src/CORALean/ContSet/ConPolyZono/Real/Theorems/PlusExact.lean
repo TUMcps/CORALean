@@ -52,6 +52,7 @@ theorem ConPolyZono.plus_exact (C₁ C₂ : ConPolyZono α) :
       funext fun k => Fin.append_left a₁ a₂ k
     have hA₂ : (fun k => Fin.append a₁ a₂ (Fin.natAdd C₁.p k)) = a₂ :=
       funext fun k => Fin.append_right a₁ a₂ k
+    -- forward: appended factors and appended coefficients, each read on its own half
     refine ⟨Fin.append a₁ a₂, Fin.append β₁ β₂,
       Fin.addCases (fun k => by simpa using ha₁ k) (fun k => by simpa using ha₂ k),
       Fin.addCases (fun j => by simpa using hβ₁ j) (fun j => by simpa using hβ₂ j),
@@ -65,6 +66,7 @@ theorem ConPolyZono.plus_exact (C₁ C₂ : ConPolyZono α) :
       simp only [ConPolyZono.plus, PolyZonotope.monomial_plusE_left,
         PolyZonotope.monomial_plusE_right, Fin.append_left, Fin.append_right]
       abel
+  -- back: the appended data split again, giving one point of each set
   · rintro x ⟨a, β, ha, hβ, hsat, rfl⟩
     obtain ⟨hs₁, hs₂⟩ := (ConPolyZono.satisfies_plus_iff C₁ C₂ a).mp hsat
     refine ⟨C₁.c

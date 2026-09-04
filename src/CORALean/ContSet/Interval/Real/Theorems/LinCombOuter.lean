@@ -27,6 +27,7 @@ theorem Interval.linComb_outer (I₁ I₂ : Interval α) :
   have a2 := h₂ i
   simp only [Interval.linComb, Entrywise.entry_ofEntry, Entrywise.entry_add,
     Entrywise.entry_smul]
+  -- each end on its own: a convex mix never leaves the wider of the two
   constructor
   · have hm1 : min (entry I₁.inf i) (entry I₂.inf i) ≤ entry y₁ i :=
       le_trans (min_le_left _ _) a1.1

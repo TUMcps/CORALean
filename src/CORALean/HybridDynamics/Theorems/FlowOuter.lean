@@ -15,13 +15,12 @@ shrink it, and shrinking it means intersecting with `ℓ.inv` — the same
 intersection the guard wants and the same missing interface, so it is left to a
 caller with a representation that can do it, exactly as in `JumpOuter`.
 
-`0 < τ` rather than `0 ≤ τ`: `timeIntervalStep` divides by the step length. A
-zero-length stay needs no enclosure of its own, the state being the one it
-entered with.
+`0 < τ` rather than `0 ≤ τ`: `timeIntervalStep` divides by the step length, and a
+zero-length stay needs no enclosure of its own.
 
-Stated through `Location.timeIntervalStep` rather than through the dynamics'
-own: `ℓ.dynamics` drops `S`, and a use site would have to name the family back
-in a statement its `ℓ` already pinned.
+Stated through `Location.timeIntervalStep` rather than the dynamics' own:
+`ℓ.dynamics` drops `S`, and a use site would have to name the family back in a
+statement its `ℓ` already pinned.
 -/
 
 -- Authors:       Tobias Ladner

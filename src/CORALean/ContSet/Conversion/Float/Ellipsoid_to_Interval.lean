@@ -18,10 +18,8 @@ not of `2n`.
 Not through `Interval.ofBounds` and `Ellipsoid.boundDot`, which would answer an
 arbitrary direction and then have to be told that a coordinate projection is
 one: at a coordinate the whole apparatus reduces to Cauchy–Schwarz against a row
-that is already in hand.
-
-Tight only up to the certificate. Over ℝ the box touches the ellipsoid on every
-face; here it touches whatever `s` was worth.
+already in hand. Tight only up to the certificate: over ℝ the box touches the
+ellipsoid on every face, here it touches whatever `s` was worth.
 -/
 
 -- Authors:       Tobias Ladner
@@ -60,6 +58,7 @@ theorem Ellipsoid.aux_row_le (E : Ellipsoid 𝕋 n) (s : Vec 𝕋 n)
     _ ≤ toReal (absolute (s i)) * 1 := mul_le_mul hrow hu (norm₂_nonneg u) h0
     _ = toReal (absolute (s i)) := mul_one _
 
+-- the box is that reach around the centre, with the error box added on
 theorem Ellipsoid.interval_outer (E : Ellipsoid 𝕋 n) (s : Vec 𝕋 n)
     (hs : ∀ i, toReal (sqSumUp fun j => absolute (E.G i j))
       ≤ toReal (mulDown (s i) (s i))) :
@@ -70,6 +69,7 @@ theorem Ellipsoid.interval_outer (E : Ellipsoid 𝕋 n) (s : Vec 𝕋 n)
   have hlo : toReal (E.err.inf i) ≤ e i := (he i).1
   have hhi : e i ≤ toReal (E.err.sup i) := (he i).2
   have hzi : z i = toReal (E.q i) + ∑ j, toReal (E.G i j) * u j := hz i
+  -- each face on its own, the two roundings going opposite ways
   constructor
   · have h1 := addDown_le_add (subDown (E.q i) (absolute (s i))) (E.err.inf i)
     have h2 := subDown_le_sub (E.q i) (absolute (s i))

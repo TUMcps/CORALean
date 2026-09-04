@@ -5,37 +5,22 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.Compact
 /-!
 # `PolyZonotope.compact`
 
-The exact layer's `compact`, and the two obstacles trade places exactly as
-`Reduce` predicted. What blocks the exact one — deciding whether a merged
-generator is zero in an arbitrary real module — is *not* what blocks this one:
-that test is simply not made here, and it costs a column that denotes nothing
-rather than soundness. What appears instead is arithmetic. Merging two columns
-adds their entries, and a directed sum is not a sum, so a float `compact` owes
-an error box where the exact one is an equality.
+The exact layer's `compact`, with the obstacles traded. The zero test on a
+merged generator is simply not made here, costing a column that denotes nothing
+rather than soundness; what appears instead is arithmetic, since merging two
+columns adds their entries and a directed sum owes an error box.
 
-Which columns survive is therefore decided structurally: one per class, the
-least index carrying that exponent column, which is `Real.PolyZonotope.rep`
-already. `repKeep` is its fixed points, and `card` of it is the number of
-distinct monomials — which is what `reduce` wanted to bound and could not.
+Which columns survive is decided structurally: one per class, the least index
+carrying that exponent column, which is `Real.PolyZonotope.rep`. `repKeep` is
+its fixed points, and `card` of it is the monomial count `reduce` wanted.
 
-The `Finset` sum is the other half of what `Reduce` said was missing, and it
-does not need a new `sumUp`. A fibre is a *masked* sum over all of `Fin h`:
-every column outside the fibre contributes `zero`, and `addUp a zero` is still
-sound, so `sumDown` and `sumUp` over `Fin h` bracket the exact fibre sum with
-the summation order the layer already fixes. The masking costs precision on the
-`zero`s and nothing else.
+A fibre is a *masked* sum over all of `Fin h`: a column outside the fibre
+contributes `zero`, and `addUp a zero` is sound, so `sumDown` and `sumUp`
+bracket the exact fibre sum. Both directions are computed, the lower stored and
+the gap charged as a `generatorError`, the coefficient being a monomial.
 
-Both directions are computed, the lower stored and the gap charged. Charged as a
-`generatorError` rather than as a `residual`, the merged column's coefficient
-being a monomial that reaches `[-1,1]`.
-
-`compactFactors` needs none of this. It changes `p` and the exponent matrix and
-nothing else, all of it over ℕ, so the nominal part of the result is literally
-the exact layer's `compactFactors` of the nominal part.
-
-Computable, where the exact `compact` is not: an exponent column is a
-`Fin p → ℕ` and equality on it is decidable, which was the only classical step
-once the zero test is gone.
+`compactFactors` changes `p` and the exponent matrix and nothing else, all over
+ℕ, so its nominal part is literally the exact layer's.
 -/
 
 -- Authors:       Tobias Ladner

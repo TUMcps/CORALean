@@ -3,35 +3,22 @@ import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 /-!
 # `PolyZonotope.compact`
 
-CORA's `@polyZonotope/compact_`, which is `priv_removeRedundantExponents`
-followed by dropping the factors that fall out of use. Three exact steps: equal
-exponent columns are one monomial and are added together, a generator that came
-out zero is dropped, and a factor at exponent zero in every remaining column is
-dropped as well.
-
-Without this the generator count is noise: `plus` and `quadMap` both grow it
-while the set stands still, so an order bound counts columns that denote
-nothing. `reduce` therefore compacts before it ranks.
+CORA's `@polyZonotope/compact_`: equal exponent columns are one monomial and are
+added together, a generator that came out zero is dropped, and a factor at
+exponent zero in every remaining column is dropped as well. All three exact.
+Without this the generator count is noise — `plus` and `quadMap` grow it while
+the set stands still — so `reduce` compacts before it ranks.
 
 Everything below the two `PolyZonotope`-level definitions is stated over
-exponent data alone — an `E` and a family of generators over its columns, no set
-and no representation. That is deliberate: a constrained polynomial zonotope's
-constraint matrix `A` has columns over the very same exponent matrix `EC`, read
-as generators in `Vec ℝ m`, so `sum_monomial_merge` applies to it unchanged.
-Dropping factors is the one step that does *not* generalize by itself, since `p`
-is shared between `E` and `EC` there and only a factor unused by *both* may go;
-`usedFactors` would have to be handed the union. Nothing here prevents that, and
-nothing here does it.
+exponent data alone, no set and no representation, so a constrained polynomial
+zonotope's constraint matrix `A` — columns over the same `EC`, read as
+generators in `Vec ℝ m` — reuses `sum_monomial_merge` unchanged. Dropping
+factors is the one step that does not generalize: `p` is shared between `E` and
+`EC` there and only a factor unused by *both* may go.
 
-Merging needs to decide when two exponent columns agree, which is a
-`DecidableEq (Fin p → ℕ)` and free. Dropping a zero generator needs to decide
-whether an element of an arbitrary real module is zero, which is not: `compact`
-is therefore noncomputable, and the merge picks its representative by `Fin h`'s
-own order rather than by any ordering of the columns.
-
-CORA also folds the all-zero column into the centre. That is exact too and is
-left out: it is a fourth step with no bearing on either count, the constant
-monomial being one generator whichever side of `c` it sits on.
+Merging decides when two exponent columns agree, which is free; dropping a zero
+generator decides whether an element of an arbitrary real module is zero, which
+is not, so `compact` is noncomputable and the merge representative is `Fin h`'s.
 -/
 
 -- Authors:       Tobias Ladner
@@ -59,10 +46,9 @@ generator their common column keeps. -/
 def PolyZonotope.fiberSum {h : ℕ} (r : Fin h → Fin h) (G : Fin h → α) (j : Fin h) : α :=
   ∑ i ∈ Finset.univ.filter fun i => r i = j, G i
 
-/-- Regrouping a generator sum along any column-preserving `r`, and then keeping
-only the columns `s` names. Every step of `compact` on the generator side is
-this lemma at a particular `r` and `s`, and it mentions no set: a constrained
-representation reads its constraint columns as generators and reuses it. -/
+/-- Regrouping a generator sum along any column-preserving `r`, then keeping
+only the columns `s` names. Every generator-side step of `compact` is this at
+some `r` and `s`, and it mentions no set, so a constraint block reuses it. -/
 theorem PolyZonotope.sum_monomial_merge {p h : ℕ} (E : Fin p → Fin h → ℕ) (G : Fin h → α)
     (a : Fin p → ℝ) (r : Fin h → Fin h) (s : Finset (Fin h))
     (hcol : ∀ i, PolyZonotope.col E (r i) = PolyZonotope.col E i)
@@ -84,9 +70,8 @@ theorem PolyZonotope.sum_monomial_merge {p h : ℕ} (E : Fin p → Fin h → ℕ
   rw [hs j hj, smul_zero]
 
 /-- The least index carrying the same exponent column. A canonical
-representative per column is what makes the merge actually merge, and `Fin h`'s
-own order supplies one: no order on the columns themselves is needed, only
-equality on them. -/
+representative is what makes the merge merge, and `Fin h`'s own order supplies
+one, so only equality on the columns is needed and no order on them. -/
 def PolyZonotope.rep {p h : ℕ} (E : Fin p → Fin h → ℕ) (i : Fin h) : Fin h :=
   (Finset.univ.filter fun i' => PolyZonotope.col E i' = PolyZonotope.col E i).min'
     ⟨i, Finset.mem_filter.mpr ⟨Finset.mem_univ i, rfl⟩⟩
@@ -174,6 +159,7 @@ theorem PolyZonotope.abs_factorExtend_le_one {p h : ℕ} (E : Fin p → Fin h �
   · exact ha _
   · rw [abs_zero]; exact zero_le_one
 
+-- and on a kept factor the extension is the identity
 theorem PolyZonotope.factorExtend_factorIdx {p h : ℕ} (E : Fin p → Fin h → ℕ)
     (a : Fin (PolyZonotope.usedFactors E).card → ℝ)
     (k : Fin (PolyZonotope.usedFactors E).card) :

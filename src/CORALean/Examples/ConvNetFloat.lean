@@ -8,35 +8,21 @@ import CORALean.NN.Theorems.Robustness
 # The same convolutional network, over a floating-point scalar
 
 `Examples.ConvNet` at `Float.Zonotope 𝕋`, and what is worth reading is which
-lines changed and which did not.
+lines changed and which did not. The taps did not: `Example.convTap` and
+`Example.poolTap` are the exact layer's, reused verbatim, because an index
+function has no scalar in it.
 
-The taps did not: `Example.convTap` and `Example.poolTap` are the exact layer's,
-reused verbatim, because an index function has no scalar in it. That is the
-claim `Layers/Convolution` makes about padding, stride and layout, checked here
-rather than asserted.
+The reshape did not either: `Layer.reshape` below is `Real.Layer.reshape` at a
+float representation, sound there because a relabelling carries no weights, and
+`Zonotope 𝕋` has the `Reindex` instance it owes.
 
-The reshape did not either, and this is the file where that claim is tested:
-`Layer.reshape` below is `Real.Layer.reshape`, at a float representation, and it
-is sound there for the reason its own docstring gives — a relabelling carries no
-weights, so there is nothing to round and no float constructor to write. What
-the float layer owes is the `Reindex` instance, and `Zonotope 𝕋` has it.
+Batch normalization is the other with no float file, spelled out here as
+`Float.Layer.linear` at a folded scale and shift taken as parameters.
 
-Batch normalization is the other one with no float file, and it is spelled out
-here as what it is: `Float.Layer.linear` at a folded scale and shift, taken as
-parameters. The fold — a division by a square root, which `FloatOps` cannot do —
-happens once when a network is read, and the layer encloses the affine map the
-folded numbers denote, exactly as it encloses the map a stored weight matrix
-denotes.
-
-`k` is the exponential's reduction depth in the softmax, and it is precision
-alone: every `k` is sound and a larger one tighter.
-
-One honest wrinkle, and it is the bundle's rather than the float layer's:
-`noncomputable`. `Layer` carries `eval` alongside `propagate`, max pooling's
-`eval` is a supremum over ℝ, and ordering reals is not computable — so the
-network below cannot be run even though every step of its `propagate` is float
-arithmetic. `Examples.FeedForwardFloat` avoids this only because `relu` and an
-affine map are computable over ℝ.
+One honest wrinkle, the bundle's rather than the float layer's: `Layer` carries
+`eval` alongside `propagate`, max pooling's `eval` is a supremum over ℝ, and
+ordering reals is not computable — so the network below cannot be run even though
+every step of its `propagate` is float arithmetic.
 -/
 
 -- Authors:       Tobias Ladner
@@ -61,8 +47,7 @@ noncomputable def Example.convNet (k : ℕ) (K : Fin 1 → Fin 2 → 𝕋) (b : 
           (.cons (Layer.linear W bn)
             (.cons (Layer.softmax k) .nil)))))
 
--- Anonymous, since their content is that they elaborate: each is the exact
--- layer's general theorem, read at a float representation.
+-- anonymous: each is the exact layer's theorem, read at a float representation
 
 /-- The whole chain is a network, which is the only thing left to check. -/
 noncomputable example (k : ℕ) (K : Fin 1 → Fin 2 → 𝕋) (b : Vec 𝕋 5) (W : Mat 𝕋 2 2)

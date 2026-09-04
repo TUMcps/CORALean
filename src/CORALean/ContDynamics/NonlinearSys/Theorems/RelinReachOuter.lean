@@ -11,34 +11,22 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
 /-!
 # The re-linearization loop encloses the run at every step boundary
 
-The composition, and it is one induction on the step count: step `i` is the
-one-step guarantee applied to the run re-anchored at `iΔt`, with the enclosure
-the induction hypothesis supplies as its initial set. Nothing about step `i`
-reaches past its own window, which is what makes the chain a chain rather than
-one linearization stretched over a horizon.
+One induction on the step count: step `i` is the one-step guarantee applied to
+the run re-anchored at `iΔt`, with what the induction hypothesis encloses as its
+initial set. Nothing about step `i` reaches past its own window.
 
-Time is handled by re-anchoring, not by absolute windows. Every statement in
-`LinearSys` reads `Set.Icc 0 r ⊆ T` and `Trajectory.init` pins `x 0`, so an
-absolute window would mean restating all of them; `Trajectory.shift` moves the
-run instead and the one-step theorems apply unchanged. The price is a shifted
-trajectory in the proof, and it is paid twice — once for the flow, in `Shift`,
-and once for the input integral, in `LinearSys.stepInput_shift`, which is what
-lets `hUd` below be stated in the original clock rather than in step `i`'s.
+Time is handled by re-anchoring rather than by absolute windows. Every statement
+in `LinearSys` reads `Set.Icc 0 r ⊆ T` and `Trajectory.init` pins `x 0`, so
+`Trajectory.shift` moves the run and the one-step theorems apply unchanged. The
+price is a shifted trajectory, paid once for the flow in `Shift` and once for the
+input integral in `LinearSys.stepInput_shift`.
 
-Confinement is a hypothesis per step and stays one. CORA computes a candidate
-`R` and checks the step's reachable set against it afterwards, enlarging on
-failure; no certificate can supply that, and a chain of certificates cannot
-either.
+Confinement is a hypothesis per step and stays one: CORA computes a candidate `R`
+and checks the step's reachable set against it afterwards, which no certificate
+can supply.
 
-`relinReach_outer_inputSolution` names the input enclosure, and it takes the
-shorter road: the enclosure of step `i`'s input integral is proved on the
-*original* clock, by restricting the run to `[iΔt, (i+1)Δt]` and linearizing
-there, so the shift never enters that half of the argument.
-
-Step boundaries only, as `LinearSysDT.reach` gives. Covering the time in between
-is `timeIntervalStep` per step, chained the same way, and it is not here: it
-would need each step's enclosure at a non-sample time, which `TimeIntervalOuter`
-states for one linearization and nothing yet states along a chain.
+Step boundaries only. Covering the time between them would need each step's
+enclosure at a non-sample time, which nothing yet states along a chain.
 -/
 
 -- Authors:       Tobias Ladner
@@ -73,6 +61,7 @@ theorem NonlinearSys.Trajectory.relinReach_outer {sys : NonlinearSys n m} {T : S
     (o : ℕ) :
     ∀ i ≤ N, x ((i : ℝ) * Δt) ∈ construct (sys.relinReach o Δt steps Ud R₀ i) := by
   intro i
+  -- the induction is on the step count, every hypothesis being asked per step
   induction i with
   | zero =>
     intro _
@@ -84,8 +73,7 @@ theorem NonlinearSys.Trajectory.relinReach_outer {sys : NonlinearSys n m} {T : S
     have hexp : ((i : ℝ) + 1) * Δt = (i : ℝ) * Δt + Δt := by ring
     have hwin : Set.Icc ((i : ℝ) * Δt) (((i : ℝ) + 1) * Δt) ⊆ T :=
       step_subset_horizon hΔt hT hiN
-    -- the run re-anchored at the start of step `i`, starting from what step
-    -- `i - 1` enclosed
+    -- the run re-anchored at the start of step `i`, from what step `i - 1` enclosed
     have hmaps : Set.MapsTo (fun t => (i : ℝ) * Δt + t) (Set.Icc (0 : ℝ) Δt) T := by
       intro t ht
       refine hwin ⟨by linarith [ht.1], ?_⟩
@@ -101,6 +89,7 @@ theorem NonlinearSys.Trajectory.relinReach_outer {sys : NonlinearSys n m} {T : S
       refine hR i hiN _ ⟨by linarith [ht.1], ?_⟩
       rw [hexp]
       linarith
+    -- step `i`'s input enclosure, moved from the original clock onto the shifted one
     have hUd1 : ∀ k < 1, (NonlinearSys.linearize (steps i).A).stepInput
         (fun t => sys.f (x ((i : ℝ) * Δt + t)) (u ((i : ℝ) * Δt + t))
           - (steps i).A *ᵥ x ((i : ℝ) * Δt + t)) Δt k ∈ construct (Ud i) := by
@@ -113,6 +102,7 @@ theorem NonlinearSys.Trajectory.relinReach_outer {sys : NonlinearSys n m} {T : S
         Δt 0 ∈ construct (Ud i)
       rw [hshift]
       exact hUd i hiN
+    -- one step of the linear guarantee, at horizon 1, on the shifted run
     have key := shifted.reach_outer_horizon (K := 1) (steps i).cert hT1 hR1 hΔt
       (hU i hiN) hUd1 o 1 le_rfl
     show x (((i + 1 : ℕ) : ℝ) * Δt) ∈ construct
@@ -122,10 +112,9 @@ theorem NonlinearSys.Trajectory.relinReach_outer {sys : NonlinearSys n m} {T : S
       push_cast; ring]
     exact key
 
-/-- The same with each step's input enclosure named rather than assumed, so the
-whole loop is a function of the certificates alone. Step `i`'s integral is
-enclosed on the original clock — restrict to `[iΔt, (i+1)Δt]`, linearize there,
-apply `stepInput_outer` at step `i` — which is why no shift appears. -/
+/-- The same with each step's input enclosure named rather than assumed. Step
+`i`'s integral is enclosed on the original clock — restrict to `[iΔt, (i+1)Δt]`,
+linearize there, apply `stepInput_outer` — which is why no shift appears. -/
 theorem NonlinearSys.Trajectory.relinReach_outer_inputSolution [Mtimes ℐ S]
     {sys : NonlinearSys n m} {T : Set ℝ} {R₀ : S n} {U : S m} {x : ℝ → Vec ℝ n}
     {u : ℝ → Vec ℝ m} {steps : ℕ → sys.LinStep U} {Δt : ℝ} {N : ℕ}
@@ -145,6 +134,7 @@ theorem NonlinearSys.Trajectory.relinReach_outer_inputSolution [Mtimes ℐ S]
     ∀ i ≤ N, x ((i : ℝ) * Δt) ∈ construct (sys.relinReach o Δt steps
       (fun i => (NonlinearSys.linearize (steps i).A).inputSolution Δt η
         (steps i).linInput) R₀ i) := by
+  -- everything above is per step, so the loop is `relinReach_outer` plus one enclosure
   refine traj.relinReach_outer hΔt.le hT hR hbdd ?_ o
   intro i hi
   have hlin := (traj.restrict (step_subset_horizon hΔt.le hT hi)).linearize

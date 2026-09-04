@@ -5,22 +5,23 @@ import CORALean.ContSet.ContSet.ContSet
 
 CORA's `linearSysDT`, reduced to `x(k+1) = A x(k) + u(k)`: the class there is
 `x(k+1) = A x(k) + B u(k) + c` with an output `y = C x + D u + k`, and here only
-`A` is kept, the input entering in state coordinates as in Althoff's thesis.
-`B U ⊕ c` is one `mtimes` and one `plus` on the input set, and every state the
-system can reach is reached in the folded form too, so the state dynamics lose
-nothing by it.
+`A` is kept, the input entering in state coordinates as in [1]. `B U ⊕ c` is one
+`mtimes` and one `plus` on the input set, and the folded form reaches every state
+the system can.
 
-The output equation is `OutputEq`, paired with a reachable set rather than
-stored here — `LinearSysDT.output_outer` is the pairing along a run. Its `D`
-multiplies the input in *state* coordinates, which is where folding `B` does
-cost something: CORA's `D u` is recovered from it only when `B` is invertible,
-so feedthrough of an input `B` annihilates cannot be written. That is the one
-argument for an explicit `B`, and it arrives with the output equation and not
-before it.
+The output equation is `OutputEq`, paired with a reachable set rather than stored
+here — `LinearSysDT.output_outer` is the pairing along a run. Its `D` multiplies
+the input in *state* coordinates, which is where folding `B` costs something:
+CORA's `D u` is recovered only when `B` is invertible, so feedthrough of an input
+`B` annihilates cannot be written. That is the one argument for an explicit `B`.
 
 `Trajectory` is what such a system denotes and the only place the dynamics
-appear — one admissible run, with an input per step, so a disturbance is one
-too.
+appear — one admissible run, with an input per step, so a disturbance is one too.
+
+## References
+
+* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
+      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
 -/
 
 -- Authors:       Tobias Ladner

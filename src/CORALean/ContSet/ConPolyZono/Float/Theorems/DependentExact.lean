@@ -36,6 +36,7 @@ theorem ConPolyZono.nominal_dependent (C : ConPolyZono 𝕋 n) :
       simp only [Fin.append_left, Fin.append_right]
   have hGI : (fun (j : Fin 0) (_ : Fin n) => toReal ((Fin.elim0 : Fin 0 → 𝕋) j))
       = (Fin.elim0 : Fin 0 → Vec ℝ n) := funext fun j => j.elim0
+  -- the two records side by side, so only the two rewritten generator blocks differ
   show (⟨C.p + C.q, C.h + C.q, 0, C.m, C.s, toRealVec C.c,
       fun l i => toReal (Fin.append (C.G i) (C.GI i) l),
       Real.PolyZonotope.plusE C.E (Real.PolyZonotope.identE C.q),

@@ -12,10 +12,9 @@ Boundedness is the one thing that comes from outside, and from the input set
 rather than from `u`: a bounded `U` bounds the integrand together with the
 exponential, which is continuous over a compact step.
 
-Every statement here asks only that the domain cover the window it speaks about.
-The right endpoint of that window is where the domain runs out, so the identity
-pinning `u` holds on the half-open window only — which is enough, the missing
-point being null.
+Every statement asks only that the domain cover the window it speaks about, so
+the identity pinning `u` holds on the half-open window alone — enough, the
+missing point being null.
 
 Measurability survives the reflection `τ ↦ c - τ` that `inputSolution_outer`
 integrates against, the derivative term being strongly measurable rather than
@@ -37,10 +36,9 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
-/-- The integrand is the derivative of the substituted trajectory. Taken within
-`Ici s` rather than within the domain, which is the form Mathlib's measurability
-lemma speaks about, and no weaker: the two agree wherever the domain still
-extends to the right of `s`. -/
+/-- The integrand is the derivative of the substituted trajectory, taken within
+`Ici s`: the form Mathlib's measurability lemma speaks about, and no weaker, the
+two agreeing wherever the domain still extends to the right of `s`. -/
 theorem LinearSys.Trajectory.aux_integrand_eq_derivWithin {sys : LinearSys 𝕋 n} {T : Set ℝ}
     {R₀ U : S n} {x u : ℝ → Vec ℝ n} (traj : sys.Trajectory T R₀ U x u) {a b s : ℝ}
     (hT : Set.Icc a b ⊆ T) (hs : s ∈ Set.Ico a b) :
@@ -68,6 +66,7 @@ theorem LinearSys.Trajectory.aux_aestronglyMeasurable {sys : LinearSys 𝕋 n} {
 theorem aux_continuous_expNeg (A : Mat ℝ n n) : Continuous fun s : ℝ => exp ((-s) • A) :=
   exp_continuous.comp (continuous_neg.smul continuous_const)
 
+-- the integrand's bound is assembled from two witnesses, over the local norm instances
 set_option maxHeartbeats 400000 in
 /-- What `variation_of_constants` asks for, given only that the input set is
 bounded — which every representation of a set of points is. -/
@@ -126,12 +125,8 @@ theorem LinearSys.Trajectory.aestronglyMeasurable_input {sys : LinearSys 𝕋 n}
   exact (traj.aux_input_eq_derivWithin hT ⟨hs.1.le, hs.2⟩).symm
 
 /-- What `inputSolution_outer` asks of the input, in the reflected form the
-substitution `τ = c - s` leaves behind. Nothing is assumed of `u`: the
-derivative term is strongly measurable for every function and stays so through
-`τ ↦ c - τ`, and the drift term is a continuous map of a continuous state.
-
-The reflected argument sweeps `[c - r, c)`, so a domain covering the step ending
-at `c` is exactly what the identity pinning `u` needs. -/
+substitution `τ = c - s` leaves behind. The reflected argument sweeps
+`[c - r, c)`, so a domain covering the step ending at `c` is what it needs. -/
 theorem LinearSys.Trajectory.aestronglyMeasurable_input_reflected {sys : LinearSys 𝕋 n}
     {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n} (traj : sys.Trajectory T R₀ U x u) {c r : ℝ}
     (hT : Set.Icc (c - r) c ⊆ T) :
@@ -141,6 +136,7 @@ theorem LinearSys.Trajectory.aestronglyMeasurable_input_reflected {sys : LinearS
     fun _ hτ => ⟨by linarith [hτ.2], by linarith [hτ.1]⟩
   have hmaps : Set.MapsTo (fun τ : ℝ => c - τ) (Set.Ioc 0 r) T :=
     fun τ hτ => hT ⟨(hmem τ hτ).1, (hmem τ hτ).2.le⟩
+  -- both halves of `x' - Ax` survive the reflection: one strongly measurable, one continuous
   have hderiv : AEStronglyMeasurable
       (fun τ : ℝ => derivWithin x (Set.Ici (c - τ)) (c - τ))
       (volume.restrict (Set.Ioc 0 r)) :=

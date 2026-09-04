@@ -34,6 +34,7 @@ theorem ConZonotope.aux_sum_univ_mtimesIntervalMat {IM : Interval (Mat ℝ m n)}
       = ∑ j, f (Fin.castAdd m j) + ∑ j, f (Fin.natAdd C.h j) :=
   Fin.sum_univ_add f
 
+-- the nested `Finset.sum` rewrites over the appended generator block are what costs here
 set_option maxHeartbeats 400000 in
 theorem ConZonotope.mtimesIntervalMat_outer (IM : Interval (Mat ℝ m n))
     (C : ConZonotope (Vec ℝ n)) :
@@ -58,6 +59,7 @@ theorem ConZonotope.mtimesIntervalMat_outer (IM : Interval (Mat ℝ m n))
       _ = Zonotope.radiusReach IM C.zonotope i := rfl
   have hreachnn : ∀ i, 0 ≤ Zonotope.radiusReach IM C.zonotope i :=
     fun i => (abs_nonneg _).trans (herrb i)
+  -- the witness: the old coefficients, plus one per coordinate scaled to that reach
   refine ConZonotope.mem_construct_iff.mpr
     ⟨Fin.append β fun i => Zonotope.coefficient (Zonotope.radiusReach IM C.zonotope i) (err i),
       ?_, ?_, fun i => ?_⟩

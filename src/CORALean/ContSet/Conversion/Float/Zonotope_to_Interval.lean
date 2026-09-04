@@ -35,6 +35,7 @@ theorem Zonotope.interval_outer (Z : Zonotope 𝕋 n) : Z.construct ⊆ Z.interv
   have hlo : toReal (Z.E.inf i) ≤ e i := (he i).1
   have hhi : e i ≤ toReal (Z.E.sup i) := (he i).2
   have hzi : z i = toReal (Z.c i) + ∑ j, toReal (Z.G i j) * β j := hz i
+  -- each face on its own, the two roundings going opposite ways
   constructor
   · have h1 := addDown_le_add (subDown (Z.c i) (radius Z.G i)) (Z.E.inf i)
     have h2 := subDown_le_sub (Z.c i) (radius Z.G i)

@@ -5,10 +5,8 @@ import CORALean.ContSet.ConPolyZono.Real.Operations.And
 /-!
 # `ConPolyZono.and`
 
-The operation the representation exists for, and the one an equality right-hand
-side kept out of this layer. Only one quantity is computed — the agreement rows'
-right-hand interval — and it is computed outward, which is what the exact
-layer's tolerance is for.
+The operation the representation exists for. Only the agreement rows' right-hand
+interval is computed, outward, which is what the exact layer's tolerance is for.
 
 Here a set is a nominal one plus an error box, so the two points that have to
 agree are `y₁ + e₁` and `y₂ + e₂`, and it is the *nominal* points the rows can
@@ -17,13 +15,12 @@ say the nominal points agree only to within
 
   `c₂ − c₁ + [err₂.inf − err₁.sup, err₂.sup − err₁.inf]`,
 
-each end rounded away from the other. The rounding of `c₂ − c₁` therefore costs
-nothing extra: it goes into an interval that had to be widened anyway.
+each end rounded away from the other, so the rounding of `c₂ − c₁` costs nothing
+extra: it goes into an interval that had to be widened anyway.
 
-The result keeps `C₁`'s error box and only `C₁`'s generator block, both for the
-same reason — the point it denotes is `y₁ + e₁`, and `C₂` enters through the
-constraint system alone. `C₂`'s generator columns are kept at `zero` so that the
-agreement rows have somewhere to read the second point.
+The result keeps `C₁`'s error box and only `C₁`'s generator block: the point it
+denotes is `y₁ + e₁`, and `C₂` enters through the constraint system alone, its
+generator columns kept at `zero` so the agreement rows can read the second point.
 -/
 
 -- Authors:       Tobias Ladner

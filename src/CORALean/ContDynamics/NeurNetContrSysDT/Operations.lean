@@ -15,13 +15,11 @@ A `def`, for the reason `relinReach` gives: what reachability produces is data
 the caller hands to `Specification`, not a set a proof asserts to exist.
 
 The precision is lost in one place, and it is worth naming. `propagate` runs on
-the same set the step is taken from, and `plus` then combines the two — so every
-state in the enclosure is paired with every input in it, not with the input the
-controller produces at that state. The closed loop is deterministic and this
-enclosure is not, and no order bound recovers the difference.
+the same set the step is taken from and `plus` combines the two, so every state
+in the enclosure is paired with every input in it, not with the input the
+controller produces at that state. No order bound recovers the difference.
 
-`o` is uniform across steps, as in `LinearSysDT.reach`, so the recursion is on
-the step index alone.
+`o` is uniform across steps, as in `LinearSysDT.reach`.
 -/
 
 -- Authors:       Tobias Ladner

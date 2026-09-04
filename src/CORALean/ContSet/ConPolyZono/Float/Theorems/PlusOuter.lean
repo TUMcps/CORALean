@@ -98,6 +98,7 @@ theorem ConPolyZono.aux_plus_nominal (C₁ C₂ : ConPolyZono 𝕋 n) :
     funext fun k => Fin.append_left a₁ a₂ k
   have hA₂ : (fun k => Fin.append a₁ a₂ (Fin.natAdd C₁.p k)) = a₂ :=
     funext fun k => Fin.append_right a₁ a₂ k
+  -- the witness: one appended factor vector, one appended coefficient vector
   refine ⟨fun i => toReal ((C₁.plus C₂).c i)
             + (∑ l, toReal ((C₁.plus C₂).G i l)
                 * Real.PolyZonotope.monomial (C₁.plus C₂).E (Fin.append a₁ a₂) l)
@@ -111,6 +112,7 @@ theorem ConPolyZono.aux_plus_nominal (C₁ C₂ : ConPolyZono 𝕋 n) :
   · refine Fin.addCases (fun j => ?_) (fun j => ?_)
     · simpa using hβ₁ j
     · simpa using hβ₂ j
+  -- the constraint side, each system read on the factors it came with
   · refine (ConPolyZono.satisfies_plus_iff C₁ C₂ _).mpr ⟨?_, ?_⟩
     · rw [hA₁]; exact hs₁
     · rw [hA₂]; exact hs₂

@@ -44,6 +44,7 @@ theorem ConPolyZono.dependent_exact (C : ConPolyZono α) :
   · rintro _ ⟨a, b, ha, hb, hsat, rfl⟩
     have hA : (fun k => Fin.append a b (Fin.castAdd C.q k)) = a :=
       funext fun k => Fin.append_left a b k
+    -- forward: the freed coefficients become the right half of the factor vector
     refine ⟨Fin.append a b, fun _ => 0,
       Fin.addCases (fun k => by simpa using ha k) (fun j => by simpa using hb j),
       fun j => j.elim0, ?_, ?_⟩
@@ -59,6 +60,7 @@ theorem ConPolyZono.dependent_exact (C : ConPolyZono α) :
       simp only [Finset.univ_eq_empty, Finset.sum_empty, add_zero, Fin.append_left,
         Fin.append_right]
       abel
+  -- back: the same split read the other way, the independent block now empty
   · rintro _ ⟨a, b, ha, _, hsat, rfl⟩
     refine ⟨fun k => a (Fin.castAdd C.q k), fun j => a (Fin.natAdd C.p j),
       fun k => ha _, fun j => ha _,

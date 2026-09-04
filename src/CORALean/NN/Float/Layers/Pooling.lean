@@ -5,29 +5,21 @@ import CORALean.NN.Layers.Pooling
 /-!
 # The pooling layers over a floating-point scalar
 
-## Average pooling takes its reciprocal as data
+`1 / k` is not a float, so average pooling's weight cannot be computed here and
+is a parameter. The layer encloses the map that weight denotes, which is
+averaging only as closely as the weight is `1 / k` — the status a stored weight
+matrix has. Where it matters it is exact: for a window of `2 ^ d` taps the weight
+is `half` iterated `d` times from `one`, and every pooling window CORA builds is
+of that shape.
 
-`1 / k` is not a float, so the weight cannot be computed here and is a
-parameter. The layer then encloses the map that weight denotes, which is
-averaging only as closely as the weight is `1 / k` — the same status a stored
-weight matrix has, and the same one `BatchNorm`'s folded scale has.
+Max pooling rounds one number. The pivot is a choice and never a correctness
+condition, exactly as `ReLU`'s slope is, so `pivot` may read `le`, which
+`SoundFloatArithmetic` constrains in no way. What rounds is the gap, and it
+rounds up — `subUp` per tap and an exact `maximumOver` above them, whose floor at
+`zero` is what the exact layer spends an `if` on.
 
-That is not as bad as it sounds, and where it matters it is not bad at all: for
-a window of `2 ^ d` taps the weight is `half` iterated `d` times from `one`,
-which `FloatOps` computes exactly. Every pooling window CORA builds is of that
-shape.
-
-## Max pooling rounds one number
-
-The pivot is a choice and never a correctness condition, exactly as `ReLU`'s
-slope is, so it needs no arithmetic guarantee: `pivot` may read `le`, which
-`SoundFloatArithmetic` constrains in no way. What has to round is the gap, and
-it rounds up — `subUp` per tap and an exact `maximumOver` above them, whose
-floor at `zero` is what the exact layer spends an `if` on.
-
-`Real.maxPool_bounds` is reused unchanged, because it was stated for an
-arbitrary `g` bounding the window rather than for the one the exact layer
-computes.
+`Real.maxPool_bounds` is reused unchanged, having been stated for an arbitrary
+`g` bounding the window.
 -/
 
 -- Authors:       Tobias Ladner
@@ -83,6 +75,7 @@ def maxPoolGapUp (tap : Fin m → Fin (k + 1) → Fin n) (p : Fin m → Fin (k +
   maximumOver fun l =>
     if l = p j then zero else subUp (I.sup (tap j l)) (I.inf (tap j (p j)))
 
+/-- Read at the pivot, where the window contributes an exact `zero`. -/
 theorem maxPoolGapUp_nonneg (tap : Fin m → Fin (k + 1) → Fin n) (p : Fin m → Fin (k + 1))
     (I : Interval 𝕋 n) (j : Fin m) : 0 ≤ toReal (maxPoolGapUp tap p I j) := by
   have h := le_maximumOver
@@ -90,6 +83,7 @@ theorem maxPoolGapUp_nonneg (tap : Fin m → Fin (k + 1) → Fin n) (p : Fin m �
   rw [if_pos rfl, toReal_zero] at h
   exact h
 
+/-- And at any other tap, where `subUp` is the one rounding this layer pays. -/
 theorem le_maxPoolGapUp (tap : Fin m → Fin (k + 1) → Fin n) (p : Fin m → Fin (k + 1))
     (I : Interval 𝕋 n) (j : Fin m) {l : Fin (k + 1)} (hl : l ≠ p j) :
     toReal (I.sup (tap j l)) - toReal (I.inf (tap j (p j)))
@@ -122,6 +116,7 @@ noncomputable def Layer.maxPool (tap : Fin m → Fin (k + 1) → Fin n)
       show Real.windowMax (fun l => x (tap j l)) = (A *ᵥ x) j + d j
       rw [hsel, hd]
       ring
+    -- the exact layer's bound, at the rounded-up gap it was stated for
     have hmem : d ∈ Interval.construct
         (⟨fun _ => zero, maxPoolGapUp tap p I⟩ : Interval 𝕋 m) := by
       intro j

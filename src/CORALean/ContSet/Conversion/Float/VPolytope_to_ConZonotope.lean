@@ -40,6 +40,7 @@ theorem VPolytope.mem_simplex_iff {β : Vec ℝ k} :
     β ∈ (VPolytope.simplex 𝕋 k).construct ↔ (∀ j, 0 ≤ β j) ∧ ∑ j, β j = 1 := by
   simp only [VPolytope.simplex]
   rw [HPolytope.mem_and_iff, HPolytope.mem_ineqs_iff, HPolytope.mem_eqs_iff]
+  -- both directions: a nonnegativity row each, and the two ends of the ones-row equality
   constructor
   · rintro ⟨hle, heq⟩
     refine ⟨fun j => ?_, ?_⟩
@@ -59,6 +60,7 @@ theorem VPolytope.mem_simplex_iff {β : Vec ℝ k} :
     · rw [VPolytope.aux_ones_mulVec, hsum, toReal_one]
       exact ⟨le_refl 1, le_refl 1⟩
 
+-- the vertices become the generators and the simplex their coefficient domain
 def VPolytope.conZonotope (P : VPolytope 𝕋 n) : ConZonotope 𝕋 n where
   h := P.k
   c := fun _ => zero
@@ -70,6 +72,7 @@ theorem VPolytope.subset_conZonotope (P : VPolytope 𝕋 n) :
     P.construct ⊆ P.conZonotope.construct := by
   refine mono_subset (fun x hx => ?_) subset_rfl
   obtain ⟨β, hnn, hsum, hval⟩ := hx
+  -- a convex coefficient already lies inside the unit box, so that constraint costs nothing
   refine ConZonotope.mem_nominalSet_iff.mpr ⟨β, fun j => ?_, ?_, fun i => ?_⟩
   · rw [abs_of_nonneg (hnn j)]
     exact hsum ▸ Finset.single_le_sum (fun l _ => hnn l) (Finset.mem_univ j)

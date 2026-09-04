@@ -34,6 +34,7 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 
 attribute [simp] entry_ofEntry
 
+/-- `ofEntry` inverts `entry`, so coordinates determine the point. -/
 theorem entry_injective : Function.Injective (entry : α → ι → ℝ) := by
   intro a b h
   rw [← ofEntry_entry a, ← ofEntry_entry b, h]
@@ -43,6 +44,7 @@ theorem entry_injective : Function.Injective (entry : α → ι → ℝ) := by
   rw [add_zero] at h
   linarith
 
+/-- The additive structure is read coordinatewise, so negation is too. -/
 @[simp] theorem entry_neg (a : α) (i : ι) : entry (-a) i = -entry a i := by
   have h := entry_add a (-a) i
   rw [add_neg_cancel, entry_zero] at h

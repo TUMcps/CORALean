@@ -50,6 +50,7 @@ theorem Zonotope.reduceBy_outer_refines (Z : Zonotope 𝕋 n)
     intro i
     rw [abs_mul, abs_of_nonneg (hnonneg i)]
     exact le_trans (mul_le_of_le_one_right (hnonneg i) (hβ _)) (hle i)
+  -- the witness: kept coefficients, plus one per coordinate scaled to the rounded radius
   refine Zonotope.mem_nominalSet_iff.mpr ⟨Fin.append (fun l => β (Fin.castAdd n l)) (fun i =>
       Real.Zonotope.coefficient (toReal (radius (fun i l => Z.G i (part.right l)) i))
         ((∑ l, |toReal (Z.G i (part.right l))|) * β (Fin.natAdd q i))), ?_, fun i => ?_⟩

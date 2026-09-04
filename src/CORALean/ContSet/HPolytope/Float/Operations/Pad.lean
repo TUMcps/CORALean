@@ -32,6 +32,7 @@ def HPolytope.padLeft (P : HPolytope 𝕋 n₁) (n₂ : ℕ) : HPolytope 𝕋 (n
   Ae := fun i => Fin.append (P.Ae i) fun _ => FloatOps.zero
   be := P.be
 
+-- the mirror, with the new coordinates padded in front
 def HPolytope.padRight (n₁ : ℕ) (P : HPolytope 𝕋 n₂) : HPolytope 𝕋 (n₁ + n₂) where
   m := P.m
   A := fun i => Fin.append (fun _ => FloatOps.zero) (P.A i)
@@ -42,6 +43,7 @@ def HPolytope.padRight (n₁ : ℕ) (P : HPolytope 𝕋 n₂) : HPolytope 𝕋 (
 
 variable [SoundFloatArithmetic 𝕋]
 
+-- a padded row reads only the block it came from, the zero columns dropping out
 theorem HPolytope.mulVec_padLeft {m : ℕ} (M : Mat 𝕋 m n₁) (x : Vec ℝ (n₁ + n₂)) (i : Fin m) :
     (toRealMat (fun i' => Fin.append (M i') fun _ : Fin n₂ => FloatOps.zero) *ᵥ x) i
       = (toRealMat M *ᵥ blockLeft n₁ n₂ x) i := by
@@ -51,6 +53,7 @@ theorem HPolytope.mulVec_padLeft {m : ℕ} (M : Mat 𝕋 m n₁) (x : Vec ℝ (n
   simp only [Fin.append_left, Fin.append_right, toReal_zero, zero_mul,
     Finset.sum_const_zero, add_zero]
 
+-- and the same on the right block
 theorem HPolytope.mulVec_padRight {m : ℕ} (M : Mat 𝕋 m n₂) (x : Vec ℝ (n₁ + n₂)) (i : Fin m) :
     (toRealMat (fun i' => Fin.append (fun _ : Fin n₁ => FloatOps.zero) (M i')) *ᵥ x) i
       = (toRealMat M *ᵥ blockRight n₁ n₂ x) i := by
@@ -60,6 +63,7 @@ theorem HPolytope.mulVec_padRight {m : ℕ} (M : Mat 𝕋 m n₂) (x : Vec ℝ (
   simp only [Fin.append_left, Fin.append_right, toReal_zero, zero_mul,
     Finset.sum_const_zero, zero_add]
 
+-- so membership of the padded polytope is membership of that block, both ways
 theorem HPolytope.mem_padLeft_iff {P : HPolytope 𝕋 n₁} {x : Vec ℝ (n₁ + n₂)} :
     x ∈ (P.padLeft n₂).construct ↔ blockLeft n₁ n₂ x ∈ P.construct := by
   constructor
@@ -80,6 +84,7 @@ theorem HPolytope.mem_padLeft_iff {P : HPolytope 𝕋 n₁} {x : Vec ℝ (n₁ +
     · simp only [HPolytope.padLeft, HPolytope.mulVec_padLeft]
       exact heq i
 
+-- the mirror statement for the right block
 theorem HPolytope.mem_padRight_iff {P : HPolytope 𝕋 n₂} {x : Vec ℝ (n₁ + n₂)} :
     x ∈ (HPolytope.padRight n₁ P).construct ↔ blockRight n₁ n₂ x ∈ P.construct := by
   constructor

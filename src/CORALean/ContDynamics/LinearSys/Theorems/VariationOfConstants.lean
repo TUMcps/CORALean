@@ -34,8 +34,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
--- Every declaration here needs twice the project default: the matrix exponential
--- and the finite-dimensional `toContinuousLinearMap` both cost instance search.
+-- the exponential and `toContinuousLinearMap` both cost instance search, throughout
 /-- Matrix-vector multiplication as a continuous linear map in the matrix, which
 is what lets the product rule apply to `e^{-As} x(s)`. Finite dimension is what
 makes every piece of it continuous. -/
@@ -105,6 +104,7 @@ theorem LinearSys.Trajectory.variation_of_constants {sys : LinearSys 𝕋 n} {T 
     have hc : Commute (c • A) (d • A) := ((Commute.refl A).smul_left c).smul_right d
     rw [add_smul]
     exact (exp_add_of_commute hc).symm
+  -- `e^{bA}` is constant in `s`, so it moves through the integral as a linear map
   have hint : mulVecL (exp (b • A)) (∫ s in a..b, exp ((-s) • A) *ᵥ u s)
       = ∫ s in a..b, exp ((b - s) • A) *ᵥ u s := by
     rw [← ContinuousLinearMap.intervalIntegral_comp_comm _ hu]

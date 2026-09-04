@@ -47,6 +47,7 @@ theorem HPolytope.translate_outer (t : Vec 𝕋 n) (P : HPolytope 𝕋 n) :
     intro m M i
     rw [Matrix.mulVec_add]
     rfl
+  -- each bound shifts by what its own row reads of `t`, rounded outward
   refine HPolytope.mem_construct_iff.mpr ⟨fun i => ?_, fun i => ⟨?_, ?_⟩⟩
   · show (toRealMat P.A *ᵥ (toRealVec t + y)) i ≤ toReal (addUp (P.b i) (dotUp (P.A i) t))
     rw [hsplit P.A i]

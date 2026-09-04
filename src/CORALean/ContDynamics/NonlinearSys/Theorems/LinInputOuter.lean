@@ -32,6 +32,7 @@ variable {n m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [OfInterval S]
 
+/-- The remainder of the split lies in `linInput` wherever the certificate holds. -/
 theorem NonlinearSys.linInput_outer {sys : NonlinearSys n m} {A : Mat ℝ n n}
     {B : Mat ℝ n m} {xs : Vec ℝ n} {us : Vec ℝ m} {R : Set (Vec ℝ n)}
     {U : S m} {L : S n} (cert : AbstractionError sys A B xs us R (construct U) L)

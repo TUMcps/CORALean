@@ -5,33 +5,22 @@ import CORALean.Global.Sort
 /-!
 # `PolyZonotope.reduce`
 
-The exact layer's `reduce`, rounded — and the one operation here that the float
-layer *runs* where the exact layer only specifies. `PolyZonotope.reduceGirard`
-is noncomputable over ℝ because `Tuple.sort` needs a `LinearOrder` on the
-metric; `sortPerm` asks its comparator for nothing, so `le` on a machine scalar
-suffices. It can afford to: `reduceBy_outer` holds at every pair of partitions,
-so a misranking costs precision and never soundness.
+The exact layer's `reduce`, rounded — and the one operation the float layer
+*runs* where the exact layer only specifies: `reduceGirard` is noncomputable
+over ℝ because `Tuple.sort` needs a `LinearOrder`, while `sortPerm` asks its
+comparator for nothing. It can afford to, `reduceBy_outer` holding at every pair
+of partitions, so a misranking costs precision and never soundness.
 
-The dependent and the independent block are ranked as one, as over ℝ and as in
-CORA, which is what bounds the result: `Theorems/ReduceOrder` reads `n·o` off
-the two clamped budgets and never off the ranking.
+The two blocks are ranked as one, as over ℝ, which is what bounds the result:
+`Theorems/ReduceOrder` reads `n·o` off the two clamped budgets and never off the
+ranking.
 
-`reduceBy` charges nothing to the error box. The centre, the kept generators of
-either block and their exponent columns are copied exactly, and the diagonal
-block rounds *up* — twice, once per block radius and once for their sum — which
-only enlarges a result that was already an over-approximation. `compact`, which
-`reduce` runs first as over ℝ, does charge one: merging two columns adds their
-entries.
-
-Running it is what makes the order bound mean what it means over ℝ — a count of
-distinct monomials rather than of stored columns, which `plus` and `quadMap`
-inflate while the set stands still.
-
-`reduceDependent` is the dependent-only accounting, kept and named rather than
-dropped: tighter per step, since a generator kept is a generator not boxed, and
-bounding nothing. Both are `reduceBy` at a different pair of partitions and both
-are sound; only one of them bounds an order, and that is the one `Reduce`
-instantiates.
+`reduceBy` charges nothing to the error box. The centre, the kept generators and
+their exponent columns are copied exactly, and the diagonal block rounds *up* —
+twice, once per block radius and once for their sum — which only enlarges an
+over-approximation. `compact`, which `reduce` runs first, does charge one:
+merging two columns adds their entries, and running it is what makes the order
+bound count distinct monomials rather than stored columns.
 -/
 
 -- Authors:       Tobias Ladner
@@ -54,11 +43,9 @@ def PolyZonotope.dropRadius (PZ : PolyZonotope 𝕋 n)
   fun i₀ => addUp (radius (fun i l => PZ.G i (partD.right l)) i₀)
     (radius (fun i j => PZ.GI i (partI.right j)) i₀)
 
-/-- CORA's reduction at a given pair of partitions, unchanged in shape and sound
-for every one of them: the kept dependent generators keep their exponent
-columns, the kept independent ones are copied, and the rest of both blocks
-becomes a diagonal block of *independent* generators — independent because
-nothing ties a box to the factors any more. -/
+/-- CORA's reduction at a given pair of partitions, sound for every one of them:
+kept dependent generators keep their exponent columns, kept independent ones are
+copied, and the rest becomes a box no longer tied to the factors. -/
 def PolyZonotope.reduceBy (PZ : PolyZonotope 𝕋 n)
     (partD : Split (Fin PZ.h) into (Fin d) and (Fin r))
     (partI : Split (Fin PZ.q) into (Fin dI) and (Fin rI)) : PolyZonotope 𝕋 n where
@@ -72,10 +59,9 @@ def PolyZonotope.reduceBy (PZ : PolyZonotope 𝕋 n)
     (diagonalBlock (PZ.dropRadius partD partI) i)
   err := PZ.err
 
-/-- Girard's metric on one generator, `‖g‖₁ - ‖g‖∞`, in `𝕋`. Zero exactly on the
-axis-aligned generators, which a box reproduces for free. Over a bare matrix, so
-that the dependent block, the independent one and their concatenation are all
-ranked by this one line. -/
+/-- Girard's metric on one generator, `‖g‖₁ - ‖g‖∞`, in `𝕋`, over a bare matrix
+so that either block and their concatenation are ranked by this one line. Zero
+on the axis-aligned generators, which a box reproduces for free. -/
 def PolyZonotope.aux_girardMetric {m : ℕ} (G : Mat 𝕋 n m) (l : Fin m) : 𝕋 :=
   subDown (sumUp fun i => absolute (G i l)) (maximumOver fun i => absolute (G i l))
 
@@ -86,11 +72,8 @@ def PolyZonotope.aux_concatGens (PZ : PolyZonotope 𝕋 n) : Mat 𝕋 n (PZ.h + 
   fun i => Fin.append (PZ.G i) (PZ.GI i)
 
 /-- The `k` generators a metric ranks first, against the rest. Clamped to the
-block, which is what makes the split total: a budget larger than the block asks
-for all of it, and no order hypothesis has to travel with the split.
-
-The comparator ranks the larger metric first, so the generators dearest to box
-survive — CORA's descending sort. -/
+block, so the split is total and no order hypothesis travels with it; the
+comparator ranks the larger metric first, CORA's descending sort. -/
 def PolyZonotope.aux_girardSplit {m : ℕ} (metric : Fin m → 𝕋) (k : ℕ) :
     Split (Fin m) into (Fin (min k m)) and (Fin (m - min k m)) :=
   (Partition.split (min k m) (m - min k m)).reindex
@@ -102,33 +85,18 @@ alone. -/
 def PolyZonotope.aux_keepAll (m : ℕ) : Split (Fin m) into (Fin m) and (Fin 0) :=
   (Partition.split m 0).reindex (finCongr (Nat.add_zero m).symm)
 
-/-- How many of the `K` best-ranked generators overall are dependent ones: the
-whole of CORA's joint accounting, as one number. `rank` is CORA's
-`sort(len,'descend')` on `[G, GI]`, read as a rank rather than as an order, and
-bound by a `let` so that the sort runs once rather than once per generator —
-which matters here, where every metric it compares reads a generator of a set
-`compact` has just merged and nothing memoizes. The independent block gets what
-is left of `K`, and each block is cut by the metric that ranked the two
-together, so the two cuts fall where the joint cut does.
-
-That the two cuts agree with the joint one needs the comparator to be a
-preorder. `le` on a machine scalar is one, and nothing here depends on it:
-disagreeing costs precision, never soundness.
-
-Capped at `K`, and the cap never binds: `reduceGirard` calls this only where
-`K < h + q`, so exactly `K` generators rank below it and the two blocks take
-`K` between them. The cap is there to make the order bound arithmetic rather
-than a fact about the ranking. -/
+/-- How many of the `K` best-ranked generators overall are dependent: CORA's
+joint accounting as one number, `rank` bound by a `let` so the sort runs once
+over generators nothing memoizes. The cap at `K` never binds. -/
 def PolyZonotope.aux_girardKeptDep (PZ : PolyZonotope 𝕋 n) (K : ℕ) : ℕ :=
   let metric := PolyZonotope.aux_girardMetric PZ.aux_concatGens
   let rank := (sortPerm fun l₁ l₂ => le (metric l₂) (metric l₁)).symm
   min K (Finset.univ.filter fun l : Fin PZ.h =>
     (rank (Fin.castAdd PZ.q l) : ℕ) < K).card
 
-/-- CORA's `reduce(pZ, 'girard', o)`: with more than `n·o` generators in the two
-blocks together, keep the `(o-1)·n` that Girard ranks first and box the rest,
-which brings the total back to `n·o`. At that order or below, nothing
-happens. -/
+/-- CORA's `reduce(pZ, 'girard', o)`: past `n·o` generators in the two blocks
+together, keep the `(o-1)·n` Girard ranks first and box the rest, bringing the
+total back to `n·o`. At that order or below, nothing happens. -/
 def PolyZonotope.reduceGirard (PZ : PolyZonotope 𝕋 n) (o : ℕ) : PolyZonotope 𝕋 n :=
   if o * n < PZ.h + PZ.q then
     let K := (o - 1) * n
@@ -143,18 +111,9 @@ a caller names an order and gets an over-approximation of bounded size. -/
 def PolyZonotope.reduce (PZ : PolyZonotope 𝕋 n) (o : ℕ) : PolyZonotope 𝕋 n :=
   PZ.compact.reduceGirard o
 
-/-- The same rule with the independent block left out of the accounting: cut the
-dependent generators alone against `n·o` and keep every independent one.
-
-Tighter per step than `reduceGirard`, since a generator kept is a generator not
-boxed, and bounded in nothing: the box adds `n` independent generators at every
-call and this rule removes none, so `q` grows without limit along a loop that
-calls it — here in memory and time per step, not only in the specification. That
-is why `reduce` is the other one and why `Reduce` instantiates that.
-
-The box it builds is the joint rule's with an empty second block, so it pays one
-`addUp` against a `radius` of no columns. A sound `zero` makes that no wider
-than the sum it rounds, and never narrower. -/
+/-- The same rule with the independent block left out: cut the dependent
+generators alone against `n·o` and keep every independent one. Tighter per step
+and bounding nothing — the box adds `n` independent generators at every call. -/
 def PolyZonotope.reduceGirardDependent (PZ : PolyZonotope 𝕋 n) (o : ℕ) : PolyZonotope 𝕋 n :=
   if o * n < PZ.h then
     PZ.reduceBy

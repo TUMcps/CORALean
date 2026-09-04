@@ -61,6 +61,7 @@ theorem Interval.subset_vPolytope (I : Interval (Vec ℝ n)) :
           | exact div_nonneg (by linarith [hlo j]) hd.le
           | exact (div_le_one hd).mpr (by linarith [hhi j])
           | (field_simp; ring)
+  -- a corner's convex weight is the product of the per-coordinate ones
   refine ⟨fun l => ∏ j, (if signEquiv n l j then t j else 1 - t j), fun l => ?_, ?_, ?_⟩
   · exact Finset.prod_nonneg fun j _ => by
       cases signEquiv n l j <;> simp <;> linarith [ht0 j, ht1 j]
@@ -70,6 +71,7 @@ theorem Interval.subset_vPolytope (I : Interval (Vec ℝ n)) :
         (fun σ => ∏ j, (if σ j then t j else 1 - t j)) fun _ => rfl,
       sum_prod_bool]
     simp
+  -- the value: the sum over corners factorises coordinate by coordinate
   · funext i
     have hsum : (∑ l : Fin (2 ^ n),
           (∏ j, (if signEquiv n l j then t j else 1 - t j)) • I.corner (signEquiv n l)) i

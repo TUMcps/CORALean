@@ -51,6 +51,7 @@ theorem HPolytope.mem_fullspace (x : Vec ℝ n) :
     x ∈ (HPolytope.fullspace 𝕋 n).construct :=
   HPolytope.mem_construct_iff.mpr ⟨fun i => i.elim0, fun i => i.elim0⟩
 
+-- membership at each shape, the block that is absent discharged by `Fin.elim0`
 theorem HPolytope.mem_ineqs_iff {A : Mat 𝕋 q n} {b : Vec 𝕋 q} {x : Vec ℝ n} :
     x ∈ (HPolytope.ineqs A b).construct ↔ ∀ i, (toRealMat A *ᵥ x) i ≤ toReal (b i) :=
   ⟨fun h => (HPolytope.mem_construct_iff.mp h).1,

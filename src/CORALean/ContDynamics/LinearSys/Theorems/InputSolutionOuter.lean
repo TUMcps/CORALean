@@ -109,6 +109,7 @@ theorem aux_continuous_expDiff (A : Mat ℝ n n) (η : ℕ) :
   exact (continuous_const : Continuous fun _ : ℝ => ((Nat.factorial i : ℝ)⁻¹)).smul (hsmul.pow i)
 
 omit [∀ n, LinComb (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] in
+-- a dozen `have`s over `Mat ℝ n n`, each re-solving the local normed-algebra instances
 set_option maxHeartbeats 1000000 in
 theorem LinearSys.inputSolution_outer [Mtimes ℐ S]
     (sys : LinearSys 𝕋 n)
@@ -116,6 +117,7 @@ theorem LinearSys.inputSolution_outer [Mtimes ℐ S]
     (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) {U : S n}
     (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
     (hbdd : Bornology.IsBounded (construct U))
+    -- the next three are asked of the product and not of `U`, `R(τ)` varying with `τ`
     (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) r η) U)))
     (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
@@ -167,6 +169,7 @@ theorem LinearSys.inputSolution_outer [Mtimes ℐ S]
     have hy : (∫ τ in (0:ℝ)..r, τ ^ i • g τ) ∈ (r ^ (i + 1) / ((i : ℝ) + 1)) • construct U :=
       integral_pow_smul_mem hconv hclosed hbdd hr i hmeas hu
     obtain ⟨z, hz, hzeq⟩ := hy
+    -- the matrix leaves the integral, so convexity is asked only of `U`
     have hpull : (∫ τ in (0:ℝ)..r, ((Nat.factorial i : ℝ)⁻¹ * τ ^ i) • (A ^ i *ᵥ g τ))
         = ((Nat.factorial i : ℝ)⁻¹) • (A ^ i *ᵥ ∫ τ in (0:ℝ)..r, τ ^ i • g τ) := by
       have hfun : ∀ τ : ℝ, ((Nat.factorial i : ℝ)⁻¹ * τ ^ i) • (A ^ i *ᵥ g τ)
@@ -181,6 +184,7 @@ theorem LinearSys.inputSolution_outer [Mtimes ℐ S]
       rw [intervalIntegral.integral_smul, hclm]
       rfl
     rw [hpull, ← hzeq]
+    -- `Aⁱ/i!` against `r^(i+1)/(i+1)` is exactly the matrix `inputTerm r i` names
     have hcomb : ((Nat.factorial i : ℝ)⁻¹) • (A ^ i *ᵥ ((r ^ (i + 1) / ((i : ℝ) + 1)) • z))
         = (sys.inputTerm r i) *ᵥ z := by
       rw [Matrix.mulVec_smul, smul_smul, LinearSys.inputTerm, Matrix.smul_mulVec]
@@ -194,9 +198,7 @@ theorem LinearSys.inputSolution_outer [Mtimes ℐ S]
     refine Mtimes.mtimes_outer _ _ ?_
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact Set.mem_image_of_mem _ hz
-  -- the remainder: `R(τ)` varies, so the convex closed set is the product itself
-  -- `Matrix` blocks instance search, so the remainder's measurability is taken
-  -- one entry at a time, where everything is a real-valued product
+  -- `Matrix` blocks instance search, so the remainder is measured one real entry at a time
   have hgk : ∀ k, AEStronglyMeasurable (fun τ => g τ k) (volume.restrict (Set.Ioc 0 r)) := by
     intro k
     rw [aestronglyMeasurable_iff_aemeasurable]
@@ -219,6 +221,7 @@ theorem LinearSys.inputSolution_outer [Mtimes ℐ S]
     rw [← heq]
     exact Finset.aestronglyMeasurable_sum _ fun k _ =>
       (((aux_continuous_expDiff A η).matrix_elem j k).aestronglyMeasurable).mul (hgk k)
+  -- every entry of `r · R(τ)` lies in the interval matrix `inputRemainder` names
   have hpt : ∀ τ ∈ Set.Ioc (0:ℝ) r,
       r • ((exp (τ • A) - MatExp.expTaylor (τ • A) η) *ᵥ g τ)
         ∈ construct (Mtimes.mtimes (𝕄 := ℐ)
@@ -236,6 +239,7 @@ theorem LinearSys.inputSolution_outer [Mtimes ℐ S]
         nlinarith [hb.2, hr.le]
     rw [← Matrix.smul_mulVec]
     exact Mtimes.mtimes_outer _ _ (Set.mem_biUnion hM (Set.mem_image_of_mem _ (hu τ hτ)))
+  -- the `r` scaled in above divides back out, leaving the integral itself in the product
   have hrem : (∫ τ in (0:ℝ)..r, (exp (τ • A) - MatExp.expTaylor (τ • A) η) *ᵥ g τ)
       ∈ construct (Mtimes.mtimes (𝕄 := ℐ)
         (MatExp.inputRemainder A r η) U) := by
@@ -257,6 +261,7 @@ theorem LinearSys.inputSolution_outer [Mtimes ℐ S]
     exact le_trans (Matrix.linfty_opNorm_mulVec _ _)
       (mul_le_mul (hD τ ⟨hτ.1.le, hτ.2⟩) (hgbd τ hτ) (norm_nonneg _)
         (le_trans (norm_nonneg _) (hD 0 ⟨le_refl 0, hr.le⟩)))
+  -- the same bound per exact order, the factorial and `rⁱ` being constants in `τ`
   have hTint : ∀ i ∈ Finset.range (η + 1), IntervalIntegrable
       (fun τ => ((Nat.factorial i : ℝ)⁻¹ * τ ^ i) • (A ^ i *ᵥ g τ)) volume 0 r := by
     intro i _
@@ -270,6 +275,7 @@ theorem LinearSys.inputSolution_outer [Mtimes ℐ S]
       exact mul_le_mul_of_nonneg_left (pow_le_pow_left₀ hτ.1.le hτ.2 i) (by positivity)
   rw [hsub]
   simp only [hsplit]
+  -- the finite sum of the orders is integrable, which is what lets the integral split
   have hSint : IntervalIntegrable
       (fun τ => ∑ i ∈ Finset.range (η + 1), ((Nat.factorial i : ℝ)⁻¹ * τ ^ i) • (A ^ i *ᵥ g τ))
       volume 0 r := by

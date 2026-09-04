@@ -3,30 +3,27 @@ import CORALean.ContDynamics.NonlinearSys.NonlinearSys
 /-!
 # The abstraction error of a linearization
 
-Althoff's thesis, ch. 3.4. Splitting a nonlinear field at an expansion point,
-
-`f(x,u) = f(x✱,u✱) + A(x - x✱) + B(u - u✱) + L(x,u)`,
-
-leaves a remainder `L`, and this is a set enclosing that remainder over the
-whole of `R × U`.
+[1, ch. 3.4]. Splitting a nonlinear field at an expansion point,
+`f(x,u) = f(x✱,u✱) + A(x - x✱) + B(u - u✱) + L(x,u)`, leaves a remainder `L`, and
+this is a set enclosing it over the whole of `R × U`.
 
 It is a certificate in the sense `SupportBound` is: it says nothing about where
-`L` came from — a Lagrange remainder, an interval Hessian, a solver — so
-whatever produced it stays outside the trusted base, and a wrong `L` yields no
-certificate rather than a wrong reachable set. No derivative of `f` appears
-here or anywhere downstream.
+`L` came from, so whatever produced it stays outside the trusted base and a wrong
+`L` yields no certificate rather than a wrong reachable set. No derivative of `f`
+appears here or anywhere downstream.
 
-Consequently `A` and `B` are *not* required to be the Jacobians at `(x✱, u✱)`.
-Any pair of matrices admits a certificate; a bad pair only makes `L` large.
-That is why the certificate formulation is stronger than the derivative-based
-one rather than merely cheaper: a linearization computed in float arithmetic,
-or one deliberately reused across several steps as CORA does, is covered
-without a word about how far it is from the true derivative.
+`A` and `B` are consequently *not* required to be the Jacobians at `(x✱, u✱)`: any
+pair admits a certificate, a bad pair only making `L` large. So a linearization
+computed in float arithmetic, or reused across several steps as CORA does, is
+covered without a word about the true derivative.
 
-`R` and `U` are plain sets, as `SupportBound`'s are, so a certificate is not
-tied to any description of where it holds. `L` is a representation, since it
-has to enter a computed set, and a parameter rather than a field, since
-`linInput` names it in the type of its result.
+`R` and `U` are plain sets, as `SupportBound`'s are. `L` is a representation,
+having to enter a computed set, and a parameter rather than a field.
+
+## References
+
+* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
+      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
 -/
 
 -- Authors:       Tobias Ladner

@@ -39,6 +39,7 @@ def tapEntry {n : ℕ} : {k : ℕ} → (Fin k → Fin n) → (Fin k → 𝕋) �
   | _ + 1, t, v, i =>
     if t 0 = i then v 0 else tapEntry (fun l => t l.succ) (fun l => v l.succ) i
 
+/-- Which is why the entry reads back exactly, `if` commuting with `toReal`. -/
 theorem toReal_tapEntry {n : ℕ} :
     ∀ {k : ℕ} (t : Fin k → Fin n) (v : Fin k → 𝕋) (i : Fin n),
       toReal (tapEntry t v i) = Real.tapEntry t (fun l => toReal (v l)) i := by

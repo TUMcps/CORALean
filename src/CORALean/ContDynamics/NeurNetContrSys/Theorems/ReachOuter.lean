@@ -17,14 +17,12 @@ assumed about the run beyond the periods the trajectory speaks about. That is
 what makes the chain a chain: period `i` is sound on its own window, and the
 enclosure it ends at is the next period's initial set.
 
-Period boundaries only. Between them `reach` says nothing, and the network is
-not invoked there either, so the two silences coincide — unlike `relinReach`,
-where the missing time-interval enclosure is a gap in the guarantee rather than
-in the method.
+Period boundaries only. Between them `reach` says nothing and the network is not
+invoked either, so the two silences coincide — unlike `relinReach`, where the
+missing time-interval enclosure is a gap in the guarantee rather than the method.
 
-Stated at a convex, compact representation, which is what `inputSolution` asks
-for and what makes the six topological hypotheses instances rather than
-arguments.
+Stated at a convex, compact representation, which is what makes `inputSolution`'s
+six topological hypotheses instances rather than arguments.
 -/
 
 -- Authors:       Tobias Ladner
@@ -53,6 +51,7 @@ theorem NeurNetContrSys.reach_outer (sys : NeurNetContrSys 𝕋 S n) (o η N : �
     {R₀ : S n} {x : ℝ → Vec ℝ n} (traj : sys.Trajectory ((N : ℝ) * Δt) H R₀ x) :
     ∀ i ≤ H, x ((i : ℝ) * ((N : ℝ) * Δt)) ∈ construct (sys.reach o η N Δt R₀ i) := by
   intro i
+  -- the induction is on the control period, `traj.period` being its step
   induction i with
   | zero =>
     intro _
@@ -66,6 +65,7 @@ theorem NeurNetContrSys.reach_outer (sys : NeurNetContrSys 𝕋 S n) (o η N : �
       (ConvexSet.convex_construct _) (CompactSet.isClosed_construct _)
       (CompactSet.isBounded_construct _) (ConvexSet.convex_construct _)
       (CompactSet.isClosed_construct _) (CompactSet.isBounded_construct _) o N le_rfl
+    -- the conclusion unfolded, so `key` matches it at the period's own clock
     show x (((i + 1 : ℕ) : ℝ) * ((N : ℝ) * Δt)) ∈ construct
       ((sys.plant.discretize Δt).reach o (sys.reach o η N Δt R₀ i)
         (sys.plant.inputSolution Δt η

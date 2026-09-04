@@ -5,29 +5,25 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpEnclosure
 /-!
 # The interpolation error lies in the correction matrix
 
-Althoff's thesis (2010), Prop. 3.1. Orders `2` through `η` are kept exactly,
-each contributing the interval between `corrTerm` and zero; everything past `η`
-goes into the same remainder that bounds the exponential.
+[1, Prop. 3.1]. Orders `2` through `η` are kept exactly, each contributing the
+interval between `corrTerm` and zero; everything past `η` goes into the same
+remainder that bounds the exponential. Substituting `t = s·r` turns order `i`
+into `r^i (s^i - s)`, which `corrCoeff` bounds exactly, so the finite part is as
+tight as [1] claims.
 
-Substituting `t = s·r` turns order `i` into `r^i (s^i - s)`, which `corrCoeff`
-bounds exactly — so the finite part is as tight as the thesis claims.
+The tail is not. For `Φ(t)` the scalar tail bound and `E(t) = [-1,1]Φ(t)`, [1]
+concludes `E(t) - (t/r)E(r) ⊆ E(r)` by pulling a *single* `[-1,1]` out of both
+remainders; read as two independent interval matrices that difference has radius
+`Φ(t) + (t/r)Φ(r)`, twice what `E(r)` allows at `t = r`. What does hold, and what
+`ExpDiff` sets up, is that the two remainders share `A^i` term by term: never
+splitting them leaves one series, and `|t^i - t·r^(i-1)| ≤ r^i` on `[0,r]` bounds
+it by `∑_{i>η} ‖A‖^i r^i / i!`, the proposition's own bound. CORA argues the
+integrated remainder `Ê` the same way in `Documentation/inputErrorBounds`.
 
-## Why the tail is bounded as one series
+## References
 
-The proposition is true as stated and the finite part is proved as the thesis
-proves it, but the tail argument is not the thesis's. For `Φ(t)` the scalar tail
-bound and `E(t) = [-1,1]Φ(t)`, the thesis concludes
-`E(t) - (t/r)E(r) = [-1,1](Φ(t) - (t/r)Φ(r)) ⊆ E(r)` — pulling a *single*
-`[-1,1]` out of both remainders. Read as two independent interval matrices, the
-standard reading, that difference has radius `Φ(t) + (t/r)Φ(r)`, twice what
-`E(r)` allows at `t = r`.
-
-What does hold, and what `ExpDiff` sets up, is that the two remainders share
-`A^i` term by term. Never splitting them leaves one series, and for `0 ≤ t ≤ r`
-`|t^i - t·r^(i-1)| = t·(r^(i-1) - t^(i-1)) ≤ r^i`, so the tail is dominated by
-`∑_{i>η} ‖A‖^i r^i / i!` — the proposition's own bound, with no dependency
-assumed. CORA's `manual/complementary` `Documentation/inputErrorBounds` argues
-the integrated remainder `Ê` the same way.
+* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
+      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
 -/
 
 -- Authors:       Tobias Ladner
@@ -58,6 +54,7 @@ theorem pow_sub_eq {t r : ℝ} (hr : 0 < r) (m : ℕ) :
   rw [div_pow]
   field_simp
 
+-- a four-step `calc` carrying `Nat.factorial (i + η + 1)` through every rewrite
 set_option maxHeartbeats 400000 in
 /-- Every tail term is at most `r^m` in the scalar factor, so the tail is the
 exponential's own remainder series. -/
@@ -87,6 +84,7 @@ theorem aux_norm_expDiff_tail_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) (η : 
         · nlinarith [pow_nonneg hs0 m, pow_le_one₀ hs0 hs1 (n := m)]
         · nlinarith [pow_nonneg hs0 m, pow_le_one₀ hs0 hs1 (n := m)]
       nlinarith [pow_nonneg hr.le m]
+    -- factorial, then the norm of the power, then the geometric form
     calc ‖(((Nat.factorial m : ℝ))⁻¹ * (t ^ m - (t / r) * r ^ m)) • A ^ m‖
         = |((Nat.factorial m : ℝ))⁻¹ * (t ^ m - (t / r) * r ^ m)| * ‖A ^ m‖ := by
           rw [norm_smul, Real.norm_eq_abs]
@@ -96,12 +94,14 @@ theorem aux_norm_expDiff_tail_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) (η : 
           · exact norm_pow_le' A (by omega)
       _ = ((Nat.factorial m : ℝ))⁻¹ * ‖r • A‖ ^ m := by rw [hrA, mul_pow]; ring
       _ ≤ _ := scalar_term_le hcnn η i
+  -- `hε` is exactly what makes the comparison series geometric and convergent
   have hgeo : Summable (fun i : ℕ => (‖r • A‖ / ((η : ℝ) + 2)) ^ i) :=
     summable_geometric_of_lt_one hε0 hε
   have hnorm : Summable (fun i : ℕ =>
       ‖(((Nat.factorial (i + (η + 1)) : ℝ))⁻¹
           * (t ^ (i + (η + 1)) - (t / r) * r ^ (i + (η + 1)))) • A ^ (i + (η + 1))‖) :=
     Summable.of_nonneg_of_le (fun i => norm_nonneg _) hterm (hgeo.mul_left _)
+  -- norm of the sum under the sum of norms, then termwise, then in closed form
   calc ‖∑' i : ℕ, (((Nat.factorial (i + (η + 1)) : ℝ))⁻¹
           * (t ^ (i + (η + 1)) - (t / r) * r ^ (i + (η + 1)))) • A ^ (i + (η + 1))‖
       ≤ ∑' i : ℕ, ‖(((Nat.factorial (i + (η + 1)) : ℝ))⁻¹
@@ -113,6 +113,7 @@ theorem aux_norm_expDiff_tail_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) (η : 
     _ = MatExp.expRemainderBound (r • A) η := by
         rw [tsum_mul_left, tsum_geometric_of_lt_one hε0 hε, MatExp.expRemainderBound]
 
+-- a `Finset.range` split, then an entrywise `min`/`max` argument on the interval matrix
 set_option maxHeartbeats 1000000 in
 theorem MatExp.expDiff_mem_correctionMatrix (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) {m : ℕ}
     (hε : ‖r • A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) :

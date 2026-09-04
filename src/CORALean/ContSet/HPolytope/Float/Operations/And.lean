@@ -43,6 +43,7 @@ theorem HPolytope.mulVec_append_right {m₁ m₂ : ℕ} (A₁ : Mat 𝕋 m₁ n)
   rw [Fin.append_right]
   rfl
 
+-- membership splits with the rows, each half read on the polytope it came from
 theorem HPolytope.mem_and_iff {P₁ P₂ : HPolytope 𝕋 n} {x : Vec ℝ n} :
     x ∈ (P₁.and P₂).construct ↔ x ∈ P₁.construct ∧ x ∈ P₂.construct := by
   constructor
@@ -62,6 +63,7 @@ theorem HPolytope.mem_and_iff {P₁ P₂ : HPolytope 𝕋 n} {x : Vec ℝ n} :
     · have h := heq (Fin.natAdd P₁.me i)
       simp only [HPolytope.and, HPolytope.mulVec_append_right, Fin.append_right] at h
       exact h
+  -- back: the two memberships are the two halves of one row list
   · rintro ⟨h₁, h₂⟩
     obtain ⟨hle₁, heq₁⟩ := HPolytope.mem_construct_iff.mp h₁
     obtain ⟨hle₂, heq₂⟩ := HPolytope.mem_construct_iff.mp h₂

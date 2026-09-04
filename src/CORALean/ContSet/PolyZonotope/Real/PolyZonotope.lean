@@ -3,27 +3,22 @@ import CORALean.Global.Entrywise
 /-!
 # Sparse polynomial zonotopes: the representation
 
-Kochdumper and Althoff, *Sparse Polynomial Zonotopes* (2021), and CORA's
-`polyZonotope`: a centre, dependent generators `G` scaled by monomials in
-factors `α ∈ [-1,1]ᵖ` read off the exponent matrix `E`, and independent
-generators `GI` scaled by their own `β ∈ [-1,1]ᵍ`.
+CORA's `polyZonotope` [1]: a centre, dependent generators `G` scaled by
+monomials in factors `α ∈ [-1,1]ᵖ` read off the exponent matrix `E`, and
+independent generators `GI` scaled by their own `β ∈ [-1,1]ᵍ`. The `α` are
+*shared*, so the denoted set is generally neither convex nor a zonotope and a
+quadratic map stays inside the class. Sparsity is a property of how `E` is
+stored, not of what it denotes, so nothing here mentions it.
 
-What makes the representation more than a zonotope is that the `α` are *shared*:
-the same factor multiplies every generator whose exponent row is nonzero, so the
-denoted set is generally neither convex nor a zonotope, and a quadratic map
-stays inside the class.
+CORA carries an identifier vector `id` naming each factor. Here identity is
+positional — a factor *is* its row index — which is why `plus` lays the two
+exponent matrices out block-diagonally rather than overlaying them.
 
-`E` is a family `Fin p → Fin h → ℕ`, one row per factor and one column per
-generator, as in the paper. The sparsity of the paper's title is a property of
-how `E` is stored, not of what it denotes, so nothing here mentions it.
+## References
 
-CORA carries an identifier vector `id` naming each factor, so that two sets
-sharing a factor keep it identified. Here identity is positional instead — a
-factor *is* its row index — which is why `plus` has to lay the two exponent
-matrices out block-diagonally rather than overlay them.
-
-Over any real module, as `Zonotope` is: a monomial is a scalar, and nothing
-about scaling a generator by one needs coordinates.
+* [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set
+      Representation for Reachability Analysis". IEEE Transactions on Automatic
+      Control, 2021.
 -/
 
 -- Authors:       Tobias Ladner
@@ -86,9 +81,8 @@ theorem PolyZonotope.monomial_add {p h : ℕ} (E₁ E₂ : Fin p → Fin h → �
   exact Finset.prod_congr rfl fun k _ => pow_add (a k) (E₁ k i) (E₂ k i)
 
 /-- The identity exponent matrix: factor `i` appears in generator `i` alone and
-to the first power, so its monomial is the factor itself. That is what a free
-coefficient looks like once it is dependent — a zonotope's whole exponent
-matrix, and the block `dependent` appends. -/
+to the first power, so its monomial is the factor itself — what a free
+coefficient looks like once dependent, and the block `dependent` appends. -/
 def PolyZonotope.identE (m : ℕ) : Fin m → Fin m → ℕ := fun k i => if k = i then 1 else 0
 
 theorem PolyZonotope.monomial_identE {m : ℕ} (a : Fin m → ℝ) (i : Fin m) :

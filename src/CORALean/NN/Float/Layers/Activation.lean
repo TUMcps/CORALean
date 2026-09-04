@@ -5,28 +5,21 @@ import CORALean.NN.Layer
 /-!
 # Activation layers over a floating-point scalar
 
-The exact layer's `Relaxation` with `ℝ → ℝ → ℝ` replaced by `𝕋 → 𝕋 → 𝕋`, and
-the same three fields. `sound` is unchanged in shape and that is the whole point
-of the float layer being cheap here: it already states an *inequality* against
-`error` rather than an equation, so a slope and an offset computed in floating
-point are sound as they stand and only `error` has to grow to cover them. There
-is no refinement lemma and no `_outer_refines` composition — a float relaxation
-discharges the same obligation directly, in the scalar it computes in.
+The exact layer's `Relaxation` with `ℝ → ℝ → ℝ` replaced by `𝕋 → 𝕋 → 𝕋`, and the
+same three fields. `sound` is unchanged in shape, which is why the float layer is
+cheap here: it states an *inequality* against `error` rather than an equation, so
+a slope and an offset computed in floating point are sound as they stand and only
+`error` has to grow. There is no refinement lemma and no `_outer_refines`
+composition.
 
 So nothing constrains `slope` and `offset` at all. They may be rounded either
-way, clamped, or picked by an unverified search; the error is what pays, and it
-is measured against the values that were actually stored.
+way, clamped, or picked by an unverified search; the error is what pays, measured
+against the values actually stored.
 
-`Layer.activation` rounds in exactly one place: `Relaxation.box` widens the
-interval `offset ± error` outward. The slope matrix is stored exactly, the
-propagation itself rounds inside `mtimes` and `plus`, and those already charge
-their rounding to the representation's own error box.
-
-`Layer` itself is not duplicated. It is a structure over any `ContSet` whose
-ambient type is `Vec ℝ n`, which a float representation is through
-`InflatedContSet`, so the network, `propagate` and everything in `NN/Theorems`
-run over a float representation unchanged. Only the layer constructors need a
-float counterpart, since they name the scalar their weights are stored in.
+`Layer.activation` rounds in exactly one place: `Relaxation.box` widens
+`offset ± error` outward. The slope matrix is stored exactly, and the propagation
+rounds inside `mtimes` and `plus`, which charge it to the representation's own
+error box.
 -/
 
 -- Authors:       Tobias Ladner
@@ -54,9 +47,8 @@ structure Relaxation (𝕋 : Type) [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] (
     |σ t - (toReal (slope l u) * t + toReal (offset l u))| ≤ toReal (error l u)
 
 /-- A machine enclosure of `σ` at a stored float, which is what a slope-zero
-relaxation needs. `FloatOps` evaluates no transcendental function itself, so
-this is where one arrives: `Global/Float/Exp` builds a directed exponential on
-top of the class, and the sigmoid and tanh layers turn it into an instance. -/
+relaxation needs. `FloatOps` evaluates no transcendental function, so this is
+where one arrives — `Global/Float/Exp` builds a directed exponential. -/
 structure Enclosure (𝕋 : Type) [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] (σ : ℝ → ℝ) where
   lo : 𝕋 → 𝕋
   hi : 𝕋 → 𝕋
@@ -82,11 +74,8 @@ theorem aux_abs_sub_le_spread {lo hi c : 𝕋} {y : ℝ}
   exact ⟨by linarith, by linarith⟩
 
 /-- Monotonicity and nothing else, as over ℝ: the function's range over the box,
-carrying no slope and so keeping none of the neurons' dependence on the input.
-
-Optimal at slope zero for the same reason it is there — the range of `σ t - λ t`
-only widens as `λ` leaves zero — but unlike over ℝ it needs the endpoint values
-handed to it, `FloatOps` having no transcendental function of its own. -/
+optimal at slope zero for the same reason. Unlike over ℝ it needs the endpoint
+values handed to it, `FloatOps` having no transcendental function. -/
 def Relaxation.ofMonotone (hσ : Monotone σ) (E : Enclosure 𝕋 σ) : Relaxation 𝕋 σ where
   slope _ _ := zero
   offset := E.mid
@@ -131,6 +120,7 @@ def Layer.activation (R : Relaxation 𝕋 σ) : Real.Layer S n n where
       show σ (x i) = (A *ᵥ x) i + d i
       rw [hd]
       ring
+    -- and the deviation is inside the box, `sound` bounding it and the rounding widening it
     have hmem : d ∈ Interval.construct (R.box J) := by
       intro i
       have hlo : toReal (J.inf i) ≤ x i := (hbox i).1
@@ -139,6 +129,7 @@ def Layer.activation (R : Relaxation 𝕋 σ) : Real.Layer S n n where
       have hval : d i = σ (x i) - toReal (R.slope (J.inf i) (J.sup i)) * x i := by
         show σ (x i) - (A *ᵥ x) i = _
         rw [hslope i]
+      -- `sound` is an absolute value, and `subDown`/`addUp` widen its two ends outward
       have hlow : toReal (subDown (R.offset (J.inf i) (J.sup i))
           (R.error (J.inf i) (J.sup i))) ≤ d i := by
         have h := subDown_le_sub (R.offset (J.inf i) (J.sup i)) (R.error (J.inf i) (J.sup i))

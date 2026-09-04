@@ -9,32 +9,20 @@ import CORALean.HybridDynamics.Theorems.JumpOuter
 
 The textbook automaton: one location, one transition back into it. The state is
 `(position, velocity)`, the dynamics are `ṗ = v`, `v̇ = -g` written as a constant
-input rather than an affine term — `LinearSys` has no offset, and a singleton
-input set is where a constant belongs. The guard is the floor met from above,
-and the reset flips the velocity and damps it by `d`.
-
-The invariant is a box, so `Zonotope` supplies every instance the pipeline asks
-for: `Mtimes` and `Plus` for the reset image, `LinComb` and `Mtimes ℐ` for the
-stay. That is the whole point of compiling this file.
+input, `LinearSys` having no offset. The guard is the floor met from above, and
+the reset flips the velocity and damps it by `d`. The invariant is a box, so
+`Zonotope` supplies every instance the pipeline asks for: `Mtimes` and `Plus` for
+the reset image, `LinComb` and `Mtimes ℐ` for the stay.
 
 Two things the automaton cannot say, and they are the interface's shape rather
-than this example's:
+than this example's. The guard is a *bounded* set — the floor met with a speed of
+at most `v` — because a location's sets share one representation and a zonotope
+cannot be the halfspace `p = 0 ∧ v ≤ 0`; `HPolytope` states that halfspace and
+still cannot take the jump, computing `Plus` only on named directions.
 
-The guard is a *bounded* set — the floor met with a speed of at most `v` —
-because a location's sets share one representation and a zonotope cannot be the
-unbounded halfspace `p = 0 ∧ v ≤ 0`. Splitting the two would mean a second type
-parameter on `Location`, which nothing yet asks for.
-
-`HPolytope` states that halfspace exactly and still cannot take the jump, which
-is a fact about `Plus` rather than about polytopes: `jump` asks for `Plus`,
-`Mtimes` and `OfInterval`, and a halfspace description computes the first two
-only on directions the caller names, with a certified bound in each. The class
-fields have nowhere to put either.
-
-Nothing here intersects. `Location.inv` is data the automaton carries and the
-theorems never cut a reachable set down with it, exactly as `Transition.guard`
-is only ever tested pointwise; both are the missing `And` interface, and
-`Transition.jump_outer` takes the enclosure as a hypothesis instead.
+And nothing here intersects: `Location.inv` is data the automaton carries and no
+theorem cuts a reachable set down with it, as `Transition.guard` is only ever
+tested pointwise. Both are the missing `And` interface.
 -/
 
 -- Authors:       Tobias Ladner
@@ -66,8 +54,7 @@ noncomputable def Example.bouncingBall (g d p v : ℝ) : HybridAutomaton 𝒵 Un
       U := ⟨0, ![0, -g], ![]⟩
       trans := [Example.bounce d v] }
 
--- Anonymous, since their content is that they elaborate: each is a general
--- theorem at this automaton's types, and none is worth a name of its own.
+-- anonymous, since their content is that they elaborate at this automaton's types
 
 /-- A run that starts inside the invariant ends inside it, however many bounces
 it took and wherever it stopped. -/

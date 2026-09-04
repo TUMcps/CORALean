@@ -5,24 +5,20 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.Reduce
 
 The other half of what `reduce` is for, and the half no `_outer` theorem sees:
 an enclosure the size of the state space is sound too, and so is one whose
-representation grows every step. `reduce o` returns at most `n·o` generators —
-dependent and independent together — however often it is called and whatever it
-is called on.
+representation grows every step. `reduce o` returns at most `n·o` generators,
+dependent and independent together, whatever it is called on.
 
-Counting the two blocks together is what makes that true, and it is the whole of
-what separates `reduce` from `reduceDependent`. The statement below is false of
-the latter, and deliberately so: it is the tighter rule per step, and each call
-adds `n` independent generators and removes none, so a reachability loop grows
-`q` without limit while every order bound it claims holds. A caller wanting that
-trade names it and bounds the count some other way.
+Counting the two blocks together is what makes that true, and it is what
+separates `reduce` from `reduceDependent`. The statement below is false of the
+latter: each call adds `n` independent generators and removes none, so a
+reachability loop grows `q` without limit while every order bound it claims
+holds.
 
-The proof is arithmetic and nothing else. Both budgets are clamped — to their
-block, and to `K = (o-1)·n` between them — so the bound never appeals to the
-ranking, which is what keeps a selection rule free to be a heuristic.
-
-At `o = 0` there is nothing to state: CORA's `K = max(0, N·order - N)` floors
-the budget at nothing and the box of `n` is added regardless, so order zero
-lands at order one in both tools.
+The proof is arithmetic. Both budgets are clamped — to their block, and to
+`K = (o-1)·n` between them — so the bound never appeals to the ranking, which
+keeps a selection rule free to be a heuristic. At `o = 0` there is nothing to
+state: CORA floors the budget at nothing and adds the box of `n` regardless, so
+order zero lands at order one in both tools.
 -/
 
 -- Authors:       Tobias Ladner

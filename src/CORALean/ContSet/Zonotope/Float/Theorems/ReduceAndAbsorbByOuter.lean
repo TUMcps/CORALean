@@ -59,6 +59,7 @@ theorem Zonotope.reduceAndAbsorbBy_outer (Z : Zonotope 𝕋 n)
   have hnonneg : ∀ i, (0:ℝ) ≤
       toReal (addUp (radius (fun i l => Z.G i (part.right l)) i) (Z.errorRadius i)) :=
     fun i => (abs_nonneg _).trans (hmerged i)
+  -- the witness: kept coefficients, plus one per coordinate for the merged box
   refine ⟨fun i => toReal ((Z.reduceAndAbsorbBy part).c i)
             + ∑ j, toReal ((Z.reduceAndAbsorbBy part).G i j)
                 * Fin.append (fun l => β (part.left l)) (fun i =>
@@ -75,6 +76,7 @@ theorem Zonotope.reduceAndAbsorbBy_outer (Z : Zonotope 𝕋 n)
     · simp only [Fin.append_right]
       exact Real.Zonotope.abs_coefficient_le_one (hnonneg i) (hmerged i)
   · exact Interval.sub_mem_residual (Zonotope.shift_brackets_mid Z)
+  -- the value spelled out, both blocks and the recentring shift together
   · funext i
     show toReal ((Z.reduceAndAbsorbBy part).c i)
         + ∑ j, toReal ((Z.reduceAndAbsorbBy part).G i j)
@@ -87,6 +89,7 @@ theorem Zonotope.reduceAndAbsorbBy_outer (Z : Zonotope 𝕋 n)
         + (toReal (Z.c i) + (toReal (Z.E.inf i) + toReal (Z.E.sup i)) / 2
             - toReal (Z.shiftDown i))
       = z i + e i
+    -- the dropped generators and the recentred box come back out of the diagonal block
     rw [hz i, part.sum_split₂ fun j => toReal (Z.G i j) * β j,
       Zonotope.aux_sum_univ_reduceAndAbsorbBy]
     simp only [Zonotope.reduceAndAbsorbBy, Fin.append_left, Fin.append_right,

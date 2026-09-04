@@ -34,6 +34,7 @@ theorem PolyZonotope.map_exact (f : α →ₗ[ℝ] β) (PZ : PolyZonotope α) :
     congr 1
     · exact congrArg _ (Finset.sum_congr rfl fun i _ => map_smul f _ (PZ.G i))
     · exact Finset.sum_congr rfl fun j _ => map_smul f (b j) (PZ.GI j)
+  -- both inclusions are `hf` read in the two directions; the exponents never move
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨x, ⟨a, b, ha, hb, rfl⟩, rfl⟩
     exact ⟨a, b, ha, hb, hf a b⟩

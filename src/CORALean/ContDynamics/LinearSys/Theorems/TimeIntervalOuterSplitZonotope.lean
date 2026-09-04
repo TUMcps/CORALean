@@ -45,15 +45,16 @@ def aux_point (v : Vec ℝ n) : Zonotope (Vec ℝ n) := ⟨0, v, Fin.elim0⟩
 noncomputable def aux_segment (v : Vec ℝ n) : Zonotope (Vec ℝ n) :=
   ⟨1, (2:ℝ)⁻¹ • v, fun _ => (2:ℝ)⁻¹ • v⟩
 
--- each of these states its own `h`, which is that count only up to unfolding, so
--- the sum's binder needs a `show` to reduce
+-- each states its own `h`, that count only up to unfolding, so the sums need a `show`
 
+/-- The recentred zonotope contains the origin, at zero coefficients. -/
 theorem aux_zero_mem_centered (Z : Zonotope (Vec ℝ n)) :
     (0 : Vec ℝ n) ∈ (aux_centered Z).construct := by
   refine ⟨0, fun _ => by simp, ?_⟩
   show (0 : Vec ℝ n) = 0 + ∑ j, (0 : Fin Z.h → ℝ) j • Z.G j
   simp
 
+/-- A member of `Z` shifted by the centre is a member of the recentred `Z`. -/
 theorem aux_sub_mem_centered {Z : Zonotope (Vec ℝ n)} {y : Vec ℝ n} (hy : y ∈ Z.construct) :
     y - Z.c ∈ (aux_centered Z).construct := by
   obtain ⟨β, hβ, hy⟩ := hy
@@ -62,11 +63,13 @@ theorem aux_sub_mem_centered {Z : Zonotope (Vec ℝ n)} {y : Vec ℝ n} (hy : y 
   show Z.c + ∑ j, β j • Z.G j - Z.c = 0 + ∑ j, β j • Z.G j
   abel
 
+/-- A generator-free zonotope contains its own centre. -/
 theorem aux_self_mem_point (v : Vec ℝ n) : v ∈ (aux_point v).construct := by
   refine ⟨Fin.elim0, fun j => j.elim0, ?_⟩
   show v = v + ∑ j : Fin 0, Fin.elim0 j • Fin.elim0 j
   rw [Finset.univ_eq_empty, Finset.sum_empty, add_zero]
 
+/-- The one-generator zonotope contains `lam • v` for every `lam` in `[0,1]`. -/
 theorem aux_smul_mem_segment (v : Vec ℝ n) {lam : ℝ} (hlam : lam ∈ Set.Icc (0:ℝ) 1) :
     lam • v ∈ (aux_segment v).construct := by
   refine ⟨fun _ => 2 * lam - 1, fun _ => ?_, ?_⟩
@@ -77,6 +80,7 @@ theorem aux_smul_mem_segment (v : Vec ℝ n) {lam : ℝ} (hlam : lam ∈ Set.Icc
     match_scalars
     ring
 
+-- twelve arguments in one term, each elaborating a `Mtimes` instance at `𝒵` or `ℐ`
 set_option maxHeartbeats 400000 in
 /-- Every trajectory whose initial and input sets are zonotopes stays in the
 step enclosure at every time of the step, wherever the input set sits. -/
@@ -95,6 +99,7 @@ theorem LinearSys.Trajectory.timeInterval_outer_split_zonotope {sys : LinearSys 
           (Mtimes.mtimes (𝕄 := ℐ) (S := 𝒵)
             (MatExp.constCorrectionMatrix (toRealMat sys.A) r (m + 2)) (aux_point U.c)))
         (sys.inputSolution (S := 𝒵) r (m + 2) (aux_centered U)))) :=
+  -- every hypothesis comes off the zonotope itself, which is why this is per representation
   traj.timeInterval_outer hr hT hε ht0 htr U.isBounded_construct
     (traj.inputSolution_timeInterval_outer_split hr hT (m + 2) hε
       (fun _ hy => aux_sub_mem_centered hy) (aux_self_mem_point U.c)

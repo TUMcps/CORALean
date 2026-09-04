@@ -73,6 +73,7 @@ instance : Mtimes (Mat ℝ) (fun n => Zonotope (Vec ℝ n)) where
 use site has to name it: `(S := 𝒵)`. -/
 scoped notation "𝒵" => fun n => Zonotope (Vec ℝ n)
 
+-- the five-parameter `LinMtimes` header re-runs instance search on `Mat` and `Vec`
 set_option maxHeartbeats 400000 in
 /-- Multiplication by a plain matrix at any ambient type it acts on. At `Vec`
 this repeats `mtimes`; at `Mat` it is matrix multiplication of a matrix
@@ -82,6 +83,7 @@ instance {𝕋 : Type} [Scalar 𝕋] {p q : ℕ} :
   lmtimes M Z := Zonotope.mapOf (Matrix.mulVecLin (Scalar.toRealMat M)) Z
   lmtimes_outer _M Z := Zonotope.lmtimes_singleton_outer _ Z
 
+-- the same header at `Mat ℝ q r`, where `matMulLeft` adds another module instance to find
 set_option maxHeartbeats 400000 in
 instance {𝕋 : Type} [Scalar 𝕋] {p q r : ℕ} :
     LinMtimes (Mat 𝕋 p q) (Zonotope (Mat ℝ q r)) (Zonotope (Mat ℝ p r))

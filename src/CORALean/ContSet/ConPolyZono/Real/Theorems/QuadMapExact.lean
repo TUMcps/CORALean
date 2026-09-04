@@ -42,6 +42,7 @@ theorem ConPolyZono.quadMapDep_exact (Q : Fin k → Mat ℝ n n) (C : ConPolyZon
     have h := PolyZonotope.quadEval_sum_ext Q C.polyZonotope a
     rw [PolyZonotope.sum_ext_eq_point C.polyZonotope a] at h
     exact h
+  -- both directions are `hquad` at the same `a`, the independent block being empty
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨_, ⟨a, b, ha, _, hsat, rfl⟩, rfl⟩
     refine ⟨a, fun _ => 0, ha, fun j => j.elim0, hsat, ?_⟩
@@ -51,6 +52,7 @@ theorem ConPolyZono.quadMapDep_exact (Q : Fin k → Mat ℝ n n) (C : ConPolyZon
           + ∑ j : Fin 0, (0:ℝ) • (Fin.elim0 j : Vec ℝ k)
     rw [hz b, add_zero, hquad a]
     simp only [Finset.univ_eq_empty, Finset.sum_empty, add_zero, zero_add]
+  -- back, with the independent coefficients read as zero
   · rintro _ ⟨a, b, ha, _, hsat, rfl⟩
     refine ⟨C.c + ∑ i, monomial C.E a i • C.G i + ∑ j, (0:ℝ) • C.GI j,
       ⟨a, fun _ => 0, ha, fun _ => by norm_num, hsat, rfl⟩, ?_⟩

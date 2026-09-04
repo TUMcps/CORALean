@@ -49,6 +49,7 @@ theorem PolyZonotope.aux_le_max_mul {a lo hi w : ℝ} (h1 : lo ≤ w) (h2 : w �
   · exact le_trans (mul_le_mul_of_nonneg_left h2 ha) (le_max_right _ _)
   · exact le_trans (mul_le_mul_of_nonpos_left h1 ha) (le_max_left _ _)
 
+-- so a directed sum of per-term extremes brackets the exact bilinear value
 theorem PolyZonotope.quadDown_le {g wlo whi : Vec 𝕋 n} {w : Vec ℝ n}
     (hw : ∀ r, toReal (wlo r) ≤ w r ∧ w r ≤ toReal (whi r)) :
     toReal (PolyZonotope.quadDown g wlo whi) ≤ ∑ r, toReal (g r) * w r := by
@@ -103,6 +104,7 @@ theorem PolyZonotope.aux_quadMapG_close (Q : Fin m → Mat 𝕋 n n) (S : PolyZo
       ∧ (∑ r', toReal (Q i r r') * toReal (PolyZonotope.extG S r' l₂))
         ≤ toReal (mulVecUp (Q i) (fun r' => PolyZonotope.extG S r' l₂) r) :=
     fun r => ⟨dotDown_le (Q i r) _, le_dotUp (Q i r) _⟩
+  -- the middle vector enters as a pair of bounds, picked per term
   have hlo := PolyZonotope.quadDown_le
     (g := fun r => PolyZonotope.extG S r l₁) hw
   have hhi := PolyZonotope.le_quadUp
@@ -131,16 +133,14 @@ theorem PolyZonotope.aux_quadMapDep_refines (Q : Fin m → Mat 𝕋 n n) (S : Po
             * Real.PolyZonotope.monomial (PolyZonotope.quadMapE S) a l)
       ∈ (PolyZonotope.generatorError (PolyZonotope.quadMapGDiff Q S)).construct :=
     PolyZonotope.mem_generatorError_monomial (PolyZonotope.aux_quadMapG_close Q S) ha
-  -- the counts are ascribed: through the projection they are the *same* term only
-  -- up to unfolding `quadMapDep`, which unification does not do at `instances`
+  -- counts ascribed: through the projection they agree only after unfolding `quadMapDep`
   refine ⟨fun i => toReal ((PolyZonotope.quadMapDep Q S).c i)
             + (∑ l : Fin ((S.h + 1) * (S.h + 1)), toReal (PolyZonotope.quadMapGDown Q S i l)
                 * Real.PolyZonotope.monomial (PolyZonotope.quadMapE S) a l)
             + ∑ j : Fin 0, toReal ((PolyZonotope.quadMapDep Q S).GI i j) * b j,
           PolyZonotope.mem_nominalSet_iff.mpr ⟨a, b, ha, hb, fun _ => rfl⟩, _, hbox, ?_⟩
   funext i
-  -- every binder ascribed: the two layers' generator counts are the same number
-  -- but not the same term, and `rw` matches on the term
+  -- binders ascribed: the two layers' counts are one number but not the term `rw` matches
   have hsum : (∑ l : Fin ((S.h + 1) * (S.h + 1)), toReal (PolyZonotope.quadMapGDown Q S i l)
         * Real.PolyZonotope.monomial (PolyZonotope.quadMapE S) a l)
       + (∑ l : Fin ((S.h + 1) * (S.h + 1)),
@@ -159,6 +159,7 @@ theorem PolyZonotope.aux_quadMapDep_refines (Q : Fin m → Mat 𝕋 n n) (S : Po
     Finset.sum_empty, add_zero, zero_add]
   exact hsum
 
+-- the whole operation: `dependent` first, then the exact map, then this refinement
 theorem PolyZonotope.quadMap_outer (Q : Fin m → Mat 𝕋 n n) (PZ : PolyZonotope 𝕋 n) :
     Real.PolyZonotope.quadEval (fun k => toRealMat (Q k)) '' PZ.construct
       ⊆ (PolyZonotope.quadMap Q PZ).construct := by

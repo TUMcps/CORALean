@@ -5,10 +5,9 @@ import CORALean.NN.Layers.Sigmoid
 /-!
 # The sigmoid layer over a floating-point scalar
 
-The relaxation is the exact layer's, `Relaxation.ofMonotone`, and all it wanted
-was `σ` at the two ends of a neuron's range. `sigmoidEnclosure` is that value,
-and the only new thing under it is `Global/Float`'s `expDown` and the division
-that a logistic function is.
+The relaxation is the exact layer's, `Relaxation.ofMonotone`, which wanted only
+`σ` at the two ends of a neuron's range. `sigmoidEnclosure` is that value, over
+`Global/Float`'s `expDown` and the division a logistic function is.
 
 The enclosure is total — no hypothesis on the argument — and that is a choice of
 *which* identity to compute each side from. `expUp` needs its argument bounded
@@ -18,13 +17,10 @@ and `expDown` does not, so both directions are written to use `expDown` alone:
 * `σ t = 1 - 1 / (1 + eᵗ) ≥ 1 - 1 / D` for any such `D` at `+t`, the lower one.
 
 Each asks only that the denominator be underestimated, which is what a lower
-bound on an exponential gives. `onePlusExpDown` is that denominator, held at or
-above one by an exact `maximum` — a lower bound on `exp` is never negative, so
-`1 + expDown a` is never below one either, and the division never meets a
-divisor `SoundFloatArithmetic` says nothing about.
+bound on an exponential gives. `onePlusExpDown` is that denominator, held above
+one by an exact `maximum`, so the division never meets an unconstrained divisor.
 
-`k` is the exponential's reduction depth, so it is precision and nothing else:
-every `k` is sound and a larger one is tighter.
+`k` is the exponential's reduction depth: every `k` is sound, a larger one tighter.
 -/
 
 -- Authors:       Tobias Ladner
@@ -74,6 +70,7 @@ private theorem sigmoid_eq (t : ℝ) : Real.sigmoid t = 1 - (1 + Real.exp t)⁻�
   field_simp
   ring
 
+/-- Both ends from `expDown`: the identity above below, `1/(1 + e⁻ᵗ)` above. -/
 def sigmoidEnclosure (k : ℕ) : Enclosure 𝕋 Real.sigmoid where
   lo a := subDown one (divUp one (onePlusExpDown k a))
   hi a := divUp one (onePlusExpDown k (neg a))
@@ -83,6 +80,7 @@ def sigmoidEnclosure (k : ℕ) : Enclosure 𝕋 Real.sigmoid where
     rw [toReal_one] at hs
     rw [sigmoid_eq (toReal a), ← one_div]
     linarith
+  -- the upper end is `1/(1 + e⁻ᵗ)` directly, which is why it needs no subtraction
   le_hi a := by
     have hb := one_div_le_divUp (one_le_onePlusExpDown k (neg a)) (onePlusExpDown_le k (neg a))
     rw [toReal_neg] at hb

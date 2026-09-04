@@ -56,6 +56,7 @@ def ConPolyZono.plus (C₁ C₂ : ConPolyZono α) : ConPolyZono α where
   b := ConPolyZono.plusB C₁.b C₂.b
   EC := PolyZonotope.plusE C₁.EC C₂.EC
 
+-- a row of the block-diagonal product, read on the block's own columns alone
 theorem ConPolyZono.mulVec_plusA_left {m₁ s₁ m₂ s₂ : ℕ} (A₁ : Mat ℝ m₁ s₁)
     (A₂ : Mat ℝ m₂ s₂) (v : Fin (s₁ + s₂) → ℝ) (i : Fin m₁) :
     (ConPolyZono.plusA A₁ A₂ *ᵥ v) (Fin.castAdd m₂ i)
@@ -77,9 +78,8 @@ theorem ConPolyZono.mulVec_plusA_right {m₁ s₁ m₂ s₂ : ℕ} (A₁ : Mat �
     zero_mul, Finset.sum_const_zero, zero_add]
 
 /-- Two constraint systems side by side hold exactly when each holds on the
-factors it came with. The block-diagonal exponent matrix is what makes the
-right-to-left direction work: neither system's monomials see the other's
-factors. -/
+factors it came with; the block-diagonal exponent matrix is what makes the
+right-to-left direction work, neither system's monomials seeing the other's. -/
 theorem ConPolyZono.holds_plus_iff {p₁ p₂ m₁ s₁ m₂ s₂ : ℕ} (A₁ : Mat ℝ m₁ s₁)
     (b₁ : Interval (Vec ℝ m₁)) (EC₁ : Fin p₁ → Fin s₁ → ℕ) (A₂ : Mat ℝ m₂ s₂)
     (b₂ : Interval (Vec ℝ m₂))
@@ -98,6 +98,7 @@ theorem ConPolyZono.holds_plus_iff {p₁ p₂ m₁ s₁ m₂ s₂ : ℕ} (A₁ :
         = PolyZonotope.monomial EC₁ (fun k => a (Fin.castAdd p₂ k)) :=
       funext fun l => PolyZonotope.monomial_plusE_left EC₁ EC₂ a l
     rw [ConPolyZono.mulVec_plusA_left, hm]
+  -- the mirror on the right block, monomials again read off its own factors
   have hR : ∀ i : Fin m₂,
       (ConPolyZono.plusA A₁ A₂ *ᵥ PolyZonotope.monomial (PolyZonotope.plusE EC₁ EC₂) a)
           (Fin.natAdd m₁ i)
@@ -108,6 +109,7 @@ theorem ConPolyZono.holds_plus_iff {p₁ p₂ m₁ s₁ m₂ s₂ : ℕ} (A₁ :
         = PolyZonotope.monomial EC₂ (fun k => a (Fin.natAdd p₁ k)) :=
       funext fun l => PolyZonotope.monomial_plusE_right EC₁ EC₂ a l
     rw [ConPolyZono.mulVec_plusA_right, hm]
+  -- both directions now, `plusB` splitting the bounds the same way the rows split
   constructor
   · intro hsat
     constructor

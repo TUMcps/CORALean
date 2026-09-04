@@ -4,14 +4,19 @@ import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparation
 /-!
 # The input reach set grows with time, once the origin is available
 
-Althoff's Prop. 3.3, argued as the thesis argues it. Split the longer window
-into the part before the shorter one and the shorter one itself, which Prop. 3.2
-says is realizable; holding the first part at the zero input contributes nothing,
-so whatever the shorter window can do the longer one can too.
+[1, Prop. 3.3], argued as it argues it. Split the longer window into the part
+before the shorter one and the shorter one itself, which Prop. 3.2 says is
+realizable; holding the first part at the zero input contributes nothing, so
+whatever the shorter window can do the longer one can too.
 
 `0 ∈ U` is exactly what makes the zero input admissible, and it is the whole
 content of the hypothesis. This is what identifies the enclosure over a time
 interval with the one at its end.
+
+## References
+
+* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
+      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
 -/
 
 -- Authors:       Tobias Ladner

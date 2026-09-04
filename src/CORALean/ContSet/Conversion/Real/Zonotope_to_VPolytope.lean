@@ -58,6 +58,7 @@ theorem Zonotope.subset_vPolytope (Z : Zonotope α) : Z.construct ⊆ Z.vPolytop
     intro σ
     rw [Zonotope.corner, smul_add, Finset.smul_sum]
     exact congrArg _ (Finset.sum_congr rfl fun j _ => smul_smul _ _ _)
+  -- a corner's convex weight is the product of the per-generator ones
   refine ⟨fun l => ∏ j, (if signEquiv Z.h l j then t j else 1 - t j), fun l => ?_, ?_, ?_⟩
   · exact Finset.prod_nonneg fun j _ => by
       cases signEquiv Z.h l j <;> simp <;> linarith [ht0 j, ht1 j]

@@ -41,6 +41,7 @@ def PolyZonotope.conPolyZono (PZ : PolyZonotope α) : ConPolyZono α where
   b := Interval.point 0
   EC := fun _ => Fin.elim0
 
+-- with no constraint rows the system is vacuous, so both inclusions are the identity
 theorem PolyZonotope.conPolyZono_exact (PZ : PolyZonotope α) :
     PZ.construct = PZ.conPolyZono.construct := by
   apply Set.eq_of_subset_of_subset

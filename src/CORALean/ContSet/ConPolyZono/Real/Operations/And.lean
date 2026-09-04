@@ -5,42 +5,21 @@ import CORALean.ContSet.ConPolyZono.Real.Operations.Plus
 # `ConPolyZono.and`
 
 CORA's `@conPolyZono/and_`, and the reason a constrained representation exists:
-the intersection of two constrained polynomial zonotopes is one, exactly.
-Nothing else in this repository intersects a non-convex set without loss.
+two constrained polynomial zonotopes intersect to one, exactly.
 
-The construction is `plus`'s, plus one block of rows. Factors, generators and
-constraint systems all concatenate as they do for a sum; what intersection adds
-is `n` rows saying the two points agree,
+The construction is `plus`'s plus one block of rows per coordinate saying the
+two points agree, `Σ μ₁(α₁) G₁ − Σ μ₂(α₂) G₂ ∈ c₂ − c₁ + D`. Only the first
+generator block survives — the second is pinned to it, kept at zero so the rows
+have columns to read it in. Their coefficients are *monomials*, which is what a
+`ConZonotope` cannot do, and `appendE` puts their exponent columns beside the
+constraint ones. `D` is how far apart the two points may stand; `and` takes it
+to be zero, and it is an argument because a float layer's nominal points differ
+by whatever the two error boxes admit.
 
-  `Σ μ₁(α₁) G₁ − Σ μ₂(α₂) G₂ ∈ c₂ − c₁ + D`,
-
-one per coordinate. Only the first generator block then survives — the second is
-pinned to it, and is kept at zero rather than dropped so that the agreement rows
-have columns to read it in.
-
-`D` is how far apart the two points may stand, and `and` takes it to be zero,
-which is agreement. It is an argument rather than a constant because a float
-layer cannot ask for exact agreement: there each set is a nominal one plus an
-error box, the two nominal points differ by whatever the two boxes admit, and
-`D` is where that difference goes. This is the whole reason the right-hand side
-of a constraint is an interval — see the representation's docstring.
-
-Those rows are where the representation does something a `ConZonotope` cannot:
-their coefficients are *monomials*, so the constraint they impose is polynomial
-in the factors, and the exponent columns they need are exactly the generators'
-own. `appendE` puts them beside the constraint columns, over the same factors.
-
-`and` runs `andDep` on the two `dependent` sets, as `PolyZonotope.quadMap` runs
-`quadMapDep`. It has to: the agreement rows constrain the factors, and an
-independent coefficient is not one — an independent generator could move the two
-points apart with nothing in the system to forbid it. `andDep` alone is
-therefore exact only where both independent blocks are empty, and its theorem
-says so. CORA's `and_` leaves the independent blocks outside the constraints
-and encloses the pair by the zonotope `enclose`; freeing them into factors first
-is what makes this one exact.
-
-At `Vec` only, since the agreement rows read a generator coordinate by
-coordinate.
+`and` runs `andDep` on the two `dependent` sets: an independent coefficient
+answers to no constraint, so it could move the two points apart with nothing in
+the system to forbid it. Freeing the independent blocks into factors first is
+what makes this exact where CORA's `and_` encloses.
 -/
 
 -- Authors:       Tobias Ladner
@@ -109,6 +88,7 @@ theorem ConPolyZono.mulVec_andA_left (C₁ C₂ : ConPolyZono (Vec ℝ n))
   simp only [ConPolyZono.andA, Fin.append_left, Fin.append_right, Pi.zero_apply,
     zero_mul, Finset.sum_const_zero, add_zero]
 
+-- and the agreement rows, whose two blocks are the two generator matrices
 theorem ConPolyZono.mulVec_andA_agree (C₁ C₂ : ConPolyZono (Vec ℝ n))
     (v : Fin (C₁.s + C₂.s + (C₁.h + C₂.h)) → ℝ) (i : Fin n) :
     (ConPolyZono.andA C₁ C₂ *ᵥ v) (Fin.natAdd (C₁.m + C₂.m) i)
@@ -145,6 +125,7 @@ theorem ConPolyZono.satisfies_andDep_iff (C₁ C₂ : ConPolyZono (Vec ℝ n))
           (Fin.castAdd (C₁.h + C₂.h) l))
       = PolyZonotope.monomial (PolyZonotope.plusE C₁.EC C₂.EC) a :=
     funext fun l => ConPolyZono.monomial_appendE_left _ _ a l
+  -- the inherited rows first: through the append they are `plusA` on the left block
   have hC : ∀ i : Fin (C₁.m + C₂.m),
       (ConPolyZono.andA C₁ C₂ *ᵥ PolyZonotope.monomial (ConPolyZono.appendE
           (PolyZonotope.plusE C₁.EC C₂.EC) (PolyZonotope.plusE C₁.E C₂.E)) a)
@@ -153,6 +134,7 @@ theorem ConPolyZono.satisfies_andDep_iff (C₁ C₂ : ConPolyZono (Vec ℝ n))
             PolyZonotope.monomial (PolyZonotope.plusE C₁.EC C₂.EC) a) i := by
     intro i
     rw [ConPolyZono.mulVec_andA_left, hcol]
+  -- then the agreement rows, each side's monomials read off its own factors
   have hG : ∀ i : Fin n,
       (ConPolyZono.andA C₁ C₂ *ᵥ PolyZonotope.monomial (ConPolyZono.appendE
           (PolyZonotope.plusE C₁.EC C₂.EC) (PolyZonotope.plusE C₁.E C₂.E)) a)
@@ -170,8 +152,7 @@ theorem ConPolyZono.satisfies_andDep_iff (C₁ C₂ : ConPolyZono (Vec ℝ n))
         rw [ConPolyZono.monomial_appendE_right, PolyZonotope.monomial_plusE_right]
   constructor
   · intro hsat'
-    -- the projections are read away first, or `Fin.castAdd` does not fit the
-    -- index type `Fin (andDep ..).m` they carry
+    -- the projections are read away first: `Fin.castAdd` does not fit `Fin (andDep ..).m`
     have hsat : ConPolyZono.holds (ConPolyZono.andA C₁ C₂) (ConPolyZono.andB C₁ C₂ D)
         (ConPolyZono.appendE (PolyZonotope.plusE C₁.EC C₂.EC)
           (PolyZonotope.plusE C₁.E C₂.E)) a := hsat'
@@ -185,8 +166,7 @@ theorem ConPolyZono.satisfies_andDep_iff (C₁ C₂ : ConPolyZono (Vec ℝ n))
       simpa only [ConPolyZono.andB, Fin.append_right] using h
   · rintro ⟨hcon, hagree⟩
     have hplus := (ConPolyZono.holds_plus_iff C₁.A C₁.b C₁.EC C₂.A C₂.b C₂.EC a).mpr hcon
-    -- through the projections the index type reads `Fin (andDep ..).m`, which
-    -- `Fin.castAdd` does not fit
+    -- through the projections the index reads `Fin (andDep ..).m`, which `Fin.castAdd` misses
     show ConPolyZono.holds (ConPolyZono.andA C₁ C₂) (ConPolyZono.andB C₁ C₂ D)
       (ConPolyZono.appendE (PolyZonotope.plusE C₁.EC C₂.EC)
         (PolyZonotope.plusE C₁.E C₂.E)) a

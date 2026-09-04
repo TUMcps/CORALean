@@ -12,10 +12,8 @@ those. `quadMapDep` keeps the factor count, so `A`, `b` and `EC` pass through
 untouched and say of the image exactly what they said of the argument.
 
 The generators and exponent columns are `PolyZonotope`'s, taken at the
-polynomial zonotope this set is without its constraints. That is the enclosing
-conversion used as bookkeeping rather than as an enclosure: `quadMapG` and
-`quadMapE` read only the fields the two representations share, and dropping
-constraints does not change a field.
+polynomial zonotope this set is without its constraints: `quadMapG` and
+`quadMapE` read only the fields the two representations share.
 
 `quadMap` runs `quadMapDep` on `dependent`, exactly as `PolyZonotope.quadMap`
 does and for the same reason: the expansion is stated on a set whose

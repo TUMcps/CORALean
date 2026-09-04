@@ -86,6 +86,7 @@ theorem Ellipsoid.aux_plusGap (s₁ s₂ : 𝕋) (E₁ E₂ : Ellipsoid 𝕋 n) 
     have hgap := sub_le_subUp (mulUp s₂ (E₂.G i j)) (mulDown s₂ (E₂.G i j))
     constructor <;> linarith
 
+-- the norm bound is rebuilt over the appended generator block, one `calc` chain per half
 set_option maxHeartbeats 400000 in
 theorem Ellipsoid.aux_plus_nominal (s₁ s₂ : 𝕋) (E₁ E₂ : Ellipsoid 𝕋 n)
     (hne₁ : toReal s₁ ≠ 0) (hne₂ : toReal s₂ ≠ 0)
@@ -99,6 +100,7 @@ theorem Ellipsoid.aux_plus_nominal (s₁ s₂ : 𝕋) (E₁ E₂ : Ellipsoid �
   obtain ⟨u₂, hu₂, hx₂⟩ := Ellipsoid.mem_nominalSet_iff.mp hx₂'
   set w : Vec ℝ (E₁.k + E₂.k) :=
     Fin.append (fun j => u₁ j / toReal s₁) (fun j => u₂ j / toReal s₂) with hwdef
+  -- the appended coefficient stays in the unit ball, which is what `hs` buys
   have hw : ‖w‖₂ ≤ 1 := by
     have hsum : ∑ j, w j ^ 2 ≤ 1 := by
       rw [hwdef, Fin.sum_univ_add]
@@ -113,6 +115,7 @@ theorem Ellipsoid.aux_plus_nominal (s₁ s₂ : 𝕋) (E₁ E₂ : Ellipsoid �
       have hinv : (toReal s₁ ^ 2)⁻¹ + (toReal s₂ ^ 2)⁻¹ ≤ 1 := by
         rw [← one_div, ← one_div]
         exact hs
+      -- each half's squared sum is at most one, so the two reciprocals bound the total
       calc (∑ j, u₁ j ^ 2) * (toReal s₁ ^ 2)⁻¹ + (∑ j, u₂ j ^ 2) * (toReal s₂ ^ 2)⁻¹
           ≤ 1 * (toReal s₁ ^ 2)⁻¹ + 1 * (toReal s₂ ^ 2)⁻¹ :=
             add_le_add (mul_le_mul_of_nonneg_right (Ellipsoid.aux_sum_sq_le_one hu₁) hp₁)
@@ -120,6 +123,7 @@ theorem Ellipsoid.aux_plus_nominal (s₁ s₂ : 𝕋) (E₁ E₂ : Ellipsoid �
         _ ≤ 1 := by rw [one_mul, one_mul]; exact hinv
     calc ‖w‖₂ ≤ Real.sqrt 1 := Real.sqrt_le_sqrt hsum
       _ = 1 := Real.sqrt_one
+  -- the witness: stored centre and generators at `w`, both shortfalls charged
   have hgen := Ellipsoid.mem_generatorError (Ellipsoid.aux_plusGap s₁ s₂ E₁ E₂) hw
   refine ⟨fun i => toReal ((Ellipsoid.plus s₁ s₂ E₁ E₂).q i)
             + ∑ j, toReal ((Ellipsoid.plus s₁ s₂ E₁ E₂).G i j) * w j,
@@ -127,8 +131,7 @@ theorem Ellipsoid.aux_plus_nominal (s₁ s₂ : 𝕋) (E₁ E₂ : Ellipsoid �
           _, ⟨_, Interval.sub_mem_residual
                 (fun i => ⟨addDown_le_add _ _, add_le_addUp _ _⟩), _, hgen, rfl⟩, ?_⟩
   funext i
-  -- each block recombines: the stored generator plus its error is the exact
-  -- scaling, and the scaling cancels against the division in `w`
+  -- stored generator plus error is the exact scaling, which cancels the division in `w`
   have hblk₁ : (∑ j, toReal (mulDown s₁ (E₁.G i j)) * (u₁ j / toReal s₁))
       + ∑ j, (toReal s₁ * toReal (E₁.G i j) - toReal (mulDown s₁ (E₁.G i j)))
           * (u₁ j / toReal s₁)
@@ -141,6 +144,7 @@ theorem Ellipsoid.aux_plus_nominal (s₁ s₂ : 𝕋) (E₁ E₂ : Ellipsoid �
       = ∑ j, toReal (E₂.G i j) * u₂ j := by
     rw [← Finset.sum_add_distrib]
     exact Finset.sum_congr rfl fun j _ => by field_simp; ring
+  -- the goal spelled out, so the two block identities line up with it
   show toReal ((Ellipsoid.plus s₁ s₂ E₁ E₂).q i)
         + (∑ j, toReal ((Ellipsoid.plus s₁ s₂ E₁ E₂).G i j) * w j)
       + ((toReal (E₁.q i) + toReal (E₂.q i)

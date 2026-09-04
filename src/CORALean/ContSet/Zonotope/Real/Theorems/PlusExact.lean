@@ -24,10 +24,9 @@ open Pointwise
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 omit [Module ℝ α] in
-/-- `Fin.sum_univ_add` at `plus`'s generator count, stated through the projection
-because that is the form the goal has and simp will not rewrite a binder's type.
-Matched by `rw`, never applied: supplying `f` forces its domain to the reduced
-count and the two spellings of `h` stop being interchangeable. -/
+/-- `Fin.sum_univ_add` at `plus`'s generator count, stated through the
+projection because that is the form the goal has. Matched by `rw`, never
+applied: supplying `f` forces its domain to the reduced count. -/
 theorem Zonotope.aux_sum_univ_plus {Z₁ Z₂ : Zonotope α} (f : Fin (Z₁.h + Z₂.h) → α) :
     ∑ j : Fin (Z₁.plus Z₂).h, f j
       = ∑ j, f (Fin.castAdd Z₂.h j) + ∑ j, f (Fin.natAdd Z₁.h j) :=
@@ -42,6 +41,7 @@ theorem Zonotope.plus_exact (Z₁ Z₂ : Zonotope α) :
     rw [Zonotope.aux_sum_univ_plus]
     simp only [Zonotope.plus, Fin.append_left, Fin.append_right]
     abel
+  -- back: the two halves of `β` are the two zonotopes' own coefficients
   · rintro x ⟨β, hβ, rfl⟩
     refine ⟨Z₁.c + ∑ j, β (Fin.castAdd Z₂.h j) • Z₁.G j,
             ⟨_, fun j => hβ _, rfl⟩,

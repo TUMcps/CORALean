@@ -45,6 +45,7 @@ def FloatBound.ofSupportBound (u : SupportBound S c) (v : 𝕋) (h : u.val ≤ t
     FloatBound 𝕋 S c :=
   ⟨v, fun x hx => le_trans (u.le x hx) h⟩
 
+/-- A bound on a larger set bounds a smaller one, at the same value. -/
 def FloatBound.mono (h : S ⊆ T) (u : FloatBound 𝕋 T c) : FloatBound 𝕋 S c :=
   ⟨u.val, fun x hx => u.le x (h hx)⟩
 
@@ -52,6 +53,7 @@ def FloatBound.raise (u : FloatBound 𝕋 S c) {v : 𝕋} (h : toReal u.val ≤ 
     FloatBound 𝕋 S c :=
   ⟨v, fun x hx => le_trans (u.le x hx) h⟩
 
+/-- A sum sees a sum of extents, with `addUp` for the one rounding it costs. -/
 def FloatBound.add (u : FloatBound 𝕋 S c) (v : FloatBound 𝕋 T c) :
     FloatBound 𝕋 (S + T) c where
   val := addUp u.val v.val
@@ -69,6 +71,7 @@ def FloatBound.union (u : FloatBound 𝕋 S c) (v : FloatBound 𝕋 T c) :
     exact hx.elim (fun h => le_trans (u.le x h) (le_max_left _ _))
       fun h => le_trans (v.le x h) (le_max_right _ _)
 
+/-- An image sees the direction pulled back, so nothing rounds. -/
 def FloatBound.image {d : β →ₗ[ℝ] ℝ} (M : α →ₗ[ℝ] β) (u : FloatBound 𝕋 S (d.comp M)) :
     FloatBound 𝕋 (⇑M '' S) d where
   val := u.val

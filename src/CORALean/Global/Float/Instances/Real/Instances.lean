@@ -32,6 +32,7 @@ noncomputable instance : FloatOps ℝ where
   le := fun a b => decide (a ≤ b)
   half := (· / 2)
 
+-- every field is `rfl` or `le_refl`: at ℝ each rounding is the exact operation
 noncomputable instance : SoundFloatArithmetic ℝ where
   toReal := id
   toReal_neg _ := rfl

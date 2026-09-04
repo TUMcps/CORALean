@@ -11,20 +11,16 @@ reached at the end of a step becoming the initial set of the next. Step `i` runs
 the linear machinery of step `i`'s own system for exactly one step, so the whole
 loop is `LinearSysDT.reach ... 1` iterated at a matrix that changes each time.
 
-Nothing new is computed. `linearize` gives the system, `discretize` samples it
-and `reach` takes the step; what re-linearizing costs is a fresh certificate per
-step, which is data the caller supplies.
+Nothing new is computed. `linearize` gives the system, `discretize` samples it and
+`reach` takes the step; what re-linearizing costs is a fresh certificate per step,
+which is data the caller supplies.
 
-One step per linearization rather than a horizon per linearization. The sample
-times are then the step boundaries, absolute time is `iΔt` and no partial sums
-appear; reusing a linearization over several steps is the same recursion with
-`reach ... K` and is left until something asks for it.
+One step per linearization rather than a horizon per linearization, so the sample
+times are the step boundaries and absolute time is `iΔt`. `Δt` and `o` are
+uniform, so `relinReach` recurses on the step index alone.
 
-`Δt` and `o` are uniform, so `relinReach` recurses on the step index alone.
-
-`exp` needs a norm on `Mat`, which is a choice rather than an instance, so this
-file makes the same one as everything else reasoning about `discretize` — the
-`l∞` operator norm — or the terms would not match.
+`exp` needs a norm on `Mat` — a choice, not an instance — and it is the `l∞`
+operator norm here as everywhere `discretize` is reasoned about.
 -/
 
 -- Authors:       Tobias Ladner

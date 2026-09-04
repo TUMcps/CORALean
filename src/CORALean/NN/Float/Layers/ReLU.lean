@@ -7,25 +7,18 @@ import CORALean.NN.Layers.ReLU
 The one standard activation that needs no transcendental function, and the one
 carrying a nonzero slope. Over ℝ that slope is the secant `u / (u - l)`.
 
-Which direction that division rounds is of no consequence, and the reason is the
-whole shape of the float layer. The slope is a precision knob and never a
-correctness condition: any value in `[0, 1]` is sound, and the error is measured
-against the value actually stored. So the slope may be produced by anything
-whatever, and `clampUnit` brings it into range with `minimum` and `maximum`,
-both of which are exact. No rounding axiom is consulted, no test on the
-candidate is needed, and an unverified guess at the secant — from `divUp`, from
-a table, or from a search — is used as it stands.
+Which direction that division rounds is of no consequence. The slope is a
+precision knob and never a correctness condition: any value in `[0, 1]` is sound,
+and the error is measured against the value stored. So `clampUnit` brings an
+unverified guess into range with `minimum` and `maximum`, both exact.
 
-What does have to round is the gap, and it rounds up: `(1 - λ) u` from the
-directed difference and `-λ l` from the negated rounded-down product, the larger
-of the two. Halving it is exact, so the recentred relaxation is `± gap / 2` with
-no further loss.
+What has to round is the gap, and it rounds up: `(1 - λ) u` from the directed
+difference and `-λ l` from the negated rounded-down product, the larger of the
+two. Halving is exact, so the recentred relaxation is `± gap / 2`.
 
-`reluSlope` is the default: exact on a stable neuron, where the slope is `1` or
-`0` and the gap is zero, and the secant on a crossing one, rounded whichever way
-`divUp` happens to round. It reads `le`, which `SoundFloatArithmetic` constrains
-in no way — and it does not have to, precisely because no branch of it can be
-wrong.
+`reluSlope` is the default: exact on a stable neuron and the secant on a crossing
+one, rounded whichever way `divUp` rounds. It reads `le`, which
+`SoundFloatArithmetic` constrains in no way, and does not have to.
 -/
 
 -- Authors:       Tobias Ladner

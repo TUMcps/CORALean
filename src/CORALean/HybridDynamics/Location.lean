@@ -9,26 +9,17 @@ that govern it, the input set those dynamics draw from, and the outgoing
 transitions.
 
 `LinearSys` dynamics, because that is what the reachability machinery encloses
-today. A nonlinear location is the same structure at `NonlinearSys` and is
-deliberately not written: nothing downstream could yet use it.
+today. A nonlinear location is the same structure at `NonlinearSys`.
 
-`Trajectory` is what a location denotes — one admissible stay, on a *local*
-clock running from `0` to the dwell time `τ`. Two consequences worth stating.
+`Trajectory` is what a location denotes — one admissible stay, on a *local* clock
+running from `0` to the dwell time `τ`, so a run's global time is the sum of the
+dwell times and never appears. That is what lets every reachability statement in
+`LinearSys` be used unchanged, all of them reading `Set.Icc 0 r ⊆ T`. The initial
+state is the point `x 0` rather than a set; `Theorems.LinearEmbedding` converts by
+naming a set the point lies in.
 
-The clock is local, so a run's global time is the sum of the dwell times and
-never appears. That is what lets every reachability statement in `LinearSys` be
-used unchanged: they all read `Set.Icc 0 r ⊆ T` and index from `0`.
-
-The initial state is the point `x 0` rather than a set, because a stay is a
-concrete execution and its predecessor handed it a point. `LinearSys.Trajectory`
-asks for a set only in `init`, so the two differ in exactly that field, and
-`Theorems.LinearEmbedding` converts by naming a set the point lies in.
-
-`nonneg` is not bookkeeping: without it `Set.Icc 0 τ` is empty, every field
-holds vacuously, and `x τ` — the state a jump reads — is unconstrained. At
-`τ = 0` the domain is `{0}`, the derivative condition is vacuous there, and what
-remains is that the state satisfies the invariant, which is the right reading of
-an instantaneous stay.
+`nonneg` is not bookkeeping: without it `Set.Icc 0 τ` is empty, every field holds
+vacuously, and `x τ` — the state a jump reads — is unconstrained.
 -/
 
 -- Authors:       Tobias Ladner

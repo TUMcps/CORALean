@@ -35,6 +35,7 @@ theorem VPolytope.aux_mtimes_nominal (M : Mat 𝕋 m n) (P : VPolytope 𝕋 n) :
   refine Real.VPolytope.construct_subset_add _ _ (Real.Interval.convex_construct _) fun l => ?_
   exact VPolytope.mem_columnGap fun i => ⟨dotDown_le _ _, le_dotUp _ _⟩
 
+-- the old box travels through the map and absorbs the column gap on the way
 theorem VPolytope.aux_mtimes_error (M : Mat 𝕋 m n) (P : VPolytope 𝕋 n) :
     (toRealMat M *ᵥ ·) '' (error P).construct
       + (VPolytope.columnGap (matMulDown M P.V) (matMulUp M P.V)).construct ⊆

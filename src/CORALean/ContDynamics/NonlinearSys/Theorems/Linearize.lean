@@ -11,17 +11,14 @@ the linear system `linearize A`, and the input signal
 certificate holds. The flow condition is then an identity — `A x + ũ = f(x,u)`
 — and everything `LinearSys` proves applies to `x` unchanged.
 
-The confinement hypothesis `hR` is a hypothesis and not something proved here.
-CORA computes a candidate `R` from an initial guess and *checks afterwards*
-that the step's reachable set is inside it, enlarging and retrying when it is
-not; nothing in a certificate can supply that check.
+The confinement `hR` stays a hypothesis: CORA computes a candidate `R` and
+*checks afterwards* that the step's reachable set is inside it, enlarging and
+retrying when it is not, which nothing in a certificate can supply.
 
-`hR` is asked for on the time domain and nowhere else, which is the whole reason
-that domain is a parameter: the linear run this produces constrains its input on
-exactly the same set, so confinement over one step buys a linear run over one
-step. `linearize_horizon` is that instance — restrict to `[0, τ]`, then
-linearize — and it is the honest one-step statement conservative linearization
-is, CORA re-linearizing at every step rather than trusting one `R` forever.
+`hR` is asked for on the time domain and nowhere else, which is why that domain
+is a parameter: the linear run produced constrains its input on the same set, so
+confinement over one step buys a linear run over one step. `linearize_horizon` is
+that instance — restrict to `[0, τ]`, then linearize.
 -/
 
 -- Authors:       Tobias Ladner
@@ -60,9 +57,8 @@ theorem NonlinearSys.Trajectory.linearize {sys : NonlinearSys n m} {T : Set ℝ}
     exact traj.flow t ht
 
 /-- The one-step statement: confinement on `[0, τ]` alone yields a linear run on
-`[0, τ]`, whatever the nonlinear run does afterwards. This is what a
-re-linearization loop consumes and what a hybrid location asks for; the run
-being longer than the step costs nothing, `restrict` throwing the rest away. -/
+`[0, τ]`, whatever the nonlinear run does afterwards — the run being longer than
+the step costs nothing, `restrict` throwing the rest away. -/
 theorem NonlinearSys.Trajectory.linearize_horizon {sys : NonlinearSys n m} {T : Set ℝ}
     {R₀ : S n} {U : S m} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {A : Mat ℝ n n}
     {B : Mat ℝ n m} {xs : Vec ℝ n} {us : Vec ℝ m} {R : Set (Vec ℝ n)} {L : S n} {τ : ℝ}

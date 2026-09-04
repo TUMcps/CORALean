@@ -33,6 +33,7 @@ theorem toReal_align (d : Dyadic p) {e : ℤ} (h : e ≤ d.exponent) :
   push_cast
   rw [mul_assoc, two_zpow_align h]
 
+/-- Negation is exact, touching the mantissa alone. -/
 theorem toReal_neg (d : Dyadic p) : toReal (neg d) = -toReal d := by
   rw [toReal_def, toReal_def, neg, Int.cast_neg, neg_mul]
 
@@ -40,6 +41,7 @@ theorem toReal_half (a : Dyadic p) : toReal (half a) = toReal a / 2 := by
   rw [toReal_def, toReal_def, half, zpow_sub₀ (two_ne_zero), zpow_one]
   ring
 
+/-- Addition is exact once both are aligned to the smaller exponent. -/
 theorem toReal_exactAdd (a b : Dyadic p) :
     toReal (exactAdd a b) = toReal a + toReal b := by
   rw [toReal_def, toReal_def, toReal_def, exactAdd]
