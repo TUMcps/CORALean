@@ -1,0 +1,32 @@
+import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
+import CORALean.ContSet.Interval.Real.Operations.Point
+
+/-!
+# `ConPolyZono.holds_point_iff`
+
+At a degenerate `b`, `holds` collapses to the paper's equality [1]: the point
+case that reads a plain equation as `holds` with zero slack.
+
+## References
+
+* [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta
+      Informatica, 2023.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+namespace CORALean.Real
+
+open Matrix
+
+/-- The paper's equality, as the degenerate interval. -/
+theorem ConPolyZono.holds_point_iff {p m s : ℕ} (A : Mat ℝ m s) (b : Vec ℝ m)
+    (EC : Fin p → Fin s → ℕ) (a : Fin p → ℝ) :
+    ConPolyZono.holds A (Interval.point b) EC a
+      ↔ ∀ i, (A *ᵥ PolyZonotope.monomial EC a) i = b i :=
+  forall_congr' fun _ => ⟨fun h => le_antisymm h.2 h.1, fun h => ⟨h.ge, h.le⟩⟩
+
+end CORALean.Real

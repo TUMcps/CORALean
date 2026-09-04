@@ -1,6 +1,8 @@
 import CORALean.ContSet.ConZonotope.Real.Operations.MtimesIntervalMat
 import CORALean.ContSet.ConZonotope.Real.Theorems.MemConstruct
-import CORALean.ContSet.Interval.Real.Operations.CenterRadius
+import CORALean.ContSet.Interval.Real.Operations.Center
+import CORALean.ContSet.Interval.Real.Operations.Radius
+import CORALean.ContSet.Interval.Real.Theorems.AbsSubCenterLe
 import CORALean.ContSet.Zonotope.Real.Theorems.MtimesIntervalMatOuter
 
 /-!

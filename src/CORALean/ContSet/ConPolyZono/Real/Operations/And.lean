@@ -1,6 +1,8 @@
 import CORALean.ContSet.ConPolyZono.Real.Operations.AppendE
 import CORALean.ContSet.ConPolyZono.Real.Operations.Dependent
 import CORALean.ContSet.ConPolyZono.Real.Operations.Plus
+import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendELeft
+import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendERight
 import CORALean.ContSet.Interval.Real.Operations.Point
 
 /-!

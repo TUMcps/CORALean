@@ -1,4 +1,4 @@
-import CORALean.ContSet.PolyZonotope.Real.Theorems.Monomial
+import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
 import CORALean.ContSet.Zonotope.Real.Zonotope
 
 /-!

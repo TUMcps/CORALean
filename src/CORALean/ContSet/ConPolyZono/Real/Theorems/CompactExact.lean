@@ -1,5 +1,5 @@
 import CORALean.ContSet.ConPolyZono.Real.Operations.Compact
-import CORALean.ContSet.ConPolyZono.Real.Theorems.Holds
+import CORALean.ContSet.ConPolyZono.Real.Theorems.HoldsCongr
 
 /-!
 # Compaction loses nothing

@@ -1,7 +1,7 @@
 import CORALean.ContSet.PolyZonotope.Real.Operations.Reduce
 import CORALean.ContSet.PolyZonotope.Real.Theorems.CompactExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MemConstruct
-import CORALean.ContSet.PolyZonotope.Real.Theorems.Monomial
+import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
 import CORALean.ContSet.Zonotope.Real.Theorems.Coefficient
 
 /-!
