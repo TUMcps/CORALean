@@ -3,11 +3,15 @@ import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructEqImage
 import CORALean.ContSet.ConZonotope.Real.Theorems.PlusExact
 import CORALean.ContSet.ConZonotope.Real.Theorems.AndExact
 import CORALean.ContSet.ConZonotope.Real.Theorems.MapExact
+import CORALean.ContSet.ConZonotope.Real.Theorems.MtimesExact
 import CORALean.ContSet.ConZonotope.Real.Theorems.MtimesIntervalMatOuter
 import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombOuter
 import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceOuter
 import CORALean.ContSet.ConZonotope.Real.Theorems.Convex
+import CORALean.ContSet.ConZonotope.Real.Theorems.IsCompactDomain
 import CORALean.ContSet.ConZonotope.Real.Theorems.IsCompact
+import CORALean.ContSet.ConZonotope.Real.Theorems.IsClosed
+import CORALean.ContSet.ConZonotope.Real.Theorems.IsBounded
 
 /-!
 # What `ConZonotope` guarantees

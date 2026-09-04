@@ -4,11 +4,22 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialAdd
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MemConstruct
 import CORALean.ContSet.PolyZonotope.Real.Theorems.PlusExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MapExact
+import CORALean.ContSet.PolyZonotope.Real.Theorems.MtimesExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombOuter
 import CORALean.ContSet.PolyZonotope.Real.Theorems.DependentExact
+import CORALean.ContSet.PolyZonotope.Real.Theorems.SumExtEqPoint
+import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadEvalSumExt
+import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapDepExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapExact
+import CORALean.ContSet.PolyZonotope.Real.Theorems.CompactGensExact
+import CORALean.ContSet.PolyZonotope.Real.Theorems.CompactFactorsExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.CompactExact
+import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceByOuter
+import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceGirardOuter
+import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceGirardDependentOuter
+import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceDependentOuter
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceOuter
+import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceGirardOrderLe
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceOrder
 
 /-!

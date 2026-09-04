@@ -3,11 +3,14 @@ import CORALean.ContSet.Ellipsoid.Real.Theorems.QMemConstruct
 import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqImage
 import CORALean.ContSet.Ellipsoid.Real.Theorems.Convex
 import CORALean.ContSet.Ellipsoid.Real.Theorems.IsBounded
+import CORALean.ContSet.Ellipsoid.Real.Theorems.ContinuousAffine
 import CORALean.ContSet.Ellipsoid.Real.Theorems.IsCompact
+import CORALean.ContSet.Ellipsoid.Real.Theorems.IsClosed
 import CORALean.ContSet.Ellipsoid.Real.Theorems.MapExact
 import CORALean.ContSet.Ellipsoid.Real.Theorems.MtimesExact
 import CORALean.ContSet.Ellipsoid.Real.Theorems.PlusOuter
 import CORALean.ContSet.Ellipsoid.Real.Theorems.SupportBoundAttained
+import CORALean.ContSet.Ellipsoid.Real.Theorems.IsGreatestSupport
 
 /-!
 # What an ellipsoid guarantees, collected

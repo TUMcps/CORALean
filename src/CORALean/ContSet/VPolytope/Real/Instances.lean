@@ -1,5 +1,5 @@
 import CORALean.ContSet.VPolytope.Real.Theorems.LinCombOuter
-import CORALean.ContSet.VPolytope.Real.Theorems.MapExact
+import CORALean.ContSet.VPolytope.Real.Theorems.MtimesExact
 import CORALean.ContSet.VPolytope.Real.Theorems.PlusExact
 
 /-!

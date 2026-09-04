@@ -4,7 +4,7 @@ import CORALean.ContSet.Interval.Real.Instances
 import CORALean.ContSet.ConZonotope.Real.Theorems.Convex
 import CORALean.ContSet.ConZonotope.Real.Theorems.IsCompact
 import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombOuter
-import CORALean.ContSet.ConZonotope.Real.Theorems.MapExact
+import CORALean.ContSet.ConZonotope.Real.Theorems.MtimesExact
 import CORALean.ContSet.ConZonotope.Real.Theorems.MtimesIntervalMatOuter
 import CORALean.ContSet.ConZonotope.Real.Theorems.PlusExact
 import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceOuter

@@ -1,5 +1,7 @@
 import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
-import CORALean.ContSet.HPolytope.Float.Theorems.CertifiedOuter
+import CORALean.ContSet.HPolytope.Float.Theorems.PlusOfOuter
+import CORALean.ContSet.HPolytope.Float.Theorems.LinCombOfOuter
+import CORALean.ContSet.HPolytope.Float.Theorems.MtimesOfOuter
 
 /-!
 # What the float `HPolytope` guarantees

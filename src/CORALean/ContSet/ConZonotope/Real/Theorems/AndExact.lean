@@ -14,7 +14,7 @@ intersected with a zonotope is not a zonotope.
 
 -- Authors:       Tobias Ladner
 -- Written:       01-September-2026
--- Last update:   02-September-2026
+-- Last update:   04-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -24,7 +24,7 @@ open Matrix
 variable {n : ℕ}
 
 /-- The agreement rows are all that `and` adds over `plus`. -/
-theorem ConZonotope.mem_and_P_iff (C₁ C₂ : ConZonotope (Vec ℝ n))
+theorem ConZonotope.aux_mem_and_P_iff (C₁ C₂ : ConZonotope (Vec ℝ n))
     (β : Vec ℝ (C₁.and C₂).h) :
     β ∈ (C₁.and C₂).P.construct ↔
       (blockLeft C₁.h C₂.h β ∈ C₁.P.construct
@@ -68,7 +68,7 @@ theorem ConZonotope.and_exact (C₁ C₂ : ConZonotope (Vec ℝ n)) :
       · rw [Fin.append_left]; exact hβ₁ l
       · rw [Fin.append_right]; exact hβ₂ l
     -- the appended coefficient meets both polytopes, and the agreement rows read the two points
-    · refine (ConZonotope.mem_and_P_iff C₁ C₂ _).mpr ⟨⟨?_, ?_⟩, fun i => ?_⟩
+    · refine (ConZonotope.aux_mem_and_P_iff C₁ C₂ _).mpr ⟨⟨?_, ?_⟩, fun i => ?_⟩
       · rw [blockLeft_append]; exact hP₁
       · rw [blockRight_append]; exact hP₂
       · have s₁ : (∑ j, C₁.G j i * Fin.append β₁ β₂ (Fin.castAdd C₂.h j))
@@ -89,7 +89,7 @@ theorem ConZonotope.and_exact (C₁ C₂ : ConZonotope (Vec ℝ n)) :
       exact hx₁
   -- back: the two halves of `β` are the two sets' own coefficients
   · rintro x ⟨β, hβ, hP, hx⟩
-    obtain ⟨⟨hP₁, hP₂⟩, hagree⟩ := (ConZonotope.mem_and_P_iff C₁ C₂ β).mp hP
+    obtain ⟨⟨hP₁, hP₂⟩, hagree⟩ := (ConZonotope.aux_mem_and_P_iff C₁ C₂ β).mp hP
     have hx₁ : x = C₁.c + ∑ j, β (Fin.castAdd C₂.h j) • C₁.G j := by
       rw [hx, ConZonotope.aux_value_and]
     refine ⟨⟨fun j => β (Fin.castAdd C₂.h j), fun j => hβ _, hP₁, hx₁⟩,

@@ -3,7 +3,7 @@ import CORALean.ContSet.HPolytope.Real.Theorems.ExtremePoints
 import CORALean.ContSet.Conversion.Real.HPolytope_to_Interval
 import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
 import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
-import CORALean.ContSet.VPolytope.Real.Theorems.IsCompact
+import CORALean.ContSet.VPolytope.Real.Theorems.IsBounded
 
 /-!
 # Halfspaces to vertices

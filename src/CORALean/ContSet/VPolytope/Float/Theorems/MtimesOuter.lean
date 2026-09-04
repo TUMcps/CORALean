@@ -4,6 +4,7 @@ import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 import CORALean.ContSet.Interval.Real.Theorems.Convex
 import CORALean.ContSet.VPolytope.Float.Operations.ColumnGap
 import CORALean.ContSet.VPolytope.Float.Operations.Mtimes
+import CORALean.ContSet.VPolytope.Real.Theorems.MtimesExact
 
 /-!
 # `VPolytope.mtimes` over-approximates the image under a linear map

@@ -1,4 +1,4 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.Mtimes
+import CORALean.ContSet.ConZonotope.Real.Operations.Map
 
 /-!
 # `ConZonotope.map` is exactly the image under a linear map
@@ -10,12 +10,10 @@ system as exactly as a zonotope does.
 
 -- Authors:       Tobias Ladner
 -- Written:       01-September-2026
--- Last update:   ---
+-- Last update:   04-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
-
-open Matrix
 
 variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Module ℝ β]
 
@@ -34,9 +32,5 @@ theorem ConZonotope.map_exact (f : α →ₗ[ℝ] β) (C : ConZonotope α) :
     refine ⟨C.c + ∑ j, b j • C.G j, ⟨b, hb, hA, rfl⟩, ?_⟩
     rw [hy]
     exact hf b
-
-theorem ConZonotope.mtimes_exact {n m : ℕ} (M : Mat ℝ m n) (C : ConZonotope (Vec ℝ n)) :
-    (M *ᵥ ·) '' C.construct = (ConZonotope.mtimes M C).construct :=
-  ConZonotope.map_exact (Matrix.mulVecLin M) C
 
 end CORALean.Real

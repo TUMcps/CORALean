@@ -12,7 +12,7 @@ back.
 
 -- Authors:       Tobias Ladner
 -- Written:       01-September-2026
--- Last update:   02-September-2026
+-- Last update:   04-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -35,7 +35,7 @@ omit [Module ℝ α] in
 /-- Each block answers to its own polytope. `β` is ascribed at the projection
 spelling of the count: at `Vec ℝ (C₁.h + C₂.h)` the module instance `HPolytope`
 needs is not found, the two spellings being distinct terms. -/
-theorem ConZonotope.mem_plus_P_iff (C₁ C₂ : ConZonotope α) (β : Vec ℝ (C₁.plus C₂).h) :
+theorem ConZonotope.aux_mem_plus_P_iff (C₁ C₂ : ConZonotope α) (β : Vec ℝ (C₁.plus C₂).h) :
     β ∈ (C₁.plus C₂).P.construct ↔
       blockLeft C₁.h C₂.h β ∈ C₁.P.construct
         ∧ blockRight C₁.h C₂.h β ∈ C₂.P.construct :=
@@ -65,11 +65,11 @@ theorem ConZonotope.plus_exact (C₁ C₂ : ConZonotope α) :
     · refine Fin.addCases (fun l => ?_) fun l => ?_
       · rw [Fin.append_left]; exact hβ₁ l
       · rw [Fin.append_right]; exact hβ₂ l
-    · refine (ConZonotope.mem_plus_P_iff C₁ C₂ _).mpr ⟨?_, ?_⟩
+    · refine (ConZonotope.aux_mem_plus_P_iff C₁ C₂ _).mpr ⟨?_, ?_⟩
       · rw [blockLeft_append]; exact hP₁
       · rw [blockRight_append]; exact hP₂
   · rintro _ ⟨β, hβ, hP, rfl⟩
-    obtain ⟨hP₁, hP₂⟩ := (ConZonotope.mem_plus_P_iff C₁ C₂ β).mp hP
+    obtain ⟨hP₁, hP₂⟩ := (ConZonotope.aux_mem_plus_P_iff C₁ C₂ β).mp hP
     exact ⟨C₁.c + ∑ j, β (Fin.castAdd C₂.h j) • C₁.G j,
       ⟨fun j => β (Fin.castAdd C₂.h j), fun j => hβ _, hP₁, rfl⟩,
       C₂.c + ∑ j, β (Fin.natAdd C₁.h j) • C₂.G j,

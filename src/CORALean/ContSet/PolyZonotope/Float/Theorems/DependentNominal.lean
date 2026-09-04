@@ -1,7 +1,9 @@
 import CORALean.ContSet.PolyZonotope.Float.Operations.Dependent
 import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
 import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
-import CORALean.ContSet.Zonotope.Real.Theorems.Coefficient
+import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
+import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
+import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMul
 
 /-!
 # `dependent` empties the box without losing a point

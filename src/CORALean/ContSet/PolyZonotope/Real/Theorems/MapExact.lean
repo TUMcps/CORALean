@@ -1,5 +1,5 @@
 import CORALean.ContSet.ContSet.ContSet
-import CORALean.ContSet.PolyZonotope.Real.Operations.Mtimes
+import CORALean.ContSet.PolyZonotope.Real.Operations.Map
 
 /-!
 # `PolyZonotope.map` is exactly the image under a linear map
@@ -9,12 +9,12 @@ map introduces no freedom and removes none — so linearity carried through the
 two sums is the whole proof. The monomials are untouched because they are
 scalars, which is why the exponent matrix never enters.
 
-`mtimes_exact` is this at `A *ᵥ ·`.
+`MtimesExact` is this at `A *ᵥ ·`.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   04-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -43,9 +43,5 @@ theorem PolyZonotope.map_exact (f : α →ₗ[ℝ] β) (PZ : PolyZonotope α) :
       ⟨a, b, ha, hb, rfl⟩, ?_⟩
     rw [hy]
     exact hf a b
-
-theorem PolyZonotope.mtimes_exact {n m : ℕ} (M : Mat ℝ m n) (PZ : PolyZonotope (Vec ℝ n)) :
-    (M *ᵥ ·) '' PZ.construct = (PolyZonotope.mtimes M PZ).construct :=
-  PolyZonotope.map_exact (Matrix.mulVecLin M) PZ
 
 end CORALean.Real

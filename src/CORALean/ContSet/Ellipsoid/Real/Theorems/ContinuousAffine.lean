@@ -1,0 +1,29 @@
+import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+
+/-!
+# The map an ellipsoid is the image of is continuous
+
+`u ↦ q + G *ᵥ u` coordinatewise, each coordinate a finite sum of products with a
+constant. It carries compactness from the Euclidean unit ball onto the
+ellipsoid, the same way `Zonotope.continuous_affine` carries it from the
+coefficient cube.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       02-September-2026
+-- Last update:   04-September-2026
+-- Last revision: ---
+
+namespace CORALean.Real
+
+open Matrix
+
+variable {n : ℕ}
+
+theorem Ellipsoid.continuous_affine (E : Ellipsoid n) :
+    Continuous fun u : Vec ℝ E.k => E.q + E.G *ᵥ u := by
+  refine continuous_const.add (continuous_pi fun i => ?_)
+  show Continuous fun u : Vec ℝ E.k => ∑ j, E.G i j * u j
+  exact continuous_finsetSum _ fun j _ => continuous_const.mul (continuous_apply j)
+
+end CORALean.Real

@@ -1,5 +1,5 @@
 import CORALean.ContSet.ContSet.ContSet
-import CORALean.ContSet.ConPolyZono.Real.Operations.Mtimes
+import CORALean.ContSet.ConPolyZono.Real.Operations.Map
 
 /-!
 # `ConPolyZono.map` is exactly the image under a linear map
@@ -9,12 +9,12 @@ constraint is the same proposition about them before and after — a linear map 
 the ambient space moves points, not factors. Linearity carried through the two
 sums is then the whole proof.
 
-`mtimes_exact` is this at `A *ᵥ ·`.
+`MtimesExact` is this at `A *ᵥ ·`.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   04-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -43,9 +43,5 @@ theorem ConPolyZono.map_exact (f : α →ₗ[ℝ] β) (C : ConPolyZono α) :
       ⟨a, b, ha, hb, (ConPolyZono.satisfies_map f C a).mp hsat, rfl⟩, ?_⟩
     rw [hy]
     exact hf a b
-
-theorem ConPolyZono.mtimes_exact {k n : ℕ} (M : Mat ℝ k n) (C : ConPolyZono (Vec ℝ n)) :
-    (M *ᵥ ·) '' C.construct = (ConPolyZono.mtimes M C).construct :=
-  ConPolyZono.map_exact (Matrix.mulVecLin M) C
 
 end CORALean.Real

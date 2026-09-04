@@ -18,7 +18,7 @@ what the degenerate case needs.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   04-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -41,13 +41,5 @@ theorem Ellipsoid.supportBound_attained (E : Ellipsoid n) (c : Vec ℝ n →ₗ[
           = c E.q + ‖E.pullback c‖₂
       rw [map_add, E.apply_mulVec c, dotProduct_smul, smul_eq_mul, dotProduct_self, pow_two,
         ← mul_assoc, inv_mul_cancel₀ hv, one_mul]
-
--- attained, so the bound is the maximum rather than merely an upper bound
-theorem Ellipsoid.isGreatest_support (E : Ellipsoid n) (c : Vec ℝ n →ₗ[ℝ] ℝ) :
-    IsGreatest (c '' E.construct) (E.supportBound c).val := by
-  obtain ⟨x, hx, hcx⟩ := E.supportBound_attained c
-  refine ⟨⟨x, hx, hcx⟩, ?_⟩
-  rintro _ ⟨y, hy, rfl⟩
-  exact (E.supportBound c).le y hy
 
 end CORALean.Real

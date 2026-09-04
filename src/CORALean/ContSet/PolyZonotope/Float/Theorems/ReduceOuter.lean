@@ -3,7 +3,9 @@ import CORALean.ContSet.PolyZonotope.Float.Operations.Reduce
 import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
 import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
-import CORALean.ContSet.Zonotope.Real.Theorems.Coefficient
+import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
+import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
+import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMul
 
 /-!
 # `PolyZonotope.reduce` over-approximates the set

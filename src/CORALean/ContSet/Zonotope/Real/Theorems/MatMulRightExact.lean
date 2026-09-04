@@ -1,0 +1,26 @@
+import CORALean.ContSet.ContSet.ContSet
+import CORALean.ContSet.Zonotope.Real.Operations.LinMtimes
+import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
+
+/-!
+# A matrix zonotope multiplied from the right, exactly
+
+The mirror of `matMulLeft_exact`, and a separate statement rather than a
+corollary of it: matrix multiplication does not commute, so neither side follows
+from the other.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       16-August-2026
+-- Last update:   04-September-2026
+-- Last revision: ---
+
+namespace CORALean.Real
+
+open Matrix
+
+theorem Zonotope.matMulRight_exact {p q r : ℕ} (M : Mat ℝ q r) (Z : Zonotope (Mat ℝ p q)) :
+    (· * M) '' Z.construct = (Zonotope.mapOf (matMulRight M) Z).construct :=
+  Zonotope.map_exact (matMulRight M) Z
+
+end CORALean.Real

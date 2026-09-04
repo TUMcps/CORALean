@@ -1,6 +1,9 @@
 import CORALean.ContSet.HPolytope.Real.Theorems.MemConstruct
+import CORALean.ContSet.HPolytope.Real.Theorems.MemAnd
 import CORALean.ContSet.HPolytope.Real.Theorems.AndExact
-import CORALean.ContSet.HPolytope.Real.Theorems.CertifiedOuter
+import CORALean.ContSet.HPolytope.Real.Theorems.PlusOfOuter
+import CORALean.ContSet.HPolytope.Real.Theorems.LinCombOfOuter
+import CORALean.ContSet.HPolytope.Real.Theorems.MtimesOfOuter
 import CORALean.ContSet.HPolytope.Real.Theorems.ComapExact
 import CORALean.ContSet.HPolytope.Real.Theorems.Convex
 import CORALean.ContSet.HPolytope.Real.Theorems.ExtremePoints
