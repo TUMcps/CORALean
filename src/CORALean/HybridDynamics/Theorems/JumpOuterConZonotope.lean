@@ -21,17 +21,17 @@ Convex only, which a constrained zonotope is. A non-convex guard is
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   04-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
 
-open ContSet
+open Matrix ContSet Scalar
 
-variable {L : Type} {n : ℕ}
+variable {L : Type} {𝕋 : Type} [Scalar 𝕋] [Mtimes (Mat 𝕋) 𝒞] {n : ℕ}
 
 /-- The guard intersection computed rather than assumed. -/
-theorem Transition.jump_outer_conZonotope (e : Transition 𝒞 L n)
+theorem Transition.jump_outer_conZonotope (e : Transition 𝒞 L 𝕋 n)
     {R : ConZonotope (Vec ℝ n)} {z : Vec ℝ n} (hz : z ∈ construct R)
     (hguard : z ∈ construct e.guard) :
     e.reset z ∈ construct (e.jump (R.and e.guard)) :=

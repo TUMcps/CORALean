@@ -30,7 +30,7 @@ operations ask for `Mtimes ℐ S` at the *exact* interval-matrix family.
 
 -- Authors:       Tobias Ladner
 -- Written:       03-September-2026
--- Last update:   ---
+-- Last update:   04-September-2026
 -- Last revision: ---
 
 namespace CORALean.Float
@@ -125,8 +125,13 @@ example (sys : Real.NeurNetContrSysDT 𝕋 (Zonotope 𝕋) n) (o : ℕ) (R₀ : 
 
 The automaton, its runs and its invariant are propositions over whatever the
 locations are described in, so they read at a float representation with nothing
-to add. Only `Transition.jump`, which computes, does not — and for the reason
-the module docstring gives. -/
+to add. `Transition.W` and `.w` read through `Scalar 𝕋` like `LinearSysDT.A`,
+so that half is not what stops `Transition.jump` at a float representation.
+What stops it is `OfInterval`: `jump` calls `CORALean.Real`'s, converting an
+*exact* real box, and no float representation has that instance — one would have
+to round the box into the representation's own floats before an `InflatedContSet`
+error box exists to pay that rounding into, which is exactly what
+`CORALean.Float.OfInterval` is for instead. -/
 
 example {HA : Real.HybridAutomaton (Zonotope 𝕋) L 𝕋 n} {R : L → Zonotope 𝕋 n}
     (hinv : HA.Invariant R) (spec : Specification (Vec ℝ n)) {ℓ ℓ' : L}

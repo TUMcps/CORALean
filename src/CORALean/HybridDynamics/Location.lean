@@ -24,7 +24,7 @@ vacuously, and `x τ` — the state a jump reads — is unconstrained.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   04-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -38,7 +38,7 @@ structure Location (S : ℕ → Type) (L : Type) (𝕋 : Type) (n : ℕ) where
   inv : S n
   dynamics : LinearSys 𝕋 n
   U : S n
-  trans : List (Transition S L n)
+  trans : List (Transition S L 𝕋 n)
 
 structure Location.Trajectory (ℓ : Location S L 𝕋 n) (τ : ℝ)
     (x u : ℝ → Vec ℝ n) : Prop where

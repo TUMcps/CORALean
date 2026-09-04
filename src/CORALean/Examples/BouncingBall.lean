@@ -27,7 +27,7 @@ tested pointwise. Both are the missing `And` interface.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   02-September-2026
+-- Last update:   04-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -39,7 +39,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 /-- The bounce: on the floor with a downward speed of at most `v`, keep the
 position and reverse the velocity, damped by `d`. -/
-noncomputable def Example.bounce (d v : ℝ) : Transition 𝒵 Unit 2 where
+noncomputable def Example.bounce (d v : ℝ) : Transition 𝒵 Unit ℝ 2 where
   guard := ⟨1, ![0, -v / 2], ![![0, v / 2]]⟩
   W := !![1, 0; 0, -d]
   w := 0
@@ -86,7 +86,7 @@ example (ℓ : Location 𝒵 Unit ℝ 2) {τ : ℝ} {x u : ℝ → Vec ℝ 2}
 
 /-- The reset image, once the caller has cut the incoming set down to the
 guard. -/
-example (e : Transition 𝒵 Unit 2) {R Rg : Zonotope (Vec ℝ 2)}
+example (e : Transition 𝒵 Unit ℝ 2) {R Rg : Zonotope (Vec ℝ 2)}
     (hand : construct R ∩ construct e.guard ⊆ construct Rg) {z : Vec ℝ 2}
     (hz : z ∈ construct R) (hguard : z ∈ construct e.guard) :
     e.reset z ∈ construct (e.jump Rg) :=

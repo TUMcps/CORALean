@@ -23,31 +23,31 @@ is worth having.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   04-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
 
-open Matrix ContSet Plus Mtimes OfInterval
+open Matrix ContSet Scalar Plus Mtimes OfInterval
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
-variable [Mtimes (Mat ℝ) S] [OfInterval S] {L : Type} {n : ℕ}
+variable {𝕋 : Type} [Scalar 𝕋] [Mtimes (Mat 𝕋) S] [OfInterval S] {L : Type} {n : ℕ}
 
 /-- `R` encloses the state at the moment of the jump, `Rg` its intersection with
 the guard; the reset image then lands in `jump Rg`. -/
-theorem Transition.jump_outer (e : Transition S L n) {R Rg : S n}
+theorem Transition.jump_outer (e : Transition S L 𝕋 n) {R Rg : S n}
     (hand : construct R ∩ construct e.guard ⊆ construct Rg) {z : Vec ℝ n}
     (hz : z ∈ construct R) (hguard : z ∈ construct e.guard) :
     e.reset z ∈ construct (e.jump Rg) := by
-  show e.W *ᵥ z + e.w ∈ construct (e.jump Rg)
+  show toRealMat e.W *ᵥ z + toRealVec e.w ∈ construct (e.jump Rg)
   exact plus_outer _ _ (Set.add_mem_add
     (mtimes_outer e.W Rg
       (Set.mem_biUnion rfl (Set.mem_image_of_mem _ (hand ⟨hz, hguard⟩))))
-    (ofInterval_outer _ (Interval.mem_point e.w)))
+    (ofInterval_outer _ (Interval.mem_point (toRealVec e.w))))
 
 /-- The same as an inclusion of the set that leaves, which is the form a chain
 of steps composes in. -/
-theorem Transition.reset_image_subset (e : Transition S L n) {R Rg : S n}
+theorem Transition.reset_image_subset (e : Transition S L 𝕋 n) {R Rg : S n}
     (hand : construct R ∩ construct e.guard ⊆ construct Rg) :
     e.reset '' (construct R ∩ construct e.guard) ⊆ construct (e.jump Rg) := by
   rintro _ ⟨z, ⟨hz, hguard⟩, rfl⟩
