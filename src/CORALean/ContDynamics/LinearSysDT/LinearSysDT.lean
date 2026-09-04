@@ -9,14 +9,16 @@ CORA's `linearSysDT`, reduced to `x(k+1) = A x(k) + u(k)`: the class there is
 `mtimes` and one `plus` on the input set, and the folded form reaches every state
 the system can.
 
-The output equation is `OutputEq`, paired with a reachable set rather than stored
-here — `LinearSysDT.output_outer` is the pairing along a run. Its `D` multiplies
-the input in *state* coordinates, which is where folding `B` costs something:
-CORA's `D u` is recovered only when `B` is invertible, so feedthrough of an input
-`B` annihilates cannot be written. That is the one argument for an explicit `B`.
+The output equation is `OutputEq`, paired with a reachable set rather than
+stored here — `output_outer` pairs it along a run. `D` multiplies the input in
+*state* coordinates, unrecoverable once `B` folds away.
 
-`Trajectory` is what such a system denotes and the only place the dynamics
-appear — one admissible run, with an input per step, so a disturbance is one too.
+`Trajectory` is the only place the dynamics appear — one run, quantified over
+every `k : ℕ`. `TrajectoryOn K` is the same, known only for `k < K` — what
+sampling on `[0, KΔt]` gives, never a total run, so `discretize_horizon`
+produces it and `reach_outer_horizon` consumes it. No `bound` field on
+`Trajectory` — every total run would then carry a spurious `K = ⊤` —
+`toTrajectoryOn` gives `TrajectoryOn K` at any `K` from one instead.
 
 ## References
 
@@ -26,7 +28,7 @@ appear — one admissible run, with an input per step, so a disturbance is one t
 
 -- Authors:       Tobias Ladner
 -- Written:       18-August-2026
--- Last update:   03-September-2026
+-- Last update:   04-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -44,5 +46,14 @@ structure LinearSysDT.Trajectory (sys : LinearSysDT 𝕋 n) (R₀ U : S n)
   init : x 0 ∈ construct R₀
   input (k : ℕ) : u k ∈ construct U
   step (k : ℕ) : x (k + 1) = toRealMat sys.A *ᵥ x k + u k
+
+/-- A run known only for its first `K` steps: `x` and `u` past that point are
+unconstrained, exactly as `LinearSys.Trajectory`'s `x` and `u` are unconstrained
+outside `T`. -/
+structure LinearSysDT.TrajectoryOn (sys : LinearSysDT 𝕋 n) (R₀ U : S n) (K : ℕ)
+    (x u : ℕ → Vec ℝ n) : Prop where
+  init : x 0 ∈ construct R₀
+  input (k : ℕ) (hk : k < K) : u k ∈ construct U
+  step (k : ℕ) (hk : k < K) : x (k + 1) = toRealMat sys.A *ᵥ x k + u k
 
 end CORALean.Real

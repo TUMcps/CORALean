@@ -19,14 +19,14 @@ real whatever the system stores.
 rather than assumed.
 
 Both ask for all of forward time, which is what `discretize` needs. The horizon
-statements below ask only for `[0, KΔt]` and pay for it by unrolling the
-discrete recursion themselves — `LinearSysDT.Trajectory` is total in the step
-count, so there is nothing bounded to hand it.
+statements below ask only for `[0, KΔt]`: `discretize_horizon` samples that
+into a `LinearSysDT.TrajectoryOn K`, and `reach_outer_horizon` is
+`LinearSysDT.reach_outer_on` handed that — no recursion of its own.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       18-August-2026
--- Last update:   02-September-2026
+-- Last update:   04-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -80,34 +80,33 @@ theorem step_subset_horizon {T : Set ℝ} {Δt : ℝ} {K k : ℕ} (hΔt : 0 ≤ 
   refine le_trans hs.2 (mul_le_mul_of_nonneg_right ?_ hΔt)
   exact_mod_cast Nat.succ_le_of_lt hk
 
+omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
+  [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] in
+/-- The run sampled from `[0, KΔt]` alone: `discretize_step` iterated, at the
+domain `step_subset_horizon` carves out. A `TrajectoryOn K`, not a total
+`Trajectory` — nothing pins `x` or `u` past step `K`. -/
+theorem LinearSys.Trajectory.discretize_horizon {sys : LinearSys 𝕋 n} {T : Set ℝ}
+    {R₀ U Ud : S n} {x u : ℝ → Vec ℝ n} {Δt : ℝ} {K : ℕ}
+    (traj : sys.Trajectory T R₀ U x u) (hΔt : 0 ≤ Δt)
+    (hT : Set.Icc 0 ((K : ℝ) * Δt) ⊆ T) (hU : Bornology.IsBounded (construct U))
+    (hUd : ∀ k < K, sys.stepInput u Δt k ∈ construct Ud) :
+    (sys.discretize Δt).TrajectoryOn R₀ Ud K
+      (fun k : ℕ => x (k * Δt)) (sys.stepInput u Δt) where
+  init := by simpa using traj.init
+  input k hk := hUd k hk
+  step k hk := by simpa using traj.discretize_step hΔt hU k (step_subset_horizon hΔt hT hk)
+
 omit [∀ n, LinComb (S n) (Vec ℝ n)] in
 /-- The same conclusion over a bounded horizon: `K` steps see the flow on
-`[0, KΔt]` and nothing beyond. The recursion is unrolled here because
-`LinearSysDT.reach_outer` wants a run total in the step count. -/
+`[0, KΔt]` and nothing beyond. `discretize_horizon` handed to `reach_outer_on`
+— no recursion of its own. -/
 theorem LinearSys.Trajectory.reach_outer_horizon {sys : LinearSys 𝕋 n} {T : Set ℝ}
     {R₀ U Ud : S n} {x u : ℝ → Vec ℝ n} {Δt : ℝ} {K : ℕ}
     (traj : sys.Trajectory T R₀ U x u) (hΔt : 0 ≤ Δt)
     (hT : Set.Icc 0 ((K : ℝ) * Δt) ⊆ T) (hU : Bornology.IsBounded (construct U))
     (hUd : ∀ k < K, sys.stepInput u Δt k ∈ construct Ud) (o : ℕ) :
-    ∀ k ≤ K, x ((k : ℝ) * Δt) ∈ construct ((sys.discretize Δt).reach o R₀ Ud k) := by
-  intro k
-  -- the induction is on the step count, `hk` keeping each step inside the horizon
-  induction k with
-  | zero =>
-    intro _
-    show x (((0 : ℕ) : ℝ) * Δt) ∈ construct R₀
-    simpa using traj.init
-  | succ k ih =>
-    intro hk
-    have hkK : k < K := Nat.lt_of_succ_le hk
-    have hcast : ((k + 1 : ℕ) : ℝ) = (k : ℝ) + 1 := by push_cast; ring
-    show x (((k + 1 : ℕ) : ℝ) * Δt) ∈ construct (reduce (plus
-      (Mtimes.mtimes (sys.discretize Δt).A ((sys.discretize Δt).reach o R₀ Ud k)) Ud) o)
-    rw [hcast, traj.discretize_step hΔt hU k (step_subset_horizon hΔt hT hkK)]
-    exact reduce_outer _ _ (plus_outer _ _
-      (Set.add_mem_add
-        (Mtimes.mtimes_outer _ _ (Set.mem_biUnion rfl (Set.mem_image_of_mem _ (ih hkK.le))))
-        (hUd k hkK)))
+    ∀ k ≤ K, x ((k : ℝ) * Δt) ∈ construct ((sys.discretize Δt).reach o R₀ Ud k) :=
+  (sys.discretize Δt).reach_outer_on o R₀ Ud (traj.discretize_horizon hΔt hT hU hUd)
 
 omit [∀ n, LinComb (S n) (Vec ℝ n)] in
 /-- The horizon statement with the input enclosure named rather than assumed.
