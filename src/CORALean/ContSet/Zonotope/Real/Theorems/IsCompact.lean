@@ -32,6 +32,7 @@ theorem Zonotope.continuous_affine (Z : Zonotope α) :
   continuous_const.add (continuous_finsetSum _ fun j _ =>
     (continuous_apply j).smul continuous_const)
 
+-- a zonotope is a continuous image of that ball, so compactness carries over
 theorem Zonotope.isCompact_construct (Z : Zonotope α) : IsCompact Z.construct := by
   have himg : Z.construct
       = (fun β : Fin Z.h → ℝ => Z.c + ∑ j, β j • Z.G j) '' Metric.closedBall 0 1 := by

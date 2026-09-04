@@ -56,6 +56,7 @@ theorem ConPolyZono.toReal_agreeRow (C₁ C₂ : ConPolyZono 𝕋 n) (i : Fin n)
   refine Fin.addCases (fun l => ?_) (fun l => ?_) l <;>
     simp only [ConPolyZono.agreeRow, Fin.append_left, Fin.append_right, toReal_neg]
 
+-- the same restatement one level up, where `andA` stacks the two constraint blocks
 theorem ConPolyZono.toRealMat_andA (C₁ C₂ : ConPolyZono 𝕋 n) :
     toRealMat (ConPolyZono.andA C₁ C₂)
       = Real.ConPolyZono.andA (nominal C₁) (nominal C₂) := by
@@ -77,6 +78,7 @@ theorem ConPolyZono.toRealMat_andA (C₁ C₂ : ConPolyZono 𝕋 n) :
   · simp only [toRealMat, ConPolyZono.andA, Fin.append_right]
     exact ConPolyZono.toReal_agreeRow C₁ C₂ i l
 
+-- and the bounds, whose last block is the tolerance the agreement rows carry
 theorem ConPolyZono.nominal_andB (C₁ C₂ : ConPolyZono 𝕋 n) :
     (ConPolyZono.andB C₁ C₂).nominal
       = Real.ConPolyZono.andB (nominal C₁) (nominal C₂) (ConPolyZono.aux_andD C₁ C₂) := by
@@ -97,6 +99,7 @@ theorem ConPolyZono.nominal_andB (C₁ C₂ : ConPolyZono 𝕋 n) :
     refine congrArg _ (funext fun i => ?_)
     simp only [ConPolyZono.aux_andD, toRealVec]
     ring
+  -- the upper end, the same read-back with the other endpoint of each box
   have hsup : toRealVec (Fin.append (Fin.append C₁.b.sup C₂.b.sup)
         (ConPolyZono.andAgree C₁ C₂).sup)
       = Fin.append (Fin.append (toRealVec C₁.b.sup) (toRealVec C₂.b.sup))
@@ -114,6 +117,7 @@ theorem ConPolyZono.nominal_andB (C₁ C₂ : ConPolyZono 𝕋 n) :
     Real.Interval (Vec ℝ (C₁.m + C₂.m + n))) = _
   rw [hinf, hsup]
 
+-- the whole record now, field by field, on the blocks just pinned
 theorem ConPolyZono.nominal_andDep (C₁ C₂ : ConPolyZono 𝕋 n) :
     nominal (C₁.andDep C₂)
       = Real.ConPolyZono.andDep (nominal C₁) (nominal C₂) (ConPolyZono.aux_andD C₁ C₂) := by
@@ -125,6 +129,7 @@ theorem ConPolyZono.nominal_andDep (C₁ C₂ : ConPolyZono 𝕋 n) :
       simp only [Fin.append_left, Fin.append_right, Pi.zero_apply, toReal_zero]
   have hGI : (fun (j : Fin 0) (_ : Fin n) => toReal ((Fin.elim0 : Fin 0 → 𝕋) j))
       = (Fin.elim0 : Fin 0 → Vec ℝ n) := funext fun j => j.elim0
+  -- the exact layer's record spelled out, so the field rewrites above have a term to match
   have hreal : Real.ConPolyZono.andDep (nominal C₁) (nominal C₂)
         (ConPolyZono.aux_andD C₁ C₂)
       = (⟨C₁.p + C₂.p, C₁.h + C₂.h, 0, C₁.m + C₂.m + n, C₁.s + C₂.s + (C₁.h + C₂.h),
@@ -137,6 +142,7 @@ theorem ConPolyZono.nominal_andDep (C₁ C₂ : ConPolyZono 𝕋 n) :
         Real.ConPolyZono.appendE (Real.PolyZonotope.plusE C₁.EC C₂.EC)
           (Real.PolyZonotope.plusE C₁.E C₂.E)⟩ : Real.ConPolyZono (Vec ℝ n)) := rfl
   rw [hreal]
+  -- and the float side in the same shape, so the two records differ only field by field
   show (⟨C₁.p + C₂.p, C₁.h + C₂.h, 0, C₁.m + C₂.m + n, C₁.s + C₂.s + (C₁.h + C₂.h),
       toRealVec C₁.c,
       fun l i => toReal (Fin.append (C₁.G i) (fun _ => zero) l),
@@ -170,6 +176,7 @@ theorem ConPolyZono.aux_mem_andD (C₁ C₂ : ConPolyZono 𝕋 n) {e₁ e₂ : V
       sub_le_subUp (C₂.c i) (C₁.c i),
       sub_le_subUp (C₂.err.sup i) (C₁.err.inf i), hb₁.1, hb₂.2]
 
+-- the nominal side is the exact layer's intersection, at the tolerance `aux_andD` supplies
 theorem ConPolyZono.andDep_outer (C₁ C₂ : ConPolyZono 𝕋 n) (hq₁ : C₁.q = 0)
     (hq₂ : C₂.q = 0) : C₁.construct ∩ C₂.construct ⊆ (C₁.andDep C₂).construct := by
   have hnom : nominalSet (C₁.andDep C₂)
@@ -178,6 +185,7 @@ theorem ConPolyZono.andDep_outer (C₁ C₂ : ConPolyZono 𝕋 n) (hq₁ : C₁.
     rw [ConPolyZono.nominal_andDep,
       ← Real.ConPolyZono.andDep_exact (nominal C₁) (nominal C₂) _ hq₁ hq₂]
     rfl
+  -- one point, two decompositions: the nominal parts differ by exactly `e₂ - e₁`
   rintro x ⟨⟨y₁, hy₁, e₁, he₁, hx₁⟩, y₂, hy₂, e₂, he₂, hx₂⟩
   have hx₁' : y₁ + e₁ = x := hx₁
   have hx₂' : y₂ + e₂ = x := hx₂

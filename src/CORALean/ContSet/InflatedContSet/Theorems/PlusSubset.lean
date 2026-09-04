@@ -32,6 +32,7 @@ theorem plus_subset {s₁ : S₁} {s₂ : S₂} {t : T} {D : Set (Vec ℝ n)}
   show nominalSet s₁ + (error s₁).construct
       + (nominalSet s₂ + (error s₂).construct) ⊆
     nominalSet t + (error t).construct
+  -- the four summands regrouped so each hypothesis applies to one pair
   calc nominalSet s₁ + (error s₁).construct
         + (nominalSet s₂ + (error s₂).construct)
       = nominalSet s₁ + nominalSet s₂

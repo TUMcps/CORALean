@@ -56,6 +56,7 @@ theorem HPolytope.conZonotope_exact
       show -(HPolytope.zonotope up lo).c
         + ((HPolytope.zonotope up lo).c + (HPolytope.zonotope up lo).genMap β) = _
       rw [neg_add_cancel_left]
+  -- both directions off `hmem`, the enclosing zonotope supplying the coefficients
   ext x
   constructor
   · rintro ⟨β, -, hP, rfl⟩

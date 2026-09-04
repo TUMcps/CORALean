@@ -59,6 +59,7 @@ def ConZonotope.conPolyZono (C : ConZonotope 𝕋 n) : ConPolyZono 𝕋 n where
 
 variable [SoundFloatArithmetic 𝕋]
 
+-- the polytope's rows read as a constraint system over the factors themselves
 theorem ConZonotope.satisfies_conPolyZono (C : ConZonotope 𝕋 n) {β : Vec ℝ C.h}
     (hβ : ∀ j, |β j| ≤ 1) (hP : β ∈ C.P.construct) : C.conPolyZono.satisfies β := by
   obtain ⟨hle, heq⟩ := HPolytope.mem_construct_iff.mp hP
@@ -72,6 +73,7 @@ theorem ConZonotope.satisfies_conPolyZono (C : ConZonotope 𝕋 n) {β : Vec ℝ
       = ∑ j, toRealMat C.P.A i j * β j
     exact Finset.sum_congr rfl fun j _ => by
       simp only [toRealMat, ConZonotope.conA, Fin.append_left]
+  -- and the equality rows, which are the right half of the same append
   have hEq : ∀ i : Fin C.P.me,
       (toRealMat (ConZonotope.conA C) *ᵥ β) (Fin.natAdd C.P.m i)
         = (toRealMat C.P.Ae *ᵥ β) i := by
@@ -83,6 +85,7 @@ theorem ConZonotope.satisfies_conPolyZono (C : ConZonotope 𝕋 n) {β : Vec ℝ
   have key : ∀ i, (ConZonotope.conB C).nominal.inf i
         ≤ (toRealMat (ConZonotope.conA C) *ᵥ β) i
       ∧ (toRealMat (ConZonotope.conA C) *ᵥ β) i ≤ (ConZonotope.conB C).nominal.sup i := by
+    -- an inequality row takes the free lower bound, an equality row its own two
     refine Fin.addCases (fun i => ?_) fun i => ?_
     · rw [hlin i]
       have hrad : |(toRealMat C.P.A *ᵥ β) i| ≤ toReal (radius C.P.A i) :=
@@ -100,6 +103,7 @@ theorem ConZonotope.satisfies_conPolyZono (C : ConZonotope 𝕋 n) {β : Vec ℝ
   rw [hm]
   exact key i
 
+-- the point survives as it stands: identity exponents make every monomial a factor
 theorem ConZonotope.conPolyZono_outer (C : ConZonotope 𝕋 n) :
     C.construct ⊆ C.conPolyZono.construct := by
   refine mono_subset (fun x hx => ?_) subset_rfl

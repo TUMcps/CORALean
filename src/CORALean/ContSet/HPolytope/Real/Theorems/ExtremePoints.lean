@@ -44,6 +44,7 @@ theorem HPolytope.eq_zero_of_extremePoint (P : HPolytope (Vec ℝ n)) {x : Vec �
   obtain ⟨δ, hδ, hball⟩ := Metric.isOpen_iff.mp hUopen x hxU
   have hdn : 0 < ‖d‖ := norm_pos_iff.mpr hd
   have ht : 0 < δ / (2 * ‖d‖) := div_pos hδ (by positivity)
+  -- a step of that size along `d` stays inside every row, tight or slack
   have hstep : ∀ ε : ℝ, |ε| = δ / (2 * ‖d‖) → x + ε • d ∈ P.construct := by
     intro ε hε
     have hnorm : |ε| * ‖d‖ = δ / 2 := by
@@ -60,6 +61,7 @@ theorem HPolytope.eq_zero_of_extremePoint (P : HPolytope (Vec ℝ n)) {x : Vec �
       · exact le_of_lt (Set.mem_iInter.mp hmem i (lt_of_le_of_ne (hxmem.1 i) h))
     · rw [map_add, map_smul, heq i, smul_eq_mul, mul_zero, add_zero]
       exact hxmem.2 i
+  -- so `x` lies in the open segment between two points of `P`, which it cannot
   have hup : x + (δ / (2 * ‖d‖)) • d ∈ P.construct := hstep _ (abs_of_pos ht)
   have hdown : x + (-(δ / (2 * ‖d‖))) • d ∈ P.construct :=
     hstep _ (by rw [abs_neg, abs_of_pos ht])

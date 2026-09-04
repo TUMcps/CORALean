@@ -28,6 +28,7 @@ instance : LinComb (VPolytope 𝕋 n) (Vec ℝ n) where
     rw [VPolytope.materialise_eq]
     exact VPolytope.linComb_outer P₁ P₂
 
+-- `reduce` is the identity: a vertex list has no ranking to run
 instance : Reduce (VPolytope 𝕋 n) (Vec ℝ n) where
   reduce P _ := P.materialise
   reduce_outer P _ := by

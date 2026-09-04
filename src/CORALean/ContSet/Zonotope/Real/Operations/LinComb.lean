@@ -3,26 +3,22 @@ import CORALean.ContSet.Zonotope.Real.Zonotope
 /-!
 # Zonotopes: the linear combination of two
 
-CORA's `@zonotope/enclose`, which is where a zonotope's `linComb` comes from:
-CORA gives the representation no `linComb` of its own and `enclose` computes the
-same set. The centre is the midpoint, one fresh generator spans the
-half-difference of the centres — which is what lets the combination slide from
-one set to the other — and the two generator blocks are paired column by column
-into half their sum and half their difference, the longer block keeping its
-surplus at full width.
+CORA's `@zonotope/enclose`, which is where a zonotope's `linComb` comes from.
+The centre is the midpoint, one fresh generator spans the half-difference of the
+centres — which is what lets the combination slide from one set to the other —
+and the two generator blocks are paired column by column into half their sum and
+half their difference, the longer block keeping its surplus at full width.
 
 Pairing is what makes this tighter than concatenating the blocks, at the same
 count `h₁ + h₂ + 1`. Over a paired column the result reaches
 `{u G₁ⱼ + v G₂ⱼ | |u| + |v| ≤ 1}`, the hull of `±G₁ⱼ` and `±G₂ⱼ`, rather than
-the whole box `|u| ≤ 1, |v| ≤ 1`: the coefficients come out as
-`λ β₁ⱼ ± (1-λ) β₂ⱼ`, which records that the two sides share one `λ`. Past the
-shorter block there is nothing to pair with and `λ β₁ⱼ` alone still needs the
-generator whole.
+the whole box: the coefficients come out as `λ β₁ⱼ ± (1-λ) β₂ⱼ`, which records
+that the two sides share one `λ`. Past the shorter block there is nothing to
+pair with and `λ β₁ⱼ` alone still needs the generator whole.
 
-The columns come out in the order `sum ++ difference ++ centre` rather than
-CORA's `sum ++ centre ++ difference ++ surplus`; a zonotope does not depend on
-the order of its generators, and this one keeps the two blocks the same shape as
-the incoming ones.
+The columns come out as `sum ++ difference ++ centre` rather than CORA's
+`sum ++ centre ++ difference ++ surplus`; a zonotope does not depend on the
+order of its generators.
 -/
 
 -- Authors:       Tobias Ladner

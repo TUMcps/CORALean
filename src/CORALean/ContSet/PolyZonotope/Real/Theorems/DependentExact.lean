@@ -42,6 +42,7 @@ theorem PolyZonotope.dependent_exact (PZ : PolyZonotope α) :
     PZ.construct = PZ.dependent.construct := by
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨a, b, ha, hb, rfl⟩
+    -- forward: the free coefficients become the right half of the factor vector
     refine ⟨Fin.append a b, fun _ => 0,
       Fin.addCases (fun k => by simpa using ha k) (fun j => by simpa using hb j),
       fun j => j.elim0, ?_⟩
@@ -54,6 +55,7 @@ theorem PolyZonotope.dependent_exact (PZ : PolyZonotope α) :
     simp only [Finset.univ_eq_empty, Finset.sum_empty, add_zero, Fin.append_left,
       Fin.append_right]
     abel
+  -- back: the same split read the other way, the independent block now empty
   · rintro _ ⟨a, b, ha, _, rfl⟩
     refine ⟨fun k => a (Fin.castAdd PZ.q k), fun j => a (Fin.natAdd PZ.p j),
       fun k => ha _, fun j => ha _, ?_⟩

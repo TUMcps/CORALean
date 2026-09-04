@@ -92,6 +92,7 @@ theorem le_maximumOver : ∀ {k : ℕ} (f : Fin k → 𝕋) (l : Fin k),
     · exact le_max_left _ _
     · exact le_trans (ih (fun i => f i.succ) l') (le_max_right _ _)
 
+/-- A fold of `addUp`, so each partial sum pays one rounding in the same direction. -/
 theorem sum_le_sumUp (f : Fin n → 𝕋) : ∑ i, toReal (f i) ≤ toReal (sumUp f) := by
   induction n with
   | zero => rw [Finset.univ_eq_empty, Finset.sum_empty, sumUp, toReal_zero]

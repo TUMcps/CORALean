@@ -34,6 +34,7 @@ theorem ConPolyZono.map_exact (f : α →ₗ[ℝ] β) (C : ConPolyZono α) :
     congr 1
     · exact congrArg _ (Finset.sum_congr rfl fun i _ => map_smul f _ (C.G i))
     · exact Finset.sum_congr rfl fun j _ => map_smul f (b j) (C.GI j)
+  -- both inclusions are `hf` read in the two directions; the constraint never moves
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨x, ⟨a, b, ha, hb, hsat, rfl⟩, rfl⟩
     exact ⟨a, b, ha, hb, (ConPolyZono.satisfies_map f C a).mpr hsat, hf a b⟩

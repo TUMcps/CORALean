@@ -7,42 +7,20 @@ import CORALean.NN.Layers.Convolution
 
 CORA's `nnAvgPool2DLayer` and `nnMaxPool2DLayer`, and they part company here.
 
-## Average pooling is a convolution
+`Layer.avgPool` is `Layer.linear` at `tapMat` with every weight `1 / k`, which is
+`Layer.conv` at a constant kernel; the window is the taps, so a stride or a
+channel layout never appears.
 
-`Layer.avgPool` is `Layer.linear` at `tapMat` with every weight `1 / k`, which
-is to say it is `Layer.conv` at a constant kernel. It is not a layer of its own
-in any sense that matters: it computes a fixed linear map, it propagates by
-`mtimes` and `plus`, and at a representation closed under those it loses
-nothing. The window is the taps, so a stride, a padding or a channel layout
-never appears.
+Max pooling does not fit `Relaxation` at all. A relaxation is a scalar
+`σ : ℝ → ℝ` over one interval, where a pooled output is a function of `k + 1`
+inputs over `k + 1` intervals; and `Layer.activation` turns slopes into
+`Matrix.diagonal`, where max pooling's affine part is a *selection* matrix. What
+carries over is the shape: an affine part through `mtimes` and a box for the rest.
 
-## Max pooling is not, and `Relaxation` does not fit
-
-The failure is structural rather than a matter of degree, and it is worth
-stating exactly:
-
-* `Relaxation` is indexed by a scalar function `σ : ℝ → ℝ` and bounds it over
-  *one* interval. A pooled output is a function of `k + 1` inputs over `k + 1`
-  intervals, so there is no `σ` for it to be a relaxation of.
-* `Layer.activation` turns the slopes into `Matrix.diagonal`, which presumes the
-  layer is square and coordinatewise. Max pooling is `Vec ℝ n → Vec ℝ m` with
-  `m` smaller, and its affine part is a *selection* matrix — one `1` per row,
-  and not on the diagonal.
-
-Widening `Relaxation` to cover both would leave nothing shared but the word, so
-it is left alone and the layer is written directly. What does carry over is the
-*shape* the activation layer has: an affine part propagated through `mtimes`, so
-the dependence on the input survives, and a box for what the affine part misses.
-
-The affine part is one input per window — the pivot — and the box is
-`[0, gap]`, since a maximum is never below any of its arguments. `gap` is how
-far another tap in the window can reach above the pivot's own lower bound, and
-it is *zero* exactly when the pivot dominates the window's upper bounds: a
-stable window makes this layer exact, as a stable neuron makes `ReLU` exact.
-
-`pivot` is where precision is chosen and never where soundness is, exactly as
-`reluSlope` is: every choice is sound, and the tap with the largest lower bound
-is the one that makes `gap` smallest.
+That affine part is one input per window — the pivot — and the box is `[0, gap]`,
+a maximum never being below any of its arguments. `gap` is zero exactly when the
+pivot dominates the window, so a stable window makes this layer exact, and
+`pivot` is precision and never soundness, as `reluSlope` is.
 -/
 
 -- Authors:       Tobias Ladner
@@ -101,11 +79,8 @@ theorem windowMax_le {k : ℕ} {f : Fin (k + 1) → ℝ} {c : ℝ} (h : ∀ l, f
   Finset.sup'_le _ f fun l _ => h l
 
 /-- How far the window may rise above its pivot, for *any* `g` bounding what the
-other taps can reach above the pivot's own lower bound. Stated for an arbitrary
-`g` rather than for the one computed below, exactly as `relu_bounds_of_slope` is
-stated for an arbitrary slope: the pivot and the arithmetic behind `g` are
-precision, never soundness, which is what lets the float layer round `g` up and
-reuse this proof unchanged. -/
+other taps reach above the pivot's lower bound — arbitrary, so the float layer
+rounds `g` up and reuses this proof. -/
 theorem maxPool_bounds {k : ℕ} (t : Fin (k + 1) → Fin n) (p : Fin (k + 1))
     (lo hi x : Vec ℝ n) (hx : ∀ i, lo i ≤ x i ∧ x i ≤ hi i) {g : ℝ} (hg0 : 0 ≤ g)
     (hg : ∀ l, l ≠ p → hi (t l) - lo (t p) ≤ g) :
@@ -126,12 +101,14 @@ noncomputable def maxPoolGap (tap : Fin m → Fin (k + 1) → Fin n) (p : Fin m 
     (I : Interval (Vec ℝ n)) (j : Fin m) : ℝ :=
   windowMax fun l => if l = p j then 0 else I.sup (tap j l) - I.inf (tap j (p j))
 
+/-- Read at the pivot itself, where the window contributes zero. -/
 theorem maxPoolGap_nonneg (tap : Fin m → Fin (k + 1) → Fin n) (p : Fin m → Fin (k + 1))
     (I : Interval (Vec ℝ n)) (j : Fin m) : 0 ≤ maxPoolGap tap p I j := by
   have h := le_windowMax
     (fun l => if l = p j then (0 : ℝ) else I.sup (tap j l) - I.inf (tap j (p j))) (p j)
   rwa [if_pos rfl] at h
 
+/-- And at any other tap, which is what `maxPool_bounds` asks of `g`. -/
 theorem le_maxPoolGap (tap : Fin m → Fin (k + 1) → Fin n) (p : Fin m → Fin (k + 1))
     (I : Interval (Vec ℝ n)) (j : Fin m) {l : Fin (k + 1)} (hl : l ≠ p j) :
     I.sup (tap j l) - I.inf (tap j (p j)) ≤ maxPoolGap tap p I j := by

@@ -54,6 +54,7 @@ def Zonotope.nominalBoundDot (Z : Zonotope 𝕋 n) {c : Vec ℝ n →ₗ[ℝ] �
           have hm := le_max_left (toReal (dotUp a fun i => Z.G i j))
             (-toReal (dotDown a fun i => Z.G i j))
           linarith
+      -- and the generators' total, summed upward once
       have h₃ : (∑ j, |c ((InflatedContSet.nominal Z).G j)|)
           ≤ toReal (sumUp fun j => maximum (dotUp a fun i => Z.G i j)
               (neg (dotDown a fun i => Z.G i j))) :=

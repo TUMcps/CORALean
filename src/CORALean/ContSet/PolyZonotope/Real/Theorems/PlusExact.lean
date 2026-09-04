@@ -53,6 +53,7 @@ theorem PolyZonotope.plus_exact (PZ₁ PZ₂ : PolyZonotope α) :
     simp only [PolyZonotope.plus, PolyZonotope.monomial_plusE_left,
       PolyZonotope.monomial_plusE_right, Fin.append_left, Fin.append_right]
     abel
+  -- back: the appended data split again, giving one point of each set
   · rintro x ⟨a, β, ha, hβ, rfl⟩
     refine ⟨PZ₁.c + ∑ i, PolyZonotope.monomial PZ₁.E (fun k => a (Fin.castAdd PZ₂.p k)) i
               • PZ₁.G i + ∑ j, β (Fin.castAdd PZ₂.q j) • PZ₁.GI j,

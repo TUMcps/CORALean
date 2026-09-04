@@ -17,7 +17,7 @@ rather than composing with it.
 
 -- Authors:       Tobias Ladner
 -- Written:       16-August-2026
--- Last update:   01-September-2026 (via `map`)
+-- Last update:   01-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real

@@ -51,6 +51,7 @@ theorem Zonotope.reduceBy_outer (Z : Zonotope (Vec ℝ n))
             (abs_nonneg (Z.G (part.right l) i))
   have hnonneg : ∀ i, (0:ℝ) ≤ ∑ l, |Z.G (part.right l) i| :=
     fun i => (abs_nonneg _).trans (hbound i)
+  -- the witness: kept coefficients, plus one per coordinate scaled to the dropped reach
   refine Zonotope.mem_construct_iff.mpr
     ⟨Fin.append (fun l => β (part.left l)) (fun i =>
       Zonotope.coefficient (∑ l, |Z.G (part.right l) i|)

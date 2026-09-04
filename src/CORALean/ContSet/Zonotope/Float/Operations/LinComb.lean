@@ -13,20 +13,16 @@ paired into half their sum and half their difference, the longer block keeping
 its surplus at full width. The count stays `h₁ + h₂ + 1` as over ℝ, every
 rounding going into the box.
 
-Pairing is what costs the float layer something the loose form did not:
+Pairing is what costs the float layer something a concatenation would not:
 concatenated blocks are copied exactly, paired ones are arithmetic and round.
 Halving is exact, so a single directed sum or difference is the only rounding in
-a paired column, and a surplus column is a copy and does not round at all.
+a paired column, and a surplus column does not round at all.
 
-Two charges come out of that, and they differ in kind. The centre is stored in
-place of a known bracket, which is a `residual`. Every generator's coefficient
-ranges over `[-1,1]`, so its shortfall pulls both ways and is charged by
-`generatorError` — one box for the whole matrix, the centre generator included,
-since a row sums with no cancellation.
-
-The generator matrix is therefore written once against a pair of directed
-operations: at `addDown`/`subDown` it is what is stored, at `addUp`/`subUp` the
-other end of the bracket, and the gap between them is what the box pays for.
+Two charges come out of that. The centre is stored in place of a known bracket,
+which is a `residual`; every generator's coefficient ranges over `[-1,1]`, so
+its shortfall pulls both ways and is charged by `generatorError` — one box for
+the whole matrix, the centre generator included. The generator matrix is written
+once against a pair of directed operations, and the gap between them is the box.
 -/
 
 -- Authors:       Tobias Ladner

@@ -11,10 +11,15 @@ cancel against `I` and `(t/r)I`, and the linear terms cancel because
 `t - (t/r)r = 0` — which is why the correction is second order and why `r ≠ 0`
 is needed, since at `r = 0` Lean's `t/r` is `0` and that cancellation fails.
 
-Keeping the two exponentials in one series is what makes Althoff's `E(r)` bound
+Keeping the two exponentials in one series is what makes the `E(r)` bound of [1]
 provable: the tail terms share `A^i`, so `t^i - t·r^(i-1)` is bounded once
 rather than each remainder separately and the two added. `CorrectionMatrix`
 spells out why splitting them would cost a factor of two.
+
+## References
+
+* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
+      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
 -/
 
 -- Authors:       Tobias Ladner
@@ -31,6 +36,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 variable {n : ℕ}
 
+-- `exp_eq_tsum` is elaborated against the four local `Matrix.linftyOp*` instances
 set_option maxHeartbeats 200000 in
 /-- The exponential of a scaled matrix, with the scalar pulled out of the power. -/
 theorem exp_smul_tsum (A : Mat ℝ n n) (t : ℝ) :
@@ -40,6 +46,7 @@ theorem exp_smul_tsum (A : Mat ℝ n n) (t : ℝ) :
   rw [h]
   exact tsum_congr fun i => by rw [smul_pow, smul_smul]
 
+-- `expSeries_summable'` against those same four instances
 set_option maxHeartbeats 200000 in
 theorem summable_exp_smul (A : Mat ℝ n n) (t : ℝ) :
     Summable (fun i : ℕ => (((Nat.factorial i : ℝ))⁻¹ * t ^ i) • A ^ i) := by
@@ -47,6 +54,7 @@ theorem summable_exp_smul (A : Mat ℝ n n) (t : ℝ) :
   refine h.congr fun i => ?_
   rw [smul_pow, smul_smul]
 
+-- the same, with a `ring_nf` over the matrix algebra inside `Summable.congr`
 set_option maxHeartbeats 400000 in
 theorem MatExp.summable_expDiff (A : Mat ℝ n n) (t r : ℝ) :
     Summable (fun i : ℕ => (((Nat.factorial (i + 2) : ℝ))⁻¹
@@ -59,6 +67,7 @@ theorem MatExp.summable_expDiff (A : Mat ℝ n n) (t r : ℝ) :
     (hst.sub hsr).congr fun i => by simp only [smul_smul, ← sub_smul]; ring_nf
   exact (summable_nat_add_iff 2).mpr hg
 
+-- the `simp only` at `Finset.sum_range_succ` normalises factorials and powers together
 set_option maxHeartbeats 400000 in
 theorem MatExp.expDiff_eq_tsum (A : Mat ℝ n n) (t r : ℝ) (hr : r ≠ 0) :
     exp (t • A) - 1 - (t / r) • (exp (r • A) - 1)
@@ -76,6 +85,7 @@ theorem MatExp.expDiff_eq_tsum (A : Mat ℝ n n) (t r : ℝ) (hr : r ≠ 0) :
     rw [hg]
     simp only [smul_smul, ← sub_smul]
     ring_nf
+  -- the two exponential series subtract termwise, which is what makes `g` a single series
   have hgsum : Summable g := (hst.sub hsr).congr hcongr
   have htsum : ∑' i : ℕ, g i = exp (t • A) - (t / r) • exp (r • A) := by
     rw [exp_smul_tsum A t, exp_smul_tsum A r, ← tsum_const_smul'' (t / r),

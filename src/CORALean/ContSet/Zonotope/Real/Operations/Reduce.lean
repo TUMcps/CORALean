@@ -35,18 +35,15 @@ def Zonotope.reduceBy (Z : Zonotope (Vec ℝ n))
   G := Fin.append (fun l => Z.G (part.left l))
         (Matrix.diagonal fun i => ∑ l, |Z.G (part.right l) i|)
 
-/-- Girard's metric on one generator, `‖g‖₁ - ‖g‖∞`. It is zero exactly on the
-axis-aligned generators, which a box reproduces for free, and grows with what
-boxing the generator would cost. The max folds from `0`, which no `|G i j|`
-undercuts. -/
+/-- Girard's metric on one generator, `‖g‖₁ - ‖g‖∞`. Zero exactly on the
+axis-aligned generators, which a box reproduces for free, and growing with what
+boxing would cost; the max folds from `0`, which no `|G i j|` undercuts. -/
 noncomputable def Zonotope.aux_girardMetric (Z : Zonotope (Vec ℝ n)) (j : Fin Z.h) : ℝ :=
   (∑ i, |Z.G j i|) - Finset.univ.fold max 0 fun i => |Z.G j i|
 
 /-- The generators Girard's rule keeps at order `o`, against the rest: `(o-1)*n`
-of them, which is what leaves room for the box of `n` that replaces the others.
-
-Sorting is ascending, so the metric enters negated and CORA's descending order
-comes out: the generators dearest to box rank first and survive. -/
+of them, leaving room for the box of `n`. Sorting is ascending, so the metric
+enters negated and the generators dearest to box rank first, as CORA's do. -/
 noncomputable def Zonotope.aux_girardSplit (Z : Zonotope (Vec ℝ n)) (o : ℕ)
     (hlt : o * n < Z.h) :
     Split (Fin Z.h) into (Fin ((o - 1) * n)) and (Fin (Z.h - (o - 1) * n)) :=
@@ -57,11 +54,8 @@ noncomputable def Zonotope.aux_girardSplit (Z : Zonotope (Vec ℝ n)) (o : ℕ)
       (finCongr (Nat.add_sub_cancel' hle).symm))
 
 /-- CORA's `reduce(Z, 'girard', o)`: keep the `(o - 1) * n` generators Girard
-ranks first and box the rest, which brings the count to `o * n`. Already at that
-order or below, nothing happens.
-
-Noncomputable, as ordering reals is. A rule that runs needs a decidable order,
-which is the float layer's to give. -/
+ranks first and box the rest, bringing the count to `o * n`; at that order or
+below nothing happens. Noncomputable, as ordering reals is. -/
 noncomputable def Zonotope.reduceGirard (Z : Zonotope (Vec ℝ n)) (o : ℕ) :
     Zonotope (Vec ℝ n) :=
   if hlt : o * n < Z.h then Z.reduceBy (Z.aux_girardSplit o hlt) else Z

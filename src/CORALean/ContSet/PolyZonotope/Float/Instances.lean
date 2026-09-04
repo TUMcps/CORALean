@@ -9,26 +9,19 @@ import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceOuter
 `ContSet` is not among them — `InflatedContSet` supplies it, which is what makes
 this the same class the exact layer instantiates.
 
-`Reduce` is here and is *computable*, where the exact layer's instance is not.
-That is the one inversion in the whole layer: `Tuple.sort` needs a
-`LinearOrder`, which no float type has lawfully, so the exact ranking is
-noncomputable, while `sortPerm` asks its comparator for nothing and `le` on a
-machine scalar answers it. Soundness never depended on the ranking —
-`reduceBy_outer` holds at every partition — so the unconstrained comparator
-costs precision and nothing else.
+`Reduce` is here and is *computable*, where the exact layer's instance is not:
+`Tuple.sort` needs a `LinearOrder`, which no float type has lawfully, while
+`sortPerm` asks its comparator for nothing. Soundness never depended on the
+ranking — `reduceBy_outer` holds at every partition — so the free comparator
+costs precision and nothing else. `LinComb` is computable here for the same
+reason: over ℝ it is noncomputable only because `Reduce` in the same file is.
 
-`compact` runs first, as over ℝ, so the count bounded is of distinct monomials
-and not merely of stored columns. It is the one operation whose float layer is
-weaker in kind than its exact one: merging two columns adds their entries, so it
-encloses where the exact one is an equality.
+`compact` runs first, as over ℝ, so the count bounded is of distinct monomials.
+It is the one operation weaker in kind than its exact counterpart: merging two
+columns adds their entries, so it encloses where the exact one is an equality.
 
-`LinComb` is here and, unlike over ℝ, is *computable*: the exact one is
-noncomputable only because `Reduce` in the same file is, and nothing in
-`linComb` itself needs a classical choice.
-
-`quadMap` has no class to instantiate and gets none, as over ℝ: no other
-representation computes it, and a class one representation implements is a name
-rather than an interface. A caller that wants it names `PolyZonotope.quadMap`.
+`quadMap` has no class to instantiate, as over ℝ, so a caller names
+`PolyZonotope.quadMap`.
 -/
 
 -- Authors:       Tobias Ladner
@@ -52,6 +45,7 @@ instance {n : ℕ} : LinComb (PolyZonotope 𝕋 n) (Vec ℝ n) where
     rw [PolyZonotope.materialise_eq]
     exact PolyZonotope.linComb_outer PZ₁ PZ₂
 
+-- `reduce` is computable here, `sortPerm` asking its comparator for no laws
 instance {n : ℕ} : Reduce (PolyZonotope 𝕋 n) (Vec ℝ n) where
   reduce PZ o := (PZ.reduce o).materialise
   reduce_outer PZ o := by

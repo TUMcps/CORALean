@@ -72,6 +72,7 @@ theorem PolyZonotope.quadEval_sum_ext (Q : Fin m → Mat ℝ n n) (S : PolyZonot
     rw [Matrix.mulVec_smul, smul_dotProduct, dotProduct_smul]
     simp only [smul_eq_mul]
     rw [← mul_assoc]
+  -- the left side as a double sum over pairs of extended columns
   have hL : quadEval Q (∑ l, extM S a l • extG S l) k
       = ∑ l, ∑ l', extM S a l * extM S a l' * (extG S l ⬝ᵥ (Q k *ᵥ extG S l')) := by
     show (∑ l, extM S a l • extG S l) ⬝ᵥ (Q k *ᵥ ∑ l, extM S a l • extG S l) = _
@@ -89,6 +90,7 @@ theorem PolyZonotope.quadEval_sum_ext (Q : Fin m → Mat ℝ n n) (S : PolyZonot
     refine Finset.prod_congr rfl fun k' _ => ?_
     simp only [PolyZonotope.quadMapE, Equiv.symm_apply_apply]
     exact pow_add (a k') _ _
+  -- and the right side, `finProdFinEquiv` matching the pair index to the flat one
   have hpair : ∑ p : Fin (S.h + 1) × Fin (S.h + 1),
         (monomial (quadMapE S) a (finProdFinEquiv p) • quadMapG Q S (finProdFinEquiv p)) k
       = ∑ l, (monomial (quadMapE S) a l • quadMapG Q S l) k :=
@@ -117,6 +119,7 @@ theorem PolyZonotope.quadMapDep_exact (Q : Fin m → Mat ℝ n n) (S : PolyZonot
     intro a
     rw [← PolyZonotope.sum_ext_eq_point S a]
     exact PolyZonotope.quadEval_sum_ext Q S a
+  -- both directions off `hquad`, the independent block empty by hypothesis
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨_, ⟨a, b, ha, _, rfl⟩, rfl⟩
     refine ⟨a, fun _ => 0, ha, fun j => j.elim0, ?_⟩
@@ -125,6 +128,7 @@ theorem PolyZonotope.quadMapDep_exact (Q : Fin m → Mat ℝ n n) (S : PolyZonot
           + ∑ j : Fin 0, (0:ℝ) • (Fin.elim0 j : Vec ℝ m)
     rw [hb0 b, add_zero, hquad a]
     simp only [Finset.univ_eq_empty, Finset.sum_empty, add_zero, zero_add]
+  -- back, with the independent coefficients read as zero
   · rintro _ ⟨a, b, ha, _, rfl⟩
     refine ⟨S.c + ∑ i, monomial S.E a i • S.G i + ∑ j, (0:ℝ) • S.GI j,
       ⟨a, fun _ => 0, ha, fun _ => by norm_num, rfl⟩, ?_⟩

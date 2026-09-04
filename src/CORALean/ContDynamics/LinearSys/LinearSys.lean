@@ -4,35 +4,26 @@ import CORALean.ContSet.ContSet.ContSet
 # Continuous-time linear systems: the representation
 
 CORA's `linearSys`, reduced to `ẋ(t) = A x(t) + u(t)`: the class there is
-`ẋ = A x + B u + c` with an output `y = C x + D u + k`, and here only `A` is
-kept, the input entering in state coordinates as in Althoff's thesis, whose
-reachability algorithms are stated in that form. `B U ⊕ c` is one `mtimes` and
-one `plus` on the input set, and the folded form reaches the same states, so the
-flow loses nothing by it.
+`ẋ = A x + B u + c` with an output `y = C x + D u + k`, and here only `A` is kept,
+the input entering in state coordinates as in [1]. `B U ⊕ c` is one `mtimes` and
+one `plus` on the input set, so the folded form reaches the same states.
 
 The output equation is `OutputEq`, paired with a computed set rather than stored
-here, and the pairing is where a sampled system needs it to be: `discretize`
-hands `LinearSysDT` an input set of state contributions over a step, not of
-inputs, so `y(kΔt) = C x(kΔt) + D u(kΔt)` is read at `U` — this system's input
-set — with the state taken from `reach_outer`. A `D` stored on either system
-would multiply the wrong set at one of them.
+here, because `discretize` hands `LinearSysDT` an input set of state
+contributions over a step and not of inputs: a `D` stored on either system would
+multiply the wrong set at one of them.
 
-`Trajectory` is what such a system denotes and the only place the dynamics
-appear — one admissible run, with an input at every time, so a disturbance is
-one too.
+The time domain `T` is a parameter — `Set.Ici 0` for all forward time,
+`Set.Icc 0 τ` for a bounded horizon — and the derivative is taken within `T`
+itself, two-sided wherever `T` is: within `Ici t` it would be a right derivative
+everywhere, which does not force continuity, and a run free to jump is not a
+trajectory. `init` stays unconditional, and `u` needs no regularity, being
+pinned by `u t = ẋ(t) - A x(t)` wherever the flow holds.
 
-The time domain `T` is a parameter: `Set.Ici 0` is a run over all forward time,
-`Set.Icc 0 τ` one over a bounded horizon, which is what a one-step method and a
-hybrid location both need. The derivative is taken within `T` itself — two-sided
-wherever `T` is, one-sided at an endpoint. Within `Ici t` it would be a right
-derivative everywhere, which does not force continuity, and a run free to jump
-is not a trajectory.
+## References
 
-`init` stays unconditional, so `x 0` is the initial state whether or not `0 ∈ T`.
-
-`u` needs no regularity hypothesis: `x` is differentiable wherever the flow
-holds, so `u t = ẋ(t) - A x(t)` is already pinned there, which is enough to
-integrate it — see `InputIntegrable`.
+* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
+      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
 -/
 
 -- Authors:       Tobias Ladner

@@ -52,6 +52,7 @@ theorem Ellipsoid.aux_mulVec_nominal (M : Mat 𝕋 m n) (E : Ellipsoid 𝕋 n) (
         rw [Finset.sum_comm]
         exact congrArg _ (Finset.sum_congr rfl fun j _ => (Finset.sum_mul _ _ _).symm)
 
+-- the image's nominal part, with the generator rounding charged to a box
 theorem Ellipsoid.aux_mtimes_nominal (M : Mat 𝕋 m n) (E : Ellipsoid 𝕋 n) :
     (toRealMat M *ᵥ ·) '' nominalSet E ⊆
       nominalSet (Ellipsoid.mtimes M E) + (Ellipsoid.mtimesResidual M E).construct := by

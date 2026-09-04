@@ -7,35 +7,18 @@ import CORALean.ContSet.HPolytope.Real.HPolytope
 halfspaces and keeps the set exactly, so doing nothing is the sound stand-in
 until that algorithm is written.
 
-Not `Plus`, `LinComb` or `Mtimes`, and the reason is neither the class shape nor
-a missing operation. `plusOf`, `linCombOf` and `mtimesOf` all compute; each
-takes the directions the result is described on and a `SupportBound` in each,
-and closing those over — the way `Ellipsoid.plusInstance` closes over its
-scaling — would give a lawful `Plus` in three lines. What it would need is
-bounds for *every* polytope, `plus : S → S → S` being total and a recursive
-algorithm summing sets the caller never sees: `LinearSysDT.reach` at step `k+1`
-names the set step `k` produced.
+Not `Plus`, `LinComb` or `Mtimes`, though `plusOf`, `linCombOf` and `mtimesOf`
+all compute. Closing over their directions and support bounds — the way
+`Ellipsoid.plusInstance` closes over its scaling — would need bounds for *every*
+polytope, `plus : S → S → S` being total and a recursive algorithm summing sets
+the caller never sees. That oracle does not exist: a description with no rows
+denotes the whole space, unbounded in every non-zero direction. A useful `Plus`
+here needs a type excluding unbounded sets first.
 
-That oracle does not exist. A halfspace description with no rows denotes the
-whole space, whose support function is unbounded in every non-zero direction, so
-`∀ P i, SupportBound P.construct (Aq i)` is inhabited only where every `Aq i` is
-zero — and there the result is the whole space, which is lawful and says
-nothing. `Reduce`'s identity is the same kind of trivial answer and is kept
-because it is *exact*; the whole space loses everything, so it is not. What a
-useful `Plus` here needs first is a type excluding unbounded sets. A linear
-program is what the bounded case would still want after that, and
-`Global.LinProg` consumes a dual solution rather than producing one, which is
-what keeps an unverified solver outside the trusted base.
-
-`OfInterval` is the one class a halfspace description could instantiate as it
-stands, `Interval.hPolytope` being exact. It is not instantiated: the class
-lives in `Conversion`, so the instance would put every importer of `OfInterval`
-behind `HPolytope`, and on its own it still would not run a jump — that needs
-`Plus` and `Mtimes` as well.
-
-`and`, `comap`, `mapEquiv` and `translate` stay named operations for the
-opposite reason: each is exact and there is no class to instantiate. That is
-what a constrained zonotope's coefficient domain is built from.
+`OfInterval` could be instantiated as it stands, `Interval.hPolytope` being
+exact, but the class lives in `Conversion`, so the instance would put every
+importer of `OfInterval` behind `HPolytope`. `and`, `comap`, `mapEquiv` and
+`translate` stay named operations: each is exact and there is no class for it.
 -/
 
 -- Authors:       Tobias Ladner

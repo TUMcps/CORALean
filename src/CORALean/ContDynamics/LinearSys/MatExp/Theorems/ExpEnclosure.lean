@@ -3,7 +3,7 @@ import CORALean.ContDynamics.LinearSys.MatExp.Enclosures
 /-!
 # The matrix exponential lies in its enclosure
 
-Althoff's thesis (2010), Eq. (3.2)–(3.3). The tail past `η` is dominated term by
+[1, Eq. (3.2)–(3.3)]. The tail past `η` is dominated term by
 term by a geometric series of ratio `‖x‖ / (η + 2)`, because `(η+1+i)!` outgrows
 `(η+1)!` by at least `(η+2)` a step. Summing that geometric series is where the
 `1 / (1 - ε)` comes from, and where `ε < 1` is needed.
@@ -11,6 +11,11 @@ term by a geometric series of ratio `‖x‖ / (η + 2)`, because `(η+1+i)!` ou
 The bound is on the operator norm and the enclosure is entrywise, which is sound
 because under the `l∞` operator norm an entry never exceeds its row sum, and a
 row sum never exceeds the norm.
+
+## References
+
+* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
+      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
 -/
 
 -- Authors:       Tobias Ladner
@@ -68,12 +73,14 @@ theorem scalar_term_le {c : ℝ} (hc : 0 ≤ c) (η i : ℕ) :
     push_cast at hcast
     convert hcast using 3
     ring
+  -- the factorial bound inverts into the geometric ratio `c / (η + 2)`
   calc (Nat.factorial ((η + 1) + i) : ℝ)⁻¹ * c ^ ((η + 1) + i)
       ≤ ((Nat.factorial (η + 1) : ℝ) * ((η : ℝ) + 2) ^ i)⁻¹ * c ^ ((η + 1) + i) := by gcongr
     _ = (c ^ (η + 1) / Nat.factorial (η + 1)) * (c / ((η : ℝ) + 2)) ^ i := by
         rw [div_pow, pow_add]
         field_simp
 
+/-- The same estimate at a matrix, reached through the norm of its powers. -/
 theorem aux_term_le (x : Mat ℝ n n) (η i : ℕ) :
     ‖((Nat.factorial (i + (η + 1)) : ℝ)⁻¹) • x ^ (i + (η + 1))‖
       ≤ (‖x‖ ^ (η + 1) / Nat.factorial (η + 1)) * (‖x‖ / ((η : ℝ) + 2)) ^ i := by
@@ -95,8 +102,7 @@ theorem aux_term_le (x : Mat ℝ n n) (η i : ℕ) :
         rw [div_pow, pow_add]
         field_simp
 
--- Summability and tsum over a matrix algebra is what costs here, not the
--- estimate: every step re-finds the normed-algebra instance on `Mat`.
+-- summability and `tsum` over the matrix algebra is the cost here, not the estimate
 set_option maxHeartbeats 1000000 in
 theorem norm_exp_sub_expTaylor_le (x : Mat ℝ n n) (η : ℕ)
     (hε : ‖x‖ / ((η : ℝ) + 2) < 1) :
@@ -114,6 +120,7 @@ theorem norm_exp_sub_expTaylor_le (x : Mat ℝ n n) (η : ℕ)
     rw [hx, ← hsum.sum_add_tsum_nat_add (η + 1)]
     abel
   rw [htail]
+  -- norm of the tail sum under the sum of norms, then the geometric closed form
   calc ‖∑' i : ℕ, f (i + (η + 1))‖
       ≤ ∑' i : ℕ, ‖f (i + (η + 1))‖ :=
         norm_tsum_le_tsum_norm ((summable_nat_add_iff (η + 1)).mpr hnorm)
@@ -138,6 +145,7 @@ theorem MatExp.expRemainderBound_mono {x y : Mat ℝ n n} (η : ℕ) (hxy : ‖x
     inv_anti₀ hdy (by linarith)
   exact mul_le_mul hnum hinv (inv_nonneg.mpr hdx.le) (by positivity)
 
+/-- Every entry of the exponential sits between the truncation and the tail bound. -/
 theorem MatExp.exp_mem_expEnclosure (x : Mat ℝ n n) (η : ℕ)
     (hε : ‖x‖ / ((η : ℝ) + 2) < 1) :
     exp x ∈ (MatExp.expEnclosure x η).construct := by

@@ -3,36 +3,22 @@ import CORALean.NN.Layers.Linear
 /-!
 # The batch normalization layer
 
-CORA's `nnBatchNormLayer`, at inference time, where the batch statistics are
-fixed and the layer is
+CORA's `nnBatchNormLayer` at inference time, where the batch statistics are fixed
+and the layer is `x i ↦ γ(c i) · (x i - μ(c i)) / √(σ²(c i) + ε) + β(c i)` with
+`c i` the channel coordinate `i` belongs to. That is affine and coordinatewise,
+so it is `Layer.linear` at a *diagonal* matrix — defined as one here, with
+`batchNorm_eval` the proof that the diagonal computes the formula.
 
-  `x i ↦ γ(c i) · (x i - μ(c i)) / √(σ²(c i) + ε) + β(c i)`
+`batchNormScale` and `batchNormShift` are arithmetic on parameters rather than
+part of the layer: they happen once, when a network is read. That is why there is
+no float counterpart — `Float.Layer.linear` encloses the affine map its stored
+floats denote, whatever produced them, so a scale folded in floating point gives
+a sound float batch-norm layer with nothing new to prove.
 
-with `c i` the channel coordinate `i` belongs to. That is affine and
-coordinatewise, so it is `Layer.linear` at a *diagonal* matrix — not merely
-equal to one, but defined as one here, with `batchNorm_eval` the proof that the
-diagonal computes the formula above.
-
-## What the fold is, and what it is not
-
-`batchNormScale` and `batchNormShift` are the fold, and they are arithmetic on
-parameters rather than part of the layer: they happen once, when a network is
-read, and the layer sees only their results. That is why there is no float
-counterpart to this file. `Float.Layer.linear` encloses the affine map its
-stored floats denote, whatever produced them — so a scale folded in floating
-point, square root and all, gives a sound float batch-norm layer with nothing
-new to prove.
-
-The honest consequence is worth stating: the float layer then encloses the
-affine map that fold produced, which is the batch normalization the *stored*
-statistics define only as closely as the fold was accurate. Nothing here bounds
-that distance, and nothing should — it is the same status a weight matrix read
-off a file has, and `NN/Float/Layers/Linear` says so of that.
-
-`FloatOps` has no square root, which is why the fold could not be done in the
-float layer even if it belonged there. It does not have to be: the fold is
-allowed to be wrong, the way `ReLU`'s slope is allowed to be wrong, because what
-is verified is the network the folded numbers describe.
+The float layer then encloses the batch normalization the *stored* statistics
+define only as closely as the fold was accurate. Nothing here bounds that
+distance, and nothing should — the fold is allowed to be wrong, the way `ReLU`'s
+slope is, because what is verified is the network the folded numbers describe.
 -/
 
 -- Authors:       Tobias Ladner

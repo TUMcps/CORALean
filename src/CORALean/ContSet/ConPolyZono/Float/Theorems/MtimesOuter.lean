@@ -46,6 +46,7 @@ theorem ConPolyZono.aux_mtimes_nominal (M : Mat 𝕋 k n) (C : ConPolyZono 𝕋 
       ∈ (Interval.residual (mulVecDown M C.c) (mulVecUp M C.c)
           (mulVecDown M C.c)).construct :=
     Interval.sub_mem_residual (fun i => ⟨dotDown_le (M i) C.c, le_dotUp (M i) C.c⟩)
+  -- the two generator blocks' shortfalls, each bounded by a coefficient inside `[-1,1]`
   have hdepBox : (fun i => ∑ l, ((∑ r, toReal (M i r) * toReal (C.G r l))
         - toReal (matMulDown M C.G i l)) * Real.PolyZonotope.monomial C.E a l)
       ∈ (PolyZonotope.generatorError (matMulDiff M C.G)).construct :=
@@ -76,6 +77,7 @@ theorem ConPolyZono.aux_mtimes_nominal (M : Mat 𝕋 k n) (C : ConPolyZono 𝕋 
       = ∑ j, (∑ r, toReal (M i r) * toReal (C.GI r j)) * β j := by
     rw [← Finset.sum_add_distrib]
     exact Finset.sum_congr rfl fun j _ => by ring
+  -- the goal spelled out, so the two recombinations line up with it term by term
   show toReal ((ConPolyZono.mtimes M C).c i)
         + (∑ l : Fin C.h, toReal ((ConPolyZono.mtimes M C).G i l)
             * Real.PolyZonotope.monomial C.E a l)

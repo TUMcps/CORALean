@@ -37,6 +37,7 @@ theorem VPolytope.aux_plus_nominal (P₁ P₂ : VPolytope 𝕋 n) :
   refine Real.VPolytope.construct_subset_add _ _ (Real.Interval.convex_construct _) fun l => ?_
   exact VPolytope.mem_columnGap fun i => ⟨addDown_le_add _ _, add_le_addUp _ _⟩
 
+-- the box absorbs the two incoming boxes and that pairwise-sum gap
 theorem VPolytope.aux_plus_error (P₁ P₂ : VPolytope 𝕋 n) :
     (error P₁).construct + (error P₂).construct
       + (VPolytope.columnGap (VPolytope.pairSum addDown P₁ P₂)

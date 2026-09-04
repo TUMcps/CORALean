@@ -16,11 +16,10 @@ it takes instead is whatever the caller could prove encloses the intersection â€
 `Theorems.JumpOuter` states that as its one hypothesis, and
 `Theorems.JumpOuterConZonotope` discharges it exactly.
 
-The offset enters as a box of zero width through `OfInterval`, as a bias does: a
-representation that can absorb a box can absorb a point, and no translation
-operation is needed. That is also what keeps `ConPolyZono` out for now â€” it has
-`plus` and `mtimes` but no `OfInterval` instance, so its exact guard
-intersection is one conversion instance away from running this, not one theorem.
+The offset enters as a box of zero width through `OfInterval`, as a bias does, so
+no translation operation is needed. That is also what keeps `ConPolyZono` out: it
+has `plus` and `mtimes` but no `OfInterval` instance, so its exact guard
+intersection is one conversion instance away from running this.
 -/
 
 -- Authors:       Tobias Ladner

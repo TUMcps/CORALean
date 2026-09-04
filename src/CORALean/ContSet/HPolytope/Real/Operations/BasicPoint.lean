@@ -55,6 +55,7 @@ theorem HPolytope.basicPoint_tightAt (P : HPolytope (Vec ℝ n)) {x : Vec ℝ n}
       rw [map_sub, hye i, hx.2 i, sub_self]
     have := hpin (y - x) hd hde
     rwa [sub_eq_zero] at this
+  -- uniqueness is what makes the `dif_pos` branch name `x` itself
   have hex : ∃! y : Vec ℝ n,
       (∀ i, P.tightAt x i = true → P.A i y = P.b i) ∧ ∀ i, P.Ae i y = P.be i := by
     refine ⟨x, ⟨fun i hi => ?_, hx.2⟩, hspec⟩

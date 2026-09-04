@@ -20,11 +20,9 @@ The continuous loop is where the two rates are visible: `Δt` is the reachabilit
 step, `N Δt` the control period, and `N` is a variable here precisely so that
 nothing in the pipeline can quietly assume they are equal.
 
-Compiled at concrete *types* and an abstract system, deliberately. Applying a
+Compiled at concrete *types* and an abstract system, deliberately: applying a
 general theorem to a fully concrete network forces the elaborator to whnf the
-whole graph, which `FeedForward` records as a timeout; each concrete loop is
-therefore built once below and only handed to `reach`, which needs no such
-unfolding.
+whole graph, which `FeedForward` records as a timeout.
 
 Nothing here evaluates to a number. Over ℝ every operation is noncomputable, and
 `Float` is where the same loops produce bounds.
@@ -61,8 +59,7 @@ noncomputable def Example.nnControlled (A : Mat ℝ 2 2) (W₁ : Mat ℝ 3 2) (b
   plant := ⟨A⟩
   contr := Example.nnController W₁ b₁ W₂ b₂
 
--- Anonymous, since their content is that they elaborate: each is a general
--- theorem at this representation, and none is worth a name of its own.
+-- anonymous, since their content is that they elaborate at this representation
 
 /-- Every discrete closed-loop run from `R₀` is inside the alternating recursion
 at every step. -/

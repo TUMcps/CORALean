@@ -13,22 +13,13 @@ nominal set is *defined* as what the stored floats denote — the constraint of
 the nominal set is the constraint those floats state, not a rounding of some
 other one.
 
-## Two places to pay, and which pays what
-
-The centre and the generators have no slack, so their rounding goes into the
-ambient box, as it does for every representation here. The constraint bounds do
-have slack, now that `b` is an interval, and theirs goes into `b` — widened
-outward, which admits more factor vectors and hence encloses. That second
-channel is what an equality right-hand side denied, and denying it is what left
-`and` without a float counterpart until now.
-
-`plus` and `mtimes` still touch the constraint block only by copying, so neither
-pays anything there. `and` is the operation that needs both channels at once:
-its agreement rows say the two points coincide, and in this layer each point is
-a nominal one plus an error box, so the two nominal points stand as far apart as
-the two boxes allow. That distance is the exact layer's tolerance `D`, and the
-rounding of `c₂ - c₁` is added to it — one interval, computed downward on the
-low side and upward on the high.
+Rounding therefore has two channels. The centre and the generators have no
+slack, so theirs goes into the ambient error box; the constraint bounds do, `b`
+being an interval, so theirs goes into `b`, widened outward and hence enclosing.
+`plus` and `mtimes` copy the constraint block and pay nothing. `and` needs both:
+its agreement rows relate two nominal points that stand as far apart as their
+error boxes allow, and the rounding of `c₂ - c₁` is added to that tolerance, one
+interval computed downward on the low side and upward on the high.
 -/
 
 -- Authors:       Tobias Ladner
@@ -87,10 +78,9 @@ theorem ConPolyZono.nominal_b [SoundFloatArithmetic 𝕋] (C : ConPolyZono 𝕋 
 theorem ConPolyZono.nominal_EC [SoundFloatArithmetic 𝕋] (C : ConPolyZono 𝕋 n) :
     (InflatedContSet.nominal C).EC = C.EC := rfl
 
-/-- The nominal set spelt in this representation's own fields. Definitional, and
-the reason proofs never mention `nominal`: through it every count is `C.h`,
-where going via the instance gives the equal-but-distinct `(nominal C).h` that
-`rw`, `ring` and `linarith` all read as a different term. -/
+/-- The nominal set in this representation's own fields, definitionally. Proofs
+use it rather than `nominal` because through it every count is `C.h`, where the
+instance gives the equal-but-distinct `(nominal C).h` that `rw` reads apart. -/
 theorem ConPolyZono.mem_nominalSet_iff [SoundFloatArithmetic 𝕋] {C : ConPolyZono 𝕋 n}
     {x : Vec ℝ n} :
     x ∈ InflatedContSet.nominalSet C ↔ ∃ a : Fin C.p → ℝ, ∃ β : Fin C.q → ℝ,
@@ -118,6 +108,7 @@ def ConPolyZono.materialise (C : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n :=
   let GI : Vector (Vector 𝕋 C.q) n := Vector.ofFn fun i => Vector.ofFn fun j => C.GI i j
   let A : Vector (Vector 𝕋 C.s) C.m := Vector.ofFn fun i => Vector.ofFn fun l => C.A i l
   let EC : Vector (Vector ℕ C.s) C.p := Vector.ofFn fun k => Vector.ofFn fun l => C.EC k l
+  -- every field now reads out of a stored vector, so nothing is left as a closure
   { p := C.p
     h := C.h
     q := C.q

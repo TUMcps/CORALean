@@ -5,28 +5,22 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.Restrict
 /-!
 # The nonlinear reachable set is the linearized one
 
-The payoff: nothing new is computed for a nonlinear system. Once `linearize`
-has turned the run into a linear one, `LinearSys.Trajectory.reach_outer` is the
-whole proof, and the enclosing set is the linear system's `reach` — the same
-`discretize`, the same `LinearSysDT` recursion, the same order reduction.
+The payoff: nothing new is computed for a nonlinear system. Once `linearize` has
+turned the run into a linear one, `LinearSys.Trajectory.reach_outer` is the whole
+proof and the enclosing set is the linear system's `reach`.
 
-The nonlinearity is paid for entirely in `linInput`, which is why the two
-statements below differ from their linear counterparts only in that `U` has
-been widened and a confinement hypothesis has been added.
+The nonlinearity is paid for entirely in `linInput`, which is why the statements
+below differ from their linear counterparts only in that `U` has been widened and
+a confinement hypothesis added. `exp` needs a norm on `Mat` — a choice, not an
+instance — and it is the `l∞` operator norm here as everywhere `discretize` is.
 
 `reach_outer` leaves the discrete input set to the caller;
 `reach_outer_inputSolution` names it, and is the statement with no trajectory
-left in it — `x` appears only in the conclusion. Its price is that `linInput`
-has to be convex, closed and bounded, which the interfaces do not supply.
+left in it. Its price is that `linInput` has to be convex, closed and bounded.
 
-`exp` needs a norm on `Mat`, which is a choice rather than an instance, so this
-file makes the same one as everything else reasoning about `discretize` — the
-`l∞` operator norm — or the terms would not match.
-
-The first two statements sample all of forward time and so ask confinement of it
-too. The `_horizon` pair below asks for `[0, KΔt]` and concludes about the
-sample times inside it, which is the one-step method as CORA runs it: one
-linearization, one horizon, and a fresh certificate after that.
+The first two sample all of forward time and ask confinement of it too. The
+`_horizon` pair asks for `[0, KΔt]` and concludes about the sample times inside
+it: one linearization, one horizon, and a fresh certificate after that.
 -/
 
 -- Authors:       Tobias Ladner
@@ -73,6 +67,7 @@ theorem NonlinearSys.Trajectory.reach_outer_inputSolution [Mtimes ℐ S]
     (hconv : Convex ℝ (construct (sys.linInput A B xs us U L)))
     (hclosed : IsClosed (construct (sys.linInput A B xs us U L)))
     (hbdd : Bornology.IsBounded (construct (sys.linInput A B xs us U L)))
+    -- the next three are asked of the remainder's product, `R(τ)` varying with `τ`
     (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder A Δt η) (sys.linInput A B xs us U L))))
     (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
@@ -86,9 +81,8 @@ theorem NonlinearSys.Trajectory.reach_outer_inputSolution [Mtimes ℐ S]
     hconv hclosed hbdd hRconv hRclosed hRbdd o k
 
 /-- The one-step statement: confinement on `[0, KΔt]` alone puts the run inside
-the linearized reachable set at every sample time of that horizon. Nothing is
-assumed about what the run does after `KΔt`, which is what re-linearizing from
-the enclosure reached at `KΔt` needs. -/
+the linearized reachable set at every sample time of that horizon, assuming
+nothing past `KΔt` — which is what re-linearizing from there needs. -/
 theorem NonlinearSys.Trajectory.reach_outer_horizon {sys : NonlinearSys n m} {T : Set ℝ}
     {R₀ Ud L : S n} {U : S m} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m}
     {A : Mat ℝ n n} {B : Mat ℝ n m} {xs : Vec ℝ n} {us : Vec ℝ m}
@@ -116,6 +110,7 @@ theorem NonlinearSys.Trajectory.reach_outer_horizon_inputSolution [Mtimes ℐ S]
     (hconv : Convex ℝ (construct (sys.linInput A B xs us U L)))
     (hclosed : IsClosed (construct (sys.linInput A B xs us U L)))
     (hbdd : Bornology.IsBounded (construct (sys.linInput A B xs us U L)))
+    -- the next three are asked of the remainder's product, `R(τ)` varying with `τ`
     (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder A Δt η) (sys.linInput A B xs us U L))))
     (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)

@@ -68,6 +68,7 @@ theorem PolyZonotope.aux_plus_nominal (PZ₁ PZ₂ : PolyZonotope 𝕋 n) :
           PolyZonotope.mem_nominalSet_iff.mpr
             ⟨Fin.append a₁ a₂, Fin.append β₁ β₂, ?_, ?_, fun _ => rfl⟩,
           fun i => toReal (PZ₁.c i) + toReal (PZ₂.c i) - toReal ((PZ₁.plus PZ₂).c i), ?_, ?_⟩
+  -- every appended factor and coefficient is admissible on the half it came from
   · refine Fin.addCases (fun k => ?_) (fun k => ?_)
     · simpa using ha₁ k
     · simpa using ha₂ k

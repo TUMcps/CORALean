@@ -12,20 +12,13 @@ direction.
 `Plus` and `LinComb` sit at every ambient type rather than at `Vec`: neither
 needs coordinates. `Reduce` pins down `Vec`, as `Zonotope`'s does, since a
 generator ranking and a box are both entrywise. `Mtimes` is the exception again,
-its whole point being to move between dimensions.
+its whole point being to move between dimensions. `quadMap` has no class to
+instantiate, so a caller names `PolyZonotope.quadMap`.
 
-`quadMap` has no class to instantiate and gets none: no other representation
-here computes it, and a class one representation implements is a name, not an
-interface. A caller that wants it names `PolyZonotope.quadMap`.
-
-`Reduce`'s one number bounds both generator blocks together, which is what the
-class field's `o` means everywhere else too. `reduce_order_le` states it; the
-class carries only the enclosure, since a representation whose order is read
-differently — a zonotope's, an interval's — still instantiates the same field.
-
-`reduceDependent` is the tighter rule and is deliberately not the instance: it
-bounds no count, so an algorithm reaching it through `Reduce` would get a
-representation that grows. A caller who wants it names it.
+`Reduce`'s one number bounds both generator blocks together, as the class
+field's `o` does everywhere else; the class carries only the enclosure.
+`reduceDependent` is the tighter rule and deliberately not the instance: it
+bounds no count, so an algorithm reaching it through `Reduce` would grow.
 
 Noncomputable, twice over: `compact` decides whether a generator of a real
 module is zero, and the ranking orders reals.
@@ -62,10 +55,9 @@ instance : Mtimes (Mat ℝ) (fun n => PolyZonotope (Vec ℝ n)) where
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact (PolyZonotope.mtimes_exact M PZ).subset
 
-/-- The polynomial-zonotope family over vectors. A generic theorem quantifies
-over `S : ℕ → Type` and the elaborator cannot read that family off one member, so a
-use site has to name it: `(S := 𝒫𝒵)`. Two letters, `𝒫` alone being Mathlib's
-powerset. -/
+/-- The polynomial-zonotope family over vectors. The elaborator cannot read the
+family off one member, so a use site names it: `(S := 𝒫𝒵)` — two letters, `𝒫`
+alone being Mathlib's powerset. -/
 scoped notation "𝒫𝒵" => fun n => PolyZonotope (Vec ℝ n)
 
 end CORALean.Real

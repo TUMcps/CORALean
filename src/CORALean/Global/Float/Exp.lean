@@ -3,56 +3,22 @@ import CORALean.Global.Float.SoundFloatArithmetic
 /-!
 # A directed-rounding exponential
 
-`expDown` and `expUp` enclose `Real.exp` at a float. They use `FloatOps` and
-nothing else — no division, no factorials, no series.
+`expDown` and `expUp` enclose `Real.exp` at a float, out of `FloatOps` and
+nothing else — no division, no factorials, no series. Argument reduction removes
+the need for one: `exp x = (exp (x / 2ⁿ))^(2ⁿ)`, `half` is exact, and at
+`y = x / 2ⁿ` a two-term enclosure is good to `O(x²/2ⁿ)` relative. Division is in
+`FloatOps` for `sigmoid` and `tanh`, not for this. Both seeds are
+`Real.add_one_le_exp`, once at `y` and once at `-y`: `1 + y ≤ exp y` everywhere,
+and `exp y ≤ 1/(1-y) ≤ 1 + y + 2y²` for `y ≤ 1/2`.
 
-## Why there is no series
+The asymmetry is real. `expDown` holds at every argument, `maximum zero` keeping
+it non-negative across the squarings. `expUp n a` asks `toReal a ≤ 2ⁿ / 2`, and
+that cannot be discharged here: every expression `FloatOps` builds is bounded by
+a polynomial, no polynomial dominates `exp`, and a total upper bound would have
+to branch on the size of its argument with nothing sound to branch on — which is
+why the sigmoid and tanh enclosures ask for `expDown` alone.
 
-A truncated exponential series divides by `k!`, and the three obvious ways to
-pay for that — add division, supply reciprocal factorials as certified data, or
-bound `1/k! ≤ 2^(1-k)` and accept the loss — all answer a question argument
-reduction removes. `exp x = (exp (x / 2ⁿ))^(2ⁿ)`, and `half` is exact, so the
-reduction is free; at `y = x / 2ⁿ` a *two-term* enclosure is already good to
-`O(x²/2ⁿ)` relative, and the squarings carry it back. A geometric term bound
-would do as well here — its 10% error at `x = 1` is a symptom of evaluating a
-series at a large argument, not of the bound — so none of the three buys
-anything, and the interface keeps the shape it had.
-
-Division is added to `FloatOps` all the same, but for the layers above:
-`sigmoid` and `tanh` are quotients, and neither has an `Enclosure` without one.
-The exponential is not why it is there.
-
-## The two seeds
-
-Both are `Real.add_one_le_exp`, once at `y` and once at `-y`:
-
-* `1 + y ≤ exp y`, at every real `y`;
-* `exp y ≤ 1 / (1 - y)` for `y < 1`, and `1 / (1 - y) ≤ 1 + y + 2y²` exactly
-  when `y ≤ 1/2`, since `(1 - y) * (1 + y + 2y²) = 1 + y² * (1 - 2y)`.
-
-That is the whole remainder argument, and there is no tail in it because there
-is no series to truncate. `n` squarings then lift a bound at `y` to one at
-`2ⁿ y`, one rounding each.
-
-## The asymmetry, which is real
-
-`expDown` holds at every argument: its seed does, `maximum zero` keeps it
-non-negative across the squarings, and squaring is monotone there.
-
-`expUp n a` asks `toReal a ≤ 2ⁿ / 2`, and that hypothesis cannot be discharged
-inside this class. Every expression `FloatOps` builds is a composition of `+`,
-`*`, `min`, `max` and a halving, hence bounded by a polynomial, and no
-polynomial dominates `exp` on all of ℝ. A total upper bound would have to branch
-on the size of its argument, and `le` is deliberately unconstrained, so there is
-nothing sound to branch on. The hypothesis is where that missing comparison
-surfaces — which is why the sigmoid and tanh enclosures are written to ask for
-`expDown` alone.
-
-## What it costs
-
-`(1 + x/2ⁿ)^(2ⁿ)` is `exp (x - x²/2ⁿ⁺¹ + …)`, so the lower bound's relative
-error is about `x²/2ⁿ⁺¹` and the upper bound's about `3x²/2ⁿ⁺¹`, on top of `n`
-roundings. At `n = 50` and `|x| ≤ 32` that is below `10⁻¹²` either way.
+`(1 + x/2ⁿ)^(2ⁿ)` is `exp (x - x²/2ⁿ⁺¹ + …)`, under `10⁻¹²` relative at `n = 50`.
 -/
 
 -- Authors:       Tobias Ladner
@@ -115,6 +81,7 @@ private theorem exp_le_quadratic {y : ℝ} (hy : y ≤ 1 / 2) :
   have hq0 : 0 ≤ y ^ 2 * (1 - 2 * y) := mul_nonneg (sq_nonneg y) (by linarith)
   exact le_of_mul_le_mul_left (by linarith) (by linarith : (0:ℝ) < 1 - y)
 
+/-- `n` halvings divide by `2 ^ n` exactly, `half` rounding nothing. -/
 private theorem toReal_halfIter (n : ℕ) (a : 𝕋) :
     toReal (halfIter n a) = toReal a / 2 ^ n := by
   induction n with
@@ -123,16 +90,19 @@ private theorem toReal_halfIter (n : ℕ) (a : 𝕋) :
     rw [halfIter, toReal_half, ih, pow_succ]
     ring
 
+/-- The `maximum zero` in the seed is what keeps the squarings monotone. -/
 private theorem seedDown_nonneg (a : 𝕋) : 0 ≤ toReal (seedDown a) := by
   rw [seedDown, toReal_maximum, toReal_zero]
   exact le_max_left _ _
 
+/-- The lower seed, `add_one_le_exp` at `a` after the rounding is paid. -/
 private theorem seedDown_le (a : 𝕋) : toReal (seedDown a) ≤ Real.exp (toReal a) := by
   rw [seedDown, toReal_maximum, toReal_zero]
   refine max_le (Real.exp_pos _).le (le_trans (addDown_le_add one a) ?_)
   rw [toReal_one]
   linarith [Real.add_one_le_exp (toReal a)]
 
+/-- The upper seed, `1 + y + 2y²` with each of its three roundings upward. -/
 private theorem le_seedUp {a : 𝕋} (ha : toReal a ≤ 1 / 2) :
     Real.exp (toReal a) ≤ toReal (seedUp a) := by
   have h1 : toReal one + toReal a ≤ toReal (addUp one a) := add_le_addUp one a
@@ -147,6 +117,7 @@ private theorem le_seedUp {a : 𝕋} (ha : toReal a ≤ 1 / 2) :
   rw [toReal_one] at h1
   linarith [exp_le_quadratic ha]
 
+/-- Non-negativity survives the squarings, each clamped at zero. -/
 private theorem squareDownIter_nonneg (n : ℕ) {u : 𝕋} (hu : 0 ≤ toReal u) :
     0 ≤ toReal (squareDownIter n u) := by
   induction n generalizing u with
@@ -157,6 +128,7 @@ private theorem squareDownIter_nonneg (n : ℕ) {u : 𝕋} (hu : 0 ≤ toReal u)
     rw [toReal_maximum, toReal_zero]
     exact le_max_left _ _
 
+/-- `n` downward squarings lift a bound at `s` to one at `2ⁿ s`. -/
 private theorem squareDownIter_le (n : ℕ) {u : 𝕋} {s : ℝ} (hu : 0 ≤ toReal u)
     (h : toReal u ≤ Real.exp s) : toReal (squareDownIter n u) ≤ Real.exp (2 ^ n * s) := by
   induction n generalizing u s with
@@ -176,6 +148,7 @@ private theorem squareDownIter_le (n : ℕ) {u : 𝕋} {s : ℝ} (hu : 0 ≤ toR
     rw [squareDownIter]
     exact hstep
 
+/-- The same upward, where no clamp is needed, an exponential being positive. -/
 private theorem le_squareUpIter (n : ℕ) {u : 𝕋} {s : ℝ} (h : Real.exp s ≤ toReal u) :
     Real.exp (2 ^ n * s) ≤ toReal (squareUpIter n u) := by
   induction n generalizing u s with
@@ -199,6 +172,7 @@ is never negative, so `1 + expDown a` is never below one. -/
 theorem expDown_nonneg (n : ℕ) (a : 𝕋) : 0 ≤ toReal (expDown n a) :=
   squareDownIter_nonneg n (seedDown_nonneg _)
 
+/-- The lower enclosure: seed at `a / 2ⁿ`, then square back. -/
 theorem expDown_le (n : ℕ) (a : 𝕋) : toReal (expDown n a) ≤ Real.exp (toReal a) := by
   have hpow : ((2:ℝ) ^ n) ≠ 0 := pow_ne_zero _ two_ne_zero
   have hle := seedDown_le (halfIter n a)
@@ -208,6 +182,7 @@ theorem expDown_le (n : ℕ) (a : 𝕋) : toReal (expDown n a) ≤ Real.exp (toR
   rw [expDown]
   exact hstep
 
+/-- The upper enclosure, whose hypothesis is what puts `a / 2ⁿ` under `1/2`. -/
 theorem le_expUp (n : ℕ) (a : 𝕋) (ha : toReal a ≤ 2 ^ n / 2) :
     Real.exp (toReal a) ≤ toReal (expUp n a) := by
   have hpow : (0:ℝ) < 2 ^ n := by positivity

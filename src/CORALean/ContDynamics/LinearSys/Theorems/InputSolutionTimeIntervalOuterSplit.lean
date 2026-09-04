@@ -19,11 +19,10 @@ anywhere.
 
 The two pieces want different sets: `F̃` multiplies a set holding the constant
 alone, the propagated part one holding the segment from the origin to it, since
-`M` applied to that segment is exactly the range of `(t/r)·M ũ`. Keeping them
-apart is what keeps the result as tight as the thesis.
+`M` applied to that segment is the range of `(t/r)·M ũ`.
 
 The split itself is a hypothesis — `ContSet` cannot name a centre — so which `c`
-and which sets is the representation's business. A zonotope has all three.
+and which sets is the representation's business.
 -/
 
 -- Authors:       Tobias Ladner
@@ -62,6 +61,7 @@ theorem aux_mtimesIM_mem [Mtimes ℐ S]
   refine Mtimes.mtimes_outer _ _ ?_
   exact Set.mem_biUnion hM (Set.mem_image_of_mem _ hy)
 
+-- `expIntegral_mulVec` carries the whole exponential series through the substitution
 set_option maxHeartbeats 400000 in
 /-- What a constant input contributes over `[0,t]`, in closed form. The
 substitution `σ = t - s` turns the propagator into the integrated exponential. -/
@@ -73,6 +73,7 @@ theorem aux_const_integral (A : Mat ℝ n n) (c : Vec ℝ n) {t : ℝ} (ht : 0 �
   simpa using h
 
 omit [∀ n, LinComb (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] in
+-- a three-way `plus` in the conclusion, elaborated at `ℐ` and `Mat ℝ` together
 set_option maxHeartbeats 1000000 in
 /-- The input's contribution at every time of the step, split along
 `U ⊆ {c} ⊕ U₀`. Neither piece needs `0 ∈ U`. -/
@@ -98,6 +99,7 @@ theorem LinearSys.Trajectory.inputSolution_timeInterval_outer_split
     (hRbdd₀ : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) r η) U₀)))
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) :
+    -- the propagated constant, its interpolation error, and the recentred set
     (∫ s in (0:ℝ)..t, exp ((t - s) • toRealMat sys.A) *ᵥ u s)
       ∈ construct (Plus.plus
           (Plus.plus

@@ -63,6 +63,7 @@ theorem PolyZonotope.monomial_plusE_left {p₁ h₁ p₂ h₂ : ℕ} (E₁ : Fin
       simp only [PolyZonotope.plusE, Fin.append_left]
   rw [hother, hown, mul_one]
 
+-- the mirror on the right block, where the other set's factors contribute `1`
 theorem PolyZonotope.monomial_plusE_right {p₁ h₁ p₂ h₂ : ℕ} (E₁ : Fin p₁ → Fin h₁ → ℕ)
     (E₂ : Fin p₂ → Fin h₂ → ℕ) (a : Fin (p₁ + p₂) → ℝ) (i : Fin h₂) :
     PolyZonotope.monomial (PolyZonotope.plusE E₁ E₂) a (Fin.natAdd h₁ i)

@@ -12,25 +12,20 @@ import CORALean.ContSet.Zonotope.Float.Operations.LinComb
 
 The exact layer's three dependent blocks, and nothing in any of them rounds.
 Halving is exact and so is negation, so `½G₁`, `½G₂` and `-½G₂` are copies, and
-the exponent matrix is `linCombE` over ℕ — reused rather than restated, nothing
-about it rounding.
+`linCombE` is over ℕ.
 
 Three vectors' worth of rounding is what is left, in two kinds. The centre and
-the sliding generator are what a zonotope's `linComb` already pays: the midpoint
-is stored in place of a known bracket, which is a `residual`, while the sliding
-generator's coefficient is the fresh factor and ranges over `[-1,1]`, so its
-shortfall pulls both ways and needs a symmetric box. The independent block is
-the third: it pairs, and a pairing is arithmetic, so `generatorError` charges its
-whole matrix at once.
-
-The dependent side is therefore still free, and both counts are what they are
-over ℝ, independently of `p` and of the degree.
+the sliding generator are what a zonotope's `linComb` already pays: a midpoint
+stored in place of a known bracket is a `residual`, while the sliding
+generator's coefficient ranges over `[-1,1]`, so its shortfall pulls both ways
+and needs a symmetric box. The independent block pairs, and a pairing is
+arithmetic, so `generatorError` charges its whole matrix at once. The dependent
+side is therefore free, and both counts are what they are over ℝ.
 
 `Zonotope.pairSum`, `Zonotope.pairDiff` and `Zonotope.generatorError` are
-borrowed rather than restated, which is what CORA does too: its
-`@polyZonotope/linComb` runs `zonotope/enclose` on the independent blocks. The
-midpoint and the sliding generator stay local — those are one-line expressions
-that happen to coincide, not a shared operation.
+borrowed rather than restated, as CORA's `@polyZonotope/linComb` runs
+`zonotope/enclose` on the independent blocks. The midpoint and the sliding
+generator stay local, being one-line expressions that happen to coincide.
 -/
 
 -- Authors:       Tobias Ladner

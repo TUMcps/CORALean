@@ -29,6 +29,7 @@ theorem VPolytope.and_outer (P₁ P₂ : VPolytope (Vec ℝ n))
     · exact P₂.subset_hPolytope Aq₂ hx₂
     · rw [Interval.hPolytope_exact]
       exact P₁.interval_outer hx₁
+  -- empty or not: an empty halfspace description leaves nothing to enumerate
   by_cases h : (VPolytope.andH P₁ P₂ Aq₁ Aq₂).construct.Nonempty
   · have he : P₁.and P₂ Aq₁ Aq₂ = (VPolytope.andH P₁ P₂ Aq₁ Aq₂).vPolytope h := dif_pos h
     rw [he]

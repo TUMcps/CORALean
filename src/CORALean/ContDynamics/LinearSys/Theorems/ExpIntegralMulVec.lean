@@ -42,6 +42,7 @@ theorem aux_norm_pow_mulVec (A : Mat ℝ n n) (v : Vec ℝ n) (i : ℕ) :
   · exact le_trans (Matrix.linfty_opNorm_mulVec _ _)
       (mul_le_mul_of_nonneg_right (norm_pow_le' A hi) (norm_nonneg _))
 
+-- `ContinuousLinearMap.map_tsum` moves a `Mat ℝ n n` series under an application
 set_option maxHeartbeats 400000 in
 /-- The exponential series carried through to a vector. -/
 theorem aux_exp_mulVec_tsum (A : Mat ℝ n n) (v : Vec ℝ n) (σ : ℝ) :
@@ -50,6 +51,7 @@ theorem aux_exp_mulVec_tsum (A : Mat ℝ n n) (v : Vec ℝ n) (σ : ℝ) :
     ContinuousLinearMap.map_tsum (mulVecR v) (summable_exp_smul A σ)]
   exact tsum_congr fun i => by rw [mulVecR_apply, Matrix.smul_mulVec]
 
+-- a `calc` over the `linftyOp` norm, whose instances are local to this file
 set_option maxHeartbeats 400000 in
 /-- Applying a vector only shrinks the terms, by `‖A^i v‖ ≤ ‖A^i‖ ‖v‖`, so
 summability of a matrix series carries to it. -/
@@ -64,6 +66,7 @@ theorem aux_summable_smul_mulVec {c : ℕ → ℝ} (A : Mat ℝ n n) (v : Vec �
         mul_le_mul_of_nonneg_left (Matrix.linfty_opNorm_mulVec _ _) (norm_nonneg _)
     _ = ‖v‖ * (‖c i‖ * ‖A ^ i‖) := by ring
 
+-- `norm_expSeries_summable'` is elaborated at the four local `Matrix.linftyOp*` instances
 set_option maxHeartbeats 400000 in
 /-- Each order of the exponential series, applied to a vector, is summable. -/
 theorem aux_summable_exp_mulVec (A : Mat ℝ n n) (v : Vec ℝ n) (σ : ℝ) :
@@ -72,6 +75,7 @@ theorem aux_summable_exp_mulVec (A : Mat ℝ n n) (v : Vec ℝ n) (σ : ℝ) :
   refine (norm_expSeries_summable' (𝕂 := ℝ) (σ • A)).congr fun i => ?_
   rw [smul_pow, smul_smul]
 
+-- the same instance search, one order higher
 set_option maxHeartbeats 400000 in
 /-- The same with the extra order integration adds. -/
 theorem aux_summable_expIntegral_mulVec (A : Mat ℝ n n) (v : Vec ℝ n) (t : ℝ) :
@@ -86,6 +90,7 @@ theorem aux_continuous_expPartial (A : Mat ℝ n n) (v : Vec ℝ n) (N : ℕ) :
   continuous_finsetSum _ fun i _ =>
     ((continuous_const.mul (continuous_pow i)).smul continuous_const)
 
+-- dominated convergence with its bound proved inline, over the same norm instances
 set_option maxHeartbeats 1000000 in
 /-- `expIntegral` is what its name says, once a vector is supplied. -/
 theorem MatExp.expIntegral_mulVec (A : Mat ℝ n n) (v : Vec ℝ n) {t : ℝ} (ht : 0 ≤ t) :
@@ -128,11 +133,13 @@ theorem MatExp.expIntegral_mulVec (A : Mat ℝ n n) (v : Vec ℝ n) {t : ℝ} (h
         Filter.Eventually.of_forall fun σ hσ => ?_)
       intervalIntegrable_const
       (Filter.Eventually.of_forall fun σ _ => ?_)
+    -- the dominating bound: every partial sum stays under `e^{‖A‖t}‖v‖` on the step
     · rw [Set.uIoc_of_le ht] at hσ
       have hσ0 : (0:ℝ) ≤ σ := hσ.1.le
       calc ‖∑ i ∈ Finset.range N, (((Nat.factorial i : ℝ))⁻¹ * σ ^ i) • (A ^ i *ᵥ v)‖
           ≤ ∑ i ∈ Finset.range N, ‖(((Nat.factorial i : ℝ))⁻¹ * σ ^ i) • (A ^ i *ᵥ v)‖ :=
             norm_sum_le _ _
+        -- the vector comes out of every term, leaving the scalar exponential series
         _ ≤ ∑ i ∈ Finset.range N, (‖A‖ * σ) ^ i / (Nat.factorial i : ℝ) * ‖v‖ := by
             refine Finset.sum_le_sum fun i _ => ?_
             have hnn : (0:ℝ) ≤ ((Nat.factorial i : ℝ))⁻¹ * σ ^ i :=
@@ -152,6 +159,7 @@ theorem MatExp.expIntegral_mulVec (A : Mat ℝ n n) (v : Vec ℝ n) {t : ℝ} (h
             refine le_trans (Real.sum_le_exp_of_nonneg
               (mul_nonneg (norm_nonneg A) hσ0) N) ?_
             exact Real.exp_le_exp.mpr (mul_le_mul_of_nonneg_left hσ.2 (norm_nonneg A))
+    -- and the pointwise limit is the exponential applied to the vector
     · have h := (aux_summable_exp_mulVec A v σ).hasSum.tendsto_sum_nat
       rwa [← aux_exp_mulVec_tsum A v σ] at h
   rw [hseries]

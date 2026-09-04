@@ -46,7 +46,6 @@ omit [SoundFloatArithmetic 𝕋] in
     (PolyZonotope.mtimes M PZ).q = PZ.q := rfl
 
 /-- The exact image, regrouped so the centre and each generator appear once.
-
 Over the three blocks rather than over a `PolyZonotope`, since a constrained one
 has the same three and regrouping them knows nothing about a constraint. -/
 theorem PolyZonotope.mulVec_split {hh qq : ℕ} (M : Mat 𝕋 m n) (c : Vec 𝕋 n)
@@ -67,6 +66,7 @@ theorem PolyZonotope.mulVec_split {hh qq : ℕ} (M : Mat 𝕋 m n) (c : Vec 𝕋
         refine congrArg₂ _ (congrArg₂ _ rfl ?_) ?_
         · exact Finset.sum_congr rfl fun l _ => (mul_assoc _ _ _).symm
         · exact Finset.sum_congr rfl fun j _ => (mul_assoc _ _ _).symm
+    -- then the three sums separated, and each index swapped to the outside
     _ = (∑ k, toReal (M i k) * toReal (c k))
         + (∑ k, ∑ l, toReal (M i k) * toReal (G k l) * t l)
         + ∑ k, ∑ j, toReal (M i k) * toReal (GI k j) * β j := by
@@ -106,6 +106,7 @@ theorem PolyZonotope.aux_mtimes_nominal (M : Mat 𝕋 m n) (PZ : PolyZonotope �
       ∈ (Interval.residual (mulVecDown M PZ.c) (mulVecUp M PZ.c)
           (mulVecDown M PZ.c)).construct :=
     Interval.sub_mem_residual (fun i => ⟨dotDown_le (M i) PZ.c, le_dotUp (M i) PZ.c⟩)
+  -- the two generator blocks' shortfalls, each bounded by a coefficient inside `[-1,1]`
   have hdepBox : (fun i => ∑ l, ((∑ k, toReal (M i k) * toReal (PZ.G k l))
         - toReal (matMulDown M PZ.G i l)) * Real.PolyZonotope.monomial PZ.E a l)
       ∈ (PolyZonotope.generatorError (matMulDiff M PZ.G)).construct :=
@@ -136,6 +137,7 @@ theorem PolyZonotope.aux_mtimes_nominal (M : Mat 𝕋 m n) (PZ : PolyZonotope �
       = ∑ j, (∑ k, toReal (M i k) * toReal (PZ.GI k j)) * β j := by
     rw [← Finset.sum_add_distrib]
     exact Finset.sum_congr rfl fun j _ => by ring
+  -- the goal spelled out, so the two recombinations line up with it term by term
   show toReal ((PolyZonotope.mtimes M PZ).c i)
         + (∑ l : Fin PZ.h, toReal ((PolyZonotope.mtimes M PZ).G i l)
             * Real.PolyZonotope.monomial PZ.E a l)

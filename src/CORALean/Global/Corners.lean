@@ -49,6 +49,7 @@ theorem sum_prod_bool_mul (t u v : Fin n → ℝ) (i : Fin n) :
     have hsplitR := Finset.mul_prod_erase Finset.univ
       (fun j => if σ j then (if j = i then t i * u i else t j)
                        else if j = i then (1 - t i) * v i else 1 - t j) (Finset.mem_univ i)
+    -- every factor but `i`'s is unchanged, so only the split factor is compared
     have hrest : ∏ j ∈ Finset.univ.erase i,
           (if σ j then (if j = i then t i * u i else t j)
                   else if j = i then (1 - t i) * v i else 1 - t j)

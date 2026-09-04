@@ -12,9 +12,14 @@ the representation, exactly as `ReachOuterConvexCompact` does at the sample
 times.
 
 `0 ∈ U` stays a hypothesis: it is a fact about where the input set sits, not
-about its shape, so no class can supply it. Althoff's first case, the only one
+about its shape, so no class can supply it. The first case of [1], the only one
 with a single enclosure for the whole step; the second case splits `U` instead
 and needs a representation that can recentre itself.
+
+## References
+
+* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
+      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
 -/
 
 -- Authors:       Tobias Ladner

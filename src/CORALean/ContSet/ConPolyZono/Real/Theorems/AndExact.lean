@@ -5,28 +5,21 @@ import CORALean.ContSet.ConPolyZono.Real.Theorems.DependentExact
 # `ConPolyZono.and` is exactly the intersection
 
 The claim the representation exists for, and the one no convex representation
-here can make without giving something away: two constrained polynomial
-zonotopes intersect to a constrained polynomial zonotope, exactly.
+here can make without giving something away.
 
-What the proof turns on is that the agreement rows are constraints of the very
-same kind the representation already carries. Their coefficients are the
-generator monomials, so `appendE` can put the generator exponent columns beside
-the constraint ones over one shared factor vector, and a point of the result is
-then a point of `C₁` whose factors are forced to reproduce a point of `C₂`.
-Membership in both is exactly that, in both directions.
+The proof turns on the agreement rows being constraints of the same kind the
+representation already carries: their coefficients are the generator monomials,
+so `appendE` puts their exponent columns beside the constraint ones over one
+shared factor vector, and a point of the result reproduces a point of `C₂`.
 
-`andDep_exact` states it at a tolerance: the second set is met not on the nose
-but after a translation by `D`, and the agreement rows carry `D` in their
-right-hand interval. That is what a float layer intersects with, its two nominal
-points standing as far apart as the two error boxes allow. At `D = {0}` the
-translation does nothing and `and_exact` is the intersection itself.
+`andDep_exact` states it at a tolerance: the second set is met after a
+translation by `D`, which the agreement rows carry in their right-hand interval
+and which a float layer's error boxes fill. At `D = {0}` it is the intersection.
 
-The independent generators are handled before the rows are written, not by them:
-`and` intersects the two `dependent` sets. An independent coefficient answers to
-no constraint, so it could move the two points apart with nothing in the system
-to forbid it — `andDep` is sound only where both independent blocks are empty,
-which is what `hq₁` and `hq₂` say, and `dependent_exact` is what makes that
-costless.
+The independent generators are handled before the rows are written: `and`
+intersects the two `dependent` sets, since an independent coefficient answers to
+no constraint and could move the two points apart. `hq₁` and `hq₂` say the
+blocks are empty, and `dependent_exact` is what makes that costless.
 -/
 
 -- Authors:       Tobias Ladner
@@ -76,6 +69,7 @@ theorem ConPolyZono.andDep_exact (C₁ C₂ : ConPolyZono (Vec ℝ n)) (D : Inte
         = C₂.c i + ∑ l, C₂.G l i * PolyZonotope.monomial C₂.E a₂ l := by
       intro i
       rw [hy, hz₂ β₂, add_zero, Entrywise.add_sum_smul_apply]
+    -- the witness: the two factor vectors appended, with no independent coefficients left
     refine ⟨Fin.append a₁ a₂, fun _ => 0,
       Fin.addCases (fun k => by simpa using ha₁ k) (fun k => by simpa using ha₂ k),
       fun j => j.elim0, ?_, ?_⟩
@@ -90,6 +84,7 @@ theorem ConPolyZono.andDep_exact (C₁ C₂ : ConPolyZono (Vec ℝ n)) (D : Inte
         have hx := hxd i
         have hdi : D.inf i ≤ d i ∧ d i ≤ D.sup i := hd i
         exact ⟨by linarith [hdi.1], by linarith [hdi.2]⟩
+    -- and the value, where only `C₁`'s half of the generator block is nonzero
     · show x = C₁.c + (∑ l : Fin (C₁.h + C₂.h),
               PolyZonotope.monomial (PolyZonotope.plusE C₁.E C₂.E) (Fin.append a₁ a₂) l
                 • Fin.append C₁.G (0 : Fin C₂.h → Vec ℝ n) l)
@@ -124,6 +119,7 @@ theorem ConPolyZono.andDep_exact (C₁ C₂ : ConPolyZono (Vec ℝ n)) (D : Inte
         fun _ => by norm_num, hs₁, ?_⟩
       rw [hxv]
       simp only [zero_smul, Finset.sum_const_zero, add_zero]
+    -- and that point lies in `C₂`, its factors being the right half of `a`
     have hy₂ : y ∈ C₂.construct := by
       refine ⟨fun k => a (Fin.natAdd C₁.p k), fun _ => 0, fun k => ha _,
         fun _ => by norm_num, hs₂, ?_⟩
@@ -151,6 +147,7 @@ theorem ConPolyZono.aux_add_point_zero (S : Set (Vec ℝ n)) :
     have h : (0:ℝ) ≤ z i ∧ z i ≤ 0 := hz i
     show z i = 0
     linarith [h.1, h.2]
+  -- both directions, the only member of a zero-width box being `0`
   ext x
   constructor
   · rintro ⟨y, hy, z, hz, hyz⟩

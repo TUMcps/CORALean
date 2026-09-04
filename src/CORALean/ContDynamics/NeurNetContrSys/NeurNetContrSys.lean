@@ -5,33 +5,21 @@ import CORALean.NN.NeuralNetwork
 # A neural network in the loop of a continuous-time plant: the representation
 
 CORA's `neurNetContrSys`: a `LinearSys` whose input is produced by a network at
-discrete sampling instants and *held* between them. The controller reads the
-state at `i Δtc`, and `u` is constant at `π(x(i Δtc))` for the whole period —
-zero-order hold, which is what a controller running on a computer does.
+discrete sampling instants and *held* between them, so `u` is constant at
+`π(x(i Δtc))` for the whole period. The control period `Δtc` is not the
+reachability step; `Operations` is where the two meet, as `Δtc = N Δt`.
 
-The control period `Δtc` is carried by `Trajectory` and is not the reachability
-step. Nothing here mentions the reachability step at all; `Operations` is where
-the two meet, as `Δtc = N Δt`, and they are separate parameters there. Assuming
-them equal would restrict the method to a controller running as fast as the
-integrator, which is the case that does not arise.
+`flow` is stated per period, with the derivative taken *within that period*. A
+zero-order-hold run is generally **not** a `LinearSys.Trajectory` on a two-sided
+domain: at a sampling instant `u` jumps and `x` is differentiable only one-sidedly
+from each side, so a run on `Ici 0` would force the two derivatives to agree and
+hence force the input never to switch. Restricted to one closed period the same
+predicate is exactly right, the endpoints being where the derivative becomes
+one-sided; `Theorems.Period` is that reading, and the only place the two
+developments touch.
 
-`flow` is stated per period, with the derivative taken *within that period*.
-That is not a convenience: a zero-order-hold run is generally **not** a
-`LinearSys.Trajectory` on a two-sided domain, because at a sampling instant `u`
-jumps and `x` is therefore not differentiable there — only one-sidedly, from
-each side. `LinearSys.Trajectory` asks for `HasDerivWithinAt` within its own
-domain, so a run on `Ici 0` would force the left and right derivatives to agree
-and hence force the input never to switch. Restricted to one closed period the
-same predicate is exactly right, the endpoints being where the derivative
-becomes one-sided; `Theorems.Period` is that reading, and it is the only place
-the two developments touch.
-
-`H` bounds the number of periods the run is asserted over, as every bounded
-statement in `LinearSys` does: a run over `H` periods says nothing past
-`H Δtc`.
-
-No `B`, for the reason `NeurNetContrSysDT` gives: `LinearSys` carries only `A`,
-and an actuation matrix is the controller's last linear layer.
+`H` bounds the number of periods asserted over. No `B`, for the reason
+`NeurNetContrSysDT` gives: an actuation matrix is the controller's last layer.
 -/
 
 -- Authors:       Tobias Ladner

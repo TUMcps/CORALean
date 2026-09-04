@@ -37,11 +37,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 
 /-- Every trajectory of a linear system whose input set is convex and compact
-stays in `reach`, at every sample time. The step, the Taylor order and the bound
-`hε` relating them are all that is left to supply.
-
-All of forward time, since every sample time is spoken about at once; the
-bounded-horizon form is `reach_outer_horizon_inputSolution`. -/
+stays in `reach`, at every sample time — so over all of forward time, the
+bounded-horizon form being `reach_outer_horizon_inputSolution`. -/
 theorem LinearSys.Trajectory.reach_outer_convexCompact [Mtimes ℐ S]
     [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ n)]
     {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n} {Δt : ℝ}

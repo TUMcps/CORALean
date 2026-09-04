@@ -9,18 +9,16 @@ parameter. The classical family is Kurzhanski and Varaiya's
 
   `Q(l) = (1 + 1/l) Q₁ + (1 + l) Q₂`,   `l > 0`,
 
-whose members are each tight in one direction and none in all of them: at
-`l = ‖G₂ᵀ d‖₂ / ‖G₁ᵀ d‖₂` the support value in direction `d` is exactly
-`‖G₁ᵀ d‖₂ + ‖G₂ᵀ d‖₂`, which is the sum's own.
+whose members are each tight in one direction and none in all: at
+`l = ‖G₂ᵀ d‖₂ / ‖G₁ᵀ d‖₂` the support value in `d` is the sum's own.
 
 In shape-matrix form `Q(l)` would have to be square-rooted back into a generator
 matrix. In generator form it does not: `(1 + 1/l) G₁G₁ᵀ + (1 + l) G₂G₂ᵀ` is
 `H Hᵀ` for `H = [√(1+1/l) G₁ | √(1+l) G₂]` outright, so only the two *scalars*
 are square-rooted and the generator count adds, exactly as a zonotope's does.
 
-`l` stays an argument. `Plus` has no room for it, and any fixed value would be a
-precision choice buried in an interface rather than made by the caller, which is
-why `Instances` leaves that class alone.
+`l` stays an argument: `Plus` has no room for it, and any fixed value would bury
+a precision choice in an interface, which is why `Instances` leaves it alone.
 -/
 
 -- Authors:       Tobias Ladner

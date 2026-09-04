@@ -53,6 +53,7 @@ def Enclosure.tanhOfSigmoid (E : Enclosure 𝕋 Real.sigmoid) : Enclosure 𝕋 R
     rw [toReal_one] at hsub
     rw [tanh_eq_sigmoid (toReal a)]
     linarith
+  -- the doubling rounds the same way as the bound it feeds, so the direction survives
   le_hi a := by
     have hd : 2 * toReal a ≤ toReal (addUp a a) := by
       linarith [add_le_addUp a a]

@@ -20,6 +20,15 @@ export LC_ALL
 
 cd "$(dirname "$0")/.."
 
+# The numeric limits, gathered here because every one of them is a judgement
+# call and the tree is the evidence for it. Each is at or just above the trimmed
+# tree's worst case, so raising one is a decision rather than a drift.
+MAX_LINE=100          # characters, not bytes
+MAX_MODULE_DOC=20     # module docstring, content file
+MAX_COLLECTOR_DOC=25  # module docstring, collector: it is the directory entry point
+MAX_DECL_DOC=3        # docstring ahead of a declaration
+MAX_LINES_WO_COMMENT=20  # a minimum density, not a maximum: proofs need signposts
+
 status=0
 
 report() {
@@ -33,20 +42,40 @@ files=$(find src -name '*.lean' | sed 's#\\#/#g' | sort)
 
 # Per-file conventions, one pass. `depth` tracks nesting of `/- -/` across
 # lines, so a docstring mentioning `aux_` or `sorry` is not mistaken for code.
-out=$(printf '%s\n' "$files" | xargs awk '
-BEGIN { CONT = "[\200-\277]" }
+out=$(printf '%s\n' "$files" | xargs awk \
+  -v MAX_LINE="$MAX_LINE" \
+  -v MAX_MODULE_DOC="$MAX_MODULE_DOC" \
+  -v MAX_COLLECTOR_DOC="$MAX_COLLECTOR_DOC" \
+  -v MAX_DECL_DOC="$MAX_DECL_DOC" \
+  -v MAX_LINES_WO_COMMENT="$MAX_LINES_WO_COMMENT" '
+BEGIN {
+  CONT = "[\200-\277]"
+  MONTH = "(January|February|March|April|May|June|July|August|September|October|November|December)"
+  DATE = "^(0[1-9]|[12][0-9]|3[01])-" MONTH "-[0-9][0-9][0-9][0-9]$"
+}
 
 # Characters, not bytes: every byte of a UTF-8 sequence but the first is a
 # continuation byte, so dropping those counts the characters.
 function charlen(s,   t) { t = s; gsub(CONT, "", t); return length(t) }
 
-function strip(line,   out, i, c, n) {
+# Returns the code on the line and, as a side effect, reports what comment
+# syntax it passed through: `opened` names the kind of block that started here
+# and `sawComment` says whether any comment was on the line at all.
+function strip(line,   out, i, c, n, k) {
   out = ""; i = 1; n = length(line)
+  sawComment = (depth > 0); opened = ""
   while (i <= n) {
     c = substr(line, i, 2)
-    if (depth == 0 && c == "--") break
-    if (c == "/-") { depth++; i += 2; continue }
-    if (c == "-/") { if (depth > 0) depth--; i += 2; continue }
+    if (depth == 0 && c == "--") { sawComment = 1; break }
+    if (c == "/-") {
+      depth++; sawComment = 1
+      if (depth == 1) {
+        k = substr(line, i + 2, 1)
+        opened = (k == "!") ? "mod" : ((k == "-") ? "doc" : "blk")
+      }
+      i += 2; continue
+    }
+    if (c == "-/") { if (depth > 0) depth--; sawComment = 1; i += 2; continue }
     if (depth == 0) out = out substr(line, i, 1)
     i++
   }
@@ -72,7 +101,40 @@ function dirOf(path,   d) {
   return d
 }
 
-function check(f,   i, n, collector, want, dir) {
+function say(msg) { print msg }
+
+# Closes a stretch of uncommented code and reports it if it ran too long.
+function endRun(f) {
+  if (run > MAX_LINES_WO_COMMENT)
+    say(f ":" runStart ": " run " lines of code with no comment, over " \
+        MAX_LINES_WO_COMMENT " — a line saying what this step is doing goes here")
+  run = 0
+}
+
+# Called when the top-level comment block that started on `blockStart` ends.
+function closeBlock(e,   len) {
+  len = e - blockStart + 1
+  if (blockKind == "mod") {
+    # The cap is on the prose. A `## References` block is a bibliography, which
+    # does not grow the way an explanation does, so it is measured out.
+    if (docLine == 0) {
+      docLine = blockStart; docEnd = e
+      docLen = (refsLine > 0) ? refsLine - blockStart : len
+    }
+  } else if (blockKind == "doc") {
+    if (len > MAX_DECL_DOC)
+      say(FILENAME ":" blockStart ": declaration docstring is " len " lines, over " \
+          MAX_DECL_DOC " — move the explanation into the module docstring")
+    declDocEnd = e
+  } else if (len > 1) {
+    say(FILENAME ":" blockStart ": block comment spans " len " lines" \
+        " — say it in one line, or move it into the module docstring")
+  }
+  blockKind = ""
+}
+
+function check(f,   i, n, collector, want, dir, cap) {
+  endRun(f)
   collector = (f ~ /\/API\.lean$/) || (f == "src/CORALean.lean") ||
               (f == "src/CORALean/Global/Mathlib.lean")
 
@@ -80,8 +142,14 @@ function check(f,   i, n, collector, want, dir) {
     if (!(a in declAux))
       say(f ":" useAux[a] ": `aux_` name `" a "` is not declared in this file")
 
-  if (docLine == 0)
+  if (docLine == 0) {
     say(f ":1: no module docstring — every file opens with `/-! ... -/`")
+  } else {
+    cap = collector ? MAX_COLLECTOR_DOC : MAX_MODULE_DOC
+    if (docLen > cap)
+      say(f ":" docLine ": module docstring is " docLen " lines, over " cap \
+          " — keep what is non-obvious about this file and drop the rest")
+  }
 
   if (collector) {
     if (authorLine > 0)
@@ -89,8 +157,26 @@ function check(f,   i, n, collector, want, dir) {
     if (f ~ /\/API\.lean$/ && codeLine > 0)
       say(f ":" codeLine ": `API.lean` holds nothing but imports")
   } else if (authorLine == 0) {
-    say(f ":1: no author block — content files carry one")
+    say(f ":1: no author block — content files carry one, after the module docstring")
+  } else if (docLine > 0 && authorLine != docEnd + 2) {
+    say(f ":" authorLine ": the author block goes one blank line under the module" \
+        " docstring, which ends at line " docEnd)
   }
+
+  # Every `[N]` cited is defined and every one defined is cited, so a reference
+  # cannot rot into a number with nothing behind it.
+  for (i in refCite)
+    if (!(i in refDef))
+      say(f ":" refCite[i] ": cites `[" i "]`, which no `## References` entry defines")
+  n = 0
+  for (i in refDef) {
+    n++
+    if (!(i in refCite))
+      say(f ":" refDef[i] ": defines `[" i "]` and never cites it")
+  }
+  for (i = 1; i <= n; i++)
+    if (!(i in refDef))
+      say(f ":" docLine ": references are numbered from 1 without gaps; `[" i "]` is missing")
 
   dir = dirOf(f)
   want = moduleOf(dir "/API.lean")
@@ -104,30 +190,125 @@ function check(f,   i, n, collector, want, dir) {
   if (f ~ /\/Conversion\// && !(f ~ /\/API\.lean$/) &&
       !(f ~ /\/[A-Za-z]+_to_[A-Za-z]+\.lean$/))
     say(f ":1: a file in `Conversion/` is named `<Source>_to_<Target>.lean`")
-}
 
-function say(msg) { print msg }
+  # A layer directory and the namespace it declares must agree, since the path
+  # is what a reader navigates by and the namespace is what Lean resolves by.
+  if (!collector && nsLine > 0) {
+    if (f ~ /\/Float\// && ns !~ /(^|\.)Float(\.|$)/)
+      say(f ":" nsLine ": a file under `Float/` declares `namespace ...Float`, not `" ns "`")
+    if (f ~ /\/Real\// && f !~ /\/Float\// && ns !~ /(^|\.)Real(\.|$)/)
+      say(f ":" nsLine ": a file under `Real/` declares `namespace ...Real`, not `" ns "`")
+  }
+}
 
 FNR == 1 {
   if (prev != "") check(prev)
   prev = FILENAME
-  depth = 0; nimp = 0; docLine = 0; authorLine = 0; codeLine = 0
+  depth = 0; nimp = 0; docLine = 0; docLen = 0; docEnd = 0
+  authorLine = 0; codeLine = 0; nsLine = 0; ns = ""
+  blockKind = ""; blockStart = 0; declDocEnd = 0
+  prevPureComment = 0; prevLineComment = 0; run = 0; blanks = 0; inRefs = 0; refsLine = 0
   # `split("", a)` rather than `delete a`, which older mawk does not have
   split("", declAux); split("", useAux); split("", imp); split("", impLine)
+  split("", refDef); split("", refCite)
 }
 
 {
   raw = $0
-  if (charlen(raw) > 100)
-    say(FILENAME ":" FNR ": line is " charlen(raw) " characters, over the limit of 100")
+  if (charlen(raw) > MAX_LINE)
+    say(FILENAME ":" FNR ": line is " charlen(raw) " characters, over the limit of " \
+        MAX_LINE " — wrap it")
   if (raw ~ /[ \t]$/)
-    say(FILENAME ":" FNR ": trailing whitespace")
+    say(FILENAME ":" FNR ": trailing whitespace — strip it")
   if (raw ~ /\t/)
-    say(FILENAME ":" FNR ": tab character")
-  if (docLine == 0 && raw ~ /^\/-!/) docLine = FNR
+    say(FILENAME ":" FNR ": tab character — indent with spaces")
+  if (raw !~ /[^ \t]/) { blanks++; if (blanks == 3) say(FILENAME ":" FNR \
+      ": third blank line in a row — one blank line separates, two at most") }
+  else blanks = 0
   if (authorLine == 0 && raw ~ /^-- Authors:/) authorLine = FNR
 
+  # The author block, field by field, so that a block that is present but
+  # malformed is caught rather than counted as present.
+  if (authorLine > 0 && FNR >= authorLine && FNR <= authorLine + 3) {
+    field = ""
+    if (FNR == authorLine) field = "Authors:      "
+    else if (FNR == authorLine + 1) field = "Written:      "
+    else if (FNR == authorLine + 2) field = "Last update:  "
+    else field = "Last revision:"
+    lbl = field; sub(/[ \t]*$/, "", lbl)
+    if (index(raw, "-- " field " ") != 1) {
+      say(FILENAME ":" FNR ": the author block reads `-- " lbl \
+          "` here, aligned to one column")
+    } else {
+      val = substr(raw, length("-- " field " ") + 1)
+      sub(/[ \t]+$/, "", val)
+      if (FNR == authorLine) {
+        if (val !~ /^[A-Z]/)
+          say(FILENAME ":" FNR ": `Authors:` names a person")
+      } else if (FNR == authorLine + 1) {
+        if (val !~ DATE)
+          say(FILENAME ":" FNR ": `Written:` is a DD-Month-YYYY date, not `" val "`")
+      } else if (val != "---" && val !~ DATE) {
+        say(FILENAME ":" FNR ": `" lbl "` is a DD-Month-YYYY date or `---`, not `" val "`")
+      }
+    }
+  }
+  isAuthorBlock = (authorLine > 0 && FNR >= authorLine && FNR <= authorLine + 3)
+
+  depthBefore = depth
   code = strip(raw)
+
+  if (depthBefore == 0 && opened != "") { blockKind = opened; blockStart = FNR }
+  lineKind = blockKind
+  if (depth == 0 && blockKind != "") closeBlock(FNR)
+
+  # References live in the module docstring; everything else that names a
+  # number in brackets is citing one.
+  if (lineKind == "mod") {
+    if (raw ~ /^#+ References[ \t]*$/) { inRefs = 1; if (refsLine == 0) refsLine = FNR }
+    else if (raw ~ /^#+ /) inRefs = 0
+    if (inRefs && raw ~ /^\* \[[0-9]+\] /) {
+      num = raw; sub(/^\* \[/, "", num); sub(/\].*$/, "", num)
+      if (num in refDef)
+        say(FILENAME ":" FNR ": `[" num "]` is defined twice")
+      refDef[num + 0] = FNR
+      next
+    }
+  }
+  # A citation is `[N]` or `[N, Sec. 4]` with N counting from 1. The exclusions
+  # are what a tree full of interval and matrix notation forces: `[0, 1]` and
+  # `[1/3, 1]` are sets, `[[1],[3]]` is a matrix, and `[1, 2]` is a pair.
+  if (sawComment || lineKind != "") {
+    rest = raw
+    while (match(rest, /\[[1-9][0-9]*(\]|, *[^0-9 ])/)) {
+      num = substr(rest, RSTART + 1, RLENGTH - 2)
+      sub(/[],].*$/, "", num)
+      after = substr(rest, RSTART + RLENGTH - 1, 2)
+      if (!(RSTART > 1 && substr(rest, RSTART - 1, 1) == "[") && after != "]]" &&
+          !(num in refCite))
+        refCite[num + 0] = FNR
+      rest = substr(rest, RSTART + RLENGTH)
+    }
+  }
+
+  # One line of `--` says the non-obvious thing; two say a paragraph, which
+  # belongs in the module docstring.
+  isPureComment = (code !~ /[^ \t]/) && (raw ~ /^[ \t]*--/) && !isAuthorBlock
+  if (isPureComment && prevPureComment)
+    say(FILENAME ":" FNR ": second `--` line in a row — one line, or move it to the header")
+  prevPureComment = isPureComment
+
+  # A minimum density. Counted only past the header, and only over lines that
+  # carry code, so blank lines neither help nor hurt. Reported once per stretch,
+  # at the line the stretch began, since that is where the comment goes.
+  if (authorLine > 0 && FNR > authorLine + 3) {
+    if (sawComment || lineKind != "") {
+      endRun(FILENAME)
+    } else if (code ~ /[^ \t]/) {
+      if (run == 0) runStart = FNR
+      run++
+    }
+  }
 
   if (code ~ /^import /) {
     nimp++
@@ -139,10 +320,43 @@ FNR == 1 {
     if (codeLine == 0) codeLine = FNR
   }
 
+  if (nsLine == 0 && code ~ /^namespace /) {
+    ns = code; sub(/^namespace[ \t]+/, "", ns); sub(/[ \t].*$/, "", ns)
+    nsLine = FNR
+  }
+
   if (code ~ /(^|[^A-Za-z0-9_'"'"'.])sorry([^A-Za-z0-9_'"'"']|$)/)
-    say(FILENAME ":" FNR ": `sorry`")
+    say(FILENAME ":" FNR ": `sorry` — finish the proof or drop the declaration")
   if (code ~ /^axiom[ \t]/)
     say(FILENAME ":" FNR ": `axiom` — nothing here is axiomatised")
+
+  # Search tactics cost compile time that nothing bounds, and the whole point of
+  # the heartbeat limit in `lakefile.toml` is that a proof does not start
+  # searching. Matched in tactic position only: `decide` is also the term that
+  # turns a `Decidable` instance into a `Bool`, which is not a search at all.
+  tac = code
+  sub(/^[ \t]+/, "", tac)
+  SEARCH = "(aesop|exact\\?|apply\\?|simp\\?|rw\\?|decide|native_decide|polyrith|library_search)"
+  if (tac ~ ("^" SEARCH "([ \t;<]|$)") ||
+      tac ~ ("(by|<;>|;|·|\\|) *" SEARCH "([ \t;<]|$)")) {
+    match(tac, SEARCH)
+    say(FILENAME ":" FNR ": `" substr(tac, RSTART, RLENGTH) \
+        "` — proofs here are explicit, so the heartbeat limit stays meaningful")
+  }
+
+  # A heartbeat bump is a cost someone chose to pay; the reason is the only part
+  # a later reader cannot reconstruct.
+  if (code ~ /^set_option maxHeartbeats /) {
+    if (!(sawComment && raw ~ /--/) && !(prevLineComment))
+      say(FILENAME ":" FNR ": a `maxHeartbeats` bump carries a one-line reason," \
+          " above it or after it on this line")
+  }
+  # `set_option ... in` between a docstring and its declaration silently
+  # detaches the docstring from it.
+  if (code ~ /^set_option .* in[ \t]*$/ && declDocEnd == FNR - 1)
+    say(FILENAME ":" FNR ": `set_option ... in` goes above the docstring, not between" \
+        " it and the declaration")
+  prevLineComment = (code !~ /[^ \t]/) && sawComment
 
   if (code ~ /^(private |protected |noncomputable |partial |scoped )*(def|theorem|lemma|abbrev|instance|structure|inductive|class) /) {
     decl = code

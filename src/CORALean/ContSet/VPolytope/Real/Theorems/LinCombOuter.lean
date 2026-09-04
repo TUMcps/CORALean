@@ -26,6 +26,7 @@ theorem VPolytope.aux_subset_linComb_left (P₁ P₂ : VPolytope α) :
   rwa [show (P₁.linComb P₂).V (Fin.castAdd P₂.k j) = P₁.V j from
     Fin.append_left P₁.V P₂.V j] at h
 
+-- and the same on the right block of the appended vertex list
 theorem VPolytope.aux_subset_linComb_right (P₁ P₂ : VPolytope α) :
     P₂.construct ⊆ (P₁.linComb P₂).construct := by
   rw [VPolytope.construct_eq_convexHull P₂]

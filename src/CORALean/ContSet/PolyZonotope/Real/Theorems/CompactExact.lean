@@ -39,6 +39,7 @@ theorem PolyZonotope.sum_compactGens (PZ : PolyZonotope α) (a : Fin PZ.p → �
     PolyZonotope.sum_compactKeep]
   rfl
 
+-- so both inclusions hold at the very same coefficients
 theorem PolyZonotope.compactGens_exact (PZ : PolyZonotope α) :
     PZ.construct = PZ.compactGens.construct := by
   have key : ∀ (a : Fin PZ.p → ℝ) (β : Fin PZ.q → ℝ),
@@ -65,9 +66,8 @@ theorem PolyZonotope.sum_compactFactors (PZ : PolyZonotope α) (a : Fin PZ.p →
   exact Finset.sum_congr rfl fun i _ => by rw [PolyZonotope.monomial_factorIdx]
 
 /-- The same sum against an extended factor vector, which is what the reverse
-inclusion supplies. Stated separately rather than obtained from
-`sum_compactFactors` by substitution: the substituted vector would have to be
-rewritten under a binder whose type is a projection, which `rw` will not do. -/
+inclusion supplies. Stated separately, since obtaining it from
+`sum_compactFactors` would rewrite under a binder typed by a projection. -/
 theorem PolyZonotope.sum_compactFactors_extend (PZ : PolyZonotope α)
     (a : Fin PZ.compactFactors.p → ℝ) :
     (∑ i, PolyZonotope.monomial PZ.E (PolyZonotope.factorExtend PZ.E a) i • PZ.G i)
@@ -87,6 +87,7 @@ theorem PolyZonotope.compactFactors_exact (PZ : PolyZonotope α) :
             (fun k => a (PolyZonotope.factorIdx PZ.E k)) i • PZ.compactFactors.G i)
           + ∑ j, β j • PZ.GI j :=
     fun a _ => by rw [PolyZonotope.sum_compactFactors PZ a]
+  -- and the same the other way, a dropped factor coming back as zero
   have key' : ∀ (a : Fin PZ.compactFactors.p → ℝ) (β : Fin PZ.q → ℝ),
       PZ.c + (∑ i, PolyZonotope.monomial PZ.E (PolyZonotope.factorExtend PZ.E a) i • PZ.G i)
           + ∑ j, β j • PZ.GI j

@@ -162,6 +162,7 @@ theorem Zonotope.aux_linComb_row (Z₁ Z₂ : Zonotope 𝕋 n) (i : Fin n)
     β₁ β₂ lam]
   ring
 
+-- the doubly appended coefficient vector is re-elaborated at every `Fin.addCases` branch
 set_option maxHeartbeats 400000 in
 /-- The nominal part spills only by what the centre and the generators
 rounded. -/
@@ -176,6 +177,7 @@ theorem Zonotope.aux_linComb_nominal (Z₁ Z₂ : Zonotope 𝕋 n) :
   have hβ : ∀ j : Fin (Z₁.h + Z₂.h + 1),
       |Fin.append (Fin.append (Real.Zonotope.pairCoeffSum β₁ β₂ lam)
         (Real.Zonotope.pairCoeffDiff β₁ β₂ lam)) (fun _ : Fin 1 => 2 * lam - 1) j| ≤ 1 := by
+    -- every appended coefficient is admissible, the fresh one because `2λ-1` is in `[-1,1]`
     refine Fin.addCases ?_ ?_
     · refine Fin.addCases ?_ ?_
       · intro j
@@ -186,6 +188,7 @@ theorem Zonotope.aux_linComb_nominal (Z₁ Z₂ : Zonotope 𝕋 n) :
       simp only [Fin.append_right]
       rw [abs_le]
       constructor <;> linarith
+  -- the witness: the stored midpoint and generators at that coefficient
   refine ⟨fun i => toReal (Zonotope.midpoint Z₁.c Z₂.c i)
             + ∑ j : Fin (Z₁.h + Z₂.h + 1),
                 toReal (Zonotope.linCombG addDown subDown Z₁ Z₂ i j)

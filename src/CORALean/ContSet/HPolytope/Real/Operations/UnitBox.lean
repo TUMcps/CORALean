@@ -39,6 +39,7 @@ theorem HPolytope.aux_unitBox_A_natAdd (j : Fin n) :
     (fun j : Fin n => -(LinearMap.proj j : Vec ℝ n →ₗ[ℝ] ℝ)) (Fin.natAdd n j) = _
   rw [Fin.append_right]
 
+-- membership is those two halves read back as a bound on the magnitude
 theorem HPolytope.mem_unitBox_iff {x : Vec ℝ n} :
     x ∈ (HPolytope.unitBox n).construct ↔ ∀ j, |x j| ≤ 1 := by
   constructor
@@ -52,6 +53,7 @@ theorem HPolytope.mem_unitBox_iff {x : Vec ℝ n} :
       rw [HPolytope.aux_unitBox_A_natAdd] at h
       exact h
     exact abs_le.mpr ⟨by linarith, hup⟩
+  -- back, the lower half being the negated projection
   · intro h
     refine ⟨Fin.addCases (fun j => ?_) fun j => ?_, fun i => i.elim0⟩
     · rw [HPolytope.aux_unitBox_A_castAdd]

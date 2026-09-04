@@ -7,55 +7,20 @@ import CORALean.NN.Layer
 
 CORA's `nnSoftmaxLayer`: `x i ↦ exp(x i) / ∑ⱼ exp(x j)`.
 
-## What is different about it
+The first layer whose output coordinate depends on *every* input coordinate, and
+through a normalization. `Relaxation` cannot express that: it relaxes a scalar
+`σ : ℝ → ℝ` over one neuron's interval, where the denominator is shared by all
+`n` outputs. So this layer is written directly, with no slope.
 
-It is the first layer here whose output coordinate depends on *every* input
-coordinate, and it depends on them through a normalization. A `Relaxation`
-cannot express that at all: it is indexed by a scalar function `σ : ℝ → ℝ` and
-relaxes it over one neuron's interval, and there is no such `σ` to be found —
-the denominator is shared by all `n` outputs. So this layer is written directly,
-with no slope, and `Layers/Activation` is not involved.
+The outputs sum to one, and no representation this layer can name is closed under
+intersecting a hyperplane, so the constraint cannot be kept. Its shadow on each
+coordinate can, and is exact for a box: from `∑ⱼ y j = 1` and raw bounds
+`rl ≤ y ≤ ru`, `y i ∈ [1 - ∑_{j≠i} ru j, 1 - ∑_{j≠i} rl j]`, and intersecting
+that with `[rl i, ru i]` is `softmaxBox`, tight where the raw bounds are.
 
-Slope zero is not a placeholder here in the way it is for `Sigmoid`. A slope
-would need bounds on `∂ softmax i / ∂ x j`, which is an `n × n` object rather
-than the `n` numbers a diagonal `Relaxation` holds, so the machinery that would
-carry it does not exist either.
-
-## The normalization, and what it costs
-
-The standard treatment bounds each numerator and the denominator separately and
-divides, which throws away the one thing softmax guarantees: its outputs sum to
-one. That constraint is a hyperplane, and no representation this layer can name
-is closed under intersecting one — there is no `And` class, `Plus`, `LinComb`
-and `Reduce` being the only operation classes, and the two representations that
-*could* cut with an equality (`ConZonotope`, `ConPolyZono`) do not instantiate
-anything generic. Softmax is the first thing in this repository to want one.
-
-So the constraint cannot be *kept*. What can be kept is its shadow on each
-coordinate, and that is exact for a box: from `∑ⱼ y j = 1` and raw bounds
-`rl ≤ y ≤ ru`,
-
-  `y i = 1 - ∑_{j≠i} y j ∈ [1 - ∑_{j≠i} ru j, 1 - ∑_{j≠i} rl j]`,
-
-and intersecting that with `[rl i, ru i]` is `softmaxBox`. It costs one pass
-over the raw bounds and it is tight where the raw bounds are: as the input box
-shrinks, `∑_{j≠i} ru j → 1 - y i`, so the tightened bounds converge on the
-output while the raw ones need not.
-
-`softmax_mem_tightened` is that step, stated for *arbitrary* raw bounds rather
-than for the ones below. That is what lets the float layer reuse it — and there
-it does more than tighten, since a float lower bound on `softmax` needs an
-*upper* bound on an exponential, which `Global/Float` cannot supply without a
-hypothesis on its argument. Passing `0` as the raw lower bound and letting the
-normalization produce the real one is how the float layer stays total. The
-constraint is not a refinement there; it is the only lower bound there is.
-
-## The raw bounds
-
-`softmax_eq_inv` divides through by `exp (x i)`, leaving `1 + ∑_{j≠i} exp(x j -
-x i)`, whose every term the box bounds directly. That is tighter than bounding
-numerator and denominator apart, and it is exactly right on a point box: the
-`j = i` term contributes `1` rather than `exp(lo i - hi i)`.
+The raw bounds come from `softmax_eq_inv`, which divides through by `exp (x i)`
+and leaves `1 + ∑_{j≠i} exp(x j - x i)`, every term of which the box bounds
+directly — tighter than bounding numerator and denominator apart.
 -/
 
 -- Authors:       Tobias Ladner
@@ -118,6 +83,7 @@ theorem aux_one_add_exp_sum_pos (v : Vec ℝ n) (i : Fin n) (a : ℝ) :
     Finset.sum_nonneg fun j _ => (Real.exp_pos (v j - a)).le
   linarith
 
+/-- The denominator is smallest when every ratio is, which is the box's corner. -/
 theorem softmax_le_raw {lo hi x : Vec ℝ n} (hx : ∀ i, lo i ≤ x i ∧ x i ≤ hi i) (i : Fin n) :
     softmax x i ≤ (1 + ∑ j ∈ Finset.univ.erase i, Real.exp (lo j - hi i))⁻¹ := by
   have hmono : ∑ j ∈ Finset.univ.erase i, Real.exp (lo j - hi i)
@@ -127,6 +93,7 @@ theorem softmax_le_raw {lo hi x : Vec ℝ n} (hx : ∀ i, lo i ≤ x i ∧ x i �
   rw [softmax_eq_inv x i, inv_eq_one_div, inv_eq_one_div]
   exact one_div_le_one_div_of_le (aux_one_add_exp_sum_pos lo i (hi i)) (by linarith)
 
+/-- And largest at the opposite corner, which is the lower bound on `softmax`. -/
 theorem raw_le_softmax {lo hi x : Vec ℝ n} (hx : ∀ i, lo i ≤ x i ∧ x i ≤ hi i) (i : Fin n) :
     (1 + ∑ j ∈ Finset.univ.erase i, Real.exp (hi j - lo i))⁻¹ ≤ softmax x i := by
   have hmono : ∑ j ∈ Finset.univ.erase i, Real.exp (x j - x i)
@@ -140,9 +107,8 @@ theorem raw_le_softmax {lo hi x : Vec ℝ n} (hx : ∀ i, lo i ≤ x i ∧ x i �
 /-! ## What the normalization buys -/
 
 /-- The outputs sum to one, so each is what the others leave over. Stated for
-arbitrary raw bounds because both arithmetic layers use it and the float one
-passes `0` below: there the normalization is not a tightening but the only
-lower bound available. -/
+arbitrary raw bounds because the float layer passes `0` below, where the
+normalization is not a tightening but the only lower bound available. -/
 theorem softmax_mem_tightened (x rl ru : Vec ℝ n)
     (hl : ∀ i, rl i ≤ softmax x i) (hu : ∀ i, softmax x i ≤ ru i) (i : Fin n) :
     max (rl i) (1 - ∑ j ∈ Finset.univ.erase i, ru j) ≤ softmax x i ∧

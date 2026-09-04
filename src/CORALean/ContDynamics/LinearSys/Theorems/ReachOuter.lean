@@ -82,12 +82,8 @@ theorem step_subset_horizon {T : Set ℝ} {Δt : ℝ} {K k : ℕ} (hΔt : 0 ≤ 
 
 omit [∀ n, LinComb (S n) (Vec ℝ n)] in
 /-- The same conclusion over a bounded horizon: `K` steps see the flow on
-`[0, KΔt]` and nothing beyond it, which is what a one-step method and a hybrid
-location can actually supply.
-
-The discrete recursion is unrolled here rather than handed to
-`LinearSysDT.reach_outer`: that asks for a `LinearSysDT.Trajectory`, which is
-total in the step count, and a bounded domain has no such run to give it. -/
+`[0, KΔt]` and nothing beyond. The recursion is unrolled here because
+`LinearSysDT.reach_outer` wants a run total in the step count. -/
 theorem LinearSys.Trajectory.reach_outer_horizon {sys : LinearSys 𝕋 n} {T : Set ℝ}
     {R₀ U Ud : S n} {x u : ℝ → Vec ℝ n} {Δt : ℝ} {K : ℕ}
     (traj : sys.Trajectory T R₀ U x u) (hΔt : 0 ≤ Δt)
@@ -95,6 +91,7 @@ theorem LinearSys.Trajectory.reach_outer_horizon {sys : LinearSys 𝕋 n} {T : S
     (hUd : ∀ k < K, sys.stepInput u Δt k ∈ construct Ud) (o : ℕ) :
     ∀ k ≤ K, x ((k : ℝ) * Δt) ∈ construct ((sys.discretize Δt).reach o R₀ Ud k) := by
   intro k
+  -- the induction is on the step count, `hk` keeping each step inside the horizon
   induction k with
   | zero =>
     intro _

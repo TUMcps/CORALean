@@ -42,6 +42,7 @@ theorem identityMat_mulVec (x : Vec ℝ n) (i : Fin n) :
   · intro hc
     exact absurd (Finset.mem_univ i) hc
 
+-- the same for the negated identity, which is what turns a lower bound into a row
 theorem negIdentityMat_mulVec (x : Vec ℝ n) (i : Fin n) :
     (toRealMat (negIdentityMat 𝕋 n) *ᵥ x) i = -(x i) := by
   show ∑ j, toReal (if i = j then neg (one : 𝕋) else zero) * x j = -(x i)
@@ -56,6 +57,7 @@ def Interval.hPolytope (I : Interval 𝕋 n) : HPolytope 𝕋 n :=
   (HPolytope.ineqs (identityMat 𝕋 n) I.sup).and
     (HPolytope.ineqs (negIdentityMat 𝕋 n) fun j => neg (I.inf j))
 
+-- the two row blocks are exactly the two ends of the box, so nothing rounds
 theorem Interval.hPolytope_exact (I : Interval 𝕋 n) :
     (Interval.hPolytope I).construct = I.construct := by
   ext x

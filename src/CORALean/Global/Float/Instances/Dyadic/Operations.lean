@@ -89,8 +89,7 @@ def addDown (a b : Dyadic p) : Dyadic p := roundDown (exactAdd a b)
 def mulUp (a b : Dyadic p) : Dyadic p := roundUp (exactMul a b)
 def mulDown (a b : Dyadic p) : Dyadic p := roundDown (exactMul a b)
 
--- Rounded again, so a wide dividend leaves the grid no more than any other
--- operation does; the shift alone would keep `p` bits only for a `p`-bit input.
+-- rounded again: the shift alone would keep `p` bits only for a `p`-bit dividend
 def divUp (a b : Dyadic p) : Dyadic p := roundUp (quotUp a b)
 def divDown (a b : Dyadic p) : Dyadic p := roundDown (quotDown a b)
 

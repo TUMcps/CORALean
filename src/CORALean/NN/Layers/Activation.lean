@@ -44,10 +44,9 @@ structure Relaxation (σ : ℝ → ℝ) where
   sound {l u t : ℝ} (hl : l ≤ t) (hu : t ≤ u) :
     |σ t - (slope l u * t + offset l u)| ≤ error l u
 
-/-- Nothing but monotonicity: the function's range over the box, which is what
-interval arithmetic gives and carries no slope. Optimal at `λ = 0`, since a
-monotone function alone admits no better — the range of `σ t - λ t` only widens
-as `λ` moves away from zero. -/
+/-- Nothing but monotonicity: the function's range over the box, carrying no
+slope. Optimal at `λ = 0`, the range of `σ t - λ t` only widening as `λ` moves
+away from zero. -/
 noncomputable def Relaxation.ofMonotone {σ : ℝ → ℝ} (hσ : Monotone σ) : Relaxation σ where
   slope _ _ := 0
   offset l u := (σ l + σ u) / 2
@@ -83,6 +82,7 @@ def Layer.activation {σ : ℝ → ℝ} (R : Relaxation σ) : Layer S n n where
       show σ (x i) = (R.slopeMat (interval s) *ᵥ x) i + d i
       rw [hd]
       ring
+    -- and the deviation is inside the box, which is exactly `sound` read coordinatewise
     have hmem : d ∈ construct (R.box (interval s)) := by
       intro i
       have hlo : (interval s).inf i ≤ x i := (hbox i).1
@@ -92,6 +92,7 @@ def Layer.activation {σ : ℝ → ℝ} (R : Relaxation σ) : Layer S n n where
           - R.slope ((interval s).inf i) ((interval s).sup i) * x i := by
         show σ (x i) - (R.slopeMat (interval s) *ᵥ x) i = _
         rw [hslope i]
+      -- `sound` is an absolute value, so it splits into the two ends of the box
       have hlow : R.offset ((interval s).inf i) ((interval s).sup i)
           - R.error ((interval s).inf i) ((interval s).sup i) ≤ d i := by
         rw [hval]; linarith [hrel.1]

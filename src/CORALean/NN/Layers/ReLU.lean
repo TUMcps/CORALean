@@ -34,13 +34,13 @@ noncomputable def reluSlope (l u : ℝ) : ℝ :=
   if u ≤ 0 then 0 else if 0 ≤ l then 1 else u / (u - l)
 
 /-- How far `relu` rises above the line of slope `lam` through the origin, over
-`[l, u]`. A function of the slope and not of `reluSlope`, since that is what a
-layer choosing its slope some other way — a float one, which has no division to
-compute the secant with — measures its own error against. -/
+`[l, u]`. A function of the slope and not of `reluSlope`, so a layer choosing its
+slope another way — a float one — measures its own error against it. -/
 def reluGapOfSlope (lam l u : ℝ) : ℝ := max ((1 - lam) * u) (-(lam * l))
 
 noncomputable def reluGap (l u : ℝ) : ℝ := reluGapOfSlope (reluSlope l u) l u
 
+/-- One case per branch of `reluSlope`, the secant's being the only one to argue. -/
 theorem reluSlope_nonneg (l u : ℝ) : 0 ≤ reluSlope l u := by
   rw [reluSlope]
   split
@@ -53,6 +53,7 @@ theorem reluSlope_nonneg (l u : ℝ) : 0 ≤ reluSlope l u := by
       replace hl : l < 0 := not_le.mp hl
       exact div_nonneg (le_of_lt hu) (by linarith)
 
+/-- The same branches upward, which together put the slope in `[0,1]`. -/
 theorem reluSlope_le_one (l u : ℝ) : reluSlope l u ≤ 1 := by
   rw [reluSlope]
   split
@@ -67,9 +68,8 @@ theorem reluSlope_le_one (l u : ℝ) : reluSlope l u ≤ 1 := by
       linarith
 
 /-- Above the line, and below it raised by the gap — the two ends of the
-relaxation, before it is recentred. Stated for an arbitrary slope in `[0,1]`,
-which is all convexity gives and all either layer needs: the choice of slope
-never enters. -/
+relaxation before recentring. Stated for an arbitrary slope in `[0,1]`, which is
+all convexity gives and all either layer needs. -/
 theorem relu_bounds_of_slope {lam l u t : ℝ} (h0 : 0 ≤ lam) (h1 : lam ≤ 1)
     (hl : l ≤ t) (hu : t ≤ u) :
     0 ≤ relu t - lam * t ∧ relu t - lam * t ≤ reluGapOfSlope lam l u := by

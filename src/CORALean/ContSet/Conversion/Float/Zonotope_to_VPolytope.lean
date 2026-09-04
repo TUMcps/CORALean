@@ -58,6 +58,7 @@ theorem Zonotope.aux_corner_mem (Z : Zonotope 𝕋 n) (l : Fin (2 ^ Z.h)) (i : F
         ≤ (InflatedContSet.nominal Z).corner (signEquiv Z.h l) i
       ∧ (InflatedContSet.nominal Z).corner (signEquiv Z.h l) i
         ≤ toReal (Z.cornerHi i l) := by
+  -- the exact corner as a sum of signed generators, which the two roundings bracket
   have hval : (InflatedContSet.nominal Z).corner (signEquiv Z.h l) i
       = toReal (Z.c i) + ∑ j, toReal (Z.signed (signEquiv Z.h l) i j) := by
     show toReal (Z.c i) + (∑ j, (if signEquiv Z.h l j then (1:ℝ) else -1) •

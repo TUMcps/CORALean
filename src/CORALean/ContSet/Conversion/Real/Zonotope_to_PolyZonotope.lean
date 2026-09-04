@@ -42,6 +42,7 @@ theorem Zonotope.polyZonotope_exact (Z : Zonotope α) :
       (∑ i : Fin Z.h, PolyZonotope.monomial (PolyZonotope.identE Z.h) a i • Z.G i)
         = ∑ j, a j • Z.G j :=
     fun a => Finset.sum_congr rfl fun i _ => by rw [PolyZonotope.monomial_identE]
+  -- both directions off `hsum`: identity exponents make every monomial a factor
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨β, hβ, rfl⟩
     refine ⟨β, fun _ => 0, hβ, fun j => j.elim0, ?_⟩

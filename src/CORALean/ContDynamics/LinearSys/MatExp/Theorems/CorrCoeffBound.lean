@@ -3,7 +3,7 @@ import CORALean.ContDynamics.LinearSys.MatExp.Enclosures
 /-!
 # `s ^ i - s` on `[0,1]`, exactly
 
-Althoff's thesis (2010), Prop. 3.1: the correction matrix widens by the range of
+[1, Prop. 3.1]: the correction matrix widens by the range of
 `t ↦ t^i - t·r^(i-1)` over a step, and that range is `[corrCoeff i · r^i, 0]`.
 Scaling `t = s·r` leaves `s ^ i - s` on `[0,1]`, which is what is bounded here.
 
@@ -14,6 +14,11 @@ because `a^(i-1) = 1/i` makes the constant sum exactly `1`.
 
 The lower bound needs no upper bound on `s`: the stationary point is the minimum
 over all of `[0,∞)`. Only `s ^ i ≤ s` needs `s ≤ 1`.
+
+## References
+
+* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
+      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
 -/
 
 -- Authors:       Tobias Ladner
@@ -52,7 +57,7 @@ theorem aux_corrCritical_pow (hi : 2 ≤ i) :
     ← Real.rpow_mul hipos.le, hcast, div_mul_cancel₀ _ hsub, Real.rpow_neg_one]
   exact (one_div _).symm
 
-/-- The form Althoff's thesis states the coefficient in. -/
+/-- The form [1] states the coefficient in. -/
 theorem MatExp.corrCoeff_eq (hi : 2 ≤ i) :
     MatExp.corrCoeff i
       = (i : ℝ) ^ (-(i:ℝ) / ((i : ℝ) - 1)) - (i : ℝ) ^ (-(1:ℝ) / ((i : ℝ) - 1)) := by
@@ -62,6 +67,7 @@ theorem MatExp.corrCoeff_eq (hi : 2 ≤ i) :
     ← Real.rpow_natCast ((i : ℝ) ^ (-(1:ℝ) / ((i : ℝ) - 1))) i, ← Real.rpow_mul hipos.le]
   ring_nf
 
+-- `geom_sum₂_mul` and two `gcongr` sweeps over an `i`-term sum of `rpow`s
 set_option maxHeartbeats 200000 in
 theorem MatExp.corrCoeff_le_sub (hi : 2 ≤ i) {s : ℝ} (hs0 : 0 ≤ s) :
     MatExp.corrCoeff i ≤ s ^ i - s := by
@@ -81,6 +87,7 @@ theorem MatExp.corrCoeff_le_sub (hi : 2 ≤ i) {s : ℝ} (hs0 : 0 ≤ s) :
       omega
     rw [Finset.sum_congr rfl hterm, Finset.sum_const, Finset.card_range, nsmul_eq_mul, hpow]
     field_simp
+  -- the tangent line at `a`: the factored sum is at least 1 above `a` and at most 1 below
   have key : s - a ≤ s ^ i - a ^ i := by
     rw [← hfac]
     rcases le_total a s with hle | hle

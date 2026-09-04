@@ -99,6 +99,7 @@ theorem PolyZonotope.reduceBy_outer (PZ : PolyZonotope (Vec ℝ n))
       (PolyZonotope.aux_abs_droppedInd_le PZ partI hβ i))
   have hnonneg : ∀ i, (0:ℝ) ≤ PZ.dropRadius partD partI i :=
     fun i => (abs_nonneg _).trans (hbound i)
+  -- the witness: the kept coefficients, plus one per coordinate scaled to the dropped reach
   refine PolyZonotope.mem_construct_iff.mpr
     ⟨a, Fin.append (fun j => β (partI.left j))
         (fun i => Zonotope.coefficient (PZ.dropRadius partD partI i)
@@ -109,6 +110,7 @@ theorem PolyZonotope.reduceBy_outer (PZ : PolyZonotope (Vec ℝ n))
     · simpa using hβ (partI.left j)
     · simp only [Fin.append_right]
       exact Zonotope.abs_coefficient_le_one (hnonneg i) (hbound i)
+  -- the value: the kept columns unchanged, the dropped ones inside the new box
   · rw [hx i, partD.sum_split₂ fun l => PZ.G l i * PolyZonotope.monomial PZ.E a l,
       partI.sum_split₂ fun j => PZ.GI j i * β j,
       PolyZonotope.aux_sum_univ_reduceBy_q, PolyZonotope.aux_sum_univ_reduceBy_h]

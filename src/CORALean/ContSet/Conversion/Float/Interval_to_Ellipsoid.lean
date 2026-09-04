@@ -56,6 +56,7 @@ theorem Interval.aux_ellipsoidG_ge (I : Interval 𝕋 n) (σ : 𝕋) (i : Fin n)
   rw [diagonalBlock, if_pos rfl]
   exact mul_le_mulUp _ _
 
+-- each coordinate splits on a vanishing generator and both branches redo the division bounds
 set_option maxHeartbeats 400000 in
 theorem Interval.subset_nominal_ellipsoid (I : Interval 𝕋 n) (σ : 𝕋) (hσ : 0 < toReal σ)
     (hn : (n : ℝ) ≤ toReal (mulDown σ σ)) :
@@ -81,6 +82,7 @@ theorem Interval.subset_nominal_ellipsoid (I : Interval 𝕋 n) (σ : 𝕋) (hσ
     have hr0 : toReal (I.radiusFrom i) = 0 := le_antisymm hr (hrad i)
     rw [hr0] at h₁ h₂
     linarith
+  -- the coefficient a coordinate needs, zero where the generator has no width
   set u : Vec ℝ n := fun i => if toReal (I.ellipsoidG σ i i) = 0 then 0
     else (x i - toReal (I.center i)) / toReal (I.ellipsoidG σ i i) with hudef
   have hne : toReal σ ≠ 0 := ne_of_gt hσ
@@ -91,6 +93,7 @@ theorem Interval.subset_nominal_ellipsoid (I : Interval 𝕋 n) (σ : 𝕋) (hσ
       · rw [hudef]
         simp only [if_pos h, abs_zero, mul_zero]
         exact zero_le_one
+      -- otherwise the division is legal, and `aux_ellipsoidG_ge` is what bounds it
       · have hpos : 0 < toReal (I.ellipsoidG σ i i) := lt_of_le_of_ne (hg i) (Ne.symm h)
         have habs : |x i - toReal (I.center i)| ≤ toReal (I.radiusFrom i) := by
           rw [abs_le]
@@ -106,6 +109,7 @@ theorem Interval.subset_nominal_ellipsoid (I : Interval 𝕋 n) (σ : 𝕋) (hσ
     calc |u i| = (1 / toReal σ) * (toReal σ * |u i|) := by field_simp
       _ ≤ (1 / toReal σ) * 1 := mul_le_mul_of_nonneg_left hkey (le_of_lt hinv)
       _ = 1 / toReal σ := mul_one _
+  -- `n` coordinates each within `1/σ` keep the Euclidean norm inside the unit ball
   have hnorm : ‖u‖₂ ≤ 1 := by
     have hσ2 : (0:ℝ) < toReal σ ^ 2 := by
       rw [pow_two]
@@ -118,6 +122,7 @@ theorem Interval.subset_nominal_ellipsoid (I : Interval 𝕋 n) (σ : 𝕋) (hσ
         intro i
         rw [← sq_abs, pow_two]
         exact mul_le_mul (hub i) (hub i) (abs_nonneg _) (le_of_lt (one_div_pos.mpr hσ))
+      -- summing the `n` equal bounds, which is what `hn` says `σ²` covers
       refine le_trans (Finset.sum_le_sum fun i _ => hterm i) ?_
       have hconst : (∑ _i : Fin n, (1 / toReal σ) * (1 / toReal σ))
           = (n : ℝ) * ((1 / toReal σ) * (1 / toReal σ)) := by
@@ -139,6 +144,7 @@ theorem Interval.subset_nominal_ellipsoid (I : Interval 𝕋 n) (σ : 𝕋) (hσ
       rw [diagonalBlock, if_neg hij, toReal_zero, zero_mul]
   show x i = toReal (I.center i) + ∑ j, toReal ((I.ellipsoid σ).G i j) * u j
   rw [hdiag]
+  -- a zero-width coordinate is the centre; otherwise the division cancels
   by_cases h : toReal (I.ellipsoidG σ i i) = 0
   · rw [hudef]
     simp only [if_pos h]

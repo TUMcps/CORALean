@@ -17,8 +17,7 @@ the identity is pointwise — a column both sets have, a column only one has, or
 neither.
 
 `pairCoeffSum` and `pairCoeffDiff` are proof devices and are never run; they
-also serve the float layer and `PolyZonotope.linComb`, whose independent block
-is this same pairing at a zero centre.
+also serve the float layer and `PolyZonotope.linComb`'s independent block.
 
 Nothing here asks for convexity: the claim is about the segments themselves, so
 it is the statement a non-convex representation could also make.
@@ -60,6 +59,7 @@ theorem Zonotope.abs_pairCoeffSum_le_one {β₁ : Fin h₁ → ℝ} {β₂ : Fin
   · rw [dif_neg hj]
     exact le_trans (Zonotope.abs_weighted_le hl0 (hβ₁ j)) hl1
 
+-- the difference coefficient, the mirror of the sum one
 theorem Zonotope.abs_pairCoeffDiff_le_one {β₁ : Fin h₁ → ℝ} {β₂ : Fin h₂ → ℝ} {lam : ℝ}
     (hβ₁ : ∀ j, |β₁ j| ≤ 1) (hβ₂ : ∀ j, |β₂ j| ≤ 1) (hl0 : 0 ≤ lam) (hl1 : lam ≤ 1)
     (j : Fin h₂) : |Zonotope.pairCoeffDiff β₁ β₂ lam j| ≤ 1 := by
@@ -126,6 +126,7 @@ theorem Zonotope.aux_sum_univ_linComb {Z₁ Z₂ : Zonotope α}
       = ∑ j, f (Fin.castAdd 1 j) + ∑ j, f (Fin.natAdd (Z₁.h + Z₂.h) j) :=
   Fin.sum_univ_add f
 
+-- the closing `module` call normalises a sum over the doubly appended generator index
 set_option maxHeartbeats 400000 in
 theorem Zonotope.linComb_outer (Z₁ Z₂ : Zonotope α) :
     segments Z₁.construct Z₂.construct ⊆ (Z₁.linComb Z₂).construct := by

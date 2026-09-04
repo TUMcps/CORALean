@@ -4,7 +4,7 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegral
 /-!
 # The constant input's interpolation error lies in `constCorrectionMatrix`
 
-Althoff's `F̃`, the integrated counterpart of `Prop. 3.1`'s `F`. What a constant
+The `F̃` of [1, Prop. 3.1], the integrated counterpart of that `F`. What a constant
 input contributes over `[0,t]` is `∫₀ᵗ e^{Aσ}dσ` applied to it, and the straight
 line from `0` to its value at `r` misses that by this much.
 
@@ -16,6 +16,11 @@ read at one index higher, and everything past `η` goes into `E(r)·r`.
 The tail is bounded as one series, for the reason `CorrectionMatrix` documents:
 each term carries `|t^{i+2} - t·r^{i+1}| ≤ r^{i+2}`, and pulling one factor of
 `r` out leaves exactly the exponential's own tail.
+
+## References
+
+* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
+      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
 -/
 
 -- Authors:       Tobias Ladner
@@ -32,6 +37,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 variable {n : ℕ}
 
+-- `ring_nf` under `smul` re-solves the local normed-algebra instances on `Mat ℝ n n`
 set_option maxHeartbeats 400000 in
 /-- The interpolation error of the integrated exponential, as one series from
 order `1` up. -/
@@ -52,6 +58,7 @@ theorem MatExp.expIntegralDiff_eq_tsum (A : Mat ℝ n n) (t r : ℝ) (hr : r ≠
     rw [hg]
     simp only [smul_smul, ← sub_smul]
     ring_nf
+  -- the two exponential series subtract termwise, which is all `hcongr` says
   have hgsum : Summable g := (hst.sub hsr).congr hcongr
   have htsum : ∑' i : ℕ, g i
       = MatExp.expIntegral A t - (t / r) • MatExp.expIntegral A r := by
@@ -64,6 +71,7 @@ theorem MatExp.expIntegralDiff_eq_tsum (A : Mat ℝ n n) (t r : ℝ) (hr : r ≠
     simp [hg, h1]
   rw [← htsum, ← hshift, hfirst, zero_add]
 
+-- the same `ring_nf` under `smul`, this time inside a `Summable.congr`
 set_option maxHeartbeats 400000 in
 /-- The same series, shifted past `η`, is summable. -/
 theorem MatExp.summable_expIntegralDiff (A : Mat ℝ n n) (t r : ℝ) :
@@ -78,6 +86,7 @@ theorem MatExp.summable_expIntegralDiff (A : Mat ℝ n n) (t r : ℝ) :
     (hst.sub hsr).congr fun i => by simp only [smul_smul, ← sub_smul]; ring_nf
   exact (summable_nat_add_iff 1).mpr hg
 
+-- a six-step `calc` carrying `Nat.factorial (i + η + 2)` through every rewrite
 set_option maxHeartbeats 1000000 in
 /-- Every tail term carries `r^{i+2}` in its scalar factor; pulling one `r` out
 leaves the exponential's own remainder series. -/
@@ -91,6 +100,7 @@ theorem aux_norm_constTail_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) (η : ℕ
   have hrA : ‖r • A‖ = r * ‖A‖ := by rw [norm_smul, Real.norm_eq_abs, abs_of_pos hr]
   have hcnn : (0:ℝ) ≤ ‖r • A‖ := norm_nonneg _
   have hε0 : (0:ℝ) ≤ ‖r • A‖ / ((η : ℝ) + 2) := by positivity
+  -- the termwise bound: one factor of `r` comes out and the exponential's tail is left
   have hterm : ∀ i : ℕ,
       ‖(((Nat.factorial (i + η + 2) : ℝ))⁻¹
           * (t ^ (i + η + 2) - (t / r) * r ^ (i + η + 2))) • A ^ (i + η + 1)‖
@@ -101,6 +111,7 @@ theorem aux_norm_constTail_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) (η : ℕ
       exact_mod_cast Nat.factorial_pos _
     have hfle : (Nat.factorial (i + η + 1) : ℝ) ≤ (Nat.factorial (i + η + 2) : ℝ) := by
       exact_mod_cast Nat.factorial_le (by omega)
+    -- the scalar factor never exceeds `r^(i+η+2)`, anywhere in the step
     have hscal : |t ^ (i + η + 2) - (t / r) * r ^ (i + η + 2)| ≤ r ^ (i + η + 2) := by
       rw [pow_sub_eq hr (i + η + 2), abs_mul,
         abs_of_nonneg (by positivity : (0:ℝ) ≤ r ^ (i + η + 2))]
@@ -110,6 +121,7 @@ theorem aux_norm_constTail_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) (η : ℕ
         · nlinarith [pow_nonneg hs0 (i + η + 2), pow_le_one₀ hs0 hs1 (n := i + η + 2)]
         · nlinarith [pow_nonneg hs0 (i + η + 2), pow_le_one₀ hs0 hs1 (n := i + η + 2)]
       nlinarith [pow_nonneg hr.le (i + η + 2)]
+    -- factorial down one order, then the norm of the power, then the geometric form
     calc ‖(((Nat.factorial (i + η + 2) : ℝ))⁻¹
             * (t ^ (i + η + 2) - (t / r) * r ^ (i + η + 2))) • A ^ (i + η + 1)‖
         = |((Nat.factorial (i + η + 2) : ℝ))⁻¹
@@ -128,6 +140,7 @@ theorem aux_norm_constTail_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) (η : ℕ
           refine mul_le_mul_of_nonneg_left ?_ hr.le
           have h := scalar_term_le hcnn η i
           rwa [show i + (η + 1) = i + η + 1 from by omega] at h
+  -- `hε` is exactly what makes the comparison series geometric and convergent
   have hgeo : Summable (fun i : ℕ => (‖r • A‖ / ((η : ℝ) + 2)) ^ i) :=
     summable_geometric_of_lt_one hε0 hε
   have hnorm : Summable (fun i : ℕ =>
@@ -135,6 +148,7 @@ theorem aux_norm_constTail_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) (η : ℕ
           * (t ^ (i + η + 2) - (t / r) * r ^ (i + η + 2))) • A ^ (i + η + 1)‖) :=
     Summable.of_nonneg_of_le (fun i => norm_nonneg _) hterm
       ((hgeo.mul_left _).mul_left _)
+  -- norm of the sum under the sum of norms, then termwise, then in closed form
   calc ‖∑' i : ℕ, (((Nat.factorial (i + η + 2) : ℝ))⁻¹
           * (t ^ (i + η + 2) - (t / r) * r ^ (i + η + 2))) • A ^ (i + η + 1)‖
       ≤ ∑' i : ℕ, ‖(((Nat.factorial (i + η + 2) : ℝ))⁻¹
@@ -147,6 +161,7 @@ theorem aux_norm_constTail_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) (η : ℕ
         rw [tsum_mul_left, tsum_mul_left, tsum_geometric_of_lt_one hε0 hε,
           MatExp.expRemainderBound]
 
+-- two `ring` normalisations of the same factorial-and-power product under `smul_apply`
 set_option maxHeartbeats 1000000 in
 /-- Althoff's `F̃` contains the constant input's interpolation error, at every
 time of the step. -/
@@ -185,6 +200,7 @@ theorem MatExp.expIntegralDiff_mem_constCorrectionMatrix (A : Mat ℝ n n) {r : 
       ring
     rw [hw, hct]
     exact mul_mem_minmax hlow hupp
+  -- and the tail entry is inside `E(r)·r`, an entry never exceeding the norm
   have hT : |(∑' i : ℕ, f (i + η)) j k| ≤ r * MatExp.expRemainderBound (r • A) η :=
     le_trans (abs_entry_le_norm _ j k) htail
   rw [abs_le] at hT

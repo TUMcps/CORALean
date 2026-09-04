@@ -3,30 +3,22 @@ import CORALean.ContSet.ContSet.ContSet
 /-!
 # Continuous-time nonlinear systems: the representation
 
-CORA's `nonlinearSys`: `ẋ(t) = f(x(t), u(t))`, carrying only the vector field.
-Time-invariant, as CORA's is — a time-varying field is this with time carried in
-the state.
+CORA's `nonlinearSys`: `ẋ(t) = f(x(t), u(t))`, carrying only the vector field, and
+time-invariant as CORA's is — a time-varying field is this with time in the state.
 
 CORA's class also carries an output equation `y = g(x, u)`, which has no
-counterpart here, and the reason is the reason there is no reachability here
-either: an output *set* needs an enclosure of `g`, which is the problem of
-enclosing `f` over again and gets the same answer. A run reaches `LinearSys`
-through `linearize` and an `AbstractionError` certificate, and the linear
-system's `OutputEq` is what a specification is then checked on. A `g` field with
-no way to propagate a set through it would be a field nothing could use.
+counterpart here for the reason there is no reachability here either: an output
+*set* needs an enclosure of `g`, which is the problem of enclosing `f` over again
+and gets the same answer. A run reaches `LinearSys` through `linearize` and an
+`AbstractionError` certificate, and the linear system's `OutputEq` is what a
+specification is checked on.
 
 State and input dimensions are separate, which CORA's are and `LinearSys`'s are
 not: there the input enters additively and so has to match the state.
 
-`Trajectory` mirrors `LinearSys.Trajectory` field for field — the same time
-domain `T` carrying the derivative, the same reading of the input set as
-covering disturbances — so the two agree by definition at a linear field, which
-is `LinearSys.trajectory_iff_nonlinearSys`. A bounded `T` is what makes
-`linearize` a one-step statement.
-
-Reachability is not here and is not its own algorithm: an `AbstractionError`
-certificate turns a run of this system into a run of a linear one, and
-`LinearSys` does the rest.
+`Trajectory` mirrors `LinearSys.Trajectory` field for field, so the two agree by
+definition at a linear field — `LinearSys.trajectory_iff_nonlinearSys`. A bounded
+`T` is what makes `linearize` a one-step statement.
 -/
 
 -- Authors:       Tobias Ladner

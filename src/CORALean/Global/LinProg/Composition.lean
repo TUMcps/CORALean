@@ -34,10 +34,9 @@ def SupportBound.add (u : SupportBound S c) (v : SupportBound T c) :
     rw [map_add]
     exact add_le_add (u.le x hx) (v.le y hy)
 
-/-- Directions add. This is what makes an inexact dual solution usable: `c`
+/-- Directions add, which is what makes an inexact dual solution usable: `c`
 splits as `d + (c - d)`, the dual bounds `d`, and whatever it missed by is
-bounded separately — over an enclosure already in hand, when the miss is a
-rounding error. -/
+bounded separately over an enclosure already in hand. -/
 def SupportBound.addDir {d : α →ₗ[ℝ] ℝ} (u : SupportBound S c) (v : SupportBound S d) :
     SupportBound S (c + d) where
   val := u.val + v.val

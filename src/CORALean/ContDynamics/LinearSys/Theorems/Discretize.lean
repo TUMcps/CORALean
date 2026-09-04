@@ -63,10 +63,9 @@ theorem LinearSys.Trajectory.discretize_step {sys : LinearSys 𝕋 n} {T : Set �
 
 omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
   [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] in
-/-- Every step at once, so the domain has to be all of forward time: the
-discrete trajectory this produces is indexed by all of `ℕ`, and there is no
-partial form of `LinearSysDT.Trajectory` to land in. A bounded domain reaches
-the sample times through `reach_outer_horizon` instead. -/
+/-- Every step at once, so the domain has to be all of forward time: the discrete
+trajectory produced is indexed by all of `ℕ`, and `LinearSysDT.Trajectory` has no
+partial form. A bounded domain goes through `reach_outer_horizon` instead. -/
 theorem LinearSys.Trajectory.discretize {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U Ud : S n}
     {x u : ℝ → Vec ℝ n} {Δt : ℝ} (traj : sys.Trajectory T R₀ U x u) (hΔt : 0 ≤ Δt)
     (hT : Set.Ici 0 ⊆ T) (hU : Bornology.IsBounded (construct U))

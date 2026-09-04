@@ -39,8 +39,7 @@ def Example.feedForward (W₁ : Mat 𝕋 3 2) (b₁ : Vec 𝕋 3) (W₂ : Mat �
   .cons (Layer.linear (S := Zonotope 𝕋) W₁ b₁)
     (.cons (Layer.relu) (.cons (Layer.linear W₂ b₂) .nil))
 
--- Anonymous, since their content is that they elaborate: each is the exact
--- layer's general theorem, read at a float representation.
+-- anonymous: each is the exact layer's theorem, read at a float representation
 
 /-- Every output over the whole input set is in the zonotope that comes back. -/
 example (nn : Real.NeuralNetwork (Zonotope 𝕋) 2 2) (X : Zonotope 𝕋 2) {x : Vec ℝ 2}

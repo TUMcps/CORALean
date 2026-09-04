@@ -11,44 +11,21 @@ import CORALean.NN.Float.Layers.ReLU
 # Reachability at a floating-point representation
 
 Every declaration below is `:=` and nothing else, and that is the claim: the
-discrete-time algorithms need no float counterpart, because they name no scalar
-operation of their own. `LinearSysDT.reach`, `NeurNetContrSysDT.reach` and the
-whole hybrid automaton are written against `Scalar 𝕋` and the operation classes,
-so a float representation supplies them the same way an exact one does — the
-same argument `Examples.FeedForwardFloat` makes for a neural network.
+discrete-time algorithms need no float counterpart, naming no scalar operation of
+their own. `LinearSysDT.reach`, `NeurNetContrSysDT.reach` and the whole hybrid
+automaton are written against `Scalar 𝕋` and the operation classes, so a float
+representation supplies them the same way an exact one does.
 
-The `def`s are `def` rather than `noncomputable def`, which is the second half
-of the claim: the exact versions of these are unusable not because their
-statements are wrong but because `Real.Zonotope`'s operations do not run, and
-here they do.
+The `def`s are `def` rather than `noncomputable def`, which is the second half of
+the claim: the exact versions are unusable because `Real.Zonotope`'s operations
+do not run.
 
-## Where this stops, exactly
-
-An algorithm needs a float counterpart precisely where it computes a *real
-number that is no set operation*, since only a set operation has an error box to
-pay its rounding into. In `ContDynamics` that is `MatExp/Enclosures.lean` and
-what depends on it:
-
-* `LinearSys.discretize` is `exp (Δt • A)`, so it returns a `LinearSysDT ℝ`
-  whatever `sys` is stored in, and `reach` then asks for `Mtimes (Mat ℝ) S`,
-  which no float representation has and none can: multiplying by a real matrix
-  is not an operation a machine performs.
-* `inputSolution`, `inputTaylorSum`, `timeIntervalStep` and
-  `Location.timeIntervalStep` ask for `Mtimes ℐ S` at the *exact* interval-matrix
-  family, `ℐ` being `Interval (Mat ℝ m n)`. Their arguments —
-  `MatExp.inputRemainder`, `correctionMatrix`, `constCorrectionMatrix` — are
-  built from `‖·‖`, factorials and `corrCoeff`, every one noncomputable.
-
-Two further sites are blocked by a hardcoded `Mat ℝ` rather than by a real
-computation, and are a genericity gap rather than a missing layer:
-`Transition.jump` and `NonlinearSys.linInput`, whose matrices are data a caller
-supplies. Both also want `OfInterval`, which is a different class in each layer,
-so making them layer-neutral is a question about that class and not about the
-algorithms.
-
-`LinearSysDT` holds a `Mat 𝕋`, so it is what a float discretization would have
-to land in and cannot: an enclosure of `e^{AΔt}` is an interval matrix, not a
-matrix. That is a design question about the system type, not a rounding one.
+An algorithm needs a float counterpart precisely where it computes a *real number
+that is no set operation*, only a set operation having an error box to pay its
+rounding into. In `ContDynamics` that is `MatExp/Enclosures.lean` and what
+depends on it: `LinearSys.discretize` is `exp (Δt • A)` and asks for
+`Mtimes (Mat ℝ) S`, which no float representation can have, and the four step
+operations ask for `Mtimes ℐ S` at the *exact* interval-matrix family.
 -/
 
 -- Authors:       Tobias Ladner

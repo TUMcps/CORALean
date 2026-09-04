@@ -34,6 +34,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 variable [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 
 omit [∀ n, LinComb (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] in
+-- nine hypotheses passed straight through, each elaborating a `Mtimes` instance at `ℐ`
 set_option maxHeartbeats 400000 in
 /-- Thm. 3.1 as a statement about `inputReach`: the enclosure holds for every
 admissible input at once, which is the form Prop. 3.3 composes with. -/
@@ -56,6 +57,7 @@ theorem LinearSys.inputReach_subset_inputSolution [Mtimes ℐ S]
   exact hmem _ ⟨by linarith [hσ.2], by linarith [hσ.1]⟩
 
 omit [∀ n, LinComb (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] in
+-- the same nine again, this time reaching `inputReach_mono` as well
 set_option maxHeartbeats 400000 in
 /-- Everything the input contributed up to any time in the step lies in the
 enclosure computed for the whole step, once `U` contains the origin. -/
@@ -72,6 +74,7 @@ theorem LinearSys.Trajectory.inputSolution_timeInterval_outer
       (MatExp.inputRemainder (toRealMat sys.A) r η) U)))
     (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) r η) U)))
+    -- `0 ∈ U` is what `inputReach_mono` needs, and the only extra hypothesis here
     (h0 : (0 : Vec ℝ n) ∈ construct U)
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) :
     (∫ s in (0:ℝ)..t, exp ((t - s) • toRealMat sys.A) *ᵥ u s)

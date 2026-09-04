@@ -34,8 +34,7 @@ theorem Interval.subset_zonotope (I : Interval (Vec ℝ n)) :
   have hlo : ∀ j, I.inf j ≤ x j := fun j => (hx j).1
   have hhi : ∀ j, x j ≤ I.sup j := fun j => (hx j).2
   have hrad : ∀ j, 0 ≤ (I.sup j - I.inf j) / 2 := fun j => by linarith [hlo j, hhi j]
-  -- where the coordinate sits relative to its own centre, and zero where the
-  -- coordinate has no width to be measured against
+  -- where the coordinate sits relative to its centre, and zero where it has no width
   set β : Fin n → ℝ := fun j => if I.sup j = I.inf j then 0
     else (x j - (I.inf j + I.sup j) / 2) / ((I.sup j - I.inf j) / 2) with hβdef
   have hb1 : ∀ j, |β j| ≤ 1 := by
@@ -50,6 +49,7 @@ theorem Interval.subset_zonotope (I : Interval (Vec ℝ n)) :
       simp only [if_neg h]
       rw [abs_div, abs_of_pos hd, div_le_one hd, abs_le]
       constructor <;> linarith [hlo j, hhi j]
+  -- and that coefficient reproduces the coordinate, whether or not it has width
   have hb2 : ∀ j, (I.inf j + I.sup j) / 2 + β j * ((I.sup j - I.inf j) / 2) = x j := by
     intro j
     by_cases h : I.sup j = I.inf j
@@ -62,6 +62,7 @@ theorem Interval.subset_zonotope (I : Interval (Vec ℝ n)) :
       simp only [if_neg h]
       field_simp
       ring
+  -- the value: only the diagonal generator `i` reaches coordinate `i`
   refine ⟨β, hb1, ?_⟩
   funext i
   have hsum : (∑ j : Fin n, β j •

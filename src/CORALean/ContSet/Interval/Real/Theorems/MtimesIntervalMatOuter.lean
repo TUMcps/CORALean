@@ -44,6 +44,7 @@ theorem Interval.aux_mul_between_corners {a b c d y x : ℝ} (hy₁ : a ≤ y) (
       _ = max (a * x) (b * x) := by rw [mul_comm x a, mul_comm x b]
       _ ≤ Interval.mulHi a b c d := max_le_max ha.2 hb.2
 
+-- and a sum of such products lies between the two corner sums, term by term
 theorem Interval.mtimesIntervalMat_outer (IM : Interval (Mat ℝ m n))
     (I : Interval (Vec ℝ n)) :
     (⋃ A ∈ IM.construct, (A *ᵥ ·) '' I.construct)

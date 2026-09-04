@@ -3,35 +3,22 @@ import CORALean.NN.Layer
 /-!
 # The reshape layer
 
-CORA's `nnReshapeLayer`: the same numbers read in a different order. `eval` is
-the relabelling `x ↦ x ∘ e` and `propagate` is the same relabelling of the
-representation, and this is the only standard layer that loses nothing —
-`reshape_exact` is an equality where every other layer states an inclusion.
-
-## Which interface, and why not a matrix
+CORA's `nnReshapeLayer`: the same numbers read in a different order, `eval` being
+`x ↦ x ∘ e` and `propagate` the same relabelling of the representation. The only
+standard layer that loses nothing — `reshape_exact` is an equality.
 
 A relabelling is a linear map, so `Layer.linear` at a permutation matrix would
-propagate the same set through machinery that already exists. It is not used
-here, and the reason is the *guarantee* rather than the arithmetic:
-`Mtimes.mtimes_outer` claims containment and has no room to claim more, so a
-reshape written that way could not state the one thing it is for. `Reindex` is
-that room — one method and one equality — and it costs each representation an
-instance that is `map` at the relabelling (`Zonotope`) or the two bounds
-relabelled (`Interval`).
+propagate the same set. It is not used here, and the reason is the *guarantee*
+rather than the arithmetic: `Mtimes.mtimes_outer` claims containment and has no
+room to claim more, so a reshape written that way could not state the one thing
+it is for. `Reindex` is that room — one method and one equality. The arithmetic
+saving comes along with it, but by `Layers/Convolution`'s argument that alone
+would not have justified a class; the exactness does.
 
-The arithmetic saving comes along with it: a permutation matrix product spends
-`n²` multiplications by zero or one where a relabelling moves `n` numbers. That
-saving would not on its own have justified a class — by the argument
-`Layers/Convolution` makes, structure in a weight matrix is the float layer's
-business — but the exactness does, and the two point the same way.
-
-## No float counterpart
-
-A reshape carries no weights, so there is no scalar to name and nothing to
-round: this constructor is already the float one, as `Layer.identity` is. What
-the float layer owes is the `Reindex` instances, and `ContSet/*/Float` has them
-— both equalities, since a permutation moves stored floats without arithmetic
-and the error box travels across untouched.
+A reshape carries no weights, so there is no scalar to name and nothing to round:
+this constructor is already the float one, as `Layer.identity` is. What the float
+layer owes is the `Reindex` instances, and `ContSet/*/Float` has them — both
+equalities, a permutation moving stored floats without arithmetic.
 -/
 
 -- Authors:       Tobias Ladner

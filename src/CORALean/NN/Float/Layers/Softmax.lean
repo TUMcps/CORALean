@@ -7,35 +7,21 @@ import CORALean.NN.Layers.Softmax
 # The softmax layer over a floating-point scalar
 
 The exact layer's box, with one bound missing and the normalization standing in
-for it. That is the finding this file exists for.
+for it. A raw lower bound would ask for an *upper* bound on an exponential, and
+`Global/Float`'s `expUp` carries a hypothesis on its argument that no total float
+expression discharges — where a layer cannot carry a hypothesis, `propagate`
+being total.
 
-## Why the lower bound is not computed
-
-`softmax x i ≥ 1 / (1 + ∑_{j≠i} exp(hi j - lo i))` asks for an *upper* bound on
-an exponential, and `Global/Float`'s `expUp` carries a hypothesis on its
-argument that no total float expression discharges — every expression `FloatOps`
-builds is bounded by a polynomial, and no polynomial dominates `exp`. A layer
-cannot carry a hypothesis: `propagate` is a total function and `propagate_outer`
-holds at every input.
-
-So this layer computes no raw lower bound at all. It passes `0`, which
-`softmax_nonneg` justifies, and takes its lower bound from
-
-  `y i = 1 - ∑_{j≠i} y j ≥ 1 - ∑_{j≠i} ru j`,
-
-which needs only the *upper* bounds — and those need only `expDown`, which is
-total. `Real.softmax_mem_tightened` was stated for arbitrary raw bounds exactly
-so that this substitution costs nothing.
-
-The upper bound stays sharp: `min (ru i) 1`, the `1` being what the same
+So this layer computes no raw lower bound. It passes `0`, which `softmax_nonneg`
+justifies, and takes its lower bound from `y i ≥ 1 - ∑_{j≠i} ru j`, which needs
+only the *upper* bounds and so only `expDown`. `Real.softmax_mem_tightened` was
+stated for arbitrary raw bounds exactly so that this substitution costs nothing.
+The upper bound stays sharp at `min (ru i) 1`, the `1` being what the same
 identity gives at `rl = 0`.
 
-So the constraint that the standard treatment throws away is not a refinement
-here. It is the only lower bound this layer has, and dropping it would leave the
-enclosure `[0, ru i]` — which says nothing at all about a classifier's margin.
-
-`k` is the exponential's reduction depth and is precision alone, as in
-`Sigmoid`: every `k` is sound and a larger one tighter.
+The constraint the standard treatment throws away is therefore not a refinement
+here: it is the only lower bound this layer has, and without it the enclosure
+would be `[0, ru i]`. `k` is the reduction depth, precision alone as in `Sigmoid`.
 -/
 
 -- Authors:       Tobias Ladner
@@ -72,6 +58,7 @@ private def sumOffUp (i : Fin n) (v : Fin n → 𝕋) : 𝕋 :=
 private def sumOffDown (i : Fin n) (v : Fin n → 𝕋) : 𝕋 :=
   sumDown fun j => if j = i then zero else v j
 
+/-- The zeroed term contributes nothing, so the sum is the erased one, rounded up. -/
 private theorem sum_erase_le_sumOffUp (i : Fin n) (v : Fin n → 𝕋) :
     ∑ j ∈ Finset.univ.erase i, toReal (v j) ≤ toReal (sumOffUp i v) := by
   have h : ∑ j, toReal (if j = i then zero else v j)
@@ -81,6 +68,7 @@ private theorem sum_erase_le_sumOffUp (i : Fin n) (v : Fin n → 𝕋) :
   rw [← h]
   exact sum_le_sumUp _
 
+/-- And downward against any real bound on the terms, which is what the layer has. -/
 private theorem sumOffDown_le (i : Fin n) (v : Fin n → 𝕋) (h : Fin n → ℝ)
     (hv : ∀ j, j ≠ i → toReal (v j) ≤ h j) :
     toReal (sumOffDown i v) ≤ ∑ j ∈ Finset.univ.erase i, h j := by
@@ -104,6 +92,7 @@ def softmaxDenomDown (k : ℕ) (I : Interval 𝕋 n) (i : Fin n) : 𝕋 :=
   maximum one (addDown one
     (sumOffDown i fun j => expDown k (subDown (I.inf j) (I.sup i))))
 
+/-- An underestimated denominator, so the quotient is an overestimate. -/
 def softmaxRawUpper (k : ℕ) (I : Interval 𝕋 n) (i : Fin n) : 𝕋 :=
   divUp one (softmaxDenomDown k I i)
 
@@ -120,6 +109,7 @@ private theorem softmaxDenomDown_le (k : ℕ) (I : Interval 𝕋 n) (i : Fin n) 
       toReal (expDown k (subDown (I.inf j) (I.sup i)))
         ≤ Real.exp (toReal (I.inf j) - toReal (I.sup i)) := fun j _ =>
     le_trans (expDown_le k _) (Real.exp_le_exp.mpr (subDown_le_sub (I.inf j) (I.sup i)))
+  -- the `maximum one` floor is the only place this could exceed the real denominator
   have hsum := sumOffDown_le i (fun j => expDown k (subDown (I.inf j) (I.sup i)))
     (fun j => Real.exp (toReal (I.inf j) - toReal (I.sup i))) hterm
   have hnn : (0:ℝ) ≤ ∑ j ∈ Finset.univ.erase i,

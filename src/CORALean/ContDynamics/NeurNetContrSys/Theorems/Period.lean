@@ -4,28 +4,22 @@ import CORALean.NN.Theorems.PropagateOuter
 /-!
 # One control period is a linear run under the propagated input set
 
-The join between the two halves, and the only place they touch. On period `i`
-the input is the single vector `π(x(i Δtc))`; the state at `i Δtc` is in
-whatever set the previous period was enclosed by, so the network's own
-guarantee puts that vector in `propagate` of it — and a constant that lies in a
-set is an admissible input of `LinearSys.Trajectory` at that set.
+The join between the two halves, and the only place they touch. On period `i` the
+input is the single vector `π(x(i Δtc))`; the state at `i Δtc` is in whatever set
+the previous period was enclosed by, so the network's guarantee puts that vector
+in `propagate` of it — and a constant lying in a set is an admissible input of
+`LinearSys.Trajectory` at that set.
 
 `R` is a parameter with its membership a hypothesis, as in
 `NonlinearSys.Trajectory.shift`: the caller already holds the enclosure and its
-proof, and asking for them is what makes this compose into a recursion.
-
-The clock is moved here rather than in `LinearSys`. Every statement there reads
-`Set.Icc 0 r ⊆ T` and `init` pins `x 0`, so a period has to be re-anchored at
-its own start; the field is time-invariant, so the chain rule contributes the
-factor `1` and nothing else.
+proof, and asking for them is what makes this compose into a recursion. The clock
+is moved here, every statement in `LinearSys` reading `Set.Icc 0 r ⊆ T`.
 
 **What this throws away.** `LinearSys.Trajectory` lets `u` take any value of
-`construct U` at each instant independently, so the run produced here is
-admissible but so is every jittering input inside the same set — the constancy
-that a zero-order hold actually provides is dropped the moment the period is
-handed over. Soundness does not need it; precision does. Recovering it means a
-constant-input step, `∫₀^Δt e^{As} ds` applied to one vector rather than
-`inputSolution`'s set-valued integral, which `MatExp` does not yet offer.
+`construct U` at each instant independently, so every jittering input inside the
+set is admissible too, and the constancy a zero-order hold provides is dropped.
+Soundness does not need it, precision does; recovering it means a constant-input
+step, which `MatExp` does not yet offer.
 -/
 
 -- Authors:       Tobias Ladner

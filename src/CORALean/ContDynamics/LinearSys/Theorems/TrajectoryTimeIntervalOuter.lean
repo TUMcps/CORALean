@@ -38,6 +38,7 @@ variable [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 variable [Mtimes ℐ S]
 
 omit [∀ n, Reduce (S n) (Vec ℝ n)] in
+-- the conclusion is a four-way `plus` of `Mtimes` results, elaborated at `ℐ` and `Mat ℝ`
 set_option maxHeartbeats 1000000 in
 /-- One step and nothing more: the domain has to cover `[0, r]` only, which is
 what makes this a statement about a hybrid location or a single linearization

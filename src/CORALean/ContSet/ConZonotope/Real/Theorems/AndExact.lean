@@ -30,8 +30,7 @@ theorem ConZonotope.mem_and_P_iff (C₁ C₂ : ConZonotope (Vec ℝ n))
       (blockLeft C₁.h C₂.h β ∈ C₁.P.construct
         ∧ blockRight C₁.h C₂.h β ∈ C₂.P.construct)
       ∧ ∀ i, (ConZonotope.agreeMat C₁ C₂ *ᵥ β) i = C₂.c i - C₁.c i := by
-  -- stated through `mp`/`mpr` rather than as rewrites: writing the intermediate
-  -- polytopes out asks for the module instance at a count Lean has not reduced
+  -- via `mp`/`mpr`, not rewrites: writing the polytopes out needs an instance at an unreduced count
   constructor
   · intro h
     obtain ⟨hblocks, heqs⟩ := HPolytope.mem_and_iff.mp h
@@ -68,6 +67,7 @@ theorem ConZonotope.and_exact (C₁ C₂ : ConZonotope (Vec ℝ n)) :
     · refine Fin.addCases (fun l => ?_) fun l => ?_
       · rw [Fin.append_left]; exact hβ₁ l
       · rw [Fin.append_right]; exact hβ₂ l
+    -- the appended coefficient meets both polytopes, and the agreement rows read the two points
     · refine (ConZonotope.mem_and_P_iff C₁ C₂ _).mpr ⟨⟨?_, ?_⟩, fun i => ?_⟩
       · rw [blockLeft_append]; exact hP₁
       · rw [blockRight_append]; exact hP₂
@@ -87,6 +87,7 @@ theorem ConZonotope.and_exact (C₁ C₂ : ConZonotope (Vec ℝ n)) :
         Finset.sum_congr rfl fun j _ => by rw [Fin.append_left]
       rw [ConZonotope.aux_value_and, hs]
       exact hx₁
+  -- back: the two halves of `β` are the two sets' own coefficients
   · rintro x ⟨β, hβ, hP, hx⟩
     obtain ⟨⟨hP₁, hP₂⟩, hagree⟩ := (ConZonotope.mem_and_P_iff C₁ C₂ β).mp hP
     have hx₁ : x = C₁.c + ∑ j, β (Fin.castAdd C₂.h j) • C₁.G j := by

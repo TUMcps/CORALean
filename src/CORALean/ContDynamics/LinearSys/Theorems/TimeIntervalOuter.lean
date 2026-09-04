@@ -34,7 +34,9 @@ variable [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 variable [Mtimes ℐ S]
 
 omit [∀ n, Reduce (S n) (Vec ℝ n)] in
+-- the interpolation error is assembled entrywise from three interval matrices at once
 set_option maxHeartbeats 1000000 in
+/-- Every image of the initial set under the flow, at every time of the step. -/
 theorem LinearSys.timeIntervalStep_outer (sys : LinearSys 𝕋 n) {r : ℝ} (hr : 0 < r) {m : ℕ}
     (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) (X₀ : S n)
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) :

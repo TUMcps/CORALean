@@ -4,22 +4,18 @@ import CORALean.Global.EuclideanNorm
 # Ellipsoids: the representation
 
 CORA's `ellipsoid` stores a positive semi-definite shape matrix `Q` and a centre
-`q`, denoting `{x | (x - q)ᵀ Q⁻¹ (x - q) ≤ 1}`. This is the one place CORALean
-departs from CORA's data: the *generator* matrix `G` is stored instead, and the
-same family is denoted as the affine image of a Euclidean unit ball,
+`q`. CORALean stores the *generator* matrix `G` instead and denotes the same
+family as the affine image of a Euclidean unit ball,
 
   `E = {q + G u | ‖u‖₂ ≤ 1}`,   `Q = G Gᵀ`.
 
-The two describe exactly the same sets, and the generator form needs no matrix
-inverse, no positive-semi-definiteness side condition to carry through every
-operation, and no matrix square root to get back out of one — all three of which
-would otherwise dominate the effort here for no gain. A degenerate ellipsoid is
-a singular `G` and costs nothing extra.
+The generator form needs no matrix inverse, no positive-semi-definiteness side
+condition to carry through every operation, and no matrix square root to get
+back out of one. A degenerate ellipsoid is a singular `G` and costs nothing.
 
-`G` is `n × k` with `k` a field, as the zonotope's generator count is. It is not
-a restriction — `G · B_k` is an ellipsoid for every `k`, and `Q = G Gᵀ` is `n × n`
-either way — and it is what makes a linear image exact without a square root:
-`M G` is `m × k`, where a square `G` would have forced one back in.
+`G` is `n × k` with `k` a field, as the zonotope's generator count is. That is
+what makes a linear image exact without a square root: `M G` is `m × k`, where a
+square `G` would have forced one back in.
 
 `‖·‖₂` is `CORALean.norm₂`, deliberately not `‖·‖`: `Vec ℝ n` is `Fin n → ℝ` and
 carries the supremum norm.

@@ -49,6 +49,7 @@ theorem Zonotope.abs_le_absBound {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n} {β 
     _ ≤ ∑ l, |Z.G l j|         := Finset.sum_le_sum fun l _ => by
         simpa using mul_le_mul_of_nonneg_left (hβ l) (abs_nonneg (Z.G l j))
 
+-- the image sits in the centre's zonotope widened by what the radius can reach
 theorem Zonotope.mtimesIntervalMat_outer (IM : Interval (Mat ℝ m n)) (Z : Zonotope (Vec ℝ n)) :
     (⋃ A ∈ IM.construct, (A *ᵥ ·) '' Z.construct)
       ⊆ (Zonotope.mtimesIntervalMat IM Z).construct := by
@@ -71,6 +72,7 @@ theorem Zonotope.mtimesIntervalMat_outer (IM : Interval (Mat ℝ m n)) (Z : Zono
       _ = Zonotope.radiusReach IM Z i := rfl
   have hreachnn : ∀ i, 0 ≤ Zonotope.radiusReach IM Z i :=
     fun i => (abs_nonneg _).trans (herrb i)
+  -- the witness: the old coefficients, plus one per coordinate scaled to that reach
   refine Zonotope.mem_construct_iff.mpr
     ⟨Fin.append β (fun i => Zonotope.coefficient (Zonotope.radiusReach IM Z i) (err i)),
     ?_, fun i => ?_⟩

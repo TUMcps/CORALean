@@ -62,6 +62,7 @@ theorem PolyZonotope.abs_le_errorBound {I : Interval 𝕋 n} {e : Vec ℝ n}
   · exact le_trans (neg_le_neg (le_max_left _ _)) (le_trans (neg_abs_le _) hlo)
   · exact le_trans hhi (le_trans (le_abs_self _) (le_max_right _ _))
 
+-- the error box is freed into `n` fresh factors, one per coordinate
 theorem PolyZonotope.dependent_nominal (PZ : PolyZonotope 𝕋 n) :
     PZ.construct ⊆ nominalSet PZ.dependent := by
   rintro _ ⟨z, hz', e, he, rfl⟩
@@ -78,6 +79,7 @@ theorem PolyZonotope.dependent_nominal (PZ : PolyZonotope 𝕋 n) :
     · simp only [Fin.append_right]
       exact Real.Zonotope.abs_coefficient_le_one
         ((abs_nonneg _).trans (hbound j)) (hbound j)
+  -- and the diagonal block reproduces `e` exactly, coordinate by coordinate
   · have hd : ∑ l, Matrix.diagonal (toRealVec (PolyZonotope.errorBound PZ.err)) i l
         * Real.Zonotope.coefficient (toReal (PolyZonotope.errorBound PZ.err l)) (e l)
           = e i := by

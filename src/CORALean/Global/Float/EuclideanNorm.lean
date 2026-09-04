@@ -4,18 +4,16 @@ import CORALean.Global.Float.SoundFloatArithmetic
 /-!
 # A Euclidean norm bounded from above, with no square root
 
-`FloatOps` has `+`, `*`, `/`, `neg`, `min`, `max` and `half`, and no square root.
-An ellipsoid's support function is `⟨d, q⟩ + ‖Gᵀd‖₂`, so this is where the float
-layer meets one — and it turns out it needs no new scalar operation. Not
-division either: nothing below divides.
+`FloatOps` has no square root, and an ellipsoid's support function is
+`⟨d, q⟩ + ‖Gᵀd‖₂`, so this is where the float layer meets one — and it needs no
+new scalar operation.
 
-An upper bound on `√x` is any `s` with `x ≤ s²`, and `s²` is a *multiplication*,
-which the scalar has in both rounding directions. So the operation the layer
-would have to add is not a square root but a *check*: an unverified routine
-proposes `s`, `sqSumUp` bounds the squared length upward, `mulDown s s` bounds
-`s²` downward, and the one inequality between them is the proof. That is
-`LinProg`'s certificate pattern at a scalar rather than at a dual solution — a
-wrong candidate yields no bound rather than a wrong one.
+An upper bound on `√x` is any `s` with `x ≤ s²`, and `s²` is a multiplication,
+which the scalar has in both rounding directions. So what the layer needs is not
+a square root but a *check*: an unverified routine proposes `s`, `sqSumUp` bounds
+the squared length upward, `mulDown s s` bounds `s²` downward, and the inequality
+between them is the proof. That is `LinProg`'s certificate pattern at a scalar —
+a wrong candidate yields no bound rather than a wrong one.
 
 The sign of the candidate is never examined. `absolute` is exact, so the bound
 is `|s|`, and a routine that returned the negative root still certifies.

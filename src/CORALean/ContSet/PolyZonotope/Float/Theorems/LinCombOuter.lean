@@ -21,14 +21,12 @@ centre, the sliding generator and the paired independent generators displaced.
 No stored value is unfolded: each cancels against its own residual or against
 `linCombGIDiff`, so what remains is the exact identity.
 
-The three dependent blocks contribute nothing to the spill. Halving and negation
-are exact, so `½G₁`, `½G₂` and `-½G₂` are the exact layer's blocks and not
-roundings of them, and the monomials are exponent data over ℕ throughout. Both
-counts are therefore what they are over ℝ.
+The three dependent blocks contribute nothing to the spill: halving and negation
+are exact, and the monomials are exponent data over ℕ throughout, so both counts
+are what they are over ℝ.
 
-Only `_outer`, as over ℝ, and for the exact layer's reason rather than for a
-rounding one: the independent coefficients cannot be recorded as tied to the
-same `λ` as the dependent part.
+Only `_outer`, as over ℝ, and for the exact layer's reason rather than a
+rounding one: the independent coefficients cannot be tied to the same `λ`.
 -/
 
 -- Authors:       Tobias Ladner
@@ -96,6 +94,7 @@ theorem PolyZonotope.aux_linCombGI_error (PZ₁ PZ₂ : PolyZonotope 𝕋 n) (i 
     · intro k
       simp only [Fin.append_right]
       exact Zonotope.pairDiff_bracket (PZ₁.GI i) (PZ₂.GI i) k
+  -- the gap between the two directed spellings is what bounds the error
   obtain ⟨hlo, hhi⟩ := hbr j
   have hgap := sub_le_subUp (PolyZonotope.linCombGI addUp subUp PZ₁ PZ₂ i j)
     (PolyZonotope.linCombGI addDown subDown PZ₁ PZ₂ i j)
@@ -153,6 +152,7 @@ theorem PolyZonotope.aux_halfDiff_mem_error (a b : Vec 𝕋 n) {lam : ℝ}
     rw [hdown]
     have := subDown_le_sub (a i) (b i)
     linarith
+  -- and above by the gap between the two directed halvings
   have hqR : (toReal (a i) - toReal (b i)) / 2 - toReal (PolyZonotope.halfDiff a b i)
       ≤ toReal (subUp (half (subUp (a i) (b i))) (half (subDown (a i) (b i)))) := by
     have h1 := sub_le_subUp (half (subUp (a i) (b i))) (half (subDown (a i) (b i)))
@@ -190,6 +190,7 @@ theorem PolyZonotope.aux_sum_neg_half {k : ℕ} (g : Fin k → 𝕋) (m : Fin k 
   rw [Finset.mul_sum]
   exact Finset.sum_congr rfl fun l _ => by rw [toReal_neg, toReal_half]; ring
 
+-- the witness is one nested `Fin.append` term, re-elaborated at every `Fin.addCases` branch
 set_option maxHeartbeats 400000 in
 theorem PolyZonotope.aux_linComb_nominal (PZ₁ PZ₂ : PolyZonotope 𝕋 n) :
     segments (nominalSet PZ₁) (nominalSet PZ₂) ⊆
@@ -209,6 +210,7 @@ theorem PolyZonotope.aux_linComb_nominal (PZ₁ PZ₂ : PolyZonotope 𝕋 n) :
       simpa using Real.Zonotope.abs_pairCoeffSum_le_one hβ₁ hβ₂ hl0 hl1 j
     · intro j
       simpa using Real.Zonotope.abs_pairCoeffDiff_le_one hβ₁ hβ₂ hl0 hl1 j
+  -- the witness: the two factor vectors appended, plus the fresh segment factor
   refine ⟨fun i => toReal ((PZ₁.linComb PZ₂).c i)
             + (∑ l, toReal ((PZ₁.linComb PZ₂).G i l)
                 * Real.PolyZonotope.monomial (PZ₁.linComb PZ₂).E
@@ -224,6 +226,7 @@ theorem PolyZonotope.aux_linComb_nominal (PZ₁ PZ₂ : PolyZonotope 𝕋 n) :
                   _, Zonotope.mem_generatorError
                        (fun i j => PolyZonotope.aux_linCombGI_error PZ₁ PZ₂ i j) hcf,
                   rfl⟩, rfl⟩, ?_⟩
+  -- every appended factor is admissible, the fresh one because `2λ-1` lies in `[-1,1]`
   · refine Fin.addCases ?_ ?_
     · refine Fin.addCases ?_ ?_
       · intro k

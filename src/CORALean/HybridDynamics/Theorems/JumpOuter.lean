@@ -7,20 +7,17 @@ The one step a hybrid analysis takes at a jump: from an enclosure of the states
 present when the guard is met, an enclosure of the states just after the reset.
 Guard intersection first, reset second.
 
-The intersection arrives as the hypothesis `hand` rather than as a call, and
-that is the deliberate half of this file. There is no `And` class — only two
-representations implement an intersection, and the convex one would have to
-state it at convex sets only — so a theorem that intersected generically would
-have to invent the interface. `hand` is the `SupportBound` bargain instead: the
-caller brings whatever encloses the intersection together with the proof that it
-does, and where the proof came from is not this theorem's business.
-`JumpOuterConZonotope` is that hypothesis discharged with nothing given away,
-and `ConPolyZono.and` would do the same for a non-convex guard.
+The intersection arrives as the hypothesis `hand` rather than as a call, and that
+is the deliberate half of this file. There is no `And` class — only two
+representations implement an intersection — so a theorem intersecting generically
+would have to invent the interface. `hand` is the `SupportBound` bargain instead:
+the caller brings whatever encloses the intersection together with its proof.
+`JumpOuterConZonotope` discharges it with nothing given away.
 
-Only *soundness* is at stake in the choice. `hand` may be satisfied by the
-incoming set itself — ignoring the guard entirely — and the step stays correct
-while losing everything the guard would have removed. That is the usual bargain
-here, and it is why a representation with an exact `and` is worth having.
+Only *soundness* is at stake. `hand` may be satisfied by the incoming set itself,
+ignoring the guard entirely, and the step stays correct while losing everything
+the guard would have removed — which is why a representation with an exact `and`
+is worth having.
 -/
 
 -- Authors:       Tobias Ladner

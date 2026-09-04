@@ -4,58 +4,22 @@ import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 /-!
 # Constrained polynomial zonotopes: the representation
 
-Kochdumper and Althoff, *Constrained Polynomial Zonotopes* (2020), and CORA's
-`conPolyZono`: a `PolyZonotope` whose dependent factors additionally have to
-satisfy polynomial constraints `A μ(α) ∈ b`, the constraint monomials `μ` read
-off `EC` over the *same* factors `α` as the generators.
+CORA's `conPolyZono` [1]: a `PolyZonotope` whose factors additionally satisfy
+polynomial constraints `A μ(α) ∈ b`, the constraint monomials read off `EC` over
+the *same* factors as the generators. That sharing is the content of the
+representation — a constraint and a generator are two readings of one
+`PolyZonotope.monomial` — so the constraints are a matrix relation, not a polytope.
 
-That sharing is the whole content of the representation, as factor sharing is
-for the unconstrained one, and it is why the monomial here is
-`PolyZonotope.monomial` rather than a second copy: a constraint and a generator
-are two readings of one monomial in one set of factors.
+`b` is an `Interval` where [1] writes `A μ(α) = b`: an equality has no direction
+to round in, so no float layer could compute a constraint at all; `Interval.point
+b` gives it back. Of the five counts two are renamed against [1] to avoid
+`PolyZonotope`'s: `m` counts constraints, `s` constraint generators. `holds`
+states the constraint over the data, which an operation assembling one needs.
 
-The constraint is a matrix relation, as in the paper and in CORA, and *not* an
-`HPolytope` the way `ConZonotope` carries its constraints. A polytope over the
-factors could not say what a polynomial constraint says — the constraint is
-polynomial in `α`, not linear — and a polytope over the monomials would let them
-move independently of the factors they are built from, which is exactly the
-coupling the representation exists to record.
+## References
 
-## Why the right-hand side is an interval
-
-The paper writes `A μ(α) = b`, and an equality has no direction to round in:
-perturb `b` and the admissible factors are a disjoint slice of the same cube
-rather than a superset, so neither inclusion holds and no float layer can
-compute a constraint at all. `b` is therefore an `Interval` and the row reads
-`A μ(α) ∈ b`, which is `HPolytope.slab` over the factors — the same decision the
-float `HPolytope` makes, for the same reason, and the argument for it is written
-out there. Rounding a bound outward now widens the interval and grows the set,
-which is the shape every float operation in this repository has.
-
-The alternative was a slack factor per inequality together with a bound on it.
-It loses twice over. It grows `p`, the factor count shared between `E` and `EC`,
-which is what already makes compaction hard here — only a factor unused by both
-may be dropped. And it does not even buy what it was wanted for: an agreement row
-whose right-hand side has been rounded still needs somewhere to put the
-rounding, so the slack factor's own bound would have to be an interval in all but
-name, at the price of one factor and one constraint column per row.
-
-An equality is the degenerate interval, `Interval.point b`, and
-`holds_point_iff` reads it back; nothing the paper states is lost. Inequalities
-come free, which is what unblocks `ConZonotope → ConPolyZono`.
-
-`holds` states the constraint over the data rather than over a set, as
-`monomial` is stated over an exponent matrix: an operation concatenating two
-constraint systems has to name the system it is still assembling, whose counts
-are not yet a projection of anything.
-
-Five counts, and the paper's names collide with `PolyZonotope`'s twice over, so
-two are renamed: `m` is the number of constraints and `s` the number of
-constraint generators, the paper's `q` for the latter being already taken by the
-independent generators.
-
-Over any real module, as `PolyZonotope` is: the constraint lives on the factors
-whatever the generators point into.
+* [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta
+      Informatica, 2023.
 -/
 
 -- Authors:       Tobias Ladner
@@ -128,10 +92,9 @@ def ConPolyZono.padE {p s : ℕ} (EC : Fin p → Fin s → ℕ) (r : ℕ) :
     Fin (p + r) → Fin s → ℕ :=
   Fin.append EC fun _ _ => 0
 
-/-- Two exponent matrices over the *same* factors, side by side: constraint
-monomials and generator monomials read off one matrix, which is what an
-intersection has to do. Not `PolyZonotope.plusE`, which puts two *factor* sets
-side by side and would decouple the very columns this couples. -/
+/-- Two exponent matrices over the *same* factors, side by side, which is what
+an intersection has to do. Not `PolyZonotope.plusE`, which puts two *factor*
+sets side by side and would decouple the very columns this couples. -/
 def ConPolyZono.appendE {p s t : ℕ} (E₁ : Fin p → Fin s → ℕ) (E₂ : Fin p → Fin t → ℕ) :
     Fin p → Fin (s + t) → ℕ :=
   fun k => Fin.append (E₁ k) (E₂ k)
@@ -152,6 +115,7 @@ theorem ConPolyZono.monomial_padE {p s : ℕ} (EC : Fin p → Fin s → ℕ) (r 
       simp only [ConPolyZono.padE, Fin.append_left]
   rw [hnew, hold, mul_one]
 
+-- a monomial read back off each half of the append, the factors being shared
 theorem ConPolyZono.monomial_appendE_left {p s t : ℕ} (E₁ : Fin p → Fin s → ℕ)
     (E₂ : Fin p → Fin t → ℕ) (a : Fin p → ℝ) (l : Fin s) :
     PolyZonotope.monomial (ConPolyZono.appendE E₁ E₂) a (Fin.castAdd t l)

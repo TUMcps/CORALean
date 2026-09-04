@@ -42,6 +42,7 @@ theorem Interval.aux_hPolytope_A_natAdd (I : Interval (Vec ℝ n)) (j : Fin n) :
     (fun j : Fin n => -(LinearMap.proj j : Vec ℝ n →ₗ[ℝ] ℝ)) (Fin.natAdd n j) = _
   rw [Fin.append_right]
 
+-- and the bounds, the same append read on either half
 theorem Interval.aux_hPolytope_b_castAdd (I : Interval (Vec ℝ n)) (j : Fin n) :
     (Interval.hPolytope I).b (Fin.castAdd n j) = I.sup j := by
   show Fin.append I.sup (fun j => -I.inf j) (Fin.castAdd n j) = _
@@ -52,6 +53,7 @@ theorem Interval.aux_hPolytope_b_natAdd (I : Interval (Vec ℝ n)) (j : Fin n) :
   show Fin.append I.sup (fun j => -I.inf j) (Fin.natAdd n j) = _
   rw [Fin.append_right]
 
+-- membership is those two halves read back as the box's two bounds
 theorem Interval.mem_hPolytope_iff {I : Interval (Vec ℝ n)} {x : Vec ℝ n} :
     x ∈ (Interval.hPolytope I).construct ↔ ∀ j, I.inf j ≤ x j ∧ x j ≤ I.sup j := by
   constructor
@@ -73,6 +75,7 @@ theorem Interval.mem_hPolytope_iff {I : Interval (Vec ℝ n)} {x : Vec ℝ n} :
       show -(x j) ≤ -I.inf j
       linarith [(h j).1]
 
+-- so the two descriptions denote the same set, with nothing given away
 theorem Interval.hPolytope_exact (I : Interval (Vec ℝ n)) :
     (Interval.hPolytope I).construct = I.construct := by
   ext x

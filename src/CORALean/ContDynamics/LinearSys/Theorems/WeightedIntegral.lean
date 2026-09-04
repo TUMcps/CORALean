@@ -5,7 +5,7 @@ import CORALean.ContDynamics.LinearSys.LinearSys
 
 `∫₀ʳ τⁱ f(τ) dτ ∈ (r^{i+1}/(i+1)) · S` whenever `f` is valued in `S` and `S` is
 convex and closed — the total weight `∫₀ʳ τⁱ dτ` scaling the set, and nothing
-worse. Every term of Althoff's input solution is one instance of it.
+worse. Every term of the input solution of [1] is one instance of it.
 
 An integral is a limit of convex combinations of values of `f`, so convexity is
 what puts it in `S` and closedness is what turns the limit into membership.
@@ -14,6 +14,11 @@ Boundedness only makes `f` integrable.
 Proved by putting the weight into the measure rather than the integrand, so
 `Convex.set_average_mem` applies to `f` itself: `⨍` against `τⁱ dτ` is the
 normalised integral wanted, normalised by the total weight.
+
+## References
+
+* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
+      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
 -/
 
 -- Authors:       Tobias Ladner
@@ -29,7 +34,9 @@ open scoped ENNReal NNReal
 
 variable {n : ℕ}
 
+-- the weight moves into the measure, so every step carries an `ℝ≥0∞` coercion with it
 set_option maxHeartbeats 1000000 in
+/-- The weighted average of a set-valued function, scaled by the total weight. -/
 theorem integral_pow_smul_mem {S : Set (Vec ℝ n)} (hconv : Convex ℝ S) (hclosed : IsClosed S)
     (hbdd : Bornology.IsBounded S) {f : ℝ → Vec ℝ n} {r : ℝ} (hr : 0 < r) (i : ℕ)
     (hmeas : AEStronglyMeasurable f (volume.restrict (Set.Ioc 0 r)))

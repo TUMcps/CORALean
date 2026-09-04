@@ -16,11 +16,9 @@ rather than a centre plus a sum and the expansion is a plain double sum with no
 case for the centre. The result is then indexed by pairs, through
 `finProdFinEquiv`, since the structure carries a count and not an index type.
 
-Independent generators are handled before the map rather than during it:
-`quadMap` runs `quadMapDep` on `dependent`, whose independent block is empty by
-construction. That is what keeps the operation total and exact at once —
-`quadMapDep` alone is sound only where there is no independent block, and its
-theorem says so.
+Independent generators are handled before the map: `quadMap` runs `quadMapDep`
+on `dependent`, whose independent block is empty by construction, which keeps
+the operation total and exact at once.
 -/
 
 -- Authors:       Tobias Ladner

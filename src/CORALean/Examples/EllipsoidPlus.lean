@@ -12,11 +12,9 @@ changed, and the operation it ends up calling is the parameterized one at the
 value the caller passed.
 
 `LinearSys.inputTaylorSum` is the algorithm here because `Plus` and
-`Mtimes (Mat ℝ)` are exactly what it asks for and exactly what an ellipsoid has.
-The reachability loops still do not run at one, and not for this reason:
-`Reduce`, `LinComb`, `OfInterval` and `Mtimes ℐ` are missing *operations*, not
-missing room for a parameter, and `ContSet.lean`'s docstring is where the two
-are kept apart.
+`Mtimes (Mat ℝ)` are exactly what it asks for and what an ellipsoid has. The
+reachability loops still do not run at one, and not for this reason: `Reduce`,
+`LinComb`, `OfInterval` and `Mtimes ℐ` are missing *operations*.
 
 The float layer's parameter is the two scalings with the inequality they owe,
 which is a wider family than `l`'s. No generic algorithm runs there yet — its

@@ -12,7 +12,7 @@ by the definition.
 
 -- Authors:       Tobias Ladner
 -- Written:       16-August-2026
--- Last update:   17-August-2026 (exactness)
+-- Last update:   17-August-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -27,6 +27,7 @@ theorem Interval.plus_outer (I₁ I₂ : Interval α) :
   rw [Interval.plus, Entrywise.entry_add, Entrywise.entry_add, Entrywise.entry_add]
   exact ⟨add_le_add (hx₁ i).1 (hx₂ i).1, add_le_add (hx₁ i).2 (hx₂ i).2⟩
 
+-- every `Entrywise` rewrite unfolds `plus` by `rfl`, and the four `linarith` calls pay for it
 set_option maxHeartbeats 400000 in
 theorem Interval.plus_exact (I₁ I₂ : Interval α) (h₁ : I₁.IsNonempty) (h₂ : I₂.IsNonempty) :
     I₁.construct + I₂.construct = (I₁.plus I₂).construct := by

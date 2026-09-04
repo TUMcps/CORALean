@@ -64,10 +64,9 @@ theorem PolyZonotope.nominal_q [SoundFloatArithmetic 𝕋] (PZ : PolyZonotope �
 theorem PolyZonotope.nominal_E [SoundFloatArithmetic 𝕋] (PZ : PolyZonotope 𝕋 n) :
     (InflatedContSet.nominal PZ).E = PZ.E := rfl
 
-/-- The nominal set spelt in this representation's own fields. Definitional, and
-the reason proofs never mention `nominal`: through it every count is `PZ.h`,
-where going via the instance gives the equal-but-distinct `(nominal PZ).h` that
-`rw`, `ring` and `linarith` all read as a different term. -/
+/-- The nominal set in this representation's own fields, definitionally. Proofs
+use it rather than `nominal` because through it every count is `PZ.h`, where the
+instance gives the equal-but-distinct `(nominal PZ).h` that `rw` reads apart. -/
 theorem PolyZonotope.mem_nominalSet_iff [SoundFloatArithmetic 𝕋] {PZ : PolyZonotope 𝕋 n}
     {x : Vec ℝ n} :
     x ∈ InflatedContSet.nominalSet PZ ↔ ∃ a : Fin PZ.p → ℝ, ∃ β : Fin PZ.q → ℝ,
