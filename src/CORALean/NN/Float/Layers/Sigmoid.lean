@@ -141,6 +141,12 @@ noncomputable def sigmoidCurvatureRelaxation (E : Enclosure 𝕋 Real.sigmoid) :
       exact max_le (le_trans (sigmoidDerivLo_le E l u (toReal l) le_rfl h)
         (le_sigmoidDerivHi E l u (toReal l) le_rfl h)) (min_le_left _ _)
 
+/-- The curvature relaxation where its bracket pays for itself, and the
+monotone one where it does not. `Layers/Tanh.lean` transports this whole. -/
+noncomputable def sigmoidRelaxation (k : ℕ) : Relaxation 𝕋 Real.sigmoid :=
+  (sigmoidCurvatureRelaxation (sigmoidEnclosure k)).tighter
+    (Relaxation.ofMonotone Real.sigmoid_mono (sigmoidEnclosure k))
+
 namespace Layer
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
@@ -148,9 +154,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n
 
 /-- `k` is the exponential's reduction depth: every `k` is sound, a larger one
 tighter, and it reaches both the value and the derivative bracket. -/
-noncomputable def sigmoid (k : ℕ) : Real.Layer S n n :=
-  Layer.activation ((sigmoidCurvatureRelaxation (sigmoidEnclosure k)).tighter
-    (Relaxation.ofMonotone Real.sigmoid_mono (sigmoidEnclosure k)))
+noncomputable def sigmoid (k : ℕ) : Real.Layer S n n := Layer.activation (sigmoidRelaxation k)
 
 end Layer
 

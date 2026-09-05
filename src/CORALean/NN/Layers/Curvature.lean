@@ -17,7 +17,9 @@ with the box — against the linear `(σ u - σ l) / 2` that monotonicity gives.
 It is not the tight constant. The bracket alone allows a factor two better,
 anchored at the box's midpoint rather than at its left end; a factor four below
 *that* is the tangent point, where `σ' = λ` — a logarithm for these functions.
--/
+
+`Relaxation.ofAffineConj` below needs none of this again for an affine conjugate
+of a function already relaxed. -/
 
 -- Authors:       Tobias Ladner
 -- Written:       05-September-2026
@@ -73,6 +75,25 @@ noncomputable def Relaxation.ofDeriv {σ σ' : ℝ → ℝ} (hd : ∀ x, HasDeri
       (hlam l u (le_trans hl hu)).1 (hlam l u (le_trans hl hu)).2 hl hu
     rw [abs_le]
     exact ⟨by linarith, by linarith⟩
+
+/-- A relaxation of `f` transported along `g t = a f (b t) + c`, `0 < a`, `0 < b`.
+Whatever built `R` carries over unchanged: `g`'s bracket at `l, u` is `f`'s at
+`b l, b u`, rescaled. -/
+noncomputable def Relaxation.ofAffineConj {f g : ℝ → ℝ} (R : Relaxation f) {a b c : ℝ}
+    (ha : 0 < a) (hb : 0 < b) (hg : ∀ t, g t = a * f (b * t) + c) : Relaxation g where
+  slope l u := a * b * R.slope (b * l) (b * u)
+  offset l u := a * R.offset (b * l) (b * u) + c
+  error l u := a * R.error (b * l) (b * u)
+  sound {l u t} hl hu := by
+    have hbl : b * l ≤ b * t := mul_le_mul_of_nonneg_left hl hb.le
+    have hbu : b * t ≤ b * u := mul_le_mul_of_nonneg_left hu hb.le
+    -- the affine map's own slope and offset cancel, leaving `a` times `f`'s deviation
+    have heq : g t - (a * b * R.slope (b * l) (b * u) * t
+        + (a * R.offset (b * l) (b * u) + c))
+        = a * (f (b * t) - (R.slope (b * l) (b * u) * (b * t) + R.offset (b * l) (b * u))) := by
+      rw [hg t]; ring
+    rw [heq, abs_mul, abs_of_pos ha]
+    exact mul_le_mul_of_nonneg_left (R.sound hbl hbu) ha.le
 
 /-- Two relaxations of the same `σ`, the smaller error taken on each box. Both
 are sound everywhere, so the choice costs nothing and buys precision. -/
