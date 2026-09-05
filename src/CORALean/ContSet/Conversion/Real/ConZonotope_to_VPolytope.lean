@@ -1,5 +1,6 @@
 import CORALean.ContSet.ConZonotope.Real.Operations.Domain
 import CORALean.ContSet.ConZonotope.Real.Theorems.Convex
+import CORALean.ContSet.ConZonotope.Real.Theorems.IsCompactDomain
 import CORALean.ContSet.Conversion.Real.HPolytope_to_VPolytope
 import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
 
@@ -21,23 +22,12 @@ constraints first and pays for it in precision instead.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   05-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
-
-omit [AddCommGroup α] [Module ℝ α] in
-/-- Bounded because the coefficients are, the unit box being part of the
-domain. -/
-theorem ConZonotope.isCompact_domain (C : ConZonotope α) : IsCompact C.domain.construct := by
-  refine HPolytope.isCompact_of_subset
-    (W := (Interval.mk (fun _ => -1) (fun _ => 1) : Interval (Vec ℝ C.h)).vPolytope) ?_
-  intro β hβ
-  refine Interval.subset_vPolytope _ fun j => ?_
-  have h := abs_le.mp ((ConZonotope.mem_domain_iff.mp hβ).1 j)
-  exact ⟨h.1, h.2⟩
 
 noncomputable def ConZonotope.vPolytope (C : ConZonotope α)
     (hne : C.domain.construct.Nonempty) : VPolytope α where
