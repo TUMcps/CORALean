@@ -52,6 +52,13 @@ then refined for floating-point arithmetic by rounding "outward", which an
 implementation can be tested against.
 
 
+## Findings
+
+Formalizing turns things up. [FINDINGS.md](FINDINGS.md) tables the errors and
+gaps found in the papers, and the places this formalization parts from CORA,
+each pointing at the file that argues it.
+
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the source layout, tooling, file
