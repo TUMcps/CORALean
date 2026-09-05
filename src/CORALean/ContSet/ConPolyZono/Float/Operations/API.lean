@@ -3,6 +3,7 @@ import CORALean.ContSet.ConPolyZono.Float.Operations.Compact
 import CORALean.ContSet.ConPolyZono.Float.Operations.Dependent
 import CORALean.ContSet.ConPolyZono.Float.Operations.Plus
 import CORALean.ContSet.ConPolyZono.Float.Operations.Mtimes
+import CORALean.ContSet.ConPolyZono.Float.Operations.Reduce
 
 /-!
 # What `ConPolyZono` computes
@@ -21,4 +22,8 @@ and the rounding of the centres rides along inside the same interval.
 `compact` is the operation that pays into both places at once, and the only one
 that does: merging generator columns rounds into the error box, merging
 constraint columns into `b`, and dropping factors into neither.
+
+`reduce` is the one operation computable here and not over ℝ, ranking generators
+with a comparator that owes no laws. It pays nothing of its own: the box it adds
+rounds outward, and the rounding it does is `compact`'s, which it runs first.
 -/
