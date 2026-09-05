@@ -32,6 +32,7 @@ import CORALean.ContSet.PolyZonotope.Float.Theorems.ToRealExtG
 import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadMapENominal
 import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadMapOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.MulOuter
+import CORALean.ContSet.PolyZonotope.Float.Theorems.EvalPolyOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceByH
 import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsDroppedLeDropRadius
 import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceByOuter
@@ -51,9 +52,9 @@ The exact layer's `plus`, `linComb`, `map` and `quadMap` read as enclosures.
 into the error box; `dependent_nominal` moves the other way, trading the box for
 generators so that `quadMap` has a box-free set to work on.
 
-`mul_outer` encloses the exact layer's product over shared factors, and takes
-its input as the two *nominal* sets — a caller reaches that state by running
-`dependent`, and by running it once.
+`mul_outer` encloses the exact product over shared factors, its input the two
+*nominal* sets — reached by running `dependent` once. `evalPoly_outer` prices
+the chain of `mul`s Horner runs, beyond what one `mul_outer` call owes.
 
 `reduce_outer` holds at every pair of partitions, which is what lets the ranking
 be a heuristic — and what lets it be computed at all here. It goes through
