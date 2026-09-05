@@ -4,6 +4,7 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialZero
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialAdd
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MemConstruct
 import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
+import CORALean.ContSet.PolyZonotope.Real.Theorems.ExistsPointOfQZero
 import CORALean.ContSet.PolyZonotope.Real.Theorems.PlusExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MapExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MtimesExact
@@ -38,15 +39,15 @@ respectively which dropped generators, cost the other direction.
 
 `reduce` is the one operation with two guarantees, and it needs both: an
 enclosure alone is satisfied by a set that grows every step, so
-`reduce_order_le` is what says the representation stays the size it was asked
-for.
+`reduce_order_le` says the representation stays the size it was asked for.
 
 `mul_exact` equates a product with the image of the shared factors under
 `a ↦ point S₁ a ⊙ point S₂ a`, never with a product of the two sets;
-`evalPoly_exact` carries that to a polynomial, and `point_mem_construct` is the
-way back. `relaxExp_outer` holds at every partition naming two generators,
-`eDiff` owing no proof of optimality: it bounds the drift from above, and a
-sharper bound would only be more precise.
+`evalPoly_exact` carries that to a polynomial per coordinate.
+`point_mem_construct` is the way back and `exists_point_of_q_zero` the way
+there, once nothing is independent. `relaxExp_outer` holds at every partition
+naming two generators, `eDiff` owing no proof of optimality: it bounds the
+drift from above, and a sharper bound would only be more precise.
 
 `quadMap_exact` is the one that distinguishes the representation: no convex
 representation here can state it. `compact_exact` is the one an order bound
