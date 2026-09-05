@@ -1,4 +1,5 @@
 import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
+import CORALean.ContSet.PolyZonotope.Real.Theorems.ContinuousMonomial
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialZero
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialAdd
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MemConstruct

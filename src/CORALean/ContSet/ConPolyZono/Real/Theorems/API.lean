@@ -16,23 +16,35 @@ import CORALean.ContSet.ConPolyZono.Real.Theorems.MtimesExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.PlusExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.QuadMapDepExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.QuadMapExact
+import CORALean.ContSet.ConPolyZono.Real.Theorems.ConstructEqImage
+import CORALean.ContSet.ConPolyZono.Real.Theorems.ContinuousAffine
+import CORALean.ContSet.ConPolyZono.Real.Theorems.IsCompactDomain
+import CORALean.ContSet.ConPolyZono.Real.Theorems.IsCompact
+import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceByOuter
+import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceGirardOuter
+import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceOuter
+import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceGirardOrderLe
+import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceOrder
 
 /-!
 # What `ConPolyZono` guarantees
 
-`and`, `plus`, `map`, `quadMap`, `dependent` and `compact`, all six exactly.
-Nothing here is an enclosure, which is unusual and is the constraints paying for
-themselves: the operations that would have to relax something are the ones left
-out.
+`and`, `plus`, `map`, `quadMap`, `dependent` and `compact`, all six exactly, and
+`reduce` as an enclosure with an order bound beside it — the only operation here
+that gives anything up, and the only one that has to.
 
 `compact_exact` is three equalities in a row and no hypothesis anywhere, which
 is what makes it bookkeeping: merging the generators, merging the constraint
-columns, and dropping the factors neither block reads.
+columns, and dropping the factors neither block reads. `reduce_order_le` is what
+that bookkeeping is for.
 
 `and_exact` is the one that distinguishes the representation. It is the only
 exact intersection in this repository that is not of convex sets, and together
 with `quadMap_exact` it is what a nonlinear reachability step needs: propagate
 through a quadratic map, then cut by a guard, neither losing anything.
 
-What `holds` satisfies, and `MemConstruct`, are what all six are stated over.
+`isCompact_construct` is the one guarantee about the set rather than an
+operation: a constraint row is a polynomial in the factors, so it closes the
+domain rather than opening it. What `holds` satisfies, and `MemConstruct`, are
+what the operations are stated over.
 -/

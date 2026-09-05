@@ -4,12 +4,19 @@ import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactOuter
 import CORALean.ContSet.ConPolyZono.Float.Theorems.DependentExact
 import CORALean.ContSet.ConPolyZono.Float.Theorems.PlusOuter
 import CORALean.ContSet.ConPolyZono.Float.Theorems.MtimesOuter
+import CORALean.ContSet.ConPolyZono.Float.Theorems.ReduceByOuter
+import CORALean.ContSet.ConPolyZono.Float.Theorems.ReduceGirardOuter
+import CORALean.ContSet.ConPolyZono.Float.Theorems.ReduceOuter
+import CORALean.ContSet.ConPolyZono.Float.Theorems.ReduceGirardOrderLe
+import CORALean.ContSet.ConPolyZono.Float.Theorems.ReduceOrder
 
 /-!
 # What `ConPolyZono` guarantees
 
-The exact layer's `plus`, `map`, `and` and `compact` read as enclosures,
-`dependent` still exactly.
+The exact layer's `plus`, `map`, `and`, `compact` and `reduce` read as
+enclosures, `dependent` still exactly. `reduce_order_le` is the one guarantee
+here that is not an enclosure, and the one this layer needs most: an unbounded
+generator count is memory and time per step.
 
 `compact_outer` is the one that moves the counts, and the one that widens `b`:
 merging a constraint column rounds, and `b` is the only place on that side a

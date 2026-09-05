@@ -1,21 +1,24 @@
+import CORALean.ContSet.ContSet.CompactSet
+import CORALean.ContSet.ConPolyZono.Real.Theorems.IsCompact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.MtimesExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.PlusExact
+import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceOuter
 
 /-!
 # What `ConPolyZono` instantiates
 
-`ContSet`, `Plus` and `Mtimes`, each obligation a theorem from `Theorems` read
-in the `⊆` direction, and nothing else.
+`ContSet`, `CompactSet`, `Plus`, `Mtimes` and `Reduce`, each obligation a
+theorem from `Theorems` read in the `⊆` direction.
 
 No `ConvexSet`: the sets are generally not convex, which is the point of the
-representation. No `CompactSet` either, though they are compact — the argument
-wants the constraint set to be closed and bounded and is not written here.
+representation. `CompactSet` holds all the same, and on the constraints rather
+than in spite of them — a constraint row is a polynomial in the factors, so it
+cuts the coefficient cube down to a closed subset of it.
 
-No `LinComb` and no `Reduce`. CORA computes both, and neither is faked: a
-`linComb` would have to relax the independent block as `PolyZonotope`'s does,
-and order reduction here still owes the generator ranking on top of `compact`,
-which `Operations` now supplies and which is what carries the exponent side —
-both merges and the factors neither block reads.
+`Reduce` ranks both generator blocks together and boxes what it drops, leaving
+the constraint block alone; `compact`, which it runs first, is what bounds the
+constraint counts. No `LinComb`: it would have to relax the independent block as
+`PolyZonotope`'s does, and nothing here is faked.
 
 `and` and `quadMap` have no class to instantiate, so a caller names
 `ConPolyZono.and` and `ConPolyZono.quadMap`. `and` would deserve one most, but
@@ -24,7 +27,7 @@ the second implementor, `ConZonotope`, could state it at convex sets only.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   04-September-2026
+-- Last update:   05-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -35,9 +38,20 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {n : ℕ}
 
 instance : ContSet (ConPolyZono α) α := ⟨ConPolyZono.construct⟩
 
+/-- At every ambient type, as the set-level statement is: it is the coefficient
+space that has to be finite-dimensional, and that one is `Fin p × Fin q`. -/
+instance {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α] : CompactSet (ConPolyZono α) α :=
+  ⟨ConPolyZono.isCompact_construct⟩
+
 instance : Plus (ConPolyZono α) α where
   plus := ConPolyZono.plus
   plus_outer C₁ C₂ := (ConPolyZono.plus_exact C₁ C₂).subset
+
+/-- Pinned to `Vec`, as `PolyZonotope`'s is: a generator ranking and the box that
+absorbs what it drops are both entrywise. -/
+noncomputable instance : Reduce (ConPolyZono (Vec ℝ n)) (Vec ℝ n) where
+  reduce := ConPolyZono.reduce
+  reduce_outer := ConPolyZono.reduce_outer
 
 instance : Mtimes (Mat ℝ) (fun n => ConPolyZono (Vec ℝ n)) where
   mtimes := ConPolyZono.mtimes
