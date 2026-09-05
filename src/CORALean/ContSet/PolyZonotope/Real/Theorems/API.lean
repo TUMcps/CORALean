@@ -3,6 +3,7 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.ContinuousMonomial
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialZero
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialAdd
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MemConstruct
+import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
 import CORALean.ContSet.PolyZonotope.Real.Theorems.PlusExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MapExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MtimesExact
@@ -41,7 +42,8 @@ for.
 
 `mul_exact` equates a product of two sets with the image of the shared factors
 under `a ↦ point S₁ a ⊙ point S₂ a`, never with a product of the two sets, which
-would claim far more than holds. `relaxExp_outer` holds at every partition
+would claim far more than holds; `point_mem_construct` is the way back, a point
+at admissible factors being a member. `relaxExp_outer` holds at every partition
 naming two generators, `eDiff` owing no proof of optimality: it is an upper
 bound on the drift, and a sharper one would only be more precise.
 
