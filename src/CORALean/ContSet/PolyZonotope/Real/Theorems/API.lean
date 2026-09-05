@@ -41,13 +41,12 @@ enclosure alone is satisfied by a set that grows every step, so
 `reduce_order_le` is what says the representation stays the size it was asked
 for.
 
-`mul_exact` equates a product of two sets with the image of the shared factors
-under `a ↦ point S₁ a ⊙ point S₂ a`, never with a product of the two sets, which
-would claim far more than holds; `point_mem_construct` is the way back, a point
-at admissible factors being a member. `relaxExp_outer` holds at every partition
-naming two generators, `eDiff` owing no proof of optimality: it is an upper
-bound on the drift, and a sharper one would only be more precise.
-`evalPoly_exact` carries the same shared-factor idiom to a polynomial.
+`mul_exact` equates a product with the image of the shared factors under
+`a ↦ point S₁ a ⊙ point S₂ a`, never with a product of the two sets;
+`evalPoly_exact` carries that to a polynomial, and `point_mem_construct` is the
+way back. `relaxExp_outer` holds at every partition naming two generators,
+`eDiff` owing no proof of optimality: it bounds the drift from above, and a
+sharper bound would only be more precise.
 
 `quadMap_exact` is the one that distinguishes the representation: no convex
 representation here can state it. `compact_exact` is the one an order bound
