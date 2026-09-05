@@ -30,14 +30,6 @@ open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 omit [SoundFloatArithmetic 𝕋] in
-@[simp] theorem PolyZonotope.plus_h (PZ₁ PZ₂ : PolyZonotope 𝕋 n) :
-    (PZ₁.plus PZ₂).h = PZ₁.h + PZ₂.h := rfl
-
-omit [SoundFloatArithmetic 𝕋] in
-@[simp] theorem PolyZonotope.plus_q (PZ₁ PZ₂ : PolyZonotope 𝕋 n) :
-    (PZ₁.plus PZ₂).q = PZ₁.q + PZ₂.q := rfl
-
-omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `plus`'s dependent generator count, stated through the
 projection because that is the form the goal has and simp will not rewrite a
 binder's type. -/

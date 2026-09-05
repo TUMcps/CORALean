@@ -1,4 +1,5 @@
 import CORALean.ContSet.PolyZonotope.Float.Operations.Dependent
+import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsLeErrorBound
 import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
 import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
 import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
@@ -6,25 +7,17 @@ import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
 import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMul
 
 /-!
-# `dependent` empties the box without losing a point
-
-Stated against the *nominal* set of the result rather than against its
-`construct`, which is the whole point: the result's box is `[0, 0]`, so its
-nominal set is everything it denotes, and a caller may treat it as an exact-layer
-polynomial zonotope from here on.
+# `dependent` empties the box without losing a point, over the nominal set
 
 The witness is `Fin.append a (Fin.append β γ)`: the old factors, the old
 independent coefficients now dependent, and one coefficient per coordinate
 placing that coordinate's error in its new generator. `coefficient` supplies the
 last, and `errorBound` rounds nothing, so it always fits.
-
-`dependent_outer` is the same statement read back through `ContSet`, for a
-caller that only wants the inclusion.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   05-September-2026
 -- Last revision: ---
 
 namespace CORALean.Float
@@ -32,9 +25,6 @@ namespace CORALean.Float
 open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
-
-omit [SoundFloatArithmetic 𝕋] in
-@[simp] theorem PolyZonotope.dependent_q (PZ : PolyZonotope 𝕋 n) : PZ.dependent.q = 0 := rfl
 
 omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `dependent`'s generator count, stated through the
@@ -45,26 +35,6 @@ theorem PolyZonotope.aux_sum_univ_dependent {PZ : PolyZonotope 𝕋 n}
     ∑ l : Fin PZ.dependent.h, f l
       = ∑ l, f (Fin.castAdd (PZ.q + n) l) + ∑ l, f (Fin.natAdd PZ.h l) :=
   Fin.sum_univ_add f
-
-/-- The result's box denotes the origin alone, so nothing is left outside its
-nominal set. -/
-theorem PolyZonotope.zero_mem_dependent_err (PZ : PolyZonotope 𝕋 n) :
-    (0 : Vec ℝ n) ∈ (PZ.dependent.err).construct := fun i =>
-  ⟨le_of_eq (by rw [PolyZonotope.dependent]; exact toReal_zero),
-   le_of_eq (by rw [PolyZonotope.dependent]; exact toReal_zero.symm)⟩
-
-/-- One generator per coordinate reaches every point of the box. -/
-theorem PolyZonotope.abs_le_errorBound {I : Interval 𝕋 n} {e : Vec ℝ n}
-    (he : e ∈ I.construct) (i : Fin n) : |e i| ≤ toReal (PolyZonotope.errorBound I i) := by
-  have hlo : toReal (I.inf i) ≤ e i := (he i).1
-  have hhi : e i ≤ toReal (I.sup i) := (he i).2
-  have hmax : toReal (PolyZonotope.errorBound I i)
-      = max |toReal (I.inf i)| |toReal (I.sup i)| := by
-    rw [PolyZonotope.errorBound, toReal_maximum, toReal_absolute, toReal_absolute]
-  rw [hmax, abs_le]
-  constructor
-  · exact le_trans (neg_le_neg (le_max_left _ _)) (le_trans (neg_abs_le _) hlo)
-  · exact le_trans hhi (le_trans (le_abs_self _) (le_max_right _ _))
 
 -- the error box is freed into `n` fresh factors, one per coordinate
 theorem PolyZonotope.dependent_nominal (PZ : PolyZonotope 𝕋 n) :
@@ -98,10 +68,5 @@ theorem PolyZonotope.dependent_nominal (PZ : PolyZonotope 𝕋 n) :
     simp only [Fin.append_left, Fin.append_right, toReal_diagonalBlock]
     rw [hd, hz i]
     ring
-
-theorem PolyZonotope.dependent_outer (PZ : PolyZonotope 𝕋 n) :
-    PZ.construct ⊆ PZ.dependent.construct := fun x hx =>
-  ⟨x, PolyZonotope.dependent_nominal PZ hx, 0,
-    PolyZonotope.zero_mem_dependent_err PZ, add_zero x⟩
 
 end CORALean.Float

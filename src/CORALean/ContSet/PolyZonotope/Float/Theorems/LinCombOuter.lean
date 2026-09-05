@@ -42,14 +42,6 @@ open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 omit [SoundFloatArithmetic 𝕋] in
-@[simp] theorem PolyZonotope.linComb_h (PZ₁ PZ₂ : PolyZonotope 𝕋 n) :
-    (PZ₁.linComb PZ₂).h = PZ₁.h + PZ₂.h + (PZ₁.h + PZ₂.h + 1) := rfl
-
-omit [SoundFloatArithmetic 𝕋] in
-@[simp] theorem PolyZonotope.linComb_q (PZ₁ PZ₂ : PolyZonotope 𝕋 n) :
-    (PZ₁.linComb PZ₂).q = PZ₁.q + PZ₂.q := rfl
-
-omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `linComb`'s dependent generator count, stated through
 the projection because that is the form the goal has and simp will not rewrite a
 binder's type. Only the outermost split needs it. -/
@@ -69,7 +61,7 @@ theorem PolyZonotope.aux_sum_univ_linComb_q {PZ₁ PZ₂ : PolyZonotope 𝕋 n}
     ∑ j : Fin (PZ₁.linComb PZ₂).q, f j = ∑ j : Fin (PZ₁.q + PZ₂.q), f j := rfl
 
 /-- The independent block `linComb` would store if nothing rounded. -/
-noncomputable def PolyZonotope.linCombGIReal (PZ₁ PZ₂ : PolyZonotope 𝕋 n) (i : Fin n) :
+noncomputable def PolyZonotope.aux_linCombGIReal (PZ₁ PZ₂ : PolyZonotope 𝕋 n) (i : Fin n) :
     Fin (PZ₁.q + PZ₂.q) → ℝ :=
   Fin.append
     (Real.Zonotope.pairSum (fun j => toReal (PZ₁.GI i j)) (fun j => toReal (PZ₂.GI i j)))
@@ -79,15 +71,15 @@ noncomputable def PolyZonotope.linCombGIReal (PZ₁ PZ₂ : PolyZonotope 𝕋 n)
 what `linCombGIDiff` records. -/
 theorem PolyZonotope.aux_linCombGI_error (PZ₁ PZ₂ : PolyZonotope 𝕋 n) (i : Fin n)
     (j : Fin (PZ₁.q + PZ₂.q)) :
-    |PolyZonotope.linCombGIReal PZ₁ PZ₂ i j
+    |PolyZonotope.aux_linCombGIReal PZ₁ PZ₂ i j
         - toReal (PolyZonotope.linCombGI addDown subDown PZ₁ PZ₂ i j)|
       ≤ toReal (PolyZonotope.linCombGIDiff PZ₁ PZ₂ i j) := by
   have hbr : ∀ j : Fin (PZ₁.q + PZ₂.q),
       toReal (PolyZonotope.linCombGI addDown subDown PZ₁ PZ₂ i j)
-          ≤ PolyZonotope.linCombGIReal PZ₁ PZ₂ i j
-        ∧ PolyZonotope.linCombGIReal PZ₁ PZ₂ i j
+          ≤ PolyZonotope.aux_linCombGIReal PZ₁ PZ₂ i j
+        ∧ PolyZonotope.aux_linCombGIReal PZ₁ PZ₂ i j
           ≤ toReal (PolyZonotope.linCombGI addUp subUp PZ₁ PZ₂ i j) := by
-    simp only [PolyZonotope.linCombGI, PolyZonotope.linCombGIReal]
+    simp only [PolyZonotope.linCombGI, PolyZonotope.aux_linCombGIReal]
     refine Fin.addCases ?_ ?_
     · intro k
       simp only [Fin.append_left]
@@ -107,13 +99,13 @@ theorem PolyZonotope.aux_linCombGI_error (PZ₁ PZ₂ : PolyZonotope 𝕋 n) (i 
 segment supplies: the pairing gives back the two sets' own sums. -/
 theorem PolyZonotope.aux_linCombGI_row (PZ₁ PZ₂ : PolyZonotope 𝕋 n) (i : Fin n)
     (β₁ : Fin PZ₁.q → ℝ) (β₂ : Fin PZ₂.q → ℝ) (lam : ℝ) :
-    (∑ j, PolyZonotope.linCombGIReal PZ₁ PZ₂ i j
+    (∑ j, PolyZonotope.aux_linCombGIReal PZ₁ PZ₂ i j
         * Fin.append (Real.Zonotope.pairCoeffSum β₁ β₂ lam)
             (Real.Zonotope.pairCoeffDiff β₁ β₂ lam) j)
       = lam * (∑ j, toReal (PZ₁.GI i j) * β₁ j)
         + (1 - lam) * ∑ j, toReal (PZ₂.GI i j) * β₂ j := by
   rw [Fin.sum_univ_add]
-  simp only [PolyZonotope.linCombGIReal, Fin.append_left, Fin.append_right]
+  simp only [PolyZonotope.aux_linCombGIReal, Fin.append_left, Fin.append_right]
   exact Zonotope.sum_pair_mul (fun j => toReal (PZ₁.GI i j))
     (fun j => toReal (PZ₂.GI i j)) β₁ β₂ lam
 
@@ -244,11 +236,11 @@ theorem PolyZonotope.aux_linComb_nominal (PZ₁ PZ₂ : PolyZonotope 𝕋 n) :
           toReal (PolyZonotope.linCombGI addDown subDown PZ₁ PZ₂ i j)
             * Fin.append (Real.Zonotope.pairCoeffSum β₁ β₂ lam)
                 (Real.Zonotope.pairCoeffDiff β₁ β₂ lam) j)
-        + (∑ j, (PolyZonotope.linCombGIReal PZ₁ PZ₂ i j
+        + (∑ j, (PolyZonotope.aux_linCombGIReal PZ₁ PZ₂ i j
               - toReal (PolyZonotope.linCombGI addDown subDown PZ₁ PZ₂ i j))
             * Fin.append (Real.Zonotope.pairCoeffSum β₁ β₂ lam)
                 (Real.Zonotope.pairCoeffDiff β₁ β₂ lam) j)
-        = ∑ j, PolyZonotope.linCombGIReal PZ₁ PZ₂ i j
+        = ∑ j, PolyZonotope.aux_linCombGIReal PZ₁ PZ₂ i j
             * Fin.append (Real.Zonotope.pairCoeffSum β₁ β₂ lam)
                 (Real.Zonotope.pairCoeffDiff β₁ β₂ lam) j := by
       rw [← Finset.sum_add_distrib]

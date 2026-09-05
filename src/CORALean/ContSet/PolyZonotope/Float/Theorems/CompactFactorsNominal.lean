@@ -1,0 +1,28 @@
+import CORALean.ContSet.PolyZonotope.Float.Operations.Compact
+import CORALean.ContSet.PolyZonotope.Real.Theorems.CompactExact
+
+/-!
+# `compactFactors`'s nominal part is the exact layer's
+
+Dropping unused factors is the exact layer's step verbatim: it changes `p` and
+the exponent matrix, both over ℕ, so nothing here rounds.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       02-September-2026
+-- Last update:   05-September-2026
+-- Last revision: ---
+
+namespace CORALean.Float
+
+open FloatOps SoundFloatArithmetic InflatedContSet
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+/-- Dropping unused factors is the exact layer's step verbatim: the nominal part
+of the result is `compactFactors` of the nominal part. -/
+theorem PolyZonotope.compactFactors_nominal (PZ : PolyZonotope 𝕋 n) :
+    nominalSet PZ = nominalSet PZ.compactFactors :=
+  Real.PolyZonotope.compactFactors_exact (InflatedContSet.nominal PZ)
+
+end CORALean.Float

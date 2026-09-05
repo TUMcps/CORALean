@@ -12,7 +12,7 @@ layer's theorem is the whole proof.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   05-September-2026
 -- Last revision: ---
 
 namespace CORALean.Float
@@ -20,9 +20,6 @@ namespace CORALean.Float
 open SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
-
-theorem Interval.reindex_nominal (e : Fin m ≃ Fin n) (I : Interval 𝕋 n) :
-    (I.reindex e).nominal = I.nominal.reindex e := rfl
 
 theorem Interval.reindex_exact (e : Fin m ≃ Fin n) (I : Interval 𝕋 n) :
     (I.reindex e).construct = reindexLin e '' I.construct :=

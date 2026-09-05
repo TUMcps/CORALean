@@ -36,10 +36,6 @@ open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 omit [SoundFloatArithmetic 𝕋] in
-@[simp] theorem Ellipsoid.plus_k (s₁ s₂ : 𝕋) (E₁ E₂ : Ellipsoid 𝕋 n) :
-    (Ellipsoid.plus s₁ s₂ E₁ E₂).k = E₁.k + E₂.k := rfl
-
-omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `plus`'s generator count, stated through the
 projection because that is the form the goal has and simp will not rewrite a
 binder's type. -/

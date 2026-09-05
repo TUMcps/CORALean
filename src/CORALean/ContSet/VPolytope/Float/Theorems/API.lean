@@ -1,5 +1,6 @@
 import CORALean.ContSet.VPolytope.Float.Theorems.PlusOuter
 import CORALean.ContSet.VPolytope.Float.Theorems.MtimesOuter
+import CORALean.ContSet.VPolytope.Float.Theorems.NominalLinComb
 import CORALean.ContSet.VPolytope.Float.Theorems.LinCombOuter
 import CORALean.ContSet.VPolytope.Float.Theorems.AndOuter
 

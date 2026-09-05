@@ -29,9 +29,6 @@ open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 omit [SoundFloatArithmetic 𝕋] in
-@[simp] theorem Zonotope.plus_h (Z₁ Z₂ : Zonotope 𝕋 n) : (Z₁.plus Z₂).h = Z₁.h + Z₂.h := rfl
-
-omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `plus`'s generator count, stated through the projection
 because that is the form the goal has and simp will not rewrite a binder's type. -/
 theorem Zonotope.aux_sum_univ_plus {Z₁ Z₂ : Zonotope 𝕋 n} (f : Fin (Z₁.h + Z₂.h) → ℝ) :
