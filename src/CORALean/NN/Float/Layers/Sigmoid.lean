@@ -50,15 +50,6 @@ private theorem onePlusExpDown_le (k : ℕ) (a : 𝕋) :
   · rw [toReal_one]
     linarith [expDown_le k a]
 
-/-- An underestimated positive denominator gives an overestimated reciprocal,
-and the rounding only grows it further. -/
-private theorem one_div_le_divUp {d : 𝕋} {y : ℝ} (h1 : 1 ≤ toReal d) (h2 : toReal d ≤ y) :
-    1 / y ≤ toReal (divUp one d) := by
-  have hd : (0:ℝ) < toReal d := lt_of_lt_of_le zero_lt_one h1
-  have hdiv := div_le_divUp one d hd
-  rw [toReal_one] at hdiv
-  exact le_trans (one_div_le_one_div_of_le hd h2) hdiv
-
 /-- `σ` written so that only a *lower* bound on `exp` is needed: `1/(1 + e⁻ᵗ)`
 would ask for an upper one, which no total float expression supplies. -/
 private theorem sigmoid_eq (t : ℝ) : Real.sigmoid t = 1 - (1 + Real.exp t)⁻¹ := by

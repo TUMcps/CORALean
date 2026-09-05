@@ -20,7 +20,7 @@ that is the one gap between these axioms and a machine.
 
 -- Authors:       Tobias Ladner
 -- Written:       16-August-2026
--- Last update:   04-September-2026
+-- Last update:   05-September-2026
 -- Last revision: ---
 
 namespace CORALean.Float
@@ -81,6 +81,15 @@ theorem sub_le_subUp (a b : 𝕋) : toReal a - toReal b ≤ toReal (subUp a b) :
 theorem subDown_le_sub (a b : 𝕋) : toReal (subDown a b) ≤ toReal a - toReal b := by
   rw [sub_eq_add_neg, ← toReal_neg b, subDown]
   exact addDown_le_add a (neg b)
+
+/-- An underestimated positive denominator gives an overestimated reciprocal,
+and the rounding only grows it further. -/
+theorem one_div_le_divUp {d : 𝕋} {y : ℝ} (h1 : 1 ≤ toReal d) (h2 : toReal d ≤ y) :
+    1 / y ≤ toReal (divUp one d) := by
+  have hd : (0:ℝ) < toReal d := lt_of_lt_of_le zero_lt_one h1
+  have hdiv := div_le_divUp one d hd
+  rw [toReal_one] at hdiv
+  exact le_trans (one_div_le_one_div_of_le hd h2) hdiv
 
 /-- `maximumOver` bounds every entry, which is what lets one box cover a whole
 list of roundings. -/

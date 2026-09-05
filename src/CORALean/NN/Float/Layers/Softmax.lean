@@ -26,7 +26,7 @@ would be `[0, ru i]`. `k` is the reduction depth, precision alone as in `Sigmoid
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   05-September-2026
 -- Last revision: ---
 
 namespace CORALean.Float
@@ -120,15 +120,6 @@ private theorem softmaxDenomDown_le (k : ℕ) (I : Interval 𝕋 n) (i : Fin n) 
   rw [toReal_one] at hadd
   rw [softmaxDenomDown, toReal_maximum, toReal_one]
   exact max_le (by linarith) (by linarith)
-
-/-- An underestimated positive denominator gives an overestimated reciprocal,
-and the rounding only grows it further. -/
-private theorem one_div_le_divUp {d : 𝕋} {y : ℝ} (h1 : 1 ≤ toReal d) (h2 : toReal d ≤ y) :
-    1 / y ≤ toReal (divUp one d) := by
-  have hd : (0:ℝ) < toReal d := lt_of_lt_of_le zero_lt_one h1
-  have hdiv := div_le_divUp one d hd
-  rw [toReal_one] at hdiv
-  exact le_trans (one_div_le_one_div_of_le hd h2) hdiv
 
 theorem softmax_le_rawUpper (k : ℕ) (I : Interval 𝕋 n) {x : Vec ℝ n}
     (hx : ∀ i, toReal (I.inf i) ≤ x i ∧ x i ≤ toReal (I.sup i)) (i : Fin n) :
