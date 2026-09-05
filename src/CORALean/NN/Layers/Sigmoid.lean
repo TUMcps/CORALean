@@ -53,12 +53,29 @@ theorem sigmoid_neg (t : ℝ) : sigmoid (-t) = 1 - sigmoid t := by
   field_simp
   ring
 
+/-- Below one, which is `sigmoid_pos` read at the mirrored argument. -/
+theorem sigmoid_lt_one (t : ℝ) : sigmoid t < 1 := by
+  have h := sigmoid_pos (-t)
+  rw [sigmoid_neg] at h
+  linarith
+
 /-! ## The derivative, and its bracket over a box
 
 Stated as `σ t · σ (-t)` rather than `σ t (1 - σ t)`: written that way each
 factor is monotone in `t` on its own, so a box's ends bracket the product. -/
 
 noncomputable def sigmoidDeriv (t : ℝ) : ℝ := sigmoid t * sigmoid (-t)
+
+/-- A product of two sigmoids, so inside `(0, 1)` on all of ℝ: the global bound
+a refinement level's fit is chosen against. -/
+theorem abs_sigmoidDeriv_le_one (t : ℝ) : |sigmoidDeriv t| ≤ 1 := by
+  have h1 := sigmoid_pos t
+  have h2 := sigmoid_pos (-t)
+  have h3 := sigmoid_lt_one t
+  have h4 := sigmoid_lt_one (-t)
+  show |sigmoid t * sigmoid (-t)| ≤ 1
+  rw [abs_le]
+  exact ⟨by nlinarith, by nlinarith⟩
 
 theorem hasDerivAt_sigmoid (t : ℝ) : HasDerivAt sigmoid (sigmoidDeriv t) t := by
   have hEpos : (0:ℝ) < Real.exp (-t) := Real.exp_pos _
