@@ -1,4 +1,5 @@
 import CORALean.ContSet.ConPolyZono.Real.Operations.PadE
+import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialPadE
 import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
 import CORALean.ContSet.PolyZonotope.Real.Operations.Plus
 
@@ -23,12 +24,10 @@ factors, and a fresh factor appearing in one would silently change them.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   05-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
-
-open Matrix
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
@@ -45,22 +44,5 @@ def ConPolyZono.dependent (C : ConPolyZono α) : ConPolyZono α where
   A := C.A
   b := C.b
   EC := ConPolyZono.padE C.EC C.q
-
-/-- Fresh factors at exponent zero constrain nothing, so the system says of the
-widened factor vector exactly what it said of the original. -/
-theorem ConPolyZono.holds_padE_iff {p m s : ℕ} (A : Mat ℝ m s) (b : Interval (Vec ℝ m))
-    (EC : Fin p → Fin s → ℕ) (r : ℕ) (a : Fin (p + r) → ℝ) :
-    ConPolyZono.holds A b (ConPolyZono.padE EC r) a
-      ↔ ConPolyZono.holds A b EC (fun k => a (Fin.castAdd r k)) := by
-  have hm : PolyZonotope.monomial (ConPolyZono.padE EC r) a
-      = PolyZonotope.monomial EC (fun k => a (Fin.castAdd r k)) :=
-    funext fun l => ConPolyZono.monomial_padE EC r a l
-  simp only [ConPolyZono.holds, hm]
-
-omit [AddCommGroup α] [Module ℝ α] in
-theorem ConPolyZono.satisfies_dependent_iff (C : ConPolyZono α)
-    (a : Fin (C.p + C.q) → ℝ) :
-    C.dependent.satisfies a ↔ C.satisfies (fun k => a (Fin.castAdd C.q k)) :=
-  ConPolyZono.holds_padE_iff C.A C.b C.EC C.q a
 
 end CORALean.Real

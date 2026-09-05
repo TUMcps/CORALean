@@ -1,3 +1,4 @@
+import CORALean.ContSet.ConPolyZono.Real.Operations.Compact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.CompactConsExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.CompactFactorsExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.CompactGensExact

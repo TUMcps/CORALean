@@ -1,0 +1,24 @@
+import CORALean.ContSet.HPolytope.Real.Operations.EmptySet
+
+/-!
+# `HPolytope.emptySet` denotes `∅`
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-September-2026
+-- Last update:   05-September-2026
+-- Last revision: ---
+
+namespace CORALean.Real
+
+variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+theorem HPolytope.construct_emptySet : (HPolytope.emptySet α).construct = ∅ := by
+  ext x
+  simp only [Set.mem_empty_iff_false, iff_false]
+  rintro ⟨hle, -⟩
+  -- the row index ascribed at `Fin 1`, the count's reduced spelling
+  have h : (0:ℝ) ≤ -1 := hle (0 : Fin 1)
+  linarith
+
+end CORALean.Real

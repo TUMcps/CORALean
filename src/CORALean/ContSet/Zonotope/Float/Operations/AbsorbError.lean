@@ -1,5 +1,7 @@
 import CORALean.ContSet.Interval.Float.Operations.Residual
-import CORALean.ContSet.Zonotope.Float.Zonotope
+import CORALean.ContSet.Zonotope.Float.Operations.ErrorRadius
+import CORALean.ContSet.Zonotope.Float.Operations.ShiftDown
+import CORALean.ContSet.Zonotope.Float.Operations.ShiftUp
 
 /-!
 # `Zonotope.absorbError`
@@ -14,7 +16,7 @@ which does this and a reduction in one pass.
 
 -- Authors:       Tobias Ladner
 -- Written:       16-August-2026
--- Last update:   ---
+-- Last update:   05-September-2026
 -- Last revision: ---
 
 namespace CORALean.Float
@@ -22,19 +24,6 @@ namespace CORALean.Float
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
-
-/-- The box midpoint added to the centre, rounded each way. The exact midpoint
-need not be a float — `[5, 6]` gives 5.5 — so the gap between the two roundings
-is what `absorbError` leaves behind. -/
-def Zonotope.shiftDown (Z : Zonotope 𝕋 n) : Vec 𝕋 n :=
-  fun i => addDown (Z.c i) (half (addDown (Z.E.inf i) (Z.E.sup i)))
-
-def Zonotope.shiftUp (Z : Zonotope 𝕋 n) : Vec 𝕋 n :=
-  fun i => addUp (Z.c i) (half (addUp (Z.E.inf i) (Z.E.sup i)))
-
-/-- The box radius, rounded up; halving is exact, so only the difference rounds. -/
-def Zonotope.errorRadius (Z : Zonotope 𝕋 n) : Vec 𝕋 n :=
-  fun i => half (subUp (Z.E.sup i) (Z.E.inf i))
 
 def Zonotope.absorbError (Z : Zonotope 𝕋 n) : Zonotope 𝕋 n where
   h := Z.h + n

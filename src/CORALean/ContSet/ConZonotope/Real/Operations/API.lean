@@ -1,9 +1,13 @@
 import CORALean.ContSet.ConZonotope.Real.Operations.OfMat
+import CORALean.ContSet.ConZonotope.Real.Operations.MemOfMatIff
 import CORALean.ContSet.ConZonotope.Real.Operations.Domain
+import CORALean.ContSet.ConZonotope.Real.Operations.MemDomainIff
 import CORALean.ContSet.ConZonotope.Real.Operations.Plus
+import CORALean.ContSet.ConZonotope.Real.Operations.AgreeMat
 import CORALean.ContSet.ConZonotope.Real.Operations.And
 import CORALean.ContSet.ConZonotope.Real.Operations.Map
 import CORALean.ContSet.ConZonotope.Real.Operations.Mtimes
+import CORALean.ContSet.ConZonotope.Real.Operations.MtimesEqMap
 import CORALean.ContSet.ConZonotope.Real.Operations.MtimesIntervalMat
 import CORALean.ContSet.ConZonotope.Real.Operations.LinComb
 import CORALean.ContSet.ConZonotope.Real.Operations.Reduce

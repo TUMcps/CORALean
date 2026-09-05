@@ -1,7 +1,9 @@
 import CORALean.ContSet.Zonotope.Float.Zonotope
 import CORALean.ContSet.Conversion.Real.Zonotope_to_HPolytope
 import CORALean.ContSet.HPolytope.Float.Operations.OfBounds
+import CORALean.ContSet.HPolytope.Float.Operations.SubsetOfBounds
 import CORALean.ContSet.InflatedContSet.Operations.Bound
+import CORALean.ContSet.Interval.Float.Operations.BoundDot
 
 /-!
 # A zonotope as halfspaces, over a floating-point scalar

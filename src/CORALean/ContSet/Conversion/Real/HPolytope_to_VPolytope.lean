@@ -1,4 +1,6 @@
+import CORALean.ContSet.HPolytope.Real.Operations.TightAt
 import CORALean.ContSet.HPolytope.Real.Operations.BasicPoint
+import CORALean.ContSet.HPolytope.Real.Operations.BasicPointTightAt
 import CORALean.ContSet.HPolytope.Real.Theorems.ExtremePoints
 import CORALean.ContSet.Conversion.Real.HPolytope_to_Interval
 import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope

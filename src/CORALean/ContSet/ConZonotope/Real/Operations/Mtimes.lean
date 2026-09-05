@@ -1,4 +1,4 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.Map
+import CORALean.ContSet.ConZonotope.Real.ConZonotope
 
 /-!
 # `ConZonotope.mtimes`
@@ -9,7 +9,7 @@ the form every caller states its matrix in.
 
 -- Authors:       Tobias Ladner
 -- Written:       01-September-2026
--- Last update:   ---
+-- Last update:   05-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -23,9 +23,5 @@ def ConZonotope.mtimes (M : Mat ℝ m n) (C : ConZonotope (Vec ℝ n)) : ConZono
   c := M *ᵥ C.c
   G := fun j => M *ᵥ C.G j
   P := C.P
-
-/-- True by `rfl`, and what lets `mtimes` inherit `map`'s exactness. -/
-theorem ConZonotope.mtimes_eq_map (M : Mat ℝ m n) (C : ConZonotope (Vec ℝ n)) :
-    ConZonotope.mtimes M C = C.map (Matrix.mulVecLin M) := rfl
 
 end CORALean.Real

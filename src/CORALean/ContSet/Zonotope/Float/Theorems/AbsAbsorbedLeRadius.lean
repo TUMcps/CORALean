@@ -1,4 +1,4 @@
-import CORALean.ContSet.Zonotope.Float.Operations.Reduce
+import CORALean.ContSet.Zonotope.Float.Operations.ReduceBy
 
 /-!
 # What the generators `reduceBy` absorbs contribute, so what the block must cover

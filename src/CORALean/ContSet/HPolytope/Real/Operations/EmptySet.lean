@@ -12,7 +12,7 @@ has to denote `∅` by data a machine can hold.
 
 -- Authors:       Tobias Ladner
 -- Written:       04-September-2026
--- Last update:   ---
+-- Last update:   05-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -26,13 +26,5 @@ def HPolytope.emptySet (α : Type) [AddCommGroup α] [Module ℝ α] : HPolytope
   me := 0
   Ae := Fin.elim0
   be := Fin.elim0
-
-theorem HPolytope.construct_emptySet : (HPolytope.emptySet α).construct = ∅ := by
-  ext x
-  simp only [Set.mem_empty_iff_false, iff_false]
-  rintro ⟨hle, -⟩
-  -- the row index ascribed at `Fin 1`, the count's reduced spelling
-  have h : (0:ℝ) ≤ -1 := hle (0 : Fin 1)
-  linarith
 
 end CORALean.Real

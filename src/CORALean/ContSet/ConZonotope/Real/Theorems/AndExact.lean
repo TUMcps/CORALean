@@ -1,4 +1,6 @@
 import CORALean.ContSet.ConZonotope.Real.Operations.And
+import CORALean.ContSet.ConZonotope.Real.Operations.AgreeMat
+import CORALean.ContSet.HPolytope.Real.Operations.MemEqsIff
 import CORALean.ContSet.ConZonotope.Real.Theorems.PlusExact
 
 /-!

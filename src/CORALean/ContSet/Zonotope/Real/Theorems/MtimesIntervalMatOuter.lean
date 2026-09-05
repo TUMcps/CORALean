@@ -2,6 +2,7 @@ import CORALean.ContSet.Interval.Real.Operations.Center
 import CORALean.ContSet.Interval.Real.Operations.Radius
 import CORALean.ContSet.Interval.Real.Theorems.AbsSubCenterLe
 import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
+import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
 import CORALean.ContSet.Zonotope.Real.Theorems.AbsLeAbsBound
 import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
 import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient

@@ -1,4 +1,5 @@
 import CORALean.ContSet.VPolytope.Real.Operations.Mtimes
+import CORALean.ContSet.VPolytope.Real.Operations.MtimesEqMap
 import CORALean.ContSet.VPolytope.Real.Theorems.MapExact
 
 /-!

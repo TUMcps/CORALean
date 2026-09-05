@@ -1,4 +1,6 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.Compact
+import CORALean.ContSet.ConPolyZono.Real.Operations.CompactCons
+import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecEqSum
+import CORALean.ContSet.ConPolyZono.Real.Operations.ConsCol
 import CORALean.ContSet.ConPolyZono.Real.Theorems.HoldsCongr
 
 /-!

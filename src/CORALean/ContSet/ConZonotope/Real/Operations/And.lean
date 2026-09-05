@@ -1,4 +1,6 @@
+import CORALean.ContSet.ConZonotope.Real.Operations.AgreeMat
 import CORALean.ContSet.ConZonotope.Real.Operations.Plus
+import CORALean.ContSet.HPolytope.Real.Operations.Eqs
 
 /-!
 # `ConZonotope.and`
@@ -18,16 +20,12 @@ generator coordinate by coordinate.
 
 -- Authors:       Tobias Ladner
 -- Written:       01-September-2026
--- Last update:   02-September-2026
+-- Last update:   05-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
 
 variable {n : ℕ}
-
-/-- The rows pinning the two points together, one per coordinate. -/
-def ConZonotope.agreeMat (C₁ C₂ : ConZonotope (Vec ℝ n)) : Mat ℝ n (C₁.h + C₂.h) :=
-  fun i => Fin.append (fun j => C₁.G j i) fun j => -C₂.G j i
 
 def ConZonotope.and (C₁ C₂ : ConZonotope (Vec ℝ n)) : ConZonotope (Vec ℝ n) where
   h := C₁.h + C₂.h

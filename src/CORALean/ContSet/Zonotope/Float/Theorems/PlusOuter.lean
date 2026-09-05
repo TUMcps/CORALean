@@ -1,6 +1,7 @@
 import CORALean.ContSet.InflatedContSet.Theorems.PlusSubset
 import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
+import CORALean.ContSet.Zonotope.Float.Operations.CenterResidual
 import CORALean.ContSet.Zonotope.Float.Operations.Plus
 import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 

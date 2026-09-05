@@ -1,4 +1,4 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.Compact
+import CORALean.ContSet.ConPolyZono.Real.Operations.CompactGens
 
 /-!
 # Merging equal generator exponent columns loses nothing

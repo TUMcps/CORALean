@@ -1,4 +1,5 @@
 import CORALean.ContSet.ConPolyZono.Real.Operations.Domain
+import CORALean.ContSet.ConPolyZono.Real.Operations.Affine
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ContinuousMonomial
 
 /-!

@@ -1,6 +1,13 @@
 import CORALean.ContSet.Ellipsoid.Float.Operations.GeneratorError
+import CORALean.ContSet.Ellipsoid.Float.Operations.MtimesResidual
 import CORALean.ContSet.Ellipsoid.Float.Operations.Mtimes
+import CORALean.ContSet.Ellipsoid.Float.Operations.CenterResidual
+import CORALean.ContSet.Ellipsoid.Float.Operations.PlusG
+import CORALean.ContSet.Ellipsoid.Float.Operations.PlusGap
 import CORALean.ContSet.Ellipsoid.Float.Operations.Plus
+import CORALean.ContSet.Ellipsoid.Float.Operations.PullbackAbs
+import CORALean.ContSet.Ellipsoid.Float.Operations.AbsPullbackLe
+import CORALean.ContSet.Ellipsoid.Float.Operations.NominalBoundDot
 import CORALean.ContSet.Ellipsoid.Float.Operations.SupportBound
 
 /-!

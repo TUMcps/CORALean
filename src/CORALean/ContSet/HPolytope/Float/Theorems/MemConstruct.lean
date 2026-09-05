@@ -1,4 +1,7 @@
 import CORALean.ContSet.HPolytope.Float.HPolytope
+import CORALean.ContSet.HPolytope.Real.Theorems.AndExact
+import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+import CORALean.ContSet.HPolytope.Real.Operations.MemSlabIff
 
 /-!
 # Membership in a float halfspace description, in the stored fields

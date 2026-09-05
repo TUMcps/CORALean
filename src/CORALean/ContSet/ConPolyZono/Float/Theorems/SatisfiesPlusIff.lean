@@ -1,4 +1,6 @@
 import CORALean.ContSet.ConPolyZono.Float.Operations.Plus
+import CORALean.ContSet.ConPolyZono.Float.Operations.PlusA
+import CORALean.ContSet.ConPolyZono.Float.Operations.PlusB
 import CORALean.ContSet.ConPolyZono.Float.Theorems.NominalPlusB
 import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealMatPlusA
 

@@ -1,5 +1,7 @@
 import CORALean.ContSet.HPolytope.Float.Operations.And
-import CORALean.ContSet.HPolytope.Float.Operations.OfMat
+import CORALean.ContSet.HPolytope.Float.Operations.MemAndIff
+import CORALean.ContSet.HPolytope.Float.Operations.Ineqs
+import CORALean.ContSet.HPolytope.Float.Operations.MemIneqsIff
 
 /-!
 # A box as halfspaces, over a floating-point scalar

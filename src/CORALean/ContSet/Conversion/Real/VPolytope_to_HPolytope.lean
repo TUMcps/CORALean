@@ -1,5 +1,6 @@
 import CORALean.ContSet.VPolytope.Real.Operations.SupportBound
 import CORALean.ContSet.HPolytope.Real.Operations.OfBounds
+import CORALean.ContSet.HPolytope.Real.Operations.SubsetOfBounds
 
 /-!
 # Vertices to halfspaces

@@ -1,5 +1,6 @@
 import CORALean.ContSet.Zonotope.Real.Zonotope
 import CORALean.ContSet.HPolytope.Real.Operations.OfBounds
+import CORALean.ContSet.HPolytope.Real.Operations.SubsetOfBounds
 
 /-!
 # A zonotope as halfspaces

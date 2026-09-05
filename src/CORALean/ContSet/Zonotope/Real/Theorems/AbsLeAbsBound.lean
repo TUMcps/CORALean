@@ -1,4 +1,4 @@
-import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
+import CORALean.ContSet.Zonotope.Real.Operations.AbsBound
 
 /-!
 # A coordinate of a zonotope never leaves `absBound`

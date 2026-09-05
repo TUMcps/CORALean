@@ -1,3 +1,4 @@
+import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceGirard
 import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceByOuter
 
 /-!
