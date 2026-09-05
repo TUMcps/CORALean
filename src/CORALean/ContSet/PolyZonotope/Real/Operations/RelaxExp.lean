@@ -10,15 +10,16 @@ a single new independent generator. One dependent generator is traded for one
 independent one, so no count grows and the set moves closer to a zonotope.
 
 Which two are merged is a `Split` rather than a pair of indices, `reduceBy`'s
-idiom: the partition names the two and the `d` that stay as one object, where a
-pair of indices would leave the other `h - 2` to be reconstructed. The index
-`k₀` where the columns may differ is an argument and not an existential, the
-operation reading the two exponents there; `relaxExp_outer` is what asks that
-they agree off it, so a wrong `k₀` costs the theorem and not the definition.
+idiom: the partition names the two and the `d` that stay as one object. The
+index `k₀` where the columns may differ is an argument, not an existential;
+`relaxExp_outer` asks that they agree off it, so a wrong `k₀` costs the theorem
+and not the definition.
 
 `ξ_G = ξ_E` throughout, where `[1]` halves it and shifts the centre by the other
-half when every exponent of column `i` is even. That recentring is not done
-here.
+half when every exponent of column `i` is even. That recentring is not done here,
+and `[1]` states it with two faults: the shift is `-ξ_E/2`, not `+ξ_E/2`, since
+`α^A - α^B ≤ 0` for even `A > B`; and it omits the evenness of `E_{k₀,j}`,
+without which the range is symmetric and the shift is zero. CORA is unaffected.
 
 ## References
 
