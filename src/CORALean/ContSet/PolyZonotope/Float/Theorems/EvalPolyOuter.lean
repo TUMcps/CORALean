@@ -83,11 +83,11 @@ theorem PolyZonotope.aux_point_le_boundS (S : PolyZonotope 𝕋 n) (b : Fin S.p 
 /-- The Horner recursion's invariant: the gap between the exact value (from `S`'s
 stored floats, with no further rounding) and the float accumulator's own stored
 value lies in that accumulator's error box, at every admissible `b`. -/
-theorem PolyZonotope.aux_evalPoly_close (S : PolyZonotope 𝕋 n) (coeffs : List 𝕋)
+theorem PolyZonotope.aux_evalPoly_close (S : PolyZonotope 𝕋 n) (coeffs : List (Vec 𝕋 n))
     (b : Fin S.p → ℝ) (hb : ∀ k, |b k| ≤ 1) :
-    (fun i => (Real.PolyZonotope.evalPolyP (nominal S) (coeffs.map toReal)).1.point
+    (fun i => (Real.PolyZonotope.evalPolyP (nominal S) (coeffs.map toRealVec)).1.point
           (fun k => b (Fin.cast ((Real.PolyZonotope.evalPolyP (nominal S)
-              (coeffs.map toReal)).2.trans (PolyZonotope.nominal_p S)) k)) i
+              (coeffs.map toRealVec)).2.trans (PolyZonotope.nominal_p S)) k)) i
         - Real.PolyZonotope.point (nominal (PolyZonotope.evalPolyP S coeffs).1)
             (fun k => b (Fin.cast (PolyZonotope.evalPolyP S coeffs).2 k)) i)
       ∈ ((PolyZonotope.evalPolyP S coeffs).1.err).construct := by
@@ -95,11 +95,12 @@ theorem PolyZonotope.aux_evalPoly_close (S : PolyZonotope 𝕋 n) (coeffs : List
   induction coeffs with
   | nil =>
     simp only [List.map_nil]
-    have hzero : (fun i => (Real.PolyZonotope.evalPolyP (nominal S) ([] : List ℝ)).1.point
-            (fun k => b (Fin.cast ((Real.PolyZonotope.evalPolyP (nominal S) ([] : List ℝ)).2.trans
-              (PolyZonotope.nominal_p S)) k)) i
-          - Real.PolyZonotope.point (nominal (PolyZonotope.evalPolyP S ([] : List 𝕋)).1)
-              (fun k => b (Fin.cast (PolyZonotope.evalPolyP S ([] : List 𝕋)).2 k)) i)
+    have hzero : (fun i => (Real.PolyZonotope.evalPolyP (nominal S)
+              ([] : List (Vec ℝ n))).1.point
+            (fun k => b (Fin.cast ((Real.PolyZonotope.evalPolyP (nominal S)
+              ([] : List (Vec ℝ n))).2.trans (PolyZonotope.nominal_p S)) k)) i
+          - Real.PolyZonotope.point (nominal (PolyZonotope.evalPolyP S ([] : List (Vec 𝕋 n))).1)
+              (fun k => b (Fin.cast (PolyZonotope.evalPolyP S ([] : List (Vec 𝕋 n))).2 k)) i)
         = (0 : Vec ℝ n) := by
       funext j
       simp only [Real.PolyZonotope.evalPolyP, PolyZonotope.evalPolyP]
@@ -117,8 +118,8 @@ theorem PolyZonotope.aux_evalPoly_close (S : PolyZonotope 𝕋 n) (coeffs : List
       le_of_eq (by rw [PolyZonotope.evalPolyP]; exact toReal_zero.symm)⟩
   | cons a0 rest ih =>
     simp only [List.map_cons]
-    set X := (Real.PolyZonotope.evalPolyP (nominal S) (rest.map toReal)).1 with hXdef
-    set hX := (Real.PolyZonotope.evalPolyP (nominal S) (rest.map toReal)).2 with hXdef2
+    set X := (Real.PolyZonotope.evalPolyP (nominal S) (rest.map toRealVec)).1 with hXdef
+    set hX := (Real.PolyZonotope.evalPolyP (nominal S) (rest.map toRealVec)).2 with hXdef2
     set R := (PolyZonotope.evalPolyP S rest).1 with hRdef
     set hR := (PolyZonotope.evalPolyP S rest).2 with hRdef2
     set hXS := hX.trans (PolyZonotope.nominal_p S) with hXSdef
@@ -127,17 +128,17 @@ theorem PolyZonotope.aux_evalPoly_close (S : PolyZonotope 𝕋 n) (coeffs : List
           (fun k' => b (Fin.cast hXS k')) (Fin.cast hX.symm k))
         = fun k => b (Fin.cast (PolyZonotope.nominal_p S) k) := by
       funext k; congr 1
-    show (Real.PolyZonotope.evalPolyStep X (nominal S) hX (toReal a0)).point
+    show (Real.PolyZonotope.evalPolyStep X (nominal S) hX (toRealVec a0)).point
           (fun k => b (Fin.cast hXS k))
         - Real.PolyZonotope.point (nominal (PolyZonotope.evalPolyStep R S hR a0))
             (fun k => b (Fin.cast hR k))
       ∈ (PolyZonotope.evalPolyStep R S hR a0).err.construct
     -- the exact Horner step: `a₀ + X ⊙ (nominal S)`, `evalPolyStep_point` unfolded
-    have hXstep : (Real.PolyZonotope.evalPolyStep X (nominal S) hX (toReal a0)).point
+    have hXstep : (Real.PolyZonotope.evalPolyStep X (nominal S) hX (toRealVec a0)).point
           (fun k => b (Fin.cast hXS k))
-        = fun i => toReal a0 + X.point (fun k => b (Fin.cast hXS k)) i
+        = fun i => toReal (a0 i) + X.point (fun k => b (Fin.cast hXS k)) i
             * Real.PolyZonotope.point (nominal S) b i := by
-      have key := Real.PolyZonotope.evalPolyStep_point X (nominal S) hX (toReal a0)
+      have key := Real.PolyZonotope.evalPolyStep_point X (nominal S) hX (toRealVec a0)
         (fun k => b (Fin.cast hXS k))
       simp only [hcastX] at key
       exact key
@@ -150,13 +151,13 @@ theorem PolyZonotope.aux_evalPoly_close (S : PolyZonotope 𝕋 n) (coeffs : List
     have hnomG : (nominal (PolyZonotope.evalPolyStep R S hR a0)).G
         = (nominal (PolyZonotope.mul R S hR)).G := rfl
     have hnomC' : (nominal (PolyZonotope.evalPolyStep R S hR a0)).c
-        = fun i => toReal (FloatOps.addDown ((PolyZonotope.mul R S hR).c i) a0) := rfl
+        = fun i => toReal (FloatOps.addDown ((PolyZonotope.mul R S hR).c i) (a0 i)) := rfl
     -- `.point` unfolded once, reused below at each specific structure
     have hpointdef : ∀ (PZ : Real.PolyZonotope (Vec ℝ n)) (c : Fin PZ.p → ℝ),
         PZ.point c = PZ.c + ∑ l, Real.PolyZonotope.monomial PZ.E c l • PZ.G l := fun _ _ => rfl
     have hnomstep : Real.PolyZonotope.point (nominal (PolyZonotope.evalPolyStep R S hR a0))
           (fun k => b (Fin.cast hR k))
-        = fun i => toReal (FloatOps.addDown ((PolyZonotope.mul R S hR).c i) a0)
+        = fun i => toReal (FloatOps.addDown ((PolyZonotope.mul R S hR).c i) (a0 i))
             + Real.PolyZonotope.point (nominal (PolyZonotope.mul R S hR))
                 (fun k => b (Fin.cast hR k)) i := by
       rw [hpointdef, hpointdef, hnomE, hnomG, hnomC', hnomC]
@@ -275,35 +276,36 @@ theorem PolyZonotope.aux_evalPoly_close (S : PolyZonotope 𝕋 n) (coeffs : List
           rw [toReal_neg]; exact habs.1,
         habs.2⟩
     -- term residual: `a₀`'s centre shift, priced by `Interval.sub_mem_residual`
-    have hresidualMem : (fun i => toReal a0
-          - toReal (FloatOps.addDown ((PolyZonotope.mul R S hR).c i) a0))
-        ∈ (PolyZonotope.centerResidual (PolyZonotope.mul R S hR).c (fun _ => a0)).construct := by
+    have hresidualMem : (fun i => toReal (a0 i)
+          - toReal (FloatOps.addDown ((PolyZonotope.mul R S hR).c i) (a0 i)))
+        ∈ (PolyZonotope.centerResidual (PolyZonotope.mul R S hR).c a0).construct := by
       have := Interval.sub_mem_residual
-        (lo := fun i => FloatOps.addDown ((PolyZonotope.mul R S hR).c i) a0)
-        (hi := fun i => FloatOps.addUp ((PolyZonotope.mul R S hR).c i) a0)
-        (stored := fun i => FloatOps.addDown ((PolyZonotope.mul R S hR).c i) a0)
-        (x := fun i => toReal ((PolyZonotope.mul R S hR).c i) + toReal a0)
+        (lo := fun i => FloatOps.addDown ((PolyZonotope.mul R S hR).c i) (a0 i))
+        (hi := fun i => FloatOps.addUp ((PolyZonotope.mul R S hR).c i) (a0 i))
+        (stored := fun i => FloatOps.addDown ((PolyZonotope.mul R S hR).c i) (a0 i))
+        (x := fun i => toReal ((PolyZonotope.mul R S hR).c i) + toReal (a0 i))
         (fun i => ⟨addDown_le_add _ _, add_le_addUp _ _⟩)
       simpa [PolyZonotope.centerResidual, congrFun hRmulC, toReal_zero, zero_add] using this
     -- the three pieces combine through `Interval.plus`
     rw [hXstep, hnomstep]
-    show (fun i => toReal a0 + X.point (fun k => b (Fin.cast hXS k)) i
+    show (fun i => toReal (a0 i) + X.point (fun k => b (Fin.cast hXS k)) i
           * Real.PolyZonotope.point (nominal S) b i
-        - (toReal (FloatOps.addDown ((PolyZonotope.mul R S hR).c i) a0)
+        - (toReal (FloatOps.addDown ((PolyZonotope.mul R S hR).c i) (a0 i))
             + Real.PolyZonotope.point (nominal (PolyZonotope.mul R S hR))
                 (fun k => b (Fin.cast hR k)) i))
       ∈ (PolyZonotope.evalPolyStep R S hR a0).err.construct
     -- regroup as (mul's rounding) + (centre residual) + (`R`'s own propagated gap)
-    have hsplit : (fun i => toReal a0 + X.point (fun k => b (Fin.cast hXS k)) i
+    have hsplit : (fun i => toReal (a0 i) + X.point (fun k => b (Fin.cast hXS k)) i
           * Real.PolyZonotope.point (nominal S) b i
-        - (toReal (FloatOps.addDown ((PolyZonotope.mul R S hR).c i) a0)
+        - (toReal (FloatOps.addDown ((PolyZonotope.mul R S hR).c i) (a0 i))
             + Real.PolyZonotope.point (nominal (PolyZonotope.mul R S hR))
                 (fun k => b (Fin.cast hR k)) i))
         = ((fun i => Real.PolyZonotope.point (nominal R) (fun k => b (Fin.cast hR k)) i
               * Real.PolyZonotope.point (nominal S) b i
             - Real.PolyZonotope.point (nominal (PolyZonotope.mul R S hR))
                 (fun k => b (Fin.cast hR k)) i)
-          + (fun i => toReal a0 - toReal (FloatOps.addDown ((PolyZonotope.mul R S hR).c i) a0))
+          + (fun i => toReal (a0 i)
+              - toReal (FloatOps.addDown ((PolyZonotope.mul R S hR).c i) (a0 i)))
           + (fun i => (X.point (fun k => b (Fin.cast hXS k)) i
               - Real.PolyZonotope.point (nominal R) (fun k => b (Fin.cast hR k)) i)
               * Real.PolyZonotope.point (nominal S) b i) : Vec ℝ n) := by
@@ -313,13 +315,18 @@ theorem PolyZonotope.aux_evalPoly_close (S : PolyZonotope 𝕋 n) (coeffs : List
       _, htermAmem, rfl⟩
 
 -- the exact statement, read through the refinement: the same image, rounded outward
-theorem PolyZonotope.evalPoly_outer (S : PolyZonotope 𝕋 n) (coeffs : List 𝕋) :
-    (fun a : Fin S.p → ℝ => fun i => Real.PolyZonotope.evalPolyReal (coeffs.map toReal)
+theorem PolyZonotope.evalPoly_outer (S : PolyZonotope 𝕋 n) (coeffs : List (Vec 𝕋 n)) :
+    (fun a : Fin S.p → ℝ => fun i => Real.PolyZonotope.evalPolyReal
+        (coeffs.map fun v => toReal (v i))
         (Real.PolyZonotope.point (nominal S) a i)) '' {a | ∀ k, |a k| ≤ 1}
       ⊆ (PolyZonotope.evalPoly S coeffs).construct := by
   rintro _ ⟨a, ha, rfl⟩
-  have hexact := Real.PolyZonotope.evalPoly_exact (nominal S) (coeffs.map toReal) a
-  have hgap : (fun i => Real.PolyZonotope.evalPolyReal (coeffs.map toReal)
+  have hexact := Real.PolyZonotope.evalPoly_exact (nominal S) (coeffs.map toRealVec) a
+  -- one coordinate of a list of coefficient vectors is that coordinate's own scalar list
+  have hmap : ∀ i : Fin n, ((coeffs.map toRealVec).map fun v => v i)
+      = coeffs.map fun v => toReal (v i) := fun _ => List.map_map
+  simp only [hmap] at hexact
+  have hgap : (fun i => Real.PolyZonotope.evalPolyReal (coeffs.map fun v => toReal (v i))
         (Real.PolyZonotope.point (nominal S) a i)
       - Real.PolyZonotope.point (nominal (PolyZonotope.evalPoly S coeffs))
           (fun k => a (Fin.cast (PolyZonotope.evalPoly_p S coeffs) k)) i)
@@ -329,11 +336,11 @@ theorem PolyZonotope.evalPoly_outer (S : PolyZonotope 𝕋 n) (coeffs : List �
     have hi := congrFun hexact i
     have hmem := PolyZonotope.aux_evalPoly_close S coeffs a ha i
     have h1 : toReal ((PolyZonotope.evalPoly S coeffs).err.inf i)
-          ≤ Real.PolyZonotope.evalPolyReal (coeffs.map toReal)
+          ≤ Real.PolyZonotope.evalPolyReal (coeffs.map fun v => toReal (v i))
               (Real.PolyZonotope.point (nominal S) a i)
             - Real.PolyZonotope.point (nominal (PolyZonotope.evalPoly S coeffs))
                 (fun k => a (Fin.cast (PolyZonotope.evalPoly_p S coeffs) k)) i := hi ▸ hmem.1
-    have h2 : Real.PolyZonotope.evalPolyReal (coeffs.map toReal)
+    have h2 : Real.PolyZonotope.evalPolyReal (coeffs.map fun v => toReal (v i))
             (Real.PolyZonotope.point (nominal S) a i)
           - Real.PolyZonotope.point (nominal (PolyZonotope.evalPoly S coeffs))
               (fun k => a (Fin.cast (PolyZonotope.evalPoly_p S coeffs) k)) i
@@ -356,7 +363,7 @@ theorem PolyZonotope.evalPoly_outer (S : PolyZonotope 𝕋 n) (coeffs : List �
           Pi.smul_apply, smul_eq_mul, mul_zero, Finset.sum_const_zero, add_zero]
         congr 1
         exact Finset.sum_congr rfl fun l _ => mul_comm _ _⟩,
-      fun i => Real.PolyZonotope.evalPolyReal (coeffs.map toReal)
+      fun i => Real.PolyZonotope.evalPolyReal (coeffs.map fun v => toReal (v i))
           (Real.PolyZonotope.point (nominal S) a i)
         - Real.PolyZonotope.point (nominal (PolyZonotope.evalPoly S coeffs))
             (fun k => a (Fin.cast (PolyZonotope.evalPoly_p S coeffs) k)) i,

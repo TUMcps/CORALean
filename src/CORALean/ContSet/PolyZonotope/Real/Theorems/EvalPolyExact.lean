@@ -12,6 +12,8 @@ admissible factors under `a ↦ evalPolyReal coeffs (point S a)`.
 `evalPolyReal` is the same recursion over `ℝ` that `evalPoly` runs over the set,
 so the induction matches it step for step — `mul_point` turns the multiplied set
 into a product of points, and the centre shift matches `evalPolyReal`'s own step.
+It is scalar, so coordinate `i` reads the coefficient list at `i`; that the
+polynomials differ between coordinates costs the induction nothing.
 -/
 
 -- Authors:       Tobias Ladner
@@ -98,12 +100,12 @@ theorem PolyZonotope.mul_point (S₁ S₂ : PolyZonotope (Vec ℝ n)) (hp : S₁
 
 /-- `evalPolyStep`'s point, generically: a coordinate `a₀ + R ⊙ S`, `R` read at
 `S`'s factors through `hR`. -/
-theorem PolyZonotope.evalPolyStep_point (R S : PolyZonotope (Vec ℝ n)) (hR : R.p = S.p) (a0 : ℝ)
-    (b : Fin R.p → ℝ) :
+theorem PolyZonotope.evalPolyStep_point (R S : PolyZonotope (Vec ℝ n)) (hR : R.p = S.p)
+    (a0 : Vec ℝ n) (b : Fin R.p → ℝ) :
     (PolyZonotope.evalPolyStep R S hR a0).point b
-      = fun i => a0 + R.point b i * S.point (fun k => b (Fin.cast hR.symm k)) i := by
+      = fun i => a0 i + R.point b i * S.point (fun k => b (Fin.cast hR.symm k)) i := by
   have hpt : (PolyZonotope.evalPolyStep R S hR a0).point b
-      = (PolyZonotope.mul R S hR).c + (fun _ => a0)
+      = (PolyZonotope.mul R S hR).c + a0
         + ∑ l, PolyZonotope.monomial (PolyZonotope.mul R S hR).E b l
             • (PolyZonotope.mul R S hR).G l := rfl
   have hmul : (PolyZonotope.mul R S hR).c
@@ -118,10 +120,10 @@ theorem PolyZonotope.evalPolyStep_point (R S : PolyZonotope (Vec ℝ n)) (hR : R
 /-- `evalPolyP`'s point, at the factor vector its own `p`-proof casts back to
 `S`'s. Proved by induction, `evalPolyStep_point` carrying the Horner step and
 the inductive hypothesis matching `evalPolyReal`'s own recursion. -/
-theorem PolyZonotope.evalPolyP_point (S : PolyZonotope (Vec ℝ n)) (coeffs : List ℝ)
+theorem PolyZonotope.evalPolyP_point (S : PolyZonotope (Vec ℝ n)) (coeffs : List (Vec ℝ n))
     (a : Fin S.p → ℝ) :
     (S.evalPolyP coeffs).1.point (fun k => a (Fin.cast (S.evalPolyP coeffs).2 k))
-      = fun i => PolyZonotope.evalPolyReal coeffs (S.point a i) := by
+      = fun i => PolyZonotope.evalPolyReal (coeffs.map fun v => v i) (S.point a i) := by
   -- both the empty and the cons case match `evalPolyP`'s own two-case recursion
   induction coeffs with
   | nil =>
@@ -133,20 +135,20 @@ theorem PolyZonotope.evalPolyP_point (S : PolyZonotope (Vec ℝ n)) (coeffs : Li
     set hR := (S.evalPolyP rest).2 with hRdef2
     funext i
     show (PolyZonotope.evalPolyStep R S hR a0).point (fun k => a (Fin.cast hR k)) i
-      = PolyZonotope.evalPolyReal (a0 :: rest) (S.point a i)
+      = PolyZonotope.evalPolyReal ((a0 :: rest).map fun v => v i) (S.point a i)
     have key : (PolyZonotope.evalPolyStep R S hR a0).point (fun k => a (Fin.cast hR k)) i
-        = a0 + R.point (fun k => a (Fin.cast hR k)) i
+        = a0 i + R.point (fun k => a (Fin.cast hR k)) i
             * S.point (fun k => a (Fin.cast hR (Fin.cast hR.symm k))) i :=
       congrFun (PolyZonotope.evalPolyStep_point R S hR a0 (fun k => a (Fin.cast hR k))) i
     have hcancel : (fun k : Fin S.p => a (Fin.cast hR (Fin.cast hR.symm k))) = a := by
       funext k; simp
-    rw [key, hcancel, congrFun ih i, PolyZonotope.evalPolyReal]
+    rw [key, hcancel, congrFun ih i, List.map_cons, PolyZonotope.evalPolyReal]
     ring
 
-theorem PolyZonotope.evalPoly_exact (S : PolyZonotope (Vec ℝ n)) (coeffs : List ℝ)
+theorem PolyZonotope.evalPoly_exact (S : PolyZonotope (Vec ℝ n)) (coeffs : List (Vec ℝ n))
     (a : Fin S.p → ℝ) :
     (S.evalPoly coeffs).point (fun k => a (Fin.cast (S.evalPoly_p coeffs) k))
-      = fun i => PolyZonotope.evalPolyReal coeffs (S.point a i) :=
+      = fun i => PolyZonotope.evalPolyReal (coeffs.map fun v => v i) (S.point a i) :=
   PolyZonotope.evalPolyP_point S coeffs a
 
 end CORALean.Real

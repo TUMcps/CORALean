@@ -1,4 +1,5 @@
 import CORALean.NN.Layers.Activation
+import CORALean.NN.Layers.ActivationPoly
 import CORALean.NN.Layers.BatchNorm
 import CORALean.NN.Layers.Convolution
 import CORALean.NN.Layers.Curvature
@@ -30,14 +31,14 @@ definition and not up to a lemma, so each contributes a matrix and a proof of
 what that matrix computes and nothing else. At a representation closed under
 `mtimes` and `plus` all four are exact.
 
-**Relaxations.** `ReLU`, `Sigmoid` and `Tanh` are `Activation` at a `Relaxation`
-and nothing else: an affine map per neuron and the error to allow for, where
-every bit of a network's precision is decided. `ReLU` gets its slope from
-convexity, the other two from `Curvature`'s bracket on `σ'`. `PolyRelaxation`
-is that at degree `n` and `Relaxation` its order-1 case; `PolySampling` bounds
-the error, `PolyDerivBound` is what that needs and `PolyFit` what it does not,
-and `PolyConvergence` with `PolyFitConvergence` drive it to zero. `SigmoidPoly`
-and `TanhPoly` instantiate them, the second through `PolyAffineConj`.
+**Relaxations.** `ReLU`, `Sigmoid` and `Tanh` are `Activation` at a `Relaxation`:
+an affine map per neuron and the error to allow for, where every bit of a
+network's precision is decided. `ReLU` gets its slope from convexity, the other
+two from `Curvature`. `PolyRelaxation` is that at degree `n` and `Relaxation` its
+order-1 case; `PolySampling` bounds the error, `PolyDerivBound` is what that
+needs and `PolyFit` what it does not, `PolyConvergence` with `PolyFitConvergence`
+drive it to zero, `SigmoidPoly` and `TanhPoly` instantiate them (the second via
+`PolyAffineConj`), and `ActivationPoly` propagates one at `PolyZonotope` alone.
 
 **Neither.** `Reshape` is a relabelling, and the only layer here that is *exact*
 rather than outer — it asks for `Reindex`. Max pooling in `Pooling` and `Softmax`
