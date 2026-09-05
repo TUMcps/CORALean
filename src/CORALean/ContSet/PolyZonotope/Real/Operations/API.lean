@@ -9,6 +9,8 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMap
 import CORALean.ContSet.PolyZonotope.Real.Operations.Mul
 import CORALean.ContSet.PolyZonotope.Real.Operations.Compact
 import CORALean.ContSet.PolyZonotope.Real.Operations.Reduce
+import CORALean.ContSet.PolyZonotope.Real.Operations.EDiff
+import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExp
 
 /-!
 # What `PolyZonotope` computes
@@ -17,20 +19,21 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.Reduce
 `dependent`, which moves that block into the dependent one and is what lets
 `quadMap` be total.
 
-`mul` multiplies two sets coordinatewise over shared factors, which is `quadMap`
-carried past degree two. It is exact against `point` — the map a factor vector
-picks a point out by — and not against the two sets, which is what shared
-factors force.
+`mul` multiplies two sets coordinatewise over shared factors, `quadMap` carried
+past degree two, and is exact against `point` and not against the two sets.
 
-Each of those grows the generator counts, and `compact` is what brings them back
-down without changing the set: equal exponent columns are one monomial and are
-added together, a generator that came out zero goes, and so does a factor no
-column reads. `reduce` then brings the dependent count to an order the caller
-names, which is the one operation here that loses something.
+Each of those grows the generator counts, and `compact` brings them back down
+without changing the set: equal exponent columns are one monomial and are added
+together, a generator that came out zero goes, and so does a factor no column
+reads. `reduce` then brings the dependent count to an order the caller names,
+the one operation here that loses something.
+
+`relaxExp` merges two dependent generators whose exponent columns agree off one
+index and pays the difference into one new independent generator, at the price
+`eDiff` bounds: the count is where it was, and the set is closer to a zonotope.
 
 `plusE`, `linCombE` and `quadMapE` are the exponent matrices the size-changing
-operations assemble, kept in the files of the operations that build them so that
-their lemmas are stated at plain counts rather than at a projection. `identE` is
-the exception, being the block `dependent` appends and a conversion's whole
-answer.
+operations assemble, kept with the operations that build them so their lemmas
+are stated at plain counts rather than at a projection. `identE` is the
+exception, being the block `dependent` appends and a conversion's whole answer.
 -/
