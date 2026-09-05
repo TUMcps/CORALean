@@ -6,8 +6,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
 # `Zonotope.reindex` is exactly the relabelled zonotope, in float too
 
 An equality, in the layer where every other guarantee is an enclosure, and the
-reason is that a relabelling does no arithmetic: the nominal part of a
-relabelled zonotope *is* the exact layer's `map` at the relabelling, by `rfl`.
+reason is that a relabelling does no arithmetic.
 
 What the float layer adds is the error box, and it costs nothing here either. A
 reindexing is linear, so it distributes over the Minkowski sum that
@@ -17,7 +16,7 @@ part plus the relabelled box, with no widening between them.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   05-September-2026
 -- Last revision: ---
 
 namespace CORALean.Float
@@ -35,12 +34,6 @@ theorem aux_image_add (f : Vec ℝ n →ₗ[ℝ] Vec ℝ m) (A B : Set (Vec ℝ 
     exact ⟨f a, ⟨a, ha, rfl⟩, f b, ⟨b, hb, rfl⟩, (map_add f a b).symm⟩
   · rintro _ ⟨_, ⟨a, ha, rfl⟩, _, ⟨b, hb, rfl⟩, rfl⟩
     exact ⟨a + b, ⟨a, ha, b, hb, rfl⟩, map_add f a b⟩
-
-/-- Definitional: `nominal` transposes the generator matrix and reads it into ℝ,
-and both of those commute with moving the coordinate axis. -/
-theorem Zonotope.reindex_nominal (e : Fin m ≃ Fin n) (Z : Zonotope 𝕋 n) :
-    InflatedContSet.nominal (Z.reindex e)
-      = Real.Zonotope.map (reindexLin e) (InflatedContSet.nominal Z) := rfl
 
 theorem Zonotope.reindex_exact (e : Fin m ≃ Fin n) (Z : Zonotope 𝕋 n) :
     (Z.reindex e).construct = reindexLin e '' Z.construct := by

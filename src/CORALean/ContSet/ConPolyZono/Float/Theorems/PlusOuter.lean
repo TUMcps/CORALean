@@ -1,5 +1,6 @@
 import CORALean.ContSet.ConPolyZono.Float.Operations.Plus
 import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
+import CORALean.ContSet.ConPolyZono.Float.Theorems.SatisfiesPlusIff
 import CORALean.ContSet.InflatedContSet.Theorems.PlusSubset
 import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
@@ -7,20 +8,15 @@ import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
 /-!
 # `ConPolyZono.plus` over-approximates the Minkowski sum
 
-`PolyZonotope.plus_outer`'s argument at one more field. What the constraint
-block needs is that the exact layer's `holds_plus_iff` still applies once the
-stored floats are read as reals — which it does, because `plusA` copies entries
-and writes `zero` in the off-blocks, so reading it back is the exact layer's
-`plusA` of the two read-back matrices. `toRealMat_plusA` is that statement, and
-it is the whole price of carrying constraints across the layer.
-
-Only the centre rounds, so the box holds the two incoming boxes and one
-`centerResidual`, and all five counts are the exact layer's.
+`PolyZonotope.plus_outer`'s argument at one more field, carried across the
+layer by `satisfies_plus_iff`. Only the centre rounds, so the box holds the two
+incoming boxes and one `centerResidual`, and all five counts are the exact
+layer's.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   05-September-2026
 -- Last revision: ---
 
 namespace CORALean.Float
@@ -28,48 +24,6 @@ namespace CORALean.Float
 open Pointwise Matrix FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
-
-/-! ## The constraint system read back -/
-
-theorem ConPolyZono.toRealMat_plusA {m₁ s₁ m₂ s₂ : ℕ} (A₁ : Mat 𝕋 m₁ s₁)
-    (A₂ : Mat 𝕋 m₂ s₂) :
-    toRealMat (ConPolyZono.plusA A₁ A₂)
-      = Real.ConPolyZono.plusA (toRealMat A₁) (toRealMat A₂) := by
-  have key : ∀ i l, toRealMat (ConPolyZono.plusA A₁ A₂) i l
-      = Real.ConPolyZono.plusA (toRealMat A₁) (toRealMat A₂) i l := by
-    refine Fin.addCases (fun i => ?_) (fun i => ?_) <;>
-      refine Fin.addCases (fun l => ?_) (fun l => ?_) <;>
-      simp only [toRealMat, ConPolyZono.plusA, Real.ConPolyZono.plusA,
-        Fin.append_left, Fin.append_right, Pi.zero_apply, toReal_zero]
-  exact funext fun i => funext fun l => key i l
-
-theorem ConPolyZono.toRealVec_append {m₁ m₂ : ℕ} (b₁ : Vec 𝕋 m₁) (b₂ : Vec 𝕋 m₂) :
-    toRealVec (Fin.append b₁ b₂) = Fin.append (toRealVec b₁) (toRealVec b₂) := by
-  refine funext (Fin.addCases (fun i => ?_) (fun i => ?_)) <;>
-    simp only [toRealVec, Fin.append_left, Fin.append_right]
-
-theorem ConPolyZono.nominal_plusB {m₁ m₂ : ℕ} (b₁ : Interval 𝕋 m₁) (b₂ : Interval 𝕋 m₂) :
-    (ConPolyZono.plusB b₁ b₂).nominal = Real.ConPolyZono.plusB b₁.nominal b₂.nominal := by
-  simp only [ConPolyZono.plusB, Interval.nominal, Real.ConPolyZono.plusB]
-  rw [ConPolyZono.toRealVec_append, ConPolyZono.toRealVec_append]
-
-/-- Two constraint systems side by side hold exactly when each holds on the
-factors it came with — the exact layer's lemma, at the read-back data. -/
-theorem ConPolyZono.satisfies_plus_iff (C₁ C₂ : ConPolyZono 𝕋 n)
-    (a : Fin (C₁.p + C₂.p) → ℝ) :
-    (C₁.plus C₂).satisfies a
-      ↔ C₁.satisfies (fun k => a (Fin.castAdd C₂.p k))
-        ∧ C₂.satisfies (fun k => a (Fin.natAdd C₁.p k)) := by
-  show Real.ConPolyZono.holds (toRealMat (ConPolyZono.plusA C₁.A C₂.A))
-      (ConPolyZono.plusB C₁.b C₂.b).nominal (Real.PolyZonotope.plusE C₁.EC C₂.EC) a ↔ _
-  rw [ConPolyZono.toRealMat_plusA, ConPolyZono.nominal_plusB]
-  exact Real.ConPolyZono.holds_plus_iff _ _ _ _ _ _ a
-
-/-! ## The enclosure -/
-
-omit [SoundFloatArithmetic 𝕋] in
-@[simp] theorem ConPolyZono.plus_h (C₁ C₂ : ConPolyZono 𝕋 n) :
-    (C₁.plus C₂).h = C₁.h + C₂.h := rfl
 
 omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `plus`'s dependent generator count, stated through the

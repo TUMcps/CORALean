@@ -30,10 +30,6 @@ open Pointwise Matrix FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
-omit [SoundFloatArithmetic 𝕋] in
-@[simp] theorem Ellipsoid.mtimes_k (M : Mat 𝕋 m n) (E : Ellipsoid 𝕋 n) :
-    (Ellipsoid.mtimes M E).k = E.k := rfl
-
 /-- The exact image, regrouped so the centre and each generator appear once. -/
 theorem Ellipsoid.aux_mulVec_nominal (M : Mat 𝕋 m n) (E : Ellipsoid 𝕋 n) (u : Vec ℝ E.k)
     {x : Vec ℝ n} (hx : ∀ k, x k = toReal (E.q k) + ∑ j, toReal (E.G k j) * u j) (i : Fin m) :

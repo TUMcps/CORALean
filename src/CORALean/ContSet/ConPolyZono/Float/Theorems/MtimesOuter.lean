@@ -12,14 +12,14 @@ import CORALean.ContSet.PolyZonotope.Float.Theorems.MtimesOuter
 `PolyZonotope.mtimes_outer`'s argument at one more field, and the extra field
 costs nothing: the constraint is a statement about the factor vector, the same
 factor vector witnesses the image, and the stored `A`, `b` and `EC` are the same
-floats. `satisfies` therefore transfers by `id`, and every lemma the polynomial
+floats. `satisfies_mtimes` transfers by `id`, and every lemma the polynomial
 zonotope's proof used — `mulVec_split`, `matMul_close`, `mem_generatorError` —
 is reused rather than restated.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   05-September-2026
 -- Last revision: ---
 
 namespace CORALean.Float
@@ -27,15 +27,6 @@ namespace CORALean.Float
 open Pointwise Matrix FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n k : ℕ}
-
-omit [SoundFloatArithmetic 𝕋] in
-@[simp] theorem ConPolyZono.mtimes_h (M : Mat 𝕋 k n) (C : ConPolyZono 𝕋 n) :
-    (ConPolyZono.mtimes M C).h = C.h := rfl
-
-/-- The constraint says of the image what it said of the argument, the stored
-system being the same floats over the same factors. -/
-theorem ConPolyZono.satisfies_mtimes (M : Mat 𝕋 k n) (C : ConPolyZono 𝕋 n)
-    (a : Fin C.p → ℝ) : (ConPolyZono.mtimes M C).satisfies a ↔ C.satisfies a := Iff.rfl
 
 theorem ConPolyZono.aux_mtimes_nominal (M : Mat 𝕋 k n) (C : ConPolyZono 𝕋 n) :
     (toRealMat M *ᵥ ·) '' nominalSet C ⊆

@@ -30,10 +30,6 @@ open Pointwise Matrix FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
-omit [SoundFloatArithmetic 𝕋] in
-@[simp] theorem Zonotope.mtimes_h (M : Mat 𝕋 m n) (Z : Zonotope 𝕋 n) :
-    (Zonotope.mtimes M Z).h = Z.h := rfl
-
 /-- The exact image, regrouped so the centre and each generator appear once. -/
 theorem Zonotope.aux_mulVec_nominal (M : Mat 𝕋 m n) (Z : Zonotope 𝕋 n) (β : Vec ℝ Z.h)
     {x : Vec ℝ n} (hx : ∀ k, x k = toReal (Z.c k) + ∑ j, toReal (Z.G k j) * β j) (i : Fin m) :

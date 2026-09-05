@@ -1,0 +1,24 @@
+import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMap
+
+/-!
+# The exponent bookkeeping of `quadMap` is the same term in both layers
+
+`quadMapE` is `rfl`-equal across the layers, being a sum of naturals either way.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       02-September-2026
+-- Last update:   05-September-2026
+-- Last revision: ---
+
+namespace CORALean.Float
+
+open FloatOps SoundFloatArithmetic InflatedContSet
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+/-- The exponent bookkeeping is the same term in both layers. -/
+theorem PolyZonotope.quadMapE_nominal (S : PolyZonotope 𝕋 n) :
+    PolyZonotope.quadMapE S = Real.PolyZonotope.quadMapE (nominal S) := rfl
+
+end CORALean.Float

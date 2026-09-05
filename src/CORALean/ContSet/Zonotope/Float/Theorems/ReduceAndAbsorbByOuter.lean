@@ -1,7 +1,12 @@
+import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
 import CORALean.ContSet.Zonotope.Float.Operations.ReduceAndAbsorb
-import CORALean.ContSet.Zonotope.Float.Theorems.ReduceByOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.AbsorbErrorOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.AbsAbsorbedLeRadius
+import CORALean.ContSet.Zonotope.Float.Theorems.AbsSubMidLeErrorRadius
 import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+import CORALean.ContSet.Zonotope.Float.Theorems.ShiftBracketsMid
+import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
+import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
+import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMul
 
 /-!
 # `reduceAndAbsorbBy` keeps the set it had
@@ -25,11 +30,6 @@ namespace CORALean.Float
 open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q r : ℕ}
-
-omit [SoundFloatArithmetic 𝕋] in
-@[simp] theorem Zonotope.reduceAndAbsorbBy_h (Z : Zonotope 𝕋 n)
-    (part : Split (Fin Z.h) into (Fin q) and (Fin r)) :
-    (Z.reduceAndAbsorbBy part).h = q + n := rfl
 
 /-- The merged block covers the absorbed generators and the box together. -/
 theorem Zonotope.aux_abs_merged_le_radius (Z : Zonotope 𝕋 n)

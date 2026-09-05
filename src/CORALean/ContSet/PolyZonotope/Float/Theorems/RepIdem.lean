@@ -1,0 +1,43 @@
+import CORALean.ContSet.PolyZonotope.Real.Operations.Compact
+
+/-!
+# A class's representative is its own representative
+
+Makes a non-representative's fibre empty: `rep` unfolds to a `min'` over a
+filter, and the least index of a class is the least index of its own class.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       02-September-2026
+-- Last update:   05-September-2026
+-- Last revision: ---
+
+namespace CORALean.Float
+
+variable {p h : ℕ}
+
+-- each `min'_le` re-elaborates the decidability instance of the filter it ranges over
+set_option maxHeartbeats 400000 in
+/-- The least index of a class is the least index of its own class, which makes
+a non-representative's fibre empty. The two finsets are named rather than left
+to unification, `rep` unfolding to a `min'` over a filter. -/
+theorem PolyZonotope.rep_idem (E : Fin p → Fin h → ℕ) (i : Fin h) :
+    Real.PolyZonotope.rep E (Real.PolyZonotope.rep E i) = Real.PolyZonotope.rep E i := by
+  have hcol : Real.PolyZonotope.col E (Real.PolyZonotope.rep E (Real.PolyZonotope.rep E i))
+      = Real.PolyZonotope.col E i := by
+    rw [Real.PolyZonotope.col_rep, Real.PolyZonotope.col_rep]
+  have h₁ : Real.PolyZonotope.rep E (Real.PolyZonotope.rep E i)
+      ≤ Real.PolyZonotope.rep E i :=
+    Finset.min'_le
+      (Finset.univ.filter fun i' => Real.PolyZonotope.col E i'
+        = Real.PolyZonotope.col E (Real.PolyZonotope.rep E i))
+      (Real.PolyZonotope.rep E i) (Finset.mem_filter.mpr ⟨Finset.mem_univ _, rfl⟩)
+  have h₂ : Real.PolyZonotope.rep E i
+      ≤ Real.PolyZonotope.rep E (Real.PolyZonotope.rep E i) :=
+    Finset.min'_le
+      (Finset.univ.filter fun i' => Real.PolyZonotope.col E i' = Real.PolyZonotope.col E i)
+      (Real.PolyZonotope.rep E (Real.PolyZonotope.rep E i))
+      (Finset.mem_filter.mpr ⟨Finset.mem_univ _, hcol⟩)
+  exact le_antisymm h₁ h₂
+
+end CORALean.Float

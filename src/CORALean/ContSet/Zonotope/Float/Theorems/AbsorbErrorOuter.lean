@@ -1,6 +1,8 @@
 import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
 import CORALean.ContSet.Zonotope.Float.Operations.AbsorbError
+import CORALean.ContSet.Zonotope.Float.Theorems.AbsSubMidLeErrorRadius
 import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+import CORALean.ContSet.Zonotope.Float.Theorems.ShiftBracketsMid
 import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
 import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
 import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMul
@@ -15,14 +17,11 @@ midpoint need not be one, which is why the box does not become `[0, 0]`.
 The witness is `Fin.append β γ`: the old coefficients, then one per coordinate
 placing that coordinate's error in its new generator. `coefficient` supplies it,
 and the radius rounds up so it always fits.
-
-The one operation that spends generators, `h + n`, which is what the caller
-asked for.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       16-August-2026
--- Last update:   ---
+-- Last update:   05-September-2026
 -- Last revision: ---
 
 namespace CORALean.Float
@@ -30,35 +29,6 @@ namespace CORALean.Float
 open Pointwise FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
-
-omit [SoundFloatArithmetic 𝕋] in
-@[simp] theorem Zonotope.absorbError_h (Z : Zonotope 𝕋 n) : Z.absorbError.h = Z.h + n := rfl
-
-/-- The new generators reach every point the box did. -/
-theorem Zonotope.abs_sub_mid_le_errorRadius (Z : Zonotope 𝕋 n) {e : Vec ℝ n}
-    (he : e ∈ Z.E.construct) (i : Fin n) :
-    |e i - (toReal (Z.E.inf i) + toReal (Z.E.sup i)) / 2| ≤ toReal (Z.errorRadius i) := by
-  have hwidth := sub_le_subUp (Z.E.sup i) (Z.E.inf i)
-  -- ascribed, so `toRealVec _ i` is unfolded to the atom linarith shares with hwidth
-  have hlo : toReal (Z.E.inf i) ≤ e i := (he i).1
-  have hhi : e i ≤ toReal (Z.E.sup i) := (he i).2
-  simp only [Zonotope.errorRadius, toReal_half]
-  rw [abs_le]
-  exact ⟨by linarith, by linarith⟩
-
-/-- The stored centres bracket the exact shifted one, which is what is left. -/
-theorem Zonotope.shift_brackets_mid (Z : Zonotope 𝕋 n) (i : Fin n) :
-    toReal (Z.shiftDown i) ≤ toReal (Z.c i) + (toReal (Z.E.inf i) + toReal (Z.E.sup i)) / 2 ∧
-      toReal (Z.c i) + (toReal (Z.E.inf i) + toReal (Z.E.sup i)) / 2 ≤ toReal (Z.shiftUp i) := by
-  constructor
-  · have h1 := addDown_le_add (Z.c i) (half (addDown (Z.E.inf i) (Z.E.sup i)))
-    have h2 := addDown_le_add (Z.E.inf i) (Z.E.sup i)
-    rw [toReal_half] at h1
-    simpa only [Zonotope.shiftDown] using by linarith
-  · have h1 := add_le_addUp (Z.c i) (half (addUp (Z.E.inf i) (Z.E.sup i)))
-    have h2 := add_le_addUp (Z.E.inf i) (Z.E.sup i)
-    rw [toReal_half] at h1
-    simpa only [Zonotope.shiftUp] using by linarith
 
 omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `absorbError`'s generator count. -/
