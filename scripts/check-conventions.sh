@@ -52,6 +52,18 @@ BEGIN {
   CONT = "[\200-\277]"
   MONTH = "(January|February|March|April|May|June|July|August|September|October|November|December)"
   DATE = "^(0[1-9]|[12][0-9]|3[01])-" MONTH "-[0-9][0-9][0-9][0-9]$"
+
+  # A declaration, optionally carrying one attribute — `@[simp] theorem …` is as
+  # much a declaration as `theorem …`, and every rule that scans for one needs to
+  # see both alike. Built from octal escapes, not `\\[` `\\]` literals: this
+  # awk drops a backslash ahead of a bracket in a string constant instead of
+  # keeping it escaped, silently turning the pattern into a character class.
+  BSLASH = "\134"; LBRACK = "\133"; RBRACK = "\135"
+  ATTR = "(@" BSLASH LBRACK "[^" RBRACK "]*" BSLASH RBRACK "[ \t]*)?"
+  MODS = "(private |protected |noncomputable |partial |scoped )*"
+  KIND = "(def|theorem|lemma|abbrev|instance|structure|inductive|class)"
+  DECL_START = "^" ATTR MODS KIND " "
+  DECL_PREFIX = "^" ATTR MODS KIND "[ \t]+"
 }
 
 # Characters, not bytes: every byte of a UTF-8 sequence but the first is a
@@ -208,6 +220,7 @@ FNR == 1 {
   authorLine = 0; codeLine = 0; nsLine = 0; ns = ""
   blockKind = ""; blockStart = 0; declDocEnd = 0
   prevPureComment = 0; prevLineComment = 0; run = 0; blanks = 0; inRefs = 0; refsLine = 0
+  firstDeclSeen = 0; firstBodyFound = 0; firstBodyLine = 0
   # `split("", a)` rather than `delete a`, which older mawk does not have
   split("", declAux); split("", useAux); split("", imp); split("", impLine)
   split("", refDef); split("", refCite)
@@ -298,10 +311,20 @@ FNR == 1 {
     say(FILENAME ":" FNR ": second `--` line in a row — one line, or move it to the header")
   prevPureComment = isPureComment
 
-  # A minimum density. Counted only past the header, and only over lines that
-  # carry code, so blank lines neither help nor hurt. Reported once per stretch,
-  # at the line the stretch began, since that is where the comment goes.
-  if (authorLine > 0 && FNR > authorLine + 3) {
+  # Where the first declaration body begins: a hypothesis list is a signature,
+  # not a proof step, so the density rule below opens only once one is reached.
+  if (!firstBodyFound) {
+    if (!firstDeclSeen && code ~ DECL_START) firstDeclSeen = 1
+    if (firstDeclSeen && (code ~ /:=/ || code ~ /(^|[ \t])where([ \t]|$)/)) {
+      firstBodyLine = FNR; firstBodyFound = 1
+    }
+  }
+
+  # A minimum density. Counted only past the header and the first declaration
+  # signature, and only over lines that carry code, so blank lines neither help
+  # nor hurt. Reported once per stretch, at the line the stretch began, since
+  # that is where the comment goes.
+  if (authorLine > 0 && FNR > authorLine + 3 && firstBodyFound && FNR > firstBodyLine) {
     if (sawComment || lineKind != "") {
       endRun(FILENAME)
     } else if (code ~ /[^ \t]/) {
@@ -358,9 +381,9 @@ FNR == 1 {
         " it and the declaration")
   prevLineComment = (code !~ /[^ \t]/) && sawComment
 
-  if (code ~ /^(private |protected |noncomputable |partial |scoped )*(def|theorem|lemma|abbrev|instance|structure|inductive|class) /) {
+  if (code ~ DECL_START) {
     decl = code
-    sub(/^(private |protected |noncomputable |partial |scoped )*(def|theorem|lemma|abbrev|instance|structure|inductive|class)[ \t]+/, "", decl)
+    sub(DECL_PREFIX, "", decl)
     sub(/[^A-Za-z0-9_'"'"'.].*$/, "", decl)
     if (base(decl) ~ /^aux_/) declAux[base(decl)] = FNR
   }

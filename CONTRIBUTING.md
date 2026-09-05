@@ -434,6 +434,10 @@ The module docstring of a directory's `API.lean` is its entry point.
 | inline `--` comment | 1 line; two in a row is a paragraph in the wrong place |
 | code with no comment | 20 lines, which is a *minimum* density and aimed at proofs |
 
+The density check counts from the first declaration body in the file, not from
+the top: a signature and the file preamble above it are not proof steps, so
+neither has to carry a comment every 20 lines.
+
 The module-docstring cap measures the prose only, up to a `## References`
 heading: a bibliography is not text that grows the way an explanation does.
 
