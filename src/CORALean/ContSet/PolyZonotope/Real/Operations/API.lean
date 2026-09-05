@@ -7,6 +7,7 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.Dependent
 import CORALean.ContSet.PolyZonotope.Real.Operations.Point
 import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMap
 import CORALean.ContSet.PolyZonotope.Real.Operations.Mul
+import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPoly
 import CORALean.ContSet.PolyZonotope.Real.Operations.Compact
 import CORALean.ContSet.PolyZonotope.Real.Operations.Reduce
 import CORALean.ContSet.PolyZonotope.Real.Operations.EDiff
@@ -19,8 +20,8 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExp
 `dependent`, which moves that block into the dependent one and is what lets
 `quadMap` be total.
 
-`mul` multiplies two sets coordinatewise over shared factors, `quadMap` carried
-past degree two, and is exact against `point` and not against the two sets.
+`mul` multiplies two sets coordinatewise over shared factors, exact against
+`point` and not the two sets; `quadMap` reaches degree two this way, `evalPoly` any degree.
 
 Each of those grows the generator counts, and `compact` brings them back down
 without changing the set: equal exponent columns are one monomial and are added

@@ -14,6 +14,7 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadEvalSumExt
 import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapDepExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MulExact
+import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.CompactGensExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.CompactFactorsExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.CompactExact
@@ -46,6 +47,7 @@ would claim far more than holds; `point_mem_construct` is the way back, a point
 at admissible factors being a member. `relaxExp_outer` holds at every partition
 naming two generators, `eDiff` owing no proof of optimality: it is an upper
 bound on the drift, and a sharper one would only be more precise.
+`evalPoly_exact` carries the same shared-factor idiom to a polynomial.
 
 `quadMap_exact` is the one that distinguishes the representation: no convex
 representation here can state it. `compact_exact` is the one an order bound
