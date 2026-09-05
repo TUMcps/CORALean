@@ -12,9 +12,9 @@ nothing beyond assembly is left.
 
 Both the coefficients and the sample count stay parameters. Neither owes a
 proof: any fit is sound once the bound holds, and any positive sample count is,
-so a caller spends effort on the neurons that deserve it — which is what the
-refinement loop will vary once it exists. `polyFit` is one such choice, CORA's
-default, and `sigmoidPolyRelaxationFit` is the pipeline closed at it.
+so a caller spends effort on the neurons that deserve it — which is what
+`SigmoidPolyRefine` varies, one level at a time. `polyFit` is one such choice,
+CORA's default, and `sigmoidPolyRelaxationFit` is the pipeline closed at it.
 
 Nothing is given away against `Relaxation.ofDeriv` at order 1:
 `polyDerivDiff_one` says the derivative bound is there exactly the bracket

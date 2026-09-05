@@ -16,6 +16,8 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapDepExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MulExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyExact
+import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyQ
+import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyRealOfFn
 import CORALean.ContSet.PolyZonotope.Real.Theorems.CompactGensExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.CompactFactorsExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.CompactExact
@@ -42,12 +44,12 @@ enclosure alone is satisfied by a set that grows every step, so
 `reduce_order_le` says the representation stays the size it was asked for.
 
 `mul_exact` equates a product with the image of the shared factors under
-`a ↦ point S₁ a ⊙ point S₂ a`, never with a product of the two sets;
-`evalPoly_exact` carries that to a polynomial per coordinate.
-`point_mem_construct` is the way back and `exists_point_of_q_zero` the way
-there, once nothing is independent. `relaxExp_outer` holds at every partition
-naming two generators, `eDiff` owing no proof of optimality: it bounds the
-drift from above, and a sharper bound would only be more precise.
+`a ↦ point S₁ a ⊙ point S₂ a`, never with a product of the two sets; `evalPoly_exact` carries
+that to a polynomial per coordinate and `evalPolyReal_ofFn` matches Horner to the monomial sum.
+`point_mem_construct` is the way back and, once `evalPoly_q` says nothing is independent,
+`exists_point_of_q_zero` the way there. `relaxExp_outer` holds at every partition naming two
+generators, `eDiff` owing no proof of optimality: it bounds the drift from above, and a
+sharper bound would only be more precise.
 
 `quadMap_exact` is the one that distinguishes the representation: no convex
 representation here can state it. `compact_exact` is the one an order bound

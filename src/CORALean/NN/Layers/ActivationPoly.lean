@@ -3,6 +3,7 @@ import CORALean.ContSet.Conversion.Real.PolyZonotope_to_Interval
 import CORALean.ContSet.PolyZonotope.Real.Instances
 import CORALean.ContSet.PolyZonotope.Real.Theorems.DependentExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyExact
+import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyRealOfFn
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ExistsPointOfQZero
 import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
 import CORALean.NN.Layers.PolyRelaxation
@@ -43,20 +44,6 @@ namespace CORALean.Real
 open Pointwise ContSet Plus
 
 variable {σ : ℝ → ℝ} {m n : ℕ}
-
-/-- Horner over a list of coefficients is the monomial sum they stand for, which
-is how `evalPolyReal` meets `evalPoly`. -/
-theorem PolyZonotope.evalPolyReal_ofFn (t : ℝ) : ∀ {k : ℕ} (c : Fin k → ℝ),
-    PolyZonotope.evalPolyReal (List.ofFn c) t = ∑ j, c j * t ^ (j : ℕ) := by
-  intro k
-  induction k with
-  | zero => intro c; simp [PolyZonotope.evalPolyReal]
-  | succ k ih =>
-    intro c
-    rw [List.ofFn_succ, PolyZonotope.evalPolyReal, ih, Fin.sum_univ_succ, Finset.mul_sum]
-    -- the `t` Horner factors out is the extra degree each remaining term carries
-    simp only [Fin.val_zero, pow_zero, mul_one, Fin.val_succ, pow_succ]
-    exact congrArg _ (Finset.sum_congr rfl fun j _ => by ring)
 
 /-- Neuron `i`'s coefficient of `t ^ k`, taken on its own input range: one
 vector per degree, which is how `evalPoly` reads a coefficient. -/
