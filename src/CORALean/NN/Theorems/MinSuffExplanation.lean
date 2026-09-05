@@ -1,0 +1,30 @@
+import CORALean.NN.Theorems.SuffExplanation
+
+/-!
+# Minimal sufficient explanation
+
+`def:min-suff-explanation` [1]: a sufficient explanation minimal under `⊆` —
+dropping any one of its features breaks sufficiency.
+
+## References
+
+* [1] S. Bassan, Y. Y. Elboher, T. Ladner, M. Althoff and G. Katz. "Explaining
+      Fast and Slow: Abstraction and Refinement of Provable Explanations".
+      ICML 2025.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       05-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+namespace CORALean.Real
+
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+
+/-- Sufficient, and no single feature of `E` can be dropped without losing it. -/
+def NeuralNetwork.IsMinSuffExplanation (nn : NeuralNetwork S n m) (x : Vec ℝ n) (ε : ℝ)
+    (E : Finset (Fin n)) (l : Fin m) : Prop :=
+  nn.IsSuffExplanation x ε E l ∧ ∀ i ∈ E, ¬ nn.IsSuffExplanation x ε (E \ {i}) l
+
+end CORALean.Real
