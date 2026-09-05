@@ -41,14 +41,14 @@ import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceGirardDependentOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceDependentOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceGirardOrderLe
 import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceOrder
+import CORALean.ContSet.PolyZonotope.Float.Theorems.RelaxExpOuter
 
 /-!
 # What `PolyZonotope` guarantees
 
 The exact layer's `plus`, `linComb`, `map` and `quadMap` read as enclosures.
 `plus`, `linComb` and `mtimes` keep the counts they have over ℝ, rounding going
-into the error box;
-`dependent_nominal` is the one that moves the other way, trading the box for
+into the error box; `dependent_nominal` moves the other way, trading the box for
 generators so that `quadMap` has a box-free set to work on.
 
 `mul_outer` encloses the exact layer's product over shared factors, and takes
@@ -60,6 +60,9 @@ be a heuristic — and what lets it be computed at all here. It goes through
 `compact_outer`, so the order `reduce_order_le` bounds is a count of distinct
 monomials, as over ℝ; that bound is what keeps a reachability loop's
 representation from growing a box per step.
+
+`relaxExp_outer` reads the exact layer's drift bound at the stored columns, the
+two roundings it makes being the only difference between the layers.
 
 `mem_generatorError` is the one that answers the question the representation
 raises — what a monomial costs a float layer — and its docstring is where that

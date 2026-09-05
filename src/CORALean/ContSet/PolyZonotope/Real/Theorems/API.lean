@@ -23,6 +23,9 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceDependentOuter
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceOuter
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceGirardOrderLe
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceOrder
+import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsSubPowLeEDiff
+import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsSubMonomialLe
+import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxExpOuter
 
 /-!
 # What `PolyZonotope` guarantees
@@ -36,10 +39,11 @@ enclosure alone is satisfied by a set that grows every step, so
 `reduce_order_le` is what says the representation stays the size it was asked
 for.
 
-`mul_exact` is the same closure for a product of two sets, and its statement is
-the whole content: it equates the result with the image of the shared factors
+`mul_exact` equates a product of two sets with the image of the shared factors
 under `a ↦ point S₁ a ⊙ point S₂ a`, never with a product of the two sets, which
-would claim far more than holds.
+would claim far more than holds. `relaxExp_outer` holds at every partition
+naming two generators, `eDiff` owing no proof of optimality: it is an upper
+bound on the drift, and a sharper one would only be more precise.
 
 `quadMap_exact` is the one that distinguishes the representation: no convex
 representation here can state it. `compact_exact` is the one an order bound

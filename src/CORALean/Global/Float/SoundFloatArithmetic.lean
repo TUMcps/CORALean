@@ -120,6 +120,21 @@ theorem sumDown_le_sum (f : Fin n → 𝕋) : toReal (sumDown f) ≤ ∑ i, toRe
     rw [Fin.sum_univ_succ, sumDown]
     exact le_trans (addDown_le_add _ _) (add_le_add (le_refl _) (ih _))
 
+/-- A count of copies, each addition rounding the way the fold does. -/
+theorem le_nsmulUp (k : ℕ) (a : 𝕋) : (k : ℝ) * toReal a ≤ toReal (nsmulUp k a) := by
+  induction k with
+  | zero => rw [nsmulUp, toReal_zero, Nat.cast_zero, zero_mul]
+  | succ k ih =>
+    rw [nsmulUp, Nat.cast_add, Nat.cast_one, add_mul, one_mul]
+    exact le_trans (by linarith) (add_le_addUp a (nsmulUp k a))
+
+theorem nsmulDown_le (k : ℕ) (a : 𝕋) : toReal (nsmulDown k a) ≤ (k : ℝ) * toReal a := by
+  induction k with
+  | zero => rw [nsmulDown, toReal_zero, Nat.cast_zero, zero_mul]
+  | succ k ih =>
+    rw [nsmulDown, Nat.cast_add, Nat.cast_one, add_mul, one_mul]
+    exact le_trans (addDown_le_add a (nsmulDown k a)) (by linarith)
+
 /-- Products then sum, the direction preserved through both steps. -/
 theorem dotDown_le (a b : Vec 𝕋 n) :
     toReal (dotDown a b) ≤ ∑ k, toReal (a k) * toReal (b k) :=

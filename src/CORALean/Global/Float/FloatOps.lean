@@ -14,7 +14,7 @@ carrying one. Definitions assume this class alone; theorems assume both.
 
 -- Authors:       Tobias Ladner
 -- Written:       16-August-2026
--- Last update:   04-September-2026
+-- Last update:   05-September-2026
 -- Last revision: ---
 
 namespace CORALean.Float
@@ -69,6 +69,19 @@ def sumUp : {n : ℕ} → (Fin n → 𝕋) → 𝕋
 def sumDown : {n : ℕ} → (Fin n → 𝕋) → 𝕋
   | 0, _ => zero
   | _ + 1, f => addDown (f 0) (sumDown fun i => f i.succ)
+
+/-! ## Repeated addition
+
+A count of copies, one fold per direction. The count comes from an exponent
+matrix, which is over ℕ in both layers, so only the additions round. -/
+
+def nsmulDown : ℕ → 𝕋 → 𝕋
+  | 0, _ => zero
+  | k + 1, a => addDown a (nsmulDown k a)
+
+def nsmulUp : ℕ → 𝕋 → 𝕋
+  | 0, _ => zero
+  | k + 1, a => addUp a (nsmulUp k a)
 
 /-- The largest of `n` values, `zero` below none. Exact, as `maximum` is, so it
 needs no direction. -/
