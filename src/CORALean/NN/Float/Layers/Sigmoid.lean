@@ -1,13 +1,15 @@
 import CORALean.Global.Float.Exp
-import CORALean.NN.Float.Layers.Activation
+import CORALean.NN.Float.Layers.Curvature
 import CORALean.NN.Layers.Sigmoid
 
 /-!
 # The sigmoid layer over a floating-point scalar
 
-The relaxation is the exact layer's, `Relaxation.ofMonotone`, which wanted only
-`σ` at the two ends of a neuron's range. `sigmoidEnclosure` is that value, over
-`Global/Float`'s `expDown` and the division a logistic function is.
+`sigmoidEnclosure` is `σ` at a float, over `Global/Float`'s `expDown` and the
+division a logistic function is. It is all the layer needs: `σ' t = σ t · σ (-t)`,
+so the same enclosure at the box's ends brackets the derivative too, and the
+relaxation is `Relaxation.ofDeriv` against that bracket, kept only where it beats
+`Relaxation.ofMonotone`.
 
 The enclosure is total — no hypothesis on the argument — and that is a choice of
 *which* identity to compute each side from. `expUp` needs its argument bounded
@@ -19,13 +21,11 @@ and `expDown` does not, so both directions are written to use `expDown` alone:
 Each asks only that the denominator be underestimated, which is what a lower
 bound on an exponential gives. `onePlusExpDown` is that denominator, held above
 one by an exact `maximum`, so the division never meets an unconstrained divisor.
-
-`k` is the exponential's reduction depth: every `k` is sound, a larger one tighter.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   05-September-2026
 -- Last revision: ---
 
 namespace CORALean.Float
@@ -87,13 +87,79 @@ def sigmoidEnclosure (k : ℕ) : Enclosure 𝕋 Real.sigmoid where
     rw [Real.sigmoid, ← one_div]
     exact hb
 
+/-! ## The derivative bracket
+
+`σ'` is a product of two sigmoids, each monotone and positive, so the enclosure
+at the box's ends brackets it with no case on sign — the lower factors floored
+at zero, which rounding could otherwise push below it. -/
+
+def sigmoidDerivLo (E : Enclosure 𝕋 Real.sigmoid) (l u : 𝕋) : 𝕋 :=
+  mulDown (maximum zero (E.lo l)) (maximum zero (E.lo (neg u)))
+
+def sigmoidDerivHi (E : Enclosure 𝕋 Real.sigmoid) (l u : 𝕋) : 𝕋 :=
+  mulUp (E.hi u) (E.hi (neg l))
+
+theorem sigmoidDerivLo_le (E : Enclosure 𝕋 Real.sigmoid) (l u : 𝕋) (x : ℝ)
+    (hl : toReal l ≤ x) (hu : x ≤ toReal u) :
+    toReal (sigmoidDerivLo E l u) ≤ Real.sigmoidDeriv x := by
+  have h₁ : toReal (maximum zero (E.lo l)) ≤ Real.sigmoid x := by
+    rw [toReal_maximum, toReal_zero]
+    exact max_le (le_of_lt (Real.sigmoid_pos x)) (le_trans (E.lo_le l) (Real.sigmoid_mono hl))
+  have h₂ : toReal (maximum zero (E.lo (neg u))) ≤ Real.sigmoid (-x) := by
+    rw [toReal_maximum, toReal_zero]
+    refine max_le (le_of_lt (Real.sigmoid_pos _)) (le_trans (E.lo_le (neg u)) ?_)
+    rw [toReal_neg]
+    exact Real.sigmoid_mono (neg_le_neg hu)
+  -- both factors are non-negative lower bounds, which is what makes the product one
+  have h₀ : 0 ≤ toReal (maximum zero (E.lo (neg u))) := by
+    rw [toReal_maximum, toReal_zero]
+    exact le_max_left _ _
+  rw [sigmoidDerivLo, Real.sigmoidDeriv]
+  exact le_trans (mulDown_le_mul _ _)
+    (mul_le_mul h₁ h₂ h₀ (le_of_lt (Real.sigmoid_pos x)))
+
+theorem le_sigmoidDerivHi (E : Enclosure 𝕋 Real.sigmoid) (l u : 𝕋) (x : ℝ)
+    (hl : toReal l ≤ x) (hu : x ≤ toReal u) :
+    Real.sigmoidDeriv x ≤ toReal (sigmoidDerivHi E l u) := by
+  -- upward the sign needs no floor: an upper bound on a positive value is positive
+  have h₁ : Real.sigmoid x ≤ toReal (E.hi u) := le_trans (Real.sigmoid_mono hu) (E.le_hi u)
+  have h₂ : Real.sigmoid (-x) ≤ toReal (E.hi (neg l)) := by
+    refine le_trans ?_ (E.le_hi (neg l))
+    rw [toReal_neg]
+    exact Real.sigmoid_mono (neg_le_neg hl)
+  rw [sigmoidDerivHi, Real.sigmoidDeriv]
+  exact le_trans (mul_le_mul h₁ h₂ (le_of_lt (Real.sigmoid_pos _))
+    (le_trans (le_of_lt (Real.sigmoid_pos x)) h₁)) (mul_le_mulUp _ _)
+
+/-! ## The relaxation
+
+The secant is a guess and nothing more: `subDown u l` may be zero, where `divUp`
+bounds nothing, and the clamp into the bracket is what makes that harmless. -/
+
+def sigmoidSlope (E : Enclosure 𝕋 Real.sigmoid) (l u : 𝕋) : 𝕋 :=
+  maximum (sigmoidDerivLo E l u)
+    (minimum (sigmoidDerivHi E l u) (divUp (subUp (E.hi u) (E.lo l)) (subDown u l)))
+
+noncomputable def sigmoidCurvatureRelaxation (E : Enclosure 𝕋 Real.sigmoid) :
+    Relaxation 𝕋 Real.sigmoid :=
+  Relaxation.ofDeriv Real.sigmoidDeriv Real.hasDerivAt_sigmoid E
+    (sigmoidDerivLo E) (sigmoidDerivHi E) (sigmoidSlope E)
+    (sigmoidDerivLo_le E) (le_sigmoidDerivHi E) fun l u h => by
+      refine ⟨by rw [sigmoidSlope, toReal_maximum]; exact le_max_left _ _, ?_⟩
+      rw [sigmoidSlope, toReal_maximum, toReal_minimum]
+      exact max_le (le_trans (sigmoidDerivLo_le E l u (toReal l) le_rfl h)
+        (le_sigmoidDerivHi E l u (toReal l) le_rfl h)) (min_le_left _ _)
+
 namespace Layer
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat 𝕋) S] [IntervalOuter S 𝕋] [OfInterval S 𝕋] {n : ℕ}
 
+/-- `k` is the exponential's reduction depth: every `k` is sound, a larger one
+tighter, and it reaches both the value and the derivative bracket. -/
 noncomputable def sigmoid (k : ℕ) : Real.Layer S n n :=
-  Layer.activation (Relaxation.ofMonotone Real.sigmoid_mono (sigmoidEnclosure k))
+  Layer.activation ((sigmoidCurvatureRelaxation (sigmoidEnclosure k)).tighter
+    (Relaxation.ofMonotone Real.sigmoid_mono (sigmoidEnclosure k)))
 
 end Layer
 

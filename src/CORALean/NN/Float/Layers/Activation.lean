@@ -24,7 +24,7 @@ error box.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   05-September-2026
 -- Last revision: ---
 
 namespace CORALean.Float
@@ -61,9 +61,9 @@ is a precision choice and its rounding costs nothing. -/
 def Enclosure.mid (E : Enclosure 𝕋 σ) (l u : 𝕋) : 𝕋 := half (addUp (E.lo l) (E.hi u))
 
 /-- An offset chosen freely and the distance to each end rounded up: the shape
-every slope-zero relaxation takes, and the reason the offset never has to be
-rounded in a particular direction. -/
-theorem aux_abs_sub_le_spread {lo hi c : 𝕋} {y : ℝ}
+every relaxation here takes, and the reason the offset never has to be rounded
+in a particular direction. -/
+theorem abs_sub_le_spread {lo hi c : 𝕋} {y : ℝ}
     (h1 : toReal lo ≤ y) (h2 : y ≤ toReal hi) :
     |y - toReal c| ≤ toReal (maximum (subUp hi c) (subUp c lo)) := by
   have hA := sub_le_subUp hi c
@@ -83,7 +83,7 @@ def Relaxation.ofMonotone (hσ : Monotone σ) (E : Enclosure 𝕋 σ) : Relaxati
   sound {l u t} hl hu := by
     have hlo : toReal (E.lo l) ≤ σ t := le_trans (E.lo_le l) (hσ hl)
     have hhi : σ t ≤ toReal (E.hi u) := le_trans (hσ hu) (E.le_hi u)
-    have h := aux_abs_sub_le_spread (c := E.mid l u) hlo hhi
+    have h := abs_sub_le_spread (c := E.mid l u) hlo hhi
     rw [toReal_zero, zero_mul, zero_add]
     exact h
 
