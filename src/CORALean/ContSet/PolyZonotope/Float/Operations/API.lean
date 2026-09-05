@@ -5,6 +5,7 @@ import CORALean.ContSet.PolyZonotope.Float.Operations.Compact
 import CORALean.ContSet.PolyZonotope.Float.Operations.Dependent
 import CORALean.ContSet.PolyZonotope.Float.Operations.LinComb
 import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMap
+import CORALean.ContSet.PolyZonotope.Float.Operations.Mul
 import CORALean.ContSet.PolyZonotope.Float.Operations.Reduce
 
 /-!
@@ -17,6 +18,9 @@ centre-derived vectors and the paired independent block round. `quadMap` cannot:
 a quadratic map is not additive, so a box cannot travel through it beside the
 nominal part, and `dependent` empties the box into generators first — the one
 operation here that spends any.
+
+`mul` carries the same product past degree two and spends it the same way, but
+on one rounded product per generator entry rather than on a bilinear form.
 
 `reduce` and the `compact` it runs first both *run* where the exact layer only
 specifies: ranking generators needs a decidable order and merging columns needs

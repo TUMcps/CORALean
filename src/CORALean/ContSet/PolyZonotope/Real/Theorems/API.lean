@@ -12,6 +12,7 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.SumExtEqPoint
 import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadEvalSumExt
 import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapDepExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapExact
+import CORALean.ContSet.PolyZonotope.Real.Theorems.MulExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.CompactGensExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.CompactFactorsExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.CompactExact
@@ -34,6 +35,11 @@ respectively which dropped generators, cost the other direction.
 enclosure alone is satisfied by a set that grows every step, so
 `reduce_order_le` is what says the representation stays the size it was asked
 for.
+
+`mul_exact` is the same closure for a product of two sets, and its statement is
+the whole content: it equates the result with the image of the shared factors
+under `a ↦ point S₁ a ⊙ point S₂ a`, never with a product of the two sets, which
+would claim far more than holds.
 
 `quadMap_exact` is the one that distinguishes the representation: no convex
 representation here can state it. `compact_exact` is the one an order bound
