@@ -1,0 +1,33 @@
+import CORALean.NN.Layers.Linear
+import CORALean.NN.Theorems.SensitivityOfMatrix
+
+/-!
+# The linear layer's sensitivity is its weight matrix
+
+The clean case, and the only one that does not depend on the point: `W x + b`
+differs from `W x` by a constant, and a constant has no derivative to
+contribute. CORA's `nnLinearLayer/evaluateSensitivity` is the same statement —
+it multiplies by `W` and never looks at the stored input.
+
+Everything that *is* a linear layer here — convolution, average pooling, batch
+normalization — reads its sensitivity off this one, at its own matrix.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       05-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+namespace CORALean.Real
+
+open Matrix ContSet Plus Mtimes OfInterval
+
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
+  [Mtimes (Mat ℝ) S] [OfInterval S] {n m : ℕ}
+
+theorem Layer.linear_sensitivity (W : Mat ℝ m n) (b : Vec ℝ m) (x : Vec ℝ n) :
+    (Layer.linear (S := S) W b).sensitivity x = W :=
+  Layer.sensitivity_eq_of_hasFDerivAt
+    ((LinearMap.toContinuousLinearMap (Matrix.mulVecLin W)).hasFDerivAt.add_const b)
+
+end CORALean.Real

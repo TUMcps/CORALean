@@ -36,6 +36,20 @@ theorem tanh_eq_sigmoid (t : ℝ) : Real.tanh t = 2 * sigmoid (2 * t) - 1 := by
   field_simp
   ring
 
+/-- The identity above differentiated, which is where the header's `4 σ'(2t)`
+comes from. Mathlib's own `tanh` derivative is not in scope here. -/
+theorem hasDerivAt_tanh (t : ℝ) : HasDerivAt Real.tanh (4 * sigmoidDeriv (2 * t)) t := by
+  have hinner : HasDerivAt (fun s : ℝ => 2 * s) 2 t := by
+    simpa using (hasDerivAt_id t).const_mul (2:ℝ)
+  have hchain : HasDerivAt (fun s : ℝ => sigmoid (2 * s)) (sigmoidDeriv (2 * t) * 2) t :=
+    (hasDerivAt_sigmoid (2 * t)).comp t hinner
+  have h := (hchain.const_mul (2:ℝ)).sub_const (1:ℝ)
+  -- the conjugating affine map, undone on the function and on the value alike
+  rw [show (fun s : ℝ => 2 * sigmoid (2 * s) - 1) = Real.tanh from
+      funext fun s => (tanh_eq_sigmoid s).symm,
+    show 2 * (sigmoidDeriv (2 * t) * 2) = 4 * sigmoidDeriv (2 * t) by ring] at h
+  exact h
+
 /-- `sigmoidRelaxation` read through the identity above: `a = b = 2`, `c = -1`. -/
 noncomputable def tanhRelaxation : Relaxation Real.tanh :=
   sigmoidRelaxation.ofAffineConj (a := 2) (b := 2) (c := -1) (by norm_num) (by norm_num)
