@@ -1,4 +1,4 @@
-import CORALean.NN.Layers.Activation
+import CORALean.NN.Layers.Curvature
 
 /-!
 # The sigmoid layer
@@ -6,24 +6,24 @@ import CORALean.NN.Layers.Activation
 CORA's `nnSigmoidLayer`, defined here because Mathlib has no logistic function
 and stated as `(1 + e⁻ᵗ)⁻¹` so that monotonicity is the denominator's.
 
-The relaxation is the monotone one, with slope zero: the output range is
-`[σ(l), σ(u)]`, which is what monotonicity alone certifies — the range of
-`σ t - λ t` over the box only widens as `λ` leaves zero.
+`σ' t = σ t · σ (-t)` is what gives the relaxation a slope: one factor rises and
+the other falls, so the ends of a neuron's range bracket the derivative over it
+with two monotonicity steps and no case on where zero lies. `Relaxation.ofDeriv`
+turns that bracket into the secant slope, clamped into it, and an error of half
+the bracket's width times the box width.
 
-A slope that pays off needs curvature: sigmoid is convex below zero and concave
-above it, so on one side the secant bounds it as convexity bounds ReLU, and the
-other then needs a derivative bound this layer does not have.
+On a narrow box the bracket is tight and that error is quadratic in the width,
+so the slope is nearly free. On a wide one — above all across zero, where the
+two curvature regions pull the ends apart — it is loose, and `tighter` falls
+back on `Relaxation.ofMonotone` and slope zero.
 
-`Float.Layer.sigmoid` is this relaxation again: `Float.Relaxation.ofMonotone`
-asks only for `σ` at the two ends, and `Float.sigmoidEnclosure` supplies it from
-`expDown` and a division. Stating `σ` as `1 - 1/(1 + eᵗ)` below and `1/(1 + e⁻ᵗ)`
-above leaves both directions needing a *lower* bound on an exponential, the
-direction that holds at every argument, so that enclosure carries no hypothesis.
+`Float.Layer.sigmoid` is the same pair over `Float.sigmoidEnclosure`, which
+supplies `σ` at the ends and, as a product, `σ'`.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   05-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -31,6 +31,10 @@ namespace CORALean.Real
 open Matrix ContSet
 
 noncomputable def sigmoid (t : ℝ) : ℝ := (1 + Real.exp (-t))⁻¹
+
+theorem sigmoid_pos (t : ℝ) : 0 < sigmoid t := by
+  rw [sigmoid]
+  positivity
 
 theorem sigmoid_mono : Monotone sigmoid := by
   intro a b hab
@@ -40,8 +44,74 @@ theorem sigmoid_mono : Monotone sigmoid := by
   rw [inv_eq_one_div, inv_eq_one_div]
   exact one_div_le_one_div_of_le hpb (by linarith)
 
+/-- Mirroring the argument complements the value, which is what makes the
+derivative below a product of two sigmoids. -/
+theorem sigmoid_neg (t : ℝ) : sigmoid (-t) = 1 - sigmoid t := by
+  have hden : (1:ℝ) + Real.exp t ≠ 0 := by positivity
+  have hden' : (1:ℝ) + Real.exp (-t) ≠ 0 := by positivity
+  rw [sigmoid, sigmoid, neg_neg, Real.exp_neg]
+  field_simp
+  ring
+
+/-! ## The derivative, and its bracket over a box
+
+Stated as `σ t · σ (-t)` rather than `σ t (1 - σ t)`: written that way each
+factor is monotone in `t` on its own, so a box's ends bracket the product. -/
+
+noncomputable def sigmoidDeriv (t : ℝ) : ℝ := sigmoid t * sigmoid (-t)
+
+theorem hasDerivAt_sigmoid (t : ℝ) : HasDerivAt sigmoid (sigmoidDeriv t) t := by
+  have hEpos : (0:ℝ) < Real.exp (-t) := Real.exp_pos _
+  have hden : (1:ℝ) + Real.exp (-t) ≠ 0 := by positivity
+  have hexp : HasDerivAt (fun x : ℝ => Real.exp (-x)) (Real.exp (-t) * -1) t :=
+    (hasDerivAt_neg t).exp
+  have hinv := (hexp.const_add (1:ℝ)).inv (by exact hden)
+  -- the two negations cancel and `exp t` is `exp (-t)⁻¹`, which leaves one field identity
+  have hkey : -(Real.exp (-t) * -1) / (1 + Real.exp (-t)) ^ 2 = sigmoidDeriv t := by
+    have hE : Real.exp (-t) ≠ 0 := ne_of_gt hEpos
+    have hEt : Real.exp t = (Real.exp (-t))⁻¹ := by rw [Real.exp_neg, inv_inv]
+    rw [sigmoidDeriv, sigmoid, sigmoid, neg_neg, hEt]
+    field_simp
+    ring
+  rw [← hkey]
+  exact hinv
+
+/-- The bracket a box gives: `σ` rises with its argument and `σ (-·)` falls, so
+each factor is largest at one end and smallest at the other. -/
+noncomputable def sigmoidDerivLo (l u : ℝ) : ℝ := sigmoid l * sigmoid (-u)
+
+noncomputable def sigmoidDerivHi (l u : ℝ) : ℝ := sigmoid u * sigmoid (-l)
+
+theorem sigmoidDerivLo_le {l u t : ℝ} (hl : l ≤ t) (hu : t ≤ u) :
+    sigmoidDerivLo l u ≤ sigmoidDeriv t :=
+  mul_le_mul (sigmoid_mono hl) (sigmoid_mono (neg_le_neg hu))
+    (le_of_lt (sigmoid_pos _)) (le_of_lt (sigmoid_pos _))
+
+theorem le_sigmoidDerivHi {l u t : ℝ} (hl : l ≤ t) (hu : t ≤ u) :
+    sigmoidDeriv t ≤ sigmoidDerivHi l u :=
+  mul_le_mul (sigmoid_mono hu) (sigmoid_mono (neg_le_neg hl))
+    (le_of_lt (sigmoid_pos _)) (le_of_lt (sigmoid_pos _))
+
+/-! ## The relaxation
+
+The secant is the slope a curvature argument points at, and clamping it into the
+bracket is what makes it a precision choice: any value in the bracket is sound,
+and the clamp is what a box of width zero, where the secant is `0 / 0`, needs. -/
+
+noncomputable def sigmoidSlope (l u : ℝ) : ℝ :=
+  max (sigmoidDerivLo l u) (min (sigmoidDerivHi l u) ((sigmoid u - sigmoid l) / (u - l)))
+
+noncomputable def sigmoidCurvatureRelaxation : Relaxation sigmoid :=
+  Relaxation.ofDeriv hasDerivAt_sigmoid sigmoidDerivLo sigmoidDerivHi sigmoidSlope
+    (fun _ _ _ h₁ h₂ => sigmoidDerivLo_le h₁ h₂) (fun _ _ _ h₁ h₂ => le_sigmoidDerivHi h₁ h₂)
+    fun _ _ h => ⟨le_max_left _ _,
+      max_le (le_trans (sigmoidDerivLo_le le_rfl h) (le_sigmoidDerivHi le_rfl h))
+        (min_le_left _ _)⟩
+
+/-- The curvature relaxation where its bracket pays for itself, and the monotone
+one — slope zero, the output range — where it does not. -/
 noncomputable def sigmoidRelaxation : Relaxation sigmoid :=
-  Relaxation.ofMonotone sigmoid_mono
+  sigmoidCurvatureRelaxation.tighter (Relaxation.ofMonotone sigmoid_mono)
 
 namespace Layer
 

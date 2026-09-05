@@ -1,6 +1,7 @@
 import CORALean.NN.Layers.Activation
 import CORALean.NN.Layers.BatchNorm
 import CORALean.NN.Layers.Convolution
+import CORALean.NN.Layers.Curvature
 import CORALean.NN.Layers.Linear
 import CORALean.NN.Layers.Pooling
 import CORALean.NN.Layers.ReLU
@@ -23,9 +24,9 @@ under `mtimes` and `plus` all four are exact.
 
 **Relaxations.** `ReLU`, `Sigmoid` and `Tanh` are `Activation` at a
 `Relaxation` and nothing else: an affine map per neuron and the error to allow
-for, which is where every bit of a network's precision is decided. `ReLU`
-carries a slope, convexity being enough to justify one; the other two carry
-none, monotonicity alone certifying no better than the output range.
+for, which is where every bit of a network's precision is decided. `ReLU` gets
+its slope from convexity, the other two from `Curvature`, which brackets `σ'`
+over the box and falls back on slope zero where that bracket is too loose.
 
 **Neither.** `Reshape` is a relabelling, and the only layer here that is
 *exact* rather than outer — it asks for `Reindex`, whose guarantee is an

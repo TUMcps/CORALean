@@ -1,3 +1,4 @@
 .lake/
 .elan/
 build.log
+__pycache__/
