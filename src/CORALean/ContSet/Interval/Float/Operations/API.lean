@@ -2,7 +2,12 @@ import CORALean.ContSet.Interval.Float.Operations.Point
 import CORALean.ContSet.Interval.Float.Operations.Residual
 import CORALean.ContSet.Interval.Float.Operations.Symmetric
 import CORALean.ContSet.Interval.Float.Operations.OfBounds
+import CORALean.ContSet.Interval.Float.Operations.SubsetOfBounds
+import CORALean.ContSet.Interval.Float.Operations.BoundProj
+import CORALean.ContSet.Interval.Float.Operations.BoundNegProj
+import CORALean.ContSet.Interval.Float.Operations.BoundDot
 import CORALean.ContSet.Interval.Float.Operations.And
+import CORALean.ContSet.Interval.Float.Operations.AndExact
 import CORALean.ContSet.Interval.Float.Operations.Plus
 import CORALean.ContSet.Interval.Float.Operations.LinComb
 import CORALean.ContSet.Interval.Float.Operations.Mtimes

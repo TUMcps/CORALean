@@ -1,6 +1,5 @@
 import CORALean.ContSet.Interval.Float.Operations.Plus
-import CORALean.ContSet.Interval.Float.Operations.Residual
-import CORALean.ContSet.Zonotope.Float.Zonotope
+import CORALean.ContSet.Zonotope.Float.Operations.CenterResidual
 
 /-!
 # `Zonotope.plus`
@@ -12,7 +11,7 @@ generators instead would cost `n` more on every addition.
 
 -- Authors:       Tobias Ladner
 -- Written:       16-August-2026
--- Last update:   ---
+-- Last update:   05-September-2026
 -- Last revision: ---
 
 namespace CORALean.Float
@@ -20,11 +19,6 @@ namespace CORALean.Float
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
-
-/-- Storing the lower of the two directed roundings leaves this much to pay. -/
-def Zonotope.centerResidual (a b : Vec 𝕋 n) : Interval 𝕋 n :=
-  Interval.residual (fun i => addDown (a i) (b i)) (fun i => addUp (a i) (b i))
-    (fun i => addDown (a i) (b i))
 
 def Zonotope.plus (Z₁ Z₂ : Zonotope 𝕋 n) : Zonotope 𝕋 n where
   h := Z₁.h + Z₂.h

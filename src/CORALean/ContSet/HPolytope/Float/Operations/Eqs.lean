@@ -1,0 +1,29 @@
+import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+
+/-!
+# `HPolytope.eqs`, over a floating-point scalar
+
+CORA's equality constructor. Takes an interval right-hand side, which is where
+an equality's rounding goes.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       02-September-2026
+-- Last update:   05-September-2026
+-- Last revision: ---
+
+namespace CORALean.Float
+
+open Matrix FloatOps SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] {q n : ℕ}
+
+def HPolytope.eqs (Ae : Mat 𝕋 q n) (be : Interval 𝕋 q) : HPolytope 𝕋 n where
+  m := 0
+  A := fun i => i.elim0
+  b := fun i => i.elim0
+  me := q
+  Ae := Ae
+  be := be
+
+end CORALean.Float

@@ -1,3 +1,4 @@
+import CORALean.ContSet.Zonotope.Float.Operations.Reduce
 import CORALean.ContSet.Zonotope.Float.Theorems.ReduceGirardOuter
 
 /-!

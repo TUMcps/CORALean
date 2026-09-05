@@ -16,7 +16,7 @@ both directions.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   05-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -36,9 +36,5 @@ def ConPolyZono.map (f : α →ₗ[ℝ] β) (C : ConPolyZono α) : ConPolyZono �
   A := C.A
   b := C.b
   EC := C.EC
-
-/-- The constraint is untouched, and `rfl` is the honest proof of it. -/
-theorem ConPolyZono.satisfies_map (f : α →ₗ[ℝ] β) (C : ConPolyZono α)
-    (a : Fin C.p → ℝ) : (C.map f).satisfies a ↔ C.satisfies a := Iff.rfl
 
 end CORALean.Real

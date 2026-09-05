@@ -1,4 +1,5 @@
 import CORALean.ContSet.Ellipsoid.Float.Operations.Mtimes
+import CORALean.ContSet.Ellipsoid.Float.Operations.MtimesResidual
 import CORALean.ContSet.Ellipsoid.Float.Theorems.MemGeneratorError
 import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
 import CORALean.ContSet.InflatedContSet.Theorems.MapSubset

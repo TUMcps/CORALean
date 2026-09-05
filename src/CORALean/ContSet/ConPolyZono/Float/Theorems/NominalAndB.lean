@@ -1,4 +1,7 @@
 import CORALean.ContSet.ConPolyZono.Float.Operations.And
+import CORALean.ContSet.ConPolyZono.Float.Operations.AndB
+import CORALean.ContSet.ConPolyZono.Real.Operations.AndB
+import CORALean.ContSet.ConPolyZono.Float.Operations.AndAgree
 import CORALean.ContSet.ConPolyZono.Float.Theorems.AndD
 import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealVecAppend
 

@@ -1,4 +1,5 @@
 import CORALean.ContSet.HPolytope.Real.Operations.LinComb
+import CORALean.ContSet.HPolytope.Real.Operations.SubsetOfBounds
 
 /-!
 # The certified convex combination encloses

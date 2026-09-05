@@ -1,5 +1,6 @@
 import CORALean.ContSet.ConPolyZono.Real.Operations.Dependent
-import CORALean.ContSet.ConPolyZono.Real.Operations.PadE
+import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsPadEIff
+import CORALean.ContSet.ConPolyZono.Real.Operations.SatisfiesDependentIff
 import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
 
 /-!

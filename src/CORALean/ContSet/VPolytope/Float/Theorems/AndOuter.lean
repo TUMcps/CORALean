@@ -1,6 +1,7 @@
 import CORALean.ContSet.Conversion.Float.Interval_to_VPolytope
 import CORALean.ContSet.Conversion.Float.VPolytope_to_Interval
 import CORALean.ContSet.Interval.Float.Operations.And
+import CORALean.ContSet.Interval.Float.Operations.AndExact
 import CORALean.ContSet.VPolytope.Float.Operations.And
 
 /-!

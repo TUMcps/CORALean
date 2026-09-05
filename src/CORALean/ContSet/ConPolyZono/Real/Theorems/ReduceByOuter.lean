@@ -1,4 +1,5 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.Reduce
+import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceBy
+import CORALean.ContSet.ConPolyZono.Real.Operations.DropRadius
 import CORALean.ContSet.ConPolyZono.Real.Theorems.MemConstruct
 import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
 import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne

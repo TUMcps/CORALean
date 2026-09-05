@@ -1,4 +1,7 @@
+import CORALean.ContSet.Ellipsoid.Float.Operations.CenterResidual
 import CORALean.ContSet.Ellipsoid.Float.Operations.Plus
+import CORALean.ContSet.Ellipsoid.Float.Operations.PlusG
+import CORALean.ContSet.Ellipsoid.Float.Operations.PlusGap
 import CORALean.ContSet.Ellipsoid.Float.Theorems.MemGeneratorError
 import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
 import CORALean.ContSet.InflatedContSet.Theorems.PlusSubset

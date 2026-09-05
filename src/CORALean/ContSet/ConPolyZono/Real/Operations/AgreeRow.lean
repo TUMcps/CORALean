@@ -1,0 +1,25 @@
+import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
+
+/-!
+# `ConPolyZono.agreeRow`
+
+The row pinning the two points together in one coordinate, read against the
+concatenated generator monomials.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       02-September-2026
+-- Last update:   05-September-2026
+-- Last revision: ---
+
+namespace CORALean.Real
+
+variable {n : ℕ}
+
+/-- The row pinning the two points together in coordinate `i`, read against the
+concatenated generator monomials. -/
+def ConPolyZono.agreeRow (C₁ C₂ : ConPolyZono (Vec ℝ n)) (i : Fin n) :
+    Fin (C₁.h + C₂.h) → ℝ :=
+  Fin.append (fun l => C₁.G l i) fun l => -C₂.G l i
+
+end CORALean.Real

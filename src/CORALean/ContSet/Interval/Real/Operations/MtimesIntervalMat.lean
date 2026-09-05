@@ -1,4 +1,5 @@
-import CORALean.ContSet.Interval.Real.Interval
+import CORALean.ContSet.Interval.Real.Operations.MulHi
+import CORALean.ContSet.Interval.Real.Operations.MulLo
 
 /-!
 # Intervals: multiplication by an interval matrix
@@ -15,18 +16,12 @@ state per row.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   05-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
 
 variable {m n : ℕ}
-
-/-- The least of the four corner products of `[a, b]` and `[c, d]`. -/
-def Interval.mulLo (a b c d : ℝ) : ℝ := min (min (a * c) (a * d)) (min (b * c) (b * d))
-
-/-- The greatest of the four. -/
-def Interval.mulHi (a b c d : ℝ) : ℝ := max (max (a * c) (a * d)) (max (b * c) (b * d))
 
 def Interval.mtimesIntervalMat (IM : Interval (Mat ℝ m n)) (I : Interval (Vec ℝ n)) :
     Interval (Vec ℝ m) where

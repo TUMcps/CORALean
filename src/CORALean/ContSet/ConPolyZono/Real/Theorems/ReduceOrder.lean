@@ -1,3 +1,5 @@
+import CORALean.ContSet.ConPolyZono.Real.Operations.Compact
+import CORALean.ContSet.ConPolyZono.Real.Operations.Reduce
 import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceGirardOrderLe
 
 /-!

@@ -1,4 +1,7 @@
 import CORALean.ContSet.VPolytope.Float.Operations.SupportBound
+import CORALean.ContSet.VPolytope.Float.Operations.BoundProj
+import CORALean.ContSet.VPolytope.Float.Operations.BoundNegProj
+import CORALean.ContSet.Interval.Float.Operations.SubsetOfBounds
 
 /-!
 # A hull as a box, over a floating-point scalar

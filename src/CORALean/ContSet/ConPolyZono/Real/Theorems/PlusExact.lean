@@ -1,4 +1,5 @@
 import CORALean.ContSet.ConPolyZono.Real.Operations.Plus
+import CORALean.ContSet.ConPolyZono.Real.Operations.SatisfiesPlusIff
 
 /-!
 # `ConPolyZono.plus` is exactly the Minkowski sum

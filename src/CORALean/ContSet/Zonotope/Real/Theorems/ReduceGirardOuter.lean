@@ -1,3 +1,4 @@
+import CORALean.ContSet.Zonotope.Real.Operations.ReduceGirard
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceByOuter
 
 /-!

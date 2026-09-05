@@ -1,4 +1,11 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.Compact
+import CORALean.ContSet.ConPolyZono.Real.Operations.AbsFactorExtendLeOne
+import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialFactorExtendLeft
+import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialFactorExtendRight
+import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialFactorIdxLeft
+import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialFactorIdxRight
+import CORALean.ContSet.ConPolyZono.Real.Operations.FactorExtend
+import CORALean.ContSet.ConPolyZono.Real.Operations.FactorIdx
+import CORALean.ContSet.ConPolyZono.Real.Operations.CompactFactors
 import CORALean.ContSet.ConPolyZono.Real.Theorems.HoldsCongr
 
 /-!

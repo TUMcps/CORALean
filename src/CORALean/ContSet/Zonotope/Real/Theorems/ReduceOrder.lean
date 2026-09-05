@@ -1,4 +1,4 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Reduce
+import CORALean.ContSet.Zonotope.Real.Operations.ReduceCombastel
 
 /-!
 # `Zonotope.reduceCombastel` bounds the generator count

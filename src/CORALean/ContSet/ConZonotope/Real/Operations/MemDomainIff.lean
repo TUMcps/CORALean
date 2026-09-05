@@ -1,0 +1,25 @@
+import CORALean.ContSet.ConZonotope.Real.Operations.Domain
+import CORALean.ContSet.HPolytope.Real.Theorems.AndExact
+import CORALean.ContSet.HPolytope.Real.Operations.MemUnitBoxIff
+
+/-!
+# Membership in `ConZonotope.domain`
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-September-2026
+-- Last update:   05-September-2026
+-- Last revision: ---
+
+namespace CORALean.Real
+
+variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+omit [AddCommGroup α] [Module ℝ α] in
+theorem ConZonotope.mem_domain_iff {C : ConZonotope α} {β : Vec ℝ C.h} :
+    β ∈ C.domain.construct ↔ (∀ j, |β j| ≤ 1) ∧ β ∈ C.P.construct := by
+  have hand : β ∈ C.domain.construct ↔ β ∈ (HPolytope.unitBox C.h).construct
+      ∧ β ∈ C.P.construct := HPolytope.mem_and_iff
+  rw [hand, HPolytope.mem_unitBox_iff]
+
+end CORALean.Real

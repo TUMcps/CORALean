@@ -1,4 +1,4 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.Compact
+import CORALean.ContSet.ConPolyZono.Float.Operations.CompactFactors
 import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactFactorsNominal
 import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
 

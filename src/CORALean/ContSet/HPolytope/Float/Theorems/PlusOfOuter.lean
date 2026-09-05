@@ -1,4 +1,5 @@
-import CORALean.ContSet.HPolytope.Float.Operations.Certified
+import CORALean.ContSet.HPolytope.Float.Operations.PlusOf
+import CORALean.ContSet.HPolytope.Float.Operations.SubsetOfBounds
 
 /-!
 # The float certified Minkowski sum encloses

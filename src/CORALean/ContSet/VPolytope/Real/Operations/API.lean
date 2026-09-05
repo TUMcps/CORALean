@@ -1,10 +1,16 @@
 import CORALean.ContSet.VPolytope.Real.Operations.EmptySet
+import CORALean.ContSet.VPolytope.Real.Operations.ConstructEmptySet
 import CORALean.ContSet.VPolytope.Real.Operations.Point
+import CORALean.ContSet.VPolytope.Real.Operations.ConstructPoint
+import CORALean.ContSet.VPolytope.Real.Operations.AndH
+import CORALean.ContSet.VPolytope.Real.Operations.AndHIsCompact
 import CORALean.ContSet.VPolytope.Real.Operations.And
 import CORALean.ContSet.VPolytope.Real.Operations.LinComb
 import CORALean.ContSet.VPolytope.Real.Operations.Map
 import CORALean.ContSet.VPolytope.Real.Operations.Mtimes
+import CORALean.ContSet.VPolytope.Real.Operations.MtimesEqMap
 import CORALean.ContSet.VPolytope.Real.Operations.Plus
+import CORALean.ContSet.VPolytope.Real.Operations.LeOfForallLe
 import CORALean.ContSet.VPolytope.Real.Operations.SupportBound
 
 /-!

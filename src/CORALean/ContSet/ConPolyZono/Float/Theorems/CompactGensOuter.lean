@@ -1,4 +1,7 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.Compact
+import CORALean.ContSet.ConPolyZono.Float.Operations.CompactGens
+import CORALean.ContSet.ConPolyZono.Float.Operations.CompactGensGap
+import CORALean.ContSet.ConPolyZono.Float.Operations.MergedCol
+import CORALean.ContSet.ConPolyZono.Float.Operations.MergedColUp
 import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
 import CORALean.ContSet.ConPolyZono.Float.Theorems.Merge
 import CORALean.ContSet.Interval.Float.Theorems.PlusOuter

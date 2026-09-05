@@ -1,6 +1,8 @@
+import CORALean.ContSet.Ellipsoid.Float.Operations.CenterResidual
 import CORALean.ContSet.Ellipsoid.Float.Operations.GeneratorError
+import CORALean.ContSet.Ellipsoid.Float.Operations.PlusG
+import CORALean.ContSet.Ellipsoid.Float.Operations.PlusGap
 import CORALean.ContSet.Interval.Float.Operations.Plus
-import CORALean.ContSet.Interval.Float.Operations.Residual
 
 /-!
 # `Ellipsoid.plus`
@@ -25,7 +27,7 @@ and the two scalings round, the first into a `residual` and the second into a
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   05-September-2026
 -- Last revision: ---
 
 namespace CORALean.Float
@@ -33,21 +35,6 @@ namespace CORALean.Float
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
-
-/-- Storing the lower of the two directed roundings leaves this much to pay. -/
-def Ellipsoid.centerResidual (a b : Vec 𝕋 n) : Interval 𝕋 n :=
-  Interval.residual (fun i => addDown (a i) (b i)) (fun i => addUp (a i) (b i))
-    (fun i => addDown (a i) (b i))
-
-/-- The two scaled generator blocks side by side, each rounded down. -/
-def Ellipsoid.plusG (s₁ s₂ : 𝕋) (E₁ E₂ : Ellipsoid 𝕋 n) : Mat 𝕋 n (E₁.k + E₂.k) :=
-  fun i => Fin.append (fun j => mulDown s₁ (E₁.G i j)) (fun j => mulDown s₂ (E₂.G i j))
-
-/-- How far each stored generator can be from its exact scaling. -/
-def Ellipsoid.plusGap (s₁ s₂ : 𝕋) (E₁ E₂ : Ellipsoid 𝕋 n) : Mat 𝕋 n (E₁.k + E₂.k) :=
-  fun i => Fin.append
-    (fun j => subUp (mulUp s₁ (E₁.G i j)) (mulDown s₁ (E₁.G i j)))
-    (fun j => subUp (mulUp s₂ (E₂.G i j)) (mulDown s₂ (E₂.G i j)))
 
 def Ellipsoid.plus (s₁ s₂ : 𝕋) (E₁ E₂ : Ellipsoid 𝕋 n) : Ellipsoid 𝕋 n where
   k := E₁.k + E₂.k

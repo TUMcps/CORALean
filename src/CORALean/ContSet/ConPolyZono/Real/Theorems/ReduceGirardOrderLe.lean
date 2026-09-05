@@ -1,4 +1,4 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.Reduce
+import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceGirard
 
 /-!
 # Girard's reduction bounds the generator count

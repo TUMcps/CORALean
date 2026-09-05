@@ -3,11 +3,15 @@ import CORALean.ContSet.Interval.Real.Operations.Center
 import CORALean.ContSet.Interval.Real.Operations.Radius
 import CORALean.ContSet.Interval.Real.Operations.IsNonempty
 import CORALean.ContSet.Interval.Real.Operations.And
+import CORALean.ContSet.Interval.Real.Operations.AndExact
 import CORALean.ContSet.Interval.Real.Operations.Plus
 import CORALean.ContSet.Interval.Real.Operations.LinComb
 import CORALean.ContSet.Interval.Real.Operations.Mtimes
+import CORALean.ContSet.Interval.Real.Operations.MulLo
+import CORALean.ContSet.Interval.Real.Operations.MulHi
 import CORALean.ContSet.Interval.Real.Operations.MtimesIntervalMat
 import CORALean.ContSet.Interval.Real.Operations.OfBounds
+import CORALean.ContSet.Interval.Real.Operations.SubsetOfBounds
 import CORALean.ContSet.Interval.Real.Operations.Reindex
 
 /-!

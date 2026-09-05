@@ -1,7 +1,5 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.GeneratorError
+import CORALean.ContSet.Ellipsoid.Float.Operations.MtimesResidual
 import CORALean.ContSet.Interval.Float.Operations.Mtimes
-import CORALean.ContSet.Interval.Float.Operations.Plus
-import CORALean.ContSet.Interval.Float.Operations.Residual
 
 /-!
 # `Ellipsoid.mtimes`
@@ -17,7 +15,7 @@ Exact over ℝ, and only `_outer` here. That gap is the rounding and nothing els
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   05-September-2026
 -- Last revision: ---
 
 namespace CORALean.Float
@@ -25,12 +23,6 @@ namespace CORALean.Float
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
-
-/-- What `mtimes` owes beyond its nominal part: the centre, and the
-generators. -/
-def Ellipsoid.mtimesResidual (M : Mat 𝕋 m n) (E : Ellipsoid 𝕋 n) : Interval 𝕋 m :=
-  (Interval.residual (mulVecDown M E.q) (mulVecUp M E.q) (mulVecDown M E.q)).plus
-    (Ellipsoid.generatorError (matMulDiff M E.G))
 
 def Ellipsoid.mtimes (M : Mat 𝕋 m n) (E : Ellipsoid 𝕋 n) : Ellipsoid 𝕋 m where
   k := E.k

@@ -3,8 +3,14 @@ import CORALean.ContSet.Zonotope.Real.Operations.Map
 import CORALean.ContSet.Zonotope.Real.Operations.LinMtimes
 import CORALean.ContSet.Zonotope.Real.Operations.Plus
 import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
+import CORALean.ContSet.Zonotope.Real.Operations.MtimesEqMap
+import CORALean.ContSet.Zonotope.Real.Operations.AbsBound
+import CORALean.ContSet.Zonotope.Real.Operations.RadiusReach
 import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
 import CORALean.ContSet.Zonotope.Real.Operations.LinComb
+import CORALean.ContSet.Zonotope.Real.Operations.ReduceBy
+import CORALean.ContSet.Zonotope.Real.Operations.ReduceGirard
+import CORALean.ContSet.Zonotope.Real.Operations.ReduceCombastel
 import CORALean.ContSet.Zonotope.Real.Operations.Reduce
 
 /-!

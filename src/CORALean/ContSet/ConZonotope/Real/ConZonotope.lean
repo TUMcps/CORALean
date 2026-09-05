@@ -1,5 +1,4 @@
 import CORALean.ContSet.HPolytope.Real.Operations.Comap
-import CORALean.ContSet.HPolytope.Real.Operations.OfMat
 import CORALean.ContSet.HPolytope.Real.Operations.UnitBox
 import CORALean.ContSet.HPolytope.Real.Theorems.AndExact
 import CORALean.ContSet.HPolytope.Real.Theorems.Convex

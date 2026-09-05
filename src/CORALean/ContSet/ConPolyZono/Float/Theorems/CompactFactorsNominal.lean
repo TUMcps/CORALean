@@ -1,4 +1,4 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.Compact
+import CORALean.ContSet.ConPolyZono.Float.Operations.CompactFactors
 import CORALean.ContSet.ConPolyZono.Real.Theorems.CompactExact
 
 /-!

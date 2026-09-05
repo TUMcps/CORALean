@@ -1,4 +1,5 @@
 import CORALean.ContSet.ConZonotope.Real.Operations.Domain
+import CORALean.ContSet.ConZonotope.Real.Operations.MemDomainIff
 import CORALean.ContSet.ConZonotope.Real.Theorems.Convex
 import CORALean.ContSet.ConZonotope.Real.Theorems.IsCompactDomain
 import CORALean.ContSet.Conversion.Real.HPolytope_to_VPolytope

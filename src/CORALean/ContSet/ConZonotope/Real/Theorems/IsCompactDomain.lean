@@ -1,4 +1,5 @@
 import CORALean.ContSet.ConZonotope.Real.Operations.Domain
+import CORALean.ContSet.ConZonotope.Real.Operations.MemDomainIff
 import CORALean.ContSet.HPolytope.Real.Theorems.IsClosed
 import CORALean.ContSet.Zonotope.Real.Theorems.ClosedBallEq
 

@@ -1,4 +1,5 @@
 import CORALean.ContSet.ConZonotope.Real.Operations.Domain
+import CORALean.ContSet.ConZonotope.Real.Operations.MemDomainIff
 
 /-!
 # A constrained zonotope is a polytope's affine image

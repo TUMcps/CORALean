@@ -1,4 +1,4 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Map
+import CORALean.ContSet.Zonotope.Real.Zonotope
 
 /-!
 # `Zonotope.mtimes`
@@ -22,9 +22,5 @@ def Zonotope.mtimes (M : Mat ℝ m n) (Z : Zonotope (Vec ℝ n)) : Zonotope (Vec
   h := Z.h
   c := M *ᵥ Z.c
   G := fun j => M *ᵥ Z.G j
-
-/-- True by `rfl`, and what lets `mtimes` inherit `map`'s exactness. -/
-theorem Zonotope.mtimes_eq_map (M : Mat ℝ m n) (Z : Zonotope (Vec ℝ n)) :
-    Zonotope.mtimes M Z = Z.map (Matrix.mulVecLin M) := rfl
 
 end CORALean.Real

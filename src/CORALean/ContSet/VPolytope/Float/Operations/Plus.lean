@@ -1,5 +1,6 @@
 import CORALean.ContSet.Interval.Float.Operations.Plus
 import CORALean.ContSet.VPolytope.Float.Operations.ColumnGap
+import CORALean.ContSet.VPolytope.Float.Operations.PairSum
 
 /-!
 # `VPolytope.plus`
@@ -11,7 +12,7 @@ covers the whole vertex list, which is what `columnGap` is for.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   05-September-2026
 -- Last revision: ---
 
 namespace CORALean.Float
@@ -19,11 +20,6 @@ namespace CORALean.Float
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
-
-/-- The pairwise vertex sums, rounded whichever way is asked. -/
-def VPolytope.pairSum (add : 𝕋 → 𝕋 → 𝕋) (P₁ P₂ : VPolytope 𝕋 n) :
-    Mat 𝕋 n (P₁.k * P₂.k) :=
-  fun i l => add (P₁.V i (finProdFinEquiv.symm l).1) (P₂.V i (finProdFinEquiv.symm l).2)
 
 def VPolytope.plus (P₁ P₂ : VPolytope 𝕋 n) : VPolytope 𝕋 n where
   k := P₁.k * P₂.k
