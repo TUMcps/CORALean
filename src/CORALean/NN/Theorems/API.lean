@@ -1,8 +1,13 @@
 import CORALean.NN.Theorems.LinearWithErrorZero
 import CORALean.NN.Theorems.MergeErrorSplit
+import CORALean.NN.Theorems.MinSuffExplanation
 import CORALean.NN.Theorems.NeuronMergingOuter
 import CORALean.NN.Theorems.PropagateOuter
 import CORALean.NN.Theorems.Robustness
+import CORALean.NN.Theorems.SuffExplanation
+import CORALean.NN.Theorems.SuffExplanationAbstract
+import CORALean.NN.Theorems.SuffExplanationConverseFails
+import CORALean.NN.Theorems.SuffExplanationTransfer
 import CORALean.NN.Theorems.Verified
 
 /-!
@@ -18,8 +23,16 @@ network reduction by neuron merging [1]: a plain linear layer as the error-free
 case of the adapted one, the single-bucket containment sound at every bucket,
 and disjoint buckets' errors composing by Minkowski sum.
 
+`SuffExplanation`, `MinSuffExplanation` and `SuffExplanationAbstract` are
+provable local explanations [2]; `SuffExplanationTransfer` carries sufficiency
+from an abstract network to the original, and `SuffExplanationConverseFails`
+is why that carrying is one-directional.
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for
       Formal Verification". TMLR. arXiv:2305.01932.
+* [2] S. Bassan, Y. Y. Elboher, T. Ladner, M. Althoff and G. Katz. "Explaining
+      Fast and Slow: Abstraction and Refinement of Provable Explanations".
+      ICML 2025.
 -/
