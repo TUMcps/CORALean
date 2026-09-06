@@ -27,6 +27,11 @@ import CORALean.ContSet.HPolytope.Real.Operations.MemSlabSelfIff
 import CORALean.ContSet.HPolytope.Real.Operations.Translate
 import CORALean.ContSet.HPolytope.Real.Operations.UnitBox
 import CORALean.ContSet.HPolytope.Real.Operations.MemUnitBoxIff
+import CORALean.ContSet.HPolytope.Real.Operations.HalfScaled
+import CORALean.ContSet.HPolytope.Real.Operations.MemHalfScaledIff
+import CORALean.ContSet.HPolytope.Real.Operations.MemHalfScaledComap
+import CORALean.ContSet.HPolytope.Real.Operations.RowsOfMemHalfScaledComap
+import CORALean.ContSet.HPolytope.Real.Operations.AbsLeOfUnitBoxRows
 
 /-!
 # What `HPolytope` computes
@@ -37,7 +42,8 @@ rows are determined by the inputs' rows.
 Exact, because they are: intersection concatenates the constraint lists,
 preimage precomposes them, the image under an *invertible* map is the preimage
 under its inverse, a translation moves each bound by what its own constraint
-reads off the shift, and a box is `2n` rows written out.
+reads off the shift, a weighted copy halves every right-hand side into the
+constraint that reads the weight, and a box is `2n` rows written out.
 
 Enclosing, because they are not: Minkowski sum, `linComb`, the image under a
 general map, and the bounding box all produce rows nobody named, so the caller

@@ -18,9 +18,14 @@ import CORALean.ContSet.ConZonotope.Real.Operations.Reduce
 `and`, `plus`, `map` and `mtimes` keep the constraints and stay exact — `and`
 being the one a zonotope cannot have. Multiplication by an interval matrix keeps
 them too, and is outer for the zonotope's reason rather than for the
-constraints'. `linComb` and `reduce` go through the enclosing zonotope and give
-the constraints up, which is where the representation currently loses precision
-that CORA does not.
+constraints'. `linComb` keeps them as well, weighting each side's
+constraints by the interpolation parameter; between two nonempty sets it is the
+convex hull exactly, where the enclosing zonotope is only an enclosure of it.
+
+`reduce` is the one operation that still goes through the enclosing zonotope and
+gives the constraints up. CORA reduces the zonotope the constraint rows lift to
+and reads the rows back off it, which asks for the equality system CORA's
+constraints are and this representation's polytope need not be.
 
 `OfMat` is CORA's constructor, whose constraints are an equality system, and
 `Domain` is the coefficient polytope the unit box and `P` make together.
