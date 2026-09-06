@@ -1,3 +1,4 @@
+import CORALean.ContSet.Conversion.Real.Capsule_to_Interval
 import CORALean.ContSet.Conversion.Real.ConPolyZono_to_ConZonotope
 import CORALean.ContSet.Conversion.Real.ConPolyZono_to_Ellipsoid
 import CORALean.ContSet.Conversion.Real.ConPolyZono_to_HPolytope
@@ -81,5 +82,6 @@ A halfspace description reaching a box is `2n` linear programs and no tighter
 than its certificates. Anything reaching a zonotope goes through a box, a tighter
 enclosure being a fitting problem; and dropping constraints loses exactly those.
 A polynomial zonotope's own conversions are all such enclosures, its sets not
-being convex, so none is the tightest a direct construction could give.
+being convex, so none is the tightest a direct construction could give. A
+`Capsule` reaches only a box, being closed under nothing else the interface names.
 -/
