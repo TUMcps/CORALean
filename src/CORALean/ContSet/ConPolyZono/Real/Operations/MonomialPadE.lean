@@ -9,7 +9,7 @@ be carried through unchanged.
 
 -- Authors:       Tobias Ladner
 -- Written:       04-September-2026
--- Last update:   05-September-2026
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 
@@ -29,12 +29,12 @@ theorem ConPolyZono.monomial_padE {p s : ℕ} (EC : Fin p → Fin s → ℕ) (r 
   have hnew : (∏ k : Fin r, a (Fin.natAdd p k)
       ^ ConPolyZono.padE EC r (Fin.natAdd p k) l) = 1 :=
     Finset.prod_eq_one fun k _ => by
-      simp only [ConPolyZono.padE, Fin.append_right, pow_zero]
+      simp only [ConPolyZono.padE, PolyZonotope.padE, Fin.append_right, pow_zero]
   have hold : (∏ k : Fin p, a (Fin.castAdd r k)
       ^ ConPolyZono.padE EC r (Fin.castAdd r k) l)
       = ∏ k, a (Fin.castAdd r k) ^ EC k l :=
     Finset.prod_congr rfl fun k _ => by
-      simp only [ConPolyZono.padE, Fin.append_left]
+      simp only [ConPolyZono.padE, PolyZonotope.padE, Fin.append_left]
   rw [hnew, hold, mul_one]
 
 end CORALean.Real

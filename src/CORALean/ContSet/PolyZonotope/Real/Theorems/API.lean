@@ -21,6 +21,8 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapDepExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinPoint
 import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinExact
+import CORALean.ContSet.PolyZonotope.Real.Theorems.PadBackPoint
+import CORALean.ContSet.PolyZonotope.Real.Theorems.PadFrontPoint
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MulPoint
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MulExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyReal
@@ -56,25 +58,25 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxExpGreedyOuter
 /-!
 # What `PolyZonotope` guarantees
 
-`plus`, `map`, `dependent`, `quadMap` and `compact` exactly; `linComb` and `reduce` as
-enclosures, each docstring saying which coefficients or dropped generators cost the other way.
-
-`reduce` is the one operation with two guarantees, and it needs both: an enclosure alone is met
-by a set that grows every step, so `reduce_order_le` bounds the size it keeps.
+`plus`, `map`, `dependent`, `quadMap` and `compact` exactly; `linComb` and `reduce` as enclosures,
+each docstring saying which coefficients or dropped generators cost the other way. `reduce` is the
+one operation with two guarantees, and it needs both: an enclosure alone is met by a set that
+grows every step, so `reduce_order_le` bounds the size it keeps.
 
 `bilin_exact` equates a pairing with the image of the shared factors under `a ↦ f (point S₁ a)
 (point S₂ a)`, never `f` over the two sets; `mul_exact` is it entrywise, `evalPoly_exact` carries
 that to a polynomial per coordinate and `evalPolyReal_ofFn` matches Horner to the monomial sum.
-`point_mem_construct` is the way back and `exists_point_of_q_zero`, once `evalPoly_q` says
-nothing is independent, the way there. `relaxExp_outer` holds at every partition naming two
-generators, `eDiff` owing no proof of optimality. `relaxExpEven_outer` adds the evenness that
-makes the drift one-sided, `relaxExpMulti_outer` asks nothing at all, and `sub_monomial_mem_eDrift`
-brackets the drift on both sides out of `sub_pow_nonpos` and `sub_monomial_nonpos_of_pow`,
-which lets `relaxExpMid_outer` shift at any parity. `expEdge_acyclic` has no cycles,
-`relaxExpEven_outer_of_edge` reads an edge, and `relaxExpGreedy_outer` loops at any selection.
+`padBack_point` and `padFront_point` say padding moves no point, so *independent* factors pair by
+`bilin` too. `point_mem_construct` is the way back and `exists_point_of_q_zero`, once `evalPoly_q`
+says nothing is independent, the way there. `relaxExp_outer` holds at every partition naming two
+generators, `eDiff` owing no optimality. `relaxExpEven_outer` adds evenness, `relaxExpMulti_outer`
+asks nothing, and `sub_monomial_mem_eDrift` brackets the drift out of `sub_pow_nonpos` and
+`sub_monomial_nonpos_of_pow`, letting `relaxExpMid_outer` shift at any parity. `expEdge_acyclic`
+has no cycles, `relaxExpEven_outer_of_edge` reads an edge, and `relaxExpGreedy_outer` loops at any
+selection.
 
-`quadMap_exact` is the one that distinguishes the representation: no convex representation here
-can state it. `compact_exact` is the one an order bound rests on, saying the generator count may
-fall without the set moving, which is what `reduce_outer` trades against precision. The monomial
-facts and `MemConstruct` are what every one of them is stated over.
+`quadMap_exact` distinguishes the representation: no convex one here can state it. `compact_exact`
+is what an order bound rests on: the generator count may fall without the set moving, which is
+what `reduce_outer` trades against precision. The monomial facts and `MemConstruct` are what every
+one of them is stated over.
 -/
