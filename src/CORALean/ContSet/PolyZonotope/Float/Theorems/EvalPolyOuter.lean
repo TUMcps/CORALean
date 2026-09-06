@@ -78,7 +78,7 @@ theorem PolyZonotope.aux_evalPoly_close (S : PolyZonotope 𝕋 n) (coeffs : List
               (coeffs.map toRealVec)).2.trans (PolyZonotope.nominal_p S)) k)) i
         - Real.PolyZonotope.point (nominal (PolyZonotope.evalPolyP S coeffs).1)
             (fun k => b (Fin.cast (PolyZonotope.evalPolyP S coeffs).2 k)) i)
-      ∈ ((PolyZonotope.evalPolyP S coeffs).1.err).construct := by
+      ∈ ((PolyZonotope.evalPolyP S coeffs).1.err).construct := by -- --- PROOF ---
   -- both sides are the zero vector at the empty list, matched termwise below
   induction coeffs with
   | nil =>
@@ -89,7 +89,7 @@ theorem PolyZonotope.aux_evalPoly_close (S : PolyZonotope 𝕋 n) (coeffs : List
               ([] : List (Vec ℝ n))).2.trans (PolyZonotope.nominal_p S)) k)) i
           - Real.PolyZonotope.point (nominal (PolyZonotope.evalPolyP S ([] : List (Vec 𝕋 n))).1)
               (fun k => b (Fin.cast (PolyZonotope.evalPolyP S ([] : List (Vec 𝕋 n))).2 k)) i)
-        = (0 : Vec ℝ n) := by
+        = (0 : Vec ℝ n) := by -- --- PROOF ---
       funext j
       simp only [Real.PolyZonotope.evalPolyP, PolyZonotope.evalPolyP]
       have hsumR : ∀ {α : Type} [AddCommMonoid α] (f : Fin (0 : ℕ) → α), ∑ x, f x = 0 :=
@@ -310,7 +310,7 @@ theorem PolyZonotope.evalPoly_outer (S : PolyZonotope 𝕋 n) (coeffs : List (Ve
     (fun a : Fin S.p → ℝ => fun i => Real.PolyZonotope.evalPolyReal
         (coeffs.map fun v => toReal (v i))
         (Real.PolyZonotope.point (nominal S) a i)) '' {a | ∀ k, |a k| ≤ 1}
-      ⊆ (PolyZonotope.evalPoly S coeffs).construct := by
+      ⊆ (PolyZonotope.evalPoly S coeffs).construct := by -- --- PROOF ---
   rintro _ ⟨a, ha, rfl⟩
   have hexact := Real.PolyZonotope.evalPoly_exact (nominal S) (coeffs.map toRealVec) a
   -- one coordinate of a list of coefficient vectors is that coordinate's own scalar list

@@ -101,7 +101,7 @@ theorem aux_norm_constTail_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) (η : ℕ
     (hε : ‖r • A‖ / ((η : ℝ) + 2) < 1) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) :
     ‖∑' i : ℕ, (((Nat.factorial (i + η + 2) : ℝ))⁻¹
         * (t ^ (i + η + 2) - (t / r) * r ^ (i + η + 2))) • A ^ (i + η + 1)‖
-      ≤ r * MatExp.expRemainderBound (r • A) η := by
+      ≤ r * MatExp.expRemainderBound (r • A) η := by -- --- PROOF ---
   have hs0 : 0 ≤ t / r := div_nonneg ht0 hr.le
   have hs1 : t / r ≤ 1 := (div_le_one hr).mpr htr
   have hrA : ‖r • A‖ = r * ‖A‖ := by rw [norm_smul, Real.norm_eq_abs, abs_of_pos hr]
@@ -112,7 +112,7 @@ theorem aux_norm_constTail_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) (η : ℕ
       ‖(((Nat.factorial (i + η + 2) : ℝ))⁻¹
           * (t ^ (i + η + 2) - (t / r) * r ^ (i + η + 2))) • A ^ (i + η + 1)‖
         ≤ r * ((‖r • A‖ ^ (η + 1) / Nat.factorial (η + 1))
-            * (‖r • A‖ / ((η : ℝ) + 2)) ^ i) := by
+            * (‖r • A‖ / ((η : ℝ) + 2)) ^ i) := by -- --- PROOF ---
     intro i
     have hfp : (0:ℝ) < (Nat.factorial (i + η + 1) : ℝ) := by
       exact_mod_cast Nat.factorial_pos _
@@ -179,7 +179,7 @@ theorem MatExp.expIntegralDiff_mem_constCorrectionMatrix (A : Mat ℝ n n) {r : 
     (hr : 0 < r) (η : ℕ) (hε : ‖r • A‖ / ((η : ℝ) + 2) < 1) {t : ℝ}
     (ht0 : 0 ≤ t) (htr : t ≤ r) :
     MatExp.expIntegral A t - (t / r) • MatExp.expIntegral A r
-      ∈ (MatExp.constCorrectionMatrix A r η).construct := by
+      ∈ (MatExp.constCorrectionMatrix A r η).construct := by -- --- PROOF ---
   have hs0 : 0 ≤ t / r := div_nonneg ht0 hr.le
   have hs1 : t / r ≤ 1 := (div_le_one hr).mpr htr
   set f : ℕ → Mat ℝ n n := fun i =>

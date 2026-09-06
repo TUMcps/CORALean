@@ -45,7 +45,7 @@ theorem ConPolyZono.satisfies_andDep_iff (C₁ C₂ : ConPolyZono (Vec ℝ n))
               * PolyZonotope.monomial C₁.E (fun k => a (Fin.castAdd C₂.p k)) l)
             - ∑ l, C₂.G l i
               * PolyZonotope.monomial C₂.E (fun k => a (Fin.natAdd C₁.p k)) l
-          ≤ C₂.c i - C₁.c i + D.sup i := by
+          ≤ C₂.c i - C₁.c i + D.sup i := by -- --- PROOF ---
   have hcol : (fun l => PolyZonotope.monomial (ConPolyZono.appendE
         (PolyZonotope.plusE C₁.EC C₂.EC) (PolyZonotope.plusE C₁.E C₂.E)) a
           (Fin.castAdd (C₁.h + C₂.h) l))
@@ -57,7 +57,7 @@ theorem ConPolyZono.satisfies_andDep_iff (C₁ C₂ : ConPolyZono (Vec ℝ n))
           (PolyZonotope.plusE C₁.EC C₂.EC) (PolyZonotope.plusE C₁.E C₂.E)) a)
           (Fin.castAdd n i)
         = (ConPolyZono.plusA C₁.A C₂.A *ᵥ
-            PolyZonotope.monomial (PolyZonotope.plusE C₁.EC C₂.EC) a) i := by
+            PolyZonotope.monomial (PolyZonotope.plusE C₁.EC C₂.EC) a) i := by -- --- PROOF ---
     intro i
     rw [ConPolyZono.mulVec_andA_left, hcol]
   -- then the agreement rows, each side's monomials read off its own factors

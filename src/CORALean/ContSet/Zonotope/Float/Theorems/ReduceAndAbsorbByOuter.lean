@@ -62,7 +62,7 @@ theorem Zonotope.aux_sum_univ_reduceAndAbsorbBy {Z : Zonotope 𝕋 n}
 
 theorem Zonotope.reduceAndAbsorbBy_outer (Z : Zonotope 𝕋 n)
     (part : Split (Fin Z.h) into (Fin q) and (Fin r)) :
-    Z.construct ⊆ (Z.reduceAndAbsorbBy part).construct := by
+    Z.construct ⊆ (Z.reduceAndAbsorbBy part).construct := by -- --- PROOF ---
   rintro _ ⟨z, hz', e, he, rfl⟩
   obtain ⟨β, hβ, hz⟩ := Zonotope.mem_nominalSet_iff.mp hz'
   have hmerged := Zonotope.aux_abs_merged_le_radius Z part hβ he

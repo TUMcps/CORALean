@@ -50,7 +50,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 theorem PolyZonotope.aux_mtimes_nominal (M : Mat 𝕋 m n) (PZ : PolyZonotope 𝕋 n) :
     (toRealMat M *ᵥ ·) '' nominalSet PZ ⊆
       nominalSet (PolyZonotope.mtimes M PZ)
-        + (PolyZonotope.mtimesResidual M PZ).construct := by
+        + (PolyZonotope.mtimesResidual M PZ).construct := by -- --- PROOF ---
   rintro _ ⟨x, hx', rfl⟩
   obtain ⟨a, β, ha, hβ, hx⟩ := PolyZonotope.mem_nominalSet_iff.mp hx'
   have hres : (fun i => (∑ k, toReal (M i k) * toReal (PZ.c k))

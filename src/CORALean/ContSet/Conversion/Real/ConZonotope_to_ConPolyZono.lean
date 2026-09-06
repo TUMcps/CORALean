@@ -110,9 +110,9 @@ theorem ConZonotope.aux_mulVec_conA (C : ConZonotope (Vec ℝ n)) (β : Vec ℝ 
 polytope said of the coefficients — the lower bounds being free. -/
 theorem ConZonotope.satisfies_conPolyZono_iff (C : ConZonotope (Vec ℝ n)) (β : Vec ℝ C.h)
     (hβ : ∀ j, |β j| ≤ 1) :
-    C.conPolyZono.satisfies β ↔ β ∈ C.P.construct := by
+    C.conPolyZono.satisfies β ↔ β ∈ C.P.construct := by -- --- PROOF ---
   have hlin : ∀ i : Fin C.P.m, (ConZonotope.conA C *ᵥ β) (Fin.castAdd C.P.me i)
-      = C.P.A i β := by
+      = C.P.A i β := by -- --- PROOF ---
     intro i
     show ∑ j, ConZonotope.conA C (Fin.castAdd C.P.me i) j * β j = _
     rw [ConZonotope.aux_apply_eq_sum (C.P.A i) β]

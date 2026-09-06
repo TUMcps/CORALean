@@ -140,14 +140,14 @@ theorem LinearSys.inputSolution_outer [Mtimes ℐ S]
     (hu : ∀ τ ∈ Set.Ioc (0:ℝ) r, u (r - τ) ∈ construct U)
     (hmeas : AEStronglyMeasurable (fun τ => u (r - τ)) (volume.restrict (Set.Ioc 0 r))) :
     (∫ s in (0:ℝ)..r, exp ((r - s) • toRealMat sys.A) *ᵥ u s)
-      ∈ construct (sys.inputSolution r η U) := by
+      ∈ construct (sys.inputSolution r η U) := by -- --- PROOF ---
   set A := toRealMat sys.A with hA
   set g : ℝ → Vec ℝ n := fun τ => u (r - τ) with hg
   obtain ⟨C, hC⟩ := hbdd.exists_norm_le
   -- integrability, from boundedness and measurability, once for every piece
   have hint : ∀ (F : ℝ → Vec ℝ n) (K : ℝ),
       AEStronglyMeasurable F (volume.restrict (Set.Ioc 0 r)) →
-      (∀ τ ∈ Set.Ioc (0:ℝ) r, ‖F τ‖ ≤ K) → IntervalIntegrable F volume 0 r := by
+      (∀ τ ∈ Set.Ioc (0:ℝ) r, ‖F τ‖ ≤ K) → IntervalIntegrable F volume 0 r := by -- --- PROOF ---
     intro F K hFm hFb
     rw [intervalIntegrable_iff_integrableOn_Ioc_of_le hr.le]
     exact ⟨hFm, HasFiniteIntegral.restrict_of_bounded (C := K) measure_Ioc_lt_top

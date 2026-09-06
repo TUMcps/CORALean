@@ -119,7 +119,7 @@ theorem LinearSys.Trajectory.inputSolution_timeInterval_outer_split
             (Mtimes.mtimes (𝕄 := Mat ℝ)
               (MatExp.expIntegral (toRealMat sys.A) r) Sg)
             (Mtimes.mtimes (𝕄 := ℐ) (MatExp.constCorrectionMatrix (toRealMat sys.A) r η) P))
-          (sys.inputSolution r η U₀)) := by
+          (sys.inputSolution r η U₀)) := by -- --- PROOF ---
   set A := toRealMat sys.A with hA
   have hTt : Set.Icc (0:ℝ) t ⊆ T := fun s hs => hT ⟨hs.1, le_trans hs.2 htr⟩
   have hs0 : 0 ≤ t / r := div_nonneg ht0 hr.le

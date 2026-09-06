@@ -66,7 +66,7 @@ theorem NonlinearSys.Trajectory.relinReach_outer {sys : NonlinearSys n m} {T : S
     (hUd : ∀ i < N, (NonlinearSys.linearize (steps i).A).stepInput
       (fun t => sys.f (x t) (u t) - (steps i).A *ᵥ x t) Δt i ∈ construct (Ud i))
     (o : ℕ) :
-    ∀ i ≤ N, x ((i : ℝ) * Δt) ∈ construct (sys.relinReach o Δt steps Ud R₀ i) := by
+    ∀ i ≤ N, x ((i : ℝ) * Δt) ∈ construct (sys.relinReach o Δt steps Ud R₀ i) := by -- --- PROOF ---
   intro i
   -- the induction is on the step count, every hypothesis being asked per step
   induction i with

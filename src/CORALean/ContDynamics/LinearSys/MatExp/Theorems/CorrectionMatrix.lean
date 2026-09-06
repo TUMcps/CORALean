@@ -60,7 +60,7 @@ theorem aux_norm_expDiff_tail_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) (η : 
     (hε : ‖r • A‖ / ((η : ℝ) + 2) < 1) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) :
     ‖∑' i : ℕ, (((Nat.factorial (i + (η + 1)) : ℝ))⁻¹
         * (t ^ (i + (η + 1)) - (t / r) * r ^ (i + (η + 1)))) • A ^ (i + (η + 1))‖
-      ≤ MatExp.expRemainderBound (r • A) η := by
+      ≤ MatExp.expRemainderBound (r • A) η := by -- --- PROOF ---
   have hs0 : 0 ≤ t / r := div_nonneg ht0 hr.le
   have hs1 : t / r ≤ 1 := (div_le_one hr).mpr htr
   have hrA : ‖r • A‖ = r * ‖A‖ := by rw [norm_smul, Real.norm_eq_abs, abs_of_pos hr]
@@ -119,7 +119,7 @@ set_option maxHeartbeats 1000000 in
 theorem MatExp.expDiff_mem_correctionMatrix (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) {m : ℕ}
     (hε : ‖r • A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) :
     exp (t • A) - 1 - (t / r) • (exp (r • A) - 1)
-      ∈ (MatExp.correctionMatrix A r (m + 2)).construct := by
+      ∈ (MatExp.correctionMatrix A r (m + 2)).construct := by -- --- PROOF ---
   have hs0 : 0 ≤ t / r := div_nonneg ht0 hr.le
   have hs1 : t / r ≤ 1 := (div_le_one hr).mpr htr
   set f : ℕ → Mat ℝ n n := fun i =>

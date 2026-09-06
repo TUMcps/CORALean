@@ -132,7 +132,7 @@ theorem PolyZonotope.aux_relaxExpMid_nominal (PZ : PolyZonotope 𝕋 n)
     (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (k₀ : Fin PZ.p)
     (hsim : ∀ k, k ≠ k₀ → PZ.E k (part.right 0) = PZ.E k (part.right 1)) :
     nominalSet PZ ⊆ nominalSet (PZ.relaxExpMid part k₀)
-      + (PolyZonotope.generatorError (PZ.relaxGapMid part k₀)).construct := by
+      + (PolyZonotope.generatorError (PZ.relaxGapMid part k₀)).construct := by -- --- PROOF ---
   intro x hx
   obtain ⟨a, β, ha, hβ, hxi⟩ := PolyZonotope.mem_nominalSet_iff.mp hx
   obtain ⟨hdlo, hdhi⟩ := Set.mem_Icc.mp

@@ -52,7 +52,7 @@ set_option maxHeartbeats 400000 in
 theorem ConZonotope.mtimesIntervalMat_outer (IM : Interval (Mat ℝ m n))
     (C : ConZonotope (Vec ℝ n)) :
     (⋃ A ∈ IM.construct, (A *ᵥ ·) '' C.construct)
-      ⊆ (ConZonotope.mtimesIntervalMat IM C).construct := by
+      ⊆ (ConZonotope.mtimesIntervalMat IM C).construct := by -- --- PROOF ---
   rintro y hy
   simp only [Set.mem_iUnion, Set.mem_image, exists_prop] at hy
   obtain ⟨A, hA, x, hxmem, rfl⟩ := hy
@@ -62,7 +62,7 @@ theorem ConZonotope.mtimesIntervalMat_outer (IM : Interval (Mat ℝ m n))
   have hxb := Zonotope.abs_le_absBound (Z := C.zonotope) hβ hx
   -- what the radius is allowed to add to coordinate `i`
   set err : Fin m → ℝ := fun i => ∑ j, (A i j - IM.center i j) * x j with herr
-  have herrb : ∀ i, |err i| ≤ Zonotope.radiusReach IM C.zonotope i := by
+  have herrb : ∀ i, |err i| ≤ Zonotope.radiusReach IM C.zonotope i := by -- --- PROOF ---
     intro i
     calc |err i|
         ≤ ∑ j, |(A i j - IM.center i j) * x j| := Finset.abs_sum_le_sum_abs _ _

@@ -197,13 +197,13 @@ theorem PolyZonotope.aux_linComb_nominal (PZ₁ PZ₂ : PolyZonotope 𝕋 n) :
         + ((PolyZonotope.midpointResidual PZ₁.c PZ₂.c).construct
             + ((PolyZonotope.halfDiffError PZ₁.c PZ₂.c).construct
                 + (Zonotope.generatorError
-                    (PolyZonotope.linCombGIDiff PZ₁ PZ₂)).construct)) := by
+                    (PolyZonotope.linCombGIDiff PZ₁ PZ₂)).construct)) := by -- --- PROOF ---
   rintro _ ⟨y₁, hy₁', y₂, hy₂', lam, ⟨hl0, hl1⟩, rfl⟩
   obtain ⟨a₁, β₁, ha₁, hβ₁, hy₁⟩ := PolyZonotope.mem_nominalSet_iff.mp hy₁'
   obtain ⟨a₂, β₂, ha₂, hβ₂, hy₂⟩ := PolyZonotope.mem_nominalSet_iff.mp hy₂'
   have hcf : ∀ j : Fin (PZ₁.q + PZ₂.q),
       |Fin.append (Real.Zonotope.pairCoeffSum β₁ β₂ lam)
-        (Real.Zonotope.pairCoeffDiff β₁ β₂ lam) j| ≤ 1 := by
+        (Real.Zonotope.pairCoeffDiff β₁ β₂ lam) j| ≤ 1 := by -- --- PROOF ---
     refine Fin.addCases ?_ ?_
     · intro j
       simpa using Real.Zonotope.abs_pairCoeffSum_le_one hβ₁ hβ₂ hl0 hl1 j

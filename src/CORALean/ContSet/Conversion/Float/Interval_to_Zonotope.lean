@@ -60,7 +60,7 @@ def Interval.zonotope (I : Interval 𝕋 n) : Zonotope 𝕋 n where
 /-- The generators alone already cover the box, before the error box is even
 consulted — which is what lets a caller read off coefficients directly. -/
 theorem Interval.subset_nominal_zonotope (I : Interval 𝕋 n) :
-    I.construct ⊆ InflatedContSet.nominalSet I.zonotope := by
+    I.construct ⊆ InflatedContSet.nominalSet I.zonotope := by -- --- PROOF ---
   intro x hx
   have hlo : ∀ i, toReal (I.inf i) ≤ x i := fun i => (hx i).1
   have hhi : ∀ i, x i ≤ toReal (I.sup i) := fun i => (hx i).2

@@ -81,7 +81,7 @@ theorem PolyZonotope.aux_relaxExp_nominal (PZ : PolyZonotope 𝕋 n)
     (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (k₀ : Fin PZ.p)
     (hsim : ∀ k, k ≠ k₀ → PZ.E k (part.right 0) = PZ.E k (part.right 1)) :
     nominalSet PZ ⊆ nominalSet (PZ.relaxExp part k₀)
-      + (PolyZonotope.generatorError (PZ.relaxGap part k₀)).construct := by
+      + (PolyZonotope.generatorError (PZ.relaxGap part k₀)).construct := by -- --- PROOF ---
   intro x hx
   obtain ⟨a, β, ha, hβ, hxi⟩ := PolyZonotope.mem_nominalSet_iff.mp hx
   have habs : |Real.PolyZonotope.monomial PZ.E a (part.right 0)
@@ -93,7 +93,7 @@ theorem PolyZonotope.aux_relaxExp_nominal (PZ : PolyZonotope 𝕋 n)
       - Real.PolyZonotope.monomial PZ.E a (part.right 1)) with ht
   have hcoef : (PZ.relaxWidth part k₀ : ℝ) * t
       = Real.PolyZonotope.monomial PZ.E a (part.right 0)
-        - Real.PolyZonotope.monomial PZ.E a (part.right 1) := by
+        - Real.PolyZonotope.monomial PZ.E a (part.right 1) := by -- --- PROOF ---
     rw [ht]
     exact Real.Zonotope.mul_coefficient habs
   -- the kept columns keep their monomials, and the merged one takes the second's

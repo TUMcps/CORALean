@@ -66,7 +66,7 @@ theorem Interval.aux_ellipsoidG_ge (I : Interval 𝕋 n) (σ : 𝕋) (i : Fin n)
 set_option maxHeartbeats 400000 in
 theorem Interval.subset_nominal_ellipsoid (I : Interval 𝕋 n) (σ : 𝕋) (hσ : 0 < toReal σ)
     (hn : (n : ℝ) ≤ toReal (mulDown σ σ)) :
-    I.construct ⊆ nominalSet (I.ellipsoid σ) := by
+    I.construct ⊆ nominalSet (I.ellipsoid σ) := by -- --- PROOF ---
   intro x hx
   have hreach : ∀ i, toReal (I.center i) - toReal (I.radiusFrom i) ≤ x i
       ∧ x i ≤ toReal (I.center i) + toReal (I.radiusFrom i) := fun i =>

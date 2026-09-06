@@ -71,7 +71,7 @@ theorem ConZonotope.aux_value_and (C₁ C₂ : ConZonotope (Vec ℝ n))
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.and_exact (C₁ C₂ : ConZonotope (Vec ℝ n)) :
-    C₁.construct ∩ C₂.construct = (C₁.and C₂).construct := by
+    C₁.construct ∩ C₂.construct = (C₁.and C₂).construct := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · rintro x ⟨⟨β₁, hβ₁, hP₁, hx₁⟩, β₂, hβ₂, hP₂, hx₂⟩
     refine ⟨Fin.append β₁ β₂, ?_, ?_, ?_⟩

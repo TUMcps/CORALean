@@ -47,7 +47,7 @@ over-approximates, with the drift's midpoint moved into the centre. -/
 theorem PolyZonotope.relaxExpMid_outer (PZ : PolyZonotope α)
     (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (k₀ : Fin PZ.p)
     (hsim : ∀ k, k ≠ k₀ → PZ.E k (part.right 0) = PZ.E k (part.right 1)) :
-    PZ.construct ⊆ (PZ.relaxExpMid part k₀).construct := by
+    PZ.construct ⊆ (PZ.relaxExpMid part k₀).construct := by -- --- PROOF ---
   rintro x ⟨a, β, ha, hβ, rfl⟩
   obtain ⟨hlo, hhi⟩ := Set.mem_Icc.mp
     (PolyZonotope.sub_monomial_mem_eDrift (k₀ := k₀) PZ.E ha hsim)
@@ -62,7 +62,7 @@ theorem PolyZonotope.relaxExpMid_outer (PZ : PolyZonotope α)
   have hradval : (PZ.relaxDrift part k₀).2
       = (((PolyZonotope.eDrift PZ.E k₀ (part.right 0) (part.right 1)).2 : ℝ)
         + ((PolyZonotope.eDrift PZ.E k₀ (part.right 0) (part.right 1)).1 : ℝ)) / 2 := rfl
-  have hnn : (0:ℝ) ≤ (PZ.relaxDrift part k₀).2 := by
+  have hnn : (0:ℝ) ≤ (PZ.relaxDrift part k₀).2 := by -- --- PROOF ---
     rw [hradval]
     linarith
   -- the bracket read as a midpoint and a half-width
