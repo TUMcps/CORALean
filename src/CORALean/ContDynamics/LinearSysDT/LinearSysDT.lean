@@ -62,6 +62,14 @@ structure LinearSysDT.TrajectoryOn (sys : LinearSysDT 𝕋 n) (R₀ U : S n) (K 
   input (k : ℕ) (hk : k < K) : u k ∈ construct U
   step (k : ℕ) (hk : k < K) : x (k + 1) = toRealMat sys.A *ᵥ x k + u k
 
+/-- A zero-order hold: one point `u` of `U`, reused at every step, unlike
+`Trajectory` where `input` lets a fresh point be picked each time. -/
+structure LinearSysDT.HeldTrajectory (sys : LinearSysDT 𝕋 n) (R₀ U : S n)
+    (x : ℕ → Vec ℝ n) (u : Vec ℝ n) : Prop where
+  init : x 0 ∈ construct R₀
+  input : u ∈ construct U
+  step (k : ℕ) : x (k + 1) = toRealMat sys.A *ᵥ x k + u
+
 end CORALean.Real
 
 
