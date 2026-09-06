@@ -8,7 +8,10 @@ import CORALean.ContSet.Zonotope.Real.Theorems.LmtimesSingletonOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 import CORALean.ContSet.Zonotope.Real.Theorems.MtimesIntervalMatOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.MtimesMatZonotopeOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
 import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+import CORALean.ContSet.Zonotope.Real.Theorems.RecentreSubMem
+import CORALean.ContSet.Zonotope.Real.Theorems.RecentreZeroMem
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOuter
 
 /-!
@@ -23,7 +26,7 @@ computed.
 
 -- Authors:       Tobias Ladner
 -- Written:       18-August-2026
--- Last update:   02-September-2026
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 
@@ -51,6 +54,18 @@ instance {α : Type} [AddCommGroup α] [Module ℝ α] : ConvexSet (Zonotope α)
 coefficient cube is what a zonotope is, and only compactness survives it. -/
 instance {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α] : CompactSet (Zonotope α) α :=
   ⟨Zonotope.isCompact_construct⟩
+
+instance {α : Type} [AddCommGroup α] [Module ℝ α] : OfPoint (Zonotope α) α where
+  ofPoint := Zonotope.ofPoint
+  mem_ofPoint := Zonotope.mem_ofPoint
+
+/-- `centre` is `Zonotope.c` directly: a field projection needs no operation
+of its own. -/
+instance {α : Type} [AddCommGroup α] [Module ℝ α] : Recentre (Zonotope α) α where
+  centre Z := Z.c
+  recentre := Zonotope.recentre
+  zero_mem_recentre := Zonotope.zero_mem_recentre
+  sub_centre_mem_recentre := Zonotope.sub_centre_mem_recentre
 
 instance : Plus (Zonotope (Vec ℝ n)) (Vec ℝ n) where
   plus := Zonotope.plus

@@ -37,7 +37,7 @@ import CORALean.ContDynamics.LinearSys.Theorems.StepSubsetHorizon
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuter
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterConvexCompact
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterInputSolution
-import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterSplitZonotope
+import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterSplit
 import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryTimeIntervalOuter
 import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 import CORALean.ContDynamics.LinearSys.Theorems.WeightedIntegral
@@ -50,8 +50,8 @@ the sample times and `timeIntervalStep` over a whole step. The rest are the
 input-integral facts those two rest on.
 
 Both enclosures are stated once, over `ConvexSet` and `CompactSet`, and name no
-representation. `TimeIntervalOuterSplitZonotope` is the exception: dropping
-`0 ∈ U` means splitting the input set, which no interface offers.
+representation. `TimeIntervalOuterSplit` is the same: dropping `0 ∈ U` needs
+only `Recentre` and `OfPoint`, which any representation with a centre has.
 
 `Restrict` is what makes the time domain a parameter worth having: a guarantee
 over one step applies to a run over all forward time by throwing the rest away.

@@ -1,4 +1,7 @@
 import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
+import CORALean.ContSet.Zonotope.Real.Theorems.RecentreZeroMem
+import CORALean.ContSet.Zonotope.Real.Theorems.RecentreSubMem
 import CORALean.ContSet.Zonotope.Real.Theorems.Coefficient
 import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
 import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
@@ -43,5 +46,6 @@ topological facts a set-valued integral needs. `MemConstruct` reads membership
 coordinatewise, which is what every one of them is stated against, and
 `Coefficient` with the two facts about it holds the shared proof devices, which
 the float layer needs too. `BilinOuter` and `MtimesMatZonotopeOuter` are a
-matrix zonotope acting on a set, an enclosure and never exact.
+matrix zonotope acting on a set, an enclosure and never exact. `OfPointMem`
+and the two `Recentre` facts are what those classes ask of a zonotope.
 -/
