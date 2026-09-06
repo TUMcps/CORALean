@@ -45,6 +45,7 @@ import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceGirardOrderLe
 import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceOrder
 import CORALean.ContSet.PolyZonotope.Float.Theorems.RelaxExpOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.RelaxExpEvenOuter
+import CORALean.ContSet.PolyZonotope.Float.Theorems.RelaxExpMultiOuter
 
 /-!
 # What `PolyZonotope` guarantees
@@ -63,9 +64,9 @@ the chain of `mul`s Horner runs, beyond what one `mul_outer` call owes.
 `reduce_order_le` bounds is a count of distinct monomials, as over ℝ; that bound is what keeps
 a reachability loop's representation from growing a box per step.
 
-`relaxExp_outer` reads the exact layer's drift bound at the stored columns, the
-two roundings it makes being the only difference between the layers, and
-`relaxExpEven_outer` the same with a third for the centre it shifts.
+`relaxExp_outer` reads the exact layer's drift bound at the stored columns, the two roundings
+it makes being the only difference between the layers; `relaxExpEven_outer` the same with a
+third for the centre it shifts, and `relaxExpMulti_outer` the same two at any two generators.
 
 `mem_generatorError` is the one that answers the question the representation
 raises — what a monomial costs a float layer — and its docstring is where that

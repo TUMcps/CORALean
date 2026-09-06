@@ -13,6 +13,7 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.Reduce
 import CORALean.ContSet.PolyZonotope.Real.Operations.EDiff
 import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExp
 import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpEven
+import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpMulti
 
 /-!
 # What `PolyZonotope` computes
@@ -29,10 +30,10 @@ the set: equal exponent columns are one monomial and are added together, a gener
 out zero goes, and so does a factor no column reads. `reduce` then brings the dependent count
 to an order the caller names, the one operation here that loses something.
 
-`relaxExp` merges two dependent generators whose exponent columns agree off one
-index and pays the difference into one new independent generator, at the price
-`eDiff` bounds: the count is where it was, and the set is closer to a zonotope.
-`relaxExpEven` halves that price where the drift is one-sided, shifting the centre by the rest.
+`relaxExp` merges two dependent generators whose exponent columns agree off one index and pays
+the difference into one new independent generator, at the price `eDiff` bounds: the count is
+where it was, and the set is closer to a zonotope. `relaxExpEven` halves that price where the
+drift is one-sided; `relaxExpMulti` drops the agreement, summing `eDiff` over every factor.
 
 `plusE`, `linCombE` and `quadMapE` are the exponent matrices the size-changing
 operations assemble, kept with the operations that build them so their lemmas
