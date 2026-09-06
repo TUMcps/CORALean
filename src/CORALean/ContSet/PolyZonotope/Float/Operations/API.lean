@@ -9,6 +9,7 @@ import CORALean.ContSet.PolyZonotope.Float.Operations.Mul
 import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPoly
 import CORALean.ContSet.PolyZonotope.Float.Operations.Reduce
 import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxExp
+import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxExpEven
 
 /-!
 # What `PolyZonotope` computes
@@ -23,14 +24,14 @@ nominal part, and `dependent` empties the box into generators first.
 `mul` carries that past degree two, spending it on one rounded product per
 generator entry; `evalPoly` chains `mul` and prices the chaining itself.
 
-`reduce` and the `compact` it runs first both *run* where the exact layer only
-specifies: ranking needs a decidable order and merging columns a decidable
-equality, and a machine scalar has both where ℝ has neither. `compact` is the
-one operation whose layers differ in cost — merging adds entries, so it encloses
-here where over ℝ it is an equality.
+`reduce` and the `compact` it runs first both *run* where the exact layer only specifies:
+ranking needs a decidable order and merging columns a decidable equality, and a machine scalar
+has both where ℝ has neither. `compact` is the one operation whose layers differ in cost —
+merging adds entries, so it encloses here where over ℝ it is an equality.
 
 `relaxExp` charges two column sums to the box and nothing else: its width is a
-count, not a scalar, so the two layers relax by the same amount.
+count, not a scalar, so the two layers relax by the same amount. `relaxExpEven`
+charges a third, its recentred centre being a subtraction where halving is not.
 
 No operation touches the exponent matrix numerically: it holds naturals, every
 operation on it is exact, and the nominal set's monomials are the exact layer's.
