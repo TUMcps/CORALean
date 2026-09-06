@@ -1,19 +1,17 @@
 import CORALean.ContDynamics.LinearSys.MatExp.Enclosures
 
 /-!
-# `s ^ i - s` on `[0,1]`, exactly
+# The correction coefficient bounds `s^i - s` from below
 
 [1, Prop. 3.1]: the correction matrix widens by the range of
-`t ↦ t^i - t·r^(i-1)` over a step, and that range is `[corrCoeff i · r^i, 0]`.
-Scaling `t = s·r` leaves `s ^ i - s` on `[0,1]`, which is what is bounded here.
+`t ↦ t^i - t·r^(i-1)` over a step, whose lower end this bounds after scaling
+`t = s·r` to `s^i - s` on `[0,1]` — `sub_le_zero` gives the upper end.
 
 Proved by the tangent line at the stationary point rather than by calculus:
 factoring `s^i - a^i = (Σ_k s^k a^(i-1-k))(s - a)` turns the claim into
-`Σ_k s^k a^(i-1-k) ≥ 1` when `s ≥ a` and `≤ 1` when `s ≤ a`, and both hold
-because `a^(i-1) = 1/i` makes the constant sum exactly `1`.
-
-The lower bound needs no upper bound on `s`: the stationary point is the minimum
-over all of `[0,∞)`. Only `s ^ i ≤ s` needs `s ≤ 1`.
+`Σ_k s^k a^(i-1-k) ≥ 1` when `s ≥ a`, which holds because `a^(i-1) = 1/i` makes
+the constant sum exactly `1`. No upper bound on `s` is needed: the stationary
+point is the minimum over all of `[0,∞)`.
 
 ## References
 
@@ -58,7 +56,7 @@ theorem aux_corrCritical_pow (hi : 2 ≤ i) :
   exact (one_div _).symm
 
 /-- The form [1] states the coefficient in. -/
-theorem MatExp.corrCoeff_eq (hi : 2 ≤ i) :
+theorem aux_corrCoeff_eq (hi : 2 ≤ i) :
     MatExp.corrCoeff i
       = (i : ℝ) ^ (-(i:ℝ) / ((i : ℝ) - 1)) - (i : ℝ) ^ (-(1:ℝ) / ((i : ℝ) - 1)) := by
   have hi1 : (1:ℝ) < (i : ℝ) := by exact_mod_cast hi.trans_lt' one_lt_two
@@ -101,10 +99,5 @@ theorem MatExp.corrCoeff_le_sub (hi : 2 ≤ i) {s : ℝ} (hs0 : 0 ≤ s) :
       calc s - a = 1 * (s - a) := (one_mul _).symm
         _ ≤ _ := mul_le_mul_of_nonpos_right hsum (by linarith)
   linarith
-
-theorem MatExp.sub_le_zero (hi : 1 ≤ i) {s : ℝ} (hs0 : 0 ≤ s) (hs1 : s ≤ 1) :
-    s ^ i - s ≤ 0 := by
-  have : s ^ i ≤ s ^ 1 := pow_le_pow_of_le_one hs0 hs1 hi
-  simpa using this
 
 end CORALean.Real

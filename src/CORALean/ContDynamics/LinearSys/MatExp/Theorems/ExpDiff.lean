@@ -1,4 +1,6 @@
 import CORALean.ContDynamics.LinearSys.MatExp.Enclosures
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSmulTsum
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableExpSmul
 
 /-!
 # The interpolation error of a matrix exponential, as one series
@@ -35,37 +37,6 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ}
-
--- `exp_eq_tsum` is elaborated against the four local `Matrix.linftyOp*` instances
-set_option maxHeartbeats 200000 in
-/-- The exponential of a scaled matrix, with the scalar pulled out of the power. -/
-theorem exp_smul_tsum (A : Mat ℝ n n) (t : ℝ) :
-    exp (t • A) = ∑' i : ℕ, (((Nat.factorial i : ℝ))⁻¹ * t ^ i) • A ^ i := by
-  have h : exp (t • A) = ∑' i : ℕ, ((Nat.factorial i : ℝ))⁻¹ • (t • A) ^ i := by
-    rw [exp_eq_tsum (𝕂 := ℝ)]
-  rw [h]
-  exact tsum_congr fun i => by rw [smul_pow, smul_smul]
-
--- `expSeries_summable'` against those same four instances
-set_option maxHeartbeats 200000 in
-theorem summable_exp_smul (A : Mat ℝ n n) (t : ℝ) :
-    Summable (fun i : ℕ => (((Nat.factorial i : ℝ))⁻¹ * t ^ i) • A ^ i) := by
-  have h := expSeries_summable' (𝕂 := ℝ) (t • A)
-  refine h.congr fun i => ?_
-  rw [smul_pow, smul_smul]
-
--- the same, with a `ring_nf` over the matrix algebra inside `Summable.congr`
-set_option maxHeartbeats 400000 in
-theorem MatExp.summable_expDiff (A : Mat ℝ n n) (t r : ℝ) :
-    Summable (fun i : ℕ => (((Nat.factorial (i + 2) : ℝ))⁻¹
-      * (t ^ (i + 2) - (t / r) * r ^ (i + 2))) • A ^ (i + 2)) := by
-  have hst := summable_exp_smul A t
-  have hsr : Summable (fun i : ℕ => (t / r) • ((((Nat.factorial i : ℝ))⁻¹ * r ^ i) • A ^ i)) :=
-    (summable_exp_smul A r).const_smul _
-  have hg : Summable
-      (fun i : ℕ => (((Nat.factorial i : ℝ))⁻¹ * (t ^ i - (t / r) * r ^ i)) • A ^ i) :=
-    (hst.sub hsr).congr fun i => by simp only [smul_smul, ← sub_smul]; ring_nf
-  exact (summable_nat_add_iff 2).mpr hg
 
 -- the `simp only` at `Finset.sum_range_succ` normalises factorials and powers together
 set_option maxHeartbeats 400000 in
