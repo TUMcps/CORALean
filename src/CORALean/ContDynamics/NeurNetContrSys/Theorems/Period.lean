@@ -27,12 +27,18 @@ step, which `MatExp` does not yet offer.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Period `i` of a closed-loop run, in the period's own clock, is a linear run
 from `R` under the constant input the controller produced at its start. -/
@@ -56,3 +62,6 @@ theorem NeurNetContrSys.Trajectory.period {sys : NeurNetContrSys 𝕋 S n} {Δtc
     simpa [Function.comp_def] using h
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

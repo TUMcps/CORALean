@@ -13,11 +13,17 @@ itself needs no coordinates.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {q n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Row `i` of `M`, as the functional a constraint is. Named rather than
 file-local: the float layer states its own bounds against these rows. -/
@@ -27,3 +33,6 @@ def HPolytope.rowLin (M : Mat ℝ q n) (i : Fin q) : Vec ℝ n →ₗ[ℝ] ℝ w
   map_smul' c x := by rw [RingHom.id_apply, Matrix.mulVec_smul]; rfl
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -13,9 +13,15 @@ needs from `Dyadic`.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float.Dyadic
 
 variable {p : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem toReal_minimum (a b : Dyadic p) :
     toReal (minimum a b) = min (toReal a) (toReal b) := by
@@ -24,3 +30,6 @@ theorem toReal_minimum (a b : Dyadic p) :
   · rw [minimum, if_neg h, min_eq_right (not_le.mp (h ∘ (le_iff a b).mpr)).le]
 
 end CORALean.Float.Dyadic
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

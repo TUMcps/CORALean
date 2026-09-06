@@ -25,6 +25,9 @@ exact, which is what makes the enclosure worth computing bounds for.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 def relu (t : ℝ) : ℝ := max t 0
@@ -83,6 +86,9 @@ theorem relu_bounds_of_slope {lam l u t : ℝ} (h0 : 0 ≤ lam) (h1 : lam ≤ 1)
     rw [hrt, reluGapOfSlope]
     exact le_trans (by nlinarith) (le_max_right _ _)
 
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
 theorem aux_relu_bounds {l u t : ℝ} (hl : l ≤ t) (hu : t ≤ u) :
     0 ≤ relu t - reluSlope l u * t ∧ relu t - reluSlope l u * t ≤ reluGap l u :=
   relu_bounds_of_slope (reluSlope_nonneg l u) (reluSlope_le_one l u) hl hu
@@ -104,8 +110,14 @@ open Matrix ContSet
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat ℝ) S] [IntervalOuter S] [OfInterval S] {n : ℕ}
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 noncomputable def relu : Layer S n n := Layer.activation reluRelaxation
 
 end Layer
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

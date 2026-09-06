@@ -24,11 +24,17 @@ definition unconditional and prove the agreement separately.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NeuralNetwork.sensitivity_eq_fderiv : ∀ {n m : ℕ} (nn : NeuralNetwork S n m)
     (x : Vec ℝ n), nn.DifferentiableChain x → nn.sensitivity x
@@ -51,3 +57,6 @@ theorem NeuralNetwork.sensitivity_eq_fderiv : ∀ {n m : ℕ} (nn : NeuralNetwor
       rfl
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

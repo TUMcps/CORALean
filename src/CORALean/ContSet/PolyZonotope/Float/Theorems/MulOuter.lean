@@ -24,6 +24,9 @@ form has to carry its middle vector as an interval.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
@@ -31,6 +34,9 @@ open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-! ## The refinement -/
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 theorem PolyZonotope.aux_mul_refines (S₁ S₂ : PolyZonotope 𝕋 n) (hp : S₁.p = S₂.p) :
     (Real.PolyZonotope.mul (nominal S₁) (nominal S₂) hp).construct
@@ -69,6 +75,9 @@ theorem PolyZonotope.aux_mul_refines (S₁ S₂ : PolyZonotope 𝕋 n) (hp : S�
     Finset.sum_empty, add_zero, zero_add]
   exact hsum
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 -- the exact statement, read through the refinement: the same image, rounded outward
 theorem PolyZonotope.mul_outer (S₁ S₂ : PolyZonotope 𝕋 n) (hp : S₁.p = S₂.p) :
     (fun a : Fin S₁.p → ℝ => Real.PolyZonotope.point (nominal S₁) a
@@ -79,3 +88,6 @@ theorem PolyZonotope.mul_outer (S₁ S₂ : PolyZonotope 𝕋 n) (hp : S₁.p = 
     (PolyZonotope.aux_mul_refines S₁ S₂ hp)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

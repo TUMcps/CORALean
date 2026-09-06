@@ -14,12 +14,18 @@ rounding was paid inside that composition, so this proof never mentions it.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Pointwise FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {q n : ℕ}
 variable {P₁ P₂ : HPolytope 𝕋 n}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.plusOf_outer (Aq : Mat 𝕋 q n)
     (u₁ : ∀ i, FloatBound 𝕋 P₁.construct (rowLin Aq i))
@@ -28,3 +34,6 @@ theorem HPolytope.plusOf_outer (Aq : Mat 𝕋 q n)
   HPolytope.subset_ofBounds _ _
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

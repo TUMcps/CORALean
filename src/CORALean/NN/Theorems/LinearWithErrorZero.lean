@@ -13,12 +13,18 @@ layer is the error-free case of the adapted one, not a different construction.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Plus Mtimes OfInterval
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat ℝ) S] [OfInterval S] {n m : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Layer.linearWithError_zero (W : Mat ℝ m n) (b : Vec ℝ m)
     (hE : (Interval.point (0 : Vec ℝ m)).IsNonempty) :
@@ -50,3 +56,6 @@ theorem Layer.linearWithError_zero (W : Mat ℝ m n) (b : Vec ℝ m)
   exact key _ _ heval hpropagate
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

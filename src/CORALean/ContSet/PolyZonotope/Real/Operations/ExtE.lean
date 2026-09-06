@@ -13,9 +13,15 @@ this file.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The exponent matrix widened to match, the centre's column being zero — its
 monomial is `1`, which is what the centre needs to be. -/
@@ -23,3 +29,6 @@ def PolyZonotope.extE (S : PolyZonotope α) : Fin S.p → Fin (S.h + 1) → ℕ 
   fun k => Fin.cons 0 (S.E k)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

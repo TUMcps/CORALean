@@ -26,6 +26,9 @@ for a factor. Those are separate operations, not this one.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
@@ -39,9 +42,15 @@ def ConPolyZono.polyZonotope (C : ConPolyZono α) : PolyZonotope α where
   E := C.E
   GI := C.GI
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem ConPolyZono.polyZonotope_outer (C : ConPolyZono α) :
     C.construct ⊆ C.polyZonotope.construct := by
   rintro _ ⟨a, b, ha, hb, _, rfl⟩
   exact ⟨a, b, ha, hb, rfl⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

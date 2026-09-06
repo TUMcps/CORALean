@@ -30,10 +30,19 @@ b = 1` this bound is `1` where the maximum is `≈ 0.385`.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- An upper bound on `max_{x ∈ [-1,1]} |x^a - x^b|`, [1, Prop. 3]. -/
 def PolyZonotope.eDiff (a b : ℕ) : ℕ :=
   if a = b then 0 else if a % 2 = b % 2 then 1 else 2
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

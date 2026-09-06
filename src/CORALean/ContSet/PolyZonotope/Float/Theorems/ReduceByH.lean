@@ -9,11 +9,17 @@ import CORALean.ContSet.PolyZonotope.Float.Operations.Reduce
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n d r dI rI : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 omit [SoundFloatArithmetic 𝕋] in
 @[simp] theorem PolyZonotope.reduceBy_h (PZ : PolyZonotope 𝕋 n)
@@ -22,3 +28,6 @@ omit [SoundFloatArithmetic 𝕋] in
     (PZ.reduceBy partD partI).h = d := rfl
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

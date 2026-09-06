@@ -14,11 +14,17 @@ convex — that second half is all the constraints add over a zonotope, and it i
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.convex_construct (C : ConZonotope α) : Convex ℝ C.construct := by
   rintro x ⟨β₁, hβ₁, hP₁, rfl⟩ y ⟨β₂, hβ₂, hP₂, rfl⟩ s t hs ht hst
@@ -49,3 +55,6 @@ theorem ConZonotope.convex_construct (C : ConZonotope α) : Convex ℝ C.constru
     _ = C.c + ∑ j, (s * β₁ j + t * β₂ j) • C.G j := by rw [hst, one_smul, hval]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -21,6 +21,9 @@ One operation, so one file, as `LinearSysDT` has.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar Plus Mtimes
@@ -29,9 +32,15 @@ variable {n m r : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 /-- Every output the equation produces at a state of `R` under an input of `U`,
 enclosed. -/
 def OutputEq.outputSet (out : OutputEq 𝕋 n m r) (R : S n) (U : S m) : S r :=
   plus (mtimes out.C R) (mtimes out.D U)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -10,9 +10,15 @@ import CORALean.ContSet.PolyZonotope.Float.Theorems.RepIdem
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {p h : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.fiber_eq_zero_of_notMem (E : Fin p → Fin h → ℕ) (Gr : Fin h → ℝ)
     {j : Fin h} (hj : j ∉ PolyZonotope.repKeep E) :
@@ -25,3 +31,6 @@ theorem PolyZonotope.fiber_eq_zero_of_notMem (E : Fin p → Fin h → ℕ) (Gr :
   rw [← hrl, PolyZonotope.rep_idem]
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

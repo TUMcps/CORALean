@@ -24,9 +24,15 @@ depends on what `W` and `b` are, only on the shape.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n m : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Two refinable activations around a linear layer, which has nothing to spend
 and so takes every level as itself. -/
@@ -37,3 +43,6 @@ noncomputable def sigmoidLinearSigmoidNetwork (W : Mat ℝ m n) (b : Vec ℝ m) 
       (.cons (Layer.activationPolyRefinable sigmoidPolyFamily) .nil))
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

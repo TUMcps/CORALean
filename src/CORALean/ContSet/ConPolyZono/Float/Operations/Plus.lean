@@ -19,11 +19,17 @@ centre rounds, exactly as for an unconstrained polynomial zonotope.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def ConPolyZono.plus (C₁ C₂ : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n where
   p := C₁.p + C₂.p
@@ -41,3 +47,6 @@ def ConPolyZono.plus (C₁ C₂ : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n where
   err := (C₁.err.plus C₂.err).plus (PolyZonotope.centerResidual C₁.c C₂.c)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

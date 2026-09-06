@@ -26,11 +26,17 @@ reverse of the usual direction between the layers. It is a `def` and not an
 -- Last update:   03-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
+
+
+-- ========================================  INSTANCES  ========================================= --
 
 /-- `Plus` at two scalings the caller chooses, together with the inequality that
 makes them sound. Deliberately not an `instance`, as over ℝ. -/
@@ -50,3 +56,6 @@ instance : Mtimes (Mat 𝕋) (Ellipsoid 𝕋) where
     exact Ellipsoid.mtimes_outer M E
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

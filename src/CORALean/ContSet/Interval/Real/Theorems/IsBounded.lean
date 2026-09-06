@@ -16,9 +16,15 @@ an ambient type whose norm the coordinates determine.
 -- Last update:   01-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.isBounded_construct (I : Interval (Vec ℝ n)) :
     Bornology.IsBounded I.construct := by
@@ -36,3 +42,6 @@ theorem Interval.isBounded_construct (I : Interval (Vec ℝ n)) :
   · linarith [le_abs_self (I.sup i), abs_nonneg (I.inf i)]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

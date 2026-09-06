@@ -14,6 +14,9 @@ else is a property of `U` that a representation supplies.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar
@@ -26,6 +29,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 variable [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 variable [Mtimes ℐ S]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 omit [∀ n, Reduce (S n) (Vec ℝ n)] in
 theorem LinearSys.Trajectory.timeInterval_outer_inputSolution {sys : LinearSys 𝕋 n}
@@ -49,3 +55,6 @@ theorem LinearSys.Trajectory.timeInterval_outer_inputSolution {sys : LinearSys �
       hRconv hRclosed hRbdd h0 ht0 htr)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

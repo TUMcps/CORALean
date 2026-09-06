@@ -14,9 +14,15 @@ this file.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Generator `(i, j)` of the image: `Gᵢᵀ Q Gⱼ`, one coordinate per matrix. -/
 def PolyZonotope.quadMapG {n m : ℕ} (Q : Fin m → Mat ℝ n n) (S : PolyZonotope (Vec ℝ n)) :
@@ -25,3 +31,6 @@ def PolyZonotope.quadMapG {n m : ℕ} (Q : Fin m → Mat ℝ n n) (S : PolyZonot
       ⬝ᵥ (Q k *ᵥ PolyZonotope.extG S (finProdFinEquiv.symm l).2)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -14,6 +14,9 @@ input is left to the caller beyond the properties of `U` itself.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar
@@ -24,6 +27,9 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.Trajectory.reach_outer_inputSolution [Mtimes ℐ S]
     {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n} {Δt : ℝ}
@@ -43,3 +49,6 @@ theorem LinearSys.Trajectory.reach_outer_inputSolution [Mtimes ℐ S]
     (traj.discretize_inputSolution hΔt hT η hε hconv hclosed hbdd hRconv hRclosed hRbdd) k
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

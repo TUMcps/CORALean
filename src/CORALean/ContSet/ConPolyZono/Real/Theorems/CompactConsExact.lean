@@ -20,11 +20,17 @@ term on both sides and only the constraint vector is rewritten.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 omit [AddCommGroup α] [Module ℝ α] in
 /-- The constraint vector, regrouped onto the constraint columns that survive.
@@ -47,6 +53,9 @@ theorem ConPolyZono.aux_satisfies_compactCons (C : ConPolyZono α) (a : Fin C.p 
     C.satisfies a ↔ C.compactCons.satisfies a :=
   ConPolyZono.holds_congr (ConPolyZono.aux_mulVec_compactCons C a)
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 -- the generators are copied, so the point equation is the same term on both sides
 theorem ConPolyZono.compactCons_exact (C : ConPolyZono α) :
     C.construct = C.compactCons.construct := by
@@ -57,3 +66,6 @@ theorem ConPolyZono.compactCons_exact (C : ConPolyZono α) :
     exact ⟨a, β, ha, hβ, (ConPolyZono.aux_satisfies_compactCons C a).mpr hsat, rfl⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

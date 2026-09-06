@@ -15,12 +15,21 @@ The membership fact is `Theorems/MemPoint.lean`.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Entrywise
 
 variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 def Interval.point (v : α) : Interval α := ⟨v, v⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

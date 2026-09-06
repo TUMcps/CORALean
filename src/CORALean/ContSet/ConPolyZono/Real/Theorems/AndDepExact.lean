@@ -26,11 +26,17 @@ be written until they are gone.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Pointwise
 
 variable {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Only the first generator block survives. The second is kept at zero rather
 than dropped, so that the agreement rows have columns in which to read it. -/
@@ -43,6 +49,9 @@ theorem ConPolyZono.aux_value_andDep (C₁ C₂ : ConPolyZono (Vec ℝ n))
   rw [Fin.sum_univ_add]
   simp only [Fin.append_left, Fin.append_right, Pi.zero_apply, smul_zero,
     Finset.sum_const_zero, add_zero, PolyZonotope.monomial_plusE_left]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.andDep_exact (C₁ C₂ : ConPolyZono (Vec ℝ n)) (D : Interval (Vec ℝ n))
     (hq₁ : C₁.q = 0) (hq₂ : C₂.q = 0) :
@@ -137,3 +146,6 @@ theorem ConPolyZono.andDep_exact (C₁ C₂ : ConPolyZono (Vec ℝ n)) (D : Inte
     abel
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

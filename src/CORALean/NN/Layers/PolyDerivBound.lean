@@ -26,6 +26,9 @@ in sample spacing, never in correctness.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 /-- What the polynomial's derivative is bracketed around: its linear
@@ -97,6 +100,9 @@ theorem abs_sub_evalPolyDeriv_le {n : ℕ} {c : Fin (n + 1) → ℝ} {σ' : ℝ 
   rw [abs_le]
   exact ⟨by linarith, by linarith⟩
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 /-- At order 1 the radius vanishes and the centre is the slope, so this is the
 bracket `Relaxation.ofDeriv` works with and no precision is lost. -/
 theorem polyDerivDiff_one (lo hi : ℝ) (c : Fin 2 → ℝ) (l u : ℝ) :
@@ -116,3 +122,6 @@ theorem polyDerivDiff_one (lo hi : ℝ) (c : Fin 2 → ℝ) (l u : ℝ) :
   rw [hctr, hrad, sub_zero, add_zero]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

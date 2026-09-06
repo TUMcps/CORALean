@@ -21,11 +21,17 @@ within `columnGap` of the exact one. The error obligation is two applications of
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The stored vertices differ from the exact pairwise sums by no more than the
 gap between the two roundings. -/
@@ -48,9 +54,15 @@ theorem VPolytope.aux_plus_error (P₁ P₂ : VPolytope 𝕋 n) :
   subset_trans (Set.add_subset_add_right (Interval.plus_outer P₁.E P₂.E))
     (Interval.plus_outer _ _)
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem VPolytope.plus_outer (P₁ P₂ : VPolytope 𝕋 n) :
     P₁.construct + P₂.construct ⊆ (P₁.plus P₂).construct :=
   InflatedContSet.plus_subset (VPolytope.aux_plus_nominal P₁ P₂)
     (VPolytope.aux_plus_error P₁ P₂)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

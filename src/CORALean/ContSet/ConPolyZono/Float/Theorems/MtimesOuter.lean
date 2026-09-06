@@ -22,11 +22,17 @@ is reused rather than restated.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Pointwise Matrix FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n k : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 theorem ConPolyZono.aux_mtimes_nominal (M : Mat 𝕋 k n) (C : ConPolyZono 𝕋 n) :
     (toRealMat M *ᵥ ·) '' nominalSet C ⊆
@@ -91,9 +97,15 @@ theorem ConPolyZono.aux_mtimes_error (M : Mat 𝕋 k n) (C : ConPolyZono 𝕋 n)
   subset_trans (Set.add_subset_add_right (Interval.mtimes_outer M C.err))
     (Interval.plus_outer _ _)
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem ConPolyZono.mtimes_outer (M : Mat 𝕋 k n) (C : ConPolyZono 𝕋 n) :
     (toRealMat M *ᵥ ·) '' C.construct ⊆ (ConPolyZono.mtimes M C).construct :=
   map_subset (fun x y => Matrix.mulVec_add _ x y)
     (ConPolyZono.aux_mtimes_nominal M C) (ConPolyZono.aux_mtimes_error M C)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

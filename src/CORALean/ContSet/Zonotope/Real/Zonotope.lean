@@ -23,9 +23,15 @@ The generator count is a field, not a type index: operations grow it freely and
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 structure Zonotope (α : Type) where
   h : ℕ
@@ -36,3 +42,6 @@ def Zonotope.construct (Z : Zonotope α) : Set α :=
   {x | ∃ β : Fin Z.h → ℝ, (∀ j, |β j| ≤ 1) ∧ x = Z.c + ∑ j, β j • Z.G j}
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

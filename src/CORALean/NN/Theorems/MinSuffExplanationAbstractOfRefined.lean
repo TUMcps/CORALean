@@ -23,11 +23,17 @@ droppable feature there would be droppable at `nnRef` by monotonicity.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet OfInterval
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OfInterval S] {n m : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NeuralNetwork.minSuffExplanationAbstract_of_refined (nnAbs nnRef : NeuralNetwork S n m)
     (x : Vec ℝ n) (ε : ℝ) (E : Finset (Fin n)) (l : Fin m)
@@ -42,3 +48,6 @@ theorem NeuralNetwork.minSuffExplanationAbstract_of_refined (nnAbs nnRef : Neura
       (hrefine _) hdrop)⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

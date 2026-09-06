@@ -15,12 +15,18 @@ of `map` at its own starting point.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet Scalar
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 theorem NeurNetContrSysDT.Trajectory.aux_eq_iterate {sys : NeurNetContrSysDT 𝕋 S n} {R₀ : S n}
     {x : ℕ → Vec ℝ n} (traj : sys.Trajectory R₀ x) (k : ℕ) :
@@ -31,6 +37,9 @@ theorem NeurNetContrSysDT.Trajectory.aux_eq_iterate {sys : NeurNetContrSysDT �
     rw [Function.iterate_succ_apply', ← ih, traj.step k]
     rfl
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 /-- Determinism, in the form it is normally wanted: the initial state settles
 the run, whichever initial sets the two runs were taken from. -/
 theorem NeurNetContrSysDT.Trajectory.eq_of_init {sys : NeurNetContrSysDT 𝕋 S n} {R₀ R₁ : S n}
@@ -40,3 +49,6 @@ theorem NeurNetContrSysDT.Trajectory.eq_of_init {sys : NeurNetContrSysDT 𝕋 S 
   rw [hx.aux_eq_iterate k, hy.aux_eq_iterate k, h]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

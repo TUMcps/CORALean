@@ -13,7 +13,13 @@ why nothing has to: soundness holds at every schedule `refine` can reach.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The loop itself: `k` steps, each at the `(layer, neuron)` pair `pick` names
 from the schedule reached so far. -/
@@ -22,3 +28,6 @@ def Schedule.refineLoop (pick : Schedule → ℕ × ℕ) (sch : Schedule) : ℕ 
   | k + 1 => Schedule.refineLoop pick (Schedule.refine sch (pick sch).1 (pick sch).2) k
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -13,11 +13,17 @@ rounding down and the other up.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n h : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The masked sum is the fibre sum: outside the fibre every summand is `zero`,
 which reads as `0`. -/
@@ -32,3 +38,6 @@ theorem PolyZonotope.sum_mask (r : Fin h → Fin h) (G : Mat 𝕋 n h) (i : Fin 
   · rw [if_neg hl, if_neg hl, toReal_zero]
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

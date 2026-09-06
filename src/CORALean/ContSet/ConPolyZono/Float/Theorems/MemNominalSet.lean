@@ -18,11 +18,17 @@ is `C.h`, where the instance gives the equal-but-distinct `(nominal C).h` that
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Matrix FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.mem_nominalSet_iff [SoundFloatArithmetic 𝕋] {C : ConPolyZono 𝕋 n}
     {x : Vec ℝ n} :
@@ -33,3 +39,6 @@ theorem ConPolyZono.mem_nominalSet_iff [SoundFloatArithmetic 𝕋] {C : ConPolyZ
   Real.ConPolyZono.mem_construct_iff
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

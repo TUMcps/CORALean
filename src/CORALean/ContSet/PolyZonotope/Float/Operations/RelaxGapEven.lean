@@ -15,11 +15,17 @@ Split out of `RelaxExpEven.lean` (issue #62): read again by
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n d : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- What the merged column, the halved column and the recentred centre can each
 be off by, every one of them a gap between two roundings of one expression. -/
@@ -31,3 +37,6 @@ def PolyZonotope.relaxGapEven (PZ : PolyZonotope 𝕋 n)
       subUp (subUp (PZ.c i) (PZ.relaxGenEven part k₀ i)) (PZ.relaxCentreEven part k₀ i)]
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

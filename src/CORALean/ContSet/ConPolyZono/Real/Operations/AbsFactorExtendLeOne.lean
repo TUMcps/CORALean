@@ -10,7 +10,13 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.AbsFactorExtendLeOne
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.abs_factorExtend_le_one {p h s : ℕ} (E : Fin p → Fin h → ℕ)
     (EC : Fin p → Fin s → ℕ) {a : Fin (ConPolyZono.usedFactors E EC).card → ℝ}
@@ -19,3 +25,6 @@ theorem ConPolyZono.abs_factorExtend_le_one {p h s : ℕ} (E : Fin p → Fin h �
   PolyZonotope.abs_factorExtend_le_one (ConPolyZono.appendE E EC) ha k
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -10,9 +10,15 @@ import CORALean.ContSet.ConPolyZono.Real.Operations.Plus
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 omit [Module ℝ α] in
 /-- The same at a sum, where the two systems are the two sets'. -/
@@ -24,3 +30,6 @@ theorem ConPolyZono.satisfies_plus_iff (C₁ C₂ : ConPolyZono α)
   ConPolyZono.holds_plus_iff C₁.A C₁.b C₁.EC C₂.A C₂.b C₂.EC a
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

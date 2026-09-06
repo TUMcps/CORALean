@@ -32,9 +32,15 @@ the first layer is enough, the rest of the network following from it.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Affine, ReLU, affine: two inputs, three hidden neurons, two labels. -/
 noncomputable def Example.feedForward (W₁ : Mat ℝ 3 2) (b₁ : Vec ℝ 3) (W₂ : Mat ℝ 2 3)
@@ -69,3 +75,6 @@ noncomputable example (W₁ : Mat ℝ 3 2) (b₁ : Vec ℝ 3) (W₂ : Mat ℝ 2 
   (Example.feedForward W₁ b₁ W₂ b₂).propagate X
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

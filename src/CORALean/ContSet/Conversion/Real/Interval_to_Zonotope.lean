@@ -19,6 +19,9 @@ what any caller wants.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
@@ -27,6 +30,9 @@ noncomputable def Interval.zonotope (I : Interval (Vec ℝ n)) : Zonotope (Vec �
   h := n
   c := fun i => (I.inf i + I.sup i) / 2
   G := fun j i => if i = j then (I.sup i - I.inf i) / 2 else 0
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.subset_zonotope (I : Interval (Vec ℝ n)) :
     I.construct ⊆ I.zonotope.construct := by
@@ -80,3 +86,6 @@ theorem Interval.subset_zonotope (I : Interval (Vec ℝ n)) :
   exact (hb2 i).symm
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -31,11 +31,17 @@ space `Vec ℝ h`, whatever the generators point into.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 structure ConZonotope (α : Type) where
   h : ℕ
@@ -49,3 +55,6 @@ def ConZonotope.construct (C : ConZonotope α) : Set α :=
         ∧ x = C.c + ∑ j, β j • C.G j}
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

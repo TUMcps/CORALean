@@ -33,12 +33,18 @@ instances of this theorem.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Plus Mtimes IntervalOuter OfInterval
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat ℝ) S] [IntervalOuter S] [OfInterval S]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Neuron merging (`prop:neuron-merging` in [1]) at a layer of any network: the
 merged sandwich sits between `pre` and `post`, and `Y` is only ever asked to
@@ -71,3 +77,6 @@ theorem neuronMerging_network_outer {n₀ n₁ n n₂ n₃ d r : ℕ}
   exact post.propagate_outer _ _ hmid
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

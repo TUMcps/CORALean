@@ -30,6 +30,9 @@ exist to hand the network; covering the times inside a period is the same gap
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar NormedSpace
@@ -42,6 +45,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
 variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 /-- The reachable set at the end of `i` control periods, each `N` steps of
 length `Δt` under one held input set, from `R₀`, at Taylor order `η` and
 maximum order `o`. -/
@@ -52,3 +58,6 @@ noncomputable def NeurNetContrSys.reach (sys : NeurNetContrSys 𝕋 S n) (o η N
       (sys.plant.inputSolution Δt η (sys.contr.propagate (sys.reach o η N Δt R₀ i))) N
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

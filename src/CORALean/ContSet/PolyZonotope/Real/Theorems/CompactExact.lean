@@ -14,9 +14,15 @@ only worth stating once the bookkeeping is done.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- CORA's `compact`, and what an order bound rests on: the set is unchanged. -/
 theorem PolyZonotope.compact_exact (PZ : PolyZonotope α) :
@@ -25,3 +31,6 @@ theorem PolyZonotope.compact_exact (PZ : PolyZonotope α) :
     (PolyZonotope.compactFactors_exact PZ.compactGens)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

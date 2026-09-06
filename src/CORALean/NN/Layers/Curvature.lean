@@ -26,6 +26,9 @@ of a function already relaxed. -/
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 /-- The mean value theorem read as a bracket: with `m ≤ σ' ≤ M` over the box,
@@ -95,6 +98,9 @@ noncomputable def Relaxation.ofAffineConj {f g : ℝ → ℝ} (R : Relaxation f)
     rw [heq, abs_mul, abs_of_pos ha]
     exact mul_le_mul_of_nonneg_left (R.sound hbl hbu) ha.le
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 /-- Two relaxations of the same `σ`, the smaller error taken on each box. Both
 are sound everywhere, so the choice costs nothing and buys precision. -/
 noncomputable def Relaxation.tighter {σ : ℝ → ℝ} (R₁ R₂ : Relaxation σ) : Relaxation σ where
@@ -109,3 +115,6 @@ noncomputable def Relaxation.tighter {σ : ℝ → ℝ} (R₁ R₂ : Relaxation 
       exact R₂.sound hl hu
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

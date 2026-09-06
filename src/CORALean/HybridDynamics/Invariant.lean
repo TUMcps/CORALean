@@ -26,12 +26,18 @@ file states what such an iteration would have to produce.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet Scalar
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 structure HybridAutomaton.Invariant (HA : HybridAutomaton S L 𝕋 n) (R : L → S n) : Prop where
   flow {ℓ : L} {τ : ℝ} {x u : ℝ → Vec ℝ n} (h : (HA.loc ℓ).Trajectory τ x u)
@@ -42,3 +48,6 @@ structure HybridAutomaton.Invariant (HA : HybridAutomaton S L 𝕋 n) (R : L →
     e.reset z ∈ construct (R e.target)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

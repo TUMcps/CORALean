@@ -20,6 +20,9 @@ is what keeps every instance derived from it out of `noncomputable`.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace Demo
 
 open CORALean CORALean.Float
@@ -31,7 +34,13 @@ abbrev D := Dyadic 24
 `Dyadic 24` and a run at a smaller precision alike. -/
 def dy {p : ℕ} (m e : ℤ) : Dyadic p := ⟨m, e⟩
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 /-- Zero width in every coordinate: what a set that has not rounded yet owes. -/
 def zeroBox {p : ℕ} (n : ℕ) : Interval (Dyadic p) n := ⟨fun _ => dy 0 0, fun _ => dy 0 0⟩
 
 end Demo
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

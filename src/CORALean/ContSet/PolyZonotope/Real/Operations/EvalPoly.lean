@@ -26,9 +26,15 @@ coefficients to count runs `dependent` once, on `S`, before evaluating.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Horner's rule, coordinatewise, coefficients lowest degree first: `[a₀]` is
 the constant `a₀`, and `a₀ :: rest` is `a₀ + S * evalPoly rest`. -/
@@ -36,3 +42,6 @@ def PolyZonotope.evalPoly (S : PolyZonotope (Vec ℝ n)) (coeffs : List (Vec ℝ
     PolyZonotope (Vec ℝ n) := (PolyZonotope.evalPolyP S coeffs).1
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

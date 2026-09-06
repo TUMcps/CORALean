@@ -32,9 +32,15 @@ existence, and agreement is all the proof spends.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α] {d : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Merging two generators whose exponent columns agree off `k₀`
 over-approximates, whichever partition names them. -/
@@ -84,3 +90,6 @@ theorem PolyZonotope.relaxExp_outer (PZ : PolyZonotope α)
   abel
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

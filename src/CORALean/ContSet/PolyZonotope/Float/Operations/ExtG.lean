@@ -13,12 +13,21 @@ file.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The centre as generator zero, so a point is one sum. -/
 def PolyZonotope.extG (S : PolyZonotope 𝕋 n) : Mat 𝕋 n (S.h + 1) :=
   fun i => Fin.cons (S.c i) (S.G i)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

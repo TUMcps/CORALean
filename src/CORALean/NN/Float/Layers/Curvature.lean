@@ -26,6 +26,9 @@ instead, rounding where the exact-real version needs no slack at all. -/
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open ContSet FloatOps SoundFloatArithmetic
@@ -325,6 +328,9 @@ noncomputable def Relaxation.ofAffineConj (R : Relaxation 𝕋 f) (A : ScaleRoun
     rw [conjError]
     linarith [hbound1, hcorrection, hOffsetGap, htri1, htri2, hstep1, hstep2, hErrRound]
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 /-- Two relaxations of the same `σ`, the smaller error taken on each box. `le`
 is unconstrained and does not have to be: both branches are sound, so a wrong
 answer costs precision and never soundness. -/
@@ -340,3 +346,6 @@ def Relaxation.tighter (R₁ R₂ : Relaxation 𝕋 σ) : Relaxation 𝕋 σ whe
       exact R₂.sound hl hu
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

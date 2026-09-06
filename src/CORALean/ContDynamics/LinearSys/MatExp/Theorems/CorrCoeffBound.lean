@@ -24,9 +24,15 @@ point is the minimum over all of `[0,∞)`.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {i : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 theorem aux_corrCritical_pos (hi : 2 ≤ i) : 0 < MatExp.corrCritical i :=
   Real.rpow_pos_of_pos (by exact_mod_cast Nat.lt_of_lt_of_le two_pos hi) _
@@ -65,6 +71,9 @@ theorem aux_corrCoeff_eq (hi : 2 ≤ i) :
     ← Real.rpow_natCast ((i : ℝ) ^ (-(1:ℝ) / ((i : ℝ) - 1))) i, ← Real.rpow_mul hipos.le]
   ring_nf
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 -- `geom_sum₂_mul` and two `gcongr` sweeps over an `i`-term sum of `rpow`s
 set_option maxHeartbeats 200000 in
 theorem MatExp.corrCoeff_le_sub (hi : 2 ≤ i) {s : ℝ} (hs0 : 0 ≤ s) :
@@ -101,3 +110,6 @@ theorem MatExp.corrCoeff_le_sub (hi : 2 ≤ i) {s : ℝ} (hs0 : 0 ≤ s) :
   linarith
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

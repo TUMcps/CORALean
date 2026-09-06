@@ -21,11 +21,17 @@ than precision lost.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n k : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.mem_generatorError {G : Mat 𝕋 n k} {Δ : Mat ℝ n k} {u : Vec ℝ k}
     (hG : ∀ i j, |Δ i j| ≤ toReal (G i j)) (hu : ‖u‖₂ ≤ 1) :
@@ -39,3 +45,6 @@ theorem Ellipsoid.mem_generatorError {G : Mat 𝕋 n k} {Δ : Mat ℝ n k} {u : 
   exact neg_le_of_abs_le key
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

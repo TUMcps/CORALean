@@ -15,11 +15,17 @@ counting argument.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Pointwise
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 omit [Module ℝ α] in
 theorem VPolytope.aux_range_plus (P₁ P₂ : VPolytope α) :
@@ -33,9 +39,15 @@ theorem VPolytope.aux_range_plus (P₁ P₂ : VPolytope α) :
       + P₂.V (finProdFinEquiv.symm (finProdFinEquiv (j₁, j₂))).2 = _
     rw [Equiv.symm_apply_apply]
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem VPolytope.plus_exact (P₁ P₂ : VPolytope α) :
     P₁.construct + P₂.construct = (P₁.plus P₂).construct := by
   rw [VPolytope.construct_eq_convexHull P₁, VPolytope.construct_eq_convexHull P₂,
     VPolytope.construct_eq_convexHull (P₁.plus P₂), VPolytope.aux_range_plus, convexHull_add]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

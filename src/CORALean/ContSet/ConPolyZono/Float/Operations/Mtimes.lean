@@ -20,11 +20,17 @@ structure already has a field named `m`.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n k : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def ConPolyZono.mtimes (M : Mat 𝕋 k n) (C : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 k where
   p := C.p
@@ -42,3 +48,6 @@ def ConPolyZono.mtimes (M : Mat 𝕋 k n) (C : ConPolyZono 𝕋 n) : ConPolyZono
   err := (Interval.mtimes M C.err).plus (ConPolyZono.mtimesResidual M C)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

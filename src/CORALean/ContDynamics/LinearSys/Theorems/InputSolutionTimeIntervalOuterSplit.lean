@@ -33,6 +33,9 @@ and which sets is the representation's business.
 -- Last update:   02-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar NormedSpace MeasureTheory Pointwise
@@ -47,6 +50,10 @@ variable [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 
 omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
   [∀ n, Reduce (S n) (Vec ℝ n)] in
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
 /-- A plain matrix applied to a point of a set lands in the set's image. -/
 theorem aux_mtimes_mem {M : Mat ℝ n n} {W : S n} {y : Vec ℝ n} (hy : y ∈ construct W) :
     M *ᵥ y ∈ construct (Mtimes.mtimes M W) := by
@@ -74,6 +81,9 @@ theorem aux_const_integral (A : Mat ℝ n n) (c : Vec ℝ n) {t : ℝ} (ht : 0 �
   have h := intervalIntegral.integral_comp_sub_left (a := (0:ℝ)) (b := t)
     (fun σ : ℝ => exp (σ • A) *ᵥ c) t
   simpa using h
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 omit [∀ n, LinComb (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] in
 -- a three-way `plus` in the conclusion, elaborated at `ℐ` and `Mat ℝ` together
@@ -153,3 +163,6 @@ theorem LinearSys.Trajectory.inputSolution_timeInterval_outer_split
       (sys.inputReach_mono hbdd₀ h0₀ ht0 htr ⟨fun σ => u σ - c, hmem₀, hmeas₀, rfl⟩)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

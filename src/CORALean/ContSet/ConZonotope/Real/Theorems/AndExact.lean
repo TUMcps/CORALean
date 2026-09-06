@@ -19,11 +19,17 @@ intersected with a zonotope is not a zonotope.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The agreement rows are all that `and` adds over `plus`. -/
 theorem ConZonotope.aux_mem_and_P_iff (C₁ C₂ : ConZonotope (Vec ℝ n))
@@ -60,6 +66,9 @@ theorem ConZonotope.aux_value_and (C₁ C₂ : ConZonotope (Vec ℝ n))
   rw [Fin.sum_univ_add]
   simp only [ConZonotope.and, Fin.append_left, Fin.append_right, Pi.zero_apply, smul_zero,
     Finset.sum_const_zero, add_zero]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.and_exact (C₁ C₂ : ConZonotope (Vec ℝ n)) :
     C₁.construct ∩ C₂.construct = (C₁.and C₂).construct := by
@@ -105,3 +114,6 @@ theorem ConZonotope.and_exact (C₁ C₂ : ConZonotope (Vec ℝ n)) :
     linarith
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

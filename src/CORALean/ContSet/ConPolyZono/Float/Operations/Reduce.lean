@@ -25,9 +25,15 @@ it is what makes the order bound count distinct monomials.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- CORA's `reduce`: compact, then rank. A caller names an order and gets an
 over-approximation of bounded size; which rule ranked it goes no further. -/
@@ -35,3 +41,6 @@ def ConPolyZono.reduce (C : ConPolyZono 𝕋 n) (o : ℕ) : ConPolyZono 𝕋 n :
   C.compact.reduceGirard o
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

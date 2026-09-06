@@ -19,6 +19,9 @@ into fresh factors, so the choice costs no precision at any later step.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic InflatedContSet
@@ -35,6 +38,9 @@ def Interval.polyZonotope (I : Interval 𝕋 n) : PolyZonotope 𝕋 n where
   GI := fun _ => Fin.elim0
   err := I
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem Interval.subset_polyZonotope (I : Interval 𝕋 n) :
     I.construct ⊆ I.polyZonotope.construct := fun x hx => by
   -- the nominal part is the origin, so the box carries the whole point
@@ -45,3 +51,6 @@ theorem Interval.subset_polyZonotope (I : Interval 𝕋 n) :
   simp only [Finset.univ_eq_empty, Finset.sum_empty, add_zero]
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -31,12 +31,18 @@ having to enter a computed set, and a parameter rather than a field.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet
 
 variable {n m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 /-- `L` encloses what is left of `f` once the affine part at `(xs, us)` is
 subtracted, everywhere on `R × U`. -/
@@ -47,3 +53,6 @@ structure AbstractionError (f : Vec ℝ n → Vec ℝ m → Vec ℝ n) (A : Mat 
     f x u - (f xs us + A *ᵥ (x - xs) + B *ᵥ (u - us)) ∈ construct L
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

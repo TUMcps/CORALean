@@ -22,11 +22,17 @@ and the nominal reading transposes.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 structure VPolytope (𝕋 : Type) (n : ℕ) where
   k : ℕ
@@ -66,3 +72,6 @@ omit [FloatOps 𝕋] in
   simp [VPolytope.materialise]
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

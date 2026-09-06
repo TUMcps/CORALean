@@ -19,6 +19,9 @@ ellipsoid built from it denotes the box with the two swapped.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
@@ -26,8 +29,14 @@ variable {n : ℕ}
 noncomputable def Interval.ellipsoid (I : Interval (Vec ℝ n)) : Ellipsoid n :=
   I.zonotope.ellipsoid
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem Interval.ellipsoid_outer (I : Interval (Vec ℝ n)) :
     I.construct ⊆ I.ellipsoid.construct :=
   subset_trans I.subset_zonotope (Zonotope.ellipsoid_outer _)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

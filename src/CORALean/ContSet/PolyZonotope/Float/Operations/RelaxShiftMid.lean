@@ -12,11 +12,17 @@ this directory and by `Theorems/RelaxExpMidOuter.lean`, both outside this file.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n d : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The centre shift as stored: half the upward reach less half the downward
 one, in copies of the relaxed generator, rounded down. -/
@@ -26,3 +32,6 @@ def PolyZonotope.relaxShiftMid (PZ : PolyZonotope 𝕋 n)
     (nsmulUp (PZ.relaxDrift part k₀).1 (PZ.G i (part.right 0))))
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

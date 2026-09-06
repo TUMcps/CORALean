@@ -12,6 +12,9 @@ Constraints dropped, then the zonotope's own box.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
@@ -21,9 +24,15 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 def ConZonotope.interval (C : ConZonotope 𝕋 n) : Interval 𝕋 n :=
   C.zonotope.interval
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem ConZonotope.interval_outer (C : ConZonotope 𝕋 n) :
     C.construct ⊆ C.interval.construct :=
   subset_trans C.zonotope_outer (Zonotope.interval_outer _)
 
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

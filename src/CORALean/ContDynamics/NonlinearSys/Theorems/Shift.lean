@@ -23,12 +23,18 @@ proof, and asking for them is what makes this compose.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet
 
 variable {n m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Every run on `T` is a run on `T'` re-anchored at `t₀`, given a set holding
 the state it starts from. -/
@@ -46,3 +52,6 @@ theorem NonlinearSys.Trajectory.shift {sys : NonlinearSys n m} {T T' : Set ℝ}
     simpa [Function.comp_def] using h
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

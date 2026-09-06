@@ -14,11 +14,17 @@ generators, each entry known only to within `matMulDiff`'s rounding gap.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- What `mtimes` owes beyond its nominal part: the centre, and the
 generators. -/
@@ -27,3 +33,6 @@ def Ellipsoid.mtimesResidual (M : Mat 𝕋 m n) (E : Ellipsoid 𝕋 n) : Interva
     (Ellipsoid.generatorError (matMulDiff M E.G))
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

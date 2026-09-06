@@ -15,9 +15,15 @@ itself.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.construct_eq_image (C : ConPolyZono α) :
     C.construct = C.affine '' C.domain := by
@@ -30,3 +36,6 @@ theorem ConPolyZono.construct_eq_image (C : ConPolyZono α) :
     exact ⟨a, β, ha, hβ, hsat, rfl⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

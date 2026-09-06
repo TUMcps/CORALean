@@ -22,9 +22,15 @@ spelling.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The dependent block and the freed one, split apart and each read back
 against its own factors. Both inclusions come down to this equation. -/
@@ -41,6 +47,9 @@ theorem PolyZonotope.aux_sum_dependent (PZ : PolyZonotope α) (a : Fin (PZ.p + P
   · exact Finset.sum_congr rfl fun j _ => by
       rw [PolyZonotope.monomial_plusE_right, Fin.append_right,
         PolyZonotope.monomial_identE]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.dependent_exact (PZ : PolyZonotope α) :
     PZ.construct = PZ.dependent.construct := by
@@ -74,3 +83,6 @@ theorem PolyZonotope.dependent_exact (PZ : PolyZonotope α) :
     abel
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

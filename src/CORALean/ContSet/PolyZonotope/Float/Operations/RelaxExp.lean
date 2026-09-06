@@ -26,9 +26,15 @@ nothing to the box beyond the two gaps.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n d : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The two generators `part.right` names merged into one, at the exponent
 column of the second, the first scaled by `ξ_E` becoming independent. -/
@@ -44,3 +50,6 @@ def PolyZonotope.relaxExp (PZ : PolyZonotope 𝕋 n)
   err := PZ.err.plus (PolyZonotope.generatorError (PZ.relaxGap part k₀))
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

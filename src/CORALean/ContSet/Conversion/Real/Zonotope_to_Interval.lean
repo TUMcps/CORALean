@@ -18,6 +18,9 @@ which is the reason it is the representation reachability runs on.
 -- Last update:   02-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
@@ -25,6 +28,9 @@ variable {n : ℕ}
 def Zonotope.interval (Z : Zonotope (Vec ℝ n)) : Interval (Vec ℝ n) where
   inf := fun i => Z.c i - ∑ j, |Z.G j i|
   sup := fun i => Z.c i + ∑ j, |Z.G j i|
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.interval_outer (Z : Zonotope (Vec ℝ n)) :
     Z.construct ⊆ Z.interval.construct := by
@@ -48,3 +54,6 @@ theorem Zonotope.interval_outer (Z : Zonotope (Vec ℝ n)) :
     linarith [key.2]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

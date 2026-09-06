@@ -18,6 +18,9 @@ inequality, and that the closed unit ball is convex and compact.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean
 
 variable {n : ℕ}
@@ -26,6 +29,9 @@ noncomputable def norm₂ (x : Vec ℝ n) : ℝ := Real.sqrt (∑ i, x i ^ 2)
 
 /-- Deliberately not `‖·‖`, which at `Vec ℝ n` is the supremum norm. -/
 scoped notation "‖" x "‖₂" => norm₂ x
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 theorem aux_sum_sq_nonneg (x : Vec ℝ n) : 0 ≤ ∑ i, x i ^ 2 :=
   Finset.sum_nonneg fun _ _ => sq_nonneg _
@@ -105,6 +111,9 @@ theorem convex_unitBall₂ : Convex ℝ (unitBall₂ n) := by
       add_le_add (mul_le_mul_of_nonneg_left hx ha) (mul_le_mul_of_nonneg_left hy hb)
     _ = 1 := by rw [mul_one, mul_one, hab]
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 /-- Closed because the norm is continuous, and inside the supremum-norm unit
 ball because no coordinate exceeds the whole. -/
 theorem isCompact_unitBall₂ : IsCompact (unitBall₂ n) := by
@@ -115,3 +124,6 @@ theorem isCompact_unitBall₂ : IsCompact (unitBall₂ n) := by
   exact fun i => by rw [Real.norm_eq_abs]; exact le_trans (abs_le_norm₂ x i) hx
 
 end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -17,6 +17,9 @@ composes with a second time for its intermediate window.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar NormedSpace
@@ -28,6 +31,9 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 variable [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 omit [∀ n, LinComb (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] in
 -- nine hypotheses passed straight through, each elaborating a `Mtimes` instance at `ℐ`
@@ -51,3 +57,6 @@ theorem LinearSys.inputReach_subset_inputSolution [Mtimes ℐ S]
   exact hmem _ ⟨by linarith [hσ.2], by linarith [hσ.1]⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

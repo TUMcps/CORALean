@@ -17,9 +17,15 @@ Some schedule is inside any inflation of the exact output set, which with
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Pointwise ContSet
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem exists_schedule_sigmoid_subset {n : ℕ} (X : PolyZonotope (Vec ℝ n)) {ε : ℝ}
     (hε : 0 < ε) : ∃ sch : Schedule,
@@ -29,3 +35,6 @@ theorem exists_schedule_sigmoid_subset {n : ℕ} (X : PolyZonotope (Vec ℝ n)) 
     (sigmoidRefinableNetwork_convergent n) X ε hε
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

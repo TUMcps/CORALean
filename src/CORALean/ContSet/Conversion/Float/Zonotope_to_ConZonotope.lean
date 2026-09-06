@@ -18,6 +18,9 @@ exact layer's `fullspace` term. Membership is the shorter argument anyway.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open SoundFloatArithmetic InflatedContSet
@@ -29,6 +32,9 @@ def Zonotope.conZonotope (Z : Zonotope 𝕋 n) : ConZonotope 𝕋 n :=
 
 variable [SoundFloatArithmetic 𝕋]
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem Zonotope.conZonotope_outer (Z : Zonotope 𝕋 n) :
     Z.construct ⊆ Z.conZonotope.construct := by
   refine mono_subset (fun x hx => ?_) subset_rfl
@@ -36,3 +42,6 @@ theorem Zonotope.conZonotope_outer (Z : Zonotope 𝕋 n) :
   exact ConZonotope.mem_nominalSet_iff.mpr ⟨β, hβ, HPolytope.mem_fullspace β, hx⟩
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

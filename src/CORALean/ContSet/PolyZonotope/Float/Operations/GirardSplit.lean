@@ -15,9 +15,15 @@ it file-local.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The `k` generators a metric ranks first, against the rest. Clamped to the
 block, so the split is total and no order hypothesis travels with it; the
@@ -29,3 +35,6 @@ def PolyZonotope.girardSplit {𝕋 : Type} [FloatOps 𝕋] {m : ℕ} (metric : F
       (finCongr (Nat.add_sub_cancel' (min_le_right k m)).symm))
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

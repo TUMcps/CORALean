@@ -15,9 +15,15 @@ carries `e`.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def Zonotope.reindex (e : Fin m ≃ Fin n) (Z : Zonotope 𝕋 n) : Zonotope 𝕋 m where
   h := Z.h
@@ -26,3 +32,6 @@ def Zonotope.reindex (e : Fin m ≃ Fin n) (Z : Zonotope 𝕋 n) : Zonotope 𝕋
   E := Z.E.reindex e
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

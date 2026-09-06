@@ -23,6 +23,9 @@ itself is visible.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
@@ -34,6 +37,9 @@ noncomputable def Ellipsoid.interval (E : Ellipsoid n) : Interval (Vec ℝ n) :=
 theorem Ellipsoid.interval_outer (E : Ellipsoid n) : E.construct ⊆ E.interval.construct :=
   Interval.subset_ofBounds _ _
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 /-- Each upper face is touched, so no smaller box encloses the ellipsoid. The
 lower faces are the same statement against `-eⱼ`. -/
 theorem Ellipsoid.interval_attained (E : Ellipsoid n) (j : Fin n) :
@@ -42,3 +48,6 @@ theorem Ellipsoid.interval_attained (E : Ellipsoid n) (j : Fin n) :
   exact ⟨x, hx, hcx⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

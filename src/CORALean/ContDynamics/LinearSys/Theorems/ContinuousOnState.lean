@@ -15,6 +15,9 @@ here rather than proved inline at either call site.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet Scalar
@@ -22,8 +25,14 @@ open ContSet Scalar
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem LinearSys.Trajectory.continuousOn_state {sys : LinearSys 𝕋 n} {T : Set ℝ}
     {R₀ U : S n} {x u : ℝ → Vec ℝ n} (traj : sys.Trajectory T R₀ U x u) : ContinuousOn x T :=
   fun t ht => (traj.flow t ht).continuousWithinAt
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

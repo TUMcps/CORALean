@@ -26,11 +26,17 @@ new coordinate, which is not a block a `padLeft` could add.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n₁ : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def HPolytope.halfScaledLeft (P : HPolytope 𝕋 n₁) (n₂ : ℕ) : HPolytope 𝕋 (n₁ + n₂ + 1) :=
   (HPolytope.ineqs (fun i => Fin.append (Fin.append (P.A i) fun _ : Fin n₂ => zero)
@@ -44,3 +50,6 @@ def HPolytope.halfScaledLeft (P : HPolytope 𝕋 n₁) (n₂ : ℕ) : HPolytope 
         fun i => neg (half (P.be.inf i))))
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

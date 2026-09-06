@@ -14,11 +14,17 @@ box — the box itself going through the interval `mtimes`.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def VPolytope.mtimes (M : Mat 𝕋 m n) (P : VPolytope 𝕋 n) : VPolytope 𝕋 m where
   k := P.k
@@ -27,3 +33,6 @@ def VPolytope.mtimes (M : Mat 𝕋 m n) (P : VPolytope 𝕋 n) : VPolytope 𝕋 
         (VPolytope.columnGap (matMulDown M P.V) (matMulUp M P.V))
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

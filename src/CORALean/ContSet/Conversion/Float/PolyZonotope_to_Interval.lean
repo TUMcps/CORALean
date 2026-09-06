@@ -20,6 +20,9 @@ never reaches `-1`.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
@@ -37,6 +40,9 @@ def PolyZonotope.interval (PZ : PolyZonotope 𝕋 n) : Interval 𝕋 n where
 open SoundFloatArithmetic InflatedContSet
 
 variable [SoundFloatArithmetic 𝕋]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.interval_outer (PZ : PolyZonotope 𝕋 n) :
     PZ.construct ⊆ PZ.interval.construct := by
@@ -73,3 +79,6 @@ theorem PolyZonotope.interval_outer (PZ : PolyZonotope 𝕋 n) :
     linarith [le_of_abs_le hdep, le_of_abs_le hind, le_of_abs_le herr]
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

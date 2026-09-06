@@ -13,7 +13,13 @@ outside this file.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.monomial_identE {m : ℕ} (a : Fin m → ℝ) (i : Fin m) :
     PolyZonotope.monomial (PolyZonotope.identE m) a i = a i := by
@@ -28,3 +34,6 @@ theorem PolyZonotope.monomial_identE {m : ℕ} (a : Fin m → ℝ) (i : Fin m) :
     exact absurd (Finset.mem_univ i) hi
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

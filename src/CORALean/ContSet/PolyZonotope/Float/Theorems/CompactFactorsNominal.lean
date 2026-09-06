@@ -13,11 +13,17 @@ the exponent matrix, both over ℕ, so nothing here rounds.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Dropping unused factors is the exact layer's step verbatim: the nominal part
 of the result is `compactFactors` of the nominal part. -/
@@ -26,3 +32,6 @@ theorem PolyZonotope.compactFactors_nominal (PZ : PolyZonotope 𝕋 n) :
   Real.PolyZonotope.compactFactors_exact (InflatedContSet.nominal PZ)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

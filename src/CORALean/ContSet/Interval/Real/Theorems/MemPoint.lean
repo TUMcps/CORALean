@@ -14,14 +14,23 @@ importing nothing from here.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Entrywise
 
 variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 -- both bounds are the point itself, so each coordinate is bounded by equality
 theorem Interval.mem_point (v : α) : v ∈ (Interval.point v).construct :=
   fun _ => ⟨le_rfl, le_rfl⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

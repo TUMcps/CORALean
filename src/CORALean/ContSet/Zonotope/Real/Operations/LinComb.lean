@@ -27,9 +27,15 @@ order of its generators.
 -- Last update:   03-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α] {h₁ h₂ : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 noncomputable def Zonotope.linComb (Z₁ Z₂ : Zonotope α) : Zonotope α where
   h := Z₁.h + Z₂.h + 1
@@ -38,3 +44,6 @@ noncomputable def Zonotope.linComb (Z₁ Z₂ : Zonotope α) : Zonotope α where
         (fun _ : Fin 1 => (2:ℝ)⁻¹ • (Z₁.c - Z₂.c))
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

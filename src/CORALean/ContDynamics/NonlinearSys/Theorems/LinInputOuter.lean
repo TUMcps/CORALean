@@ -26,6 +26,9 @@ terms cancel.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix Pointwise ContSet Plus Mtimes OfInterval
@@ -33,6 +36,9 @@ open Matrix Pointwise ContSet Plus Mtimes OfInterval
 variable {n m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [OfInterval S]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The remainder of the split lies in `linInput` wherever the certificate holds. -/
 theorem linInput_outer {f : Vec ℝ n → Vec ℝ m → Vec ℝ n} {A : Mat ℝ n n}
@@ -56,3 +62,6 @@ theorem linInput_outer {f : Vec ℝ n → Vec ℝ m → Vec ℝ n} {A : Mat ℝ 
     (cert.encloses x hx u hu))
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

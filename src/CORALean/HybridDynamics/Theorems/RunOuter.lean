@@ -23,12 +23,18 @@ step count instead.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet Scalar
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HybridAutomaton.Run.mem_of_invariant {HA : HybridAutomaton S L 𝕋 n}
     {R : L → S n} (hinv : HA.Invariant R) {ℓ ℓ' : L} {x y : Vec ℝ n}
@@ -39,3 +45,6 @@ theorem HybridAutomaton.Run.mem_of_invariant {HA : HybridAutomaton S L 𝕋 n}
     exact fun hx => ih (hinv.jump hmem (hinv.flow h hx h.mem_Icc_right) hguard)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

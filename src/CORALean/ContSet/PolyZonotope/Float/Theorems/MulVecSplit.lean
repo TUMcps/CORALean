@@ -17,11 +17,17 @@ at its own fields.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Matrix FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.mulVec_split {hh qq : ℕ} (M : Mat 𝕋 m n) (c : Vec 𝕋 n)
     (G : Mat 𝕋 n hh) (GI : Mat 𝕋 n qq) (t : Vec ℝ hh) (β : Vec ℝ qq) {x : Vec ℝ n}
@@ -57,3 +63,6 @@ theorem PolyZonotope.mulVec_split {hh qq : ℕ} (M : Mat 𝕋 m n) (c : Vec 𝕋
           exact Finset.sum_congr rfl fun j _ => (Finset.sum_mul _ _ _).symm
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

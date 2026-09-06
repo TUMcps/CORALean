@@ -14,6 +14,9 @@ them term by term.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix NormedSpace
@@ -22,6 +25,9 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 -- `exp_eq_tsum` is elaborated against the four local `Matrix.linftyOp*` instances
 set_option maxHeartbeats 200000 in
@@ -34,3 +40,6 @@ theorem exp_smul_tsum (A : Mat ℝ n n) (t : ℝ) :
   exact tsum_congr fun i => by rw [smul_pow, smul_smul]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

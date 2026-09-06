@@ -24,11 +24,17 @@ is the division of labour the refinement loop assumes [1].
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix Pointwise ContSet
 
 variable {n m : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Layer.linear_refinable_convergent (W : Mat ℝ m n) (b : Vec ℝ m) :
     (Layer.linear (S := 𝒫𝒵) W b).refinable.Convergent := by
@@ -46,3 +52,6 @@ theorem Layer.linear_refinable_convergent (W : Mat ℝ m n) (b : Vec ℝ m) :
   rwa [add_zero] at hmem
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

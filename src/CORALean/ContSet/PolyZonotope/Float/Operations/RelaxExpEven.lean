@@ -30,9 +30,15 @@ monomial or a zonotope coefficient for the two columns.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n d : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `relaxExp` with the drift's midpoint taken off the centre, so the new
 independent generator carries only its radius. -/
@@ -48,3 +54,6 @@ def PolyZonotope.relaxExpEven (PZ : PolyZonotope 𝕋 n)
   err := PZ.err.plus (PolyZonotope.generatorError (PZ.relaxGapEven part k₀))
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

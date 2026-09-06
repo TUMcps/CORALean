@@ -13,6 +13,9 @@ induction.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet Scalar
@@ -21,6 +24,9 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 /-- The exact orders of the input solution, `0` through `η`, summed. -/
 noncomputable def LinearSys.inputTaylorSum (sys : LinearSys 𝕋 n) (r : ℝ) (U : S n) : ℕ → S n
   | 0 => Mtimes.mtimes (sys.inputTerm r 0) U
@@ -28,3 +34,6 @@ noncomputable def LinearSys.inputTaylorSum (sys : LinearSys 𝕋 n) (r : ℝ) (U
       (Mtimes.mtimes (sys.inputTerm r (i + 1)) U)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

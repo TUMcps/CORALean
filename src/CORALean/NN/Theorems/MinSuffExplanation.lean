@@ -18,9 +18,15 @@ dropping any one of its features breaks sufficiency.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Sufficient, and no single feature of `E` can be dropped without losing it. -/
 def NeuralNetwork.IsMinSuffExplanation (nn : NeuralNetwork S n m) (x : Vec ℝ n) (ε : ℝ)
@@ -28,3 +34,6 @@ def NeuralNetwork.IsMinSuffExplanation (nn : NeuralNetwork S n m) (x : Vec ℝ n
   nn.IsSuffExplanation x ε E l ∧ ∀ i ∈ E, ¬ nn.IsSuffExplanation x ε (E \ {i}) l
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

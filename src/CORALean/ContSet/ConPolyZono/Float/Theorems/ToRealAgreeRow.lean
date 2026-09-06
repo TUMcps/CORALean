@@ -14,11 +14,17 @@ restatement says so once, at one row.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.toReal_agreeRow (C₁ C₂ : ConPolyZono 𝕋 n) (i : Fin n)
     (l : Fin (C₁.h + C₂.h)) :
@@ -31,3 +37,6 @@ theorem ConPolyZono.toReal_agreeRow (C₁ C₂ : ConPolyZono 𝕋 n) (i : Fin n)
     simp only [ConPolyZono.agreeRow, Fin.append_left, Fin.append_right, toReal_neg]
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

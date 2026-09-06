@@ -10,14 +10,23 @@ import CORALean.ContSet.VPolytope.Real.Operations.Mtimes
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {n m : ℕ}
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 /-- True by `rfl`, and what lets `mtimes` inherit `map`'s exactness. -/
 theorem VPolytope.mtimes_eq_map (M : Mat ℝ m n) (P : VPolytope (Vec ℝ n)) :
     VPolytope.mtimes M P = P.map (Matrix.mulVecLin M) := rfl
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -14,11 +14,17 @@ independent one — so their two radii, added upward, bound the sum.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n d r dI rI : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- What the dropped dependent generators contribute, so what the block must
 cover. The coefficients are monomials, and `abs_sum_le_radius` asks only that
@@ -42,6 +48,9 @@ theorem PolyZonotope.aux_abs_droppedInd_le (PZ : PolyZonotope 𝕋 n)
   abs_sum_le_radius (d := fun i j => PZ.GI i (partI.right j)) (fun _ _ => le_refl _)
     (fun j => hβ (partI.right j)) i
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 /-- One box for the two dropped blocks: their radii, added upward. -/
 theorem PolyZonotope.abs_dropped_le_dropRadius (PZ : PolyZonotope 𝕋 n)
     (partD : Split (Fin PZ.h) into (Fin d) and (Fin r))
@@ -60,3 +69,6 @@ theorem PolyZonotope.abs_dropped_le_dropRadius (PZ : PolyZonotope 𝕋 n)
   linarith
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

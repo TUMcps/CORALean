@@ -16,9 +16,15 @@ representations have — unlike `linComb`, stated so a non-convex one can make i
 -- Last update:   01-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.convex_construct (Z : Zonotope α) : Convex ℝ Z.construct := by
   rintro x ⟨β₁, hβ₁, rfl⟩ y ⟨β₂, hβ₂, rfl⟩ a b ha hb hab
@@ -36,3 +42,6 @@ theorem Zonotope.convex_construct (Z : Zonotope α) : Convex ℝ Z.construct := 
       _ = Z.c + ∑ j, (a * β₁ j + b * β₂ j) • Z.G j := by rw [hab, one_smul, hsum]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

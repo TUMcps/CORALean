@@ -13,7 +13,13 @@ enclosing conversion out of this representation rests on.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A monomial never leaves `[-1,1]`, which is what lets every dependent
 generator be read as an independent one. -/
@@ -26,3 +32,6 @@ theorem PolyZonotope.abs_monomial_le_one {p h : ℕ} (E : Fin p → Fin h → �
   exact pow_le_one₀ (abs_nonneg _) (ha k)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

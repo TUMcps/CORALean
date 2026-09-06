@@ -13,9 +13,15 @@ this file.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The image's exponent column, the two columns added. Over ℕ, so exact. -/
 def PolyZonotope.quadMapE (S : PolyZonotope 𝕋 n) :
@@ -24,3 +30,6 @@ def PolyZonotope.quadMapE (S : PolyZonotope 𝕋 n) :
       + PolyZonotope.extE S k (finProdFinEquiv.symm l).2
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -22,11 +22,17 @@ membership of the concatenation says it.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Matrix FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.smul_mem_halfScaledLeft {P : HPolytope 𝕋 n₁} {y : Vec ℝ n₁} {z : Vec ℝ n₂}
     {w t : ℝ} (hw : (t + 1) / 2 = w) (hw0 : 0 ≤ w) (hy : y ∈ P.construct) :
@@ -70,3 +76,6 @@ theorem HPolytope.smul_mem_halfScaledLeft {P : HPolytope 𝕋 n₁} {y : Vec ℝ
     linarith
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

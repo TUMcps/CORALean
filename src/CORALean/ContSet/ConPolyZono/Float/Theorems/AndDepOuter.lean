@@ -15,11 +15,17 @@ fitting — so the rounding of the centres never has to be pushed anywhere.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- What the two error boxes let the two nominal points differ by, and the
 tolerance the stored rows amount to covers it. -/
@@ -40,6 +46,9 @@ theorem ConPolyZono.aux_mem_andD (C₁ C₂ : ConPolyZono 𝕋 n) {e₁ e₂ : V
   · linarith [add_le_addUp (subUp (C₂.c i) (C₁.c i)) (subUp (C₂.err.sup i) (C₁.err.inf i)),
       sub_le_subUp (C₂.c i) (C₁.c i),
       sub_le_subUp (C₂.err.sup i) (C₁.err.inf i), hb₁.1, hb₂.2]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 -- the nominal side is the exact layer's intersection, at the tolerance `andD` supplies
 theorem ConPolyZono.andDep_outer (C₁ C₂ : ConPolyZono 𝕋 n) (hq₁ : C₁.q = 0)
@@ -65,3 +74,6 @@ theorem ConPolyZono.andDep_outer (C₁ C₂ : ConPolyZono 𝕋 n) (hq₁ : C₁.
     ConPolyZono.aux_mem_andD C₁ C₂ he₁ he₂, hy⟩, e₁, he₁, hx₁⟩
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -14,6 +14,9 @@ satisfy.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
@@ -21,9 +24,15 @@ variable {n : ℕ}
 noncomputable def Interval.conZonotope (I : Interval (Vec ℝ n)) : ConZonotope (Vec ℝ n) :=
   I.zonotope.conZonotope
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem Interval.subset_conZonotope (I : Interval (Vec ℝ n)) :
     I.construct ⊆ I.conZonotope.construct :=
   subset_trans I.subset_zonotope (Zonotope.conZonotope_exact _).subset
 
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -9,11 +9,17 @@ import CORALean.ContSet.Zonotope.Float.Operations.AbsorbError
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The new generators reach every point the box did. -/
 theorem Zonotope.abs_sub_mid_le_errorRadius (Z : Zonotope 𝕋 n) {e : Vec ℝ n}
@@ -28,3 +34,6 @@ theorem Zonotope.abs_sub_mid_le_errorRadius (Z : Zonotope 𝕋 n) {e : Vec ℝ n
   exact ⟨by linarith, by linarith⟩
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

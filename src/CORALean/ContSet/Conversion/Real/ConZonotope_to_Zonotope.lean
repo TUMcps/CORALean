@@ -17,6 +17,9 @@ fall back on.
 -- Last update:   02-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
@@ -26,8 +29,14 @@ def ConZonotope.zonotope (C : ConZonotope α) : Zonotope α where
   c := C.c
   G := C.G
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem ConZonotope.zonotope_outer (C : ConZonotope α) : C.construct ⊆ C.zonotope.construct := by
   rintro _ ⟨β, hβ, -, rfl⟩
   exact ⟨β, hβ, rfl⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

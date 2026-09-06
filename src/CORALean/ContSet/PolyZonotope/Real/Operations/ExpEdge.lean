@@ -27,7 +27,13 @@ Nothing about soundness needs that; a heuristic does.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The edges of the generator graph: an edge at whichever index the two
 exponent columns differ in. -/
@@ -35,3 +41,6 @@ def PolyZonotope.ExpEdge {p h : ℕ} (E : Fin p → Fin h → ℕ) (η : ℕ) (i
   ∃ k₀, PolyZonotope.ExpEdgeAt E η k₀ i j
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

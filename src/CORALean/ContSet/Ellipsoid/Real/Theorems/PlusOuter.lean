@@ -17,11 +17,17 @@ Only `_outer`: the sum is not an ellipsoid, so no member of the family is exact.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix Pointwise
 
 variable {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `Fin.sum_univ_add` at `plus`'s generator count, stated through the
 projection because that is the form the goal has and simp will not rewrite a
@@ -60,6 +66,9 @@ theorem Ellipsoid.aux_value_plus {l : ℝ} (ha : Real.sqrt (1 + 1 / l) ≠ 0)
   show (E₁.q + E₂.q) + (Ellipsoid.plus l E₁ E₂).G *ᵥ _ = _
   rw [hmul]
   abel
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 -- the enclosure holds at any positive `l`, the two scalings being read off it
 theorem Ellipsoid.plus_outer (l : ℝ) (hl : 0 < l) (E₁ E₂ : Ellipsoid n) :
@@ -116,3 +125,6 @@ theorem Ellipsoid.plus_outer (l : ℝ) (hl : 0 < l) (E₁ E₂ : Ellipsoid n) :
     _ = 1 := Real.sqrt_one
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

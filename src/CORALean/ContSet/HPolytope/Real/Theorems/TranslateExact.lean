@@ -13,9 +13,15 @@ what it reads off `t` says the same thing about `x` that the original said about
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.translate_exact (t : α) (P : HPolytope α) :
     (t + ·) '' P.construct = (HPolytope.translate t P).construct := by
@@ -44,3 +50,6 @@ theorem HPolytope.translate_exact (t : α) (P : HPolytope α) :
       abel
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

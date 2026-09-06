@@ -27,9 +27,15 @@ is lawful and that `⊞` reads at a float ellipsoid.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix Pointwise ContSet
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The input Taylor sum at an ellipsoid, the scaling fixed once for the whole
 sum. `inputTaylorSum` is unchanged and unaware; the `letI` is the entire cost of
@@ -72,3 +78,6 @@ example {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ} {s�
   exact Plus.plus_outer E₁ E₂
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

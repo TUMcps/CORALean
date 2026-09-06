@@ -12,11 +12,17 @@ Split out of `RelaxExpMid.lean` (issue #62): read again by
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n d : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The new independent column as stored: half of as many copies of the relaxed
 generator as the bracket is wide, rounded down. -/
@@ -26,3 +32,6 @@ def PolyZonotope.relaxGenMid (PZ : PolyZonotope 𝕋 n)
     (PZ.G i (part.right 0)))
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

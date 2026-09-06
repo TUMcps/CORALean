@@ -18,6 +18,9 @@ any box.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
@@ -25,6 +28,9 @@ variable {n : ℕ}
 noncomputable def VPolytope.interval (P : VPolytope (Vec ℝ n)) : Interval (Vec ℝ n) where
   inf := fun i => ⨅ l, P.V l i
   sup := fun i => ⨆ l, P.V l i
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.interval_outer (P : VPolytope (Vec ℝ n)) :
     P.construct ⊆ P.interval.construct := by
@@ -41,3 +47,6 @@ theorem VPolytope.interval_outer (P : VPolytope (Vec ℝ n)) :
   · exact P.le_of_forall_le (LinearMap.proj i) (fun l => le_ciSup hbddA l) hx
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

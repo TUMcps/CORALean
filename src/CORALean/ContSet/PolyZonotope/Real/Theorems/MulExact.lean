@@ -22,11 +22,17 @@ take no part on either side.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open PolyZonotope
 
 variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.mul_exact (S₁ S₂ : PolyZonotope (Vec ℝ n)) (hp : S₁.p = S₂.p) :
     (fun a : Fin S₁.p → ℝ => S₁.point a * S₂.point (fun k => a (Fin.cast hp.symm k)))
@@ -50,3 +56,6 @@ theorem PolyZonotope.mul_exact (S₁ S₂ : PolyZonotope (Vec ℝ n)) (hp : S₁
     exact ⟨a, ha, by rw [hx]; exact hpt a b⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

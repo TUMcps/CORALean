@@ -26,11 +26,17 @@ genuinely public and neither the other's helper, so each earns its own file.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet OfInterval
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OfInterval S] {n m : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Transfer (`col:suff-nn-suff-nnabs` [1]): sufficient for `nnAbs` is sufficient
 for `nn`, given that `nnAbs`'s enclosure of `explainBox` contains `nn`'s exact
@@ -52,3 +58,6 @@ theorem NeuralNetwork.suffExplanation_of_abstract (nn nnAbs : NeuralNetwork S n 
   exact hd ⟨j, hj, not_lt.mp hc⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

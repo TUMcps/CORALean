@@ -25,11 +25,17 @@ because `sound` bounds an absolute value at a point the box actually contains.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Pointwise ContSet
 
 variable {σ : ℝ → ℝ} {m n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The propagated set is inside the image inflated by `ε`, at any `ε` the
 neurons' doubled errors fit under. -/
@@ -113,3 +119,6 @@ theorem Layer.activationPoly_subset_inflate (P : LayerRelaxation σ n m)
   rwa [heq] at hmem
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

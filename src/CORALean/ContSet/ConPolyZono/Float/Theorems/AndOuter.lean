@@ -15,11 +15,17 @@ sets.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.and_outer (C₁ C₂ : ConPolyZono 𝕋 n) :
     C₁.construct ∩ C₂.construct ⊆ (C₁.and C₂).construct := by
@@ -27,3 +33,6 @@ theorem ConPolyZono.and_outer (C₁ C₂ : ConPolyZono 𝕋 n) :
   exact ConPolyZono.andDep_outer C₁.dependent C₂.dependent rfl rfl
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

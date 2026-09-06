@@ -15,9 +15,15 @@ independent block, so no order bound is available for it.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.reduceGirardDependent_outer (PZ : PolyZonotope (Vec ℝ n)) (o : ℕ) :
     PZ.construct ⊆ (PZ.reduceGirardDependent o).construct := by
@@ -27,3 +33,6 @@ theorem PolyZonotope.reduceGirardDependent_outer (PZ : PolyZonotope (Vec ℝ n))
   · exact subset_rfl
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -20,6 +20,9 @@ computation reached two ways; they agree or the table says so.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace Demo
 
 open CORALean CORALean.Float
@@ -54,6 +57,9 @@ def layerBoxes : {n m : ℕ} → Real.NeuralNetwork (Zonotope D) n m → Zonotop
     let Y := L.propagate Z
     layerLine i Y :: layerBoxes rest Y (i + 1)
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 def propagateReport : String :=
   String.intercalate "\n" ([
     "== NeuralNetwork.propagate at Dyadic 24 ==",
@@ -68,3 +74,6 @@ def propagateReport : String :=
     "propagate  " ++ showBox (net.propagate X).interval])
 
 end Demo
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -31,9 +31,15 @@ are ranked at one width, a `Schedule` being indexed by plain ℕ.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m k : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Neuron `j`'s own rank at what CORA backpropagates, left unaggregated: this
 rule ranks `(layer, neuron)` pairs and never layers. -/
@@ -56,6 +62,9 @@ noncomputable def aux_neuronwiseStep (r : Fin (k + 1) → Fin (n + 1) → ℝ) (
           ≤ r (aux_worstNeuron r).1 ⟨j, h⟩ then 1 else 0)
     else 0
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 /-- The neuron-wise rule itself [1, Def. 4.4]: those neurons, in the layer the
 best rank names, each moving up one order. -/
 noncomputable def Schedule.refineWorstNeurons (sch : Schedule)
@@ -63,3 +72,6 @@ noncomputable def Schedule.refineWorstNeurons (sch : Schedule)
   Schedule.raise sch (aux_worstNeuron r).1 (aux_neuronwiseStep r ω)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

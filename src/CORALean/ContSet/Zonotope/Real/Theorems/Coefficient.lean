@@ -18,8 +18,17 @@ A proof device rather than an operation, hence in `Theorems/` and not in
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 noncomputable def Zonotope.coefficient (R D : ℝ) : ℝ := if R = 0 then 0 else D / R
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

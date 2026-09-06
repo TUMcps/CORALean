@@ -34,6 +34,9 @@ and layout.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet
@@ -50,6 +53,9 @@ def Example.poolTap (j : Fin 2) (l : Fin 2) : Fin 5 :=
 
 theorem Example.convTap_injective (j : Fin 5) : Function.Injective (Example.convTap j) :=
   fun _ _ h => Fin.ext (Nat.add_left_cancel (congrArg Fin.val h))
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- A 2 × 3 array read the other way round, then convolved, rectified, pooled,
 normalized and turned into two class scores. -/
@@ -100,3 +106,6 @@ reason. -/
 noncomputable example : Layer 𝒵 5 2 := Layer.avgPool Example.poolTap
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -25,11 +25,17 @@ function it refines, and pays the difference into `propagate`.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m k : ℕ}
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 structure Layer (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] (n m : ℕ) where
   eval : Vec ℝ n → Vec ℝ m
@@ -58,3 +64,6 @@ def Layer.comp (L₂ : Layer S m k) (L₁ : Layer S n m) : Layer S n k where
   propagate_outer s x hx := L₂.propagate_outer _ _ (L₁.propagate_outer s x hx)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -21,11 +21,17 @@ same generator count, keeps the enclosure too.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem RefinableNetwork.outputSet_subset_refineLayer (rn : RefinableNetwork S n m)
     (sch : Schedule) (l : ℕ) (X : S n) :
@@ -33,3 +39,6 @@ theorem RefinableNetwork.outputSet_subset_refineLayer (rn : RefinableNetwork S n
   rn.outputSet_subset_propagateAt _ X
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

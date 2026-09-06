@@ -13,9 +13,15 @@ layers.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {p₁ h₁ p₂ h₂ : ℕ} (E₁ : Fin p₁ → Fin h₁ → ℕ) (E₂ : Fin p₂ → Fin h₂ → ℕ)
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The first block keeps the monomials the two sets brought: the fresh factor
 sits there at exponent zero. -/
@@ -34,3 +40,6 @@ theorem PolyZonotope.monomial_linCombE_fst (a : Fin (p₁ + p₂ + 1) → ℝ)
     simp only [PolyZonotope.linCombE, Fin.append_left]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -23,6 +23,9 @@ to anything stated over ℝ; the converse needs a float large enough, which is
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Pointwise FloatOps SoundFloatArithmetic
@@ -30,6 +33,9 @@ open Pointwise FloatOps SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Module ℝ β]
 variable {S T : Set α} {c : α →ₗ[ℝ] ℝ}
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 structure FloatBound (𝕋 : Type) [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
     {α : Type} [AddCommGroup α] [Module ℝ α] (S : Set α) (c : α →ₗ[ℝ] ℝ) where
@@ -93,3 +99,6 @@ def FloatBound.convexHull (u : FloatBound 𝕋 S c) : FloatBound 𝕋 (convexHul
   le := u.toSupportBound.convexHull.le
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -13,9 +13,15 @@ this file.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The kept columns, indexed by a plain count — which is what the field `h`
 needs and a `Finset` is not. -/
@@ -24,3 +30,6 @@ noncomputable def PolyZonotope.compactIdx {p h : ℕ} (E : Fin p → Fin h → �
   (PolyZonotope.compactKeep E G).orderIsoOfFin rfl j
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

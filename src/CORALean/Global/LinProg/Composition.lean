@@ -18,6 +18,9 @@ list of directions, and its right-hand side is assembled here.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean
 
 open Pointwise
@@ -79,6 +82,9 @@ theorem convex_le (c : α →ₗ[ℝ] ℝ) (v : ℝ) : Convex ℝ {w : α | c w 
         add_le_add (mul_le_mul_of_nonneg_left hp ha) (mul_le_mul_of_nonneg_left hq hb)
     _ = v := by rw [← add_mul, hab, one_mul]
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 /-- A halfspace is convex, so it holds the hull as soon as it holds the points.
 This is what lets a convex hull be enclosed without ever forming it. -/
 def SupportBound.convexHull (u : SupportBound S c) : SupportBound (convexHull ℝ S) c where
@@ -86,3 +92,6 @@ def SupportBound.convexHull (u : SupportBound S c) : SupportBound (convexHull �
   le _ hx := convexHull_min (fun y hy => u.le y hy) (convex_le c u.val) hx
 
 end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

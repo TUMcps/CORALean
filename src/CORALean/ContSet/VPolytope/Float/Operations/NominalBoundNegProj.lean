@@ -14,11 +14,17 @@ maximum.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 -- the opposite direction, where the negation is taken before the maximum
 def VPolytope.nominalBoundNegProj (P : VPolytope 𝕋 n) (j : Fin n) :
@@ -32,3 +38,6 @@ def VPolytope.nominalBoundNegProj (P : VPolytope 𝕋 n) (j : Fin n) :
         exact le_maximumOver (fun l => neg (P.V j l)) l) hx
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

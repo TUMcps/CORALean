@@ -14,11 +14,17 @@ box travels through the map as a box, by `Interval.mtimes`.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def Zonotope.mtimes (M : Mat 𝕋 m n) (Z : Zonotope 𝕋 n) : Zonotope 𝕋 m where
   h := Z.h
@@ -27,3 +33,6 @@ def Zonotope.mtimes (M : Mat 𝕋 m n) (Z : Zonotope 𝕋 n) : Zonotope 𝕋 m w
   E := (Interval.mtimes M Z.E).plus (Zonotope.mtimesResidual M Z)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

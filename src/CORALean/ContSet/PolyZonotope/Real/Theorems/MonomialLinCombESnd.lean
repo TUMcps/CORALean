@@ -13,9 +13,15 @@ layers — the whole of what makes `linComb` exact on the dependent part.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {p₁ h₁ p₂ h₂ : ℕ} (E₁ : Fin p₁ → Fin h₁ → ℕ) (E₂ : Fin p₂ → Fin h₂ → ℕ)
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.monomial_linCombE_snd (a : Fin (p₁ + p₂ + 1) → ℝ)
     (i : Fin (h₁ + h₂)) :
@@ -35,3 +41,6 @@ theorem PolyZonotope.monomial_linCombE_snd (a : Fin (p₁ + p₂ + 1) → ℝ)
   simp only [PolyZonotope.linCombE, Fin.append_left, Fin.append_right]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

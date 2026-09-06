@@ -16,9 +16,15 @@ go to the earlier index.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {k : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The largest-ranked of `k + 1` candidates, ties to the earlier one, which is
 what `Tuple.sort` gives at index `0`. -/
@@ -26,3 +32,6 @@ noncomputable def worstIndex (r : Fin (k + 1) → ℝ) : Fin (k + 1) :=
   (Tuple.sort fun l => -r l) 0
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

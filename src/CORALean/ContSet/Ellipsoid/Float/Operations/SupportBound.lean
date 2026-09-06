@@ -18,11 +18,17 @@ The whole set's bound adds the nominal bound and the error box's own, upward.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The whole set: the nominal bound and the error box's own, added upward. -/
 def Ellipsoid.boundDot (E : Ellipsoid 𝕋 n) {c : Vec ℝ n →ₗ[ℝ] ℝ} (a : Vec 𝕋 n)
@@ -32,3 +38,6 @@ def Ellipsoid.boundDot (E : Ellipsoid 𝕋 n) {c : Vec ℝ n →ₗ[ℝ] ℝ} (a
   InflatedContSet.boundOfParts (E.nominalBoundDot a hc s hs) (E.err.boundDot a hc)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

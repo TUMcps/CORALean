@@ -22,9 +22,15 @@ what it needs of the set rather than of the representation.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean
 
 open ContSet
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 /-- Everything this representation denotes is convex. What an integral valued in
 the set needs, and what makes `linComb` a convex hull. -/
@@ -33,3 +39,6 @@ class ConvexSet (S : Type) (α : outParam Type) [AddCommGroup α] [Module ℝ α
   convex_construct (s : S) : Convex ℝ (construct s)
 
 end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

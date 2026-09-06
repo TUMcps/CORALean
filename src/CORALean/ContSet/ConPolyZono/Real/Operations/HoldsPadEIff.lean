@@ -13,7 +13,13 @@ widened factor vector exactly what it said of the original.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Fresh factors at exponent zero constrain nothing, so the system says of the
 widened factor vector exactly what it said of the original. -/
@@ -27,3 +33,6 @@ theorem ConPolyZono.holds_padE_iff {p m s : ℕ} (A : Mat ℝ m s) (b : Interval
   simp only [ConPolyZono.holds, hm]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

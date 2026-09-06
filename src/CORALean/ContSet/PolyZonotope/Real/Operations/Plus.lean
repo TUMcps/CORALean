@@ -23,9 +23,15 @@ one; here `plus` always separates, which is sound and never tighter.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def PolyZonotope.plus (PZ₁ PZ₂ : PolyZonotope α) : PolyZonotope α where
   p := PZ₁.p + PZ₂.p
@@ -37,3 +43,6 @@ def PolyZonotope.plus (PZ₁ PZ₂ : PolyZonotope α) : PolyZonotope α where
   GI := Fin.append PZ₁.GI PZ₂.GI
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

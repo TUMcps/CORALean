@@ -20,9 +20,15 @@ selects.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- file-local: only `reduceGirard` below needs it
 /-- How many of the `K` best-ranked generators overall are dependent: CORA's
@@ -33,6 +39,9 @@ noncomputable def PolyZonotope.aux_girardKeptDep (PZ : PolyZonotope (Vec ℝ n))
     -PolyZonotope.girardMetric (Fin.append PZ.G PZ.GI) l).symm
   min K (Finset.univ.filter fun l : Fin PZ.h =>
     (rank (Fin.castAdd PZ.q l) : ℕ) < K).card
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- CORA's `reduce(pZ, 'girard', o)`: past `n·o` generators in the two blocks
 together, keep the `(o-1)·n` Girard ranks first and box the rest, bringing the
@@ -47,3 +56,6 @@ noncomputable def PolyZonotope.reduceGirard (PZ : PolyZonotope (Vec ℝ n)) (o :
   else PZ
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

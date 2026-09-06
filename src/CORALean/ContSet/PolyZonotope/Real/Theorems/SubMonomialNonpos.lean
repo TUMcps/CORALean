@@ -30,7 +30,13 @@ at any parity.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Two monomials whose columns agree off `k₀`, with column `i` even, `E_{k₀,j}`
 even and `E_{k₀,j} ≤ E_{k₀,i}`, drift in one direction only. -/
@@ -44,3 +50,6 @@ theorem PolyZonotope.sub_monomial_nonpos {p h : ℕ} (E : Fin p → Fin h → �
     (PolyZonotope.sub_pow_nonpos (ha k₀) (Or.inr ⟨heven k₀, hevenj, hle⟩))
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

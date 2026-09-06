@@ -12,11 +12,17 @@ Split out of `EvalPoly.lean` (issue #62): read again by
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- A sound bound on `|nominal S|`, entrywise: the centre plus every generator's
 magnitude, since every monomial is at most `1` in absolute value. -/
@@ -24,3 +30,6 @@ def PolyZonotope.evalPolyBoundS (S : PolyZonotope 𝕋 n) : Vec 𝕋 n :=
   fun i => addUp (absolute (S.c i)) (radius S.G i)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

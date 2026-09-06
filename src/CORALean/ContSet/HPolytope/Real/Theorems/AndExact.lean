@@ -13,12 +13,21 @@ tree converts to this representation to intersect.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.and_exact (P₁ P₂ : HPolytope α) :
     P₁.construct ∩ P₂.construct = (P₁.and P₂).construct :=
   Set.ext fun _ => HPolytope.mem_and_iff.symm
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

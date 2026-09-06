@@ -14,12 +14,21 @@ against the rounded generators rather than composing with it.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.mtimes_exact {n m : ℕ} (M : Mat ℝ m n) (Z : Zonotope (Vec ℝ n)) :
     (M *ᵥ ·) '' Z.construct = (Zonotope.mtimes M Z).construct :=
   Zonotope.map_exact (Matrix.mulVecLin M) Z
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

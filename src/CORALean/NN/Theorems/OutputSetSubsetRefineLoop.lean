@@ -15,11 +15,17 @@ So does the loop, at every `pick` and every number of steps.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem RefinableNetwork.outputSet_subset_refineLoop (rn : RefinableNetwork S n m)
     (pick : Schedule → ℕ × ℕ) (sch : Schedule) (k : ℕ) (X : S n) :
@@ -27,3 +33,6 @@ theorem RefinableNetwork.outputSet_subset_refineLoop (rn : RefinableNetwork S n 
   rn.outputSet_subset_propagateAt _ X
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

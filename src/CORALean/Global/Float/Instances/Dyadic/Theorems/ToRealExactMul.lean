@@ -14,9 +14,15 @@ step to get.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float.Dyadic
 
 variable {p : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem toReal_exactMul (a b : Dyadic p) :
     toReal (exactMul a b) = toReal a * toReal b := by
@@ -24,3 +30,6 @@ theorem toReal_exactMul (a b : Dyadic p) :
   ring
 
 end CORALean.Float.Dyadic
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

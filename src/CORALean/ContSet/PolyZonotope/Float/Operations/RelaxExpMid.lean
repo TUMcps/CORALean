@@ -30,9 +30,15 @@ gap at the coefficient that reads it — a monomial, a zonotope coefficient, and
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n d : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The two generators `part.right` names merged into one, the drift's midpoint
 moved into the centre and its half-width into a new independent generator. -/
@@ -48,3 +54,6 @@ def PolyZonotope.relaxExpMid (PZ : PolyZonotope 𝕋 n)
   err := PZ.err.plus (PolyZonotope.generatorError (PZ.relaxGapMid part k₀))
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

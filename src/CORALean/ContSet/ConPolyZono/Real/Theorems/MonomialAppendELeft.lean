@@ -13,7 +13,13 @@ columns index them.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.monomial_appendE_left {p s t : ℕ} (E₁ : Fin p → Fin s → ℕ)
     (E₂ : Fin p → Fin t → ℕ) (a : Fin p → ℝ) (l : Fin s) :
@@ -24,3 +30,6 @@ theorem ConPolyZono.monomial_appendE_left {p s t : ℕ} (E₁ : Fin p → Fin s 
     simp only [ConPolyZono.appendE, Fin.append_left]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

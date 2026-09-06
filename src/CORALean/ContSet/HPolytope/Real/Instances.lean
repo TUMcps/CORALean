@@ -26,9 +26,15 @@ importer of `OfInterval` behind `HPolytope`. `and`, `comap`, `mapEquiv` and
 -- Last update:   03-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- ========================================  INSTANCES  ========================================= --
 
 instance : ContSet (HPolytope α) α := ⟨HPolytope.construct⟩
 
@@ -37,3 +43,6 @@ instance : Reduce (HPolytope α) α where
   reduce_outer _ _ := subset_rfl
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

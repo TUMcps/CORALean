@@ -29,7 +29,13 @@ tanh are bounded globally anyway.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Every term is a magnitude, so the radius never goes below zero. -/
 theorem aux_polyDerivRadius_nonneg {k : ℕ} (c : Fin (k + 1) → ℝ) (l u : ℝ) :
@@ -89,6 +95,9 @@ theorem aux_polyDerivDiff_le {lo hi ctr rad r : ℝ} (hrad0 : 0 ≤ rad) (hrad :
     exact ⟨by linarith, by linarith⟩
   · rw [abs_le]
     exact ⟨by linarith, by linarith⟩
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- One relaxation whose error is under `ε` on every box inside `[L, U]`: the
 order a whole layer is refined to, rather than a single neuron's. -/
@@ -154,3 +163,6 @@ theorem exists_polyRelaxation_error_lt {σ σ' : ℝ → ℝ} {L U Mσ ε : ℝ}
   linarith
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

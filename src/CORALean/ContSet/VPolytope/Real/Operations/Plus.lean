@@ -15,12 +15,21 @@ vertices are for — a halfspace description has no counterpart.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def VPolytope.plus (P₁ P₂ : VPolytope α) : VPolytope α where
   k := P₁.k * P₂.k
   V := fun l => P₁.V (finProdFinEquiv.symm l).1 + P₂.V (finProdFinEquiv.symm l).2
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

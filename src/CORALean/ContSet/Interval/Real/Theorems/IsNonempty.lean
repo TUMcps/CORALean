@@ -13,11 +13,17 @@ in `NotIsNonempty`, it is the claim that crossed bounds denote `∅`.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Entrywise
 
 variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.isNonempty_iff (I : Interval α) : I.IsNonempty ↔ I.construct.Nonempty := by
   constructor
@@ -26,3 +32,6 @@ theorem Interval.isNonempty_iff (I : Interval α) : I.IsNonempty ↔ I.construct
     exact le_trans (hx i).1 (hx i).2
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

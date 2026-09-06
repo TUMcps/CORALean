@@ -22,11 +22,17 @@ this already states its lemmas.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean
 
 open ContSet
 
 variable {S α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α] [ContSet S α]
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 /-- Everything this representation denotes is compact. -/
 class CompactSet (S : Type) (α : outParam Type) [NormedAddCommGroup α] [NormedSpace ℝ α]
@@ -41,3 +47,6 @@ theorem CompactSet.isBounded_construct [CompactSet S α] (s : S) :
   (CompactSet.isCompact_construct s).isBounded
 
 end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

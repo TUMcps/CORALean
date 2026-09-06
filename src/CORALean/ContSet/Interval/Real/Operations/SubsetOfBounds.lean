@@ -12,9 +12,15 @@ for.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ} {S : Set (Vec ℝ n)}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.subset_ofBounds (up : ∀ j, SupportBound S (LinearMap.proj j))
     (lo : ∀ j, SupportBound S (-LinearMap.proj j)) :
@@ -27,3 +33,6 @@ theorem Interval.subset_ofBounds (up : ∀ j, SupportBound S (LinearMap.proj j))
   · exact (up j).le x hx
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

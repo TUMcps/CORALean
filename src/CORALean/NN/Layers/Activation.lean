@@ -28,12 +28,18 @@ needs `IntervalOuter` and the linear one does not.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix Pointwise ContSet Plus Mtimes IntervalOuter OfInterval
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat ℝ) S] [IntervalOuter S] [OfInterval S] {n : ℕ}
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 /-- An affine enclosure of `σ` on every interval, as CORA's activation layers
 compute one before they propagate anything. -/
@@ -106,3 +112,6 @@ def Layer.activation {σ : ℝ → ℝ} (R : Relaxation σ) : Layer S n n where
       (ofInterval_outer _ hmem))
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

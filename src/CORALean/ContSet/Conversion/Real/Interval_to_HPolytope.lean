@@ -16,6 +16,9 @@ zonotope's domain names it constantly and should not carry an interval around.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
@@ -27,6 +30,9 @@ def Interval.hPolytope (I : Interval (Vec ℝ n)) : HPolytope (Vec ℝ n) where
   me := 0
   Ae := Fin.elim0
   be := Fin.elim0
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `Fin.addCases` does not reduce on a variable index, so which half of the
 constraint list an index falls in takes a rewrite. -/
@@ -75,6 +81,9 @@ theorem Interval.mem_hPolytope_iff {I : Interval (Vec ℝ n)} {x : Vec ℝ n} :
       show -(x j) ≤ -I.inf j
       linarith [(h j).1]
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 -- so the two descriptions denote the same set, with nothing given away
 theorem Interval.hPolytope_exact (I : Interval (Vec ℝ n)) :
     (Interval.hPolytope I).construct = I.construct := by
@@ -86,3 +95,6 @@ theorem Interval.hPolytope_exact (I : Interval (Vec ℝ n)) :
     exact Interval.mem_hPolytope_iff.mpr fun i => hx i
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

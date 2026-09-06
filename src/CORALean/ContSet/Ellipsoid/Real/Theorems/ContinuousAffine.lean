@@ -14,11 +14,17 @@ coefficient cube.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.continuous_affine (E : Ellipsoid n) :
     Continuous fun u : Vec ℝ E.k => E.q + E.G *ᵥ u := by
@@ -27,3 +33,6 @@ theorem Ellipsoid.continuous_affine (E : Ellipsoid n) :
   exact continuous_finsetSum _ fun j _ => continuous_const.mul (continuous_apply j)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -33,6 +33,9 @@ Nothing here evaluates to a number. Over ℝ every operation is noncomputable, a
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar
@@ -52,6 +55,9 @@ noncomputable def Example.nnControlledDT (A : Mat ℝ 2 2) (W₁ : Mat ℝ 3 2) 
     (W₂ : Mat ℝ 2 3) (b₂ : Vec ℝ 2) : NeurNetContrSysDT ℝ 𝒵 2 where
   plant := ⟨A⟩
   contr := Example.nnController W₁ b₁ W₂ b₂
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The same controller on a continuous plant, sampled. -/
 noncomputable def Example.nnControlled (A : Mat ℝ 2 2) (W₁ : Mat ℝ 3 2) (b₁ : Vec ℝ 3)
@@ -110,3 +116,6 @@ noncomputable example (A : Mat ℝ 2 2) (W₁ : Mat ℝ 3 2) (b₁ : Vec ℝ 3) 
   (Example.nnControlled A W₁ b₁ W₂ b₂).reach o η N Δt R₀ i
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

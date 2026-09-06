@@ -21,7 +21,13 @@ CORA reads the subgradient there instead, and either choice is a heuristic.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem not_differentiableAt_relu_zero : ¬ DifferentiableAt ℝ relu 0 := by
   intro h
@@ -40,3 +46,6 @@ theorem not_differentiableAt_relu_zero : ¬ DifferentiableAt ℝ relu 0 := by
   exact one_ne_zero h0
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

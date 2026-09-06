@@ -14,11 +14,17 @@ shrinks the set, which is not what `reduce` may return.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {n : ℕ}
+
+
+-- ========================================  INSTANCES  ========================================= --
 
 instance {α : Type} [AddCommGroup α] [Module ℝ α] : ContSet (VPolytope α) α :=
   ⟨VPolytope.construct⟩
@@ -42,3 +48,6 @@ instance : Mtimes (Mat ℝ) (fun n => VPolytope (Vec ℝ n)) where
     exact (VPolytope.mtimes_exact M P).subset
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

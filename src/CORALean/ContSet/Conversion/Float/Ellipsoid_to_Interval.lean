@@ -27,6 +27,9 @@ ellipsoid on every face, here it touches whatever `s` was worth.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
@@ -41,6 +44,9 @@ def Ellipsoid.interval (E : Ellipsoid 𝕋 n) (s : Vec 𝕋 n) : Interval 𝕋 n
 open SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- What a certified length buys: the whole `i`-th row reaches no further over
 the unit ball. -/
@@ -57,6 +63,9 @@ theorem Ellipsoid.aux_row_le (E : Ellipsoid 𝕋 n) (s : Vec 𝕋 n)
         abs_dotProduct_le_norm₂_mul_norm₂ _ _
     _ ≤ toReal (absolute (s i)) * 1 := mul_le_mul hrow hu (norm₂_nonneg u) h0
     _ = toReal (absolute (s i)) := mul_one _
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 -- the box is that reach around the centre, with the error box added on
 theorem Ellipsoid.interval_outer (E : Ellipsoid 𝕋 n) (s : Vec 𝕋 n)
@@ -85,3 +94,6 @@ theorem Ellipsoid.interval_outer (E : Ellipsoid 𝕋 n) (s : Vec 𝕋 n)
     linarith
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

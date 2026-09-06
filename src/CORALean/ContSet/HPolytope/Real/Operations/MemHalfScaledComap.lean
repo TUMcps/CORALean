@@ -19,9 +19,15 @@ it off.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α γ : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup γ] [Module ℝ γ]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.mem_halfScaled_comap {f : γ →ₗ[ℝ] α} {t : γ →ₗ[ℝ] ℝ} {P : HPolytope α}
     {x : γ} {w : ℝ} {y : α} (hw : (t x + 1) / 2 = w) (hw0 : 0 ≤ w) (hy : y ∈ P.construct)
@@ -35,3 +41,6 @@ theorem HPolytope.mem_halfScaled_comap {f : γ →ₗ[ℝ] α} {t : γ →ₗ[�
     rw [hf, hw, map_smul, smul_eq_mul, hy.2 i]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

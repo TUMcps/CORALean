@@ -18,6 +18,9 @@ one, `quotDown_le_div`, at a negated dividend; the grid rounding on top,
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float.Dyadic
 
 variable {p : ℕ}
@@ -37,8 +40,14 @@ private theorem le_quotUp (a b : Dyadic p) (hb : 0 < toReal b) :
     linarith
   exact_mod_cast h'
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem le_divUp (a b : Dyadic p) (hb : 0 < toReal b) :
     toReal a / toReal b ≤ toReal (divUp a b) :=
   le_trans (le_quotUp a b hb) (le_roundUp _)
 
 end CORALean.Float.Dyadic
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

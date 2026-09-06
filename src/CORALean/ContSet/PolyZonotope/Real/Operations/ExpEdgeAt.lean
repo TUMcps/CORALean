@@ -30,7 +30,13 @@ clause ℕ arithmetic or a bounded quantifier; the instance is
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- An edge `i → j` at the index `k₀` the two exponent columns differ in:
 similar columns, matching parity or a zero below, and no lower than `η`. -/
@@ -41,3 +47,6 @@ def PolyZonotope.ExpEdgeAt {p h : ℕ} (E : Fin p → Fin h → ℕ) (η : ℕ) 
     ∧ η ≤ E k₀ j ∧ E k₀ j < E k₀ i
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

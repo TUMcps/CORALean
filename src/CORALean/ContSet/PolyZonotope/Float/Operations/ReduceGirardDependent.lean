@@ -18,17 +18,26 @@ and bounding nothing — the box adds `n` independent generators at every call.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
 -- file-local: only `reduceGirardDependent` below needs it
 /-- Nothing dropped: what a rule hands `reduceBy` for a block it leaves
 alone. -/
 def PolyZonotope.aux_keepAll (m : ℕ) : Split (Fin m) into (Fin m) and (Fin 0) :=
   (Partition.split m 0).reindex (finCongr (Nat.add_zero m).symm)
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def PolyZonotope.reduceGirardDependent (PZ : PolyZonotope 𝕋 n) (o : ℕ) : PolyZonotope 𝕋 n :=
   if o * n < PZ.h then
@@ -38,3 +47,6 @@ def PolyZonotope.reduceGirardDependent (PZ : PolyZonotope 𝕋 n) (o : ℕ) : Po
   else PZ
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

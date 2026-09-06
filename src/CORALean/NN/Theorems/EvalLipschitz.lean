@@ -18,11 +18,17 @@ commit the statement to a number no caller reads.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem RefinableNetwork.exists_lipschitzWith_eval :
     ∀ {n m : ℕ} (rn : RefinableNetwork S n m), rn.LipschitzLayers →
@@ -35,3 +41,6 @@ theorem RefinableNetwork.exists_lipschitzWith_eval :
     exact ⟨K' * K, hK'.comp hK⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

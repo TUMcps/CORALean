@@ -18,11 +18,17 @@ of monomials into one, at the flat index `finProdFinEquiv` matches to the pair.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open PolyZonotope
 
 variable {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The result's monomial at a pair of columns: the two sets' monomials,
 multiplied. -/
@@ -80,6 +86,9 @@ theorem PolyZonotope.aux_mul_point_sum (S₁ S₂ : PolyZonotope (Vec ℝ n)) (h
     rw [Equiv.symm_apply_apply]
   rw [hL, hR]
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 /-- `mul`'s point, read off the expansion above rather than `construct`: a
 product of the two points, `S₂` read at `S₁`'s factors through `Fin.cast`. -/
 theorem PolyZonotope.mul_point (S₁ S₂ : PolyZonotope (Vec ℝ n)) (hp : S₁.p = S₂.p)
@@ -90,3 +99,6 @@ theorem PolyZonotope.mul_point (S₁ S₂ : PolyZonotope (Vec ℝ n)) (hp : S₁
   rw [zero_add, PolyZonotope.aux_mul_point_sum S₁ S₂ hp a]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -15,9 +15,15 @@ which is stated in `ReduceOrder`.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Girard's is the rule `reduce` runs, and compaction is what makes the count
 it bounds mean anything. Neither choice shows here: any ranking would discharge
@@ -28,3 +34,6 @@ theorem PolyZonotope.reduce_outer (PZ : PolyZonotope (Vec ℝ n)) (o : ℕ) :
     (PolyZonotope.reduceGirard_outer PZ.compact o)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

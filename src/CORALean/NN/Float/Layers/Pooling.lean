@@ -27,6 +27,9 @@ rounds up — `subUp` per tap and an exact `maximumOver` above them, whose floor
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 -- `Matrix` unscoped would make `FloatOps.zero` ambiguous; only `*ᵥ` is wanted
@@ -93,6 +96,9 @@ theorem le_maxPoolGapUp (tap : Fin m → Fin (k + 1) → Fin n) (p : Fin m → F
   rw [if_neg hl] at h
   exact le_trans (sub_le_subUp _ _) h
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 noncomputable def Layer.maxPool (tap : Fin m → Fin (k + 1) → Fin n)
     (pivot : Interval 𝕋 n → Fin m → Fin (k + 1)) : Real.Layer S n m where
   eval x := fun j => Real.windowMax fun l => x (tap j l)
@@ -135,3 +141,6 @@ noncomputable def Layer.maxPool (tap : Fin m → Fin (k + 1) → Fin n)
       (ofInterval_outer _ hmem))
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

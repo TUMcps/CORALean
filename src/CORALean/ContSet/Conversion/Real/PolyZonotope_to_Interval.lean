@@ -24,6 +24,9 @@ polynomial zonotope is never empty, and a box enclosing a point cannot have its
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
@@ -35,6 +38,9 @@ theorem PolyZonotope.interval_outer (PZ : PolyZonotope (Vec ℝ n)) :
     PZ.construct ⊆ PZ.interval.construct :=
   subset_trans PZ.zonotope_outer (Zonotope.interval_outer _)
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 /-- The box is ordered, the set having a point for it to enclose. -/
 theorem PolyZonotope.interval_inf_le_sup (PZ : PolyZonotope (Vec ℝ n)) (i : Fin n) :
     PZ.interval.inf i ≤ PZ.interval.sup i := by
@@ -43,3 +49,6 @@ theorem PolyZonotope.interval_inf_le_sup (PZ : PolyZonotope (Vec ℝ n)) (i : Fi
   exact le_trans (hmem i).1 (hmem i).2
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

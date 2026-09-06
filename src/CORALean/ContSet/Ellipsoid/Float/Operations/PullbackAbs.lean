@@ -12,11 +12,17 @@ by coordinate. `sqSumUp` of this is what a candidate is checked against.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The magnitude of the direction pulled back into generator space, coordinate
 by coordinate. `sqSumUp` of this is what a candidate is checked against. -/
@@ -24,3 +30,6 @@ def Ellipsoid.pullbackAbs (E : Ellipsoid 𝕋 n) (a : Vec 𝕋 n) (j : Fin E.k) 
   maximum (dotUp a fun i => E.G i j) (neg (dotDown a fun i => E.G i j))
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

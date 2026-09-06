@@ -17,6 +17,9 @@ round while dividing rather than afterwards.
 -- Last update:   02-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 namespace Dyadic
@@ -91,8 +94,15 @@ def mulDown (a b : Dyadic p) : Dyadic p := roundDown (exactMul a b)
 
 -- rounded again: the shift alone would keep `p` bits only for a `p`-bit dividend
 def divUp (a b : Dyadic p) : Dyadic p := roundUp (quotUp a b)
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 def divDown (a b : Dyadic p) : Dyadic p := roundDown (quotDown a b)
 
 end Dyadic
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

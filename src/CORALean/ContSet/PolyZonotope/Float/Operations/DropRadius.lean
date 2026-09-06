@@ -13,11 +13,17 @@ directory, outside this file.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n d r dI rI : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- How far the dropped generators of both blocks reach in each coordinate: the
 two row sums, added upward. A monomial and an independent coefficient obey the
@@ -29,3 +35,6 @@ def PolyZonotope.dropRadius (PZ : PolyZonotope 𝕋 n)
     (radius (fun i j => PZ.GI i (partI.right j)) i₀)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

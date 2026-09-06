@@ -16,9 +16,15 @@ set.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.continuous_affine (C : ConPolyZono α) : Continuous C.affine := by
   unfold ConPolyZono.affine
@@ -28,3 +34,6 @@ theorem ConPolyZono.continuous_affine (C : ConPolyZono α) : Continuous C.affine
   · exact ((continuous_apply j).comp continuous_snd).smul continuous_const
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

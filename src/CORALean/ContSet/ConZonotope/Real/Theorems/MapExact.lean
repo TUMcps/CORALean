@@ -13,9 +13,15 @@ system as exactly as a zonotope does.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Module ℝ β]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.map_exact (f : α →ₗ[ℝ] β) (C : ConZonotope α) :
     ⇑f '' C.construct = (C.map f).construct := by
@@ -34,3 +40,6 @@ theorem ConZonotope.map_exact (f : α →ₗ[ℝ] β) (C : ConZonotope α) :
     exact hf b
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

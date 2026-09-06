@@ -10,11 +10,20 @@ import CORALean.Global.LinProg.Duality
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.construct_eq_feasible (P : HPolytope α) :
     P.construct = Feasible P.A P.b P.Ae P.be := rfl
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

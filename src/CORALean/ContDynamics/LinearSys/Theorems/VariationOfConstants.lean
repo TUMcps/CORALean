@@ -27,6 +27,9 @@ any other would serve.
 -- Last update:   02-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar NormedSpace MeasureTheory intervalIntegral
@@ -36,6 +39,9 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The substituted form, straight from the fundamental theorem of calculus.
 Only the flow on `[a, b]` is used, so a domain covering that window is all the
@@ -60,6 +66,9 @@ theorem aux_expNeg_mulVec_sub {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U : S
     exact hasDerivWithinAt_expNeg_mulVec A x u (Set.Ioi s) s
       (traj.flow_Ioi hT ⟨hs.1.le, hs.2⟩)
   exact (integral_eq_sub_of_hasDeriv_right hcont hderiv hu).symm
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- From any time on, not only from 0: `a = 0` gives the familiar statement, and
 one step of a sampled trajectory is the case `a = kΔt`, `b = (k+1)Δt`. The
@@ -92,3 +101,6 @@ theorem LinearSys.Trajectory.variation_of_constants {sys : LinearSys 𝕋 n} {T 
   simp [sub_eq_add_neg]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

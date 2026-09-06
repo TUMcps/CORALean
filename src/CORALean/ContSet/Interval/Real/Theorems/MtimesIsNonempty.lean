@@ -19,9 +19,15 @@ mentions no network, so it lives here rather than beside that layer.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n m : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.mtimes_isNonempty (M : Mat ℝ m n) (I : Interval (Vec ℝ n)) :
     (Interval.mtimes M I).IsNonempty := fun i => by
@@ -30,3 +36,6 @@ theorem Interval.mtimes_isNonempty (M : Mat ℝ m n) (I : Interval (Vec ℝ n)) 
   exact Finset.sum_le_sum fun k _ => min_le_max
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

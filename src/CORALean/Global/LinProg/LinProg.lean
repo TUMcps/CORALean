@@ -24,9 +24,15 @@ operations rather than along any particular description of them —
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α] {S T : Set α} {c : α →ₗ[ℝ] ℝ}
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 structure SupportBound (S : Set α) (c : α →ₗ[ℝ] ℝ) where
   val : ℝ
@@ -46,3 +52,6 @@ def SupportBound.ofEmpty (v : ℝ) : SupportBound (∅ : Set α) c :=
   ⟨v, fun _ h => h.elim⟩
 
 end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

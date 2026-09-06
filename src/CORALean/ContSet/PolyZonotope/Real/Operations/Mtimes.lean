@@ -12,11 +12,17 @@ the form every caller states its matrix in.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {n m : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def PolyZonotope.mtimes (M : Mat ℝ m n) (PZ : PolyZonotope (Vec ℝ n)) :
     PolyZonotope (Vec ℝ m) where
@@ -29,3 +35,6 @@ def PolyZonotope.mtimes (M : Mat ℝ m n) (PZ : PolyZonotope (Vec ℝ n)) :
   GI := fun j => M *ᵥ PZ.GI j
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

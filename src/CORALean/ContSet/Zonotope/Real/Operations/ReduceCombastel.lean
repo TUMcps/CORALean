@@ -18,9 +18,15 @@ nothing. Neither dominates the other.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Combastel's metric on one generator, its squared Euclidean norm `∑ i, g i ^ 2`.
 Squaring instead of `Real.sqrt`-ing is monotone on the nonnegatives here, so the
@@ -40,6 +46,9 @@ noncomputable def Zonotope.aux_combastelSplit (Z : Zonotope (Vec ℝ n)) (o : �
     ((Tuple.sort fun j => -Z.aux_combastelMetric j).symm.trans
       (finCongr (Nat.add_sub_cancel' hle).symm))
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 /-- CORA's `reduce(Z, 'combastel', o)`: keep the `(o - 1) * n` largest-magnitude
 generators and box the rest, bringing the count to `o * n`; at that order or
 below nothing happens. Noncomputable, as ordering reals is. -/
@@ -48,3 +57,6 @@ noncomputable def Zonotope.reduceCombastel (Z : Zonotope (Vec ℝ n)) (o : ℕ) 
   if hlt : o * n < Z.h then Z.reduceBy (Z.aux_combastelSplit o hlt) else Z
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

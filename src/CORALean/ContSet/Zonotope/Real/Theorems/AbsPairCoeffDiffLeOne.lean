@@ -14,9 +14,15 @@ not the first's.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {h₁ h₂ : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 -- the difference coefficient, the mirror of the sum one
 theorem Zonotope.abs_pairCoeffDiff_le_one {β₁ : Fin h₁ → ℝ} {β₂ : Fin h₂ → ℝ} {lam : ℝ}
@@ -34,3 +40,6 @@ theorem Zonotope.abs_pairCoeffDiff_le_one {β₁ : Fin h₁ → ℝ} {β₂ : Fi
       (by linarith)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

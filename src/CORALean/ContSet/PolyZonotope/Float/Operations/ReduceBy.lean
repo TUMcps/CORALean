@@ -21,9 +21,15 @@ over-approximation.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n d r dI rI : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def PolyZonotope.reduceBy (PZ : PolyZonotope 𝕋 n)
     (partD : Split (Fin PZ.h) into (Fin d) and (Fin r))
@@ -39,3 +45,6 @@ def PolyZonotope.reduceBy (PZ : PolyZonotope 𝕋 n)
   err := PZ.err
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -26,6 +26,9 @@ that matches does not, and the float layer needs the stored kernel exactly.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet
@@ -103,6 +106,9 @@ def Layer.conv (chan : Fin m → Fin c) (tap : Fin m → Fin k → Fin n)
     (K : Fin c → Fin k → ℝ) (b : Vec ℝ m) : Layer S n m :=
   Layer.linear (tapMat tap fun j l => K (chan j) l) b
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem Layer.conv_eval (chan : Fin m → Fin c) (tap : Fin m → Fin k → Fin n)
     (K : Fin c → Fin k → ℝ) (b : Vec ℝ m) (htap : ∀ j, Function.Injective (tap j))
     (x : Vec ℝ n) (j : Fin m) :
@@ -111,3 +117,6 @@ theorem Layer.conv_eval (chan : Fin m → Fin c) (tap : Fin m → Fin k → Fin 
   rw [tapMat_mulVec _ _ htap]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

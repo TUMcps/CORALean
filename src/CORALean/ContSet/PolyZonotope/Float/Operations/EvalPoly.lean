@@ -25,12 +25,21 @@ polynomial.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Horner's rule, coordinatewise, coefficients lowest degree first, rounded. -/
 def PolyZonotope.evalPoly (S : PolyZonotope 𝕋 n) (coeffs : List (Vec 𝕋 n)) :
     PolyZonotope 𝕋 n := (PolyZonotope.evalPolyP S coeffs).1
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

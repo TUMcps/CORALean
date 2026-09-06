@@ -25,7 +25,13 @@ on the mantissa is needed: leaving the grid costs precision, never soundness.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
+
+
+-- ========================================  INSTANCES  ========================================= --
 
 instance {p : ℕ} : FloatOps (Dyadic p) where
   zero := ⟨0, 0⟩
@@ -65,3 +71,6 @@ instance {p : ℕ} : SoundFloatArithmetic (Dyadic p) where
   toReal_half := Dyadic.toReal_half
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

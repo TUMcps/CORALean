@@ -14,7 +14,13 @@ block.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- A factor vector over the kept factors, read back over all of them by giving a
 dropped factor the value zero — admissible, and read by no monomial of either
@@ -24,3 +30,6 @@ def ConPolyZono.factorExtend {p h s : ℕ} (E : Fin p → Fin h → ℕ) (EC : F
   PolyZonotope.factorExtend (ConPolyZono.appendE E EC) a k
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

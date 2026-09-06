@@ -26,11 +26,20 @@ the operation total and exact at once.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n m : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def PolyZonotope.quadMap (Q : Fin m → Mat ℝ n n) (PZ : PolyZonotope (Vec ℝ n)) :
     PolyZonotope (Vec ℝ m) := PolyZonotope.quadMapDep Q PZ.dependent
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

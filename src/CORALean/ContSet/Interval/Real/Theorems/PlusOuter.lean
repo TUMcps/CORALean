@@ -14,11 +14,17 @@ not. The float layer refines this one for that reason.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Pointwise Entrywise
 
 variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.plus_outer (I₁ I₂ : Interval α) :
     I₁.construct + I₂.construct ⊆ (I₁.plus I₂).construct := by
@@ -27,3 +33,6 @@ theorem Interval.plus_outer (I₁ I₂ : Interval α) :
   exact ⟨add_le_add (hx₁ i).1 (hx₂ i).1, add_le_add (hx₁ i).2 (hx₂ i).2⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

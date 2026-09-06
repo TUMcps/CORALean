@@ -13,11 +13,17 @@ and both of those commute with moving the coordinate axis.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Pointwise SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Definitional: `nominal` transposes the generator matrix and reads it into ℝ,
 and both of those commute with moving the coordinate axis. -/
@@ -26,3 +32,6 @@ theorem Zonotope.reindex_nominal (e : Fin m ≃ Fin n) (Z : Zonotope 𝕋 n) :
       = Real.Zonotope.map (reindexLin e) (InflatedContSet.nominal Z) := rfl
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

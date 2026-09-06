@@ -10,9 +10,15 @@ import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsPadEIff
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 omit [AddCommGroup α] [Module ℝ α] in
 theorem ConPolyZono.satisfies_dependent_iff (C : ConPolyZono α)
@@ -21,3 +27,6 @@ theorem ConPolyZono.satisfies_dependent_iff (C : ConPolyZono α)
   ConPolyZono.holds_padE_iff C.A C.b C.EC C.q a
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

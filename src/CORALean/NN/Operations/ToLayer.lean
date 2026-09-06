@@ -17,11 +17,17 @@ built where the proof is.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def NeuralNetwork.toLayer (nn : NeuralNetwork S n m) : Layer S n m where
   eval := nn.eval
@@ -29,3 +35,6 @@ def NeuralNetwork.toLayer (nn : NeuralNetwork S n m) : Layer S n m where
   propagate_outer := nn.propagate_outer
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

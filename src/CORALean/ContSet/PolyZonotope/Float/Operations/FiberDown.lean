@@ -12,11 +12,17 @@ directory and by `Theorems/FiberDownLe.lean`, both outside this file.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n h : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- A fibre summed downward, masked rather than restricted: the columns outside
 it contribute `zero`, which is what lets `sumDown` over `Fin h` answer a sum
@@ -25,3 +31,6 @@ def PolyZonotope.fiberDown (r : Fin h → Fin h) (G : Mat 𝕋 n h) (i : Fin n) 
   sumDown fun l => if r l = j then G i l else zero
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

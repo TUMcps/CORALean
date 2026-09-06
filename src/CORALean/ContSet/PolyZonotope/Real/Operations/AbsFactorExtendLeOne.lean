@@ -12,7 +12,13 @@ Split out of `Compact.lean` (issue #62): reused unchanged by
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.abs_factorExtend_le_one {p h : ℕ} (E : Fin p → Fin h → ℕ)
     {a : Fin (PolyZonotope.usedFactors E).card → ℝ} (ha : ∀ k, |a k| ≤ 1) (k : Fin p) :
@@ -23,3 +29,6 @@ theorem PolyZonotope.abs_factorExtend_le_one {p h : ℕ} (E : Fin p → Fin h �
   · rw [abs_zero]; exact zero_le_one
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

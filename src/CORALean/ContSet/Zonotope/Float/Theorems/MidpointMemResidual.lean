@@ -15,11 +15,17 @@ is stated once rather than inside one of them.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.midpoint_mem_residual (a b : Vec 𝕋 n) :
     (fun i => (toReal (a i) + toReal (b i)) / 2 - toReal (Zonotope.midpoint a b i))
@@ -34,3 +40,6 @@ theorem Zonotope.midpoint_mem_residual (a b : Vec 𝕋 n) :
       linarith
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

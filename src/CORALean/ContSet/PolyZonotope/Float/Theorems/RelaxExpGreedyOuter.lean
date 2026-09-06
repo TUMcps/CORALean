@@ -22,9 +22,15 @@ caller wanting fewer steps asks for fewer rather than for a different rule.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The relaxation loop over-approximates, at every selection and every number
 of steps. -/
@@ -44,3 +50,6 @@ theorem PolyZonotope.relaxExpGreedy_outer
     | some sp => exact subset_trans (PZ.relaxExpMulti_outer sp.2) (ih _)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

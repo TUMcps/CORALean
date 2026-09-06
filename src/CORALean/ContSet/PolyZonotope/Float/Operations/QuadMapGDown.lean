@@ -14,11 +14,17 @@ outside this file.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Generator `(i, j)` of the image, `Gᵢᵀ Q Gⱼ`, rounded down: `Q *ᵥ Gⱼ` in both
 directions first, then the outer product against `Gᵢ` over that interval. -/
@@ -29,3 +35,6 @@ def PolyZonotope.quadMapGDown (Q : Fin m → Mat 𝕋 n n) (S : PolyZonotope �
     (mulVecUp (Q k) fun r => PolyZonotope.extG S r (finProdFinEquiv.symm l).2)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -33,6 +33,9 @@ operations ask for `Mtimes ℐ S` at the *exact* interval-matrix family.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Matrix ContSet
@@ -112,6 +115,9 @@ def Example.closedLoopFloat (A : Mat 𝕋 2 2) (W₁ : Mat 𝕋 3 2) (b₁ : Vec
   ⟨⟨A⟩, .cons (Layer.linear (S := Zonotope 𝕋) W₁ b₁)
     (.cons Layer.relu (.cons (Layer.linear W₂ b₂) .nil))⟩
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 def Example.reachClosedLoopFloat (sys : Real.NeurNetContrSysDT 𝕋 (Zonotope 𝕋) n)
     (o : ℕ) (R₀ : Zonotope 𝕋 n) (k : ℕ) : Zonotope 𝕋 n :=
   sys.reach o R₀ k
@@ -140,3 +146,6 @@ example {HA : Real.HybridAutomaton (Zonotope 𝕋) L 𝕋 n} {R : L → Zonotope
   HA.holds_of_invariant hinv spec run hx h
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

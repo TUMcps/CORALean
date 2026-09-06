@@ -27,11 +27,17 @@ freed coefficients stay identified.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def PolyZonotope.mul (S₁ S₂ : PolyZonotope 𝕋 n) (hp : S₁.p = S₂.p) : PolyZonotope 𝕋 n where
   p := S₁.p
@@ -44,3 +50,6 @@ def PolyZonotope.mul (S₁ S₂ : PolyZonotope 𝕋 n) (hp : S₁.p = S₂.p) : 
   err := PolyZonotope.generatorError (PolyZonotope.mulGDiff S₁ S₂)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

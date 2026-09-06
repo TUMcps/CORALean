@@ -24,7 +24,13 @@ type noncomputable too. `toReal_def` is the number it denotes.
 -- Last update:   03-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 structure Dyadic (p : ℕ) where
   mantissa : ℤ
@@ -42,3 +48,6 @@ theorem Dyadic.toReal_def {p : ℕ} (d : Dyadic p) :
   norm_num
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -20,6 +20,9 @@ cannot name a coordinate without it.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Matrix FloatOps SoundFloatArithmetic
@@ -59,6 +62,9 @@ def Interval.hPolytope (I : Interval 𝕋 n) : HPolytope 𝕋 n :=
   (HPolytope.ineqs (identityMat 𝕋 n) I.sup).and
     (HPolytope.ineqs (negIdentityMat 𝕋 n) fun j => neg (I.inf j))
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 -- the two row blocks are exactly the two ends of the box, so nothing rounds
 theorem Interval.hPolytope_exact (I : Interval 𝕋 n) :
     (Interval.hPolytope I).construct = I.construct := by
@@ -84,3 +90,6 @@ theorem Interval.hPolytope_exact (I : Interval 𝕋 n) :
       linarith [hlo j]
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

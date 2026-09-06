@@ -9,11 +9,17 @@ import CORALean.ContSet.HPolytope.Real.Operations.MemSlabIff
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {q n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- An equality is the degenerate slab, which is how CORA's `Ae x = be` reads in
 this form. -/
@@ -23,3 +29,6 @@ theorem HPolytope.mem_slab_self_iff {Ae : Mat ℝ q n} {be : Vec ℝ q} {x : Vec
   exact forall_congr' fun i => ⟨fun h => le_antisymm h.2 h.1, fun h => ⟨h.ge, h.le⟩⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

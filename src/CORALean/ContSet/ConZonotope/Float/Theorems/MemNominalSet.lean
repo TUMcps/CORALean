@@ -18,11 +18,17 @@ is `C.h`, where the instance gives the equal-but-distinct `(nominal C).h`.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.mem_nominalSet_iff [SoundFloatArithmetic 𝕋] {C : ConZonotope 𝕋 n}
     {x : Vec ℝ n} :
@@ -32,3 +38,6 @@ theorem ConZonotope.mem_nominalSet_iff [SoundFloatArithmetic 𝕋] {C : ConZonot
   Real.ConZonotope.mem_construct_iff
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

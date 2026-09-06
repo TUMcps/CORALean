@@ -14,7 +14,13 @@ the whole.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A generator monomial reads the kept factors and no others: it is a monomial
 of `appendE`'s left half, and `monomial_factorIdx` holds of the whole. -/
@@ -35,3 +41,6 @@ theorem ConPolyZono.monomial_factorIdx_left {p h s : ℕ} (E : Fin p → Fin h �
     _ = PolyZonotope.monomial E a i := ConPolyZono.monomial_appendE_left E EC a i
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

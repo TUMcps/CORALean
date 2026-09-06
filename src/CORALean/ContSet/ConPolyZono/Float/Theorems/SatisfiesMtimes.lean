@@ -12,11 +12,17 @@ after the map, so satisfaction transfers by `Iff.rfl`.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Pointwise Matrix FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n k : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The constraint says of the image what it said of the argument, the stored
 system being the same floats over the same factors. -/
@@ -24,3 +30,6 @@ theorem ConPolyZono.satisfies_mtimes (M : Mat 𝕋 k n) (C : ConPolyZono 𝕋 n)
     (a : Fin C.p → ℝ) : (ConPolyZono.mtimes M C).satisfies a ↔ C.satisfies a := Iff.rfl
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

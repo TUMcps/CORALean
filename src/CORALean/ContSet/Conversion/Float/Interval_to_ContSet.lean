@@ -23,11 +23,17 @@ the centre it actually stored, so the box is covered by the generators alone.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open ContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 /-- Named for the source, alone among the conversions, the target having no name
 to be called after. -/
@@ -53,3 +59,6 @@ instance : OfInterval (fun n => PolyZonotope 𝕋 n) 𝕋 where
   ofInterval_outer I := Interval.subset_polyZonotope I
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

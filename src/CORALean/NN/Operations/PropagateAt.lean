@@ -14,12 +14,21 @@ transfers to every schedule for free.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Propagating at a schedule, which is `propagate` and nothing new. -/
 def RefinableNetwork.propagateAt (rn : RefinableNetwork S n m) (sch : Schedule) (X : S n) : S m :=
   (rn.atSchedule sch).propagate X
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

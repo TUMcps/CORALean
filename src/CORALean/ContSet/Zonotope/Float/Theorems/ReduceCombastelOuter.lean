@@ -13,9 +13,15 @@ never appears, which is `reduceBy_outer`'s whole point.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Same two cases, at Combastel's partition instead of Girard's — the metric
 never appears, which is `reduceBy_outer`'s whole point. -/
@@ -27,3 +33,6 @@ theorem Zonotope.reduceCombastel_outer (Z : Zonotope 𝕋 n) (o : ℕ) :
   · exact subset_rfl
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

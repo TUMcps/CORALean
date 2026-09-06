@@ -14,9 +14,15 @@ operation a vertex description performs exactly in floating point.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def VPolytope.linComb (P₁ P₂ : VPolytope 𝕋 n) : VPolytope 𝕋 n where
   k := P₁.k + P₂.k
@@ -24,3 +30,6 @@ def VPolytope.linComb (P₁ P₂ : VPolytope 𝕋 n) : VPolytope 𝕋 n where
   E := P₁.E.linComb P₂.E
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

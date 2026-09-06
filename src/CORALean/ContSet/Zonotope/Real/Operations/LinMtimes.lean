@@ -16,14 +16,23 @@ zonotope, from either side.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Module ℝ β]
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 /-- `map` at a map read off `M`, which is sound whenever `M` denotes that one
 map and no other. Its guarantee is `lmtimes_singleton_outer`. -/
 def Zonotope.mapOf (f : α →ₗ[ℝ] β) (Z : Zonotope α) : Zonotope β := Z.map f
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

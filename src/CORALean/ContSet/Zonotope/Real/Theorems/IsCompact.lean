@@ -16,9 +16,15 @@ the map onto the zonotope is continuous.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 -- a zonotope is a continuous image of that ball, so compactness carries over
 theorem Zonotope.isCompact_construct (Z : Zonotope α) : IsCompact Z.construct := by
@@ -35,3 +41,6 @@ theorem Zonotope.isCompact_construct (Z : Zonotope α) : IsCompact Z.construct :
   exact (isCompact_closedBall 0 1).image Z.continuous_affine
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

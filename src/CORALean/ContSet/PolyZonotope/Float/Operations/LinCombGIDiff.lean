@@ -12,11 +12,17 @@ Split out of `LinComb.lean` (issue #62): read again by
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- What the stored independent generators fall short by: the gap between the
 two directed roundings, which a coefficient in `[-1,1]` then spreads either
@@ -26,3 +32,6 @@ def PolyZonotope.linCombGIDiff (PZ₁ PZ₂ : PolyZonotope 𝕋 n) : Mat 𝕋 n 
     (PolyZonotope.linCombGI addDown subDown PZ₁ PZ₂ i j)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

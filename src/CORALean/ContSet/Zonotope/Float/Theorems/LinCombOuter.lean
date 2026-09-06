@@ -33,11 +33,17 @@ box.
 -- Last update:   03-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n h₁ h₂ : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The generator row `linComb` would store if nothing rounded: the exact
 pairing over the real values the stored floats denote. -/
@@ -173,9 +179,15 @@ theorem Zonotope.aux_linComb_error (Z₁ Z₂ : Zonotope 𝕋 n) :
     (Set.add_subset_add (Interval.linComb_outer Z₁.E Z₂.E) (Interval.plus_outer _ _))
     (Interval.plus_outer _ _)
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem Zonotope.linComb_outer (Z₁ Z₂ : Zonotope 𝕋 n) :
     segments Z₁.construct Z₂.construct ⊆ (Z₁.linComb Z₂).construct :=
   InflatedContSet.linComb_subset (Zonotope.aux_linComb_nominal Z₁ Z₂)
     (Zonotope.aux_linComb_error Z₁ Z₂)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

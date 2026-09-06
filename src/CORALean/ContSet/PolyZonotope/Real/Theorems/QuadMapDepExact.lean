@@ -17,11 +17,17 @@ The empty independent block is a hypothesis rather than an arrangement here;
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix PolyZonotope
 
 variable {n m : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Exact where every coefficient is dependent, which `quadMap` arranges. -/
 theorem PolyZonotope.quadMapDep_exact (Q : Fin m → Mat ℝ n n) (S : PolyZonotope (Vec ℝ n))
@@ -55,3 +61,6 @@ theorem PolyZonotope.quadMapDep_exact (Q : Fin m → Mat ℝ n n) (S : PolyZonot
     simp only [Finset.univ_eq_empty, Finset.sum_empty, add_zero, zero_add]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

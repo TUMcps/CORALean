@@ -15,6 +15,9 @@ answer for a bounded horizon without a total run.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar
@@ -22,6 +25,9 @@ open Matrix ContSet Scalar
 variable {n m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [OfInterval S]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The one-step statement: confinement on `[0, τ]` alone yields a linear run on
 `[0, τ]`, whatever the nonlinear run does afterwards — the run being longer than
@@ -37,3 +43,6 @@ theorem NonlinearSys.Trajectory.linearize_horizon {sys : NonlinearSys n m} {T : 
   (traj.restrict hT).linearize cert hR
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

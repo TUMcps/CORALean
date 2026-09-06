@@ -15,11 +15,17 @@ through a quadratic map, then cut by a guard, neither losing anything.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix PolyZonotope
 
 variable {n k : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.quadMap_exact (Q : Fin k → Mat ℝ n n) (C : ConPolyZono (Vec ℝ n)) :
     quadEval Q '' C.construct = (C.quadMap Q).construct := by
@@ -27,3 +33,6 @@ theorem ConPolyZono.quadMap_exact (Q : Fin k → Mat ℝ n n) (C : ConPolyZono (
   exact ConPolyZono.quadMapDep_exact Q C.dependent rfl
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

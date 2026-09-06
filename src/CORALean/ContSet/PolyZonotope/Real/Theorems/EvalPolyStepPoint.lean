@@ -13,11 +13,17 @@ own `Theorems/EvalPolyOuter.lean`, outside this file.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open PolyZonotope
 
 variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `evalPolyStep`'s point, generically: a coordinate `a₀ + R ⊙ S`, `R` read at
 `S`'s factors through `hR`. -/
@@ -39,3 +45,6 @@ theorem PolyZonotope.evalPolyStep_point (R S : PolyZonotope (Vec ℝ n)) (hR : R
   ring
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -13,9 +13,15 @@ direction needs `s ≤ 1` where `corrCoeff_le_sub`'s lower bound does not.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {i : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem MatExp.sub_le_zero (hi : 1 ≤ i) {s : ℝ} (hs0 : 0 ≤ s) (hs1 : s ≤ 1) :
     s ^ i - s ≤ 0 := by
@@ -23,3 +29,6 @@ theorem MatExp.sub_le_zero (hi : 1 ≤ i) {s : ℝ} (hs0 : 0 ≤ s) (hs1 : s ≤
   simpa using this
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

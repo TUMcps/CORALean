@@ -26,9 +26,15 @@ float rounds nothing.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α] {d : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The drift interval's midpoint and half-width, in copies of the relaxed
 generator, from the `[-lo, hi]` that `eDrift` reads off the exponents. -/
@@ -40,3 +46,6 @@ noncomputable def PolyZonotope.relaxDrift (PZ : PolyZonotope α)
       + ((PolyZonotope.eDrift PZ.E k₀ (part.right 0) (part.right 1)).1 : ℝ)) / 2)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

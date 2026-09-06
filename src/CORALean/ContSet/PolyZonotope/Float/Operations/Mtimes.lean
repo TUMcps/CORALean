@@ -21,11 +21,17 @@ an independent coefficient is.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def PolyZonotope.mtimes (M : Mat 𝕋 m n) (PZ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 m where
   p := PZ.p
@@ -38,3 +44,6 @@ def PolyZonotope.mtimes (M : Mat 𝕋 m n) (PZ : PolyZonotope 𝕋 n) : PolyZono
   err := (Interval.mtimes M PZ.err).plus (PolyZonotope.mtimesResidual M PZ)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

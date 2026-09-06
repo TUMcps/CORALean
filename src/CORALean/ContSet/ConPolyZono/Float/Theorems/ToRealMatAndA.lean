@@ -17,11 +17,17 @@ at a time.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.toRealMat_andA (C₁ C₂ : ConPolyZono 𝕋 n) :
     toRealMat (ConPolyZono.andA C₁ C₂)
@@ -46,3 +52,6 @@ theorem ConPolyZono.toRealMat_andA (C₁ C₂ : ConPolyZono 𝕋 n) :
     exact ConPolyZono.toReal_agreeRow C₁ C₂ i l
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

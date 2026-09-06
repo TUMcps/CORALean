@@ -19,11 +19,17 @@ which does this and a reduction in one pass.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def Zonotope.absorbError (Z : Zonotope 𝕋 n) : Zonotope 𝕋 n where
   h := Z.h + n
@@ -32,3 +38,6 @@ def Zonotope.absorbError (Z : Zonotope 𝕋 n) : Zonotope 𝕋 n where
   E := Interval.residual Z.shiftDown Z.shiftUp Z.shiftDown
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -18,6 +18,9 @@ from the run's own input set.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar Plus Mtimes
@@ -25,6 +28,9 @@ open Matrix ContSet Scalar Plus Mtimes
 variable {n m r : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem OutputEq.outputSet_outer (out : OutputEq 𝕋 n m r) (R : S n) (U : S m)
     {x : Vec ℝ n} {u : Vec ℝ m} (hx : x ∈ construct R) (hu : u ∈ construct U) :
@@ -34,3 +40,6 @@ theorem OutputEq.outputSet_outer (out : OutputEq 𝕋 n m r) (R : S n) (U : S m)
     (mtimes_outer out.D U (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hu))))
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

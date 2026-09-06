@@ -30,9 +30,15 @@ into kept and dropped with no side condition.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n d r dI rI : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `Fin.sum_univ_add` at `reduceBy`'s independent generator count, stated
 through the projection because that is the form the goal has and simp will not
@@ -86,6 +92,9 @@ theorem PolyZonotope.aux_abs_droppedInd_le (PZ : PolyZonotope (Vec ℝ n))
           simpa using mul_le_mul_of_nonneg_left (hβ (partI.right j))
             (abs_nonneg (PZ.GI (partI.right j) i))
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 /-- Boxing what the two partitions drop over-approximates, whichever partitions
 they are. -/
 theorem PolyZonotope.reduceBy_outer (PZ : PolyZonotope (Vec ℝ n))
@@ -127,3 +136,6 @@ theorem PolyZonotope.reduceBy_outer (PZ : PolyZonotope (Vec ℝ n))
     ring
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

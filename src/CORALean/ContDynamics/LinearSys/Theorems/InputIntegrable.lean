@@ -23,6 +23,9 @@ enough, the missing point being null.
 -- Last update:   02-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar NormedSpace MeasureTheory
@@ -32,6 +35,9 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The integrand is the derivative of the substituted trajectory, taken within
 `Ici s`: the form Mathlib's measurability lemma speaks about, and no weaker, the
@@ -63,6 +69,9 @@ theorem LinearSys.Trajectory.aux_aestronglyMeasurable {sys : LinearSys 𝕋 n} {
 theorem aux_continuous_expNeg (A : Mat ℝ n n) : Continuous fun s : ℝ => exp ((-s) • A) :=
   exp_continuous.comp (continuous_neg.smul continuous_const)
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 -- the integrand's bound is assembled from two witnesses, over the local norm instances
 set_option maxHeartbeats 400000 in
 /-- What `variation_of_constants` asks for, given only that the input set is
@@ -85,3 +94,6 @@ theorem LinearSys.Trajectory.intervalIntegrable_input {sys : LinearSys 𝕋 n} {
         (hCU _ (traj.input s (hT ⟨hs.1.le, hs.2⟩))) (norm_nonneg _) hCE0
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

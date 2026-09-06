@@ -32,11 +32,17 @@ gives their reciprocals a finite sum, so the caller states that separately —
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `plus`'s generator count, stated through the
@@ -174,6 +180,9 @@ theorem Ellipsoid.aux_plus_error (s₁ s₂ : 𝕋) (E₁ E₂ : Ellipsoid 𝕋 
     (Set.add_subset_add (Interval.plus_outer E₁.err E₂.err) (Interval.plus_outer _ _))
     (Interval.plus_outer _ _)
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem Ellipsoid.plus_outer (s₁ s₂ : 𝕋) (E₁ E₂ : Ellipsoid 𝕋 n)
     (hne₁ : toReal s₁ ≠ 0) (hne₂ : toReal s₂ ≠ 0)
     (hs : 1 / toReal s₁ ^ 2 + 1 / toReal s₂ ^ 2 ≤ 1) :
@@ -182,3 +191,6 @@ theorem Ellipsoid.plus_outer (s₁ s₂ : 𝕋) (E₁ E₂ : Ellipsoid 𝕋 n)
     (Ellipsoid.aux_plus_error s₁ s₂ E₁ E₂)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

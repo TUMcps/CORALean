@@ -16,7 +16,13 @@ nominal polynomial zonotope.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.mem_construct_iff {n : ℕ} {PZ : PolyZonotope (Vec ℝ n)} {x : Vec ℝ n} :
     x ∈ PZ.construct ↔
@@ -39,3 +45,6 @@ theorem PolyZonotope.mem_construct_iff {n : ℕ} {PZ : PolyZonotope (Vec ℝ n)}
     exact ⟨a, β, ha, hβ, funext fun i => (hx i).trans (key a β i).symm⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

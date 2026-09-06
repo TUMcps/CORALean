@@ -20,9 +20,15 @@ disjoint without a hyperplane between them when neither is convex.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α] {O U : Set α} {c : α →ₗ[ℝ] ℝ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `O` does not reach as far along `c` as `U` has to come back, so no point is
 in both. -/
@@ -35,9 +41,15 @@ theorem aux_disjoint_of_separating (u : SupportBound O c) (v : SupportBound U (-
   rw [LinearMap.neg_apply] at h₂
   linarith
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem Specification.holds_unsafeSet_of_separating (u : SupportBound O c)
     (v : SupportBound U (-c)) (h : u.val + v.val < 0) :
     (Specification.unsafeSet U).Holds O :=
   aux_disjoint_of_separating u v h
 
 end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

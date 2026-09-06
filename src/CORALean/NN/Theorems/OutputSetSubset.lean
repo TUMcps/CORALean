@@ -13,11 +13,17 @@ of what `propagate` returns, which is the form `Verified` composes with
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NeuralNetwork.outputSet_subset (nn : NeuralNetwork S n m) (X : S n) :
     nn.outputSet X ⊆ construct (nn.propagate X) := by
@@ -25,3 +31,6 @@ theorem NeuralNetwork.outputSet_subset (nn : NeuralNetwork S n m) (X : S n) :
   exact nn.propagate_outer X x hx
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

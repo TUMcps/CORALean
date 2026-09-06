@@ -17,11 +17,17 @@ the independent blocks it asks for, and empties them costlessly.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Pointwise
 
 variable {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Translating by the zero-width box is doing nothing, which is what makes
 `andDep_exact` at that tolerance the intersection. -/
@@ -44,6 +50,9 @@ theorem ConPolyZono.aux_add_point_zero (S : Set (Vec ℝ n)) :
   · intro hx
     exact ⟨x, hx, 0, Interval.mem_point 0, add_zero x⟩
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem ConPolyZono.and_exact (C₁ C₂ : ConPolyZono (Vec ℝ n)) :
     C₁.construct ∩ C₂.construct = (C₁.and C₂).construct := by
   rw [C₁.dependent_exact, C₂.dependent_exact,
@@ -51,3 +60,6 @@ theorem ConPolyZono.and_exact (C₁ C₂ : ConPolyZono (Vec ℝ n)) :
   exact ConPolyZono.andDep_exact C₁.dependent C₂.dependent _ rfl rfl
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

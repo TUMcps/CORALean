@@ -20,11 +20,17 @@ at once, so the sum would come out too small rather than too large.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Pointwise
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 omit [Module ℝ α] in
 /-- `Fin.sum_univ_add` at `plus`'s dependent generator count, stated through the
@@ -43,6 +49,9 @@ theorem PolyZonotope.aux_sum_univ_plus_q {PZ₁ PZ₂ : PolyZonotope α}
     ∑ j : Fin (PZ₁.plus PZ₂).q, f j
       = ∑ j, f (Fin.castAdd PZ₂.q j) + ∑ j, f (Fin.natAdd PZ₁.q j) :=
   Fin.sum_univ_add f
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.plus_exact (PZ₁ PZ₂ : PolyZonotope α) :
     PZ₁.construct + PZ₂.construct = (PZ₁.plus PZ₂).construct := by
@@ -71,3 +80,6 @@ theorem PolyZonotope.plus_exact (PZ₁ PZ₂ : PolyZonotope α) :
     abel
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

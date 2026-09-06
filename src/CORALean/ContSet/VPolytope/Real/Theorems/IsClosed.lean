@@ -12,11 +12,20 @@ directly, having no compactness to read it off.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.isClosed_construct (P : VPolytope α) : IsClosed P.construct :=
   P.isCompact_construct.isClosed
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

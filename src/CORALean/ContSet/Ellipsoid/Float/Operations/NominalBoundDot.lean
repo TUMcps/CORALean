@@ -14,11 +14,17 @@ square root, which would carry noncomputability into a float bound.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The exact bound's value covered by the stored float, which is where the
 candidate is spent. -/
@@ -36,6 +42,9 @@ theorem Ellipsoid.aux_supportBound_le (E : Ellipsoid 𝕋 n) {c : Vec ℝ n →�
   show c (InflatedContSet.nominal E).q + ‖(InflatedContSet.nominal E).pullback c‖₂ ≤ _
   linarith
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 /-- The nominal bound; `hs` is the whole of what the candidate owes, and it is
 one float comparison. Not `FloatBound.ofSupportBound`: the exact bound's value
 is a square root, which would carry noncomputability into a float bound. -/
@@ -48,3 +57,6 @@ def Ellipsoid.nominalBoundDot (E : Ellipsoid 𝕋 n) {c : Vec ℝ n →ₗ[ℝ] 
     (E.aux_supportBound_le hc hs)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

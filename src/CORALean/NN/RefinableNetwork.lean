@@ -21,11 +21,17 @@ only its first `length` entries are ever read.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 inductive RefinableNetwork (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] : ℕ → ℕ → Type where
   | nil {n : ℕ} : RefinableNetwork S n n
@@ -47,3 +53,6 @@ def RefinableNetwork.length : ∀ {n m : ℕ}, RefinableNetwork S n m → ℕ
   | _, _, .cons _ rest => rest.length + 1
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

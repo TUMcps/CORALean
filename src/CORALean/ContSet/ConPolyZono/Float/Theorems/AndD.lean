@@ -14,11 +14,17 @@ is the whole argument for `and`'s soundness.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def ConPolyZono.andD (C₁ C₂ : ConPolyZono 𝕋 n) : Real.Interval (Vec ℝ n) :=
   ⟨fun i => toReal ((ConPolyZono.andAgree C₁ C₂).inf i)
@@ -27,3 +33,6 @@ def ConPolyZono.andD (C₁ C₂ : ConPolyZono 𝕋 n) : Real.Interval (Vec ℝ n
       - (toReal (C₂.c i) - toReal (C₁.c i))⟩
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

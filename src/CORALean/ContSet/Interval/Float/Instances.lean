@@ -25,9 +25,15 @@ is where a set is handed back to a caller that may loop.
 -- Last update:   02-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- ========================================  INSTANCES  ========================================= --
 
 instance : ContSet (Interval 𝕋 n) (Vec ℝ n) := ⟨Interval.construct⟩
 
@@ -65,3 +71,6 @@ instance : Mtimes (Mat 𝕋) (Interval 𝕋) where
     exact Interval.mtimes_outer M I
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

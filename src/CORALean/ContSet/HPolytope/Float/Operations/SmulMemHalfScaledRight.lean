@@ -17,11 +17,17 @@ entering with the other sign.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Matrix FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.smul_mem_halfScaledRight {P : HPolytope 𝕋 n₂} {y : Vec ℝ n₂} {z : Vec ℝ n₁}
     {w t : ℝ} (hw : (1 - t) / 2 = w) (hw0 : 0 ≤ w) (hy : y ∈ P.construct) :
@@ -66,3 +72,6 @@ theorem HPolytope.smul_mem_halfScaledRight {P : HPolytope 𝕋 n₂} {y : Vec �
     linarith
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

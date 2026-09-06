@@ -28,6 +28,9 @@ which maps the smaller index type and so runs the wrong way.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {σ : ℝ → ℝ} {k M : ℕ}
@@ -76,8 +79,14 @@ def PolyRelaxation.padTo (P : PolyRelaxation σ k) (M : ℕ) (h : k ≤ M) : Pol
     rw [evalPoly_padCoeffs _ h]
     exact P.sound hl hu
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 /-- Padding leaves the error alone, which is what makes it free. -/
 theorem PolyRelaxation.padTo_error (P : PolyRelaxation σ k) (M : ℕ) (h : k ≤ M) :
     (P.padTo M h).error = P.error := rfl
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

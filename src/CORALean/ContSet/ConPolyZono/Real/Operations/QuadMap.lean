@@ -16,12 +16,21 @@ two arrangements in step.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n k : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def ConPolyZono.quadMap (Q : Fin k → Mat ℝ n n) (C : ConPolyZono (Vec ℝ n)) :
     ConPolyZono (Vec ℝ k) :=
   ConPolyZono.quadMapDep Q C.dependent
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

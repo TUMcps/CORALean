@@ -13,9 +13,15 @@ it file-local.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Girard's metric on one generator, `‖g‖₁ - ‖g‖∞`, over a bare family so that
 either block and their concatenation are ranked by this one line. Zero on the
@@ -24,3 +30,6 @@ noncomputable def PolyZonotope.girardMetric {m : ℕ} (G : Fin m → Vec ℝ n) 
   (∑ i, |G l i|) - Finset.univ.fold max 0 fun i => |G l i|
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

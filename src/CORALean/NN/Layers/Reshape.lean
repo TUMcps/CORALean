@@ -26,6 +26,9 @@ equalities, a permutation moving stored floats without arithmetic.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet Reindex
@@ -46,6 +49,9 @@ def Layer.reshape (e : Fin m ≃ Fin n) : Layer S n m where
     rw [reindex_exact]
     exact Set.mem_image_of_mem _ hx
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 /-- The layer's whole content, and the only `_exact` in `NN`. -/
 theorem Layer.reshape_exact (e : Fin m ≃ Fin n) (s : S n) :
     construct ((Layer.reshape (S := S) e).propagate s)
@@ -53,3 +59,6 @@ theorem Layer.reshape_exact (e : Fin m ≃ Fin n) (s : S n) :
   reindex_exact e s
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

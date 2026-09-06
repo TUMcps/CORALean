@@ -28,6 +28,9 @@ one by an exact `maximum`, so the division never meets an unconstrained divisor.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open ContSet FloatOps SoundFloatArithmetic
@@ -152,6 +155,9 @@ namespace Layer
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat 𝕋) S] [IntervalOuter S 𝕋] [OfInterval S 𝕋] {n : ℕ}
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 /-- `k` is the exponential's reduction depth: every `k` is sound, a larger one
 tighter, and it reaches both the value and the derivative bracket. -/
 noncomputable def sigmoid (k : ℕ) : Real.Layer S n n := Layer.activation (sigmoidRelaxation k)
@@ -159,3 +165,6 @@ noncomputable def sigmoid (k : ℕ) : Real.Layer S n n := Layer.activation (sigm
 end Layer
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

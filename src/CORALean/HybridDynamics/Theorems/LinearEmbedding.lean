@@ -21,12 +21,18 @@ domain restricts to this one.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet Scalar
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The stay read as a run of the location's own linear system, starting in any
 set that holds its initial point. -/
@@ -39,3 +45,6 @@ theorem Location.Trajectory.linearSys {ℓ : Location S L 𝕋 n} {τ : ℝ}
   flow := traj.flow
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -15,9 +15,15 @@ any other ranking would discharge it too.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.reduce_outer (C : ConPolyZono 𝕋 n) (o : ℕ) :
     C.construct ⊆ (C.reduce o).construct :=
@@ -25,3 +31,6 @@ theorem ConPolyZono.reduce_outer (C : ConPolyZono 𝕋 n) (o : ℕ) :
     (ConPolyZono.reduceGirard_outer C.compact o)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

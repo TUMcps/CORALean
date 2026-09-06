@@ -21,9 +21,15 @@ whoever knows what was rounded (`Interval.residual`, `Interval.symmetric`,
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Pointwise FloatOps SoundFloatArithmetic
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 class InflatedContSet (S : Type) (N : outParam Type) (𝕋 : outParam Type) (n : outParam ℕ)
     [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ContSet N (Vec ℝ n)] where
@@ -52,3 +58,6 @@ instance : ContSet S (Vec ℝ n) := ⟨construct⟩
 end InflatedContSet
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

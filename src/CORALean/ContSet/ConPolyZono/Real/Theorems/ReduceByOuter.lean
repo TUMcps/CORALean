@@ -29,9 +29,15 @@ and `Zonotope.coefficient` handles the rescaling, degenerate `R = 0` included.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n d r dI rI : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `Fin.sum_univ_add` at `reduceBy`'s independent generator count, stated
 through the projection because that is the form the goal has and simp will not
@@ -85,6 +91,9 @@ theorem ConPolyZono.aux_abs_droppedInd_le (C : ConPolyZono (Vec ℝ n))
           simpa using mul_le_mul_of_nonneg_left (hβ (partI.right j))
             (abs_nonneg (C.GI (partI.right j) i))
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 /-- Boxing what the two partitions drop over-approximates, whichever partitions
 they are. -/
 theorem ConPolyZono.reduceBy_outer (C : ConPolyZono (Vec ℝ n))
@@ -126,3 +135,6 @@ theorem ConPolyZono.reduceBy_outer (C : ConPolyZono (Vec ℝ n))
     ring
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

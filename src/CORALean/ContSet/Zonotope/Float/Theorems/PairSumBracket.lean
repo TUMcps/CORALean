@@ -12,11 +12,17 @@ column is copied and does not round at all.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {h₁ h₂ : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A paired-sum column brackets its exact value between the two directed
 roundings: halving is exact, so the directed addition is the only rounding, and
@@ -35,3 +41,6 @@ theorem Zonotope.pairSum_bracket (g₁ : Fin h₁ → 𝕋) (g₂ : Fin h₂ →
     exact ⟨le_refl _, le_refl _⟩
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

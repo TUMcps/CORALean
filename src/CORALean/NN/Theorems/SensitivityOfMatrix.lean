@@ -16,11 +16,17 @@ than as an abstract one, which is what makes `toMatrix'` invert it on the nose.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Layer.sensitivity_eq_of_hasFDerivAt {L : Layer S n m} {A : Mat ℝ m n} {x : Vec ℝ n}
     (h : HasFDerivAt L.eval (LinearMap.toContinuousLinearMap (Matrix.mulVecLin A)) x) :
@@ -29,3 +35,6 @@ theorem Layer.sensitivity_eq_of_hasFDerivAt {L : Layer S n m} {A : Mat ℝ m n} 
     ← Matrix.toLin'_apply', LinearMap.toMatrix'_toLin']
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -13,11 +13,17 @@ Split out of `Mul.lean` (issue #62): read again by `Theorems/EvalPolyOuter.lean`
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- How far a stored generator can be from the exact product. -/
 def PolyZonotope.mulGDiff (S₁ S₂ : PolyZonotope 𝕋 n) :
@@ -25,3 +31,6 @@ def PolyZonotope.mulGDiff (S₁ S₂ : PolyZonotope 𝕋 n) :
   fun i l => subUp (PolyZonotope.mulGUp S₁ S₂ i l) (PolyZonotope.mulGDown S₁ S₂ i l)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

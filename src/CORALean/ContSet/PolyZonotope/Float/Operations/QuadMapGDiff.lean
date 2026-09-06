@@ -13,11 +13,17 @@ directory and by `Theorems/QuadMapOuter.lean`, both outside this file.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- How far a stored generator can be from the exact bilinear form. -/
 def PolyZonotope.quadMapGDiff (Q : Fin m → Mat 𝕋 n n) (S : PolyZonotope 𝕋 n) :
@@ -25,3 +31,6 @@ def PolyZonotope.quadMapGDiff (Q : Fin m → Mat 𝕋 n n) (S : PolyZonotope �
   fun k l => subUp (PolyZonotope.quadMapGUp Q S k l) (PolyZonotope.quadMapGDown Q S k l)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

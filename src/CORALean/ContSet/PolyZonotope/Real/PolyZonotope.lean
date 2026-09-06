@@ -26,9 +26,15 @@ exponent matrices out block-diagonally rather than overlaying them.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 structure PolyZonotope (α : Type) where
   /-- The dependent factors, shared across all of `G`. -/
@@ -53,3 +59,6 @@ def PolyZonotope.construct (PZ : PolyZonotope α) : Set α :=
         ∧ x = PZ.c + ∑ i, PolyZonotope.monomial PZ.E a i • PZ.G i + ∑ j, β j • PZ.GI j}
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

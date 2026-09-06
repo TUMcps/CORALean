@@ -18,9 +18,15 @@ reproves this alongside the spill rather than composing with it.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Module ℝ β]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.map_exact (f : α →ₗ[ℝ] β) (Z : Zonotope α) :
     f '' Z.construct = (Z.map f).construct := by
@@ -38,3 +44,6 @@ theorem Zonotope.map_exact (f : α →ₗ[ℝ] β) (Z : Zonotope α) :
     exact hf b
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

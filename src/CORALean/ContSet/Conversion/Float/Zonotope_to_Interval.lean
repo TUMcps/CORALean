@@ -13,6 +13,9 @@ the zonotope.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
@@ -26,6 +29,9 @@ def Zonotope.interval (Z : Zonotope 𝕋 n) : Interval 𝕋 n where
 open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.interval_outer (Z : Zonotope 𝕋 n) : Z.construct ⊆ Z.interval.construct := by
   rintro _ ⟨z, hzmem, e, he, rfl⟩ i
@@ -51,3 +57,6 @@ theorem Zonotope.interval_outer (Z : Zonotope 𝕋 n) : Z.construct ⊆ Z.interv
     linarith
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

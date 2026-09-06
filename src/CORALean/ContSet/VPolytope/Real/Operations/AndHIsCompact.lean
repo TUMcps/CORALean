@@ -17,9 +17,15 @@ description already knows is compact.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n q₁ q₂ : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.andH_isCompact (P₁ P₂ : VPolytope (Vec ℝ n))
     (Aq₁ : Fin q₁ → (Vec ℝ n →ₗ[ℝ] ℝ)) (Aq₂ : Fin q₂ → (Vec ℝ n →ₗ[ℝ] ℝ)) :
@@ -30,3 +36,6 @@ theorem VPolytope.andH_isCompact (P₁ P₂ : VPolytope (Vec ℝ n))
   exact Interval.subset_vPolytope _ h
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

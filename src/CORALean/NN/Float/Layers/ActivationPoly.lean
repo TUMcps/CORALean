@@ -37,11 +37,17 @@ A relaxation per neuron, all at one degree, exactly as over ℝ: an order patter
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Pointwise ContSet Plus FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {σ : ℝ → ℝ} {m n : ℕ}
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 /-- A degree-`m` enclosure of `σ` on every box the stored floats describe. The
 bounds and coefficients arrive in `𝕋` and the argument stays real: what the
@@ -126,3 +132,6 @@ def Layer.activationPoly (P : LayerRelaxation 𝕋 σ n m) : Real.Layer (PolyZon
       (Interval.subset_polyZonotope _ hdev))
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

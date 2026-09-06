@@ -25,11 +25,17 @@ What is left in the box is the rounded centre shift, as in `absorbError`.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q r : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The merged block covers the absorbed generators and the box together. -/
 theorem Zonotope.aux_abs_merged_le_radius (Z : Zonotope 𝕋 n)
@@ -50,6 +56,9 @@ theorem Zonotope.aux_sum_univ_reduceAndAbsorbBy {Z : Zonotope 𝕋 n}
     ∑ j : Fin (Z.reduceAndAbsorbBy part).h, f j
       = ∑ j, f (Fin.castAdd n j) + ∑ j, f (Fin.natAdd q j) :=
   Fin.sum_univ_add f
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.reduceAndAbsorbBy_outer (Z : Zonotope 𝕋 n)
     (part : Split (Fin Z.h) into (Fin q) and (Fin r)) :
@@ -101,3 +110,6 @@ theorem Zonotope.reduceAndAbsorbBy_outer (Z : Zonotope 𝕋 n)
     ring
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

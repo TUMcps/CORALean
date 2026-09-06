@@ -12,9 +12,15 @@ costs nothing and loses nothing. The operation halfspaces are for.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def HPolytope.and (P₁ P₂ : HPolytope α) : HPolytope α where
   m := P₁.m + P₂.m
@@ -25,3 +31,6 @@ def HPolytope.and (P₁ P₂ : HPolytope α) : HPolytope α where
   be := Fin.append P₁.be P₂.be
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

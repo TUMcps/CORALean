@@ -19,9 +19,15 @@ the bound reads off unchanged.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Compacting first only lowers the count it then bounds, so the bound reads
 off `reduceGirard` unchanged. -/
@@ -30,3 +36,6 @@ theorem ConPolyZono.reduce_order_le (C : ConPolyZono (Vec ℝ n)) {o : ℕ} (ho 
   ConPolyZono.reduceGirard_order_le C.compact ho
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

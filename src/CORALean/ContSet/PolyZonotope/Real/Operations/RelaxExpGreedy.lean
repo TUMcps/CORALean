@@ -31,9 +31,15 @@ so `PZ.h` steps exhaust the set and the caller says how many to take. The
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Merge at whatever the selection names, at most `n` times. -/
 def PolyZonotope.relaxExpGreedy
@@ -45,3 +51,6 @@ def PolyZonotope.relaxExpGreedy
     (sel PZ).elim PZ fun sp => PolyZonotope.relaxExpGreedy sel n (PZ.relaxExpMulti sp.2)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

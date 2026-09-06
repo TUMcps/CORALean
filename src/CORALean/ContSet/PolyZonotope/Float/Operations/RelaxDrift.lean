@@ -14,9 +14,15 @@ Split out of `RelaxExpMid.lean` (issue #62): read again by
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n d : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The drift's two reaches, read off the exponent matrix and so the exact
 layer's own bracket. -/
@@ -25,3 +31,6 @@ def PolyZonotope.relaxDrift (PZ : PolyZonotope 𝕋 n)
   Real.PolyZonotope.eDrift PZ.E k₀ (part.right 0) (part.right 1)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

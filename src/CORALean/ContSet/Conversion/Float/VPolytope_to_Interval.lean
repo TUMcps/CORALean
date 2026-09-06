@@ -15,6 +15,9 @@ The box around the vertices, widened by the error box. Both bounds come from
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
@@ -26,8 +29,14 @@ def VPolytope.interval (P : VPolytope 𝕋 n) : Interval 𝕋 n :=
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem VPolytope.interval_outer (P : VPolytope 𝕋 n) :
     P.construct ⊆ P.interval.construct :=
   Interval.subset_ofBounds _ _
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

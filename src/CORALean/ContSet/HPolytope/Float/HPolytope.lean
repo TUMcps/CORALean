@@ -25,11 +25,17 @@ definition rather than by a lemma, and every operation owes only enclosure.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Matrix FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 structure HPolytope (𝕋 : Type) (n : ℕ) where
   m : ℕ
@@ -71,3 +77,6 @@ omit [FloatOps 𝕋] in
   simp [HPolytope.materialise]
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

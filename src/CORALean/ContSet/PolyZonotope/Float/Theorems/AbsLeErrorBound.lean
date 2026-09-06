@@ -9,11 +9,17 @@ import CORALean.ContSet.PolyZonotope.Float.Operations.Dependent
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- One generator per coordinate reaches every point of the box. -/
 theorem PolyZonotope.abs_le_errorBound {I : Interval 𝕋 n} {e : Vec ℝ n}
@@ -29,3 +35,6 @@ theorem PolyZonotope.abs_le_errorBound {I : Interval 𝕋 n} {e : Vec ℝ n}
   · exact le_trans hhi (le_trans (le_abs_self _) (le_max_right _ _))
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -14,12 +14,21 @@ is exact under, where a halfspace description is not.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Module ℝ β]
 
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
 theorem VPolytope.aux_range_map (f : α →ₗ[ℝ] β) (P : VPolytope α) :
     Set.range (P.map f).V = ⇑f '' Set.range P.V := Set.range_comp ⇑f P.V
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.map_exact (f : α →ₗ[ℝ] β) (P : VPolytope α) :
     ⇑f '' P.construct = (P.map f).construct := by
@@ -27,3 +36,6 @@ theorem VPolytope.map_exact (f : α →ₗ[ℝ] β) (P : VPolytope α) :
     VPolytope.aux_range_map, ← LinearMap.image_convexHull]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

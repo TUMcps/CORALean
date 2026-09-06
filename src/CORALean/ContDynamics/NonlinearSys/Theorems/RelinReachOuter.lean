@@ -35,6 +35,9 @@ enclosure at a non-sample time, which nothing yet states along a chain.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar NormedSpace Plus Mtimes OfInterval
@@ -46,6 +49,9 @@ variable {n m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
 variable [Mtimes (Mat ℝ) S] [OfInterval S]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A run confined step by step is inside `relinReach` at every step boundary of
 the horizon. Each step asks for confinement on its own window only, so a chain
@@ -114,3 +120,6 @@ theorem NonlinearSys.Trajectory.relinReach_outer {sys : NonlinearSys n m} {T : S
     exact key
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

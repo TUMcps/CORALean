@@ -13,7 +13,13 @@ What the reverse inclusion supplies.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The same generator monomial read against an extended factor vector, which is
 what the reverse inclusion supplies. -/
@@ -28,3 +34,6 @@ theorem ConPolyZono.monomial_factorExtend_left {p h s : ℕ} (E : Fin p → Fin 
   exact hmon.symm
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -19,6 +19,9 @@ where the shifted factorial in `expIntegral` comes from.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix NormedSpace MeasureTheory Filter Topology
@@ -27,6 +30,9 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Applying a fixed vector, as a continuous linear map on matrices. -/
 noncomputable def aux_mulVecR (v : Vec ℝ n) : Mat ℝ n n →L[ℝ] Vec ℝ n := mulVecL.flip v
@@ -89,6 +95,9 @@ theorem aux_continuous_expPartial (A : Mat ℝ n n) (v : Vec ℝ n) (N : ℕ) :
       ∑ i ∈ Finset.range N, (((Nat.factorial i : ℝ))⁻¹ * σ ^ i) • (A ^ i *ᵥ v) :=
   continuous_finsetSum _ fun i _ =>
     ((continuous_const.mul (continuous_pow i)).smul continuous_const)
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 -- dominated convergence with its bound proved inline, over the same norm instances
 set_option maxHeartbeats 1000000 in
@@ -167,3 +176,6 @@ theorem MatExp.expIntegral_mulVec (A : Mat ℝ n n) (v : Vec ℝ n) {t : ℝ} (h
     (hdom.congr fun N => (hpartial N).symm)).tsum_eq
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

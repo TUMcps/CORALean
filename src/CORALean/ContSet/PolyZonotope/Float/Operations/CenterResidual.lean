@@ -14,11 +14,17 @@ Split out of `Plus.lean` (issue #62): read again by `evalPoly`, by
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Storing the lower of the two directed roundings leaves this much to pay. -/
 def PolyZonotope.centerResidual (a b : Vec 𝕋 n) : Interval 𝕋 n :=
@@ -26,3 +32,6 @@ def PolyZonotope.centerResidual (a b : Vec 𝕋 n) : Interval 𝕋 n :=
     (fun i => addDown (a i) (b i))
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

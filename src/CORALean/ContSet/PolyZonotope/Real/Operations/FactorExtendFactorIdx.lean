@@ -14,7 +14,13 @@ Split out of `Compact.lean` (issue #62): used again by
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.factorExtend_factorIdx {p h : ℕ} (E : Fin p → Fin h → ℕ)
     (a : Fin (PolyZonotope.usedFactors E).card → ℝ)
@@ -29,3 +35,6 @@ theorem PolyZonotope.factorExtend_factorIdx {p h : ℕ} (E : Fin p → Fin h →
   exact ((PolyZonotope.usedFactors E).orderIsoOfFin rfl).symm_apply_apply k
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

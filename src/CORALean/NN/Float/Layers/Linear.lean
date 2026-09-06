@@ -31,6 +31,9 @@ since `eval` is a real function and has no reason to be rounded at all.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Matrix Pointwise ContSet Plus Mtimes OfInterval SoundFloatArithmetic
@@ -46,6 +49,9 @@ def Layer.linear (W : Mat 𝕋 m n) (b : Vec 𝕋 m) : Real.Layer S n m where
     plus_outer _ _ (Set.add_mem_add
       (mtimes_outer W s (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hx)))
       (ofInterval_outer _ (Interval.mem_point b)))
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `Layer.linear` with an added error box, CORA's `W h + b ⊕ E`: the reduced
 linear layer a neuron merge leaves behind, weights and box alike stored as
@@ -68,3 +74,6 @@ noncomputable def Layer.linearWithError (W : Mat 𝕋 m n) (b : Vec 𝕋 m) (E :
       (ofInterval_outer _ hbox))
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -23,9 +23,15 @@ the combination stays reachable.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 noncomputable def HPolytope.halfScaled (t : α →ₗ[ℝ] ℝ) (P : HPolytope α) : HPolytope α where
   m := P.m
@@ -36,3 +42,6 @@ noncomputable def HPolytope.halfScaled (t : α →ₗ[ℝ] ℝ) (P : HPolytope �
   be := fun i => P.be i / 2
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

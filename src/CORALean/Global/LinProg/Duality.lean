@@ -22,6 +22,9 @@ infeasibility, so the empty case needs nothing new.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α] {m me : ℕ}
@@ -54,6 +57,9 @@ def SupportBound.ofDual {A : Fin m → (α →ₗ[ℝ] ℝ)} {b : Fin m → ℝ}
     rw [hc x]
     exact le_dual_bound A b Ae be y z hy hx.1 hx.2
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 /-- Farkas: weights that cancel the objective but not the right-hand side leave
 no feasible point at all. -/
 theorem eq_empty_of_dual {A : Fin m → (α →ₗ[ℝ] ℝ)} {b : Fin m → ℝ}
@@ -70,3 +76,6 @@ theorem eq_empty_of_dual {A : Fin m → (α →ₗ[ℝ] ℝ)} {b : Fin m → ℝ
   linarith
 
 end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

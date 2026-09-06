@@ -19,14 +19,23 @@ state: CORA floors the budget at nothing and adds the box of `n` regardless.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The count arithmetic, and all of it: two budgets summing to at most `K`,
 each clamped to the block it cuts, plus the `m` the box adds. -/
 theorem PolyZonotope.aux_order_arith {d K h q m : ℕ} (hd : d ≤ K) :
     min d h + (min (K - d) q + m) ≤ K + m := by omega
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.reduceGirard_order_le (PZ : PolyZonotope (Vec ℝ n)) {o : ℕ} (ho : 0 < o) :
     (PZ.reduceGirard o).h + (PZ.reduceGirard o).q ≤ o * n := by
@@ -38,3 +47,6 @@ theorem PolyZonotope.reduceGirard_order_le (PZ : PolyZonotope (Vec ℝ n)) {o : 
   · exact Nat.le_of_not_lt hlt
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

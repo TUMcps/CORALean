@@ -30,12 +30,18 @@ holds at every pair of partitions.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Plus Mtimes IntervalOuter OfInterval
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat ℝ) S] [IntervalOuter S] [OfInterval S]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Neuron merging (`prop:neuron-merging` in [1]): sound at *every* bucket
 `part.right`, trimming layer `k-1`'s rows and layer `k+1`'s columns to the
@@ -122,3 +128,6 @@ theorem neuronMerging_sandwich_outer {n0 n n2 d r : ℕ}
   exact plus_outer _ _ (Set.add_mem_add hAmem (ofInterval_outer _ hBoxmem))
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -19,11 +19,17 @@ the centre rounds, and its residual is what the box absorbs.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `plus`'s generator count, stated through the projection
@@ -65,9 +71,15 @@ theorem ConZonotope.aux_plus_error (C₁ C₂ : ConZonotope 𝕋 n) :
   subset_trans (Set.add_subset_add_right (Interval.plus_outer C₁.E C₂.E))
     (Interval.plus_outer _ _)
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem ConZonotope.plus_outer (C₁ C₂ : ConZonotope 𝕋 n) :
     C₁.construct + C₂.construct ⊆ (C₁.plus C₂).construct :=
   InflatedContSet.plus_subset (ConZonotope.aux_plus_nominal C₁ C₂)
     (ConZonotope.aux_plus_error C₁ C₂)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

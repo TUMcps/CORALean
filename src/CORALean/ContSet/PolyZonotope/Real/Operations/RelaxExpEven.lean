@@ -31,9 +31,15 @@ bounded by the symmetric `[-2, 2]` and has no midpoint to move.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α] {d : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `relaxExp` with the drift's midpoint taken off the centre, so the new
 independent generator carries only its radius. -/
@@ -50,3 +56,6 @@ noncomputable def PolyZonotope.relaxExpEven (PZ : PolyZonotope α)
     (fun _ => ((PZ.relaxWidth part k₀ : ℝ) / 2) • PZ.G (part.right 0))
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

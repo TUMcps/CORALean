@@ -14,9 +14,15 @@ rows, blind to the constraint columns.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The constraint matrix of `andDep`: the two systems block-diagonally over the
 constraint columns and blind to the generator columns, then the agreement rows,
@@ -28,3 +34,6 @@ def ConPolyZono.andA (C₁ C₂ : ConPolyZono (Vec ℝ n)) :
     (fun r => Fin.append (0 : Fin (C₁.s + C₂.s) → ℝ) (ConPolyZono.agreeRow C₁ C₂ r)) i
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

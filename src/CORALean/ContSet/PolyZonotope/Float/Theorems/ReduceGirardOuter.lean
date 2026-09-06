@@ -13,11 +13,17 @@ proof — `reduceGirard_outer` is `reduceBy_outer` at Girard's own partition.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.reduceGirard_outer (PZ : PolyZonotope 𝕋 n) (o : ℕ) :
     PZ.construct ⊆ (PZ.reduceGirard o).construct := by
@@ -27,3 +33,6 @@ theorem PolyZonotope.reduceGirard_outer (PZ : PolyZonotope 𝕋 n) (o : ℕ) :
   · exact subset_rfl
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

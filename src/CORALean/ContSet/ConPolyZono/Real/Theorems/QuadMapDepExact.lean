@@ -22,11 +22,17 @@ satisfy is unchanged, and it is the same proposition before and after because
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix PolyZonotope
 
 variable {n k : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.quadMapDep_exact (Q : Fin k → Mat ℝ n n) (C : ConPolyZono (Vec ℝ n))
     (hq : C.q = 0) :
@@ -62,3 +68,6 @@ theorem ConPolyZono.quadMapDep_exact (Q : Fin k → Mat ℝ n n) (C : ConPolyZon
     simp only [Finset.univ_eq_empty, Finset.sum_empty, add_zero, zero_add]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

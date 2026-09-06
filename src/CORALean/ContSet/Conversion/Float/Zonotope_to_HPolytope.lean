@@ -23,6 +23,9 @@ neither alone would do, the exact value being free to have either sign.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Matrix FloatOps SoundFloatArithmetic InflatedContSet
@@ -73,8 +76,14 @@ def Zonotope.boundDot (Z : Zonotope 𝕋 n) {c : Vec ℝ n →ₗ[ℝ] ℝ} (a :
 def Zonotope.hPolytope (Z : Zonotope 𝕋 n) (Aq : Mat 𝕋 q n) : HPolytope 𝕋 n :=
   HPolytope.ofBounds Aq fun i => Z.boundDot (Aq i) fun _ => rfl
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem Zonotope.subset_hPolytope (Z : Zonotope 𝕋 n) (Aq : Mat 𝕋 q n) :
     Z.construct ⊆ (Z.hPolytope Aq).construct :=
   HPolytope.subset_ofBounds _ _
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

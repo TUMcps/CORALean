@@ -11,9 +11,15 @@ Membership is the two constraint halves read back as a bound on the magnitude.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `Fin.addCases` does not reduce on a variable index, so which half of the
 constraint list an index falls in takes a rewrite. -/
@@ -28,6 +34,9 @@ theorem HPolytope.aux_unitBox_A_natAdd (j : Fin n) :
   show Fin.append (fun j : Fin n => (LinearMap.proj j : Vec ℝ n →ₗ[ℝ] ℝ))
     (fun j : Fin n => -(LinearMap.proj j : Vec ℝ n →ₗ[ℝ] ℝ)) (Fin.natAdd n j) = _
   rw [Fin.append_right]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 -- membership is those two halves read back as a bound on the magnitude
 theorem HPolytope.mem_unitBox_iff {x : Vec ℝ n} :
@@ -54,3 +63,6 @@ theorem HPolytope.mem_unitBox_iff {x : Vec ℝ n} :
       linarith
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

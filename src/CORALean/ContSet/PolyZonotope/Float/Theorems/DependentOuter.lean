@@ -14,11 +14,17 @@ the origin alone.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.dependent_outer (PZ : PolyZonotope 𝕋 n) :
     PZ.construct ⊆ PZ.dependent.construct := fun x hx =>
@@ -26,3 +32,6 @@ theorem PolyZonotope.dependent_outer (PZ : PolyZonotope 𝕋 n) :
     PolyZonotope.zero_mem_dependent_err PZ, add_zero x⟩
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

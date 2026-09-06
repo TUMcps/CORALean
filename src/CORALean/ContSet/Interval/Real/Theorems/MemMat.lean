@@ -16,7 +16,13 @@ pair index has to be taken apart.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 -- the pair index split one way and reassembled the other
 theorem Interval.mem_mat_iff {m n : ℕ} {I : Interval (Mat ℝ m n)} {A : Mat ℝ m n} :
@@ -24,3 +30,6 @@ theorem Interval.mem_mat_iff {m n : ℕ} {I : Interval (Mat ℝ m n)} {A : Mat �
   ⟨fun h i j => h (i, j), fun h p => h p.1 p.2⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

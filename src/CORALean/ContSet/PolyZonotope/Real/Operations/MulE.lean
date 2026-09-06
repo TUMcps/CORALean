@@ -13,9 +13,15 @@ and `Theorems/MulPoint.lean`, all outside this file.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Its exponent column, the two columns added, `S₂`'s read at `S₁`'s factor
 indices. -/
@@ -25,3 +31,6 @@ def PolyZonotope.mulE (S₁ S₂ : PolyZonotope (Vec ℝ n)) (hp : S₁.p = S₂
       + PolyZonotope.extE S₂ (Fin.cast hp k) (finProdFinEquiv.symm l).2
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

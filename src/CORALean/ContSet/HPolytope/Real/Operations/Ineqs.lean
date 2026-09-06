@@ -11,9 +11,15 @@ CORA's `polytope(A, b)`: one inequality per row.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {q n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- CORA's `polytope(A, b)`: one inequality per row. -/
 def HPolytope.ineqs (A : Mat ℝ q n) (b : Vec ℝ q) : HPolytope (Vec ℝ n) where
@@ -25,3 +31,6 @@ def HPolytope.ineqs (A : Mat ℝ q n) (b : Vec ℝ q) : HPolytope (Vec ℝ n) wh
   be := Fin.elim0
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

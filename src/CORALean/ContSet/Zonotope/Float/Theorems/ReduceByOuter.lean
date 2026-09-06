@@ -15,11 +15,17 @@ and the box is untouched, hence `mono_subset`.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q r : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 theorem Zonotope.aux_reduceBy_nominal (Z : Zonotope 𝕋 n)
     (part : Split (Fin Z.h) into (Fin q) and (Fin r)) :
@@ -27,9 +33,15 @@ theorem Zonotope.aux_reduceBy_nominal (Z : Zonotope 𝕋 n)
   subset_trans (Real.Zonotope.reduceBy_outer (nominal Z) part)
     (Zonotope.reduceBy_outer_refines Z part)
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem Zonotope.reduceBy_outer (Z : Zonotope 𝕋 n)
     (part : Split (Fin Z.h) into (Fin q) and (Fin r)) :
     Z.construct ⊆ (Z.reduceBy part).construct :=
   mono_subset (Zonotope.aux_reduceBy_nominal Z part) (subset_refl _)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

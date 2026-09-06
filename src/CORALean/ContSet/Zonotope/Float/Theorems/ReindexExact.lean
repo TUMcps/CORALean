@@ -19,11 +19,17 @@ part plus the relabelled box, with no widening between them.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Pointwise SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A linear map passes a Minkowski sum, which is what carries a guarantee
 stated on the nominal part and the error box separately to the set itself. -/
@@ -35,6 +41,9 @@ theorem aux_image_add (f : Vec ℝ n →ₗ[ℝ] Vec ℝ m) (A B : Set (Vec ℝ 
   · rintro _ ⟨_, ⟨a, ha, rfl⟩, _, ⟨b, hb, rfl⟩, rfl⟩
     exact ⟨a + b, ⟨a, ha, b, hb, rfl⟩, map_add f a b⟩
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem Zonotope.reindex_exact (e : Fin m ≃ Fin n) (Z : Zonotope 𝕋 n) :
     (Z.reindex e).construct = reindexLin e '' Z.construct := by
   show InflatedContSet.nominalSet (Z.reindex e) + (Z.E.reindex e).construct
@@ -45,3 +54,6 @@ theorem Zonotope.reindex_exact (e : Fin m ≃ Fin n) (Z : Zonotope 𝕋 n) :
   rw [aux_image_add, Interval.reindex_exact e Z.E, h]
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

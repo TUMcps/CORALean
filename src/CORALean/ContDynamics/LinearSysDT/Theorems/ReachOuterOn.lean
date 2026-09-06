@@ -18,6 +18,9 @@ recursion by hand.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix Pointwise ContSet Scalar Plus Reduce Mtimes
@@ -25,6 +28,9 @@ open Matrix Pointwise ContSet Scalar Plus Reduce Mtimes
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `reach` contains every trajectory of a run known only up to step `K`, at
 every step within it. -/
@@ -42,3 +48,6 @@ theorem LinearSysDT.reach_outer_on (sys : LinearSysDT 𝕋 n) (o : ℕ) (R₀ U 
     exact sys.reach_one_outer o _ _ (ih hkK.le) (traj.input k hkK)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

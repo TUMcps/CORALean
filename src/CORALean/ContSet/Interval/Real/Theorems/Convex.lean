@@ -15,11 +15,17 @@ What an integral valued in the set needs, being a limit of convex combinations.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Entrywise
 
 variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.convex_construct (I : Interval α) : Convex ℝ I.construct := by
   intro x hx y hy a b ha hb hab i
@@ -36,3 +42,6 @@ theorem Interval.convex_construct (I : Interval α) : Convex ℝ I.construct := 
   · linarith [mul_le_mul_of_nonneg_left h1.2 ha, mul_le_mul_of_nonneg_left h2.2 hb]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

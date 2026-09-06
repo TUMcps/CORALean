@@ -12,12 +12,21 @@ bounded, which is why the two get separate proofs rather than one.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.isCompact_construct (P : VPolytope α) : IsCompact P.construct := by
   rw [VPolytope.construct_eq_convexHull]
   exact Set.Finite.isCompact_convexHull ℝ (Set.finite_range P.V)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

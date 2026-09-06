@@ -28,11 +28,17 @@ constrains not at all, and so what makes the rule computable here.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n d r dI rI : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `reduceBy`'s independent generator count, stated
@@ -131,6 +137,9 @@ theorem ConPolyZono.aux_reduceBy_nominal (C : ConPolyZono 𝕋 n)
     simp only [hmono]
     ring
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem ConPolyZono.reduceBy_outer (C : ConPolyZono 𝕋 n)
     (partD : Split (Fin C.h) into (Fin d) and (Fin r))
     (partI : Split (Fin C.q) into (Fin dI) and (Fin rI)) :
@@ -138,3 +147,6 @@ theorem ConPolyZono.reduceBy_outer (C : ConPolyZono 𝕋 n)
   mono_subset (ConPolyZono.aux_reduceBy_nominal C partD partI) (subset_refl _)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

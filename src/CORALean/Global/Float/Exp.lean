@@ -26,6 +26,9 @@ overflow handling (issue #48), not a comparison. What `le` buys is
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
@@ -196,6 +199,9 @@ theorem le_expUp (n : ℕ) (a : 𝕋) (ha : toReal a ≤ 2 ^ n / 2) :
   rw [expUp]
   exact hstep
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 /-- The comparison earning its place: a caller holding a float `b` known to sit
 at or below `2ⁿ / 2` discharges `le_expUp`'s hypothesis by comparing `a` against
 it, rather than arguing about `toReal a` directly. -/
@@ -204,3 +210,6 @@ theorem le_expUp_of_le (n : ℕ) (a b : 𝕋) (hb : toReal b ≤ 2 ^ n / 2)
   le_expUp n a (le_trans (toReal_le_of_le h) hb)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

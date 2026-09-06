@@ -15,9 +15,15 @@ has to denote `∅` by data a machine can hold.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def HPolytope.emptySet (α : Type) [AddCommGroup α] [Module ℝ α] : HPolytope α where
   m := 1
@@ -28,3 +34,6 @@ def HPolytope.emptySet (α : Type) [AddCommGroup α] [Module ℝ α] : HPolytope
   be := Fin.elim0
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -14,9 +14,15 @@ directly, zero on an axis-aligned one. The split it drives keeps the
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Girard's metric on one generator, `‖g‖₁ - ‖g‖∞`. Zero exactly on the
 axis-aligned generators, which a box reproduces for free, and growing with what
@@ -36,6 +42,9 @@ noncomputable def Zonotope.aux_girardSplit (Z : Zonotope (Vec ℝ n)) (o : ℕ)
     ((Tuple.sort fun j => -Z.aux_girardMetric j).symm.trans
       (finCongr (Nat.add_sub_cancel' hle).symm))
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 /-- CORA's `reduce(Z, 'girard', o)`: keep the `(o - 1) * n` generators Girard
 ranks first and box the rest, bringing the count to `o * n`; at that order or
 below nothing happens. Noncomputable, as ordering reals is. -/
@@ -44,3 +53,6 @@ noncomputable def Zonotope.reduceGirard (Z : Zonotope (Vec ℝ n)) (o : ℕ) :
   if hlt : o * n < Z.h then Z.reduceBy (Z.aux_girardSplit o hlt) else Z
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

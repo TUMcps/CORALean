@@ -15,11 +15,17 @@ Split out of `Mtimes.lean` (issue #62): read again by
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n k : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- What `mtimes` owes beyond its nominal part: the centre, and both generator
 blocks. The constraints owe nothing, being copied. -/
@@ -29,3 +35,6 @@ def ConPolyZono.mtimesResidual (M : Mat 𝕋 k n) (C : ConPolyZono 𝕋 n) : Int
     (PolyZonotope.generatorError (matMulDiff M C.GI))
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

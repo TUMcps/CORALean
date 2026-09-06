@@ -26,6 +26,9 @@ over ℝ and `def` would still be `noncomputable`.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet
@@ -74,6 +77,9 @@ theorem Example.quadraticCert (p q r : ℝ) (U : Interval (Vec ℝ 1)) :
     rw [heq]
     exact ⟨sq_nonneg _, sq_le_sq' (by linarith [hb.1]) hb.2⟩
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 /-- One linearization at `p`, over the box representation. -/
 def Example.quadraticLinStep (p q r : ℝ) (U : Interval (Vec ℝ 1)) :
     Example.quadraticStep.LinStep (S := fun n => Interval (Vec ℝ n)) U where
@@ -108,3 +114,6 @@ example (p q r : ℝ) (U R₀ : Interval (Vec ℝ 1)) (o K : ℕ) {x u : ℕ →
     hk
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

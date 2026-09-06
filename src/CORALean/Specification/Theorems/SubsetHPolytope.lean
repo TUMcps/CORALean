@@ -16,11 +16,17 @@ state.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open CORALean
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α] {O : Set α}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The same at a halfspace description, where an equality row is the two
 inequalities it stands for. -/
@@ -37,3 +43,6 @@ theorem subset_hPolytope (P : HPolytope α)
   linarith [hf i]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

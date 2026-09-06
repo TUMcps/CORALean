@@ -14,9 +14,15 @@ rounding step to get.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float.Dyadic
 
 variable {p : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem toReal_exactAdd (a b : Dyadic p) :
     toReal (exactAdd a b) = toReal a + toReal b := by
@@ -26,3 +32,6 @@ theorem toReal_exactAdd (a b : Dyadic p) :
     two_zpow_align (min_le_right a.exponent b.exponent)]
 
 end CORALean.Float.Dyadic
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

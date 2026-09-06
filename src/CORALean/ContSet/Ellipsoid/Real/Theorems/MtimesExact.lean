@@ -14,11 +14,17 @@ form would have had to take a square root of `M Q Mᵀ` to say the same thing.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {n m : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.mtimes_exact (M : Mat ℝ m n) (E : Ellipsoid n) :
     (M *ᵥ ·) '' E.construct = (Ellipsoid.mtimes M E).construct := by
@@ -33,3 +39,6 @@ theorem Ellipsoid.mtimes_exact (M : Mat ℝ m n) (E : Ellipsoid n) :
     exact ⟨E.q + E.G *ᵥ u, ⟨u, hu, rfl⟩, (haff u).trans hy.symm⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

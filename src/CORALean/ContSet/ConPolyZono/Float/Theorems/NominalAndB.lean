@@ -17,11 +17,17 @@ the agreement rows' bound is `andD` by construction.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.nominal_andB (C₁ C₂ : ConPolyZono 𝕋 n) :
     (ConPolyZono.andB C₁ C₂).nominal
@@ -63,3 +69,6 @@ theorem ConPolyZono.nominal_andB (C₁ C₂ : ConPolyZono 𝕋 n) :
   rw [hinf, hsup]
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

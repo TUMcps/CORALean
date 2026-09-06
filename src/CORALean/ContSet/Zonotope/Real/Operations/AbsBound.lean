@@ -12,12 +12,21 @@ hull's bound, read off without building the hull.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- How far coordinate `j` can reach from the origin. -/
 def Zonotope.absBound (Z : Zonotope (Vec ℝ n)) (j : Fin n) : ℝ :=
   |Z.c j| + ∑ l, |Z.G l j|
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

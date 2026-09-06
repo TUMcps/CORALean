@@ -13,11 +13,20 @@ file.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def PolyZonotope.extM (S : PolyZonotope α) (a : Fin S.p → ℝ) : Fin (S.h + 1) → ℝ :=
   PolyZonotope.monomial (PolyZonotope.extE S) a
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

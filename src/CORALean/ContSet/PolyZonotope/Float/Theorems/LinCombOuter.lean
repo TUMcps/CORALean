@@ -35,11 +35,17 @@ rounding one: the independent coefficients cannot be tied to the same `λ`.
 -- Last update:   03-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `linComb`'s dependent generator count, stated through
@@ -274,9 +280,15 @@ theorem PolyZonotope.aux_linComb_error (PZ₁ PZ₂ : PolyZonotope 𝕋 n) :
         (Interval.plus_outer _ _)))
     (Interval.plus_outer _ _)
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem PolyZonotope.linComb_outer (PZ₁ PZ₂ : PolyZonotope 𝕋 n) :
     segments PZ₁.construct PZ₂.construct ⊆ (PZ₁.linComb PZ₂).construct :=
   InflatedContSet.linComb_subset (PolyZonotope.aux_linComb_nominal PZ₁ PZ₂)
     (PolyZonotope.aux_linComb_error PZ₁ PZ₂)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

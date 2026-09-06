@@ -9,13 +9,22 @@ import CORALean.ContSet.Zonotope.Float.Operations.Plus
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 omit [SoundFloatArithmetic 𝕋] in
 @[simp] theorem Zonotope.plus_h (Z₁ Z₂ : Zonotope 𝕋 n) : (Z₁.plus Z₂).h = Z₁.h + Z₂.h := rfl
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

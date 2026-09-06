@@ -17,11 +17,17 @@ to put the two back together and reads the box from here.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def HPolytope.unitBox (𝕋 : Type) [FloatOps 𝕋] (n : ℕ) : HPolytope 𝕋 n where
   m := n + n
@@ -33,3 +39,6 @@ def HPolytope.unitBox (𝕋 : Type) [FloatOps 𝕋] (n : ℕ) : HPolytope 𝕋 n
   be := ⟨fun i => i.elim0, fun i => i.elim0⟩
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

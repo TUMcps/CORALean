@@ -26,6 +26,9 @@ confinement over one step buys a linear run over one step —
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar Plus Mtimes OfInterval
@@ -33,6 +36,9 @@ open Matrix ContSet Scalar Plus Mtimes OfInterval
 variable {n m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [OfInterval S]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Every trajectory of `sys` confined to `R` over its own time domain is a
 trajectory of `linearize A` over that same domain, with input in `linInput`. -/
@@ -57,3 +63,6 @@ theorem NonlinearSys.Trajectory.linearize {sys : NonlinearSys n m} {T : Set ℝ}
     exact traj.flow t ht
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -15,11 +15,17 @@ one fact needed here, so it is taken instead from the scaling law at `-1`.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open MeasureTheory
 
 variable {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Lebesgue measure is invariant under negation. Taken from the scaling law at
 `-1`: the negation-invariance instance itself sits behind Haar uniqueness, an
@@ -51,6 +57,9 @@ theorem aux_aestronglyMeasurable_comp_sub_left {f : ℝ → Vec ℝ n} {a b c : 
     exact (aux_measurePreserving_sub_left c).restrict_preimage measurableSet_Icc
   exact hf.comp_measurePreserving hmp
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 /-- The reflected form `inputSolution_outer` states its hypothesis in, from the
 plain one `inputReach` carries. -/
 theorem aestronglyMeasurable_reflect_Ioc {u : ℝ → Vec ℝ n} {τ : ℝ}
@@ -61,3 +70,6 @@ theorem aestronglyMeasurable_reflect_Ioc {u : ℝ → Vec ℝ n} {τ : ℝ}
   exact h.mono_measure (Measure.restrict_mono Set.Ioc_subset_Icc_self le_rfl)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

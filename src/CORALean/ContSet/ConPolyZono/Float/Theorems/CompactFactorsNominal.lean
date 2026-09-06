@@ -14,14 +14,23 @@ nominal part.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem ConPolyZono.compactFactors_nominal (C : ConPolyZono 𝕋 n) :
     nominalSet C = nominalSet C.compactFactors :=
   Real.ConPolyZono.compactFactors_exact (InflatedContSet.nominal C)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

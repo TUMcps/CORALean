@@ -12,9 +12,15 @@ and `le_quotUp` need the divisor's mantissa positive, to divide by it.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float.Dyadic
 
 variable {p : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem mantissa_pos {b : Dyadic p} (hb : 0 < toReal b) : 0 < b.mantissa := by
   rw [toReal_def] at hb
@@ -25,3 +31,6 @@ theorem mantissa_pos {b : Dyadic p} (hb : 0 < toReal b) : 0 < b.mantissa := by
   exact absurd hb (not_lt.mpr hz)
 
 end CORALean.Float.Dyadic
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -14,9 +14,15 @@ directory and by several `Theorems/` files, all outside this file.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Equal exponent columns added together, the stored value the lower rounding
 and the gap paid into the box. The factors are untouched. -/
@@ -31,3 +37,6 @@ def PolyZonotope.compactGens (PZ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 n wh
   err := PZ.err.plus (PolyZonotope.generatorError (PolyZonotope.compactGap PZ))
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

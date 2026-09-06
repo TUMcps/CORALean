@@ -16,9 +16,15 @@ What the convex-hull characterisation and `linComb`'s enclosure both start from.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.vertex_mem (P : VPolytope α) (j : Fin P.k) : P.V j ∈ P.construct := by
   have hnn : ∀ l : Fin P.k, 0 ≤ (if l = j then (1:ℝ) else 0) := by
@@ -35,3 +41,6 @@ theorem VPolytope.vertex_mem (P : VPolytope α) (j : Fin P.k) : P.V j ∈ P.cons
   exact ⟨fun l => if l = j then 1 else 0, hnn, hsum, hval.symm⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

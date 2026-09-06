@@ -10,14 +10,23 @@ import CORALean.ContSet.ConZonotope.Real.Operations.Mtimes
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {n m : ℕ}
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 /-- True by `rfl`, and what lets `mtimes` inherit `map`'s exactness. -/
 theorem ConZonotope.mtimes_eq_map (M : Mat ℝ m n) (C : ConZonotope (Vec ℝ n)) :
     ConZonotope.mtimes M C = C.map (Matrix.mulVecLin M) := rfl
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

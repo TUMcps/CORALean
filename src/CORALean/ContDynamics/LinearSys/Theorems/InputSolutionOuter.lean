@@ -29,6 +29,9 @@ extend it to all of `[0,r]`.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar NormedSpace MeasureTheory Pointwise
@@ -43,6 +46,10 @@ variable [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 
 omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
   [∀ n, Reduce (S n) (Vec ℝ n)] in
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
 /-- A matrix applied to a scaled point is the scaled matrix applied to it, which
 is how a constant in front of an integral is absorbed into the operation. -/
 theorem aux_smul_mtimes_mem {M : Mat ℝ n n} {c : ℝ} {U : S n} {y : Vec ℝ n}
@@ -109,6 +116,9 @@ theorem aux_continuous_expDiff (A : Mat ℝ n n) (η : ℕ) :
   simp only [MatExp.expTaylor]
   refine continuous_finsetSum _ fun i _ => ?_
   exact (continuous_const : Continuous fun _ : ℝ => ((Nat.factorial i : ℝ)⁻¹)).smul (hsmul.pow i)
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 omit [∀ n, LinComb (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] in
 -- a dozen `have`s over `Mat ℝ n n`, each re-solving the local normed-algebra instances
@@ -295,3 +305,6 @@ theorem LinearSys.inputSolution_outer [Mtimes ℐ S]
     (sys.aux_inputTaylorSum_outer r U _ η hterm) hrem)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

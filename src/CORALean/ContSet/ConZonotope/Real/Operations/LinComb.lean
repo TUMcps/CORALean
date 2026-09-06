@@ -32,9 +32,15 @@ equality, which a halfspace description states directly, so the count here is
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 noncomputable def ConZonotope.linComb (C₁ C₂ : ConZonotope α) : ConZonotope α where
   h := C₁.h + C₂.h + 1
@@ -47,3 +53,6 @@ noncomputable def ConZonotope.linComb (C₁ C₂ : ConZonotope α) : ConZonotope
         (-blockLast (C₁.h + C₂.h)))
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

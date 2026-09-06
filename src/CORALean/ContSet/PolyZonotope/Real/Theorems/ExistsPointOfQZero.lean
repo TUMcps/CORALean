@@ -24,9 +24,15 @@ theorem is what turns it into a usable factor vector.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.exists_point_of_q_zero (S : PolyZonotope α) (hq : S.q = 0) {x : α}
     (hx : x ∈ S.construct) : ∃ a : Fin S.p → ℝ, (∀ k, |a k| ≤ 1) ∧ x = S.point a := by
@@ -39,3 +45,6 @@ theorem PolyZonotope.exists_point_of_q_zero (S : PolyZonotope α) (hq : S.q = 0)
   rw [Finset.sum_eq_zero fun j (_ : j ∈ Finset.univ) => (hempty.false j).elim, add_zero]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

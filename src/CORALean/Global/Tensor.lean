@@ -26,6 +26,9 @@ reason.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean
 
 universe u
@@ -37,6 +40,12 @@ abbrev Tensor (α : Type u) : List ℕ → Type u
 abbrev Vec (α : Type u) (n : ℕ) := Tensor α [n]
 abbrev Mat (α : Type u) (n m : ℕ) := Matrix (Fin n) (Fin m) α
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem mat_eq_tensor (α : Type u) (n m : ℕ) : Mat α n m = Tensor α [n, m] := rfl
 
 end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -19,12 +19,21 @@ be finite-dimensional, and `HPolytope.isClosed_construct` asks for that.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.isCompact_construct (C : ConZonotope α) : IsCompact C.construct := by
   rw [ConZonotope.construct_eq_image]
   exact C.isCompact_domain.image (Zonotope.continuous_affine C.zonotope)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

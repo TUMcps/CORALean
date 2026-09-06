@@ -25,11 +25,17 @@ tighter bound is the one worth not taking.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 structure Ellipsoid (𝕋 : Type) (n : ℕ) where
   /-- The generator count, as over ℝ: `G` is `n × k` and need not be square. -/
@@ -79,3 +85,6 @@ omit [FloatOps 𝕋] in
   simp [Ellipsoid.materialise]
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

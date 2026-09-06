@@ -15,6 +15,9 @@ Additivity suffices; the map is applied to a sum of two sets and nothing else.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float.InflatedContSet
 
 open Pointwise
@@ -22,6 +25,9 @@ open Pointwise
 variable {𝕋 S T N M : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 variable [ContSet N (Vec ℝ n)] [ContSet M (Vec ℝ m)]
 variable [InflatedContSet S N 𝕋 n] [InflatedContSet T M 𝕋 m]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem map_subset {s : S} {t : T} {f : Vec ℝ n → Vec ℝ m} {D : Set (Vec ℝ m)}
     (hadd : ∀ x y, f (x + y) = f x + f y)
@@ -34,3 +40,6 @@ theorem map_subset {s : S} {t : T} {f : Vec ℝ n → Vec ℝ m} {D : Set (Vec �
   rw [hadd, ← hsum, add_assoc, add_comm d (f b)]
 
 end CORALean.Float.InflatedContSet
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

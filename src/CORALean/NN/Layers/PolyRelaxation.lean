@@ -30,6 +30,9 @@ of `c 0` rather than of `coeffs[end]`.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 /-- A polynomial in the monomial basis, `c i` the coefficient of `t ^ i`. -/
@@ -109,9 +112,15 @@ def PolyRelaxation.toRelaxation {σ : ℝ → ℝ} (P : PolyRelaxation σ 1) : R
     rw [← evalPoly_one (P.coeffs l u)]
     exact P.sound hl hu
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 /-- The two round-trip, which is what makes "order 1" a reading of `Relaxation`
 rather than a second notion standing beside it. -/
 theorem Relaxation.toPoly_toRelaxation {σ : ℝ → ℝ} (R : Relaxation σ) :
     R.toPoly.toRelaxation = R := rfl
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

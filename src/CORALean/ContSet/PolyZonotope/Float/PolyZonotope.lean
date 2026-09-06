@@ -24,11 +24,17 @@ The error box is `err` rather than `E`, which the exponent matrix has taken.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 structure PolyZonotope (𝕋 : Type) (n : ℕ) where
   /-- The dependent factors, shared across all of `G`. -/
@@ -97,3 +103,6 @@ omit [FloatOps 𝕋] in
   simp [PolyZonotope.materialise]
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -14,11 +14,17 @@ a network is normally stated — directly off `propagate_outer`, with no
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The same read one input at a time, which is how a requirement on a network
 is normally stated. -/
@@ -28,3 +34,6 @@ theorem NeuralNetwork.mem_safeSet (nn : NeuralNetwork S n m) (X : S n) {safe : S
   h (nn.propagate_outer X x hx)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

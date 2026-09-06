@@ -26,11 +26,17 @@ takes certificates and is no function of the representation alone.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open ContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 /-- Named for the target, as every conversion is: `interval` is CORA's
 `interval(S)`. -/
@@ -53,3 +59,6 @@ instance : IntervalOuter (fun n => ConZonotope 𝕋 n) 𝕋 where
   interval_outer C := ConZonotope.interval_outer C
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -20,11 +20,17 @@ all the precision goes, and why none of it is visible here.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NeuralNetwork.propagate_outer : ∀ {n m : ℕ} (nn : NeuralNetwork S n m) (s : S n)
     (x : Vec ℝ n), x ∈ construct s → nn.eval x ∈ construct (nn.propagate s)
@@ -33,3 +39,6 @@ theorem NeuralNetwork.propagate_outer : ∀ {n m : ℕ} (nn : NeuralNetwork S n 
       rest.propagate_outer _ _ (L.propagate_outer s x hx)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

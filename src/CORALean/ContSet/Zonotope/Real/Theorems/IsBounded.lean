@@ -13,9 +13,15 @@ only as a bound and never stored.
 -- Last update:   01-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.isBounded_construct (Z : Zonotope α) : Bornology.IsBounded Z.construct := by
   refine isBounded_iff_forall_norm_le.mpr ⟨‖Z.c‖ + ∑ j, ‖Z.G j‖, ?_⟩
@@ -27,3 +33,6 @@ theorem Zonotope.isBounded_construct (Z : Zonotope α) : Bornology.IsBounded Z.c
   exact le_trans (norm_add_le _ _) (by linarith)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

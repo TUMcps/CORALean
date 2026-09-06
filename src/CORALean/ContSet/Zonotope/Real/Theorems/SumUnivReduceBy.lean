@@ -14,9 +14,15 @@ for it rather than for `Fin.sum_univ_add` directly.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n q r : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `Fin.sum_univ_add` at `reduceBy`'s generator count, stated through the
 projection because that is the form the goal has and simp will not rewrite a
@@ -27,3 +33,6 @@ theorem Zonotope.sum_univ_reduceBy {Z : Zonotope (Vec ℝ n)}
   Fin.sum_univ_add f
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

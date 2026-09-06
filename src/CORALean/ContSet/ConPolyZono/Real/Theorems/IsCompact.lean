@@ -16,12 +16,21 @@ enclosing an integral asks for.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.isCompact_construct (C : ConPolyZono α) : IsCompact C.construct := by
   rw [ConPolyZono.construct_eq_image]
   exact C.isCompact_domain.image C.continuous_affine
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

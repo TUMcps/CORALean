@@ -26,6 +26,9 @@ one, rounded whichever way `divUp` rounds. It reads `le`, which
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 -- not `Matrix`: its `zero` would make `FloatOps.zero` ambiguous
@@ -88,9 +91,15 @@ namespace Layer
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat 𝕋) S] [IntervalOuter S 𝕋] [OfInterval S 𝕋] {n : ℕ}
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 def relu (lam : 𝕋 → 𝕋 → 𝕋 := reluSlope) : Real.Layer S n n :=
   Layer.activation (reluRelaxation lam)
 
 end Layer
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

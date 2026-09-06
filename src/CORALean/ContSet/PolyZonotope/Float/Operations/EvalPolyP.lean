@@ -12,11 +12,17 @@ Split out of `EvalPoly.lean` (issue #62): read again by
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `evalPoly`'s recursion, paired with the proof that it never leaves `S`'s
 factor count. -/
@@ -29,3 +35,6 @@ def PolyZonotope.evalPolyP (S : PolyZonotope 𝕋 n) :
       ⟨PolyZonotope.evalPolyStep R.1 S R.2 a, R.2⟩
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -32,11 +32,17 @@ coefficient.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n d : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `relaxExp`'s dependent count, stated through the
@@ -145,6 +151,9 @@ theorem PolyZonotope.aux_relaxExp_nominal (PZ : PolyZonotope 𝕋 n)
     simp only [Matrix.cons_val_zero, Matrix.cons_val_one]
     linear_combination toReal (PZ.G i (part.right 0)) * hcoef
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem PolyZonotope.relaxExp_outer (PZ : PolyZonotope 𝕋 n)
     (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (k₀ : Fin PZ.p)
     (hsim : ∀ k, k ≠ k₀ → PZ.E k (part.right 0) = PZ.E k (part.right 1)) :
@@ -158,3 +167,6 @@ theorem PolyZonotope.relaxExp_outer (PZ : PolyZonotope 𝕋 n)
   rw [← hsum', add_comm e g, ← add_assoc]
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

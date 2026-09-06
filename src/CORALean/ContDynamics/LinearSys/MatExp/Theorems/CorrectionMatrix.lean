@@ -37,6 +37,9 @@ integrated remainder `Ê` the same way in `Documentation/inputErrorBounds`.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix NormedSpace
@@ -45,6 +48,9 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- a four-step `calc` carrying `Nat.factorial (i + η + 1)` through every rewrite
 set_option maxHeartbeats 400000 in
@@ -105,6 +111,9 @@ theorem aux_norm_expDiff_tail_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) (η : 
     _ = MatExp.expRemainderBound (r • A) η := by
         rw [tsum_mul_left, tsum_geometric_of_lt_one hε0 hε, MatExp.expRemainderBound]
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 -- a `Finset.range` split, then an entrywise `min`/`max` argument on the interval matrix
 set_option maxHeartbeats 1000000 in
 theorem MatExp.expDiff_mem_correctionMatrix (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) {m : ℕ}
@@ -155,3 +164,6 @@ theorem MatExp.expDiff_mem_correctionMatrix (A : Mat ℝ n n) {r : ℝ} (hr : 0 
     linarith [hT.2]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -14,11 +14,17 @@ floats describe; the box holds what rounding has cost.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 structure Zonotope (𝕋 : Type) (n : ℕ) where
   h : ℕ
@@ -73,3 +79,6 @@ omit [FloatOps 𝕋] in
   simp [Zonotope.materialise]
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

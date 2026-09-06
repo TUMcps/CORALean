@@ -13,10 +13,19 @@ instantiates none of them and owes nothing.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
+
+-- ========================================  INSTANCES  ========================================= --
+
 instance : ContSet (HPolytope 𝕋 n) (Vec ℝ n) := ⟨HPolytope.construct⟩
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

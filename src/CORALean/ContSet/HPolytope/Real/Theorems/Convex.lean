@@ -13,9 +13,15 @@ do. Holds for any constraints, the infeasible case included.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.convex_construct (P : HPolytope α) : Convex ℝ P.construct := by
   rintro x ⟨hx, hex⟩ y ⟨hy, hey⟩ a b ha hb hab
@@ -30,3 +36,6 @@ theorem HPolytope.convex_construct (P : HPolytope α) : Convex ℝ P.construct :
       one_mul]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

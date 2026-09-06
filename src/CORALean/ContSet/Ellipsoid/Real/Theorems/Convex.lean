@@ -16,11 +16,17 @@ and it holds whatever `G` is, degenerate ones included.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.convex_construct (E : Ellipsoid n) : Convex ℝ E.construct := by
   have himg : (fun u : Vec ℝ E.k => E.q + E.G *ᵥ u) '' unitBall₂ E.k
@@ -30,3 +36,6 @@ theorem Ellipsoid.convex_construct (E : Ellipsoid n) : Convex ℝ E.construct :=
   exact (convex_unitBall₂.linear_image (Matrix.mulVecLin E.G)).translate E.q
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

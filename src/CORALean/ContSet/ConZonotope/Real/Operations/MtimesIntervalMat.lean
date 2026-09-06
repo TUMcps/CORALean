@@ -21,11 +21,17 @@ one keeps this an enclosure.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {m n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 noncomputable def ConZonotope.mtimesIntervalMat (IM : Interval (Mat ℝ m n))
     (C : ConZonotope (Vec ℝ n)) : ConZonotope (Vec ℝ m) where
@@ -36,3 +42,6 @@ noncomputable def ConZonotope.mtimesIntervalMat (IM : Interval (Mat ℝ m n))
   P := C.P.comap (blockLeft C.h m)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -14,9 +14,15 @@ total back to `n·o`.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Girard's metric on one generator, `‖g‖₁ - ‖g‖∞`, over a bare family so that
 either block and their concatenation are ranked by this one line. Zero on the
@@ -42,6 +48,9 @@ noncomputable def ConPolyZono.aux_girardKeptDep (C : ConPolyZono (Vec ℝ n)) (K
   min K (Finset.univ.filter fun l : Fin C.h =>
     (rank (Fin.castAdd C.q l) : ℕ) < K).card
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 /-- CORA's `reduce(cPZ, 'girard', o)`: past `n·o` generators in the two blocks
 together, keep the `(o-1)·n` Girard ranks first and box the rest, bringing the
 total back to `n·o`. Noncomputable, as ordering reals is. -/
@@ -55,3 +64,6 @@ noncomputable def ConPolyZono.reduceGirard (C : ConPolyZono (Vec ℝ n)) (o : �
   else C
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

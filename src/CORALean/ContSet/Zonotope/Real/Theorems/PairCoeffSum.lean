@@ -18,9 +18,15 @@ witnesses an existential and is never run. The float layer and
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {h₁ h₂ : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The coefficient the paired-sum generator carries: the two weighted
 coefficients added, which is what records that they share one `λ`. -/
@@ -28,3 +34,6 @@ def Zonotope.pairCoeffSum (β₁ : Fin h₁ → ℝ) (β₂ : Fin h₂ → ℝ) 
   if hj : (j : ℕ) < h₂ then lam * β₁ j + (1 - lam) * β₂ ⟨j, hj⟩ else lam * β₁ j
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -20,9 +20,15 @@ others — which is what makes the sum exact rather than too small.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def ConPolyZono.plus (C₁ C₂ : ConPolyZono α) : ConPolyZono α where
   p := C₁.p + C₂.p
@@ -39,3 +45,6 @@ def ConPolyZono.plus (C₁ C₂ : ConPolyZono α) : ConPolyZono α where
   EC := PolyZonotope.plusE C₁.EC C₂.EC
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

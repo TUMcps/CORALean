@@ -23,9 +23,15 @@ be called after.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 class OfInterval (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] where
   ofInterval {n : ℕ} : Interval (Vec ℝ n) → S n
@@ -49,3 +55,6 @@ noncomputable instance : OfInterval 𝒫𝒵 where
   ofInterval_outer I := Interval.subset_polyZonotope I
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

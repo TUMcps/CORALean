@@ -23,11 +23,17 @@ nominal set only *grows*, and the error box does not move.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A merged constraint column is off by at most the gap between the two
 directed masked sums, as a generator column is. -/
@@ -114,8 +120,14 @@ theorem ConPolyZono.aux_compactCons_nominal (C : ConPolyZono 𝕋 n) :
   exact ConPolyZono.mem_nominalSet_iff.mpr
     ⟨a, β, ha, hβ, ConPolyZono.aux_satisfies_compactCons C ha hsat, hxi⟩
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem ConPolyZono.compactCons_outer (C : ConPolyZono 𝕋 n) :
     C.construct ⊆ C.compactCons.construct :=
   InflatedContSet.mono_subset (ConPolyZono.aux_compactCons_nominal C) (subset_refl _)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

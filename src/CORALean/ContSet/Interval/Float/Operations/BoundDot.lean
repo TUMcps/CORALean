@@ -14,11 +14,17 @@ picks and the terms are summed upward.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- A box answers an arbitrary direction too: a linear function of one
 coordinate is largest at one end of its range, so each term takes the endpoint
@@ -39,3 +45,6 @@ def Interval.boundDot (I : Interval 𝕋 n) {c : Vec ℝ n →ₗ[ℝ] ℝ} (a :
       exact le_trans (mul_le_mul_of_nonpos_left hlo hs) (mul_le_mulUp _ _)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

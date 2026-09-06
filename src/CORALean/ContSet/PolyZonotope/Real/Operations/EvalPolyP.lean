@@ -13,9 +13,15 @@ Split out of `EvalPoly.lean` (issue #62): read again by the float layer's own
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `evalPoly`'s recursion, paired with the proof that it never leaves `S`'s
 factor count — carried along so the next step's `mul` needs no new one. -/
@@ -27,3 +33,6 @@ def PolyZonotope.evalPolyP (S : PolyZonotope (Vec ℝ n)) :
       ⟨PolyZonotope.evalPolyStep R.1 S R.2 a, R.2⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

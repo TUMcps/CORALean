@@ -14,6 +14,9 @@ does once a caller has the certificates for it.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
@@ -21,9 +24,15 @@ variable {n : ℕ}
 def ConZonotope.interval (C : ConZonotope (Vec ℝ n)) : Interval (Vec ℝ n) :=
   C.zonotope.interval
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem ConZonotope.interval_outer (C : ConZonotope (Vec ℝ n)) :
     C.construct ⊆ C.interval.construct :=
   subset_trans C.zonotope_outer (Zonotope.interval_outer _)
 
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -16,7 +16,13 @@ operation on the space itself rather than merely one that agrees with it.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 class Entrywise (α : Type) (ι : outParam Type) [AddCommGroup α] [Module ℝ α] where
   entry : α → ι → ℝ
@@ -110,3 +116,6 @@ theorem Entrywise.add_sum_smul_apply {n m : ℕ} (c : Vec ℝ n) (G : Fin m → 
   Entrywise.entry_add_sum_smul c G β i
 
 end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

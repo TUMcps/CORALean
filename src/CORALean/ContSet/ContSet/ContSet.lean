@@ -26,9 +26,15 @@ operand-dependent one needs an oracle a total `plus : S → S → S` cannot have
 -- Last update:   03-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean
 
 open Matrix Pointwise
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 class ContSet (S : Type) (α : outParam Type) where
   construct : S → Set α
@@ -152,3 +158,6 @@ class LinMtimes (M S : Type) (T : outParam Type) (α : outParam Type) (β : outP
     (⋃ f ∈ LinMapSet.denote (β := β) m, f '' construct s) ⊆ construct (lmtimes m s)
 
 end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

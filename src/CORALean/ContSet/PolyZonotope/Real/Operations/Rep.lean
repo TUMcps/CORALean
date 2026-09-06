@@ -13,7 +13,13 @@ over `EC`, all outside this file.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The least index carrying the same exponent column. A canonical
 representative is what makes the merge merge, and `Fin h`'s own order supplies
@@ -23,3 +29,6 @@ def PolyZonotope.rep {p h : ℕ} (E : Fin p → Fin h → ℕ) (i : Fin h) : Fin
     ⟨i, Finset.mem_filter.mpr ⟨Finset.mem_univ i, rfl⟩⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

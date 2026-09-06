@@ -30,9 +30,15 @@ about a set the previous step built.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The relaxation loop over-approximates, at every selection and every number
 of steps. -/
@@ -52,3 +58,6 @@ theorem PolyZonotope.relaxExpGreedy_outer
     | some sp => exact subset_trans (PZ.relaxExpMulti_outer sp.2) (ih _)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

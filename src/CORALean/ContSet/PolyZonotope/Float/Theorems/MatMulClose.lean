@@ -11,11 +11,17 @@ Off by at most the gap between the two directed roundings.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Matrix FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A stored column of a rounded product is off by at most the gap between the
 two directed roundings. -/
@@ -33,3 +39,6 @@ theorem PolyZonotope.matMul_close {k : ℕ} (M : Mat 𝕋 m n) (A : Mat 𝕋 n k
   exact ⟨by simp only [matMulDiff]; linarith, by simp only [matMulDiff]; linarith⟩
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

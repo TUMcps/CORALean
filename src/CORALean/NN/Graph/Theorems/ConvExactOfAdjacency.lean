@@ -19,9 +19,15 @@ proposition as `[1]` actually states it.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {N F₁ F₂ : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Prop. 2] itself: the layer at the graph's own message passing. -/
 theorem GNN.gcn_exact_of_adjacency (A : Mat ℝ N N) (W : Mat ℝ F₁ F₂)
@@ -31,3 +37,6 @@ theorem GNN.gcn_exact_of_adjacency (A : Mat ℝ N N) (W : Mat ℝ F₁ F₂)
   GNN.gcn_exact _ W PZ
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

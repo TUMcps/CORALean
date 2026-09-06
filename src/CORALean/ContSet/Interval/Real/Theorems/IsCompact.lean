@@ -16,11 +16,20 @@ At `Vec ℝ n`, since boundedness is.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.isCompact_construct (I : Interval (Vec ℝ n)) : IsCompact I.construct :=
   Metric.isCompact_of_isClosed_isBounded I.isClosed_construct I.isBounded_construct
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

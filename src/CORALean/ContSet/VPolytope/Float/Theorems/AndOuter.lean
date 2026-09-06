@@ -15,9 +15,15 @@ The same three steps as the exact layer's, each already proved here.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.and_outer (P₁ P₂ : VPolytope 𝕋 n) :
     P₁.construct ∩ P₂.construct ⊆ (P₁.and P₂).construct := by
@@ -26,3 +32,6 @@ theorem VPolytope.and_outer (P₁ P₂ : VPolytope 𝕋 n) :
   exact Set.inter_subset_inter P₁.interval_outer P₂.interval_outer
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

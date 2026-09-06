@@ -26,12 +26,18 @@ definition at a linear field — `LinearSys.trajectory_iff_nonlinearSys`. A boun
 -- Last update:   03-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet
 
 variable {n m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 structure NonlinearSys (n m : ℕ) where
   f : Vec ℝ n → Vec ℝ m → Vec ℝ n
@@ -44,3 +50,6 @@ structure NonlinearSys.Trajectory (sys : NonlinearSys n m) (T : Set ℝ) (R₀ :
     HasDerivWithinAt x (sys.f (x t) (u t)) T t
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

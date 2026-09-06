@@ -12,9 +12,15 @@ by `Theorems/CompactGensExact.lean`, both outside this file.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 omit [Module ℝ α] in
 /-- Membership through the classical instance `compactKeep` fixes, which
@@ -26,6 +32,9 @@ theorem PolyZonotope.aux_mem_compactKeep_iff {p h : ℕ} (E : Fin p → Fin h �
   rw [PolyZonotope.compactKeep]
   simp only [Finset.mem_filter, Finset.mem_univ, true_and]
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 omit [Module ℝ α] in
 theorem PolyZonotope.fiberSum_eq_zero_of_notMem {p h : ℕ} (E : Fin p → Fin h → ℕ)
     (G : Fin h → α) {j : Fin h} (hj : j ∉ PolyZonotope.compactKeep E G) :
@@ -33,3 +42,6 @@ theorem PolyZonotope.fiberSum_eq_zero_of_notMem {p h : ℕ} (E : Fin p → Fin h
   not_not.mp fun hne => hj ((PolyZonotope.aux_mem_compactKeep_iff E G j).mpr hne)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -19,6 +19,9 @@ list.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar Plus Reduce Mtimes
@@ -27,6 +30,9 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem LinearSysDT.holds_of_reach (sys : LinearSysDT 𝕋 n) (o : ℕ) (R₀ U : S n)
     (spec : Specification (Vec ℝ n)) {x u : ℕ → Vec ℝ n}
     (traj : sys.Trajectory R₀ U x u) (k : ℕ)
@@ -34,3 +40,6 @@ theorem LinearSysDT.holds_of_reach (sys : LinearSysDT 𝕋 n) (o : ℕ) (R₀ U 
   spec.holds_of_outer (Set.singleton_subset_iff.mpr (sys.reach_outer o R₀ U traj k)) h
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

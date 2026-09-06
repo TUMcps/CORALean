@@ -24,6 +24,9 @@ lemmas match.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
@@ -36,6 +39,9 @@ def Zonotope.polyZonotope (Z : Zonotope α) : PolyZonotope α where
   G := Z.G
   E := PolyZonotope.identE Z.h
   GI := Fin.elim0
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.polyZonotope_exact (Z : Zonotope α) :
     Z.construct = Z.polyZonotope.construct := by
@@ -62,3 +68,6 @@ theorem Zonotope.polyZonotope_exact (Z : Zonotope α) :
     rfl
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

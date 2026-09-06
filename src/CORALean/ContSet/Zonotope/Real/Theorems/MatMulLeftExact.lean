@@ -15,12 +15,21 @@ and nothing about them is special.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.matMulLeft_exact {p q r : ℕ} (M : Mat ℝ p q) (Z : Zonotope (Mat ℝ q r)) :
     (M * ·) '' Z.construct = (Zonotope.mapOf (matMulLeft M) Z).construct :=
   Zonotope.map_exact (matMulLeft M) Z
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

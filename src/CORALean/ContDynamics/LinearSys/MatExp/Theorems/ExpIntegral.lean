@@ -14,6 +14,9 @@ summability outright, which is all the containment theorems downstream need.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix NormedSpace
@@ -23,9 +26,15 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 variable {n : ℕ}
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 /-- And so summable in the matrix algebra, which is complete. -/
 theorem MatExp.summable_expIntegral (A : Mat ℝ n n) (t : ℝ) :
     Summable (fun i : ℕ => (((Nat.factorial (i + 1) : ℝ))⁻¹ * t ^ (i + 1)) • A ^ i) :=
   (MatExp.summable_norm_expIntegral A t).of_norm
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

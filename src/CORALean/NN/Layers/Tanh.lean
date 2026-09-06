@@ -18,6 +18,9 @@ tanh's own, not merely a sound one.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet
@@ -60,8 +63,14 @@ namespace Layer
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat ℝ) S] [IntervalOuter S] [OfInterval S] {n : ℕ}
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 noncomputable def tanh : Layer S n n := Layer.activation tanhRelaxation
 
 end Layer
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

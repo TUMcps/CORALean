@@ -19,12 +19,21 @@ touching the guarantee, which is stated for the operation and not for the rule.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 noncomputable def ConZonotope.reduce (C : ConZonotope (Vec ℝ n)) (o : ℕ) :
     ConZonotope (Vec ℝ n) :=
   if o * n < C.h then (C.zonotope.reduce o).conZonotope else C
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

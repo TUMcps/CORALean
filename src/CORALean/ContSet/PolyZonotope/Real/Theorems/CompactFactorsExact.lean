@@ -25,9 +25,15 @@ keeps each equation to the one sum that actually changes.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The same sum read against the kept factors alone. -/
 theorem PolyZonotope.aux_sum_compactFactors (PZ : PolyZonotope α) (a : Fin PZ.p → ℝ) :
@@ -54,6 +60,9 @@ theorem PolyZonotope.aux_sum_compactFactors_extend (PZ : PolyZonotope α)
             • PZ.G i
   exact Finset.sum_congr rfl fun i _ => by rw [PolyZonotope.monomial_factorExtend]
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem PolyZonotope.compactFactors_exact (PZ : PolyZonotope α) :
     PZ.construct = PZ.compactFactors.construct := by
   have key : ∀ (a : Fin PZ.p → ℝ) (β : Fin PZ.q → ℝ),
@@ -78,3 +87,6 @@ theorem PolyZonotope.compactFactors_exact (PZ : PolyZonotope α) :
       fun k => PolyZonotope.abs_factorExtend_le_one PZ.E ha k, hβ, (key' a β).symm⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

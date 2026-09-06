@@ -15,6 +15,9 @@ exact layer's, carried across by `mono_subset`.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open SoundFloatArithmetic InflatedContSet
@@ -25,8 +28,14 @@ def ConZonotope.zonotope (C : ConZonotope 𝕋 n) : Zonotope 𝕋 n := ⟨C.h, C
 
 variable [SoundFloatArithmetic 𝕋]
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem ConZonotope.zonotope_outer (C : ConZonotope 𝕋 n) :
     C.construct ⊆ C.zonotope.construct :=
   mono_subset (Real.ConZonotope.zonotope_outer (nominal C)) subset_rfl
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

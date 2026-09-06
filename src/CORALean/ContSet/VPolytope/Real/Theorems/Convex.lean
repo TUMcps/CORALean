@@ -15,9 +15,15 @@ what needs it.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.convex_construct (P : VPolytope α) : Convex ℝ P.construct := by
   rintro x ⟨β₁, hβ₁, hs₁, rfl⟩ y ⟨β₂, hβ₂, hs₂, rfl⟩ a b ha hb hab
@@ -32,3 +38,6 @@ theorem VPolytope.convex_construct (P : VPolytope α) : Convex ℝ P.construct :
   exact ⟨fun j => a * β₁ j + b * β₂ j, hnn, hsum, hval.symm⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

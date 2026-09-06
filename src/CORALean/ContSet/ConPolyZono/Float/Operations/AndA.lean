@@ -14,11 +14,17 @@ rows, blind to the constraint columns.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The constraint matrix of `andDep`: the two systems block-diagonally over the
 constraint columns and blind to the generator columns, then the agreement rows,
@@ -30,3 +36,6 @@ def ConPolyZono.andA (C₁ C₂ : ConPolyZono 𝕋 n) :
     (fun r => Fin.append (fun _ => zero) (ConPolyZono.agreeRow C₁ C₂ r)) i
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

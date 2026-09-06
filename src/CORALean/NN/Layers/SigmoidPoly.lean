@@ -28,6 +28,9 @@ enough samples that the padding `M · dx` is under that worst case.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 /-- `ofSampling` at the sigmoid: `M` is the derivative bracket of `Sigmoid`
@@ -41,6 +44,9 @@ noncomputable def sigmoidPolyRelaxation {n : ℕ} (c : ℝ → ℝ → Fin (n + 
     (fun _ _ _ hx hx' => abs_sub_evalPolyDeriv_le (sigmoidDerivLo_le hx hx')
       (le_sigmoidDerivHi hx hx') hx hx') hN
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 /-- The same at CORA's default fit, which leaves only the sample count to
 choose. -/
 noncomputable def sigmoidPolyRelaxationFit {n : ℕ} (N : ℝ → ℝ → ℕ) (hN : ∀ l u, 0 < N l u) :
@@ -48,3 +54,6 @@ noncomputable def sigmoidPolyRelaxationFit {n : ℕ} (N : ℝ → ℝ → ℕ) (
   sigmoidPolyRelaxation (polyFit sigmoid n) N hN
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

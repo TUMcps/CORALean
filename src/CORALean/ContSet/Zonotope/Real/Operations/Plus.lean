@@ -11,9 +11,15 @@ CORA's `@zonotope/plus`: centres add, generators concatenate.
 -- Last update:   01-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def Zonotope.plus (Z₁ Z₂ : Zonotope α) : Zonotope α where
   h := Z₁.h + Z₂.h
@@ -21,3 +27,6 @@ def Zonotope.plus (Z₁ Z₂ : Zonotope α) : Zonotope α where
   G := Fin.append Z₁.G Z₂.G
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

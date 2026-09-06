@@ -33,7 +33,13 @@ the single `eDiff` of `[1, Def. 5]` at a similar pair and the width
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- An edge's weight, summed over every factor so that the agreeing ones
 contribute nothing. -/
@@ -68,6 +74,9 @@ def PolyZonotope.aux_pairSplit {m : ℕ} (h2 : 2 ≤ m) (i j : Fin m) :
       (PolyZonotope.aux_pairPerm (finCongr (Nat.sub_add_cancel h2).symm i)
         (finCongr (Nat.sub_add_cancel h2).symm j)).symm)
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 /-- The lightest edge of `[1, Def. 5]` as a split `relaxExpGreedy` can merge
 along, and `none` once the graph is exhausted. -/
 def PolyZonotope.expGreedySel {p h : ℕ} (E : Fin p → Fin h → ℕ) (η : ℕ) :
@@ -78,3 +87,6 @@ def PolyZonotope.expGreedySel {p h : ℕ} (E : Fin p → Fin h → ℕ) (η : �
   else none
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

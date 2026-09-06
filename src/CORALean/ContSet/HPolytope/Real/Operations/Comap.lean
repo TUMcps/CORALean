@@ -16,9 +16,15 @@ way, which is `VPolytope.map`.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Module ℝ β]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def HPolytope.comap (f : β →ₗ[ℝ] α) (P : HPolytope α) : HPolytope β where
   m := P.m
@@ -29,3 +35,6 @@ def HPolytope.comap (f : β →ₗ[ℝ] α) (P : HPolytope α) : HPolytope β wh
   be := P.be
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

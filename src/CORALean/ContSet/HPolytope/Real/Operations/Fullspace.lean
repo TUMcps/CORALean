@@ -13,9 +13,15 @@ conversion starts from when it has rows to add but none yet.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def HPolytope.fullspace (α : Type) [AddCommGroup α] [Module ℝ α] : HPolytope α where
   m := 0
@@ -26,3 +32,6 @@ def HPolytope.fullspace (α : Type) [AddCommGroup α] [Module ℝ α] : HPolytop
   be := Fin.elim0
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

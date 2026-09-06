@@ -16,11 +16,17 @@ blocks, coordinate by coordinate rather than by definition.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.nominal_dependent (C : ConPolyZono 𝕋 n) :
     nominal C.dependent = (nominal C).dependent := by
@@ -43,3 +49,6 @@ theorem ConPolyZono.nominal_dependent (C : ConPolyZono 𝕋 n) :
   rfl
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

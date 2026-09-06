@@ -13,9 +13,15 @@ their leftover against.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A coordinate of a zonotope never leaves `absBound`. -/
 theorem Zonotope.abs_le_absBound {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n} {β : Vec ℝ Z.h}
@@ -31,3 +37,6 @@ theorem Zonotope.abs_le_absBound {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n} {β 
         simpa using mul_le_mul_of_nonneg_left (hβ l) (abs_nonneg (Z.G l j))
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

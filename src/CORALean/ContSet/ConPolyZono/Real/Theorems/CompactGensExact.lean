@@ -21,9 +21,15 @@ the equation to the one sum that actually changes.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The dependent generator sum, regrouped onto the columns that survive. -/
 theorem ConPolyZono.aux_sum_compactGens (C : ConPolyZono α) (a : Fin C.p → ℝ) :
@@ -35,6 +41,9 @@ theorem ConPolyZono.aux_sum_compactGens (C : ConPolyZono α) (a : Fin C.p → �
       fun j hj => PolyZonotope.fiberSum_eq_zero_of_notMem C.E C.G hj,
     PolyZonotope.sum_compactKeep]
   rfl
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 -- the constraint block is copied, so one factor vector answers for both sides
 theorem ConPolyZono.compactGens_exact (C : ConPolyZono α) :
@@ -52,3 +61,6 @@ theorem ConPolyZono.compactGens_exact (C : ConPolyZono α) :
     exact ⟨a, β, ha, hβ, hsat, (key a β).symm⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

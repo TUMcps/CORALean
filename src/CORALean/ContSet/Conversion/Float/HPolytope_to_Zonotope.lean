@@ -12,6 +12,9 @@ Through its box, which is what the certificates give.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
@@ -22,6 +25,9 @@ def HPolytope.zonotope (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj 
     (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) : Zonotope 𝕋 n :=
   (HPolytope.interval up lo).zonotope
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem HPolytope.subset_zonotope (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
     (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) :
     P.construct ⊆ (HPolytope.zonotope up lo).construct :=
@@ -29,3 +35,6 @@ theorem HPolytope.subset_zonotope (up : ∀ j, FloatBound 𝕋 P.construct (Line
 
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

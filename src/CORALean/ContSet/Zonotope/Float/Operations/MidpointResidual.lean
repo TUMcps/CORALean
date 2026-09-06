@@ -13,11 +13,17 @@ and by `MidpointMemResidual.lean`, both outside this file.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Storing the lower of the two directed midpoints leaves this much to pay. -/
 def Zonotope.midpointResidual (a b : Vec 𝕋 n) : Interval 𝕋 n :=
@@ -25,3 +31,6 @@ def Zonotope.midpointResidual (a b : Vec 𝕋 n) : Interval 𝕋 n :=
     (fun i => half (addUp (a i) (b i))) (Zonotope.midpoint a b)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

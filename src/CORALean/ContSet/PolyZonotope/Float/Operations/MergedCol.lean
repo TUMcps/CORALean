@@ -14,9 +14,15 @@ outside this file.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The merged column as stored: the lower of the two directed fibre sums. -/
 def PolyZonotope.mergedCol (PZ : PolyZonotope 𝕋 n) (i : Fin n)
@@ -24,3 +30,6 @@ def PolyZonotope.mergedCol (PZ : PolyZonotope 𝕋 n) (i : Fin n)
   PolyZonotope.fiberDown (Real.PolyZonotope.rep PZ.E) PZ.G i (PolyZonotope.keepIdx PZ.E j)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

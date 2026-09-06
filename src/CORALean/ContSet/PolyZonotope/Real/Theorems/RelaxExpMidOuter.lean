@@ -32,9 +32,15 @@ zero included, so nothing here needs the bracket to be non-degenerate.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α] {d : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Merging two generators whose exponent columns agree off `k₀`
 over-approximates, with the drift's midpoint moved into the centre. -/
@@ -104,3 +110,6 @@ theorem PolyZonotope.relaxExpMid_outer (PZ : PolyZonotope α)
   abel
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

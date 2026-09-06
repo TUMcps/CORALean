@@ -24,11 +24,17 @@ polynomials differ between coordinates costs the induction nothing.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open PolyZonotope
 
 variable {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- file-local: only `evalPoly_exact` below needs it
 /-- `evalPolyP`'s point, at the factor vector its own `p`-proof casts back to
@@ -58,6 +64,9 @@ theorem PolyZonotope.aux_evalPolyP_point (S : PolyZonotope (Vec ℝ n)) (coeffs 
     rw [key, hcancel, congrFun ih i, List.map_cons, PolyZonotope.evalPolyReal]
     ring
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem PolyZonotope.evalPoly_exact (S : PolyZonotope (Vec ℝ n)) (coeffs : List (Vec ℝ n))
     (a : Fin S.p → ℝ) :
     (S.evalPoly coeffs).point (fun k => a (Fin.cast (S.evalPoly_p coeffs) k))
@@ -65,3 +74,6 @@ theorem PolyZonotope.evalPoly_exact (S : PolyZonotope (Vec ℝ n)) (coeffs : Lis
   PolyZonotope.aux_evalPolyP_point S coeffs a
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

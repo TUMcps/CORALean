@@ -14,11 +14,17 @@ too.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Girard's is the rule `reduce` runs, and this line is the whole of that
 choice: any other would discharge it too. -/
@@ -28,3 +34,6 @@ theorem PolyZonotope.reduce_outer (PZ : PolyZonotope 𝕋 n) (o : ℕ) :
     (PolyZonotope.reduceGirard_outer PZ.compact o)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

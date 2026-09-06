@@ -25,6 +25,9 @@ choice.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
@@ -36,6 +39,9 @@ def Interval.corner (I : Interval (Vec ℝ n)) (σ : Fin n → Bool) : Vec ℝ n
 noncomputable def Interval.vPolytope (I : Interval (Vec ℝ n)) : VPolytope (Vec ℝ n) where
   k := 2 ^ n
   V := fun l => I.corner (signEquiv n l)
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.subset_vPolytope (I : Interval (Vec ℝ n)) :
     I.construct ⊆ I.vPolytope.construct := by
@@ -87,3 +93,6 @@ theorem Interval.subset_vPolytope (I : Interval (Vec ℝ n)) :
       sum_prod_bool_mul t I.sup I.inf i, hval i]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

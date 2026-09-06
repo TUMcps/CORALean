@@ -13,9 +13,15 @@ it in: it has the weight in hand and owes the rows.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.mem_halfScaled_iff {t : α →ₗ[ℝ] ℝ} {P : HPolytope α} {x : α} :
     x ∈ (P.halfScaled t).construct ↔
@@ -48,3 +54,6 @@ theorem HPolytope.mem_halfScaled_iff {t : α →ₗ[ℝ] ℝ} {P : HPolytope α}
       linarith
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

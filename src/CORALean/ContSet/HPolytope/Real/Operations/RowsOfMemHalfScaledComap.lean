@@ -16,9 +16,15 @@ to divide by.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α γ : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup γ] [Module ℝ γ]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.rows_of_mem_halfScaled_comap {f : γ →ₗ[ℝ] α} {t : γ →ₗ[ℝ] ℝ}
     {P : HPolytope α} {x : γ} {w : ℝ} (hw : (t x + 1) / 2 = w)
@@ -29,3 +35,6 @@ theorem HPolytope.rows_of_mem_halfScaled_comap {f : γ →ₗ[ℝ] α} {t : γ �
   exact ⟨hle, heq⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

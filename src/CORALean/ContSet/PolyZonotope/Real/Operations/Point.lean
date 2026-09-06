@@ -17,12 +17,21 @@ is generally far larger.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The point the factor vector `a` picks out, the independent block aside. -/
 def PolyZonotope.point (S : PolyZonotope α) (a : Fin S.p → ℝ) : α :=
   S.c + ∑ i, PolyZonotope.monomial S.E a i • S.G i
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

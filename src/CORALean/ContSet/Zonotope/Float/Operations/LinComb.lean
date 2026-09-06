@@ -25,11 +25,17 @@ generator included.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def Zonotope.linComb (Z₁ Z₂ : Zonotope 𝕋 n) : Zonotope 𝕋 n where
   h := Z₁.h + Z₂.h + 1
@@ -40,3 +46,6 @@ def Zonotope.linComb (Z₁ Z₂ : Zonotope 𝕋 n) : Zonotope 𝕋 n where
           (Zonotope.generatorError (Zonotope.linCombGDiff Z₁ Z₂)))
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

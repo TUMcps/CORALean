@@ -12,11 +12,20 @@ admits unbounded sets, which is the difference between the two representations.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.isBounded_construct (P : VPolytope α) : Bornology.IsBounded P.construct :=
   P.isCompact_construct.isBounded
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

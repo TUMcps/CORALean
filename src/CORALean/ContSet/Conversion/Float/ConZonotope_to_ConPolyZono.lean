@@ -27,6 +27,9 @@ Membership is the shorter argument.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Matrix FloatOps SoundFloatArithmetic InflatedContSet
@@ -105,6 +108,9 @@ theorem ConZonotope.satisfies_conPolyZono (C : ConZonotope 𝕋 n) {β : Vec ℝ
   rw [hm]
   exact key i
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 -- the point survives as it stands: identity exponents make every monomial a factor
 theorem ConZonotope.conPolyZono_outer (C : ConZonotope 𝕋 n) :
     C.construct ⊆ C.conPolyZono.construct := by
@@ -118,3 +124,6 @@ theorem ConZonotope.conPolyZono_outer (C : ConZonotope 𝕋 n) :
   rfl
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -17,9 +17,15 @@ a vertex description needs the domain compact and not the set.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 omit [NormedAddCommGroup α] [NormedSpace ℝ α] in
 theorem ConZonotope.isCompact_domain (C : ConZonotope α) : IsCompact C.domain.construct := by
@@ -29,3 +35,6 @@ theorem ConZonotope.isCompact_domain (C : ConZonotope α) : IsCompact C.domain.c
   exact (ConZonotope.mem_domain_iff.mp hβ).1
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

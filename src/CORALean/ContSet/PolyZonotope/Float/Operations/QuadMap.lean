@@ -27,11 +27,20 @@ mapping rather than after.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def PolyZonotope.quadMap (Q : Fin m → Mat 𝕋 n n) (PZ : PolyZonotope 𝕋 n) :
     PolyZonotope 𝕋 m := PolyZonotope.quadMapDep Q PZ.dependent
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

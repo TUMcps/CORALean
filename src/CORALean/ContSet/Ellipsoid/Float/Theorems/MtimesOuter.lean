@@ -25,11 +25,17 @@ an inclusion whose entire loss is the rounding.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Pointwise Matrix FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The exact image, regrouped so the centre and each generator appear once. -/
 theorem Ellipsoid.aux_mulVec_nominal (M : Mat 𝕋 m n) (E : Ellipsoid 𝕋 n) (u : Vec ℝ E.k)
@@ -99,9 +105,15 @@ theorem Ellipsoid.aux_mtimes_error (M : Mat 𝕋 m n) (E : Ellipsoid 𝕋 n) :
   subset_trans (Set.add_subset_add_right (Interval.mtimes_outer M E.err))
     (Interval.plus_outer _ _)
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem Ellipsoid.mtimes_outer (M : Mat 𝕋 m n) (E : Ellipsoid 𝕋 n) :
     (toRealMat M *ᵥ ·) '' E.construct ⊆ (Ellipsoid.mtimes M E).construct :=
   map_subset (fun x y => Matrix.mulVec_add _ x y)
     (Ellipsoid.aux_mtimes_nominal M E) (Ellipsoid.aux_mtimes_error M E)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

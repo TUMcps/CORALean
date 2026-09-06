@@ -29,9 +29,15 @@ zonotope is generally not convex and this claim is still the right one.
 -- Last update:   03-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `Fin.sum_univ_add` at `linComb`'s dependent generator count, stated through
 the projection because that is the form the goal has. Only the outermost split
@@ -67,6 +73,9 @@ theorem PolyZonotope.aux_sum_scaled_mul {k : ℕ} (t s : ℝ) (m : Fin k → ℝ
   rw [smul_smul, smul_smul]
   congr 1
   ring
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.linComb_outer (PZ₁ PZ₂ : PolyZonotope α) :
     segments PZ₁.construct PZ₂.construct ⊆ (PZ₁.linComb PZ₂).construct := by
@@ -107,3 +116,6 @@ theorem PolyZonotope.linComb_outer (PZ₁ PZ₂ : PolyZonotope α) :
     module
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

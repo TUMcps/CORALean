@@ -15,11 +15,17 @@ on the nonnegatives a length is.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Combastel's metric on one generator: `sqSumUp`'s squared length, rounded up.
 Squaring avoids `Real.sqrt`, absent from `FloatOps`, and keeps the ranking,
@@ -38,6 +44,9 @@ def Zonotope.aux_combastelSplit (Z : Zonotope 𝕋 n) (o : ℕ) (hlt : o * n < Z
     ((sortPerm fun j₁ j₂ => le (Z.aux_combastelMetric j₂) (Z.aux_combastelMetric j₁)).symm.trans
       (finCongr (Nat.add_sub_cancel' hle).symm))
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 /-- CORA's `reduce(Z, 'combastel', o)`: keep the `(o - 1) * n` largest-magnitude
 generators and box the rest, which brings the count to `o * n`. Already at
 that order or below, nothing happens. -/
@@ -45,3 +54,6 @@ def Zonotope.reduceCombastel (Z : Zonotope 𝕋 n) (o : ℕ) : Zonotope 𝕋 n :
   if hlt : o * n < Z.h then Z.reduceBy (Z.aux_combastelSplit o hlt) else Z
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

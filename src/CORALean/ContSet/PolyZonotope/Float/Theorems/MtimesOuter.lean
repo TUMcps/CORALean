@@ -35,11 +35,17 @@ needing the same regrouping at its own fields.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Pointwise Matrix FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 theorem PolyZonotope.aux_mtimes_nominal (M : Mat 𝕋 m n) (PZ : PolyZonotope 𝕋 n) :
     (toRealMat M *ᵥ ·) '' nominalSet PZ ⊆
@@ -106,9 +112,15 @@ theorem PolyZonotope.aux_mtimes_error (M : Mat 𝕋 m n) (PZ : PolyZonotope 𝕋
   subset_trans (Set.add_subset_add_right (Interval.mtimes_outer M PZ.err))
     (Interval.plus_outer _ _)
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem PolyZonotope.mtimes_outer (M : Mat 𝕋 m n) (PZ : PolyZonotope 𝕋 n) :
     (toRealMat M *ᵥ ·) '' PZ.construct ⊆ (PolyZonotope.mtimes M PZ).construct :=
   map_subset (fun x y => Matrix.mulVec_add _ x y)
     (PolyZonotope.aux_mtimes_nominal M PZ) (PolyZonotope.aux_mtimes_error M PZ)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

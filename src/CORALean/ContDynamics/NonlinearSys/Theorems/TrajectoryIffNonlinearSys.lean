@@ -15,6 +15,9 @@ initial condition, same input condition, same derivative.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar
@@ -22,9 +25,15 @@ open Matrix ContSet Scalar
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem LinearSys.trajectory_iff_nonlinearSys (sys : LinearSys 𝕋 n) (T : Set ℝ)
     (R₀ U : S n) (x u : ℝ → Vec ℝ n) :
     sys.Trajectory T R₀ U x u ↔ sys.nonlinearSys.Trajectory T R₀ U x u :=
   ⟨fun h => ⟨h.init, h.input, h.flow⟩, fun h => ⟨h.init, h.input, h.flow⟩⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

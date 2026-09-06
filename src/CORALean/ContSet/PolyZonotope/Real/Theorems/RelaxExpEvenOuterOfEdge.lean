@@ -29,9 +29,15 @@ whole column, which no edge of `[1, Def. 5]` reads.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α] {d : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Merging along an edge of the generator graph over-approximates with the
 centre shifted, given that the relaxed column is even. -/
@@ -51,3 +57,6 @@ theorem PolyZonotope.relaxExpEven_outer_of_edge (PZ : PolyZonotope α)
   exact PZ.relaxExpEven_outer part k₀ hsim heven hevenj (le_of_lt hlt)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

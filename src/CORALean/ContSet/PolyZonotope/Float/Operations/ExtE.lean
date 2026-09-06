@@ -12,9 +12,15 @@ directory, and reused by `quadMapE`, all outside this file.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The exponent matrix widened to match, the centre's column being zero — its
 monomial is `1`, which is what the centre needs to be. -/
@@ -22,3 +28,6 @@ def PolyZonotope.extE (S : PolyZonotope 𝕋 n) : Fin S.p → Fin (S.h + 1) → 
   fun k => Fin.cons 0 (S.E k)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

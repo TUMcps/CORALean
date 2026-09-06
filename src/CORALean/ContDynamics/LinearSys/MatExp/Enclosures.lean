@@ -25,6 +25,9 @@ file reasoning about these must make the same one — the `l∞` operator norm.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix NormedSpace
@@ -97,6 +100,9 @@ noncomputable def MatExp.constCorrectionMatrix (A : Mat ℝ n n) (r : ℝ) (η :
   sup := fun j k => (∑ i ∈ Finset.range η, max (MatExp.constCorrTerm A r i j k) 0)
     + r * MatExp.expRemainderBound (r • A) η
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 /-- The `F` of [1]: the orders up to `η` exactly, everything past `η` in the same
 remainder that bounds the exponential, and indexed from `2`, the constant and
 linear terms of the interpolation error cancelling. -/
@@ -108,3 +114,6 @@ noncomputable def MatExp.correctionMatrix (A : Mat ℝ n n) (r : ℝ) (η : ℕ)
     + MatExp.expRemainderBound (r • A) η
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

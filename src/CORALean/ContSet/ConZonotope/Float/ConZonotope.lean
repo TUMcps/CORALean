@@ -24,11 +24,17 @@ of its own.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 structure ConZonotope (𝕋 : Type) (n : ℕ) where
   h : ℕ
@@ -68,3 +74,6 @@ omit [FloatOps 𝕋] in
   simp [ConZonotope.materialise]
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -27,12 +27,18 @@ is no input set and no free input, so a run is the orbit of `map` from a point o
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 structure NeurNetContrSysDT (𝕋 : Type) (S : ℕ → Type)
     [∀ n, ContSet (S n) (Vec ℝ n)] (n : ℕ) where
@@ -52,3 +58,6 @@ structure NeurNetContrSysDT.Trajectory (sys : NeurNetContrSysDT 𝕋 S n) (R₀ 
   step (k : ℕ) : x (k + 1) = toRealMat sys.plant.A *ᵥ x k + sys.contr.eval (x k)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

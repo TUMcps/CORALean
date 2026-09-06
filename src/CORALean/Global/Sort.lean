@@ -17,7 +17,13 @@ distinct representations of the same value compare equal in both directions.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `sortPerm r k` is the index `mergeSort` places at rank `k`. -/
 def sortPerm {n : ℕ} (r : Fin n → Fin n → Bool) : Equiv.Perm (Fin n) :=
@@ -29,3 +35,6 @@ def sortPerm {n : ℕ} (r : Fin n → Fin n → Bool) : Equiv.Perm (Fin n) :=
       fun x => hperm.mem_iff.mpr (List.mem_finRange x))
 
 end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

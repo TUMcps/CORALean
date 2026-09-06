@@ -14,14 +14,23 @@ through `toRealVec`.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 -- both bounds are the stored vector, so each coordinate is bounded by equality
 theorem Interval.mem_point [SoundFloatArithmetic 𝕋] (v : Vec 𝕋 n) :
     toRealVec v ∈ (Interval.point v).construct := fun _ => ⟨le_rfl, le_rfl⟩
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

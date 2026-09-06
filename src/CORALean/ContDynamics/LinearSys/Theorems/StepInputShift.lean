@@ -14,9 +14,15 @@ the original clock while each step is proved on a clock starting at zero.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Step `0` of the signal re-anchored at `kΔt` is step `k` of the original. -/
 theorem LinearSys.stepInput_shift (sys : LinearSys 𝕋 n) (u : ℝ → Vec ℝ n) (Δt : ℝ) (k : ℕ) :
@@ -26,3 +32,6 @@ theorem LinearSys.stepInput_shift (sys : LinearSys 𝕋 n) (u : ℝ → Vec ℝ 
   simp only [Nat.cast_zero, zero_mul, zero_add]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

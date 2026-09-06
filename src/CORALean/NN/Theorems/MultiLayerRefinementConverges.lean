@@ -31,11 +31,17 @@ of labour the loop assumes [1].
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Pointwise ContSet
 
 variable {n m : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem sigmoidLinearSigmoidNetwork_convergent (W : Mat ℝ m n) (b : Vec ℝ m) :
     (sigmoidLinearSigmoidNetwork W b).Convergent := by
@@ -54,3 +60,6 @@ theorem sigmoidLinearSigmoidNetwork_convergent (W : Mat ℝ m n) (b : Vec ℝ m)
     Layer.activationPolySigmoid_convergent m, ⟨1, LipschitzWith.id⟩, trivial⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

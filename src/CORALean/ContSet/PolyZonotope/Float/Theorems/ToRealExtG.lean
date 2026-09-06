@@ -10,11 +10,17 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.ExtG
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.toReal_extG (S : PolyZonotope 𝕋 n) (i : Fin n) (l : Fin (S.h + 1)) :
     toReal (PolyZonotope.extG S i l) = Real.PolyZonotope.extG (nominal S) l i := by
@@ -25,3 +31,6 @@ theorem PolyZonotope.toReal_extG (S : PolyZonotope 𝕋 n) (i : Fin n) (l : Fin 
     rfl
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

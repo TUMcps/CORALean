@@ -13,7 +13,13 @@ both outside this file.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- A factor vector over the kept factors, read back over all of them by giving
 a dropped factor the value zero — admissible, and read by no monomial. -/
@@ -24,3 +30,6 @@ def PolyZonotope.factorExtend {p h : ℕ} (E : Fin p → Fin h → ℕ)
   else 0
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

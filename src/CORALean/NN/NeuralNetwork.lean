@@ -24,11 +24,17 @@ image, which `propagate` encloses.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m k : ℕ}
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 inductive NeuralNetwork (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] : ℕ → ℕ → Type where
   | nil {n : ℕ} : NeuralNetwork S n n
@@ -47,3 +53,6 @@ def NeuralNetwork.outputSet (nn : NeuralNetwork S n m) (X : S n) : Set (Vec ℝ 
 def NeuralNetwork.ofLayer (L : Layer S n m) : NeuralNetwork S n m := .cons L .nil
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

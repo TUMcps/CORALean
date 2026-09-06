@@ -17,7 +17,13 @@ without a second argument about where `σ'` is maximal.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem lipschitzWith_sigmoid : LipschitzWith 1 sigmoid := by
   refine lipschitzWith_of_nnnorm_deriv_le
@@ -28,3 +34,6 @@ theorem lipschitzWith_sigmoid : LipschitzWith 1 sigmoid := by
   exact abs_sigmoidDeriv_le_one t
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -14,11 +14,20 @@ dropped; at or below it, nothing happens and the constraints survive. As over �
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 noncomputable def ConZonotope.reduce (C : ConZonotope 𝕋 n) (o : ℕ) : ConZonotope 𝕋 n :=
   if o * n < C.h then (C.zonotope.reduce o).conZonotope else C
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

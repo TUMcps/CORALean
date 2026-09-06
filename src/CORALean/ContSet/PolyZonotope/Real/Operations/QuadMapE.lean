@@ -14,9 +14,15 @@ this file.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Its exponent column, the two columns added: the factors are shared, so the
 product of two monomials is a monomial again. -/
@@ -26,3 +32,6 @@ def PolyZonotope.quadMapE (S : PolyZonotope α) :
       + PolyZonotope.extE S k (finProdFinEquiv.symm l).2
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

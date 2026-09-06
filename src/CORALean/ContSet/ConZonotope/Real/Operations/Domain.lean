@@ -16,11 +16,20 @@ lets a constrained zonotope be read as an affine image of a polytope.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def ConZonotope.domain (C : ConZonotope α) : HPolytope (Vec ℝ C.h) :=
   (HPolytope.unitBox C.h).and C.P
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

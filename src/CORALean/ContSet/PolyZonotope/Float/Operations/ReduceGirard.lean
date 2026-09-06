@@ -17,11 +17,17 @@ off the ranking. `aux_girardKeptDep` is the joint accounting as one number.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- file-local: only `reduceGirard` below needs these
 /-- CORA's `[G, GI]`: the two blocks as one matrix, which is what it ranks.
@@ -39,6 +45,9 @@ def PolyZonotope.aux_girardKeptDep (PZ : PolyZonotope 𝕋 n) (K : ℕ) : ℕ :=
   min K (Finset.univ.filter fun l : Fin PZ.h =>
     (rank (Fin.castAdd PZ.q l) : ℕ) < K).card
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 /-- CORA's `reduce(pZ, 'girard', o)`: past `n·o` generators in the two blocks
 together, keep the `(o-1)·n` Girard ranks first and box the rest, bringing the
 total back to `n·o`. At that order or below, nothing happens. -/
@@ -51,3 +60,6 @@ def PolyZonotope.reduceGirard (PZ : PolyZonotope 𝕋 n) (o : ℕ) : PolyZonotop
   else PZ
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -31,12 +31,18 @@ pinned by `u t = ẋ(t) - A x(t)` wherever the flow holds.
 -- Last update:   03-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 structure LinearSys (𝕋 : Type) (n : ℕ) where
   A : Mat 𝕋 n n
@@ -49,3 +55,6 @@ structure LinearSys.Trajectory (sys : LinearSys 𝕋 n) (T : Set ℝ) (R₀ U : 
     HasDerivWithinAt x (toRealMat sys.A *ᵥ x t + u t) T t
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

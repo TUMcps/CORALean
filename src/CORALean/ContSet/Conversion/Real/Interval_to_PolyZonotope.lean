@@ -24,6 +24,9 @@ a residual block contributes to a Minkowski inflation.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
@@ -34,6 +37,9 @@ noncomputable def Interval.polyZonotope (I : Interval (Vec ℝ n)) : PolyZonotop
 theorem Interval.subset_polyZonotope (I : Interval (Vec ℝ n)) :
     I.construct ⊆ I.polyZonotope.construct :=
   subset_trans I.subset_zonotope (Zonotope.polyZonotope_exact _).subset
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- With both ends inside `[-ε, ε]` the whole set is, whichever way round the
 box is: a coordinate is a convex combination of its two ends. -/
@@ -74,3 +80,6 @@ theorem Interval.polyZonotope_norm_le {I : Interval (Vec ℝ n)} {ε : ℝ} (hε
         (show (0:ℝ) ≤ ε - I.inf i by linarith)]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

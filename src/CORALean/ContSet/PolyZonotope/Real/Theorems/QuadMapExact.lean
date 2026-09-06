@@ -15,11 +15,17 @@ either.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix PolyZonotope
 
 variable {n m : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.quadMap_exact (Q : Fin m → Mat ℝ n n) (PZ : PolyZonotope (Vec ℝ n)) :
     quadEval Q '' PZ.construct = (PZ.quadMap Q).construct := by
@@ -27,3 +33,6 @@ theorem PolyZonotope.quadMap_exact (Q : Fin m → Mat ℝ n n) (PZ : PolyZonotop
   exact PolyZonotope.quadMapDep_exact Q PZ.dependent rfl
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

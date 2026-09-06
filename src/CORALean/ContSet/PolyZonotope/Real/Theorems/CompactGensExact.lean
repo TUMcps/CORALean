@@ -27,9 +27,15 @@ the equation to the one sum that actually changes.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The dependent generator sum, regrouped onto the columns that survive. -/
 theorem PolyZonotope.aux_sum_compactGens (PZ : PolyZonotope α) (a : Fin PZ.p → ℝ) :
@@ -41,6 +47,9 @@ theorem PolyZonotope.aux_sum_compactGens (PZ : PolyZonotope α) (a : Fin PZ.p �
       fun j hj => PolyZonotope.fiberSum_eq_zero_of_notMem PZ.E PZ.G hj,
     PolyZonotope.sum_compactKeep]
   rfl
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 -- so both inclusions hold at the very same coefficients
 theorem PolyZonotope.compactGens_exact (PZ : PolyZonotope α) :
@@ -58,3 +67,6 @@ theorem PolyZonotope.compactGens_exact (PZ : PolyZonotope α) :
     exact ⟨a, β, ha, hβ, (key a β).symm⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

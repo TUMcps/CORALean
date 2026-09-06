@@ -15,7 +15,13 @@ it file-local.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The `k` generators a metric ranks first, against the rest. Clamped to the
 block, so the split is total and no order hypothesis travels with it; sorting is
@@ -27,3 +33,6 @@ noncomputable def PolyZonotope.girardSplit {m : ℕ} (metric : Fin m → ℝ) (k
       (finCongr (Nat.add_sub_cancel' (min_le_right k m)).symm))
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -24,6 +24,9 @@ interval with the one at its end.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar NormedSpace MeasureTheory Pointwise
@@ -38,6 +41,10 @@ variable [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 
 omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
   [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] in
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
 /-- Holding the input at the origin is admissible when `U` contains it, and
 contributes nothing. -/
 theorem LinearSys.aux_zero_mem_inputReach (sys : LinearSys 𝕋 n) {U : S n} (τ : ℝ)
@@ -47,6 +54,10 @@ theorem LinearSys.aux_zero_mem_inputReach (sys : LinearSys 𝕋 n) {U : S n} (τ
 
 omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
   [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] in
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 /-- Althoff's Prop. 3.3: with the origin in the input set, a longer window
 contributes at least everything a shorter one can. -/
 theorem LinearSys.inputReach_mono (sys : LinearSys 𝕋 n) {U : S n} {t r : ℝ}
@@ -61,3 +72,6 @@ theorem LinearSys.inputReach_mono (sys : LinearSys 𝕋 n) {U : S n} {t r : ℝ}
   simpa using hmem
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -9,14 +9,23 @@ import CORALean.ContSet.Zonotope.Float.Operations.ReduceBy
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q r : ℕ}
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 omit [SoundFloatArithmetic 𝕋] in
 @[simp] theorem Zonotope.reduceBy_h (Z : Zonotope 𝕋 n)
     (part : Split (Fin Z.h) into (Fin q) and (Fin r)) : (Z.reduceBy part).h = q + n := rfl
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

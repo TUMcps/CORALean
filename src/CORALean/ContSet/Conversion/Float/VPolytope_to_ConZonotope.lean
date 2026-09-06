@@ -20,6 +20,9 @@ coefficient in a family summing to one being at most one already.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Matrix FloatOps SoundFloatArithmetic InflatedContSet
@@ -30,6 +33,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n k : ℕ}
 def VPolytope.simplex (𝕋 : Type) [FloatOps 𝕋] (k : ℕ) : HPolytope 𝕋 k :=
   (HPolytope.ineqs (negIdentityMat 𝕋 k) fun _ => zero).and
     (HPolytope.eqs (fun (_ : Fin 1) (_ : Fin k) => one) ⟨fun _ => one, fun _ => one⟩)
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 theorem VPolytope.aux_ones_mulVec (β : Vec ℝ k) (i : Fin 1) :
     (toRealMat (fun (_ : Fin 1) (_ : Fin k) => (one : 𝕋)) *ᵥ β) i = ∑ j, β j := by
@@ -68,6 +74,9 @@ def VPolytope.conZonotope (P : VPolytope 𝕋 n) : ConZonotope 𝕋 n where
   P := VPolytope.simplex 𝕋 P.k
   E := P.E
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem VPolytope.subset_conZonotope (P : VPolytope 𝕋 n) :
     P.construct ⊆ P.conZonotope.construct := by
   refine mono_subset (fun x hx => ?_) subset_rfl
@@ -87,3 +96,6 @@ theorem VPolytope.subset_conZonotope (P : VPolytope 𝕋 n) :
     exact Finset.sum_congr rfl fun l _ => mul_comm _ _
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

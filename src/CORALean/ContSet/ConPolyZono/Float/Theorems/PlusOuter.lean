@@ -19,11 +19,17 @@ layer's.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Pointwise Matrix FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `plus`'s dependent generator count, stated through the
@@ -87,9 +93,15 @@ theorem ConPolyZono.aux_plus_error (C₁ C₂ : ConPolyZono 𝕋 n) :
   subset_trans (Set.add_subset_add_right (Interval.plus_outer C₁.err C₂.err))
     (Interval.plus_outer _ _)
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem ConPolyZono.plus_outer (C₁ C₂ : ConPolyZono 𝕋 n) :
     C₁.construct + C₂.construct ⊆ (C₁.plus C₂).construct :=
   InflatedContSet.plus_subset (ConPolyZono.aux_plus_nominal C₁ C₂)
     (ConPolyZono.aux_plus_error C₁ C₂)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

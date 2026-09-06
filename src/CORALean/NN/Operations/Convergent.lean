@@ -14,11 +14,17 @@ to relate to `construct`, or to prove complete.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Pointwise ContSet
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Some pattern brings the enclosure inside any inflation of the exact image. -/
 def RefinableLayer.Convergent (L : RefinableLayer S n m) : Prop :=
@@ -27,3 +33,6 @@ def RefinableLayer.Convergent (L : RefinableLayer S n m) : Prop :=
       construct (L.propagate t s) ⊆ L.eval '' construct s + Metric.closedBall 0 ε
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

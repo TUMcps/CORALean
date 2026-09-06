@@ -21,6 +21,9 @@ convert a zonotope to halfspaces unless it has to.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α] {q : ℕ}
@@ -41,8 +44,14 @@ def Zonotope.supportBound (Z : Zonotope α) (c : α →ₗ[ℝ] ℝ) : SupportBo
 def Zonotope.hPolytope (Z : Zonotope α) (Aq : Fin q → (α →ₗ[ℝ] ℝ)) : HPolytope α :=
   HPolytope.ofBounds Aq fun i => Z.supportBound (Aq i)
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem Zonotope.subset_hPolytope (Z : Zonotope α) (Aq : Fin q → (α →ₗ[ℝ] ℝ)) :
     Z.construct ⊆ (Z.hPolytope Aq).construct :=
   HPolytope.subset_ofBounds _ _
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

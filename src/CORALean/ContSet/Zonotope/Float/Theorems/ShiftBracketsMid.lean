@@ -9,11 +9,17 @@ import CORALean.ContSet.Zonotope.Float.Operations.AbsorbError
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The stored centres bracket the exact shifted one, which is what is left. -/
 theorem Zonotope.shift_brackets_mid (Z : Zonotope 𝕋 n) (i : Fin n) :
@@ -30,3 +36,6 @@ theorem Zonotope.shift_brackets_mid (Z : Zonotope 𝕋 n) (i : Fin n) :
     simpa only [Zonotope.shiftUp] using by linarith
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

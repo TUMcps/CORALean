@@ -22,6 +22,9 @@ sums back to its own coefficient while the rest sum away.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
@@ -33,6 +36,9 @@ def Zonotope.corner (Z : Zonotope α) (σ : Fin Z.h → Bool) : α :=
 noncomputable def Zonotope.vPolytope (Z : Zonotope α) : VPolytope α where
   k := 2 ^ Z.h
   V := fun l => Z.corner (signEquiv Z.h l)
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.subset_vPolytope (Z : Zonotope α) : Z.construct ⊆ Z.vPolytope.construct := by
   rintro _ ⟨β, hβ, rfl⟩
@@ -79,3 +85,6 @@ theorem Zonotope.subset_vPolytope (Z : Zonotope α) : Z.construct ⊆ Z.vPolytop
     rw [← Finset.sum_smul, hcoef j]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

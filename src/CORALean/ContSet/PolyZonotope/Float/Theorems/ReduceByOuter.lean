@@ -20,11 +20,17 @@ original ones.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n d r dI rI : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `reduceBy`'s independent generator count, stated
@@ -84,6 +90,9 @@ theorem PolyZonotope.aux_reduceBy_nominal (PZ : PolyZonotope 𝕋 n)
     simp only [hmono]
     ring
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem PolyZonotope.reduceBy_outer (PZ : PolyZonotope 𝕋 n)
     (partD : Split (Fin PZ.h) into (Fin d) and (Fin r))
     (partI : Split (Fin PZ.q) into (Fin dI) and (Fin rI)) :
@@ -91,3 +100,6 @@ theorem PolyZonotope.reduceBy_outer (PZ : PolyZonotope 𝕋 n)
   mono_subset (PolyZonotope.aux_reduceBy_nominal PZ partD partI) (subset_refl _)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

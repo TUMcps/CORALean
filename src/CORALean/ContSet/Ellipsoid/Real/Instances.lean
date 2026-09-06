@@ -28,11 +28,17 @@ already indexed by the dimension, so a use site writes `(S := Ellipsoid)`.
 -- Last update:   03-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {n : ℕ}
+
+
+-- ========================================  INSTANCES  ========================================= --
 
 instance : ContSet (Ellipsoid n) (Vec ℝ n) := ⟨Ellipsoid.construct⟩
 
@@ -50,3 +56,6 @@ instance : Mtimes (Mat ℝ) (fun n => Ellipsoid n) where
     exact (Ellipsoid.mtimes_exact M E).subset
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

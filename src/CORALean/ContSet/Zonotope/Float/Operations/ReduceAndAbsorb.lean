@@ -16,11 +16,17 @@ remains in the box is only what the rounded centre shift owes.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n q r : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def Zonotope.reduceAndAbsorbBy (Z : Zonotope 𝕋 n)
     (part : Split (Fin Z.h) into (Fin q) and (Fin r)) : Zonotope 𝕋 n where
@@ -32,3 +38,6 @@ def Zonotope.reduceAndAbsorbBy (Z : Zonotope 𝕋 n)
   E := Interval.residual Z.shiftDown Z.shiftUp Z.shiftDown
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

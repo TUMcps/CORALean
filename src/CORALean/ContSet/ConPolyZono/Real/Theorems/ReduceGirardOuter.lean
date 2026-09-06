@@ -14,9 +14,15 @@ never appears, which is what leaves the ranking free to be a heuristic.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.reduceGirard_outer (C : ConPolyZono (Vec ℝ n)) (o : ℕ) :
     C.construct ⊆ (C.reduceGirard o).construct := by
@@ -26,3 +32,6 @@ theorem ConPolyZono.reduceGirard_outer (C : ConPolyZono (Vec ℝ n)) (o : ℕ) :
   · exact subset_rfl
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

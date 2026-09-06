@@ -18,9 +18,15 @@ and not a halfspace description.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The admissible factor and coefficient vectors: the two unit cubes, cut down
 by the constraint on the dependent half. -/
@@ -28,3 +34,6 @@ def ConPolyZono.domain (C : ConPolyZono α) : Set ((Fin C.p → ℝ) × (Fin C.q
   {ab | (∀ k, |ab.1 k| ≤ 1) ∧ (∀ j, |ab.2 j| ≤ 1) ∧ C.satisfies ab.1}
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

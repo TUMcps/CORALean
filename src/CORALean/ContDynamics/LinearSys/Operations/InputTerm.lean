@@ -13,11 +13,17 @@ same order to state what each summand of the input's Taylor series encloses.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix Scalar
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The matrix order `i` contributes to the input solution: `Aⁱ r^{i+1}/(i+1)!`,
 the `i`-th term of the exponential integrated once over the step. -/
@@ -25,3 +31,6 @@ noncomputable def LinearSys.inputTerm (sys : LinearSys 𝕋 n) (r : ℝ) (i : �
   (r ^ (i + 1) / (Nat.factorial (i + 1) : ℝ)) • (toRealMat sys.A) ^ i
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

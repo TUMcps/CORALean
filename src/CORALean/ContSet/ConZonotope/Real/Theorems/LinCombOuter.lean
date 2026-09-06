@@ -18,9 +18,15 @@ nonnegative weight, which is the whole argument.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.linComb_outer (C₁ C₂ : ConZonotope α) :
     segments C₁.construct C₂.construct ⊆ (C₁.linComb C₂).construct := by
@@ -77,3 +83,6 @@ theorem ConZonotope.linComb_outer (C₁ C₂ : ConZonotope α) :
     module
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

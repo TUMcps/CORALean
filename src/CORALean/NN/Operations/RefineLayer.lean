@@ -18,7 +18,13 @@ already spends. One `raise` at every coordinate.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- One layer-wise step [1, Def. 4.6]: every neuron of layer `l` moves up an
 order at once, which by [1, Lemma 4.3] costs no generators. -/
@@ -26,3 +32,6 @@ def Schedule.refineLayer (sch : Schedule) (l : ℕ) : Schedule :=
   Schedule.raise sch l fun _ => 1
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

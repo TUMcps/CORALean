@@ -13,6 +13,9 @@ problem rather than a conversion, so the box is what a definition can give.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
@@ -20,9 +23,15 @@ variable {n : ℕ}
 noncomputable def VPolytope.zonotope (P : VPolytope (Vec ℝ n)) : Zonotope (Vec ℝ n) :=
   P.interval.zonotope
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem VPolytope.subset_zonotope (P : VPolytope (Vec ℝ n)) :
     P.construct ⊆ P.zonotope.construct :=
   subset_trans P.interval_outer (Interval.subset_zonotope _)
 
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

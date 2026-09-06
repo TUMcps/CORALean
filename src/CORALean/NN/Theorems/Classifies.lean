@@ -15,11 +15,17 @@ propagates to on the target's side of every margin.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Every input in the set is classified `l`, on the strength of one bound per
 rival label against the propagated output set. -/
@@ -35,3 +41,6 @@ theorem NeuralNetwork.classifies (nn : NeuralNetwork S n m) (X : S n) (l : Fin m
   exact hnot ⟨j, hj, not_lt.mp hc⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

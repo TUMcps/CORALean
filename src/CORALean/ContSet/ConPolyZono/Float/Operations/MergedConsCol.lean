@@ -13,11 +13,17 @@ matrix they are on the constraint side.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The merged constraint column as stored, `A`'s rows read as the generator
 matrix they are on the constraint side. -/
@@ -26,3 +32,6 @@ def ConPolyZono.mergedConsCol (C : ConPolyZono 𝕋 n) (i : Fin C.m)
   PolyZonotope.fiberDown (Real.PolyZonotope.rep C.EC) C.A i (PolyZonotope.keepIdx C.EC l)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

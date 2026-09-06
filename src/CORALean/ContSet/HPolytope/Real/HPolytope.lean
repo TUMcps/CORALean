@@ -20,9 +20,15 @@ operations.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 structure HPolytope (α : Type) [AddCommGroup α] [Module ℝ α] where
   m : ℕ
@@ -36,3 +42,6 @@ def HPolytope.construct (P : HPolytope α) : Set α :=
   {x | (∀ i, P.A i x ≤ P.b i) ∧ ∀ i, P.Ae i x = P.be i}
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

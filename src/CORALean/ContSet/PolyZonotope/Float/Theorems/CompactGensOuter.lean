@@ -21,11 +21,17 @@ scalar.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n h : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A sum over the kept columns, read against a plain count. -/
 theorem PolyZonotope.aux_sum_keep (s : Finset (Fin h)) (f : Fin h → ℝ) :
@@ -125,6 +131,9 @@ theorem PolyZonotope.aux_compactGens_nominal (PZ : PolyZonotope 𝕋 n) :
   rw [hxi i, PolyZonotope.aux_merge PZ a i]
   linarith [hsum]
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem PolyZonotope.compactGens_outer (PZ : PolyZonotope 𝕋 n) :
     PZ.construct ⊆ PZ.compactGens.construct := by
   rintro _ ⟨z, hz, e, he, rfl⟩
@@ -136,3 +145,6 @@ theorem PolyZonotope.compactGens_outer (PZ : PolyZonotope 𝕋 n) :
   rw [← hsum', add_comm e d, ← add_assoc]
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

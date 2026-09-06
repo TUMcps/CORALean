@@ -34,11 +34,17 @@ every one of them.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Pointwise ContSet
 
 variable {σ σ' : ℝ → ℝ} {Mσ : ℝ} {n : ℕ}
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 /-- A polynomial relaxation per refinement level, the order free to grow. -/
 structure PolyRelaxationFamily (σ : ℝ → ℝ) where
@@ -68,6 +74,9 @@ noncomputable def Layer.activationPolyRefinable (F : PolyRelaxationFamily σ) :
   eval x := fun i => σ (x i)
   propagate t := (Layer.activationPoly (F.atPattern t)).propagate
   propagate_outer t := (Layer.activationPoly (F.atPattern t)).propagate_outer
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- What level `o` is asked for, named once so the family and its bound agree. -/
 theorem aux_exists_polyRelaxation_at_level (hd : ∀ x, HasDerivAt σ (σ' x) x)
@@ -136,3 +145,6 @@ theorem Layer.activationPolyRefinable_convergent (hd : ∀ x, HasDerivAt σ (σ'
   linarith [(ht i).2]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

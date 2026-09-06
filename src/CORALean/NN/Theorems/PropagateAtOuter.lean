@@ -24,11 +24,17 @@ fact at a step and at the loop.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem RefinableNetwork.propagateAt_outer (rn : RefinableNetwork S n m) (sch : Schedule)
     (X : S n) (x : Vec ℝ n) (hx : x ∈ construct X) :
@@ -37,3 +43,6 @@ theorem RefinableNetwork.propagateAt_outer (rn : RefinableNetwork S n m) (sch : 
   exact (rn.atSchedule sch).propagate_outer X x hx
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

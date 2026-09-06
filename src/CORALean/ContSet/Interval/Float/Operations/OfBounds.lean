@@ -14,11 +14,17 @@ rounded outward where it was computed, and negating a float is exact.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ} {S : Set (Vec ℝ n)}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def Interval.ofBounds (up : ∀ j, FloatBound 𝕋 S (LinearMap.proj j))
     (lo : ∀ j, FloatBound 𝕋 S (-LinearMap.proj j)) : Interval 𝕋 n where
@@ -26,3 +32,6 @@ def Interval.ofBounds (up : ∀ j, FloatBound 𝕋 S (LinearMap.proj j))
   sup := fun j => (up j).val
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

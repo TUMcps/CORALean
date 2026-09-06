@@ -25,11 +25,17 @@ computed.
 -- Last update:   02-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {n : ℕ}
+
+
+-- ========================================  INSTANCES  ========================================= --
 
 /-- At every ambient type, not only `Vec`: what a zonotope denotes needs no
 coordinates. The operation instances below stay at `Vec`, because `reduce`
@@ -101,3 +107,6 @@ noncomputable instance :
     exact Zonotope.mtimesIntervalMat_outer IM Z
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

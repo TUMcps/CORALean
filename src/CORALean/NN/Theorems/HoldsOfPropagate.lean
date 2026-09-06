@@ -20,11 +20,17 @@ about the network.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NeuralNetwork.holds_of_propagate (nn : NeuralNetwork S n m) (X : S n)
     (spec : Specification (Vec ℝ m)) (h : spec.Holds (construct (nn.propagate X))) :
@@ -32,3 +38,6 @@ theorem NeuralNetwork.holds_of_propagate (nn : NeuralNetwork S n m) (X : S n)
   spec.holds_of_outer (nn.outputSet_subset X) h
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

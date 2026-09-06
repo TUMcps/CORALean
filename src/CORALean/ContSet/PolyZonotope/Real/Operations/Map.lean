@@ -17,9 +17,15 @@ representation carries is this at a particular map.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Module ℝ β]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def PolyZonotope.map (f : α →ₗ[ℝ] β) (PZ : PolyZonotope α) : PolyZonotope β where
   p := PZ.p
@@ -31,3 +37,6 @@ def PolyZonotope.map (f : α →ₗ[ℝ] β) (PZ : PolyZonotope α) : PolyZonoto
   GI := fun j => f (PZ.GI j)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

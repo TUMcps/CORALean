@@ -18,11 +18,17 @@ question, not a soundness one.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Pointwise
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α] {q : ℕ} {P₁ P₂ : HPolytope α}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def HPolytope.plusOf (Aq : Fin q → (α →ₗ[ℝ] ℝ))
     (u₁ : ∀ i, SupportBound P₁.construct (Aq i))
@@ -30,3 +36,6 @@ def HPolytope.plusOf (Aq : Fin q → (α →ₗ[ℝ] ℝ))
   HPolytope.ofBounds Aq fun i => (u₁ i).add (u₂ i)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

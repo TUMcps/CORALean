@@ -27,6 +27,9 @@ Nothing here is specific to an ellipsoid; it is what the layer can say about
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
@@ -43,6 +46,9 @@ theorem sq_sum_le_sqSumUp {v : Vec ℝ k} {m : Vec 𝕋 k} (hm : ∀ j, |v j| �
   calc v j ^ 2 = |v j| * |v j| := by rw [← sq_abs, pow_two]
     _ ≤ toReal (m j) * toReal (m j) := mul_le_mul (hm j) (hm j) (abs_nonneg _) h0
     _ ≤ toReal (mulUp (m j) (m j)) := mul_le_mulUp _ _
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The certificate. `s` is a proposed length: it is a bound exactly when its
 square, rounded *down*, still covers the squared length rounded up — one
@@ -62,3 +68,6 @@ theorem norm₂_le_of_sq_le {v : Vec ℝ k} {m : Vec 𝕋 k} {s : 𝕋}
     _ = toReal (absolute s) := (toReal_absolute s).symm
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -29,6 +29,9 @@ with `10 (n + 1) > n + 1` of them makes that case vacuous anyway.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
@@ -44,8 +47,14 @@ noncomputable def leastSquaresFit (σ : ℝ → ℝ) (l u : ℝ) (m n : ℕ) : F
   ((sampleVandermonde l u m n)ᵀ * sampleVandermonde l u m n)⁻¹
     *ᵥ ((sampleVandermonde l u m n)ᵀ *ᵥ fun k => σ (sampleGrid l u m k))
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 /-- CORA's default fit, at its sample count of `10 (n + 1)` points per box. -/
 noncomputable def polyFit (σ : ℝ → ℝ) (n : ℕ) (l u : ℝ) : Fin (n + 1) → ℝ :=
   leastSquaresFit σ l u (10 * n + 9) n
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

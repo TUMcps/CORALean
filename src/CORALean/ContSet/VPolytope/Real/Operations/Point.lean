@@ -14,10 +14,19 @@ One vertex, which is the singleton.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 def VPolytope.point (v : α) : VPolytope α := ⟨1, fun _ => v⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

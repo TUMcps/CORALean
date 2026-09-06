@@ -16,11 +16,17 @@ vector, which is also why it carries no `aux_` prefix.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open PolyZonotope
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A point of the set as one sum, the centre being generator zero at the
 all-zero exponent column. -/
@@ -47,3 +53,6 @@ theorem PolyZonotope.sum_ext_eq_point (S : PolyZonotope α) (a : Fin S.p → ℝ
   exact congrArg _ (Finset.sum_congr rfl fun i _ => hsucc i)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

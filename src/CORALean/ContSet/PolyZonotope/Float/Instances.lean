@@ -29,9 +29,15 @@ columns adds their entries, so it encloses where the exact one is an equality.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
+
+
+-- ========================================  INSTANCES  ========================================= --
 
 instance {n : ℕ} : Plus (PolyZonotope 𝕋 n) (Vec ℝ n) where
   plus PZ₁ PZ₂ := (PZ₁.plus PZ₂).materialise
@@ -59,3 +65,6 @@ instance : Mtimes (Mat 𝕋) (PolyZonotope 𝕋) where
     exact PolyZonotope.mtimes_outer M PZ
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

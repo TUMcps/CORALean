@@ -17,7 +17,13 @@ two spellings have to meet somewhere, and this is the only place they do.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.evalPolyReal_ofFn (t : ℝ) : ∀ {k : ℕ} (c : Fin k → ℝ),
     PolyZonotope.evalPolyReal (List.ofFn c) t = ∑ j, c j * t ^ (j : ℕ) := by
@@ -32,3 +38,6 @@ theorem PolyZonotope.evalPolyReal_ofFn (t : ℝ) : ∀ {k : ℕ} (c : Fin k → 
     exact congrArg _ (Finset.sum_congr rfl fun j _ => by ring)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

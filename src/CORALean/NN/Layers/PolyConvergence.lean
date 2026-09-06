@@ -30,6 +30,9 @@ merely asymptotically negligible, it is the whole gap.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 /-- What `ofSampling` charges for `g` over `[l, u]` at `N` samples, read as a
@@ -90,6 +93,9 @@ theorem samplingError_bracket {g g' : ℝ → ℝ} {M l u : ℝ} {N : ℕ}
       ≤ (sSup (g '' Set.Icc l u) - sInf (g '' Set.Icc l u)) / 2 + M * ((u - l) / N)
   exact ⟨by linarith, by linarith⟩
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 /-- At fixed coefficients the sampling padding vanishes: the error converges to
 the half-range of `g`, so samples are never spent against an artificial floor. -/
 theorem tendsto_samplingError {g g' : ℝ → ℝ} {M l u : ℝ}
@@ -115,3 +121,6 @@ theorem tendsto_samplingError {g g' : ℝ → ℝ} {M l u : ℝ}
   exact ⟨by linarith, by linarith⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

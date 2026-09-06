@@ -13,9 +13,15 @@ generators carry the first index.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The same read down a column, which is the form a diagonal block takes when
 generators carry the first index. -/
@@ -28,3 +34,6 @@ theorem Zonotope.sum_diagonal_mul' (v g : Vec ℝ n) (i : Fin n) :
     exact absurd (Finset.mem_univ i) hi
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

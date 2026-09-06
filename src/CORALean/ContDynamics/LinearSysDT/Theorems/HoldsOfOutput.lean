@@ -17,6 +17,9 @@ set per step.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar Plus Reduce Mtimes
@@ -24,6 +27,9 @@ open Matrix ContSet Scalar Plus Reduce Mtimes
 variable {n r : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSysDT.holds_of_output (sys : LinearSysDT 𝕋 n) (out : OutputEq 𝕋 n n r) (o : ℕ)
     (R₀ U : S n) (spec : Specification (Vec ℝ r)) {x u : ℕ → Vec ℝ n}
@@ -34,3 +40,6 @@ theorem LinearSysDT.holds_of_output (sys : LinearSysDT 𝕋 n) (out : OutputEq �
     (Set.singleton_subset_iff.mpr (sys.output_outer out o R₀ U traj k)) h
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

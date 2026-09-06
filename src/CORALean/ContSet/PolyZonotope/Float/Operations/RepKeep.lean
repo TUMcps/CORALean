@@ -14,9 +14,15 @@ outside this file.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {p h : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The columns that survive: one per exponent column, the least index carrying
 it. A column that is not its class's representative has an empty fibre, so
@@ -25,3 +31,6 @@ def PolyZonotope.repKeep (E : Fin p → Fin h → ℕ) : Finset (Fin h) :=
   Finset.univ.filter fun j => Real.PolyZonotope.rep E j = j
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

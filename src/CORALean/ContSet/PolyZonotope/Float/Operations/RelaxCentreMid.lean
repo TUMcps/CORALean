@@ -13,11 +13,17 @@ file.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n d : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The shifted centre as stored, the shift added at its lower rounding, so the
 stored centre stays below the exact one. -/
@@ -26,3 +32,6 @@ def PolyZonotope.relaxCentreMid (PZ : PolyZonotope 𝕋 n)
   fun i => addDown (PZ.c i) (PZ.relaxShiftMid part k₀ i)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

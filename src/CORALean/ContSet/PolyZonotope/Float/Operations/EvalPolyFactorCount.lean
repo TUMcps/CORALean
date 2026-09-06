@@ -13,12 +13,21 @@ Split out of `EvalPoly.lean` (issue #62): read again by
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The shared factor count `evalPoly` never leaves. -/
 theorem PolyZonotope.evalPoly_p (S : PolyZonotope 𝕋 n) (coeffs : List (Vec 𝕋 n)) :
     (S.evalPoly coeffs).p = S.p := (PolyZonotope.evalPolyP S coeffs).2
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
