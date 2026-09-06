@@ -1,0 +1,22 @@
+/-!
+# What `Interval` costs
+
+`Interval` carries no generator or constraint count: it is `inf`/`sup` at a
+fixed ambient index, so every entrywise operation (`plus`, `linComb`, `mtimes`,
+`mtimesIntervalMat`, `minus`, `smul`, `recentre`, ...) keeps that index by its
+very signature, `Interval α → Interval α → Interval α` or a fixed `Fin n`,
+with no runtime-computed field left to state an equality about. Restating a
+signature already visible at the call site is not what issue #5 asks for.
+
+`matMul` and `matPow` are the two operations where a genuine count exists — the
+shared/contraction dimension `matMul` sums over, and the iteration count
+`matPow` recurses through — but both are already explicit arguments in the
+signature (`n` and the exponent), not a quantity an operation *produces*. The
+only way to say more about either is to count the scalar multiplications and
+comparisons `mulLo`/`mulHi` spend per entry, which is exactly the running-time
+claim this directory is not for anywhere else in the tree.
+
+So there is nothing here that is both non-obvious and not a scalar-operation
+count. This directory accordingly holds no theorems for `Interval`, only this
+paragraph saying why.
+-/
