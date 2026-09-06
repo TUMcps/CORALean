@@ -19,6 +19,7 @@ import CORALean.ContSet.Interval.Real.Theorems.MtimesIntervalMatOuter
 import CORALean.ContSet.Interval.Real.Theorems.MatMulOuter
 import CORALean.ContSet.Interval.Real.Theorems.MatPowOuter
 import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
+import CORALean.ContSet.Interval.Real.Theorems.NormLeAbsMax
 import CORALean.ContSet.Interval.Real.Theorems.MtimesIsNonempty
 import CORALean.ContSet.Interval.Real.Theorems.MtimesOuter
 import CORALean.ContSet.Interval.Real.Theorems.MtimesWidth
@@ -43,4 +44,6 @@ independently. `MatPowOuter` lifts that along `matPow`'s recursion, growing the
 same dependency loss with every power. `SmulOuter` is `MulBetweenEndpoints` read
 back through `Entrywise`. `SplitAtCover` is why `splitAt` is sound to feed
 `NeuralNetwork.holds_of_split`: its two halves cover the box they bisected.
+`NormLeAbsMax` bounds the `l∞` operator norm uniformly over a box by its
+`AbsMax`, which is what makes an exponential enclosure hold at every member.
 -/

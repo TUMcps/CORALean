@@ -14,6 +14,7 @@ import CORALean.ContSet.Interval.Real.Operations.MtimesIntervalMat
 import CORALean.ContSet.Interval.Real.Operations.MatMul
 import CORALean.ContSet.Interval.Real.Operations.MatPow
 import CORALean.ContSet.Interval.Real.Operations.Smul
+import CORALean.ContSet.Interval.Real.Operations.AbsMax
 import CORALean.ContSet.Interval.Real.Operations.OfBounds
 import CORALean.ContSet.Interval.Real.Operations.SubsetOfBounds
 import CORALean.ContSet.Interval.Real.Operations.Reindex
@@ -29,7 +30,8 @@ representation's `interval` goes through: a box read off `2n` certified bounds.
 product of two interval matrices, not a `mtimes*` (its argument is a set of
 matrices, not vectors), and `MatPow` is its plain recursive power — no lawful
 `Pow` instance, since `matMul` is not associative up to equality. `Smul` scales
-a box by a real, corner-swapped for a negative one.
+a box by a real, corner-swapped for a negative one. `AbsMax` is a single matrix
+dominating every member of the box, for bounding its norm uniformly.
 
 `Point` and `Center`/`Radius` are the two readings of a box the enclosure
 proofs elsewhere want: the degenerate one, and the centre-plus-deviation split.
