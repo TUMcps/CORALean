@@ -1,6 +1,9 @@
 import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
+import CORALean.NN.NeuralNetwork
 import CORALean.NN.Operations.ExplainBox
-import CORALean.NN.Theorems.Robustness
+import CORALean.NN.Operations.Propagate
+import CORALean.NN.Theorems.Misclassified
+import CORALean.Specification.Specification
 
 /-!
 # Sufficient explanation for an abstract network

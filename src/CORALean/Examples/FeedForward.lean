@@ -1,7 +1,10 @@
 import CORALean.ContSet.Conversion.Real.API
-import CORALean.NN.Theorems.Robustness
 import CORALean.NN.Layers.Linear
 import CORALean.NN.Layers.ReLU
+import CORALean.NN.Theorems.Classifies
+import CORALean.NN.Theorems.MarginDir
+import CORALean.NN.Theorems.MemSafeSet
+import CORALean.NN.Theorems.PropagateOuter
 
 /-!
 # A feed-forward network, verified end to end

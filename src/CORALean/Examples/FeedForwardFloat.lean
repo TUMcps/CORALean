@@ -1,6 +1,9 @@
 import CORALean.NN.Float.Layers.Linear
 import CORALean.NN.Float.Layers.ReLU
-import CORALean.NN.Theorems.Robustness
+import CORALean.NN.Theorems.Classifies
+import CORALean.NN.Theorems.MarginDir
+import CORALean.NN.Theorems.MemSafeSet
+import CORALean.NN.Theorems.PropagateOuter
 
 /-!
 # The same feed-forward network, over a floating-point scalar

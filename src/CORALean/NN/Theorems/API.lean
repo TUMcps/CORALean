@@ -1,16 +1,23 @@
 import CORALean.NN.Theorems.ActivationLipschitz
 import CORALean.NN.Theorems.AtScheduleEval
+import CORALean.NN.Theorems.Classifies
+import CORALean.NN.Theorems.DisjointMisclassifiedOfBounds
 import CORALean.NN.Theorems.EvalDifferentiable
 import CORALean.NN.Theorems.EvalLipschitz
 import CORALean.NN.Theorems.LinearConvergent
 import CORALean.NN.Theorems.LinearExact
 import CORALean.NN.Theorems.LinearLipschitz
 import CORALean.NN.Theorems.LinearWithErrorZero
+import CORALean.NN.Theorems.MarginDir
+import CORALean.NN.Theorems.MemSafeSet
 import CORALean.NN.Theorems.MergeErrorSplit
 import CORALean.NN.Theorems.MinSuffExplanation
+import CORALean.NN.Theorems.Misclassified
 import CORALean.NN.Theorems.MultiLayerRefinementConverges
 import CORALean.NN.Theorems.NeuronMergingNetworkOuter
 import CORALean.NN.Theorems.NeuronMergingOuter
+import CORALean.NN.Theorems.NotMemUnsafeSet
+import CORALean.NN.Theorems.OutputSetSubset
 import CORALean.NN.Theorems.PropagateAtInflate
 import CORALean.NN.Theorems.PropagateAtOuter
 import CORALean.NN.Theorems.PropagateOuter
@@ -33,27 +40,27 @@ import CORALean.NN.Theorems.Verified
 /-!
 # What a network's enclosure guarantees, collected
 
-`PropagateOuter` is the induction over the graph, `Verified` what it buys when a
-specification is checked on the result, and `Robustness` the one a classifier is
-usually checked against, with the bounds that discharge it.
+`PropagateOuter` is the induction over the graph and `OutputSetSubset` its pointwise form;
+`Verified` composes that with `Specification.holds_of_outer`, and `MemSafeSet`/`NotMemUnsafeSet`
+read it directly against a safe or unsafe set. `Robustness` is the usual classifier requirement,
+out of `Misclassified`, `MarginDir`, `DisjointMisclassifiedOfBounds` and `Classifies`, shared below.
 
-`LinearWithErrorZero`, `NeuronMergingOuter`, `NeuronMergingNetworkOuter` and
-`MergeErrorSplit` are the sound network reduction by neuron merging [1]: a plain
-linear layer as its error-free case, the single-bucket containment at every
-bucket and any layer of any network, and disjoint buckets by Minkowski sum.
+`LinearWithErrorZero`, `NeuronMergingOuter`, `NeuronMergingNetworkOuter` and `MergeErrorSplit` are
+the sound network reduction by neuron merging [1]: a plain linear layer as its error-free case,
+single-bucket containment at every bucket and any layer, and disjoint buckets by Minkowski sum.
 
-`SuffExplanation`, `MinSuffExplanation` and `SuffExplanationAbstract` are provable local
-explanations [2]; `SuffExplanationTransfer` carries sufficiency from an abstract network to the
-original, and `SuffExplanationConverseFails` is why that carrying is one-directional.
+`SuffExplanation`, `MinSuffExplanation` and `SuffExplanationAbstract` are local explanations [2];
+`SuffExplanationTransfer` carries sufficiency from an abstract network to the original, and
+`SuffExplanationConverseFails` is why that carrying only goes one way.
 
-`SensitivityFDeriv` is what the refinement heuristic rests on [3]: with `EvalDifferentiable`,
-the chain rule identifies the backpropagated Jacobian with `fderiv` wherever every layer has
-one. `SensitivityOfMatrix` hands that to `SensitivityLinear` and `SensitivityActivation`, and
+`SensitivityFDeriv` is what the refinement heuristic [3] rests on: the backpropagated Jacobian
+identified with `fderiv` via the chain rule wherever `EvalDifferentiable` holds, which
+`SensitivityOfMatrix` hands to `SensitivityLinear`/`SensitivityActivation`, and
 `ReluNotDifferentiable` is why ReLU gets none. `AtScheduleEval`, `PropagateAtOuter` and
-`PropagateAtInflate` are the loop it drives; its hypothesis is discharged at one activation by
-`SigmoidRefinementConverges` and at a three-layer chain by `MultiLayerRefinementConverges`, out
-of `LinearExact`, `LinearConvergent`, `LinearLipschitz`, `ActivationLipschitz`,
-`SigmoidLipschitz` and `EvalLipschitz`.
+`PropagateAtInflate` are the refinement loop; its hypothesis is discharged at one activation by
+`SigmoidRefinementConverges` and a three-layer chain by `MultiLayerRefinementConverges`, out of
+`LinearExact`, `LinearConvergent`, `LinearLipschitz`, `ActivationLipschitz`, `SigmoidLipschitz` and
+`EvalLipschitz`.
 
 ## References
 

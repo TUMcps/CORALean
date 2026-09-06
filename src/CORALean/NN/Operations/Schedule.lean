@@ -1,8 +1,7 @@
-import CORALean.NN.Operations.Propagate
 import CORALean.NN.RefinableNetwork
 
 /-!
-# Schedules, and propagating at one
+# Schedules: the type, and what it denotes
 
 A schedule is an order pattern per layer, read layer first and neuron second:
 layer `0` is the network's first and the tail reads the schedule shifted. That
@@ -11,15 +10,13 @@ and nothing else.
 
 Plain ℕ indices rather than a `Fin` per layer: a dependent schedule would need
 widths `RefinableNetwork` does not carry, and would make `tail`, `cons` and
-`refine` dependently typed for nothing. A layer reads its own width, via `head`.
+every operation on it dependently typed for nothing. A layer reads its own
+width, via `head`.
 
-`atSchedule` is the whole interpretation — a refinable network and a schedule
-give a `NeuralNetwork` — so `propagateAt` is `propagate` at it, and the loop's
-soundness stays a corollary of `propagate_outer` rather than a new induction.
-
-`refine` is the neuron-wise step [1, Def. 4.4] and `refineLayer` the layer-wise
-one [1, Def. 4.6]. Nothing constrains `pick`, and `Theorems.PropagateAtOuter` is
-why nothing has to.
+`head`, `tail` and `cons` are what a schedule denotes structurally — how one is
+taken apart and put together — kept with the type itself exactly as `Interval`
+keeps `construct`. What a schedule is *for* — `raise`, the refinement rules, the
+loop, and reading one against a network — is `Operations/*.lean`, one file each.
 
 ## References
 
@@ -34,9 +31,7 @@ why nothing has to.
 
 namespace CORALean.Real
 
-open ContSet
-
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+variable {n : ℕ}
 
 /-- One order pattern per layer, layer `0` first and neuron second. -/
 abbrev Schedule := ℕ → ℕ → ℕ
@@ -58,37 +53,5 @@ theorem Schedule.head_cons (t : OrderPattern n) (sch : Schedule) :
   funext i
   -- every index of the pattern is under the width, so the padding is not reached
   exact dif_pos i.isLt
-
-/-- Layer `l` raised neuron by neuron, which is the one step every refinement
-rule here is an instance of. -/
-def Schedule.raise (sch : Schedule) (l : ℕ) (b : ℕ → ℕ) : Schedule :=
-  Function.update sch l fun j => sch l j + b j
-
-/-- One neuron-wise step [1, Def. 4.4]: neuron `j` of layer `l` moves up an
-order, and nothing else moves. -/
-def Schedule.refine (sch : Schedule) (l j : ℕ) : Schedule :=
-  Schedule.raise sch l fun i => if i = j then 1 else 0
-
-/-- One layer-wise step [1, Def. 4.6]: every neuron of layer `l` moves up an
-order at once, which by [1, Lemma 4.3] costs no generators. -/
-def Schedule.refineLayer (sch : Schedule) (l : ℕ) : Schedule :=
-  Schedule.raise sch l fun _ => 1
-
-/-- The loop itself: `k` steps, each at the `(layer, neuron)` pair `pick` names
-from the schedule reached so far. -/
-def Schedule.refineLoop (pick : Schedule → ℕ × ℕ) (sch : Schedule) : ℕ → Schedule
-  | 0 => sch
-  | k + 1 => Schedule.refineLoop pick (Schedule.refine sch (pick sch).1 (pick sch).2) k
-
-/-- The network a schedule names: each layer at its own pattern. -/
-def RefinableNetwork.atSchedule : ∀ {n m : ℕ}, RefinableNetwork S n m → Schedule →
-    NeuralNetwork S n m
-  | _, _, .nil, _ => .nil
-  | _, _, .cons L rest, sch =>
-      .cons (L.atPattern (Schedule.head sch _)) (rest.atSchedule (Schedule.tail sch))
-
-/-- Propagating at a schedule, which is `propagate` and nothing new. -/
-def RefinableNetwork.propagateAt (rn : RefinableNetwork S n m) (sch : Schedule) (X : S n) : S m :=
-  (rn.atSchedule sch).propagate X
 
 end CORALean.Real

@@ -1,3 +1,8 @@
+import CORALean.NN.Operations.AtSchedule
+import CORALean.NN.Operations.PropagateAt
+import CORALean.NN.Operations.Refine
+import CORALean.NN.Operations.RefineLayer
+import CORALean.NN.Operations.RefineLoop
 import CORALean.NN.Theorems.AtScheduleEval
 import CORALean.NN.Theorems.PropagateOuter
 

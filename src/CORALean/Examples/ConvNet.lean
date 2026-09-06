@@ -4,7 +4,9 @@ import CORALean.NN.Layers.Pooling
 import CORALean.NN.Layers.ReLU
 import CORALean.NN.Layers.Reshape
 import CORALean.NN.Layers.Softmax
-import CORALean.NN.Theorems.Robustness
+import CORALean.NN.Theorems.Classifies
+import CORALean.NN.Theorems.MarginDir
+import CORALean.NN.Theorems.PropagateOuter
 
 /-!
 # A convolutional network, and the six layers it puts in one chain

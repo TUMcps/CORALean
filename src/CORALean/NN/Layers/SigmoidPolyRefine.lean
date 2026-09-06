@@ -1,5 +1,6 @@
 import CORALean.NN.Layers.ActivationPolyRefine
 import CORALean.NN.Layers.Sigmoid
+import CORALean.NN.RefinableNetwork
 
 /-!
 # The refinement loop at the sigmoid
