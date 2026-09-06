@@ -20,11 +20,17 @@ that no single matrix in the box realises.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {m n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A product of two bounded factors never leaves the hull of the four corner
 products. -/
@@ -44,6 +50,9 @@ theorem Interval.aux_mul_between_corners {a b c d y x : ℝ} (hy₁ : a ≤ y) (
       _ ≤ max (x * a) (x * b) := hy.2
       _ = max (a * x) (b * x) := by rw [mul_comm x a, mul_comm x b]
       _ ≤ Interval.mulHi a b c d := max_le_max ha.2 hb.2
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 -- and a sum of such products lies between the two corner sums, term by term
 theorem Interval.mtimesIntervalMat_outer (IM : Interval (Mat ℝ m n))
@@ -69,3 +78,6 @@ theorem Interval.mtimesIntervalMat_outer (IM : Interval (Mat ℝ m n))
              (hx' k).1 (hx' k).2).2⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

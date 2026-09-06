@@ -25,11 +25,17 @@ check.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `E` is minimal exactly when it is sufficient and every feature of it has a
 counterexample witnessing that dropping it is not. -/
@@ -53,3 +59,6 @@ theorem NeuralNetwork.minSuffExplanation_iff_counterexample (nn : NeuralNetwork 
     exact absurd (hdrop x' hx' j hj) (not_lt.mpr hle)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

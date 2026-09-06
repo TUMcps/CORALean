@@ -21,11 +21,17 @@ stands for `argmax_j nn(x)_j`, exactly as it does in `NeuralNetwork.classifies`.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `E` is sufficient for `nn`'s classification of `x` as `l`: fixing `E`, `l`
 still beats every rival everywhere in the `ε`-box around the rest. -/
@@ -34,3 +40,6 @@ def NeuralNetwork.IsSuffExplanation (nn : NeuralNetwork S n m) (x : Vec ℝ n) (
   ∀ x', x' ∈ construct (explainBox x ε E) → ∀ j, j ≠ l → nn.eval x' j < nn.eval x' l
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

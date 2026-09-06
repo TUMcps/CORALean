@@ -9,9 +9,15 @@ import CORALean.ContSet.ConPolyZono.Real.Operations.PlusA
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 -- a row of the block-diagonal product, read on the block's own columns alone
 theorem ConPolyZono.mulVec_plusA_left {m₁ s₁ m₂ s₂ : ℕ} (A₁ : Mat ℝ m₁ s₁)
@@ -25,3 +31,6 @@ theorem ConPolyZono.mulVec_plusA_left {m₁ s₁ m₂ s₂ : ℕ} (A₁ : Mat �
     zero_mul, Finset.sum_const_zero, add_zero]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

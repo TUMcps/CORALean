@@ -19,12 +19,18 @@ differentiable activation gets this at its own derivative.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Plus Mtimes IntervalOuter OfInterval
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat ℝ) S] [IntervalOuter S] [OfInterval S] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Layer.activation_sensitivity {σ σ' : ℝ → ℝ} (R : Relaxation σ)
     (hd : ∀ t, HasDerivAt σ (σ' t) t) (x : Vec ℝ n) :
@@ -41,3 +47,6 @@ theorem Layer.activation_sensitivity {σ σ' : ℝ → ℝ} (R : Relaxation σ)
   rw [Matrix.mulVec_diagonal]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

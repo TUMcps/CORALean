@@ -17,9 +17,15 @@ CORA is tighter on an all-even column and ranks by `sum(G.^2)`, not Girard's.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- CORA's `reduce`: compact, then rank. Compacting first is not an
 optimization — a repeated exponent column is one monomial, and ranking before
@@ -29,3 +35,6 @@ noncomputable def PolyZonotope.reduce (PZ : PolyZonotope (Vec ℝ n)) (o : ℕ) 
   PZ.compact.reduceGirard o
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

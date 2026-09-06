@@ -25,7 +25,13 @@ that the columns actually differ there — nothing here needs them to.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Two monomials whose exponent columns agree off `k₀` differ by at most
 `eDiff` there: every other factor is shared and stays in `[-1,1]`. -/
@@ -54,3 +60,6 @@ theorem PolyZonotope.abs_sub_monomial_le {p h : ℕ} (E : Fin p → Fin h → �
     _ = (PolyZonotope.eDiff (E k₀ i) (E k₀ j) : ℝ) := mul_one _
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -12,11 +12,20 @@ an affine image, and an affine image of a merely closed set need not be closed.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.isClosed_construct (E : Ellipsoid n) : IsClosed E.construct :=
   E.isCompact_construct.isClosed
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

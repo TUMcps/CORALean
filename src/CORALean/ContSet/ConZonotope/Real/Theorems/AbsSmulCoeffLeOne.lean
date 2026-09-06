@@ -14,7 +14,13 @@ blocks, which is why it is here rather than inside one of them.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.abs_smul_coeff_le_one {w : ℝ} {h : ℕ} {β : Fin h → ℝ} (hw0 : 0 ≤ w)
     (hw1 : w ≤ 1) (hβ : ∀ j, |β j| ≤ 1) (j : Fin h) : |(w • β) j| ≤ 1 := by
@@ -22,3 +28,6 @@ theorem ConZonotope.abs_smul_coeff_le_one {w : ℝ} {h : ℕ} {β : Fin h → �
   exact le_trans (mul_le_of_le_one_right hw0 (hβ j)) hw1
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

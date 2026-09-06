@@ -31,9 +31,15 @@ without which the range is symmetric and the shift is zero. CORA is unaffected.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α] {d : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The two generators `part.right` names merged into one, at the exponent
 column of the second, the first scaled by `ξ_E` becoming independent. -/
@@ -50,3 +56,6 @@ def PolyZonotope.relaxExp (PZ : PolyZonotope α)
     (fun _ => (PZ.relaxWidth part k₀ : ℝ) • PZ.G (part.right 0))
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

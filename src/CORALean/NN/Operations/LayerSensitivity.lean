@@ -30,13 +30,22 @@ what composes the chain, and the columns are what the heuristic reads.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 noncomputable def Layer.sensitivity (L : Layer S n m) (x : Vec ℝ n) : Mat ℝ m n :=
   LinearMap.toMatrix' (fderiv ℝ L.eval x : Vec ℝ n →L[ℝ] Vec ℝ m).toLinearMap
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

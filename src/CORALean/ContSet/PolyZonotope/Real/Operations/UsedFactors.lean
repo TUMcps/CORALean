@@ -13,10 +13,19 @@ over the joint exponent matrix, both outside this file.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The factors some column still reads. -/
 def PolyZonotope.usedFactors {p h : ℕ} (E : Fin p → Fin h → ℕ) : Finset (Fin p) :=
   Finset.univ.filter fun k => ∃ i, E k i ≠ 0
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -30,7 +30,13 @@ along the graph rather than here.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The column sum strictly drops across an edge: every other exponent is
 shared, and the one the edge moves falls. -/
@@ -51,6 +57,9 @@ theorem PolyZonotope.aux_sum_lt_of_path {p h : ℕ} (E : Fin p → Fin h → ℕ
   | single hedge => exact PolyZonotope.aux_sum_lt_of_expEdge E hedge
   | tail _ hedge ih => exact lt_trans (PolyZonotope.aux_sum_lt_of_expEdge E hedge) ih
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 /-- The generator graph has no cycles: a path from a node back to itself would
 put its column sum below itself. -/
 theorem PolyZonotope.expEdge_acyclic {p h : ℕ} (E : Fin p → Fin h → ℕ) (η : ℕ) (i : Fin h) :
@@ -58,3 +67,6 @@ theorem PolyZonotope.expEdge_acyclic {p h : ℕ} (E : Fin p → Fin h → ℕ) (
   fun hi => lt_irrefl _ (PolyZonotope.aux_sum_lt_of_path E hi)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

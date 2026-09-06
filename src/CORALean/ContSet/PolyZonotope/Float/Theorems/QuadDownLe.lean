@@ -13,17 +13,26 @@ how the layer avoids ever asking.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Matrix FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
 theorem PolyZonotope.aux_min_mul_le {a lo hi w : ℝ} (h1 : lo ≤ w) (h2 : w ≤ hi) :
     min (a * lo) (a * hi) ≤ a * w := by
   rcases le_total 0 a with ha | ha
   · exact le_trans (min_le_left _ _) (mul_le_mul_of_nonneg_left h1 ha)
   · exact le_trans (min_le_right _ _) (mul_le_mul_of_nonpos_left h2 ha)
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 -- so a directed sum of per-term extremes brackets the exact bilinear value
 theorem PolyZonotope.quadDown_le {g wlo whi : Vec 𝕋 n} {w : Vec ℝ n}
@@ -35,3 +44,6 @@ theorem PolyZonotope.quadDown_le {g wlo whi : Vec 𝕋 n} {w : Vec ℝ n}
     (PolyZonotope.aux_min_mul_le (hw r).1 (hw r).2)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

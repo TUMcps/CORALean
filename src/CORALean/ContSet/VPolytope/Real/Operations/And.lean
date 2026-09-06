@@ -28,11 +28,17 @@ list.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open scoped Classical
 
 variable {n q₁ q₂ : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 noncomputable def VPolytope.and (P₁ P₂ : VPolytope (Vec ℝ n))
     (Aq₁ : Fin q₁ → (Vec ℝ n →ₗ[ℝ] ℝ)) (Aq₂ : Fin q₂ → (Vec ℝ n →ₗ[ℝ] ℝ)) :
@@ -42,3 +48,6 @@ noncomputable def VPolytope.and (P₁ P₂ : VPolytope (Vec ℝ n))
   else VPolytope.emptySet _
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

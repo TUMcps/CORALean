@@ -13,7 +13,13 @@ from its own exponent onto a common, smaller one.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float.Dyadic
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem two_zpow_align {e f : ℤ} (h : e ≤ f) :
     (2 : ℝ) ^ (f - e).toNat * 2 ^ e = 2 ^ f := by
@@ -21,3 +27,6 @@ theorem two_zpow_align {e f : ℤ} (h : e ≤ f) :
     ← zpow_add₀ (two_ne_zero), sub_add_cancel]
 
 end CORALean.Float.Dyadic
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

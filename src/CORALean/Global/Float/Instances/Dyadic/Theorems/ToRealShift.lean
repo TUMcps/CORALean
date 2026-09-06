@@ -13,9 +13,15 @@ shifting the mantissa down and reading the result back at the original scale.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float.Dyadic
 
 variable {p : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Dropping `k` bits and raising the exponent by `k` leaves only mantissas to compare. -/
 theorem toReal_shift (m e : ℤ) (k : ℕ) :
@@ -25,3 +31,6 @@ theorem toReal_shift (m e : ℤ) (k : ℕ) :
   ring
 
 end CORALean.Float.Dyadic
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

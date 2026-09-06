@@ -12,12 +12,21 @@ specification at a time, for `Specification.HoldsAll`.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean
 
 variable {α : Type} {X O : Set α}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Specification.holdsAll_of_outer (specs : List (Specification α)) (h : X ⊆ O)
     (hO : Specification.HoldsAll specs O) : Specification.HoldsAll specs X :=
   fun spec hmem => (spec.holds_of_outer h) (hO spec hmem)
 
 end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

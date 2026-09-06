@@ -13,11 +13,17 @@ sums, `repKeep` naming the one column per class that survives.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The merged generator column as stored: the lower of the two directed fibre
 sums, `repKeep` naming the one column per class that survives. -/
@@ -26,3 +32,6 @@ def ConPolyZono.mergedCol (C : ConPolyZono 𝕋 n) (i : Fin n)
   PolyZonotope.fiberDown (Real.PolyZonotope.rep C.E) C.G i (PolyZonotope.keepIdx C.E j)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

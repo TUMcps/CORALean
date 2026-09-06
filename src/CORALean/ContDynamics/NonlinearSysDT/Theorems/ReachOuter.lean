@@ -12,6 +12,9 @@ The total case of `reach_outer_on`, `K := k` and `le_rfl` away via
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar Plus Reduce Mtimes
@@ -23,6 +26,10 @@ variable [Mtimes (Mat ℝ) S] [OfInterval S]
 
 omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
   [OfInterval S] in
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
 /-- A total run restricted to its first `K` steps. -/
 theorem NonlinearSysDT.Trajectory.aux_toTrajectoryOn {sys : NonlinearSysDT n m} {R₀ : S n}
     {U : S m} {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ m}
@@ -30,6 +37,9 @@ theorem NonlinearSysDT.Trajectory.aux_toTrajectoryOn {sys : NonlinearSysDT n m} 
   init := traj.init
   input k _ := traj.input k
   step k _ := traj.step k
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `reach` contains every trajectory of the total run, at every step. -/
 theorem NonlinearSysDT.reach_outer (sys : NonlinearSysDT n m) {U : S m} (o : ℕ)
@@ -39,3 +49,6 @@ theorem NonlinearSysDT.reach_outer (sys : NonlinearSysDT n m) {U : S m} (o : ℕ
   sys.reach_outer_on o steps R₀ (traj.aux_toTrajectoryOn k) (fun i _ => hR i) k le_rfl
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

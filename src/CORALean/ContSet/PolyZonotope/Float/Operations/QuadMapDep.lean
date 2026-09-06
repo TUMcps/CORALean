@@ -17,11 +17,17 @@ independent block and the error box are both empty, so nothing outside
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The map on a set with no independent block and no error box. Sound only
 there, so nothing calls it directly. -/
@@ -37,3 +43,6 @@ def PolyZonotope.quadMapDep (Q : Fin m → Mat 𝕋 n n) (S : PolyZonotope 𝕋 
   err := PolyZonotope.generatorError (PolyZonotope.quadMapGDiff Q S)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

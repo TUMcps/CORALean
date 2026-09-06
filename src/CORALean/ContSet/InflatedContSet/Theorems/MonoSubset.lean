@@ -13,6 +13,9 @@ with nothing moving between them.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float.InflatedContSet
 
 open Pointwise
@@ -21,9 +24,15 @@ variable {𝕋 S T N M : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : 
 variable [ContSet N (Vec ℝ n)] [ContSet M (Vec ℝ n)]
 variable [InflatedContSet S N 𝕋 n] [InflatedContSet T M 𝕋 n]
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem mono_subset {s : S} {t : T} (hnominal : nominalSet s ⊆ nominalSet t)
     (herror : (error s).construct ⊆ (error t).construct) :
     construct s ⊆ construct t :=
   Set.add_subset_add hnominal herror
 
 end CORALean.Float.InflatedContSet
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

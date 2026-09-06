@@ -16,11 +16,17 @@ columns kept at `zero` so the agreement rows can read the second point.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Sound where both independent blocks are empty; `and` arranges that. -/
 def ConPolyZono.andDep (C₁ C₂ : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n where
@@ -40,3 +46,6 @@ def ConPolyZono.andDep (C₁ C₂ : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n whe
   err := C₁.err
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

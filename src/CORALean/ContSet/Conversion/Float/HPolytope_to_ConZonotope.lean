@@ -29,11 +29,17 @@ already give.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Matrix FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q h : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A row reads a point as the centre's contribution plus the generators'. -/
 theorem aux_row_split (M : Mat 𝕋 q n) (G : Mat 𝕋 n h) (c : Vec 𝕋 n) (β : Vec ℝ h)
@@ -152,6 +158,9 @@ noncomputable def HPolytope.conZonotope {P : HPolytope 𝕋 n}
     (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) : ConZonotope 𝕋 n :=
   P.conZonotopeOf (HPolytope.zonotope up lo)
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem HPolytope.subset_conZonotope {P : HPolytope 𝕋 n}
     (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
     (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) :
@@ -166,3 +175,6 @@ theorem HPolytope.subset_conZonotope {P : HPolytope 𝕋 n}
     rw [add_zero]
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

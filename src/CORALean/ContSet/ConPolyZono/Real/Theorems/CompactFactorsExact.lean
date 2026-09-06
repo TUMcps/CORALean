@@ -27,11 +27,17 @@ keeps each equation to the one sum that actually changes.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The generator sum read against the kept factors alone. -/
 theorem ConPolyZono.aux_sum_compactFactors (C : ConPolyZono α) (a : Fin C.p → ℝ) :
@@ -83,6 +89,9 @@ theorem ConPolyZono.aux_satisfies_compactFactors_extend (C : ConPolyZono α)
   rw [hm]
   rfl
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem ConPolyZono.compactFactors_exact (C : ConPolyZono α) :
     C.construct = C.compactFactors.construct := by
   have key : ∀ (a : Fin C.p → ℝ) (β : Fin C.q → ℝ),
@@ -109,3 +118,6 @@ theorem ConPolyZono.compactFactors_exact (C : ConPolyZono α) :
       (ConPolyZono.aux_satisfies_compactFactors_extend C a).mpr hsat, (key' a β).symm⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -31,7 +31,13 @@ two columns exchanged, which is why the bracket is symmetric under swapping them
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The drift of the monomial at `i` from the one at `j`, for columns agreeing
 off `k₀`, lies in `[-fst, snd]` of `eDrift`. -/
@@ -72,3 +78,6 @@ theorem PolyZonotope.sub_monomial_mem_eDrift {p h : ℕ} (E : Fin p → Fin h �
   · exact ⟨habs.1, habs.2⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

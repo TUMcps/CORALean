@@ -12,11 +12,17 @@ of two upper ones, returns one of them, so the intersection is exact.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.and_exact (I₁ I₂ : Interval 𝕋 n) :
     (I₁.and I₂).construct = I₁.construct ∩ I₂.construct := by
@@ -37,3 +43,6 @@ theorem Interval.and_exact (I₁ I₂ : Interval 𝕋 n) :
     exact (key x j).mpr ⟨h₁ j, h₂ j⟩
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

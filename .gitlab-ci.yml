@@ -30,9 +30,12 @@ variables:
 conventions:
   image: debian:bookworm-slim
   # Text only — no toolchain, no Mathlib, no network — so it answers in seconds
-  # and says what a green build cannot: whether `aux_` stayed in its file,
-  # whether an `API.lean` holds anything but imports, whether a `Real` file
-  # reached into `Float`. The same script runs on the pre-commit hook.
+  # and says what a green build cannot: whether `aux_` stayed in its file and
+  # off every instance, whether a file under `Operations/` or `Theorems/`
+  # declares more than one public thing, whether the section markers still
+  # signpost the declaration Lean buries last, whether an `API.lean` holds
+  # anything but imports, whether a `Real` file reached into `Float`. The same
+  # script runs on the pre-commit hook.
   interruptible: true
   before_script:
     # `slim` carries no guarantee of an awk, and the script is mostly awk.

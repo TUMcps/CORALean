@@ -12,11 +12,17 @@ and the error box is the same box.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.dependent_exact (C : ConPolyZono 𝕋 n) :
     C.construct = C.dependent.construct := by
@@ -26,3 +32,6 @@ theorem ConPolyZono.dependent_exact (C : ConPolyZono 𝕋 n) :
   rfl
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

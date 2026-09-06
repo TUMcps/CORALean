@@ -17,11 +17,17 @@ vertex descriptions it needs.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Pointwise
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.construct_subset_add {k : ℕ} (V W : Fin k → α) {D : Set α}
     (hD : Convex ℝ D) (h : ∀ l, V l - W l ∈ D) :
@@ -35,3 +41,6 @@ theorem VPolytope.construct_subset_add {k : ℕ} (V W : Fin k → α) {D : Set �
     exact Finset.sum_congr rfl fun l _ => by rw [← smul_add, add_sub_cancel]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

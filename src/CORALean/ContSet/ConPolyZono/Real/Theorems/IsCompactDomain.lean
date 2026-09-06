@@ -25,11 +25,17 @@ about the ambient type.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {α : Type}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A constraint row is a polynomial in the factors. -/
 theorem ConPolyZono.aux_continuous_consRow (C : ConPolyZono α) (i : Fin C.m) :
@@ -67,6 +73,9 @@ theorem ConPolyZono.aux_isClosed_domain (C : ConPolyZono α) : IsClosed C.domain
   · exact isClosed_le continuous_const (C.aux_continuous_consRow i)
   · exact isClosed_le (C.aux_continuous_consRow i) continuous_const
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem ConPolyZono.isCompact_domain (C : ConPolyZono α) : IsCompact C.domain := by
   refine IsCompact.of_isClosed_subset
     ((isCompact_closedBall (0 : Fin C.p → ℝ) 1).prod (isCompact_closedBall (0 : Fin C.q → ℝ) 1))
@@ -79,3 +88,6 @@ theorem ConPolyZono.isCompact_domain (C : ConPolyZono α) : IsCompact C.domain :
     exact hab.2.1
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -13,9 +13,15 @@ directory and by `Theorems/ReduceByOuter.lean` and
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n d r dI rI : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- CORA's reduction at a given pair of partitions, sound for every one of them:
 kept dependent generators keep their exponent columns, kept independent ones are
@@ -39,3 +45,6 @@ def ConPolyZono.reduceBy (C : ConPolyZono 𝕋 n)
   err := C.err
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

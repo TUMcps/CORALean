@@ -13,9 +13,15 @@ layers.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {p₁ h₁ p₂ h₂ : ℕ} (E₁ : Fin p₁ → Fin h₁ → ℕ) (E₂ : Fin p₂ → Fin h₂ → ℕ)
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.monomial_linCombE_last (a : Fin (p₁ + p₂ + 1) → ℝ) :
     PolyZonotope.monomial (PolyZonotope.linCombE E₁ E₂)
@@ -32,3 +38,6 @@ theorem PolyZonotope.monomial_linCombE_last (a : Fin (p₁ + p₂ + 1) → ℝ) 
   simp only [PolyZonotope.linCombE, Fin.append_right, pow_one]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

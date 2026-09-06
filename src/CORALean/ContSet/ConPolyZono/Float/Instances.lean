@@ -26,9 +26,15 @@ a name rather than an interface. A caller names `ConPolyZono.and`.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
+
+
+-- ========================================  INSTANCES  ========================================= --
 
 instance {n : ℕ} : Plus (ConPolyZono 𝕋 n) (Vec ℝ n) where
   plus C₁ C₂ := (C₁.plus C₂).materialise
@@ -50,3 +56,6 @@ instance : Mtimes (Mat 𝕋) (ConPolyZono 𝕋) where
     exact ConPolyZono.mtimes_outer M C
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

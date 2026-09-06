@@ -31,11 +31,17 @@ coordinate outward on its own would not be reachable by any single coefficient.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n d : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `relaxExpMulti`'s dependent count, stated through the
@@ -164,6 +170,9 @@ theorem PolyZonotope.aux_relaxExpMulti_nominal (PZ : PolyZonotope 𝕋 n)
     simp only [Matrix.cons_val_zero, Matrix.cons_val_one]
     linear_combination toReal (PZ.G i (part.right 0)) * hcoef
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 /-- Merging any two dependent generators over-approximates at the stored
 columns, the summed width paying for every exponent that moves. -/
 theorem PolyZonotope.relaxExpMulti_outer (PZ : PolyZonotope 𝕋 n)
@@ -178,3 +187,6 @@ theorem PolyZonotope.relaxExpMulti_outer (PZ : PolyZonotope 𝕋 n)
   rw [← hsum', add_comm e g, ← add_assoc]
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

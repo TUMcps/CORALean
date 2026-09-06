@@ -21,6 +21,9 @@ amount, so the truncation plus the remainder brackets every entry of `exp x`.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix NormedSpace
@@ -29,6 +32,9 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Every entry of the exponential sits between the truncation and the tail bound. -/
 theorem MatExp.exp_mem_expEnclosure (x : Mat ℝ n n) (η : ℕ)
@@ -49,3 +55,6 @@ theorem MatExp.exp_mem_expEnclosure (x : Mat ℝ n n) (η : ℕ)
     linarith [h.2]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

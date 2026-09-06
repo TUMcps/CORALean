@@ -20,6 +20,9 @@ already err in.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace Demo
 
 open CORALean CORALean.Float
@@ -65,9 +68,15 @@ def showBound {p n : ℕ} (I : Interval (Dyadic p) n) (i : Fin n) : String :=
 def showBox {p n : ℕ} (I : Interval (Dyadic p) n) : String :=
   String.intercalate " " (List.ofFn fun i => showBound I i)
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 /-- The width of one coordinate, rounded up, so the number never understates how
 wide the box is. -/
 def showWidth {p n : ℕ} (I : Interval (Dyadic p) n) (i : Fin n) : String :=
   showUp (subUp (I.sup i) (I.inf i))
 
 end Demo
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

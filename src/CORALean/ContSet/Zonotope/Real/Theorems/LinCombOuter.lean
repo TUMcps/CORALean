@@ -20,9 +20,15 @@ it is the statement a non-convex representation could also make.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `Fin.sum_univ_add` at this operation's generator count, stated through the
 projection because that is the form the goal has and simp will not rewrite a
@@ -32,6 +38,9 @@ theorem Zonotope.aux_sum_univ_linComb {Z₁ Z₂ : Zonotope α}
     ∑ j : Fin (Z₁.linComb Z₂).h, f j
       = ∑ j, f (Fin.castAdd 1 j) + ∑ j, f (Fin.natAdd (Z₁.h + Z₂.h) j) :=
   Fin.sum_univ_add f
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 -- the closing `module` call normalises a sum over the doubly appended generator index
 set_option maxHeartbeats 400000 in
@@ -57,3 +66,6 @@ theorem Zonotope.linComb_outer (Z₁ Z₂ : Zonotope α) :
     module
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

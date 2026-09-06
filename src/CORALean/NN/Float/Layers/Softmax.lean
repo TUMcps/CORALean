@@ -29,6 +29,9 @@ would be `[0, ru i]`. `k` is the reduction depth, precision alone as in `Sigmoid
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open ContSet IntervalOuter OfInterval FloatOps SoundFloatArithmetic
@@ -140,6 +143,9 @@ def softmaxBox (k : ℕ) (I : Interval 𝕋 n) : Interval 𝕋 n where
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [IntervalOuter S 𝕋] [OfInterval S 𝕋]
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 noncomputable def Layer.softmax (k : ℕ) : Real.Layer S n n where
   eval := Real.softmax
   propagate s := ofInterval (softmaxBox k (interval s))
@@ -171,3 +177,6 @@ noncomputable def Layer.softmax (k : ℕ) : Real.Layer S n n where
       exact hhi
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

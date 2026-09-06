@@ -26,6 +26,9 @@ this one.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
@@ -35,6 +38,9 @@ def PolyZonotope.zonotope (PZ : PolyZonotope α) : Zonotope α where
   c := PZ.c
   G := Fin.append PZ.G PZ.GI
 
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
 omit [Module ℝ α] in
 /-- `Fin.sum_univ_add` at the generator count this conversion produces, stated
 through the projection because that is the form the goal has and simp will not
@@ -43,6 +49,9 @@ theorem PolyZonotope.aux_sum_univ_zonotope {PZ : PolyZonotope α} (f : Fin (PZ.h
     ∑ l : Fin PZ.zonotope.h, f l
       = ∑ i, f (Fin.castAdd PZ.q i) + ∑ j, f (Fin.natAdd PZ.h j) :=
   Fin.sum_univ_add f
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.zonotope_outer (PZ : PolyZonotope α) :
     PZ.construct ⊆ PZ.zonotope.construct := by
@@ -58,3 +67,6 @@ theorem PolyZonotope.zonotope_outer (PZ : PolyZonotope α) :
     abel
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

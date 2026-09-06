@@ -22,12 +22,18 @@ only for its first `K` steps.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet
 
 variable {n m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 structure NonlinearSysDT (n m : ℕ) where
   f : Vec ℝ n → Vec ℝ m → Vec ℝ n
@@ -47,3 +53,6 @@ structure NonlinearSysDT.TrajectoryOn (sys : NonlinearSysDT n m) (R₀ : S n) (U
   step (k : ℕ) (hk : k < K) : x (k + 1) = sys.f (x k) (u k)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

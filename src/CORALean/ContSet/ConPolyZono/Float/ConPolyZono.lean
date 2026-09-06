@@ -27,11 +27,17 @@ that tolerance, downward on the low side and upward on the high.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Matrix FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 structure ConPolyZono (𝕋 : Type) (n : ℕ) where
   /-- The dependent factors, shared by the generators and the constraints. -/
@@ -119,3 +125,6 @@ omit [FloatOps 𝕋] in
   simp [ConPolyZono.materialise]
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

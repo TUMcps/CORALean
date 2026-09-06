@@ -13,14 +13,23 @@ is needed.
 -- Last update:   01-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Entrywise
 
 variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 def Interval.linComb (I₁ I₂ : Interval α) : Interval α where
   inf := ofEntry fun i => min (entry I₁.inf i) (entry I₂.inf i)
   sup := ofEntry fun i => max (entry I₁.sup i) (entry I₂.sup i)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

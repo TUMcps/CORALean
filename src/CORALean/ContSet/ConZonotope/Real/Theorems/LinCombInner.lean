@@ -24,9 +24,15 @@ first has a point to run from. `linComb_outer` needs neither hypothesis, so the
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A weighted coefficient block is a point of the set, weighted: `w⁻¹` where
 there is something to divide by, and the origin where there is not. -/
@@ -65,6 +71,9 @@ theorem ConZonotope.aux_smul_mem (C : ConZonotope α) (hne : C.construct.Nonempt
       rw [Pi.smul_apply, smul_eq_mul, smul_smul, ← mul_assoc, mul_inv_cancel₀ hne', one_mul]
     rw [smul_add, Finset.smul_sum, Finset.sum_congr rfl fun j _ => hterm j]
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem ConZonotope.linComb_inner (C₁ C₂ : ConZonotope α) (h₁ : C₁.construct.Nonempty)
     (h₂ : C₂.construct.Nonempty) :
     (C₁.linComb C₂).construct ⊆ segments C₁.construct C₂.construct := by
@@ -91,3 +100,6 @@ theorem ConZonotope.linComb_inner (C₁ C₂ : ConZonotope α) (h₁ : C₁.cons
   module
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

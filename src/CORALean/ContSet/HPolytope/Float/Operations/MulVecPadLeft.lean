@@ -10,11 +10,17 @@ import CORALean.Global.Block
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Matrix FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 -- a padded row reads only the block it came from, the zero columns dropping out
 theorem HPolytope.mulVec_padLeft {m : ℕ} (M : Mat 𝕋 m n₁) (x : Vec ℝ (n₁ + n₂)) (i : Fin m) :
@@ -27,3 +33,6 @@ theorem HPolytope.mulVec_padLeft {m : ℕ} (M : Mat 𝕋 m n₁) (x : Vec ℝ (n
     Finset.sum_const_zero, add_zero]
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -9,9 +9,15 @@ import CORALean.ContSet.HPolytope.Real.Operations.EmptySet
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.construct_emptySet : (HPolytope.emptySet α).construct = ∅ := by
   ext x
@@ -22,3 +28,6 @@ theorem HPolytope.construct_emptySet : (HPolytope.emptySet α).construct = ∅ :
   linarith
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

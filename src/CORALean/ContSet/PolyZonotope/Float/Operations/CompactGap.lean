@@ -13,11 +13,17 @@ Split out of `Compact.lean` (issue #62): read again by
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- What a merged column can be off by. -/
 def PolyZonotope.compactGap (PZ : PolyZonotope 𝕋 n) :
@@ -25,3 +31,6 @@ def PolyZonotope.compactGap (PZ : PolyZonotope 𝕋 n) :
   fun i j => subUp (PZ.mergedColUp i j) (PZ.mergedCol i j)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

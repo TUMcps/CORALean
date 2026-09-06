@@ -14,9 +14,15 @@ Split out of `RelaxExpMulti.lean` (issue #62): read again by
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n d : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `ξ_E` summed over every factor, read off the exponent matrix and so the
 exact layer's own width. -/
@@ -25,3 +31,6 @@ def PolyZonotope.relaxWidthMulti (PZ : PolyZonotope 𝕋 n)
   ∑ k, Real.PolyZonotope.eDiff (PZ.E k (part.right 0)) (PZ.E k (part.right 1))
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

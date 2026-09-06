@@ -21,9 +21,15 @@ output set.
 -- Last update:   03-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean
 
 variable {α : Type}
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 inductive Specification.Kind
   | safeSet
@@ -54,3 +60,6 @@ def Specification.HoldsAll (specs : List (Specification α)) (X : Set α) : Prop
   ∀ spec ∈ specs, spec.Holds X
 
 end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

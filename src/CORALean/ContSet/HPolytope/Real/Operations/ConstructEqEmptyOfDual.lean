@@ -14,9 +14,15 @@ returns instead of a solution.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Weights that cancel the objective but not the right-hand side prove the
 description denotes nothing — the certificate of infeasibility an LP solver
@@ -30,3 +36,6 @@ theorem HPolytope.construct_eq_empty_of_dual (P : HPolytope α)
   exact eq_empty_of_dual y z hy h0 hneg
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

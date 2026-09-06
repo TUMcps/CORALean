@@ -16,11 +16,17 @@ Takes the directed addition as an argument rather than fixing one, since
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {h₁ h₂ : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Half the sum of a generator and the column it pairs with, formed with the
 given directed addition; past the shorter block the generator is copied and
@@ -30,3 +36,6 @@ def Zonotope.pairSum (add : 𝕋 → 𝕋 → 𝕋) (G₁ : Fin h₁ → 𝕋) (
   if hj : (j : ℕ) < h₂ then half (add (G₁ j) (G₂ ⟨j, hj⟩)) else G₁ j
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

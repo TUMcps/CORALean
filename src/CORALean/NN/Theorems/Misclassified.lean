@@ -14,10 +14,19 @@ state the same requirement over an abstract network's output.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Some label other than `l` at least ties it, so `l` is not the unique
 winner. -/
 def misclassified (m : ℕ) (l : Fin m) : Set (Vec ℝ m) := {y | ∃ j, j ≠ l ∧ y l ≤ y j}
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

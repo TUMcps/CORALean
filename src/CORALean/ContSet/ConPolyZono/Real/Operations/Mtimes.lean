@@ -16,11 +16,17 @@ harder than renaming one of them.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {k n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def ConPolyZono.mtimes (M : Mat ℝ k n) (C : ConPolyZono (Vec ℝ n)) :
     ConPolyZono (Vec ℝ k) where
@@ -38,3 +44,6 @@ def ConPolyZono.mtimes (M : Mat ℝ k n) (C : ConPolyZono (Vec ℝ n)) :
   EC := C.EC
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

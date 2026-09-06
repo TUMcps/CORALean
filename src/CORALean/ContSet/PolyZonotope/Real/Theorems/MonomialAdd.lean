@@ -12,7 +12,13 @@ closed under a quadratic map, which sums exponent columns pairwise.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Exponent columns add where monomials multiply, which is what keeps the
 representation closed under a quadratic map. -/
@@ -25,3 +31,6 @@ theorem PolyZonotope.monomial_add {p h : ℕ} (E₁ E₂ : Fin p → Fin h → �
   exact Finset.prod_congr rfl fun k _ => pow_add (a k) (E₁ k i) (E₂ k i)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

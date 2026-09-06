@@ -30,11 +30,17 @@ the second implementor, `ConZonotope`, could state it at convex sets only.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α] {n : ℕ}
+
+
+-- ========================================  INSTANCES  ========================================= --
 
 instance : ContSet (ConPolyZono α) α := ⟨ConPolyZono.construct⟩
 
@@ -64,3 +70,6 @@ cannot read the family off one member, so a use site names it: `(S := 𝒞𝒫�
 scoped notation "𝒞𝒫𝒵" => fun n => ConPolyZono (Vec ℝ n)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

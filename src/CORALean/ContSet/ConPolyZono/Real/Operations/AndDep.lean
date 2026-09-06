@@ -14,9 +14,15 @@ far apart the two points may stand.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Exact where both independent blocks are empty; `and` arranges that. `D` is
 how far apart the two points may stand. -/
@@ -37,3 +43,6 @@ def ConPolyZono.andDep (C₁ C₂ : ConPolyZono (Vec ℝ n)) (D : Interval (Vec 
           (PolyZonotope.plusE C₁.E C₂.E)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -23,11 +23,17 @@ for `PolyZonotope`. A merged *constraint* column has no ambient box to pay into
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- CORA's `compact`: the generators, then the constraints, then the factors
 that fell out of use. -/
@@ -35,3 +41,6 @@ def ConPolyZono.compact (C : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n :=
   C.compactGens.compactCons.compactFactors
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

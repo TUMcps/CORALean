@@ -15,7 +15,13 @@ the ball back into the cube to bound its domain by it.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The coefficient cube, as a ball, which is the form `isCompact_closedBall`
 speaks about. -/
@@ -26,3 +32,6 @@ theorem Zonotope.closedBall_eq (h : ℕ) :
   simp only [Real.norm_eq_abs, Set.mem_setOf_eq]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

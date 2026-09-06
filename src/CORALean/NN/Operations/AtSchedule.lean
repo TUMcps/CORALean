@@ -15,9 +15,15 @@ is a corollary of `NeuralNetwork.propagate_outer` rather than a new induction.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The network a schedule names: each layer at its own pattern. -/
 def RefinableNetwork.atSchedule : ∀ {n m : ℕ}, RefinableNetwork S n m → Schedule →
@@ -27,3 +33,6 @@ def RefinableNetwork.atSchedule : ∀ {n m : ℕ}, RefinableNetwork S n m → Sc
       .cons (L.atPattern (Schedule.head sch _)) (rest.atSchedule (Schedule.tail sch))
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

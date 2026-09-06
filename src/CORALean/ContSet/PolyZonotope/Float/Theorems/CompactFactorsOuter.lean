@@ -13,11 +13,17 @@ Costs nothing at all: `compactFactors_nominal` already is the exact equality.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.compactFactors_outer (PZ : PolyZonotope 𝕋 n) :
     PZ.construct ⊆ PZ.compactFactors.construct :=
@@ -25,3 +31,6 @@ theorem PolyZonotope.compactFactors_outer (PZ : PolyZonotope 𝕋 n) :
     (subset_refl _)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

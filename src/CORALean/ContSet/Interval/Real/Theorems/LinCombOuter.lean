@@ -13,11 +13,17 @@ each coordinate is handled on its own and the bound is immediate.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Entrywise
 
 variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.linComb_outer (I₁ I₂ : Interval α) :
     segments I₁.construct I₂.construct ⊆ (I₁.linComb I₂).construct := by
@@ -41,3 +47,6 @@ theorem Interval.linComb_outer (I₁ I₂ : Interval α) :
     nlinarith
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

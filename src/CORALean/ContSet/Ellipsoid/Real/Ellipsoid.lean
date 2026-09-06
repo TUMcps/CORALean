@@ -26,11 +26,17 @@ carries the supremum norm.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {n : ℕ}
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 structure Ellipsoid (n : ℕ) where
   k : ℕ
@@ -41,3 +47,6 @@ def Ellipsoid.construct (E : Ellipsoid n) : Set (Vec ℝ n) :=
   {x | ∃ u : Vec ℝ E.k, ‖u‖₂ ≤ 1 ∧ x = E.q + E.G *ᵥ u}
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

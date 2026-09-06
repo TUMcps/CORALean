@@ -14,9 +14,15 @@ either's value.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float.Dyadic
 
 variable {p : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem toReal_align (d : Dyadic p) {e : ℤ} (h : e ≤ d.exponent) :
     toReal d = ((d.mantissa * 2 ^ (d.exponent - e).toNat : ℤ) : ℝ) * 2 ^ e := by
@@ -25,3 +31,6 @@ theorem toReal_align (d : Dyadic p) {e : ℤ} (h : e ≤ d.exponent) :
   rw [mul_assoc, two_zpow_align h]
 
 end CORALean.Float.Dyadic
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

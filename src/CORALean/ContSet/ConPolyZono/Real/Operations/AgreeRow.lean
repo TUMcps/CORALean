@@ -12,9 +12,15 @@ concatenated generator monomials.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The row pinning the two points together in coordinate `i`, read against the
 concatenated generator monomials. -/
@@ -23,3 +29,6 @@ def ConPolyZono.agreeRow (C₁ C₂ : ConPolyZono (Vec ℝ n)) (i : Fin n) :
   Fin.append (fun l => C₁.G l i) fun l => -C₂.G l i
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

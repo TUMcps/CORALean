@@ -13,11 +13,17 @@ coefficient family — a zonotope's free one included.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n h : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Entrywise generator error scaled by any coefficients in `[-1,1]`. -/
 theorem PolyZonotope.mem_generatorError {G : Mat 𝕋 n h} {Δ : Mat ℝ n h} {t : Vec ℝ h}
@@ -31,3 +37,6 @@ theorem PolyZonotope.mem_generatorError {G : Mat 𝕋 n h} {Δ : Mat ℝ n h} {t
   exact neg_le_of_abs_le key
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

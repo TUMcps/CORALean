@@ -14,7 +14,13 @@ directly.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Layer `l` raised neuron by neuron, which is the one step every refinement
 rule here is an instance of. -/
@@ -22,3 +28,6 @@ def Schedule.raise (sch : Schedule) (l : ℕ) (b : ℕ → ℕ) : Schedule :=
   Function.update sch l fun j => sch l j + b j
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

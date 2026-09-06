@@ -22,11 +22,17 @@ shrinkable at `nn`.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet OfInterval
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OfInterval S] {n m : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Abstractly sufficient, and no single feature of `E` can be dropped without
 losing that. -/
@@ -36,3 +42,6 @@ def NeuralNetwork.IsMinSuffExplanationAbstract (nnAbs : NeuralNetwork S n m) (x 
     ∀ i ∈ E, ¬ nnAbs.IsSuffExplanationAbstract x ε (E \ {i}) l
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

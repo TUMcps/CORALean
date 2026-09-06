@@ -11,7 +11,13 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialFactorIdx
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The same at the constraint block, `appendE`'s right half. -/
 theorem ConPolyZono.monomial_factorIdx_right {p h s : ℕ} (E : Fin p → Fin h → ℕ)
@@ -31,3 +37,6 @@ theorem ConPolyZono.monomial_factorIdx_right {p h s : ℕ} (E : Fin p → Fin h 
     _ = PolyZonotope.monomial EC a l := ConPolyZono.monomial_appendE_right E EC a l
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

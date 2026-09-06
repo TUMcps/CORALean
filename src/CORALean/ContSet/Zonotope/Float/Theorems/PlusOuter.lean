@@ -23,11 +23,17 @@ gone into the box.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `plus`'s generator count, stated through the projection
@@ -66,8 +72,14 @@ theorem Zonotope.aux_plus_error (Z₁ : Zonotope 𝕋 n) (Z₂ : Zonotope 𝕋 n
   subset_trans (Set.add_subset_add_right (Interval.plus_outer Z₁.E Z₂.E))
     (Interval.plus_outer _ _)
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem Zonotope.plus_outer (Z₁ : Zonotope 𝕋 n) (Z₂ : Zonotope 𝕋 n) :
     Z₁.construct + Z₂.construct ⊆ (Z₁.plus Z₂).construct :=
   InflatedContSet.plus_subset (Zonotope.aux_plus_nominal Z₁ Z₂) (Zonotope.aux_plus_error Z₁ Z₂)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

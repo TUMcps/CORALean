@@ -25,11 +25,17 @@ is `ConvExactOfAdjacency.lean`.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {N F₁ F₂ : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem GNN.gcn_exact (P : Mat ℝ N N) (W : Mat ℝ F₁ F₂) (PZ : PolyZonotope (Mat ℝ N F₁)) :
     (fun H => P * H * W) '' PZ.construct = (GNN.gcn P W PZ).construct := by
@@ -40,3 +46,6 @@ theorem GNN.gcn_exact (P : Mat ℝ N N) (W : Mat ℝ F₁ F₂) (PZ : PolyZonoto
   exact PolyZonotope.map_exact (GNN.gcnLin P W) PZ
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

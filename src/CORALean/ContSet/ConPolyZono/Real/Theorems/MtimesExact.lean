@@ -13,12 +13,21 @@ on the factors, and a linear map of the ambient space moves points, not factors.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.mtimes_exact {k n : ℕ} (M : Mat ℝ k n) (C : ConPolyZono (Vec ℝ n)) :
     (M *ᵥ ·) '' C.construct = (ConPolyZono.mtimes M C).construct :=
   ConPolyZono.map_exact (Matrix.mulVecLin M) C
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

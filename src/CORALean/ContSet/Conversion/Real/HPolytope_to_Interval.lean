@@ -19,6 +19,9 @@ is exact as soon as every certificate is tight.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ} {P : HPolytope (Vec ℝ n)}
@@ -27,9 +30,15 @@ def HPolytope.interval (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
     (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) : Interval (Vec ℝ n) :=
   Interval.ofBounds up lo
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem HPolytope.interval_outer (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
     (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) :
     P.construct ⊆ (HPolytope.interval up lo).construct :=
   Interval.subset_ofBounds up lo
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -9,11 +9,17 @@ import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Matrix FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {N m : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 -- a trailing column adds its entry against the coefficient the block holds
 theorem HPolytope.mulVec_append_last (A : Mat 𝕋 m N) (d : Vec 𝕋 m) (u : Vec ℝ N) (r : ℝ)
@@ -28,3 +34,6 @@ theorem HPolytope.mulVec_append_last (A : Mat 𝕋 m N) (d : Vec 𝕋 m) (u : Ve
   rfl
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -12,11 +12,17 @@ the form every caller states its matrix in.
 -- Last update:   01-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {n m : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def Zonotope.mtimes (M : Mat ℝ m n) (Z : Zonotope (Vec ℝ n)) : Zonotope (Vec ℝ m) where
   h := Z.h
@@ -24,3 +30,6 @@ def Zonotope.mtimes (M : Mat ℝ m n) (Z : Zonotope (Vec ℝ n)) : Zonotope (Vec
   G := fun j => M *ᵥ Z.G j
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

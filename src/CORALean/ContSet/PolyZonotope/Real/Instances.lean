@@ -29,11 +29,17 @@ module is zero, and the ranking orders reals.
 -- Last update:   02-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α] {n : ℕ}
+
+
+-- ========================================  INSTANCES  ========================================= --
 
 instance : ContSet (PolyZonotope α) α := ⟨PolyZonotope.construct⟩
 
@@ -61,3 +67,6 @@ alone being Mathlib's powerset. -/
 scoped notation "𝒫𝒵" => fun n => PolyZonotope (Vec ℝ n)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

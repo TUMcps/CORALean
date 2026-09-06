@@ -29,6 +29,9 @@ loop, and reading one against a network — is `Operations/*.lean`, one file eac
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
@@ -48,6 +51,9 @@ def Schedule.cons (t : OrderPattern n) (sch : Schedule) : Schedule
   | 0 => fun j => if h : j < n then t ⟨j, h⟩ else 0
   | l + 1 => sch l
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem Schedule.head_cons (t : OrderPattern n) (sch : Schedule) :
     Schedule.head (Schedule.cons t sch) n = t := by
   funext i
@@ -55,3 +61,6 @@ theorem Schedule.head_cons (t : OrderPattern n) (sch : Schedule) :
   exact dif_pos i.isLt
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -13,9 +13,15 @@ than copied.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- ========================================  INSTANCES  ========================================= --
 
 /-- The one computable field here, and so the only one storage can reach: the two
 below go through a linear program and are `noncomputable`. -/
@@ -34,3 +40,6 @@ noncomputable instance : Reduce (ConZonotope 𝕋 n) (Vec ℝ n) where
   reduce_outer := ConZonotope.reduce_outer
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

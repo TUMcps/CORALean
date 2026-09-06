@@ -12,9 +12,15 @@ one `ext` away.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 -- there is no row index to discharge, in either block
 theorem HPolytope.construct_fullspace : (HPolytope.fullspace α).construct = Set.univ := by
@@ -22,3 +28,6 @@ theorem HPolytope.construct_fullspace : (HPolytope.fullspace α).construct = Set
   exact ⟨fun _ => trivial, fun _ => ⟨fun i => i.elim0, fun i => i.elim0⟩⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

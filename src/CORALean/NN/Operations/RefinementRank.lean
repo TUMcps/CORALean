@@ -20,9 +20,15 @@ ranks both rules, only the aggregate differs.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n m : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Neuron `j`'s share of the output's error: its column of the sensitivity,
 summed in magnitude, against the error its own relaxation leaves. -/
@@ -30,3 +36,6 @@ def refinementRank (J : Mat ℝ m n) (d : Vec ℝ n) (j : Fin n) : ℝ :=
   (∑ i, |J i j|) * |d j|
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

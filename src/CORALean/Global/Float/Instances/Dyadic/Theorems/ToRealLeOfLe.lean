@@ -12,9 +12,15 @@ The direction `SoundFloatArithmetic` asks for; the converse holds too
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float.Dyadic
 
 variable {p : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The direction `SoundFloatArithmetic` asks for; the converse holds too
 (`le_iff`), but nothing here needs it. -/
@@ -22,3 +28,6 @@ theorem toReal_le_of_le {a b : Dyadic p} (h : le a b = true) : toReal a ≤ toRe
   (le_iff a b).mp h
 
 end CORALean.Float.Dyadic
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

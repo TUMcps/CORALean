@@ -18,9 +18,15 @@ bookkeeping of their own.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.construct_eq_convexHull (P : VPolytope α) :
     P.construct = convexHull ℝ (Set.range P.V) := by
@@ -31,3 +37,6 @@ theorem VPolytope.construct_eq_convexHull (P : VPolytope α) :
   · exact convexHull_min (Set.range_subset_iff.mpr P.vertex_mem) P.convex_construct
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

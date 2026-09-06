@@ -30,6 +30,9 @@ never more correct.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 /-- Level `o` fits the sigmoid on `[-o, o]` to within `1 / (o + 1)`. -/
@@ -41,8 +44,14 @@ theorem Layer.activationPolySigmoid_convergent (n : ℕ) :
     (Layer.activationPolyRefinable (n := n) sigmoidPolyFamily).Convergent :=
   Layer.activationPolyRefinable_convergent hasDerivAt_sigmoid abs_sigmoidDeriv_le_one
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 /-- That layer as a network, named so the statements about it stay readable. -/
 noncomputable def sigmoidRefinableNetwork (n : ℕ) : RefinableNetwork 𝒫𝒵 n n :=
   .cons (Layer.activationPolyRefinable sigmoidPolyFamily) .nil
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

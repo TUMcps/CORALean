@@ -15,7 +15,13 @@ build `ExpEdge`'s.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- ======================================  MAIN INSTANCE  ======================================= --
 
 /-- The condition decides: it reads only the exponent matrix, and each clause is
 ℕ arithmetic or a bounded quantifier. -/
@@ -25,3 +31,6 @@ instance PolyZonotope.instDecidableExpEdgeAt {p h : ℕ} (E : Fin p → Fin h �
   infer_instance
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

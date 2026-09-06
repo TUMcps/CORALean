@@ -22,6 +22,9 @@ norm — or the terms will not match.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix Scalar NormedSpace
@@ -31,8 +34,14 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 /-- The system a step of `Δt` leaves behind. -/
 noncomputable def LinearSys.discretize (sys : LinearSys 𝕋 n) (Δt : ℝ) : LinearSysDT ℝ n :=
   ⟨exp (Δt • toRealMat sys.A)⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

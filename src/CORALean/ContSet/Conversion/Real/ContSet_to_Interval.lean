@@ -23,9 +23,15 @@ representation alone. A pipeline that wants them supplies the box itself.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 /-- Named for the target, as every conversion is: `interval` is CORA's
 `interval(S)`. -/
@@ -47,3 +53,6 @@ instance : IntervalOuter (fun n => ConZonotope (Vec ℝ n)) where
   interval_outer C := ConZonotope.interval_outer C
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

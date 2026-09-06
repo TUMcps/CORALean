@@ -16,11 +16,17 @@ the tail's differentiability at the head's output.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NeuralNetwork.differentiableAt_eval : ∀ {n m : ℕ} (nn : NeuralNetwork S n m)
     (x : Vec ℝ n), nn.DifferentiableChain x → DifferentiableAt ℝ nn.eval x
@@ -31,3 +37,6 @@ theorem NeuralNetwork.differentiableAt_eval : ∀ {n m : ℕ} (nn : NeuralNetwor
       exact (rest.differentiableAt_eval _ hrest).comp x hL
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

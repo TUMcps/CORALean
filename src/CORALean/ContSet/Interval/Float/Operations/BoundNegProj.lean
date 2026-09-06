@@ -13,11 +13,17 @@ negated, exactly.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def Interval.boundNegProj (I : Interval 𝕋 n) (j : Fin n) :
     FloatBound 𝕋 I.construct (-LinearMap.proj j) :=
@@ -29,3 +35,6 @@ def Interval.boundNegProj (I : Interval 𝕋 n) (j : Fin n) :
     linarith⟩
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

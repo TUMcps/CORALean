@@ -14,9 +14,15 @@ file.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- How far the dropped generators of both blocks reach in each coordinate. A
 monomial and an independent coefficient obey the same bound, so one box covers
@@ -27,3 +33,6 @@ def PolyZonotope.dropRadius (PZ : PolyZonotope (Vec ℝ n)) {d r dI rI : ℕ}
   fun i => (∑ l, |PZ.G (partD.right l) i|) + ∑ j, |PZ.GI (partI.right j) i|
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

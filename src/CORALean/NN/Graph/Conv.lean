@@ -34,6 +34,9 @@ in order to stay away from zero.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
@@ -69,9 +72,15 @@ theorem GNN.gcnLin_apply (P : Mat ℝ N N) (W : Mat ℝ F₁ F₂) (H : Mat ℝ 
   show P * (H * W) = P * H * W
   rw [Matrix.mul_assoc]
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 /-- The layer on a matrix polynomial zonotope, which is the whole of what CORA's
 `nnGCNLayer` computes at a graph with no uncertain edges. -/
 def GNN.gcn (P : Mat ℝ N N) (W : Mat ℝ F₁ F₂) (PZ : PolyZonotope (Mat ℝ N F₁)) :
     PolyZonotope (Mat ℝ N F₂) := PZ.map (GNN.gcnLin P W)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

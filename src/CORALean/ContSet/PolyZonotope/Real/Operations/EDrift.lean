@@ -30,7 +30,13 @@ of a generator is exact in both layers, where a real bound would have to round.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- How far the monomial at `i` falls below and rises above the one at `j`, for
 two columns agreeing off `k₀`: the drift lies in `[-fst, snd]`. -/
@@ -44,3 +50,6 @@ def PolyZonotope.eDrift {p h : ℕ} (E : Fin p → Fin h → ℕ) (k₀ : Fin p)
   else (PolyZonotope.eDiff (E k₀ i) (E k₀ j), PolyZonotope.eDiff (E k₀ i) (E k₀ j))
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -11,11 +11,17 @@ Each bound shifts by what its own row reads of the shift, rounded outward.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Matrix FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.translate_outer (t : Vec 𝕋 n) (P : HPolytope 𝕋 n) :
     (toRealVec t + ·) '' P.construct ⊆ (HPolytope.translate t P).construct := by
@@ -49,3 +55,6 @@ theorem HPolytope.translate_outer (t : Vec 𝕋 n) (P : HPolytope 𝕋 n) :
     linarith [(heq i).2]
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

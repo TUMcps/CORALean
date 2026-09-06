@@ -15,13 +15,22 @@ it.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Module ℝ β]
 variable {q : ℕ} {P : HPolytope α}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def HPolytope.mtimesOf (M : α →ₗ[ℝ] β) (Aq : Fin q → (β →ₗ[ℝ] ℝ))
     (u : ∀ i, SupportBound P.construct ((Aq i).comp M)) : HPolytope β :=
   HPolytope.ofBounds Aq fun i => SupportBound.image M (u i)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

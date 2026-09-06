@@ -17,11 +17,17 @@ coordinate to within `D`.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- What `andDep`'s constraint system says: each set's own constraints, and that
 the two points agree coordinate by coordinate to within `D`. -/
@@ -97,3 +103,6 @@ theorem ConPolyZono.satisfies_andDep_iff (C₁ C₂ : ConPolyZono (Vec ℝ n))
       simpa only [ConPolyZono.andB, Fin.append_right] using hagree i
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

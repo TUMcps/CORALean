@@ -16,9 +16,15 @@ the second set's surplus generator, whole.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α] {h₁ h₂ : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Half the difference, the other half of a pairing; past the shorter block it
 is the second set's surplus generator, whole. -/
@@ -26,3 +32,6 @@ noncomputable def Zonotope.pairDiff (G₁ : Fin h₁ → α) (G₂ : Fin h₂ �
   if hj : (j : ℕ) < h₁ then (2:ℝ)⁻¹ • (G₁ ⟨j, hj⟩ - G₂ j) else G₂ j
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

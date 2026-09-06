@@ -26,6 +26,9 @@ normalised integral wanted, normalised by the total weight.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open MeasureTheory Pointwise
@@ -33,6 +36,9 @@ open MeasureTheory Pointwise
 open scoped ENNReal NNReal
 
 variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 -- the weight moves into the measure, so every step carries an `ℝ≥0∞` coercion with it
 set_option maxHeartbeats 1000000 in
@@ -102,3 +108,6 @@ theorem integral_pow_smul_mem {S : Set (Vec ℝ n)} (hconv : Convex ℝ S) (hclo
   rwa [smul_inv_smul₀ hW0.ne'] at this
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -27,9 +27,15 @@ factors, and a fresh factor appearing in one would silently change them.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def ConPolyZono.dependent (C : ConPolyZono α) : ConPolyZono α where
   p := C.p + C.q
@@ -46,3 +52,6 @@ def ConPolyZono.dependent (C : ConPolyZono α) : ConPolyZono α where
   EC := ConPolyZono.padE C.EC C.q
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

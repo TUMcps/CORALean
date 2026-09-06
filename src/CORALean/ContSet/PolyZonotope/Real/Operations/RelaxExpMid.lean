@@ -29,9 +29,15 @@ one independent one, at the exponent column of the second of the pair.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α] {d : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The two generators `part.right` names merged into one, the drift's midpoint
 moved into the centre and its half-width into a new independent generator. -/
@@ -47,3 +53,6 @@ noncomputable def PolyZonotope.relaxExpMid (PZ : PolyZonotope α)
   GI := Fin.append PZ.GI (fun _ => (PZ.relaxDrift part k₀).2 • PZ.G (part.right 0))
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

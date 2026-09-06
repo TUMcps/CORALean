@@ -25,11 +25,17 @@ would be the one case the statement is easiest in.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Pointwise ContSet
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m k : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A schedule built by `Schedule.cons` runs its head layer at exactly the
 pattern it was built from, which is what lets the induction hand one down. -/
@@ -75,6 +81,9 @@ theorem aux_image_inflate_subset {k : ℕ} {f : Vec ℝ m → Vec ℝ k} {K : NN
   have heq : f a + (f (a + d) - f a) = f (a + d) := by abel
   rwa [heq] at hmem
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem RefinableNetwork.exists_schedule_propagateAt_subset :
     ∀ {n m : ℕ} (rn : RefinableNetwork S n m), rn.Convergent → ∀ (X : S n) (ε : ℝ), 0 < ε →
       ∃ sch : Schedule,
@@ -115,3 +124,6 @@ theorem RefinableNetwork.exists_schedule_propagateAt_subset :
     exact aux_subset_inflate_trans himg hsch (by linarith)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

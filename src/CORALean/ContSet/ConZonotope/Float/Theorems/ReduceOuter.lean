@@ -15,11 +15,17 @@ constraints, both enclosures; at or below it, the identity.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.reduce_outer (C : ConZonotope 𝕋 n) (o : ℕ) :
     C.construct ⊆ (C.reduce o).construct := by
@@ -30,3 +36,6 @@ theorem ConZonotope.reduce_outer (C : ConZonotope 𝕋 n) (o : ℕ) :
   · exact subset_rfl
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

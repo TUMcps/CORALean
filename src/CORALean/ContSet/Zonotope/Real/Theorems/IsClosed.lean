@@ -13,11 +13,20 @@ integrand of a set-valued integral is asked for.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.isClosed_construct (Z : Zonotope α) : IsClosed Z.construct :=
   Z.isCompact_construct.isClosed
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

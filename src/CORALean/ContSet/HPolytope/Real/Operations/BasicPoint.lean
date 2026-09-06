@@ -22,11 +22,17 @@ not decidable, so which rows are tight is not either.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open scoped Classical
 
 variable {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 noncomputable def HPolytope.basicPoint (P : HPolytope (Vec ℝ n)) (σ : Fin P.m → Bool) :
     Vec ℝ n :=
@@ -35,3 +41,6 @@ noncomputable def HPolytope.basicPoint (P : HPolytope (Vec ℝ n)) (σ : Fin P.m
   else 0
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

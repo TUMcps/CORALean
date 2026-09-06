@@ -15,11 +15,17 @@ back.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Pointwise
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 omit [Module ℝ α] in
 /-- `Fin.sum_univ_add` at `plus`'s generator count, stated through the projection
@@ -56,6 +62,9 @@ theorem ConZonotope.aux_value_plus (C₁ C₂ : ConZonotope α)
   rw [ConZonotope.aux_value_plus']
   simp only [Fin.append_left, Fin.append_right]
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 -- both inclusions come off `aux_value_plus`, the polytope splitting with the blocks
 theorem ConZonotope.plus_exact (C₁ C₂ : ConZonotope α) :
     C₁.construct + C₂.construct = (C₁.plus C₂).construct := by
@@ -77,3 +86,6 @@ theorem ConZonotope.plus_exact (C₁ C₂ : ConZonotope α) :
       (ConZonotope.aux_value_plus' C₁ C₂ β).symm⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

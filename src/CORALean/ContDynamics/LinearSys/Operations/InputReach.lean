@@ -20,6 +20,9 @@ norm — or the terms will not match.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar NormedSpace MeasureTheory intervalIntegral
@@ -29,6 +32,9 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- CORA's `P^R(τ)`: every point the input can drive the system to over `[0, τ]`,
 as a set of points rather than a representation of one. Admissible inputs are
@@ -41,3 +47,6 @@ noncomputable def LinearSys.inputReach (sys : LinearSys 𝕋 n) (U : S n) (τ : 
       y = ∫ s in (0:ℝ)..τ, exp ((τ - s) • toRealMat sys.A) *ᵥ u s}
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

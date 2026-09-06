@@ -19,9 +19,15 @@ state per row.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {m n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def Interval.mtimesIntervalMat (IM : Interval (Mat ℝ m n)) (I : Interval (Vec ℝ n)) :
     Interval (Vec ℝ m) where
@@ -29,3 +35,6 @@ def Interval.mtimesIntervalMat (IM : Interval (Mat ℝ m n)) (I : Interval (Vec 
   sup := fun i => ∑ k, Interval.mulHi (IM.inf i k) (IM.sup i k) (I.inf k) (I.sup k)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

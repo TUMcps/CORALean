@@ -13,11 +13,17 @@ diagonal block of `n` independent generators. The constraints stand.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {n d r dI rI : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Partitions both generator blocks: what `partD.left` and `partI.left` name is
 kept, with the former's exponent columns, and the rest is absorbed into a
@@ -40,3 +46,6 @@ def ConPolyZono.reduceBy (C : ConPolyZono (Vec ℝ n))
   EC := C.EC
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

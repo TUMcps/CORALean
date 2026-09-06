@@ -13,11 +13,17 @@ floats and computes none.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n₁ n₂ : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def HPolytope.padLeft (P : HPolytope 𝕋 n₁) (n₂ : ℕ) : HPolytope 𝕋 (n₁ + n₂) where
   m := P.m
@@ -28,3 +34,6 @@ def HPolytope.padLeft (P : HPolytope 𝕋 n₁) (n₂ : ℕ) : HPolytope 𝕋 (n
   be := P.be
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

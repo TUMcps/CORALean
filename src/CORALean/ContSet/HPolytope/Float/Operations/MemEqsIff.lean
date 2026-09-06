@@ -9,11 +9,17 @@ import CORALean.ContSet.HPolytope.Float.Operations.Eqs
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Matrix FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {q n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.mem_eqs_iff {Ae : Mat 𝕋 q n} {be : Interval 𝕋 q} {x : Vec ℝ n} :
     x ∈ (HPolytope.eqs Ae be).construct ↔
@@ -23,3 +29,6 @@ theorem HPolytope.mem_eqs_iff {Ae : Mat 𝕋 q n} {be : Interval 𝕋 q} {x : Ve
    fun h => HPolytope.mem_construct_iff.mpr ⟨fun i => i.elim0, h⟩⟩
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

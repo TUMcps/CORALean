@@ -14,6 +14,9 @@ nothing past `KΔt` — which is what re-linearizing from there needs.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar NormedSpace Plus Mtimes OfInterval
@@ -25,6 +28,9 @@ variable {n m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
 variable [Mtimes (Mat ℝ) S] [OfInterval S]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The one-step statement: confinement on `[0, KΔt]` alone puts the run inside
 the linearized reachable set at every sample time of that horizon, assuming
@@ -44,3 +50,6 @@ theorem NonlinearSys.Trajectory.reach_outer_horizon {sys : NonlinearSys n m} {T 
   (traj.linearize_horizon cert hT hR).reach_outer_horizon hΔt subset_rfl hU hUd o
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

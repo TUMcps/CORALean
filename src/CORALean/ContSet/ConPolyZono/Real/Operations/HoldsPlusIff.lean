@@ -17,9 +17,15 @@ work, neither system's monomials seeing the other's.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Two constraint systems side by side hold exactly when each holds on the
 factors it came with; the block-diagonal exponent matrix is what makes the
@@ -73,3 +79,6 @@ theorem ConPolyZono.holds_plus_iff {p₁ p₂ m₁ s₁ m₂ s₂ : ℕ} (A₁ :
       simpa only [ConPolyZono.plusB, Fin.append_right] using h₂ i
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

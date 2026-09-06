@@ -12,14 +12,23 @@ lower bounds, or the smaller of two upper ones, returns one of them.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 def Interval.and (I₁ I₂ : Interval 𝕋 n) : Interval 𝕋 n where
   inf := fun j => maximum (I₁.inf j) (I₂.inf j)
   sup := fun j => minimum (I₁.sup j) (I₂.sup j)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -28,6 +28,9 @@ pivot dominates the window, so a stable window makes this layer exact, and
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix Pointwise ContSet Plus Mtimes IntervalOuter OfInterval
@@ -116,6 +119,9 @@ theorem le_maxPoolGap (tap : Fin m → Fin (k + 1) → Fin n) (p : Fin m → Fin
     (fun l => if l = p j then (0 : ℝ) else I.sup (tap j l) - I.inf (tap j (p j))) l
   rwa [if_neg hl] at h
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 noncomputable def Layer.maxPool (tap : Fin m → Fin (k + 1) → Fin n)
     (pivot : Interval (Vec ℝ n) → Fin m → Fin (k + 1)) : Layer S n m where
   eval x := fun j => windowMax fun l => x (tap j l)
@@ -145,3 +151,6 @@ noncomputable def Layer.maxPool (tap : Fin m → Fin (k + 1) → Fin n)
       (ofInterval_outer _ hmem))
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

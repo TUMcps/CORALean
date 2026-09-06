@@ -30,9 +30,15 @@ neither `reduce` nor `linComb`.
 -- Last update:   03-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
+
+
+-- ========================================  INSTANCES  ========================================= --
 
 instance {n : ℕ} : Plus (Zonotope 𝕋 n) (Vec ℝ n) where
   plus Z₁ Z₂ := (Z₁.plus Z₂).materialise
@@ -67,3 +73,6 @@ instance : Mtimes (Mat 𝕋) (Zonotope 𝕋) where
     exact Zonotope.mtimes_outer M Z
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

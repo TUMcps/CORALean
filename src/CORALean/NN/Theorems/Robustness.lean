@@ -17,11 +17,17 @@ catches up, and then it is checked by the same theorem everything else is.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NeuralNetwork.holds_robustness (nn : NeuralNetwork S n m) (X : S n) (l : Fin m)
     (u : ∀ j, SupportBound (construct (nn.propagate X))
@@ -31,3 +37,6 @@ theorem NeuralNetwork.holds_robustness (nn : NeuralNetwork S n m) (X : S n) (l :
   nn.holds_of_propagate X _ (disjoint_misclassified_of_bounds l u h)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

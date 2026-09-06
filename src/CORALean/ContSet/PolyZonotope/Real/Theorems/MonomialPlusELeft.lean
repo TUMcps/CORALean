@@ -13,7 +13,13 @@ operation, hence in `Theorems/`, reused across `PlusExact`, `LinCombOuter`,
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A generator from the left block sees only the left factors. Stated for an
 arbitrary factor vector, since the two inclusions supply it differently: one
@@ -35,3 +41,6 @@ theorem PolyZonotope.monomial_plusE_left {p₁ h₁ p₂ h₂ : ℕ} (E₁ : Fin
   rw [hother, hown, mul_one]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

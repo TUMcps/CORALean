@@ -14,9 +14,15 @@ weight is already at most one.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {h₁ h₂ : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.abs_pairCoeffSum_le_one {β₁ : Fin h₁ → ℝ} {β₂ : Fin h₂ → ℝ} {lam : ℝ}
     (hβ₁ : ∀ j, |β₁ j| ≤ 1) (hβ₂ : ∀ j, |β₂ j| ≤ 1) (hl0 : 0 ≤ lam) (hl1 : lam ≤ 1)
@@ -32,3 +38,6 @@ theorem Zonotope.abs_pairCoeffSum_le_one {β₁ : Fin h₁ → ℝ} {β₂ : Fin
     exact le_trans (Zonotope.abs_weighted_le hl0 (hβ₁ j)) hl1
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

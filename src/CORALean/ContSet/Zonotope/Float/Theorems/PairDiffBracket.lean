@@ -9,11 +9,17 @@ import CORALean.ContSet.Zonotope.Float.Operations.LinComb
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {h₁ h₂ : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The same at the paired-difference column. -/
 theorem Zonotope.pairDiff_bracket (g₁ : Fin h₁ → 𝕋) (g₂ : Fin h₂ → 𝕋) (k : Fin h₂) :
@@ -30,3 +36,6 @@ theorem Zonotope.pairDiff_bracket (g₁ : Fin h₁ → 𝕋) (g₂ : Fin h₂ �
     exact ⟨le_refl _, le_refl _⟩
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

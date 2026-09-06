@@ -16,11 +16,17 @@ The set-level reading of `propagateAt_outer`: the image of every point.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem RefinableNetwork.outputSet_subset_propagateAt (rn : RefinableNetwork S n m)
     (sch : Schedule) (X : S n) : rn.outputSet X ⊆ construct (rn.propagateAt sch X) := by
@@ -28,3 +34,6 @@ theorem RefinableNetwork.outputSet_subset_propagateAt (rn : RefinableNetwork S n
   exact rn.propagateAt_outer sch X x hx
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

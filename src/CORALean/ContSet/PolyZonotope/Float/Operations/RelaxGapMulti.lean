@@ -13,11 +13,17 @@ Split out of `RelaxExpMulti.lean` (issue #62): read again by
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n d : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- What the two stored columns can be off by, each the gap to the other
 rounding direction of the same sum. -/
@@ -29,3 +35,6 @@ def PolyZonotope.relaxGapMulti (PZ : PolyZonotope 𝕋 n)
         (PZ.relaxGenMulti part i)]
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

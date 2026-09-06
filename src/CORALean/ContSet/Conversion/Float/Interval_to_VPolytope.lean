@@ -14,6 +14,9 @@ exact layer's corners of the nominal box.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Pointwise FloatOps SoundFloatArithmetic
@@ -24,6 +27,9 @@ def Interval.vPolytope (I : Interval 𝕋 n) : VPolytope 𝕋 n where
   k := 2 ^ n
   V := fun i l => if signEquiv n l i then I.sup i else I.inf i
   E := ⟨fun _ => zero, fun _ => zero⟩
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.subset_vPolytope (I : Interval 𝕋 n) :
     I.construct ⊆ (Interval.vPolytope I).construct := by
@@ -47,3 +53,6 @@ theorem Interval.subset_vPolytope (I : Interval 𝕋 n) :
     rw [add_zero]
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

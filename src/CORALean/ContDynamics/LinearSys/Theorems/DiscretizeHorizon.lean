@@ -15,12 +15,18 @@ without asking for all of forward time.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.Trajectory.discretize_horizon {sys : LinearSys 𝕋 n} {T : Set ℝ}
     {R₀ U Ud : S n} {x u : ℝ → Vec ℝ n} {Δt : ℝ} {K : ℕ}
@@ -34,3 +40,6 @@ theorem LinearSys.Trajectory.discretize_horizon {sys : LinearSys 𝕋 n} {T : Se
   step k hk := by simpa using traj.discretize_step hΔt hU k (step_subset_horizon hΔt hT hk)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

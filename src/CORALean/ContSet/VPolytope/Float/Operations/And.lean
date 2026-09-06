@@ -17,13 +17,22 @@ imprecision being in the detour rather than in the arithmetic.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 def VPolytope.and (P₁ P₂ : VPolytope 𝕋 n) : VPolytope 𝕋 n :=
   Interval.vPolytope (P₁.interval.and P₂.interval)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

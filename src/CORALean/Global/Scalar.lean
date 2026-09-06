@@ -16,7 +16,13 @@ function `Fin n → 𝕋`, not a `Matrix`, so reading it needs its own field.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 class Scalar (𝕋 : Type) where
   toRealMat {m n : ℕ} : Mat 𝕋 m n → Mat ℝ m n
@@ -34,3 +40,6 @@ instance : Scalar ℝ where
 @[simp] theorem Scalar.toRealVec_real {n : ℕ} (v : Vec ℝ n) : toRealVec v = v := rfl
 
 end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

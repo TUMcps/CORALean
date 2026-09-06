@@ -17,9 +17,15 @@ the bound reads off unchanged.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Compacting first only lowers the count it then bounds, so the bound reads
 off `reduceGirard` unchanged. -/
@@ -28,3 +34,6 @@ theorem PolyZonotope.reduce_order_le (PZ : PolyZonotope (Vec ℝ n)) {o : ℕ} (
   PolyZonotope.reduceGirard_order_le PZ.compact ho
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

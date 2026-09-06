@@ -9,9 +9,15 @@ import CORALean.ContSet.ConPolyZono.Real.Operations.PlusA
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.mulVec_plusA_right {m₁ s₁ m₂ s₂ : ℕ} (A₁ : Mat ℝ m₁ s₁)
     (A₂ : Mat ℝ m₂ s₂) (v : Fin (s₁ + s₂) → ℝ) (i : Fin m₂) :
@@ -24,3 +30,6 @@ theorem ConPolyZono.mulVec_plusA_right {m₁ s₁ m₂ s₂ : ℕ} (A₁ : Mat �
     zero_mul, Finset.sum_const_zero, zero_add]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

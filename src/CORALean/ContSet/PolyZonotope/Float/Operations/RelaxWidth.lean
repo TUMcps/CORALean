@@ -15,9 +15,15 @@ directory and by `Theorems/RelaxExpOuter.lean` and
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n d : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `ξ_E`, read off the exponent matrix and so the exact layer's own width. -/
 def PolyZonotope.relaxWidth (PZ : PolyZonotope 𝕋 n)
@@ -25,3 +31,6 @@ def PolyZonotope.relaxWidth (PZ : PolyZonotope 𝕋 n)
   Real.PolyZonotope.eDiff (PZ.E k₀ (part.right 0)) (PZ.E k₀ (part.right 1))
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

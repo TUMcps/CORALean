@@ -15,11 +15,17 @@ box reads it.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Entrywise
 
 variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A point the box denotes is the centre off by at most the radius, which is
 how every enclosure proof splits it. -/
@@ -30,3 +36,6 @@ theorem Interval.abs_sub_center_le {I : Interval α} {x : α} (hx : x ∈ I.cons
   constructor <;> linarith [h.1, h.2]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

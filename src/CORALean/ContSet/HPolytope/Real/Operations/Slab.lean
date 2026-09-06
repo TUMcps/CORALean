@@ -18,11 +18,20 @@ right-hand side into an interval is where that rounding can go.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {q n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def HPolytope.slab (Ae : Mat ℝ q n) (lo hi : Vec ℝ q) : HPolytope (Vec ℝ n) :=
   (HPolytope.ineqs Ae hi).and (HPolytope.ineqs (-Ae) (-lo))
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -20,9 +20,15 @@ makes the order bound count distinct monomials rather than stored columns.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- CORA's `reduce`: to a maximum order, by whichever rule the representation
 sees fit. Girard's is the one here, as over ℝ, and which it is goes no further —
@@ -31,3 +37,6 @@ def PolyZonotope.reduce (PZ : PolyZonotope 𝕋 n) (o : ℕ) : PolyZonotope 𝕋
   PZ.compact.reduceGirard o
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

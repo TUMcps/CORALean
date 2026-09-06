@@ -16,9 +16,15 @@ and nothing here.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The tighter rule is sound on the same line as the bounded one, which is the
 point of `reduceBy_outer` holding at every pair of partitions: what separates
@@ -29,3 +35,6 @@ theorem PolyZonotope.reduceDependent_outer (PZ : PolyZonotope (Vec ℝ n)) (o : 
     (PolyZonotope.reduceGirardDependent_outer PZ.compact o)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

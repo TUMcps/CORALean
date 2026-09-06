@@ -18,9 +18,15 @@ a polytope buys.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def ConZonotope.plus (C₁ C₂ : ConZonotope α) : ConZonotope α where
   h := C₁.h + C₂.h
@@ -29,3 +35,6 @@ def ConZonotope.plus (C₁ C₂ : ConZonotope α) : ConZonotope α where
   P := (C₁.P.comap (blockLeft C₁.h C₂.h)).and (C₂.P.comap (blockRight C₁.h C₂.h))
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

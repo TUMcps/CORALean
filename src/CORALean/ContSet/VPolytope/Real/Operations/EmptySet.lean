@@ -15,10 +15,19 @@ What `and` returns when two polytopes are shown disjoint.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 def VPolytope.emptySet (α : Type) : VPolytope α := ⟨0, Fin.elim0⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

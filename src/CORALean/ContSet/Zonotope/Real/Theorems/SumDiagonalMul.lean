@@ -13,9 +13,15 @@ read down a column is `SumDiagonalMulCol.lean`.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A diagonal block couples each coordinate to one coefficient and no other. -/
 theorem Zonotope.sum_diagonal_mul (v g : Vec ℝ n) (i : Fin n) :
@@ -27,3 +33,6 @@ theorem Zonotope.sum_diagonal_mul (v g : Vec ℝ n) (i : Fin n) :
     exact absurd (Finset.mem_univ i) hi
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

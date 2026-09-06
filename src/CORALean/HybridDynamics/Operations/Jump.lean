@@ -28,6 +28,9 @@ over a real box, whatever `𝕋` stores.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar Plus Mtimes OfInterval
@@ -35,7 +38,13 @@ open Matrix ContSet Scalar Plus Mtimes OfInterval
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
 variable {𝕋 : Type} [Scalar 𝕋] [Mtimes (Mat 𝕋) S] [OfInterval S] {L : Type} {n : ℕ}
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 def Transition.jump (e : Transition S L 𝕋 n) (Rg : S n) : S n :=
   plus (mtimes e.W Rg) (ofInterval (Interval.point (toRealVec e.w)))
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

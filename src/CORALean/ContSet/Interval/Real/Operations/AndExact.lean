@@ -13,9 +13,15 @@ ones.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.and_exact (I₁ I₂ : Interval (Vec ℝ n)) :
     (I₁.and I₂).construct = I₁.construct ∩ I₂.construct := by
@@ -31,3 +37,6 @@ theorem Interval.and_exact (I₁ I₂ : Interval (Vec ℝ n)) :
     exact ⟨max_le (h₁ j).1 (h₂ j).1, le_min (h₁ j).2 (h₂ j).2⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -28,6 +28,9 @@ statement its `ℓ` already pinned.
 -- Last update:   02-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar NormedSpace MeasureTheory
@@ -39,6 +42,9 @@ variable {n : ℕ} {L 𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Every state a stay passes through lies in the location's time-interval
 enclosure, the initial set and the input contribution named by the caller. -/
@@ -53,3 +59,6 @@ theorem Location.Trajectory.timeInterval_outer {ℓ : Location S L 𝕋 n} {τ :
   (traj.linearSys h₀).timeInterval_outer hτ subset_rfl hε ht0 htτ hU hUd
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

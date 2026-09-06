@@ -12,7 +12,13 @@ concatenation gives the generators it did not come from.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Every factor at exponent zero, so the monomial is `1`: the shape a
 concatenation gives the generators it did not come from. -/
@@ -22,3 +28,6 @@ theorem PolyZonotope.monomial_zero {p h : ℕ} {E : Fin p → Fin h → ℕ} (a 
   exact Finset.prod_eq_one fun k _ => by rw [hE k, pow_zero]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

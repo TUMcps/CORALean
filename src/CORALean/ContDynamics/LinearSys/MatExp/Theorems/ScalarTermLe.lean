@@ -15,7 +15,13 @@ with exactly this shape and reuses it rather than re-deriving it.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The scalar core of the tail estimate: the factorial outgrows the power fast
 enough that the tail is dominated by a geometric series. Stated on its own
@@ -40,3 +46,6 @@ theorem scalar_term_le {c : ℝ} (hc : 0 ≤ c) (η i : ℕ) :
         field_simp
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

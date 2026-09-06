@@ -31,11 +31,17 @@ that bounds a column's gap bounds the centre's.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n d : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `relaxExpEven`'s dependent count, stated through the
@@ -201,6 +207,9 @@ theorem PolyZonotope.aux_relaxExpEven_nominal (PZ : PolyZonotope 𝕋 n)
       Matrix.head_cons, Matrix.tail_cons]
     linear_combination toReal (PZ.G i (part.right 0)) * hcoef
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 /-- Merging two generators whose columns agree off `k₀`, with column `i` even,
 `E_{k₀,j}` even and `E_{k₀,j} ≤ E_{k₀,i}`, over-approximates. -/
 theorem PolyZonotope.relaxExpEven_outer (PZ : PolyZonotope 𝕋 n)
@@ -220,3 +229,6 @@ theorem PolyZonotope.relaxExpEven_outer (PZ : PolyZonotope 𝕋 n)
   rw [← hsum', add_comm e g, ← add_assoc]
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

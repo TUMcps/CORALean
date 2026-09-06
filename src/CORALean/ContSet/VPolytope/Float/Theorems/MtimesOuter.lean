@@ -21,11 +21,17 @@ exact product. The error obligation is the interval `mtimes` and one `plus`.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Matrix Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 theorem VPolytope.aux_mtimes_nominal (M : Mat 𝕋 m n) (P : VPolytope 𝕋 n) :
     (toRealMat M *ᵥ ·) '' nominalSet P ⊆
@@ -46,9 +52,15 @@ theorem VPolytope.aux_mtimes_error (M : Mat 𝕋 m n) (P : VPolytope 𝕋 n) :
   subset_trans (Set.add_subset_add_right (Interval.mtimes_outer M P.E))
     (Interval.plus_outer _ _)
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem VPolytope.mtimes_outer (M : Mat 𝕋 m n) (P : VPolytope 𝕋 n) :
     (toRealMat M *ᵥ ·) '' P.construct ⊆ (VPolytope.mtimes M P).construct :=
   map_subset (fun x y => Matrix.mulVec_add _ x y)
     (VPolytope.aux_mtimes_nominal M P) (VPolytope.aux_mtimes_error M P)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

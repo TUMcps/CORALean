@@ -17,9 +17,15 @@ both blocks have been merged onto the columns they keep.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- CORA's `compact`, and what an order bound would rest on: the set is
 unchanged by any of the three stages. -/
@@ -30,3 +36,6 @@ theorem ConPolyZono.compact_exact (C : ConPolyZono α) :
       (ConPolyZono.compactFactors_exact C.compactGens.compactCons))
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

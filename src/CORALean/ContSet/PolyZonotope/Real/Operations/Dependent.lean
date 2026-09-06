@@ -24,9 +24,15 @@ must not reach the freed ones.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def PolyZonotope.dependent (PZ : PolyZonotope α) : PolyZonotope α where
   p := PZ.p + PZ.q
@@ -38,3 +44,6 @@ def PolyZonotope.dependent (PZ : PolyZonotope α) : PolyZonotope α where
   GI := Fin.elim0
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

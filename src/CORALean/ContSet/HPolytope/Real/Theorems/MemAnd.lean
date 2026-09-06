@@ -16,9 +16,15 @@ polytope this way, and so does the float halfspace description.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.mem_and_iff {P₁ P₂ : HPolytope α} {x : α} :
     x ∈ (P₁.and P₂).construct ↔ x ∈ P₁.construct ∧ x ∈ P₂.construct := by
@@ -48,3 +54,6 @@ theorem HPolytope.mem_and_iff {P₁ P₂ : HPolytope α} {x : α} :
       · simp only [HPolytope.and, Fin.append_right]; exact he₂ i
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

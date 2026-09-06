@@ -14,9 +14,15 @@ result, so it is not file-local to either.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.sum_univ_linComb {M : Type} [AddCommMonoid M] {C₁ C₂ : ConZonotope α}
     (f : Fin (C₁.h + C₂.h + 1) → M) :
@@ -25,3 +31,6 @@ theorem ConZonotope.sum_univ_linComb {M : Type} [AddCommMonoid M] {C₁ C₂ : C
   Fin.sum_univ_add f
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

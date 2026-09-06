@@ -25,11 +25,17 @@ The fresh factors take exponent zero in every constraint row, which is what
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def ConPolyZono.dependent (C : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n where
   p := C.p + C.q
@@ -47,3 +53,6 @@ def ConPolyZono.dependent (C : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n where
   err := C.err
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

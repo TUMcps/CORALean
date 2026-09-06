@@ -12,7 +12,13 @@ and by every step of `compact` that follows, all outside this file.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The exponent column of generator `i`, which is the whole of what its
 monomial is. -/
@@ -20,3 +26,6 @@ def PolyZonotope.col {p h : ℕ} (E : Fin p → Fin h → ℕ) (i : Fin h) : Fin
   fun k => E k i
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -14,6 +14,9 @@ so the empty constraint list denotes the whole coefficient space.
 -- Last update:   02-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
@@ -24,6 +27,9 @@ def Zonotope.conZonotope (Z : Zonotope α) : ConZonotope α where
   G := Z.G
   P := HPolytope.fullspace _
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem Zonotope.conZonotope_exact (Z : Zonotope α) : Z.construct = Z.conZonotope.construct := by
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨β, hβ, rfl⟩
@@ -32,3 +38,6 @@ theorem Zonotope.conZonotope_exact (Z : Zonotope α) : Z.construct = Z.conZonoto
     exact ⟨β, hβ, rfl⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

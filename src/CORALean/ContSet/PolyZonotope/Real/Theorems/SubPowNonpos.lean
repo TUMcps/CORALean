@@ -25,7 +25,13 @@ radius alone cannot see.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `α^A ≤ α^B` on `[-1,1]` when `B` is zero, or when both are even and `B` is
 the smaller. -/
@@ -50,3 +56,6 @@ theorem PolyZonotope.sub_pow_nonpos {x : ℝ} (hx : |x| ≤ 1) {A B : ℕ}
     linarith
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

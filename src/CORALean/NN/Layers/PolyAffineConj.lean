@@ -25,6 +25,9 @@ stretches the deviation.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 /-- The coefficients of `t ↦ a · p (b · t)`, where `p` has coefficients `c`. -/
@@ -39,6 +42,9 @@ theorem evalPoly_scaleCoeffs {n : ℕ} (c : Fin (n + 1) → ℝ) (a b t : ℝ) :
   refine Finset.sum_congr rfl fun i _ => ?_
   rw [mul_pow]
   ring
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- A polynomial relaxation of `f` transported along `g t = a f (b t) + d`.
 Only the coefficients move; the error scales by `a` and nothing is re-proved. -/
@@ -59,3 +65,6 @@ noncomputable def PolyRelaxation.ofAffineConj {f g : ℝ → ℝ} {n : ℕ} (P :
     exact mul_le_mul_of_nonneg_left (P.sound hbl hbu) ha.le
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

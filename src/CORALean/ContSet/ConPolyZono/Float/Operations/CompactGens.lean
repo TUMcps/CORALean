@@ -14,11 +14,17 @@ and the gap paid into the ambient box. The constraint block stands.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Equal exponent columns added together, the stored value the lower rounding
 and the gap paid into the ambient box. The constraint block stands. -/
@@ -38,3 +44,6 @@ def ConPolyZono.compactGens (C : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n where
   err := C.err.plus (PolyZonotope.generatorError (ConPolyZono.compactGensGap C))
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

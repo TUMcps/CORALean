@@ -22,9 +22,15 @@ slack rows at all as a separate case.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.eq_zero_of_extremePoint (P : HPolytope (Vec ℝ n)) {x : Vec ℝ n}
     (hx : x ∈ P.construct.extremePoints ℝ) {d : Vec ℝ n}
@@ -79,3 +85,6 @@ theorem HPolytope.eq_zero_of_extremePoint (P : HPolytope (Vec ℝ n)) {x : Vec �
   · exact hd h
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

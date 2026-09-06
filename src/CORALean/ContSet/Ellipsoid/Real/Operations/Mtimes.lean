@@ -17,11 +17,17 @@ generator matrix could not have held it.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {n m : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def Ellipsoid.mtimes (M : Mat ℝ m n) (E : Ellipsoid n) : Ellipsoid m where
   k := E.k
@@ -29,3 +35,6 @@ def Ellipsoid.mtimes (M : Mat ℝ m n) (E : Ellipsoid n) : Ellipsoid m where
   G := M * E.G
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

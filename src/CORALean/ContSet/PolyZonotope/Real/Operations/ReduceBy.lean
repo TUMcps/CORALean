@@ -13,11 +13,17 @@ by `Theorems/ReduceByOuter.lean`, all outside this file.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Partitions both generator blocks rather than choosing either: what
 `partD.left` and `partI.left` name is kept, with the former's exponent columns,
@@ -35,3 +41,6 @@ def PolyZonotope.reduceBy (PZ : PolyZonotope (Vec ℝ n)) {d r dI rI : ℕ}
           (Matrix.diagonal (PZ.dropRadius partD partI))
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

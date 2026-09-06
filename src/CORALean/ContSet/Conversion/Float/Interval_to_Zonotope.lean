@@ -18,6 +18,9 @@ paying for it twice would only widen the result.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Pointwise FloatOps SoundFloatArithmetic
@@ -105,6 +108,9 @@ theorem Interval.subset_nominal_zonotope (I : Interval 𝕋 n) :
     · rw [if_neg h, div_mul_cancel₀ _ h]
       ring
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 -- the error box adds nothing, the generators already covering the box
 theorem Interval.subset_zonotope (I : Interval 𝕋 n) :
     I.construct ⊆ I.zonotope.construct := fun x hx =>
@@ -114,3 +120,6 @@ theorem Interval.subset_zonotope (I : Interval 𝕋 n) :
     exact ⟨le_refl 0, le_refl 0⟩, by show x + 0 = x; rw [add_zero]⟩
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

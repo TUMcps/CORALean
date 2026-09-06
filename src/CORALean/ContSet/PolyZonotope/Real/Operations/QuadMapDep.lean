@@ -15,9 +15,15 @@ directly.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The map on a set whose coefficients are all dependent. Sound only there, so
 nothing calls it directly. -/
@@ -32,3 +38,6 @@ def PolyZonotope.quadMapDep {n m : ℕ} (Q : Fin m → Mat ℝ n n) (S : PolyZon
   GI := Fin.elim0
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

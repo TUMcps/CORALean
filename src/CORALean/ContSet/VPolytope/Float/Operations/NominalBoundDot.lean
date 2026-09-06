@@ -14,11 +14,17 @@ product per vertex, then the largest of them.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- A general direction, at the price the coordinate ones avoid: a rounded dot
 product per vertex, then the largest of them. -/
@@ -34,3 +40,6 @@ def VPolytope.nominalBoundDot (P : VPolytope 𝕋 n) {c : Vec ℝ n →ₗ[ℝ] 
           (le_maximumOver (fun l => dotUp a fun j => P.V j l) l)) hx
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

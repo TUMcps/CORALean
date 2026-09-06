@@ -18,11 +18,17 @@ asks for exactly this of the box a neuron merge computes.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.mtimes_isNonempty (M : Mat 𝕋 m n) (I : Interval 𝕋 n) :
     (Interval.mtimes M I).nominal.IsNonempty := fun i => by
@@ -37,3 +43,6 @@ theorem Interval.mtimes_isNonempty (M : Mat 𝕋 m n) (I : Interval 𝕋 n) :
     (le_trans (Finset.sum_le_sum fun k _ => hle k) (sum_le_sumUp _))
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

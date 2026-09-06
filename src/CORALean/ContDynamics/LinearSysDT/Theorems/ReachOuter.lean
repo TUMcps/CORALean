@@ -12,6 +12,9 @@ via `aux_toTrajectoryOn`, so nothing here is proved twice.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix Pointwise ContSet Scalar Plus Reduce Mtimes
@@ -19,6 +22,9 @@ open Matrix Pointwise ContSet Scalar Plus Reduce Mtimes
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] in
 /-- A total run restricted to its first `K` steps: nothing past step `K` is
@@ -30,9 +36,15 @@ theorem LinearSysDT.Trajectory.aux_toTrajectoryOn {sys : LinearSysDT 𝕋 n} {R�
   input k _ := traj.input k
   step k _ := traj.step k
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem LinearSysDT.reach_outer (sys : LinearSysDT 𝕋 n) (o : ℕ) (R₀ U : S n)
     {x u : ℕ → Vec ℝ n} (traj : sys.Trajectory R₀ U x u) (k : ℕ) :
     x k ∈ construct (sys.reach o R₀ U k) :=
   sys.reach_outer_on o R₀ U (traj.aux_toTrajectoryOn k) k le_rfl
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

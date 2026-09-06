@@ -14,9 +14,15 @@ Split out of `Compact.lean` (issue #62): read again by the float layer's own
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Equal exponent columns added together, and the zero generators gone. The
 factors are untouched, so a factor vector carries over unchanged. -/
@@ -31,3 +37,6 @@ noncomputable def PolyZonotope.compactGens (PZ : PolyZonotope α) : PolyZonotope
   GI := PZ.GI
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -14,7 +14,13 @@ of concrete networks in `Examples`, and via `DisjointMisclassifiedOfBounds` and
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- How far label `j` closes the gap on label `l`: the direction each of the
 `m - 1` bounds runs in. -/
@@ -22,3 +28,6 @@ def marginDir (m : ℕ) (j l : Fin m) : Vec ℝ m →ₗ[ℝ] ℝ :=
   (LinearMap.proj j : Vec ℝ m →ₗ[ℝ] ℝ) - (LinearMap.proj l : Vec ℝ m →ₗ[ℝ] ℝ)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

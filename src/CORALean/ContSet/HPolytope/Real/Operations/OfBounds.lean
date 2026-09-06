@@ -18,9 +18,15 @@ Nothing here solves a linear program. It consumes the answers.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α] {q : ℕ} {S : Set α}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def HPolytope.ofBounds (Aq : Fin q → (α →ₗ[ℝ] ℝ)) (u : ∀ i, SupportBound S (Aq i)) :
     HPolytope α where
@@ -32,3 +38,6 @@ def HPolytope.ofBounds (Aq : Fin q → (α →ₗ[ℝ] ℝ)) (u : ∀ i, Support
   be := Fin.elim0
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

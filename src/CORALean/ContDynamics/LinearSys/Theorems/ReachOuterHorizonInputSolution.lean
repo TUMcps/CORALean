@@ -15,6 +15,9 @@ Only the steps inside the horizon are enclosed, which is exactly what
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar
@@ -26,6 +29,9 @@ variable [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 omit [∀ n, LinComb (S n) (Vec ℝ n)] in
 theorem LinearSys.Trajectory.reach_outer_horizon_inputSolution [Mtimes ℐ S]
@@ -48,3 +54,6 @@ theorem LinearSys.Trajectory.reach_outer_horizon_inputSolution [Mtimes ℐ S]
       (step_subset_horizon hΔt.le hT hk)) o
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

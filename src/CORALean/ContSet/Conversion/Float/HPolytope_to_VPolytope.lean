@@ -14,6 +14,9 @@ into corners costs nothing more.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
@@ -24,9 +27,15 @@ def HPolytope.vPolytopeBox (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.p
     (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) : VPolytope 𝕋 n :=
   Interval.vPolytope (HPolytope.interval up lo)
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem HPolytope.subset_vPolytopeBox (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
     (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) :
     P.construct ⊆ (HPolytope.vPolytopeBox up lo).construct :=
   subset_trans (HPolytope.interval_outer up lo) (Interval.subset_vPolytope _)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

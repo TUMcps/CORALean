@@ -16,11 +16,17 @@ by the definition. `plus_outer` is the half that needs no such hypothesis.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Pointwise Entrywise
 
 variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 -- every `Entrywise` rewrite unfolds `plus` by `rfl`, and the four `linarith` calls pay for it
 set_option maxHeartbeats 400000 in
@@ -47,3 +53,6 @@ theorem Interval.plus_exact (I₁ I₂ : Interval α) (h₁ : I₁.IsNonempty) (
       linarith
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

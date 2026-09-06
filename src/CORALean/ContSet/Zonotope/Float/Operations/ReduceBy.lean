@@ -14,11 +14,17 @@ copied exactly, and the diagonal block rounds *up*, which only enlarges.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n q r : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- CORA's reduction at a given partition, unchanged in shape and sound for
 every one of them. Nothing is charged to the box: the centre and kept generators
@@ -32,3 +38,6 @@ def Zonotope.reduceBy (Z : Zonotope 𝕋 n) (part : Split (Fin Z.h) into (Fin q)
   E := Z.E
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

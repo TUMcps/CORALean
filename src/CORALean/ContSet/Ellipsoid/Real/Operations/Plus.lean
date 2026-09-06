@@ -26,9 +26,15 @@ a precision choice in an interface, which is why `Instances` leaves it alone.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 noncomputable def Ellipsoid.plus (l : ℝ) (E₁ E₂ : Ellipsoid n) : Ellipsoid n where
   k := E₁.k + E₂.k
@@ -38,3 +44,6 @@ noncomputable def Ellipsoid.plus (l : ℝ) (E₁ E₂ : Ellipsoid n) : Ellipsoid
       (fun j => Real.sqrt (1 + l) * E₂.G i j)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

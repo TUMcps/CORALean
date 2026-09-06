@@ -13,11 +13,17 @@ Membership splits with the rows, each half read on the polytope it came from.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Matrix FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 -- membership splits with the rows, each half read on the polytope it came from
 theorem HPolytope.mem_and_iff {P₁ P₂ : HPolytope 𝕋 n} {x : Vec ℝ n} :
@@ -56,3 +62,6 @@ theorem HPolytope.mem_and_iff {P₁ P₂ : HPolytope 𝕋 n} {x : Vec ℝ n} :
         exact heq₂ i
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

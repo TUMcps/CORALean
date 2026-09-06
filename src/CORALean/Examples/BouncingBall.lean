@@ -30,6 +30,9 @@ tested pointwise. Both are the missing `And` interface.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar NormedSpace MeasureTheory
@@ -44,6 +47,9 @@ noncomputable def Example.bounce (d v : ℝ) : Transition 𝒵 Unit ℝ 2 where
   W := !![1, 0; 0, -d]
   w := 0
   target := ()
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Falling under gravity inside the box `[0, p] × [-v, v]`, and bouncing out of
 the only location back into it. -/
@@ -98,3 +104,6 @@ noncomputable example (d v : ℝ) (Rg : Zonotope (Vec ℝ 2)) : Zonotope (Vec �
   (Example.bounce d v).jump Rg
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

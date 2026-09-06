@@ -19,7 +19,13 @@ is not a box and is not covered.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `E`'s coordinates pinned to `x`'s values, the rest an `ε`-box around them. -/
 def explainBox {n : ℕ} (x : Vec ℝ n) (ε : ℝ) (E : Finset (Fin n)) : Interval (Vec ℝ n) where
@@ -27,3 +33,6 @@ def explainBox {n : ℕ} (x : Vec ℝ n) (ε : ℝ) (E : Finset (Fin n)) : Inter
   sup := fun i => if i ∈ E then x i else x i + ε
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

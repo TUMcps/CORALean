@@ -29,6 +29,9 @@ together with a range, and `Layer.refinable` reads nothing at all.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet
@@ -51,6 +54,9 @@ def RefinableLayer.atPattern (L : RefinableLayer S n m) (t : OrderPattern n) : L
   propagate := L.propagate t
   propagate_outer := L.propagate_outer t
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 /-- A layer with nothing to spend: every pattern is the layer itself, which is
 how a linear layer sits in a refinable network. -/
 def Layer.refinable (L : Layer S n m) : RefinableLayer S n m where
@@ -59,3 +65,6 @@ def Layer.refinable (L : Layer S n m) : RefinableLayer S n m where
   propagate_outer _ := L.propagate_outer
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

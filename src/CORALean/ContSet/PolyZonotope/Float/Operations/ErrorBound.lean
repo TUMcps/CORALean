@@ -13,14 +13,23 @@ all outside this file.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 /-- What one generator per coordinate must reach to cover the box, exactly. -/
 def PolyZonotope.errorBound (I : Interval 𝕋 n) : Vec 𝕋 n :=
   fun i => maximum (absolute (I.inf i)) (absolute (I.sup i))
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

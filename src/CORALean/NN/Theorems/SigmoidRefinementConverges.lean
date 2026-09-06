@@ -20,11 +20,20 @@ so: the point being made is that the *layer* half is met at a real activation,
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Pointwise ContSet
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem sigmoidRefinableNetwork_convergent (n : ℕ) : (sigmoidRefinableNetwork n).Convergent :=
   ⟨Layer.activationPolySigmoid_convergent n, ⟨1, LipschitzWith.id⟩, trivial⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

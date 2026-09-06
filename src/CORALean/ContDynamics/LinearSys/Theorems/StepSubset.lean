@@ -15,10 +15,19 @@ into each — the two ask for the same step, over a total run and one bounded by
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem step_subset {T : Set ℝ} {Δt : ℝ} (hΔt : 0 ≤ Δt) (hT : Set.Ici 0 ⊆ T) (k : ℕ) :
     Set.Icc ((k : ℝ) * Δt) (((k : ℝ) + 1) * Δt) ⊆ T :=
   fun _ hs => hT (le_trans (mul_nonneg (Nat.cast_nonneg k) hΔt) hs.1)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

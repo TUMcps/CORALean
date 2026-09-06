@@ -16,6 +16,9 @@ Not an instance of `plus_subset`: one weight is shared by both halves.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float.InflatedContSet
 
 open Pointwise
@@ -23,6 +26,9 @@ open Pointwise
 variable {𝕋 S₁ S₂ T N₁ N₂ N : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 variable [ContSet N₁ (Vec ℝ n)] [ContSet N₂ (Vec ℝ n)] [ContSet N (Vec ℝ n)]
 variable [InflatedContSet S₁ N₁ 𝕋 n] [InflatedContSet S₂ N₂ 𝕋 n] [InflatedContSet T N 𝕋 n]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem linComb_subset {s₁ : S₁} {s₂ : S₂} {t : T} {D : Set (Vec ℝ n)}
     (hnominal : segments (nominalSet s₁) (nominalSet s₂) ⊆ nominalSet t + D)
@@ -42,3 +48,6 @@ theorem linComb_subset {s₁ : S₁} {s₂ : S₂} {t : T} {D : Set (Vec ℝ n)}
   abel
 
 end CORALean.Float.InflatedContSet
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

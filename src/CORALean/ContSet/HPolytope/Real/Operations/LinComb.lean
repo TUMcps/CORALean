@@ -17,9 +17,15 @@ the distinction the interface keeps is for representations that are not.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α] {q : ℕ} {P₁ P₂ : HPolytope α}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def HPolytope.linCombOf (Aq : Fin q → (α →ₗ[ℝ] ℝ))
     (u₁ : ∀ i, SupportBound P₁.construct (Aq i))
@@ -27,3 +33,6 @@ def HPolytope.linCombOf (Aq : Fin q → (α →ₗ[ℝ] ℝ))
   HPolytope.ofBounds Aq fun i => (u₁ i).segments (u₂ i)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

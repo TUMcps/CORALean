@@ -23,11 +23,17 @@ last, and `errorBound` rounds nothing, so it always fits.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `dependent`'s generator count, stated through the
@@ -38,6 +44,9 @@ theorem PolyZonotope.aux_sum_univ_dependent {PZ : PolyZonotope 𝕋 n}
     ∑ l : Fin PZ.dependent.h, f l
       = ∑ l, f (Fin.castAdd (PZ.q + n) l) + ∑ l, f (Fin.natAdd PZ.h l) :=
   Fin.sum_univ_add f
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 -- the error box is freed into `n` fresh factors, one per coordinate
 theorem PolyZonotope.dependent_nominal (PZ : PolyZonotope 𝕋 n) :
@@ -73,3 +82,6 @@ theorem PolyZonotope.dependent_nominal (PZ : PolyZonotope 𝕋 n) :
     ring
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

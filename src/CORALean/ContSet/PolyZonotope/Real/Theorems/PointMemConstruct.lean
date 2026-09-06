@@ -22,9 +22,15 @@ members no factor vector reaches.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- At factors in `[-1,1]`, the point the dependent part picks out is a member
 of the set. -/
@@ -35,3 +41,6 @@ theorem PolyZonotope.point_mem_construct (S : PolyZonotope α) {a : Fin S.p → 
   simp only [PolyZonotope.point, zero_smul, Finset.sum_const_zero, add_zero]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

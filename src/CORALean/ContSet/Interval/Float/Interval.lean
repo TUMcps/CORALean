@@ -15,11 +15,17 @@ definition rather than by a lemma. Each operation then owes only enclosure.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 structure Interval (𝕋 : Type) (n : ℕ) where
   inf : Vec 𝕋 n
@@ -53,3 +59,6 @@ omit [FloatOps 𝕋] in
   simp [Interval.materialise]
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

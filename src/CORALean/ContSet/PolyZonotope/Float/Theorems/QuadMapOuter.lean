@@ -25,6 +25,9 @@ alone, and `generatorError` prices that difference exactly as it does for
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Pointwise Matrix FloatOps SoundFloatArithmetic InflatedContSet
@@ -32,6 +35,9 @@ open Pointwise Matrix FloatOps SoundFloatArithmetic InflatedContSet
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 /-! ## What a rounded bilinear form costs -/
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 theorem PolyZonotope.aux_quadMapG_close (Q : Fin m → Mat 𝕋 n n) (S : PolyZonotope 𝕋 n)
     (i : Fin m) (l : Fin ((S.h + 1) * (S.h + 1))) :
@@ -110,6 +116,9 @@ theorem PolyZonotope.aux_quadMapDep_refines (Q : Fin m → Mat 𝕋 n n) (S : Po
     Finset.sum_empty, add_zero, zero_add]
   exact hsum
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 -- the whole operation: `dependent` first, then the exact map, then this refinement
 theorem PolyZonotope.quadMap_outer (Q : Fin m → Mat 𝕋 n n) (PZ : PolyZonotope 𝕋 n) :
     Real.PolyZonotope.quadEval (fun k => toRealMat (Q k)) '' PZ.construct
@@ -120,3 +129,6 @@ theorem PolyZonotope.quadMap_outer (Q : Fin m → Mat 𝕋 n n) (PZ : PolyZonoto
     (nominal PZ.dependent) rfl).subset
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -19,11 +19,17 @@ this expression, which is why each reads it by `exact`.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n d : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The merged column is stored downward, so it is off by at most its gap to the
 upward rounding. -/
@@ -45,3 +51,6 @@ theorem PolyZonotope.mergedGen_gap (PZ : PolyZonotope 𝕋 n)
   constructor <;> linarith
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

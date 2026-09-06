@@ -12,11 +12,17 @@ Split out of `Mul.lean` (issue #62): read again by `Theorems/EvalPolyOuter.lean`
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Generator `(i, j)` of the product, rounded down: one multiplication per
 coordinate. -/
@@ -26,3 +32,6 @@ def PolyZonotope.mulGDown (S₁ S₂ : PolyZonotope 𝕋 n) :
     (PolyZonotope.extG S₂ i (finProdFinEquiv.symm l).2)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -14,9 +14,15 @@ other choice would discharge this too.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Girard's is the rule `reduce` runs, and this line is the whole of that
 choice: any other would discharge it too. -/
@@ -25,3 +31,6 @@ theorem Zonotope.reduce_outer (Z : Zonotope (Vec ℝ n)) (o : ℕ) :
   Zonotope.reduceGirard_outer Z o
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

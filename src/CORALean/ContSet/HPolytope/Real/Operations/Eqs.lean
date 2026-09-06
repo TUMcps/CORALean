@@ -11,9 +11,15 @@ CORA's `polytope([], [], Ae, be)`: one equality per row.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {q n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- CORA's `polytope([], [], Ae, be)`: one equality per row. -/
 def HPolytope.eqs (Ae : Mat ℝ q n) (be : Vec ℝ q) : HPolytope (Vec ℝ n) where
@@ -25,3 +31,6 @@ def HPolytope.eqs (Ae : Mat ℝ q n) (be : Vec ℝ q) : HPolytope (Vec ℝ n) wh
   be := be
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

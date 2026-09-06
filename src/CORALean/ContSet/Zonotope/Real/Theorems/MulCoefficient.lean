@@ -13,7 +13,13 @@ generator radius it returns the target exactly. At `R = 0` the hypothesis pins
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.mul_coefficient {R D : ℝ} (hDR : |D| ≤ R) :
     R * Zonotope.coefficient R D = D := by
@@ -24,3 +30,6 @@ theorem Zonotope.mul_coefficient {R D : ℝ} (hDR : |D| ≤ R) :
   · rw [if_neg h0]; field_simp
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

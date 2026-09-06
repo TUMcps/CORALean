@@ -28,6 +28,9 @@ set is what a step is *run* with rather than what the linearization *is*.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet
@@ -35,6 +38,9 @@ open Matrix ContSet
 variable {n m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [OfInterval S]
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 /-- One linearization of `sys`, with the certificate that makes it conservative
 wherever the state stays in `R`. -/
@@ -53,3 +59,6 @@ def NonlinearSys.LinStep.linInput {sys : NonlinearSys n m} {U : S m}
   CORALean.Real.linInput sys.f step.A step.B step.xs step.us U step.L
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

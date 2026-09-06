@@ -66,6 +66,42 @@ BEGIN {
   KIND = "(def|theorem|lemma|abbrev|instance|structure|inductive|class)"
   DECL_START = "^" ATTR MODS KIND " "
   DECL_PREFIX = "^" ATTR MODS KIND "[ \t]+"
+
+  # The four section markers stamped across every file with declarations:
+  # exactly 100 characters, `-` fill except the label naming the main
+  # declaration, which uses `=`. Checked by exact string match against every
+  # valid form rather than by a width-only regex, so a marker that is 100
+  # characters but has its fill split unevenly around the label — a mistake a
+  # length check alone would miss — is still caught.
+  M_BEGIN = "-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --"
+  M_AUX   = "-- ----------------------------------------  AUXILIARY  ----------------------------------------- --"
+  M_END   = "-- ---------------------------------------  END OF CODE  ---------------------------------------- --"
+  M_THM   = "-- =======================================  MAIN THEOREM  ======================================= --"
+  M_DEF   = "-- =====================================  MAIN DEFINITION  ====================================== --"
+  M_INST  = "-- ======================================  MAIN INSTANCE  ======================================= --"
+  M_TYPE  = "-- ========================================  MAIN TYPE  ========================================= --"
+  M_INSTS = "-- ========================================  INSTANCES  ========================================= --"
+
+  markerLabel[M_BEGIN] = "BEGIN CODE"
+  markerLabel[M_AUX]   = "AUXILIARY"
+  markerLabel[M_END]   = "END OF CODE"
+  markerLabel[M_THM]   = "MAIN THEOREM"
+  markerLabel[M_DEF]   = "MAIN DEFINITION"
+  markerLabel[M_INST]  = "MAIN INSTANCE"
+  markerLabel[M_TYPE]  = "MAIN TYPE"
+  markerLabel[M_INSTS] = "INSTANCES"
+
+  # What a `MAIN ...` marker label must be, given the kind of the
+  # declaration that follows it — the rule that stops a label going stale
+  # after a refactor changes what the main declaration of a file is.
+  mainLabelForKind["theorem"]    = "MAIN THEOREM"
+  mainLabelForKind["lemma"]      = "MAIN THEOREM"
+  mainLabelForKind["def"]        = "MAIN DEFINITION"
+  mainLabelForKind["abbrev"]     = "MAIN DEFINITION"
+  mainLabelForKind["instance"]   = "MAIN INSTANCE"
+  mainLabelForKind["structure"]  = "MAIN TYPE"
+  mainLabelForKind["class"]      = "MAIN TYPE"
+  mainLabelForKind["inductive"]  = "MAIN TYPE"
 }
 
 # Characters, not bytes: every byte of a UTF-8 sequence but the first is a
@@ -223,6 +259,55 @@ function check(f,   i, n, collector, want, dir, cap) {
     if (f ~ /\/Real\// && f !~ /\/Float\// && ns !~ /(^|\.)Real(\.|$)/)
       say(f ":" nsLine ": a file under `Real/` declares `namespace ...Real`, not `" ns "`")
   }
+
+  # Section markers: `BEGIN CODE`/`END OF CODE` frame a file with declarations,
+  # `AUXILIARY` marks the first `aux_` one, and a `MAIN ...`/`INSTANCES` marker
+  # signposts the declaration a reader is looking for, which Lean always buries
+  # last. `API.lean` and a file with no declarations at all carry none.
+  isAPI = (f ~ /\/API\.lean$/)
+  hasDecl = (nDeclTotal > 0)
+
+  if (isAPI) {
+    if (beginCount + endCount + auxCount + mainishCount > 0)
+      say(f ":1: `API.lean` carries no section markers")
+  } else if (!hasDecl) {
+    if (beginCount + endCount + auxCount + mainishCount > 0)
+      say(f ":1: a file with no declarations carries no section markers")
+  } else {
+    if (beginCount == 0)
+      say(f ":1: missing the `BEGIN CODE` marker, after the author block and" \
+          " before `namespace`")
+    else if (beginCount > 1)
+      say(f ":" beginFNR ": more than one `BEGIN CODE` marker")
+    if (endCount == 0)
+      say(f ":1: missing the `END OF CODE` marker, as the last line of the file")
+    else if (endCount > 1)
+      say(f ":" endFNR ": more than one `END OF CODE` marker")
+    if (mainishCount == 0)
+      say(f ":1: missing the `MAIN ...` marker before the main declaration of the file")
+    else if (mainishCount > 1)
+      say(f ":" pendingMainFNR ": more than one `MAIN ...`/`INSTANCES` marker")
+
+    if (beginFNR > 0 && nsLine > 0 && beginFNR > nsLine)
+      say(f ":" beginFNR ": `BEGIN CODE` must come before `namespace`")
+    if (beginFNR > 0 && authorLine > 0 && beginFNR < authorLine)
+      say(f ":" beginFNR ": `BEGIN CODE` must come after the author block")
+    if (endFNR > 0 && endFNR != lastFNR)
+      say(f ":" endFNR ": `END OF CODE` must be the last line of the file")
+
+    n = 0
+    for (a in declAux) n++
+    if (n > 0 && auxCount == 0)
+      say(f ":1: file has `aux_` declarations but no `AUXILIARY` marker")
+    if (n == 0 && auxCount > 0)
+      say(f ":1: `AUXILIARY` marker present but the file has no `aux_` declaration")
+  }
+
+  if (pendingMain)
+    say(f ":" pendingMainFNR ": `" pendingMainLabel "` marker is not followed by a declaration")
+  if (afterPending)
+    say(f ":" afterMarkerFNR ": `" afterLabel "` marker is not followed by a blank line" \
+        " and then content")
 }
 
 FNR == 1 {
@@ -233,7 +318,11 @@ FNR == 1 {
   blockKind = ""; blockStart = 0; declDocEnd = 0
   prevPureComment = 0; prevLineComment = 0; run = 0; blanks = 0; inRefs = 0; refsLine = 0
   firstDeclSeen = 0; firstBodyFound = 0; firstBodyLine = 0
-  npub = 0
+  npub = 0; nDeclTotal = 0; lastFNR = 0
+  beginCount = 0; endCount = 0; auxCount = 0; mainishCount = 0
+  beginFNR = 0; endFNR = 0
+  afterPending = 0; afterLabel = ""; afterMarkerFNR = 0; afterBlanks = 0
+  pendingMain = 0; pendingMainLabel = ""; pendingMainFNR = 0; pendingMainIsInstances = 0
   # `split("", a)` rather than `delete a`, which older mawk does not have
   split("", declAux); split("", useAux); split("", imp); split("", impLine)
   split("", refDef); split("", refCite); split("", pubList)
@@ -241,6 +330,53 @@ FNR == 1 {
 
 {
   raw = $0
+  lastFNR = FNR
+  priorBlanks = blanks
+  isMarkerLine = (raw in markerLabel)
+
+  # Resolve the marker seen on an earlier line: normally the gap to whatever
+  # comes next must be exactly one blank line, but two adjacent markers with
+  # nothing between them (a file with no `namespace`, and one declaration
+  # right where `BEGIN CODE` also anchors) share a gap, which must then be the
+  # two blank lines the second marker requires before it rather than one.
+  if (afterPending && raw ~ /[^ \t]/) {
+    wantAfter = isMarkerLine ? 2 : 1
+    if (afterBlanks != wantAfter)
+      say(FILENAME ":" afterMarkerFNR ": `" afterLabel "` marker has " afterBlanks \
+          " blank line(s) after it, not " wantAfter)
+    afterPending = 0
+  } else if (afterPending) {
+    afterBlanks++
+  }
+
+  if (isMarkerLine) {
+    label = markerLabel[raw]
+    if (priorBlanks != 2)
+      say(FILENAME ":" FNR ": `" label "` marker has " priorBlanks \
+          " blank line(s) before it, not 2")
+    if (label == "BEGIN CODE") {
+      beginCount++; beginFNR = FNR
+    } else if (label == "END OF CODE") {
+      endCount++; endFNR = FNR
+    } else if (label == "AUXILIARY") {
+      auxCount++
+      afterPending = 1; afterLabel = label; afterMarkerFNR = FNR; afterBlanks = 0
+    } else {
+      mainishCount++
+      if (label == "INSTANCES" && FILENAME !~ /\/Instances\.lean$/)
+        say(FILENAME ":" FNR ": the `INSTANCES` label is only for `Instances.lean`")
+      if (label != "INSTANCES" && FILENAME ~ /\/Instances\.lean$/)
+        say(FILENAME ":" FNR ": `Instances.lean` holds several anonymous instances" \
+            " with no single main one — use the `INSTANCES` label")
+      pendingMain = 1; pendingMainLabel = label; pendingMainFNR = FNR
+      pendingMainIsInstances = (label == "INSTANCES")
+      afterPending = 1; afterLabel = label; afterMarkerFNR = FNR; afterBlanks = 0
+    }
+  } else if (raw ~ /^-- [-=]/) {
+    say(FILENAME ":" FNR ": looks like a section marker but does not match the" \
+        " canonical form — check the width and the fill either side of the label")
+  }
+
   if (charlen(raw) > MAX_LINE)
     say(FILENAME ":" FNR ": line is " charlen(raw) " characters, over the limit of " \
         MAX_LINE " — wrap it")
@@ -397,10 +533,27 @@ FNR == 1 {
   if (code ~ DECL_START) {
     match(code, DECL_START)
     prefix = substr(code, RSTART, RLENGTH)
+    match(prefix, KIND)
+    kind = substr(prefix, RSTART, RLENGTH)
     decl = code
     sub(DECL_PREFIX, "", decl)
     sub(/[^A-Za-z0-9_'"'"'.].*$/, "", decl)
     b = base(decl)
+    nDeclTotal++
+
+    # Whatever `MAIN ...`/`INSTANCES` marker is still open closes on the first
+    # declaration seen after it, regardless of how many comment or blank lines
+    # sit in between.
+    if (pendingMain) {
+      if (!pendingMainIsInstances) {
+        want = mainLabelForKind[kind]
+        if (want != pendingMainLabel)
+          say(FILENAME ":" pendingMainFNR ": `" pendingMainLabel "` marker precedes a `" \
+              kind "` declaration at line " FNR ", which needs `" want "`")
+      }
+      pendingMain = 0
+    }
+
     if (b ~ /^aux_/) {
       declAux[b] = FNR
       # An instance is found by type class search, never by name, so no file

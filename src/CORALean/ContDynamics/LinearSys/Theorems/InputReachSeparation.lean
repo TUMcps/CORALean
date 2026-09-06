@@ -29,6 +29,9 @@ back to a window starting at zero.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar NormedSpace MeasureTheory Pointwise
@@ -40,6 +43,9 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 variable [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Translating by `c` carries `Icc a b` onto `Icc (a+c) (b+c)` and preserves
 Lebesgue measure. -/
@@ -63,6 +69,10 @@ noncomputable def aux_concat (u₁ u₂ : ℝ → Vec ℝ n) (a : ℝ) : ℝ →
 
 omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
   [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] in
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 -- the concatenated input is measured by splitting the window and rebuilding it
 set_option maxHeartbeats 1000000 in
 /-- [1, Prop. 3.2]: what a run over `[0, a+b]` can contribute includes everything
@@ -152,3 +162,6 @@ theorem LinearSys.inputReach_separation (sys : LinearSys 𝕋 n) {U : S n} {a b 
     rw [hrw]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -19,6 +19,9 @@ care: `neg one` is exact.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open ContSet FloatOps SoundFloatArithmetic
@@ -44,9 +47,15 @@ namespace Layer
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat 𝕋) S] [IntervalOuter S 𝕋] [OfInterval S 𝕋] {n : ℕ}
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 /-- `k` is the reduction depth the sigmoid relaxation underneath is built at. -/
 noncomputable def tanh (k : ℕ) : Real.Layer S n n := Layer.activation (tanhRelaxation k)
 
 end Layer
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

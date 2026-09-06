@@ -17,9 +17,15 @@ names `mul`'s field, so neither case looks at what is below it.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.evalPoly_q (S : PolyZonotope (Vec ℝ n)) :
     ∀ coeffs : List (Vec ℝ n), (S.evalPoly coeffs).q = 0
@@ -27,3 +33,6 @@ theorem PolyZonotope.evalPoly_q (S : PolyZonotope (Vec ℝ n)) :
   | _ :: _ => rfl
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

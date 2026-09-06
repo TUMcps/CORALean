@@ -22,11 +22,17 @@ propagated set is sufficiency for `nn` outright.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet OfInterval
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OfInterval S] {n m : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NeuralNetwork.suffExplanation_of_propagate (nn : NeuralNetwork S n m)
     (x : Vec ℝ n) (ε : ℝ) (E : Finset (Fin n)) (l : Fin m)
@@ -35,3 +41,6 @@ theorem NeuralNetwork.suffExplanation_of_propagate (nn : NeuralNetwork S n m)
   nn.suffExplanation_of_abstract nn x ε E l (nn.outputSet_subset _) hsuffAbs
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

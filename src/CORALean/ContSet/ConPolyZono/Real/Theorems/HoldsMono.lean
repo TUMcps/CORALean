@@ -12,7 +12,13 @@ rounded bound sound, so the float layer can pay its error into `b` through it.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Widening a bound only admits more factor vectors, which is what makes a
 rounded constraint sound. -/
@@ -23,3 +29,6 @@ theorem ConPolyZono.holds_mono {p m s : ℕ} {A : Mat ℝ m s} {b b' : Interval 
   fun i => ⟨le_trans (hinf i) (h i).1, le_trans (h i).2 (hsup i)⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

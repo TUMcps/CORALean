@@ -13,9 +13,15 @@ Split out of `EvalPoly.lean` (issue #62): read again by the float layer's own
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- One Horner step: `R` multiplied by `S`, then shifted by the next
 coefficient. Named, `where`-built like `mul` itself, so its fields unfold
@@ -31,3 +37,6 @@ def PolyZonotope.evalPolyStep (R S : PolyZonotope (Vec ℝ n)) (hp : R.p = S.p) 
   GI := (PolyZonotope.mul R S hp).GI
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -28,6 +28,9 @@ operator norm here as everywhere `discretize` is reasoned about.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar NormedSpace
@@ -39,6 +42,9 @@ variable {n m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 /-- The reachable set after `i` re-linearized steps of length `Δt`, from `R₀`
 under the per-step input enclosures `Ud`, held at maximum order `o`. -/
 noncomputable def NonlinearSys.relinReach (sys : NonlinearSys n m) {U : S m} (o : ℕ) (Δt : ℝ)
@@ -48,3 +54,6 @@ noncomputable def NonlinearSys.relinReach (sys : NonlinearSys n m) {U : S m} (o 
       (sys.relinReach o Δt steps Ud R₀ i) (Ud i) 1
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

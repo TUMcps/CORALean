@@ -26,12 +26,18 @@ and a jump has no meaning without the stay that brought the state to the guard.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet Scalar
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 structure HybridAutomaton (S : ℕ → Type) (L : Type) (𝕋 : Type) (n : ℕ) where
   loc : L → Location S L 𝕋 n
@@ -48,3 +54,6 @@ inductive HybridAutomaton.Run {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ 
       HA.Run ℓ (x 0) ℓ' y
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

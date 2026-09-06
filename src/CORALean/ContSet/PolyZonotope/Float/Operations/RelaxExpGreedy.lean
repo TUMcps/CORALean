@@ -22,9 +22,15 @@ precision against here, as much as which pairs the selection picks.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Merge at whatever the selection names, at most `n` times. -/
 def PolyZonotope.relaxExpGreedy
@@ -36,3 +42,6 @@ def PolyZonotope.relaxExpGreedy
     (sel PZ).elim PZ fun sp => PolyZonotope.relaxExpGreedy sel m (PZ.relaxExpMulti sp.2)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

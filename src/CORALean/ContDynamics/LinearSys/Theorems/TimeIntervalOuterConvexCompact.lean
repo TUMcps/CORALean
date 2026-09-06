@@ -27,6 +27,9 @@ and needs a representation that can recentre itself.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar NormedSpace MeasureTheory
@@ -38,6 +41,9 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Every trajectory whose input set is convex, compact and contains the origin
 stays in the step enclosure at every time of the step, not only at its end. -/
@@ -56,3 +62,6 @@ theorem LinearSys.Trajectory.timeInterval_outer_convexCompact
     (CompactSet.isBounded_construct _) h0
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

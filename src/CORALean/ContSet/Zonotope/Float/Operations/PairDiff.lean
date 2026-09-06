@@ -16,11 +16,17 @@ Takes the directed subtraction as an argument rather than fixing one, since
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {h₁ h₂ : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Half the difference, the other half of a pairing; past the shorter block it
 is the second set's surplus generator, copied. -/
@@ -29,3 +35,6 @@ def Zonotope.pairDiff (sub : 𝕋 → 𝕋 → 𝕋) (G₁ : Fin h₁ → 𝕋) 
   if hj : (j : ℕ) < h₁ then half (sub (G₁ ⟨j, hj⟩) (G₂ j)) else G₂ j
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

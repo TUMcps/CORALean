@@ -15,11 +15,20 @@ it at `A *ᵥ ·`.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n m : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 noncomputable def Ellipsoid.map (f : Vec ℝ n →ₗ[ℝ] Vec ℝ m) (E : Ellipsoid n) : Ellipsoid m :=
   Ellipsoid.mtimes (LinearMap.toMatrix' f) E
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

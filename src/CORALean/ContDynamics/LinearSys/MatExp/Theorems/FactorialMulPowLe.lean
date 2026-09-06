@@ -14,7 +14,13 @@ into their geometric ratio.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `(a+k)!` outgrows `a` factorial by at least `(a+1)` each step, which is what
 makes the tail geometric. -/
@@ -32,3 +38,6 @@ theorem factorial_mul_pow_le (a k : ℕ) :
       _ = Nat.factorial (a + (k + 1))               := by rw [hstep]; ring
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -12,7 +12,13 @@ and by `Theorems/CompactGensExact.lean`, both outside this file.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.col_rep {p h : ℕ} (E : Fin p → Fin h → ℕ) (i : Fin h) :
     PolyZonotope.col E (PolyZonotope.rep E i) = PolyZonotope.col E i := by
@@ -22,3 +28,6 @@ theorem PolyZonotope.col_rep {p h : ℕ} (E : Fin p → Fin h → ℕ) (i : Fin 
   exact (Finset.mem_filter.mp hmem).2
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

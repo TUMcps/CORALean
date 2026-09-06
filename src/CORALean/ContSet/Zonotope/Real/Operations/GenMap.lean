@@ -16,9 +16,15 @@ zonotope.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def Zonotope.genMap (Z : Zonotope α) : Vec ℝ Z.h →ₗ[ℝ] α where
   toFun β := ∑ j, β j • Z.G j
@@ -30,3 +36,6 @@ def Zonotope.genMap (Z : Zonotope α) : Vec ℝ Z.h →ₗ[ℝ] α where
     exact (Finset.smul_sum).symm
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

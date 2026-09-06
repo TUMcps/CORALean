@@ -18,12 +18,18 @@ floats introduces no error.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 variable {α : Type} [AddCommGroup α] [Module ℝ α] {S T : Set α} {c : α →ₗ[ℝ] ℝ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def FloatBound.segments (u : FloatBound 𝕋 S c) (v : FloatBound 𝕋 T c) :
     FloatBound 𝕋 (segments S T) c where
@@ -34,3 +40,6 @@ def FloatBound.segments (u : FloatBound 𝕋 S c) (v : FloatBound 𝕋 T c) :
     exact h
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

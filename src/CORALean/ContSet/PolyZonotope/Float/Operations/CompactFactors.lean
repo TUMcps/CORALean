@@ -15,9 +15,15 @@ directory and by `Theorems/CompactFactorsOuter.lean` and
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The factors no column reads, dropped. Only `p` and the exponent matrix
 change, both over ℕ, so nothing rounds and the box is untouched. -/
@@ -32,3 +38,6 @@ def PolyZonotope.compactFactors (PZ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 n
   err := PZ.err
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

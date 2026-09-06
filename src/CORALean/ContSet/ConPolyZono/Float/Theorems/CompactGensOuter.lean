@@ -22,11 +22,17 @@ nominal set only *grows* at this stage, and the error box does not move.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A merged generator column is off by at most the gap between the two
 directed masked sums. -/
@@ -92,6 +98,9 @@ theorem ConPolyZono.aux_compactGens_nominal (C : ConPolyZono 𝕋 n) :
     (fun k j' => C.E k (PolyZonotope.keepIdx C.E j')) (fun _ _ => rfl) i]
   linarith [hsum]
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem ConPolyZono.compactGens_outer (C : ConPolyZono 𝕋 n) :
     C.construct ⊆ C.compactGens.construct := by
   rintro _ ⟨z, hz, e, he, rfl⟩
@@ -103,3 +112,6 @@ theorem ConPolyZono.compactGens_outer (C : ConPolyZono 𝕋 n) :
   rw [← hsum', add_comm e d, ← add_assoc]
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

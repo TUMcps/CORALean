@@ -13,9 +13,15 @@ Split out of `Compact.lean` (issue #62): read again by `mergedCol` and
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {p h : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The kept columns indexed by a plain count, which is what the field `h` needs
 and a `Finset` is not. -/
@@ -24,3 +30,6 @@ def PolyZonotope.keepIdx (E : Fin p → Fin h → ℕ)
   (PolyZonotope.repKeep E).orderIsoOfFin rfl j
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

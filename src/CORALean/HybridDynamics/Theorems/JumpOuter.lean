@@ -27,12 +27,18 @@ is worth having.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar Plus Mtimes OfInterval
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
 variable {𝕋 : Type} [Scalar 𝕋] [Mtimes (Mat 𝕋) S] [OfInterval S] {L : Type} {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `R` encloses the state at the moment of the jump, `Rg` its intersection with
 the guard; the reset image then lands in `jump Rg`. -/
@@ -47,3 +53,6 @@ theorem Transition.jump_outer (e : Transition S L 𝕋 n) {R Rg : S n}
     (ofInterval_outer _ (Interval.mem_point (toRealVec e.w))))
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

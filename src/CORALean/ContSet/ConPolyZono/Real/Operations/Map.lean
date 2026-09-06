@@ -19,9 +19,15 @@ both directions.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Module ℝ β]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def ConPolyZono.map (f : α →ₗ[ℝ] β) (C : ConPolyZono α) : ConPolyZono β where
   p := C.p
@@ -38,3 +44,6 @@ def ConPolyZono.map (f : α →ₗ[ℝ] β) (C : ConPolyZono α) : ConPolyZono �
   EC := C.EC
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

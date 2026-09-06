@@ -13,9 +13,15 @@ going the way it says, shared by `quotDown_le_div` and `le_quotUp`.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float.Dyadic
 
 variable {p : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem toReal_div_eq (a b : Dyadic p) (hb : (b.mantissa : ℝ) ≠ 0) :
     toReal a / toReal b
@@ -30,3 +36,6 @@ theorem toReal_div_eq (a b : Dyadic p) (hb : (b.mantissa : ℝ) ≠ 0) :
   field_simp
 
 end CORALean.Float.Dyadic
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

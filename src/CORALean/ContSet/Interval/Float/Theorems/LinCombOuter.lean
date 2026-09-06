@@ -16,11 +16,17 @@ precision is lost.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 theorem Interval.aux_linComb_outer_refines (I₁ I₂ : Interval 𝕋 n) :
     (I₁.nominal.linComb I₂.nominal).construct ⊆ (I₁.linComb I₂).construct := by
@@ -33,9 +39,15 @@ theorem Interval.aux_linComb_outer_refines (I₁ I₂ : Interval 𝕋 n) :
     rw [toReal_maximum]
     exact (hx i).2
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem Interval.linComb_outer (I₁ I₂ : Interval 𝕋 n) :
     segments I₁.construct I₂.construct ⊆ (I₁.linComb I₂).construct :=
   subset_trans (Real.Interval.linComb_outer I₁.nominal I₂.nominal)
     (Interval.aux_linComb_outer_refines I₁ I₂)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

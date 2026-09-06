@@ -15,11 +15,17 @@ box — exactly as for a zonotope, the constraints adding nothing to pay for.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def ConZonotope.plus (C₁ C₂ : ConZonotope 𝕋 n) : ConZonotope 𝕋 n where
   h := C₁.h + C₂.h
@@ -29,3 +35,6 @@ def ConZonotope.plus (C₁ C₂ : ConZonotope 𝕋 n) : ConZonotope 𝕋 n where
   E := (C₁.E.plus C₂.E).plus (Zonotope.centerResidual C₁.c C₂.c)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

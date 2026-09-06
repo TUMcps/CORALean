@@ -14,9 +14,15 @@ monomials, and compaction is also the only stage that moves `s`.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- CORA's `reduce`: compact, then rank. Compacting first is not an
 optimization — a repeated exponent column is one monomial, and ranking before
@@ -26,3 +32,6 @@ noncomputable def ConPolyZono.reduce (C : ConPolyZono (Vec ℝ n)) (o : ℕ) :
   C.compact.reduceGirard o
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

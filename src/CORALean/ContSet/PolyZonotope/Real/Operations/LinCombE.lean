@@ -16,7 +16,13 @@ the second block and `0` on the first.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The exponent matrix of `linComb`: the two sets' factors block-diagonally as
 `plus` lays them out, repeated across the two dependent blocks, and the fresh
@@ -30,3 +36,6 @@ def PolyZonotope.linCombE {p₁ h₁ p₂ h₂ : ℕ} (E₁ : Fin p₁ → Fin h
     (fun _ : Fin 1 => Fin.append (fun _ => 0) (fun _ => 1))
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

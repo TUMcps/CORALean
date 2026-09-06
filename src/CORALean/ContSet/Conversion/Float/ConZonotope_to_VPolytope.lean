@@ -21,6 +21,9 @@ one. Until that exists, the box is what a definition can give, exactly as for
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
@@ -30,8 +33,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 def ConZonotope.vPolytopeBox (C : ConZonotope 𝕋 n) : VPolytope 𝕋 n :=
   Interval.vPolytope C.interval
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem ConZonotope.subset_vPolytopeBox (C : ConZonotope 𝕋 n) :
     C.construct ⊆ C.vPolytopeBox.construct :=
   subset_trans C.interval_outer (Interval.subset_vPolytope _)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

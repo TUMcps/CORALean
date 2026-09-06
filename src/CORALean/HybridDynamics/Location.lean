@@ -27,12 +27,18 @@ vacuously, and `x τ` — the state a jump reads — is unconstrained.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 structure Location (S : ℕ → Type) (L : Type) (𝕋 : Type) (n : ℕ) where
   inv : S n
@@ -54,3 +60,6 @@ theorem Location.Trajectory.mem_Icc_right {ℓ : Location S L 𝕋 n} {τ : ℝ}
   ⟨traj.nonneg, le_refl τ⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -29,9 +29,15 @@ loss of precision is exactly why refinement exists.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet OfInterval Matrix
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The constant `(0, 1)` network: class `1` always strictly wins. -/
 def aux_suffExplanationConverseFails_nn : NeuralNetwork (fun n => Interval (Vec ℝ n)) 1 2 :=
@@ -70,6 +76,9 @@ theorem aux_suffExplanationConverseFails_eval_eq (x' : Vec ℝ 1) :
       = ((0 : Mat ℝ 2 1) *ᵥ x') i + (if i = 1 then (1 : ℝ) else 0)
   rw [aux_suffExplanationConverseFails_box_center]
   simp
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The converse of `suffExplanation_of_abstract` fails under its own
 hypothesis: a sound abstraction (`hcontain`) of a sufficient `nn` need not be
@@ -132,3 +141,6 @@ theorem suffExplanation_of_abstract_converse_fails :
     exact (Set.disjoint_left.mp hcontra hmem) ⟨0, h01, by simp⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

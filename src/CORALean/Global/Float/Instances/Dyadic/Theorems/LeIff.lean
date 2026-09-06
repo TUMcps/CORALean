@@ -14,9 +14,15 @@ both directions or only the one `SoundFloatArithmetic` asks for.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float.Dyadic
 
 variable {p : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem le_iff (a b : Dyadic p) : le a b = true ↔ toReal a ≤ toReal b := by
   rw [le, decide_eq_true_eq, toReal_align a (min_le_left a.exponent b.exponent),
@@ -25,3 +31,6 @@ theorem le_iff (a b : Dyadic p) : le a b = true ↔ toReal a ≤ toReal b := by
          fun h => Int.cast_le.mp (le_of_mul_le_mul_right h (zpow_pos two_pos _))⟩
 
 end CORALean.Float.Dyadic
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -17,11 +17,17 @@ Split out of `EvalPoly.lean` (issue #62): read again by
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- One Horner step: `R` multiplied by `S` and shifted by the next coefficient,
 the extra uncertainty `R` already carries priced in before `mul`'s own rounding
@@ -41,3 +47,6 @@ def PolyZonotope.evalPolyStep (R S : PolyZonotope 𝕋 n) (hp : R.p = S.p) (a0 :
       mulUp (PolyZonotope.errorBound R.err i) (PolyZonotope.evalPolyBoundS S i)))
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

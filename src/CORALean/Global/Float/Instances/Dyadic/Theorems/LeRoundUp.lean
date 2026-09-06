@@ -13,9 +13,15 @@ negation.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float.Dyadic
 
 variable {p : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem le_roundUp (d : Dyadic p) : toReal d ≤ toReal (roundUp d) := by
   have h : d.mantissa ≤ -(-d.mantissa / 2 ^ d.shift) * 2 ^ d.shift := by
@@ -25,3 +31,6 @@ theorem le_roundUp (d : Dyadic p) : toReal d ≤ toReal (roundUp d) := by
   exact mul_le_mul_of_nonneg_right (Int.cast_le.mpr h) (le_of_lt (zpow_pos two_pos _))
 
 end CORALean.Float.Dyadic
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

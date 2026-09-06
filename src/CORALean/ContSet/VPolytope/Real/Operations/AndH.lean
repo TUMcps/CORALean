@@ -16,9 +16,15 @@ directions, and one operand's own box, so the result is bounded.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n q₁ q₂ : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The intersection as halfspaces, kept bounded by one operand's own box. -/
 noncomputable def VPolytope.andH (P₁ P₂ : VPolytope (Vec ℝ n))
@@ -27,3 +33,6 @@ noncomputable def VPolytope.andH (P₁ P₂ : VPolytope (Vec ℝ n))
   ((P₁.hPolytope Aq₁).and (P₂.hPolytope Aq₂)).and (Interval.hPolytope P₁.interval)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

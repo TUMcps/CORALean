@@ -27,11 +27,20 @@ generator columns kept at `zero` so the agreement rows can read the second point
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def ConPolyZono.and (C₁ C₂ : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n :=
   ConPolyZono.andDep C₁.dependent C₂.dependent
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

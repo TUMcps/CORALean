@@ -22,11 +22,20 @@ result reads as.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The linear system a linearization at any matrix `A` produces. -/
 def NonlinearSys.linearize (A : Mat ℝ n n) : LinearSys ℝ n := ⟨A⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

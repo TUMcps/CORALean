@@ -14,11 +14,20 @@ states its obligation as.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.mem_construct_iff {P : HPolytope α} {x : α} :
     x ∈ P.construct ↔ (∀ i, P.A i x ≤ P.b i) ∧ ∀ i, P.Ae i x = P.be i := Iff.rfl
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

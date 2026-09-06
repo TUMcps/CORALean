@@ -29,9 +29,15 @@ the same two gaps to the box that `relaxExp` does.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n d : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The two generators `part.right` names merged into one, at the exponent
 column of the second, the first scaled by the summed `ξ_E` becoming
@@ -48,3 +54,6 @@ def PolyZonotope.relaxExpMulti (PZ : PolyZonotope 𝕋 n)
   err := PZ.err.plus (PolyZonotope.generatorError (PZ.relaxGapMulti part))
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

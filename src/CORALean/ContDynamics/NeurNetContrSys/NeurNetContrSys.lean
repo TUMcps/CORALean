@@ -27,12 +27,18 @@ developments touch.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 structure NeurNetContrSys (𝕋 : Type) (S : ℕ → Type)
     [∀ n, ContSet (S n) (Vec ℝ n)] (n : ℕ) where
@@ -51,3 +57,6 @@ structure NeurNetContrSys.Trajectory (sys : NeurNetContrSys 𝕋 S n) (Δtc : �
       (Set.Icc ((i : ℝ) * Δtc) (((i : ℝ) + 1) * Δtc)) t
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

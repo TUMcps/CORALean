@@ -14,12 +14,21 @@ space cannot touch them.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.mtimes_exact {n m : ℕ} (M : Mat ℝ m n) (PZ : PolyZonotope (Vec ℝ n)) :
     (M *ᵥ ·) '' PZ.construct = (PolyZonotope.mtimes M PZ).construct :=
   PolyZonotope.map_exact (Matrix.mulVecLin M) PZ
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

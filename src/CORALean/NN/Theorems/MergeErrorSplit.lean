@@ -23,9 +23,15 @@ versus one at a time has to be reconciled.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The bucket-error box splits over a further split of its columns:
 `eq:multiple-buckets` in [1], the combined bucket's error being the Minkowski
@@ -62,3 +68,6 @@ theorem mergeError_split {m r r₁ r₂ : ℕ}
     exact part.sum_split₂ (fun k => max (M i k * Y.inf k) (M i k * Y.sup k))
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

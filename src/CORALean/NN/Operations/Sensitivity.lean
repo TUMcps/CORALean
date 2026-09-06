@@ -28,11 +28,17 @@ the derivative is `Theorems.SensitivityFDeriv`'s business and nobody else's.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 noncomputable def NeuralNetwork.sensitivity :
     ∀ {n m : ℕ}, NeuralNetwork S n m → Vec ℝ n → Mat ℝ m n
@@ -40,3 +46,6 @@ noncomputable def NeuralNetwork.sensitivity :
   | _, _, .cons L rest, x => rest.sensitivity (L.eval x) * L.sensitivity x
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

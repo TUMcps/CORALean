@@ -29,6 +29,9 @@ each term carries `|t^{i+2} - t·r^{i+1}| ≤ r^{i+2}`, and pulling one factor o
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix NormedSpace
@@ -37,6 +40,9 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- `ring_nf` under `smul` re-solves the local normed-algebra instances on `Mat ℝ n n`
 set_option maxHeartbeats 400000 in
@@ -162,6 +168,9 @@ theorem aux_norm_constTail_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) (η : ℕ
         rw [tsum_mul_left, tsum_mul_left, tsum_geometric_of_lt_one hε0 hε,
           MatExp.expRemainderBound]
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 -- two `ring` normalisations of the same factorial-and-power product under `smul_apply`
 set_option maxHeartbeats 1000000 in
 /-- Althoff's `F̃` contains the constant input's interpolation error, at every
@@ -214,3 +223,6 @@ theorem MatExp.expIntegralDiff_mem_constCorrectionMatrix (A : Mat ℝ n n) {r : 
     linarith [hT.2]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

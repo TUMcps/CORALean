@@ -11,11 +11,17 @@ The mirror of `padLeft`, with the new coordinates padded in front.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n₁ n₂ : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 -- the mirror, with the new coordinates padded in front
 def HPolytope.padRight (n₁ : ℕ) (P : HPolytope 𝕋 n₂) : HPolytope 𝕋 (n₁ + n₂) where
@@ -27,3 +33,6 @@ def HPolytope.padRight (n₁ : ℕ) (P : HPolytope 𝕋 n₂) : HPolytope 𝕋 (
   be := P.be
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

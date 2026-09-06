@@ -18,14 +18,23 @@ step by step, and this definition is unchanged by it.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 def NeuralNetwork.propagate : ∀ {n m : ℕ}, NeuralNetwork S n m → S n → S m
   | _, _, .nil, s => s
   | _, _, .cons L rest, s => rest.propagate (L.propagate s)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

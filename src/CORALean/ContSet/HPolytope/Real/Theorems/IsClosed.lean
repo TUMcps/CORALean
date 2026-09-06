@@ -17,9 +17,15 @@ representation admits and a vertex description cannot.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.isClosed_construct (P : HPolytope (Vec ℝ n)) : IsClosed P.construct := by
   have hinter : P.construct = (⋂ i, {x : Vec ℝ n | P.A i x ≤ P.b i})
@@ -33,3 +39,6 @@ theorem HPolytope.isClosed_construct (P : HPolytope (Vec ℝ n)) : IsClosed P.co
   · exact isClosed_eq (P.Ae i).continuous_of_finiteDimensional continuous_const
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -12,11 +12,20 @@ about `f x` means.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Module ℝ β]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.comap_exact (f : β →ₗ[ℝ] α) (P : HPolytope α) :
     (HPolytope.comap f P).construct = f ⁻¹' P.construct := rfl
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

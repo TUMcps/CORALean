@@ -29,11 +29,17 @@ re-witness independently and identify unrelated slack.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `|nominal S|` is at most its centre plus every generator's magnitude, since
 every monomial is at most `1`. -/
@@ -296,6 +302,9 @@ theorem PolyZonotope.aux_evalPoly_close (S : PolyZonotope 𝕋 n) (coeffs : List
     exact Interval.plus_outer _ _ ⟨_, Interval.plus_outer _ _ ⟨_, hmulErr, _, hresidualMem, rfl⟩,
       _, htermAmem, rfl⟩
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 -- the exact statement, read through the refinement: the same image, rounded outward
 theorem PolyZonotope.evalPoly_outer (S : PolyZonotope 𝕋 n) (coeffs : List (Vec 𝕋 n)) :
     (fun a : Fin S.p → ℝ => fun i => Real.PolyZonotope.evalPolyReal
@@ -352,3 +361,6 @@ theorem PolyZonotope.evalPoly_outer (S : PolyZonotope 𝕋 n) (coeffs : List (Ve
       hgap, by funext i; simp only [Pi.add_apply]; ring⟩
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -17,9 +17,15 @@ express that — which is why `Reindex` takes an `Equiv`.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n m : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.reindex_exact (e : Fin m ≃ Fin n) (I : Interval (Vec ℝ n)) :
     (I.reindex e).construct = reindexLin e '' I.construct := by
@@ -36,3 +42,6 @@ theorem Interval.reindex_exact (e : Fin m ≃ Fin n) (I : Interval (Vec ℝ n)) 
     exact fun i => hx (e i)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

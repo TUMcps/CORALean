@@ -15,9 +15,15 @@ vertices.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.mtimes_exact {n m : ℕ} (M : Mat ℝ m n) (P : VPolytope (Vec ℝ n)) :
     (M *ᵥ ·) '' P.construct = (VPolytope.mtimes M P).construct := by
@@ -25,3 +31,6 @@ theorem VPolytope.mtimes_exact {n m : ℕ} (M : Mat ℝ m n) (P : VPolytope (Vec
   exact VPolytope.map_exact (Matrix.mulVecLin M) P
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

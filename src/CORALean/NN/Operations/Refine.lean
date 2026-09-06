@@ -17,7 +17,13 @@ moves. One `raise` at a single coordinate.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- One neuron-wise step [1, Def. 4.4]: neuron `j` of layer `l` moves up an
 order, and nothing else moves. -/
@@ -25,3 +31,6 @@ def Schedule.refine (sch : Schedule) (l j : ℕ) : Schedule :=
   Schedule.raise sch l fun i => if i = j then 1 else 0
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

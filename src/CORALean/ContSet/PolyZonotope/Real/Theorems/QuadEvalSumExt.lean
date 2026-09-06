@@ -23,11 +23,17 @@ representation needs it at a fixed `a`, which a set equality cannot give.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix PolyZonotope
 
 variable {n m : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The map of a sum, expanded over pairs. Bilinearity on the left, and
 `monomial_add` on the right, meet at the same double sum. -/
@@ -82,3 +88,6 @@ theorem PolyZonotope.quadEval_sum_ext (Q : Fin m → Mat ℝ n n) (S : PolyZonot
   rw [hL, hR]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

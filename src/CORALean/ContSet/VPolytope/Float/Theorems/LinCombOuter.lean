@@ -15,11 +15,17 @@ in the interval one, each by its own layer's theorem.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 -- the segment splits into a nominal segment and a segment of the two error boxes
 theorem VPolytope.linComb_outer (P₁ P₂ : VPolytope 𝕋 n) :
@@ -37,3 +43,6 @@ theorem VPolytope.linComb_outer (P₁ P₂ : VPolytope 𝕋 n) :
     abel
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

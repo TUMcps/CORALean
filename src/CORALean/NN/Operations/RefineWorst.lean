@@ -28,9 +28,15 @@ aggregate only has to order layers, so which of the two is used is free.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m k : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A layer's own rank, its neurons' summed: what the layer-wise rule ranks
 layers by, the neurons of the layer it names all moving together. -/
@@ -45,9 +51,15 @@ noncomputable def NeuralNetwork.aux_layerRank (nn : NeuralNetwork S n m) (x d : 
 `aux_layerRank` of `k + 1` layers. -/
 noncomputable def aux_worstLayer (r : Fin (k + 1) → ℝ) : Fin (k + 1) := worstIndex r
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 /-- The layer-wise rule [1, Def. 4.6]: every neuron of the worst-ranked of
 `k + 1` layers moves up an order. -/
 noncomputable def Schedule.refineWorst (sch : Schedule) (r : Fin (k + 1) → ℝ) : Schedule :=
   Schedule.refineLayer sch (aux_worstLayer r)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

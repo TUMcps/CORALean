@@ -18,6 +18,9 @@ norm — or the terms will not match.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix Scalar NormedSpace MeasureTheory intervalIntegral
@@ -27,9 +30,15 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 /-- Everything the input contributed over step `k`, propagated to its end. -/
 noncomputable def LinearSys.stepInput (sys : LinearSys 𝕋 n) (u : ℝ → Vec ℝ n) (Δt : ℝ)
     (k : ℕ) : Vec ℝ n :=
   ∫ s in (k * Δt)..((k + 1) * Δt), exp (((k + 1) * Δt - s) • toRealMat sys.A) *ᵥ u s
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

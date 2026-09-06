@@ -20,6 +20,9 @@ a vector, which is the form a single appended parameter is read in.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean
 
 /-- The first `m` coordinates. -/
@@ -49,8 +52,14 @@ def blockLast (m : ℕ) : Vec ℝ (m + 1) →ₗ[ℝ] ℝ where
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 @[simp] theorem blockLast_append {m : ℕ} (u : Vec ℝ m) (w : Vec ℝ 1) :
     blockLast m (Fin.append u w) = w 0 :=
   Fin.append_right u w 0
 
 end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -31,9 +31,15 @@ products keep the freed ones identified.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def PolyZonotope.mul (S₁ S₂ : PolyZonotope (Vec ℝ n)) (hp : S₁.p = S₂.p) :
     PolyZonotope (Vec ℝ n) where
@@ -46,3 +52,6 @@ def PolyZonotope.mul (S₁ S₂ : PolyZonotope (Vec ℝ n)) (hp : S₁.p = S₂.
   GI := Fin.elim0
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -14,9 +14,15 @@ weighting assembles.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `hc` is dual feasibility, `c = yᵀA + zᵀAe`, stated pointwise because a
 functional is determined by what it does. -/
@@ -27,3 +33,6 @@ def HPolytope.boundOfDual (P : HPolytope α) {c : α →ₗ[ℝ] ℝ}
   SupportBound.mono (P.construct_eq_feasible).subset (SupportBound.ofDual y z hy hc)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -14,11 +14,17 @@ what makes every piece of it continuous.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 -- the exponential and `toContinuousLinearMap` both cost instance search, throughout
 /-- Matrix-vector multiplication as a continuous linear map in the matrix, which
@@ -31,3 +37,6 @@ noncomputable def mulVecL : Mat ℝ n n →L[ℝ] (Vec ℝ n →L[ℝ] Vec ℝ n
       map_smul' := by intro c M; ext v i; simp }
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

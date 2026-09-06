@@ -14,11 +14,17 @@ this file.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- file-local: only `reduceGirard` below needs these
 /-- Girard's metric on one generator, `‖g‖₁ - ‖g‖∞`, in `𝕋`, over a bare matrix
@@ -51,6 +57,9 @@ def ConPolyZono.aux_girardKeptDep (C : ConPolyZono 𝕋 n) (K : ℕ) : ℕ :=
   min K (Finset.univ.filter fun l : Fin C.h =>
     (rank (Fin.castAdd C.q l) : ℕ) < K).card
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 /-- CORA's `reduce(cPZ, 'girard', o)`: past `n·o` generators in the two blocks
 together, keep the `(o-1)·n` Girard ranks first and box the rest, bringing the
 total back to `n·o`. At that order or below, nothing happens. -/
@@ -63,3 +72,6 @@ def ConPolyZono.reduceGirard (C : ConPolyZono 𝕋 n) (o : ℕ) : ConPolyZono �
   else C
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

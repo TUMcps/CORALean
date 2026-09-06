@@ -21,6 +21,9 @@ rather than conversions.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
@@ -31,6 +34,9 @@ noncomputable def Zonotope.ellipsoid (Z : Zonotope (Vec ℝ n)) : Ellipsoid n wh
   k := Z.h
   q := Z.c
   G := Matrix.of fun i j => Real.sqrt Z.h * Z.G j i
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Each coefficient contributes at most `1/h` of the ball's budget, so `h` of
 them fit exactly. -/
@@ -46,6 +52,9 @@ theorem Zonotope.aux_coeff_sq_le {Z : Zonotope (Vec ℝ n)} {β : Fin Z.h → �
       _ = 1 := one_mul 1
   rw [div_pow, hsq, div_eq_mul_inv, div_eq_mul_inv]
   exact mul_le_mul_of_nonneg_right hb (le_of_lt (inv_pos.mpr hh))
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.ellipsoid_outer (Z : Zonotope (Vec ℝ n)) :
     Z.construct ⊆ Z.ellipsoid.construct := by
@@ -78,3 +87,6 @@ theorem Zonotope.ellipsoid_outer (Z : Zonotope (Vec ℝ n)) :
     field_simp
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

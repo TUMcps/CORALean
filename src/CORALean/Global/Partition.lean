@@ -19,9 +19,15 @@ alike would make `Partition` a keyword.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean
 
 universe v
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 structure Partition (α : Type*) {κ : Type*} (β : κ → Type*) where
   index : (Σ k, β k) ≃ α
@@ -82,3 +88,6 @@ theorem Partition.sum_split₂ [AddCommMonoid M] [Fintype α] [Fintype βₗ] [F
   rfl
 
 end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -26,11 +26,17 @@ about the queries one feature down.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet OfInterval
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OfInterval S] {n m : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NeuralNetwork.minSuffExplanationAbstract_of_min (nn nnAbs : NeuralNetwork S n m)
     (x : Vec ℝ n) (ε : ℝ) (E : Finset (Fin n)) (l : Fin m)
@@ -43,3 +49,6 @@ theorem NeuralNetwork.minSuffExplanationAbstract_of_min (nn nnAbs : NeuralNetwor
     hmin.2 i hi (nn.suffExplanation_of_abstract nnAbs x ε (E \ {i}) l (hcontain _) hdrop)⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

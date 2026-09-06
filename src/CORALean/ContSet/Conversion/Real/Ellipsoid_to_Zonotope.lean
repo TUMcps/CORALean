@@ -18,6 +18,9 @@ in the first, and it is the loss of an axis-aligned enclosure of a rotated set.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
@@ -25,7 +28,13 @@ variable {n : ℕ}
 noncomputable def Ellipsoid.zonotope (E : Ellipsoid n) : Zonotope (Vec ℝ n) :=
   E.interval.zonotope
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem Ellipsoid.zonotope_outer (E : Ellipsoid n) : E.construct ⊆ E.zonotope.construct :=
   subset_trans E.interval_outer (Interval.subset_zonotope _)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -20,11 +20,17 @@ obligation in, which is why `Operations/` here reaches back into `Theorems/`.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Matrix FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.mem_construct_iff [SoundFloatArithmetic 𝕋] {P : HPolytope 𝕋 n}
     {x : Vec ℝ n} :
@@ -40,3 +46,6 @@ theorem HPolytope.mem_construct_iff [SoundFloatArithmetic 𝕋] {P : HPolytope �
   exact Iff.rfl
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

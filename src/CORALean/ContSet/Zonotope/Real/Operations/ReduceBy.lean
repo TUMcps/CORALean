@@ -14,11 +14,17 @@ are this definition with a different partition.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {n q r : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Partitions the generator indices rather than choosing them: `part.left` is
 kept, `part.right` absorbed into a diagonal block. CORA's twenty-odd selection
@@ -31,3 +37,6 @@ def Zonotope.reduceBy (Z : Zonotope (Vec ℝ n))
         (Matrix.diagonal fun i => ∑ l, |Z.G (part.right l) i|)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

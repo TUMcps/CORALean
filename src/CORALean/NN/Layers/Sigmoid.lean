@@ -26,6 +26,9 @@ supplies `σ` at the ends and, as a product, `σ'`.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet
@@ -135,8 +138,14 @@ namespace Layer
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat ℝ) S] [IntervalOuter S] [OfInterval S] {n : ℕ}
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 noncomputable def sigmoid : Layer S n n := Layer.activation sigmoidRelaxation
 
 end Layer
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

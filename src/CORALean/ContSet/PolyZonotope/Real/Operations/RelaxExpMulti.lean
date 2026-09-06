@@ -31,9 +31,15 @@ one-sidedness that the multi-index drift does not have.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α] {d : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The two generators `part.right` names merged into one, at the exponent
 column of the second, the first scaled by the summed `ξ_E` becoming
@@ -51,3 +57,6 @@ def PolyZonotope.relaxExpMulti (PZ : PolyZonotope α)
     (fun _ => (PZ.relaxWidthMulti part : ℝ) • PZ.G (part.right 0))
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

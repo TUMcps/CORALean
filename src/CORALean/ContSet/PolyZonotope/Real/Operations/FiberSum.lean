@@ -13,9 +13,15 @@ compaction over `EC`, all outside this file.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The generators a representative map gathers at `j`, added up: the one
 generator their common column keeps. -/
@@ -23,3 +29,6 @@ def PolyZonotope.fiberSum {h : ℕ} (r : Fin h → Fin h) (G : Fin h → α) (j 
   ∑ i ∈ Finset.univ.filter fun i => r i = j, G i
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

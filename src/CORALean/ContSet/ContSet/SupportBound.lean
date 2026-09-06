@@ -14,9 +14,15 @@ both sets already are — so its case belongs here, next to the definition.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α] {S T : Set α} {c : α →ₗ[ℝ] ℝ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- A point between the two sets is a weighted average of one from each, so
 neither bound is beaten. -/
@@ -36,3 +42,6 @@ def SupportBound.segments (u : SupportBound S c) (v : SupportBound T c) :
       _ = max u.val v.val := by ring
 
 end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

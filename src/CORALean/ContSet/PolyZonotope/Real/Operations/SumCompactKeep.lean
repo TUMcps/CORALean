@@ -12,9 +12,15 @@ Split out of `Compact.lean` (issue #62): used again by
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 omit [Module ℝ α] in
 theorem PolyZonotope.sum_compactKeep {p h : ℕ} (E : Fin p → Fin h → ℕ) (G : Fin h → α)
@@ -26,3 +32,6 @@ theorem PolyZonotope.sum_compactKeep {p h : ℕ} (E : Fin p → Fin h → ℕ) (
     fun x => f x).symm
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

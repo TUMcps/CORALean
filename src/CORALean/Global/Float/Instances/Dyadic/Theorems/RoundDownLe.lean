@@ -12,9 +12,15 @@ fact read back through `toReal_shift`.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float.Dyadic
 
 variable {p : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem roundDown_le (d : Dyadic p) : toReal (roundDown d) ≤ toReal d := by
   rw [roundDown, toReal_shift, toReal_def]
@@ -23,3 +29,6 @@ theorem roundDown_le (d : Dyadic p) : toReal (roundDown d) ≤ toReal d := by
     (le_of_lt (zpow_pos two_pos _))
 
 end CORALean.Float.Dyadic
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

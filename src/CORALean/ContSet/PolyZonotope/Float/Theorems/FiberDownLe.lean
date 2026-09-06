@@ -10,11 +10,17 @@ import CORALean.ContSet.PolyZonotope.Float.Theorems.SumMask
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n h : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 -- so the two directed masked sums bracket the exact fibre from either side
 theorem PolyZonotope.fiberDown_le (r : Fin h → Fin h) (G : Mat 𝕋 n h) (i : Fin n)
@@ -25,3 +31,6 @@ theorem PolyZonotope.fiberDown_le (r : Fin h → Fin h) (G : Mat 𝕋 n h) (i : 
   exact sumDown_le_sum _
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

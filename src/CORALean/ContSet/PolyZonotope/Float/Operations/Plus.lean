@@ -18,11 +18,17 @@ it is a matrix of naturals and nothing about it rounds.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def PolyZonotope.plus (PZ₁ PZ₂ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 n where
   p := PZ₁.p + PZ₂.p
@@ -35,3 +41,6 @@ def PolyZonotope.plus (PZ₁ PZ₂ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 n 
   err := (PZ₁.err.plus PZ₂.err).plus (PolyZonotope.centerResidual PZ₁.c PZ₂.c)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -14,6 +14,9 @@ already rounded outward where it was computed, and negating a float is exact.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
@@ -24,6 +27,9 @@ def HPolytope.interval (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj 
     (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) : Interval 𝕋 n :=
   Interval.ofBounds up lo
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem HPolytope.interval_outer
     (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
     (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) :
@@ -31,3 +37,6 @@ theorem HPolytope.interval_outer
   Interval.subset_ofBounds up lo
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

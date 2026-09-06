@@ -24,11 +24,17 @@ Convex only, which a constrained zonotope is. A non-convex guard is
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar
 
 variable {L : Type} {𝕋 : Type} [Scalar 𝕋] [Mtimes (Mat 𝕋) 𝒞] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The guard intersection computed rather than assumed. -/
 theorem Transition.jump_outer_conZonotope (e : Transition 𝒞 L 𝕋 n)
@@ -38,3 +44,6 @@ theorem Transition.jump_outer_conZonotope (e : Transition 𝒞 L 𝕋 n)
   e.jump_outer (ConZonotope.and_exact R e.guard).subset hz hguard
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

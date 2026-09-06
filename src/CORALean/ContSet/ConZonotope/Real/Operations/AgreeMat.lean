@@ -12,12 +12,21 @@ constraint `and` adds that reads both generator blocks at once.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The rows pinning the two points together, one per coordinate. -/
 def ConZonotope.agreeMat (C₁ C₂ : ConZonotope (Vec ℝ n)) : Mat ℝ n (C₁.h + C₂.h) :=
   fun i => Fin.append (fun j => C₁.G j i) fun j => -C₂.G j i
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

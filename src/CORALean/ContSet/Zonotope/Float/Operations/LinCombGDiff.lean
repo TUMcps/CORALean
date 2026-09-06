@@ -16,11 +16,17 @@ below turns into a box.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- What the stored generators fall short by: the gap between the two directed
 roundings, which a coefficient in `[-1,1]` then spreads either way. -/
@@ -29,3 +35,6 @@ def Zonotope.linCombGDiff (Z₁ Z₂ : Zonotope 𝕋 n) : Mat 𝕋 n (Z₁.h + Z
     (Zonotope.linCombG addDown subDown Z₁ Z₂ i j)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

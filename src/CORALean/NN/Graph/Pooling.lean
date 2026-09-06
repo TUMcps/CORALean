@@ -29,6 +29,9 @@ exactness theorem is stated in that form so it can be read against the paper.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
@@ -57,9 +60,15 @@ theorem GNN.sumPoolLin_apply (H : Mat ℝ N F) (j : Fin F) :
   show ∑ i, H i j = ∑ i, GNN.onesRow N 0 i * H i j
   exact Finset.sum_congr rfl fun i _ => (one_mul (H i j)).symm
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 /-- Summation pooling on a matrix polynomial zonotope, landing in the vector
 shape the layers after it read. -/
 def GNN.sumPool (PZ : PolyZonotope (Mat ℝ N F)) : PolyZonotope (Vec ℝ F) :=
   PZ.map (GNN.sumPoolLin N F)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

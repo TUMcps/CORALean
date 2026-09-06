@@ -27,11 +27,17 @@ nothing is lost crossing it.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {N F : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem GNN.sumPool_exact (PZ : PolyZonotope (Mat ℝ N F)) :
     (fun H j => (GNN.onesRow N * H) 0 j) '' PZ.construct = (GNN.sumPool PZ).construct := by
@@ -43,3 +49,6 @@ theorem GNN.sumPool_exact (PZ : PolyZonotope (Mat ℝ N F)) :
   exact PolyZonotope.map_exact (GNN.sumPoolLin N F) PZ
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

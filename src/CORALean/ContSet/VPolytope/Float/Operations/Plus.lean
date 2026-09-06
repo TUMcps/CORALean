@@ -15,11 +15,17 @@ covers the whole vertex list, which is what `columnGap` is for.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def VPolytope.plus (P₁ P₂ : VPolytope 𝕋 n) : VPolytope 𝕋 n where
   k := P₁.k * P₂.k
@@ -29,3 +35,6 @@ def VPolytope.plus (P₁ P₂ : VPolytope 𝕋 n) : VPolytope 𝕋 n where
           (VPolytope.pairSum addUp P₁ P₂))
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

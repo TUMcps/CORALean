@@ -39,6 +39,9 @@ then what carries the resulting factors to every member.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Pointwise ContSet Plus
@@ -72,6 +75,9 @@ def LayerRelaxation.box (P : LayerRelaxation σ n m) (I : Interval (Vec ℝ n)) 
     Interval (Vec ℝ n) where
   inf := fun i => -(P i).error (I.inf i) (I.sup i)
   sup := fun i => (P i).error (I.inf i) (I.sup i)
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The activation layer of a layer's relaxation: `dependent` first, then each
 neuron's fit on the set, then the residual box. -/
@@ -114,3 +120,6 @@ noncomputable def Layer.activationPoly (P : LayerRelaxation σ n m) : Layer 𝒫
     exact plus_outer _ _ (Set.add_mem_add hpmem (Interval.subset_polyZonotope _ hdev))
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -31,6 +31,9 @@ into the constant coefficient, so what is left is a radius. That midpoint is
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 /-- The `N + 1` points sampled across `[l, u]`: `i` steps of `(u - l) / N` from
@@ -121,6 +124,9 @@ theorem sample_bounds_of_deriv {g g' : ℝ → ℝ} {M l u t : ℝ} {N : ℕ}
     Finset.le_sup' (fun j : Fin (N + 1) => g (sampleGrid l u N j)) (Finset.mem_univ i)
   exact ⟨by linarith [habs.1], by linarith [habs.2]⟩
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 /-- The relaxation a fit and a derivative bound buy. `c` is arbitrary — no
 soundness rests on it, only precision — and `N` is how much effort a box gets. -/
 noncomputable def PolyRelaxation.ofSampling {σ σ' : ℝ → ℝ} {n : ℕ}
@@ -146,3 +152,6 @@ noncomputable def PolyRelaxation.ofSampling {σ σ' : ℝ → ℝ} {n : ℕ}
     exact ⟨by linarith, by linarith⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

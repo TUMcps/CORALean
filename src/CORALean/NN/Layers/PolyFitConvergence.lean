@@ -32,6 +32,9 @@ and `polyDerivDiff` supplies the rest of `M` out of the fit itself.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 /-- Mathlib's polynomials read as `evalPoly` does: coefficients indexed by
@@ -50,6 +53,9 @@ theorem exists_evalPoly_near {σ : ℝ → ℝ} {l u ε : ℝ} (hcont : Continuo
   refine ⟨p.natDegree, fun i => p.coeff (i : ℕ), fun x hx hx' => ?_⟩
   rw [evalPoly_coeff p x, abs_sub_comm]
   exact le_of_lt (hp x ⟨hx, hx'⟩)
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Refinement converges: some order and sample count put `ofSampling`'s error
 under any `ε`. `N` may depend on the order, which is where `M`'s blow-up goes. -/
@@ -99,3 +105,6 @@ theorem exists_fit_samplingError_lt {σ σ' : ℝ → ℝ} {l u Mσ ε : ℝ}
   linarith
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

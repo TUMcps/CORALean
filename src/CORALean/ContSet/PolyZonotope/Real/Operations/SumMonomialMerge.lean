@@ -14,9 +14,15 @@ constraint matrix, outside this file.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- file-local: only `sum_monomial_merge` below needs it
 theorem PolyZonotope.aux_monomial_congr {p h : ℕ} (E : Fin p → Fin h → ℕ) (a : Fin p → ℝ)
@@ -24,6 +30,9 @@ theorem PolyZonotope.aux_monomial_congr {p h : ℕ} (E : Fin p → Fin h → ℕ
     PolyZonotope.monomial E a i = PolyZonotope.monomial E a j := by
   rw [PolyZonotope.monomial, PolyZonotope.monomial]
   exact Finset.prod_congr rfl fun k _ => congrArg (fun e => a k ^ e) (congrFun hij k)
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Regrouping a generator sum along any column-preserving `r`, then keeping
 only the columns `s` names. Every generator-side step of `compact` is this at
@@ -49,3 +58,6 @@ theorem PolyZonotope.sum_monomial_merge {p h : ℕ} (E : Fin p → Fin h → ℕ
   rw [hs j hj, smul_zero]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -20,6 +20,9 @@ out, which is `roundDown_le` composed on.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float.Dyadic
 
 variable {p : ℕ}
@@ -34,9 +37,15 @@ private theorem quotDown_le_div (a b : Dyadic p) (hb : 0 < toReal b) :
   rw [le_div_iff₀ hmR]
   exact_mod_cast Int.ediv_mul_le (a.mantissa * 2 ^ p) (ne_of_gt hm)
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 /-- And the grid rounding on top of it only moves the bound further out. -/
 theorem divDown_le_div (a b : Dyadic p) (hb : 0 < toReal b) :
     toReal (divDown a b) ≤ toReal a / toReal b :=
   le_trans (roundDown_le _) (quotDown_le_div a b hb)
 
 end CORALean.Float.Dyadic
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

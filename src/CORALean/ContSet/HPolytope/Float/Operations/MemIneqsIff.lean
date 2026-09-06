@@ -11,11 +11,17 @@ Membership at each shape, the block that is absent discharged by `Fin.elim0`.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Matrix FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {q n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 -- membership at each shape, the block that is absent discharged by `Fin.elim0`
 theorem HPolytope.mem_ineqs_iff {A : Mat 𝕋 q n} {b : Vec 𝕋 q} {x : Vec ℝ n} :
@@ -24,3 +30,6 @@ theorem HPolytope.mem_ineqs_iff {A : Mat 𝕋 q n} {b : Vec 𝕋 q} {x : Vec ℝ
    fun h => HPolytope.mem_construct_iff.mpr ⟨h, fun i => i.elim0⟩⟩
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

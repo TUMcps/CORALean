@@ -13,7 +13,13 @@ Both correction matrices bound this quantity by first replacing it with
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Rewriting one order of the interpolation error through `s = t/r`. -/
 theorem pow_sub_eq {t r : ℝ} (hr : 0 < r) (m : ℕ) :
@@ -22,3 +28,6 @@ theorem pow_sub_eq {t r : ℝ} (hr : 0 < r) (m : ℕ) :
   field_simp
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

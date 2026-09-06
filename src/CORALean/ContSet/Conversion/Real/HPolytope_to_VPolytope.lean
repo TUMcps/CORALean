@@ -33,6 +33,9 @@ vertices, which is a question of cost the enclosure does not depend on.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open scoped Classical
@@ -103,6 +106,9 @@ noncomputable def HPolytope.vPolytopeBox
     (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) : VPolytope (Vec ℝ n) :=
   Interval.vPolytope (HPolytope.interval up lo)
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem HPolytope.subset_vPolytopeBox
     (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
     (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) :
@@ -110,3 +116,6 @@ theorem HPolytope.subset_vPolytopeBox
   subset_trans (HPolytope.interval_outer up lo) (Interval.subset_vPolytope _)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

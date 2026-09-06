@@ -29,11 +29,17 @@ generator are displaced from what ℝ would have, so only they are charged.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The coefficients the segment supplies: each side's own, weighted, and the
 interpolation parameter on the centre generator. -/
@@ -170,9 +176,15 @@ theorem ConZonotope.aux_linComb_error (C₁ C₂ : ConZonotope 𝕋 n) :
     (Set.add_subset_add (Interval.linComb_outer C₁.E C₂.E) (Interval.plus_outer _ _))
     (Interval.plus_outer _ _)
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem ConZonotope.linComb_outer (C₁ C₂ : ConZonotope 𝕋 n) :
     segments C₁.construct C₂.construct ⊆ (C₁.linComb C₂).construct :=
   InflatedContSet.linComb_subset (ConZonotope.aux_linComb_nominal C₁ C₂)
     (ConZonotope.aux_linComb_error C₁ C₂)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

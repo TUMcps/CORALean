@@ -11,7 +11,13 @@ The kept factors, indexed by a plain count, as `PolyZonotope`'s is.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The kept factors, indexed by a plain count, as `PolyZonotope`'s is. -/
 def ConPolyZono.factorIdx {p h s : ℕ} (E : Fin p → Fin h → ℕ) (EC : Fin p → Fin s → ℕ)
@@ -19,3 +25,6 @@ def ConPolyZono.factorIdx {p h s : ℕ} (E : Fin p → Fin h → ℕ) (EC : Fin 
   PolyZonotope.factorIdx (ConPolyZono.appendE E EC) k
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

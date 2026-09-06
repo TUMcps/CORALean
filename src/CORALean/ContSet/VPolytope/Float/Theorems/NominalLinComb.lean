@@ -12,11 +12,17 @@ list needs.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.nominal_linComb (P₁ P₂ : VPolytope 𝕋 n) :
     nominal (P₁.linComb P₂) = (nominal P₁).linComb (nominal P₂) := by
@@ -28,3 +34,6 @@ theorem VPolytope.nominal_linComb (P₁ P₂ : VPolytope 𝕋 n) :
   exact congrArg (Real.VPolytope.mk (P₁.k + P₂.k)) hV
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

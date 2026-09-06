@@ -23,6 +23,9 @@ representation must multiply by one of those and not only by a plain matrix.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar
@@ -30,6 +33,9 @@ open Matrix ContSet Scalar
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Althoff's Thm. 3.1: everything the input can contribute over one step,
 `⊕ᵢ Aⁱr^{i+1}/(i+1)! U ⊕ E(r)·r·U`. -/
@@ -39,3 +45,6 @@ noncomputable def LinearSys.inputSolution
     Mtimes.mtimes (𝕄 := ℐ) (MatExp.inputRemainder (toRealMat sys.A) r η) U
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

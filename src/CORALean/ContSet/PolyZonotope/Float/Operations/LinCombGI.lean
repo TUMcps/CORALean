@@ -14,9 +14,15 @@ directory and by `Theorems/LinCombOuter.lean`, both outside this file.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The independent block at one rounding: CORA's `zonotope/enclose` on the two
 independent blocks, which is the exact layer's pairing at a zero centre. -/
@@ -26,3 +32,6 @@ def PolyZonotope.linCombGI (add sub : 𝕋 → 𝕋 → 𝕋) (PZ₁ PZ₂ : Pol
     (Zonotope.pairDiff sub (PZ₁.GI i) (PZ₂.GI i))
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

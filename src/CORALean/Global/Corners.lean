@@ -19,6 +19,9 @@ and nothing else. `signEquiv` is the bookkeeping that lets a list indexed by
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean
 
 variable {n : ℕ}
@@ -33,6 +36,9 @@ theorem sum_prod_bool (f g : Fin n → ℝ) :
   rw [show (∏ j, (f j + g j)) = ∏ j, ∑ b : Bool, (if b then f j else g j) from
         Finset.prod_congr rfl fun j _ => by simp,
       Finset.prod_univ_sum, Fintype.piFinset_univ]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem sum_prod_bool_mul (t u v : Fin n → ℝ) (i : Fin n) :
     ∑ σ : Fin n → Bool,
@@ -67,3 +73,6 @@ theorem sum_prod_bool_mul (t u v : Fin n → ℝ) (i : Fin n) :
     exact absurd (Finset.mem_univ i) h
 
 end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

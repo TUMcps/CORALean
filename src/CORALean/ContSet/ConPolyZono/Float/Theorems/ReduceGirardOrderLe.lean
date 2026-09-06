@@ -22,14 +22,23 @@ the budget at nothing and the box of `n` is added regardless.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The count arithmetic, and all of it: two budgets summing to at most `K`,
 each clamped to the block it cuts, plus the `m` the box adds. -/
 theorem ConPolyZono.aux_order_arith {d K h q m : ℕ} (hd : d ≤ K) :
     min d h + (min (K - d) q + m) ≤ K + m := by omega
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.reduceGirard_order_le (C : ConPolyZono 𝕋 n) {o : ℕ} (ho : 0 < o) :
     (C.reduceGirard o).h + (C.reduceGirard o).q ≤ o * n := by
@@ -41,3 +50,6 @@ theorem ConPolyZono.reduceGirard_order_le (C : ConPolyZono 𝕋 n) {o : ℕ} (ho
   · exact Nat.le_of_not_lt hlt
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

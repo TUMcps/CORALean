@@ -9,11 +9,17 @@ import CORALean.ContSet.Zonotope.Float.Operations.ReduceAndAbsorb
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q r : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 omit [SoundFloatArithmetic 𝕋] in
 @[simp] theorem Zonotope.reduceAndAbsorbBy_h (Z : Zonotope 𝕋 n)
@@ -21,3 +27,6 @@ omit [SoundFloatArithmetic 𝕋] in
     (Z.reduceAndAbsorbBy part).h = q + n := rfl
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

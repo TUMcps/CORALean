@@ -26,6 +26,9 @@ slope is, because what is verified is the network the folded numbers describe.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet
@@ -45,6 +48,9 @@ noncomputable def Layer.batchNorm (chan : Fin n → Fin c) (gamma beta mean var 
     fun i =>
       batchNormShift (gamma (chan i)) (beta (chan i)) (mean (chan i)) (var (chan i)) eps
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem Layer.batchNorm_eval (chan : Fin n → Fin c) (gamma beta mean var : Vec ℝ c) (eps : ℝ)
     (x : Vec ℝ n) (i : Fin n) :
     (Layer.batchNorm (S := S) chan gamma beta mean var eps).eval x i
@@ -56,3 +62,6 @@ theorem Layer.batchNorm_eval (chan : Fin n → Fin c) (gamma beta mean var : Vec
   ring
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

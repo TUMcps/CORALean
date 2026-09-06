@@ -27,7 +27,13 @@ built on this bound asks for no hypothesis at all.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- One step of the chain, at bare exponent vectors: two products that agree off
 `k₀` are two columns of a two-column matrix. -/
@@ -69,6 +75,9 @@ theorem PolyZonotope.aux_abs_sub_hybrid_le {p h : ℕ} (E : Fin p → Fin h → 
     rw [Finset.sum_insert hk₀]
     linarith
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 /-- Two monomials drift by at most the sum over every factor of the `eDiff` of
 their exponents there, whatever the two exponent columns are. -/
 theorem PolyZonotope.abs_sub_monomial_le_sum {p h : ℕ} (E : Fin p → Fin h → ℕ)
@@ -83,3 +92,6 @@ theorem PolyZonotope.abs_sub_monomial_le_sum {p h : ℕ} (E : Fin p → Fin h �
   rwa [show (∏ k, a k ^ E k j) = PolyZonotope.monomial E a j from rfl] at hfull
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

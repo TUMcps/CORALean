@@ -31,6 +31,9 @@ overflows on the third step and half the rows carry a rounded box.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace Demo
 
 open CORALean CORALean.Float
@@ -96,6 +99,9 @@ def outputRow (k : ℕ) : String :=
   let Z := Y p k
   pad 4 (toString k) ++ pad 7 (toString Z.h) ++ "  " ++ showBox Z.interval
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 /-- The whole report, at whichever precision `p` is called with — `Dyadic 24` for
 the exact run, and `Dyadic smallP` for the one that rounds. -/
 def reachReport : String :=
@@ -124,3 +130,6 @@ def reachReport : String :=
     (List.range (steps + 1)).map (outputRow p))
 
 end Demo
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

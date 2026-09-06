@@ -18,11 +18,17 @@ recurses through `L.eval x` rather than quantifying over the input.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def NeuralNetwork.DifferentiableChain :
     ∀ {n m : ℕ}, NeuralNetwork S n m → Vec ℝ n → Prop
@@ -30,3 +36,6 @@ def NeuralNetwork.DifferentiableChain :
   | _, _, .cons L rest, x => DifferentiableAt ℝ L.eval x ∧ rest.DifferentiableChain (L.eval x)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

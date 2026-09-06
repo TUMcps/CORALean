@@ -20,7 +20,13 @@ never what is computed.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Layer.lipschitzWith_activation_eval {σ : ℝ → ℝ} {K : NNReal} (hσ : LipschitzWith K σ)
     (n : ℕ) : LipschitzWith K (fun (x : Vec ℝ n) i => σ (x i)) := by
@@ -32,3 +38,6 @@ theorem Layer.lipschitzWith_activation_eval {σ : ℝ → ℝ} {K : NNReal} (hσ
     (mul_le_mul_of_nonneg_left (dist_le_pi_dist x y i) K.coe_nonneg)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

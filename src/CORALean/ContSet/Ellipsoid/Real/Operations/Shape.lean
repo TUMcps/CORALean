@@ -17,12 +17,21 @@ condition and a matrix square root.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {n : ℕ}
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 def Ellipsoid.shape (E : Ellipsoid n) : Mat ℝ n n := E.G * E.Gᵀ
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

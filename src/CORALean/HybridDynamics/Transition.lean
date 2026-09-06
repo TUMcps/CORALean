@@ -26,11 +26,17 @@ outright would make the two types mutually recursive for no gain.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix Scalar
 
 variable {S : ℕ → Type} {L : Type} {𝕋 : Type} [Scalar 𝕋] {n : ℕ}
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 structure Transition (S : ℕ → Type) (L : Type) (𝕋 : Type) (n : ℕ) where
   guard : S n
@@ -43,3 +49,6 @@ def Transition.reset (e : Transition S L 𝕋 n) (x : Vec ℝ n) : Vec ℝ n :=
   toRealMat e.W *ᵥ x + toRealVec e.w
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

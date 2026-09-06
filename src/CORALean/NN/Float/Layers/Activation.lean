@@ -27,6 +27,9 @@ error box.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Matrix Pointwise ContSet Plus Mtimes IntervalOuter OfInterval FloatOps
@@ -35,6 +38,9 @@ open Matrix Pointwise ContSet Plus Mtimes IntervalOuter OfInterval FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
   {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat 𝕋) S] [IntervalOuter S 𝕋] [OfInterval S 𝕋] {n : ℕ} {σ : ℝ → ℝ}
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 /-- An affine enclosure of `σ` on every box the stored floats describe. The
 bounds arrive in `𝕋` and the argument stays real: what the layer encloses is the
@@ -147,3 +153,6 @@ def Layer.activation (R : Relaxation 𝕋 σ) : Real.Layer S n n where
       (ofInterval_outer _ hmem))
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -13,6 +13,9 @@ what subtracting two such series in `ExpDiff` does.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix NormedSpace
@@ -21,6 +24,9 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 -- `expSeries_summable'` against those same four instances
 set_option maxHeartbeats 200000 in
@@ -31,3 +37,6 @@ theorem summable_exp_smul (A : Mat ℝ n n) (t : ℝ) :
   rw [smul_pow, smul_smul]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

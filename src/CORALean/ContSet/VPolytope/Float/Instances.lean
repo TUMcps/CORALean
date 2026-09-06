@@ -12,9 +12,15 @@ from `InflatedContSet` and is not declared here.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- ========================================  INSTANCES  ========================================= --
 
 instance : Plus (VPolytope 𝕋 n) (Vec ℝ n) where
   plus P₁ P₂ := (VPolytope.plus P₁ P₂).materialise
@@ -41,3 +47,6 @@ instance : Mtimes (Mat 𝕋) (VPolytope 𝕋) where
     exact VPolytope.mtimes_outer M P
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

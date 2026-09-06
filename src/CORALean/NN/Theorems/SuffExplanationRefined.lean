@@ -29,11 +29,17 @@ is `suffExplanation_of_abstract` [2] read at `nnRef`, so it is not restated.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet OfInterval
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OfInterval S] {n m : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Monotonicity along refinement [1, Prop. 3]: what is
 sufficient for `nnAbs` stays sufficient for any tighter `nnRef`. -/
@@ -46,3 +52,6 @@ theorem NeuralNetwork.suffExplanationAbstract_of_refined (nnAbs nnRef : NeuralNe
   (Specification.unsafeSet (misclassified m l)).holds_of_outer hrefine hsuffAbs
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

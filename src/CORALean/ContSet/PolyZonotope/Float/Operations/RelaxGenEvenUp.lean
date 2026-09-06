@@ -13,11 +13,17 @@ all outside this file.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n d : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The same fold rounded up, which only the centre and the gaps read. -/
 def PolyZonotope.relaxGenEvenUp (PZ : PolyZonotope 𝕋 n)
@@ -25,3 +31,6 @@ def PolyZonotope.relaxGenEvenUp (PZ : PolyZonotope 𝕋 n)
   fun i => half (nsmulUp (PZ.relaxWidth part k₀) (PZ.G i (part.right 0)))
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

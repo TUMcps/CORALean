@@ -25,7 +25,13 @@ bound is the trivial `2`.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Powers of `x²`, the shape both powers take once their common parity
 remainder is split off. -/
@@ -52,6 +58,9 @@ theorem PolyZonotope.aux_abs_sub_pow_le_one {x : ℝ} (hx : |x| ≤ 1) {a b : �
   · rw [abs_pow]
     exact pow_le_one₀ (abs_nonneg x) hx
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 /-- `eDiff` bounds the difference of two powers of a factor in `[-1,1]`. -/
 theorem PolyZonotope.abs_sub_pow_le_eDiff {x : ℝ} (hx : |x| ≤ 1) (a b : ℕ) :
     |x ^ a - x ^ b| ≤ (PolyZonotope.eDiff a b : ℝ) := by
@@ -71,3 +80,6 @@ theorem PolyZonotope.abs_sub_pow_le_eDiff {x : ℝ} (hx : |x| ≤ 1) (a b : ℕ)
     linarith [h a, h b]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

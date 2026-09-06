@@ -13,9 +13,15 @@ the preimage under `e.symm`.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Module ℝ β]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.mapEquiv_exact (e : α ≃ₗ[ℝ] β) (P : HPolytope α) :
     ⇑e '' P.construct = (HPolytope.mapEquiv e P).construct := by
@@ -33,3 +39,6 @@ theorem HPolytope.mapEquiv_exact (e : α ≃ₗ[ℝ] β) (P : HPolytope α) :
     rw [e.apply_symm_apply]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

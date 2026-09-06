@@ -32,11 +32,17 @@ about ℝ, and the float layer's guarantee is the enclosure it composes with.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {σ : ℝ → ℝ} {n : ℕ}
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 /-- A float polynomial relaxation per refinement level, the order free to grow
 with it. -/
@@ -70,3 +76,6 @@ def Layer.activationPolyRefinable (F : PolyRelaxationFamily 𝕋 σ) :
   propagate_outer t := (Layer.activationPoly (F.atPattern t)).propagate_outer
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

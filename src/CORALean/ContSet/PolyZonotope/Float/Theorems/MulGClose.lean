@@ -15,11 +15,17 @@ per Horner step. `mulDown`/`mulUp` bracket the exact product directly, and
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- What a rounded product generator costs. -/
 theorem PolyZonotope.mulG_close (S₁ S₂ : PolyZonotope 𝕋 n) (i : Fin n)
@@ -42,3 +48,6 @@ theorem PolyZonotope.mulG_close (S₁ S₂ : PolyZonotope 𝕋 n) (i : Fin n)
   constructor <;> linarith
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -9,17 +9,26 @@ import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMap
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Matrix FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
 theorem PolyZonotope.aux_le_max_mul {a lo hi w : ℝ} (h1 : lo ≤ w) (h2 : w ≤ hi) :
     a * w ≤ max (a * lo) (a * hi) := by
   rcases le_total 0 a with ha | ha
   · exact le_trans (mul_le_mul_of_nonneg_left h2 ha) (le_max_right _ _)
   · exact le_trans (mul_le_mul_of_nonpos_left h1 ha) (le_max_left _ _)
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.le_quadUp {g wlo whi : Vec 𝕋 n} {w : Vec ℝ n}
     (hw : ∀ r, toReal (wlo r) ≤ w r ∧ w r ≤ toReal (whi r)) :
@@ -30,3 +39,6 @@ theorem PolyZonotope.le_quadUp {g wlo whi : Vec 𝕋 n} {w : Vec ℝ n}
     (max_le_max (mul_le_mulUp _ _) (mul_le_mulUp _ _))
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

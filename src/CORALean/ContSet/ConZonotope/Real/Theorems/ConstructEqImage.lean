@@ -15,9 +15,15 @@ their enclosures as inclusions between the images.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.construct_eq_image (C : ConZonotope α) :
     C.construct = (fun β : Vec ℝ C.h => C.c + ∑ j, β j • C.G j) '' C.domain.construct := by
@@ -31,3 +37,6 @@ theorem ConZonotope.construct_eq_image (C : ConZonotope α) :
     exact ⟨β, hbox, hP, rfl⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -15,9 +15,15 @@ element of an arbitrary real module is zero.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Equal exponent columns added together and the zero generators gone. The
 whole constraint block stands, `p` included, so the constraint is untouched. -/
@@ -37,3 +43,6 @@ noncomputable def ConPolyZono.compactGens (C : ConPolyZono α) : ConPolyZono α 
   EC := C.EC
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

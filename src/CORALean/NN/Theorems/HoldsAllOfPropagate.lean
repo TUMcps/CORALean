@@ -15,11 +15,17 @@ HoldsAll`'s own `holdsAll_of_outer`.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NeuralNetwork.holdsAll_of_propagate (nn : NeuralNetwork S n m) (X : S n)
     (specs : List (Specification (Vec ℝ m)))
@@ -28,3 +34,6 @@ theorem NeuralNetwork.holdsAll_of_propagate (nn : NeuralNetwork S n m) (X : S n)
   Specification.holdsAll_of_outer specs (nn.outputSet_subset X) h
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

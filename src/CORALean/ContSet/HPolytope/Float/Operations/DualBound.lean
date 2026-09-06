@@ -26,11 +26,17 @@ definition.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Matrix FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def HPolytope.boundOfDual (P : HPolytope 𝕋 n) {c : Vec ℝ n →ₗ[ℝ] ℝ}
     (y : Vec 𝕋 P.m) (zu zl : Vec 𝕋 P.me)
@@ -69,3 +75,6 @@ def HPolytope.boundOfDual (P : HPolytope 𝕋 n) {c : Vec ℝ n →ₗ[ℝ] ℝ}
     linarith
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -14,9 +14,15 @@ Split out of `Compact.lean` (issue #62): used again by `compactIdx` and
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The columns that survive: those whose merged generator is not zero. A column
 that is not its class's representative has an empty fibre and so is dropped here
@@ -27,3 +33,6 @@ noncomputable def PolyZonotope.compactKeep {p h : ℕ} (E : Fin p → Fin h → 
     (Classical.decPred _) Finset.univ
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

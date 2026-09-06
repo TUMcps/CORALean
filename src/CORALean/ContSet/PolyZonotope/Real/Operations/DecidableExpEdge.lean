@@ -15,7 +15,13 @@ nothing names it.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- ======================================  MAIN INSTANCE  ======================================= --
 
 /-- An edge decides: finitely many indices, each of which decides. -/
 instance PolyZonotope.instDecidableExpEdge {p h : ℕ} (E : Fin p → Fin h → ℕ) (η : ℕ)
@@ -24,3 +30,6 @@ instance PolyZonotope.instDecidableExpEdge {p h : ℕ} (E : Fin p → Fin h → 
   infer_instance
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

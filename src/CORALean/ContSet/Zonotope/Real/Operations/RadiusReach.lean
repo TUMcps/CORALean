@@ -14,9 +14,15 @@ column.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {m n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- What the radius can add to coordinate `i`, over every matrix denoted. -/
 noncomputable def Zonotope.radiusReach (IM : Interval (Mat ℝ m n)) (Z : Zonotope (Vec ℝ n))
@@ -24,3 +30,6 @@ noncomputable def Zonotope.radiusReach (IM : Interval (Mat ℝ m n)) (Z : Zonoto
   ∑ j, IM.radius i j * Z.absBound j
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

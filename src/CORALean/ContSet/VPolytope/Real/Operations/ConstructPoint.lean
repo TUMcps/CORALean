@@ -13,9 +13,15 @@ matches against.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.construct_point (v : α) : (VPolytope.point v).construct = {v} := by
   ext x
@@ -36,3 +42,6 @@ theorem VPolytope.construct_point (v : α) : (VPolytope.point v).construct = {v}
       rw [Fin.sum_univ_one, one_smul]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

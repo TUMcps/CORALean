@@ -12,11 +12,20 @@ needs from `Dyadic`.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float.Dyadic
 
 variable {p : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem toReal_neg (d : Dyadic p) : toReal (neg d) = -toReal d := by
   rw [toReal_def, toReal_def, neg, Int.cast_neg, neg_mul]
 
 end CORALean.Float.Dyadic
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

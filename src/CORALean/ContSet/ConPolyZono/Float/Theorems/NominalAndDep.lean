@@ -20,11 +20,17 @@ The whole record, field by field, on the two blocks `toRealMat_andA` and
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.nominal_andDep (C₁ C₂ : ConPolyZono 𝕋 n) :
     nominal (C₁.andDep C₂)
@@ -62,3 +68,6 @@ theorem ConPolyZono.nominal_andDep (C₁ C₂ : ConPolyZono 𝕋 n) :
   rw [hG, hGI, ConPolyZono.toRealMat_andA, ConPolyZono.nominal_andB]
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

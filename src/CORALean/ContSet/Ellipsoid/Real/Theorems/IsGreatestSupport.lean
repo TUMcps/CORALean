@@ -13,9 +13,15 @@ is what says an interval hull taken off these bounds touches the ellipsoid.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 -- attained, so the bound is the maximum rather than merely an upper bound
 theorem Ellipsoid.isGreatest_support (E : Ellipsoid n) (c : Vec ℝ n →ₗ[ℝ] ℝ) :
@@ -26,3 +32,6 @@ theorem Ellipsoid.isGreatest_support (E : Ellipsoid n) (c : Vec ℝ n →ₗ[ℝ
   exact (E.supportBound c).le y hy
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

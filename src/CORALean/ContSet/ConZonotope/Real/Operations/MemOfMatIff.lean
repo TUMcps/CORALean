@@ -13,11 +13,17 @@ coming from CORA states it in.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.mem_ofMat_iff {q h : ℕ} {c : α} {G : Fin h → α} {A : Mat ℝ q h}
     {b : Vec ℝ q} {x : α} :
@@ -28,3 +34,6 @@ theorem ConZonotope.mem_ofMat_iff {q h : ℕ} {c : α} {G : Fin h → α} {A : M
    fun ⟨β, hβ, hA, hx⟩ => ⟨β, hβ, HPolytope.mem_eqs_iff.mpr hA, hx⟩⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

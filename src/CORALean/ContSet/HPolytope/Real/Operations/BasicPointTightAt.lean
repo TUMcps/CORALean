@@ -10,11 +10,17 @@ import CORALean.ContSet.HPolytope.Real.Operations.TightAt
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open scoped Classical
 
 variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A point no direction is free at is the one its own tight rows name. -/
 theorem HPolytope.basicPoint_tightAt (P : HPolytope (Vec ℝ n)) {x : Vec ℝ n}
@@ -45,3 +51,6 @@ theorem HPolytope.basicPoint_tightAt (P : HPolytope (Vec ℝ n)) {x : Vec ℝ n}
   exact hspec _ hex.choose_spec.1
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

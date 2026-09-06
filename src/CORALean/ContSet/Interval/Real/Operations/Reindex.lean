@@ -17,12 +17,21 @@ to be indexed by it.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n m : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def Interval.reindex (e : Fin m ≃ Fin n) (I : Interval (Vec ℝ n)) : Interval (Vec ℝ m) where
   inf := reindexLin e I.inf
   sup := reindexLin e I.sup
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -16,11 +16,17 @@ agreeing definitionally.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.construct_eq_image (E : Ellipsoid n) :
     E.construct = (fun u : Vec ℝ E.k => E.q + E.G *ᵥ u) '' unitBall₂ E.k := by
@@ -32,3 +38,6 @@ theorem Ellipsoid.construct_eq_image (E : Ellipsoid n) :
     exact ⟨u, hu, rfl⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

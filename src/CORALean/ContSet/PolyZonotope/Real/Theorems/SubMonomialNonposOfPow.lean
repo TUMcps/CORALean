@@ -25,7 +25,13 @@ the half of `[1, Thm. 1]`'s halving that the exponent matrix decides.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Two monomials agreeing off `k₀`, with every exponent there even, drift with
 the sign their powers at `k₀` drift with. -/
@@ -52,3 +58,6 @@ theorem PolyZonotope.sub_monomial_nonpos_of_pow {p h : ℕ} (E : Fin p → Fin h
   linarith
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

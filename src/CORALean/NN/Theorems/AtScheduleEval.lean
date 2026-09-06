@@ -18,11 +18,17 @@ It is also why `propagateAt_outer` needs no induction of its own: once the two
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem RefinableNetwork.atSchedule_eval : ∀ {n m : ℕ} (rn : RefinableNetwork S n m)
     (sch : Schedule), (rn.atSchedule sch).eval = rn.eval
@@ -34,3 +40,6 @@ theorem RefinableNetwork.atSchedule_eval : ∀ {n m : ℕ} (rn : RefinableNetwor
       rw [rest.atSchedule_eval]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

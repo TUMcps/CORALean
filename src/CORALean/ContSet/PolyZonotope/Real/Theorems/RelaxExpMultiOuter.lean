@@ -33,9 +33,15 @@ module.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α] {d : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Merging any two dependent generators over-approximates, whichever partition
 names them: the summed width pays for every exponent that moves. -/
@@ -88,3 +94,6 @@ theorem PolyZonotope.relaxExpMulti_outer (PZ : PolyZonotope α)
   abel
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -12,9 +12,15 @@ import CORALean.ContSet.ConPolyZono.Real.Operations.ConsCol
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `A μ(α)` read as a generator sum over the constraint columns, at the
 monomials `EC` names — the form `sum_monomial_merge` merges. -/
@@ -26,3 +32,6 @@ theorem ConPolyZono.mulVec_eq_sum {m s : ℕ} (A : Mat ℝ m s) (v : Vec ℝ s) 
   exact Finset.sum_congr rfl fun l _ => mul_comm _ _
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -24,6 +24,9 @@ error untouched, and a neuron below the layer's maximum order pays nothing.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
@@ -59,8 +62,14 @@ def PolyRelaxation.padTo (P : PolyRelaxation 𝕋 σ k) (M : ℕ) (h : k ≤ M) 
     rw [hco, Real.evalPoly_padCoeffs _ h]
     exact P.sound hl hu
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 /-- Padding leaves the error alone, which is what makes it free. -/
 theorem PolyRelaxation.padTo_error (P : PolyRelaxation 𝕋 σ k) (M : ℕ) (h : k ≤ M) :
     (P.padTo M h).error = P.error := rfl
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

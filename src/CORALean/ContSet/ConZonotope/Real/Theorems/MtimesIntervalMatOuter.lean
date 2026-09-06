@@ -24,11 +24,17 @@ do not.
 -- Last update:   02-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {m n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `Fin.sum_univ_add` at this operation's generator count, stated through the
 projection because that is the form the goal has. -/
@@ -37,6 +43,9 @@ theorem ConZonotope.aux_sum_univ_mtimesIntervalMat {IM : Interval (Mat ℝ m n)}
     ∑ j : Fin (ConZonotope.mtimesIntervalMat IM C).h, f j
       = ∑ j, f (Fin.castAdd m j) + ∑ j, f (Fin.natAdd C.h j) :=
   Fin.sum_univ_add f
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 -- the nested `Finset.sum` rewrites over the appended generator block are what costs here
 set_option maxHeartbeats 400000 in
@@ -97,3 +106,6 @@ theorem ConZonotope.mtimesIntervalMat_outer (IM : Interval (Mat ℝ m n))
     ring
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

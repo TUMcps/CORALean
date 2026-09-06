@@ -9,11 +9,17 @@ import CORALean.ContSet.HPolytope.Float.Operations.And
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Matrix FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.mulVec_append_right {m₁ m₂ : ℕ} (A₁ : Mat 𝕋 m₁ n) (A₂ : Mat 𝕋 m₂ n)
     (x : Vec ℝ n) (j : Fin m₂) :
@@ -23,3 +29,6 @@ theorem HPolytope.mulVec_append_right {m₁ m₂ : ℕ} (A₁ : Mat 𝕋 m₁ n)
   rfl
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

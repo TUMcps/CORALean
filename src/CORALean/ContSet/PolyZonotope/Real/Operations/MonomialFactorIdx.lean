@@ -13,7 +13,13 @@ Split out of `Compact.lean` (issue #62): used again by
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A monomial reads the kept factors and no others, which is the whole content
 of dropping a factor. -/
@@ -37,3 +43,6 @@ theorem PolyZonotope.monomial_factorIdx {p h : ℕ} (E : Fin p → Fin h → ℕ
   rw [h1, h2]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

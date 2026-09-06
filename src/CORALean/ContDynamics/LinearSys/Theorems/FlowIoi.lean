@@ -14,6 +14,9 @@ for free.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar
@@ -21,6 +24,9 @@ open Matrix ContSet Scalar
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The same one-sided derivative with the point itself dropped, which is the
 form `integral_eq_sub_of_hasDeriv_right` asks for. -/
@@ -30,3 +36,6 @@ theorem LinearSys.Trajectory.flow_Ioi (traj : sys.Trajectory T R₀ U x u) {a b 
   (traj.flow_Ici hT ht).mono Set.Ioi_subset_Ici_self
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

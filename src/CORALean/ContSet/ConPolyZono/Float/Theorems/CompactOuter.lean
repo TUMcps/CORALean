@@ -15,11 +15,17 @@ for free.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.compact_outer (C : ConPolyZono 𝕋 n) :
     C.construct ⊆ C.compact.construct :=
@@ -28,3 +34,6 @@ theorem ConPolyZono.compact_outer (C : ConPolyZono 𝕋 n) :
       (ConPolyZono.compactFactors_outer C.compactGens.compactCons))
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

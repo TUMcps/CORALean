@@ -24,9 +24,15 @@ approximation error alone.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean
 
 variable {α : Type} {X O : Set α}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Specification.holds_of_outer (spec : Specification α) (h : X ⊆ O)
     (hO : spec.Holds O) : spec.Holds X := by
@@ -36,3 +42,6 @@ theorem Specification.holds_of_outer (spec : Specification α) (h : X ⊆ O)
   · exact hO.mono_left h
 
 end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

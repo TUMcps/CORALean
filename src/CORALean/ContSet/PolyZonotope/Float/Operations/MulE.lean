@@ -12,9 +12,15 @@ and `Theorems/MulOuter.lean`, both outside this file.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The image's exponent column, the two columns added. Over ℕ, so exact. -/
 def PolyZonotope.mulE (S₁ S₂ : PolyZonotope 𝕋 n) (hp : S₁.p = S₂.p) :
@@ -23,3 +29,6 @@ def PolyZonotope.mulE (S₁ S₂ : PolyZonotope 𝕋 n) (hp : S₁.p = S₂.p) :
       + PolyZonotope.extE S₂ (Fin.cast hp k) (finProdFinEquiv.symm l).2
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

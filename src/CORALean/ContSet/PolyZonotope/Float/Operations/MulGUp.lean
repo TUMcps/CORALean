@@ -12,11 +12,17 @@ outside this file.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def PolyZonotope.mulGUp (S₁ S₂ : PolyZonotope 𝕋 n) :
     Mat 𝕋 n ((S₁.h + 1) * (S₂.h + 1)) :=
@@ -24,3 +30,6 @@ def PolyZonotope.mulGUp (S₁ S₂ : PolyZonotope 𝕋 n) :
     (PolyZonotope.extG S₂ i (finProdFinEquiv.symm l).2)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

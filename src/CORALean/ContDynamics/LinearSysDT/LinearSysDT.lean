@@ -31,12 +31,18 @@ produces it and `reach_outer_horizon` consumes it. No `bound` field on
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 structure LinearSysDT (𝕋 : Type) (n : ℕ) where
   A : Mat 𝕋 n n
@@ -57,3 +63,6 @@ structure LinearSysDT.TrajectoryOn (sys : LinearSysDT 𝕋 n) (R₀ U : S n) (K 
   step (k : ℕ) (hk : k < K) : x (k + 1) = toRealMat sys.A *ᵥ x k + u k
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -13,12 +13,21 @@ them included.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def VPolytope.linComb (P₁ P₂ : VPolytope α) : VPolytope α where
   k := P₁.k + P₂.k
   V := Fin.append P₁.V P₂.V
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -19,11 +19,17 @@ its tails follow.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Every layer's own map Lipschitz, with no claim about the composite. -/
 def RefinableNetwork.LipschitzLayers : ∀ {n m : ℕ}, RefinableNetwork S n m → Prop
@@ -31,3 +37,6 @@ def RefinableNetwork.LipschitzLayers : ∀ {n m : ℕ}, RefinableNetwork S n m �
   | _, _, .cons L rest => (∃ K : NNReal, LipschitzWith K L.eval) ∧ rest.LipschitzLayers
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

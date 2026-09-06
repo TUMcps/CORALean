@@ -15,9 +15,15 @@ the map onto the set is continuous for the same reason.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {p h : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.continuous_monomial (E : Fin p → Fin h → ℕ) (i : Fin h) :
     Continuous fun a : Fin p → ℝ => PolyZonotope.monomial E a i := by
@@ -25,3 +31,6 @@ theorem PolyZonotope.continuous_monomial (E : Fin p → Fin h → ℕ) (i : Fin 
   exact continuous_finsetProd _ fun k _ => (continuous_apply k).pow (E k i)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

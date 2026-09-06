@@ -14,11 +14,17 @@ leaving one case split. Summing over `k` finishes it.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {n m : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.mtimes_outer (M : Mat ℝ m n) (I : Interval (Vec ℝ n)) :
     (M *ᵥ ·) '' I.construct ⊆ (Interval.mtimes M I).construct := by
@@ -33,3 +39,6 @@ theorem Interval.mtimes_outer (M : Mat ℝ m n) (I : Interval (Vec ℝ n)) :
            (Interval.mul_between_endpoints (hxk k).1 (hxk k).2).2⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

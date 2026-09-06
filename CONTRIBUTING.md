@@ -287,6 +287,31 @@ that imports it and never names it, so no file can claim nothing else uses one.
 An instance that earns a name earns a file; the check rejects the prefix there
 outright.
 
+### Section markers
+
+Lean requires a helper to be declared before whatever uses it, so the
+declaration a reader opens a file to find is always at the bottom, under every
+`aux_` name it needed — the one place the source order works against the
+reader instead of for them. A file that declares anything carries four
+full-line, 100-character banners, CORA-styled, that say where things are
+regardless: `BEGIN CODE` after the author block and before `namespace`;
+`AUXILIARY` immediately before the first `aux_` declaration, omitted when
+there is none; a `MAIN ...` marker immediately above the main declaration and
+above its docstring, so the docstring stays attached to what it documents; and
+`END OF CODE` as the file's last line. `API.lean` and any file that declares
+nothing carry none of this — there is nothing to find.
+
+The `MAIN` label names the kind of the declaration under it —
+`MAIN THEOREM`, `MAIN DEFINITION`, `MAIN INSTANCE`, `MAIN TYPE` — so a
+refactor that changes what a file's main declaration is cannot leave a stale
+label behind unnoticed; `check-conventions.sh` checks the label against the
+declaration, the same way it checks everything else here that the compiler
+cannot. A type file with several public declarations — the structure and what
+denotes it, `construct`, `toReal` — carries the marker before the first of
+them, the type itself, rather than the last. `Instances.lean` has no single
+main instance among its several anonymous ones, so it carries `INSTANCES`
+instead, with the same placement.
+
 ### `API.lean`
 
 Holds nothing but imports: a directory collects itself there, `Operations/`,

@@ -13,11 +13,17 @@ import CORALean.ContSet.ConPolyZono.Real.Theorems.DependentExact
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.nominalSet_dependent (C : ConPolyZono 𝕋 n) :
     nominalSet C.dependent = nominalSet C := by
@@ -26,3 +32,6 @@ theorem ConPolyZono.nominalSet_dependent (C : ConPolyZono 𝕋 n) :
   rw [ConPolyZono.nominal_dependent, ← Real.ConPolyZono.dependent_exact]
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

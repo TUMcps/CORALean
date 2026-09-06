@@ -27,6 +27,9 @@ So Althoff's second case assumes nothing at all about where the input set sits.
 -- Last update:   02-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar NormedSpace MeasureTheory
@@ -35,6 +38,9 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The zonotope moved to the origin, keeping its generators. -/
 def aux_centered (Z : Zonotope (Vec ℝ n)) : Zonotope (Vec ℝ n) := ⟨Z.h, 0, Z.G⟩
@@ -81,6 +87,9 @@ theorem aux_smul_mem_segment (v : Vec ℝ n) {lam : ℝ} (hlam : lam ∈ Set.Icc
     match_scalars
     ring
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 -- twelve arguments in one term, each elaborating a `Mtimes` instance at `𝒵` or `ℐ`
 set_option maxHeartbeats 400000 in
 /-- Every trajectory whose initial and input sets are zonotopes stays in the
@@ -118,3 +127,6 @@ theorem LinearSys.Trajectory.timeInterval_outer_split_zonotope {sys : LinearSys 
       ht0 htr)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -16,9 +16,15 @@ so the enclosure is proved once here rather than per representation.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ} {S : Set (Vec ℝ n)}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def Interval.ofBounds (up : ∀ j, SupportBound S (LinearMap.proj j))
     (lo : ∀ j, SupportBound S (-LinearMap.proj j)) : Interval (Vec ℝ n) where
@@ -26,3 +32,6 @@ def Interval.ofBounds (up : ∀ j, SupportBound S (LinearMap.proj j))
   sup := fun j => (up j).val
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

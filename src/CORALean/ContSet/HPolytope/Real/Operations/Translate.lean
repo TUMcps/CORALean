@@ -17,9 +17,15 @@ can take without enumerating vertices.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def HPolytope.translate (t : α) (P : HPolytope α) : HPolytope α where
   m := P.m
@@ -30,3 +36,6 @@ def HPolytope.translate (t : α) (P : HPolytope α) : HPolytope α where
   be := fun i => P.be i + P.Ae i t
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

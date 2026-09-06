@@ -19,11 +19,17 @@ ambient error box would have rescued it.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def HPolytope.translate (t : Vec 𝕋 n) (P : HPolytope 𝕋 n) : HPolytope 𝕋 n where
   m := P.m
@@ -35,3 +41,6 @@ def HPolytope.translate (t : Vec 𝕋 n) (P : HPolytope 𝕋 n) : HPolytope 𝕋
          fun i => addUp (P.be.sup i) (dotUp (P.Ae i) t)⟩
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

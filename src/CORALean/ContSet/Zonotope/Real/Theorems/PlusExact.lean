@@ -17,11 +17,17 @@ against the displaced centre rather than composing with it.
 -- Last update:   01-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Pointwise
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 omit [Module ℝ α] in
 /-- `Fin.sum_univ_add` at `plus`'s generator count, stated through the
@@ -31,6 +37,9 @@ theorem Zonotope.aux_sum_univ_plus {Z₁ Z₂ : Zonotope α} (f : Fin (Z₁.h + 
     ∑ j : Fin (Z₁.plus Z₂).h, f j
       = ∑ j, f (Fin.castAdd Z₂.h j) + ∑ j, f (Fin.natAdd Z₁.h j) :=
   Fin.sum_univ_add f
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.plus_exact (Z₁ Z₂ : Zonotope α) :
     Z₁.construct + Z₂.construct = (Z₁.plus Z₂).construct := by
@@ -52,3 +61,6 @@ theorem Zonotope.plus_exact (Z₁ Z₂ : Zonotope α) :
     abel
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

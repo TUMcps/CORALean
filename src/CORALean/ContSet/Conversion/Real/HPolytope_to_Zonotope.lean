@@ -14,6 +14,9 @@ around a halfspace description would have to know its facets.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ} {P : HPolytope (Vec ℝ n)}
@@ -22,6 +25,9 @@ noncomputable def HPolytope.zonotope (up : ∀ j, SupportBound P.construct (Line
     (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) : Zonotope (Vec ℝ n) :=
   (HPolytope.interval up lo).zonotope
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem HPolytope.subset_zonotope (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
     (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) :
     P.construct ⊆ (HPolytope.zonotope up lo).construct :=
@@ -29,3 +35,6 @@ theorem HPolytope.subset_zonotope (up : ∀ j, SupportBound P.construct (LinearM
 
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

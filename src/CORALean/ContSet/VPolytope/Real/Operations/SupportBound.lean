@@ -15,9 +15,15 @@ direction.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Noncomputable only in the supremum: over a finite vertex list the value is a
 maximum, and the float layer computes it as one. -/
@@ -29,3 +35,6 @@ noncomputable def VPolytope.supportBound (P : VPolytope α) (c : α →ₗ[ℝ] 
     (fun l => le_ciSup (f := fun l => c (P.V l)) (Set.finite_range _).bddAbove l) hx
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

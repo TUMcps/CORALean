@@ -24,6 +24,9 @@ paid.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
@@ -44,6 +47,9 @@ def Zonotope.vPolytope (Z : Zonotope 𝕋 n) : VPolytope 𝕋 n where
   k := 2 ^ Z.h
   V := Z.cornerLo
   E := (VPolytope.columnGap Z.cornerLo Z.cornerHi).plus Z.E
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- What the exact layer's corner is, in this layer's own fields. -/
 theorem Zonotope.aux_signed_toReal (Z : Zonotope 𝕋 n) (σ : Fin Z.h → Bool) (i : Fin n)
@@ -73,6 +79,9 @@ theorem Zonotope.aux_corner_mem (Z : Zonotope 𝕋 n) (l : Fin (2 ^ Z.h)) (i : F
   · exact le_trans (add_le_add le_rfl (sum_le_sumUp (Z.signed (signEquiv Z.h l) i)))
       (add_le_addUp _ _)
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem Zonotope.subset_vPolytope (Z : Zonotope 𝕋 n) :
     Z.construct ⊆ Z.vPolytope.construct := by
   -- the exact corners, and the rounded ones actually stored
@@ -92,3 +101,6 @@ theorem Zonotope.subset_vPolytope (Z : Zonotope 𝕋 n) :
     rw [← add_assoc, hvg']
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

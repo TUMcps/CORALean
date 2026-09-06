@@ -15,9 +15,15 @@ the result is convex.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 theorem VPolytope.aux_subset_linComb_left (P₁ P₂ : VPolytope α) :
     P₁.construct ⊆ (P₁.linComb P₂).construct := by
@@ -36,6 +42,9 @@ theorem VPolytope.aux_subset_linComb_right (P₁ P₂ : VPolytope α) :
   rwa [show (P₁.linComb P₂).V (Fin.natAdd P₁.k j) = P₂.V j from
     Fin.append_right P₁.V P₂.V j] at h
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem VPolytope.linComb_outer (P₁ P₂ : VPolytope α) :
     segments P₁.construct P₂.construct ⊆ (P₁.linComb P₂).construct := by
   rintro _ ⟨y₁, hy₁, y₂, hy₂, lam, ⟨hlo, hup⟩, rfl⟩
@@ -43,3 +52,6 @@ theorem VPolytope.linComb_outer (P₁ P₂ : VPolytope α) :
     (VPolytope.aux_subset_linComb_right P₁ P₂ hy₂) hlo (by linarith) (by ring)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

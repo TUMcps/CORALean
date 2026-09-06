@@ -16,11 +16,17 @@ conversions out of an ellipsoid tight rather than merely sound.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- No linear program and no dual solution: the value is closed form and the
 maximum is attained, which `Theorems.SupportBoundAttained` states. -/
@@ -37,3 +43,6 @@ noncomputable def Ellipsoid.supportBound (E : Ellipsoid n) (c : Vec ℝ n →ₗ
       _ = ‖E.pullback c‖₂ := mul_one _
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

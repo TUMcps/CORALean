@@ -13,9 +13,15 @@ Split out of `Mul.lean` (issue #62): read again by the float layer's own
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Generator `(i, j)` of the product: the two extended generators, multiplied
 coordinate by coordinate. -/
@@ -25,3 +31,6 @@ def PolyZonotope.mulG (S₁ S₂ : PolyZonotope (Vec ℝ n)) :
       * PolyZonotope.extG S₂ (finProdFinEquiv.symm l).2 i
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

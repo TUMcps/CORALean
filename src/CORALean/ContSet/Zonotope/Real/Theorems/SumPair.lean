@@ -17,9 +17,15 @@ neither.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α] {h₁ h₂ : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 omit [Module ℝ α] in
 /-- A block sum read over a longer range, the summand padded with zero. What
@@ -43,6 +49,9 @@ theorem Zonotope.aux_sum_weighted {k : ℕ} (w : ℝ) (b : Fin k → ℝ) (g : F
   rw [Finset.smul_sum]
   exact Finset.sum_congr rfl fun j _ => (smul_smul w (b j) (g j)).symm
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 /-- The paired blocks recombine into the two original ones. Over a column both
 sets have, the sum and the difference generator carry `λβ₁` and `(1-λ)β₂`
 between them; past the shorter block each surplus generator carries its own. -/
@@ -65,3 +74,6 @@ theorem Zonotope.sum_pair (G₁ : Fin h₁ → α) (G₂ : Fin h₂ → α)
   split_ifs <;> module
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

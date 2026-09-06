@@ -22,6 +22,9 @@ vertex per row.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α] {q : ℕ}
@@ -30,8 +33,14 @@ noncomputable def VPolytope.hPolytope (P : VPolytope α) (Aq : Fin q → (α →
     HPolytope α :=
   HPolytope.ofBounds Aq fun i => P.supportBound (Aq i)
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem VPolytope.subset_hPolytope (P : VPolytope α) (Aq : Fin q → (α →ₗ[ℝ] ℝ)) :
     P.construct ⊆ (P.hPolytope Aq).construct :=
   HPolytope.subset_ofBounds _ _
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -14,11 +14,17 @@ factor count and degree.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n p h : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The same at the dependent block, where the coefficients are monomials. -/
 theorem PolyZonotope.mem_generatorError_monomial {G : Mat 𝕋 n h} {Δ : Mat ℝ n h}
@@ -29,3 +35,6 @@ theorem PolyZonotope.mem_generatorError_monomial {G : Mat 𝕋 n h} {Δ : Mat �
   PolyZonotope.mem_generatorError hG fun l => Real.PolyZonotope.abs_monomial_le_one E ha l
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

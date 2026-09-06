@@ -23,6 +23,9 @@ separately, since here the "solution" is one evaluation, not an integral.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
@@ -37,6 +40,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
 variable [Mtimes (Mat ℝ) S] [OfInterval S]
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 /-- The reachable set after `k` re-linearized steps, from `R₀` under the
 per-step linearizations `steps`, held at maximum order `o`. -/
 def NonlinearSysDT.reach (sys : NonlinearSysDT n m) {U : S m} (o : ℕ)
@@ -46,3 +52,6 @@ def NonlinearSysDT.reach (sys : NonlinearSysDT n m) {U : S m} (o : ℕ)
       (sys.reach o steps R₀ k) (steps k).linInput 1
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

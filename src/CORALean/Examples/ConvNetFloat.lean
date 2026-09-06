@@ -32,6 +32,9 @@ every step of its `propagate` is float arithmetic.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open ContSet SoundFloatArithmetic
@@ -84,9 +87,15 @@ example (X : Zonotope 𝕋 6) :
         (Real.Fin.transposeEquiv 3 2)).eval '' construct X :=
   Real.Layer.reshape_exact _ X
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 /-- Average pooling takes its reciprocal as data, `1 / k` being no float; for a
 window of two it is `half one`, which is exact. -/
 def Example.avgPoolTwo : Real.Layer (Zonotope 𝕋) 5 2 :=
   Layer.avgPool (FloatOps.half FloatOps.one) Real.Example.poolTap
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

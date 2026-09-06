@@ -25,11 +25,17 @@ The input dimension `m` is separate from the state dimension `n`, which
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix Scalar
 
 variable {n m r : ℕ} {𝕋 : Type} [Scalar 𝕋]
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 structure OutputEq (𝕋 : Type) (n m r : ℕ) where
   C : Mat 𝕋 r n
@@ -41,3 +47,6 @@ def OutputEq.eval (out : OutputEq 𝕋 n m r) (x : Vec ℝ n) (u : Vec ℝ m) : 
   toRealMat out.C *ᵥ x + toRealMat out.D *ᵥ u
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

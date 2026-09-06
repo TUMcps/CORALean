@@ -13,7 +13,13 @@ Split out of `Compact.lean` (issue #62): used again by
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The same monomial read against an extended factor vector: the extension
 gives the dropped factors a value, and no monomial looks at it. -/
@@ -28,3 +34,6 @@ theorem PolyZonotope.monomial_factorExtend {p h : ℕ} (E : Fin p → Fin h → 
   exact hmon.symm
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

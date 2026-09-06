@@ -16,11 +16,17 @@ every partition: a misranking costs precision alone.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Girard's metric on one generator, `‖g‖₁ - ‖g‖∞`, in `𝕋`. Zero exactly on the
 axis-aligned generators, which a box reproduces for free. -/
@@ -38,6 +44,9 @@ def Zonotope.aux_girardSplit (Z : Zonotope 𝕋 n) (o : ℕ) (hlt : o * n < Z.h)
     ((sortPerm fun j₁ j₂ => le (Z.aux_girardMetric j₂) (Z.aux_girardMetric j₁)).symm.trans
       (finCongr (Nat.add_sub_cancel' hle).symm))
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 /-- CORA's `reduce(Z, 'girard', o)`: keep the `(o - 1) * n` generators Girard
 ranks first and box the rest, which brings the count to `o * n`. Already at that
 order or below, nothing happens. -/
@@ -45,3 +54,6 @@ def Zonotope.reduceGirard (Z : Zonotope 𝕋 n) (o : ℕ) : Zonotope 𝕋 n :=
   if hlt : o * n < Z.h then Z.reduceBy (Z.aux_girardSplit o hlt) else Z
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

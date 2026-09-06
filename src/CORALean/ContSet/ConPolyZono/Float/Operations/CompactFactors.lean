@@ -15,11 +15,17 @@ moves.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The factors neither block reads, dropped. Only `p` and the two exponent
 matrices change, all over ℕ, so nothing rounds and neither `b` nor the box
@@ -40,3 +46,6 @@ def ConPolyZono.compactFactors (C : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n whe
   err := C.err
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

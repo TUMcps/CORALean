@@ -27,6 +27,9 @@ controller produces at that state. No order bound recovers the difference.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar Plus Reduce Mtimes
@@ -34,6 +37,9 @@ open Matrix ContSet Scalar Plus Reduce Mtimes
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The reachable set of the closed loop after `k` steps, from `R₀`, held at
 maximum order `o`. -/
@@ -43,3 +49,6 @@ def NeurNetContrSysDT.reach (sys : NeurNetContrSysDT 𝕋 S n) (o : ℕ) (R₀ :
       (sys.contr.propagate (sys.reach o R₀ k)) 1
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

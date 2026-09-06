@@ -21,11 +21,17 @@ the ranking a ranking: a wrong choice costs precision and never correctness.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem RefinableNetwork.outputSet_subset_refine (rn : RefinableNetwork S n m)
     (sch : Schedule) (l j : ℕ) (X : S n) :
@@ -33,3 +39,6 @@ theorem RefinableNetwork.outputSet_subset_refine (rn : RefinableNetwork S n m)
   rn.outputSet_subset_propagateAt _ X
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

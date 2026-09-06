@@ -14,6 +14,9 @@ two is what drops the constant and linear terms that cancel.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix NormedSpace
@@ -22,6 +25,9 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 -- the same, with a `ring_nf` over the matrix algebra inside `Summable.congr`
 set_option maxHeartbeats 400000 in
@@ -37,3 +43,6 @@ theorem MatExp.summable_expDiff (A : Mat ℝ n n) (t r : ℝ) :
   exact (summable_nat_add_iff 2).mpr hg
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

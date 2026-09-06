@@ -28,6 +28,9 @@ directly — tighter than bounding numerator and denominator apart.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet IntervalOuter OfInterval
@@ -76,6 +79,9 @@ theorem softmax_eq_inv (x : Vec ℝ n) (i : Fin n) :
 
 Each ratio `x j - x i` lies in `[lo j - hi i, hi j - lo i]`, and the denominator
 is monotone in every one of them. -/
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 theorem aux_one_add_exp_sum_pos (v : Vec ℝ n) (i : Fin n) (a : ℝ) :
     0 < 1 + ∑ j ∈ Finset.univ.erase i, Real.exp (v j - a) := by
@@ -137,6 +143,9 @@ noncomputable def softmaxBox (I : Interval (Vec ℝ n)) : Interval (Vec ℝ n) w
   sup := fun i =>
     min (softmaxRawUpper I i) (1 - ∑ j ∈ Finset.univ.erase i, softmaxRawLower I j)
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 /-- A box and nothing else: the slope is zero, so no `mtimes` and no `plus`
 appear, and this is the only layer here asking for neither. -/
 noncomputable def Layer.softmax : Layer S n n where
@@ -151,3 +160,6 @@ noncomputable def Layer.softmax : Layer S n n where
       (fun i => softmax_le_raw hbox i) i
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

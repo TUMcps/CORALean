@@ -27,11 +27,17 @@ states the constraint over the data, which an operation assembling one needs.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 structure ConPolyZono (α : Type) where
   /-- The dependent factors, shared by the generators and the constraints. -/
@@ -71,3 +77,6 @@ def ConPolyZono.construct (C : ConPolyZono α) : Set α :=
         ∧ x = C.c + ∑ i, PolyZonotope.monomial C.E a i • C.G i + ∑ j, β j • C.GI j}
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

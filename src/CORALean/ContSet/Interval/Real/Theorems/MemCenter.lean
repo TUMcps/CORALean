@@ -18,11 +18,17 @@ zero — without knowing anything about where the box came from.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Entrywise
 
 variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.mem_center (I : Interval α) (hI : I.IsNonempty (ι := ι)) :
     I.center ∈ I.construct := fun i => by
@@ -35,3 +41,6 @@ theorem Interval.mem_center (I : Interval α) (hI : I.IsNonempty (ι := ι)) :
   exact ⟨by linarith, by linarith⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

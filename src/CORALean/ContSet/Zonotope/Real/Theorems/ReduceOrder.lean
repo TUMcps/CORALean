@@ -20,9 +20,15 @@ reduced budget at nothing, so order zero lands at order one in both tools.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.reduceCombastel_order_le (Z : Zonotope (Vec ℝ n)) {o : ℕ} (ho : 0 < o) :
     (Z.reduceCombastel o).h ≤ o * n := by
@@ -34,3 +40,6 @@ theorem Zonotope.reduceCombastel_order_le (Z : Zonotope (Vec ℝ n)) {o : ℕ} (
   · exact Nat.le_of_not_lt hlt
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

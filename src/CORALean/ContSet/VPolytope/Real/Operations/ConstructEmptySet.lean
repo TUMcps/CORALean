@@ -12,9 +12,15 @@ denotes nothing.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.construct_emptySet : (VPolytope.emptySet α).construct = ∅ := by
   ext x
@@ -26,3 +32,6 @@ theorem VPolytope.construct_emptySet : (VPolytope.emptySet α).construct = ∅ :
   linarith
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

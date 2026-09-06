@@ -16,11 +16,17 @@ bounds run over changes.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Entrywise
 
 variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 structure Interval (α : Type) where
   inf : α
@@ -31,3 +37,6 @@ def Interval.construct (I : Interval α) : Set α :=
   {x | ∀ i, entry I.inf i ≤ entry x i ∧ entry x i ≤ entry I.sup i}
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

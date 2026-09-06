@@ -13,13 +13,22 @@ same statement at `u = 0`, the centre.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {n : ℕ}
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem Ellipsoid.mem_construct {E : Ellipsoid n} {u : Vec ℝ E.k} (hu : ‖u‖₂ ≤ 1) :
     E.q + E.G *ᵥ u ∈ E.construct := ⟨u, hu, rfl⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

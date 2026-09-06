@@ -13,9 +13,15 @@ degenerate `sup i < inf i` denotes `∅`, which is closed too.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.isClosed_construct (I : Interval (Vec ℝ n)) : IsClosed I.construct := by
   have hinter : I.construct
@@ -29,3 +35,6 @@ theorem Interval.isClosed_construct (I : Interval (Vec ℝ n)) : IsClosed I.cons
   · exact isClosed_le (continuous_apply i) continuous_const
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

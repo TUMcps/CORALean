@@ -20,9 +20,15 @@ factor unused, never the reverse.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- CORA's `compact`: the generators, then the constraints, then the factors.
 The order matters in one direction only — dropping a column can leave a factor
@@ -31,3 +37,6 @@ noncomputable def ConPolyZono.compact (C : ConPolyZono α) : ConPolyZono α :=
   C.compactGens.compactCons.compactFactors
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

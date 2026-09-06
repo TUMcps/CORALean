@@ -13,7 +13,13 @@ both outside this file.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The kept factors, indexed by a plain count, as `compactIdx` does for
 columns. -/
@@ -22,3 +28,6 @@ def PolyZonotope.factorIdx {p h : ℕ} (E : Fin p → Fin h → ℕ)
   (PolyZonotope.usedFactors E).orderIsoOfFin rfl k
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

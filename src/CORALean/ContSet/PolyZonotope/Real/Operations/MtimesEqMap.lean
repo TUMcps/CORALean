@@ -13,14 +13,23 @@ Split out of `Mtimes.lean` (issue #62), matching `Zonotope`, `VPolytope`,
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {n m : ℕ}
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 /-- True by `rfl`, and what lets `mtimes` inherit `map`'s exactness. -/
 theorem PolyZonotope.mtimes_eq_map (M : Mat ℝ m n) (PZ : PolyZonotope (Vec ℝ n)) :
     PolyZonotope.mtimes M PZ = PZ.map (Matrix.mulVecLin M) := rfl
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

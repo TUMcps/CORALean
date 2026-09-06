@@ -16,6 +16,9 @@ times over, at the three windows a concatenation splits into.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar NormedSpace MeasureTheory
@@ -25,6 +28,9 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 variable {n : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A continuous matrix applied to a measurable vector, entry by entry. -/
 theorem aux_aestronglyMeasurable_mulVec {M : ℝ → Mat ℝ n n} {v : ℝ → Vec ℝ n} {μ : Measure ℝ}
@@ -53,6 +59,9 @@ theorem aux_continuous_expSub (A : Mat ℝ n n) (c : ℝ) :
     Continuous fun s : ℝ => exp ((c - s) • A) :=
   exp_continuous.comp ((continuous_const.sub continuous_id).smul continuous_const)
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 -- the bound is built from two `exists_bound` witnesses over the local norm instances
 set_option maxHeartbeats 400000 in
 /-- An admissible input has an integrable solution over its window: bounded by
@@ -77,3 +86,6 @@ theorem intervalIntegrable_expSub_mulVec {A : Mat ℝ n n} {U : S n} {c τ : ℝ
         (hCU _ (hu s ⟨hs.1.le, hs.2⟩)) (norm_nonneg _) hCE0
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

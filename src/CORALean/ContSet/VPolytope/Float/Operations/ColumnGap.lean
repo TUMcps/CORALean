@@ -15,13 +15,22 @@ columns.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 def VPolytope.columnGap {k : ℕ} (lo hi : Mat 𝕋 n k) : Interval 𝕋 n :=
   ⟨fun _ => zero, fun i => maximumOver fun l => subUp (hi i l) (lo i l)⟩
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

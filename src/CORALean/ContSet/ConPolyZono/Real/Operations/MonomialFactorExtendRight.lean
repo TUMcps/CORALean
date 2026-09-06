@@ -11,7 +11,13 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.FactorExtendFactorIdx
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The same at the constraint block. -/
 theorem ConPolyZono.monomial_factorExtend_right {p h s : ℕ} (E : Fin p → Fin h → ℕ)
@@ -25,3 +31,6 @@ theorem ConPolyZono.monomial_factorExtend_right {p h s : ℕ} (E : Fin p → Fin
   exact hmon.symm
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

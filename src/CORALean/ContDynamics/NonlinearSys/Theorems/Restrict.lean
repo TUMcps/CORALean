@@ -13,12 +13,18 @@ for confinement on one step only: restrict first, linearize second.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet
 
 variable {n m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Every run on `T` is a run on any smaller domain. -/
 theorem NonlinearSys.Trajectory.restrict {sys : NonlinearSys n m} {T T' : Set ℝ}
@@ -30,3 +36,6 @@ theorem NonlinearSys.Trajectory.restrict {sys : NonlinearSys n m} {T T' : Set �
   flow t ht := (traj.flow t (hT ht)).mono hT
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

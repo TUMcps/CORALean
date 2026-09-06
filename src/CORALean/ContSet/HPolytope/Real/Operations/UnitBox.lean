@@ -13,9 +13,15 @@ this intersected with its constraints.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def HPolytope.unitBox (n : ℕ) : HPolytope (Vec ℝ n) where
   m := n + n
@@ -26,3 +32,6 @@ def HPolytope.unitBox (n : ℕ) : HPolytope (Vec ℝ n) where
   be := Fin.elim0
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

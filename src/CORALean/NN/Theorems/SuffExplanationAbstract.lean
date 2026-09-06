@@ -26,11 +26,17 @@ exactly "the target's minimum exceeds every rival's maximum".
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open ContSet OfInterval
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OfInterval S] {n m : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `E` is sufficient for `nnAbs`'s classification of `x` as `l`: propagating
 `explainBox`, the output set never lets a rival tie or beat `l`. -/
@@ -40,3 +46,6 @@ def NeuralNetwork.IsSuffExplanationAbstract (nnAbs : NeuralNetwork S n m) (x : V
     (construct (nnAbs.propagate (ofInterval (explainBox x ε E))))
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

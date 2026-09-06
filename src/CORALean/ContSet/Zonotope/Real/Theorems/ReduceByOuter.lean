@@ -27,9 +27,15 @@ splits into kept and dropped with no side condition.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n q r : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Boxing what a partition drops over-approximates, whichever partition it is. -/
 theorem Zonotope.reduceBy_outer (Z : Zonotope (Vec ℝ n))
@@ -62,3 +68,6 @@ theorem Zonotope.reduceBy_outer (Z : Zonotope (Vec ℝ n))
     rw [Zonotope.sum_diagonal_mul', Zonotope.mul_coefficient (hbound i)]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

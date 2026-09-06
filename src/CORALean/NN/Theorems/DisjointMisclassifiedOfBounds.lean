@@ -19,13 +19,22 @@ duplicated into each.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {m : ℕ}
 
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
 theorem aux_marginDir_apply (j l : Fin m) (y : Vec ℝ m) : marginDir m j l y = y j - y l := by
   rw [marginDir, LinearMap.sub_apply]
   rfl
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem disjoint_misclassified_of_bounds {O : Set (Vec ℝ m)} (l : Fin m)
     (u : ∀ j, SupportBound O (marginDir m j l))
@@ -37,3 +46,6 @@ theorem disjoint_misclassified_of_bounds {O : Set (Vec ℝ m)} (l : Fin m)
   linarith [h j hj]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

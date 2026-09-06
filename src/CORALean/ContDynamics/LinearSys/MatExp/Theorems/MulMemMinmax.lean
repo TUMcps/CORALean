@@ -14,7 +14,13 @@ proof to it rather than casing on the sign twice.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A value between `L` and `0`, scaled by anything, stays between `L * w` and `0`
 on whichever side the sign puts it. -/
@@ -25,3 +31,6 @@ theorem mul_mem_minmax {L u w : ℝ} (hLu : L ≤ u) (hu0 : u ≤ 0) :
   · exact ⟨le_trans (min_le_right _ _) (by nlinarith), le_trans (by nlinarith) (le_max_left _ _)⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

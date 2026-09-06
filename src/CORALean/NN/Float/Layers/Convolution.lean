@@ -24,6 +24,9 @@ rounds inside `mtimes` and `plus` as the linear layer's does.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Matrix ContSet FloatOps SoundFloatArithmetic
@@ -70,6 +73,9 @@ def Layer.conv (chan : Fin m → Fin c) (tap : Fin m → Fin k → Fin n)
     (K : Fin c → Fin k → 𝕋) (b : Vec 𝕋 m) : Real.Layer S n m :=
   Layer.linear (tapMat tap fun j l => K (chan j) l) b
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem Layer.conv_eval (chan : Fin m → Fin c) (tap : Fin m → Fin k → Fin n)
     (K : Fin c → Fin k → 𝕋) (b : Vec 𝕋 m) (htap : ∀ j, Function.Injective (tap j))
     (x : Vec ℝ n) (j : Fin m) :
@@ -80,3 +86,6 @@ theorem Layer.conv_eval (chan : Fin m → Fin c) (tap : Fin m → Fin k → Fin 
   rfl
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

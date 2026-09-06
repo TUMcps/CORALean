@@ -13,9 +13,15 @@ Split out of `RelaxExp.lean` (issue #62): read again by the float layer's own
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α] {d : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `ξ_E`: how far the two monomials can drift apart, read at the one index
 where their exponent columns may differ. -/
@@ -24,3 +30,6 @@ def PolyZonotope.relaxWidth (PZ : PolyZonotope α)
   PolyZonotope.eDiff (PZ.E k₀ (part.right 0)) (PZ.E k₀ (part.right 1))
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

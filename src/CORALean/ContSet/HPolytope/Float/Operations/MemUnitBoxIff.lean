@@ -14,11 +14,17 @@ row is one coordinate: the sum collapses at the single entry that is not zero.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Matrix FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A row with one nonzero entry reads one coordinate, the sign it carries
 times it. -/
@@ -30,6 +36,9 @@ theorem HPolytope.aux_mulVec_single {a : 𝕋} (x : Vec ℝ n) (j : Fin n) :
   · intro k _ hk
     rw [if_neg (Ne.symm hk), toReal_zero, zero_mul]
   · exact fun h => absurd (Finset.mem_univ j) h
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 -- membership is those two halves read back as a bound on the magnitude
 theorem HPolytope.mem_unitBox_iff {x : Vec ℝ n} :
@@ -55,3 +64,6 @@ theorem HPolytope.mem_unitBox_iff {x : Vec ℝ n} :
       linarith
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

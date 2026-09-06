@@ -13,9 +13,15 @@ constrained zonotope carries is as exact as a zonotope's.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Module ℝ β]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def ConZonotope.map (f : α →ₗ[ℝ] β) (C : ConZonotope α) : ConZonotope β where
   h := C.h
@@ -24,3 +30,6 @@ def ConZonotope.map (f : α →ₗ[ℝ] β) (C : ConZonotope α) : ConZonotope �
   P := C.P
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

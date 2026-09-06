@@ -16,11 +16,17 @@ the sum. The sign of `M i k` is never examined — that case split lives once, i
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Matrix FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 theorem Interval.aux_mtimes_outer_refines (M : Mat 𝕋 m n) (I : Interval 𝕋 n) :
     (Real.Interval.mtimes (toRealMat M) I.nominal).construct ⊆
@@ -42,9 +48,15 @@ theorem Interval.aux_mtimes_outer_refines (M : Mat 𝕋 m n) (I : Interval 𝕋 
   exact ⟨le_trans (sumDown_le_sum _) (le_trans (Finset.sum_le_sum fun k _ => hinf k) h.1),
          le_trans h.2 (le_trans (Finset.sum_le_sum fun k _ => hsup k) (sum_le_sumUp _))⟩
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem Interval.mtimes_outer (M : Mat 𝕋 m n) (I : Interval 𝕋 n) :
     ((toRealMat M) *ᵥ ·) '' I.construct ⊆ (Interval.mtimes M I).construct :=
   subset_trans (Real.Interval.mtimes_outer (toRealMat M) I.nominal)
     (Interval.aux_mtimes_outer_refines M I)
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

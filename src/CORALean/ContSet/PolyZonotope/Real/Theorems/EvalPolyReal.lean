@@ -13,7 +13,13 @@ own `Theorems/EvalPolyOuter.lean`, by `Theorems/EvalPolyRealOfFn.lean`, and by
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The reference evaluator: Horner's rule over `ℝ`, coefficients lowest degree
 first, exactly `evalPoly`'s own recursion carried to a single coordinate. -/
@@ -23,3 +29,6 @@ def PolyZonotope.evalPolyReal (coeffs : List ℝ) (x : ℝ) : ℝ :=
   | a :: rest => a + x * PolyZonotope.evalPolyReal rest x
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

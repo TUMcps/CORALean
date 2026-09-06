@@ -18,6 +18,9 @@ is positive.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix NormedSpace
@@ -26,6 +29,9 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 -- `norm_expSeries_summable'` at the local matrix norm instances, then a four-step `calc`
 set_option maxHeartbeats 400000 in
@@ -49,3 +55,6 @@ theorem MatExp.summable_norm_expIntegral (A : Mat ℝ n n) (t : ℝ) :
     _ = |t| * (((Nat.factorial i : ℝ))⁻¹ * |t| ^ i * ‖A ^ i‖) := by ring
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

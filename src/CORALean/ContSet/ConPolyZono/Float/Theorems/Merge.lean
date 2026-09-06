@@ -15,17 +15,26 @@ field is what appears in the result.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
 /-- A sum over the kept columns, read against a plain count. -/
 theorem ConPolyZono.aux_sum_keep {d : ℕ} (t : Finset (Fin d)) (f : Fin d → ℝ) :
     ∑ j ∈ t, f j = ∑ j : Fin t.card, f (t.orderIsoOfFin rfl j) := by
   rw [← Finset.sum_coe_sort t f]
   exact (Equiv.sum_comp (t.orderIsoOfFin rfl).toEquiv fun x => f x).symm
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The exact layer's regrouping at this layer's stored columns, which are exact
 reals. `E'` is passed rather than computed, so the caller's own field is what
@@ -67,3 +76,6 @@ theorem ConPolyZono.merge {p d h : ℕ} (E : Fin p → Fin h → ℕ) (G : Mat �
           rw [smul_eq_mul, hmon j]; exact mul_comm _ _
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

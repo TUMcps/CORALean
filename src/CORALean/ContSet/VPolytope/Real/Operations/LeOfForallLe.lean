@@ -14,9 +14,15 @@ vertex.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.le_of_forall_le (P : VPolytope α) (c : α →ₗ[ℝ] ℝ) {v : ℝ}
     (h : ∀ l, c (P.V l) ≤ v) {x : α} (hx : x ∈ P.construct) : c x ≤ v := by
@@ -28,3 +34,6 @@ theorem VPolytope.le_of_forall_le (P : VPolytope α) (c : α →ₗ[ℝ] ℝ) {v
     _ = v := by rw [← Finset.sum_mul, hsum, one_mul]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

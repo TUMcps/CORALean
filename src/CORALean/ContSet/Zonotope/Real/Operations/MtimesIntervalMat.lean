@@ -14,11 +14,17 @@ fresh generator per coordinate — so a step costs `n` generators and no more.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {m n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 noncomputable def Zonotope.mtimesIntervalMat (IM : Interval (Mat ℝ m n)) (Z : Zonotope (Vec ℝ n)) :
     Zonotope (Vec ℝ m) where
@@ -28,3 +34,6 @@ noncomputable def Zonotope.mtimesIntervalMat (IM : Interval (Mat ℝ m n)) (Z : 
         (Matrix.diagonal fun i => Zonotope.radiusReach IM Z i)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

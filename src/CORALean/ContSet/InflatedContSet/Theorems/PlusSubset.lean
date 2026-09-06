@@ -16,6 +16,9 @@ return different ones.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float.InflatedContSet
 
 open Pointwise
@@ -23,6 +26,9 @@ open Pointwise
 variable {𝕋 S₁ S₂ T N₁ N₂ N : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 variable [ContSet N₁ (Vec ℝ n)] [ContSet N₂ (Vec ℝ n)] [ContSet N (Vec ℝ n)]
 variable [InflatedContSet S₁ N₁ 𝕋 n] [InflatedContSet S₂ N₂ 𝕋 n] [InflatedContSet T N 𝕋 n]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem plus_subset {s₁ : S₁} {s₂ : S₂} {t : T} {D : Set (Vec ℝ n)}
     (hnominal : nominalSet s₁ + nominalSet s₂ ⊆
@@ -47,3 +53,6 @@ theorem plus_subset {s₁ : S₁} {s₂ : S₂} {t : T} {D : Set (Vec ℝ n)}
         Set.add_subset_add_left herror
 
 end CORALean.Float.InflatedContSet
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

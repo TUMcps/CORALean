@@ -25,9 +25,15 @@ compactness only at `Vec`, which is where boundedness is stated.
 -- Last update:   02-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- ========================================  INSTANCES  ========================================= --
 
 /-- At every ambient type that has coordinates, so an interval matrix is an
 instance too. The operation instances below are stated only at `Vec`, which is
@@ -81,3 +87,6 @@ instance : Mtimes ℐ (fun n => Interval (Vec ℝ n)) where
   mtimes_outer IM I := Interval.mtimesIntervalMat_outer IM I
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

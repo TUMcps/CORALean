@@ -17,7 +17,13 @@ carrying one. Definitions assume this class alone; theorems assume both.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 class FloatOps (𝕋 : Type) where
   zero : 𝕋
@@ -129,3 +135,6 @@ def matMulDiff {m n k : ℕ} (M₁ : Mat 𝕋 m n) (M₂ : Mat 𝕋 n k) : Mat �
 
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

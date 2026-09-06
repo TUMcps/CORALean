@@ -13,9 +13,15 @@ caller names an order and gets an over-approximation.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- CORA's `reduce`: to a maximum order, by whichever rule the representation
 sees fit. Girard's is the one here, and which it is goes no further — a caller
@@ -24,3 +30,6 @@ noncomputable def Zonotope.reduce (Z : Zonotope (Vec ℝ n)) (o : ℕ) : Zonotop
   Z.reduceGirard o
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

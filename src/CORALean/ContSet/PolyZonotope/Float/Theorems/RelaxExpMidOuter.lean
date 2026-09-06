@@ -29,11 +29,17 @@ shift went.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n d : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `relaxExpMid`'s dependent count, stated through the
@@ -221,6 +227,9 @@ theorem PolyZonotope.aux_relaxExpMid_nominal (PZ : PolyZonotope 𝕋 n)
       Matrix.head_cons, Matrix.tail_cons]
     linear_combination toReal (PZ.G i (part.right 0)) * hcoef
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 /-- Merging two generators whose exponent columns agree off `k₀`
 over-approximates, with the drift's midpoint moved into the centre. -/
 theorem PolyZonotope.relaxExpMid_outer (PZ : PolyZonotope 𝕋 n)
@@ -236,3 +245,6 @@ theorem PolyZonotope.relaxExpMid_outer (PZ : PolyZonotope 𝕋 n)
   rw [← hsum', add_comm e g, ← add_assoc]
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

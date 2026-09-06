@@ -14,9 +14,15 @@ column here rather than moving into the bound.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Equal constraint exponent columns added together and the zero columns gone.
 `b` stands: a merged column is exact, and a column at exponent zero stays a
@@ -37,3 +43,6 @@ noncomputable def ConPolyZono.compactCons (C : ConPolyZono α) : ConPolyZono α 
   EC := fun k l => C.EC k (PolyZonotope.compactIdx C.EC (ConPolyZono.consCol C.A) l)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

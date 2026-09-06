@@ -14,7 +14,13 @@ whether the other factor is a matrix entry or an interval matrix's.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Scaling a point between two endpoints lands between the scaled endpoints,
 whichever way the scale points. -/
@@ -27,3 +33,6 @@ theorem Interval.mul_between_endpoints {c lo hi x : ℝ} (h₁ : lo ≤ x) (h₂
            (mul_le_mul_of_nonpos_left h₁ hc).trans (le_max_left _ _)⟩
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

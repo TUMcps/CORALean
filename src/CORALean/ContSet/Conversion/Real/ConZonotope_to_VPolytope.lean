@@ -26,6 +26,9 @@ constraints first and pays for it in precision instead.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
@@ -71,8 +74,14 @@ theorem ConZonotope.vPolytope_subset (C : ConZonotope α) (hne : C.domain.constr
   obtain ⟨hb, hP⟩ := ConZonotope.mem_domain_iff.mp hd
   exact ⟨_, hb, hP, rfl⟩
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem ConZonotope.vPolytope_exact (C : ConZonotope α) (hne : C.domain.construct.Nonempty) :
     (C.vPolytope hne).construct = C.construct :=
   Set.Subset.antisymm (C.vPolytope_subset hne) (C.subset_vPolytope hne)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

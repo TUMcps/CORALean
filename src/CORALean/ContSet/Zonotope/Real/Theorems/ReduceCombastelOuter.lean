@@ -14,9 +14,15 @@ arbitrary partition rather than at either metric.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Same two cases, at Combastel's partition instead of Girard's — the metric
 never appears, which is `reduceBy_outer`'s whole point. -/
@@ -28,3 +34,6 @@ theorem Zonotope.reduceCombastel_outer (Z : Zonotope (Vec ℝ n)) (o : ℕ) :
   · exact subset_rfl
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

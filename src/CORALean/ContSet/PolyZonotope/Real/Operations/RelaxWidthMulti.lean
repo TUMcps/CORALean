@@ -14,9 +14,15 @@ all outside this file.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α] {d : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `ξ_E` summed over every factor, the agreeing ones contributing nothing. -/
 def PolyZonotope.relaxWidthMulti (PZ : PolyZonotope α)
@@ -24,3 +30,6 @@ def PolyZonotope.relaxWidthMulti (PZ : PolyZonotope α)
   ∑ k, PolyZonotope.eDiff (PZ.E k (part.right 0)) (PZ.E k (part.right 1))
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

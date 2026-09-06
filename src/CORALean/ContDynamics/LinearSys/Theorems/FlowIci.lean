@@ -15,6 +15,9 @@ of `t` on the left. `Set.Icc a b ⊆ T` with `t ∈ Ico a b` is what buys it —
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar
@@ -22,6 +25,9 @@ open Matrix ContSet Scalar
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The flow as a right derivative, wherever the domain still extends to the
 right of `t`. -/
@@ -33,3 +39,6 @@ theorem LinearSys.Trajectory.flow_Ici (traj : sys.Trajectory T R₀ U x u) {a b 
       ⟨b, ht.2, fun _ hs => hT ⟨le_trans ht.1 hs.1, hs.2.le⟩⟩)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

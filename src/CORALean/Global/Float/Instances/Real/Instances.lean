@@ -14,7 +14,13 @@ for.
 -- Last update:   04-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
+
+
+-- ========================================  INSTANCES  ========================================= --
 
 -- noncomputable, unlike `Dyadic`: ℝ division is. Nothing computes with it.
 noncomputable instance : FloatOps ℝ where
@@ -50,3 +56,6 @@ noncomputable instance : SoundFloatArithmetic ℝ where
   toReal_half _ := rfl
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

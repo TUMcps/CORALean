@@ -24,11 +24,17 @@ and the radius rounds up so it always fits.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open Pointwise FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `absorbError`'s generator count. -/
@@ -36,6 +42,9 @@ theorem Zonotope.aux_sum_univ_absorbError {Z : Zonotope 𝕋 n} (f : Fin (Z.h + 
     ∑ j : Fin Z.absorbError.h, f j
       = ∑ j, f (Fin.castAdd n j) + ∑ j, f (Fin.natAdd Z.h j) :=
   Fin.sum_univ_add f
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.absorbError_outer (Z : Zonotope 𝕋 n) :
     Z.construct ⊆ Z.absorbError.construct := by
@@ -66,3 +75,6 @@ theorem Zonotope.absorbError_outer (Z : Zonotope 𝕋 n) :
     ring
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

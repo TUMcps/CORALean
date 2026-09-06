@@ -23,6 +23,9 @@ only there to supply generators, and drops out.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ} {P : HPolytope (Vec ℝ n)}
@@ -34,6 +37,9 @@ noncomputable def HPolytope.conZonotope
   c := (HPolytope.zonotope up lo).c
   G := (HPolytope.zonotope up lo).G
   P := (P.translate (-(HPolytope.zonotope up lo).c)).comap (HPolytope.zonotope up lo).genMap
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.conZonotope_exact
     (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
@@ -68,3 +74,6 @@ theorem HPolytope.conZonotope_exact
     rwa [← hxβ]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

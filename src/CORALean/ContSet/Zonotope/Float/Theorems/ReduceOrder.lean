@@ -16,9 +16,15 @@ addition is scoped to Combastel's rule alone.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.reduceCombastel_order_le (Z : Zonotope 𝕋 n) {o : ℕ} (ho : 0 < o) :
     (Z.reduceCombastel o).h ≤ o * n := by
@@ -30,3 +36,6 @@ theorem Zonotope.reduceCombastel_order_le (Z : Zonotope 𝕋 n) {o : ℕ} (ho : 
   · exact Nat.le_of_not_lt hlt
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

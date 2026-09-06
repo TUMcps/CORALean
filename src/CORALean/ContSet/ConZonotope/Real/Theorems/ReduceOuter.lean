@@ -15,9 +15,15 @@ constraints, both enclosures; at or below it, the identity.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.reduce_outer (C : ConZonotope (Vec ℝ n)) (o : ℕ) :
     C.construct ⊆ (C.reduce o).construct := by
@@ -28,3 +34,6 @@ theorem ConZonotope.reduce_outer (C : ConZonotope (Vec ℝ n)) (o : ℕ) :
   · exact subset_rfl
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

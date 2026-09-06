@@ -21,11 +21,17 @@ computed.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {n : ℕ}
+
+
+-- ========================================  INSTANCES  ========================================= --
 
 /-- At every ambient type, not only `Vec`: the constraints live on the
 coefficient space whatever the generators point into. -/
@@ -73,3 +79,6 @@ noncomputable instance : Mtimes ℐ 𝒞 where
   mtimes_outer IM C := ConZonotope.mtimesIntervalMat_outer IM C
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

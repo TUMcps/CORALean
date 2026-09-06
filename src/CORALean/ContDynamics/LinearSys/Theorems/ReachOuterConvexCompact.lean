@@ -25,6 +25,9 @@ statement by instantiating this, and any later one does the same.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix ContSet Scalar NormedSpace MeasureTheory
@@ -35,6 +38,9 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Every trajectory of a linear system whose input set is convex and compact
 stays in `reach`, at every sample time — so over all of forward time, the
@@ -53,3 +59,6 @@ theorem LinearSys.Trajectory.reach_outer_convexCompact [Mtimes ℐ S]
     (CompactSet.isBounded_construct _) o k
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

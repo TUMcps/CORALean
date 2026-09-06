@@ -14,9 +14,15 @@ covers the two blocks together.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n d r dI rI : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- How far the dropped generators of both blocks reach in each coordinate. A
 monomial and an independent coefficient obey the same bound, so one box covers
@@ -27,3 +33,6 @@ def ConPolyZono.dropRadius (C : ConPolyZono (Vec ℝ n))
   fun i => (∑ l, |C.G (partD.right l) i|) + ∑ j, |C.GI (partI.right j) i|
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

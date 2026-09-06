@@ -15,11 +15,17 @@ or, when nothing is left, the empty vertex list already contains nothing.
 -- Last update:   02-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open scoped Classical
 
 variable {n q₁ q₂ : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.and_outer (P₁ P₂ : VPolytope (Vec ℝ n))
     (Aq₁ : Fin q₁ → (Vec ℝ n →ₗ[ℝ] ℝ)) (Aq₂ : Fin q₂ → (Vec ℝ n →ₗ[ℝ] ℝ)) :
@@ -43,3 +49,6 @@ theorem VPolytope.and_outer (P₁ P₂ : VPolytope (Vec ℝ n))
     exact hsub
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

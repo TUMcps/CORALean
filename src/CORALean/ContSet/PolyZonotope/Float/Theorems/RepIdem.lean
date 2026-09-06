@@ -15,9 +15,15 @@ filter, and the least index of a class is the least index of its own class.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {p h : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 -- each `min'_le` re-elaborates the decidability instance of the filter it ranges over
 set_option maxHeartbeats 400000 in
@@ -44,3 +50,6 @@ theorem PolyZonotope.rep_idem (E : Fin p → Fin h → ℕ) (i : Fin h) :
   exact le_antisymm h₁ h₂
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

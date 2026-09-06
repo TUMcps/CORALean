@@ -14,9 +14,15 @@ this same map.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.continuous_affine (Z : Zonotope α) :
     Continuous fun β : Fin Z.h → ℝ => Z.c + ∑ j, β j • Z.G j :=
@@ -24,3 +30,6 @@ theorem Zonotope.continuous_affine (Z : Zonotope α) :
     (continuous_apply j).smul continuous_const)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

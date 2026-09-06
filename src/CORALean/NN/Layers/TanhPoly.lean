@@ -21,6 +21,9 @@ produces — which is why it is said here and not proved.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 /-- `sigmoidPolyRelaxation` read through `tanh t = 2 σ (2 t) - 1`: `a = b = 2`
@@ -30,9 +33,15 @@ noncomputable def tanhPolyRelaxation {n : ℕ} (c : ℝ → ℝ → Fin (n + 1) 
   (sigmoidPolyRelaxation c N hN).ofAffineConj (a := 2) (b := 2) (d := -1)
     (by norm_num) (by norm_num) fun t => by rw [tanh_eq_sigmoid]; ring
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 /-- The same at CORA's default fit of the sigmoid, conjugated. -/
 noncomputable def tanhPolyRelaxationFit {n : ℕ} (N : ℝ → ℝ → ℕ) (hN : ∀ l u, 0 < N l u) :
     PolyRelaxation Real.tanh n :=
   tanhPolyRelaxation (polyFit sigmoid n) N hN
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

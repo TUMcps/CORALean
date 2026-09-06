@@ -23,9 +23,15 @@ that is the one gap between these axioms and a machine.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
+
+
+-- ========================================  MAIN TYPE  ========================================= --
 
 class SoundFloatArithmetic (𝕋 : Type) [FloatOps 𝕋] where
   toReal : 𝕋 → ℝ
@@ -164,3 +170,6 @@ theorem abs_sum_le_radius {d : Mat 𝕋 n h} {Δ : Mat ℝ n h} {β : Vec ℝ h}
     _ ≤ toReal (radius d i) := sum_abs_le_radius i
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

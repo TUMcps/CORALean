@@ -16,9 +16,15 @@ compaction buys is the order bound, which is stated in `ReduceOrder`.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Girard's is the rule `reduce` runs, and compaction is what makes the count
 it bounds mean anything. Neither choice shows here: any ranking would discharge
@@ -29,3 +35,6 @@ theorem ConPolyZono.reduce_outer (C : ConPolyZono (Vec ℝ n)) (o : ℕ) :
     (ConPolyZono.reduceGirard_outer C.compact o)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

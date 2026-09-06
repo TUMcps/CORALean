@@ -26,9 +26,18 @@ the only place directed rounding is put under any load at all.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 def main : IO Unit := do
   IO.println (Demo.reachReport 24)
   IO.println ""
   IO.println (Demo.reachReport Demo.smallP)
   IO.println ""
   IO.println Demo.propagateReport
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

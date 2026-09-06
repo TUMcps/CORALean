@@ -19,11 +19,17 @@ lands at order one in both tools.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Compacting first only lowers the count it then bounds, so the bound reads
 off `reduceGirard` unchanged. -/
@@ -32,3 +38,6 @@ theorem PolyZonotope.reduce_order_le (PZ : PolyZonotope 𝕋 n) {o : ℕ} (ho : 
   PolyZonotope.reduceGirard_order_le PZ.compact ho
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

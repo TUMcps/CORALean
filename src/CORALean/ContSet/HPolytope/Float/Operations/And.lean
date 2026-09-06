@@ -12,9 +12,15 @@ intersection of two float halfspace descriptions is exact, as it is over ℝ.
 -- Last update:   05-September-2026
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def HPolytope.and (P₁ P₂ : HPolytope 𝕋 n) : HPolytope 𝕋 n where
   m := P₁.m + P₂.m
@@ -25,3 +31,6 @@ def HPolytope.and (P₁ P₂ : HPolytope 𝕋 n) : HPolytope 𝕋 n where
   be := ⟨Fin.append P₁.be.inf P₂.be.inf, Fin.append P₁.be.sup P₂.be.sup⟩
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

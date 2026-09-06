@@ -20,11 +20,17 @@ instances to even be written down and none of them to be Lipschitz.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {n m : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Layer.lipschitzWith_linear_eval (W : Mat ℝ m n) (b : Vec ℝ m) :
     LipschitzWith (Finset.univ.sup fun i => ∑ j, ‖W i j‖₊)
@@ -60,3 +66,6 @@ theorem Layer.lipschitzWith_linear_eval (W : Mat ℝ m n) (b : Vec ℝ m) :
     _ ≤ _ := mul_le_mul_of_nonneg_right hrow hd
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

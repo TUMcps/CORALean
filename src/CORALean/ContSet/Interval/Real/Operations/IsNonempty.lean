@@ -13,13 +13,22 @@ read the other way round. `Theorems/IsNonempty` gives the equivalence with
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Entrywise
 
 variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 /-- Bounds that do not cross, coordinate by coordinate. -/
 def Interval.IsNonempty (I : Interval α) : Prop := ∀ i : ι, entry I.inf i ≤ entry I.sup i
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

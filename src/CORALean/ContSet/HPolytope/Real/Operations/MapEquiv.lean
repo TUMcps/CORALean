@@ -14,11 +14,20 @@ projection and so vertex enumeration, but an invertible one costs nothing.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Module ℝ β]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def HPolytope.mapEquiv (e : α ≃ₗ[ℝ] β) (P : HPolytope α) : HPolytope β :=
   P.comap (e.symm : β →ₗ[ℝ] α)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

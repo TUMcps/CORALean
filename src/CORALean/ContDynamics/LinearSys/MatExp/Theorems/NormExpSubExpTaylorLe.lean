@@ -20,6 +20,9 @@ geometric series of ratio `‖x‖ / (η + 2)`, because `(η+1+i)!` outgrows
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix NormedSpace
@@ -28,6 +31,9 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The same estimate at a matrix, reached through the norm of its powers. -/
 theorem aux_term_le (x : Mat ℝ n n) (η i : ℕ) :
@@ -50,6 +56,9 @@ theorem aux_term_le (x : Mat ℝ n n) (η i : ℕ) :
     _ = (‖x‖ ^ (η + 1) / Nat.factorial (η + 1)) * (‖x‖ / ((η : ℝ) + 2)) ^ i := by
         rw [div_pow, pow_add]
         field_simp
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 -- summability and `tsum` over the matrix algebra is the cost here, not the estimate
 set_option maxHeartbeats 1000000 in
@@ -80,3 +89,6 @@ theorem norm_exp_sub_expTaylor_le (x : Mat ℝ n n) (η : ℕ)
         rw [tsum_mul_left, tsum_geometric_of_lt_one hε0 hε]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

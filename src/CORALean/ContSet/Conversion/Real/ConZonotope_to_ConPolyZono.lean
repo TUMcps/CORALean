@@ -29,11 +29,17 @@ functional, here a matrix row, and a functional is its values on the unit vector
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
 
 variable {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The coefficients of a linear functional on a coordinate space. -/
 def ConZonotope.aux_coeffs {h : ℕ} (f : Vec ℝ h →ₗ[ℝ] ℝ) : Vec ℝ h :=
@@ -151,6 +157,9 @@ theorem ConZonotope.satisfies_conPolyZono_iff (C : ConZonotope (Vec ℝ n)) (β 
       simp only [ConZonotope.conB, Fin.append_right]
       exact ⟨(hE i).ge, (hE i).le⟩
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem ConZonotope.conPolyZono_exact (C : ConZonotope (Vec ℝ n)) :
     C.construct = C.conPolyZono.construct := by
   have hvalue : ∀ β : Vec ℝ C.h,
@@ -175,3 +184,6 @@ theorem ConZonotope.conPolyZono_exact (C : ConZonotope (Vec ℝ n)) :
     rfl
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

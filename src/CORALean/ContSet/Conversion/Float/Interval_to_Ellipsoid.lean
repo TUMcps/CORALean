@@ -27,6 +27,9 @@ box.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Float
 
 open FloatOps
@@ -47,6 +50,9 @@ def Interval.ellipsoid (I : Interval 𝕋 n) (σ : 𝕋) : Ellipsoid 𝕋 n wher
 open SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The stored generator covers the exact scaling, so no coordinate's
 coefficient exceeds `1/σ`. -/
@@ -157,6 +163,9 @@ theorem Interval.subset_nominal_ellipsoid (I : Interval 𝕋 n) (σ : 𝕋) (hσ
       div_mul_cancel₀ _ h]
     ring
 
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
 theorem Interval.subset_ellipsoid (I : Interval 𝕋 n) (σ : 𝕋) (hσ : 0 < toReal σ)
     (hn : (n : ℝ) ≤ toReal (mulDown σ σ)) :
     I.construct ⊆ (I.ellipsoid σ).construct := fun x hx =>
@@ -166,3 +175,6 @@ theorem Interval.subset_ellipsoid (I : Interval 𝕋 n) (σ : 𝕋) (hσ : 0 < t
     exact ⟨le_refl 0, le_refl 0⟩, by show x + 0 = x; rw [add_zero]⟩
 
 end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

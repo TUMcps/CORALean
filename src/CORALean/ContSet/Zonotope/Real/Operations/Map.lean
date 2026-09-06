@@ -16,9 +16,15 @@ an exactness proof of its own.
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Module ℝ β]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 def Zonotope.map (f : α →ₗ[ℝ] β) (Z : Zonotope α) : Zonotope β where
   h := Z.h
@@ -26,3 +32,6 @@ def Zonotope.map (f : α →ₗ[ℝ] β) (Z : Zonotope α) : Zonotope β where
   G := fun j => f (Z.G j)
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

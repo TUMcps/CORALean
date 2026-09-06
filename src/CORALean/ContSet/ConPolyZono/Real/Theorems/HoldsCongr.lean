@@ -13,9 +13,15 @@ that leaves that vector alone leaves `holds` alone, which is what lets
 -- Last update:   ---
 -- Last revision: ---
 
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
 namespace CORALean.Real
 
 open Matrix
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A rewriting of the constraint block that leaves `A μ(α)` alone leaves the
 constraint alone — which is what compacting `A` and `EC` does. -/
@@ -27,3 +33,6 @@ theorem ConPolyZono.holds_congr {p p' m s s' : ℕ} {A : Mat ℝ m s} {A' : Mat 
   rw [ConPolyZono.holds, ConPolyZono.holds, h]
 
 end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
