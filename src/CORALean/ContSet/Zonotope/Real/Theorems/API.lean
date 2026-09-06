@@ -26,6 +26,8 @@ import CORALean.ContSet.Zonotope.Real.Theorems.SumPair
 import CORALean.ContSet.Zonotope.Real.Theorems.LinCombOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.AbsLeAbsBound
 import CORALean.ContSet.Zonotope.Real.Theorems.MtimesIntervalMatOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.BilinOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.MtimesMatZonotopeOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.SumUnivReduceBy
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceByOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceGirardOuter
@@ -40,5 +42,6 @@ import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOrder
 topological facts a set-valued integral needs. `MemConstruct` reads membership
 coordinatewise, which is what every one of them is stated against, and
 `Coefficient` with the two facts about it holds the shared proof devices, which
-the float layer needs too.
+the float layer needs too. `BilinOuter` and `MtimesMatZonotopeOuter` are a
+matrix zonotope acting on a set, an enclosure and never exact.
 -/
