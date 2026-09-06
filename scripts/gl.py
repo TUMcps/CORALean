@@ -12,12 +12,15 @@ machine reaches the API the same way, with nothing to pass along.
   gl.py issue show <iid>
   gl.py issue new <label> <title> <desc-file>
   gl.py issue note <iid> <text>    comment
+  gl.py issue edit <iid> <desc-file>
   gl.py issue close <iid> <text>   comment, then close -- never close silently
+  gl.py issue reopen <iid> <text>  comment, then reopen -- likewise
 
   gl.py mr list
   gl.py mr show <iid>
   gl.py mr new <branch> <title> <desc-file>
   gl.py mr note <iid> <text>
+  gl.py mr edit <iid> <desc-file>
   gl.py mr merge <iid>             squash, delete source branch
   gl.py mr close <iid> <text>      comment, then close unmerged
 
@@ -61,6 +64,14 @@ def note(kind, iid, text):
     print("commented on %s %s" % (kind[:-1], iid))
 
 
+def edit(kind, iid, path):
+    """Rewrite a description from a file, the way `new` reads one: a long
+    description passed as an argument is what folded newlines into `<br>`."""
+    with open(path, encoding="utf-8") as f:
+        call("PUT", "/%s/%s" % (kind, iid), {"description": f.read()})
+    print("rewrote %s %s description" % (kind[:-1], iid))
+
+
 argv = sys.argv[1:]
 if not argv:
     sys.exit(__doc__)
@@ -90,10 +101,16 @@ if group == "issue":
         print("#%d %s" % (i["iid"], i["web_url"]))
     elif cmd == "note":
         note("issues", rest[0], rest[1])
+    elif cmd == "edit":
+        edit("issues", rest[0], rest[1])
     elif cmd == "close":
         note("issues", rest[0], rest[1])
         call("PUT", "/issues/%s" % rest[0], {"state_event": "close"})
         print("#%s closed" % rest[0])
+    elif cmd == "reopen":
+        note("issues", rest[0], rest[1])
+        call("PUT", "/issues/%s" % rest[0], {"state_event": "reopen"})
+        print("#%s reopened" % rest[0])
     else:
         sys.exit(__doc__)
 
@@ -121,6 +138,8 @@ elif group == "mr":
         print("!%d %s" % (m["iid"], m["web_url"]))
     elif cmd == "note":
         note("merge_requests", rest[0], rest[1])
+    elif cmd == "edit":
+        edit("merge_requests", rest[0], rest[1])
     elif cmd == "merge":
         call("PUT", "/merge_requests/%s" % rest[0],
              {"squash": True, "remove_source_branch": True})
