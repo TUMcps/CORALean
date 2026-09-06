@@ -1,5 +1,6 @@
 import CORALean.HybridDynamics.HybridAutomaton
 import CORALean.HybridDynamics.Invariant
+import CORALean.HybridDynamics.InvariantOn
 import CORALean.HybridDynamics.Location
 import CORALean.HybridDynamics.Operations.API
 import CORALean.HybridDynamics.Theorems.API
@@ -21,8 +22,12 @@ call it takes the enclosure as a hypothesis instead, and
 computes the intersection exactly, which is nothing.
 
 Time-triggered only in the sense that nothing here is time-triggered: a stay
-runs for a dwell time the run chooses, and a bounded-horizon analysis is the
-invariant indexed by step count, which is not written. No parallel composition
-and no Zeno analysis — the run's shape makes neither a well-formedness question,
-which is the point of choosing it.
+runs for a dwell time the run chooses. No parallel composition and no Zeno
+analysis — the run's shape makes neither a well-formedness question, which is
+the point of choosing it.
+
+A bounded-horizon reading is `RunOn`/`InvariantOn`: the same run and invariant,
+indexed by the jump count, so a location visited twice need not answer the same
+set both times. `Invariant.invariantOn` reads the unbounded notion as its
+constant-family special case.
 -/
