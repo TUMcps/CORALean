@@ -479,6 +479,29 @@ the operation, so it has to live with it; the proof is always
 `Fin.sum_univ_add f`. Ascribe the binder in any statement that sums over an
 operation's result, or the lemma will not match there either.
 
+### An expected type that will not unify
+
+Two lemmas can be about the same statement, elaborate instantly as bare terms,
+and still hang forever when one is offered to the other as a goal. It happened
+with `Zonotope.mtimesMatZonotope_outer`, which is `bilin_outer` at Mathlib's
+`Matrix.mulVecBilin`: `simp only [← Matrix.mulVecBilin_apply ℝ ℝ]` followed by
+`exact Zonotope.bilin_outer ...` does not terminate even at `maxHeartbeats 0`,
+and `show`ing the goal into the same syntactic shape first does not help. The
+matrix module instances are what run away, and only when there is an expected
+type to unify against.
+
+Bind the lemma before touching the goal:
+
+```lean
+have h := Zonotope.bilin_outer (Matrix.mulVecBilin ℝ ℝ) M Z
+simp only [← Matrix.mulVecBilin_apply ℝ ℝ]
+exact h
+```
+
+Six seconds instead of never. This is not a proof that needed restructuring, so
+say in a comment that the order is deliberate — the next reader will otherwise
+tidy the `have` away.
+
 ## Documentation
 
 Every file opens with a module docstring saying what it is for and what is
