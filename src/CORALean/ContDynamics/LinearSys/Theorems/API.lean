@@ -26,6 +26,7 @@ import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterHorizon
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterHorizonInputSolution
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterInputSolution
 import CORALean.ContDynamics.LinearSys.Theorems.Restrict
+import CORALean.ContDynamics.LinearSys.Theorems.StepInputConstEq
 import CORALean.ContDynamics.LinearSys.Theorems.StepInputEqShifted
 import CORALean.ContDynamics.LinearSys.Theorems.StepInputOuter
 import CORALean.ContDynamics.LinearSys.Theorems.StepInputShift

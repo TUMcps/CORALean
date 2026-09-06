@@ -4,6 +4,7 @@ import CORALean.ContDynamics.LinearSys.Operations.InputSolution
 import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSum
 import CORALean.ContDynamics.LinearSys.Operations.InputTerm
 import CORALean.ContDynamics.LinearSys.Operations.StepInput
+import CORALean.ContDynamics.LinearSys.Operations.StepInputConst
 import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
 
 /-!
@@ -12,5 +13,6 @@ import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
 Sampling in `Discretize`, and then two enclosures of what happens inside a step:
 `InputSolution` for what the input adds, `TimeIntervalStep` for where the
 homogeneous flow goes. `StepInput` and `InputReach` are the exact quantities
-those two are measured against.
+those two are measured against; `StepInputConst` is `StepInput` at one held
+vector rather than a whole signal.
 -/
