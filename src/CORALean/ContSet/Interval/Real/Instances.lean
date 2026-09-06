@@ -22,7 +22,7 @@ compactness only at `Vec`, which is where boundedness is stated.
 
 -- Authors:       Tobias Ladner
 -- Written:       18-August-2026
--- Last update:   02-September-2026
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 
@@ -78,6 +78,10 @@ instance : Mtimes (Mat ℝ) (fun n => Interval (Vec ℝ n)) where
 and the elaborator cannot read that family off one member, so a use site has to
 name it: `(𝕄 := ℐ)`. -/
 scoped notation "ℐ" => fun m n => Interval (Mat ℝ m n)
+
+/-- The interval-vector family, `ℐ` being already the matrix one: pins `(S := ℐ𝒱)`
+where a generic theorem cannot read the family off one member. -/
+scoped notation "ℐ𝒱" => fun n => Interval (Vec ℝ n)
 
 /-- The same operation at an interval matrix, which a discretization wants. A
 box needs no fresh generator to absorb the radius: the four corner products
