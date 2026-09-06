@@ -1,6 +1,9 @@
 import CORALean.ContSet.Interval.Float.Operations.Plus
 import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
-import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxExp
+import CORALean.ContSet.PolyZonotope.Float.Operations.MergedGen
+import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxCentreMid
+import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxGapMid
+import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxGenMid
 import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpMid
 
 /-!
@@ -29,56 +32,7 @@ gap at the coefficient that reads it — a monomial, a zonotope coefficient, and
 
 namespace CORALean.Float
 
-open FloatOps
-
 variable {𝕋 : Type} [FloatOps 𝕋] {n d : ℕ}
-
-/-- The drift's two reaches, read off the exponent matrix and so the exact
-layer's own bracket. -/
-def PolyZonotope.relaxDrift (PZ : PolyZonotope 𝕋 n)
-    (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (k₀ : Fin PZ.p) : ℕ × ℕ :=
-  Real.PolyZonotope.eDrift PZ.E k₀ (part.right 0) (part.right 1)
-
-/-- The centre shift as stored: half the upward reach less half the downward
-one, in copies of the relaxed generator, rounded down. -/
-def PolyZonotope.relaxShiftMid (PZ : PolyZonotope 𝕋 n)
-    (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (k₀ : Fin PZ.p) : Vec 𝕋 n :=
-  fun i => half (subDown (nsmulDown (PZ.relaxDrift part k₀).2 (PZ.G i (part.right 0)))
-    (nsmulUp (PZ.relaxDrift part k₀).1 (PZ.G i (part.right 0))))
-
-/-- The same shift rounded up, which the centre's gap reads. -/
-def PolyZonotope.relaxShiftMidUp (PZ : PolyZonotope 𝕋 n)
-    (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (k₀ : Fin PZ.p) : Vec 𝕋 n :=
-  fun i => half (subUp (nsmulUp (PZ.relaxDrift part k₀).2 (PZ.G i (part.right 0)))
-    (nsmulDown (PZ.relaxDrift part k₀).1 (PZ.G i (part.right 0))))
-
-/-- The new independent column as stored: half of as many copies of the relaxed
-generator as the bracket is wide, rounded down. -/
-def PolyZonotope.relaxGenMid (PZ : PolyZonotope 𝕋 n)
-    (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (k₀ : Fin PZ.p) : Vec 𝕋 n :=
-  fun i => half (nsmulDown ((PZ.relaxDrift part k₀).1 + (PZ.relaxDrift part k₀).2)
-    (PZ.G i (part.right 0)))
-
-/-- The same fold rounded up, which only that column's gap reads. -/
-def PolyZonotope.relaxGenMidUp (PZ : PolyZonotope 𝕋 n)
-    (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (k₀ : Fin PZ.p) : Vec 𝕋 n :=
-  fun i => half (nsmulUp ((PZ.relaxDrift part k₀).1 + (PZ.relaxDrift part k₀).2)
-    (PZ.G i (part.right 0)))
-
-/-- The shifted centre as stored, the shift added at its lower rounding, so the
-stored centre stays below the exact one. -/
-def PolyZonotope.relaxCentreMid (PZ : PolyZonotope 𝕋 n)
-    (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (k₀ : Fin PZ.p) : Vec 𝕋 n :=
-  fun i => addDown (PZ.c i) (PZ.relaxShiftMid part k₀ i)
-
-/-- What the merged column, the halved column and the shifted centre can each be
-off by, every one of them a gap between two roundings of one expression. -/
-def PolyZonotope.relaxGapMid (PZ : PolyZonotope 𝕋 n)
-    (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (k₀ : Fin PZ.p) : Mat 𝕋 n 3 :=
-  fun i =>
-    ![subUp (addUp (PZ.G i (part.right 1)) (PZ.G i (part.right 0))) (PZ.mergedGen part i),
-      subUp (PZ.relaxGenMidUp part k₀ i) (PZ.relaxGenMid part k₀ i),
-      subUp (addUp (PZ.c i) (PZ.relaxShiftMidUp part k₀ i)) (PZ.relaxCentreMid part k₀ i)]
 
 /-- The two generators `part.right` names merged into one, the drift's midpoint
 moved into the centre and its half-width into a new independent generator. -/

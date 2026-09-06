@@ -2,6 +2,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
 import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
 import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
 import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMul
+import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
 import CORALean.ContSet.Zonotope.Real.Theorems.SumUnivReduceBy
 
 /-!

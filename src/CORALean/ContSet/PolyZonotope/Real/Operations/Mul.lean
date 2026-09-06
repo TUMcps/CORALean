@@ -1,4 +1,5 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMap
+import CORALean.ContSet.PolyZonotope.Real.Operations.MulE
+import CORALean.ContSet.PolyZonotope.Real.Operations.MulG
 
 /-!
 # `PolyZonotope.mul`
@@ -6,9 +7,8 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMap
 The coordinatewise product of two polynomial zonotopes over the *same* factors,
 and what raises a polynomial abstraction above order two [1]: `quadMap` gives
 order two — the elementwise square is its case `Q k = eₖ eₖᵀ` — and every order
-above it is this operation applied again. Generator `(i, j)` is the plain
-product `G¹ᵢ ⊙ G²ⱼ` at the exponent column `E¹ᵢ + E²ⱼ`, a monomial again, which
-is what the shared factors buy.
+above it is this operation applied again. Generator `(i, j)` is `mulG`, at the
+exponent column `mulE`, a monomial again, which is what the shared factors buy.
 
 Sharing is a hypothesis rather than a shape in the signature: `p` is a field, so
 two `PolyZonotope`s cannot be made to share it definitionally without
@@ -28,26 +28,12 @@ products keep the freed ones identified.
 
 -- Authors:       Tobias Ladner
 -- Written:       05-September-2026
--- Last update:   ---
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
 
 variable {n : ℕ}
-
-/-- Generator `(i, j)` of the product: the two extended generators, multiplied
-coordinate by coordinate. -/
-def PolyZonotope.mulG (S₁ S₂ : PolyZonotope (Vec ℝ n)) :
-    Fin ((S₁.h + 1) * (S₂.h + 1)) → Vec ℝ n :=
-  fun l i => PolyZonotope.extG S₁ (finProdFinEquiv.symm l).1 i
-      * PolyZonotope.extG S₂ (finProdFinEquiv.symm l).2 i
-
-/-- Its exponent column, the two columns added, `S₂`'s read at `S₁`'s factor
-indices. -/
-def PolyZonotope.mulE (S₁ S₂ : PolyZonotope (Vec ℝ n)) (hp : S₁.p = S₂.p) :
-    Fin S₁.p → Fin ((S₁.h + 1) * (S₂.h + 1)) → ℕ :=
-  fun k l => PolyZonotope.extE S₁ k (finProdFinEquiv.symm l).1
-      + PolyZonotope.extE S₂ (Fin.cast hp k) (finProdFinEquiv.symm l).2
 
 def PolyZonotope.mul (S₁ S₂ : PolyZonotope (Vec ℝ n)) (hp : S₁.p = S₂.p) :
     PolyZonotope (Vec ℝ n) where

@@ -1,3 +1,4 @@
+import CORALean.ContSet.Interval.Real.Theorems.MemPoint
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MtimesExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.PlusExact
 import CORALean.NN.Layers.Linear

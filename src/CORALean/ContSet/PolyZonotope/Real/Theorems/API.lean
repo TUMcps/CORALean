@@ -5,9 +5,14 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialAdd
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MemConstruct
 import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ExistsPointOfQZero
+import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
+import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
 import CORALean.ContSet.PolyZonotope.Real.Theorems.PlusExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MapExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MtimesExact
+import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialLinCombEFst
+import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialLinCombESnd
+import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialLinCombELast
 import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombOuter
 import CORALean.ContSet.PolyZonotope.Real.Theorems.DependentExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.SumExtEqPoint
@@ -16,6 +21,8 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapDepExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MulPoint
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MulExact
+import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyReal
+import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyStepPoint
 import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyQ
 import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyRealOfFn

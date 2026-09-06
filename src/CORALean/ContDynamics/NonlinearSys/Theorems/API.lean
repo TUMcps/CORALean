@@ -1,5 +1,6 @@
 import CORALean.ContDynamics.NonlinearSys.Theorems.LinInputOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.LinearEmbedding
+import CORALean.ContDynamics.NonlinearSys.Theorems.TrajectoryIffNonlinearSys
 import CORALean.ContDynamics.NonlinearSys.Theorems.Linearize
 import CORALean.ContDynamics.NonlinearSys.Theorems.LinearizeHorizon
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachOuter

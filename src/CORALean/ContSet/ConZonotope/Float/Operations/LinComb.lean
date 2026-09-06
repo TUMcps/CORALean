@@ -1,4 +1,4 @@
-import CORALean.ContSet.ConZonotope.Float.ConZonotope
+import CORALean.ContSet.ConZonotope.Float.Operations.LinCombGDiff
 import CORALean.ContSet.HPolytope.Float.Operations.HalfScaledLeft
 import CORALean.ContSet.HPolytope.Float.Operations.HalfScaledRight
 import CORALean.ContSet.HPolytope.Float.Operations.UnitBox
@@ -34,12 +34,6 @@ namespace CORALean.Float
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
-
-/-- What the stored generators fall short by: nothing on the copied blocks, and
-on the centre generator the gap between its two directed roundings. -/
-def ConZonotope.linCombGDiff (C₁ C₂ : ConZonotope 𝕋 n) : Mat 𝕋 n (C₁.h + C₂.h + 1) :=
-  fun i => Fin.append (fun _ : Fin (C₁.h + C₂.h) => zero)
-    fun _ : Fin 1 => subUp (half (subUp (C₁.c i) (C₂.c i))) (half (subDown (C₁.c i) (C₂.c i)))
 
 def ConZonotope.linComb (C₁ C₂ : ConZonotope 𝕋 n) : ConZonotope 𝕋 n where
   h := C₁.h + C₂.h + 1

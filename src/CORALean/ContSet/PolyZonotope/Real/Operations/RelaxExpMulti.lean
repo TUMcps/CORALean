@@ -1,5 +1,4 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.EDiff
-import CORALean.Global.Partition
+import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxWidthMulti
 
 /-!
 # `PolyZonotope.relaxExpMulti`
@@ -35,11 +34,6 @@ one-sidedness that the multi-index drift does not have.
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α] {d : ℕ}
-
-/-- `ξ_E` summed over every factor, the agreeing ones contributing nothing. -/
-def PolyZonotope.relaxWidthMulti (PZ : PolyZonotope α)
-    (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) : ℕ :=
-  ∑ k, PolyZonotope.eDiff (PZ.E k (part.right 0)) (PZ.E k (part.right 1))
 
 /-- The two generators `part.right` names merged into one, at the exponent
 column of the second, the first scaled by the summed `ξ_E` becoming

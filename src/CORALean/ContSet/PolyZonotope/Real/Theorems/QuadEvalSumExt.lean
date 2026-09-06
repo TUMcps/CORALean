@@ -1,4 +1,9 @@
+import CORALean.ContSet.PolyZonotope.Real.Operations.ExtG
+import CORALean.ContSet.PolyZonotope.Real.Operations.ExtM
+import CORALean.ContSet.PolyZonotope.Real.Operations.QuadEval
 import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMap
+import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapE
+import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapG
 
 /-!
 # A quadratic map of the extended sum, expanded over pairs

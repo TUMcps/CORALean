@@ -2,6 +2,7 @@ import CORALean.ContSet.Conversion.Float.Interval_to_ContSet
 import CORALean.ContSet.Interval.Float.Operations.Plus
 import CORALean.ContSet.Interval.Float.Operations.Point
 import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 import CORALean.ContSet.Interval.Real.Theorems.MemCenter
 import CORALean.NN.Layer
 

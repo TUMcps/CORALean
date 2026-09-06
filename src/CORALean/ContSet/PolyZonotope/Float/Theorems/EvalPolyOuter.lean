@@ -1,6 +1,7 @@
 import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
 import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPoly
+import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPolyFactorCount
 import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsLeErrorBound
 import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorErrorMonomial
 import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet

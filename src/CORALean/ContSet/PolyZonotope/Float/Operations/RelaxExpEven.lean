@@ -1,6 +1,9 @@
 import CORALean.ContSet.Interval.Float.Operations.Plus
 import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
-import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxExp
+import CORALean.ContSet.PolyZonotope.Float.Operations.MergedGen
+import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxCentreEven
+import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxGapEven
+import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxGenEven
 import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpEven
 
 /-!
@@ -29,35 +32,7 @@ monomial or a zonotope coefficient for the two columns.
 
 namespace CORALean.Float
 
-open FloatOps
-
 variable {𝕋 : Type} [FloatOps 𝕋] {n d : ℕ}
-
-/-- Half of `ξ_E` copies of the relaxed generator, rounded down: the new
-independent column, and the size of the centre shift. -/
-def PolyZonotope.relaxGenEven (PZ : PolyZonotope 𝕋 n)
-    (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (k₀ : Fin PZ.p) : Vec 𝕋 n :=
-  fun i => half (nsmulDown (PZ.relaxWidth part k₀) (PZ.G i (part.right 0)))
-
-/-- The same fold rounded up, which only the centre and the gaps read. -/
-def PolyZonotope.relaxGenEvenUp (PZ : PolyZonotope 𝕋 n)
-    (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (k₀ : Fin PZ.p) : Vec 𝕋 n :=
-  fun i => half (nsmulUp (PZ.relaxWidth part k₀) (PZ.G i (part.right 0)))
-
-/-- The recentred centre as stored: the shift taken off at its upper rounding,
-so the stored centre stays below the exact one. -/
-def PolyZonotope.relaxCentreEven (PZ : PolyZonotope 𝕋 n)
-    (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (k₀ : Fin PZ.p) : Vec 𝕋 n :=
-  fun i => subDown (PZ.c i) (PZ.relaxGenEvenUp part k₀ i)
-
-/-- What the merged column, the halved column and the recentred centre can each
-be off by, every one of them a gap between two roundings of one expression. -/
-def PolyZonotope.relaxGapEven (PZ : PolyZonotope 𝕋 n)
-    (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (k₀ : Fin PZ.p) : Mat 𝕋 n 3 :=
-  fun i =>
-    ![subUp (addUp (PZ.G i (part.right 1)) (PZ.G i (part.right 0))) (PZ.mergedGen part i),
-      subUp (PZ.relaxGenEvenUp part k₀ i) (PZ.relaxGenEven part k₀ i),
-      subUp (subUp (PZ.c i) (PZ.relaxGenEven part k₀ i)) (PZ.relaxCentreEven part k₀ i)]
 
 /-- `relaxExp` with the drift's midpoint taken off the centre, so the new
 independent generator carries only its radius. -/

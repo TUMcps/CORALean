@@ -1,4 +1,5 @@
 import CORALean.NN.Graph.Theorems.ConvExact
+import CORALean.NN.Graph.Theorems.ConvExactOfAdjacency
 import CORALean.NN.Graph.Theorems.PoolingExact
 
 /-!

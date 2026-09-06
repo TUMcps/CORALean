@@ -1,5 +1,6 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Plus
-import CORALean.ContSet.Zonotope.Real.Operations.LinComb
+import CORALean.ContSet.PolyZonotope.Real.Operations.LinCombE
+import CORALean.ContSet.Zonotope.Real.Operations.PairDiff
+import CORALean.ContSet.Zonotope.Real.Operations.PairSum
 
 /-!
 # `PolyZonotope.linComb`
@@ -31,17 +32,6 @@ namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
-/-- The exponent matrix of `linComb`: the two sets' factors block-diagonally as
-`plus` lays them out, repeated across the two dependent blocks, and the fresh
-factor last, at exponent `1` on the second block and `0` on the first. -/
-def PolyZonotope.linCombE {p₁ h₁ p₂ h₂ : ℕ} (E₁ : Fin p₁ → Fin h₁ → ℕ)
-    (E₂ : Fin p₂ → Fin h₂ → ℕ) :
-    Fin (p₁ + p₂ + 1) → Fin (h₁ + h₂ + (h₁ + h₂ + 1)) → ℕ :=
-  Fin.append
-    (fun k => Fin.append (PolyZonotope.plusE E₁ E₂ k)
-      (Fin.append (PolyZonotope.plusE E₁ E₂ k) (fun _ : Fin 1 => 0)))
-    (fun _ : Fin 1 => Fin.append (fun _ => 0) (fun _ => 1))
-
 noncomputable def PolyZonotope.linComb (PZ₁ PZ₂ : PolyZonotope α) : PolyZonotope α where
   p := PZ₁.p + PZ₂.p + 1
   h := PZ₁.h + PZ₂.h + (PZ₁.h + PZ₂.h + 1)
@@ -54,58 +44,5 @@ noncomputable def PolyZonotope.linComb (PZ₁ PZ₂ : PolyZonotope α) : PolyZon
           (fun _ : Fin 1 => (2:ℝ)⁻¹ • (PZ₁.c - PZ₂.c)))
   E := PolyZonotope.linCombE PZ₁.E PZ₂.E
   GI := Fin.append (Zonotope.pairSum PZ₁.GI PZ₂.GI) (Zonotope.pairDiff PZ₁.GI PZ₂.GI)
-
-variable {p₁ h₁ p₂ h₂ : ℕ} (E₁ : Fin p₁ → Fin h₁ → ℕ) (E₂ : Fin p₂ → Fin h₂ → ℕ)
-
-/-- The first block keeps the monomials the two sets brought: the fresh factor
-sits there at exponent zero. -/
-theorem PolyZonotope.monomial_linCombE_fst (a : Fin (p₁ + p₂ + 1) → ℝ)
-    (i : Fin (h₁ + h₂)) :
-    PolyZonotope.monomial (PolyZonotope.linCombE E₁ E₂) a (Fin.castAdd (h₁ + h₂ + 1) i)
-      = PolyZonotope.monomial (PolyZonotope.plusE E₁ E₂)
-          (fun k => a (Fin.castAdd 1 k)) i := by
-  rw [PolyZonotope.monomial, PolyZonotope.monomial, Fin.prod_univ_add, Fin.prod_univ_one]
-  have hnew : a (Fin.natAdd (p₁ + p₂) (0 : Fin 1))
-      ^ PolyZonotope.linCombE E₁ E₂ (Fin.natAdd (p₁ + p₂) (0 : Fin 1))
-        (Fin.castAdd (h₁ + h₂ + 1) i) = 1 := by
-    simp only [PolyZonotope.linCombE, Fin.append_right, Fin.append_left, pow_zero]
-  rw [hnew, mul_one]
-  exact Finset.prod_congr rfl fun k _ => by
-    simp only [PolyZonotope.linCombE, Fin.append_left]
-
-/-- The second block is the first times the fresh factor, which is the whole of
-what makes `linComb` exact on the dependent part. -/
-theorem PolyZonotope.monomial_linCombE_snd (a : Fin (p₁ + p₂ + 1) → ℝ)
-    (i : Fin (h₁ + h₂)) :
-    PolyZonotope.monomial (PolyZonotope.linCombE E₁ E₂) a
-        (Fin.natAdd (h₁ + h₂) (Fin.castAdd 1 i))
-      = a (Fin.natAdd (p₁ + p₂) (0 : Fin 1))
-          * PolyZonotope.monomial (PolyZonotope.plusE E₁ E₂)
-              (fun k => a (Fin.castAdd 1 k)) i := by
-  rw [PolyZonotope.monomial, PolyZonotope.monomial, Fin.prod_univ_add, Fin.prod_univ_one]
-  have hnew : a (Fin.natAdd (p₁ + p₂) (0 : Fin 1))
-      ^ PolyZonotope.linCombE E₁ E₂ (Fin.natAdd (p₁ + p₂) (0 : Fin 1))
-        (Fin.natAdd (h₁ + h₂) (Fin.castAdd 1 i))
-      = a (Fin.natAdd (p₁ + p₂) (0 : Fin 1)) := by
-    simp only [PolyZonotope.linCombE, Fin.append_right, pow_one]
-  rw [hnew, mul_comm]
-  refine congrArg _ (Finset.prod_congr rfl fun k _ => ?_)
-  simp only [PolyZonotope.linCombE, Fin.append_left, Fin.append_right]
-
-/-- The centre-difference generator carries the fresh factor and nothing
-else. -/
-theorem PolyZonotope.monomial_linCombE_last (a : Fin (p₁ + p₂ + 1) → ℝ) :
-    PolyZonotope.monomial (PolyZonotope.linCombE E₁ E₂)
-        (h := h₁ + h₂ + (h₁ + h₂ + 1)) a
-        (Fin.natAdd (h₁ + h₂) (Fin.natAdd (h₁ + h₂) (0 : Fin 1)))
-      = a (Fin.natAdd (p₁ + p₂) (0 : Fin 1)) := by
-  rw [PolyZonotope.monomial, Fin.prod_univ_add, Fin.prod_univ_one]
-  have hold : (∏ k : Fin (p₁ + p₂), a (Fin.castAdd 1 k)
-      ^ PolyZonotope.linCombE E₁ E₂ (Fin.castAdd 1 k)
-        (Fin.natAdd (h₁ + h₂) (Fin.natAdd (h₁ + h₂) (0 : Fin 1)))) = 1 :=
-    Finset.prod_eq_one fun k _ => by
-      simp only [PolyZonotope.linCombE, Fin.append_left, Fin.append_right, pow_zero]
-  rw [hold, one_mul]
-  simp only [PolyZonotope.linCombE, Fin.append_right, pow_one]
 
 end CORALean.Real

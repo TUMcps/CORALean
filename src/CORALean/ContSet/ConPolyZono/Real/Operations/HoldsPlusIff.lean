@@ -2,6 +2,8 @@ import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecPlusALeft
 import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecPlusARight
 import CORALean.ContSet.ConPolyZono.Real.Operations.PlusB
 import CORALean.ContSet.PolyZonotope.Real.Operations.Plus
+import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
+import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
 
 /-!
 # Two constraint systems side by side hold exactly when each holds on its own factors

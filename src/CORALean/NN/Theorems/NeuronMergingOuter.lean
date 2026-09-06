@@ -1,3 +1,4 @@
+import CORALean.ContSet.Interval.Real.Theorems.MemPoint
 import CORALean.ContSet.Interval.Real.Theorems.MtimesIsNonempty
 import CORALean.Global.Partition
 import CORALean.NN.Layers.Activation

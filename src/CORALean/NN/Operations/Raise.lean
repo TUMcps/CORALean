@@ -1,4 +1,4 @@
-import CORALean.NN.Operations.Schedule
+import CORALean.NN.Schedule
 
 /-!
 # Raising one layer's orders, neuron by neuron

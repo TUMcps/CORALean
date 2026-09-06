@@ -1,5 +1,8 @@
 import CORALean.ContSet.PolyZonotope.Real.Operations.Dependent
 import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
+import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
+import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
+import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
 
 /-!
 # Making the independent generators dependent loses nothing

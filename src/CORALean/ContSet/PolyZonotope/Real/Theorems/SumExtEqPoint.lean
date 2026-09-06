@@ -1,3 +1,5 @@
+import CORALean.ContSet.PolyZonotope.Real.Operations.ExtG
+import CORALean.ContSet.PolyZonotope.Real.Operations.ExtM
 import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMap
 
 /-!

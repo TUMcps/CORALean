@@ -1,5 +1,7 @@
 import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
-import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMap
+import CORALean.ContSet.PolyZonotope.Float.Operations.MulE
+import CORALean.ContSet.PolyZonotope.Float.Operations.MulGDiff
+import CORALean.ContSet.PolyZonotope.Float.Operations.MulGDown
 import CORALean.ContSet.PolyZonotope.Real.Operations.Mul
 
 /-!
@@ -22,7 +24,7 @@ freed coefficients stay identified.
 
 -- Authors:       Tobias Ladner
 -- Written:       05-September-2026
--- Last update:   ---
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 namespace CORALean.Float
@@ -30,29 +32,6 @@ namespace CORALean.Float
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
-
-/-- Generator `(i, j)` of the product, rounded down: one multiplication per
-coordinate. -/
-def PolyZonotope.mulGDown (S₁ S₂ : PolyZonotope 𝕋 n) :
-    Mat 𝕋 n ((S₁.h + 1) * (S₂.h + 1)) :=
-  fun i l => mulDown (PolyZonotope.extG S₁ i (finProdFinEquiv.symm l).1)
-    (PolyZonotope.extG S₂ i (finProdFinEquiv.symm l).2)
-
-def PolyZonotope.mulGUp (S₁ S₂ : PolyZonotope 𝕋 n) :
-    Mat 𝕋 n ((S₁.h + 1) * (S₂.h + 1)) :=
-  fun i l => mulUp (PolyZonotope.extG S₁ i (finProdFinEquiv.symm l).1)
-    (PolyZonotope.extG S₂ i (finProdFinEquiv.symm l).2)
-
-/-- How far a stored generator can be from the exact product. -/
-def PolyZonotope.mulGDiff (S₁ S₂ : PolyZonotope 𝕋 n) :
-    Mat 𝕋 n ((S₁.h + 1) * (S₂.h + 1)) :=
-  fun i l => subUp (PolyZonotope.mulGUp S₁ S₂ i l) (PolyZonotope.mulGDown S₁ S₂ i l)
-
-/-- The image's exponent column, the two columns added. Over ℕ, so exact. -/
-def PolyZonotope.mulE (S₁ S₂ : PolyZonotope 𝕋 n) (hp : S₁.p = S₂.p) :
-    Fin S₁.p → Fin ((S₁.h + 1) * (S₂.h + 1)) → ℕ :=
-  fun k l => PolyZonotope.extE S₁ k (finProdFinEquiv.symm l).1
-      + PolyZonotope.extE S₂ (Fin.cast hp k) (finProdFinEquiv.symm l).2
 
 def PolyZonotope.mul (S₁ S₂ : PolyZonotope 𝕋 n) (hp : S₁.p = S₂.p) : PolyZonotope 𝕋 n where
   p := S₁.p

@@ -28,6 +28,7 @@ MAX_MODULE_DOC=20     # module docstring, content file
 MAX_COLLECTOR_DOC=25  # module docstring, collector: it is the directory entry point
 MAX_DECL_DOC=3        # docstring ahead of a declaration
 MAX_LINES_WO_COMMENT=20  # a minimum density, not a maximum: proofs need signposts
+MAX_PUBLIC_DECL=1     # public declarations per `Operations/`/`Theorems/` file (#62)
 
 status=0
 
@@ -47,7 +48,8 @@ out=$(printf '%s\n' "$files" | xargs awk \
   -v MAX_MODULE_DOC="$MAX_MODULE_DOC" \
   -v MAX_COLLECTOR_DOC="$MAX_COLLECTOR_DOC" \
   -v MAX_DECL_DOC="$MAX_DECL_DOC" \
-  -v MAX_LINES_WO_COMMENT="$MAX_LINES_WO_COMMENT" '
+  -v MAX_LINES_WO_COMMENT="$MAX_LINES_WO_COMMENT" \
+  -v MAX_PUBLIC_DECL="$MAX_PUBLIC_DECL" '
 BEGIN {
   CONT = "[\200-\277]"
   MONTH = "(January|February|March|April|May|June|July|August|September|October|November|December)"
@@ -190,6 +192,16 @@ function check(f,   i, n, collector, want, dir, cap) {
     if (!(i in refDef))
       say(f ":" docLine ": references are numbered from 1 without gaps; `[" i "]` is missing")
 
+  # One public declaration per file under `Operations/` or `Theorems/`
+  # (`API.lean` excepted): the mechanism that keeps `aux_` from drifting into
+  # a name promoted for reuse without earning its own file (issue #62).
+  if (f ~ /\/(Operations|Theorems)\// && !(f ~ /\/API\.lean$/) && npub > MAX_PUBLIC_DECL) {
+    decls = pubList[1]
+    for (i = 2; i <= npub; i++) decls = decls ", " pubList[i]
+    say(f ":1: " npub " public declarations, over " MAX_PUBLIC_DECL \
+        " — rename file-local ones `aux_...`, or split into one file each: " decls)
+  }
+
   dir = dirOf(f)
   want = moduleOf(dir "/API.lean")
   for (i = 1; i <= nimp; i++) {
@@ -221,9 +233,10 @@ FNR == 1 {
   blockKind = ""; blockStart = 0; declDocEnd = 0
   prevPureComment = 0; prevLineComment = 0; run = 0; blanks = 0; inRefs = 0; refsLine = 0
   firstDeclSeen = 0; firstBodyFound = 0; firstBodyLine = 0
+  npub = 0
   # `split("", a)` rather than `delete a`, which older mawk does not have
   split("", declAux); split("", useAux); split("", imp); split("", impLine)
-  split("", refDef); split("", refCite)
+  split("", refDef); split("", refCite); split("", pubList)
 }
 
 {
@@ -382,10 +395,25 @@ FNR == 1 {
   prevLineComment = (code !~ /[^ \t]/) && sawComment
 
   if (code ~ DECL_START) {
+    match(code, DECL_START)
+    prefix = substr(code, RSTART, RLENGTH)
     decl = code
     sub(DECL_PREFIX, "", decl)
     sub(/[^A-Za-z0-9_'"'"'.].*$/, "", decl)
-    if (base(decl) ~ /^aux_/) declAux[base(decl)] = FNR
+    b = base(decl)
+    if (b ~ /^aux_/) {
+      declAux[b] = FNR
+      # An instance is found by type class search, never by name, so no file
+      # can ever establish that nothing outside it uses one — `aux_` asserts
+      # exactly that, and would be a standing false statement on an instance.
+      if (prefix ~ /instance $/)
+        say(FILENAME ":" FNR ": `aux_` on an instance is never justified — " \
+            "`" b "` is found by type class search from any file, not by this name")
+    }
+    # One public declaration per `Operations/`/`Theorems/` file (#62): a
+    # `private` declaration and an `aux_`-named one are file-local by
+    # convention and do not count against the limit.
+    else if (prefix !~ /private /) { npub++; pubList[npub] = b }
   }
 
   rest = code

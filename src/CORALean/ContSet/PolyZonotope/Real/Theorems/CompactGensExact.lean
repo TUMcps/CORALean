@@ -1,4 +1,14 @@
+import CORALean.ContSet.PolyZonotope.Real.Operations.Col
+import CORALean.ContSet.PolyZonotope.Real.Operations.ColRep
 import CORALean.ContSet.PolyZonotope.Real.Operations.Compact
+import CORALean.ContSet.PolyZonotope.Real.Operations.CompactGens
+import CORALean.ContSet.PolyZonotope.Real.Operations.CompactIdx
+import CORALean.ContSet.PolyZonotope.Real.Operations.CompactKeep
+import CORALean.ContSet.PolyZonotope.Real.Operations.FiberSum
+import CORALean.ContSet.PolyZonotope.Real.Operations.FiberSumEqZeroOfNotMem
+import CORALean.ContSet.PolyZonotope.Real.Operations.Rep
+import CORALean.ContSet.PolyZonotope.Real.Operations.SumCompactKeep
+import CORALean.ContSet.PolyZonotope.Real.Operations.SumMonomialMerge
 
 /-!
 # Merging equal exponent columns loses nothing

@@ -1,3 +1,4 @@
+import CORALean.ContSet.PolyZonotope.Float.Operations.ReduceDependent
 import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceGirardDependentOuter
 

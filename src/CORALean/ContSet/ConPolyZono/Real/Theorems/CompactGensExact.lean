@@ -1,4 +1,8 @@
 import CORALean.ContSet.ConPolyZono.Real.Operations.CompactGens
+import CORALean.ContSet.PolyZonotope.Real.Operations.ColRep
+import CORALean.ContSet.PolyZonotope.Real.Operations.FiberSumEqZeroOfNotMem
+import CORALean.ContSet.PolyZonotope.Real.Operations.SumCompactKeep
+import CORALean.ContSet.PolyZonotope.Real.Operations.SumMonomialMerge
 
 /-!
 # Merging equal generator exponent columns loses nothing

@@ -1,7 +1,7 @@
 import CORALean.NN.Theorems.DisjointMisclassifiedOfBounds
 import CORALean.NN.Theorems.MarginDir
 import CORALean.NN.Theorems.Misclassified
-import CORALean.NN.Theorems.Verified
+import CORALean.NN.Theorems.HoldsOfPropagate
 
 /-!
 # Robust classification, as a specification the outputs avoid

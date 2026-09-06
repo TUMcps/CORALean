@@ -11,6 +11,7 @@ import CORALean.ContSet.Interval.Real.Theorems.PlusExact
 import CORALean.ContSet.Interval.Real.Theorems.MulBetweenEndpoints
 import CORALean.ContSet.Interval.Real.Theorems.LinCombOuter
 import CORALean.ContSet.Interval.Real.Theorems.MemCenter
+import CORALean.ContSet.Interval.Real.Theorems.MemPoint
 import CORALean.ContSet.Interval.Real.Theorems.MtimesIntervalMatOuter
 import CORALean.ContSet.Interval.Real.Theorems.MtimesIsNonempty
 import CORALean.ContSet.Interval.Real.Theorems.MtimesOuter

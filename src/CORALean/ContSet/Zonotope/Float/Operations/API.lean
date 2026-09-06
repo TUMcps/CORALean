@@ -1,6 +1,12 @@
 import CORALean.ContSet.Zonotope.Float.Operations.GeneratorError
 import CORALean.ContSet.Zonotope.Float.Operations.CenterResidual
 import CORALean.ContSet.Zonotope.Float.Operations.Plus
+import CORALean.ContSet.Zonotope.Float.Operations.Midpoint
+import CORALean.ContSet.Zonotope.Float.Operations.MidpointResidual
+import CORALean.ContSet.Zonotope.Float.Operations.PairSum
+import CORALean.ContSet.Zonotope.Float.Operations.PairDiff
+import CORALean.ContSet.Zonotope.Float.Operations.LinCombG
+import CORALean.ContSet.Zonotope.Float.Operations.LinCombGDiff
 import CORALean.ContSet.Zonotope.Float.Operations.LinComb
 import CORALean.ContSet.Zonotope.Float.Operations.MtimesResidual
 import CORALean.ContSet.Zonotope.Float.Operations.Mtimes

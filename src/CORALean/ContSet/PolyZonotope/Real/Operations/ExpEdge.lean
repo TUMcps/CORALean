@@ -34,10 +34,4 @@ exponent columns differ in. -/
 def PolyZonotope.ExpEdge {p h : ℕ} (E : Fin p → Fin h → ℕ) (η : ℕ) (i j : Fin h) : Prop :=
   ∃ k₀, PolyZonotope.ExpEdgeAt E η k₀ i j
 
-/-- An edge decides: finitely many indices, each of which decides. -/
-instance PolyZonotope.instDecidableExpEdge {p h : ℕ} (E : Fin p → Fin h → ℕ) (η : ℕ)
-    (i j : Fin h) : Decidable (PolyZonotope.ExpEdge E η i j) := by
-  unfold PolyZonotope.ExpEdge
-  infer_instance
-
 end CORALean.Real

@@ -1,0 +1,24 @@
+import CORALean.ContSet.PolyZonotope.Real.Operations.UsedFactors
+
+/-!
+# The kept factors, indexed by a plain count
+
+Split out of `Compact.lean` (issue #62): used again by `Theorems/
+CompactFactorsExact.lean`, and reused unchanged by `ConPolyZono.factorIdx`,
+both outside this file.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       06-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+namespace CORALean.Real
+
+/-- The kept factors, indexed by a plain count, as `compactIdx` does for
+columns. -/
+def PolyZonotope.factorIdx {p h : ℕ} (E : Fin p → Fin h → ℕ)
+    (k : Fin (PolyZonotope.usedFactors E).card) : Fin p :=
+  (PolyZonotope.usedFactors E).orderIsoOfFin rfl k
+
+end CORALean.Real

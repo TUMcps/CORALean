@@ -1,4 +1,5 @@
 import CORALean.ContSet.Interval.Real.Operations.Point
+import CORALean.ContSet.Interval.Real.Theorems.MemPoint
 import CORALean.HybridDynamics.Operations.Jump
 
 /-!

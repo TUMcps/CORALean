@@ -1,4 +1,6 @@
 import CORALean.ContSet.PolyZonotope.Real.Operations.Plus
+import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
+import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
 
 /-!
 # `PolyZonotope.plus` is exactly the Minkowski sum

@@ -4,6 +4,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
 import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
 import CORALean.ContSet.Zonotope.Real.Theorems.AbsMulLeOne
 import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMul
+import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
 import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
 import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact

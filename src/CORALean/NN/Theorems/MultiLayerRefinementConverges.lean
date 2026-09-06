@@ -28,7 +28,7 @@ of labour the loop assumes [1].
 
 -- Authors:       Tobias Ladner
 -- Written:       06-September-2026
--- Last update:   ---
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -52,15 +52,5 @@ theorem sigmoidLinearSigmoidNetwork_convergent (W : Mat ℝ m n) (b : Vec ℝ m)
     Layer.linear_refinable_convergent W b,
     RefinableNetwork.exists_lipschitzWith_eval _ h₂,
     Layer.activationPolySigmoid_convergent m, ⟨1, LipschitzWith.id⟩, trivial⟩
-
-/-- The loop converges on a genuine chain: some schedule is inside any inflation
-of the exact output set, which with `propagateAt_outer` squeezes the enclosure
-onto it. -/
-theorem exists_schedule_sigmoidLinearSigmoid_subset (W : Mat ℝ m n) (b : Vec ℝ m)
-    (X : PolyZonotope (Vec ℝ n)) {ε : ℝ} (hε : 0 < ε) : ∃ sch : Schedule,
-      construct ((sigmoidLinearSigmoidNetwork W b).propagateAt sch X)
-        ⊆ (sigmoidLinearSigmoidNetwork W b).outputSet X + Metric.closedBall 0 ε :=
-  (sigmoidLinearSigmoidNetwork W b).exists_schedule_propagateAt_subset
-    (sigmoidLinearSigmoidNetwork_convergent W b) X ε hε
 
 end CORALean.Real
