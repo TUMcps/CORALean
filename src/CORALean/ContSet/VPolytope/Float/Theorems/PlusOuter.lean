@@ -38,8 +38,8 @@ gap between the two roundings. -/
 theorem VPolytope.aux_plus_nominal (P₁ P₂ : VPolytope 𝕋 n) :
     nominalSet P₁ + nominalSet P₂ ⊆
       nominalSet (P₁.plus P₂) + (VPolytope.columnGap
-        (VPolytope.pairSum
-          addDown P₁ P₂) (VPolytope.pairSum addUp P₁ P₂)).construct := by -- --- PROOF ---
+        (VPolytope.pairSum addDown P₁ P₂)
+          (VPolytope.pairSum addUp P₁ P₂)).construct := by -- --- PROOF ---
   have hexact : nominalSet P₁ + nominalSet P₂
       = ((nominal P₁).plus (nominal P₂)).construct :=
     Real.VPolytope.plus_exact _ _

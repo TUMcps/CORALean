@@ -33,7 +33,7 @@ theorem map_subset {s : S} {t : T} {f : Vec ℝ n → Vec ℝ m} {D : Set (Vec �
     (hadd : ∀ x y, f (x + y) = f x + f y)
     (hnominal : f '' nominalSet s ⊆ nominalSet t + D)
     (herror : f '' (error s).construct + D ⊆ (error t).construct) :
-    f '' construct s ⊆ construct t := by -- --- PROOF ---
+    f '' construct s ⊆ construct t := by
   rintro _ ⟨_, ⟨a, ha, b, hb, rfl⟩, rfl⟩
   obtain ⟨t₀, ht₀, d, hd, hsum⟩ := hnominal ⟨a, ha, rfl⟩
   refine ⟨t₀, ht₀, f b + d, herror ⟨f b, ⟨b, hb, rfl⟩, d, hd, rfl⟩, ?_⟩

@@ -633,7 +633,7 @@ out=$(printf '%s\n' "$files" | xargs awk -v MIN=5 '
 function isdecl(s) {
   return s ~ /^(@\[[^]]*\][ \t]*)?(private |protected |noncomputable |scoped )*(theorem|lemma)[ \t]/
 }
-function checkfile(   i, j, k, n, end, s, tagged) {
+function checkfile(   i, j, k, n, last, end, s, tagged) {
   split("", legit)
   i = 1
   while (i <= nf) {
@@ -641,11 +641,16 @@ function checkfile(   i, j, k, n, end, s, tagged) {
     end = 0
     for (j = i; j <= nf && j - i < 30; j++) {
       s = L[j]; sub(/[ \t]+$/, "", s)
+      if (s ~ / where$/) break        # proved by a structure instance: no `:= by` of its own
       if (s ~ /:= by$/ || s ~ /:= by -- --- PROOF ---$/) { end = j; break }
     }
     if (end == 0) { i++; continue }
-    k = end + 1; n = 0
-    while (k <= nf && (L[k] ~ /^  / || L[k] ~ /^[ \t]*$/)) { k++; n++ }
+    k = end + 1; last = end
+    while (k <= nf && (L[k] ~ /^  / || L[k] ~ /^[ \t]*$/)) {
+      if (L[k] !~ /^[ \t]*$/) last = k
+      k++
+    }
+    n = last - end        # the proof, not the blank lines between it and what follows
     legit[end] = 1
     s = L[end]; sub(/[ \t]+$/, "", s)
     tagged = (s ~ /:= by -- --- PROOF ---$/)

@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.dependent_exact (C : ConPolyZono 𝕋 n) :
-    C.construct = C.dependent.construct := by -- --- PROOF ---
+    C.construct = C.dependent.construct := by
   show nominalSet C + (error C).construct
     = nominalSet C.dependent + (error C.dependent).construct
   rw [ConPolyZono.nominalSet_dependent]

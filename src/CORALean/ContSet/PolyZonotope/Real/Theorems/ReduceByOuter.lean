@@ -69,8 +69,8 @@ theorem PolyZonotope.aux_abs_droppedDep_le (PZ : PolyZonotope (Vec ℝ n))
   calc |∑ l, PZ.G (partD.right l) i * PolyZonotope.monomial PZ.E a (partD.right l)|
       ≤ ∑ l, |PZ.G (partD.right l) i * PolyZonotope.monomial PZ.E a (partD.right l)| :=
         Finset.abs_sum_le_sum_abs _ _
-    _ = ∑ l, |PZ.G
-      (partD.right l) i| * |PolyZonotope.monomial PZ.E a (partD.right l)| := by -- --- PROOF ---
+    _ = ∑ l, |PZ.G (partD.right l)
+      i| * |PolyZonotope.monomial PZ.E a (partD.right l)| := by -- --- PROOF ---
         simp_rw [abs_mul]
     _ ≤ ∑ l, |PZ.G (partD.right l) i| :=
         Finset.sum_le_sum fun l _ => by

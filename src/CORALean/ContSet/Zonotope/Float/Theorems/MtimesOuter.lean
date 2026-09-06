@@ -59,8 +59,8 @@ theorem Zonotope.aux_mulVec_nominal (M : Mat 𝕋 m n) (Z : Zonotope 𝕋 n) (β
 -- the image's nominal part, with the generator rounding charged to a box
 theorem Zonotope.aux_mtimes_nominal (M : Mat 𝕋 m n) (Z : Zonotope 𝕋 n) :
     (toRealMat M *ᵥ ·) '' nominalSet Z ⊆
-      nominalSet
-        (Zonotope.mtimes M Z) + (Zonotope.mtimesResidual M Z).construct := by -- --- PROOF ---
+      nominalSet (Zonotope.mtimes M Z)
+        + (Zonotope.mtimesResidual M Z).construct := by -- --- PROOF ---
   rintro _ ⟨x, hx', rfl⟩
   obtain ⟨β, hβ, hx⟩ := Zonotope.mem_nominalSet_iff.mp hx'
   -- the generators are wrong by this much, entrywise

@@ -50,7 +50,7 @@ theorem norm₂_zero : ‖(0 : Vec ℝ n)‖₂ = 0 := by
     exact Finset.sum_eq_zero fun i _ => by rw [Pi.zero_apply]; ring
   rw [norm₂, h, Real.sqrt_zero]
 
-theorem norm₂_smul (r : ℝ) (x : Vec ℝ n) : ‖r • x‖₂ = |r| * ‖x‖₂ := by -- --- PROOF ---
+theorem norm₂_smul (r : ℝ) (x : Vec ℝ n) : ‖r • x‖₂ = |r| * ‖x‖₂ := by
   have h : ∑ i, (r • x) i ^ 2 = r ^ 2 * ∑ i, x i ^ 2 := by
     rw [Finset.mul_sum]
     exact Finset.sum_congr rfl fun i _ => by rw [Pi.smul_apply, smul_eq_mul, mul_pow]

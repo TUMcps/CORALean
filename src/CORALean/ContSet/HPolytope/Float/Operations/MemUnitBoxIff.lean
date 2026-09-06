@@ -29,8 +29,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- A row with one nonzero entry reads one coordinate, the sign it carries
 times it. -/
 theorem HPolytope.aux_mulVec_single {a : 𝕋} (x : Vec ℝ n) (j : Fin n) :
-    (toRealMat
-      (fun j' k => if j' = k then a else zero) *ᵥ x) j = toReal a * x j := by -- --- PROOF ---
+    (toRealMat (fun j' k => if j' = k then a else zero) *ᵥ x) j
+      = toReal a * x j := by -- --- PROOF ---
   show ∑ k, toReal (if j = k then a else zero) * x k = _
   rw [Finset.sum_eq_single j]
   · rw [if_pos rfl]

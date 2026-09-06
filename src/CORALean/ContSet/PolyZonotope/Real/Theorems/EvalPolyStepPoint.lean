@@ -30,8 +30,8 @@ variable {n : ℕ}
 theorem PolyZonotope.evalPolyStep_point (R S : PolyZonotope (Vec ℝ n)) (hR : R.p = S.p)
     (a0 : Vec ℝ n) (b : Fin R.p → ℝ) :
     (PolyZonotope.evalPolyStep R S hR a0).point b
-      = fun
-        i => a0 i + R.point b i * S.point (fun k => b (Fin.cast hR.symm k)) i := by -- --- PROOF ---
+      = fun i => a0 i
+        + R.point b i * S.point (fun k => b (Fin.cast hR.symm k)) i := by -- --- PROOF ---
   have hpt : (PolyZonotope.evalPolyStep R S hR a0).point b
       = (PolyZonotope.mul R S hR).c + a0
         + ∑ l, PolyZonotope.monomial (PolyZonotope.mul R S hR).E b l

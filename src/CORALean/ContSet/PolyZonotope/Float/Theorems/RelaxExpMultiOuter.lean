@@ -80,8 +80,8 @@ too is off by at most its gap to the upward fold. -/
 theorem PolyZonotope.aux_relaxGenMulti_gap (PZ : PolyZonotope 𝕋 n)
     (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (i : Fin n) :
     |(PZ.relaxWidthMulti part : ℝ) * toReal (PZ.G i (part.right 0))
-      - toReal
-        (PZ.relaxGenMulti part i)| ≤ toReal (PZ.relaxGapMulti part i 1) := by -- --- PROOF ---
+      - toReal (PZ.relaxGenMulti part i)|
+        ≤ toReal (PZ.relaxGapMulti part i 1) := by -- --- PROOF ---
   have hlo : toReal (PZ.relaxGenMulti part i)
       ≤ (PZ.relaxWidthMulti part : ℝ) * toReal (PZ.G i (part.right 0)) := nsmulDown_le _ _
   have hhi : (PZ.relaxWidthMulti part : ℝ) * toReal (PZ.G i (part.right 0))

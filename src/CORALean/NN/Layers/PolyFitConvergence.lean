@@ -48,8 +48,7 @@ theorem evalPoly_coeff (p : Polynomial ℝ) (t : ℝ) :
 polynomial is within `ε` of `σ` everywhere on the box. -/
 theorem exists_evalPoly_near {σ : ℝ → ℝ} {l u ε : ℝ} (hcont : ContinuousOn σ (Set.Icc l u))
     (hε : 0 < ε) :
-    ∃ (n :
-      ℕ) (c : Fin (n + 1) → ℝ), ∀ x, l ≤ x → x ≤ u → |σ x - evalPoly c x| ≤ ε := by -- --- PROOF ---
+    ∃ (n : ℕ) (c : Fin (n + 1) → ℝ), ∀ x, l ≤ x → x ≤ u → |σ x - evalPoly c x| ≤ ε := by
   obtain ⟨p, hp⟩ := exists_polynomial_near_of_continuousOn l u σ hcont ε hε
   refine ⟨p.natDegree, fun i => p.coeff (i : ℕ), fun x hx hx' => ?_⟩
   rw [evalPoly_coeff p x, abs_sub_comm]

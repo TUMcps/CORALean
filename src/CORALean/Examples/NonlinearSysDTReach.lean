@@ -60,7 +60,7 @@ theorem Example.quadraticCert (p q r : ℝ) (U : Interval (Vec ℝ 1)) :
     AbstractionError (S := fun n => Interval (Vec ℝ n)) Example.quadraticStep.f
       (Example.quadraticA p) Example.quadraticB ![p] ![q] (Example.quadraticRegion p r)
       (construct U) (Example.quadraticL r) where
-  encloses x hx u _ := by -- --- PROOF ---
+  encloses x hx u _ := by
     intro i
     -- `n = 1`, so the only coordinate is `0`
     rw [show i = 0 from Subsingleton.elim i 0, Entrywise.entry_vec, Entrywise.entry_vec]

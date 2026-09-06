@@ -46,7 +46,7 @@ variable {N m : ℕ}
 /-- One edge's weight split into the centre it shifts and the generator it
 scales, which is the change of variable in matrix form. -/
 theorem GNN.aux_smul_edge_half (t : ℝ) (M : Mat ℝ N N) :
-    ((1 + t) / 2 : ℝ) • M = (1/2 : ℝ) • M + t • ((1/2 : ℝ) • M) := by -- --- PROOF ---
+    ((1 + t) / 2 : ℝ) • M = (1/2 : ℝ) • M + t • ((1/2 : ℝ) • M) := by
   rw [smul_smul, ← add_smul]
   congr 1
   ring

@@ -35,7 +35,7 @@ variable {α : Type} {X O : Set α}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Specification.holds_of_outer (spec : Specification α) (h : X ⊆ O)
-    (hO : spec.Holds O) : spec.Holds X := by -- --- PROOF ---
+    (hO : spec.Holds O) : spec.Holds X := by
   obtain ⟨s, k⟩ := spec
   cases k
   · exact subset_trans h hO

@@ -21,7 +21,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.col_rep {p h : ℕ} (E : Fin p → Fin h → ℕ) (i : Fin h) :
-    PolyZonotope.col E (PolyZonotope.rep E i) = PolyZonotope.col E i := by -- --- PROOF ---
+    PolyZonotope.col E (PolyZonotope.rep E i) = PolyZonotope.col E i := by
   have hmem := Finset.min'_mem
     (Finset.univ.filter fun i' => PolyZonotope.col E i' = PolyZonotope.col E i)
     ⟨i, Finset.mem_filter.mpr ⟨Finset.mem_univ i, rfl⟩⟩

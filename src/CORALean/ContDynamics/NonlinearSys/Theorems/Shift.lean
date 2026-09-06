@@ -45,7 +45,7 @@ theorem NonlinearSys.Trajectory.shift {sys : NonlinearSys n m} {T T' : Set ℝ}
     sys.Trajectory T' R₀' U (fun t => x (t₀ + t)) (fun t => u (t₀ + t)) where
   init := by simpa using h₀
   input t ht := traj.input _ (hT ht)
-  flow t ht := by -- --- PROOF ---
+  flow t ht := by
     have hg : HasDerivWithinAt (fun s : ℝ => t₀ + s) 1 T' t :=
       ((hasDerivAt_id t).const_add t₀).hasDerivWithinAt
     have h := (traj.flow _ (hT ht)).scomp t hg hT

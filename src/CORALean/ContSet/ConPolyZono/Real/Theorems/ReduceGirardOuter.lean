@@ -25,7 +25,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.reduceGirard_outer (C : ConPolyZono (Vec ℝ n)) (o : ℕ) :
-    C.construct ⊆ (C.reduceGirard o).construct := by -- --- PROOF ---
+    C.construct ⊆ (C.reduceGirard o).construct := by
   unfold ConPolyZono.reduceGirard
   split_ifs with hlt
   · exact ConPolyZono.reduceBy_outer C _ _

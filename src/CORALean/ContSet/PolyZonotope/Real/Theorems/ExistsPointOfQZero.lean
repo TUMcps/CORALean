@@ -35,8 +35,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.exists_point_of_q_zero (S : PolyZonotope α) (hq : S.q = 0) {x : α}
-    (hx :
-      x ∈ S.construct) : ∃ a : Fin S.p → ℝ, (∀ k, |a k| ≤ 1) ∧ x = S.point a := by -- --- PROOF ---
+    (hx : x ∈ S.construct) :
+    ∃ a : Fin S.p → ℝ, (∀ k, |a k| ≤ 1) ∧ x = S.point a := by -- --- PROOF ---
   obtain ⟨a, β, ha, -, rfl⟩ := hx
   have hempty : IsEmpty (Fin S.q) := by rw [hq]; infer_instance
   refine ⟨a, ha, ?_⟩

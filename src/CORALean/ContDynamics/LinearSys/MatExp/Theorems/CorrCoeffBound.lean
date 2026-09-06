@@ -64,8 +64,8 @@ theorem aux_corrCritical_pow (hi : 2 ≤ i) :
 /-- The form [1] states the coefficient in. -/
 theorem aux_corrCoeff_eq (hi : 2 ≤ i) :
     MatExp.corrCoeff i
-      = (i
-        : ℝ) ^ (-(i:ℝ) / ((i : ℝ) - 1)) - (i : ℝ) ^ (-(1:ℝ) / ((i : ℝ) - 1)) := by -- --- PROOF ---
+      = (i : ℝ) ^ (-(i:ℝ) / ((i : ℝ) - 1))
+        - (i : ℝ) ^ (-(1:ℝ) / ((i : ℝ) - 1)) := by -- --- PROOF ---
   have hi1 : (1:ℝ) < (i : ℝ) := by exact_mod_cast hi.trans_lt' one_lt_two
   have hipos : (0:ℝ) < (i : ℝ) := by linarith
   rw [MatExp.corrCoeff, MatExp.corrCritical,

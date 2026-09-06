@@ -51,7 +51,7 @@ theorem ConZonotope.aux_mulVec_agree (C₁ C₂ : ConZonotope (Vec ℝ n))
     (β : Fin (C₁.h + C₂.h) → ℝ) (i : Fin n) :
     (ConZonotope.agreeMat C₁ C₂ *ᵥ β) i
       = (∑ j, C₁.G j i * β (Fin.castAdd C₂.h j))
-        - ∑ j, C₂.G j i * β (Fin.natAdd C₁.h j) := by -- --- PROOF ---
+        - ∑ j, C₂.G j i * β (Fin.natAdd C₁.h j) := by
   show ∑ j : Fin (C₁.h + C₂.h), ConZonotope.agreeMat C₁ C₂ i j * β j = _
   rw [Fin.sum_univ_add]
   simp only [ConZonotope.agreeMat, Fin.append_left, Fin.append_right, neg_mul]
@@ -61,7 +61,7 @@ theorem ConZonotope.aux_mulVec_agree (C₁ C₂ : ConZonotope (Vec ℝ n))
 theorem ConZonotope.aux_value_and (C₁ C₂ : ConZonotope (Vec ℝ n))
     (β : Fin (C₁.h + C₂.h) → ℝ) :
     (C₁.and C₂).c + ∑ j : Fin (C₁.and C₂).h, β j • (C₁.and C₂).G j
-      = C₁.c + ∑ j, β (Fin.castAdd C₂.h j) • C₁.G j := by -- --- PROOF ---
+      = C₁.c + ∑ j, β (Fin.castAdd C₂.h j) • C₁.G j := by
   show (C₁.and C₂).c + ∑ j : Fin (C₁.h + C₂.h), β j • (C₁.and C₂).G j = _
   rw [Fin.sum_univ_add]
   simp only [ConZonotope.and, Fin.append_left, Fin.append_right, Pi.zero_apply, smul_zero,

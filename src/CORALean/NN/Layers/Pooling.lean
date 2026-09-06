@@ -45,7 +45,7 @@ noncomputable def Layer.avgPool (tap : Fin m → Fin k → Fin n) : Layer S n m 
 
 theorem Layer.avgPool_eval (tap : Fin m → Fin k → Fin n)
     (htap : ∀ j, Function.Injective (tap j)) (x : Vec ℝ n) (j : Fin m) :
-    (Layer.avgPool (S := S) tap).eval x j = (k : ℝ)⁻¹ * ∑ l, x (tap j l) := by -- --- PROOF ---
+    (Layer.avgPool (S := S) tap).eval x j = (k : ℝ)⁻¹ * ∑ l, x (tap j l) := by
   show (tapMat tap (fun _ _ => (k : ℝ)⁻¹) *ᵥ x) j + (0 : Vec ℝ m) j = _
   rw [tapMat_mulVec _ _ htap, ← Finset.mul_sum]
   show _ + (0 : ℝ) = _
@@ -63,7 +63,7 @@ def selectMat (sel : Fin m → Fin n) : Mat ℝ m n :=
   tapMat (fun (j : Fin m) (_ : Fin 1) => sel j) fun _ _ => 1
 
 theorem selectMat_mulVec (sel : Fin m → Fin n) (x : Vec ℝ n) (j : Fin m) :
-    (selectMat sel *ᵥ x) j = x (sel j) := by -- --- PROOF ---
+    (selectMat sel *ᵥ x) j = x (sel j) := by
   have h := tapMat_mulVec (fun (j : Fin m) (_ : Fin 1) => sel j) (fun _ _ => (1 : ℝ))
     (fun _ a b _ => Subsingleton.elim a b) x j
   rw [Fin.sum_univ_one, one_mul] at h
@@ -114,7 +114,7 @@ theorem maxPoolGap_nonneg (tap : Fin m → Fin (k + 1) → Fin n) (p : Fin m →
 /-- And at any other tap, which is what `maxPool_bounds` asks of `g`. -/
 theorem le_maxPoolGap (tap : Fin m → Fin (k + 1) → Fin n) (p : Fin m → Fin (k + 1))
     (I : Interval (Vec ℝ n)) (j : Fin m) {l : Fin (k + 1)} (hl : l ≠ p j) :
-    I.sup (tap j l) - I.inf (tap j (p j)) ≤ maxPoolGap tap p I j := by -- --- PROOF ---
+    I.sup (tap j l) - I.inf (tap j (p j)) ≤ maxPoolGap tap p I j := by
   have h := le_windowMax
     (fun l => if l = p j then (0 : ℝ) else I.sup (tap j l) - I.inf (tap j (p j))) l
   rwa [if_neg hl] at h

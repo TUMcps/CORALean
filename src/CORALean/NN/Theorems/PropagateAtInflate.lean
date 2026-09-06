@@ -42,7 +42,7 @@ pattern it was built from, which is what lets the induction hand one down. -/
 theorem aux_propagateAt_cons (L : RefinableLayer S n m) (rest : RefinableNetwork S m k)
     (t : OrderPattern n) (sch : Schedule) (X : S n) :
     (RefinableNetwork.cons L rest).propagateAt (Schedule.cons t sch) X
-      = rest.propagateAt sch (L.propagate t X) := by -- --- PROOF ---
+      = rest.propagateAt sch (L.propagate t X) := by
   show rest.propagateAt (Schedule.tail (Schedule.cons t sch))
     (L.propagate (Schedule.head (Schedule.cons t sch) n) X) = _
   rw [Schedule.head_cons]
@@ -68,8 +68,8 @@ theorem aux_subset_inflate_trans {E C B : Set (Vec ℝ m)} {δ₁ δ₂ ε : ℝ
 this is how a residual left early reaches the output. -/
 theorem aux_image_inflate_subset {k : ℕ} {f : Vec ℝ m → Vec ℝ k} {K : NNReal}
     (hK : LipschitzWith K f) (A : Set (Vec ℝ m)) (δ : ℝ) :
-    f '' (A
-      + Metric.closedBall 0 δ) ⊆ f '' A + Metric.closedBall 0 ((K : ℝ) * δ) := by -- --- PROOF ---
+    f '' (A + Metric.closedBall 0 δ)
+      ⊆ f '' A + Metric.closedBall 0 ((K : ℝ) * δ) := by -- --- PROOF ---
   rintro _ ⟨_, ⟨a, ha, d, hd, rfl⟩, rfl⟩
   rw [Metric.mem_closedBall, dist_zero_right] at hd
   -- the displacement is what the map moved, which the Lipschitz bound caps

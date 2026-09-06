@@ -42,7 +42,7 @@ theorem aux_mulVecR_apply (v : Vec ℝ n) (M : Mat ℝ n n) : aux_mulVecR v M = 
 /-- `‖A^i v‖ ≤ ‖A‖^i ‖v‖`, the `i = 0` case included, where the power is the
 identity rather than something the operator norm bounds. -/
 theorem aux_norm_pow_mulVec (A : Mat ℝ n n) (v : Vec ℝ n) (i : ℕ) :
-    ‖A ^ i *ᵥ v‖ ≤ ‖A‖ ^ i * ‖v‖ := by -- --- PROOF ---
+    ‖A ^ i *ᵥ v‖ ≤ ‖A‖ ^ i * ‖v‖ := by
   rcases Nat.eq_zero_or_pos i with rfl | hi
   · simp
   · exact le_trans (Matrix.linfty_opNorm_mulVec _ _)

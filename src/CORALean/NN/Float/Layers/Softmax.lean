@@ -126,7 +126,7 @@ private theorem softmaxDenomDown_le (k : ℕ) (I : Interval 𝕋 n) (i : Fin n) 
 
 theorem softmax_le_rawUpper (k : ℕ) (I : Interval 𝕋 n) {x : Vec ℝ n}
     (hx : ∀ i, toReal (I.inf i) ≤ x i ∧ x i ≤ toReal (I.sup i)) (i : Fin n) :
-    Real.softmax x i ≤ toReal (softmaxRawUpper k I i) := by -- --- PROOF ---
+    Real.softmax x i ≤ toReal (softmaxRawUpper k I i) := by
   have hraw := Real.softmax_le_raw hx i
   rw [← one_div] at hraw
   exact le_trans hraw

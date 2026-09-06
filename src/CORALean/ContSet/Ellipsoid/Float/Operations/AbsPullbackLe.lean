@@ -44,8 +44,7 @@ theorem Ellipsoid.aux_dualVec {c : Vec ℝ n →ₗ[ℝ] ℝ} {a : Vec 𝕋 n}
 the two roundings bracket. -/
 theorem Ellipsoid.aux_pullback (E : Ellipsoid 𝕋 n) {c : Vec ℝ n →ₗ[ℝ] ℝ} {a : Vec 𝕋 n}
     (hc : ∀ x : Vec ℝ n, c x = ∑ i, toReal (a i) * x i) (j : Fin E.k) :
-    (InflatedContSet.nominal
-      E).pullback c j = ∑ i, toReal (a i) * toReal (E.G i j) := by -- --- PROOF ---
+    (InflatedContSet.nominal E).pullback c j = ∑ i, toReal (a i) * toReal (E.G i j) := by
   show ∑ i, toReal (E.G i j) * Real.dualVec c i = _
   exact Finset.sum_congr rfl fun i _ => by
     rw [Ellipsoid.aux_dualVec hc i, mul_comm]

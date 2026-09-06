@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 theorem PolyZonotope.aux_min_mul_le {a lo hi w : ℝ} (h1 : lo ≤ w) (h2 : w ≤ hi) :
-    min (a * lo) (a * hi) ≤ a * w := by -- --- PROOF ---
+    min (a * lo) (a * hi) ≤ a * w := by
   rcases le_total 0 a with ha | ha
   · exact le_trans (min_le_left _ _) (mul_le_mul_of_nonneg_left h1 ha)
   · exact le_trans (min_le_right _ _) (mul_le_mul_of_nonpos_left h2 ha)
@@ -37,7 +37,7 @@ theorem PolyZonotope.aux_min_mul_le {a lo hi w : ℝ} (h1 : lo ≤ w) (h2 : w �
 -- so a directed sum of per-term extremes brackets the exact bilinear value
 theorem PolyZonotope.quadDown_le {g wlo whi : Vec 𝕋 n} {w : Vec ℝ n}
     (hw : ∀ r, toReal (wlo r) ≤ w r ∧ w r ≤ toReal (whi r)) :
-    toReal (PolyZonotope.quadDown g wlo whi) ≤ ∑ r, toReal (g r) * w r := by -- --- PROOF ---
+    toReal (PolyZonotope.quadDown g wlo whi) ≤ ∑ r, toReal (g r) * w r := by
   refine le_trans (sumDown_le_sum _) (Finset.sum_le_sum fun r _ => ?_)
   rw [toReal_minimum]
   exact le_trans (min_le_min (mulDown_le_mul _ _) (mulDown_le_mul _ _))

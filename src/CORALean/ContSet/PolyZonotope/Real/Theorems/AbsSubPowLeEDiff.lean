@@ -36,7 +36,7 @@ namespace CORALean.Real
 /-- Powers of `x²`, the shape both powers take once their common parity
 remainder is split off. -/
 theorem PolyZonotope.aux_sq_pow_mem {x : ℝ} (hx : |x| ≤ 1) (m : ℕ) :
-    0 ≤ (x ^ 2) ^ m ∧ (x ^ 2) ^ m ≤ 1 := by -- --- PROOF ---
+    0 ≤ (x ^ 2) ^ m ∧ (x ^ 2) ^ m ≤ 1 := by
   have hsq : x ^ 2 ≤ 1 := by
     have h : |x| ^ 2 ≤ 1 := pow_le_one₀ (abs_nonneg x) hx
     rwa [← abs_pow, abs_of_nonneg (sq_nonneg x)] at h

@@ -122,7 +122,7 @@ theorem PolyZonotope.aux_quadMapDep_refines (Q : Fin m → Mat 𝕋 n n) (S : Po
 -- the whole operation: `dependent` first, then the exact map, then this refinement
 theorem PolyZonotope.quadMap_outer (Q : Fin m → Mat 𝕋 n n) (PZ : PolyZonotope 𝕋 n) :
     Real.PolyZonotope.quadEval (fun k => toRealMat (Q k)) '' PZ.construct
-      ⊆ (PolyZonotope.quadMap Q PZ).construct := by -- --- PROOF ---
+      ⊆ (PolyZonotope.quadMap Q PZ).construct := by
   refine subset_trans (Set.image_mono (PolyZonotope.dependent_nominal PZ)) ?_
   refine subset_trans ?_ (PolyZonotope.aux_quadMapDep_refines Q PZ.dependent)
   exact (Real.PolyZonotope.quadMapDep_exact (fun k => toRealMat (Q k))

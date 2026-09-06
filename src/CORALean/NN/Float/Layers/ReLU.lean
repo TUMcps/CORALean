@@ -53,8 +53,8 @@ def reluGapUp (lam l u : 𝕋) : 𝕋 :=
   maximum (subUp u (mulDown lam u)) (neg (mulDown lam l))
 
 theorem reluGapOfSlope_le (lam l u : 𝕋) :
-    Real.reluGapOfSlope
-      (toReal lam) (toReal l) (toReal u) ≤ toReal (reluGapUp lam l u) := by -- --- PROOF ---
+    Real.reluGapOfSlope (toReal lam) (toReal l) (toReal u)
+      ≤ toReal (reluGapUp lam l u) := by -- --- PROOF ---
   have hexp : (1 - toReal lam) * toReal u = toReal u - toReal lam * toReal u := by ring
   have h1 : (1 - toReal lam) * toReal u ≤ toReal (subUp u (mulDown lam u)) := by
     have ha := sub_le_subUp u (mulDown lam u)

@@ -25,7 +25,7 @@ variable {n : ℕ}
 
 -- attained, so the bound is the maximum rather than merely an upper bound
 theorem Ellipsoid.isGreatest_support (E : Ellipsoid n) (c : Vec ℝ n →ₗ[ℝ] ℝ) :
-    IsGreatest (c '' E.construct) (E.supportBound c).val := by -- --- PROOF ---
+    IsGreatest (c '' E.construct) (E.supportBound c).val := by
   obtain ⟨x, hx, hcx⟩ := E.supportBound_attained c
   refine ⟨⟨x, hx, hcx⟩, ?_⟩
   rintro _ ⟨y, hy, rfl⟩

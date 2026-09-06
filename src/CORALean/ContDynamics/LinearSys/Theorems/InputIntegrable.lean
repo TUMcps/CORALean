@@ -79,8 +79,8 @@ bounded — which every representation of a set of points is. -/
 theorem LinearSys.Trajectory.intervalIntegrable_input {sys : LinearSys 𝕋 n} {T : Set ℝ}
     {R₀ U : S n} {x u : ℝ → Vec ℝ n} {a b : ℝ} (traj : sys.Trajectory T R₀ U x u)
     (hT : Set.Icc a b ⊆ T) (hab : a ≤ b) (hU : Bornology.IsBounded (construct U)) :
-    IntervalIntegrable
-      (fun s => exp ((-s) • toRealMat sys.A) *ᵥ u s) volume a b := by -- --- PROOF ---
+    IntervalIntegrable (fun s => exp ((-s) • toRealMat sys.A) *ᵥ u s)
+      volume a b := by -- --- PROOF ---
   obtain ⟨CU, hCU⟩ := hU.exists_norm_le
   obtain ⟨CE, hCE⟩ := (isCompact_Icc (a := a) (b := b)).exists_bound_of_continuousOn
     (aux_continuous_expNeg (toRealMat sys.A)).continuousOn

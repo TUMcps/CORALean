@@ -30,7 +30,7 @@ theorem HPolytope.aux_unitBox_A_castAdd (j : Fin n) :
   rw [Fin.append_left]
 
 theorem HPolytope.aux_unitBox_A_natAdd (j : Fin n) :
-    (HPolytope.unitBox n).A (Fin.natAdd n j) = -LinearMap.proj j := by -- --- PROOF ---
+    (HPolytope.unitBox n).A (Fin.natAdd n j) = -LinearMap.proj j := by
   show Fin.append (fun j : Fin n => (LinearMap.proj j : Vec ℝ n →ₗ[ℝ] ℝ))
     (fun j : Fin n => -(LinearMap.proj j : Vec ℝ n →ₗ[ℝ] ℝ)) (Fin.natAdd n j) = _
   rw [Fin.append_right]

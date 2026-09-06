@@ -33,7 +33,7 @@ variable {n : ℕ}
 set_option maxHeartbeats 200000 in
 /-- The exponential of a scaled matrix, with the scalar pulled out of the power. -/
 theorem exp_smul_tsum (A : Mat ℝ n n) (t : ℝ) :
-    exp (t • A) = ∑' i : ℕ, (((Nat.factorial i : ℝ))⁻¹ * t ^ i) • A ^ i := by -- --- PROOF ---
+    exp (t • A) = ∑' i : ℕ, (((Nat.factorial i : ℝ))⁻¹ * t ^ i) • A ^ i := by
   have h : exp (t • A) = ∑' i : ℕ, ((Nat.factorial i : ℝ))⁻¹ • (t • A) ^ i := by
     rw [exp_eq_tsum (𝕂 := ℝ)]
   rw [h]

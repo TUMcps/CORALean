@@ -45,8 +45,7 @@ theorem ConPolyZono.aux_value_andDep (C₁ C₂ : ConPolyZono (Vec ℝ n))
     (∑ l : Fin (C₁.h + C₂.h),
         PolyZonotope.monomial (PolyZonotope.plusE C₁.E C₂.E) a l
           • Fin.append C₁.G (0 : Fin C₂.h → Vec ℝ n) l)
-      = ∑ l, PolyZonotope.monomial
-        C₁.E (fun k => a (Fin.castAdd C₂.p k)) l • C₁.G l := by -- --- PROOF ---
+      = ∑ l, PolyZonotope.monomial C₁.E (fun k => a (Fin.castAdd C₂.p k)) l • C₁.G l := by
   rw [Fin.sum_univ_add]
   simp only [Fin.append_left, Fin.append_right, Pi.zero_apply, smul_zero,
     Finset.sum_const_zero, add_zero, PolyZonotope.monomial_plusE_left]

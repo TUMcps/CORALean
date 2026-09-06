@@ -25,8 +25,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : 
 
 -- the mirror statement for the right block
 theorem HPolytope.mem_padRight_iff {P : HPolytope 𝕋 n₂} {x : Vec ℝ (n₁ + n₂)} :
-    x ∈
-      (HPolytope.padRight n₁ P).construct ↔ blockRight n₁ n₂ x ∈ P.construct := by -- --- PROOF ---
+    x ∈ (HPolytope.padRight n₁ P).construct
+      ↔ blockRight n₁ n₂ x ∈ P.construct := by -- --- PROOF ---
   constructor
   · intro h
     obtain ⟨hle, heq⟩ := HPolytope.mem_construct_iff.mp h
