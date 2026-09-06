@@ -1,0 +1,41 @@
+import CORALean.HybridDynamics.Theorems.RunOnOuter
+import CORALean.Specification.Theorems.HoldsOfOuter
+
+/-!
+# A specification checked on the indexed invariant holds along a bounded run
+
+The exact analogue of `HoldsOfRun`, read at the index the run reaches: `k` at
+the start, `k + m` after its `m` jumps. `RunOnOuter` supplies the membership,
+`Specification.holds_of_outer` turns it into an answer, as before.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       06-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+open ContSet Scalar
+
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+/-- The check passed at the index the run ends at is passed by the state it
+ends at. -/
+theorem HybridAutomaton.holds_of_invariantOn {HA : HybridAutomaton S L 𝕋 n}
+    {R : ℕ → L → S n} (hinv : HA.InvariantOn R) (spec : Specification (Vec ℝ n)) {m k : ℕ}
+    {ℓ ℓ' : L} {x y : Vec ℝ n} (run : HA.RunOn m ℓ x ℓ' y) (hx : x ∈ construct (R k ℓ))
+    (h : spec.Holds (construct (R (k + m) ℓ'))) : spec.Holds {y} :=
+  spec.holds_of_outer (Set.singleton_subset_iff.mpr (run.mem_of_invariantOn hinv hx)) h
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
