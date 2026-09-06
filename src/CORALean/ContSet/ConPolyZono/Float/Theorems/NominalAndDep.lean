@@ -34,8 +34,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem ConPolyZono.nominal_andDep (C₁ C₂ : ConPolyZono 𝕋 n) :
     nominal (C₁.andDep C₂)
-      = Real.ConPolyZono.andDep
-        (nominal C₁) (nominal C₂) (ConPolyZono.andD C₁ C₂) := by -- --- PROOF ---
+      = Real.ConPolyZono.andDep (nominal C₁) (nominal C₂)
+        (ConPolyZono.andD C₁ C₂) := by -- --- PROOF ---
   have hG : (fun (l : Fin (C₁.h + C₂.h)) (i : Fin n) =>
         toReal (Fin.append (C₁.G i) (fun _ => zero) l))
       = Fin.append (fun (l : Fin C₁.h) (i : Fin n) => toReal (C₁.G i l))

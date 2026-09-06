@@ -103,8 +103,8 @@ theorem aux_polyDerivDiff_le {lo hi ctr rad r : ℝ} (hrad0 : 0 ≤ rad) (hrad :
 order a whole layer is refined to, rather than a single neuron's. -/
 theorem exists_polyRelaxation_error_lt {σ σ' : ℝ → ℝ} {L U Mσ ε : ℝ}
     (hd : ∀ x, HasDerivAt σ (σ' x) x) (hσ : ∀ x, |σ' x| ≤ Mσ) (hε : 0 < ε) :
-    ∃ (k : ℕ) (P :
-      PolyRelaxation σ k), ∀ l u : ℝ, L ≤ l → l ≤ u → u ≤ U → P.error l u < ε := by -- --- PROOF ---
+    ∃ (k : ℕ) (P : PolyRelaxation σ k), ∀ l u : ℝ,
+      L ≤ l → l ≤ u → u ≤ U → P.error l u < ε := by -- --- PROOF ---
   have hcont : ContinuousOn σ (Set.Icc L U) :=
     fun x _ => ((hd x).continuousAt).continuousWithinAt
   obtain ⟨k, c₀, hfit⟩ := exists_evalPoly_near hcont (show (0:ℝ) < ε / 4 by linarith)

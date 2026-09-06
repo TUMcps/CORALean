@@ -56,8 +56,8 @@ theorem PolyZonotope.aux_sum_univ_plus_q {PZ₁ PZ₂ : PolyZonotope 𝕋 n}
 /-- The concatenated blocks account for everything but the centre rounding. -/
 theorem PolyZonotope.aux_plus_nominal (PZ₁ PZ₂ : PolyZonotope 𝕋 n) :
     nominalSet PZ₁ + nominalSet PZ₂ ⊆
-      nominalSet
-        (PZ₁.plus PZ₂) + (PolyZonotope.centerResidual PZ₁.c PZ₂.c).construct := by -- --- PROOF ---
+      nominalSet (PZ₁.plus PZ₂)
+        + (PolyZonotope.centerResidual PZ₁.c PZ₂.c).construct := by -- --- PROOF ---
   rintro _ ⟨x₁, hx₁', x₂, hx₂', rfl⟩
   obtain ⟨a₁, β₁, ha₁, hβ₁, hx₁⟩ := PolyZonotope.mem_nominalSet_iff.mp hx₁'
   obtain ⟨a₂, β₂, ha₂, hβ₂, hx₂⟩ := PolyZonotope.mem_nominalSet_iff.mp hx₂'

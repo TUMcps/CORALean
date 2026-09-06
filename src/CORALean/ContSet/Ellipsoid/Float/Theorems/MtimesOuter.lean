@@ -59,8 +59,8 @@ theorem Ellipsoid.aux_mulVec_nominal (M : Mat 𝕋 m n) (E : Ellipsoid 𝕋 n) (
 -- the image's nominal part, with the generator rounding charged to a box
 theorem Ellipsoid.aux_mtimes_nominal (M : Mat 𝕋 m n) (E : Ellipsoid 𝕋 n) :
     (toRealMat M *ᵥ ·) '' nominalSet E ⊆
-      nominalSet
-        (Ellipsoid.mtimes M E) + (Ellipsoid.mtimesResidual M E).construct := by -- --- PROOF ---
+      nominalSet (Ellipsoid.mtimes M E)
+        + (Ellipsoid.mtimesResidual M E).construct := by -- --- PROOF ---
   rintro _ ⟨x, hx', rfl⟩
   obtain ⟨u, hu, hx⟩ := Ellipsoid.mem_nominalSet_iff.mp hx'
   -- the generators are wrong by this much, entrywise

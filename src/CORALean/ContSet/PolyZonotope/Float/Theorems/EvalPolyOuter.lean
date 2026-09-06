@@ -45,8 +45,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 every monomial is at most `1`. -/
 theorem PolyZonotope.aux_point_le_boundS (S : PolyZonotope 𝕋 n) (b : Fin S.p → ℝ)
     (hb : ∀ k, |b k| ≤ 1) (i : Fin n) :
-    |Real.PolyZonotope.point
-      (nominal S) b i| ≤ toReal (PolyZonotope.evalPolyBoundS S i) := by -- --- PROOF ---
+    |Real.PolyZonotope.point (nominal S) b i|
+      ≤ toReal (PolyZonotope.evalPolyBoundS S i) := by -- --- PROOF ---
   -- unfold the point at `i`, `nominal S`'s fields read back as `S`'s own
   have h1 : Real.PolyZonotope.point (nominal S) b i
       = toReal (S.c i) + ∑ l, toReal (S.G i l) * Real.PolyZonotope.monomial S.E b l := by

@@ -131,8 +131,8 @@ theorem aux_exists_level (s : PolyZonotope (Vec ℝ n)) {ε : ℝ} (hε : 0 < ε
 set inside any inflation of the exact image. -/
 theorem Layer.activationPolyRefinable_convergent (hd : ∀ x, HasDerivAt σ (σ' x) x)
     (hσ : ∀ x, |σ' x| ≤ Mσ) :
-    (Layer.activationPolyRefinable
-      (n := n) (polyRelaxationFamily hd hσ)).Convergent := by -- --- PROOF ---
+    (Layer.activationPolyRefinable (n := n)
+      (polyRelaxationFamily hd hσ)).Convergent := by -- --- PROOF ---
   intro s ε hε
   obtain ⟨t, ht⟩ := aux_exists_level s hε
   refine ⟨t, Layer.activationPoly_subset_inflate

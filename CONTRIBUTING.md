@@ -324,8 +324,14 @@ theorem MatExp.constCorrectionMatrix_mem (A : Mat ℝ n n) (r : ℝ) (η : ℕ) 
 A proof of **five lines or more** must carry one, and a shorter proof must
 not: below that the `:= by` is still in view, and a flag on every two-line
 proof would say only what the source already shows. Required and refused on
-either side of one number, so the flag always means the same thing — 564 of
-them, on a little over half the theorems in the tree.
+either side of one number, so the flag always means the same thing — 495 of
+them, on a little under half the theorems in the tree.
+
+Its length is what it spans: from the `:= by` to the proof's last line, blank
+lines inside it counted and the blank lines between it and whatever follows
+not. A theorem proved by a structure instance — `... : sys.Trajectory … where`
+— has no `:= by` of its own and so carries no flag; the fields' own `by` blocks
+are not it.
 
 When the line has no room for it inside the hundred-character limit, **the
 statement gets wrapped** rather than the flag moved: a declaration head breaks

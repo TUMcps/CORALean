@@ -38,8 +38,8 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 theorem LinearSys.stepInput_eq_shifted (sys : LinearSys 𝕋 n) (u : ℝ → Vec ℝ n) (Δt : ℝ)
     (k : ℕ) :
     sys.stepInput u Δt k
-      = ∫ σ in
-        (0:ℝ)..Δt, exp ((Δt - σ) • toRealMat sys.A) *ᵥ u ((k : ℝ) * Δt + σ) := by -- --- PROOF ---
+      = ∫ σ in (0:ℝ)..Δt,
+        exp ((Δt - σ) • toRealMat sys.A) *ᵥ u ((k : ℝ) * Δt + σ) := by -- --- PROOF ---
   have hsplit : ((k : ℝ) + 1) * Δt = (k : ℝ) * Δt + Δt := by ring
   have hshift : ∀ σ : ℝ, (k : ℝ) * Δt + Δt - ((k : ℝ) * Δt + σ) = Δt - σ := fun σ => by ring
   have key := intervalIntegral.integral_comp_add_left (a := (0 : ℝ)) (b := Δt)

@@ -41,8 +41,8 @@ namespace CORALean.Real
 /-- The column sum strictly drops across an edge: every other exponent is
 shared, and the one the edge moves falls. -/
 theorem PolyZonotope.aux_sum_lt_of_expEdge {p h : ℕ} (E : Fin p → Fin h → ℕ) {η : ℕ}
-    {i j
-      : Fin h} (hij : PolyZonotope.ExpEdge E η i j) : ∑ k, E k j < ∑ k, E k i := by -- --- PROOF ---
+    {i j : Fin h} (hij : PolyZonotope.ExpEdge E η i j) :
+    ∑ k, E k j < ∑ k, E k i := by -- --- PROOF ---
   obtain ⟨k₀, hsim, -, -, hlt⟩ := hij
   refine Finset.sum_lt_sum (fun k _ => ?_) ⟨k₀, Finset.mem_univ k₀, hlt⟩
   by_cases hk : k = k₀
@@ -53,7 +53,7 @@ theorem PolyZonotope.aux_sum_lt_of_expEdge {p h : ℕ} (E : Fin p → Fin h → 
 /-- The same along a path, the measure dropping at every step. -/
 theorem PolyZonotope.aux_sum_lt_of_path {p h : ℕ} (E : Fin p → Fin h → ℕ) {η : ℕ}
     {i j : Fin h} (hij : Relation.TransGen (PolyZonotope.ExpEdge E η) i j) :
-    ∑ k, E k j < ∑ k, E k i := by -- --- PROOF ---
+    ∑ k, E k j < ∑ k, E k i := by
   induction hij with
   | single hedge => exact PolyZonotope.aux_sum_lt_of_expEdge E hedge
   | tail _ hedge ih => exact lt_trans (PolyZonotope.aux_sum_lt_of_expEdge E hedge) ih

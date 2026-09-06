@@ -51,8 +51,8 @@ variable [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 Lebesgue measure. -/
 theorem aux_aestronglyMeasurable_comp_sub_right {f : ℝ → Vec ℝ n} {a b c : ℝ}
     (hf : AEStronglyMeasurable f (volume.restrict (Set.Icc a b))) :
-    AEStronglyMeasurable
-      (fun σ => f (σ - c)) (volume.restrict (Set.Icc (a + c) (b + c))) := by -- --- PROOF ---
+    AEStronglyMeasurable (fun σ => f (σ - c))
+      (volume.restrict (Set.Icc (a + c) (b + c))) := by -- --- PROOF ---
   have hpre : (fun σ : ℝ => σ - c) ⁻¹' Set.Icc a b = Set.Icc (a + c) (b + c) := by
     ext σ
     simp only [Set.mem_preimage, Set.mem_Icc]

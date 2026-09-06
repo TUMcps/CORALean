@@ -25,7 +25,7 @@ variable {p : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem toReal_exactAdd (a b : Dyadic p) :
-    toReal (exactAdd a b) = toReal a + toReal b := by -- --- PROOF ---
+    toReal (exactAdd a b) = toReal a + toReal b := by
   rw [toReal_def, toReal_def, toReal_def, exactAdd]
   push_cast
   rw [add_mul, mul_assoc, mul_assoc, two_zpow_align (min_le_left a.exponent b.exponent),

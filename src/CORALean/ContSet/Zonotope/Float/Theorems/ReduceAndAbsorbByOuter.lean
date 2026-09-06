@@ -43,8 +43,7 @@ theorem Zonotope.aux_abs_merged_le_radius (Z : Zonotope 𝕋 n)
     (hβ : ∀ j, |β j| ≤ 1) (he : e ∈ Z.E.construct) (i : Fin n) :
     |(∑ l, toReal (Z.G i (part.right l)) * β (part.right l))
         + (e i - (toReal (Z.E.inf i) + toReal (Z.E.sup i)) / 2)|
-      ≤ toReal (addUp
-        (radius (fun i l => Z.G i (part.right l)) i) (Z.errorRadius i)) := by -- --- PROOF ---
+      ≤ toReal (addUp (radius (fun i l => Z.G i (part.right l)) i) (Z.errorRadius i)) := by
   have hgen := Zonotope.abs_absorbed_le_radius Z part hβ i
   have hbox := Zonotope.abs_sub_mid_le_errorRadius Z he i
   have hsum := add_le_addUp (radius (fun i l => Z.G i (part.right l)) i) (Z.errorRadius i)

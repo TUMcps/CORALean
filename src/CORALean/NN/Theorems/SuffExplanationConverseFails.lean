@@ -89,8 +89,8 @@ theorem suffExplanation_of_abstract_converse_fails :
       nn.outputSet (ofInterval (S := fun n => Interval (Vec ℝ n)) (explainBox x ε E))
         ⊆ construct (nnAbs.propagate
           (ofInterval (S := fun n => Interval (Vec ℝ n)) (explainBox x ε E)))
-      ∧ nn.IsSuffExplanation
-        x ε E l ∧ ¬ nnAbs.IsSuffExplanationAbstract x ε E l := by -- --- PROOF ---
+      ∧ nn.IsSuffExplanation x ε E l
+        ∧ ¬ nnAbs.IsSuffExplanationAbstract x ε E l := by -- --- PROOF ---
   refine ⟨aux_suffExplanationConverseFails_nn, aux_suffExplanationConverseFails_nnAbs,
     (fun _ => 0), 0, ∅, 1, ?_, ?_, ?_⟩
   · -- `nn` and `nnAbs` evaluate identically, so `nn`'s exact image lies in `nnAbs`'s enclosure

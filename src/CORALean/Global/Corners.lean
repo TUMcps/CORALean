@@ -32,7 +32,7 @@ def signEquiv (n : ℕ) : Fin (2 ^ n) ≃ (Fin n → Bool) :=
   finFunctionFinEquiv.symm.trans (Equiv.arrowCongr (Equiv.refl (Fin n)) finTwoEquiv)
 
 theorem sum_prod_bool (f g : Fin n → ℝ) :
-    ∑ σ : Fin n → Bool, ∏ j, (if σ j then f j else g j) = ∏ j, (f j + g j) := by -- --- PROOF ---
+    ∑ σ : Fin n → Bool, ∏ j, (if σ j then f j else g j) = ∏ j, (f j + g j) := by
   rw [show (∏ j, (f j + g j)) = ∏ j, ∑ b : Bool, (if b then f j else g j) from
         Finset.prod_congr rfl fun j _ => by simp,
       Finset.prod_univ_sum, Fintype.piFinset_univ]

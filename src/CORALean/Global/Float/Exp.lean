@@ -99,8 +99,7 @@ private theorem seedDown_nonneg (a : 𝕋) : 0 ≤ toReal (seedDown a) := by
   exact le_max_left _ _
 
 /-- The lower seed, `add_one_le_exp` at `a` after the rounding is paid. -/
-private theorem seedDown_le (a : 𝕋) :
-    toReal (seedDown a) ≤ Real.exp (toReal a) := by -- --- PROOF ---
+private theorem seedDown_le (a : 𝕋) : toReal (seedDown a) ≤ Real.exp (toReal a) := by
   rw [seedDown, toReal_maximum, toReal_zero]
   refine max_le (Real.exp_pos _).le (le_trans (addDown_le_add one a) ?_)
   rw [toReal_one]
@@ -134,8 +133,8 @@ private theorem squareDownIter_nonneg (n : ℕ) {u : 𝕋} (hu : 0 ≤ toReal u)
 
 /-- `n` downward squarings lift a bound at `s` to one at `2ⁿ s`. -/
 private theorem squareDownIter_le (n : ℕ) {u : 𝕋} {s : ℝ} (hu : 0 ≤ toReal u)
-    (h : toReal
-      u ≤ Real.exp s) : toReal (squareDownIter n u) ≤ Real.exp (2 ^ n * s) := by -- --- PROOF ---
+    (h : toReal u ≤ Real.exp s) :
+    toReal (squareDownIter n u) ≤ Real.exp (2 ^ n * s) := by -- --- PROOF ---
   induction n generalizing u s with
   | zero =>
     rw [squareDownIter, pow_zero, one_mul]

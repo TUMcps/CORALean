@@ -54,7 +54,7 @@ def Zonotope.vPolytope (Z : Zonotope 𝕋 n) : VPolytope 𝕋 n where
 /-- What the exact layer's corner is, in this layer's own fields. -/
 theorem Zonotope.aux_signed_toReal (Z : Zonotope 𝕋 n) (σ : Fin Z.h → Bool) (i : Fin n)
     (j : Fin Z.h) :
-    toReal (Z.signed σ i j) = (if σ j then (1:ℝ) else -1) * toReal (Z.G i j) := by -- --- PROOF ---
+    toReal (Z.signed σ i j) = (if σ j then (1:ℝ) else -1) * toReal (Z.G i j) := by
   rw [Zonotope.signed]
   by_cases h : σ j = true
   · rw [if_pos h, if_pos h, one_mul]

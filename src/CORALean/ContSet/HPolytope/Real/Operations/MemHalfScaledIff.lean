@@ -25,8 +25,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 theorem HPolytope.mem_halfScaled_iff {t : α →ₗ[ℝ] ℝ} {P : HPolytope α} {x : α} :
     x ∈ (P.halfScaled t).construct ↔
-      (∀ i, P.A
-        i x ≤ (t x + 1) / 2 * P.b i) ∧ ∀ i, P.Ae i x = (t x + 1) / 2 * P.be i := by -- --- PROOF ---
+      (∀ i, P.A i x ≤ (t x + 1) / 2 * P.b i) ∧ ∀ i,
+        P.Ae i x = (t x + 1) / 2 * P.be i := by -- --- PROOF ---
   -- each row is `A x - (b/2) t x` against `b/2`, which is the weight times `b`
   have hb (r : ℝ) : (t x + 1) / 2 * r = r / 2 * t x + r / 2 := by ring
   constructor

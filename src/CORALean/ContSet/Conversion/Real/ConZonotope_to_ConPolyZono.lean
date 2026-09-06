@@ -100,7 +100,7 @@ def ConZonotope.conPolyZono (C : ConZonotope (Vec ℝ n)) : ConPolyZono (Vec ℝ
 -- identity exponents make the monomial vector the factor vector itself
 theorem ConZonotope.aux_mulVec_conA (C : ConZonotope (Vec ℝ n)) (β : Vec ℝ C.h) :
     ∀ i, (ConZonotope.conA C *ᵥ PolyZonotope.monomial (PolyZonotope.identE C.h) β) i
-      = (ConZonotope.conA C *ᵥ β) i := by -- --- PROOF ---
+      = (ConZonotope.conA C *ᵥ β) i := by
   have hm : PolyZonotope.monomial (PolyZonotope.identE C.h) β = β :=
     funext fun j => PolyZonotope.monomial_identE β j
   rw [hm]

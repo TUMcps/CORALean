@@ -74,7 +74,7 @@ theorem toReal_absolute (a : 𝕋) : toReal (absolute a) = |toReal a| := by
 
 /-- Read as reals it is `Matrix.diagonal`, so the exact layer's lemmas apply. -/
 theorem toReal_diagonalBlock (v : Vec 𝕋 n) (i l : Fin n) :
-    toReal (diagonalBlock v i l) = Matrix.diagonal (toRealVec v) i l := by -- --- PROOF ---
+    toReal (diagonalBlock v i l) = Matrix.diagonal (toRealVec v) i l := by
   by_cases hil : i = l
   · rw [diagonalBlock, if_pos hil, hil, Matrix.diagonal_apply_eq]
     rfl
@@ -91,7 +91,7 @@ theorem subDown_le_sub (a b : 𝕋) : toReal (subDown a b) ≤ toReal a - toReal
 /-- An underestimated positive denominator gives an overestimated reciprocal,
 and the rounding only grows it further. -/
 theorem one_div_le_divUp {d : 𝕋} {y : ℝ} (h1 : 1 ≤ toReal d) (h2 : toReal d ≤ y) :
-    1 / y ≤ toReal (divUp one d) := by -- --- PROOF ---
+    1 / y ≤ toReal (divUp one d) := by
   have hd : (0:ℝ) < toReal d := lt_of_lt_of_le zero_lt_one h1
   have hdiv := div_le_divUp one d hd
   rw [toReal_one] at hdiv

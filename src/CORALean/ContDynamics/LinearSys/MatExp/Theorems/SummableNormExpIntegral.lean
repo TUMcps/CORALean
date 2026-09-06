@@ -37,8 +37,8 @@ variable {n : ℕ}
 set_option maxHeartbeats 400000 in
 /-- The integrated series is dominated by `|t|` times the exponential's own. -/
 theorem MatExp.summable_norm_expIntegral (A : Mat ℝ n n) (t : ℝ) :
-    Summable (fun
-      i : ℕ => ‖(((Nat.factorial (i + 1) : ℝ))⁻¹ * t ^ (i + 1)) • A ^ i‖) := by -- --- PROOF ---
+    Summable (fun i : ℕ => ‖(((Nat.factorial (i + 1) : ℝ))⁻¹ * t ^ (i + 1))
+      • A ^ i‖) := by -- --- PROOF ---
   have hg : Summable
       (fun i : ℕ => |t| * ‖((Nat.factorial i : ℝ))⁻¹ • (t • A) ^ i‖) :=
     (norm_expSeries_summable' (𝕂 := ℝ) (t • A)).mul_left _

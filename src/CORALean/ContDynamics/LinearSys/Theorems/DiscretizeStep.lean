@@ -34,8 +34,8 @@ theorem LinearSys.Trajectory.discretize_step {sys : LinearSys 𝕋 n} {T : Set �
     (hΔt : 0 ≤ Δt) (hU : Bornology.IsBounded (construct U)) (k : ℕ)
     (hT : Set.Icc ((k : ℝ) * Δt) (((k : ℝ) + 1) * Δt) ⊆ T) :
     x (((k : ℝ) + 1) * Δt)
-      = toRealMat
-        (sys.discretize Δt).A *ᵥ x ((k : ℝ) * Δt) + sys.stepInput u Δt k := by -- --- PROOF ---
+      = toRealMat (sys.discretize Δt).A *ᵥ x ((k : ℝ) * Δt)
+        + sys.stepInput u Δt k := by -- --- PROOF ---
   have hab : (k : ℝ) * Δt ≤ ((k : ℝ) + 1) * Δt := by nlinarith [Nat.cast_nonneg (α := ℝ) k]
   have h := traj.variation_of_constants hT hab (traj.intervalIntegrable_input hT hab hU)
   have hstep : ((k : ℝ) + 1) * Δt - (k : ℝ) * Δt = Δt := by ring

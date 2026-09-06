@@ -36,8 +36,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n k : ℕ}
 
 theorem ConPolyZono.aux_mtimes_nominal (M : Mat 𝕋 k n) (C : ConPolyZono 𝕋 n) :
     (toRealMat M *ᵥ ·) '' nominalSet C ⊆
-      nominalSet
-        (ConPolyZono.mtimes M C) + (ConPolyZono.mtimesResidual M C).construct := by -- --- PROOF ---
+      nominalSet (ConPolyZono.mtimes M C)
+        + (ConPolyZono.mtimesResidual M C).construct := by -- --- PROOF ---
   rintro _ ⟨x, hx', rfl⟩
   obtain ⟨a, β, ha, hβ, hsat, hx⟩ := ConPolyZono.mem_nominalSet_iff.mp hx'
   have hres : (fun i => (∑ r, toReal (M i r) * toReal (C.c r))

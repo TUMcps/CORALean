@@ -78,7 +78,7 @@ theorem evalPoly_shiftConst {n : ℕ} (c : Fin (n + 1) → ℝ) (s t : ℝ) :
     if_pos (Finset.mem_univ (0 : Fin (n + 1)))]
 
 /-- A degree-1 polynomial as `Relaxation` writes its affine map. -/
-theorem evalPoly_one (c : Fin 2 → ℝ) (t : ℝ) : evalPoly c t = c 1 * t + c 0 := by -- --- PROOF ---
+theorem evalPoly_one (c : Fin 2 → ℝ) (t : ℝ) : evalPoly c t = c 1 * t + c 0 := by
   show ∑ i, c i * t ^ (i : ℕ) = _
   rw [Fin.sum_univ_two]
   show c 0 * t ^ (0 : ℕ) + c 1 * t ^ (1 : ℕ) = _
