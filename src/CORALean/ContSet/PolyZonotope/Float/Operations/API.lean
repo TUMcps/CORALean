@@ -10,6 +10,7 @@ import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPoly
 import CORALean.ContSet.PolyZonotope.Float.Operations.Reduce
 import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxExp
 import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxExpEven
+import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxExpMid
 import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxExpMulti
 import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxExpGreedy
 
@@ -26,14 +27,14 @@ travel through it beside the nominal part, and `dependent` empties the box into 
 generator entry; `evalPoly` chains `mul` and prices the chaining itself.
 
 `reduce` and the `compact` it runs first both *run* where the exact layer only specifies:
-ranking needs a decidable order and merging columns a decidable equality, and a machine scalar
-has both where ℝ has neither. `compact` is the one operation whose layers differ in cost —
-merging adds entries, so it encloses here where over ℝ it is an equality.
+ranking needs a decidable order and merging columns a decidable equality, which a machine
+scalar has and ℝ has not. `compact` alone differs in cost, merging adding entries.
 
 `relaxExp` charges two column sums to the box and nothing else: its width is a count, not a
 scalar, so the two layers relax by the same amount. `relaxExpEven` charges a third for the
-centre it shifts; `relaxExpMulti` charges the same two at a width summed over every factor.
-`relaxExpGreedy` sequences those steps and rounds nothing of its own.
+centre it shifts, and `relaxExpMid` charges the same three at a shift with no sign to case on;
+`relaxExpMulti` charges the first two at a width summed over every factor, and `relaxExpGreedy`
+sequences steps and rounds nothing of its own.
 
 No operation touches the exponent matrix numerically: it holds naturals, every
 operation on it is exact, and the nominal set's monomials are the exact layer's.

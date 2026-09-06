@@ -12,6 +12,10 @@ Hiding the index is what lets a path be spoken of at all — the graph is a
 relation on nodes, and `[1, Lemma 1]` is a statement about paths in it. What
 consumes an edge in order to relax needs the index back, and takes `ExpEdgeAt`.
 
+The existential is over a `Fintype` and its body decides, so the relation does
+too, and the edge set of `[1, Def. 5]` is a `Finset` a selection can search.
+Nothing about soundness needs that; a heuristic does.
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Exponent Relaxation of Polynomial Zonotopes and
@@ -29,5 +33,11 @@ namespace CORALean.Real
 exponent columns differ in. -/
 def PolyZonotope.ExpEdge {p h : ℕ} (E : Fin p → Fin h → ℕ) (η : ℕ) (i j : Fin h) : Prop :=
   ∃ k₀, PolyZonotope.ExpEdgeAt E η k₀ i j
+
+/-- An edge decides: finitely many indices, each of which decides. -/
+instance PolyZonotope.instDecidableExpEdge {p h : ℕ} (E : Fin p → Fin h → ℕ) (η : ℕ)
+    (i j : Fin h) : Decidable (PolyZonotope.ExpEdge E η i j) := by
+  unfold PolyZonotope.ExpEdge
+  infer_instance
 
 end CORALean.Real

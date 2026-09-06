@@ -1,0 +1,106 @@
+import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpMid
+import CORALean.ContSet.PolyZonotope.Real.Theorems.SubMonomialMemEDrift
+import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
+import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
+
+/-!
+# The recentred relaxation over-approximates, at any parity
+
+`[1, Thm. 1]` with one hypothesis, the similarity of `[1, Def. 4]`, and none of
+the evenness `relaxExpEven_outer` asks for. `sub_monomial_mem_eDrift` brackets
+the drift on both sides, and a bracket has a midpoint and a half-width whatever
+its ends are, so the centre shift is sound at every exponent pair and only its
+size depends on parity.
+
+That is where the operation goes past `[1]` and past CORA: both shift only when
+every exponent of column `i` is even, and `dc + [-d, d] = [dl, du]` is an
+identity, so the test decides how much is gained and never whether anything may
+be. An edge of `[1, Def. 5]` with `E_{k₀,j} = 0` is the case they leave on the
+table.
+
+`Zonotope.coefficient` answers for the drift at the new generator, half-width
+zero included, so nothing here needs the bracket to be non-degenerate.
+
+## References
+
+* [1] T. Ladner and M. Althoff. "Exponent Relaxation of Polynomial Zonotopes and
+      Its Applications in Formal Neural Network Verification". AAAI, 2024.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       06-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+namespace CORALean.Real
+
+variable {α : Type} [AddCommGroup α] [Module ℝ α] {d : ℕ}
+
+/-- Merging two generators whose exponent columns agree off `k₀`
+over-approximates, with the drift's midpoint moved into the centre. -/
+theorem PolyZonotope.relaxExpMid_outer (PZ : PolyZonotope α)
+    (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (k₀ : Fin PZ.p)
+    (hsim : ∀ k, k ≠ k₀ → PZ.E k (part.right 0) = PZ.E k (part.right 1)) :
+    PZ.construct ⊆ (PZ.relaxExpMid part k₀).construct := by
+  rintro x ⟨a, β, ha, hβ, rfl⟩
+  obtain ⟨hlo, hhi⟩ := Set.mem_Icc.mp
+    (PolyZonotope.sub_monomial_mem_eDrift (k₀ := k₀) PZ.E ha hsim)
+  -- the two ends are counts of the relaxed generator, so neither is negative
+  have hfst : (0:ℝ) ≤ ((PolyZonotope.eDrift PZ.E k₀ (part.right 0) (part.right 1)).1 : ℝ) :=
+    Nat.cast_nonneg _
+  have hsnd : (0:ℝ) ≤ ((PolyZonotope.eDrift PZ.E k₀ (part.right 0) (part.right 1)).2 : ℝ) :=
+    Nat.cast_nonneg _
+  have hmidval : (PZ.relaxDrift part k₀).1
+      = (((PolyZonotope.eDrift PZ.E k₀ (part.right 0) (part.right 1)).2 : ℝ)
+        - ((PolyZonotope.eDrift PZ.E k₀ (part.right 0) (part.right 1)).1 : ℝ)) / 2 := rfl
+  have hradval : (PZ.relaxDrift part k₀).2
+      = (((PolyZonotope.eDrift PZ.E k₀ (part.right 0) (part.right 1)).2 : ℝ)
+        + ((PolyZonotope.eDrift PZ.E k₀ (part.right 0) (part.right 1)).1 : ℝ)) / 2 := rfl
+  have hnn : (0:ℝ) ≤ (PZ.relaxDrift part k₀).2 := by
+    rw [hradval]
+    linarith
+  -- the bracket read as a midpoint and a half-width
+  have hmid : |PolyZonotope.monomial PZ.E a (part.right 0)
+      - PolyZonotope.monomial PZ.E a (part.right 1) - (PZ.relaxDrift part k₀).1|
+        ≤ (PZ.relaxDrift part k₀).2 := by
+    rw [abs_le, hmidval, hradval]
+    constructor <;> linarith
+  set t := Zonotope.coefficient (PZ.relaxDrift part k₀).2
+    (PolyZonotope.monomial PZ.E a (part.right 0)
+      - PolyZonotope.monomial PZ.E a (part.right 1) - (PZ.relaxDrift part k₀).1) with ht
+  have hcoef : t * (PZ.relaxDrift part k₀).2
+      = PolyZonotope.monomial PZ.E a (part.right 0)
+        - PolyZonotope.monomial PZ.E a (part.right 1) - (PZ.relaxDrift part k₀).1 := by
+    rw [ht, mul_comm]
+    exact Zonotope.mul_coefficient hmid
+  -- the kept columns keep their monomials, and the merged one takes the second's
+  have hmono : ∀ l : Fin d, PolyZonotope.monomial (PZ.relaxExpMid part k₀).E a (Fin.castAdd 1 l)
+      = PolyZonotope.monomial PZ.E a (part.left l) := fun l => by
+    simp only [PolyZonotope.monomial, PolyZonotope.relaxExpMid, Fin.append_left]
+    rfl
+  have hlast : PolyZonotope.monomial (PZ.relaxExpMid part k₀).E a (Fin.natAdd d 0)
+      = PolyZonotope.monomial PZ.E a (part.right 1) := by
+    simp only [PolyZonotope.monomial, PolyZonotope.relaxExpMid, Fin.append_right]
+    rfl
+  -- the same factors read both sides, with one coefficient appended
+  refine ⟨a, Fin.append β fun _ => t, ha, ?_, ?_⟩
+  · refine Fin.addCases (fun j => ?_) fun _ => ?_
+    · rw [Fin.append_left]
+      exact hβ j
+    · rw [Fin.append_right]
+      exact Zonotope.abs_coefficient_le_one hnn hmid
+  show PZ.c + ∑ l, PolyZonotope.monomial PZ.E a l • PZ.G l + ∑ j, β j • PZ.GI j
+      = PZ.c + (PZ.relaxDrift part k₀).1 • PZ.G (part.right 0)
+          + (∑ l : Fin (d + 1), PolyZonotope.monomial (PZ.relaxExpMid part k₀).E a l
+              • (PZ.relaxExpMid part k₀).G l)
+        + ∑ j : Fin (PZ.q + 1), Fin.append β (fun _ => t) j • (PZ.relaxExpMid part k₀).GI j
+  rw [part.sum_split₂ fun l => PolyZonotope.monomial PZ.E a l • PZ.G l,
+    Fin.sum_univ_add, Fin.sum_univ_add, Fin.sum_univ_two]
+  simp only [Fin.sum_univ_one, hmono, hlast]
+  simp only [PolyZonotope.relaxExpMid, Fin.append_left, Fin.append_right]
+  -- the midpoint sits in the centre and the rest of the drift in the new generator
+  rw [smul_add, smul_smul, hcoef]
+  simp only [sub_smul]
+  abel
+
+end CORALean.Real

@@ -1,6 +1,7 @@
 import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxExpEven
 import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorError
+import CORALean.ContSet.PolyZonotope.Float.Theorems.MergedGenGap
 import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
 import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
 import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsSubMonomialLe
@@ -52,21 +53,6 @@ theorem PolyZonotope.aux_sum_univ_relaxExpEven_q {PZ : PolyZonotope 𝕋 n}
     ∑ j : Fin (PZ.relaxExpEven part k₀).q, f j
       = ∑ j, f (Fin.castAdd 1 j) + ∑ j : Fin 1, f (Fin.natAdd PZ.q j) :=
   Fin.sum_univ_add f
-
-/-- The merged column is stored downward, so it is off by at most its gap to the
-upward rounding. -/
-theorem PolyZonotope.aux_mergedGenEven_gap (PZ : PolyZonotope 𝕋 n)
-    (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (k₀ : Fin PZ.p) (i : Fin n) :
-    |toReal (PZ.G i (part.right 1)) + toReal (PZ.G i (part.right 0))
-      - toReal (PZ.mergedGen part i)| ≤ toReal (PZ.relaxGapEven part k₀ i 0) := by
-  have hlo : toReal (PZ.mergedGen part i)
-      ≤ toReal (PZ.G i (part.right 1)) + toReal (PZ.G i (part.right 0)) := addDown_le_add _ _
-  have hhi : toReal (PZ.G i (part.right 1)) + toReal (PZ.G i (part.right 0))
-      ≤ toReal (addUp (PZ.G i (part.right 1)) (PZ.G i (part.right 0))) := add_le_addUp _ _
-  have hgap : toReal (addUp (PZ.G i (part.right 1)) (PZ.G i (part.right 0)))
-      - toReal (PZ.mergedGen part i) ≤ toReal (PZ.relaxGapEven part k₀ i 0) := sub_le_subUp _ _
-  rw [abs_le]
-  constructor <;> linarith
 
 /-- The halved column is stored downward and its upward twin lies above the
 exact half, so the gap between them covers it. -/
@@ -190,7 +176,7 @@ theorem PolyZonotope.aux_relaxExpEven_nominal (PZ : PolyZonotope 𝕋 n)
     simp only [Fin.sum_univ_one, hmono, hlast]
     simp only [PolyZonotope.relaxExpEven, Fin.append_left, Fin.append_right]
   · refine fun i l => Fin.cases ?_ (fun l' => Fin.cases ?_ (fun l'' => ?_) l') l
-    · exact PolyZonotope.aux_mergedGenEven_gap PZ part k₀ i
+    · exact PolyZonotope.mergedGen_gap PZ part i
     · exact PolyZonotope.aux_relaxGenEven_gap PZ part k₀ i
     · rw [Subsingleton.elim l'' 0]
       exact PolyZonotope.aux_relaxCentreEven_gap PZ part k₀ i

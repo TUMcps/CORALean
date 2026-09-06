@@ -43,9 +43,11 @@ import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceGirardDependentOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceDependentOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceGirardOrderLe
 import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceOrder
+import CORALean.ContSet.PolyZonotope.Float.Theorems.MergedGenGap
 import CORALean.ContSet.PolyZonotope.Float.Theorems.RelaxExpOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.RelaxExpEvenOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.RelaxExpMultiOuter
+import CORALean.ContSet.PolyZonotope.Float.Theorems.RelaxExpMidOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.RelaxExpGreedyOuter
 
 /-!
@@ -55,19 +57,19 @@ The exact layer's `plus`, `linComb`, `map` and `quadMap` read as enclosures. `pl
 and `mtimes` keep their ℝ counts, rounding going into the error box; `dependent_nominal` moves
 the other way, trading the box for generators so `quadMap` has a box-free set to work on.
 
-`mul_outer` encloses the exact product over shared factors, its input the two
-*nominal* sets — reached by running `dependent` once. `evalPoly_outer` prices
-the chain of `mul`s Horner runs, beyond what one `mul_outer` call owes.
+`mul_outer` encloses the exact product over shared factors, its input the two *nominal* sets,
+reached by running `dependent` once; `evalPoly_outer` prices the chain of `mul`s Horner runs.
 
 `reduce_outer` holds at every pair of partitions, which is what lets the ranking be a heuristic
 — and what lets it be computed at all here. It goes through `compact_outer`, so the order
-`reduce_order_le` bounds is a count of distinct monomials, as over ℝ; that bound is what keeps
-a reachability loop's representation from growing a box per step.
+`reduce_order_le` bounds counts distinct monomials, as over ℝ, and that is what keeps a
+reachability loop's representation from growing a box per step.
 
 `relaxExp_outer` reads the exact layer's drift bound at the stored columns, the two roundings
 it makes being the only difference between the layers; `relaxExpEven_outer` the same with a
-third for the centre it shifts, and `relaxExpMulti_outer` the same two at any two generators.
-`relaxExpGreedy_outer` composes them, holding at every selection and every step count.
+third for the centre it shifts, `relaxExpMid_outer` the same three at any parity, and
+`relaxExpMulti_outer` the same two at any two generators. `mergedGen_gap` is the column all
+four store alike. `relaxExpGreedy_outer` composes them, at every selection and step count.
 
 `mem_generatorError` is the one that answers the question the representation
 raises — what a monomial costs a float layer — and its docstring is where that
