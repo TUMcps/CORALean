@@ -25,7 +25,7 @@ needs `IntervalOuter` and the linear one does not.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 
@@ -60,6 +60,16 @@ noncomputable def Relaxation.ofMonotone {σ : ℝ → ℝ} (hσ : Monotone σ) :
   sound hl hu := by
     rw [abs_le]
     exact ⟨by linarith [hσ hl], by linarith [hσ hu]⟩
+
+/-- Nothing but antitonicity: the mirror of `ofMonotone` for a falling `σ`. The
+error keeps the same sign as `ofMonotone`'s because the ends of the range swap. -/
+noncomputable def Relaxation.ofAntitone {σ : ℝ → ℝ} (hσ : Antitone σ) : Relaxation σ where
+  slope _ _ := 0
+  offset l u := (σ l + σ u) / 2
+  error l u := (σ l - σ u) / 2
+  sound hl hu := by
+    rw [abs_le]
+    exact ⟨by linarith [hσ hu], by linarith [hσ hl]⟩
 
 /-- The box each neuron's deviation from its affine map is confined to. -/
 def Relaxation.box {σ : ℝ → ℝ} (R : Relaxation σ) (I : Interval (Vec ℝ n)) :
