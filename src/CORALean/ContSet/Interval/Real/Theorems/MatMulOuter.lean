@@ -1,0 +1,57 @@
+import CORALean.ContSet.Interval.Real.Operations.MatMul
+import CORALean.ContSet.Interval.Real.Theorems.MemMat
+import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
+
+/-!
+# `Interval.matMul` over-approximates every product of two matrices in the boxes
+
+Entry `(i, j)` of `M * N` is `∑ k, M i k * N k j` (`Matrix.mul_apply`), each
+summand between the corresponding `mulLo`/`mulHi` by `mul_between_corners`, and
+`Finset.sum_le_sum` twice finishes it — the same shape as `mtimesIntervalMat`'s.
+
+Outer and never exact: the `k` summands are bounded independently although they
+come from one and the same pair of matrices, so a product entry that would need
+two different `k`-corners at once is admitted. The usual interval-arithmetic
+dependency loss, and why Althoff §3.3.2 moves to matrix zonotopes.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       06-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+open Matrix
+
+variable {m n p : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem Interval.matMul_outer (A : Interval (Mat ℝ m n)) (B : Interval (Mat ℝ n p))
+    {M : Mat ℝ m n} (hM : M ∈ A.construct) {N : Mat ℝ n p} (hN : N ∈ B.construct) :
+    M * N ∈ (Interval.matMul A B).construct := by -- --- PROOF ---
+  have hM' := Interval.mem_mat_iff.mp hM
+  have hN' := Interval.mem_mat_iff.mp hN
+  intro q
+  obtain ⟨i, j⟩ := q
+  show (∑ k, Interval.mulLo (A.inf i k) (A.sup i k) (B.inf k j) (B.sup k j))
+        ≤ (M * N) i j
+      ∧ (M * N) i j
+        ≤ ∑ k, Interval.mulHi (A.inf i k) (A.sup i k) (B.inf k j) (B.sup k j)
+  rw [Matrix.mul_apply]
+  exact ⟨Finset.sum_le_sum fun k _ =>
+           (Interval.mul_between_corners (hM' i k).1 (hM' i k).2
+             (hN' k j).1 (hN' k j).2).1,
+         Finset.sum_le_sum fun k _ =>
+           (Interval.mul_between_corners (hM' i k).1 (hM' i k).2
+             (hN' k j).1 (hN' k j).2).2⟩
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

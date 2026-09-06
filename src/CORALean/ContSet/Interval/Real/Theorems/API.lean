@@ -11,10 +11,12 @@ import CORALean.ContSet.Interval.Real.Theorems.PlusExact
 import CORALean.ContSet.Interval.Real.Theorems.MinusInner
 import CORALean.ContSet.Interval.Real.Theorems.MinusExact
 import CORALean.ContSet.Interval.Real.Theorems.MulBetweenEndpoints
+import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
 import CORALean.ContSet.Interval.Real.Theorems.LinCombOuter
 import CORALean.ContSet.Interval.Real.Theorems.MemCenter
 import CORALean.ContSet.Interval.Real.Theorems.MemPoint
 import CORALean.ContSet.Interval.Real.Theorems.MtimesIntervalMatOuter
+import CORALean.ContSet.Interval.Real.Theorems.MatMulOuter
 import CORALean.ContSet.Interval.Real.Theorems.MtimesIsNonempty
 import CORALean.ContSet.Interval.Real.Theorems.MtimesOuter
 import CORALean.ContSet.Interval.Real.Theorems.MtimesWidth
@@ -31,5 +33,8 @@ row and column, and `MemCenter` is the one point a box always offers a layer
 that has to commit to a value. `MtimesIsNonempty` is why an image box needs no
 hypothesis before it is used as one. `MtimesWidth` is how far apart its bounds
 are, row by row, which is what a caller bounding an error box against a
-tolerance needs.
+tolerance needs. `MulBetweenCorners` is the scalar fact `mtimes*` products
+against an interval matrix share, and `MatMulOuter` is its use on `matMul`, an
+enclosure and not an equality since a product entry's `k`-summands are bounded
+independently.
 -/

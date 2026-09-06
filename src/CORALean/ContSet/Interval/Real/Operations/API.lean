@@ -11,6 +11,7 @@ import CORALean.ContSet.Interval.Real.Operations.Mtimes
 import CORALean.ContSet.Interval.Real.Operations.MulLo
 import CORALean.ContSet.Interval.Real.Operations.MulHi
 import CORALean.ContSet.Interval.Real.Operations.MtimesIntervalMat
+import CORALean.ContSet.Interval.Real.Operations.MatMul
 import CORALean.ContSet.Interval.Real.Operations.OfBounds
 import CORALean.ContSet.Interval.Real.Operations.SubsetOfBounds
 import CORALean.ContSet.Interval.Real.Operations.Reindex
@@ -21,7 +22,9 @@ import CORALean.ContSet.Interval.Real.Operations.Reindex
 CORA's `plus`, `minus`, `linComb` and `mtimes` — the last at a plain matrix and
 at an interval one — one file each, plus the constructor every other
 representation's `interval` goes through: a box read off `2n` certified bounds.
-`minus` is exact and unconditional, coordinatewise subtraction.
+`minus` is exact and unconditional, coordinatewise subtraction. `MatMul` is the
+product of two interval matrices, not a `mtimes*` (its argument is a set of
+matrices, not vectors).
 
 `Point` and `Center`/`Radius` are the two readings of a box the enclosure
 proofs elsewhere want: the degenerate one, and the centre-plus-deviation split.
