@@ -12,10 +12,10 @@ symmetric bound. `abs_sub_monomial_le` gives `|δ| ≤ ξ_E` and
 and `Zonotope.coefficient` answers for it at half the generator.
 
 The three extra hypotheses are exactly what makes the drift one-sided, and they
-are what `[1, Thm. 2]` states incompletely: it asks only that column `i` be
-even. The generator graph of `[1]` supplies all three — it admits an edge only at
-equal parity and from the higher exponent to the lower — so the algorithm never
-meets the gap, only the proposition does.
+are what `[1, Thm. 1]` states incompletely: it asks only that column `i` be
+even. The generator graph of `[1, Def. 5]` supplies all three — it admits an edge
+only at equal parity and from the higher exponent to the lower — so the algorithm
+never meets the gap, only the theorem does.
 
 ## References
 

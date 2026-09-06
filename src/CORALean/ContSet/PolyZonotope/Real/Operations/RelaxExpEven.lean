@@ -3,7 +3,7 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExp
 /-!
 # `PolyZonotope.relaxExpEven`
 
-`relaxExp` with the recentring of `[1, Thm. 2]`. `sub_monomial_nonpos` makes the
+`relaxExp` with the recentring of `[1, Thm. 1]`. `sub_monomial_nonpos` makes the
 drift between the two monomials one-sided, `[-ξ_E, 0]` rather than
 `[-ξ_E, ξ_E]`, so half of it is a constant the centre absorbs and only the other
 half is paid into the new independent generator.

@@ -4,7 +4,7 @@ import CORALean.Global.Partition
 /-!
 # `PolyZonotope.relaxExp`
 
-`[1, Thm. 2]`: two dependent generators whose exponent columns agree everywhere
+`[1, Thm. 1]`: two dependent generators whose exponent columns agree everywhere
 but at one index are merged into one, and what the merge costs is absorbed into
 a single new independent generator. One dependent generator is traded for one
 independent one, so no count grows and the set moves closer to a zonotope.

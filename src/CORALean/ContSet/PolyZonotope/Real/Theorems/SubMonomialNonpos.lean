@@ -12,7 +12,7 @@ Three hypotheses carry it. Every exponent of column `i` even makes the shared
 factors a product of even powers, hence nonnegative; `E_{k₀,j}` even makes both
 powers at `k₀` powers of `α²`, which lies in `[0,1]`; and `E_{k₀,j} ≤ E_{k₀,i}`
 then orders them, a higher power of a number in `[0,1]` being the smaller. The
-second is the hypothesis `[1, Thm. 2]` omits, and without it `α^{E_{k₀,j}}`
+second is the hypothesis `[1, Thm. 1]` omits, and without it `α^{E_{k₀,j}}`
 changes sign and nothing is one-sided.
 
 ## References
