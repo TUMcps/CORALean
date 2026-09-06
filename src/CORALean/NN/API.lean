@@ -1,4 +1,5 @@
 import CORALean.NN.Float.API
+import CORALean.NN.Graph.API
 import CORALean.NN.Layer
 import CORALean.NN.Layers.API
 import CORALean.NN.NeuralNetwork
@@ -13,7 +14,7 @@ import CORALean.NN.Theorems.API
 CORA's `nn`. The pipeline is three things: an input set in whatever
 representation the caller likes, a graph of layers each of which encloses the
 image of the function it computes, and a specification checked on the result.
-`Theorems.Verified` is where those meet.
+`Theorems.Verified` is where those meet; `Graph/` is the graph layers, matrix-shaped.
 
 Written against the `ContSet` interfaces alone, so no layer names a
 representation, and what a layer asks for is what it calls: the linear layer —
