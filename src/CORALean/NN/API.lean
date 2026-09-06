@@ -5,6 +5,7 @@ import CORALean.NN.Layers.API
 import CORALean.NN.MergeBucket
 import CORALean.NN.NeuralNetwork
 import CORALean.NN.Operations.API
+import CORALean.NN.Reduction
 import CORALean.NN.RefinableLayer
 import CORALean.NN.RefinableNetwork
 import CORALean.NN.Schedule
@@ -17,7 +18,7 @@ CORA's `nn`. The pipeline is three things: an input set in whatever
 representation the caller likes, a graph of layers each of which encloses the
 image of the function it computes, and a specification checked on the result.
 `Theorems.HoldsOfPropagate`/`HoldsAllOfPropagate` is where those meet; `Graph/` the graph layers.
-`MergeBucket` is the tolerance cut a nonlinear layer's neurons are merged by.
+`MergeBucket` cuts a nonlinear layer's neurons; `Reduction`'s `ReducesAt` reduces many, soundly.
 
 Written against the `ContSet` interfaces alone, so no layer names a
 representation, and what a layer asks for is what it calls: the linear layer —
