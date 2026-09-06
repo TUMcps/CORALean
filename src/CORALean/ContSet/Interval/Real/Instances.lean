@@ -3,6 +3,7 @@ import CORALean.ContSet.ContSet.ConvexSet
 import CORALean.ContSet.Interval.Real.Theorems.Convex
 import CORALean.ContSet.Interval.Real.Theorems.IsCompact
 import CORALean.ContSet.Interval.Real.Theorems.LinCombOuter
+import CORALean.ContSet.Interval.Real.Theorems.MemPoint
 import CORALean.ContSet.Interval.Real.Theorems.MtimesIntervalMatOuter
 import CORALean.ContSet.Interval.Real.Theorems.MtimesOuter
 import CORALean.ContSet.Interval.Real.Theorems.MinusExact
@@ -19,6 +20,10 @@ order is asked for, so it has nothing to give up.
 that read their topological hypotheses off the representation instead of taking
 them per use. Convexity holds at every ambient type with coordinates;
 compactness only at `Vec`, which is where boundedness is stated.
+
+No `Recentre`: it asks `0 ∈ construct (recentre s)` unconditionally, and a
+crossed box denotes `∅`, holding nothing at all. `Theorems/RecentreZeroMem`
+and `RecentreSubMem` carry the nonemptiness this class refuses to ask for.
 -/
 
 -- Authors:       Tobias Ladner
@@ -49,6 +54,11 @@ instance {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι] :
 the norm they bound is not, so the ambient type has to be one the coordinates
 determine. -/
 instance : CompactSet (Interval (Vec ℝ n)) (Vec ℝ n) := ⟨Interval.isCompact_construct⟩
+
+instance {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι] :
+    OfPoint (Interval α) α where
+  ofPoint := Interval.point
+  mem_ofPoint := Interval.mem_point
 
 instance : Plus (Interval (Vec ℝ n)) (Vec ℝ n) where
   plus := Interval.plus
