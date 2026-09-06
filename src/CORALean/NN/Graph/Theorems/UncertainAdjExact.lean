@@ -28,7 +28,7 @@ way `PolyZonotope.mul_exact` discharges its own.
 
 -- Authors:       Tobias Ladner
 -- Written:       06-September-2026
--- Last update:   ---
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 
@@ -39,17 +39,6 @@ namespace CORALean.Real
 open PolyZonotope
 
 variable {N m : ℕ}
-
-
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
-/-- One edge's weight split into the centre it shifts and the generator it
-scales, which is the change of variable in matrix form. -/
-theorem GNN.aux_smul_edge_half (t : ℝ) (M : Mat ℝ N N) :
-    ((1 + t) / 2 : ℝ) • M = (1/2 : ℝ) • M + t • ((1/2 : ℝ) • M) := by
-  rw [smul_smul, ← add_smul]
-  congr 1
-  ring
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -79,7 +68,7 @@ theorem GNN.uncertainAdj_exact (A : Mat ℝ N N) (U : Fin m → Fin N × Fin N) 
     simp only [monomial_identE]
     rw [add_assoc, ← Finset.sum_add_distrib]
     exact congrArg (A + ·) (Finset.sum_congr rfl fun e _ =>
-      GNN.aux_smul_edge_half (a e) (GNN.edgeMat (U e)))
+      GNN.smul_edge_half (a e) (GNN.edgeMat (U e)))
   apply Set.eq_of_subset_of_subset
   -- out: a weight `λ` is the factor `2λ - 1`, and its bounds are that factor's
   · rintro _ ⟨lam, hlam, rfl⟩
