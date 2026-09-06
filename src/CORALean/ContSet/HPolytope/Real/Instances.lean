@@ -9,7 +9,7 @@ until that algorithm is written.
 
 Not `Plus`, `LinComb` or `Mtimes`, though `plusOf`, `linCombOf` and `mtimesOf`
 all compute. Closing over their directions and support bounds — the way
-`Ellipsoid.plusInstance` closes over its scaling — would need bounds for *every*
+`Ellipsoid.plusInstance` closes over its scalings — would need bounds for *every*
 polytope, `plus : S → S → S` being total and a recursive algorithm summing sets
 the caller never sees. That oracle does not exist: a description with no rows
 denotes the whole space, unbounded in every non-zero direction. A useful `Plus`
@@ -23,7 +23,7 @@ importer of `OfInterval` behind `HPolytope`. `and`, `comap`, `mapEquiv` and
 
 -- Authors:       Tobias Ladner
 -- Written:       01-September-2026
--- Last update:   03-September-2026
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 
