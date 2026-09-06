@@ -1,5 +1,6 @@
 import CORALean.ContSet.VPolytope.Real.Theorems.LinCombOuter
 import CORALean.ContSet.VPolytope.Real.Theorems.MtimesExact
+import CORALean.ContSet.VPolytope.Real.Theorems.MtimesMatPolytopeOuter
 import CORALean.ContSet.VPolytope.Real.Theorems.PlusExact
 
 /-!
@@ -46,6 +47,15 @@ instance : Mtimes (Mat ℝ) (fun n => VPolytope (Vec ℝ n)) where
   mtimes_outer M P := by
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact (VPolytope.mtimes_exact M P).subset
+
+/-- The matrix-polytope family. A generic theorem quantifies over `𝕄 : ℕ → ℕ → Type`
+and the elaborator cannot read that family off one member, so a use site has to
+name it: `(𝕄 := 𝕄𝒫)`. -/
+scoped notation "𝕄𝒫" => fun m n => VPolytope (Mat ℝ m n)
+
+noncomputable instance : Mtimes 𝕄𝒫 (fun n => VPolytope (Vec ℝ n)) where
+  mtimes := VPolytope.mtimesMatPolytope
+  mtimes_outer M P := VPolytope.mtimesMatPolytope_outer M P
 
 end CORALean.Real
 

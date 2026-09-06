@@ -9,6 +9,8 @@ import CORALean.ContSet.VPolytope.Real.Operations.LinComb
 import CORALean.ContSet.VPolytope.Real.Operations.Map
 import CORALean.ContSet.VPolytope.Real.Operations.Mtimes
 import CORALean.ContSet.VPolytope.Real.Operations.MtimesEqMap
+import CORALean.ContSet.VPolytope.Real.Operations.Bilin
+import CORALean.ContSet.VPolytope.Real.Operations.MtimesMatPolytope
 import CORALean.ContSet.VPolytope.Real.Operations.Plus
 import CORALean.ContSet.VPolytope.Real.Operations.LeOfForallLe
 import CORALean.ContSet.VPolytope.Real.Operations.SupportBound
@@ -34,5 +36,7 @@ otherwise; the float layer, which cannot enumerate vertices, goes through boxes
 instead.
 
 `EmptySet` and `Point` are the two vertex lists short enough to name: none, and
-one.
+one. `bilin` pairs every vertex of one operand against the other's;
+`mtimesMatPolytope` is `bilin` at `*ᵥ`, a matrix polytope's vertices standing in
+for its matrices.
 -/
