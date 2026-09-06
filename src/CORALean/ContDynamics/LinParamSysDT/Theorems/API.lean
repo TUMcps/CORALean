@@ -1,5 +1,6 @@
 import CORALean.ContDynamics.LinParamSysDT.Theorems.HoldsOfOutput
 import CORALean.ContDynamics.LinParamSysDT.Theorems.HoldsOfReach
+import CORALean.ContDynamics.LinParamSysDT.Theorems.NotHoldsOfSimulate
 import CORALean.ContDynamics.LinParamSysDT.Theorems.OutputOuter
 import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachEqToLinParam
 import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOneOuter
@@ -33,6 +34,7 @@ file does not make.
 
 `SimulateTrajectory`/`SimulateMemReach` are `simulate` sampling one run, at a
 matrix chosen per step, landing inside `reach` — same shape as `LinearSysDT`'s.
+`NotHoldsOfSimulate` is the falsification corollary, mirroring `LinearSysDT`'s.
 
 ## References
 

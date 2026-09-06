@@ -16,11 +16,14 @@ needs no more than `linInput`, so there is nothing for a caller to name beyond
 the linearization itself — the discrete analogue of `NonlinearSys
 .reach_outer_inputSolution`, folded into the definition rather than proved
 separately, since here the "solution" is one evaluation, not an integral.
+
+`simulate` samples one run directly against `sys.f`, no linearization needed:
+a point computation carrying none of `reach`'s set instances.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       04-September-2026
--- Last update:   ---
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 
@@ -50,6 +53,15 @@ def NonlinearSysDT.reach (sys : NonlinearSysDT n m) {U : S m} (o : ℕ)
   | 0 => R₀
   | k + 1 => (NonlinearSysDT.linearize (steps k).A).reach o
       (sys.reach o steps R₀ k) (steps k).linInput 1
+
+omit [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
+    [Mtimes (Mat ℝ) S] [OfInterval S] in
+/-- One sampled run of the dynamics from `x₀` under input signal `u` — a point
+computation, none of `reach`'s set instances needed. -/
+def NonlinearSysDT.simulate (sys : NonlinearSysDT n m) (x₀ : Vec ℝ n) (u : ℕ → Vec ℝ m) :
+    ℕ → Vec ℝ n
+  | 0 => x₀
+  | k + 1 => sys.f (sys.simulate x₀ u k) (u k)
 
 end CORALean.Real
 
