@@ -6,6 +6,7 @@ import CORALean.NN.NeuralNetwork
 import CORALean.NN.Operations.API
 import CORALean.NN.RefinableLayer
 import CORALean.NN.RefinableNetwork
+import CORALean.NN.Schedule
 import CORALean.NN.Theorems.API
 
 /-!
@@ -14,7 +15,7 @@ import CORALean.NN.Theorems.API
 CORA's `nn`. The pipeline is three things: an input set in whatever
 representation the caller likes, a graph of layers each of which encloses the
 image of the function it computes, and a specification checked on the result.
-`Theorems.Verified` is where those meet; `Graph/` is the graph layers, matrix-shaped.
+`Theorems.HoldsOfPropagate`/`HoldsAllOfPropagate` is where those meet; `Graph/` the graph layers.
 
 Written against the `ContSet` interfaces alone, so no layer names a
 representation, and what a layer asks for is what it calls: the linear layer —
@@ -31,5 +32,5 @@ Only the layers sit in two arithmetic layers. Everything outside `Layers/` is al
 indifferent to the scalar — `Layer` is a structure over any `ContSet` whose ambient type is
 `Vec ℝ n`, so the graph and its induction run over a float representation unchanged, and
 `Float/` holds the layer constructors alone. `RefinableLayer` and `RefinableNetwork` are that
-graph with an order per neuron still to choose, which `Operations.Schedule` reads and refines.
+graph with an order per neuron still to choose, which `Schedule` reads and refines.
 -/

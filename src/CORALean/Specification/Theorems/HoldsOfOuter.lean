@@ -35,8 +35,4 @@ theorem Specification.holds_of_outer (spec : Specification α) (h : X ⊆ O)
   · exact subset_trans h hO
   · exact hO.mono_left h
 
-theorem Specification.holdsAll_of_outer (specs : List (Specification α)) (h : X ⊆ O)
-    (hO : Specification.HoldsAll specs O) : Specification.HoldsAll specs X :=
-  fun spec hmem => (spec.holds_of_outer h) (hO spec hmem)
-
 end CORALean

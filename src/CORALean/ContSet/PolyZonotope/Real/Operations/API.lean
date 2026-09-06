@@ -1,24 +1,69 @@
 import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
+import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
 import CORALean.ContSet.PolyZonotope.Real.Operations.Map
 import CORALean.ContSet.PolyZonotope.Real.Operations.Mtimes
+import CORALean.ContSet.PolyZonotope.Real.Operations.MtimesEqMap
+import CORALean.ContSet.PolyZonotope.Real.Operations.PlusE
 import CORALean.ContSet.PolyZonotope.Real.Operations.Plus
+import CORALean.ContSet.PolyZonotope.Real.Operations.LinCombE
 import CORALean.ContSet.PolyZonotope.Real.Operations.LinComb
 import CORALean.ContSet.PolyZonotope.Real.Operations.Dependent
 import CORALean.ContSet.PolyZonotope.Real.Operations.Point
+import CORALean.ContSet.PolyZonotope.Real.Operations.ExtG
+import CORALean.ContSet.PolyZonotope.Real.Operations.ExtE
+import CORALean.ContSet.PolyZonotope.Real.Operations.ExtM
+import CORALean.ContSet.PolyZonotope.Real.Operations.QuadEval
+import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapG
+import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapE
+import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapDep
 import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMap
+import CORALean.ContSet.PolyZonotope.Real.Operations.MulG
+import CORALean.ContSet.PolyZonotope.Real.Operations.MulE
 import CORALean.ContSet.PolyZonotope.Real.Operations.Mul
+import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolyStep
+import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolyP
 import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPoly
+import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolyFactorCount
+import CORALean.ContSet.PolyZonotope.Real.Operations.Col
+import CORALean.ContSet.PolyZonotope.Real.Operations.FiberSum
+import CORALean.ContSet.PolyZonotope.Real.Operations.SumMonomialMerge
+import CORALean.ContSet.PolyZonotope.Real.Operations.Rep
+import CORALean.ContSet.PolyZonotope.Real.Operations.ColRep
+import CORALean.ContSet.PolyZonotope.Real.Operations.CompactKeep
+import CORALean.ContSet.PolyZonotope.Real.Operations.FiberSumEqZeroOfNotMem
+import CORALean.ContSet.PolyZonotope.Real.Operations.CompactIdx
+import CORALean.ContSet.PolyZonotope.Real.Operations.SumCompactKeep
+import CORALean.ContSet.PolyZonotope.Real.Operations.CompactGens
+import CORALean.ContSet.PolyZonotope.Real.Operations.UsedFactors
+import CORALean.ContSet.PolyZonotope.Real.Operations.FactorIdx
+import CORALean.ContSet.PolyZonotope.Real.Operations.FactorExtend
+import CORALean.ContSet.PolyZonotope.Real.Operations.AbsFactorExtendLeOne
+import CORALean.ContSet.PolyZonotope.Real.Operations.FactorExtendFactorIdx
+import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialFactorIdx
+import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialFactorExtend
+import CORALean.ContSet.PolyZonotope.Real.Operations.CompactFactors
 import CORALean.ContSet.PolyZonotope.Real.Operations.Compact
+import CORALean.ContSet.PolyZonotope.Real.Operations.DropRadius
+import CORALean.ContSet.PolyZonotope.Real.Operations.ReduceBy
+import CORALean.ContSet.PolyZonotope.Real.Operations.GirardMetric
+import CORALean.ContSet.PolyZonotope.Real.Operations.GirardSplit
+import CORALean.ContSet.PolyZonotope.Real.Operations.ReduceGirard
+import CORALean.ContSet.PolyZonotope.Real.Operations.ReduceGirardDependent
 import CORALean.ContSet.PolyZonotope.Real.Operations.Reduce
+import CORALean.ContSet.PolyZonotope.Real.Operations.ReduceDependent
 import CORALean.ContSet.PolyZonotope.Real.Operations.EDiff
 import CORALean.ContSet.PolyZonotope.Real.Operations.EDrift
+import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxWidth
 import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExp
 import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpEven
 import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxDrift
 import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpMid
+import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxWidthMulti
 import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpMulti
 import CORALean.ContSet.PolyZonotope.Real.Operations.ExpEdgeAt
+import CORALean.ContSet.PolyZonotope.Real.Operations.DecidableExpEdgeAt
 import CORALean.ContSet.PolyZonotope.Real.Operations.ExpEdge
+import CORALean.ContSet.PolyZonotope.Real.Operations.DecidableExpEdge
 import CORALean.ContSet.PolyZonotope.Real.Operations.ExpGreedySel
 import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpGreedy
 
@@ -44,6 +89,6 @@ brackets the drift on both sides, which `relaxDrift` reads as the midpoint and h
 and `relaxExpGreedy` walks it at whatever a selection names — `expGreedySel` being one that runs.
 
 `plusE`, `linCombE` and `quadMapE` are the exponent matrices the size-changing operations
-assemble, kept with the operations that build them so their lemmas read at plain counts rather
-than at a projection. `identE` is the block `dependent` appends and a conversion's whole answer.
+assemble, each its own file (#62) since the float layer and `ConPolyZono` build on them too.
+`identE` is the block `dependent` appends and a conversion's whole answer.
 -/

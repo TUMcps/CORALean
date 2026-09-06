@@ -1,5 +1,6 @@
 import CORALean.Specification.Theorems.Containment
 import CORALean.Specification.Theorems.HoldsOfOuter
+import CORALean.Specification.Theorems.HoldsAllOfOuter
 import CORALean.Specification.Theorems.Separation
 import CORALean.Specification.Theorems.SubsetHPolytope
 

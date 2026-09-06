@@ -1,5 +1,10 @@
 import CORALean.ContSet.ContSet.ContSet
 import CORALean.ContSet.PolyZonotope.Real.Operations.LinComb
+import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialLinCombEFst
+import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialLinCombELast
+import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialLinCombESnd
+import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
+import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
 import CORALean.ContSet.Zonotope.Real.Theorems.LinCombOuter
 
 /-!

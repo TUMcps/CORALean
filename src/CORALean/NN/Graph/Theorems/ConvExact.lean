@@ -2,16 +2,16 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.MapExact
 import CORALean.NN.Graph.Conv
 
 /-!
-# A graph convolutional layer loses nothing
+# A graph convolutional layer loses nothing, at any matrix `P`
 
-[1, Prop. 2]. `PolyZonotope.map_exact` at `H ↦ P H W`, and that is the entire
-proof: a linear map of the ambient space cannot touch the monomials, and
-`map_exact` never reads the shape of that space — so the matrix case is the
-theorem already in the tree, instantiated.
+`PolyZonotope.map_exact` at `H ↦ P H W`, and that is the entire proof: a linear
+map of the ambient space cannot touch the monomials, and `map_exact` never
+reads the shape of that space — so the matrix case is the theorem already in
+the tree, instantiated.
 
 `gcn_exact` assumes nothing about `P`, which is what makes it survive an
-uncertain graph: only the corollary names `messagePassing`, and it is that
-corollary which is the proposition as [1] states it.
+uncertain graph. The corollary at `P = messagePassing A`, [1, Prop. 2] itself,
+is `ConvExactOfAdjacency.lean`.
 
 ## References
 
@@ -38,12 +38,5 @@ theorem GNN.gcn_exact (P : Mat ℝ N N) (W : Mat ℝ F₁ F₂) (PZ : PolyZonoto
     funext fun H => (GNN.gcnLin_apply P W H).symm
   rw [h]
   exact PolyZonotope.map_exact (GNN.gcnLin P W) PZ
-
-/-- [1, Prop. 2] itself: the layer at the graph's own message passing. -/
-theorem GNN.gcn_exact_of_adjacency (A : Mat ℝ N N) (W : Mat ℝ F₁ F₂)
-    (PZ : PolyZonotope (Mat ℝ N F₁)) :
-    (fun H => GNN.messagePassing A * H * W) '' PZ.construct
-      = (GNN.gcn (GNN.messagePassing A) W PZ).construct :=
-  GNN.gcn_exact _ W PZ
 
 end CORALean.Real

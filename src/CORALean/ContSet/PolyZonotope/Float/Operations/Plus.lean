@@ -1,6 +1,5 @@
 import CORALean.ContSet.Interval.Float.Operations.Plus
-import CORALean.ContSet.Interval.Float.Operations.Residual
-import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
+import CORALean.ContSet.PolyZonotope.Float.Operations.CenterResidual
 import CORALean.ContSet.PolyZonotope.Real.Operations.Plus
 
 /-!
@@ -16,7 +15,7 @@ it is a matrix of naturals and nothing about it rounds.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 namespace CORALean.Float
@@ -24,11 +23,6 @@ namespace CORALean.Float
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
-
-/-- Storing the lower of the two directed roundings leaves this much to pay. -/
-def PolyZonotope.centerResidual (a b : Vec 𝕋 n) : Interval 𝕋 n :=
-  Interval.residual (fun i => addDown (a i) (b i)) (fun i => addUp (a i) (b i))
-    (fun i => addDown (a i) (b i))
 
 def PolyZonotope.plus (PZ₁ PZ₂ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 n where
   p := PZ₁.p + PZ₂.p

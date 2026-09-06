@@ -1,0 +1,33 @@
+import CORALean.ContSet.PolyZonotope.Float.Operations.MergedGen
+import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxCentreEven
+import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxGenEven
+import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxGenEvenUp
+
+/-!
+# What `relaxExpEven`'s three stored quantities can each be off by
+
+Split out of `RelaxExpEven.lean` (issue #62): read again by
+`Theorems/RelaxExpEvenOuter.lean`, outside this file.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       06-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+namespace CORALean.Float
+
+open FloatOps
+
+variable {𝕋 : Type} [FloatOps 𝕋] {n d : ℕ}
+
+/-- What the merged column, the halved column and the recentred centre can each
+be off by, every one of them a gap between two roundings of one expression. -/
+def PolyZonotope.relaxGapEven (PZ : PolyZonotope 𝕋 n)
+    (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (k₀ : Fin PZ.p) : Mat 𝕋 n 3 :=
+  fun i =>
+    ![subUp (addUp (PZ.G i (part.right 1)) (PZ.G i (part.right 0))) (PZ.mergedGen part i),
+      subUp (PZ.relaxGenEvenUp part k₀ i) (PZ.relaxGenEven part k₀ i),
+      subUp (subUp (PZ.c i) (PZ.relaxGenEven part k₀ i)) (PZ.relaxCentreEven part k₀ i)]
+
+end CORALean.Float

@@ -5,6 +5,7 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
 import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
 import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
 import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMul
+import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
 
 /-!
 # Boxing what two partitions drop over-approximates

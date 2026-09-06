@@ -28,8 +28,4 @@ def PolyZonotope.mtimes (M : Mat ℝ m n) (PZ : PolyZonotope (Vec ℝ n)) :
   E := PZ.E
   GI := fun j => M *ᵥ PZ.GI j
 
-/-- True by `rfl`, and what lets `mtimes` inherit `map`'s exactness. -/
-theorem PolyZonotope.mtimes_eq_map (M : Mat ℝ m n) (PZ : PolyZonotope (Vec ℝ n)) :
-    PolyZonotope.mtimes M PZ = PZ.map (Matrix.mulVecLin M) := rfl
-
 end CORALean.Real

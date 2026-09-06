@@ -1,5 +1,9 @@
 import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPoly
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MulPoint
+import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolyFactorCount
+import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolyP
+import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolyStep
+import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyReal
+import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyStepPoint
 
 /-!
 # `PolyZonotope.evalPoly` is exactly the polynomial, evaluated coordinatewise
@@ -17,7 +21,7 @@ polynomials differ between coordinates costs the induction nothing.
 
 -- Authors:       Tobias Ladner
 -- Written:       05-September-2026
--- Last update:   ---
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -26,36 +30,10 @@ open PolyZonotope
 
 variable {n : ℕ}
 
-/-- The reference evaluator: Horner's rule over `ℝ`, coefficients lowest degree
-first, exactly `evalPoly`'s own recursion carried to a single coordinate. -/
-def PolyZonotope.evalPolyReal (coeffs : List ℝ) (x : ℝ) : ℝ :=
-  match coeffs with
-  | [] => 0
-  | a :: rest => a + x * PolyZonotope.evalPolyReal rest x
-
-/-- `evalPolyStep`'s point, generically: a coordinate `a₀ + R ⊙ S`, `R` read at
-`S`'s factors through `hR`. -/
-theorem PolyZonotope.evalPolyStep_point (R S : PolyZonotope (Vec ℝ n)) (hR : R.p = S.p)
-    (a0 : Vec ℝ n) (b : Fin R.p → ℝ) :
-    (PolyZonotope.evalPolyStep R S hR a0).point b
-      = fun i => a0 i + R.point b i * S.point (fun k => b (Fin.cast hR.symm k)) i := by
-  have hpt : (PolyZonotope.evalPolyStep R S hR a0).point b
-      = (PolyZonotope.mul R S hR).c + a0
-        + ∑ l, PolyZonotope.monomial (PolyZonotope.mul R S hR).E b l
-            • (PolyZonotope.mul R S hR).G l := rfl
-  have hmul : (PolyZonotope.mul R S hR).c
-        + ∑ l, PolyZonotope.monomial (PolyZonotope.mul R S hR).E b l
-            • (PolyZonotope.mul R S hR).G l
-      = (PolyZonotope.mul R S hR).point b := rfl
-  rw [hpt, add_right_comm, hmul, PolyZonotope.mul_point R S hR b]
-  funext i
-  simp only [Pi.add_apply, Pi.mul_apply]
-  ring
-
+-- file-local: only `evalPoly_exact` below needs it
 /-- `evalPolyP`'s point, at the factor vector its own `p`-proof casts back to
-`S`'s. Proved by induction, `evalPolyStep_point` carrying the Horner step and
-the inductive hypothesis matching `evalPolyReal`'s own recursion. -/
-theorem PolyZonotope.evalPolyP_point (S : PolyZonotope (Vec ℝ n)) (coeffs : List (Vec ℝ n))
+`S`'s. Proved by induction, `evalPolyStep_point` carrying the Horner step. -/
+theorem PolyZonotope.aux_evalPolyP_point (S : PolyZonotope (Vec ℝ n)) (coeffs : List (Vec ℝ n))
     (a : Fin S.p → ℝ) :
     (S.evalPolyP coeffs).1.point (fun k => a (Fin.cast (S.evalPolyP coeffs).2 k))
       = fun i => PolyZonotope.evalPolyReal (coeffs.map fun v => v i) (S.point a i) := by
@@ -84,6 +62,6 @@ theorem PolyZonotope.evalPoly_exact (S : PolyZonotope (Vec ℝ n)) (coeffs : Lis
     (a : Fin S.p → ℝ) :
     (S.evalPoly coeffs).point (fun k => a (Fin.cast (S.evalPoly_p coeffs) k))
       = fun i => PolyZonotope.evalPolyReal (coeffs.map fun v => v i) (S.point a i) :=
-  PolyZonotope.evalPolyP_point S coeffs a
+  PolyZonotope.aux_evalPolyP_point S coeffs a
 
 end CORALean.Real

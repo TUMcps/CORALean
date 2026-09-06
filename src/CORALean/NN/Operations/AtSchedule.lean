@@ -1,5 +1,5 @@
 import CORALean.NN.NeuralNetwork
-import CORALean.NN.Operations.Schedule
+import CORALean.NN.Schedule
 
 /-!
 # Reading a schedule against a network

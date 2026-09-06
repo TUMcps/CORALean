@@ -1,4 +1,7 @@
+import CORALean.ContSet.PolyZonotope.Real.Operations.Col
+import CORALean.ContSet.PolyZonotope.Real.Operations.ColRep
 import CORALean.ContSet.PolyZonotope.Real.Operations.Compact
+import CORALean.ContSet.PolyZonotope.Real.Operations.Rep
 
 /-!
 # A class's representative is its own representative

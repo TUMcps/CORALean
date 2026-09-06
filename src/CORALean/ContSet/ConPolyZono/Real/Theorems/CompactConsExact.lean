@@ -2,6 +2,10 @@ import CORALean.ContSet.ConPolyZono.Real.Operations.CompactCons
 import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecEqSum
 import CORALean.ContSet.ConPolyZono.Real.Operations.ConsCol
 import CORALean.ContSet.ConPolyZono.Real.Theorems.HoldsCongr
+import CORALean.ContSet.PolyZonotope.Real.Operations.ColRep
+import CORALean.ContSet.PolyZonotope.Real.Operations.FiberSumEqZeroOfNotMem
+import CORALean.ContSet.PolyZonotope.Real.Operations.SumCompactKeep
+import CORALean.ContSet.PolyZonotope.Real.Operations.SumMonomialMerge
 
 /-!
 # Merging equal constraint exponent columns loses nothing

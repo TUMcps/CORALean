@@ -37,27 +37,29 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m k : ℕ}
 
 /-- Neuron `j`'s own rank at what CORA backpropagates, left unaggregated: this
 rule ranks `(layer, neuron)` pairs and never layers. -/
-noncomputable def NeuralNetwork.neuronRank (nn : NeuralNetwork S n m) (x d : Vec ℝ n)
+noncomputable def NeuralNetwork.aux_neuronRank (nn : NeuralNetwork S n m) (x d : Vec ℝ n)
     (j : Fin n) : ℝ := refinementRank (nn.sensitivity x) d j
 
 /-- The pair the rule refines at: the layer holding the best-ranked neuron, and
 that neuron. Ties go to the earlier layer, then to the earlier neuron. -/
-noncomputable def worstNeuron (r : Fin (k + 1) → Fin (n + 1) → ℝ) :
+noncomputable def aux_worstNeuron (r : Fin (k + 1) → Fin (n + 1) → ℝ) :
     Fin (k + 1) × Fin (n + 1) :=
   let l := worstIndex fun i => Finset.univ.sup' Finset.univ_nonempty (r i)
   (l, worstIndex (r l))
 
 /-- The order each neuron of that layer gains [1, Eq. 27]: one where its rank
 clears `ω` times the best, none elsewhere and none outside the layer. -/
-noncomputable def neuronwiseStep (r : Fin (k + 1) → Fin (n + 1) → ℝ) (ω : ℝ) : ℕ → ℕ :=
+noncomputable def aux_neuronwiseStep (r : Fin (k + 1) → Fin (n + 1) → ℝ) (ω : ℝ) :
+    ℕ → ℕ :=
   fun j => if h : j < n + 1 then
-      (if ω * r (worstNeuron r).1 (worstNeuron r).2 ≤ r (worstNeuron r).1 ⟨j, h⟩ then 1 else 0)
+      (if ω * r (aux_worstNeuron r).1 (aux_worstNeuron r).2
+          ≤ r (aux_worstNeuron r).1 ⟨j, h⟩ then 1 else 0)
     else 0
 
 /-- The neuron-wise rule itself [1, Def. 4.4]: those neurons, in the layer the
 best rank names, each moving up one order. -/
 noncomputable def Schedule.refineWorstNeurons (sch : Schedule)
     (r : Fin (k + 1) → Fin (n + 1) → ℝ) (ω : ℝ) : Schedule :=
-  Schedule.raise sch (worstNeuron r).1 (neuronwiseStep r ω)
+  Schedule.raise sch (aux_worstNeuron r).1 (aux_neuronwiseStep r ω)
 
 end CORALean.Real

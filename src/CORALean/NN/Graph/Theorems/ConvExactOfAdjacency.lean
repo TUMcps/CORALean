@@ -1,0 +1,33 @@
+import CORALean.NN.Graph.Theorems.ConvExact
+
+/-!
+# `[1, Prop. 2]` itself: the layer at the graph's own message passing
+
+Split out of `ConvExact.lean` (issue #62): `gcn_exact` is the general fact,
+true of any `P`; this is the corollary at `P = messagePassing A`, which is the
+proposition as `[1]` actually states it.
+
+## References
+
+* [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph
+      Convolutional Networks with Uncertain Node Features and Uncertain Graph
+      Structure". TMLR, 2025.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       06-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+namespace CORALean.Real
+
+variable {N F₁ F₂ : ℕ}
+
+/-- [1, Prop. 2] itself: the layer at the graph's own message passing. -/
+theorem GNN.gcn_exact_of_adjacency (A : Mat ℝ N N) (W : Mat ℝ F₁ F₂)
+    (PZ : PolyZonotope (Mat ℝ N F₁)) :
+    (fun H => GNN.messagePassing A * H * W) '' PZ.construct
+      = (GNN.gcn (GNN.messagePassing A) W PZ).construct :=
+  GNN.gcn_exact _ W PZ
+
+end CORALean.Real

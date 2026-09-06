@@ -4,6 +4,7 @@ import CORALean.ContSet.Interval.Real.Operations.IsNonempty
 import CORALean.ContSet.Interval.Real.Operations.Plus
 import CORALean.ContSet.Interval.Real.Operations.Point
 import CORALean.ContSet.Interval.Real.Theorems.MemCenter
+import CORALean.ContSet.Interval.Real.Theorems.MemPoint
 import CORALean.NN.Layer
 
 /-!

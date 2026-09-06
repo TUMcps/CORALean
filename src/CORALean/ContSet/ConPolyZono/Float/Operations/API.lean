@@ -19,7 +19,11 @@ import CORALean.ContSet.ConPolyZono.Float.Operations.Dependent
 import CORALean.ContSet.ConPolyZono.Float.Operations.PlusA
 import CORALean.ContSet.ConPolyZono.Float.Operations.PlusB
 import CORALean.ContSet.ConPolyZono.Float.Operations.Plus
+import CORALean.ContSet.ConPolyZono.Float.Operations.MtimesResidual
 import CORALean.ContSet.ConPolyZono.Float.Operations.Mtimes
+import CORALean.ContSet.ConPolyZono.Float.Operations.DropRadius
+import CORALean.ContSet.ConPolyZono.Float.Operations.ReduceBy
+import CORALean.ContSet.ConPolyZono.Float.Operations.ReduceGirard
 import CORALean.ContSet.ConPolyZono.Float.Operations.Reduce
 
 /-!

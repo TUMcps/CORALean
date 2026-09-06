@@ -14,7 +14,6 @@ import CORALean.NN.Operations.RefinementLipschitz
 import CORALean.NN.Operations.RefinementNeuron
 import CORALean.NN.Operations.RefinementRank
 import CORALean.NN.Operations.RefineWorst
-import CORALean.NN.Operations.Schedule
 import CORALean.NN.Operations.Sensitivity
 import CORALean.NN.Operations.ToLayer
 import CORALean.NN.Operations.WorstIndex
@@ -32,9 +31,9 @@ neuron's approximation error by. Neither carries an obligation — no enclosure
 depends on them — so `DifferentiableChain` is separate, the hypothesis under
 which `Theorems.SensitivityFDeriv` identifies them with the derivative.
 
-`Schedule` is the refinement loop's state, `Raise`/`Refine`/`RefineLayer`/
-`RefineLoop` what builds one, and `AtSchedule`/`PropagateAt` what reads one
-against a network. `RefinementRank`/`WorstIndex`/`RefineWorst` pick the layer a
+`NN.Schedule` is the refinement loop's state; `Raise`/`Refine`/`RefineLayer`/
+`RefineLoop` build one, and `AtSchedule`/`PropagateAt` read one against a
+network. `RefinementRank`/`WorstIndex`/`RefineWorst` pick the layer a
 layer-wise step moves and `RefinementNeuron` the neuron a neuron-wise one does,
 out of the sensitivity and the error — rankings with no obligation, again.
 `Convergent`/`NetworkConvergent` are the other side, the hypotheses under which

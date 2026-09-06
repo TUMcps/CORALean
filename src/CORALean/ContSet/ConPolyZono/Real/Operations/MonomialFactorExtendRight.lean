@@ -1,5 +1,6 @@
 import CORALean.ContSet.ConPolyZono.Real.Operations.FactorExtend
 import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialFactorIdxRight
+import CORALean.ContSet.PolyZonotope.Real.Operations.FactorExtendFactorIdx
 
 /-!
 # The same at the constraint block

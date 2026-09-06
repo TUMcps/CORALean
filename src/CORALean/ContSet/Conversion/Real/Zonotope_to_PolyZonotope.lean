@@ -1,4 +1,5 @@
 import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
+import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
 import CORALean.ContSet.Zonotope.Real.Zonotope
 
 /-!

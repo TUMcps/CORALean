@@ -1,4 +1,5 @@
 import CORALean.ContSet.ConPolyZono.Real.Operations.UsedFactors
+import CORALean.ContSet.PolyZonotope.Real.Operations.FactorExtend
 
 /-!
 # `ConPolyZono.factorExtend`

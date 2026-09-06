@@ -1,5 +1,6 @@
 import CORALean.ContSet.ConPolyZono.Real.Operations.FactorIdx
 import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendELeft
+import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialFactorIdx
 
 /-!
 # A generator monomial reads the kept factors and no others

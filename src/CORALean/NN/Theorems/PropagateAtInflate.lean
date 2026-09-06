@@ -1,6 +1,6 @@
 import CORALean.NN.Operations.NetworkConvergent
 import CORALean.NN.Operations.PropagateAt
-import CORALean.NN.Operations.Schedule
+import CORALean.NN.Schedule
 
 /-!
 # Refinement converges to the exact output set

@@ -1,4 +1,5 @@
 import CORALean.ContSet.ConPolyZono.Real.Operations.FactorExtend
+import CORALean.ContSet.PolyZonotope.Real.Operations.AbsFactorExtendLeOne
 
 /-!
 # `factorExtend` stays within `[-1, 1]`

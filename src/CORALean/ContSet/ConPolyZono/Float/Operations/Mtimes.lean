@@ -1,8 +1,6 @@
-import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
+import CORALean.ContSet.ConPolyZono.Float.Operations.MtimesResidual
 import CORALean.ContSet.Interval.Float.Operations.Mtimes
 import CORALean.ContSet.Interval.Float.Operations.Plus
-import CORALean.ContSet.Interval.Float.Operations.Residual
-import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
 
 /-!
 # `ConPolyZono.mtimes`
@@ -19,7 +17,7 @@ structure already has a field named `m`.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 namespace CORALean.Float
@@ -27,13 +25,6 @@ namespace CORALean.Float
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n k : ℕ}
-
-/-- What `mtimes` owes beyond its nominal part: the centre, and both generator
-blocks. The constraints owe nothing, being copied. -/
-def ConPolyZono.mtimesResidual (M : Mat 𝕋 k n) (C : ConPolyZono 𝕋 n) : Interval 𝕋 k :=
-  ((Interval.residual (mulVecDown M C.c) (mulVecUp M C.c) (mulVecDown M C.c)).plus
-      (PolyZonotope.generatorError (matMulDiff M C.G))).plus
-    (PolyZonotope.generatorError (matMulDiff M C.GI))
 
 def ConPolyZono.mtimes (M : Mat 𝕋 k n) (C : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 k where
   p := C.p

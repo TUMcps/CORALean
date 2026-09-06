@@ -2,6 +2,9 @@ import CORALean.ContSet.ConPolyZono.Real.Operations.Dependent
 import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsPadEIff
 import CORALean.ContSet.ConPolyZono.Real.Operations.SatisfiesDependentIff
 import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
+import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
+import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
+import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
 
 /-!
 # Making the independent generators dependent loses nothing

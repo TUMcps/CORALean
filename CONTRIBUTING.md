@@ -267,10 +267,25 @@ exception, a Lean instance having no name to use.
 `Operations` stays a single file where splitting would not pay — `LinearSysDT`
 has one operation, and `Dyadic`'s are one-line compositions.
 
+"One each" is meant literally, and `check-conventions.sh` enforces it: a file
+under `Operations/` or `Theorems/` declares exactly one public thing. What it
+needs and nothing else uses is `aux_`; what the tree needs earns a file of its
+own. `<Name>.lean` and `Instances.lean` sit outside the rule — a type is
+declared with what it denotes, and instances have no names to collect.
+
+The rule is what keeps the table above true, and it is checked because a
+convention nobody tests is one the tree drifts out of: a helper that quietly
+grows a second user is the usual way a file stops doing only its own job.
+
 ### `aux_`
 
 What a file needs and nothing else uses carries the `aux_` prefix, as in CORA.
 The test is mechanical: used outside its own file, or not.
+
+Never on an `instance`. Type class search reaches an instance from every file
+that imports it and never names it, so no file can claim nothing else uses one.
+An instance that earns a name earns a file; the check rejects the prefix there
+outright.
 
 ### `API.lean`
 

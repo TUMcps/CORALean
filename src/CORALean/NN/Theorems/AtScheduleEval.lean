@@ -1,5 +1,5 @@
 import CORALean.NN.Operations.AtSchedule
-import CORALean.NN.Operations.Schedule
+import CORALean.NN.Schedule
 
 /-!
 # A schedule does not change what the network computes
