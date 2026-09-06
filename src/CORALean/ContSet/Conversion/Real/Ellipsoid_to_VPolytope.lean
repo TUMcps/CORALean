@@ -1,0 +1,39 @@
+import CORALean.ContSet.Conversion.Real.Ellipsoid_to_Zonotope
+import CORALean.ContSet.Conversion.Real.Zonotope_to_VPolytope
+
+/-!
+# An ellipsoid as its corners
+
+Through the zonotope, then that zonotope's `2^h` sign corners. A tight vertex
+enclosure of an ellipsoid is its own fitting problem, not this composition, and
+CORA leaves that choice to the caller too.
+
+Loses whatever the zonotope step lost and nothing further, the corner step
+being exact.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       06-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {n : ℕ}
+
+noncomputable def Ellipsoid.vPolytope (E : Ellipsoid n) : VPolytope (Vec ℝ n) :=
+  E.zonotope.vPolytope
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem Ellipsoid.subset_vPolytope (E : Ellipsoid n) : E.construct ⊆ E.vPolytope.construct :=
+  subset_trans E.zonotope_outer (Zonotope.subset_vPolytope _)
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
