@@ -23,7 +23,7 @@ operand-dependent one needs an oracle a total `plus : S → S → S` cannot have
 
 -- Authors:       Tobias Ladner
 -- Written:       16-August-2026
--- Last update:   03-September-2026
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 
@@ -143,6 +143,22 @@ class LinComb (S : Type) (α : outParam Type) [AddCommGroup α] [Module ℝ α]
   linComb : S → S → S
   linComb_outer (s₁ s₂ : S) :
     segments (construct s₁) (construct s₂) ⊆ construct (linComb s₁ s₂)
+
+/-- A singleton, as a set of the representation. -/
+class OfPoint (S : Type) (α : outParam Type) [AddCommGroup α] [Module ℝ α]
+    [ContSet S α] where
+  ofPoint : α → S
+  mem_ofPoint (v : α) : v ∈ construct (ofPoint v)
+
+/-- A set taken apart into a point of the ambient space and a set holding the
+origin. Every representation with a centre has this; no class offered it. -/
+class Recentre (S : Type) (α : outParam Type) [AddCommGroup α] [Module ℝ α]
+    [ContSet S α] where
+  centre : S → α
+  recentre : S → S
+  zero_mem_recentre (s : S) : (0 : α) ∈ construct (recentre s)
+  sub_centre_mem_recentre {s : S} {y : α} (hy : y ∈ construct s) :
+    y - centre s ∈ construct (recentre s)
 
 /-- To a maximum order, read in the representation's own terms. Sound for any
 target, so the order is a precision knob and never a correctness one. -/
