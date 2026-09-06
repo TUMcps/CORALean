@@ -1,0 +1,41 @@
+import CORALean.ContSet.PolyZonotope.Real.Operations.PadFront
+
+/-!
+# `PolyZonotope.padFront`'s counts
+
+`l` fresh factors before the set's own; the dependent and independent
+generator counts stand, since only the factor count and the exponent matrix
+move. `rfl` against the structure instance in `Operations/PadFront.lean`.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       06-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+omit [AddCommGroup α] [Module ℝ α] in
+theorem PolyZonotope.padFront_p (l : ℕ) (S : PolyZonotope α) :
+    (PolyZonotope.padFront l S).p = l + S.p := rfl
+
+omit [AddCommGroup α] [Module ℝ α] in
+theorem PolyZonotope.padFront_h (l : ℕ) (S : PolyZonotope α) :
+    (PolyZonotope.padFront l S).h = S.h := rfl
+
+omit [AddCommGroup α] [Module ℝ α] in
+theorem PolyZonotope.padFront_q (l : ℕ) (S : PolyZonotope α) :
+    (PolyZonotope.padFront l S).q = S.q := rfl
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
