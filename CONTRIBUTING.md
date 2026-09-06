@@ -479,6 +479,27 @@ the operation, so it has to live with it; the proof is always
 `Fin.sum_univ_add f`. Ascribe the binder in any statement that sums over an
 operation's result, or the lemma will not match there either.
 
+### A notation can turn a word into a keyword
+
+`Global/Partition.lean` declares, unscoped,
+
+```lean
+notation:50 "Split " α:max " into " β:max " and " γ:max => CORALean.Partition₂ α β γ
+```
+
+so **every file that transitively imports it parses `and` as a token, not an
+identifier**. Named-field instance syntax then fails there — `and := Foo.and`
+gives "Fields missing", then "unexpected token 'and'" — while the anonymous
+constructor `⟨Foo.and, …⟩` works, never writing the bare word. The `And` class's
+instances hit this in exactly the two `Instances.lean` files whose imports reach
+`Partition` (through `reduce`, down to `Zonotope.reduceGirard`); the other four
+were unaffected, which is why the failure looks arbitrary until you check the
+import graph.
+
+Whether the notation should be `scoped` is open. Until it is, a class field
+named after an English word that appears in a notation is worth checking before
+naming, and the anonymous constructor is the escape hatch.
+
 ### An expected type that will not unify
 
 Two lemmas can be about the same statement, elaborate instantly as bare terms,
