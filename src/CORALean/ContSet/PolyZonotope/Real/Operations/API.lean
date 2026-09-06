@@ -20,6 +20,10 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMap
 import CORALean.ContSet.PolyZonotope.Real.Operations.BilinE
 import CORALean.ContSet.PolyZonotope.Real.Operations.BilinG
 import CORALean.ContSet.PolyZonotope.Real.Operations.Bilin
+import CORALean.ContSet.PolyZonotope.Real.Operations.PadE
+import CORALean.ContSet.PolyZonotope.Real.Operations.PadFrontE
+import CORALean.ContSet.PolyZonotope.Real.Operations.PadBack
+import CORALean.ContSet.PolyZonotope.Real.Operations.PadFront
 import CORALean.ContSet.PolyZonotope.Real.Operations.MulG
 import CORALean.ContSet.PolyZonotope.Real.Operations.MulE
 import CORALean.ContSet.PolyZonotope.Real.Operations.MulGApply
@@ -74,23 +78,23 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpGreedy
 /-!
 # What `PolyZonotope` computes
 
-`plus`, `map` and `quadMap` exactly, `linComb` up to its independent block, and `dependent`,
-which moves that block into the dependent one and is what lets `quadMap` be total.
+`plus`, `map` and `quadMap` exactly, `linComb` up to its independent block, and `dependent`, which
+moves that block into the dependent one and is what lets `quadMap` be total.
 
 `bilin` pairs two sets over shared factors by any bilinear map, exact against `point` and not the
-two sets; `mul` is it at the entrywise product, `quadMap` degree two this way, `evalPoly` any.
+two sets; `mul` is it entrywise, `quadMap` degree two this way, `evalPoly` any. `padBack` and
+`padFront` widen a set's factors by another's at exponent zero, so *independent* factors reach it.
 
-Each of those grows the generator counts, and `compact` brings them back down without changing
-the set: equal exponent columns add together, a generator that came out zero goes, and so does a
-factor no column reads. `reduce` then cuts the count to an order the caller names, and loses.
+Each of those grows the generator counts, and `compact` brings them back down without changing the
+set: equal exponent columns add, a zero generator goes, and so does a factor no column reads.
+`reduce` then cuts the count to an order the caller names, and loses.
 
-`relaxExp` merges two dependent generators whose exponent columns agree off one index and pays
-the difference into one new independent generator, at the price `eDiff` bounds: the count stays,
-and the set is closer to a zonotope. `relaxExpEven` halves that price where the drift is
-one-sided, `relaxExpMulti` drops the agreement and sums `eDiff` over every factor, and `eDrift`
-brackets the drift on both sides, which `relaxDrift` reads as the midpoint and half-width that
-`relaxExpMid` shifts and pays. `ExpEdgeAt` and `ExpEdge` are the graph of pairs worth merging,
-and `relaxExpGreedy` walks it at whatever a selection names — `expGreedySel` being one that runs.
+`relaxExp` merges two dependent generators whose exponent columns agree off one index, paying the
+difference into one new independent generator at the price `eDiff` bounds. `relaxExpEven` halves
+that price where the drift is one-sided, `relaxExpMulti` drops the agreement and sums `eDiff` over
+every factor, and `eDrift` brackets the drift, which `relaxDrift` reads as the midpoint and
+half-width `relaxExpMid` shifts and pays. `ExpEdgeAt` and `ExpEdge` graph the pairs worth merging;
+`relaxExpGreedy` walks it at any selection.
 
 `plusE`, `linCombE` and `quadMapE` are the exponent matrices the size-changing operations
 assemble, each its own file (#62) since the float layer and `ConPolyZono` build on them too.
