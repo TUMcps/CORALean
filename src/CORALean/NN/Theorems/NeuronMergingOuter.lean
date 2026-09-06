@@ -9,7 +9,7 @@ import CORALean.NN.Operations.Propagate
 /-!
 # Neuron merging: sound at every bucket
 
-[1]'s `prop:neuron-merging`. Given output bounds `Y` for a nonlinear layer `k`
+[1, Prop. 4]. Given output bounds `Y` for a nonlinear layer `k`
 and *any* split of its neurons into survivors `B̄` and a bucket `B`, trimming
 the adjacent linear layers to `B̄` and boxing what `B` would have contributed to
 layer `k+1` — `W_{k+1}(·,B) · Y(B)` — soundly encloses the exact sandwich.
@@ -43,7 +43,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- Neuron merging (`prop:neuron-merging` in [1]): sound at *every* bucket
+/-- Neuron merging, [1, Prop. 4]: sound at *every* bucket
 `part.right`, trimming layer `k-1`'s rows and layer `k+1`'s columns to the
 survivors `part.left`, and boxing the bucket's contribution to `k+1` from `Y`. -/
 theorem neuronMerging_sandwich_outer {n0 n n2 d r : ℕ}

@@ -3,12 +3,12 @@ import CORALean.NN.Theorems.MergeErrorWidthLeRow
 /-!
 # A tolerance meeting any error budget
 
-Not the tolerance search itself — [1]'s Alg. 1 bisects for `δ`, and which value
-it lands on owes no proof, exactly as `neuronMerging_sandwich_outer` is sound at
-every bucket and `ConPolyZono.reduceBy_outer` at every partition. What this
-proves is that the search cannot be chasing something unreachable: for every
-budget `ε` there is a `δ` meeting it at every bucket and every output, because
-`mergeError_width_le_row`'s bound is linear in `δ` and `δ` is free to shrink.
+Not [1]'s Alg. 1, which bisects for a `δ` hitting a *reduction rate* `ρ` — a
+target neuron count, not an error budget — and whose answer owes no proof, as
+`neuronMerging_sandwich_outer` is sound at every bucket and
+`ConPolyZono.reduceBy_outer` at every partition. This is the budget read the
+other way: for every `ε` some `δ` meets it at every bucket and every output,
+since `mergeError_width_le_row`'s bound is linear in `δ` and `δ` is free.
 
 The witness `δ := ε / (2 * (1 + ∑ mergeRowWeight))` carries a `+ 1` in its
 denominator so it stays positive even at `W = 0`, with no case split and no

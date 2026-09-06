@@ -5,7 +5,7 @@ import CORALean.ContSet.Interval.Real.Operations.Plus
 /-!
 # Disjoint buckets merge independently
 
-The multiple-bucket equation right after [1]'s `prop:neuron-merging`: refining
+The multiple-bucket equation right after [1, Prop. 4]: refining
 a bucket into two disjoint sub-buckets splits its box `W(·,B)·Y(B)` into the
 Minkowski sum of the sub-buckets' own boxes. That is why several disjoint
 buckets can be merged "in parallel" — the combined error either bucket

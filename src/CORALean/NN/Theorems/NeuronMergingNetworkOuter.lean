@@ -46,7 +46,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- Neuron merging (`prop:neuron-merging` in [1]) at a layer of any network: the
+/-- Neuron merging, [1, Prop. 4], at a layer of any network: the
 merged sandwich sits between `pre` and `post`, and `Y` is only ever asked to
 bound the nonlinear layer over what `pre` reaches. -/
 theorem neuronMerging_network_outer {n₀ n₁ n n₂ n₃ d r : ℕ}
