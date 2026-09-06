@@ -1,5 +1,6 @@
 import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSum
 import CORALean.ContSet.Ellipsoid.Float.Instances
+import CORALean.ContSet.Ellipsoid.Real.Theorems.PlusScalingsAdmissible
 
 /-!
 # A precision parameter, named by the caller
@@ -16,15 +17,15 @@ value the caller passed.
 reachability loops still do not run at one, and not for this reason: `Reduce`,
 `LinComb`, `OfInterval` and `Mtimes ℐ` are missing *operations*.
 
-The float layer's parameter is the two scalings with the inequality they owe,
-which is a wider family than `l`'s. No generic algorithm runs there yet — its
-`Mtimes` is over `Mat 𝕋`, not `Mat ℝ` — so what is recorded is that the instance
-is lawful and that `⊞` reads at a float ellipsoid.
+Both layers take the same parameter: the two scalings with the inequality they
+owe, of which `l`'s pair is one point. No generic algorithm runs at the float
+layer yet — its `Mtimes` is over `Mat 𝕋`, not `Mat ℝ` — so what is recorded
+there is that the instance is lawful and that `⊞` reads at a float ellipsoid.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       03-September-2026
--- Last update:   ---
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 
@@ -37,27 +38,39 @@ open Matrix Pointwise ContSet
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The input Taylor sum at an ellipsoid, the scaling fixed once for the whole
+/-- The input Taylor sum at an ellipsoid, the scalings fixed once for the whole
 sum. `inputTaylorSum` is unchanged and unaware; the `letI` is the entire cost of
 running it here. -/
-noncomputable def ellipsoidInputTaylorSum {n : ℕ} {l : ℝ} (hl : 0 < l)
+noncomputable def ellipsoidInputTaylorSum {n : ℕ} {s₁ s₂ : ℝ} (hne₁ : s₁ ≠ 0)
+    (hne₂ : s₂ ≠ 0) (hs : 1 / s₁ ^ 2 + 1 / s₂ ^ 2 ≤ 1)
     (sys : LinearSys ℝ n) (r : ℝ) (U : Ellipsoid n) : ℕ → Ellipsoid n :=
-  letI := Ellipsoid.plusInstance hl
+  letI := Ellipsoid.plusInstance hne₁ hne₂ hs
   sys.inputTaylorSum r U
 
-/-- What the generic recursion unfolds to: the caller's `l`, in the operation
-the representation actually implements. -/
-example {n : ℕ} {l : ℝ} (hl : 0 < l) (sys : LinearSys ℝ n) (r : ℝ) (U : Ellipsoid n)
-    (i : ℕ) :
-    ellipsoidInputTaylorSum hl sys r U (i + 1)
-      = Ellipsoid.plus l (ellipsoidInputTaylorSum hl sys r U i)
+/-- What the generic recursion unfolds to: the caller's scalings, in the
+operation the representation actually implements. -/
+example {n : ℕ} {s₁ s₂ : ℝ} (hne₁ : s₁ ≠ 0) (hne₂ : s₂ ≠ 0)
+    (hs : 1 / s₁ ^ 2 + 1 / s₂ ^ 2 ≤ 1) (sys : LinearSys ℝ n) (r : ℝ)
+    (U : Ellipsoid n) (i : ℕ) :
+    ellipsoidInputTaylorSum hne₁ hne₂ hs sys r U (i + 1)
+      = Ellipsoid.plus s₁ s₂ (ellipsoidInputTaylorSum hne₁ hne₂ hs sys r U i)
           (Mtimes.mtimes (sys.inputTerm r (i + 1)) U) :=
   rfl
 
 /-- The instance is lawful, and its law is the operation's own theorem. -/
+example {n : ℕ} {s₁ s₂ : ℝ} (hne₁ : s₁ ≠ 0) (hne₂ : s₂ ≠ 0)
+    (hs : 1 / s₁ ^ 2 + 1 / s₂ ^ 2 ≤ 1) (E₁ E₂ : Ellipsoid n) :
+    construct E₁ + construct E₂ ⊆ construct (Ellipsoid.plus s₁ s₂ E₁ E₂) := by
+  letI := Ellipsoid.plusInstance hne₁ hne₂ hs
+  exact Plus.plus_outer E₁ E₂
+
+/-- A caller holding Kurzhanski and Varaiya's `l` is no worse off than before:
+its two square roots discharge the three obligations. -/
 example {n : ℕ} {l : ℝ} (hl : 0 < l) (E₁ E₂ : Ellipsoid n) :
-    construct E₁ + construct E₂ ⊆ construct (Ellipsoid.plus l E₁ E₂) := by
-  letI := Ellipsoid.plusInstance hl
+    construct E₁ + construct E₂
+      ⊆ construct (Ellipsoid.plus (Real.sqrt (1 + 1 / l)) (Real.sqrt (1 + l)) E₁ E₂) := by
+  obtain ⟨hne₁, hne₂, hs⟩ := Ellipsoid.plus_scalings_admissible hl
+  letI := Ellipsoid.plusInstance hne₁ hne₂ (le_of_eq hs)
   exact Plus.plus_outer E₁ E₂
 
 end CORALean.Real
