@@ -3,7 +3,8 @@ import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
 import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPoly
 import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsLeErrorBound
 import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorErrorMonomial
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MulOuter
+import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+import CORALean.ContSet.PolyZonotope.Float.Theorems.MulGClose
 import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyExact
 
 /-!
@@ -12,7 +13,7 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyExact
 The gap `evalPoly_p`'s exactness argument never has to close: at the exact
 layer, `R`'s point is `S`'s multiplied in without residue. Here `R` is already
 only an enclosure, so the same product costs the extra term `evalPolyStep`'s
-box already carries, `errorBound R.err * evalPolyBoundS S`. `aux_evalPoly_mulG_close`
+box already carries, `errorBound R.err * evalPolyBoundS S`. `mulG_close`
 prices what `mul` itself rounds, `Interval.sub_mem_residual` what the centre
 shift rounds, and the two combine with that extra term through `Interval.plus`.
 
@@ -24,7 +25,7 @@ re-witness independently and identify unrelated slack.
 
 -- Authors:       Tobias Ladner
 -- Written:       05-September-2026
--- Last update:   ---
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 namespace CORALean.Float
@@ -32,26 +33,6 @@ namespace CORALean.Float
 open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
-
-/-- What a rounded product generator costs, restated here since `MulOuter`'s own
-copy stays local to that file. -/
-theorem PolyZonotope.aux_evalPoly_mulG_close (S₁ S₂ : PolyZonotope 𝕋 n) (i : Fin n)
-    (l : Fin ((S₁.h + 1) * (S₂.h + 1))) :
-    |Real.PolyZonotope.mulG (nominal S₁) (nominal S₂) l i
-        - toReal (PolyZonotope.mulGDown S₁ S₂ i l)|
-      ≤ toReal (PolyZonotope.mulGDiff S₁ S₂ i l) := by
-  have hexact : Real.PolyZonotope.mulG (nominal S₁) (nominal S₂) l i
-      = toReal (PolyZonotope.extG S₁ i (finProdFinEquiv.symm l).1)
-        * toReal (PolyZonotope.extG S₂ i (finProdFinEquiv.symm l).2) := by
-    simp only [Real.PolyZonotope.mulG, PolyZonotope.toReal_extG]
-  have hlo := mulDown_le_mul (PolyZonotope.extG S₁ i (finProdFinEquiv.symm l).1)
-    (PolyZonotope.extG S₂ i (finProdFinEquiv.symm l).2)
-  have hhi := mul_le_mulUp (PolyZonotope.extG S₁ i (finProdFinEquiv.symm l).1)
-    (PolyZonotope.extG S₂ i (finProdFinEquiv.symm l).2)
-  have hgap := sub_le_subUp (PolyZonotope.mulGUp S₁ S₂ i l) (PolyZonotope.mulGDown S₁ S₂ i l)
-  rw [hexact, abs_le]
-  simp only [PolyZonotope.mulGDiff, PolyZonotope.mulGDown, PolyZonotope.mulGUp] at hlo hhi hgap ⊢
-  constructor <;> linarith
 
 /-- `|nominal S|` is at most its centre plus every generator's magnitude, since
 every monomial is at most `1`. -/
@@ -218,14 +199,14 @@ theorem PolyZonotope.aux_evalPoly_close (S : PolyZonotope 𝕋 n) (coeffs : List
       simp only [Pi.add_apply, Pi.zero_apply, zero_add, Finset.sum_apply, Pi.smul_apply,
         smul_eq_mul]
       exact Finset.sum_congr rfl fun l _ => mul_comm _ _
-    -- term B, priced by `aux_evalPoly_mulG_close`
+    -- term B, priced by `mulG_close`
     have hmulErr : (fun i => Real.PolyZonotope.point (nominal R) (fun k => b (Fin.cast hR k)) i
             * Real.PolyZonotope.point (nominal S) b i
           - Real.PolyZonotope.point (nominal (PolyZonotope.mul R S hR))
               (fun k => b (Fin.cast hR k)) i)
         ∈ (PolyZonotope.generatorError (PolyZonotope.mulGDiff R S)).construct := by
       have key := PolyZonotope.mem_generatorError_monomial (E := PolyZonotope.mulE R S hR)
-        (a := fun k => b (Fin.cast hR k)) (PolyZonotope.aux_evalPoly_mulG_close R S)
+        (a := fun k => b (Fin.cast hR k)) (PolyZonotope.mulG_close R S)
         (fun k => hb (Fin.cast hR k))
       -- the gap is the generator-level bound, aggregated by the shared monomials
       have heq : (fun i => Real.PolyZonotope.point (nominal R) (fun k => b (Fin.cast hR k)) i

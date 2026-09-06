@@ -1,11 +1,10 @@
 import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPoly
-import CORALean.ContSet.PolyZonotope.Real.Operations.Point
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MulExact
+import CORALean.ContSet.PolyZonotope.Real.Theorems.MulPoint
 
 /-!
 # `PolyZonotope.evalPoly` is exactly the polynomial, evaluated coordinatewise
 
-`MulExact`'s idiom carried through the recursion: the claim is about `point`, not
+`MulPoint`'s idiom carried through the recursion: the claim is about `point`, not
 `construct`, so no product of sets appears, only the coordinatewise image of the
 admissible factors under `a ↦ evalPolyReal coeffs (point S a)`.
 
@@ -33,70 +32,6 @@ def PolyZonotope.evalPolyReal (coeffs : List ℝ) (x : ℝ) : ℝ :=
   match coeffs with
   | [] => 0
   | a :: rest => a + x * PolyZonotope.evalPolyReal rest x
-
-/-- The result's monomial at a pair of columns, restated here since `MulExact`'s
-own copy stays local to that file: the two sets' monomials, multiplied. -/
-theorem PolyZonotope.aux_evalPoly_monomial_mulE (S₁ S₂ : PolyZonotope (Vec ℝ n))
-    (hp : S₁.p = S₂.p) (a : Fin S₁.p → ℝ) (l₁ : Fin (S₁.h + 1)) (l₂ : Fin (S₂.h + 1)) :
-    monomial (mulE S₁ S₂ hp) a (finProdFinEquiv (l₁, l₂))
-      = extM S₁ a l₁ * extM S₂ (fun k => a (Fin.cast hp.symm k)) l₂ := by
-  have hcast : ∏ k : Fin S₁.p, a k ^ PolyZonotope.extE S₂ (Fin.cast hp k) l₂
-      = ∏ k, a (Fin.cast hp.symm k) ^ PolyZonotope.extE S₂ k l₂ :=
-    Fintype.prod_equiv (finCongr hp) _ _ fun _ => rfl
-  show ∏ k, a k ^ PolyZonotope.mulE S₁ S₂ hp k (finProdFinEquiv (l₁, l₂))
-      = (∏ k, a k ^ PolyZonotope.extE S₁ k l₁)
-        * ∏ k, a (Fin.cast hp.symm k) ^ PolyZonotope.extE S₂ k l₂
-  rw [← hcast, ← Finset.prod_mul_distrib]
-  refine Finset.prod_congr rfl fun k _ => ?_
-  simp only [PolyZonotope.mulE, Equiv.symm_apply_apply]
-  exact pow_add (a k) _ _
-
-/-- The product of the two points, expanded over pairs of extended columns —
-restated here since `MulExact`'s own copy stays local to that file. -/
-theorem PolyZonotope.aux_evalPoly_mul_point (S₁ S₂ : PolyZonotope (Vec ℝ n)) (hp : S₁.p = S₂.p)
-    (a : Fin S₁.p → ℝ) :
-    S₁.point a * S₂.point (fun k => a (Fin.cast hp.symm k))
-      = ∑ l, monomial (mulE S₁ S₂ hp) a l • mulG S₁ S₂ l := by
-  -- both sides as a double sum over pairs of extended columns, then matched
-  funext i
-  have h₁ : S₁.point a = ∑ l, extM S₁ a l • extG S₁ l := (PolyZonotope.sum_ext_eq_point S₁ a).symm
-  have h₂ : S₂.point (fun k => a (Fin.cast hp.symm k))
-      = ∑ l, extM S₂ (fun k => a (Fin.cast hp.symm k)) l • extG S₂ l :=
-    (PolyZonotope.sum_ext_eq_point S₂ _).symm
-  have hL : (S₁.point a * S₂.point (fun k => a (Fin.cast hp.symm k))) i
-      = ∑ l₁, ∑ l₂, (extM S₁ a l₁ * extM S₂ (fun k => a (Fin.cast hp.symm k)) l₂)
-          * (extG S₁ l₁ i * extG S₂ l₂ i) := by
-    show (S₁.point a) i * (S₂.point (fun k => a (Fin.cast hp.symm k))) i = _
-    rw [h₁, h₂, Finset.sum_apply, Finset.sum_apply]
-    simp only [Pi.smul_apply, smul_eq_mul]
-    rw [Finset.sum_mul_sum]
-    exact Finset.sum_congr rfl fun l₁ _ => Finset.sum_congr rfl fun l₂ _ => by ring
-  have hpair : ∑ pr : Fin (S₁.h + 1) × Fin (S₂.h + 1),
-        (monomial (mulE S₁ S₂ hp) a (finProdFinEquiv pr) • mulG S₁ S₂ (finProdFinEquiv pr)) i
-      = ∑ l, (monomial (mulE S₁ S₂ hp) a l • mulG S₁ S₂ l) i :=
-    Fintype.sum_equiv finProdFinEquiv _ _ fun _ => rfl
-  -- the right side, `finProdFinEquiv` matching the pair index to the flat one
-  have hR : (∑ l, monomial (mulE S₁ S₂ hp) a l • mulG S₁ S₂ l) i
-      = ∑ l₁, ∑ l₂, (extM S₁ a l₁ * extM S₂ (fun k => a (Fin.cast hp.symm k)) l₂)
-          * (extG S₁ l₁ i * extG S₂ l₂ i) := by
-    rw [Finset.sum_apply, ← hpair, Fintype.sum_prod_type]
-    refine Finset.sum_congr rfl fun l₁ _ => Finset.sum_congr rfl fun l₂ _ => ?_
-    rw [Pi.smul_apply, smul_eq_mul, PolyZonotope.aux_evalPoly_monomial_mulE S₁ S₂ hp a l₁ l₂]
-    refine congrArg _ ?_
-    show PolyZonotope.extG S₁ (finProdFinEquiv.symm (finProdFinEquiv (l₁, l₂))).1 i
-        * PolyZonotope.extG S₂ (finProdFinEquiv.symm (finProdFinEquiv (l₁, l₂))).2 i
-      = extG S₁ l₁ i * extG S₂ l₂ i
-    rw [Equiv.symm_apply_apply]
-  rw [hL, hR]
-
-/-- `mul`'s point, read off `mul_exact`'s expansion rather than `construct`: a
-product of the two points, `S₂` read at `S₁`'s factors through `Fin.cast`. -/
-theorem PolyZonotope.mul_point (S₁ S₂ : PolyZonotope (Vec ℝ n)) (hp : S₁.p = S₂.p)
-    (a : Fin S₁.p → ℝ) :
-    (S₁.mul S₂ hp).point a = S₁.point a * S₂.point (fun k => a (Fin.cast hp.symm k)) := by
-  show (0 : Vec ℝ n) + ∑ l, PolyZonotope.monomial (mulE S₁ S₂ hp) a l • mulG S₁ S₂ l
-      = S₁.point a * S₂.point (fun k => a (Fin.cast hp.symm k))
-  rw [zero_add, PolyZonotope.aux_evalPoly_mul_point S₁ S₂ hp a]
 
 /-- `evalPolyStep`'s point, generically: a coordinate `a₀ + R ⊙ S`, `R` read at
 `S`'s factors through `hR`. -/
