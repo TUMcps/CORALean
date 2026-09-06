@@ -21,6 +21,7 @@ import CORALean.ContSet.HPolytope.Real.Operations.Eqs
 import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
 import CORALean.ContSet.HPolytope.Real.Operations.MemEqsIff
 import CORALean.ContSet.HPolytope.Real.Operations.Plus
+import CORALean.ContSet.HPolytope.Real.Operations.MinusOf
 import CORALean.ContSet.HPolytope.Real.Operations.Slab
 import CORALean.ContSet.HPolytope.Real.Operations.MemSlabIff
 import CORALean.ContSet.HPolytope.Real.Operations.MemSlabSelfIff
@@ -53,5 +54,7 @@ certificates come from. Soundness never depends on the directions, only
 precision does, so enumerating the true facets stays outside as an optimisation.
 
 `Fullspace` and `EmptySet` are the unit and the absorbing element of the first
-group, each written out as the rows that denote it.
+group, each written out as the rows that denote it. `minusOf` is exact too:
+each row shifts inward by the subtrahend's support, taken in rather than
+computed, as `mtimesOf` also takes what it cannot compute.
 -/

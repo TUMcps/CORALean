@@ -5,6 +5,7 @@ import CORALean.ContSet.Interval.Real.Theorems.IsCompact
 import CORALean.ContSet.Interval.Real.Theorems.LinCombOuter
 import CORALean.ContSet.Interval.Real.Theorems.MtimesIntervalMatOuter
 import CORALean.ContSet.Interval.Real.Theorems.MtimesOuter
+import CORALean.ContSet.Interval.Real.Theorems.MinusExact
 import CORALean.ContSet.Interval.Real.Theorems.PlusExact
 import CORALean.ContSet.Interval.Real.Theorems.ReindexExact
 
@@ -52,6 +53,10 @@ instance : CompactSet (Interval (Vec ℝ n)) (Vec ℝ n) := ⟨Interval.isCompac
 instance : Plus (Interval (Vec ℝ n)) (Vec ℝ n) where
   plus := Interval.plus
   plus_outer := Interval.plus_outer
+
+instance : Minus (Interval (Vec ℝ n)) (Vec ℝ n) where
+  minus := Interval.minus
+  minus_inner := Interval.minus_inner
 
 instance : LinComb (Interval (Vec ℝ n)) (Vec ℝ n) where
   linComb := Interval.linComb
