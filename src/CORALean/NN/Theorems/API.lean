@@ -32,6 +32,7 @@ import CORALean.NN.Theorems.OutputSetSubset
 import CORALean.NN.Theorems.PropagateAtInflate
 import CORALean.NN.Theorems.PropagateAtOuter
 import CORALean.NN.Theorems.OutputSetSubsetPropagateAt
+import CORALean.NN.Theorems.PropagateNotMonotone
 import CORALean.NN.Theorems.OutputSetSubsetRefine
 import CORALean.NN.Theorems.OutputSetSubsetRefineLayer
 import CORALean.NN.Theorems.OutputSetSubsetRefineLoop
@@ -66,9 +67,9 @@ import CORALean.NN.Theorems.HoldsAllOfPropagate
 
 `LinearWithErrorZero`, `NeuronMergingOuter`, `NeuronMergingNetworkOuter`, `MergeErrorSplit`,
 `MergeErrorWidthLe` and `MergeErrorWidthLeRow` are neuron merging [1]: error-free linear layers,
-bucket containment, the Minkowski-sum split, and cost linear in `δ`, which `ExistsMergeTolerance`
-turns into a tolerance. `MergeBucketMono`, `MergeBucketCardMono` and `ExistsMergeBucketAll` are its
-rate-side twin: `δ` only grows the bucket, until a large enough one takes every neuron.
+bucket containment, the Minkowski-sum split, `δ`-linear cost tolerated by `ExistsMergeTolerance`.
+`MergeBucketMono`, `MergeBucketCardMono`, `ExistsMergeBucketAll` are its rate-side twin: `δ` grows
+the bucket until every neuron is taken. `PropagateNotMonotone` forces #69/#68 into one induction.
 
 `SuffExplanation`, `MinSuffExplanation` and their `Abstract` forms are local explanations [2].
 `SuffExplanationTransfer` carries sufficiency to the original network, discharged at a merged
