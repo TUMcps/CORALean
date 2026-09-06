@@ -3,22 +3,28 @@ import CORALean.NN.Layers.Curvature
 /-!
 # The inverse square root, clamped at the degree bound the self-loop gives
 
-CORA's `nnInvSqrtRootLayer`: a graph convolutional network normalises by
-`D̃⁻ᐟ² Ã D̃⁻ᐟ²`, `D̃` the degree matrix of `Ã = A + I`. The self-loop puts every
-degree at `1` or above, so `x ↦ x^(-1/2)` is only ever evaluated at or above `1` —
-which is what makes `invSqrt` total: it clamps its argument at `1` first, a
-clamp that costs nothing exactly because `1` is the bound already guaranteed.
+CORA's `nnInvSqrtRootLayer` and [1, Lemma 2]: a graph convolutional network
+normalises by `D̃⁻ᐟ² Ã D̃⁻ᐟ²`, `D̃` the degree matrix of `Ã = A + I`. The self-loop
+puts every degree at `1` or above, so `x ↦ x^(-1/2)` is only ever evaluated there
+— which makes `invSqrt` total: it clamps at `1`, and the clamp costs nothing
+exactly because `1` is the bound already guaranteed.
 
-Two relaxations, kept together because neither dominates. `invSqrtRelaxationRange`
-is `ofAntitone`, total and cheap. `invSqrtRelaxationDeriv` adds a derivative
-bracket from `1 ≤ l` up, and not merely from `1 < l`: `invSqrt` has a kink at `1`
-— derivative `0` from the left, `-1/2` from the right — so no global derivative
-exists for `Relaxation.ofDeriv`, but at `l = 1` the kink sits at the box's left
-end, where the bracket asks only for continuity. That box is the common one: a
-node whose only fixed edge is its self-loop has degree exactly `1`. Below `1` the
-box straddles the kink and the range bound takes over. On a wide box the bracket
-loses to the range (`[1,5]`: 0.91 against 0.28), on a narrow one it wins, and
-`Relaxation.tighter` takes whichever is smaller.
+[1] fits one affine `p` and computes `max |f - p|` exactly at its critical points;
+`Relaxation` asks only for a *sound* error at any slope, so that fit is one a
+caller may supply, and `invSqrtRelaxation` is the instance provided here.
+
+Two relaxations, neither dominating: `invSqrtRelaxationRange` is `ofAntitone`, and
+`invSqrtRelaxationDeriv` the derivative bracket from `1 ≤ l` up — not merely from
+`1 < l`, since at `l = 1` the kink sits at the box's left end, where the bracket
+asks only for continuity, and that box is the common one: a node whose only fixed
+edge is its self-loop has degree exactly `1`. On `[1,5]` the bracket errs by 0.91
+against the range's 0.28; on a narrow box it wins, and `tighter` takes the smaller.
+
+## References
+
+* [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph
+      Convolutional Networks with Uncertain Node Features and Uncertain Graph
+      Structure". TMLR, 2025. arXiv:2404.15065.
 -/
 
 -- Authors:       Tobias Ladner
