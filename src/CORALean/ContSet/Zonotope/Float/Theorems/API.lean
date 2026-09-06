@@ -6,6 +6,7 @@ import CORALean.ContSet.Zonotope.Float.Theorems.LinCombH
 import CORALean.ContSet.Zonotope.Float.Theorems.PairSumBracket
 import CORALean.ContSet.Zonotope.Float.Theorems.PairDiffBracket
 import CORALean.ContSet.Zonotope.Float.Theorems.SumPairMul
+import CORALean.ContSet.Zonotope.Float.Theorems.MidpointMemResidual
 import CORALean.ContSet.Zonotope.Float.Theorems.LinCombOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.MtimesH
 import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter

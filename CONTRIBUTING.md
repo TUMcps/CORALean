@@ -93,8 +93,8 @@ computes; an algorithm asks for what it calls, so `LinearSysDT.reach` wants
 
 There is deliberately no class collecting them. A bundle would make every
 representation owe every operation, so the one that cannot compute an operation
-would have to invent it — which is what `HPolytope` would have had to do, and
-what pushed `ConZonotope`'s `linComb` through its enclosing zonotope. A theorem
+would have to invent it — which is what `HPolytope` would have had to do for a
+Minkowski sum, having no rows to state one with. A theorem
 that does not call an operation says so with `omit`, and that line is worth
 reading: it is the record of which interfaces the algorithm actually needs.
 

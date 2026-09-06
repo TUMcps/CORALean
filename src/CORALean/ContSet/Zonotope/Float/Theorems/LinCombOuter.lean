@@ -5,6 +5,7 @@ import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
 import CORALean.ContSet.Zonotope.Float.Operations.LinComb
 import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
 import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+import CORALean.ContSet.Zonotope.Float.Theorems.MidpointMemResidual
 import CORALean.ContSet.Zonotope.Float.Theorems.PairDiffBracket
 import CORALean.ContSet.Zonotope.Float.Theorems.PairSumBracket
 import CORALean.ContSet.Zonotope.Float.Theorems.SumPairMul
@@ -47,19 +48,6 @@ noncomputable def Zonotope.aux_linCombGReal (Z₁ Z₂ : Zonotope 𝕋 n) (i : F
       (Real.Zonotope.pairSum (fun j => toReal (Z₁.G i j)) (fun j => toReal (Z₂.G i j)))
       (Real.Zonotope.pairDiff (fun j => toReal (Z₁.G i j)) (fun j => toReal (Z₂.G i j))))
     (fun _ : Fin 1 => (toReal (Z₁.c i) - toReal (Z₂.c i)) / 2)
-
-/-- The two directed midpoints bracket the exact one, halving being exact. -/
-theorem Zonotope.aux_midpoint_mem_residual (a b : Vec 𝕋 n) :
-    (fun i => (toReal (a i) + toReal (b i)) / 2 - toReal (Zonotope.midpoint a b i))
-      ∈ (Zonotope.midpointResidual a b).construct :=
-  Interval.sub_mem_residual fun i => by
-    refine ⟨?_, ?_⟩
-    · rw [toReal_half]
-      have := addDown_le_add (a i) (b i)
-      linarith
-    · rw [toReal_half]
-      have := add_le_addUp (a i) (b i)
-      linarith
 
 /-- Every stored generator sits at the low end of a bracket around its exact
 value: the two blocks pair, and the centre generator is one directed
@@ -151,7 +139,7 @@ theorem Zonotope.aux_linComb_nominal (Z₁ Z₂ : Zonotope 𝕋 n) :
                       (fun _ : Fin 1 => 2 * lam - 1) j,
           Zonotope.mem_nominalSet_iff.mpr ⟨_, hβ, fun _ => rfl⟩,
           _,
-          ⟨_, Zonotope.aux_midpoint_mem_residual Z₁.c Z₂.c,
+          ⟨_, Zonotope.midpoint_mem_residual Z₁.c Z₂.c,
            _, Zonotope.mem_generatorError
                  (fun i j => Zonotope.aux_linCombG_error Z₁ Z₂ i j) hβ, rfl⟩, ?_⟩
   funext i

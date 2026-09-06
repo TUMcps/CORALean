@@ -22,7 +22,21 @@ import CORALean.ContSet.HPolytope.Float.Operations.MulVecPadLeft
 import CORALean.ContSet.HPolytope.Float.Operations.MulVecPadRight
 import CORALean.ContSet.HPolytope.Float.Operations.MemPadLeftIff
 import CORALean.ContSet.HPolytope.Float.Operations.MemPadRightIff
+import CORALean.ContSet.HPolytope.Float.Operations.UnitBox
+import CORALean.ContSet.HPolytope.Float.Operations.MemUnitBoxIff
+import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendLast
+import CORALean.ContSet.HPolytope.Float.Operations.HalfScaledLeft
+import CORALean.ContSet.HPolytope.Float.Operations.SmulMemHalfScaledLeft
+import CORALean.ContSet.HPolytope.Float.Operations.HalfScaledRight
+import CORALean.ContSet.HPolytope.Float.Operations.SmulMemHalfScaledRight
 import CORALean.ContSet.HPolytope.Float.Operations.Translate
+import CORALean.ContSet.HPolytope.Float.Operations.UnitBox
+import CORALean.ContSet.HPolytope.Float.Operations.MemUnitBoxIff
+import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendLast
+import CORALean.ContSet.HPolytope.Float.Operations.HalfScaledLeft
+import CORALean.ContSet.HPolytope.Float.Operations.SmulMemHalfScaledLeft
+import CORALean.ContSet.HPolytope.Float.Operations.HalfScaledRight
+import CORALean.ContSet.HPolytope.Float.Operations.SmulMemHalfScaledRight
 import CORALean.ContSet.HPolytope.Float.Operations.TranslateOuter
 
 /-!
@@ -31,8 +45,10 @@ import CORALean.ContSet.HPolytope.Float.Operations.TranslateOuter
 Three groups.
 
 Exactly and without arithmetic: `and` concatenates constraint lists, `padLeft`
-and `padRight` widen the coefficient space with zeros, and the two constructors
-copy matrices. None of them rounds, because none of them computes.
+and `padRight` widen the coefficient space with zeros, `halfScaledLeft` and its
+mirror widen it by one weighting coordinate and halve every right-hand side into
+it, and the constructors copy matrices. None of them rounds: halving and
+negation are exact, and the rest computes nothing.
 
 Rounding, and where it goes: `translate` moves each bound by what its row reads
 off the shift, an inequality absorbing that upward and an equality outward at

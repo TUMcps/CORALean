@@ -44,9 +44,8 @@ instance : Plus (ConZonotope (Vec ℝ n)) (Vec ℝ n) where
   plus := ConZonotope.plus
   plus_outer C₁ C₂ := (ConZonotope.plus_exact C₁ C₂).subset
 
-/-- Relaxed to the enclosing zonotopes, which is the one operation a constrained
-zonotope does not compute in its own terms. Now a separate instance, so a caller
-that never combines does not depend on the relaxation. -/
+/-- A separate instance, so a caller that never combines does not depend on the
+interpolation parameter this adds. -/
 noncomputable instance : LinComb (ConZonotope (Vec ℝ n)) (Vec ℝ n) where
   linComb := ConZonotope.linComb
   linComb_outer := ConZonotope.linComb_outer
