@@ -1,0 +1,39 @@
+import CORALean.ContSet.Conversion.Real.PolyZonotope_to_Zonotope
+import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
+
+/-!
+# A polynomial zonotope as a constrained zonotope
+
+Through the zonotope enclosure, then the constrained zonotope with nothing to
+satisfy — that second leg is exact, so all the loss is the polynomial
+zonotope's own zonotope step. A polynomial zonotope's set is generally not even
+convex, so no constrained zonotope is exact for it: a direct construction would
+be tighter.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       06-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+def PolyZonotope.conZonotope (PZ : PolyZonotope α) : ConZonotope α :=
+  PZ.zonotope.conZonotope
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem PolyZonotope.subset_conZonotope (PZ : PolyZonotope α) :
+    PZ.construct ⊆ PZ.conZonotope.construct :=
+  subset_trans PZ.zonotope_outer (Zonotope.conZonotope_exact _).subset
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
