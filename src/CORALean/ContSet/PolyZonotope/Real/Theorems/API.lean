@@ -33,7 +33,9 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsSubPowLeEDiff
 import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsSubMonomialLe
 import CORALean.ContSet.PolyZonotope.Real.Theorems.SubMonomialNonpos
 import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxExpOuter
+import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsSubMonomialLeSum
 import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxExpEvenOuter
+import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxExpMultiOuter
 
 /-!
 # What `PolyZonotope` guarantees
@@ -51,9 +53,9 @@ enclosure alone is satisfied by a set that grows every step, so
 that to a polynomial per coordinate and `evalPolyReal_ofFn` matches Horner to the monomial sum.
 `point_mem_construct` is the way back and, once `evalPoly_q` says nothing is independent,
 `exists_point_of_q_zero` the way there. `relaxExp_outer` holds at every partition naming two
-generators, `eDiff` owing no proof of optimality: it bounds the drift from above, and a
-sharper bound would only be more precise. `relaxExpEven_outer` adds the evenness that makes the
-drift one-sided and takes half of it into the centre.
+generators, `eDiff` owing no proof of optimality: it bounds the drift from above, and a sharper
+bound would only be more precise. `relaxExpEven_outer` adds the evenness that makes the drift
+one-sided and halves it; `relaxExpMulti_outer` asks nothing of the two columns at all.
 
 `quadMap_exact` is the one that distinguishes the representation: no convex representation here
 can state it. `compact_exact` is the one an order bound rests on: it says the generator count
