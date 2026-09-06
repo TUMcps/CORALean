@@ -126,6 +126,9 @@ elif group == "mr":
               % (m["state"], m["squash"], m.get("detailed_merge_status")))
         print("TITLE:", m["title"])
         print(m["description"])
+        for n in call("GET", "/merge_requests/%s/notes?sort=asc" % rest[0]):
+            if not n["system"]:
+                print("\n--- %s:\n%s" % (n["author"]["username"], n["body"]))
     elif cmd == "new":
         # Description from a file: passing it as an argument is what folded
         # newlines into <br> and needed undoing afterwards.
