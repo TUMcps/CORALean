@@ -3,6 +3,8 @@ import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInputReflect
 import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableReflectIoc
 import CORALean.ContDynamics.LinearSys.Theorems.ContinuousOnState
 import CORALean.ContDynamics.LinearSys.Theorems.Discretize
+import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeEnclosure
+import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeEnclosureReach
 import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeHorizon
 import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeInputSolution
 import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeStep
@@ -55,4 +57,8 @@ representation. `TimeIntervalOuterSplitZonotope` is the exception: dropping
 over one step applies to a run over all forward time by throwing the rest away.
 Each statement asks for the window it speaks about, and only `discretize` and
 the `reach` statements built on it ask for `Set.Ici 0`.
+
+`DiscretizeEnclosure`/`DiscretizeEnclosureReach` are `Discretize`/`ReachOuter`
+again, at `discretizeEnclosure` in place of `discretize`, where the exponential
+is only enclosed rather than computed.
 -/
