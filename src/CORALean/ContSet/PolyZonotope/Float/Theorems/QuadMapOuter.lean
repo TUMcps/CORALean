@@ -5,6 +5,8 @@ import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorErrorMonomial
 import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
 import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadDownLe
 import CORALean.ContSet.PolyZonotope.Float.Theorems.ToRealExtG
+import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapE
+import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapG
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MemConstruct
 import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapExact
 
@@ -22,7 +24,7 @@ alone, and `generatorError` prices that difference exactly as it does for
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   05-September-2026
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 
@@ -112,8 +114,8 @@ theorem PolyZonotope.aux_quadMapDep_refines (Q : Fin m → Mat 𝕋 n n) (S : Po
   simp only [Pi.add_apply, PolyZonotope.quadMapDep, toReal_zero, Finset.univ_eq_empty,
     Finset.sum_empty, add_zero, zero_add]
   rw [hx i]
-  simp only [Real.PolyZonotope.quadMapDep, Pi.zero_apply, Finset.univ_eq_empty,
-    Finset.sum_empty, add_zero, zero_add]
+  simp only [Real.PolyZonotope.quadMapDep, Real.PolyZonotope.bilin, Pi.zero_apply,
+    Finset.univ_eq_empty, Finset.sum_empty, add_zero, zero_add]
   exact hsum
 
 

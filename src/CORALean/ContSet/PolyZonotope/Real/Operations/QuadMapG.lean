@@ -1,17 +1,22 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.ExtG
-import CORALean.ContSet.PolyZonotope.Real.Operations.QuadEval
+import CORALean.ContSet.PolyZonotope.Real.Operations.BilinG
+import CORALean.ContSet.PolyZonotope.Real.Operations.QuadBilin
 
 /-!
 # The generators of `quadMap`
 
-Split out of `QuadMap.lean` (issue #62): read again by the float layer's own
-`Theorems/QuadMapOuter.lean` and by `ConPolyZono.quadMapDep`, both outside
-this file.
+`bilinG` at the quadratic form family, one set paired with itself. Which
+bilinear map is paired is the only thing separating a quadratic map from a
+coordinatewise or a matrix product, so `quadMap` is `bilin` at `quadBilin` and
+this is where that choice is made.
+
+Its own file (issue #62): read again by the float layer's own
+`Theorems/QuadMapOuter.lean` and by `ConPolyZono.quadMapDep`, both outside this
+file.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       06-September-2026
--- Last update:   ---
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 
@@ -21,14 +26,15 @@ namespace CORALean.Real
 
 open Matrix
 
+variable {n m : ℕ}
+
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Generator `(i, j)` of the image: `Gᵢᵀ Q Gⱼ`, one coordinate per matrix. -/
-def PolyZonotope.quadMapG {n m : ℕ} (Q : Fin m → Mat ℝ n n) (S : PolyZonotope (Vec ℝ n)) :
+def PolyZonotope.quadMapG (Q : Fin m → Mat ℝ n n) (S : PolyZonotope (Vec ℝ n)) :
     Fin ((S.h + 1) * (S.h + 1)) → Vec ℝ m :=
-  fun l k => PolyZonotope.extG S (finProdFinEquiv.symm l).1
-      ⬝ᵥ (Q k *ᵥ PolyZonotope.extG S (finProdFinEquiv.symm l).2)
+  PolyZonotope.bilinG (PolyZonotope.quadBilin Q) S S
 
 end CORALean.Real
 

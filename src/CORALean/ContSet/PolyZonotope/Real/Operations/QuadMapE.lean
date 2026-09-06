@@ -1,17 +1,22 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.ExtE
+import CORALean.ContSet.PolyZonotope.Real.Operations.BilinE
 
 /-!
 # The exponent matrix of `quadMap`
 
-Split out of `QuadMap.lean` (issue #62): read again by the float layer's own
-`quadMap`, by `Theorems/QuadMapOuter.lean`, `Theorems/QuadMapENominal.lean`,
+`bilinE` at one set paired with itself: a quadratic map is a pairing over shared
+factors, and its exponent arithmetic never reads the ambient type, so there is
+nothing here beyond the name. `Fin.cast rfl` is the identity, which is why the
+two factor indices need no reconciling.
+
+Its own file (issue #62): read again by the float layer's own `quadMap`, by
+`Theorems/QuadMapOuter.lean`, `Theorems/QuadMapENominal.lean`,
 `Theorems/QuadEvalSumExt.lean`, and by `ConPolyZono.quadMapDep`, all outside
 this file.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       06-September-2026
--- Last update:   ---
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 
@@ -28,8 +33,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 product of two monomials is a monomial again. -/
 def PolyZonotope.quadMapE (S : PolyZonotope α) :
     Fin S.p → Fin ((S.h + 1) * (S.h + 1)) → ℕ :=
-  fun k l => PolyZonotope.extE S k (finProdFinEquiv.symm l).1
-      + PolyZonotope.extE S k (finProdFinEquiv.symm l).2
+  PolyZonotope.bilinE S S rfl
 
 end CORALean.Real
 
