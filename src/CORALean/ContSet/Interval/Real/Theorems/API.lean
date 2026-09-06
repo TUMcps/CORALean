@@ -17,6 +17,8 @@ import CORALean.ContSet.Interval.Real.Theorems.MemCenter
 import CORALean.ContSet.Interval.Real.Theorems.MemPoint
 import CORALean.ContSet.Interval.Real.Theorems.MtimesIntervalMatOuter
 import CORALean.ContSet.Interval.Real.Theorems.MatMulOuter
+import CORALean.ContSet.Interval.Real.Theorems.MatPowOuter
+import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
 import CORALean.ContSet.Interval.Real.Theorems.MtimesIsNonempty
 import CORALean.ContSet.Interval.Real.Theorems.MtimesOuter
 import CORALean.ContSet.Interval.Real.Theorems.MtimesWidth
@@ -36,5 +38,7 @@ are, row by row, which is what a caller bounding an error box against a
 tolerance needs. `MulBetweenCorners` is the scalar fact `mtimes*` products
 against an interval matrix share, and `MatMulOuter` is its use on `matMul`, an
 enclosure and not an equality since a product entry's `k`-summands are bounded
-independently.
+independently. `MatPowOuter` lifts that along `matPow`'s recursion, growing the
+same dependency loss with every power. `SmulOuter` is `MulBetweenEndpoints` read
+back through `Entrywise`, for scaling a box by a real.
 -/
