@@ -17,8 +17,12 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapG
 import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapE
 import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapDep
 import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMap
+import CORALean.ContSet.PolyZonotope.Real.Operations.BilinE
+import CORALean.ContSet.PolyZonotope.Real.Operations.BilinG
+import CORALean.ContSet.PolyZonotope.Real.Operations.Bilin
 import CORALean.ContSet.PolyZonotope.Real.Operations.MulG
 import CORALean.ContSet.PolyZonotope.Real.Operations.MulE
+import CORALean.ContSet.PolyZonotope.Real.Operations.MulGApply
 import CORALean.ContSet.PolyZonotope.Real.Operations.Mul
 import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolyStep
 import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolyP
@@ -73,8 +77,8 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpGreedy
 `plus`, `map` and `quadMap` exactly, `linComb` up to its independent block, and `dependent`,
 which moves that block into the dependent one and is what lets `quadMap` be total.
 
-`mul` multiplies two sets coordinatewise over shared factors, exact against `point` and not the
-two sets; `quadMap` reaches degree two this way, `evalPoly` any degree.
+`bilin` pairs two sets over shared factors by any bilinear map, exact against `point` and not the
+two sets; `mul` is it at the entrywise product, `quadMap` degree two this way, `evalPoly` any.
 
 Each of those grows the generator counts, and `compact` brings them back down without changing
 the set: equal exponent columns add together, a generator that came out zero goes, and so does a

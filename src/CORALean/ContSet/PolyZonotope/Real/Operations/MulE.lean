@@ -1,16 +1,17 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.ExtE
+import CORALean.ContSet.PolyZonotope.Real.Operations.BilinE
 
 /-!
 # The exponent matrix of `mul`
 
-Split out of `Mul.lean` (issue #62): read again by the float layer's own
-`Operations/Mul.lean`, `Theorems/EvalPolyOuter.lean`, `Theorems/MulOuter.lean`
-and `Theorems/MulPoint.lean`, all outside this file.
+`bilinE` at `Vec`. The exponent arithmetic of a product never reads the ambient
+type, so there is nothing here beyond the name: `mul` is the entrywise case of
+`bilin`, and this is its exponent matrix under the name the float layer's
+`Theorems/MulOuter.lean` and `Theorems/MulGClose.lean` cite it by.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       06-September-2026
--- Last update:   ---
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 
@@ -27,8 +28,7 @@ variable {n : ℕ}
 indices. -/
 def PolyZonotope.mulE (S₁ S₂ : PolyZonotope (Vec ℝ n)) (hp : S₁.p = S₂.p) :
     Fin S₁.p → Fin ((S₁.h + 1) * (S₂.h + 1)) → ℕ :=
-  fun k l => PolyZonotope.extE S₁ k (finProdFinEquiv.symm l).1
-      + PolyZonotope.extE S₂ (Fin.cast hp k) (finProdFinEquiv.symm l).2
+  PolyZonotope.bilinE S₁ S₂ hp
 
 end CORALean.Real
 

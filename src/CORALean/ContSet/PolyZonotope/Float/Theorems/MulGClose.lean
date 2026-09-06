@@ -1,5 +1,6 @@
 import CORALean.ContSet.PolyZonotope.Float.Operations.Mul
 import CORALean.ContSet.PolyZonotope.Float.Theorems.ToRealExtG
+import CORALean.ContSet.PolyZonotope.Real.Operations.MulGApply
 
 /-!
 # A stored product generator is close to the exact one
@@ -12,7 +13,7 @@ per Horner step. `mulDown`/`mulUp` bracket the exact product directly, and
 
 -- Authors:       Tobias Ladner
 -- Written:       06-September-2026
--- Last update:   ---
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 
@@ -36,7 +37,7 @@ theorem PolyZonotope.mulG_close (S₁ S₂ : PolyZonotope 𝕋 n) (i : Fin n)
   have hexact : Real.PolyZonotope.mulG (nominal S₁) (nominal S₂) l i
       = toReal (PolyZonotope.extG S₁ i (finProdFinEquiv.symm l).1)
         * toReal (PolyZonotope.extG S₂ i (finProdFinEquiv.symm l).2) := by
-    simp only [Real.PolyZonotope.mulG, PolyZonotope.toReal_extG]
+    simp only [Real.PolyZonotope.mulG_apply, PolyZonotope.toReal_extG]
   -- the two directed products bracket the exact one, and `subUp` covers the gap
   have hlo := mulDown_le_mul (PolyZonotope.extG S₁ i (finProdFinEquiv.symm l).1)
     (PolyZonotope.extG S₂ i (finProdFinEquiv.symm l).2)
