@@ -40,7 +40,8 @@ noncomputable def Zonotope.vPolytope (Z : Zonotope α) : VPolytope α where
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.subset_vPolytope (Z : Zonotope α) : Z.construct ⊆ Z.vPolytope.construct := by
+theorem Zonotope.subset_vPolytope (Z : Zonotope α) :
+    Z.construct ⊆ Z.vPolytope.construct := by -- --- PROOF ---
   rintro _ ⟨β, hβ, rfl⟩
   -- how far from `-1` towards `1` each coefficient sits
   set t : Fin Z.h → ℝ := fun j => (β j + 1) / 2 with htdef

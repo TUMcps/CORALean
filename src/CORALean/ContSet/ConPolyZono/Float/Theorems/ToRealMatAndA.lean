@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem ConPolyZono.toRealMat_andA (C₁ C₂ : ConPolyZono 𝕋 n) :
     toRealMat (ConPolyZono.andA C₁ C₂)
-      = Real.ConPolyZono.andA (nominal C₁) (nominal C₂) := by
+      = Real.ConPolyZono.andA (nominal C₁) (nominal C₂) := by -- --- PROOF ---
   -- the exact layer's matrix spelled out, so the four `Fin.addCases` branches below match it
   have hreal : Real.ConPolyZono.andA (nominal C₁) (nominal C₂)
       = fun i => Fin.append

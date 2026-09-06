@@ -51,7 +51,7 @@ theorem aux_expNeg_mulVec_sub {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U : S
     (hT : Set.Icc a b ⊆ T) (hab : a ≤ b)
     (hu : IntervalIntegrable (fun s => exp ((-s) • toRealMat sys.A) *ᵥ u s) volume a b) :
     exp ((-b) • toRealMat sys.A) *ᵥ x b - exp ((-a) • toRealMat sys.A) *ᵥ x a
-      = ∫ s in a..b, exp ((-s) • toRealMat sys.A) *ᵥ u s := by
+      = ∫ s in a..b, exp ((-s) • toRealMat sys.A) *ᵥ u s := by -- --- PROOF ---
   set A := toRealMat sys.A
   have hcont : ContinuousOn (fun r : ℝ => exp ((-r) • A) *ᵥ x r) (Set.uIcc a b) := by
     rw [Set.uIcc_of_le hab]
@@ -78,7 +78,7 @@ theorem LinearSys.Trajectory.variation_of_constants {sys : LinearSys 𝕋 n} {T 
     (hT : Set.Icc a b ⊆ T) (hab : a ≤ b)
     (hu : IntervalIntegrable (fun s => exp ((-s) • toRealMat sys.A) *ᵥ u s) volume a b) :
     x b = exp ((b - a) • toRealMat sys.A) *ᵥ x a
-      + ∫ s in a..b, exp ((b - s) • toRealMat sys.A) *ᵥ u s := by
+      + ∫ s in a..b, exp ((b - s) • toRealMat sys.A) *ᵥ u s := by -- --- PROOF ---
   set A := toRealMat sys.A
   have hmul : ∀ c d : ℝ, exp (c • A) * exp (d • A) = exp ((c + d) • A) := by
     intro c d

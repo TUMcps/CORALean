@@ -25,7 +25,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem VPolytope.convex_construct (P : VPolytope α) : Convex ℝ P.construct := by
+theorem VPolytope.convex_construct (P : VPolytope α) : Convex ℝ P.construct := by -- --- PROOF ---
   rintro x ⟨β₁, hβ₁, hs₁, rfl⟩ y ⟨β₂, hβ₂, hs₂, rfl⟩ a b ha hb hab
   have hnn : ∀ j, 0 ≤ a * β₁ j + b * β₂ j := fun j =>
     add_nonneg (mul_nonneg ha (hβ₁ j)) (mul_nonneg hb (hβ₂ j))

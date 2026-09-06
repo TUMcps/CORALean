@@ -41,7 +41,7 @@ theorem ConPolyZono.aux_sum_dependent (C : ConPolyZono α) (a : Fin (C.p + C.q) 
         PolyZonotope.monomial (PolyZonotope.plusE C.E (PolyZonotope.identE C.q)) a i
           • Fin.append C.G C.GI i)
       = (∑ i, PolyZonotope.monomial C.E (fun k => a (Fin.castAdd C.q k)) i • C.G i)
-        + ∑ j, a (Fin.natAdd C.p j) • C.GI j := by
+        + ∑ j, a (Fin.natAdd C.p j) • C.GI j := by -- --- PROOF ---
   rw [Fin.sum_univ_add]
   congr 1
   · exact Finset.sum_congr rfl fun i _ => by
@@ -54,7 +54,7 @@ theorem ConPolyZono.aux_sum_dependent (C : ConPolyZono α) (a : Fin (C.p + C.q) 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.dependent_exact (C : ConPolyZono α) :
-    C.construct = C.dependent.construct := by
+    C.construct = C.dependent.construct := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨a, b, ha, hb, hsat, rfl⟩
     have hA : (fun k => Fin.append a b (Fin.castAdd C.q k)) = a :=

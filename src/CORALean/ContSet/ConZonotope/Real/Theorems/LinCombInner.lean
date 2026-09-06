@@ -39,7 +39,7 @@ there is something to divide by, and the origin where there is not. -/
 theorem ConZonotope.aux_smul_mem (C : ConZonotope α) (hne : C.construct.Nonempty) {w : ℝ}
     (hw : 0 ≤ w) {u : Vec ℝ C.h} (hrows : ∀ i, C.domain.A i u ≤ w * C.domain.b i)
     (heqs : ∀ i, C.domain.Ae i u = w * C.domain.be i) :
-    ∃ y ∈ C.construct, w • y = w • C.c + ∑ j, u j • C.G j := by
+    ∃ y ∈ C.construct, w • y = w • C.c + ∑ j, u j • C.G j := by -- --- PROOF ---
   rcases eq_or_lt_of_le hw with hzero | hpos
   -- weight zero: the box rows of `domain` are the ones that pin the block
   · obtain ⟨y, hy⟩ := hne
@@ -76,7 +76,7 @@ theorem ConZonotope.aux_smul_mem (C : ConZonotope α) (hne : C.construct.Nonempt
 
 theorem ConZonotope.linComb_inner (C₁ C₂ : ConZonotope α) (h₁ : C₁.construct.Nonempty)
     (h₂ : C₂.construct.Nonempty) :
-    (C₁.linComb C₂).construct ⊆ segments C₁.construct C₂.construct := by
+    (C₁.linComb C₂).construct ⊆ segments C₁.construct C₂.construct := by -- --- PROOF ---
   rintro x ⟨β, hβ, hP, rfl⟩
   set lam : ℝ := (β (Fin.natAdd (C₁.h + C₂.h) 0) + 1) / 2 with hlam
   have habs := hβ (Fin.natAdd (C₁.h + C₂.h) 0)

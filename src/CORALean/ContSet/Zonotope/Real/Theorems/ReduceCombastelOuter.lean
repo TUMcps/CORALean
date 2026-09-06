@@ -27,7 +27,7 @@ variable {n : ℕ}
 /-- Same two cases, at Combastel's partition instead of Girard's — the metric
 never appears, which is `reduceBy_outer`'s whole point. -/
 theorem Zonotope.reduceCombastel_outer (Z : Zonotope (Vec ℝ n)) (o : ℕ) :
-    Z.construct ⊆ (Z.reduceCombastel o).construct := by
+    Z.construct ⊆ (Z.reduceCombastel o).construct := by -- --- PROOF ---
   unfold Zonotope.reduceCombastel
   split_ifs with hlt
   · exact Zonotope.reduceBy_outer Z _

@@ -45,7 +45,7 @@ private theorem one_le_onePlusExpDown (k : ℕ) (a : 𝕋) : 1 ≤ toReal (onePl
   exact le_max_left _ _
 
 private theorem onePlusExpDown_le (k : ℕ) (a : 𝕋) :
-    toReal (onePlusExpDown k a) ≤ 1 + Real.exp (toReal a) := by
+    toReal (onePlusExpDown k a) ≤ 1 + Real.exp (toReal a) := by -- --- PROOF ---
   rw [onePlusExpDown, toReal_maximum]
   refine max_le ?_ (le_trans (addDown_le_add one (expDown k a)) ?_)
   · rw [toReal_one]
@@ -55,7 +55,7 @@ private theorem onePlusExpDown_le (k : ℕ) (a : 𝕋) :
 
 /-- `σ` written so that only a *lower* bound on `exp` is needed: `1/(1 + e⁻ᵗ)`
 would ask for an upper one, which no total float expression supplies. -/
-private theorem sigmoid_eq (t : ℝ) : Real.sigmoid t = 1 - (1 + Real.exp t)⁻¹ := by
+private theorem sigmoid_eq (t : ℝ) : Real.sigmoid t = 1 - (1 + Real.exp t)⁻¹ := by -- --- PROOF ---
   have hpos : (0:ℝ) < Real.exp t := Real.exp_pos t
   have hE : Real.exp t ≠ 0 := ne_of_gt hpos
   have h1 : (1:ℝ) + Real.exp t ≠ 0 := by positivity
@@ -95,7 +95,7 @@ def sigmoidDerivHi (E : Enclosure 𝕋 Real.sigmoid) (l u : 𝕋) : 𝕋 :=
 
 theorem sigmoidDerivLo_le (E : Enclosure 𝕋 Real.sigmoid) (l u : 𝕋) (x : ℝ)
     (hl : toReal l ≤ x) (hu : x ≤ toReal u) :
-    toReal (sigmoidDerivLo E l u) ≤ Real.sigmoidDeriv x := by
+    toReal (sigmoidDerivLo E l u) ≤ Real.sigmoidDeriv x := by -- --- PROOF ---
   have h₁ : toReal (maximum zero (E.lo l)) ≤ Real.sigmoid x := by
     rw [toReal_maximum, toReal_zero]
     exact max_le (le_of_lt (Real.sigmoid_pos x)) (le_trans (E.lo_le l) (Real.sigmoid_mono hl))
@@ -114,7 +114,7 @@ theorem sigmoidDerivLo_le (E : Enclosure 𝕋 Real.sigmoid) (l u : 𝕋) (x : �
 
 theorem le_sigmoidDerivHi (E : Enclosure 𝕋 Real.sigmoid) (l u : 𝕋) (x : ℝ)
     (hl : toReal l ≤ x) (hu : x ≤ toReal u) :
-    Real.sigmoidDeriv x ≤ toReal (sigmoidDerivHi E l u) := by
+    Real.sigmoidDeriv x ≤ toReal (sigmoidDerivHi E l u) := by -- --- PROOF ---
   -- upward the sign needs no floor: an upper bound on a positive value is positive
   have h₁ : Real.sigmoid x ≤ toReal (E.hi u) := le_trans (Real.sigmoid_mono hu) (E.le_hi u)
   have h₂ : Real.sigmoid (-x) ≤ toReal (E.hi (neg l)) := by

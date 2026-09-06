@@ -45,7 +45,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 every monomial is at most `1`. -/
 theorem PolyZonotope.aux_point_le_boundS (S : PolyZonotope 𝕋 n) (b : Fin S.p → ℝ)
     (hb : ∀ k, |b k| ≤ 1) (i : Fin n) :
-    |Real.PolyZonotope.point (nominal S) b i| ≤ toReal (PolyZonotope.evalPolyBoundS S i) := by
+    |Real.PolyZonotope.point
+      (nominal S) b i| ≤ toReal (PolyZonotope.evalPolyBoundS S i) := by -- --- PROOF ---
   -- unfold the point at `i`, `nominal S`'s fields read back as `S`'s own
   have h1 : Real.PolyZonotope.point (nominal S) b i
       = toReal (S.c i) + ∑ l, toReal (S.G i l) * Real.PolyZonotope.monomial S.E b l := by
@@ -89,7 +90,7 @@ theorem PolyZonotope.aux_evalPoly_close (S : PolyZonotope 𝕋 n) (coeffs : List
               ([] : List (Vec ℝ n))).2.trans (PolyZonotope.nominal_p S)) k)) i
           - Real.PolyZonotope.point (nominal (PolyZonotope.evalPolyP S ([] : List (Vec 𝕋 n))).1)
               (fun k => b (Fin.cast (PolyZonotope.evalPolyP S ([] : List (Vec 𝕋 n))).2 k)) i)
-        = (0 : Vec ℝ n) := by -- --- PROOF ---
+        = (0 : Vec ℝ n) := by
       funext j
       simp only [Real.PolyZonotope.evalPolyP, PolyZonotope.evalPolyP]
       have hsumR : ∀ {α : Type} [AddCommMonoid α] (f : Fin (0 : ℕ) → α), ∑ x, f x = 0 :=

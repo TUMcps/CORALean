@@ -66,7 +66,7 @@ theorem LinearSys.Trajectory.stepInput_outer [Mtimes ℐ S]
     (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) Δt η) U)))
     (k : ℕ) (hT : Set.Icc ((k : ℝ) * Δt) (((k : ℝ) + 1) * Δt) ⊆ T) :
-    sys.stepInput u Δt k ∈ construct (sys.inputSolution Δt η U) := by
+    sys.stepInput u Δt k ∈ construct (sys.inputSolution Δt η U) := by -- --- PROOF ---
   rw [show ((k : ℝ) + 1) * Δt = (k : ℝ) * Δt + Δt from by ring] at hT
   -- the reflected argument, in the form each lemma states it
   have hrefl : ∀ τ : ℝ, (k : ℝ) * Δt + (Δt - τ) = (k : ℝ) * Δt + Δt - τ := fun τ => by ring

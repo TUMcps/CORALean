@@ -46,7 +46,7 @@ theorem aux_row_split (M : Mat 𝕋 q n) (G : Mat 𝕋 n h) (c : Vec 𝕋 n) (β
     (x : Vec ℝ n) (hx : ∀ k, x k = toReal (c k) + ∑ j, toReal (G k j) * β j) (i : Fin q) :
     (toRealMat M *ᵥ x) i
       = (∑ k, toReal (M i k) * toReal (c k))
-        + ∑ j, (∑ k, toReal (M i k) * toReal (G k j)) * β j := by
+        + ∑ j, (∑ k, toReal (M i k) * toReal (G k j)) * β j := by -- --- PROOF ---
   show ∑ k, toReal (M i k) * x k = _
   rw [Finset.sum_congr rfl fun k (_ : k ∈ Finset.univ) => by rw [hx k]]
   simp only [mul_add, Finset.mul_sum]
@@ -62,7 +62,7 @@ theorem aux_prod_error (M : Mat 𝕋 q n) (G : Mat 𝕋 n h) (β : Vec ℝ h)
     (hβ : ∀ j, |β j| ≤ 1) (i : Fin q) :
     |(∑ j, (∑ k, toReal (M i k) * toReal (G k j)) * β j)
         - (toRealMat (matMulDown M G) *ᵥ β) i|
-      ≤ toReal (radius (matMulDiff M G) i) := by
+      ≤ toReal (radius (matMulDiff M G) i) := by -- --- PROOF ---
   have hd : ∀ (i' : Fin q) (j : Fin h),
       |(∑ k, toReal (M i' k) * toReal (G k j)) - toReal (matMulDown M G i' j)|
         ≤ |toReal (matMulDiff M G i' j)| := by
@@ -164,7 +164,7 @@ noncomputable def HPolytope.conZonotope {P : HPolytope 𝕋 n}
 theorem HPolytope.subset_conZonotope {P : HPolytope 𝕋 n}
     (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
     (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) :
-    P.construct ⊆ (HPolytope.conZonotope up lo).construct := by
+    P.construct ⊆ (HPolytope.conZonotope up lo).construct := by -- --- PROOF ---
   intro x hx
   refine ⟨x, P.subset_nominal_conZonotopeOf _ (fun y hy =>
     Interval.subset_nominal_zonotope _ (HPolytope.interval_outer up lo hy)) hx, 0, fun i => ?_, ?_⟩

@@ -46,7 +46,7 @@ def ConZonotope.aux_coeffs {h : ℕ} (f : Vec ℝ h →ₗ[ℝ] ℝ) : Vec ℝ h
   fun j => f (Pi.single j 1)
 
 theorem ConZonotope.aux_apply_eq_sum {h : ℕ} (f : Vec ℝ h →ₗ[ℝ] ℝ) (β : Vec ℝ h) :
-    f β = ∑ j, ConZonotope.aux_coeffs f j * β j := by
+    f β = ∑ j, ConZonotope.aux_coeffs f j * β j := by -- --- PROOF ---
   have hsingle : ∀ j k : Fin h, (Pi.single j (1:ℝ) : Vec ℝ h) k = if k = j then 1 else 0 :=
     fun j k => Pi.single_apply j (1:ℝ) k
   have hβ : β = ∑ j, β j • (Pi.single j (1:ℝ) : Vec ℝ h) := by
@@ -100,7 +100,7 @@ def ConZonotope.conPolyZono (C : ConZonotope (Vec ℝ n)) : ConPolyZono (Vec ℝ
 -- identity exponents make the monomial vector the factor vector itself
 theorem ConZonotope.aux_mulVec_conA (C : ConZonotope (Vec ℝ n)) (β : Vec ℝ C.h) :
     ∀ i, (ConZonotope.conA C *ᵥ PolyZonotope.monomial (PolyZonotope.identE C.h) β) i
-      = (ConZonotope.conA C *ᵥ β) i := by
+      = (ConZonotope.conA C *ᵥ β) i := by -- --- PROOF ---
   have hm : PolyZonotope.monomial (PolyZonotope.identE C.h) β = β :=
     funext fun j => PolyZonotope.monomial_identE β j
   rw [hm]
@@ -112,7 +112,7 @@ theorem ConZonotope.satisfies_conPolyZono_iff (C : ConZonotope (Vec ℝ n)) (β 
     (hβ : ∀ j, |β j| ≤ 1) :
     C.conPolyZono.satisfies β ↔ β ∈ C.P.construct := by -- --- PROOF ---
   have hlin : ∀ i : Fin C.P.m, (ConZonotope.conA C *ᵥ β) (Fin.castAdd C.P.me i)
-      = C.P.A i β := by -- --- PROOF ---
+      = C.P.A i β := by
     intro i
     show ∑ j, ConZonotope.conA C (Fin.castAdd C.P.me i) j * β j = _
     rw [ConZonotope.aux_apply_eq_sum (C.P.A i) β]
@@ -161,7 +161,7 @@ theorem ConZonotope.satisfies_conPolyZono_iff (C : ConZonotope (Vec ℝ n)) (β 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.conPolyZono_exact (C : ConZonotope (Vec ℝ n)) :
-    C.construct = C.conPolyZono.construct := by
+    C.construct = C.conPolyZono.construct := by -- --- PROOF ---
   have hvalue : ∀ β : Vec ℝ C.h,
       C.c + ∑ j, β j • C.G j
         = C.c + (∑ i, PolyZonotope.monomial (PolyZonotope.identE C.h) β i • C.G i)

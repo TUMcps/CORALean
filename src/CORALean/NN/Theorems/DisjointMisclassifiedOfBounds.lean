@@ -38,7 +38,7 @@ theorem aux_marginDir_apply (j l : Fin m) (y : Vec ℝ m) : marginDir m j l y = 
 
 theorem disjoint_misclassified_of_bounds {O : Set (Vec ℝ m)} (l : Fin m)
     (u : ∀ j, SupportBound O (marginDir m j l))
-    (h : ∀ j, j ≠ l → (u j).val < 0) : Disjoint O (misclassified m l) := by
+    (h : ∀ j, j ≠ l → (u j).val < 0) : Disjoint O (misclassified m l) := by -- --- PROOF ---
   rw [Set.disjoint_left]
   rintro y hy ⟨j, hj, hle⟩
   have hb := (u j).le y hy

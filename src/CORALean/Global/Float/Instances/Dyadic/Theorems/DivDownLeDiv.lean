@@ -29,7 +29,7 @@ variable {p : ℕ}
 
 /-- Integer division truncates toward zero, which for a positive divisor is down. -/
 private theorem quotDown_le_div (a b : Dyadic p) (hb : 0 < toReal b) :
-    toReal (quotDown a b) ≤ toReal a / toReal b := by
+    toReal (quotDown a b) ≤ toReal a / toReal b := by -- --- PROOF ---
   have hm : 0 < b.mantissa := mantissa_pos hb
   have hmR : (0 : ℝ) < (b.mantissa : ℝ) := Int.cast_pos.mpr hm
   rw [toReal_div_eq a b (ne_of_gt hmR), quotDown, toReal_mk]

@@ -42,7 +42,7 @@ theorem aux_mulVecR_apply (v : Vec ℝ n) (M : Mat ℝ n n) : aux_mulVecR v M = 
 /-- `‖A^i v‖ ≤ ‖A‖^i ‖v‖`, the `i = 0` case included, where the power is the
 identity rather than something the operator norm bounds. -/
 theorem aux_norm_pow_mulVec (A : Mat ℝ n n) (v : Vec ℝ n) (i : ℕ) :
-    ‖A ^ i *ᵥ v‖ ≤ ‖A‖ ^ i * ‖v‖ := by
+    ‖A ^ i *ᵥ v‖ ≤ ‖A‖ ^ i * ‖v‖ := by -- --- PROOF ---
   rcases Nat.eq_zero_or_pos i with rfl | hi
   · simp
   · exact le_trans (Matrix.linfty_opNorm_mulVec _ _)
@@ -63,7 +63,7 @@ set_option maxHeartbeats 400000 in
 summability of a matrix series carries to it. -/
 theorem aux_summable_smul_mulVec {c : ℕ → ℝ} (A : Mat ℝ n n) (v : Vec ℝ n)
     (h : Summable (fun i : ℕ => ‖c i • A ^ i‖)) :
-    Summable (fun i : ℕ => c i • (A ^ i *ᵥ v)) := by
+    Summable (fun i : ℕ => c i • (A ^ i *ᵥ v)) := by -- --- PROOF ---
   refine Summable.of_norm_bounded (g := fun i : ℕ => ‖v‖ * ‖c i • A ^ i‖)
     (h.mul_left _) fun i => ?_
   rw [norm_smul, norm_smul]

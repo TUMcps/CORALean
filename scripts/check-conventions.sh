@@ -623,25 +623,45 @@ END {
 ' | sort)
 report "$out"
 
-# The optional proof flag. A long proof buries the seam between what is claimed
-# and how it is shown, so the declaration's `:= by` may carry `-- --- PROOF ---`
-# to mark it. Optional by design: nothing here requires one. But the form is
-# fixed, so it reads the same in every file, and it may only sit on a proof long
-# enough to need it — on a short one it is ink saying what `:= by` already said.
-out=$(printf '%s\n' "$files" | xargs awk -v MIN=20 '
-function checkfile(   i, k, n, line) {
-  for (i = 1; i <= nf; i++) {
-    line = L[i]
-    if (line ~ /:= by[ \t]*--/ && tolower(line) ~ /proof/ && line !~ /:= by -- --- PROOF ---$/) {
-      print fname ":" i ": the proof flag reads `-- --- PROOF ---`, exactly, after `:= by`"
-      continue
+# The proof flag. A statement that wraps over several lines does not obviously
+# end, so a declaration's `:= by` carries `-- --- PROOF ---` once its proof runs
+# to five lines or more — the point where the seam stops being visible at a
+# glance. Required there and refused below it, so the flag always means the same
+# thing; and only on the declaration's own `:= by`, never on a nested
+# `have ... := by`, since a flag on every inner block marks nothing.
+out=$(printf '%s\n' "$files" | xargs awk -v MIN=5 '
+function isdecl(s) {
+  return s ~ /^(@\[[^]]*\][ \t]*)?(private |protected |noncomputable |scoped )*(theorem|lemma)[ \t]/
+}
+function checkfile(   i, j, k, n, end, s, tagged) {
+  split("", legit)
+  i = 1
+  while (i <= nf) {
+    if (!isdecl(L[i])) { i++; continue }
+    end = 0
+    for (j = i; j <= nf && j - i < 30; j++) {
+      s = L[j]; sub(/[ \t]+$/, "", s)
+      if (s ~ /:= by$/ || s ~ /:= by -- --- PROOF ---$/) { end = j; break }
     }
-    if (line !~ /:= by -- --- PROOF ---$/) continue
-    k = i + 1; n = 0
+    if (end == 0) { i++; continue }
+    k = end + 1; n = 0
     while (k <= nf && (L[k] ~ /^  / || L[k] ~ /^[ \t]*$/)) { k++; n++ }
-    if (n < MIN)
-      print fname ":" i ": the proof flag marks a proof of " n \
-            " lines — it is for proofs of " MIN " or more, where the seam is hard to find"
+    legit[end] = 1
+    s = L[end]; sub(/[ \t]+$/, "", s)
+    tagged = (s ~ /:= by -- --- PROOF ---$/)
+    if (n >= MIN && !tagged)
+      print fname ":" end ": a proof of " n " lines needs `-- --- PROOF ---` after its `:= by`" \
+            " — wrap the statement if the line has no room"
+    if (n < MIN && tagged)
+      print fname ":" end ": the proof flag marks a proof of " n " lines — it is for " MIN " or more"
+    i = k
+  }
+  for (i = 1; i <= nf; i++) {
+    if (L[i] ~ /-- --- PROOF ---/ && !(i in legit))
+      print fname ":" i ": the proof flag belongs on a declaration`s own `:= by`," \
+            " not on a nested `have ... := by`"
+    else if (L[i] ~ /:= by[ \t]*--/ && tolower(L[i]) ~ /proof/ && L[i] !~ /:= by -- --- PROOF ---$/)
+      print fname ":" i ": the proof flag reads `-- --- PROOF ---`, exactly, after `:= by`"
   }
 }
 FNR == 1 { if (nf > 0) checkfile(); split("", L); nf = 0; fname = FILENAME }

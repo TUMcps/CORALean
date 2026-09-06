@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem PolyZonotope.aux_mul_refines (S₁ S₂ : PolyZonotope 𝕋 n) (hp : S₁.p = S₂.p) :
     (Real.PolyZonotope.mul (nominal S₁) (nominal S₂) hp).construct
-      ⊆ (PolyZonotope.mul S₁ S₂ hp).construct := by
+      ⊆ (PolyZonotope.mul S₁ S₂ hp).construct := by -- --- PROOF ---
   intro x hx
   obtain ⟨a, b, ha, hb, hx⟩ := Real.PolyZonotope.mem_construct_iff.mp hx
   have hbox : (fun i => ∑ l,

@@ -26,7 +26,8 @@ variable {n : ℕ}
 theorem ConPolyZono.mulVec_andA_left (C₁ C₂ : ConPolyZono (Vec ℝ n))
     (v : Fin (C₁.s + C₂.s + (C₁.h + C₂.h)) → ℝ) (i : Fin (C₁.m + C₂.m)) :
     (ConPolyZono.andA C₁ C₂ *ᵥ v) (Fin.castAdd n i)
-      = (ConPolyZono.plusA C₁.A C₂.A *ᵥ fun l => v (Fin.castAdd (C₁.h + C₂.h) l)) i := by
+      = (ConPolyZono.plusA
+        C₁.A C₂.A *ᵥ fun l => v (Fin.castAdd (C₁.h + C₂.h) l)) i := by -- --- PROOF ---
   show ∑ l : Fin (C₁.s + C₂.s + (C₁.h + C₂.h)),
       ConPolyZono.andA C₁ C₂ (Fin.castAdd n i) l * v l
     = ∑ l, ConPolyZono.plusA C₁.A C₂.A i l * v (Fin.castAdd (C₁.h + C₂.h) l)

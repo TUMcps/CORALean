@@ -44,7 +44,7 @@ noncomputable def HPolytope.conZonotope
 theorem HPolytope.conZonotope_exact
     (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
     (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) :
-    (HPolytope.conZonotope up lo).construct = P.construct := by
+    (HPolytope.conZonotope up lo).construct = P.construct := by -- --- PROOF ---
   -- the coefficients' constraint says exactly that the point they name is in `P`
   have hmem : ∀ β : Vec ℝ (HPolytope.zonotope up lo).h,
       β ∈ ((P.translate (-(HPolytope.zonotope up lo).c)).comap

@@ -46,7 +46,8 @@ theorem Zonotope.aux_sum_univ_plus {Z₁ Z₂ : Zonotope 𝕋 n} (f : Fin (Z₁.
 /-- The concatenated generators account for everything but the centre rounding. -/
 theorem Zonotope.aux_plus_nominal (Z₁ : Zonotope 𝕋 n) (Z₂ : Zonotope 𝕋 n) :
     (nominal Z₁).construct + (nominal Z₂).construct ⊆
-      (nominal (Z₁.plus Z₂)).construct + (Zonotope.centerResidual Z₁.c Z₂.c).construct := by
+      (nominal (Z₁.plus
+        Z₂)).construct + (Zonotope.centerResidual Z₁.c Z₂.c).construct := by -- --- PROOF ---
   rintro _ ⟨z₁, hz₁', z₂, hz₂', rfl⟩
   obtain ⟨β₁, hβ₁, hz₁⟩ := Zonotope.mem_nominalSet_iff.mp hz₁'
   obtain ⟨β₂, hβ₂, hz₂⟩ := Zonotope.mem_nominalSet_iff.mp hz₂'

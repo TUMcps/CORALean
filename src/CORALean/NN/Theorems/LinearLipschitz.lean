@@ -34,7 +34,7 @@ variable {n m : ℕ}
 
 theorem Layer.lipschitzWith_linear_eval (W : Mat ℝ m n) (b : Vec ℝ m) :
     LipschitzWith (Finset.univ.sup fun i => ∑ j, ‖W i j‖₊)
-      (fun x : Vec ℝ n => W *ᵥ x + b) := by
+      (fun x : Vec ℝ n => W *ᵥ x + b) := by -- --- PROOF ---
   refine LipschitzWith.of_dist_le_mul fun x y => ?_
   have hd : (0:ℝ) ≤ dist x y := dist_nonneg
   have hK : (0:ℝ) ≤ ((Finset.univ.sup fun i => ∑ j, ‖W i j‖₊ : NNReal) : ℝ) :=

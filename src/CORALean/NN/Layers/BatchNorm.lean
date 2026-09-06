@@ -55,7 +55,7 @@ theorem Layer.batchNorm_eval (chan : Fin n → Fin c) (gamma beta mean var : Vec
     (x : Vec ℝ n) (i : Fin n) :
     (Layer.batchNorm (S := S) chan gamma beta mean var eps).eval x i
       = gamma (chan i) * (x i - mean (chan i)) / Real.sqrt (var (chan i) + eps)
-        + beta (chan i) := by
+        + beta (chan i) := by -- --- PROOF ---
   show (Matrix.diagonal (fun i => batchNormScale (gamma (chan i)) (var (chan i)) eps) *ᵥ x) i
     + batchNormShift (gamma (chan i)) (beta (chan i)) (mean (chan i)) (var (chan i)) eps = _
   rw [Matrix.mulVec_diagonal, batchNormShift, batchNormScale]

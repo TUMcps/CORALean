@@ -39,7 +39,7 @@ noncomputable def ConZonotope.vPolytope (C : ConZonotope α)
   V := fun l => C.c + ∑ j, ((C.domain.vPolytope hne).V l) j • C.G j
 
 theorem ConZonotope.subset_vPolytope (C : ConZonotope α) (hne : C.domain.construct.Nonempty) :
-    C.construct ⊆ (C.vPolytope hne).construct := by
+    C.construct ⊆ (C.vPolytope hne).construct := by -- --- PROOF ---
   rintro _ ⟨β, hβ, hP, rfl⟩
   obtain ⟨lam, hlam0, hlam1, hlamv⟩ :=
     C.domain.subset_vPolytope C.isCompact_domain hne (ConZonotope.mem_domain_iff.mpr ⟨hβ, hP⟩)
@@ -63,7 +63,7 @@ theorem ConZonotope.subset_vPolytope (C : ConZonotope α) (hne : C.domain.constr
 
 -- back: each listed vertex comes from a domain vertex, hence from a point of the set
 theorem ConZonotope.vPolytope_subset (C : ConZonotope α) (hne : C.domain.construct.Nonempty) :
-    (C.vPolytope hne).construct ⊆ C.construct := by
+    (C.vPolytope hne).construct ⊆ C.construct := by -- --- PROOF ---
   rw [VPolytope.construct_eq_convexHull]
   refine convexHull_min ?_ C.convex_construct
   rintro _ ⟨l, rfl⟩

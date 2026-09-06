@@ -41,7 +41,7 @@ theorem ConZonotope.aux_sum_univ_plus {C₁ C₂ : ConZonotope 𝕋 n} (f : Fin 
 
 theorem ConZonotope.aux_plus_nominal (C₁ C₂ : ConZonotope 𝕋 n) :
     nominalSet C₁ + nominalSet C₂ ⊆
-      nominalSet (C₁.plus C₂) + (Zonotope.centerResidual C₁.c C₂.c).construct := by
+      nominalSet (C₁.plus C₂) + (Zonotope.centerResidual C₁.c C₂.c).construct := by -- --- PROOF ---
   rintro _ ⟨z₁, hz₁', z₂, hz₂', rfl⟩
   obtain ⟨β₁, hβ₁, hP₁, hz₁⟩ := ConZonotope.mem_nominalSet_iff.mp hz₁'
   obtain ⟨β₂, hβ₂, hP₂, hz₂⟩ := ConZonotope.mem_nominalSet_iff.mp hz₂'

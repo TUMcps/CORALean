@@ -26,7 +26,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.convex_construct (C : ConZonotope α) : Convex ℝ C.construct := by
+theorem ConZonotope.convex_construct (C : ConZonotope α) :
+    Convex ℝ C.construct := by -- --- PROOF ---
   rintro x ⟨β₁, hβ₁, hP₁, rfl⟩ y ⟨β₂, hβ₂, hP₂, rfl⟩ s t hs ht hst
   have hbox : ∀ j, |s * β₁ j + t * β₂ j| ≤ 1 := by
     intro j

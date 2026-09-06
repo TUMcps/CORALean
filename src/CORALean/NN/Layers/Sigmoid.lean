@@ -39,7 +39,7 @@ theorem sigmoid_pos (t : ℝ) : 0 < sigmoid t := by
   rw [sigmoid]
   positivity
 
-theorem sigmoid_mono : Monotone sigmoid := by
+theorem sigmoid_mono : Monotone sigmoid := by -- --- PROOF ---
   intro a b hab
   have hpb : (0:ℝ) < 1 + Real.exp (-b) := by positivity
   have hexp : Real.exp (-b) ≤ Real.exp (-a) := Real.exp_le_exp.mpr (by linarith)
@@ -49,7 +49,7 @@ theorem sigmoid_mono : Monotone sigmoid := by
 
 /-- Mirroring the argument complements the value, which is what makes the
 derivative below a product of two sigmoids. -/
-theorem sigmoid_neg (t : ℝ) : sigmoid (-t) = 1 - sigmoid t := by
+theorem sigmoid_neg (t : ℝ) : sigmoid (-t) = 1 - sigmoid t := by -- --- PROOF ---
   have hden : (1:ℝ) + Real.exp t ≠ 0 := by positivity
   have hden' : (1:ℝ) + Real.exp (-t) ≠ 0 := by positivity
   rw [sigmoid, sigmoid, neg_neg, Real.exp_neg]
@@ -71,7 +71,7 @@ noncomputable def sigmoidDeriv (t : ℝ) : ℝ := sigmoid t * sigmoid (-t)
 
 /-- A product of two sigmoids, so inside `(0, 1)` on all of ℝ: the global bound
 a refinement level's fit is chosen against. -/
-theorem abs_sigmoidDeriv_le_one (t : ℝ) : |sigmoidDeriv t| ≤ 1 := by
+theorem abs_sigmoidDeriv_le_one (t : ℝ) : |sigmoidDeriv t| ≤ 1 := by -- --- PROOF ---
   have h1 := sigmoid_pos t
   have h2 := sigmoid_pos (-t)
   have h3 := sigmoid_lt_one t
@@ -80,7 +80,7 @@ theorem abs_sigmoidDeriv_le_one (t : ℝ) : |sigmoidDeriv t| ≤ 1 := by
   rw [abs_le]
   exact ⟨by nlinarith, by nlinarith⟩
 
-theorem hasDerivAt_sigmoid (t : ℝ) : HasDerivAt sigmoid (sigmoidDeriv t) t := by
+theorem hasDerivAt_sigmoid (t : ℝ) : HasDerivAt sigmoid (sigmoidDeriv t) t := by -- --- PROOF ---
   have hEpos : (0:ℝ) < Real.exp (-t) := Real.exp_pos _
   have hden : (1:ℝ) + Real.exp (-t) ≠ 0 := by positivity
   have hexp : HasDerivAt (fun x : ℝ => Real.exp (-x)) (Real.exp (-t) * -1) t :=

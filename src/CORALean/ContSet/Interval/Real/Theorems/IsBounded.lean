@@ -27,7 +27,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.isBounded_construct (I : Interval (Vec ℝ n)) :
-    Bornology.IsBounded I.construct := by
+    Bornology.IsBounded I.construct := by -- --- PROOF ---
   refine isBounded_iff_forall_norm_le.mpr
     ⟨∑ i, (|I.inf i| + |I.sup i|), fun x hx => ?_⟩
   refine (pi_norm_le_iff_of_nonneg

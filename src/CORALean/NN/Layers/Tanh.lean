@@ -27,7 +27,7 @@ open Matrix ContSet
 
 /-- Clearing `e⁻ᵗ` from both sides of `tanh` leaves `(1 - e⁻²ᵗ)/(1 + e⁻²ᵗ)`,
 which is `2 σ(2t) - 1`. -/
-theorem tanh_eq_sigmoid (t : ℝ) : Real.tanh t = 2 * sigmoid (2 * t) - 1 := by
+theorem tanh_eq_sigmoid (t : ℝ) : Real.tanh t = 2 * sigmoid (2 * t) - 1 := by -- --- PROOF ---
   have hpos : (0:ℝ) < Real.exp t := Real.exp_pos t
   have hE : Real.exp t ≠ 0 := ne_of_gt hpos
   have h₁ : Real.exp (-t) = (Real.exp t)⁻¹ := Real.exp_neg t
@@ -41,7 +41,8 @@ theorem tanh_eq_sigmoid (t : ℝ) : Real.tanh t = 2 * sigmoid (2 * t) - 1 := by
 
 /-- The identity above differentiated, which is where the header's `4 σ'(2t)`
 comes from. Mathlib's own `tanh` derivative is not in scope here. -/
-theorem hasDerivAt_tanh (t : ℝ) : HasDerivAt Real.tanh (4 * sigmoidDeriv (2 * t)) t := by
+theorem hasDerivAt_tanh (t : ℝ) :
+    HasDerivAt Real.tanh (4 * sigmoidDeriv (2 * t)) t := by -- --- PROOF ---
   have hinner : HasDerivAt (fun s : ℝ => 2 * s) 2 t := by
     simpa using (hasDerivAt_id t).const_mul (2:ℝ)
   have hchain : HasDerivAt (fun s : ℝ => sigmoid (2 * s)) (sigmoidDeriv (2 * t) * 2) t :=

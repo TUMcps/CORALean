@@ -91,7 +91,7 @@ theorem ConPolyZono.aux_abs_dropped_le (C : ConPolyZono 𝕋 n)
     |(∑ l, toReal (C.G i (partD.right l))
           * Real.PolyZonotope.monomial C.E a (partD.right l))
         + ∑ j, toReal (C.GI i (partI.right j)) * β (partI.right j)|
-      ≤ toReal (C.dropRadius partD partI i) := by
+      ≤ toReal (C.dropRadius partD partI i) := by -- --- PROOF ---
   have hD := ConPolyZono.aux_abs_droppedDep_le C partD ha i
   have hI := ConPolyZono.aux_abs_droppedInd_le C partI hβ i
   have hsum := add_le_addUp (radius (fun i l => C.G i (partD.right l)) i)
@@ -104,7 +104,7 @@ theorem ConPolyZono.aux_abs_dropped_le (C : ConPolyZono 𝕋 n)
 theorem ConPolyZono.aux_reduceBy_nominal (C : ConPolyZono 𝕋 n)
     (partD : Split (Fin C.h) into (Fin d) and (Fin r))
     (partI : Split (Fin C.q) into (Fin dI) and (Fin rI)) :
-    nominalSet C ⊆ nominalSet (C.reduceBy partD partI) := by
+    nominalSet C ⊆ nominalSet (C.reduceBy partD partI) := by -- --- PROOF ---
   intro x hx'
   obtain ⟨a, β, ha, hβ, hsat, hx⟩ := ConPolyZono.mem_nominalSet_iff.mp hx'
   have hbound := ConPolyZono.aux_abs_dropped_le C partD partI ha hβ

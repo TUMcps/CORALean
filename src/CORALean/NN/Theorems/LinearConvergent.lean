@@ -37,7 +37,7 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Layer.linear_refinable_convergent (W : Mat ℝ m n) (b : Vec ℝ m) :
-    (Layer.linear (S := 𝒫𝒵) W b).refinable.Convergent := by
+    (Layer.linear (S := 𝒫𝒵) W b).refinable.Convergent := by -- --- PROOF ---
   intro s ε hε
   refine ⟨fun _ => 0, ?_⟩
   show construct ((Layer.linear (S := 𝒫𝒵) W b).propagate s)

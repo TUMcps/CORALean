@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- membership splits with the rows, each half read on the polytope it came from
 theorem HPolytope.mem_and_iff {P₁ P₂ : HPolytope 𝕋 n} {x : Vec ℝ n} :
-    x ∈ (P₁.and P₂).construct ↔ x ∈ P₁.construct ∧ x ∈ P₂.construct := by
+    x ∈ (P₁.and P₂).construct ↔ x ∈ P₁.construct ∧ x ∈ P₂.construct := by -- --- PROOF ---
   constructor
   · intro hmem
     obtain ⟨hle, heq⟩ := HPolytope.mem_construct_iff.mp hmem

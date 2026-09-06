@@ -40,7 +40,7 @@ theorem ConPolyZono.aux_compactGensGap (C : ConPolyZono 𝕋 n) (i : Fin n)
     (j : Fin (PolyZonotope.repKeep C.E).card) :
     |Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep C.E)
         (fun l => toReal (C.G i l)) (PolyZonotope.keepIdx C.E j)
-      - toReal (C.mergedCol i j)| ≤ toReal (ConPolyZono.compactGensGap C i j) := by
+      - toReal (C.mergedCol i j)| ≤ toReal (ConPolyZono.compactGensGap C i j) := by -- --- PROOF ---
   have hlo : toReal (C.mergedCol i j)
       ≤ Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep C.E)
           (fun l => toReal (C.G i l)) (PolyZonotope.keepIdx C.E j) :=
@@ -57,7 +57,8 @@ theorem ConPolyZono.aux_compactGensGap (C : ConPolyZono 𝕋 n) (i : Fin n)
 -- the merged column is stored downward, and that gap is what the box pays for
 theorem ConPolyZono.aux_compactGens_nominal (C : ConPolyZono 𝕋 n) :
     nominalSet C ⊆ nominalSet C.compactGens
-      + (PolyZonotope.generatorError (ConPolyZono.compactGensGap C)).construct := by
+      + (PolyZonotope.generatorError
+        (ConPolyZono.compactGensGap C)).construct := by -- --- PROOF ---
   intro x hx
   obtain ⟨a, β, ha, hβ, hsat, hxi⟩ := ConPolyZono.mem_nominalSet_iff.mp hx
   refine ⟨fun i => toReal (C.c i)
@@ -102,7 +103,7 @@ theorem ConPolyZono.aux_compactGens_nominal (C : ConPolyZono 𝕋 n) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.compactGens_outer (C : ConPolyZono 𝕋 n) :
-    C.construct ⊆ C.compactGens.construct := by
+    C.construct ⊆ C.compactGens.construct := by -- --- PROOF ---
   rintro _ ⟨z, hz, e, he, rfl⟩
   obtain ⟨z', hz', d, hd, hsum⟩ := ConPolyZono.aux_compactGens_nominal C hz
   refine ⟨z', hz', e + d, Interval.plus_outer _ _ ⟨e, he, d, hd, rfl⟩, ?_⟩

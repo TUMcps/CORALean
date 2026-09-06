@@ -25,7 +25,7 @@ namespace CORALean.Real
 /-- `(a+k)!` outgrows `a` factorial by at least `(a+1)` each step, which is what
 makes the tail geometric. -/
 theorem factorial_mul_pow_le (a k : ℕ) :
-    Nat.factorial a * (a + 1) ^ k ≤ Nat.factorial (a + k) := by
+    Nat.factorial a * (a + 1) ^ k ≤ Nat.factorial (a + k) := by -- --- PROOF ---
   induction k with
   | zero => simp
   | succ k ih =>

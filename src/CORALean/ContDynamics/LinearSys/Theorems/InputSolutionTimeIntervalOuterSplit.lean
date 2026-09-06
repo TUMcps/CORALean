@@ -76,7 +76,7 @@ set_option maxHeartbeats 400000 in
 /-- What a constant input contributes over `[0,t]`, in closed form. The
 substitution `σ = t - s` turns the propagator into the integrated exponential. -/
 theorem aux_const_integral (A : Mat ℝ n n) (c : Vec ℝ n) {t : ℝ} (ht : 0 ≤ t) :
-    (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ c) = MatExp.expIntegral A t *ᵥ c := by
+    (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ c) = MatExp.expIntegral A t *ᵥ c := by -- --- PROOF ---
   rw [MatExp.expIntegral_mulVec A c ht]
   have h := intervalIntegral.integral_comp_sub_left (a := (0:ℝ)) (b := t)
     (fun σ : ℝ => exp (σ • A) *ᵥ c) t

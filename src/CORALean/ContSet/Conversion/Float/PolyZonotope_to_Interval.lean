@@ -45,7 +45,7 @@ variable [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.interval_outer (PZ : PolyZonotope 𝕋 n) :
-    PZ.construct ⊆ PZ.interval.construct := by
+    PZ.construct ⊆ PZ.interval.construct := by -- --- PROOF ---
   rintro _ ⟨z, hzmem, e, he, rfl⟩ i
   obtain ⟨a, β, ha, hβ, hz⟩ := PolyZonotope.mem_nominalSet_iff.mp hzmem
   -- a monomial is at most one, so a dependent block reaches no further than a zonotope's

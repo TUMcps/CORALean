@@ -45,7 +45,7 @@ def tapEntry {n : ℕ} : {k : ℕ} → (Fin k → Fin n) → (Fin k → ℝ) →
 
 theorem tapEntry_eq_zero {n : ℕ} :
     ∀ {k : ℕ} (t : Fin k → Fin n) (v : Fin k → ℝ) (i : Fin n),
-      (∀ l, t l ≠ i) → tapEntry t v i = 0 := by
+      (∀ l, t l ≠ i) → tapEntry t v i = 0 := by -- --- PROOF ---
   intro k
   induction k with
   | zero => intro _ _ _ _; rfl
@@ -60,7 +60,7 @@ theorem tapEntry_eq_zero {n : ℕ} :
 twice would break: the matrix holds one weight per entry, the sum two. -/
 theorem tapEntry_dot {n : ℕ} :
     ∀ {k : ℕ} (t : Fin k → Fin n) (v : Fin k → ℝ) (x : Vec ℝ n),
-      Function.Injective t → ∑ i, tapEntry t v i * x i = ∑ l, v l * x (t l) := by
+      Function.Injective t → ∑ i, tapEntry t v i * x i = ∑ l, v l * x (t l) := by -- --- PROOF ---
   intro k
   induction k with
   | zero =>

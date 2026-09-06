@@ -28,7 +28,7 @@ two directed roundings. -/
 theorem PolyZonotope.matMul_close {k : ℕ} (M : Mat 𝕋 m n) (A : Mat 𝕋 n k)
     (i : Fin m) (l : Fin k) :
     |(∑ r, toReal (M i r) * toReal (A r l)) - toReal (matMulDown M A i l)|
-      ≤ toReal (matMulDiff M A i l) := by
+      ≤ toReal (matMulDiff M A i l) := by -- --- PROOF ---
   -- ascribed, so these are about `matMul*` rather than the `dot*` they unfold to
   have hlo : toReal (matMulDown M A i l) ≤ ∑ r, toReal (M i r) * toReal (A r l) :=
     dotDown_le (M i) (fun r => A r l)

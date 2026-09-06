@@ -30,7 +30,7 @@ which reads as `0`. -/
 theorem PolyZonotope.sum_mask (r : Fin h → Fin h) (G : Mat 𝕋 n h) (i : Fin n)
     (j : Fin h) :
     (∑ l, toReal (if r l = j then G i l else zero))
-      = Real.PolyZonotope.fiberSum r (fun l => toReal (G i l)) j := by
+      = Real.PolyZonotope.fiberSum r (fun l => toReal (G i l)) j := by -- --- PROOF ---
   rw [Real.PolyZonotope.fiberSum, Finset.sum_filter]
   refine Finset.sum_congr rfl fun l _ => ?_
   by_cases hl : r l = j

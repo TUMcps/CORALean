@@ -29,7 +29,7 @@ variable {n q₁ q₂ : ℕ}
 
 theorem VPolytope.and_outer (P₁ P₂ : VPolytope (Vec ℝ n))
     (Aq₁ : Fin q₁ → (Vec ℝ n →ₗ[ℝ] ℝ)) (Aq₂ : Fin q₂ → (Vec ℝ n →ₗ[ℝ] ℝ)) :
-    P₁.construct ∩ P₂.construct ⊆ (P₁.and P₂ Aq₁ Aq₂).construct := by
+    P₁.construct ∩ P₂.construct ⊆ (P₁.and P₂ Aq₁ Aq₂).construct := by -- --- PROOF ---
   have hsub : P₁.construct ∩ P₂.construct ⊆ (VPolytope.andH P₁ P₂ Aq₁ Aq₂).construct := by
     rintro x ⟨hx₁, hx₂⟩
     refine HPolytope.mem_and_iff.mpr ⟨HPolytope.mem_and_iff.mpr ⟨?_, ?_⟩, ?_⟩

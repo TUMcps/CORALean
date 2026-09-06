@@ -41,7 +41,8 @@ theorem ConPolyZono.aux_compactConsGap (C : ConPolyZono 𝕋 n) (i : Fin C.m)
     (l : Fin (PolyZonotope.repKeep C.EC).card) :
     |Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep C.EC)
         (fun r => toReal (C.A i r)) (PolyZonotope.keepIdx C.EC l)
-      - toReal (C.mergedConsCol i l)| ≤ toReal (ConPolyZono.compactConsGap C i l) := by
+      - toReal
+        (C.mergedConsCol i l)| ≤ toReal (ConPolyZono.compactConsGap C i l) := by -- --- PROOF ---
   have hlo : toReal (C.mergedConsCol i l)
       ≤ Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep C.EC)
           (fun r => toReal (C.A i r)) (PolyZonotope.keepIdx C.EC l) :=
@@ -114,7 +115,7 @@ theorem ConPolyZono.aux_satisfies_compactCons (C : ConPolyZono 𝕋 n) {a : Fin 
 /-- Only the constraint weakens, so the nominal set grows and the error box does
 not move. -/
 theorem ConPolyZono.aux_compactCons_nominal (C : ConPolyZono 𝕋 n) :
-    nominalSet C ⊆ nominalSet C.compactCons := by
+    nominalSet C ⊆ nominalSet C.compactCons := by -- --- PROOF ---
   intro x hx
   obtain ⟨a, β, ha, hβ, hsat, hxi⟩ := ConPolyZono.mem_nominalSet_iff.mp hx
   exact ConPolyZono.mem_nominalSet_iff.mpr

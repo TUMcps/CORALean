@@ -36,7 +36,7 @@ def Interval.radiusFrom (I : Interval 𝕋 n) : Vec 𝕋 n :=
 
 theorem Interval.reaches (I : Interval 𝕋 n) (i : Fin n) :
     toReal (I.center i) - toReal (I.radiusFrom i) ≤ toReal (I.inf i)
-      ∧ toReal (I.sup i) ≤ toReal (I.center i) + toReal (I.radiusFrom i) := by
+      ∧ toReal (I.sup i) ≤ toReal (I.center i) + toReal (I.radiusFrom i) := by -- --- PROOF ---
   have hhi := sub_le_subUp (I.sup i) (I.center i)
   have hlo := sub_le_subUp (I.center i) (I.inf i)
   rw [Interval.radiusFrom, toReal_maximum]

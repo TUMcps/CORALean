@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : 
 
 -- so membership of the padded polytope is membership of that block, both ways
 theorem HPolytope.mem_padLeft_iff {P : HPolytope 𝕋 n₁} {x : Vec ℝ (n₁ + n₂)} :
-    x ∈ (P.padLeft n₂).construct ↔ blockLeft n₁ n₂ x ∈ P.construct := by
+    x ∈ (P.padLeft n₂).construct ↔ blockLeft n₁ n₂ x ∈ P.construct := by -- --- PROOF ---
   constructor
   · intro h
     obtain ⟨hle, heq⟩ := HPolytope.mem_construct_iff.mp h

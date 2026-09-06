@@ -46,7 +46,7 @@ theorem ConPolyZono.merge {p d h : ℕ} (E : Fin p → Fin h → ℕ) (G : Mat �
       = ∑ j : Fin (PolyZonotope.repKeep E).card,
           Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep E)
               (fun l => toReal (G i l)) (PolyZonotope.keepIdx E j)
-            * Real.PolyZonotope.monomial E' a j := by
+            * Real.PolyZonotope.monomial E' a j := by -- --- PROOF ---
   have hmon : ∀ j, Real.PolyZonotope.monomial E' a j
       = Real.PolyZonotope.monomial E a (PolyZonotope.keepIdx E j) := fun j => by
     rw [Real.PolyZonotope.monomial, Real.PolyZonotope.monomial]

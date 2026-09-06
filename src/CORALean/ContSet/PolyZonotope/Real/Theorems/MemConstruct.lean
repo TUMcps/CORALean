@@ -28,7 +28,7 @@ theorem PolyZonotope.mem_construct_iff {n : ℕ} {PZ : PolyZonotope (Vec ℝ n)}
     x ∈ PZ.construct ↔
       ∃ a : Fin PZ.p → ℝ, ∃ β : Fin PZ.q → ℝ, (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1)
         ∧ ∀ i, x i = PZ.c i + (∑ l, PZ.G l i * PolyZonotope.monomial PZ.E a l)
-              + ∑ j, PZ.GI j i * β j := by
+              + ∑ j, PZ.GI j i * β j := by -- --- PROOF ---
   -- one coordinate of the defining equation, both generator blocks transposed
   have key : ∀ (a : Fin PZ.p → ℝ) (β : Fin PZ.q → ℝ) (i : Fin n),
       (PZ.c + ∑ l, PolyZonotope.monomial PZ.E a l • PZ.G l + ∑ j, β j • PZ.GI j) i

@@ -32,7 +32,7 @@ variable {n : ℕ}
 /-- Translating by the zero-width box is doing nothing, which is what makes
 `andDep_exact` at that tolerance the intersection. -/
 theorem ConPolyZono.aux_add_point_zero (S : Set (Vec ℝ n)) :
-    S + (Interval.point (0 : Vec ℝ n)).construct = S := by
+    S + (Interval.point (0 : Vec ℝ n)).construct = S := by -- --- PROOF ---
   have hzero : ∀ z : Vec ℝ n, z ∈ (Interval.point (0 : Vec ℝ n)).construct → z = 0 := by
     intro z hz
     funext i

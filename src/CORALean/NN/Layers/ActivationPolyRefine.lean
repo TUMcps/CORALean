@@ -100,7 +100,7 @@ theorem polyRelaxationFamily_error_lt (hd : ∀ x, HasDerivAt σ (σ' x) x)
 /-- The level one neuron needs: past both ends of its own box, and past `2 / ε`
 so that twice the tolerance fits under the budget. -/
 theorem aux_exists_level_one (l u : ℝ) {ε : ℝ} (hε : 0 < ε) :
-    ∃ o : ℕ, (-(o : ℝ) ≤ l ∧ u ≤ (o : ℝ)) ∧ 2 * (1 / ((o : ℝ) + 1)) ≤ ε := by
+    ∃ o : ℕ, (-(o : ℝ) ≤ l ∧ u ≤ (o : ℝ)) ∧ 2 * (1 / ((o : ℝ) + 1)) ≤ ε := by -- --- PROOF ---
   obtain ⟨M, hM⟩ := exists_nat_gt (2 / ε)
   -- one level past `M` and past both ceilings serves this neuron
   obtain ⟨o, hMo, hlo, huo⟩ : ∃ o : ℕ, M ≤ o ∧ ⌈|l|⌉₊ ≤ o ∧ ⌈|u|⌉₊ ≤ o :=
@@ -131,7 +131,8 @@ theorem aux_exists_level (s : PolyZonotope (Vec ℝ n)) {ε : ℝ} (hε : 0 < ε
 set inside any inflation of the exact image. -/
 theorem Layer.activationPolyRefinable_convergent (hd : ∀ x, HasDerivAt σ (σ' x) x)
     (hσ : ∀ x, |σ' x| ≤ Mσ) :
-    (Layer.activationPolyRefinable (n := n) (polyRelaxationFamily hd hσ)).Convergent := by
+    (Layer.activationPolyRefinable
+      (n := n) (polyRelaxationFamily hd hσ)).Convergent := by -- --- PROOF ---
   intro s ε hε
   obtain ⟨t, ht⟩ := aux_exists_level s hε
   refine ⟨t, Layer.activationPoly_subset_inflate

@@ -31,7 +31,7 @@ theorem ConPolyZono.mem_construct_iff {n : ℕ} {C : ConPolyZono (Vec ℝ n)} {x
       ∃ a : Fin C.p → ℝ, ∃ β : Fin C.q → ℝ, (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1)
         ∧ C.satisfies a
         ∧ ∀ i, x i = C.c i + (∑ l, C.G l i * PolyZonotope.monomial C.E a l)
-              + ∑ j, C.GI j i * β j := by
+              + ∑ j, C.GI j i * β j := by -- --- PROOF ---
   -- one coordinate of the defining equation, both generator blocks transposed
   have key : ∀ (a : Fin C.p → ℝ) (β : Fin C.q → ℝ) (i : Fin n),
       (C.c + ∑ l, PolyZonotope.monomial C.E a l • C.G l + ∑ j, β j • C.GI j) i

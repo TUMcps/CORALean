@@ -54,7 +54,7 @@ theorem PolyZonotope.aux_sum_univ_plus_q {PZ₁ PZ₂ : PolyZonotope α}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.plus_exact (PZ₁ PZ₂ : PolyZonotope α) :
-    PZ₁.construct + PZ₂.construct = (PZ₁.plus PZ₂).construct := by
+    PZ₁.construct + PZ₂.construct = (PZ₁.plus PZ₂).construct := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨x₁, ⟨a₁, β₁, ha₁, hβ₁, rfl⟩, x₂, ⟨a₂, β₂, ha₂, hβ₂, rfl⟩, rfl⟩
     refine ⟨Fin.append a₁ a₂, Fin.append β₁ β₂,

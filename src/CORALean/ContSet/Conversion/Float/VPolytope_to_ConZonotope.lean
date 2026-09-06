@@ -43,7 +43,7 @@ theorem VPolytope.aux_ones_mulVec (β : Vec ℝ k) (i : Fin 1) :
   exact Finset.sum_congr rfl fun j _ => by rw [toReal_one, one_mul]
 
 theorem VPolytope.mem_simplex_iff {β : Vec ℝ k} :
-    β ∈ (VPolytope.simplex 𝕋 k).construct ↔ (∀ j, 0 ≤ β j) ∧ ∑ j, β j = 1 := by
+    β ∈ (VPolytope.simplex 𝕋 k).construct ↔ (∀ j, 0 ≤ β j) ∧ ∑ j, β j = 1 := by -- --- PROOF ---
   simp only [VPolytope.simplex]
   rw [HPolytope.mem_and_iff, HPolytope.mem_ineqs_iff, HPolytope.mem_eqs_iff]
   -- both directions: a nonnegativity row each, and the two ends of the ones-row equality
@@ -78,7 +78,7 @@ def VPolytope.conZonotope (P : VPolytope 𝕋 n) : ConZonotope 𝕋 n where
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.subset_conZonotope (P : VPolytope 𝕋 n) :
-    P.construct ⊆ P.conZonotope.construct := by
+    P.construct ⊆ P.conZonotope.construct := by -- --- PROOF ---
   refine mono_subset (fun x hx => ?_) subset_rfl
   obtain ⟨β, hnn, hsum, hval⟩ := hx
   -- a convex coefficient already lies inside the unit box, so that constraint costs nothing

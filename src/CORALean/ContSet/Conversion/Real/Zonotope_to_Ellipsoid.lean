@@ -42,7 +42,7 @@ noncomputable def Zonotope.ellipsoid (Z : Zonotope (Vec ℝ n)) : Ellipsoid n wh
 them fit exactly. -/
 theorem Zonotope.aux_coeff_sq_le {Z : Zonotope (Vec ℝ n)} {β : Fin Z.h → ℝ}
     (hβ : ∀ j, |β j| ≤ 1) (j : Fin Z.h) :
-    (β j / Real.sqrt Z.h) ^ 2 ≤ 1 / (Z.h : ℝ) := by
+    (β j / Real.sqrt Z.h) ^ 2 ≤ 1 / (Z.h : ℝ) := by -- --- PROOF ---
   have hh : (0:ℝ) < (Z.h : ℝ) := by exact_mod_cast j.pos
   have hsq : Real.sqrt (Z.h : ℝ) ^ 2 = (Z.h : ℝ) := Real.sq_sqrt (le_of_lt hh)
   have hb : β j ^ 2 ≤ 1 := by
@@ -57,7 +57,7 @@ theorem Zonotope.aux_coeff_sq_le {Z : Zonotope (Vec ℝ n)} {β : Fin Z.h → �
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.ellipsoid_outer (Z : Zonotope (Vec ℝ n)) :
-    Z.construct ⊆ Z.ellipsoid.construct := by
+    Z.construct ⊆ Z.ellipsoid.construct := by -- --- PROOF ---
   intro x hx
   obtain ⟨β, hβ, hxeq⟩ := Zonotope.mem_construct_iff.mp hx
   refine ⟨fun j => β j / Real.sqrt Z.h, ?_, ?_⟩

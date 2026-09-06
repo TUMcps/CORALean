@@ -31,7 +31,7 @@ theorem Zonotope.pairSum_bracket (g₁ : Fin h₁ → 𝕋) (g₂ : Fin h₂ →
     toReal (Zonotope.pairSum addDown g₁ g₂ k)
         ≤ Real.Zonotope.pairSum (fun j => toReal (g₁ j)) (fun j => toReal (g₂ j)) k
       ∧ Real.Zonotope.pairSum (fun j => toReal (g₁ j)) (fun j => toReal (g₂ j)) k
-        ≤ toReal (Zonotope.pairSum addUp g₁ g₂ k) := by
+        ≤ toReal (Zonotope.pairSum addUp g₁ g₂ k) := by -- --- PROOF ---
   simp only [Zonotope.pairSum, Real.Zonotope.pairSum]
   by_cases hk : (k : ℕ) < h₂
   · rw [dif_pos hk, dif_pos hk, dif_pos hk, toReal_half, toReal_half, smul_eq_mul]

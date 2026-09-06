@@ -40,7 +40,7 @@ variable {n m : ℕ}
 /-- A zero-width box denotes its point and nothing else, through both conversion
 steps: every generator vanishes and the centre is the point. -/
 theorem aux_construct_point_polyZonotope (b : Vec ℝ m) :
-    ((Interval.point b).polyZonotope).construct = ({b} : Set (Vec ℝ m)) := by
+    ((Interval.point b).polyZonotope).construct = ({b} : Set (Vec ℝ m)) := by -- --- PROOF ---
   have hc : (Interval.point b).zonotope.c = b := by
     funext i
     show (b i + b i) / 2 = b i
@@ -67,7 +67,7 @@ theorem aux_construct_point_polyZonotope (b : Vec ℝ m) :
 
 theorem Layer.linear_exact (W : Mat ℝ m n) (b : Vec ℝ m) (s : PolyZonotope (Vec ℝ n)) :
     construct ((Layer.linear (S := 𝒫𝒵) W b).propagate s)
-      = (Layer.linear (S := 𝒫𝒵) W b).eval '' construct s := by
+      = (Layer.linear (S := 𝒫𝒵) W b).eval '' construct s := by -- --- PROOF ---
   show ((PolyZonotope.mtimes W s).plus (Interval.point b).polyZonotope).construct
       = (fun x => W *ᵥ x + b) '' s.construct
   -- both operations read backwards, and the bias is then a translation

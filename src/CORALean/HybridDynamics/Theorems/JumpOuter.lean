@@ -45,7 +45,7 @@ the guard; the reset image then lands in `jump Rg`. -/
 theorem Transition.jump_outer (e : Transition S L 𝕋 n) {R Rg : S n}
     (hand : construct R ∩ construct e.guard ⊆ construct Rg) {z : Vec ℝ n}
     (hz : z ∈ construct R) (hguard : z ∈ construct e.guard) :
-    e.reset z ∈ construct (e.jump Rg) := by
+    e.reset z ∈ construct (e.jump Rg) := by -- --- PROOF ---
   show toRealMat e.W *ᵥ z + toRealVec e.w ∈ construct (e.jump Rg)
   exact plus_outer _ _ (Set.add_mem_add
     (mtimes_outer e.W Rg

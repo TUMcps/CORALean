@@ -46,7 +46,7 @@ theorem PolyZonotope.sub_monomial_mem_eDrift {p h : ℕ} (E : Fin p → Fin h �
     (hsim : ∀ k, k ≠ k₀ → E k i = E k j) :
     PolyZonotope.monomial E a i - PolyZonotope.monomial E a j
       ∈ Set.Icc (-((PolyZonotope.eDrift E k₀ i j).1 : ℝ))
-        ((PolyZonotope.eDrift E k₀ i j).2 : ℝ) := by
+        ((PolyZonotope.eDrift E k₀ i j).2 : ℝ) := by -- --- PROOF ---
   have habs := abs_le.mp (PolyZonotope.abs_sub_monomial_le E ha hsim)
   rw [Set.mem_Icc, PolyZonotope.eDrift]
   split_ifs with hcol hdown hup

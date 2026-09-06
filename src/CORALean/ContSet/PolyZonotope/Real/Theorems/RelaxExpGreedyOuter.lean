@@ -46,7 +46,7 @@ theorem PolyZonotope.relaxExpGreedy_outer
     (sel : (PZ : PolyZonotope α) →
       Option ((d : ℕ) × (Split (Fin PZ.h) into (Fin d) and (Fin 2))))
     (n : ℕ) (PZ : PolyZonotope α) :
-    PZ.construct ⊆ (PolyZonotope.relaxExpGreedy sel n PZ).construct := by
+    PZ.construct ⊆ (PolyZonotope.relaxExpGreedy sel n PZ).construct := by -- --- PROOF ---
   induction n generalizing PZ with
   | zero => exact subset_rfl
   | succ n ih =>

@@ -49,7 +49,7 @@ theorem LinearSys.inputReach_subset_inputSolution [Mtimes ℐ S]
       (MatExp.inputRemainder (toRealMat sys.A) r η) U)))
     (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) r η) U))) :
-    sys.inputReach U r ⊆ construct (sys.inputSolution r η U) := by
+    sys.inputReach U r ⊆ construct (sys.inputSolution r η U) := by -- --- PROOF ---
   rintro _ ⟨u, hmem, hmeas, rfl⟩
   refine sys.inputSolution_outer hr η hε hconv hclosed hbdd hRconv hRclosed hRbdd ?_
     (aestronglyMeasurable_reflect_Ioc hmeas)

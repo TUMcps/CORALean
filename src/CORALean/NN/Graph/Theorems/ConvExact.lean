@@ -38,7 +38,7 @@ variable {N F₁ F₂ : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem GNN.gcn_exact (P : Mat ℝ N N) (W : Mat ℝ F₁ F₂) (PZ : PolyZonotope (Mat ℝ N F₁)) :
-    (fun H => P * H * W) '' PZ.construct = (GNN.gcn P W PZ).construct := by
+    (fun H => P * H * W) '' PZ.construct = (GNN.gcn P W PZ).construct := by -- --- PROOF ---
   -- the image is taken at the linear map, which is what `gcnLin_apply` says
   have h : (fun H : Mat ℝ N F₁ => P * H * W) = GNN.gcnLin P W :=
     funext fun H => (GNN.gcnLin_apply P W H).symm

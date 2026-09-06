@@ -66,7 +66,7 @@ by at most its gap to the upward fold. -/
 theorem PolyZonotope.aux_relaxGen_gap (PZ : PolyZonotope 𝕋 n)
     (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (k₀ : Fin PZ.p) (i : Fin n) :
     |(PZ.relaxWidth part k₀ : ℝ) * toReal (PZ.G i (part.right 0))
-      - toReal (PZ.relaxGen part k₀ i)| ≤ toReal (PZ.relaxGap part k₀ i 1) := by
+      - toReal (PZ.relaxGen part k₀ i)| ≤ toReal (PZ.relaxGap part k₀ i 1) := by -- --- PROOF ---
   have hlo : toReal (PZ.relaxGen part k₀ i)
       ≤ (PZ.relaxWidth part k₀ : ℝ) * toReal (PZ.G i (part.right 0)) := nsmulDown_le _ _
   have hhi : (PZ.relaxWidth part k₀ : ℝ) * toReal (PZ.G i (part.right 0))
@@ -93,7 +93,7 @@ theorem PolyZonotope.aux_relaxExp_nominal (PZ : PolyZonotope 𝕋 n)
       - Real.PolyZonotope.monomial PZ.E a (part.right 1)) with ht
   have hcoef : (PZ.relaxWidth part k₀ : ℝ) * t
       = Real.PolyZonotope.monomial PZ.E a (part.right 0)
-        - Real.PolyZonotope.monomial PZ.E a (part.right 1) := by -- --- PROOF ---
+        - Real.PolyZonotope.monomial PZ.E a (part.right 1) := by
     rw [ht]
     exact Real.Zonotope.mul_coefficient habs
   -- the kept columns keep their monomials, and the merged one takes the second's
@@ -157,7 +157,7 @@ theorem PolyZonotope.aux_relaxExp_nominal (PZ : PolyZonotope 𝕋 n)
 theorem PolyZonotope.relaxExp_outer (PZ : PolyZonotope 𝕋 n)
     (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (k₀ : Fin PZ.p)
     (hsim : ∀ k, k ≠ k₀ → PZ.E k (part.right 0) = PZ.E k (part.right 1)) :
-    PZ.construct ⊆ (PZ.relaxExp part k₀).construct := by
+    PZ.construct ⊆ (PZ.relaxExp part k₀).construct := by -- --- PROOF ---
   rintro _ ⟨z, hz, e, he, rfl⟩
   obtain ⟨z', hz', g, hg, hsum⟩ := PolyZonotope.aux_relaxExp_nominal PZ part k₀ hsim hz
   refine ⟨z', hz', e + g, Interval.plus_outer _ _ ⟨e, he, g, hg, rfl⟩, ?_⟩

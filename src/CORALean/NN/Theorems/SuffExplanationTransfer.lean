@@ -46,7 +46,7 @@ theorem NeuralNetwork.suffExplanation_of_abstract (nn nnAbs : NeuralNetwork S n 
     (hcontain : nn.outputSet (ofInterval (explainBox x ε E))
       ⊆ construct (nnAbs.propagate (ofInterval (explainBox x ε E))))
     (hsuffAbs : nnAbs.IsSuffExplanationAbstract x ε E l) :
-    nn.IsSuffExplanation x ε E l := by
+    nn.IsSuffExplanation x ε E l := by -- --- PROOF ---
   have hspec : (Specification.unsafeSet (misclassified m l)).Holds
       (nn.outputSet (ofInterval (explainBox x ε E))) :=
     (Specification.unsafeSet (misclassified m l)).holds_of_outer hcontain hsuffAbs

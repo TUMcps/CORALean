@@ -26,7 +26,7 @@ theorem HPolytope.mulVec_append_last (A : Mat 𝕋 m N) (d : Vec 𝕋 m) (u : Ve
     (i : Fin m) :
     (toRealMat (fun i' => Fin.append (A i') fun _ : Fin 1 => d i')
         *ᵥ Fin.append u fun _ : Fin 1 => r) i
-      = (toRealMat A *ᵥ u) i + toReal (d i) * r := by
+      = (toRealMat A *ᵥ u) i + toReal (d i) * r := by -- --- PROOF ---
   show ∑ k : Fin (N + 1), toReal (Fin.append (A i) (fun _ => d i) k)
       * Fin.append u (fun _ : Fin 1 => r) k = _
   rw [Fin.sum_univ_add, Fin.sum_univ_one]

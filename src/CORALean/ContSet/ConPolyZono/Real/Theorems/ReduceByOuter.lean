@@ -68,7 +68,8 @@ theorem ConPolyZono.aux_abs_droppedDep_le (C : ConPolyZono (Vec ℝ n))
   calc |∑ l, C.G (partD.right l) i * PolyZonotope.monomial C.E a (partD.right l)|
       ≤ ∑ l, |C.G (partD.right l) i * PolyZonotope.monomial C.E a (partD.right l)| :=
         Finset.abs_sum_le_sum_abs _ _
-    _ = ∑ l, |C.G (partD.right l) i| * |PolyZonotope.monomial C.E a (partD.right l)| := by
+    _ = ∑ l,
+      |C.G (partD.right l) i| * |PolyZonotope.monomial C.E a (partD.right l)| := by -- --- PROOF ---
         simp_rw [abs_mul]
     _ ≤ ∑ l, |C.G (partD.right l) i| :=
         Finset.sum_le_sum fun l _ => by
@@ -99,7 +100,7 @@ they are. -/
 theorem ConPolyZono.reduceBy_outer (C : ConPolyZono (Vec ℝ n))
     (partD : Split (Fin C.h) into (Fin d) and (Fin r))
     (partI : Split (Fin C.q) into (Fin dI) and (Fin rI)) :
-    C.construct ⊆ (C.reduceBy partD partI).construct := by
+    C.construct ⊆ (C.reduceBy partD partI).construct := by -- --- PROOF ---
   intro x hxmem
   obtain ⟨a, β, ha, hβ, hsat, hx⟩ := ConPolyZono.mem_construct_iff.mp hxmem
   have hbound : ∀ i,

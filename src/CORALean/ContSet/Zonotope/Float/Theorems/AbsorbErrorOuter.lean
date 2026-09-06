@@ -47,7 +47,7 @@ theorem Zonotope.aux_sum_univ_absorbError {Z : Zonotope 𝕋 n} (f : Fin (Z.h + 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.absorbError_outer (Z : Zonotope 𝕋 n) :
-    Z.construct ⊆ Z.absorbError.construct := by
+    Z.construct ⊆ Z.absorbError.construct := by -- --- PROOF ---
   rintro _ ⟨z, hz', e, he, rfl⟩
   obtain ⟨β, hβ, hz⟩ := Zonotope.mem_nominalSet_iff.mp hz'
   refine ⟨fun i => toReal (Z.absorbError.c i)

@@ -29,7 +29,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- A row with one nonzero entry reads one coordinate, the sign it carries
 times it. -/
 theorem HPolytope.aux_mulVec_single {a : 𝕋} (x : Vec ℝ n) (j : Fin n) :
-    (toRealMat (fun j' k => if j' = k then a else zero) *ᵥ x) j = toReal a * x j := by
+    (toRealMat
+      (fun j' k => if j' = k then a else zero) *ᵥ x) j = toReal a * x j := by -- --- PROOF ---
   show ∑ k, toReal (if j = k then a else zero) * x k = _
   rw [Finset.sum_eq_single j]
   · rw [if_pos rfl]
@@ -42,7 +43,7 @@ theorem HPolytope.aux_mulVec_single {a : 𝕋} (x : Vec ℝ n) (j : Fin n) :
 
 -- membership is those two halves read back as a bound on the magnitude
 theorem HPolytope.mem_unitBox_iff {x : Vec ℝ n} :
-    x ∈ (HPolytope.unitBox 𝕋 n).construct ↔ ∀ j, |x j| ≤ 1 := by
+    x ∈ (HPolytope.unitBox 𝕋 n).construct ↔ ∀ j, |x j| ≤ 1 := by -- --- PROOF ---
   constructor
   · intro hmem j
     obtain ⟨hle, -⟩ := HPolytope.mem_construct_iff.mp hmem

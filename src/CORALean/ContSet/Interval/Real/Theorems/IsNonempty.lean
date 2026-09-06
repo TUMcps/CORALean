@@ -25,7 +25,8 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.isNonempty_iff (I : Interval α) : I.IsNonempty ↔ I.construct.Nonempty := by
+theorem Interval.isNonempty_iff (I : Interval α) :
+    I.IsNonempty ↔ I.construct.Nonempty := by -- --- PROOF ---
   constructor
   · exact fun h => ⟨I.inf, fun i => ⟨le_refl _, h i⟩⟩
   · rintro ⟨x, hx⟩ i

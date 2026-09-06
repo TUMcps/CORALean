@@ -27,7 +27,7 @@ appends two vectors, the other restricts one. -/
 theorem PolyZonotope.monomial_plusE_left {p₁ h₁ p₂ h₂ : ℕ} (E₁ : Fin p₁ → Fin h₁ → ℕ)
     (E₂ : Fin p₂ → Fin h₂ → ℕ) (a : Fin (p₁ + p₂) → ℝ) (i : Fin h₁) :
     PolyZonotope.monomial (PolyZonotope.plusE E₁ E₂) a (Fin.castAdd h₂ i)
-      = PolyZonotope.monomial E₁ (fun k => a (Fin.castAdd p₂ k)) i := by
+      = PolyZonotope.monomial E₁ (fun k => a (Fin.castAdd p₂ k)) i := by -- --- PROOF ---
   rw [PolyZonotope.monomial, PolyZonotope.monomial, Fin.prod_univ_add]
   have hother : (∏ k : Fin p₂, a (Fin.natAdd p₁ k)
       ^ PolyZonotope.plusE E₁ E₂ (Fin.natAdd p₁ k) (Fin.castAdd h₂ i)) = 1 :=

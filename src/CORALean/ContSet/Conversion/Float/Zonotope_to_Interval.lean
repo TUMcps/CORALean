@@ -33,7 +33,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.interval_outer (Z : Zonotope 𝕋 n) : Z.construct ⊆ Z.interval.construct := by
+theorem Zonotope.interval_outer (Z : Zonotope 𝕋 n) :
+    Z.construct ⊆ Z.interval.construct := by -- --- PROOF ---
   rintro _ ⟨z, hzmem, e, he, rfl⟩ i
   obtain ⟨β, hβ, hz⟩ := Zonotope.mem_nominalSet_iff.mp hzmem
   have hgen := abs_sum_le_radius (d := Z.G) (Δ := fun i j => toReal (Z.G i j))

@@ -47,7 +47,7 @@ theorem LinearSys.timeIntervalStep_outer (sys : LinearSys 𝕋 n) {r : ℝ} (hr 
     (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) (X₀ : S n)
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) :
     (fun x₀ => exp (t • toRealMat sys.A) *ᵥ x₀) '' construct X₀
-      ⊆ construct (sys.timeIntervalStep r (m + 2) X₀) := by
+      ⊆ construct (sys.timeIntervalStep r (m + 2) X₀) := by -- --- PROOF ---
   set A := toRealMat sys.A with hA
   rintro y ⟨x₀, hx₀, rfl⟩
   have hs0 : 0 ≤ t / r := div_nonneg ht0 hr.le

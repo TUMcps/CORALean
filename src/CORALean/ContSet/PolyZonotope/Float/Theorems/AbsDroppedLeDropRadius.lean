@@ -59,7 +59,7 @@ theorem PolyZonotope.abs_dropped_le_dropRadius (PZ : PolyZonotope 𝕋 n)
     |(∑ l, toReal (PZ.G i (partD.right l))
           * Real.PolyZonotope.monomial PZ.E a (partD.right l))
         + ∑ j, toReal (PZ.GI i (partI.right j)) * β (partI.right j)|
-      ≤ toReal (PZ.dropRadius partD partI i) := by
+      ≤ toReal (PZ.dropRadius partD partI i) := by -- --- PROOF ---
   have hD := PolyZonotope.aux_abs_droppedDep_le PZ partD ha i
   have hI := PolyZonotope.aux_abs_droppedInd_le PZ partI hβ i
   have hsum := add_le_addUp (radius (fun i l => PZ.G i (partD.right l)) i)

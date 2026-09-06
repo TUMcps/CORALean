@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n h : ℕ}
 
 theorem Zonotope.mem_generatorError {G : Mat 𝕋 n h} {Δ : Mat ℝ n h} {β : Vec ℝ h}
     (hG : ∀ i j, |Δ i j| ≤ toReal (G i j)) (hβ : ∀ j, |β j| ≤ 1) :
-    (fun i => ∑ j, Δ i j * β j) ∈ (Zonotope.generatorError G).construct := by
+    (fun i => ∑ j, Δ i j * β j) ∈ (Zonotope.generatorError G).construct := by -- --- PROOF ---
   intro i
   have key := abs_sum_le_radius (fun i j => le_trans (hG i j) (le_abs_self _)) hβ i
   refine ⟨?_, le_of_abs_le key⟩

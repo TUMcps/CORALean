@@ -36,7 +36,7 @@ variable {n k : ℕ}
 
 theorem ConPolyZono.quadMapDep_exact (Q : Fin k → Mat ℝ n n) (C : ConPolyZono (Vec ℝ n))
     (hq : C.q = 0) :
-    quadEval Q '' C.construct = (C.quadMapDep Q).construct := by
+    quadEval Q '' C.construct = (C.quadMapDep Q).construct := by -- --- PROOF ---
   have hz : ∀ b : Fin C.q → ℝ, ∑ j, b j • C.GI j = 0 :=
     fun b => Finset.sum_eq_zero fun j _ => absurd j.isLt (by omega)
   have hquad : ∀ a : Fin C.p → ℝ,

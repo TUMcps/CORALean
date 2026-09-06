@@ -63,7 +63,7 @@ theorem Zonotope.aux_linCombG_bracket (Z₁ Z₂ : Zonotope 𝕋 n) (i : Fin n) 
       toReal (Zonotope.linCombG addDown subDown Z₁ Z₂ i j)
           ≤ Zonotope.aux_linCombGReal Z₁ Z₂ i j
         ∧ Zonotope.aux_linCombGReal Z₁ Z₂ i j
-          ≤ toReal (Zonotope.linCombG addUp subUp Z₁ Z₂ i j) := by
+          ≤ toReal (Zonotope.linCombG addUp subUp Z₁ Z₂ i j) := by -- --- PROOF ---
   simp only [Zonotope.linCombG, Zonotope.aux_linCombGReal]
   refine Fin.addCases ?_ ?_
   · refine Fin.addCases ?_ ?_
@@ -85,7 +85,7 @@ theorem Zonotope.aux_linCombG_error (Z₁ Z₂ : Zonotope 𝕋 n) (i : Fin n)
     (j : Fin (Z₁.h + Z₂.h + 1)) :
     |Zonotope.aux_linCombGReal Z₁ Z₂ i j
         - toReal (Zonotope.linCombG addDown subDown Z₁ Z₂ i j)|
-      ≤ toReal (Zonotope.linCombGDiff Z₁ Z₂ i j) := by
+      ≤ toReal (Zonotope.linCombGDiff Z₁ Z₂ i j) := by -- --- PROOF ---
   obtain ⟨hlo, hhi⟩ := Zonotope.aux_linCombG_bracket Z₁ Z₂ i j
   have hgap := sub_le_subUp (Zonotope.linCombG addUp subUp Z₁ Z₂ i j)
     (Zonotope.linCombG addDown subDown Z₁ Z₂ i j)
@@ -103,7 +103,7 @@ theorem Zonotope.aux_linComb_row (Z₁ Z₂ : Zonotope 𝕋 n) (i : Fin n)
             (Real.Zonotope.pairCoeffDiff β₁ β₂ lam)) (fun _ : Fin 1 => 2 * lam - 1) j)
       = lam * (∑ j, toReal (Z₁.G i j) * β₁ j)
         + (1 - lam) * (∑ j, toReal (Z₂.G i j) * β₂ j)
-        + (2 * lam - 1) * ((toReal (Z₁.c i) - toReal (Z₂.c i)) / 2) := by
+        + (2 * lam - 1) * ((toReal (Z₁.c i) - toReal (Z₂.c i)) / 2) := by -- --- PROOF ---
   rw [Fin.sum_univ_add, Fin.sum_univ_add, Fin.sum_univ_one]
   simp only [Zonotope.aux_linCombGReal, Fin.append_left, Fin.append_right]
   rw [Zonotope.sum_pair_mul (fun j => toReal (Z₁.G i j)) (fun j => toReal (Z₂.G i j))
@@ -118,7 +118,8 @@ theorem Zonotope.aux_linComb_nominal (Z₁ Z₂ : Zonotope 𝕋 n) :
     segments (nominalSet Z₁) (nominalSet Z₂) ⊆
       nominalSet (Z₁.linComb Z₂)
         + ((Zonotope.midpointResidual Z₁.c Z₂.c).construct
-            + (Zonotope.generatorError (Zonotope.linCombGDiff Z₁ Z₂)).construct) := by
+            + (Zonotope.generatorError
+              (Zonotope.linCombGDiff Z₁ Z₂)).construct) := by -- --- PROOF ---
   rintro _ ⟨y₁, hy₁', y₂, hy₂', lam, ⟨hl0, hl1⟩, rfl⟩
   obtain ⟨β₁, hβ₁, hy₁⟩ := Zonotope.mem_nominalSet_iff.mp hy₁'
   obtain ⟨β₂, hβ₂, hy₂⟩ := Zonotope.mem_nominalSet_iff.mp hy₂'

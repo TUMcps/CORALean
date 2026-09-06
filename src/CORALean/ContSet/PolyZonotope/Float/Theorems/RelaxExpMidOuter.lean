@@ -64,7 +64,7 @@ theorem PolyZonotope.aux_relaxGenMid_gap (PZ : PolyZonotope 𝕋 n)
     (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (k₀ : Fin PZ.p) (i : Fin n) :
     |(((PZ.relaxDrift part k₀).1 : ℝ) / 2 + ((PZ.relaxDrift part k₀).2 : ℝ) / 2)
         * toReal (PZ.G i (part.right 0)) - toReal (PZ.relaxGenMid part k₀ i)|
-      ≤ toReal (PZ.relaxGapMid part k₀ i 1) := by
+      ≤ toReal (PZ.relaxGapMid part k₀ i 1) := by -- --- PROOF ---
   -- the fold counts both reaches, so its bound casts to their sum
   have hcast : (((PZ.relaxDrift part k₀).1 + (PZ.relaxDrift part k₀).2 : ℕ) : ℝ)
       = ((PZ.relaxDrift part k₀).1 : ℝ) + ((PZ.relaxDrift part k₀).2 : ℝ) := Nat.cast_add _ _
@@ -96,7 +96,7 @@ theorem PolyZonotope.aux_relaxCentreMid_gap (PZ : PolyZonotope 𝕋 n)
     |toReal (PZ.c i)
         + (((PZ.relaxDrift part k₀).2 : ℝ) / 2 - ((PZ.relaxDrift part k₀).1 : ℝ) / 2)
           * toReal (PZ.G i (part.right 0)) - toReal (PZ.relaxCentreMid part k₀ i)|
-      ≤ toReal (PZ.relaxGapMid part k₀ i 2) := by
+      ≤ toReal (PZ.relaxGapMid part k₀ i 2) := by -- --- PROOF ---
   -- the shift is stored below the exact midpoint
   have hshiftlo : toReal (PZ.relaxShiftMid part k₀ i)
       ≤ (((PZ.relaxDrift part k₀).2 : ℝ) / 2 - ((PZ.relaxDrift part k₀).1 : ℝ) / 2)
@@ -235,7 +235,7 @@ over-approximates, with the drift's midpoint moved into the centre. -/
 theorem PolyZonotope.relaxExpMid_outer (PZ : PolyZonotope 𝕋 n)
     (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (k₀ : Fin PZ.p)
     (hsim : ∀ k, k ≠ k₀ → PZ.E k (part.right 0) = PZ.E k (part.right 1)) :
-    PZ.construct ⊆ (PZ.relaxExpMid part k₀).construct := by
+    PZ.construct ⊆ (PZ.relaxExpMid part k₀).construct := by -- --- PROOF ---
   rintro _ ⟨z, hz, e, he, rfl⟩
   obtain ⟨z', hz', g, hg, hsum⟩ := PolyZonotope.aux_relaxExpMid_nominal PZ part k₀ hsim hz
   refine ⟨z', hz', e + g, Interval.plus_outer _ _ ⟨e, he, g, hg, rfl⟩, ?_⟩

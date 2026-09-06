@@ -40,7 +40,7 @@ variable {n q r : ℕ}
 /-- Boxing what a partition drops over-approximates, whichever partition it is. -/
 theorem Zonotope.reduceBy_outer (Z : Zonotope (Vec ℝ n))
     (part : Split (Fin Z.h) into (Fin q) and (Fin r)) :
-    Z.construct ⊆ (Z.reduceBy part).construct := by
+    Z.construct ⊆ (Z.reduceBy part).construct := by -- --- PROOF ---
   intro x hxmem
   obtain ⟨β, hβ, hx⟩ := Zonotope.mem_construct_iff.mp hxmem
   have hbound : ∀ i, |∑ l, Z.G (part.right l) i * β (part.right l)|

@@ -54,7 +54,7 @@ omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 is how a constant in front of an integral is absorbed into the operation. -/
 theorem aux_smul_mtimes_mem {M : Mat ℝ n n} {c : ℝ} {U : S n} {y : Vec ℝ n}
     (hy : y ∈ construct U) :
-    M *ᵥ (c • y) ∈ construct (Mtimes.mtimes (c • M) U) := by
+    M *ᵥ (c • y) ∈ construct (Mtimes.mtimes (c • M) U) := by -- --- PROOF ---
   have hM : M *ᵥ (c • y) = (c • M) *ᵥ y := by
     rw [Matrix.mulVec_smul, Matrix.smul_mulVec]
   rw [hM]
@@ -92,7 +92,7 @@ step: the bound grows with `‖τ • A‖`, so the value at `r` covers all of `
 theorem aux_remainder_entry_le (A : Mat ℝ n n) {r τ : ℝ} (η : ℕ) (hr : 0 < r)
     (hτ0 : 0 ≤ τ) (hτr : τ ≤ r) (hε : ‖r • A‖ / ((η : ℝ) + 2) < 1) (j k : Fin n) :
     |(exp (τ • A) - MatExp.expTaylor (τ • A) η) j k|
-      ≤ MatExp.expRemainderBound (r • A) η := by
+      ≤ MatExp.expRemainderBound (r • A) η := by -- --- PROOF ---
   have hnorm : ‖τ • A‖ ≤ ‖r • A‖ := by
     rw [norm_smul, norm_smul, Real.norm_eq_abs, Real.norm_eq_abs, abs_of_nonneg hτ0,
       abs_of_nonneg hr.le]
@@ -110,7 +110,7 @@ theorem aux_remainder_entry_le (A : Mat ℝ n n) {r τ : ℝ} (η : ℕ) (hr : 0
 /-- The exponential and its truncation are continuous in the time, so their
 difference is too and the remainder integrand is measurable. -/
 theorem aux_continuous_expDiff (A : Mat ℝ n n) (η : ℕ) :
-    Continuous fun τ : ℝ => exp (τ • A) - MatExp.expTaylor (τ • A) η := by
+    Continuous fun τ : ℝ => exp (τ • A) - MatExp.expTaylor (τ • A) η := by -- --- PROOF ---
   have hsmul : Continuous fun τ : ℝ => τ • A := continuous_id.smul continuous_const
   refine (exp_continuous.comp hsmul).sub ?_
   simp only [MatExp.expTaylor]
@@ -147,7 +147,7 @@ theorem LinearSys.inputSolution_outer [Mtimes ℐ S]
   -- integrability, from boundedness and measurability, once for every piece
   have hint : ∀ (F : ℝ → Vec ℝ n) (K : ℝ),
       AEStronglyMeasurable F (volume.restrict (Set.Ioc 0 r)) →
-      (∀ τ ∈ Set.Ioc (0:ℝ) r, ‖F τ‖ ≤ K) → IntervalIntegrable F volume 0 r := by -- --- PROOF ---
+      (∀ τ ∈ Set.Ioc (0:ℝ) r, ‖F τ‖ ≤ K) → IntervalIntegrable F volume 0 r := by
     intro F K hFm hFb
     rw [intervalIntegrable_iff_integrableOn_Ioc_of_le hr.le]
     exact ⟨hFm, HasFiniteIntegral.restrict_of_bounded (C := K) measure_Ioc_lt_top

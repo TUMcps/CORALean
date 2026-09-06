@@ -38,7 +38,7 @@ variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 
 theorem HybridAutomaton.Run.mem_of_invariant {HA : HybridAutomaton S L 𝕋 n}
     {R : L → S n} (hinv : HA.Invariant R) {ℓ ℓ' : L} {x y : Vec ℝ n}
-    (run : HA.Run ℓ x ℓ' y) : x ∈ construct (R ℓ) → y ∈ construct (R ℓ') := by
+    (run : HA.Run ℓ x ℓ' y) : x ∈ construct (R ℓ) → y ∈ construct (R ℓ') := by -- --- PROOF ---
   induction run with
   | flow h => exact fun hx => hinv.flow h hx h.mem_Icc_right
   | jump h hmem hguard _ ih =>

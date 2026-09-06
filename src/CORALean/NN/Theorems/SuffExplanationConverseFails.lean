@@ -69,7 +69,7 @@ noncomputable def aux_suffExplanationConverseFails_nnAbs :
 -- the box's error is committed at its own centre, `0`, so the exact networks agree
 theorem aux_suffExplanationConverseFails_eval_eq (x' : Vec ℝ 1) :
     aux_suffExplanationConverseFails_nnAbs.eval x'
-      = aux_suffExplanationConverseFails_nn.eval x' := by
+      = aux_suffExplanationConverseFails_nn.eval x' := by -- --- PROOF ---
   funext i
   show ((0 : Mat ℝ 2 1) *ᵥ x') i + (if i = 1 then (1 : ℝ) else 0)
       + aux_suffExplanationConverseFails_box.center i
@@ -89,7 +89,8 @@ theorem suffExplanation_of_abstract_converse_fails :
       nn.outputSet (ofInterval (S := fun n => Interval (Vec ℝ n)) (explainBox x ε E))
         ⊆ construct (nnAbs.propagate
           (ofInterval (S := fun n => Interval (Vec ℝ n)) (explainBox x ε E)))
-      ∧ nn.IsSuffExplanation x ε E l ∧ ¬ nnAbs.IsSuffExplanationAbstract x ε E l := by
+      ∧ nn.IsSuffExplanation
+        x ε E l ∧ ¬ nnAbs.IsSuffExplanationAbstract x ε E l := by -- --- PROOF ---
   refine ⟨aux_suffExplanationConverseFails_nn, aux_suffExplanationConverseFails_nnAbs,
     (fun _ => 0), 0, ∅, 1, ?_, ?_, ?_⟩
   · -- `nn` and `nnAbs` evaluate identically, so `nn`'s exact image lies in `nnAbs`'s enclosure

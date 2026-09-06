@@ -27,7 +27,7 @@ variable {p : ℕ}
 
 /-- The upward direction is the downward one at a negated dividend. -/
 private theorem le_quotUp (a b : Dyadic p) (hb : 0 < toReal b) :
-    toReal a / toReal b ≤ toReal (quotUp a b) := by
+    toReal a / toReal b ≤ toReal (quotUp a b) := by -- --- PROOF ---
   have hm : 0 < b.mantissa := mantissa_pos hb
   have hmR : (0 : ℝ) < (b.mantissa : ℝ) := Int.cast_pos.mpr hm
   rw [toReal_div_eq a b (ne_of_gt hmR), quotUp, toReal_mk]

@@ -27,7 +27,7 @@ theorem PolyZonotope.monomial_factorIdx {p h : ℕ} (E : Fin p → Fin h → ℕ
     (i : Fin h) :
     PolyZonotope.monomial (fun k i => E (PolyZonotope.factorIdx E k) i)
         (fun k => a (PolyZonotope.factorIdx E k)) i
-      = PolyZonotope.monomial E a i := by
+      = PolyZonotope.monomial E a i := by -- --- PROOF ---
   rw [PolyZonotope.monomial, PolyZonotope.monomial]
   have h1 : (∏ k, a (PolyZonotope.factorIdx E k) ^ E (PolyZonotope.factorIdx E k) i)
       = ∏ k ∈ PolyZonotope.usedFactors E, a k ^ E k i := by

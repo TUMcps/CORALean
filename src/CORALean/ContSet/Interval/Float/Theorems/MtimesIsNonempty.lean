@@ -34,7 +34,7 @@ theorem Interval.mtimes_isNonempty (M : Mat 𝕋 m n) (I : Interval 𝕋 n) :
     (Interval.mtimes M I).nominal.IsNonempty := fun i => by
   -- one term of the row: the down-rounded product at `inf` sits between the two
   have hle : ∀ k, toReal (minimum (mulDown (M i k) (I.inf k)) (mulDown (M i k) (I.sup k)))
-      ≤ toReal (maximum (mulUp (M i k) (I.inf k)) (mulUp (M i k) (I.sup k))) := by
+      ≤ toReal (maximum (mulUp (M i k) (I.inf k)) (mulUp (M i k) (I.sup k))) := by -- --- PROOF ---
     intro k
     rw [toReal_minimum, toReal_maximum]
     exact le_trans (min_le_left _ _) (le_trans (le_trans (mulDown_le_mul _ _)

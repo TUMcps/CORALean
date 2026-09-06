@@ -36,7 +36,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 theorem VPolytope.aux_mtimes_nominal (M : Mat 𝕋 m n) (P : VPolytope 𝕋 n) :
     (toRealMat M *ᵥ ·) '' nominalSet P ⊆
       nominalSet (VPolytope.mtimes M P)
-        + (VPolytope.columnGap (matMulDown M P.V) (matMulUp M P.V)).construct := by
+        + (VPolytope.columnGap (matMulDown M P.V) (matMulUp M P.V)).construct := by -- --- PROOF ---
   have hexact : (toRealMat M *ᵥ ·) '' nominalSet P
       = (Real.VPolytope.mtimes (toRealMat M) (nominal P)).construct :=
     Real.VPolytope.mtimes_exact _ _

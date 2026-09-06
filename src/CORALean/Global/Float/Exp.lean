@@ -71,7 +71,7 @@ variable [SoundFloatArithmetic 𝕋]
 /-- `exp y ≤ 1/(1-y)` is `add_one_le_exp` at `-y`; `(1-y)(1+y+2y²) = 1+y²(1-2y)`
 is where `y ≤ 1/2` is spent. -/
 private theorem exp_le_quadratic {y : ℝ} (hy : y ≤ 1 / 2) :
-    Real.exp y ≤ 1 + y + 2 * y ^ 2 := by
+    Real.exp y ≤ 1 + y + 2 * y ^ 2 := by -- --- PROOF ---
   have hpos : 0 < Real.exp y := Real.exp_pos y
   have h : 1 - y ≤ (Real.exp y)⁻¹ := by
     have hn := Real.add_one_le_exp (-y)
@@ -86,7 +86,7 @@ private theorem exp_le_quadratic {y : ℝ} (hy : y ≤ 1 / 2) :
 
 /-- `n` halvings divide by `2 ^ n` exactly, `half` rounding nothing. -/
 private theorem toReal_halfIter (n : ℕ) (a : 𝕋) :
-    toReal (halfIter n a) = toReal a / 2 ^ n := by
+    toReal (halfIter n a) = toReal a / 2 ^ n := by -- --- PROOF ---
   induction n with
   | zero => rw [halfIter, pow_zero, div_one]
   | succ k ih =>
@@ -99,7 +99,8 @@ private theorem seedDown_nonneg (a : 𝕋) : 0 ≤ toReal (seedDown a) := by
   exact le_max_left _ _
 
 /-- The lower seed, `add_one_le_exp` at `a` after the rounding is paid. -/
-private theorem seedDown_le (a : 𝕋) : toReal (seedDown a) ≤ Real.exp (toReal a) := by
+private theorem seedDown_le (a : 𝕋) :
+    toReal (seedDown a) ≤ Real.exp (toReal a) := by -- --- PROOF ---
   rw [seedDown, toReal_maximum, toReal_zero]
   refine max_le (Real.exp_pos _).le (le_trans (addDown_le_add one a) ?_)
   rw [toReal_one]
@@ -107,7 +108,7 @@ private theorem seedDown_le (a : 𝕋) : toReal (seedDown a) ≤ Real.exp (toRea
 
 /-- The upper seed, `1 + y + 2y²` with each of its three roundings upward. -/
 private theorem le_seedUp {a : 𝕋} (ha : toReal a ≤ 1 / 2) :
-    Real.exp (toReal a) ≤ toReal (seedUp a) := by
+    Real.exp (toReal a) ≤ toReal (seedUp a) := by -- --- PROOF ---
   have h1 : toReal one + toReal a ≤ toReal (addUp one a) := add_le_addUp one a
   have h2 : toReal a * toReal a ≤ toReal (mulUp a a) := mul_le_mulUp a a
   have h3 : toReal (mulUp a a) + toReal (mulUp a a)
@@ -122,7 +123,7 @@ private theorem le_seedUp {a : 𝕋} (ha : toReal a ≤ 1 / 2) :
 
 /-- Non-negativity survives the squarings, each clamped at zero. -/
 private theorem squareDownIter_nonneg (n : ℕ) {u : 𝕋} (hu : 0 ≤ toReal u) :
-    0 ≤ toReal (squareDownIter n u) := by
+    0 ≤ toReal (squareDownIter n u) := by -- --- PROOF ---
   induction n generalizing u with
   | zero => rw [squareDownIter]; exact hu
   | succ k ih =>
@@ -133,7 +134,8 @@ private theorem squareDownIter_nonneg (n : ℕ) {u : 𝕋} (hu : 0 ≤ toReal u)
 
 /-- `n` downward squarings lift a bound at `s` to one at `2ⁿ s`. -/
 private theorem squareDownIter_le (n : ℕ) {u : 𝕋} {s : ℝ} (hu : 0 ≤ toReal u)
-    (h : toReal u ≤ Real.exp s) : toReal (squareDownIter n u) ≤ Real.exp (2 ^ n * s) := by
+    (h : toReal
+      u ≤ Real.exp s) : toReal (squareDownIter n u) ≤ Real.exp (2 ^ n * s) := by -- --- PROOF ---
   induction n generalizing u s with
   | zero =>
     rw [squareDownIter, pow_zero, one_mul]
@@ -153,7 +155,7 @@ private theorem squareDownIter_le (n : ℕ) {u : 𝕋} {s : ℝ} (hu : 0 ≤ toR
 
 /-- The same upward, where no clamp is needed, an exponential being positive. -/
 private theorem le_squareUpIter (n : ℕ) {u : 𝕋} {s : ℝ} (h : Real.exp s ≤ toReal u) :
-    Real.exp (2 ^ n * s) ≤ toReal (squareUpIter n u) := by
+    Real.exp (2 ^ n * s) ≤ toReal (squareUpIter n u) := by -- --- PROOF ---
   induction n generalizing u s with
   | zero =>
     rw [squareUpIter, pow_zero, one_mul]
@@ -176,7 +178,8 @@ theorem expDown_nonneg (n : ℕ) (a : 𝕋) : 0 ≤ toReal (expDown n a) :=
   squareDownIter_nonneg n (seedDown_nonneg _)
 
 /-- The lower enclosure: seed at `a / 2ⁿ`, then square back. -/
-theorem expDown_le (n : ℕ) (a : 𝕋) : toReal (expDown n a) ≤ Real.exp (toReal a) := by
+theorem expDown_le (n : ℕ) (a : 𝕋) :
+    toReal (expDown n a) ≤ Real.exp (toReal a) := by -- --- PROOF ---
   have hpow : ((2:ℝ) ^ n) ≠ 0 := pow_ne_zero _ two_ne_zero
   have hle := seedDown_le (halfIter n a)
   rw [toReal_halfIter] at hle
@@ -187,7 +190,7 @@ theorem expDown_le (n : ℕ) (a : 𝕋) : toReal (expDown n a) ≤ Real.exp (toR
 
 /-- The upper enclosure, whose hypothesis is what puts `a / 2ⁿ` under `1/2`. -/
 theorem le_expUp (n : ℕ) (a : 𝕋) (ha : toReal a ≤ 2 ^ n / 2) :
-    Real.exp (toReal a) ≤ toReal (expUp n a) := by
+    Real.exp (toReal a) ≤ toReal (expUp n a) := by -- --- PROOF ---
   have hpow : (0:ℝ) < 2 ^ n := by positivity
   have hy : toReal (halfIter n a) ≤ 1 / 2 := by
     rw [toReal_halfIter, div_le_iff₀ hpow]

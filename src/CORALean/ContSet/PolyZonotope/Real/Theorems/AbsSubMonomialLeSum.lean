@@ -47,7 +47,7 @@ theorem PolyZonotope.aux_abs_sub_prod_le {p : ℕ} {a : Fin p → ℝ} (ha : ∀
 theorem PolyZonotope.aux_abs_sub_hybrid_le {p h : ℕ} (E : Fin p → Fin h → ℕ)
     {a : Fin p → ℝ} (ha : ∀ k, |a k| ≤ 1) (i j : Fin h) (s : Finset (Fin p)) :
     |PolyZonotope.monomial E a i - ∏ k, a k ^ (if k ∈ s then E k j else E k i)|
-      ≤ ∑ k ∈ s, (PolyZonotope.eDiff (E k i) (E k j) : ℝ) := by
+      ≤ ∑ k ∈ s, (PolyZonotope.eDiff (E k i) (E k j) : ℝ) := by -- --- PROOF ---
   induction s using Finset.induction_on with
   | empty =>
     -- nothing has moved yet, so the hybrid is the monomial at `i` itself
@@ -83,7 +83,7 @@ their exponents there, whatever the two exponent columns are. -/
 theorem PolyZonotope.abs_sub_monomial_le_sum {p h : ℕ} (E : Fin p → Fin h → ℕ)
     {a : Fin p → ℝ} (ha : ∀ k, |a k| ≤ 1) (i j : Fin h) :
     |PolyZonotope.monomial E a i - PolyZonotope.monomial E a j|
-      ≤ ∑ k, (PolyZonotope.eDiff (E k i) (E k j) : ℝ) := by
+      ≤ ∑ k, (PolyZonotope.eDiff (E k i) (E k j) : ℝ) := by -- --- PROOF ---
   have h1 : ∀ k, (if k ∈ (Finset.univ : Finset (Fin p)) then E k j else E k i) = E k j :=
     fun k => if_pos (Finset.mem_univ k)
   -- the last hybrid, every exponent moved, is the monomial at `j`

@@ -63,7 +63,7 @@ contributes at least everything a shorter one can. -/
 theorem LinearSys.inputReach_mono (sys : LinearSys 𝕋 n) {U : S n} {t r : ℝ}
     (hbdd : Bornology.IsBounded (construct U)) (h0 : (0 : Vec ℝ n) ∈ construct U)
     (ht0 : 0 ≤ t) (htr : t ≤ r) :
-    sys.inputReach U t ⊆ sys.inputReach U r := by
+    sys.inputReach U t ⊆ sys.inputReach U r := by -- --- PROOF ---
   intro y hy
   have hsep := sys.inputReach_separation (a := r - t) (b := t) (by linarith) ht0 hbdd
   rw [show r - t + t = r from by ring] at hsep

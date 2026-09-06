@@ -41,7 +41,7 @@ theorem ConPolyZono.aux_order_arith {d K h q m : ℕ} (hd : d ≤ K) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.reduceGirard_order_le (C : ConPolyZono 𝕋 n) {o : ℕ} (ho : 0 < o) :
-    (C.reduceGirard o).h + (C.reduceGirard o).q ≤ o * n := by
+    (C.reduceGirard o).h + (C.reduceGirard o).q ≤ o * n := by -- --- PROOF ---
   have hK : (o - 1) * n + n = o * n := by
     rw [Nat.sub_one_mul, Nat.sub_add_cancel (Nat.le_mul_of_pos_left n ho)]
   unfold ConPolyZono.reduceGirard

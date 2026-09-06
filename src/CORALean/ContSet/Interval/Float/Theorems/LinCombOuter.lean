@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 theorem Interval.aux_linComb_outer_refines (I₁ I₂ : Interval 𝕋 n) :
-    (I₁.nominal.linComb I₂.nominal).construct ⊆ (I₁.linComb I₂).construct := by
+    (I₁.nominal.linComb I₂.nominal).construct ⊆ (I₁.linComb I₂).construct := by -- --- PROOF ---
   intro x hx i
   refine ⟨?_, ?_⟩
   · show toReal (minimum (I₁.inf i) (I₂.inf i)) ≤ x i

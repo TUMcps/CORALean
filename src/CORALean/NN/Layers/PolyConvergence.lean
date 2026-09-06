@@ -61,7 +61,7 @@ theorem samplingError_bracket {g g' : ℝ → ℝ} {M l u : ℝ} {N : ℕ}
     (hd : ∀ x, HasDerivAt g (g' x) x) (hM : ∀ x, l ≤ x → x ≤ u → |g' x| ≤ M)
     (hN : 0 < N) (hlu : l ≤ u) :
     boxHalfRange g l u ≤ samplingError g M l u N ∧
-      samplingError g M l u N ≤ boxHalfRange g l u + M * ((u - l) / N) := by
+      samplingError g M l u N ≤ boxHalfRange g l u + M * ((u - l) / N) := by -- --- PROOF ---
   have hne : (g '' Set.Icc l u).Nonempty := ⟨g l, ⟨l, ⟨le_rfl, hlu⟩, rfl⟩⟩
   have hmem : ∀ i : Fin (N + 1), sampleGrid l u N i ∈ Set.Icc l u := fun i =>
     ⟨(sampleGrid_mem_Icc hN hlu i).1, (sampleGrid_mem_Icc hN hlu i).2⟩
@@ -102,7 +102,7 @@ theorem tendsto_samplingError {g g' : ℝ → ℝ} {M l u : ℝ}
     (hd : ∀ x, HasDerivAt g (g' x) x) (hM : ∀ x, l ≤ x → x ≤ u → |g' x| ≤ M)
     (hlu : l ≤ u) :
     Filter.Tendsto (fun N : ℕ => samplingError g M l u N) Filter.atTop
-      (nhds (boxHalfRange g l u)) := by
+      (nhds (boxHalfRange g l u)) := by -- --- PROOF ---
   have hM0 : 0 ≤ M := le_trans (abs_nonneg _) (hM l le_rfl hlu)
   have hpad : Filter.Tendsto (fun N : ℕ => M * ((u - l) / N)) Filter.atTop (nhds 0) := by
     have heq : (fun N : ℕ => M * ((u - l) / N)) = fun N : ℕ => (M * (u - l)) / N := by

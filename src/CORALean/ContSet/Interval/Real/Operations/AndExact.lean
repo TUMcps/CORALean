@@ -24,7 +24,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.and_exact (I₁ I₂ : Interval (Vec ℝ n)) :
-    (I₁.and I₂).construct = I₁.construct ∩ I₂.construct := by
+    (I₁.and I₂).construct = I₁.construct ∩ I₂.construct := by -- --- PROOF ---
   ext x
   constructor
   · intro h

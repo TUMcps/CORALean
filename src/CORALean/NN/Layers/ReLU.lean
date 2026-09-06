@@ -44,7 +44,7 @@ def reluGapOfSlope (lam l u : ℝ) : ℝ := max ((1 - lam) * u) (-(lam * l))
 noncomputable def reluGap (l u : ℝ) : ℝ := reluGapOfSlope (reluSlope l u) l u
 
 /-- One case per branch of `reluSlope`, the secant's being the only one to argue. -/
-theorem reluSlope_nonneg (l u : ℝ) : 0 ≤ reluSlope l u := by
+theorem reluSlope_nonneg (l u : ℝ) : 0 ≤ reluSlope l u := by -- --- PROOF ---
   rw [reluSlope]
   split
   · exact le_rfl
@@ -57,7 +57,7 @@ theorem reluSlope_nonneg (l u : ℝ) : 0 ≤ reluSlope l u := by
       exact div_nonneg (le_of_lt hu) (by linarith)
 
 /-- The same branches upward, which together put the slope in `[0,1]`. -/
-theorem reluSlope_le_one (l u : ℝ) : reluSlope l u ≤ 1 := by
+theorem reluSlope_le_one (l u : ℝ) : reluSlope l u ≤ 1 := by -- --- PROOF ---
   rw [reluSlope]
   split
   · exact zero_le_one
@@ -75,7 +75,7 @@ relaxation before recentring. Stated for an arbitrary slope in `[0,1]`, which is
 all convexity gives and all either layer needs. -/
 theorem relu_bounds_of_slope {lam l u t : ℝ} (h0 : 0 ≤ lam) (h1 : lam ≤ 1)
     (hl : l ≤ t) (hu : t ≤ u) :
-    0 ≤ relu t - lam * t ∧ relu t - lam * t ≤ reluGapOfSlope lam l u := by
+    0 ≤ relu t - lam * t ∧ relu t - lam * t ≤ reluGapOfSlope lam l u := by -- --- PROOF ---
   rcases le_total 0 t with ht | ht
   · have hrt : relu t = t := max_eq_left ht
     refine ⟨by rw [hrt]; nlinarith, ?_⟩

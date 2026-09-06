@@ -34,7 +34,7 @@ theorem subset_hPolytope (P : HPolytope α)
     (u : ∀ i, SupportBound O (P.A i)) (hu : ∀ i, (u i).val ≤ P.b i)
     (e : ∀ i, SupportBound O (P.Ae i)) (he : ∀ i, (e i).val ≤ P.be i)
     (f : ∀ i, SupportBound O (-P.Ae i)) (hf : ∀ i, (f i).val ≤ -P.be i) :
-    O ⊆ P.construct := by
+    O ⊆ P.construct := by -- --- PROOF ---
   intro x hx
   refine HPolytope.mem_construct_iff.mpr ⟨fun i => le_trans ((u i).le x hx) (hu i), fun i => ?_⟩
   have hle : P.Ae i x ≤ P.be i := le_trans ((e i).le x hx) (he i)

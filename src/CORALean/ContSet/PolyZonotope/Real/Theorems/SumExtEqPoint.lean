@@ -31,7 +31,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- A point of the set as one sum, the centre being generator zero at the
 all-zero exponent column. -/
 theorem PolyZonotope.sum_ext_eq_point (S : PolyZonotope α) (a : Fin S.p → ℝ) :
-    ∑ l, extM S a l • extG S l = S.c + ∑ i, monomial S.E a i • S.G i := by
+    ∑ l, extM S a l • extG S l = S.c + ∑ i, monomial S.E a i • S.G i := by -- --- PROOF ---
   have h0 : extM S a 0 = 1 := by
     show ∏ k, a k ^ PolyZonotope.extE S k 0 = 1
     exact Finset.prod_eq_one fun k _ => by

@@ -42,7 +42,8 @@ variable {n : ℕ}
 theorem PolyZonotope.aux_evalPolyP_point (S : PolyZonotope (Vec ℝ n)) (coeffs : List (Vec ℝ n))
     (a : Fin S.p → ℝ) :
     (S.evalPolyP coeffs).1.point (fun k => a (Fin.cast (S.evalPolyP coeffs).2 k))
-      = fun i => PolyZonotope.evalPolyReal (coeffs.map fun v => v i) (S.point a i) := by
+      = fun i
+        => PolyZonotope.evalPolyReal (coeffs.map fun v => v i) (S.point a i) := by -- --- PROOF ---
   -- both the empty and the cons case match `evalPolyP`'s own two-case recursion
   induction coeffs with
   | nil =>

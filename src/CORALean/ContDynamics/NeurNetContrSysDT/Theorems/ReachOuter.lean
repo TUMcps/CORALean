@@ -39,7 +39,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 
 theorem NeurNetContrSysDT.reach_outer (sys : NeurNetContrSysDT 𝕋 S n) (o : ℕ) (R₀ : S n)
     {x : ℕ → Vec ℝ n} (traj : sys.Trajectory R₀ x) (k : ℕ) :
-    x k ∈ construct (sys.reach o R₀ k) := by
+    x k ∈ construct (sys.reach o R₀ k) := by -- --- PROOF ---
   induction k with
   | zero => exact traj.init
   | succ k ih =>

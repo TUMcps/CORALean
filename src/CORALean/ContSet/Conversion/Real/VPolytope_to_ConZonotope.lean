@@ -38,7 +38,7 @@ def VPolytope.simplex (k : ℕ) : HPolytope (Vec ℝ k) where
   be := fun _ => 1
 
 theorem VPolytope.mem_simplex_iff {k : ℕ} {β : Vec ℝ k} :
-    β ∈ (VPolytope.simplex k).construct ↔ (∀ j, 0 ≤ β j) ∧ ∑ j, β j = 1 := by
+    β ∈ (VPolytope.simplex k).construct ↔ (∀ j, 0 ≤ β j) ∧ ∑ j, β j = 1 := by -- --- PROOF ---
   constructor
   · rintro ⟨hle, heq⟩
     refine ⟨fun j => ?_, ?_⟩
@@ -66,7 +66,7 @@ def VPolytope.conZonotope (P : VPolytope α) : ConZonotope α where
 
 -- the vertices become generators at a zero centre, so the two sets coincide
 theorem VPolytope.conZonotope_exact (P : VPolytope α) :
-    P.construct = P.conZonotope.construct := by
+    P.construct = P.conZonotope.construct := by -- --- PROOF ---
   ext x
   constructor
   · rintro ⟨β, hnn, hsum, rfl⟩

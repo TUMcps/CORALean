@@ -50,7 +50,7 @@ theorem Interval.subset_vPolytope (I : Interval (Vec ℝ n)) :
   have hhi : ∀ j, x j ≤ I.sup j := fun j => (hx j).2
   -- how far up its own range each coordinate sits, and zero where there is no range
   obtain ⟨t, ht0, ht1, hval⟩ : ∃ t : Fin n → ℝ, (∀ j, 0 ≤ t j) ∧ (∀ j, t j ≤ 1) ∧
-      ∀ j, t j * I.sup j + (1 - t j) * I.inf j = x j := by -- --- PROOF ---
+      ∀ j, t j * I.sup j + (1 - t j) * I.inf j = x j := by
     refine ⟨fun j => if I.sup j = I.inf j then 0 else (x j - I.inf j) / (I.sup j - I.inf j),
       fun j => ?_, fun j => ?_, fun j => ?_⟩ <;>
     · by_cases h : I.sup j = I.inf j

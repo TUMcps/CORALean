@@ -28,7 +28,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 /-- Under the `l∞` operator norm an entry never exceeds the whole norm. -/
 theorem abs_entry_le_norm {m k : ℕ} (M : Mat ℝ m k) (i : Fin m) (j : Fin k) :
-    |M i j| ≤ ‖M‖ := by
+    |M i j| ≤ ‖M‖ := by -- --- PROOF ---
   have h : ‖M i j‖₊ ≤ ‖M‖₊ := by
     rw [Matrix.linfty_opNNNorm_def]
     exact le_trans (Finset.single_le_sum (f := fun j => ‖M i j‖₊)

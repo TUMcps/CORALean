@@ -30,7 +30,7 @@ theorem HPolytope.aux_unitBox_A_castAdd (j : Fin n) :
   rw [Fin.append_left]
 
 theorem HPolytope.aux_unitBox_A_natAdd (j : Fin n) :
-    (HPolytope.unitBox n).A (Fin.natAdd n j) = -LinearMap.proj j := by
+    (HPolytope.unitBox n).A (Fin.natAdd n j) = -LinearMap.proj j := by -- --- PROOF ---
   show Fin.append (fun j : Fin n => (LinearMap.proj j : Vec ℝ n →ₗ[ℝ] ℝ))
     (fun j : Fin n => -(LinearMap.proj j : Vec ℝ n →ₗ[ℝ] ℝ)) (Fin.natAdd n j) = _
   rw [Fin.append_right]
@@ -40,7 +40,7 @@ theorem HPolytope.aux_unitBox_A_natAdd (j : Fin n) :
 
 -- membership is those two halves read back as a bound on the magnitude
 theorem HPolytope.mem_unitBox_iff {x : Vec ℝ n} :
-    x ∈ (HPolytope.unitBox n).construct ↔ ∀ j, |x j| ≤ 1 := by
+    x ∈ (HPolytope.unitBox n).construct ↔ ∀ j, |x j| ≤ 1 := by -- --- PROOF ---
   constructor
   · rintro ⟨hle, -⟩ j
     have hup : x j ≤ 1 := by

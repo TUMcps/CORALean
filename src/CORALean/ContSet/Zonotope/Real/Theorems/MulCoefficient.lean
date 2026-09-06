@@ -22,7 +22,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.mul_coefficient {R D : ℝ} (hDR : |D| ≤ R) :
-    R * Zonotope.coefficient R D = D := by
+    R * Zonotope.coefficient R D = D := by -- --- PROOF ---
   rw [Zonotope.coefficient]
   by_cases h0 : R = 0
   · simp only [h0, if_pos, zero_mul]

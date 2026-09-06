@@ -65,7 +65,7 @@ upward rounding. -/
 theorem PolyZonotope.aux_mergedGenMulti_gap (PZ : PolyZonotope 𝕋 n)
     (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (i : Fin n) :
     |toReal (PZ.G i (part.right 1)) + toReal (PZ.G i (part.right 0))
-      - toReal (PZ.mergedGen part i)| ≤ toReal (PZ.relaxGapMulti part i 0) := by
+      - toReal (PZ.mergedGen part i)| ≤ toReal (PZ.relaxGapMulti part i 0) := by -- --- PROOF ---
   have hlo : toReal (PZ.mergedGen part i)
       ≤ toReal (PZ.G i (part.right 1)) + toReal (PZ.G i (part.right 0)) := addDown_le_add _ _
   have hhi : toReal (PZ.G i (part.right 1)) + toReal (PZ.G i (part.right 0))
@@ -80,7 +80,8 @@ too is off by at most its gap to the upward fold. -/
 theorem PolyZonotope.aux_relaxGenMulti_gap (PZ : PolyZonotope 𝕋 n)
     (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (i : Fin n) :
     |(PZ.relaxWidthMulti part : ℝ) * toReal (PZ.G i (part.right 0))
-      - toReal (PZ.relaxGenMulti part i)| ≤ toReal (PZ.relaxGapMulti part i 1) := by
+      - toReal
+        (PZ.relaxGenMulti part i)| ≤ toReal (PZ.relaxGapMulti part i 1) := by -- --- PROOF ---
   have hlo : toReal (PZ.relaxGenMulti part i)
       ≤ (PZ.relaxWidthMulti part : ℝ) * toReal (PZ.G i (part.right 0)) := nsmulDown_le _ _
   have hhi : (PZ.relaxWidthMulti part : ℝ) * toReal (PZ.G i (part.right 0))
@@ -177,7 +178,7 @@ theorem PolyZonotope.aux_relaxExpMulti_nominal (PZ : PolyZonotope 𝕋 n)
 columns, the summed width paying for every exponent that moves. -/
 theorem PolyZonotope.relaxExpMulti_outer (PZ : PolyZonotope 𝕋 n)
     (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) :
-    PZ.construct ⊆ (PZ.relaxExpMulti part).construct := by
+    PZ.construct ⊆ (PZ.relaxExpMulti part).construct := by -- --- PROOF ---
   rintro _ ⟨z, hz, e, he, rfl⟩
   obtain ⟨z', hz', g, hg, hsum⟩ := PolyZonotope.aux_relaxExpMulti_nominal PZ part hz
   refine ⟨z', hz', e + g, Interval.plus_outer _ _ ⟨e, he, g, hg, rfl⟩, ?_⟩

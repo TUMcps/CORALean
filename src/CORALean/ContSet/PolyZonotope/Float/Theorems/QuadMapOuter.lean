@@ -43,7 +43,7 @@ theorem PolyZonotope.aux_quadMapG_close (Q : Fin m → Mat 𝕋 n n) (S : PolyZo
     (i : Fin m) (l : Fin ((S.h + 1) * (S.h + 1))) :
     |Real.PolyZonotope.quadMapG (fun k => toRealMat (Q k)) (nominal S) l i
         - toReal (PolyZonotope.quadMapGDown Q S i l)|
-      ≤ toReal (PolyZonotope.quadMapGDiff Q S i l) := by
+      ≤ toReal (PolyZonotope.quadMapGDiff Q S i l) := by -- --- PROOF ---
   set l₁ := (finProdFinEquiv.symm l).1 with hl₁
   set l₂ := (finProdFinEquiv.symm l).2 with hl₂
   -- the exact bilinear form, with both vectors read back through `toReal`
@@ -81,7 +81,7 @@ theorem PolyZonotope.aux_quadMapG_close (Q : Fin m → Mat 𝕋 n n) (S : PolyZo
 
 theorem PolyZonotope.aux_quadMapDep_refines (Q : Fin m → Mat 𝕋 n n) (S : PolyZonotope 𝕋 n) :
     (Real.PolyZonotope.quadMapDep (fun k => toRealMat (Q k)) (nominal S)).construct
-      ⊆ (PolyZonotope.quadMapDep Q S).construct := by
+      ⊆ (PolyZonotope.quadMapDep Q S).construct := by -- --- PROOF ---
   intro x hx
   obtain ⟨a, b, ha, hb, hx⟩ := Real.PolyZonotope.mem_construct_iff.mp hx
   have hbox : (fun i => ∑ l,
@@ -122,7 +122,7 @@ theorem PolyZonotope.aux_quadMapDep_refines (Q : Fin m → Mat 𝕋 n n) (S : Po
 -- the whole operation: `dependent` first, then the exact map, then this refinement
 theorem PolyZonotope.quadMap_outer (Q : Fin m → Mat 𝕋 n n) (PZ : PolyZonotope 𝕋 n) :
     Real.PolyZonotope.quadEval (fun k => toRealMat (Q k)) '' PZ.construct
-      ⊆ (PolyZonotope.quadMap Q PZ).construct := by
+      ⊆ (PolyZonotope.quadMap Q PZ).construct := by -- --- PROOF ---
   refine subset_trans (Set.image_mono (PolyZonotope.dependent_nominal PZ)) ?_
   refine subset_trans ?_ (PolyZonotope.aux_quadMapDep_refines Q PZ.dependent)
   exact (Real.PolyZonotope.quadMapDep_exact (fun k => toRealMat (Q k))

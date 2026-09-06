@@ -22,7 +22,7 @@ variable {p : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem roundDown_le (d : Dyadic p) : toReal (roundDown d) ≤ toReal d := by
+theorem roundDown_le (d : Dyadic p) : toReal (roundDown d) ≤ toReal d := by -- --- PROOF ---
   rw [roundDown, toReal_shift, toReal_def]
   exact mul_le_mul_of_nonneg_right
     (Int.cast_le.mpr (Int.ediv_mul_le _ (pow_ne_zero _ two_ne_zero)))

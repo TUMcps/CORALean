@@ -44,7 +44,7 @@ theorem mergeError_split {m r r₁ r₂ : ℕ}
           (Interval.mtimes (M.submatrix id part.left)
             ⟨Y.inf ∘ part.left, Y.sup ∘ part.left⟩)
           (Interval.mtimes (M.submatrix id part.right)
-            ⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩) := by
+            ⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩) := by -- --- PROOF ---
   -- an `Interval` has no proof field, so equal bounds are all `mergeError_split` needs
   have key : ∀ (I J : Interval (Vec ℝ m)), I.inf = J.inf → I.sup = J.sup → I = J := by
     rintro ⟨i₁, s₁⟩ ⟨i₂, s₂⟩ rfl rfl

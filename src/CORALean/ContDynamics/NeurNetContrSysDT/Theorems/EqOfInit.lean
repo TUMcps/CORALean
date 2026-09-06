@@ -30,7 +30,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 theorem NeurNetContrSysDT.Trajectory.aux_eq_iterate {sys : NeurNetContrSysDT 𝕋 S n} {R₀ : S n}
     {x : ℕ → Vec ℝ n} (traj : sys.Trajectory R₀ x) (k : ℕ) :
-    x k = sys.map^[k] (x 0) := by
+    x k = sys.map^[k] (x 0) := by -- --- PROOF ---
   induction k with
   | zero => rfl
   | succ k ih =>

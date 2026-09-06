@@ -57,7 +57,7 @@ theorem PolyZonotope.aux_sum_univ_reduceBy_h {PZ : PolyZonotope 𝕋 n}
 theorem PolyZonotope.aux_reduceBy_nominal (PZ : PolyZonotope 𝕋 n)
     (partD : Split (Fin PZ.h) into (Fin d) and (Fin r))
     (partI : Split (Fin PZ.q) into (Fin dI) and (Fin rI)) :
-    nominalSet PZ ⊆ nominalSet (PZ.reduceBy partD partI) := by
+    nominalSet PZ ⊆ nominalSet (PZ.reduceBy partD partI) := by -- --- PROOF ---
   intro x hx'
   obtain ⟨a, β, ha, hβ, hx⟩ := PolyZonotope.mem_nominalSet_iff.mp hx'
   have hbound := PolyZonotope.abs_dropped_le_dropRadius PZ partD partI ha hβ

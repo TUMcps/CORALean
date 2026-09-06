@@ -28,7 +28,7 @@ theorem ConPolyZono.mulVec_andA_agree (C₁ C₂ : ConPolyZono (Vec ℝ n))
     (v : Fin (C₁.s + C₂.s + (C₁.h + C₂.h)) → ℝ) (i : Fin n) :
     (ConPolyZono.andA C₁ C₂ *ᵥ v) (Fin.natAdd (C₁.m + C₂.m) i)
       = (∑ l, C₁.G l i * v (Fin.natAdd (C₁.s + C₂.s) (Fin.castAdd C₂.h l)))
-        - ∑ l, C₂.G l i * v (Fin.natAdd (C₁.s + C₂.s) (Fin.natAdd C₁.h l)) := by
+        - ∑ l, C₂.G l i * v (Fin.natAdd (C₁.s + C₂.s) (Fin.natAdd C₁.h l)) := by -- --- PROOF ---
   show ∑ l : Fin (C₁.s + C₂.s + (C₁.h + C₂.h)),
       ConPolyZono.andA C₁ C₂ (Fin.natAdd (C₁.m + C₂.m) i) l * v l = _
   rw [Fin.sum_univ_add]

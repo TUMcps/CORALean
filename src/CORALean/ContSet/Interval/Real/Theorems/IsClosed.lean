@@ -23,7 +23,8 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.isClosed_construct (I : Interval (Vec ℝ n)) : IsClosed I.construct := by
+theorem Interval.isClosed_construct (I : Interval (Vec ℝ n)) :
+    IsClosed I.construct := by -- --- PROOF ---
   have hinter : I.construct
       = ⋂ i, ({x : Vec ℝ n | I.inf i ≤ x i} ∩ {x : Vec ℝ n | x i ≤ I.sup i}) := by
     ext x

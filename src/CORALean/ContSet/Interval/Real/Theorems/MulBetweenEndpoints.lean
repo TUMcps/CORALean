@@ -25,7 +25,7 @@ namespace CORALean.Real
 /-- Scaling a point between two endpoints lands between the scaled endpoints,
 whichever way the scale points. -/
 theorem Interval.mul_between_endpoints {c lo hi x : ℝ} (h₁ : lo ≤ x) (h₂ : x ≤ hi) :
-    min (c * lo) (c * hi) ≤ c * x ∧ c * x ≤ max (c * lo) (c * hi) := by
+    min (c * lo) (c * hi) ≤ c * x ∧ c * x ≤ max (c * lo) (c * hi) := by -- --- PROOF ---
   rcases le_total 0 c with hc | hc
   · exact ⟨(min_le_left _ _).trans (mul_le_mul_of_nonneg_left h₁ hc),
            (mul_le_mul_of_nonneg_left h₂ hc).trans (le_max_right _ _)⟩

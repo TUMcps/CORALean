@@ -50,7 +50,7 @@ theorem NeurNetContrSys.Trajectory.period {sys : NeurNetContrSys 𝕋 S n} {Δtc
       (fun _ => sys.contr.eval (x ((i : ℝ) * Δtc))) where
   init := by simpa using hR
   input _ _ := sys.contr.propagate_outer R _ hR
-  flow t ht := by
+  flow t ht := by -- --- PROOF ---
     have hmaps : Set.MapsTo (fun s => (i : ℝ) * Δtc + s) (Set.Icc 0 Δtc)
         (Set.Icc ((i : ℝ) * Δtc) (((i : ℝ) + 1) * Δtc)) := by
       intro s hs

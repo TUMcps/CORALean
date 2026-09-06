@@ -27,7 +27,7 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.mtimes_exact (M : Mat ℝ m n) (E : Ellipsoid n) :
-    (M *ᵥ ·) '' E.construct = (Ellipsoid.mtimes M E).construct := by
+    (M *ᵥ ·) '' E.construct = (Ellipsoid.mtimes M E).construct := by -- --- PROOF ---
   have haff : ∀ u : Vec ℝ E.k, M *ᵥ (E.q + E.G *ᵥ u)
       = (Ellipsoid.mtimes M E).q + (Ellipsoid.mtimes M E).G *ᵥ u := fun u => by
     rw [Matrix.mulVec_add, Matrix.mulVec_mulVec]

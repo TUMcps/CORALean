@@ -48,7 +48,7 @@ theorem Zonotope.aux_sum_univ_reduceBy {Z : Zonotope 𝕋 n}
 
 theorem Zonotope.reduceBy_outer_refines (Z : Zonotope 𝕋 n)
     (part : Split (Fin Z.h) into (Fin q) and (Fin r)) :
-    ((nominal Z).reduceBy part).construct ⊆ nominalSet (Z.reduceBy part) := by
+    ((nominal Z).reduceBy part).construct ⊆ nominalSet (Z.reduceBy part) := by -- --- PROOF ---
   intro x hxmem
   obtain ⟨β, hβ, hx⟩ := Real.Zonotope.mem_construct_iff.mp hxmem
   have hnonneg : ∀ i, (0:ℝ) ≤ ∑ l, |toReal (Z.G i (part.right l))| :=

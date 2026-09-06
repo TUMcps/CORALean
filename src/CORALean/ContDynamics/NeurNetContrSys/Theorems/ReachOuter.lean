@@ -55,7 +55,8 @@ the two are related only here. -/
 theorem NeurNetContrSys.reach_outer (sys : NeurNetContrSys 𝕋 S n) (o η N : ℕ) {Δt : ℝ}
     (hΔt : 0 < Δt) (hε : ‖Δt • toRealMat sys.plant.A‖ / ((η : ℝ) + 2) < 1) {H : ℕ}
     {R₀ : S n} {x : ℝ → Vec ℝ n} (traj : sys.Trajectory ((N : ℝ) * Δt) H R₀ x) :
-    ∀ i ≤ H, x ((i : ℝ) * ((N : ℝ) * Δt)) ∈ construct (sys.reach o η N Δt R₀ i) := by
+    ∀ i
+      ≤ H, x ((i : ℝ) * ((N : ℝ) * Δt)) ∈ construct (sys.reach o η N Δt R₀ i) := by -- --- PROOF ---
   intro i
   -- the induction is on the control period, `traj.period` being its step
   induction i with

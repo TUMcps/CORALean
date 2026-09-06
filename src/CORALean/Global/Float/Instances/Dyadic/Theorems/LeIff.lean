@@ -24,7 +24,7 @@ variable {p : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem le_iff (a b : Dyadic p) : le a b = true ↔ toReal a ≤ toReal b := by
+theorem le_iff (a b : Dyadic p) : le a b = true ↔ toReal a ≤ toReal b := by -- --- PROOF ---
   rw [le, decide_eq_true_eq, toReal_align a (min_le_left a.exponent b.exponent),
     toReal_align b (min_le_right a.exponent b.exponent)]
   exact ⟨fun h => mul_le_mul_of_nonneg_right (Int.cast_le.mpr h) (le_of_lt (zpow_pos two_pos _)),

@@ -24,7 +24,7 @@ namespace CORALean.Real
 theorem PolyZonotope.monomial_plusE_right {p₁ h₁ p₂ h₂ : ℕ} (E₁ : Fin p₁ → Fin h₁ → ℕ)
     (E₂ : Fin p₂ → Fin h₂ → ℕ) (a : Fin (p₁ + p₂) → ℝ) (i : Fin h₂) :
     PolyZonotope.monomial (PolyZonotope.plusE E₁ E₂) a (Fin.natAdd h₁ i)
-      = PolyZonotope.monomial E₂ (fun k => a (Fin.natAdd p₁ k)) i := by
+      = PolyZonotope.monomial E₂ (fun k => a (Fin.natAdd p₁ k)) i := by -- --- PROOF ---
   rw [PolyZonotope.monomial, PolyZonotope.monomial, Fin.prod_univ_add]
   have hother : (∏ k : Fin p₁, a (Fin.castAdd p₂ k)
       ^ PolyZonotope.plusE E₁ E₂ (Fin.castAdd p₂ k) (Fin.natAdd h₁ i)) = 1 :=

@@ -49,7 +49,7 @@ set_option maxHeartbeats 400000 in
 theorem MatExp.expDiff_eq_tsum (A : Mat ℝ n n) (t r : ℝ) (hr : r ≠ 0) :
     exp (t • A) - 1 - (t / r) • (exp (r • A) - 1)
       = ∑' i : ℕ, (((Nat.factorial (i + 2) : ℝ))⁻¹
-          * (t ^ (i + 2) - (t / r) * r ^ (i + 2))) • A ^ (i + 2) := by
+          * (t ^ (i + 2) - (t / r) * r ^ (i + 2))) • A ^ (i + 2) := by -- --- PROOF ---
   set g : ℕ → Mat ℝ n n :=
     fun i => (((Nat.factorial i : ℝ))⁻¹ * (t ^ i - (t / r) * r ^ i)) • A ^ i with hg
   have hst := summable_exp_smul A t
