@@ -6,8 +6,8 @@ import CORALean.NN.Theorems.LinearExact
 
 `Layer.refinable` is what puts a layer with nothing to spend into a refinable
 network, and `Convergent` then has to be met by its single enclosure. It is,
-because that enclosure is exact: level `0` already lands the propagated set on
-the image, and the inflation is spent on nothing.
+because that enclosure is exact: any order pattern already lands the propagated
+set on the image, and the inflation is spent on nothing.
 
 So the linear layer contributes no residual at all to `PropagateAtInflate`'s
 budget, and everything the schedule buys is bought at the activations — which
@@ -21,7 +21,7 @@ is the division of labour the refinement loop assumes [1].
 
 -- Authors:       Tobias Ladner
 -- Written:       06-September-2026
--- Last update:   ---
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -33,7 +33,7 @@ variable {n m : ℕ}
 theorem Layer.linear_refinable_convergent (W : Mat ℝ m n) (b : Vec ℝ m) :
     (Layer.linear (S := 𝒫𝒵) W b).refinable.Convergent := by
   intro s ε hε
-  refine ⟨0, ?_⟩
+  refine ⟨fun _ => 0, ?_⟩
   show construct ((Layer.linear (S := 𝒫𝒵) W b).propagate s)
       ⊆ (Layer.linear (S := 𝒫𝒵) W b).eval '' construct s + Metric.closedBall 0 ε
   rw [Layer.linear_exact]

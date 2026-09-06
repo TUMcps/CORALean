@@ -13,14 +13,19 @@ There is no induction here. `atSchedule` produces an ordinary `NeuralNetwork`
 and `atSchedule_eval` says it computes the same function, so the claim is
 `NeuralNetwork.propagate_outer` read at that network.
 
-The two corollaries are the same theorem at a step and at the loop, stated
-because they are what a caller wants to cite: refining any layer keeps the
-enclosure, and so does any number of steps at any `pick`.
+The three corollaries are the same theorem at a step and at the loop, stated
+because they are what a caller wants to cite: neither refinement rule [1] can
+cost the enclosure, and neither can any number of steps at any `pick`.
+
+## References
+
+* [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural
+      Network Verification using Sensitivity Analysis". HSCC 2023.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       05-September-2026
--- Last update:   ---
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -40,16 +45,23 @@ theorem RefinableNetwork.outputSet_subset_propagateAt (rn : RefinableNetwork S n
   rintro _ ⟨x, hx, rfl⟩
   exact rn.propagateAt_outer sch X x hx
 
-/-- Refining any layer keeps the enclosure, which is what leaves the ranking a
-ranking: a wrong choice costs precision and never correctness. -/
+/-- Refining any neuron keeps the enclosure [1, Def. 4.4], which is what leaves
+the ranking a ranking: a wrong choice costs precision and never correctness. -/
 theorem RefinableNetwork.outputSet_subset_refine (rn : RefinableNetwork S n m)
-    (sch : Schedule) (i : ℕ) (X : S n) :
-    rn.outputSet X ⊆ construct (rn.propagateAt (Schedule.refine sch i) X) :=
+    (sch : Schedule) (l j : ℕ) (X : S n) :
+    rn.outputSet X ⊆ construct (rn.propagateAt (Schedule.refine sch l j) X) :=
+  rn.outputSet_subset_propagateAt _ X
+
+/-- And refining a whole layer [1, Def. 4.6], the rule that spends more orders
+for the same generator count. -/
+theorem RefinableNetwork.outputSet_subset_refineLayer (rn : RefinableNetwork S n m)
+    (sch : Schedule) (l : ℕ) (X : S n) :
+    rn.outputSet X ⊆ construct (rn.propagateAt (Schedule.refineLayer sch l) X) :=
   rn.outputSet_subset_propagateAt _ X
 
 /-- And so does the loop, at every `pick` and every number of steps. -/
 theorem RefinableNetwork.outputSet_subset_refineLoop (rn : RefinableNetwork S n m)
-    (pick : Schedule → ℕ) (sch : Schedule) (k : ℕ) (X : S n) :
+    (pick : Schedule → ℕ × ℕ) (sch : Schedule) (k : ℕ) (X : S n) :
     rn.outputSet X ⊆ construct (rn.propagateAt (Schedule.refineLoop pick sch k) X) :=
   rn.outputSet_subset_propagateAt _ X
 

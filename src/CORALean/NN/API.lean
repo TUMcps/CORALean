@@ -30,5 +30,5 @@ Only the layers sit in two arithmetic layers. Everything outside `Layers/` is al
 indifferent to the scalar — `Layer` is a structure over any `ContSet` whose ambient type is
 `Vec ℝ n`, so the graph and its induction run over a float representation unchanged, and
 `Float/` holds the layer constructors alone. `RefinableLayer` and `RefinableNetwork` are that
-graph with a level per layer still to choose, which `Operations.Schedule` reads and refines.
+graph with an order per neuron still to choose, which `Operations.Schedule` reads and refines.
 -/

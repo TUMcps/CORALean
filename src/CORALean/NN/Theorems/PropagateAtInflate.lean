@@ -21,14 +21,25 @@ would be the one case the statement is easiest in.
 
 -- Authors:       Tobias Ladner
 -- Written:       05-September-2026
--- Last update:   ---
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
 
 open Pointwise ContSet
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m k : ℕ}
+
+/-- A schedule built by `Schedule.cons` runs its head layer at exactly the
+pattern it was built from, which is what lets the induction hand one down. -/
+theorem aux_propagateAt_cons (L : RefinableLayer S n m) (rest : RefinableNetwork S m k)
+    (t : OrderPattern n) (sch : Schedule) (X : S n) :
+    (RefinableNetwork.cons L rest).propagateAt (Schedule.cons t sch) X
+      = rest.propagateAt sch (L.propagate t X) := by
+  show rest.propagateAt (Schedule.tail (Schedule.cons t sch))
+    (L.propagate (Schedule.head (Schedule.cons t sch) n) X) = _
+  rw [Schedule.head_cons]
+  rfl
 
 /-- Two inflations compose into one: a residual left by the head layer and the
 error the tail adds are both paid out of the same ball. -/
@@ -68,7 +79,7 @@ theorem RefinableNetwork.exists_schedule_propagateAt_subset :
       ∃ sch : Schedule,
         construct (rn.propagateAt sch X) ⊆ rn.outputSet X + Metric.closedBall 0 ε
   | k, _, .nil, _, X, ε, hε => by
-    refine ⟨fun _ => 0, fun y hy => ?_⟩
+    refine ⟨fun _ _ => 0, fun y hy => ?_⟩
     -- the empty network propagates its input, and nothing has to be inflated
     have h0 : (0 : Vec ℝ k) ∈ Metric.closedBall (0 : Vec ℝ k) ε := by
       rw [Metric.mem_closedBall, dist_self]
@@ -99,7 +110,7 @@ theorem RefinableNetwork.exists_schedule_propagateAt_subset :
         (subset_trans (aux_image_inflate_subset hK _ _) ?_)
       rw [hset]
       exact Set.add_subset_add_left (Metric.closedBall_subset_closedBall hrad)
-    show construct (rest.propagateAt sch (L.propagate o X)) ⊆ _
+    rw [aux_propagateAt_cons]
     exact aux_subset_inflate_trans himg hsch (by linarith)
 
 end CORALean.Real

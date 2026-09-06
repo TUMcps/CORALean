@@ -14,6 +14,7 @@ import CORALean.NN.Layers.PolyFit
 import CORALean.NN.Layers.PolyFitConvergence
 import CORALean.NN.Layers.PolyRangeConvergence
 import CORALean.NN.Layers.PolyRelaxation
+import CORALean.NN.Layers.PolyRelaxationPad
 import CORALean.NN.Layers.PolySampling
 import CORALean.NN.Layers.ReLU
 import CORALean.NN.Layers.Reshape
@@ -40,11 +41,11 @@ per neuron and the error to allow for, where every bit of a network's precision 
 `ReLU` gets its slope from convexity, the other two from `Curvature`. `PolyRelaxation` is that at
 degree `n` and `Relaxation` its order-1 case; `PolySampling` bounds the error, `PolyDerivBound`
 is what that needs and `PolyFit` what it does not, `PolyConvergence` with `PolyFitConvergence`
-drive it to zero, and `SigmoidPoly` and `TanhPoly` instantiate them (via `PolyAffineConj` for
-the second). `ActivationPoly` propagates one at `PolyZonotope` alone, `ActivationPolyInflate`
-says by how much it widens, `PolyRangeConvergence` makes one order serve a whole layer,
-`ActivationPolyRefine` is the three as a refinable layer, `SigmoidPolyRefine` one at a real
-activation, and `SigmoidLinearSigmoid` a chain of two of those around a matrix.
+drive it to zero, `PolyRelaxationPad` lifts one to a higher degree, and `SigmoidPoly` and
+`TanhPoly` instantiate them (via `PolyAffineConj`). `ActivationPoly` propagates one per neuron at
+`PolyZonotope` alone, `ActivationPolyInflate` says by how much it widens, `PolyRangeConvergence`
+makes one order serve a whole range, `ActivationPolyRefine` is the three as a refinable layer,
+`SigmoidPolyRefine` one at a real activation, and `SigmoidLinearSigmoid` a chain around a matrix.
 
 **Neither.** `Reshape` is a relabelling, the only layer here *exact* rather than outer — it asks
 for `Reindex`. Max pooling in `Pooling` and `Softmax` need their own enclosures: the first

@@ -5,6 +5,7 @@ import CORALean.NN.Float.Layers.Convolution
 import CORALean.NN.Float.Layers.Curvature
 import CORALean.NN.Float.Layers.Linear
 import CORALean.NN.Float.Layers.Pooling
+import CORALean.NN.Float.Layers.PolyRelaxationPad
 import CORALean.NN.Float.Layers.ReLU
 import CORALean.NN.Float.Layers.Sigmoid
 import CORALean.NN.Float.Layers.Softmax
@@ -31,7 +32,7 @@ would need `expUp`, which is not total, so it takes one from the normalization.
 
 `Reshape` and `BatchNorm` have no file here, and neither is an omission. `Layer.reshape` carries
 no weights, so the exact constructor is already the float one; `Layer.batchNorm` is
-`Layer.linear` at a folded scale and shift. `ActivationPolyRefine` is `ActivationPoly` at a
-refinement level, and the loop's soundness covers it unchanged; convergence is not, its own
-docstring saying why — rounding floors the error a level can buy.
+`Layer.linear` at a folded scale and shift. `ActivationPolyRefine` is `ActivationPoly` at an
+order pattern, `PolyRelaxationPad` making the neurons' degrees agree, and the loop's soundness
+covers it unchanged; convergence is not, its own docstring saying why.
 -/
