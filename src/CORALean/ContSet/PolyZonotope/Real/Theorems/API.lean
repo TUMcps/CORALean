@@ -19,6 +19,8 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.SumExtEqPoint
 import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadEvalSumExt
 import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapDepExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapExact
+import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinPoint
+import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MulPoint
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MulExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyReal
@@ -60,8 +62,8 @@ enclosures, each docstring saying which coefficients or dropped generators cost 
 `reduce` is the one operation with two guarantees, and it needs both: an enclosure alone is met
 by a set that grows every step, so `reduce_order_le` bounds the size it keeps.
 
-`mul_exact` equates a product with the image of the shared factors under
-`a ↦ point S₁ a ⊙ point S₂ a`, never with a product of the two sets; `evalPoly_exact` carries
+`bilin_exact` equates a pairing with the image of the shared factors under `a ↦ f (point S₁ a)
+(point S₂ a)`, never `f` over the two sets; `mul_exact` is it entrywise, `evalPoly_exact` carries
 that to a polynomial per coordinate and `evalPolyReal_ofFn` matches Horner to the monomial sum.
 `point_mem_construct` is the way back and `exists_point_of_q_zero`, once `evalPoly_q` says
 nothing is independent, the way there. `relaxExp_outer` holds at every partition naming two

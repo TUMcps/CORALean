@@ -1,16 +1,21 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.ExtG
+import CORALean.Global.Hadamard
+import CORALean.ContSet.PolyZonotope.Real.Operations.BilinG
 
 /-!
 # The generators of `mul`
 
-Split out of `Mul.lean` (issue #62): read again by the float layer's own
-`Theorems/EvalPolyOuter.lean`, `Theorems/MulOuter.lean` and
-`Theorems/MulGClose.lean`, all outside this file.
+`bilinG` at the entrywise product. Which bilinear map is paired is the only
+thing that separates a coordinatewise product from a matrix one, so `mul` is
+`bilin` at `hadamardLin` and this is where that choice is made.
+
+`hadamardLin_vec` is what keeps the statements downstream reading as `*`: at
+`Vec` a coordinate is an application, so the bundled product is the `Pi` one
+definitionally.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       06-September-2026
--- Last update:   ---
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 
@@ -27,8 +32,7 @@ variable {n : ℕ}
 coordinate by coordinate. -/
 def PolyZonotope.mulG (S₁ S₂ : PolyZonotope (Vec ℝ n)) :
     Fin ((S₁.h + 1) * (S₂.h + 1)) → Vec ℝ n :=
-  fun l i => PolyZonotope.extG S₁ (finProdFinEquiv.symm l).1 i
-      * PolyZonotope.extG S₂ (finProdFinEquiv.symm l).2 i
+  PolyZonotope.bilinG Entrywise.hadamardLin S₁ S₂
 
 end CORALean.Real
 
