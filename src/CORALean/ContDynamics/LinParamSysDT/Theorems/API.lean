@@ -6,6 +6,8 @@ import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOneOuter
 import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuter
 import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuterInstances
 import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuterOn
+import CORALean.ContDynamics.LinParamSysDT.Theorems.SimulateMemReach
+import CORALean.ContDynamics.LinParamSysDT.Theorems.SimulateTrajectory
 import CORALean.ContDynamics.LinParamSysDT.Theorems.ToLinParam
 import CORALean.ContDynamics.LinParamSysDT.Theorems.TrajectoryToLinParam
 
@@ -28,6 +30,9 @@ representation-specific proof.
 `LinearSysDT` really is that point-matrix instantiation, evidence for #29's
 open question of whether to re-express it through this instead — a call this
 file does not make.
+
+`SimulateTrajectory`/`SimulateMemReach` are `simulate` sampling one run, at a
+matrix chosen per step, landing inside `reach` — same shape as `LinearSysDT`'s.
 
 ## References
 

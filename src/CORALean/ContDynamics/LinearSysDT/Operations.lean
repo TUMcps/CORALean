@@ -14,6 +14,9 @@ order `o`; nothing in the types enforces that, and nothing needs to.
 form rather than recursive: `A` is multiplied by itself, not read through
 `toRealMat` at every step, and `U` is multiplied once, so there is nothing
 per-step to `reduce`.
+
+`simulate` samples one run rather than enclosing all of them: a point
+computation, so it carries none of `reach`'s set instances.
 -/
 
 -- Authors:       Tobias Ladner
@@ -48,6 +51,15 @@ accumulated per step, so a zero-order hold reads off exactly rather than through
 the jitter a fresh point of `U` at every step would add. -/
 def LinearSysDT.reachHeld (sys : LinearSysDT ℝ n) (R₀ U : S n) (N : ℕ) : S n :=
   plus (mtimes (sys.A ^ N) R₀) (mtimes (∑ i ∈ Finset.range N, sys.A ^ i) U)
+
+omit [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
+    [Mtimes (Mat 𝕋) S] [Mtimes (Mat ℝ) S] in
+/-- One sampled run of the dynamics from `x₀` under input signal `u` — a point
+computation, none of `reach`'s set instances needed. -/
+def LinearSysDT.simulate (sys : LinearSysDT 𝕋 n) (x₀ : Vec ℝ n) (u : ℕ → Vec ℝ n) :
+    ℕ → Vec ℝ n
+  | 0 => x₀
+  | k + 1 => toRealMat sys.A *ᵥ sys.simulate x₀ u k + u k
 
 end CORALean.Real
 
