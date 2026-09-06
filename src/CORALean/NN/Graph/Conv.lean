@@ -24,7 +24,7 @@ in order to stay away from zero.
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph
       Convolutional Networks with Uncertain Node Features and Uncertain Graph
-      Structure". TMLR, 2025.
+      Structure". TMLR, 2025. arXiv:2404.15065.
 * [2] T. N. Kipf and M. Welling. "Semi-Supervised Classification with Graph
       Convolutional Networks". ICLR, 2017.
 -/

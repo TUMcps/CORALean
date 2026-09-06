@@ -24,7 +24,7 @@ polynomial zonotope is a representation to build before this gets a float half.
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph
       Convolutional Networks with Uncertain Node Features and Uncertain Graph
-      Structure". TMLR, 2025.
+      Structure". TMLR, 2025. arXiv:2404.15065.
 -/
 
 -- Authors:       Tobias Ladner
