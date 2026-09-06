@@ -45,7 +45,7 @@ theorem PolyZonotope.relaxExpEven_outer_of_edge (PZ : PolyZonotope α)
     (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) {η : ℕ} {k₀ : Fin PZ.p}
     (hedge : PolyZonotope.ExpEdgeAt PZ.E η k₀ (part.right 0) (part.right 1))
     (heven : ∀ k, Even (PZ.E k (part.right 0))) :
-    PZ.construct ⊆ (PZ.relaxExpEven part k₀).construct := by
+    PZ.construct ⊆ (PZ.relaxExpEven part k₀).construct := by -- --- PROOF ---
   obtain ⟨hsim, hpar, -, hlt⟩ := hedge
   -- the survivor's exponent is even: matching the parity of an even one, or zero
   have hevenj : Even (PZ.E k₀ (part.right 1)) := by

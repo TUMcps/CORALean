@@ -39,7 +39,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 theorem PolyZonotope.aux_sum_compactFactors (PZ : PolyZonotope α) (a : Fin PZ.p → ℝ) :
     (∑ i, PolyZonotope.monomial PZ.E a i • PZ.G i)
       = ∑ i : Fin PZ.compactFactors.h, PolyZonotope.monomial PZ.compactFactors.E
-          (fun k => a (PolyZonotope.factorIdx PZ.E k)) i • PZ.compactFactors.G i := by
+          (fun
+            k => a (PolyZonotope.factorIdx PZ.E k)) i • PZ.compactFactors.G i := by -- --- PROOF ---
   show (∑ i, PolyZonotope.monomial PZ.E a i • PZ.G i)
       = ∑ i : Fin PZ.h,
           PolyZonotope.monomial (fun k i => PZ.E (PolyZonotope.factorIdx PZ.E k) i)
@@ -53,7 +54,8 @@ theorem PolyZonotope.aux_sum_compactFactors_extend (PZ : PolyZonotope α)
     (a : Fin PZ.compactFactors.p → ℝ) :
     (∑ i, PolyZonotope.monomial PZ.E (PolyZonotope.factorExtend PZ.E a) i • PZ.G i)
       = ∑ i : Fin PZ.compactFactors.h,
-          PolyZonotope.monomial PZ.compactFactors.E a i • PZ.compactFactors.G i := by
+          PolyZonotope.monomial
+            PZ.compactFactors.E a i • PZ.compactFactors.G i := by -- --- PROOF ---
   show (∑ i, PolyZonotope.monomial PZ.E (PolyZonotope.factorExtend PZ.E a) i • PZ.G i)
       = ∑ i : Fin PZ.h,
           PolyZonotope.monomial (fun k i => PZ.E (PolyZonotope.factorIdx PZ.E k) i) a i
@@ -64,7 +66,7 @@ theorem PolyZonotope.aux_sum_compactFactors_extend (PZ : PolyZonotope α)
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.compactFactors_exact (PZ : PolyZonotope α) :
-    PZ.construct = PZ.compactFactors.construct := by
+    PZ.construct = PZ.compactFactors.construct := by -- --- PROOF ---
   have key : ∀ (a : Fin PZ.p → ℝ) (β : Fin PZ.q → ℝ),
       PZ.c + (∑ i, PolyZonotope.monomial PZ.E a i • PZ.G i) + ∑ j, β j • PZ.GI j
         = PZ.c + (∑ i : Fin PZ.compactFactors.h, PolyZonotope.monomial PZ.compactFactors.E

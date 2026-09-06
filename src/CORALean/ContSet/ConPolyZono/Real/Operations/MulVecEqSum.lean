@@ -25,7 +25,7 @@ open Matrix
 /-- `A μ(α)` read as a generator sum over the constraint columns, at the
 monomials `EC` names — the form `sum_monomial_merge` merges. -/
 theorem ConPolyZono.mulVec_eq_sum {m s : ℕ} (A : Mat ℝ m s) (v : Vec ℝ s) :
-    A *ᵥ v = ∑ l, v l • ConPolyZono.consCol A l := by
+    A *ᵥ v = ∑ l, v l • ConPolyZono.consCol A l := by -- --- PROOF ---
   funext i
   show (∑ l, A i l * v l) = (∑ l, v l • ConPolyZono.consCol A l) i
   rw [Finset.sum_apply]

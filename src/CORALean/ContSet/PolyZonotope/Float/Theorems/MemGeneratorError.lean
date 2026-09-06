@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n h : ℕ}
 /-- Entrywise generator error scaled by any coefficients in `[-1,1]`. -/
 theorem PolyZonotope.mem_generatorError {G : Mat 𝕋 n h} {Δ : Mat ℝ n h} {t : Vec ℝ h}
     (hG : ∀ i l, |Δ i l| ≤ toReal (G i l)) (ht : ∀ l, |t l| ≤ 1) :
-    (fun i => ∑ l, Δ i l * t l) ∈ (PolyZonotope.generatorError G).construct := by
+    (fun i => ∑ l, Δ i l * t l) ∈ (PolyZonotope.generatorError G).construct := by -- --- PROOF ---
   intro i
   have key := abs_sum_le_radius (fun i l => le_trans (hG i l) (le_abs_self _)) ht i
   refine ⟨?_, le_of_abs_le key⟩

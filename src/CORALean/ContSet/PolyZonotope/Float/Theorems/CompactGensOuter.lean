@@ -46,7 +46,7 @@ theorem PolyZonotope.aux_merge (PZ : PolyZonotope 𝕋 n) (a : Fin PZ.p → ℝ)
       = ∑ j : Fin (PolyZonotope.repKeep PZ.E).card,
           Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep PZ.E)
               (fun l => toReal (PZ.G i l)) (PolyZonotope.keepIdx PZ.E j)
-            * Real.PolyZonotope.monomial PZ.compactGens.E a j := by
+            * Real.PolyZonotope.monomial PZ.compactGens.E a j := by -- --- PROOF ---
   -- the merge is the exact layer's, the stored columns being exact reals here
   calc (∑ l, toReal (PZ.G i l) * Real.PolyZonotope.monomial PZ.E a l)
       = ∑ l, Real.PolyZonotope.monomial PZ.E a l • toReal (PZ.G i l) :=
@@ -75,7 +75,7 @@ theorem PolyZonotope.aux_compactGap (PZ : PolyZonotope 𝕋 n) (i : Fin n)
     (j : Fin (PolyZonotope.repKeep PZ.E).card) :
     |Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep PZ.E)
         (fun l => toReal (PZ.G i l)) (PolyZonotope.keepIdx PZ.E j)
-      - toReal (PZ.mergedCol i j)| ≤ toReal (PolyZonotope.compactGap PZ i j) := by
+      - toReal (PZ.mergedCol i j)| ≤ toReal (PolyZonotope.compactGap PZ i j) := by -- --- PROOF ---
   have hlo : toReal (PZ.mergedCol i j)
       ≤ Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep PZ.E)
           (fun l => toReal (PZ.G i l)) (PolyZonotope.keepIdx PZ.E j) :=
@@ -92,7 +92,7 @@ theorem PolyZonotope.aux_compactGap (PZ : PolyZonotope 𝕋 n) (i : Fin n)
 -- the merged column is stored downward, and that gap is what the box pays for
 theorem PolyZonotope.aux_compactGens_nominal (PZ : PolyZonotope 𝕋 n) :
     nominalSet PZ ⊆ nominalSet PZ.compactGens
-      + (PolyZonotope.generatorError (PolyZonotope.compactGap PZ)).construct := by
+      + (PolyZonotope.generatorError (PolyZonotope.compactGap PZ)).construct := by -- --- PROOF ---
   intro x hx
   obtain ⟨a, β, ha, hβ, hxi⟩ := PolyZonotope.mem_nominalSet_iff.mp hx
   refine ⟨fun i => toReal (PZ.c i)
@@ -135,7 +135,7 @@ theorem PolyZonotope.aux_compactGens_nominal (PZ : PolyZonotope 𝕋 n) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.compactGens_outer (PZ : PolyZonotope 𝕋 n) :
-    PZ.construct ⊆ PZ.compactGens.construct := by
+    PZ.construct ⊆ PZ.compactGens.construct := by -- --- PROOF ---
   rintro _ ⟨z, hz, e, he, rfl⟩
   obtain ⟨z', hz', d, hd, hsum⟩ := PolyZonotope.aux_compactGens_nominal PZ hz
   refine ⟨z', hz', e + d, Interval.plus_outer _ _ ⟨e, he, d, hd, rfl⟩, ?_⟩

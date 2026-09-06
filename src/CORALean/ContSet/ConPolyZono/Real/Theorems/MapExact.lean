@@ -31,7 +31,7 @@ variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Mod
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.map_exact (f : α →ₗ[ℝ] β) (C : ConPolyZono α) :
-    f '' C.construct = (C.map f).construct := by
+    f '' C.construct = (C.map f).construct := by -- --- PROOF ---
   have hf : ∀ (a : Fin C.p → ℝ) (b : Fin C.q → ℝ),
       f (C.c + ∑ i, PolyZonotope.monomial C.E a i • C.G i + ∑ j, b j • C.GI j)
         = (C.map f).c + ∑ i, PolyZonotope.monomial (C.map f).E a i • (C.map f).G i

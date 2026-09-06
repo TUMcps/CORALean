@@ -50,7 +50,7 @@ def PolyZonotope.conPolyZono (PZ : PolyZonotope α) : ConPolyZono α where
 
 -- with no constraint rows the system is vacuous, so both inclusions are the identity
 theorem PolyZonotope.conPolyZono_exact (PZ : PolyZonotope α) :
-    PZ.construct = PZ.conPolyZono.construct := by
+    PZ.construct = PZ.conPolyZono.construct := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨a, b, ha, hb, rfl⟩
     exact ⟨a, b, ha, hb, fun i => i.elim0, rfl⟩

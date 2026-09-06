@@ -33,7 +33,7 @@ variable {n : ℕ}
 set_option maxHeartbeats 400000 in
 theorem MatExp.summable_expDiff (A : Mat ℝ n n) (t r : ℝ) :
     Summable (fun i : ℕ => (((Nat.factorial (i + 2) : ℝ))⁻¹
-      * (t ^ (i + 2) - (t / r) * r ^ (i + 2))) • A ^ (i + 2)) := by
+      * (t ^ (i + 2) - (t / r) * r ^ (i + 2))) • A ^ (i + 2)) := by -- --- PROOF ---
   have hst := summable_exp_smul A t
   have hsr : Summable (fun i : ℕ => (t / r) • ((((Nat.factorial i : ℝ))⁻¹ * r ^ i) • A ^ i)) :=
     (summable_exp_smul A r).const_smul _

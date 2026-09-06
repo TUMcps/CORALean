@@ -32,7 +32,7 @@ def Interval.vPolytope (I : Interval 𝕋 n) : VPolytope 𝕋 n where
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.subset_vPolytope (I : Interval 𝕋 n) :
-    I.construct ⊆ (Interval.vPolytope I).construct := by
+    I.construct ⊆ (Interval.vPolytope I).construct := by -- --- PROOF ---
   intro x hx
   have hnom : x ∈ InflatedContSet.nominalSet (Interval.vPolytope I) := by
     -- reading a stored bound commutes with choosing which one to read

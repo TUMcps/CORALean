@@ -37,7 +37,7 @@ theorem ConZonotope.linComb_outer (C₁ C₂ : ConZonotope α) :
   have hm1 : (1:ℝ) - lam ≤ 1 := by linarith
   -- stated at their own instances, since the goal spells the count as a projection
   have hpar : ((blockLast (C₁.h + C₂.h)) (Fin.append (Fin.append (lam • β₁) ((1 - lam) • β₂))
-      fun _ : Fin 1 => 2 * lam - 1) + 1) / 2 = lam := by -- --- PROOF ---
+      fun _ : Fin 1 => 2 * lam - 1) + 1) / 2 = lam := by
     rw [blockLast_append]
     ring
   have hpar' : (((-blockLast (C₁.h + C₂.h)) (Fin.append (Fin.append (lam • β₁) ((1 - lam) • β₂))

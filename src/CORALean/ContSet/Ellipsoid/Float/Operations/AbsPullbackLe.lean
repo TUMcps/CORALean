@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 `dualVec` is that vector read as reals. -/
 theorem Ellipsoid.aux_dualVec {c : Vec ℝ n →ₗ[ℝ] ℝ} {a : Vec 𝕋 n}
     (hc : ∀ x : Vec ℝ n, c x = ∑ i, toReal (a i) * x i) (i : Fin n) :
-    Real.dualVec c i = toReal (a i) := by
+    Real.dualVec c i = toReal (a i) := by -- --- PROOF ---
   rw [Real.dualVec, hc]
   rw [Finset.sum_eq_single i]
   · rw [if_pos rfl, mul_one]
@@ -44,7 +44,8 @@ theorem Ellipsoid.aux_dualVec {c : Vec ℝ n →ₗ[ℝ] ℝ} {a : Vec 𝕋 n}
 the two roundings bracket. -/
 theorem Ellipsoid.aux_pullback (E : Ellipsoid 𝕋 n) {c : Vec ℝ n →ₗ[ℝ] ℝ} {a : Vec 𝕋 n}
     (hc : ∀ x : Vec ℝ n, c x = ∑ i, toReal (a i) * x i) (j : Fin E.k) :
-    (InflatedContSet.nominal E).pullback c j = ∑ i, toReal (a i) * toReal (E.G i j) := by
+    (InflatedContSet.nominal
+      E).pullback c j = ∑ i, toReal (a i) * toReal (E.G i j) := by -- --- PROOF ---
   show ∑ i, toReal (E.G i j) * Real.dualVec c i = _
   exact Finset.sum_congr rfl fun i _ => by
     rw [Ellipsoid.aux_dualVec hc i, mul_comm]
@@ -54,7 +55,7 @@ theorem Ellipsoid.aux_pullback (E : Ellipsoid 𝕋 n) {c : Vec ℝ n →ₗ[ℝ]
 
 theorem Ellipsoid.abs_pullback_le (E : Ellipsoid 𝕋 n) {c : Vec ℝ n →ₗ[ℝ] ℝ} {a : Vec 𝕋 n}
     (hc : ∀ x : Vec ℝ n, c x = ∑ i, toReal (a i) * x i) (j : Fin E.k) :
-    |(InflatedContSet.nominal E).pullback c j| ≤ toReal (E.pullbackAbs a j) := by
+    |(InflatedContSet.nominal E).pullback c j| ≤ toReal (E.pullbackAbs a j) := by -- --- PROOF ---
   rw [E.aux_pullback hc j, Ellipsoid.pullbackAbs, toReal_maximum, toReal_neg]
   refine abs_le.mpr ⟨?_, ?_⟩
   · have hdown := dotDown_le a fun i => E.G i j

@@ -38,7 +38,7 @@ theorem PolyZonotope.mergedGen_gap (PZ : PolyZonotope 𝕋 n)
     |toReal (PZ.G i (part.right 1)) + toReal (PZ.G i (part.right 0))
       - toReal (PZ.mergedGen part i)|
       ≤ toReal (subUp (addUp (PZ.G i (part.right 1)) (PZ.G i (part.right 0)))
-        (PZ.mergedGen part i)) := by
+        (PZ.mergedGen part i)) := by -- --- PROOF ---
   have hlo : toReal (PZ.mergedGen part i)
       ≤ toReal (PZ.G i (part.right 1)) + toReal (PZ.G i (part.right 0)) := addDown_le_add _ _
   have hhi : toReal (PZ.G i (part.right 1)) + toReal (PZ.G i (part.right 0))

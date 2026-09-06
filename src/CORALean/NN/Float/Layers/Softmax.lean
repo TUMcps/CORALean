@@ -63,7 +63,7 @@ private def sumOffDown (i : Fin n) (v : Fin n → 𝕋) : 𝕋 :=
 
 /-- The zeroed term contributes nothing, so the sum is the erased one, rounded up. -/
 private theorem sum_erase_le_sumOffUp (i : Fin n) (v : Fin n → 𝕋) :
-    ∑ j ∈ Finset.univ.erase i, toReal (v j) ≤ toReal (sumOffUp i v) := by
+    ∑ j ∈ Finset.univ.erase i, toReal (v j) ≤ toReal (sumOffUp i v) := by -- --- PROOF ---
   have h : ∑ j, toReal (if j = i then zero else v j)
       = ∑ j ∈ Finset.univ.erase i, toReal (v j) := by
     rw [Finset.sum_congr rfl fun j _ => toReal_ite_zero v i j]
@@ -74,7 +74,7 @@ private theorem sum_erase_le_sumOffUp (i : Fin n) (v : Fin n → 𝕋) :
 /-- And downward against any real bound on the terms, which is what the layer has. -/
 private theorem sumOffDown_le (i : Fin n) (v : Fin n → 𝕋) (h : Fin n → ℝ)
     (hv : ∀ j, j ≠ i → toReal (v j) ≤ h j) :
-    toReal (sumOffDown i v) ≤ ∑ j ∈ Finset.univ.erase i, h j := by
+    toReal (sumOffDown i v) ≤ ∑ j ∈ Finset.univ.erase i, h j := by -- --- PROOF ---
   refine le_trans (sumDown_le_sum _) ?_
   rw [Finset.sum_congr rfl fun j _ => toReal_ite_zero v i j, ← sum_ite_zero i h]
   refine Finset.sum_le_sum fun j _ => ?_
@@ -107,7 +107,7 @@ private theorem one_le_softmaxDenomDown (k : ℕ) (I : Interval 𝕋 n) (i : Fin
 private theorem softmaxDenomDown_le (k : ℕ) (I : Interval 𝕋 n) (i : Fin n) :
     toReal (softmaxDenomDown k I i)
       ≤ 1 + ∑ j ∈ Finset.univ.erase i,
-          Real.exp (toReal (I.inf j) - toReal (I.sup i)) := by
+          Real.exp (toReal (I.inf j) - toReal (I.sup i)) := by -- --- PROOF ---
   have hterm : ∀ j, j ≠ i →
       toReal (expDown k (subDown (I.inf j) (I.sup i)))
         ≤ Real.exp (toReal (I.inf j) - toReal (I.sup i)) := fun j _ =>
@@ -126,7 +126,7 @@ private theorem softmaxDenomDown_le (k : ℕ) (I : Interval 𝕋 n) (i : Fin n) 
 
 theorem softmax_le_rawUpper (k : ℕ) (I : Interval 𝕋 n) {x : Vec ℝ n}
     (hx : ∀ i, toReal (I.inf i) ≤ x i ∧ x i ≤ toReal (I.sup i)) (i : Fin n) :
-    Real.softmax x i ≤ toReal (softmaxRawUpper k I i) := by
+    Real.softmax x i ≤ toReal (softmaxRawUpper k I i) := by -- --- PROOF ---
   have hraw := Real.softmax_le_raw hx i
   rw [← one_div] at hraw
   exact le_trans hraw

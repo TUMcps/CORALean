@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 theorem Ellipsoid.mem_nominalSet_iff [SoundFloatArithmetic 𝕋] {E : Ellipsoid 𝕋 n}
     {x : Vec ℝ n} :
     x ∈ InflatedContSet.nominalSet E ↔ ∃ u : Vec ℝ E.k, ‖u‖₂ ≤ 1 ∧
-      ∀ i, x i = toReal (E.q i) + ∑ j, toReal (E.G i j) * u j := by
+      ∀ i, x i = toReal (E.q i) + ∑ j, toReal (E.G i j) * u j := by -- --- PROOF ---
   constructor
   · rintro ⟨u, hu, rfl⟩
     exact ⟨u, hu, fun _ => rfl⟩

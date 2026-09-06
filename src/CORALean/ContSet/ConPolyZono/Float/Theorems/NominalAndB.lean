@@ -31,7 +31,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem ConPolyZono.nominal_andB (C₁ C₂ : ConPolyZono 𝕋 n) :
     (ConPolyZono.andB C₁ C₂).nominal
-      = Real.ConPolyZono.andB (nominal C₁) (nominal C₂) (ConPolyZono.andD C₁ C₂) := by
+      = Real.ConPolyZono.andB
+        (nominal C₁) (nominal C₂) (ConPolyZono.andD C₁ C₂) := by -- --- PROOF ---
   -- the exact layer's record spelled out, so the field rewrites below have a term to match
   have hreal : Real.ConPolyZono.andB (nominal C₁) (nominal C₂) (ConPolyZono.andD C₁ C₂)
       = (⟨Fin.append (Fin.append (toRealVec C₁.b.inf) (toRealVec C₂.b.inf))

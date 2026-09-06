@@ -38,7 +38,7 @@ This is `sum_monomial_merge` at `Vec ℝ m`, the exponent side knowing nothing
 about which block it came from. -/
 theorem ConPolyZono.aux_mulVec_compactCons (C : ConPolyZono α) (a : Fin C.p → ℝ) :
     C.compactCons.A *ᵥ PolyZonotope.monomial C.compactCons.EC a
-      = C.A *ᵥ PolyZonotope.monomial C.EC a := by
+      = C.A *ᵥ PolyZonotope.monomial C.EC a := by -- --- PROOF ---
   rw [ConPolyZono.mulVec_eq_sum C.compactCons.A (PolyZonotope.monomial C.compactCons.EC a),
     ConPolyZono.mulVec_eq_sum C.A (PolyZonotope.monomial C.EC a),
     PolyZonotope.sum_monomial_merge C.EC (ConPolyZono.consCol C.A) a
@@ -58,7 +58,7 @@ theorem ConPolyZono.aux_satisfies_compactCons (C : ConPolyZono α) (a : Fin C.p 
 
 -- the generators are copied, so the point equation is the same term on both sides
 theorem ConPolyZono.compactCons_exact (C : ConPolyZono α) :
-    C.construct = C.compactCons.construct := by
+    C.construct = C.compactCons.construct := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨a, β, ha, hβ, hsat, rfl⟩
     exact ⟨a, β, ha, hβ, (ConPolyZono.aux_satisfies_compactCons C a).mp hsat, rfl⟩

@@ -55,7 +55,7 @@ theorem ConPolyZono.aux_sum_univ_plus_q {C₁ C₂ : ConPolyZono α}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.plus_exact (C₁ C₂ : ConPolyZono α) :
-    C₁.construct + C₂.construct = (C₁.plus C₂).construct := by
+    C₁.construct + C₂.construct = (C₁.plus C₂).construct := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨x₁, ⟨a₁, β₁, ha₁, hβ₁, hs₁, rfl⟩, x₂, ⟨a₂, β₂, ha₂, hβ₂, hs₂, rfl⟩, rfl⟩
     have hA₁ : (fun k => Fin.append a₁ a₂ (Fin.castAdd C₂.p k)) = a₁ :=

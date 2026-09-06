@@ -35,7 +35,7 @@ def scaleCoeffs {n : ℕ} (c : Fin (n + 1) → ℝ) (a b : ℝ) : Fin (n + 1) �
   fun i => a * c i * b ^ (i : ℕ)
 
 theorem evalPoly_scaleCoeffs {n : ℕ} (c : Fin (n + 1) → ℝ) (a b t : ℝ) :
-    evalPoly (scaleCoeffs c a b) t = a * evalPoly c (b * t) := by
+    evalPoly (scaleCoeffs c a b) t = a * evalPoly c (b * t) := by -- --- PROOF ---
   show ∑ i : Fin (n + 1), a * c i * b ^ (i : ℕ) * t ^ (i : ℕ)
     = a * ∑ i : Fin (n + 1), c i * (b * t) ^ (i : ℕ)
   rw [Finset.mul_sum]

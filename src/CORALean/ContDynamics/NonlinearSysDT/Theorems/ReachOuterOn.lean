@@ -42,7 +42,7 @@ every step within it, confined to each step's own certified region. -/
 theorem NonlinearSysDT.reach_outer_on (sys : NonlinearSysDT n m) {U : S m} (o : ℕ)
     (steps : ℕ → sys.LinStep U) (R₀ : S n) {K : ℕ} {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ m}
     (traj : sys.TrajectoryOn R₀ U K x u) (hR : ∀ k < K, x k ∈ (steps k).R) :
-    ∀ k ≤ K, x k ∈ construct (sys.reach o steps R₀ k) := by
+    ∀ k ≤ K, x k ∈ construct (sys.reach o steps R₀ k) := by -- --- PROOF ---
   -- the induction is on the step count, one linearization spent per step
   intro k
   induction k with

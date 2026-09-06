@@ -67,7 +67,7 @@ theorem PolyZonotope.aux_sum_scaled {k : ℕ} (s : ℝ) (m : Fin k → ℝ) (G :
 /-- The same where the coefficients also carry a common factor, which is the
 shape the second dependent block has. -/
 theorem PolyZonotope.aux_sum_scaled_mul {k : ℕ} (t s : ℝ) (m : Fin k → ℝ) (G : Fin k → α) :
-    ∑ i, (t * m i) • (s • G i) = (t * s) • ∑ i, m i • G i := by
+    ∑ i, (t * m i) • (s • G i) = (t * s) • ∑ i, m i • G i := by -- --- PROOF ---
   rw [Finset.smul_sum]
   refine Finset.sum_congr rfl fun i _ => ?_
   rw [smul_smul, smul_smul]
@@ -78,7 +78,7 @@ theorem PolyZonotope.aux_sum_scaled_mul {k : ℕ} (t s : ℝ) (m : Fin k → ℝ
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.linComb_outer (PZ₁ PZ₂ : PolyZonotope α) :
-    segments PZ₁.construct PZ₂.construct ⊆ (PZ₁.linComb PZ₂).construct := by
+    segments PZ₁.construct PZ₂.construct ⊆ (PZ₁.linComb PZ₂).construct := by -- --- PROOF ---
   rintro x ⟨y₁, ⟨a₁, β₁, ha₁, hβ₁, rfl⟩, y₂, ⟨a₂, β₂, ha₂, hβ₂, rfl⟩,
     lam, ⟨hl0, hl1⟩, rfl⟩
   refine ⟨Fin.append (Fin.append a₁ a₂) (fun _ : Fin 1 => 2 * lam - 1),

@@ -55,7 +55,7 @@ theorem HPolytope.subset_of_pinned (hc : IsCompact P.construct) (W : VPolytope (
     (hW : ∀ x ∈ P.construct,
         (∀ d : Vec ℝ n, (∀ i, P.A i x = P.b i → P.A i d = 0) → (∀ i, P.Ae i d = 0) → d = 0) →
         x ∈ Set.range W.V) :
-    P.construct ⊆ W.construct := by
+    P.construct ⊆ W.construct := by -- --- PROOF ---
   have hext : P.construct.extremePoints ℝ ⊆ Set.range W.V := fun x hx =>
     hW x hx.1 fun _ h₁ h₂ => P.eq_zero_of_extremePoint hx h₁ h₂
   have hclosed : IsClosed (convexHull ℝ (Set.range W.V)) :=
@@ -77,7 +77,7 @@ noncomputable def HPolytope.vPolytope (P : HPolytope (Vec ℝ n)) (hne : P.const
     else hne.choose
 
 theorem HPolytope.vPolytope_subset (P : HPolytope (Vec ℝ n)) (hne : P.construct.Nonempty) :
-    (P.vPolytope hne).construct ⊆ P.construct := by
+    (P.vPolytope hne).construct ⊆ P.construct := by -- --- PROOF ---
   rw [VPolytope.construct_eq_convexHull]
   refine convexHull_min ?_ P.convex_construct
   rintro _ ⟨l, rfl⟩
@@ -89,7 +89,7 @@ theorem HPolytope.vPolytope_subset (P : HPolytope (Vec ℝ n)) (hne : P.construc
 
 -- the other way: `subset_of_pinned` asks only that every extreme point be listed
 theorem HPolytope.subset_vPolytope (P : HPolytope (Vec ℝ n)) (hc : IsCompact P.construct)
-    (hne : P.construct.Nonempty) : P.construct ⊆ (P.vPolytope hne).construct := by
+    (hne : P.construct.Nonempty) : P.construct ⊆ (P.vPolytope hne).construct := by -- --- PROOF ---
   refine HPolytope.subset_of_pinned hc _ fun x hx hpin => ?_
   refine ⟨(signEquiv P.m).symm (P.tightAt x), ?_⟩
   show (if P.basicPoint (signEquiv P.m ((signEquiv P.m).symm (P.tightAt x))) ∈ P.construct then

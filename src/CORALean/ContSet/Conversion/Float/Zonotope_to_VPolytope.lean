@@ -54,7 +54,7 @@ def Zonotope.vPolytope (Z : Zonotope 𝕋 n) : VPolytope 𝕋 n where
 /-- What the exact layer's corner is, in this layer's own fields. -/
 theorem Zonotope.aux_signed_toReal (Z : Zonotope 𝕋 n) (σ : Fin Z.h → Bool) (i : Fin n)
     (j : Fin Z.h) :
-    toReal (Z.signed σ i j) = (if σ j then (1:ℝ) else -1) * toReal (Z.G i j) := by
+    toReal (Z.signed σ i j) = (if σ j then (1:ℝ) else -1) * toReal (Z.G i j) := by -- --- PROOF ---
   rw [Zonotope.signed]
   by_cases h : σ j = true
   · rw [if_pos h, if_pos h, one_mul]
@@ -64,7 +64,7 @@ theorem Zonotope.aux_corner_mem (Z : Zonotope 𝕋 n) (l : Fin (2 ^ Z.h)) (i : F
     toReal (Z.cornerLo i l)
         ≤ (InflatedContSet.nominal Z).corner (signEquiv Z.h l) i
       ∧ (InflatedContSet.nominal Z).corner (signEquiv Z.h l) i
-        ≤ toReal (Z.cornerHi i l) := by
+        ≤ toReal (Z.cornerHi i l) := by -- --- PROOF ---
   -- the exact corner as a sum of signed generators, which the two roundings bracket
   have hval : (InflatedContSet.nominal Z).corner (signEquiv Z.h l) i
       = toReal (Z.c i) + ∑ j, toReal (Z.signed (signEquiv Z.h l) i j) := by
@@ -83,7 +83,7 @@ theorem Zonotope.aux_corner_mem (Z : Zonotope 𝕋 n) (l : Fin (2 ^ Z.h)) (i : F
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.subset_vPolytope (Z : Zonotope 𝕋 n) :
-    Z.construct ⊆ Z.vPolytope.construct := by
+    Z.construct ⊆ Z.vPolytope.construct := by -- --- PROOF ---
   -- the exact corners, and the rounded ones actually stored
   have hstep : (InflatedContSet.nominal Z).vPolytope.construct
       ⊆ InflatedContSet.nominalSet Z.vPolytope

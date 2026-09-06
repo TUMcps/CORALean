@@ -51,7 +51,8 @@ theorem ConPolyZono.aux_sum_univ_plus_q {C₁ C₂ : ConPolyZono 𝕋 n}
 
 theorem ConPolyZono.aux_plus_nominal (C₁ C₂ : ConPolyZono 𝕋 n) :
     nominalSet C₁ + nominalSet C₂ ⊆
-      nominalSet (C₁.plus C₂) + (PolyZonotope.centerResidual C₁.c C₂.c).construct := by
+      nominalSet
+        (C₁.plus C₂) + (PolyZonotope.centerResidual C₁.c C₂.c).construct := by -- --- PROOF ---
   rintro _ ⟨x₁, hx₁', x₂, hx₂', rfl⟩
   obtain ⟨a₁, β₁, ha₁, hβ₁, hs₁, hx₁⟩ := ConPolyZono.mem_nominalSet_iff.mp hx₁'
   obtain ⟨a₂, β₂, ha₂, hβ₂, hs₂, hx₂⟩ := ConPolyZono.mem_nominalSet_iff.mp hx₂'

@@ -52,7 +52,7 @@ theorem NonlinearSys.Trajectory.linearize {sys : NonlinearSys n m} {T : Set ℝ}
       (fun t => sys.f (x t) (u t) - A *ᵥ x t) where
   init := traj.init
   input t ht := linInput_outer cert (hR t ht) (traj.input t ht)
-  flow t ht := by
+  flow t ht := by -- --- PROOF ---
     have he : toRealMat (NonlinearSys.linearize A).A *ᵥ x t
         + (sys.f (x t) (u t) - A *ᵥ x t) = sys.f (x t) (u t) := by
       show A *ᵥ x t + (sys.f (x t) (u t) - A *ᵥ x t) = sys.f (x t) (u t)

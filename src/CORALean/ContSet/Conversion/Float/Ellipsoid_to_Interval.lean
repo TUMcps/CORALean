@@ -54,7 +54,7 @@ theorem Ellipsoid.aux_row_le (E : Ellipsoid 𝕋 n) (s : Vec 𝕋 n)
     (hs : ∀ i, toReal (sqSumUp fun j => absolute (E.G i j))
       ≤ toReal (mulDown (s i) (s i)))
     {u : Vec ℝ E.k} (hu : ‖u‖₂ ≤ 1) (i : Fin n) :
-    |∑ j, toReal (E.G i j) * u j| ≤ toReal (absolute (s i)) := by
+    |∑ j, toReal (E.G i j) * u j| ≤ toReal (absolute (s i)) := by -- --- PROOF ---
   have hrow : ‖(fun j => toReal (E.G i j) : Vec ℝ E.k)‖₂ ≤ toReal (absolute (s i)) :=
     norm₂_le_of_sq_le (fun j => le_of_eq (toReal_absolute (E.G i j)).symm) (hs i)
   have h0 : (0:ℝ) ≤ toReal (absolute (s i)) := le_trans (norm₂_nonneg _) hrow
@@ -71,7 +71,7 @@ theorem Ellipsoid.aux_row_le (E : Ellipsoid 𝕋 n) (s : Vec 𝕋 n)
 theorem Ellipsoid.interval_outer (E : Ellipsoid 𝕋 n) (s : Vec 𝕋 n)
     (hs : ∀ i, toReal (sqSumUp fun j => absolute (E.G i j))
       ≤ toReal (mulDown (s i) (s i))) :
-    E.construct ⊆ (E.interval s).construct := by
+    E.construct ⊆ (E.interval s).construct := by -- --- PROOF ---
   rintro _ ⟨z, hzmem, e, he, rfl⟩ i
   obtain ⟨u, hu, hz⟩ := Ellipsoid.mem_nominalSet_iff.mp hzmem
   have hrow := E.aux_row_le s hs hu i

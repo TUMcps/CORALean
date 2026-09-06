@@ -32,7 +32,7 @@ omit [Module ℝ α] in
 lets the two paired blocks meet: neither closes on its own, and over a common
 range the identity is pointwise. -/
 theorem Zonotope.aux_sum_pad {k N : ℕ} (hk : k ≤ N) (f : Fin k → α) :
-    ∑ j, f j = ∑ i ∈ Finset.range N, (if h : i < k then f ⟨i, h⟩ else 0) := by
+    ∑ j, f j = ∑ i ∈ Finset.range N, (if h : i < k then f ⟨i, h⟩ else 0) := by -- --- PROOF ---
   have hfin : ∑ j, f j
       = ∑ i ∈ Finset.range k, (if h : i < k then f ⟨i, h⟩ else 0) := by
     rw [← Fin.sum_univ_eq_sum_range (fun i => if h : i < k then f ⟨i, h⟩ else 0) k]
@@ -59,7 +59,7 @@ theorem Zonotope.sum_pair (G₁ : Fin h₁ → α) (G₂ : Fin h₂ → α)
     (β₁ : Fin h₁ → ℝ) (β₂ : Fin h₂ → ℝ) (lam : ℝ) :
     (∑ j, Zonotope.pairCoeffSum β₁ β₂ lam j • Zonotope.pairSum G₁ G₂ j)
         + ∑ j, Zonotope.pairCoeffDiff β₁ β₂ lam j • Zonotope.pairDiff G₁ G₂ j
-      = lam • (∑ j, β₁ j • G₁ j) + (1 - lam) • ∑ j, β₂ j • G₂ j := by
+      = lam • (∑ j, β₁ j • G₁ j) + (1 - lam) • ∑ j, β₂ j • G₂ j := by -- --- PROOF ---
   rw [← Zonotope.aux_sum_weighted lam β₁ G₁, ← Zonotope.aux_sum_weighted (1 - lam) β₂ G₂,
     Zonotope.aux_sum_pad (Nat.le_add_right h₁ h₂)
       (fun j => Zonotope.pairCoeffSum β₁ β₂ lam j • Zonotope.pairSum G₁ G₂ j),

@@ -48,7 +48,8 @@ theorem evalPoly_coeff (p : Polynomial ℝ) (t : ℝ) :
 polynomial is within `ε` of `σ` everywhere on the box. -/
 theorem exists_evalPoly_near {σ : ℝ → ℝ} {l u ε : ℝ} (hcont : ContinuousOn σ (Set.Icc l u))
     (hε : 0 < ε) :
-    ∃ (n : ℕ) (c : Fin (n + 1) → ℝ), ∀ x, l ≤ x → x ≤ u → |σ x - evalPoly c x| ≤ ε := by
+    ∃ (n :
+      ℕ) (c : Fin (n + 1) → ℝ), ∀ x, l ≤ x → x ≤ u → |σ x - evalPoly c x| ≤ ε := by -- --- PROOF ---
   obtain ⟨p, hp⟩ := exists_polynomial_near_of_continuousOn l u σ hcont ε hε
   refine ⟨p.natDegree, fun i => p.coeff (i : ℕ), fun x hx hx' => ?_⟩
   rw [evalPoly_coeff p x, abs_sub_comm]
@@ -64,7 +65,7 @@ theorem exists_fit_samplingError_lt {σ σ' : ℝ → ℝ} {l u Mσ ε : ℝ}
     (hlu : l ≤ u) (hε : 0 < ε) :
     ∃ (n : ℕ) (c : Fin (n + 1) → ℝ) (M : ℝ) (N : ℕ), 0 < N
       ∧ (∀ x, l ≤ x → x ≤ u → |σ' x - evalPolyDeriv c x| ≤ M)
-      ∧ samplingError (fun x => σ x - evalPoly c x) M l u N < ε := by
+      ∧ samplingError (fun x => σ x - evalPoly c x) M l u N < ε := by -- --- PROOF ---
   have hcont : ContinuousOn σ (Set.Icc l u) :=
     fun x _ => ((hd x).continuousAt).continuousWithinAt
   -- a quarter of the budget goes on the fit, which fixes the order and with it `M`

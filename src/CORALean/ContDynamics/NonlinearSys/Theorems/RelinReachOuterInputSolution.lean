@@ -51,7 +51,7 @@ theorem NonlinearSys.Trajectory.relinReach_outer_inputSolution [Mtimes ℐ S]
       (MatExp.inputRemainder (steps i).A Δt η) (steps i).linInput))) (o : ℕ) :
     ∀ i ≤ N, x ((i : ℝ) * Δt) ∈ construct (sys.relinReach o Δt steps
       (fun i => (NonlinearSys.linearize (steps i).A).inputSolution Δt η
-        (steps i).linInput) R₀ i) := by
+        (steps i).linInput) R₀ i) := by -- --- PROOF ---
   -- everything above is per step, so the loop is `relinReach_outer` plus one enclosure
   refine traj.relinReach_outer hΔt.le hT hR hbdd ?_ o
   intro i hi

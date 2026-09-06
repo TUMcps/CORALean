@@ -69,7 +69,7 @@ theorem neuronMerging_sandwich_outer {n0 n n2 d r : ℕ}
       = (W0 *ᵥ x) (part.left i) := fun i => by
     simp [Matrix.mulVec, Matrix.submatrix_apply, dotProduct]
   have heval1 : (Layer.linear (S := S) (W0.submatrix part.left id) (b0 ∘ part.left)).eval x
-      = h0 ∘ part.left := by -- --- PROOF ---
+      = h0 ∘ part.left := by
     funext i
     show ((W0.submatrix part.left id) *ᵥ x) i + b0 (part.left i) = h0 (part.left i)
     rw [hrow, hh0]

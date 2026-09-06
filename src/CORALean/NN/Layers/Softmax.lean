@@ -60,7 +60,7 @@ theorem softmax_sum_eq_one (x : Vec ℝ n) (i : Fin n) : ∑ j, softmax x j = 1 
 /-- Dividing through by `exp (x i)`: the `j = i` term becomes exactly `1`, which
 is what makes this tighter than bounding numerator and denominator apart. -/
 theorem softmax_eq_inv (x : Vec ℝ n) (i : Fin n) :
-    softmax x i = (1 + ∑ j ∈ Finset.univ.erase i, Real.exp (x j - x i))⁻¹ := by
+    softmax x i = (1 + ∑ j ∈ Finset.univ.erase i, Real.exp (x j - x i))⁻¹ := by -- --- PROOF ---
   have hE0 : Real.exp (x i) ≠ 0 := ne_of_gt (Real.exp_pos (x i))
   have hsplit : ∑ j, Real.exp (x j)
       = Real.exp (x i) + ∑ j ∈ Finset.univ.erase i, Real.exp (x j) :=
@@ -91,7 +91,7 @@ theorem aux_one_add_exp_sum_pos (v : Vec ℝ n) (i : Fin n) (a : ℝ) :
 
 /-- The denominator is smallest when every ratio is, which is the box's corner. -/
 theorem softmax_le_raw {lo hi x : Vec ℝ n} (hx : ∀ i, lo i ≤ x i ∧ x i ≤ hi i) (i : Fin n) :
-    softmax x i ≤ (1 + ∑ j ∈ Finset.univ.erase i, Real.exp (lo j - hi i))⁻¹ := by
+    softmax x i ≤ (1 + ∑ j ∈ Finset.univ.erase i, Real.exp (lo j - hi i))⁻¹ := by -- --- PROOF ---
   have hmono : ∑ j ∈ Finset.univ.erase i, Real.exp (lo j - hi i)
       ≤ ∑ j ∈ Finset.univ.erase i, Real.exp (x j - x i) :=
     Finset.sum_le_sum fun j _ =>
@@ -101,7 +101,7 @@ theorem softmax_le_raw {lo hi x : Vec ℝ n} (hx : ∀ i, lo i ≤ x i ∧ x i �
 
 /-- And largest at the opposite corner, which is the lower bound on `softmax`. -/
 theorem raw_le_softmax {lo hi x : Vec ℝ n} (hx : ∀ i, lo i ≤ x i ∧ x i ≤ hi i) (i : Fin n) :
-    (1 + ∑ j ∈ Finset.univ.erase i, Real.exp (hi j - lo i))⁻¹ ≤ softmax x i := by
+    (1 + ∑ j ∈ Finset.univ.erase i, Real.exp (hi j - lo i))⁻¹ ≤ softmax x i := by -- --- PROOF ---
   have hmono : ∑ j ∈ Finset.univ.erase i, Real.exp (x j - x i)
       ≤ ∑ j ∈ Finset.univ.erase i, Real.exp (hi j - lo i) :=
     Finset.sum_le_sum fun j _ =>
@@ -118,7 +118,7 @@ normalization is not a tightening but the only lower bound available. -/
 theorem softmax_mem_tightened (x rl ru : Vec ℝ n)
     (hl : ∀ i, rl i ≤ softmax x i) (hu : ∀ i, softmax x i ≤ ru i) (i : Fin n) :
     max (rl i) (1 - ∑ j ∈ Finset.univ.erase i, ru j) ≤ softmax x i ∧
-      softmax x i ≤ min (ru i) (1 - ∑ j ∈ Finset.univ.erase i, rl j) := by
+      softmax x i ≤ min (ru i) (1 - ∑ j ∈ Finset.univ.erase i, rl j) := by -- --- PROOF ---
   have hsplit : softmax x i + ∑ j ∈ Finset.univ.erase i, softmax x j = 1 := by
     rw [Finset.add_sum_erase Finset.univ (softmax x) (Finset.mem_univ i)]
     exact softmax_sum_eq_one x i

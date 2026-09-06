@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 theorem Ellipsoid.aux_mulVec_nominal (M : Mat 𝕋 m n) (E : Ellipsoid 𝕋 n) (u : Vec ℝ E.k)
     {x : Vec ℝ n} (hx : ∀ k, x k = toReal (E.q k) + ∑ j, toReal (E.G k j) * u j) (i : Fin m) :
     (toRealMat M *ᵥ x) i = (∑ k, toReal (M i k) * toReal (E.q k))
-      + ∑ j, (∑ k, toReal (M i k) * toReal (E.G k j)) * u j := by
+      + ∑ j, (∑ k, toReal (M i k) * toReal (E.G k j)) * u j := by -- --- PROOF ---
   show ∑ k, toReal (M i k) * x k = _
   calc ∑ k, toReal (M i k) * x k
       = ∑ k, (toReal (M i k) * toReal (E.q k)
@@ -59,7 +59,8 @@ theorem Ellipsoid.aux_mulVec_nominal (M : Mat 𝕋 m n) (E : Ellipsoid 𝕋 n) (
 -- the image's nominal part, with the generator rounding charged to a box
 theorem Ellipsoid.aux_mtimes_nominal (M : Mat 𝕋 m n) (E : Ellipsoid 𝕋 n) :
     (toRealMat M *ᵥ ·) '' nominalSet E ⊆
-      nominalSet (Ellipsoid.mtimes M E) + (Ellipsoid.mtimesResidual M E).construct := by
+      nominalSet
+        (Ellipsoid.mtimes M E) + (Ellipsoid.mtimesResidual M E).construct := by -- --- PROOF ---
   rintro _ ⟨x, hx', rfl⟩
   obtain ⟨u, hu, hx⟩ := Ellipsoid.mem_nominalSet_iff.mp hx'
   -- the generators are wrong by this much, entrywise

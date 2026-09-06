@@ -34,7 +34,7 @@ theorem linComb_subset {s₁ : S₁} {s₂ : S₂} {t : T} {D : Set (Vec ℝ n)}
     (hnominal : segments (nominalSet s₁) (nominalSet s₂) ⊆ nominalSet t + D)
     (herror : segments (error s₁).construct (error s₂).construct + D ⊆
       (error t).construct) :
-    segments (construct s₁) (construct s₂) ⊆ construct t := by
+    segments (construct s₁) (construct s₂) ⊆ construct t := by -- --- PROOF ---
   rintro _ ⟨_, ⟨n₁, hn₁, e₁, he₁, rfl⟩, _, ⟨n₂, hn₂, e₂, he₂, rfl⟩, lam, hlam, rfl⟩
   obtain ⟨t₀, ht₀, d, hd, hsum⟩ := hnominal ⟨n₁, hn₁, n₂, hn₂, lam, hlam, rfl⟩
   refine ⟨t₀, ht₀, lam • e₁ + (1 - lam) • e₂ + d,

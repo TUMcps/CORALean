@@ -23,7 +23,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.toReal_extG (S : PolyZonotope 𝕋 n) (i : Fin n) (l : Fin (S.h + 1)) :
-    toReal (PolyZonotope.extG S i l) = Real.PolyZonotope.extG (nominal S) l i := by
+    toReal (PolyZonotope.extG S i l) = Real.PolyZonotope.extG (nominal S) l i := by -- --- PROOF ---
   refine Fin.cases ?_ (fun l' => ?_) l
   · simp only [PolyZonotope.extG, Real.PolyZonotope.extG, Fin.cons_zero]
     rfl

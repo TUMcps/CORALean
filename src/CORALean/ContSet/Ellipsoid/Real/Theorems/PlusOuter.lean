@@ -46,7 +46,7 @@ theorem Ellipsoid.aux_value_plus {l : ℝ} (ha : Real.sqrt (1 + 1 / l) ≠ 0)
     (Ellipsoid.plus l E₁ E₂).q + (Ellipsoid.plus l E₁ E₂).G *ᵥ
         Fin.append (fun j => u₁ j / Real.sqrt (1 + 1 / l))
           (fun j => u₂ j / Real.sqrt (1 + l))
-      = (E₁.q + E₁.G *ᵥ u₁) + (E₂.q + E₂.G *ᵥ u₂) := by
+      = (E₁.q + E₁.G *ᵥ u₁) + (E₂.q + E₂.G *ᵥ u₂) := by -- --- PROOF ---
   have hmul : (Ellipsoid.plus l E₁ E₂).G *ᵥ
       Fin.append (fun j => u₁ j / Real.sqrt (1 + 1 / l))
         (fun j => u₂ j / Real.sqrt (1 + l))
@@ -75,7 +75,7 @@ theorem Ellipsoid.plus_outer (l : ℝ) (hl : 0 < l) (E₁ E₂ : Ellipsoid n) :
     E₁.construct + E₂.construct ⊆ (Ellipsoid.plus l E₁ E₂).construct := by -- --- PROOF ---
   have hlne : l ≠ 0 := ne_of_gt hl
   have hb2 : (0:ℝ) < 1 + l := by linarith
-  have ha2 : (0:ℝ) < 1 + 1 / l := by -- --- PROOF ---
+  have ha2 : (0:ℝ) < 1 + 1 / l := by
     have := one_div_pos.mpr hl
     linarith
   have ha : (0:ℝ) < Real.sqrt (1 + 1 / l) := Real.sqrt_pos.mpr ha2

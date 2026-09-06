@@ -38,7 +38,7 @@ the sign their powers at `k₀` drift with. -/
 theorem PolyZonotope.sub_monomial_nonpos_of_pow {p h : ℕ} (E : Fin p → Fin h → ℕ)
     {a : Fin p → ℝ} {i j : Fin h} {k₀ : Fin p} (hsim : ∀ k, k ≠ k₀ → E k i = E k j)
     (heven : ∀ k, k ≠ k₀ → Even (E k i)) (hd : a k₀ ^ E k₀ i - a k₀ ^ E k₀ j ≤ 0) :
-    PolyZonotope.monomial E a i - PolyZonotope.monomial E a j ≤ 0 := by
+    PolyZonotope.monomial E a i - PolyZonotope.monomial E a j ≤ 0 := by -- --- PROOF ---
   -- both monomials split at `k₀`, and everything off `k₀` is shared
   have hsplit : ∀ l : Fin h, PolyZonotope.monomial E a l
       = a k₀ ^ E k₀ l * ∏ k ∈ Finset.univ.erase k₀, a k ^ E k l :=

@@ -39,7 +39,7 @@ theorem PolyZonotope.aux_sum_dependent (PZ : PolyZonotope α) (a : Fin (PZ.p + P
         PolyZonotope.monomial (PolyZonotope.plusE PZ.E (PolyZonotope.identE PZ.q)) a i
           • Fin.append PZ.G PZ.GI i)
       = (∑ i, PolyZonotope.monomial PZ.E (fun k => a (Fin.castAdd PZ.q k)) i • PZ.G i)
-        + ∑ j, a (Fin.natAdd PZ.p j) • PZ.GI j := by
+        + ∑ j, a (Fin.natAdd PZ.p j) • PZ.GI j := by -- --- PROOF ---
   rw [Fin.sum_univ_add]
   congr 1
   · exact Finset.sum_congr rfl fun i _ => by
@@ -52,7 +52,7 @@ theorem PolyZonotope.aux_sum_dependent (PZ : PolyZonotope α) (a : Fin (PZ.p + P
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.dependent_exact (PZ : PolyZonotope α) :
-    PZ.construct = PZ.dependent.construct := by
+    PZ.construct = PZ.dependent.construct := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨a, b, ha, hb, rfl⟩
     -- forward: the free coefficients become the right half of the factor vector

@@ -37,7 +37,7 @@ theorem HPolytope.mem_construct_iff [SoundFloatArithmetic 𝕋] {P : HPolytope �
     x ∈ P.construct ↔
       (∀ i, (toRealMat P.A *ᵥ x) i ≤ toReal (P.b i))
         ∧ ∀ i, toReal (P.be.inf i) ≤ (toRealMat P.Ae *ᵥ x) i
-               ∧ (toRealMat P.Ae *ᵥ x) i ≤ toReal (P.be.sup i) := by
+               ∧ (toRealMat P.Ae *ᵥ x) i ≤ toReal (P.be.sup i) := by -- --- PROOF ---
   have hand : x ∈ P.construct ↔
       x ∈ (Real.HPolytope.ineqs (toRealMat P.A) (toRealVec P.b)).construct
         ∧ x ∈ (Real.HPolytope.slab (toRealMat P.Ae) (toRealVec P.be.inf)

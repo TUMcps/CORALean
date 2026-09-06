@@ -22,7 +22,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.abs_coefficient_le_one {R D : ℝ} (hR : 0 ≤ R) (hDR : |D| ≤ R) :
-    |Zonotope.coefficient R D| ≤ 1 := by
+    |Zonotope.coefficient R D| ≤ 1 := by -- --- PROOF ---
   rw [Zonotope.coefficient]
   split
   · simp

@@ -51,7 +51,8 @@ variable [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 Lebesgue measure. -/
 theorem aux_aestronglyMeasurable_comp_sub_right {f : ℝ → Vec ℝ n} {a b c : ℝ}
     (hf : AEStronglyMeasurable f (volume.restrict (Set.Icc a b))) :
-    AEStronglyMeasurable (fun σ => f (σ - c)) (volume.restrict (Set.Icc (a + c) (b + c))) := by
+    AEStronglyMeasurable
+      (fun σ => f (σ - c)) (volume.restrict (Set.Icc (a + c) (b + c))) := by -- --- PROOF ---
   have hpre : (fun σ : ℝ => σ - c) ⁻¹' Set.Icc a b = Set.Icc (a + c) (b + c) := by
     ext σ
     simp only [Set.mem_preimage, Set.mem_Icc]
@@ -83,7 +84,7 @@ theorem LinearSys.inputReach_separation (sys : LinearSys 𝕋 n) {U : S n} {a b 
     (fun y => exp (b • toRealMat sys.A) *ᵥ y) '' sys.inputReach U a + sys.inputReach U b
       ⊆ sys.inputReach U (a + b) := by -- --- PROOF ---
   set A := toRealMat sys.A with hA
-  have hmul : ∀ c d : ℝ, exp (c • A) * exp (d • A) = exp ((c + d) • A) := by -- --- PROOF ---
+  have hmul : ∀ c d : ℝ, exp (c • A) * exp (d • A) = exp ((c + d) • A) := by
     intro c d
     have hc : Commute (c • A) (d • A) := ((Commute.refl A).smul_left c).smul_right d
     rw [add_smul]

@@ -23,7 +23,7 @@ open Matrix
 theorem ConPolyZono.mulVec_plusA_left {m₁ s₁ m₂ s₂ : ℕ} (A₁ : Mat ℝ m₁ s₁)
     (A₂ : Mat ℝ m₂ s₂) (v : Fin (s₁ + s₂) → ℝ) (i : Fin m₁) :
     (ConPolyZono.plusA A₁ A₂ *ᵥ v) (Fin.castAdd m₂ i)
-      = (A₁ *ᵥ fun l => v (Fin.castAdd s₂ l)) i := by
+      = (A₁ *ᵥ fun l => v (Fin.castAdd s₂ l)) i := by -- --- PROOF ---
   show ∑ l : Fin (s₁ + s₂), ConPolyZono.plusA A₁ A₂ (Fin.castAdd m₂ i) l * v l
       = ∑ l, A₁ i l * v (Fin.castAdd s₂ l)
   rw [Fin.sum_univ_add]

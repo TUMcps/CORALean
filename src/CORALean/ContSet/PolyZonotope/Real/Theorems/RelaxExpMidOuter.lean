@@ -62,7 +62,7 @@ theorem PolyZonotope.relaxExpMid_outer (PZ : PolyZonotope α)
   have hradval : (PZ.relaxDrift part k₀).2
       = (((PolyZonotope.eDrift PZ.E k₀ (part.right 0) (part.right 1)).2 : ℝ)
         + ((PolyZonotope.eDrift PZ.E k₀ (part.right 0) (part.right 1)).1 : ℝ)) / 2 := rfl
-  have hnn : (0:ℝ) ≤ (PZ.relaxDrift part k₀).2 := by -- --- PROOF ---
+  have hnn : (0:ℝ) ≤ (PZ.relaxDrift part k₀).2 := by
     rw [hradval]
     linarith
   -- the bracket read as a midpoint and a half-width

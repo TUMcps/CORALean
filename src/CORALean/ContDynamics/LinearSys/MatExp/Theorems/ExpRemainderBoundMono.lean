@@ -33,7 +33,7 @@ variable {n : ℕ}
 the end of a step stand for every time inside it. -/
 theorem MatExp.expRemainderBound_mono {x y : Mat ℝ n n} (η : ℕ) (hxy : ‖x‖ ≤ ‖y‖)
     (hy : ‖y‖ / ((η : ℝ) + 2) < 1) :
-    MatExp.expRemainderBound x η ≤ MatExp.expRemainderBound y η := by
+    MatExp.expRemainderBound x η ≤ MatExp.expRemainderBound y η := by -- --- PROOF ---
   have h2 : (0:ℝ) < (η : ℝ) + 2 := by positivity
   have hfrac : ‖x‖ / ((η : ℝ) + 2) ≤ ‖y‖ / ((η : ℝ) + 2) := by gcongr
   have hdy : 0 < 1 - ‖y‖ / ((η : ℝ) + 2) := by linarith

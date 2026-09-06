@@ -44,7 +44,7 @@ def Zonotope.polyZonotope (Z : Zonotope α) : PolyZonotope α where
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.polyZonotope_exact (Z : Zonotope α) :
-    Z.construct = Z.polyZonotope.construct := by
+    Z.construct = Z.polyZonotope.construct := by -- --- PROOF ---
   have hsum : ∀ a : Fin Z.h → ℝ,
       (∑ i : Fin Z.h, PolyZonotope.monomial (PolyZonotope.identE Z.h) a i • Z.G i)
         = ∑ j, a j • Z.G j :=

@@ -36,7 +36,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 every step within it. -/
 theorem LinearSysDT.reach_outer_on (sys : LinearSysDT 𝕋 n) (o : ℕ) (R₀ U : S n) {K : ℕ}
     {x u : ℕ → Vec ℝ n} (traj : sys.TrajectoryOn R₀ U K x u) :
-    ∀ k ≤ K, x k ∈ construct (sys.reach o R₀ U k) := by
+    ∀ k ≤ K, x k ∈ construct (sys.reach o R₀ U k) := by -- --- PROOF ---
   intro k
   induction k with
   | zero => intro _; exact traj.init

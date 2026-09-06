@@ -71,7 +71,7 @@ every relaxation here takes, and the reason the offset never has to be rounded
 in a particular direction. -/
 theorem abs_sub_le_spread {lo hi c : 𝕋} {y : ℝ}
     (h1 : toReal lo ≤ y) (h2 : y ≤ toReal hi) :
-    |y - toReal c| ≤ toReal (maximum (subUp hi c) (subUp c lo)) := by
+    |y - toReal c| ≤ toReal (maximum (subUp hi c) (subUp c lo)) := by -- --- PROOF ---
   have hA := sub_le_subUp hi c
   have hB := sub_le_subUp c lo
   have hmA := le_max_left (toReal (subUp hi c)) (toReal (subUp c lo))

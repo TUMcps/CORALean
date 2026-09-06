@@ -34,7 +34,7 @@ theorem plus_subset {s₁ : S₁} {s₂ : S₂} {t : T} {D : Set (Vec ℝ n)}
     (hnominal : nominalSet s₁ + nominalSet s₂ ⊆
       nominalSet t + D)
     (herror : (error s₁).construct + (error s₂).construct + D ⊆ (error t).construct) :
-    construct s₁ + construct s₂ ⊆ construct t := by
+    construct s₁ + construct s₂ ⊆ construct t := by -- --- PROOF ---
   show nominalSet s₁ + (error s₁).construct
       + (nominalSet s₂ + (error s₂).construct) ⊆
     nominalSet t + (error t).construct

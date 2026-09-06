@@ -26,7 +26,7 @@ theorem Zonotope.pairDiff_bracket (g₁ : Fin h₁ → 𝕋) (g₂ : Fin h₂ �
     toReal (Zonotope.pairDiff subDown g₁ g₂ k)
         ≤ Real.Zonotope.pairDiff (fun j => toReal (g₁ j)) (fun j => toReal (g₂ j)) k
       ∧ Real.Zonotope.pairDiff (fun j => toReal (g₁ j)) (fun j => toReal (g₂ j)) k
-        ≤ toReal (Zonotope.pairDiff subUp g₁ g₂ k) := by
+        ≤ toReal (Zonotope.pairDiff subUp g₁ g₂ k) := by -- --- PROOF ---
   simp only [Zonotope.pairDiff, Real.Zonotope.pairDiff]
   by_cases hk : (k : ℕ) < h₁
   · rw [dif_pos hk, dif_pos hk, dif_pos hk, toReal_half, toReal_half, smul_eq_mul]

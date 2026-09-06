@@ -29,7 +29,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Layer.lipschitzWith_activation_eval {σ : ℝ → ℝ} {K : NNReal} (hσ : LipschitzWith K σ)
-    (n : ℕ) : LipschitzWith K (fun (x : Vec ℝ n) i => σ (x i)) := by
+    (n : ℕ) : LipschitzWith K (fun (x : Vec ℝ n) i => σ (x i)) := by -- --- PROOF ---
   refine LipschitzWith.of_dist_le_mul fun x y => ?_
   rw [dist_pi_le_iff (mul_nonneg K.coe_nonneg dist_nonneg)]
   intro i

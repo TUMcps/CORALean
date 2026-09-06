@@ -38,7 +38,7 @@ variable {n : ℕ}
 /-- The same estimate at a matrix, reached through the norm of its powers. -/
 theorem aux_term_le (x : Mat ℝ n n) (η i : ℕ) :
     ‖((Nat.factorial (i + (η + 1)) : ℝ)⁻¹) • x ^ (i + (η + 1))‖
-      ≤ (‖x‖ ^ (η + 1) / Nat.factorial (η + 1)) * (‖x‖ / ((η : ℝ) + 2)) ^ i := by
+      ≤ (‖x‖ ^ (η + 1) / Nat.factorial (η + 1)) * (‖x‖ / ((η : ℝ) + 2)) ^ i := by -- --- PROOF ---
   rw [Nat.add_comm i (η + 1)]
   have hfac : ((Nat.factorial (η + 1) : ℝ) * ((η : ℝ) + 2) ^ i)
       ≤ (Nat.factorial ((η + 1) + i) : ℝ) := by
@@ -64,7 +64,7 @@ theorem aux_term_le (x : Mat ℝ n n) (η i : ℕ) :
 set_option maxHeartbeats 1000000 in
 theorem norm_exp_sub_expTaylor_le (x : Mat ℝ n n) (η : ℕ)
     (hε : ‖x‖ / ((η : ℝ) + 2) < 1) :
-    ‖exp x - MatExp.expTaylor x η‖ ≤ MatExp.expRemainderBound x η := by
+    ‖exp x - MatExp.expTaylor x η‖ ≤ MatExp.expRemainderBound x η := by -- --- PROOF ---
   show ‖exp x - ∑ i ∈ Finset.range (η + 1), ((Nat.factorial i : ℝ)⁻¹) • x ^ i‖
       ≤ (‖x‖ ^ (η + 1) / Nat.factorial (η + 1)) * (1 - ‖x‖ / ((η : ℝ) + 2))⁻¹
   set f : ℕ → Mat ℝ n n := fun i => ((Nat.factorial i : ℝ)⁻¹) • x ^ i with hf

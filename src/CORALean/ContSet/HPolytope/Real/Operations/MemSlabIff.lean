@@ -25,7 +25,7 @@ variable {q n : ℕ}
 
 theorem HPolytope.mem_slab_iff {Ae : Mat ℝ q n} {lo hi : Vec ℝ q} {x : Vec ℝ n} :
     x ∈ (HPolytope.slab Ae lo hi).construct ↔
-      ∀ i, lo i ≤ (Ae *ᵥ x) i ∧ (Ae *ᵥ x) i ≤ hi i := by
+      ∀ i, lo i ≤ (Ae *ᵥ x) i ∧ (Ae *ᵥ x) i ≤ hi i := by -- --- PROOF ---
   have hand : x ∈ (HPolytope.slab Ae lo hi).construct ↔
       x ∈ (HPolytope.ineqs Ae hi).construct
         ∧ x ∈ (HPolytope.ineqs (-Ae) (-lo)).construct := HPolytope.mem_and_iff

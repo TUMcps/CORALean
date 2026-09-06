@@ -25,7 +25,7 @@ variable {n : ℕ}
 
 /-- A diagonal block couples each coordinate to one coefficient and no other. -/
 theorem Zonotope.sum_diagonal_mul (v g : Vec ℝ n) (i : Fin n) :
-    ∑ i', Matrix.diagonal v i i' * g i' = v i * g i := by
+    ∑ i', Matrix.diagonal v i i' * g i' = v i * g i := by -- --- PROOF ---
   rw [Finset.sum_eq_single i, Matrix.diagonal_apply_eq]
   · intro b _ hb
     rw [Matrix.diagonal_apply_ne' _ hb, zero_mul]

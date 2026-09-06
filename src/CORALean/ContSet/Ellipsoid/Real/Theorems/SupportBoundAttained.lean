@@ -34,7 +34,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.supportBound_attained (E : Ellipsoid n) (c : Vec ℝ n →ₗ[ℝ] ℝ) :
-    ∃ x ∈ E.construct, c x = (E.supportBound c).val := by
+    ∃ x ∈ E.construct, c x = (E.supportBound c).val := by -- --- PROOF ---
   by_cases hv : ‖E.pullback c‖₂ = 0
   · refine ⟨E.q, E.q_mem_construct, ?_⟩
     show c E.q = c E.q + ‖E.pullback c‖₂

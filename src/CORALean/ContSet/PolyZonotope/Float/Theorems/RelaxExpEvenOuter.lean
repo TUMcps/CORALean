@@ -65,7 +65,8 @@ exact half, so the gap between them covers it. -/
 theorem PolyZonotope.aux_relaxGenEven_gap (PZ : PolyZonotope 𝕋 n)
     (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (k₀ : Fin PZ.p) (i : Fin n) :
     |(PZ.relaxWidth part k₀ : ℝ) / 2 * toReal (PZ.G i (part.right 0))
-      - toReal (PZ.relaxGenEven part k₀ i)| ≤ toReal (PZ.relaxGapEven part k₀ i 1) := by
+      - toReal
+        (PZ.relaxGenEven part k₀ i)| ≤ toReal (PZ.relaxGapEven part k₀ i 1) := by -- --- PROOF ---
   -- halving rounds nothing, so each bound is the fold's own, divided by two
   have hlo : toReal (PZ.relaxGenEven part k₀ i)
       ≤ (PZ.relaxWidth part k₀ : ℝ) / 2 * toReal (PZ.G i (part.right 0)) := by
@@ -87,7 +88,8 @@ two roundings of that same subtraction bounds the difference. -/
 theorem PolyZonotope.aux_relaxCentreEven_gap (PZ : PolyZonotope 𝕋 n)
     (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (k₀ : Fin PZ.p) (i : Fin n) :
     |toReal (PZ.c i) - (PZ.relaxWidth part k₀ : ℝ) / 2 * toReal (PZ.G i (part.right 0))
-      - toReal (PZ.relaxCentreEven part k₀ i)| ≤ toReal (PZ.relaxGapEven part k₀ i 2) := by
+      - toReal (PZ.relaxCentreEven
+        part k₀ i)| ≤ toReal (PZ.relaxGapEven part k₀ i 2) := by -- --- PROOF ---
   -- the shift is taken off at its upper rounding, so the stored centre is low
   have hhi : (PZ.relaxWidth part k₀ : ℝ) / 2 * toReal (PZ.G i (part.right 0))
       ≤ toReal (PZ.relaxGenEvenUp part k₀ i) := by
@@ -127,7 +129,7 @@ theorem PolyZonotope.aux_relaxExpEven_nominal (PZ : PolyZonotope 𝕋 n)
   have hsign : Real.PolyZonotope.monomial PZ.E a (part.right 0)
       - Real.PolyZonotope.monomial PZ.E a (part.right 1) ≤ 0 :=
     Real.PolyZonotope.sub_monomial_nonpos PZ.E ha hsim heven hevenj hle
-  have hnn : (0:ℝ) ≤ (PZ.relaxWidth part k₀ : ℝ) / 2 := by -- --- PROOF ---
+  have hnn : (0:ℝ) ≤ (PZ.relaxWidth part k₀ : ℝ) / 2 := by
     have h := Nat.cast_nonneg (α := ℝ) (PZ.relaxWidth part k₀)
     linarith
   -- one-sided drift: its midpoint is `-ξ_E/2` and its radius `ξ_E/2`
@@ -218,7 +220,7 @@ theorem PolyZonotope.relaxExpEven_outer (PZ : PolyZonotope 𝕋 n)
     (heven : ∀ k, Even (PZ.E k (part.right 0)))
     (hevenj : Even (PZ.E k₀ (part.right 1)))
     (hle : PZ.E k₀ (part.right 1) ≤ PZ.E k₀ (part.right 0)) :
-    PZ.construct ⊆ (PZ.relaxExpEven part k₀).construct := by
+    PZ.construct ⊆ (PZ.relaxExpEven part k₀).construct := by -- --- PROOF ---
   rintro _ ⟨z, hz, e, he, rfl⟩
   obtain ⟨z', hz', g, hg, hsum⟩ :=
     PolyZonotope.aux_relaxExpEven_nominal PZ part k₀ hsim heven hevenj hle hz

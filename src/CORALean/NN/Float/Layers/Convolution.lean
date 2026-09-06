@@ -45,7 +45,7 @@ def tapEntry {n : ℕ} : {k : ℕ} → (Fin k → Fin n) → (Fin k → 𝕋) �
 /-- Which is why the entry reads back exactly, `if` commuting with `toReal`. -/
 theorem toReal_tapEntry {n : ℕ} :
     ∀ {k : ℕ} (t : Fin k → Fin n) (v : Fin k → 𝕋) (i : Fin n),
-      toReal (tapEntry t v i) = Real.tapEntry t (fun l => toReal (v l)) i := by
+      toReal (tapEntry t v i) = Real.tapEntry t (fun l => toReal (v l)) i := by -- --- PROOF ---
   intro k
   induction k with
   | zero => intro _ _ _; exact toReal_zero

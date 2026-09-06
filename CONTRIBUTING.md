@@ -312,7 +312,7 @@ them, the type itself, rather than the last. `Instances.lean` has no single
 main instance among its several anonymous ones, so it carries `INSTANCES`
 instead, with the same placement.
 
-One further marker is **optional**, and rides on a line that already exists
+One further marker rides on a line that already exists
 rather than costing one of its own: a declaration's `:= by` may end with
 `-- --- PROOF ---` to show where the claim stops and the argument starts.
 
@@ -321,13 +321,21 @@ theorem MatExp.constCorrectionMatrix_mem (A : Mat ℝ n n) (r : ℝ) (η : ℕ) 
     ‖…‖ ≤ r * MatExp.expRemainderBound (r • A) η := by -- --- PROOF ---
 ```
 
-Nothing requires one — a two-line proof needs no announcement that it has
-begun. But where it appears the form is fixed, so it reads the same
-everywhere, and it may only sit on a proof of twenty lines or more, which is
-where a statement spanning several lines stops being obviously over. Only the
-declaration's own `:= by` takes it, never a nested `have … := by`: the flag
-marks the proof of the thing the file is named for, and one on every inner
-block would mark nothing at all.
+A proof of **five lines or more** must carry one, and a shorter proof must
+not: below that the `:= by` is still in view, and a flag on every two-line
+proof would say only what the source already shows. Required and refused on
+either side of one number, so the flag always means the same thing — 564 of
+them, on a little over half the theorems in the tree.
+
+When the line has no room for it inside the hundred-character limit, **the
+statement gets wrapped** rather than the flag moved: a declaration head breaks
+after the colon that closes its binders, anything else at the first space that
+lets both halves fit. Moving the flag somewhere else instead would leave two
+forms to recognise and two habits to keep.
+
+Only the declaration's own `:= by` takes it, never a nested `have … := by`:
+the flag marks the proof of the thing the file is named for, and one on every
+inner block would mark nothing at all.
 
 ### `API.lean`
 

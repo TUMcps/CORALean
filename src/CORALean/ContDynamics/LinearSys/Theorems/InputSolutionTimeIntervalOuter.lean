@@ -59,7 +59,7 @@ theorem LinearSys.Trajectory.inputSolution_timeInterval_outer
     (h0 : (0 : Vec ℝ n) ∈ construct U)
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) :
     (∫ s in (0:ℝ)..t, exp ((t - s) • toRealMat sys.A) *ᵥ u s)
-      ∈ construct (sys.inputSolution r η U) := by
+      ∈ construct (sys.inputSolution r η U) := by -- --- PROOF ---
   have hTt : Set.Icc (0:ℝ) t ⊆ T := fun s hs => hT ⟨hs.1, le_trans hs.2 htr⟩
   have hmemt : (∫ s in (0:ℝ)..t, exp ((t - s) • toRealMat sys.A) *ᵥ u s)
       ∈ sys.inputReach U t :=

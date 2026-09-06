@@ -50,7 +50,7 @@ theorem Layer.activationPoly_subset_inflate (P : LayerRelaxation σ n m)
       ((P i).sound (le_refl (s.interval.inf i)) (s.interval_inf_le_sup i))
   intro y hy
   have hy2 : y ∈ (s.dependent.evalPoly (P.coeffList s.interval)).construct
-      + (Interval.polyZonotope (P.box s.interval)).construct := by -- --- PROOF ---
+      + (Interval.polyZonotope (P.box s.interval)).construct := by
     rw [PolyZonotope.plus_exact]
     exact hy
   obtain ⟨u, hu, v, hv, rfl⟩ := hy2

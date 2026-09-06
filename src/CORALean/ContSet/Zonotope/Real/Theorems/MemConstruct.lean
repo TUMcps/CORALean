@@ -27,7 +27,8 @@ namespace CORALean.Real
 
 theorem Zonotope.mem_construct_iff {n : ℕ} {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n} :
     x ∈ Z.construct ↔
-      ∃ β : Fin Z.h → ℝ, (∀ j, |β j| ≤ 1) ∧ ∀ i, x i = Z.c i + ∑ j, Z.G j i * β j := by
+      ∃ β :
+        Fin Z.h → ℝ, (∀ j, |β j| ≤ 1) ∧ ∀ i, x i = Z.c i + ∑ j, Z.G j i * β j := by -- --- PROOF ---
   constructor
   · rintro ⟨β, hβ, rfl⟩
     exact ⟨β, hβ, Entrywise.add_sum_smul_apply Z.c Z.G β⟩

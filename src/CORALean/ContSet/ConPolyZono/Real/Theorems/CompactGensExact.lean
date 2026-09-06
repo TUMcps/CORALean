@@ -35,7 +35,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 theorem ConPolyZono.aux_sum_compactGens (C : ConPolyZono α) (a : Fin C.p → ℝ) :
     (∑ i, PolyZonotope.monomial C.E a i • C.G i)
       = ∑ j : Fin C.compactGens.h,
-          PolyZonotope.monomial C.compactGens.E a j • C.compactGens.G j := by
+          PolyZonotope.monomial C.compactGens.E a j • C.compactGens.G j := by -- --- PROOF ---
   rw [PolyZonotope.sum_monomial_merge C.E C.G a (PolyZonotope.rep C.E)
       (PolyZonotope.compactKeep C.E C.G) (PolyZonotope.col_rep C.E)
       fun j hj => PolyZonotope.fiberSum_eq_zero_of_notMem C.E C.G hj,
@@ -47,7 +47,7 @@ theorem ConPolyZono.aux_sum_compactGens (C : ConPolyZono α) (a : Fin C.p → �
 
 -- the constraint block is copied, so one factor vector answers for both sides
 theorem ConPolyZono.compactGens_exact (C : ConPolyZono α) :
-    C.construct = C.compactGens.construct := by
+    C.construct = C.compactGens.construct := by -- --- PROOF ---
   have key : ∀ (a : Fin C.p → ℝ) (β : Fin C.q → ℝ),
       C.c + (∑ i, PolyZonotope.monomial C.E a i • C.G i) + ∑ j, β j • C.GI j
         = C.c + (∑ j : Fin C.compactGens.h,

@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.reduceCombastel_order_le (Z : Zonotope 𝕋 n) {o : ℕ} (ho : 0 < o) :
-    (Z.reduceCombastel o).h ≤ o * n := by
+    (Z.reduceCombastel o).h ≤ o * n := by -- --- PROOF ---
   have hK : (o - 1) * n + n = o * n := by
     rw [Nat.sub_one_mul, Nat.sub_add_cancel (Nat.le_mul_of_pos_left n ho)]
   unfold Zonotope.reduceCombastel

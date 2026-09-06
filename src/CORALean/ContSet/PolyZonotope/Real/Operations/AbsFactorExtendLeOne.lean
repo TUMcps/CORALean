@@ -22,7 +22,7 @@ namespace CORALean.Real
 
 theorem PolyZonotope.abs_factorExtend_le_one {p h : ℕ} (E : Fin p → Fin h → ℕ)
     {a : Fin (PolyZonotope.usedFactors E).card → ℝ} (ha : ∀ k, |a k| ≤ 1) (k : Fin p) :
-    |PolyZonotope.factorExtend E a k| ≤ 1 := by
+    |PolyZonotope.factorExtend E a k| ≤ 1 := by -- --- PROOF ---
   rw [PolyZonotope.factorExtend]
   split
   · exact ha _

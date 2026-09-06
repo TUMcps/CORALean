@@ -32,7 +32,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 theorem LinearSys.Trajectory.aestronglyMeasurable_input_reflected {sys : LinearSys 𝕋 n}
     {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n} (traj : sys.Trajectory T R₀ U x u) {c r : ℝ}
     (hT : Set.Icc (c - r) c ⊆ T) :
-    AEStronglyMeasurable (fun τ => u (c - τ)) (volume.restrict (Set.Ioc 0 r)) := by
+    AEStronglyMeasurable (fun τ => u (c - τ)) (volume.restrict (Set.Ioc 0 r)) := by -- --- PROOF ---
   have hrefl : Continuous fun τ : ℝ => c - τ := continuous_const.sub continuous_id
   have hmem : ∀ τ ∈ Set.Ioc (0 : ℝ) r, c - τ ∈ Set.Ico (c - r) c :=
     fun _ hτ => ⟨by linarith [hτ.2], by linarith [hτ.1]⟩

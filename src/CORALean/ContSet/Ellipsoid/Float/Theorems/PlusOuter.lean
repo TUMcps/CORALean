@@ -75,7 +75,7 @@ theorem Ellipsoid.aux_plusGap (s₁ s₂ : 𝕋) (E₁ E₂ : Ellipsoid 𝕋 n) 
     (j : Fin (E₁.k + E₂.k)) :
     |Fin.append (fun j => toReal s₁ * toReal (E₁.G i j) - toReal (mulDown s₁ (E₁.G i j)))
         (fun j => toReal s₂ * toReal (E₂.G i j) - toReal (mulDown s₂ (E₂.G i j))) j|
-      ≤ toReal (Ellipsoid.plusGap s₁ s₂ E₁ E₂ i j) := by
+      ≤ toReal (Ellipsoid.plusGap s₁ s₂ E₁ E₂ i j) := by -- --- PROOF ---
   refine Fin.addCases (fun j => ?_) (fun j => ?_) j
   · rw [Fin.append_left]
     show _ ≤ toReal (Fin.append _ _ (Fin.castAdd E₂.k j))
@@ -100,7 +100,8 @@ theorem Ellipsoid.aux_plus_nominal (s₁ s₂ : 𝕋) (E₁ E₂ : Ellipsoid �
     nominalSet E₁ + nominalSet E₂ ⊆
       nominalSet (Ellipsoid.plus s₁ s₂ E₁ E₂)
         + ((Ellipsoid.centerResidual E₁.q E₂.q).construct
-            + (Ellipsoid.generatorError (Ellipsoid.plusGap s₁ s₂ E₁ E₂)).construct) := by
+            + (Ellipsoid.generatorError
+              (Ellipsoid.plusGap s₁ s₂ E₁ E₂)).construct) := by -- --- PROOF ---
   rintro _ ⟨x₁, hx₁', x₂, hx₂', rfl⟩
   obtain ⟨u₁, hu₁, hx₁⟩ := Ellipsoid.mem_nominalSet_iff.mp hx₁'
   obtain ⟨u₂, hu₂, hx₂⟩ := Ellipsoid.mem_nominalSet_iff.mp hx₂'

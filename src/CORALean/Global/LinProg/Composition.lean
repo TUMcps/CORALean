@@ -74,7 +74,7 @@ def SupportBound.smul {r : ℝ} (hr : 0 ≤ r) (u : SupportBound S c) :
 
 /-- The sublevel set of a linear functional, which is the halfspace a bound
 names. -/
-theorem convex_le (c : α →ₗ[ℝ] ℝ) (v : ℝ) : Convex ℝ {w : α | c w ≤ v} := by
+theorem convex_le (c : α →ₗ[ℝ] ℝ) (v : ℝ) : Convex ℝ {w : α | c w ≤ v} := by -- --- PROOF ---
   intro p hp q hq a b ha hb hab
   show c (a • p + b • q) ≤ v
   rw [map_add, map_smul, map_smul, smul_eq_mul, smul_eq_mul]

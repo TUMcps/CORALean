@@ -22,7 +22,7 @@ variable {p h : ℕ}
 
 theorem PolyZonotope.fiber_eq_zero_of_notMem (E : Fin p → Fin h → ℕ) (Gr : Fin h → ℝ)
     {j : Fin h} (hj : j ∉ PolyZonotope.repKeep E) :
-    Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep E) Gr j = 0 := by
+    Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep E) Gr j = 0 := by -- --- PROOF ---
   rw [Real.PolyZonotope.fiberSum]
   refine Finset.sum_eq_zero fun l hl => ?_
   exfalso

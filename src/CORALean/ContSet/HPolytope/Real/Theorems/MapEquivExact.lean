@@ -24,7 +24,7 @@ variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Mod
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.mapEquiv_exact (e : α ≃ₗ[ℝ] β) (P : HPolytope α) :
-    ⇑e '' P.construct = (HPolytope.mapEquiv e P).construct := by
+    ⇑e '' P.construct = (HPolytope.mapEquiv e P).construct := by -- --- PROOF ---
   have h : (HPolytope.mapEquiv e P).construct = ⇑e.symm ⁻¹' P.construct :=
     HPolytope.comap_exact _ _
   rw [h]

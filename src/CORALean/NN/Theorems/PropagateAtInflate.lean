@@ -42,7 +42,7 @@ pattern it was built from, which is what lets the induction hand one down. -/
 theorem aux_propagateAt_cons (L : RefinableLayer S n m) (rest : RefinableNetwork S m k)
     (t : OrderPattern n) (sch : Schedule) (X : S n) :
     (RefinableNetwork.cons L rest).propagateAt (Schedule.cons t sch) X
-      = rest.propagateAt sch (L.propagate t X) := by
+      = rest.propagateAt sch (L.propagate t X) := by -- --- PROOF ---
   show rest.propagateAt (Schedule.tail (Schedule.cons t sch))
     (L.propagate (Schedule.head (Schedule.cons t sch) n) X) = _
   rw [Schedule.head_cons]
@@ -52,7 +52,7 @@ theorem aux_propagateAt_cons (L : RefinableLayer S n m) (rest : RefinableNetwork
 error the tail adds are both paid out of the same ball. -/
 theorem aux_subset_inflate_trans {E C B : Set (Vec ℝ m)} {δ₁ δ₂ ε : ℝ}
     (hC : C ⊆ E + Metric.closedBall 0 δ₁) (hB : B ⊆ C + Metric.closedBall 0 δ₂)
-    (hδ : δ₁ + δ₂ ≤ ε) : B ⊆ E + Metric.closedBall 0 ε := by
+    (hδ : δ₁ + δ₂ ≤ ε) : B ⊆ E + Metric.closedBall 0 ε := by -- --- PROOF ---
   intro y hy
   obtain ⟨c, hc, d₂, hd₂, rfl⟩ := hB hy
   obtain ⟨e, he, d₁, hd₁, rfl⟩ := hC hc
@@ -68,7 +68,8 @@ theorem aux_subset_inflate_trans {E C B : Set (Vec ℝ m)} {δ₁ δ₂ ε : ℝ
 this is how a residual left early reaches the output. -/
 theorem aux_image_inflate_subset {k : ℕ} {f : Vec ℝ m → Vec ℝ k} {K : NNReal}
     (hK : LipschitzWith K f) (A : Set (Vec ℝ m)) (δ : ℝ) :
-    f '' (A + Metric.closedBall 0 δ) ⊆ f '' A + Metric.closedBall 0 ((K : ℝ) * δ) := by
+    f '' (A
+      + Metric.closedBall 0 δ) ⊆ f '' A + Metric.closedBall 0 ((K : ℝ) * δ) := by -- --- PROOF ---
   rintro _ ⟨_, ⟨a, ha, d, hd, rfl⟩, rfl⟩
   rw [Metric.mem_closedBall, dist_zero_right] at hd
   -- the displacement is what the map moved, which the Lipschitz bound caps
@@ -91,7 +92,7 @@ theorem RefinableNetwork.exists_schedule_propagateAt_subset :
   | k, _, .nil, _, X, ε, hε => by
     refine ⟨fun _ _ => 0, fun y hy => ?_⟩
     -- the empty network propagates its input, and nothing has to be inflated
-    have h0 : (0 : Vec ℝ k) ∈ Metric.closedBall (0 : Vec ℝ k) ε := by
+    have h0 : (0 : Vec ℝ k) ∈ Metric.closedBall (0 : Vec ℝ k) ε := by -- --- PROOF ---
       rw [Metric.mem_closedBall, dist_self]
       exact hε.le
     have hmem := Set.add_mem_add

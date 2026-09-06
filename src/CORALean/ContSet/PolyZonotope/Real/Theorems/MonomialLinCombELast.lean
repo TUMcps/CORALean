@@ -27,7 +27,7 @@ theorem PolyZonotope.monomial_linCombE_last (a : Fin (p₁ + p₂ + 1) → ℝ) 
     PolyZonotope.monomial (PolyZonotope.linCombE E₁ E₂)
         (h := h₁ + h₂ + (h₁ + h₂ + 1)) a
         (Fin.natAdd (h₁ + h₂) (Fin.natAdd (h₁ + h₂) (0 : Fin 1)))
-      = a (Fin.natAdd (p₁ + p₂) (0 : Fin 1)) := by
+      = a (Fin.natAdd (p₁ + p₂) (0 : Fin 1)) := by -- --- PROOF ---
   rw [PolyZonotope.monomial, Fin.prod_univ_add, Fin.prod_univ_one]
   have hold : (∏ k : Fin (p₁ + p₂), a (Fin.castAdd 1 k)
       ^ PolyZonotope.linCombE E₁ E₂ (Fin.castAdd 1 k)

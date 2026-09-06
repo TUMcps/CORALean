@@ -32,7 +32,7 @@ def signEquiv (n : ℕ) : Fin (2 ^ n) ≃ (Fin n → Bool) :=
   finFunctionFinEquiv.symm.trans (Equiv.arrowCongr (Equiv.refl (Fin n)) finTwoEquiv)
 
 theorem sum_prod_bool (f g : Fin n → ℝ) :
-    ∑ σ : Fin n → Bool, ∏ j, (if σ j then f j else g j) = ∏ j, (f j + g j) := by
+    ∑ σ : Fin n → Bool, ∏ j, (if σ j then f j else g j) = ∏ j, (f j + g j) := by -- --- PROOF ---
   rw [show (∏ j, (f j + g j)) = ∏ j, ∑ b : Bool, (if b then f j else g j) from
         Finset.prod_congr rfl fun j _ => by simp,
       Finset.prod_univ_sum, Fintype.piFinset_univ]
@@ -43,7 +43,7 @@ theorem sum_prod_bool (f g : Fin n → ℝ) :
 theorem sum_prod_bool_mul (t u v : Fin n → ℝ) (i : Fin n) :
     ∑ σ : Fin n → Bool,
         (∏ j, (if σ j then t j else 1 - t j)) * (if σ i then u i else v i)
-      = t i * u i + (1 - t i) * v i := by
+      = t i * u i + (1 - t i) * v i := by -- --- PROOF ---
   -- one coordinate's factor absorbs its endpoint; the rest are untouched
   have key : ∀ σ : Fin n → Bool,
       (∏ j, (if σ j then t j else 1 - t j)) * (if σ i then u i else v i)

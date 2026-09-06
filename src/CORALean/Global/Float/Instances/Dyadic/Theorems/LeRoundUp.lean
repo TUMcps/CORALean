@@ -23,7 +23,7 @@ variable {p : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem le_roundUp (d : Dyadic p) : toReal d ≤ toReal (roundUp d) := by
+theorem le_roundUp (d : Dyadic p) : toReal d ≤ toReal (roundUp d) := by -- --- PROOF ---
   have h : d.mantissa ≤ -(-d.mantissa / 2 ^ d.shift) * 2 ^ d.shift := by
     rw [neg_mul, le_neg]
     exact Int.ediv_mul_le _ (pow_ne_zero _ two_ne_zero)

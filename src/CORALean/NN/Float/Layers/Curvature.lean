@@ -162,7 +162,7 @@ private def conjSlopeHigh (R : Relaxation 𝕋 f) (A : ScaleRounding 𝕋 ra) (B
 private theorem conjSlopeLow_le (R : Relaxation 𝕋 f) (A : ScaleRounding 𝕋 ra)
     (B : ScaleRounding 𝕋 rb) (ha : 0 ≤ ra) (l u : 𝕋) :
     toReal (conjSlopeLow R A B l u)
-      ≤ ra * rb * toReal (R.slope (confL B l) (confU B u)) := by
+      ≤ ra * rb * toReal (R.slope (confL B l) (confU B u)) := by -- --- PROOF ---
   rw [conjSlopeLow]
   calc toReal (A.down (B.down (R.slope (confL B l) (confU B u))))
       ≤ ra * toReal (B.down (R.slope (confL B l) (confU B u))) :=
@@ -175,7 +175,7 @@ private theorem conjSlopeLow_le (R : Relaxation 𝕋 f) (A : ScaleRounding 𝕋 
 private theorem le_conjSlopeHigh (R : Relaxation 𝕋 f) (A : ScaleRounding 𝕋 ra)
     (B : ScaleRounding 𝕋 rb) (ha : 0 ≤ ra) (l u : 𝕋) :
     ra * rb * toReal (R.slope (confL B l) (confU B u))
-      ≤ toReal (conjSlopeHigh R A B l u) := by
+      ≤ toReal (conjSlopeHigh R A B l u) := by -- --- PROOF ---
   rw [conjSlopeHigh]
   calc ra * rb * toReal (R.slope (confL B l) (confU B u))
       = ra * (rb * toReal (R.slope (confL B l) (confU B u))) := by ring
@@ -197,7 +197,7 @@ private def conjOffsetHigh (R : Relaxation 𝕋 f) (A : ScaleRounding 𝕋 ra) (
 private theorem conjOffsetLow_le (R : Relaxation 𝕋 f) (A : ScaleRounding 𝕋 ra)
     (B : ScaleRounding 𝕋 rb) (c l u : 𝕋) :
     toReal (conjOffsetLow R A B c l u)
-      ≤ ra * toReal (R.offset (confL B l) (confU B u)) + toReal c := by
+      ≤ ra * toReal (R.offset (confL B l) (confU B u)) + toReal c := by -- --- PROOF ---
   rw [conjOffsetLow]
   have h1 := A.down_le (R.offset (confL B l) (confU B u))
   have h2 := addDown_le_add (A.down (R.offset (confL B l) (confU B u))) c
@@ -207,7 +207,7 @@ private theorem conjOffsetLow_le (R : Relaxation 𝕋 f) (A : ScaleRounding 𝕋
 private theorem le_conjOffsetHigh (R : Relaxation 𝕋 f) (A : ScaleRounding 𝕋 ra)
     (B : ScaleRounding 𝕋 rb) (c l u : 𝕋) :
     ra * toReal (R.offset (confL B l) (confU B u)) + toReal c
-      ≤ toReal (conjOffsetHigh R A B c l u) := by
+      ≤ toReal (conjOffsetHigh R A B c l u) := by -- --- PROOF ---
   rw [conjOffsetHigh]
   have h1 := A.up_ge (R.offset (confL B l) (confU B u))
   have h2 := add_le_addUp (A.up (R.offset (confL B l) (confU B u))) c
@@ -217,7 +217,7 @@ private theorem le_conjOffsetHigh (R : Relaxation 𝕋 f) (A : ScaleRounding �
 private def conjTBound (l u : 𝕋) : 𝕋 := maximum (absolute l) (absolute u)
 
 private theorem abs_le_conjTBound {l u : 𝕋} {t : ℝ} (hl : toReal l ≤ t) (hu : t ≤ toReal u) :
-    |t| ≤ toReal (conjTBound l u) := by
+    |t| ≤ toReal (conjTBound l u) := by -- --- PROOF ---
   rw [conjTBound, toReal_maximum, toReal_absolute, toReal_absolute, abs_le]
   have hnl : -toReal l ≤ |toReal l| := by rw [← abs_neg]; exact le_abs_self _
   have hnu : toReal u ≤ |toReal u| := le_abs_self _

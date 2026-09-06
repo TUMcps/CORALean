@@ -32,7 +32,7 @@ theorem PolyZonotope.mulG_close (S₁ S₂ : PolyZonotope 𝕋 n) (i : Fin n)
     (l : Fin ((S₁.h + 1) * (S₂.h + 1))) :
     |Real.PolyZonotope.mulG (nominal S₁) (nominal S₂) l i
         - toReal (PolyZonotope.mulGDown S₁ S₂ i l)|
-      ≤ toReal (PolyZonotope.mulGDiff S₁ S₂ i l) := by
+      ≤ toReal (PolyZonotope.mulGDiff S₁ S₂ i l) := by -- --- PROOF ---
   have hexact : Real.PolyZonotope.mulG (nominal S₁) (nominal S₂) l i
       = toReal (PolyZonotope.extG S₁ i (finProdFinEquiv.symm l).1)
         * toReal (PolyZonotope.extG S₂ i (finProdFinEquiv.symm l).2) := by

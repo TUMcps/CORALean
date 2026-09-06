@@ -28,7 +28,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n
 
 theorem Layer.linearWithError_zero (W : Mat ℝ m n) (b : Vec ℝ m)
     (hE : (Interval.point (0 : Vec ℝ m)).IsNonempty) :
-    Layer.linearWithError (S := S) W b (Interval.point 0) hE = Layer.linear (S := S) W b := by
+    Layer.linearWithError
+      (S := S) W b (Interval.point 0) hE = Layer.linear (S := S) W b := by -- --- PROOF ---
   -- the committed centre at a point interval is the point itself
   have hcenter : (Interval.point (0 : Vec ℝ m)).center = 0 := by
     show (2:ℝ)⁻¹ • ((0 : Vec ℝ m) + 0) = 0

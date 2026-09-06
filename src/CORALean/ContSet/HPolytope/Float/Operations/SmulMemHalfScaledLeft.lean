@@ -36,7 +36,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : 
 
 theorem HPolytope.smul_mem_halfScaledLeft {P : HPolytope 𝕋 n₁} {y : Vec ℝ n₁} {z : Vec ℝ n₂}
     {w t : ℝ} (hw : (t + 1) / 2 = w) (hw0 : 0 ≤ w) (hy : y ∈ P.construct) :
-    Fin.append (Fin.append (w • y) z) (fun _ : Fin 1 => t) ∈ (P.halfScaledLeft n₂).construct := by
+    Fin.append (Fin.append
+      (w • y) z) (fun _ : Fin 1 => t) ∈ (P.halfScaledLeft n₂).construct := by -- --- PROOF ---
   obtain ⟨hle, heq⟩ := HPolytope.mem_construct_iff.mp hy
   -- the third row group is the equality's lower end, which enters negated
   have hneg : toRealMat (fun i' k => neg (P.Ae i' k)) = -toRealMat P.Ae := by

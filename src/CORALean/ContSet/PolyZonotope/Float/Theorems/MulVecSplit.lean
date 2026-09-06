@@ -36,7 +36,7 @@ theorem PolyZonotope.mulVec_split {hh qq : ℕ} (M : Mat 𝕋 m n) (c : Vec 𝕋
     (toRealMat M *ᵥ x) i
       = (∑ k, toReal (M i k) * toReal (c k))
         + (∑ l, (∑ k, toReal (M i k) * toReal (G k l)) * t l)
-        + ∑ j, (∑ k, toReal (M i k) * toReal (GI k j)) * β j := by
+        + ∑ j, (∑ k, toReal (M i k) * toReal (GI k j)) * β j := by -- --- PROOF ---
   -- unfold `x`, then regroup each of its three summands against the outer sum
   show ∑ k, toReal (M i k) * x k = _
   calc ∑ k, toReal (M i k) * x k

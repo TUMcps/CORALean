@@ -25,7 +25,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem lipschitzWith_sigmoid : LipschitzWith 1 sigmoid := by
+theorem lipschitzWith_sigmoid : LipschitzWith 1 sigmoid := by -- --- PROOF ---
   refine lipschitzWith_of_nnnorm_deriv_le
     (fun t => (hasDerivAt_sigmoid t).differentiableAt) fun t => ?_
   -- the derivative is named, so the bound is the one already proved of it

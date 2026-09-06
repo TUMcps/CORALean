@@ -26,7 +26,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.convex_construct (Z : Zonotope α) : Convex ℝ Z.construct := by
+theorem Zonotope.convex_construct (Z : Zonotope α) : Convex ℝ Z.construct := by -- --- PROOF ---
   rintro x ⟨β₁, hβ₁, rfl⟩ y ⟨β₂, hβ₂, rfl⟩ a b ha hb hab
   refine ⟨fun j => a * β₁ j + b * β₂ j, fun j => ?_, ?_⟩
   · refine le_trans (abs_add_le _ _) ?_

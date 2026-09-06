@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.nominal_linComb (P₁ P₂ : VPolytope 𝕋 n) :
-    nominal (P₁.linComb P₂) = (nominal P₁).linComb (nominal P₂) := by
+    nominal (P₁.linComb P₂) = (nominal P₁).linComb (nominal P₂) := by -- --- PROOF ---
   have hV : (fun (l : Fin (P₁.k + P₂.k)) i => toReal ((P₁.linComb P₂).V i l))
       = Fin.append (fun l i => toReal (P₁.V i l)) (fun l i => toReal (P₂.V i l)) := by
     funext l

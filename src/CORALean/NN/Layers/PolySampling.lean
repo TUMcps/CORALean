@@ -50,7 +50,7 @@ noncomputable def sampleSup (g : ℝ → ℝ) (l u : ℝ) (N : ℕ) : ℝ :=
   Finset.univ.sup' Finset.univ_nonempty fun i : Fin (N + 1) => g (sampleGrid l u N i)
 
 theorem sampleGrid_mem_Icc {l u : ℝ} {N : ℕ} (hN : 0 < N) (hlu : l ≤ u) (i : Fin (N + 1)) :
-    l ≤ sampleGrid l u N i ∧ sampleGrid l u N i ≤ u := by
+    l ≤ sampleGrid l u N i ∧ sampleGrid l u N i ≤ u := by -- --- PROOF ---
   have hNpos : (0 : ℝ) < N := Nat.cast_pos.mpr hN
   have hdx : 0 ≤ (u - l) / N := div_nonneg (by linarith) hNpos.le
   have hfull : (N : ℝ) * ((u - l) / N) = u - l := by
@@ -64,7 +64,7 @@ theorem sampleGrid_mem_Icc {l u : ℝ} {N : ℕ} (hN : 0 < N) (hlu : l ≤ u) (i
 /-- Every point of the box is within one spacing of a sample, which is what lets
 the sampled range speak for the whole box. -/
 theorem exists_sampleGrid_close {l u t : ℝ} {N : ℕ} (hN : 0 < N) (hl : l ≤ t) (hu : t ≤ u) :
-    ∃ i : Fin (N + 1), |t - sampleGrid l u N i| ≤ (u - l) / N := by
+    ∃ i : Fin (N + 1), |t - sampleGrid l u N i| ≤ (u - l) / N := by -- --- PROOF ---
   have hNpos : (0 : ℝ) < N := Nat.cast_pos.mpr hN
   have hfull : (N : ℝ) * ((u - l) / N) = u - l := by
     field_simp
@@ -106,7 +106,7 @@ theorem sample_bounds_of_deriv {g g' : ℝ → ℝ} {M l u t : ℝ} {N : ℕ}
     (hd : ∀ x, HasDerivAt g (g' x) x) (hM : ∀ x, l ≤ x → x ≤ u → |g' x| ≤ M)
     (hN : 0 < N) (hl : l ≤ t) (hu : t ≤ u) :
     sampleInf g l u N - M * ((u - l) / N) ≤ g t
-      ∧ g t ≤ sampleSup g l u N + M * ((u - l) / N) := by
+      ∧ g t ≤ sampleSup g l u N + M * ((u - l) / N) := by -- --- PROOF ---
   have hM0 : 0 ≤ M := le_trans (abs_nonneg _) (hM t hl hu)
   obtain ⟨i, hi⟩ := exists_sampleGrid_close hN hl hu
   obtain ⟨hgl, hgu⟩ := sampleGrid_mem_Icc hN (hl.trans hu) i

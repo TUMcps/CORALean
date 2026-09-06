@@ -24,7 +24,7 @@ variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Mod
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.map_exact (f : α →ₗ[ℝ] β) (C : ConZonotope α) :
-    ⇑f '' C.construct = (C.map f).construct := by
+    ⇑f '' C.construct = (C.map f).construct := by -- --- PROOF ---
   have hf : ∀ b : Fin C.h → ℝ, f (C.c + ∑ j, b j • C.G j)
       = (C.map f).c + ∑ j, b j • (C.map f).G j := by
     intro b

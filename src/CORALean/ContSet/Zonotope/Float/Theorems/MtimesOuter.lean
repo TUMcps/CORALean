@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 theorem Zonotope.aux_mulVec_nominal (M : Mat 𝕋 m n) (Z : Zonotope 𝕋 n) (β : Vec ℝ Z.h)
     {x : Vec ℝ n} (hx : ∀ k, x k = toReal (Z.c k) + ∑ j, toReal (Z.G k j) * β j) (i : Fin m) :
     (toRealMat M *ᵥ x) i = (∑ k, toReal (M i k) * toReal (Z.c k))
-      + ∑ j, (∑ k, toReal (M i k) * toReal (Z.G k j)) * β j := by
+      + ∑ j, (∑ k, toReal (M i k) * toReal (Z.G k j)) * β j := by -- --- PROOF ---
   show ∑ k, toReal (M i k) * x k = _
   calc ∑ k, toReal (M i k) * x k
       = ∑ k, (toReal (M i k) * toReal (Z.c k)
@@ -59,7 +59,8 @@ theorem Zonotope.aux_mulVec_nominal (M : Mat 𝕋 m n) (Z : Zonotope 𝕋 n) (β
 -- the image's nominal part, with the generator rounding charged to a box
 theorem Zonotope.aux_mtimes_nominal (M : Mat 𝕋 m n) (Z : Zonotope 𝕋 n) :
     (toRealMat M *ᵥ ·) '' nominalSet Z ⊆
-      nominalSet (Zonotope.mtimes M Z) + (Zonotope.mtimesResidual M Z).construct := by
+      nominalSet
+        (Zonotope.mtimes M Z) + (Zonotope.mtimesResidual M Z).construct := by -- --- PROOF ---
   rintro _ ⟨x, hx', rfl⟩
   obtain ⟨β, hβ, hx⟩ := Zonotope.mem_nominalSet_iff.mp hx'
   -- the generators are wrong by this much, entrywise

@@ -67,7 +67,7 @@ theorem eq_empty_of_dual {A : Fin m → (α →ₗ[ℝ] ℝ)} {b : Fin m → ℝ
     (y : Fin m → ℝ) (z : Fin me → ℝ) (hy : ∀ i, 0 ≤ y i)
     (h0 : ∀ x : α, (∑ i, y i * A i x) + ∑ i, z i * Ae i x = 0)
     (hneg : (∑ i, y i * b i) + ∑ i, z i * be i < 0) :
-    Feasible A b Ae be = ∅ := by
+    Feasible A b Ae be = ∅ := by -- --- PROOF ---
   ext x
   simp only [Set.mem_empty_iff_false, iff_false]
   rintro ⟨hle, heq⟩

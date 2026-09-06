@@ -26,7 +26,7 @@ widened factor vector exactly what it said of the original. -/
 theorem ConPolyZono.holds_padE_iff {p m s : ℕ} (A : Mat ℝ m s) (b : Interval (Vec ℝ m))
     (EC : Fin p → Fin s → ℕ) (r : ℕ) (a : Fin (p + r) → ℝ) :
     ConPolyZono.holds A b (ConPolyZono.padE EC r) a
-      ↔ ConPolyZono.holds A b EC (fun k => a (Fin.castAdd r k)) := by
+      ↔ ConPolyZono.holds A b EC (fun k => a (Fin.castAdd r k)) := by -- --- PROOF ---
   have hm : PolyZonotope.monomial (ConPolyZono.padE EC r) a
       = PolyZonotope.monomial EC (fun k => a (Fin.castAdd r k)) :=
     funext fun l => ConPolyZono.monomial_padE EC r a l

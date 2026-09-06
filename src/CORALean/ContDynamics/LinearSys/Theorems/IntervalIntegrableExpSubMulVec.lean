@@ -35,7 +35,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- A continuous matrix applied to a measurable vector, entry by entry. -/
 theorem aux_aestronglyMeasurable_mulVec {M : ℝ → Mat ℝ n n} {v : ℝ → Vec ℝ n} {μ : Measure ℝ}
     (hM : Continuous M) (hv : AEStronglyMeasurable v μ) :
-    AEStronglyMeasurable (fun s => M s *ᵥ v s) μ := by
+    AEStronglyMeasurable (fun s => M s *ᵥ v s) μ := by -- --- PROOF ---
   have hvk : ∀ k, AEStronglyMeasurable (fun s => v s k) μ := by
     intro k
     rw [aestronglyMeasurable_iff_aemeasurable]
@@ -70,7 +70,7 @@ theorem intervalIntegrable_expSub_mulVec {A : Mat ℝ n n} {U : S n} {c τ : ℝ
     (hbdd : Bornology.IsBounded (construct U)) {u : ℝ → Vec ℝ n}
     (hu : ∀ s ∈ Set.Icc (0:ℝ) τ, u s ∈ construct U)
     (hmeas : AEStronglyMeasurable u (volume.restrict (Set.Icc 0 τ))) :
-    IntervalIntegrable (fun s => exp ((c - s) • A) *ᵥ u s) volume 0 τ := by
+    IntervalIntegrable (fun s => exp ((c - s) • A) *ᵥ u s) volume 0 τ := by -- --- PROOF ---
   obtain ⟨CU, hCU⟩ := hbdd.exists_norm_le
   obtain ⟨CE, hCE⟩ := (isCompact_Icc (a := (0:ℝ)) (b := τ)).exists_bound_of_continuousOn
     (aux_continuous_expSub A c).continuousOn

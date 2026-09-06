@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ} {S 
 
 theorem Interval.subset_ofBounds (up : ∀ j, FloatBound 𝕋 S (LinearMap.proj j))
     (lo : ∀ j, FloatBound 𝕋 S (-LinearMap.proj j)) :
-    S ⊆ (Interval.ofBounds up lo).construct := by
+    S ⊆ (Interval.ofBounds up lo).construct := by -- --- PROOF ---
   intro x hx j
   constructor
   · have h : -(x j) ≤ toReal (lo j).val := (lo j).le x hx

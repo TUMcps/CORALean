@@ -32,7 +32,7 @@ theorem Ellipsoid.aux_supportBound_le (E : Ellipsoid 𝕋 n) {c : Vec ℝ n →�
     {a : Vec 𝕋 n} (hc : ∀ x : Vec ℝ n, c x = ∑ i, toReal (a i) * x i) {s : 𝕋}
     (hs : toReal (sqSumUp (E.pullbackAbs a)) ≤ toReal (mulDown s s)) :
     ((InflatedContSet.nominal E).supportBound c).val
-      ≤ toReal (addUp (dotUp a E.q) (absolute s)) := by
+      ≤ toReal (addUp (dotUp a E.q) (absolute s)) := by -- --- PROOF ---
   have h₁ : c (InflatedContSet.nominal E).q ≤ toReal (dotUp a E.q) := by
     rw [hc]
     exact le_dotUp a E.q

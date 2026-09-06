@@ -43,7 +43,7 @@ theorem Interval.subset_zonotope (I : Interval (Vec ℝ n)) :
   -- where the coordinate sits relative to its centre, and zero where it has no width
   set β : Fin n → ℝ := fun j => if I.sup j = I.inf j then 0
     else (x j - (I.inf j + I.sup j) / 2) / ((I.sup j - I.inf j) / 2) with hβdef
-  have hb1 : ∀ j, |β j| ≤ 1 := by -- --- PROOF ---
+  have hb1 : ∀ j, |β j| ≤ 1 := by
     intro j
     by_cases h : I.sup j = I.inf j
     · rw [hβdef]

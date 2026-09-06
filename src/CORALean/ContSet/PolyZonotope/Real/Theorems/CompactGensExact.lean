@@ -41,7 +41,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 theorem PolyZonotope.aux_sum_compactGens (PZ : PolyZonotope α) (a : Fin PZ.p → ℝ) :
     (∑ i, PolyZonotope.monomial PZ.E a i • PZ.G i)
       = ∑ j : Fin PZ.compactGens.h,
-          PolyZonotope.monomial PZ.compactGens.E a j • PZ.compactGens.G j := by
+          PolyZonotope.monomial PZ.compactGens.E a j • PZ.compactGens.G j := by -- --- PROOF ---
   rw [PolyZonotope.sum_monomial_merge PZ.E PZ.G a (PolyZonotope.rep PZ.E)
       (PolyZonotope.compactKeep PZ.E PZ.G) (PolyZonotope.col_rep PZ.E)
       fun j hj => PolyZonotope.fiberSum_eq_zero_of_notMem PZ.E PZ.G hj,
@@ -53,7 +53,7 @@ theorem PolyZonotope.aux_sum_compactGens (PZ : PolyZonotope α) (a : Fin PZ.p �
 
 -- so both inclusions hold at the very same coefficients
 theorem PolyZonotope.compactGens_exact (PZ : PolyZonotope α) :
-    PZ.construct = PZ.compactGens.construct := by
+    PZ.construct = PZ.compactGens.construct := by -- --- PROOF ---
   have key : ∀ (a : Fin PZ.p → ℝ) (β : Fin PZ.q → ℝ),
       PZ.c + (∑ i, PolyZonotope.monomial PZ.E a i • PZ.G i) + ∑ j, β j • PZ.GI j
         = PZ.c + (∑ j : Fin PZ.compactGens.h,

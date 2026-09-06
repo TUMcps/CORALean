@@ -63,7 +63,7 @@ theorem aux_zero_mem_centered (Z : Zonotope (Vec ℝ n)) :
 
 /-- A member of `Z` shifted by the centre is a member of the recentred `Z`. -/
 theorem aux_sub_mem_centered {Z : Zonotope (Vec ℝ n)} {y : Vec ℝ n} (hy : y ∈ Z.construct) :
-    y - Z.c ∈ (aux_centered Z).construct := by
+    y - Z.c ∈ (aux_centered Z).construct := by -- --- PROOF ---
   obtain ⟨β, hβ, hy⟩ := hy
   refine ⟨β, hβ, ?_⟩
   rw [hy]
@@ -78,7 +78,7 @@ theorem aux_self_mem_point (v : Vec ℝ n) : v ∈ (aux_point v).construct := by
 
 /-- The one-generator zonotope contains `lam • v` for every `lam` in `[0,1]`. -/
 theorem aux_smul_mem_segment (v : Vec ℝ n) {lam : ℝ} (hlam : lam ∈ Set.Icc (0:ℝ) 1) :
-    lam • v ∈ (aux_segment v).construct := by
+    lam • v ∈ (aux_segment v).construct := by -- --- PROOF ---
   refine ⟨fun _ => 2 * lam - 1, fun _ => ?_, ?_⟩
   · rw [abs_le]
     constructor <;> [linarith [hlam.1]; linarith [hlam.2]]

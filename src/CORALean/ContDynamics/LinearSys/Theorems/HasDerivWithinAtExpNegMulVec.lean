@@ -32,7 +32,8 @@ variable {n : ℕ}
 
 theorem hasDerivWithinAt_expNeg_mulVec (A : Mat ℝ n n) (x u : ℝ → Vec ℝ n)
     (T : Set ℝ) (t : ℝ) (hx : HasDerivWithinAt x (A *ᵥ x t + u t) T t) :
-    HasDerivWithinAt (fun r : ℝ => exp ((-r) • A) *ᵥ x r) (exp ((-t) • A) *ᵥ u t) T t := by
+    HasDerivWithinAt
+      (fun r : ℝ => exp ((-r) • A) *ᵥ x r) (exp ((-t) • A) *ᵥ u t) T t := by -- --- PROOF ---
   have hE : HasDerivAt (fun s : ℝ => exp ((-s) • A)) (-(exp ((-t) • A) * A)) t := by
     have h := hasDerivAt_exp_smul_const (𝕂 := ℝ) (-A) t
     simp only [smul_neg, ← neg_smul, mul_neg] at h

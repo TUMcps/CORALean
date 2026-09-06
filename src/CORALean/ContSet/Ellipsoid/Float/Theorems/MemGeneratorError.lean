@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n k : ℕ}
 
 theorem Ellipsoid.mem_generatorError {G : Mat 𝕋 n k} {Δ : Mat ℝ n k} {u : Vec ℝ k}
     (hG : ∀ i j, |Δ i j| ≤ toReal (G i j)) (hu : ‖u‖₂ ≤ 1) :
-    (fun i => ∑ j, Δ i j * u j) ∈ (Ellipsoid.generatorError G).construct := by
+    (fun i => ∑ j, Δ i j * u j) ∈ (Ellipsoid.generatorError G).construct := by -- --- PROOF ---
   intro i
   have key := abs_sum_le_radius (fun i j => le_trans (hG i j) (le_abs_self _))
     (fun j => le_trans (abs_le_norm₂ u j) hu) i

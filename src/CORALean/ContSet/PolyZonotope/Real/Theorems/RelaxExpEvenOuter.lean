@@ -55,7 +55,7 @@ theorem PolyZonotope.relaxExpEven_outer (PZ : PolyZonotope α)
   have hsign : PolyZonotope.monomial PZ.E a (part.right 0)
       - PolyZonotope.monomial PZ.E a (part.right 1) ≤ 0 :=
     PolyZonotope.sub_monomial_nonpos PZ.E ha hsim heven hevenj hle
-  have hnn : (0:ℝ) ≤ (PZ.relaxWidth part k₀ : ℝ) / 2 := by -- --- PROOF ---
+  have hnn : (0:ℝ) ≤ (PZ.relaxWidth part k₀ : ℝ) / 2 := by
     have h := Nat.cast_nonneg (α := ℝ) (PZ.relaxWidth part k₀)
     linarith
   -- one-sided drift: its midpoint is `-ξ_E/2` and its radius `ξ_E/2`

@@ -42,7 +42,7 @@ theorem PolyZonotope.sum_monomial_merge {p h : ℕ} (E : Fin p → Fin h → ℕ
     (hcol : ∀ i, PolyZonotope.col E (r i) = PolyZonotope.col E i)
     (hs : ∀ j ∉ s, PolyZonotope.fiberSum r G j = 0) :
     (∑ i, PolyZonotope.monomial E a i • G i)
-      = ∑ j ∈ s, PolyZonotope.monomial E a j • PolyZonotope.fiberSum r G j := by
+      = ∑ j ∈ s, PolyZonotope.monomial E a j • PolyZonotope.fiberSum r G j := by -- --- PROOF ---
   have hall : (∑ i, PolyZonotope.monomial E a i • G i)
       = ∑ j, PolyZonotope.monomial E a j • PolyZonotope.fiberSum r G j := by
     rw [← Finset.sum_fiberwise Finset.univ r fun i => PolyZonotope.monomial E a i • G i]

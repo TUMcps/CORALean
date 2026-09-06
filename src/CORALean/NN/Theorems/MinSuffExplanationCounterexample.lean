@@ -44,7 +44,7 @@ theorem NeuralNetwork.minSuffExplanation_iff_counterexample (nn : NeuralNetwork 
     nn.IsMinSuffExplanation x ε E l ↔
       nn.IsSuffExplanation x ε E l ∧ ∀ i ∈ E,
         ∃ x' ∈ construct (explainBox x ε (E \ {i})),
-          ∃ j, j ≠ l ∧ nn.eval x' l ≤ nn.eval x' j := by
+          ∃ j, j ≠ l ∧ nn.eval x' l ≤ nn.eval x' j := by -- --- PROOF ---
   constructor
   · rintro ⟨hsuff, hmin⟩
     refine ⟨hsuff, fun i hi => ?_⟩

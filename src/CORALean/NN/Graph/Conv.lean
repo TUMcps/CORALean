@@ -49,7 +49,7 @@ def GNN.degree (A : Mat ℝ N N) (j : Fin N) : ℝ := ∑ i, (A + 1) i j
 /-- The self-loop is what keeps a degree away from zero, so `messagePassing`
 divides by nothing that can vanish on a nonnegative adjacency. -/
 theorem GNN.one_le_degree (A : Mat ℝ N N) (hA : ∀ i j, 0 ≤ A i j) (j : Fin N) :
-    1 ≤ GNN.degree A j := by
+    1 ≤ GNN.degree A j := by -- --- PROOF ---
   -- the identity contributes the self-loop, and the adjacency only adds to it
   have hsplit : GNN.degree A j = (∑ i, A i j) + ∑ i, (1 : Mat ℝ N N) i j := by
     simp only [GNN.degree, Matrix.add_apply, Finset.sum_add_distrib]

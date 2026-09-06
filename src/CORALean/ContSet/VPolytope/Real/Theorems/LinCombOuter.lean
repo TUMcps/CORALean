@@ -26,7 +26,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 theorem VPolytope.aux_subset_linComb_left (P₁ P₂ : VPolytope α) :
-    P₁.construct ⊆ (P₁.linComb P₂).construct := by
+    P₁.construct ⊆ (P₁.linComb P₂).construct := by -- --- PROOF ---
   rw [VPolytope.construct_eq_convexHull P₁]
   refine convexHull_min (Set.range_subset_iff.mpr fun j => ?_) (VPolytope.convex_construct _)
   have h := VPolytope.vertex_mem (P₁.linComb P₂) (Fin.castAdd P₂.k j)
@@ -35,7 +35,7 @@ theorem VPolytope.aux_subset_linComb_left (P₁ P₂ : VPolytope α) :
 
 -- and the same on the right block of the appended vertex list
 theorem VPolytope.aux_subset_linComb_right (P₁ P₂ : VPolytope α) :
-    P₂.construct ⊆ (P₁.linComb P₂).construct := by
+    P₂.construct ⊆ (P₁.linComb P₂).construct := by -- --- PROOF ---
   rw [VPolytope.construct_eq_convexHull P₂]
   refine convexHull_min (Set.range_subset_iff.mpr fun j => ?_) (VPolytope.convex_construct _)
   have h := VPolytope.vertex_mem (P₁.linComb P₂) (Fin.natAdd P₁.k j)

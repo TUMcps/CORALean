@@ -29,7 +29,7 @@ variable {n q₁ q₂ : ℕ}
 
 theorem VPolytope.andH_isCompact (P₁ P₂ : VPolytope (Vec ℝ n))
     (Aq₁ : Fin q₁ → (Vec ℝ n →ₗ[ℝ] ℝ)) (Aq₂ : Fin q₂ → (Vec ℝ n →ₗ[ℝ] ℝ)) :
-    IsCompact (VPolytope.andH P₁ P₂ Aq₁ Aq₂).construct := by
+    IsCompact (VPolytope.andH P₁ P₂ Aq₁ Aq₂).construct := by -- --- PROOF ---
   refine HPolytope.isCompact_of_subset (W := P₁.interval.vPolytope) fun x hx => ?_
   have h := (HPolytope.mem_and_iff.mp hx).2
   rw [Interval.hPolytope_exact] at h

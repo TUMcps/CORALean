@@ -38,7 +38,7 @@ theorem sub_mul_bounds_of_deriv {σ σ' : ℝ → ℝ} {m M lam l u t : ℝ}
     (hm : ∀ x, l ≤ x → x ≤ u → m ≤ σ' x) (hM : ∀ x, l ≤ x → x ≤ u → σ' x ≤ M)
     (hml : m ≤ lam) (hlM : lam ≤ M) (hl : l ≤ t) (hu : t ≤ u) :
     σ l - lam * l + (m - lam) * (u - l) ≤ σ t - lam * t
-      ∧ σ t - lam * t ≤ σ l - lam * l + (M - lam) * (u - l) := by
+      ∧ σ t - lam * t ≤ σ l - lam * l + (M - lam) * (u - l) := by -- --- PROOF ---
   have hw : 0 ≤ u - l := by linarith
   rcases eq_or_lt_of_le hl with hlt | hlt
   · -- a box with `t` at its left end: both ends straddle zero, which is the claim

@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 tolerance the stored rows amount to covers it. -/
 theorem ConPolyZono.aux_mem_andD (C₁ C₂ : ConPolyZono 𝕋 n) {e₁ e₂ : Vec ℝ n}
     (h₁ : e₁ ∈ C₁.err.construct) (h₂ : e₂ ∈ C₂.err.construct) :
-    e₂ - e₁ ∈ (ConPolyZono.andD C₁ C₂).construct := by
+    e₂ - e₁ ∈ (ConPolyZono.andD C₁ C₂).construct := by -- --- PROOF ---
   intro i
   have hb₁ : toReal (C₁.err.inf i) ≤ e₁ i ∧ e₁ i ≤ toReal (C₁.err.sup i) := h₁ i
   have hb₂ : toReal (C₂.err.inf i) ≤ e₂ i ∧ e₂ i ≤ toReal (C₂.err.sup i) := h₂ i
@@ -52,7 +52,7 @@ theorem ConPolyZono.aux_mem_andD (C₁ C₂ : ConPolyZono 𝕋 n) {e₁ e₂ : V
 
 -- the nominal side is the exact layer's intersection, at the tolerance `andD` supplies
 theorem ConPolyZono.andDep_outer (C₁ C₂ : ConPolyZono 𝕋 n) (hq₁ : C₁.q = 0)
-    (hq₂ : C₂.q = 0) : C₁.construct ∩ C₂.construct ⊆ (C₁.andDep C₂).construct := by
+    (hq₂ : C₂.q = 0) : C₁.construct ∩ C₂.construct ⊆ (C₁.andDep C₂).construct := by -- --- PROOF ---
   have hnom : nominalSet (C₁.andDep C₂)
       = nominalSet C₁ ∩ (nominalSet C₂ + (ConPolyZono.andD C₁ C₂).construct) := by
     show Real.ConPolyZono.construct (nominal (C₁.andDep C₂)) = _

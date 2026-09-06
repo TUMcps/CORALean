@@ -45,7 +45,7 @@ noncomputable def polyDerivRadius {n : ℕ} (c : Fin (n + 1) → ℝ) (l u : ℝ
 exactly, every other monomial at the end of the box furthest from zero. -/
 theorem abs_evalPolyDeriv_sub_center_le {n : ℕ} (c : Fin (n + 1) → ℝ) {l u t : ℝ}
     (hl : l ≤ t) (hu : t ≤ u) :
-    |evalPolyDeriv c t - polyDerivCenter c| ≤ polyDerivRadius c l u := by
+    |evalPolyDeriv c t - polyDerivCenter c| ≤ polyDerivRadius c l u := by -- --- PROOF ---
   have hlm : |l| ≤ max |l| |u| := le_max_left _ _
   have hum : |u| ≤ max |l| |u| := le_max_right _ _
   -- a point of the box is no further from zero than the worse of its ends
@@ -87,7 +87,7 @@ the fit's own derivative is bracketed by construction. -/
 theorem abs_sub_evalPolyDeriv_le {n : ℕ} {c : Fin (n + 1) → ℝ} {σ' : ℝ → ℝ}
     {lo hi l u x : ℝ} (hlo : lo ≤ σ' x) (hhi : σ' x ≤ hi) (hl : l ≤ x) (hu : x ≤ u) :
     |σ' x - evalPolyDeriv c x|
-      ≤ polyDerivDiff lo hi (polyDerivCenter c) (polyDerivRadius c l u) := by
+      ≤ polyDerivDiff lo hi (polyDerivCenter c) (polyDerivRadius c l u) := by -- --- PROOF ---
   set ctr := polyDerivCenter c
   set rad := polyDerivRadius c l u
   obtain ⟨h₁, h₂⟩ := abs_le.mp (abs_evalPolyDeriv_sub_center_le c hl hu)
@@ -107,7 +107,7 @@ theorem abs_sub_evalPolyDeriv_le {n : ℕ} {c : Fin (n + 1) → ℝ} {σ' : ℝ 
 bracket `Relaxation.ofDeriv` works with and no precision is lost. -/
 theorem polyDerivDiff_one (lo hi : ℝ) (c : Fin 2 → ℝ) (l u : ℝ) :
     polyDerivDiff lo hi (polyDerivCenter c) (polyDerivRadius c l u)
-      = max |lo - c 1| |hi - c 1| := by
+      = max |lo - c 1| |hi - c 1| := by -- --- PROOF ---
   have hctr : polyDerivCenter c = c 1 := by
     show (∑ i : Fin 2, if (i : ℕ) = 1 then c i else 0) = c 1
     rw [Fin.sum_univ_two]

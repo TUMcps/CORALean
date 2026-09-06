@@ -29,7 +29,7 @@ theorem PolyZonotope.monomial_linCombE_fst (a : Fin (p₁ + p₂ + 1) → ℝ)
     (i : Fin (h₁ + h₂)) :
     PolyZonotope.monomial (PolyZonotope.linCombE E₁ E₂) a (Fin.castAdd (h₁ + h₂ + 1) i)
       = PolyZonotope.monomial (PolyZonotope.plusE E₁ E₂)
-          (fun k => a (Fin.castAdd 1 k)) i := by
+          (fun k => a (Fin.castAdd 1 k)) i := by -- --- PROOF ---
   rw [PolyZonotope.monomial, PolyZonotope.monomial, Fin.prod_univ_add, Fin.prod_univ_one]
   have hnew : a (Fin.natAdd (p₁ + p₂) (0 : Fin 1))
       ^ PolyZonotope.linCombE E₁ E₂ (Fin.natAdd (p₁ + p₂) (0 : Fin 1))

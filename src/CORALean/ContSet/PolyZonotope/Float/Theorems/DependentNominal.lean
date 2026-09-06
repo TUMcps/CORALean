@@ -50,7 +50,7 @@ theorem PolyZonotope.aux_sum_univ_dependent {PZ : PolyZonotope 𝕋 n}
 
 -- the error box is freed into `n` fresh factors, one per coordinate
 theorem PolyZonotope.dependent_nominal (PZ : PolyZonotope 𝕋 n) :
-    PZ.construct ⊆ nominalSet PZ.dependent := by
+    PZ.construct ⊆ nominalSet PZ.dependent := by -- --- PROOF ---
   rintro _ ⟨z, hz', e, he, rfl⟩
   obtain ⟨a, β, ha, hβ, hz⟩ := PolyZonotope.mem_nominalSet_iff.mp hz'
   have hbound : ∀ i, |e i| ≤ toReal (PolyZonotope.errorBound PZ.err i) :=

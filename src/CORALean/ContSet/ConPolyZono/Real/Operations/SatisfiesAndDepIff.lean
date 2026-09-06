@@ -57,7 +57,7 @@ theorem ConPolyZono.satisfies_andDep_iff (C₁ C₂ : ConPolyZono (Vec ℝ n))
           (PolyZonotope.plusE C₁.EC C₂.EC) (PolyZonotope.plusE C₁.E C₂.E)) a)
           (Fin.castAdd n i)
         = (ConPolyZono.plusA C₁.A C₂.A *ᵥ
-            PolyZonotope.monomial (PolyZonotope.plusE C₁.EC C₂.EC) a) i := by -- --- PROOF ---
+            PolyZonotope.monomial (PolyZonotope.plusE C₁.EC C₂.EC) a) i := by
     intro i
     rw [ConPolyZono.mulVec_andA_left, hcol]
   -- then the agreement rows, each side's monomials read off its own factors

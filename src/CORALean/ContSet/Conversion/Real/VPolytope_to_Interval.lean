@@ -33,7 +33,7 @@ noncomputable def VPolytope.interval (P : VPolytope (Vec ℝ n)) : Interval (Vec
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.interval_outer (P : VPolytope (Vec ℝ n)) :
-    P.construct ⊆ P.interval.construct := by
+    P.construct ⊆ P.interval.construct := by -- --- PROOF ---
   intro x hx i
   have hbddA : BddAbove (Set.range fun l => P.V l i) := (Set.finite_range _).bddAbove
   have hbddB : BddBelow (Set.range fun l => P.V l i) := (Set.finite_range _).bddBelow

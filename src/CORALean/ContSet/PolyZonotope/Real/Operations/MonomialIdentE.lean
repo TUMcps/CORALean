@@ -22,7 +22,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.monomial_identE {m : ℕ} (a : Fin m → ℝ) (i : Fin m) :
-    PolyZonotope.monomial (PolyZonotope.identE m) a i = a i := by
+    PolyZonotope.monomial (PolyZonotope.identE m) a i = a i := by -- --- PROOF ---
   rw [PolyZonotope.monomial, Finset.prod_eq_single i]
   · have h1 : PolyZonotope.identE m i i = 1 := if_pos rfl
     rw [h1, pow_one]

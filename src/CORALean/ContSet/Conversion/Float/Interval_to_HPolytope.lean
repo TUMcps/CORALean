@@ -38,7 +38,7 @@ def negIdentityMat (𝕋 : Type) [FloatOps 𝕋] (n : ℕ) : Mat 𝕋 n n :=
   fun i j => if i = j then neg one else zero
 
 theorem identityMat_mulVec (x : Vec ℝ n) (i : Fin n) :
-    (toRealMat (identityMat 𝕋 n) *ᵥ x) i = x i := by
+    (toRealMat (identityMat 𝕋 n) *ᵥ x) i = x i := by -- --- PROOF ---
   show ∑ j, toReal (if i = j then (one : 𝕋) else zero) * x j = x i
   rw [Finset.sum_eq_single i]
   · rw [if_pos rfl, toReal_one, one_mul]
@@ -49,7 +49,7 @@ theorem identityMat_mulVec (x : Vec ℝ n) (i : Fin n) :
 
 -- the same for the negated identity, which is what turns a lower bound into a row
 theorem negIdentityMat_mulVec (x : Vec ℝ n) (i : Fin n) :
-    (toRealMat (negIdentityMat 𝕋 n) *ᵥ x) i = -(x i) := by
+    (toRealMat (negIdentityMat 𝕋 n) *ᵥ x) i = -(x i) := by -- --- PROOF ---
   show ∑ j, toReal (if i = j then neg (one : 𝕋) else zero) * x j = -(x i)
   rw [Finset.sum_eq_single i]
   · rw [if_pos rfl, toReal_neg, toReal_one, neg_one_mul]
@@ -67,7 +67,7 @@ def Interval.hPolytope (I : Interval 𝕋 n) : HPolytope 𝕋 n :=
 
 -- the two row blocks are exactly the two ends of the box, so nothing rounds
 theorem Interval.hPolytope_exact (I : Interval 𝕋 n) :
-    (Interval.hPolytope I).construct = I.construct := by
+    (Interval.hPolytope I).construct = I.construct := by -- --- PROOF ---
   ext x
   simp only [Interval.hPolytope]
   rw [HPolytope.mem_and_iff, HPolytope.mem_ineqs_iff, HPolytope.mem_ineqs_iff]

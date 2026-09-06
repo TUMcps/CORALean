@@ -50,7 +50,7 @@ theorem norm₂_zero : ‖(0 : Vec ℝ n)‖₂ = 0 := by
     exact Finset.sum_eq_zero fun i _ => by rw [Pi.zero_apply]; ring
   rw [norm₂, h, Real.sqrt_zero]
 
-theorem norm₂_smul (r : ℝ) (x : Vec ℝ n) : ‖r • x‖₂ = |r| * ‖x‖₂ := by
+theorem norm₂_smul (r : ℝ) (x : Vec ℝ n) : ‖r • x‖₂ = |r| * ‖x‖₂ := by -- --- PROOF ---
   have h : ∑ i, (r • x) i ^ 2 = r ^ 2 * ∑ i, x i ^ 2 := by
     rw [Finset.mul_sum]
     exact Finset.sum_congr rfl fun i _ => by rw [Pi.smul_apply, smul_eq_mul, mul_pow]
@@ -58,7 +58,8 @@ theorem norm₂_smul (r : ℝ) (x : Vec ℝ n) : ‖r • x‖₂ = |r| * ‖x�
 
 /-- Cauchy–Schwarz in magnitude. The two-sided form is what a box conversion
 needs, a coordinate reaching as far in one direction as in the other. -/
-theorem abs_dotProduct_le_norm₂_mul_norm₂ (x y : Vec ℝ n) : |x ⬝ᵥ y| ≤ ‖x‖₂ * ‖y‖₂ := by
+theorem abs_dotProduct_le_norm₂_mul_norm₂ (x y : Vec ℝ n) :
+    |x ⬝ᵥ y| ≤ ‖x‖₂ * ‖y‖₂ := by -- --- PROOF ---
   have hcs : (∑ i, x i * y i) ^ 2 ≤ (∑ i, x i ^ 2) * ∑ i, y i ^ 2 :=
     Finset.sum_mul_sq_le_sq_mul_sq Finset.univ x y
   calc |x ⬝ᵥ y| = Real.sqrt ((∑ i, x i * y i) ^ 2) := (Real.sqrt_sq_eq_abs _).symm
@@ -69,7 +70,7 @@ theorem abs_dotProduct_le_norm₂_mul_norm₂ (x y : Vec ℝ n) : |x ⬝ᵥ y| �
 theorem dotProduct_le_norm₂_mul_norm₂ (x y : Vec ℝ n) : x ⬝ᵥ y ≤ ‖x‖₂ * ‖y‖₂ :=
   le_trans (le_abs_self _) (abs_dotProduct_le_norm₂_mul_norm₂ x y)
 
-theorem norm₂_add_le (x y : Vec ℝ n) : ‖x + y‖₂ ≤ ‖x‖₂ + ‖y‖₂ := by
+theorem norm₂_add_le (x y : Vec ℝ n) : ‖x + y‖₂ ≤ ‖x‖₂ + ‖y‖₂ := by -- --- PROOF ---
   have hexp : ∑ i, (x + y) i ^ 2 = (∑ i, x i ^ 2) + 2 * (x ⬝ᵥ y) + ∑ i, y i ^ 2 := by
     rw [dotProduct, Finset.mul_sum, ← Finset.sum_add_distrib, ← Finset.sum_add_distrib]
     exact Finset.sum_congr rfl fun i _ => by rw [Pi.add_apply]; ring
@@ -82,7 +83,7 @@ theorem norm₂_add_le (x y : Vec ℝ n) : ‖x + y‖₂ ≤ ‖x‖₂ + ‖y�
 
 /-- One coordinate never exceeds the whole, which is what bounds the unit ball
 in the supremum norm the ambient type actually carries. -/
-theorem abs_le_norm₂ (x : Vec ℝ n) (i : Fin n) : |x i| ≤ ‖x‖₂ := by
+theorem abs_le_norm₂ (x : Vec ℝ n) (i : Fin n) : |x i| ≤ ‖x‖₂ := by -- --- PROOF ---
   have h : x i ^ 2 ≤ ∑ j, x j ^ 2 :=
     Finset.single_le_sum (f := fun j => x j ^ 2) (fun _ _ => sq_nonneg _) (Finset.mem_univ i)
   calc |x i| = Real.sqrt (x i ^ 2) := (Real.sqrt_sq_eq_abs _).symm
@@ -101,7 +102,7 @@ theorem zero_mem_unitBall₂ : (0 : Vec ℝ n) ∈ unitBall₂ n := by
 theorem continuous_norm₂ : Continuous (norm₂ : Vec ℝ n → ℝ) :=
   Real.continuous_sqrt.comp (continuous_finsetSum _ fun i _ => (continuous_apply i).pow 2)
 
-theorem convex_unitBall₂ : Convex ℝ (unitBall₂ n) := by
+theorem convex_unitBall₂ : Convex ℝ (unitBall₂ n) := by -- --- PROOF ---
   intro x hx y hy a b ha hb hab
   have htri := norm₂_add_le (a • x) (b • y)
   rw [norm₂_smul, norm₂_smul, abs_of_nonneg ha, abs_of_nonneg hb] at htri
@@ -116,7 +117,7 @@ theorem convex_unitBall₂ : Convex ℝ (unitBall₂ n) := by
 
 /-- Closed because the norm is continuous, and inside the supremum-norm unit
 ball because no coordinate exceeds the whole. -/
-theorem isCompact_unitBall₂ : IsCompact (unitBall₂ n) := by
+theorem isCompact_unitBall₂ : IsCompact (unitBall₂ n) := by -- --- PROOF ---
   show IsCompact {x : Vec ℝ n | ‖x‖₂ ≤ 1}
   refine IsCompact.of_isClosed_subset (isCompact_closedBall (0 : Vec ℝ n) 1)
     (isClosed_le continuous_norm₂ continuous_const) fun x hx => ?_

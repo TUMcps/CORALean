@@ -39,7 +39,7 @@ def padCoeffs (c : Fin (k + 1) → 𝕋) (M : ℕ) : Fin (M + 1) → 𝕋 :=
 
 /-- Read as reals, the padded coefficients are the exact padding. -/
 theorem toReal_padCoeffs (c : Fin (k + 1) → 𝕋) (M : ℕ) (j : Fin (M + 1)) :
-    toReal (padCoeffs c M j) = Real.padCoeffs (fun i => toReal (c i)) M j := by
+    toReal (padCoeffs c M j) = Real.padCoeffs (fun i => toReal (c i)) M j := by -- --- PROOF ---
   show toReal (if h : (j : ℕ) < k + 1 then c ⟨(j : ℕ), h⟩ else zero)
     = if h : (j : ℕ) < k + 1 then toReal (c ⟨(j : ℕ), h⟩) else 0
   -- the padded slot is the only one that moves, and `zero` reads as `0`

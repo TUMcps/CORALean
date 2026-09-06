@@ -27,7 +27,7 @@ namespace CORALean.Real
 
 theorem ConZonotope.mem_construct_iff {n : ℕ} {C : ConZonotope (Vec ℝ n)} {x : Vec ℝ n} :
     x ∈ C.construct ↔ ∃ β : Fin C.h → ℝ, (∀ j, |β j| ≤ 1) ∧ β ∈ C.P.construct
-      ∧ ∀ i, x i = C.c i + ∑ j, C.G j i * β j := by
+      ∧ ∀ i, x i = C.c i + ∑ j, C.G j i * β j := by -- --- PROOF ---
   constructor
   · rintro ⟨β, hβ, hP, rfl⟩
     exact ⟨β, hβ, hP, Entrywise.add_sum_smul_apply C.c C.G β⟩

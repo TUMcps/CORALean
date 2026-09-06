@@ -33,7 +33,7 @@ def Zonotope.interval (Z : Zonotope (Vec ℝ n)) : Interval (Vec ℝ n) where
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.interval_outer (Z : Zonotope (Vec ℝ n)) :
-    Z.construct ⊆ Z.interval.construct := by
+    Z.construct ⊆ Z.interval.construct := by -- --- PROOF ---
   intro x hxmem
   obtain ⟨β, hβ, hx⟩ := Zonotope.mem_construct_iff.mp hxmem
   intro i

@@ -41,7 +41,7 @@ def padCoeffs (c : Fin (k + 1) → ℝ) (M : ℕ) : Fin (M + 1) → ℝ :=
 
 /-- Padding adds only zero terms, so it changes no value of the polynomial. -/
 theorem evalPoly_padCoeffs (c : Fin (k + 1) → ℝ) (h : k ≤ M) (t : ℝ) :
-    evalPoly (padCoeffs c M) t = evalPoly c t := by
+    evalPoly (padCoeffs c M) t = evalPoly c t := by -- --- PROOF ---
   -- both sides are one sum over ℕ, cut at a different length
   have hL : evalPoly (padCoeffs c M) t
       = ∑ j ∈ Finset.range (M + 1), (if hj : j < k + 1 then c ⟨j, hj⟩ else 0) * t ^ j := by

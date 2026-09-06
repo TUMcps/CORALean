@@ -27,7 +27,7 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.convex_construct (I : Interval α) : Convex ℝ I.construct := by
+theorem Interval.convex_construct (I : Interval α) : Convex ℝ I.construct := by -- --- PROOF ---
   intro x hx y hy a b ha hb hab i
   have h1 := hx i
   have h2 := hy i

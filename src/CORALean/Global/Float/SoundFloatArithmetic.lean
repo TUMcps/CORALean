@@ -74,7 +74,7 @@ theorem toReal_absolute (a : 𝕋) : toReal (absolute a) = |toReal a| := by
 
 /-- Read as reals it is `Matrix.diagonal`, so the exact layer's lemmas apply. -/
 theorem toReal_diagonalBlock (v : Vec 𝕋 n) (i l : Fin n) :
-    toReal (diagonalBlock v i l) = Matrix.diagonal (toRealVec v) i l := by
+    toReal (diagonalBlock v i l) = Matrix.diagonal (toRealVec v) i l := by -- --- PROOF ---
   by_cases hil : i = l
   · rw [diagonalBlock, if_pos hil, hil, Matrix.diagonal_apply_eq]
     rfl
@@ -91,7 +91,7 @@ theorem subDown_le_sub (a b : 𝕋) : toReal (subDown a b) ≤ toReal a - toReal
 /-- An underestimated positive denominator gives an overestimated reciprocal,
 and the rounding only grows it further. -/
 theorem one_div_le_divUp {d : 𝕋} {y : ℝ} (h1 : 1 ≤ toReal d) (h2 : toReal d ≤ y) :
-    1 / y ≤ toReal (divUp one d) := by
+    1 / y ≤ toReal (divUp one d) := by -- --- PROOF ---
   have hd : (0:ℝ) < toReal d := lt_of_lt_of_le zero_lt_one h1
   have hdiv := div_le_divUp one d hd
   rw [toReal_one] at hdiv
@@ -100,7 +100,7 @@ theorem one_div_le_divUp {d : 𝕋} {y : ℝ} (h1 : 1 ≤ toReal d) (h2 : toReal
 /-- `maximumOver` bounds every entry, which is what lets one box cover a whole
 list of roundings. -/
 theorem le_maximumOver : ∀ {k : ℕ} (f : Fin k → 𝕋) (l : Fin k),
-    toReal (f l) ≤ toReal (maximumOver f) := by
+    toReal (f l) ≤ toReal (maximumOver f) := by -- --- PROOF ---
   intro k
   induction k with
   | zero => exact fun _ l => absurd l.isLt (Nat.not_lt_zero _)
@@ -112,14 +112,15 @@ theorem le_maximumOver : ∀ {k : ℕ} (f : Fin k → 𝕋) (l : Fin k),
     · exact le_trans (ih (fun i => f i.succ) l') (le_max_right _ _)
 
 /-- A fold of `addUp`, so each partial sum pays one rounding in the same direction. -/
-theorem sum_le_sumUp (f : Fin n → 𝕋) : ∑ i, toReal (f i) ≤ toReal (sumUp f) := by
+theorem sum_le_sumUp (f : Fin n → 𝕋) : ∑ i, toReal (f i) ≤ toReal (sumUp f) := by -- --- PROOF ---
   induction n with
   | zero => rw [Finset.univ_eq_empty, Finset.sum_empty, sumUp, toReal_zero]
   | succ n ih =>
     rw [Fin.sum_univ_succ, sumUp]
     exact le_trans (add_le_add (le_refl _) (ih _)) (add_le_addUp _ _)
 
-theorem sumDown_le_sum (f : Fin n → 𝕋) : toReal (sumDown f) ≤ ∑ i, toReal (f i) := by
+theorem sumDown_le_sum (f : Fin n → 𝕋) :
+    toReal (sumDown f) ≤ ∑ i, toReal (f i) := by -- --- PROOF ---
   induction n with
   | zero => rw [Finset.univ_eq_empty, Finset.sum_empty, sumDown, toReal_zero]
   | succ n ih =>
@@ -127,14 +128,16 @@ theorem sumDown_le_sum (f : Fin n → 𝕋) : toReal (sumDown f) ≤ ∑ i, toRe
     exact le_trans (addDown_le_add _ _) (add_le_add (le_refl _) (ih _))
 
 /-- A count of copies, each addition rounding the way the fold does. -/
-theorem le_nsmulUp (k : ℕ) (a : 𝕋) : (k : ℝ) * toReal a ≤ toReal (nsmulUp k a) := by
+theorem le_nsmulUp (k : ℕ) (a : 𝕋) :
+    (k : ℝ) * toReal a ≤ toReal (nsmulUp k a) := by -- --- PROOF ---
   induction k with
   | zero => rw [nsmulUp, toReal_zero, Nat.cast_zero, zero_mul]
   | succ k ih =>
     rw [nsmulUp, Nat.cast_add, Nat.cast_one, add_mul, one_mul]
     exact le_trans (by linarith) (add_le_addUp a (nsmulUp k a))
 
-theorem nsmulDown_le (k : ℕ) (a : 𝕋) : toReal (nsmulDown k a) ≤ (k : ℝ) * toReal a := by
+theorem nsmulDown_le (k : ℕ) (a : 𝕋) :
+    toReal (nsmulDown k a) ≤ (k : ℝ) * toReal a := by -- --- PROOF ---
   induction k with
   | zero => rw [nsmulDown, toReal_zero, Nat.cast_zero, zero_mul]
   | succ k ih =>

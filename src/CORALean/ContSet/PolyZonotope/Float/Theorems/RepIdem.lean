@@ -31,7 +31,8 @@ set_option maxHeartbeats 400000 in
 a non-representative's fibre empty. The two finsets are named rather than left
 to unification, `rep` unfolding to a `min'` over a filter. -/
 theorem PolyZonotope.rep_idem (E : Fin p → Fin h → ℕ) (i : Fin h) :
-    Real.PolyZonotope.rep E (Real.PolyZonotope.rep E i) = Real.PolyZonotope.rep E i := by
+    Real.PolyZonotope.rep
+      E (Real.PolyZonotope.rep E i) = Real.PolyZonotope.rep E i := by -- --- PROOF ---
   have hcol : Real.PolyZonotope.col E (Real.PolyZonotope.rep E (Real.PolyZonotope.rep E i))
       = Real.PolyZonotope.col E i := by
     rw [Real.PolyZonotope.col_rep, Real.PolyZonotope.col_rep]

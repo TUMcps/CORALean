@@ -25,7 +25,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.le_of_forall_le (P : VPolytope α) (c : α →ₗ[ℝ] ℝ) {v : ℝ}
-    (h : ∀ l, c (P.V l) ≤ v) {x : α} (hx : x ∈ P.construct) : c x ≤ v := by
+    (h : ∀ l, c (P.V l) ≤ v) {x : α} (hx : x ∈ P.construct) : c x ≤ v := by -- --- PROOF ---
   obtain ⟨β, hβ, hsum, rfl⟩ := hx
   rw [map_sum]
   calc ∑ l, c (β l • P.V l) = ∑ l, β l * c (P.V l) :=

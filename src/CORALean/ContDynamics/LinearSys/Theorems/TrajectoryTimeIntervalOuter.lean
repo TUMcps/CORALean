@@ -55,7 +55,7 @@ theorem LinearSys.Trajectory.timeInterval_outer {sys : LinearSys 𝕋 n} {T : Se
     (ht0 : 0 ≤ t) (htr : t ≤ r)
     (hU : Bornology.IsBounded (construct U))
     (hUd : (∫ s in (0:ℝ)..t, exp ((t - s) • toRealMat sys.A) *ᵥ u s) ∈ construct Ud) :
-    x t ∈ construct (Plus.plus (sys.timeIntervalStep r (m + 2) R₀) Ud) := by
+    x t ∈ construct (Plus.plus (sys.timeIntervalStep r (m + 2) R₀) Ud) := by -- --- PROOF ---
   have hTt : Set.Icc (0:ℝ) t ⊆ T := fun s hs => hT ⟨hs.1, le_trans hs.2 htr⟩
   have hvoc := traj.variation_of_constants hTt ht0
     (traj.intervalIntegrable_input hTt ht0 hU)

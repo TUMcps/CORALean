@@ -25,7 +25,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.reduceGirard_outer (PZ : PolyZonotope (Vec ℝ n)) (o : ℕ) :
-    PZ.construct ⊆ (PZ.reduceGirard o).construct := by
+    PZ.construct ⊆ (PZ.reduceGirard o).construct := by -- --- PROOF ---
   unfold PolyZonotope.reduceGirard
   split_ifs with hlt
   · exact PolyZonotope.reduceBy_outer PZ _ _

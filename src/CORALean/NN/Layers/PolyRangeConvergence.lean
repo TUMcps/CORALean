@@ -39,7 +39,7 @@ namespace CORALean.Real
 
 /-- Every term is a magnitude, so the radius never goes below zero. -/
 theorem aux_polyDerivRadius_nonneg {k : ℕ} (c : Fin (k + 1) → ℝ) (l u : ℝ) :
-    0 ≤ polyDerivRadius c l u := by
+    0 ≤ polyDerivRadius c l u := by -- --- PROOF ---
   have hmax : (0 : ℝ) ≤ max |l| |u| := le_trans (abs_nonneg l) (le_max_left _ _)
   show (0:ℝ) ≤ ∑ i : Fin (k + 1), if (i : ℕ) = 1 then 0
     else |c i| * (i : ℕ) * max |l| |u| ^ ((i : ℕ) - 1)
@@ -53,7 +53,7 @@ theorem aux_polyDerivRadius_nonneg {k : ℕ} (c : Fin (k + 1) → ℝ) (l u : �
 /-- A sub-box reaches no further from zero, so its radius is no larger. -/
 theorem aux_polyDerivRadius_mono {k : ℕ} (c : Fin (k + 1) → ℝ) {l u L U : ℝ}
     (hl : L ≤ l) (hlu : l ≤ u) (hu : u ≤ U) :
-    polyDerivRadius c l u ≤ polyDerivRadius c L U := by
+    polyDerivRadius c l u ≤ polyDerivRadius c L U := by -- --- PROOF ---
   have hLm : |L| ≤ max |L| |U| := le_max_left _ _
   have hUm : |U| ≤ max |L| |U| := le_max_right _ _
   have hL1 := neg_abs_le L
@@ -82,7 +82,7 @@ theorem aux_polyDerivRadius_mono {k : ℕ} (c : Fin (k + 1) → ℝ) {l u L U : 
 /-- The bracket widened by a radius grows by at most that radius, which is what
 turns a bound on the radius into one on `M`. -/
 theorem aux_polyDerivDiff_le {lo hi ctr rad r : ℝ} (hrad0 : 0 ≤ rad) (hrad : rad ≤ r) :
-    polyDerivDiff lo hi ctr rad ≤ max |lo - ctr| |hi - ctr| + r := by
+    polyDerivDiff lo hi ctr rad ≤ max |lo - ctr| |hi - ctr| + r := by -- --- PROOF ---
   have hA : |lo - ctr| ≤ max |lo - ctr| |hi - ctr| := le_max_left _ _
   have hB : |hi - ctr| ≤ max |lo - ctr| |hi - ctr| := le_max_right _ _
   have hA1 := neg_abs_le (lo - ctr)
@@ -103,7 +103,8 @@ theorem aux_polyDerivDiff_le {lo hi ctr rad r : ℝ} (hrad0 : 0 ≤ rad) (hrad :
 order a whole layer is refined to, rather than a single neuron's. -/
 theorem exists_polyRelaxation_error_lt {σ σ' : ℝ → ℝ} {L U Mσ ε : ℝ}
     (hd : ∀ x, HasDerivAt σ (σ' x) x) (hσ : ∀ x, |σ' x| ≤ Mσ) (hε : 0 < ε) :
-    ∃ (k : ℕ) (P : PolyRelaxation σ k), ∀ l u : ℝ, L ≤ l → l ≤ u → u ≤ U → P.error l u < ε := by
+    ∃ (k : ℕ) (P :
+      PolyRelaxation σ k), ∀ l u : ℝ, L ≤ l → l ≤ u → u ≤ U → P.error l u < ε := by -- --- PROOF ---
   have hcont : ContinuousOn σ (Set.Icc L U) :=
     fun x _ => ((hd x).continuousAt).continuousWithinAt
   obtain ⟨k, c₀, hfit⟩ := exists_evalPoly_near hcont (show (0:ℝ) < ε / 4 by linarith)

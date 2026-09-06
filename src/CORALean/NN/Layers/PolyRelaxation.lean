@@ -44,7 +44,7 @@ def evalPolyDeriv {n : ℕ} (c : Fin (n + 1) → ℝ) (t : ℝ) : ℝ :=
   ∑ i, c i * ((i : ℕ) * t ^ ((i : ℕ) - 1))
 
 theorem hasDerivAt_evalPoly {n : ℕ} (c : Fin (n + 1) → ℝ) (t : ℝ) :
-    HasDerivAt (evalPoly c) (evalPolyDeriv c t) t := by
+    HasDerivAt (evalPoly c) (evalPolyDeriv c t) t := by -- --- PROOF ---
   -- termwise, the power rule scaled by the coefficient
   have hterm : ∀ i : Fin (n + 1), i ∈ Finset.univ →
       HasDerivAt (fun x : ℝ => c i * x ^ (i : ℕ)) (c i * ((i : ℕ) * t ^ ((i : ℕ) - 1))) t :=
@@ -63,7 +63,7 @@ def shiftConst {n : ℕ} (c : Fin (n + 1) → ℝ) (s : ℝ) : Fin (n + 1) → �
   fun i => c i + (if i = 0 then s else 0)
 
 theorem evalPoly_shiftConst {n : ℕ} (c : Fin (n + 1) → ℝ) (s t : ℝ) :
-    evalPoly (shiftConst c s) t = evalPoly c t + s := by
+    evalPoly (shiftConst c s) t = evalPoly c t + s := by -- --- PROOF ---
   have hterm : ∀ i : Fin (n + 1), shiftConst c s i * t ^ (i : ℕ)
       = c i * t ^ (i : ℕ) + (if i = 0 then s else 0) := by
     intro i
@@ -78,7 +78,7 @@ theorem evalPoly_shiftConst {n : ℕ} (c : Fin (n + 1) → ℝ) (s t : ℝ) :
     if_pos (Finset.mem_univ (0 : Fin (n + 1)))]
 
 /-- A degree-1 polynomial as `Relaxation` writes its affine map. -/
-theorem evalPoly_one (c : Fin 2 → ℝ) (t : ℝ) : evalPoly c t = c 1 * t + c 0 := by
+theorem evalPoly_one (c : Fin 2 → ℝ) (t : ℝ) : evalPoly c t = c 1 * t + c 0 := by -- --- PROOF ---
   show ∑ i, c i * t ^ (i : ℕ) = _
   rw [Fin.sum_univ_two]
   show c 0 * t ^ (0 : ℕ) + c 1 * t ^ (1 : ℕ) = _

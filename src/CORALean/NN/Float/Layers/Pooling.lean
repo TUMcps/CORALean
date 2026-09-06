@@ -47,7 +47,8 @@ def Layer.avgPool (winv : 𝕋) (tap : Fin m → Fin k → Fin n) : Real.Layer S
 
 theorem Layer.avgPool_eval (winv : 𝕋) (tap : Fin m → Fin k → Fin n)
     (htap : ∀ j, Function.Injective (tap j)) (x : Vec ℝ n) (j : Fin m) :
-    (Layer.avgPool (S := S) winv tap).eval x j = toReal winv * ∑ l, x (tap j l) := by
+    (Layer.avgPool
+      (S := S) winv tap).eval x j = toReal winv * ∑ l, x (tap j l) := by -- --- PROOF ---
   show (toRealMat (tapMat tap fun _ _ => winv) *ᵥ x) j + toRealVec (fun _ => zero) j = _
   rw [toRealMat_tapMat, Real.tapMat_mulVec _ _ htap, ← Finset.mul_sum]
   show toReal winv * (∑ l, x (tap j l)) + toReal (zero : 𝕋) = _
@@ -63,7 +64,7 @@ def selectMat (sel : Fin m → Fin n) : Mat 𝕋 m n :=
   tapMat (fun (j : Fin m) (_ : Fin 1) => sel j) fun _ _ => one
 
 theorem selectMat_mulVec (sel : Fin m → Fin n) (x : Vec ℝ n) (j : Fin m) :
-    (toRealMat (selectMat (𝕋 := 𝕋) sel) *ᵥ x) j = x (sel j) := by
+    (toRealMat (selectMat (𝕋 := 𝕋) sel) *ᵥ x) j = x (sel j) := by -- --- PROOF ---
   show ((toRealMat (tapMat (fun (j : Fin m) (_ : Fin 1) => sel j) fun _ _ => (one : 𝕋)))
     *ᵥ x) j = _
   rw [toRealMat_tapMat, Real.tapMat_mulVec _ _ fun _ a b _ => Subsingleton.elim a b,
@@ -80,7 +81,7 @@ def maxPoolGapUp (tap : Fin m → Fin (k + 1) → Fin n) (p : Fin m → Fin (k +
 
 /-- Read at the pivot, where the window contributes an exact `zero`. -/
 theorem maxPoolGapUp_nonneg (tap : Fin m → Fin (k + 1) → Fin n) (p : Fin m → Fin (k + 1))
-    (I : Interval 𝕋 n) (j : Fin m) : 0 ≤ toReal (maxPoolGapUp tap p I j) := by
+    (I : Interval 𝕋 n) (j : Fin m) : 0 ≤ toReal (maxPoolGapUp tap p I j) := by -- --- PROOF ---
   have h := le_maximumOver
     (fun l => if l = p j then zero else subUp (I.sup (tap j l)) (I.inf (tap j (p j)))) (p j)
   rw [if_pos rfl, toReal_zero] at h
@@ -90,7 +91,7 @@ theorem maxPoolGapUp_nonneg (tap : Fin m → Fin (k + 1) → Fin n) (p : Fin m �
 theorem le_maxPoolGapUp (tap : Fin m → Fin (k + 1) → Fin n) (p : Fin m → Fin (k + 1))
     (I : Interval 𝕋 n) (j : Fin m) {l : Fin (k + 1)} (hl : l ≠ p j) :
     toReal (I.sup (tap j l)) - toReal (I.inf (tap j (p j)))
-      ≤ toReal (maxPoolGapUp tap p I j) := by
+      ≤ toReal (maxPoolGapUp tap p I j) := by -- --- PROOF ---
   have h := le_maximumOver
     (fun l => if l = p j then zero else subUp (I.sup (tap j l)) (I.inf (tap j (p j)))) l
   rw [if_neg hl] at h

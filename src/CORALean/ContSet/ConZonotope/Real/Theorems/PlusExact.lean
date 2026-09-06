@@ -67,7 +67,7 @@ theorem ConZonotope.aux_value_plus (C₁ C₂ : ConZonotope α)
 
 -- both inclusions come off `aux_value_plus`, the polytope splitting with the blocks
 theorem ConZonotope.plus_exact (C₁ C₂ : ConZonotope α) :
-    C₁.construct + C₂.construct = (C₁.plus C₂).construct := by
+    C₁.construct + C₂.construct = (C₁.plus C₂).construct := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨_, ⟨β₁, hβ₁, hP₁, rfl⟩, _, ⟨β₂, hβ₂, hP₂, rfl⟩, rfl⟩
     refine ⟨Fin.append β₁ β₂, ?_, ?_, (ConZonotope.aux_value_plus C₁ C₂ β₁ β₂).symm⟩

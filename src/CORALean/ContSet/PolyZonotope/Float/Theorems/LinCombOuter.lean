@@ -79,7 +79,7 @@ theorem PolyZonotope.aux_linCombGI_error (PZ₁ PZ₂ : PolyZonotope 𝕋 n) (i 
     (j : Fin (PZ₁.q + PZ₂.q)) :
     |PolyZonotope.aux_linCombGIReal PZ₁ PZ₂ i j
         - toReal (PolyZonotope.linCombGI addDown subDown PZ₁ PZ₂ i j)|
-      ≤ toReal (PolyZonotope.linCombGIDiff PZ₁ PZ₂ i j) := by
+      ≤ toReal (PolyZonotope.linCombGIDiff PZ₁ PZ₂ i j) := by -- --- PROOF ---
   have hbr : ∀ j : Fin (PZ₁.q + PZ₂.q),
       toReal (PolyZonotope.linCombGI addDown subDown PZ₁ PZ₂ i j)
           ≤ PolyZonotope.aux_linCombGIReal PZ₁ PZ₂ i j
@@ -109,7 +109,7 @@ theorem PolyZonotope.aux_linCombGI_row (PZ₁ PZ₂ : PolyZonotope 𝕋 n) (i : 
         * Fin.append (Real.Zonotope.pairCoeffSum β₁ β₂ lam)
             (Real.Zonotope.pairCoeffDiff β₁ β₂ lam) j)
       = lam * (∑ j, toReal (PZ₁.GI i j) * β₁ j)
-        + (1 - lam) * ∑ j, toReal (PZ₂.GI i j) * β₂ j := by
+        + (1 - lam) * ∑ j, toReal (PZ₂.GI i j) * β₂ j := by -- --- PROOF ---
   rw [Fin.sum_univ_add]
   simp only [PolyZonotope.aux_linCombGIReal, Fin.append_left, Fin.append_right]
   exact Zonotope.sum_pair_mul (fun j => toReal (PZ₁.GI i j))
@@ -142,7 +142,7 @@ theorem PolyZonotope.aux_halfDiff_mem_error (a b : Vec 𝕋 n) {lam : ℝ}
     (hl0 : 0 ≤ lam) (hl1 : lam ≤ 1) :
     (fun i => ((toReal (a i) - toReal (b i)) / 2 - toReal (PolyZonotope.halfDiff a b i))
         * (2 * lam - 1))
-      ∈ (PolyZonotope.halfDiffError a b).construct := by
+      ∈ (PolyZonotope.halfDiffError a b).construct := by -- --- PROOF ---
   intro i
   have hdown : toReal (PolyZonotope.halfDiff a b i) = toReal (subDown (a i) (b i)) / 2 :=
     toReal_half _
@@ -203,7 +203,7 @@ theorem PolyZonotope.aux_linComb_nominal (PZ₁ PZ₂ : PolyZonotope 𝕋 n) :
   obtain ⟨a₂, β₂, ha₂, hβ₂, hy₂⟩ := PolyZonotope.mem_nominalSet_iff.mp hy₂'
   have hcf : ∀ j : Fin (PZ₁.q + PZ₂.q),
       |Fin.append (Real.Zonotope.pairCoeffSum β₁ β₂ lam)
-        (Real.Zonotope.pairCoeffDiff β₁ β₂ lam) j| ≤ 1 := by -- --- PROOF ---
+        (Real.Zonotope.pairCoeffDiff β₁ β₂ lam) j| ≤ 1 := by
     refine Fin.addCases ?_ ?_
     · intro j
       simpa using Real.Zonotope.abs_pairCoeffSum_le_one hβ₁ hβ₂ hl0 hl1 j

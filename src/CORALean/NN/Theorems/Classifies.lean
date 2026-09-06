@@ -33,7 +33,7 @@ theorem NeuralNetwork.classifies (nn : NeuralNetwork S n m) (X : S n) (l : Fin m
     (u : ∀ j, SupportBound (construct (nn.propagate X))
       (marginDir m j l))
     (h : ∀ j, j ≠ l → (u j).val < 0) {x : Vec ℝ n} (hx : x ∈ construct X)
-    {j : Fin m} (hj : j ≠ l) : nn.eval x j < nn.eval x l := by
+    {j : Fin m} (hj : j ≠ l) : nn.eval x j < nn.eval x l := by -- --- PROOF ---
   have hd := disjoint_misclassified_of_bounds l u h
   have hmem := nn.propagate_outer X x hx
   have hnot := Set.disjoint_left.mp hd hmem

@@ -43,7 +43,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 theorem ConPolyZono.aux_sum_compactFactors (C : ConPolyZono α) (a : Fin C.p → ℝ) :
     (∑ i, PolyZonotope.monomial C.E a i • C.G i)
       = ∑ i : Fin C.compactFactors.h, PolyZonotope.monomial C.compactFactors.E
-          (fun k => a (ConPolyZono.factorIdx C.E C.EC k)) i • C.compactFactors.G i := by
+          (fun k
+            => a (ConPolyZono.factorIdx C.E C.EC k)) i • C.compactFactors.G i := by -- --- PROOF ---
   show (∑ i, PolyZonotope.monomial C.E a i • C.G i)
       = ∑ i : Fin C.h, PolyZonotope.monomial
           (fun k i => C.E (ConPolyZono.factorIdx C.E C.EC k) i)
@@ -57,7 +58,7 @@ theorem ConPolyZono.aux_sum_compactFactors_extend (C : ConPolyZono α)
     (a : Fin C.compactFactors.p → ℝ) :
     (∑ i, PolyZonotope.monomial C.E (ConPolyZono.factorExtend C.E C.EC a) i • C.G i)
       = ∑ i : Fin C.compactFactors.h,
-          PolyZonotope.monomial C.compactFactors.E a i • C.compactFactors.G i := by
+          PolyZonotope.monomial C.compactFactors.E a i • C.compactFactors.G i := by -- --- PROOF ---
   show (∑ i, PolyZonotope.monomial C.E (ConPolyZono.factorExtend C.E C.EC a) i • C.G i)
       = ∑ i : Fin C.h,
           PolyZonotope.monomial (fun k i => C.E (ConPolyZono.factorIdx C.E C.EC k) i) a i
@@ -68,7 +69,8 @@ theorem ConPolyZono.aux_sum_compactFactors_extend (C : ConPolyZono α)
 omit [AddCommGroup α] [Module ℝ α] in
 theorem ConPolyZono.aux_satisfies_compactFactors (C : ConPolyZono α) (a : Fin C.p → ℝ) :
     C.satisfies a
-      ↔ C.compactFactors.satisfies fun k => a (ConPolyZono.factorIdx C.E C.EC k) := by
+      ↔ C.compactFactors.satisfies
+        fun k => a (ConPolyZono.factorIdx C.E C.EC k) := by -- --- PROOF ---
   refine ConPolyZono.holds_congr ?_
   have hm : PolyZonotope.monomial C.compactFactors.EC
         (fun k => a (ConPolyZono.factorIdx C.E C.EC k))
@@ -81,7 +83,8 @@ theorem ConPolyZono.aux_satisfies_compactFactors (C : ConPolyZono α) (a : Fin C
 omit [AddCommGroup α] [Module ℝ α] in
 theorem ConPolyZono.aux_satisfies_compactFactors_extend (C : ConPolyZono α)
     (a : Fin C.compactFactors.p → ℝ) :
-    C.satisfies (ConPolyZono.factorExtend C.E C.EC a) ↔ C.compactFactors.satisfies a := by
+    C.satisfies
+      (ConPolyZono.factorExtend C.E C.EC a) ↔ C.compactFactors.satisfies a := by -- --- PROOF ---
   refine ConPolyZono.holds_congr ?_
   have hm : PolyZonotope.monomial C.compactFactors.EC a
       = PolyZonotope.monomial C.EC (ConPolyZono.factorExtend C.E C.EC a) :=
@@ -93,7 +96,7 @@ theorem ConPolyZono.aux_satisfies_compactFactors_extend (C : ConPolyZono α)
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.compactFactors_exact (C : ConPolyZono α) :
-    C.construct = C.compactFactors.construct := by
+    C.construct = C.compactFactors.construct := by -- --- PROOF ---
   have key : ∀ (a : Fin C.p → ℝ) (β : Fin C.q → ℝ),
       C.c + (∑ i, PolyZonotope.monomial C.E a i • C.G i) + ∑ j, β j • C.GI j
         = C.c + (∑ i : Fin C.compactFactors.h, PolyZonotope.monomial C.compactFactors.E

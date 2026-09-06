@@ -51,7 +51,7 @@ order `1` up. -/
 theorem aux_expIntegralDiff_eq_tsum (A : Mat ℝ n n) (t r : ℝ) (hr : r ≠ 0) :
     MatExp.expIntegral A t - (t / r) • MatExp.expIntegral A r
       = ∑' i : ℕ, (((Nat.factorial (i + 2) : ℝ))⁻¹
-          * (t ^ (i + 2) - (t / r) * r ^ (i + 2))) • A ^ (i + 1) := by
+          * (t ^ (i + 2) - (t / r) * r ^ (i + 2))) • A ^ (i + 1) := by -- --- PROOF ---
   set g : ℕ → Mat ℝ n n := fun i =>
     (((Nat.factorial (i + 1) : ℝ))⁻¹ * (t ^ (i + 1) - (t / r) * r ^ (i + 1))) • A ^ i with hg
   have hst := MatExp.summable_expIntegral A t
@@ -83,7 +83,7 @@ set_option maxHeartbeats 400000 in
 /-- The same series, shifted past `η`, is summable. -/
 theorem aux_summable_expIntegralDiff (A : Mat ℝ n n) (t r : ℝ) :
     Summable (fun i : ℕ => (((Nat.factorial (i + 2) : ℝ))⁻¹
-      * (t ^ (i + 2) - (t / r) * r ^ (i + 2))) • A ^ (i + 1)) := by
+      * (t ^ (i + 2) - (t / r) * r ^ (i + 2))) • A ^ (i + 1)) := by -- --- PROOF ---
   have hst := MatExp.summable_expIntegral A t
   have hsr : Summable (fun i : ℕ =>
       (t / r) • ((((Nat.factorial (i + 1) : ℝ))⁻¹ * r ^ (i + 1)) • A ^ i)) :=
@@ -112,7 +112,7 @@ theorem aux_norm_constTail_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) (η : ℕ
       ‖(((Nat.factorial (i + η + 2) : ℝ))⁻¹
           * (t ^ (i + η + 2) - (t / r) * r ^ (i + η + 2))) • A ^ (i + η + 1)‖
         ≤ r * ((‖r • A‖ ^ (η + 1) / Nat.factorial (η + 1))
-            * (‖r • A‖ / ((η : ℝ) + 2)) ^ i) := by -- --- PROOF ---
+            * (‖r • A‖ / ((η : ℝ) + 2)) ^ i) := by
     intro i
     have hfp : (0:ℝ) < (Nat.factorial (i + η + 1) : ℝ) := by
       exact_mod_cast Nat.factorial_pos _

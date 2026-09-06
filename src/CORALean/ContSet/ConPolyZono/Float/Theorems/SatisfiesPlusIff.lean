@@ -34,7 +34,7 @@ theorem ConPolyZono.satisfies_plus_iff (C₁ C₂ : ConPolyZono 𝕋 n)
     (a : Fin (C₁.p + C₂.p) → ℝ) :
     (C₁.plus C₂).satisfies a
       ↔ C₁.satisfies (fun k => a (Fin.castAdd C₂.p k))
-        ∧ C₂.satisfies (fun k => a (Fin.natAdd C₁.p k)) := by
+        ∧ C₂.satisfies (fun k => a (Fin.natAdd C₁.p k)) := by -- --- PROOF ---
   show Real.ConPolyZono.holds (toRealMat (ConPolyZono.plusA C₁.A C₂.A))
       (ConPolyZono.plusB C₁.b C₂.b).nominal (Real.PolyZonotope.plusE C₁.EC C₂.EC) a ↔ _
   rw [ConPolyZono.toRealMat_plusA, ConPolyZono.nominal_plusB]

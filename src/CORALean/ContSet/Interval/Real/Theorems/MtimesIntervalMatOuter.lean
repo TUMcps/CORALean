@@ -36,7 +36,7 @@ variable {m n : ℕ}
 products. -/
 theorem Interval.aux_mul_between_corners {a b c d y x : ℝ} (hy₁ : a ≤ y) (hy₂ : y ≤ b)
     (hx₁ : c ≤ x) (hx₂ : x ≤ d) :
-    Interval.mulLo a b c d ≤ y * x ∧ y * x ≤ Interval.mulHi a b c d := by
+    Interval.mulLo a b c d ≤ y * x ∧ y * x ≤ Interval.mulHi a b c d := by -- --- PROOF ---
   have hy := Interval.mul_between_endpoints (c := x) hy₁ hy₂
   have ha := Interval.mul_between_endpoints (c := a) hx₁ hx₂
   have hb := Interval.mul_between_endpoints (c := b) hx₁ hx₂
@@ -58,7 +58,7 @@ theorem Interval.aux_mul_between_corners {a b c d y x : ℝ} (hy₁ : a ≤ y) (
 theorem Interval.mtimesIntervalMat_outer (IM : Interval (Mat ℝ m n))
     (I : Interval (Vec ℝ n)) :
     (⋃ A ∈ IM.construct, (A *ᵥ ·) '' I.construct)
-      ⊆ (Interval.mtimesIntervalMat IM I).construct := by
+      ⊆ (Interval.mtimesIntervalMat IM I).construct := by -- --- PROOF ---
   rintro y hy
   simp only [Set.mem_iUnion, Set.mem_image, exists_prop] at hy
   obtain ⟨A, hA, x, hx, rfl⟩ := hy

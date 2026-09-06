@@ -27,7 +27,7 @@ variable {h₁ h₂ : ℕ}
 -- the difference coefficient, the mirror of the sum one
 theorem Zonotope.abs_pairCoeffDiff_le_one {β₁ : Fin h₁ → ℝ} {β₂ : Fin h₂ → ℝ} {lam : ℝ}
     (hβ₁ : ∀ j, |β₁ j| ≤ 1) (hβ₂ : ∀ j, |β₂ j| ≤ 1) (hl0 : 0 ≤ lam) (hl1 : lam ≤ 1)
-    (j : Fin h₂) : |Zonotope.pairCoeffDiff β₁ β₂ lam j| ≤ 1 := by
+    (j : Fin h₂) : |Zonotope.pairCoeffDiff β₁ β₂ lam j| ≤ 1 := by -- --- PROOF ---
   simp only [Zonotope.pairCoeffDiff]
   by_cases hj : (j : ℕ) < h₁
   · rw [dif_pos hj]

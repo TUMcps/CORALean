@@ -23,7 +23,7 @@ namespace CORALean.Real
 theorem ConPolyZono.monomial_padE {p s : ℕ} (EC : Fin p → Fin s → ℕ) (r : ℕ)
     (a : Fin (p + r) → ℝ) (l : Fin s) :
     PolyZonotope.monomial (ConPolyZono.padE EC r) a l
-      = PolyZonotope.monomial EC (fun k => a (Fin.castAdd r k)) l := by
+      = PolyZonotope.monomial EC (fun k => a (Fin.castAdd r k)) l := by -- --- PROOF ---
   rw [PolyZonotope.monomial, PolyZonotope.monomial, Fin.prod_univ_add]
   -- the appended factors contribute a product of `1`s
   have hnew : (∏ k : Fin r, a (Fin.natAdd p k)

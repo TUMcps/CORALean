@@ -25,7 +25,7 @@ namespace CORALean.Real
 generator be read as an independent one. -/
 theorem PolyZonotope.abs_monomial_le_one {p h : ℕ} (E : Fin p → Fin h → ℕ)
     {a : Fin p → ℝ} (ha : ∀ k, |a k| ≤ 1) (i : Fin h) :
-    |PolyZonotope.monomial E a i| ≤ 1 := by
+    |PolyZonotope.monomial E a i| ≤ 1 := by -- --- PROOF ---
   rw [PolyZonotope.monomial, Finset.abs_prod]
   refine Finset.prod_le_one (fun k _ => abs_nonneg _) fun k _ => ?_
   rw [abs_pow]

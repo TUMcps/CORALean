@@ -45,7 +45,7 @@ theorem linInput_outer {f : Vec ℝ n → Vec ℝ m → Vec ℝ n} {A : Mat ℝ 
     {B : Mat ℝ n m} {xs : Vec ℝ n} {us : Vec ℝ m} {R : Set (Vec ℝ n)}
     {U : S m} {L : S n} (cert : AbstractionError f A B xs us R (construct U) L)
     {x : Vec ℝ n} {u : Vec ℝ m} (hx : x ∈ R) (hu : u ∈ construct U) :
-    f x u - A *ᵥ x ∈ construct (linInput f A B xs us U L) := by
+    f x u - A *ᵥ x ∈ construct (linInput f A B xs us U L) := by -- --- PROOF ---
   have hsplit : f x u - A *ᵥ x
       = ((f xs us - A *ᵥ xs) + B *ᵥ (u - us))
         + (f x u - (f xs us + A *ᵥ (x - xs) + B *ᵥ (u - us))) := by

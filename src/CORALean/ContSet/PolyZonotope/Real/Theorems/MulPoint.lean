@@ -35,7 +35,7 @@ multiplied. -/
 theorem PolyZonotope.aux_mul_monomial (S₁ S₂ : PolyZonotope (Vec ℝ n)) (hp : S₁.p = S₂.p)
     (a : Fin S₁.p → ℝ) (l₁ : Fin (S₁.h + 1)) (l₂ : Fin (S₂.h + 1)) :
     monomial (mulE S₁ S₂ hp) a (finProdFinEquiv (l₁, l₂))
-      = extM S₁ a l₁ * extM S₂ (fun k => a (Fin.cast hp.symm k)) l₂ := by
+      = extM S₁ a l₁ * extM S₂ (fun k => a (Fin.cast hp.symm k)) l₂ := by -- --- PROOF ---
   -- `S₂`'s factor index is `S₁`'s renamed, so the two products run over one set
   have hcast : ∏ k : Fin S₁.p, a k ^ PolyZonotope.extE S₂ (Fin.cast hp k) l₂
       = ∏ k, a (Fin.cast hp.symm k) ^ PolyZonotope.extE S₂ k l₂ :=
@@ -52,7 +52,7 @@ theorem PolyZonotope.aux_mul_monomial (S₁ S₂ : PolyZonotope (Vec ℝ n)) (hp
 theorem PolyZonotope.aux_mul_point_sum (S₁ S₂ : PolyZonotope (Vec ℝ n)) (hp : S₁.p = S₂.p)
     (a : Fin S₁.p → ℝ) :
     S₁.point a * S₂.point (fun k => a (Fin.cast hp.symm k))
-      = ∑ l, monomial (mulE S₁ S₂ hp) a l • mulG S₁ S₂ l := by
+      = ∑ l, monomial (mulE S₁ S₂ hp) a l • mulG S₁ S₂ l := by -- --- PROOF ---
   funext i
   have h₁ : S₁.point a = ∑ l, extM S₁ a l • extG S₁ l :=
     (PolyZonotope.sum_ext_eq_point S₁ a).symm

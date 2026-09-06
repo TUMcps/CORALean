@@ -31,7 +31,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.reduceCombastel_order_le (Z : Zonotope (Vec ℝ n)) {o : ℕ} (ho : 0 < o) :
-    (Z.reduceCombastel o).h ≤ o * n := by
+    (Z.reduceCombastel o).h ≤ o * n := by -- --- PROOF ---
   have hK : (o - 1) * n + n = o * n := by
     rw [Nat.sub_one_mul, Nat.sub_add_cancel (Nat.le_mul_of_pos_left n ho)]
   unfold Zonotope.reduceCombastel

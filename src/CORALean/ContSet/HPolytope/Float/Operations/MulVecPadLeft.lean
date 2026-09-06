@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : 
 -- a padded row reads only the block it came from, the zero columns dropping out
 theorem HPolytope.mulVec_padLeft {m : ℕ} (M : Mat 𝕋 m n₁) (x : Vec ℝ (n₁ + n₂)) (i : Fin m) :
     (toRealMat (fun i' => Fin.append (M i') fun _ : Fin n₂ => FloatOps.zero) *ᵥ x) i
-      = (toRealMat M *ᵥ blockLeft n₁ n₂ x) i := by
+      = (toRealMat M *ᵥ blockLeft n₁ n₂ x) i := by -- --- PROOF ---
   show ∑ k : Fin (n₁ + n₂), toReal (Fin.append (M i) (fun _ => FloatOps.zero) k) * x k
       = ∑ k, toReal (M i k) * x (Fin.castAdd n₂ k)
   rw [Fin.sum_univ_add]

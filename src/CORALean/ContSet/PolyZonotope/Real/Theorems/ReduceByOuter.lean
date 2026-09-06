@@ -69,7 +69,8 @@ theorem PolyZonotope.aux_abs_droppedDep_le (PZ : PolyZonotope (Vec ℝ n))
   calc |∑ l, PZ.G (partD.right l) i * PolyZonotope.monomial PZ.E a (partD.right l)|
       ≤ ∑ l, |PZ.G (partD.right l) i * PolyZonotope.monomial PZ.E a (partD.right l)| :=
         Finset.abs_sum_le_sum_abs _ _
-    _ = ∑ l, |PZ.G (partD.right l) i| * |PolyZonotope.monomial PZ.E a (partD.right l)| := by
+    _ = ∑ l, |PZ.G
+      (partD.right l) i| * |PolyZonotope.monomial PZ.E a (partD.right l)| := by -- --- PROOF ---
         simp_rw [abs_mul]
     _ ≤ ∑ l, |PZ.G (partD.right l) i| :=
         Finset.sum_le_sum fun l _ => by
@@ -100,7 +101,7 @@ they are. -/
 theorem PolyZonotope.reduceBy_outer (PZ : PolyZonotope (Vec ℝ n))
     (partD : Split (Fin PZ.h) into (Fin d) and (Fin r))
     (partI : Split (Fin PZ.q) into (Fin dI) and (Fin rI)) :
-    PZ.construct ⊆ (PZ.reduceBy partD partI).construct := by
+    PZ.construct ⊆ (PZ.reduceBy partD partI).construct := by -- --- PROOF ---
   intro x hxmem
   obtain ⟨a, β, ha, hβ, hx⟩ := PolyZonotope.mem_construct_iff.mp hxmem
   have hbound : ∀ i,

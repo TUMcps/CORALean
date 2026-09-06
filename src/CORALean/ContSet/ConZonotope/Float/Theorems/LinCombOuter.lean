@@ -57,7 +57,7 @@ noncomputable def ConZonotope.aux_linCombGReal (C₁ C₂ : ConZonotope 𝕋 n) 
 in `[-1, 1]`. -/
 theorem ConZonotope.aux_abs_linCombCoeff {h₁ h₂ : ℕ} {β₁ : Vec ℝ h₁} {β₂ : Vec ℝ h₂} {lam : ℝ}
     (hβ₁ : ∀ j, |β₁ j| ≤ 1) (hβ₂ : ∀ j, |β₂ j| ≤ 1) (hl0 : 0 ≤ lam) (hl1 : lam ≤ 1) :
-    ∀ j, |ConZonotope.aux_linCombCoeff β₁ β₂ lam j| ≤ 1 := by
+    ∀ j, |ConZonotope.aux_linCombCoeff β₁ β₂ lam j| ≤ 1 := by -- --- PROOF ---
   have hm0 : (0:ℝ) ≤ 1 - lam := by linarith
   have hm1 : (1:ℝ) - lam ≤ 1 := by linarith
   simp only [ConZonotope.aux_linCombCoeff]
@@ -77,7 +77,7 @@ weight the trailing coefficient names. -/
 theorem ConZonotope.aux_mem_linComb_P (C₁ C₂ : ConZonotope 𝕋 n) {β₁ : Vec ℝ C₁.h}
     {β₂ : Vec ℝ C₂.h} {lam : ℝ} (hβ₁ : ∀ j, |β₁ j| ≤ 1) (hP₁ : β₁ ∈ C₁.P.construct)
     (hβ₂ : ∀ j, |β₂ j| ≤ 1) (hP₂ : β₂ ∈ C₂.P.construct) (hl0 : 0 ≤ lam) (hl1 : lam ≤ 1) :
-    ConZonotope.aux_linCombCoeff β₁ β₂ lam ∈ (C₁.linComb C₂).P.construct := by
+    ConZonotope.aux_linCombCoeff β₁ β₂ lam ∈ (C₁.linComb C₂).P.construct := by -- --- PROOF ---
   have hd₁ : β₁ ∈ (C₁.P.and (HPolytope.unitBox 𝕋 C₁.h)).construct :=
     HPolytope.mem_and_iff.mpr ⟨hP₁, HPolytope.mem_unitBox_iff.mpr hβ₁⟩
   have hd₂ : β₂ ∈ (C₂.P.and (HPolytope.unitBox 𝕋 C₂.h)).construct :=
@@ -91,7 +91,7 @@ blocks, and on the centre generator the gap `linCombGDiff` records. -/
 theorem ConZonotope.aux_linCombG_error (C₁ C₂ : ConZonotope 𝕋 n) (i : Fin n)
     (j : Fin (C₁.h + C₂.h + 1)) :
     |ConZonotope.aux_linCombGReal C₁ C₂ i j - toReal ((C₁.linComb C₂).G i j)|
-      ≤ toReal (ConZonotope.linCombGDiff C₁ C₂ i j) := by
+      ≤ toReal (ConZonotope.linCombGDiff C₁ C₂ i j) := by -- --- PROOF ---
   simp only [ConZonotope.aux_linCombGReal, ConZonotope.linCombGDiff, ConZonotope.linComb]
   refine Fin.addCases ?_ ?_ j
   · refine Fin.addCases ?_ ?_
@@ -117,7 +117,7 @@ theorem ConZonotope.aux_linComb_row (C₁ C₂ : ConZonotope 𝕋 n) (i : Fin n)
     (β₂ : Vec ℝ C₂.h) (lam : ℝ) :
     (∑ j, ConZonotope.aux_linCombGReal C₁ C₂ i j * ConZonotope.aux_linCombCoeff β₁ β₂ lam j)
       = lam * (∑ j, toReal (C₁.G i j) * β₁ j) + (1 - lam) * (∑ j, toReal (C₂.G i j) * β₂ j)
-        + (2 * lam - 1) * ((toReal (C₁.c i) - toReal (C₂.c i)) / 2) := by
+        + (2 * lam - 1) * ((toReal (C₁.c i) - toReal (C₂.c i)) / 2) := by -- --- PROOF ---
   rw [Fin.sum_univ_add, Fin.sum_univ_add, Fin.sum_univ_one]
   simp only [ConZonotope.aux_linCombGReal, ConZonotope.aux_linCombCoeff, Fin.append_left,
     Fin.append_right, Pi.smul_apply, smul_eq_mul]
@@ -137,7 +137,8 @@ theorem ConZonotope.aux_linComb_nominal (C₁ C₂ : ConZonotope 𝕋 n) :
     segments (nominalSet C₁) (nominalSet C₂) ⊆
       nominalSet (C₁.linComb C₂)
         + ((Zonotope.midpointResidual C₁.c C₂.c).construct
-            + (Zonotope.generatorError (ConZonotope.linCombGDiff C₁ C₂)).construct) := by
+            + (Zonotope.generatorError
+              (ConZonotope.linCombGDiff C₁ C₂)).construct) := by -- --- PROOF ---
   rintro _ ⟨y₁, hy₁', y₂, hy₂', lam, ⟨hl0, hl1⟩, rfl⟩
   obtain ⟨β₁, hβ₁, hP₁, hy₁⟩ := ConZonotope.mem_nominalSet_iff.mp hy₁'
   obtain ⟨β₂, hβ₂, hP₂, hy₂⟩ := ConZonotope.mem_nominalSet_iff.mp hy₂'

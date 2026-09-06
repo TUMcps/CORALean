@@ -26,7 +26,7 @@ variable {n : ℕ}
 /-- A coordinate of a zonotope never leaves `absBound`. -/
 theorem Zonotope.abs_le_absBound {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n} {β : Vec ℝ Z.h}
     (hβ : ∀ j, |β j| ≤ 1) (hx : ∀ i, x i = Z.c i + ∑ j, Z.G j i * β j) (j : Fin n) :
-    |x j| ≤ Z.absBound j := by
+    |x j| ≤ Z.absBound j := by -- --- PROOF ---
   rw [hx j, Zonotope.absBound]
   refine (abs_add_le _ _).trans ?_
   gcongr

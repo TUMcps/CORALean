@@ -32,7 +32,7 @@ variable {n m : ℕ}
 /-- Exact where every coefficient is dependent, which `quadMap` arranges. -/
 theorem PolyZonotope.quadMapDep_exact (Q : Fin m → Mat ℝ n n) (S : PolyZonotope (Vec ℝ n))
     (hq : S.q = 0) :
-    quadEval Q '' S.construct = (quadMapDep Q S).construct := by
+    quadEval Q '' S.construct = (quadMapDep Q S).construct := by -- --- PROOF ---
   have hb0 : ∀ b : Fin S.q → ℝ, ∑ j, b j • S.GI j = 0 :=
     fun b => Finset.sum_eq_zero fun j _ => absurd j.isLt (by omega)
   have hquad : ∀ a : Fin S.p → ℝ,

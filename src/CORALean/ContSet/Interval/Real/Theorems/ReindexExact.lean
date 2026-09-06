@@ -28,7 +28,7 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.reindex_exact (e : Fin m ≃ Fin n) (I : Interval (Vec ℝ n)) :
-    (I.reindex e).construct = reindexLin e '' I.construct := by
+    (I.reindex e).construct = reindexLin e '' I.construct := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · intro y hy
     refine ⟨fun j => y (e.symm j), fun j => ?_, funext fun i => ?_⟩
