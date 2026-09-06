@@ -1,5 +1,7 @@
 import CORALean.ContSet.Conversion.Real.ConPolyZono_to_PolyZonotope
 import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMap
+import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapE
+import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapG
 
 /-!
 # `ConPolyZono.quadMapDep`
@@ -12,7 +14,7 @@ those, so `A`, `b` and `EC` pass through untouched.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   05-September-2026
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 

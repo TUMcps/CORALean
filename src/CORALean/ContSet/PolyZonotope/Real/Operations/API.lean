@@ -13,6 +13,7 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.ExtG
 import CORALean.ContSet.PolyZonotope.Real.Operations.ExtE
 import CORALean.ContSet.PolyZonotope.Real.Operations.ExtM
 import CORALean.ContSet.PolyZonotope.Real.Operations.QuadEval
+import CORALean.ContSet.PolyZonotope.Real.Operations.QuadBilin
 import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapG
 import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapE
 import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapDep
@@ -82,8 +83,8 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpGreedy
 moves that block into the dependent one and is what lets `quadMap` be total.
 
 `bilin` pairs two sets over shared factors by any bilinear map, exact against `point` and not the
-two sets; `mul` is it entrywise, `quadMap` degree two this way, `evalPoly` any. `padBack` and
-`padFront` widen a set's factors by another's at exponent zero, so *independent* factors reach it.
+two sets; `mul` is it at `hadamardLin`, `quadMap` at `quadBilin`, `evalPoly` any degree. `padBack`
+and `padFront` widen by another set's factors at exponent zero, so *independent* factors reach it.
 
 Each of those grows the generator counts, and `compact` brings them back down without changing the
 set: equal exponent columns add, a zero generator goes, and so does a factor no column reads.
