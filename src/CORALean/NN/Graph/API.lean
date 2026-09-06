@@ -1,6 +1,8 @@
+import CORALean.NN.Graph.Ball
 import CORALean.NN.Graph.Conv
 import CORALean.NN.Graph.ConvUncertain
 import CORALean.NN.Graph.GcnSteps
+import CORALean.NN.Graph.Mask
 import CORALean.NN.Graph.MessagePassingEnclosure
 import CORALean.NN.Graph.Pooling
 import CORALean.NN.Graph.SqrtBroadcast
@@ -24,7 +26,8 @@ factors, so an edge recurring thrice counts once. `ConvUncertain` multiplies it 
 `H`: `gcnShared` is `bilin` at matrix multiplication over factors the two sets share,
 `gcnUncertain` that after padding each set by the other's, and `GcnSteps` iterates `gcnShared` at
 one graph, so an edge weighs the same at every step. `Subgraph` is `[1, Cor. 1]`'s projection
-`M`, and both of its products — `H' = M H`, `P' = M P Mᵀ` — are plain `Matrix.submatrix`.
+`M`, its products `H' = M H` and `P' = M P Mᵀ` plain `Matrix.submatrix`; `Ball` and `Mask` are
+its radius-indexed source, an `r`-hop neighbourhood and what a large enough one lets through.
 
 **Where the matrix shape lives.** In the ambient type of the set, not in an index on `Layer`.
 `PolyZonotope α` is generic at `[AddCommGroup α] [Module ℝ α]` and `Mat ℝ n c` has both, so
