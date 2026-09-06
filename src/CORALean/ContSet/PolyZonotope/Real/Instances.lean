@@ -1,5 +1,7 @@
+import CORALean.ContSet.Interval.Real.Instances
 import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombOuter
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MtimesExact
+import CORALean.ContSet.PolyZonotope.Real.Theorems.MtimesIntervalMatOuter
 import CORALean.ContSet.PolyZonotope.Real.Theorems.PlusExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceOuter
 
@@ -11,9 +13,9 @@ direction.
 
 `Plus` and `LinComb` sit at every ambient type rather than at `Vec`: neither
 needs coordinates. `Reduce` pins down `Vec`, as `Zonotope`'s does, since a
-generator ranking and a box are both entrywise. `Mtimes` is the exception again,
-its whole point being to move between dimensions. `quadMap` has no class to
-instantiate, so a caller names `PolyZonotope.quadMap`.
+generator ranking and a box are both entrywise. `Mtimes` moves between
+dimensions at a plain matrix and, as `Zonotope` also carries, at an interval
+one. `quadMap` has no class, so a caller names `PolyZonotope.quadMap`.
 
 `Reduce`'s one number bounds both generator blocks together, as the class
 field's `o` does everywhere else; the class carries only the enclosure.
@@ -26,7 +28,7 @@ module is zero, and the ranking orders reals.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   02-September-2026
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 
@@ -65,6 +67,13 @@ instance : Mtimes (Mat ℝ) (fun n => PolyZonotope (Vec ℝ n)) where
 family off one member, so a use site names it: `(S := 𝒫𝒵)` — two letters, `𝒫`
 alone being Mathlib's powerset. -/
 scoped notation "𝒫𝒵" => fun n => PolyZonotope (Vec ℝ n)
+
+/-- The same operation at an interval matrix: the radius is boxed into one fresh
+*independent* generator per coordinate, unlike `Zonotope`, which has no other
+block to keep it out of. -/
+noncomputable instance : Mtimes ℐ 𝒫𝒵 where
+  mtimes := PolyZonotope.mtimesIntervalMat
+  mtimes_outer IM PZ := PolyZonotope.mtimesIntervalMat_outer IM PZ
 
 end CORALean.Real
 

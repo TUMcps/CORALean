@@ -11,6 +11,7 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.PlusExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MapExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MapPoint
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MtimesExact
+import CORALean.ContSet.PolyZonotope.Real.Theorems.MtimesIntervalMatOuter
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialLinCombEFst
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialLinCombESnd
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialLinCombELast
@@ -61,9 +62,9 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxExpGreedyOuter
 
 `plus`, `map`, `dependent`, `quadMap` and `compact` exactly; `linComb` and `reduce` as enclosures,
 each docstring saying which coefficients or dropped generators cost the other way. `reduce` is the
-one operation with two guarantees, and it needs both: an enclosure alone is met by a set that
-grows every step, so `reduce_order_le` bounds the size it keeps. `map_point` is `map` read at one
-factor vector instead, which is what composes with `bilin_point`.
+one operation with two guarantees: an enclosure alone is met by a set that grows every step, so
+`reduce_order_le` bounds the size it keeps. `map_point` is `map` at one factor vector, composing
+with `bilin_point`. `mtimesIntervalMat_outer` boxes the radius into a fresh independent block.
 
 `bilin_exact` equates a pairing with the image of the shared factors under `a ↦ f (point S₁ a)
 (point S₂ a)`, never `f` over the two sets; `mul_exact` is it entrywise, `evalPoly_exact` carries
