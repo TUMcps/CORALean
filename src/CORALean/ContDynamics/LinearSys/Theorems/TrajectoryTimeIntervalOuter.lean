@@ -1,7 +1,8 @@
 import CORALean.ContDynamics.LinearSys.Operations.InputSolution
 import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
+import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuter
-import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuter
+import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 
 /-!
 # A trajectory stays in the step enclosure, inputs and all
@@ -10,10 +11,8 @@ The closed form splits a run into what the initial set carries and what the
 inputs contributed, and the two are enclosed separately: `timeIntervalStep` for
 the first, a set the caller supplies for the second.
 
-That input enclosure is a hypothesis, discharged by
-`timeInterval_outer_inputSolution`: `t` ranges over the whole step, so one set
-has to cover every `t` at once, which is Prop. 3.3 and costs `0 ∈ U` on top of
-what the sampled version needs.
+That input enclosure is a hypothesis; `TimeIntervalOuterInputSolution`
+discharges it with `timeInterval_outer_inputSolution`.
 
 Integrability is not a hypothesis — `InputIntegrable` derives it from `U` being
 bounded.
@@ -59,29 +58,5 @@ theorem LinearSys.Trajectory.timeInterval_outer {sys : LinearSys 𝕋 n} {T : Se
   refine Plus.plus_outer _ _ (Set.add_mem_add ?_ hUd)
   exact sys.timeIntervalStep_outer hr hε R₀ ht0 htr
     (Set.mem_image_of_mem _ traj.init)
-
-omit [∀ n, Reduce (S n) (Vec ℝ n)] in
-/-- The same, with the input set named rather than assumed. `0 ∈ U` is what buys
-a single enclosure for the whole step; everything else is a property of `U` that
-a representation supplies. -/
-theorem LinearSys.Trajectory.timeInterval_outer_inputSolution {sys : LinearSys 𝕋 n}
-    {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n} {r : ℝ} (traj : sys.Trajectory T R₀ U x u)
-    (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
-    (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}
-    (ht0 : 0 ≤ t) (htr : t ≤ r)
-    (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
-    (hbdd : Bornology.IsBounded (construct U))
-    (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat sys.A) r (m + 2)) U)))
-    (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat sys.A) r (m + 2)) U)))
-    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat sys.A) r (m + 2)) U)))
-    (h0 : (0 : Vec ℝ n) ∈ construct U) :
-    x t ∈ construct (Plus.plus (sys.timeIntervalStep r (m + 2) R₀)
-      (sys.inputSolution r (m + 2) U)) :=
-  traj.timeInterval_outer hr hT hε ht0 htr hbdd
-    (traj.inputSolution_timeInterval_outer hr hT (m + 2) hε hconv hclosed hbdd
-      hRconv hRclosed hRbdd h0 ht0 htr)
 
 end CORALean.Real

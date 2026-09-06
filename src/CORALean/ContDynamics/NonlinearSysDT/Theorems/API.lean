@@ -1,4 +1,5 @@
 import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachOuter
+import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachOuterOn
 
 /-!
 # What `NonlinearSysDT` guarantees

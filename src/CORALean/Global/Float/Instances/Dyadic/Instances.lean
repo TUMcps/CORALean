@@ -1,6 +1,15 @@
-import CORALean.Global.Float.Instances.Dyadic.Theorems.Order
-import CORALean.Global.Float.Instances.Dyadic.Theorems.Rounding
-import CORALean.Global.Float.Instances.Dyadic.Theorems.Division
+import CORALean.Global.Float.Instances.Dyadic.Theorems.DivDownLeDiv
+import CORALean.Global.Float.Instances.Dyadic.Theorems.LeDivUp
+import CORALean.Global.Float.Instances.Dyadic.Theorems.LeRoundUp
+import CORALean.Global.Float.Instances.Dyadic.Theorems.RoundDownLe
+import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealExactAdd
+import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealExactMul
+import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealHalf
+import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealLeOfLe
+import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealMaximum
+import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealMinimum
+import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealMkZero
+import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealNeg
 
 /-!
 # `Dyadic` as a sound float model

@@ -3,6 +3,7 @@ import CORALean.ContDynamics.LinearSysDT.Theorems.HoldsOfReach
 import CORALean.ContDynamics.LinearSysDT.Theorems.OutputOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOneOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOuter
+import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOuterOn
 
 /-!
 # What `LinearSysDT` guarantees

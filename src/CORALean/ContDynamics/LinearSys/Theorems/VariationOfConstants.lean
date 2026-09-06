@@ -1,4 +1,6 @@
-import CORALean.ContDynamics.LinearSys.Theorems.Restrict
+import CORALean.ContDynamics.LinearSys.Theorems.FlowIoi
+import CORALean.ContDynamics.LinearSys.Theorems.HasDerivWithinAtExpNegMulVec
+import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
 
 /-!
 # Every trajectory is its matrix exponential plus its inputs
@@ -7,9 +9,10 @@ import CORALean.ContDynamics.LinearSys.Theorems.Restrict
 built on: the first term moves the initial set, the second is everything the
 inputs contributed.
 
-Proved by the substitution `y(s) = e^{-As} x(s)`, whose derivative is
-`e^{-As} u(s)` — the dynamics cancel — so the fundamental theorem of calculus
-gives the integral outright, with nothing differentiated under an integral sign.
+Proved by the substitution `y(s) = e^{-As} x(s)`, whose derivative
+`hasDerivWithinAt_expNeg_mulVec` gives as `e^{-As} u(s)` — the dynamics cancel —
+so the fundamental theorem of calculus gives the integral outright, with
+nothing differentiated under an integral sign.
 
 Integrability of the input against the exponential is a hypothesis, `Trajectory`
 constraining `u` pointwise only.
@@ -33,37 +36,6 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
-
--- the exponential and `toContinuousLinearMap` both cost instance search, throughout
-/-- Matrix-vector multiplication as a continuous linear map in the matrix, which
-is what lets the product rule apply to `e^{-As} x(s)`. Finite dimension is what
-makes every piece of it continuous. -/
-noncomputable def mulVecL : Mat ℝ n n →L[ℝ] (Vec ℝ n →L[ℝ] Vec ℝ n) :=
-  LinearMap.toContinuousLinearMap
-    { toFun := fun M => LinearMap.toContinuousLinearMap (Matrix.mulVecLin M)
-      map_add' := by intro M N; ext v i; simp
-      map_smul' := by intro c M; ext v i; simp }
-
-/-- The substitution that cancels the dynamics: along a solution, `e^{-As} x(s)`
-moves only as the input pushes it. Shared with `InputIntegrable`, where it says
-the integrand below is itself a derivative. -/
-theorem hasDerivWithinAt_expNeg_mulVec (A : Mat ℝ n n) (x u : ℝ → Vec ℝ n)
-    (T : Set ℝ) (t : ℝ) (hx : HasDerivWithinAt x (A *ᵥ x t + u t) T t) :
-    HasDerivWithinAt (fun r : ℝ => exp ((-r) • A) *ᵥ x r) (exp ((-t) • A) *ᵥ u t) T t := by
-  have hE : HasDerivAt (fun s : ℝ => exp ((-s) • A)) (-(exp ((-t) • A) * A)) t := by
-    have h := hasDerivAt_exp_smul_const (𝕂 := ℝ) (-A) t
-    simp only [smul_neg, ← neg_smul, mul_neg] at h
-    exact h
-  have hC : HasDerivWithinAt (fun s : ℝ => mulVecL (exp ((-s) • A)))
-      (mulVecL (-(exp ((-t) • A) * A))) T t :=
-    HasFDerivAt.comp_hasDerivWithinAt t (ContinuousLinearMap.hasFDerivAt mulVecL)
-      hE.hasDerivWithinAt
-  have key : mulVecL (-(exp ((-t) • A) * A)) (x t)
-      + mulVecL (exp ((-t) • A)) (A *ᵥ x t + u t) = exp ((-t) • A) *ᵥ u t := by
-    show (-(exp ((-t) • A) * A)) *ᵥ x t + exp ((-t) • A) *ᵥ (A *ᵥ x t + u t) = _
-    rw [Matrix.neg_mulVec, Matrix.mulVec_add, Matrix.mulVec_mulVec]
-    abel
-  exact key ▸ HasDerivWithinAt.clm_apply hC hx
 
 /-- The substituted form, straight from the fundamental theorem of calculus.
 Only the flow on `[a, b]` is used, so a domain covering that window is all the

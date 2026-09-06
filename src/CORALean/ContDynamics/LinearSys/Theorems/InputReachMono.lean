@@ -40,7 +40,7 @@ omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
   [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] in
 /-- Holding the input at the origin is admissible when `U` contains it, and
 contributes nothing. -/
-theorem LinearSys.zero_mem_inputReach (sys : LinearSys 𝕋 n) {U : S n} (τ : ℝ)
+theorem LinearSys.aux_zero_mem_inputReach (sys : LinearSys 𝕋 n) {U : S n} (τ : ℝ)
     (h0 : (0 : Vec ℝ n) ∈ construct U) : (0 : Vec ℝ n) ∈ sys.inputReach U τ := by
   refine ⟨fun _ => 0, fun _ _ => h0, aestronglyMeasurable_const, ?_⟩
   simp
@@ -57,7 +57,7 @@ theorem LinearSys.inputReach_mono (sys : LinearSys 𝕋 n) {U : S n} {t r : ℝ}
   have hsep := sys.inputReach_separation (a := r - t) (b := t) (by linarith) ht0 hbdd
   rw [show r - t + t = r from by ring] at hsep
   have hmem := hsep (Set.add_mem_add
-    (Set.mem_image_of_mem _ (sys.zero_mem_inputReach (r - t) h0)) hy)
+    (Set.mem_image_of_mem _ (sys.aux_zero_mem_inputReach (r - t) h0)) hy)
   simpa using hmem
 
 end CORALean.Real

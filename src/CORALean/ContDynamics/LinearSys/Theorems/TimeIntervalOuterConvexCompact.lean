@@ -1,6 +1,6 @@
 import CORALean.ContDynamics.LinearSys.Operations.InputSolution
 import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
-import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryTimeIntervalOuter
+import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterInputSolution
 import CORALean.ContSet.ContSet.CompactSet
 import CORALean.ContSet.ContSet.ConvexSet
 
