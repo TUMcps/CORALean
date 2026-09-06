@@ -15,8 +15,10 @@ reaches `2` at `x = -1`. Against an even column it also supplies
 soundness needs none, precision does.
 
 Stated over a bare exponent matrix rather than over a set, so both layers read
-it — the exponents are naturals in both — and `Prop`-valued rather than
-decidable, since nothing has to decide an edge in order to relax.
+it — the exponents are naturals in both. `Prop`-valued and decidable: soundness
+never has to decide an edge, a selection rule does, and every clause here is ℕ
+arithmetic or a bounded quantifier over a `Fintype`. The instance sits beside
+the definition, being part of what it offers rather than a guarantee about it.
 
 ## References
 
@@ -38,5 +40,12 @@ def PolyZonotope.ExpEdgeAt {p h : ℕ} (E : Fin p → Fin h → ℕ) (η : ℕ) 
   (∀ k, k ≠ k₀ → E k i = E k j)
     ∧ (E k₀ i % 2 = E k₀ j % 2 ∨ E k₀ j = 0)
     ∧ η ≤ E k₀ j ∧ E k₀ j < E k₀ i
+
+/-- The condition decides: it reads only the exponent matrix, and each clause is
+ℕ arithmetic or a bounded quantifier. -/
+instance PolyZonotope.instDecidableExpEdgeAt {p h : ℕ} (E : Fin p → Fin h → ℕ) (η : ℕ)
+    (k₀ : Fin p) (i j : Fin h) : Decidable (PolyZonotope.ExpEdgeAt E η k₀ i j) := by
+  unfold PolyZonotope.ExpEdgeAt
+  infer_instance
 
 end CORALean.Real

@@ -4,6 +4,7 @@ import CORALean.Examples.ConversionRoundTrip
 import CORALean.Examples.ConvNet
 import CORALean.Examples.ConvNetFloat
 import CORALean.Examples.EllipsoidPlus
+import CORALean.Examples.ExpRelaxGreedy
 import CORALean.Examples.FeedForward
 import CORALean.Examples.FeedForwardFloat
 import CORALean.Examples.NeurNetControl

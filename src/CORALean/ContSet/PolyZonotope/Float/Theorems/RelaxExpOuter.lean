@@ -1,6 +1,7 @@
 import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxExp
 import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorError
+import CORALean.ContSet.PolyZonotope.Float.Theorems.MergedGenGap
 import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
 import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
 import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsSubMonomialLe
@@ -53,21 +54,6 @@ theorem PolyZonotope.aux_sum_univ_relaxExp_q {PZ : PolyZonotope 𝕋 n}
     ∑ j : Fin (PZ.relaxExp part k₀).q, f j
       = ∑ j, f (Fin.castAdd 1 j) + ∑ j : Fin 1, f (Fin.natAdd PZ.q j) :=
   Fin.sum_univ_add f
-
-/-- The merged column is stored downward, so it is off by at most its gap to the
-upward rounding. -/
-theorem PolyZonotope.aux_mergedGen_gap (PZ : PolyZonotope 𝕋 n)
-    (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (k₀ : Fin PZ.p) (i : Fin n) :
-    |toReal (PZ.G i (part.right 1)) + toReal (PZ.G i (part.right 0))
-      - toReal (PZ.mergedGen part i)| ≤ toReal (PZ.relaxGap part k₀ i 0) := by
-  have hlo : toReal (PZ.mergedGen part i)
-      ≤ toReal (PZ.G i (part.right 1)) + toReal (PZ.G i (part.right 0)) := addDown_le_add _ _
-  have hhi : toReal (PZ.G i (part.right 1)) + toReal (PZ.G i (part.right 0))
-      ≤ toReal (addUp (PZ.G i (part.right 1)) (PZ.G i (part.right 0))) := add_le_addUp _ _
-  have hgap : toReal (addUp (PZ.G i (part.right 1)) (PZ.G i (part.right 0)))
-      - toReal (PZ.mergedGen part i) ≤ toReal (PZ.relaxGap part k₀ i 0) := sub_le_subUp _ _
-  rw [abs_le]
-  constructor <;> linarith
 
 /-- The new independent column is `ξ_E` copies added downward, so it too is off
 by at most its gap to the upward fold. -/
@@ -138,7 +124,7 @@ theorem PolyZonotope.aux_relaxExp_nominal (PZ : PolyZonotope 𝕋 n)
     simp only [Fin.sum_univ_one, hmono, hlast]
     simp only [PolyZonotope.relaxExp, Fin.append_left, Fin.append_right]
   · refine fun i l => Fin.cases ?_ (fun l' => ?_) l
-    · exact PolyZonotope.aux_mergedGen_gap PZ part k₀ i
+    · exact PolyZonotope.mergedGen_gap PZ part i
     · rw [Subsingleton.elim l' 0]
       exact PolyZonotope.aux_relaxGen_gap PZ part k₀ i
   · refine Fin.cases ?_ (fun l' => ?_)
