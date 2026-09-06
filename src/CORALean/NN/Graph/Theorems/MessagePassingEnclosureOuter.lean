@@ -7,7 +7,7 @@ import CORALean.NN.Graph.Theorems.UncertainDegreeBounds
 /-!
 # The message-passing enclosure contains the true message passing
 
-[1]'s guarantee for `𝒫 ⊇ D̃^(-1/2) Ã D̃^(-1/2)`: whatever the uncertain edges
+[1, Prop. 4]'s guarantee for `𝒫 ⊇ D̃^(-1/2) Ã D̃^(-1/2)`: whatever the uncertain edges
 weigh, the message-passing matrix that graph produces is a point of `𝒫`.
 
 One factor vector does it. The edge weight `λₑ` is the factor `2λₑ - 1`, exactly
@@ -25,7 +25,7 @@ box while the residuals do not range independently of the edges.
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph
       Convolutional Networks with Uncertain Node Features and Uncertain Graph
-      Structure". TMLR, 2025.
+      Structure". TMLR, 2025. arXiv:2404.15065.
 -/
 
 -- Authors:       Tobias Ladner

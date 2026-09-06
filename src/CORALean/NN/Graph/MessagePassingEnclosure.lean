@@ -6,7 +6,7 @@ import CORALean.NN.Graph.UncertainAdjPad
 /-!
 # The message-passing enclosure `𝒫 ⊇ D̃^(-1/2) Ã D̃^(-1/2)`
 
-[1]'s message passing at an uncertain graph structure, as one matrix polynomial
+[1, Prop. 4]'s message passing at an uncertain structure, as one matrix polynomial
 zonotope: `P_ij = Ã_ij ⬝ s_i ⬝ s_j` is two entrywise products, so it is
 `PolyZonotope.bilin` at `Entrywise.hadamardLin`, twice.
 
@@ -26,7 +26,7 @@ residual factors buy soundness rather than exactness.
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph
       Convolutional Networks with Uncertain Node Features and Uncertain Graph
-      Structure". TMLR, 2025.
+      Structure". TMLR, 2025. arXiv:2404.15065.
 -/
 
 -- Authors:       Tobias Ladner

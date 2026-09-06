@@ -22,7 +22,7 @@ fewer arguments than the other is a seam a caller would have to remember.
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph
       Convolutional Networks with Uncertain Node Features and Uncertain Graph
-      Structure". TMLR, 2025.
+      Structure". TMLR, 2025. arXiv:2404.15065.
 -/
 
 -- Authors:       Tobias Ladner
