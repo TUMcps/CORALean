@@ -1,0 +1,36 @@
+import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
+
+/-!
+# One component of a bundle, enclosing it
+
+CORA's cheapest route out of a `zonoBundle`: any single component already
+encloses the whole intersection. The choice of `i` owes no proof, since the
+guarantee below is sound at every one — `ConPolyZono.reduceBy_outer` is the
+same shape, sound at every partition.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       06-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+def ZonoBundle.zonotope (B : ZonoBundle α) (i : Fin B.k) : Zonotope α := B.Z i
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem ZonoBundle.subset_zonotope (B : ZonoBundle α) (i : Fin B.k) :
+    B.construct ⊆ (B.zonotope i).construct :=
+  Set.iInter_subset _ i
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

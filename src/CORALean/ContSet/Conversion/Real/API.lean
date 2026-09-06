@@ -37,12 +37,15 @@ import CORALean.ContSet.Conversion.Real.Zonotope_to_HPolytope
 import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
 import CORALean.ContSet.Conversion.Real.Zonotope_to_PolyZonotope
 import CORALean.ContSet.Conversion.Real.Zonotope_to_VPolytope
+import CORALean.ContSet.Conversion.Real.Zonotope_to_ZonoBundle
+import CORALean.ContSet.Conversion.Real.ZonoBundle_to_Zonotope
 
 /-!
 # Conversions between representations, collected
 
 Every ordered pair of `Interval`, `Zonotope`, `HPolytope`, `VPolytope` and
-`ConZonotope`, with the declaration named for the target.
+`ConZonotope`, with the declaration named for the target; `ZonoBundle` adds
+just the pair against `Zonotope`, both exact.
 
 `Ellipsoid` now has all ten: the box pair closed-form and tight both ways, the rest routed
 through `Zonotope`, the hub every representation reaches — a composition, not a direct

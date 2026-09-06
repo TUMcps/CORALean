@@ -2,6 +2,7 @@ import CORALean.ContSet.ContSet.API
 import CORALean.ContSet.InflatedContSet.API
 import CORALean.ContSet.Interval.API
 import CORALean.ContSet.Zonotope.API
+import CORALean.ContSet.ZonoBundle.API
 import CORALean.ContSet.Ellipsoid.API
 import CORALean.ContSet.HPolytope.API
 import CORALean.ContSet.VPolytope.API
@@ -30,7 +31,7 @@ constraints are polynomial in the factors and so cannot be a polytope. There a
 constraint's right-hand side is an interval, so a rounded bound has a direction
 to be widened in, which is what gives `and` a float counterpart.
 
-Two of the six intersect exactly, and they are exactly the two constrained ones:
-an intersection is a constraint, and a representation that cannot carry one has
-to enclose it.
+Three of the seven intersect exactly: the two constrained representations, and
+`ZonoBundle`, which keeps every enclosing zonotope side by side rather than
+folding an intersection into one representation's own coefficients.
 -/
