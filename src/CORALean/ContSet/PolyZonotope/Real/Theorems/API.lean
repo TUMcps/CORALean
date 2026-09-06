@@ -5,11 +5,15 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialAdd
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MemConstruct
 import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ExistsPointOfQZero
+import CORALean.ContSet.PolyZonotope.Real.Theorems.SubsetAtMono
+import CORALean.ContSet.PolyZonotope.Real.Theorems.SubsetAtSubsetConstruct
+import CORALean.ContSet.PolyZonotope.Real.Theorems.SubsetAtUnitBox
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
 import CORALean.ContSet.PolyZonotope.Real.Theorems.PlusExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MapExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MapPoint
+import CORALean.ContSet.PolyZonotope.Real.Theorems.MapSubsetAt
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MtimesExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MtimesIntervalMatOuter
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialLinCombEFst
@@ -63,22 +67,22 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxExpGreedyOuter
 `plus`, `map`, `dependent`, `quadMap` and `compact` exactly; `linComb` and `reduce` as enclosures,
 each docstring saying which coefficients or dropped generators cost the other way. `reduce` is the
 one operation with two guarantees: an enclosure alone is met by a set that grows every step, so
-`reduce_order_le` bounds the size it keeps. `map_point` is `map` at one factor vector, composing
-with `bilin_point`. `mtimesIntervalMat_outer` boxes the radius into a fresh independent block.
+`reduce_order_le` bounds the size it keeps. `map_point`/`map_subsetAt` are `map` at one factor
+vector and at a sub-box. `mtimesIntervalMat_outer` boxes the radius into a fresh independent block.
 
 `bilin_exact` equates a pairing with the image of the shared factors under `a ↦ f (point S₁ a)
 (point S₂ a)`, never `f` over the two sets; `mul_exact` is it entrywise, `evalPoly_exact` carries
 that to a polynomial per coordinate and `evalPolyReal_ofFn` matches Horner to the monomial sum.
 `padBack_point` and `padFront_point` say padding moves no point, so *independent* factors pair by
-`bilin` too. `point_mem_construct` is the way back and `exists_point_of_q_zero`, once `evalPoly_q`
-says nothing is independent, the way there. `relaxExp_outer` holds at every partition naming two
-generators, `eDiff` owing no optimality. `relaxExpEven_outer` adds evenness, `relaxExpMulti_outer`
-asks nothing, and `sub_monomial_mem_eDrift` brackets the drift out of `sub_pow_nonpos` and
+`bilin` too. `point_mem_construct`/`subsetAt_subset_construct` are the way back and
+`exists_point_of_q_zero`/`subsetAt_unitBox` the way there, once nothing is independent.
+`relaxExp_outer` holds at every partition naming two generators, `eDiff` owing no optimality.
+`relaxExpEven_outer` adds evenness, `relaxExpMulti_outer` asks nothing, and
+`sub_monomial_mem_eDrift` brackets the drift out of `sub_pow_nonpos` and
 `sub_monomial_nonpos_of_pow`, letting `relaxExpMid_outer` shift at any parity. `expEdge_acyclic`
 has no cycles, `relaxExpEven_outer_of_edge` reads an edge, `relaxExpGreedy_outer` at any selection.
 
 `quadMap_exact` distinguishes the representation: no convex one here can state it. `compact_exact`
-is what an order bound rests on: the generator count may fall without the set moving, which is
-what `reduce_outer` trades against precision. The monomial facts and `MemConstruct` are what every
-one of them is stated over.
+is what an order bound rests on: the generator count may fall without the set moving, which
+`reduce_outer` trades against precision. The monomial facts and `MemConstruct` underlie all of it.
 -/

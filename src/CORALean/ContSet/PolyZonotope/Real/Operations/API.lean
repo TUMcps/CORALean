@@ -11,6 +11,7 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.LinCombE
 import CORALean.ContSet.PolyZonotope.Real.Operations.LinComb
 import CORALean.ContSet.PolyZonotope.Real.Operations.Dependent
 import CORALean.ContSet.PolyZonotope.Real.Operations.Point
+import CORALean.ContSet.PolyZonotope.Real.Operations.SubsetAt
 import CORALean.ContSet.PolyZonotope.Real.Operations.ExtG
 import CORALean.ContSet.PolyZonotope.Real.Operations.ExtE
 import CORALean.ContSet.PolyZonotope.Real.Operations.ExtM
@@ -87,7 +88,8 @@ boxes an interval matrix's radius into fresh independent generators, priced by `
 
 `bilin` pairs two sets over shared factors by any bilinear map, exact against `point`; `mul` is it
 at `hadamardLin`, `quadMap` at `quadBilin`, `evalPoly` any degree. `padBack` and `padFront` widen by
-another set's factors at exponent zero, so *independent* factors reach it.
+another set's factors at exponent zero, so *independent* factors reach it. `subsetAt` names the
+subset a sub-box of the factors reaches under `point`.
 
 Each of those grows the generator counts, and `compact` brings them back down without changing the
 set: equal exponent columns add, a zero generator goes, and so does a factor no column reads.
@@ -99,7 +101,6 @@ that price where the drift is one-sided, `relaxExpMulti` drops the agreement and
 every factor, and `eDrift` brackets the drift, read at the midpoint by `relaxDrift`/`relaxExpMid`.
 `ExpEdgeAt`/`ExpEdge` graph the pairs worth merging; `relaxExpGreedy` walks it at any pick.
 
-`plusE`, `linCombE` and `quadMapE` are the exponent matrices the size-changing operations
-assemble, each its own file (#62) since the float layer and `ConPolyZono` build on them too.
-`identE` is the block `dependent` appends and a conversion's whole answer.
+`plusE`, `linCombE` and `quadMapE` are the exponent matrices the size-changing operations assemble,
+each its own file (#62); `identE` is the block `dependent` appends and a conversion's whole answer.
 -/
