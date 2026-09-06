@@ -1,12 +1,7 @@
-import CORALean.ContDynamics.LinearSys.LinearSys
+import CORALean.ContDynamics.LinearSys.Operations.InputTerm
 
 /-!
-# The exact orders of the input solution
-
-`inputTerm` and `inputTaylorSum` share a file because `inputTerm` is the
-summand of this sum and of nothing else: it is CORA's `Aⁱr^{i+1}/(i+1)!`,
-named only so that the induction proving the sum's guarantee has something to
-name.
+# The exact orders of the input solution, summed
 
 The sum is recursive rather than a fold over `Finset`, since `plus` is only an
 enclosure and never has to be reassociated this way; the guarantee is then one
@@ -20,16 +15,11 @@ induction.
 
 namespace CORALean.Real
 
-open Matrix ContSet Scalar
+open ContSet Scalar
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
-
-/-- The matrix order `i` contributes to the input solution: `Aⁱ r^{i+1}/(i+1)!`,
-the `i`-th term of the exponential integrated once over the step. -/
-noncomputable def LinearSys.inputTerm (sys : LinearSys 𝕋 n) (r : ℝ) (i : ℕ) : Mat ℝ n n :=
-  (r ^ (i + 1) / (Nat.factorial (i + 1) : ℝ)) • (toRealMat sys.A) ^ i
 
 /-- The exact orders of the input solution, `0` through `η`, summed. -/
 noncomputable def LinearSys.inputTaylorSum (sys : LinearSys 𝕋 n) (r : ℝ) (U : S n) : ℕ → S n

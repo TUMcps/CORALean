@@ -1,4 +1,5 @@
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOuter
+import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterHorizon
 import CORALean.ContSet.PolyZonotope.Real.Instances
 
 /-!

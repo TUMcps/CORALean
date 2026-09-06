@@ -1,8 +1,13 @@
 import CORALean.ContDynamics.NonlinearSys.Theorems.LinInputOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.LinearEmbedding
 import CORALean.ContDynamics.NonlinearSys.Theorems.Linearize
+import CORALean.ContDynamics.NonlinearSys.Theorems.LinearizeHorizon
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachOuter
+import CORALean.ContDynamics.NonlinearSys.Theorems.ReachOuterHorizon
+import CORALean.ContDynamics.NonlinearSys.Theorems.ReachOuterHorizonInputSolution
+import CORALean.ContDynamics.NonlinearSys.Theorems.ReachOuterInputSolution
 import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuter
+import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuterInputSolution
 import CORALean.ContDynamics.NonlinearSys.Theorems.Restrict
 import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
 

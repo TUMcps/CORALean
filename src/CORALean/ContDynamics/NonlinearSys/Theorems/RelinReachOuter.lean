@@ -1,10 +1,11 @@
 import CORALean.ContDynamics.LinearSys.Operations.InputSolution
-import CORALean.ContDynamics.LinearSys.Theorems.ReachOuter
+import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterHorizon
 import CORALean.ContDynamics.LinearSys.Theorems.StepInputOuter
 import CORALean.ContDynamics.LinearSys.Theorems.StepInputShift
+import CORALean.ContDynamics.LinearSys.Theorems.StepSubsetHorizon
 import CORALean.ContDynamics.NonlinearSys.Operations.RelinReach
 import CORALean.ContDynamics.NonlinearSys.Theorems.Linearize
-import CORALean.ContDynamics.NonlinearSys.Theorems.ReachOuter
+import CORALean.ContDynamics.NonlinearSys.Theorems.ReachOuterHorizon
 import CORALean.ContDynamics.NonlinearSys.Theorems.Restrict
 import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
 
@@ -111,35 +112,5 @@ theorem NonlinearSys.Trajectory.relinReach_outer {sys : NonlinearSys n m} {T : S
     rw [show ((i + 1 : ℕ) : ℝ) * Δt = (i : ℝ) * Δt + ((1 : ℕ) : ℝ) * Δt from by
       push_cast; ring]
     exact key
-
-/-- The same with each step's input enclosure named rather than assumed. Step
-`i`'s integral is enclosed on the original clock — restrict to `[iΔt, (i+1)Δt]`,
-linearize there, apply `stepInput_outer` — which is why no shift appears. -/
-theorem NonlinearSys.Trajectory.relinReach_outer_inputSolution [Mtimes ℐ S]
-    {sys : NonlinearSys n m} {T : Set ℝ} {R₀ : S n} {U : S m} {x : ℝ → Vec ℝ n}
-    {u : ℝ → Vec ℝ m} {steps : ℕ → sys.LinStep U} {Δt : ℝ} {N : ℕ}
-    (traj : sys.Trajectory T R₀ U x u) (hΔt : 0 < Δt)
-    (hT : Set.Icc 0 ((N : ℝ) * Δt) ⊆ T)
-    (hR : ∀ i < N, ∀ t ∈ Set.Icc ((i : ℝ) * Δt) (((i : ℝ) + 1) * Δt), x t ∈ (steps i).R)
-    (η : ℕ) (hε : ∀ i < N, ‖Δt • (steps i).A‖ / ((η : ℝ) + 2) < 1)
-    (hconv : ∀ i < N, Convex ℝ (construct (steps i).linInput))
-    (hclosed : ∀ i < N, IsClosed (construct (steps i).linInput))
-    (hbdd : ∀ i < N, Bornology.IsBounded (construct (steps i).linInput))
-    (hRconv : ∀ i < N, Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (steps i).A Δt η) (steps i).linInput)))
-    (hRclosed : ∀ i < N, IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (steps i).A Δt η) (steps i).linInput)))
-    (hRbdd : ∀ i < N, Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (steps i).A Δt η) (steps i).linInput))) (o : ℕ) :
-    ∀ i ≤ N, x ((i : ℝ) * Δt) ∈ construct (sys.relinReach o Δt steps
-      (fun i => (NonlinearSys.linearize (steps i).A).inputSolution Δt η
-        (steps i).linInput) R₀ i) := by
-  -- everything above is per step, so the loop is `relinReach_outer` plus one enclosure
-  refine traj.relinReach_outer hΔt.le hT hR hbdd ?_ o
-  intro i hi
-  have hlin := (traj.restrict (step_subset_horizon hΔt.le hT hi)).linearize
-    (steps i).cert (hR i hi)
-  exact hlin.stepInput_outer hΔt η (hε i hi) (hconv i hi) (hclosed i hi) (hbdd i hi)
-    (hRconv i hi) (hRclosed i hi) (hRbdd i hi) i subset_rfl
 
 end CORALean.Real

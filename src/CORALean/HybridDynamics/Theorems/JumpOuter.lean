@@ -45,12 +45,4 @@ theorem Transition.jump_outer (e : Transition S L 𝕋 n) {R Rg : S n}
       (Set.mem_biUnion rfl (Set.mem_image_of_mem _ (hand ⟨hz, hguard⟩))))
     (ofInterval_outer _ (Interval.mem_point (toRealVec e.w))))
 
-/-- The same as an inclusion of the set that leaves, which is the form a chain
-of steps composes in. -/
-theorem Transition.reset_image_subset (e : Transition S L 𝕋 n) {R Rg : S n}
-    (hand : construct R ∩ construct e.guard ⊆ construct Rg) :
-    e.reset '' (construct R ∩ construct e.guard) ⊆ construct (e.jump Rg) := by
-  rintro _ ⟨z, ⟨hz, hguard⟩, rfl⟩
-  exact e.jump_outer hand hz hguard
-
 end CORALean.Real

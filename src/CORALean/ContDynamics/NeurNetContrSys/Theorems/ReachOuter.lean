@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ReachOuter
+import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterHorizonInputSolution
 import CORALean.ContDynamics.NeurNetContrSys.Operations
 import CORALean.ContDynamics.NeurNetContrSys.Theorems.Period
 import CORALean.ContSet.ContSet.CompactSet

@@ -1,6 +1,6 @@
 import CORALean.ContDynamics.LinearSys.Operations.Discretize
 import CORALean.ContDynamics.LinearSys.Operations.InputSolution
-import CORALean.ContDynamics.LinearSys.Theorems.ReachOuter
+import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterInputSolution
 import CORALean.ContSet.ContSet.CompactSet
 import CORALean.ContSet.ContSet.ConvexSet
 

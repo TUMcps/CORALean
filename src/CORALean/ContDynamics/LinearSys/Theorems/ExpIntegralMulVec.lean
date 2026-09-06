@@ -29,9 +29,9 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 variable {n : ℕ}
 
 /-- Applying a fixed vector, as a continuous linear map on matrices. -/
-noncomputable def mulVecR (v : Vec ℝ n) : Mat ℝ n n →L[ℝ] Vec ℝ n := mulVecL.flip v
+noncomputable def aux_mulVecR (v : Vec ℝ n) : Mat ℝ n n →L[ℝ] Vec ℝ n := mulVecL.flip v
 
-theorem mulVecR_apply (v : Vec ℝ n) (M : Mat ℝ n n) : mulVecR v M = M *ᵥ v := rfl
+theorem aux_mulVecR_apply (v : Vec ℝ n) (M : Mat ℝ n n) : aux_mulVecR v M = M *ᵥ v := rfl
 
 /-- `‖A^i v‖ ≤ ‖A‖^i ‖v‖`, the `i = 0` case included, where the power is the
 identity rather than something the operator norm bounds. -/
@@ -47,9 +47,9 @@ set_option maxHeartbeats 400000 in
 /-- The exponential series carried through to a vector. -/
 theorem aux_exp_mulVec_tsum (A : Mat ℝ n n) (v : Vec ℝ n) (σ : ℝ) :
     exp (σ • A) *ᵥ v = ∑' i : ℕ, (((Nat.factorial i : ℝ))⁻¹ * σ ^ i) • (A ^ i *ᵥ v) := by
-  rw [← mulVecR_apply v, exp_smul_tsum A σ,
-    ContinuousLinearMap.map_tsum (mulVecR v) (summable_exp_smul A σ)]
-  exact tsum_congr fun i => by rw [mulVecR_apply, Matrix.smul_mulVec]
+  rw [← aux_mulVecR_apply v, exp_smul_tsum A σ,
+    ContinuousLinearMap.map_tsum (aux_mulVecR v) (summable_exp_smul A σ)]
+  exact tsum_congr fun i => by rw [aux_mulVecR_apply, Matrix.smul_mulVec]
 
 -- a `calc` over the `linftyOp` norm, whose instances are local to this file
 set_option maxHeartbeats 400000 in
@@ -97,9 +97,9 @@ theorem MatExp.expIntegral_mulVec (A : Mat ℝ n n) (v : Vec ℝ n) {t : ℝ} (h
     MatExp.expIntegral A t *ᵥ v = ∫ σ in (0:ℝ)..t, exp (σ • A) *ᵥ v := by
   have hseries : MatExp.expIntegral A t *ᵥ v
       = ∑' i : ℕ, (((Nat.factorial (i + 1) : ℝ))⁻¹ * t ^ (i + 1)) • (A ^ i *ᵥ v) := by
-    rw [← mulVecR_apply v, MatExp.expIntegral,
-      ContinuousLinearMap.map_tsum (mulVecR v) (MatExp.summable_expIntegral A t)]
-    exact tsum_congr fun i => by rw [mulVecR_apply, Matrix.smul_mulVec]
+    rw [← aux_mulVecR_apply v, MatExp.expIntegral,
+      ContinuousLinearMap.map_tsum (aux_mulVecR v) (MatExp.summable_expIntegral A t)]
+    exact tsum_congr fun i => by rw [aux_mulVecR_apply, Matrix.smul_mulVec]
   -- each partial sum is the integral of the truncated series
   have hpartial : ∀ N : ℕ, (∑ i ∈ Finset.range N,
       (((Nat.factorial (i + 1) : ℝ))⁻¹ * t ^ (i + 1)) • (A ^ i *ᵥ v))

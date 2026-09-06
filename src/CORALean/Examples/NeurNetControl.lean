@@ -1,6 +1,6 @@
 import CORALean.ContDynamics.NeurNetContrSys.Theorems.HoldsOfReach
+import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.EqOfInit
 import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.HoldsOfReach
-import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.TrajectoryIterate
 import CORALean.ContSet.Conversion.Real.ContSet_to_Interval
 import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
 import CORALean.ContSet.Zonotope.Real.Instances
