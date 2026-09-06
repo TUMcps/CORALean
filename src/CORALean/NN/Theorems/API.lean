@@ -60,6 +60,7 @@ import CORALean.NN.Theorems.SuffExplanationOfNeuronMerging
 import CORALean.NN.Theorems.SuffExplanationOfPropagate
 import CORALean.NN.Theorems.HoldsOfPropagate
 import CORALean.NN.Theorems.HoldsAllOfPropagate
+import CORALean.NN.Theorems.HoldsOfSplit
 
 /-!
 # What a network's enclosure guarantees, collected
@@ -67,6 +68,7 @@ import CORALean.NN.Theorems.HoldsAllOfPropagate
 `PropagateOuter`/`OutputSetSubset` are the graph induction, its pointwise form; `Verified` composes
 `Specification.holds_of_outer`, read by `MemSafeSet`/`NotMemUnsafeSet` against a safe or unsafe set.
 `Robustness` builds on `Misclassified`, `MarginDir`, `DisjointMisclassifiedOfBounds`, `Classifies`.
+`HoldsOfSplit` is what makes verification complete in practice: split, propagate each part.
 
 `LinearWithErrorZero`, `NeuronMergingOuter`, `NeuronMergingNetworkOuter`, `MergeErrorSplit`,
 `MergeErrorWidthLe`, `MergeErrorWidthLeRow` are neuron merging [1]: error-free linear layers,
@@ -79,7 +81,6 @@ forces `Reduction`'s `ReducesAt` into one induction — `HoldsOfReducesAt` is [1
 one; `SuffExplanationRefined` and `MinSuffExplanationAbstractOfMin`/`OfRefined` carry it and
 minimality along a refinement, `MinSuffExplanationCounterexample` certifies it, and
 `SuffExplanationConverseFails` is why it goes one way.
-
 `SensitivityFDeriv` is what the refinement heuristic [3] rests on: the backpropagated Jacobian
 identified with `fderiv` wherever `EvalDifferentiable` holds, which `SensitivityOfMatrix` hands
 to `SensitivityLinear`/`SensitivityActivation`; `ReluNotDifferentiable` is why ReLU gets none.
