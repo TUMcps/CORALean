@@ -43,14 +43,14 @@ theorem Layer.activationPoly_subset_inflate (P : LayerRelaxation σ n m)
     (s : PolyZonotope (Vec ℝ n)) {ε : ℝ} (hε : 0 ≤ ε)
     (hP : ∀ i, 2 * (P i).error (s.interval.inf i) (s.interval.sup i) ≤ ε) :
     construct ((Layer.activationPoly P).propagate s)
-      ⊆ (Layer.activationPoly P).eval '' construct s + Metric.closedBall 0 ε := by
+      ⊆ (Layer.activationPoly P).eval '' construct s + Metric.closedBall 0 ε := by -- --- PROOF ---
   -- the box is ordered, so `sound` at its left end says the error is nonnegative
   have herr : ∀ i, 0 ≤ (P i).error (s.interval.inf i) (s.interval.sup i) := fun i =>
     le_trans (abs_nonneg _)
       ((P i).sound (le_refl (s.interval.inf i)) (s.interval_inf_le_sup i))
   intro y hy
   have hy2 : y ∈ (s.dependent.evalPoly (P.coeffList s.interval)).construct
-      + (Interval.polyZonotope (P.box s.interval)).construct := by
+      + (Interval.polyZonotope (P.box s.interval)).construct := by -- --- PROOF ---
     rw [PolyZonotope.plus_exact]
     exact hy
   obtain ⟨u, hu, v, hv, rfl⟩ := hy2

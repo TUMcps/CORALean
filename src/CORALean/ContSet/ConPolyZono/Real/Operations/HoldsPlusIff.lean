@@ -37,7 +37,7 @@ theorem ConPolyZono.holds_plus_iff {p₁ p₂ m₁ s₁ m₂ s₂ : ℕ} (A₁ :
     ConPolyZono.holds (ConPolyZono.plusA A₁ A₂) (ConPolyZono.plusB b₁ b₂)
         (PolyZonotope.plusE EC₁ EC₂) a
       ↔ ConPolyZono.holds A₁ b₁ EC₁ (fun k => a (Fin.castAdd p₂ k))
-        ∧ ConPolyZono.holds A₂ b₂ EC₂ (fun k => a (Fin.natAdd p₁ k)) := by
+        ∧ ConPolyZono.holds A₂ b₂ EC₂ (fun k => a (Fin.natAdd p₁ k)) := by -- --- PROOF ---
   have hL : ∀ i : Fin m₁,
       (ConPolyZono.plusA A₁ A₂ *ᵥ PolyZonotope.monomial (PolyZonotope.plusE EC₁ EC₂) a)
           (Fin.castAdd m₂ i)

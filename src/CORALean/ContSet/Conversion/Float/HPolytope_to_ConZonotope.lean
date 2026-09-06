@@ -108,7 +108,7 @@ def HPolytope.conZonotopeOf (P : HPolytope 𝕋 n) (Z : Zonotope 𝕋 n) : ConZo
 -- the coefficients meet the carried rows because the widening covers the carrying error
 theorem HPolytope.subset_nominal_conZonotopeOf (P : HPolytope 𝕋 n) (Z : Zonotope 𝕋 n)
     (hZ : P.construct ⊆ nominalSet Z) :
-    P.construct ⊆ nominalSet (P.conZonotopeOf Z) := by
+    P.construct ⊆ nominalSet (P.conZonotopeOf Z) := by -- --- PROOF ---
   intro x hx
   obtain ⟨β, hβ, hval⟩ := Zonotope.mem_nominalSet_iff.mp (hZ hx)
   obtain ⟨hle, heq⟩ := HPolytope.mem_construct_iff.mp hx

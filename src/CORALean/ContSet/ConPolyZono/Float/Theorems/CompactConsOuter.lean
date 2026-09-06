@@ -58,7 +58,7 @@ theorem ConPolyZono.aux_compactConsGap (C : ConPolyZono 𝕋 n) (i : Fin C.m)
 /-- The widened bound admits every factor vector the old one did: the row moved
 by at most one `radius` of its gaps, and `b` moved out by exactly that. -/
 theorem ConPolyZono.aux_satisfies_compactCons (C : ConPolyZono 𝕋 n) {a : Fin C.p → ℝ}
-    (ha : ∀ k, |a k| ≤ 1) (hsat : C.satisfies a) : C.compactCons.satisfies a := by
+    (ha : ∀ k, |a k| ≤ 1) (hsat : C.satisfies a) : C.compactCons.satisfies a := by -- --- PROOF ---
   intro i
   have hb : toReal (C.b.inf i)
         ≤ (∑ l, toReal (C.A i l) * Real.PolyZonotope.monomial C.EC a l)

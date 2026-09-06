@@ -623,6 +623,33 @@ END {
 ' | sort)
 report "$out"
 
+# The optional proof flag. A long proof buries the seam between what is claimed
+# and how it is shown, so the declaration's `:= by` may carry `-- --- PROOF ---`
+# to mark it. Optional by design: nothing here requires one. But the form is
+# fixed, so it reads the same in every file, and it may only sit on a proof long
+# enough to need it — on a short one it is ink saying what `:= by` already said.
+out=$(printf '%s\n' "$files" | xargs awk -v MIN=20 '
+function checkfile(   i, k, n, line) {
+  for (i = 1; i <= nf; i++) {
+    line = L[i]
+    if (line ~ /:= by[ \t]*--/ && tolower(line) ~ /proof/ && line !~ /:= by -- --- PROOF ---$/) {
+      print fname ":" i ": the proof flag reads `-- --- PROOF ---`, exactly, after `:= by`"
+      continue
+    }
+    if (line !~ /:= by -- --- PROOF ---$/) continue
+    k = i + 1; n = 0
+    while (k <= nf && (L[k] ~ /^  / || L[k] ~ /^[ \t]*$/)) { k++; n++ }
+    if (n < MIN)
+      print fname ":" i ": the proof flag marks a proof of " n \
+            " lines — it is for proofs of " MIN " or more, where the seam is hard to find"
+  }
+}
+FNR == 1 { if (nf > 0) checkfile(); split("", L); nf = 0; fname = FILENAME }
+{ L[++nf] = $0 }
+END { if (nf > 0) checkfile() }
+' | sort)
+report "$out"
+
 if [ "$status" -eq 0 ]; then
   printf 'conventions: %s files, all checks passed\n' "$(printf '%s\n' "$files" | wc -l | tr -d ' ')"
 fi

@@ -103,7 +103,7 @@ theorem aux_continuous_expPartial (A : Mat ℝ n n) (v : Vec ℝ n) (N : ℕ) :
 set_option maxHeartbeats 1000000 in
 /-- `expIntegral` is what its name says, once a vector is supplied. -/
 theorem MatExp.expIntegral_mulVec (A : Mat ℝ n n) (v : Vec ℝ n) {t : ℝ} (ht : 0 ≤ t) :
-    MatExp.expIntegral A t *ᵥ v = ∫ σ in (0:ℝ)..t, exp (σ • A) *ᵥ v := by
+    MatExp.expIntegral A t *ᵥ v = ∫ σ in (0:ℝ)..t, exp (σ • A) *ᵥ v := by -- --- PROOF ---
   have hseries : MatExp.expIntegral A t *ᵥ v
       = ∑' i : ℕ, (((Nat.factorial (i + 1) : ℝ))⁻¹ * t ^ (i + 1)) • (A ^ i *ᵥ v) := by
     rw [← aux_mulVecR_apply v, MatExp.expIntegral,

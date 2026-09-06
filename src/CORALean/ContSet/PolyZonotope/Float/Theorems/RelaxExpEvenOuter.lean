@@ -118,7 +118,7 @@ theorem PolyZonotope.aux_relaxExpEven_nominal (PZ : PolyZonotope 𝕋 n)
     (hevenj : Even (PZ.E k₀ (part.right 1)))
     (hle : PZ.E k₀ (part.right 1) ≤ PZ.E k₀ (part.right 0)) :
     nominalSet PZ ⊆ nominalSet (PZ.relaxExpEven part k₀)
-      + (PolyZonotope.generatorError (PZ.relaxGapEven part k₀)).construct := by
+      + (PolyZonotope.generatorError (PZ.relaxGapEven part k₀)).construct := by -- --- PROOF ---
   intro x hx
   obtain ⟨a, β, ha, hβ, hxi⟩ := PolyZonotope.mem_nominalSet_iff.mp hx
   have habs : |Real.PolyZonotope.monomial PZ.E a (part.right 0)
@@ -127,7 +127,7 @@ theorem PolyZonotope.aux_relaxExpEven_nominal (PZ : PolyZonotope 𝕋 n)
   have hsign : Real.PolyZonotope.monomial PZ.E a (part.right 0)
       - Real.PolyZonotope.monomial PZ.E a (part.right 1) ≤ 0 :=
     Real.PolyZonotope.sub_monomial_nonpos PZ.E ha hsim heven hevenj hle
-  have hnn : (0:ℝ) ≤ (PZ.relaxWidth part k₀ : ℝ) / 2 := by
+  have hnn : (0:ℝ) ≤ (PZ.relaxWidth part k₀ : ℝ) / 2 := by -- --- PROOF ---
     have h := Nat.cast_nonneg (α := ℝ) (PZ.relaxWidth part k₀)
     linarith
   -- one-sided drift: its midpoint is `-ξ_E/2` and its radius `ξ_E/2`

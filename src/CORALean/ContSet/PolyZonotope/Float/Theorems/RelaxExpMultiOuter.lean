@@ -94,7 +94,7 @@ theorem PolyZonotope.aux_relaxGenMulti_gap (PZ : PolyZonotope 𝕋 n)
 theorem PolyZonotope.aux_relaxExpMulti_nominal (PZ : PolyZonotope 𝕋 n)
     (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) :
     nominalSet PZ ⊆ nominalSet (PZ.relaxExpMulti part)
-      + (PolyZonotope.generatorError (PZ.relaxGapMulti part)).construct := by
+      + (PolyZonotope.generatorError (PZ.relaxGapMulti part)).construct := by -- --- PROOF ---
   intro x hx
   obtain ⟨a, β, ha, hβ, hxi⟩ := PolyZonotope.mem_nominalSet_iff.mp hx
   -- the width is a sum of naturals, and the drift bound is stated over its casts

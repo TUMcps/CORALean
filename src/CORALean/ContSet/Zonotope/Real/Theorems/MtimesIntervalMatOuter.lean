@@ -56,7 +56,7 @@ theorem Zonotope.aux_sum_univ_mtimesIntervalMat {IM : Interval (Mat ℝ m n)} {Z
 -- the image sits in the centre's zonotope widened by what the radius can reach
 theorem Zonotope.mtimesIntervalMat_outer (IM : Interval (Mat ℝ m n)) (Z : Zonotope (Vec ℝ n)) :
     (⋃ A ∈ IM.construct, (A *ᵥ ·) '' Z.construct)
-      ⊆ (Zonotope.mtimesIntervalMat IM Z).construct := by
+      ⊆ (Zonotope.mtimesIntervalMat IM Z).construct := by -- --- PROOF ---
   rintro y hy
   simp only [Set.mem_iUnion, Set.mem_image, exists_prop] at hy
   obtain ⟨A, hA, x, hxmem, rfl⟩ := hy

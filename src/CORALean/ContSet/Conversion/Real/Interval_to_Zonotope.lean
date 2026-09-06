@@ -35,7 +35,7 @@ noncomputable def Interval.zonotope (I : Interval (Vec ℝ n)) : Zonotope (Vec �
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.subset_zonotope (I : Interval (Vec ℝ n)) :
-    I.construct ⊆ I.zonotope.construct := by
+    I.construct ⊆ I.zonotope.construct := by -- --- PROOF ---
   intro x hx
   have hlo : ∀ j, I.inf j ≤ x j := fun j => (hx j).1
   have hhi : ∀ j, x j ≤ I.sup j := fun j => (hx j).2
@@ -43,7 +43,7 @@ theorem Interval.subset_zonotope (I : Interval (Vec ℝ n)) :
   -- where the coordinate sits relative to its centre, and zero where it has no width
   set β : Fin n → ℝ := fun j => if I.sup j = I.inf j then 0
     else (x j - (I.inf j + I.sup j) / 2) / ((I.sup j - I.inf j) / 2) with hβdef
-  have hb1 : ∀ j, |β j| ≤ 1 := by
+  have hb1 : ∀ j, |β j| ≤ 1 := by -- --- PROOF ---
     intro j
     by_cases h : I.sup j = I.inf j
     · rw [hβdef]

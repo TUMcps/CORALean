@@ -60,7 +60,7 @@ theorem neuronMerging_sandwich_outer {n0 n n2 d r : ℕ}
               (NeuralNetwork.ofLayer (Layer.linearWithError (W1.submatrix id part.left) b1
                 (Interval.mtimes (W1.submatrix id part.right)
                   ⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩)
-                (Interval.mtimes_isNonempty _ _))))).propagate X) := by
+                (Interval.mtimes_isNonempty _ _))))).propagate X) := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩
   set h0 : Vec ℝ n := W0 *ᵥ x + b0 with hh0
   set hk : Vec ℝ n := fun i => σ (h0 i) with hhk
@@ -69,7 +69,7 @@ theorem neuronMerging_sandwich_outer {n0 n n2 d r : ℕ}
       = (W0 *ᵥ x) (part.left i) := fun i => by
     simp [Matrix.mulVec, Matrix.submatrix_apply, dotProduct]
   have heval1 : (Layer.linear (S := S) (W0.submatrix part.left id) (b0 ∘ part.left)).eval x
-      = h0 ∘ part.left := by
+      = h0 ∘ part.left := by -- --- PROOF ---
     funext i
     show ((W0.submatrix part.left id) *ᵥ x) i + b0 (part.left i) = h0 (part.left i)
     rw [hrow, hh0]

@@ -81,9 +81,9 @@ everything a run over `[0,b]` can. -/
 theorem LinearSys.inputReach_separation (sys : LinearSys 𝕋 n) {U : S n} {a b : ℝ}
     (ha : 0 ≤ a) (hb : 0 ≤ b) (hbdd : Bornology.IsBounded (construct U)) :
     (fun y => exp (b • toRealMat sys.A) *ᵥ y) '' sys.inputReach U a + sys.inputReach U b
-      ⊆ sys.inputReach U (a + b) := by
+      ⊆ sys.inputReach U (a + b) := by -- --- PROOF ---
   set A := toRealMat sys.A with hA
-  have hmul : ∀ c d : ℝ, exp (c • A) * exp (d • A) = exp ((c + d) • A) := by
+  have hmul : ∀ c d : ℝ, exp (c • A) * exp (d • A) = exp ((c + d) • A) := by -- --- PROOF ---
     intro c d
     have hc : Commute (c • A) (d • A) := ((Commute.refl A).smul_left c).smul_right d
     rw [add_smul]

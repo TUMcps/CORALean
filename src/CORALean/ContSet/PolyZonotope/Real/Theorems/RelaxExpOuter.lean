@@ -47,7 +47,7 @@ over-approximates, whichever partition names them. -/
 theorem PolyZonotope.relaxExp_outer (PZ : PolyZonotope α)
     (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (k₀ : Fin PZ.p)
     (hsim : ∀ k, k ≠ k₀ → PZ.E k (part.right 0) = PZ.E k (part.right 1)) :
-    PZ.construct ⊆ (PZ.relaxExp part k₀).construct := by
+    PZ.construct ⊆ (PZ.relaxExp part k₀).construct := by -- --- PROOF ---
   rintro x ⟨a, β, ha, hβ, rfl⟩
   have habs : |PolyZonotope.monomial PZ.E a (part.right 0)
       - PolyZonotope.monomial PZ.E a (part.right 1)| ≤ (PZ.relaxWidth part k₀ : ℝ) :=

@@ -55,7 +55,7 @@ theorem ConPolyZono.aux_value_andDep (C₁ C₂ : ConPolyZono (Vec ℝ n))
 
 theorem ConPolyZono.andDep_exact (C₁ C₂ : ConPolyZono (Vec ℝ n)) (D : Interval (Vec ℝ n))
     (hq₁ : C₁.q = 0) (hq₂ : C₂.q = 0) :
-    C₁.construct ∩ (C₂.construct + D.construct) = (C₁.andDep C₂ D).construct := by
+    C₁.construct ∩ (C₂.construct + D.construct) = (C₁.andDep C₂ D).construct := by -- --- PROOF ---
   have hz₁ : ∀ b : Fin C₁.q → ℝ, ∑ j, b j • C₁.GI j = 0 :=
     fun b => Finset.sum_eq_zero fun j _ => absurd j.isLt (by omega)
   have hz₂ : ∀ b : Fin C₂.q → ℝ, ∑ j, b j • C₂.GI j = 0 :=
@@ -70,7 +70,7 @@ theorem ConPolyZono.andDep_exact (C₁ C₂ : ConPolyZono (Vec ℝ n)) (D : Inte
     have hA₂ : (fun k => Fin.append a₁ a₂ (Fin.natAdd C₁.p k)) = a₂ :=
       funext fun k => Fin.append_right a₁ a₂ k
     have e₁ : ∀ i, x i
-        = C₁.c i + ∑ l, C₁.G l i * PolyZonotope.monomial C₁.E a₁ l := by
+        = C₁.c i + ∑ l, C₁.G l i * PolyZonotope.monomial C₁.E a₁ l := by -- --- PROOF ---
       intro i
       rw [hx₁, hz₁ β₁, add_zero, Entrywise.add_sum_smul_apply]
     have e₂ : ∀ i, y i

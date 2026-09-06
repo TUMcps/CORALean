@@ -72,10 +72,10 @@ theorem Ellipsoid.aux_value_plus {l : ℝ} (ha : Real.sqrt (1 + 1 / l) ≠ 0)
 
 -- the enclosure holds at any positive `l`, the two scalings being read off it
 theorem Ellipsoid.plus_outer (l : ℝ) (hl : 0 < l) (E₁ E₂ : Ellipsoid n) :
-    E₁.construct + E₂.construct ⊆ (Ellipsoid.plus l E₁ E₂).construct := by
+    E₁.construct + E₂.construct ⊆ (Ellipsoid.plus l E₁ E₂).construct := by -- --- PROOF ---
   have hlne : l ≠ 0 := ne_of_gt hl
   have hb2 : (0:ℝ) < 1 + l := by linarith
-  have ha2 : (0:ℝ) < 1 + 1 / l := by
+  have ha2 : (0:ℝ) < 1 + 1 / l := by -- --- PROOF ---
     have := one_div_pos.mpr hl
     linarith
   have ha : (0:ℝ) < Real.sqrt (1 + 1 / l) := Real.sqrt_pos.mpr ha2

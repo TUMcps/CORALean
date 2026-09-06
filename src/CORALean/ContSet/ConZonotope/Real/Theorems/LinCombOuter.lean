@@ -29,7 +29,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.linComb_outer (C₁ C₂ : ConZonotope α) :
-    segments C₁.construct C₂.construct ⊆ (C₁.linComb C₂).construct := by
+    segments C₁.construct C₂.construct ⊆ (C₁.linComb C₂).construct := by -- --- PROOF ---
   rintro x ⟨y₁, ⟨β₁, hβ₁, hP₁, rfl⟩, y₂, ⟨β₂, hβ₂, hP₂, rfl⟩, lam, ⟨hl0, hl1⟩, rfl⟩
   have hd₁ : β₁ ∈ C₁.domain.construct := ConZonotope.mem_domain_iff.mpr ⟨hβ₁, hP₁⟩
   have hd₂ : β₂ ∈ C₂.domain.construct := ConZonotope.mem_domain_iff.mpr ⟨hβ₂, hP₂⟩
@@ -37,7 +37,7 @@ theorem ConZonotope.linComb_outer (C₁ C₂ : ConZonotope α) :
   have hm1 : (1:ℝ) - lam ≤ 1 := by linarith
   -- stated at their own instances, since the goal spells the count as a projection
   have hpar : ((blockLast (C₁.h + C₂.h)) (Fin.append (Fin.append (lam • β₁) ((1 - lam) • β₂))
-      fun _ : Fin 1 => 2 * lam - 1) + 1) / 2 = lam := by
+      fun _ : Fin 1 => 2 * lam - 1) + 1) / 2 = lam := by -- --- PROOF ---
     rw [blockLast_append]
     ring
   have hpar' : (((-blockLast (C₁.h + C₂.h)) (Fin.append (Fin.append (lam • β₁) ((1 - lam) • β₂))

@@ -40,7 +40,7 @@ variable {n m : ℕ}
 theorem PolyZonotope.quadEval_sum_ext (Q : Fin m → Mat ℝ n n) (S : PolyZonotope (Vec ℝ n))
     (a : Fin S.p → ℝ) :
     quadEval Q (∑ l, extM S a l • extG S l)
-      = ∑ l, monomial (quadMapE S) a l • quadMapG Q S l := by
+      = ∑ l, monomial (quadMapE S) a l • quadMapG Q S l := by -- --- PROOF ---
   funext k
   have hmulsum : Q k *ᵥ (∑ l, extM S a l • extG S l)
       = ∑ l, Q k *ᵥ (extM S a l • extG S l) :=

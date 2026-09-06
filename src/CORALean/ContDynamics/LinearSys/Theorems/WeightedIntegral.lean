@@ -47,13 +47,13 @@ theorem integral_pow_smul_mem {S : Set (Vec ℝ n)} (hconv : Convex ℝ S) (hclo
     (hbdd : Bornology.IsBounded S) {f : ℝ → Vec ℝ n} {r : ℝ} (hr : 0 < r) (i : ℕ)
     (hmeas : AEStronglyMeasurable f (volume.restrict (Set.Ioc 0 r)))
     (hmem : ∀ τ ∈ Set.Ioc (0:ℝ) r, f τ ∈ S) :
-    (∫ τ in (0:ℝ)..r, τ ^ i • f τ) ∈ (r ^ (i + 1) / ((i : ℝ) + 1)) • S := by
+    (∫ τ in (0:ℝ)..r, τ ^ i • f τ) ∈ (r ^ (i + 1) / ((i : ℝ) + 1)) • S := by -- --- PROOF ---
   obtain ⟨C, hC⟩ := hbdd.exists_norm_le
   set t : Set ℝ := Set.Ioc 0 r with ht
   set w : ℝ → NNReal := fun τ => (τ ^ i).toNNReal with hw
   set ν : Measure ℝ := volume.withDensity fun τ => (w τ : ℝ≥0∞) with hν
   -- the weight is what it looks like on `t`, and continuous everywhere
-  have hwval : ∀ τ ∈ t, ((w τ : ℝ)) = τ ^ i := by
+  have hwval : ∀ τ ∈ t, ((w τ : ℝ)) = τ ^ i := by -- --- PROOF ---
     intro τ hτ
     exact Real.coe_toNNReal _ (pow_nonneg hτ.1.le i)
   have hwcont : Continuous fun τ : ℝ => ((w τ : ℝ)) := by
