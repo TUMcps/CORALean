@@ -1,4 +1,4 @@
-import CORALean.NN.Theorems.PropagateOuter
+import CORALean.NN.Theorems.OutputSetSubset
 import CORALean.Specification.Theorems.HoldsOfOuter
 
 /-!
@@ -37,17 +37,5 @@ theorem NeuralNetwork.holdsAll_of_propagate (nn : NeuralNetwork S n m) (X : S n)
     (h : Specification.HoldsAll specs (construct (nn.propagate X))) :
     Specification.HoldsAll specs (nn.outputSet X) :=
   Specification.holdsAll_of_outer specs (nn.outputSet_subset X) h
-
-/-- The same read one input at a time, which is how a requirement on a network
-is normally stated. -/
-theorem NeuralNetwork.mem_safeSet (nn : NeuralNetwork S n m) (X : S n) {safe : Set (Vec ℝ m)}
-    (h : construct (nn.propagate X) ⊆ safe) {x : Vec ℝ n} (hx : x ∈ construct X) :
-    nn.eval x ∈ safe :=
-  h (nn.propagate_outer X x hx)
-
-theorem NeuralNetwork.not_mem_unsafeSet (nn : NeuralNetwork S n m) (X : S n)
-    {unsafe' : Set (Vec ℝ m)} (h : Disjoint (construct (nn.propagate X)) unsafe')
-    {x : Vec ℝ n} (hx : x ∈ construct X) : nn.eval x ∉ unsafe' :=
-  Set.disjoint_left.mp h (nn.propagate_outer X x hx)
 
 end CORALean.Real

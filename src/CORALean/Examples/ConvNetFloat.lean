@@ -2,7 +2,9 @@ import CORALean.Examples.ConvNet
 import CORALean.NN.Float.Layers.Pooling
 import CORALean.NN.Float.Layers.ReLU
 import CORALean.NN.Float.Layers.Softmax
-import CORALean.NN.Theorems.Robustness
+import CORALean.NN.Theorems.Classifies
+import CORALean.NN.Theorems.MarginDir
+import CORALean.NN.Theorems.PropagateOuter
 
 /-!
 # The same convolutional network, over a floating-point scalar

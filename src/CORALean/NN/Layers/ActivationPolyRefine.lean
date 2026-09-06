@@ -1,7 +1,7 @@
 import CORALean.NN.Layers.ActivationPolyInflate
 import CORALean.NN.Layers.PolyRangeConvergence
 import CORALean.NN.Layers.PolyRelaxationPad
-import CORALean.NN.Operations.RefinementConvergent
+import CORALean.NN.Operations.Convergent
 
 /-!
 # The activation layer as a refinable layer

@@ -32,9 +32,4 @@ theorem NeuralNetwork.propagate_outer : ∀ {n m : ℕ} (nn : NeuralNetwork S n 
   | _, _, .cons L rest, s, x, hx =>
       rest.propagate_outer _ _ (L.propagate_outer s x hx)
 
-theorem NeuralNetwork.outputSet_subset {n m : ℕ} (nn : NeuralNetwork S n m) (X : S n) :
-    nn.outputSet X ⊆ construct (nn.propagate X) := by
-  rintro _ ⟨x, hx, rfl⟩
-  exact nn.propagate_outer X x hx
-
 end CORALean.Real

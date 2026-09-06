@@ -1,4 +1,4 @@
-import CORALean.NN.Operations.RefinementConvergent
+import CORALean.NN.Operations.Convergent
 import CORALean.NN.Theorems.LinearExact
 
 /-!

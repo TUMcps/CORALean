@@ -1,4 +1,5 @@
-import CORALean.NN.Operations.RefinementConvergent
+import CORALean.NN.Operations.NetworkConvergent
+import CORALean.NN.Operations.PropagateAt
 import CORALean.NN.Operations.Schedule
 
 /-!

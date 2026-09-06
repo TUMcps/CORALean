@@ -1,5 +1,7 @@
+import CORALean.NN.Theorems.Misclassified
 import CORALean.NN.Theorems.SuffExplanationAbstract
 import CORALean.NN.Theorems.SuffExplanation
+import CORALean.Specification.Theorems.HoldsOfOuter
 
 /-!
 # Transfer: sufficient for the abstract network is sufficient for the original

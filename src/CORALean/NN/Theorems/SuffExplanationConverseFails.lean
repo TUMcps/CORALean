@@ -1,6 +1,7 @@
 import CORALean.ContSet.Interval.Real.Instances
 import CORALean.ContSet.Interval.Real.Operations.Mtimes
 import CORALean.NN.Layers.Linear
+import CORALean.NN.Theorems.PropagateOuter
 import CORALean.NN.Theorems.SuffExplanationAbstract
 import CORALean.NN.Theorems.SuffExplanation
 
