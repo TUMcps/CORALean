@@ -1,11 +1,14 @@
 import CORALean.ContDynamics.LinearSysDT.Theorems.HeldToTrajectory
 import CORALean.ContDynamics.LinearSysDT.Theorems.HoldsOfOutput
 import CORALean.ContDynamics.LinearSysDT.Theorems.HoldsOfReach
+import CORALean.ContDynamics.LinearSysDT.Theorems.NotHoldsOfSimulate
 import CORALean.ContDynamics.LinearSysDT.Theorems.OutputOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachHeldOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOneOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOuterOn
+import CORALean.ContDynamics.LinearSysDT.Theorems.SimulateMemReach
+import CORALean.ContDynamics.LinearSysDT.Theorems.SimulateTrajectory
 
 /-!
 # What `LinearSysDT` guarantees
@@ -22,4 +25,8 @@ not only about where it is.
 `HeldToTrajectory` and `ReachHeldOuter` are the zero-order-hold case: a held run
 is a restriction of `Trajectory`, and `reachHeld` encloses it exactly, in closed
 form rather than through `reach`'s per-step jitter.
+
+`SimulateTrajectory` and `SimulateMemReach` are `simulate` sampling one run and
+landing inside `reach`; `NotHoldsOfSimulate` is why that is worth having — one
+sampled run can falsify a specification an enclosure can only fail to prove.
 -/
