@@ -1,5 +1,6 @@
 import CORALean.ContSet.Interval.Real.Operations.Point
 import CORALean.ContSet.Interval.Real.Operations.Center
+import CORALean.ContSet.Interval.Real.Operations.Recentre
 import CORALean.ContSet.Interval.Real.Operations.Radius
 import CORALean.ContSet.Interval.Real.Operations.IsNonempty
 import CORALean.ContSet.Interval.Real.Operations.And
@@ -35,6 +36,8 @@ dominating every member of the box, for bounding its norm uniformly.
 
 `Point` and `Center`/`Radius` are the two readings of a box the enclosure
 proofs elsewhere want: the degenerate one, and the centre-plus-deviation split.
+`Recentre` shifts by that same centre, sound only on a nonempty box — see
+`Instances.lean` for why that keeps the class itself uninstantiated.
 `IsNonempty` is the predicate `Theorems/IsNonempty` characterises. `SplitAt`
 bisects one coordinate at the midpoint, the concrete splitter
 `NeuralNetwork.holds_of_split` is verified at.

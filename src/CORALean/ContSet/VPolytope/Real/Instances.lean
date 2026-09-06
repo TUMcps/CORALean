@@ -1,3 +1,4 @@
+import CORALean.ContSet.VPolytope.Real.Operations.ConstructPoint
 import CORALean.ContSet.VPolytope.Real.Theorems.LinCombOuter
 import CORALean.ContSet.VPolytope.Real.Theorems.MtimesExact
 import CORALean.ContSet.VPolytope.Real.Theorems.MtimesMatPolytopeOuter
@@ -8,11 +9,14 @@ import CORALean.ContSet.VPolytope.Real.Theorems.PlusExact
 
 `reduce` is the identity: there is no order to reduce to, and dropping a vertex
 shrinks the set, which is not what `reduce` may return.
+
+No `Recentre`: there is no centre to pick at `k = 0`, where `construct` is `∅`
+and no choice of one can put `0` inside the recentred polytope either.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       01-September-2026
--- Last update:   ---
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 
@@ -29,6 +33,12 @@ variable {n : ℕ}
 
 instance {α : Type} [AddCommGroup α] [Module ℝ α] : ContSet (VPolytope α) α :=
   ⟨VPolytope.construct⟩
+
+instance {α : Type} [AddCommGroup α] [Module ℝ α] : OfPoint (VPolytope α) α where
+  ofPoint := VPolytope.point
+  mem_ofPoint v := by
+    show v ∈ (VPolytope.point v).construct
+    rw [VPolytope.construct_point]; exact rfl
 
 instance : Plus (VPolytope (Vec ℝ n)) (Vec ℝ n) where
   plus := VPolytope.plus
