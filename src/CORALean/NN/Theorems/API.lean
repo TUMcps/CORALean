@@ -4,12 +4,15 @@ import CORALean.NN.Theorems.Classifies
 import CORALean.NN.Theorems.DisjointMisclassifiedOfBounds
 import CORALean.NN.Theorems.EvalDifferentiable
 import CORALean.NN.Theorems.EvalLipschitz
+import CORALean.NN.Theorems.ExistsMergeBucketAll
 import CORALean.NN.Theorems.LinearConvergent
 import CORALean.NN.Theorems.LinearExact
 import CORALean.NN.Theorems.LinearLipschitz
 import CORALean.NN.Theorems.LinearWithErrorZero
 import CORALean.NN.Theorems.MarginDir
 import CORALean.NN.Theorems.MemSafeSet
+import CORALean.NN.Theorems.MergeBucketCardMono
+import CORALean.NN.Theorems.MergeBucketMono
 import CORALean.NN.Theorems.MergeErrorSplit
 import CORALean.NN.Theorems.MergeErrorWidthLe
 import CORALean.NN.Theorems.MergeErrorWidthLeRow
@@ -57,15 +60,15 @@ import CORALean.NN.Theorems.HoldsAllOfPropagate
 /-!
 # What a network's enclosure guarantees, collected
 
-`PropagateOuter` is the induction over the graph and `OutputSetSubset` its pointwise form;
-`Verified` composes that with `Specification.holds_of_outer`, and `MemSafeSet`/`NotMemUnsafeSet`
-read it directly against a safe or unsafe set. `Robustness` is the usual classifier requirement,
-out of `Misclassified`, `MarginDir`, `DisjointMisclassifiedOfBounds` and `Classifies`.
+`PropagateOuter`/`OutputSetSubset` are the graph induction, its pointwise form; `Verified` composes
+`Specification.holds_of_outer`, read by `MemSafeSet`/`NotMemUnsafeSet` against a safe or unsafe set.
+`Robustness` builds on `Misclassified`, `MarginDir`, `DisjointMisclassifiedOfBounds`, `Classifies`.
 
 `LinearWithErrorZero`, `NeuronMergingOuter`, `NeuronMergingNetworkOuter`, `MergeErrorSplit`,
-`MergeErrorWidthLe` and `MergeErrorWidthLeRow` are neuron merging [1]: error-free linear
-layers, containment at every bucket, disjoint buckets by Minkowski sum, and cost linear in
-`δ` — by a bucket's row, then by any row, which `ExistsMergeTolerance` turns into a tolerance.
+`MergeErrorWidthLe` and `MergeErrorWidthLeRow` are neuron merging [1]: error-free linear layers,
+bucket containment, the Minkowski-sum split, and cost linear in `δ`, which `ExistsMergeTolerance`
+turns into a tolerance. `MergeBucketMono`, `MergeBucketCardMono` and `ExistsMergeBucketAll` are its
+rate-side twin: `δ` only grows the bucket, until a large enough one takes every neuron.
 
 `SuffExplanation`, `MinSuffExplanation` and their `Abstract` forms are local explanations [2].
 `SuffExplanationTransfer` carries sufficiency to the original network, discharged at a merged
