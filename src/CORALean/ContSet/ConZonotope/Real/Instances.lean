@@ -1,6 +1,7 @@
 import CORALean.ContSet.ContSet.CompactSet
 import CORALean.ContSet.ContSet.ConvexSet
 import CORALean.ContSet.Interval.Real.Instances
+import CORALean.ContSet.ConZonotope.Real.Theorems.AndExact
 import CORALean.ContSet.ConZonotope.Real.Theorems.Convex
 import CORALean.ContSet.ConZonotope.Real.Theorems.IsCompact
 import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombOuter
@@ -14,11 +15,14 @@ import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceOuter
 
 Noncomputable, as `reduce` is: it ranks generators, and ordering reals cannot be
 computed.
+
+`And` from `and_exact` read in the `⊆` direction: two constrained zonotopes
+intersect to one exactly, which is the whole reason the representation exists.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       01-September-2026
--- Last update:   ---
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 
@@ -49,6 +53,12 @@ instance {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α] : CompactSet (
 instance : Plus (ConZonotope (Vec ℝ n)) (Vec ℝ n) where
   plus := ConZonotope.plus
   plus_outer C₁ C₂ := (ConZonotope.plus_exact C₁ C₂).subset
+
+/-- The anonymous constructor, not named fields: `reduce`'s own imports reach
+`Global.Partition`'s `Split ... and ...` notation, which makes `and` a token
+here rather than an identifier, so `and := ...` cannot parse. -/
+instance : And (ConZonotope (Vec ℝ n)) (Vec ℝ n) :=
+  ⟨ConZonotope.and, fun C₁ C₂ => (ConZonotope.and_exact C₁ C₂).subset⟩
 
 /-- A separate instance, so a caller that never combines does not depend on the
 interpolation parameter this adds. -/

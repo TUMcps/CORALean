@@ -1,4 +1,5 @@
 import CORALean.ContSet.HPolytope.Real.HPolytope
+import CORALean.ContSet.HPolytope.Real.Theorems.AndExact
 
 /-!
 # What `HPolytope` instantiates
@@ -17,8 +18,8 @@ here needs a type excluding unbounded sets first.
 
 `OfInterval` could be instantiated as it stands, `Interval.hPolytope` being
 exact, but the class lives in `Conversion`, so the instance would put every
-importer of `OfInterval` behind `HPolytope`. `and`, `comap`, `mapEquiv` and
-`translate` stay named operations: each is exact and there is no class for it.
+importer of `OfInterval` behind `HPolytope`. `And` now lands too, at any real
+module; `comap`, `mapEquiv` and `translate` stay named, each exact with none.
 -/
 
 -- Authors:       Tobias Ladner
@@ -41,6 +42,10 @@ instance : ContSet (HPolytope α) α := ⟨HPolytope.construct⟩
 instance : Reduce (HPolytope α) α where
   reduce P _ := P
   reduce_outer _ _ := subset_rfl
+
+instance : And (HPolytope α) α where
+  and := HPolytope.and
+  and_outer P₁ P₂ := (HPolytope.and_exact P₁ P₂).subset
 
 end CORALean.Real
 

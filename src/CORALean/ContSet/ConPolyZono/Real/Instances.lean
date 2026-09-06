@@ -1,4 +1,5 @@
 import CORALean.ContSet.ContSet.CompactSet
+import CORALean.ContSet.ConPolyZono.Real.Theorems.AndExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.IsCompact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.MtimesExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.PlusExact
@@ -7,8 +8,8 @@ import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceOuter
 /-!
 # What `ConPolyZono` instantiates
 
-`ContSet`, `CompactSet`, `Plus`, `Mtimes` and `Reduce`, each obligation a
-theorem from `Theorems` read in the `⊆` direction.
+`ContSet`, `CompactSet`, `Plus`, `Mtimes`, `Reduce` and `And`, each obligation
+a theorem from `Theorems` read in the `⊆` direction.
 
 No `ConvexSet`: the sets are generally not convex, which is the point of the
 representation. `CompactSet` holds all the same, and on the constraints rather
@@ -20,14 +21,13 @@ the constraint block alone; `compact`, which it runs first, is what bounds the
 constraint counts. No `LinComb`: it would have to relax the independent block as
 `PolyZonotope`'s does, and nothing here is faked.
 
-`and` and `quadMap` have no class to instantiate, so a caller names
-`ConPolyZono.and` and `ConPolyZono.quadMap`. `and` would deserve one most, but
-the second implementor, `ConZonotope`, could state it at convex sets only.
+`quadMap` alone has no class to instantiate, so a caller names
+`ConPolyZono.quadMap` directly — the one operation `And` (#10) does not cover.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   05-September-2026
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 
@@ -52,6 +52,12 @@ instance {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α] : CompactSet (
 instance : Plus (ConPolyZono α) α where
   plus := ConPolyZono.plus
   plus_outer C₁ C₂ := (ConPolyZono.plus_exact C₁ C₂).subset
+
+/-- The anonymous constructor, not named fields: `reduce`'s own imports reach
+`Global.Partition`'s `Split ... and ...` notation, which makes `and` a token
+here rather than an identifier, so `and := ...` cannot parse. -/
+instance : And (ConPolyZono (Vec ℝ n)) (Vec ℝ n) :=
+  ⟨ConPolyZono.and, fun C₁ C₂ => (ConPolyZono.and_exact C₁ C₂).subset⟩
 
 /-- Pinned to `Vec`, as `PolyZonotope`'s is: a generator ranking and the box that
 absorbs what it drops are both entrywise. -/
