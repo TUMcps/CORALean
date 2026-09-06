@@ -13,17 +13,17 @@ between `m` and `M` times the increment of its argument, so `σ t - λ t` stays
 within `(M - m) (u - l)` of its value at `l`, and recentring halves that. The
 error is quadratic in the box width wherever the bracket is — `M - m` shrinks
 with the box — against the linear `(σ u - σ l) / 2` that monotonicity gives.
+The theorem asks only what that argument uses: continuity on the closed box and
+a derivative on the open one, so a kink at an endpoint costs nothing.
 
-It is not the tight constant. The bracket alone allows a factor two better,
-anchored at the box's midpoint rather than at its left end; a factor four below
-*that* is the tangent point, where `σ' = λ` — a logarithm for these functions.
+It is not the tight constant: the bracket alone allows a factor two better,
+anchored at the midpoint, and four below that at the tangent point `σ' = λ`.
 
-`Relaxation.ofAffineConj` below needs none of this again for an affine conjugate
-of a function already relaxed. -/
+`Relaxation.ofAffineConj` needs none of this again, for an affine conjugate. -/
 
 -- Authors:       Tobias Ladner
 -- Written:       05-September-2026
--- Last update:   ---
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 
@@ -34,7 +34,8 @@ namespace CORALean.Real
 /-- The mean value theorem read as a bracket: with `m ≤ σ' ≤ M` over the box,
 `σ t - lam * t` cannot leave the two ends the bracket allows. -/
 theorem sub_mul_bounds_of_deriv {σ σ' : ℝ → ℝ} {m M lam l u t : ℝ}
-    (hd : ∀ x, HasDerivAt σ (σ' x) x)
+    (hc : ContinuousOn σ (Set.Icc l u))
+    (hd : ∀ x, l < x → x < u → HasDerivAt σ (σ' x) x)
     (hm : ∀ x, l ≤ x → x ≤ u → m ≤ σ' x) (hM : ∀ x, l ≤ x → x ≤ u → σ' x ≤ M)
     (hml : m ≤ lam) (hlM : lam ≤ M) (hl : l ≤ t) (hu : t ≤ u) :
     σ l - lam * l + (m - lam) * (u - l) ≤ σ t - lam * t
@@ -46,11 +47,11 @@ theorem sub_mul_bounds_of_deriv {σ σ' : ℝ → ℝ} {m M lam l u t : ℝ}
     have h₁ : 0 ≤ (lam - m) * (u - l) := mul_nonneg (by linarith) hw
     have h₂ : 0 ≤ (M - lam) * (u - l) := mul_nonneg (by linarith) hw
     exact ⟨by linarith, by linarith⟩
-  · have hcont : ContinuousOn σ (Set.Icc l t) :=
-      fun x _ => (hd x).continuousAt.continuousWithinAt
-    obtain ⟨c, hc, hceq⟩ := exists_hasDerivAt_eq_slope σ σ' hlt hcont fun x _ => hd x
-    have hlow := hm c (le_of_lt hc.1) (le_trans (le_of_lt hc.2) hu)
-    have hhigh := hM c (le_of_lt hc.1) (le_trans (le_of_lt hc.2) hu)
+  · have hcont : ContinuousOn σ (Set.Icc l t) := hc.mono (Set.Icc_subset_Icc le_rfl hu)
+    obtain ⟨c, hcm, hceq⟩ := exists_hasDerivAt_eq_slope σ σ' hlt hcont
+      fun x hx => hd x hx.1 (hx.2.trans_le hu)
+    have hlow := hm c (le_of_lt hcm.1) (le_trans (le_of_lt hcm.2) hu)
+    have hhigh := hM c (le_of_lt hcm.1) (le_trans (le_of_lt hcm.2) hu)
     rw [hceq] at hlow hhigh
     have hpos : 0 < t - l := by linarith
     -- the slope over `[l, t]` is in the bracket, so the increment is bracketed too
@@ -74,7 +75,9 @@ noncomputable def Relaxation.ofDeriv {σ σ' : ℝ → ℝ} (hd : ∀ x, HasDeri
   offset l u := σ l - lam l u * l + ((lo l u + hi l u) / 2 - lam l u) * (u - l)
   error l u := (hi l u - lo l u) * (u - l) / 2
   sound {l u t} hl hu := by
-    obtain ⟨h₁, h₂⟩ := sub_mul_bounds_of_deriv hd (hlo l u) (hhi l u)
+    obtain ⟨h₁, h₂⟩ := sub_mul_bounds_of_deriv
+      (fun x _ => (hd x).continuousAt.continuousWithinAt) (fun x _ _ => hd x)
+      (hlo l u) (hhi l u)
       (hlam l u (le_trans hl hu)).1 (hlam l u (le_trans hl hu)).2 hl hu
     rw [abs_le]
     exact ⟨by linarith, by linarith⟩

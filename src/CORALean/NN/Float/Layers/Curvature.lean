@@ -23,7 +23,7 @@ instead, rounding where the exact-real version needs no slack at all. -/
 
 -- Authors:       Tobias Ladner
 -- Written:       05-September-2026
--- Last update:   ---
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 
@@ -66,8 +66,9 @@ def Relaxation.ofDeriv (σ' : ℝ → ℝ) (hd : ∀ x, HasDerivAt σ (σ' x) x)
     (subUp (curvMid E lo hi lam l u) (curvLo E lo lam l u))
   sound {l u t} hl hu := by
     have hle : toReal l ≤ toReal u := le_trans hl hu
-    obtain ⟨hlow, hhigh⟩ := Real.sub_mul_bounds_of_deriv hd (hlo l u) (hhi l u)
-      (hlam l u hle).1 (hlam l u hle).2 hl hu
+    obtain ⟨hlow, hhigh⟩ := Real.sub_mul_bounds_of_deriv
+      (fun x _ => (hd x).continuousAt.continuousWithinAt) (fun x _ _ => hd x)
+      (hlo l u) (hhi l u) (hlam l u hle).1 (hlam l u hle).2 hl hu
     have hwidth := sub_le_subUp u l
     have hA : toReal (curvLo E lo lam l u) ≤ σ t - toReal (lam l u) * t := by
       have hfac := subDown_le_sub (lo l u) (lam l u)
