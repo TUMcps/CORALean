@@ -11,12 +11,13 @@ picks a part and `l` an index within it. Two parts are the common case and read
 no side condition, since the equivalence already rules out overlap.
 
 The type is `Partition`; `Split` is only its notation, since naming the two
-alike would make `Partition` a keyword.
+alike would make `Partition` a keyword. `ofPred` builds one out of a decidable
+predicate, for a caller that only has one of those, such as a merge bucket.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       16-August-2026
--- Last update:   ---
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 
@@ -69,11 +70,34 @@ the permutation that orders the indices. -/
 def Partition.reindex (P : Split α into βₗ and βᵣ) (e : α' ≃ α) : Split α' into βₗ and βᵣ where
   index := P.index.trans e.symm
 
+/-- The split a decidable predicate cuts `Fin n` into: the neurons failing `p`
+survive on the left, those satisfying it are the bucket on the right. Built from
+`Fintype.equivFin` on each subtype, `Equiv.sumCompl` for the swap and `p`. -/
+noncomputable def Partition.ofPred {n : ℕ} (p : Fin n → Prop) [DecidablePred p] :
+    Split (Fin n) into (Fin (Fintype.card {i : Fin n // ¬ p i}))
+      and (Fin (Fintype.card {i : Fin n // p i})) where
+  index := ((Pair.equivSum _ _).trans
+      (Equiv.sumCongr (Fintype.equivFin {i : Fin n // ¬ p i}).symm
+        (Fintype.equivFin {i : Fin n // p i}).symm)).trans
+    ((Equiv.sumComm {i : Fin n // ¬ p i} {i : Fin n // p i}).trans (Equiv.sumCompl p))
+
 def Partition.on (P : Split α into β) (k : κ) (l : β k) : α := P.index ⟨k, l⟩
 
 def Partition.left (P : Split α into βₗ and βᵣ) (l : βₗ) : α := P.on true l
 
 def Partition.right (P : Split α into βₗ and βᵣ) (l : βᵣ) : α := P.on false l
+
+/-- Every bucket index satisfies the predicate it was cut out by. -/
+theorem Partition.ofPred_right {n : ℕ} (p : Fin n → Prop) [DecidablePred p]
+    (l : Fin (Fintype.card {i : Fin n // p i})) :
+    p ((Partition.ofPred p).right l) :=
+  ((Fintype.equivFin {i : Fin n // p i}).symm l).property
+
+/-- Every surviving index fails the predicate that cut out the bucket. -/
+theorem Partition.ofPred_left {n : ℕ} (p : Fin n → Prop) [DecidablePred p]
+    (l : Fin (Fintype.card {i : Fin n // ¬ p i})) :
+    ¬ p ((Partition.ofPred p).left l) :=
+  ((Fintype.equivFin {i : Fin n // ¬ p i}).symm l).property
 
 theorem Partition.sum_split [AddCommMonoid M] [Fintype α] [Fintype κ] [∀ k, Fintype (β k)]
     (P : Split α into β) (f : α → M) :

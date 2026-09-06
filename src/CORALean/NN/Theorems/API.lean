@@ -11,6 +11,7 @@ import CORALean.NN.Theorems.LinearWithErrorZero
 import CORALean.NN.Theorems.MarginDir
 import CORALean.NN.Theorems.MemSafeSet
 import CORALean.NN.Theorems.MergeErrorSplit
+import CORALean.NN.Theorems.MergeErrorWidthLe
 import CORALean.NN.Theorems.MinSuffExplanation
 import CORALean.NN.Theorems.MinSuffExplanationAbstract
 import CORALean.NN.Theorems.MinSuffExplanationCounterexample
@@ -59,9 +60,9 @@ import CORALean.NN.Theorems.HoldsAllOfPropagate
 read it directly against a safe or unsafe set. `Robustness` is the usual classifier requirement,
 out of `Misclassified`, `MarginDir`, `DisjointMisclassifiedOfBounds` and `Classifies`.
 
-`LinearWithErrorZero`, `NeuronMergingOuter`, `NeuronMergingNetworkOuter` and `MergeErrorSplit` are
-the sound network reduction by neuron merging [1]: a plain linear layer as its error-free case,
-single-bucket containment at every bucket and any layer, and disjoint buckets by Minkowski sum.
+`LinearWithErrorZero`, `NeuronMergingOuter`, `NeuronMergingNetworkOuter`, `MergeErrorSplit` and
+`MergeErrorWidthLe` are neuron merging [1]: a linear layer's error-free case, containment
+at every bucket and any layer, disjoint buckets by Minkowski sum, and cost linear in `δ`.
 
 `SuffExplanation`, `MinSuffExplanation` and their `Abstract` forms are local explanations [2].
 `SuffExplanationTransfer` carries sufficiency to the original network, discharged at a merged one;

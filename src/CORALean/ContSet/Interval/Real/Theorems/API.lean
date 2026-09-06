@@ -15,6 +15,7 @@ import CORALean.ContSet.Interval.Real.Theorems.MemPoint
 import CORALean.ContSet.Interval.Real.Theorems.MtimesIntervalMatOuter
 import CORALean.ContSet.Interval.Real.Theorems.MtimesIsNonempty
 import CORALean.ContSet.Interval.Real.Theorems.MtimesOuter
+import CORALean.ContSet.Interval.Real.Theorems.MtimesWidth
 import CORALean.ContSet.Interval.Real.Theorems.ReindexExact
 
 /-!
@@ -25,5 +26,7 @@ set-valued integral needs: convex, closed, bounded, and the two last combined
 into the compactness an interface field asks for. `MemMat` is membership at an
 interval matrix, read by row and column, and `MemCenter` is the one point a box
 always offers a layer that has to commit to a value. `MtimesIsNonempty` is why an
-image box needs no hypothesis before it is used as one.
+image box needs no hypothesis before it is used as one. `MtimesWidth` is how far
+apart its bounds are, row by row, which is what a caller bounding an error box
+against a tolerance needs.
 -/
