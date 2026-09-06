@@ -31,7 +31,9 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceGirardOrderLe
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceOrder
 import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsSubPowLeEDiff
 import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsSubMonomialLe
+import CORALean.ContSet.PolyZonotope.Real.Theorems.SubMonomialNonpos
 import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxExpOuter
+import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxExpEvenOuter
 
 /-!
 # What `PolyZonotope` guarantees
@@ -50,11 +52,11 @@ that to a polynomial per coordinate and `evalPolyReal_ofFn` matches Horner to th
 `point_mem_construct` is the way back and, once `evalPoly_q` says nothing is independent,
 `exists_point_of_q_zero` the way there. `relaxExp_outer` holds at every partition naming two
 generators, `eDiff` owing no proof of optimality: it bounds the drift from above, and a
-sharper bound would only be more precise.
+sharper bound would only be more precise. `relaxExpEven_outer` adds the evenness that makes the
+drift one-sided and takes half of it into the centre.
 
-`quadMap_exact` is the one that distinguishes the representation: no convex
-representation here can state it. `compact_exact` is the one an order bound
-rests on: it says the generator count may fall without the set moving, which is
-what `reduce_outer` then trades against precision. The monomial facts and
-`MemConstruct` are what every one of them is stated over.
+`quadMap_exact` is the one that distinguishes the representation: no convex representation here
+can state it. `compact_exact` is the one an order bound rests on: it says the generator count
+may fall without the set moving, which is what `reduce_outer` then trades against precision.
+The monomial facts and `MemConstruct` are what every one of them is stated over.
 -/
