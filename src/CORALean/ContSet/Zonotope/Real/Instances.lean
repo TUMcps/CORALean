@@ -7,6 +7,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.LinCombOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.LmtimesSingletonOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 import CORALean.ContSet.Zonotope.Real.Theorems.MtimesIntervalMatOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.MtimesMatZonotopeOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOuter
 
@@ -105,6 +106,15 @@ noncomputable instance :
   mtimes := Zonotope.mtimesIntervalMat
   mtimes_outer IM Z := by
     exact Zonotope.mtimesIntervalMat_outer IM Z
+
+/-- The matrix-zonotope family: CORA's `matZonotope`, per `Zonotope.lean`'s
+docstring, not a representation of its own. -/
+scoped notation "𝕄𝒵" => fun m n => Zonotope (Mat ℝ m n)
+
+/-- Multiplying a set by a matrix zonotope: CORA's `matZonotope * zonotope`. -/
+noncomputable instance : Mtimes 𝕄𝒵 𝒵 where
+  mtimes := Zonotope.mtimesMatZonotope
+  mtimes_outer M Z := Zonotope.mtimesMatZonotope_outer M Z
 
 end CORALean.Real
 
