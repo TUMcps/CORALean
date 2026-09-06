@@ -23,6 +23,7 @@ import CORALean.ContSet.Interval.Real.Theorems.MtimesIsNonempty
 import CORALean.ContSet.Interval.Real.Theorems.MtimesOuter
 import CORALean.ContSet.Interval.Real.Theorems.MtimesWidth
 import CORALean.ContSet.Interval.Real.Theorems.ReindexExact
+import CORALean.ContSet.Interval.Real.Theorems.SplitAtCover
 
 /-!
 # What `Interval` guarantees
@@ -40,5 +41,6 @@ against an interval matrix share, and `MatMulOuter` is its use on `matMul`, an
 enclosure and not an equality since a product entry's `k`-summands are bounded
 independently. `MatPowOuter` lifts that along `matPow`'s recursion, growing the
 same dependency loss with every power. `SmulOuter` is `MulBetweenEndpoints` read
-back through `Entrywise`, for scaling a box by a real.
+back through `Entrywise`. `SplitAtCover` is why `splitAt` is sound to feed
+`NeuralNetwork.holds_of_split`: its two halves cover the box they bisected.
 -/

@@ -17,6 +17,7 @@ import CORALean.ContSet.Interval.Real.Operations.Smul
 import CORALean.ContSet.Interval.Real.Operations.OfBounds
 import CORALean.ContSet.Interval.Real.Operations.SubsetOfBounds
 import CORALean.ContSet.Interval.Real.Operations.Reindex
+import CORALean.ContSet.Interval.Real.Operations.SplitAt
 
 /-!
 # What `Interval` computes
@@ -32,5 +33,7 @@ a box by a real, corner-swapped for a negative one.
 
 `Point` and `Center`/`Radius` are the two readings of a box the enclosure
 proofs elsewhere want: the degenerate one, and the centre-plus-deviation split.
-`IsNonempty` is the predicate `Theorems/IsNonempty` characterises.
+`IsNonempty` is the predicate `Theorems/IsNonempty` characterises. `SplitAt`
+bisects one coordinate at the midpoint, the concrete splitter
+`NeuralNetwork.holds_of_split` is verified at.
 -/
