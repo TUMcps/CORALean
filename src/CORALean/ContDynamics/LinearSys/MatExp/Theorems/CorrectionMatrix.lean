@@ -1,6 +1,11 @@
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeNorm
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrCoeffBound
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpDiff
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpEnclosure
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MulMemMinmax
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.PowSubEq
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ScalarTermLe
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SubLeZero
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableExpDiff
 import CORALean.ContSet.Interval.Real.Theorems.MemMat
 
 /-!
@@ -40,20 +45,6 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ}
-
-/-- A value between `L` and `0`, scaled by anything, stays between `L * w` and `0`
-on whichever side the sign puts it. -/
-theorem mul_mem_minmax {L u w : ℝ} (hLu : L ≤ u) (hu0 : u ≤ 0) :
-    min (L * w) 0 ≤ u * w ∧ u * w ≤ max (L * w) 0 := by
-  rcases le_total 0 w with hw | hw
-  · exact ⟨le_trans (min_le_left _ _) (by nlinarith), le_trans (by nlinarith) (le_max_right _ _)⟩
-  · exact ⟨le_trans (min_le_right _ _) (by nlinarith), le_trans (by nlinarith) (le_max_left _ _)⟩
-
-/-- Rewriting one order of the interpolation error through `s = t/r`. -/
-theorem pow_sub_eq {t r : ℝ} (hr : 0 < r) (m : ℕ) :
-    t ^ m - (t / r) * r ^ m = r ^ m * ((t / r) ^ m - (t / r)) := by
-  rw [div_pow]
-  field_simp
 
 -- a four-step `calc` carrying `Nat.factorial (i + η + 1)` through every rewrite
 set_option maxHeartbeats 400000 in

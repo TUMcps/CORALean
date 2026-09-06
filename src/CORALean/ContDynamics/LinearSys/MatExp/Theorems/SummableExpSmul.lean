@@ -1,0 +1,33 @@
+import CORALean.ContDynamics.LinearSys.MatExp.Enclosures
+
+/-!
+# The series behind `exp (t • A)`, at the unscaled matrix, is summable
+
+The same series `exp_smul_tsum` sums to, stated on its own: summability is
+needed before its terms can be shifted or subtracted term by term, which is
+what subtracting two such series in `ExpDiff` does.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       18-August-2026
+-- Last update:   ---
+-- Last revision: ---
+
+namespace CORALean.Real
+
+open Matrix NormedSpace
+
+attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
+  Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
+
+variable {n : ℕ}
+
+-- `expSeries_summable'` against those same four instances
+set_option maxHeartbeats 200000 in
+theorem summable_exp_smul (A : Mat ℝ n n) (t : ℝ) :
+    Summable (fun i : ℕ => (((Nat.factorial i : ℝ))⁻¹ * t ^ i) • A ^ i) := by
+  have h := expSeries_summable' (𝕂 := ℝ) (t • A)
+  refine h.congr fun i => ?_
+  rw [smul_pow, smul_smul]
+
+end CORALean.Real

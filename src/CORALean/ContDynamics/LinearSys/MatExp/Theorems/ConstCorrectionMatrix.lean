@@ -42,7 +42,7 @@ variable {n : ℕ}
 set_option maxHeartbeats 400000 in
 /-- The interpolation error of the integrated exponential, as one series from
 order `1` up. -/
-theorem MatExp.expIntegralDiff_eq_tsum (A : Mat ℝ n n) (t r : ℝ) (hr : r ≠ 0) :
+theorem aux_expIntegralDiff_eq_tsum (A : Mat ℝ n n) (t r : ℝ) (hr : r ≠ 0) :
     MatExp.expIntegral A t - (t / r) • MatExp.expIntegral A r
       = ∑' i : ℕ, (((Nat.factorial (i + 2) : ℝ))⁻¹
           * (t ^ (i + 2) - (t / r) * r ^ (i + 2))) • A ^ (i + 1) := by
@@ -75,7 +75,7 @@ theorem MatExp.expIntegralDiff_eq_tsum (A : Mat ℝ n n) (t r : ℝ) (hr : r ≠
 -- the same `ring_nf` under `smul`, this time inside a `Summable.congr`
 set_option maxHeartbeats 400000 in
 /-- The same series, shifted past `η`, is summable. -/
-theorem MatExp.summable_expIntegralDiff (A : Mat ℝ n n) (t r : ℝ) :
+theorem aux_summable_expIntegralDiff (A : Mat ℝ n n) (t r : ℝ) :
     Summable (fun i : ℕ => (((Nat.factorial (i + 2) : ℝ))⁻¹
       * (t ^ (i + 2) - (t / r) * r ^ (i + 2))) • A ^ (i + 1)) := by
   have hst := MatExp.summable_expIntegral A t
@@ -176,11 +176,11 @@ theorem MatExp.expIntegralDiff_mem_constCorrectionMatrix (A : Mat ℝ n n) {r : 
   set f : ℕ → Mat ℝ n n := fun i =>
     (((Nat.factorial (i + 2) : ℝ))⁻¹ * (t ^ (i + 2) - (t / r) * r ^ (i + 2))) • A ^ (i + 1)
     with hf
-  have hsum : Summable f := MatExp.summable_expIntegralDiff A t r
+  have hsum : Summable f := aux_summable_expIntegralDiff A t r
   have hsplit := hsum.sum_add_tsum_nat_add η
   have heq : MatExp.expIntegral A t - (t / r) • MatExp.expIntegral A r
       = (∑ i ∈ Finset.range η, f i) + ∑' i : ℕ, f (i + η) := by
-    rw [MatExp.expIntegralDiff_eq_tsum A t r hr.ne', ← hsplit]
+    rw [aux_expIntegralDiff_eq_tsum A t r hr.ne', ← hsplit]
   have htail : ‖∑' i : ℕ, f (i + η)‖ ≤ r * MatExp.expRemainderBound (r • A) η :=
     aux_norm_constTail_le A hr η hε ht0 htr
   refine Interval.mem_mat_iff.mpr fun j k => ?_

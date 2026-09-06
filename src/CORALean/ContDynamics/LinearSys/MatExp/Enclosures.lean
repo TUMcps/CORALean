@@ -68,7 +68,7 @@ noncomputable def MatExp.corrCritical (i : ℕ) : ℝ :=
   (i : ℝ) ^ (-(1:ℝ) / ((i : ℝ) - 1))
 
 /-- How far below zero `s ^ i - s` reaches on `[0,1]`. [1] writes this
-`i^(-i/(i-1)) - i^(-1/(i-1))`, which `corrCoeff_eq` confirms; in this form the
+`i^(-i/(i-1)) - i^(-1/(i-1))`, which `aux_corrCoeff_eq` confirms; in this form the
 exponent is a natural number and the bound is provable as stated. -/
 noncomputable def MatExp.corrCoeff (i : ℕ) : ℝ :=
   MatExp.corrCritical i ^ i - MatExp.corrCritical i
