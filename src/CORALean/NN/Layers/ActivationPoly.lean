@@ -11,11 +11,11 @@ import CORALean.NN.Layers.PolyRelaxation
 /-!
 # The activation layer at a polynomial relaxation
 
-CORA's `evaluatePolyZonotopeNeuron` [1]: each neuron's own degree-`m` fit,
-evaluated on the set through `PolyZonotope.evalPoly`, with only what the fit
-misses thrown into a box. `Layer.activation` keeps a slope and boxes the rest;
-this keeps a degree-`m` dependence on the input factors, and that difference is
-the precision a refinement loop has to spend.
+CORA's `evaluatePolyZonotopeNeuron` [1]: a fit of its own per neuron, at the
+common degree `PolyRelaxationPad` brings them to, evaluated on the set through
+`PolyZonotope.evalPoly` with only what the fits miss thrown into a box.
+`Layer.activation` keeps a slope and boxes the rest; this keeps a degree-`m`
+dependence on the input factors, which is the precision refinement spends.
 
 Pinned to `PolyZonotope` rather than generic in `S`. `evalPoly` has no
 counterpart at a general representation — no convex one is closed under it — so
@@ -36,7 +36,7 @@ then what carries the resulting factors to every member.
 
 -- Authors:       Tobias Ladner
 -- Written:       05-September-2026
--- Last update:   ---
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -45,33 +45,37 @@ open Pointwise ContSet Plus
 
 variable {σ : ℝ → ℝ} {m n : ℕ}
 
-/-- Neuron `i`'s coefficient of `t ^ k`, taken on its own input range: one
-vector per degree, which is how `evalPoly` reads a coefficient. -/
-def PolyRelaxation.coeffVec (P : PolyRelaxation σ m) (I : Interval (Vec ℝ n))
-    (k : Fin (m + 1)) : Vec ℝ n := fun i => P.coeffs (I.inf i) (I.sup i) k
+/-- A layer's abstraction: one relaxation per neuron, all at one degree, which
+is what an order pattern makes of a nonlinear layer [1, Eq. 23]. -/
+abbrev LayerRelaxation (σ : ℝ → ℝ) (n m : ℕ) := Fin n → PolyRelaxation σ m
+
+/-- Neuron `i`'s coefficient of `t ^ k`, from its own fit on its own input
+range: one vector per degree, which is how `evalPoly` reads a coefficient. -/
+def LayerRelaxation.coeffVec (P : LayerRelaxation σ n m) (I : Interval (Vec ℝ n))
+    (k : Fin (m + 1)) : Vec ℝ n := fun i => (P i).coeffs (I.inf i) (I.sup i) k
 
 /-- Those vectors as `PolyZonotope.evalPoly` takes them, lowest degree first. -/
-def PolyRelaxation.coeffList (P : PolyRelaxation σ m) (I : Interval (Vec ℝ n)) :
+def LayerRelaxation.coeffList (P : LayerRelaxation σ n m) (I : Interval (Vec ℝ n)) :
     List (Vec ℝ n) := List.ofFn (P.coeffVec I)
 
 /-- Coordinate `i` of the list is neuron `i`'s own coefficients, which is what
 makes one `evalPoly` call carry `n` different polynomials. -/
-theorem PolyRelaxation.coeffList_coord (P : PolyRelaxation σ m) (I : Interval (Vec ℝ n))
+theorem LayerRelaxation.coeffList_coord (P : LayerRelaxation σ n m) (I : Interval (Vec ℝ n))
     (i : Fin n) : ((P.coeffList I).map fun v => v i)
-      = List.ofFn (P.coeffs (I.inf i) (I.sup i)) := by
-  rw [PolyRelaxation.coeffList, List.map_ofFn]
+      = List.ofFn ((P i).coeffs (I.inf i) (I.sup i)) := by
+  rw [LayerRelaxation.coeffList, List.map_ofFn]
   rfl
 
 /-- The box each neuron's deviation from its own polynomial is confined to.
 Centred at zero, `sound` bounding an absolute value and nothing else. -/
-def PolyRelaxation.box (P : PolyRelaxation σ m) (I : Interval (Vec ℝ n)) :
+def LayerRelaxation.box (P : LayerRelaxation σ n m) (I : Interval (Vec ℝ n)) :
     Interval (Vec ℝ n) where
-  inf := fun i => -P.error (I.inf i) (I.sup i)
-  sup := fun i => P.error (I.inf i) (I.sup i)
+  inf := fun i => -(P i).error (I.inf i) (I.sup i)
+  sup := fun i => (P i).error (I.inf i) (I.sup i)
 
-/-- The activation layer of a polynomial relaxation: `dependent` first, then
-each neuron's fit on the set, then the residual box. -/
-noncomputable def Layer.activationPoly (P : PolyRelaxation σ m) : Layer 𝒫𝒵 n n where
+/-- The activation layer of a layer's relaxation: `dependent` first, then each
+neuron's fit on the set, then the residual box. -/
+noncomputable def Layer.activationPoly (P : LayerRelaxation σ n m) : Layer 𝒫𝒵 n n where
   eval x := fun i => σ (x i)
   propagate s := plus (s.dependent.evalPoly (P.coeffList s.interval))
     (Interval.polyZonotope (P.box s.interval))
@@ -84,25 +88,25 @@ noncomputable def Layer.activationPoly (P : PolyRelaxation σ m) : Layer 𝒫�
     -- the polynomial part, read at the very factors `x` itself came from
     have hpval : (s.dependent.evalPoly (P.coeffList s.interval)).point
           (fun k => a (Fin.cast (s.dependent.evalPoly_p (P.coeffList s.interval)) k))
-        = fun i => evalPoly (P.coeffs (s.interval.inf i) (s.interval.sup i)) (x i) := by
+        = fun i => evalPoly ((P i).coeffs (s.interval.inf i) (s.interval.sup i)) (x i) := by
       rw [PolyZonotope.evalPoly_exact]
       funext i
-      rw [PolyRelaxation.coeffList_coord, PolyZonotope.evalPolyReal_ofFn, ← congrFun hxa i]
+      rw [LayerRelaxation.coeffList_coord, PolyZonotope.evalPolyReal_ofFn, ← congrFun hxa i]
       rfl
-    have hpmem : (fun i => evalPoly (P.coeffs (s.interval.inf i) (s.interval.sup i)) (x i))
+    have hpmem : (fun i => evalPoly ((P i).coeffs (s.interval.inf i) (s.interval.sup i)) (x i))
         ∈ (s.dependent.evalPoly (P.coeffList s.interval)).construct :=
       hpval ▸ PolyZonotope.point_mem_construct _ fun k => ha _
     -- and the deviation from that polynomial is inside the box, which is `sound`
     have hdev : (fun i => σ (x i)
-          - evalPoly (P.coeffs (s.interval.inf i) (s.interval.sup i)) (x i))
+          - evalPoly ((P i).coeffs (s.interval.inf i) (s.interval.sup i)) (x i))
         ∈ (P.box s.interval).construct := by
       intro i
-      have hrel := abs_le.mp (P.sound (hbox i).1 (hbox i).2)
+      have hrel := abs_le.mp ((P i).sound (hbox i).1 (hbox i).2)
       exact ⟨hrel.1, hrel.2⟩
     have hsplit : (fun i => σ (x i))
-        = (fun i => evalPoly (P.coeffs (s.interval.inf i) (s.interval.sup i)) (x i))
+        = (fun i => evalPoly ((P i).coeffs (s.interval.inf i) (s.interval.sup i)) (x i))
           + fun i => σ (x i)
-              - evalPoly (P.coeffs (s.interval.inf i) (s.interval.sup i)) (x i) := by
+              - evalPoly ((P i).coeffs (s.interval.inf i) (s.interval.sup i)) (x i) := by
       funext i
       show σ (x i) = _ + _
       ring

@@ -22,7 +22,7 @@ because `sound` bounds an absolute value at a point the box actually contains.
 
 -- Authors:       Tobias Ladner
 -- Written:       05-September-2026
--- Last update:   ---
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -33,15 +33,15 @@ variable {σ : ℝ → ℝ} {m n : ℕ}
 
 /-- The propagated set is inside the image inflated by `ε`, at any `ε` the
 neurons' doubled errors fit under. -/
-theorem Layer.activationPoly_subset_inflate (P : PolyRelaxation σ m)
+theorem Layer.activationPoly_subset_inflate (P : LayerRelaxation σ n m)
     (s : PolyZonotope (Vec ℝ n)) {ε : ℝ} (hε : 0 ≤ ε)
-    (hP : ∀ i, 2 * P.error (s.interval.inf i) (s.interval.sup i) ≤ ε) :
+    (hP : ∀ i, 2 * (P i).error (s.interval.inf i) (s.interval.sup i) ≤ ε) :
     construct ((Layer.activationPoly P).propagate s)
       ⊆ (Layer.activationPoly P).eval '' construct s + Metric.closedBall 0 ε := by
   -- the box is ordered, so `sound` at its left end says the error is nonnegative
-  have herr : ∀ i, 0 ≤ P.error (s.interval.inf i) (s.interval.sup i) := fun i =>
+  have herr : ∀ i, 0 ≤ (P i).error (s.interval.inf i) (s.interval.sup i) := fun i =>
     le_trans (abs_nonneg _)
-      (P.sound (le_refl (s.interval.inf i)) (s.interval_inf_le_sup i))
+      ((P i).sound (le_refl (s.interval.inf i)) (s.interval_inf_le_sup i))
   intro y hy
   have hy2 : y ∈ (s.dependent.evalPoly (P.coeffList s.interval)).construct
       + (Interval.polyZonotope (P.box s.interval)).construct := by
@@ -62,23 +62,23 @@ theorem Layer.activationPoly_subset_inflate (P : PolyRelaxation σ m)
   -- the polynomial the set evaluates to, one neuron's own fit per coordinate
   have hpval : (s.dependent.evalPoly (P.coeffList s.interval)).point
         (fun k => a' (Fin.cast (s.dependent.evalPoly_p (P.coeffList s.interval)) k))
-      = fun i => evalPoly (P.coeffs (s.interval.inf i) (s.interval.sup i))
+      = fun i => evalPoly ((P i).coeffs (s.interval.inf i) (s.interval.sup i))
           (s.dependent.point a' i) := by
     rw [PolyZonotope.evalPoly_exact]
     funext i
-    rw [PolyRelaxation.coeffList_coord, PolyZonotope.evalPolyReal_ofFn]
+    rw [LayerRelaxation.coeffList_coord, PolyZonotope.evalPolyReal_ofFn]
     rfl
-  have hueq : u = fun i => evalPoly (P.coeffs (s.interval.inf i) (s.interval.sup i))
+  have hueq : u = fun i => evalPoly ((P i).coeffs (s.interval.inf i) (s.interval.sup i))
       (s.dependent.point a' i) := by
     rw [hua, ← hpval, ha']
   -- the residual box, centred at zero, reaches no further than half the budget
   have hbox : ∀ i, |(P.box s.interval).inf i| ≤ ε / 2 ∧ |(P.box s.interval).sup i| ≤ ε / 2 := by
     intro i
     constructor
-    · show |-P.error (s.interval.inf i) (s.interval.sup i)| ≤ ε / 2
+    · show |-(P i).error (s.interval.inf i) (s.interval.sup i)| ≤ ε / 2
       rw [abs_neg, abs_of_nonneg (herr i)]
       linarith [hP i]
-    · show |P.error (s.interval.inf i) (s.interval.sup i)| ≤ ε / 2
+    · show |(P i).error (s.interval.inf i) (s.interval.sup i)| ≤ ε / 2
       rw [abs_of_nonneg (herr i)]
       linarith [hP i]
   have hvnorm : ‖v‖ ≤ ε / 2 :=
@@ -91,8 +91,8 @@ theorem Layer.activationPoly_subset_inflate (P : PolyRelaxation σ m)
       rw [Real.norm_eq_abs] at h
       linarith
     have hsound : |σ (s.dependent.point a' i)
-        - evalPoly (P.coeffs (s.interval.inf i) (s.interval.sup i)) (s.dependent.point a' i)|
-        ≤ P.error (s.interval.inf i) (s.interval.sup i) := P.sound (hxbox i).1 (hxbox i).2
+        - evalPoly ((P i).coeffs (s.interval.inf i) (s.interval.sup i)) (s.dependent.point a' i)|
+        ≤ (P i).error (s.interval.inf i) (s.interval.sup i) := (P i).sound (hxbox i).1 (hxbox i).2
     obtain ⟨hd1, hd2⟩ := abs_le.mp hsound
     obtain ⟨hv1, hv2⟩ := abs_le.mp hvi
     show |u i + v i - σ (s.dependent.point a' i)| ≤ ε

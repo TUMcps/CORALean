@@ -9,7 +9,8 @@ other direction is `propagateAt_outer`, so the two together say the enclosure is
 squeezed onto the image — with `Pointwise` addition doing all the work and no
 Hausdorff distance to define, to relate to `construct`, or to prove complete.
 
-A layer is `Convergent` when every input set admits a level meeting any `ε`. The
+A layer is `Convergent` when every input set admits an order pattern meeting any
+`ε` — one order per neuron, so each neuron answers for its own box alone. The
 network asks for that of each layer *and* for a Lipschitz bound on the layers
 after it: an earlier layer's residual is amplified by everything downstream, so
 without one a vanishing residual buys nothing at the output. The bound is a
@@ -19,7 +20,7 @@ meets — a linear layer by its matrix, an activation by its own slope.
 
 -- Authors:       Tobias Ladner
 -- Written:       05-September-2026
--- Last update:   ---
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -28,10 +29,11 @@ open Pointwise ContSet
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 
-/-- Some level brings the enclosure inside any inflation of the exact image. -/
+/-- Some pattern brings the enclosure inside any inflation of the exact image. -/
 def RefinableLayer.Convergent (L : RefinableLayer S n m) : Prop :=
   ∀ (s : S n) (ε : ℝ), 0 < ε →
-    ∃ o : ℕ, construct (L.propagate o s) ⊆ L.eval '' construct s + Metric.closedBall 0 ε
+    ∃ t : OrderPattern n,
+      construct (L.propagate t s) ⊆ L.eval '' construct s + Metric.closedBall 0 ε
 
 /-- Every layer convergent, and every tail Lipschitz so that a residual left
 early is still small at the output. -/
