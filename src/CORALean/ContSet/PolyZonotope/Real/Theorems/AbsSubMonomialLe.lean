@@ -11,7 +11,7 @@ itself. `abs_sub_pow_le_eDiff` bounds the first, so `eDiff` bounds the whole.
 Stated over a bare exponent matrix rather than over a set, so both layers read
 it: the float layer stores its exponents over ℕ and its monomials are these.
 
-The hypothesis is agreement off `k₀`, which is `[1, Def. 3]` minus the demand
+The hypothesis is agreement off `k₀`, which is `[1, Def. 4]` minus the demand
 that the columns actually differ there — nothing here needs them to.
 
 ## References

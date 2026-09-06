@@ -3,7 +3,7 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.EDiff
 /-!
 # `eDiff` bounds the difference of two powers on `[-1,1]`
 
-The one fact the exponent relaxation rests on, `[1, Prop. 1]` as an inequality
+The one fact the exponent relaxation rests on, `[1, Prop. 3]` as an inequality
 rather than as a maximum. Everything the relaxation does to a pair of monomials
 reduces to it: the two share every factor but one, so their difference is
 `(x^a - x^b)` times a product that never leaves `[-1,1]`.

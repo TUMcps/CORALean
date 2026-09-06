@@ -36,17 +36,18 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxExpOuter
 import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsSubMonomialLeSum
 import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxExpEvenOuter
 import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxExpMultiOuter
+import CORALean.ContSet.PolyZonotope.Real.Theorems.ExpEdgeAcyclic
+import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxExpEvenOuterOfEdge
+import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxExpGreedyOuter
 
 /-!
 # What `PolyZonotope` guarantees
 
-`plus`, `map`, `dependent`, `quadMap` and `compact` exactly; `linComb` and
-`reduce` as enclosures, and the module docstring there says which coefficients,
-respectively which dropped generators, cost the other direction.
+`plus`, `map`, `dependent`, `quadMap` and `compact` exactly; `linComb` and `reduce` as
+enclosures, each docstring saying which coefficients or dropped generators cost the other way.
 
-`reduce` is the one operation with two guarantees, and it needs both: an
-enclosure alone is satisfied by a set that grows every step, so
-`reduce_order_le` says the representation stays the size it was asked for.
+`reduce` is the one operation with two guarantees, and it needs both: an enclosure alone is
+satisfied by a set that grows every step, so `reduce_order_le` bounds the size it keeps.
 
 `mul_exact` equates a product with the image of the shared factors under
 `a ↦ point S₁ a ⊙ point S₂ a`, never with a product of the two sets; `evalPoly_exact` carries
@@ -56,6 +57,8 @@ that to a polynomial per coordinate and `evalPolyReal_ofFn` matches Horner to th
 generators, `eDiff` owing no proof of optimality: it bounds the drift from above, and a sharper
 bound would only be more precise. `relaxExpEven_outer` adds the evenness that makes the drift
 one-sided and halves it; `relaxExpMulti_outer` asks nothing of the two columns at all.
+`expEdge_acyclic` says the graph has no cycles, and `relaxExpEven_outer_of_edge` reads an edge.
+`relaxExpGreedy_outer` carries the merge through a loop, at every selection and step count.
 
 `quadMap_exact` is the one that distinguishes the representation: no convex representation here
 can state it. `compact_exact` is the one an order bound rests on: it says the generator count
