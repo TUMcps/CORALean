@@ -3,6 +3,7 @@ import CORALean.ContSet.Interval.Real.Operations.Center
 import CORALean.ContSet.Interval.Real.Operations.IsNonempty
 import CORALean.ContSet.Interval.Real.Operations.Plus
 import CORALean.ContSet.Interval.Real.Operations.Point
+import CORALean.ContSet.Interval.Real.Theorems.MemCenter
 import CORALean.NN.Layer
 
 /-!
@@ -26,7 +27,7 @@ pays a relaxation's error; `E.IsNonempty` is what puts that centre inside `E`.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -50,16 +51,10 @@ noncomputable def Layer.linearWithError (W : Mat ℝ m n) (b : Vec ℝ m) (E : I
   eval x := W *ᵥ x + b + E.center
   propagate s := plus (mtimes W s) (ofInterval (Interval.plus (Interval.point b) E))
   propagate_outer s x hx := by
-    -- the committed value: `E`'s own centre, always inside `E` when it is nonempty
-    have hcenter : E.center ∈ construct E := fun i =>
-      ⟨by have h : E.inf i ≤ E.sup i := hE i
-          show E.inf i ≤ (2:ℝ)⁻¹ * (E.inf i + E.sup i)
-          linarith,
-       by have h : E.inf i ≤ E.sup i := hE i
-          show (2:ℝ)⁻¹ * (E.inf i + E.sup i) ≤ E.sup i
-          linarith⟩
+    -- the committed value is `E`'s own centre, which `mem_center` puts inside `E`
     have hbox : b + E.center ∈ construct (Interval.plus (Interval.point b) E) :=
-      Interval.plus_outer _ _ (Set.add_mem_add (Interval.mem_point b) hcenter)
+      Interval.plus_outer _ _ (Set.add_mem_add (Interval.mem_point b)
+        (Interval.mem_center E hE))
     show W *ᵥ x + b + E.center ∈ construct
         (plus (mtimes W s) (ofInterval (Interval.plus (Interval.point b) E)))
     rw [add_assoc]

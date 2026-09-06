@@ -1,3 +1,4 @@
+import CORALean.ContSet.Interval.Real.Theorems.MtimesIsNonempty
 import CORALean.Global.Partition
 import CORALean.NN.Layers.Activation
 import CORALean.NN.Layers.Linear
@@ -25,7 +26,7 @@ holds at every pair of partitions.
 
 -- Authors:       Tobias Ladner
 -- Written:       05-September-2026
--- Last update:   ---
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -34,14 +35,6 @@ open Matrix ContSet Plus Mtimes IntervalOuter OfInterval
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat ℝ) S] [IntervalOuter S] [OfInterval S]
-
-/-- What a bucket contributes to layer `k+1`, boxed: always nonempty, whichever
-`Y` and columns `M` are, a sum of `min ≤ max` terms. -/
-theorem aux_mergeError_isNonempty {m r : ℕ} (M : Mat ℝ m r) (Y : Interval (Vec ℝ r)) :
-    (Interval.mtimes M Y).IsNonempty := fun i => by
-  show (∑ k, min (M i k * Y.inf k) (M i k * Y.sup k))
-      ≤ ∑ k, max (M i k * Y.inf k) (M i k * Y.sup k)
-  exact Finset.sum_le_sum fun k _ => min_le_max
 
 /-- Neuron merging (`prop:neuron-merging` in [1]): sound at *every* bucket
 `part.right`, trimming layer `k-1`'s rows and layer `k+1`'s columns to the
@@ -60,7 +53,7 @@ theorem neuronMerging_sandwich_outer {n0 n n2 d r : ℕ}
               (NeuralNetwork.ofLayer (Layer.linearWithError (W1.submatrix id part.left) b1
                 (Interval.mtimes (W1.submatrix id part.right)
                   ⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩)
-                (aux_mergeError_isNonempty _ _))))).propagate X) := by
+                (Interval.mtimes_isNonempty _ _))))).propagate X) := by
   rintro _ ⟨x, hx, rfl⟩
   set h0 : Vec ℝ n := W0 *ᵥ x + b0 with hh0
   set hk : Vec ℝ n := fun i => σ (h0 i) with hhk

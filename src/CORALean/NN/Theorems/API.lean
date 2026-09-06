@@ -9,6 +9,7 @@ import CORALean.NN.Theorems.LinearWithErrorZero
 import CORALean.NN.Theorems.MergeErrorSplit
 import CORALean.NN.Theorems.MinSuffExplanation
 import CORALean.NN.Theorems.MultiLayerRefinementConverges
+import CORALean.NN.Theorems.NeuronMergingNetworkOuter
 import CORALean.NN.Theorems.NeuronMergingOuter
 import CORALean.NN.Theorems.PropagateAtInflate
 import CORALean.NN.Theorems.PropagateAtOuter
@@ -36,10 +37,10 @@ import CORALean.NN.Theorems.Verified
 specification is checked on the result, and `Robustness` the one a classifier is
 usually checked against, with the bounds that discharge it.
 
-`LinearWithErrorZero`, `NeuronMergingOuter` and `MergeErrorSplit` are the sound
-network reduction by neuron merging [1]: a plain linear layer as the error-free
-case of the adapted one, the single-bucket containment sound at every bucket,
-and disjoint buckets' errors composing by Minkowski sum.
+`LinearWithErrorZero`, `NeuronMergingOuter`, `NeuronMergingNetworkOuter` and
+`MergeErrorSplit` are the sound network reduction by neuron merging [1]: a plain
+linear layer as its error-free case, the single-bucket containment at every
+bucket and any layer of any network, and disjoint buckets by Minkowski sum.
 
 `SuffExplanation`, `MinSuffExplanation` and `SuffExplanationAbstract` are provable local
 explanations [2]; `SuffExplanationTransfer` carries sufficiency from an abstract network to the
