@@ -61,6 +61,7 @@ import CORALean.NN.Theorems.SuffExplanationOfPropagate
 import CORALean.NN.Theorems.HoldsOfPropagate
 import CORALean.NN.Theorems.HoldsAllOfPropagate
 import CORALean.NN.Theorems.HoldsOfSplit
+import CORALean.NN.Theorems.VerifySplitSound
 
 /-!
 # What a network's enclosure guarantees, collected
@@ -68,7 +69,7 @@ import CORALean.NN.Theorems.HoldsOfSplit
 `PropagateOuter`/`OutputSetSubset` are the graph induction, its pointwise form; `Verified` composes
 `Specification.holds_of_outer`, read by `MemSafeSet`/`NotMemUnsafeSet` against a safe or unsafe set.
 `Robustness` builds on `Misclassified`, `MarginDir`, `DisjointMisclassifiedOfBounds`, `Classifies`.
-`HoldsOfSplit` is what makes verification complete in practice: split, propagate each part.
+`HoldsOfSplit`/`VerifySplitSound` make verification complete: split once, or recurse to a depth.
 
 `LinearWithErrorZero`, `NeuronMergingOuter`, `NeuronMergingNetworkOuter`, `MergeErrorSplit`,
 `MergeErrorWidthLe`, `MergeErrorWidthLeRow` are neuron merging [1]: error-free linear layers,

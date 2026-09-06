@@ -16,6 +16,7 @@ import CORALean.NN.Operations.RefinementRank
 import CORALean.NN.Operations.RefineWorst
 import CORALean.NN.Operations.Sensitivity
 import CORALean.NN.Operations.ToLayer
+import CORALean.NN.Operations.VerifySplit
 import CORALean.NN.Operations.WorstIndex
 
 /-!
@@ -23,7 +24,8 @@ import CORALean.NN.Operations.WorstIndex
 
 `Propagate` is the pipeline itself; `ToLayer` is what makes a sub-network usable
 as a layer, and so what makes the graph nest. `ExplainBox` is the input set a
-sufficient-explanation query is asked over.
+sufficient-explanation query is asked over. `VerifySplit` recurses `Propagate`
+over a checker and a splitter, budgeted by depth, taking no side on either.
 
 `LayerSensitivity` and `Sensitivity` are the other direction: the Jacobian
 backpropagated from the output, which is what a refinement heuristic weights a
