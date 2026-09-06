@@ -1,7 +1,9 @@
 import CORALean.ContSet.Conversion.Real.Interval_to_ConZonotope
+import CORALean.ContSet.Conversion.Real.Interval_to_PolyZonotope
 import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
 import CORALean.ContSet.ConZonotope.Real.Instances
 import CORALean.ContSet.Interval.Real.Instances
+import CORALean.ContSet.PolyZonotope.Real.Instances
 import CORALean.ContSet.Zonotope.Real.Instances
 
 /-!
@@ -41,5 +43,9 @@ noncomputable instance : OfInterval 𝒵 where
 noncomputable instance : OfInterval (fun n => ConZonotope (Vec ℝ n)) where
   ofInterval I := I.conZonotope
   ofInterval_outer I := Interval.subset_conZonotope I
+
+noncomputable instance : OfInterval 𝒫𝒵 where
+  ofInterval I := I.polyZonotope
+  ofInterval_outer I := Interval.subset_polyZonotope I
 
 end CORALean.Real

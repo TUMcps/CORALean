@@ -1,8 +1,14 @@
+import CORALean.NN.Theorems.ActivationLipschitz
 import CORALean.NN.Theorems.AtScheduleEval
 import CORALean.NN.Theorems.EvalDifferentiable
+import CORALean.NN.Theorems.EvalLipschitz
+import CORALean.NN.Theorems.LinearConvergent
+import CORALean.NN.Theorems.LinearExact
+import CORALean.NN.Theorems.LinearLipschitz
 import CORALean.NN.Theorems.LinearWithErrorZero
 import CORALean.NN.Theorems.MergeErrorSplit
 import CORALean.NN.Theorems.MinSuffExplanation
+import CORALean.NN.Theorems.MultiLayerRefinementConverges
 import CORALean.NN.Theorems.NeuronMergingOuter
 import CORALean.NN.Theorems.PropagateAtInflate
 import CORALean.NN.Theorems.PropagateAtOuter
@@ -15,6 +21,7 @@ import CORALean.NN.Theorems.SensitivityLinear
 import CORALean.NN.Theorems.SensitivityOfMatrix
 import CORALean.NN.Theorems.SensitivitySigmoid
 import CORALean.NN.Theorems.SensitivityTanh
+import CORALean.NN.Theorems.SigmoidLipschitz
 import CORALean.NN.Theorems.SigmoidRefinementConverges
 import CORALean.NN.Theorems.SuffExplanation
 import CORALean.NN.Theorems.SuffExplanationAbstract
@@ -40,11 +47,12 @@ original, and `SuffExplanationConverseFails` is why that carrying is one-directi
 
 `SensitivityFDeriv` is what the refinement heuristic rests on [3]: with `EvalDifferentiable`,
 the chain rule identifies the backpropagated Jacobian with `fderiv` wherever every layer has
-one. `SensitivityOfMatrix` hands that to `SensitivityLinear` and `SensitivityActivation` with
-its two instances, and `ReluNotDifferentiable` is why ReLU gets none and the definition needs
-none. `AtScheduleEval`, `PropagateAtOuter` and `PropagateAtInflate` are the loop that heuristic
-drives: the enclosure holds at every schedule, and some schedule is inside any inflation of the
-exact output set — which `SigmoidRefinementConverges` discharges at a real activation.
+one. `SensitivityOfMatrix` hands that to `SensitivityLinear` and `SensitivityActivation`, and
+`ReluNotDifferentiable` is why ReLU gets none. `AtScheduleEval`, `PropagateAtOuter` and
+`PropagateAtInflate` are the loop it drives; its hypothesis is discharged at one activation by
+`SigmoidRefinementConverges` and at a three-layer chain by `MultiLayerRefinementConverges`, out
+of `LinearExact`, `LinearConvergent`, `LinearLipschitz`, `ActivationLipschitz`,
+`SigmoidLipschitz` and `EvalLipschitz`.
 
 ## References
 
