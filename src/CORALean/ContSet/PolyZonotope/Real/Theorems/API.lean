@@ -14,6 +14,7 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.SumExtEqPoint
 import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadEvalSumExt
 import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapDepExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapExact
+import CORALean.ContSet.PolyZonotope.Real.Theorems.MulPoint
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MulExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyQ

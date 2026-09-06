@@ -31,6 +31,7 @@ import CORALean.ContSet.PolyZonotope.Float.Theorems.LeQuadUp
 import CORALean.ContSet.PolyZonotope.Float.Theorems.ToRealExtG
 import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadMapENominal
 import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadMapOuter
+import CORALean.ContSet.PolyZonotope.Float.Theorems.MulGClose
 import CORALean.ContSet.PolyZonotope.Float.Theorems.MulOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.EvalPolyOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceByH
