@@ -3,6 +3,7 @@ import CORALean.NN.Operations.ExplainBox
 import CORALean.NN.Operations.LayerSensitivity
 import CORALean.NN.Operations.Propagate
 import CORALean.NN.Operations.RefinementConvergent
+import CORALean.NN.Operations.RefinementLipschitz
 import CORALean.NN.Operations.RefinementRank
 import CORALean.NN.Operations.Schedule
 import CORALean.NN.Operations.Sensitivity
@@ -25,5 +26,7 @@ which `Theorems.SensitivityFDeriv` identifies them with the derivative.
 one step. `RefinementRank` is what picks the layer that step moves, out of the
 sensitivity and the error — a ranking with no obligation, again.
 `RefinementConvergent` is the other side, the hypotheses under which spending
-levels actually shrinks the enclosure onto the exact output set.
+levels actually shrinks the enclosure onto the exact output set, and
+`RefinementLipschitz` is the per-layer form of the bound those hypotheses ask
+of every tail.
 -/

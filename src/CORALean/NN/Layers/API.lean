@@ -18,6 +18,7 @@ import CORALean.NN.Layers.PolySampling
 import CORALean.NN.Layers.ReLU
 import CORALean.NN.Layers.Reshape
 import CORALean.NN.Layers.Sigmoid
+import CORALean.NN.Layers.SigmoidLinearSigmoid
 import CORALean.NN.Layers.SigmoidPoly
 import CORALean.NN.Layers.SigmoidPolyRefine
 import CORALean.NN.Layers.Softmax
@@ -42,8 +43,8 @@ is what that needs and `PolyFit` what it does not, `PolyConvergence` with `PolyF
 drive it to zero, and `SigmoidPoly` and `TanhPoly` instantiate them (via `PolyAffineConj` for
 the second). `ActivationPoly` propagates one at `PolyZonotope` alone, `ActivationPolyInflate`
 says by how much it widens, `PolyRangeConvergence` makes one order serve a whole layer,
-`ActivationPolyRefine` is the three as a refinable layer, and `SigmoidPolyRefine` one at a real
-activation.
+`ActivationPolyRefine` is the three as a refinable layer, `SigmoidPolyRefine` one at a real
+activation, and `SigmoidLinearSigmoid` a chain of two of those around a matrix.
 
 **Neither.** `Reshape` is a relabelling, the only layer here *exact* rather than outer — it asks
 for `Reindex`. Max pooling in `Pooling` and `Softmax` need their own enclosures: the first

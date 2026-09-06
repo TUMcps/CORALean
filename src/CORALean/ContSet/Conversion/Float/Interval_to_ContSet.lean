@@ -1,7 +1,9 @@
 import CORALean.ContSet.Conversion.Float.Interval_to_ConZonotope
+import CORALean.ContSet.Conversion.Float.Interval_to_PolyZonotope
 import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
 import CORALean.ContSet.ConZonotope.Float.Instances
 import CORALean.ContSet.Interval.Float.Instances
+import CORALean.ContSet.PolyZonotope.Float.Instances
 import CORALean.ContSet.Zonotope.Float.Instances
 
 /-!
@@ -45,5 +47,9 @@ instance : OfInterval (fun n => Zonotope 𝕋 n) 𝕋 where
 instance : OfInterval (fun n => ConZonotope 𝕋 n) 𝕋 where
   ofInterval I := I.conZonotope
   ofInterval_outer I := Interval.subset_conZonotope I
+
+instance : OfInterval (fun n => PolyZonotope 𝕋 n) 𝕋 where
+  ofInterval I := I.polyZonotope
+  ofInterval_outer I := Interval.subset_polyZonotope I
 
 end CORALean.Float
