@@ -1,0 +1,45 @@
+import CORALean.ContDynamics.LinParamSysDT.Theorems.HoldsOfReach
+import CORALean.ContDynamics.LinParamSysDT.Theorems.SimulateTrajectory
+
+/-!
+# One sampled run can falsify what reachability can only fail to prove
+
+The contrapositive of `holds_of_reach` at `simulate_trajectory`, exactly
+`LinearSysDT.not_holds_of_simulate`'s statement at a matrix chosen per step:
+a specification violated along one sampled run cannot have held on the
+reachable set either. An enclosure is a superset, so a specification holding
+on it proves safety and one violated on it proves nothing — the violation may
+sit entirely in the approximation error. A run is exact, so what it violates
+is genuinely violated.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       06-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+open Matrix ContSet Plus Reduce Mtimes
+
+variable {n : ℕ} {𝕄 : ℕ → ℕ → Type} [∀ m n, ContSet (𝕄 m n) (Mat ℝ m n)]
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes 𝕄 S]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem LinParamSysDT.not_holds_of_simulate (sys : LinParamSysDT 𝕄 n) (o : ℕ) (R₀ U : S n)
+    (spec : Specification (Vec ℝ n)) {A : ℕ → Mat ℝ n n} (hA : ∀ k, A k ∈ construct sys.A)
+    {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ construct R₀) {u : ℕ → Vec ℝ n} (hu : ∀ k, u k ∈ construct U)
+    (k : ℕ) (hbad : ¬ spec.Holds {sys.simulate A x₀ u k}) :
+    ¬ spec.Holds (construct (sys.reach o R₀ U k)) :=
+  fun h => hbad (sys.holds_of_reach o R₀ U spec (sys.simulate_trajectory hA hx₀ hu) k h)
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
