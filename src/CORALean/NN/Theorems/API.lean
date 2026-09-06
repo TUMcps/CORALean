@@ -12,6 +12,9 @@ import CORALean.NN.Theorems.MarginDir
 import CORALean.NN.Theorems.MemSafeSet
 import CORALean.NN.Theorems.MergeErrorSplit
 import CORALean.NN.Theorems.MinSuffExplanation
+import CORALean.NN.Theorems.MinSuffExplanationAbstract
+import CORALean.NN.Theorems.MinSuffExplanationCounterexample
+import CORALean.NN.Theorems.MinSuffExplanationTransfer
 import CORALean.NN.Theorems.Misclassified
 import CORALean.NN.Theorems.MultiLayerRefinementConverges
 import CORALean.NN.Theorems.NeuronMergingNetworkOuter
@@ -34,6 +37,7 @@ import CORALean.NN.Theorems.SigmoidRefinementConverges
 import CORALean.NN.Theorems.SuffExplanation
 import CORALean.NN.Theorems.SuffExplanationAbstract
 import CORALean.NN.Theorems.SuffExplanationConverseFails
+import CORALean.NN.Theorems.SuffExplanationRefined
 import CORALean.NN.Theorems.SuffExplanationTransfer
 import CORALean.NN.Theorems.Verified
 
@@ -43,24 +47,24 @@ import CORALean.NN.Theorems.Verified
 `PropagateOuter` is the induction over the graph and `OutputSetSubset` its pointwise form;
 `Verified` composes that with `Specification.holds_of_outer`, and `MemSafeSet`/`NotMemUnsafeSet`
 read it directly against a safe or unsafe set. `Robustness` is the usual classifier requirement,
-out of `Misclassified`, `MarginDir`, `DisjointMisclassifiedOfBounds` and `Classifies`, shared below.
+out of `Misclassified`, `MarginDir`, `DisjointMisclassifiedOfBounds` and `Classifies`.
 
 `LinearWithErrorZero`, `NeuronMergingOuter`, `NeuronMergingNetworkOuter` and `MergeErrorSplit` are
 the sound network reduction by neuron merging [1]: a plain linear layer as its error-free case,
 single-bucket containment at every bucket and any layer, and disjoint buckets by Minkowski sum.
 
-`SuffExplanation`, `MinSuffExplanation` and `SuffExplanationAbstract` are local explanations [2];
-`SuffExplanationTransfer` carries sufficiency from an abstract network to the original, and
-`SuffExplanationConverseFails` is why that carrying only goes one way.
+`SuffExplanation`, `MinSuffExplanation` and their `Abstract` forms are local explanations [2].
+`SuffExplanationTransfer` carries sufficiency to the original network, discharged at a merged one;
+`SuffExplanationRefined` and `MinSuffExplanationTransfer` carry it and minimality along a
+refinement, `MinSuffExplanationCounterexample` certifies minimality, and
+`SuffExplanationConverseFails` is why it goes one way.
 
 `SensitivityFDeriv` is what the refinement heuristic [3] rests on: the backpropagated Jacobian
-identified with `fderiv` via the chain rule wherever `EvalDifferentiable` holds, which
-`SensitivityOfMatrix` hands to `SensitivityLinear`/`SensitivityActivation`, and
-`ReluNotDifferentiable` is why ReLU gets none. `AtScheduleEval`, `PropagateAtOuter` and
-`PropagateAtInflate` are the refinement loop; its hypothesis is discharged at one activation by
-`SigmoidRefinementConverges` and a three-layer chain by `MultiLayerRefinementConverges`, out of
-`LinearExact`, `LinearConvergent`, `LinearLipschitz`, `ActivationLipschitz`, `SigmoidLipschitz` and
-`EvalLipschitz`.
+identified with `fderiv` wherever `EvalDifferentiable` holds, which `SensitivityOfMatrix` hands to
+`SensitivityLinear`/`SensitivityActivation`; `ReluNotDifferentiable` is why ReLU gets none.
+`AtScheduleEval`, `PropagateAtOuter` and `PropagateAtInflate` are the refinement loop, whose
+hypothesis `SigmoidRefinementConverges` discharges at one activation and
+`MultiLayerRefinementConverges` at a chain, out of the `Linear` and `Lipschitz` lemmas here.
 
 ## References
 
