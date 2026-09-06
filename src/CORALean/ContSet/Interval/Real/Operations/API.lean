@@ -5,6 +5,7 @@ import CORALean.ContSet.Interval.Real.Operations.IsNonempty
 import CORALean.ContSet.Interval.Real.Operations.And
 import CORALean.ContSet.Interval.Real.Operations.AndExact
 import CORALean.ContSet.Interval.Real.Operations.Plus
+import CORALean.ContSet.Interval.Real.Operations.Minus
 import CORALean.ContSet.Interval.Real.Operations.LinComb
 import CORALean.ContSet.Interval.Real.Operations.Mtimes
 import CORALean.ContSet.Interval.Real.Operations.MulLo
@@ -17,9 +18,10 @@ import CORALean.ContSet.Interval.Real.Operations.Reindex
 /-!
 # What `Interval` computes
 
-CORA's `plus`, `linComb` and `mtimes` — the last at a plain matrix and at an
-interval one — one file each, plus the constructor every other
+CORA's `plus`, `minus`, `linComb` and `mtimes` — the last at a plain matrix and
+at an interval one — one file each, plus the constructor every other
 representation's `interval` goes through: a box read off `2n` certified bounds.
+`minus` is exact and unconditional, coordinatewise subtraction.
 
 `Point` and `Center`/`Radius` are the two readings of a box the enclosure
 proofs elsewhere want: the degenerate one, and the centre-plus-deviation split.

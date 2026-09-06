@@ -114,6 +114,11 @@ class Reindex (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] where
 def segments {α : Type} [AddCommGroup α] [Module ℝ α] (X Y : Set α) : Set α :=
   {x | ∃ y₁ ∈ X, ∃ y₂ ∈ Y, ∃ lam ∈ Set.Icc (0:ℝ) 1, x = lam • y₁ + (1 - lam) • y₂}
 
+/-- Every point from which anything in `T` still lands in `S`: `plus`'s
+guarantee, run in reverse. -/
+def minkowskiDiff {α : Type} [AddCommGroup α] [Module ℝ α] (S T : Set α) : Set α :=
+  {x | ∀ y ∈ T, x + y ∈ S}
+
 /-- CORA's `plus`, outer only, so a proof against it says nothing about how much
 precision the representation loses. Ambient type in and out, so an algorithm
 that also travels between dimensions asks for `Mtimes` on top. -/
@@ -122,6 +127,14 @@ class Plus (S : Type) (α : outParam Type) [AddCommGroup α] [Module ℝ α]
   plus : S → S → S
   plus_outer (s₁ s₂ : S) :
     construct s₁ + construct s₂ ⊆ construct (plus s₁ s₂)
+
+/-- CORA's Minkowski difference. The opposite of `Plus`: a difference is a
+*guarantee*, so an implementation may only ever *under*-approximate — never
+over — and the obligation below is an **inner**, not an outer, inclusion. -/
+class Minus (S : Type) (α : outParam Type) [AddCommGroup α] [Module ℝ α]
+    [ContSet S α] where
+  minus : S → S → S
+  minus_inner (s t : S) : construct (minus s t) ⊆ minkowskiDiff (construct s) (construct t)
 
 /-- CORA's `linComb`, not the convex hull: the two agree only when both sets are
 convex, and this is what keeps a non-convex representation non-convex. -/
