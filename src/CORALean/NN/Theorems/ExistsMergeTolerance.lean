@@ -1,0 +1,81 @@
+import CORALean.NN.Theorems.MergeErrorWidthLeRow
+
+/-!
+# A tolerance meeting any error budget
+
+Not the tolerance search itself — [1]'s Alg. 1 bisects for `δ`, and which value
+it lands on owes no proof, exactly as `neuronMerging_sandwich_outer` is sound at
+every bucket and `ConPolyZono.reduceBy_outer` at every partition. What this
+proves is that the search cannot be chasing something unreachable: for every
+budget `ε` there is a `δ` meeting it at every bucket and every output, because
+`mergeError_width_le_row`'s bound is linear in `δ` and `δ` is free to shrink.
+
+The witness `δ := ε / (2 * (1 + ∑ mergeRowWeight))` carries a `+ 1` in its
+denominator so it stays positive even at `W = 0`, with no case split and no
+`Finset.sup'`, which would need `Fin n₂` nonempty. `aux_scaled_le` is the plain
+arithmetic that turns "this row's weight is at most the sum of all of them"
+into "this row's share of the budget is at most the whole budget".
+
+Same shape as `exists_polyRelaxation_error_lt` in `NN/Layers/PolyRangeConvergence.lean`.
+
+## References
+
+* [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for
+      Formal Verification". TMLR. arXiv:2305.01932.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       06-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- A row's share of a budget scaled by the sum of every row's weight, plus one,
+never exceeds the budget itself. -/
+theorem aux_scaled_le {S w ε : ℝ} (hS : 0 ≤ S) (hw : w ≤ S) (hε : 0 < ε) :
+    w * (2 * (ε / (2 * (1 + S)))) ≤ ε := by -- --- PROOF ---
+  have hD : (0:ℝ) < 1 + S := by linarith
+  have hDne : (1 + S) ≠ 0 := hD.ne'
+  have heq : w * (2 * (ε / (2 * (1 + S)))) = (w / (1 + S)) * ε := by
+    field_simp
+  rw [heq]
+  have hfrac : w / (1 + S) ≤ 1 := (div_le_one hD).mpr (by linarith)
+  calc (w / (1 + S)) * ε ≤ 1 * ε := mul_le_mul_of_nonneg_right hfrac (le_of_lt hε)
+    _ = ε := one_mul ε
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+/-- For every error budget `ε`, a tolerance `δ` under which every bucket, at
+every output, costs no more than `ε` — the cost being linear in `δ`. -/
+theorem exists_mergeTolerance {n n₂ : ℕ} (Y : Interval (Vec ℝ n)) (hY : Y.IsNonempty)
+    (W : Mat ℝ n₂ n) {ε : ℝ} (hε : 0 < ε) :
+    ∃ δ : ℝ, 0 < δ ∧ ∀ (y : ℝ) (i : Fin n₂),
+      let EB := Interval.mtimes (W.submatrix id (mergeSplit Y y δ).right)
+        ⟨Y.inf ∘ (mergeSplit Y y δ).right, Y.sup ∘ (mergeSplit Y y δ).right⟩
+      EB.sup i - EB.inf i ≤ ε := by -- --- PROOF ---
+  -- the `1` keeps the denominator positive even if every row weight is `0`
+  have hSnonneg : (0:ℝ) ≤ ∑ j, mergeRowWeight W j :=
+    Finset.sum_nonneg fun j _ => mergeRowWeight_nonneg W j
+  have hD : (0:ℝ) < 2 * (1 + ∑ j, mergeRowWeight W j) := by linarith
+  refine ⟨ε / (2 * (1 + ∑ j, mergeRowWeight W j)), div_pos hε hD, fun y i => ?_⟩
+  intro EB
+  have hδnonneg : (0:ℝ) ≤ ε / (2 * (1 + ∑ j, mergeRowWeight W j)) := le_of_lt (div_pos hε hD)
+  have hbound := mergeError_width_le_row Y y
+    (ε / (2 * (1 + ∑ j, mergeRowWeight W j))) hδnonneg hY W i
+  -- a row's weight is at most the sum over every row, each of them nonnegative
+  have hrow_le : mergeRowWeight W i ≤ ∑ j, mergeRowWeight W j :=
+    Finset.single_le_sum (fun j _ => mergeRowWeight_nonneg W j) (Finset.mem_univ i)
+  exact le_trans hbound (aux_scaled_le hSnonneg hrow_le hε)
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

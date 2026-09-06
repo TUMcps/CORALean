@@ -13,6 +13,10 @@ No hypothesis `0 ≤ δ` appears anywhere below: at a negative `δ` the bucket i
 merely empty, `mergeBucket_width` holding of it vacuously, so imposing one would
 narrow every statement here for nothing.
 
+`mergeRowWeight` sums a row of `W`, in absolute value, over *every* neuron
+rather than over a bucket, since [1]'s tolerance search must pick `δ` before
+any bucket exists to sum over.
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for
@@ -21,7 +25,7 @@ narrow every statement here for nothing.
 
 -- Authors:       Tobias Ladner
 -- Written:       06-September-2026
--- Last update:   ---
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 
@@ -48,6 +52,14 @@ noncomputable def mergeSplit {n : ℕ} (Y : Interval (Vec ℝ n)) (y δ : ℝ) :
 theorem mergeBucket_width {n : ℕ} (Y : Interval (Vec ℝ n)) (y δ : ℝ) {i : Fin n}
     (hi : mergeBucket Y y δ i) : Y.sup i - Y.inf i ≤ 2 * δ := by
   linarith [hi.1, hi.2]
+
+/-- The factor the merge's cost scales by at output `i`: `W`'s row, in absolute
+value, over *all* neurons rather than over a bucket not yet chosen. -/
+def mergeRowWeight {n n₂ : ℕ} (W : Mat ℝ n₂ n) (i : Fin n₂) : ℝ := ∑ k, |W i k|
+
+theorem mergeRowWeight_nonneg {n n₂ : ℕ} (W : Mat ℝ n₂ n) (i : Fin n₂) :
+    0 ≤ mergeRowWeight W i :=
+  Finset.sum_nonneg fun k _ => abs_nonneg (W i k)
 
 end CORALean.Real
 
