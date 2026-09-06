@@ -1,4 +1,4 @@
-import CORALean.NN.Graph.UncertainDegree
+import CORALean.NN.Graph.Theorems.DegreeAtEq
 
 /-!
 # The uncertain degree is bracketed, and never below `1`
@@ -15,7 +15,8 @@ argue about it. That half is `GNN.one_le_degree` unchanged.
 
 The other two are the edges themselves: a weight of at least `0` on a
 nonnegative edge only adds to a degree, and a weight of at most `1` adds at most
-that edge's column sum, which is exactly what `edgeDegree` collects.
+that edge's column sum, which is exactly what `edgeDegree` collects. Both are
+read off `degreeAt_eq`, the affine form next door.
 
 ## References
 
@@ -26,7 +27,7 @@ that edge's column sum, which is exactly what `edgeDegree` collects.
 
 -- Authors:       Tobias Ladner
 -- Written:       06-September-2026
--- Last update:   ---
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 
@@ -39,23 +40,6 @@ open Matrix
 variable {N m : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
-/-- The degree at `λ` is the fixed one plus what the weighted edges add, which
-is the affine form both remaining bounds are read off. -/
-theorem GNN.aux_degreeAt_eq (A : Mat ℝ N N) (U : Fin m → Fin N × Fin N) (lam : Fin m → ℝ)
-    (j : Fin N) :
-    GNN.degreeAt A U lam j
-      = GNN.degree A j + ∑ e, ∑ i, lam e * GNN.edgeMat (U e) i j := by -- --- PROOF ---
-  simp only [GNN.degreeAt, GNN.degree, GNN.adjAt, Matrix.add_apply, Matrix.sum_apply,
-    Matrix.smul_apply, smul_eq_mul]
-  -- the edge contributions separate from the fixed adjacency and the self-loop
-  have h : ∀ i : Fin N, A i j + (∑ e, lam e * GNN.edgeMat (U e) i j) + (1 : Mat ℝ N N) i j
-      = A i j + (1 : Mat ℝ N N) i j + ∑ e, lam e * GNN.edgeMat (U e) i j := fun i => by ring
-  simp only [h]
-  rw [Finset.sum_add_distrib, Finset.sum_comm]
-
-
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The degree of an uncertain graph is bracketed by the two ends, and the lower
@@ -64,7 +48,7 @@ theorem GNN.degreeAt_bounds (A : Mat ℝ N N) (U : Fin m → Fin N × Fin N) (la
     (hlam : ∀ e, 0 ≤ lam e ∧ lam e ≤ 1) (hA : ∀ a b, 0 ≤ A a b) (j : Fin N) :
     1 ≤ GNN.degreeInf A U j ∧ GNN.degreeInf A U j ≤ GNN.degreeAt A U lam j
       ∧ GNN.degreeAt A U lam j ≤ GNN.degreeSup A U j := by -- --- PROOF ---
-  rw [GNN.aux_degreeAt_eq, GNN.degreeInf, GNN.degreeSup, GNN.edgeDegree]
+  rw [GNN.degreeAt_eq, GNN.degreeInf, GNN.degreeSup, GNN.edgeDegree]
   -- the self-loop already puts the lower end at `1`, which is `one_le_degree`
   refine ⟨GNN.one_le_degree A hA j, ?_, ?_⟩
   · -- a nonnegative weight on a nonnegative edge can only raise a degree

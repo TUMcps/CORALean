@@ -10,12 +10,12 @@ weights, `uncertainAdj` the matrix polynomial zonotope of all of them at once.
 
 One dependent factor and one dependent generator per uncertain edge, and no
 independent block: a factor `α` in the unit interval around zero *is* the weight
-`λ = (1 + α)/2`, and that affine change of variable is the whole construction.
-Keeping the factor dependent is what stops one edge counting as fresh
-uncertainty at each step of a message-passing chain.
+`λ = (1 + α)/2`, and that change of variable — `smul_edge_half`, read by every
+set built over these factors — is the whole construction. Keeping the factor
+dependent stops one edge counting as fresh uncertainty at each step of a chain.
 
-`edgeMat` writes both orientations of an undirected edge at once, so an edge
-costs one factor and not two — the adjacency a convolution reads is symmetric.
+`edgeMat` writes both orientations at once, so an edge costs one factor and not
+two — the adjacency a convolution reads is symmetric.
 
 Real only: `Float.PolyZonotope` is indexed by ℕ over `Vec`, so a float matrix
 polynomial zonotope is a representation to build before this gets a float half.
@@ -29,7 +29,7 @@ polynomial zonotope is a representation to build before this gets a float half.
 
 -- Authors:       Tobias Ladner
 -- Written:       06-September-2026
--- Last update:   ---
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 
@@ -50,6 +50,14 @@ theorem GNN.edgeMat_nonneg (ij : Fin N × Fin N) (a b : Fin N) : 0 ≤ GNN.edgeM
   simp only [GNN.edgeMat]
   split_ifs
   exacts [zero_le_one, le_refl 0]
+
+/-- One edge's weight split into the centre it shifts and the generator it
+scales, which is the change of variable in matrix form. -/
+theorem GNN.smul_edge_half (t : ℝ) (M : Mat ℝ N N) :
+    ((1 + t) / 2 : ℝ) • M = (1/2 : ℝ) • M + t • ((1/2 : ℝ) • M) := by
+  rw [smul_smul, ← add_smul]
+  congr 1
+  ring
 
 /-- The adjacency at one choice of edge weights, which is [1]'s `A(λ)`. -/
 def GNN.adjAt (A : Mat ℝ N N) (U : Fin m → Fin N × Fin N) (lam : Fin m → ℝ) : Mat ℝ N N :=
