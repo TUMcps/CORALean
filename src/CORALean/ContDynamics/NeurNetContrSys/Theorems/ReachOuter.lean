@@ -17,9 +17,9 @@ assumed about the run beyond the periods the trajectory speaks about. That is
 what makes the chain a chain: period `i` is sound on its own window, and the
 enclosure it ends at is the next period's initial set.
 
-Period boundaries only. Between them `reach` says nothing and the network is not
-invoked either, so the two silences coincide — unlike `relinReach`, where the
-missing time-interval enclosure is a gap in the guarantee rather than the method.
+Period boundaries only. Between them `reach` says nothing and the network is
+not invoked either, so the two silences coincide — unlike `relinReach`, whose
+dynamics keep running between steps and get a stated time-interval enclosure.
 
 Stated at a convex, compact representation, which is what makes `inputSolution`'s
 six topological hypotheses instances rather than arguments.

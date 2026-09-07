@@ -20,9 +20,9 @@ at most `v` — because a location's sets share one representation and a zonotop
 cannot be the halfspace `p = 0 ∧ v ≤ 0`; `HPolytope` states that halfspace and
 still cannot take the jump, computing `Plus` only on named directions.
 
-And nothing here intersects: `Location.inv` is data the automaton carries and no
-theorem cuts a reachable set down with it, as `Transition.guard` is only ever
-tested pointwise. Both are the missing `And` interface.
+And nothing here intersects: `Location.timeIntervalStepInv` and
+`Transition.jumpAnd` exist for exactly this now, but `Zonotope` has no `And`
+instance, so this example still cannot call either.
 -/
 
 -- Authors:       Tobias Ladner

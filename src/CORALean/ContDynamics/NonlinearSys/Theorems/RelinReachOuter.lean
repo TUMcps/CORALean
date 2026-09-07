@@ -26,8 +26,8 @@ Confinement is a hypothesis per step and stays one: CORA computes a candidate `R
 and checks the step's reachable set against it afterwards, which no certificate
 can supply.
 
-Step boundaries only. Covering the time between them would need each step's
-enclosure at a non-sample time, which nothing yet states along a chain.
+Step boundaries only in this file; `relinTimeInterval_outer` covers the time
+between them, each step's enclosure at every time rather than just its ends.
 -/
 
 -- Authors:       Tobias Ladner
