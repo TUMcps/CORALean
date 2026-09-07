@@ -27,24 +27,45 @@ src/CORALean/
                    Real/ and Float/, the latter paying rounding into an error box
     ConZonotope/   a zonotope whose coefficients an HPolytope cuts down;
                    Real/ and Float/, the latter splitting its rounding two ways
+    PolyZonotope/  generators carrying monomials: not convex, and exact under
+                   quadMap; Real/ and Float/
+    ConPolyZono/   the same with polynomial constraints on the factors, which is
+                   what makes intersection exact; Real/ and Float/
+    ZonoBundle/    a family of zonotopes denoting their intersection, exactly;
+                   Real/ and Float/
+    Ellipsoid/     a centre and a generator matrix, the one representation whose
+                   support function is closed form; Real/ and Float/
+    Capsule/       a segment thickened by a ball, for an obstacle rather than a
+                   reachable set: Real/ only, being closed under almost nothing
     Conversion/    one file per ordered pair, `<Source>_to_<Target>.lean`;
                    Real/ and Float/
   Specification/   what a computed set is checked against — a safe set or an
                    unsafe one — and why checking it on an outer approximation
                    answers for the exact set
-  ContDynamics/    algorithms, written against the interfaces alone
+  ContDynamics/    one directory per system class, written against the
+                   interfaces alone
     LinearSysDT/   discrete-time linear systems, and reachability
-    NonlinearSys/  the representation and its trajectories; no reachability yet
     LinearSys/     continuous-time linear systems: the flow in closed form,
                    reachability at the sample times by sampling into
                    LinearSysDT, and an enclosure over a whole step
       MatExp/      enclosing e^{A dt}, which is what a step is taken against
+    NonlinearSys/  conservative linearization, which hands a confined run to
+                   LinearSys, and re-linearization, which iterates that with a
+                   fresh certificate; NonlinearSysDT/ is the discrete case
+    LinParamSys/   a set-valued system matrix, with reachability in
+                   LinParamSysDT/ alone; NonlinParamSys/ is the nonlinear class
+                   with uncertain parameters, and has none either
+    NeurNetContrSys/  a plant closed around a network, whose input set is what
+                   NN encloses; NeurNetContrSysDT/ steps a discrete plant
+    OutputEq/      y = C x + D u, kept out of the system classes so that it
+                   applies to all of them
   HybridDynamics/  locations, transitions and the automaton; a run alternates
                    flowing inside a location with jumping between them
   NN/              neural network verification: propagating an input set through
                    a graph of layers, and checking the result
-    Layers/        the standard layers, one file each; every activation is a
-                   `Relaxation` and nothing else
+    Layers/        the standard layers, one file each; an elementwise
+                   activation is a `Relaxation` and nothing else, softmax the
+                   exception, its outputs sharing a denominator
   Examples/        one worked example per component, proved and never run
     Demo/          the one executable, and the only place anything here is
                    evaluated rather than proved
@@ -55,10 +76,10 @@ representations of equal standing cannot each import the other, so
 `VPolytope → HPolytope` inside `VPolytope/` and the reverse inside `HPolytope/`
 is a cycle Lean rejects. One file per ordered pair keeps a new pair to a file
 rather than a directory, and keeps every representation independent of every
-other. All twenty ordered pairs of `Interval`, `Zonotope`, `HPolytope`,
-`VPolytope` and `ConZonotope` are there in both layers; the declaration is
-named for the target, as in CORA, where
-`interval(zonotope)` is how a zonotope becomes a box.
+other. `Real/` holds every ordered pair of the nine representations that are
+not `Capsule` — 72 files — and `Capsule_to_Interval` besides; `Float/` holds the
+25 pairs written so far. The declaration is named for the target, as in CORA,
+where `interval(zonotope)` is how a zonotope becomes a box.
 
 Two of those files hold a class instead of a conversion: `ContSet_to_Interval`
 and `Interval_to_ContSet` are the pairs whose other side is a variable, for an
@@ -71,9 +92,10 @@ halfspaces, where intersection is free, and comes back — and then imports thes
 files by exact path. That is a dependency, not a cycle: the conversion imports
 the representation's own files, never its `API.lean`.
 
-A representation present in both arithmetic layers holds one directory per
-layer, named for the namespace it declares; one present in a single layer stays
-flat, and then only the namespace says which. The remaining directory names —
+A representation holds one directory per arithmetic layer, named for the
+namespace it declares, and keeps it when only one layer is written: `Capsule`
+has a `Real/` and no `Float/`. Elsewhere a single-layer directory stays flat,
+and then only the namespace says which. The remaining directory names —
 `ContSet`, `Interval`, `Operations` — are organizational and appear in no
 namespace, so a path never contradicts a namespace. `ContSet` itself belongs to
 neither layer and sits in namespace `CORALean`.
@@ -99,8 +121,8 @@ computes; an algorithm asks for what it calls, so `LinearSysDT.reach` wants
 
 There is deliberately no class collecting them. A bundle would make every
 representation owe every operation, so the one that cannot compute an operation
-would have to invent it — which is what `HPolytope` would have had to do for a
-Minkowski sum, having no rows to state one with. A theorem
+would have to invent it — which is what `Capsule` would have had to do for a
+Minkowski sum, two capsules' sum being no capsule. A theorem
 that does not call an operation says so with `omit`, and that line is worth
 reading: it is the record of which interfaces the algorithm actually needs.
 
@@ -297,7 +319,7 @@ A file is named after what it declares, not after the role it plays:
 exception, a Lean instance having no name to use.
 
 `Operations` stays a single file where splitting would not pay — `LinearSysDT`
-has one operation, and `Dyadic`'s are one-line compositions.
+has three, and `Dyadic`'s are one-line compositions.
 
 "One each" is meant literally, and `check-conventions.sh` enforces it: a file
 under `Operations/` or `Theorems/` declares exactly one public thing. What it
@@ -390,15 +412,15 @@ rather than costing one of its own: a declaration's `:= by` may end with
 `-- --- PROOF ---` to show where the claim stops and the argument starts.
 
 ```lean
-theorem MatExp.constCorrectionMatrix_mem (A : Mat ℝ n n) (r : ℝ) (η : ℕ) :
+theorem aux_norm_constTail_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) (η : ℕ) :
     ‖…‖ ≤ r * MatExp.expRemainderBound (r • A) η := by -- --- PROOF ---
 ```
 
 A proof of **five lines or more** must carry one, and a shorter proof must
 not: below that the `:= by` is still in view, and a flag on every two-line
 proof would say only what the source already shows. Required and refused on
-either side of one number, so the flag always means the same thing — 495 of
-them, on a little under half the theorems in the tree.
+either side of one number, so the flag always means the same thing — 661 of
+them, on two theorems in five.
 
 It rides on a `theorem` or a `lemma` and on nothing else. A `def` that proves
 something in a structure field — `Ellipsoid.supportBound`'s `le :=`, eight lines
@@ -433,15 +455,16 @@ Inside the project, a file imports the exact modules it names and never a
 collector: `Theorems/PlusExact.lean` imports `Operations/Plus.lean`, not
 `Operations/API.lean`. Importing a collector makes a file wait for everything in
 that directory, and the build is bound by the longest such chain rather than by
-the work — it was 37 files deep under the old rule and is 20 under this one, on
-a machine with 16 cores that were idle either way.
+the work — the rule nearly halved it when it landed, 37 files to 20, on a
+machine with 16 cores that were idle either way.
 
 A file still never imports its own directory's `API.lean`, which would be a
 cycle.
 
-`Global/API.lean` is the one file that does not collect its whole directory: it
-leaves out `Global/Float/`, which every `Real` file would otherwise reach,
-breaking the rule below that deleting `Float` leaves the specification standing.
+`Global/API.lean` and `Global/LinProg/API.lean` are the files that do not
+collect their whole directory: each leaves out its `Float/`, which every `Real`
+file would otherwise reach, breaking the rule below that deleting `Float` leaves
+the specification standing.
 
 An import cannot filter, so `Theorems/API.lean` re-exports the `aux_` lemmas
 too. The prefix is the only thing marking them.
@@ -470,10 +493,11 @@ A containment between two *represented* sets says `contains`, CORA's way round:
 `contains(X, Y)` is `X ⊇ Y`. The name reads the statement with the receiver
 elided, so `Zonotope.interval_contains` is "its interval contains it" and
 `HPolytope.contains_vPolytope` is "it contains its vPolytope" — one word, and
-the side the target sits on says which way the inclusion runs. Every theorem in
-`Conversion/` is `Source.target_contains`, unless it is the inclusion the other
-way, which is `Source.contains_target`. An `_of_` name says the hypothesis
-instead: `HPolytope.contains_of_pinned`.
+the side the target sits on says which way the inclusion runs. Every containment
+in `Conversion/` is `Source.target_contains`, unless it is the inclusion the
+other way, which is `Source.contains_target`, or both hold and it is
+`Source.target_exact`. An `_of_` name says the hypothesis instead:
+`HPolytope.contains_of_pinned`.
 
 Not a relation of its own: the statement stays `X.construct ⊆ Y.construct`. A
 `contains` over `ContSet` would need both instances, and `Instances.lean`
@@ -576,9 +600,10 @@ A size-changing operation needs one of these, and it is not copy-paste that
 could be factored out: `Fin.sum_univ_add` cannot rewrite a sum whose index type
 reads `Fin (Z₁.plus Z₂).h` rather than `Fin (Z₁.h + Z₂.h)`, since unifying the
 two is not type-correct at the elaborator's transparency. The restatement names
-the operation, so it has to live with it; the proof is always
-`Fin.sum_univ_add f`. Ascribe the binder in any statement that sums over an
-operation's result, or the lemma will not match there either.
+the operation, so it has to live with it; the proof is `Fin.sum_univ_add f`, or
+`rfl` where the result's index type needs no splitting at all. Ascribe the
+binder in any statement that sums over an operation's result, or the lemma will
+not match there either.
 
 ### Sentences that explain an absence
 
