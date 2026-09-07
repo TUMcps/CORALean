@@ -20,7 +20,7 @@ to anything stated over ℝ; the converse needs a float large enough, which is
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   07-September-2026
 -- Last revision: ---
 
 
@@ -50,6 +50,13 @@ a rounded computation discharges its obligation. -/
 def FloatBound.ofSupportBound (u : SupportBound S c) (v : 𝕋) (h : u.val ≤ toReal v) :
     FloatBound 𝕋 S c :=
   ⟨v, fun x hx => le_trans (u.le x hx) h⟩
+
+/-- As `ofSupportBound`, but the exact bound only has to exist: wrapped in a
+`Prop`, it is erased, so a noncomputable exact bound (a square root, say) never
+infects this one. -/
+def FloatBound.ofExistsBound (v : 𝕋) (h : ∃ u : SupportBound S c, u.val ≤ toReal v) :
+    FloatBound 𝕋 S c :=
+  ⟨v, fun x hx => h.elim fun u hu => le_trans (u.le x hx) hu⟩
 
 /-- A bound on a larger set bounds a smaller one, at the same value. -/
 def FloatBound.mono (h : S ⊆ T) (u : FloatBound 𝕋 T c) : FloatBound 𝕋 S c :=

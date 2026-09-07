@@ -5,13 +5,13 @@ import CORALean.Global.Float.EuclideanNorm
 # `Ellipsoid.nominalBoundDot`
 
 The nominal bound; `hs` is the whole of what the candidate owes, and it is one
-float comparison. Not `FloatBound.ofSupportBound`: the exact bound's value is a
-square root, which would carry noncomputability into a float bound.
+float comparison. Through `FloatBound.ofExistsBound`: the exact bound's value
+is a square root, so only an existential keeps it out of the float.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   05-September-2026
+-- Last update:   07-September-2026
 -- Last revision: ---
 
 
@@ -46,15 +46,14 @@ theorem Ellipsoid.aux_supportBound_le (E : Ellipsoid 𝕋 n) {c : Vec ℝ n →�
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The nominal bound; `hs` is the whole of what the candidate owes, and it is
-one float comparison. Not `FloatBound.ofSupportBound`: the exact bound's value
-is a square root, which would carry noncomputability into a float bound. -/
+one float comparison. Through `FloatBound.ofExistsBound`: the exact bound's
+value is a square root, so only an existential keeps it out of the float. -/
 def Ellipsoid.nominalBoundDot (E : Ellipsoid 𝕋 n) {c : Vec ℝ n →ₗ[ℝ] ℝ} (a : Vec 𝕋 n)
     (hc : ∀ x : Vec ℝ n, c x = ∑ i, toReal (a i) * x i) (s : 𝕋)
     (hs : toReal (sqSumUp (E.pullbackAbs a)) ≤ toReal (mulDown s s)) :
-    FloatBound 𝕋 (nominalSet E) c where
-  val := addUp (dotUp a E.q) (absolute s)
-  le x hx := le_trans (((InflatedContSet.nominal E).supportBound c).le x hx)
-    (E.aux_supportBound_le hc hs)
+    FloatBound 𝕋 (nominalSet E) c :=
+  FloatBound.ofExistsBound (addUp (dotUp a E.q) (absolute s))
+    ⟨(InflatedContSet.nominal E).supportBound c, E.aux_supportBound_le hc hs⟩
 
 end CORALean.Float
 
