@@ -1,5 +1,6 @@
 import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
 import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
+import CORALean.ContSet.Zonotope.Real.Theorems.AbsMaxOfPoint
 import CORALean.ContSet.Zonotope.Real.Theorems.RecentreZeroMem
 import CORALean.ContSet.Zonotope.Real.Theorems.RecentreSubMem
 import CORALean.ContSet.Zonotope.Real.Theorems.Coefficient
@@ -52,7 +53,8 @@ coordinatewise, which is what every one of them is stated against, and
 `Coefficient` with the two facts about it holds the shared proof devices, which
 the float layer needs too. `BilinOuter` and `MtimesMatZonotopeOuter` are a
 matrix zonotope acting on a set, an enclosure and never exact. `OfPointMem`
-and the two `Recentre` facts are what those classes ask of a zonotope.
+and the two `Recentre` facts are what those classes ask of a zonotope, and
+`AbsMaxOfPoint` reads the interval hull of a point back as the point.
 `MinkDiffAlignedInner` is the one guarantee running the other way, sound
 without approximation at aligned generators.
 -/
