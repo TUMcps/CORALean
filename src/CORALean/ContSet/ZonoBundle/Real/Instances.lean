@@ -5,6 +5,7 @@ import CORALean.ContSet.ZonoBundle.Real.Theorems.PlusOuter
 import CORALean.ContSet.ZonoBundle.Real.Theorems.MtimesOuter
 import CORALean.ContSet.ZonoBundle.Real.Theorems.MapExact
 import CORALean.ContSet.ZonoBundle.Real.Theorems.OfPointMem
+import CORALean.ContSet.ZonoBundle.Real.Theorems.ReduceOuter
 
 /-!
 # What `ZonoBundle` instantiates
@@ -14,15 +15,13 @@ from the enclosure operations, and `And` from `and_exact`: appending the two
 families of zonotopes is exact, at any real module. `OfPoint` bundles one
 point-zonotope, and `Reindex` lifts `Zonotope`'s at `reindexLin e`, which
 `map_exact` needs *bijective* rather than merely injective — `e`'s own inverse
-supplies that.
+supplies that. `Reduce` drops components, which only enlarges the set, so it
+needs no error box, unlike every other `reduce` in the tree.
 
 `CompactSet` is not an instance: at `k = 0` the set is `univ`, not compact, so
 the class's unconditional obligation cannot be discharged. `isCompact_construct`
-states the conditional fact instead, at `0 < B.k`.
-
-No `Reindex`: componentwise `Zonotope.map` would be one line, but its exactness
-needs `reindexLin e` bijective and `Set.image_iInter` through the intersection —
-new development, not wiring, so left for its own change.
+states the conditional fact instead, at `0 < B.k`. No `LinComb` or `Minus`
+either — nothing here combines by interpolation or subtracts.
 -/
 
 -- Authors:       Tobias Ladner
@@ -82,6 +81,10 @@ instance : Mtimes (Mat ℝ) (fun n => ZonoBundle (Vec ℝ n)) where
   mtimes_outer M B := by
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact ZonoBundle.mtimes_outer M B
+
+instance : Reduce (ZonoBundle α) α where
+  reduce := ZonoBundle.reduce
+  reduce_outer := ZonoBundle.reduce_outer
 
 end CORALean.Real
 
