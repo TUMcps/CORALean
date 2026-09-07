@@ -3,7 +3,7 @@ import CORALean.Specification.Specification
 /-!
 # An outer approximation is enough to check a specification against
 
-The exact set — the reachable set of a system, the output set of a network — is
+The exact set — the reachable set of a system, the image of a network — is
 not computable; what an algorithm returns is a superset of it. This is the step
 that makes that superset useful: a specification holding on the computed set
 holds on the exact one, in *both* directions of the definition and for opposite

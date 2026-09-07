@@ -37,7 +37,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- `hverify` at depth `d` gives the specification on the exact output set, never a
+/-- `hverify` at depth `d` gives the specification on the exact image, never a
 counterexample from a `false` result, and never that further splitting would help. -/
 theorem NeuralNetwork.verifySplit_sound (nn : NeuralNetwork S n m)
     (spec : Specification (Vec ℝ m)) (check : S m → Bool)
@@ -45,7 +45,7 @@ theorem NeuralNetwork.verifySplit_sound (nn : NeuralNetwork S n m)
     (splitter : S n → S n × S n)
     (hcov : ∀ Y : S n, construct Y ⊆ construct (splitter Y).1 ∪ construct (splitter Y).2)
     (d : ℕ) (X : S n) (hverify : nn.verifySplit check splitter d X = true) :
-    spec.Holds (nn.outputSet X) := by -- --- PROOF ---
+    spec.Holds (nn.image (construct X)) := by -- --- PROOF ---
   induction d generalizing X with
   | zero => exact nn.holds_of_propagate X spec (hcheck _ hverify)
   | succ d ih =>
@@ -53,8 +53,9 @@ theorem NeuralNetwork.verifySplit_sound (nn : NeuralNetwork S n m)
     rcases hverify with h | h
     · exact nn.holds_of_propagate X spec (hcheck _ h)
     · rw [Bool.and_eq_true] at h
-      have hsub : nn.outputSet X ⊆ nn.outputSet (splitter X).1 ∪ nn.outputSet (splitter X).2 :=
-        calc nn.outputSet X = nn.eval '' construct X := rfl
+      have hsub : nn.image (construct X)
+          ⊆ nn.image (construct (splitter X).1) ∪ nn.image (construct (splitter X).2) :=
+        calc nn.image (construct X) = nn.eval '' construct X := rfl
           _ ⊆ nn.eval '' (construct (splitter X).1 ∪ construct (splitter X).2) :=
               Set.image_mono (hcov X)
           _ = nn.eval '' construct (splitter X).1 ∪ nn.eval '' construct (splitter X).2 :=

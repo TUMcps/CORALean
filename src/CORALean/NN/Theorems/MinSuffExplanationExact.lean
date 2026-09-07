@@ -1,7 +1,7 @@
 import CORALean.NN.Theorems.SuffExplanationExact
 
 /-!
-# Minimal sufficient explanation, read at the exact output set
+# Minimal sufficient explanation, read at the exact image
 
 `def:min-suff-explanation` [1] over `IsSuffExplanationExact`. Kept apart from
 `IsMinSuffExplanationAbstract` because the two minimality fields negate

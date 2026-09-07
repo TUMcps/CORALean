@@ -9,7 +9,7 @@ the file, so demoting one to `aux_` would have left the file with none —
 split instead, one file each, as `SigmoidRefinementConverges.lean`'s pair
 does too.
 
-Some schedule is inside any inflation of the exact output set, which with
+Some schedule is inside any inflation of the exact image, which with
 `propagateAt_outer` squeezes the enclosure onto it.
 -/
 
@@ -33,7 +33,7 @@ variable {n m : ℕ}
 theorem exists_schedule_sigmoidLinearSigmoid_subset (W : Mat ℝ m n) (b : Vec ℝ m)
     (X : PolyZonotope (Vec ℝ n)) {ε : ℝ} (hε : 0 < ε) : ∃ sch : Schedule,
       construct ((sigmoidLinearSigmoidNetwork W b).propagateAt sch X)
-        ⊆ (sigmoidLinearSigmoidNetwork W b).outputSet X + Metric.closedBall 0 ε :=
+        ⊆ (sigmoidLinearSigmoidNetwork W b).image (construct X) + Metric.closedBall 0 ε :=
   (sigmoidLinearSigmoidNetwork W b).exists_schedule_propagateAt_subset
     (sigmoidLinearSigmoidNetwork_convergent W b) X ε hε
 

@@ -51,9 +51,10 @@ theorem neuronMerging_sandwich_outer {n0 n n2 d r : ℕ}
     (W0 : Mat ℝ n n0) (b0 : Vec ℝ n) {σ : ℝ → ℝ} (R : Relaxation σ)
     (W1 : Mat ℝ n2 n) (b1 : Vec ℝ n2) (Y : Interval (Vec ℝ n)) (X : S n0)
     (hY : ∀ x ∈ construct X, (fun i => σ ((W0 *ᵥ x + b0) i)) ∈ construct Y) :
-    (NeuralNetwork.cons (Layer.linear W0 b0)
+    ((NeuralNetwork.cons (Layer.linear W0 b0)
         (NeuralNetwork.cons (Layer.activation R)
-          (NeuralNetwork.ofLayer (Layer.linear W1 b1)))).outputSet X
+          (NeuralNetwork.ofLayer (Layer.linear W1 b1)))) : NeuralNetwork S n0 n2).image
+        (construct X)
       ⊆ construct
         ((NeuralNetwork.cons (Layer.linear (W0.submatrix part.left id) (b0 ∘ part.left))
             (NeuralNetwork.cons (Layer.activation R)

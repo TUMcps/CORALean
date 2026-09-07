@@ -1,7 +1,7 @@
 import CORALean.NN.Operations.Propagate
 
 /-!
-# `NeuralNetwork.propagate` contains the output set
+# `NeuralNetwork.propagate` contains the image
 
 Induction on the graph, applying each layer's own obligation in the order
 `propagate` applies the layers. Nothing else is used, so a new layer buys into

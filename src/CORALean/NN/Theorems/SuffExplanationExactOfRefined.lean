@@ -15,7 +15,7 @@ inside what `nnAbs` propagates. `hrefine` is that containment, and
 `suffExplanationAbstract_of_refined` is the enclosure-to-enclosure reading
 instead. Neither implies the other: `Layer.propagate_not_monotone` blocks
 passing from a containment of input sets to one of enclosures, and an exact
-image is not an enclosure, so `outputSet_subset` composes in one direction only
+image is not an enclosure, so `image_subset` composes in one direction only
 — it weakens the enclosure hypothesis to this one, never the reverse.
 
 ## References
@@ -46,7 +46,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OfInterval S] {n
 for `nnAbs` is exactly sufficient for the refinement `nnRef` it encloses. -/
 theorem NeuralNetwork.suffExplanationExact_of_refined (nnAbs nnRef : NeuralNetwork S n m)
     (x : Vec ℝ n) (ε : ℝ) (E : Finset (Fin n)) (l : Fin m)
-    (hrefine : nnRef.outputSet (ofInterval (explainBox x ε E))
+    (hrefine : nnRef.image (construct (ofInterval (explainBox x ε E) : S n))
       ⊆ construct (nnAbs.propagate (ofInterval (explainBox x ε E))))
     (hsuffAbs : nnAbs.IsSuffExplanationAbstract x ε E l) :
     nnRef.IsSuffExplanationExact x ε E l :=

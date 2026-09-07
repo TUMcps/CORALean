@@ -6,7 +6,7 @@ import CORALean.NN.Theorems.PropagateOuter
 # Every input in the set is classified the same
 
 The network-level form of `disjoint_misclassified_of_bounds`: read at the
-propagated output set, a bound per rival label puts every point the input set
+propagated image, a bound per rival label puts every point the input set
 propagates to on the target's side of every margin.
 -/
 
@@ -28,7 +28,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Every input in the set is classified `l`, on the strength of one bound per
-rival label against the propagated output set. -/
+rival label against the propagated image. -/
 theorem NeuralNetwork.classifies (nn : NeuralNetwork S n m) (X : S n) (l : Fin m)
     (u : ∀ j, SupportBound (construct (nn.propagate X))
       (marginDir m j l))

@@ -1,10 +1,10 @@
-import CORALean.NN.Theorems.OutputSetSubset
+import CORALean.NN.Theorems.ImageSubset
 import CORALean.Specification.Theorems.HoldsOfOuter
 
 /-!
 # Verification: the check on the propagated set answers for the network
 
-`propagate` returns a superset of the output set, and `Specification.
+`propagate` returns a superset of the image, and `Specification.
 holds_of_outer` says a check passed on a superset is passed by everything
 inside it — so a specification verified on what was computed is satisfied by
 every output the network actually produces, on every input in the input set.
@@ -34,8 +34,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 
 theorem NeuralNetwork.holds_of_propagate (nn : NeuralNetwork S n m) (X : S n)
     (spec : Specification (Vec ℝ m)) (h : spec.Holds (construct (nn.propagate X))) :
-    spec.Holds (nn.outputSet X) :=
-  spec.holds_of_outer (nn.outputSet_subset X) h
+    spec.Holds (nn.image (construct X)) :=
+  spec.holds_of_outer (nn.image_subset X) h
 
 end CORALean.Real
 

@@ -59,7 +59,7 @@ theorem neuronMerging_network_outer {n₀ n₁ n n₂ n₃ d r : ℕ}
     (NeuralNetwork.cons pre.toLayer
         (.cons (Layer.linear W0 b0)
           (.cons (Layer.activation R)
-            (.cons (Layer.linear W1 b1) post)))).outputSet X
+            (.cons (Layer.linear W1 b1) post)))).image (construct X)
       ⊆ construct ((NeuralNetwork.cons pre.toLayer
           (.cons (Layer.linear (W0.submatrix part.left id) (b0 ∘ part.left))
             (.cons (Layer.activation R)

@@ -5,7 +5,7 @@ import CORALean.NN.Schedule
 # A schedule does not change what the network computes
 
 The invariant the whole loop rests on, and it is `RefinableLayer` keeping `eval`
-outside `propagate`, carried along the chain. Without it "the exact output set"
+outside `propagate`, carried along the chain. Without it "the exact image"
 would be a function of the schedule and no refinement could be said to converge
 to anything.
 

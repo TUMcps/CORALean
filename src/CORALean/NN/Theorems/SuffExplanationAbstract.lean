@@ -39,7 +39,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OfInterval S] {n
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `E` is sufficient for `nnAbs`'s classification of `x` as `l`: propagating
-`explainBox`, the output set never lets a rival tie or beat `l`. -/
+`explainBox`, the image never lets a rival tie or beat `l`. -/
 def NeuralNetwork.IsSuffExplanationAbstract (nnAbs : NeuralNetwork S n m) (x : Vec ℝ n) (ε : ℝ)
     (E : Finset (Fin n)) (l : Fin m) : Prop :=
   (Specification.unsafeSet (misclassified m l)).Holds

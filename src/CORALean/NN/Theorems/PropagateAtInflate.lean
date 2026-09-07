@@ -3,11 +3,11 @@ import CORALean.NN.Operations.PropagateAt
 import CORALean.NN.Schedule
 
 /-!
-# Refinement converges to the exact output set
+# Refinement converges to the exact image
 
 The other half of `PropagateAtOuter`: the image is always inside the propagated
 set, and some schedule brings the propagated set inside the image widened by any
-`ε`. Together they say refinement drives the enclosure onto the output set, and
+`ε`. Together they say refinement drives the enclosure onto the image, and
 neither statement needs a distance between sets.
 
 The induction is the network's own, and the residual is what travels: the head
@@ -88,7 +88,8 @@ theorem aux_image_inflate_subset {k : ℕ} {f : Vec ℝ m → Vec ℝ k} {K : NN
 theorem RefinableNetwork.exists_schedule_propagateAt_subset :
     ∀ {n m : ℕ} (rn : RefinableNetwork S n m), rn.Convergent → ∀ (X : S n) (ε : ℝ), 0 < ε →
       ∃ sch : Schedule,
-        construct (rn.propagateAt sch X) ⊆ rn.outputSet X + Metric.closedBall 0 ε
+        construct (rn.propagateAt sch X)
+          ⊆ rn.image (construct X) + Metric.closedBall 0 ε
   | k, _, .nil, _, X, ε, hε => by
     refine ⟨fun _ _ => 0, fun y hy => ?_⟩
     -- the empty network propagates its input, and nothing has to be inflated
@@ -96,7 +97,8 @@ theorem RefinableNetwork.exists_schedule_propagateAt_subset :
       rw [Metric.mem_closedBall, dist_self]
       exact hε.le
     have hmem := Set.add_mem_add
-      (show y ∈ (RefinableNetwork.nil : RefinableNetwork S k k).outputSet X from ⟨y, hy, rfl⟩) h0
+      (show y ∈ (RefinableNetwork.nil : RefinableNetwork S k k).image (construct X)
+        from ⟨y, hy, rfl⟩) h0
     rwa [add_zero] at hmem
   | _, _, .cons L rest, hc, X, ε, hε => by
     obtain ⟨hL, ⟨K, hK⟩, hrest⟩ := hc
@@ -111,12 +113,13 @@ theorem RefinableNetwork.exists_schedule_propagateAt_subset :
       have hcancel : (2 * ((K : ℝ) + 1)) * (ε / (2 * ((K : ℝ) + 1))) = ε := by field_simp
       nlinarith [K.coe_nonneg, (div_pos hε hKpos).le]
     have hset : rest.eval '' (L.eval '' construct X)
-        = (RefinableNetwork.cons L rest).outputSet X := by
+        = (RefinableNetwork.cons L rest).image (construct X) := by
       rw [Set.image_image]
       rfl
     -- the head's residual, carried through the tail and paid at half the budget
     have himg : rest.eval '' construct (L.propagate o X)
-        ⊆ (RefinableNetwork.cons L rest).outputSet X + Metric.closedBall 0 (ε / 2) := by
+        ⊆ (RefinableNetwork.cons L rest).image (construct X)
+          + Metric.closedBall 0 (ε / 2) := by
       refine subset_trans (Set.image_mono ho)
         (subset_trans (aux_image_inflate_subset hK _ _) ?_)
       rw [hset]

@@ -40,7 +40,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OfInterval S] {n
 
 theorem NeuralNetwork.minSuffExplanationAbstract_of_min (nn nnAbs : NeuralNetwork S n m)
     (x : Vec ℝ n) (ε : ℝ) (E : Finset (Fin n)) (l : Fin m)
-    (hcontain : ∀ E' : Finset (Fin n), nn.outputSet (ofInterval (explainBox x ε E'))
+    (hcontain : ∀ E' : Finset (Fin n), nn.image (construct (ofInterval (explainBox x ε E') : S n))
       ⊆ construct (nnAbs.propagate (ofInterval (explainBox x ε E'))))
     (hsuffAbs : nnAbs.IsSuffExplanationAbstract x ε E l)
     (hmin : nn.IsMinSuffExplanation x ε E l) :
