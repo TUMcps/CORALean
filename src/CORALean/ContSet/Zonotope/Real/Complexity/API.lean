@@ -9,7 +9,7 @@ import CORALean.ContSet.Zonotope.Real.Complexity.ReduceBy
 import CORALean.ContSet.Zonotope.Real.Complexity.BilinBigO
 
 /-!
-# What `Zonotope` costs
+# How large `Zonotope`'s results are
 
 The size of an operation's result as a function of its operands' — generator
 count only, since a `Zonotope` has one generator block — so that a
@@ -20,7 +20,9 @@ reachability order bound built from these means something. Each theorem is
 `Theorems/ReduceOrder.lean`: reduction is the one operation whose whole job is
 to make the count smaller, so its statement is a bound rather than a count.
 
-The number of scalar operations each operation costs is not yet stated here.
+How many scalar operations an operation costs is the other kind of claim and
+lives in `Cost/`: a size follows from a definition and a running cost does not,
+so one is proved here and the other asserted there.
 
 `bilin_h_isBigO` is the shape the rest of this directory should eventually
 take: not a bare count, but the count's growth in `O`-notation, tied to the

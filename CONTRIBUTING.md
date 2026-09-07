@@ -4,7 +4,8 @@
 
 ```
 src/CORALean/
-  Global/          shared: array types, the scalar, index partitions, Mathlib
+  Global/          shared: array types, the scalar, index partitions, the model
+                   every running cost is stated against, Mathlib
     Float/         the floating-point scalar, and models of it
     LinProg/       bounds on a linear objective, and what certifies them
       Float/       the same bound with a machine-representable value
@@ -14,6 +15,8 @@ src/CORALean/
     Interval/
       Real/        Interval.lean (the type), Operations/ (one per operation),
                    Theorems/ (one per guarantee),
+                   Complexity/ (how large a result is, proved),
+                   Cost/ (what running it costs, asserted),
                    Instances.lean (the interface, instantiated),
                    API.lean (the whole directory, and nothing but imports)
       Float/       the same representation, rounded
@@ -176,8 +179,8 @@ directory's collector, that no `Real` file reaches into `Float`, that a file
 under `Real/` or `Float/` declares the namespace its directory claims, that every
 file carries a module docstring and — unless it is a collector — a well-formed
 author block one line under it, that nothing is `sorry`, `axiom` or a search
-tactic, that every `maxHeartbeats` bump carries a reason, that every `[N]` cited
-resolves, that the comment lengths and the comment density above are respected,
+tactic, that every `maxHeartbeats` bump carries a reason, that a `def` under `Cost/`
+is named for the cost it asserts, that every `[N]` cited resolves, that the comment lengths and the comment density above are respected,
 and that every module is reachable from one of the target roots, so a file
 written but never collected is caught rather than silently left out of the build.
 
@@ -276,7 +279,7 @@ oleans.
 
 ## File roles
 
-Per representation, four kinds of file, and a file does only its own job. Scalar
+Per representation, six kinds of file, and a file does only its own job. Scalar
 models and systems follow the same shape:
 
 | File | Holds |
@@ -284,6 +287,8 @@ models and systems follow the same shape:
 | `<Name>.lean` | the structure it is named for, and what it denotes: `construct`, `toReal`, `Trajectory` |
 | `Operations/*.lean` | one operation each, as CORA gives it a file each |
 | `Theorems/*.lean` | one guarantee each, stated and proved together |
+| `Complexity/*.lean` | how large a result is — a theorem, proved from the definition |
+| `Cost/*.lean` | how much running it costs — a `def`, asserted against a model |
 | `Instances.lean` | the class instances, whose fields *are* the guarantees |
 
 A file is named after what it declares, not after the role it plays:
@@ -298,11 +303,52 @@ has one operation, and `Dyadic`'s are one-line compositions.
 under `Operations/` or `Theorems/` declares exactly one public thing. What it
 needs and nothing else uses is `aux_`; what the tree needs earns a file of its
 own. `<Name>.lean` and `Instances.lean` sit outside the rule — a type is
-declared with what it denotes, and instances have no names to collect.
+declared with what it denotes, and instances have no names to collect — and so
+do `Complexity/` and `Cost/`, whose files hold a claim per operation rather
+than an operation, and are read as a table.
 
 The rule is what keeps the table above true, and it is checked because a
 convention nobody tests is one the tree drifts out of: a helper that quietly
 grows a second user is the usual way a file stops doing only its own job.
+
+### A size is proved; a running cost is asserted
+
+`Complexity/` and `Cost/` look alike from outside and only one of them can be
+wrong, so they are kept apart deliberately.
+
+A **size** — how many generators an operation's result has — is a field of the
+result, so `Zonotope.plus_h` is a `theorem` and its proof is `rfl` against the
+structure instance in `Operations/`. A **running cost** is not derivable at all:
+a Lean `def` says what is computed and never what computing it costs. So a cost
+is stated against an explicit model, `Global/Cost.lean`, and justified in the
+file's docstring by reading the operation's definition by hand. It is an axiom
+in the informal sense, and must never be dressed as a theorem about the
+definition.
+
+Three things say which a reader is looking at, and the third is checked:
+
+* the directory — `Complexity/` or `Cost/`;
+* the form — a `theorem` about `.h`, or a `def` returning a `Cost`, a type that
+  is not `ℕ` and so cannot be equated with a size by accident;
+* the name — a public `def` under `Cost/` is `...Cost` or `...Bound`, which
+  `check-conventions.sh` enforces.
+
+Nothing under `Cost/` is proved `rfl` against an operation. What *is* proved
+there is everything above the assertions: that each count is monotone in the
+operand sizes it takes, and that an algorithm's cost is the sum of its
+operations' — `LinearSysDT.reachCost_le` assembles `reach`'s bound out of the
+asserted per-operation counts and the proved size fact `reach_order_le`, and
+asserts nothing of its own. That composition is the point of the arrangement:
+a new algorithm's bound is a size fact per operation, a cost per operation,
+monotonicity to join them, and induction over the loop.
+
+`Asymptotics.IsBigO` is deliberately *not* the vehicle for the counts. It takes
+a function of one argument along one filter, while a cost grows in several
+sizes at once — a step of `reach` in the dimension, the order and the input
+set's generator count — and it discards the constant that composition needs.
+So a cost is an explicit bounding function and a plain `≤`, and `IsBigO` appears
+once at the end, to read one parameter's slice off a bound already proved:
+`LinearSysDT.reachStepBound_isBigO`.
 
 ### `aux_`
 

@@ -554,6 +554,13 @@ FNR == 1 {
       pendingMain = 0
     }
 
+    # A `Cost/` directory holds asserted running costs and nothing derived from
+    # a definition; the `...Cost` name is one of the three things that says so,
+    # the directory and the `Cost`-valued `def` being the other two.
+    if (FILENAME ~ /\/Cost\// && kind == "def" && b !~ /^aux_/ && b !~ /(Cost|Bound)$/)
+      say(FILENAME ":" FNR ": a `def` under `Cost/` is an asserted cost, named" \
+          " `...Cost` or `...Bound`, not `" b "`")
+
     if (b ~ /^aux_/) {
       declAux[b] = FNR
       # An instance is found by type class search, never by name, so no file

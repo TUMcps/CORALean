@@ -1,5 +1,5 @@
 /-!
-# What `Interval` costs
+# How large `Interval`'s results are
 
 `Interval` carries no generator or constraint count: it is `inf`/`sup` at a
 fixed ambient index, so every entrywise operation (`plus`, `linComb`, `mtimes`,
@@ -12,9 +12,9 @@ signature already visible at the call site is not what issue #5 asks for.
 shared/contraction dimension `matMul` sums over, and the iteration count
 `matPow` recurses through — but both are already explicit arguments in the
 signature (`n` and the exponent), not a quantity an operation *produces*. The
-only way to say more about either is to count the scalar multiplications and
-comparisons `mulLo`/`mulHi` spend per entry, which is exactly the running-time
-claim this directory is not for anywhere else in the tree.
+only way to say more about either is to count the scalar operations spent per
+entry — a running cost, which is the other kind of claim and lives in `Cost/`,
+asserted against a model rather than proved from a definition.
 
 So there is nothing here that is both non-obvious and not a scalar-operation
 count. This directory accordingly holds no theorems for `Interval`, only this
