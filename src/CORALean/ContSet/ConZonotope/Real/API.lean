@@ -15,7 +15,7 @@ both counts together.
 What it buys over a zonotope is `and`: intersection, exactly, which no zonotope
 can represent.
 
-The specification only. A float layer would pay two different roundings in two
+Both layers are specified. `Float` pays two different roundings in two
 different places: the centre and generators into an ambient error box, as the
 float zonotope does, and the constraints into the polytope itself, whose float
 form carries an interval right-hand side — `HPolytope` records why an ambient box
