@@ -16,7 +16,9 @@ branches survives; splitting into two sets and recombining them would lose it,
 which is precisely the precision a skip connection is there to preserve.
 
 `image` is what verification is about and what nothing computes: the exact
-image, which `enclose` encloses.
+image, which `enclose` encloses. It is `enclose`'s own recursion, run over
+sets rather than representations, so soundness is one induction relating the
+two instead of one that re-derives the image of a composition at every step.
 -/
 
 -- Authors:       Tobias Ladner
@@ -45,9 +47,25 @@ def NeuralNetwork.eval : ∀ {n m : ℕ}, NeuralNetwork S n m → Vec ℝ n → 
   | _, _, .cons L rest, x => rest.eval (L.eval x)
 
 /-- The exact image a network produces: not computable, and what `enclose`
-encloses. -/
-def NeuralNetwork.image (nn : NeuralNetwork S n m) (X : Set (Vec ℝ n)) : Set (Vec ℝ m) :=
-  nn.eval '' X
+encloses. `enclose`'s own recursion, run over sets instead of representations. -/
+def NeuralNetwork.image : ∀ {n m : ℕ}, NeuralNetwork S n m → Set (Vec ℝ n) → Set (Vec ℝ m)
+  | _, _, .nil, X => X
+  | _, _, .cons L rest, X => rest.image (L.image X)
+
+theorem NeuralNetwork.image_nil (X : Set (Vec ℝ n)) :
+    (NeuralNetwork.nil : NeuralNetwork S n n).image X = X := rfl
+
+theorem NeuralNetwork.image_cons (L : Layer S n m) (rest : NeuralNetwork S m k)
+    (X : Set (Vec ℝ n)) : (NeuralNetwork.cons L rest).image X = rest.image (L.image X) := rfl
+
+/-- `image` agrees with mapping `eval` over the set — the recursion and the
+alias it replaces, tied together in one induction. -/
+theorem NeuralNetwork.image_eq_eval_image :
+    ∀ {n m : ℕ} (nn : NeuralNetwork S n m) (X : Set (Vec ℝ n)), nn.image X = nn.eval '' X
+  | _, _, .nil, X => (Set.image_id' X).symm
+  | _, _, .cons L rest, X => by
+      rw [NeuralNetwork.image_cons, rest.image_eq_eval_image]
+      exact Set.image_image rest.eval L.eval X
 
 /-- One layer, so that a single layer needs no special case anywhere. -/
 def NeuralNetwork.ofLayer (L : Layer S n m) : NeuralNetwork S n m := .cons L .nil

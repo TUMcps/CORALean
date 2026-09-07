@@ -62,6 +62,7 @@ theorem neuronMerging_sandwich_outer {n0 n n2 d r : ℕ}
                 (Interval.mtimes (W1.submatrix id part.right)
                   ⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩)
                 (Interval.mtimes_isNonempty _ _))))).enclose X) := by -- --- PROOF ---
+  rw [NeuralNetwork.image_eq_eval_image]
   rintro _ ⟨x, hx, rfl⟩
   set h0 : Vec ℝ n := W0 *ᵥ x + b0 with hh0
   set hk : Vec ℝ n := fun i => σ (h0 i) with hhk

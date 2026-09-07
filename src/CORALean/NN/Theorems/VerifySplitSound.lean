@@ -55,11 +55,13 @@ theorem NeuralNetwork.verifySplit_sound (nn : NeuralNetwork S n m)
     · rw [Bool.and_eq_true] at h
       have hsub : nn.image (construct X)
           ⊆ nn.image (construct (splitter X).1) ∪ nn.image (construct (splitter X).2) :=
-        calc nn.image (construct X) = nn.eval '' construct X := rfl
+        calc nn.image (construct X) = nn.eval '' construct X := nn.image_eq_eval_image _
           _ ⊆ nn.eval '' (construct (splitter X).1 ∪ construct (splitter X).2) :=
               Set.image_mono (hcov X)
           _ = nn.eval '' construct (splitter X).1 ∪ nn.eval '' construct (splitter X).2 :=
               Set.image_union ..
+          _ = nn.image (construct (splitter X).1) ∪ nn.image (construct (splitter X).2) := by
+              rw [nn.image_eq_eval_image, nn.image_eq_eval_image]
       exact spec.holds_of_outer hsub (spec.holds_union (ih _ h.1) (ih _ h.2))
 
 end CORALean.Real
