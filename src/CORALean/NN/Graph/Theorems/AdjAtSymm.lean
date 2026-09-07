@@ -1,14 +1,13 @@
-import CORALean.NN.Graph.Uncertain
+import CORALean.NN.Graph.Theorems.EdgeMatSymm
 
 /-!
 # `adjAt` is symmetric when `A` is
 
-Each `edgeMat` writes both orientations of its edge at once
-(`aux_edgeMat_symm`), so it is symmetric by construction; `adjAt A U lam =
-A + ∑ e, lam e • edgeMat (U e)` is then a sum of symmetric matrices whenever
-`A` itself is. This is what lets `[1, §4.3]`'s extra-hop theorems
-(`DegreeSubmatrixOfBall`, `MessagePassingSubmatrixOfBall`) apply to
-`adjAt A U lam` at all.
+Each `edgeMat` writes both orientations of its edge at once (`edgeMat_symm`),
+so it is symmetric by construction; `adjAt A U lam = A + ∑ e, lam e •
+edgeMat (U e)` is then a sum of symmetric matrices whenever `A` itself is.
+This is what lets `[1, §4.3]`'s extra-hop theorems (`DegreeSubmatrixOfBall`,
+`MessagePassingSubmatrixOfBall`) apply to `adjAt A U lam` at all.
 
 ## References
 
@@ -19,7 +18,7 @@ A + ∑ e, lam e • edgeMat (U e)` is then a sum of symmetric matrices whenever
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   07-September-2026
 -- Last revision: ---
 
 
@@ -32,16 +31,6 @@ open Matrix
 variable {N m : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
-/-- `edgeMat` writes both orientations of its edge at once, so it is symmetric. -/
-theorem aux_edgeMat_symm (ij : Fin N × Fin N) (a b : Fin N) :
-    GNN.edgeMat ij a b = GNN.edgeMat ij b a := by
-  have h : ((a = ij.1 ∧ b = ij.2) ∨ (a = ij.2 ∧ b = ij.1)) ↔
-      ((b = ij.1 ∧ a = ij.2) ∨ (b = ij.2 ∧ a = ij.1)) := by tauto
-  simp only [GNN.edgeMat, h]
-
-
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `adjAt A U lam` is symmetric whenever `A` is: each `edgeMat` already is. -/
@@ -50,7 +39,7 @@ theorem GNN.adjAt_symm (A : Mat ℝ N N) (U : Fin m → Fin N × Fin N) (hSymm :
   simp only [GNN.adjAt, Matrix.add_apply, Matrix.sum_apply, Matrix.smul_apply, smul_eq_mul]
   rw [hSymm i j]
   congr 1
-  exact Finset.sum_congr rfl fun e _ => by rw [aux_edgeMat_symm (U e) i j]
+  exact Finset.sum_congr rfl fun e _ => by rw [GNN.edgeMat_symm (U e) i j]
 
 end CORALean.Real
 
