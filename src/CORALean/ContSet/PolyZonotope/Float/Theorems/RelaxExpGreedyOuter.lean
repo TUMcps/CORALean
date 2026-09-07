@@ -36,7 +36,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 of steps. -/
 theorem PolyZonotope.relaxExpGreedy_outer
     (sel : (PZ : PolyZonotope 𝕋 n) →
-      Option ((d : ℕ) × (Split (Fin PZ.h) into (Fin d) and (Fin 2))))
+      Option ((d : ℕ) × (Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2))))
     (m : ℕ) (PZ : PolyZonotope 𝕋 n) :
     PZ.construct ⊆ (PolyZonotope.relaxExpGreedy sel m PZ).construct := by -- --- PROOF ---
   induction m generalizing PZ with

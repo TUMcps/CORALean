@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 /-- Merge at whatever the selection names, at most `n` times. -/
 def PolyZonotope.relaxExpGreedy
     (sel : (PZ : PolyZonotope 𝕋 n) →
-      Option ((d : ℕ) × (Split (Fin PZ.h) into (Fin d) and (Fin 2)))) :
+      Option ((d : ℕ) × (Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2)))) :
     ℕ → PolyZonotope 𝕋 n → PolyZonotope 𝕋 n
   | 0, PZ => PZ
   | m + 1, PZ =>

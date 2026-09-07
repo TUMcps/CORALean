@@ -23,7 +23,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q r : ℕ}
 
 omit [SoundFloatArithmetic 𝕋] in
 @[simp] theorem Zonotope.reduceAndAbsorbBy_h (Z : Zonotope 𝕋 n)
-    (part : Split (Fin Z.h) into (Fin q) and (Fin r)) :
+    (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) :
     (Z.reduceAndAbsorbBy part).h = q + n := rfl
 
 end CORALean.Float

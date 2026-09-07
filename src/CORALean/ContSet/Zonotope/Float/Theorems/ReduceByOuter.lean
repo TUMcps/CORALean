@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q r : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 theorem Zonotope.aux_reduceBy_nominal (Z : Zonotope 𝕋 n)
-    (part : Split (Fin Z.h) into (Fin q) and (Fin r)) :
+    (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) :
     nominalSet Z ⊆ nominalSet (Z.reduceBy part) :=
   subset_trans (Real.Zonotope.reduceBy_outer (nominal Z) part)
     (Zonotope.reduceBy_outer_refines Z part)
@@ -37,7 +37,7 @@ theorem Zonotope.aux_reduceBy_nominal (Z : Zonotope 𝕋 n)
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.reduceBy_outer (Z : Zonotope 𝕋 n)
-    (part : Split (Fin Z.h) into (Fin q) and (Fin r)) :
+    (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) :
     Z.construct ⊆ (Z.reduceBy part).construct :=
   mono_subset (Zonotope.aux_reduceBy_nominal Z part) (subset_refl _)
 

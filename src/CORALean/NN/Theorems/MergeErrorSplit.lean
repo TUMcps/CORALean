@@ -37,7 +37,7 @@ open Matrix
 `eq:multiple-buckets` in [1], the combined bucket's error being the Minkowski
 sum of the sub-buckets' errors. -/
 theorem mergeError_split {m r r₁ r₂ : ℕ}
-    (part : Split (Fin r) into (Fin r₁) and (Fin r₂))
+    (part : Split (Fin r) into (Fin r₁) ⊕ (Fin r₂))
     (M : Mat ℝ m r) (Y : Interval (Vec ℝ r)) :
     Interval.mtimes M Y
       = Interval.plus

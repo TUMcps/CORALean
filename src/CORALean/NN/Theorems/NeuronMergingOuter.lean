@@ -47,7 +47,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n
 `part.right`, trimming layer `k-1`'s rows and layer `k+1`'s columns to the
 survivors `part.left`, and boxing the bucket's contribution to `k+1` from `Y`. -/
 theorem neuronMerging_sandwich_outer {n0 n n2 d r : ℕ}
-    (part : Split (Fin n) into (Fin d) and (Fin r))
+    (part : Split (Fin n) into (Fin d) ⊕ (Fin r))
     (W0 : Mat ℝ n n0) (b0 : Vec ℝ n) {σ : ℝ → ℝ} (R : Relaxation σ)
     (W1 : Mat ℝ n2 n) (b1 : Vec ℝ n2) (Y : Interval (Vec ℝ n)) (X : S n0)
     (hY : ∀ x ∈ construct X, (fun i => σ ((W0 *ᵥ x + b0) i)) ∈ construct Y) :

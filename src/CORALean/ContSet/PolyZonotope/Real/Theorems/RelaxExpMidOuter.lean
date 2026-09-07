@@ -45,7 +45,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {d : ℕ}
 /-- Merging two generators whose exponent columns agree off `k₀`
 over-approximates, with the drift's midpoint moved into the centre. -/
 theorem PolyZonotope.relaxExpMid_outer (PZ : PolyZonotope α)
-    (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (k₀ : Fin PZ.p)
+    (part : Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin PZ.p)
     (hsim : ∀ k, k ≠ k₀ → PZ.E k (part.right 0) = PZ.E k (part.right 1)) :
     PZ.construct ⊆ (PZ.relaxExpMid part k₀).construct := by -- --- PROOF ---
   rintro x ⟨a, β, ha, hβ, rfl⟩

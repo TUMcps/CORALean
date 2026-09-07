@@ -44,7 +44,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 of steps. -/
 theorem PolyZonotope.relaxExpGreedy_outer
     (sel : (PZ : PolyZonotope α) →
-      Option ((d : ℕ) × (Split (Fin PZ.h) into (Fin d) and (Fin 2))))
+      Option ((d : ℕ) × (Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2))))
     (n : ℕ) (PZ : PolyZonotope α) :
     PZ.construct ⊆ (PolyZonotope.relaxExpGreedy sel n PZ).construct := by -- --- PROOF ---
   induction n generalizing PZ with

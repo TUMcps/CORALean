@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n d : ℕ}
 /-- `relaxExp` with the drift's midpoint taken off the centre, so the new
 independent generator carries only its radius. -/
 def PolyZonotope.relaxExpEven (PZ : PolyZonotope 𝕋 n)
-    (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (k₀ : Fin PZ.p) : PolyZonotope 𝕋 n where
+    (part : Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin PZ.p) : PolyZonotope 𝕋 n where
   p := PZ.p
   h := d + 1
   q := PZ.q + 1

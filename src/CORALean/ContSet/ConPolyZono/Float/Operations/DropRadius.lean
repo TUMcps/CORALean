@@ -29,8 +29,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n d r dI rI : ℕ}
 two row sums, added upward. A monomial and an independent coefficient obey the
 same bound, so one box covers the two blocks together. -/
 def ConPolyZono.dropRadius (C : ConPolyZono 𝕋 n)
-    (partD : Split (Fin C.h) into (Fin d) and (Fin r))
-    (partI : Split (Fin C.q) into (Fin dI) and (Fin rI)) : Vec 𝕋 n :=
+    (partD : Split (Fin C.h) into (Fin d) ⊕ (Fin r))
+    (partI : Split (Fin C.q) into (Fin dI) ⊕ (Fin rI)) : Vec 𝕋 n :=
   fun i₀ => addUp (radius (fun i l => C.G i (partD.right l)) i₀)
     (radius (fun i j => C.GI i (partI.right j)) i₀)
 

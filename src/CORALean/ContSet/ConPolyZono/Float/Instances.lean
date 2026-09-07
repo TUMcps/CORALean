@@ -16,10 +16,6 @@ layer instantiates.
 ranking — `reduceBy_outer` holds at every partition — so the free comparator
 costs precision and nothing else. No `CompactSet`, as at no other float
 representation: compactness is a statement about the exact specification.
-
-`And`'s anonymous constructor, not named fields, for the reason the exact
-layer's carries too: this file is itself inside `namespace CORALean.Float`,
-where `Global.Partition`'s `Split ... and ...` notation is active even scoped.
 -/
 
 -- Authors:       Tobias Ladner
@@ -50,8 +46,9 @@ instance {n : ℕ} : Reduce (ConPolyZono 𝕋 n) (Vec ℝ n) where
     rw [ConPolyZono.materialise_eq]
     exact ConPolyZono.reduce_outer C o
 
-instance {n : ℕ} : And (ConPolyZono 𝕋 n) (Vec ℝ n) :=
-  ⟨ConPolyZono.and, ConPolyZono.and_outer⟩
+instance {n : ℕ} : And (ConPolyZono 𝕋 n) (Vec ℝ n) where
+  and := ConPolyZono.and
+  and_outer := ConPolyZono.and_outer
 
 instance : Mtimes (Mat 𝕋) (ConPolyZono 𝕋) where
   mtimes M C := (ConPolyZono.mtimes M C).materialise

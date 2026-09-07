@@ -27,8 +27,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n d r dI rI : ℕ}
 kept dependent generators keep their exponent columns, kept independent ones are
 copied, and the rest becomes a box no longer tied to the factors. -/
 def ConPolyZono.reduceBy (C : ConPolyZono 𝕋 n)
-    (partD : Split (Fin C.h) into (Fin d) and (Fin r))
-    (partI : Split (Fin C.q) into (Fin dI) and (Fin rI)) : ConPolyZono 𝕋 n where
+    (partD : Split (Fin C.h) into (Fin d) ⊕ (Fin r))
+    (partI : Split (Fin C.q) into (Fin dI) ⊕ (Fin rI)) : ConPolyZono 𝕋 n where
   p := C.p
   h := d
   q := dI + n

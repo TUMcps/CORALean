@@ -42,7 +42,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {d : ℕ}
 /-- The two generators `part.right` names merged into one, the drift's midpoint
 moved into the centre and its half-width into a new independent generator. -/
 noncomputable def PolyZonotope.relaxExpMid (PZ : PolyZonotope α)
-    (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (k₀ : Fin PZ.p) : PolyZonotope α where
+    (part : Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin PZ.p) : PolyZonotope α where
   p := PZ.p
   h := d + 1
   q := PZ.q + 1

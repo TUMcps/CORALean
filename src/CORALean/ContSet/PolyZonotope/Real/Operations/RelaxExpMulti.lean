@@ -45,7 +45,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {d : ℕ}
 column of the second, the first scaled by the summed `ξ_E` becoming
 independent. -/
 def PolyZonotope.relaxExpMulti (PZ : PolyZonotope α)
-    (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) : PolyZonotope α where
+    (part : Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2)) : PolyZonotope α where
   p := PZ.p
   h := d + 1
   q := PZ.q + 1

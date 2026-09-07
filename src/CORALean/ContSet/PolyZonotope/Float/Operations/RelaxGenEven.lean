@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n d : ℕ}
 /-- Half of `ξ_E` copies of the relaxed generator, rounded down: the new
 independent column, and the size of the centre shift. -/
 def PolyZonotope.relaxGenEven (PZ : PolyZonotope 𝕋 n)
-    (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (k₀ : Fin PZ.p) : Vec 𝕋 n :=
+    (part : Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin PZ.p) : Vec 𝕋 n :=
   fun i => half (nsmulDown (PZ.relaxWidth part k₀) (PZ.G i (part.right 0)))
 
 end CORALean.Float

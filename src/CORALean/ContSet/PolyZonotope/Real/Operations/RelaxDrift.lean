@@ -39,7 +39,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {d : ℕ}
 /-- The drift interval's midpoint and half-width, in copies of the relaxed
 generator, from the `[-lo, hi]` that `eDrift` reads off the exponents. -/
 noncomputable def PolyZonotope.relaxDrift (PZ : PolyZonotope α)
-    (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (k₀ : Fin PZ.p) : ℝ × ℝ :=
+    (part : Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin PZ.p) : ℝ × ℝ :=
   ((((PolyZonotope.eDrift PZ.E k₀ (part.right 0) (part.right 1)).2 : ℝ)
       - ((PolyZonotope.eDrift PZ.E k₀ (part.right 0) (part.right 1)).1 : ℝ)) / 2,
     (((PolyZonotope.eDrift PZ.E k₀ (part.right 0) (part.right 1)).2 : ℝ)

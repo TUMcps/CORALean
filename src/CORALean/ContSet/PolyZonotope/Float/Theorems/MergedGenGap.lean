@@ -34,7 +34,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n d : ℕ}
 /-- The merged column is stored downward, so it is off by at most its gap to the
 upward rounding. -/
 theorem PolyZonotope.mergedGen_gap (PZ : PolyZonotope 𝕋 n)
-    (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (i : Fin n) :
+    (part : Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2)) (i : Fin n) :
     |toReal (PZ.G i (part.right 1)) + toReal (PZ.G i (part.right 0))
       - toReal (PZ.mergedGen part i)|
       ≤ toReal (subUp (addUp (PZ.G i (part.right 1)) (PZ.G i (part.right 0)))

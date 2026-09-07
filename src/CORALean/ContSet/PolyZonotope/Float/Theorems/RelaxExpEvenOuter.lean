@@ -47,7 +47,7 @@ omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `relaxExpEven`'s dependent count, stated through the
 projection because that is the form the goal has. -/
 theorem PolyZonotope.aux_sum_univ_relaxExpEven_h {PZ : PolyZonotope 𝕋 n}
-    {part : Split (Fin PZ.h) into (Fin d) and (Fin 2)} {k₀ : Fin PZ.p} (f : Fin (d + 1) → ℝ) :
+    {part : Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2)} {k₀ : Fin PZ.p} (f : Fin (d + 1) → ℝ) :
     ∑ l : Fin (PZ.relaxExpEven part k₀).h, f l
       = ∑ l, f (Fin.castAdd 1 l) + ∑ l : Fin 1, f (Fin.natAdd d l) :=
   Fin.sum_univ_add f
@@ -55,7 +55,7 @@ theorem PolyZonotope.aux_sum_univ_relaxExpEven_h {PZ : PolyZonotope 𝕋 n}
 omit [SoundFloatArithmetic 𝕋] in
 /-- The same at the independent count. -/
 theorem PolyZonotope.aux_sum_univ_relaxExpEven_q {PZ : PolyZonotope 𝕋 n}
-    {part : Split (Fin PZ.h) into (Fin d) and (Fin 2)} {k₀ : Fin PZ.p} (f : Fin (PZ.q + 1) → ℝ) :
+    {part : Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2)} {k₀ : Fin PZ.p} (f : Fin (PZ.q + 1) → ℝ) :
     ∑ j : Fin (PZ.relaxExpEven part k₀).q, f j
       = ∑ j, f (Fin.castAdd 1 j) + ∑ j : Fin 1, f (Fin.natAdd PZ.q j) :=
   Fin.sum_univ_add f
@@ -63,7 +63,7 @@ theorem PolyZonotope.aux_sum_univ_relaxExpEven_q {PZ : PolyZonotope 𝕋 n}
 /-- The halved column is stored downward and its upward twin lies above the
 exact half, so the gap between them covers it. -/
 theorem PolyZonotope.aux_relaxGenEven_gap (PZ : PolyZonotope 𝕋 n)
-    (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (k₀ : Fin PZ.p) (i : Fin n) :
+    (part : Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin PZ.p) (i : Fin n) :
     |(PZ.relaxWidth part k₀ : ℝ) / 2 * toReal (PZ.G i (part.right 0))
       - toReal (PZ.relaxGenEven part k₀ i)|
         ≤ toReal (PZ.relaxGapEven part k₀ i 1) := by -- --- PROOF ---
@@ -86,7 +86,7 @@ theorem PolyZonotope.aux_relaxGenEven_gap (PZ : PolyZonotope 𝕋 n)
 /-- The recentred centre is stored below the exact one, and the gap between the
 two roundings of that same subtraction bounds the difference. -/
 theorem PolyZonotope.aux_relaxCentreEven_gap (PZ : PolyZonotope 𝕋 n)
-    (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (k₀ : Fin PZ.p) (i : Fin n) :
+    (part : Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin PZ.p) (i : Fin n) :
     |toReal (PZ.c i) - (PZ.relaxWidth part k₀ : ℝ) / 2 * toReal (PZ.G i (part.right 0))
       - toReal (PZ.relaxCentreEven part k₀ i)|
         ≤ toReal (PZ.relaxGapEven part k₀ i 2) := by -- --- PROOF ---
@@ -114,7 +114,7 @@ theorem PolyZonotope.aux_relaxCentreEven_gap (PZ : PolyZonotope 𝕋 n)
 
 -- the three stored quantities and their three gaps, the drift split in two
 theorem PolyZonotope.aux_relaxExpEven_nominal (PZ : PolyZonotope 𝕋 n)
-    (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (k₀ : Fin PZ.p)
+    (part : Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin PZ.p)
     (hsim : ∀ k, k ≠ k₀ → PZ.E k (part.right 0) = PZ.E k (part.right 1))
     (heven : ∀ k, Even (PZ.E k (part.right 0)))
     (hevenj : Even (PZ.E k₀ (part.right 1)))
@@ -215,7 +215,7 @@ theorem PolyZonotope.aux_relaxExpEven_nominal (PZ : PolyZonotope 𝕋 n)
 /-- Merging two generators whose columns agree off `k₀`, with column `i` even,
 `E_{k₀,j}` even and `E_{k₀,j} ≤ E_{k₀,i}`, over-approximates. -/
 theorem PolyZonotope.relaxExpEven_outer (PZ : PolyZonotope 𝕋 n)
-    (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (k₀ : Fin PZ.p)
+    (part : Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin PZ.p)
     (hsim : ∀ k, k ≠ k₀ → PZ.E k (part.right 0) = PZ.E k (part.right 1))
     (heven : ∀ k, Even (PZ.E k (part.right 0)))
     (hevenj : Even (PZ.E k₀ (part.right 1)))

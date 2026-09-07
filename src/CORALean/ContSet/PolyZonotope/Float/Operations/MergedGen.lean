@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n d : ℕ}
 
 /-- The two merged generators as stored: their sum, rounded down. -/
 def PolyZonotope.mergedGen (PZ : PolyZonotope 𝕋 n)
-    (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) : Vec 𝕋 n :=
+    (part : Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2)) : Vec 𝕋 n :=
   fun i => addDown (PZ.G i (part.right 1)) (PZ.G i (part.right 0))
 
 end CORALean.Float

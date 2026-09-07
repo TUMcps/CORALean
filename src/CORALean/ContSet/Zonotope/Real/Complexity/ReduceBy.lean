@@ -25,7 +25,7 @@ variable {n q r : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.reduceBy_h (Z : Zonotope (Vec ℝ n))
-    (part : Split (Fin Z.h) into (Fin q) and (Fin r)) :
+    (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) :
     (Z.reduceBy part).h = q + n := rfl
 
 end CORALean.Real

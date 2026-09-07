@@ -45,7 +45,7 @@ def sandwich {n n₁ n₂ : ℕ} (W0 : Mat ℝ n₁ n) (b0 : Vec ℝ n₁) {σ :
 /-- The reduced sandwich `neuronMerging_sandwich_outer` bounds `sandwich` by, trimmed to
 `part.left` and boxing `part.right`'s contribution to `k+1` from `Y`. -/
 noncomputable def mergedSandwich {n n₁ n₂ d r : ℕ}
-    (part : Split (Fin n₁) into (Fin d) and (Fin r))
+    (part : Split (Fin n₁) into (Fin d) ⊕ (Fin r))
     (W0 : Mat ℝ n₁ n) (b0 : Vec ℝ n₁) {σ : ℝ → ℝ} (R : Relaxation σ)
     (W1 : Mat ℝ n₂ n₁) (b1 : Vec ℝ n₂) (Y : Interval (Vec ℝ n₁)) : NeuralNetwork S n n₂ :=
   .cons (Layer.linear (W0.submatrix part.left id) (b0 ∘ part.left))
@@ -66,7 +66,7 @@ inductive NeuralNetwork.ReducesAt :
   | keep {n k m : ℕ} (s : S n) (L : Layer S n k) {rest rest' : NeuralNetwork S k m} :
       ReducesAt (L.propagate s) rest rest' → ReducesAt s (.cons L rest) (.cons L rest')
   -- reduces one sandwich: `part.left` survives, `part.right`'s contribution is boxed from `Y`
-  | merge {n n₁ n₂ m d r : ℕ} (s : S n) (part : Split (Fin n₁) into (Fin d) and (Fin r))
+  | merge {n n₁ n₂ m d r : ℕ} (s : S n) (part : Split (Fin n₁) into (Fin d) ⊕ (Fin r))
       (W0 : Mat ℝ n₁ n) (b0 : Vec ℝ n₁) {σ : ℝ → ℝ} (R : Relaxation σ)
       (W1 : Mat ℝ n₂ n₁) (b1 : Vec ℝ n₂) (Y : Interval (Vec ℝ n₁))
       (hY : ∀ x ∈ construct s, (fun i => σ ((W0 *ᵥ x + b0) i)) ∈ construct Y)

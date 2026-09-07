@@ -28,7 +28,7 @@ variable {n q r : ℕ}
 projection because that is the form the goal has and simp will not rewrite a
 binder's type. -/
 theorem Zonotope.sum_univ_reduceBy {Z : Zonotope (Vec ℝ n)}
-    {part : Split (Fin Z.h) into (Fin q) and (Fin r)} (f : Fin (q + n) → ℝ) :
+    {part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)} (f : Fin (q + n) → ℝ) :
     ∑ j : Fin (Z.reduceBy part).h, f j = ∑ j, f (Fin.castAdd n j) + ∑ j, f (Fin.natAdd q j) :=
   Fin.sum_univ_add f
 

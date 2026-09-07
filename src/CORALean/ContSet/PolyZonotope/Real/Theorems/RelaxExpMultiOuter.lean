@@ -46,7 +46,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {d : ℕ}
 /-- Merging any two dependent generators over-approximates, whichever partition
 names them: the summed width pays for every exponent that moves. -/
 theorem PolyZonotope.relaxExpMulti_outer (PZ : PolyZonotope α)
-    (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) :
+    (part : Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2)) :
     PZ.construct ⊆ (PZ.relaxExpMulti part).construct := by -- --- PROOF ---
   rintro x ⟨a, β, ha, hβ, rfl⟩
   have hcast : (PZ.relaxWidthMulti part : ℝ)
