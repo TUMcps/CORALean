@@ -33,6 +33,7 @@ import CORALean.ContSet.HPolytope.Real.Operations.MemHalfScaledIff
 import CORALean.ContSet.HPolytope.Real.Operations.MemHalfScaledComap
 import CORALean.ContSet.HPolytope.Real.Operations.RowsOfMemHalfScaledComap
 import CORALean.ContSet.HPolytope.Real.Operations.AbsLeOfUnitBoxRows
+import CORALean.ContSet.HPolytope.Real.Operations.OfPoint
 
 /-!
 # What `HPolytope` computes
@@ -56,5 +57,6 @@ precision does, so enumerating the true facets stays outside as an optimisation.
 `Fullspace` and `EmptySet` are the unit and the absorbing element of the first
 group, each written out as the rows that denote it. `minusOf` is exact too:
 each row shifts inward by the subtrahend's support, taken in rather than
-computed, as `mtimesOf` also takes what it cannot compute.
+computed, as `mtimesOf` also takes what it cannot compute — `ofPoint` costs `n`
+equality rows, not zero generators, the one representation a point isn't free for.
 -/
