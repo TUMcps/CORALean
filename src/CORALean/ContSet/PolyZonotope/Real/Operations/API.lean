@@ -11,6 +11,7 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.LinCombE
 import CORALean.ContSet.PolyZonotope.Real.Operations.LinComb
 import CORALean.ContSet.PolyZonotope.Real.Operations.Dependent
 import CORALean.ContSet.PolyZonotope.Real.Operations.Point
+import CORALean.ContSet.PolyZonotope.Real.Operations.OfPoint
 import CORALean.ContSet.PolyZonotope.Real.Operations.SubsetAt
 import CORALean.ContSet.PolyZonotope.Real.Operations.ExtG
 import CORALean.ContSet.PolyZonotope.Real.Operations.ExtE
@@ -93,7 +94,7 @@ subset a sub-box of the factors reaches under `point`.
 
 Each of those grows the generator counts, and `compact` brings them back down without changing the
 set: equal exponent columns add, a zero generator goes, and so does a factor no column reads.
-`reduce` then cuts the count to an order the caller names, and loses.
+`reduce` then cuts the count to an order the caller names, and loses; `ofPoint` needs none of it.
 
 `relaxExp` merges two dependent generators whose exponent columns agree off one index, paying the
 difference into one new independent generator at the price `eDiff` bounds. `relaxExpEven` halves

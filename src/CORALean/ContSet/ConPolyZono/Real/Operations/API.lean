@@ -41,6 +41,7 @@ import CORALean.ContSet.ConPolyZono.Real.Operations.SatisfiesPlusIff
 import CORALean.ContSet.ConPolyZono.Real.Operations.Plus
 import CORALean.ContSet.ConPolyZono.Real.Operations.QuadMapDep
 import CORALean.ContSet.ConPolyZono.Real.Operations.QuadMap
+import CORALean.ContSet.ConPolyZono.Real.Operations.OfPoint
 import CORALean.ContSet.ConPolyZono.Real.Operations.DropRadius
 import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceBy
 import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceGirard
@@ -69,5 +70,5 @@ by factors it does not read, and set beside another over the same factors, and
 `Domain` is the pair `construct` splits into, which compactness reads.
 
 `reduce` ranks both generator blocks as one and boxes what it drops; the
-constraint block passes through. No `linComb`; `Instances` says why.
+constraint block passes through. No `linComb`; `Instances` says why. `ofPoint` needs neither block.
 -/

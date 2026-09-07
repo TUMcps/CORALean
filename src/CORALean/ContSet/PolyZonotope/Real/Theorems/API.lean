@@ -3,6 +3,7 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.ContinuousMonomial
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialZero
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialAdd
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MemConstruct
+import CORALean.ContSet.PolyZonotope.Real.Theorems.OfPointMem
 import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ExistsPointOfQZero
 import CORALean.ContSet.PolyZonotope.Real.Theorems.SubsetAtMono
@@ -64,11 +65,11 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxExpGreedyOuter
 /-!
 # What `PolyZonotope` guarantees
 
-`plus`, `map`, `dependent`, `quadMap` and `compact` exactly; `linComb` and `reduce` as enclosures,
-each docstring saying which coefficients or dropped generators cost the other way. `reduce` is the
-one operation with two guarantees: an enclosure alone is met by a set that grows every step, so
-`reduce_order_le` bounds the size it keeps. `map_point`/`map_subsetAt` are `map` at one factor
-vector and at a sub-box. `mtimesIntervalMat_outer` boxes the radius into a fresh independent block.
+`plus`, `map`, `dependent`, `quadMap` and `compact` exactly; `linComb` and `reduce` as enclosures.
+`reduce` is the one operation with two guarantees: an enclosure alone is met by a set that grows
+every step, so `reduce_order_le` bounds the size it keeps. `map_point`/`map_subsetAt` are `map` at
+one factor vector and at a sub-box, and `mtimesIntervalMat_outer` boxes the radius into a fresh
+independent block. `mem_ofPoint` needs none of that guarding — there is nothing to bound.
 
 `bilin_exact` equates a pairing with the image of the shared factors under `a ↦ f (point S₁ a)
 (point S₂ a)`, never `f` over the two sets; `mul_exact` is it entrywise, `evalPoly_exact` carries

@@ -13,6 +13,7 @@ import CORALean.ContSet.ConPolyZono.Real.Theorems.CompactExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.DependentExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.MapExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.MtimesExact
+import CORALean.ContSet.ConPolyZono.Real.Theorems.OfPointMem
 import CORALean.ContSet.ConPolyZono.Real.Theorems.PlusExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.QuadMapDepExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.QuadMapExact
@@ -47,4 +48,7 @@ through a quadratic map, then cut by a guard, neither losing anything.
 operation: a constraint row is a polynomial in the factors, so it closes the
 domain rather than opening it. What `holds` satisfies, and `MemConstruct`, are
 what the operations are stated over.
+
+`mem_ofPoint` needs none of that: `ofPoint`'s constraint system is empty, so
+`holds` is vacuous at it.
 -/
