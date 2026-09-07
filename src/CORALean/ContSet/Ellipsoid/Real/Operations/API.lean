@@ -7,6 +7,7 @@ import CORALean.ContSet.Ellipsoid.Real.Operations.ApplyEqDotProduct
 import CORALean.ContSet.Ellipsoid.Real.Operations.Pullback
 import CORALean.ContSet.Ellipsoid.Real.Operations.ApplyMulVec
 import CORALean.ContSet.Ellipsoid.Real.Operations.SupportBound
+import CORALean.ContSet.Ellipsoid.Real.Operations.OfPoint
 
 /-!
 # What an ellipsoid computes, collected
@@ -14,5 +15,6 @@ import CORALean.ContSet.Ellipsoid.Real.Operations.SupportBound
 `mtimes` and the `map` it is, exact and the reason the generator form is stored;
 `supportBound`, closed form in every direction; and `plus`, which encloses and
 takes the parameter that enclosure needs. `Shape` is CORA's `Q`, read back off
-the generators so the correspondence can be checked.
+the generators so the correspondence can be checked. `ofPoint` is the
+degenerate case, `G` with no columns.
 -/

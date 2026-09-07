@@ -12,6 +12,7 @@ import CORALean.ContSet.Ellipsoid.Real.Theorems.PlusOuter
 import CORALean.ContSet.Ellipsoid.Real.Theorems.PlusScalingsAdmissible
 import CORALean.ContSet.Ellipsoid.Real.Theorems.SupportBoundAttained
 import CORALean.ContSet.Ellipsoid.Real.Theorems.IsGreatestSupport
+import CORALean.ContSet.Ellipsoid.Real.Theorems.OfPointMem
 
 /-!
 # What an ellipsoid guarantees, collected
@@ -22,5 +23,6 @@ enclosing there — at every admissible pair of scalings, of which
 sweeps. `SupportBoundAttained` is what says the certificates give nothing away,
 and convexity, compactness and boundedness are what the reachability theorems
 consume. `ConstructEqImage` is what all three of those last transfer from the
-unit ball through.
+unit ball through. `mem_ofPoint` reuses `mem_construct` at the empty
+coefficient vector.
 -/
