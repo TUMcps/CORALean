@@ -21,6 +21,7 @@ Set representations in `ContSet`, algorithms over them in `ContDynamics`,
 a verification result: a check passed on a computed superset is passed by the
 exact set it encloses.
 
-`CORALean.Examples` and `Demo` are targets of their own, so the library holds
-the development and nothing that merely uses it.
+`Examples/` is deliberately not collected here, and neither is `Demo`: both are
+targets of their own, so the library holds the development and nothing that
+merely uses it.
 -/

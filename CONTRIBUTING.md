@@ -196,15 +196,18 @@ builds from cold.
 
 `scripts/check-conventions.sh` checks the conventions on this page that the
 compiler cannot: that an `aux_` name is used only in the file that declares it,
-that an `API.lean` holds nothing but imports, that no file imports its own
-directory's collector, that no `Real` file reaches into `Float`, that a file
-under `Real/` or `Float/` declares the namespace its directory claims, that every
-file carries a module docstring and — unless it is a collector — a well-formed
-author block one line under it, that nothing is `sorry`, `axiom` or a search
-tactic, that every `maxHeartbeats` bump carries a reason, that a `def` under `Cost/`
-is named for the cost it asserts, that every `[N]` cited resolves, that the comment lengths and the comment density above are respected,
-and that every module is reachable from one of the target roots, so a file
-written but never collected is caught rather than silently left out of the build.
+that an `API.lean` holds nothing but imports, that it collects its whole
+directory unless its own docstring says which sibling it deliberately leaves
+out, that no file imports its own directory's collector, that no `Real` file
+reaches into `Float`, that a file under `Real/` or `Float/` declares the
+namespace its directory claims, that every file carries a module docstring and
+— unless it is a collector — a well-formed author block one line under it, that
+nothing is `sorry`, `axiom` or a search tactic, that every `maxHeartbeats` bump
+carries a reason, that a `def` under `Cost/` is named for the cost it asserts,
+that every `[N]` cited resolves, that the comment lengths and the comment
+density above are respected, and that every module is reachable from one of the
+target roots, so a file written but never collected is caught rather than
+silently left out of the build.
 
 Every limit it applies is a named variable at the top of the script, set from
 what the tree actually contains, so raising one is a decision rather than a
@@ -461,10 +464,32 @@ machine with 16 cores that were idle either way.
 A file still never imports its own directory's `API.lean`, which would be a
 cycle.
 
-`Global/API.lean` and `Global/LinProg/API.lean` are the files that do not
-collect their whole directory: each leaves out its `Float/`, which every `Real`
-file would otherwise reach, breaking the rule below that deleting `Float` leaves
-the specification standing.
+"Collects itself" is checked, and it means every sibling `.lean` file and every
+sub-directory, the latter through its own `API.lean`. A file that some other
+file happens to import by exact path is not thereby collected: `Global/Block.lean`
+sat outside `Global/API.lean` with four importers and a green build, because
+reaching a module is not the same as a directory owning it.
+
+An omission that is meant states itself, on one line of the collector's own
+module docstring:
+
+```
+`Float/` is deliberately not collected here
+```
+
+naming the sibling the way the directory spells it — `Float/` for a
+sub-directory, `Block.lean` for a file — and a sub-directory named that way
+excuses everything under it. The exception then lives beside the imports it is
+about, rather than in a list inside a script that nothing makes anyone reread;
+`check-conventions.sh` also reports a marker that excuses nothing, so an
+exception cannot outlive the thing it was written for.
+
+Four omissions are stated that way today. `Global/API.lean` and
+`Global/LinProg/API.lean` each leave out their `Float/`, which every `Real` file
+would otherwise reach, breaking the rule below that deleting `Float` leaves the
+specification standing. `CORALean.lean` leaves out `Examples/` and
+`Examples/API.lean` leaves out `Demo.lean`, both being targets of their own, so
+that the library holds the development and nothing that merely uses it.
 
 An import cannot filter, so `Theorems/API.lean` re-exports the `aux_` lemmas
 too. The prefix is the only thing marking them.

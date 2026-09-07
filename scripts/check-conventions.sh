@@ -630,6 +630,119 @@ END {
 ' | sort)
 report "$out"
 
+# A collector collects its whole directory. Reachability above catches a file
+# nothing imports at all; it does not catch one that some other file imports by
+# exact path while its own directory's `API.lean` leaves it out — which is how
+# `Global/Block.lean` sat outside `Global/API.lean` with the build still green.
+#
+# "Its whole directory" is every sibling `.lean` file and every sub-directory,
+# the latter reduced to its own collector where it has one. An omission that is
+# meant says so on one line of the collector's docstring, so the exception lives
+# beside the imports it is about rather than in a list here, which would go
+# stale exactly the way the prose does. A marker that excuses nothing is
+# reported too, so it cannot outlive its reason.
+#
+# Reads the same list file as the walk above, and for the same reason: a split
+# argument list would hand it a partial tree.
+out=$(awk -v LIST="$list" '
+BEGIN {
+  while ((getline f < LIST) > 0)
+    if (f != "") { ARGV[ARGC++] = f; nfiles++; all[nfiles] = f; isFile[f] = 1 }
+}
+function moduleOf(path,   m) {
+  m = path; sub(/^src\//, "", m); sub(/\.lean$/, "", m); gsub("/", ".", m)
+  return m
+}
+function dirOf(path,   d) { d = path; sub(/\/[^\/]*$/, "", d); return d }
+function baseOf(path,   b) { b = path; sub(/^.*\//, "", b); return b }
+
+FNR == 1 { mod = moduleOf(FILENAME) }
+/^import / {
+  dep = $0; sub(/^import[ \t]+/, "", dep); sub(/[ \t]+$/, "", dep)
+  imp[mod, dep] = 1
+}
+# The one form the marker takes, so that finding it needs no judgement.
+/`[^`]+` is deliberately not collected here/ {
+  match($0, /`[^`]+` is deliberately not collected here/)
+  lbl = substr($0, RSTART + 1, RLENGTH - 1); sub(/`.*$/, "", lbl)
+  if (!((mod, lbl) in excuse)) excuse[mod, lbl] = FNR
+}
+
+# What module stands for a directory: its `API.lean`, or the `<dir>.lean` beside
+# it — `src/CORALean.lean` and `Examples/Demo.lean` are collectors of that shape.
+function entryOf(d) {
+  if ((d "/API.lean") in isFile) return moduleOf(d "/API.lean")
+  if ((d ".lean") in isFile) return moduleOf(d ".lean")
+  return ""
+}
+function addWant(m, lbl) {
+  if (m == "" || m == curMod || (m in wantLbl)) return
+  nwant++; wantMod[nwant] = m; wantLbl[m] = lbl
+}
+# Everything directory `d` holds, labelled by its path under the collector: a
+# sibling file as itself, a sub-directory as its entry point, and a
+# sub-directory with no entry point walked through to the files inside it.
+function expand(d, prefix,   n, i, arr, e) {
+  n = split(fileIn[d], arr, " ")
+  for (i = 1; i <= n; i++)
+    if (arr[i] != "") addWant(moduleOf(d "/" arr[i]), prefix arr[i])
+  n = split(subIn[d], arr, " ")
+  for (i = 1; i <= n; i++) {
+    if (arr[i] == "") continue
+    e = entryOf(d "/" arr[i])
+    if (e != "") addWant(e, prefix arr[i] "/")
+    else expand(d "/" arr[i], prefix arr[i] "/")
+  }
+}
+# A marker naming a sub-directory excuses everything under it, so one line
+# covers a `Float/` that holds twenty files.
+function excused(m, lbl,   p) {
+  if ((m, lbl) in excuse) { used[m, lbl] = 1; return 1 }
+  p = lbl
+  while (sub(/[^\/]*$/, "", p) && p != "") {
+    if ((m, p) in excuse) { used[m, p] = 1; return 1 }
+    sub(/\/$/, "", p)
+  }
+  return 0
+}
+END {
+  # The tree, from the file list: what each directory holds directly, and which
+  # directories sit under it.
+  for (i = 1; i <= nfiles; i++) {
+    d = dirOf(all[i])
+    fileIn[d] = fileIn[d] " " baseOf(all[i])
+    cur = d
+    while (cur ~ /\//) {
+      par = dirOf(cur); nm = baseOf(cur)
+      if (!((par, nm) in kid)) { kid[par, nm] = 1; subIn[par] = subIn[par] " " nm }
+      cur = par
+    }
+  }
+  for (i = 1; i <= nfiles; i++) {
+    c = all[i]
+    if (c ~ /\/API\.lean$/) d = dirOf(c)
+    else if (c == "src/CORALean.lean") d = "src/CORALean"
+    else continue
+    curMod = moduleOf(c)
+    split("", wantMod); split("", wantLbl); nwant = 0
+    expand(d, "")
+    for (j = 1; j <= nwant; j++) {
+      m = wantMod[j]
+      if ((curMod, m) in imp || excused(curMod, wantLbl[m])) continue
+      print c ":1: does not collect `" wantLbl[m] "` — add `import " m "`, or say in the" \
+            " module docstring that `" wantLbl[m] "` is deliberately not collected here"
+    }
+    for (k in excuse) {
+      split(k, kp, SUBSEP)
+      if (kp[1] == curMod && !((kp[1], kp[2]) in used))
+        print c ":" excuse[k] ": `" kp[2] "` is marked deliberately not collected," \
+              " but this directory holds no such thing"
+    }
+  }
+}
+' | sort)
+report "$out"
+
 # The proof flag. A statement that wraps over several lines does not obviously
 # end, so a declaration's `:= by` carries `-- --- PROOF ---` once its proof runs
 # to five lines or more — the point where the seam stops being visible at a
