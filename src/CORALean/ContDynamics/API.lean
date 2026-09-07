@@ -1,5 +1,6 @@
 import CORALean.ContDynamics.LinearSys.API
 import CORALean.ContDynamics.LinearSysDT.API
+import CORALean.ContDynamics.LinParamSys.API
 import CORALean.ContDynamics.LinParamSysDT.API
 import CORALean.ContDynamics.NeurNetContrSys.API
 import CORALean.ContDynamics.NeurNetContrSysDT.API
