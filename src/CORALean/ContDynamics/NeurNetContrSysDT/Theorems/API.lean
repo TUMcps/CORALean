@@ -4,6 +4,8 @@ import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.HoldsOfReach
 import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.NotHoldsOfSimulate
 import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.OutputOuter
 import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachOuter
+import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachSetOuter
+import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachSetSubsetReach
 import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.SimulateMemReach
 import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.SimulateTrajectory
 import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.TrajectoryIterate
@@ -15,6 +17,8 @@ import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.TrajectoryIterate
 a specification on it buys, and `TrajectoryIterate`/`EqOfInit` the reading of a
 run that a determined input forces: an orbit, not a family, settled by where
 it started.
+
+`ReachSetOuter`/`ReachSetSubsetReach` restate `ReachOuter` on the reachable set.
 
 `OutputOuter`/`HoldsOfOutput` are those two at an `OutputEq`, read at the
 controller's own enclosure in place of a free input set — there is

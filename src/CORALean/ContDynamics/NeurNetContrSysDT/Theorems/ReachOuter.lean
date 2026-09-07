@@ -16,6 +16,9 @@ The induction hypothesis is used twice, once for each half, and that is the
 whole reason the enclosure is loose: the state it places in the reachable set
 and the state the controller is read at are the same state in the proof and
 independent points in the set.
+
+Reach for `reachSet_subset_reach` for the same guarantee restated on the
+reachable set rather than on one run.
 -/
 
 -- Authors:       Tobias Ladner
