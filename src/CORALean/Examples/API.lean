@@ -14,6 +14,7 @@ import CORALean.Examples.ExpRelaxGreedy
 import CORALean.Examples.FeedForward
 import CORALean.Examples.FeedForwardFloat
 import CORALean.Examples.GuardCutThenReset
+import CORALean.Examples.HPolytopePlus
 import CORALean.Examples.LinParamUncertainMatrix
 import CORALean.Examples.MinkowskiDifference
 import CORALean.Examples.NeurNetControl
