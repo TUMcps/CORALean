@@ -1,5 +1,7 @@
 import CORALean.ContSet.HPolytope.Real.Theorems.MinkDiffOfInner
 import CORALean.ContSet.Interval.Real.Theorems.MinkDiffExact
+import CORALean.ContSet.Zonotope.Real.Instances
+import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffOrEmptyNeEmpty
 
 /-!
 # A difference is a guarantee, so it may only under-approximate
@@ -9,6 +11,10 @@ implementation may only ever return less than the true difference, never more.
 `Interval.minkDiff` happens to be exact (`minkDiff_exact`); `HPolytope.minkDiffOf` is
 not, and a loose `SupportBound` shows the gap directly — a point genuinely in
 the true difference that the representation excludes.
+
+A zonotope has no difference of its own to instantiate `MinkDiff` with, since
+`{0} ⊖ [-1, 1]` is `∅` and no zonotope is: `WithEmpty` is where the instance
+lives, and the pair below is one it answers with a zonotope rather than `∅`.
 
 A subtrahend moving along an equality direction has no difference at all:
 `minkDiffOf_inner`'s `hker` needs `T` in the kernel of every equality row, so a
@@ -118,6 +124,39 @@ example : (![(0.75:ℝ)] : Vec ℝ 1) ∈ minkowskiDiff MDiff.P.construct MDiff.
     simp [HPolytope.minkDiffOf, MDiff.P, MDiff.u, Matrix.cons_val_zero, LinearMap.proj_apply]
       at h0
     norm_num at h0
+
+-- `Zonotope.minkDiffOrEmpty`, at the wrapper: a difference that may be empty, and here is not.
+
+/-- `[-1, 1]` and `[-0.2, 0.2]`, one generator each. -/
+def MDiff.Z1 : Zonotope (Vec ℝ 1) := ⟨1, ![(0:ℝ)], fun _ => ![(1:ℝ)]⟩
+
+def MDiff.Z2 : Zonotope (Vec ℝ 1) := ⟨1, ![(0:ℝ)], fun _ => ![(0.2:ℝ)]⟩
+
+/-- The subtrahend's generator written in the minuend's own, which is the
+candidate `minkDiffRep` checks — here it passes both halves of that check. -/
+def MDiff.M : Fin MDiff.Z1.h → Fin MDiff.Z2.h → ℝ := fun _ _ => 0.2
+
+theorem MDiff.certified : (MDiff.Z1.minkDiffRep MDiff.Z2 MDiff.M).isSome := by -- --- PROOF ---
+  rw [Zonotope.minkDiffRep, if_pos]
+  · rfl
+  -- the representation first, the row budget `0.2 ≤ 1` second
+  constructor
+  · intro j
+    funext i
+    fin_cases i
+    simp [MDiff.Z1, MDiff.Z2, MDiff.M]
+  · intro i
+    simp [MDiff.M, MDiff.Z2]
+    norm_num
+
+/-- One candidate certifying is enough: the operation answers with a zonotope,
+not with the `∅` its inner obligation would have accepted just as readily. -/
+example : MDiff.Z1.minkDiffOrEmpty MDiff.Z2 ≠ WithEmpty.empty :=
+  Zonotope.minkDiffOrEmpty_ne_empty MDiff.Z1 MDiff.Z2 ⟨MDiff.M, MDiff.certified⟩
+
+/-- The instance itself, which is what an algorithm asking for a difference
+resolves — at the wrapper, and not at `Zonotope`. -/
+noncomputable example : MinkDiff (WithEmpty (Zonotope (Vec ℝ 1))) (Vec ℝ 1) := inferInstance
 
 end CORALean.Real
 

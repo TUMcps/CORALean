@@ -1,4 +1,7 @@
 import CORALean.ContSet.ContSet.API
+import CORALean.ContSet.WithEmpty.API
+import CORALean.ContSet.EmptySet.API
+import CORALean.ContSet.Fullspace.API
 import CORALean.ContSet.InflatedContSet.API
 import CORALean.ContSet.Interval.API
 import CORALean.ContSet.Zonotope.API
@@ -17,7 +20,8 @@ import CORALean.ContSet.ConPolyZono.API
 
 `ContSet` is the interface every representation instantiates; `InflatedContSet`
 is what a float representation adds on top of its exact counterpart, beside it.
-
+`EmptySet` and `Fullspace` are `∅` and the whole space as representations, as
+CORA has them; `WithEmpty` wraps one for an operation whose result may be `∅`.
 `Ellipsoid` is the one representation whose support function is closed form in
 every direction at once, making the conversions out of it tight without a linear program.
 
@@ -30,9 +34,8 @@ constraints are polynomial in the factors and so cannot be a polytope. There a
 constraint's right-hand side is an interval, so a rounded bound has a direction
 to be widened in, which is what gives `and` a float counterpart.
 
-Five intersect exactly, but only three interestingly: a box and a halfspace
-description are closed under intersection by construction, where the constrained
-pair pays in its constraints and `ZonoBundle` keeps its zonotopes side by side.
+Five intersect exactly, three interestingly: a box and a halfspace description by
+construction, the constrained pair in its constraints, `ZonoBundle` side by side.
 
 `Capsule` stands apart: convex and compact, but closed under none of `Plus`,
 `Mtimes`, or `LinComb` — CORA uses it to describe an obstacle, not to carry a set.

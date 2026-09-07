@@ -1,12 +1,14 @@
 import CORALean.ContSet.ContSet.CompactSet
 import CORALean.ContSet.ContSet.ConvexSet
 import CORALean.ContSet.Interval.Real.Instances
+import CORALean.ContSet.WithEmpty.WithEmpty
 import CORALean.ContSet.Zonotope.Real.Theorems.Convex
 import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
 import CORALean.ContSet.Zonotope.Real.Theorems.LinCombOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.LmtimesSingletonOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 import CORALean.ContSet.Zonotope.Real.Theorems.MtimesIntervalMatOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffOrEmptyInner
 import CORALean.ContSet.Zonotope.Real.Theorems.MtimesMatZonotopeOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
 import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
@@ -22,6 +24,11 @@ direction.
 
 Noncomputable, as `reduce` is: it ranks generators, and ordering reals cannot be
 computed.
+
+`MinkDiff` is the one instance not at `Zonotope` itself. Every zonotope holds
+its centre and a difference can be empty, so no total operation into `Zonotope`
+meets that class's obligation; at `WithEmpty (Zonotope α)` it does, `empty`
+being the answer where no generator representation certifies one.
 -/
 
 -- Authors:       Tobias Ladner
@@ -130,6 +137,23 @@ scoped notation "𝕄𝒵" => fun m n => Zonotope (Mat ℝ m n)
 noncomputable instance : Mtimes 𝕄𝒵 𝒵 where
   mtimes := Zonotope.mtimesMatZonotope
   mtimes_outer M Z := Zonotope.mtimesMatZonotope_outer M Z
+
+/-- Not at `Zonotope α`: `{0} ⊖ [-1, 1]` is `∅`, which no zonotope denotes, so
+the wrapper is where a total difference can live. -/
+noncomputable instance {α : Type} [AddCommGroup α] [Module ℝ α] :
+    MinkDiff (WithEmpty (Zonotope α)) α where
+  minkDiff s t := match s, t with
+    | .of Z₁, .of Z₂ => Z₁.minkDiffOrEmpty Z₂
+    | _, _ => .empty
+  minkDiff_inner s t := by
+    cases s <;> cases t
+    -- only the pair of zonotopes has anything to prove; `∅` discharges the rest
+    case of.of Z₁ Z₂ =>
+      show ContSet.construct (Z₁.minkDiffOrEmpty Z₂) ⊆ _
+      cases hE : Z₁.minkDiffOrEmpty Z₂ with
+      | empty => exact Set.empty_subset _
+      | of D => exact Zonotope.minkDiffOrEmpty_inner Z₁ Z₂ hE
+    all_goals exact Set.empty_subset _
 
 end CORALean.Real
 
