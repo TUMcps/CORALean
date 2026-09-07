@@ -3,6 +3,7 @@ import CORALean.ContSet.ZonoBundle.Real.Operations.Plus
 import CORALean.ContSet.ZonoBundle.Real.Operations.Mtimes
 import CORALean.ContSet.ZonoBundle.Real.Operations.Map
 import CORALean.ContSet.ZonoBundle.Real.Operations.OfPoint
+import CORALean.ContSet.ZonoBundle.Real.Operations.SupportBound
 
 /-!
 # What a zonotope bundle computes, collected
@@ -10,5 +11,7 @@ import CORALean.ContSet.ZonoBundle.Real.Operations.OfPoint
 `and`, exact and the whole point of the representation; `plus` and `mtimes`,
 both enclosures over the family, one component at a time; `map`, one linear
 image per component, which `Instances` reads at a bijective one for `Reindex`;
-and `ofPoint`, a bundle of one point-zonotope.
+and `ofPoint`, a bundle of one point-zonotope. `supportBound` answers a
+direction without a linear program, taking the tightest of the family's own
+component bounds, and needs the same `0 < B.k` compactness does.
 -/
