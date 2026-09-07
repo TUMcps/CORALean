@@ -3,13 +3,17 @@ import CORALean.ContSet.VPolytope.Float.Theorems.API
 /-!
 # What the float `VPolytope` instantiates
 
-The same three the exact layer does, `reduce` again the identity. `ContSet` comes
-from `InflatedContSet` and is not declared here.
+`Plus`, `LinComb`, `Reduce` — the identity again — and `Mtimes`, as the exact
+layer's. `ContSet` comes from `InflatedContSet` and is not declared here.
+
+`And` too, and needs no direction family here: it goes through the float box's
+own exact `and`, unlike the exact layer's, which must be handed one. No
+`OfPoint`: it would round a real point into `𝕋`, an operation this layer lacks.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   07-September-2026
 -- Last revision: ---
 
 
@@ -27,6 +31,10 @@ instance : Plus (VPolytope 𝕋 n) (Vec ℝ n) where
   plus_outer P₁ P₂ := by
     rw [VPolytope.materialise_eq]
     exact VPolytope.plus_outer P₁ P₂
+
+instance : And (VPolytope 𝕋 n) (Vec ℝ n) where
+  and := VPolytope.and
+  and_outer := VPolytope.and_outer
 
 instance : LinComb (VPolytope 𝕋 n) (Vec ℝ n) where
   linComb P₁ P₂ := (VPolytope.linComb P₁ P₂).materialise

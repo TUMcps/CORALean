@@ -6,11 +6,15 @@ import CORALean.ContSet.ConZonotope.Float.Theorems.API
 The three operation classes. `Mtimes` waits on `mtimes`, which waits on the
 float zonotope's rounding argument being factored so it can be reused rather
 than copied.
+
+No `And`, unlike the exact layer: nothing here computes a constrained
+zonotope's intersection, so there is no `and` to wire — a fresh operation, out
+of scope here.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   07-September-2026
 -- Last revision: ---
 
 

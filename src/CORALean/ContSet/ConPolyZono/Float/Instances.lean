@@ -1,3 +1,4 @@
+import CORALean.ContSet.ConPolyZono.Float.Theorems.AndOuter
 import CORALean.ContSet.ConPolyZono.Float.Theorems.MtimesOuter
 import CORALean.ContSet.ConPolyZono.Float.Theorems.PlusOuter
 import CORALean.ContSet.ConPolyZono.Float.Theorems.ReduceOuter
@@ -5,7 +6,7 @@ import CORALean.ContSet.ConPolyZono.Float.Theorems.ReduceOuter
 /-!
 # What `ConPolyZono` instantiates
 
-`Plus`, `Mtimes` and `Reduce`, as over ℝ. `ContSet` is not among them —
+`Plus`, `Mtimes`, `Reduce` and `And`, as over ℝ. `ContSet` is not among them —
 `InflatedContSet` supplies it, which is what makes this the same class the exact
 layer instantiates.
 
@@ -16,14 +17,14 @@ ranking — `reduceBy_outer` holds at every partition — so the free comparator
 costs precision and nothing else. No `CompactSet`, as at no other float
 representation: compactness is a statement about the exact specification.
 
-`and` is computed here but instantiates nothing, exactly as over ℝ: there is no
-`And` class to instantiate, and a class one or two representations implement is
-a name rather than an interface. A caller names `ConPolyZono.and`.
+`And`'s anonymous constructor, not named fields, for the reason the exact
+layer's carries too: `reduce`'s imports reach `Global.Partition`'s
+`Split ... and ...` notation, which makes `and` a token here, not an identifier.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   05-September-2026
+-- Last update:   07-September-2026
 -- Last revision: ---
 
 
@@ -48,6 +49,9 @@ instance {n : ℕ} : Reduce (ConPolyZono 𝕋 n) (Vec ℝ n) where
   reduce_outer C o := by
     rw [ConPolyZono.materialise_eq]
     exact ConPolyZono.reduce_outer C o
+
+instance {n : ℕ} : And (ConPolyZono 𝕋 n) (Vec ℝ n) :=
+  ⟨ConPolyZono.and, ConPolyZono.and_outer⟩
 
 instance : Mtimes (Mat 𝕋) (ConPolyZono 𝕋) where
   mtimes M C := (ConPolyZono.mtimes M C).materialise
