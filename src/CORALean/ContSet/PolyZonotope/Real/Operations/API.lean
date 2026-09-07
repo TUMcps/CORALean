@@ -63,6 +63,8 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.GirardSplit
 import CORALean.ContSet.PolyZonotope.Real.Operations.ReduceGirard
 import CORALean.ContSet.PolyZonotope.Real.Operations.ReduceGirardDependent
 import CORALean.ContSet.PolyZonotope.Real.Operations.Reduce
+import CORALean.ContSet.PolyZonotope.Real.Operations.Restructure
+import CORALean.ContSet.PolyZonotope.Real.Operations.RestructureReduce
 import CORALean.ContSet.PolyZonotope.Real.Operations.ReduceDependent
 import CORALean.ContSet.PolyZonotope.Real.Operations.EDiff
 import CORALean.ContSet.PolyZonotope.Real.Operations.EDrift

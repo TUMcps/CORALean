@@ -53,6 +53,11 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceDependentOuter
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceOuter
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceGirardOrderLe
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceOrder
+import CORALean.ContSet.PolyZonotope.Real.Theorems.RestructureOuter
+import CORALean.ContSet.PolyZonotope.Real.Theorems.RestructureQ
+import CORALean.ContSet.PolyZonotope.Real.Theorems.RestructureP
+import CORALean.ContSet.PolyZonotope.Real.Theorems.RestructureReduceOuter
+import CORALean.ContSet.PolyZonotope.Real.Theorems.RestructureReduceOrder
 import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsSubPowLeEDiff
 import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsSubMonomialLe
 import CORALean.ContSet.PolyZonotope.Real.Theorems.SubPowNonpos

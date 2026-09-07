@@ -8,11 +8,11 @@ Every independent generator made dependent, by giving it a fresh factor that
 appears in it alone and to the first power. Exact, and cheaply so: a factor
 occurring in one generator only is as free as the coefficient it replaces.
 
-CORA has no method for this — its `restructure` goes the other way, buying a
-smaller exponent matrix by making dependent generators independent. This
-direction exists here because `quadMap` is stated on a set whose coefficients
-are all dependent, and it is what lets `quadMap` be total without pretending
-about the cross terms an independent block would contribute.
+CORA's `restructure` is this conversion paired with a reduction of the
+independent block, so this is the exact half of it. It is also what `quadMap`
+needs, being stated on a set whose coefficients are all dependent, which is what
+lets `quadMap` be total without pretending about the cross terms an independent
+block would contribute.
 
 The exponent matrix is `plusE` against the identity, which is exactly right: the
 fresh factors must not reach the original generators, and the original factors
@@ -21,7 +21,7 @@ must not reach the freed ones.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   07-September-2026
 -- Last revision: ---
 
 
