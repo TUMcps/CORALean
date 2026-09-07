@@ -50,7 +50,8 @@ theorem sigmoidLinearSigmoidNetwork_convergent (W : Mat ℝ m n) (b : Vec ℝ m)
       (Layer.activationPolyRefinable (n := m) sigmoidPolyFamily) .nil).LipschitzLayers :=
     ⟨⟨1, Layer.lipschitzWith_activation_eval lipschitzWith_sigmoid m⟩, trivial⟩
   -- and the matrix in front of it, whose constant is its largest row sum
-  have h₁ : (RefinableNetwork.cons (S := 𝒫𝒵) (Layer.linear W b).refinable
+  have h₁ : (RefinableNetwork.cons (S := 𝒫𝒵)
+      ((Layer.linear W b).refinable (Layer.linear_sound W b))
       (.cons (Layer.activationPolyRefinable (n := m) sigmoidPolyFamily) .nil)).LipschitzLayers :=
     ⟨⟨_, Layer.lipschitzWith_linear_eval W b⟩, h₂⟩
   exact ⟨Layer.activationPolySigmoid_convergent n,

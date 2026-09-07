@@ -39,18 +39,17 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 
 /-- `hcov` covers `X`, not necessarily equals it — the parts may overlap and
 overshoot `X`, so this is a cover a splitter produces, not a `Partition`. -/
-theorem NeuralNetwork.holds_of_split {ι : Type} (nn : NeuralNetwork S n m) (X : S n)
+theorem NeuralNetwork.holds_of_split {ι : Type} {nn : NeuralNetwork S n m}
+    {f : Vec ℝ n → Vec ℝ m} (hf : nn.Sound f) (X : S n)
     (parts : ι → S n) (hcov : construct X ⊆ ⋃ i, construct (parts i))
     (spec : Specification (Vec ℝ m))
     (h : ∀ i, spec.Holds (construct (nn.enclose (parts i)))) :
-    spec.Holds (nn.image (construct X)) := by -- --- PROOF ---
-  have hsub : nn.image (construct X) ⊆ ⋃ i, construct (nn.enclose (parts i)) :=
-    calc nn.image (construct X) = nn.eval '' construct X := nn.image_eq_eval_image _
-      _ ⊆ nn.eval '' ⋃ i, construct (parts i) := Set.image_mono hcov
-      _ = ⋃ i, nn.eval '' construct (parts i) := Set.image_iUnion
+    spec.Holds (f '' construct X) := by -- --- PROOF ---
+  have hsub : f '' construct X ⊆ ⋃ i, construct (nn.enclose (parts i)) :=
+    calc f '' construct X ⊆ f '' ⋃ i, construct (parts i) := Set.image_mono hcov
+      _ = ⋃ i, f '' construct (parts i) := Set.image_iUnion
       _ ⊆ ⋃ i, construct (nn.enclose (parts i)) :=
-          Set.iUnion_mono fun i => by
-            rw [← nn.image_eq_eval_image]; exact nn.image_subset (parts i)
+          Set.iUnion_mono fun i => hf.image_subset (parts i)
   exact spec.holds_of_outer hsub (spec.holds_iUnion h)
 
 end CORALean.Real

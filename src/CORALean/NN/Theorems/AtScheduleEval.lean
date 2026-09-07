@@ -5,12 +5,12 @@ import CORALean.NN.Schedule
 # A schedule does not change what the network computes
 
 The invariant the whole loop rests on, and it is `RefinableLayer` keeping `eval`
-outside `enclose`, carried along the chain. Without it "the exact image"
-would be a function of the schedule and no refinement could be said to converge
-to anything.
+outside `enclose`, carried along the chain: every schedule reads a network that
+is sound at the *same* map. Without it "the exact image" would be a function of
+the schedule and no refinement could be said to converge to anything.
 
-It is also why `encloseAt_outer` needs no induction of its own: once the two
-`eval`s agree, `NeuralNetwork.enclose_outer` answers for every schedule.
+It is also why `encloseAt_outer` needs no induction of its own: this soundness
+is what `NeuralNetwork.Sound.enclose_outer` then answers from.
 -/
 
 -- Authors:       Tobias Ladner
@@ -30,14 +30,13 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem RefinableNetwork.atSchedule_eval : ∀ {n m : ℕ} (rn : RefinableNetwork S n m)
-    (sch : Schedule), (rn.atSchedule sch).eval = rn.eval
-  | _, _, .nil, _ => rfl
-  | _, _, .cons L rest, sch => by
-      funext x
-      -- the head layer computes `L.eval` at every level, so only the tail moves
-      show (rest.atSchedule (Schedule.tail sch)).eval (L.eval x) = rest.eval (L.eval x)
-      rw [rest.atSchedule_eval]
+theorem RefinableNetwork.atSchedule_sound : ∀ {n m : ℕ} (rn : RefinableNetwork S n m)
+    (sch : Schedule), (rn.atSchedule sch).Sound rn.eval
+  | _, _, .nil, _ => .nil fun _ => rfl
+  -- the head layer computes `L.eval` at every level, so only the tail moves
+  | _, _, .cons L rest, sch =>
+      .cons (L.atPattern_sound (Schedule.head sch _))
+        (rest.atSchedule_sound (Schedule.tail sch)) fun _ => rfl
 
 end CORALean.Real
 

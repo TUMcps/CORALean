@@ -42,6 +42,8 @@ theorem NeuralNetwork.suffExplanation_of_neuronMerging [∀ n, Plus (S n) (Vec �
     (W0 : Mat ℝ nk n₁) (b0 : Vec ℝ nk) {σ : ℝ → ℝ} (R : Relaxation σ)
     (W1 : Mat ℝ n₂ nk) (b1 : Vec ℝ n₂) (Y : Interval (Vec ℝ nk))
     (x : Vec ℝ n₀) (ε : ℝ) (E : Finset (Fin n₀)) (l : Fin n₃)
+    {fpre : Vec ℝ n₀ → Vec ℝ n₁} (hpre : pre.Sound fpre)
+    {fpost : Vec ℝ n₂ → Vec ℝ n₃} (hpost : post.Sound fpost)
     (hY : ∀ z ∈ construct (pre.enclose (ofInterval (explainBox x ε E))),
       (fun i => σ ((W0 *ᵥ z + b0) i)) ∈ construct Y)
     -- the reduced network: both linear layers trimmed to `part.left`, the bucket boxed into `k+1`
@@ -50,17 +52,14 @@ theorem NeuralNetwork.suffExplanation_of_neuronMerging [∀ n, Plus (S n) (Vec �
           (.cons (Layer.activation R)
             (.cons (Layer.linearWithError (W1.submatrix id part.left) b1
                 (Interval.mtimes (W1.submatrix id part.right)
-                  ⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩)
-                (Interval.mtimes_isNonempty _ _))
+                  ⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩))
               post)))).IsSuffExplanationAbstract x ε E l) :
     -- and the original, whose exact image `neuronMerging_network_outer` puts inside it
-    (NeuralNetwork.cons pre.toLayer
-        (.cons (Layer.linear W0 b0)
-          (.cons (Layer.activation R)
-            (.cons (Layer.linear W1 b1) post)))).IsSuffExplanation x ε E l :=
-  NeuralNetwork.suffExplanation_of_abstract _ _ x ε E l
+    IsSuffExplanation
+      (fun z => fpost (W1 *ᵥ (fun i => σ ((W0 *ᵥ fpre z + b0) i)) + b1)) x ε E l :=
+  suffExplanation_of_abstract _ _ x ε E l
     (neuronMerging_network_outer pre post part W0 b0 R W1 b1 Y
-      (ofInterval (explainBox x ε E)) hY) hsuffAbs
+      (ofInterval (explainBox x ε E)) hpre hpost hY) hsuffAbs
 
 end CORALean.Real
 

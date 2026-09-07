@@ -35,8 +35,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n
 /-- [1, Thm. 1]: a specification holding on the reduced network's enclosure holds on the
 original network's exact image, at any set of layers reduced. -/
 theorem NeuralNetwork.holds_of_reducesAt {n m : ℕ} {s : S n} {nn nn' : NeuralNetwork S n m}
-    (h : NeuralNetwork.ReducesAt s nn nn') (spec : Specification (Vec ℝ m))
-    (hspec : spec.Holds (construct (nn'.enclose s))) : spec.Holds (nn.image (construct s)) :=
+    {f : Vec ℝ n → Vec ℝ m} (h : NeuralNetwork.ReducesAt s nn nn' f)
+    (spec : Specification (Vec ℝ m))
+    (hspec : spec.Holds (construct (nn'.enclose s))) : spec.Holds (f '' construct s) :=
   spec.holds_of_outer (NeuralNetwork.reducesAt_outer h) hspec
 
 end CORALean.Real

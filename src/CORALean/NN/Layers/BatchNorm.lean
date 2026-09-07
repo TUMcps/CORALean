@@ -7,7 +7,7 @@ CORA's `nnBatchNormLayer` at inference time, where the batch statistics are fixe
 and the layer is `x i ↦ γ(c i) · (x i - μ(c i)) / √(σ²(c i) + ε) + β(c i)` with
 `c i` the channel coordinate `i` belongs to. That is affine and coordinatewise,
 so it is `Layer.linear` at a *diagonal* matrix — defined as one here, with
-`batchNorm_eval` the proof that the diagonal computes the formula.
+`batchNorm_sound` the proof that the diagonal encloses the formula.
 
 `batchNormScale` and `batchNormShift` are arithmetic on parameters rather than
 part of the layer: they happen once, when a network is read. That is why there is
@@ -51,15 +51,17 @@ noncomputable def Layer.batchNorm (chan : Fin n → Fin c) (gamma beta mean var 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Layer.batchNorm_eval (chan : Fin n → Fin c) (gamma beta mean var : Vec ℝ c) (eps : ℝ)
-    (x : Vec ℝ n) (i : Fin n) :
-    (Layer.batchNorm (S := S) chan gamma beta mean var eps).eval x i
-      = gamma (chan i) * (x i - mean (chan i)) / Real.sqrt (var (chan i) + eps)
-        + beta (chan i) := by
-  show (Matrix.diagonal (fun i => batchNormScale (gamma (chan i)) (var (chan i)) eps) *ᵥ x) i
-    + batchNormShift (gamma (chan i)) (beta (chan i)) (mean (chan i)) (var (chan i)) eps = _
-  rw [Matrix.mulVec_diagonal, batchNormShift, batchNormScale]
-  ring
+theorem Layer.batchNorm_sound (chan : Fin n → Fin c) (gamma beta mean var : Vec ℝ c)
+    (eps : ℝ) :
+    (Layer.batchNorm (S := S) chan gamma beta mean var eps).Sound
+      fun x i => gamma (chan i) * (x i - mean (chan i)) / Real.sqrt (var (chan i) + eps)
+        + beta (chan i) :=
+  (Layer.linear_sound _ _).congr fun x => funext fun i => by
+    show gamma (chan i) * (x i - mean (chan i)) / Real.sqrt (var (chan i) + eps) + beta (chan i)
+      = (Matrix.diagonal (fun i => batchNormScale (gamma (chan i)) (var (chan i)) eps) *ᵥ x) i
+        + batchNormShift (gamma (chan i)) (beta (chan i)) (mean (chan i)) (var (chan i)) eps
+    rw [Matrix.mulVec_diagonal, batchNormShift, batchNormScale]
+    ring
 
 end CORALean.Real
 

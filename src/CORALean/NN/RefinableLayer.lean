@@ -11,7 +11,9 @@ order, a sample count, a partition — never on correctness.
 `eval` sits outside `enclose` rather than inside a family of `Layer`s, and
 that placement is the invariant: a refinement may not change what the layer
 computes, or the exact set the enclosures are enclosures *of* would move with
-the schedule and nothing could be said about the limit.
+the schedule and nothing could be said about the limit. It is a specification
+and never a computation, which is why this structure stores what `Layer` may
+not: reading a pattern off it hands back a `Layer` and a soundness proof.
 
 A pattern carries a level per input neuron [1, Eq. 23], so a rule may spend an
 order on one neuron and leave its neighbours alone. What a layer reads out of it
@@ -26,7 +28,7 @@ together with a range, and `Layer.refinable` reads nothing at all.
 
 -- Authors:       Tobias Ladner
 -- Written:       05-September-2026
--- Last update:   06-September-2026
+-- Last update:   07-September-2026
 -- Last revision: ---
 
 
@@ -50,19 +52,22 @@ structure RefinableLayer (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] (
 
 /-- The layer a pattern names, which is the only thing a network ever runs. -/
 def RefinableLayer.atPattern (L : RefinableLayer S n m) (t : OrderPattern n) : Layer S n m where
-  eval := L.eval
   enclose := L.enclose t
-  enclose_outer := L.enclose_outer t
+
+theorem RefinableLayer.atPattern_sound (L : RefinableLayer S n m) (t : OrderPattern n) :
+    (L.atPattern t).Sound L.eval :=
+  ⟨L.enclose_outer t⟩
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- A layer with nothing to spend: every pattern is the layer itself, which is
 how a linear layer sits in a refinable network. -/
-def Layer.refinable (L : Layer S n m) : RefinableLayer S n m where
-  eval := L.eval
+def Layer.refinable (L : Layer S n m) {f : Vec ℝ n → Vec ℝ m} (hf : L.Sound f) :
+    RefinableLayer S n m where
+  eval := f
   enclose _ := L.enclose
-  enclose_outer _ := L.enclose_outer
+  enclose_outer _ := hf.enclose_outer
 
 end CORALean.Real
 

@@ -31,11 +31,12 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- Every point of `R₀` starts a run, so the runs of a closed loop are exactly
 its initial states. -/
-theorem NeurNetContrSysDT.trajectory_iterate (sys : NeurNetContrSysDT 𝕋 S n) {R₀ : S n}
+theorem NeurNetContrSysDT.trajectory_iterate (sys : NeurNetContrSysDT 𝕋 S n)
+    (π : Vec ℝ n → Vec ℝ n) {R₀ : S n}
     {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ construct R₀) :
-    sys.Trajectory R₀ (fun k => sys.map^[k] x₀) where
+    sys.Trajectory π R₀ (fun k => (sys.map π)^[k] x₀) where
   init := hx₀
-  step k := Function.iterate_succ_apply' sys.map k x₀
+  step k := Function.iterate_succ_apply' (sys.map π) k x₀
 
 end CORALean.Real
 

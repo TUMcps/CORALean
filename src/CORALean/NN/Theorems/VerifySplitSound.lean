@@ -39,29 +39,27 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 
 /-- `hverify` at depth `d` gives the specification on the exact image, never a
 counterexample from a `false` result, and never that further splitting would help. -/
-theorem NeuralNetwork.verifySplit_sound (nn : NeuralNetwork S n m)
-    (spec : Specification (Vec ℝ m)) (check : S m → Bool)
+theorem NeuralNetwork.verifySplit_sound {nn : NeuralNetwork S n m} {f : Vec ℝ n → Vec ℝ m}
+    (hf : nn.Sound f) (spec : Specification (Vec ℝ m)) (check : S m → Bool)
     (hcheck : ∀ s, check s = true → spec.Holds (construct s))
     (splitter : S n → S n × S n)
     (hcov : ∀ Y : S n, construct Y ⊆ construct (splitter Y).1 ∪ construct (splitter Y).2)
     (d : ℕ) (X : S n) (hverify : nn.verifySplit check splitter d X = true) :
-    spec.Holds (nn.image (construct X)) := by -- --- PROOF ---
+    spec.Holds (f '' construct X) := by -- --- PROOF ---
   induction d generalizing X with
-  | zero => exact nn.holds_of_enclose X spec (hcheck _ hverify)
+  | zero => exact NeuralNetwork.holds_of_enclose hf X spec (hcheck _ hverify)
   | succ d ih =>
     rw [NeuralNetwork.verifySplit, Bool.or_eq_true] at hverify
     rcases hverify with h | h
-    · exact nn.holds_of_enclose X spec (hcheck _ h)
+    · exact NeuralNetwork.holds_of_enclose hf X spec (hcheck _ h)
     · rw [Bool.and_eq_true] at h
-      have hsub : nn.image (construct X)
-          ⊆ nn.image (construct (splitter X).1) ∪ nn.image (construct (splitter X).2) :=
-        calc nn.image (construct X) = nn.eval '' construct X := nn.image_eq_eval_image _
-          _ ⊆ nn.eval '' (construct (splitter X).1 ∪ construct (splitter X).2) :=
+      have hsub : f '' construct X
+          ⊆ f '' construct (splitter X).1 ∪ f '' construct (splitter X).2 :=
+        calc f '' construct X
+            ⊆ f '' (construct (splitter X).1 ∪ construct (splitter X).2) :=
               Set.image_mono (hcov X)
-          _ = nn.eval '' construct (splitter X).1 ∪ nn.eval '' construct (splitter X).2 :=
+          _ = f '' construct (splitter X).1 ∪ f '' construct (splitter X).2 :=
               Set.image_union ..
-          _ = nn.image (construct (splitter X).1) ∪ nn.image (construct (splitter X).2) := by
-              rw [nn.image_eq_eval_image, nn.image_eq_eval_image]
       exact spec.holds_of_outer hsub (spec.holds_union (ih _ h.1) (ih _ h.2))
 
 end CORALean.Real

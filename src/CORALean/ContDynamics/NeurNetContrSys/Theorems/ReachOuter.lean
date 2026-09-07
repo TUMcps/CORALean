@@ -54,7 +54,8 @@ period boundary. `Δt` is the reachability step, `N Δt` the control period, and
 the two are related only here. -/
 theorem NeurNetContrSys.reach_outer (sys : NeurNetContrSys 𝕋 S n) (o η N : ℕ) {Δt : ℝ}
     (hΔt : 0 < Δt) (hε : ‖Δt • toRealMat sys.plant.A‖ / ((η : ℝ) + 2) < 1) {H : ℕ}
-    {R₀ : S n} {x : ℝ → Vec ℝ n} (traj : sys.Trajectory ((N : ℝ) * Δt) H R₀ x) :
+    {R₀ : S n} {π : Vec ℝ n → Vec ℝ n} (hπ : sys.contr.Sound π)
+    {x : ℝ → Vec ℝ n} (traj : sys.Trajectory π ((N : ℝ) * Δt) H R₀ x) :
     ∀ i ≤ H,
       x ((i : ℝ) * ((N : ℝ) * Δt)) ∈ construct (sys.reach o η N Δt R₀ i) := by -- --- PROOF ---
   intro i
@@ -67,7 +68,7 @@ theorem NeurNetContrSys.reach_outer (sys : NeurNetContrSys 𝕋 S n) (o η N : �
   | succ i ih =>
     intro hi
     have hiH : i < H := Nat.lt_of_succ_le hi
-    have key := (traj.period i hiH _ (ih hiH.le)).reach_outer_horizon_inputSolution
+    have key := (traj.period hπ i hiH _ (ih hiH.le)).reach_outer_horizon_inputSolution
       (K := N) hΔt subset_rfl η hε
       (ConvexSet.convex_construct _) (CompactSet.isClosed_construct _)
       (CompactSet.isBounded_construct _) (ConvexSet.convex_construct _)

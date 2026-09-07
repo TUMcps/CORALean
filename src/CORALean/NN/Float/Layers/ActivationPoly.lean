@@ -87,49 +87,52 @@ def LayerRelaxation.box (P : LayerRelaxation 𝕋 σ n m) (I : Interval 𝕋 n) 
 
 /-- The activation layer of a polynomial relaxation: `dependent` first, then
 each neuron's fit on the set, then the residual box. -/
-def Layer.activationPoly (P : LayerRelaxation 𝕋 σ n m) : Real.Layer (PolyZonotope 𝕋) n n where
-  eval x := fun i => σ (x i)
+def Layer.activationPoly (P : LayerRelaxation 𝕋 σ n m) :
+    Real.Layer (PolyZonotope 𝕋) n n where
   enclose s := plus (s.dependent.evalPoly (P.coeffList s.interval))
     (Interval.polyZonotope (P.box s.interval))
-  enclose_outer s x hx := by
-    have hbox := PolyZonotope.interval_outer s hx
-    -- `dependent` leaves no independent generator, so `x` is a nominal point
-    obtain ⟨a, ha, hxa⟩ := (nominal s.dependent).exists_point_of_q_zero rfl
-      (PolyZonotope.dependent_nominal s hx)
-    have hpt : Real.PolyZonotope.point (nominal s.dependent) a = x := hxa.symm
-    have hpmem := PolyZonotope.evalPoly_outer s.dependent (P.coeffList s.interval)
-      ⟨a, ha, rfl⟩
-    -- the polynomial part, one neuron's own fit per coordinate
-    have hpval : (fun i => Real.PolyZonotope.evalPolyReal
-          ((P.coeffList s.interval).map fun v => toReal (v i))
-          (Real.PolyZonotope.point (nominal s.dependent) a i))
-        = fun i => Real.evalPoly
+
+theorem Layer.activationPoly_sound (P : LayerRelaxation 𝕋 σ n m) :
+    (Layer.activationPoly P).Sound (fun x i => σ (x i)) := by -- --- PROOF ---
+  refine ⟨fun s x hx => ?_⟩
+  have hbox := PolyZonotope.interval_outer s hx
+  -- `dependent` leaves no independent generator, so `x` is a nominal point
+  obtain ⟨a, ha, hxa⟩ := (nominal s.dependent).exists_point_of_q_zero rfl
+    (PolyZonotope.dependent_nominal s hx)
+  have hpt : Real.PolyZonotope.point (nominal s.dependent) a = x := hxa.symm
+  have hpmem := PolyZonotope.evalPoly_outer s.dependent (P.coeffList s.interval)
+    ⟨a, ha, rfl⟩
+  -- the polynomial part, one neuron's own fit per coordinate
+  have hpval : (fun i => Real.PolyZonotope.evalPolyReal
+        ((P.coeffList s.interval).map fun v => toReal (v i))
+        (Real.PolyZonotope.point (nominal s.dependent) a i))
+      = fun i => Real.evalPoly
+          (fun k => toReal ((P i).coeffs (s.interval.inf i) (s.interval.sup i) k)) (x i) := by
+    funext i
+    rw [LayerRelaxation.coeffList_coord, Real.PolyZonotope.evalPolyReal_ofFn, congrFun hpt i]
+    rfl
+  -- and the deviation from that polynomial is inside the box, which is `sound`
+  have hdev : (fun i => σ (x i) - Real.evalPoly
+        (fun k => toReal ((P i).coeffs (s.interval.inf i) (s.interval.sup i) k)) (x i))
+      ∈ (P.box s.interval).construct := by
+    intro i
+    have hrel := abs_le.mp ((P i).sound (hbox i).1 (hbox i).2)
+    refine ⟨?_, hrel.2⟩
+    show toReal (neg ((P i).error (s.interval.inf i) (s.interval.sup i))) ≤ _
+    rw [toReal_neg]
+    exact hrel.1
+  -- the value is that polynomial plus that deviation, which is what `plus` holds
+  have hsplit : (fun i => σ (x i))
+      = (fun i => Real.evalPoly
+            (fun k => toReal ((P i).coeffs (s.interval.inf i) (s.interval.sup i) k)) (x i))
+        + fun i => σ (x i) - Real.evalPoly
             (fun k => toReal ((P i).coeffs (s.interval.inf i) (s.interval.sup i) k)) (x i) := by
-      funext i
-      rw [LayerRelaxation.coeffList_coord, Real.PolyZonotope.evalPolyReal_ofFn, congrFun hpt i]
-      rfl
-    -- and the deviation from that polynomial is inside the box, which is `sound`
-    have hdev : (fun i => σ (x i) - Real.evalPoly
-          (fun k => toReal ((P i).coeffs (s.interval.inf i) (s.interval.sup i) k)) (x i))
-        ∈ (P.box s.interval).construct := by
-      intro i
-      have hrel := abs_le.mp ((P i).sound (hbox i).1 (hbox i).2)
-      refine ⟨?_, hrel.2⟩
-      show toReal (neg ((P i).error (s.interval.inf i) (s.interval.sup i))) ≤ _
-      rw [toReal_neg]
-      exact hrel.1
-    -- the value is that polynomial plus that deviation, which is what `plus` holds
-    have hsplit : (fun i => σ (x i))
-        = (fun i => Real.evalPoly
-              (fun k => toReal ((P i).coeffs (s.interval.inf i) (s.interval.sup i) k)) (x i))
-          + fun i => σ (x i) - Real.evalPoly
-              (fun k => toReal ((P i).coeffs (s.interval.inf i) (s.interval.sup i) k)) (x i) := by
-      funext i
-      show σ (x i) = _ + _
-      ring
-    rw [hsplit]
-    exact plus_outer _ _ (Set.add_mem_add (hpval ▸ hpmem)
-      (Interval.subset_polyZonotope _ hdev))
+    funext i
+    show σ (x i) = _ + _
+    ring
+  rw [hsplit]
+  exact plus_outer _ _ (Set.add_mem_add (hpval ▸ hpmem)
+    (Interval.subset_polyZonotope _ hdev))
 
 end CORALean.Float
 

@@ -42,15 +42,16 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OfInterval S] {n
 
 /-- Minimal for the refinement `nnRef` gives minimal for the coarser `nnAbs`,
 under the containment [1, Prop. 3] states. -/
-theorem NeuralNetwork.minSuffExplanationExact_of_refined (nnAbs nnRef : NeuralNetwork S n m)
+theorem NeuralNetwork.minSuffExplanationExact_of_refined (nnAbs : NeuralNetwork S n m)
+    (f : Vec ℝ n → Vec ℝ m)
     (x : Vec ℝ n) (ε : ℝ) (E : Finset (Fin n)) (l : Fin m)
-    (hrefine : ∀ E' : Finset (Fin n), nnRef.image (construct (ofInterval (explainBox x ε E') : S n))
+    (hrefine : ∀ E' : Finset (Fin n), f '' construct (ofInterval (explainBox x ε E') : S n)
       ⊆ construct (nnAbs.enclose (ofInterval (explainBox x ε E'))))
     (hsuffAbs : nnAbs.IsSuffExplanationAbstract x ε E l)
-    (hmin : nnRef.IsMinSuffExplanationExact x ε E l) :
+    (hmin : IsMinSuffExplanationExact S f x ε E l) :
     nnAbs.IsMinSuffExplanationAbstract x ε E l :=
   ⟨hsuffAbs, fun i hi hdrop =>
-    hmin.2 i hi (NeuralNetwork.suffExplanationExact_of_refined nnAbs nnRef x ε (E \ {i}) l
+    hmin.2 i hi (suffExplanationExact_of_refined nnAbs f x ε (E \ {i}) l
       (hrefine _) hdrop)⟩
 
 end CORALean.Real

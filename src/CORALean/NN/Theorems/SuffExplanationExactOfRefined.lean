@@ -44,12 +44,13 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OfInterval S] {n
 
 /-- Monotonicity along refinement [1, Prop. 3]: what is abstractly sufficient
 for `nnAbs` is exactly sufficient for the refinement `nnRef` it encloses. -/
-theorem NeuralNetwork.suffExplanationExact_of_refined (nnAbs nnRef : NeuralNetwork S n m)
+theorem suffExplanationExact_of_refined (nnAbs : NeuralNetwork S n m)
+    (f : Vec ℝ n → Vec ℝ m)
     (x : Vec ℝ n) (ε : ℝ) (E : Finset (Fin n)) (l : Fin m)
-    (hrefine : nnRef.image (construct (ofInterval (explainBox x ε E) : S n))
+    (hrefine : f '' construct (ofInterval (explainBox x ε E) : S n)
       ⊆ construct (nnAbs.enclose (ofInterval (explainBox x ε E))))
     (hsuffAbs : nnAbs.IsSuffExplanationAbstract x ε E l) :
-    nnRef.IsSuffExplanationExact x ε E l :=
+    IsSuffExplanationExact S f x ε E l :=
   (Specification.unsafeSet (misclassified m l)).holds_of_outer hrefine hsuffAbs
 
 end CORALean.Real

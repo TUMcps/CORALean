@@ -22,8 +22,8 @@ box. A layer that added a rounding of its own would be paying twice.
 
 `Layer.linearWithError` is the same layer carrying the approximation error a
 neuron merge leaves behind. It rounds nothing either: the box arrives in `𝕋`,
-and the nominal value it commits to is the centre of what that box *denotes*,
-since `eval` is a real function and has no reason to be rounded at all.
+and the nominal value its soundness commits to is the centre of what that box
+*denotes* — a real number, with no reason to be rounded at all.
 -/
 
 -- Authors:       Tobias Ladner
@@ -43,12 +43,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
   [Mtimes (Mat 𝕋) S] [OfInterval S 𝕋] {n m : ℕ}
 
 def Layer.linear (W : Mat 𝕋 m n) (b : Vec 𝕋 m) : Real.Layer S n m where
-  eval x := toRealMat W *ᵥ x + toRealVec b
   enclose s := plus (mtimes W s) (ofInterval (Interval.point b))
-  enclose_outer s _x hx :=
-    plus_outer _ _ (Set.add_mem_add
-      (mtimes_outer W s (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hx)))
-      (ofInterval_outer _ (Interval.mem_point b)))
+
+theorem Layer.linear_sound (W : Mat 𝕋 m n) (b : Vec 𝕋 m) :
+    (Layer.linear (S := S) W b).Sound fun x => toRealMat W *ᵥ x + toRealVec b :=
+  ⟨fun s _x hx => plus_outer _ _ (Set.add_mem_add
+    (mtimes_outer W s (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hx)))
+    (ofInterval_outer _ (Interval.mem_point b)))⟩
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -56,22 +57,27 @@ def Layer.linear (W : Mat 𝕋 m n) (b : Vec 𝕋 m) : Real.Layer S n m where
 /-- `Layer.linear` with an added error box, CORA's `W h + b ⊕ E`: the reduced
 linear layer a neuron merge leaves behind, weights and box alike stored as
 floats. -/
-noncomputable def Layer.linearWithError (W : Mat 𝕋 m n) (b : Vec 𝕋 m) (E : Interval 𝕋 m)
-    (hE : E.nominal.IsNonempty) : Real.Layer S n m where
-  eval x := toRealMat W *ᵥ x + toRealVec b + E.nominal.center
+def Layer.linearWithError (W : Mat 𝕋 m n) (b : Vec 𝕋 m) (E : Interval 𝕋 m) :
+    Real.Layer S n m where
   enclose s := plus (mtimes W s) (ofInterval (Interval.plus (Interval.point b) E))
-  enclose_outer s x hx := by
-    -- the committed value is the centre of the box `E` denotes, which is inside it
-    have hbox : toRealVec b + E.nominal.center
-        ∈ construct (Interval.plus (Interval.point b) E) :=
-      Interval.plus_outer _ _ (Set.add_mem_add (Interval.mem_point b)
-        (Real.Interval.mem_center E.nominal hE))
-    show toRealMat W *ᵥ x + toRealVec b + E.nominal.center ∈ construct
-        (plus (mtimes W s) (ofInterval (Interval.plus (Interval.point b) E)))
-    rw [add_assoc]
-    exact plus_outer _ _ (Set.add_mem_add
-      (mtimes_outer W s (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hx)))
-      (ofInterval_outer _ hbox))
+
+/-- The value committed to is the centre of the box `E` denotes, which is why
+`E` has to be nonempty. -/
+theorem Layer.linearWithError_sound (W : Mat 𝕋 m n) (b : Vec 𝕋 m) (E : Interval 𝕋 m)
+    (hE : E.nominal.IsNonempty) :
+    (Layer.linearWithError (S := S) W b E).Sound
+      fun x => toRealMat W *ᵥ x + toRealVec b + E.nominal.center := by -- --- PROOF ---
+  refine ⟨fun s x hx => ?_⟩
+  have hbox : toRealVec b + E.nominal.center
+      ∈ construct (Interval.plus (Interval.point b) E) :=
+    Interval.plus_outer _ _ (Set.add_mem_add (Interval.mem_point b)
+      (Real.Interval.mem_center E.nominal hE))
+  show toRealMat W *ᵥ x + toRealVec b + E.nominal.center ∈ construct
+      (plus (mtimes W s) (ofInterval (Interval.plus (Interval.point b) E)))
+  rw [add_assoc]
+  exact plus_outer _ _ (Set.add_mem_add
+    (mtimes_outer W s (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hx)))
+    (ofInterval_outer _ hbox))
 
 end CORALean.Float
 

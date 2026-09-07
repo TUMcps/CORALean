@@ -45,13 +45,13 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OfInterval S] {n
 /-- Transfer (`col:suff-nn-suff-nnabs` [1]): sufficient for `nnAbs` is sufficient
 for `nn`, given that `nnAbs`'s enclosure of `explainBox` contains `nn`'s exact
 image there. -/
-theorem NeuralNetwork.suffExplanation_of_abstract (nn nnAbs : NeuralNetwork S n m)
+theorem suffExplanation_of_abstract (f : Vec ℝ n → Vec ℝ m) (nnAbs : NeuralNetwork S n m)
     (x : Vec ℝ n) (ε : ℝ) (E : Finset (Fin n)) (l : Fin m)
-    (hcontain : nn.image (construct (ofInterval (explainBox x ε E) : S n))
+    (hcontain : f '' construct (ofInterval (explainBox x ε E) : S n)
       ⊆ construct (nnAbs.enclose (ofInterval (explainBox x ε E))))
     (hsuffAbs : nnAbs.IsSuffExplanationAbstract x ε E l) :
-    nn.IsSuffExplanation x ε E l :=
-  nn.suffExplanation_of_exact x ε E l
+    IsSuffExplanation f x ε E l :=
+  suffExplanation_of_exact f x ε E l
     ((Specification.unsafeSet (misclassified m l)).holds_of_outer hcontain hsuffAbs)
 
 end CORALean.Real

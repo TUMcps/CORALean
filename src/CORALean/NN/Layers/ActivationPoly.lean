@@ -82,42 +82,44 @@ def LayerRelaxation.box (P : LayerRelaxation σ n m) (I : Interval (Vec ℝ n)) 
 /-- The activation layer of a layer's relaxation: `dependent` first, then each
 neuron's fit on the set, then the residual box. -/
 noncomputable def Layer.activationPoly (P : LayerRelaxation σ n m) : Layer 𝒫𝒵 n n where
-  eval x := fun i => σ (x i)
   enclose s := plus (s.dependent.evalPoly (P.coeffList s.interval))
     (Interval.polyZonotope (P.box s.interval))
-  enclose_outer s x hx := by
-    have hbox := PolyZonotope.interval_outer s hx
-    have hxd : x ∈ s.dependent.construct := by
-      rw [← PolyZonotope.dependent_exact s]
-      exact hx
-    obtain ⟨a, ha, hxa⟩ := s.dependent.exists_point_of_q_zero rfl hxd
-    -- the polynomial part, read at the very factors `x` itself came from
-    have hpval : (s.dependent.evalPoly (P.coeffList s.interval)).point
-          (fun k => a (Fin.cast (s.dependent.evalPoly_p (P.coeffList s.interval)) k))
-        = fun i => evalPoly ((P i).coeffs (s.interval.inf i) (s.interval.sup i)) (x i) := by
-      rw [PolyZonotope.evalPoly_exact]
-      funext i
-      rw [LayerRelaxation.coeffList_coord, PolyZonotope.evalPolyReal_ofFn, ← congrFun hxa i]
-      rfl
-    have hpmem : (fun i => evalPoly ((P i).coeffs (s.interval.inf i) (s.interval.sup i)) (x i))
-        ∈ (s.dependent.evalPoly (P.coeffList s.interval)).construct :=
-      hpval ▸ PolyZonotope.point_mem_construct _ fun k => ha _
-    -- and the deviation from that polynomial is inside the box, which is `sound`
-    have hdev : (fun i => σ (x i)
-          - evalPoly ((P i).coeffs (s.interval.inf i) (s.interval.sup i)) (x i))
-        ∈ (P.box s.interval).construct := by
-      intro i
-      have hrel := abs_le.mp ((P i).sound (hbox i).1 (hbox i).2)
-      exact ⟨hrel.1, hrel.2⟩
-    have hsplit : (fun i => σ (x i))
-        = (fun i => evalPoly ((P i).coeffs (s.interval.inf i) (s.interval.sup i)) (x i))
-          + fun i => σ (x i)
-              - evalPoly ((P i).coeffs (s.interval.inf i) (s.interval.sup i)) (x i) := by
-      funext i
-      show σ (x i) = _ + _
-      ring
-    rw [hsplit]
-    exact plus_outer _ _ (Set.add_mem_add hpmem (Interval.subset_polyZonotope _ hdev))
+
+theorem Layer.activationPoly_sound (P : LayerRelaxation σ n m) :
+    (Layer.activationPoly P).Sound (fun x i => σ (x i)) := by -- --- PROOF ---
+  refine ⟨fun s x hx => ?_⟩
+  have hbox := PolyZonotope.interval_outer s hx
+  have hxd : x ∈ s.dependent.construct := by
+    rw [← PolyZonotope.dependent_exact s]
+    exact hx
+  obtain ⟨a, ha, hxa⟩ := s.dependent.exists_point_of_q_zero rfl hxd
+  -- the polynomial part, read at the very factors `x` itself came from
+  have hpval : (s.dependent.evalPoly (P.coeffList s.interval)).point
+        (fun k => a (Fin.cast (s.dependent.evalPoly_p (P.coeffList s.interval)) k))
+      = fun i => evalPoly ((P i).coeffs (s.interval.inf i) (s.interval.sup i)) (x i) := by
+    rw [PolyZonotope.evalPoly_exact]
+    funext i
+    rw [LayerRelaxation.coeffList_coord, PolyZonotope.evalPolyReal_ofFn, ← congrFun hxa i]
+    rfl
+  have hpmem : (fun i => evalPoly ((P i).coeffs (s.interval.inf i) (s.interval.sup i)) (x i))
+      ∈ (s.dependent.evalPoly (P.coeffList s.interval)).construct :=
+    hpval ▸ PolyZonotope.point_mem_construct _ fun k => ha _
+  -- and the deviation from that polynomial is inside the box, which is `sound`
+  have hdev : (fun i => σ (x i)
+        - evalPoly ((P i).coeffs (s.interval.inf i) (s.interval.sup i)) (x i))
+      ∈ (P.box s.interval).construct := by
+    intro i
+    have hrel := abs_le.mp ((P i).sound (hbox i).1 (hbox i).2)
+    exact ⟨hrel.1, hrel.2⟩
+  have hsplit : (fun i => σ (x i))
+      = (fun i => evalPoly ((P i).coeffs (s.interval.inf i) (s.interval.sup i)) (x i))
+        + fun i => σ (x i)
+            - evalPoly ((P i).coeffs (s.interval.inf i) (s.interval.sup i)) (x i) := by
+    funext i
+    show σ (x i) = _ + _
+    ring
+  rw [hsplit]
+  exact plus_outer _ _ (Set.add_mem_add hpmem (Interval.subset_polyZonotope _ hdev))
 
 end CORALean.Real
 

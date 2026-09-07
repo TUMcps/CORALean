@@ -45,13 +45,16 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 def Layer.avgPool (winv : 𝕋) (tap : Fin m → Fin k → Fin n) : Real.Layer S n m :=
   Layer.linear (tapMat tap fun _ _ => winv) fun _ => zero
 
-theorem Layer.avgPool_eval (winv : 𝕋) (tap : Fin m → Fin k → Fin n)
-    (htap : ∀ j, Function.Injective (tap j)) (x : Vec ℝ n) (j : Fin m) :
-    (Layer.avgPool (S := S) winv tap).eval x j = toReal winv * ∑ l, x (tap j l) := by
-  show (toRealMat (tapMat tap fun _ _ => winv) *ᵥ x) j + toRealVec (fun _ => zero) j = _
-  rw [toRealMat_tapMat, Real.tapMat_mulVec _ _ htap, ← Finset.mul_sum]
-  show toReal winv * (∑ l, x (tap j l)) + toReal (zero : 𝕋) = _
-  rw [toReal_zero, add_zero]
+theorem Layer.avgPool_sound (winv : 𝕋) (tap : Fin m → Fin k → Fin n)
+    (htap : ∀ j, Function.Injective (tap j)) :
+    (Layer.avgPool (S := S) winv tap).Sound
+      fun x j => toReal winv * ∑ l, x (tap j l) :=
+  (Layer.linear_sound _ _).congr fun x => funext fun j => by
+    show toReal winv * (∑ l, x (tap j l))
+      = (toRealMat (tapMat tap fun _ _ => winv) *ᵥ x) j + toRealVec (fun _ => zero) j
+    rw [toRealMat_tapMat, Real.tapMat_mulVec _ _ htap, ← Finset.mul_sum]
+    show _ = toReal winv * (∑ l, x (tap j l)) + toReal (zero : 𝕋)
+    rw [toReal_zero, add_zero]
 
 /-! ## Max pooling -/
 
@@ -99,46 +102,51 @@ theorem le_maxPoolGapUp (tap : Fin m → Fin (k + 1) → Fin n) (p : Fin m → F
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def Layer.maxPool (tap : Fin m → Fin (k + 1) → Fin n)
+def Layer.maxPool (tap : Fin m → Fin (k + 1) → Fin n)
     (pivot : Interval 𝕋 n → Fin m → Fin (k + 1)) : Real.Layer S n m where
-  eval x := fun j => Real.windowMax fun l => x (tap j l)
   enclose s :=
-    plus (mtimes (selectMat fun j => tap j (pivot (interval s) j)) s)
-      (ofInterval ⟨fun _ => zero, maxPoolGapUp tap (pivot (interval s)) (interval s)⟩)
-  enclose_outer s x hx := by
-    have hbox : ∀ i, toReal ((interval s).inf i) ≤ x i ∧ x i ≤ toReal ((interval s).sup i) :=
-      interval_outer s hx
-    set I := interval s with hI
-    set p := pivot I with hp
-    set A : Mat ℝ m n := Scalar.toRealMat (selectMat (𝕋 := 𝕋) fun j => tap j (p j)) with hA
-    -- what the pivot misses, which is what the box holds
-    set d : Vec ℝ m := fun j => Real.windowMax (fun l => x (tap j l)) - x (tap j (p j))
-      with hd
-    have hsplit : (fun j => Real.windowMax fun l => x (tap j l)) = A *ᵥ x + d := by
-      funext j
-      have hsel : (A *ᵥ x) j = x (tap j (p j)) := by
-        rw [hA]
-        exact selectMat_mulVec (fun j => tap j (p j)) x j
-      show Real.windowMax (fun l => x (tap j l)) = (A *ᵥ x) j + d j
-      rw [hsel, hd]
-      ring
-    -- the exact layer's bound, at the rounded-up gap it was stated for
-    have hmem : d ∈ Interval.construct
-        (⟨fun _ => zero, maxPoolGapUp tap p I⟩ : Interval 𝕋 m) := by
-      intro j
-      have h := Real.maxPool_bounds (tap j) (p j) (toRealVec I.inf) (toRealVec I.sup) x hbox
-        (maxPoolGapUp_nonneg tap p I j) fun l hl => le_maxPoolGapUp tap p I j hl
-      have hz : toReal (zero : 𝕋) ≤ d j := by
-        rw [toReal_zero]
-        exact h.1
-      exact ⟨hz, h.2⟩
-    have hA' : A ∈ ContSet.construct (selectMat (𝕋 := 𝕋) fun j => tap j (p j)) := by
-      rw [ContSet.construct_mat]
-      exact hA
-    rw [hsplit]
-    exact plus_outer _ _ (Set.add_mem_add
-      (mtimes_outer _ s (Set.mem_biUnion hA' (Set.mem_image_of_mem _ hx)))
-      (ofInterval_outer _ hmem))
+    plus (mtimes (selectMat (𝕋 := 𝕋) fun j => tap j (pivot (interval s) j)) s)
+      (ofInterval (⟨fun _ => zero, maxPoolGapUp tap (pivot (interval s)) (interval s)⟩ :
+        Interval 𝕋 m))
+
+theorem Layer.maxPool_sound (tap : Fin m → Fin (k + 1) → Fin n)
+    (pivot : Interval 𝕋 n → Fin m → Fin (k + 1)) :
+    (Layer.maxPool (S := S) tap pivot).Sound
+      (fun x j => Real.windowMax fun l => x (tap j l)) := by -- --- PROOF ---
+  refine ⟨fun s x hx => ?_⟩
+  have hbox : ∀ i, toReal ((interval s).inf i) ≤ x i ∧ x i ≤ toReal ((interval s).sup i) :=
+    interval_outer s hx
+  set I := interval s with hI
+  set p := pivot I with hp
+  set A : Mat ℝ m n := Scalar.toRealMat (selectMat (𝕋 := 𝕋) fun j => tap j (p j)) with hA
+  -- what the pivot misses, which is what the box holds
+  set d : Vec ℝ m := fun j => Real.windowMax (fun l => x (tap j l)) - x (tap j (p j))
+    with hd
+  have hsplit : (fun j => Real.windowMax fun l => x (tap j l)) = A *ᵥ x + d := by
+    funext j
+    have hsel : (A *ᵥ x) j = x (tap j (p j)) := by
+      rw [hA]
+      exact selectMat_mulVec (fun j => tap j (p j)) x j
+    show Real.windowMax (fun l => x (tap j l)) = (A *ᵥ x) j + d j
+    rw [hsel, hd]
+    ring
+  -- the exact layer's bound, at the rounded-up gap it was stated for
+  have hmem : d ∈ Interval.construct
+      (⟨fun _ => zero, maxPoolGapUp tap p I⟩ : Interval 𝕋 m) := by
+    intro j
+    have h := Real.maxPool_bounds (tap j) (p j) (toRealVec I.inf) (toRealVec I.sup) x hbox
+      (maxPoolGapUp_nonneg tap p I j) fun l hl => le_maxPoolGapUp tap p I j hl
+    have hz : toReal (zero : 𝕋) ≤ d j := by
+      rw [toReal_zero]
+      exact h.1
+    exact ⟨hz, h.2⟩
+  have hA' : A ∈ ContSet.construct (selectMat (𝕋 := 𝕋) fun j => tap j (p j)) := by
+    rw [ContSet.construct_mat]
+    exact hA
+  rw [hsplit]
+  exact plus_outer _ _ (Set.add_mem_add
+    (mtimes_outer _ s (Set.mem_biUnion hA' (Set.mem_image_of_mem _ hx)))
+    (ofInterval_outer _ hmem))
 
 end CORALean.Float
 

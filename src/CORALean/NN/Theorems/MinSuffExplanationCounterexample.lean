@@ -39,12 +39,12 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 
 /-- `E` is minimal exactly when it is sufficient and every feature of it has a
 counterexample witnessing that dropping it is not. -/
-theorem NeuralNetwork.minSuffExplanation_iff_counterexample (nn : NeuralNetwork S n m)
+theorem minSuffExplanation_iff_counterexample (f : Vec ℝ n → Vec ℝ m)
     (x : Vec ℝ n) (ε : ℝ) (E : Finset (Fin n)) (l : Fin m) :
-    nn.IsMinSuffExplanation x ε E l ↔
-      nn.IsSuffExplanation x ε E l ∧ ∀ i ∈ E,
+    IsMinSuffExplanation f x ε E l ↔
+      IsSuffExplanation f x ε E l ∧ ∀ i ∈ E,
         ∃ x' ∈ construct (explainBox x ε (E \ {i})),
-          ∃ j, j ≠ l ∧ nn.eval x' l ≤ nn.eval x' j := by -- --- PROOF ---
+          ∃ j, j ≠ l ∧ f x' l ≤ f x' j := by -- --- PROOF ---
   constructor
   · rintro ⟨hsuff, hmin⟩
     refine ⟨hsuff, fun i hi => ?_⟩

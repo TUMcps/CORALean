@@ -7,7 +7,7 @@ import CORALean.NN.Schedule
 `atSchedule` is the whole interpretation: a refinable network and a schedule
 give a `NeuralNetwork`, each layer at its own pattern. Everything the loop has
 to prove reduces to a property of *that* network, so `encloseAt`'s soundness
-is a corollary of `NeuralNetwork.enclose_outer` rather than a new induction.
+is a corollary of `NeuralNetwork.Sound.enclose_outer` rather than a new induction.
 -/
 
 -- Authors:       Tobias Ladner

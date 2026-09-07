@@ -43,8 +43,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m k : ℕ}
 
 /-- Neuron `j`'s own rank at what CORA backpropagates, left unaggregated: this
 rule ranks `(layer, neuron)` pairs and never layers. -/
-noncomputable def NeuralNetwork.aux_neuronRank (nn : NeuralNetwork S n m) (x d : Vec ℝ n)
-    (j : Fin n) : ℝ := refinementRank (nn.sensitivity x) d j
+noncomputable def Chain.aux_neuronRank (c : Chain n m) (x d : Vec ℝ n)
+    (j : Fin n) : ℝ := refinementRank (c.sensitivity x) d j
 
 /-- The pair the rule refines at: the layer holding the best-ranked neuron, and
 that neuron. Ties go to the earlier layer, then to the earlier neuron. -/

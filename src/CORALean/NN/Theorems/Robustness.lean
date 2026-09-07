@@ -29,12 +29,13 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem NeuralNetwork.holds_robustness (nn : NeuralNetwork S n m) (X : S n) (l : Fin m)
+theorem NeuralNetwork.holds_robustness {nn : NeuralNetwork S n m} {f : Vec ℝ n → Vec ℝ m}
+    (hf : nn.Sound f) (X : S n) (l : Fin m)
     (u : ∀ j, SupportBound (construct (nn.enclose X))
       (marginDir m j l))
     (h : ∀ j, j ≠ l → (u j).val < 0) :
-    (Specification.unsafeSet (misclassified m l)).Holds (nn.image (construct X)) :=
-  nn.holds_of_enclose X _ (disjoint_misclassified_of_bounds l u h)
+    (Specification.unsafeSet (misclassified m l)).Holds (f '' construct X) :=
+  NeuralNetwork.holds_of_enclose hf X _ (disjoint_misclassified_of_bounds l u h)
 
 end CORALean.Real
 

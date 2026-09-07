@@ -32,10 +32,11 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem NeuralNetwork.holds_of_enclose (nn : NeuralNetwork S n m) (X : S n)
+theorem NeuralNetwork.holds_of_enclose {nn : NeuralNetwork S n m} {f : Vec ℝ n → Vec ℝ m}
+    (hf : nn.Sound f) (X : S n)
     (spec : Specification (Vec ℝ m)) (h : spec.Holds (construct (nn.enclose X))) :
-    spec.Holds (nn.image (construct X)) :=
-  spec.holds_of_outer (nn.image_subset X) h
+    spec.Holds (f '' construct X) :=
+  spec.holds_of_outer (hf.image_subset X) h
 
 end CORALean.Real
 

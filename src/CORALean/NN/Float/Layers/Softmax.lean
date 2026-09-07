@@ -146,35 +146,37 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [IntervalOuter S 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def Layer.softmax (k : ℕ) : Real.Layer S n n where
-  eval := Real.softmax
+def Layer.softmax (k : ℕ) : Real.Layer S n n where
   enclose s := ofInterval (softmaxBox k (interval s))
-  enclose_outer s x hx := by
-    have hbox : ∀ i, toReal ((interval s).inf i) ≤ x i ∧ x i ≤ toReal ((interval s).sup i) :=
-      interval_outer s hx
-    set I := interval s with hI
-    set ru : Vec ℝ n := fun i => toReal (softmaxRawUpper k I i) with hru
-    refine ofInterval_outer _ fun i => ?_
-    obtain ⟨hlo, hhi⟩ := Real.softmax_mem_tightened x (fun _ => 0) ru
-      (fun i => Real.softmax_nonneg x i) (fun i => softmax_le_rawUpper k I hbox i) i
-    constructor
-    · -- the normalization, rounded down twice on the way
-      have hsum := sum_erase_le_sumOffUp i fun j => softmaxRawUpper k I j
-      have hsub := subDown_le_sub (one : 𝕋) (sumOffUp i fun j => softmaxRawUpper k I j)
-      rw [toReal_one] at hsub
-      have hmax : max (0:ℝ) (1 - ∑ j ∈ Finset.univ.erase i, ru j) ≤ Real.softmax x i := hlo
-      show toReal (maximum zero (subDown one (sumOffUp i fun j => softmaxRawUpper k I j)))
-        ≤ Real.softmax x i
-      rw [toReal_maximum, toReal_zero]
-      exact max_le (le_trans (le_max_left _ _) hmax)
-        (le_trans (by linarith) (le_trans (le_max_right _ _) hmax))
-    · -- `1` is what the same identity gives at a raw lower bound of zero
-      have hone : (1:ℝ) - ∑ j ∈ Finset.univ.erase i, (0:ℝ) = 1 := by
-        rw [Finset.sum_const_zero, sub_zero]
-      rw [hone] at hhi
-      show Real.softmax x i ≤ toReal (minimum (softmaxRawUpper k I i) one)
-      rw [toReal_minimum, toReal_one]
-      exact hhi
+
+theorem Layer.softmax_sound (k : ℕ) :
+    (Layer.softmax (S := S) (n := n) k).Sound Real.softmax := by -- --- PROOF ---
+  refine ⟨fun s x hx => ?_⟩
+  have hbox : ∀ i, toReal ((interval s).inf i) ≤ x i ∧ x i ≤ toReal ((interval s).sup i) :=
+    interval_outer s hx
+  set I := interval s with hI
+  set ru : Vec ℝ n := fun i => toReal (softmaxRawUpper k I i) with hru
+  refine ofInterval_outer _ fun i => ?_
+  obtain ⟨hlo, hhi⟩ := Real.softmax_mem_tightened x (fun _ => 0) ru
+    (fun i => Real.softmax_nonneg x i) (fun i => softmax_le_rawUpper k I hbox i) i
+  constructor
+  · -- the normalization, rounded down twice on the way
+    have hsum := sum_erase_le_sumOffUp i fun j => softmaxRawUpper k I j
+    have hsub := subDown_le_sub (one : 𝕋) (sumOffUp i fun j => softmaxRawUpper k I j)
+    rw [toReal_one] at hsub
+    have hmax : max (0:ℝ) (1 - ∑ j ∈ Finset.univ.erase i, ru j) ≤ Real.softmax x i := hlo
+    show toReal (maximum zero (subDown one (sumOffUp i fun j => softmaxRawUpper k I j)))
+      ≤ Real.softmax x i
+    rw [toReal_maximum, toReal_zero]
+    exact max_le (le_trans (le_max_left _ _) hmax)
+      (le_trans (by linarith) (le_trans (le_max_right _ _) hmax))
+  · -- `1` is what the same identity gives at a raw lower bound of zero
+    have hone : (1:ℝ) - ∑ j ∈ Finset.univ.erase i, (0:ℝ) = 1 := by
+      rw [Finset.sum_const_zero, sub_zero]
+    rw [hone] at hhi
+    show Real.softmax x i ≤ toReal (minimum (softmaxRawUpper k I i) one)
+    rw [toReal_minimum, toReal_one]
+    exact hhi
 
 end CORALean.Float
 

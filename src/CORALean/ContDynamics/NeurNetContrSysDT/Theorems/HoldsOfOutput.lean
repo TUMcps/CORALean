@@ -30,12 +30,13 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 
 theorem NeurNetContrSysDT.holds_of_output (sys : NeurNetContrSysDT 𝕋 S n)
     (out : OutputEq 𝕋 n n r) (o : ℕ) (R₀ : S n) (spec : Specification (Vec ℝ r))
-    {x : ℕ → Vec ℝ n} (traj : sys.Trajectory R₀ x) (k : ℕ)
+    {π : Vec ℝ n → Vec ℝ n} (hπ : sys.contr.Sound π)
+    {x : ℕ → Vec ℝ n} (traj : sys.Trajectory π R₀ x) (k : ℕ)
     (h : spec.Holds (construct (out.outputSet (sys.reach o R₀ k)
       (sys.contr.enclose (sys.reach o R₀ k))))) :
-    spec.Holds {out.eval (x k) (sys.contr.eval (x k))} :=
+    spec.Holds {out.eval (x k) (π (x k))} :=
   spec.holds_of_outer
-    (Set.singleton_subset_iff.mpr (sys.output_outer out o R₀ traj k)) h
+    (Set.singleton_subset_iff.mpr (sys.output_outer out o R₀ hπ traj k)) h
 
 end CORALean.Real
 

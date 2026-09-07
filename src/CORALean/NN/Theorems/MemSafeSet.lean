@@ -28,10 +28,11 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 
 /-- The same read one input at a time, which is how a requirement on a network
 is normally stated. -/
-theorem NeuralNetwork.mem_safeSet (nn : NeuralNetwork S n m) (X : S n) {safe : Set (Vec ℝ m)}
+theorem NeuralNetwork.mem_safeSet {nn : NeuralNetwork S n m} {f : Vec ℝ n → Vec ℝ m}
+    (hf : nn.Sound f) (X : S n) {safe : Set (Vec ℝ m)}
     (h : construct (nn.enclose X) ⊆ safe) {x : Vec ℝ n} (hx : x ∈ construct X) :
-    nn.eval x ∈ safe :=
-  h (nn.enclose_outer X x hx)
+    f x ∈ safe :=
+  h (hf.enclose_outer X x hx)
 
 end CORALean.Real
 

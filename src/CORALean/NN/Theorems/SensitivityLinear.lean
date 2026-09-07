@@ -32,7 +32,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Layer.linear_sensitivity (W : Mat ℝ m n) (b : Vec ℝ m) (x : Vec ℝ n) :
-    (Layer.linear (S := S) W b).sensitivity x = W :=
+    layerSensitivity (fun y => W *ᵥ y + b) x = W :=
   Layer.sensitivity_eq_of_hasFDerivAt
     ((LinearMap.toContinuousLinearMap (Matrix.mulVecLin W)).hasFDerivAt.add_const b)
 

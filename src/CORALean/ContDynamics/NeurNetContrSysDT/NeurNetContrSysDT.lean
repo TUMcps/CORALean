@@ -46,16 +46,18 @@ structure NeurNetContrSysDT (𝕋 : Type) (S : ℕ → Type)
   contr : NeuralNetwork S n n
 
 /-- One step of the closed loop, and it is a function: the controller reads the
-state, so nothing along a run is chosen. -/
-def NeurNetContrSysDT.map (sys : NeurNetContrSysDT 𝕋 S n) (x : Vec ℝ n) : Vec ℝ n :=
-  toRealMat sys.plant.A *ᵥ x + sys.contr.eval x
+state, so nothing along a run is chosen. `π` is what the controller computes,
+which `NeuralNetwork` no longer stores — `contr.Sound π` is what ties it back. -/
+def NeurNetContrSysDT.map (sys : NeurNetContrSysDT 𝕋 S n) (π : Vec ℝ n → Vec ℝ n)
+    (x : Vec ℝ n) : Vec ℝ n :=
+  toRealMat sys.plant.A *ᵥ x + π x
 
 /-- One admissible run. No `input` field and no input set: the only freedom is
 the initial state. -/
-structure NeurNetContrSysDT.Trajectory (sys : NeurNetContrSysDT 𝕋 S n) (R₀ : S n)
-    (x : ℕ → Vec ℝ n) : Prop where
+structure NeurNetContrSysDT.Trajectory (sys : NeurNetContrSysDT 𝕋 S n)
+    (π : Vec ℝ n → Vec ℝ n) (R₀ : S n) (x : ℕ → Vec ℝ n) : Prop where
   init : x 0 ∈ construct R₀
-  step (k : ℕ) : x (k + 1) = toRealMat sys.plant.A *ᵥ x k + sys.contr.eval (x k)
+  step (k : ℕ) : x (k + 1) = toRealMat sys.plant.A *ᵥ x k + π (x k)
 
 end CORALean.Real
 

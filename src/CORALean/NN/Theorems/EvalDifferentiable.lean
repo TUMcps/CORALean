@@ -28,13 +28,13 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem NeuralNetwork.differentiableAt_eval : ∀ {n m : ℕ} (nn : NeuralNetwork S n m)
-    (x : Vec ℝ n), nn.DifferentiableChain x → DifferentiableAt ℝ nn.eval x
+theorem Chain.differentiableAt_eval : ∀ {n m : ℕ} (c : Chain n m)
+    (x : Vec ℝ n), c.DifferentiableChain x → DifferentiableAt ℝ c.eval x
   | _, _, .nil, _, _ => differentiableAt_id
-  | _, _, .cons L rest, x, h => by
+  | _, _, .cons f rest, x, h => by
       -- the recursive `DifferentiableChain` is a conjunction only after unfolding
-      obtain ⟨hL, hrest⟩ : DifferentiableAt ℝ L.eval x ∧ rest.DifferentiableChain (L.eval x) := h
-      exact (rest.differentiableAt_eval _ hrest).comp x hL
+      obtain ⟨hf, hrest⟩ : DifferentiableAt ℝ f x ∧ rest.DifferentiableChain (f x) := h
+      exact (rest.differentiableAt_eval _ hrest).comp x hf
 
 end CORALean.Real
 

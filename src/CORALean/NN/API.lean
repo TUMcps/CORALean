@@ -1,3 +1,4 @@
+import CORALean.NN.Chain
 import CORALean.NN.Float.API
 import CORALean.NN.Graph.API
 import CORALean.NN.Layer

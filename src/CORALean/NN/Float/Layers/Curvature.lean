@@ -36,80 +36,86 @@ open ContSet FloatOps SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {σ : ℝ → ℝ}
 
 /-- The lower end of `σ t - lam t` over the box, rounded down. -/
-private def curvLo (E : Enclosure 𝕋 σ) (lo lam : 𝕋 → 𝕋 → 𝕋) (l u : 𝕋) : 𝕋 :=
+private def curvLo (E : Enclosure 𝕋) (lo lam : 𝕋 → 𝕋 → 𝕋) (l u : 𝕋) : 𝕋 :=
   addDown (subDown (E.lo l) (mulUp (lam l u) l))
     (mulDown (subDown (lo l u) (lam l u)) (subUp u l))
 
 /-- The upper end, rounded up. -/
-private def curvHi (E : Enclosure 𝕋 σ) (hi lam : 𝕋 → 𝕋 → 𝕋) (l u : 𝕋) : 𝕋 :=
+private def curvHi (E : Enclosure 𝕋) (hi lam : 𝕋 → 𝕋 → 𝕋) (l u : 𝕋) : 𝕋 :=
   addUp (subUp (E.hi l) (mulDown (lam l u) l))
     (mulUp (subUp (hi l u) (lam l u)) (subUp u l))
 
 /-- Any float between the two ends would do; the midpoint is the one that makes
 the error smallest, and its own rounding costs nothing. -/
-private def curvMid (E : Enclosure 𝕋 σ) (lo hi lam : 𝕋 → 𝕋 → 𝕋) (l u : 𝕋) : 𝕋 :=
+private def curvMid (E : Enclosure 𝕋) (lo hi lam : 𝕋 → 𝕋 → 𝕋) (l u : 𝕋) : 𝕋 :=
   half (addUp (curvLo E lo lam l u) (curvHi E hi lam l u))
 
 /-- The relaxation a derivative bracket buys, over a floating-point scalar. The
 bracket, the slope and `σ` at the left end all arrive as floats. -/
-def Relaxation.ofDeriv (σ' : ℝ → ℝ) (hd : ∀ x, HasDerivAt σ (σ' x) x) (E : Enclosure 𝕋 σ)
-    (lo hi lam : 𝕋 → 𝕋 → 𝕋)
-    (hlo : ∀ (l u : 𝕋) (x : ℝ), toReal l ≤ x → x ≤ toReal u → toReal (lo l u) ≤ σ' x)
-    (hhi : ∀ (l u : 𝕋) (x : ℝ), toReal l ≤ x → x ≤ toReal u → σ' x ≤ toReal (hi l u))
-    (hlam : ∀ l u : 𝕋, toReal l ≤ toReal u →
-      toReal (lo l u) ≤ toReal (lam l u) ∧ toReal (lam l u) ≤ toReal (hi l u)) :
-    Relaxation 𝕋 σ where
+def Relaxation.ofDeriv (E : Enclosure 𝕋) (lo hi lam : 𝕋 → 𝕋 → 𝕋) : Relaxation 𝕋 where
   slope := lam
   offset := curvMid E lo hi lam
   -- the distance to whichever end is further, so the offset's own rounding is paid for
   error l u := maximum (subUp (curvHi E hi lam l u) (curvMid E lo hi lam l u))
     (subUp (curvMid E lo hi lam l u) (curvLo E lo lam l u))
-  sound {l u t} hl hu := by
-    have hle : toReal l ≤ toReal u := le_trans hl hu
-    obtain ⟨hlow, hhigh⟩ := Real.sub_mul_bounds_of_deriv
-      (fun x _ => (hd x).continuousAt.continuousWithinAt) (fun x _ _ => hd x)
-      (hlo l u) (hhi l u) (hlam l u hle).1 (hlam l u hle).2 hl hu
-    have hwidth := sub_le_subUp u l
-    have hA : toReal (curvLo E lo lam l u) ≤ σ t - toReal (lam l u) * t := by
-      have hfac := subDown_le_sub (lo l u) (lam l u)
-      have hfac0 : toReal (subDown (lo l u) (lam l u)) ≤ 0 := by
-        have := (hlam l u hle).1
-        linarith
-      -- a non-positive factor against the widest box: the smallest the product can be
-      have hstep : toReal (subDown (lo l u) (lam l u)) * toReal (subUp u l)
-          ≤ (toReal (lo l u) - toReal (lam l u)) * (toReal u - toReal l) :=
-        le_trans (mul_le_mul_of_nonpos_left hwidth hfac0)
-          (mul_le_mul_of_nonneg_right hfac (by linarith))
-      have hprod := mulDown_le_mul (subDown (lo l u) (lam l u)) (subUp u l)
-      have hint := subDown_le_sub (E.lo l) (mulUp (lam l u) l)
-      have hmul := mul_le_mulUp (lam l u) l
-      have hend := E.lo_le l
-      have hsum := addDown_le_add (subDown (E.lo l) (mulUp (lam l u) l))
-        (mulDown (subDown (lo l u) (lam l u)) (subUp u l))
-      rw [curvLo]
+
+/-- What the bracket buys, and the only place `σ` and its derivative appear. -/
+theorem Relaxation.ofDeriv_sound {E : Enclosure 𝕋} {lo hi lam : 𝕋 → 𝕋 → 𝕋} (σ' : ℝ → ℝ)
+    (hd : ∀ x, HasDerivAt σ (σ' x) x) (hE : E.Sound σ)
+    (hlo : ∀ (l u : 𝕋) (x : ℝ), toReal l ≤ x → x ≤ toReal u → toReal (lo l u) ≤ σ' x)
+    (hhi : ∀ (l u : 𝕋) (x : ℝ), toReal l ≤ x → x ≤ toReal u → σ' x ≤ toReal (hi l u))
+    (hlam : ∀ l u : 𝕋, toReal l ≤ toReal u →
+      toReal (lo l u) ≤ toReal (lam l u) ∧ toReal (lam l u) ≤ toReal (hi l u)) :
+    (Relaxation.ofDeriv E lo hi lam).Sound σ := by -- --- PROOF ---
+  refine ⟨fun {l u t} hl hu => ?_⟩
+  show |σ t - (toReal (lam l u) * t + toReal (curvMid E lo hi lam l u))|
+    ≤ toReal (maximum (subUp (curvHi E hi lam l u) (curvMid E lo hi lam l u))
+      (subUp (curvMid E lo hi lam l u) (curvLo E lo lam l u)))
+  have hle : toReal l ≤ toReal u := le_trans hl hu
+  obtain ⟨hlow, hhigh⟩ := Real.sub_mul_bounds_of_deriv
+    (fun x _ => (hd x).continuousAt.continuousWithinAt) (fun x _ _ => hd x)
+    (hlo l u) (hhi l u) (hlam l u hle).1 (hlam l u hle).2 hl hu
+  have hwidth := sub_le_subUp u l
+  have hA : toReal (curvLo E lo lam l u) ≤ σ t - toReal (lam l u) * t := by
+    have hfac := subDown_le_sub (lo l u) (lam l u)
+    have hfac0 : toReal (subDown (lo l u) (lam l u)) ≤ 0 := by
+      have := (hlam l u hle).1
       linarith
-    have hB : σ t - toReal (lam l u) * t ≤ toReal (curvHi E hi lam l u) := by
-      have hfac := sub_le_subUp (hi l u) (lam l u)
-      have hfac0 : 0 ≤ toReal (subUp (hi l u) (lam l u)) := by
-        have := (hlam l u hle).2
-        linarith
-      -- both factors non-negative here, so the widest box makes the product largest
-      have hstep : (toReal (hi l u) - toReal (lam l u)) * (toReal u - toReal l)
-          ≤ toReal (subUp (hi l u) (lam l u)) * toReal (subUp u l) :=
-        le_trans (mul_le_mul_of_nonneg_right hfac (by linarith))
-          (mul_le_mul_of_nonneg_left hwidth hfac0)
-      have hprod := mul_le_mulUp (subUp (hi l u) (lam l u)) (subUp u l)
-      have hint := sub_le_subUp (E.hi l) (mulDown (lam l u) l)
-      have hmul := mulDown_le_mul (lam l u) l
-      have hend := E.le_hi l
-      have hsum := add_le_addUp (subUp (E.hi l) (mulDown (lam l u) l))
-        (mulUp (subUp (hi l u) (lam l u)) (subUp u l))
-      rw [curvHi]
+    -- a non-positive factor against the widest box: the smallest the product can be
+    have hstep : toReal (subDown (lo l u) (lam l u)) * toReal (subUp u l)
+        ≤ (toReal (lo l u) - toReal (lam l u)) * (toReal u - toReal l) :=
+      le_trans (mul_le_mul_of_nonpos_left hwidth hfac0)
+        (mul_le_mul_of_nonneg_right hfac (by linarith))
+    have hprod := mulDown_le_mul (subDown (lo l u) (lam l u)) (subUp u l)
+    have hint := subDown_le_sub (E.lo l) (mulUp (lam l u) l)
+    have hmul := mul_le_mulUp (lam l u) l
+    have hend := hE.lo_le l
+    have hsum := addDown_le_add (subDown (E.lo l) (mulUp (lam l u) l))
+      (mulDown (subDown (lo l u) (lam l u)) (subUp u l))
+    rw [curvLo]
+    linarith
+  have hB : σ t - toReal (lam l u) * t ≤ toReal (curvHi E hi lam l u) := by
+    have hfac := sub_le_subUp (hi l u) (lam l u)
+    have hfac0 : 0 ≤ toReal (subUp (hi l u) (lam l u)) := by
+      have := (hlam l u hle).2
       linarith
-    have hspread := abs_sub_le_spread (c := curvMid E lo hi lam l u) hA hB
-    rw [show σ t - (toReal (lam l u) * t + toReal (curvMid E lo hi lam l u))
-      = σ t - toReal (lam l u) * t - toReal (curvMid E lo hi lam l u) from by ring]
-    exact hspread
+    -- both factors non-negative here, so the widest box makes the product largest
+    have hstep : (toReal (hi l u) - toReal (lam l u)) * (toReal u - toReal l)
+        ≤ toReal (subUp (hi l u) (lam l u)) * toReal (subUp u l) :=
+      le_trans (mul_le_mul_of_nonneg_right hfac (by linarith))
+        (mul_le_mul_of_nonneg_left hwidth hfac0)
+    have hprod := mul_le_mulUp (subUp (hi l u) (lam l u)) (subUp u l)
+    have hint := sub_le_subUp (E.hi l) (mulDown (lam l u) l)
+    have hmul := mulDown_le_mul (lam l u) l
+    have hend := hE.le_hi l
+    have hsum := add_le_addUp (subUp (E.hi l) (mulDown (lam l u) l))
+      (mulUp (subUp (hi l u) (lam l u)) (subUp u l))
+    rw [curvHi]
+    linarith
+  have hspread := abs_sub_le_spread (c := curvMid E lo hi lam l u) hA hB
+  rw [show σ t - (toReal (lam l u) * t + toReal (curvMid E lo hi lam l u))
+    = σ t - toReal (lam l u) * t - toReal (curvMid E lo hi lam l u) from by ring]
+  exact hspread
 
 /-! ## An affine conjugation
 
@@ -129,88 +135,92 @@ variable {f g : ℝ → ℝ}
 
 /-- A sound rounding of multiplication by the fixed positive real `r`, as two
 total functions rather than a stored float. -/
-structure ScaleRounding (𝕋 : Type) [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] (r : ℝ) where
+structure ScaleRounding (𝕋 : Type) [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] where
   up : 𝕋 → 𝕋
   down : 𝕋 → 𝕋
-  up_ge (x : 𝕋) : r * toReal x ≤ toReal (up x)
-  down_le (x : 𝕋) : toReal (down x) ≤ r * toReal x
+
+/-- That the two directions bracket multiplication by the fixed positive real
+`r`, which is where `r` appears and the only place it does. -/
+structure ScaleRounding.Sound (A : ScaleRounding 𝕋) (r : ℝ) : Prop where
+  up_ge (x : 𝕋) : r * toReal x ≤ toReal (A.up x)
+  down_le (x : 𝕋) : toReal (A.down x) ≤ r * toReal x
 
 variable {ra rb : ℝ}
 
 /-- Where `f`'s relaxation is read: `rb`'s rounding applied to each end. -/
-private def confL (B : ScaleRounding 𝕋 rb) (l : 𝕋) : 𝕋 := B.down l
+private def confL (B : ScaleRounding 𝕋) (l : 𝕋) : 𝕋 := B.down l
 
-private def confU (B : ScaleRounding 𝕋 rb) (u : 𝕋) : 𝕋 := B.up u
+private def confU (B : ScaleRounding 𝕋) (u : 𝕋) : 𝕋 := B.up u
 
-private theorem confL_le (B : ScaleRounding 𝕋 rb) (hb : 0 ≤ rb) {l : 𝕋} {t : ℝ}
+private theorem confL_le {B : ScaleRounding 𝕋} (hB : B.Sound rb) (hb : 0 ≤ rb) {l : 𝕋} {t : ℝ}
     (hl : toReal l ≤ t) : toReal (confL B l) ≤ rb * t :=
-  le_trans (B.down_le l) (mul_le_mul_of_nonneg_left hl hb)
+  le_trans (hB.down_le l) (mul_le_mul_of_nonneg_left hl hb)
 
-private theorem le_confU (B : ScaleRounding 𝕋 rb) (hb : 0 ≤ rb) {u : 𝕋} {t : ℝ}
+private theorem le_confU {B : ScaleRounding 𝕋} (hB : B.Sound rb) (hb : 0 ≤ rb) {u : 𝕋} {t : ℝ}
     (hu : t ≤ toReal u) : rb * t ≤ toReal (confU B u) :=
-  le_trans (mul_le_mul_of_nonneg_left hu hb) (B.up_ge u)
+  le_trans (mul_le_mul_of_nonneg_left hu hb) (hB.up_ge u)
 
 /-- The two roundings of `ra * rb * R.slope`, `rb`'s box map folded in first. -/
-private def conjSlopeLow (R : Relaxation 𝕋 f) (A : ScaleRounding 𝕋 ra) (B : ScaleRounding 𝕋 rb)
+private def conjSlopeLow (R : Relaxation 𝕋) (A : ScaleRounding 𝕋) (B : ScaleRounding 𝕋)
     (l u : 𝕋) : 𝕋 :=
   A.down (B.down (R.slope (confL B l) (confU B u)))
 
-private def conjSlopeHigh (R : Relaxation 𝕋 f) (A : ScaleRounding 𝕋 ra) (B : ScaleRounding 𝕋 rb)
+private def conjSlopeHigh (R : Relaxation 𝕋) (A : ScaleRounding 𝕋) (B : ScaleRounding 𝕋)
     (l u : 𝕋) : 𝕋 :=
   A.up (B.up (R.slope (confL B l) (confU B u)))
 
 -- `ra ≥ 0` is what lets the outer rounding preserve the inner one's direction
-private theorem conjSlopeLow_le (R : Relaxation 𝕋 f) (A : ScaleRounding 𝕋 ra)
-    (B : ScaleRounding 𝕋 rb) (ha : 0 ≤ ra) (l u : 𝕋) :
+private theorem conjSlopeLow_le (R : Relaxation 𝕋) {A B : ScaleRounding 𝕋}
+    (hA : A.Sound ra) (hB : B.Sound rb) (ha : 0 ≤ ra) (l u : 𝕋) :
     toReal (conjSlopeLow R A B l u)
       ≤ ra * rb * toReal (R.slope (confL B l) (confU B u)) := by -- --- PROOF ---
   rw [conjSlopeLow]
   calc toReal (A.down (B.down (R.slope (confL B l) (confU B u))))
       ≤ ra * toReal (B.down (R.slope (confL B l) (confU B u))) :=
-        A.down_le (B.down (R.slope (confL B l) (confU B u)))
+        hA.down_le (B.down (R.slope (confL B l) (confU B u)))
     _ ≤ ra * (rb * toReal (R.slope (confL B l) (confU B u))) :=
-        mul_le_mul_of_nonneg_left (B.down_le (R.slope (confL B l) (confU B u))) ha
+        mul_le_mul_of_nonneg_left (hB.down_le (R.slope (confL B l) (confU B u))) ha
     _ = ra * rb * toReal (R.slope (confL B l) (confU B u)) := by ring
 
 -- the mirrored bound, both roundings now the widening `up` direction
-private theorem le_conjSlopeHigh (R : Relaxation 𝕋 f) (A : ScaleRounding 𝕋 ra)
-    (B : ScaleRounding 𝕋 rb) (ha : 0 ≤ ra) (l u : 𝕋) :
+private theorem le_conjSlopeHigh (R : Relaxation 𝕋) {A B : ScaleRounding 𝕋}
+    (hA : A.Sound ra) (hB : B.Sound rb) (ha : 0 ≤ ra) (l u : 𝕋) :
     ra * rb * toReal (R.slope (confL B l) (confU B u))
       ≤ toReal (conjSlopeHigh R A B l u) := by -- --- PROOF ---
   rw [conjSlopeHigh]
   calc ra * rb * toReal (R.slope (confL B l) (confU B u))
       = ra * (rb * toReal (R.slope (confL B l) (confU B u))) := by ring
     _ ≤ ra * toReal (B.up (R.slope (confL B l) (confU B u))) :=
-        mul_le_mul_of_nonneg_left (B.up_ge (R.slope (confL B l) (confU B u))) ha
+        mul_le_mul_of_nonneg_left (hB.up_ge (R.slope (confL B l) (confU B u))) ha
     _ ≤ toReal (A.up (B.up (R.slope (confL B l) (confU B u)))) :=
-        A.up_ge (B.up (R.slope (confL B l) (confU B u)))
+        hA.up_ge (B.up (R.slope (confL B l) (confU B u)))
 
 /-- The two roundings of `ra * R.offset + c`. Addition needs no sign
 hypothesis, so these hold for any `ra`. -/
-private def conjOffsetLow (R : Relaxation 𝕋 f) (A : ScaleRounding 𝕋 ra) (B : ScaleRounding 𝕋 rb)
+private def conjOffsetLow (R : Relaxation 𝕋) (A : ScaleRounding 𝕋) (B : ScaleRounding 𝕋)
     (c l u : 𝕋) : 𝕋 :=
   addDown (A.down (R.offset (confL B l) (confU B u))) c
 
-private def conjOffsetHigh (R : Relaxation 𝕋 f) (A : ScaleRounding 𝕋 ra) (B : ScaleRounding 𝕋 rb)
+private def conjOffsetHigh (R : Relaxation 𝕋) (A : ScaleRounding 𝕋) (B : ScaleRounding 𝕋)
     (c l u : 𝕋) : 𝕋 :=
   addUp (A.up (R.offset (confL B l) (confU B u))) c
 
-private theorem conjOffsetLow_le (R : Relaxation 𝕋 f) (A : ScaleRounding 𝕋 ra)
-    (B : ScaleRounding 𝕋 rb) (c l u : 𝕋) :
+private theorem conjOffsetLow_le (R : Relaxation 𝕋) {A : ScaleRounding 𝕋}
+    (hA : A.Sound ra) (B : ScaleRounding 𝕋) (c l u : 𝕋) :
     toReal (conjOffsetLow R A B c l u)
       ≤ ra * toReal (R.offset (confL B l) (confU B u)) + toReal c := by
   rw [conjOffsetLow]
-  have h1 := A.down_le (R.offset (confL B l) (confU B u))
+  have h1 := hA.down_le (R.offset (confL B l) (confU B u))
   have h2 := addDown_le_add (A.down (R.offset (confL B l) (confU B u))) c
   linarith
 
 -- the mirrored bound, no sign hypothesis needed here either
-private theorem le_conjOffsetHigh (R : Relaxation 𝕋 f) (A : ScaleRounding 𝕋 ra)
-    (B : ScaleRounding 𝕋 rb) (c l u : 𝕋) :
+private theorem le_conjOffsetHigh (R : Relaxation 𝕋) {A : ScaleRounding 𝕋}
+    (hA : A.Sound ra) (B : ScaleRounding 𝕋) (c l u : 𝕋) :
     ra * toReal (R.offset (confL B l) (confU B u)) + toReal c
       ≤ toReal (conjOffsetHigh R A B c l u) := by
   rw [conjOffsetHigh]
-  have h1 := A.up_ge (R.offset (confL B l) (confU B u))
+  have h1 := hA.up_ge (R.offset (confL B l) (confU B u))
   have h2 := add_le_addUp (A.up (R.offset (confL B l) (confU B u))) c
   linarith
 
@@ -230,27 +240,27 @@ private theorem abs_le_conjTBound {l u : 𝕋} {t : ℝ} (hl : toReal l ≤ t) (
 
 /-- The slope and offset chosen: the midpoint of the interval either rounding
 could land in, exactly as `curvMid` picks one above. -/
-private def conjSlope (R : Relaxation 𝕋 f) (A : ScaleRounding 𝕋 ra) (B : ScaleRounding 𝕋 rb)
+private def conjSlope (R : Relaxation 𝕋) (A : ScaleRounding 𝕋) (B : ScaleRounding 𝕋)
     (l u : 𝕋) : 𝕋 :=
   half (addUp (conjSlopeLow R A B l u) (conjSlopeHigh R A B l u))
 
-private def conjOffset (R : Relaxation 𝕋 f) (A : ScaleRounding 𝕋 ra) (B : ScaleRounding 𝕋 rb)
+private def conjOffset (R : Relaxation 𝕋) (A : ScaleRounding 𝕋) (B : ScaleRounding 𝕋)
     (c l u : 𝕋) : 𝕋 :=
   half (addUp (conjOffsetLow R A B c l u) (conjOffsetHigh R A B c l u))
 
-private def conjSlopeGap (R : Relaxation 𝕋 f) (A : ScaleRounding 𝕋 ra) (B : ScaleRounding 𝕋 rb)
+private def conjSlopeGap (R : Relaxation 𝕋) (A : ScaleRounding 𝕋) (B : ScaleRounding 𝕋)
     (l u : 𝕋) : 𝕋 :=
   maximum (subUp (conjSlopeHigh R A B l u) (conjSlope R A B l u))
     (subUp (conjSlope R A B l u) (conjSlopeLow R A B l u))
 
-private def conjOffsetGap (R : Relaxation 𝕋 f) (A : ScaleRounding 𝕋 ra) (B : ScaleRounding 𝕋 rb)
+private def conjOffsetGap (R : Relaxation 𝕋) (A : ScaleRounding 𝕋) (B : ScaleRounding 𝕋)
     (c l u : 𝕋) : 𝕋 :=
   maximum (subUp (conjOffsetHigh R A B c l u) (conjOffset R A B c l u))
     (subUp (conjOffset R A B c l u) (conjOffsetLow R A B c l u))
 
 /-- `ra`'s own error, rounded up, plus the slope gap charged against `|t|`,
 plus the offset gap. -/
-private def conjError (R : Relaxation 𝕋 f) (A : ScaleRounding 𝕋 ra) (B : ScaleRounding 𝕋 rb)
+private def conjError (R : Relaxation 𝕋) (A : ScaleRounding 𝕋) (B : ScaleRounding 𝕋)
     (c l u : 𝕋) : 𝕋 :=
   addUp (addUp (A.up (R.error (confL B l) (confU B u)))
     (mulUp (conjSlopeGap R A B l u) (conjTBound l u))) (conjOffsetGap R A B c l u)
@@ -258,76 +268,84 @@ private def conjError (R : Relaxation 𝕋 f) (A : ScaleRounding 𝕋 ra) (B : S
 /-- `g t = ra f (rb t) + c` inherits `f`'s relaxation. The price for storing
 one slope rather than the exact product is `conjSlopeGap` charged against a
 bound on `t` itself. -/
-noncomputable def Relaxation.ofAffineConj (R : Relaxation 𝕋 f) (A : ScaleRounding 𝕋 ra)
-    (B : ScaleRounding 𝕋 rb) (c : 𝕋) (ha : 0 < ra) (hb : 0 < rb)
-    (hg : ∀ t, g t = ra * f (rb * t) + toReal c) : Relaxation 𝕋 g where
+def Relaxation.ofAffineConj (R : Relaxation 𝕋) (A B : ScaleRounding 𝕋) (c : 𝕋) :
+    Relaxation 𝕋 where
   slope := conjSlope R A B
   offset := conjOffset R A B c
   error := conjError R A B c
-  sound {l u t} hl hu := by
-    have hbl := confL_le B hb.le hl
-    have hbu := le_confU B hb.le hu
-    have hRsound := R.sound hbl hbu
-    -- the affine map's own slope and offset cancel, leaving `ra` times `f`'s deviation
-    have heq : g t - (ra * rb * toReal (R.slope (confL B l) (confU B u)) * t
-        + (ra * toReal (R.offset (confL B l) (confU B u)) + toReal c))
-        = ra * (f (rb * t)
-            - (toReal (R.slope (confL B l) (confU B u)) * (rb * t)
-              + toReal (R.offset (confL B l) (confU B u)))) := by
-      rw [hg t]; ring
-    have hbound1 : |g t - (ra * rb * toReal (R.slope (confL B l) (confU B u)) * t
-        + (ra * toReal (R.offset (confL B l) (confU B u)) + toReal c))|
-        ≤ ra * toReal (R.error (confL B l) (confU B u)) := by
-      rw [heq, abs_mul, abs_of_pos ha]
-      exact mul_le_mul_of_nonneg_left hRsound ha.le
-    have hSlopeLow := conjSlopeLow_le R A B ha.le l u
-    have hSlopeHigh := le_conjSlopeHigh R A B ha.le l u
-    have hOffsetLow := conjOffsetLow_le R A B c l u
-    have hOffsetHigh := le_conjOffsetHigh R A B c l u
-    -- how far the chosen slope and offset can be from the exact product and sum
-    have hSlopeGap : |ra * rb * toReal (R.slope (confL B l) (confU B u))
-        - toReal (conjSlope R A B l u)| ≤ toReal (conjSlopeGap R A B l u) := by
-      rw [conjSlopeGap]; exact abs_sub_le_spread hSlopeLow hSlopeHigh
-    have hOffsetGap : |(ra * toReal (R.offset (confL B l) (confU B u)) + toReal c)
-        - toReal (conjOffset R A B c l u)| ≤ toReal (conjOffsetGap R A B c l u) := by
-      rw [conjOffsetGap]; exact abs_sub_le_spread hOffsetLow hOffsetHigh
-    have htBound := abs_le_conjTBound hl hu
-    -- the slope gap multiplies `t`, bounded only by the box, not by anything smaller
-    have hcorrection : |(ra * rb * toReal (R.slope (confL B l) (confU B u))
-        - toReal (conjSlope R A B l u)) * t|
-        ≤ toReal (mulUp (conjSlopeGap R A B l u) (conjTBound l u)) := by
-      rw [abs_mul]
-      have hnn : (0:ℝ) ≤ toReal (conjSlopeGap R A B l u) := le_trans (abs_nonneg _) hSlopeGap
-      exact le_trans (mul_le_mul hSlopeGap htBound (abs_nonneg t) hnn) (mul_le_mulUp _ _)
-    -- the goal splits into the three pieces just bounded, plus their own roundings
-    have hkey : g t - (toReal (conjSlope R A B l u) * t + toReal (conjOffset R A B c l u))
-        = (g t - (ra * rb * toReal (R.slope (confL B l) (confU B u)) * t
-            + (ra * toReal (R.offset (confL B l) (confU B u)) + toReal c)))
-          + (ra * rb * toReal (R.slope (confL B l) (confU B u))
-              - toReal (conjSlope R A B l u)) * t
-          + ((ra * toReal (R.offset (confL B l) (confU B u)) + toReal c)
-              - toReal (conjOffset R A B c l u)) := by ring
-    rw [hkey]
-    have htri1 := abs_add_le (g t - (ra * rb
-        * toReal (R.slope (confL B l) (confU B u)) * t
-        + (ra * toReal (R.offset (confL B l) (confU B u)) + toReal c))
-      + (ra * rb * toReal (R.slope (confL B l) (confU B u))
-          - toReal (conjSlope R A B l u)) * t)
-      ((ra * toReal (R.offset (confL B l) (confU B u)) + toReal c)
-          - toReal (conjOffset R A B c l u))
-    -- the same split, one level in: the first two pieces against each other
-    have htri2 := abs_add_le (g t - (ra * rb
-        * toReal (R.slope (confL B l) (confU B u)) * t
-        + (ra * toReal (R.offset (confL B l) (confU B u)) + toReal c)))
-      ((ra * rb * toReal (R.slope (confL B l) (confU B u))
-          - toReal (conjSlope R A B l u)) * t)
-    have hstep1 := add_le_addUp (A.up (R.error (confL B l) (confU B u)))
-      (mulUp (conjSlopeGap R A B l u) (conjTBound l u))
-    have hstep2 := add_le_addUp (addUp (A.up (R.error (confL B l) (confU B u)))
-      (mulUp (conjSlopeGap R A B l u) (conjTBound l u))) (conjOffsetGap R A B c l u)
-    have hErrRound := A.up_ge (R.error (confL B l) (confU B u))
-    rw [conjError]
-    linarith [hbound1, hcorrection, hOffsetGap, htri1, htri2, hstep1, hstep2, hErrRound]
+
+/-- `g t = ra f (rb t) + c` inherits `f`'s soundness, and this is where the two
+real scales arrive: `ofAffineConj` itself stores only floats. -/
+theorem Relaxation.ofAffineConj_sound {R : Relaxation 𝕋} {A B : ScaleRounding 𝕋} {c : 𝕋}
+    (hR : R.Sound f) (hA : A.Sound ra) (hB : B.Sound rb) (ha : 0 < ra) (hb : 0 < rb)
+    (hg : ∀ t, g t = ra * f (rb * t) + toReal c) :
+    (Relaxation.ofAffineConj R A B c).Sound g := by -- --- PROOF ---
+  refine ⟨fun {l u t} hl hu => ?_⟩
+  show |g t - (toReal (conjSlope R A B l u) * t + toReal (conjOffset R A B c l u))|
+    ≤ toReal (conjError R A B c l u)
+  have hbl := confL_le hB hb.le hl
+  have hbu := le_confU hB hb.le hu
+  have hRsound := hR.sound hbl hbu
+  -- the affine map's own slope and offset cancel, leaving `ra` times `f`'s deviation
+  have heq : g t - (ra * rb * toReal (R.slope (confL B l) (confU B u)) * t
+      + (ra * toReal (R.offset (confL B l) (confU B u)) + toReal c))
+      = ra * (f (rb * t)
+          - (toReal (R.slope (confL B l) (confU B u)) * (rb * t)
+            + toReal (R.offset (confL B l) (confU B u)))) := by
+    rw [hg t]; ring
+  have hbound1 : |g t - (ra * rb * toReal (R.slope (confL B l) (confU B u)) * t
+      + (ra * toReal (R.offset (confL B l) (confU B u)) + toReal c))|
+      ≤ ra * toReal (R.error (confL B l) (confU B u)) := by
+    rw [heq, abs_mul, abs_of_pos ha]
+    exact mul_le_mul_of_nonneg_left hRsound ha.le
+  have hSlopeLow := conjSlopeLow_le R hA hB ha.le l u
+  have hSlopeHigh := le_conjSlopeHigh R hA hB ha.le l u
+  have hOffsetLow := conjOffsetLow_le R hA B c l u
+  have hOffsetHigh := le_conjOffsetHigh R hA B c l u
+  -- how far the chosen slope and offset can be from the exact product and sum
+  have hSlopeGap : |ra * rb * toReal (R.slope (confL B l) (confU B u))
+      - toReal (conjSlope R A B l u)| ≤ toReal (conjSlopeGap R A B l u) := by
+    rw [conjSlopeGap]; exact abs_sub_le_spread hSlopeLow hSlopeHigh
+  have hOffsetGap : |(ra * toReal (R.offset (confL B l) (confU B u)) + toReal c)
+      - toReal (conjOffset R A B c l u)| ≤ toReal (conjOffsetGap R A B c l u) := by
+    rw [conjOffsetGap]; exact abs_sub_le_spread hOffsetLow hOffsetHigh
+  have htBound := abs_le_conjTBound hl hu
+  -- the slope gap multiplies `t`, bounded only by the box, not by anything smaller
+  have hcorrection : |(ra * rb * toReal (R.slope (confL B l) (confU B u))
+      - toReal (conjSlope R A B l u)) * t|
+      ≤ toReal (mulUp (conjSlopeGap R A B l u) (conjTBound l u)) := by
+    rw [abs_mul]
+    have hnn : (0:ℝ) ≤ toReal (conjSlopeGap R A B l u) := le_trans (abs_nonneg _) hSlopeGap
+    exact le_trans (mul_le_mul hSlopeGap htBound (abs_nonneg t) hnn) (mul_le_mulUp _ _)
+  -- the goal splits into the three pieces just bounded, plus their own roundings
+  have hkey : g t - (toReal (conjSlope R A B l u) * t + toReal (conjOffset R A B c l u))
+      = (g t - (ra * rb * toReal (R.slope (confL B l) (confU B u)) * t
+          + (ra * toReal (R.offset (confL B l) (confU B u)) + toReal c)))
+        + (ra * rb * toReal (R.slope (confL B l) (confU B u))
+            - toReal (conjSlope R A B l u)) * t
+        + ((ra * toReal (R.offset (confL B l) (confU B u)) + toReal c)
+            - toReal (conjOffset R A B c l u)) := by ring
+  rw [hkey]
+  have htri1 := abs_add_le (g t - (ra * rb
+      * toReal (R.slope (confL B l) (confU B u)) * t
+      + (ra * toReal (R.offset (confL B l) (confU B u)) + toReal c))
+    + (ra * rb * toReal (R.slope (confL B l) (confU B u))
+        - toReal (conjSlope R A B l u)) * t)
+    ((ra * toReal (R.offset (confL B l) (confU B u)) + toReal c)
+        - toReal (conjOffset R A B c l u))
+  -- the same split, one level in: the first two pieces against each other
+  have htri2 := abs_add_le (g t - (ra * rb
+      * toReal (R.slope (confL B l) (confU B u)) * t
+      + (ra * toReal (R.offset (confL B l) (confU B u)) + toReal c)))
+    ((ra * rb * toReal (R.slope (confL B l) (confU B u))
+        - toReal (conjSlope R A B l u)) * t)
+  have hstep1 := add_le_addUp (A.up (R.error (confL B l) (confU B u)))
+    (mulUp (conjSlopeGap R A B l u) (conjTBound l u))
+  have hstep2 := add_le_addUp (addUp (A.up (R.error (confL B l) (confU B u)))
+    (mulUp (conjSlopeGap R A B l u) (conjTBound l u))) (conjOffsetGap R A B c l u)
+  have hErrRound := hA.up_ge (R.error (confL B l) (confU B u))
+  rw [conjError]
+  linarith [hbound1, hcorrection, hOffsetGap, htri1, htri2, hstep1, hstep2, hErrRound]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -335,16 +353,24 @@ noncomputable def Relaxation.ofAffineConj (R : Relaxation 𝕋 f) (A : ScaleRoun
 /-- Two relaxations of the same `σ`, the smaller error taken on each box. `le`
 is unconstrained and does not have to be: both branches are sound, so a wrong
 answer costs precision and never soundness. -/
-def Relaxation.tighter (R₁ R₂ : Relaxation 𝕋 σ) : Relaxation 𝕋 σ where
+def Relaxation.tighter (R₁ R₂ : Relaxation 𝕋) : Relaxation 𝕋 where
   slope l u := if le (R₁.error l u) (R₂.error l u) then R₁.slope l u else R₂.slope l u
   offset l u := if le (R₁.error l u) (R₂.error l u) then R₁.offset l u else R₂.offset l u
   error l u := if le (R₁.error l u) (R₂.error l u) then R₁.error l u else R₂.error l u
-  sound {l u _t} hl hu := by
-    by_cases h : le (R₁.error l u) (R₂.error l u) = true
-    · rw [if_pos h, if_pos h, if_pos h]
-      exact R₁.sound hl hu
-    · rw [if_neg h, if_neg h, if_neg h]
-      exact R₂.sound hl hu
+
+/-- Both branches are sound, so a wrong answer costs precision and never
+soundness. -/
+theorem Relaxation.tighter_sound {R₁ R₂ : Relaxation 𝕋} (h₁ : R₁.Sound σ) (h₂ : R₂.Sound σ) :
+    (R₁.tighter R₂).Sound σ := by -- --- PROOF ---
+  refine ⟨fun {l u _t} hl hu => ?_⟩
+  show |σ _t - (toReal (if le (R₁.error l u) (R₂.error l u) then _ else _) * _t
+    + toReal (if le (R₁.error l u) (R₂.error l u) then _ else _))|
+      ≤ toReal (if le (R₁.error l u) (R₂.error l u) then _ else _)
+  by_cases h : le (R₁.error l u) (R₂.error l u) = true
+  · rw [if_pos h, if_pos h, if_pos h]
+    exact h₁.sound hl hu
+  · rw [if_neg h, if_neg h, if_neg h]
+    exact h₂.sound hl hu
 
 end CORALean.Float
 

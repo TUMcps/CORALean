@@ -30,16 +30,21 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- Doubling by self-addition: exact in any binary format, and it needs no
 float that denotes `2`. -/
-def doubleRounding : ScaleRounding 𝕋 2 where
+def doubleRounding : ScaleRounding 𝕋 where
   up x := addUp x x
   down x := addDown x x
-  up_ge x := by have h := add_le_addUp x x; linarith
-  down_le x := by have h := addDown_le_add x x; linarith
+
+theorem doubleRounding_sound : (doubleRounding (𝕋 := 𝕋)).Sound 2 where
+  up_ge x := by have h := add_le_addUp x x; show _ ≤ toReal (addUp x x); linarith
+  down_le x := by have h := addDown_le_add x x; show toReal (addDown x x) ≤ _; linarith
 
 /-- `sigmoidRelaxation` read through `tanh_eq_sigmoid`: `a = b = 2`, `c = -1`. -/
-noncomputable def tanhRelaxation (k : ℕ) : Relaxation 𝕋 Real.tanh :=
+def tanhRelaxation (k : ℕ) : Relaxation 𝕋 :=
   (sigmoidRelaxation k).ofAffineConj doubleRounding doubleRounding (neg one)
-    (by norm_num) (by norm_num)
+
+theorem tanhRelaxation_sound (k : ℕ) : (tanhRelaxation (𝕋 := 𝕋) k).Sound Real.tanh :=
+  Relaxation.ofAffineConj_sound (sigmoidRelaxation_sound k) doubleRounding_sound
+    doubleRounding_sound (by norm_num) (by norm_num)
     (fun t => by rw [toReal_neg, toReal_one, Real.tanh_eq_sigmoid]; ring)
 
 namespace Layer
@@ -51,7 +56,11 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `k` is the reduction depth the sigmoid relaxation underneath is built at. -/
-noncomputable def tanh (k : ℕ) : Real.Layer S n n := Layer.activation (tanhRelaxation k)
+def tanh (k : ℕ) : Real.Layer S n n := Layer.activation (tanhRelaxation k)
+
+theorem tanh_sound (k : ℕ) :
+    (Layer.tanh (𝕋 := 𝕋) (S := S) (n := n) k).Sound fun x i => Real.tanh (x i) :=
+  Layer.activation_sound (tanhRelaxation_sound k)
 
 end Layer
 

@@ -70,16 +70,22 @@ theorem reluGapOfSlope_le (lam l u : 𝕋) :
 
 /-- Recentred, so that the error is half the gap in each direction, exactly as
 over ℝ — halving a float moves only the exponent. -/
-def reluRelaxation (lam : 𝕋 → 𝕋 → 𝕋) : Relaxation 𝕋 Real.relu where
+def reluRelaxation (lam : 𝕋 → 𝕋 → 𝕋) : Relaxation 𝕋 where
   slope l u := clampUnit (lam l u)
   offset l u := half (reluGapUp (clampUnit (lam l u)) l u)
   error l u := half (reluGapUp (clampUnit (lam l u)) l u)
-  sound {l u _t} hl hu := by
-    obtain ⟨hlow, hhigh⟩ := Real.relu_bounds_of_slope (clampUnit_nonneg (lam l u))
-      (clampUnit_le_one (lam l u)) hl hu
-    have hg := reluGapOfSlope_le (clampUnit (lam l u)) l u
-    rw [toReal_half, abs_le]
-    exact ⟨by linarith, by linarith⟩
+
+theorem reluRelaxation_sound (lam : 𝕋 → 𝕋 → 𝕋) :
+    (reluRelaxation lam).Sound Real.relu := by -- --- PROOF ---
+  refine ⟨fun {l u _t} hl hu => ?_⟩
+  obtain ⟨hlow, hhigh⟩ := Real.relu_bounds_of_slope (clampUnit_nonneg (lam l u))
+    (clampUnit_le_one (lam l u)) hl hu
+  have hg := reluGapOfSlope_le (clampUnit (lam l u)) l u
+  show |Real.relu _t - (toReal (clampUnit (lam l u)) * _t
+    + toReal (half (reluGapUp (clampUnit (lam l u)) l u)))|
+      ≤ toReal (half (reluGapUp (clampUnit (lam l u)) l u))
+  rw [toReal_half, abs_le]
+  exact ⟨by linarith, by linarith⟩
 
 /-- Exact on a stable neuron; the secant where the neuron crosses. A caller with
 a better candidate passes it to `Layer.relu` instead, and pays nothing for the
@@ -97,6 +103,10 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n
 
 def relu (lam : 𝕋 → 𝕋 → 𝕋 := reluSlope) : Real.Layer S n n :=
   Layer.activation (reluRelaxation lam)
+
+theorem relu_sound (lam : 𝕋 → 𝕋 → 𝕋) :
+    (Layer.relu (S := S) (n := n) lam).Sound fun x i => Real.relu (x i) :=
+  Layer.activation_sound (reluRelaxation_sound lam)
 
 end Layer
 

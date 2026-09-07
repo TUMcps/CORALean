@@ -65,19 +65,25 @@ private theorem sigmoid_eq (t : ℝ) : Real.sigmoid t = 1 - (1 + Real.exp t)⁻�
   ring
 
 /-- Both ends from `expDown`: the identity above below, `1/(1 + e⁻ᵗ)` above. -/
-def sigmoidEnclosure (k : ℕ) : Enclosure 𝕋 Real.sigmoid where
+def sigmoidEnclosure (k : ℕ) : Enclosure 𝕋 where
   lo a := subDown one (divUp one (onePlusExpDown k a))
   hi a := divUp one (onePlusExpDown k (neg a))
+
+/-- Where `Real.sigmoid` first appears: the data above names no real function. -/
+theorem sigmoidEnclosure_sound (k : ℕ) :
+    (sigmoidEnclosure (𝕋 := 𝕋) k).Sound Real.sigmoid where
   lo_le a := by
     have hb := one_div_le_divUp (one_le_onePlusExpDown k a) (onePlusExpDown_le k a)
     have hs := subDown_le_sub one (divUp one (onePlusExpDown k a))
     rw [toReal_one] at hs
+    show toReal (subDown one (divUp one (onePlusExpDown k a))) ≤ _
     rw [sigmoid_eq (toReal a), ← one_div]
     linarith
   -- the upper end is `1/(1 + e⁻ᵗ)` directly, which is why it needs no subtraction
   le_hi a := by
     have hb := one_div_le_divUp (one_le_onePlusExpDown k (neg a)) (onePlusExpDown_le k (neg a))
     rw [toReal_neg] at hb
+    show _ ≤ toReal (divUp one (onePlusExpDown k (neg a)))
     rw [Real.sigmoid, ← one_div]
     exact hb
 
@@ -87,21 +93,21 @@ def sigmoidEnclosure (k : ℕ) : Enclosure 𝕋 Real.sigmoid where
 at the box's ends brackets it with no case on sign — the lower factors floored
 at zero, which rounding could otherwise push below it. -/
 
-def sigmoidDerivLo (E : Enclosure 𝕋 Real.sigmoid) (l u : 𝕋) : 𝕋 :=
+def sigmoidDerivLo (E : Enclosure 𝕋) (l u : 𝕋) : 𝕋 :=
   mulDown (maximum zero (E.lo l)) (maximum zero (E.lo (neg u)))
 
-def sigmoidDerivHi (E : Enclosure 𝕋 Real.sigmoid) (l u : 𝕋) : 𝕋 :=
+def sigmoidDerivHi (E : Enclosure 𝕋) (l u : 𝕋) : 𝕋 :=
   mulUp (E.hi u) (E.hi (neg l))
 
-theorem sigmoidDerivLo_le (E : Enclosure 𝕋 Real.sigmoid) (l u : 𝕋) (x : ℝ)
+theorem sigmoidDerivLo_le {E : Enclosure 𝕋} (hE : E.Sound Real.sigmoid) (l u : 𝕋) (x : ℝ)
     (hl : toReal l ≤ x) (hu : x ≤ toReal u) :
     toReal (sigmoidDerivLo E l u) ≤ Real.sigmoidDeriv x := by -- --- PROOF ---
   have h₁ : toReal (maximum zero (E.lo l)) ≤ Real.sigmoid x := by
     rw [toReal_maximum, toReal_zero]
-    exact max_le (le_of_lt (Real.sigmoid_pos x)) (le_trans (E.lo_le l) (Real.sigmoid_mono hl))
+    exact max_le (le_of_lt (Real.sigmoid_pos x)) (le_trans (hE.lo_le l) (Real.sigmoid_mono hl))
   have h₂ : toReal (maximum zero (E.lo (neg u))) ≤ Real.sigmoid (-x) := by
     rw [toReal_maximum, toReal_zero]
-    refine max_le (le_of_lt (Real.sigmoid_pos _)) (le_trans (E.lo_le (neg u)) ?_)
+    refine max_le (le_of_lt (Real.sigmoid_pos _)) (le_trans (hE.lo_le (neg u)) ?_)
     rw [toReal_neg]
     exact Real.sigmoid_mono (neg_le_neg hu)
   -- both factors are non-negative lower bounds, which is what makes the product one
@@ -112,13 +118,13 @@ theorem sigmoidDerivLo_le (E : Enclosure 𝕋 Real.sigmoid) (l u : 𝕋) (x : �
   exact le_trans (mulDown_le_mul _ _)
     (mul_le_mul h₁ h₂ h₀ (le_of_lt (Real.sigmoid_pos x)))
 
-theorem le_sigmoidDerivHi (E : Enclosure 𝕋 Real.sigmoid) (l u : 𝕋) (x : ℝ)
+theorem le_sigmoidDerivHi {E : Enclosure 𝕋} (hE : E.Sound Real.sigmoid) (l u : 𝕋) (x : ℝ)
     (hl : toReal l ≤ x) (hu : x ≤ toReal u) :
     Real.sigmoidDeriv x ≤ toReal (sigmoidDerivHi E l u) := by -- --- PROOF ---
   -- upward the sign needs no floor: an upper bound on a positive value is positive
-  have h₁ : Real.sigmoid x ≤ toReal (E.hi u) := le_trans (Real.sigmoid_mono hu) (E.le_hi u)
+  have h₁ : Real.sigmoid x ≤ toReal (E.hi u) := le_trans (Real.sigmoid_mono hu) (hE.le_hi u)
   have h₂ : Real.sigmoid (-x) ≤ toReal (E.hi (neg l)) := by
-    refine le_trans ?_ (E.le_hi (neg l))
+    refine le_trans ?_ (hE.le_hi (neg l))
     rw [toReal_neg]
     exact Real.sigmoid_mono (neg_le_neg hl)
   rw [sigmoidDerivHi, Real.sigmoidDeriv]
@@ -130,25 +136,32 @@ theorem le_sigmoidDerivHi (E : Enclosure 𝕋 Real.sigmoid) (l u : 𝕋) (x : �
 The secant is a guess and nothing more: `subDown u l` may be zero, where `divUp`
 bounds nothing, and the clamp into the bracket is what makes that harmless. -/
 
-def sigmoidSlope (E : Enclosure 𝕋 Real.sigmoid) (l u : 𝕋) : 𝕋 :=
+def sigmoidSlope (E : Enclosure 𝕋) (l u : 𝕋) : 𝕋 :=
   maximum (sigmoidDerivLo E l u)
     (minimum (sigmoidDerivHi E l u) (divUp (subUp (E.hi u) (E.lo l)) (subDown u l)))
 
-noncomputable def sigmoidCurvatureRelaxation (E : Enclosure 𝕋 Real.sigmoid) :
-    Relaxation 𝕋 Real.sigmoid :=
-  Relaxation.ofDeriv Real.sigmoidDeriv Real.hasDerivAt_sigmoid E
-    (sigmoidDerivLo E) (sigmoidDerivHi E) (sigmoidSlope E)
-    (sigmoidDerivLo_le E) (le_sigmoidDerivHi E) fun l u h => by
+def sigmoidCurvatureRelaxation (E : Enclosure 𝕋) : Relaxation 𝕋 :=
+  Relaxation.ofDeriv E (sigmoidDerivLo E) (sigmoidDerivHi E) (sigmoidSlope E)
+
+theorem sigmoidCurvatureRelaxation_sound {E : Enclosure 𝕋} (hE : E.Sound Real.sigmoid) :
+    (sigmoidCurvatureRelaxation E).Sound Real.sigmoid :=
+  Relaxation.ofDeriv_sound Real.sigmoidDeriv Real.hasDerivAt_sigmoid hE
+    (sigmoidDerivLo_le hE) (le_sigmoidDerivHi hE) fun l u h => by
       refine ⟨by rw [sigmoidSlope, toReal_maximum]; exact le_max_left _ _, ?_⟩
       rw [sigmoidSlope, toReal_maximum, toReal_minimum]
-      exact max_le (le_trans (sigmoidDerivLo_le E l u (toReal l) le_rfl h)
-        (le_sigmoidDerivHi E l u (toReal l) le_rfl h)) (min_le_left _ _)
+      exact max_le (le_trans (sigmoidDerivLo_le hE l u (toReal l) le_rfl h)
+        (le_sigmoidDerivHi hE l u (toReal l) le_rfl h)) (min_le_left _ _)
 
 /-- The curvature relaxation where its bracket pays for itself, and the
 monotone one where it does not. `Layers/Tanh.lean` transports this whole. -/
-noncomputable def sigmoidRelaxation (k : ℕ) : Relaxation 𝕋 Real.sigmoid :=
+def sigmoidRelaxation (k : ℕ) : Relaxation 𝕋 :=
   (sigmoidCurvatureRelaxation (sigmoidEnclosure k)).tighter
-    (Relaxation.ofMonotone Real.sigmoid_mono (sigmoidEnclosure k))
+    (Relaxation.ofMonotone (sigmoidEnclosure k))
+
+theorem sigmoidRelaxation_sound (k : ℕ) :
+    (sigmoidRelaxation (𝕋 := 𝕋) k).Sound Real.sigmoid :=
+  Relaxation.tighter_sound (sigmoidCurvatureRelaxation_sound (sigmoidEnclosure_sound k))
+    (Relaxation.ofMonotone_sound Real.sigmoid_mono (sigmoidEnclosure_sound k))
 
 namespace Layer
 
@@ -160,7 +173,11 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n
 
 /-- `k` is the exponential's reduction depth: every `k` is sound, a larger one
 tighter, and it reaches both the value and the derivative bracket. -/
-noncomputable def sigmoid (k : ℕ) : Real.Layer S n n := Layer.activation (sigmoidRelaxation k)
+def sigmoid (k : ℕ) : Real.Layer S n n := Layer.activation (sigmoidRelaxation k)
+
+theorem sigmoid_sound (k : ℕ) :
+    (Layer.sigmoid (𝕋 := 𝕋) (S := S) (n := n) k).Sound fun x i => Real.sigmoid (x i) :=
+  Layer.activation_sound (sigmoidRelaxation_sound k)
 
 end Layer
 

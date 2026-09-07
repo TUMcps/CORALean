@@ -43,10 +43,10 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OfInterval S] {n
 
 /-- `E` is sufficient for `nn`'s classification of `x` as `l`, at `nn`'s exact
 image of `explainBox`: no point of it lets a rival tie or beat `l`. -/
-def NeuralNetwork.IsSuffExplanationExact (nn : NeuralNetwork S n m) (x : Vec ℝ n) (ε : ℝ)
-    (E : Finset (Fin n)) (l : Fin m) : Prop :=
+def IsSuffExplanationExact (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] [OfInterval S]
+    (f : Vec ℝ n → Vec ℝ m) (x : Vec ℝ n) (ε : ℝ) (E : Finset (Fin n)) (l : Fin m) : Prop :=
   (Specification.unsafeSet (misclassified m l)).Holds
-    (nn.image (construct (ofInterval (explainBox x ε E) : S n)))
+    (f '' construct (ofInterval (explainBox x ε E) : S n))
 
 end CORALean.Real
 

@@ -39,7 +39,7 @@ and so takes every level as itself. -/
 noncomputable def sigmoidLinearSigmoidNetwork (W : Mat ℝ m n) (b : Vec ℝ m) :
     RefinableNetwork 𝒫𝒵 n m :=
   .cons (Layer.activationPolyRefinable sigmoidPolyFamily)
-    (.cons (Layer.linear W b).refinable
+    (.cons ((Layer.linear W b).refinable (Layer.linear_sound W b))
       (.cons (Layer.activationPolyRefinable sigmoidPolyFamily) .nil))
 
 end CORALean.Real

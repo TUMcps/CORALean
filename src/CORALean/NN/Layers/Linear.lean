@@ -42,32 +42,38 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n
   [Mtimes (Mat ℝ) S] [OfInterval S] {n m : ℕ}
 
 def Layer.linear (W : Mat ℝ m n) (b : Vec ℝ m) : Layer S n m where
-  eval x := W *ᵥ x + b
   enclose s := plus (mtimes W s) (ofInterval (Interval.point b))
-  enclose_outer s _x hx :=
-    plus_outer _ _ (Set.add_mem_add
-      (mtimes_outer W s (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hx)))
-      (ofInterval_outer _ (Interval.mem_point b)))
+
+theorem Layer.linear_sound (W : Mat ℝ m n) (b : Vec ℝ m) :
+    (Layer.linear (S := S) W b).Sound (fun x => W *ᵥ x + b) :=
+  ⟨fun s _x hx => plus_outer _ _ (Set.add_mem_add
+    (mtimes_outer W s (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hx)))
+    (ofInterval_outer _ (Interval.mem_point b)))⟩
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `Layer.linear` with an added error box `E`, CORA's `W h + b ⊕ E`. -/
-noncomputable def Layer.linearWithError (W : Mat ℝ m n) (b : Vec ℝ m) (E : Interval (Vec ℝ m))
-    (hE : E.IsNonempty) : Layer S n m where
-  eval x := W *ᵥ x + b + E.center
+def Layer.linearWithError (W : Mat ℝ m n) (b : Vec ℝ m) (E : Interval (Vec ℝ m)) :
+    Layer S n m where
   enclose s := plus (mtimes W s) (ofInterval (Interval.plus (Interval.point b) E))
-  enclose_outer s x hx := by
-    -- the committed value is `E`'s own centre, which `mem_center` puts inside `E`
-    have hbox : b + E.center ∈ construct (Interval.plus (Interval.point b) E) :=
-      Interval.plus_outer _ _ (Set.add_mem_add (Interval.mem_point b)
-        (Interval.mem_center E hE))
-    show W *ᵥ x + b + E.center ∈ construct
-        (plus (mtimes W s) (ofInterval (Interval.plus (Interval.point b) E)))
-    rw [add_assoc]
-    exact plus_outer _ _ (Set.add_mem_add
-      (mtimes_outer W s (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hx)))
-      (ofInterval_outer _ hbox))
+
+/-- The value committed to is `E`'s own centre, which is why `E` has to be
+nonempty: an empty box has a centre no point of it. -/
+theorem Layer.linearWithError_sound (W : Mat ℝ m n) (b : Vec ℝ m) (E : Interval (Vec ℝ m))
+    (hE : E.IsNonempty) :
+    (Layer.linearWithError (S := S) W b E).Sound
+      (fun x => W *ᵥ x + b + E.center) := by -- --- PROOF ---
+  refine ⟨fun s x hx => ?_⟩
+  have hbox : b + E.center ∈ construct (Interval.plus (Interval.point b) E) :=
+    Interval.plus_outer _ _ (Set.add_mem_add (Interval.mem_point b)
+      (Interval.mem_center E hE))
+  show W *ᵥ x + b + E.center ∈ construct
+      (plus (mtimes W s) (ofInterval (Interval.plus (Interval.point b) E)))
+  rw [add_assoc]
+  exact plus_outer _ _ (Set.add_mem_add
+    (mtimes_outer W s (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hx)))
+    (ofInterval_outer _ hbox))
 
 end CORALean.Real
 

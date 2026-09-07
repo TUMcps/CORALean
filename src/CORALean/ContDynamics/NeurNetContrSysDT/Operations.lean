@@ -53,9 +53,10 @@ omit [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, 
     [Mtimes (Mat 𝕋) S] in
 /-- One sampled run of the closed loop from `x₀` — no input argument, since the
 controller supplies it: a run is determined by its initial state alone. -/
-def NeurNetContrSysDT.simulate (sys : NeurNetContrSysDT 𝕋 S n) (x₀ : Vec ℝ n) : ℕ → Vec ℝ n
+noncomputable def NeurNetContrSysDT.simulate (sys : NeurNetContrSysDT 𝕋 S n)
+    (π : Vec ℝ n → Vec ℝ n) (x₀ : Vec ℝ n) : ℕ → Vec ℝ n
   | 0 => x₀
-  | k + 1 => toRealMat sys.plant.A *ᵥ sys.simulate x₀ k + sys.contr.eval (sys.simulate x₀ k)
+  | k + 1 => toRealMat sys.plant.A *ᵥ sys.simulate π x₀ k + π (sys.simulate π x₀ k)
 
 end CORALean.Real
 
