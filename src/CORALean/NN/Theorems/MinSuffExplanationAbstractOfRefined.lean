@@ -11,6 +11,11 @@ Split out of `MinSuffExplanationTransfer.lean` (issue #62):
 Minimal for a refinement `nnRef` gives minimal for the coarser `nnAbs`: a
 droppable feature there would be droppable at `nnRef` by monotonicity.
 
+`hrefine` is the enclosure-to-enclosure containment, so this reads
+`suffExplanationAbstract_of_refined`. `minSuffExplanationExact_of_refined` is
+the same corollary under the containment [1, Prop. 3] states, and needs
+`nnRef`'s minimality in the exact predicate to match what transfer lands in.
+
 ## References
 
 * [1] S. Bassan, Y. Y. Elboher, T. Ladner, M. Althoff and G. Katz. "Explaining
@@ -20,7 +25,7 @@ droppable feature there would be droppable at `nnRef` by monotonicity.
 
 -- Authors:       Tobias Ladner
 -- Written:       06-September-2026
--- Last update:   ---
+-- Last update:   07-September-2026
 -- Last revision: ---
 
 
