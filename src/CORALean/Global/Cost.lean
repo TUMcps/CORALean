@@ -63,10 +63,21 @@ theorem add_le_add {a b c d : Cost} (h₁ : a ≤ b) (h₂ : c ≤ d) : a + c �
 `m * (n - 1)` additions, rounded up to `2 * m * n`. -/
 def matVec (m n : ℕ) : Cost := ⟨2 * (m * n)⟩
 
-/-- A comparison sort on `k` keys. Deliberately crude at `k * k`: the merge
-sort a caller runs does `k * log k`, and a tighter model would say so here
-rather than in each caller. -/
-def sort (k : ℕ) : Cost := ⟨k * k⟩
+/-- A comparison sort on `k` keys, at `k * (log₂ k + 1)`: the merge sort behind
+`Tuple.sort` does at most `k * ⌈log₂ k⌉`, and `Nat.log 2` floors, so the `+ 1`
+covers the ceiling and keeps `k = 0` and `k = 1` bounded. -/
+def sort (k : ℕ) : Cost := ⟨k * (Nat.log 2 k + 1)⟩
+
+/-- Sorting more keys costs more, which is what lets a bound on an operand's
+size bound the cost of sorting it. -/
+theorem sort_mono {k k' : ℕ} (h : k ≤ k') : sort k ≤ sort k' :=
+  Nat.mul_le_mul h (Nat.succ_le_succ (Nat.log_mono_right h))
+
+/-- The sort is at most `k * (k + 1)`, since `Nat.log 2 k ≤ k`. A caller reading
+an asymptotic bound off a cost goes through this rather than the definition, so
+tightening the model again stops at this file. -/
+theorem sort_le_mul_succ (k : ℕ) : (sort k).ops ≤ k * (k + 1) :=
+  Nat.mul_le_mul_left _ (Nat.succ_le_succ (Nat.log_le_self 2 k))
 
 end Cost
 

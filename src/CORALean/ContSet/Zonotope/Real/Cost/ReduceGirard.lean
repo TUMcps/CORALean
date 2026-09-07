@@ -39,7 +39,7 @@ theorem Zonotope.reduceGirardCost_mono {h h' : ℕ} (n : ℕ) (hle : h ≤ h') :
     Zonotope.reduceGirardCost n h ≤ Zonotope.reduceGirardCost n h' := by
   refine Cost.add_le_add (Cost.add_le_add ?_ ?_) (Zonotope.reduceByCost_mono n hle)
   · exact Nat.mul_le_mul_right _ hle
-  · exact Nat.mul_le_mul hle hle
+  · exact Cost.sort_mono hle
 
 end CORALean.Real
 

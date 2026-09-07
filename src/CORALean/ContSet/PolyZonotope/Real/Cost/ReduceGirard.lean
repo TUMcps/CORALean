@@ -49,7 +49,7 @@ theorem PolyZonotope.reduceGirardCost_mono {h h' q q' : ℕ} (n : ℕ) (hh : h �
   have hs : h + q ≤ h' + q' := Nat.add_le_add hh hq
   refine Cost.add_le_add (Cost.add_le_add ?_ ?_) (PolyZonotope.reduceByCost_mono n hh hq)
   · exact Nat.add_le_add (Nat.add_le_add (Nat.mul_le_mul_right _ hs) hs) le_rfl
-  · exact Nat.mul_le_mul_left _ (Nat.mul_le_mul hs hs)
+  · exact Nat.mul_le_mul_left _ (Cost.sort_mono hs)
 
 end CORALean.Real
 

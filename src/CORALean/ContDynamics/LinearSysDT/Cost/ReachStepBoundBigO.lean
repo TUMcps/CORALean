@@ -13,9 +13,9 @@ costs a constant that `IsBigO` then discards, which is why the tree states the
 inequality first and this second.
 
 `n ^ 3` is the `mtimes`: `o * n` generators through an `n × n` matrix. The
-`reduce` behind it is `O((o * n + hU) ^ 2)` from the sort, which at fixed `o`
-is only `n ^ 2`, so the sort's crudeness in `Global/Cost.lean` does not show
-here — it would at an order growing with the dimension.
+`reduce` behind it is quadratic in `o * n + hU`, since `Cost.sort_le_mul_succ`
+is all this proof reads of the sort — at fixed `o` that is only `n ^ 2`, so
+neither the sort's shape nor a later tightening of it shows here.
 -/
 
 -- Authors:       Tobias Ladner
@@ -34,15 +34,16 @@ open CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The step bound against `C * n ^ 3`, in ℕ, with `C` written out: every term
-loses its lower powers of `n` to `1 ≤ n` and its `hU` to `hU ≤ hU * n`. -/
+loses its lower powers of `n` to `1 ≤ n` and its `hU` to `hU ≤ hU * n`, and the
+sort enters as `Cost.sort_le_mul_succ` rather than as its definition. -/
 theorem LinearSysDT.aux_reachStepBound_ops_le (n hU o : ℕ) (hn : 1 ≤ n) :
     (LinearSysDT.reachStepBound n hU o).ops
-      ≤ (2 * (o + 1) + 1 + 6 * (o + hU) + (o + hU) * (o + hU) + 2 * (o + hU))
-          * n ^ 3 := by -- --- PROOF ---
-  -- the three counts, unfolded; `reachStepBound` is their sum by definition
+      ≤ (2 * (o + 1) + 1 + 6 * (o + hU) + ((o + hU) * (o + hU) + (o + hU))
+          + 2 * (o + hU)) * n ^ 3 := by -- --- PROOF ---
+  -- the three counts, unfolded as far as `Cost.sort`, whose shape stays opaque
   have hops : (LinearSysDT.reachStepBound n hU o).ops
       = (o * n + 1) * (2 * (n * n)) + n
-        + ((o * n + hU) * (4 * n + 2) + (o * n + hU) * (o * n + hU)
+        + ((o * n + hU) * (4 * n + 2) + (Cost.sort (o * n + hU)).ops
             + 2 * (n * (o * n + hU))) := rfl
   -- every power of `n` below the third is one, since `1 ≤ n`
   have hnn : n * n ≤ n ^ 3 := by
@@ -69,11 +70,18 @@ theorem LinearSysDT.aux_reachStepBound_ops_le (n hU o : ℕ) (hn : 1 ≤ n) :
         ≤ ((o + hU) * n) * (6 * n) := Nat.mul_le_mul hH (by omega)
       _ = 6 * (o + hU) * (n * n) := by ring
       _ ≤ 6 * (o + hU) * n ^ 3 := Nat.mul_le_mul_left _ hnn
-  have h4 : (o * n + hU) * (o * n + hU) ≤ (o + hU) * (o + hU) * n ^ 3 := by
-    calc (o * n + hU) * (o * n + hU)
-        ≤ ((o + hU) * n) * ((o + hU) * n) := Nat.mul_le_mul hH hH
-      _ = (o + hU) * (o + hU) * (n * n) := by ring
-      _ ≤ (o + hU) * (o + hU) * n ^ 3 := Nat.mul_le_mul_left _ hnn
+  -- the sort, through its stated bound `k * (k + 1)` and not through its shape
+  have h4 : (Cost.sort (o * n + hU)).ops
+      ≤ ((o + hU) * (o + hU) + (o + hU)) * n ^ 3 := by
+    calc (Cost.sort (o * n + hU)).ops
+        ≤ (o * n + hU) * (o * n + hU + 1) := Cost.sort_le_mul_succ _
+      _ = (o * n + hU) * (o * n + hU) + (o * n + hU) := by ring
+      _ ≤ ((o + hU) * n) * ((o + hU) * n) + (o + hU) * n :=
+          Nat.add_le_add (Nat.mul_le_mul hH hH) hH
+      _ = (o + hU) * (o + hU) * (n * n) + (o + hU) * n := by ring
+      _ ≤ (o + hU) * (o + hU) * n ^ 3 + (o + hU) * n ^ 3 :=
+          Nat.add_le_add (Nat.mul_le_mul_left _ hnn) (Nat.mul_le_mul_left _ hn3)
+      _ = ((o + hU) * (o + hU) + (o + hU)) * n ^ 3 := by ring
   have h5 : 2 * (n * (o * n + hU)) ≤ 2 * (o + hU) * n ^ 3 := by
     calc 2 * (n * (o * n + hU))
         ≤ 2 * (n * ((o + hU) * n)) := Nat.mul_le_mul_left _ (Nat.mul_le_mul_left _ hH)
@@ -82,13 +90,14 @@ theorem LinearSysDT.aux_reachStepBound_ops_le (n hU o : ℕ) (hn : 1 ≤ n) :
   -- and the five bounds add up to the constant, times `n ^ 3`
   rw [hops]
   calc (o * n + 1) * (2 * (n * n)) + n
-        + ((o * n + hU) * (4 * n + 2) + (o * n + hU) * (o * n + hU)
+        + ((o * n + hU) * (4 * n + 2) + (Cost.sort (o * n + hU)).ops
             + 2 * (n * (o * n + hU)))
       ≤ 2 * (o + 1) * n ^ 3 + n ^ 3
-        + (6 * (o + hU) * n ^ 3 + (o + hU) * (o + hU) * n ^ 3 + 2 * (o + hU) * n ^ 3) :=
+        + (6 * (o + hU) * n ^ 3 + ((o + hU) * (o + hU) + (o + hU)) * n ^ 3
+            + 2 * (o + hU) * n ^ 3) :=
         Nat.add_le_add (Nat.add_le_add h1 hn3) (Nat.add_le_add (Nat.add_le_add h3 h4) h5)
-    _ = (2 * (o + 1) + 1 + 6 * (o + hU) + (o + hU) * (o + hU) + 2 * (o + hU)) * n ^ 3 := by
-        ring
+    _ = (2 * (o + 1) + 1 + 6 * (o + hU) + ((o + hU) * (o + hU) + (o + hU))
+          + 2 * (o + hU)) * n ^ 3 := by ring
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -99,7 +108,8 @@ theorem LinearSysDT.reachStepBound_isBigO (hU o : ℕ) :
     (fun n : ℕ => ((LinearSysDT.reachStepBound n hU o).ops : ℝ))
       =O[Filter.atTop] fun n : ℕ => (n : ℝ) ^ 3 := by -- --- PROOF ---
   apply Asymptotics.IsBigO.of_bound
-    ((2 * (o + 1) + 1 + 6 * (o + hU) + (o + hU) * (o + hU) + 2 * (o + hU) : ℕ) : ℝ)
+    ((2 * (o + 1) + 1 + 6 * (o + hU) + ((o + hU) * (o + hU) + (o + hU))
+        + 2 * (o + hU) : ℕ) : ℝ)
   filter_upwards [Filter.eventually_ge_atTop 1] with n hn
   rw [Real.norm_of_nonneg (by positivity), Real.norm_of_nonneg (by positivity)]
   exact_mod_cast LinearSysDT.aux_reachStepBound_ops_le n hU o hn
