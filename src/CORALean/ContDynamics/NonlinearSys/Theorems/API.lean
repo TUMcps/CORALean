@@ -9,6 +9,7 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.ReachOuterHorizonInputSolutio
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachOuterInputSolution
 import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuterInputSolution
+import CORALean.ContDynamics.NonlinearSys.Theorems.RelinTimeIntervalOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.Restrict
 import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
 
@@ -28,7 +29,7 @@ conservative linearization as CORA runs it.
 at zero, so `Shift` re-anchors the run and `RelinReachOuter` chains the steps by
 induction on the step count, each step's enclosure becoming the next one's
 initial set. Confinement stays a hypothesis per step, on that step's window
-alone.
+alone. `RelinTimeIntervalOuter` covers every time of a step, not only its ends.
 
 The polynomialization variant, which propagates a `PolyZonotope` rather than
 re-linearizing, is not here.
