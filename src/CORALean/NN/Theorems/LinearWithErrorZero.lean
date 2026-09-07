@@ -26,35 +26,22 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Layer.linearWithError_zero (W : Mat ℝ m n) (b : Vec ℝ m)
-    (hE : (Interval.point (0 : Vec ℝ m)).IsNonempty) :
-    Layer.linearWithError (S := S) W b (Interval.point 0) hE
+theorem Layer.linearWithError_zero (W : Mat ℝ m n) (b : Vec ℝ m) :
+    Layer.linearWithError (S := S) W b (Interval.point 0)
       = Layer.linear (S := S) W b := by -- --- PROOF ---
-  -- the committed centre at a point interval is the point itself
-  have hcenter : (Interval.point (0 : Vec ℝ m)).center = 0 := by
-    show (2:ℝ)⁻¹ • ((0 : Vec ℝ m) + 0) = 0
-    rw [add_zero, smul_zero]
-  have heval : (Layer.linearWithError (S := S) W b (Interval.point 0) hE).eval
-      = (Layer.linear (S := S) W b).eval := by
-    funext x
-    show W *ᵥ x + b + (Interval.point (0 : Vec ℝ m)).center = W *ᵥ x + b
-    rw [hcenter, add_zero]
-  have henclose : (Layer.linearWithError (S := S) W b (Interval.point 0) hE).enclose
+  have henclose : (Layer.linearWithError (S := S) W b (Interval.point 0)).enclose
       = (Layer.linear (S := S) W b).enclose := by
     funext s
     show plus (mtimes W s) (ofInterval (Interval.plus (Interval.point b) (Interval.point 0)))
         = plus (mtimes W s) (ofInterval (Interval.point b))
+    -- a point box added to a point box is the point box of the sum
     have hbox : Interval.plus (Interval.point b) (Interval.point (0 : Vec ℝ m))
         = Interval.point b := by
       show (⟨b + 0, b + 0⟩ : Interval (Vec ℝ m)) = ⟨b, b⟩
       rw [add_zero]
     rw [hbox]
-  -- `eval` and `enclose` agree, and the soundness field is a proposition
-  have key : ∀ (L₁ L₂ : Layer S n m), L₁.eval = L₂.eval → L₁.enclose = L₂.enclose →
-      L₁ = L₂ := by
-    rintro ⟨e₁, p₁, o₁⟩ ⟨e₂, p₂, o₂⟩ rfl rfl
-    rfl
-  exact key _ _ heval henclose
+  -- a layer is its `enclose` and nothing else
+  exact congrArg Layer.mk henclose
 
 end CORALean.Real
 

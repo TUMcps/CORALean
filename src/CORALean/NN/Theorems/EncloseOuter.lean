@@ -3,10 +3,10 @@ import CORALean.NN.Operations.Enclose
 /-!
 # `NeuralNetwork.enclose` contains the image
 
-Induction on the graph, applying each layer's own obligation in the order
-`enclose` applies the layers. Nothing else is used, so a new layer buys into
-the whole pipeline by proving its one field and nothing more — which is the
-reason the obligation is a field of `Layer` rather than a theorem about a
+Induction on `Sound`, applying each layer's own obligation in the order
+`enclose` applies the layers. Nothing else is used, so a new layer buys into the
+whole pipeline by proving `Layer.Sound` and nothing more — which is the reason
+the obligation is one proposition about a layer rather than a theorem about a
 particular network.
 
 The enclosure degrades monotonically: each layer encloses the image of what it
@@ -32,11 +32,19 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem NeuralNetwork.enclose_outer : ∀ {n m : ℕ} (nn : NeuralNetwork S n m) (s : S n)
-    (x : Vec ℝ n), x ∈ construct s → nn.eval x ∈ construct (nn.enclose s)
-  | _, _, .nil, _, _, hx => hx
-  | _, _, .cons L rest, s, x, hx =>
-      rest.enclose_outer _ _ (L.enclose_outer s x hx)
+theorem NeuralNetwork.Sound.enclose_outer {n m : ℕ} {nn : NeuralNetwork S n m}
+    {f : Vec ℝ n → Vec ℝ m} (hf : nn.Sound f) :
+    ∀ (s : S n) (x : Vec ℝ n), x ∈ construct s →
+      f x ∈ construct (nn.enclose s) := by -- --- PROOF ---
+  induction hf with
+  | nil h =>
+      intro _ x hx
+      rw [h x]
+      exact hx
+  | cons hL _ h ih =>
+      intro s x hx
+      rw [h x]
+      exact ih _ _ (hL.enclose_outer s x hx)
 
 end CORALean.Real
 

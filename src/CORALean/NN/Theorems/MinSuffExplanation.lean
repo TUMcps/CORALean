@@ -29,9 +29,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Sufficient, and no single feature of `E` can be dropped without losing it. -/
-def NeuralNetwork.IsMinSuffExplanation (nn : NeuralNetwork S n m) (x : Vec ℝ n) (ε : ℝ)
+def IsMinSuffExplanation (f : Vec ℝ n → Vec ℝ m) (x : Vec ℝ n) (ε : ℝ)
     (E : Finset (Fin n)) (l : Fin m) : Prop :=
-  nn.IsSuffExplanation x ε E l ∧ ∀ i ∈ E, ¬ nn.IsSuffExplanation x ε (E \ {i}) l
+  IsSuffExplanation f x ε E l ∧ ∀ i ∈ E, ¬ IsSuffExplanation f x ε (E \ {i}) l
 
 end CORALean.Real
 

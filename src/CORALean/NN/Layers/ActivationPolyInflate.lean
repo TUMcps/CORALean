@@ -43,7 +43,7 @@ theorem Layer.activationPoly_subset_inflate (P : LayerRelaxation σ n m)
     (s : PolyZonotope (Vec ℝ n)) {ε : ℝ} (hε : 0 ≤ ε)
     (hP : ∀ i, 2 * (P i).error (s.interval.inf i) (s.interval.sup i) ≤ ε) :
     construct ((Layer.activationPoly P).enclose s)
-      ⊆ (Layer.activationPoly P).eval '' construct s + Metric.closedBall 0 ε := by -- --- PROOF ---
+      ⊆ (fun x i => σ (x i)) '' construct s + Metric.closedBall 0 ε := by -- --- PROOF ---
   -- the box is ordered, so `sound` at its left end says the error is nonnegative
   have herr : ∀ i, 0 ≤ (P i).error (s.interval.inf i) (s.interval.sup i) := fun i =>
     le_trans (abs_nonneg _)
@@ -113,7 +113,7 @@ theorem Layer.activationPoly_subset_inflate (P : LayerRelaxation σ n m)
     exact hres i
   have hmem := Set.add_mem_add
     (show (fun i => σ (s.dependent.point a' i))
-      ∈ (Layer.activationPoly P).eval '' construct s from ⟨s.dependent.point a', hxs, rfl⟩) hball
+      ∈ (fun x i => σ (x i)) '' construct s from ⟨s.dependent.point a', hxs, rfl⟩) hball
   have heq : (fun i => σ (s.dependent.point a' i))
       + ((u + v) - fun i => σ (s.dependent.point a' i)) = u + v := by abel
   rwa [heq] at hmem

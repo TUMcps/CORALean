@@ -31,9 +31,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Layer.sigmoid_sensitivity (x : Vec ℝ n) :
-    (Layer.sigmoid (S := S) (n := n)).sensitivity x
+    layerSensitivity (fun (y : Vec ℝ n) i => Real.sigmoid (y i)) x
       = Matrix.diagonal fun i => sigmoidDeriv (x i) :=
-  Layer.activation_sensitivity sigmoidRelaxation hasDerivAt_sigmoid x
+  Layer.activation_sensitivity hasDerivAt_sigmoid x
 
 end CORALean.Real
 

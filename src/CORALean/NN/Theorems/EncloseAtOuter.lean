@@ -13,7 +13,7 @@ slope in its bracket; this is that idiom at the loop.
 
 There is no induction here. `atSchedule` produces an ordinary `NeuralNetwork`
 and `atSchedule_eval` says it computes the same function, so the claim is
-`NeuralNetwork.enclose_outer` read at that network.
+`NeuralNetwork.Sound.enclose_outer` read at that network.
 
 `ImageSubsetEncloseAt.lean` and its own three corollaries state the same
 fact at a step and at the loop.
@@ -39,8 +39,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 theorem RefinableNetwork.encloseAt_outer (rn : RefinableNetwork S n m) (sch : Schedule)
     (X : S n) (x : Vec ℝ n) (hx : x ∈ construct X) :
     rn.eval x ∈ construct (rn.encloseAt sch X) := by
-  rw [← congrFun (rn.atSchedule_eval sch) x]
-  exact (rn.atSchedule sch).enclose_outer X x hx
+  exact (rn.atSchedule_sound sch).enclose_outer X x hx
 
 end CORALean.Real
 

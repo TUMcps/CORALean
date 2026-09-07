@@ -28,9 +28,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Layer.tanh_sensitivity (x : Vec ℝ n) :
-    (Layer.tanh (S := S) (n := n)).sensitivity x
+    layerSensitivity (fun (y : Vec ℝ n) i => Real.tanh (y i)) x
       = Matrix.diagonal fun i => 4 * sigmoidDeriv (2 * x i) :=
-  Layer.activation_sensitivity tanhRelaxation hasDerivAt_tanh x
+  Layer.activation_sensitivity hasDerivAt_tanh x
 
 end CORALean.Real
 

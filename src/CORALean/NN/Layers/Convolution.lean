@@ -5,7 +5,7 @@ import CORALean.NN.Layers.Linear
 
 CORA's `nnConv2DLayer`, which is not a layer at all: a convolution is
 `Layer.linear` at a particular matrix, by definition. `Layer.conv` contributes no
-`enclose` and no soundness proof — only the matrix and `conv_eval`.
+`enclose` of its own — only the matrix, and `conv_sound` naming the map it is.
 
 A convolution's weights are shared and its matrix is sparse, and neither buys
 anything here. Sharing is a property of the *argument*, `tapMat` taking a weight
@@ -109,12 +109,14 @@ def Layer.conv (chan : Fin m → Fin c) (tap : Fin m → Fin k → Fin n)
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Layer.conv_eval (chan : Fin m → Fin c) (tap : Fin m → Fin k → Fin n)
-    (K : Fin c → Fin k → ℝ) (b : Vec ℝ m) (htap : ∀ j, Function.Injective (tap j))
-    (x : Vec ℝ n) (j : Fin m) :
-    (Layer.conv (S := S) chan tap K b).eval x j = (∑ l, K (chan j) l * x (tap j l)) + b j := by
-  show (tapMat tap (fun j l => K (chan j) l) *ᵥ x) j + b j = _
-  rw [tapMat_mulVec _ _ htap]
+theorem Layer.conv_sound (chan : Fin m → Fin c) (tap : Fin m → Fin k → Fin n)
+    (K : Fin c → Fin k → ℝ) (b : Vec ℝ m) (htap : ∀ j, Function.Injective (tap j)) :
+    (Layer.conv (S := S) chan tap K b).Sound
+      fun x j => (∑ l, K (chan j) l * x (tap j l)) + b j :=
+  (Layer.linear_sound _ b).congr fun x => funext fun j => by
+    show (∑ l, K (chan j) l * x (tap j l)) + b j
+      = (tapMat tap (fun j l => K (chan j) l) *ᵥ x) j + b j
+    rw [tapMat_mulVec _ _ htap]
 
 end CORALean.Real
 

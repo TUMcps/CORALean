@@ -29,8 +29,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 theorem NeurNetContrSysDT.Trajectory.aux_eq_iterate {sys : NeurNetContrSysDT 𝕋 S n} {R₀ : S n}
-    {x : ℕ → Vec ℝ n} (traj : sys.Trajectory R₀ x) (k : ℕ) :
-    x k = sys.map^[k] (x 0) := by -- --- PROOF ---
+    {π : Vec ℝ n → Vec ℝ n} {x : ℕ → Vec ℝ n} (traj : sys.Trajectory π R₀ x) (k : ℕ) :
+    x k = (sys.map π)^[k] (x 0) := by -- --- PROOF ---
   induction k with
   | zero => rfl
   | succ k ih =>
@@ -43,8 +43,8 @@ theorem NeurNetContrSysDT.Trajectory.aux_eq_iterate {sys : NeurNetContrSysDT �
 /-- Determinism, in the form it is normally wanted: the initial state settles
 the run, whichever initial sets the two runs were taken from. -/
 theorem NeurNetContrSysDT.Trajectory.eq_of_init {sys : NeurNetContrSysDT 𝕋 S n} {R₀ R₁ : S n}
-    {x y : ℕ → Vec ℝ n} (hx : sys.Trajectory R₀ x) (hy : sys.Trajectory R₁ y)
-    (h : x 0 = y 0) : x = y := by
+    {π : Vec ℝ n → Vec ℝ n} {x y : ℕ → Vec ℝ n} (hx : sys.Trajectory π R₀ x)
+    (hy : sys.Trajectory π R₁ y) (h : x 0 = y 0) : x = y := by
   funext k
   rw [hx.aux_eq_iterate k, hy.aux_eq_iterate k, h]
 

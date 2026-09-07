@@ -73,7 +73,7 @@ noncomputable def Layer.activationPolyRefinable (F : PolyRelaxationFamily σ) :
     RefinableLayer 𝒫𝒵 n n where
   eval x := fun i => σ (x i)
   enclose t := (Layer.activationPoly (F.atPattern t)).enclose
-  enclose_outer t := (Layer.activationPoly (F.atPattern t)).enclose_outer
+  enclose_outer t := (Layer.activationPoly_sound (F.atPattern t)).enclose_outer
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --

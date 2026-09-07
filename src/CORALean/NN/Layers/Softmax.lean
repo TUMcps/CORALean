@@ -149,15 +149,17 @@ noncomputable def softmaxBox (I : Interval (Vec ℝ n)) : Interval (Vec ℝ n) w
 /-- A box and nothing else: the slope is zero, so no `mtimes` and no `plus`
 appear, and this is the only layer here asking for neither. -/
 noncomputable def Layer.softmax : Layer S n n where
-  eval := _root_.CORALean.Real.softmax
   enclose s := ofInterval (softmaxBox (interval s))
-  enclose_outer s x hx := by
-    have hbox : ∀ i, (interval s).inf i ≤ x i ∧ x i ≤ (interval s).sup i :=
-      interval_outer s hx
-    refine ofInterval_outer _ fun i => ?_
-    exact softmax_mem_tightened x (softmaxRawLower (interval s))
-      (softmaxRawUpper (interval s)) (fun i => raw_le_softmax hbox i)
-      (fun i => softmax_le_raw hbox i) i
+
+theorem Layer.softmax_sound :
+    (Layer.softmax (S := S) (n := n)).Sound _root_.CORALean.Real.softmax := by -- --- PROOF ---
+  refine ⟨fun s x hx => ?_⟩
+  have hbox : ∀ i, (interval s).inf i ≤ x i ∧ x i ≤ (interval s).sup i :=
+    interval_outer s hx
+  refine ofInterval_outer _ fun i => ?_
+  exact softmax_mem_tightened x (softmaxRawLower (interval s))
+    (softmaxRawUpper (interval s)) (fun i => raw_le_softmax hbox i)
+    (fun i => softmax_le_raw hbox i) i
 
 end CORALean.Real
 

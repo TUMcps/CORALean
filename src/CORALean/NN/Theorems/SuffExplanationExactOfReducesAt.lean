@@ -43,12 +43,13 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n
 
 /-- Abstractly sufficient for a reduction `nnAbs` of `nnRef` is exactly
 sufficient for `nnRef`, with no containment asked of the caller. -/
-theorem NeuralNetwork.suffExplanationExact_of_reducesAt (nnRef nnAbs : NeuralNetwork S n m)
+theorem NeuralNetwork.suffExplanationExact_of_reducesAt {nnRef nnAbs : NeuralNetwork S n m}
+    {f : Vec ℝ n → Vec ℝ m}
     (x : Vec ℝ n) (ε : ℝ) (E : Finset (Fin n)) (l : Fin m)
-    (hred : NeuralNetwork.ReducesAt (ofInterval (explainBox x ε E)) nnRef nnAbs)
+    (hred : NeuralNetwork.ReducesAt (ofInterval (explainBox x ε E)) nnRef nnAbs f)
     (hsuffAbs : nnAbs.IsSuffExplanationAbstract x ε E l) :
-    nnRef.IsSuffExplanationExact x ε E l :=
-  NeuralNetwork.suffExplanationExact_of_refined nnAbs nnRef x ε E l
+    IsSuffExplanationExact S f x ε E l :=
+  suffExplanationExact_of_refined nnAbs f x ε E l
     (NeuralNetwork.reducesAt_outer hred) hsuffAbs
 
 end CORALean.Real

@@ -46,14 +46,15 @@ structure NeurNetContrSys (𝕋 : Type) (S : ℕ → Type)
   contr : NeuralNetwork S n n
 
 /-- One admissible run over `H` control periods of length `Δtc`. The input is
-not a parameter: it is `π(x(i Δtc))` on period `i`, which is what makes this a
-closed loop rather than a system with a set of admissible inputs. -/
-structure NeurNetContrSys.Trajectory (sys : NeurNetContrSys 𝕋 S n) (Δtc : ℝ) (H : ℕ)
+`π(x(i Δtc))` on period `i` — a closed loop, not a set of admissible inputs —
+and `π` is what the controller computes, which `NeuralNetwork` does not store. -/
+structure NeurNetContrSys.Trajectory (sys : NeurNetContrSys 𝕋 S n)
+    (π : Vec ℝ n → Vec ℝ n) (Δtc : ℝ) (H : ℕ)
     (R₀ : S n) (x : ℝ → Vec ℝ n) : Prop where
   init : x 0 ∈ construct R₀
   flow (i : ℕ) (hi : i < H) (t : ℝ) (ht : t ∈ Set.Icc ((i : ℝ) * Δtc) (((i : ℝ) + 1) * Δtc)) :
     HasDerivWithinAt x
-      (toRealMat sys.plant.A *ᵥ x t + sys.contr.eval (x ((i : ℝ) * Δtc)))
+      (toRealMat sys.plant.A *ᵥ x t + π (x ((i : ℝ) * Δtc)))
       (Set.Icc ((i : ℝ) * Δtc) (((i : ℝ) + 1) * Δtc)) t
 
 end CORALean.Real

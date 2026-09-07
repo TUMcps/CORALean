@@ -37,13 +37,12 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OfInterval S] {n
 
 /-- Separation on the exact image is sufficiency in the pointwise sense:
 every point of `explainBox` keeps `l` strictly ahead. -/
-theorem NeuralNetwork.suffExplanation_of_exact (nn : NeuralNetwork S n m) (x : Vec ℝ n) (ε : ℝ)
-    (E : Finset (Fin n)) (l : Fin m) (hexact : nn.IsSuffExplanationExact x ε E l) :
-    nn.IsSuffExplanation x ε E l := by -- --- PROOF ---
+theorem suffExplanation_of_exact (f : Vec ℝ n → Vec ℝ m) (x : Vec ℝ n) (ε : ℝ)
+    (E : Finset (Fin n)) (l : Fin m) (hexact : IsSuffExplanationExact S f x ε E l) :
+    IsSuffExplanation f x ε E l := by -- --- PROOF ---
   intro x' hx' j hj
-  have hmem : nn.eval x' ∈ nn.image (construct (ofInterval (explainBox x ε E) : S n)) := by
-    rw [NeuralNetwork.image_eq_eval_image]
-    exact ⟨x', ofInterval_outer _ hx', rfl⟩
+  have hmem : f x' ∈ f '' construct (ofInterval (explainBox x ε E) : S n) :=
+    ⟨x', ofInterval_outer _ hx', rfl⟩
   have hd := Set.disjoint_left.mp hexact hmem
   by_contra hc
   exact hd ⟨j, hj, not_lt.mp hc⟩

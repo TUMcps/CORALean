@@ -1,5 +1,6 @@
 import CORALean.NN.Float.Layers.Linear
 import CORALean.NN.Float.Layers.ReLU
+import CORALean.NN.Float.Layers.Tanh
 import CORALean.NN.Theorems.Classifies
 import CORALean.NN.Theorems.MarginDir
 import CORALean.NN.Theorems.MemSafeSet
@@ -21,8 +22,9 @@ is not a loophole: `Layer` is indexed by a `ContSet` whose ambient type is
 floats describe, composed with the exact `relu`.
 
 Every operation here computes, unlike the exact version, provided `𝕋` does —
-which is the whole reason for the float layer and the sentence the exact
-example's docstring ends on.
+which is the whole reason for the float layer. `sigmoidTanhNet` is the same
+point where it used to fail: `Layer` stores no function, so a chain holding
+sigmoid and tanh is a plain `def` and its soundness is a theorem beside it.
 -/
 
 -- Authors:       Tobias Ladner
@@ -35,6 +37,7 @@ example's docstring ends on.
 
 namespace CORALean.Float
 
+open scoped Matrix
 open ContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
@@ -51,28 +54,50 @@ def Example.feedForward (W₁ : Mat 𝕋 3 2) (b₁ : Vec 𝕋 3) (W₂ : Mat �
 -- anonymous: each is the exact layer's theorem, read at a float representation
 
 /-- Every output over the whole input set is in the zonotope that comes back. -/
-example (nn : Real.NeuralNetwork (Zonotope 𝕋) 2 2) (X : Zonotope 𝕋 2) {x : Vec ℝ 2}
-    (hx : x ∈ construct X) : nn.eval x ∈ construct (nn.enclose X) :=
-  nn.enclose_outer X x hx
+example {nn : Real.NeuralNetwork (Zonotope 𝕋) 2 2} {f : Vec ℝ 2 → Vec ℝ 2}
+    (hf : nn.Sound f) (X : Zonotope 𝕋 2) {x : Vec ℝ 2}
+    (hx : x ∈ construct X) : f x ∈ construct (nn.enclose X) :=
+  hf.enclose_outer X x hx
 
 /-- A safe set the enclosed zonotope stays inside is a safe set every output
 stays inside. -/
-example (nn : Real.NeuralNetwork (Zonotope 𝕋) 2 2) (X : Zonotope 𝕋 2)
+example {nn : Real.NeuralNetwork (Zonotope 𝕋) 2 2} {f : Vec ℝ 2 → Vec ℝ 2}
+    (hf : nn.Sound f) (X : Zonotope 𝕋 2)
     {safe : Set (Vec ℝ 2)} (h : construct (nn.enclose X) ⊆ safe) {x : Vec ℝ 2}
-    (hx : x ∈ construct X) : nn.eval x ∈ safe :=
-  nn.mem_safeSet X h hx
+    (hx : x ∈ construct X) : f x ∈ safe :=
+  Real.NeuralNetwork.mem_safeSet hf X h hx
 
 /-- Robust classification, discharged by the same bound per rival label. -/
-example (nn : Real.NeuralNetwork (Zonotope 𝕋) 2 2) (X : Zonotope 𝕋 2) (l : Fin 2)
+example {nn : Real.NeuralNetwork (Zonotope 𝕋) 2 2} {f : Vec ℝ 2 → Vec ℝ 2}
+    (hf : nn.Sound f) (X : Zonotope 𝕋 2) (l : Fin 2)
     (u : ∀ j, SupportBound (construct (nn.enclose X)) (Real.marginDir 2 j l))
     (h : ∀ j, j ≠ l → (u j).val < 0) {x : Vec ℝ 2} (hx : x ∈ construct X)
-    {j : Fin 2} (hj : j ≠ l) : nn.eval x j < nn.eval x l :=
-  nn.classifies X l u h hx hj
+    {j : Fin 2} (hj : j ≠ l) : f x j < f x l :=
+  Real.NeuralNetwork.classifies hf X l u h hx hj
 
 /-- The network above is one of those, which is the only thing left to check. -/
 example (W₁ : Mat 𝕋 3 2) (b₁ : Vec 𝕋 3) (W₂ : Mat 𝕋 2 3) (b₂ : Vec 𝕋 2)
     (X : Zonotope 𝕋 2) : Zonotope 𝕋 2 :=
   (Example.feedForward W₁ b₁ W₂ b₂).enclose X
+
+/-- Sigmoid and tanh in one chain, and it is a `def`: `Layer` stores nothing
+that mentions `ℝ`, so nothing here is noncomputable. -/
+def Example.sigmoidTanhNet (k : ℕ) (W₁ : Mat 𝕋 3 2) (b₁ : Vec 𝕋 3) (W₂ : Mat 𝕋 2 3)
+    (b₂ : Vec 𝕋 2) : Real.NeuralNetwork (Zonotope 𝕋) 2 2 :=
+  .cons (Layer.linear (S := Zonotope 𝕋) W₁ b₁)
+    (.cons (Layer.sigmoid k) (.cons (Layer.linear W₂ b₂) (.cons (Layer.tanh k) .nil)))
+
+/-- And what it computes, which is where `Real.sigmoid` and `Real.tanh` appear. -/
+theorem Example.sigmoidTanhNet_sound (k : ℕ) (W₁ : Mat 𝕋 3 2) (b₁ : Vec 𝕋 3)
+    (W₂ : Mat 𝕋 2 3) (b₂ : Vec 𝕋 2) :
+    (Example.sigmoidTanhNet k W₁ b₁ W₂ b₂).Sound fun x i =>
+      Real.tanh ((Scalar.toRealMat W₂ *ᵥ (fun j =>
+          Real.sigmoid ((Scalar.toRealMat W₁ *ᵥ x + Scalar.toRealVec b₁) j))
+        + Scalar.toRealVec b₂) i) :=
+  (Real.NeuralNetwork.sound_cons (Layer.linear_sound W₁ b₁)
+    (Real.NeuralNetwork.sound_cons (Layer.sigmoid_sound k)
+      (Real.NeuralNetwork.sound_cons (Layer.linear_sound W₂ b₂)
+        (Real.NeuralNetwork.ofLayer_sound (Layer.tanh_sound k))))).congr fun _ => rfl
 
 end CORALean.Float
 

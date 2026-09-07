@@ -51,18 +51,14 @@ theorem neuronMerging_sandwich_outer {n0 n n2 d r : ℕ}
     (W0 : Mat ℝ n n0) (b0 : Vec ℝ n) {σ : ℝ → ℝ} (R : Relaxation σ)
     (W1 : Mat ℝ n2 n) (b1 : Vec ℝ n2) (Y : Interval (Vec ℝ n)) (X : S n0)
     (hY : ∀ x ∈ construct X, (fun i => σ ((W0 *ᵥ x + b0) i)) ∈ construct Y) :
-    ((NeuralNetwork.cons (Layer.linear W0 b0)
-        (NeuralNetwork.cons (Layer.activation R)
-          (NeuralNetwork.ofLayer (Layer.linear W1 b1)))) : NeuralNetwork S n0 n2).image
-        (construct X)
+    (fun x => W1 *ᵥ (fun i => σ ((W0 *ᵥ x + b0) i)) + b1) '' construct X
       ⊆ construct
         ((NeuralNetwork.cons (Layer.linear (W0.submatrix part.left id) (b0 ∘ part.left))
             (NeuralNetwork.cons (Layer.activation R)
               (NeuralNetwork.ofLayer (Layer.linearWithError (W1.submatrix id part.left) b1
                 (Interval.mtimes (W1.submatrix id part.right)
-                  ⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩)
-                (Interval.mtimes_isNonempty _ _))))).enclose X) := by -- --- PROOF ---
-  rw [NeuralNetwork.image_eq_eval_image]
+                  ⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩)))) :
+          NeuralNetwork S n0 n2).enclose X) := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩
   set h0 : Vec ℝ n := W0 *ᵥ x + b0 with hh0
   set hk : Vec ℝ n := fun i => σ (h0 i) with hhk
@@ -70,23 +66,23 @@ theorem neuronMerging_sandwich_outer {n0 n n2 d r : ℕ}
   have hrow : ∀ i : Fin d, ((W0.submatrix part.left (id : Fin n0 → Fin n0)) *ᵥ x) i
       = (W0 *ᵥ x) (part.left i) := fun i => by
     simp [Matrix.mulVec, Matrix.submatrix_apply, dotProduct]
-  have heval1 : (Layer.linear (S := S) (W0.submatrix part.left id) (b0 ∘ part.left)).eval x
-      = h0 ∘ part.left := by
+  have heval1 : (W0.submatrix part.left id) *ᵥ x + (b0 ∘ part.left) = h0 ∘ part.left := by
     funext i
     show ((W0.submatrix part.left id) *ᵥ x) i + b0 (part.left i) = h0 (part.left i)
     rw [hrow, hh0]
     rfl
   have hA1 : h0 ∘ part.left ∈ construct ((Layer.linear (W0.submatrix part.left id)
       (b0 ∘ part.left)).enclose X) :=
-    heval1 ▸ (Layer.linear (W0.submatrix part.left id) (b0 ∘ part.left)).enclose_outer X x hx
-  have heval2 : (Layer.activation (S := S) R).eval (h0 ∘ part.left) = hk ∘ part.left := by
+    heval1 ▸ (Layer.linear_sound (S := S) (W0.submatrix part.left id)
+      (b0 ∘ part.left)).enclose_outer X x hx
+  have heval2 : (fun i => σ ((h0 ∘ part.left) i)) = hk ∘ part.left := by
     funext i
     show σ ((h0 ∘ part.left) i) = hk (part.left i)
     rw [hhk]
     rfl
   have hA2 : hk ∘ part.left ∈ construct ((Layer.activation R).enclose
       ((Layer.linear (W0.submatrix part.left id) (b0 ∘ part.left)).enclose X)) :=
-    heval2 ▸ (Layer.activation R).enclose_outer _ _ hA1
+    heval2 ▸ (Layer.activation_sound (S := S) R).enclose_outer _ _ hA1
   -- the bucket's exact output lies in `Y`, hence in `Y` restricted to the bucket
   have hB : hk ∘ part.right ∈ construct
       (⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩ : Interval (Vec ℝ r)) :=

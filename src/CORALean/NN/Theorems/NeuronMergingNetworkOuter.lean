@@ -54,28 +54,25 @@ theorem neuronMerging_network_outer {n₀ n₁ n n₂ n₃ d r : ℕ}
     (part : Split (Fin n) into (Fin d) ⊕ (Fin r))
     (W0 : Mat ℝ n n₁) (b0 : Vec ℝ n) {σ : ℝ → ℝ} (R : Relaxation σ)
     (W1 : Mat ℝ n₂ n) (b1 : Vec ℝ n₂) (Y : Interval (Vec ℝ n)) (X : S n₀)
+    {fpre : Vec ℝ n₀ → Vec ℝ n₁} (hpre : pre.Sound fpre)
+    {fpost : Vec ℝ n₂ → Vec ℝ n₃} (hpost : post.Sound fpost)
     (hY : ∀ x ∈ construct (pre.enclose X),
       (fun i => σ ((W0 *ᵥ x + b0) i)) ∈ construct Y) :
-    (NeuralNetwork.cons pre.toLayer
-        (.cons (Layer.linear W0 b0)
-          (.cons (Layer.activation R)
-            (.cons (Layer.linear W1 b1) post)))).image (construct X)
+    (fun x => fpost (W1 *ᵥ (fun i => σ ((W0 *ᵥ fpre x + b0) i)) + b1)) '' construct X
       ⊆ construct ((NeuralNetwork.cons pre.toLayer
           (.cons (Layer.linear (W0.submatrix part.left id) (b0 ∘ part.left))
             (.cons (Layer.activation R)
               (.cons (Layer.linearWithError (W1.submatrix id part.left) b1
                   (Interval.mtimes (W1.submatrix id part.right)
-                    ⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩)
-                  (Interval.mtimes_isNonempty _ _))
+                    ⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩))
                 post)))).enclose X) := by -- --- PROOF ---
-  rw [NeuralNetwork.image_eq_eval_image]
   rintro _ ⟨x, hx, rfl⟩
   -- the prefix hands the sandwich a set, and that set is what `hY` is stated over
-  have hpre : pre.eval x ∈ construct (pre.enclose X) := pre.enclose_outer X x hx
+  have hp : fpre x ∈ construct (pre.enclose X) := hpre.enclose_outer X x hx
   have hmid := neuronMerging_sandwich_outer part W0 b0 R W1 b1 Y (pre.enclose X) hY
-    (by rw [NeuralNetwork.image_eq_eval_image]; exact ⟨pre.eval x, hpre, rfl⟩)
+    ⟨fpre x, hp, rfl⟩
   -- the suffix is unchanged, so its own obligation carries the point the rest of the way
-  exact post.enclose_outer _ _ hmid
+  exact hpost.enclose_outer _ _ hmid
 
 end CORALean.Real
 

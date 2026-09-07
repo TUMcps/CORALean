@@ -37,10 +37,10 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OfInterval S] {n
 
 /-- Exactly sufficient, and no single feature of `E` can be dropped without
 losing that. -/
-def NeuralNetwork.IsMinSuffExplanationExact (nn : NeuralNetwork S n m) (x : Vec ℝ n) (ε : ℝ)
-    (E : Finset (Fin n)) (l : Fin m) : Prop :=
-  nn.IsSuffExplanationExact x ε E l ∧
-    ∀ i ∈ E, ¬ nn.IsSuffExplanationExact x ε (E \ {i}) l
+def IsMinSuffExplanationExact (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] [OfInterval S]
+    (f : Vec ℝ n → Vec ℝ m) (x : Vec ℝ n) (ε : ℝ) (E : Finset (Fin n)) (l : Fin m) : Prop :=
+  IsSuffExplanationExact S f x ε E l ∧
+    ∀ i ∈ E, ¬ IsSuffExplanationExact S f x ε (E \ {i}) l
 
 end CORALean.Real
 

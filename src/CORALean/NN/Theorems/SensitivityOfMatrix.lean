@@ -28,10 +28,11 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Layer.sensitivity_eq_of_hasFDerivAt {L : Layer S n m} {A : Mat ℝ m n} {x : Vec ℝ n}
-    (h : HasFDerivAt L.eval (LinearMap.toContinuousLinearMap (Matrix.mulVecLin A)) x) :
-    L.sensitivity x = A := by
-  rw [Layer.sensitivity, h.fderiv, LinearMap.coe_toContinuousLinearMap,
+theorem Layer.sensitivity_eq_of_hasFDerivAt {f : Vec ℝ n → Vec ℝ m} {A : Mat ℝ m n}
+    {x : Vec ℝ n}
+    (h : HasFDerivAt f (LinearMap.toContinuousLinearMap (Matrix.mulVecLin A)) x) :
+    layerSensitivity f x = A := by
+  rw [layerSensitivity, h.fderiv, LinearMap.coe_toContinuousLinearMap,
     ← Matrix.toLin'_apply', LinearMap.toMatrix'_toLin']
 
 end CORALean.Real

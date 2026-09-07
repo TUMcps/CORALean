@@ -8,7 +8,7 @@ import CORALean.NN.Theorems.EncloseOuter
 Where the two halves of this repository meet, and the meeting is two lines: the
 controller's enclosure of the input it produces at the reached state, handed to
 the plant's one-step enclosure. Nothing else appears, and nothing new is proved
-here — `NeuralNetwork.enclose_outer` and `LinearSysDT.reach_one_outer` are
+here — `NeuralNetwork.Sound.enclose_outer` and `LinearSysDT.reach_one_outer` are
 both already stated against the interfaces, so neither knows it is being
 composed.
 
@@ -38,7 +38,8 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NeurNetContrSysDT.reach_outer (sys : NeurNetContrSysDT 𝕋 S n) (o : ℕ) (R₀ : S n)
-    {x : ℕ → Vec ℝ n} (traj : sys.Trajectory R₀ x) (k : ℕ) :
+    {π : Vec ℝ n → Vec ℝ n} (hπ : sys.contr.Sound π)
+    {x : ℕ → Vec ℝ n} (traj : sys.Trajectory π R₀ x) (k : ℕ) :
     x k ∈ construct (sys.reach o R₀ k) := by -- --- PROOF ---
   induction k with
   | zero => exact traj.init
@@ -46,7 +47,7 @@ theorem NeurNetContrSysDT.reach_outer (sys : NeurNetContrSysDT 𝕋 S n) (o : �
     show x (k + 1) ∈ construct (sys.plant.reach o (sys.reach o R₀ k)
       (sys.contr.enclose (sys.reach o R₀ k)) 1)
     rw [traj.step k]
-    exact sys.plant.reach_one_outer o _ _ ih (sys.contr.enclose_outer _ _ ih)
+    exact sys.plant.reach_one_outer o _ _ ih (hπ.enclose_outer _ _ ih)
 
 end CORALean.Real
 

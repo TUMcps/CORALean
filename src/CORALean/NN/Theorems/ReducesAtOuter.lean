@@ -33,21 +33,21 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n
 /-- Whatever layers of `nn` were reduced to reach `nn'`, the original network's image lies
 in the enclosure `nn'.enclose s` builds. -/
 theorem NeuralNetwork.reducesAt_outer :
-    ∀ {n m : ℕ} {s : S n} {nn nn' : NeuralNetwork S n m},
-      NeuralNetwork.ReducesAt s nn nn' → nn.image (construct s) ⊆ construct (nn'.enclose s)
-  | _, _, s, _, _, .nil _ => by
-      rw [NeuralNetwork.image_eq_eval_image]; rintro _ ⟨x, hx, rfl⟩; exact hx
-  | _, _, s, _, _, .keep _ L h => by
-      rw [NeuralNetwork.image_eq_eval_image]
+    ∀ {n m : ℕ} {s : S n} {nn nn' : NeuralNetwork S n m} {f : Vec ℝ n → Vec ℝ m},
+      NeuralNetwork.ReducesAt s nn nn' f → f '' construct s ⊆ construct (nn'.enclose s)
+  | _, _, s, _, _, _, .nil _ hid => by
       rintro _ ⟨x, hx, rfl⟩
-      exact reducesAt_outer h
-        (by rw [NeuralNetwork.image_eq_eval_image]; exact ⟨L.eval x, L.enclose_outer s x hx, rfl⟩)
-  | _, _, s, _, _, .merge _ part W0 b0 R W1 b1 Y hY h => by
-      rw [NeuralNetwork.image_eq_eval_image]
+      rw [hid x]
+      exact hx
+  | _, _, s, _, _, _, .keep _ L hg hcomp h => by
       rintro _ ⟨x, hx, rfl⟩
-      have hsand := neuronMerging_sandwich_outer part W0 b0 R W1 b1 Y s hY
-        (by rw [NeuralNetwork.image_eq_eval_image]; exact ⟨x, hx, rfl⟩)
-      exact reducesAt_outer h (by rw [NeuralNetwork.image_eq_eval_image]; exact ⟨_, hsand, rfl⟩)
+      rw [hcomp x]
+      exact reducesAt_outer h ⟨_, hg.enclose_outer s x hx, rfl⟩
+  | _, _, s, _, _, _, .merge _ part W0 b0 R W1 b1 Y hY hcomp h => by
+      rintro _ ⟨x, hx, rfl⟩
+      have hsand := neuronMerging_sandwich_outer part W0 b0 R W1 b1 Y s hY ⟨x, hx, rfl⟩
+      rw [hcomp x]
+      exact reducesAt_outer h ⟨_, hsand, rfl⟩
 
 end CORALean.Real
 

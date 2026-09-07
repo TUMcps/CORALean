@@ -37,11 +37,12 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Layer.linear_refinable_convergent (W : Mat ℝ m n) (b : Vec ℝ m) :
-    (Layer.linear (S := 𝒫𝒵) W b).refinable.Convergent := by -- --- PROOF ---
+    ((Layer.linear (S := 𝒫𝒵) W b).refinable
+      (Layer.linear_sound W b)).Convergent := by -- --- PROOF ---
   intro s ε hε
   refine ⟨fun _ => 0, ?_⟩
   show construct ((Layer.linear (S := 𝒫𝒵) W b).enclose s)
-      ⊆ (Layer.linear (S := 𝒫𝒵) W b).eval '' construct s + Metric.closedBall 0 ε
+      ⊆ (fun x => W *ᵥ x + b) '' construct s + Metric.closedBall 0 ε
   rw [Layer.linear_exact]
   intro y hy
   -- the enclosed set is the image already, so the ball contributes zero

@@ -28,9 +28,10 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem NeurNetContrSysDT.simulate_trajectory (sys : NeurNetContrSysDT 𝕋 S n) {R₀ : S n}
+theorem NeurNetContrSysDT.simulate_trajectory (sys : NeurNetContrSysDT 𝕋 S n)
+    (π : Vec ℝ n → Vec ℝ n) {R₀ : S n}
     {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ construct R₀) :
-    sys.Trajectory R₀ (sys.simulate x₀) where
+    sys.Trajectory π R₀ (sys.simulate π x₀) where
   init := hx₀
   step _ := rfl
 

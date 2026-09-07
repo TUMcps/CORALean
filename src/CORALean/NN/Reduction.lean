@@ -7,10 +7,12 @@ import CORALean.NN.Operations.Enclose
 /-!
 # Reducing at many layers of one network, and [1, Thm. 1]
 
-`ReducesAt s nn nn'` relates `nn` to `nn'` reduced at any of its layers, indexed by the set `s`
-that actually reaches each one. `keep` walks a layer untouched, `merge` reduces one sandwich via
-`neuronMerging_sandwich_outer`, `nil` stops — several `merge`s in one derivation reduce at several
-layers. One induction, not `neuronMerging_network_outer` applied per layer:
+`ReducesAt s nn nn' f` relates `nn` to `nn'` reduced at any of its layers, indexed by the set
+`s` that actually reaches each one and by the map `f` the original computes — `merge` is sound
+only at the sandwich's own map, which `Layer` no longer stores. `keep` walks a layer untouched,
+`merge` reduces one sandwich via `neuronMerging_sandwich_outer`, `nil` stops — several `merge`s
+in one derivation reduce at several layers. One induction, not
+`neuronMerging_network_outer` applied per layer:
 `Layer.enclose_not_monotone` rules that out.
 
 `reducesAt_outer` (soundness) and `holds_of_reducesAt` ([1, Thm. 1]) are in their own files.
@@ -52,8 +54,7 @@ noncomputable def mergedSandwich {n n₁ n₂ d r : ℕ}
     (.cons (Layer.activation R)
       (.ofLayer (Layer.linearWithError (W1.submatrix id part.left) b1
         (Interval.mtimes (W1.submatrix id part.right)
-          ⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩)
-        (Interval.mtimes_isNonempty _ _))))
+          ⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩))))
 
 
 -- ========================================  MAIN TYPE  ========================================= --
@@ -61,17 +62,23 @@ noncomputable def mergedSandwich {n n₁ n₂ d r : ℕ}
 /-- `nn'` is `nn` reduced at some of its layers, over the set that actually reaches each one:
 `keep` skips a layer, `merge` replaces one `sandwich` by its `mergedSandwich`, `nil` stops. -/
 inductive NeuralNetwork.ReducesAt :
-    ∀ {n m : ℕ}, S n → NeuralNetwork S n m → NeuralNetwork S n m → Prop where
-  | nil {n : ℕ} (s : S n) : ReducesAt s .nil .nil
-  | keep {n k m : ℕ} (s : S n) (L : Layer S n k) {rest rest' : NeuralNetwork S k m} :
-      ReducesAt (L.enclose s) rest rest' → ReducesAt s (.cons L rest) (.cons L rest')
+    ∀ {n m : ℕ}, S n → NeuralNetwork S n m → NeuralNetwork S n m →
+      (Vec ℝ n → Vec ℝ m) → Prop where
+  | nil {n : ℕ} (s : S n) {f : Vec ℝ n → Vec ℝ n} (hf : ∀ x, f x = x) :
+      ReducesAt s .nil .nil f
+  | keep {n k m : ℕ} (s : S n) (L : Layer S n k) {rest rest' : NeuralNetwork S k m}
+      {g : Vec ℝ n → Vec ℝ k} (hg : L.Sound g) {h : Vec ℝ k → Vec ℝ m}
+      {f : Vec ℝ n → Vec ℝ m} (hf : ∀ x, f x = h (g x)) :
+      ReducesAt (L.enclose s) rest rest' h → ReducesAt s (.cons L rest) (.cons L rest') f
   -- reduces one sandwich: `part.left` survives, `part.right`'s contribution is boxed from `Y`
   | merge {n n₁ n₂ m d r : ℕ} (s : S n) (part : Split (Fin n₁) into (Fin d) ⊕ (Fin r))
       (W0 : Mat ℝ n₁ n) (b0 : Vec ℝ n₁) {σ : ℝ → ℝ} (R : Relaxation σ)
       (W1 : Mat ℝ n₂ n₁) (b1 : Vec ℝ n₂) (Y : Interval (Vec ℝ n₁))
       (hY : ∀ x ∈ construct s, (fun i => σ ((W0 *ᵥ x + b0) i)) ∈ construct Y)
-      {rest rest' : NeuralNetwork S n₂ m} :
-      ReducesAt ((mergedSandwich part W0 b0 R W1 b1 Y).enclose s) rest rest' →
+      {rest rest' : NeuralNetwork S n₂ m} {h : Vec ℝ n₂ → Vec ℝ m}
+      {f : Vec ℝ n → Vec ℝ m}
+      (hf : ∀ x, f x = h (W1 *ᵥ (fun i => σ ((W0 *ᵥ x + b0) i)) + b1)) :
+      ReducesAt ((mergedSandwich part W0 b0 R W1 b1 Y).enclose s) rest rest' h →
       ReducesAt s
         (.cons (Layer.linear W0 b0) (.cons (Layer.activation R)
           (.cons (Layer.linear W1 b1) rest)))
@@ -79,8 +86,8 @@ inductive NeuralNetwork.ReducesAt :
           (.cons (Layer.activation R)
             (.cons (Layer.linearWithError (W1.submatrix id part.left) b1
               (Interval.mtimes (W1.submatrix id part.right)
-                ⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩)
-              (Interval.mtimes_isNonempty _ _)) rest')))
+                ⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩)) rest')))
+        f
 
 end CORALean.Real
 

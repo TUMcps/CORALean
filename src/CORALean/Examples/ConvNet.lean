@@ -20,10 +20,10 @@ What the chain shows is that the layers' *interfaces* compose, and unevenly: the
 reshape asks for `Reindex` alone, the softmax for the two box conversions alone,
 and the four in between for `Mtimes` and `Plus` as well.
 
-The two `_eval` checks below are the other half. A layer's soundness field says
-nothing about *which* function was enclosed, so a convolution defined as
-`Layer.linear` at a stencil is only a convolution because `conv_eval` says the
-stencil computes one. `reshape_exact` is the opposite case, the only equality in
+The two soundness checks below are the other half. A `Layer` says nothing
+about *which* function it encloses, so a convolution defined as `Layer.linear`
+at a stencil is only a convolution because `conv_sound` names the map the
+stencil computes. `reshape_exact` is the opposite case, the only equality in
 `NN`. The taps are written out rather than generated, since what is checked is
 that the index function is *all* a convolution needs to say about padding, stride
 and layout.
@@ -76,28 +76,30 @@ noncomputable example (K : Fin 1 → Fin 2 → ℝ) (b : Vec ℝ 5)
   (Example.convNet K b gamma beta mean var).enclose X
 
 /-- Every output over the whole input set is in the zonotope that comes back. -/
-example (nn : NeuralNetwork 𝒵 6 2) (X : Zonotope (Vec ℝ 6)) {x : Vec ℝ 6}
-    (hx : x ∈ construct X) : nn.eval x ∈ construct (nn.enclose X) :=
-  nn.enclose_outer X x hx
+example {nn : NeuralNetwork 𝒵 6 2} {f : Vec ℝ 6 → Vec ℝ 2} (hf : nn.Sound f)
+    (X : Zonotope (Vec ℝ 6)) {x : Vec ℝ 6}
+    (hx : x ∈ construct X) : f x ∈ construct (nn.enclose X) :=
+  hf.enclose_outer X x hx
 
 /-- Robust classification at two labels, unchanged by the layers in between. -/
-example (nn : NeuralNetwork 𝒵 6 2) (X : Zonotope (Vec ℝ 6)) (l : Fin 2)
+example {nn : NeuralNetwork 𝒵 6 2} {f : Vec ℝ 6 → Vec ℝ 2} (hf : nn.Sound f)
+    (X : Zonotope (Vec ℝ 6)) (l : Fin 2)
     (u : ∀ j, SupportBound (construct (nn.enclose X)) (marginDir 2 j l))
     (h : ∀ j, j ≠ l → (u j).val < 0) {x : Vec ℝ 6} (hx : x ∈ construct X)
-    {j : Fin 2} (hj : j ≠ l) : nn.eval x j < nn.eval x l :=
-  nn.classifies X l u h hx hj
+    {j : Fin 2} (hj : j ≠ l) : f x j < f x l :=
+  NeuralNetwork.classifies hf X l u h hx hj
 
 /-- The stencil computes the convolution, which is what makes the linear layer
 under it one. -/
-example (K : Fin 1 → Fin 2 → ℝ) (b : Vec ℝ 5) (x : Vec ℝ 6) (j : Fin 5) :
-    (Layer.conv (S := 𝒵) (fun _ => 0) Example.convTap K b).eval x j
-      = (∑ l, K 0 l * x (Example.convTap j l)) + b j :=
-  Layer.conv_eval _ _ _ _ Example.convTap_injective x j
+example (K : Fin 1 → Fin 2 → ℝ) (b : Vec ℝ 5) :
+    (Layer.conv (S := 𝒵) (fun _ => 0) Example.convTap K b).Sound
+      fun x j => (∑ l, K 0 l * x (Example.convTap j l)) + b j :=
+  Layer.conv_sound _ _ _ _ Example.convTap_injective
 
 /-- The reshape loses nothing, and no hypothesis is needed to say so. -/
 example (X : Zonotope (Vec ℝ 6)) :
     construct ((Layer.reshape (S := 𝒵) (Fin.transposeEquiv 3 2)).enclose X)
-      = (Layer.reshape (S := 𝒵) (Fin.transposeEquiv 3 2)).eval '' construct X :=
+      = reindexLin (Fin.transposeEquiv 3 2) '' construct X :=
   Layer.reshape_exact (S := 𝒵) _ X
 
 /-- Average pooling is not in the chain above because it is the convolution

@@ -84,42 +84,45 @@ def Relaxation.slopeMat {σ : ℝ → ℝ} (R : Relaxation σ) (I : Interval (Ve
   Matrix.diagonal fun i => R.slope (I.inf i) (I.sup i)
 
 def Layer.activation {σ : ℝ → ℝ} (R : Relaxation σ) : Layer S n n where
-  eval x := fun i => σ (x i)
   enclose s := plus (mtimes (R.slopeMat (interval s)) s) (ofInterval (R.box (interval s)))
-  enclose_outer s x hx := by
-    have hbox := interval_outer s hx
-    -- the deviation from the chosen affine map, which is what the box holds
-    set d : Vec ℝ n := fun i => σ (x i) - (R.slopeMat (interval s) *ᵥ x) i with hd
-    have hslope : ∀ i, (R.slopeMat (interval s) *ᵥ x) i
-        = R.slope ((interval s).inf i) ((interval s).sup i) * x i := fun i =>
-      Matrix.mulVec_diagonal _ _ i
-    have hsplit : (fun i => σ (x i)) = R.slopeMat (interval s) *ᵥ x + d := by
-      funext i
-      show σ (x i) = (R.slopeMat (interval s) *ᵥ x) i + d i
-      rw [hd]
-      ring
-    -- and the deviation is inside the box, which is exactly `sound` read coordinatewise
-    have hmem : d ∈ construct (R.box (interval s)) := by
-      intro i
-      have hlo : (interval s).inf i ≤ x i := (hbox i).1
-      have hhi : x i ≤ (interval s).sup i := (hbox i).2
-      have hrel := abs_le.mp (R.sound hlo hhi)
-      have hval : d i = σ (x i)
-          - R.slope ((interval s).inf i) ((interval s).sup i) * x i := by
-        show σ (x i) - (R.slopeMat (interval s) *ᵥ x) i = _
-        rw [hslope i]
-      -- `sound` is an absolute value, so it splits into the two ends of the box
-      have hlow : R.offset ((interval s).inf i) ((interval s).sup i)
-          - R.error ((interval s).inf i) ((interval s).sup i) ≤ d i := by
-        rw [hval]; linarith [hrel.1]
-      have hhigh : d i ≤ R.offset ((interval s).inf i) ((interval s).sup i)
-          + R.error ((interval s).inf i) ((interval s).sup i) := by
-        rw [hval]; linarith [hrel.2]
-      exact ⟨hlow, hhigh⟩
-    rw [hsplit]
-    exact plus_outer _ _ (Set.add_mem_add
-      (mtimes_outer _ s (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hx)))
-      (ofInterval_outer _ hmem))
+
+/-- What the layer encloses: `σ` applied coordinatewise. -/
+theorem Layer.activation_sound {σ : ℝ → ℝ} (R : Relaxation σ) :
+    (Layer.activation (S := S) (n := n) R).Sound (fun x i => σ (x i)) := by -- --- PROOF ---
+  refine ⟨fun s x hx => ?_⟩
+  have hbox := interval_outer s hx
+  -- the deviation from the chosen affine map, which is what the box holds
+  set d : Vec ℝ n := fun i => σ (x i) - (R.slopeMat (interval s) *ᵥ x) i with hd
+  have hslope : ∀ i, (R.slopeMat (interval s) *ᵥ x) i
+      = R.slope ((interval s).inf i) ((interval s).sup i) * x i := fun i =>
+    Matrix.mulVec_diagonal _ _ i
+  have hsplit : (fun i => σ (x i)) = R.slopeMat (interval s) *ᵥ x + d := by
+    funext i
+    show σ (x i) = (R.slopeMat (interval s) *ᵥ x) i + d i
+    rw [hd]
+    ring
+  -- and the deviation is inside the box, which is exactly `sound` read coordinatewise
+  have hmem : d ∈ construct (R.box (interval s)) := by
+    intro i
+    have hlo : (interval s).inf i ≤ x i := (hbox i).1
+    have hhi : x i ≤ (interval s).sup i := (hbox i).2
+    have hrel := abs_le.mp (R.sound hlo hhi)
+    have hval : d i = σ (x i)
+        - R.slope ((interval s).inf i) ((interval s).sup i) * x i := by
+      show σ (x i) - (R.slopeMat (interval s) *ᵥ x) i = _
+      rw [hslope i]
+    -- `sound` is an absolute value, so it splits into the two ends of the box
+    have hlow : R.offset ((interval s).inf i) ((interval s).sup i)
+        - R.error ((interval s).inf i) ((interval s).sup i) ≤ d i := by
+      rw [hval]; linarith [hrel.1]
+    have hhigh : d i ≤ R.offset ((interval s).inf i) ((interval s).sup i)
+        + R.error ((interval s).inf i) ((interval s).sup i) := by
+      rw [hval]; linarith [hrel.2]
+    exact ⟨hlow, hhigh⟩
+  rw [hsplit]
+  exact plus_outer _ _ (Set.add_mem_add
+    (mtimes_outer _ s (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hx)))
+    (ofInterval_outer _ hmem))
 
 end CORALean.Real
 

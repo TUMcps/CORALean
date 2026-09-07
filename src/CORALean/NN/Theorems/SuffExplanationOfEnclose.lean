@@ -34,11 +34,12 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OfInterval S] {n
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem NeuralNetwork.suffExplanation_of_enclose (nn : NeuralNetwork S n m)
+theorem NeuralNetwork.suffExplanation_of_enclose {nn : NeuralNetwork S n m}
+    {f : Vec ℝ n → Vec ℝ m} (hf : nn.Sound f)
     (x : Vec ℝ n) (ε : ℝ) (E : Finset (Fin n)) (l : Fin m)
     (hsuffAbs : nn.IsSuffExplanationAbstract x ε E l) :
-    nn.IsSuffExplanation x ε E l :=
-  nn.suffExplanation_of_abstract nn x ε E l (nn.image_subset _) hsuffAbs
+    IsSuffExplanation f x ε E l :=
+  suffExplanation_of_abstract f nn x ε E l (hf.image_subset _) hsuffAbs
 
 end CORALean.Real
 

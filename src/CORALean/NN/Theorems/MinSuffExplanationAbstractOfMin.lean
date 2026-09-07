@@ -38,15 +38,16 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OfInterval S] {n
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem NeuralNetwork.minSuffExplanationAbstract_of_min (nn nnAbs : NeuralNetwork S n m)
+theorem NeuralNetwork.minSuffExplanationAbstract_of_min (f : Vec ℝ n → Vec ℝ m)
+    (nnAbs : NeuralNetwork S n m)
     (x : Vec ℝ n) (ε : ℝ) (E : Finset (Fin n)) (l : Fin m)
-    (hcontain : ∀ E' : Finset (Fin n), nn.image (construct (ofInterval (explainBox x ε E') : S n))
+    (hcontain : ∀ E' : Finset (Fin n), f '' construct (ofInterval (explainBox x ε E') : S n)
       ⊆ construct (nnAbs.enclose (ofInterval (explainBox x ε E'))))
     (hsuffAbs : nnAbs.IsSuffExplanationAbstract x ε E l)
-    (hmin : nn.IsMinSuffExplanation x ε E l) :
+    (hmin : IsMinSuffExplanation f x ε E l) :
     nnAbs.IsMinSuffExplanationAbstract x ε E l :=
   ⟨hsuffAbs, fun i hi hdrop =>
-    hmin.2 i hi (nn.suffExplanation_of_abstract nnAbs x ε (E \ {i}) l (hcontain _) hdrop)⟩
+    hmin.2 i hi (suffExplanation_of_abstract f nnAbs x ε (E \ {i}) l (hcontain _) hdrop)⟩
 
 end CORALean.Real
 

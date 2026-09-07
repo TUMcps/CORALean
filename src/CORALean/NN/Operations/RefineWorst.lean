@@ -44,8 +44,8 @@ def aux_layerRank (J : Mat ℝ m n) (d : Vec ℝ n) : ℝ := ∑ j, refinementRa
 
 /-- The rank at what CORA actually backpropagates: the network's sensitivity at
 a point of the input set, weighing the errors the layer's relaxation leaves. -/
-noncomputable def NeuralNetwork.aux_layerRank (nn : NeuralNetwork S n m) (x d : Vec ℝ n) : ℝ :=
-  _root_.CORALean.Real.aux_layerRank (nn.sensitivity x) d
+noncomputable def Chain.aux_layerRank (c : Chain n m) (x d : Vec ℝ n) : ℝ :=
+  _root_.CORALean.Real.aux_layerRank (c.sensitivity x) d
 
 /-- The layer the layer-wise rule refines next [1, Def. 4.6]: the largest
 `aux_layerRank` of `k + 1` layers. -/

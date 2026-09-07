@@ -43,13 +43,14 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- Period `i` of a closed-loop run, in the period's own clock, is a linear run
 from `R` under the constant input the controller produced at its start. -/
 theorem NeurNetContrSys.Trajectory.period {sys : NeurNetContrSys 𝕋 S n} {Δtc : ℝ} {H : ℕ}
-    {R₀ : S n} {x : ℝ → Vec ℝ n} (traj : sys.Trajectory Δtc H R₀ x) (i : ℕ) (hi : i < H)
+    {R₀ : S n} {π : Vec ℝ n → Vec ℝ n} (hπ : sys.contr.Sound π) {x : ℝ → Vec ℝ n}
+    (traj : sys.Trajectory π Δtc H R₀ x) (i : ℕ) (hi : i < H)
     (R : S n) (hR : x ((i : ℝ) * Δtc) ∈ construct R) :
     sys.plant.Trajectory (Set.Icc 0 Δtc) R (sys.contr.enclose R)
       (fun t => x ((i : ℝ) * Δtc + t))
-      (fun _ => sys.contr.eval (x ((i : ℝ) * Δtc))) where
+      (fun _ => π (x ((i : ℝ) * Δtc))) where
   init := by simpa using hR
-  input _ _ := sys.contr.enclose_outer R _ hR
+  input _ _ := hπ.enclose_outer R _ hR
   flow t ht := by
     have hmaps : Set.MapsTo (fun s => (i : ℝ) * Δtc + s) (Set.Icc 0 Δtc)
         (Set.Icc ((i : ℝ) * Δtc) (((i : ℝ) + 1) * Δtc)) := by

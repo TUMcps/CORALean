@@ -29,13 +29,14 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 
 /-- Every input in the set is classified `l`, on the strength of one bound per
 rival label against the enclosed image. -/
-theorem NeuralNetwork.classifies (nn : NeuralNetwork S n m) (X : S n) (l : Fin m)
+theorem NeuralNetwork.classifies {nn : NeuralNetwork S n m} {f : Vec ℝ n → Vec ℝ m}
+    (hf : nn.Sound f) (X : S n) (l : Fin m)
     (u : ∀ j, SupportBound (construct (nn.enclose X))
       (marginDir m j l))
     (h : ∀ j, j ≠ l → (u j).val < 0) {x : Vec ℝ n} (hx : x ∈ construct X)
-    {j : Fin m} (hj : j ≠ l) : nn.eval x j < nn.eval x l := by -- --- PROOF ---
+    {j : Fin m} (hj : j ≠ l) : f x j < f x l := by -- --- PROOF ---
   have hd := disjoint_misclassified_of_bounds l u h
-  have hmem := nn.enclose_outer X x hx
+  have hmem := hf.enclose_outer X x hx
   have hnot := Set.disjoint_left.mp hd hmem
   by_contra hc
   exact hnot ⟨j, hj, not_lt.mp hc⟩

@@ -7,17 +7,16 @@ CORA's `evaluateSensitivity`: the Jacobian of what the layer computes at a
 point — rows output neurons, columns input neurons — which is what weights a
 neuron's approximation error by how much it moves the output [1].
 
-Total, and carrying no obligation, because a `Layer` supplies `eval` and an
-enclosure and can supply nothing about derivatives: ReLU has none at zero, so a
-derivative field would be a lie and a differentiability hypothesis would exclude
-the commonest activation. Sensitivity is a *ranking*, and every refinement it
-orders is sound — as `reduceBy_outer`'s metric and `Relaxation.ofDeriv`'s slope
-are — so it is `fderiv` of `eval` with no side condition, junk-valued exactly
-where `eval` has none. `Theorems.SensitivityFDeriv` is what makes it a good
-heuristic rather than an arbitrary one.
+Total, and carrying no obligation: ReLU has no derivative at zero, so asking for
+one would be a lie and a differentiability hypothesis would exclude the
+commonest activation. Sensitivity is a *ranking*, and every refinement it orders
+is sound, so it is `fderiv` of the map with no side condition, junk-valued
+exactly where that map has none. `Theorems.SensitivityFDeriv` is what makes it a
+good heuristic rather than an arbitrary one.
 
-A matrix and not the continuous linear map it comes from: the matrix product is
-what composes the chain, and the columns are what the heuristic reads.
+A function and not a `Layer`, since `Layer` stores none: `Chain` is where the
+layer maps live. A matrix and not the continuous linear map it comes from: the
+matrix product is what composes the chain.
 
 ## References
 
@@ -42,8 +41,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def Layer.sensitivity (L : Layer S n m) (x : Vec ℝ n) : Mat ℝ m n :=
-  LinearMap.toMatrix' (fderiv ℝ L.eval x : Vec ℝ n →L[ℝ] Vec ℝ m).toLinearMap
+noncomputable def layerSensitivity (f : Vec ℝ n → Vec ℝ m) (x : Vec ℝ n) : Mat ℝ m n :=
+  LinearMap.toMatrix' (fderiv ℝ f x : Vec ℝ n →L[ℝ] Vec ℝ m).toLinearMap
 
 end CORALean.Real
 

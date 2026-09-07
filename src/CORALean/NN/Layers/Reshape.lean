@@ -3,9 +3,9 @@ import CORALean.NN.Layer
 /-!
 # The reshape layer
 
-CORA's `nnReshapeLayer`: the same numbers read in a different order, `eval` being
-`x ↦ x ∘ e` and `enclose` the same relabelling of the representation. The only
-standard layer that loses nothing — `reshape_exact` is an equality.
+CORA's `nnReshapeLayer`: the same numbers read in a different order, the map
+being `x ↦ x ∘ e` and `enclose` the same relabelling of the representation. The
+only standard layer that loses nothing — `reshape_exact` is an equality.
 
 A relabelling is a linear map, so `Layer.linear` at a permutation matrix would
 enclose the same set. It is not used here, and the reason is the *guarantee*
@@ -43,19 +43,21 @@ def Fin.transposeEquiv (p q : ℕ) : Fin (q * p) ≃ Fin (p * q) :=
 
 /-- `e i` is which input coordinate output coordinate `i` reads. -/
 def Layer.reshape (e : Fin m ≃ Fin n) : Layer S n m where
-  eval x := reindexLin e x
   enclose := reindex e
-  enclose_outer s x hx := by
-    rw [reindex_exact]
-    exact Set.mem_image_of_mem _ hx
+
+theorem Layer.reshape_sound (e : Fin m ≃ Fin n) :
+    (Layer.reshape (S := S) e).Sound (reindexLin e) := by
+  refine ⟨fun s x hx => ?_⟩
+  show reindexLin e x ∈ construct (reindex e s)
+  rw [reindex_exact]
+  exact Set.mem_image_of_mem _ hx
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The layer's whole content, and the only `_exact` in `NN`. -/
 theorem Layer.reshape_exact (e : Fin m ≃ Fin n) (s : S n) :
-    construct ((Layer.reshape (S := S) e).enclose s)
-      = (Layer.reshape (S := S) e).eval '' construct s :=
+    construct ((Layer.reshape (S := S) e).enclose s) = reindexLin e '' construct s :=
   reindex_exact e s
 
 end CORALean.Real

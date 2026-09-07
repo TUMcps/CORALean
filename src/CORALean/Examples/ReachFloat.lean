@@ -16,9 +16,9 @@ their own. `LinearSysDT.reach`, `NeurNetContrSysDT.reach` and the whole hybrid
 automaton are written against `Scalar 𝕋` and the operation classes, so a float
 representation supplies them the same way an exact one does.
 
-The `def`s below are `def` rather than `noncomputable def` — true of this
-file's linear, ReLU and discrete-time layers, not of the float layer as a
-whole, where `Sigmoid`, `Tanh`, `Softmax` and `maxPool` stay noncomputable.
+The `def`s below are `def` rather than `noncomputable def`. Since `Layer` stores
+no function, so are `Sigmoid`, `Tanh`, `Softmax` and `maxPool`; only
+`SigmoidPoly` is not, its `PolyRelaxation` still carrying `σ`.
 
 An algorithm needs a float counterpart precisely where it computes a *real number
 that is no set operation*, only a set operation having an error box to pay its
@@ -123,9 +123,10 @@ def Example.reachClosedLoopFloat (sys : Real.NeurNetContrSysDT 𝕋 (Zonotope �
   sys.reach o R₀ k
 
 example (sys : Real.NeurNetContrSysDT 𝕋 (Zonotope 𝕋) n) (o : ℕ) (R₀ : Zonotope 𝕋 n)
-    {x : ℕ → Vec ℝ n} (traj : sys.Trajectory R₀ x) (k : ℕ) :
+    {π : Vec ℝ n → Vec ℝ n} (hπ : sys.contr.Sound π)
+    {x : ℕ → Vec ℝ n} (traj : sys.Trajectory π R₀ x) (k : ℕ) :
     x k ∈ construct (sys.reach o R₀ k) :=
-  sys.reach_outer o R₀ traj k
+  sys.reach_outer o R₀ hπ traj k
 
 /-! ## A hybrid automaton
 

@@ -73,7 +73,7 @@ def Layer.activationPolyRefinable (F : PolyRelaxationFamily 𝕋 σ) :
     Real.RefinableLayer (PolyZonotope 𝕋) n n where
   eval x := fun i => σ (x i)
   enclose t := (Layer.activationPoly (F.atPattern t)).enclose
-  enclose_outer t := (Layer.activationPoly (F.atPattern t)).enclose_outer
+  enclose_outer t := (Layer.activationPoly_sound (F.atPattern t)).enclose_outer
 
 end CORALean.Float
 

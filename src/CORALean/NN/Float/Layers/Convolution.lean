@@ -76,14 +76,15 @@ def Layer.conv (chan : Fin m → Fin c) (tap : Fin m → Fin k → Fin n)
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Layer.conv_eval (chan : Fin m → Fin c) (tap : Fin m → Fin k → Fin n)
-    (K : Fin c → Fin k → 𝕋) (b : Vec 𝕋 m) (htap : ∀ j, Function.Injective (tap j))
-    (x : Vec ℝ n) (j : Fin m) :
-    (Layer.conv (S := S) chan tap K b).eval x j
-      = (∑ l, toReal (K (chan j) l) * x (tap j l)) + toReal (b j) := by
-  show (toRealMat (tapMat tap fun j l => K (chan j) l) *ᵥ x) j + toRealVec b j = _
-  rw [toRealMat_tapMat, Real.tapMat_mulVec _ _ htap]
-  rfl
+theorem Layer.conv_sound (chan : Fin m → Fin c) (tap : Fin m → Fin k → Fin n)
+    (K : Fin c → Fin k → 𝕋) (b : Vec 𝕋 m) (htap : ∀ j, Function.Injective (tap j)) :
+    (Layer.conv (S := S) chan tap K b).Sound
+      fun x j => (∑ l, toReal (K (chan j) l) * x (tap j l)) + toReal (b j) :=
+  (Layer.linear_sound _ b).congr fun x => funext fun j => by
+    show (∑ l, toReal (K (chan j) l) * x (tap j l)) + toReal (b j)
+      = (toRealMat (tapMat tap fun j l => K (chan j) l) *ᵥ x) j + toRealVec b j
+    rw [toRealMat_tapMat, Real.tapMat_mulVec _ _ htap]
+    rfl
 
 end CORALean.Float
 

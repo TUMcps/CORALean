@@ -67,7 +67,7 @@ theorem aux_construct_point_polyZonotope (b : Vec ℝ m) :
 
 theorem Layer.linear_exact (W : Mat ℝ m n) (b : Vec ℝ m) (s : PolyZonotope (Vec ℝ n)) :
     construct ((Layer.linear (S := 𝒫𝒵) W b).enclose s)
-      = (Layer.linear (S := 𝒫𝒵) W b).eval '' construct s := by -- --- PROOF ---
+      = (fun x => W *ᵥ x + b) '' construct s := by -- --- PROOF ---
   show ((PolyZonotope.mtimes W s).plus (Interval.point b).polyZonotope).construct
       = (fun x => W *ᵥ x + b) '' s.construct
   -- both operations read backwards, and the bias is then a translation

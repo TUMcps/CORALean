@@ -58,22 +58,32 @@ theorem aux_suffExplanationConverseFails_box_center :
   show (2 : ℝ)⁻¹ * ((-1 : ℝ) + 1) = 0
   norm_num
 
+/-- What both networks compute, which neither of them stores. -/
+def aux_suffExplanationConverseFails_f : Vec ℝ 1 → Vec ℝ 2 :=
+  fun x => (0 : Mat ℝ 2 1) *ᵥ x + fun k => if k = 1 then (1 : ℝ) else 0
+
+theorem aux_suffExplanationConverseFails_nn_sound :
+    aux_suffExplanationConverseFails_nn.Sound aux_suffExplanationConverseFails_f :=
+  NeuralNetwork.ofLayer_sound (Layer.linear_sound _ _)
+
 /-- `nn`'s abstraction: the same weights and bias, over-approximated by the
 `±1` box. -/
-noncomputable def aux_suffExplanationConverseFails_nnAbs :
+def aux_suffExplanationConverseFails_nnAbs :
     NeuralNetwork (fun n => Interval (Vec ℝ n)) 1 2 :=
   NeuralNetwork.ofLayer (Layer.linearWithError (0 : Mat ℝ 2 1)
-    (fun k => if k = 1 then (1 : ℝ) else 0) aux_suffExplanationConverseFails_box
-    aux_suffExplanationConverseFails_box_isNonempty)
+    (fun k => if k = 1 then (1 : ℝ) else 0) aux_suffExplanationConverseFails_box)
 
 -- the box's error is committed at its own centre, `0`, so the exact networks agree
-theorem aux_suffExplanationConverseFails_eval_eq (x' : Vec ℝ 1) :
-    aux_suffExplanationConverseFails_nnAbs.eval x'
-      = aux_suffExplanationConverseFails_nn.eval x' := by -- --- PROOF ---
+theorem aux_suffExplanationConverseFails_nnAbs_sound :
+    aux_suffExplanationConverseFails_nnAbs.Sound
+      aux_suffExplanationConverseFails_f := by -- --- PROOF ---
+  refine (NeuralNetwork.ofLayer_sound (Layer.linearWithError_sound (0 : Mat ℝ 2 1)
+    (fun k => if k = 1 then (1 : ℝ) else 0) aux_suffExplanationConverseFails_box
+    aux_suffExplanationConverseFails_box_isNonempty)).congr fun x' => ?_
   funext i
   show ((0 : Mat ℝ 2 1) *ᵥ x') i + (if i = 1 then (1 : ℝ) else 0)
-      + aux_suffExplanationConverseFails_box.center i
       = ((0 : Mat ℝ 2 1) *ᵥ x') i + (if i = 1 then (1 : ℝ) else 0)
+        + aux_suffExplanationConverseFails_box.center i
   rw [aux_suffExplanationConverseFails_box_center]
   simp
 
@@ -84,23 +94,23 @@ theorem aux_suffExplanationConverseFails_eval_eq (x' : Vec ℝ 1) :
 hypothesis: a sound abstraction (`hcontain`) of a sufficient `nn` need not be
 abstractly sufficient for `nnAbs`. -/
 theorem suffExplanation_of_abstract_converse_fails :
-    ∃ (nn nnAbs : NeuralNetwork (fun n => Interval (Vec ℝ n)) 1 2) (x : Vec ℝ 1) (ε : ℝ)
-      (E : Finset (Fin 1)) (l : Fin 2),
-      nn.image (construct (ofInterval (S := fun n => Interval (Vec ℝ n)) (explainBox x ε E)))
+    ∃ (nn nnAbs : NeuralNetwork (fun n => Interval (Vec ℝ n)) 1 2) (f : Vec ℝ 1 → Vec ℝ 2)
+      (x : Vec ℝ 1) (ε : ℝ) (E : Finset (Fin 1)) (l : Fin 2),
+      nn.Sound f
+      ∧ f '' construct (ofInterval (S := fun n => Interval (Vec ℝ n)) (explainBox x ε E))
         ⊆ construct (nnAbs.enclose
           (ofInterval (S := fun n => Interval (Vec ℝ n)) (explainBox x ε E)))
-      ∧ nn.IsSuffExplanation x ε E l
+      ∧ IsSuffExplanation f x ε E l
         ∧ ¬ nnAbs.IsSuffExplanationAbstract x ε E l := by -- --- PROOF ---
   refine ⟨aux_suffExplanationConverseFails_nn, aux_suffExplanationConverseFails_nnAbs,
-    (fun _ => 0), 0, ∅, 1, ?_, ?_, ?_⟩
-  · -- `nn` and `nnAbs` evaluate identically, so `nn`'s exact image lies in `nnAbs`'s enclosure
-    rw [NeuralNetwork.image_eq_eval_image]
+    aux_suffExplanationConverseFails_f, (fun _ => 0), 0, ∅, 1,
+    aux_suffExplanationConverseFails_nn_sound, ?_, ?_, ?_⟩
+  · -- both networks compute the same map, so `nn`'s exact image is inside the enclosure
     rintro _ ⟨x', hx', rfl⟩
-    rw [← aux_suffExplanationConverseFails_eval_eq]
-    exact aux_suffExplanationConverseFails_nnAbs.enclose_outer _ x' hx'
+    exact aux_suffExplanationConverseFails_nnAbs_sound.enclose_outer _ x' hx'
   · -- `nn` never ties: the only rival is strictly behind
     intro x' _ j hj
-    have heval : aux_suffExplanationConverseFails_nn.eval x'
+    have heval : aux_suffExplanationConverseFails_f x'
         = fun k => if k = 1 then (1 : ℝ) else 0 := by
       funext i
       show ((0 : Mat ℝ 2 1) *ᵥ x') i + (if i = 1 then (1 : ℝ) else 0)

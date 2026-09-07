@@ -61,11 +61,11 @@ theorem Example.hcov (I : Interval (Vec ℝ 1)) :
 /-- A `true` run at depth `d` is the only thing this file needs to reach the
 network's exact image — never a computed one, since nothing here evaluates
 a real comparison. -/
-example (d : ℕ) (X : Interval (Vec ℝ 1))
+example {f : Vec ℝ 1 → Vec ℝ 1} (hf : Example.nn.Sound f) (d : ℕ) (X : Interval (Vec ℝ 1))
     (hverify : Example.nn.verifySplit Example.check Example.splitter d X = true) :
-    Example.spec.Holds (Example.nn.image (construct X)) :=
-  Example.nn.verifySplit_sound Example.spec Example.check Example.hcheck Example.splitter
-    Example.hcov d X hverify
+    Example.spec.Holds (f '' construct X) :=
+  NeuralNetwork.verifySplit_sound hf Example.spec Example.check Example.hcheck
+    Example.splitter Example.hcov d X hverify
 
 end CORALean.Real
 
