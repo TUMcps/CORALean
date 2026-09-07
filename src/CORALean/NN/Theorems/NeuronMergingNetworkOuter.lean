@@ -51,7 +51,7 @@ merged sandwich sits between `pre` and `post`, and `Y` is only ever asked to
 bound the nonlinear layer over what `pre` reaches. -/
 theorem neuronMerging_network_outer {n₀ n₁ n n₂ n₃ d r : ℕ}
     (pre : NeuralNetwork S n₀ n₁) (post : NeuralNetwork S n₂ n₃)
-    (part : Split (Fin n) into (Fin d) and (Fin r))
+    (part : Split (Fin n) into (Fin d) ⊕ (Fin r))
     (W0 : Mat ℝ n n₁) (b0 : Vec ℝ n) {σ : ℝ → ℝ} (R : Relaxation σ)
     (W1 : Mat ℝ n₂ n) (b1 : Vec ℝ n₂) (Y : Interval (Vec ℝ n)) (X : S n₀)
     (hY : ∀ x ∈ construct (pre.propagate X),

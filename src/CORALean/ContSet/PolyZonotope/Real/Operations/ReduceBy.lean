@@ -29,8 +29,8 @@ variable {n : ℕ}
 `partD.left` and `partI.left` name is kept, with the former's exponent columns,
 and the rest is absorbed into a diagonal block of `n` independent generators. -/
 def PolyZonotope.reduceBy (PZ : PolyZonotope (Vec ℝ n)) {d r dI rI : ℕ}
-    (partD : Split (Fin PZ.h) into (Fin d) and (Fin r))
-    (partI : Split (Fin PZ.q) into (Fin dI) and (Fin rI)) : PolyZonotope (Vec ℝ n) where
+    (partD : Split (Fin PZ.h) into (Fin d) ⊕ (Fin r))
+    (partI : Split (Fin PZ.q) into (Fin dI) ⊕ (Fin rI)) : PolyZonotope (Vec ℝ n) where
   p := PZ.p
   h := d
   q := dI + n

@@ -42,7 +42,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {d : ℕ}
 /-- Merging two generators whose columns agree off `k₀`, with column `i` even,
 `E_{k₀,j}` even and `E_{k₀,j} ≤ E_{k₀,i}`, over-approximates. -/
 theorem PolyZonotope.relaxExpEven_outer (PZ : PolyZonotope α)
-    (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (k₀ : Fin PZ.p)
+    (part : Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin PZ.p)
     (hsim : ∀ k, k ≠ k₀ → PZ.E k (part.right 0) = PZ.E k (part.right 1))
     (heven : ∀ k, Even (PZ.E k (part.right 0)))
     (hevenj : Even (PZ.E k₀ (part.right 1)))

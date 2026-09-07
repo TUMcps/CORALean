@@ -42,7 +42,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {d : ℕ}
 /-- Merging along an edge of the generator graph over-approximates with the
 centre shifted, given that the relaxed column is even. -/
 theorem PolyZonotope.relaxExpEven_outer_of_edge (PZ : PolyZonotope α)
-    (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) {η : ℕ} {k₀ : Fin PZ.p}
+    (part : Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2)) {η : ℕ} {k₀ : Fin PZ.p}
     (hedge : PolyZonotope.ExpEdgeAt PZ.E η k₀ (part.right 0) (part.right 1))
     (heven : ∀ k, Even (PZ.E k (part.right 0))) :
     PZ.construct ⊆ (PZ.relaxExpEven part k₀).construct := by -- --- PROOF ---

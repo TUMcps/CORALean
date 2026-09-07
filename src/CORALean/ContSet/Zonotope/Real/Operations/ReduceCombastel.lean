@@ -39,7 +39,7 @@ noncomputable def Zonotope.aux_combastelMetric (Z : Zonotope (Vec ℝ n)) (j : F
 the metric enters negated and the largest-magnitude generators survive. -/
 noncomputable def Zonotope.aux_combastelSplit (Z : Zonotope (Vec ℝ n)) (o : ℕ)
     (hlt : o * n < Z.h) :
-    Split (Fin Z.h) into (Fin ((o - 1) * n)) and (Fin (Z.h - (o - 1) * n)) :=
+    Split (Fin Z.h) into (Fin ((o - 1) * n)) ⊕ (Fin (Z.h - (o - 1) * n)) :=
   have hle : (o - 1) * n ≤ Z.h :=
     le_of_lt (lt_of_le_of_lt (Nat.mul_le_mul (Nat.sub_le o 1) (le_refl n)) hlt)
   (Partition.split ((o - 1) * n) (Z.h - (o - 1) * n)).reindex

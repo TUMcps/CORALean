@@ -44,7 +44,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {d : ℕ}
 /-- `relaxExp` with the drift's midpoint taken off the centre, so the new
 independent generator carries only its radius. -/
 noncomputable def PolyZonotope.relaxExpEven (PZ : PolyZonotope α)
-    (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (k₀ : Fin PZ.p) : PolyZonotope α where
+    (part : Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin PZ.p) : PolyZonotope α where
   p := PZ.p
   h := d + 1
   q := PZ.q + 1

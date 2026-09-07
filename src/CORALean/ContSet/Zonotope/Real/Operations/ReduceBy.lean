@@ -30,7 +30,7 @@ variable {n q r : ℕ}
 kept, `part.right` absorbed into a diagonal block. CORA's twenty-odd selection
 rules are this definition with a different partition. -/
 def Zonotope.reduceBy (Z : Zonotope (Vec ℝ n))
-    (part : Split (Fin Z.h) into (Fin q) and (Fin r)) : Zonotope (Vec ℝ n) where
+    (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) : Zonotope (Vec ℝ n) where
   h := q + n
   c := Z.c
   G := Fin.append (fun l => Z.G (part.left l))

@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n q r : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def Zonotope.reduceAndAbsorbBy (Z : Zonotope 𝕋 n)
-    (part : Split (Fin Z.h) into (Fin q) and (Fin r)) : Zonotope 𝕋 n where
+    (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) : Zonotope 𝕋 n where
   h := q + n
   c := Z.shiftDown
   G := fun i => Fin.append (fun l => Z.G i (part.left l))

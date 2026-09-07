@@ -59,11 +59,9 @@ instance : OfPoint (ConPolyZono α) α where
   ofPoint := ConPolyZono.ofPoint
   mem_ofPoint := ConPolyZono.mem_ofPoint
 
-/-- The anonymous constructor, not named fields: this file is itself inside
-`namespace CORALean.Real`, where `Global.Partition`'s `Split ... and ...`
-notation is active even scoped, so `and := ...` still cannot parse. -/
-instance : And (ConPolyZono (Vec ℝ n)) (Vec ℝ n) :=
-  ⟨ConPolyZono.and, fun C₁ C₂ => (ConPolyZono.and_exact C₁ C₂).subset⟩
+instance : And (ConPolyZono (Vec ℝ n)) (Vec ℝ n) where
+  and := ConPolyZono.and
+  and_outer C₁ C₂ := (ConPolyZono.and_exact C₁ C₂).subset
 
 /-- Pinned to `Vec`, as `PolyZonotope`'s is: a generator ranking and the box that
 absorbs what it drops are both entrywise. -/

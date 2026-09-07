@@ -44,7 +44,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- Merge at whatever the selection names, at most `n` times. -/
 def PolyZonotope.relaxExpGreedy
     (sel : (PZ : PolyZonotope α) →
-      Option ((d : ℕ) × (Split (Fin PZ.h) into (Fin d) and (Fin 2)))) :
+      Option ((d : ℕ) × (Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2)))) :
     ℕ → PolyZonotope α → PolyZonotope α
   | 0, PZ => PZ
   | n + 1, PZ =>

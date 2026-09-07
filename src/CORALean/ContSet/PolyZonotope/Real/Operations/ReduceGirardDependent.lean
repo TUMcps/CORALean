@@ -30,7 +30,7 @@ variable {n : ℕ}
 -- file-local: only `reduceGirardDependent` below needs it
 /-- Nothing dropped: what a rule hands `reduceBy` for a block it leaves
 alone. -/
-noncomputable def PolyZonotope.aux_keepAll (m : ℕ) : Split (Fin m) into (Fin m) and (Fin 0) :=
+noncomputable def PolyZonotope.aux_keepAll (m : ℕ) : Split (Fin m) into (Fin m) ⊕ (Fin 0) :=
   (Partition.split m 0).reindex (finCongr (Nat.add_zero m).symm)
 
 

@@ -43,7 +43,7 @@ def ConPolyZono.aux_concatGens (C : ConPolyZono 𝕋 n) : Mat 𝕋 n (C.h + C.q)
 block, so the split is total and no order hypothesis travels with it; the
 comparator ranks the larger metric first, CORA's descending sort. -/
 def ConPolyZono.aux_girardSplit {m : ℕ} (metric : Fin m → 𝕋) (k : ℕ) :
-    Split (Fin m) into (Fin (min k m)) and (Fin (m - min k m)) :=
+    Split (Fin m) into (Fin (min k m)) ⊕ (Fin (m - min k m)) :=
   (Partition.split (min k m) (m - min k m)).reindex
     ((sortPerm fun l₁ l₂ => le (metric l₂) (metric l₁)).symm.trans
       (finCongr (Nat.add_sub_cancel' (min_le_right k m)).symm))

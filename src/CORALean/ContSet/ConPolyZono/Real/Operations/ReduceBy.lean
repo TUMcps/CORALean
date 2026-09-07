@@ -29,8 +29,8 @@ variable {n d r dI rI : ℕ}
 kept, with the former's exponent columns, and the rest is absorbed into a
 diagonal block of `n` independent generators. The constraints stand. -/
 def ConPolyZono.reduceBy (C : ConPolyZono (Vec ℝ n))
-    (partD : Split (Fin C.h) into (Fin d) and (Fin r))
-    (partI : Split (Fin C.q) into (Fin dI) and (Fin rI)) : ConPolyZono (Vec ℝ n) where
+    (partD : Split (Fin C.h) into (Fin d) ⊕ (Fin r))
+    (partI : Split (Fin C.q) into (Fin dI) ⊕ (Fin rI)) : ConPolyZono (Vec ℝ n) where
   p := C.p
   h := d
   q := dI + n

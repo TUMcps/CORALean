@@ -45,8 +45,8 @@ omit [SoundFloatArithmetic 𝕋] in
 through the projection because that is the form the goal has and simp will not
 rewrite a binder's type. -/
 theorem ConPolyZono.aux_sum_univ_reduceBy_q {C : ConPolyZono 𝕋 n}
-    {partD : Split (Fin C.h) into (Fin d) and (Fin r)}
-    {partI : Split (Fin C.q) into (Fin dI) and (Fin rI)} (f : Fin (dI + n) → ℝ) :
+    {partD : Split (Fin C.h) into (Fin d) ⊕ (Fin r)}
+    {partI : Split (Fin C.q) into (Fin dI) ⊕ (Fin rI)} (f : Fin (dI + n) → ℝ) :
     ∑ j : Fin (C.reduceBy partD partI).q, f j
       = ∑ j, f (Fin.castAdd n j) + ∑ j, f (Fin.natAdd dI j) :=
   Fin.sum_univ_add f
@@ -56,8 +56,8 @@ omit [SoundFloatArithmetic 𝕋] in
 `ring` treats a sum over `Fin (C.reduceBy partD partI).h` and one over `Fin d`
 as two atoms, defeq or not. -/
 theorem ConPolyZono.aux_sum_univ_reduceBy_h {C : ConPolyZono 𝕋 n}
-    {partD : Split (Fin C.h) into (Fin d) and (Fin r)}
-    {partI : Split (Fin C.q) into (Fin dI) and (Fin rI)} (f : Fin d → ℝ) :
+    {partD : Split (Fin C.h) into (Fin d) ⊕ (Fin r)}
+    {partI : Split (Fin C.q) into (Fin dI) ⊕ (Fin rI)} (f : Fin d → ℝ) :
     ∑ l : Fin (C.reduceBy partD partI).h, f l = ∑ l, f l :=
   rfl
 
@@ -65,7 +65,7 @@ theorem ConPolyZono.aux_sum_univ_reduceBy_h {C : ConPolyZono 𝕋 n}
 cover. The coefficients are monomials, and `abs_sum_le_radius` asks only that
 they lie in `[-1, 1]`. -/
 theorem ConPolyZono.aux_abs_droppedDep_le (C : ConPolyZono 𝕋 n)
-    (partD : Split (Fin C.h) into (Fin d) and (Fin r)) {a : Fin C.p → ℝ}
+    (partD : Split (Fin C.h) into (Fin d) ⊕ (Fin r)) {a : Fin C.p → ℝ}
     (ha : ∀ k, |a k| ≤ 1) (i : Fin n) :
     |∑ l, toReal (C.G i (partD.right l))
         * Real.PolyZonotope.monomial C.E a (partD.right l)|
@@ -76,7 +76,7 @@ theorem ConPolyZono.aux_abs_droppedDep_le (C : ConPolyZono 𝕋 n)
 /-- The same for the dropped independent generators, whose coefficients are
 free to begin with. -/
 theorem ConPolyZono.aux_abs_droppedInd_le (C : ConPolyZono 𝕋 n)
-    (partI : Split (Fin C.q) into (Fin dI) and (Fin rI)) {β : Fin C.q → ℝ}
+    (partI : Split (Fin C.q) into (Fin dI) ⊕ (Fin rI)) {β : Fin C.q → ℝ}
     (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) :
     |∑ j, toReal (C.GI i (partI.right j)) * β (partI.right j)|
       ≤ toReal (radius (fun i j => C.GI i (partI.right j)) i) :=
@@ -85,8 +85,8 @@ theorem ConPolyZono.aux_abs_droppedInd_le (C : ConPolyZono 𝕋 n)
 
 /-- One box for the two dropped blocks: their radii, added upward. -/
 theorem ConPolyZono.aux_abs_dropped_le (C : ConPolyZono 𝕋 n)
-    (partD : Split (Fin C.h) into (Fin d) and (Fin r))
-    (partI : Split (Fin C.q) into (Fin dI) and (Fin rI)) {a : Fin C.p → ℝ}
+    (partD : Split (Fin C.h) into (Fin d) ⊕ (Fin r))
+    (partI : Split (Fin C.q) into (Fin dI) ⊕ (Fin rI)) {a : Fin C.p → ℝ}
     {β : Fin C.q → ℝ} (ha : ∀ k, |a k| ≤ 1) (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) :
     |(∑ l, toReal (C.G i (partD.right l))
           * Real.PolyZonotope.monomial C.E a (partD.right l))
@@ -102,8 +102,8 @@ theorem ConPolyZono.aux_abs_dropped_le (C : ConPolyZono 𝕋 n)
 
 -- the dropped columns become one diagonal block, at the coefficient that reaches them
 theorem ConPolyZono.aux_reduceBy_nominal (C : ConPolyZono 𝕋 n)
-    (partD : Split (Fin C.h) into (Fin d) and (Fin r))
-    (partI : Split (Fin C.q) into (Fin dI) and (Fin rI)) :
+    (partD : Split (Fin C.h) into (Fin d) ⊕ (Fin r))
+    (partI : Split (Fin C.q) into (Fin dI) ⊕ (Fin rI)) :
     nominalSet C ⊆ nominalSet (C.reduceBy partD partI) := by -- --- PROOF ---
   intro x hx'
   obtain ⟨a, β, ha, hβ, hsat, hx⟩ := ConPolyZono.mem_nominalSet_iff.mp hx'
@@ -141,8 +141,8 @@ theorem ConPolyZono.aux_reduceBy_nominal (C : ConPolyZono 𝕋 n)
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.reduceBy_outer (C : ConPolyZono 𝕋 n)
-    (partD : Split (Fin C.h) into (Fin d) and (Fin r))
-    (partI : Split (Fin C.q) into (Fin dI) and (Fin rI)) :
+    (partD : Split (Fin C.h) into (Fin d) ⊕ (Fin r))
+    (partI : Split (Fin C.q) into (Fin dI) ⊕ (Fin rI)) :
     C.construct ⊆ (C.reduceBy partD partI).construct :=
   mono_subset (ConPolyZono.aux_reduceBy_nominal C partD partI) (subset_refl _)
 

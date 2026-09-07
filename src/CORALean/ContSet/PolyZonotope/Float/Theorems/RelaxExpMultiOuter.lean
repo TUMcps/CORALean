@@ -47,7 +47,7 @@ omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `relaxExpMulti`'s dependent count, stated through the
 projection because that is the form the goal has. -/
 theorem PolyZonotope.aux_sum_univ_relaxExpMulti_h {PZ : PolyZonotope 𝕋 n}
-    {part : Split (Fin PZ.h) into (Fin d) and (Fin 2)} (f : Fin (d + 1) → ℝ) :
+    {part : Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2)} (f : Fin (d + 1) → ℝ) :
     ∑ l : Fin (PZ.relaxExpMulti part).h, f l
       = ∑ l, f (Fin.castAdd 1 l) + ∑ l : Fin 1, f (Fin.natAdd d l) :=
   Fin.sum_univ_add f
@@ -55,7 +55,7 @@ theorem PolyZonotope.aux_sum_univ_relaxExpMulti_h {PZ : PolyZonotope 𝕋 n}
 omit [SoundFloatArithmetic 𝕋] in
 /-- The same at the independent count. -/
 theorem PolyZonotope.aux_sum_univ_relaxExpMulti_q {PZ : PolyZonotope 𝕋 n}
-    {part : Split (Fin PZ.h) into (Fin d) and (Fin 2)} (f : Fin (PZ.q + 1) → ℝ) :
+    {part : Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2)} (f : Fin (PZ.q + 1) → ℝ) :
     ∑ j : Fin (PZ.relaxExpMulti part).q, f j
       = ∑ j, f (Fin.castAdd 1 j) + ∑ j : Fin 1, f (Fin.natAdd PZ.q j) :=
   Fin.sum_univ_add f
@@ -63,7 +63,7 @@ theorem PolyZonotope.aux_sum_univ_relaxExpMulti_q {PZ : PolyZonotope 𝕋 n}
 /-- The merged column is stored downward, so it is off by at most its gap to the
 upward rounding. -/
 theorem PolyZonotope.aux_mergedGenMulti_gap (PZ : PolyZonotope 𝕋 n)
-    (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (i : Fin n) :
+    (part : Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2)) (i : Fin n) :
     |toReal (PZ.G i (part.right 1)) + toReal (PZ.G i (part.right 0))
       - toReal (PZ.mergedGen part i)| ≤ toReal (PZ.relaxGapMulti part i 0) := by -- --- PROOF ---
   have hlo : toReal (PZ.mergedGen part i)
@@ -78,7 +78,7 @@ theorem PolyZonotope.aux_mergedGenMulti_gap (PZ : PolyZonotope 𝕋 n)
 /-- The new independent column is the summed `ξ_E` copies added downward, so it
 too is off by at most its gap to the upward fold. -/
 theorem PolyZonotope.aux_relaxGenMulti_gap (PZ : PolyZonotope 𝕋 n)
-    (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) (i : Fin n) :
+    (part : Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2)) (i : Fin n) :
     |(PZ.relaxWidthMulti part : ℝ) * toReal (PZ.G i (part.right 0))
       - toReal (PZ.relaxGenMulti part i)|
         ≤ toReal (PZ.relaxGapMulti part i 1) := by -- --- PROOF ---
@@ -93,7 +93,7 @@ theorem PolyZonotope.aux_relaxGenMulti_gap (PZ : PolyZonotope 𝕋 n)
 
 -- the two stored columns and their two gaps, the drift carried by the second
 theorem PolyZonotope.aux_relaxExpMulti_nominal (PZ : PolyZonotope 𝕋 n)
-    (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) :
+    (part : Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2)) :
     nominalSet PZ ⊆ nominalSet (PZ.relaxExpMulti part)
       + (PolyZonotope.generatorError (PZ.relaxGapMulti part)).construct := by -- --- PROOF ---
   intro x hx
@@ -177,7 +177,7 @@ theorem PolyZonotope.aux_relaxExpMulti_nominal (PZ : PolyZonotope 𝕋 n)
 /-- Merging any two dependent generators over-approximates at the stored
 columns, the summed width paying for every exponent that moves. -/
 theorem PolyZonotope.relaxExpMulti_outer (PZ : PolyZonotope 𝕋 n)
-    (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) :
+    (part : Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2)) :
     PZ.construct ⊆ (PZ.relaxExpMulti part).construct := by -- --- PROOF ---
   rintro _ ⟨z, hz, e, he, rfl⟩
   obtain ⟨z', hz', g, hg, hsum⟩ := PolyZonotope.aux_relaxExpMulti_nominal PZ part hz

@@ -23,8 +23,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n d r dI rI 
 
 omit [SoundFloatArithmetic 𝕋] in
 @[simp] theorem PolyZonotope.reduceBy_h (PZ : PolyZonotope 𝕋 n)
-    (partD : Split (Fin PZ.h) into (Fin d) and (Fin r))
-    (partI : Split (Fin PZ.q) into (Fin dI) and (Fin rI)) :
+    (partD : Split (Fin PZ.h) into (Fin d) ⊕ (Fin r))
+    (partI : Split (Fin PZ.q) into (Fin dI) ⊕ (Fin rI)) :
     (PZ.reduceBy partD partI).h = d := rfl
 
 end CORALean.Float

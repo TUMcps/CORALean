@@ -43,8 +43,8 @@ variable {n d r dI rI : ℕ}
 through the projection because that is the form the goal has and simp will not
 rewrite a binder's type. -/
 theorem ConPolyZono.aux_sum_univ_reduceBy_q {C : ConPolyZono (Vec ℝ n)}
-    {partD : Split (Fin C.h) into (Fin d) and (Fin r)}
-    {partI : Split (Fin C.q) into (Fin dI) and (Fin rI)} (f : Fin (dI + n) → ℝ) :
+    {partD : Split (Fin C.h) into (Fin d) ⊕ (Fin r)}
+    {partI : Split (Fin C.q) into (Fin dI) ⊕ (Fin rI)} (f : Fin (dI + n) → ℝ) :
     ∑ j : Fin (C.reduceBy partD partI).q, f j
       = ∑ j, f (Fin.castAdd n j) + ∑ j, f (Fin.natAdd dI j) :=
   Fin.sum_univ_add f
@@ -53,15 +53,15 @@ theorem ConPolyZono.aux_sum_univ_reduceBy_q {C : ConPolyZono (Vec ℝ n)}
 `ring` treats a sum over `Fin (C.reduceBy partD partI).h` and one over `Fin d`
 as two atoms, defeq or not. -/
 theorem ConPolyZono.aux_sum_univ_reduceBy_h {C : ConPolyZono (Vec ℝ n)}
-    {partD : Split (Fin C.h) into (Fin d) and (Fin r)}
-    {partI : Split (Fin C.q) into (Fin dI) and (Fin rI)} (f : Fin d → ℝ) :
+    {partD : Split (Fin C.h) into (Fin d) ⊕ (Fin r)}
+    {partI : Split (Fin C.q) into (Fin dI) ⊕ (Fin rI)} (f : Fin d → ℝ) :
     ∑ l : Fin (C.reduceBy partD partI).h, f l = ∑ l, f l :=
   rfl
 
 /-- What the dropped dependent generators contribute: a monomial scales each,
 and never by more than one. -/
 theorem ConPolyZono.aux_abs_droppedDep_le (C : ConPolyZono (Vec ℝ n))
-    (partD : Split (Fin C.h) into (Fin d) and (Fin r)) {a : Fin C.p → ℝ}
+    (partD : Split (Fin C.h) into (Fin d) ⊕ (Fin r)) {a : Fin C.p → ℝ}
     (ha : ∀ k, |a k| ≤ 1) (i : Fin n) :
     |∑ l, C.G (partD.right l) i * PolyZonotope.monomial C.E a (partD.right l)|
       ≤ ∑ l, |C.G (partD.right l) i| :=
@@ -80,7 +80,7 @@ theorem ConPolyZono.aux_abs_droppedDep_le (C : ConPolyZono (Vec ℝ n))
 /-- The same for the dropped independent generators, where the coefficient is
 already free. -/
 theorem ConPolyZono.aux_abs_droppedInd_le (C : ConPolyZono (Vec ℝ n))
-    (partI : Split (Fin C.q) into (Fin dI) and (Fin rI)) {β : Fin C.q → ℝ}
+    (partI : Split (Fin C.q) into (Fin dI) ⊕ (Fin rI)) {β : Fin C.q → ℝ}
     (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) :
     |∑ j, C.GI (partI.right j) i * β (partI.right j)|
       ≤ ∑ j, |C.GI (partI.right j) i| :=
@@ -98,8 +98,8 @@ theorem ConPolyZono.aux_abs_droppedInd_le (C : ConPolyZono (Vec ℝ n))
 /-- Boxing what the two partitions drop over-approximates, whichever partitions
 they are. -/
 theorem ConPolyZono.reduceBy_outer (C : ConPolyZono (Vec ℝ n))
-    (partD : Split (Fin C.h) into (Fin d) and (Fin r))
-    (partI : Split (Fin C.q) into (Fin dI) and (Fin rI)) :
+    (partD : Split (Fin C.h) into (Fin d) ⊕ (Fin r))
+    (partI : Split (Fin C.q) into (Fin dI) ⊕ (Fin rI)) :
     C.construct ⊆ (C.reduceBy partD partI).construct := by -- --- PROOF ---
   intro x hxmem
   obtain ⟨a, β, ha, hβ, hsat, hx⟩ := ConPolyZono.mem_construct_iff.mp hxmem

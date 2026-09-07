@@ -26,7 +26,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {d : ℕ}
 
 /-- `ξ_E` summed over every factor, the agreeing ones contributing nothing. -/
 def PolyZonotope.relaxWidthMulti (PZ : PolyZonotope α)
-    (part : Split (Fin PZ.h) into (Fin d) and (Fin 2)) : ℕ :=
+    (part : Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2)) : ℕ :=
   ∑ k, PolyZonotope.eDiff (PZ.E k (part.right 0)) (PZ.E k (part.right 1))
 
 end CORALean.Real

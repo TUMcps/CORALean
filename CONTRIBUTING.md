@@ -527,25 +527,24 @@ when a class, an instance or a float layer lands. Better still, when a change
 fills a gap, ask which docstring explained that gap and fix it in the same
 merge request.
 
-### A notation can turn a word into a keyword
+### A notation's literal tokens are not available as identifiers
 
-`Global/Partition.lean` declares
+A notation's literal string tokens take those words out of circulation as
+identifiers everywhere the notation is in scope — `and := Foo.and` fails to
+parse if some in-scope notation spells out the token `and`. `scoped` does not
+narrow this within the namespace tree: it stays active throughout its own
+namespace *and every sub-namespace*, so scoping a notation to `CORALean`
+still reaches every `CORALean.*` file, which is nearly the whole library.
 
-```lean
-scoped notation:50 "Split " α:max " into " β:max " and " γ:max => CORALean.Partition₂ α β γ
-```
+`Global/Partition.lean` learned this the hard way: its two-part notation once
+read `Split α into β and γ`, and the bare word `and` then blocked named-field
+syntax on every `And` instance in the library. The fix is not scoping harder;
+it is not choosing an English word in the first place. The notation now reads
+`Split α into β ⊕ γ`, which is also the right connective on the merits, since
+`Partition₂ α β γ` states exactly that `β ⊕ γ ≃ α`.
 
-`scoped` limits the notation to `namespace CORALean` (and its sub-namespaces)
-or after `open CORALean` — but nearly everything in this library lives inside
-that tree, so `and` stays a token there just as it did unscoped. Named-field
-syntax then fails wherever an `And` instance is declared inside
-`namespace CORALean.*` and reaches `Partition` through `reduce`: `and :=
-Foo.and` gives "Fields missing", then "unexpected token 'and'". The anonymous
-constructor `⟨Foo.and, …⟩` is still the escape hatch there; find the affected
-instances by searching for that form.
-
-A class field named after an English word that appears in a notation is worth
-checking before naming.
+A class field named after an English word is worth checking against notations
+in scope before naming.
 
 ### An expected type that will not unify
 

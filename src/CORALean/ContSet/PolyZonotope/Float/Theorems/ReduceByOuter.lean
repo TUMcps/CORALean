@@ -37,8 +37,8 @@ omit [SoundFloatArithmetic 𝕋] in
 through the projection because that is the form the goal has and simp will not
 rewrite a binder's type. -/
 theorem PolyZonotope.aux_sum_univ_reduceBy_q {PZ : PolyZonotope 𝕋 n}
-    {partD : Split (Fin PZ.h) into (Fin d) and (Fin r)}
-    {partI : Split (Fin PZ.q) into (Fin dI) and (Fin rI)} (f : Fin (dI + n) → ℝ) :
+    {partD : Split (Fin PZ.h) into (Fin d) ⊕ (Fin r)}
+    {partI : Split (Fin PZ.q) into (Fin dI) ⊕ (Fin rI)} (f : Fin (dI + n) → ℝ) :
     ∑ j : Fin (PZ.reduceBy partD partI).q, f j
       = ∑ j, f (Fin.castAdd n j) + ∑ j, f (Fin.natAdd dI j) :=
   Fin.sum_univ_add f
@@ -48,15 +48,15 @@ omit [SoundFloatArithmetic 𝕋] in
 `ring` treats a sum over `Fin (PZ.reduceBy partD partI).h` and one over `Fin d`
 as two atoms, defeq or not. -/
 theorem PolyZonotope.aux_sum_univ_reduceBy_h {PZ : PolyZonotope 𝕋 n}
-    {partD : Split (Fin PZ.h) into (Fin d) and (Fin r)}
-    {partI : Split (Fin PZ.q) into (Fin dI) and (Fin rI)} (f : Fin d → ℝ) :
+    {partD : Split (Fin PZ.h) into (Fin d) ⊕ (Fin r)}
+    {partI : Split (Fin PZ.q) into (Fin dI) ⊕ (Fin rI)} (f : Fin d → ℝ) :
     ∑ l : Fin (PZ.reduceBy partD partI).h, f l = ∑ l, f l :=
   rfl
 
 -- the dropped columns become one diagonal block, at the coefficient that reaches them
 theorem PolyZonotope.aux_reduceBy_nominal (PZ : PolyZonotope 𝕋 n)
-    (partD : Split (Fin PZ.h) into (Fin d) and (Fin r))
-    (partI : Split (Fin PZ.q) into (Fin dI) and (Fin rI)) :
+    (partD : Split (Fin PZ.h) into (Fin d) ⊕ (Fin r))
+    (partI : Split (Fin PZ.q) into (Fin dI) ⊕ (Fin rI)) :
     nominalSet PZ ⊆ nominalSet (PZ.reduceBy partD partI) := by -- --- PROOF ---
   intro x hx'
   obtain ⟨a, β, ha, hβ, hx⟩ := PolyZonotope.mem_nominalSet_iff.mp hx'
@@ -94,8 +94,8 @@ theorem PolyZonotope.aux_reduceBy_nominal (PZ : PolyZonotope 𝕋 n)
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.reduceBy_outer (PZ : PolyZonotope 𝕋 n)
-    (partD : Split (Fin PZ.h) into (Fin d) and (Fin r))
-    (partI : Split (Fin PZ.q) into (Fin dI) and (Fin rI)) :
+    (partD : Split (Fin PZ.h) into (Fin d) ⊕ (Fin r))
+    (partI : Split (Fin PZ.q) into (Fin dI) ⊕ (Fin rI)) :
     PZ.construct ⊆ (PZ.reduceBy partD partI).construct :=
   mono_subset (PolyZonotope.aux_reduceBy_nominal PZ partD partI) (subset_refl _)
 

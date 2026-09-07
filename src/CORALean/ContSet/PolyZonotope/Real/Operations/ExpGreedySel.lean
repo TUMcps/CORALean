@@ -68,7 +68,7 @@ def PolyZonotope.aux_pairPerm {m : ℕ} (i j : Fin (m + 2)) : Equiv.Perm (Fin (m
 /-- The split naming `i` and `j` on the right, in that order, and every other
 index on the left. -/
 def PolyZonotope.aux_pairSplit {m : ℕ} (h2 : 2 ≤ m) (i j : Fin m) :
-    Split (Fin m) into (Fin (m - 2)) and (Fin 2) :=
+    Split (Fin m) into (Fin (m - 2)) ⊕ (Fin 2) :=
   (Partition.split (m - 2) 2).reindex
     ((finCongr (Nat.sub_add_cancel h2).symm).trans
       (PolyZonotope.aux_pairPerm (finCongr (Nat.sub_add_cancel h2).symm i)
@@ -80,7 +80,7 @@ def PolyZonotope.aux_pairSplit {m : ℕ} (h2 : 2 ≤ m) (i j : Fin m) :
 /-- The lightest edge of `[1, Def. 5]` as a split `relaxExpGreedy` can merge
 along, and `none` once the graph is exhausted. -/
 def PolyZonotope.expGreedySel {p h : ℕ} (E : Fin p → Fin h → ℕ) (η : ℕ) :
-    Option ((d : ℕ) × (Split (Fin h) into (Fin d) and (Fin 2))) :=
+    Option ((d : ℕ) × (Split (Fin h) into (Fin d) ⊕ (Fin 2))) :=
   if h2 : 2 ≤ h then
     (PolyZonotope.aux_lightestEdge E η).map fun ij =>
       ⟨h - 2, PolyZonotope.aux_pairSplit h2 ij.1 ij.2⟩

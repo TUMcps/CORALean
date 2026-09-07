@@ -44,8 +44,8 @@ variable {n d r dI rI : ℕ}
 through the projection because that is the form the goal has and simp will not
 rewrite a binder's type. -/
 theorem PolyZonotope.aux_sum_univ_reduceBy_q {PZ : PolyZonotope (Vec ℝ n)}
-    {partD : Split (Fin PZ.h) into (Fin d) and (Fin r)}
-    {partI : Split (Fin PZ.q) into (Fin dI) and (Fin rI)} (f : Fin (dI + n) → ℝ) :
+    {partD : Split (Fin PZ.h) into (Fin d) ⊕ (Fin r)}
+    {partI : Split (Fin PZ.q) into (Fin dI) ⊕ (Fin rI)} (f : Fin (dI + n) → ℝ) :
     ∑ j : Fin (PZ.reduceBy partD partI).q, f j
       = ∑ j, f (Fin.castAdd n j) + ∑ j, f (Fin.natAdd dI j) :=
   Fin.sum_univ_add f
@@ -54,15 +54,15 @@ theorem PolyZonotope.aux_sum_univ_reduceBy_q {PZ : PolyZonotope (Vec ℝ n)}
 `ring` treats a sum over `Fin (PZ.reduceBy partD partI).h` and one over `Fin d`
 as two atoms, defeq or not. -/
 theorem PolyZonotope.aux_sum_univ_reduceBy_h {PZ : PolyZonotope (Vec ℝ n)}
-    {partD : Split (Fin PZ.h) into (Fin d) and (Fin r)}
-    {partI : Split (Fin PZ.q) into (Fin dI) and (Fin rI)} (f : Fin d → ℝ) :
+    {partD : Split (Fin PZ.h) into (Fin d) ⊕ (Fin r)}
+    {partI : Split (Fin PZ.q) into (Fin dI) ⊕ (Fin rI)} (f : Fin d → ℝ) :
     ∑ l : Fin (PZ.reduceBy partD partI).h, f l = ∑ l, f l :=
   rfl
 
 /-- What the dropped dependent generators contribute: a monomial scales each,
 and never by more than one. -/
 theorem PolyZonotope.aux_abs_droppedDep_le (PZ : PolyZonotope (Vec ℝ n))
-    (partD : Split (Fin PZ.h) into (Fin d) and (Fin r)) {a : Fin PZ.p → ℝ}
+    (partD : Split (Fin PZ.h) into (Fin d) ⊕ (Fin r)) {a : Fin PZ.p → ℝ}
     (ha : ∀ k, |a k| ≤ 1) (i : Fin n) :
     |∑ l, PZ.G (partD.right l) i * PolyZonotope.monomial PZ.E a (partD.right l)|
       ≤ ∑ l, |PZ.G (partD.right l) i| :=
@@ -81,7 +81,7 @@ theorem PolyZonotope.aux_abs_droppedDep_le (PZ : PolyZonotope (Vec ℝ n))
 /-- The same for the dropped independent generators, where the coefficient is
 already free. -/
 theorem PolyZonotope.aux_abs_droppedInd_le (PZ : PolyZonotope (Vec ℝ n))
-    (partI : Split (Fin PZ.q) into (Fin dI) and (Fin rI)) {β : Fin PZ.q → ℝ}
+    (partI : Split (Fin PZ.q) into (Fin dI) ⊕ (Fin rI)) {β : Fin PZ.q → ℝ}
     (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) :
     |∑ j, PZ.GI (partI.right j) i * β (partI.right j)|
       ≤ ∑ j, |PZ.GI (partI.right j) i| :=
@@ -99,8 +99,8 @@ theorem PolyZonotope.aux_abs_droppedInd_le (PZ : PolyZonotope (Vec ℝ n))
 /-- Boxing what the two partitions drop over-approximates, whichever partitions
 they are. -/
 theorem PolyZonotope.reduceBy_outer (PZ : PolyZonotope (Vec ℝ n))
-    (partD : Split (Fin PZ.h) into (Fin d) and (Fin r))
-    (partI : Split (Fin PZ.q) into (Fin dI) and (Fin rI)) :
+    (partD : Split (Fin PZ.h) into (Fin d) ⊕ (Fin r))
+    (partI : Split (Fin PZ.q) into (Fin dI) ⊕ (Fin rI)) :
     PZ.construct ⊆ (PZ.reduceBy partD partI).construct := by -- --- PROOF ---
   intro x hxmem
   obtain ⟨a, β, ha, hβ, hx⟩ := PolyZonotope.mem_construct_iff.mp hxmem

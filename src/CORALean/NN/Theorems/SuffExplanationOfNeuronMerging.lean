@@ -38,7 +38,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OfInterval S] {n
 theorem NeuralNetwork.suffExplanation_of_neuronMerging [∀ n, Plus (S n) (Vec ℝ n)]
     [Mtimes (Mat ℝ) S] [IntervalOuter S] {n₀ n₁ nk n₂ n₃ d r : ℕ}
     (pre : NeuralNetwork S n₀ n₁) (post : NeuralNetwork S n₂ n₃)
-    (part : Split (Fin nk) into (Fin d) and (Fin r))
+    (part : Split (Fin nk) into (Fin d) ⊕ (Fin r))
     (W0 : Mat ℝ nk n₁) (b0 : Vec ℝ nk) {σ : ℝ → ℝ} (R : Relaxation σ)
     (W1 : Mat ℝ n₂ nk) (b1 : Vec ℝ n₂) (Y : Interval (Vec ℝ nk))
     (x : Vec ℝ n₀) (ε : ℝ) (E : Finset (Fin n₀)) (l : Fin n₃)
