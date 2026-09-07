@@ -1,4 +1,4 @@
-import CORALean.ContSet.HPolytope.Float.Operations.And
+import CORALean.ContSet.HPolytope.Float.Operations.Intersection
 import CORALean.ContSet.HPolytope.Float.Operations.Ineqs
 
 /-!
@@ -41,10 +41,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n₁ : ℕ}
 def HPolytope.halfScaledLeft (P : HPolytope 𝕋 n₁) (n₂ : ℕ) : HPolytope 𝕋 (n₁ + n₂ + 1) :=
   (HPolytope.ineqs (fun i => Fin.append (Fin.append (P.A i) fun _ : Fin n₂ => zero)
         fun _ : Fin 1 => neg (half (P.b i)))
-      fun i => half (P.b i)).and
+      fun i => half (P.b i)).intersection
     ((HPolytope.ineqs (fun i => Fin.append (Fin.append (P.Ae i) fun _ : Fin n₂ => zero)
           fun _ : Fin 1 => neg (half (P.be.sup i)))
-        fun i => half (P.be.sup i)).and
+        fun i => half (P.be.sup i)).intersection
       (HPolytope.ineqs (fun i => Fin.append (Fin.append (fun k => neg (P.Ae i k))
             fun _ : Fin n₂ => zero) fun _ : Fin 1 => half (P.be.inf i))
         fun i => neg (half (P.be.inf i))))

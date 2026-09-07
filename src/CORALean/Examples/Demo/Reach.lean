@@ -47,7 +47,7 @@ variable (p : ℕ)
 /-- `[[15/16, -1/8], [1/8, 15/16]]`, every entry exact in four bits. -/
 def A : Mat (Dyadic p) 2 2 := !![dy 15 (-4), dy (-1) (-3); dy 1 (-3), dy 15 (-4)]
 
-def sys : Real.LinearSysDT (Dyadic p) 2 := ⟨A p⟩
+def sys : LinearSysDT (Dyadic p) 2 := ⟨A p⟩
 
 /-- `[0.875, 1.125] × [-0.125, 0.125]`, as a zonotope with two generators. -/
 def R₀ : Zonotope (Dyadic p) 2 where
@@ -87,7 +87,7 @@ def errorRow (k : ℕ) : String :=
 /-- `y = x₁ + u₂`: a scalar sensor reading one state coordinate, with the second
 input coordinate entering it directly. Both matrices are selection rows, so
 nothing here rounds and the table is the enclosure alone. -/
-def out : Real.OutputEq (Dyadic p) 2 2 1 where
+def out : OutputEq (Dyadic p) 2 2 1 where
   C := !![dy 1 0, dy 0 0]
   D := !![dy 0 0, dy 1 0]
 

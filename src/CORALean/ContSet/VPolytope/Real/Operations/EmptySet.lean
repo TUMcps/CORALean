@@ -7,7 +7,7 @@ No vertices: there is no coefficient family over an empty index summing to one,
 so this denotes `∅`. A vertex description needs no unsatisfiable row to say it,
 unlike a halfspace one.
 
-What `and` returns when two polytopes are shown disjoint.
+What `intersection` returns when two polytopes are shown disjoint.
 -/
 
 -- Authors:       Tobias Ladner

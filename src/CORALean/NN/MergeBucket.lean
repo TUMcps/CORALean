@@ -31,25 +31,25 @@ any bucket exists to sum over.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- [1, Def. 3]'s `B_{k,y,δ}`: the neurons whose bounds fit in `[y-δ, y+δ]`. -/
-def mergeBucket {n : ℕ} (Y : Interval (Vec ℝ n)) (y δ : ℝ) (i : Fin n) : Prop :=
+def mergeBucket {n : ℕ} (Y : Real.Interval (Vec ℝ n)) (y δ : ℝ) (i : Fin n) : Prop :=
   y - δ ≤ Y.inf i ∧ Y.sup i ≤ y + δ
 
-noncomputable instance {n : ℕ} (Y : Interval (Vec ℝ n)) (y δ : ℝ) :
+noncomputable instance {n : ℕ} (Y : Real.Interval (Vec ℝ n)) (y δ : ℝ) :
     DecidablePred (mergeBucket Y y δ) :=
   fun i => by unfold mergeBucket; infer_instance
 
 /-- The split `neuronMerging_sandwich_outer` consumes, survivors on the left. -/
-noncomputable def mergeSplit {n : ℕ} (Y : Interval (Vec ℝ n)) (y δ : ℝ) :=
+noncomputable def mergeSplit {n : ℕ} (Y : Real.Interval (Vec ℝ n)) (y δ : ℝ) :=
   Partition.ofPred (mergeBucket Y y δ)
 
 /-- A bucketed neuron's bounds are within `2δ` of each other, `y ± δ` both between them. -/
-theorem mergeBucket_width {n : ℕ} (Y : Interval (Vec ℝ n)) (y δ : ℝ) {i : Fin n}
+theorem mergeBucket_width {n : ℕ} (Y : Real.Interval (Vec ℝ n)) (y δ : ℝ) {i : Fin n}
     (hi : mergeBucket Y y δ i) : Y.sup i - Y.inf i ≤ 2 * δ := by
   linarith [hi.1, hi.2]
 
@@ -61,7 +61,7 @@ theorem mergeRowWeight_nonneg {n n₂ : ℕ} (W : Mat ℝ n₂ n) (i : Fin n₂)
     0 ≤ mergeRowWeight W i :=
   Finset.sum_nonneg fun k _ => abs_nonneg (W i k)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

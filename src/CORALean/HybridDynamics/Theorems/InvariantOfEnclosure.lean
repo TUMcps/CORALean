@@ -1,11 +1,11 @@
 import CORALean.HybridDynamics.Invariant
 import CORALean.HybridDynamics.Theorems.FlowOuterInputSolution
-import CORALean.HybridDynamics.Theorems.JumpAndOuter
+import CORALean.HybridDynamics.Theorems.JumpIntersectionOuter
 
 /-!
 # `Invariant`, discharged from the computed enclosures
 
-`Invariant.jump` falls out of `JumpAndOuter` at `hjump`, one enclosure per
+`Invariant.jump` falls out of `JumpIntersectionOuter` at `hjump`, one enclosure per
 transition met. `Invariant.flow` quantifies over every dwell time and every
 admissible input `u`; `FlowOuterInputSolution` discharges `u` structurally from
 `hconv`/`hclosed`/`hbdd`/`h0` about `ℓ.U`, so no `u` survives the criterion.
@@ -16,8 +16,8 @@ already breaks. And `hflow` asks one `R` to absorb the enclosure at *every*
 dwell time, the invariant nowhere in the statement; under a nonzero drift that
 enclosure grows without bound and no compact `R` contains it.
 
-`jumpAnd` is `And.and` on the guard, so this criterion alone asks the guard to
-be in the state's own family: `HybridAutomaton S S L 𝕋 n` (#39).
+`jumpIntersection` is `Intersection.intersection` on the guard, so this criterion
+alone asks the guard to be in the state's own family (#39).
 
 Kept for those locations. The fixpoint iteration that would find such an `R` is
 left to CORA, as `NonlinearSysDT.confinement_of_subset` leaves its analogue.
@@ -31,8 +31,9 @@ left to CORA, as `NonlinearSysDT.confinement_of_subset` leaves its analogue.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix ContSet Scalar
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
@@ -54,10 +55,10 @@ noncomputable def aux_remainder (ℓ : Location S G L 𝕋 n) (τ : ℝ) (m : �
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- `Invariant.jump` is `JumpAndOuter` at `hjump`; `Invariant.flow` is
+/-- `Invariant.jump` is `JumpIntersectionOuter` at `hjump`; `Invariant.flow` is
 `FlowOuterInputSolution` at `hflow`, an order `m` chosen per dwell time `τ`
 since `hε` cannot hold at one order for every one of them. -/
-theorem HybridAutomaton.invariant_of_enclosure [∀ n, And (S n) (Vec ℝ n)]
+theorem HybridAutomaton.invariant_of_enclosure [∀ n, Intersection (S n) (Vec ℝ n)]
     (HA : HybridAutomaton S S L 𝕋 n) (R : L → S n)
     (hconv : ∀ ℓ : L, Convex ℝ (construct (HA.loc ℓ).U))
     (hclosed : ∀ ℓ : L, IsClosed (construct (HA.loc ℓ).U))
@@ -71,7 +72,7 @@ theorem HybridAutomaton.invariant_of_enclosure [∀ n, And (S n) (Vec ℝ n)]
       construct (Plus.plus ((HA.loc ℓ).timeIntervalStep τ (m + 2) (R ℓ))
         ((HA.loc ℓ).dynamics.inputSolution τ (m + 2) (HA.loc ℓ).U)) ⊆ construct (R ℓ))
     (hjump : ∀ (ℓ : L) (e : Transition S L 𝕋 n), e ∈ (HA.loc ℓ).trans →
-      construct (e.jumpAnd (R ℓ)) ⊆ construct (R e.target)) :
+      construct (e.jumpIntersection (R ℓ)) ⊆ construct (R e.target)) :
     HA.Invariant R where
   flow {ℓ τ x u} h h₀ {t} ht := by
     rcases h.nonneg.lt_or_eq with hτ | hτ0
@@ -83,9 +84,9 @@ theorem HybridAutomaton.invariant_of_enclosure [∀ n, And (S n) (Vec ℝ n)]
     · -- `τ = 0`: `Set.Icc 0 0` is `{0}`, and `h₀` already places `x 0`
       subst hτ0
       rwa [le_antisymm ht.2 ht.1]
-  jump {ℓ e} hmem {z} hz hguard := hjump ℓ e hmem (e.jumpAnd_outer hz hguard)
+  jump {ℓ e} hmem {z} hz hguard := hjump ℓ e hmem (e.jumpIntersection_outer hz hguard)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

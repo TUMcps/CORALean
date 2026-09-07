@@ -22,12 +22,12 @@ reduced network's enclosure holds on the original network's exact image, by
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
-  [Mtimes (Mat ℝ) S] [IntervalOuter S] [OfInterval S]
+  [Mtimes (Mat ℝ) S] [Real.IntervalOuter S] [Real.OfInterval S]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -40,7 +40,7 @@ theorem NeuralNetwork.holds_of_reducesAt {n m : ℕ} {s : S n} {nn nn' : NeuralN
     (hspec : spec.Holds (construct (nn'.enclose s))) : spec.Holds (f '' construct s) :=
   spec.holds_of_outer (NeuralNetwork.reducesAt_outer h) hspec
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -23,7 +23,7 @@ about the network.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -38,7 +38,7 @@ theorem NeuralNetwork.holds_of_enclose {nn : NeuralNetwork S n m} {f : Vec ℝ n
     spec.Holds (f '' construct X) :=
   spec.holds_of_outer (hf.image_subset X) h
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

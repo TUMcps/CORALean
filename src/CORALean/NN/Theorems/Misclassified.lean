@@ -17,7 +17,7 @@ state the same requirement over an abstract network's output.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -26,7 +26,7 @@ namespace CORALean.Real
 winner. -/
 def misclassified (m : ℕ) (l : Fin m) : Set (Vec ℝ m) := {y | ∃ j, j ≠ l ∧ y l ≤ y j}
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

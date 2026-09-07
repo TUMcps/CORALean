@@ -19,10 +19,10 @@ state's `S`, and every statement here asks `ContSet` of it and nothing else:
 they are read as `construct e.guard` and `construct ℓ.inv`, never computed with
 (#39). `Examples.BouncingBall` is a zonotope state with halfspace guards.
 
-The exception is where a representation *computes* the cut: `Theorems.JumpAndOuter`
-and `Theorems.TimeIntervalInvOuter` call `And.and`, homogeneous, so those two
-alone ask the guard to be in `S`. Without an `And` instance there is still
-`Theorems.JumpOuter`'s `hand` bargain, lossless where the intersection is
+The exception is where a representation *computes* the cut: `Theorems.JumpIntersectionOuter`
+and `Theorems.TimeIntervalInvOuter` call `Intersection.intersection`, homogeneous, so those two
+alone ask the guard to be in `S`. Without an `Intersection` instance there is still
+`Theorems.JumpOuter`'s `hinter` bargain, lossless where the intersection is
 exact, as `Theorems.JumpOuterConZonotope` shows.
 
 Time-triggered only in the sense that nothing here is: a stay runs for a dwell

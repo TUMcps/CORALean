@@ -22,12 +22,12 @@ differentiable activation gets this at its own derivative.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
-open Matrix ContSet Plus Mtimes IntervalOuter OfInterval
+open Matrix ContSet Plus Mtimes Real.IntervalOuter Real.OfInterval
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
-  [Mtimes (Mat ℝ) S] [IntervalOuter S] [OfInterval S] {n : ℕ}
+  [Mtimes (Mat ℝ) S] [Real.IntervalOuter S] [Real.OfInterval S] {n : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -47,7 +47,7 @@ theorem Layer.activation_sensitivity {σ σ' : ℝ → ℝ} (hd : ∀ t, HasDeri
   show σ' (x i) * v i = (Matrix.diagonal (fun i => σ' (x i)) *ᵥ v) i
   rw [Matrix.mulVec_diagonal]
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -1,7 +1,7 @@
 import CORALean.ContSet.ConZonotope.Real.Theorems.MemConstruct
 import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructEqImage
 import CORALean.ContSet.ConZonotope.Real.Theorems.PlusExact
-import CORALean.ContSet.ConZonotope.Real.Theorems.AndExact
+import CORALean.ContSet.ConZonotope.Real.Theorems.IntersectionExact
 import CORALean.ContSet.ConZonotope.Real.Theorems.MapExact
 import CORALean.ContSet.ConZonotope.Real.Theorems.MtimesExact
 import CORALean.ContSet.ConZonotope.Real.Theorems.MtimesIntervalMatOuter
@@ -21,7 +21,7 @@ import CORALean.ContSet.ConZonotope.Real.Theorems.OfPointMem
 /-!
 # What `ConZonotope` guarantees
 
-`and`, `plus` and `map` exactly; the interval-matrix product and `reduce` as
+`intersection`, `plus` and `map` exactly; the interval-matrix product and `reduce` as
 enclosures, `reduce` by way of `zonotope_contains`, and `reduce_order_le` for its
 own generator-count bound. `linComb` has both directions: `_outer` is what the
 interface asks for and holds always, `_inner` is what says the result is the

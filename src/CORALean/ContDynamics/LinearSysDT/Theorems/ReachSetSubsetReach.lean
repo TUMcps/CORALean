@@ -21,7 +21,7 @@ tighter of the two is available at every step without either being trusted.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix Pointwise ContSet Scalar Plus Reduce Mtimes
 
@@ -42,7 +42,7 @@ theorem LinearSysDT.reachSet_subset_reach (sys : LinearSysDT 𝕋 n) {o : ℕ} (
     show toRealMat sys.A *ᵥ y + w ∈ construct (sys.reach o ho (sys.reach o ho R₀ U k) U 1)
     exact sys.reach_one_outer ho _ _ (ih hy) hw
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

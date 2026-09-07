@@ -16,7 +16,7 @@ induction.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet Scalar
 
@@ -33,7 +33,7 @@ noncomputable def LinearSys.inputTaylorSum (sys : LinearSys 𝕋 n) (r : ℝ) (U
   | i + 1 => Plus.plus (sys.inputTaylorSum r U i)
       (Mtimes.mtimes (sys.inputTerm r (i + 1)) U)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

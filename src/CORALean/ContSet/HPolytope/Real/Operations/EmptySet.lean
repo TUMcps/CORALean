@@ -3,7 +3,7 @@ import CORALean.ContSet.HPolytope.Real.HPolytope
 /-!
 # `HPolytope.emptySet`
 
-One unsatisfiable row, `0 ≤ -1`: the absorbing element of `and`, and what a
+One unsatisfiable row, `0 ≤ -1`: the absorbing element of `intersection`, and what a
 halfspace description says when it has nothing.
 
 Stated with a row rather than with no points at all, because a representation

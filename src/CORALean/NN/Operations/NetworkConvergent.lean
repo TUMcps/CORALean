@@ -20,7 +20,7 @@ linear layer by its matrix, an activation by its own slope.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
@@ -34,7 +34,7 @@ def RefinableNetwork.Convergent : ∀ {n m : ℕ}, RefinableNetwork S n m → Pr
   | _, _, .cons L rest =>
       L.Convergent ∧ (∃ K : NNReal, LipschitzWith K rest.eval) ∧ rest.Convergent
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

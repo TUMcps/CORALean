@@ -33,8 +33,9 @@ restated on the reachable set rather than on one run.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix ContSet Scalar NormedSpace
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
@@ -82,7 +83,7 @@ theorem NeurNetContrSys.reach_outer (sys : NeurNetContrSys 𝕋 S n) (o η N : �
       = (i : ℝ) * ((N : ℝ) * Δt) + (N : ℝ) * Δt from by push_cast; ring]
     exact key
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

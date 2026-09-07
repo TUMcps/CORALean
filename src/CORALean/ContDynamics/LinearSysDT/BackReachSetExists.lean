@@ -27,7 +27,7 @@ name promises; `Theorems.BackReachExistsOuter` puts a computed set around it.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar
 
@@ -45,7 +45,7 @@ def LinearSysDT.backReachSetExists (sys : LinearSysDT 𝕋 n) (T U : S n) : ℕ 
   | k + 1 => {x | ∃ u ∈ construct U,
       toRealMat sys.A *ᵥ x + u ∈ sys.backReachSetExists T U k}
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

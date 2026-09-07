@@ -28,7 +28,7 @@ induction move to a start state no set was named for.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar
 
@@ -77,7 +77,7 @@ theorem LinearSysDT.backReachSetExists_trajectory (sys : LinearSysDT 𝕋 n) (T 
   obtain ⟨u, hu, hT⟩ := sys.aux_backReachSetExists_input T U k x₀ hx
   exact ⟨u, ⟨hx₀, hu, fun _ _ => rfl⟩, hT⟩
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

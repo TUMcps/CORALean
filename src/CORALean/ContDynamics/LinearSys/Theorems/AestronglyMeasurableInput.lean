@@ -20,7 +20,7 @@ subtracts the piece before an intermediate time from it.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar MeasureTheory
 
@@ -49,7 +49,7 @@ theorem LinearSys.Trajectory.aestronglyMeasurable_input {sys : LinearSys 𝕋 n}
   refine (ae_restrict_iff' measurableSet_Ioo).mpr (Filter.Eventually.of_forall fun s hs => ?_)
   exact (traj.input_eq_derivWithin hT ⟨hs.1.le, hs.2⟩).symm
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

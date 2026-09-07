@@ -30,7 +30,7 @@ set. `TrajectoryOn K` is the same, known only for `k < K`.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet
 
@@ -57,7 +57,7 @@ structure LinParamSysDT.TrajectoryOn (sys : LinParamSysDT 𝕄 n) (R₀ U : S n)
   input (k : ℕ) (hk : k < K) : u k ∈ construct U
   step (k : ℕ) (hk : k < K) : ∃ A ∈ construct sys.A, x (k + 1) = A *ᵥ x k + u k
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

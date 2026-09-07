@@ -17,7 +17,7 @@ transfers to every schedule for free.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 
@@ -28,7 +28,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 def RefinableNetwork.encloseAt (rn : RefinableNetwork S n m) (sch : Schedule) (X : S n) : S m :=
   (rn.atSchedule sch).enclose X
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -19,7 +19,7 @@ substitution `τ = c - s` leaves behind. The reflected argument sweeps
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar MeasureTheory
 
@@ -55,7 +55,7 @@ theorem LinearSys.Trajectory.aestronglyMeasurable_input_reflected {sys : LinearS
   refine (ae_restrict_iff' measurableSet_Ioc).mpr (Filter.Eventually.of_forall fun τ hτ => ?_)
   exact (traj.input_eq_derivWithin hT (hmem τ hτ)).symm
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

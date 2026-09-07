@@ -1,0 +1,45 @@
+import CORALean.HybridDynamics.Operations.JumpIntersection
+import CORALean.HybridDynamics.Theorems.JumpOuter
+
+/-!
+# `Transition.jumpIntersection` contains what leaves through the transition
+
+`jump_outer` at `hinter := Intersection.intersection_outer R e.guard`: the
+interface's guarantee is exactly the inclusion `jump_outer` asks for, so the
+guard intersection needs no caller-supplied enclosure here, unlike at a
+representation with no `Intersection` instance.
+
+The price is that `Intersection.intersection` takes two sets of one type, so the
+guard is asked to be in the state's own family here: `Transition S L 𝕋 n` (#39).
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       06-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open Matrix ContSet Scalar Plus Mtimes Real.OfInterval
+
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
+variable {𝕋 : Type} [Scalar 𝕋] [Mtimes (Mat 𝕋) S] [Real.OfInterval S] {L : Type} {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+/-- `R` encloses the state at the moment of the jump; the reset image then lands
+in `jumpIntersection R`, the guard intersection computed rather than assumed. -/
+theorem Transition.jumpIntersection_outer [∀ n, Intersection (S n) (Vec ℝ n)]
+    (e : Transition S L 𝕋 n) {R : S n} {z : Vec ℝ n} (hz : z ∈ construct R)
+    (hguard : z ∈ construct e.guard) :
+    e.reset z ∈ construct (e.jumpIntersection R) :=
+  e.jump_outer (Intersection.intersection_outer R e.guard) hz hguard
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -21,7 +21,7 @@ Reachability and simulation answer opposite halves of the same question.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar Plus Reduce Mtimes
 
@@ -39,7 +39,7 @@ theorem LinearSysDT.not_holds_of_simulate (sys : LinearSysDT 𝕋 n) {o : ℕ} (
     ¬ spec.Holds (construct (sys.reach o ho R₀ U k)) :=
   fun h => hbad (sys.holds_of_reach ho R₀ U spec (sys.simulate_trajectory hx₀ hu) k h)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -18,7 +18,7 @@ into `sys.f (x t) (u t) (p t)`.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -40,7 +40,7 @@ theorem NonlinParamSys.Trajectory.toNonlinearSys {sys : NonlinParamSys n m q} {T
     have hp : Fin.append (u t) (p t) ∘ Fin.natAdd m = p t := funext (Fin.append_right (u t) (p t))
     simpa [NonlinParamSys.toNonlinearSys, hu, hp] using traj.flow t ht
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

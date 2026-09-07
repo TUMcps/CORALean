@@ -24,7 +24,7 @@ than on doubt.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix Scalar
 
@@ -36,7 +36,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 /-- `LinearSysDT`, as the point-matrix instantiation `𝕄 := Mat 𝕋`. -/
 def LinearSysDT.toLinParam (sys : LinearSysDT 𝕋 n) : LinParamSysDT (Mat 𝕋) n := ⟨sys.A⟩
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

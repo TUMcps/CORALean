@@ -27,7 +27,7 @@ exactly what `exists_mergeTolerance` turns into an existence statement.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix
 
@@ -37,9 +37,9 @@ open Matrix
 /-- `mergeError_width_le`, coarsened to `mergeRowWeight`: the bound no longer
 mentions the split at all, which is the point — it holds before `δ` picks any
 bucket. -/
-theorem mergeError_width_le_row {n n₂ : ℕ} (Y : Interval (Vec ℝ n)) (y δ : ℝ) (hδ : 0 ≤ δ)
+theorem mergeError_width_le_row {n n₂ : ℕ} (Y : Real.Interval (Vec ℝ n)) (y δ : ℝ) (hδ : 0 ≤ δ)
     (hY : Y.IsNonempty) (W : Mat ℝ n₂ n) (i : Fin n₂) :
-    let EB := Interval.mtimes (W.submatrix id (mergeSplit Y y δ).right)
+    let EB := Real.Interval.mtimes (W.submatrix id (mergeSplit Y y δ).right)
       ⟨Y.inf ∘ (mergeSplit Y y δ).right, Y.sup ∘ (mergeSplit Y y δ).right⟩
     EB.sup i - EB.inf i ≤ mergeRowWeight W i * (2 * δ) := by -- --- PROOF ---
   intro EB
@@ -53,7 +53,7 @@ theorem mergeError_width_le_row {n n₂ : ℕ} (Y : Interval (Vec ℝ n)) (y δ 
     linarith
   exact le_trans hbase (mul_le_mul_of_nonneg_right hbucket_le (by linarith))
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

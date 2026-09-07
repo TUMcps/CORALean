@@ -18,7 +18,7 @@ the target's side of every margin.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -41,7 +41,7 @@ theorem NeuralNetwork.classifies {nn : NeuralNetwork S n m} {f : Vec ℝ n → V
   by_contra hc
   exact hnot ⟨j, hj, not_lt.mp hc⟩
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

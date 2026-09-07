@@ -23,7 +23,7 @@ instances to even be written down and none of them to be Lipschitz.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix
 
@@ -65,7 +65,7 @@ theorem Layer.lipschitzWith_linear_eval (W : Mat ℝ m n) (b : Vec ℝ m) :
     _ = (∑ j, |W i j|) * dist x y := by rw [Finset.sum_mul]
     _ ≤ _ := mul_le_mul_of_nonneg_right hrow hd
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

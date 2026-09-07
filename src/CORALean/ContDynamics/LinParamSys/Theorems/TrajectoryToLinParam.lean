@@ -19,7 +19,7 @@ in the set, never that the set is only the point. Not stated.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar
 
@@ -38,7 +38,7 @@ theorem LinearSys.Trajectory.toLinParam {sys : LinearSys 𝕋 n} {T : Set ℝ} {
   param := OfPoint.mem_ofPoint (toRealMat sys.A)
   flow := traj.flow
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

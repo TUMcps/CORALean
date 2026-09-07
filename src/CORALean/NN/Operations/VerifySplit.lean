@@ -25,7 +25,7 @@ specification here, not that it fails; see `Theorems.VerifySplitSound`.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 
@@ -42,7 +42,7 @@ def NeuralNetwork.verifySplit (nn : NeuralNetwork S n m) (check : S m → Bool)
         (nn.verifySplit check splitter d (splitter X).1 &&
          nn.verifySplit check splitter d (splitter X).2)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

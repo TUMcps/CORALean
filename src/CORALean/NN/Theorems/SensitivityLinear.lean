@@ -21,12 +21,12 @@ normalization — reads its sensitivity off this one, at its own matrix.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
-open Matrix ContSet Plus Mtimes OfInterval
+open Matrix ContSet Plus Mtimes Real.OfInterval
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
-  [Mtimes (Mat ℝ) S] [OfInterval S] {n m : ℕ}
+  [Mtimes (Mat ℝ) S] [Real.OfInterval S] {n m : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -36,7 +36,7 @@ theorem Layer.linear_sensitivity (W : Mat ℝ m n) (b : Vec ℝ m) (x : Vec ℝ 
   Layer.sensitivity_eq_of_hasFDerivAt
     ((LinearMap.toContinuousLinearMap (Matrix.mulVecLin W)).hasFDerivAt.add_const b)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

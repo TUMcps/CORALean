@@ -17,8 +17,9 @@ else is a property of `U` that a representation supplies.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix ContSet Scalar
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
@@ -54,7 +55,7 @@ theorem LinearSys.Trajectory.timeInterval_outer_inputSolution {sys : LinearSys ð
     (traj.inputSolution_timeInterval_outer hr hT (m + 2) hÎµ hconv hclosed hbdd
       hRconv hRclosed hRbdd h0 ht0 htr)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

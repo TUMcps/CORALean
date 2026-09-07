@@ -30,11 +30,11 @@ the same corollary under the containment [1, Prop. 2] states, and needs
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
-open ContSet OfInterval
+open ContSet Real.OfInterval
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OfInterval S] {n m : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real.OfInterval S] {n m : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -51,7 +51,7 @@ theorem NeuralNetwork.minSuffExplanationAbstract_of_refined (nnAbs nnRef : Neura
     hmin.2 i hi (NeuralNetwork.suffExplanationAbstract_of_refined nnAbs nnRef x ε (E \ {i}) l
       (hrefine _) hdrop)⟩
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

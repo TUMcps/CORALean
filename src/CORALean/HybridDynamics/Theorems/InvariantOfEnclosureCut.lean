@@ -12,10 +12,10 @@ inside `ℓ.inv`, so a dwell time long enough to leave the location no longer ha
 to be absorbed by `R`. A trajectory that leaves `ℓ.inv` has left the location.
 
 The cut is `∩ construct (HA.loc ℓ).inv` on sets rather than
-`Location.timeIntervalStepInv`: `And.and` computes that set, but the criterion
-needs only the containment, and asking for `And` would shut out `Zonotope`,
+`Location.timeIntervalStepInv`: `Intersection.intersection` computes that set, but the criterion
+needs only the containment, and asking for `Intersection` would shut out `Zonotope`,
 which has none. `hjump` names `Rg` for the same reason — `jump_outer`'s bargain,
-any enclosure of the guard intersection, `And.and` where there is one.
+any enclosure of the guard intersection, `Intersection.intersection` where there is one.
 
 Both cuts being set inclusions is what lets the invariant and the guard sit in
 their own representation `G`: this theorem asks `ContSet` of it and nothing
@@ -31,8 +31,9 @@ guards, `hflow` reading the invariant across the two (#39).
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix ContSet Scalar
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
@@ -72,10 +73,10 @@ theorem HybridAutomaton.invariant_of_enclosure_cut [∀ n, OfPoint (S n) (Vec �
       subst hτ0
       rwa [le_antisymm ht.2 ht.1]
   jump {ℓ e} hmem {z} hz hguard := by
-    obtain ⟨Rg, hand, hsub⟩ := hjump ℓ e hmem
-    exact hsub (e.jump_outer hand hz hguard)
+    obtain ⟨Rg, hinter, hsub⟩ := hjump ℓ e hmem
+    exact hsub (e.jump_outer hinter hz hguard)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

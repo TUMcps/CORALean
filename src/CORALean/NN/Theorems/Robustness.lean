@@ -20,7 +20,7 @@ catches up, and then it is checked by the same theorem everything else is.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -37,7 +37,7 @@ theorem NeuralNetwork.holds_robustness {nn : NeuralNetwork S n m} {f : Vec ℝ n
     (Specification.unsafeSet (misclassified m l)).Holds (f '' construct X) :=
   NeuralNetwork.holds_of_enclose hf X _ (disjoint_misclassified_of_bounds l u h)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

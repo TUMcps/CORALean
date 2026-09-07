@@ -22,7 +22,7 @@ exactly-known output map is the normal case here, not an oversight.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar Plus Reduce Mtimes
 
@@ -40,7 +40,7 @@ theorem LinParamSysDT.output_outer (sys : LinParamSysDT 𝕄 n) (out : OutputEq 
     out.eval (x k) (u k) ∈ construct (out.outputSet (sys.reach o ho R₀ U k) U) :=
   out.outputSet_outer _ _ (sys.reach_outer ho R₀ U traj k) (traj.input k)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

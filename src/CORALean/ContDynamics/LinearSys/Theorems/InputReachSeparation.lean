@@ -32,7 +32,7 @@ back to a window starting at zero.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar NormedSpace MeasureTheory Pointwise
 
@@ -162,7 +162,7 @@ theorem LinearSys.inputReach_separation (sys : LinearSys 𝕋 n) {U : S n} {a b 
     have hrw : a + b - s = b - (s - a) := by ring
     rw [hrw]
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

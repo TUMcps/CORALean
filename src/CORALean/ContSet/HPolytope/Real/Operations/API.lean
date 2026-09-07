@@ -1,4 +1,4 @@
-import CORALean.ContSet.HPolytope.Real.Operations.And
+import CORALean.ContSet.HPolytope.Real.Operations.Intersection
 import CORALean.ContSet.HPolytope.Real.Operations.TightAt
 import CORALean.ContSet.HPolytope.Real.Operations.BasicPoint
 import CORALean.ContSet.HPolytope.Real.Operations.BasicPointTightAt

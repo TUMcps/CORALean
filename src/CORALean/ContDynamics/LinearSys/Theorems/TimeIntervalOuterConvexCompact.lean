@@ -30,8 +30,9 @@ and needs a representation that can recentre itself.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix ContSet Scalar NormedSpace MeasureTheory
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
@@ -61,7 +62,7 @@ theorem LinearSys.Trajectory.timeInterval_outer_convexCompact
     (ConvexSet.convex_construct _) (CompactSet.isClosed_construct _)
     (CompactSet.isBounded_construct _) h0
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

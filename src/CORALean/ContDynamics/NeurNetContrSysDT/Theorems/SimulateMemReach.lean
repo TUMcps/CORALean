@@ -16,7 +16,7 @@ stated once so nothing downstream redoes the induction on `reach`.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar Plus Reduce Mtimes
 
@@ -33,7 +33,7 @@ theorem NeurNetContrSysDT.simulate_mem_reach (sys : NeurNetContrSysDT 𝕋 S n) 
     sys.simulate π x₀ k ∈ construct (sys.reach o ho R₀ k) :=
   sys.reach_outer ho R₀ hπ (sys.simulate_trajectory π hx₀) k
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

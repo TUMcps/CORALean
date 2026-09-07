@@ -28,11 +28,11 @@ queries one feature down.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
-open ContSet OfInterval
+open ContSet Real.OfInterval
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OfInterval S] {n m : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real.OfInterval S] {n m : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -48,7 +48,7 @@ theorem NeuralNetwork.minSuffExplanationAbstract_of_min (f : Vec ℝ n → Vec �
   ⟨hsuffAbs, fun i hi hdrop =>
     hmin.2 i hi (suffExplanation_of_abstract f nnAbs x ε (E \ {i}) l (hcontain _) hdrop)⟩
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

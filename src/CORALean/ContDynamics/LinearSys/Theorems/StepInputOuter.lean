@@ -32,8 +32,9 @@ enclosure stays a hypothesis.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix ContSet Scalar NormedSpace MeasureTheory
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
@@ -83,7 +84,7 @@ theorem LinearSys.Trajectory.stepInput_outer [Mtimes ℐ S]
   rw [sys.stepInput_eq_shifted u Δt k]
   exact sys.inputSolution_outer hΔt η hε hconv hclosed hbdd hRconv hRclosed hRbdd hu hmeas
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

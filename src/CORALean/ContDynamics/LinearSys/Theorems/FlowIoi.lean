@@ -17,7 +17,7 @@ for free.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar
 
@@ -35,7 +35,7 @@ theorem LinearSys.Trajectory.flow_Ioi (traj : sys.Trajectory T R₀ U x u) {a b 
     HasDerivWithinAt x (toRealMat sys.A *ᵥ x t + u t) (Set.Ioi t) t :=
   (traj.flow_Ici hT ht).mono Set.Ioi_subset_Ici_self
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

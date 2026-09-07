@@ -21,7 +21,7 @@ Reachability and simulation answer opposite halves of the same question.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar Plus Reduce Mtimes
 
@@ -39,7 +39,7 @@ theorem NeurNetContrSysDT.not_holds_of_simulate (sys : NeurNetContrSysDT 𝕋 S 
     ¬ spec.Holds (construct (sys.reach o ho R₀ k)) :=
   fun h => hbad (sys.holds_of_reach ho R₀ spec hπ (sys.simulate_trajectory π hx₀) k h)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

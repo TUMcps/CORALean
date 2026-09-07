@@ -22,7 +22,7 @@ consume it ask for the window they speak about.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar
 
@@ -39,7 +39,7 @@ theorem LinearSys.Trajectory.reachSet_outer {sys : LinearSys 𝕋 n} {T : Set �
     x t ∈ sys.reachSet T R₀ U t :=
   ⟨x, u, traj, rfl⟩
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

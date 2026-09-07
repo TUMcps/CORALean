@@ -28,7 +28,7 @@ computation, so it carries none of `reach`'s set instances.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar Plus Reduce Mtimes
 
@@ -62,7 +62,7 @@ def LinearSysDT.simulate (sys : LinearSysDT 𝕋 n) (x₀ : Vec ℝ n) (u : ℕ 
   | 0 => x₀
   | k + 1 => toRealMat sys.A *ᵥ sys.simulate x₀ u k + u k
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

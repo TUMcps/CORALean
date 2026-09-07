@@ -17,7 +17,7 @@ equation read as a recursive definition rather than as a predicate.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar
 
@@ -35,7 +35,7 @@ theorem LinearSysDT.simulate_trajectory (sys : LinearSysDT 𝕋 n) {R₀ U : S n
   input := hu
   step _ := rfl
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -20,8 +20,9 @@ built on a zonotope.
 -- Last update:   06-September-2026
 -- Last revision: ---
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix ContSet
 
 -- Anonymous, since their content is that they elaborate.
@@ -53,4 +54,4 @@ example {n : ℕ} (sys : LinParamSysDT 𝕄𝒫 n) {o : ℕ} (ho : 0 < o) (R₀ 
     x k ∈ construct (sys.reach (S := fun n => VPolytope (Vec ℝ n)) o ho R₀ U k) :=
   sys.reach_outer (S := fun n => VPolytope (Vec ℝ n)) ho R₀ U traj k
 
-end CORALean.Real
+end CORALean

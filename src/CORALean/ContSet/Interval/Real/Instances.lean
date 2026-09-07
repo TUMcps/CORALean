@@ -1,6 +1,6 @@
 import CORALean.ContSet.ContSet.CompactSet
 import CORALean.ContSet.ContSet.ConvexSet
-import CORALean.ContSet.Interval.Real.Operations.AndExact
+import CORALean.ContSet.Interval.Real.Operations.IntersectionExact
 import CORALean.ContSet.Interval.Real.Theorems.Convex
 import CORALean.ContSet.Interval.Real.Theorems.IsCompact
 import CORALean.ContSet.Interval.Real.Theorems.LinCombOuter
@@ -26,7 +26,7 @@ No `Recentre`: it asks `0 ∈ construct (recentre s)` unconditionally, and a
 crossed box denotes `∅`, holding nothing at all. `Theorems/RecentreZeroMem`
 and `RecentreSubMem` carry the nonemptiness this class refuses to ask for.
 
-`And` too, coordinatewise and exact: intersecting two boxes takes the pointwise
+`Intersection` too, coordinatewise and exact: intersecting two boxes takes the pointwise
 max of the lower bounds and the pointwise min of the upper ones.
 -/
 
@@ -72,9 +72,9 @@ instance : MinkDiff (Interval (Vec ℝ n)) (Vec ℝ n) where
   minkDiff := Interval.minkDiff
   minkDiff_inner := Interval.minkDiff_inner
 
-instance : And (Interval (Vec ℝ n)) (Vec ℝ n) where
-  and := Interval.and
-  and_outer I₁ I₂ := (Interval.and_exact I₁ I₂).symm.subset
+instance : Intersection (Interval (Vec ℝ n)) (Vec ℝ n) where
+  intersection := Interval.intersection
+  intersection_outer I₁ I₂ := (Interval.intersection_exact I₁ I₂).symm.subset
 
 instance : LinComb (Interval (Vec ℝ n)) (Vec ℝ n) where
   linComb := Interval.linComb

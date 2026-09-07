@@ -29,7 +29,7 @@ an extra input.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -60,7 +60,7 @@ structure NonlinParamSys.ConstTrajectory (sys : NonlinParamSys n m q) (T : Set �
   param : p ∈ construct P
   flow (t : ℝ) (ht : t ∈ T) : HasDerivWithinAt x (sys.f (x t) (u t) p) T t
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

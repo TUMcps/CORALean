@@ -26,7 +26,7 @@ than an exact discretization would be if the exponential could be computed.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar NormedSpace
 
@@ -54,10 +54,10 @@ theorem LinearSys.Trajectory.discretizeEnclosure {sys : LinearSys 𝕋 n} {T : S
       (fun k : ℕ => x (k * Δt)) (sys.stepInput u Δt) where
   init := by simpa using traj.init
   input k := hUd k
-  step k := ⟨exp (Δt • toRealMat sys.A), MatExp.exp_mem_expEnclosure _ η hε, by
+  step k := ⟨exp (Δt • toRealMat sys.A), Real.MatExp.exp_mem_expEnclosure _ η hε, by
     simpa [LinearSys.discretize] using traj.discretize_step hΔt hU k (step_subset hΔt hT k)⟩
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

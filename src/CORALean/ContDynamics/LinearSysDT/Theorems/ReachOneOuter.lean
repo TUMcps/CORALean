@@ -21,7 +21,7 @@ more than `reach` itself does.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix Pointwise ContSet Scalar Plus Reduce Mtimes
 
@@ -40,7 +40,7 @@ theorem LinearSysDT.reach_one_outer (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0
       (mtimes_outer sys.A _ (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hx)))
       hu))
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

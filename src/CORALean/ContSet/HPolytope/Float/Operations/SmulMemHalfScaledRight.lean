@@ -1,5 +1,5 @@
 import CORALean.ContSet.HPolytope.Float.Operations.HalfScaledRight
-import CORALean.ContSet.HPolytope.Float.Operations.MemAndIff
+import CORALean.ContSet.HPolytope.Float.Operations.MemIntersectionIff
 import CORALean.ContSet.HPolytope.Float.Operations.MemIneqsIff
 import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendLast
 import CORALean.ContSet.HPolytope.Float.Operations.MulVecPadRight
@@ -38,8 +38,8 @@ theorem HPolytope.smul_mem_halfScaledRight {P : HPolytope 𝕋 n₂} {y : Vec �
   have hneg : toRealMat (fun i' k => neg (P.Ae i' k)) = -toRealMat P.Ae := by
     funext i' k
     exact toReal_neg _
-  refine HPolytope.mem_and_iff.mpr ⟨HPolytope.mem_ineqs_iff.mpr fun i => ?_,
-    HPolytope.mem_and_iff.mpr ⟨HPolytope.mem_ineqs_iff.mpr fun i => ?_,
+  refine HPolytope.mem_intersection_iff.mpr ⟨HPolytope.mem_ineqs_iff.mpr fun i => ?_,
+    HPolytope.mem_intersection_iff.mpr ⟨HPolytope.mem_ineqs_iff.mpr fun i => ?_,
       HPolytope.mem_ineqs_iff.mpr fun i => ?_⟩⟩
   -- an inequality row: its own bound, times a nonnegative weight
   · rw [HPolytope.mulVec_append_last, HPolytope.mulVec_padRight, blockRight_append,

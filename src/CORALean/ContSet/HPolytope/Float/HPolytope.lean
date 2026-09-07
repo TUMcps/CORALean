@@ -49,7 +49,7 @@ structure HPolytope (𝕋 : Type) (n : ℕ) where
 
 def HPolytope.nominal [SoundFloatArithmetic 𝕋] (P : HPolytope 𝕋 n) :
     CORALean.Real.HPolytope (Vec ℝ n) :=
-  (Real.HPolytope.ineqs (toRealMat P.A) (toRealVec P.b)).and
+  (Real.HPolytope.ineqs (toRealMat P.A) (toRealVec P.b)).intersection
     (Real.HPolytope.slab (toRealMat P.Ae) (toRealVec P.be.inf) (toRealVec P.be.sup))
 
 def HPolytope.construct [SoundFloatArithmetic 𝕋] (P : HPolytope 𝕋 n) : Set (Vec ℝ n) :=

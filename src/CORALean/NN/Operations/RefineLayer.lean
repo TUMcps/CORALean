@@ -21,7 +21,7 @@ already spends. One `raise` at every coordinate.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -31,7 +31,7 @@ order at once, which by [1, Lemma 4.3] costs no generators. -/
 def Schedule.refineLayer (sch : Schedule) (l : ℕ) : Schedule :=
   Schedule.raise sch l fun _ => 1
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

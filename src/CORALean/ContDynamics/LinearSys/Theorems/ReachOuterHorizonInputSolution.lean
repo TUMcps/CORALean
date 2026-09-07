@@ -18,8 +18,9 @@ Only the steps inside the horizon are enclosed, which is exactly what
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix ContSet Scalar
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
@@ -53,7 +54,7 @@ theorem LinearSys.Trajectory.reach_outer_horizon_inputSolution [Mtimes ℐ S]
     (fun k hk => traj.stepInput_outer hΔt η hε hconv hclosed hbdd hRconv hRclosed hRbdd k
       (step_subset_horizon hΔt.le hT hk)) ho
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

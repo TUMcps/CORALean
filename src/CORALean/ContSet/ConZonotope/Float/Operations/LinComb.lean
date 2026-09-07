@@ -46,8 +46,8 @@ def ConZonotope.linComb (cZ₁ cZ₂ : ConZonotope 𝕋 n) : ConZonotope 𝕋 n 
   c := Zonotope.midpoint cZ₁.c cZ₂.c
   G := fun i => Fin.append (Fin.append (cZ₁.G i) (cZ₂.G i))
     fun _ : Fin 1 => half (subDown (cZ₁.c i) (cZ₂.c i))
-  P := ((cZ₁.P.and (HPolytope.unitBox 𝕋 cZ₁.h)).halfScaledLeft cZ₂.h).and
-    (HPolytope.halfScaledRight cZ₁.h (cZ₂.P.and (HPolytope.unitBox 𝕋 cZ₂.h)))
+  P := ((cZ₁.P.intersection (HPolytope.unitBox 𝕋 cZ₁.h)).halfScaledLeft cZ₂.h).intersection
+    (HPolytope.halfScaledRight cZ₁.h (cZ₂.P.intersection (HPolytope.unitBox 𝕋 cZ₂.h)))
   E := (cZ₁.E.linComb cZ₂.E).plus
     ((Zonotope.midpointResidual cZ₁.c cZ₂.c).plus
       (Zonotope.generatorError (ConZonotope.linCombGDiff cZ₁ cZ₂)))

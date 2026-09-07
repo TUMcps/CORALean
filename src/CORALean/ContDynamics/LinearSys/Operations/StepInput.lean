@@ -21,7 +21,7 @@ norm — or the terms will not match.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix Scalar NormedSpace MeasureTheory intervalIntegral
 
@@ -38,7 +38,7 @@ noncomputable def LinearSys.stepInput (sys : LinearSys 𝕋 n) (u : ℝ → Vec 
     (k : ℕ) : Vec ℝ n :=
   ∫ s in (k * Δt)..((k + 1) * Δt), exp (((k + 1) * Δt - s) • toRealMat sys.A) *ᵥ u s
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

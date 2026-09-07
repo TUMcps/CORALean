@@ -78,11 +78,11 @@ theorem ConZonotope.aux_mem_linComb_P (cZ₁ cZ₂ : ConZonotope 𝕋 n) {β₁ 
     {β₂ : Vec ℝ cZ₂.h} {lam : ℝ} (hβ₁ : ∀ j, |β₁ j| ≤ 1) (hP₁ : β₁ ∈ cZ₁.P.construct)
     (hβ₂ : ∀ j, |β₂ j| ≤ 1) (hP₂ : β₂ ∈ cZ₂.P.construct) (hl0 : 0 ≤ lam) (hl1 : lam ≤ 1) :
     ConZonotope.aux_linCombCoeff β₁ β₂ lam ∈ (cZ₁.linComb cZ₂).P.construct := by -- --- PROOF ---
-  have hd₁ : β₁ ∈ (cZ₁.P.and (HPolytope.unitBox 𝕋 cZ₁.h)).construct :=
-    HPolytope.mem_and_iff.mpr ⟨hP₁, HPolytope.mem_unitBox_iff.mpr hβ₁⟩
-  have hd₂ : β₂ ∈ (cZ₂.P.and (HPolytope.unitBox 𝕋 cZ₂.h)).construct :=
-    HPolytope.mem_and_iff.mpr ⟨hP₂, HPolytope.mem_unitBox_iff.mpr hβ₂⟩
-  refine HPolytope.mem_and_iff.mpr
+  have hd₁ : β₁ ∈ (cZ₁.P.intersection (HPolytope.unitBox 𝕋 cZ₁.h)).construct :=
+    HPolytope.mem_intersection_iff.mpr ⟨hP₁, HPolytope.mem_unitBox_iff.mpr hβ₁⟩
+  have hd₂ : β₂ ∈ (cZ₂.P.intersection (HPolytope.unitBox 𝕋 cZ₂.h)).construct :=
+    HPolytope.mem_intersection_iff.mpr ⟨hP₂, HPolytope.mem_unitBox_iff.mpr hβ₂⟩
+  refine HPolytope.mem_intersection_iff.mpr
     ⟨HPolytope.smul_mem_halfScaledLeft (by ring) hl0 hd₁,
       HPolytope.smul_mem_halfScaledRight (by ring) (by linarith) hd₂⟩
 

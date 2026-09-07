@@ -26,7 +26,9 @@ here — it would at an order growing with the dimension.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
+
+open CORALean.Real
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
@@ -102,7 +104,7 @@ theorem LinearSysDT.reachStepBound_isBigO (hU o : ℕ) :
   rw [Real.norm_of_nonneg (by positivity), Real.norm_of_nonneg (by positivity)]
   exact_mod_cast LinearSysDT.aux_reachStepBound_ops_le n hU o hn
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

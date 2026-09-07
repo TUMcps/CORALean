@@ -29,7 +29,7 @@ enclosure of the intersection with the guard. Neither is computed here.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet Scalar
 
@@ -47,7 +47,7 @@ structure HybridAutomaton.Invariant (HA : HybridAutomaton S G L 𝕋 n) (R : L �
     (hz : z ∈ construct (R ℓ)) (hguard : z ∈ construct e.guard) :
     e.reset z ∈ construct (R e.target)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

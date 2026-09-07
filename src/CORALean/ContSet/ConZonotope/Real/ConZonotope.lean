@@ -1,6 +1,6 @@
 import CORALean.ContSet.HPolytope.Real.Operations.Comap
 import CORALean.ContSet.HPolytope.Real.Operations.UnitBox
-import CORALean.ContSet.HPolytope.Real.Theorems.AndExact
+import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
 import CORALean.ContSet.HPolytope.Real.Theorems.Convex
 import CORALean.ContSet.Zonotope.Real.Zonotope
 import CORALean.Global.Block
@@ -13,7 +13,7 @@ cutting is an `HPolytope` over the coefficient space rather than the matrix
 equation `A β = b`, so the constraints *are* a polytope rather than merely
 denoting one, and every polytope operation applies to them directly —
 `ofMat` recovers CORA's form, and `plus` and `mtimesIntervalMat` state their
-constraints by `comap` and `and` instead of assembling matrix rows.
+constraints by `comap` and `intersection` instead of assembling matrix rows.
 
 That generalizes CORA, which admits equalities only. Inequalities cost nothing
 here and a halfspace description carries both.

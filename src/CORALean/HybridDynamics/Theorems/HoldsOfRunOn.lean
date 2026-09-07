@@ -17,7 +17,7 @@ the start, `k + m` after its `m` jumps. `RunOnOuter` supplies the membership,
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet Scalar
 
@@ -35,7 +35,7 @@ theorem HybridAutomaton.holds_of_invariantOn {HA : HybridAutomaton S G L 𝕋 n}
     (h : spec.Holds (construct (R (k + m) ℓ'))) : spec.Holds {y} :=
   spec.holds_of_outer (Set.singleton_subset_iff.mpr (run.mem_of_invariantOn hinv hx)) h
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

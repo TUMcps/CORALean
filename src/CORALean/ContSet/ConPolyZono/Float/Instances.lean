@@ -1,4 +1,4 @@
-import CORALean.ContSet.ConPolyZono.Float.Theorems.AndOuter
+import CORALean.ContSet.ConPolyZono.Float.Theorems.IntersectionOuter
 import CORALean.ContSet.ConPolyZono.Float.Theorems.MtimesOuter
 import CORALean.ContSet.ConPolyZono.Float.Theorems.PlusOuter
 import CORALean.ContSet.ConPolyZono.Float.Theorems.ReduceOuter
@@ -6,7 +6,7 @@ import CORALean.ContSet.ConPolyZono.Float.Theorems.ReduceOuter
 /-!
 # What `ConPolyZono` instantiates
 
-`Plus`, `Mtimes`, `Reduce` and `And`, as over ℝ. `ContSet` is not among them —
+`Plus`, `Mtimes`, `Reduce` and `Intersection`, as over ℝ. `ContSet` is not among them —
 `InflatedContSet` supplies it, which is what makes this the same class the exact
 layer instantiates.
 
@@ -46,9 +46,9 @@ instance {n : ℕ} : Reduce (ConPolyZono 𝕋 n) (Vec ℝ n) where
     rw [ConPolyZono.materialise_eq]
     exact ConPolyZono.reduce_outer cPZ o
 
-instance {n : ℕ} : And (ConPolyZono 𝕋 n) (Vec ℝ n) where
-  and := ConPolyZono.and
-  and_outer := ConPolyZono.and_outer
+instance {n : ℕ} : Intersection (ConPolyZono 𝕋 n) (Vec ℝ n) where
+  intersection := ConPolyZono.intersection
+  intersection_outer := ConPolyZono.intersection_outer
 
 instance : Mtimes (Mat 𝕋) (ConPolyZono 𝕋) where
   mtimes M cPZ := (ConPolyZono.mtimes M cPZ).materialise

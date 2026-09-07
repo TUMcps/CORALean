@@ -18,7 +18,7 @@ initial condition, same input condition, same derivative.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar
 
@@ -33,7 +33,7 @@ theorem LinearSys.trajectory_iff_nonlinearSys (sys : LinearSys 𝕋 n) (T : Set 
     sys.Trajectory T R₀ U x u ↔ sys.nonlinearSys.Trajectory T R₀ U x u :=
   ⟨fun h => ⟨h.init, h.input, h.flow⟩, fun h => ⟨h.init, h.input, h.flow⟩⟩
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

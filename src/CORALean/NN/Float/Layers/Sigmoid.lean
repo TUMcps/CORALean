@@ -173,7 +173,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n
 
 /-- `k` is the exponential's reduction depth: every `k` is sound, a larger one
 tighter, and it reaches both the value and the derivative bracket. -/
-def sigmoid (k : ℕ) : Real.Layer S n n := Layer.activation (sigmoidRelaxation k)
+def sigmoid (k : ℕ) : Layer S n n := Layer.activation (sigmoidRelaxation k)
 
 theorem sigmoid_sound (k : ℕ) :
     (Layer.sigmoid (𝕋 := 𝕋) (S := S) (n := n) k).Sound fun x i => Real.sigmoid (x i) :=

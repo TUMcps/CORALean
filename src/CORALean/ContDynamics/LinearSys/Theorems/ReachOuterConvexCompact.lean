@@ -28,8 +28,9 @@ statement by instantiating this, and any later one does the same.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix ContSet Scalar NormedSpace MeasureTheory
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
@@ -58,7 +59,7 @@ theorem LinearSys.Trajectory.reach_outer_convexCompact [Mtimes ℐ S]
     (ConvexSet.convex_construct _) (CompactSet.isClosed_construct _)
     (CompactSet.isBounded_construct _) ho k
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

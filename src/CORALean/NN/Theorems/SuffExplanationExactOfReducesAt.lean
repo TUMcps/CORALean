@@ -20,7 +20,7 @@ over the enclosed `explainBox`.
 * [1] S. Bassan, Y. Y. Elboher, T. Ladner, M. Althoff and G. Katz. "Explaining
       Fast and Slow: Abstraction and Refinement of Provable Explanations".
       ICML 2025.
-* [2] `CORALean.Real.NeuralNetwork.ReducesAt`.
+* [2] `CORALean.NeuralNetwork.ReducesAt`.
 -/
 
 -- Authors:       Tobias Ladner
@@ -31,12 +31,12 @@ over the enclosed `explainBox`.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
-open Matrix ContSet Plus Mtimes IntervalOuter OfInterval
+open Matrix ContSet Plus Mtimes Real.IntervalOuter Real.OfInterval
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
-  [Mtimes (Mat ℝ) S] [IntervalOuter S] [OfInterval S] {n m : ℕ}
+  [Mtimes (Mat ℝ) S] [Real.IntervalOuter S] [Real.OfInterval S] {n m : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -52,7 +52,7 @@ theorem NeuralNetwork.suffExplanationExact_of_reducesAt {nnRef nnAbs : NeuralNet
   suffExplanationExact_of_refined nnAbs f x ε E l
     (NeuralNetwork.reducesAt_outer hred) hsuffAbs
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

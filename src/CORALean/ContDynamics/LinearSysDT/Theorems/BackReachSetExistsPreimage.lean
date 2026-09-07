@@ -27,7 +27,7 @@ the property, and this is the operation that computes it.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix Pointwise ContSet Scalar
 
@@ -54,7 +54,7 @@ theorem LinearSysDT.backReachSetExists_preimage (sys : LinearSysDT 𝕋 n) (T U 
       rw [show toRealMat sys.A *ᵥ x = y + w from hxy.symm]; abel
     rwa [this]
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

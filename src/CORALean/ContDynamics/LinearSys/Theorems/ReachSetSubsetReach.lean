@@ -27,7 +27,7 @@ Between the sample times this says nothing; that is
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar
 
@@ -49,7 +49,7 @@ theorem LinearSys.reachSet_subset_reach (sys : LinearSys 𝕋 n) {T : Set ℝ} (
   rintro _ ⟨x, u, traj, rfl⟩
   exact traj.reach_outer hΔt hT hU (hUd x u traj) ho k
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

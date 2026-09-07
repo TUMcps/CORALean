@@ -16,8 +16,9 @@ quantity depending on the trajectory survives into the hypotheses.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix ContSet Scalar NormedSpace Plus Mtimes OfInterval
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
@@ -56,7 +57,7 @@ theorem NonlinearSys.Trajectory.reach_outer_horizon_inputSolution [Mtimes ℐ S]
   (traj.linearize_horizon cert hT hR).reach_outer_horizon_inputSolution hΔt subset_rfl η hε
     hconv hclosed hbdd hRconv hRclosed hRbdd ho
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

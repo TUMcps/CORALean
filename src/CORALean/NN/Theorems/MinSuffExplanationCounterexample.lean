@@ -28,7 +28,7 @@ check.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -58,7 +58,7 @@ theorem minSuffExplanation_iff_counterexample (f : Vec ℝ n → Vec ℝ m)
     obtain ⟨x', hx', j, hj, hle⟩ := hce i hi
     exact absurd (hdrop x' hx' j hj) (not_lt.mpr hle)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

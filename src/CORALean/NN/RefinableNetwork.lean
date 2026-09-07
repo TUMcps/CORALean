@@ -24,7 +24,7 @@ only its first `length` entries are ever read.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -52,7 +52,7 @@ def RefinableNetwork.length : ∀ {n m : ℕ}, RefinableNetwork S n m → ℕ
   | _, _, .nil => 0
   | _, _, .cons _ rest => rest.length + 1
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

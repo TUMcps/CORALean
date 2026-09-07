@@ -19,14 +19,14 @@ from `hsub`, the check a caller can run against the computed sets instead.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar Plus Reduce Mtimes
 
 variable {n m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
-variable [Mtimes (Mat ℝ) S] [OfInterval S]
+variable [Mtimes (Mat ℝ) S] [Real.OfInterval S]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -38,7 +38,7 @@ theorem NonlinearSysDT.holds_of_reach (sys : NonlinearSysDT n m) {U : S m} {o : 
     (h : spec.Holds (construct (sys.reach o ho steps R₀ k))) : spec.Holds {x k} :=
   spec.holds_of_outer (Set.singleton_subset_iff.mpr (sys.reach_outer ho steps R₀ traj hR k)) h
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

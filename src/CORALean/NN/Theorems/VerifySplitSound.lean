@@ -28,7 +28,7 @@ splitAt_cover` supplies `hcov`.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -62,7 +62,7 @@ theorem NeuralNetwork.verifySplit_sound {nn : NeuralNetwork S n m} {f : Vec ℝ 
               Set.image_union ..
       exact spec.holds_of_outer hsub (spec.holds_union (ih _ h.1) (ih _ h.2))
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

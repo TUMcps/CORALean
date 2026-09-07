@@ -25,7 +25,7 @@ indexed by — nothing between them, the same silence `ReachOuter` names.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet Scalar
 
@@ -42,7 +42,7 @@ def NeurNetContrSys.reachSet (sys : NeurNetContrSys 𝕋 S n) (π : Vec ℝ n �
     (H : ℕ) (R₀ : S n) (t : ℝ) : Set (Vec ℝ n) :=
   {y | ∃ x : ℝ → Vec ℝ n, sys.Trajectory π Δtc H R₀ x ∧ x t = y}
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

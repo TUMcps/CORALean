@@ -25,11 +25,11 @@ enclosed set is sufficiency for `nn` outright.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
-open ContSet OfInterval
+open ContSet Real.OfInterval
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OfInterval S] {n m : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real.OfInterval S] {n m : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -41,7 +41,7 @@ theorem NeuralNetwork.suffExplanation_of_enclose {nn : NeuralNetwork S n m}
     IsSuffExplanation f x ε E l :=
   suffExplanation_of_abstract f nn x ε E l (hf.image_subset _) hsuffAbs
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

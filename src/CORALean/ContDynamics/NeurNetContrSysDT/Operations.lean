@@ -31,7 +31,7 @@ closed-loop run directly, no `enclose` needed: a point computation.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar Plus Reduce Mtimes
 
@@ -59,7 +59,7 @@ noncomputable def NeurNetContrSysDT.simulate (sys : NeurNetContrSysDT 𝕋 S n)
   | 0 => x₀
   | k + 1 => toRealMat sys.plant.A *ᵥ sys.simulate π x₀ k + π (sys.simulate π x₀ k)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

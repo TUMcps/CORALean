@@ -20,7 +20,9 @@ size independent of how long the run goes — `reach_order_le`'s `o * n`, with n
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
+
+open CORALean.Real
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋] [Mtimes (Mat 𝕋) 𝒵]
 
@@ -36,7 +38,7 @@ theorem LinearSysDT.reach_h_isBigO (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 
   rw [Real.norm_of_nonneg (by positivity), Real.norm_of_nonneg (by positivity), mul_one]
   exact_mod_cast sys.reach_order_le ho R₀ U k
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

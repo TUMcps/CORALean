@@ -9,7 +9,7 @@ Asserted, not proved: `Operations/Map.lean` sends the centre and each of the
 field it already is — `P := cZ.P`, untouched — so nothing the polytope holds
 enters the count.
 
-That is the one thing that makes a count possible here at all. `plus`, `and`
+That is the one thing that makes a count possible here at all. `plus`, `intersection`
 and `linComb` each *build* a polytope, and what building one costs depends on
 how its rows are represented; `HPolytope` stores them as linear functionals and
 fixes nothing, so those three are left uncounted. `Cost/API.lean` says so at

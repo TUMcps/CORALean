@@ -17,7 +17,7 @@ fields are supplied unchanged, since neither one's proof ever looks at `k`.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet Scalar
 
@@ -34,7 +34,7 @@ theorem HybridAutomaton.Invariant.invariantOn {HA : HybridAutomaton S G L 𝕋 n
   flow h h₀ _ ht := hinv.flow h h₀ ht
   jump hmem _ hz hguard := hinv.jump hmem hz hguard
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

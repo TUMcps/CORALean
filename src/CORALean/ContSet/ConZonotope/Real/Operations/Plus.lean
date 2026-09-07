@@ -7,7 +7,7 @@ CORA's `@conZonotope/plus`: centres add and generators concatenate, as for a
 zonotope, and each half of the concatenated coefficient vector answers only to
 its own constraints.
 
-That last part is `comap` and `and` and nothing else — pull each polytope back
+That last part is `comap` and `intersection` and nothing else — pull each polytope back
 along the projection onto its block, then intersect. No matrix rows are
 assembled and no sum has to be split, which is what carrying the constraints as
 a polytope buys.
@@ -32,7 +32,7 @@ def ConZonotope.plus (cZ₁ cZ₂ : ConZonotope α) : ConZonotope α where
   h := cZ₁.h + cZ₂.h
   c := cZ₁.c + cZ₂.c
   G := Fin.append cZ₁.G cZ₂.G
-  P := (cZ₁.P.comap (blockLeft cZ₁.h cZ₂.h)).and (cZ₂.P.comap (blockRight cZ₁.h cZ₂.h))
+  P := (cZ₁.P.comap (blockLeft cZ₁.h cZ₂.h)).intersection (cZ₂.P.comap (blockRight cZ₁.h cZ₂.h))
 
 end CORALean.Real
 

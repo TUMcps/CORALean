@@ -37,7 +37,7 @@ def W₂ : Mat D 2 3 := !![dy 1 0, dy (-1) 0, dy 1 (-1); dy 1 (-1), dy 1 0, dy (
 
 def b₂ : Vec D 2 := ![dy 0 0, dy 1 (-3)]
 
-def net : Real.NeuralNetwork (Zonotope D) 2 2 := Example.feedForward W₁ b₁ W₂ b₂
+def net : NeuralNetwork (Zonotope D) 2 2 := Example.feedForward W₁ b₁ W₂ b₂
 
 /-- `[-1, 1]²`. -/
 def X : Zonotope D 2 where
@@ -50,7 +50,7 @@ def layerLine (i : ℕ) {n : ℕ} (Z : Zonotope D n) : String :=
   pad 6 (toString i) ++ pad 7 (toString Z.h) ++ "  " ++ showBox Z.interval
 
 /-- One line per layer, the set handed on being the set printed. -/
-def layerBoxes : {n m : ℕ} → Real.NeuralNetwork (Zonotope D) n m → Zonotope D n → ℕ →
+def layerBoxes : {n m : ℕ} → NeuralNetwork (Zonotope D) n m → Zonotope D n → ℕ →
     List String
   | _, _, .nil, _, _ => []
   | _, _, .cons L rest, Z, i =>

@@ -21,7 +21,7 @@ commit the statement to a number no caller reads.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -40,7 +40,7 @@ theorem RefinableNetwork.exists_lipschitzWith_eval :
     obtain ⟨K', hK'⟩ := rest.exists_lipschitzWith_eval hrest
     exact ⟨K' * K, hK'.comp hK⟩
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

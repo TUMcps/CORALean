@@ -18,7 +18,7 @@ So does the loop, at every `pick` and every number of steps.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -32,7 +32,7 @@ theorem RefinableNetwork.image_subset_refineLoop (rn : RefinableNetwork S n m)
     rn.image (construct X) ⊆ construct (rn.encloseAt (Schedule.refineLoop pick sch k) X) :=
   rn.image_subset_encloseAt _ X
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

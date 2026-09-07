@@ -30,7 +30,7 @@ holds vacuously, and `x τ` — the state a jump reads — is unconstrained.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar
 
@@ -59,7 +59,7 @@ theorem Location.Trajectory.mem_Icc_right {ℓ : Location S G L 𝕋 n} {τ : �
     {x u : ℝ → Vec ℝ n} (traj : ℓ.Trajectory τ x u) : τ ∈ Set.Icc 0 τ :=
   ⟨traj.nonneg, le_refl τ⟩
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

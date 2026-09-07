@@ -24,7 +24,7 @@ every direction bounding its faces, which is a list of these, not one.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar
 
@@ -47,7 +47,7 @@ theorem LinearSysDT.holds_unsafeSet_of_separating (sys : LinearSysDT 𝕋 n) (R�
     (Set.singleton_subset_iff.mpr (sys.reachSet_outer R₀ U traj k))
     (Specification.holds_unsafeSet_of_separating (sys.reachSetBound R₀ U b₀ bU k c) v h)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

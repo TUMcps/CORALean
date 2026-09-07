@@ -1,5 +1,5 @@
 import CORALean.ContSet.ContSet.CompactSet
-import CORALean.ContSet.ConPolyZono.Real.Theorems.AndExact
+import CORALean.ContSet.ConPolyZono.Real.Theorems.IntersectionExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.IsCompact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.LinCombOuter
 import CORALean.ContSet.ConPolyZono.Real.Theorems.MapExact
@@ -11,7 +11,7 @@ import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceOuter
 /-!
 # What `ConPolyZono` instantiates
 
-`ContSet`, `CompactSet`, `Plus`, `LinComb`, `Mtimes`, `Reduce`, `And` and `OfPoint`, each
+`ContSet`, `CompactSet`, `Plus`, `LinComb`, `Mtimes`, `Reduce`, `Intersection` and `OfPoint`, each
 obligation a theorem from `Theorems` read in the `⊆` direction.
 
 No `ConvexSet`: the sets are generally not convex, which is the point of the
@@ -25,7 +25,7 @@ constraint counts. `LinComb` is `PolyZonotope`'s on the generators with both
 constraint systems carried along, outer for the reason that one is.
 
 `quadMap` alone has no class to instantiate, so a caller names
-`ConPolyZono.quadMap` directly — the one operation `And` (#10) does not cover.
+`ConPolyZono.quadMap` directly — the one operation `Intersection` (#10) does not cover.
 -/
 
 -- Authors:       Tobias Ladner
@@ -66,9 +66,9 @@ instance : OfPoint (ConPolyZono α) α where
   ofPoint := ConPolyZono.ofPoint
   mem_ofPoint := ConPolyZono.mem_ofPoint
 
-instance : And (ConPolyZono (Vec ℝ n)) (Vec ℝ n) where
-  and := ConPolyZono.and
-  and_outer cPZ₁ cPZ₂ := (ConPolyZono.and_exact cPZ₁ cPZ₂).subset
+instance : Intersection (ConPolyZono (Vec ℝ n)) (Vec ℝ n) where
+  intersection := ConPolyZono.intersection
+  intersection_outer cPZ₁ cPZ₂ := (ConPolyZono.intersection_exact cPZ₁ cPZ₂).subset
 
 /-- Pinned to `Vec`, as `PolyZonotope`'s is: a generator ranking and the box that
 absorbs what it drops are both entrywise. -/

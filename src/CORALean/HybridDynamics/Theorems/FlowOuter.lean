@@ -13,7 +13,7 @@ which is the case the time domain was made a parameter for.
 The invariant does not appear here. It cannot make the enclosure unsound and can
 only shrink it, and shrinking it means intersecting with `ℓ.inv` — left to
 `TimeIntervalInvOuter`, which restates this theorem cut to the invariant at a
-representation with an `And` instance.
+representation with an `Intersection` instance.
 
 `0 < τ` rather than `0 ≤ τ`: `timeIntervalStep` divides by the step length, and a
 zero-length stay needs no enclosure of its own.
@@ -31,8 +31,9 @@ statement its `ℓ` already pinned.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix ContSet Scalar NormedSpace MeasureTheory
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
@@ -59,7 +60,7 @@ theorem Location.Trajectory.timeInterval_outer {ℓ : Location S G L 𝕋 n} {τ
     x t ∈ construct (Plus.plus (ℓ.timeIntervalStep τ (m + 2) R₀) Ud) :=
   (traj.linearSys h₀).timeInterval_outer hτ subset_rfl hε ht0 htτ hU hUd
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -22,9 +22,9 @@ point, which moves the centre and leaves every monomial alone.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
-open Matrix PolyZonotope
+open Matrix Real.PolyZonotope
 
 variable {n : ℕ}
 
@@ -33,19 +33,20 @@ variable {n : ℕ}
 
 /-- The value at `a` is the second-order term at the state `a` names. -/
 theorem precompStatError_point (Q : Fin n → Mat ℝ n n) (xs : Vec ℝ n)
-    (pZ : PolyZonotope (Vec ℝ n)) (a : Fin pZ.p → ℝ) :
+    (pZ : Real.PolyZonotope (Vec ℝ n)) (a : Fin pZ.p → ℝ) :
     (precompStatError Q xs pZ).point a = quadEval Q (pZ.point a - xs) := by -- --- PROOF ---
   -- the shifted set has `pZ`'s monomials and generators, so only the centre moves
-  have hshift : ({ pZ with c := pZ.c - xs } : PolyZonotope (Vec ℝ n)).point a
+  have hshift : ({ pZ with c := pZ.c - xs } : Real.PolyZonotope (Vec ℝ n)).point a
       = pZ.point a - xs := by
-    show pZ.c - xs + ∑ i, PolyZonotope.monomial pZ.E a i • pZ.G i
-        = pZ.c + ∑ i, PolyZonotope.monomial pZ.E a i • pZ.G i - xs
+    show pZ.c - xs + ∑ i, Real.PolyZonotope.monomial pZ.E a i • pZ.G i
+        = pZ.c + ∑ i, Real.PolyZonotope.monomial pZ.E a i • pZ.G i - xs
     abel
-  have h := PolyZonotope.quadMapDep_point Q ({ pZ with c := pZ.c - xs } : PolyZonotope _) a
+  have h := Real.PolyZonotope.quadMapDep_point Q
+    ({ pZ with c := pZ.c - xs } : Real.PolyZonotope _) a
   rw [hshift] at h
   exact h
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -34,7 +34,7 @@ together with a range, and `Layer.refinable` reads nothing at all.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -69,7 +69,7 @@ def Layer.refinable (L : Layer S n m) {f : Vec ℝ n → Vec ℝ m} (hf : L.Soun
   enclose _ := L.enclose
   enclose_outer _ := hf.enclose_outer
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

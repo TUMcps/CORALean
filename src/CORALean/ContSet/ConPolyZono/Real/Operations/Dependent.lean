@@ -13,7 +13,7 @@ generator only is as free as the coefficient it replaces.
 
 Here it earns more than it does for a polynomial zonotope. The constraints reach
 the dependent factors and nothing else, so an operation stated as a constraint —
-`and` above all — is exact only on a set whose coefficients are all dependent.
+`intersection` above all — is exact only on a set whose coefficients are all dependent.
 `dependent` is what makes that a restriction on nothing: it is applied first,
 and it loses nothing.
 

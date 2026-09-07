@@ -28,8 +28,9 @@ from the step's start instead.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix ContSet Scalar NormedSpace Plus Mtimes OfInterval
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
@@ -101,7 +102,7 @@ theorem NonlinearSys.Trajectory.relinTimeInterval_outer {sys : NonlinearSys n m}
   rw [← hbeta]
   exact key
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

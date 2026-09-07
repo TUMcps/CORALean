@@ -56,7 +56,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `k` is the reduction depth the sigmoid relaxation underneath is built at. -/
-def tanh (k : ℕ) : Real.Layer S n n := Layer.activation (tanhRelaxation k)
+def tanh (k : ℕ) : Layer S n n := Layer.activation (tanhRelaxation k)
 
 theorem tanh_sound (k : ℕ) :
     (Layer.tanh (𝕋 := 𝕋) (S := S) (n := n) k).Sound fun x i => Real.tanh (x i) :=

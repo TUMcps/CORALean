@@ -1,5 +1,5 @@
 import CORALean.ContSet.VPolytope.Real.Operations.ConstructPoint
-import CORALean.ContSet.VPolytope.Real.Theorems.AndOuter
+import CORALean.ContSet.VPolytope.Real.Theorems.IntersectionOuter
 import CORALean.ContSet.VPolytope.Real.Theorems.LinCombOuter
 import CORALean.ContSet.VPolytope.Real.Theorems.MapExact
 import CORALean.ContSet.VPolytope.Real.Theorems.MtimesExact
@@ -15,7 +15,7 @@ shrinks the set, which is not what `reduce` may return.
 No `Recentre`: there is no centre to pick at `k = 0`, where `construct` is `∅`
 and no choice of one can put `0` inside the recentred polytope either.
 
-`VPolytope.andInstance` fixes two direction families for a whole run, as
+`VPolytope.intersectionInstance` fixes two direction families for a whole run, as
 `Ellipsoid.plusInstance` fixes its scalings — a `def`, not an `instance`,
 since choosing the directions is a precision decision search must not make.
 -/
@@ -50,14 +50,14 @@ instance : Plus (VPolytope (Vec ℝ n)) (Vec ℝ n) where
   plus := VPolytope.plus
   plus_outer P₁ P₂ := (VPolytope.plus_exact P₁ P₂).subset
 
-/-- `And` at two direction families the caller fixes for a whole run, exactly
+/-- `Intersection` at two direction families the caller fixes for a whole run, exactly
 as `Ellipsoid.plusInstance` fixes its scalings. A `def`, not an `instance`:
 choosing the directions is a precision decision instance search may not make. -/
-@[reducible] noncomputable def VPolytope.andInstance {q₁ q₂ : ℕ}
+@[reducible] noncomputable def VPolytope.intersectionInstance {q₁ q₂ : ℕ}
     (Aq₁ : Fin q₁ → (Vec ℝ n →ₗ[ℝ] ℝ)) (Aq₂ : Fin q₂ → (Vec ℝ n →ₗ[ℝ] ℝ)) :
-    And (VPolytope (Vec ℝ n)) (Vec ℝ n) where
-  and P₁ P₂ := VPolytope.and P₁ P₂ Aq₁ Aq₂
-  and_outer P₁ P₂ := VPolytope.and_outer P₁ P₂ Aq₁ Aq₂
+    Intersection (VPolytope (Vec ℝ n)) (Vec ℝ n) where
+  intersection P₁ P₂ := VPolytope.intersection P₁ P₂ Aq₁ Aq₂
+  intersection_outer P₁ P₂ := VPolytope.intersection_outer P₁ P₂ Aq₁ Aq₂
 
 instance : LinComb (VPolytope (Vec ℝ n)) (Vec ℝ n) where
   linComb := VPolytope.linComb

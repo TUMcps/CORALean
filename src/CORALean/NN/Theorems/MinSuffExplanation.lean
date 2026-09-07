@@ -21,7 +21,7 @@ its features breaks sufficiency.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 
@@ -33,7 +33,7 @@ def IsMinSuffExplanation (f : Vec ℝ n → Vec ℝ m) (x : Vec ℝ n) (ε : ℝ
     (E : Finset (Fin n)) (l : Fin m) : Prop :=
   IsSuffExplanation f x ε E l ∧ ∀ i ∈ E, ¬ IsSuffExplanation f x ε (E \ {i}) l
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

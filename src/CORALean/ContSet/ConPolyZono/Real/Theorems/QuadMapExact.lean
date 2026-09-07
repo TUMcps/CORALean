@@ -6,7 +6,7 @@ import CORALean.ContSet.ConPolyZono.Real.Theorems.QuadMapDepExact
 
 `quadMapDep` needs an empty independent block, which `hq` asks for; `quadMap`
 supplies it by running `dependent` first, and `dependent` is exact. Together
-with `and_exact` this is what a nonlinear reachability step needs: propagate
+with `intersection_exact` this is what a nonlinear reachability step needs: propagate
 through a quadratic map, then cut by a guard, neither losing anything.
 -/
 

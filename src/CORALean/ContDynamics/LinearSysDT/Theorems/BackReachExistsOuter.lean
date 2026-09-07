@@ -27,7 +27,7 @@ thing; the proofs do not.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix Pointwise ContSet Scalar Plus Mtimes
 
@@ -58,7 +58,7 @@ theorem LinearSysDT.backReachExists_outer (sys : LinearSysDT 𝕋 n) {Ainv : Mat
       rw [Matrix.mulVec_mulVec, hA, Matrix.one_mulVec]
     exact mtimes_outer Ainv _ (Set.mem_biUnion rfl ⟨_, hstep, hback⟩)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

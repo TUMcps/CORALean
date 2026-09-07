@@ -31,7 +31,7 @@ system wants and a mere definition does not, so the family is written out here.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix Scalar
 
@@ -43,10 +43,10 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 /-- The system a step of `Δt` leaves behind, its matrix only enclosed: the
 Taylor truncation at order `η` widened by the tail bound, [1, Sec. 3.2]. -/
 noncomputable def LinearSys.discretizeEnclosure (sys : LinearSys 𝕋 n) (Δt : ℝ) (η : ℕ) :
-    LinParamSysDT (fun m n => Interval (Mat ℝ m n)) n :=
-  ⟨MatExp.expEnclosure (Δt • toRealMat sys.A) η⟩
+    LinParamSysDT (fun m n => Real.Interval (Mat ℝ m n)) n :=
+  ⟨Real.MatExp.expEnclosure (Δt • toRealMat sys.A) η⟩
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

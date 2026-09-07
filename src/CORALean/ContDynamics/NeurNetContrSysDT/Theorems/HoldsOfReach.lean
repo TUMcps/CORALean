@@ -21,7 +21,7 @@ this at each `k`.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar Plus Reduce Mtimes
 
@@ -38,7 +38,7 @@ theorem NeurNetContrSysDT.holds_of_reach (sys : NeurNetContrSysDT 𝕋 S n) {o :
     (h : spec.Holds (construct (sys.reach o ho R₀ k))) : spec.Holds {x k} :=
   spec.holds_of_outer (Set.singleton_subset_iff.mpr (sys.reach_outer ho R₀ hπ traj k)) h
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

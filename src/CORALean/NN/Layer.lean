@@ -29,7 +29,7 @@ set-valued is sound at the function it refines, and pays into `enclose`.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -75,7 +75,7 @@ theorem Layer.comp_sound {L₂ : Layer S m k} {L₁ : Layer S n m} (h₂ : L₂.
     (h₁ : L₁.Sound f) : (L₂.comp L₁).Sound (g ∘ f) :=
   ⟨fun s x hx => h₂.enclose_outer _ _ (h₁.enclose_outer s x hx)⟩
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

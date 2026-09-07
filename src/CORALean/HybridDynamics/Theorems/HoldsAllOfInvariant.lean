@@ -19,7 +19,7 @@ one list of requirements actually wants.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet Scalar
 
@@ -39,7 +39,7 @@ theorem HybridAutomaton.holdsAll_of_invariant {HA : HybridAutomaton S G L 𝕋 n
   Specification.holdsAll_of_outer specs
     (Set.singleton_subset_iff.mpr (run.mem_of_invariant hinv hx)) (h ℓ')
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

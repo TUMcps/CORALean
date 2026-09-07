@@ -29,11 +29,11 @@ minimum exceeds every rival's maximum".
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
-open ContSet OfInterval
+open ContSet Real.OfInterval
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OfInterval S] {n m : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real.OfInterval S] {n m : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -45,7 +45,7 @@ def NeuralNetwork.IsSuffExplanationAbstract (nnAbs : NeuralNetwork S n m) (x : V
   (Specification.unsafeSet (misclassified m l)).Holds
     (construct (nnAbs.enclose (ofInterval (explainBox x ε E))))
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

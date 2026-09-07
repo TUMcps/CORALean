@@ -28,7 +28,7 @@ The input dimension `m` is separate from the state dimension `n`, which
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix Scalar
 
@@ -46,7 +46,7 @@ contain. Read into ℝ by the layer's scalar, as a trajectory is. -/
 def OutputEq.eval (out : OutputEq 𝕋 n m r) (x : Vec ℝ n) (u : Vec ℝ m) : Vec ℝ r :=
   toRealMat out.C *ᵥ x + toRealMat out.D *ᵥ u
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

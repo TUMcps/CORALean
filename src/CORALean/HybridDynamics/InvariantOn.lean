@@ -28,7 +28,7 @@ representation `S` and the guard in `G`, as at `Invariant` (#39).
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet Scalar
 
@@ -47,7 +47,7 @@ structure HybridAutomaton.InvariantOn (HA : HybridAutomaton S G L 𝕋 n) (R : �
     {z : Vec ℝ n} (hz : z ∈ construct (R k ℓ)) (hguard : z ∈ construct e.guard) :
     e.reset z ∈ construct (R (k + 1) e.target)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

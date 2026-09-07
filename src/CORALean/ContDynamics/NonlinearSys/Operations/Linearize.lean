@@ -25,7 +25,7 @@ result reads as.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 variable {n : ℕ}
 
@@ -35,7 +35,7 @@ variable {n : ℕ}
 /-- The linear system a linearization at any matrix `A` produces. -/
 def NonlinearSys.linearize (A : Mat ℝ n n) : LinearSys ℝ n := ⟨A⟩
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

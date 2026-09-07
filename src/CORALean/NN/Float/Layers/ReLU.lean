@@ -101,7 +101,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def relu (lam : 𝕋 → 𝕋 → 𝕋 := reluSlope) : Real.Layer S n n :=
+def relu (lam : 𝕋 → 𝕋 → 𝕋 := reluSlope) : Layer S n n :=
   Layer.activation (reluRelaxation lam)
 
 theorem relu_sound (lam : 𝕋 → 𝕋 → 𝕋) :

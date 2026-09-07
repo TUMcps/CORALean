@@ -36,8 +36,9 @@ and which sets is the representation's business.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix ContSet Scalar NormedSpace MeasureTheory Pointwise
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
@@ -162,7 +163,7 @@ theorem LinearSys.Trajectory.inputSolution_timeInterval_outer_split
       hRconv₀ hRclosed₀ hRbdd₀
       (sys.inputReach_mono hbdd₀ h0₀ ht0 htr ⟨fun σ => u σ - c, hmem₀, hmeas₀, rfl⟩)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

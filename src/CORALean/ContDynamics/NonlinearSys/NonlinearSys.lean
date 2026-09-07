@@ -29,7 +29,7 @@ definition at a linear field — `LinearSys.trajectory_iff_nonlinearSys`. A boun
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -49,7 +49,7 @@ structure NonlinearSys.Trajectory (sys : NonlinearSys n m) (T : Set ℝ) (R₀ :
   flow (t : ℝ) (ht : t ∈ T) :
     HasDerivWithinAt x (sys.f (x t) (u t)) T t
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

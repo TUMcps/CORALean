@@ -14,8 +14,8 @@ mapped, `HPolytope` for what the coefficients range over. `Complexity` sizes bot
 counts together, and `Cost` counts what running the three operations that build
 no constraint costs — its own docstring says why the other three are left out.
 
-What it buys over a zonotope is `and`: intersection, exactly, which no zonotope
-can represent.
+What it buys over a zonotope is `intersection`, exactly, which no zonotope can
+represent.
 
 Both layers are specified. `Float` pays two different roundings in two
 different places: the centre and generators into an ambient error box, as the

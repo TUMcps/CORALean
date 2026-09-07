@@ -27,7 +27,7 @@ definition unconditional and prove the agreement separately.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -56,7 +56,7 @@ theorem Chain.sensitivity_eq_fderiv : ∀ {n m : ℕ} (c : Chain n m)
         fderiv_comp x (rest.differentiableAt_eval _ hrest) hf]
       rfl
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

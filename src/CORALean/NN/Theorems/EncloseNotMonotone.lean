@@ -32,7 +32,7 @@ monotonicity in the set, and only the latter fails.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -45,7 +45,7 @@ def aux_encloseNotMonotone_sigma : ℝ → ℝ := fun _ => 0
 
 /-- Slope `1` below width `2`, slope `0` at or above it. Both branches are sound:
 the deviation from the chosen line never exceeds half the box's width. -/
-noncomputable def aux_encloseNotMonotone_R : Relaxation aux_encloseNotMonotone_sigma where
+noncomputable def aux_encloseNotMonotone_R : Real.Relaxation aux_encloseNotMonotone_sigma where
   slope l u := if u - l < 2 then 1 else 0
   offset l u := if u - l < 2 then -(l + u) / 2 else 0
   error l u := if u - l < 2 then (u - l) / 2 else 0
@@ -59,10 +59,10 @@ noncomputable def aux_encloseNotMonotone_R : Relaxation aux_encloseNotMonotone_s
       simp [aux_encloseNotMonotone_sigma]
 
 /-- The narrow box `[0, 1]`. -/
-def aux_encloseNotMonotone_s : Interval (Vec ℝ 1) := ⟨fun _ => 0, fun _ => 1⟩
+def aux_encloseNotMonotone_s : Real.Interval (Vec ℝ 1) := ⟨fun _ => 0, fun _ => 1⟩
 
 /-- The wide box `[0, 3]`, which contains `aux_encloseNotMonotone_s`. -/
-def aux_encloseNotMonotone_t : Interval (Vec ℝ 1) := ⟨fun _ => 0, fun _ => 3⟩
+def aux_encloseNotMonotone_t : Real.Interval (Vec ℝ 1) := ⟨fun _ => 0, fun _ => 3⟩
 
 theorem aux_encloseNotMonotone_subset :
     construct aux_encloseNotMonotone_s ⊆ construct aux_encloseNotMonotone_t := by
@@ -87,23 +87,23 @@ theorem aux_encloseNotMonotone_R_wide :
 /-- The constant `1` vector lies in the narrow box's own propagation, `[-1, 1]`. -/
 theorem aux_encloseNotMonotone_mem_s :
     (fun _ : Fin 1 => (1 : ℝ)) ∈ construct
-      ((Layer.activation (S := fun n => Interval (Vec ℝ n)) aux_encloseNotMonotone_R).enclose
-        aux_encloseNotMonotone_s) := by -- --- PROOF ---
+      ((Real.Layer.activation (S := fun n => Real.Interval (Vec ℝ n))
+        aux_encloseNotMonotone_R).enclose aux_encloseNotMonotone_s) := by -- --- PROOF ---
   intro i
   have hi : i = (0 : Fin 1) := by omega
   subst hi
   obtain ⟨hs, ho, he⟩ := aux_encloseNotMonotone_R_narrow
   -- the propagation is `mtimes (diag 1) s ⊞ box`; unfold both at the only coordinate
-  show (Interval.mtimes (aux_encloseNotMonotone_R.slopeMat aux_encloseNotMonotone_s)
+  show (Real.Interval.mtimes (aux_encloseNotMonotone_R.slopeMat aux_encloseNotMonotone_s)
         aux_encloseNotMonotone_s).inf 0
       + (aux_encloseNotMonotone_R.offset 0 1 - aux_encloseNotMonotone_R.error 0 1) ≤ (1 : ℝ)
-    ∧ (1 : ℝ) ≤ (Interval.mtimes (aux_encloseNotMonotone_R.slopeMat aux_encloseNotMonotone_s)
+    ∧ (1 : ℝ) ≤ (Real.Interval.mtimes (aux_encloseNotMonotone_R.slopeMat aux_encloseNotMonotone_s)
         aux_encloseNotMonotone_s).sup 0
       + (aux_encloseNotMonotone_R.offset 0 1 + aux_encloseNotMonotone_R.error 0 1)
   have hM : aux_encloseNotMonotone_R.slopeMat aux_encloseNotMonotone_s 0 0 = 1 := by
-    simp [Relaxation.slopeMat, aux_encloseNotMonotone_s, Matrix.diagonal_apply_eq, hs]
+    simp [Real.Relaxation.slopeMat, aux_encloseNotMonotone_s, Matrix.diagonal_apply_eq, hs]
   -- fix the slope first, before unfolding `s` erases the pattern `hM` rewrites
-  simp only [Interval.mtimes, Fin.sum_univ_one, hM]
+  simp only [Real.Interval.mtimes, Fin.sum_univ_one, hM]
   simp only [one_mul, aux_encloseNotMonotone_s, ho, he]
   exact ⟨by linarith [min_le_right (0 : ℝ) 1], by linarith [le_max_right (0 : ℝ) 1]⟩
 
@@ -111,21 +111,21 @@ theorem aux_encloseNotMonotone_mem_s :
 dependence on the input, so nothing at `1` survives. -/
 theorem aux_encloseNotMonotone_not_mem_t :
     (fun _ : Fin 1 => (1 : ℝ)) ∉ construct
-      ((Layer.activation (S := fun n => Interval (Vec ℝ n)) aux_encloseNotMonotone_R).enclose
-        aux_encloseNotMonotone_t) := by -- --- PROOF ---
+      ((Real.Layer.activation (S := fun n => Real.Interval (Vec ℝ n))
+        aux_encloseNotMonotone_R).enclose aux_encloseNotMonotone_t) := by -- --- PROOF ---
   intro hmem
-  have h0 : (Interval.mtimes (aux_encloseNotMonotone_R.slopeMat aux_encloseNotMonotone_t)
+  have h0 : (Real.Interval.mtimes (aux_encloseNotMonotone_R.slopeMat aux_encloseNotMonotone_t)
         aux_encloseNotMonotone_t).inf 0
       + (aux_encloseNotMonotone_R.offset 0 3 - aux_encloseNotMonotone_R.error 0 3) ≤ (1 : ℝ)
-    ∧ (1 : ℝ) ≤ (Interval.mtimes (aux_encloseNotMonotone_R.slopeMat aux_encloseNotMonotone_t)
+    ∧ (1 : ℝ) ≤ (Real.Interval.mtimes (aux_encloseNotMonotone_R.slopeMat aux_encloseNotMonotone_t)
         aux_encloseNotMonotone_t).sup 0
       + (aux_encloseNotMonotone_R.offset 0 3 + aux_encloseNotMonotone_R.error 0 3) :=
     hmem (0 : Fin 1)
   obtain ⟨hs, ho, he⟩ := aux_encloseNotMonotone_R_wide
   have hM : aux_encloseNotMonotone_R.slopeMat aux_encloseNotMonotone_t 0 0 = 0 := by
-    simp [Relaxation.slopeMat, aux_encloseNotMonotone_t, Matrix.diagonal_apply_eq, hs]
+    simp [Real.Relaxation.slopeMat, aux_encloseNotMonotone_t, Matrix.diagonal_apply_eq, hs]
   -- the slope `0` kills the sum, and the box is the point `0`
-  simp only [Interval.mtimes, Fin.sum_univ_one, hM] at h0
+  simp only [Real.Interval.mtimes, Fin.sum_univ_one, hM] at h0
   simp only [zero_mul, min_self, max_self, ho, he] at h0
   linarith [h0.2]
 
@@ -135,16 +135,17 @@ theorem aux_encloseNotMonotone_not_mem_t :
 /-- The zero-function relaxation above witnesses that no such law holds: `[0, 1]`
 encloses past `1`, while its superset `[0, 3]` encloses only to `0`. -/
 theorem Layer.enclose_not_monotone :
-    ¬ ∀ {σ : ℝ → ℝ} (R : Relaxation σ) (s t : Interval (Vec ℝ 1)),
+    ¬ ∀ {σ : ℝ → ℝ} (R : Real.Relaxation σ) (s t : Real.Interval (Vec ℝ 1)),
         construct s ⊆ construct t →
-          construct ((Layer.activation (S := fun n => Interval (Vec ℝ n)) R).enclose s)
-            ⊆ construct ((Layer.activation (S := fun n => Interval (Vec ℝ n)) R).enclose t) := by
+          construct ((Real.Layer.activation (S := fun n => Real.Interval (Vec ℝ n)) R).enclose s)
+            ⊆ construct ((Real.Layer.activation (S := fun n => Real.Interval (Vec ℝ n))
+              R).enclose t) := by
   intro h
   exact aux_encloseNotMonotone_not_mem_t
     (h aux_encloseNotMonotone_R aux_encloseNotMonotone_s aux_encloseNotMonotone_t
       aux_encloseNotMonotone_subset aux_encloseNotMonotone_mem_s)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

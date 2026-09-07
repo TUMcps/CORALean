@@ -19,7 +19,7 @@ The set-level reading of `encloseAt_outer`: the image of every point.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -33,7 +33,7 @@ theorem RefinableNetwork.image_subset_encloseAt (rn : RefinableNetwork S n m)
   rintro _ ⟨x, hx, rfl⟩
   exact rn.encloseAt_outer sch X x hx
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

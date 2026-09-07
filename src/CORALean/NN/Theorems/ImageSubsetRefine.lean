@@ -24,7 +24,7 @@ the ranking a ranking: a wrong choice costs precision and never correctness.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -38,7 +38,7 @@ theorem RefinableNetwork.image_subset_refine (rn : RefinableNetwork S n m)
     rn.image (construct X) ⊆ construct (rn.encloseAt (Schedule.refine sch l j) X) :=
   rn.image_subset_encloseAt _ X
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

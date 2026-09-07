@@ -29,7 +29,7 @@ a point computation carrying none of `reach`'s set instances.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 variable {n : ℕ}
 
@@ -41,7 +41,7 @@ def NonlinearSysDT.linearize (A : Mat ℝ n n) : LinearSysDT ℝ n := ⟨A⟩
 variable {m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
-variable [Mtimes (Mat ℝ) S] [OfInterval S]
+variable [Mtimes (Mat ℝ) S] [Real.OfInterval S]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -56,7 +56,7 @@ def NonlinearSysDT.reach (sys : NonlinearSysDT n m) {U : S m} (o : ℕ) (ho : 0 
       (sys.reach o ho steps R₀ k) (steps k).linInput 1
 
 omit [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
-    [Mtimes (Mat ℝ) S] [OfInterval S] in
+    [Mtimes (Mat ℝ) S] [Real.OfInterval S] in
 /-- One sampled run of the dynamics from `x₀` under input signal `u` — a point
 computation, none of `reach`'s set instances needed. -/
 def NonlinearSysDT.simulate (sys : NonlinearSysDT n m) (x₀ : Vec ℝ n) (u : ℕ → Vec ℝ m) :
@@ -64,7 +64,7 @@ def NonlinearSysDT.simulate (sys : NonlinearSysDT n m) (x₀ : Vec ℝ n) (u : �
   | 0 => x₀
   | k + 1 => sys.f (sys.simulate x₀ u k) (u k)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

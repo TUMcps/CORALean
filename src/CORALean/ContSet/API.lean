@@ -32,7 +32,7 @@ description cuts down; `PolyZonotope` is the first representation here that need
 not be convex, and `ConPolyZono` constrains it the same way — except that its
 constraints are polynomial in the factors and so cannot be a polytope. There a
 constraint's right-hand side is an interval, so a rounded bound has a direction
-to be widened in, which is what gives `and` a float counterpart.
+to be widened in, which is what gives `intersection` a float counterpart.
 
 Five intersect exactly, three interestingly: a box and a halfspace description by
 construction, the constrained pair in its constraints, `ZonoBundle` side by side.

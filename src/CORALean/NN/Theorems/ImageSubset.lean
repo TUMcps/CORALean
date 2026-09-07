@@ -18,7 +18,7 @@ carries that the rest of the way — the form `Verified` composes with
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -51,7 +51,7 @@ theorem NeuralNetwork.Sound.image_subset {nn : NeuralNetwork S n m} {f : Vec ℝ
     (hf : nn.Sound f) (X : S n) : f '' construct X ⊆ construct (nn.enclose X) :=
   NeuralNetwork.Sound.aux_image_subset hf (construct X) X Set.Subset.rfl
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

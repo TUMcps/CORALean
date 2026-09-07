@@ -1,4 +1,4 @@
-import CORALean.ContSet.ConZonotope.Real.Complexity.And
+import CORALean.ContSet.ConZonotope.Real.Complexity.Intersection
 import CORALean.ContSet.ConZonotope.Real.Complexity.Plus
 import CORALean.ContSet.ConZonotope.Real.Complexity.Mtimes
 import CORALean.ContSet.ConZonotope.Real.Complexity.LinComb

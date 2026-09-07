@@ -12,7 +12,7 @@ generator blocks are concatenated, the exponent matrices are over ℕ, and the
 error box is carried across, so this operation rounds nothing at all and is
 exact rather than enclosing.
 
-It is here because `and` needs it. The agreement rows constrain the factors, and
+It is here because `intersection` needs it. The agreement rows constrain the factors, and
 an independent coefficient is not one, so both arguments have to have an empty
 independent block before the rows are written.
 

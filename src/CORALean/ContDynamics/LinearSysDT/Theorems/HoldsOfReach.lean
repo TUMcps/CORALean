@@ -22,7 +22,7 @@ list.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar Plus Reduce Mtimes
 
@@ -39,7 +39,7 @@ theorem LinearSysDT.holds_of_reach (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 
     (h : spec.Holds (construct (sys.reach o ho R₀ U k))) : spec.Holds {x k} :=
   spec.holds_of_outer (Set.singleton_subset_iff.mpr (sys.reach_outer ho R₀ U traj k)) h
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

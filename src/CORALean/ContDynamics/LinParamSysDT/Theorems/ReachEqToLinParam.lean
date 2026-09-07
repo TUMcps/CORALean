@@ -18,7 +18,7 @@ or `reduce` can see.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Plus Reduce Mtimes
 
@@ -40,7 +40,7 @@ theorem LinearSysDT.reach_eq_toLinParam (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho
     rw [ih]
     rfl
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

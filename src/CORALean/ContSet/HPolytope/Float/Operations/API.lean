@@ -1,8 +1,8 @@
-import CORALean.ContSet.HPolytope.Float.Operations.And
+import CORALean.ContSet.HPolytope.Float.Operations.Intersection
 import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendLeft
 import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendRight
-import CORALean.ContSet.HPolytope.Float.Operations.MemAndIff
-import CORALean.ContSet.HPolytope.Float.Operations.AndExact
+import CORALean.ContSet.HPolytope.Float.Operations.MemIntersectionIff
+import CORALean.ContSet.HPolytope.Float.Operations.IntersectionExact
 import CORALean.ContSet.HPolytope.Float.Operations.PlusOf
 import CORALean.ContSet.HPolytope.Float.Operations.LinCombOf
 import CORALean.ContSet.HPolytope.Float.Operations.MtimesOf
@@ -44,7 +44,7 @@ import CORALean.ContSet.HPolytope.Float.Operations.TranslateOuter
 
 Three groups.
 
-Exactly and without arithmetic: `and` concatenates constraint lists, `padLeft`
+Exactly and without arithmetic: `intersection` concatenates constraint lists, `padLeft`
 and `padRight` widen the coefficient space with zeros, `halfScaledLeft` and its
 mirror widen it by one weighting coordinate and halve every right-hand side into
 it, and the constructors copy matrices. None of them rounds: halving and

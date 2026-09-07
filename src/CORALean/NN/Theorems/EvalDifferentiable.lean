@@ -19,7 +19,7 @@ the tail's differentiability at the head's output.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -36,7 +36,7 @@ theorem Chain.differentiableAt_eval : ∀ {n m : ℕ} (c : Chain n m)
       obtain ⟨hf, hrest⟩ : DifferentiableAt ℝ f x ∧ rest.DifferentiableChain (f x) := h
       exact (rest.differentiableAt_eval _ hrest).comp x hf
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

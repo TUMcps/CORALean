@@ -26,7 +26,7 @@ step count instead.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet Scalar
 
@@ -44,7 +44,7 @@ theorem HybridAutomaton.Run.mem_of_invariant {HA : HybridAutomaton S G L 𝕋 n}
   | jump h hmem hguard _ ih =>
     exact fun hx => ih (hinv.jump hmem (hinv.flow h hx h.mem_Icc_right) hguard)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

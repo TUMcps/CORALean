@@ -32,8 +32,9 @@ and not a factor vector.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix Pointwise ContSet Plus PolyZonotope
 
 variable {n m : ℕ}
@@ -63,7 +64,7 @@ theorem AbstractionError.of_poly {f : Vec ℝ n → Vec ℝ m → Vec ℝ n} {A 
     exact plus_outer L W
       (aux_mem_add_of_sub (L.point_mem_construct fun k => hBa a ha _) (cert.encloses a ha u hu))
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

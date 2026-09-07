@@ -23,8 +23,9 @@ restate here — the gap sits in what the class proves, not only in this file.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix ContSet Scalar NormedSpace
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
@@ -50,7 +51,7 @@ theorem NeurNetContrSys.reachSet_subset_reach (sys : NeurNetContrSys 𝕋 S n) (
   rintro _ ⟨x, traj, rfl⟩
   exact sys.reach_outer o η N ho hΔt hε hπ traj i hi
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

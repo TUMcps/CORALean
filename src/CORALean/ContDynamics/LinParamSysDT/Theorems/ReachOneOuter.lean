@@ -17,7 +17,7 @@ real membership proof, doing what `rfl` only stood in for there.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix Pointwise ContSet Plus Reduce Mtimes
 
@@ -37,7 +37,7 @@ theorem LinParamSysDT.reach_one_outer (sys : LinParamSysDT 𝕄 n) {o : ℕ} (ho
       (mtimes_outer sys.A _ (Set.mem_biUnion hA (Set.mem_image_of_mem _ hx)))
       hu))
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

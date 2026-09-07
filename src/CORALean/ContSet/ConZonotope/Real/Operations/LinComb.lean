@@ -48,7 +48,7 @@ noncomputable def ConZonotope.linComb (cZ₁ cZ₂ : ConZonotope α) : ConZonoto
   G := Fin.append (Fin.append cZ₁.G cZ₂.G) fun _ : Fin 1 => (2:ℝ)⁻¹ • (cZ₁.c - cZ₂.c)
   P :=
     ((cZ₁.domain.comap ((blockLeft cZ₁.h cZ₂.h).comp (blockLeft (cZ₁.h + cZ₂.h) 1))).halfScaled
-        (blockLast (cZ₁.h + cZ₂.h))).and
+        (blockLast (cZ₁.h + cZ₂.h))).intersection
       ((cZ₂.domain.comap ((blockRight cZ₁.h cZ₂.h).comp (blockLeft (cZ₁.h + cZ₂.h) 1))).halfScaled
         (-blockLast (cZ₁.h + cZ₂.h)))
 

@@ -29,13 +29,13 @@ terms cancel.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
-open Matrix Pointwise ContSet Plus Mtimes OfInterval
+open Matrix Pointwise ContSet Plus Mtimes Real.OfInterval
 
 variable {n m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
-variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [OfInterval S]
+variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Real.OfInterval S]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -51,17 +51,17 @@ theorem linInput_outer {f : Vec ℝ n → Vec ℝ m → Vec ℝ n} {A : Mat ℝ 
         + (f x u - (f xs us + A *ᵥ (x - xs) + B *ᵥ (u - us))) := by
     simp only [Matrix.mulVec_sub]
     abel
-  have hshift : u - us ∈ construct (U ⊞ ofInterval (Interval.point (-us))) := by
+  have hshift : u - us ∈ construct (U ⊞ ofInterval (Real.Interval.point (-us))) := by
     rw [sub_eq_add_neg]
-    exact plus_outer _ _ (Set.add_mem_add hu (ofInterval_outer _ (Interval.mem_point _)))
+    exact plus_outer _ _ (Set.add_mem_add hu (ofInterval_outer _ (Real.Interval.mem_point _)))
   rw [hsplit]
   exact plus_outer _ _ (Set.add_mem_add
     (plus_outer _ _ (Set.add_mem_add
-      (ofInterval_outer _ (Interval.mem_point _))
+      (ofInterval_outer _ (Real.Interval.mem_point _))
       (mtimes_outer B _ (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hshift)))))
     (cert.encloses x hx u hu))
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

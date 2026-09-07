@@ -1,4 +1,4 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.And
+import CORALean.ContSet.ZonoBundle.Real.Operations.Intersection
 import CORALean.ContSet.ZonoBundle.Real.Operations.Plus
 import CORALean.ContSet.ZonoBundle.Real.Operations.LinComb
 import CORALean.ContSet.ZonoBundle.Real.Operations.Mtimes
@@ -11,7 +11,7 @@ import CORALean.ContSet.ZonoBundle.Real.Operations.Reduce
 /-!
 # What a zonotope bundle computes, collected
 
-`and`, exact and the whole point of the representation; `plus`, `linComb`,
+`intersection`, exact and the whole point of the representation; `plus`, `linComb`,
 `mtimes` and `mtimesMatZonotope`, all enclosures over the family, one component
 at a time; `map`, one
 linear image per component, which `Instances` reads at a bijective one for

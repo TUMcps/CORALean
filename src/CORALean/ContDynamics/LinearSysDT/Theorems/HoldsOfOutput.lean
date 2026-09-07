@@ -20,7 +20,7 @@ set per step.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar Plus Reduce Mtimes
 
@@ -39,7 +39,7 @@ theorem LinearSysDT.holds_of_output (sys : LinearSysDT 𝕋 n) (out : OutputEq �
   spec.holds_of_outer
     (Set.singleton_subset_iff.mpr (sys.output_outer out ho R₀ U traj k)) h
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

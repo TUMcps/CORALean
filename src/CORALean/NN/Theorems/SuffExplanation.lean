@@ -24,7 +24,7 @@ import CORALean.NN.Operations.ExplainBox
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -40,7 +40,7 @@ def IsSuffExplanation (f : Vec ℝ n → Vec ℝ m) (x : Vec ℝ n) (ε : ℝ)
     (E : Finset (Fin n)) (l : Fin m) : Prop :=
   ∀ x', x' ∈ construct (explainBox x ε E) → ∀ j, j ≠ l → f x' j < f x' l
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

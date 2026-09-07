@@ -22,8 +22,9 @@ monotonicity happens among sets of points and never among their enclosures —
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix ContSet Scalar NormedSpace MeasureTheory
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
@@ -67,7 +68,7 @@ theorem LinearSys.Trajectory.inputSolution_timeInterval_outer
   exact sys.inputReach_subset_inputSolution hr η hε hconv hclosed hbdd hRconv hRclosed hRbdd
     (sys.inputReach_mono hbdd h0 ht0 htr hmemt)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

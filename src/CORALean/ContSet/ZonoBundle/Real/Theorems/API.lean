@@ -1,4 +1,4 @@
-import CORALean.ContSet.ZonoBundle.Real.Theorems.AndExact
+import CORALean.ContSet.ZonoBundle.Real.Theorems.IntersectionExact
 import CORALean.ContSet.ZonoBundle.Real.Theorems.PlusOuter
 import CORALean.ContSet.ZonoBundle.Real.Theorems.LinCombOuter
 import CORALean.ContSet.ZonoBundle.Real.Theorems.MtimesOuter
@@ -13,7 +13,7 @@ import CORALean.ContSet.ZonoBundle.Real.Theorems.ReduceOrder
 /-!
 # What a zonotope bundle guarantees, collected
 
-`and` exactly, `plus`, `linComb`, `mtimes` and `mtimesMatZonotope` as
+`intersection` exactly, `plus`, `linComb`, `mtimes` and `mtimesMatZonotope` as
 enclosures, and convexity unconditionally. `map_exact` needs `f` bijective, not merely injective —
 `Instances` supplies that at `reindexLin e` for `Reindex`. `isCompact_construct`
 is a plain theorem at `0 < zB.k`, never a `CompactSet` instance:

@@ -3,7 +3,7 @@ import CORALean.ContSet.ContSet.SupportBound
 import CORALean.ContSet.HPolytope.Real.Operations.Rows
 import CORALean.ContSet.HPolytope.Real.Operations.SupportBound
 import CORALean.ContSet.HPolytope.Real.Operations.SubsetOfBoundsOpt
-import CORALean.ContSet.HPolytope.Real.Theorems.AndExact
+import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
 import CORALean.ContSet.HPolytope.Real.Theorems.MapEquivExact
 import CORALean.ContSet.HPolytope.Real.Theorems.OfPointMem
 
@@ -21,7 +21,7 @@ row `0 x ≤ 0`: total without a type that excludes unbounded sets. The directio
 are the operands' own rows, among which a sum's facet normals lie.
 
 Not `Mtimes`: no direction on the target is named by the operands, so the choice
-would be a precision one and instance search may not make one. `And` and
+would be a precision one and instance search may not make one. `Intersection` and
 `OfPoint` land too — the latter only at `Vec ℝ n`, `LinearMap.proj` needing
 coordinates — `mapEquiv` backs `Reindex` below, and `comap`, `translate` stay
 named. `OfInterval` would land as it stands, but its class lives in `Conversion`.
@@ -50,9 +50,9 @@ instance : Reduce (HPolytope α) α where
   reduce P _ := P
   reduce_outer _ _ := subset_rfl
 
-instance : And (HPolytope α) α where
-  and := HPolytope.and
-  and_outer P₁ P₂ := (HPolytope.and_exact P₁ P₂).subset
+instance : Intersection (HPolytope α) α where
+  intersection := HPolytope.intersection
+  intersection_outer P₁ P₂ := (HPolytope.intersection_exact P₁ P₂).subset
 
 /-- At `Vec ℝ n` alone: `LinearMap.proj`, which reads a point's equality rows
 back, needs coordinates. -/

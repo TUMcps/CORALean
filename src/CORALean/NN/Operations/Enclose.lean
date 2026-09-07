@@ -21,7 +21,7 @@ step by step, and this definition is unchanged by it.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -34,7 +34,7 @@ def NeuralNetwork.enclose : ∀ {n m : ℕ}, NeuralNetwork S n m → S n → S m
   | _, _, .nil, s => s
   | _, _, .cons L rest, s => rest.enclose (L.enclose s)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

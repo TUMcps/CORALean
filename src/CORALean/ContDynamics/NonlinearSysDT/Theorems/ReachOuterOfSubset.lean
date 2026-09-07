@@ -23,14 +23,14 @@ implemented or proved here.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar Plus Reduce Mtimes
 
 variable {n m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
-variable [Mtimes (Mat ℝ) S] [OfInterval S]
+variable [Mtimes (Mat ℝ) S] [Real.OfInterval S]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -44,7 +44,7 @@ theorem NonlinearSysDT.reach_outer_of_subset (sys : NonlinearSysDT n m) {U : S m
     x k ∈ construct (sys.reach o ho steps R₀ k) :=
   sys.reach_outer ho steps R₀ traj (sys.confinement_of_subset ho steps R₀ hsub traj) k
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

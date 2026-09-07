@@ -21,7 +21,7 @@ is genuinely violated.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Plus Reduce Mtimes
 
@@ -40,7 +40,7 @@ theorem LinParamSysDT.not_holds_of_simulate (sys : LinParamSysDT 𝕄 n) {o : �
     ¬ spec.Holds (construct (sys.reach o ho R₀ U k)) :=
   fun h => hbad (sys.holds_of_reach ho R₀ U spec (sys.simulate_trajectory hA hx₀ hu) k h)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -18,7 +18,7 @@ HoldsAll`'s own `holdsAll_of_outer`.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -33,7 +33,7 @@ theorem NeuralNetwork.holdsAll_of_enclose {nn : NeuralNetwork S n m} {f : Vec â„
     Specification.HoldsAll specs (f '' construct X) :=
   Specification.holdsAll_of_outer specs (hf.image_subset X) h
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

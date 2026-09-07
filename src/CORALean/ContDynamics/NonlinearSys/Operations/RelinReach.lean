@@ -31,7 +31,7 @@ operator norm here as everywhere `discretize` is reasoned about.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar NormedSpace
 
@@ -54,7 +54,7 @@ noncomputable def NonlinearSys.relinReach (sys : NonlinearSys n m) {U : S m} (o 
   | i + 1 => ((NonlinearSys.linearize (steps i).A).discretize Δt).reach o ho
       (sys.relinReach o ho Δt steps Ud R₀ i) (Ud i) 1
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

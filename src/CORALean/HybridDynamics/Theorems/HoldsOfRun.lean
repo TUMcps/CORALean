@@ -22,7 +22,7 @@ specifications rather than one.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet Scalar
 
@@ -40,7 +40,7 @@ theorem HybridAutomaton.holds_of_invariant {HA : HybridAutomaton S G L 𝕋 n}
     (h : spec.Holds (construct (R ℓ'))) : spec.Holds {y} :=
   spec.holds_of_outer (Set.singleton_subset_iff.mpr (run.mem_of_invariant hinv hx)) h
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

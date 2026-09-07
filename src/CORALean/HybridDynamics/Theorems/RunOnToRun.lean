@@ -16,7 +16,7 @@ constructor, each replayed unchanged under the other family's matching one.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet Scalar
 
@@ -32,7 +32,7 @@ theorem HybridAutomaton.RunOn.toRun {HA : HybridAutomaton S G L 𝕋 n} {k : ℕ
   | flow h => exact .flow h
   | jump h hmem hguard _ ih => exact .jump h hmem hguard ih
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

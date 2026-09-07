@@ -30,7 +30,7 @@ any other would serve.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar NormedSpace MeasureTheory intervalIntegral
 
@@ -100,7 +100,7 @@ theorem LinearSys.Trajectory.variation_of_constants {sys : LinearSys 𝕋 n} {T 
   rw [Matrix.mulVec_sub, Matrix.mulVec_mulVec, Matrix.mulVec_mulVec, hmul, hmul]
   simp [sub_eq_add_neg]
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

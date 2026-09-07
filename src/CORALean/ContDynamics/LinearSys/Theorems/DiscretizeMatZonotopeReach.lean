@@ -23,8 +23,9 @@ the step instead of being dropped at the box.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix ContSet Scalar
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
@@ -48,7 +49,7 @@ theorem LinearSys.Trajectory.discretizeMatZonotope_mem_reach {sys : LinearSys �
   (sys.discretizeMatZonotope Δt η).reach_outer ho R₀ Ud
     (traj.discretizeMatZonotope hΔt hT hU hUd hε) k
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

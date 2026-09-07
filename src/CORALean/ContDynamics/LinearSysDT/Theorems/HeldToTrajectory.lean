@@ -17,7 +17,7 @@ soundness: the point of a closed form is losing less, not covering more.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar
 
@@ -35,7 +35,7 @@ theorem LinearSysDT.HeldTrajectory.toTrajectory {sys : LinearSysDT 𝕋 n} {R₀
   input _ := h.input
   step := h.step
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
   {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat 𝕋) S] [OfInterval S 𝕋] {n m : ℕ}
 
-def Layer.linear (W : Mat 𝕋 m n) (b : Vec 𝕋 m) : Real.Layer S n m where
+def Layer.linear (W : Mat 𝕋 m n) (b : Vec 𝕋 m) : Layer S n m where
   enclose s := plus (mtimes W s) (ofInterval (Interval.point b))
 
 theorem Layer.linear_sound (W : Mat 𝕋 m n) (b : Vec 𝕋 m) :
@@ -58,7 +58,7 @@ theorem Layer.linear_sound (W : Mat 𝕋 m n) (b : Vec 𝕋 m) :
 linear layer a neuron merge leaves behind, weights and box alike stored as
 floats. -/
 def Layer.linearWithError (W : Mat 𝕋 m n) (b : Vec 𝕋 m) (E : Interval 𝕋 m) :
-    Real.Layer S n m where
+    Layer S n m where
   enclose s := plus (mtimes W s) (ofInterval (Interval.plus (Interval.point b) E))
 
 /-- The value committed to is the centre of the box `E` denotes, which is why

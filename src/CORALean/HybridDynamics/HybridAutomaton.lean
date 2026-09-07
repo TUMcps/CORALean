@@ -28,7 +28,7 @@ no meaning without the stay that brought the state to the guard.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet Scalar
 
@@ -66,7 +66,7 @@ inductive HybridAutomaton.RunOn {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec 
       (rest : HA.RunOn k e.target (e.reset (x τ)) ℓ' y) :
       HA.RunOn (k + 1) ℓ (x 0) ℓ' y
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

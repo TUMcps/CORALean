@@ -28,8 +28,9 @@ This is what makes a linear layer convergent for nothing: the enclosed set
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix Pointwise ContSet Plus Mtimes OfInterval
 
 variable {n m : ℕ}
@@ -66,7 +67,7 @@ theorem aux_construct_point_polyZonotope (b : Vec ℝ m) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Layer.linear_exact (W : Mat ℝ m n) (b : Vec ℝ m) (s : PolyZonotope (Vec ℝ n)) :
-    construct ((Layer.linear (S := 𝒫𝒵) W b).enclose s)
+    construct ((Real.Layer.linear (S := 𝒫𝒵) W b).enclose s)
       = (fun x => W *ᵥ x + b) '' construct s := by -- --- PROOF ---
   show ((PolyZonotope.mtimes W s).plus (Interval.point b).polyZonotope).construct
       = (fun x => W *ᵥ x + b) '' s.construct
@@ -74,7 +75,7 @@ theorem Layer.linear_exact (W : Mat ℝ m n) (b : Vec ℝ m) (s : PolyZonotope (
   rw [← PolyZonotope.plus_exact, ← PolyZonotope.mtimes_exact,
     aux_construct_point_polyZonotope, Set.add_singleton, Set.image_image]
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n k : ℕ}
 
 /-- Nonnegative, summing to one. -/
 def VPolytope.simplex (𝕋 : Type) [FloatOps 𝕋] (k : ℕ) : HPolytope 𝕋 k :=
-  (HPolytope.ineqs (negIdentityMat 𝕋 k) fun _ => zero).and
+  (HPolytope.ineqs (negIdentityMat 𝕋 k) fun _ => zero).intersection
     (HPolytope.eqs (fun (_ : Fin 1) (_ : Fin k) => one) ⟨fun _ => one, fun _ => one⟩)
 
 
@@ -45,7 +45,7 @@ theorem VPolytope.aux_ones_mulVec (β : Vec ℝ k) (i : Fin 1) :
 theorem VPolytope.mem_simplex_iff {β : Vec ℝ k} :
     β ∈ (VPolytope.simplex 𝕋 k).construct ↔ (∀ j, 0 ≤ β j) ∧ ∑ j, β j = 1 := by -- --- PROOF ---
   simp only [VPolytope.simplex]
-  rw [HPolytope.mem_and_iff, HPolytope.mem_ineqs_iff, HPolytope.mem_eqs_iff]
+  rw [HPolytope.mem_intersection_iff, HPolytope.mem_ineqs_iff, HPolytope.mem_eqs_iff]
   -- both directions: a nonnegativity row each, and the two ends of the ones-row equality
   constructor
   · rintro ⟨hle, heq⟩

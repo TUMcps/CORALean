@@ -20,8 +20,9 @@ interval matrix, not a single real one.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix ContSet Scalar
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
@@ -48,7 +49,7 @@ theorem LinearSys.Trajectory.discretizeEnclosure_mem_reach {sys : LinearSys 𝕋
   (sys.discretizeEnclosure Δt η).reach_outer ho R₀ Ud
     (traj.discretizeEnclosure hΔt hT hU hUd hε) k
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

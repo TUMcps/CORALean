@@ -1,5 +1,5 @@
 import CORALean.ContSet.VPolytope.Real.Theorems.VertexMem
-import CORALean.ContSet.VPolytope.Real.Theorems.AndOuter
+import CORALean.ContSet.VPolytope.Real.Theorems.IntersectionOuter
 import CORALean.ContSet.VPolytope.Real.Theorems.Convex
 import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
 import CORALean.ContSet.VPolytope.Real.Theorems.IsCompact

@@ -33,19 +33,19 @@ box wide enough that the enclosed output ties, though the exact one never does.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
-open ContSet OfInterval Matrix
+open ContSet Real.OfInterval Matrix
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The constant `(0, 1)` network: class `1` always strictly wins. -/
-def aux_suffExplanationConverseFails_nn : NeuralNetwork (fun n => Interval (Vec ℝ n)) 1 2 :=
-  NeuralNetwork.ofLayer (Layer.linear (0 : Mat ℝ 2 1) (fun k => if k = 1 then (1 : ℝ) else 0))
+def aux_suffExplanationConverseFails_nn : NeuralNetwork (fun n => Real.Interval (Vec ℝ n)) 1 2 :=
+  NeuralNetwork.ofLayer (Real.Layer.linear (0 : Mat ℝ 2 1) (fun k => if k = 1 then (1 : ℝ) else 0))
 
 /-- The symmetric `±1` error box: centred at `0`, wide enough to tie. -/
-def aux_suffExplanationConverseFails_box : Interval (Vec ℝ 2) := ⟨fun _ => -1, fun _ => 1⟩
+def aux_suffExplanationConverseFails_box : Real.Interval (Vec ℝ 2) := ⟨fun _ => -1, fun _ => 1⟩
 
 theorem aux_suffExplanationConverseFails_box_isNonempty :
     aux_suffExplanationConverseFails_box.IsNonempty := fun _ => by
@@ -65,20 +65,20 @@ def aux_suffExplanationConverseFails_f : Vec ℝ 1 → Vec ℝ 2 :=
 
 theorem aux_suffExplanationConverseFails_nn_sound :
     aux_suffExplanationConverseFails_nn.Sound aux_suffExplanationConverseFails_f :=
-  NeuralNetwork.ofLayer_sound (Layer.linear_sound _ _)
+  NeuralNetwork.ofLayer_sound (Real.Layer.linear_sound _ _)
 
 /-- `nn`'s abstraction: the same weights and bias, over-approximated by the
 `±1` box. -/
 def aux_suffExplanationConverseFails_nnAbs :
-    NeuralNetwork (fun n => Interval (Vec ℝ n)) 1 2 :=
-  NeuralNetwork.ofLayer (Layer.linearWithError (0 : Mat ℝ 2 1)
+    NeuralNetwork (fun n => Real.Interval (Vec ℝ n)) 1 2 :=
+  NeuralNetwork.ofLayer (Real.Layer.linearWithError (0 : Mat ℝ 2 1)
     (fun k => if k = 1 then (1 : ℝ) else 0) aux_suffExplanationConverseFails_box)
 
 -- the box's error is committed at its own centre, `0`, so the exact networks agree
 theorem aux_suffExplanationConverseFails_nnAbs_sound :
     aux_suffExplanationConverseFails_nnAbs.Sound
       aux_suffExplanationConverseFails_f := by -- --- PROOF ---
-  refine (NeuralNetwork.ofLayer_sound (Layer.linearWithError_sound (0 : Mat ℝ 2 1)
+  refine (NeuralNetwork.ofLayer_sound (Real.Layer.linearWithError_sound (0 : Mat ℝ 2 1)
     (fun k => if k = 1 then (1 : ℝ) else 0) aux_suffExplanationConverseFails_box
     aux_suffExplanationConverseFails_box_isNonempty)).congr fun x' => ?_
   funext i
@@ -95,12 +95,12 @@ theorem aux_suffExplanationConverseFails_nnAbs_sound :
 hypothesis: a sound abstraction (`hcontain`) of a sufficient `nn` need not be
 abstractly sufficient for `nnAbs`. -/
 theorem suffExplanation_of_abstract_converse_fails :
-    ∃ (nn nnAbs : NeuralNetwork (fun n => Interval (Vec ℝ n)) 1 2) (f : Vec ℝ 1 → Vec ℝ 2)
+    ∃ (nn nnAbs : NeuralNetwork (fun n => Real.Interval (Vec ℝ n)) 1 2) (f : Vec ℝ 1 → Vec ℝ 2)
       (x : Vec ℝ 1) (ε : ℝ) (E : Finset (Fin 1)) (l : Fin 2),
       nn.Sound f
-      ∧ f '' construct (ofInterval (S := fun n => Interval (Vec ℝ n)) (explainBox x ε E))
+      ∧ f '' construct (ofInterval (S := fun n => Real.Interval (Vec ℝ n)) (explainBox x ε E))
         ⊆ construct (nnAbs.enclose
-          (ofInterval (S := fun n => Interval (Vec ℝ n)) (explainBox x ε E)))
+          (ofInterval (S := fun n => Real.Interval (Vec ℝ n)) (explainBox x ε E)))
       ∧ IsSuffExplanation f x ε E l
         ∧ ¬ nnAbs.IsSuffExplanationAbstract x ε E l := by -- --- PROOF ---
   refine ⟨aux_suffExplanationConverseFails_nn, aux_suffExplanationConverseFails_nnAbs,
@@ -121,11 +121,11 @@ theorem suffExplanation_of_abstract_converse_fails :
     simp [if_neg hj]
   · -- the box's slack lets class `0` catch class `1`, though the exact network never would
     intro hcontra
-    set X := ofInterval (S := fun n => Interval (Vec ℝ n))
+    set X := ofInterval (S := fun n => Real.Interval (Vec ℝ n))
       (explainBox (fun _ => (0 : ℝ)) 0 (∅ : Finset (Fin 1))) with hX
-    have hzero : ∀ i, (Interval.mtimes (0 : Mat ℝ 2 1) X).inf i = 0
-        ∧ (Interval.mtimes (0 : Mat ℝ 2 1) X).sup i = 0 :=
-      fun i => ⟨by simp [Interval.mtimes], by simp [Interval.mtimes]⟩
+    have hzero : ∀ i, (Real.Interval.mtimes (0 : Mat ℝ 2 1) X).inf i = 0
+        ∧ (Real.Interval.mtimes (0 : Mat ℝ 2 1) X).sup i = 0 :=
+      fun i => ⟨by simp [Real.Interval.mtimes], by simp [Real.Interval.mtimes]⟩
     have hi01 : ∀ i : Fin 2, i = 0 ∨ i = 1 := fun i => match i with
       | 0 => Or.inl rfl
       | 1 => Or.inr rfl
@@ -135,14 +135,14 @@ theorem suffExplanation_of_abstract_converse_fails :
       -- the zero weights drop out, leaving the `±1` box around `nn`'s bias
       have hz := hzero i
       constructor
-      · show (Interval.mtimes (0 : Mat ℝ 2 1) X).inf i +
+      · show (Real.Interval.mtimes (0 : Mat ℝ 2 1) X).inf i +
             ((if i = 1 then (1 : ℝ) else 0) + aux_suffExplanationConverseFails_box.inf i)
             ≤ (if i = 0 then (1 : ℝ) else 0)
         rw [hz.1]
         rcases hi01 i with hi | hi <;> subst hi <;>
           norm_num [aux_suffExplanationConverseFails_box]
       · show (if i = 0 then (1 : ℝ) else 0) ≤
-            (Interval.mtimes (0 : Mat ℝ 2 1) X).sup i +
+            (Real.Interval.mtimes (0 : Mat ℝ 2 1) X).sup i +
               ((if i = 1 then (1 : ℝ) else 0) + aux_suffExplanationConverseFails_box.sup i)
         rw [hz.2]
         rcases hi01 i with hi | hi <;> subst hi <;>
@@ -153,7 +153,7 @@ theorem suffExplanation_of_abstract_converse_fails :
       simp at hv
     exact (Set.disjoint_left.mp hcontra hmem) ⟨0, h01, by simp⟩
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -17,7 +17,7 @@ staying in `construct U`, and `A k ∈ construct sys.A` at every `k`: `init` and
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet
 
@@ -35,7 +35,7 @@ theorem LinParamSysDT.simulate_trajectory (sys : LinParamSysDT 𝕄 n) {A : ℕ 
   input := hu
   step k := ⟨A k, hA k, rfl⟩
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

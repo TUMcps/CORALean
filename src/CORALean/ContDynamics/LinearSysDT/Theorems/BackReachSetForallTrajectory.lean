@@ -22,7 +22,7 @@ and the theorem below is it at time zero.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar
 
@@ -57,7 +57,7 @@ theorem LinearSysDT.backReachSetForall_trajectory (sys : LinearSysDT 𝕋 n) (T 
   have h := sys.aux_backReachSetForall_from T U traj k 0 hx
   rwa [Nat.zero_add] at h
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

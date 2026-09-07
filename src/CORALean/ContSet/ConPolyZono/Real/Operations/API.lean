@@ -2,13 +2,13 @@ import CORALean.ContSet.ConPolyZono.Real.Operations.PadE
 import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialPadE
 import CORALean.ContSet.ConPolyZono.Real.Operations.AppendE
 import CORALean.ContSet.ConPolyZono.Real.Operations.AgreeRow
-import CORALean.ContSet.ConPolyZono.Real.Operations.AndA
-import CORALean.ContSet.ConPolyZono.Real.Operations.AndB
-import CORALean.ContSet.ConPolyZono.Real.Operations.AndDep
-import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecAndALeft
-import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecAndAAgree
-import CORALean.ContSet.ConPolyZono.Real.Operations.SatisfiesAndDepIff
-import CORALean.ContSet.ConPolyZono.Real.Operations.And
+import CORALean.ContSet.ConPolyZono.Real.Operations.IntersectionA
+import CORALean.ContSet.ConPolyZono.Real.Operations.IntersectionB
+import CORALean.ContSet.ConPolyZono.Real.Operations.IntersectionDep
+import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecIntersectionALeft
+import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecIntersectionAAgree
+import CORALean.ContSet.ConPolyZono.Real.Operations.SatisfiesIntersectionDepIff
+import CORALean.ContSet.ConPolyZono.Real.Operations.Intersection
 import CORALean.ContSet.ConPolyZono.Real.Operations.CompactGens
 import CORALean.ContSet.ConPolyZono.Real.Operations.ConsCol
 import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecEqSum
@@ -53,11 +53,11 @@ import CORALean.ContSet.ConPolyZono.Real.Operations.Reduce
 /-!
 # What `ConPolyZono` computes
 
-`and`, `plus`, `map`, `quadMap` and `compact` exactly, and `dependent`, which
-moves the independent block into the dependent one and is what makes both `and`
+`intersection`, `plus`, `map`, `quadMap` and `compact` exactly, and `dependent`, which
+moves the independent block into the dependent one and is what makes both `intersection`
 and `quadMap` exact rather than merely sound.
 
-`and` is the one to read: everything else a polynomial zonotope already
+`intersection` is the one to read: everything else a polynomial zonotope already
 computes, and this is what the constraints buy.
 
 `compact` is the one that has to know about the sharing. Merging is

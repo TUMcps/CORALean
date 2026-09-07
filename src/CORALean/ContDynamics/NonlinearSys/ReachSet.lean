@@ -27,7 +27,7 @@ what is computed.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -43,7 +43,7 @@ def NonlinearSys.reachSet (sys : NonlinearSys n m) (T : Set ℝ) (R₀ : S n) (U
     Set (Vec ℝ n) :=
   {y | ∃ (x : ℝ → Vec ℝ n) (u : ℝ → Vec ℝ m), sys.Trajectory T R₀ U x u ∧ x t = y}
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

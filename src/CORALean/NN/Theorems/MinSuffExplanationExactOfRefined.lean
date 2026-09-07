@@ -30,11 +30,11 @@ implication between them pointing the wrong way.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
-open ContSet OfInterval
+open ContSet Real.OfInterval
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OfInterval S] {n m : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real.OfInterval S] {n m : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -53,7 +53,7 @@ theorem NeuralNetwork.minSuffExplanationExact_of_refined (nnAbs : NeuralNetwork 
     hmin.2 i hi (suffExplanationExact_of_refined nnAbs f x ε (E \ {i}) l
       (hrefine _) hdrop)⟩
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

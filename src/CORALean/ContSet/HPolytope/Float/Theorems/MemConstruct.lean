@@ -1,5 +1,5 @@
 import CORALean.ContSet.HPolytope.Float.HPolytope
-import CORALean.ContSet.HPolytope.Real.Theorems.AndExact
+import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
 import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
 import CORALean.ContSet.HPolytope.Real.Operations.MemSlabIff
 
@@ -41,7 +41,7 @@ theorem HPolytope.mem_construct_iff [SoundFloatArithmetic 𝕋] {P : HPolytope �
   have hand : x ∈ P.construct ↔
       x ∈ (Real.HPolytope.ineqs (toRealMat P.A) (toRealVec P.b)).construct
         ∧ x ∈ (Real.HPolytope.slab (toRealMat P.Ae) (toRealVec P.be.inf)
-            (toRealVec P.be.sup)).construct := Real.HPolytope.mem_and_iff
+            (toRealVec P.be.sup)).construct := Real.HPolytope.mem_intersection_iff
   rw [hand, Real.HPolytope.mem_ineqs_iff, Real.HPolytope.mem_slab_iff]
   exact Iff.rfl
 

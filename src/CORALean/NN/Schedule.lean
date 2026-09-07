@@ -32,7 +32,7 @@ loop, and reading one against a network — is `Operations/*.lean`, one file eac
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 variable {n : ℕ}
 
@@ -60,7 +60,7 @@ theorem Schedule.head_cons (t : OrderPattern n) (sch : Schedule) :
   -- every index of the pattern is under the width, so the padding is not reached
   exact dif_pos i.isLt
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

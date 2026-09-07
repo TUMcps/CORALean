@@ -4,8 +4,8 @@ import CORALean.ContSet.ConPolyZono.Real.Theorems.HoldsCongr
 import CORALean.ContSet.ConPolyZono.Real.Theorems.MemConstruct
 import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendELeft
 import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendERight
-import CORALean.ContSet.ConPolyZono.Real.Theorems.AndDepExact
-import CORALean.ContSet.ConPolyZono.Real.Theorems.AndExact
+import CORALean.ContSet.ConPolyZono.Real.Theorems.IntersectionDepExact
+import CORALean.ContSet.ConPolyZono.Real.Theorems.IntersectionExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.CompactGensExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.CompactConsExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.CompactFactorsExact
@@ -31,7 +31,7 @@ import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceOrder
 /-!
 # What `ConPolyZono` guarantees
 
-`and`, `plus`, `map`, `quadMap`, `dependent` and `compact`, all six exactly, and
+`intersection`, `plus`, `map`, `quadMap`, `dependent` and `compact`, all six exactly, and
 `reduce` as an enclosure with an order bound beside it — the only operation here
 that gives anything up, and the only one that has to.
 
@@ -40,7 +40,7 @@ is what makes it bookkeeping: merging the generators, merging the constraint
 columns, and dropping the factors neither block reads. `reduce_order_le` is what
 that bookkeeping is for.
 
-`and_exact` is the one that distinguishes the representation. It is the only
+`intersection_exact` is the one that distinguishes the representation. It is the only
 exact intersection in this repository that is not of convex sets, and together
 with `quadMap_exact` it is what a nonlinear reachability step needs: propagate
 through a quadratic map, then cut by a guard, neither losing anything.

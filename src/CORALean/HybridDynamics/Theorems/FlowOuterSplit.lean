@@ -24,8 +24,9 @@ about `ℓ.U`, survives into the statement.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix ContSet Scalar
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
@@ -52,7 +53,7 @@ theorem Location.Trajectory.timeInterval_outer_split [∀ n, OfPoint (S n) (Vec 
     x t ∈ construct (ℓ.timeIntervalStepSplit τ (m + 2) R₀) :=
   (traj.linearSys h₀).timeInterval_outer_split hτ subset_rfl hε ht0 htτ
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

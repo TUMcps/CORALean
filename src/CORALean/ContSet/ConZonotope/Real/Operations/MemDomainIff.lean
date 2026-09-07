@@ -1,5 +1,5 @@
 import CORALean.ContSet.ConZonotope.Real.Operations.Domain
-import CORALean.ContSet.HPolytope.Real.Theorems.AndExact
+import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
 import CORALean.ContSet.HPolytope.Real.Operations.MemUnitBoxIff
 
 /-!
@@ -25,7 +25,7 @@ omit [AddCommGroup α] [Module ℝ α] in
 theorem ConZonotope.mem_domain_iff {cZ : ConZonotope α} {β : Vec ℝ cZ.h} :
     β ∈ cZ.domain.construct ↔ (∀ j, |β j| ≤ 1) ∧ β ∈ cZ.P.construct := by
   have hand : β ∈ cZ.domain.construct ↔ β ∈ (HPolytope.unitBox cZ.h).construct
-      ∧ β ∈ cZ.P.construct := HPolytope.mem_and_iff
+      ∧ β ∈ cZ.P.construct := HPolytope.mem_intersection_iff
   rw [hand, HPolytope.mem_unitBox_iff]
 
 end CORALean.Real

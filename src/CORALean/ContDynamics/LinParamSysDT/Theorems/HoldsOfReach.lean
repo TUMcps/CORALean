@@ -17,7 +17,7 @@ network's exact image takes, on the same theorem.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Plus Reduce Mtimes
 
@@ -34,7 +34,7 @@ theorem LinParamSysDT.holds_of_reach (sys : LinParamSysDT 𝕄 n) {o : ℕ} (ho 
     (h : spec.Holds (construct (sys.reach o ho R₀ U k))) : spec.Holds {x k} :=
   spec.holds_of_outer (Set.singleton_subset_iff.mpr (sys.reach_outer ho R₀ U traj k)) h
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

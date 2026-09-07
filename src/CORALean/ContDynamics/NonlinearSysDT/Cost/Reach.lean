@@ -28,7 +28,9 @@ reason: `plus` and `reduce` cost what a representation makes them cost.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
+
+open CORALean.Real
 
 variable {n m : ℕ}
 
@@ -46,7 +48,7 @@ noncomputable def NonlinearSysDT.reachCost (sys : NonlinearSysDT n m)
         + (NonlinearSysDT.linearize (steps k).A).reachCost o ho
             (sys.reach (S := 𝒵) o ho steps R₀ k) (steps k).linInput 1
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

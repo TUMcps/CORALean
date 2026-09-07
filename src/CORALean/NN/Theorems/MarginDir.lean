@@ -17,7 +17,7 @@ of concrete networks in `Examples`, and via `DisjointMisclassifiedOfBounds` and
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -27,7 +27,7 @@ namespace CORALean.Real
 def marginDir (m : ℕ) (j l : Fin m) : Vec ℝ m →ₗ[ℝ] ℝ :=
   (LinearMap.proj j : Vec ℝ m →ₗ[ℝ] ℝ) - (LinearMap.proj l : Vec ℝ m →ₗ[ℝ] ℝ)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

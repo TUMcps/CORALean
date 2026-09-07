@@ -24,7 +24,7 @@ handed in and none is named here.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix Pointwise ContSet Scalar
 
@@ -45,7 +45,7 @@ def LinearSysDT.reachSetBound (sys : LinearSysDT 𝕋 n) (R₀ U : S n)
     (SupportBound.image (mulVecLin (toRealMat sys.A))
       (sys.reachSetBound R₀ U b₀ bU k (c.comp (mulVecLin (toRealMat sys.A))))).add (bU c)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -20,12 +20,12 @@ that set — the four-layer chain splitting as `rest.eval (sandwich.eval x)` and
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
-  [Mtimes (Mat ℝ) S] [IntervalOuter S] [OfInterval S]
+  [Mtimes (Mat ℝ) S] [Real.IntervalOuter S] [Real.OfInterval S]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -49,7 +49,7 @@ theorem NeuralNetwork.reducesAt_outer :
       rw [hcomp x]
       exact reducesAt_outer h ⟨_, hsand, rfl⟩
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

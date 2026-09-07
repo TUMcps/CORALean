@@ -21,7 +21,7 @@ recursion by hand.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix Pointwise ContSet Scalar Plus Reduce Mtimes
 
@@ -47,7 +47,7 @@ theorem LinearSysDT.reach_outer_on (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 
     rw [traj.step k hkK]
     exact sys.reach_one_outer ho _ _ (ih hkK.le) (traj.input k hkK)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -24,7 +24,7 @@ One operation, so one file, as `LinearSysDT` has.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar Plus Mtimes
 
@@ -40,7 +40,7 @@ enclosed. -/
 def OutputEq.outputSet (out : OutputEq 𝕋 n m r) (R : S n) (U : S m) : S r :=
   plus (mtimes out.C R) (mtimes out.D U)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

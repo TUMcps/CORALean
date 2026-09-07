@@ -17,22 +17,22 @@ conjugation that carries the relaxation carries the heuristic with it.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
-open Matrix ContSet Plus Mtimes IntervalOuter OfInterval
+open Matrix ContSet Plus Mtimes Real.IntervalOuter Real.OfInterval
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
-  [Mtimes (Mat ℝ) S] [IntervalOuter S] [OfInterval S] {n : ℕ}
+  [Mtimes (Mat ℝ) S] [Real.IntervalOuter S] [Real.OfInterval S] {n : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Layer.tanh_sensitivity (x : Vec ℝ n) :
     layerSensitivity (fun (y : Vec ℝ n) i => Real.tanh (y i)) x
-      = Matrix.diagonal fun i => 4 * sigmoidDeriv (2 * x i) :=
-  Layer.activation_sensitivity hasDerivAt_tanh x
+      = Matrix.diagonal fun i => 4 * Real.sigmoidDeriv (2 * x i) :=
+  Layer.activation_sensitivity Real.hasDerivAt_tanh x
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

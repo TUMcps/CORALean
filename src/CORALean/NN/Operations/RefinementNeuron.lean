@@ -34,7 +34,7 @@ are ranked at one width, a `Schedule` being indexed by plain ℕ.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m k : ℕ}
 
@@ -71,7 +71,7 @@ noncomputable def Schedule.refineWorstNeurons (sch : Schedule)
     (r : Fin (k + 1) → Fin (n + 1) → ℝ) (ω : ℝ) : Schedule :=
   Schedule.raise sch (aux_worstNeuron r).1 (aux_neuronwiseStep r ω)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

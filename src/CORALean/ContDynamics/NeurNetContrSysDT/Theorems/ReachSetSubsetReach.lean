@@ -22,7 +22,7 @@ arise in the purely discrete loop.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar Plus Reduce Mtimes
 
@@ -41,7 +41,7 @@ theorem NeurNetContrSysDT.reachSet_subset_reach (sys : NeurNetContrSysDT 𝕋 S 
   rintro _ ⟨x, traj, rfl⟩
   exact sys.reach_outer ho R₀ hπ traj k
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

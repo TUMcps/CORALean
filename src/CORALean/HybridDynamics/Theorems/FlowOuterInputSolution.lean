@@ -25,8 +25,9 @@ tractable: nothing here depends on which `u` a particular stay picked.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix ContSet Scalar
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
@@ -61,7 +62,7 @@ theorem Location.Trajectory.timeInterval_outer_inputSolution {ℓ : Location S G
   (traj.linearSys h₀).timeInterval_outer_inputSolution hτ subset_rfl hε ht0 htτ hconv hclosed hbdd
     hRconv hRclosed hRbdd h0
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

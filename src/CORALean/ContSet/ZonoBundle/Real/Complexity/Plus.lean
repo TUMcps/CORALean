@@ -6,7 +6,7 @@ import CORALean.ContSet.Zonotope.Real.Complexity.Plus
 
 `plus`'s bundle size: every zonotope of one bundle paired with every zonotope
 of the other, so the count multiplies rather than adds — the reason it, not
-`and`, carries this directory's `O`-notation statement, in `PlusBigO.lean`.
+`intersection`, carries this directory's `O`-notation statement, in `PlusBigO.lean`.
 
 The second-order count also comes out cleanly: each paired component is
 `Zonotope.plus` of the two it came from, so its own generator count is theirs

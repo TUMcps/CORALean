@@ -18,7 +18,9 @@ goes, the same fact `reduce` in the loop buys at either representation.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
+
+open CORALean.Real
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋] [Mtimes (Mat 𝕋) 𝒞]
 
@@ -26,7 +28,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋] [Mtimes (Mat 𝕋) 𝒞]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSysDT.reach_h_isBigO_conZonotope (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o)
-    (R₀ U : ConZonotope (Vec ℝ n)) :
+    (R₀ U : Real.ConZonotope (Vec ℝ n)) :
     (fun k : ℕ => (((sys.reach (S := 𝒞) o ho R₀ U (k + 1)).h : ℕ) : ℝ))
       =O[Filter.atTop] fun _ : ℕ => (1 : ℝ) := by
   apply Asymptotics.IsBigO.of_bound (o * n : ℝ)
@@ -34,7 +36,7 @@ theorem LinearSysDT.reach_h_isBigO_conZonotope (sys : LinearSysDT 𝕋 n) {o : �
   rw [Real.norm_of_nonneg (by positivity), Real.norm_of_nonneg (by positivity), mul_one]
   exact_mod_cast sys.reach_order_le_conZonotope ho R₀ U k
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

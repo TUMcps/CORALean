@@ -1,4 +1,4 @@
-import CORALean.ContSet.ZonoBundle.Float.Theorems.AndExact
+import CORALean.ContSet.ZonoBundle.Float.Theorems.IntersectionExact
 import CORALean.ContSet.ZonoBundle.Float.Theorems.PlusOuter
 import CORALean.ContSet.ZonoBundle.Float.Theorems.LinCombOuter
 import CORALean.ContSet.ZonoBundle.Float.Theorems.MtimesOuter
@@ -12,7 +12,7 @@ import CORALean.ContSet.ZonoBundle.Float.Theorems.IsCompact
 # What a float zonotope bundle guarantees, collected
 
 Stated over the same sets of real points as the exact layer states them, each
-member's rounding already inside its own `construct`. `and` and `reindex` are
+member's rounding already inside its own `construct`. `intersection` and `reindex` are
 exact; `plus`, `linComb` and `mtimes` are enclosures, the pairwise or
 componentwise ones the exact layer had plus what the members rounded.
 

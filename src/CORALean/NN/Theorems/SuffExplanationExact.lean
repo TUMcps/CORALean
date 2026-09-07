@@ -31,23 +31,23 @@ its `ofInterval` image; `suffExplanation_of_exact` is that step.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
-open ContSet OfInterval
+open ContSet Real.OfInterval
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OfInterval S] {n m : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real.OfInterval S] {n m : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `E` is sufficient for `nn`'s classification of `x` as `l`, at `nn`'s exact
 image of `explainBox`: no point of it lets a rival tie or beat `l`. -/
-def IsSuffExplanationExact (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] [OfInterval S]
+def IsSuffExplanationExact (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] [Real.OfInterval S]
     (f : Vec ℝ n → Vec ℝ m) (x : Vec ℝ n) (ε : ℝ) (E : Finset (Fin n)) (l : Fin m) : Prop :=
   (Specification.unsafeSet (misclassified m l)).Holds
     (f '' construct (ofInterval (explainBox x ε E) : S n))
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

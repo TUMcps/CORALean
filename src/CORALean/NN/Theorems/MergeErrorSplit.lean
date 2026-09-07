@@ -26,7 +26,7 @@ versus one at a time has to be reconciled.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix
 
@@ -38,15 +38,15 @@ open Matrix
 sub-buckets' errors. -/
 theorem mergeError_split {m r r₁ r₂ : ℕ}
     (part : Split (Fin r) into (Fin r₁) ⊕ (Fin r₂))
-    (M : Mat ℝ m r) (Y : Interval (Vec ℝ r)) :
-    Interval.mtimes M Y
-      = Interval.plus
-          (Interval.mtimes (M.submatrix id part.left)
+    (M : Mat ℝ m r) (Y : Real.Interval (Vec ℝ r)) :
+    Real.Interval.mtimes M Y
+      = Real.Interval.plus
+          (Real.Interval.mtimes (M.submatrix id part.left)
             ⟨Y.inf ∘ part.left, Y.sup ∘ part.left⟩)
-          (Interval.mtimes (M.submatrix id part.right)
+          (Real.Interval.mtimes (M.submatrix id part.right)
             ⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩) := by -- --- PROOF ---
-  -- an `Interval` has no proof field, so equal bounds are all `mergeError_split` needs
-  have key : ∀ (I J : Interval (Vec ℝ m)), I.inf = J.inf → I.sup = J.sup → I = J := by
+  -- a `Real.Interval` has no proof field, so equal bounds are all `mergeError_split` needs
+  have key : ∀ (I J : Real.Interval (Vec ℝ m)), I.inf = J.inf → I.sup = J.sup → I = J := by
     rintro ⟨i₁, s₁⟩ ⟨i₂, s₂⟩ rfl rfl
     rfl
   apply key
@@ -67,7 +67,7 @@ theorem mergeError_split {m r r₁ r₂ : ℕ}
               (M i (part.right l) * Y.sup (part.right l))
     exact part.sum_split₂ (fun k => max (M i k * Y.inf k) (M i k * Y.sup k))
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

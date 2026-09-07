@@ -1,4 +1,4 @@
-import CORALean.ContSet.HPolytope.Real.Operations.And
+import CORALean.ContSet.HPolytope.Real.Operations.Intersection
 import CORALean.ContSet.HPolytope.Real.Operations.Ineqs
 
 /-!
@@ -29,7 +29,7 @@ variable {q n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def HPolytope.slab (Ae : Mat ℝ q n) (lo hi : Vec ℝ q) : HPolytope (Vec ℝ n) :=
-  (HPolytope.ineqs Ae hi).and (HPolytope.ineqs (-Ae) (-lo))
+  (HPolytope.ineqs Ae hi).intersection (HPolytope.ineqs (-Ae) (-lo))
 
 end CORALean.Real
 

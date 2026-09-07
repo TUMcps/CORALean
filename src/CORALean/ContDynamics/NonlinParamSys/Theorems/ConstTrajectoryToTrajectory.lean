@@ -16,7 +16,7 @@ every `t` reads the same membership witness.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -35,7 +35,7 @@ theorem NonlinParamSys.constTrajectory_toTrajectory {sys : NonlinParamSys n m q}
   param _ _ := traj.param
   flow := traj.flow
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

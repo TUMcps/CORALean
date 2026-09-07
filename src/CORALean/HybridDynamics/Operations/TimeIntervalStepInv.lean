@@ -3,14 +3,14 @@ import CORALean.HybridDynamics.Operations.TimeIntervalStep
 /-!
 # `Location.timeIntervalStepInv`
 
-The stay enclosure cut by the invariant. `And.and` intersects with `ℓ.inv`
+The stay enclosure cut by the invariant. `Intersection.intersection` intersects with `ℓ.inv`
 after `Plus.plus` has already added the input contribution `Ud` in, not
 before: the invariant holds of the two added together, and cutting the
 homogeneous part alone before the addition would not be sound.
 
 Takes `Ud` for that reason — the cut cannot be stated over `X₀` alone.
 
-`And.and` is homogeneous, so this is where a location's invariant has to be in
+`Intersection.intersection` is homogeneous, so this is where a location's invariant has to be in
 the state's own family: `Location S S L 𝕋 n`, not the general `S G` (#39).
 -/
 
@@ -22,8 +22,9 @@ the state's own family: `Location S S L 𝕋 n`, not the general `S G` (#39).
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix ContSet Scalar
 
 variable {n : ℕ} {L 𝕋 : Type} [Scalar 𝕋]
@@ -35,11 +36,11 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The stay enclosure over `X₀` and `Ud`, cut down to the location's invariant. -/
-noncomputable def Location.timeIntervalStepInv [∀ n, And (S n) (Vec ℝ n)]
+noncomputable def Location.timeIntervalStepInv [∀ n, Intersection (S n) (Vec ℝ n)]
     (ℓ : Location S S L 𝕋 n) (r : ℝ) (η : ℕ) (X₀ Ud : S n) : S n :=
-  And.and (Plus.plus (ℓ.timeIntervalStep r η X₀) Ud) ℓ.inv
+  Intersection.intersection (Plus.plus (ℓ.timeIntervalStep r η X₀) Ud) ℓ.inv
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -18,8 +18,9 @@ depending on the trajectory survives into the hypotheses. Its price is that
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix ContSet Scalar NormedSpace Plus Mtimes OfInterval
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
@@ -57,7 +58,7 @@ theorem NonlinearSys.Trajectory.reach_outer_inputSolution [Mtimes ℐ S]
   ((traj.restrict hT).linearize cert hR).reach_outer_inputSolution hΔt subset_rfl η hε
     hconv hclosed hbdd hRconv hRclosed hRbdd ho k
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

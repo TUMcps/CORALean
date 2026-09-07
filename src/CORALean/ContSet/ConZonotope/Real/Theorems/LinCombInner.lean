@@ -84,7 +84,7 @@ theorem ConZonotope.linComb_inner (cZ₁ cZ₂ : ConZonotope α) (h₁ : cZ₁.c
   have hl0 : 0 ≤ lam := by rw [hlam]; linarith [habs.1]
   have hl1 : lam ≤ 1 := by rw [hlam]; linarith [habs.2]
   -- the two blocks, each against the weight its side of the combination carries
-  obtain ⟨hrow₁, hrow₂⟩ := HPolytope.mem_and_iff.mp hP
+  obtain ⟨hrow₁, hrow₂⟩ := HPolytope.mem_intersection_iff.mp hP
   obtain ⟨hA₁, hAe₁⟩ := HPolytope.rows_of_mem_halfScaled_comap (w := lam) rfl hrow₁
   obtain ⟨hA₂, hAe₂⟩ := HPolytope.rows_of_mem_halfScaled_comap (w := 1 - lam)
     (show (-(β (Fin.natAdd (cZ₁.h + cZ₂.h) 0)) + 1) / 2 = 1 - lam by rw [hlam]; ring) hrow₂

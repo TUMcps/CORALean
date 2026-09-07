@@ -16,7 +16,7 @@ why nothing has to: soundness holds at every schedule `refine` can reach.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -27,7 +27,7 @@ def Schedule.refineLoop (pick : Schedule → ℕ × ℕ) (sch : Schedule) : ℕ 
   | 0 => sch
   | k + 1 => Schedule.refineLoop pick (Schedule.refine sch (pick sch).1 (pick sch).2) k
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

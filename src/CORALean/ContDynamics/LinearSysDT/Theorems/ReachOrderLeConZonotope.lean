@@ -21,7 +21,9 @@ same conclusion the same way, no induction needed either time.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
+
+open CORALean.Real
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋] [Mtimes (Mat 𝕋) 𝒞]
 
@@ -30,13 +32,13 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋] [Mtimes (Mat 𝕋) 𝒞]
 
 /-- The reachable set after any number of steps has at most `o * n`
 generators, at every `S := 𝒞`: unfold one step of `reach` and
-`ConZonotope.reduce_order_le` bounds what it ends in. -/
+`Real.ConZonotope.reduce_order_le` bounds what it ends in. -/
 theorem LinearSysDT.reach_order_le_conZonotope (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o)
-    (R₀ U : ConZonotope (Vec ℝ n)) (k : ℕ) :
+    (R₀ U : Real.ConZonotope (Vec ℝ n)) (k : ℕ) :
     (sys.reach (S := 𝒞) o ho R₀ U (k + 1)).h ≤ o * n :=
-  ConZonotope.reduce_order_le _ ho
+  Real.ConZonotope.reduce_order_le _ ho
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

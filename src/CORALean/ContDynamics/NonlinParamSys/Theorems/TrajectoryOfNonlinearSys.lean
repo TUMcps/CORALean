@@ -18,7 +18,7 @@ serve as `u` and `p`. `sys.toNonlinearSys.f` unfolds to exactly that split, so
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -38,7 +38,7 @@ theorem NonlinParamSys.trajectory_of_toNonlinearSys {sys : NonlinParamSys n m q}
   param t ht := (hUP (w t) (traj.input t ht)).2
   flow t ht := traj.flow t ht
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -23,7 +23,7 @@ never what is computed.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -37,7 +37,7 @@ theorem Layer.lipschitzWith_activation_eval {σ : ℝ → ℝ} {K : NNReal} (hσ
   exact le_trans (hσ.dist_le_mul (x i) (y i))
     (mul_le_mul_of_nonneg_left (dist_le_pi_dist x y i) K.coe_nonneg)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

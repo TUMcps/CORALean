@@ -3,8 +3,8 @@ import CORALean.ContSet.Interval.Real.Operations.Center
 import CORALean.ContSet.Interval.Real.Operations.Recentre
 import CORALean.ContSet.Interval.Real.Operations.Radius
 import CORALean.ContSet.Interval.Real.Operations.IsNonempty
-import CORALean.ContSet.Interval.Real.Operations.And
-import CORALean.ContSet.Interval.Real.Operations.AndExact
+import CORALean.ContSet.Interval.Real.Operations.Intersection
+import CORALean.ContSet.Interval.Real.Operations.IntersectionExact
 import CORALean.ContSet.Interval.Real.Operations.Plus
 import CORALean.ContSet.Interval.Real.Operations.MinkDiff
 import CORALean.ContSet.Interval.Real.Operations.LinComb

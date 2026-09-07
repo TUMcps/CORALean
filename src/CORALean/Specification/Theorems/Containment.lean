@@ -17,9 +17,7 @@ returns, so nothing new is needed to discharge the check.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
-
-open CORALean
+namespace CORALean
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α] {O : Set α}
 
@@ -40,7 +38,7 @@ theorem Specification.holds_safeSet_of_bounds {ι : Type} (c : ι → α →ₗ[
     (Specification.safeSet {x | ∀ i, c i x ≤ d i}).Holds O :=
   aux_subset_halfspaces c d u h
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --
