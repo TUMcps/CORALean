@@ -20,6 +20,7 @@ import CORALean.ContSet.Interval.Real.Operations.OfBounds
 import CORALean.ContSet.Interval.Real.Operations.SubsetOfBounds
 import CORALean.ContSet.Interval.Real.Operations.Reindex
 import CORALean.ContSet.Interval.Real.Operations.SplitAt
+import CORALean.ContSet.Interval.Real.Operations.SupportBound
 
 /-!
 # What `Interval` computes
@@ -40,5 +41,7 @@ proofs elsewhere want: the degenerate one, and the centre-plus-deviation split.
 `Instances.lean` for why that keeps the class itself uninstantiated.
 `IsNonempty` is the predicate `Theorems/IsNonempty` characterises. `SplitAt`
 bisects one coordinate at the midpoint, the concrete splitter
-`NeuralNetwork.holds_of_split` is verified at.
+`NeuralNetwork.holds_of_split` is verified at. `SupportBound` answers a
+direction corner by corner, at `Vec ℝ n` only, coordinates being what a
+linear functional's basis expansion needs.
 -/
