@@ -6,6 +6,8 @@ import CORALean.ContDynamics.LinearSys.Theorems.Discretize
 import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeEnclosure
 import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeEnclosureReach
 import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeHorizon
+import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeMatZonotope
+import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeMatZonotopeReach
 import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeInputSolution
 import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeStep
 import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMulVec
@@ -60,5 +62,6 @@ the `reach` statements built on it ask for `Set.Ici 0`.
 
 `DiscretizeEnclosure`/`DiscretizeEnclosureReach` are `Discretize`/`ReachOuter`
 again, at `discretizeEnclosure` in place of `discretize`, where the exponential
-is only enclosed rather than computed.
+is only enclosed rather than computed, and the `DiscretizeMatZonotope` pair is
+the same at a matrix zonotope, which keeps what a box drops.
 -/
