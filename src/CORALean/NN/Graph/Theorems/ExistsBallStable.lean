@@ -1,5 +1,4 @@
 import CORALean.NN.Graph.Theorems.BallSubsetSucc
-import Mathlib.Order.Interval.Set.Monotone
 
 /-!
 # The ball always stabilises, in at most `N` rounds
