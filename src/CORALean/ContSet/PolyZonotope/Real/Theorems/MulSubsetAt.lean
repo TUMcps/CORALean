@@ -26,12 +26,12 @@ variable {n : ℕ}
 
 /-- `mul`'s subset at `B`, read off `mul_point`: the product of the two points,
 one shared factor vector driving both. -/
-theorem PolyZonotope.mul_subsetAt (S₁ S₂ : PolyZonotope (Vec ℝ n)) (hp : S₁.p = S₂.p)
-    (B : Set (Fin S₁.p → ℝ)) :
-    (S₁.mul S₂ hp).subsetAt B
-      = (fun a => S₁.point a * S₂.point fun k => a (Fin.cast hp.symm k)) '' B := by
-  show (S₁.mul S₂ hp).point '' B = _
-  exact Set.image_congr fun a _ => PolyZonotope.mul_point S₁ S₂ hp a
+theorem PolyZonotope.mul_subsetAt (pZ₁ pZ₂ : PolyZonotope (Vec ℝ n)) (hp : pZ₁.p = pZ₂.p)
+    (B : Set (Fin pZ₁.p → ℝ)) :
+    (pZ₁.mul pZ₂ hp).subsetAt B
+      = (fun a => pZ₁.point a * pZ₂.point fun k => a (Fin.cast hp.symm k)) '' B := by
+  show (pZ₁.mul pZ₂ hp).point '' B = _
+  exact Set.image_congr fun a _ => PolyZonotope.mul_point pZ₁ pZ₂ hp a
 
 end CORALean.Real
 

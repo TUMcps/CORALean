@@ -33,20 +33,20 @@ namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
-def ConPolyZono.polyZonotope (C : ConPolyZono α) : PolyZonotope α where
-  p := C.p
-  h := C.h
-  q := C.q
-  c := C.c
-  G := C.G
-  E := C.E
-  GI := C.GI
+def ConPolyZono.polyZonotope (cPZ : ConPolyZono α) : PolyZonotope α where
+  p := cPZ.p
+  h := cPZ.h
+  q := cPZ.q
+  c := cPZ.c
+  G := cPZ.G
+  E := cPZ.E
+  GI := cPZ.GI
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.polyZonotope_outer (C : ConPolyZono α) :
-    C.construct ⊆ C.polyZonotope.construct := by
+theorem ConPolyZono.polyZonotope_outer (cPZ : ConPolyZono α) :
+    cPZ.construct ⊆ cPZ.polyZonotope.construct := by
   rintro _ ⟨a, b, ha, hb, _, rfl⟩
   exact ⟨a, b, ha, hb, rfl⟩
 

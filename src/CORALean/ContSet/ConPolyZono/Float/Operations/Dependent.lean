@@ -37,20 +37,20 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConPolyZono.dependent (C : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n where
-  p := C.p + C.q
-  h := C.h + C.q
+def ConPolyZono.dependent (cPZ : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n where
+  p := cPZ.p + cPZ.q
+  h := cPZ.h + cPZ.q
   q := 0
-  m := C.m
-  s := C.s
-  c := C.c
-  G := fun i => Fin.append (C.G i) (C.GI i)
-  E := Real.PolyZonotope.plusE C.E (Real.PolyZonotope.identE C.q)
+  m := cPZ.m
+  s := cPZ.s
+  c := cPZ.c
+  G := fun i => Fin.append (cPZ.G i) (cPZ.GI i)
+  E := Real.PolyZonotope.plusE cPZ.E (Real.PolyZonotope.identE cPZ.q)
   GI := fun _ => Fin.elim0
-  A := C.A
-  b := C.b
-  EC := Real.ConPolyZono.padE C.EC C.q
-  err := C.err
+  A := cPZ.A
+  b := cPZ.b
+  EC := Real.ConPolyZono.padE cPZ.EC cPZ.q
+  err := cPZ.err
 
 end CORALean.Float
 

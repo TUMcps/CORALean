@@ -35,39 +35,39 @@ omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `plus`'s dependent generator count, stated through the
 projection because that is the form the goal has and simp will not rewrite a
 binder's type. -/
-theorem ConPolyZono.aux_sum_univ_plus_h {C₁ C₂ : ConPolyZono 𝕋 n}
-    (f : Fin (C₁.h + C₂.h) → ℝ) :
-    ∑ l : Fin (C₁.plus C₂).h, f l
-      = ∑ l, f (Fin.castAdd C₂.h l) + ∑ l, f (Fin.natAdd C₁.h l) :=
+theorem ConPolyZono.aux_sum_univ_plus_h {cPZ₁ cPZ₂ : ConPolyZono 𝕋 n}
+    (f : Fin (cPZ₁.h + cPZ₂.h) → ℝ) :
+    ∑ l : Fin (cPZ₁.plus cPZ₂).h, f l
+      = ∑ l, f (Fin.castAdd cPZ₂.h l) + ∑ l, f (Fin.natAdd cPZ₁.h l) :=
   Fin.sum_univ_add f
 
 omit [SoundFloatArithmetic 𝕋] in
 /-- The same at the independent generator count. -/
-theorem ConPolyZono.aux_sum_univ_plus_q {C₁ C₂ : ConPolyZono 𝕋 n}
-    (f : Fin (C₁.q + C₂.q) → ℝ) :
-    ∑ j : Fin (C₁.plus C₂).q, f j
-      = ∑ j, f (Fin.castAdd C₂.q j) + ∑ j, f (Fin.natAdd C₁.q j) :=
+theorem ConPolyZono.aux_sum_univ_plus_q {cPZ₁ cPZ₂ : ConPolyZono 𝕋 n}
+    (f : Fin (cPZ₁.q + cPZ₂.q) → ℝ) :
+    ∑ j : Fin (cPZ₁.plus cPZ₂).q, f j
+      = ∑ j, f (Fin.castAdd cPZ₂.q j) + ∑ j, f (Fin.natAdd cPZ₁.q j) :=
   Fin.sum_univ_add f
 
-theorem ConPolyZono.aux_plus_nominal (C₁ C₂ : ConPolyZono 𝕋 n) :
-    nominalSet C₁ + nominalSet C₂ ⊆
-      nominalSet (C₁.plus C₂)
-        + (PolyZonotope.centerResidual C₁.c C₂.c).construct := by -- --- PROOF ---
+theorem ConPolyZono.aux_plus_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) :
+    nominalSet cPZ₁ + nominalSet cPZ₂ ⊆
+      nominalSet (cPZ₁.plus cPZ₂)
+        + (PolyZonotope.centerResidual cPZ₁.c cPZ₂.c).construct := by -- --- PROOF ---
   rintro _ ⟨x₁, hx₁', x₂, hx₂', rfl⟩
   obtain ⟨a₁, β₁, ha₁, hβ₁, hs₁, hx₁⟩ := ConPolyZono.mem_nominalSet_iff.mp hx₁'
   obtain ⟨a₂, β₂, ha₂, hβ₂, hs₂, hx₂⟩ := ConPolyZono.mem_nominalSet_iff.mp hx₂'
-  have hA₁ : (fun k => Fin.append a₁ a₂ (Fin.castAdd C₂.p k)) = a₁ :=
+  have hA₁ : (fun k => Fin.append a₁ a₂ (Fin.castAdd cPZ₂.p k)) = a₁ :=
     funext fun k => Fin.append_left a₁ a₂ k
-  have hA₂ : (fun k => Fin.append a₁ a₂ (Fin.natAdd C₁.p k)) = a₂ :=
+  have hA₂ : (fun k => Fin.append a₁ a₂ (Fin.natAdd cPZ₁.p k)) = a₂ :=
     funext fun k => Fin.append_right a₁ a₂ k
   -- the witness: one appended factor vector, one appended coefficient vector
-  refine ⟨fun i => toReal ((C₁.plus C₂).c i)
-            + (∑ l, toReal ((C₁.plus C₂).G i l)
-                * Real.PolyZonotope.monomial (C₁.plus C₂).E (Fin.append a₁ a₂) l)
-            + ∑ j, toReal ((C₁.plus C₂).GI i j) * Fin.append β₁ β₂ j,
+  refine ⟨fun i => toReal ((cPZ₁.plus cPZ₂).c i)
+            + (∑ l, toReal ((cPZ₁.plus cPZ₂).G i l)
+                * Real.PolyZonotope.monomial (cPZ₁.plus cPZ₂).E (Fin.append a₁ a₂) l)
+            + ∑ j, toReal ((cPZ₁.plus cPZ₂).GI i j) * Fin.append β₁ β₂ j,
           ConPolyZono.mem_nominalSet_iff.mpr
             ⟨Fin.append a₁ a₂, Fin.append β₁ β₂, ?_, ?_, ?_, fun _ => rfl⟩,
-          fun i => toReal (C₁.c i) + toReal (C₂.c i) - toReal ((C₁.plus C₂).c i), ?_, ?_⟩
+          fun i => toReal (cPZ₁.c i) + toReal (cPZ₂.c i) - toReal ((cPZ₁.plus cPZ₂).c i), ?_, ?_⟩
   · refine Fin.addCases (fun k => ?_) (fun k => ?_)
     · simpa using ha₁ k
     · simpa using ha₂ k
@@ -75,7 +75,7 @@ theorem ConPolyZono.aux_plus_nominal (C₁ C₂ : ConPolyZono 𝕋 n) :
     · simpa using hβ₁ j
     · simpa using hβ₂ j
   -- the constraint side, each system read on the factors it came with
-  · refine (ConPolyZono.satisfies_plus_iff C₁ C₂ _).mpr ⟨?_, ?_⟩
+  · refine (ConPolyZono.satisfies_plus_iff cPZ₁ cPZ₂ _).mpr ⟨?_, ?_⟩
     · rw [hA₁]; exact hs₁
     · rw [hA₂]; exact hs₂
   · exact Interval.sub_mem_residual (fun i => ⟨addDown_le_add _ _, add_le_addUp _ _⟩)
@@ -88,19 +88,19 @@ theorem ConPolyZono.aux_plus_nominal (C₁ C₂ : ConPolyZono 𝕋 n) :
     ring
 
 /-- The box absorbs the two incoming boxes and the centre rounding. -/
-theorem ConPolyZono.aux_plus_error (C₁ C₂ : ConPolyZono 𝕋 n) :
-    C₁.err.construct + C₂.err.construct
-        + (PolyZonotope.centerResidual C₁.c C₂.c).construct ⊆ (C₁.plus C₂).err.construct :=
-  subset_trans (Set.add_subset_add_right (Interval.plus_outer C₁.err C₂.err))
+theorem ConPolyZono.aux_plus_error (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) :
+    cPZ₁.err.construct + cPZ₂.err.construct
+        + (PolyZonotope.centerResidual cPZ₁.c cPZ₂.c).construct ⊆ (cPZ₁.plus cPZ₂).err.construct :=
+  subset_trans (Set.add_subset_add_right (Interval.plus_outer cPZ₁.err cPZ₂.err))
     (Interval.plus_outer _ _)
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.plus_outer (C₁ C₂ : ConPolyZono 𝕋 n) :
-    C₁.construct + C₂.construct ⊆ (C₁.plus C₂).construct :=
-  InflatedContSet.plus_subset (ConPolyZono.aux_plus_nominal C₁ C₂)
-    (ConPolyZono.aux_plus_error C₁ C₂)
+theorem ConPolyZono.plus_outer (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) :
+    cPZ₁.construct + cPZ₂.construct ⊆ (cPZ₁.plus cPZ₂).construct :=
+  InflatedContSet.plus_subset (ConPolyZono.aux_plus_nominal cPZ₁ cPZ₂)
+    (ConPolyZono.aux_plus_error cPZ₁ cPZ₂)
 
 end CORALean.Float
 

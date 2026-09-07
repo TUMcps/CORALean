@@ -30,8 +30,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- The admissible factor and coefficient vectors: the two unit cubes, cut down
 by the constraint on the dependent half. -/
-def ConPolyZono.domain (C : ConPolyZono α) : Set ((Fin C.p → ℝ) × (Fin C.q → ℝ)) :=
-  {ab | (∀ k, |ab.1 k| ≤ 1) ∧ (∀ j, |ab.2 j| ≤ 1) ∧ C.satisfies ab.1}
+def ConPolyZono.domain (cPZ : ConPolyZono α) : Set ((Fin cPZ.p → ℝ) × (Fin cPZ.q → ℝ)) :=
+  {ab | (∀ k, |ab.1 k| ≤ 1) ∧ (∀ j, |ab.2 j| ≤ 1) ∧ cPZ.satisfies ab.1}
 
 end CORALean.Real
 

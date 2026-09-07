@@ -73,84 +73,84 @@ theorem ConZonotope.aux_abs_sum_le {h : ℕ} (c β : Vec ℝ h) (hβ : ∀ j, |�
 
 /-- The inequality rows, then the equality rows, each read off as coefficients
 over the coefficient space. -/
-def ConZonotope.conA (C : ConZonotope (Vec ℝ n)) : Mat ℝ (C.P.m + C.P.me) C.h :=
-  Fin.append (fun i => ConZonotope.aux_coeffs (C.P.A i))
-    fun i => ConZonotope.aux_coeffs (C.P.Ae i)
+def ConZonotope.conA (cZ : ConZonotope (Vec ℝ n)) : Mat ℝ (cZ.P.m + cZ.P.me) cZ.h :=
+  Fin.append (fun i => ConZonotope.aux_coeffs (cZ.P.A i))
+    fun i => ConZonotope.aux_coeffs (cZ.P.Ae i)
 
 /-- An inequality gets the free lower bound; an equality is the degenerate
 interval. -/
-def ConZonotope.conB (C : ConZonotope (Vec ℝ n)) : Interval (Vec ℝ (C.P.m + C.P.me)) :=
-  ⟨Fin.append (fun i => -∑ j, |ConZonotope.aux_coeffs (C.P.A i) j|) C.P.be,
-   Fin.append C.P.b C.P.be⟩
+def ConZonotope.conB (cZ : ConZonotope (Vec ℝ n)) : Interval (Vec ℝ (cZ.P.m + cZ.P.me)) :=
+  ⟨Fin.append (fun i => -∑ j, |ConZonotope.aux_coeffs (cZ.P.A i) j|) cZ.P.be,
+   Fin.append cZ.P.b cZ.P.be⟩
 
-def ConZonotope.conPolyZono (C : ConZonotope (Vec ℝ n)) : ConPolyZono (Vec ℝ n) where
-  p := C.h
-  h := C.h
+def ConZonotope.conPolyZono (cZ : ConZonotope (Vec ℝ n)) : ConPolyZono (Vec ℝ n) where
+  p := cZ.h
+  h := cZ.h
   q := 0
-  m := C.P.m + C.P.me
-  s := C.h
-  c := C.c
-  G := C.G
-  E := PolyZonotope.identE C.h
+  m := cZ.P.m + cZ.P.me
+  s := cZ.h
+  c := cZ.c
+  G := cZ.G
+  E := PolyZonotope.identE cZ.h
   GI := Fin.elim0
-  A := ConZonotope.conA C
-  b := ConZonotope.conB C
-  EC := PolyZonotope.identE C.h
+  A := ConZonotope.conA cZ
+  b := ConZonotope.conB cZ
+  EC := PolyZonotope.identE cZ.h
 
 -- identity exponents make the monomial vector the factor vector itself
-theorem ConZonotope.aux_mulVec_conA (C : ConZonotope (Vec ℝ n)) (β : Vec ℝ C.h) :
-    ∀ i, (ConZonotope.conA C *ᵥ PolyZonotope.monomial (PolyZonotope.identE C.h) β) i
-      = (ConZonotope.conA C *ᵥ β) i := by
-  have hm : PolyZonotope.monomial (PolyZonotope.identE C.h) β = β :=
+theorem ConZonotope.aux_mulVec_conA (cZ : ConZonotope (Vec ℝ n)) (β : Vec ℝ cZ.h) :
+    ∀ i, (ConZonotope.conA cZ *ᵥ PolyZonotope.monomial (PolyZonotope.identE cZ.h) β) i
+      = (ConZonotope.conA cZ *ᵥ β) i := by
+  have hm : PolyZonotope.monomial (PolyZonotope.identE cZ.h) β = β :=
     funext fun j => PolyZonotope.monomial_identE β j
   rw [hm]
   exact fun _ => rfl
 
 /-- The constraint system says of the factors exactly what the coefficient
 polytope said of the coefficients — the lower bounds being free. -/
-theorem ConZonotope.satisfies_conPolyZono_iff (C : ConZonotope (Vec ℝ n)) (β : Vec ℝ C.h)
+theorem ConZonotope.satisfies_conPolyZono_iff (cZ : ConZonotope (Vec ℝ n)) (β : Vec ℝ cZ.h)
     (hβ : ∀ j, |β j| ≤ 1) :
-    C.conPolyZono.satisfies β ↔ β ∈ C.P.construct := by -- --- PROOF ---
-  have hlin : ∀ i : Fin C.P.m, (ConZonotope.conA C *ᵥ β) (Fin.castAdd C.P.me i)
-      = C.P.A i β := by
+    cZ.conPolyZono.satisfies β ↔ β ∈ cZ.P.construct := by -- --- PROOF ---
+  have hlin : ∀ i : Fin cZ.P.m, (ConZonotope.conA cZ *ᵥ β) (Fin.castAdd cZ.P.me i)
+      = cZ.P.A i β := by
     intro i
-    show ∑ j, ConZonotope.conA C (Fin.castAdd C.P.me i) j * β j = _
-    rw [ConZonotope.aux_apply_eq_sum (C.P.A i) β]
+    show ∑ j, ConZonotope.conA cZ (Fin.castAdd cZ.P.me i) j * β j = _
+    rw [ConZonotope.aux_apply_eq_sum (cZ.P.A i) β]
     exact Finset.sum_congr rfl fun j _ => by
       rw [ConZonotope.conA, Fin.append_left]
-  have heq : ∀ i : Fin C.P.me, (ConZonotope.conA C *ᵥ β) (Fin.natAdd C.P.m i)
-      = C.P.Ae i β := by
+  have heq : ∀ i : Fin cZ.P.me, (ConZonotope.conA cZ *ᵥ β) (Fin.natAdd cZ.P.m i)
+      = cZ.P.Ae i β := by
     intro i
-    show ∑ j, ConZonotope.conA C (Fin.natAdd C.P.m i) j * β j = _
-    rw [ConZonotope.aux_apply_eq_sum (C.P.Ae i) β]
+    show ∑ j, ConZonotope.conA cZ (Fin.natAdd cZ.P.m i) j * β j = _
+    rw [ConZonotope.aux_apply_eq_sum (cZ.P.Ae i) β]
     exact Finset.sum_congr rfl fun j _ => by
       rw [ConZonotope.conA, Fin.append_right]
   -- the free lower bound: no row falls below minus its own absolute row sum
-  have hfree : ∀ i : Fin C.P.m,
-      -∑ j, |ConZonotope.aux_coeffs (C.P.A i) j| ≤ C.P.A i β := by
+  have hfree : ∀ i : Fin cZ.P.m,
+      -∑ j, |ConZonotope.aux_coeffs (cZ.P.A i) j| ≤ cZ.P.A i β := by
     intro i
-    rw [ConZonotope.aux_apply_eq_sum (C.P.A i) β]
-    have h := ConZonotope.aux_abs_sum_le (ConZonotope.aux_coeffs (C.P.A i)) β hβ
+    rw [ConZonotope.aux_apply_eq_sum (cZ.P.A i) β]
+    have h := ConZonotope.aux_abs_sum_le (ConZonotope.aux_coeffs (cZ.P.A i)) β hβ
     rw [abs_le] at h
     exact h.1
   constructor
   · intro hsat'
-    have hsat : ConPolyZono.holds (ConZonotope.conA C) (ConZonotope.conB C)
-        (PolyZonotope.identE C.h) β := hsat'
+    have hsat : ConPolyZono.holds (ConZonotope.conA cZ) (ConZonotope.conB cZ)
+        (PolyZonotope.identE cZ.h) β := hsat'
     refine ⟨fun i => ?_, fun i => ?_⟩
-    · have h := (hsat (Fin.castAdd C.P.me i)).2
-      rw [ConZonotope.aux_mulVec_conA C β, hlin i] at h
+    · have h := (hsat (Fin.castAdd cZ.P.me i)).2
+      rw [ConZonotope.aux_mulVec_conA cZ β, hlin i] at h
       simpa only [ConZonotope.conB, Fin.append_left] using h
-    · have h := hsat (Fin.natAdd C.P.m i)
-      rw [ConZonotope.aux_mulVec_conA C β, heq i] at h
+    · have h := hsat (Fin.natAdd cZ.P.m i)
+      rw [ConZonotope.aux_mulVec_conA cZ β, heq i] at h
       simp only [ConZonotope.conB, Fin.append_right] at h
       exact le_antisymm h.2 h.1
   -- back: an inequality needs only its upper bound, an equality both ends at once
   · rintro ⟨hle, hE⟩
-    show ConPolyZono.holds (ConZonotope.conA C) (ConZonotope.conB C)
-      (PolyZonotope.identE C.h) β
+    show ConPolyZono.holds (ConZonotope.conA cZ) (ConZonotope.conB cZ)
+      (PolyZonotope.identE cZ.h) β
     refine Fin.addCases (fun i => ?_) fun i => ?_ <;>
-      rw [ConZonotope.aux_mulVec_conA C β]
+      rw [ConZonotope.aux_mulVec_conA cZ β]
     · rw [hlin i]
       simpa only [ConZonotope.conB, Fin.append_left] using ⟨hfree i, hle i⟩
     · rw [heq i]
@@ -160,11 +160,11 @@ theorem ConZonotope.satisfies_conPolyZono_iff (C : ConZonotope (Vec ℝ n)) (β 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.conPolyZono_exact (C : ConZonotope (Vec ℝ n)) :
-    C.construct = C.conPolyZono.construct := by -- --- PROOF ---
-  have hvalue : ∀ β : Vec ℝ C.h,
-      C.c + ∑ j, β j • C.G j
-        = C.c + (∑ i, PolyZonotope.monomial (PolyZonotope.identE C.h) β i • C.G i)
+theorem ConZonotope.conPolyZono_exact (cZ : ConZonotope (Vec ℝ n)) :
+    cZ.construct = cZ.conPolyZono.construct := by -- --- PROOF ---
+  have hvalue : ∀ β : Vec ℝ cZ.h,
+      cZ.c + ∑ j, β j • cZ.G j
+        = cZ.c + (∑ i, PolyZonotope.monomial (PolyZonotope.identE cZ.h) β i • cZ.G i)
           + ∑ j : Fin 0, (0:ℝ) • (Fin.elim0 j : Vec ℝ n) := by
     intro β
     simp only [Finset.univ_eq_empty, Finset.sum_empty, add_zero,
@@ -173,12 +173,12 @@ theorem ConZonotope.conPolyZono_exact (C : ConZonotope (Vec ℝ n)) :
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨β, hβ, hP, rfl⟩
     exact ⟨β, fun _ => 0, hβ, fun j => j.elim0,
-      (ConZonotope.satisfies_conPolyZono_iff C β hβ).mpr hP, hvalue β⟩
+      (ConZonotope.satisfies_conPolyZono_iff cZ β hβ).mpr hP, hvalue β⟩
   · rintro _ ⟨β, γ, hβ, -, hsat, rfl⟩
-    refine ⟨β, hβ, (ConZonotope.satisfies_conPolyZono_iff C β hβ).mp hsat, ?_⟩
-    show C.c + (∑ i, PolyZonotope.monomial (PolyZonotope.identE C.h) β i • C.G i)
+    refine ⟨β, hβ, (ConZonotope.satisfies_conPolyZono_iff cZ β hβ).mp hsat, ?_⟩
+    show cZ.c + (∑ i, PolyZonotope.monomial (PolyZonotope.identE cZ.h) β i • cZ.G i)
         + (∑ j : Fin 0, γ j • (Fin.elim0 j : Vec ℝ n))
-      = C.c + ∑ j, β j • C.G j
+      = cZ.c + ∑ j, β j • cZ.G j
     simp only [Finset.univ_eq_empty, Finset.sum_empty, add_zero,
       PolyZonotope.monomial_identE]
     rfl

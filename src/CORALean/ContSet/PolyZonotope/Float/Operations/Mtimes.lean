@@ -33,15 +33,15 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.mtimes (M : Mat 𝕋 m n) (PZ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 m where
-  p := PZ.p
-  h := PZ.h
-  q := PZ.q
-  c := mulVecDown M PZ.c
-  G := matMulDown M PZ.G
-  E := PZ.E
-  GI := matMulDown M PZ.GI
-  err := (Interval.mtimes M PZ.err).plus (PolyZonotope.mtimesResidual M PZ)
+def PolyZonotope.mtimes (M : Mat 𝕋 m n) (pZ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 m where
+  p := pZ.p
+  h := pZ.h
+  q := pZ.q
+  c := mulVecDown M pZ.c
+  G := matMulDown M pZ.G
+  E := pZ.E
+  GI := matMulDown M pZ.GI
+  err := (Interval.mtimes M pZ.err).plus (PolyZonotope.mtimesResidual M pZ)
 
 end CORALean.Float
 

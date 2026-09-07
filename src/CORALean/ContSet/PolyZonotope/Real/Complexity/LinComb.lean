@@ -24,14 +24,14 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.linComb_p (PZ₁ PZ₂ : PolyZonotope α) :
-    (PZ₁.linComb PZ₂).p = PZ₁.p + PZ₂.p + 1 := rfl
+theorem PolyZonotope.linComb_p (pZ₁ pZ₂ : PolyZonotope α) :
+    (pZ₁.linComb pZ₂).p = pZ₁.p + pZ₂.p + 1 := rfl
 
-theorem PolyZonotope.linComb_h (PZ₁ PZ₂ : PolyZonotope α) :
-    (PZ₁.linComb PZ₂).h = PZ₁.h + PZ₂.h + (PZ₁.h + PZ₂.h + 1) := rfl
+theorem PolyZonotope.linComb_h (pZ₁ pZ₂ : PolyZonotope α) :
+    (pZ₁.linComb pZ₂).h = pZ₁.h + pZ₂.h + (pZ₁.h + pZ₂.h + 1) := rfl
 
-theorem PolyZonotope.linComb_q (PZ₁ PZ₂ : PolyZonotope α) :
-    (PZ₁.linComb PZ₂).q = PZ₁.q + PZ₂.q := rfl
+theorem PolyZonotope.linComb_q (pZ₁ pZ₂ : PolyZonotope α) :
+    (pZ₁.linComb pZ₂).q = pZ₁.q + pZ₂.q := rfl
 
 end CORALean.Real
 

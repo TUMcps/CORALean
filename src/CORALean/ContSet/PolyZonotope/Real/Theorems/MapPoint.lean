@@ -32,14 +32,14 @@ variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Mod
 
 /-- `map`'s point is `f` at the point: the monomials are scalars, so only the
 centre and the generators move. -/
-theorem PolyZonotope.map_point (f : α →ₗ[ℝ] β) (S : PolyZonotope α) (a : Fin S.p → ℝ) :
-    (S.map f).point a = f (S.point a) := by -- --- PROOF ---
-  show f S.c + ∑ i, PolyZonotope.monomial S.E a i • f (S.G i)
-      = f (S.c + ∑ i, PolyZonotope.monomial S.E a i • S.G i)
+theorem PolyZonotope.map_point (f : α →ₗ[ℝ] β) (pZ : PolyZonotope α) (a : Fin pZ.p → ℝ) :
+    (pZ.map f).point a = f (pZ.point a) := by -- --- PROOF ---
+  show f pZ.c + ∑ i, PolyZonotope.monomial pZ.E a i • f (pZ.G i)
+      = f (pZ.c + ∑ i, PolyZonotope.monomial pZ.E a i • pZ.G i)
   -- linearity across the sum, then across each scaling
   rw [map_add, map_sum]
-  refine congrArg (f S.c + ·) (Finset.sum_congr rfl fun i _ => ?_)
-  exact (map_smul f _ (S.G i)).symm
+  refine congrArg (f pZ.c + ·) (Finset.sum_congr rfl fun i _ => ?_)
+  exact (map_smul f _ (pZ.G i)).symm
 
 end CORALean.Real
 

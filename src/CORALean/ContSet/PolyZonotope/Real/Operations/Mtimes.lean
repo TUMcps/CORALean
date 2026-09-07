@@ -24,15 +24,15 @@ variable {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.mtimes (M : Mat ℝ m n) (PZ : PolyZonotope (Vec ℝ n)) :
+def PolyZonotope.mtimes (M : Mat ℝ m n) (pZ : PolyZonotope (Vec ℝ n)) :
     PolyZonotope (Vec ℝ m) where
-  p := PZ.p
-  h := PZ.h
-  q := PZ.q
-  c := M *ᵥ PZ.c
-  G := fun i => M *ᵥ PZ.G i
-  E := PZ.E
-  GI := fun j => M *ᵥ PZ.GI j
+  p := pZ.p
+  h := pZ.h
+  q := pZ.q
+  c := M *ᵥ pZ.c
+  G := fun i => M *ᵥ pZ.G i
+  E := pZ.E
+  GI := fun j => M *ᵥ pZ.GI j
 
 end CORALean.Real
 

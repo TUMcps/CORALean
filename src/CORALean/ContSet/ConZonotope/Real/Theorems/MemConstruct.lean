@@ -25,16 +25,16 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.mem_construct_iff {n : ℕ} {C : ConZonotope (Vec ℝ n)} {x : Vec ℝ n} :
-    x ∈ C.construct ↔ ∃ β : Fin C.h → ℝ, (∀ j, |β j| ≤ 1) ∧ β ∈ C.P.construct
-      ∧ ∀ i, x i = C.c i + ∑ j, C.G j i * β j := by -- --- PROOF ---
+theorem ConZonotope.mem_construct_iff {n : ℕ} {cZ : ConZonotope (Vec ℝ n)} {x : Vec ℝ n} :
+    x ∈ cZ.construct ↔ ∃ β : Fin cZ.h → ℝ, (∀ j, |β j| ≤ 1) ∧ β ∈ cZ.P.construct
+      ∧ ∀ i, x i = cZ.c i + ∑ j, cZ.G j i * β j := by -- --- PROOF ---
   constructor
   · rintro ⟨β, hβ, hP, rfl⟩
-    exact ⟨β, hβ, hP, Entrywise.add_sum_smul_apply C.c C.G β⟩
+    exact ⟨β, hβ, hP, Entrywise.add_sum_smul_apply cZ.c cZ.G β⟩
   -- back, the pointwise equalities collected into one by `funext`
   · rintro ⟨β, hβ, hP, hx⟩
     exact ⟨β, hβ, hP,
-      funext fun i => (hx i).trans (Entrywise.add_sum_smul_apply C.c C.G β i).symm⟩
+      funext fun i => (hx i).trans (Entrywise.add_sum_smul_apply cZ.c cZ.G β i).symm⟩
 
 end CORALean.Real
 

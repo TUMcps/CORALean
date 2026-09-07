@@ -26,8 +26,8 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- True by `rfl`, and what lets `mtimes` inherit `map`'s exactness. -/
-theorem PolyZonotope.mtimes_eq_map (M : Mat ℝ m n) (PZ : PolyZonotope (Vec ℝ n)) :
-    PolyZonotope.mtimes M PZ = PZ.map (Matrix.mulVecLin M) := rfl
+theorem PolyZonotope.mtimes_eq_map (M : Mat ℝ m n) (pZ : PolyZonotope (Vec ℝ n)) :
+    PolyZonotope.mtimes M pZ = pZ.map (Matrix.mulVecLin M) := rfl
 
 end CORALean.Real
 

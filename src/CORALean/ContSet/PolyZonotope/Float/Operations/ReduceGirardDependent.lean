@@ -39,12 +39,12 @@ def PolyZonotope.aux_keepAll (m : ℕ) : Split (Fin m) into (Fin m) ⊕ (Fin 0) 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.reduceGirardDependent (PZ : PolyZonotope 𝕋 n) (o : ℕ) : PolyZonotope 𝕋 n :=
-  if o * n < PZ.h then
-    PZ.reduceBy
-      (PolyZonotope.girardSplit (PolyZonotope.girardMetric PZ.G) ((o - 1) * n))
-      (PolyZonotope.aux_keepAll PZ.q)
-  else PZ
+def PolyZonotope.reduceGirardDependent (pZ : PolyZonotope 𝕋 n) (o : ℕ) : PolyZonotope 𝕋 n :=
+  if o * n < pZ.h then
+    pZ.reduceBy
+      (PolyZonotope.girardSplit (PolyZonotope.girardMetric pZ.G) ((o - 1) * n))
+      (PolyZonotope.aux_keepAll pZ.q)
+  else pZ
 
 end CORALean.Float
 

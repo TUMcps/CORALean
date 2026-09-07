@@ -29,44 +29,44 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.nominal_andB (C₁ C₂ : ConPolyZono 𝕋 n) :
-    (ConPolyZono.andB C₁ C₂).nominal
-      = Real.ConPolyZono.andB (nominal C₁) (nominal C₂)
-        (ConPolyZono.andD C₁ C₂) := by -- --- PROOF ---
+theorem ConPolyZono.nominal_andB (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) :
+    (ConPolyZono.andB cPZ₁ cPZ₂).nominal
+      = Real.ConPolyZono.andB (nominal cPZ₁) (nominal cPZ₂)
+        (ConPolyZono.andD cPZ₁ cPZ₂) := by -- --- PROOF ---
   -- the exact layer's record spelled out, so the field rewrites below have a term to match
-  have hreal : Real.ConPolyZono.andB (nominal C₁) (nominal C₂) (ConPolyZono.andD C₁ C₂)
-      = (⟨Fin.append (Fin.append (toRealVec C₁.b.inf) (toRealVec C₂.b.inf))
-            fun i => toReal (C₂.c i) - toReal (C₁.c i)
-              + (ConPolyZono.andD C₁ C₂).inf i,
-          Fin.append (Fin.append (toRealVec C₁.b.sup) (toRealVec C₂.b.sup))
-            fun i => toReal (C₂.c i) - toReal (C₁.c i)
-              + (ConPolyZono.andD C₁ C₂).sup i⟩ :
-        Real.Interval (Vec ℝ (C₁.m + C₂.m + n))) := rfl
-  have hinf : toRealVec (Fin.append (Fin.append C₁.b.inf C₂.b.inf)
-        (ConPolyZono.andAgree C₁ C₂).inf)
-      = Fin.append (Fin.append (toRealVec C₁.b.inf) (toRealVec C₂.b.inf))
-        fun i => toReal (C₂.c i) - toReal (C₁.c i)
-          + (ConPolyZono.andD C₁ C₂).inf i := by
+  have hreal : Real.ConPolyZono.andB (nominal cPZ₁) (nominal cPZ₂) (ConPolyZono.andD cPZ₁ cPZ₂)
+      = (⟨Fin.append (Fin.append (toRealVec cPZ₁.b.inf) (toRealVec cPZ₂.b.inf))
+            fun i => toReal (cPZ₂.c i) - toReal (cPZ₁.c i)
+              + (ConPolyZono.andD cPZ₁ cPZ₂).inf i,
+          Fin.append (Fin.append (toRealVec cPZ₁.b.sup) (toRealVec cPZ₂.b.sup))
+            fun i => toReal (cPZ₂.c i) - toReal (cPZ₁.c i)
+              + (ConPolyZono.andD cPZ₁ cPZ₂).sup i⟩ :
+        Real.Interval (Vec ℝ (cPZ₁.m + cPZ₂.m + n))) := rfl
+  have hinf : toRealVec (Fin.append (Fin.append cPZ₁.b.inf cPZ₂.b.inf)
+        (ConPolyZono.andAgree cPZ₁ cPZ₂).inf)
+      = Fin.append (Fin.append (toRealVec cPZ₁.b.inf) (toRealVec cPZ₂.b.inf))
+        fun i => toReal (cPZ₂.c i) - toReal (cPZ₁.c i)
+          + (ConPolyZono.andD cPZ₁ cPZ₂).inf i := by
     rw [ConPolyZono.toRealVec_append, ConPolyZono.toRealVec_append]
     refine congrArg _ (funext fun i => ?_)
     simp only [ConPolyZono.andD, toRealVec]
     ring
   -- the upper end, the same read-back with the other endpoint of each box
-  have hsup : toRealVec (Fin.append (Fin.append C₁.b.sup C₂.b.sup)
-        (ConPolyZono.andAgree C₁ C₂).sup)
-      = Fin.append (Fin.append (toRealVec C₁.b.sup) (toRealVec C₂.b.sup))
-        fun i => toReal (C₂.c i) - toReal (C₁.c i)
-          + (ConPolyZono.andD C₁ C₂).sup i := by
+  have hsup : toRealVec (Fin.append (Fin.append cPZ₁.b.sup cPZ₂.b.sup)
+        (ConPolyZono.andAgree cPZ₁ cPZ₂).sup)
+      = Fin.append (Fin.append (toRealVec cPZ₁.b.sup) (toRealVec cPZ₂.b.sup))
+        fun i => toReal (cPZ₂.c i) - toReal (cPZ₁.c i)
+          + (ConPolyZono.andD cPZ₁ cPZ₂).sup i := by
     rw [ConPolyZono.toRealVec_append, ConPolyZono.toRealVec_append]
     refine congrArg _ (funext fun i => ?_)
     simp only [ConPolyZono.andD, toRealVec]
     ring
   rw [hreal]
-  show (⟨toRealVec (Fin.append (Fin.append C₁.b.inf C₂.b.inf)
-        (ConPolyZono.andAgree C₁ C₂).inf),
-      toRealVec (Fin.append (Fin.append C₁.b.sup C₂.b.sup)
-        (ConPolyZono.andAgree C₁ C₂).sup)⟩ :
-    Real.Interval (Vec ℝ (C₁.m + C₂.m + n))) = _
+  show (⟨toRealVec (Fin.append (Fin.append cPZ₁.b.inf cPZ₂.b.inf)
+        (ConPolyZono.andAgree cPZ₁ cPZ₂).inf),
+      toRealVec (Fin.append (Fin.append cPZ₁.b.sup cPZ₂.b.sup)
+        (ConPolyZono.andAgree cPZ₁ cPZ₂).sup)⟩ :
+    Real.Interval (Vec ℝ (cPZ₁.m + cPZ₂.m + n))) = _
   rw [hinf, hsup]
 
 end CORALean.Float

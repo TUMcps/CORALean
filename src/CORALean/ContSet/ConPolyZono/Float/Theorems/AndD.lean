@@ -26,11 +26,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConPolyZono.andD (C₁ C₂ : ConPolyZono 𝕋 n) : Real.Interval (Vec ℝ n) :=
-  ⟨fun i => toReal ((ConPolyZono.andAgree C₁ C₂).inf i)
-      - (toReal (C₂.c i) - toReal (C₁.c i)),
-   fun i => toReal ((ConPolyZono.andAgree C₁ C₂).sup i)
-      - (toReal (C₂.c i) - toReal (C₁.c i))⟩
+def ConPolyZono.andD (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) : Real.Interval (Vec ℝ n) :=
+  ⟨fun i => toReal ((ConPolyZono.andAgree cPZ₁ cPZ₂).inf i)
+      - (toReal (cPZ₂.c i) - toReal (cPZ₁.c i)),
+   fun i => toReal ((ConPolyZono.andAgree cPZ₁ cPZ₂).sup i)
+      - (toReal (cPZ₂.c i) - toReal (cPZ₁.c i))⟩
 
 end CORALean.Float
 

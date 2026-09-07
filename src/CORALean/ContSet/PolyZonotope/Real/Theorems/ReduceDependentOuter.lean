@@ -29,10 +29,10 @@ variable {n : ℕ}
 /-- The tighter rule is sound on the same line as the bounded one, which is the
 point of `reduceBy_outer` holding at every pair of partitions: what separates
 the two is the order bound and nothing here. -/
-theorem PolyZonotope.reduceDependent_outer (PZ : PolyZonotope (Vec ℝ n)) (o : ℕ) :
-    PZ.construct ⊆ (PZ.reduceDependent o).construct :=
-  (PolyZonotope.compact_exact PZ).subset.trans
-    (PolyZonotope.reduceGirardDependent_outer PZ.compact o)
+theorem PolyZonotope.reduceDependent_outer (pZ : PolyZonotope (Vec ℝ n)) (o : ℕ) :
+    pZ.construct ⊆ (pZ.reduceDependent o).construct :=
+  (PolyZonotope.compact_exact pZ).subset.trans
+    (PolyZonotope.reduceGirardDependent_outer pZ.compact o)
 
 end CORALean.Real
 

@@ -24,8 +24,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def ConZonotope.reduce (C : ConZonotope 𝕋 n) (o : ℕ) : ConZonotope 𝕋 n :=
-  if o * n < C.h then (C.zonotope.reduce o).conZonotope else C
+noncomputable def ConZonotope.reduce (cZ : ConZonotope 𝕋 n) (o : ℕ) : ConZonotope 𝕋 n :=
+  if o * n < cZ.h then (cZ.zonotope.reduce o).conZonotope else cZ
 
 end CORALean.Float
 

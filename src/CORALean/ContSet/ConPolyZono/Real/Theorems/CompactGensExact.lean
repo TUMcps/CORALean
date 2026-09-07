@@ -32,13 +32,13 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The dependent generator sum, regrouped onto the columns that survive. -/
-theorem ConPolyZono.aux_sum_compactGens (C : ConPolyZono α) (a : Fin C.p → ℝ) :
-    (∑ i, PolyZonotope.monomial C.E a i • C.G i)
-      = ∑ j : Fin C.compactGens.h,
-          PolyZonotope.monomial C.compactGens.E a j • C.compactGens.G j := by -- --- PROOF ---
-  rw [PolyZonotope.sum_monomial_merge C.E C.G a (PolyZonotope.rep C.E)
-      (PolyZonotope.compactKeep C.E C.G) (PolyZonotope.col_rep C.E)
-      fun j hj => PolyZonotope.fiberSum_eq_zero_of_notMem C.E C.G hj,
+theorem ConPolyZono.aux_sum_compactGens (cPZ : ConPolyZono α) (a : Fin cPZ.p → ℝ) :
+    (∑ i, PolyZonotope.monomial cPZ.E a i • cPZ.G i)
+      = ∑ j : Fin cPZ.compactGens.h,
+          PolyZonotope.monomial cPZ.compactGens.E a j • cPZ.compactGens.G j := by -- --- PROOF ---
+  rw [PolyZonotope.sum_monomial_merge cPZ.E cPZ.G a (PolyZonotope.rep cPZ.E)
+      (PolyZonotope.compactKeep cPZ.E cPZ.G) (PolyZonotope.col_rep cPZ.E)
+      fun j hj => PolyZonotope.fiberSum_eq_zero_of_notMem cPZ.E cPZ.G hj,
     PolyZonotope.sum_compactKeep]
   rfl
 
@@ -46,14 +46,14 @@ theorem ConPolyZono.aux_sum_compactGens (C : ConPolyZono α) (a : Fin C.p → �
 -- =======================================  MAIN THEOREM  ======================================= --
 
 -- the constraint block is copied, so one factor vector answers for both sides
-theorem ConPolyZono.compactGens_exact (C : ConPolyZono α) :
-    C.construct = C.compactGens.construct := by -- --- PROOF ---
-  have key : ∀ (a : Fin C.p → ℝ) (β : Fin C.q → ℝ),
-      C.c + (∑ i, PolyZonotope.monomial C.E a i • C.G i) + ∑ j, β j • C.GI j
-        = C.c + (∑ j : Fin C.compactGens.h,
-            PolyZonotope.monomial C.compactGens.E a j • C.compactGens.G j)
-          + ∑ j, β j • C.GI j :=
-    fun a _ => by rw [ConPolyZono.aux_sum_compactGens C a]
+theorem ConPolyZono.compactGens_exact (cPZ : ConPolyZono α) :
+    cPZ.construct = cPZ.compactGens.construct := by -- --- PROOF ---
+  have key : ∀ (a : Fin cPZ.p → ℝ) (β : Fin cPZ.q → ℝ),
+      cPZ.c + (∑ i, PolyZonotope.monomial cPZ.E a i • cPZ.G i) + ∑ j, β j • cPZ.GI j
+        = cPZ.c + (∑ j : Fin cPZ.compactGens.h,
+            PolyZonotope.monomial cPZ.compactGens.E a j • cPZ.compactGens.G j)
+          + ∑ j, β j • cPZ.GI j :=
+    fun a _ => by rw [ConPolyZono.aux_sum_compactGens cPZ a]
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨a, β, ha, hβ, hsat, rfl⟩
     exact ⟨a, β, ha, hβ, hsat, key a β⟩

@@ -28,17 +28,17 @@ variable {n : ℕ}
 /-- Partitions both generator blocks rather than choosing either: what
 `partD.left` and `partI.left` name is kept, with the former's exponent columns,
 and the rest is absorbed into a diagonal block of `n` independent generators. -/
-def PolyZonotope.reduceBy (PZ : PolyZonotope (Vec ℝ n)) {d r dI rI : ℕ}
-    (partD : Split (Fin PZ.h) into (Fin d) ⊕ (Fin r))
-    (partI : Split (Fin PZ.q) into (Fin dI) ⊕ (Fin rI)) : PolyZonotope (Vec ℝ n) where
-  p := PZ.p
+def PolyZonotope.reduceBy (pZ : PolyZonotope (Vec ℝ n)) {d r dI rI : ℕ}
+    (partD : Split (Fin pZ.h) into (Fin d) ⊕ (Fin r))
+    (partI : Split (Fin pZ.q) into (Fin dI) ⊕ (Fin rI)) : PolyZonotope (Vec ℝ n) where
+  p := pZ.p
   h := d
   q := dI + n
-  c := PZ.c
-  G := fun l => PZ.G (partD.left l)
-  E := fun k l => PZ.E k (partD.left l)
-  GI := Fin.append (fun j => PZ.GI (partI.left j))
-          (Matrix.diagonal (PZ.dropRadius partD partI))
+  c := pZ.c
+  G := fun l => pZ.G (partD.left l)
+  E := fun k l => pZ.E k (partD.left l)
+  GI := Fin.append (fun j => pZ.GI (partI.left j))
+          (Matrix.diagonal (pZ.dropRadius partD partI))
 
 end CORALean.Real
 

@@ -31,10 +31,10 @@ variable {N F₁ F₂ : ℕ}
 
 /-- [1, Prop. 2] itself: the layer at the graph's own message passing. -/
 theorem GNN.gcn_exact_of_adjacency (A : Mat ℝ N N) (W : Mat ℝ F₁ F₂)
-    (PZ : PolyZonotope (Mat ℝ N F₁)) :
-    (fun H => GNN.messagePassing A * H * W) '' PZ.construct
-      = (GNN.gcn (GNN.messagePassing A) W PZ).construct :=
-  GNN.gcn_exact _ W PZ
+    (pZ : PolyZonotope (Mat ℝ N F₁)) :
+    (fun H => GNN.messagePassing A * H * W) '' pZ.construct
+      = (GNN.gcn (GNN.messagePassing A) W pZ).construct :=
+  GNN.gcn_exact _ W pZ
 
 end CORALean.Real
 

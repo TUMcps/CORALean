@@ -8,7 +8,7 @@ The point a factor vector picks out, the independent block left aside;
 
 It is what a product of two polynomial zonotopes is stated against. Both sets
 are functions of the *same* factors, so the exact claim is about
-`a ↦ point S₁ a ⊙ point S₂ a` and not about the product of the two sets, which
+`a ↦ point pZ₁ a ⊙ point pZ₂ a` and not about the product of the two sets, which
 is generally far larger.
 -/
 
@@ -28,8 +28,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The point the factor vector `a` picks out, the independent block aside. -/
-def PolyZonotope.point (S : PolyZonotope α) (a : Fin S.p → ℝ) : α :=
-  S.c + ∑ i, PolyZonotope.monomial S.E a i • S.G i
+def PolyZonotope.point (pZ : PolyZonotope α) (a : Fin pZ.p → ℝ) : α :=
+  pZ.c + ∑ i, PolyZonotope.monomial pZ.E a i • pZ.G i
 
 end CORALean.Real
 

@@ -24,9 +24,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The same fibre rounded the other way, which is what bounds the gap. -/
-def PolyZonotope.mergedColUp (PZ : PolyZonotope 𝕋 n) (i : Fin n)
-    (j : Fin (PolyZonotope.repKeep PZ.E).card) : 𝕋 :=
-  PolyZonotope.fiberUp (Real.PolyZonotope.rep PZ.E) PZ.G i (PolyZonotope.keepIdx PZ.E j)
+def PolyZonotope.mergedColUp (pZ : PolyZonotope 𝕋 n) (i : Fin n)
+    (j : Fin (PolyZonotope.repKeep pZ.E).card) : 𝕋 :=
+  PolyZonotope.fiberUp (Real.PolyZonotope.rep pZ.E) pZ.G i (PolyZonotope.keepIdx pZ.E j)
 
 end CORALean.Float
 

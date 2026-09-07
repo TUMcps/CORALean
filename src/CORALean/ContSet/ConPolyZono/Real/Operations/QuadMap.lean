@@ -26,9 +26,9 @@ variable {n k : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConPolyZono.quadMap (Q : Fin k → Mat ℝ n n) (C : ConPolyZono (Vec ℝ n)) :
+def ConPolyZono.quadMap (Q : Fin k → Mat ℝ n n) (cPZ : ConPolyZono (Vec ℝ n)) :
     ConPolyZono (Vec ℝ k) :=
-  ConPolyZono.quadMapDep Q C.dependent
+  ConPolyZono.quadMapDep Q cPZ.dependent
 
 end CORALean.Real
 

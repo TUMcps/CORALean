@@ -26,20 +26,20 @@ variable {k n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.mtimes_p (M : Mat ℝ k n) (C : ConPolyZono (Vec ℝ n)) :
-    (ConPolyZono.mtimes M C).p = C.p := rfl
+theorem ConPolyZono.mtimes_p (M : Mat ℝ k n) (cPZ : ConPolyZono (Vec ℝ n)) :
+    (ConPolyZono.mtimes M cPZ).p = cPZ.p := rfl
 
-theorem ConPolyZono.mtimes_h (M : Mat ℝ k n) (C : ConPolyZono (Vec ℝ n)) :
-    (ConPolyZono.mtimes M C).h = C.h := rfl
+theorem ConPolyZono.mtimes_h (M : Mat ℝ k n) (cPZ : ConPolyZono (Vec ℝ n)) :
+    (ConPolyZono.mtimes M cPZ).h = cPZ.h := rfl
 
-theorem ConPolyZono.mtimes_q (M : Mat ℝ k n) (C : ConPolyZono (Vec ℝ n)) :
-    (ConPolyZono.mtimes M C).q = C.q := rfl
+theorem ConPolyZono.mtimes_q (M : Mat ℝ k n) (cPZ : ConPolyZono (Vec ℝ n)) :
+    (ConPolyZono.mtimes M cPZ).q = cPZ.q := rfl
 
-theorem ConPolyZono.mtimes_m (M : Mat ℝ k n) (C : ConPolyZono (Vec ℝ n)) :
-    (ConPolyZono.mtimes M C).m = C.m := rfl
+theorem ConPolyZono.mtimes_m (M : Mat ℝ k n) (cPZ : ConPolyZono (Vec ℝ n)) :
+    (ConPolyZono.mtimes M cPZ).m = cPZ.m := rfl
 
-theorem ConPolyZono.mtimes_s (M : Mat ℝ k n) (C : ConPolyZono (Vec ℝ n)) :
-    (ConPolyZono.mtimes M C).s = C.s := rfl
+theorem ConPolyZono.mtimes_s (M : Mat ℝ k n) (cPZ : ConPolyZono (Vec ℝ n)) :
+    (ConPolyZono.mtimes M cPZ).s = cPZ.s := rfl
 
 end CORALean.Real
 

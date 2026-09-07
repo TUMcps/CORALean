@@ -30,13 +30,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- Two constraint systems side by side hold exactly when each holds on the
 factors it came with — the exact layer's lemma, at the read-back data. -/
-theorem ConPolyZono.satisfies_plus_iff (C₁ C₂ : ConPolyZono 𝕋 n)
-    (a : Fin (C₁.p + C₂.p) → ℝ) :
-    (C₁.plus C₂).satisfies a
-      ↔ C₁.satisfies (fun k => a (Fin.castAdd C₂.p k))
-        ∧ C₂.satisfies (fun k => a (Fin.natAdd C₁.p k)) := by
-  show Real.ConPolyZono.holds (toRealMat (ConPolyZono.plusA C₁.A C₂.A))
-      (ConPolyZono.plusB C₁.b C₂.b).nominal (Real.PolyZonotope.plusE C₁.EC C₂.EC) a ↔ _
+theorem ConPolyZono.satisfies_plus_iff (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n)
+    (a : Fin (cPZ₁.p + cPZ₂.p) → ℝ) :
+    (cPZ₁.plus cPZ₂).satisfies a
+      ↔ cPZ₁.satisfies (fun k => a (Fin.castAdd cPZ₂.p k))
+        ∧ cPZ₂.satisfies (fun k => a (Fin.natAdd cPZ₁.p k)) := by
+  show Real.ConPolyZono.holds (toRealMat (ConPolyZono.plusA cPZ₁.A cPZ₂.A))
+      (ConPolyZono.plusB cPZ₁.b cPZ₂.b).nominal (Real.PolyZonotope.plusE cPZ₁.EC cPZ₂.EC) a ↔ _
   rw [ConPolyZono.toRealMat_plusA, ConPolyZono.nominal_plusB]
   exact Real.ConPolyZono.holds_plus_iff _ _ _ _ _ _ a
 

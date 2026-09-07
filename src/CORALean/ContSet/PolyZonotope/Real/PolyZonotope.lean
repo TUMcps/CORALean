@@ -54,9 +54,9 @@ the matrix it is still assembling. -/
 def PolyZonotope.monomial {p h : ℕ} (E : Fin p → Fin h → ℕ) (a : Fin p → ℝ)
     (i : Fin h) : ℝ := ∏ k, a k ^ E k i
 
-def PolyZonotope.construct (PZ : PolyZonotope α) : Set α :=
-  {x | ∃ a : Fin PZ.p → ℝ, ∃ β : Fin PZ.q → ℝ, (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1)
-        ∧ x = PZ.c + ∑ i, PolyZonotope.monomial PZ.E a i • PZ.G i + ∑ j, β j • PZ.GI j}
+def PolyZonotope.construct (pZ : PolyZonotope α) : Set α :=
+  {x | ∃ a : Fin pZ.p → ℝ, ∃ β : Fin pZ.q → ℝ, (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1)
+        ∧ x = pZ.c + ∑ i, PolyZonotope.monomial pZ.E a i • pZ.G i + ∑ j, β j • pZ.GI j}
 
 end CORALean.Real
 

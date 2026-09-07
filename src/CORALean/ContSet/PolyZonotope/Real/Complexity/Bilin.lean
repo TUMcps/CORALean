@@ -27,15 +27,15 @@ variable {α β γ : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.bilin_p (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (S₁ : PolyZonotope α) (S₂ : PolyZonotope β)
-    (hp : S₁.p = S₂.p) : (PolyZonotope.bilin f S₁ S₂ hp).p = S₁.p := rfl
+theorem PolyZonotope.bilin_p (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (pZ₁ : PolyZonotope α) (pZ₂ : PolyZonotope β)
+    (hp : pZ₁.p = pZ₂.p) : (PolyZonotope.bilin f pZ₁ pZ₂ hp).p = pZ₁.p := rfl
 
-theorem PolyZonotope.bilin_h (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (S₁ : PolyZonotope α) (S₂ : PolyZonotope β)
-    (hp : S₁.p = S₂.p) :
-    (PolyZonotope.bilin f S₁ S₂ hp).h = (S₁.h + 1) * (S₂.h + 1) := rfl
+theorem PolyZonotope.bilin_h (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (pZ₁ : PolyZonotope α) (pZ₂ : PolyZonotope β)
+    (hp : pZ₁.p = pZ₂.p) :
+    (PolyZonotope.bilin f pZ₁ pZ₂ hp).h = (pZ₁.h + 1) * (pZ₂.h + 1) := rfl
 
-theorem PolyZonotope.bilin_q (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (S₁ : PolyZonotope α) (S₂ : PolyZonotope β)
-    (hp : S₁.p = S₂.p) : (PolyZonotope.bilin f S₁ S₂ hp).q = 0 := rfl
+theorem PolyZonotope.bilin_q (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (pZ₁ : PolyZonotope α) (pZ₂ : PolyZonotope β)
+    (hp : pZ₁.p = pZ₂.p) : (PolyZonotope.bilin f pZ₁ pZ₂ hp).q = 0 := rfl
 
 end CORALean.Real
 

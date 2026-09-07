@@ -29,20 +29,20 @@ variable {n k : ℕ}
 
 /-- The map on a set whose coefficients are all dependent. Sound only there, so
 nothing calls it directly. -/
-def ConPolyZono.quadMapDep (Q : Fin k → Mat ℝ n n) (C : ConPolyZono (Vec ℝ n)) :
+def ConPolyZono.quadMapDep (Q : Fin k → Mat ℝ n n) (cPZ : ConPolyZono (Vec ℝ n)) :
     ConPolyZono (Vec ℝ k) where
-  p := C.p
-  h := (C.h + 1) * (C.h + 1)
+  p := cPZ.p
+  h := (cPZ.h + 1) * (cPZ.h + 1)
   q := 0
-  m := C.m
-  s := C.s
+  m := cPZ.m
+  s := cPZ.s
   c := 0
-  G := PolyZonotope.quadMapG Q C.polyZonotope
-  E := PolyZonotope.quadMapE C.polyZonotope
+  G := PolyZonotope.quadMapG Q cPZ.polyZonotope
+  E := PolyZonotope.quadMapE cPZ.polyZonotope
   GI := Fin.elim0
-  A := C.A
-  b := C.b
-  EC := C.EC
+  A := cPZ.A
+  b := cPZ.b
+  EC := cPZ.EC
 
 end CORALean.Real
 

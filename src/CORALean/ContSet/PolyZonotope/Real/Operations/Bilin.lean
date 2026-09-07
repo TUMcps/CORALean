@@ -12,8 +12,8 @@ cannot have.
 
 Sharing is a hypothesis rather than a shape in the signature: `p` is a field, so
 two `PolyZonotope`s cannot be made to share it definitionally without
-destructuring one of them. `Fin.cast` then reads `S₂`'s exponent matrix at
-`S₁`'s factor indices, which moves no data — identity here is positional.
+destructuring one of them. `Fin.cast` then reads `pZ₂`'s exponent matrix at
+`pZ₁`'s factor indices, which moves no data — identity here is positional.
 
 The independent blocks take no part, a pairing of two free coefficients not
 being one, so `bilin` is a claim about `point`; a caller who needs those
@@ -37,14 +37,14 @@ variable {α β γ : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.bilin (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (S₁ : PolyZonotope α) (S₂ : PolyZonotope β)
-    (hp : S₁.p = S₂.p) : PolyZonotope γ where
-  p := S₁.p
-  h := (S₁.h + 1) * (S₂.h + 1)
+def PolyZonotope.bilin (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (pZ₁ : PolyZonotope α) (pZ₂ : PolyZonotope β)
+    (hp : pZ₁.p = pZ₂.p) : PolyZonotope γ where
+  p := pZ₁.p
+  h := (pZ₁.h + 1) * (pZ₂.h + 1)
   q := 0
   c := 0
-  G := PolyZonotope.bilinG f S₁ S₂
-  E := PolyZonotope.bilinE S₁ S₂ hp
+  G := PolyZonotope.bilinG f pZ₁ pZ₂
+  E := PolyZonotope.bilinE pZ₁ pZ₂ hp
   GI := Fin.elim0
 
 end CORALean.Real

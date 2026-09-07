@@ -4,13 +4,13 @@ import CORALean.HybridDynamics.Theorems.JumpAndOfPointOuter
 /-!
 # The guard cut and the jump, chained
 
-`ConPolyZonoGuard.lean` stops at the exact cut: `C.and G.conPolyZono` really is
-`C.construct ∩ G.construct`, whether or not `C` is convex. `jumpAndOfPoint`
+`ConPolyZonoGuard.lean` stops at the exact cut: `cPZ.and G.conPolyZono` really is
+`cPZ.construct ∩ G.construct`, whether or not `cPZ` is convex. `jumpAndOfPoint`
 takes that cut set the rest of the way, the reset propagated over it, asking
 only `OfPoint` — which `ConPolyZono` now has — where `jump`/`jumpAnd` would
 have asked for the `OfInterval` instance it still lacks (#38).
 
-A concrete transition shifts the state by `(2, 2)`; a point sitting in both `C`
+A concrete transition shifts the state by `(2, 2)`; a point sitting in both `cPZ`
 and `G` is carried, by `jumpAndOfPoint_outer`, to the concrete point `(3, 3)`
 in the jumped set.
 -/
@@ -37,10 +37,10 @@ def GCR.trans (guard : ConPolyZono (Vec ℝ 2)) : Transition 𝒞𝒫𝒵 Unit �
 
 /-- `(1, 1)`, cut exactly by the guard through `conPolyZono_exact`, resets to
 the concrete point `(3, 3)` — no `OfInterval` instance needed to place it. -/
-example (C : ConPolyZono (Vec ℝ 2)) (G : ConZonotope (Vec ℝ 2))
-    (hz : (![1, 1] : Vec ℝ 2) ∈ C.construct) (hguard : (![1, 1] : Vec ℝ 2) ∈ G.construct) :
+example (cPZ : ConPolyZono (Vec ℝ 2)) (G : ConZonotope (Vec ℝ 2))
+    (hz : (![1, 1] : Vec ℝ 2) ∈ cPZ.construct) (hguard : (![1, 1] : Vec ℝ 2) ∈ G.construct) :
     (![3, 3] : Vec ℝ 2) ∈
-      construct ((GCR.trans G.conPolyZono).jumpAndOfPoint C) := by
+      construct ((GCR.trans G.conPolyZono).jumpAndOfPoint cPZ) := by
   have hguard' : (![1, 1] : Vec ℝ 2) ∈ G.conPolyZono.construct := by
     rw [← ConZonotope.conPolyZono_exact G]; exact hguard
   have hreset : (GCR.trans G.conPolyZono).reset ![1, 1] = ![3, 3] := by

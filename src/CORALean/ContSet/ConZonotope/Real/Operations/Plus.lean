@@ -28,11 +28,11 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConZonotope.plus (C₁ C₂ : ConZonotope α) : ConZonotope α where
-  h := C₁.h + C₂.h
-  c := C₁.c + C₂.c
-  G := Fin.append C₁.G C₂.G
-  P := (C₁.P.comap (blockLeft C₁.h C₂.h)).and (C₂.P.comap (blockRight C₁.h C₂.h))
+def ConZonotope.plus (cZ₁ cZ₂ : ConZonotope α) : ConZonotope α where
+  h := cZ₁.h + cZ₂.h
+  c := cZ₁.c + cZ₂.c
+  G := Fin.append cZ₁.G cZ₂.G
+  P := (cZ₁.P.comap (blockLeft cZ₁.h cZ₂.h)).and (cZ₂.P.comap (blockRight cZ₁.h cZ₂.h))
 
 end CORALean.Real
 

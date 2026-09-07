@@ -27,10 +27,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.and_outer (C₁ C₂ : ConPolyZono 𝕋 n) :
-    C₁.construct ∩ C₂.construct ⊆ (C₁.and C₂).construct := by
-  rw [C₁.dependent_exact, C₂.dependent_exact]
-  exact ConPolyZono.andDep_outer C₁.dependent C₂.dependent rfl rfl
+theorem ConPolyZono.and_outer (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) :
+    cPZ₁.construct ∩ cPZ₂.construct ⊆ (cPZ₁.and cPZ₂).construct := by
+  rw [cPZ₁.dependent_exact, cPZ₂.dependent_exact]
+  exact ConPolyZono.andDep_outer cPZ₁.dependent cPZ₂.dependent rfl rfl
 
 end CORALean.Float
 

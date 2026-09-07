@@ -23,8 +23,8 @@ variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.isClosed_construct (C : ConZonotope α) : IsClosed C.construct :=
-  C.isCompact_construct.isClosed
+theorem ConZonotope.isClosed_construct (cZ : ConZonotope α) : IsClosed cZ.construct :=
+  cZ.isCompact_construct.isClosed
 
 end CORALean.Real
 

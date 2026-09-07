@@ -25,12 +25,12 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.reduce_outer (C : ConZonotope (Vec ℝ n)) (o : ℕ) :
-    C.construct ⊆ (C.reduce o).construct := by -- --- PROOF ---
+theorem ConZonotope.reduce_outer (cZ : ConZonotope (Vec ℝ n)) (o : ℕ) :
+    cZ.construct ⊆ (cZ.reduce o).construct := by -- --- PROOF ---
   unfold ConZonotope.reduce
   split_ifs with hlt
   · rw [← Zonotope.conZonotope_exact]
-    exact subset_trans (ConZonotope.zonotope_outer C) (Zonotope.reduce_outer C.zonotope o)
+    exact subset_trans (ConZonotope.zonotope_outer cZ) (Zonotope.reduce_outer cZ.zonotope o)
   · exact subset_rfl
 
 end CORALean.Real

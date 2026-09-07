@@ -26,14 +26,15 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 omit [Module ℝ α] in
-theorem ConZonotope.plus_h (C₁ C₂ : ConZonotope α) : (C₁.plus C₂).h = C₁.h + C₂.h := rfl
+theorem ConZonotope.plus_h (cZ₁ cZ₂ : ConZonotope α) : (cZ₁.plus cZ₂).h = cZ₁.h + cZ₂.h := rfl
 
 omit [Module ℝ α] in
-theorem ConZonotope.plus_P_m (C₁ C₂ : ConZonotope α) : (C₁.plus C₂).P.m = C₁.P.m + C₂.P.m := rfl
+theorem ConZonotope.plus_P_m (cZ₁ cZ₂ : ConZonotope α) :
+    (cZ₁.plus cZ₂).P.m = cZ₁.P.m + cZ₂.P.m := rfl
 
 omit [Module ℝ α] in
-theorem ConZonotope.plus_P_me (C₁ C₂ : ConZonotope α) :
-    (C₁.plus C₂).P.me = C₁.P.me + C₂.P.me := rfl
+theorem ConZonotope.plus_P_me (cZ₁ cZ₂ : ConZonotope α) :
+    (cZ₁.plus cZ₂).P.me = cZ₁.P.me + cZ₂.P.me := rfl
 
 end CORALean.Real
 

@@ -29,9 +29,9 @@ variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.isCompact_construct (C : ConZonotope α) : IsCompact C.construct := by
+theorem ConZonotope.isCompact_construct (cZ : ConZonotope α) : IsCompact cZ.construct := by
   rw [ConZonotope.construct_eq_image]
-  exact C.isCompact_domain.image (Zonotope.continuous_affine C.zonotope)
+  exact cZ.isCompact_domain.image (Zonotope.continuous_affine cZ.zonotope)
 
 end CORALean.Real
 

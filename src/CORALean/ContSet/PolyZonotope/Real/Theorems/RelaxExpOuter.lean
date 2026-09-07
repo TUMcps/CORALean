@@ -44,30 +44,30 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {d : ℕ}
 
 /-- Merging two generators whose exponent columns agree off `k₀`
 over-approximates, whichever partition names them. -/
-theorem PolyZonotope.relaxExp_outer (PZ : PolyZonotope α)
-    (part : Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin PZ.p)
-    (hsim : ∀ k, k ≠ k₀ → PZ.E k (part.right 0) = PZ.E k (part.right 1)) :
-    PZ.construct ⊆ (PZ.relaxExp part k₀).construct := by -- --- PROOF ---
+theorem PolyZonotope.relaxExp_outer (pZ : PolyZonotope α)
+    (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p)
+    (hsim : ∀ k, k ≠ k₀ → pZ.E k (part.right 0) = pZ.E k (part.right 1)) :
+    pZ.construct ⊆ (pZ.relaxExp part k₀).construct := by -- --- PROOF ---
   rintro x ⟨a, β, ha, hβ, rfl⟩
-  have habs : |PolyZonotope.monomial PZ.E a (part.right 0)
-      - PolyZonotope.monomial PZ.E a (part.right 1)| ≤ (PZ.relaxWidth part k₀ : ℝ) :=
-    PolyZonotope.abs_sub_monomial_le PZ.E ha hsim
-  have hnn : (0:ℝ) ≤ (PZ.relaxWidth part k₀ : ℝ) := Nat.cast_nonneg _
+  have habs : |PolyZonotope.monomial pZ.E a (part.right 0)
+      - PolyZonotope.monomial pZ.E a (part.right 1)| ≤ (pZ.relaxWidth part k₀ : ℝ) :=
+    PolyZonotope.abs_sub_monomial_le pZ.E ha hsim
+  have hnn : (0:ℝ) ≤ (pZ.relaxWidth part k₀ : ℝ) := Nat.cast_nonneg _
   -- the new independent generator answers the drift with one coefficient
-  set t := Zonotope.coefficient (PZ.relaxWidth part k₀ : ℝ)
-    (PolyZonotope.monomial PZ.E a (part.right 0)
-      - PolyZonotope.monomial PZ.E a (part.right 1)) with ht
-  have hcoef : t * (PZ.relaxWidth part k₀ : ℝ) = PolyZonotope.monomial PZ.E a (part.right 0)
-      - PolyZonotope.monomial PZ.E a (part.right 1) := by
+  set t := Zonotope.coefficient (pZ.relaxWidth part k₀ : ℝ)
+    (PolyZonotope.monomial pZ.E a (part.right 0)
+      - PolyZonotope.monomial pZ.E a (part.right 1)) with ht
+  have hcoef : t * (pZ.relaxWidth part k₀ : ℝ) = PolyZonotope.monomial pZ.E a (part.right 0)
+      - PolyZonotope.monomial pZ.E a (part.right 1) := by
     rw [ht, mul_comm]
     exact Zonotope.mul_coefficient habs
   -- the kept columns keep their monomials, and the merged one takes the second's
-  have hmono : ∀ l : Fin d, PolyZonotope.monomial (PZ.relaxExp part k₀).E a (Fin.castAdd 1 l)
-      = PolyZonotope.monomial PZ.E a (part.left l) := fun l => by
+  have hmono : ∀ l : Fin d, PolyZonotope.monomial (pZ.relaxExp part k₀).E a (Fin.castAdd 1 l)
+      = PolyZonotope.monomial pZ.E a (part.left l) := fun l => by
     simp only [PolyZonotope.monomial, PolyZonotope.relaxExp, Fin.append_left]
     rfl
-  have hlast : PolyZonotope.monomial (PZ.relaxExp part k₀).E a (Fin.natAdd d 0)
-      = PolyZonotope.monomial PZ.E a (part.right 1) := by
+  have hlast : PolyZonotope.monomial (pZ.relaxExp part k₀).E a (Fin.natAdd d 0)
+      = PolyZonotope.monomial pZ.E a (part.right 1) := by
     simp only [PolyZonotope.monomial, PolyZonotope.relaxExp, Fin.append_right]
     rfl
   -- the same factors read both sides, with one coefficient appended
@@ -77,11 +77,11 @@ theorem PolyZonotope.relaxExp_outer (PZ : PolyZonotope α)
       exact hβ j
     · rw [Fin.append_right]
       exact Zonotope.abs_coefficient_le_one hnn habs
-  show PZ.c + ∑ l, PolyZonotope.monomial PZ.E a l • PZ.G l + ∑ j, β j • PZ.GI j
-      = PZ.c + (∑ l : Fin (d + 1),
-          PolyZonotope.monomial (PZ.relaxExp part k₀).E a l • (PZ.relaxExp part k₀).G l)
-        + ∑ j : Fin (PZ.q + 1), Fin.append β (fun _ => t) j • (PZ.relaxExp part k₀).GI j
-  rw [part.sum_split₂ fun l => PolyZonotope.monomial PZ.E a l • PZ.G l,
+  show pZ.c + ∑ l, PolyZonotope.monomial pZ.E a l • pZ.G l + ∑ j, β j • pZ.GI j
+      = pZ.c + (∑ l : Fin (d + 1),
+          PolyZonotope.monomial (pZ.relaxExp part k₀).E a l • (pZ.relaxExp part k₀).G l)
+        + ∑ j : Fin (pZ.q + 1), Fin.append β (fun _ => t) j • (pZ.relaxExp part k₀).GI j
+  rw [part.sum_split₂ fun l => PolyZonotope.monomial pZ.E a l • pZ.G l,
     Fin.sum_univ_add, Fin.sum_univ_add, Fin.sum_univ_two]
   simp only [Fin.sum_univ_one, hmono, hlast]
   simp only [PolyZonotope.relaxExp, Fin.append_left, Fin.append_right]

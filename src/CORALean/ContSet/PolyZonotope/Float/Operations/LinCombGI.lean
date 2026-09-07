@@ -26,10 +26,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- The independent block at one rounding: CORA's `zonotope/enclose` on the two
 independent blocks, which is the exact layer's pairing at a zero centre. -/
-def PolyZonotope.linCombGI (add sub : 𝕋 → 𝕋 → 𝕋) (PZ₁ PZ₂ : PolyZonotope 𝕋 n) :
-    Mat 𝕋 n (PZ₁.q + PZ₂.q) :=
-  fun i => Fin.append (Zonotope.pairSum add (PZ₁.GI i) (PZ₂.GI i))
-    (Zonotope.pairDiff sub (PZ₁.GI i) (PZ₂.GI i))
+def PolyZonotope.linCombGI (add sub : 𝕋 → 𝕋 → 𝕋) (pZ₁ pZ₂ : PolyZonotope 𝕋 n) :
+    Mat 𝕋 n (pZ₁.q + pZ₂.q) :=
+  fun i => Fin.append (Zonotope.pairSum add (pZ₁.GI i) (pZ₂.GI i))
+    (Zonotope.pairDiff sub (pZ₁.GI i) (pZ₂.GI i))
 
 end CORALean.Float
 

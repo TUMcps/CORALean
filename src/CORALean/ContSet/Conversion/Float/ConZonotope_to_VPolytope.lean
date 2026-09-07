@@ -30,15 +30,15 @@ open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
-def ConZonotope.vPolytopeBox (C : ConZonotope 𝕋 n) : VPolytope 𝕋 n :=
-  Interval.vPolytope C.interval
+def ConZonotope.vPolytopeBox (cZ : ConZonotope 𝕋 n) : VPolytope 𝕋 n :=
+  Interval.vPolytope cZ.interval
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.subset_vPolytopeBox (C : ConZonotope 𝕋 n) :
-    C.construct ⊆ C.vPolytopeBox.construct :=
-  subset_trans C.interval_outer (Interval.subset_vPolytope _)
+theorem ConZonotope.subset_vPolytopeBox (cZ : ConZonotope 𝕋 n) :
+    cZ.construct ⊆ cZ.vPolytopeBox.construct :=
+  subset_trans cZ.interval_outer (Interval.subset_vPolytope _)
 
 end CORALean.Float
 

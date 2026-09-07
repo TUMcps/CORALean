@@ -32,20 +32,20 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n k : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConPolyZono.mtimes (M : Mat 𝕋 k n) (C : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 k where
-  p := C.p
-  h := C.h
-  q := C.q
-  m := C.m
-  s := C.s
-  c := mulVecDown M C.c
-  G := matMulDown M C.G
-  E := C.E
-  GI := matMulDown M C.GI
-  A := C.A
-  b := C.b
-  EC := C.EC
-  err := (Interval.mtimes M C.err).plus (ConPolyZono.mtimesResidual M C)
+def ConPolyZono.mtimes (M : Mat 𝕋 k n) (cPZ : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 k where
+  p := cPZ.p
+  h := cPZ.h
+  q := cPZ.q
+  m := cPZ.m
+  s := cPZ.s
+  c := mulVecDown M cPZ.c
+  G := matMulDown M cPZ.G
+  E := cPZ.E
+  GI := matMulDown M cPZ.GI
+  A := cPZ.A
+  b := cPZ.b
+  EC := cPZ.EC
+  err := (Interval.mtimes M cPZ.err).plus (ConPolyZono.mtimesResidual M cPZ)
 
 end CORALean.Float
 

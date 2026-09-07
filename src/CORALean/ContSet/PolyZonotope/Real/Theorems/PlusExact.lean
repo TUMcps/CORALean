@@ -36,25 +36,25 @@ omit [Module ℝ α] in
 /-- `Fin.sum_univ_add` at `plus`'s dependent generator count, stated through the
 projection because that is the form the goal has and simp will not rewrite a
 binder's type. -/
-theorem PolyZonotope.aux_sum_univ_plus_h {PZ₁ PZ₂ : PolyZonotope α}
-    (f : Fin (PZ₁.h + PZ₂.h) → α) :
-    ∑ i : Fin (PZ₁.plus PZ₂).h, f i
-      = ∑ i, f (Fin.castAdd PZ₂.h i) + ∑ i, f (Fin.natAdd PZ₁.h i) :=
+theorem PolyZonotope.aux_sum_univ_plus_h {pZ₁ pZ₂ : PolyZonotope α}
+    (f : Fin (pZ₁.h + pZ₂.h) → α) :
+    ∑ i : Fin (pZ₁.plus pZ₂).h, f i
+      = ∑ i, f (Fin.castAdd pZ₂.h i) + ∑ i, f (Fin.natAdd pZ₁.h i) :=
   Fin.sum_univ_add f
 
 omit [Module ℝ α] in
 /-- The same at the independent generator count. -/
-theorem PolyZonotope.aux_sum_univ_plus_q {PZ₁ PZ₂ : PolyZonotope α}
-    (f : Fin (PZ₁.q + PZ₂.q) → α) :
-    ∑ j : Fin (PZ₁.plus PZ₂).q, f j
-      = ∑ j, f (Fin.castAdd PZ₂.q j) + ∑ j, f (Fin.natAdd PZ₁.q j) :=
+theorem PolyZonotope.aux_sum_univ_plus_q {pZ₁ pZ₂ : PolyZonotope α}
+    (f : Fin (pZ₁.q + pZ₂.q) → α) :
+    ∑ j : Fin (pZ₁.plus pZ₂).q, f j
+      = ∑ j, f (Fin.castAdd pZ₂.q j) + ∑ j, f (Fin.natAdd pZ₁.q j) :=
   Fin.sum_univ_add f
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.plus_exact (PZ₁ PZ₂ : PolyZonotope α) :
-    PZ₁.construct + PZ₂.construct = (PZ₁.plus PZ₂).construct := by -- --- PROOF ---
+theorem PolyZonotope.plus_exact (pZ₁ pZ₂ : PolyZonotope α) :
+    pZ₁.construct + pZ₂.construct = (pZ₁.plus pZ₂).construct := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨x₁, ⟨a₁, β₁, ha₁, hβ₁, rfl⟩, x₂, ⟨a₂, β₂, ha₂, hβ₂, rfl⟩, rfl⟩
     refine ⟨Fin.append a₁ a₂, Fin.append β₁ β₂,
@@ -66,13 +66,13 @@ theorem PolyZonotope.plus_exact (PZ₁ PZ₂ : PolyZonotope α) :
     abel
   -- back: the appended data split again, giving one point of each set
   · rintro x ⟨a, β, ha, hβ, rfl⟩
-    refine ⟨PZ₁.c + ∑ i, PolyZonotope.monomial PZ₁.E (fun k => a (Fin.castAdd PZ₂.p k)) i
-              • PZ₁.G i + ∑ j, β (Fin.castAdd PZ₂.q j) • PZ₁.GI j,
-            ⟨fun k => a (Fin.castAdd PZ₂.p k), fun j => β (Fin.castAdd PZ₂.q j),
+    refine ⟨pZ₁.c + ∑ i, PolyZonotope.monomial pZ₁.E (fun k => a (Fin.castAdd pZ₂.p k)) i
+              • pZ₁.G i + ∑ j, β (Fin.castAdd pZ₂.q j) • pZ₁.GI j,
+            ⟨fun k => a (Fin.castAdd pZ₂.p k), fun j => β (Fin.castAdd pZ₂.q j),
               fun k => ha _, fun j => hβ _, rfl⟩,
-            PZ₂.c + ∑ i, PolyZonotope.monomial PZ₂.E (fun k => a (Fin.natAdd PZ₁.p k)) i
-              • PZ₂.G i + ∑ j, β (Fin.natAdd PZ₁.q j) • PZ₂.GI j,
-            ⟨fun k => a (Fin.natAdd PZ₁.p k), fun j => β (Fin.natAdd PZ₁.q j),
+            pZ₂.c + ∑ i, PolyZonotope.monomial pZ₂.E (fun k => a (Fin.natAdd pZ₁.p k)) i
+              • pZ₂.G i + ∑ j, β (Fin.natAdd pZ₁.q j) • pZ₂.GI j,
+            ⟨fun k => a (Fin.natAdd pZ₁.p k), fun j => β (Fin.natAdd pZ₁.q j),
               fun k => ha _, fun j => hβ _, rfl⟩, ?_⟩
     rw [PolyZonotope.aux_sum_univ_plus_h, PolyZonotope.aux_sum_univ_plus_q]
     simp only [PolyZonotope.plus, PolyZonotope.monomial_plusE_left,

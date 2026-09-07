@@ -25,9 +25,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The two systems' own bounds, then the agreement rows'. -/
-def ConPolyZono.andB (C₁ C₂ : ConPolyZono 𝕋 n) : Interval 𝕋 (C₁.m + C₂.m + n) :=
-  ⟨Fin.append (ConPolyZono.plusB C₁.b C₂.b).inf (ConPolyZono.andAgree C₁ C₂).inf,
-   Fin.append (ConPolyZono.plusB C₁.b C₂.b).sup (ConPolyZono.andAgree C₁ C₂).sup⟩
+def ConPolyZono.andB (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) : Interval 𝕋 (cPZ₁.m + cPZ₂.m + n) :=
+  ⟨Fin.append (ConPolyZono.plusB cPZ₁.b cPZ₂.b).inf (ConPolyZono.andAgree cPZ₁ cPZ₂).inf,
+   Fin.append (ConPolyZono.plusB cPZ₁.b cPZ₂.b).sup (ConPolyZono.andAgree cPZ₁ cPZ₂).sup⟩
 
 end CORALean.Float
 

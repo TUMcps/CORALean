@@ -24,9 +24,9 @@ variable {n : ℕ}
 
 /-- The row pinning the two points together in coordinate `i`, read against the
 concatenated generator monomials. -/
-def ConPolyZono.agreeRow (C₁ C₂ : ConPolyZono (Vec ℝ n)) (i : Fin n) :
-    Fin (C₁.h + C₂.h) → ℝ :=
-  Fin.append (fun l => C₁.G l i) fun l => -C₂.G l i
+def ConPolyZono.agreeRow (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n)) (i : Fin n) :
+    Fin (cPZ₁.h + cPZ₂.h) → ℝ :=
+  Fin.append (fun l => cPZ₁.G l i) fun l => -cPZ₂.G l i
 
 end CORALean.Real
 

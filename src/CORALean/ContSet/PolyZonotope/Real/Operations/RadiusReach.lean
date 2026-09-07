@@ -30,8 +30,8 @@ variable {m n : ℕ}
 /-- What the radius can add to coordinate `i`, over every matrix and every point
 denoted, read off the enclosing zonotope. -/
 noncomputable def PolyZonotope.radiusReach (IM : Interval (Mat ℝ m n))
-    (PZ : PolyZonotope (Vec ℝ n)) (i : Fin m) : ℝ :=
-  Zonotope.radiusReach IM PZ.zonotope i
+    (pZ : PolyZonotope (Vec ℝ n)) (i : Fin m) : ℝ :=
+  Zonotope.radiusReach IM pZ.zonotope i
 
 end CORALean.Real
 

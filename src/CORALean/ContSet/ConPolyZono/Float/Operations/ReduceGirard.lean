@@ -36,8 +36,8 @@ def ConPolyZono.aux_girardMetric {m : ℕ} (G : Mat 𝕋 n m) (l : Fin m) : 𝕋
 /-- CORA's `[G, GI]`: the two blocks as one matrix, which is what it ranks.
 Generators carry the second index here, so concatenating them appends along a
 row. -/
-def ConPolyZono.aux_concatGens (C : ConPolyZono 𝕋 n) : Mat 𝕋 n (C.h + C.q) :=
-  fun i => Fin.append (C.G i) (C.GI i)
+def ConPolyZono.aux_concatGens (cPZ : ConPolyZono 𝕋 n) : Mat 𝕋 n (cPZ.h + cPZ.q) :=
+  fun i => Fin.append (cPZ.G i) (cPZ.GI i)
 
 /-- The `k` generators a metric ranks first, against the rest. Clamped to the
 block, so the split is total and no order hypothesis travels with it; the
@@ -51,11 +51,11 @@ def ConPolyZono.aux_girardSplit {m : ℕ} (metric : Fin m → 𝕋) (k : ℕ) :
 /-- How many of the `K` best-ranked generators overall are dependent: CORA's
 joint accounting as one number, `rank` bound by a `let` so the sort runs once
 over generators nothing memoizes. The cap at `K` never binds. -/
-def ConPolyZono.aux_girardKeptDep (C : ConPolyZono 𝕋 n) (K : ℕ) : ℕ :=
-  let metric := ConPolyZono.aux_girardMetric C.aux_concatGens
+def ConPolyZono.aux_girardKeptDep (cPZ : ConPolyZono 𝕋 n) (K : ℕ) : ℕ :=
+  let metric := ConPolyZono.aux_girardMetric cPZ.aux_concatGens
   let rank := (sortPerm fun l₁ l₂ => le (metric l₂) (metric l₁)).symm
-  min K (Finset.univ.filter fun l : Fin C.h =>
-    (rank (Fin.castAdd C.q l) : ℕ) < K).card
+  min K (Finset.univ.filter fun l : Fin cPZ.h =>
+    (rank (Fin.castAdd cPZ.q l) : ℕ) < K).card
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -63,13 +63,13 @@ def ConPolyZono.aux_girardKeptDep (C : ConPolyZono 𝕋 n) (K : ℕ) : ℕ :=
 /-- CORA's `reduce(cPZ, 'girard', o)`: past `n·o` generators in the two blocks
 together, keep the `(o-1)·n` Girard ranks first and box the rest, bringing the
 total back to `n·o`. At that order or below, nothing happens. -/
-def ConPolyZono.reduceGirard (C : ConPolyZono 𝕋 n) (o : ℕ) : ConPolyZono 𝕋 n :=
-  if o * n < C.h + C.q then
+def ConPolyZono.reduceGirard (cPZ : ConPolyZono 𝕋 n) (o : ℕ) : ConPolyZono 𝕋 n :=
+  if o * n < cPZ.h + cPZ.q then
     let K := (o - 1) * n
-    let d := C.aux_girardKeptDep K
-    C.reduceBy (ConPolyZono.aux_girardSplit (ConPolyZono.aux_girardMetric C.G) d)
-      (ConPolyZono.aux_girardSplit (ConPolyZono.aux_girardMetric C.GI) (K - d))
-  else C
+    let d := cPZ.aux_girardKeptDep K
+    cPZ.reduceBy (ConPolyZono.aux_girardSplit (ConPolyZono.aux_girardMetric cPZ.G) d)
+      (ConPolyZono.aux_girardSplit (ConPolyZono.aux_girardMetric cPZ.GI) (K - d))
+  else cPZ
 
 end CORALean.Float
 

@@ -29,14 +29,14 @@ variable {α β γ : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.bilin_h_isBigO (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (S : ℕ → PolyZonotope α)
-    (T : ℕ → PolyZonotope β) (hp : ∀ m, (S m).p = (T m).p) (hS : ∀ m, (S m).h = m)
+theorem PolyZonotope.bilin_h_isBigO (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (pZ : ℕ → PolyZonotope α)
+    (T : ℕ → PolyZonotope β) (hp : ∀ m, (pZ m).p = (T m).p) (hS : ∀ m, (pZ m).h = m)
     (hT : ∀ m, (T m).h = m) :
-    (fun m : ℕ => (((PolyZonotope.bilin f (S m) (T m) (hp m)).h : ℕ) : ℝ))
+    (fun m : ℕ => (((PolyZonotope.bilin f (pZ m) (T m) (hp m)).h : ℕ) : ℝ))
       =O[Filter.atTop] fun m : ℕ => ((m : ℝ)) ^ 2 := by -- --- PROOF ---
   apply Asymptotics.IsBigO.of_bound 4
   filter_upwards [Filter.eventually_ge_atTop 1] with m hm
-  have hh : (PolyZonotope.bilin f (S m) (T m) (hp m)).h = (m + 1) * (m + 1) := by
+  have hh : (PolyZonotope.bilin f (pZ m) (T m) (hp m)).h = (m + 1) * (m + 1) := by
     rw [PolyZonotope.bilin_h, hS, hT]
   have hm' : (1 : ℝ) ≤ (m : ℝ) := by exact_mod_cast hm
   rw [hh, Real.norm_of_nonneg (by positivity), Real.norm_of_nonneg (by positivity)]

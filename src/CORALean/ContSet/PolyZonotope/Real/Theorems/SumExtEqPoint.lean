@@ -30,23 +30,23 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- A point of the set as one sum, the centre being generator zero at the
 all-zero exponent column. -/
-theorem PolyZonotope.sum_ext_eq_point (S : PolyZonotope α) (a : Fin S.p → ℝ) :
-    ∑ l, extM S a l • extG S l = S.c + ∑ i, monomial S.E a i • S.G i := by -- --- PROOF ---
-  have h0 : extM S a 0 = 1 := by
-    show ∏ k, a k ^ PolyZonotope.extE S k 0 = 1
+theorem PolyZonotope.sum_ext_eq_point (pZ : PolyZonotope α) (a : Fin pZ.p → ℝ) :
+    ∑ l, extM pZ a l • extG pZ l = pZ.c + ∑ i, monomial pZ.E a i • pZ.G i := by -- --- PROOF ---
+  have h0 : extM pZ a 0 = 1 := by
+    show ∏ k, a k ^ PolyZonotope.extE pZ k 0 = 1
     exact Finset.prod_eq_one fun k _ => by
       simp only [PolyZonotope.extE, Fin.cons_zero, pow_zero]
-  have hG0 : extG S 0 = S.c := by
+  have hG0 : extG pZ 0 = pZ.c := by
     simp only [PolyZonotope.extG, Fin.cons_zero]
   -- every other column is an original generator, shifted by the one the centre took
-  have hsucc : ∀ i : Fin S.h,
-      extM S a i.succ • extG S i.succ = monomial S.E a i • S.G i := by
+  have hsucc : ∀ i : Fin pZ.h,
+      extM pZ a i.succ • extG pZ i.succ = monomial pZ.E a i • pZ.G i := by
     intro i
-    have hm : extM S a i.succ = monomial S.E a i := by
-      show ∏ k, a k ^ PolyZonotope.extE S k i.succ = ∏ k, a k ^ S.E k i
+    have hm : extM pZ a i.succ = monomial pZ.E a i := by
+      show ∏ k, a k ^ PolyZonotope.extE pZ k i.succ = ∏ k, a k ^ pZ.E k i
       exact Finset.prod_congr rfl fun k _ => by
         simp only [PolyZonotope.extE, Fin.cons_succ]
-    have hg : extG S i.succ = S.G i := by
+    have hg : extG pZ i.succ = pZ.G i := by
       simp only [PolyZonotope.extG, Fin.cons_succ]
     rw [hm, hg]
   rw [Fin.sum_univ_succ, h0, hG0, one_smul]

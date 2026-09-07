@@ -25,8 +25,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.construct_eq_image (C : ConPolyZono α) :
-    C.construct = C.affine '' C.domain := by -- --- PROOF ---
+theorem ConPolyZono.construct_eq_image (cPZ : ConPolyZono α) :
+    cPZ.construct = cPZ.affine '' cPZ.domain := by -- --- PROOF ---
   ext x
   constructor
   · rintro ⟨a, β, ha, hβ, hsat, rfl⟩

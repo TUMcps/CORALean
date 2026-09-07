@@ -29,12 +29,12 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 omit [Module ℝ α] in
-theorem ZonoBundle.plus_k (B₁ B₂ : ZonoBundle α) : (B₁.plus B₂).k = B₁.k * B₂.k := rfl
+theorem ZonoBundle.plus_k (zB₁ zB₂ : ZonoBundle α) : (zB₁.plus zB₂).k = zB₁.k * zB₂.k := rfl
 
 omit [Module ℝ α] in
-theorem ZonoBundle.plus_Z_h (B₁ B₂ : ZonoBundle α) (p : Fin (B₁.k * B₂.k)) :
-    ((B₁.plus B₂).Z p).h =
-      (B₁.Z (finProdFinEquiv.symm p).1).h + (B₂.Z (finProdFinEquiv.symm p).2).h := rfl
+theorem ZonoBundle.plus_Z_h (zB₁ zB₂ : ZonoBundle α) (p : Fin (zB₁.k * zB₂.k)) :
+    ((zB₁.plus zB₂).Z p).h =
+      (zB₁.Z (finProdFinEquiv.symm p).1).h + (zB₂.Z (finProdFinEquiv.symm p).2).h := rfl
 
 end CORALean.Real
 

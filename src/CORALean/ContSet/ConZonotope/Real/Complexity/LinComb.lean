@@ -34,15 +34,15 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.linComb_h (C₁ C₂ : ConZonotope α) :
-    (C₁.linComb C₂).h = C₁.h + C₂.h + 1 := rfl
+theorem ConZonotope.linComb_h (cZ₁ cZ₂ : ConZonotope α) :
+    (cZ₁.linComb cZ₂).h = cZ₁.h + cZ₂.h + 1 := rfl
 
-theorem ConZonotope.linComb_P_m (C₁ C₂ : ConZonotope α) :
-    (C₁.linComb C₂).P.m = (C₁.h + C₁.h + C₁.P.m) + (C₂.h + C₂.h + C₂.P.m) := rfl
+theorem ConZonotope.linComb_P_m (cZ₁ cZ₂ : ConZonotope α) :
+    (cZ₁.linComb cZ₂).P.m = (cZ₁.h + cZ₁.h + cZ₁.P.m) + (cZ₂.h + cZ₂.h + cZ₂.P.m) := rfl
 
-theorem ConZonotope.linComb_P_me (C₁ C₂ : ConZonotope α) :
-    (C₁.linComb C₂).P.me = C₁.P.me + C₂.P.me := by
-  show 0 + C₁.P.me + (0 + C₂.P.me) = C₁.P.me + C₂.P.me
+theorem ConZonotope.linComb_P_me (cZ₁ cZ₂ : ConZonotope α) :
+    (cZ₁.linComb cZ₂).P.me = cZ₁.P.me + cZ₂.P.me := by
+  show 0 + cZ₁.P.me + (0 + cZ₂.P.me) = cZ₁.P.me + cZ₂.P.me
   omega
 
 end CORALean.Real

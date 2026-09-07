@@ -26,9 +26,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.compactFactors_nominal (C : ConPolyZono 𝕋 n) :
-    nominalSet C = nominalSet C.compactFactors :=
-  Real.ConPolyZono.compactFactors_exact (InflatedContSet.nominal C)
+theorem ConPolyZono.compactFactors_nominal (cPZ : ConPolyZono 𝕋 n) :
+    nominalSet cPZ = nominalSet cPZ.compactFactors :=
+  Real.ConPolyZono.compactFactors_exact (InflatedContSet.nominal cPZ)
 
 end CORALean.Float
 

@@ -32,9 +32,9 @@ variable {n m : ℕ}
 
 /-- The map on a set whose coefficients are all dependent. Sound only there, so
 nothing calls it directly. -/
-def PolyZonotope.quadMapDep (Q : Fin m → Mat ℝ n n) (S : PolyZonotope (Vec ℝ n)) :
+def PolyZonotope.quadMapDep (Q : Fin m → Mat ℝ n n) (pZ : PolyZonotope (Vec ℝ n)) :
     PolyZonotope (Vec ℝ m) :=
-  PolyZonotope.bilin (PolyZonotope.quadBilin Q) S S rfl
+  PolyZonotope.bilin (PolyZonotope.quadBilin Q) pZ pZ rfl
 
 end CORALean.Real
 

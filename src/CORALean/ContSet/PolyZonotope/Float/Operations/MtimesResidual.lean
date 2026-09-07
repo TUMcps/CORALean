@@ -28,10 +28,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 /-- What `mtimes` owes beyond its nominal part: the centre, and both generator
 blocks. -/
-def PolyZonotope.mtimesResidual (M : Mat 𝕋 m n) (PZ : PolyZonotope 𝕋 n) : Interval 𝕋 m :=
-  ((Interval.residual (mulVecDown M PZ.c) (mulVecUp M PZ.c) (mulVecDown M PZ.c)).plus
-      (PolyZonotope.generatorError (matMulDiff M PZ.G))).plus
-    (PolyZonotope.generatorError (matMulDiff M PZ.GI))
+def PolyZonotope.mtimesResidual (M : Mat 𝕋 m n) (pZ : PolyZonotope 𝕋 n) : Interval 𝕋 m :=
+  ((Interval.residual (mulVecDown M pZ.c) (mulVecUp M pZ.c) (mulVecDown M pZ.c)).plus
+      (PolyZonotope.generatorError (matMulDiff M pZ.G))).plus
+    (PolyZonotope.generatorError (matMulDiff M pZ.GI))
 
 end CORALean.Float
 

@@ -26,23 +26,23 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n d r dI rI : ℕ}
 /-- CORA's reduction at a given pair of partitions, sound for every one of them:
 kept dependent generators keep their exponent columns, kept independent ones are
 copied, and the rest becomes a box no longer tied to the factors. -/
-def ConPolyZono.reduceBy (C : ConPolyZono 𝕋 n)
-    (partD : Split (Fin C.h) into (Fin d) ⊕ (Fin r))
-    (partI : Split (Fin C.q) into (Fin dI) ⊕ (Fin rI)) : ConPolyZono 𝕋 n where
-  p := C.p
+def ConPolyZono.reduceBy (cPZ : ConPolyZono 𝕋 n)
+    (partD : Split (Fin cPZ.h) into (Fin d) ⊕ (Fin r))
+    (partI : Split (Fin cPZ.q) into (Fin dI) ⊕ (Fin rI)) : ConPolyZono 𝕋 n where
+  p := cPZ.p
   h := d
   q := dI + n
-  m := C.m
-  s := C.s
-  c := C.c
-  G := fun i l => C.G i (partD.left l)
-  E := fun k l => C.E k (partD.left l)
-  GI := fun i => Fin.append (fun j => C.GI i (partI.left j))
-    (diagonalBlock (C.dropRadius partD partI) i)
-  A := C.A
-  b := C.b
-  EC := C.EC
-  err := C.err
+  m := cPZ.m
+  s := cPZ.s
+  c := cPZ.c
+  G := fun i l => cPZ.G i (partD.left l)
+  E := fun k l => cPZ.E k (partD.left l)
+  GI := fun i => Fin.append (fun j => cPZ.GI i (partI.left j))
+    (diagonalBlock (cPZ.dropRadius partD partI) i)
+  A := cPZ.A
+  b := cPZ.b
+  EC := cPZ.EC
+  err := cPZ.err
 
 end CORALean.Float
 

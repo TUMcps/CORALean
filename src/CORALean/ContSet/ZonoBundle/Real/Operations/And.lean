@@ -23,9 +23,9 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ZonoBundle.and (B₁ B₂ : ZonoBundle α) : ZonoBundle α where
-  k := B₁.k + B₂.k
-  Z := Fin.append B₁.Z B₂.Z
+def ZonoBundle.and (zB₁ zB₂ : ZonoBundle α) : ZonoBundle α where
+  k := zB₁.k + zB₂.k
+  Z := Fin.append zB₁.Z zB₂.Z
 
 end CORALean.Real
 

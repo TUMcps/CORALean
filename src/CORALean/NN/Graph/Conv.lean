@@ -77,8 +77,8 @@ theorem GNN.gcnLin_apply (P : Mat ℝ N N) (W : Mat ℝ F₁ F₂) (H : Mat ℝ 
 
 /-- The layer on a matrix polynomial zonotope, which is the whole of what CORA's
 `nnGCNLayer` computes at a graph with no uncertain edges. -/
-def GNN.gcn (P : Mat ℝ N N) (W : Mat ℝ F₁ F₂) (PZ : PolyZonotope (Mat ℝ N F₁)) :
-    PolyZonotope (Mat ℝ N F₂) := PZ.map (GNN.gcnLin P W)
+def GNN.gcn (P : Mat ℝ N N) (W : Mat ℝ F₁ F₂) (pZ : PolyZonotope (Mat ℝ N F₁)) :
+    PolyZonotope (Mat ℝ N F₂) := pZ.map (GNN.gcnLin P W)
 
 end CORALean.Real
 

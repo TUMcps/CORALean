@@ -22,10 +22,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n d r dI rI 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 omit [SoundFloatArithmetic 𝕋] in
-@[simp] theorem PolyZonotope.reduceBy_h (PZ : PolyZonotope 𝕋 n)
-    (partD : Split (Fin PZ.h) into (Fin d) ⊕ (Fin r))
-    (partI : Split (Fin PZ.q) into (Fin dI) ⊕ (Fin rI)) :
-    (PZ.reduceBy partD partI).h = d := rfl
+@[simp] theorem PolyZonotope.reduceBy_h (pZ : PolyZonotope 𝕋 n)
+    (partD : Split (Fin pZ.h) into (Fin d) ⊕ (Fin r))
+    (partI : Split (Fin pZ.q) into (Fin dI) ⊕ (Fin rI)) :
+    (pZ.reduceBy partD partI).h = d := rfl
 
 end CORALean.Float
 

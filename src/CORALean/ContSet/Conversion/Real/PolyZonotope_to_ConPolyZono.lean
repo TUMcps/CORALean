@@ -31,16 +31,16 @@ namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
-def PolyZonotope.conPolyZono (PZ : PolyZonotope α) : ConPolyZono α where
-  p := PZ.p
-  h := PZ.h
-  q := PZ.q
+def PolyZonotope.conPolyZono (pZ : PolyZonotope α) : ConPolyZono α where
+  p := pZ.p
+  h := pZ.h
+  q := pZ.q
   m := 0
   s := 0
-  c := PZ.c
-  G := PZ.G
-  E := PZ.E
-  GI := PZ.GI
+  c := pZ.c
+  G := pZ.G
+  E := pZ.E
+  GI := pZ.GI
   A := 0
   b := Interval.point 0
   EC := fun _ => Fin.elim0
@@ -49,8 +49,8 @@ def PolyZonotope.conPolyZono (PZ : PolyZonotope α) : ConPolyZono α where
 -- =======================================  MAIN THEOREM  ======================================= --
 
 -- with no constraint rows the system is vacuous, so both inclusions are the identity
-theorem PolyZonotope.conPolyZono_exact (PZ : PolyZonotope α) :
-    PZ.construct = PZ.conPolyZono.construct := by -- --- PROOF ---
+theorem PolyZonotope.conPolyZono_exact (pZ : PolyZonotope α) :
+    pZ.construct = pZ.conPolyZono.construct := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨a, b, ha, hb, rfl⟩
     exact ⟨a, b, ha, hb, fun i => i.elim0, rfl⟩

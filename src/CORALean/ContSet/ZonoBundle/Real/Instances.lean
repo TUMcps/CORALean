@@ -22,7 +22,7 @@ which only enlarges the set, so it needs no error box, unlike every other
 
 `CompactSet` is not an instance: at `k = 0` the set is `univ`, not compact, so
 the class's unconditional obligation cannot be discharged. `isCompact_construct`
-states the conditional fact instead, at `0 < B.k`. No `MinkDiff` either — that
+states the conditional fact instead, at `0 < zB.k`. No `MinkDiff` either — that
 needs `Zonotope.minkDiff`, an open design decision on #85.
 -/
 
@@ -70,7 +70,7 @@ noncomputable instance : LinComb (ZonoBundle α) α where
 
 instance : And (ZonoBundle α) α where
   and := ZonoBundle.and
-  and_outer B₁ B₂ := (ZonoBundle.and_exact B₁ B₂).symm.subset
+  and_outer zB₁ zB₂ := (ZonoBundle.and_exact zB₁ zB₂).symm.subset
 
 instance : OfPoint (ZonoBundle α) α where
   ofPoint := ZonoBundle.ofPoint
@@ -79,14 +79,14 @@ instance : OfPoint (ZonoBundle α) α where
 /-- `map` at the relabelling: `reindexLin e` is bijective, so `map_exact`
 applies, unlike `Zonotope`'s instance of it, which needs no hypothesis. -/
 instance : Reindex (fun n => ZonoBundle (Vec ℝ n)) where
-  reindex e B := ZonoBundle.map (reindexLin e) B
-  reindex_exact e B := ZonoBundle.map_exact (reindexLin e) (aux_reindexLin_bijective e) B
+  reindex e zB := ZonoBundle.map (reindexLin e) zB
+  reindex_exact e zB := ZonoBundle.map_exact (reindexLin e) (aux_reindexLin_bijective e) zB
 
 instance : Mtimes (Mat ℝ) (fun n => ZonoBundle (Vec ℝ n)) where
   mtimes := ZonoBundle.mtimes
-  mtimes_outer M B := by
+  mtimes_outer M zB := by
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
-    exact ZonoBundle.mtimes_outer M B
+    exact ZonoBundle.mtimes_outer M zB
 
 instance : Reduce (ZonoBundle α) α where
   reduce := ZonoBundle.reduce

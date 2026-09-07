@@ -27,15 +27,15 @@ namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
-noncomputable def ConPolyZono.vPolytope (C : ConPolyZono α) : VPolytope α :=
-  C.polyZonotope.vPolytope
+noncomputable def ConPolyZono.vPolytope (cPZ : ConPolyZono α) : VPolytope α :=
+  cPZ.polyZonotope.vPolytope
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.subset_vPolytope (C : ConPolyZono α) :
-    C.construct ⊆ C.vPolytope.construct :=
-  subset_trans C.polyZonotope_outer (PolyZonotope.subset_vPolytope _)
+theorem ConPolyZono.subset_vPolytope (cPZ : ConPolyZono α) :
+    cPZ.construct ⊆ cPZ.vPolytope.construct :=
+  subset_trans cPZ.polyZonotope_outer (PolyZonotope.subset_vPolytope _)
 
 end CORALean.Real
 

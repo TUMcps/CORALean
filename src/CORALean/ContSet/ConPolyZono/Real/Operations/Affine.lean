@@ -24,8 +24,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- The map onto the set, affine in the independent half and polynomial in the
 dependent one. -/
-def ConPolyZono.affine (C : ConPolyZono α) (ab : (Fin C.p → ℝ) × (Fin C.q → ℝ)) : α :=
-  C.c + ∑ i, PolyZonotope.monomial C.E ab.1 i • C.G i + ∑ j, ab.2 j • C.GI j
+def ConPolyZono.affine (cPZ : ConPolyZono α) (ab : (Fin cPZ.p → ℝ) × (Fin cPZ.q → ℝ)) : α :=
+  cPZ.c + ∑ i, PolyZonotope.monomial cPZ.E ab.1 i • cPZ.G i + ∑ j, ab.2 j • cPZ.GI j
 
 end CORALean.Real
 

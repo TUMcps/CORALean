@@ -20,8 +20,8 @@ variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Mod
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The constraint is untouched, and `rfl` is the honest proof of it. -/
-theorem ConPolyZono.satisfies_map (f : α →ₗ[ℝ] β) (C : ConPolyZono α)
-    (a : Fin C.p → ℝ) : (C.map f).satisfies a ↔ C.satisfies a := Iff.rfl
+theorem ConPolyZono.satisfies_map (f : α →ₗ[ℝ] β) (cPZ : ConPolyZono α)
+    (a : Fin cPZ.p → ℝ) : (cPZ.map f).satisfies a ↔ cPZ.satisfies a := Iff.rfl
 
 end CORALean.Real
 

@@ -34,35 +34,35 @@ variable {n k : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.quadMapDep_exact (Q : Fin k → Mat ℝ n n) (C : ConPolyZono (Vec ℝ n))
-    (hq : C.q = 0) :
-    quadEval Q '' C.construct = (C.quadMapDep Q).construct := by -- --- PROOF ---
-  have hz : ∀ b : Fin C.q → ℝ, ∑ j, b j • C.GI j = 0 :=
+theorem ConPolyZono.quadMapDep_exact (Q : Fin k → Mat ℝ n n) (cPZ : ConPolyZono (Vec ℝ n))
+    (hq : cPZ.q = 0) :
+    quadEval Q '' cPZ.construct = (cPZ.quadMapDep Q).construct := by -- --- PROOF ---
+  have hz : ∀ b : Fin cPZ.q → ℝ, ∑ j, b j • cPZ.GI j = 0 :=
     fun b => Finset.sum_eq_zero fun j _ => absurd j.isLt (by omega)
-  have hquad : ∀ a : Fin C.p → ℝ,
-      quadEval Q (C.c + ∑ i, monomial C.E a i • C.G i)
-        = ∑ l, monomial (quadMapE C.polyZonotope) a l • quadMapG Q C.polyZonotope l := by
+  have hquad : ∀ a : Fin cPZ.p → ℝ,
+      quadEval Q (cPZ.c + ∑ i, monomial cPZ.E a i • cPZ.G i)
+        = ∑ l, monomial (quadMapE cPZ.polyZonotope) a l • quadMapG Q cPZ.polyZonotope l := by
     intro a
-    have h := PolyZonotope.quadEval_sum_ext Q C.polyZonotope a
-    rw [PolyZonotope.sum_ext_eq_point C.polyZonotope a] at h
+    have h := PolyZonotope.quadEval_sum_ext Q cPZ.polyZonotope a
+    rw [PolyZonotope.sum_ext_eq_point cPZ.polyZonotope a] at h
     exact h
   -- both directions are `hquad` at the same `a`, the independent block being empty
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨_, ⟨a, b, ha, _, hsat, rfl⟩, rfl⟩
     refine ⟨a, fun _ => 0, ha, fun j => j.elim0, hsat, ?_⟩
-    show quadEval Q (C.c + ∑ i, monomial C.E a i • C.G i + ∑ j, b j • C.GI j)
+    show quadEval Q (cPZ.c + ∑ i, monomial cPZ.E a i • cPZ.G i + ∑ j, b j • cPZ.GI j)
         = (0 : Vec ℝ k)
-          + (∑ l, monomial (quadMapE C.polyZonotope) a l • quadMapG Q C.polyZonotope l)
+          + (∑ l, monomial (quadMapE cPZ.polyZonotope) a l • quadMapG Q cPZ.polyZonotope l)
           + ∑ j : Fin 0, (0:ℝ) • (Fin.elim0 j : Vec ℝ k)
     rw [hz b, add_zero, hquad a]
     simp only [Finset.univ_eq_empty, Finset.sum_empty, add_zero, zero_add]
   -- back, with the independent coefficients read as zero
   · rintro _ ⟨a, b, ha, _, hsat, rfl⟩
-    refine ⟨C.c + ∑ i, monomial C.E a i • C.G i + ∑ j, (0:ℝ) • C.GI j,
+    refine ⟨cPZ.c + ∑ i, monomial cPZ.E a i • cPZ.G i + ∑ j, (0:ℝ) • cPZ.GI j,
       ⟨a, fun _ => 0, ha, fun _ => by norm_num, hsat, rfl⟩, ?_⟩
-    show quadEval Q (C.c + ∑ i, monomial C.E a i • C.G i + ∑ j, (0:ℝ) • C.GI j)
+    show quadEval Q (cPZ.c + ∑ i, monomial cPZ.E a i • cPZ.G i + ∑ j, (0:ℝ) • cPZ.GI j)
         = (0 : Vec ℝ k)
-          + (∑ l, monomial (quadMapE C.polyZonotope) a l • quadMapG Q C.polyZonotope l)
+          + (∑ l, monomial (quadMapE cPZ.polyZonotope) a l • quadMapG Q cPZ.polyZonotope l)
           + ∑ j : Fin 0, b j • (Fin.elim0 j : Vec ℝ k)
     rw [hz (fun _ => (0:ℝ)), add_zero, hquad a]
     simp only [Finset.univ_eq_empty, Finset.sum_empty, add_zero, zero_add]

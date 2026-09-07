@@ -39,15 +39,15 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.mul (S₁ S₂ : PolyZonotope 𝕋 n) (hp : S₁.p = S₂.p) : PolyZonotope 𝕋 n where
-  p := S₁.p
-  h := (S₁.h + 1) * (S₂.h + 1)
+def PolyZonotope.mul (pZ₁ pZ₂ : PolyZonotope 𝕋 n) (hp : pZ₁.p = pZ₂.p) : PolyZonotope 𝕋 n where
+  p := pZ₁.p
+  h := (pZ₁.h + 1) * (pZ₂.h + 1)
   q := 0
   c := fun _ => zero
-  G := PolyZonotope.mulGDown S₁ S₂
-  E := PolyZonotope.mulE S₁ S₂ hp
+  G := PolyZonotope.mulGDown pZ₁ pZ₂
+  E := PolyZonotope.mulE pZ₁ pZ₂ hp
   GI := fun _ => Fin.elim0
-  err := PolyZonotope.generatorError (PolyZonotope.mulGDiff S₁ S₂)
+  err := PolyZonotope.generatorError (PolyZonotope.mulGDiff pZ₁ pZ₂)
 
 end CORALean.Float
 

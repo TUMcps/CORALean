@@ -26,15 +26,15 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- Equal exponent columns added together, the stored value the lower rounding
 and the gap paid into the box. The factors are untouched. -/
-def PolyZonotope.compactGens (PZ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 n where
-  p := PZ.p
-  h := (PolyZonotope.repKeep PZ.E).card
-  q := PZ.q
-  c := PZ.c
-  G := PZ.mergedCol
-  E := fun k j => PZ.E k (PolyZonotope.keepIdx PZ.E j)
-  GI := PZ.GI
-  err := PZ.err.plus (PolyZonotope.generatorError (PolyZonotope.compactGap PZ))
+def PolyZonotope.compactGens (pZ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 n where
+  p := pZ.p
+  h := (PolyZonotope.repKeep pZ.E).card
+  q := pZ.q
+  c := pZ.c
+  G := pZ.mergedCol
+  E := fun k j => pZ.E k (PolyZonotope.keepIdx pZ.E j)
+  GI := pZ.GI
+  err := pZ.err.plus (PolyZonotope.generatorError (PolyZonotope.compactGap pZ))
 
 end CORALean.Float
 

@@ -24,8 +24,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 omit [AddCommGroup α] [Module ℝ α] in
-theorem ZonoBundle.reduce_order_le (B : ZonoBundle α) (o : ℕ) : (B.reduce o).k ≤ o :=
-  min_le_right B.k o
+theorem ZonoBundle.reduce_order_le (zB : ZonoBundle α) (o : ℕ) : (zB.reduce o).k ≤ o :=
+  min_le_right zB.k o
 
 end CORALean.Real
 

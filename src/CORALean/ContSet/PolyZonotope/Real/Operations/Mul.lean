@@ -12,8 +12,8 @@ exponent column `mulE`, a monomial again, which is what the shared factors buy.
 
 Sharing is a hypothesis rather than a shape in the signature: `p` is a field, so
 two `PolyZonotope`s cannot be made to share it definitionally without
-destructuring one of them. `Fin.cast` then reads `S₂`'s exponent matrix at
-`S₁`'s factor indices, which moves no data — identity here is positional.
+destructuring one of them. `Fin.cast` then reads `pZ₂`'s exponent matrix at
+`pZ₁`'s factor indices, which moves no data — identity here is positional.
 
 The independent blocks take no part, a product of two free coefficients not
 being one, so `mul` is a claim about `point`; a caller who needs those
@@ -41,14 +41,14 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.mul (S₁ S₂ : PolyZonotope (Vec ℝ n)) (hp : S₁.p = S₂.p) :
+def PolyZonotope.mul (pZ₁ pZ₂ : PolyZonotope (Vec ℝ n)) (hp : pZ₁.p = pZ₂.p) :
     PolyZonotope (Vec ℝ n) where
-  p := S₁.p
-  h := (S₁.h + 1) * (S₂.h + 1)
+  p := pZ₁.p
+  h := (pZ₁.h + 1) * (pZ₂.h + 1)
   q := 0
   c := 0
-  G := PolyZonotope.mulG S₁ S₂
-  E := PolyZonotope.mulE S₁ S₂ hp
+  G := PolyZonotope.mulG pZ₁ pZ₂
+  E := PolyZonotope.mulE pZ₁ pZ₂ hp
   GI := Fin.elim0
 
 end CORALean.Real

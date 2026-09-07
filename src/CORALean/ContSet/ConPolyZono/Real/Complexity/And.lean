@@ -26,19 +26,20 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.and_p (C₁ C₂ : ConPolyZono (Vec ℝ n)) :
-    (ConPolyZono.and C₁ C₂).p = (C₁.p + C₁.q) + (C₂.p + C₂.q) := rfl
+theorem ConPolyZono.and_p (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n)) :
+    (ConPolyZono.and cPZ₁ cPZ₂).p = (cPZ₁.p + cPZ₁.q) + (cPZ₂.p + cPZ₂.q) := rfl
 
-theorem ConPolyZono.and_h (C₁ C₂ : ConPolyZono (Vec ℝ n)) :
-    (ConPolyZono.and C₁ C₂).h = (C₁.h + C₁.q) + (C₂.h + C₂.q) := rfl
+theorem ConPolyZono.and_h (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n)) :
+    (ConPolyZono.and cPZ₁ cPZ₂).h = (cPZ₁.h + cPZ₁.q) + (cPZ₂.h + cPZ₂.q) := rfl
 
-theorem ConPolyZono.and_q (C₁ C₂ : ConPolyZono (Vec ℝ n)) : (ConPolyZono.and C₁ C₂).q = 0 := rfl
+theorem ConPolyZono.and_q (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n)) :
+    (ConPolyZono.and cPZ₁ cPZ₂).q = 0 := rfl
 
-theorem ConPolyZono.and_m (C₁ C₂ : ConPolyZono (Vec ℝ n)) :
-    (ConPolyZono.and C₁ C₂).m = C₁.m + C₂.m + n := rfl
+theorem ConPolyZono.and_m (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n)) :
+    (ConPolyZono.and cPZ₁ cPZ₂).m = cPZ₁.m + cPZ₂.m + n := rfl
 
-theorem ConPolyZono.and_s (C₁ C₂ : ConPolyZono (Vec ℝ n)) :
-    (ConPolyZono.and C₁ C₂).s = C₁.s + C₂.s + ((C₁.h + C₁.q) + (C₂.h + C₂.q)) := rfl
+theorem ConPolyZono.and_s (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n)) :
+    (ConPolyZono.and cPZ₁ cPZ₂).s = cPZ₁.s + cPZ₂.s + ((cPZ₁.h + cPZ₁.q) + (cPZ₂.h + cPZ₂.q)) := rfl
 
 end CORALean.Real
 

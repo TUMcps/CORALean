@@ -26,8 +26,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.and_exact (B₁ B₂ : ZonoBundle α) :
-    (B₁.and B₂).construct = B₁.construct ∩ B₂.construct := by
+theorem ZonoBundle.and_exact (zB₁ zB₂ : ZonoBundle α) :
+    (zB₁.and zB₂).construct = zB₁.construct ∩ zB₂.construct := by
   ext x
   simp only [ZonoBundle.construct, ZonoBundle.and, Set.mem_iInter, Set.mem_inter_iff,
     Fin.forall_fin_add, Fin.append_left, Fin.append_right]

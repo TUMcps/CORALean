@@ -68,13 +68,13 @@ def ConPolyZono.holds {p m s : ℕ} (A : Mat ℝ m s) (b : Interval (Vec ℝ m))
         ∧ (A *ᵥ PolyZonotope.monomial EC a) i ≤ b.sup i
 
 /-- What a set's own factors must satisfy. -/
-def ConPolyZono.satisfies (C : ConPolyZono α) (a : Fin C.p → ℝ) : Prop :=
-  ConPolyZono.holds C.A C.b C.EC a
+def ConPolyZono.satisfies (cPZ : ConPolyZono α) (a : Fin cPZ.p → ℝ) : Prop :=
+  ConPolyZono.holds cPZ.A cPZ.b cPZ.EC a
 
-def ConPolyZono.construct (C : ConPolyZono α) : Set α :=
-  {x | ∃ a : Fin C.p → ℝ, ∃ β : Fin C.q → ℝ, (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1)
-        ∧ C.satisfies a
-        ∧ x = C.c + ∑ i, PolyZonotope.monomial C.E a i • C.G i + ∑ j, β j • C.GI j}
+def ConPolyZono.construct (cPZ : ConPolyZono α) : Set α :=
+  {x | ∃ a : Fin cPZ.p → ℝ, ∃ β : Fin cPZ.q → ℝ, (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1)
+        ∧ cPZ.satisfies a
+        ∧ x = cPZ.c + ∑ i, PolyZonotope.monomial cPZ.E a i • cPZ.G i + ∑ j, β j • cPZ.GI j}
 
 end CORALean.Real
 

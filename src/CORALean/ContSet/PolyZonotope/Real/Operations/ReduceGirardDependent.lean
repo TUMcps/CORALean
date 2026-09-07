@@ -36,13 +36,13 @@ noncomputable def PolyZonotope.aux_keepAll (m : ℕ) : Split (Fin m) into (Fin m
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def PolyZonotope.reduceGirardDependent (PZ : PolyZonotope (Vec ℝ n)) (o : ℕ) :
+noncomputable def PolyZonotope.reduceGirardDependent (pZ : PolyZonotope (Vec ℝ n)) (o : ℕ) :
     PolyZonotope (Vec ℝ n) :=
-  if o * n < PZ.h then
-    PZ.reduceBy
-      (PolyZonotope.girardSplit (PolyZonotope.girardMetric PZ.G) ((o - 1) * n))
-      (PolyZonotope.aux_keepAll PZ.q)
-  else PZ
+  if o * n < pZ.h then
+    pZ.reduceBy
+      (PolyZonotope.girardSplit (PolyZonotope.girardMetric pZ.G) ((o - 1) * n))
+      (PolyZonotope.aux_keepAll pZ.q)
+  else pZ
 
 end CORALean.Real
 

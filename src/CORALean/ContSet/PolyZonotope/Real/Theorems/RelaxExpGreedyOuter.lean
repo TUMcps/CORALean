@@ -43,19 +43,19 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- The relaxation loop over-approximates, at every selection and every number
 of steps. -/
 theorem PolyZonotope.relaxExpGreedy_outer
-    (sel : (PZ : PolyZonotope α) →
-      Option ((d : ℕ) × (Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2))))
-    (n : ℕ) (PZ : PolyZonotope α) :
-    PZ.construct ⊆ (PolyZonotope.relaxExpGreedy sel n PZ).construct := by -- --- PROOF ---
-  induction n generalizing PZ with
+    (sel : (pZ : PolyZonotope α) →
+      Option ((d : ℕ) × (Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2))))
+    (n : ℕ) (pZ : PolyZonotope α) :
+    pZ.construct ⊆ (PolyZonotope.relaxExpGreedy sel n pZ).construct := by -- --- PROOF ---
+  induction n generalizing pZ with
   | zero => exact subset_rfl
   | succ n ih =>
     -- the step the selection names, or none, in which case the loop is over
-    show PZ.construct ⊆ ((sel PZ).elim PZ
-      fun sp => PolyZonotope.relaxExpGreedy sel n (PZ.relaxExpMulti sp.2)).construct
-    cases sel PZ with
+    show pZ.construct ⊆ ((sel pZ).elim pZ
+      fun sp => PolyZonotope.relaxExpGreedy sel n (pZ.relaxExpMulti sp.2)).construct
+    cases sel pZ with
     | none => exact subset_rfl
-    | some sp => exact subset_trans (PZ.relaxExpMulti_outer sp.2) (ih _)
+    | some sp => exact subset_trans (pZ.relaxExpMulti_outer sp.2) (ih _)
 
 end CORALean.Real
 

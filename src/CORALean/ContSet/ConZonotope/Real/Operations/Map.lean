@@ -23,11 +23,11 @@ variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Mod
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConZonotope.map (f : α →ₗ[ℝ] β) (C : ConZonotope α) : ConZonotope β where
-  h := C.h
-  c := f C.c
-  G := fun j => f (C.G j)
-  P := C.P
+def ConZonotope.map (f : α →ₗ[ℝ] β) (cZ : ConZonotope α) : ConZonotope β where
+  h := cZ.h
+  c := f cZ.c
+  G := fun j => f (cZ.G j)
+  P := cZ.P
 
 end CORALean.Real
 

@@ -25,14 +25,14 @@ variable {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.mtimes_p (M : Mat ℝ m n) (PZ : PolyZonotope (Vec ℝ n)) :
-    (PolyZonotope.mtimes M PZ).p = PZ.p := rfl
+theorem PolyZonotope.mtimes_p (M : Mat ℝ m n) (pZ : PolyZonotope (Vec ℝ n)) :
+    (PolyZonotope.mtimes M pZ).p = pZ.p := rfl
 
-theorem PolyZonotope.mtimes_h (M : Mat ℝ m n) (PZ : PolyZonotope (Vec ℝ n)) :
-    (PolyZonotope.mtimes M PZ).h = PZ.h := rfl
+theorem PolyZonotope.mtimes_h (M : Mat ℝ m n) (pZ : PolyZonotope (Vec ℝ n)) :
+    (PolyZonotope.mtimes M pZ).h = pZ.h := rfl
 
-theorem PolyZonotope.mtimes_q (M : Mat ℝ m n) (PZ : PolyZonotope (Vec ℝ n)) :
-    (PolyZonotope.mtimes M PZ).q = PZ.q := rfl
+theorem PolyZonotope.mtimes_q (M : Mat ℝ m n) (pZ : PolyZonotope (Vec ℝ n)) :
+    (PolyZonotope.mtimes M pZ).q = pZ.q := rfl
 
 end CORALean.Real
 

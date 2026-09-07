@@ -27,16 +27,16 @@ namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α] {q : ℕ}
 
-noncomputable def ConPolyZono.hPolytope (C : ConPolyZono α) (Aq : Fin q → (α →ₗ[ℝ] ℝ)) :
+noncomputable def ConPolyZono.hPolytope (cPZ : ConPolyZono α) (Aq : Fin q → (α →ₗ[ℝ] ℝ)) :
     HPolytope α :=
-  C.polyZonotope.hPolytope Aq
+  cPZ.polyZonotope.hPolytope Aq
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.subset_hPolytope (C : ConPolyZono α) (Aq : Fin q → (α →ₗ[ℝ] ℝ)) :
-    C.construct ⊆ (C.hPolytope Aq).construct :=
-  subset_trans C.polyZonotope_outer (PolyZonotope.subset_hPolytope _ _)
+theorem ConPolyZono.subset_hPolytope (cPZ : ConPolyZono α) (Aq : Fin q → (α →ₗ[ℝ] ℝ)) :
+    cPZ.construct ⊆ (cPZ.hPolytope Aq).construct :=
+  subset_trans cPZ.polyZonotope_outer (PolyZonotope.subset_hPolytope _ _)
 
 end CORALean.Real
 

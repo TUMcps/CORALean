@@ -40,29 +40,29 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- ========================================  INSTANCES  ========================================= --
 
 instance {n : ℕ} : Plus (PolyZonotope 𝕋 n) (Vec ℝ n) where
-  plus PZ₁ PZ₂ := (PZ₁.plus PZ₂).materialise
-  plus_outer PZ₁ PZ₂ := by
+  plus pZ₁ pZ₂ := (pZ₁.plus pZ₂).materialise
+  plus_outer pZ₁ pZ₂ := by
     rw [PolyZonotope.materialise_eq]
-    exact PolyZonotope.plus_outer PZ₁ PZ₂
+    exact PolyZonotope.plus_outer pZ₁ pZ₂
 
 instance {n : ℕ} : LinComb (PolyZonotope 𝕋 n) (Vec ℝ n) where
-  linComb PZ₁ PZ₂ := (PZ₁.linComb PZ₂).materialise
-  linComb_outer PZ₁ PZ₂ := by
+  linComb pZ₁ pZ₂ := (pZ₁.linComb pZ₂).materialise
+  linComb_outer pZ₁ pZ₂ := by
     rw [PolyZonotope.materialise_eq]
-    exact PolyZonotope.linComb_outer PZ₁ PZ₂
+    exact PolyZonotope.linComb_outer pZ₁ pZ₂
 
 -- `reduce` is computable here, `sortPerm` asking its comparator for no laws
 instance {n : ℕ} : Reduce (PolyZonotope 𝕋 n) (Vec ℝ n) where
-  reduce PZ o := (PZ.reduce o).materialise
-  reduce_outer PZ o := by
+  reduce pZ o := (pZ.reduce o).materialise
+  reduce_outer pZ o := by
     rw [PolyZonotope.materialise_eq]
-    exact PolyZonotope.reduce_outer PZ o
+    exact PolyZonotope.reduce_outer pZ o
 
 instance : Mtimes (Mat 𝕋) (PolyZonotope 𝕋) where
-  mtimes M PZ := (PolyZonotope.mtimes M PZ).materialise
-  mtimes_outer M PZ := by
+  mtimes M pZ := (PolyZonotope.mtimes M pZ).materialise
+  mtimes_outer M pZ := by
     simp only [ContSet.construct_mat, Set.biUnion_singleton, PolyZonotope.materialise_eq]
-    exact PolyZonotope.mtimes_outer M PZ
+    exact PolyZonotope.mtimes_outer M pZ
 
 end CORALean.Float
 

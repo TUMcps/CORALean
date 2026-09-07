@@ -33,8 +33,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- CORA's `compact`: the generators, then the constraints, then the factors.
 The order matters in one direction only — dropping a column can leave a factor
 unused, never the reverse. -/
-noncomputable def ConPolyZono.compact (C : ConPolyZono α) : ConPolyZono α :=
-  C.compactGens.compactCons.compactFactors
+noncomputable def ConPolyZono.compact (cPZ : ConPolyZono α) : ConPolyZono α :=
+  cPZ.compactGens.compactCons.compactFactors
 
 end CORALean.Real
 

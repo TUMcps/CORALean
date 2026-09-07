@@ -29,41 +29,41 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n d r dI rI 
 /-- What the dropped dependent generators contribute, so what the block must
 cover. The coefficients are monomials, and `abs_sum_le_radius` asks only that
 they lie in `[-1, 1]`. -/
-theorem PolyZonotope.aux_abs_droppedDep_le (PZ : PolyZonotope 𝕋 n)
-    (partD : Split (Fin PZ.h) into (Fin d) ⊕ (Fin r)) {a : Fin PZ.p → ℝ}
+theorem PolyZonotope.aux_abs_droppedDep_le (pZ : PolyZonotope 𝕋 n)
+    (partD : Split (Fin pZ.h) into (Fin d) ⊕ (Fin r)) {a : Fin pZ.p → ℝ}
     (ha : ∀ k, |a k| ≤ 1) (i : Fin n) :
-    |∑ l, toReal (PZ.G i (partD.right l))
-        * Real.PolyZonotope.monomial PZ.E a (partD.right l)|
-      ≤ toReal (radius (fun i l => PZ.G i (partD.right l)) i) :=
-  abs_sum_le_radius (d := fun i l => PZ.G i (partD.right l)) (fun _ _ => le_refl _)
-    (fun l => Real.PolyZonotope.abs_monomial_le_one PZ.E ha (partD.right l)) i
+    |∑ l, toReal (pZ.G i (partD.right l))
+        * Real.PolyZonotope.monomial pZ.E a (partD.right l)|
+      ≤ toReal (radius (fun i l => pZ.G i (partD.right l)) i) :=
+  abs_sum_le_radius (d := fun i l => pZ.G i (partD.right l)) (fun _ _ => le_refl _)
+    (fun l => Real.PolyZonotope.abs_monomial_le_one pZ.E ha (partD.right l)) i
 
 /-- The same for the dropped independent generators, whose coefficients are
 free to begin with. -/
-theorem PolyZonotope.aux_abs_droppedInd_le (PZ : PolyZonotope 𝕋 n)
-    (partI : Split (Fin PZ.q) into (Fin dI) ⊕ (Fin rI)) {β : Fin PZ.q → ℝ}
+theorem PolyZonotope.aux_abs_droppedInd_le (pZ : PolyZonotope 𝕋 n)
+    (partI : Split (Fin pZ.q) into (Fin dI) ⊕ (Fin rI)) {β : Fin pZ.q → ℝ}
     (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) :
-    |∑ j, toReal (PZ.GI i (partI.right j)) * β (partI.right j)|
-      ≤ toReal (radius (fun i j => PZ.GI i (partI.right j)) i) :=
-  abs_sum_le_radius (d := fun i j => PZ.GI i (partI.right j)) (fun _ _ => le_refl _)
+    |∑ j, toReal (pZ.GI i (partI.right j)) * β (partI.right j)|
+      ≤ toReal (radius (fun i j => pZ.GI i (partI.right j)) i) :=
+  abs_sum_le_radius (d := fun i j => pZ.GI i (partI.right j)) (fun _ _ => le_refl _)
     (fun j => hβ (partI.right j)) i
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- One box for the two dropped blocks: their radii, added upward. -/
-theorem PolyZonotope.abs_dropped_le_dropRadius (PZ : PolyZonotope 𝕋 n)
-    (partD : Split (Fin PZ.h) into (Fin d) ⊕ (Fin r))
-    (partI : Split (Fin PZ.q) into (Fin dI) ⊕ (Fin rI)) {a : Fin PZ.p → ℝ}
-    {β : Fin PZ.q → ℝ} (ha : ∀ k, |a k| ≤ 1) (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) :
-    |(∑ l, toReal (PZ.G i (partD.right l))
-          * Real.PolyZonotope.monomial PZ.E a (partD.right l))
-        + ∑ j, toReal (PZ.GI i (partI.right j)) * β (partI.right j)|
-      ≤ toReal (PZ.dropRadius partD partI i) := by -- --- PROOF ---
-  have hD := PolyZonotope.aux_abs_droppedDep_le PZ partD ha i
-  have hI := PolyZonotope.aux_abs_droppedInd_le PZ partI hβ i
-  have hsum := add_le_addUp (radius (fun i l => PZ.G i (partD.right l)) i)
-    (radius (fun i j => PZ.GI i (partI.right j)) i)
+theorem PolyZonotope.abs_dropped_le_dropRadius (pZ : PolyZonotope 𝕋 n)
+    (partD : Split (Fin pZ.h) into (Fin d) ⊕ (Fin r))
+    (partI : Split (Fin pZ.q) into (Fin dI) ⊕ (Fin rI)) {a : Fin pZ.p → ℝ}
+    {β : Fin pZ.q → ℝ} (ha : ∀ k, |a k| ≤ 1) (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) :
+    |(∑ l, toReal (pZ.G i (partD.right l))
+          * Real.PolyZonotope.monomial pZ.E a (partD.right l))
+        + ∑ j, toReal (pZ.GI i (partI.right j)) * β (partI.right j)|
+      ≤ toReal (pZ.dropRadius partD partI i) := by -- --- PROOF ---
+  have hD := PolyZonotope.aux_abs_droppedDep_le pZ partD ha i
+  have hI := PolyZonotope.aux_abs_droppedInd_le pZ partI hβ i
+  have hsum := add_le_addUp (radius (fun i l => pZ.G i (partD.right l)) i)
+    (radius (fun i j => pZ.GI i (partI.right j)) i)
   refine le_trans (abs_add_le _ _) ?_
   simp only [PolyZonotope.dropRadius]
   linarith

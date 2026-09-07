@@ -10,7 +10,7 @@ the exact layer's monomials rather than roundings of them; only the two
 generator blocks and the centre pass through `toReal`.
 
 Proofs use it rather than going through `nominal` because through it every count
-is `PZ.h`, where the instance gives the equal-but-distinct `(nominal PZ).h` that
+is `pZ.h`, where the instance gives the equal-but-distinct `(nominal pZ).h` that
 `rw` reads apart.
 -/
 
@@ -31,12 +31,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.mem_nominalSet_iff [SoundFloatArithmetic 𝕋] {PZ : PolyZonotope 𝕋 n}
+theorem PolyZonotope.mem_nominalSet_iff [SoundFloatArithmetic 𝕋] {pZ : PolyZonotope 𝕋 n}
     {x : Vec ℝ n} :
-    x ∈ InflatedContSet.nominalSet PZ ↔ ∃ a : Fin PZ.p → ℝ, ∃ β : Fin PZ.q → ℝ,
-      (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1) ∧ ∀ i, x i = toReal (PZ.c i)
-        + (∑ l, toReal (PZ.G i l) * Real.PolyZonotope.monomial PZ.E a l)
-        + ∑ j, toReal (PZ.GI i j) * β j :=
+    x ∈ InflatedContSet.nominalSet pZ ↔ ∃ a : Fin pZ.p → ℝ, ∃ β : Fin pZ.q → ℝ,
+      (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1) ∧ ∀ i, x i = toReal (pZ.c i)
+        + (∑ l, toReal (pZ.G i l) * Real.PolyZonotope.monomial pZ.E a l)
+        + ∑ j, toReal (pZ.GI i j) * β j :=
   Real.PolyZonotope.mem_construct_iff
 
 end CORALean.Float

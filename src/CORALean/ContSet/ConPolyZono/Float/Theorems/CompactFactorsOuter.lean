@@ -25,9 +25,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.compactFactors_outer (C : ConPolyZono 𝕋 n) :
-    C.construct ⊆ C.compactFactors.construct :=
-  InflatedContSet.mono_subset (ConPolyZono.compactFactors_nominal C).subset (subset_refl _)
+theorem ConPolyZono.compactFactors_outer (cPZ : ConPolyZono 𝕋 n) :
+    cPZ.construct ⊆ cPZ.compactFactors.construct :=
+  InflatedContSet.mono_subset (ConPolyZono.compactFactors_nominal cPZ).subset (subset_refl _)
 
 end CORALean.Float
 

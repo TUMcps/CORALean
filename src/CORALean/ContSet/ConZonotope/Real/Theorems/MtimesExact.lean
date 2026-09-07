@@ -23,9 +23,9 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.mtimes_exact {n m : ℕ} (M : Mat ℝ m n) (C : ConZonotope (Vec ℝ n)) :
-    (M *ᵥ ·) '' C.construct = (ConZonotope.mtimes M C).construct :=
-  ConZonotope.map_exact (Matrix.mulVecLin M) C
+theorem ConZonotope.mtimes_exact {n m : ℕ} (M : Mat ℝ m n) (cZ : ConZonotope (Vec ℝ n)) :
+    (M *ᵥ ·) '' cZ.construct = (ConZonotope.mtimes M cZ).construct :=
+  ConZonotope.map_exact (Matrix.mulVecLin M) cZ
 
 end CORALean.Real
 

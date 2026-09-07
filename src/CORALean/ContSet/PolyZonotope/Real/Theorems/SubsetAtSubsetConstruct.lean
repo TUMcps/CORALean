@@ -29,11 +29,11 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A sub-box of admissible factors reaches only members of `construct`. -/
-theorem PolyZonotope.subsetAt_subset_construct (S : PolyZonotope α)
-    {B : Set (Fin S.p → ℝ)} (hB : ∀ a ∈ B, ∀ k, |a k| ≤ 1) :
-    S.subsetAt B ⊆ S.construct := by
+theorem PolyZonotope.subsetAt_subset_construct (pZ : PolyZonotope α)
+    {B : Set (Fin pZ.p → ℝ)} (hB : ∀ a ∈ B, ∀ k, |a k| ≤ 1) :
+    pZ.subsetAt B ⊆ pZ.construct := by
   rintro _ ⟨a, ha, rfl⟩
-  exact S.point_mem_construct (hB a ha)
+  exact pZ.point_mem_construct (hB a ha)
 
 end CORALean.Real
 

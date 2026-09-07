@@ -25,7 +25,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 omit [AddCommGroup α] in
-theorem ZonoBundle.and_k (B₁ B₂ : ZonoBundle α) : (B₁.and B₂).k = B₁.k + B₂.k := rfl
+theorem ZonoBundle.and_k (zB₁ zB₂ : ZonoBundle α) : (zB₁.and zB₂).k = zB₁.k + zB₂.k := rfl
 
 end CORALean.Real
 

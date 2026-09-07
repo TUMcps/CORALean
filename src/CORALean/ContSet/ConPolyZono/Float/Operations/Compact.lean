@@ -37,8 +37,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- CORA's `compact`: the generators, then the constraints, then the factors
 that fell out of use. -/
-def ConPolyZono.compact (C : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n :=
-  C.compactGens.compactCons.compactFactors
+def ConPolyZono.compact (cPZ : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n :=
+  cPZ.compactGens.compactCons.compactFactors
 
 end CORALean.Float
 

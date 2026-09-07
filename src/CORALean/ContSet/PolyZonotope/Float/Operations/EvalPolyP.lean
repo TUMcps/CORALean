@@ -24,15 +24,15 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `evalPoly`'s recursion, paired with the proof that it never leaves `S`'s
+/-- `evalPoly`'s recursion, paired with the proof that it never leaves `pZ`'s
 factor count. -/
-def PolyZonotope.evalPolyP (S : PolyZonotope 𝕋 n) :
-    List (Vec 𝕋 n) → {R : PolyZonotope 𝕋 n // R.p = S.p}
-  | [] => ⟨(⟨S.p, 0, 0, fun _ => zero, fun _ => Fin.elim0, fun _ => Fin.elim0, fun _ => Fin.elim0,
+def PolyZonotope.evalPolyP (pZ : PolyZonotope 𝕋 n) :
+    List (Vec 𝕋 n) → {R : PolyZonotope 𝕋 n // R.p = pZ.p}
+  | [] => ⟨(⟨pZ.p, 0, 0, fun _ => zero, fun _ => Fin.elim0, fun _ => Fin.elim0, fun _ => Fin.elim0,
       ⟨fun _ => zero, fun _ => zero⟩⟩ : PolyZonotope 𝕋 n), rfl⟩
   | a :: rest =>
-      let R := PolyZonotope.evalPolyP S rest
-      ⟨PolyZonotope.evalPolyStep R.1 S R.2 a, R.2⟩
+      let R := PolyZonotope.evalPolyP pZ rest
+      ⟨PolyZonotope.evalPolyStep R.1 pZ R.2 a, R.2⟩
 
 end CORALean.Float
 

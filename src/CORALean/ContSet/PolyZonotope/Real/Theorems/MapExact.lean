@@ -29,23 +29,23 @@ variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Mod
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.map_exact (f : α →ₗ[ℝ] β) (PZ : PolyZonotope α) :
-    f '' PZ.construct = (PZ.map f).construct := by -- --- PROOF ---
-  have hf : ∀ (a : Fin PZ.p → ℝ) (b : Fin PZ.q → ℝ),
-      f (PZ.c + ∑ i, PolyZonotope.monomial PZ.E a i • PZ.G i + ∑ j, b j • PZ.GI j)
-        = (PZ.map f).c + ∑ i, PolyZonotope.monomial (PZ.map f).E a i • (PZ.map f).G i
-            + ∑ j, b j • (PZ.map f).GI j := by
+theorem PolyZonotope.map_exact (f : α →ₗ[ℝ] β) (pZ : PolyZonotope α) :
+    f '' pZ.construct = (pZ.map f).construct := by -- --- PROOF ---
+  have hf : ∀ (a : Fin pZ.p → ℝ) (b : Fin pZ.q → ℝ),
+      f (pZ.c + ∑ i, PolyZonotope.monomial pZ.E a i • pZ.G i + ∑ j, b j • pZ.GI j)
+        = (pZ.map f).c + ∑ i, PolyZonotope.monomial (pZ.map f).E a i • (pZ.map f).G i
+            + ∑ j, b j • (pZ.map f).GI j := by
     intro a b
     rw [map_add, map_add, map_sum, map_sum]
     congr 1
-    · exact congrArg _ (Finset.sum_congr rfl fun i _ => map_smul f _ (PZ.G i))
-    · exact Finset.sum_congr rfl fun j _ => map_smul f (b j) (PZ.GI j)
+    · exact congrArg _ (Finset.sum_congr rfl fun i _ => map_smul f _ (pZ.G i))
+    · exact Finset.sum_congr rfl fun j _ => map_smul f (b j) (pZ.GI j)
   -- both inclusions are `hf` read in the two directions; the exponents never move
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨x, ⟨a, b, ha, hb, rfl⟩, rfl⟩
     exact ⟨a, b, ha, hb, hf a b⟩
   · rintro y ⟨a, b, ha, hb, hy⟩
-    refine ⟨PZ.c + ∑ i, PolyZonotope.monomial PZ.E a i • PZ.G i + ∑ j, b j • PZ.GI j,
+    refine ⟨pZ.c + ∑ i, PolyZonotope.monomial pZ.E a i • pZ.G i + ∑ j, b j • pZ.GI j,
       ⟨a, b, ha, hb, rfl⟩, ?_⟩
     rw [hy]
     exact hf a b

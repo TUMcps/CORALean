@@ -24,19 +24,19 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- The factors neither block reads, dropped. Only `p` and the two exponent
 matrices change; every generator, every constraint column and `b` stand. -/
-def ConPolyZono.compactFactors (C : ConPolyZono α) : ConPolyZono α where
-  p := (ConPolyZono.usedFactors C.E C.EC).card
-  h := C.h
-  q := C.q
-  m := C.m
-  s := C.s
-  c := C.c
-  G := C.G
-  E := fun k i => C.E (ConPolyZono.factorIdx C.E C.EC k) i
-  GI := C.GI
-  A := C.A
-  b := C.b
-  EC := fun k l => C.EC (ConPolyZono.factorIdx C.E C.EC k) l
+def ConPolyZono.compactFactors (cPZ : ConPolyZono α) : ConPolyZono α where
+  p := (ConPolyZono.usedFactors cPZ.E cPZ.EC).card
+  h := cPZ.h
+  q := cPZ.q
+  m := cPZ.m
+  s := cPZ.s
+  c := cPZ.c
+  G := cPZ.G
+  E := fun k i => cPZ.E (ConPolyZono.factorIdx cPZ.E cPZ.EC k) i
+  GI := cPZ.GI
+  A := cPZ.A
+  b := cPZ.b
+  EC := fun k l => cPZ.EC (ConPolyZono.factorIdx cPZ.E cPZ.EC k) l
 
 end CORALean.Real
 

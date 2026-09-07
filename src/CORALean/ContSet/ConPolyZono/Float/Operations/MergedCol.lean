@@ -27,9 +27,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- The merged generator column as stored: the lower of the two directed fibre
 sums, `repKeep` naming the one column per class that survives. -/
-def ConPolyZono.mergedCol (C : ConPolyZono 𝕋 n) (i : Fin n)
-    (j : Fin (PolyZonotope.repKeep C.E).card) : 𝕋 :=
-  PolyZonotope.fiberDown (Real.PolyZonotope.rep C.E) C.G i (PolyZonotope.keepIdx C.E j)
+def ConPolyZono.mergedCol (cPZ : ConPolyZono 𝕋 n) (i : Fin n)
+    (j : Fin (PolyZonotope.repKeep cPZ.E).card) : 𝕋 :=
+  PolyZonotope.fiberDown (Real.PolyZonotope.rep cPZ.E) cPZ.G i (PolyZonotope.keepIdx cPZ.E j)
 
 end CORALean.Float
 

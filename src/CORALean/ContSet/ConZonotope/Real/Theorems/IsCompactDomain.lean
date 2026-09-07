@@ -28,9 +28,9 @@ variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 omit [NormedAddCommGroup α] [NormedSpace ℝ α] in
-theorem ConZonotope.isCompact_domain (C : ConZonotope α) : IsCompact C.domain.construct := by
+theorem ConZonotope.isCompact_domain (cZ : ConZonotope α) : IsCompact cZ.domain.construct := by
   refine IsCompact.of_isClosed_subset (isCompact_closedBall 0 1)
-    (HPolytope.isClosed_construct C.domain) fun β hβ => ?_
+    (HPolytope.isClosed_construct cZ.domain) fun β hβ => ?_
   rw [Zonotope.closedBall_eq]
   exact (ConZonotope.mem_domain_iff.mp hβ).1
 

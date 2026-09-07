@@ -23,17 +23,17 @@ namespace CORALean.Real
 
 variable {n q : ℕ}
 
-def ZonoBundle.hPolytope (B : ZonoBundle (Vec ℝ n)) (i : Fin B.k)
+def ZonoBundle.hPolytope (zB : ZonoBundle (Vec ℝ n)) (i : Fin zB.k)
     (Aq : Fin q → (Vec ℝ n →ₗ[ℝ] ℝ)) : HPolytope (Vec ℝ n) :=
-  (B.zonotope i).hPolytope Aq
+  (zB.zonotope i).hPolytope Aq
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.subset_hPolytope (B : ZonoBundle (Vec ℝ n)) (i : Fin B.k)
+theorem ZonoBundle.subset_hPolytope (zB : ZonoBundle (Vec ℝ n)) (i : Fin zB.k)
     (Aq : Fin q → (Vec ℝ n →ₗ[ℝ] ℝ)) :
-    B.construct ⊆ (B.hPolytope i Aq).construct :=
-  subset_trans (B.subset_zonotope i) (Zonotope.subset_hPolytope _ _)
+    zB.construct ⊆ (zB.hPolytope i Aq).construct :=
+  subset_trans (zB.subset_zonotope i) (Zonotope.subset_hPolytope _ _)
 
 end CORALean.Real
 

@@ -27,11 +27,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.compact_outer (C : ConPolyZono 𝕋 n) :
-    C.construct ⊆ C.compact.construct :=
-  subset_trans (ConPolyZono.compactGens_outer C)
-    (subset_trans (ConPolyZono.compactCons_outer C.compactGens)
-      (ConPolyZono.compactFactors_outer C.compactGens.compactCons))
+theorem ConPolyZono.compact_outer (cPZ : ConPolyZono 𝕋 n) :
+    cPZ.construct ⊆ cPZ.compact.construct :=
+  subset_trans (ConPolyZono.compactGens_outer cPZ)
+    (subset_trans (ConPolyZono.compactCons_outer cPZ.compactGens)
+      (ConPolyZono.compactFactors_outer cPZ.compactGens.compactCons))
 
 end CORALean.Float
 

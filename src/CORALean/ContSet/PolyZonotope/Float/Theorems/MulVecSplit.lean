@@ -6,7 +6,7 @@ import CORALean.ContSet.PolyZonotope.Float.Operations.Mtimes
 Over the three blocks rather than over a `PolyZonotope`, since a constrained one
 has the same three and regrouping them knows nothing about a constraint. Stated
 at an arbitrary coefficient vector `t` for the dependent block rather than at
-`monomial PZ.E a`: the regrouping is linear algebra and knows nothing about
+`monomial pZ.E a`: the regrouping is linear algebra and knows nothing about
 where the coefficients came from. It carries no `aux_` prefix and takes the
 three blocks loose, the constrained representation needing the same regrouping
 at its own fields.

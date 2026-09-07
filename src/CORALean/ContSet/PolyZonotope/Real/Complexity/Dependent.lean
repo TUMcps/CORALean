@@ -24,15 +24,15 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 omit [AddCommGroup α] [Module ℝ α] in
-theorem PolyZonotope.dependent_p (PZ : PolyZonotope α) :
-    (PolyZonotope.dependent PZ).p = PZ.p + PZ.q := rfl
+theorem PolyZonotope.dependent_p (pZ : PolyZonotope α) :
+    (PolyZonotope.dependent pZ).p = pZ.p + pZ.q := rfl
 
 omit [AddCommGroup α] [Module ℝ α] in
-theorem PolyZonotope.dependent_h (PZ : PolyZonotope α) :
-    (PolyZonotope.dependent PZ).h = PZ.h + PZ.q := rfl
+theorem PolyZonotope.dependent_h (pZ : PolyZonotope α) :
+    (PolyZonotope.dependent pZ).h = pZ.h + pZ.q := rfl
 
 omit [AddCommGroup α] [Module ℝ α] in
-theorem PolyZonotope.dependent_q (PZ : PolyZonotope α) : (PolyZonotope.dependent PZ).q = 0 := rfl
+theorem PolyZonotope.dependent_q (pZ : PolyZonotope α) : (PolyZonotope.dependent pZ).q = 0 := rfl
 
 end CORALean.Real
 

@@ -28,22 +28,22 @@ variable {n d r dI rI : ℕ}
 /-- Partitions both generator blocks: what `partD.left` and `partI.left` name is
 kept, with the former's exponent columns, and the rest is absorbed into a
 diagonal block of `n` independent generators. The constraints stand. -/
-def ConPolyZono.reduceBy (C : ConPolyZono (Vec ℝ n))
-    (partD : Split (Fin C.h) into (Fin d) ⊕ (Fin r))
-    (partI : Split (Fin C.q) into (Fin dI) ⊕ (Fin rI)) : ConPolyZono (Vec ℝ n) where
-  p := C.p
+def ConPolyZono.reduceBy (cPZ : ConPolyZono (Vec ℝ n))
+    (partD : Split (Fin cPZ.h) into (Fin d) ⊕ (Fin r))
+    (partI : Split (Fin cPZ.q) into (Fin dI) ⊕ (Fin rI)) : ConPolyZono (Vec ℝ n) where
+  p := cPZ.p
   h := d
   q := dI + n
-  m := C.m
-  s := C.s
-  c := C.c
-  G := fun l => C.G (partD.left l)
-  E := fun k l => C.E k (partD.left l)
-  GI := Fin.append (fun j => C.GI (partI.left j))
-          (Matrix.diagonal (C.dropRadius partD partI))
-  A := C.A
-  b := C.b
-  EC := C.EC
+  m := cPZ.m
+  s := cPZ.s
+  c := cPZ.c
+  G := fun l => cPZ.G (partD.left l)
+  E := fun k l => cPZ.E k (partD.left l)
+  GI := Fin.append (fun j => cPZ.GI (partI.left j))
+          (Matrix.diagonal (cPZ.dropRadius partD partI))
+  A := cPZ.A
+  b := cPZ.b
+  EC := cPZ.EC
 
 end CORALean.Real
 

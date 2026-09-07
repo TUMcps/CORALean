@@ -30,8 +30,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def PolyZonotope.compact (PZ : PolyZonotope α) : PolyZonotope α :=
-  PZ.compactGens.compactFactors
+noncomputable def PolyZonotope.compact (pZ : PolyZonotope α) : PolyZonotope α :=
+  pZ.compactGens.compactFactors
 
 end CORALean.Real
 

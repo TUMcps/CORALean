@@ -25,15 +25,15 @@ namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α] {q : ℕ}
 
-def PolyZonotope.hPolytope (PZ : PolyZonotope α) (Aq : Fin q → (α →ₗ[ℝ] ℝ)) : HPolytope α :=
-  PZ.zonotope.hPolytope Aq
+def PolyZonotope.hPolytope (pZ : PolyZonotope α) (Aq : Fin q → (α →ₗ[ℝ] ℝ)) : HPolytope α :=
+  pZ.zonotope.hPolytope Aq
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.subset_hPolytope (PZ : PolyZonotope α) (Aq : Fin q → (α →ₗ[ℝ] ℝ)) :
-    PZ.construct ⊆ (PZ.hPolytope Aq).construct :=
-  subset_trans PZ.zonotope_outer (Zonotope.subset_hPolytope _ _)
+theorem PolyZonotope.subset_hPolytope (pZ : PolyZonotope α) (Aq : Fin q → (α →ₗ[ℝ] ℝ)) :
+    pZ.construct ⊆ (pZ.hPolytope Aq).construct :=
+  subset_trans pZ.zonotope_outer (Zonotope.subset_hPolytope _ _)
 
 end CORALean.Real
 

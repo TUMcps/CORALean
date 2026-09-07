@@ -31,9 +31,9 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ZonoBundle.reduce (B : ZonoBundle α) (o : ℕ) : ZonoBundle α where
-  k := min B.k o
-  Z := fun i => B.Z (Fin.castLE (min_le_left B.k o) i)
+def ZonoBundle.reduce (zB : ZonoBundle α) (o : ℕ) : ZonoBundle α where
+  k := min zB.k o
+  Z := fun i => zB.Z (Fin.castLE (min_le_left zB.k o) i)
 
 end CORALean.Real
 

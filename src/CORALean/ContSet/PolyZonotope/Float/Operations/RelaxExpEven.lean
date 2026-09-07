@@ -42,16 +42,16 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n d : ℕ}
 
 /-- `relaxExp` with the drift's midpoint taken off the centre, so the new
 independent generator carries only its radius. -/
-def PolyZonotope.relaxExpEven (PZ : PolyZonotope 𝕋 n)
-    (part : Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin PZ.p) : PolyZonotope 𝕋 n where
-  p := PZ.p
+def PolyZonotope.relaxExpEven (pZ : PolyZonotope 𝕋 n)
+    (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) : PolyZonotope 𝕋 n where
+  p := pZ.p
   h := d + 1
-  q := PZ.q + 1
-  c := PZ.relaxCentreEven part k₀
-  G := fun i => Fin.append (fun l => PZ.G i (part.left l)) (fun _ => PZ.mergedGen part i)
-  E := fun k => Fin.append (fun l => PZ.E k (part.left l)) (fun _ => PZ.E k (part.right 1))
-  GI := fun i => Fin.append (PZ.GI i) (fun _ => PZ.relaxGenEven part k₀ i)
-  err := PZ.err.plus (PolyZonotope.generatorError (PZ.relaxGapEven part k₀))
+  q := pZ.q + 1
+  c := pZ.relaxCentreEven part k₀
+  G := fun i => Fin.append (fun l => pZ.G i (part.left l)) (fun _ => pZ.mergedGen part i)
+  E := fun k => Fin.append (fun l => pZ.E k (part.left l)) (fun _ => pZ.E k (part.right 1))
+  GI := fun i => Fin.append (pZ.GI i) (fun _ => pZ.relaxGenEven part k₀ i)
+  err := pZ.err.plus (PolyZonotope.generatorError (pZ.relaxGapEven part k₀))
 
 end CORALean.Float
 

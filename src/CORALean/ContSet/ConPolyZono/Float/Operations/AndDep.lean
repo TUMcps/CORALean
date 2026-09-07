@@ -6,8 +6,8 @@ import CORALean.ContSet.ConPolyZono.Real.Operations.AppendE
 # `ConPolyZono.andDep`
 
 Sound where both independent blocks are empty; `and` arranges that. Keeps
-`C₁`'s error box and only `C₁`'s generator block: the point it denotes is
-`y₁ + e₁`, and `C₂` enters through the constraint system alone, its generator
+`cPZ₁`'s error box and only `cPZ₁`'s generator block: the point it denotes is
+`y₁ + e₁`, and `cPZ₂` enters through the constraint system alone, its generator
 columns kept at `zero` so the agreement rows can read the second point.
 -/
 
@@ -29,21 +29,21 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Sound where both independent blocks are empty; `and` arranges that. -/
-def ConPolyZono.andDep (C₁ C₂ : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n where
-  p := C₁.p + C₂.p
-  h := C₁.h + C₂.h
+def ConPolyZono.andDep (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n where
+  p := cPZ₁.p + cPZ₂.p
+  h := cPZ₁.h + cPZ₂.h
   q := 0
-  m := C₁.m + C₂.m + n
-  s := C₁.s + C₂.s + (C₁.h + C₂.h)
-  c := C₁.c
-  G := fun i => Fin.append (C₁.G i) fun _ => zero
-  E := Real.PolyZonotope.plusE C₁.E C₂.E
+  m := cPZ₁.m + cPZ₂.m + n
+  s := cPZ₁.s + cPZ₂.s + (cPZ₁.h + cPZ₂.h)
+  c := cPZ₁.c
+  G := fun i => Fin.append (cPZ₁.G i) fun _ => zero
+  E := Real.PolyZonotope.plusE cPZ₁.E cPZ₂.E
   GI := fun _ => Fin.elim0
-  A := ConPolyZono.andA C₁ C₂
-  b := ConPolyZono.andB C₁ C₂
-  EC := Real.ConPolyZono.appendE (Real.PolyZonotope.plusE C₁.EC C₂.EC)
-          (Real.PolyZonotope.plusE C₁.E C₂.E)
-  err := C₁.err
+  A := ConPolyZono.andA cPZ₁ cPZ₂
+  b := ConPolyZono.andB cPZ₁ cPZ₂
+  EC := Real.ConPolyZono.appendE (Real.PolyZonotope.plusE cPZ₁.EC cPZ₂.EC)
+          (Real.PolyZonotope.plusE cPZ₁.E cPZ₂.E)
+  err := cPZ₁.err
 
 end CORALean.Float
 

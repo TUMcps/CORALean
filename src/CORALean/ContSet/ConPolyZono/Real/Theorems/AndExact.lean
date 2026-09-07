@@ -53,11 +53,11 @@ theorem ConPolyZono.aux_add_point_zero (S : Set (Vec ℝ n)) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.and_exact (C₁ C₂ : ConPolyZono (Vec ℝ n)) :
-    C₁.construct ∩ C₂.construct = (C₁.and C₂).construct := by
-  rw [C₁.dependent_exact, C₂.dependent_exact,
-    ← ConPolyZono.aux_add_point_zero C₂.dependent.construct]
-  exact ConPolyZono.andDep_exact C₁.dependent C₂.dependent _ rfl rfl
+theorem ConPolyZono.and_exact (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n)) :
+    cPZ₁.construct ∩ cPZ₂.construct = (cPZ₁.and cPZ₂).construct := by
+  rw [cPZ₁.dependent_exact, cPZ₂.dependent_exact,
+    ← ConPolyZono.aux_add_point_zero cPZ₂.dependent.construct]
+  exact ConPolyZono.andDep_exact cPZ₁.dependent cPZ₂.dependent _ rfl rfl
 
 end CORALean.Real
 

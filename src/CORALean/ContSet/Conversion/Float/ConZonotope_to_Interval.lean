@@ -21,15 +21,15 @@ open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
-def ConZonotope.interval (C : ConZonotope 𝕋 n) : Interval 𝕋 n :=
-  C.zonotope.interval
+def ConZonotope.interval (cZ : ConZonotope 𝕋 n) : Interval 𝕋 n :=
+  cZ.zonotope.interval
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.interval_outer (C : ConZonotope 𝕋 n) :
-    C.construct ⊆ C.interval.construct :=
-  subset_trans C.zonotope_outer (Zonotope.interval_outer _)
+theorem ConZonotope.interval_outer (cZ : ConZonotope 𝕋 n) :
+    cZ.construct ⊆ cZ.interval.construct :=
+  subset_trans cZ.zonotope_outer (Zonotope.interval_outer _)
 
 
 end CORALean.Float

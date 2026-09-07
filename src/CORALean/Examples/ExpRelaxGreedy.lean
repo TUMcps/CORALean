@@ -32,17 +32,17 @@ namespace CORALean
 -- Anonymous, since their content is that they elaborate.
 
 /-- The exact layer's loop, driven by the lightest-edge rule at threshold `η`. -/
-example {α : Type} [AddCommGroup α] [Module ℝ α] (PZ : Real.PolyZonotope α) (η n : ℕ) :
-    PZ.construct ⊆ (Real.PolyZonotope.relaxExpGreedy
-      (fun PZ' => Real.PolyZonotope.expGreedySel PZ'.E η) n PZ).construct :=
-  Real.PolyZonotope.relaxExpGreedy_outer _ n PZ
+example {α : Type} [AddCommGroup α] [Module ℝ α] (pZ : Real.PolyZonotope α) (η n : ℕ) :
+    pZ.construct ⊆ (Real.PolyZonotope.relaxExpGreedy
+      (fun pZ' => Real.PolyZonotope.expGreedySel pZ'.E η) n pZ).construct :=
+  Real.PolyZonotope.relaxExpGreedy_outer _ n pZ
 
 /-- The same rule at a float representation, whose exponents are the same
 naturals; it needs no float counterpart of its own. -/
 example {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] {n : ℕ}
-    (PZ : Float.PolyZonotope 𝕋 n) (η m : ℕ) :
-    PZ.construct ⊆ (Float.PolyZonotope.relaxExpGreedy
-      (fun PZ' => Real.PolyZonotope.expGreedySel PZ'.E η) m PZ).construct :=
-  Float.PolyZonotope.relaxExpGreedy_outer _ m PZ
+    (pZ : Float.PolyZonotope 𝕋 n) (η m : ℕ) :
+    pZ.construct ⊆ (Float.PolyZonotope.relaxExpGreedy
+      (fun pZ' => Real.PolyZonotope.expGreedySel pZ'.E η) m pZ).construct :=
+  Float.PolyZonotope.relaxExpGreedy_outer _ m pZ
 
 end CORALean

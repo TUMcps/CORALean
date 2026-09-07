@@ -29,11 +29,11 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- CORA's `compact`, and what an order bound would rest on: the set is
 unchanged by any of the three stages. -/
-theorem ConPolyZono.compact_exact (C : ConPolyZono α) :
-    C.construct = C.compact.construct :=
-  (ConPolyZono.compactGens_exact C).trans
-    ((ConPolyZono.compactCons_exact C.compactGens).trans
-      (ConPolyZono.compactFactors_exact C.compactGens.compactCons))
+theorem ConPolyZono.compact_exact (cPZ : ConPolyZono α) :
+    cPZ.construct = cPZ.compact.construct :=
+  (ConPolyZono.compactGens_exact cPZ).trans
+    ((ConPolyZono.compactCons_exact cPZ.compactGens).trans
+      (ConPolyZono.compactFactors_exact cPZ.compactGens.compactCons))
 
 end CORALean.Real
 

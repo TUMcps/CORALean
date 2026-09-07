@@ -30,9 +30,9 @@ variable {n : ℕ}
 /-- CORA's `reduce`: compact, then rank. Compacting first is not an
 optimization — a repeated exponent column is one monomial, and ranking before
 merging would spend the budget twice on it. -/
-noncomputable def PolyZonotope.reduce (PZ : PolyZonotope (Vec ℝ n)) (o : ℕ) :
+noncomputable def PolyZonotope.reduce (pZ : PolyZonotope (Vec ℝ n)) (o : ℕ) :
     PolyZonotope (Vec ℝ n) :=
-  PZ.compact.reduceGirard o
+  pZ.compact.reduceGirard o
 
 end CORALean.Real
 

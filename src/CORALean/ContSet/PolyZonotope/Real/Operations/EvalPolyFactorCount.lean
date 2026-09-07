@@ -23,8 +23,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The shared factor count `evalPoly` never leaves. -/
-theorem PolyZonotope.evalPoly_p (S : PolyZonotope (Vec ℝ n)) (coeffs : List (Vec ℝ n)) :
-    (S.evalPoly coeffs).p = S.p := (PolyZonotope.evalPolyP S coeffs).2
+theorem PolyZonotope.evalPoly_p (pZ : PolyZonotope (Vec ℝ n)) (coeffs : List (Vec ℝ n)) :
+    (pZ.evalPoly coeffs).p = pZ.p := (PolyZonotope.evalPolyP pZ coeffs).2
 
 end CORALean.Real
 

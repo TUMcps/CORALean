@@ -26,9 +26,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- The row pinning the two points together in coordinate `i`. Entries are
 copied and `neg` is exact, so nothing here rounds. -/
-def ConPolyZono.agreeRow (C₁ C₂ : ConPolyZono 𝕋 n) (i : Fin n) :
-    Fin (C₁.h + C₂.h) → 𝕋 :=
-  Fin.append (fun l => C₁.G i l) fun l => neg (C₂.G i l)
+def ConPolyZono.agreeRow (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) (i : Fin n) :
+    Fin (cPZ₁.h + cPZ₂.h) → 𝕋 :=
+  Fin.append (fun l => cPZ₁.G i l) fun l => neg (cPZ₂.G i l)
 
 end CORALean.Float
 

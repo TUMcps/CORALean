@@ -23,18 +23,18 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- One Horner step: `R` multiplied by `S`, then shifted by the next
+/-- One Horner step: `R` multiplied by `pZ`, then shifted by the next
 coefficient. Named, `where`-built like `mul` itself, so its fields unfold
 directly rather than through a record update's hidden `let`. -/
-def PolyZonotope.evalPolyStep (R S : PolyZonotope (Vec ℝ n)) (hp : R.p = S.p) (a0 : Vec ℝ n) :
+def PolyZonotope.evalPolyStep (R pZ : PolyZonotope (Vec ℝ n)) (hp : R.p = pZ.p) (a0 : Vec ℝ n) :
     PolyZonotope (Vec ℝ n) where
-  p := (PolyZonotope.mul R S hp).p
-  h := (PolyZonotope.mul R S hp).h
-  q := (PolyZonotope.mul R S hp).q
-  c := (PolyZonotope.mul R S hp).c + a0
-  G := (PolyZonotope.mul R S hp).G
-  E := (PolyZonotope.mul R S hp).E
-  GI := (PolyZonotope.mul R S hp).GI
+  p := (PolyZonotope.mul R pZ hp).p
+  h := (PolyZonotope.mul R pZ hp).h
+  q := (PolyZonotope.mul R pZ hp).q
+  c := (PolyZonotope.mul R pZ hp).c + a0
+  G := (PolyZonotope.mul R pZ hp).G
+  E := (PolyZonotope.mul R pZ hp).E
+  GI := (PolyZonotope.mul R pZ hp).GI
 
 end CORALean.Real
 

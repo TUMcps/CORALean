@@ -23,8 +23,8 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The rows pinning the two points together, one per coordinate. -/
-def ConZonotope.agreeMat (C₁ C₂ : ConZonotope (Vec ℝ n)) : Mat ℝ n (C₁.h + C₂.h) :=
-  fun i => Fin.append (fun j => C₁.G j i) fun j => -C₂.G j i
+def ConZonotope.agreeMat (cZ₁ cZ₂ : ConZonotope (Vec ℝ n)) : Mat ℝ n (cZ₁.h + cZ₂.h) :=
+  fun i => Fin.append (fun j => cZ₁.G j i) fun j => -cZ₂.G j i
 
 end CORALean.Real
 

@@ -23,9 +23,9 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.mtimes_exact {k n : ℕ} (M : Mat ℝ k n) (C : ConPolyZono (Vec ℝ n)) :
-    (M *ᵥ ·) '' C.construct = (ConPolyZono.mtimes M C).construct :=
-  ConPolyZono.map_exact (Matrix.mulVecLin M) C
+theorem ConPolyZono.mtimes_exact {k n : ℕ} (M : Mat ℝ k n) (cPZ : ConPolyZono (Vec ℝ n)) :
+    (M *ᵥ ·) '' cPZ.construct = (ConPolyZono.mtimes M cPZ).construct :=
+  ConPolyZono.map_exact (Matrix.mulVecLin M) cPZ
 
 end CORALean.Real
 

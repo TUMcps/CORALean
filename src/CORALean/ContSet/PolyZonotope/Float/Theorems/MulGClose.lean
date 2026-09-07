@@ -29,21 +29,21 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- What a rounded product generator costs. -/
-theorem PolyZonotope.mulG_close (S₁ S₂ : PolyZonotope 𝕋 n) (i : Fin n)
-    (l : Fin ((S₁.h + 1) * (S₂.h + 1))) :
-    |Real.PolyZonotope.mulG (nominal S₁) (nominal S₂) l i
-        - toReal (PolyZonotope.mulGDown S₁ S₂ i l)|
-      ≤ toReal (PolyZonotope.mulGDiff S₁ S₂ i l) := by -- --- PROOF ---
-  have hexact : Real.PolyZonotope.mulG (nominal S₁) (nominal S₂) l i
-      = toReal (PolyZonotope.extG S₁ i (finProdFinEquiv.symm l).1)
-        * toReal (PolyZonotope.extG S₂ i (finProdFinEquiv.symm l).2) := by
+theorem PolyZonotope.mulG_close (pZ₁ pZ₂ : PolyZonotope 𝕋 n) (i : Fin n)
+    (l : Fin ((pZ₁.h + 1) * (pZ₂.h + 1))) :
+    |Real.PolyZonotope.mulG (nominal pZ₁) (nominal pZ₂) l i
+        - toReal (PolyZonotope.mulGDown pZ₁ pZ₂ i l)|
+      ≤ toReal (PolyZonotope.mulGDiff pZ₁ pZ₂ i l) := by -- --- PROOF ---
+  have hexact : Real.PolyZonotope.mulG (nominal pZ₁) (nominal pZ₂) l i
+      = toReal (PolyZonotope.extG pZ₁ i (finProdFinEquiv.symm l).1)
+        * toReal (PolyZonotope.extG pZ₂ i (finProdFinEquiv.symm l).2) := by
     simp only [Real.PolyZonotope.mulG_apply, PolyZonotope.toReal_extG]
   -- the two directed products bracket the exact one, and `subUp` covers the gap
-  have hlo := mulDown_le_mul (PolyZonotope.extG S₁ i (finProdFinEquiv.symm l).1)
-    (PolyZonotope.extG S₂ i (finProdFinEquiv.symm l).2)
-  have hhi := mul_le_mulUp (PolyZonotope.extG S₁ i (finProdFinEquiv.symm l).1)
-    (PolyZonotope.extG S₂ i (finProdFinEquiv.symm l).2)
-  have hgap := sub_le_subUp (PolyZonotope.mulGUp S₁ S₂ i l) (PolyZonotope.mulGDown S₁ S₂ i l)
+  have hlo := mulDown_le_mul (PolyZonotope.extG pZ₁ i (finProdFinEquiv.symm l).1)
+    (PolyZonotope.extG pZ₂ i (finProdFinEquiv.symm l).2)
+  have hhi := mul_le_mulUp (PolyZonotope.extG pZ₁ i (finProdFinEquiv.symm l).1)
+    (PolyZonotope.extG pZ₂ i (finProdFinEquiv.symm l).2)
+  have hgap := sub_le_subUp (PolyZonotope.mulGUp pZ₁ pZ₂ i l) (PolyZonotope.mulGDown pZ₁ pZ₂ i l)
   rw [hexact, abs_le]
   simp only [PolyZonotope.mulGDiff, PolyZonotope.mulGDown, PolyZonotope.mulGUp] at hlo hhi hgap ⊢
   constructor <;> linarith

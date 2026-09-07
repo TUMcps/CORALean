@@ -32,9 +32,9 @@ variable {n m : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Generator `(i, j)` of the image: `Gᵢᵀ Q Gⱼ`, one coordinate per matrix. -/
-def PolyZonotope.quadMapG (Q : Fin m → Mat ℝ n n) (S : PolyZonotope (Vec ℝ n)) :
-    Fin ((S.h + 1) * (S.h + 1)) → Vec ℝ m :=
-  PolyZonotope.bilinG (PolyZonotope.quadBilin Q) S S
+def PolyZonotope.quadMapG (Q : Fin m → Mat ℝ n n) (pZ : PolyZonotope (Vec ℝ n)) :
+    Fin ((pZ.h + 1) * (pZ.h + 1)) → Vec ℝ m :=
+  PolyZonotope.bilinG (PolyZonotope.quadBilin Q) pZ pZ
 
 end CORALean.Real
 

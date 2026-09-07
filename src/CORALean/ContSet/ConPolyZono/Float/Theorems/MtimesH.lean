@@ -25,8 +25,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n k : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 omit [SoundFloatArithmetic 𝕋] in
-@[simp] theorem ConPolyZono.mtimes_h (M : Mat 𝕋 k n) (C : ConPolyZono 𝕋 n) :
-    (ConPolyZono.mtimes M C).h = C.h := rfl
+@[simp] theorem ConPolyZono.mtimes_h (M : Mat 𝕋 k n) (cPZ : ConPolyZono 𝕋 n) :
+    (ConPolyZono.mtimes M cPZ).h = cPZ.h := rfl
 
 end CORALean.Float
 

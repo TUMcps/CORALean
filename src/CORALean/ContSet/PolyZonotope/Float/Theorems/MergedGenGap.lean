@@ -33,20 +33,20 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n d : ℕ}
 
 /-- The merged column is stored downward, so it is off by at most its gap to the
 upward rounding. -/
-theorem PolyZonotope.mergedGen_gap (PZ : PolyZonotope 𝕋 n)
-    (part : Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2)) (i : Fin n) :
-    |toReal (PZ.G i (part.right 1)) + toReal (PZ.G i (part.right 0))
-      - toReal (PZ.mergedGen part i)|
-      ≤ toReal (subUp (addUp (PZ.G i (part.right 1)) (PZ.G i (part.right 0)))
-        (PZ.mergedGen part i)) := by -- --- PROOF ---
-  have hlo : toReal (PZ.mergedGen part i)
-      ≤ toReal (PZ.G i (part.right 1)) + toReal (PZ.G i (part.right 0)) := addDown_le_add _ _
-  have hhi : toReal (PZ.G i (part.right 1)) + toReal (PZ.G i (part.right 0))
-      ≤ toReal (addUp (PZ.G i (part.right 1)) (PZ.G i (part.right 0))) := add_le_addUp _ _
-  have hgap : toReal (addUp (PZ.G i (part.right 1)) (PZ.G i (part.right 0)))
-      - toReal (PZ.mergedGen part i)
-      ≤ toReal (subUp (addUp (PZ.G i (part.right 1)) (PZ.G i (part.right 0)))
-        (PZ.mergedGen part i)) := sub_le_subUp _ _
+theorem PolyZonotope.mergedGen_gap (pZ : PolyZonotope 𝕋 n)
+    (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (i : Fin n) :
+    |toReal (pZ.G i (part.right 1)) + toReal (pZ.G i (part.right 0))
+      - toReal (pZ.mergedGen part i)|
+      ≤ toReal (subUp (addUp (pZ.G i (part.right 1)) (pZ.G i (part.right 0)))
+        (pZ.mergedGen part i)) := by -- --- PROOF ---
+  have hlo : toReal (pZ.mergedGen part i)
+      ≤ toReal (pZ.G i (part.right 1)) + toReal (pZ.G i (part.right 0)) := addDown_le_add _ _
+  have hhi : toReal (pZ.G i (part.right 1)) + toReal (pZ.G i (part.right 0))
+      ≤ toReal (addUp (pZ.G i (part.right 1)) (pZ.G i (part.right 0))) := add_le_addUp _ _
+  have hgap : toReal (addUp (pZ.G i (part.right 1)) (pZ.G i (part.right 0)))
+      - toReal (pZ.mergedGen part i)
+      ≤ toReal (subUp (addUp (pZ.G i (part.right 1)) (pZ.G i (part.right 0)))
+        (pZ.mergedGen part i)) := sub_le_subUp _ _
   rw [abs_le]
   constructor <;> linarith
 

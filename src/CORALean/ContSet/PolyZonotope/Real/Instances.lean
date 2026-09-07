@@ -48,7 +48,7 @@ instance : ContSet (PolyZonotope α) α := ⟨PolyZonotope.construct⟩
 
 instance : Plus (PolyZonotope α) α where
   plus := PolyZonotope.plus
-  plus_outer PZ₁ PZ₂ := (PolyZonotope.plus_exact PZ₁ PZ₂).subset
+  plus_outer pZ₁ pZ₂ := (PolyZonotope.plus_exact pZ₁ pZ₂).subset
 
 instance : OfPoint (PolyZonotope α) α where
   ofPoint := PolyZonotope.ofPoint
@@ -64,9 +64,9 @@ noncomputable instance : Reduce (PolyZonotope (Vec ℝ n)) (Vec ℝ n) where
 
 instance : Mtimes (Mat ℝ) (fun n => PolyZonotope (Vec ℝ n)) where
   mtimes := PolyZonotope.mtimes
-  mtimes_outer M PZ := by
+  mtimes_outer M pZ := by
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
-    exact (PolyZonotope.mtimes_exact M PZ).subset
+    exact (PolyZonotope.mtimes_exact M pZ).subset
 
 /-- The polynomial-zonotope family over vectors. The elaborator cannot read the
 family off one member, so a use site names it: `(S := 𝒫𝒵)` — two letters, `𝒫`
@@ -78,11 +78,11 @@ scoped notation "𝒫𝒵" => fun n => PolyZonotope (Vec ℝ n)
 block to keep it out of. -/
 noncomputable instance : Mtimes ℐ 𝒫𝒵 where
   mtimes := PolyZonotope.mtimesIntervalMat
-  mtimes_outer IM PZ := PolyZonotope.mtimesIntervalMat_outer IM PZ
+  mtimes_outer IM pZ := PolyZonotope.mtimesIntervalMat_outer IM pZ
 
 instance : Reindex 𝒫𝒵 where
-  reindex e PZ := PolyZonotope.map (reindexLin e) PZ
-  reindex_exact e PZ := (PolyZonotope.map_exact (reindexLin e) PZ).symm
+  reindex e pZ := PolyZonotope.map (reindexLin e) pZ
+  reindex_exact e pZ := (PolyZonotope.map_exact (reindexLin e) pZ).symm
 
 end CORALean.Real
 

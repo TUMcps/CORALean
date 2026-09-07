@@ -31,10 +31,10 @@ variable {α β γ : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Generator `(i, j)` of the pairing: `f` at the two extended generators. -/
-def PolyZonotope.bilinG (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (S₁ : PolyZonotope α) (S₂ : PolyZonotope β) :
-    Fin ((S₁.h + 1) * (S₂.h + 1)) → γ :=
-  fun l => f (PolyZonotope.extG S₁ (finProdFinEquiv.symm l).1)
-      (PolyZonotope.extG S₂ (finProdFinEquiv.symm l).2)
+def PolyZonotope.bilinG (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (pZ₁ : PolyZonotope α) (pZ₂ : PolyZonotope β) :
+    Fin ((pZ₁.h + 1) * (pZ₂.h + 1)) → γ :=
+  fun l => f (PolyZonotope.extG pZ₁ (finProdFinEquiv.symm l).1)
+      (PolyZonotope.extG pZ₂ (finProdFinEquiv.symm l).2)
 
 end CORALean.Real
 

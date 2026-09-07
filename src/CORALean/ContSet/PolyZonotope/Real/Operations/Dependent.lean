@@ -34,13 +34,13 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.dependent (PZ : PolyZonotope α) : PolyZonotope α where
-  p := PZ.p + PZ.q
-  h := PZ.h + PZ.q
+def PolyZonotope.dependent (pZ : PolyZonotope α) : PolyZonotope α where
+  p := pZ.p + pZ.q
+  h := pZ.h + pZ.q
   q := 0
-  c := PZ.c
-  G := Fin.append PZ.G PZ.GI
-  E := PolyZonotope.plusE PZ.E (PolyZonotope.identE PZ.q)
+  c := pZ.c
+  G := Fin.append pZ.G pZ.GI
+  E := PolyZonotope.plusE pZ.E (PolyZonotope.identE pZ.q)
   GI := Fin.elim0
 
 end CORALean.Real

@@ -25,13 +25,13 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 omit [Module ℝ α] in
-theorem PolyZonotope.plus_p (PZ₁ PZ₂ : PolyZonotope α) : (PZ₁.plus PZ₂).p = PZ₁.p + PZ₂.p := rfl
+theorem PolyZonotope.plus_p (pZ₁ pZ₂ : PolyZonotope α) : (pZ₁.plus pZ₂).p = pZ₁.p + pZ₂.p := rfl
 
 omit [Module ℝ α] in
-theorem PolyZonotope.plus_h (PZ₁ PZ₂ : PolyZonotope α) : (PZ₁.plus PZ₂).h = PZ₁.h + PZ₂.h := rfl
+theorem PolyZonotope.plus_h (pZ₁ pZ₂ : PolyZonotope α) : (pZ₁.plus pZ₂).h = pZ₁.h + pZ₂.h := rfl
 
 omit [Module ℝ α] in
-theorem PolyZonotope.plus_q (PZ₁ PZ₂ : PolyZonotope α) : (PZ₁.plus PZ₂).q = PZ₁.q + PZ₂.q := rfl
+theorem PolyZonotope.plus_q (pZ₁ pZ₂ : PolyZonotope α) : (pZ₁.plus pZ₂).q = pZ₁.q + pZ₂.q := rfl
 
 end CORALean.Real
 

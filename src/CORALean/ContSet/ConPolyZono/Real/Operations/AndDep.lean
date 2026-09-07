@@ -26,21 +26,21 @@ variable {n : ℕ}
 
 /-- Exact where both independent blocks are empty; `and` arranges that. `D` is
 how far apart the two points may stand. -/
-def ConPolyZono.andDep (C₁ C₂ : ConPolyZono (Vec ℝ n)) (D : Interval (Vec ℝ n)) :
+def ConPolyZono.andDep (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n)) (D : Interval (Vec ℝ n)) :
     ConPolyZono (Vec ℝ n) where
-  p := C₁.p + C₂.p
-  h := C₁.h + C₂.h
+  p := cPZ₁.p + cPZ₂.p
+  h := cPZ₁.h + cPZ₂.h
   q := 0
-  m := C₁.m + C₂.m + n
-  s := C₁.s + C₂.s + (C₁.h + C₂.h)
-  c := C₁.c
-  G := Fin.append C₁.G 0
-  E := PolyZonotope.plusE C₁.E C₂.E
+  m := cPZ₁.m + cPZ₂.m + n
+  s := cPZ₁.s + cPZ₂.s + (cPZ₁.h + cPZ₂.h)
+  c := cPZ₁.c
+  G := Fin.append cPZ₁.G 0
+  E := PolyZonotope.plusE cPZ₁.E cPZ₂.E
   GI := Fin.elim0
-  A := ConPolyZono.andA C₁ C₂
-  b := ConPolyZono.andB C₁ C₂ D
-  EC := ConPolyZono.appendE (PolyZonotope.plusE C₁.EC C₂.EC)
-          (PolyZonotope.plusE C₁.E C₂.E)
+  A := ConPolyZono.andA cPZ₁ cPZ₂
+  b := ConPolyZono.andB cPZ₁ cPZ₂ D
+  EC := ConPolyZono.appendE (PolyZonotope.plusE cPZ₁.EC cPZ₂.EC)
+          (PolyZonotope.plusE cPZ₁.E cPZ₂.E)
 
 end CORALean.Real
 

@@ -3,7 +3,7 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.Point
 /-!
 # `PolyZonotope.subsetAt`: the subset a sub-box of the factors picks out
 
-The image of `point` restricted to a sub-box `B ⊆ Fin S.p → ℝ` of the factor
+The image of `point` restricted to a sub-box `B ⊆ Fin pZ.p → ℝ` of the factor
 domain — [1]'s dependency result in one line: a subset of the initial factors
 names the corresponding subset of the reachable set, because `point` is what a
 factor vector picks out in the first place.
@@ -36,10 +36,10 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The subset of `S`'s reachable set a sub-box `B` of the factor domain reaches
+/-- The subset of `pZ`'s reachable set a sub-box `B` of the factor domain reaches
 under `point`. -/
-def PolyZonotope.subsetAt (S : PolyZonotope α) (B : Set (Fin S.p → ℝ)) : Set α :=
-  S.point '' B
+def PolyZonotope.subsetAt (pZ : PolyZonotope α) (B : Set (Fin pZ.p → ℝ)) : Set α :=
+  pZ.point '' B
 
 end CORALean.Real
 

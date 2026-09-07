@@ -37,19 +37,19 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Exact where every coefficient is dependent, which `quadMap` arranges. -/
-theorem PolyZonotope.quadMapDep_exact (Q : Fin m → Mat ℝ n n) (S : PolyZonotope (Vec ℝ n))
-    (hq : S.q = 0) :
-    quadEval Q '' S.construct = (quadMapDep Q S).construct := by -- --- PROOF ---
+theorem PolyZonotope.quadMapDep_exact (Q : Fin m → Mat ℝ n n) (pZ : PolyZonotope (Vec ℝ n))
+    (hq : pZ.q = 0) :
+    quadEval Q '' pZ.construct = (quadMapDep Q pZ).construct := by -- --- PROOF ---
   -- with nothing independent the set is exactly the points, which is what `bilin_exact` pairs
-  have hc : S.construct = S.point '' {a : Fin S.p → ℝ | ∀ k, |a k| ≤ 1} := by
+  have hc : pZ.construct = pZ.point '' {a : Fin pZ.p → ℝ | ∀ k, |a k| ≤ 1} := by
     apply Set.eq_of_subset_of_subset
     · intro x hx
-      obtain ⟨a, ha, rfl⟩ := PolyZonotope.exists_point_of_q_zero S hq hx
+      obtain ⟨a, ha, rfl⟩ := PolyZonotope.exists_point_of_q_zero pZ hq hx
       exact ⟨a, ha, rfl⟩
     · rintro _ ⟨a, ha, rfl⟩
-      exact PolyZonotope.point_mem_construct S ha
+      exact PolyZonotope.point_mem_construct pZ ha
   rw [hc, ← Set.image_comp]
-  exact PolyZonotope.bilin_exact (PolyZonotope.quadBilin Q) S S rfl
+  exact PolyZonotope.bilin_exact (PolyZonotope.quadBilin Q) pZ pZ rfl
 
 end CORALean.Real
 

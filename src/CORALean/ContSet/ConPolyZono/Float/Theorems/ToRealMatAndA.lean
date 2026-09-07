@@ -29,27 +29,27 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.toRealMat_andA (C₁ C₂ : ConPolyZono 𝕋 n) :
-    toRealMat (ConPolyZono.andA C₁ C₂)
-      = Real.ConPolyZono.andA (nominal C₁) (nominal C₂) := by -- --- PROOF ---
+theorem ConPolyZono.toRealMat_andA (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) :
+    toRealMat (ConPolyZono.andA cPZ₁ cPZ₂)
+      = Real.ConPolyZono.andA (nominal cPZ₁) (nominal cPZ₂) := by -- --- PROOF ---
   -- the exact layer's matrix spelled out, so the four `Fin.addCases` branches below match it
-  have hreal : Real.ConPolyZono.andA (nominal C₁) (nominal C₂)
+  have hreal : Real.ConPolyZono.andA (nominal cPZ₁) (nominal cPZ₂)
       = fun i => Fin.append
-          (fun r => Fin.append (Real.ConPolyZono.plusA (toRealMat C₁.A) (toRealMat C₂.A) r)
-            (0 : Fin (C₁.h + C₂.h) → ℝ))
-          (fun r => Fin.append (0 : Fin (C₁.s + C₂.s) → ℝ)
-            (Real.ConPolyZono.agreeRow (nominal C₁) (nominal C₂) r)) i := rfl
+          (fun r => Fin.append (Real.ConPolyZono.plusA (toRealMat cPZ₁.A) (toRealMat cPZ₂.A) r)
+            (0 : Fin (cPZ₁.h + cPZ₂.h) → ℝ))
+          (fun r => Fin.append (0 : Fin (cPZ₁.s + cPZ₂.s) → ℝ)
+            (Real.ConPolyZono.agreeRow (nominal cPZ₁) (nominal cPZ₂) r)) i := rfl
   rw [hreal]
   refine funext (Fin.addCases (fun i => ?_) fun i => ?_) <;>
     refine funext (Fin.addCases (fun l => ?_) fun l => ?_)
   · simp only [toRealMat, ConPolyZono.andA, Fin.append_left]
-    exact congrFun (congrFun (ConPolyZono.toRealMat_plusA C₁.A C₂.A) i) l
+    exact congrFun (congrFun (ConPolyZono.toRealMat_plusA cPZ₁.A cPZ₂.A) i) l
   · simp only [toRealMat, ConPolyZono.andA, Fin.append_left, Fin.append_right,
       Pi.zero_apply, toReal_zero]
   · simp only [toRealMat, ConPolyZono.andA, Fin.append_left, Fin.append_right,
       Pi.zero_apply, toReal_zero]
   · simp only [toRealMat, ConPolyZono.andA, Fin.append_right]
-    exact ConPolyZono.toReal_agreeRow C₁ C₂ i l
+    exact ConPolyZono.toReal_agreeRow cPZ₁ cPZ₂ i l
 
 end CORALean.Float
 

@@ -29,15 +29,15 @@ variable {m n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 noncomputable def PolyZonotope.mtimesIntervalMat (IM : Interval (Mat ℝ m n))
-    (PZ : PolyZonotope (Vec ℝ n)) : PolyZonotope (Vec ℝ m) where
-  p := PZ.p
-  h := PZ.h
-  q := PZ.q + m
-  c := IM.center *ᵥ PZ.c
-  G := fun i => IM.center *ᵥ PZ.G i
-  E := PZ.E
-  GI := Fin.append (fun j => IM.center *ᵥ PZ.GI j)
-        (Matrix.diagonal fun i => PolyZonotope.radiusReach IM PZ i)
+    (pZ : PolyZonotope (Vec ℝ n)) : PolyZonotope (Vec ℝ m) where
+  p := pZ.p
+  h := pZ.h
+  q := pZ.q + m
+  c := IM.center *ᵥ pZ.c
+  G := fun i => IM.center *ᵥ pZ.G i
+  E := pZ.E
+  GI := Fin.append (fun j => IM.center *ᵥ pZ.GI j)
+        (Matrix.diagonal fun i => PolyZonotope.radiusReach IM pZ i)
 
 end CORALean.Real
 

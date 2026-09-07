@@ -35,17 +35,17 @@ variable {α β γ : Type}
 
 /-- The result's monomial at a pair of columns: the two sets' monomials,
 multiplied. -/
-theorem PolyZonotope.aux_bilin_monomial (S₁ : PolyZonotope α) (S₂ : PolyZonotope β)
-    (hp : S₁.p = S₂.p) (a : Fin S₁.p → ℝ) (l₁ : Fin (S₁.h + 1)) (l₂ : Fin (S₂.h + 1)) :
-    monomial (bilinE S₁ S₂ hp) a (finProdFinEquiv (l₁, l₂))
-      = extM S₁ a l₁ * extM S₂ (fun k => a (Fin.cast hp.symm k)) l₂ := by -- --- PROOF ---
-  -- `S₂`'s factor index is `S₁`'s renamed, so the two products run over one set
-  have hcast : ∏ k : Fin S₁.p, a k ^ PolyZonotope.extE S₂ (Fin.cast hp k) l₂
-      = ∏ k, a (Fin.cast hp.symm k) ^ PolyZonotope.extE S₂ k l₂ :=
+theorem PolyZonotope.aux_bilin_monomial (pZ₁ : PolyZonotope α) (pZ₂ : PolyZonotope β)
+    (hp : pZ₁.p = pZ₂.p) (a : Fin pZ₁.p → ℝ) (l₁ : Fin (pZ₁.h + 1)) (l₂ : Fin (pZ₂.h + 1)) :
+    monomial (bilinE pZ₁ pZ₂ hp) a (finProdFinEquiv (l₁, l₂))
+      = extM pZ₁ a l₁ * extM pZ₂ (fun k => a (Fin.cast hp.symm k)) l₂ := by -- --- PROOF ---
+  -- `pZ₂`'s factor index is `pZ₁`'s renamed, so the two products run over one set
+  have hcast : ∏ k : Fin pZ₁.p, a k ^ PolyZonotope.extE pZ₂ (Fin.cast hp k) l₂
+      = ∏ k, a (Fin.cast hp.symm k) ^ PolyZonotope.extE pZ₂ k l₂ :=
     Fintype.prod_equiv (finCongr hp) _ _ fun _ => rfl
-  show ∏ k, a k ^ PolyZonotope.bilinE S₁ S₂ hp k (finProdFinEquiv (l₁, l₂))
-      = (∏ k, a k ^ PolyZonotope.extE S₁ k l₁)
-        * ∏ k, a (Fin.cast hp.symm k) ^ PolyZonotope.extE S₂ k l₂
+  show ∏ k, a k ^ PolyZonotope.bilinE pZ₁ pZ₂ hp k (finProdFinEquiv (l₁, l₂))
+      = (∏ k, a k ^ PolyZonotope.extE pZ₁ k l₁)
+        * ∏ k, a (Fin.cast hp.symm k) ^ PolyZonotope.extE pZ₂ k l₂
   rw [← hcast, ← Finset.prod_mul_distrib]
   refine Finset.prod_congr rfl fun k _ => ?_
   simp only [PolyZonotope.bilinE, Equiv.symm_apply_apply]
@@ -56,18 +56,18 @@ variable [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Module ℝ β]
 
 /-- `f` at the two points, expanded over pairs of extended columns — the step
 that uses bilinearity and nothing else. -/
-theorem PolyZonotope.aux_bilin_pair (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (S₁ : PolyZonotope α)
-    (S₂ : PolyZonotope β) (hp : S₁.p = S₂.p) (a : Fin S₁.p → ℝ) :
-    f (S₁.point a) (S₂.point fun k => a (Fin.cast hp.symm k))
-      = ∑ l₁, ∑ l₂, (extM S₁ a l₁ * extM S₂ (fun k => a (Fin.cast hp.symm k)) l₂)
-          • f (extG S₁ l₁) (extG S₂ l₂) := by -- --- PROOF ---
-  have h₁ : S₁.point a = ∑ l, extM S₁ a l • extG S₁ l :=
-    (PolyZonotope.sum_ext_eq_point S₁ a).symm
-  have h₂ : S₂.point (fun k => a (Fin.cast hp.symm k))
-      = ∑ l, extM S₂ (fun k => a (Fin.cast hp.symm k)) l • extG S₂ l :=
-    (PolyZonotope.sum_ext_eq_point S₂ _).symm
+theorem PolyZonotope.aux_bilin_pair (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (pZ₁ : PolyZonotope α)
+    (pZ₂ : PolyZonotope β) (hp : pZ₁.p = pZ₂.p) (a : Fin pZ₁.p → ℝ) :
+    f (pZ₁.point a) (pZ₂.point fun k => a (Fin.cast hp.symm k))
+      = ∑ l₁, ∑ l₂, (extM pZ₁ a l₁ * extM pZ₂ (fun k => a (Fin.cast hp.symm k)) l₂)
+          • f (extG pZ₁ l₁) (extG pZ₂ l₂) := by -- --- PROOF ---
+  have h₁ : pZ₁.point a = ∑ l, extM pZ₁ a l • extG pZ₁ l :=
+    (PolyZonotope.sum_ext_eq_point pZ₁ a).symm
+  have h₂ : pZ₂.point (fun k => a (Fin.cast hp.symm k))
+      = ∑ l, extM pZ₂ (fun k => a (Fin.cast hp.symm k)) l • extG pZ₂ l :=
+    (PolyZonotope.sum_ext_eq_point pZ₂ _).symm
   -- linear in the first argument, then in the second, and the two scalars merge
-  have hout : f (∑ l, extM S₁ a l • extG S₁ l) = ∑ l, f (extM S₁ a l • extG S₁ l) :=
+  have hout : f (∑ l, extM pZ₁ a l • extG pZ₁ l) = ∑ l, f (extM pZ₁ a l • extG pZ₁ l) :=
     map_sum f _ Finset.univ
   rw [h₁, h₂, hout, LinearMap.sum_apply]
   refine Finset.sum_congr rfl fun l₁ _ => ?_
@@ -78,24 +78,24 @@ theorem PolyZonotope.aux_bilin_pair (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (S₁
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `bilin`'s point, read off the expansion above rather than `construct`: `f`
-at the two points, `S₂` read at `S₁`'s factors through `Fin.cast`. -/
-theorem PolyZonotope.bilin_point (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (S₁ : PolyZonotope α)
-    (S₂ : PolyZonotope β) (hp : S₁.p = S₂.p) (a : Fin S₁.p → ℝ) :
-    (S₁.bilin f S₂ hp).point a
-      = f (S₁.point a) (S₂.point fun k => a (Fin.cast hp.symm k)) := by -- --- PROOF ---
+at the two points, `pZ₂` read at `pZ₁`'s factors through `Fin.cast`. -/
+theorem PolyZonotope.bilin_point (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (pZ₁ : PolyZonotope α)
+    (pZ₂ : PolyZonotope β) (hp : pZ₁.p = pZ₂.p) (a : Fin pZ₁.p → ℝ) :
+    (pZ₁.bilin f pZ₂ hp).point a
+      = f (pZ₁.point a) (pZ₂.point fun k => a (Fin.cast hp.symm k)) := by -- --- PROOF ---
   -- the pairs and the flat generator index are the same sum, reindexed
-  have hpair : ∑ pr : Fin (S₁.h + 1) × Fin (S₂.h + 1),
-        monomial (bilinE S₁ S₂ hp) a (finProdFinEquiv pr) • bilinG f S₁ S₂ (finProdFinEquiv pr)
-      = ∑ l, monomial (bilinE S₁ S₂ hp) a l • bilinG f S₁ S₂ l :=
+  have hpair : ∑ pr : Fin (pZ₁.h + 1) × Fin (pZ₂.h + 1),
+        monomial (bilinE pZ₁ pZ₂ hp) a (finProdFinEquiv pr) • bilinG f pZ₁ pZ₂ (finProdFinEquiv pr)
+      = ∑ l, monomial (bilinE pZ₁ pZ₂ hp) a l • bilinG f pZ₁ pZ₂ l :=
     Fintype.sum_equiv finProdFinEquiv _ _ fun _ => rfl
-  show (0 : γ) + ∑ l, monomial (bilinE S₁ S₂ hp) a l • bilinG f S₁ S₂ l = _
-  rw [zero_add, ← hpair, Fintype.sum_prod_type, PolyZonotope.aux_bilin_pair f S₁ S₂ hp a]
+  show (0 : γ) + ∑ l, monomial (bilinE pZ₁ pZ₂ hp) a l • bilinG f pZ₁ pZ₂ l = _
+  rw [zero_add, ← hpair, Fintype.sum_prod_type, PolyZonotope.aux_bilin_pair f pZ₁ pZ₂ hp a]
   refine Finset.sum_congr rfl fun l₁ _ => Finset.sum_congr rfl fun l₂ _ => ?_
-  rw [PolyZonotope.aux_bilin_monomial S₁ S₂ hp a l₁ l₂]
+  rw [PolyZonotope.aux_bilin_monomial pZ₁ pZ₂ hp a l₁ l₂]
   refine congrArg _ ?_
-  show f (extG S₁ (finProdFinEquiv.symm (finProdFinEquiv (l₁, l₂))).1)
-      (extG S₂ (finProdFinEquiv.symm (finProdFinEquiv (l₁, l₂))).2)
-    = f (extG S₁ l₁) (extG S₂ l₂)
+  show f (extG pZ₁ (finProdFinEquiv.symm (finProdFinEquiv (l₁, l₂))).1)
+      (extG pZ₂ (finProdFinEquiv.symm (finProdFinEquiv (l₁, l₂))).2)
+    = f (extG pZ₁ l₁) (extG pZ₂ l₂)
   rw [Equiv.symm_apply_apply]
 
 end CORALean.Real

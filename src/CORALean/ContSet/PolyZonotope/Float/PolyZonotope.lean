@@ -52,27 +52,27 @@ structure PolyZonotope (𝕋 : Type) (n : ℕ) where
 instance [SoundFloatArithmetic 𝕋] :
     InflatedContSet (PolyZonotope 𝕋 n) (CORALean.Real.PolyZonotope (Vec ℝ n)) 𝕋 n where
   -- generators transpose: stored as a matrix here, a family of vectors there
-  nominal PZ := ⟨PZ.p, PZ.h, PZ.q, toRealVec PZ.c, fun l i => toReal (PZ.G i l), PZ.E,
-    fun j i => toReal (PZ.GI i j)⟩
-  error PZ := PZ.err
+  nominal pZ := ⟨pZ.p, pZ.h, pZ.q, toRealVec pZ.c, fun l i => toReal (pZ.G i l), pZ.E,
+    fun j i => toReal (pZ.GI i j)⟩
+  error pZ := pZ.err
 
 /-! The nominal set's fields, so proofs can see through the instance. -/
 
-theorem PolyZonotope.nominal_p [SoundFloatArithmetic 𝕋] (PZ : PolyZonotope 𝕋 n) :
-    (InflatedContSet.nominal PZ).p = PZ.p := rfl
+theorem PolyZonotope.nominal_p [SoundFloatArithmetic 𝕋] (pZ : PolyZonotope 𝕋 n) :
+    (InflatedContSet.nominal pZ).p = pZ.p := rfl
 
-theorem PolyZonotope.nominal_h [SoundFloatArithmetic 𝕋] (PZ : PolyZonotope 𝕋 n) :
-    (InflatedContSet.nominal PZ).h = PZ.h := rfl
+theorem PolyZonotope.nominal_h [SoundFloatArithmetic 𝕋] (pZ : PolyZonotope 𝕋 n) :
+    (InflatedContSet.nominal pZ).h = pZ.h := rfl
 
-theorem PolyZonotope.nominal_q [SoundFloatArithmetic 𝕋] (PZ : PolyZonotope 𝕋 n) :
-    (InflatedContSet.nominal PZ).q = PZ.q := rfl
+theorem PolyZonotope.nominal_q [SoundFloatArithmetic 𝕋] (pZ : PolyZonotope 𝕋 n) :
+    (InflatedContSet.nominal pZ).q = pZ.q := rfl
 
-theorem PolyZonotope.nominal_E [SoundFloatArithmetic 𝕋] (PZ : PolyZonotope 𝕋 n) :
-    (InflatedContSet.nominal PZ).E = PZ.E := rfl
+theorem PolyZonotope.nominal_E [SoundFloatArithmetic 𝕋] (pZ : PolyZonotope 𝕋 n) :
+    (InflatedContSet.nominal pZ).E = pZ.E := rfl
 
 /-- Inherited from `InflatedContSet`; named here so statements read locally. -/
-abbrev PolyZonotope.construct [SoundFloatArithmetic 𝕋] (PZ : PolyZonotope 𝕋 n) :
-    Set (Vec ℝ n) := InflatedContSet.construct PZ
+abbrev PolyZonotope.construct [SoundFloatArithmetic 𝕋] (pZ : PolyZonotope 𝕋 n) :
+    Set (Vec ℝ n) := InflatedContSet.construct pZ
 
 /-! ## Storage
 
@@ -84,22 +84,22 @@ says it is the identity; `Global/Tensor` says why the vectors are built here.
 `Mat`, and `compact` reads it through two index maps, so it is where an
 unstored exponent matrix costs the most. -/
 
-def PolyZonotope.materialise (PZ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 n :=
-  let c : Vector 𝕋 n := Vector.ofFn PZ.c
-  let G : Vector (Vector 𝕋 PZ.h) n := Vector.ofFn fun i => Vector.ofFn fun l => PZ.G i l
-  let E : Vector (Vector ℕ PZ.h) PZ.p := Vector.ofFn fun k => Vector.ofFn fun l => PZ.E k l
-  let GI : Vector (Vector 𝕋 PZ.q) n := Vector.ofFn fun i => Vector.ofFn fun j => PZ.GI i j
-  { p := PZ.p
-    h := PZ.h
-    q := PZ.q
+def PolyZonotope.materialise (pZ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 n :=
+  let c : Vector 𝕋 n := Vector.ofFn pZ.c
+  let G : Vector (Vector 𝕋 pZ.h) n := Vector.ofFn fun i => Vector.ofFn fun l => pZ.G i l
+  let E : Vector (Vector ℕ pZ.h) pZ.p := Vector.ofFn fun k => Vector.ofFn fun l => pZ.E k l
+  let GI : Vector (Vector 𝕋 pZ.q) n := Vector.ofFn fun i => Vector.ofFn fun j => pZ.GI i j
+  { p := pZ.p
+    h := pZ.h
+    q := pZ.q
     c := fun i => c[i.val]'i.isLt
     G := fun i l => (G[i.val]'i.isLt)[l.val]'l.isLt
     E := fun k l => (E[k.val]'k.isLt)[l.val]'l.isLt
     GI := fun i j => (GI[i.val]'i.isLt)[j.val]'j.isLt
-    err := PZ.err.materialise }
+    err := pZ.err.materialise }
 
 omit [FloatOps 𝕋] in
-@[simp] theorem PolyZonotope.materialise_eq (PZ : PolyZonotope 𝕋 n) : PZ.materialise = PZ := by
+@[simp] theorem PolyZonotope.materialise_eq (pZ : PolyZonotope 𝕋 n) : pZ.materialise = pZ := by
   simp [PolyZonotope.materialise]
 
 end CORALean.Float

@@ -31,9 +31,9 @@ variable {n : ℕ}
 
 /-- Compacting first only lowers the count it then bounds, so the bound reads
 off `reduceGirard` unchanged. -/
-theorem ConPolyZono.reduce_order_le (C : ConPolyZono (Vec ℝ n)) {o : ℕ} (ho : 0 < o) :
-    (C.reduce o).h + (C.reduce o).q ≤ o * n :=
-  ConPolyZono.reduceGirard_order_le C.compact ho
+theorem ConPolyZono.reduce_order_le (cPZ : ConPolyZono (Vec ℝ n)) {o : ℕ} (ho : 0 < o) :
+    (cPZ.reduce o).h + (cPZ.reduce o).q ≤ o * n :=
+  ConPolyZono.reduceGirard_order_le cPZ.compact ho
 
 end CORALean.Real
 

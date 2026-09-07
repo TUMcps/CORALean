@@ -24,7 +24,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The centre as generator zero. -/
-def PolyZonotope.extG (S : PolyZonotope α) : Fin (S.h + 1) → α := Fin.cons S.c S.G
+def PolyZonotope.extG (pZ : PolyZonotope α) : Fin (pZ.h + 1) → α := Fin.cons pZ.c pZ.G
 
 end CORALean.Real
 

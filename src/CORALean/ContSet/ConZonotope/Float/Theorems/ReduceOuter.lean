@@ -27,12 +27,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.reduce_outer (C : ConZonotope 𝕋 n) (o : ℕ) :
-    C.construct ⊆ (C.reduce o).construct := by -- --- PROOF ---
+theorem ConZonotope.reduce_outer (cZ : ConZonotope 𝕋 n) (o : ℕ) :
+    cZ.construct ⊆ (cZ.reduce o).construct := by -- --- PROOF ---
   unfold ConZonotope.reduce
   split_ifs with hlt
-  · exact subset_trans (subset_trans (ConZonotope.zonotope_outer C)
-      (Zonotope.reduce_outer C.zonotope o)) (Zonotope.conZonotope_outer _)
+  · exact subset_trans (subset_trans (ConZonotope.zonotope_outer cZ)
+      (Zonotope.reduce_outer cZ.zonotope o)) (Zonotope.conZonotope_outer _)
   · exact subset_rfl
 
 end CORALean.Float

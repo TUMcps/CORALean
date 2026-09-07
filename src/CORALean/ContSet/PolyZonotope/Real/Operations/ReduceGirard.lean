@@ -34,11 +34,11 @@ variable {n : ℕ}
 /-- How many of the `K` best-ranked generators overall are dependent: CORA's
 joint accounting as one number, `rank` bound by a `let` so the sort runs once.
 The cap at `K` never binds and is there to keep the order bound arithmetic. -/
-noncomputable def PolyZonotope.aux_girardKeptDep (PZ : PolyZonotope (Vec ℝ n)) (K : ℕ) : ℕ :=
+noncomputable def PolyZonotope.aux_girardKeptDep (pZ : PolyZonotope (Vec ℝ n)) (K : ℕ) : ℕ :=
   let rank := (Tuple.sort fun l =>
-    -PolyZonotope.girardMetric (Fin.append PZ.G PZ.GI) l).symm
-  min K (Finset.univ.filter fun l : Fin PZ.h =>
-    (rank (Fin.castAdd PZ.q l) : ℕ) < K).card
+    -PolyZonotope.girardMetric (Fin.append pZ.G pZ.GI) l).symm
+  min K (Finset.univ.filter fun l : Fin pZ.h =>
+    (rank (Fin.castAdd pZ.q l) : ℕ) < K).card
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -46,14 +46,14 @@ noncomputable def PolyZonotope.aux_girardKeptDep (PZ : PolyZonotope (Vec ℝ n))
 /-- CORA's `reduce(pZ, 'girard', o)`: past `n·o` generators in the two blocks
 together, keep the `(o-1)·n` Girard ranks first and box the rest, bringing the
 total back to `n·o`. Noncomputable, as ordering reals is. -/
-noncomputable def PolyZonotope.reduceGirard (PZ : PolyZonotope (Vec ℝ n)) (o : ℕ) :
+noncomputable def PolyZonotope.reduceGirard (pZ : PolyZonotope (Vec ℝ n)) (o : ℕ) :
     PolyZonotope (Vec ℝ n) :=
-  if o * n < PZ.h + PZ.q then
+  if o * n < pZ.h + pZ.q then
     let K := (o - 1) * n
-    let d := PZ.aux_girardKeptDep K
-    PZ.reduceBy (PolyZonotope.girardSplit (PolyZonotope.girardMetric PZ.G) d)
-      (PolyZonotope.girardSplit (PolyZonotope.girardMetric PZ.GI) (K - d))
-  else PZ
+    let d := pZ.aux_girardKeptDep K
+    pZ.reduceBy (PolyZonotope.girardSplit (PolyZonotope.girardMetric pZ.G) d)
+      (PolyZonotope.girardSplit (PolyZonotope.girardMetric pZ.GI) (K - d))
+  else pZ
 
 end CORALean.Real
 

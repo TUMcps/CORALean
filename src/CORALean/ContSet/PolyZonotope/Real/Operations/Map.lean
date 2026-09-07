@@ -27,14 +27,14 @@ variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Mod
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.map (f : α →ₗ[ℝ] β) (PZ : PolyZonotope α) : PolyZonotope β where
-  p := PZ.p
-  h := PZ.h
-  q := PZ.q
-  c := f PZ.c
-  G := fun i => f (PZ.G i)
-  E := PZ.E
-  GI := fun j => f (PZ.GI j)
+def PolyZonotope.map (f : α →ₗ[ℝ] β) (pZ : PolyZonotope α) : PolyZonotope β where
+  p := pZ.p
+  h := pZ.h
+  q := pZ.q
+  c := f pZ.c
+  G := fun i => f (pZ.G i)
+  E := pZ.E
+  GI := fun j => f (pZ.GI j)
 
 end CORALean.Real
 
