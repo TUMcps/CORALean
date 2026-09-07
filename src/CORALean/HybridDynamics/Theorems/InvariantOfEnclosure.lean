@@ -11,18 +11,21 @@ every admissible input `u`; `FlowOuterInputSolution` already discharges `u`
 structurally from `hconv`/`hclosed`/`hbdd`/`h0` about `ℓ.U`, so nothing about
 `u` survives into this criterion at all.
 
-`τ` does not hoist as cleanly: the Taylor order `m` that makes `hε` hold
-grows with `τ`, unboundedly, so no single `m` serves every dwell time.
-`hflow` asks for one per `τ` instead, existentially — the honest shape of
-what a caller who fixes `R` must still show, not a search this file performs.
+Two prices, and `InvariantOfEnclosureCut` is what pays neither. `h0` asks the
+location's input set to hold the origin, which a constant drift — gravity —
+already breaks. And `hflow` asks one `R` to absorb the enclosure at *every*
+dwell time, the location's invariant nowhere in the statement; that enclosure
+grows without bound in `τ` under a nonzero drift, and a nonempty compact `R`
+cannot contain it. So this holds only where the drift vanishes.
 
+Kept for those locations, and because it is the shape the cut is read against.
 The fixpoint iteration that would find such an `R` is not implemented, exactly
 as `NonlinearSysDT.confinement_of_subset` leaves the analogous search to CORA.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   07-September-2026
 -- Last revision: ---
 
 
