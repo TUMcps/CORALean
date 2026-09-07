@@ -13,7 +13,7 @@ operation on the space itself rather than merely one that agrees with it.
 
 -- Authors:       Tobias Ladner
 -- Written:       01-September-2026
--- Last update:   ---
+-- Last update:   07-September-2026
 -- Last revision: ---
 
 
@@ -71,6 +71,15 @@ def entryHom (i : ι) : α →+ ℝ where
 theorem entry_sum {κ : Type} (s : Finset κ) (f : κ → α) (i : ι) :
     entry (∑ x ∈ s, f x) i = ∑ x ∈ s, entry (f x) i :=
   map_sum (entryHom i) f s
+
+/-- A point is the sum of its coordinates against the standard basis. Compares
+entries: `entry` of the right side at `j` collapses the sum to `entry x j`,
+and `entry_injective` finishes it. -/
+theorem eq_sum_single [Fintype ι] [DecidableEq ι] (x : α) :
+    x = ∑ i, entry x i • ofEntry (Pi.single i 1) := by
+  refine ext fun j => ?_
+  rw [entry_sum]
+  simp [entry_smul, Pi.single_apply]
 
 /-- A centre plus a scaled family, read coordinatewise, with the scalar on the
 right — the form every generator-based representation states its membership in.
