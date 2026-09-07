@@ -1,7 +1,7 @@
 import CORALean.Examples.FeedForwardFloat
 import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
-import Demo.Decimal
-import Demo.Scalar
+import CORALean.Examples.Demo.Decimal
+import CORALean.Examples.Demo.Scalar
 
 /-!
 # `NeuralNetwork.propagate` at `Dyadic`, run
@@ -23,7 +23,7 @@ computation reached two ways; they agree or the table says so.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace Demo
+namespace CORALean.Demo
 
 open CORALean CORALean.Float
 
@@ -73,7 +73,7 @@ def propagateReport : String :=
     "",
     "propagate  " ++ showBox (net.propagate X).interval])
 
-end Demo
+end CORALean.Demo
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

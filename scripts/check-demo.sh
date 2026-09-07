@@ -22,7 +22,7 @@ raw=$(mktemp)
 actual=$(mktemp)
 trap 'rm -f "$raw" "$actual"' EXIT INT TERM
 
-lake env lean --run src/Demo.lean > "$raw"
+lake env lean --run src/CORALean/Examples/Demo.lean > "$raw"
 # On Windows the runtime writes CRLF and the committed file is LF, which would
 # otherwise make every line differ.
 tr -d '\r' < "$raw" > "$actual"
