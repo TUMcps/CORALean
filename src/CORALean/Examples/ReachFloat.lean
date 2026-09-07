@@ -17,8 +17,8 @@ automaton are written against `Scalar 𝕋` and the operation classes, so a floa
 representation supplies them the same way an exact one does.
 
 The `def`s below are `def` rather than `noncomputable def`. Since `Layer` stores
-no function, so are `Sigmoid`, `Tanh`, `Softmax` and `maxPool`; only
-`SigmoidPoly` is not, its `PolyRelaxation` still carrying `σ`.
+no function, so are `Sigmoid`, `Tanh`, `Softmax`, `maxPool` and `SigmoidPoly`,
+whose `PolyRelaxation` stores floats and names `Real.sigmoid` only in a proof.
 
 An algorithm needs a float counterpart precisely where it computes a *real number
 that is no set operation*, only a set operation having an error box to pay its

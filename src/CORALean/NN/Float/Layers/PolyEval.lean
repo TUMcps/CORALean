@@ -4,7 +4,7 @@ import CORALean.NN.Layers.ActivationPoly
 /-!
 # A polynomial evaluated outward at a float
 
-What a sample point needs of a fit. `PolyRelaxation.sound` measures `σ` against
+What a sample point needs of a fit. `PolyRelaxation.Sound` measures `σ` against
 the coefficients *stored*, so an enclosure of `Real.evalPoly` at those floats is
 the whole of the fit's rounding, and nothing is left to pad afterwards.
 
