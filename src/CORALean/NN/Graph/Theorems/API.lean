@@ -15,6 +15,7 @@ import CORALean.NN.Graph.Theorems.DegreeSubmatrixOfBallUncertain
 import CORALean.NN.Graph.Theorems.EvalStepsRowBall
 import CORALean.NN.Graph.Theorems.EvalStepsRowBallEnum
 import CORALean.NN.Graph.Theorems.EvalStepsRowBallOfAdjacency
+import CORALean.NN.Graph.Theorems.EvalStepsRowBallOfAdjacencyUncertain
 import CORALean.NN.Graph.Theorems.EvalStepsRowMask
 import CORALean.NN.Graph.Theorems.EvalStepsRowMaskUncertain
 import CORALean.NN.Graph.Theorems.EvalStepsSubmatrix
