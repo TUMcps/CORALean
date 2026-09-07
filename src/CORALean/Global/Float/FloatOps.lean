@@ -14,7 +14,7 @@ carrying one. Definitions assume this class alone; theorems assume both.
 
 -- Authors:       Tobias Ladner
 -- Written:       16-August-2026
--- Last update:   05-September-2026
+-- Last update:   07-September-2026
 -- Last revision: ---
 
 
@@ -94,6 +94,10 @@ needs no direction. -/
 def maximumOver : {n : ℕ} → (Fin n → 𝕋) → 𝕋
   | 0, _ => zero
   | _ + 1, f => maximum (f 0) (maximumOver fun i => f i.succ)
+
+/-- The smallest of `n` values, `zero` above none. `neg` and `maximum` are both
+exact, so the reflection costs nothing and no second fold is needed. -/
+def minimumOver {n : ℕ} (f : Fin n → 𝕋) : 𝕋 := neg (maximumOver fun i => neg (f i))
 
 /-- Exact. Not named `abs`, which would make `|·|` ambiguous wherever this
 namespace is open. -/
