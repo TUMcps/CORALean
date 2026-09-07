@@ -34,12 +34,12 @@ variable {m n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 noncomputable def ConZonotope.mtimesIntervalMat (IM : Interval (Mat ℝ m n))
-    (C : ConZonotope (Vec ℝ n)) : ConZonotope (Vec ℝ m) where
-  h := C.h + m
-  c := IM.center *ᵥ C.c
-  G := Fin.append (fun l => IM.center *ᵥ C.G l)
-        (Matrix.diagonal fun i => Zonotope.radiusReach IM C.zonotope i)
-  P := C.P.comap (blockLeft C.h m)
+    (cZ : ConZonotope (Vec ℝ n)) : ConZonotope (Vec ℝ m) where
+  h := cZ.h + m
+  c := IM.center *ᵥ cZ.c
+  G := Fin.append (fun l => IM.center *ᵥ cZ.G l)
+        (Matrix.diagonal fun i => Zonotope.radiusReach IM cZ.zonotope i)
+  P := cZ.P.comap (blockLeft cZ.h m)
 
 end CORALean.Real
 

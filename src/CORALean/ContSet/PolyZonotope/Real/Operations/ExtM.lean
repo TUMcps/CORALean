@@ -23,8 +23,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.extM (S : PolyZonotope α) (a : Fin S.p → ℝ) : Fin (S.h + 1) → ℝ :=
-  PolyZonotope.monomial (PolyZonotope.extE S) a
+def PolyZonotope.extM (pZ : PolyZonotope α) (a : Fin pZ.p → ℝ) : Fin (pZ.h + 1) → ℝ :=
+  PolyZonotope.monomial (PolyZonotope.extE pZ) a
 
 end CORALean.Real
 

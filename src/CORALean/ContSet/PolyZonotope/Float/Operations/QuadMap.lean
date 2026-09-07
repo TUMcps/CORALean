@@ -37,8 +37,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.quadMap (Q : Fin m → Mat 𝕋 n n) (PZ : PolyZonotope 𝕋 n) :
-    PolyZonotope 𝕋 m := PolyZonotope.quadMapDep Q PZ.dependent
+def PolyZonotope.quadMap (Q : Fin m → Mat 𝕋 n n) (pZ : PolyZonotope 𝕋 n) :
+    PolyZonotope 𝕋 m := PolyZonotope.quadMapDep Q pZ.dependent
 
 end CORALean.Float
 

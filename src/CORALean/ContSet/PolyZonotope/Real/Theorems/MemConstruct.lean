@@ -24,16 +24,16 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.mem_construct_iff {n : ℕ} {PZ : PolyZonotope (Vec ℝ n)} {x : Vec ℝ n} :
-    x ∈ PZ.construct ↔
-      ∃ a : Fin PZ.p → ℝ, ∃ β : Fin PZ.q → ℝ, (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1)
-        ∧ ∀ i, x i = PZ.c i + (∑ l, PZ.G l i * PolyZonotope.monomial PZ.E a l)
-              + ∑ j, PZ.GI j i * β j := by -- --- PROOF ---
+theorem PolyZonotope.mem_construct_iff {n : ℕ} {pZ : PolyZonotope (Vec ℝ n)} {x : Vec ℝ n} :
+    x ∈ pZ.construct ↔
+      ∃ a : Fin pZ.p → ℝ, ∃ β : Fin pZ.q → ℝ, (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1)
+        ∧ ∀ i, x i = pZ.c i + (∑ l, pZ.G l i * PolyZonotope.monomial pZ.E a l)
+              + ∑ j, pZ.GI j i * β j := by -- --- PROOF ---
   -- one coordinate of the defining equation, both generator blocks transposed
-  have key : ∀ (a : Fin PZ.p → ℝ) (β : Fin PZ.q → ℝ) (i : Fin n),
-      (PZ.c + ∑ l, PolyZonotope.monomial PZ.E a l • PZ.G l + ∑ j, β j • PZ.GI j) i
-        = PZ.c i + (∑ l, PZ.G l i * PolyZonotope.monomial PZ.E a l)
-            + ∑ j, PZ.GI j i * β j := by
+  have key : ∀ (a : Fin pZ.p → ℝ) (β : Fin pZ.q → ℝ) (i : Fin n),
+      (pZ.c + ∑ l, PolyZonotope.monomial pZ.E a l • pZ.G l + ∑ j, β j • pZ.GI j) i
+        = pZ.c i + (∑ l, pZ.G l i * PolyZonotope.monomial pZ.E a l)
+            + ∑ j, pZ.GI j i * β j := by
     intro a β i
     rw [Pi.add_apply, Entrywise.add_sum_smul_apply, Finset.sum_apply]
     exact congrArg _ (Finset.sum_congr rfl fun j _ => by

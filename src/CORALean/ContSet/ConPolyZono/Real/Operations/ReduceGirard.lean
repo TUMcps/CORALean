@@ -42,11 +42,11 @@ noncomputable def ConPolyZono.aux_girardSplit {m : ℕ} (metric : Fin m → ℝ)
 /-- How many of the `K` best-ranked generators overall are dependent: CORA's
 joint accounting as one number, `rank` bound by a `let` so the sort runs once.
 The cap at `K` never binds and is there to keep the order bound arithmetic. -/
-noncomputable def ConPolyZono.aux_girardKeptDep (C : ConPolyZono (Vec ℝ n)) (K : ℕ) : ℕ :=
+noncomputable def ConPolyZono.aux_girardKeptDep (cPZ : ConPolyZono (Vec ℝ n)) (K : ℕ) : ℕ :=
   let rank := (Tuple.sort fun l =>
-    -ConPolyZono.aux_girardMetric (Fin.append C.G C.GI) l).symm
-  min K (Finset.univ.filter fun l : Fin C.h =>
-    (rank (Fin.castAdd C.q l) : ℕ) < K).card
+    -ConPolyZono.aux_girardMetric (Fin.append cPZ.G cPZ.GI) l).symm
+  min K (Finset.univ.filter fun l : Fin cPZ.h =>
+    (rank (Fin.castAdd cPZ.q l) : ℕ) < K).card
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -54,14 +54,14 @@ noncomputable def ConPolyZono.aux_girardKeptDep (C : ConPolyZono (Vec ℝ n)) (K
 /-- CORA's `reduce(cPZ, 'girard', o)`: past `n·o` generators in the two blocks
 together, keep the `(o-1)·n` Girard ranks first and box the rest, bringing the
 total back to `n·o`. Noncomputable, as ordering reals is. -/
-noncomputable def ConPolyZono.reduceGirard (C : ConPolyZono (Vec ℝ n)) (o : ℕ) :
+noncomputable def ConPolyZono.reduceGirard (cPZ : ConPolyZono (Vec ℝ n)) (o : ℕ) :
     ConPolyZono (Vec ℝ n) :=
-  if o * n < C.h + C.q then
+  if o * n < cPZ.h + cPZ.q then
     let K := (o - 1) * n
-    let d := C.aux_girardKeptDep K
-    C.reduceBy (ConPolyZono.aux_girardSplit (ConPolyZono.aux_girardMetric C.G) d)
-      (ConPolyZono.aux_girardSplit (ConPolyZono.aux_girardMetric C.GI) (K - d))
-  else C
+    let d := cPZ.aux_girardKeptDep K
+    cPZ.reduceBy (ConPolyZono.aux_girardSplit (ConPolyZono.aux_girardMetric cPZ.G) d)
+      (ConPolyZono.aux_girardSplit (ConPolyZono.aux_girardMetric cPZ.GI) (K - d))
+  else cPZ
 
 end CORALean.Real
 

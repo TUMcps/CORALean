@@ -27,8 +27,8 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.evalPoly_q (S : PolyZonotope (Vec ℝ n)) :
-    ∀ coeffs : List (Vec ℝ n), (S.evalPoly coeffs).q = 0
+theorem PolyZonotope.evalPoly_q (pZ : PolyZonotope (Vec ℝ n)) :
+    ∀ coeffs : List (Vec ℝ n), (pZ.evalPoly coeffs).q = 0
   | [] => rfl
   | _ :: _ => rfl
 

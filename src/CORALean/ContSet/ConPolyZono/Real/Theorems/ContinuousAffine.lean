@@ -26,12 +26,12 @@ variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.continuous_affine (C : ConPolyZono α) :
-    Continuous C.affine := by -- --- PROOF ---
+theorem ConPolyZono.continuous_affine (cPZ : ConPolyZono α) :
+    Continuous cPZ.affine := by -- --- PROOF ---
   unfold ConPolyZono.affine
   refine (continuous_const.add (continuous_finsetSum _ fun i _ => ?_)).add
     (continuous_finsetSum _ fun j _ => ?_)
-  · exact ((PolyZonotope.continuous_monomial C.E i).comp continuous_fst).smul continuous_const
+  · exact ((PolyZonotope.continuous_monomial cPZ.E i).comp continuous_fst).smul continuous_const
   · exact ((continuous_apply j).comp continuous_snd).smul continuous_const
 
 end CORALean.Real

@@ -42,15 +42,15 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def ConZonotope.linComb (C₁ C₂ : ConZonotope α) : ConZonotope α where
-  h := C₁.h + C₂.h + 1
-  c := (2:ℝ)⁻¹ • (C₁.c + C₂.c)
-  G := Fin.append (Fin.append C₁.G C₂.G) fun _ : Fin 1 => (2:ℝ)⁻¹ • (C₁.c - C₂.c)
+noncomputable def ConZonotope.linComb (cZ₁ cZ₂ : ConZonotope α) : ConZonotope α where
+  h := cZ₁.h + cZ₂.h + 1
+  c := (2:ℝ)⁻¹ • (cZ₁.c + cZ₂.c)
+  G := Fin.append (Fin.append cZ₁.G cZ₂.G) fun _ : Fin 1 => (2:ℝ)⁻¹ • (cZ₁.c - cZ₂.c)
   P :=
-    ((C₁.domain.comap ((blockLeft C₁.h C₂.h).comp (blockLeft (C₁.h + C₂.h) 1))).halfScaled
-        (blockLast (C₁.h + C₂.h))).and
-      ((C₂.domain.comap ((blockRight C₁.h C₂.h).comp (blockLeft (C₁.h + C₂.h) 1))).halfScaled
-        (-blockLast (C₁.h + C₂.h)))
+    ((cZ₁.domain.comap ((blockLeft cZ₁.h cZ₂.h).comp (blockLeft (cZ₁.h + cZ₂.h) 1))).halfScaled
+        (blockLast (cZ₁.h + cZ₂.h))).and
+      ((cZ₂.domain.comap ((blockRight cZ₁.h cZ₂.h).comp (blockLeft (cZ₁.h + cZ₂.h) 1))).halfScaled
+        (-blockLast (cZ₁.h + cZ₂.h)))
 
 end CORALean.Real
 

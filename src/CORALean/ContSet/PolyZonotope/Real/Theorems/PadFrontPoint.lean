@@ -49,8 +49,8 @@ theorem PolyZonotope.aux_monomial_padFront {p s : ℕ} (l : ℕ) (E : Fin p → 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.padFront_point (l : ℕ) (S : PolyZonotope α) (a : Fin (l + S.p) → ℝ) :
-    (S.padFront l).point a = S.point (a ∘ Fin.natAdd l) := by
+theorem PolyZonotope.padFront_point (l : ℕ) (pZ : PolyZonotope α) (a : Fin (l + pZ.p) → ℝ) :
+    (pZ.padFront l).point a = pZ.point (a ∘ Fin.natAdd l) := by
   rw [PolyZonotope.point, PolyZonotope.point]
   -- only the exponent matrix differs, and the auxiliary reads it back
   simp only [PolyZonotope.padFront, PolyZonotope.aux_monomial_padFront]

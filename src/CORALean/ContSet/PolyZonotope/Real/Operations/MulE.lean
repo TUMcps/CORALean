@@ -24,11 +24,11 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Its exponent column, the two columns added, `S₂`'s read at `S₁`'s factor
+/-- Its exponent column, the two columns added, `pZ₂`'s read at `pZ₁`'s factor
 indices. -/
-def PolyZonotope.mulE (S₁ S₂ : PolyZonotope (Vec ℝ n)) (hp : S₁.p = S₂.p) :
-    Fin S₁.p → Fin ((S₁.h + 1) * (S₂.h + 1)) → ℕ :=
-  PolyZonotope.bilinE S₁ S₂ hp
+def PolyZonotope.mulE (pZ₁ pZ₂ : PolyZonotope (Vec ℝ n)) (hp : pZ₁.p = pZ₂.p) :
+    Fin pZ₁.p → Fin ((pZ₁.h + 1) * (pZ₂.h + 1)) → ℕ :=
+  PolyZonotope.bilinE pZ₁ pZ₂ hp
 
 end CORALean.Real
 

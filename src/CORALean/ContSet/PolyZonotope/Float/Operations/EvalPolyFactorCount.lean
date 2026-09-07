@@ -24,8 +24,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The shared factor count `evalPoly` never leaves. -/
-theorem PolyZonotope.evalPoly_p (S : PolyZonotope 𝕋 n) (coeffs : List (Vec 𝕋 n)) :
-    (S.evalPoly coeffs).p = S.p := (PolyZonotope.evalPolyP S coeffs).2
+theorem PolyZonotope.evalPoly_p (pZ : PolyZonotope 𝕋 n) (coeffs : List (Vec 𝕋 n)) :
+    (pZ.evalPoly coeffs).p = pZ.p := (PolyZonotope.evalPolyP pZ coeffs).2
 
 end CORALean.Float
 

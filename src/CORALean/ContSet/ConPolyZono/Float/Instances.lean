@@ -34,27 +34,27 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- ========================================  INSTANCES  ========================================= --
 
 instance {n : ℕ} : Plus (ConPolyZono 𝕋 n) (Vec ℝ n) where
-  plus C₁ C₂ := (C₁.plus C₂).materialise
-  plus_outer C₁ C₂ := by
+  plus cPZ₁ cPZ₂ := (cPZ₁.plus cPZ₂).materialise
+  plus_outer cPZ₁ cPZ₂ := by
     rw [ConPolyZono.materialise_eq]
-    exact ConPolyZono.plus_outer C₁ C₂
+    exact ConPolyZono.plus_outer cPZ₁ cPZ₂
 
 -- `reduce` is computable here, `sortPerm` asking its comparator for no laws
 instance {n : ℕ} : Reduce (ConPolyZono 𝕋 n) (Vec ℝ n) where
-  reduce C o := (C.reduce o).materialise
-  reduce_outer C o := by
+  reduce cPZ o := (cPZ.reduce o).materialise
+  reduce_outer cPZ o := by
     rw [ConPolyZono.materialise_eq]
-    exact ConPolyZono.reduce_outer C o
+    exact ConPolyZono.reduce_outer cPZ o
 
 instance {n : ℕ} : And (ConPolyZono 𝕋 n) (Vec ℝ n) where
   and := ConPolyZono.and
   and_outer := ConPolyZono.and_outer
 
 instance : Mtimes (Mat 𝕋) (ConPolyZono 𝕋) where
-  mtimes M C := (ConPolyZono.mtimes M C).materialise
-  mtimes_outer M C := by
+  mtimes M cPZ := (ConPolyZono.mtimes M cPZ).materialise
+  mtimes_outer M cPZ := by
     simp only [ContSet.construct_mat, Set.biUnion_singleton, ConPolyZono.materialise_eq]
-    exact ConPolyZono.mtimes_outer M C
+    exact ConPolyZono.mtimes_outer M cPZ
 
 end CORALean.Float
 

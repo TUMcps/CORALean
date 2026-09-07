@@ -24,11 +24,11 @@ variable {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConZonotope.mtimes (M : Mat ℝ m n) (C : ConZonotope (Vec ℝ n)) : ConZonotope (Vec ℝ m) where
-  h := C.h
-  c := M *ᵥ C.c
-  G := fun j => M *ᵥ C.G j
-  P := C.P
+def ConZonotope.mtimes (M : Mat ℝ m n) (cZ : ConZonotope (Vec ℝ n)) : ConZonotope (Vec ℝ m) where
+  h := cZ.h
+  c := M *ᵥ cZ.c
+  G := fun j => M *ᵥ cZ.G j
+  P := cZ.P
 
 end CORALean.Real
 

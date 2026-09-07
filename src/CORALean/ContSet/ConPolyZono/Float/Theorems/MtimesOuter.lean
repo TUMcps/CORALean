@@ -34,77 +34,77 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n k : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem ConPolyZono.aux_mtimes_nominal (M : Mat 𝕋 k n) (C : ConPolyZono 𝕋 n) :
-    (toRealMat M *ᵥ ·) '' nominalSet C ⊆
-      nominalSet (ConPolyZono.mtimes M C)
-        + (ConPolyZono.mtimesResidual M C).construct := by -- --- PROOF ---
+theorem ConPolyZono.aux_mtimes_nominal (M : Mat 𝕋 k n) (cPZ : ConPolyZono 𝕋 n) :
+    (toRealMat M *ᵥ ·) '' nominalSet cPZ ⊆
+      nominalSet (ConPolyZono.mtimes M cPZ)
+        + (ConPolyZono.mtimesResidual M cPZ).construct := by -- --- PROOF ---
   rintro _ ⟨x, hx', rfl⟩
   obtain ⟨a, β, ha, hβ, hsat, hx⟩ := ConPolyZono.mem_nominalSet_iff.mp hx'
-  have hres : (fun i => (∑ r, toReal (M i r) * toReal (C.c r))
-        - toReal (mulVecDown M C.c i))
-      ∈ (Interval.residual (mulVecDown M C.c) (mulVecUp M C.c)
-          (mulVecDown M C.c)).construct :=
-    Interval.sub_mem_residual (fun i => ⟨dotDown_le (M i) C.c, le_dotUp (M i) C.c⟩)
+  have hres : (fun i => (∑ r, toReal (M i r) * toReal (cPZ.c r))
+        - toReal (mulVecDown M cPZ.c i))
+      ∈ (Interval.residual (mulVecDown M cPZ.c) (mulVecUp M cPZ.c)
+          (mulVecDown M cPZ.c)).construct :=
+    Interval.sub_mem_residual (fun i => ⟨dotDown_le (M i) cPZ.c, le_dotUp (M i) cPZ.c⟩)
   -- the two generator blocks' shortfalls, each bounded by a coefficient inside `[-1,1]`
-  have hdepBox : (fun i => ∑ l, ((∑ r, toReal (M i r) * toReal (C.G r l))
-        - toReal (matMulDown M C.G i l)) * Real.PolyZonotope.monomial C.E a l)
-      ∈ (PolyZonotope.generatorError (matMulDiff M C.G)).construct :=
-    PolyZonotope.mem_generatorError_monomial (PolyZonotope.matMul_close M C.G) ha
-  have hindBox : (fun i => ∑ j, ((∑ r, toReal (M i r) * toReal (C.GI r j))
-        - toReal (matMulDown M C.GI i j)) * β j)
-      ∈ (PolyZonotope.generatorError (matMulDiff M C.GI)).construct :=
-    PolyZonotope.mem_generatorError (PolyZonotope.matMul_close M C.GI) hβ
-  refine ⟨fun i => toReal ((ConPolyZono.mtimes M C).c i)
-            + (∑ l : Fin C.h, toReal ((ConPolyZono.mtimes M C).G i l)
-                * Real.PolyZonotope.monomial C.E a l)
-            + ∑ j : Fin C.q, toReal ((ConPolyZono.mtimes M C).GI i j) * β j,
+  have hdepBox : (fun i => ∑ l, ((∑ r, toReal (M i r) * toReal (cPZ.G r l))
+        - toReal (matMulDown M cPZ.G i l)) * Real.PolyZonotope.monomial cPZ.E a l)
+      ∈ (PolyZonotope.generatorError (matMulDiff M cPZ.G)).construct :=
+    PolyZonotope.mem_generatorError_monomial (PolyZonotope.matMul_close M cPZ.G) ha
+  have hindBox : (fun i => ∑ j, ((∑ r, toReal (M i r) * toReal (cPZ.GI r j))
+        - toReal (matMulDown M cPZ.GI i j)) * β j)
+      ∈ (PolyZonotope.generatorError (matMulDiff M cPZ.GI)).construct :=
+    PolyZonotope.mem_generatorError (PolyZonotope.matMul_close M cPZ.GI) hβ
+  refine ⟨fun i => toReal ((ConPolyZono.mtimes M cPZ).c i)
+            + (∑ l : Fin cPZ.h, toReal ((ConPolyZono.mtimes M cPZ).G i l)
+                * Real.PolyZonotope.monomial cPZ.E a l)
+            + ∑ j : Fin cPZ.q, toReal ((ConPolyZono.mtimes M cPZ).GI i j) * β j,
           ConPolyZono.mem_nominalSet_iff.mpr ⟨a, β, ha, hβ, hsat, fun _ => rfl⟩,
           _, Interval.plus_outer _ _ ⟨_, Interval.plus_outer _ _ ⟨_, hres, _, hdepBox, rfl⟩,
             _, hindBox, rfl⟩, ?_⟩
   funext i
   -- the stored generators and their errors recombine into the exact ones
-  have hdep : (∑ l, toReal (matMulDown M C.G i l) * Real.PolyZonotope.monomial C.E a l)
-      + (∑ l, ((∑ r, toReal (M i r) * toReal (C.G r l))
-          - toReal (matMulDown M C.G i l)) * Real.PolyZonotope.monomial C.E a l)
-      = ∑ l, (∑ r, toReal (M i r) * toReal (C.G r l))
-          * Real.PolyZonotope.monomial C.E a l := by
+  have hdep : (∑ l, toReal (matMulDown M cPZ.G i l) * Real.PolyZonotope.monomial cPZ.E a l)
+      + (∑ l, ((∑ r, toReal (M i r) * toReal (cPZ.G r l))
+          - toReal (matMulDown M cPZ.G i l)) * Real.PolyZonotope.monomial cPZ.E a l)
+      = ∑ l, (∑ r, toReal (M i r) * toReal (cPZ.G r l))
+          * Real.PolyZonotope.monomial cPZ.E a l := by
     rw [← Finset.sum_add_distrib]
     exact Finset.sum_congr rfl fun l _ => by ring
-  have hind : (∑ j, toReal (matMulDown M C.GI i j) * β j)
-      + (∑ j, ((∑ r, toReal (M i r) * toReal (C.GI r j))
-          - toReal (matMulDown M C.GI i j)) * β j)
-      = ∑ j, (∑ r, toReal (M i r) * toReal (C.GI r j)) * β j := by
+  have hind : (∑ j, toReal (matMulDown M cPZ.GI i j) * β j)
+      + (∑ j, ((∑ r, toReal (M i r) * toReal (cPZ.GI r j))
+          - toReal (matMulDown M cPZ.GI i j)) * β j)
+      = ∑ j, (∑ r, toReal (M i r) * toReal (cPZ.GI r j)) * β j := by
     rw [← Finset.sum_add_distrib]
     exact Finset.sum_congr rfl fun j _ => by ring
   -- the goal spelled out, so the two recombinations line up with it term by term
-  show toReal ((ConPolyZono.mtimes M C).c i)
-        + (∑ l : Fin C.h, toReal ((ConPolyZono.mtimes M C).G i l)
-            * Real.PolyZonotope.monomial C.E a l)
-        + ∑ j : Fin C.q, toReal ((ConPolyZono.mtimes M C).GI i j) * β j
-      + (((∑ r, toReal (M i r) * toReal (C.c r)) - toReal (mulVecDown M C.c i)
-          + ∑ l, ((∑ r, toReal (M i r) * toReal (C.G r l))
-              - toReal (matMulDown M C.G i l)) * Real.PolyZonotope.monomial C.E a l)
-        + ∑ j, ((∑ r, toReal (M i r) * toReal (C.GI r j))
-            - toReal (matMulDown M C.GI i j)) * β j)
+  show toReal ((ConPolyZono.mtimes M cPZ).c i)
+        + (∑ l : Fin cPZ.h, toReal ((ConPolyZono.mtimes M cPZ).G i l)
+            * Real.PolyZonotope.monomial cPZ.E a l)
+        + ∑ j : Fin cPZ.q, toReal ((ConPolyZono.mtimes M cPZ).GI i j) * β j
+      + (((∑ r, toReal (M i r) * toReal (cPZ.c r)) - toReal (mulVecDown M cPZ.c i)
+          + ∑ l, ((∑ r, toReal (M i r) * toReal (cPZ.G r l))
+              - toReal (matMulDown M cPZ.G i l)) * Real.PolyZonotope.monomial cPZ.E a l)
+        + ∑ j, ((∑ r, toReal (M i r) * toReal (cPZ.GI r j))
+            - toReal (matMulDown M cPZ.GI i j)) * β j)
     = (toRealMat M *ᵥ x) i
-  rw [PolyZonotope.mulVec_split M C.c C.G C.GI (Real.PolyZonotope.monomial C.E a) β hx i]
+  rw [PolyZonotope.mulVec_split M cPZ.c cPZ.G cPZ.GI (Real.PolyZonotope.monomial cPZ.E a) β hx i]
   simp only [ConPolyZono.mtimes]
   linarith [hdep, hind]
 
 /-- The old box travels through the map as a box, and the spill is added on. -/
-theorem ConPolyZono.aux_mtimes_error (M : Mat 𝕋 k n) (C : ConPolyZono 𝕋 n) :
-    (toRealMat M *ᵥ ·) '' (error C).construct + (ConPolyZono.mtimesResidual M C).construct ⊆
-      (error (ConPolyZono.mtimes M C)).construct :=
-  subset_trans (Set.add_subset_add_right (Interval.mtimes_outer M C.err))
+theorem ConPolyZono.aux_mtimes_error (M : Mat 𝕋 k n) (cPZ : ConPolyZono 𝕋 n) :
+    (toRealMat M *ᵥ ·) '' (error cPZ).construct + (ConPolyZono.mtimesResidual M cPZ).construct ⊆
+      (error (ConPolyZono.mtimes M cPZ)).construct :=
+  subset_trans (Set.add_subset_add_right (Interval.mtimes_outer M cPZ.err))
     (Interval.plus_outer _ _)
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.mtimes_outer (M : Mat 𝕋 k n) (C : ConPolyZono 𝕋 n) :
-    (toRealMat M *ᵥ ·) '' C.construct ⊆ (ConPolyZono.mtimes M C).construct :=
+theorem ConPolyZono.mtimes_outer (M : Mat 𝕋 k n) (cPZ : ConPolyZono 𝕋 n) :
+    (toRealMat M *ᵥ ·) '' cPZ.construct ⊆ (ConPolyZono.mtimes M cPZ).construct :=
   map_subset (fun x y => Matrix.mulVec_add _ x y)
-    (ConPolyZono.aux_mtimes_nominal M C) (ConPolyZono.aux_mtimes_error M C)
+    (ConPolyZono.aux_mtimes_nominal M cPZ) (ConPolyZono.aux_mtimes_error M cPZ)
 
 end CORALean.Float
 

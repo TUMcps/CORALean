@@ -25,19 +25,19 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 omit [Module ℝ α] in
-theorem ConPolyZono.plus_p (C₁ C₂ : ConPolyZono α) : (C₁.plus C₂).p = C₁.p + C₂.p := rfl
+theorem ConPolyZono.plus_p (cPZ₁ cPZ₂ : ConPolyZono α) : (cPZ₁.plus cPZ₂).p = cPZ₁.p + cPZ₂.p := rfl
 
 omit [Module ℝ α] in
-theorem ConPolyZono.plus_h (C₁ C₂ : ConPolyZono α) : (C₁.plus C₂).h = C₁.h + C₂.h := rfl
+theorem ConPolyZono.plus_h (cPZ₁ cPZ₂ : ConPolyZono α) : (cPZ₁.plus cPZ₂).h = cPZ₁.h + cPZ₂.h := rfl
 
 omit [Module ℝ α] in
-theorem ConPolyZono.plus_q (C₁ C₂ : ConPolyZono α) : (C₁.plus C₂).q = C₁.q + C₂.q := rfl
+theorem ConPolyZono.plus_q (cPZ₁ cPZ₂ : ConPolyZono α) : (cPZ₁.plus cPZ₂).q = cPZ₁.q + cPZ₂.q := rfl
 
 omit [Module ℝ α] in
-theorem ConPolyZono.plus_m (C₁ C₂ : ConPolyZono α) : (C₁.plus C₂).m = C₁.m + C₂.m := rfl
+theorem ConPolyZono.plus_m (cPZ₁ cPZ₂ : ConPolyZono α) : (cPZ₁.plus cPZ₂).m = cPZ₁.m + cPZ₂.m := rfl
 
 omit [Module ℝ α] in
-theorem ConPolyZono.plus_s (C₁ C₂ : ConPolyZono α) : (C₁.plus C₂).s = C₁.s + C₂.s := rfl
+theorem ConPolyZono.plus_s (cPZ₁ cPZ₂ : ConPolyZono α) : (cPZ₁.plus cPZ₂).s = cPZ₁.s + cPZ₂.s := rfl
 
 end CORALean.Real
 

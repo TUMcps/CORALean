@@ -27,10 +27,10 @@ variable {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.quadMap_exact (Q : Fin m → Mat ℝ n n) (PZ : PolyZonotope (Vec ℝ n)) :
-    quadEval Q '' PZ.construct = (PZ.quadMap Q).construct := by
-  rw [PZ.dependent_exact]
-  exact PolyZonotope.quadMapDep_exact Q PZ.dependent rfl
+theorem PolyZonotope.quadMap_exact (Q : Fin m → Mat ℝ n n) (pZ : PolyZonotope (Vec ℝ n)) :
+    quadEval Q '' pZ.construct = (pZ.quadMap Q).construct := by
+  rw [pZ.dependent_exact]
+  exact PolyZonotope.quadMapDep_exact Q pZ.dependent rfl
 
 end CORALean.Real
 

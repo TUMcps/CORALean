@@ -23,15 +23,15 @@ namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
-def ZonoBundle.polyZonotope (B : ZonoBundle α) (i : Fin B.k) : PolyZonotope α :=
-  (B.zonotope i).polyZonotope
+def ZonoBundle.polyZonotope (zB : ZonoBundle α) (i : Fin zB.k) : PolyZonotope α :=
+  (zB.zonotope i).polyZonotope
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.subset_polyZonotope (B : ZonoBundle α) (i : Fin B.k) :
-    B.construct ⊆ (B.polyZonotope i).construct :=
-  subset_trans (B.subset_zonotope i) (Zonotope.polyZonotope_exact _).subset
+theorem ZonoBundle.subset_polyZonotope (zB : ZonoBundle α) (i : Fin zB.k) :
+    zB.construct ⊆ (zB.polyZonotope i).construct :=
+  subset_trans (zB.subset_zonotope i) (Zonotope.polyZonotope_exact _).subset
 
 end CORALean.Real
 

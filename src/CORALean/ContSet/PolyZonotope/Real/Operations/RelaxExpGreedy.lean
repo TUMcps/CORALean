@@ -16,7 +16,7 @@ hypothesis into every step; at a similar pair the summed width is the single
 `eDiff` anyway, so nothing is lost.
 
 Fuel rather than a termination proof: each step drops one dependent generator,
-so `PZ.h` steps exhaust the set and the caller says how many to take. The
+so `pZ.h` steps exhaust the set and the caller says how many to take. The
 `O((h+q)hn + h²p)` of `[1, Thm. 2]` is a complexity claim, and belongs to a
 `Complexity/` development that does not exist here yet.
 
@@ -43,12 +43,12 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- Merge at whatever the selection names, at most `n` times. -/
 def PolyZonotope.relaxExpGreedy
-    (sel : (PZ : PolyZonotope α) →
-      Option ((d : ℕ) × (Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2)))) :
+    (sel : (pZ : PolyZonotope α) →
+      Option ((d : ℕ) × (Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)))) :
     ℕ → PolyZonotope α → PolyZonotope α
-  | 0, PZ => PZ
-  | n + 1, PZ =>
-    (sel PZ).elim PZ fun sp => PolyZonotope.relaxExpGreedy sel n (PZ.relaxExpMulti sp.2)
+  | 0, pZ => pZ
+  | n + 1, pZ =>
+    (sel pZ).elim pZ fun sp => PolyZonotope.relaxExpGreedy sel n (pZ.relaxExpMulti sp.2)
 
 end CORALean.Real
 

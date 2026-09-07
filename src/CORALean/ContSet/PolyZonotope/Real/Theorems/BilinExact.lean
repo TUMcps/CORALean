@@ -3,12 +3,12 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinPoint
 /-!
 # `bilin` is exactly the pairing over shared factors
 
-What exactness can mean here, and what it cannot: `construct (bilin f S₁ S₂)` is
-not `f '' (construct S₁ ×ˢ construct S₂)`. Both sets are functions of one shared
+What exactness can mean here, and what it cannot: `construct (bilin f pZ₁ pZ₂)` is
+not `f '' (construct pZ₁ ×ˢ construct pZ₂)`. Both sets are functions of one shared
 factor vector, so `f` at their points ranges over far fewer points than `f` over
 the two sets independently. The claim is about the evaluation map — the result is
-exactly the image of the admissible factors under `a ↦ f (point S₁ a) (point S₂ a)`,
-with `S₂` read at the same factors through `Fin.cast`.
+exactly the image of the admissible factors under `a ↦ f (point pZ₁ a) (point pZ₂ a)`,
+with `pZ₂` read at the same factors through `Fin.cast`.
 
 `bilin_point` gives that fact directly, `bilin`'s own point unfolding to the sum
 this file reads it back through.
@@ -35,19 +35,19 @@ variable {α β γ : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.bilin_exact (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (S₁ : PolyZonotope α)
-    (S₂ : PolyZonotope β) (hp : S₁.p = S₂.p) :
-    (fun a : Fin S₁.p → ℝ => f (S₁.point a) (S₂.point fun k => a (Fin.cast hp.symm k)))
+theorem PolyZonotope.bilin_exact (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (pZ₁ : PolyZonotope α)
+    (pZ₂ : PolyZonotope β) (hp : pZ₁.p = pZ₂.p) :
+    (fun a : Fin pZ₁.p → ℝ => f (pZ₁.point a) (pZ₂.point fun k => a (Fin.cast hp.symm k)))
         '' {a | ∀ k, |a k| ≤ 1}
-      = (S₁.bilin f S₂ hp).construct := by -- --- PROOF ---
+      = (pZ₁.bilin f pZ₂ hp).construct := by -- --- PROOF ---
   -- the result has an empty independent block, so a point of it is the sum alone
-  have hpt : ∀ (a : Fin S₁.p → ℝ) (b : Fin 0 → ℝ),
-      f (S₁.point a) (S₂.point fun k => a (Fin.cast hp.symm k))
-        = (0 : γ) + (∑ l, monomial (bilinE S₁ S₂ hp) a l • bilinG f S₁ S₂ l)
+  have hpt : ∀ (a : Fin pZ₁.p → ℝ) (b : Fin 0 → ℝ),
+      f (pZ₁.point a) (pZ₂.point fun k => a (Fin.cast hp.symm k))
+        = (0 : γ) + (∑ l, monomial (bilinE pZ₁ pZ₂ hp) a l • bilinG f pZ₁ pZ₂ l)
           + ∑ j : Fin 0, b j • (Fin.elim0 j : γ) := by
     intro a b
-    rw [← PolyZonotope.bilin_point f S₁ S₂ hp a]
-    show (S₁.bilin f S₂ hp).point a = (S₁.bilin f S₂ hp).point a
+    rw [← PolyZonotope.bilin_point f pZ₁ pZ₂ hp a]
+    show (pZ₁.bilin f pZ₂ hp).point a = (pZ₁.bilin f pZ₂ hp).point a
         + ∑ j : Fin 0, b j • (Fin.elim0 j : γ)
     simp only [Finset.univ_eq_empty, Finset.sum_empty, add_zero]
   apply Set.eq_of_subset_of_subset

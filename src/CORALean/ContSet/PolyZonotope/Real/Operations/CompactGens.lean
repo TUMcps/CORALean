@@ -26,15 +26,15 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- Equal exponent columns added together, and the zero generators gone. The
 factors are untouched, so a factor vector carries over unchanged. -/
-noncomputable def PolyZonotope.compactGens (PZ : PolyZonotope α) : PolyZonotope α where
-  p := PZ.p
-  h := (PolyZonotope.compactKeep PZ.E PZ.G).card
-  q := PZ.q
-  c := PZ.c
-  G := fun j => PolyZonotope.fiberSum (PolyZonotope.rep PZ.E) PZ.G
-                  (PolyZonotope.compactIdx PZ.E PZ.G j)
-  E := fun k j => PZ.E k (PolyZonotope.compactIdx PZ.E PZ.G j)
-  GI := PZ.GI
+noncomputable def PolyZonotope.compactGens (pZ : PolyZonotope α) : PolyZonotope α where
+  p := pZ.p
+  h := (PolyZonotope.compactKeep pZ.E pZ.G).card
+  q := pZ.q
+  c := pZ.c
+  G := fun j => PolyZonotope.fiberSum (PolyZonotope.rep pZ.E) pZ.G
+                  (PolyZonotope.compactIdx pZ.E pZ.G j)
+  E := fun k j => pZ.E k (PolyZonotope.compactIdx pZ.E pZ.G j)
+  GI := pZ.GI
 
 end CORALean.Real
 

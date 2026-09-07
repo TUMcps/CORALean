@@ -29,19 +29,19 @@ variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Mod
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConPolyZono.map (f : α →ₗ[ℝ] β) (C : ConPolyZono α) : ConPolyZono β where
-  p := C.p
-  h := C.h
-  q := C.q
-  m := C.m
-  s := C.s
-  c := f C.c
-  G := fun i => f (C.G i)
-  E := C.E
-  GI := fun j => f (C.GI j)
-  A := C.A
-  b := C.b
-  EC := C.EC
+def ConPolyZono.map (f : α →ₗ[ℝ] β) (cPZ : ConPolyZono α) : ConPolyZono β where
+  p := cPZ.p
+  h := cPZ.h
+  q := cPZ.q
+  m := cPZ.m
+  s := cPZ.s
+  c := f cPZ.c
+  G := fun i => f (cPZ.G i)
+  E := cPZ.E
+  GI := fun j => f (cPZ.GI j)
+  A := cPZ.A
+  b := cPZ.b
+  EC := cPZ.EC
 
 end CORALean.Real
 

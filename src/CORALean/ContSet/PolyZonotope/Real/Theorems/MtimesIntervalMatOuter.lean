@@ -20,7 +20,7 @@ the matrices denoted do not.
 The centre part is `mtimes` exactly on every block; the leftover `(A - centre)
 x` fits in the fresh independent generators because `x`, read through the
 enclosing zonotope's coefficients (the dependent monomials appended to the
-independent ones), never exceeds `PZ.zonotope.absBound`.
+independent ones), never exceeds `pZ.zonotope.absBound`.
 -/
 
 -- Authors:       Tobias Ladner
@@ -43,17 +43,17 @@ variable {m n : ℕ}
 /-- `Fin.sum_univ_add` at this operation's independent generator count, stated
 through the projection because that is the form the goal has. -/
 theorem PolyZonotope.aux_sum_univ_mtimesIntervalMat {IM : Interval (Mat ℝ m n)}
-    {PZ : PolyZonotope (Vec ℝ n)} (f : Fin (PZ.q + m) → ℝ) :
-    ∑ j : Fin (PolyZonotope.mtimesIntervalMat IM PZ).q, f j
-      = ∑ j, f (Fin.castAdd m j) + ∑ j, f (Fin.natAdd PZ.q j) :=
+    {pZ : PolyZonotope (Vec ℝ n)} (f : Fin (pZ.q + m) → ℝ) :
+    ∑ j : Fin (PolyZonotope.mtimesIntervalMat IM pZ).q, f j
+      = ∑ j, f (Fin.castAdd m j) + ∑ j, f (Fin.natAdd pZ.q j) :=
   Fin.sum_univ_add f
 
-/-- The dependent block keeps `PZ.h` generators, but the goal still reads the
+/-- The dependent block keeps `pZ.h` generators, but the goal still reads the
 count through the operation's own projection; `rfl` is what identifies the two,
 the same gap `aux_sum_univ_mtimesIntervalMat` closes for the independent one. -/
 theorem PolyZonotope.aux_sum_univ_mtimesIntervalMat_dep {IM : Interval (Mat ℝ m n)}
-    {PZ : PolyZonotope (Vec ℝ n)} (f : Fin PZ.h → ℝ) :
-    ∑ l : Fin (PolyZonotope.mtimesIntervalMat IM PZ).h, f l = ∑ l, f l :=
+    {pZ : PolyZonotope (Vec ℝ n)} (f : Fin pZ.h → ℝ) :
+    ∑ l : Fin (PolyZonotope.mtimesIntervalMat IM pZ).h, f l = ∑ l, f l :=
   rfl
 
 
@@ -61,9 +61,9 @@ theorem PolyZonotope.aux_sum_univ_mtimesIntervalMat_dep {IM : Interval (Mat ℝ 
 
 -- the image sits in the centre's polynomial zonotope widened by what the radius can reach
 theorem PolyZonotope.mtimesIntervalMat_outer (IM : Interval (Mat ℝ m n))
-    (PZ : PolyZonotope (Vec ℝ n)) :
-    (⋃ A ∈ IM.construct, (A *ᵥ ·) '' PZ.construct)
-      ⊆ (PolyZonotope.mtimesIntervalMat IM PZ).construct := by -- --- PROOF ---
+    (pZ : PolyZonotope (Vec ℝ n)) :
+    (⋃ A ∈ IM.construct, (A *ᵥ ·) '' pZ.construct)
+      ⊆ (PolyZonotope.mtimesIntervalMat IM pZ).construct := by -- --- PROOF ---
   rintro y hy
   simp only [Set.mem_iUnion, Set.mem_image, exists_prop] at hy
   obtain ⟨A, hA, x, hxmem, rfl⟩ := hy
@@ -71,23 +71,23 @@ theorem PolyZonotope.mtimesIntervalMat_outer (IM : Interval (Mat ℝ m n))
   have hrad : ∀ i j, 0 ≤ IM.radius i j :=
     fun i j => (abs_nonneg _).trans (IM.abs_sub_center_le hA (i, j))
   -- `x` bounded through the enclosing zonotope, which never grows what a point can reach
-  obtain ⟨γ, hγ, hxz⟩ := Zonotope.mem_construct_iff.mp (PolyZonotope.zonotope_outer PZ hxmem)
+  obtain ⟨γ, hγ, hxz⟩ := Zonotope.mem_construct_iff.mp (PolyZonotope.zonotope_outer pZ hxmem)
   have hxb := fun j => Zonotope.abs_le_absBound hγ hxz j
   -- what the radius is allowed to add to coordinate `i`
   set err : Fin m → ℝ := fun i => ∑ j, (A i j - IM.center i j) * x j with herr
-  have herrb : ∀ i, |err i| ≤ PolyZonotope.radiusReach IM PZ i := by
+  have herrb : ∀ i, |err i| ≤ PolyZonotope.radiusReach IM pZ i := by
     intro i
     calc |err i|
         ≤ ∑ j, |(A i j - IM.center i j) * x j| := Finset.abs_sum_le_sum_abs _ _
       _ = ∑ j, |A i j - IM.center i j| * |x j| := by simp_rw [abs_mul]
-      _ ≤ ∑ j, IM.radius i j * PZ.zonotope.absBound j := Finset.sum_le_sum fun j _ =>
+      _ ≤ ∑ j, IM.radius i j * pZ.zonotope.absBound j := Finset.sum_le_sum fun j _ =>
           mul_le_mul (IM.abs_sub_center_le hA (i, j)) (hxb j) (abs_nonneg _) (hrad i j)
-      _ = PolyZonotope.radiusReach IM PZ i := rfl
-  have hreachnn : ∀ i, 0 ≤ PolyZonotope.radiusReach IM PZ i :=
+      _ = PolyZonotope.radiusReach IM pZ i := rfl
+  have hreachnn : ∀ i, 0 ≤ PolyZonotope.radiusReach IM pZ i :=
     fun i => (abs_nonneg _).trans (herrb i)
   -- the witness: the old factors and coefficients, plus one per coordinate scaled to that reach
   refine PolyZonotope.mem_construct_iff.mpr
-    ⟨a, Fin.append β (fun i => Zonotope.coefficient (PolyZonotope.radiusReach IM PZ i) (err i)),
+    ⟨a, Fin.append β (fun i => Zonotope.coefficient (PolyZonotope.radiusReach IM pZ i) (err i)),
     ha, ?_, fun i => ?_⟩
   · refine Fin.addCases (fun l => ?_) (fun i => ?_)
     · simpa using hβ l
@@ -98,13 +98,13 @@ theorem PolyZonotope.mtimesIntervalMat_outer (IM : Interval (Mat ℝ m n))
     simp only [PolyZonotope.mtimesIntervalMat, Fin.append_left, Fin.append_right]
     rw [Zonotope.sum_diagonal_mul', Zonotope.mul_coefficient (herrb i)]
     -- centre acts exactly on the dependent block and on the old independent one
-    have hcentreG : ∑ l, (IM.center *ᵥ PZ.G l) i * PolyZonotope.monomial PZ.E a l
-        = ∑ j, IM.center i j * (∑ l, PZ.G l j * PolyZonotope.monomial PZ.E a l) := by
+    have hcentreG : ∑ l, (IM.center *ᵥ pZ.G l) i * PolyZonotope.monomial pZ.E a l
+        = ∑ j, IM.center i j * (∑ l, pZ.G l j * PolyZonotope.monomial pZ.E a l) := by
       simp_rw [Matrix.mulVec, dotProduct, Finset.sum_mul, Finset.mul_sum]
       rw [Finset.sum_comm]
       simp_rw [mul_assoc]
-    have hcentreGI : ∑ k, (IM.center *ᵥ PZ.GI k) i * β k
-        = ∑ j, IM.center i j * (∑ k, PZ.GI k j * β k) := by
+    have hcentreGI : ∑ k, (IM.center *ᵥ pZ.GI k) i * β k
+        = ∑ j, IM.center i j * (∑ k, pZ.GI k j * β k) := by
       simp_rw [Matrix.mulVec, dotProduct, Finset.sum_mul, Finset.mul_sum]
       rw [Finset.sum_comm]
       simp_rw [mul_assoc]
@@ -115,9 +115,9 @@ theorem PolyZonotope.mtimesIntervalMat_outer (IM : Interval (Mat ℝ m n))
       rw [← Finset.sum_add_distrib]
       exact Finset.sum_congr rfl fun j _ => by ring
     have hcx : ∑ j, IM.center i j * x j
-        = (IM.center *ᵥ PZ.c) i
-          + ∑ j, IM.center i j * (∑ l, PZ.G l j * PolyZonotope.monomial PZ.E a l)
-          + ∑ j, IM.center i j * (∑ k, PZ.GI k j * β k) := by
+        = (IM.center *ᵥ pZ.c) i
+          + ∑ j, IM.center i j * (∑ l, pZ.G l j * PolyZonotope.monomial pZ.E a l)
+          + ∑ j, IM.center i j * (∑ k, pZ.GI k j * β k) := by
       simp only [Matrix.mulVec, dotProduct]
       rw [← Finset.sum_add_distrib, ← Finset.sum_add_distrib]
       exact Finset.sum_congr rfl fun j _ => by rw [hx j]; ring

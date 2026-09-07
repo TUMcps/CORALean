@@ -50,9 +50,9 @@ structure ConZonotope (α : Type) where
   /-- What the coefficients must satisfy beyond `|βⱼ| ≤ 1`. -/
   P : HPolytope (Vec ℝ h)
 
-def ConZonotope.construct (C : ConZonotope α) : Set α :=
-  {x | ∃ β : Fin C.h → ℝ, (∀ j, |β j| ≤ 1) ∧ β ∈ C.P.construct
-        ∧ x = C.c + ∑ j, β j • C.G j}
+def ConZonotope.construct (cZ : ConZonotope α) : Set α :=
+  {x | ∃ β : Fin cZ.h → ℝ, (∀ j, |β j| ≤ 1) ∧ β ∈ cZ.P.construct
+        ∧ x = cZ.c + ∑ j, β j • cZ.G j}
 
 end CORALean.Real
 

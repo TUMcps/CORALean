@@ -23,14 +23,14 @@ variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Mod
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.map_p (f : α →ₗ[ℝ] β) (PZ : PolyZonotope α) :
-    (PolyZonotope.map f PZ).p = PZ.p := rfl
+theorem PolyZonotope.map_p (f : α →ₗ[ℝ] β) (pZ : PolyZonotope α) :
+    (PolyZonotope.map f pZ).p = pZ.p := rfl
 
-theorem PolyZonotope.map_h (f : α →ₗ[ℝ] β) (PZ : PolyZonotope α) :
-    (PolyZonotope.map f PZ).h = PZ.h := rfl
+theorem PolyZonotope.map_h (f : α →ₗ[ℝ] β) (pZ : PolyZonotope α) :
+    (PolyZonotope.map f pZ).h = pZ.h := rfl
 
-theorem PolyZonotope.map_q (f : α →ₗ[ℝ] β) (PZ : PolyZonotope α) :
-    (PolyZonotope.map f PZ).q = PZ.q := rfl
+theorem PolyZonotope.map_q (f : α →ₗ[ℝ] β) (pZ : PolyZonotope α) :
+    (PolyZonotope.map f pZ).q = pZ.q := rfl
 
 end CORALean.Real
 

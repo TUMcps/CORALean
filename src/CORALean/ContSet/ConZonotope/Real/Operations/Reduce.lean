@@ -29,9 +29,9 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def ConZonotope.reduce (C : ConZonotope (Vec ℝ n)) (o : ℕ) :
+noncomputable def ConZonotope.reduce (cZ : ConZonotope (Vec ℝ n)) (o : ℕ) :
     ConZonotope (Vec ℝ n) :=
-  if o * n < C.h then (C.zonotope.reduce o).conZonotope else C
+  if o * n < cZ.h then (cZ.zonotope.reduce o).conZonotope else cZ
 
 end CORALean.Real
 

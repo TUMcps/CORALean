@@ -28,9 +28,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 /-- `b` widened by what a merged row can be off by. Every constraint monomial is
 in `[-1,1]`, so a row's whole error is one `radius` of its gaps, and rounding it
 outward on both sides is what keeps the constraint admitting what it did. -/
-def ConPolyZono.compactConsB (C : ConPolyZono 𝕋 n) : Interval 𝕋 C.m :=
-  ⟨fun i => subDown (C.b.inf i) (radius (ConPolyZono.compactConsGap C) i),
-    fun i => addUp (C.b.sup i) (radius (ConPolyZono.compactConsGap C) i)⟩
+def ConPolyZono.compactConsB (cPZ : ConPolyZono 𝕋 n) : Interval 𝕋 cPZ.m :=
+  ⟨fun i => subDown (cPZ.b.inf i) (radius (ConPolyZono.compactConsGap cPZ) i),
+    fun i => addUp (cPZ.b.sup i) (radius (ConPolyZono.compactConsGap cPZ) i)⟩
 
 end CORALean.Float
 

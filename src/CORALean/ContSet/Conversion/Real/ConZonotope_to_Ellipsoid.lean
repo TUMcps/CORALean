@@ -24,15 +24,15 @@ namespace CORALean.Real
 
 variable {n : ℕ}
 
-noncomputable def ConZonotope.ellipsoid (C : ConZonotope (Vec ℝ n)) : Ellipsoid n :=
-  C.zonotope.ellipsoid
+noncomputable def ConZonotope.ellipsoid (cZ : ConZonotope (Vec ℝ n)) : Ellipsoid n :=
+  cZ.zonotope.ellipsoid
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.ellipsoid_outer (C : ConZonotope (Vec ℝ n)) :
-    C.construct ⊆ C.ellipsoid.construct :=
-  subset_trans C.zonotope_outer (Zonotope.ellipsoid_outer _)
+theorem ConZonotope.ellipsoid_outer (cZ : ConZonotope (Vec ℝ n)) :
+    cZ.construct ⊆ cZ.ellipsoid.construct :=
+  subset_trans cZ.zonotope_outer (Zonotope.ellipsoid_outer _)
 
 end CORALean.Real
 

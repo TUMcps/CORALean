@@ -25,9 +25,9 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {d : ℕ}
 
 /-- `ξ_E`: how far the two monomials can drift apart, read at the one index
 where their exponent columns may differ. -/
-def PolyZonotope.relaxWidth (PZ : PolyZonotope α)
-    (part : Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin PZ.p) : ℕ :=
-  PolyZonotope.eDiff (PZ.E k₀ (part.right 0)) (PZ.E k₀ (part.right 1))
+def PolyZonotope.relaxWidth (pZ : PolyZonotope α)
+    (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) : ℕ :=
+  PolyZonotope.eDiff (pZ.E k₀ (part.right 0)) (pZ.E k₀ (part.right 1))
 
 end CORALean.Real
 

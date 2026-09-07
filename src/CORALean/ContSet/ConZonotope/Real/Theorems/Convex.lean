@@ -26,8 +26,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.convex_construct (C : ConZonotope α) :
-    Convex ℝ C.construct := by -- --- PROOF ---
+theorem ConZonotope.convex_construct (cZ : ConZonotope α) :
+    Convex ℝ cZ.construct := by -- --- PROOF ---
   rintro x ⟨β₁, hβ₁, hP₁, rfl⟩ y ⟨β₂, hβ₂, hP₂, rfl⟩ s t hs ht hst
   have hbox : ∀ j, |s * β₁ j + t * β₂ j| ≤ 1 := by
     intro j
@@ -43,17 +43,17 @@ theorem ConZonotope.convex_construct (C : ConZonotope α) :
       _ ≤ s + t := add_le_add h1 h2
       _ = 1 := hst
   -- the constraints are a polytope, and a polytope is convex
-  have hP : s • β₁ + t • β₂ ∈ C.P.construct :=
-    HPolytope.convex_construct C.P hP₁ hP₂ hs ht hst
-  have hval : ∑ j, (s * β₁ j + t * β₂ j) • C.G j
-      = s • (∑ j, β₁ j • C.G j) + t • ∑ j, β₂ j • C.G j := by
+  have hP : s • β₁ + t • β₂ ∈ cZ.P.construct :=
+    HPolytope.convex_construct cZ.P hP₁ hP₂ hs ht hst
+  have hval : ∑ j, (s * β₁ j + t * β₂ j) • cZ.G j
+      = s • (∑ j, β₁ j • cZ.G j) + t • ∑ j, β₂ j • cZ.G j := by
     rw [Finset.smul_sum, Finset.smul_sum, ← Finset.sum_add_distrib]
     exact Finset.sum_congr rfl fun j _ => by rw [add_smul, smul_smul, smul_smul]
   refine ⟨fun j => s * β₁ j + t * β₂ j, hbox, hP, ?_⟩
-  calc s • (C.c + ∑ j, β₁ j • C.G j) + t • (C.c + ∑ j, β₂ j • C.G j)
-      = (s + t) • C.c + (s • (∑ j, β₁ j • C.G j) + t • ∑ j, β₂ j • C.G j) := by
+  calc s • (cZ.c + ∑ j, β₁ j • cZ.G j) + t • (cZ.c + ∑ j, β₂ j • cZ.G j)
+      = (s + t) • cZ.c + (s • (∑ j, β₁ j • cZ.G j) + t • ∑ j, β₂ j • cZ.G j) := by
         rw [smul_add, smul_add, add_smul]; abel
-    _ = C.c + ∑ j, (s * β₁ j + t * β₂ j) • C.G j := by rw [hst, one_smul, hval]
+    _ = cZ.c + ∑ j, (s * β₁ j + t * β₂ j) • cZ.G j := by rw [hst, one_smul, hval]
 
 end CORALean.Real
 

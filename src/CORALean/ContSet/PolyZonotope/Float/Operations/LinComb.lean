@@ -46,22 +46,22 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.linComb (PZ₁ PZ₂ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 n where
-  p := PZ₁.p + PZ₂.p + 1
-  h := PZ₁.h + PZ₂.h + (PZ₁.h + PZ₂.h + 1)
-  q := PZ₁.q + PZ₂.q
-  c := PolyZonotope.midpoint PZ₁.c PZ₂.c
+def PolyZonotope.linComb (pZ₁ pZ₂ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 n where
+  p := pZ₁.p + pZ₂.p + 1
+  h := pZ₁.h + pZ₂.h + (pZ₁.h + pZ₂.h + 1)
+  q := pZ₁.q + pZ₂.q
+  c := PolyZonotope.midpoint pZ₁.c pZ₂.c
   G := fun i => Fin.append
-        (Fin.append (fun l => half (PZ₁.G i l)) (fun l => half (PZ₂.G i l)))
+        (Fin.append (fun l => half (pZ₁.G i l)) (fun l => half (pZ₂.G i l)))
         (Fin.append
-          (Fin.append (fun l => half (PZ₁.G i l)) (fun l => neg (half (PZ₂.G i l))))
-          (fun _ : Fin 1 => PolyZonotope.halfDiff PZ₁.c PZ₂.c i))
-  E := Real.PolyZonotope.linCombE PZ₁.E PZ₂.E
-  GI := PolyZonotope.linCombGI addDown subDown PZ₁ PZ₂
-  err := (PZ₁.err.linComb PZ₂.err).plus
-    ((PolyZonotope.midpointResidual PZ₁.c PZ₂.c).plus
-      ((PolyZonotope.halfDiffError PZ₁.c PZ₂.c).plus
-        (Zonotope.generatorError (PolyZonotope.linCombGIDiff PZ₁ PZ₂))))
+          (Fin.append (fun l => half (pZ₁.G i l)) (fun l => neg (half (pZ₂.G i l))))
+          (fun _ : Fin 1 => PolyZonotope.halfDiff pZ₁.c pZ₂.c i))
+  E := Real.PolyZonotope.linCombE pZ₁.E pZ₂.E
+  GI := PolyZonotope.linCombGI addDown subDown pZ₁ pZ₂
+  err := (pZ₁.err.linComb pZ₂.err).plus
+    ((PolyZonotope.midpointResidual pZ₁.c pZ₂.c).plus
+      ((PolyZonotope.halfDiffError pZ₁.c pZ₂.c).plus
+        (Zonotope.generatorError (PolyZonotope.linCombGIDiff pZ₁ pZ₂))))
 
 end CORALean.Float
 

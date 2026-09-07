@@ -26,13 +26,13 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.and_h (C₁ C₂ : ConZonotope (Vec ℝ n)) : (C₁.and C₂).h = C₁.h + C₂.h := rfl
+theorem ConZonotope.and_h (cZ₁ cZ₂ : ConZonotope (Vec ℝ n)) : (cZ₁.and cZ₂).h = cZ₁.h + cZ₂.h := rfl
 
-theorem ConZonotope.and_P_m (C₁ C₂ : ConZonotope (Vec ℝ n)) :
-    (C₁.and C₂).P.m = C₁.P.m + C₂.P.m := rfl
+theorem ConZonotope.and_P_m (cZ₁ cZ₂ : ConZonotope (Vec ℝ n)) :
+    (cZ₁.and cZ₂).P.m = cZ₁.P.m + cZ₂.P.m := rfl
 
-theorem ConZonotope.and_P_me (C₁ C₂ : ConZonotope (Vec ℝ n)) :
-    (C₁.and C₂).P.me = C₁.P.me + C₂.P.me + n := rfl
+theorem ConZonotope.and_P_me (cZ₁ cZ₂ : ConZonotope (Vec ℝ n)) :
+    (cZ₁.and cZ₂).P.me = cZ₁.P.me + cZ₂.P.me + n := rfl
 
 end CORALean.Real
 

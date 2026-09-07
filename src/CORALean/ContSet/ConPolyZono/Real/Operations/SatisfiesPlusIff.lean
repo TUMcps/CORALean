@@ -22,12 +22,12 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 omit [Module ℝ α] in
 /-- The same at a sum, where the two systems are the two sets'. -/
-theorem ConPolyZono.satisfies_plus_iff (C₁ C₂ : ConPolyZono α)
-    (a : Fin (C₁.p + C₂.p) → ℝ) :
-    (C₁.plus C₂).satisfies a ↔
-      C₁.satisfies (fun k => a (Fin.castAdd C₂.p k))
-        ∧ C₂.satisfies (fun k => a (Fin.natAdd C₁.p k)) :=
-  ConPolyZono.holds_plus_iff C₁.A C₁.b C₁.EC C₂.A C₂.b C₂.EC a
+theorem ConPolyZono.satisfies_plus_iff (cPZ₁ cPZ₂ : ConPolyZono α)
+    (a : Fin (cPZ₁.p + cPZ₂.p) → ℝ) :
+    (cPZ₁.plus cPZ₂).satisfies a ↔
+      cPZ₁.satisfies (fun k => a (Fin.castAdd cPZ₂.p k))
+        ∧ cPZ₂.satisfies (fun k => a (Fin.natAdd cPZ₁.p k)) :=
+  ConPolyZono.holds_plus_iff cPZ₁.A cPZ₁.b cPZ₁.EC cPZ₂.A cPZ₂.b cPZ₂.EC a
 
 end CORALean.Real
 

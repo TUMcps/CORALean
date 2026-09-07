@@ -17,8 +17,8 @@ say the nominal points agree only to within
 each end rounded away from the other, so the rounding of `c₂ − c₁` costs nothing
 extra: it goes into an interval that had to be widened anyway.
 
-The result keeps `C₁`'s error box and only `C₁`'s generator block: the point it
-denotes is `y₁ + e₁`, and `C₂` enters through the constraint system alone, its
+The result keeps `cPZ₁`'s error box and only `cPZ₁`'s generator block: the point it
+denotes is `y₁ + e₁`, and `cPZ₂` enters through the constraint system alone, its
 generator columns kept at `zero` so the agreement rows can read the second point.
 -/
 
@@ -37,8 +37,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConPolyZono.and (C₁ C₂ : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n :=
-  ConPolyZono.andDep C₁.dependent C₂.dependent
+def ConPolyZono.and (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n :=
+  ConPolyZono.andDep cPZ₁.dependent cPZ₂.dependent
 
 end CORALean.Float
 

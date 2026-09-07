@@ -36,11 +36,11 @@ variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Mod
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `map`'s subset at `B` is `f`'s image of the original subset at `B`. -/
-theorem PolyZonotope.map_subsetAt (f : α →ₗ[ℝ] β) (S : PolyZonotope α)
-    (B : Set (Fin S.p → ℝ)) : (S.map f).subsetAt B = f '' S.subsetAt B := by
-  show (S.map f).point '' B = f '' (S.point '' B)
+theorem PolyZonotope.map_subsetAt (f : α →ₗ[ℝ] β) (pZ : PolyZonotope α)
+    (B : Set (Fin pZ.p → ℝ)) : (pZ.map f).subsetAt B = f '' pZ.subsetAt B := by
+  show (pZ.map f).point '' B = f '' (pZ.point '' B)
   rw [← Set.image_comp]
-  exact Set.image_congr fun a _ => PolyZonotope.map_point f S a
+  exact Set.image_congr fun a _ => PolyZonotope.map_point f pZ a
 
 end CORALean.Real
 

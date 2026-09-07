@@ -33,12 +33,12 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConZonotope.and (C₁ C₂ : ConZonotope (Vec ℝ n)) : ConZonotope (Vec ℝ n) where
-  h := C₁.h + C₂.h
-  c := C₁.c
-  G := Fin.append C₁.G 0
-  P := ((C₁.P.comap (blockLeft C₁.h C₂.h)).and (C₂.P.comap (blockRight C₁.h C₂.h))).and
-        (HPolytope.eqs (ConZonotope.agreeMat C₁ C₂) fun i => C₂.c i - C₁.c i)
+def ConZonotope.and (cZ₁ cZ₂ : ConZonotope (Vec ℝ n)) : ConZonotope (Vec ℝ n) where
+  h := cZ₁.h + cZ₂.h
+  c := cZ₁.c
+  G := Fin.append cZ₁.G 0
+  P := ((cZ₁.P.comap (blockLeft cZ₁.h cZ₂.h)).and (cZ₂.P.comap (blockRight cZ₁.h cZ₂.h))).and
+        (HPolytope.eqs (ConZonotope.agreeMat cZ₁ cZ₂) fun i => cZ₂.c i - cZ₁.c i)
 
 end CORALean.Real
 

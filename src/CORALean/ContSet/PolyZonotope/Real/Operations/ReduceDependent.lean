@@ -25,9 +25,9 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def PolyZonotope.reduceDependent (PZ : PolyZonotope (Vec ℝ n)) (o : ℕ) :
+noncomputable def PolyZonotope.reduceDependent (pZ : PolyZonotope (Vec ℝ n)) (o : ℕ) :
     PolyZonotope (Vec ℝ n) :=
-  PZ.compact.reduceGirardDependent o
+  pZ.compact.reduceGirardDependent o
 
 end CORALean.Real
 

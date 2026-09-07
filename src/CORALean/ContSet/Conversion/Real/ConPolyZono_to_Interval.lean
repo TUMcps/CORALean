@@ -27,15 +27,15 @@ namespace CORALean.Real
 
 variable {n : ℕ}
 
-def ConPolyZono.interval (C : ConPolyZono (Vec ℝ n)) : Interval (Vec ℝ n) :=
-  C.polyZonotope.interval
+def ConPolyZono.interval (cPZ : ConPolyZono (Vec ℝ n)) : Interval (Vec ℝ n) :=
+  cPZ.polyZonotope.interval
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.interval_outer (C : ConPolyZono (Vec ℝ n)) :
-    C.construct ⊆ C.interval.construct :=
-  subset_trans C.polyZonotope_outer (PolyZonotope.interval_outer _)
+theorem ConPolyZono.interval_outer (cPZ : ConPolyZono (Vec ℝ n)) :
+    cPZ.construct ⊆ cPZ.interval.construct :=
+  subset_trans cPZ.polyZonotope_outer (PolyZonotope.interval_outer _)
 
 end CORALean.Real
 

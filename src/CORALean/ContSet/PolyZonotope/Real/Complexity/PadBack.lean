@@ -24,16 +24,16 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 omit [AddCommGroup α] [Module ℝ α] in
-theorem PolyZonotope.padBack_p (r : ℕ) (S : PolyZonotope α) :
-    (PolyZonotope.padBack r S).p = S.p + r := rfl
+theorem PolyZonotope.padBack_p (r : ℕ) (pZ : PolyZonotope α) :
+    (PolyZonotope.padBack r pZ).p = pZ.p + r := rfl
 
 omit [AddCommGroup α] [Module ℝ α] in
-theorem PolyZonotope.padBack_h (r : ℕ) (S : PolyZonotope α) :
-    (PolyZonotope.padBack r S).h = S.h := rfl
+theorem PolyZonotope.padBack_h (r : ℕ) (pZ : PolyZonotope α) :
+    (PolyZonotope.padBack r pZ).h = pZ.h := rfl
 
 omit [AddCommGroup α] [Module ℝ α] in
-theorem PolyZonotope.padBack_q (r : ℕ) (S : PolyZonotope α) :
-    (PolyZonotope.padBack r S).q = S.q := rfl
+theorem PolyZonotope.padBack_q (r : ℕ) (pZ : PolyZonotope α) :
+    (PolyZonotope.padBack r pZ).q = pZ.q := rfl
 
 end CORALean.Real
 

@@ -28,9 +28,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 /-- The agreement rows' right-hand interval, and the only thing `and` computes:
 the difference of the two centres, widened by how far the two error boxes let
 the nominal points stand apart, each end rounded outward. -/
-def ConPolyZono.andAgree (C₁ C₂ : ConPolyZono 𝕋 n) : Interval 𝕋 n :=
-  ⟨fun i => addDown (subDown (C₂.c i) (C₁.c i)) (subDown (C₂.err.inf i) (C₁.err.sup i)),
-   fun i => addUp (subUp (C₂.c i) (C₁.c i)) (subUp (C₂.err.sup i) (C₁.err.inf i))⟩
+def ConPolyZono.andAgree (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) : Interval 𝕋 n :=
+  ⟨fun i => addDown (subDown (cPZ₂.c i) (cPZ₁.c i)) (subDown (cPZ₂.err.inf i) (cPZ₁.err.sup i)),
+   fun i => addUp (subUp (cPZ₂.c i) (cPZ₁.c i)) (subUp (cPZ₂.err.sup i) (cPZ₁.err.inf i))⟩
 
 end CORALean.Float
 

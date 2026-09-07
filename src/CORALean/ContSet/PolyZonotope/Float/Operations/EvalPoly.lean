@@ -7,9 +7,9 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPoly
 The exact layer's Horner step, `mul` then a centre shift, rounded exactly as
 `mul`/`plus` round it — except one thing neither of those owes on its own:
 `R`, here, is itself only known to within its own error box, not exact, so
-multiplying it by `S` also multiplies that uncertainty by however large `S` can
-be. `evalPolyBoundS` bounds `|nominal S|` entrywise, and the extra box
-`errorBound R.err * evalPolyBoundS S` is what a plain `mul` call would drop.
+multiplying it by `pZ` also multiplies that uncertainty by however large `pZ` can
+be. `evalPolyBoundS` bounds `|nominal pZ|` entrywise, and the extra box
+`errorBound R.err * evalPolyBoundS pZ` is what a plain `mul` call would drop.
 
 `c` rounds down, matching `plus`'s own centre; `mul`'s box and this one and the
 centre's residual all add through `Interval.plus`, never combined into fewer
@@ -36,8 +36,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Horner's rule, coordinatewise, coefficients lowest degree first, rounded. -/
-def PolyZonotope.evalPoly (S : PolyZonotope 𝕋 n) (coeffs : List (Vec 𝕋 n)) :
-    PolyZonotope 𝕋 n := (PolyZonotope.evalPolyP S coeffs).1
+def PolyZonotope.evalPoly (pZ : PolyZonotope 𝕋 n) (coeffs : List (Vec 𝕋 n)) :
+    PolyZonotope 𝕋 n := (PolyZonotope.evalPolyP pZ coeffs).1
 
 end CORALean.Float
 

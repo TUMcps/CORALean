@@ -48,10 +48,10 @@ noncomputable def ConZonotope.aux_linCombCoeff {h₁ h₂ : ℕ} (β₁ : Vec �
   Fin.append (Fin.append (lam • β₁) ((1 - lam) • β₂)) fun _ : Fin 1 => 2 * lam - 1
 
 /-- The generator row `linComb` would store if nothing rounded. -/
-noncomputable def ConZonotope.aux_linCombGReal (C₁ C₂ : ConZonotope 𝕋 n) (i : Fin n) :
-    Fin (C₁.h + C₂.h + 1) → ℝ :=
-  Fin.append (Fin.append (fun j => toReal (C₁.G i j)) fun j => toReal (C₂.G i j))
-    fun _ : Fin 1 => (toReal (C₁.c i) - toReal (C₂.c i)) / 2
+noncomputable def ConZonotope.aux_linCombGReal (cZ₁ cZ₂ : ConZonotope 𝕋 n) (i : Fin n) :
+    Fin (cZ₁.h + cZ₂.h + 1) → ℝ :=
+  Fin.append (Fin.append (fun j => toReal (cZ₁.G i j)) fun j => toReal (cZ₂.G i j))
+    fun _ : Fin 1 => (toReal (cZ₁.c i) - toReal (cZ₂.c i)) / 2
 
 /-- Every weighted coefficient is admissible, the fresh one because `2λ - 1` is
 in `[-1, 1]`. -/
@@ -74,13 +74,13 @@ theorem ConZonotope.aux_abs_linCombCoeff {h₁ h₂ : ℕ} {β₁ : Vec ℝ h₁
 
 /-- Each block answers to its own constraints, and to its own unit box, at the
 weight the trailing coefficient names. -/
-theorem ConZonotope.aux_mem_linComb_P (C₁ C₂ : ConZonotope 𝕋 n) {β₁ : Vec ℝ C₁.h}
-    {β₂ : Vec ℝ C₂.h} {lam : ℝ} (hβ₁ : ∀ j, |β₁ j| ≤ 1) (hP₁ : β₁ ∈ C₁.P.construct)
-    (hβ₂ : ∀ j, |β₂ j| ≤ 1) (hP₂ : β₂ ∈ C₂.P.construct) (hl0 : 0 ≤ lam) (hl1 : lam ≤ 1) :
-    ConZonotope.aux_linCombCoeff β₁ β₂ lam ∈ (C₁.linComb C₂).P.construct := by -- --- PROOF ---
-  have hd₁ : β₁ ∈ (C₁.P.and (HPolytope.unitBox 𝕋 C₁.h)).construct :=
+theorem ConZonotope.aux_mem_linComb_P (cZ₁ cZ₂ : ConZonotope 𝕋 n) {β₁ : Vec ℝ cZ₁.h}
+    {β₂ : Vec ℝ cZ₂.h} {lam : ℝ} (hβ₁ : ∀ j, |β₁ j| ≤ 1) (hP₁ : β₁ ∈ cZ₁.P.construct)
+    (hβ₂ : ∀ j, |β₂ j| ≤ 1) (hP₂ : β₂ ∈ cZ₂.P.construct) (hl0 : 0 ≤ lam) (hl1 : lam ≤ 1) :
+    ConZonotope.aux_linCombCoeff β₁ β₂ lam ∈ (cZ₁.linComb cZ₂).P.construct := by -- --- PROOF ---
+  have hd₁ : β₁ ∈ (cZ₁.P.and (HPolytope.unitBox 𝕋 cZ₁.h)).construct :=
     HPolytope.mem_and_iff.mpr ⟨hP₁, HPolytope.mem_unitBox_iff.mpr hβ₁⟩
-  have hd₂ : β₂ ∈ (C₂.P.and (HPolytope.unitBox 𝕋 C₂.h)).construct :=
+  have hd₂ : β₂ ∈ (cZ₂.P.and (HPolytope.unitBox 𝕋 cZ₂.h)).construct :=
     HPolytope.mem_and_iff.mpr ⟨hP₂, HPolytope.mem_unitBox_iff.mpr hβ₂⟩
   refine HPolytope.mem_and_iff.mpr
     ⟨HPolytope.smul_mem_halfScaledLeft (by ring) hl0 hd₁,
@@ -88,10 +88,10 @@ theorem ConZonotope.aux_mem_linComb_P (C₁ C₂ : ConZonotope 𝕋 n) {β₁ : 
 
 /-- What the stored generators are wrong by, entrywise: nothing on the copied
 blocks, and on the centre generator the gap `linCombGDiff` records. -/
-theorem ConZonotope.aux_linCombG_error (C₁ C₂ : ConZonotope 𝕋 n) (i : Fin n)
-    (j : Fin (C₁.h + C₂.h + 1)) :
-    |ConZonotope.aux_linCombGReal C₁ C₂ i j - toReal ((C₁.linComb C₂).G i j)|
-      ≤ toReal (ConZonotope.linCombGDiff C₁ C₂ i j) := by -- --- PROOF ---
+theorem ConZonotope.aux_linCombG_error (cZ₁ cZ₂ : ConZonotope 𝕋 n) (i : Fin n)
+    (j : Fin (cZ₁.h + cZ₂.h + 1)) :
+    |ConZonotope.aux_linCombGReal cZ₁ cZ₂ i j - toReal ((cZ₁.linComb cZ₂).G i j)|
+      ≤ toReal (ConZonotope.linCombGDiff cZ₁ cZ₂ i j) := by -- --- PROOF ---
   simp only [ConZonotope.aux_linCombGReal, ConZonotope.linCombGDiff, ConZonotope.linComb]
   refine Fin.addCases ?_ ?_ j
   · refine Fin.addCases ?_ ?_
@@ -105,27 +105,28 @@ theorem ConZonotope.aux_linCombG_error (C₁ C₂ : ConZonotope 𝕋 n) (i : Fin
   · intro _
     simp only [Fin.append_right]
     rw [toReal_half, abs_le]
-    have hlo := subDown_le_sub (C₁.c i) (C₂.c i)
-    have hhi := sub_le_subUp (C₁.c i) (C₂.c i)
-    have hgap := sub_le_subUp (half (subUp (C₁.c i) (C₂.c i))) (half (subDown (C₁.c i) (C₂.c i)))
+    have hlo := subDown_le_sub (cZ₁.c i) (cZ₂.c i)
+    have hhi := sub_le_subUp (cZ₁.c i) (cZ₂.c i)
+    have hgap := sub_le_subUp (half (subUp (cZ₁.c i) (cZ₂.c i)))
+      (half (subDown (cZ₁.c i) (cZ₂.c i)))
     rw [toReal_half, toReal_half] at hgap
     constructor <;> linarith
 
 /-- One row of the exact generators against the coefficients the segment
 supplies. -/
-theorem ConZonotope.aux_linComb_row (C₁ C₂ : ConZonotope 𝕋 n) (i : Fin n) (β₁ : Vec ℝ C₁.h)
-    (β₂ : Vec ℝ C₂.h) (lam : ℝ) :
-    (∑ j, ConZonotope.aux_linCombGReal C₁ C₂ i j * ConZonotope.aux_linCombCoeff β₁ β₂ lam j)
-      = lam * (∑ j, toReal (C₁.G i j) * β₁ j) + (1 - lam) * (∑ j, toReal (C₂.G i j) * β₂ j)
-        + (2 * lam - 1) * ((toReal (C₁.c i) - toReal (C₂.c i)) / 2) := by -- --- PROOF ---
+theorem ConZonotope.aux_linComb_row (cZ₁ cZ₂ : ConZonotope 𝕋 n) (i : Fin n) (β₁ : Vec ℝ cZ₁.h)
+    (β₂ : Vec ℝ cZ₂.h) (lam : ℝ) :
+    (∑ j, ConZonotope.aux_linCombGReal cZ₁ cZ₂ i j * ConZonotope.aux_linCombCoeff β₁ β₂ lam j)
+      = lam * (∑ j, toReal (cZ₁.G i j) * β₁ j) + (1 - lam) * (∑ j, toReal (cZ₂.G i j) * β₂ j)
+        + (2 * lam - 1) * ((toReal (cZ₁.c i) - toReal (cZ₂.c i)) / 2) := by -- --- PROOF ---
   rw [Fin.sum_univ_add, Fin.sum_univ_add, Fin.sum_univ_one]
   simp only [ConZonotope.aux_linCombGReal, ConZonotope.aux_linCombCoeff, Fin.append_left,
     Fin.append_right, Pi.smul_apply, smul_eq_mul]
-  have e₁ : (∑ j, toReal (C₁.G i j) * (lam * β₁ j)) = lam * ∑ j, toReal (C₁.G i j) * β₁ j := by
+  have e₁ : (∑ j, toReal (cZ₁.G i j) * (lam * β₁ j)) = lam * ∑ j, toReal (cZ₁.G i j) * β₁ j := by
     rw [Finset.mul_sum]
     exact Finset.sum_congr rfl fun j _ => by ring
-  have e₂ : (∑ j, toReal (C₂.G i j) * ((1 - lam) * β₂ j))
-      = (1 - lam) * ∑ j, toReal (C₂.G i j) * β₂ j := by
+  have e₂ : (∑ j, toReal (cZ₂.G i j) * ((1 - lam) * β₂ j))
+      = (1 - lam) * ∑ j, toReal (cZ₂.G i j) * β₂ j := by
     rw [Finset.mul_sum]
     exact Finset.sum_congr rfl fun j _ => by ring
   rw [e₁, e₂]
@@ -133,57 +134,57 @@ theorem ConZonotope.aux_linComb_row (C₁ C₂ : ConZonotope 𝕋 n) (i : Fin n)
 
 /-- The nominal part spills only by what the centre and the centre generator
 rounded. -/
-theorem ConZonotope.aux_linComb_nominal (C₁ C₂ : ConZonotope 𝕋 n) :
-    segments (nominalSet C₁) (nominalSet C₂) ⊆
-      nominalSet (C₁.linComb C₂)
-        + ((Zonotope.midpointResidual C₁.c C₂.c).construct
+theorem ConZonotope.aux_linComb_nominal (cZ₁ cZ₂ : ConZonotope 𝕋 n) :
+    segments (nominalSet cZ₁) (nominalSet cZ₂) ⊆
+      nominalSet (cZ₁.linComb cZ₂)
+        + ((Zonotope.midpointResidual cZ₁.c cZ₂.c).construct
             + (Zonotope.generatorError
-              (ConZonotope.linCombGDiff C₁ C₂)).construct) := by -- --- PROOF ---
+              (ConZonotope.linCombGDiff cZ₁ cZ₂)).construct) := by -- --- PROOF ---
   rintro _ ⟨y₁, hy₁', y₂, hy₂', lam, ⟨hl0, hl1⟩, rfl⟩
   obtain ⟨β₁, hβ₁, hP₁, hy₁⟩ := ConZonotope.mem_nominalSet_iff.mp hy₁'
   obtain ⟨β₂, hβ₂, hP₂, hy₂⟩ := ConZonotope.mem_nominalSet_iff.mp hy₂'
   have hβ := ConZonotope.aux_abs_linCombCoeff hβ₁ hβ₂ hl0 hl1
   -- the witness: the stored midpoint and generators at those coefficients
-  refine ⟨fun i => toReal (Zonotope.midpoint C₁.c C₂.c i)
-            + ∑ j : Fin (C₁.h + C₂.h + 1), toReal ((C₁.linComb C₂).G i j)
+  refine ⟨fun i => toReal (Zonotope.midpoint cZ₁.c cZ₂.c i)
+            + ∑ j : Fin (cZ₁.h + cZ₂.h + 1), toReal ((cZ₁.linComb cZ₂).G i j)
                 * ConZonotope.aux_linCombCoeff β₁ β₂ lam j,
           ConZonotope.mem_nominalSet_iff.mpr ⟨ConZonotope.aux_linCombCoeff β₁ β₂ lam, hβ,
-            ConZonotope.aux_mem_linComb_P C₁ C₂ hβ₁ hP₁ hβ₂ hP₂ hl0 hl1, fun _ => rfl⟩,
-          _, ⟨_, Zonotope.midpoint_mem_residual C₁.c C₂.c,
-              _, Zonotope.mem_generatorError (ConZonotope.aux_linCombG_error C₁ C₂) hβ, rfl⟩, ?_⟩
+            ConZonotope.aux_mem_linComb_P cZ₁ cZ₂ hβ₁ hP₁ hβ₂ hP₂ hl0 hl1, fun _ => rfl⟩,
+          _, ⟨_, Zonotope.midpoint_mem_residual cZ₁.c cZ₂.c,
+              _, Zonotope.mem_generatorError (ConZonotope.aux_linCombG_error cZ₁ cZ₂) hβ, rfl⟩, ?_⟩
   funext i
   -- the stored generators and their shortfalls recombine into the exact ones
-  have hsum : (∑ j : Fin (C₁.h + C₂.h + 1), toReal ((C₁.linComb C₂).G i j)
+  have hsum : (∑ j : Fin (cZ₁.h + cZ₂.h + 1), toReal ((cZ₁.linComb cZ₂).G i j)
           * ConZonotope.aux_linCombCoeff β₁ β₂ lam j)
-      + (∑ j, (ConZonotope.aux_linCombGReal C₁ C₂ i j - toReal ((C₁.linComb C₂).G i j))
+      + (∑ j, (ConZonotope.aux_linCombGReal cZ₁ cZ₂ i j - toReal ((cZ₁.linComb cZ₂).G i j))
           * ConZonotope.aux_linCombCoeff β₁ β₂ lam j)
-      = ∑ j, ConZonotope.aux_linCombGReal C₁ C₂ i j
+      = ∑ j, ConZonotope.aux_linCombGReal cZ₁ cZ₂ i j
           * ConZonotope.aux_linCombCoeff β₁ β₂ lam j := by
     rw [← Finset.sum_add_distrib]
     exact Finset.sum_congr rfl fun j _ => by ring
   simp only [Pi.add_apply, Pi.smul_apply, smul_eq_mul]
   rw [hy₁ i, hy₂ i]
-  rw [ConZonotope.aux_linComb_row C₁ C₂ i β₁ β₂ lam] at hsum
+  rw [ConZonotope.aux_linComb_row cZ₁ cZ₂ i β₁ β₂ lam] at hsum
   linarith [hsum]
 
 /-- The box absorbs the two incoming boxes, the centre rounding and the centre
 generator's. -/
-theorem ConZonotope.aux_linComb_error (C₁ C₂ : ConZonotope 𝕋 n) :
-    segments C₁.E.construct C₂.E.construct
-        + ((Zonotope.midpointResidual C₁.c C₂.c).construct
-            + (Zonotope.generatorError (ConZonotope.linCombGDiff C₁ C₂)).construct)
-      ⊆ (C₁.linComb C₂).E.construct :=
+theorem ConZonotope.aux_linComb_error (cZ₁ cZ₂ : ConZonotope 𝕋 n) :
+    segments cZ₁.E.construct cZ₂.E.construct
+        + ((Zonotope.midpointResidual cZ₁.c cZ₂.c).construct
+            + (Zonotope.generatorError (ConZonotope.linCombGDiff cZ₁ cZ₂)).construct)
+      ⊆ (cZ₁.linComb cZ₂).E.construct :=
   subset_trans
-    (Set.add_subset_add (Interval.linComb_outer C₁.E C₂.E) (Interval.plus_outer _ _))
+    (Set.add_subset_add (Interval.linComb_outer cZ₁.E cZ₂.E) (Interval.plus_outer _ _))
     (Interval.plus_outer _ _)
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.linComb_outer (C₁ C₂ : ConZonotope 𝕋 n) :
-    segments C₁.construct C₂.construct ⊆ (C₁.linComb C₂).construct :=
-  InflatedContSet.linComb_subset (ConZonotope.aux_linComb_nominal C₁ C₂)
-    (ConZonotope.aux_linComb_error C₁ C₂)
+theorem ConZonotope.linComb_outer (cZ₁ cZ₂ : ConZonotope 𝕋 n) :
+    segments cZ₁.construct cZ₂.construct ⊆ (cZ₁.linComb cZ₂).construct :=
+  InflatedContSet.linComb_subset (ConZonotope.aux_linComb_nominal cZ₁ cZ₂)
+    (ConZonotope.aux_linComb_error cZ₁ cZ₂)
 
 end CORALean.Float
 

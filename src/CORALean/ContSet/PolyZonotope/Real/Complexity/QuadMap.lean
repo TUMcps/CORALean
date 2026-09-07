@@ -25,14 +25,14 @@ variable {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.quadMap_p (Q : Fin m → Mat ℝ n n) (PZ : PolyZonotope (Vec ℝ n)) :
-    (PolyZonotope.quadMap Q PZ).p = PZ.p + PZ.q := rfl
+theorem PolyZonotope.quadMap_p (Q : Fin m → Mat ℝ n n) (pZ : PolyZonotope (Vec ℝ n)) :
+    (PolyZonotope.quadMap Q pZ).p = pZ.p + pZ.q := rfl
 
-theorem PolyZonotope.quadMap_h (Q : Fin m → Mat ℝ n n) (PZ : PolyZonotope (Vec ℝ n)) :
-    (PolyZonotope.quadMap Q PZ).h = (PZ.h + PZ.q + 1) * (PZ.h + PZ.q + 1) := rfl
+theorem PolyZonotope.quadMap_h (Q : Fin m → Mat ℝ n n) (pZ : PolyZonotope (Vec ℝ n)) :
+    (PolyZonotope.quadMap Q pZ).h = (pZ.h + pZ.q + 1) * (pZ.h + pZ.q + 1) := rfl
 
-theorem PolyZonotope.quadMap_q (Q : Fin m → Mat ℝ n n) (PZ : PolyZonotope (Vec ℝ n)) :
-    (PolyZonotope.quadMap Q PZ).q = 0 := rfl
+theorem PolyZonotope.quadMap_q (Q : Fin m → Mat ℝ n n) (pZ : PolyZonotope (Vec ℝ n)) :
+    (PolyZonotope.quadMap Q pZ).q = 0 := rfl
 
 end CORALean.Real
 

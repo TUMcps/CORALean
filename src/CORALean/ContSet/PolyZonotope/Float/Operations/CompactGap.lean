@@ -26,9 +26,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- What a merged column can be off by. -/
-def PolyZonotope.compactGap (PZ : PolyZonotope 𝕋 n) :
-    Mat 𝕋 n (PolyZonotope.repKeep PZ.E).card :=
-  fun i j => subUp (PZ.mergedColUp i j) (PZ.mergedCol i j)
+def PolyZonotope.compactGap (pZ : PolyZonotope 𝕋 n) :
+    Mat 𝕋 n (PolyZonotope.repKeep pZ.E).card :=
+  fun i j => subUp (pZ.mergedColUp i j) (pZ.mergedCol i j)
 
 end CORALean.Float
 

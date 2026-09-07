@@ -41,10 +41,10 @@ namespace Real
 
 /-- A guard given by inequalities, met exactly by a set that need not be
 convex. -/
-example (C : ConPolyZono (Vec ℝ n)) (G : ConZonotope (Vec ℝ n)) :
-    C.construct ∩ G.construct = (C.and G.conPolyZono).construct := by
+example (cPZ : ConPolyZono (Vec ℝ n)) (G : ConZonotope (Vec ℝ n)) :
+    cPZ.construct ∩ G.construct = (cPZ.and G.conPolyZono).construct := by
   rw [ConZonotope.conPolyZono_exact G]
-  exact ConPolyZono.and_exact C G.conPolyZono
+  exact ConPolyZono.and_exact cPZ G.conPolyZono
 
 /-- The paper's `A μ(α) = b`, as the degenerate interval. -/
 example {p m s : ℕ} (A : Mat ℝ m s) (b : Vec ℝ m) (EC : Fin p → Fin s → ℕ)
@@ -60,10 +60,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- The same cut on a machine: the only non-convex intersection in this
 repository that a float layer computes. -/
-example (C : ConPolyZono 𝕋 n) (G : ConZonotope 𝕋 n) :
-    C.construct ∩ G.construct ⊆ (C.and G.conPolyZono).construct :=
+example (cPZ : ConPolyZono 𝕋 n) (G : ConZonotope 𝕋 n) :
+    cPZ.construct ∩ G.construct ⊆ (cPZ.and G.conPolyZono).construct :=
   subset_trans (Set.inter_subset_inter subset_rfl (ConZonotope.conPolyZono_outer G))
-    (ConPolyZono.and_outer C G.conPolyZono)
+    (ConPolyZono.and_outer cPZ G.conPolyZono)
 
 end Float
 

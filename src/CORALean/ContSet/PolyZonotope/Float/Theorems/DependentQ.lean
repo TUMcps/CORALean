@@ -24,7 +24,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 omit [SoundFloatArithmetic 𝕋] in
-@[simp] theorem PolyZonotope.dependent_q (PZ : PolyZonotope 𝕋 n) : PZ.dependent.q = 0 := rfl
+@[simp] theorem PolyZonotope.dependent_q (pZ : PolyZonotope 𝕋 n) : pZ.dependent.q = 0 := rfl
 
 end CORALean.Float
 

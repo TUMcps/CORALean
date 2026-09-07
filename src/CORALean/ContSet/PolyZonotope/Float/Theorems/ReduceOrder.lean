@@ -33,9 +33,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- Compacting first only lowers the count it then bounds, so the bound reads
 off `reduceGirard` unchanged. -/
-theorem PolyZonotope.reduce_order_le (PZ : PolyZonotope 𝕋 n) {o : ℕ} (ho : 0 < o) :
-    (PZ.reduce o).h + (PZ.reduce o).q ≤ o * n :=
-  PolyZonotope.reduceGirard_order_le PZ.compact ho
+theorem PolyZonotope.reduce_order_le (pZ : PolyZonotope 𝕋 n) {o : ℕ} (ho : 0 < o) :
+    (pZ.reduce o).h + (pZ.reduce o).q ≤ o * n :=
+  PolyZonotope.reduceGirard_order_le pZ.compact ho
 
 end CORALean.Float
 

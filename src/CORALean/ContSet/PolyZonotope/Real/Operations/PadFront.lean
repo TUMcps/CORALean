@@ -27,14 +27,14 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `l` fresh factors put before the set's own, at exponent zero. -/
-def PolyZonotope.padFront (l : ℕ) (S : PolyZonotope α) : PolyZonotope α where
-  p := l + S.p
-  h := S.h
-  q := S.q
-  c := S.c
-  G := S.G
-  E := PolyZonotope.padFrontE l S.E
-  GI := S.GI
+def PolyZonotope.padFront (l : ℕ) (pZ : PolyZonotope α) : PolyZonotope α where
+  p := l + pZ.p
+  h := pZ.h
+  q := pZ.q
+  c := pZ.c
+  G := pZ.G
+  E := PolyZonotope.padFrontE l pZ.E
+  GI := pZ.GI
 
 end CORALean.Real
 

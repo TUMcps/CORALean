@@ -41,14 +41,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.dependent (PZ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 n where
-  p := PZ.p + (PZ.q + n)
-  h := PZ.h + (PZ.q + n)
+def PolyZonotope.dependent (pZ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 n where
+  p := pZ.p + (pZ.q + n)
+  h := pZ.h + (pZ.q + n)
   q := 0
-  c := PZ.c
-  G := fun i => Fin.append (PZ.G i)
-    (Fin.append (PZ.GI i) (diagonalBlock (PolyZonotope.errorBound PZ.err) i))
-  E := Real.PolyZonotope.plusE PZ.E (Real.PolyZonotope.identE (PZ.q + n))
+  c := pZ.c
+  G := fun i => Fin.append (pZ.G i)
+    (Fin.append (pZ.GI i) (diagonalBlock (PolyZonotope.errorBound pZ.err) i))
+  E := Real.PolyZonotope.plusE pZ.E (Real.PolyZonotope.identE (pZ.q + n))
   GI := fun _ => Fin.elim0
   err := ⟨fun _ => zero, fun _ => zero⟩
 

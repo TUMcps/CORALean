@@ -30,9 +30,9 @@ variable {n : ℕ}
 
 /-- Generator `(i, j)` of the product: the two extended generators, multiplied
 coordinate by coordinate. -/
-def PolyZonotope.mulG (S₁ S₂ : PolyZonotope (Vec ℝ n)) :
-    Fin ((S₁.h + 1) * (S₂.h + 1)) → Vec ℝ n :=
-  PolyZonotope.bilinG Entrywise.hadamardLin S₁ S₂
+def PolyZonotope.mulG (pZ₁ pZ₂ : PolyZonotope (Vec ℝ n)) :
+    Fin ((pZ₁.h + 1) * (pZ₂.h + 1)) → Vec ℝ n :=
+  PolyZonotope.bilinG Entrywise.hadamardLin pZ₁ pZ₂
 
 end CORALean.Real
 

@@ -23,11 +23,11 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.reduce_outer (B : ZonoBundle α) (o : ℕ) :
-    B.construct ⊆ (B.reduce o).construct := by
+theorem ZonoBundle.reduce_outer (zB : ZonoBundle α) (o : ℕ) :
+    zB.construct ⊆ (zB.reduce o).construct := by
   intro x hx
   simp only [ZonoBundle.construct, Set.mem_iInter] at hx ⊢
-  exact fun i => hx (Fin.castLE (min_le_left B.k o) i)
+  exact fun i => hx (Fin.castLE (min_le_left zB.k o) i)
 
 end CORALean.Real
 

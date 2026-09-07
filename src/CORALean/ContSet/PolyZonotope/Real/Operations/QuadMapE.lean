@@ -31,9 +31,9 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- Its exponent column, the two columns added: the factors are shared, so the
 product of two monomials is a monomial again. -/
-def PolyZonotope.quadMapE (S : PolyZonotope α) :
-    Fin S.p → Fin ((S.h + 1) * (S.h + 1)) → ℕ :=
-  PolyZonotope.bilinE S S rfl
+def PolyZonotope.quadMapE (pZ : PolyZonotope α) :
+    Fin pZ.p → Fin ((pZ.h + 1) * (pZ.h + 1)) → ℕ :=
+  PolyZonotope.bilinE pZ pZ rfl
 
 end CORALean.Real
 

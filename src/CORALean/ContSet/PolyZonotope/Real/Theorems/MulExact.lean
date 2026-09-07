@@ -6,12 +6,12 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinExact
 
 `bilin_exact` at the entrywise product, which is what `mul` is.
 
-What exactness can mean here, and what it cannot: `construct (mul S₁ S₂)` is not
-`construct S₁ * construct S₂`. Both sets are functions of one shared factor
+What exactness can mean here, and what it cannot: `construct (mul pZ₁ pZ₂)` is not
+`construct pZ₁ * construct pZ₂`. Both sets are functions of one shared factor
 vector, so their pointwise product ranges over far fewer points than the product
 of the two sets. The claim is about the evaluation map — the result is exactly
-the image of the admissible factors under `a ↦ point S₁ a ⊙ point S₂ a`, with
-`S₂` read at the same factors through `Fin.cast`.
+the image of the admissible factors under `a ↦ point pZ₁ a ⊙ point pZ₂ a`, with
+`pZ₂` read at the same factors through `Fin.cast`.
 
 The independent blocks are not hypothesised away: `point` ignores them, so they
 take no part on either side.
@@ -34,11 +34,11 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.mul_exact (S₁ S₂ : PolyZonotope (Vec ℝ n)) (hp : S₁.p = S₂.p) :
-    (fun a : Fin S₁.p → ℝ => S₁.point a * S₂.point (fun k => a (Fin.cast hp.symm k)))
+theorem PolyZonotope.mul_exact (pZ₁ pZ₂ : PolyZonotope (Vec ℝ n)) (hp : pZ₁.p = pZ₂.p) :
+    (fun a : Fin pZ₁.p → ℝ => pZ₁.point a * pZ₂.point (fun k => a (Fin.cast hp.symm k)))
         '' {a | ∀ k, |a k| ≤ 1}
-      = (S₁.mul S₂ hp).construct :=
-  PolyZonotope.bilin_exact Entrywise.hadamardLin S₁ S₂ hp
+      = (pZ₁.mul pZ₂ hp).construct :=
+  PolyZonotope.bilin_exact Entrywise.hadamardLin pZ₁ pZ₂ hp
 
 end CORALean.Real
 

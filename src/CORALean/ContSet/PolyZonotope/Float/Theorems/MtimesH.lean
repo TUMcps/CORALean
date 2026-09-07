@@ -22,8 +22,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 omit [SoundFloatArithmetic 𝕋] in
-@[simp] theorem PolyZonotope.mtimes_h (M : Mat 𝕋 m n) (PZ : PolyZonotope 𝕋 n) :
-    (PolyZonotope.mtimes M PZ).h = PZ.h := rfl
+@[simp] theorem PolyZonotope.mtimes_h (M : Mat 𝕋 m n) (pZ : PolyZonotope 𝕋 n) :
+    (PolyZonotope.mtimes M pZ).h = pZ.h := rfl
 
 end CORALean.Float
 

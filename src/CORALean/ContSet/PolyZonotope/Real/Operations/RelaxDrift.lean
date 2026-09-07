@@ -38,12 +38,12 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {d : ℕ}
 
 /-- The drift interval's midpoint and half-width, in copies of the relaxed
 generator, from the `[-lo, hi]` that `eDrift` reads off the exponents. -/
-noncomputable def PolyZonotope.relaxDrift (PZ : PolyZonotope α)
-    (part : Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin PZ.p) : ℝ × ℝ :=
-  ((((PolyZonotope.eDrift PZ.E k₀ (part.right 0) (part.right 1)).2 : ℝ)
-      - ((PolyZonotope.eDrift PZ.E k₀ (part.right 0) (part.right 1)).1 : ℝ)) / 2,
-    (((PolyZonotope.eDrift PZ.E k₀ (part.right 0) (part.right 1)).2 : ℝ)
-      + ((PolyZonotope.eDrift PZ.E k₀ (part.right 0) (part.right 1)).1 : ℝ)) / 2)
+noncomputable def PolyZonotope.relaxDrift (pZ : PolyZonotope α)
+    (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) : ℝ × ℝ :=
+  ((((PolyZonotope.eDrift pZ.E k₀ (part.right 0) (part.right 1)).2 : ℝ)
+      - ((PolyZonotope.eDrift pZ.E k₀ (part.right 0) (part.right 1)).1 : ℝ)) / 2,
+    (((PolyZonotope.eDrift pZ.E k₀ (part.right 0) (part.right 1)).2 : ℝ)
+      + ((PolyZonotope.eDrift pZ.E k₀ (part.right 0) (part.right 1)).1 : ℝ)) / 2)
 
 end CORALean.Real
 

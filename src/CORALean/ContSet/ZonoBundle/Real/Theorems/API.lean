@@ -15,7 +15,7 @@ import CORALean.ContSet.ZonoBundle.Real.Theorems.ReduceOrder
 `and` exactly, `plus`, `linComb` and `mtimes` as enclosures, and convexity
 unconditionally. `map_exact` needs `f` bijective, not merely injective —
 `Instances` supplies that at `reindexLin e` for `Reindex`. `isCompact_construct`
-is a plain theorem at `0 < B.k`, never a `CompactSet` instance:
+is a plain theorem at `0 < zB.k`, never a `CompactSet` instance:
 `ZonoBundle.lean`'s docstring says why `k = 0` rules that out. `reduce_outer`
 holds at any choice of survivors; `reduce_order_le` needs no such hypothesis,
 unlike `Zonotope`'s.

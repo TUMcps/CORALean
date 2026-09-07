@@ -41,16 +41,16 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConZonotope.linComb (C₁ C₂ : ConZonotope 𝕋 n) : ConZonotope 𝕋 n where
-  h := C₁.h + C₂.h + 1
-  c := Zonotope.midpoint C₁.c C₂.c
-  G := fun i => Fin.append (Fin.append (C₁.G i) (C₂.G i))
-    fun _ : Fin 1 => half (subDown (C₁.c i) (C₂.c i))
-  P := ((C₁.P.and (HPolytope.unitBox 𝕋 C₁.h)).halfScaledLeft C₂.h).and
-    (HPolytope.halfScaledRight C₁.h (C₂.P.and (HPolytope.unitBox 𝕋 C₂.h)))
-  E := (C₁.E.linComb C₂.E).plus
-    ((Zonotope.midpointResidual C₁.c C₂.c).plus
-      (Zonotope.generatorError (ConZonotope.linCombGDiff C₁ C₂)))
+def ConZonotope.linComb (cZ₁ cZ₂ : ConZonotope 𝕋 n) : ConZonotope 𝕋 n where
+  h := cZ₁.h + cZ₂.h + 1
+  c := Zonotope.midpoint cZ₁.c cZ₂.c
+  G := fun i => Fin.append (Fin.append (cZ₁.G i) (cZ₂.G i))
+    fun _ : Fin 1 => half (subDown (cZ₁.c i) (cZ₂.c i))
+  P := ((cZ₁.P.and (HPolytope.unitBox 𝕋 cZ₁.h)).halfScaledLeft cZ₂.h).and
+    (HPolytope.halfScaledRight cZ₁.h (cZ₂.P.and (HPolytope.unitBox 𝕋 cZ₂.h)))
+  E := (cZ₁.E.linComb cZ₂.E).plus
+    ((Zonotope.midpointResidual cZ₁.c cZ₂.c).plus
+      (Zonotope.generatorError (ConZonotope.linCombGDiff cZ₁ cZ₂)))
 
 end CORALean.Float
 

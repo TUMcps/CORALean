@@ -41,7 +41,7 @@ structure ZonoBundle (α : Type) where
   k : ℕ
   Z : Fin k → Zonotope α
 
-def ZonoBundle.construct (B : ZonoBundle α) : Set α := ⋂ i, (B.Z i).construct
+def ZonoBundle.construct (zB : ZonoBundle α) : Set α := ⋂ i, (zB.Z i).construct
 
 end CORALean.Real
 

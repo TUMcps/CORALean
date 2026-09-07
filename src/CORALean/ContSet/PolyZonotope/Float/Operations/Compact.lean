@@ -35,8 +35,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- CORA's `compact`: merge, then drop the factors that fell out of use. -/
-def PolyZonotope.compact (PZ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 n :=
-  PZ.compactGens.compactFactors
+def PolyZonotope.compact (pZ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 n :=
+  pZ.compactGens.compactFactors
 
 end CORALean.Float
 

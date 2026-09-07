@@ -23,8 +23,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.convex_construct (B : ZonoBundle α) : Convex ℝ B.construct :=
-  convex_iInter fun i => (B.Z i).convex_construct
+theorem ZonoBundle.convex_construct (zB : ZonoBundle α) : Convex ℝ zB.construct :=
+  convex_iInter fun i => (zB.Z i).convex_construct
 
 end CORALean.Real
 

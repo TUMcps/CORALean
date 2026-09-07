@@ -23,10 +23,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The image's exponent column, the two columns added. Over ℕ, so exact. -/
-def PolyZonotope.mulE (S₁ S₂ : PolyZonotope 𝕋 n) (hp : S₁.p = S₂.p) :
-    Fin S₁.p → Fin ((S₁.h + 1) * (S₂.h + 1)) → ℕ :=
-  fun k l => PolyZonotope.extE S₁ k (finProdFinEquiv.symm l).1
-      + PolyZonotope.extE S₂ (Fin.cast hp k) (finProdFinEquiv.symm l).2
+def PolyZonotope.mulE (pZ₁ pZ₂ : PolyZonotope 𝕋 n) (hp : pZ₁.p = pZ₂.p) :
+    Fin pZ₁.p → Fin ((pZ₁.h + 1) * (pZ₂.h + 1)) → ℕ :=
+  fun k l => PolyZonotope.extE pZ₁ k (finProdFinEquiv.symm l).1
+      + PolyZonotope.extE pZ₂ (Fin.cast hp k) (finProdFinEquiv.symm l).2
 
 end CORALean.Float
 

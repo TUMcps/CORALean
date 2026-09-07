@@ -24,11 +24,11 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.reduceGirard_outer (C : ConPolyZono (Vec ℝ n)) (o : ℕ) :
-    C.construct ⊆ (C.reduceGirard o).construct := by
+theorem ConPolyZono.reduceGirard_outer (cPZ : ConPolyZono (Vec ℝ n)) (o : ℕ) :
+    cPZ.construct ⊆ (cPZ.reduceGirard o).construct := by
   unfold ConPolyZono.reduceGirard
   split_ifs with hlt
-  · exact ConPolyZono.reduceBy_outer C _ _
+  · exact ConPolyZono.reduceBy_outer cPZ _ _
   · exact subset_rfl
 
 end CORALean.Real

@@ -30,24 +30,24 @@ variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Mod
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.map_exact (f : α →ₗ[ℝ] β) (C : ConPolyZono α) :
-    f '' C.construct = (C.map f).construct := by -- --- PROOF ---
-  have hf : ∀ (a : Fin C.p → ℝ) (b : Fin C.q → ℝ),
-      f (C.c + ∑ i, PolyZonotope.monomial C.E a i • C.G i + ∑ j, b j • C.GI j)
-        = (C.map f).c + ∑ i, PolyZonotope.monomial (C.map f).E a i • (C.map f).G i
-            + ∑ j, b j • (C.map f).GI j := by
+theorem ConPolyZono.map_exact (f : α →ₗ[ℝ] β) (cPZ : ConPolyZono α) :
+    f '' cPZ.construct = (cPZ.map f).construct := by -- --- PROOF ---
+  have hf : ∀ (a : Fin cPZ.p → ℝ) (b : Fin cPZ.q → ℝ),
+      f (cPZ.c + ∑ i, PolyZonotope.monomial cPZ.E a i • cPZ.G i + ∑ j, b j • cPZ.GI j)
+        = (cPZ.map f).c + ∑ i, PolyZonotope.monomial (cPZ.map f).E a i • (cPZ.map f).G i
+            + ∑ j, b j • (cPZ.map f).GI j := by
     intro a b
     rw [map_add, map_add, map_sum, map_sum]
     congr 1
-    · exact congrArg _ (Finset.sum_congr rfl fun i _ => map_smul f _ (C.G i))
-    · exact Finset.sum_congr rfl fun j _ => map_smul f (b j) (C.GI j)
+    · exact congrArg _ (Finset.sum_congr rfl fun i _ => map_smul f _ (cPZ.G i))
+    · exact Finset.sum_congr rfl fun j _ => map_smul f (b j) (cPZ.GI j)
   -- both inclusions are `hf` read in the two directions; the constraint never moves
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨x, ⟨a, b, ha, hb, hsat, rfl⟩, rfl⟩
-    exact ⟨a, b, ha, hb, (ConPolyZono.satisfies_map f C a).mpr hsat, hf a b⟩
+    exact ⟨a, b, ha, hb, (ConPolyZono.satisfies_map f cPZ a).mpr hsat, hf a b⟩
   · rintro y ⟨a, b, ha, hb, hsat, hy⟩
-    refine ⟨C.c + ∑ i, PolyZonotope.monomial C.E a i • C.G i + ∑ j, b j • C.GI j,
-      ⟨a, b, ha, hb, (ConPolyZono.satisfies_map f C a).mp hsat, rfl⟩, ?_⟩
+    refine ⟨cPZ.c + ∑ i, PolyZonotope.monomial cPZ.E a i • cPZ.G i + ∑ j, b j • cPZ.GI j,
+      ⟨a, b, ha, hb, (ConPolyZono.satisfies_map f cPZ a).mp hsat, rfl⟩, ?_⟩
     rw [hy]
     exact hf a b
 

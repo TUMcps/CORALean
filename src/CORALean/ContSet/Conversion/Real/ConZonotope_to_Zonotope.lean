@@ -24,15 +24,15 @@ namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
-def ConZonotope.zonotope (C : ConZonotope α) : Zonotope α where
-  h := C.h
-  c := C.c
-  G := C.G
+def ConZonotope.zonotope (cZ : ConZonotope α) : Zonotope α where
+  h := cZ.h
+  c := cZ.c
+  G := cZ.G
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.zonotope_outer (C : ConZonotope α) : C.construct ⊆ C.zonotope.construct := by
+theorem ConZonotope.zonotope_outer (cZ : ConZonotope α) : cZ.construct ⊆ cZ.zonotope.construct := by
   rintro _ ⟨β, hβ, -, rfl⟩
   exact ⟨β, hβ, rfl⟩
 

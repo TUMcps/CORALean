@@ -25,13 +25,13 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 omit [Module ℝ α] in
-theorem ZonoBundle.plus_k_isBigO (B W : ℕ → ZonoBundle α) (hB : ∀ m, (B m).k = m)
+theorem ZonoBundle.plus_k_isBigO (zB W : ℕ → ZonoBundle α) (hB : ∀ m, (zB m).k = m)
     (hW : ∀ m, (W m).k = m) :
-    (fun m : ℕ => (((ZonoBundle.plus (B m) (W m)).k : ℕ) : ℝ))
+    (fun m : ℕ => (((ZonoBundle.plus (zB m) (W m)).k : ℕ) : ℝ))
       =O[Filter.atTop] fun m : ℕ => ((m : ℝ)) ^ 2 := by -- --- PROOF ---
   apply Asymptotics.IsBigO.of_bound 1
   filter_upwards [Filter.eventually_ge_atTop 1] with m hm
-  have hk : (ZonoBundle.plus (B m) (W m)).k = m * m := by
+  have hk : (ZonoBundle.plus (zB m) (W m)).k = m * m := by
     rw [ZonoBundle.plus_k, hB, hW]
   rw [hk, Real.norm_of_nonneg (by positivity), Real.norm_of_nonneg (by positivity)]
   push_cast

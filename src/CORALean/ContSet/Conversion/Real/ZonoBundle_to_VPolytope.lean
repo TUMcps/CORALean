@@ -23,16 +23,16 @@ namespace CORALean.Real
 
 variable {n : ℕ}
 
-noncomputable def ZonoBundle.vPolytope (B : ZonoBundle (Vec ℝ n)) (i : Fin B.k) :
+noncomputable def ZonoBundle.vPolytope (zB : ZonoBundle (Vec ℝ n)) (i : Fin zB.k) :
     VPolytope (Vec ℝ n) :=
-  (B.zonotope i).vPolytope
+  (zB.zonotope i).vPolytope
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.subset_vPolytope (B : ZonoBundle (Vec ℝ n)) (i : Fin B.k) :
-    B.construct ⊆ (B.vPolytope i).construct :=
-  subset_trans (B.subset_zonotope i) (Zonotope.subset_vPolytope _)
+theorem ZonoBundle.subset_vPolytope (zB : ZonoBundle (Vec ℝ n)) (i : Fin zB.k) :
+    zB.construct ⊆ (zB.vPolytope i).construct :=
+  subset_trans (zB.subset_zonotope i) (Zonotope.subset_vPolytope _)
 
 end CORALean.Real
 

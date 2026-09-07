@@ -25,8 +25,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The exponent bookkeeping is the same term in both layers. -/
-theorem PolyZonotope.quadMapE_nominal (S : PolyZonotope 𝕋 n) :
-    PolyZonotope.quadMapE S = Real.PolyZonotope.quadMapE (nominal S) := rfl
+theorem PolyZonotope.quadMapE_nominal (pZ : PolyZonotope 𝕋 n) :
+    PolyZonotope.quadMapE pZ = Real.PolyZonotope.quadMapE (nominal pZ) := rfl
 
 end CORALean.Float
 

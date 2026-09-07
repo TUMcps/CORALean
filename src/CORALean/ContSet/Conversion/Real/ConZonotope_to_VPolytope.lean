@@ -33,42 +33,42 @@ namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
-noncomputable def ConZonotope.vPolytope (C : ConZonotope α)
-    (hne : C.domain.construct.Nonempty) : VPolytope α where
-  k := (C.domain.vPolytope hne).k
-  V := fun l => C.c + ∑ j, ((C.domain.vPolytope hne).V l) j • C.G j
+noncomputable def ConZonotope.vPolytope (cZ : ConZonotope α)
+    (hne : cZ.domain.construct.Nonempty) : VPolytope α where
+  k := (cZ.domain.vPolytope hne).k
+  V := fun l => cZ.c + ∑ j, ((cZ.domain.vPolytope hne).V l) j • cZ.G j
 
-theorem ConZonotope.subset_vPolytope (C : ConZonotope α) (hne : C.domain.construct.Nonempty) :
-    C.construct ⊆ (C.vPolytope hne).construct := by -- --- PROOF ---
+theorem ConZonotope.subset_vPolytope (cZ : ConZonotope α) (hne : cZ.domain.construct.Nonempty) :
+    cZ.construct ⊆ (cZ.vPolytope hne).construct := by -- --- PROOF ---
   rintro _ ⟨β, hβ, hP, rfl⟩
   obtain ⟨lam, hlam0, hlam1, hlamv⟩ :=
-    C.domain.subset_vPolytope C.isCompact_domain hne (ConZonotope.mem_domain_iff.mpr ⟨hβ, hP⟩)
+    cZ.domain.subset_vPolytope cZ.isCompact_domain hne (ConZonotope.mem_domain_iff.mpr ⟨hβ, hP⟩)
   refine ⟨lam, hlam0, hlam1, ?_⟩
   -- each coefficient is the same combination of the domain vertices' coefficients
-  have hcoef : ∀ j, β j = ∑ l, lam l * ((C.domain.vPolytope hne).V l) j := by
+  have hcoef : ∀ j, β j = ∑ l, lam l * ((cZ.domain.vPolytope hne).V l) j := by
     intro j
     rw [hlamv]
     simp only [Finset.sum_apply, Pi.smul_apply, smul_eq_mul]
-  have hR : ∀ l, lam l • (C.c + ∑ j, ((C.domain.vPolytope hne).V l) j • C.G j)
-      = lam l • C.c + ∑ j, (lam l * ((C.domain.vPolytope hne).V l) j) • C.G j := by
+  have hR : ∀ l, lam l • (cZ.c + ∑ j, ((cZ.domain.vPolytope hne).V l) j • cZ.G j)
+      = lam l • cZ.c + ∑ j, (lam l * ((cZ.domain.vPolytope hne).V l) j) • cZ.G j := by
     intro l
     rw [smul_add, Finset.smul_sum]
     exact congrArg _ (Finset.sum_congr rfl fun j _ => smul_smul _ _ _)
-  show C.c + ∑ j, β j • C.G j
-      = ∑ l, lam l • (C.c + ∑ j, ((C.domain.vPolytope hne).V l) j • C.G j)
+  show cZ.c + ∑ j, β j • cZ.G j
+      = ∑ l, lam l • (cZ.c + ∑ j, ((cZ.domain.vPolytope hne).V l) j • cZ.G j)
   rw [Finset.sum_congr rfl fun l (_ : l ∈ Finset.univ) => hR l, Finset.sum_add_distrib,
     ← Finset.sum_smul, hlam1, one_smul, Finset.sum_comm]
-  refine congrArg (fun y => C.c + y) (Finset.sum_congr rfl fun j _ => ?_)
+  refine congrArg (fun y => cZ.c + y) (Finset.sum_congr rfl fun j _ => ?_)
   rw [← Finset.sum_smul, ← hcoef j]
 
 -- back: each listed vertex comes from a domain vertex, hence from a point of the set
-theorem ConZonotope.vPolytope_subset (C : ConZonotope α) (hne : C.domain.construct.Nonempty) :
-    (C.vPolytope hne).construct ⊆ C.construct := by -- --- PROOF ---
+theorem ConZonotope.vPolytope_subset (cZ : ConZonotope α) (hne : cZ.domain.construct.Nonempty) :
+    (cZ.vPolytope hne).construct ⊆ cZ.construct := by -- --- PROOF ---
   rw [VPolytope.construct_eq_convexHull]
-  refine convexHull_min ?_ C.convex_construct
+  refine convexHull_min ?_ cZ.convex_construct
   rintro _ ⟨l, rfl⟩
-  have hd : (C.domain.vPolytope hne).V l ∈ C.domain.construct :=
-    C.domain.vPolytope_subset hne (by
+  have hd : (cZ.domain.vPolytope hne).V l ∈ cZ.domain.construct :=
+    cZ.domain.vPolytope_subset hne (by
       rw [VPolytope.construct_eq_convexHull]
       exact subset_convexHull ℝ _ ⟨l, rfl⟩)
   obtain ⟨hb, hP⟩ := ConZonotope.mem_domain_iff.mp hd
@@ -77,9 +77,9 @@ theorem ConZonotope.vPolytope_subset (C : ConZonotope α) (hne : C.domain.constr
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.vPolytope_exact (C : ConZonotope α) (hne : C.domain.construct.Nonempty) :
-    (C.vPolytope hne).construct = C.construct :=
-  Set.Subset.antisymm (C.vPolytope_subset hne) (C.subset_vPolytope hne)
+theorem ConZonotope.vPolytope_exact (cZ : ConZonotope α) (hne : cZ.domain.construct.Nonempty) :
+    (cZ.vPolytope hne).construct = cZ.construct :=
+  Set.Subset.antisymm (cZ.vPolytope_subset hne) (cZ.subset_vPolytope hne)
 
 end CORALean.Real
 

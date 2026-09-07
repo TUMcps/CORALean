@@ -36,8 +36,8 @@ variable {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.quadMap (Q : Fin m → Mat ℝ n n) (PZ : PolyZonotope (Vec ℝ n)) :
-    PolyZonotope (Vec ℝ m) := PolyZonotope.quadMapDep Q PZ.dependent
+def PolyZonotope.quadMap (Q : Fin m → Mat ℝ n n) (pZ : PolyZonotope (Vec ℝ n)) :
+    PolyZonotope (Vec ℝ m) := PolyZonotope.quadMapDep Q pZ.dependent
 
 end CORALean.Real
 

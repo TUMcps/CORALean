@@ -26,20 +26,20 @@ variable {n k : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.quadMap_p (Q : Fin k → Mat ℝ n n) (C : ConPolyZono (Vec ℝ n)) :
-    (ConPolyZono.quadMap Q C).p = C.p + C.q := rfl
+theorem ConPolyZono.quadMap_p (Q : Fin k → Mat ℝ n n) (cPZ : ConPolyZono (Vec ℝ n)) :
+    (ConPolyZono.quadMap Q cPZ).p = cPZ.p + cPZ.q := rfl
 
-theorem ConPolyZono.quadMap_h (Q : Fin k → Mat ℝ n n) (C : ConPolyZono (Vec ℝ n)) :
-    (ConPolyZono.quadMap Q C).h = (C.h + C.q + 1) * (C.h + C.q + 1) := rfl
+theorem ConPolyZono.quadMap_h (Q : Fin k → Mat ℝ n n) (cPZ : ConPolyZono (Vec ℝ n)) :
+    (ConPolyZono.quadMap Q cPZ).h = (cPZ.h + cPZ.q + 1) * (cPZ.h + cPZ.q + 1) := rfl
 
-theorem ConPolyZono.quadMap_q (Q : Fin k → Mat ℝ n n) (C : ConPolyZono (Vec ℝ n)) :
-    (ConPolyZono.quadMap Q C).q = 0 := rfl
+theorem ConPolyZono.quadMap_q (Q : Fin k → Mat ℝ n n) (cPZ : ConPolyZono (Vec ℝ n)) :
+    (ConPolyZono.quadMap Q cPZ).q = 0 := rfl
 
-theorem ConPolyZono.quadMap_m (Q : Fin k → Mat ℝ n n) (C : ConPolyZono (Vec ℝ n)) :
-    (ConPolyZono.quadMap Q C).m = C.m := rfl
+theorem ConPolyZono.quadMap_m (Q : Fin k → Mat ℝ n n) (cPZ : ConPolyZono (Vec ℝ n)) :
+    (ConPolyZono.quadMap Q cPZ).m = cPZ.m := rfl
 
-theorem ConPolyZono.quadMap_s (Q : Fin k → Mat ℝ n n) (C : ConPolyZono (Vec ℝ n)) :
-    (ConPolyZono.quadMap Q C).s = C.s := rfl
+theorem ConPolyZono.quadMap_s (Q : Fin k → Mat ℝ n n) (cPZ : ConPolyZono (Vec ℝ n)) :
+    (ConPolyZono.quadMap Q cPZ).s = cPZ.s := rfl
 
 end CORALean.Real
 

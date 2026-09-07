@@ -26,10 +26,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.dependent_outer (PZ : PolyZonotope 𝕋 n) :
-    PZ.construct ⊆ PZ.dependent.construct := fun x hx =>
-  ⟨x, PolyZonotope.dependent_nominal PZ hx, 0,
-    PolyZonotope.zero_mem_dependent_err PZ, add_zero x⟩
+theorem PolyZonotope.dependent_outer (pZ : PolyZonotope 𝕋 n) :
+    pZ.construct ⊆ pZ.dependent.construct := fun x hx =>
+  ⟨x, PolyZonotope.dependent_nominal pZ hx, 0,
+    PolyZonotope.zero_mem_dependent_err pZ, add_zero x⟩
 
 end CORALean.Float
 

@@ -28,15 +28,15 @@ namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
-def ConPolyZono.zonotope (C : ConPolyZono α) : Zonotope α :=
-  C.polyZonotope.zonotope
+def ConPolyZono.zonotope (cPZ : ConPolyZono α) : Zonotope α :=
+  cPZ.polyZonotope.zonotope
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.zonotope_outer (C : ConPolyZono α) :
-    C.construct ⊆ C.zonotope.construct :=
-  subset_trans C.polyZonotope_outer (PolyZonotope.zonotope_outer _)
+theorem ConPolyZono.zonotope_outer (cPZ : ConPolyZono α) :
+    cPZ.construct ⊆ cPZ.zonotope.construct :=
+  subset_trans cPZ.polyZonotope_outer (PolyZonotope.zonotope_outer _)
 
 end CORALean.Real
 

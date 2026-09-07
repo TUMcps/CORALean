@@ -41,44 +41,44 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {d : ℕ}
 
 /-- Merging two generators whose columns agree off `k₀`, with column `i` even,
 `E_{k₀,j}` even and `E_{k₀,j} ≤ E_{k₀,i}`, over-approximates. -/
-theorem PolyZonotope.relaxExpEven_outer (PZ : PolyZonotope α)
-    (part : Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin PZ.p)
-    (hsim : ∀ k, k ≠ k₀ → PZ.E k (part.right 0) = PZ.E k (part.right 1))
-    (heven : ∀ k, Even (PZ.E k (part.right 0)))
-    (hevenj : Even (PZ.E k₀ (part.right 1)))
-    (hle : PZ.E k₀ (part.right 1) ≤ PZ.E k₀ (part.right 0)) :
-    PZ.construct ⊆ (PZ.relaxExpEven part k₀).construct := by -- --- PROOF ---
+theorem PolyZonotope.relaxExpEven_outer (pZ : PolyZonotope α)
+    (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p)
+    (hsim : ∀ k, k ≠ k₀ → pZ.E k (part.right 0) = pZ.E k (part.right 1))
+    (heven : ∀ k, Even (pZ.E k (part.right 0)))
+    (hevenj : Even (pZ.E k₀ (part.right 1)))
+    (hle : pZ.E k₀ (part.right 1) ≤ pZ.E k₀ (part.right 0)) :
+    pZ.construct ⊆ (pZ.relaxExpEven part k₀).construct := by -- --- PROOF ---
   rintro x ⟨a, β, ha, hβ, rfl⟩
-  have habs : |PolyZonotope.monomial PZ.E a (part.right 0)
-      - PolyZonotope.monomial PZ.E a (part.right 1)| ≤ (PZ.relaxWidth part k₀ : ℝ) :=
-    PolyZonotope.abs_sub_monomial_le PZ.E ha hsim
-  have hsign : PolyZonotope.monomial PZ.E a (part.right 0)
-      - PolyZonotope.monomial PZ.E a (part.right 1) ≤ 0 :=
-    PolyZonotope.sub_monomial_nonpos PZ.E ha hsim heven hevenj hle
-  have hnn : (0:ℝ) ≤ (PZ.relaxWidth part k₀ : ℝ) / 2 := by
-    have h := Nat.cast_nonneg (α := ℝ) (PZ.relaxWidth part k₀)
+  have habs : |PolyZonotope.monomial pZ.E a (part.right 0)
+      - PolyZonotope.monomial pZ.E a (part.right 1)| ≤ (pZ.relaxWidth part k₀ : ℝ) :=
+    PolyZonotope.abs_sub_monomial_le pZ.E ha hsim
+  have hsign : PolyZonotope.monomial pZ.E a (part.right 0)
+      - PolyZonotope.monomial pZ.E a (part.right 1) ≤ 0 :=
+    PolyZonotope.sub_monomial_nonpos pZ.E ha hsim heven hevenj hle
+  have hnn : (0:ℝ) ≤ (pZ.relaxWidth part k₀ : ℝ) / 2 := by
+    have h := Nat.cast_nonneg (α := ℝ) (pZ.relaxWidth part k₀)
     linarith
   -- one-sided drift: its midpoint is `-ξ_E/2` and its radius `ξ_E/2`
-  have hmid : |PolyZonotope.monomial PZ.E a (part.right 0)
-      - PolyZonotope.monomial PZ.E a (part.right 1) + (PZ.relaxWidth part k₀ : ℝ) / 2|
-        ≤ (PZ.relaxWidth part k₀ : ℝ) / 2 := by
+  have hmid : |PolyZonotope.monomial pZ.E a (part.right 0)
+      - PolyZonotope.monomial pZ.E a (part.right 1) + (pZ.relaxWidth part k₀ : ℝ) / 2|
+        ≤ (pZ.relaxWidth part k₀ : ℝ) / 2 := by
     rw [abs_le] at habs ⊢
     constructor <;> linarith [habs.1, habs.2]
-  set t := Zonotope.coefficient ((PZ.relaxWidth part k₀ : ℝ) / 2)
-    (PolyZonotope.monomial PZ.E a (part.right 0)
-      - PolyZonotope.monomial PZ.E a (part.right 1) + (PZ.relaxWidth part k₀ : ℝ) / 2) with ht
-  have hcoef : t * ((PZ.relaxWidth part k₀ : ℝ) / 2)
-      = PolyZonotope.monomial PZ.E a (part.right 0)
-        - PolyZonotope.monomial PZ.E a (part.right 1) + (PZ.relaxWidth part k₀ : ℝ) / 2 := by
+  set t := Zonotope.coefficient ((pZ.relaxWidth part k₀ : ℝ) / 2)
+    (PolyZonotope.monomial pZ.E a (part.right 0)
+      - PolyZonotope.monomial pZ.E a (part.right 1) + (pZ.relaxWidth part k₀ : ℝ) / 2) with ht
+  have hcoef : t * ((pZ.relaxWidth part k₀ : ℝ) / 2)
+      = PolyZonotope.monomial pZ.E a (part.right 0)
+        - PolyZonotope.monomial pZ.E a (part.right 1) + (pZ.relaxWidth part k₀ : ℝ) / 2 := by
     rw [ht, mul_comm]
     exact Zonotope.mul_coefficient hmid
   -- the kept columns keep their monomials, and the merged one takes the second's
-  have hmono : ∀ l : Fin d, PolyZonotope.monomial (PZ.relaxExpEven part k₀).E a (Fin.castAdd 1 l)
-      = PolyZonotope.monomial PZ.E a (part.left l) := fun l => by
+  have hmono : ∀ l : Fin d, PolyZonotope.monomial (pZ.relaxExpEven part k₀).E a (Fin.castAdd 1 l)
+      = PolyZonotope.monomial pZ.E a (part.left l) := fun l => by
     simp only [PolyZonotope.monomial, PolyZonotope.relaxExpEven, Fin.append_left]
     rfl
-  have hlast : PolyZonotope.monomial (PZ.relaxExpEven part k₀).E a (Fin.natAdd d 0)
-      = PolyZonotope.monomial PZ.E a (part.right 1) := by
+  have hlast : PolyZonotope.monomial (pZ.relaxExpEven part k₀).E a (Fin.natAdd d 0)
+      = PolyZonotope.monomial pZ.E a (part.right 1) := by
     simp only [PolyZonotope.monomial, PolyZonotope.relaxExpEven, Fin.append_right]
     rfl
   -- the same factors read both sides, with one coefficient appended
@@ -88,12 +88,12 @@ theorem PolyZonotope.relaxExpEven_outer (PZ : PolyZonotope α)
       exact hβ j
     · rw [Fin.append_right]
       exact Zonotope.abs_coefficient_le_one hnn hmid
-  show PZ.c + ∑ l, PolyZonotope.monomial PZ.E a l • PZ.G l + ∑ j, β j • PZ.GI j
-      = PZ.c - ((PZ.relaxWidth part k₀ : ℝ) / 2) • PZ.G (part.right 0)
-          + (∑ l : Fin (d + 1), PolyZonotope.monomial (PZ.relaxExpEven part k₀).E a l
-              • (PZ.relaxExpEven part k₀).G l)
-        + ∑ j : Fin (PZ.q + 1), Fin.append β (fun _ => t) j • (PZ.relaxExpEven part k₀).GI j
-  rw [part.sum_split₂ fun l => PolyZonotope.monomial PZ.E a l • PZ.G l,
+  show pZ.c + ∑ l, PolyZonotope.monomial pZ.E a l • pZ.G l + ∑ j, β j • pZ.GI j
+      = pZ.c - ((pZ.relaxWidth part k₀ : ℝ) / 2) • pZ.G (part.right 0)
+          + (∑ l : Fin (d + 1), PolyZonotope.monomial (pZ.relaxExpEven part k₀).E a l
+              • (pZ.relaxExpEven part k₀).G l)
+        + ∑ j : Fin (pZ.q + 1), Fin.append β (fun _ => t) j • (pZ.relaxExpEven part k₀).GI j
+  rw [part.sum_split₂ fun l => PolyZonotope.monomial pZ.E a l • pZ.G l,
     Fin.sum_univ_add, Fin.sum_univ_add, Fin.sum_univ_two]
   simp only [Fin.sum_univ_one, hmono, hlast]
   simp only [PolyZonotope.relaxExpEven, Fin.append_left, Fin.append_right]

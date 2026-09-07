@@ -24,9 +24,9 @@ variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Mod
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ZonoBundle.map (f : α →ₗ[ℝ] β) (B : ZonoBundle α) : ZonoBundle β where
-  k := B.k
-  Z := fun i => Zonotope.map f (B.Z i)
+def ZonoBundle.map (f : α →ₗ[ℝ] β) (zB : ZonoBundle α) : ZonoBundle β where
+  k := zB.k
+  Z := fun i => Zonotope.map f (zB.Z i)
 
 end CORALean.Real
 

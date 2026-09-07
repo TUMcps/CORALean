@@ -38,18 +38,18 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def PolyZonotope.linComb (PZ₁ PZ₂ : PolyZonotope α) : PolyZonotope α where
-  p := PZ₁.p + PZ₂.p + 1
-  h := PZ₁.h + PZ₂.h + (PZ₁.h + PZ₂.h + 1)
-  q := PZ₁.q + PZ₂.q
-  c := (2:ℝ)⁻¹ • (PZ₁.c + PZ₂.c)
+noncomputable def PolyZonotope.linComb (pZ₁ pZ₂ : PolyZonotope α) : PolyZonotope α where
+  p := pZ₁.p + pZ₂.p + 1
+  h := pZ₁.h + pZ₂.h + (pZ₁.h + pZ₂.h + 1)
+  q := pZ₁.q + pZ₂.q
+  c := (2:ℝ)⁻¹ • (pZ₁.c + pZ₂.c)
   G := Fin.append
-        (Fin.append (fun i => (2:ℝ)⁻¹ • PZ₁.G i) (fun i => (2:ℝ)⁻¹ • PZ₂.G i))
+        (Fin.append (fun i => (2:ℝ)⁻¹ • pZ₁.G i) (fun i => (2:ℝ)⁻¹ • pZ₂.G i))
         (Fin.append
-          (Fin.append (fun i => (2:ℝ)⁻¹ • PZ₁.G i) (fun i => (-(2:ℝ)⁻¹ : ℝ) • PZ₂.G i))
-          (fun _ : Fin 1 => (2:ℝ)⁻¹ • (PZ₁.c - PZ₂.c)))
-  E := PolyZonotope.linCombE PZ₁.E PZ₂.E
-  GI := Fin.append (Zonotope.pairSum PZ₁.GI PZ₂.GI) (Zonotope.pairDiff PZ₁.GI PZ₂.GI)
+          (Fin.append (fun i => (2:ℝ)⁻¹ • pZ₁.G i) (fun i => (-(2:ℝ)⁻¹ : ℝ) • pZ₂.G i))
+          (fun _ : Fin 1 => (2:ℝ)⁻¹ • (pZ₁.c - pZ₂.c)))
+  E := PolyZonotope.linCombE pZ₁.E pZ₂.E
+  GI := Fin.append (Zonotope.pairSum pZ₁.GI pZ₂.GI) (Zonotope.pairDiff pZ₁.GI pZ₂.GI)
 
 end CORALean.Real
 

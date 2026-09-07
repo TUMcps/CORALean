@@ -27,9 +27,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n d : ℕ}
 
 /-- The recentred centre as stored: the shift taken off at its upper rounding,
 so the stored centre stays below the exact one. -/
-def PolyZonotope.relaxCentreEven (PZ : PolyZonotope 𝕋 n)
-    (part : Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin PZ.p) : Vec 𝕋 n :=
-  fun i => subDown (PZ.c i) (PZ.relaxGenEvenUp part k₀ i)
+def PolyZonotope.relaxCentreEven (pZ : PolyZonotope 𝕋 n)
+    (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) : Vec 𝕋 n :=
+  fun i => subDown (pZ.c i) (pZ.relaxGenEvenUp part k₀ i)
 
 end CORALean.Float
 

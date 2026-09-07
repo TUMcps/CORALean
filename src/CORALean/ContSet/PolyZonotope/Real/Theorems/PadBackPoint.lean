@@ -50,8 +50,8 @@ theorem PolyZonotope.aux_monomial_padBack {p s : ℕ} (E : Fin p → Fin s → �
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.padBack_point (r : ℕ) (S : PolyZonotope α) (a : Fin (S.p + r) → ℝ) :
-    (S.padBack r).point a = S.point (a ∘ Fin.castAdd r) := by
+theorem PolyZonotope.padBack_point (r : ℕ) (pZ : PolyZonotope α) (a : Fin (pZ.p + r) → ℝ) :
+    (pZ.padBack r).point a = pZ.point (a ∘ Fin.castAdd r) := by
   rw [PolyZonotope.point, PolyZonotope.point]
   -- only the exponent matrix differs, and the auxiliary reads it back
   simp only [PolyZonotope.padBack, PolyZonotope.aux_monomial_padBack]

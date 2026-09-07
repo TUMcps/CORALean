@@ -23,19 +23,19 @@ variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Mod
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.map_exact (f : α →ₗ[ℝ] β) (C : ConZonotope α) :
-    ⇑f '' C.construct = (C.map f).construct := by -- --- PROOF ---
-  have hf : ∀ b : Fin C.h → ℝ, f (C.c + ∑ j, b j • C.G j)
-      = (C.map f).c + ∑ j, b j • (C.map f).G j := by
+theorem ConZonotope.map_exact (f : α →ₗ[ℝ] β) (cZ : ConZonotope α) :
+    ⇑f '' cZ.construct = (cZ.map f).construct := by -- --- PROOF ---
+  have hf : ∀ b : Fin cZ.h → ℝ, f (cZ.c + ∑ j, b j • cZ.G j)
+      = (cZ.map f).c + ∑ j, b j • (cZ.map f).G j := by
     intro b
     rw [map_add, map_sum]
-    exact congrArg _ (Finset.sum_congr rfl fun j _ => map_smul f (b j) (C.G j))
+    exact congrArg _ (Finset.sum_congr rfl fun j _ => map_smul f (b j) (cZ.G j))
   -- both inclusions are `hf` read in the two directions; the polytope never moves
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨x, ⟨b, hb, hA, rfl⟩, rfl⟩
     exact ⟨b, hb, hA, hf b⟩
   · rintro y ⟨b, hb, hA, hy⟩
-    refine ⟨C.c + ∑ j, b j • C.G j, ⟨b, hb, hA, rfl⟩, ?_⟩
+    refine ⟨cZ.c + ∑ j, b j • cZ.G j, ⟨b, hb, hA, rfl⟩, ?_⟩
     rw [hy]
     exact hf b
 

@@ -27,11 +27,11 @@ variable {n : ℕ}
 /-- The constraint matrix of `andDep`: the two systems block-diagonally over the
 constraint columns and blind to the generator columns, then the agreement rows,
 blind to the constraint columns. -/
-def ConPolyZono.andA (C₁ C₂ : ConPolyZono (Vec ℝ n)) :
-    Mat ℝ (C₁.m + C₂.m + n) (C₁.s + C₂.s + (C₁.h + C₂.h)) := fun i =>
+def ConPolyZono.andA (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n)) :
+    Mat ℝ (cPZ₁.m + cPZ₂.m + n) (cPZ₁.s + cPZ₂.s + (cPZ₁.h + cPZ₂.h)) := fun i =>
   Fin.append
-    (fun r => Fin.append (ConPolyZono.plusA C₁.A C₂.A r) (0 : Fin (C₁.h + C₂.h) → ℝ))
-    (fun r => Fin.append (0 : Fin (C₁.s + C₂.s) → ℝ) (ConPolyZono.agreeRow C₁ C₂ r)) i
+    (fun r => Fin.append (ConPolyZono.plusA cPZ₁.A cPZ₂.A r) (0 : Fin (cPZ₁.h + cPZ₂.h) → ℝ))
+    (fun r => Fin.append (0 : Fin (cPZ₁.s + cPZ₂.s) → ℝ) (ConPolyZono.agreeRow cPZ₁ cPZ₂ r)) i
 
 end CORALean.Real
 

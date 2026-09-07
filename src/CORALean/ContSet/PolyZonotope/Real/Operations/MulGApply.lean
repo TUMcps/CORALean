@@ -26,11 +26,11 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.mulG_apply (S₁ S₂ : PolyZonotope (Vec ℝ n))
-    (l : Fin ((S₁.h + 1) * (S₂.h + 1))) (i : Fin n) :
-    PolyZonotope.mulG S₁ S₂ l i
-      = PolyZonotope.extG S₁ (finProdFinEquiv.symm l).1 i
-        * PolyZonotope.extG S₂ (finProdFinEquiv.symm l).2 i := rfl
+theorem PolyZonotope.mulG_apply (pZ₁ pZ₂ : PolyZonotope (Vec ℝ n))
+    (l : Fin ((pZ₁.h + 1) * (pZ₂.h + 1))) (i : Fin n) :
+    PolyZonotope.mulG pZ₁ pZ₂ l i
+      = PolyZonotope.extG pZ₁ (finProdFinEquiv.symm l).1 i
+        * PolyZonotope.extG pZ₂ (finProdFinEquiv.symm l).2 i := rfl
 
 end CORALean.Real
 

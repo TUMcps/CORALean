@@ -31,20 +31,20 @@ namespace CORALean.Real
 
 variable {n : ℕ}
 
-def PolyZonotope.interval (PZ : PolyZonotope (Vec ℝ n)) : Interval (Vec ℝ n) :=
-  PZ.zonotope.interval
+def PolyZonotope.interval (pZ : PolyZonotope (Vec ℝ n)) : Interval (Vec ℝ n) :=
+  pZ.zonotope.interval
 
-theorem PolyZonotope.interval_outer (PZ : PolyZonotope (Vec ℝ n)) :
-    PZ.construct ⊆ PZ.interval.construct :=
-  subset_trans PZ.zonotope_outer (Zonotope.interval_outer _)
+theorem PolyZonotope.interval_outer (pZ : PolyZonotope (Vec ℝ n)) :
+    pZ.construct ⊆ pZ.interval.construct :=
+  subset_trans pZ.zonotope_outer (Zonotope.interval_outer _)
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The box is ordered, the set having a point for it to enclose. -/
-theorem PolyZonotope.interval_inf_le_sup (PZ : PolyZonotope (Vec ℝ n)) (i : Fin n) :
-    PZ.interval.inf i ≤ PZ.interval.sup i := by
-  have hmem := PZ.interval_outer (PZ.point_mem_construct (a := fun _ => 0)
+theorem PolyZonotope.interval_inf_le_sup (pZ : PolyZonotope (Vec ℝ n)) (i : Fin n) :
+    pZ.interval.inf i ≤ pZ.interval.sup i := by
+  have hmem := pZ.interval_outer (pZ.point_mem_construct (a := fun _ => 0)
     fun _ => by rw [abs_zero]; exact zero_le_one)
   exact le_trans (hmem i).1 (hmem i).2
 

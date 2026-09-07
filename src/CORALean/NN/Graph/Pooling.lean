@@ -65,8 +65,8 @@ theorem GNN.sumPoolLin_apply (H : Mat ℝ N F) (j : Fin F) :
 
 /-- Summation pooling on a matrix polynomial zonotope, landing in the vector
 shape the layers after it read. -/
-def GNN.sumPool (PZ : PolyZonotope (Mat ℝ N F)) : PolyZonotope (Vec ℝ F) :=
-  PZ.map (GNN.sumPoolLin N F)
+def GNN.sumPool (pZ : PolyZonotope (Mat ℝ N F)) : PolyZonotope (Vec ℝ F) :=
+  pZ.map (GNN.sumPoolLin N F)
 
 end CORALean.Real
 

@@ -28,20 +28,20 @@ variable {k n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConPolyZono.mtimes (M : Mat ℝ k n) (C : ConPolyZono (Vec ℝ n)) :
+def ConPolyZono.mtimes (M : Mat ℝ k n) (cPZ : ConPolyZono (Vec ℝ n)) :
     ConPolyZono (Vec ℝ k) where
-  p := C.p
-  h := C.h
-  q := C.q
-  m := C.m
-  s := C.s
-  c := M *ᵥ C.c
-  G := fun i => M *ᵥ C.G i
-  E := C.E
-  GI := fun j => M *ᵥ C.GI j
-  A := C.A
-  b := C.b
-  EC := C.EC
+  p := cPZ.p
+  h := cPZ.h
+  q := cPZ.q
+  m := cPZ.m
+  s := cPZ.s
+  c := M *ᵥ cPZ.c
+  G := fun i => M *ᵥ cPZ.G i
+  E := cPZ.E
+  GI := fun j => M *ᵥ cPZ.GI j
+  A := cPZ.A
+  b := cPZ.b
+  EC := cPZ.EC
 
 end CORALean.Real
 

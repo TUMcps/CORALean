@@ -26,9 +26,9 @@ variable {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ZonoBundle.mtimes (M : Mat ℝ m n) (B : ZonoBundle (Vec ℝ n)) : ZonoBundle (Vec ℝ m) where
-  k := B.k
-  Z := fun i => Zonotope.mtimes M (B.Z i)
+def ZonoBundle.mtimes (M : Mat ℝ m n) (zB : ZonoBundle (Vec ℝ n)) : ZonoBundle (Vec ℝ m) where
+  k := zB.k
+  Z := fun i => Zonotope.mtimes M (zB.Z i)
 
 end CORALean.Real
 

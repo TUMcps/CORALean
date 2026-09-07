@@ -24,10 +24,10 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.sum_univ_linComb {M : Type} [AddCommMonoid M] {C₁ C₂ : ConZonotope α}
-    (f : Fin (C₁.h + C₂.h + 1) → M) :
-    ∑ j : Fin (C₁.linComb C₂).h, f j
-      = ∑ j, f (Fin.castAdd 1 j) + ∑ j, f (Fin.natAdd (C₁.h + C₂.h) j) :=
+theorem ConZonotope.sum_univ_linComb {M : Type} [AddCommMonoid M] {cZ₁ cZ₂ : ConZonotope α}
+    (f : Fin (cZ₁.h + cZ₂.h + 1) → M) :
+    ∑ j : Fin (cZ₁.linComb cZ₂).h, f j
+      = ∑ j, f (Fin.castAdd 1 j) + ∑ j, f (Fin.natAdd (cZ₁.h + cZ₂.h) j) :=
   Fin.sum_univ_add f
 
 end CORALean.Real

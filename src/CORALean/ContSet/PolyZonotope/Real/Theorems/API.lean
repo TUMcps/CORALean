@@ -76,8 +76,8 @@ every step, so `reduce_order_le` bounds the size it keeps. `map_point`/`map_subs
 one factor vector and at a sub-box, and `mtimesIntervalMat_outer` boxes the radius into a fresh
 independent block. `mem_ofPoint` needs none of that guarding — there is nothing to bound.
 
-`bilin_exact` equates a pairing with the image of the shared factors under `a ↦ f (point S₁ a)
-(point S₂ a)`, never `f` over the two sets; `mul_exact` is it entrywise, `evalPoly_exact` carries
+`bilin_exact` equates a pairing with the image of the shared factors under `a ↦ f (point pZ₁ a)
+(point pZ₂ a)`, never `f` over the two sets; `mul_exact` is it entrywise, `evalPoly_exact` carries
 that to a polynomial per coordinate and `evalPolyReal_ofFn` matches Horner to the monomial sum.
 `padBack_point` and `padFront_point` say padding moves no point, so *independent* factors pair by
 `bilin` too. `point_mem_construct`/`subsetAt_subset_construct` are the way back and

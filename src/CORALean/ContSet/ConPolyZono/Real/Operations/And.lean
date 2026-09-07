@@ -30,8 +30,8 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Zero tolerance: the two points agree exactly. -/
-def ConPolyZono.and (C₁ C₂ : ConPolyZono (Vec ℝ n)) : ConPolyZono (Vec ℝ n) :=
-  ConPolyZono.andDep C₁.dependent C₂.dependent (Interval.point 0)
+def ConPolyZono.and (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n)) : ConPolyZono (Vec ℝ n) :=
+  ConPolyZono.andDep cPZ₁.dependent cPZ₂.dependent (Interval.point 0)
 
 end CORALean.Real
 

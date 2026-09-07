@@ -5,9 +5,9 @@ import CORALean.ContSet.ConZonotope.Real.Operations.Reduce
 
 Only a bound, and only on the constraints: above the order, the enclosing
 zonotope is reduced and reconverted, which drops every constraint down to
-`fullspace`'s zero; at or below it, `C` passes through unchanged and both
+`fullspace`'s zero; at or below it, `cZ` passes through unchanged and both
 counts are exactly what they were. Either way neither count grows, so
-`≤ C.P.m` and `≤ C.P.me` hold unconditionally: `0 ≤ ·` in the first branch,
+`≤ cZ.P.m` and `≤ cZ.P.me` hold unconditionally: `0 ≤ ·` in the first branch,
 `rfl` in the second once it is fixed.
 
 The generator count is `ConZonotope.reduce_order_le`, under `Theorems/` rather
@@ -30,17 +30,17 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.reduce_P_m_le (C : ConZonotope (Vec ℝ n)) (o : ℕ) :
-    (C.reduce o).P.m ≤ C.P.m := by
+theorem ConZonotope.reduce_P_m_le (cZ : ConZonotope (Vec ℝ n)) (o : ℕ) :
+    (cZ.reduce o).P.m ≤ cZ.P.m := by
   unfold ConZonotope.reduce
-  by_cases h : o * n < C.h
+  by_cases h : o * n < cZ.h
   · rw [if_pos h]; exact Nat.zero_le _
   · rw [if_neg h]
 
-theorem ConZonotope.reduce_P_me_le (C : ConZonotope (Vec ℝ n)) (o : ℕ) :
-    (C.reduce o).P.me ≤ C.P.me := by
+theorem ConZonotope.reduce_P_me_le (cZ : ConZonotope (Vec ℝ n)) (o : ℕ) :
+    (cZ.reduce o).P.me ≤ cZ.P.me := by
   unfold ConZonotope.reduce
-  by_cases h : o * n < C.h
+  by_cases h : o * n < cZ.h
   · rw [if_pos h]; exact Nat.zero_le _
   · rw [if_neg h]
 

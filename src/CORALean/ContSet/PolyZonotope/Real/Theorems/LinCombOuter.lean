@@ -42,18 +42,18 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- `Fin.sum_univ_add` at `linComb`'s dependent generator count, stated through
 the projection because that is the form the goal has. Only the outermost split
 needs it; the blocks it produces have plain counts simp can split itself. -/
-theorem PolyZonotope.aux_sum_univ_linComb_h {PZ₁ PZ₂ : PolyZonotope α}
-    (f : Fin (PZ₁.h + PZ₂.h + (PZ₁.h + PZ₂.h + 1)) → α) :
-    ∑ i : Fin (PZ₁.linComb PZ₂).h, f i
-      = ∑ i, f (Fin.castAdd (PZ₁.h + PZ₂.h + 1) i)
-        + ∑ i, f (Fin.natAdd (PZ₁.h + PZ₂.h) i) :=
+theorem PolyZonotope.aux_sum_univ_linComb_h {pZ₁ pZ₂ : PolyZonotope α}
+    (f : Fin (pZ₁.h + pZ₂.h + (pZ₁.h + pZ₂.h + 1)) → α) :
+    ∑ i : Fin (pZ₁.linComb pZ₂).h, f i
+      = ∑ i, f (Fin.castAdd (pZ₁.h + pZ₂.h + 1) i)
+        + ∑ i, f (Fin.natAdd (pZ₁.h + pZ₂.h) i) :=
   Fin.sum_univ_add f
 
 /-- The same at the independent generator count. -/
-theorem PolyZonotope.aux_sum_univ_linComb_q {PZ₁ PZ₂ : PolyZonotope α}
-    (f : Fin (PZ₁.q + PZ₂.q) → α) :
-    ∑ j : Fin (PZ₁.linComb PZ₂).q, f j
-      = ∑ j, f (Fin.castAdd PZ₂.q j) + ∑ j, f (Fin.natAdd PZ₁.q j) :=
+theorem PolyZonotope.aux_sum_univ_linComb_q {pZ₁ pZ₂ : PolyZonotope α}
+    (f : Fin (pZ₁.q + pZ₂.q) → α) :
+    ∑ j : Fin (pZ₁.linComb pZ₂).q, f j
+      = ∑ j, f (Fin.castAdd pZ₂.q j) + ∑ j, f (Fin.natAdd pZ₁.q j) :=
   Fin.sum_univ_add f
 
 /-- A generator block scaled by a constant, with the constant pulled out of the
@@ -77,8 +77,8 @@ theorem PolyZonotope.aux_sum_scaled_mul {k : ℕ} (t s : ℝ) (m : Fin k → ℝ
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.linComb_outer (PZ₁ PZ₂ : PolyZonotope α) :
-    segments PZ₁.construct PZ₂.construct ⊆ (PZ₁.linComb PZ₂).construct := by -- --- PROOF ---
+theorem PolyZonotope.linComb_outer (pZ₁ pZ₂ : PolyZonotope α) :
+    segments pZ₁.construct pZ₂.construct ⊆ (pZ₁.linComb pZ₂).construct := by -- --- PROOF ---
   rintro x ⟨y₁, ⟨a₁, β₁, ha₁, hβ₁, rfl⟩, y₂, ⟨a₂, β₂, ha₂, hβ₂, rfl⟩,
     lam, ⟨hl0, hl1⟩, rfl⟩
   refine ⟨Fin.append (Fin.append a₁ a₂) (fun _ : Fin 1 => 2 * lam - 1),
@@ -106,13 +106,13 @@ theorem PolyZonotope.linComb_outer (PZ₁ PZ₂ : PolyZonotope α) :
       PolyZonotope.monomial_linCombE_fst, PolyZonotope.monomial_linCombE_snd,
       PolyZonotope.monomial_linCombE_last, PolyZonotope.monomial_plusE_left,
       PolyZonotope.monomial_plusE_right, Fin.append_left, Fin.append_right]
-    rw [PolyZonotope.aux_sum_scaled (2:ℝ)⁻¹ (PolyZonotope.monomial PZ₁.E a₁) PZ₁.G,
-      PolyZonotope.aux_sum_scaled (2:ℝ)⁻¹ (PolyZonotope.monomial PZ₂.E a₂) PZ₂.G,
+    rw [PolyZonotope.aux_sum_scaled (2:ℝ)⁻¹ (PolyZonotope.monomial pZ₁.E a₁) pZ₁.G,
+      PolyZonotope.aux_sum_scaled (2:ℝ)⁻¹ (PolyZonotope.monomial pZ₂.E a₂) pZ₂.G,
       PolyZonotope.aux_sum_scaled_mul (2 * lam - 1) (2:ℝ)⁻¹
-        (PolyZonotope.monomial PZ₁.E a₁) PZ₁.G,
+        (PolyZonotope.monomial pZ₁.E a₁) pZ₁.G,
       PolyZonotope.aux_sum_scaled_mul (2 * lam - 1) (-(2:ℝ)⁻¹)
-        (PolyZonotope.monomial PZ₂.E a₂) PZ₂.G,
-      Zonotope.sum_pair PZ₁.GI PZ₂.GI β₁ β₂ lam]
+        (PolyZonotope.monomial pZ₂.E a₂) pZ₂.G,
+      Zonotope.sum_pair pZ₁.GI pZ₂.GI β₁ β₂ lam]
     module
 
 end CORALean.Real

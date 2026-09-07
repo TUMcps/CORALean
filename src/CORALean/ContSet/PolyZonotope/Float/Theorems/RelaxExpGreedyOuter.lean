@@ -35,19 +35,19 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- The relaxation loop over-approximates, at every selection and every number
 of steps. -/
 theorem PolyZonotope.relaxExpGreedy_outer
-    (sel : (PZ : PolyZonotope 𝕋 n) →
-      Option ((d : ℕ) × (Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2))))
-    (m : ℕ) (PZ : PolyZonotope 𝕋 n) :
-    PZ.construct ⊆ (PolyZonotope.relaxExpGreedy sel m PZ).construct := by -- --- PROOF ---
-  induction m generalizing PZ with
+    (sel : (pZ : PolyZonotope 𝕋 n) →
+      Option ((d : ℕ) × (Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2))))
+    (m : ℕ) (pZ : PolyZonotope 𝕋 n) :
+    pZ.construct ⊆ (PolyZonotope.relaxExpGreedy sel m pZ).construct := by -- --- PROOF ---
+  induction m generalizing pZ with
   | zero => exact subset_rfl
   | succ m ih =>
     -- the step the selection names, or none, in which case the loop is over
-    show PZ.construct ⊆ ((sel PZ).elim PZ
-      fun sp => PolyZonotope.relaxExpGreedy sel m (PZ.relaxExpMulti sp.2)).construct
-    cases sel PZ with
+    show pZ.construct ⊆ ((sel pZ).elim pZ
+      fun sp => PolyZonotope.relaxExpGreedy sel m (pZ.relaxExpMulti sp.2)).construct
+    cases sel pZ with
     | none => exact subset_rfl
-    | some sp => exact subset_trans (PZ.relaxExpMulti_outer sp.2) (ih _)
+    | some sp => exact subset_trans (pZ.relaxExpMulti_outer sp.2) (ih _)
 
 end CORALean.Float
 

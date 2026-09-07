@@ -42,16 +42,16 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n d : ℕ}
 
 /-- The two generators `part.right` names merged into one, the drift's midpoint
 moved into the centre and its half-width into a new independent generator. -/
-def PolyZonotope.relaxExpMid (PZ : PolyZonotope 𝕋 n)
-    (part : Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin PZ.p) : PolyZonotope 𝕋 n where
-  p := PZ.p
+def PolyZonotope.relaxExpMid (pZ : PolyZonotope 𝕋 n)
+    (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) : PolyZonotope 𝕋 n where
+  p := pZ.p
   h := d + 1
-  q := PZ.q + 1
-  c := PZ.relaxCentreMid part k₀
-  G := fun i => Fin.append (fun l => PZ.G i (part.left l)) (fun _ => PZ.mergedGen part i)
-  E := fun k => Fin.append (fun l => PZ.E k (part.left l)) (fun _ => PZ.E k (part.right 1))
-  GI := fun i => Fin.append (PZ.GI i) (fun _ => PZ.relaxGenMid part k₀ i)
-  err := PZ.err.plus (PolyZonotope.generatorError (PZ.relaxGapMid part k₀))
+  q := pZ.q + 1
+  c := pZ.relaxCentreMid part k₀
+  G := fun i => Fin.append (fun l => pZ.G i (part.left l)) (fun _ => pZ.mergedGen part i)
+  E := fun k => Fin.append (fun l => pZ.E k (part.left l)) (fun _ => pZ.E k (part.right 1))
+  GI := fun i => Fin.append (pZ.GI i) (fun _ => pZ.relaxGenMid part k₀ i)
+  err := pZ.err.plus (PolyZonotope.generatorError (pZ.relaxGapMid part k₀))
 
 end CORALean.Float
 

@@ -41,20 +41,20 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {d : ℕ}
 
 /-- Merging along an edge of the generator graph over-approximates with the
 centre shifted, given that the relaxed column is even. -/
-theorem PolyZonotope.relaxExpEven_outer_of_edge (PZ : PolyZonotope α)
-    (part : Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2)) {η : ℕ} {k₀ : Fin PZ.p}
-    (hedge : PolyZonotope.ExpEdgeAt PZ.E η k₀ (part.right 0) (part.right 1))
-    (heven : ∀ k, Even (PZ.E k (part.right 0))) :
-    PZ.construct ⊆ (PZ.relaxExpEven part k₀).construct := by -- --- PROOF ---
+theorem PolyZonotope.relaxExpEven_outer_of_edge (pZ : PolyZonotope α)
+    (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) {η : ℕ} {k₀ : Fin pZ.p}
+    (hedge : PolyZonotope.ExpEdgeAt pZ.E η k₀ (part.right 0) (part.right 1))
+    (heven : ∀ k, Even (pZ.E k (part.right 0))) :
+    pZ.construct ⊆ (pZ.relaxExpEven part k₀).construct := by -- --- PROOF ---
   obtain ⟨hsim, hpar, -, hlt⟩ := hedge
   -- the survivor's exponent is even: matching the parity of an even one, or zero
-  have hevenj : Even (PZ.E k₀ (part.right 1)) := by
+  have hevenj : Even (pZ.E k₀ (part.right 1)) := by
     rcases hpar with hpar | hpar
     · refine Nat.even_iff.mpr ?_
       rw [← hpar]
       exact Nat.even_iff.mp (heven k₀)
     · exact Nat.even_iff.mpr (by rw [hpar])
-  exact PZ.relaxExpEven_outer part k₀ hsim heven hevenj (le_of_lt hlt)
+  exact pZ.relaxExpEven_outer part k₀ hsim heven hevenj (le_of_lt hlt)
 
 end CORALean.Real
 

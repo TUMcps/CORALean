@@ -26,11 +26,11 @@ variable {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.mtimes_k (M : Mat ℝ m n) (B : ZonoBundle (Vec ℝ n)) :
-    (ZonoBundle.mtimes M B).k = B.k := rfl
+theorem ZonoBundle.mtimes_k (M : Mat ℝ m n) (zB : ZonoBundle (Vec ℝ n)) :
+    (ZonoBundle.mtimes M zB).k = zB.k := rfl
 
-theorem ZonoBundle.mtimes_Z_h (M : Mat ℝ m n) (B : ZonoBundle (Vec ℝ n)) (i : Fin B.k) :
-    ((ZonoBundle.mtimes M B).Z i).h = (B.Z i).h := rfl
+theorem ZonoBundle.mtimes_Z_h (M : Mat ℝ m n) (zB : ZonoBundle (Vec ℝ n)) (i : Fin zB.k) :
+    ((ZonoBundle.mtimes M zB).Z i).h = (zB.Z i).h := rfl
 
 end CORALean.Real
 

@@ -30,24 +30,24 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- One component's bound, read back as a bound on the whole bundle — the
 result type is what pins the metavariables `SupportBound.mono` would
 otherwise leave to the caller. -/
-def aux_componentBound (B : ZonoBundle α) (c : α →ₗ[ℝ] ℝ) (i : Fin B.k) :
-    SupportBound B.construct c :=
-  SupportBound.mono (Set.iInter_subset (fun i => (B.Z i).construct) i) ((B.Z i).supportBound c)
+def aux_componentBound (zB : ZonoBundle α) (c : α →ₗ[ℝ] ℝ) (i : Fin zB.k) :
+    SupportBound zB.construct c :=
+  SupportBound.mono (Set.iInter_subset (fun i => (zB.Z i).construct) i) ((zB.Z i).supportBound c)
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The minimum over the family's own component bounds, proved tight against
 the component that attains it. -/
-noncomputable def ZonoBundle.supportBound (B : ZonoBundle α) (hk : 0 < B.k)
-    (c : α →ₗ[ℝ] ℝ) : SupportBound B.construct c where
-  val := Finset.univ.inf' ⟨⟨0, hk⟩, Finset.mem_univ _⟩ (fun i => (aux_componentBound B c i).val)
+noncomputable def ZonoBundle.supportBound (zB : ZonoBundle α) (hk : 0 < zB.k)
+    (c : α →ₗ[ℝ] ℝ) : SupportBound zB.construct c where
+  val := Finset.univ.inf' ⟨⟨0, hk⟩, Finset.mem_univ _⟩ (fun i => (aux_componentBound zB c i).val)
   le := by
     intro x hx
-    obtain ⟨i, -, hi⟩ := Finset.exists_mem_eq_inf' (s := (Finset.univ : Finset (Fin B.k)))
-      ⟨⟨0, hk⟩, Finset.mem_univ _⟩ (fun i => (aux_componentBound B c i).val)
+    obtain ⟨i, -, hi⟩ := Finset.exists_mem_eq_inf' (s := (Finset.univ : Finset (Fin zB.k)))
+      ⟨⟨0, hk⟩, Finset.mem_univ _⟩ (fun i => (aux_componentBound zB c i).val)
     rw [hi]
-    exact (aux_componentBound B c i).le x hx
+    exact (aux_componentBound zB c i).le x hx
 
 end CORALean.Real
 

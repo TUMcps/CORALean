@@ -21,15 +21,15 @@ namespace CORALean.Real
 
 variable {n : ℕ}
 
-def ConZonotope.interval (C : ConZonotope (Vec ℝ n)) : Interval (Vec ℝ n) :=
-  C.zonotope.interval
+def ConZonotope.interval (cZ : ConZonotope (Vec ℝ n)) : Interval (Vec ℝ n) :=
+  cZ.zonotope.interval
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.interval_outer (C : ConZonotope (Vec ℝ n)) :
-    C.construct ⊆ C.interval.construct :=
-  subset_trans C.zonotope_outer (Zonotope.interval_outer _)
+theorem ConZonotope.interval_outer (cZ : ConZonotope (Vec ℝ n)) :
+    cZ.construct ⊆ cZ.interval.construct :=
+  subset_trans cZ.zonotope_outer (Zonotope.interval_outer _)
 
 
 end CORALean.Real

@@ -9,7 +9,7 @@ in: the centre and the two generator blocks through `toReal`, the exponent
 matrices unrounded, and the constraint as this set's own `satisfies`.
 
 Proofs use it rather than going through `nominal` because through it every count
-is `C.h`, where the instance gives the equal-but-distinct `(nominal C).h` that
+is `cPZ.h`, where the instance gives the equal-but-distinct `(nominal cPZ).h` that
 `rw` reads apart.
 -/
 
@@ -30,12 +30,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.mem_nominalSet_iff [SoundFloatArithmetic 𝕋] {C : ConPolyZono 𝕋 n}
+theorem ConPolyZono.mem_nominalSet_iff [SoundFloatArithmetic 𝕋] {cPZ : ConPolyZono 𝕋 n}
     {x : Vec ℝ n} :
-    x ∈ InflatedContSet.nominalSet C ↔ ∃ a : Fin C.p → ℝ, ∃ β : Fin C.q → ℝ,
-      (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1) ∧ C.satisfies a ∧ ∀ i, x i = toReal (C.c i)
-        + (∑ l, toReal (C.G i l) * Real.PolyZonotope.monomial C.E a l)
-        + ∑ j, toReal (C.GI i j) * β j :=
+    x ∈ InflatedContSet.nominalSet cPZ ↔ ∃ a : Fin cPZ.p → ℝ, ∃ β : Fin cPZ.q → ℝ,
+      (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1) ∧ cPZ.satisfies a ∧ ∀ i, x i = toReal (cPZ.c i)
+        + (∑ l, toReal (cPZ.G i l) * Real.PolyZonotope.monomial cPZ.E a l)
+        + ∑ j, toReal (cPZ.GI i j) * β j :=
   Real.ConPolyZono.mem_construct_iff
 
 end CORALean.Float

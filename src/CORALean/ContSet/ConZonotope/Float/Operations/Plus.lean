@@ -27,12 +27,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConZonotope.plus (C₁ C₂ : ConZonotope 𝕋 n) : ConZonotope 𝕋 n where
-  h := C₁.h + C₂.h
-  c := fun i => addDown (C₁.c i) (C₂.c i)
-  G := fun i => Fin.append (C₁.G i) (C₂.G i)
-  P := (C₁.P.padLeft C₂.h).and (HPolytope.padRight C₁.h C₂.P)
-  E := (C₁.E.plus C₂.E).plus (Zonotope.centerResidual C₁.c C₂.c)
+def ConZonotope.plus (cZ₁ cZ₂ : ConZonotope 𝕋 n) : ConZonotope 𝕋 n where
+  h := cZ₁.h + cZ₂.h
+  c := fun i => addDown (cZ₁.c i) (cZ₂.c i)
+  G := fun i => Fin.append (cZ₁.G i) (cZ₂.G i)
+  P := (cZ₁.P.padLeft cZ₂.h).and (HPolytope.padRight cZ₁.h cZ₂.P)
+  E := (cZ₁.E.plus cZ₂.E).plus (Zonotope.centerResidual cZ₁.c cZ₂.c)
 
 end CORALean.Float
 

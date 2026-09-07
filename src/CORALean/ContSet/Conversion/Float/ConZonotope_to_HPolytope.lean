@@ -22,15 +22,15 @@ open Matrix FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q : ℕ}
 
-def ConZonotope.hPolytope (C : ConZonotope 𝕋 n) (Aq : Mat 𝕋 q n) : HPolytope 𝕋 n :=
-  C.zonotope.hPolytope Aq
+def ConZonotope.hPolytope (cZ : ConZonotope 𝕋 n) (Aq : Mat 𝕋 q n) : HPolytope 𝕋 n :=
+  cZ.zonotope.hPolytope Aq
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.subset_hPolytope (C : ConZonotope 𝕋 n) (Aq : Mat 𝕋 q n) :
-    C.construct ⊆ (C.hPolytope Aq).construct :=
-  subset_trans C.zonotope_outer (Zonotope.subset_hPolytope _ _)
+theorem ConZonotope.subset_hPolytope (cZ : ConZonotope 𝕋 n) (Aq : Mat 𝕋 q n) :
+    cZ.construct ⊆ (cZ.hPolytope Aq).construct :=
+  subset_trans cZ.zonotope_outer (Zonotope.subset_hPolytope _ _)
 
 
 end CORALean.Float

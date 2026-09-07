@@ -3,7 +3,7 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.ExpEdgeAt
 /-!
 # `PolyZonotope.ExpEdge`
 
-The graph `G_{PZ,η}` of `[1, Def. 5]`, as the relation its edges form: nodes are
+The graph `G_{pZ,η}` of `[1, Def. 5]`, as the relation its edges form: nodes are
 the dependent generators and `i → j` holds where `ExpEdgeAt` does at some index.
 `[1, Def. 4]` makes that index the only one at which the two columns differ, so
 the existential loses nothing.

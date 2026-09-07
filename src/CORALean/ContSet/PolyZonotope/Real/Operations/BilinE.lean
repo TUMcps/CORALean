@@ -26,12 +26,12 @@ variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Mod
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Its exponent column, the two columns added, `S₂`'s read at `S₁`'s factor
+/-- Its exponent column, the two columns added, `pZ₂`'s read at `pZ₁`'s factor
 indices. -/
-def PolyZonotope.bilinE (S₁ : PolyZonotope α) (S₂ : PolyZonotope β) (hp : S₁.p = S₂.p) :
-    Fin S₁.p → Fin ((S₁.h + 1) * (S₂.h + 1)) → ℕ :=
-  fun k l => PolyZonotope.extE S₁ k (finProdFinEquiv.symm l).1
-      + PolyZonotope.extE S₂ (Fin.cast hp k) (finProdFinEquiv.symm l).2
+def PolyZonotope.bilinE (pZ₁ : PolyZonotope α) (pZ₂ : PolyZonotope β) (hp : pZ₁.p = pZ₂.p) :
+    Fin pZ₁.p → Fin ((pZ₁.h + 1) * (pZ₂.h + 1)) → ℕ :=
+  fun k l => PolyZonotope.extE pZ₁ k (finProdFinEquiv.symm l).1
+      + PolyZonotope.extE pZ₂ (Fin.cast hp k) (finProdFinEquiv.symm l).2
 
 end CORALean.Real
 

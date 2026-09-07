@@ -24,8 +24,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- The exponent matrix widened to match, the centre's column being zero — its
 monomial is `1`, which is what the centre needs to be. -/
-def PolyZonotope.extE (S : PolyZonotope 𝕋 n) : Fin S.p → Fin (S.h + 1) → ℕ :=
-  fun k => Fin.cons 0 (S.E k)
+def PolyZonotope.extE (pZ : PolyZonotope 𝕋 n) : Fin pZ.p → Fin (pZ.h + 1) → ℕ :=
+  fun k => Fin.cons 0 (pZ.E k)
 
 end CORALean.Float
 

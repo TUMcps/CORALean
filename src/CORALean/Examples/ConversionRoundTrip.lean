@@ -41,14 +41,14 @@ example (Z : Zonotope (Vec ℝ n)) : Z.construct ⊆ Z.interval.zonotope.constru
 
 /-- Out to a zonotope and back: dropping the dependence between generators is
 what widens, and the return is exact. -/
-example (PZ : PolyZonotope (Vec ℝ n)) :
-    PZ.construct ⊆ PZ.zonotope.polyZonotope.construct :=
-  PZ.zonotope_outer.trans (Zonotope.polyZonotope_exact PZ.zonotope).subset
+example (pZ : PolyZonotope (Vec ℝ n)) :
+    pZ.construct ⊆ pZ.zonotope.polyZonotope.construct :=
+  pZ.zonotope_outer.trans (Zonotope.polyZonotope_exact pZ.zonotope).subset
 
 /-- The same for a constrained zonotope, where dropping the constraints is the
 widening and the return is again exact. -/
-example (C : ConZonotope (Vec ℝ n)) :
-    C.construct ⊆ C.zonotope.conZonotope.construct :=
-  C.zonotope_outer.trans (Zonotope.conZonotope_exact C.zonotope).subset
+example (cZ : ConZonotope (Vec ℝ n)) :
+    cZ.construct ⊆ cZ.zonotope.conZonotope.construct :=
+  cZ.zonotope_outer.trans (Zonotope.conZonotope_exact cZ.zonotope).subset
 
 end CORALean.Real

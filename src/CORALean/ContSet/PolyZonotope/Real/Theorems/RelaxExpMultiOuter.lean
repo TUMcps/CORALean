@@ -45,33 +45,33 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {d : ℕ}
 
 /-- Merging any two dependent generators over-approximates, whichever partition
 names them: the summed width pays for every exponent that moves. -/
-theorem PolyZonotope.relaxExpMulti_outer (PZ : PolyZonotope α)
-    (part : Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2)) :
-    PZ.construct ⊆ (PZ.relaxExpMulti part).construct := by -- --- PROOF ---
+theorem PolyZonotope.relaxExpMulti_outer (pZ : PolyZonotope α)
+    (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) :
+    pZ.construct ⊆ (pZ.relaxExpMulti part).construct := by -- --- PROOF ---
   rintro x ⟨a, β, ha, hβ, rfl⟩
-  have hcast : (PZ.relaxWidthMulti part : ℝ)
-      = ∑ k, (PolyZonotope.eDiff (PZ.E k (part.right 0)) (PZ.E k (part.right 1)) : ℝ) := by
+  have hcast : (pZ.relaxWidthMulti part : ℝ)
+      = ∑ k, (PolyZonotope.eDiff (pZ.E k (part.right 0)) (pZ.E k (part.right 1)) : ℝ) := by
     rw [PolyZonotope.relaxWidthMulti, Nat.cast_sum]
-  have habs : |PolyZonotope.monomial PZ.E a (part.right 0)
-      - PolyZonotope.monomial PZ.E a (part.right 1)| ≤ (PZ.relaxWidthMulti part : ℝ) := by
+  have habs : |PolyZonotope.monomial pZ.E a (part.right 0)
+      - PolyZonotope.monomial pZ.E a (part.right 1)| ≤ (pZ.relaxWidthMulti part : ℝ) := by
     rw [hcast]
-    exact PolyZonotope.abs_sub_monomial_le_sum PZ.E ha _ _
-  have hnn : (0:ℝ) ≤ (PZ.relaxWidthMulti part : ℝ) := Nat.cast_nonneg _
+    exact PolyZonotope.abs_sub_monomial_le_sum pZ.E ha _ _
+  have hnn : (0:ℝ) ≤ (pZ.relaxWidthMulti part : ℝ) := Nat.cast_nonneg _
   -- the new independent generator answers the drift with one coefficient
-  set t := Zonotope.coefficient (PZ.relaxWidthMulti part : ℝ)
-    (PolyZonotope.monomial PZ.E a (part.right 0)
-      - PolyZonotope.monomial PZ.E a (part.right 1)) with ht
-  have hcoef : t * (PZ.relaxWidthMulti part : ℝ) = PolyZonotope.monomial PZ.E a (part.right 0)
-      - PolyZonotope.monomial PZ.E a (part.right 1) := by
+  set t := Zonotope.coefficient (pZ.relaxWidthMulti part : ℝ)
+    (PolyZonotope.monomial pZ.E a (part.right 0)
+      - PolyZonotope.monomial pZ.E a (part.right 1)) with ht
+  have hcoef : t * (pZ.relaxWidthMulti part : ℝ) = PolyZonotope.monomial pZ.E a (part.right 0)
+      - PolyZonotope.monomial pZ.E a (part.right 1) := by
     rw [ht, mul_comm]
     exact Zonotope.mul_coefficient habs
   -- the kept columns keep their monomials, and the merged one takes the second's
-  have hmono : ∀ l : Fin d, PolyZonotope.monomial (PZ.relaxExpMulti part).E a (Fin.castAdd 1 l)
-      = PolyZonotope.monomial PZ.E a (part.left l) := fun l => by
+  have hmono : ∀ l : Fin d, PolyZonotope.monomial (pZ.relaxExpMulti part).E a (Fin.castAdd 1 l)
+      = PolyZonotope.monomial pZ.E a (part.left l) := fun l => by
     simp only [PolyZonotope.monomial, PolyZonotope.relaxExpMulti, Fin.append_left]
     rfl
-  have hlast : PolyZonotope.monomial (PZ.relaxExpMulti part).E a (Fin.natAdd d 0)
-      = PolyZonotope.monomial PZ.E a (part.right 1) := by
+  have hlast : PolyZonotope.monomial (pZ.relaxExpMulti part).E a (Fin.natAdd d 0)
+      = PolyZonotope.monomial pZ.E a (part.right 1) := by
     simp only [PolyZonotope.monomial, PolyZonotope.relaxExpMulti, Fin.append_right]
     rfl
   -- the same factors read both sides, with one coefficient appended
@@ -81,11 +81,11 @@ theorem PolyZonotope.relaxExpMulti_outer (PZ : PolyZonotope α)
       exact hβ j
     · rw [Fin.append_right]
       exact Zonotope.abs_coefficient_le_one hnn habs
-  show PZ.c + ∑ l, PolyZonotope.monomial PZ.E a l • PZ.G l + ∑ j, β j • PZ.GI j
-      = PZ.c + (∑ l : Fin (d + 1),
-          PolyZonotope.monomial (PZ.relaxExpMulti part).E a l • (PZ.relaxExpMulti part).G l)
-        + ∑ j : Fin (PZ.q + 1), Fin.append β (fun _ => t) j • (PZ.relaxExpMulti part).GI j
-  rw [part.sum_split₂ fun l => PolyZonotope.monomial PZ.E a l • PZ.G l,
+  show pZ.c + ∑ l, PolyZonotope.monomial pZ.E a l • pZ.G l + ∑ j, β j • pZ.GI j
+      = pZ.c + (∑ l : Fin (d + 1),
+          PolyZonotope.monomial (pZ.relaxExpMulti part).E a l • (pZ.relaxExpMulti part).G l)
+        + ∑ j : Fin (pZ.q + 1), Fin.append β (fun _ => t) j • (pZ.relaxExpMulti part).GI j
+  rw [part.sum_split₂ fun l => PolyZonotope.monomial pZ.E a l • pZ.G l,
     Fin.sum_univ_add, Fin.sum_univ_add, Fin.sum_univ_two]
   simp only [Fin.sum_univ_one, hmono, hlast]
   simp only [PolyZonotope.relaxExpMulti, Fin.append_left, Fin.append_right]

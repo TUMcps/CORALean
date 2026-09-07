@@ -24,11 +24,11 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.reduceGirard_outer (PZ : PolyZonotope (Vec ℝ n)) (o : ℕ) :
-    PZ.construct ⊆ (PZ.reduceGirard o).construct := by
+theorem PolyZonotope.reduceGirard_outer (pZ : PolyZonotope (Vec ℝ n)) (o : ℕ) :
+    pZ.construct ⊆ (pZ.reduceGirard o).construct := by
   unfold PolyZonotope.reduceGirard
   split_ifs with hlt
-  · exact PolyZonotope.reduceBy_outer PZ _ _
+  · exact PolyZonotope.reduceBy_outer pZ _ _
   · exact subset_rfl
 
 end CORALean.Real

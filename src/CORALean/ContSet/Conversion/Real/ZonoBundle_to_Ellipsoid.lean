@@ -23,15 +23,15 @@ namespace CORALean.Real
 
 variable {n : ℕ}
 
-noncomputable def ZonoBundle.ellipsoid (B : ZonoBundle (Vec ℝ n)) (i : Fin B.k) : Ellipsoid n :=
-  (B.zonotope i).ellipsoid
+noncomputable def ZonoBundle.ellipsoid (zB : ZonoBundle (Vec ℝ n)) (i : Fin zB.k) : Ellipsoid n :=
+  (zB.zonotope i).ellipsoid
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.ellipsoid_outer (B : ZonoBundle (Vec ℝ n)) (i : Fin B.k) :
-    B.construct ⊆ (B.ellipsoid i).construct :=
-  subset_trans (B.subset_zonotope i) (Zonotope.ellipsoid_outer _)
+theorem ZonoBundle.ellipsoid_outer (zB : ZonoBundle (Vec ℝ n)) (i : Fin zB.k) :
+    zB.construct ⊆ (zB.ellipsoid i).construct :=
+  subset_trans (zB.subset_zonotope i) (Zonotope.ellipsoid_outer _)
 
 end CORALean.Real
 

@@ -28,8 +28,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A larger sub-box of the factor domain reaches a larger subset. -/
-theorem PolyZonotope.subsetAt_mono (S : PolyZonotope α) {B B' : Set (Fin S.p → ℝ)}
-    (h : B ⊆ B') : S.subsetAt B ⊆ S.subsetAt B' :=
+theorem PolyZonotope.subsetAt_mono (pZ : PolyZonotope α) {B B' : Set (Fin pZ.p → ℝ)}
+    (h : B ⊆ B') : pZ.subsetAt B ⊆ pZ.subsetAt B' :=
   Set.image_mono h
 
 end CORALean.Real

@@ -26,14 +26,14 @@ variable {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.mtimes_h (M : Mat ℝ m n) (C : ConZonotope (Vec ℝ n)) :
-    (ConZonotope.mtimes M C).h = C.h := rfl
+theorem ConZonotope.mtimes_h (M : Mat ℝ m n) (cZ : ConZonotope (Vec ℝ n)) :
+    (ConZonotope.mtimes M cZ).h = cZ.h := rfl
 
-theorem ConZonotope.mtimes_P_m (M : Mat ℝ m n) (C : ConZonotope (Vec ℝ n)) :
-    (ConZonotope.mtimes M C).P.m = C.P.m := rfl
+theorem ConZonotope.mtimes_P_m (M : Mat ℝ m n) (cZ : ConZonotope (Vec ℝ n)) :
+    (ConZonotope.mtimes M cZ).P.m = cZ.P.m := rfl
 
-theorem ConZonotope.mtimes_P_me (M : Mat ℝ m n) (C : ConZonotope (Vec ℝ n)) :
-    (ConZonotope.mtimes M C).P.me = C.P.me := rfl
+theorem ConZonotope.mtimes_P_me (M : Mat ℝ m n) (cZ : ConZonotope (Vec ℝ n)) :
+    (ConZonotope.mtimes M cZ).P.me = cZ.P.me := rfl
 
 end CORALean.Real
 

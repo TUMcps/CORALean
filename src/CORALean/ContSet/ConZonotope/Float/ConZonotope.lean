@@ -46,12 +46,12 @@ structure ConZonotope (𝕋 : Type) (n : ℕ) where
 instance [SoundFloatArithmetic 𝕋] :
     InflatedContSet (ConZonotope 𝕋 n) (CORALean.Real.ConZonotope (Vec ℝ n)) 𝕋 n where
   -- generators transpose: stored as a matrix here, a family of vectors there
-  nominal C := ⟨C.h, toRealVec C.c, fun j i => toReal (C.G i j), C.P.nominal⟩
-  error C := C.E
+  nominal cZ := ⟨cZ.h, toRealVec cZ.c, fun j i => toReal (cZ.G i j), cZ.P.nominal⟩
+  error cZ := cZ.E
 
 /-- Inherited from `InflatedContSet`; named here so statements read locally. -/
-abbrev ConZonotope.construct [SoundFloatArithmetic 𝕋] (C : ConZonotope 𝕋 n) : Set (Vec ℝ n) :=
-  InflatedContSet.construct C
+abbrev ConZonotope.construct [SoundFloatArithmetic 𝕋] (cZ : ConZonotope 𝕋 n) : Set (Vec ℝ n) :=
+  InflatedContSet.construct cZ
 
 /-! ## Storage
 
@@ -60,17 +60,17 @@ closure over the one it was given. `materialise` stores them and `materialise_eq
 says it is the identity; `Global/Tensor` says why the vectors are built here. The
 constraint polytope goes through its own `materialise`. -/
 
-def ConZonotope.materialise (C : ConZonotope 𝕋 n) : ConZonotope 𝕋 n :=
-  let c : Vector 𝕋 n := Vector.ofFn C.c
-  let G : Vector (Vector 𝕋 C.h) n := Vector.ofFn fun i => Vector.ofFn fun j => C.G i j
-  { h := C.h
+def ConZonotope.materialise (cZ : ConZonotope 𝕋 n) : ConZonotope 𝕋 n :=
+  let c : Vector 𝕋 n := Vector.ofFn cZ.c
+  let G : Vector (Vector 𝕋 cZ.h) n := Vector.ofFn fun i => Vector.ofFn fun j => cZ.G i j
+  { h := cZ.h
     c := fun i => c[i.val]'i.isLt
     G := fun i j => (G[i.val]'i.isLt)[j.val]'j.isLt
-    P := C.P.materialise
-    E := C.E.materialise }
+    P := cZ.P.materialise
+    E := cZ.E.materialise }
 
 omit [FloatOps 𝕋] in
-@[simp] theorem ConZonotope.materialise_eq (C : ConZonotope 𝕋 n) : C.materialise = C := by
+@[simp] theorem ConZonotope.materialise_eq (cZ : ConZonotope 𝕋 n) : cZ.materialise = cZ := by
   simp [ConZonotope.materialise]
 
 end CORALean.Float

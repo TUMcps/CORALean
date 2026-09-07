@@ -26,24 +26,25 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 omit [Module ℝ α] in
-theorem ConPolyZono.compact_h_le (C : ConPolyZono α) : (C.compact).h ≤ C.h := by
-  show (PolyZonotope.compactKeep C.E C.G).card ≤ C.h
-  calc (PolyZonotope.compactKeep C.E C.G).card ≤ Fintype.card (Fin C.h) := Finset.card_le_univ _
-    _ = C.h := Fintype.card_fin C.h
+theorem ConPolyZono.compact_h_le (cPZ : ConPolyZono α) : (cPZ.compact).h ≤ cPZ.h := by
+  show (PolyZonotope.compactKeep cPZ.E cPZ.G).card ≤ cPZ.h
+  calc (PolyZonotope.compactKeep cPZ.E cPZ.G).card
+      ≤ Fintype.card (Fin cPZ.h) := Finset.card_le_univ _
+    _ = cPZ.h := Fintype.card_fin cPZ.h
 
 omit [Module ℝ α] in
-theorem ConPolyZono.compact_s_le (C : ConPolyZono α) : (C.compact).s ≤ C.s := by
-  show (PolyZonotope.compactKeep C.compactGens.EC
-    (ConPolyZono.consCol C.compactGens.A)).card ≤ C.s
-  calc _ ≤ Fintype.card (Fin C.s) := Finset.card_le_univ _
-    _ = C.s := Fintype.card_fin C.s
+theorem ConPolyZono.compact_s_le (cPZ : ConPolyZono α) : (cPZ.compact).s ≤ cPZ.s := by
+  show (PolyZonotope.compactKeep cPZ.compactGens.EC
+    (ConPolyZono.consCol cPZ.compactGens.A)).card ≤ cPZ.s
+  calc _ ≤ Fintype.card (Fin cPZ.s) := Finset.card_le_univ _
+    _ = cPZ.s := Fintype.card_fin cPZ.s
 
 omit [Module ℝ α] in
-theorem ConPolyZono.compact_p_le (C : ConPolyZono α) : (C.compact).p ≤ C.p := by
-  show (ConPolyZono.usedFactors C.compactGens.compactCons.E
-    C.compactGens.compactCons.EC).card ≤ C.p
-  calc _ ≤ Fintype.card (Fin C.p) := Finset.card_le_univ _
-    _ = C.p := Fintype.card_fin C.p
+theorem ConPolyZono.compact_p_le (cPZ : ConPolyZono α) : (cPZ.compact).p ≤ cPZ.p := by
+  show (ConPolyZono.usedFactors cPZ.compactGens.compactCons.E
+    cPZ.compactGens.compactCons.EC).card ≤ cPZ.p
+  calc _ ≤ Fintype.card (Fin cPZ.p) := Finset.card_le_univ _
+    _ = cPZ.p := Fintype.card_fin cPZ.p
 
 end CORALean.Real
 

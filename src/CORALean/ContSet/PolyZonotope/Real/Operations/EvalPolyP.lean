@@ -23,14 +23,15 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `evalPoly`'s recursion, paired with the proof that it never leaves `S`'s
+/-- `evalPoly`'s recursion, paired with the proof that it never leaves `pZ`'s
 factor count — carried along so the next step's `mul` needs no new one. -/
-def PolyZonotope.evalPolyP (S : PolyZonotope (Vec ℝ n)) :
-    List (Vec ℝ n) → {R : PolyZonotope (Vec ℝ n) // R.p = S.p}
-  | [] => ⟨(⟨S.p, 0, 0, 0, Fin.elim0, fun _ => Fin.elim0, Fin.elim0⟩ : PolyZonotope (Vec ℝ n)), rfl⟩
+def PolyZonotope.evalPolyP (pZ : PolyZonotope (Vec ℝ n)) :
+    List (Vec ℝ n) → {R : PolyZonotope (Vec ℝ n) // R.p = pZ.p}
+  | [] =>
+      ⟨(⟨pZ.p, 0, 0, 0, Fin.elim0, fun _ => Fin.elim0, Fin.elim0⟩ : PolyZonotope (Vec ℝ n)), rfl⟩
   | a :: rest =>
-      let R := PolyZonotope.evalPolyP S rest
-      ⟨PolyZonotope.evalPolyStep R.1 S R.2 a, R.2⟩
+      let R := PolyZonotope.evalPolyP pZ rest
+      ⟨PolyZonotope.evalPolyStep R.1 pZ R.2 a, R.2⟩
 
 end CORALean.Real
 

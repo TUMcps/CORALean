@@ -24,10 +24,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The image's exponent column, the two columns added. Over ℕ, so exact. -/
-def PolyZonotope.quadMapE (S : PolyZonotope 𝕋 n) :
-    Fin S.p → Fin ((S.h + 1) * (S.h + 1)) → ℕ :=
-  fun k l => PolyZonotope.extE S k (finProdFinEquiv.symm l).1
-      + PolyZonotope.extE S k (finProdFinEquiv.symm l).2
+def PolyZonotope.quadMapE (pZ : PolyZonotope 𝕋 n) :
+    Fin pZ.p → Fin ((pZ.h + 1) * (pZ.h + 1)) → ℕ :=
+  fun k l => PolyZonotope.extE pZ k (finProdFinEquiv.symm l).1
+      + PolyZonotope.extE pZ k (finProdFinEquiv.symm l).2
 
 end CORALean.Float
 

@@ -27,10 +27,10 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def ZonoBundle.linComb (B₁ B₂ : ZonoBundle α) : ZonoBundle α where
-  k := B₁.k * B₂.k
+noncomputable def ZonoBundle.linComb (zB₁ zB₂ : ZonoBundle α) : ZonoBundle α where
+  k := zB₁.k * zB₂.k
   Z := fun p =>
-    Zonotope.linComb (B₁.Z (finProdFinEquiv.symm p).1) (B₂.Z (finProdFinEquiv.symm p).2)
+    Zonotope.linComb (zB₁.Z (finProdFinEquiv.symm p).1) (zB₂.Z (finProdFinEquiv.symm p).2)
 
 end CORALean.Real
 

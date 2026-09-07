@@ -27,20 +27,20 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- Equal exponent columns added together and the zero generators gone. The
 whole constraint block stands, `p` included, so the constraint is untouched. -/
-noncomputable def ConPolyZono.compactGens (C : ConPolyZono α) : ConPolyZono α where
-  p := C.p
-  h := (PolyZonotope.compactKeep C.E C.G).card
-  q := C.q
-  m := C.m
-  s := C.s
-  c := C.c
-  G := fun j => PolyZonotope.fiberSum (PolyZonotope.rep C.E) C.G
-                  (PolyZonotope.compactIdx C.E C.G j)
-  E := fun k j => C.E k (PolyZonotope.compactIdx C.E C.G j)
-  GI := C.GI
-  A := C.A
-  b := C.b
-  EC := C.EC
+noncomputable def ConPolyZono.compactGens (cPZ : ConPolyZono α) : ConPolyZono α where
+  p := cPZ.p
+  h := (PolyZonotope.compactKeep cPZ.E cPZ.G).card
+  q := cPZ.q
+  m := cPZ.m
+  s := cPZ.s
+  c := cPZ.c
+  G := fun j => PolyZonotope.fiberSum (PolyZonotope.rep cPZ.E) cPZ.G
+                  (PolyZonotope.compactIdx cPZ.E cPZ.G j)
+  E := fun k j => cPZ.E k (PolyZonotope.compactIdx cPZ.E cPZ.G j)
+  GI := cPZ.GI
+  A := cPZ.A
+  b := cPZ.b
+  EC := cPZ.EC
 
 end CORALean.Real
 

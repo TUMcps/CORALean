@@ -37,19 +37,19 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConPolyZono.dependent (C : ConPolyZono α) : ConPolyZono α where
-  p := C.p + C.q
-  h := C.h + C.q
+def ConPolyZono.dependent (cPZ : ConPolyZono α) : ConPolyZono α where
+  p := cPZ.p + cPZ.q
+  h := cPZ.h + cPZ.q
   q := 0
-  m := C.m
-  s := C.s
-  c := C.c
-  G := Fin.append C.G C.GI
-  E := PolyZonotope.plusE C.E (PolyZonotope.identE C.q)
+  m := cPZ.m
+  s := cPZ.s
+  c := cPZ.c
+  G := Fin.append cPZ.G cPZ.GI
+  E := PolyZonotope.plusE cPZ.E (PolyZonotope.identE cPZ.q)
   GI := Fin.elim0
-  A := C.A
-  b := C.b
-  EC := ConPolyZono.padE C.EC C.q
+  A := cPZ.A
+  b := cPZ.b
+  EC := ConPolyZono.padE cPZ.EC cPZ.q
 
 end CORALean.Real
 

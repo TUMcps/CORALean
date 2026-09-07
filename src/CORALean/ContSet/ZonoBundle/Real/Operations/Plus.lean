@@ -25,10 +25,10 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ZonoBundle.plus (B₁ B₂ : ZonoBundle α) : ZonoBundle α where
-  k := B₁.k * B₂.k
+def ZonoBundle.plus (zB₁ zB₂ : ZonoBundle α) : ZonoBundle α where
+  k := zB₁.k * zB₂.k
   Z := fun p =>
-    Zonotope.plus (B₁.Z (finProdFinEquiv.symm p).1) (B₂.Z (finProdFinEquiv.symm p).2)
+    Zonotope.plus (zB₁.Z (finProdFinEquiv.symm p).1) (zB₂.Z (finProdFinEquiv.symm p).2)
 
 end CORALean.Real
 

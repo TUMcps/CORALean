@@ -27,9 +27,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- The merged constraint column as stored, `A`'s rows read as the generator
 matrix they are on the constraint side. -/
-def ConPolyZono.mergedConsCol (C : ConPolyZono 𝕋 n) (i : Fin C.m)
-    (l : Fin (PolyZonotope.repKeep C.EC).card) : 𝕋 :=
-  PolyZonotope.fiberDown (Real.PolyZonotope.rep C.EC) C.A i (PolyZonotope.keepIdx C.EC l)
+def ConPolyZono.mergedConsCol (cPZ : ConPolyZono 𝕋 n) (i : Fin cPZ.m)
+    (l : Fin (PolyZonotope.repKeep cPZ.EC).card) : 𝕋 :=
+  PolyZonotope.fiberDown (Real.PolyZonotope.rep cPZ.EC) cPZ.A i (PolyZonotope.keepIdx cPZ.EC l)
 
 end CORALean.Float
 

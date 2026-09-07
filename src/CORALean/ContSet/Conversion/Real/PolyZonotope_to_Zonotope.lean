@@ -33,10 +33,10 @@ namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
-def PolyZonotope.zonotope (PZ : PolyZonotope α) : Zonotope α where
-  h := PZ.h + PZ.q
-  c := PZ.c
-  G := Fin.append PZ.G PZ.GI
+def PolyZonotope.zonotope (pZ : PolyZonotope α) : Zonotope α where
+  h := pZ.h + pZ.q
+  c := pZ.c
+  G := Fin.append pZ.G pZ.GI
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
@@ -45,21 +45,21 @@ omit [Module ℝ α] in
 /-- `Fin.sum_univ_add` at the generator count this conversion produces, stated
 through the projection because that is the form the goal has and simp will not
 rewrite a binder's type. -/
-theorem PolyZonotope.aux_sum_univ_zonotope {PZ : PolyZonotope α} (f : Fin (PZ.h + PZ.q) → α) :
-    ∑ l : Fin PZ.zonotope.h, f l
-      = ∑ i, f (Fin.castAdd PZ.q i) + ∑ j, f (Fin.natAdd PZ.h j) :=
+theorem PolyZonotope.aux_sum_univ_zonotope {pZ : PolyZonotope α} (f : Fin (pZ.h + pZ.q) → α) :
+    ∑ l : Fin pZ.zonotope.h, f l
+      = ∑ i, f (Fin.castAdd pZ.q i) + ∑ j, f (Fin.natAdd pZ.h j) :=
   Fin.sum_univ_add f
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.zonotope_outer (PZ : PolyZonotope α) :
-    PZ.construct ⊆ PZ.zonotope.construct := by -- --- PROOF ---
+theorem PolyZonotope.zonotope_outer (pZ : PolyZonotope α) :
+    pZ.construct ⊆ pZ.zonotope.construct := by -- --- PROOF ---
   rintro _ ⟨a, b, ha, hb, rfl⟩
-  refine ⟨Fin.append (PolyZonotope.monomial PZ.E a) b, ?_, ?_⟩
+  refine ⟨Fin.append (PolyZonotope.monomial pZ.E a) b, ?_, ?_⟩
   · refine Fin.addCases ?_ ?_
     · intro i
-      simpa using PolyZonotope.abs_monomial_le_one PZ.E ha i
+      simpa using PolyZonotope.abs_monomial_le_one pZ.E ha i
     · intro j
       simpa using hb j
   · rw [PolyZonotope.aux_sum_univ_zonotope]

@@ -27,15 +27,15 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- The factors no column reads, dropped. Only `p` and the exponent matrix
 change, both over ℕ, so nothing rounds and the box is untouched. -/
-def PolyZonotope.compactFactors (PZ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 n where
-  p := (Real.PolyZonotope.usedFactors PZ.E).card
-  h := PZ.h
-  q := PZ.q
-  c := PZ.c
-  G := PZ.G
-  E := fun k i => PZ.E (Real.PolyZonotope.factorIdx PZ.E k) i
-  GI := PZ.GI
-  err := PZ.err
+def PolyZonotope.compactFactors (pZ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 n where
+  p := (Real.PolyZonotope.usedFactors pZ.E).card
+  h := pZ.h
+  q := pZ.q
+  c := pZ.c
+  G := pZ.G
+  E := fun k i => pZ.E (Real.PolyZonotope.factorIdx pZ.E k) i
+  GI := pZ.GI
+  err := pZ.err
 
 end CORALean.Float
 

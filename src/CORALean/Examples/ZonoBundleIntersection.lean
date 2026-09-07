@@ -72,7 +72,7 @@ example (M : Mat ℝ 2 2) :
 
 /-- Compact, since this bundle's `k` is `1`, not `0`. -/
 example : IsCompact Example.boxBundle.construct :=
-  ZonoBundle.isCompact_construct (B := Example.boxBundle) (by simp [Example.boxBundle])
+  ZonoBundle.isCompact_construct (zB := Example.boxBundle) (by simp [Example.boxBundle])
 
 end CORALean.Real
 

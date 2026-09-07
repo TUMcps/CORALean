@@ -10,7 +10,7 @@ membership in the float polytope's own `construct`, which has already absorbed
 its rounding into an interval right-hand side.
 
 Proofs use it rather than going through `nominal` because through it every count
-is `C.h`, where the instance gives the equal-but-distinct `(nominal C).h`.
+is `cZ.h`, where the instance gives the equal-but-distinct `(nominal cZ).h`.
 -/
 
 -- Authors:       Tobias Ladner
@@ -30,11 +30,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.mem_nominalSet_iff [SoundFloatArithmetic 𝕋] {C : ConZonotope 𝕋 n}
+theorem ConZonotope.mem_nominalSet_iff [SoundFloatArithmetic 𝕋] {cZ : ConZonotope 𝕋 n}
     {x : Vec ℝ n} :
-    x ∈ InflatedContSet.nominalSet C ↔ ∃ β : Vec ℝ C.h, (∀ j, |β j| ≤ 1)
-      ∧ β ∈ C.P.construct
-      ∧ ∀ i, x i = toReal (C.c i) + ∑ j, toReal (C.G i j) * β j :=
+    x ∈ InflatedContSet.nominalSet cZ ↔ ∃ β : Vec ℝ cZ.h, (∀ j, |β j| ≤ 1)
+      ∧ β ∈ cZ.P.construct
+      ∧ ∀ i, x i = toReal (cZ.c i) + ∑ j, toReal (cZ.G i j) * β j :=
   Real.ConZonotope.mem_construct_iff
 
 end CORALean.Float

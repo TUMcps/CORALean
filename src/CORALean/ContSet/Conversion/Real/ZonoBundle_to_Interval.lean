@@ -22,15 +22,15 @@ namespace CORALean.Real
 
 variable {n : ℕ}
 
-def ZonoBundle.interval (B : ZonoBundle (Vec ℝ n)) (i : Fin B.k) : Interval (Vec ℝ n) :=
-  (B.zonotope i).interval
+def ZonoBundle.interval (zB : ZonoBundle (Vec ℝ n)) (i : Fin zB.k) : Interval (Vec ℝ n) :=
+  (zB.zonotope i).interval
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.interval_outer (B : ZonoBundle (Vec ℝ n)) (i : Fin B.k) :
-    B.construct ⊆ (B.interval i).construct :=
-  subset_trans (B.subset_zonotope i) (Zonotope.interval_outer _)
+theorem ZonoBundle.interval_outer (zB : ZonoBundle (Vec ℝ n)) (i : Fin zB.k) :
+    zB.construct ⊆ (zB.interval i).construct :=
+  subset_trans (zB.subset_zonotope i) (Zonotope.interval_outer _)
 
 end CORALean.Real
 

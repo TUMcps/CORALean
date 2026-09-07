@@ -24,8 +24,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 omit [SoundFloatArithmetic 𝕋] in
-@[simp] theorem PolyZonotope.linComb_h (PZ₁ PZ₂ : PolyZonotope 𝕋 n) :
-    (PZ₁.linComb PZ₂).h = PZ₁.h + PZ₂.h + (PZ₁.h + PZ₂.h + 1) := rfl
+@[simp] theorem PolyZonotope.linComb_h (pZ₁ pZ₂ : PolyZonotope 𝕋 n) :
+    (pZ₁.linComb pZ₂).h = pZ₁.h + pZ₂.h + (pZ₁.h + pZ₂.h + 1) := rfl
 
 end CORALean.Float
 

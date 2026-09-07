@@ -28,10 +28,10 @@ variable {n : ℕ}
 /-- Girard's is the rule `reduce` runs, and compaction is what makes the count
 it bounds mean anything. Neither choice shows here: any ranking would discharge
 this line, and compaction contributes an equality. -/
-theorem PolyZonotope.reduce_outer (PZ : PolyZonotope (Vec ℝ n)) (o : ℕ) :
-    PZ.construct ⊆ (PZ.reduce o).construct :=
-  (PolyZonotope.compact_exact PZ).subset.trans
-    (PolyZonotope.reduceGirard_outer PZ.compact o)
+theorem PolyZonotope.reduce_outer (pZ : PolyZonotope (Vec ℝ n)) (o : ℕ) :
+    pZ.construct ⊆ (pZ.reduce o).construct :=
+  (PolyZonotope.compact_exact pZ).subset.trans
+    (PolyZonotope.reduceGirard_outer pZ.compact o)
 
 end CORALean.Real
 

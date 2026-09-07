@@ -23,11 +23,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.reduceGirard_outer (C : ConPolyZono 𝕋 n) (o : ℕ) :
-    C.construct ⊆ (C.reduceGirard o).construct := by
+theorem ConPolyZono.reduceGirard_outer (cPZ : ConPolyZono 𝕋 n) (o : ℕ) :
+    cPZ.construct ⊆ (cPZ.reduceGirard o).construct := by
   unfold ConPolyZono.reduceGirard
   split_ifs with hlt
-  · exact ConPolyZono.reduceBy_outer C _ _
+  · exact ConPolyZono.reduceBy_outer cPZ _ _
   · exact subset_rfl
 
 end CORALean.Float

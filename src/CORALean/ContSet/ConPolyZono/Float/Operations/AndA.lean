@@ -29,11 +29,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 /-- The constraint matrix of `andDep`: the two systems block-diagonally over the
 constraint columns and blind to the generator columns, then the agreement rows,
 blind to the constraint columns. -/
-def ConPolyZono.andA (C₁ C₂ : ConPolyZono 𝕋 n) :
-    Mat 𝕋 (C₁.m + C₂.m + n) (C₁.s + C₂.s + (C₁.h + C₂.h)) := fun i =>
+def ConPolyZono.andA (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) :
+    Mat 𝕋 (cPZ₁.m + cPZ₂.m + n) (cPZ₁.s + cPZ₂.s + (cPZ₁.h + cPZ₂.h)) := fun i =>
   Fin.append
-    (fun r => Fin.append (ConPolyZono.plusA C₁.A C₂.A r) (fun _ => zero))
-    (fun r => Fin.append (fun _ => zero) (ConPolyZono.agreeRow C₁ C₂ r)) i
+    (fun r => Fin.append (ConPolyZono.plusA cPZ₁.A cPZ₂.A r) (fun _ => zero))
+    (fun r => Fin.append (fun _ => zero) (ConPolyZono.agreeRow cPZ₁ cPZ₂ r)) i
 
 end CORALean.Float
 

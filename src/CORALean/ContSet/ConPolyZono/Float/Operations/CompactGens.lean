@@ -28,20 +28,20 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- Equal exponent columns added together, the stored value the lower rounding
 and the gap paid into the ambient box. The constraint block stands. -/
-def ConPolyZono.compactGens (C : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n where
-  p := C.p
-  h := (PolyZonotope.repKeep C.E).card
-  q := C.q
-  m := C.m
-  s := C.s
-  c := C.c
-  G := C.mergedCol
-  E := fun k j => C.E k (PolyZonotope.keepIdx C.E j)
-  GI := C.GI
-  A := C.A
-  b := C.b
-  EC := C.EC
-  err := C.err.plus (PolyZonotope.generatorError (ConPolyZono.compactGensGap C))
+def ConPolyZono.compactGens (cPZ : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n where
+  p := cPZ.p
+  h := (PolyZonotope.repKeep cPZ.E).card
+  q := cPZ.q
+  m := cPZ.m
+  s := cPZ.s
+  c := cPZ.c
+  G := cPZ.mergedCol
+  E := fun k j => cPZ.E k (PolyZonotope.keepIdx cPZ.E j)
+  GI := cPZ.GI
+  A := cPZ.A
+  b := cPZ.b
+  EC := cPZ.EC
+  err := cPZ.err.plus (PolyZonotope.generatorError (ConPolyZono.compactGensGap cPZ))
 
 end CORALean.Float
 

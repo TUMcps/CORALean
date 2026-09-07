@@ -26,9 +26,9 @@ variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.isCompact_construct (C : ConPolyZono α) : IsCompact C.construct := by
+theorem ConPolyZono.isCompact_construct (cPZ : ConPolyZono α) : IsCompact cPZ.construct := by
   rw [ConPolyZono.construct_eq_image]
-  exact C.isCompact_domain.image C.continuous_affine
+  exact cPZ.isCompact_domain.image cPZ.continuous_affine
 
 end CORALean.Real
 

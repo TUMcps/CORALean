@@ -31,20 +31,20 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConPolyZono.plus (C₁ C₂ : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n where
-  p := C₁.p + C₂.p
-  h := C₁.h + C₂.h
-  q := C₁.q + C₂.q
-  m := C₁.m + C₂.m
-  s := C₁.s + C₂.s
-  c := fun i => addDown (C₁.c i) (C₂.c i)
-  G := fun i => Fin.append (C₁.G i) (C₂.G i)
-  E := Real.PolyZonotope.plusE C₁.E C₂.E
-  GI := fun i => Fin.append (C₁.GI i) (C₂.GI i)
-  A := ConPolyZono.plusA C₁.A C₂.A
-  b := ConPolyZono.plusB C₁.b C₂.b
-  EC := Real.PolyZonotope.plusE C₁.EC C₂.EC
-  err := (C₁.err.plus C₂.err).plus (PolyZonotope.centerResidual C₁.c C₂.c)
+def ConPolyZono.plus (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n where
+  p := cPZ₁.p + cPZ₂.p
+  h := cPZ₁.h + cPZ₂.h
+  q := cPZ₁.q + cPZ₂.q
+  m := cPZ₁.m + cPZ₂.m
+  s := cPZ₁.s + cPZ₂.s
+  c := fun i => addDown (cPZ₁.c i) (cPZ₂.c i)
+  G := fun i => Fin.append (cPZ₁.G i) (cPZ₂.G i)
+  E := Real.PolyZonotope.plusE cPZ₁.E cPZ₂.E
+  GI := fun i => Fin.append (cPZ₁.GI i) (cPZ₂.GI i)
+  A := ConPolyZono.plusA cPZ₁.A cPZ₂.A
+  b := ConPolyZono.plusB cPZ₁.b cPZ₂.b
+  EC := Real.PolyZonotope.plusE cPZ₁.EC cPZ₂.EC
+  err := (cPZ₁.err.plus cPZ₂.err).plus (PolyZonotope.centerResidual cPZ₁.c cPZ₂.c)
 
 end CORALean.Float
 

@@ -24,10 +24,10 @@ variable {n : ℕ}
 
 /-- The right-hand side of `andDep`: the two systems' own bounds, then the
 agreement rows' `c₂ − c₁` widened by the tolerance. -/
-def ConPolyZono.andB (C₁ C₂ : ConPolyZono (Vec ℝ n)) (D : Interval (Vec ℝ n)) :
-    Interval (Vec ℝ (C₁.m + C₂.m + n)) :=
-  ⟨Fin.append (ConPolyZono.plusB C₁.b C₂.b).inf fun i => C₂.c i - C₁.c i + D.inf i,
-   Fin.append (ConPolyZono.plusB C₁.b C₂.b).sup fun i => C₂.c i - C₁.c i + D.sup i⟩
+def ConPolyZono.andB (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n)) (D : Interval (Vec ℝ n)) :
+    Interval (Vec ℝ (cPZ₁.m + cPZ₂.m + n)) :=
+  ⟨Fin.append (ConPolyZono.plusB cPZ₁.b cPZ₂.b).inf fun i => cPZ₂.c i - cPZ₁.c i + D.inf i,
+   Fin.append (ConPolyZono.plusB cPZ₁.b cPZ₂.b).sup fun i => cPZ₂.c i - cPZ₁.c i + D.sup i⟩
 
 end CORALean.Real
 

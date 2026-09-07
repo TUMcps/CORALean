@@ -25,10 +25,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.nominalSet_dependent (C : ConPolyZono 𝕋 n) :
-    nominalSet C.dependent = nominalSet C := by
-  show Real.ConPolyZono.construct (nominal C.dependent)
-    = Real.ConPolyZono.construct (nominal C)
+theorem ConPolyZono.nominalSet_dependent (cPZ : ConPolyZono 𝕋 n) :
+    nominalSet cPZ.dependent = nominalSet cPZ := by
+  show Real.ConPolyZono.construct (nominal cPZ.dependent)
+    = Real.ConPolyZono.construct (nominal cPZ)
   rw [ConPolyZono.nominal_dependent, ← Real.ConPolyZono.dependent_exact]
 
 end CORALean.Float

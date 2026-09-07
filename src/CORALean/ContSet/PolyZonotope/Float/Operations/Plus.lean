@@ -30,15 +30,15 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.plus (PZ₁ PZ₂ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 n where
-  p := PZ₁.p + PZ₂.p
-  h := PZ₁.h + PZ₂.h
-  q := PZ₁.q + PZ₂.q
-  c := fun i => addDown (PZ₁.c i) (PZ₂.c i)
-  G := fun i => Fin.append (PZ₁.G i) (PZ₂.G i)
-  E := Real.PolyZonotope.plusE PZ₁.E PZ₂.E
-  GI := fun i => Fin.append (PZ₁.GI i) (PZ₂.GI i)
-  err := (PZ₁.err.plus PZ₂.err).plus (PolyZonotope.centerResidual PZ₁.c PZ₂.c)
+def PolyZonotope.plus (pZ₁ pZ₂ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 n where
+  p := pZ₁.p + pZ₂.p
+  h := pZ₁.h + pZ₂.h
+  q := pZ₁.q + pZ₂.q
+  c := fun i => addDown (pZ₁.c i) (pZ₂.c i)
+  G := fun i => Fin.append (pZ₁.G i) (pZ₂.G i)
+  E := Real.PolyZonotope.plusE pZ₁.E pZ₂.E
+  GI := fun i => Fin.append (pZ₁.GI i) (pZ₂.GI i)
+  err := (pZ₁.err.plus pZ₂.err).plus (PolyZonotope.centerResidual pZ₁.c pZ₂.c)
 
 end CORALean.Float
 

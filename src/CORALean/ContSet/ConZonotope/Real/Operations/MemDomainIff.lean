@@ -22,10 +22,10 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 omit [AddCommGroup α] [Module ℝ α] in
-theorem ConZonotope.mem_domain_iff {C : ConZonotope α} {β : Vec ℝ C.h} :
-    β ∈ C.domain.construct ↔ (∀ j, |β j| ≤ 1) ∧ β ∈ C.P.construct := by
-  have hand : β ∈ C.domain.construct ↔ β ∈ (HPolytope.unitBox C.h).construct
-      ∧ β ∈ C.P.construct := HPolytope.mem_and_iff
+theorem ConZonotope.mem_domain_iff {cZ : ConZonotope α} {β : Vec ℝ cZ.h} :
+    β ∈ cZ.domain.construct ↔ (∀ j, |β j| ≤ 1) ∧ β ∈ cZ.P.construct := by
+  have hand : β ∈ cZ.domain.construct ↔ β ∈ (HPolytope.unitBox cZ.h).construct
+      ∧ β ∈ cZ.P.construct := HPolytope.mem_and_iff
   rw [hand, HPolytope.mem_unitBox_iff]
 
 end CORALean.Real

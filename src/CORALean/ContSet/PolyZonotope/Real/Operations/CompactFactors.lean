@@ -24,14 +24,14 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- The factors no column reads, dropped. Only `p` changes; every generator and
 every column stands. -/
-def PolyZonotope.compactFactors (PZ : PolyZonotope α) : PolyZonotope α where
-  p := (PolyZonotope.usedFactors PZ.E).card
-  h := PZ.h
-  q := PZ.q
-  c := PZ.c
-  G := PZ.G
-  E := fun k i => PZ.E (PolyZonotope.factorIdx PZ.E k) i
-  GI := PZ.GI
+def PolyZonotope.compactFactors (pZ : PolyZonotope α) : PolyZonotope α where
+  p := (PolyZonotope.usedFactors pZ.E).card
+  h := pZ.h
+  q := pZ.q
+  c := pZ.c
+  G := pZ.G
+  E := fun k i => pZ.E (PolyZonotope.factorIdx pZ.E k) i
+  GI := pZ.GI
 
 end CORALean.Real
 

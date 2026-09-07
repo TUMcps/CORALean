@@ -31,18 +31,18 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n d r dI rI : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.reduceBy (PZ : PolyZonotope 𝕋 n)
-    (partD : Split (Fin PZ.h) into (Fin d) ⊕ (Fin r))
-    (partI : Split (Fin PZ.q) into (Fin dI) ⊕ (Fin rI)) : PolyZonotope 𝕋 n where
-  p := PZ.p
+def PolyZonotope.reduceBy (pZ : PolyZonotope 𝕋 n)
+    (partD : Split (Fin pZ.h) into (Fin d) ⊕ (Fin r))
+    (partI : Split (Fin pZ.q) into (Fin dI) ⊕ (Fin rI)) : PolyZonotope 𝕋 n where
+  p := pZ.p
   h := d
   q := dI + n
-  c := PZ.c
-  G := fun i l => PZ.G i (partD.left l)
-  E := fun k l => PZ.E k (partD.left l)
-  GI := fun i => Fin.append (fun j => PZ.GI i (partI.left j))
-    (diagonalBlock (PZ.dropRadius partD partI) i)
-  err := PZ.err
+  c := pZ.c
+  G := fun i l => pZ.G i (partD.left l)
+  E := fun k l => pZ.E k (partD.left l)
+  GI := fun i => Fin.append (fun j => pZ.GI i (partI.left j))
+    (diagonalBlock (pZ.dropRadius partD partI) i)
+  err := pZ.err
 
 end CORALean.Float
 

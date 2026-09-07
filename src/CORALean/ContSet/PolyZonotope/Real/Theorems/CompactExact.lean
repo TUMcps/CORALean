@@ -25,10 +25,10 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- CORA's `compact`, and what an order bound rests on: the set is unchanged. -/
-theorem PolyZonotope.compact_exact (PZ : PolyZonotope α) :
-    PZ.construct = PZ.compact.construct :=
-  (PolyZonotope.compactGens_exact PZ).trans
-    (PolyZonotope.compactFactors_exact PZ.compactGens)
+theorem PolyZonotope.compact_exact (pZ : PolyZonotope α) :
+    pZ.construct = pZ.compact.construct :=
+  (PolyZonotope.compactGens_exact pZ).trans
+    (PolyZonotope.compactFactors_exact pZ.compactGens)
 
 end CORALean.Real
 

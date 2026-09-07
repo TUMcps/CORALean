@@ -23,8 +23,8 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- True by `rfl`, and what lets `mtimes` inherit `map`'s exactness. -/
-theorem ConZonotope.mtimes_eq_map (M : Mat ℝ m n) (C : ConZonotope (Vec ℝ n)) :
-    ConZonotope.mtimes M C = C.map (Matrix.mulVecLin M) := rfl
+theorem ConZonotope.mtimes_eq_map (M : Mat ℝ m n) (cZ : ConZonotope (Vec ℝ n)) :
+    ConZonotope.mtimes M cZ = cZ.map (Matrix.mulVecLin M) := rfl
 
 end CORALean.Real
 

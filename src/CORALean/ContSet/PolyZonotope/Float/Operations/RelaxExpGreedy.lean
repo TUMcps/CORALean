@@ -34,12 +34,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- Merge at whatever the selection names, at most `n` times. -/
 def PolyZonotope.relaxExpGreedy
-    (sel : (PZ : PolyZonotope 𝕋 n) →
-      Option ((d : ℕ) × (Split (Fin PZ.h) into (Fin d) ⊕ (Fin 2)))) :
+    (sel : (pZ : PolyZonotope 𝕋 n) →
+      Option ((d : ℕ) × (Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)))) :
     ℕ → PolyZonotope 𝕋 n → PolyZonotope 𝕋 n
-  | 0, PZ => PZ
-  | m + 1, PZ =>
-    (sel PZ).elim PZ fun sp => PolyZonotope.relaxExpGreedy sel m (PZ.relaxExpMulti sp.2)
+  | 0, pZ => pZ
+  | m + 1, pZ =>
+    (sel pZ).elim pZ fun sp => PolyZonotope.relaxExpGreedy sel m (pZ.relaxExpMulti sp.2)
 
 end CORALean.Float
 

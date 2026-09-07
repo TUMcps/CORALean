@@ -4,10 +4,10 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinPoint
 /-!
 # `bilin`'s subset at `B` is the diagonal image, not a pairwise one
 
-`bilin_point` composed: the subset `B` reaches under `bilin f S₁ S₂ hp` is the
-image of `B` under `a ↦ f (S₁.point a) (S₂.point (a ∘ Fin.cast hp.symm))`, one
+`bilin_point` composed: the subset `B` reaches under `bilin f pZ₁ pZ₂ hp` is the
+image of `B` under `a ↦ f (pZ₁.point a) (pZ₂.point (a ∘ Fin.cast hp.symm))`, one
 factor vector driving both points at once — *not*
-`Set.image2 f (S₁.subsetAt B) (S₂.subsetAt _)`, which lets the two points range
+`Set.image2 f (pZ₁.subsetAt B) (pZ₂.subsetAt _)`, which lets the two points range
 independently. `bilin_subsetAt_subset_image2` proves the diagonal is contained
 in that pairwise image and is generally strictly smaller: the gap is [1]'s
 whole point, what a dependency-preserving representation buys over one that
@@ -37,12 +37,12 @@ variable {α β γ : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [
 
 /-- `bilin`'s subset at `B` is `f` at the two points, ranged over one shared
 factor vector — the diagonal image, not the pairwise one. -/
-theorem PolyZonotope.bilin_subsetAt (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (S₁ : PolyZonotope α)
-    (S₂ : PolyZonotope β) (hp : S₁.p = S₂.p) (B : Set (Fin S₁.p → ℝ)) :
-    (S₁.bilin f S₂ hp).subsetAt B
-      = (fun a => f (S₁.point a) (S₂.point fun k => a (Fin.cast hp.symm k))) '' B := by
-  show (S₁.bilin f S₂ hp).point '' B = _
-  exact Set.image_congr fun a _ => PolyZonotope.bilin_point f S₁ S₂ hp a
+theorem PolyZonotope.bilin_subsetAt (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (pZ₁ : PolyZonotope α)
+    (pZ₂ : PolyZonotope β) (hp : pZ₁.p = pZ₂.p) (B : Set (Fin pZ₁.p → ℝ)) :
+    (pZ₁.bilin f pZ₂ hp).subsetAt B
+      = (fun a => f (pZ₁.point a) (pZ₂.point fun k => a (Fin.cast hp.symm k))) '' B := by
+  show (pZ₁.bilin f pZ₂ hp).point '' B = _
+  exact Set.image_congr fun a _ => PolyZonotope.bilin_point f pZ₁ pZ₂ hp a
 
 end CORALean.Real
 

@@ -27,10 +27,10 @@ variable {n : ℕ}
 /-- How far the dropped generators of both blocks reach in each coordinate. A
 monomial and an independent coefficient obey the same bound, so one box covers
 the two blocks together. -/
-def PolyZonotope.dropRadius (PZ : PolyZonotope (Vec ℝ n)) {d r dI rI : ℕ}
-    (partD : Split (Fin PZ.h) into (Fin d) ⊕ (Fin r))
-    (partI : Split (Fin PZ.q) into (Fin dI) ⊕ (Fin rI)) : Vec ℝ n :=
-  fun i => (∑ l, |PZ.G (partD.right l) i|) + ∑ j, |PZ.GI (partI.right j) i|
+def PolyZonotope.dropRadius (pZ : PolyZonotope (Vec ℝ n)) {d r dI rI : ℕ}
+    (partD : Split (Fin pZ.h) into (Fin d) ⊕ (Fin r))
+    (partI : Split (Fin pZ.q) into (Fin dI) ⊕ (Fin rI)) : Vec ℝ n :=
+  fun i => (∑ l, |pZ.G (partD.right l) i|) + ∑ j, |pZ.GI (partI.right j) i|
 
 end CORALean.Real
 

@@ -1,7 +1,7 @@
 import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
 
 /-!
-# A sound bound on `|nominal S|`
+# A sound bound on `|nominal pZ|`
 
 Split out of `EvalPoly.lean` (issue #62): read again by
 `Theorems/EvalPolyOuter.lean`, outside this file.
@@ -24,10 +24,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- A sound bound on `|nominal S|`, entrywise: the centre plus every generator's
+/-- A sound bound on `|nominal pZ|`, entrywise: the centre plus every generator's
 magnitude, since every monomial is at most `1` in absolute value. -/
-def PolyZonotope.evalPolyBoundS (S : PolyZonotope 𝕋 n) : Vec 𝕋 n :=
-  fun i => addUp (absolute (S.c i)) (radius S.G i)
+def PolyZonotope.evalPolyBoundS (pZ : PolyZonotope 𝕋 n) : Vec 𝕋 n :=
+  fun i => addUp (absolute (pZ.c i)) (radius pZ.G i)
 
 end CORALean.Float
 

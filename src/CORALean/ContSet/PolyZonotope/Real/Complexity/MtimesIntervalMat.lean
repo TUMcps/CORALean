@@ -27,13 +27,13 @@ variable {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.mtimesIntervalMat_p (IM : Interval (Mat ℝ m n))
-    (PZ : PolyZonotope (Vec ℝ n)) : (PolyZonotope.mtimesIntervalMat IM PZ).p = PZ.p := rfl
+    (pZ : PolyZonotope (Vec ℝ n)) : (PolyZonotope.mtimesIntervalMat IM pZ).p = pZ.p := rfl
 
 theorem PolyZonotope.mtimesIntervalMat_h (IM : Interval (Mat ℝ m n))
-    (PZ : PolyZonotope (Vec ℝ n)) : (PolyZonotope.mtimesIntervalMat IM PZ).h = PZ.h := rfl
+    (pZ : PolyZonotope (Vec ℝ n)) : (PolyZonotope.mtimesIntervalMat IM pZ).h = pZ.h := rfl
 
 theorem PolyZonotope.mtimesIntervalMat_q (IM : Interval (Mat ℝ m n))
-    (PZ : PolyZonotope (Vec ℝ n)) : (PolyZonotope.mtimesIntervalMat IM PZ).q = PZ.q + m := rfl
+    (pZ : PolyZonotope (Vec ℝ n)) : (PolyZonotope.mtimesIntervalMat IM pZ).q = pZ.q + m := rfl
 
 end CORALean.Real
 

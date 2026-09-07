@@ -32,11 +32,11 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `mul`'s point, read off `bilin`'s rather than `construct`: a product of the
-two points, `S₂` read at `S₁`'s factors through `Fin.cast`. -/
-theorem PolyZonotope.mul_point (S₁ S₂ : PolyZonotope (Vec ℝ n)) (hp : S₁.p = S₂.p)
-    (a : Fin S₁.p → ℝ) :
-    (S₁.mul S₂ hp).point a = S₁.point a * S₂.point (fun k => a (Fin.cast hp.symm k)) :=
-  PolyZonotope.bilin_point Entrywise.hadamardLin S₁ S₂ hp a
+two points, `pZ₂` read at `pZ₁`'s factors through `Fin.cast`. -/
+theorem PolyZonotope.mul_point (pZ₁ pZ₂ : PolyZonotope (Vec ℝ n)) (hp : pZ₁.p = pZ₂.p)
+    (a : Fin pZ₁.p → ℝ) :
+    (pZ₁.mul pZ₂ hp).point a = pZ₁.point a * pZ₂.point (fun k => a (Fin.cast hp.symm k)) :=
+  PolyZonotope.bilin_point Entrywise.hadamardLin pZ₁ pZ₂ hp a
 
 end CORALean.Real
 

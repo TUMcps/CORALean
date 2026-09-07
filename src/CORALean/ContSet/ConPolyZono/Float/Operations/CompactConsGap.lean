@@ -25,9 +25,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- What a merged constraint column can be off by. -/
-def ConPolyZono.compactConsGap (C : ConPolyZono 𝕋 n) :
-    Mat 𝕋 C.m (PolyZonotope.repKeep C.EC).card :=
-  fun i l => subUp (C.mergedConsColUp i l) (C.mergedConsCol i l)
+def ConPolyZono.compactConsGap (cPZ : ConPolyZono 𝕋 n) :
+    Mat 𝕋 cPZ.m (PolyZonotope.repKeep cPZ.EC).card :=
+  fun i l => subUp (cPZ.mergedConsColUp i l) (cPZ.mergedConsCol i l)
 
 end CORALean.Float
 
