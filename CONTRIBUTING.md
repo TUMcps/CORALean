@@ -485,6 +485,21 @@ the operation, so it has to live with it; the proof is always
 `Fin.sum_univ_add f`. Ascribe the binder in any statement that sums over an
 operation's result, or the lemma will not match there either.
 
+### Sentences that explain an absence
+
+A docstring saying why something is *not* there is the kind a reader trusts
+without checking, and the kind nothing ever brings back into contact with the
+code. Seven went false in two days: three claimed a float layer the same commit
+had added, the Real/Float split having copied the prose across; two claimed a
+missing class that existed; one claimed a missing instance declared thirty lines
+below it.
+
+`python3 scripts/stale-claims.py` catches the shapes that recur. It is not in
+CI — every check is a heuristic and a hit needs reading, not obeying — so run it
+when a class, an instance or a float layer lands. Better still, when a change
+fills a gap, ask which docstring explained that gap and fix it in the same
+merge request.
+
 ### A notation can turn a word into a keyword
 
 `Global/Partition.lean` declares, unscoped,
