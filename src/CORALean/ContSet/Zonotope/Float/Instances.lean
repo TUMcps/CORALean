@@ -1,3 +1,7 @@
+import CORALean.ContSet.ContSet.CompactSet
+import CORALean.ContSet.ContSet.ConvexSet
+import CORALean.ContSet.Zonotope.Float.Theorems.Convex
+import CORALean.ContSet.Zonotope.Float.Theorems.IsClosed
 import CORALean.ContSet.Zonotope.Float.Theorems.LinCombOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
@@ -19,7 +23,7 @@ costs geometrically in the number of iterations rather than linearly.
 so each proof below is the operation's own guarantee after one rewrite.
 
 It goes here rather than in `Operations/`: an algorithm reaches a representation
-through these five fields and through nothing else, so this is the one place
+through the operation fields below and through nothing else, so this is the place
 that knows a set is about to be handed back to a loop. In the operations it
 would have to guess which of them a loop calls — `NeuralNetwork.enclose` calls
 neither `reduce` nor `linComb`.
@@ -39,6 +43,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 
 -- ========================================  INSTANCES  ========================================= --
+
+/-- Not the nominal zonotope's own convexity read across: the set is that one
+plus the error box, and `Convex.add` is what carries the property over the sum. -/
+instance {n : ℕ} : ConvexSet (Zonotope 𝕋 n) (Vec ℝ n) := ⟨Zonotope.convex_construct⟩
+
+/-- Compactness, not the closed-and-bounded pair, for the exact layer's reason;
+it survives the box because a sum of two compact sets is compact. -/
+instance {n : ℕ} : CompactSet (Zonotope 𝕋 n) (Vec ℝ n) := ⟨Zonotope.isCompact_construct⟩
 
 instance {n : ℕ} : Plus (Zonotope 𝕋 n) (Vec ℝ n) where
   plus Z₁ Z₂ := (Z₁.plus Z₂).materialise

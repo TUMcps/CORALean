@@ -1,3 +1,5 @@
+import CORALean.ContSet.ContSet.ConvexSet
+import CORALean.ContSet.ZonoBundle.Float.Theorems.Convex
 import CORALean.ContSet.ZonoBundle.Float.Theorems.AndExact
 import CORALean.ContSet.ZonoBundle.Float.Theorems.PlusOuter
 import CORALean.ContSet.ZonoBundle.Float.Theorems.LinCombOuter
@@ -10,14 +12,15 @@ import CORALean.ContSet.ZonoBundle.Float.Theorems.ReduceOuter
 
 `ContSet` directly, not through `InflatedContSet`: the members carry the boxes,
 and `ZonoBundle.lean` says why no bundle-wide one stands in for them. Then
-`Plus`, `LinComb`, `Reduce`, `Reindex`, `And` and `Mtimes` at a point matrix, as
-over ℝ.
+`ConvexSet`, and `Plus`, `LinComb`, `Reduce`, `Reindex`, `And` and `Mtimes` at a
+point matrix, as over ℝ.
 
 Not `OfPoint`: it asks for an arbitrary *real* point, which no float
 representation in this tree can store, and none instantiates it. Not `Mtimes` at
 a matrix zonotope, `Zonotope` having no float `mtimesMatZonotope` to apply
 componentwise. No `MinkDiff`, for the exact layer's reason — it needs a zonotope
-difference, an open design decision on #85.
+difference, an open design decision on #85. No `CompactSet`, `k = 0` denoting
+`univ`: compactness is a theorem under `0 < zB.k` instead.
 
 A bundle and each member in it are closures over what an operation was given, so
 every field below materialises, exactly as `Zonotope`'s do.
@@ -39,6 +42,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- ========================================  INSTANCES  ========================================= --
 
 instance {n : ℕ} : ContSet (ZonoBundle 𝕋 n) (Vec ℝ n) := ⟨ZonoBundle.construct⟩
+
+/-- An intersection of convex sets, each member's error box included in what
+that member denotes. -/
+instance {n : ℕ} : ConvexSet (ZonoBundle 𝕋 n) (Vec ℝ n) := ⟨ZonoBundle.convex_construct⟩
 
 instance {n : ℕ} : Plus (ZonoBundle 𝕋 n) (Vec ℝ n) where
   plus zB₁ zB₂ := (zB₁.plus zB₂).materialise
