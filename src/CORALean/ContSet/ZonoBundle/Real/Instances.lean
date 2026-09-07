@@ -14,11 +14,15 @@ families of zonotopes is exact, at any real module.
 `CompactSet` is not an instance: at `k = 0` the set is `univ`, not compact, so
 the class's unconditional obligation cannot be discharged. `isCompact_construct`
 states the conditional fact instead, at `0 < B.k`.
+
+No `Reindex`: componentwise `Zonotope.map` would be one line, but its exactness
+needs `reindexLin e` bijective and `Set.image_iInter` through the intersection —
+new development, not wiring, so left for its own change.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       06-September-2026
--- Last update:   06-September-2026
+-- Last update:   07-September-2026
 -- Last revision: ---
 
 

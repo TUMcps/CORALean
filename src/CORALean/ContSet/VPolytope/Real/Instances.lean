@@ -1,6 +1,7 @@
 import CORALean.ContSet.VPolytope.Real.Operations.ConstructPoint
 import CORALean.ContSet.VPolytope.Real.Theorems.AndOuter
 import CORALean.ContSet.VPolytope.Real.Theorems.LinCombOuter
+import CORALean.ContSet.VPolytope.Real.Theorems.MapExact
 import CORALean.ContSet.VPolytope.Real.Theorems.MtimesExact
 import CORALean.ContSet.VPolytope.Real.Theorems.MtimesMatPolytopeOuter
 import CORALean.ContSet.VPolytope.Real.Theorems.PlusExact
@@ -21,7 +22,7 @@ since choosing the directions is a precision decision search must not make.
 
 -- Authors:       Tobias Ladner
 -- Written:       01-September-2026
--- Last update:   06-September-2026
+-- Last update:   07-September-2026
 -- Last revision: ---
 
 
@@ -80,6 +81,10 @@ scoped notation "𝕄𝒫" => fun m n => VPolytope (Mat ℝ m n)
 noncomputable instance : Mtimes 𝕄𝒫 (fun n => VPolytope (Vec ℝ n)) where
   mtimes := VPolytope.mtimesMatPolytope
   mtimes_outer M P := VPolytope.mtimesMatPolytope_outer M P
+
+instance : Reindex (fun n => VPolytope (Vec ℝ n)) where
+  reindex e P := VPolytope.map (reindexLin e) P
+  reindex_exact e P := (VPolytope.map_exact (reindexLin e) P).symm
 
 end CORALean.Real
 

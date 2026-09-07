@@ -1,5 +1,6 @@
 import CORALean.ContSet.Interval.Real.Instances
 import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombOuter
+import CORALean.ContSet.PolyZonotope.Real.Theorems.MapExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MtimesExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MtimesIntervalMatOuter
 import CORALean.ContSet.PolyZonotope.Real.Theorems.OfPointMem
@@ -78,6 +79,10 @@ block to keep it out of. -/
 noncomputable instance : Mtimes ℐ 𝒫𝒵 where
   mtimes := PolyZonotope.mtimesIntervalMat
   mtimes_outer IM PZ := PolyZonotope.mtimesIntervalMat_outer IM PZ
+
+instance : Reindex 𝒫𝒵 where
+  reindex e PZ := PolyZonotope.map (reindexLin e) PZ
+  reindex_exact e PZ := (PolyZonotope.map_exact (reindexLin e) PZ).symm
 
 end CORALean.Real
 
