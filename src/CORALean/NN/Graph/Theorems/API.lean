@@ -9,8 +9,10 @@ import CORALean.NN.Graph.Theorems.ConvExact
 import CORALean.NN.Graph.Theorems.ConvExactOfAdjacency
 import CORALean.NN.Graph.Theorems.ConvUncertainExact
 import CORALean.NN.Graph.Theorems.DegreeAtEq
+import CORALean.NN.Graph.Theorems.DegreeSubmatrixOfBall
 import CORALean.NN.Graph.Theorems.EvalStepsRowBall
 import CORALean.NN.Graph.Theorems.EvalStepsRowBallEnum
+import CORALean.NN.Graph.Theorems.EvalStepsRowBallOfAdjacency
 import CORALean.NN.Graph.Theorems.EvalStepsRowMask
 import CORALean.NN.Graph.Theorems.EvalStepsRowMaskUncertain
 import CORALean.NN.Graph.Theorems.EvalStepsSubmatrix
@@ -25,6 +27,7 @@ import CORALean.NN.Graph.Theorems.MemBallSelf
 import CORALean.NN.Graph.Theorems.MemBallSuccOfMessagePassing
 import CORALean.NN.Graph.Theorems.MessagePassingEnclosureOuter
 import CORALean.NN.Graph.Theorems.MessagePassingNeZero
+import CORALean.NN.Graph.Theorems.MessagePassingSubmatrixOfBall
 import CORALean.NN.Graph.Theorems.PoolingExact
 import CORALean.NN.Graph.Theorems.SubmatrixMulOfClosed
 import CORALean.NN.Graph.Theorems.UncertainAdjExact
@@ -34,26 +37,26 @@ import CORALean.NN.Graph.Theorems.UncertainDegreeBounds
 # What the graph layers guarantee
 
 The two layer guarantees at a known graph are equalities, not enclosures: both are
-`PolyZonotope.map_exact` at a linear map, so every outer approximation a graph network pays is paid
-by an activation layer or an edge, never by a graph layer that assumes nothing of `P`.
+`PolyZonotope.map_exact` at a linear map, so every outer approximation a graph network pays is
+paid by an activation layer or an edge, never a graph layer that assumes nothing of `P`.
 
-`UncertainAdjExact` is a third equality; `DegreeAtEq` writes the degree affinely in the edge
-weights, and `UncertainDegreeBounds` brackets it, keeping the root's lower bound at `1`.
-`MessagePassingEnclosureOuter` is the one enclosure: at any admissible weights the graph's own
-`D̃^(-1/2) Ã D̃^(-1/2)` is a *point* of it, carried through by `ConvUncertainExact`/`GcnSharedExact`
-and `GcnStepsExact`, `GcnSharedPoint`/`GcnStepsPoint`/`GcnUncertainOuter`/`GcnStepsOuter` the point
-and the statement a caller wants.
+`UncertainAdjExact` is a third equality; `DegreeAtEq`/`UncertainDegreeBounds` write and bracket the
+uncertain degree, its lower bound `1` keeping the root total. `MessagePassingEnclosureOuter` is the
+one enclosure — the graph's own `P` a *point* of it — carried through by `ConvUncertainExact`/
+`GcnSharedExact`/`GcnStepsExact`, `GcnStepsOuter` the bound a caller wants.
 
-`SubmatrixMulOfClosed`/`EvalStepsSubmatrix` are `[1, §4.3]`'s locality given `hclosed`, supplied by
-`EvalStepsRowMask` at a mask or, needing none, by `EvalStepsRowBall` itself — `[1, §4.3]` proper.
-`MemBallSelf`/`BallSubsetSucc`/`BallMono`/`MemBallSuccOfMessagePassing`/`MessagePassingNeZero` are
-the ball's own facts; `BallEnumInjective`/`MemBallEnumIff`/`BallEnumIdx`/`BallEnumBallEnumIdx` build
-the `κ` `EvalStepsRowBall` asks for, and `EvalStepsRowBallEnum` instantiates it for a caller.
+`SubmatrixMulOfClosed`/`EvalStepsSubmatrix` are `[1, §4.3]`'s locality given `hclosed`; supplied at
+a mask by `EvalStepsRowMask`, or needing none by `EvalStepsRowBall`, its `κ` built by
+`BallEnumInjective`/`MemBallEnumIff`/`BallEnumIdx`/`BallEnumBallEnumIdx` into `EvalStepsRowBallEnum`
+alongside `MemBallSelf`/`BallSubsetSucc`/`BallMono`/`MemBallSuccOfMessagePassing`/
+`MessagePassingNeZero`, the ball's own facts. `DegreeSubmatrixOfBall`/
+`MessagePassingSubmatrixOfBall` are the other half — a degree sums a column, so computing `P`
+needs the ring one hop past the ball — and `EvalStepsRowBallOfAdjacency` composes both: row `v`
+needs only `A`'s `(L + 1)`-ball.
 
-`BallMonoOfSupport`/`AdjAtSupportSubset` carry that locality to an uncertain graph: nonnegativity
-makes `adjMax A U` (every edge at `1`) dominate every admissible `adjAt`'s support, hence its ball.
-`EvalStepsRowMaskUncertain` is the uniform result: one `S` sized against that ball serves every
-`lam`, via `EvalStepsRowMask`'s inclusion — `EvalStepsRowBall`'s exact `hκ` does not compose.
+`BallMonoOfSupport`/`AdjAtSupportSubset` carry locality to an uncertain graph, `adjMax A U` (every
+edge at `1`) dominating every admissible `adjAt`'s support and hence its ball;
+`EvalStepsRowMaskUncertain` sizes one `S` against it, serving every `lam` via `EvalStepsRowMask`.
 
 ## References
 
