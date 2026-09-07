@@ -1,17 +1,25 @@
+import CORALean.ContSet.ContSet.CompactSet
+import CORALean.ContSet.ContSet.ConvexSet
+import CORALean.ContSet.Interval.Float.Operations.AndExact
 import CORALean.ContSet.Interval.Float.Theorems.LinCombOuter
 import CORALean.ContSet.Interval.Float.Theorems.MinusInner
 import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
 import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 import CORALean.ContSet.Interval.Float.Theorems.ReindexExact
+import CORALean.ContSet.Interval.Real.Theorems.Convex
+import CORALean.ContSet.Interval.Real.Theorems.IsCompact
 
 /-!
 # What `Interval` instantiates
 
 The same obligations the exact layer discharges, since a float interval denotes a
 set of real points just as an exact one does; only the scalar the operations run
-in differs.
+in differs. `ConvexSet` and `CompactSet` cost no float proof: `construct` is
+`nominal.construct` by definition, so the exact layer's theorems apply to
+`I.nominal` unchanged. `And` is exact here too, nothing rounding.
 
-`reduce` gives up no order, as over ℝ: an interval has none to give up.
+`reduce` gives up no order, as over ℝ: an interval has none to give up. No
+`OfPoint`: it would round a real point into `𝕋`, an operation this layer lacks.
 
 Every field returns a `materialise`d interval. The bounds are function types, so
 the one an operation returns is a closure over the one it was given, and a loop
@@ -23,7 +31,7 @@ is where a set is handed back to a caller that may loop.
 
 -- Authors:       Tobias Ladner
 -- Written:       18-August-2026
--- Last update:   02-September-2026
+-- Last update:   07-September-2026
 -- Last revision: ---
 
 
@@ -38,6 +46,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 instance : ContSet (Interval 𝕋 n) (Vec ℝ n) := ⟨Interval.construct⟩
 
+instance : ConvexSet (Interval 𝕋 n) (Vec ℝ n) := ⟨fun I => I.nominal.convex_construct⟩
+
+instance : CompactSet (Interval 𝕋 n) (Vec ℝ n) := ⟨fun I => I.nominal.isCompact_construct⟩
+
 instance : Plus (Interval 𝕋 n) (Vec ℝ n) where
   plus I₁ I₂ := (Interval.plus I₁ I₂).materialise
   plus_outer I₁ I₂ := by
@@ -49,6 +61,10 @@ instance : Minus (Interval 𝕋 n) (Vec ℝ n) where
   minus_inner I₁ I₂ := by
     rw [Interval.materialise_eq]
     exact Interval.minus_inner I₁ I₂
+
+instance : And (Interval 𝕋 n) (Vec ℝ n) where
+  and := Interval.and
+  and_outer I₁ I₂ := (Interval.and_exact I₁ I₂).symm.subset
 
 instance : LinComb (Interval 𝕋 n) (Vec ℝ n) where
   linComb I₁ I₂ := (Interval.linComb I₁ I₂).materialise
