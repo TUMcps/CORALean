@@ -143,6 +143,10 @@ elif group == "mr":
         note("merge_requests", rest[0], rest[1])
     elif cmd == "edit":
         edit("merge_requests", rest[0], rest[1])
+    elif cmd == "close":
+        note("merge_requests", rest[0], rest[1])
+        call("PUT", "/merge_requests/%s" % rest[0], {"state_event": "close"})
+        print("!%s closed" % rest[0])
     elif cmd == "merge":
         call("PUT", "/merge_requests/%s" % rest[0],
              {"squash": True, "remove_source_branch": True})
