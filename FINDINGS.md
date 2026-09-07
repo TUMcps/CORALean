@@ -16,8 +16,7 @@ give rise to both — the error is recorded here, the fixing of it is an issue.
 | Althoff's thesis, Prop. 3.1 — the tail | The printed proof pulls one `[−1,1]` out of two independent remainders, and the bound does not follow; the proposition holds for another reason. | [`CorrectionMatrix.lean`](src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/CorrectionMatrix.lean), [`ExpDiff.lean`](src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/ExpDiff.lean) |
 | AAAI'24 exponent relaxation, `prop:exp-relax-single` | The centre shift reads `+ξ_E/2`; it is `−ξ_E/2`. And the evenness of `E_{k₀,j}` is omitted, without which the shift is zero. CORA is unaffected by either. | [`RelaxExp.lean`](src/CORALean/ContSet/PolyZonotope/Real/Operations/RelaxExp.lean) |
 | ICML'25 "Explaining Fast and Slow", §4 | The transfer theorem's converse fails, even under its own containment hypothesis. | [`SuffExplanationConverseFails.lean`](src/CORALean/NN/Theorems/SuffExplanationConverseFails.lean) |
-| HSCC'23 abstraction refinement | Convergence needs a Lipschitz bound on every network tail. | [`EncloseAtInflate.lean`](src/CORALean/NN/Theorems/EncloseAtInflate.lean) |
-| HSCC'23 sensitivity analysis | Needs differentiability per layer; differentiability of the network's evaluation does not suffice. | [`EvalDifferentiable.lean`](src/CORALean/NN/Theorems/EvalDifferentiable.lean) |
+| HSCC'23 abstraction refinement | Minor: (i) convergence needs a Lipschitz bound on every network tail; (ii) sensitivity analysis needs differentiability per layer, and differentiability of the network's evaluation does not suffice. | [`EncloseAtInflate.lean`](src/CORALean/NN/Theorems/EncloseAtInflate.lean), [`EvalDifferentiable.lean`](src/CORALean/NN/Theorems/EvalDifferentiable.lean) |
 
 ## Where the formalization parts from CORA or its sources
 
