@@ -12,6 +12,7 @@ import CORALean.NN.Graph.Theorems.ConvUncertainExact
 import CORALean.NN.Graph.Theorems.DegreeAtEq
 import CORALean.NN.Graph.Theorems.DegreeSubmatrixOfBall
 import CORALean.NN.Graph.Theorems.DegreeSubmatrixOfBallUncertain
+import CORALean.NN.Graph.Theorems.EdgeMatSymm
 import CORALean.NN.Graph.Theorems.EvalStepsRowBall
 import CORALean.NN.Graph.Theorems.EvalStepsRowBallEnum
 import CORALean.NN.Graph.Theorems.EvalStepsRowBallOfAdjacency
@@ -32,6 +33,7 @@ import CORALean.NN.Graph.Theorems.MessagePassingEnclosureOuter
 import CORALean.NN.Graph.Theorems.MessagePassingNeZero
 import CORALean.NN.Graph.Theorems.MessagePassingSubmatrixOfBall
 import CORALean.NN.Graph.Theorems.MessagePassingSubmatrixOfBallUncertain
+import CORALean.NN.Graph.Theorems.NotMemBallOfIsolated
 import CORALean.NN.Graph.Theorems.PoolingExact
 import CORALean.NN.Graph.Theorems.SubmatrixMulOfClosed
 import CORALean.NN.Graph.Theorems.UncertainAdjExact
