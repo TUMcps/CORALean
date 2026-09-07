@@ -20,7 +20,7 @@ that is the one gap between these axioms and a machine.
 
 -- Authors:       Tobias Ladner
 -- Written:       16-August-2026
--- Last update:   05-September-2026
+-- Last update:   07-September-2026
 -- Last revision: ---
 
 
@@ -110,6 +110,13 @@ theorem le_maximumOver : ∀ {k : ℕ} (f : Fin k → 𝕋) (l : Fin k),
     refine Fin.cases ?_ (fun l' => ?_) l
     · exact le_max_left _ _
     · exact le_trans (ih (fun i => f i.succ) l') (le_max_right _ _)
+
+/-- And `minimumOver` is under every entry, the reflection of the same fold. -/
+theorem minimumOver_le {k : ℕ} (f : Fin k → 𝕋) (l : Fin k) :
+    toReal (minimumOver f) ≤ toReal (f l) := by
+  rw [minimumOver, toReal_neg, neg_le]
+  rw [← toReal_neg]
+  exact le_maximumOver (fun i => neg (f i)) l
 
 /-- A fold of `addUp`, so each partial sum pays one rounding in the same direction. -/
 theorem sum_le_sumUp (f : Fin n → 𝕋) : ∑ i, toReal (f i) ≤ toReal (sumUp f) := by -- --- PROOF ---
