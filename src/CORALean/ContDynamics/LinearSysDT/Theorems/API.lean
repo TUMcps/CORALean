@@ -4,9 +4,11 @@ import CORALean.ContDynamics.LinearSysDT.Theorems.HoldsOfReach
 import CORALean.ContDynamics.LinearSysDT.Theorems.NotHoldsOfSimulate
 import CORALean.ContDynamics.LinearSysDT.Theorems.OutputOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachBigO
+import CORALean.ContDynamics.LinearSysDT.Theorems.ReachBigOConZonotope
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachHeldOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOneOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOrderLe
+import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOrderLeConZonotope
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOuterOn
 import CORALean.ContDynamics.LinearSysDT.Theorems.SimulateMemReach
@@ -34,5 +36,6 @@ sampled run can falsify a specification an enclosure can only fail to prove.
 
 `ReachOrderLe` and `ReachBigO` are the size, not the content, of what `reach`
 returns: `reduce` in the loop is what keeps it bounded as `k` grows, and the
-`O(1)` form is that fact stated as growth.
+`O(1)` form is that fact stated as growth. The `ConZonotope`-suffixed pair
+restate both there: the argument was never about `Zonotope`, only `reduce`.
 -/
