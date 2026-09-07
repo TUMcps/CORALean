@@ -16,9 +16,9 @@ their own. `LinearSysDT.reach`, `NeurNetContrSysDT.reach` and the whole hybrid
 automaton are written against `Scalar 𝕋` and the operation classes, so a float
 representation supplies them the same way an exact one does.
 
-The `def`s are `def` rather than `noncomputable def`, which is the second half of
-the claim: the exact versions are unusable because `Real.Zonotope`'s operations
-do not run.
+The `def`s below are `def` rather than `noncomputable def` — true of this
+file's linear, ReLU and discrete-time layers, not of the float layer as a
+whole, where `Sigmoid`, `Tanh`, `Softmax` and `maxPool` stay noncomputable.
 
 An algorithm needs a float counterpart precisely where it computes a *real number
 that is no set operation*, only a set operation having an error box to pay its
