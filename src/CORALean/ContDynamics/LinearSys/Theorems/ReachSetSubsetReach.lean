@@ -43,11 +43,11 @@ attaches to the reachable set, not to a run of it. -/
 theorem LinearSys.reachSet_subset_reach (sys : LinearSys 𝕋 n) {T : Set ℝ} (R₀ U Ud : S n)
     {Δt : ℝ} (hΔt : 0 ≤ Δt) (hT : Set.Ici 0 ⊆ T) (hU : Bornology.IsBounded (construct U))
     (hUd : ∀ x u : ℝ → Vec ℝ n, sys.Trajectory T R₀ U x u →
-      ∀ k : ℕ, sys.stepInput u Δt k ∈ construct Ud) (o k : ℕ) :
+      ∀ k : ℕ, sys.stepInput u Δt k ∈ construct Ud) {o : ℕ} (ho : 0 < o) (k : ℕ) :
     sys.reachSet T R₀ U ((k : ℝ) * Δt)
-      ⊆ construct ((sys.discretize Δt).reach o R₀ Ud k) := by
+      ⊆ construct ((sys.discretize Δt).reach o ho R₀ Ud k) := by
   rintro _ ⟨x, u, traj, rfl⟩
-  exact traj.reach_outer hΔt hT hU (hUd x u traj) o k
+  exact traj.reach_outer hΔt hT hU (hUd x u traj) ho k
 
 end CORALean.Real
 

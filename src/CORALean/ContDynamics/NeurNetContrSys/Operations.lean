@@ -50,12 +50,12 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
 /-- The reachable set at the end of `i` control periods, each `N` steps of
 length `Δt` under one held input set, from `R₀`, at Taylor order `η` and
-maximum order `o`. -/
-noncomputable def NeurNetContrSys.reach (sys : NeurNetContrSys 𝕋 S n) (o η N : ℕ) (Δt : ℝ)
-    (R₀ : S n) : ℕ → S n
+maximum order `o`. `ho` is what rules out `o = 0`. -/
+noncomputable def NeurNetContrSys.reach (sys : NeurNetContrSys 𝕋 S n) (o η N : ℕ) (ho : 0 < o)
+    (Δt : ℝ) (R₀ : S n) : ℕ → S n
   | 0 => R₀
-  | i + 1 => (sys.plant.discretize Δt).reach o (sys.reach o η N Δt R₀ i)
-      (sys.plant.inputSolution Δt η (sys.contr.enclose (sys.reach o η N Δt R₀ i))) N
+  | i + 1 => (sys.plant.discretize Δt).reach o ho (sys.reach o η N ho Δt R₀ i)
+      (sys.plant.inputSolution Δt η (sys.contr.enclose (sys.reach o η N ho Δt R₀ i))) N
 
 end CORALean.Real
 

@@ -27,11 +27,11 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem NeurNetContrSysDT.simulate_mem_reach (sys : NeurNetContrSysDT 𝕋 S n) (o : ℕ) (R₀ : S n)
-    {π : Vec ℝ n → Vec ℝ n} (hπ : sys.contr.Sound π)
+theorem NeurNetContrSysDT.simulate_mem_reach (sys : NeurNetContrSysDT 𝕋 S n) {o : ℕ} (ho : 0 < o)
+    (R₀ : S n) {π : Vec ℝ n → Vec ℝ n} (hπ : sys.contr.Sound π)
     {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ construct R₀) (k : ℕ) :
-    sys.simulate π x₀ k ∈ construct (sys.reach o R₀ k) :=
-  sys.reach_outer o R₀ hπ (sys.simulate_trajectory π hx₀) k
+    sys.simulate π x₀ k ∈ construct (sys.reach o ho R₀ k) :=
+  sys.reach_outer ho R₀ hπ (sys.simulate_trajectory π hx₀) k
 
 end CORALean.Real
 

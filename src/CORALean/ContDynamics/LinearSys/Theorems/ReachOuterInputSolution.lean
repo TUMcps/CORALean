@@ -42,10 +42,10 @@ theorem LinearSys.Trajectory.reach_outer_inputSolution [Mtimes ℐ S]
     (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) Δt η) U)))
     (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat sys.A) Δt η) U))) (o k : ℕ) :
+      (MatExp.inputRemainder (toRealMat sys.A) Δt η) U))) {o : ℕ} (ho : 0 < o) (k : ℕ) :
     x (k * Δt) ∈ construct
-      ((sys.discretize Δt).reach o R₀ (sys.inputSolution Δt η U) k) :=
-  LinearSysDT.reach_outer _ o R₀ _
+      ((sys.discretize Δt).reach o ho R₀ (sys.inputSolution Δt η U) k) :=
+  LinearSysDT.reach_outer _ ho R₀ _
     (traj.discretize_inputSolution hΔt hT η hε hconv hclosed hbdd hRconv hRclosed hRbdd) k
 
 end CORALean.Real

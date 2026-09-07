@@ -28,10 +28,10 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinParamSysDT.reach_one_outer (sys : LinParamSysDT 𝕄 n) (o : ℕ) (R U : S n)
+theorem LinParamSysDT.reach_one_outer (sys : LinParamSysDT 𝕄 n) {o : ℕ} (ho : 0 < o) (R U : S n)
     {A : Mat ℝ n n} (hA : A ∈ construct sys.A) {x u : Vec ℝ n}
     (hx : x ∈ construct R) (hu : u ∈ construct U) :
-    A *ᵥ x + u ∈ construct (sys.reach o R U 1) :=
+    A *ᵥ x + u ∈ construct (sys.reach o ho R U 1) :=
   reduce_outer _ _ (plus_outer _ _
     (Set.add_mem_add
       (mtimes_outer sys.A _ (Set.mem_biUnion hA (Set.mem_image_of_mem _ hx)))

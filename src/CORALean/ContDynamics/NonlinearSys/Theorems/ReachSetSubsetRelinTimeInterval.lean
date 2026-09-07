@@ -57,15 +57,15 @@ theorem NonlinearSys.reachSet_subset_relinTimeInterval (sys : NonlinearSys n m)
       (MatExp.inputRemainder (steps i).A Δt (q + 2)) (steps i).linInput)))
     (hRbdd : ∀ i < N, Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (steps i).A Δt (q + 2)) (steps i).linInput)))
-    (o : ℕ) (i : ℕ) (hi : i < N)
+    {o : ℕ} (ho : 0 < o) (i : ℕ) (hi : i < N)
     {t : ℝ} (ht : t ∈ Set.Icc ((i : ℝ) * Δt) (((i : ℝ) + 1) * Δt)) :
-    sys.reachSet T R₀ U t ⊆ construct (sys.relinTimeInterval o Δt (q + 2) steps
+    sys.reachSet T R₀ U t ⊆ construct (sys.relinTimeInterval o ho Δt (q + 2) steps
       (fun i => (NonlinearSys.linearize (steps i).A).inputSolution Δt (q + 2)
         (steps i).linInput) R₀ i) := by
   rintro _ ⟨x, u, traj, rfl⟩
   exact traj.relinTimeInterval_outer hΔt hT
     (fun j hj s hs => hR j hj s hs (traj.reachSet_outer s)) q hε hconv hclosed hbdd h0
-    hRconv hRclosed hRbdd o i hi ht
+    hRconv hRclosed hRbdd ho i hi ht
 
 end CORALean.Real
 

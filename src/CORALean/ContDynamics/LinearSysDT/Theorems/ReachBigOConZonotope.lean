@@ -27,7 +27,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋] [Mtimes (Mat 𝕋) 𝒞]
 
 theorem LinearSysDT.reach_h_isBigO_conZonotope (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o)
     (R₀ U : ConZonotope (Vec ℝ n)) :
-    (fun k : ℕ => (((sys.reach (S := 𝒞) o R₀ U (k + 1)).h : ℕ) : ℝ))
+    (fun k : ℕ => (((sys.reach (S := 𝒞) o ho R₀ U (k + 1)).h : ℕ) : ℝ))
       =O[Filter.atTop] fun _ : ℕ => (1 : ℝ) := by
   apply Asymptotics.IsBigO.of_bound (o * n : ℝ)
   filter_upwards with k

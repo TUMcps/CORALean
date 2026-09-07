@@ -39,10 +39,10 @@ theorem LinearSysDT.Trajectory.aux_toTrajectoryOn {sys : LinearSysDT 𝕋 n} {R�
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSysDT.reach_outer (sys : LinearSysDT 𝕋 n) (o : ℕ) (R₀ U : S n)
+theorem LinearSysDT.reach_outer (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o) (R₀ U : S n)
     {x u : ℕ → Vec ℝ n} (traj : sys.Trajectory R₀ U x u) (k : ℕ) :
-    x k ∈ construct (sys.reach o R₀ U k) :=
-  sys.reach_outer_on o R₀ U (traj.aux_toTrajectoryOn k) k le_rfl
+    x k ∈ construct (sys.reach o ho R₀ U k) :=
+  sys.reach_outer_on ho R₀ U (traj.aux_toTrajectoryOn k) k le_rfl
 
 end CORALean.Real
 

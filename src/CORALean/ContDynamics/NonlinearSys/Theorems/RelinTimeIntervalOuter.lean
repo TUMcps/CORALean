@@ -65,16 +65,16 @@ theorem NonlinearSys.Trajectory.relinTimeInterval_outer {sys : NonlinearSys n m}
       (MatExp.inputRemainder (steps i).A Δt (q + 2)) (steps i).linInput)))
     (hRbdd : ∀ i < N, Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (steps i).A Δt (q + 2)) (steps i).linInput)))
-    (o : ℕ) (i : ℕ) (hi : i < N)
+    {o : ℕ} (ho : 0 < o) (i : ℕ) (hi : i < N)
     {t : ℝ} (ht : t ∈ Set.Icc ((i : ℝ) * Δt) (((i : ℝ) + 1) * Δt)) :
-    x t ∈ construct (sys.relinTimeInterval o Δt (q + 2) steps
+    x t ∈ construct (sys.relinTimeInterval o ho Δt (q + 2) steps
       (fun i => (NonlinearSys.linearize (steps i).A).inputSolution Δt (q + 2)
         (steps i).linInput) R₀ i) := by -- --- PROOF ---
   set Ud : ℕ → S n := fun i => (NonlinearSys.linearize (steps i).A).inputSolution Δt (q + 2)
     (steps i).linInput with hUd_def
   -- `relinReach_outer_inputSolution` places `x (iΔt)` at the start of step `i`
   have hRi := traj.relinReach_outer_inputSolution hΔt hT hR (q + 2) hε hconv hclosed hbdd
-    hRconv hRclosed hRbdd o i hi.le
+    hRconv hRclosed hRbdd ho i hi.le
   -- the run re-anchored at the start of step `i`, from what `relinReach` encloses there
   have hwin := step_subset_horizon hΔt.le hT hi
   have hexp : ((i : ℝ) + 1) * Δt = (i : ℝ) * Δt + Δt := by ring
@@ -97,7 +97,7 @@ theorem NonlinearSys.Trajectory.relinTimeInterval_outer {sys : NonlinearSys n m}
   have key := hlin.timeInterval_outer_inputSolution hΔt subset_rfl (m := q) (hε i hi) hs0 hsΔt
     (hconv i hi) (hclosed i hi) (hbdd i hi) (hRconv i hi) (hRclosed i hi) (hRbdd i hi) (h0 i hi)
   show x t ∈ construct (Plus.plus ((NonlinearSys.linearize (steps i).A).timeIntervalStep Δt
-    (q + 2) (sys.relinReach o Δt steps Ud R₀ i)) (Ud i))
+    (q + 2) (sys.relinReach o ho Δt steps Ud R₀ i)) (Ud i))
   rw [← hbeta]
   exact key
 

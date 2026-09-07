@@ -31,12 +31,12 @@ variable [Mtimes (Mat ℝ) S] [OfInterval S]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem NonlinearSysDT.holds_of_reach (sys : NonlinearSysDT n m) {U : S m} (o : ℕ)
+theorem NonlinearSysDT.holds_of_reach (sys : NonlinearSysDT n m) {U : S m} {o : ℕ} (ho : 0 < o)
     (steps : ℕ → sys.LinStep U) (R₀ : S n) (spec : Specification (Vec ℝ n))
     {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ m} (traj : sys.Trajectory R₀ U x u)
     (hR : ∀ k, x k ∈ (steps k).R) (k : ℕ)
-    (h : spec.Holds (construct (sys.reach o steps R₀ k))) : spec.Holds {x k} :=
-  spec.holds_of_outer (Set.singleton_subset_iff.mpr (sys.reach_outer o steps R₀ traj hR k)) h
+    (h : spec.Holds (construct (sys.reach o ho steps R₀ k))) : spec.Holds {x k} :=
+  spec.holds_of_outer (Set.singleton_subset_iff.mpr (sys.reach_outer ho steps R₀ traj hR k)) h
 
 end CORALean.Real
 

@@ -41,20 +41,20 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 example {n : ℕ} {sys : LinearSys ℝ n} {T : Set ℝ} {R₀ U : Zonotope (Vec ℝ n)}
     {x u : ℝ → Vec ℝ n} {Δt : ℝ} (traj : sys.Trajectory (S := 𝒵) T R₀ U x u)
     (hΔt : 0 < Δt) (hT : Set.Ici 0 ⊆ T) (η : ℕ)
-    (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) (o k : ℕ) :
-    x (k * Δt) ∈ construct ((sys.discretize Δt).reach (S := 𝒵) o R₀
+    (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) {o : ℕ} (ho : 0 < o) (k : ℕ) :
+    x (k * Δt) ∈ construct ((sys.discretize Δt).reach (S := 𝒵) o ho R₀
       (sys.inputSolution (S := 𝒵) Δt η U) k) :=
-  traj.reach_outer_convexCompact hΔt hT η hε o k
+  traj.reach_outer_convexCompact hΔt hT η hε ho k
 
 /-- The same at a constrained zonotope, whose compactness comes from its
 `domain` being a polytope rather than from the coefficient cube. -/
 example {n : ℕ} {sys : LinearSys ℝ n} {T : Set ℝ} {R₀ U : ConZonotope (Vec ℝ n)}
     {x u : ℝ → Vec ℝ n} {Δt : ℝ} (traj : sys.Trajectory (S := 𝒞) T R₀ U x u)
     (hΔt : 0 < Δt) (hT : Set.Ici 0 ⊆ T) (η : ℕ)
-    (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) (o k : ℕ) :
-    x (k * Δt) ∈ construct ((sys.discretize Δt).reach (S := 𝒞) o R₀
+    (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) {o : ℕ} (ho : 0 < o) (k : ℕ) :
+    x (k * Δt) ∈ construct ((sys.discretize Δt).reach (S := 𝒞) o ho R₀
       (sys.inputSolution (S := 𝒞) Δt η U) k) :=
-  traj.reach_outer_convexCompact hΔt hT η hε o k
+  traj.reach_outer_convexCompact hΔt hT η hε ho k
 
 /-- The same at an interval, where `reduce` is the identity, so the enclosure
 never widens for an order bound and the whole width is the input solution's. -/
@@ -62,11 +62,11 @@ example {n : ℕ} {sys : LinearSys ℝ n} {T : Set ℝ} {R₀ U : Interval (Vec 
     {x u : ℝ → Vec ℝ n} {Δt : ℝ}
     (traj : sys.Trajectory (S := fun m => Interval (Vec ℝ m)) T R₀ U x u)
     (hΔt : 0 < Δt) (hT : Set.Ici 0 ⊆ T) (η : ℕ)
-    (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) (o k : ℕ) :
+    (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) {o : ℕ} (ho : 0 < o) (k : ℕ) :
     x (k * Δt) ∈ construct ((sys.discretize Δt).reach
-      (S := fun m => Interval (Vec ℝ m)) o R₀
+      (S := fun m => Interval (Vec ℝ m)) o ho R₀
       (sys.inputSolution (S := fun m => Interval (Vec ℝ m)) Δt η U) k) :=
-  traj.reach_outer_convexCompact hΔt hT η hε o k
+  traj.reach_outer_convexCompact hΔt hT η hε ho k
 
 /-- The step enclosure at a zonotope: every time of the step, not only its end.
 `0 ∈ U` is a fact about where the input set sits, so no class supplies it. -/

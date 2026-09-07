@@ -49,14 +49,14 @@ theorem LinearSys.Trajectory.reach_outer_convexCompact [Mtimes ℐ S]
     [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ n)]
     {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n} {Δt : ℝ}
     (traj : sys.Trajectory T R₀ U x u) (hΔt : 0 < Δt) (hT : Set.Ici 0 ⊆ T) (η : ℕ)
-    (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) (o k : ℕ) :
+    (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) {o : ℕ} (ho : 0 < o) (k : ℕ) :
     x (k * Δt) ∈ construct
-      ((sys.discretize Δt).reach o R₀ (sys.inputSolution Δt η U) k) :=
+      ((sys.discretize Δt).reach o ho R₀ (sys.inputSolution Δt η U) k) :=
   traj.reach_outer_inputSolution hΔt hT η hε
     (ConvexSet.convex_construct U) (CompactSet.isClosed_construct U)
     (CompactSet.isBounded_construct U)
     (ConvexSet.convex_construct _) (CompactSet.isClosed_construct _)
-    (CompactSet.isBounded_construct _) o k
+    (CompactSet.isBounded_construct _) ho k
 
 end CORALean.Real
 

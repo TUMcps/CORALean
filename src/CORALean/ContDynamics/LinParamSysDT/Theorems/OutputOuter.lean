@@ -35,10 +35,10 @@ variable [Mtimes 𝕄 S] [Mtimes (Mat 𝕋) S]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinParamSysDT.output_outer (sys : LinParamSysDT 𝕄 n) (out : OutputEq 𝕋 n n r) (o : ℕ)
-    (R₀ U : S n) {x u : ℕ → Vec ℝ n} (traj : sys.Trajectory R₀ U x u) (k : ℕ) :
-    out.eval (x k) (u k) ∈ construct (out.outputSet (sys.reach o R₀ U k) U) :=
-  out.outputSet_outer _ _ (sys.reach_outer o R₀ U traj k) (traj.input k)
+theorem LinParamSysDT.output_outer (sys : LinParamSysDT 𝕄 n) (out : OutputEq 𝕋 n n r) {o : ℕ}
+    (ho : 0 < o) (R₀ U : S n) {x u : ℕ → Vec ℝ n} (traj : sys.Trajectory R₀ U x u) (k : ℕ) :
+    out.eval (x k) (u k) ∈ construct (out.outputSet (sys.reach o ho R₀ U k) U) :=
+  out.outputSet_outer _ _ (sys.reach_outer ho R₀ U traj k) (traj.input k)
 
 end CORALean.Real
 

@@ -43,9 +43,9 @@ theorem LinearSys.Trajectory.discretizeEnclosure_mem_reach {sys : LinearSys 𝕋
     (traj : sys.Trajectory T R₀ U x u) (hΔt : 0 ≤ Δt) (hT : Set.Ici 0 ⊆ T)
     (hU : Bornology.IsBounded (construct U))
     (hUd : ∀ k : ℕ, sys.stepInput u Δt k ∈ construct Ud)
-    (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) (o k : ℕ) :
-    x (k * Δt) ∈ construct ((sys.discretizeEnclosure Δt η).reach o R₀ Ud k) :=
-  (sys.discretizeEnclosure Δt η).reach_outer o R₀ Ud
+    (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) {o : ℕ} (ho : 0 < o) (k : ℕ) :
+    x (k * Δt) ∈ construct ((sys.discretizeEnclosure Δt η).reach o ho R₀ Ud k) :=
+  (sys.discretizeEnclosure Δt η).reach_outer ho R₀ Ud
     (traj.discretizeEnclosure hΔt hT hU hUd hε) k
 
 end CORALean.Real

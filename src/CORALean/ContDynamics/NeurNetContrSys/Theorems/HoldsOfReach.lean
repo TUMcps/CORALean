@@ -37,15 +37,15 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem NeurNetContrSys.holds_of_reach (sys : NeurNetContrSys 𝕋 S n) (o η N : ℕ) {Δt : ℝ}
-    (hΔt : 0 < Δt) (hε : ‖Δt • toRealMat sys.plant.A‖ / ((η : ℝ) + 2) < 1) {H : ℕ}
+theorem NeurNetContrSys.holds_of_reach (sys : NeurNetContrSys 𝕋 S n) (o η N : ℕ) (ho : 0 < o)
+    {Δt : ℝ} (hΔt : 0 < Δt) (hε : ‖Δt • toRealMat sys.plant.A‖ / ((η : ℝ) + 2) < 1) {H : ℕ}
     {R₀ : S n} {π : Vec ℝ n → Vec ℝ n} (hπ : sys.contr.Sound π)
     {x : ℝ → Vec ℝ n} (traj : sys.Trajectory π ((N : ℝ) * Δt) H R₀ x)
     (spec : Specification (Vec ℝ n)) (i : ℕ) (hi : i ≤ H)
-    (h : spec.Holds (construct (sys.reach o η N Δt R₀ i))) :
+    (h : spec.Holds (construct (sys.reach o η N ho Δt R₀ i))) :
     spec.Holds {x ((i : ℝ) * ((N : ℝ) * Δt))} :=
   spec.holds_of_outer
-    (Set.singleton_subset_iff.mpr (sys.reach_outer o η N hΔt hε hπ traj i hi)) h
+    (Set.singleton_subset_iff.mpr (sys.reach_outer o η N ho hΔt hε hπ traj i hi)) h
 
 end CORALean.Real
 

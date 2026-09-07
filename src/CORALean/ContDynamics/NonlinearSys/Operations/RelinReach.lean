@@ -46,12 +46,13 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The reachable set after `i` re-linearized steps of length `Δt`, from `R₀`
-under the per-step input enclosures `Ud`, held at maximum order `o`. -/
-noncomputable def NonlinearSys.relinReach (sys : NonlinearSys n m) {U : S m} (o : ℕ) (Δt : ℝ)
-    (steps : ℕ → sys.LinStep U) (Ud : ℕ → S n) (R₀ : S n) : ℕ → S n
+under the per-step input enclosures `Ud`, held at maximum order `o`. `ho` is
+what rules out `o = 0`. -/
+noncomputable def NonlinearSys.relinReach (sys : NonlinearSys n m) {U : S m} (o : ℕ) (ho : 0 < o)
+    (Δt : ℝ) (steps : ℕ → sys.LinStep U) (Ud : ℕ → S n) (R₀ : S n) : ℕ → S n
   | 0 => R₀
-  | i + 1 => ((NonlinearSys.linearize (steps i).A).discretize Δt).reach o
-      (sys.relinReach o Δt steps Ud R₀ i) (Ud i) 1
+  | i + 1 => ((NonlinearSys.linearize (steps i).A).discretize Δt).reach o ho
+      (sys.relinReach o ho Δt steps Ud R₀ i) (Ud i) 1
 
 end CORALean.Real
 

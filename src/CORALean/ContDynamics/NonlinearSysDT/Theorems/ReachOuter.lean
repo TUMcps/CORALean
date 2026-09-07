@@ -42,11 +42,11 @@ theorem NonlinearSysDT.Trajectory.aux_toTrajectoryOn {sys : NonlinearSysDT n m} 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `reach` contains every trajectory of the total run, at every step. -/
-theorem NonlinearSysDT.reach_outer (sys : NonlinearSysDT n m) {U : S m} (o : ℕ)
+theorem NonlinearSysDT.reach_outer (sys : NonlinearSysDT n m) {U : S m} {o : ℕ} (ho : 0 < o)
     (steps : ℕ → sys.LinStep U) (R₀ : S n) {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ m}
     (traj : sys.Trajectory R₀ U x u) (hR : ∀ k, x k ∈ (steps k).R) (k : ℕ) :
-    x k ∈ construct (sys.reach o steps R₀ k) :=
-  sys.reach_outer_on o steps R₀ (traj.aux_toTrajectoryOn k) (fun i _ => hR i) k le_rfl
+    x k ∈ construct (sys.reach o ho steps R₀ k) :=
+  sys.reach_outer_on ho steps R₀ (traj.aux_toTrajectoryOn k) (fun i _ => hR i) k le_rfl
 
 end CORALean.Real
 

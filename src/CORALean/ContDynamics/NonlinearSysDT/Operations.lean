@@ -47,12 +47,13 @@ variable [Mtimes (Mat ℝ) S] [OfInterval S]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The reachable set after `k` re-linearized steps, from `R₀` under the
-per-step linearizations `steps`, held at maximum order `o`. -/
-def NonlinearSysDT.reach (sys : NonlinearSysDT n m) {U : S m} (o : ℕ)
+per-step linearizations `steps`, held at maximum order `o`. `ho` is what rules
+out `o = 0`. -/
+def NonlinearSysDT.reach (sys : NonlinearSysDT n m) {U : S m} (o : ℕ) (ho : 0 < o)
     (steps : ℕ → sys.LinStep U) (R₀ : S n) : ℕ → S n
   | 0 => R₀
-  | k + 1 => (NonlinearSysDT.linearize (steps k).A).reach o
-      (sys.reach o steps R₀ k) (steps k).linInput 1
+  | k + 1 => (NonlinearSysDT.linearize (steps k).A).reach o ho
+      (sys.reach o ho steps R₀ k) (steps k).linInput 1
 
 omit [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
     [Mtimes (Mat ℝ) S] [OfInterval S] in

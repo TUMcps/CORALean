@@ -65,8 +65,9 @@ theorem NonlinearSys.Trajectory.relinReach_outer {sys : NonlinearSys n m} {T : S
     (hU : ∀ i < N, Bornology.IsBounded (construct (steps i).linInput))
     (hUd : ∀ i < N, (NonlinearSys.linearize (steps i).A).stepInput
       (fun t => sys.f (x t) (u t) - (steps i).A *ᵥ x t) Δt i ∈ construct (Ud i))
-    (o : ℕ) :
-    ∀ i ≤ N, x ((i : ℝ) * Δt) ∈ construct (sys.relinReach o Δt steps Ud R₀ i) := by -- --- PROOF ---
+    {o : ℕ} (ho : 0 < o) :
+    ∀ i ≤ N,
+      x ((i : ℝ) * Δt) ∈ construct (sys.relinReach o ho Δt steps Ud R₀ i) := by -- --- PROOF ---
   intro i
   -- the induction is on the step count, every hypothesis being asked per step
   induction i with
@@ -111,10 +112,10 @@ theorem NonlinearSys.Trajectory.relinReach_outer {sys : NonlinearSys n m} {T : S
       exact hUd i hiN
     -- one step of the linear guarantee, at horizon 1, on the shifted run
     have key := shifted.reach_outer_horizon (K := 1) (steps i).cert hT1 hR1 hΔt
-      (hU i hiN) hUd1 o 1 le_rfl
+      (hU i hiN) hUd1 ho 1 le_rfl
     show x (((i + 1 : ℕ) : ℝ) * Δt) ∈ construct
-      (((NonlinearSys.linearize (steps i).A).discretize Δt).reach o
-        (sys.relinReach o Δt steps Ud R₀ i) (Ud i) 1)
+      (((NonlinearSys.linearize (steps i).A).discretize Δt).reach o ho
+        (sys.relinReach o ho Δt steps Ud R₀ i) (Ud i) 1)
     rw [show ((i + 1 : ℕ) : ℝ) * Δt = (i : ℝ) * Δt + ((1 : ℕ) : ℝ) * Δt from by
       push_cast; ring]
     exact key

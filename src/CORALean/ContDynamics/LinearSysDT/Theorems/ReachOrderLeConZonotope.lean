@@ -33,7 +33,7 @@ generators, at every `S := 𝒞`: unfold one step of `reach` and
 `ConZonotope.reduce_order_le` bounds what it ends in. -/
 theorem LinearSysDT.reach_order_le_conZonotope (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o)
     (R₀ U : ConZonotope (Vec ℝ n)) (k : ℕ) :
-    (sys.reach (S := 𝒞) o R₀ U (k + 1)).h ≤ o * n :=
+    (sys.reach (S := 𝒞) o ho R₀ U (k + 1)).h ≤ o * n :=
   ConZonotope.reduce_order_le _ ho
 
 end CORALean.Real

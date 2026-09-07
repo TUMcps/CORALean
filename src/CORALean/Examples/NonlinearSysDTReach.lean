@@ -96,21 +96,22 @@ def Example.quadraticLinStep (p q r : ℝ) (U : Interval (Vec ℝ 1)) :
 /-- Every trajectory lies in `reach` at every step, the same linearization
 reused throughout — `reach_outer` asks for nothing else once the certificate is
 in hand. -/
-example (p q r : ℝ) (U R₀ : Interval (Vec ℝ 1)) (o : ℕ) {x u : ℕ → Vec ℝ 1}
+example (p q r : ℝ) (U R₀ : Interval (Vec ℝ 1)) {o : ℕ} (ho : 0 < o) {x u : ℕ → Vec ℝ 1}
     (traj : Example.quadraticStep.Trajectory (S := fun n => Interval (Vec ℝ n)) R₀ U x u)
     (hR : ∀ k, x k ∈ Example.quadraticRegion p r) (k : ℕ) :
-    x k ∈ construct (Example.quadraticStep.reach (S := fun n => Interval (Vec ℝ n)) o
+    x k ∈ construct (Example.quadraticStep.reach (S := fun n => Interval (Vec ℝ n)) o ho
       (fun _ => Example.quadraticLinStep p q r U) R₀ k) :=
-  Example.quadraticStep.reach_outer o (fun _ => Example.quadraticLinStep p q r U) R₀ traj hR k
+  Example.quadraticStep.reach_outer ho (fun _ => Example.quadraticLinStep p q r U) R₀ traj hR k
 
 /-- The bounded-horizon form, for a run known only up to step `K`. -/
-example (p q r : ℝ) (U R₀ : Interval (Vec ℝ 1)) (o K : ℕ) {x u : ℕ → Vec ℝ 1}
+example (p q r : ℝ) (U R₀ : Interval (Vec ℝ 1)) {o : ℕ} (ho : 0 < o) (K : ℕ)
+    {x u : ℕ → Vec ℝ 1}
     (traj : Example.quadraticStep.TrajectoryOn (S := fun n => Interval (Vec ℝ n))
       R₀ U K x u)
     (hR : ∀ k < K, x k ∈ Example.quadraticRegion p r) (k : ℕ) (hk : k ≤ K) :
-    x k ∈ construct (Example.quadraticStep.reach (S := fun n => Interval (Vec ℝ n)) o
+    x k ∈ construct (Example.quadraticStep.reach (S := fun n => Interval (Vec ℝ n)) o ho
       (fun _ => Example.quadraticLinStep p q r U) R₀ k) :=
-  Example.quadraticStep.reach_outer_on o (fun _ => Example.quadraticLinStep p q r U) R₀ traj hR k
+  Example.quadraticStep.reach_outer_on ho (fun _ => Example.quadraticLinStep p q r U) R₀ traj hR k
     hk
 
 end CORALean.Real

@@ -40,9 +40,9 @@ combines, which is why `LinComb` is not asked for. -/
 theorem LinearSys.Trajectory.reach_outer {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U Ud : S n}
     {x u : ℝ → Vec ℝ n} {Δt : ℝ} (traj : sys.Trajectory T R₀ U x u) (hΔt : 0 ≤ Δt)
     (hT : Set.Ici 0 ⊆ T) (hU : Bornology.IsBounded (construct U))
-    (hUd : ∀ k : ℕ, sys.stepInput u Δt k ∈ construct Ud) (o k : ℕ) :
-    x (k * Δt) ∈ construct ((sys.discretize Δt).reach o R₀ Ud k) :=
-  LinearSysDT.reach_outer _ o R₀ Ud (traj.discretize hΔt hT hU hUd) k
+    (hUd : ∀ k : ℕ, sys.stepInput u Δt k ∈ construct Ud) {o : ℕ} (ho : 0 < o) (k : ℕ) :
+    x (k * Δt) ∈ construct ((sys.discretize Δt).reach o ho R₀ Ud k) :=
+  LinearSysDT.reach_outer _ ho R₀ Ud (traj.discretize hΔt hT hU hUd) k
 
 end CORALean.Real
 

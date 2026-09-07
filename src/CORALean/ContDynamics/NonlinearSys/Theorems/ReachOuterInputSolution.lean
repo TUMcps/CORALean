@@ -49,12 +49,13 @@ theorem NonlinearSys.Trajectory.reach_outer_inputSolution [Mtimes ℐ S]
     (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder A Δt η) (linInput sys.f A B xs us U L))))
     (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder A Δt η) (linInput sys.f A B xs us U L)))) (o k : ℕ) :
-    x (k * Δt) ∈ construct (((NonlinearSys.linearize A).discretize Δt).reach o R₀
+      (MatExp.inputRemainder A Δt η) (linInput sys.f A B xs us U L)))) {o : ℕ} (ho : 0 < o)
+    (k : ℕ) :
+    x (k * Δt) ∈ construct (((NonlinearSys.linearize A).discretize Δt).reach o ho R₀
       ((NonlinearSys.linearize A).inputSolution Δt η
         (linInput sys.f A B xs us U L)) k) :=
   ((traj.restrict hT).linearize cert hR).reach_outer_inputSolution hΔt subset_rfl η hε
-    hconv hclosed hbdd hRconv hRclosed hRbdd o k
+    hconv hclosed hbdd hRconv hRclosed hRbdd ho k
 
 end CORALean.Real
 
