@@ -23,14 +23,14 @@ open Matrix ContSet Scalar Plus Mtimes OfPoint
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
 variable {𝕋 : Type} [Scalar 𝕋] [Mtimes (Mat 𝕋) S] [∀ n, OfPoint (S n) (Vec ℝ n)]
-variable {L : Type} {n : ℕ}
+variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)] {L : Type} {n : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `R` encloses the state at the moment of the jump, `Rg` its intersection with
 the guard; the reset image then lands in `jumpOfPoint Rg`. -/
-theorem Transition.jumpOfPoint_outer (e : Transition S L 𝕋 n) {R Rg : S n}
+theorem Transition.jumpOfPoint_outer (e : Transition G L 𝕋 n) {R Rg : S n}
     (hand : construct R ∩ construct e.guard ⊆ construct Rg) {z : Vec ℝ n}
     (hz : z ∈ construct R) (hguard : z ∈ construct e.guard) :
     e.reset z ∈ construct (e.jumpOfPoint Rg) := by -- --- PROOF ---

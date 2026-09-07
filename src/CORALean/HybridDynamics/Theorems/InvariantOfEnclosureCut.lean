@@ -17,8 +17,10 @@ needs only the containment, and asking for `And` would shut out `Zonotope`,
 which has none. `hjump` names `Rg` for the same reason — `jump_outer`'s bargain,
 any enclosure of the guard intersection, `And.and` where there is one.
 
-`R ℓ := (HA.loc ℓ).inv` meets `hflow` at every location outright, which is what
-makes the criterion reachable at all; `Examples.BouncingBall` is that witness.
+Both cuts being set inclusions is what lets the invariant and the guard sit in
+their own representation `G`: this theorem asks `ContSet` of it and nothing
+else, and `Examples.BouncingBall` runs it at a zonotope state with halfspace
+guards, `hflow` reading the invariant across the two (#39).
 -/
 
 -- Authors:       Tobias Ladner
@@ -37,7 +39,8 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ} {L 𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable [∀ n, ContSet (G n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S] [Mtimes (Mat 𝕋) S] [OfInterval S]
 
@@ -50,12 +53,12 @@ time and the enclosure cut to `ℓ.inv`; `Invariant.jump` is `JumpOuter` at
 theorem HybridAutomaton.invariant_of_enclosure_cut [∀ n, OfPoint (S n) (Vec ℝ n)]
     [∀ n, Recentre (S n) (Vec ℝ n)] [∀ n, ConvexSet (S n) (Vec ℝ n)]
     [∀ n, CompactSet (S n) (Vec ℝ n)]
-    (HA : HybridAutomaton S L 𝕋 n) (R : L → S n)
+    (HA : HybridAutomaton S G L 𝕋 n) (R : L → S n)
     (hflow : ∀ (ℓ : L) (τ : ℝ), 0 < τ → ∃ m : ℕ,
       ‖τ • toRealMat (HA.loc ℓ).dynamics.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1 ∧
       construct ((HA.loc ℓ).timeIntervalStepSplit τ (m + 2) (R ℓ))
         ∩ construct (HA.loc ℓ).inv ⊆ construct (R ℓ))
-    (hjump : ∀ (ℓ : L) (e : Transition S L 𝕋 n), e ∈ (HA.loc ℓ).trans → ∃ Rg : S n,
+    (hjump : ∀ (ℓ : L) (e : Transition G L 𝕋 n), e ∈ (HA.loc ℓ).trans → ∃ Rg : S n,
       construct (R ℓ) ∩ construct e.guard ⊆ construct Rg ∧
       construct (e.jump Rg) ⊆ construct (R e.target)) :
     HA.Invariant R where

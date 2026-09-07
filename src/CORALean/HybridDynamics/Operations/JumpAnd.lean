@@ -10,11 +10,15 @@ that result exactly as `jump` propagates it over any enclosure.
 `jump_outer`'s `hand` bargain stays untouched — a representation with no `And`
 instance still calls `jump` directly and supplies `hand` itself. This is the
 case where the interface discharges it.
+
+`And.and` takes two sets of *one* type, so this is the one place where the
+guard has to live in the state's own family: the transition here is
+`Transition S L 𝕋 n`, not the general `Transition G L 𝕋 n` (#39).
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       06-September-2026
--- Last update:   ---
+-- Last update:   07-September-2026
 -- Last revision: ---
 
 

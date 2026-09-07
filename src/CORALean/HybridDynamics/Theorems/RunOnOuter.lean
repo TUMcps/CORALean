@@ -24,13 +24,13 @@ namespace CORALean.Real
 
 open ContSet Scalar
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (G n) (Vec ℝ n)]
 variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HybridAutomaton.RunOn.mem_of_invariantOn {HA : HybridAutomaton S L 𝕋 n}
+theorem HybridAutomaton.RunOn.mem_of_invariantOn {HA : HybridAutomaton S G L 𝕋 n}
     {R : ℕ → L → S n} (hinv : HA.InvariantOn R) {m k : ℕ} {ℓ ℓ' : L} {x y : Vec ℝ n}
     (run : HA.RunOn m ℓ x ℓ' y) :
     x ∈ construct (R k ℓ) → y ∈ construct (R (k + m) ℓ') := by -- --- PROOF ---

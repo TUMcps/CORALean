@@ -83,6 +83,11 @@ instance : Reindex (fun n => HPolytope (Vec ℝ n)) where
   reindex e P := HPolytope.mapEquiv (LinearEquiv.funCongrLeft ℝ ℝ e) P
   reindex_exact e P := (HPolytope.mapEquiv_exact (LinearEquiv.funCongrLeft ℝ ℝ e) P).symm
 
+/-- The halfspace family over vectors, named as `𝒵` names the zonotope one: a
+generic `S : ℕ → Type` cannot be read off one member, so a use site writes
+`(S := ℋ𝒫)` — or, at a guard, `(G := ℋ𝒫)`. -/
+scoped notation "ℋ𝒫" => fun n => HPolytope (Vec ℝ n)
+
 end CORALean.Real
 
 

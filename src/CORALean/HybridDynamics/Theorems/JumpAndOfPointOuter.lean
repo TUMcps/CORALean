@@ -8,6 +8,9 @@ import CORALean.HybridDynamics.Theorems.JumpOfPointOuter
 `jumpOfPoint_outer` at `hand := And.and_outer R e.guard`, exactly as
 `jumpAnd_outer` reads `jump_outer` — the interface's guarantee is the
 inclusion asked for, so no caller-supplied enclosure is needed here either.
+
+And the same price: the guard is in the state's own family, `And.and` having
+nowhere else to put it (#39).
 -/
 
 -- Authors:       Tobias Ladner

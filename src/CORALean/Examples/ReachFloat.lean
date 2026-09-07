@@ -131,8 +131,9 @@ example (sys : Real.NeurNetContrSysDT 𝕋 (Zonotope 𝕋) n) (o : ℕ) (R₀ : 
 /-! ## A hybrid automaton
 
 The automaton, its runs and its invariant are propositions over whatever the
-locations are described in, so they read at a float representation with nothing
-to add. `Transition.W` and `.w` read through `Scalar 𝕋` like `LinearSysDT.A`,
+locations are described in — the state's representation and the guard's alike,
+those being separate parameters — so they read at a float one with nothing to
+add. `Transition.W` and `.w` read through `Scalar 𝕋` like `LinearSysDT.A`,
 so that half is not what stops `Transition.jump` at a float representation.
 What stops it is `OfInterval`: `jump` calls `CORALean.Real`'s, converting an
 *exact* real box, and no float representation has that instance — one would have
@@ -140,7 +141,7 @@ to round the box into the representation's own floats before an `InflatedContSet
 error box exists to pay that rounding into, which is exactly what
 `CORALean.Float.OfInterval` is for instead. -/
 
-example {HA : Real.HybridAutomaton (Zonotope 𝕋) L 𝕋 n} {R : L → Zonotope 𝕋 n}
+example {HA : Real.HybridAutomaton (Zonotope 𝕋) (Zonotope 𝕋) L 𝕋 n} {R : L → Zonotope 𝕋 n}
     (hinv : HA.Invariant R) (spec : Specification (Vec ℝ n)) {ℓ ℓ' : L}
     {x y : Vec ℝ n} (run : HA.Run ℓ x ℓ' y) (hx : x ∈ construct (R ℓ))
     (h : spec.Holds (construct (R ℓ'))) : spec.Holds {y} :=

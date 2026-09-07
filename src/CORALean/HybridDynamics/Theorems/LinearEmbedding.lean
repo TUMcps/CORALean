@@ -28,7 +28,8 @@ namespace CORALean.Real
 
 open ContSet Scalar
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable [∀ n, ContSet (G n) (Vec ℝ n)]
 variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 
 
@@ -36,7 +37,7 @@ variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 
 /-- The stay read as a run of the location's own linear system, starting in any
 set that holds its initial point. -/
-theorem Location.Trajectory.linearSys {ℓ : Location S L 𝕋 n} {τ : ℝ}
+theorem Location.Trajectory.linearSys {ℓ : Location S G L 𝕋 n} {τ : ℝ}
     {x u : ℝ → Vec ℝ n} (traj : ℓ.Trajectory τ x u) {R₀ : S n}
     (h₀ : x 0 ∈ construct R₀) :
     ℓ.dynamics.Trajectory (Set.Icc 0 τ) R₀ ℓ.U x u where

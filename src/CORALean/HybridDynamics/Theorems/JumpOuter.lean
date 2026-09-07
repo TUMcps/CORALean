@@ -11,15 +11,16 @@ Guard intersection first, reset second.
 
 The intersection arrives as the hypothesis `hand` rather than as a call, and that
 is the deliberate half of this file: the `And` class exists, but not every
-representation instantiates it, so this stays generic over `hand`, a
-`SupportBound` bargain, rather than calling `And.and` outright. `JumpAndOuter`
-is the case where an `And` instance discharges it; `JumpOuterConZonotope`
-discharges it with nothing given away at a representation with neither.
+representation instantiates it, so this stays generic over `hand` rather than
+calling `And.and`. `JumpAndOuter` is the case where an `And` instance discharges
+it; `JumpOuterConZonotope`, where a representation with neither gives up nothing.
 
-Only *soundness* is at stake. `hand` may be satisfied by the incoming set itself,
-ignoring the guard entirely, and the step stays correct while losing everything
-the guard would have removed — which is why a representation with an exact `and`
-is worth having.
+That bargain is what lets the guard keep its own representation `G`: `hand` is
+an inclusion of *sets*, so `ContSet` is all this theorem asks of `G` (#39).
+
+Only *soundness* is at stake: `hand` may be satisfied by the incoming set
+itself, ignoring the guard entirely, and the step stays correct while losing
+everything the guard would have removed — hence an exact `and` is worth having.
 -/
 
 -- Authors:       Tobias Ladner
@@ -35,14 +36,15 @@ namespace CORALean.Real
 open Matrix ContSet Scalar Plus Mtimes OfInterval
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
-variable {𝕋 : Type} [Scalar 𝕋] [Mtimes (Mat 𝕋) S] [OfInterval S] {L : Type} {n : ℕ}
+variable {𝕋 : Type} [Scalar 𝕋] [Mtimes (Mat 𝕋) S] [OfInterval S]
+variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)] {L : Type} {n : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `R` encloses the state at the moment of the jump, `Rg` its intersection with
 the guard; the reset image then lands in `jump Rg`. -/
-theorem Transition.jump_outer (e : Transition S L 𝕋 n) {R Rg : S n}
+theorem Transition.jump_outer (e : Transition G L 𝕋 n) {R Rg : S n}
     (hand : construct R ∩ construct e.guard ⊆ construct Rg) {z : Vec ℝ n}
     (hz : z ∈ construct R) (hguard : z ∈ construct e.guard) :
     e.reset z ∈ construct (e.jump Rg) := by -- --- PROOF ---
