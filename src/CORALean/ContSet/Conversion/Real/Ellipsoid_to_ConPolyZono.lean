@@ -7,7 +7,7 @@ import CORALean.ContSet.Conversion.Real.PolyZonotope_to_ConPolyZono
 Through the box the ellipsoid gives, then that box's zonotope, then the
 zonotope's exact reading as a polynomial zonotope, then `PolyZonotope.conPolyZono`
 — an empty constraint system, so that last leg adds nothing and is exact. All the
-loss is the box route's, exactly as in `Ellipsoid.subset_polyZonotope`.
+loss is the box route's, exactly as in `Ellipsoid.polyZonotope_contains`.
 -/
 
 -- Authors:       Tobias Ladner
@@ -28,9 +28,9 @@ noncomputable def Ellipsoid.conPolyZono (E : Ellipsoid n) : ConPolyZono (Vec ℝ
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.subset_conPolyZono (E : Ellipsoid n) :
+theorem Ellipsoid.conPolyZono_contains (E : Ellipsoid n) :
     E.construct ⊆ E.conPolyZono.construct :=
-  subset_trans E.subset_polyZonotope (PolyZonotope.conPolyZono_exact _).subset
+  subset_trans E.polyZonotope_contains (PolyZonotope.conPolyZono_exact _).subset
 
 end CORALean.Real
 

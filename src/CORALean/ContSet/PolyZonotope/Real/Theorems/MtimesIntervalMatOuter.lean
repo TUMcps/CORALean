@@ -71,7 +71,7 @@ theorem PolyZonotope.mtimesIntervalMat_outer (IM : Interval (Mat ℝ m n))
   have hrad : ∀ i j, 0 ≤ IM.radius i j :=
     fun i j => (abs_nonneg _).trans (IM.abs_sub_center_le hA (i, j))
   -- `x` bounded through the enclosing zonotope, which never grows what a point can reach
-  obtain ⟨γ, hγ, hxz⟩ := Zonotope.mem_construct_iff.mp (PolyZonotope.zonotope_outer pZ hxmem)
+  obtain ⟨γ, hγ, hxz⟩ := Zonotope.mem_construct_iff.mp (PolyZonotope.zonotope_contains pZ hxmem)
   have hxb := fun j => Zonotope.abs_le_absBound hγ hxz j
   -- what the radius is allowed to add to coordinate `i`
   set err : Fin m → ℝ := fun i => ∑ j, (A i j - IM.center i j) * x j with herr

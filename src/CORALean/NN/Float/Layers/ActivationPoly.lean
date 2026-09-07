@@ -100,7 +100,7 @@ theorem Layer.activationPoly_sound {P : LayerRelaxation 𝕋 n m}
     (hP : ∀ i, (P i).Sound σ) :
     (Layer.activationPoly P).Sound (fun x i => σ (x i)) := by -- --- PROOF ---
   refine ⟨fun s x hx => ?_⟩
-  have hbox := PolyZonotope.interval_outer s hx
+  have hbox := PolyZonotope.interval_contains s hx
   -- `dependent` leaves no independent generator, so `x` is a nominal point
   obtain ⟨a, ha, hxa⟩ := (nominal s.dependent).exists_point_of_q_zero rfl
     (PolyZonotope.dependent_nominal s hx)
@@ -137,7 +137,7 @@ theorem Layer.activationPoly_sound {P : LayerRelaxation 𝕋 n m}
     ring
   rw [hsplit]
   exact plus_outer _ _ (Set.add_mem_add (hpval ▸ hpmem)
-    (Interval.subset_polyZonotope _ hdev))
+    (Interval.polyZonotope_contains _ hdev))
 
 end CORALean.Float
 

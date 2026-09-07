@@ -29,9 +29,9 @@ noncomputable def ZonoBundle.ellipsoid (zB : ZonoBundle (Vec ℝ n)) (i : Fin zB
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.ellipsoid_outer (zB : ZonoBundle (Vec ℝ n)) (i : Fin zB.k) :
+theorem ZonoBundle.ellipsoid_contains (zB : ZonoBundle (Vec ℝ n)) (i : Fin zB.k) :
     zB.construct ⊆ (zB.ellipsoid i).construct :=
-  subset_trans (zB.subset_zonotope i) (Zonotope.ellipsoid_outer _)
+  subset_trans (zB.zonotope_contains i) (Zonotope.ellipsoid_contains _)
 
 end CORALean.Real
 

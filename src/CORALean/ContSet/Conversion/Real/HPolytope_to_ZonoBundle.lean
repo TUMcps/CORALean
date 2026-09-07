@@ -28,10 +28,10 @@ noncomputable def HPolytope.zonoBundle (up : ∀ j, SupportBound P.construct (Li
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.subset_zonoBundle (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
+theorem HPolytope.zonoBundle_contains (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
     (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) :
     P.construct ⊆ (HPolytope.zonoBundle up lo).construct :=
-  subset_trans (HPolytope.subset_zonotope up lo) (Zonotope.zonoBundle_exact _).subset
+  subset_trans (HPolytope.zonotope_contains up lo) (Zonotope.zonoBundle_exact _).subset
 
 end CORALean.Real
 

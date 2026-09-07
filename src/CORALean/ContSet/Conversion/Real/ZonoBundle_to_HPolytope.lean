@@ -8,7 +8,7 @@ Through `ZonoBundle.zonotope i`, then that zonotope's own halfspace description.
 Whichever component `i` names already throws away every other one the bundle
 intersects against — the whole point of a bundle being that the intersection is
 tighter than any one member. The halfspace step is exact only on the directions
-the caller names, as `Zonotope.subset_hPolytope` already is.
+the caller names, as `Zonotope.hPolytope_contains` already is.
 -/
 
 -- Authors:       Tobias Ladner
@@ -30,10 +30,10 @@ def ZonoBundle.hPolytope (zB : ZonoBundle (Vec ℝ n)) (i : Fin zB.k)
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.subset_hPolytope (zB : ZonoBundle (Vec ℝ n)) (i : Fin zB.k)
+theorem ZonoBundle.hPolytope_contains (zB : ZonoBundle (Vec ℝ n)) (i : Fin zB.k)
     (Aq : Fin q → (Vec ℝ n →ₗ[ℝ] ℝ)) :
     zB.construct ⊆ (zB.hPolytope i Aq).construct :=
-  subset_trans (zB.subset_zonotope i) (Zonotope.subset_hPolytope _ _)
+  subset_trans (zB.zonotope_contains i) (Zonotope.hPolytope_contains _ _)
 
 end CORALean.Real
 

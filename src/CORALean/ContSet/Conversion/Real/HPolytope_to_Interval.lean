@@ -33,7 +33,7 @@ def HPolytope.interval (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.interval_outer (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
+theorem HPolytope.interval_contains (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
     (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) :
     P.construct ⊆ (HPolytope.interval up lo).construct :=
   Interval.subset_ofBounds up lo

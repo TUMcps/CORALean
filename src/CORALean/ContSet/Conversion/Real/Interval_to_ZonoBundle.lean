@@ -27,9 +27,9 @@ noncomputable def Interval.zonoBundle (I : Interval (Vec ℝ n)) : ZonoBundle (V
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.subset_zonoBundle (I : Interval (Vec ℝ n)) :
+theorem Interval.zonoBundle_contains (I : Interval (Vec ℝ n)) :
     I.construct ⊆ I.zonoBundle.construct :=
-  subset_trans I.subset_zonotope (Zonotope.zonoBundle_exact _).subset
+  subset_trans I.zonotope_contains (Zonotope.zonoBundle_exact _).subset
 
 end CORALean.Real
 

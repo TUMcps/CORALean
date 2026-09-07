@@ -30,7 +30,7 @@ theorem ConZonotope.reduce_outer (cZ : ConZonotope (Vec ℝ n)) (o : ℕ) :
   unfold ConZonotope.reduce
   split_ifs with hlt
   · rw [← Zonotope.conZonotope_exact]
-    exact subset_trans (ConZonotope.zonotope_outer cZ) (Zonotope.reduce_outer cZ.zonotope o)
+    exact subset_trans (ConZonotope.zonotope_contains cZ) (Zonotope.reduce_outer cZ.zonotope o)
   · exact subset_rfl
 
 end CORALean.Real

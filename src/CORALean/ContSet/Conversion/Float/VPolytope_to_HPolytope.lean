@@ -34,7 +34,7 @@ def VPolytope.hPolytope (P : VPolytope 𝕋 n) (Aq : Mat 𝕋 q n) : HPolytope �
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem VPolytope.subset_hPolytope (P : VPolytope 𝕋 n) (Aq : Mat 𝕋 q n) :
+theorem VPolytope.hPolytope_contains (P : VPolytope 𝕋 n) (Aq : Mat 𝕋 q n) :
     P.construct ⊆ (P.hPolytope Aq).construct :=
   HPolytope.subset_ofBounds _ _
 

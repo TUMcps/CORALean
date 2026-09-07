@@ -47,7 +47,7 @@ theorem MatExp.exp_mem_expMatZonoEnclosure (M : Zonotope (Mat ℝ n n)) (η : �
     (hε : ‖M.interval.absMax‖ / ((η : ℝ) + 2) < 1) :
     exp A ∈ (MatExp.expMatZonoEnclosure M η).construct := by -- --- PROOF ---
   have hnorm : ‖A‖ ≤ ‖M.interval.absMax‖ :=
-    Interval.norm_le_absMax (Zonotope.interval_outer M hA)
+    Interval.norm_le_absMax (Zonotope.interval_contains M hA)
   have hfrac : ‖A‖ / ((η : ℝ) + 2) ≤ ‖M.interval.absMax‖ / ((η : ℝ) + 2) := by gcongr
   -- the tail at `A`, widened to the one bound the whole zonotope answers for
   have htail : ‖exp A - MatExp.expTaylor A η‖

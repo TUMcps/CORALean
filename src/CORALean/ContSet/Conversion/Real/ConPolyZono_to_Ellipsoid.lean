@@ -33,9 +33,9 @@ noncomputable def ConPolyZono.ellipsoid (cPZ : ConPolyZono (Vec ℝ n)) : Ellips
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.ellipsoid_outer (cPZ : ConPolyZono (Vec ℝ n)) :
+theorem ConPolyZono.ellipsoid_contains (cPZ : ConPolyZono (Vec ℝ n)) :
     cPZ.construct ⊆ cPZ.ellipsoid.construct :=
-  subset_trans cPZ.polyZonotope_outer (PolyZonotope.ellipsoid_outer _)
+  subset_trans cPZ.polyZonotope_contains (PolyZonotope.ellipsoid_contains _)
 
 end CORALean.Real
 

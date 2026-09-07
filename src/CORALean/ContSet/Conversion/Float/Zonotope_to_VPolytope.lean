@@ -82,7 +82,7 @@ theorem Zonotope.aux_corner_mem (Z : Zonotope 𝕋 n) (l : Fin (2 ^ Z.h)) (i : F
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.subset_vPolytope (Z : Zonotope 𝕋 n) :
+theorem Zonotope.vPolytope_contains (Z : Zonotope 𝕋 n) :
     Z.construct ⊆ Z.vPolytope.construct := by -- --- PROOF ---
   -- the exact corners, and the rounded ones actually stored
   have hstep : (InflatedContSet.nominal Z).vPolytope.construct
@@ -92,7 +92,7 @@ theorem Zonotope.subset_vPolytope (Z : Zonotope 𝕋 n) :
     exact VPolytope.mem_columnGap fun i => Z.aux_corner_mem l i
   intro x hx
   obtain ⟨p, hp, e, he, rfl⟩ := hx
-  obtain ⟨v, hv, g, hg, hvg⟩ := hstep (Real.Zonotope.subset_vPolytope _ hp)
+  obtain ⟨v, hv, g, hg, hvg⟩ := hstep (Real.Zonotope.vPolytope_contains _ hp)
   refine ⟨v, hv, g + e, ?_, ?_⟩
   · exact Interval.plus_outer _ _ ⟨g, hg, e, he, rfl⟩
   · -- the sum's membership destructs into a redex, which `rw` will not match

@@ -30,9 +30,9 @@ noncomputable def ZonoBundle.vPolytope (zB : ZonoBundle (Vec ℝ n)) (i : Fin zB
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.subset_vPolytope (zB : ZonoBundle (Vec ℝ n)) (i : Fin zB.k) :
+theorem ZonoBundle.vPolytope_contains (zB : ZonoBundle (Vec ℝ n)) (i : Fin zB.k) :
     zB.construct ⊆ (zB.vPolytope i).construct :=
-  subset_trans (zB.subset_zonotope i) (Zonotope.subset_vPolytope _)
+  subset_trans (zB.zonotope_contains i) (Zonotope.vPolytope_contains _)
 
 end CORALean.Real
 

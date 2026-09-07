@@ -77,7 +77,7 @@ def VPolytope.conZonotope (P : VPolytope 𝕋 n) : ConZonotope 𝕋 n where
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem VPolytope.subset_conZonotope (P : VPolytope 𝕋 n) :
+theorem VPolytope.conZonotope_contains (P : VPolytope 𝕋 n) :
     P.construct ⊆ P.conZonotope.construct := by -- --- PROOF ---
   refine mono_subset (fun x hx => ?_) subset_rfl
   obtain ⟨β, hnn, hsum, hval⟩ := hx

@@ -36,9 +36,9 @@ def ConZonotope.vPolytopeBox (cZ : ConZonotope 𝕋 n) : VPolytope 𝕋 n :=
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.subset_vPolytopeBox (cZ : ConZonotope 𝕋 n) :
+theorem ConZonotope.vPolytopeBox_contains (cZ : ConZonotope 𝕋 n) :
     cZ.construct ⊆ cZ.vPolytopeBox.construct :=
-  subset_trans cZ.interval_outer (Interval.subset_vPolytope _)
+  subset_trans cZ.interval_contains (Interval.vPolytope_contains _)
 
 end CORALean.Float
 

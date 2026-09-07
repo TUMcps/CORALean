@@ -79,7 +79,7 @@ def Zonotope.hPolytope (Z : Zonotope 𝕋 n) (Aq : Mat 𝕋 q n) : HPolytope �
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.subset_hPolytope (Z : Zonotope 𝕋 n) (Aq : Mat 𝕋 q n) :
+theorem Zonotope.hPolytope_contains (Z : Zonotope 𝕋 n) (Aq : Mat 𝕋 q n) :
     Z.construct ⊆ (Z.hPolytope Aq).construct :=
   HPolytope.subset_ofBounds _ _
 

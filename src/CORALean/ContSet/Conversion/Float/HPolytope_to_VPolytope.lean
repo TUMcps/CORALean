@@ -30,10 +30,10 @@ def HPolytope.vPolytopeBox (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.p
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.subset_vPolytopeBox (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
+theorem HPolytope.vPolytopeBox_contains (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
     (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) :
     P.construct ⊆ (HPolytope.vPolytopeBox up lo).construct :=
-  subset_trans (HPolytope.interval_outer up lo) (Interval.subset_vPolytope _)
+  subset_trans (HPolytope.interval_contains up lo) (Interval.vPolytope_contains _)
 
 end CORALean.Float
 

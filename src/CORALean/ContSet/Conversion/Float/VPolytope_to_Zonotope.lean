@@ -28,9 +28,9 @@ def VPolytope.zonotope (P : VPolytope 𝕋 n) : Zonotope 𝕋 n :=
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem VPolytope.subset_zonotope (P : VPolytope 𝕋 n) :
+theorem VPolytope.zonotope_contains (P : VPolytope 𝕋 n) :
     P.construct ⊆ P.zonotope.construct :=
-  subset_trans P.interval_outer (Interval.subset_zonotope _)
+  subset_trans P.interval_contains (Interval.zonotope_contains _)
 
 
 end CORALean.Float

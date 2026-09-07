@@ -39,7 +39,7 @@ theorem aux_abs_le_sqrt_sumSq (y : Vec ℝ n) (i : Fin n) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Capsule.subset_interval (C : Capsule n) :
+theorem Capsule.interval_contains (C : Capsule n) :
     C.construct ⊆ C.interval.construct := by -- --- PROOF ---
   rintro x ⟨t, ht, hle⟩ i
   simp only [Capsule.interval]

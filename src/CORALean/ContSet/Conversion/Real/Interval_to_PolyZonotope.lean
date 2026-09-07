@@ -34,9 +34,9 @@ variable {n : ℕ}
 noncomputable def Interval.polyZonotope (I : Interval (Vec ℝ n)) : PolyZonotope (Vec ℝ n) :=
   I.zonotope.polyZonotope
 
-theorem Interval.subset_polyZonotope (I : Interval (Vec ℝ n)) :
+theorem Interval.polyZonotope_contains (I : Interval (Vec ℝ n)) :
     I.construct ⊆ I.polyZonotope.construct :=
-  subset_trans I.subset_zonotope (Zonotope.polyZonotope_exact _).subset
+  subset_trans I.zonotope_contains (Zonotope.polyZonotope_exact _).subset
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

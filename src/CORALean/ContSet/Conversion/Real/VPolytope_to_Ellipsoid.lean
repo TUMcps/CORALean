@@ -30,9 +30,9 @@ noncomputable def VPolytope.ellipsoid (P : VPolytope (Vec ℝ n)) : Ellipsoid n 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem VPolytope.ellipsoid_outer (P : VPolytope (Vec ℝ n)) :
+theorem VPolytope.ellipsoid_contains (P : VPolytope (Vec ℝ n)) :
     P.construct ⊆ P.ellipsoid.construct :=
-  subset_trans P.subset_zonotope (Zonotope.ellipsoid_outer _)
+  subset_trans P.zonotope_contains (Zonotope.ellipsoid_contains _)
 
 end CORALean.Real
 

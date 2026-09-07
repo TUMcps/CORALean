@@ -45,7 +45,7 @@ def ConPolyZono.polyZonotope (cPZ : ConPolyZono α) : PolyZonotope α where
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.polyZonotope_outer (cPZ : ConPolyZono α) :
+theorem ConPolyZono.polyZonotope_contains (cPZ : ConPolyZono α) :
     cPZ.construct ⊆ cPZ.polyZonotope.construct := by
   rintro _ ⟨a, b, ha, hb, _, rfl⟩
   exact ⟨a, b, ha, hb, rfl⟩

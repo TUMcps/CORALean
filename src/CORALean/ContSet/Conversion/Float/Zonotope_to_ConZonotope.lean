@@ -35,7 +35,7 @@ variable [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.conZonotope_outer (Z : Zonotope 𝕋 n) :
+theorem Zonotope.conZonotope_contains (Z : Zonotope 𝕋 n) :
     Z.construct ⊆ Z.conZonotope.construct := by
   refine mono_subset (fun x hx => ?_) subset_rfl
   obtain ⟨β, hβ, hx⟩ := Zonotope.mem_nominalSet_iff.mp hx

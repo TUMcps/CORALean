@@ -34,9 +34,9 @@ noncomputable def ConPolyZono.hPolytope (cPZ : ConPolyZono α) (Aq : Fin q → (
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.subset_hPolytope (cPZ : ConPolyZono α) (Aq : Fin q → (α →ₗ[ℝ] ℝ)) :
+theorem ConPolyZono.hPolytope_contains (cPZ : ConPolyZono α) (Aq : Fin q → (α →ₗ[ℝ] ℝ)) :
     cPZ.construct ⊆ (cPZ.hPolytope Aq).construct :=
-  subset_trans cPZ.polyZonotope_outer (PolyZonotope.subset_hPolytope _ _)
+  subset_trans cPZ.polyZonotope_contains (PolyZonotope.hPolytope_contains _ _)
 
 end CORALean.Real
 

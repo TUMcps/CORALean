@@ -47,7 +47,7 @@ def Zonotope.hPolytope (Z : Zonotope α) (Aq : Fin q → (α →ₗ[ℝ] ℝ)) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.subset_hPolytope (Z : Zonotope α) (Aq : Fin q → (α →ₗ[ℝ] ℝ)) :
+theorem Zonotope.hPolytope_contains (Z : Zonotope α) (Aq : Fin q → (α →ₗ[ℝ] ℝ)) :
     Z.construct ⊆ (Z.hPolytope Aq).construct :=
   HPolytope.subset_ofBounds _ _
 

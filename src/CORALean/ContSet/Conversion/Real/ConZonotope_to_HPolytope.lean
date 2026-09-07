@@ -28,9 +28,9 @@ def ConZonotope.hPolytope (cZ : ConZonotope α) (Aq : Fin q → (α →ₗ[ℝ] 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.subset_hPolytope (cZ : ConZonotope α) (Aq : Fin q → (α →ₗ[ℝ] ℝ)) :
+theorem ConZonotope.hPolytope_contains (cZ : ConZonotope α) (Aq : Fin q → (α →ₗ[ℝ] ℝ)) :
     cZ.construct ⊆ (cZ.hPolytope Aq).construct :=
-  subset_trans cZ.zonotope_outer (Zonotope.subset_hPolytope _ _)
+  subset_trans cZ.zonotope_contains (Zonotope.hPolytope_contains _ _)
 
 
 end CORALean.Real

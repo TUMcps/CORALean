@@ -166,7 +166,7 @@ theorem Interval.subset_nominal_ellipsoid (I : Interval 𝕋 n) (σ : 𝕋) (hσ
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.subset_ellipsoid (I : Interval 𝕋 n) (σ : 𝕋) (hσ : 0 < toReal σ)
+theorem Interval.ellipsoid_contains (I : Interval 𝕋 n) (σ : 𝕋) (hσ : 0 < toReal σ)
     (hn : (n : ℝ) ≤ toReal (mulDown σ σ)) :
     I.construct ⊆ (I.ellipsoid σ).construct := fun x hx =>
   ⟨x, I.subset_nominal_ellipsoid σ hσ hn hx, 0, fun i => by

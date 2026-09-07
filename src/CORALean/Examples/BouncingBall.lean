@@ -150,7 +150,7 @@ theorem Example.mem_bounce_jump_cut {x : Vec ℝ 2}
 
 /-- The invariant said as a slab sits inside the same box said as a zonotope:
 the two representations, related where the criterion needs them related. -/
-theorem Example.ballBox_subset_ballZono (hp : 0 < p) (hv : 0 < v) :
+theorem Example.ballZono_contains_ballBox (hp : 0 < p) (hv : 0 < v) :
     construct (Example.ballBox p v) ⊆ construct (Example.ballZono p v) := by -- --- PROOF ---
   intro x hx
   -- the slab's rows, read back as the four scalar bounds
@@ -218,7 +218,7 @@ theorem Example.bouncingBall_invariant (g : ℝ) (hp : 0 < p) (hv : 0 < v)
   · -- the cut is the whole flow obligation: whatever the dwell time, the part
     -- of the enclosure still inside the invariant is inside the box
     refine ⟨⌈‖τ • toRealMat ((Example.bouncingBall g d p v).loc ℓ).dynamics.A‖⌉₊, ?_,
-      Set.inter_subset_right.trans (Example.ballBox_subset_ballZono hp hv)⟩
+      Set.inter_subset_right.trans (Example.ballZono_contains_ballBox hp hv)⟩
     rw [div_lt_one (by positivity)]
     push_cast
     linarith [Nat.le_ceil ‖τ • toRealMat ((Example.bouncingBall g d p v).loc ℓ).dynamics.A‖]

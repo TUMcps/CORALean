@@ -28,9 +28,9 @@ def ZonoBundle.interval (zB : ZonoBundle (Vec ℝ n)) (i : Fin zB.k) : Interval 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.interval_outer (zB : ZonoBundle (Vec ℝ n)) (i : Fin zB.k) :
+theorem ZonoBundle.interval_contains (zB : ZonoBundle (Vec ℝ n)) (i : Fin zB.k) :
     zB.construct ⊆ (zB.interval i).construct :=
-  subset_trans (zB.subset_zonotope i) (Zonotope.interval_outer _)
+  subset_trans (zB.zonotope_contains i) (Zonotope.interval_contains _)
 
 end CORALean.Real
 

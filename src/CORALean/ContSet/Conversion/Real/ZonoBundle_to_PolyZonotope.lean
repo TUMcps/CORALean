@@ -29,9 +29,9 @@ def ZonoBundle.polyZonotope (zB : ZonoBundle α) (i : Fin zB.k) : PolyZonotope �
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.subset_polyZonotope (zB : ZonoBundle α) (i : Fin zB.k) :
+theorem ZonoBundle.polyZonotope_contains (zB : ZonoBundle α) (i : Fin zB.k) :
     zB.construct ⊆ (zB.polyZonotope i).construct :=
-  subset_trans (zB.subset_zonotope i) (Zonotope.polyZonotope_exact _).subset
+  subset_trans (zB.zonotope_contains i) (Zonotope.polyZonotope_exact _).subset
 
 end CORALean.Real
 

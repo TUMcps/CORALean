@@ -27,9 +27,9 @@ noncomputable def Ellipsoid.zonoBundle (E : Ellipsoid n) : ZonoBundle (Vec ℝ n
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.subset_zonoBundle (E : Ellipsoid n) :
+theorem Ellipsoid.zonoBundle_contains (E : Ellipsoid n) :
     E.construct ⊆ E.zonoBundle.construct :=
-  subset_trans E.zonotope_outer (Zonotope.zonoBundle_exact _).subset
+  subset_trans E.zonotope_contains (Zonotope.zonoBundle_exact _).subset
 
 end CORALean.Real
 

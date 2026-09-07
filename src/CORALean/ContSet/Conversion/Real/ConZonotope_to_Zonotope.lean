@@ -32,7 +32,8 @@ def ConZonotope.zonotope (cZ : ConZonotope α) : Zonotope α where
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.zonotope_outer (cZ : ConZonotope α) : cZ.construct ⊆ cZ.zonotope.construct := by
+theorem ConZonotope.zonotope_contains (cZ : ConZonotope α) :
+    cZ.construct ⊆ cZ.zonotope.construct := by
   rintro _ ⟨β, hβ, -, rfl⟩
   exact ⟨β, hβ, rfl⟩
 

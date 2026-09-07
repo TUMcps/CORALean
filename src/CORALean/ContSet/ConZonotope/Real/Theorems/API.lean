@@ -22,7 +22,7 @@ import CORALean.ContSet.ConZonotope.Real.Theorems.OfPointMem
 # What `ConZonotope` guarantees
 
 `and`, `plus` and `map` exactly; the interval-matrix product and `reduce` as
-enclosures, `reduce` by way of `zonotope_outer`, and `reduce_order_le` for its
+enclosures, `reduce` by way of `zonotope_contains`, and `reduce_order_le` for its
 own generator-count bound. `linComb` has both directions: `_outer` is what the
 interface asks for and holds always, `_inner` is what says the result is the
 convex hull itself and asks both sets to be nonempty. The topological facts go

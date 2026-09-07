@@ -29,9 +29,9 @@ def ConZonotope.polyZonotope (cZ : ConZonotope α) : PolyZonotope α :=
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.subset_polyZonotope (cZ : ConZonotope α) :
+theorem ConZonotope.polyZonotope_contains (cZ : ConZonotope α) :
     cZ.construct ⊆ cZ.polyZonotope.construct :=
-  subset_trans cZ.zonotope_outer (Zonotope.polyZonotope_exact _).subset
+  subset_trans cZ.zonotope_contains (Zonotope.polyZonotope_exact _).subset
 
 end CORALean.Real
 

@@ -27,9 +27,9 @@ def ConZonotope.interval (cZ : ConZonotope (Vec ℝ n)) : Interval (Vec ℝ n) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.interval_outer (cZ : ConZonotope (Vec ℝ n)) :
+theorem ConZonotope.interval_contains (cZ : ConZonotope (Vec ℝ n)) :
     cZ.construct ⊆ cZ.interval.construct :=
-  subset_trans cZ.zonotope_outer (Zonotope.interval_outer _)
+  subset_trans cZ.zonotope_contains (Zonotope.interval_contains _)
 
 
 end CORALean.Real

@@ -88,7 +88,7 @@ noncomputable def Layer.activationPoly (P : LayerRelaxation σ n m) : Layer 𝒫
 theorem Layer.activationPoly_sound (P : LayerRelaxation σ n m) :
     (Layer.activationPoly P).Sound (fun x i => σ (x i)) := by -- --- PROOF ---
   refine ⟨fun s x hx => ?_⟩
-  have hbox := PolyZonotope.interval_outer s hx
+  have hbox := PolyZonotope.interval_contains s hx
   have hxd : x ∈ s.dependent.construct := by
     rw [← PolyZonotope.dependent_exact s]
     exact hx
@@ -119,7 +119,7 @@ theorem Layer.activationPoly_sound (P : LayerRelaxation σ n m) :
     show σ (x i) = _ + _
     ring
   rw [hsplit]
-  exact plus_outer _ _ (Set.add_mem_add hpmem (Interval.subset_polyZonotope _ hdev))
+  exact plus_outer _ _ (Set.add_mem_add hpmem (Interval.polyZonotope_contains _ hdev))
 
 end CORALean.Real
 

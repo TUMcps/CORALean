@@ -31,10 +31,10 @@ noncomputable def HPolytope.ellipsoid (up : ∀ j, SupportBound P.construct (Lin
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.ellipsoid_outer (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
+theorem HPolytope.ellipsoid_contains (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
     (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) :
     P.construct ⊆ (HPolytope.ellipsoid up lo).construct :=
-  subset_trans (HPolytope.subset_zonotope up lo) (Zonotope.ellipsoid_outer _)
+  subset_trans (HPolytope.zonotope_contains up lo) (Zonotope.ellipsoid_contains _)
 
 end CORALean.Real
 

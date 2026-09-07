@@ -44,7 +44,7 @@ variable [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.interval_outer (pZ : PolyZonotope 𝕋 n) :
+theorem PolyZonotope.interval_contains (pZ : PolyZonotope 𝕋 n) :
     pZ.construct ⊆ pZ.interval.construct := by -- --- PROOF ---
   rintro _ ⟨z, hzmem, e, he, rfl⟩ i
   obtain ⟨a, β, ha, hβ, hz⟩ := PolyZonotope.mem_nominalSet_iff.mp hzmem

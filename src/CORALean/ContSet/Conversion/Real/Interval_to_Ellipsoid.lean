@@ -32,9 +32,9 @@ noncomputable def Interval.ellipsoid (I : Interval (Vec ℝ n)) : Ellipsoid n :=
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.ellipsoid_outer (I : Interval (Vec ℝ n)) :
+theorem Interval.ellipsoid_contains (I : Interval (Vec ℝ n)) :
     I.construct ⊆ I.ellipsoid.construct :=
-  subset_trans I.subset_zonotope (Zonotope.ellipsoid_outer _)
+  subset_trans I.zonotope_contains (Zonotope.ellipsoid_contains _)
 
 end CORALean.Real
 

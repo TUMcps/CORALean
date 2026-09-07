@@ -36,7 +36,7 @@ noncomputable def VPolytope.hPolytope (P : VPolytope α) (Aq : Fin q → (α →
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem VPolytope.subset_hPolytope (P : VPolytope α) (Aq : Fin q → (α →ₗ[ℝ] ℝ)) :
+theorem VPolytope.hPolytope_contains (P : VPolytope α) (Aq : Fin q → (α →ₗ[ℝ] ℝ)) :
     P.construct ⊆ (P.hPolytope Aq).construct :=
   HPolytope.subset_ofBounds _ _
 

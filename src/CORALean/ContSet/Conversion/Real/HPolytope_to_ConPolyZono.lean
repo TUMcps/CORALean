@@ -7,7 +7,7 @@ import CORALean.ContSet.Conversion.Real.PolyZonotope_to_ConPolyZono
 Through the zonotope the box gives, then that zonotope's own exact reading as a
 polynomial zonotope, then `PolyZonotope.conPolyZono` — an empty constraint
 system, so that last leg adds nothing and is exact. All the loss is the box
-route's, exactly as in `HPolytope.subset_polyZonotope`.
+route's, exactly as in `HPolytope.polyZonotope_contains`.
 -/
 
 -- Authors:       Tobias Ladner
@@ -29,10 +29,10 @@ noncomputable def HPolytope.conPolyZono (up : ∀ j, SupportBound P.construct (L
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.subset_conPolyZono (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
+theorem HPolytope.conPolyZono_contains (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
     (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) :
     P.construct ⊆ (HPolytope.conPolyZono up lo).construct :=
-  subset_trans (HPolytope.subset_polyZonotope up lo) (PolyZonotope.conPolyZono_exact _).subset
+  subset_trans (HPolytope.polyZonotope_contains up lo) (PolyZonotope.conPolyZono_exact _).subset
 
 end CORALean.Real
 

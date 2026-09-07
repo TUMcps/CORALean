@@ -27,9 +27,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem VPolytope.and_outer (P₁ P₂ : VPolytope 𝕋 n) :
     P₁.construct ∩ P₂.construct ⊆ (P₁.and P₂).construct := by
-  refine subset_trans ?_ (Interval.subset_vPolytope _)
+  refine subset_trans ?_ (Interval.vPolytope_contains _)
   rw [Interval.and_exact]
-  exact Set.inter_subset_inter P₁.interval_outer P₂.interval_outer
+  exact Set.inter_subset_inter P₁.interval_contains P₂.interval_contains
 
 end CORALean.Float
 
