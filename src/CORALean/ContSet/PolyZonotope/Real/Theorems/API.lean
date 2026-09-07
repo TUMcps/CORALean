@@ -29,6 +29,7 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombOuter
 import CORALean.ContSet.PolyZonotope.Real.Theorems.DependentExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.SumExtEqPoint
 import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadEvalSumExt
+import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapDepPoint
 import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapDepExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinPoint

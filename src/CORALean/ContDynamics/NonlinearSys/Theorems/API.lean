@@ -1,3 +1,4 @@
+import CORALean.ContDynamics.NonlinearSys.Theorems.AbstractionErrorOfPoly
 import CORALean.ContDynamics.NonlinearSys.Theorems.ConfinedOfBall
 import CORALean.ContDynamics.NonlinearSys.Theorems.ConfinementOfSubset
 import CORALean.ContDynamics.NonlinearSys.Theorems.LinInputOuter
@@ -5,6 +6,9 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.LinearEmbedding
 import CORALean.ContDynamics.NonlinearSys.Theorems.TrajectoryIffNonlinearSys
 import CORALean.ContDynamics.NonlinearSys.Theorems.Linearize
 import CORALean.ContDynamics.NonlinearSys.Theorems.LinearizeHorizon
+import CORALean.ContDynamics.NonlinearSys.Theorems.PolyAbstractionErrorGetSubset
+import CORALean.ContDynamics.NonlinearSys.Theorems.PolyAbstractionErrorOfQuadRemainder
+import CORALean.ContDynamics.NonlinearSys.Theorems.PrecompStatErrorPoint
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachOuterHorizon
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachOuterHorizonInputSolution
@@ -34,14 +38,14 @@ the steps, each step's enclosure becoming the next one's initial set.
 `RelinTimeIntervalOuter` covers every time of a step, not only its ends.
 
 `ConfinedOfBall` and `ConfinementOfSubset` pay off the confinement hypothesis
-those carry per step: the run cannot cross a ball of radius `ρ > MΔt` about the
-start of a step, so inflating the computed set and checking it discharges it.
+those carry per step: the run cannot cross a ball of radius `ρ > MΔt` about a
+step's start, so inflating the computed set and checking it discharges it.
 
 The `ReachSet` files say that of the reachable set rather than of a run:
 `ReachSetOuter` puts a run into it, `ReachSetConfinementOfSubset` confines it,
-and the `ReachSetSubset` files enclose it — the last on the computed sets
-alone.
+and the `ReachSetSubset` files enclose it — on the computed sets alone.
 
-The polynomialization variant, which propagates a `PolyZonotope` rather than
-re-linearizing, is not here.
+The `PolyAbstractionError` files are the polynomialization variant's
+certificate: `OfQuadRemainder` builds one, `GetSubset` splits it, and
+`AbstractionErrorOfPoly` forgets the dependency, so everything above serves it.
 -/
