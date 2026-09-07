@@ -1,0 +1,47 @@
+import CORALean.ContSet.PolyZonotope.Real.Operations.Compact
+import CORALean.Global.Cost
+
+/-!
+# `PolyZonotope.compactCost`
+
+Asserted, not proved, by reading `Operations/Compact.lean` and the four files
+under it. `rep` finds each column's least equal column, which is `h` columns
+compared against `h` at `p` exponents each; `fiberSum` gathers each class, `h`
+index tests and at most `h` generator additions at `Vec ℝ n` per column;
+`compactKeep` tests each merged generator against zero, `n` comparisons a
+column; and `usedFactors` scans every exponent once, `p * h`.
+
+Everything here is bounded at the *full* width rather than the class's, which
+is what keeps it an upper bound without a hypothesis on how the columns
+happen to collide. Quadratic in `h` either way: this is a pairwise merge, and a
+sorted or hashed one would be a different definition and a different count.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       07-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- What `PolyZonotope.compact` costs at `Vec ℝ n` over `p` factors and `h`
+dependent generators: the pairwise merge, the class sums and the factor scan. -/
+def PolyZonotope.compactCost (n p h : ℕ) : Cost := ⟨(p + n + 1) * (h * h) + (p + n) * h⟩
+
+/-- Monotone in the generator count, so a bound on the operand's size gives a
+bound on the cost. -/
+theorem PolyZonotope.compactCost_mono {h h' : ℕ} (n p : ℕ) (hh : h ≤ h') :
+    PolyZonotope.compactCost n p h ≤ PolyZonotope.compactCost n p h' :=
+  Nat.add_le_add (Nat.mul_le_mul_left _ (Nat.mul_le_mul hh hh))
+    (Nat.mul_le_mul_left _ hh)
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

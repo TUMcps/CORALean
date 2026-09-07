@@ -2,6 +2,7 @@ import CORALean.ContSet.ConZonotope.Real.ConZonotope
 import CORALean.ContSet.ConZonotope.Real.Operations.API
 import CORALean.ContSet.ConZonotope.Real.Theorems.API
 import CORALean.ContSet.ConZonotope.Real.Complexity.API
+import CORALean.ContSet.ConZonotope.Real.Cost.API
 import CORALean.ContSet.ConZonotope.Real.Instances
 
 /-!
@@ -9,8 +10,9 @@ import CORALean.ContSet.ConZonotope.Real.Instances
 
 A zonotope whose coefficients are cut down by a polytope, so the two earlier
 representations are both prerequisites: `Zonotope` for what is enclosed and
-mapped, `HPolytope` for what the coefficients range over. `Complexity` costs
-both counts together.
+mapped, `HPolytope` for what the coefficients range over. `Complexity` sizes both
+counts together, and `Cost` counts what running the three operations that build
+no constraint costs — its own docstring says why the other three are left out.
 
 What it buys over a zonotope is `and`: intersection, exactly, which no zonotope
 can represent.
