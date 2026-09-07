@@ -10,7 +10,7 @@ description is exact for it: this is an enclosure with a precision knob rather
 than a conversion, and a direct construction would be tighter.
 
 Loses whatever the zonotope step lost and nothing further; the rows are the
-caller's, exactly as in `Zonotope.subset_hPolytope`.
+caller's, exactly as in `Zonotope.hPolytope_contains`.
 -/
 
 -- Authors:       Tobias Ladner
@@ -31,9 +31,9 @@ def PolyZonotope.hPolytope (pZ : PolyZonotope α) (Aq : Fin q → (α →ₗ[ℝ
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.subset_hPolytope (pZ : PolyZonotope α) (Aq : Fin q → (α →ₗ[ℝ] ℝ)) :
+theorem PolyZonotope.hPolytope_contains (pZ : PolyZonotope α) (Aq : Fin q → (α →ₗ[ℝ] ℝ)) :
     pZ.construct ⊆ (pZ.hPolytope Aq).construct :=
-  subset_trans pZ.zonotope_outer (Zonotope.subset_hPolytope _ _)
+  subset_trans pZ.zonotope_contains (Zonotope.hPolytope_contains _ _)
 
 end CORALean.Real
 

@@ -161,13 +161,14 @@ noncomputable def HPolytope.conZonotope {P : HPolytope 𝕋 n}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.subset_conZonotope {P : HPolytope 𝕋 n}
+theorem HPolytope.conZonotope_contains {P : HPolytope 𝕋 n}
     (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
     (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) :
     P.construct ⊆ (HPolytope.conZonotope up lo).construct := by -- --- PROOF ---
   intro x hx
   refine ⟨x, P.subset_nominal_conZonotopeOf _ (fun y hy =>
-    Interval.subset_nominal_zonotope _ (HPolytope.interval_outer up lo hy)) hx, 0, fun i => ?_, ?_⟩
+    Interval.subset_nominal_zonotope _ (HPolytope.interval_contains up lo hy)) hx,
+    0, fun i => ?_, ?_⟩
   · show toReal (zero : 𝕋) ≤ (0 : Vec ℝ n) i ∧ (0 : Vec ℝ n) i ≤ toReal (zero : 𝕋)
     rw [toReal_zero]
     exact ⟨le_refl 0, le_refl 0⟩

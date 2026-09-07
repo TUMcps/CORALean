@@ -27,9 +27,9 @@ noncomputable def Interval.conZonotope (I : Interval (Vec ℝ n)) : ConZonotope 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.subset_conZonotope (I : Interval (Vec ℝ n)) :
+theorem Interval.conZonotope_contains (I : Interval (Vec ℝ n)) :
     I.construct ⊆ I.conZonotope.construct :=
-  subset_trans I.subset_zonotope (Zonotope.conZonotope_exact _).subset
+  subset_trans I.zonotope_contains (Zonotope.conZonotope_exact _).subset
 
 
 end CORALean.Real

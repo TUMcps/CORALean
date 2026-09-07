@@ -28,9 +28,9 @@ def Interval.conZonotope (I : Interval 𝕋 n) : ConZonotope 𝕋 n :=
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.subset_conZonotope (I : Interval 𝕋 n) :
+theorem Interval.conZonotope_contains (I : Interval 𝕋 n) :
     I.construct ⊆ I.conZonotope.construct :=
-  subset_trans I.subset_zonotope (Zonotope.conZonotope_outer _)
+  subset_trans I.zonotope_contains (Zonotope.conZonotope_contains _)
 
 
 end CORALean.Float

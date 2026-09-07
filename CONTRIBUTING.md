@@ -420,6 +420,28 @@ the theorem it states:
 takes the direction too: `_outer_refines`. Composing the two gives the float
 guarantee, the weaker direction winning.
 
+A containment between two *represented* sets says `contains`, CORA's way round:
+`contains(X, Y)` is `X ⊇ Y`. The name reads the statement with the receiver
+elided, so `Zonotope.interval_contains` is "its interval contains it" and
+`HPolytope.contains_vPolytope` is "it contains its vPolytope" — one word, and
+the side the target sits on says which way the inclusion runs. Every theorem in
+`Conversion/` is `Source.target_contains`, unless it is the inclusion the other
+way, which is `Source.contains_target`. An `_of_` name says the hypothesis
+instead: `HPolytope.contains_of_pinned`.
+
+Not a relation of its own: the statement stays `X.construct ⊆ Y.construct`. A
+`contains` over `ContSet` would need both instances, and `Instances.lean`
+imports the operations, some of which are implemented by conversion —
+`VPolytope.andH` is — so a conversion file cannot import it without a cycle.
+The one word used everywhere is what fixes the direction; there is nothing else
+it could mean.
+
+`subset_` is left where one side is a bare `Set` and not a representation:
+`HPolytope.subset_ofBounds`, `Interval.subset_nominal_zonotope`. `_outer` is
+left on the class obligations — `Plus.plus_outer`, `IntervalOuter.interval_outer`
+— which quantify over a representation instead of naming a pair, and whose
+suffix is the table above.
+
 ## The two layers
 
 `Real` is the specification, `Float` the refinement, which obtains its soundness

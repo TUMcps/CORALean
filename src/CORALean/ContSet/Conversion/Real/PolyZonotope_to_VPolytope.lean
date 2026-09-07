@@ -31,9 +31,9 @@ noncomputable def PolyZonotope.vPolytope (pZ : PolyZonotope α) : VPolytope α :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.subset_vPolytope (pZ : PolyZonotope α) :
+theorem PolyZonotope.vPolytope_contains (pZ : PolyZonotope α) :
     pZ.construct ⊆ pZ.vPolytope.construct :=
-  subset_trans pZ.zonotope_outer (Zonotope.subset_vPolytope _)
+  subset_trans pZ.zonotope_contains (Zonotope.vPolytope_contains _)
 
 end CORALean.Real
 

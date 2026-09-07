@@ -31,8 +31,8 @@ noncomputable def Ellipsoid.zonotope (E : Ellipsoid n) : Zonotope (Vec ℝ n) :=
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.zonotope_outer (E : Ellipsoid n) : E.construct ⊆ E.zonotope.construct :=
-  subset_trans E.interval_outer (Interval.subset_zonotope _)
+theorem Ellipsoid.zonotope_contains (E : Ellipsoid n) : E.construct ⊆ E.zonotope.construct :=
+  subset_trans E.interval_contains (Interval.zonotope_contains _)
 
 end CORALean.Real
 

@@ -68,7 +68,7 @@ theorem HPolytope.conZonotope_exact
   · rintro ⟨β, -, hP, rfl⟩
     exact (hmem β).mp hP
   · intro hx
-    obtain ⟨β, hβ, hxβ⟩ := HPolytope.subset_zonotope up lo hx
+    obtain ⟨β, hβ, hxβ⟩ := HPolytope.zonotope_contains up lo hx
     refine ⟨β, hβ, (hmem β).mpr ?_, hxβ⟩
     show (HPolytope.zonotope up lo).c + ∑ j, β j • (HPolytope.zonotope up lo).G j ∈ P.construct
     rwa [← hxβ]

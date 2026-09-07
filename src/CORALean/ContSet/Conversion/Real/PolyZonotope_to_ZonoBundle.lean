@@ -28,9 +28,9 @@ def PolyZonotope.zonoBundle (pZ : PolyZonotope α) : ZonoBundle α :=
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.subset_zonoBundle (pZ : PolyZonotope α) :
+theorem PolyZonotope.zonoBundle_contains (pZ : PolyZonotope α) :
     pZ.construct ⊆ pZ.zonoBundle.construct :=
-  subset_trans pZ.zonotope_outer (Zonotope.zonoBundle_exact _).subset
+  subset_trans pZ.zonotope_contains (Zonotope.zonoBundle_exact _).subset
 
 end CORALean.Real
 

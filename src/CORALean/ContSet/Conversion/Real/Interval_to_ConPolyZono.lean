@@ -4,7 +4,7 @@ import CORALean.ContSet.Conversion.Real.PolyZonotope_to_ConPolyZono
 /-!
 # A box as a constrained polynomial zonotope
 
-Through `Interval.subset_polyZonotope`, then `PolyZonotope.conPolyZono` — an
+Through `Interval.polyZonotope_contains`, then `PolyZonotope.conPolyZono` — an
 empty constraint system, so that second leg adds nothing and is exact. All the
 loss is the first hop's, and nothing is lost there either: only the enclosing
 direction is stated for a box's own polynomial zonotope, not the equality the
@@ -32,9 +32,9 @@ noncomputable def Interval.conPolyZono (I : Interval (Vec ℝ n)) : ConPolyZono 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.subset_conPolyZono (I : Interval (Vec ℝ n)) :
+theorem Interval.conPolyZono_contains (I : Interval (Vec ℝ n)) :
     I.construct ⊆ I.conPolyZono.construct :=
-  subset_trans I.subset_polyZonotope (PolyZonotope.conPolyZono_exact _).subset
+  subset_trans I.polyZonotope_contains (PolyZonotope.conPolyZono_exact _).subset
 
 end CORALean.Real
 

@@ -31,10 +31,10 @@ noncomputable def HPolytope.polyZonotope (up : ∀ j, SupportBound P.construct (
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.subset_polyZonotope (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
+theorem HPolytope.polyZonotope_contains (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
     (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) :
     P.construct ⊆ (HPolytope.polyZonotope up lo).construct :=
-  subset_trans (HPolytope.subset_zonotope up lo) (Zonotope.polyZonotope_exact _).subset
+  subset_trans (HPolytope.zonotope_contains up lo) (Zonotope.polyZonotope_exact _).subset
 
 end CORALean.Real
 

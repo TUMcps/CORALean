@@ -44,14 +44,14 @@ variable {n : ℕ} {P : HPolytope (Vec ℝ n)}
 
 /-- Bounded because something bounded contains it, which is what an enclosure
 already computed says. -/
-theorem HPolytope.isCompact_of_subset {W : VPolytope (Vec ℝ n)} (h : P.construct ⊆ W.construct) :
+theorem HPolytope.isCompact_of_contains {W : VPolytope (Vec ℝ n)} (h : P.construct ⊆ W.construct) :
     IsCompact P.construct :=
   Metric.isCompact_of_isClosed_isBounded P.isClosed_construct (W.isBounded_construct.subset h)
 
 /-- The soundness half of vertex enumeration: a list holding every point the
 rows pin down encloses the polytope. An implementation must then show it found
 those points, never that its search was exhaustive in any other sense. -/
-theorem HPolytope.subset_of_pinned (hc : IsCompact P.construct) (W : VPolytope (Vec ℝ n))
+theorem HPolytope.contains_of_pinned (hc : IsCompact P.construct) (W : VPolytope (Vec ℝ n))
     (hW : ∀ x ∈ P.construct,
         (∀ d : Vec ℝ n, (∀ i, P.A i x = P.b i → P.A i d = 0) → (∀ i, P.Ae i d = 0) → d = 0) →
         x ∈ Set.range W.V) :
@@ -76,7 +76,7 @@ noncomputable def HPolytope.vPolytope (P : HPolytope (Vec ℝ n)) (hne : P.const
     if P.basicPoint (signEquiv P.m l) ∈ P.construct then P.basicPoint (signEquiv P.m l)
     else hne.choose
 
-theorem HPolytope.vPolytope_subset (P : HPolytope (Vec ℝ n)) (hne : P.construct.Nonempty) :
+theorem HPolytope.contains_vPolytope (P : HPolytope (Vec ℝ n)) (hne : P.construct.Nonempty) :
     (P.vPolytope hne).construct ⊆ P.construct := by -- --- PROOF ---
   rw [VPolytope.construct_eq_convexHull]
   refine convexHull_min ?_ P.convex_construct
@@ -87,10 +87,10 @@ theorem HPolytope.vPolytope_subset (P : HPolytope (Vec ℝ n)) (hne : P.construc
   · assumption
   · exact hne.choose_spec
 
--- the other way: `subset_of_pinned` asks only that every extreme point be listed
-theorem HPolytope.subset_vPolytope (P : HPolytope (Vec ℝ n)) (hc : IsCompact P.construct)
+-- the other way: `contains_of_pinned` asks only that every extreme point be listed
+theorem HPolytope.vPolytope_contains (P : HPolytope (Vec ℝ n)) (hc : IsCompact P.construct)
     (hne : P.construct.Nonempty) : P.construct ⊆ (P.vPolytope hne).construct := by -- --- PROOF ---
-  refine HPolytope.subset_of_pinned hc _ fun x hx hpin => ?_
+  refine HPolytope.contains_of_pinned hc _ fun x hx hpin => ?_
   refine ⟨(signEquiv P.m).symm (P.tightAt x), ?_⟩
   show (if P.basicPoint (signEquiv P.m ((signEquiv P.m).symm (P.tightAt x))) ∈ P.construct then
       P.basicPoint (signEquiv P.m ((signEquiv P.m).symm (P.tightAt x))) else hne.choose) = x
@@ -98,7 +98,7 @@ theorem HPolytope.subset_vPolytope (P : HPolytope (Vec ℝ n)) (hc : IsCompact P
 
 theorem HPolytope.vPolytope_exact (P : HPolytope (Vec ℝ n)) (hc : IsCompact P.construct)
     (hne : P.construct.Nonempty) : (P.vPolytope hne).construct = P.construct :=
-  Set.Subset.antisymm (P.vPolytope_subset hne) (P.subset_vPolytope hc hne)
+  Set.Subset.antisymm (P.contains_vPolytope hne) (P.vPolytope_contains hc hne)
 
 /-- The cheap route: a box from `2n` certificates, then its corners. -/
 noncomputable def HPolytope.vPolytopeBox
@@ -109,11 +109,11 @@ noncomputable def HPolytope.vPolytopeBox
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.subset_vPolytopeBox
+theorem HPolytope.vPolytopeBox_contains
     (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
     (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) :
     P.construct ⊆ (HPolytope.vPolytopeBox up lo).construct :=
-  subset_trans (HPolytope.interval_outer up lo) (Interval.subset_vPolytope _)
+  subset_trans (HPolytope.interval_contains up lo) (Interval.vPolytope_contains _)
 
 end CORALean.Real
 

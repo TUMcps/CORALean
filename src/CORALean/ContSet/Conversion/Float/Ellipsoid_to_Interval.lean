@@ -68,7 +68,7 @@ theorem Ellipsoid.aux_row_le (E : Ellipsoid 𝕋 n) (s : Vec 𝕋 n)
 -- =======================================  MAIN THEOREM  ======================================= --
 
 -- the box is that reach around the centre, with the error box added on
-theorem Ellipsoid.interval_outer (E : Ellipsoid 𝕋 n) (s : Vec 𝕋 n)
+theorem Ellipsoid.interval_contains (E : Ellipsoid 𝕋 n) (s : Vec 𝕋 n)
     (hs : ∀ i, toReal (sqSumUp fun j => absolute (E.G i j))
       ≤ toReal (mulDown (s i) (s i))) :
     E.construct ⊆ (E.interval s).construct := by -- --- PROOF ---

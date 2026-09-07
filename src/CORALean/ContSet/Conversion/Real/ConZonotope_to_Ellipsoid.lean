@@ -30,9 +30,9 @@ noncomputable def ConZonotope.ellipsoid (cZ : ConZonotope (Vec ℝ n)) : Ellipso
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.ellipsoid_outer (cZ : ConZonotope (Vec ℝ n)) :
+theorem ConZonotope.ellipsoid_contains (cZ : ConZonotope (Vec ℝ n)) :
     cZ.construct ⊆ cZ.ellipsoid.construct :=
-  subset_trans cZ.zonotope_outer (Zonotope.ellipsoid_outer _)
+  subset_trans cZ.zonotope_contains (Zonotope.ellipsoid_contains _)
 
 end CORALean.Real
 

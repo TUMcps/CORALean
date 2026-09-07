@@ -27,8 +27,8 @@ noncomputable def Ellipsoid.conZonotope (E : Ellipsoid n) : ConZonotope (Vec ℝ
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.subset_conZonotope (E : Ellipsoid n) : E.construct ⊆ E.conZonotope.construct :=
-  subset_trans E.zonotope_outer (Zonotope.conZonotope_exact _).subset
+theorem Ellipsoid.conZonotope_contains (E : Ellipsoid n) : E.construct ⊆ E.conZonotope.construct :=
+  subset_trans E.zonotope_contains (Zonotope.conZonotope_exact _).subset
 
 end CORALean.Real
 

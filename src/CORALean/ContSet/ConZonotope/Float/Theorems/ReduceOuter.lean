@@ -31,8 +31,8 @@ theorem ConZonotope.reduce_outer (cZ : ConZonotope 𝕋 n) (o : ℕ) :
     cZ.construct ⊆ (cZ.reduce o).construct := by -- --- PROOF ---
   unfold ConZonotope.reduce
   split_ifs with hlt
-  · exact subset_trans (subset_trans (ConZonotope.zonotope_outer cZ)
-      (Zonotope.reduce_outer cZ.zonotope o)) (Zonotope.conZonotope_outer _)
+  · exact subset_trans (subset_trans (ConZonotope.zonotope_contains cZ)
+      (Zonotope.reduce_outer cZ.zonotope o)) (Zonotope.conZonotope_contains _)
   · exact subset_rfl
 
 end CORALean.Float

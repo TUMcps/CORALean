@@ -30,9 +30,9 @@ noncomputable def VPolytope.polyZonotope (P : VPolytope (Vec ℝ n)) : PolyZonot
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem VPolytope.subset_polyZonotope (P : VPolytope (Vec ℝ n)) :
+theorem VPolytope.polyZonotope_contains (P : VPolytope (Vec ℝ n)) :
     P.construct ⊆ P.polyZonotope.construct :=
-  subset_trans P.subset_zonotope (Zonotope.polyZonotope_exact _).subset
+  subset_trans P.zonotope_contains (Zonotope.polyZonotope_exact _).subset
 
 end CORALean.Real
 

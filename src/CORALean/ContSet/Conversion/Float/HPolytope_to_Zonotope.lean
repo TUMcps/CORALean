@@ -28,10 +28,10 @@ def HPolytope.zonotope (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.subset_zonotope (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
+theorem HPolytope.zonotope_contains (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
     (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) :
     P.construct ⊆ (HPolytope.zonotope up lo).construct :=
-  subset_trans (HPolytope.interval_outer up lo) (Interval.subset_zonotope _)
+  subset_trans (HPolytope.interval_contains up lo) (Interval.zonotope_contains _)
 
 
 end CORALean.Float

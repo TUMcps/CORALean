@@ -34,9 +34,9 @@ def ConPolyZono.zonotope (cPZ : ConPolyZono α) : Zonotope α :=
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.zonotope_outer (cPZ : ConPolyZono α) :
+theorem ConPolyZono.zonotope_contains (cPZ : ConPolyZono α) :
     cPZ.construct ⊆ cPZ.zonotope.construct :=
-  subset_trans cPZ.polyZonotope_outer (PolyZonotope.zonotope_outer _)
+  subset_trans cPZ.polyZonotope_contains (PolyZonotope.zonotope_contains _)
 
 end CORALean.Real
 

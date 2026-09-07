@@ -34,7 +34,7 @@ noncomputable def Interval.zonotope (I : Interval (Vec ℝ n)) : Zonotope (Vec �
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.subset_zonotope (I : Interval (Vec ℝ n)) :
+theorem Interval.zonotope_contains (I : Interval (Vec ℝ n)) :
     I.construct ⊆ I.zonotope.construct := by -- --- PROOF ---
   intro x hx
   have hlo : ∀ j, I.inf j ≤ x j := fun j => (hx j).1

@@ -60,7 +60,7 @@ theorem aux_construct_point_polyZonotope (b : Vec ℝ m) :
       exact Finset.sum_const_zero
     rw [Set.mem_singleton_iff, hzero, add_zero, hc]
   · rw [Set.singleton_subset_iff]
-    exact Interval.subset_zonotope _ (Interval.mem_point b)
+    exact Interval.zonotope_contains _ (Interval.mem_point b)
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

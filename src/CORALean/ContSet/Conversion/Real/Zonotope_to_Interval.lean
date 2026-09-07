@@ -38,7 +38,7 @@ def Zonotope.interval (Z : Zonotope α) : Interval α where
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.interval_outer (Z : Zonotope α) :
+theorem Zonotope.interval_contains (Z : Zonotope α) :
     Z.construct ⊆ Z.interval.construct := by -- --- PROOF ---
   rintro x ⟨β, hβ, rfl⟩
   intro i

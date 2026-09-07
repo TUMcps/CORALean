@@ -112,7 +112,7 @@ theorem Interval.subset_nominal_zonotope (I : Interval 𝕋 n) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 -- the error box adds nothing, the generators already covering the box
-theorem Interval.subset_zonotope (I : Interval 𝕋 n) :
+theorem Interval.zonotope_contains (I : Interval 𝕋 n) :
     I.construct ⊆ I.zonotope.construct := fun x hx =>
   ⟨x, I.subset_nominal_zonotope hx, 0, fun i => by
     show toReal (zero : 𝕋) ≤ (0 : Vec ℝ n) i ∧ (0 : Vec ℝ n) i ≤ toReal (zero : 𝕋)

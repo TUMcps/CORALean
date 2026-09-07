@@ -62,7 +62,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 repository that a float layer computes. -/
 example (cPZ : ConPolyZono 𝕋 n) (G : ConZonotope 𝕋 n) :
     cPZ.construct ∩ G.construct ⊆ (cPZ.and G.conPolyZono).construct :=
-  subset_trans (Set.inter_subset_inter subset_rfl (ConZonotope.conPolyZono_outer G))
+  subset_trans (Set.inter_subset_inter subset_rfl (ConZonotope.conPolyZono_contains G))
     (ConPolyZono.and_outer cPZ G.conPolyZono)
 
 end Float

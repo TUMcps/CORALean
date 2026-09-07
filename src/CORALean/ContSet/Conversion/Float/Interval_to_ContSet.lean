@@ -48,15 +48,15 @@ instance : OfInterval (fun n => Interval 𝕋 n) 𝕋 where
 
 instance : OfInterval (fun n => Zonotope 𝕋 n) 𝕋 where
   ofInterval I := I.zonotope
-  ofInterval_outer I := Interval.subset_zonotope I
+  ofInterval_outer I := Interval.zonotope_contains I
 
 instance : OfInterval (fun n => ConZonotope 𝕋 n) 𝕋 where
   ofInterval I := I.conZonotope
-  ofInterval_outer I := Interval.subset_conZonotope I
+  ofInterval_outer I := Interval.conZonotope_contains I
 
 instance : OfInterval (fun n => PolyZonotope 𝕋 n) 𝕋 where
   ofInterval I := I.polyZonotope
-  ofInterval_outer I := Interval.subset_polyZonotope I
+  ofInterval_outer I := Interval.polyZonotope_contains I
 
 end CORALean.Float
 

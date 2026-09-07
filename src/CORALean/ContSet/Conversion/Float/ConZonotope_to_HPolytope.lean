@@ -28,9 +28,9 @@ def ConZonotope.hPolytope (cZ : ConZonotope 𝕋 n) (Aq : Mat 𝕋 q n) : HPolyt
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.subset_hPolytope (cZ : ConZonotope 𝕋 n) (Aq : Mat 𝕋 q n) :
+theorem ConZonotope.hPolytope_contains (cZ : ConZonotope 𝕋 n) (Aq : Mat 𝕋 q n) :
     cZ.construct ⊆ (cZ.hPolytope Aq).construct :=
-  subset_trans cZ.zonotope_outer (Zonotope.subset_hPolytope _ _)
+  subset_trans cZ.zonotope_contains (Zonotope.hPolytope_contains _ _)
 
 
 end CORALean.Float

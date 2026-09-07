@@ -33,9 +33,9 @@ def ConPolyZono.interval (cPZ : ConPolyZono (Vec ℝ n)) : Interval (Vec ℝ n) 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.interval_outer (cPZ : ConPolyZono (Vec ℝ n)) :
+theorem ConPolyZono.interval_contains (cPZ : ConPolyZono (Vec ℝ n)) :
     cPZ.construct ⊆ cPZ.interval.construct :=
-  subset_trans cPZ.polyZonotope_outer (PolyZonotope.interval_outer _)
+  subset_trans cPZ.polyZonotope_contains (PolyZonotope.interval_contains _)
 
 end CORALean.Real
 

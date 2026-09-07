@@ -31,7 +31,7 @@ def Interval.vPolytope (I : Interval 𝕋 n) : VPolytope 𝕋 n where
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.subset_vPolytope (I : Interval 𝕋 n) :
+theorem Interval.vPolytope_contains (I : Interval 𝕋 n) :
     I.construct ⊆ (Interval.vPolytope I).construct := by -- --- PROOF ---
   intro x hx
   have hnom : x ∈ InflatedContSet.nominalSet (Interval.vPolytope I) := by
@@ -44,7 +44,7 @@ theorem Interval.subset_vPolytope (I : Interval 𝕋 n) :
     show x ∈ Real.VPolytope.construct
       ⟨2 ^ n, fun l i => toReal (if signEquiv n l i then I.sup i else I.inf i)⟩
     rw [hV]
-    exact Real.Interval.subset_vPolytope I.nominal hx
+    exact Real.Interval.vPolytope_contains I.nominal hx
   refine ⟨x, hnom, 0, fun i => ?_, ?_⟩
   · show toReal (zero : 𝕋) ≤ (0 : Vec ℝ n) i ∧ (0 : Vec ℝ n) i ≤ toReal (zero : 𝕋)
     rw [toReal_zero]

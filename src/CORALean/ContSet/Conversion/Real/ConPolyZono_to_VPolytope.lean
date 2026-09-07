@@ -33,9 +33,9 @@ noncomputable def ConPolyZono.vPolytope (cPZ : ConPolyZono α) : VPolytope α :=
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.subset_vPolytope (cPZ : ConPolyZono α) :
+theorem ConPolyZono.vPolytope_contains (cPZ : ConPolyZono α) :
     cPZ.construct ⊆ cPZ.vPolytope.construct :=
-  subset_trans cPZ.polyZonotope_outer (PolyZonotope.subset_vPolytope _)
+  subset_trans cPZ.polyZonotope_contains (PolyZonotope.vPolytope_contains _)
 
 end CORALean.Real
 

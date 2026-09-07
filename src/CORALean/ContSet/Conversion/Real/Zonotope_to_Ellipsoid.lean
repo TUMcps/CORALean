@@ -56,7 +56,7 @@ theorem Zonotope.aux_coeff_sq_le {Z : Zonotope (Vec ℝ n)} {β : Fin Z.h → �
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.ellipsoid_outer (Z : Zonotope (Vec ℝ n)) :
+theorem Zonotope.ellipsoid_contains (Z : Zonotope (Vec ℝ n)) :
     Z.construct ⊆ Z.ellipsoid.construct := by -- --- PROOF ---
   intro x hx
   obtain ⟨β, hβ, hxeq⟩ := Zonotope.mem_construct_iff.mp hx

@@ -33,16 +33,16 @@ theorem VPolytope.and_outer (P₁ P₂ : VPolytope (Vec ℝ n))
   have hsub : P₁.construct ∩ P₂.construct ⊆ (VPolytope.andH P₁ P₂ Aq₁ Aq₂).construct := by
     rintro x ⟨hx₁, hx₂⟩
     refine HPolytope.mem_and_iff.mpr ⟨HPolytope.mem_and_iff.mpr ⟨?_, ?_⟩, ?_⟩
-    · exact P₁.subset_hPolytope Aq₁ hx₁
-    · exact P₂.subset_hPolytope Aq₂ hx₂
+    · exact P₁.hPolytope_contains Aq₁ hx₁
+    · exact P₂.hPolytope_contains Aq₂ hx₂
     · rw [Interval.hPolytope_exact]
-      exact P₁.interval_outer hx₁
+      exact P₁.interval_contains hx₁
   -- empty or not: an empty halfspace description leaves nothing to enumerate
   by_cases h : (VPolytope.andH P₁ P₂ Aq₁ Aq₂).construct.Nonempty
   · have he : P₁.and P₂ Aq₁ Aq₂ = (VPolytope.andH P₁ P₂ Aq₁ Aq₂).vPolytope h := dif_pos h
     rw [he]
     exact subset_trans hsub
-      (HPolytope.subset_vPolytope _ (VPolytope.andH_isCompact P₁ P₂ Aq₁ Aq₂) h)
+      (HPolytope.vPolytope_contains _ (VPolytope.andH_isCompact P₁ P₂ Aq₁ Aq₂) h)
   · have he : P₁.and P₂ Aq₁ Aq₂ = VPolytope.emptySet (Vec ℝ n) := dif_neg h
     rw [he, VPolytope.construct_emptySet]
     rw [Set.not_nonempty_iff_eq_empty.mp h] at hsub

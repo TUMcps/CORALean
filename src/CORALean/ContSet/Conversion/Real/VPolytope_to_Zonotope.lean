@@ -26,9 +26,9 @@ noncomputable def VPolytope.zonotope (P : VPolytope (Vec ℝ n)) : Zonotope (Vec
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem VPolytope.subset_zonotope (P : VPolytope (Vec ℝ n)) :
+theorem VPolytope.zonotope_contains (P : VPolytope (Vec ℝ n)) :
     P.construct ⊆ P.zonotope.construct :=
-  subset_trans P.interval_outer (Interval.subset_zonotope _)
+  subset_trans P.interval_contains (Interval.zonotope_contains _)
 
 
 end CORALean.Real

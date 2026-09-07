@@ -46,11 +46,11 @@ instance : IntervalOuter (fun n => Interval (Vec ℝ n)) where
 
 instance : IntervalOuter 𝒵 where
   interval Z := Z.interval
-  interval_outer Z := Zonotope.interval_outer Z
+  interval_outer Z := Zonotope.interval_contains Z
 
 instance : IntervalOuter (fun n => ConZonotope (Vec ℝ n)) where
   interval C := C.interval
-  interval_outer C := ConZonotope.interval_outer C
+  interval_outer C := ConZonotope.interval_contains C
 
 end CORALean.Real
 

@@ -64,7 +64,7 @@ theorem Layer.activationPoly_subset_inflate (P : LayerRelaxation σ n m)
   have hxs : s.dependent.point a' ∈ s.construct := by
     rw [PolyZonotope.dependent_exact s]
     exact s.dependent.point_mem_construct ha'bound
-  have hxbox := PolyZonotope.interval_outer s hxs
+  have hxbox := PolyZonotope.interval_contains s hxs
   -- the polynomial the set evaluates to, one neuron's own fit per coordinate
   have hpval : (s.dependent.evalPoly (P.coeffList s.interval)).point
         (fun k => a' (Fin.cast (s.dependent.evalPoly_p (P.coeffList s.interval)) k))

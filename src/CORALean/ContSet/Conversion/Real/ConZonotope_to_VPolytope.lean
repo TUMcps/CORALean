@@ -38,11 +38,11 @@ noncomputable def ConZonotope.vPolytope (cZ : ConZonotope α)
   k := (cZ.domain.vPolytope hne).k
   V := fun l => cZ.c + ∑ j, ((cZ.domain.vPolytope hne).V l) j • cZ.G j
 
-theorem ConZonotope.subset_vPolytope (cZ : ConZonotope α) (hne : cZ.domain.construct.Nonempty) :
+theorem ConZonotope.vPolytope_contains (cZ : ConZonotope α) (hne : cZ.domain.construct.Nonempty) :
     cZ.construct ⊆ (cZ.vPolytope hne).construct := by -- --- PROOF ---
   rintro _ ⟨β, hβ, hP, rfl⟩
   obtain ⟨lam, hlam0, hlam1, hlamv⟩ :=
-    cZ.domain.subset_vPolytope cZ.isCompact_domain hne (ConZonotope.mem_domain_iff.mpr ⟨hβ, hP⟩)
+    cZ.domain.vPolytope_contains cZ.isCompact_domain hne (ConZonotope.mem_domain_iff.mpr ⟨hβ, hP⟩)
   refine ⟨lam, hlam0, hlam1, ?_⟩
   -- each coefficient is the same combination of the domain vertices' coefficients
   have hcoef : ∀ j, β j = ∑ l, lam l * ((cZ.domain.vPolytope hne).V l) j := by
@@ -62,13 +62,13 @@ theorem ConZonotope.subset_vPolytope (cZ : ConZonotope α) (hne : cZ.domain.cons
   rw [← Finset.sum_smul, ← hcoef j]
 
 -- back: each listed vertex comes from a domain vertex, hence from a point of the set
-theorem ConZonotope.vPolytope_subset (cZ : ConZonotope α) (hne : cZ.domain.construct.Nonempty) :
+theorem ConZonotope.contains_vPolytope (cZ : ConZonotope α) (hne : cZ.domain.construct.Nonempty) :
     (cZ.vPolytope hne).construct ⊆ cZ.construct := by -- --- PROOF ---
   rw [VPolytope.construct_eq_convexHull]
   refine convexHull_min ?_ cZ.convex_construct
   rintro _ ⟨l, rfl⟩
   have hd : (cZ.domain.vPolytope hne).V l ∈ cZ.domain.construct :=
-    cZ.domain.vPolytope_subset hne (by
+    cZ.domain.contains_vPolytope hne (by
       rw [VPolytope.construct_eq_convexHull]
       exact subset_convexHull ℝ _ ⟨l, rfl⟩)
   obtain ⟨hb, hP⟩ := ConZonotope.mem_domain_iff.mp hd
@@ -79,7 +79,7 @@ theorem ConZonotope.vPolytope_subset (cZ : ConZonotope α) (hne : cZ.domain.cons
 
 theorem ConZonotope.vPolytope_exact (cZ : ConZonotope α) (hne : cZ.domain.construct.Nonempty) :
     (cZ.vPolytope hne).construct = cZ.construct :=
-  Set.Subset.antisymm (cZ.vPolytope_subset hne) (cZ.subset_vPolytope hne)
+  Set.Subset.antisymm (cZ.contains_vPolytope hne) (cZ.vPolytope_contains hne)
 
 end CORALean.Real
 

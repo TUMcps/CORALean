@@ -30,9 +30,9 @@ noncomputable def Ellipsoid.polyZonotope (E : Ellipsoid n) : PolyZonotope (Vec â
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.subset_polyZonotope (E : Ellipsoid n) :
+theorem Ellipsoid.polyZonotope_contains (E : Ellipsoid n) :
     E.construct âŠ† E.polyZonotope.construct :=
-  subset_trans E.zonotope_outer (Zonotope.polyZonotope_exact _).subset
+  subset_trans E.zonotope_contains (Zonotope.polyZonotope_exact _).subset
 
 end CORALean.Real
 

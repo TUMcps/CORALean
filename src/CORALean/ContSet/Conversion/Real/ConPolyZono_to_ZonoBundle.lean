@@ -28,9 +28,9 @@ def ConPolyZono.zonoBundle (cPZ : ConPolyZono α) : ZonoBundle α :=
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.subset_zonoBundle (cPZ : ConPolyZono α) :
+theorem ConPolyZono.zonoBundle_contains (cPZ : ConPolyZono α) :
     cPZ.construct ⊆ cPZ.zonoBundle.construct :=
-  subset_trans cPZ.zonotope_outer (Zonotope.zonoBundle_exact _).subset
+  subset_trans cPZ.zonotope_contains (Zonotope.zonoBundle_exact _).subset
 
 end CORALean.Real
 

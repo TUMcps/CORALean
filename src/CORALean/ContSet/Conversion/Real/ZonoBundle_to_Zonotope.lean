@@ -26,7 +26,7 @@ def ZonoBundle.zonotope (zB : ZonoBundle α) (i : Fin zB.k) : Zonotope α := zB.
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.subset_zonotope (zB : ZonoBundle α) (i : Fin zB.k) :
+theorem ZonoBundle.zonotope_contains (zB : ZonoBundle α) (i : Fin zB.k) :
     zB.construct ⊆ (zB.zonotope i).construct :=
   Set.iInter_subset _ i
 

@@ -41,7 +41,7 @@ def Interval.polyZonotope (I : Interval 𝕋 n) : PolyZonotope 𝕋 n where
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.subset_polyZonotope (I : Interval 𝕋 n) :
+theorem Interval.polyZonotope_contains (I : Interval 𝕋 n) :
     I.construct ⊆ I.polyZonotope.construct := fun x hx => by
   -- the nominal part is the origin, so the box carries the whole point
   refine ⟨0, PolyZonotope.mem_nominalSet_iff.mpr

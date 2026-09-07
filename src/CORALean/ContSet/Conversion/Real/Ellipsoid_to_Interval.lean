@@ -34,7 +34,7 @@ noncomputable def Ellipsoid.interval (E : Ellipsoid n) : Interval (Vec ℝ n) :=
   Interval.ofBounds (fun j => E.supportBound (LinearMap.proj j))
     (fun j => E.supportBound (-LinearMap.proj j))
 
-theorem Ellipsoid.interval_outer (E : Ellipsoid n) : E.construct ⊆ E.interval.construct :=
+theorem Ellipsoid.interval_contains (E : Ellipsoid n) : E.construct ⊆ E.interval.construct :=
   Interval.subset_ofBounds _ _
 
 

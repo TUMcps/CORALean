@@ -43,7 +43,7 @@ noncomputable def Interval.vPolytope (I : Interval (Vec ℝ n)) : VPolytope (Vec
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.subset_vPolytope (I : Interval (Vec ℝ n)) :
+theorem Interval.vPolytope_contains (I : Interval (Vec ℝ n)) :
     I.construct ⊆ I.vPolytope.construct := by -- --- PROOF ---
   intro x hx
   have hlo : ∀ j, I.inf j ≤ x j := fun j => (hx j).1
