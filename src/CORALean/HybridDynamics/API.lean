@@ -14,12 +14,12 @@ list of outgoing transitions; a transition is a guard, an affine reset and a
 target; and a run alternates the two, written as an inductive family so that
 chaining a guarantee along it is the family's own recursion.
 
-What the analysis needs and this directory does not supply is an intersection:
-guard against reachable set, invariant against reachable set. There is no `And`
-class — only two representations implement one — so every statement that would
-call it takes the enclosure as a hypothesis instead, and
-`Theorems.JumpOuterConZonotope` shows what it costs at a representation that
-computes the intersection exactly, which is nothing.
+The guard and the invariant do cut the reachable set, but only where an `And`
+instance is available: `Theorems.JumpAndOuter` computes the guard intersection
+and `Theorems.TimeIntervalInvOuter` the invariant one. A representation
+without one still has `Theorems.JumpOuter`'s `hand` bargain, discharged with
+nothing lost at a representation whose intersection is exact, as
+`Theorems.JumpOuterConZonotope` shows.
 
 Time-triggered only in the sense that nothing here is time-triggered: a stay
 runs for a dwell time the run chooses. No parallel composition and no Zeno

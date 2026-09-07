@@ -1,11 +1,14 @@
 import CORALean.HybridDynamics.Operations.Jump
+import CORALean.HybridDynamics.Operations.JumpAnd
 import CORALean.HybridDynamics.Operations.TimeIntervalStep
+import CORALean.HybridDynamics.Operations.TimeIntervalStepInv
 
 /-!
 # What a hybrid automaton computes, collected
 
-One operation of its own: the reset propagated over a set. The flow enclosure
-is `LinearSys`'s, named again here only so that a statement about it reads its
-representation off the location; the guard intersection is a representation's
-and appears nowhere.
+`Jump` propagates the reset over a set already cut to the guard; `JumpAnd`
+cuts it there itself, at a representation with an `And` instance. The flow
+enclosure is `LinearSys`'s, named again here only so that a statement about it
+reads its representation off the location; `TimeIntervalStepInv` cuts it to
+the invariant the same way, for a representation that has one.
 -/
