@@ -5,9 +5,9 @@ import CORALean.NN.Operations.ExplainBox
 /-!
 # Sufficient explanation
 
-`def:suff-explanation` [1]: pin `E` to `x`'s values and let the rest range over
-`explainBox`; `l` must keep strictly beating every rival everywhere in it. `l`
-stands for `argmax_j nn(x)_j`, exactly as it does in `NeuralNetwork.classifies`.
+[1, Def. 1]: pin `E` to `x`'s values and let the rest range over `explainBox`;
+`l` must keep strictly beating every rival everywhere in it. `l` stands for
+`argmax_j nn(x)_j`, exactly as it does in `NeuralNetwork.classifies`.
 
 ## References
 

@@ -4,12 +4,12 @@ import CORALean.NN.Theorems.SuffExplanation
 /-!
 # From separation on the exact image to the pointwise definition
 
-`IsSuffExplanationExact` is `def:suff-explanation` [1] stated as a
-specification on a set; this reads it back as the inequality the definition is
-written with. The one gap is the input side: the predicate ranges over
+`IsSuffExplanationExact` is [1, Def. 1] stated as a specification on a set; this
+reads it back as the inequality the definition is written with. The one gap is
+the input side: the predicate ranges over
 `construct (ofInterval (explainBox …))`, which `ofInterval_outer` says contains
-`construct (explainBox …)`, so the specification form is the stronger of the
-two and this direction is the only one that holds for every `S`.
+`construct (explainBox …)`, so the specification form is the stronger of the two
+and this direction is the only one that holds for every `S`.
 
 ## References
 

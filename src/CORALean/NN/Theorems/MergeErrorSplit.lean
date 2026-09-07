@@ -5,8 +5,8 @@ import CORALean.ContSet.Interval.Real.Operations.Plus
 /-!
 # Disjoint buckets merge independently
 
-The multiple-bucket equation right after [1, Prop. 4]: refining
-a bucket into two disjoint sub-buckets splits its box `W(·,B)·Y(B)` into the
+The multiple-bucket equation [1, Eq. (4)], right after Prop. 4: refining a
+bucket into two disjoint sub-buckets splits its box `W(·,B)·Y(B)` into the
 Minkowski sum of the sub-buckets' own boxes. That is why several disjoint
 buckets can be merged "in parallel" — the combined error either bucket
 computation gives is the same one, so nothing about processing them together
@@ -34,8 +34,8 @@ open Matrix
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The bucket-error box splits over a further split of its columns:
-`eq:multiple-buckets` in [1], the combined bucket's error being the Minkowski
-sum of the sub-buckets' errors. -/
+[1, Eq. (4)], the combined bucket's error being the Minkowski sum of the
+sub-buckets' errors. -/
 theorem mergeError_split {m r r₁ r₂ : ℕ}
     (part : Split (Fin r) into (Fin r₁) ⊕ (Fin r₂))
     (M : Mat ℝ m r) (Y : Interval (Vec ℝ r)) :

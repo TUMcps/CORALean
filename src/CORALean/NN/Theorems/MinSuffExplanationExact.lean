@@ -3,13 +3,13 @@ import CORALean.NN.Theorems.SuffExplanationExact
 /-!
 # Minimal sufficient explanation, read at the exact image
 
-`def:min-suff-explanation` [1] over `IsSuffExplanationExact`. Kept apart from
+[1, Def. 2] over `IsSuffExplanationExact`. Kept apart from
 `IsMinSuffExplanationAbstract` because the two minimality fields negate
 different predicates and the implication between them runs the wrong way: the
 exact predicate is the weaker one, so failing it is the stronger statement, and
 minimality here does not follow from minimality there. It is the form
-`minSuffExplanationExact_of_refined` needs of a refinement, since transfer
-along a refinement lands in the exact predicate and nowhere else.
+`minSuffExplanationExact_of_refined` needs of a refinement, since transfer along
+a refinement lands in the exact predicate and nowhere else.
 
 ## References
 

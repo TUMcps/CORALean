@@ -9,12 +9,13 @@ import CORALean.NN.Theorems.SuffExplanation
 # The transfer theorem's converse fails under its own hypothesis
 
 `suffExplanation_of_abstract`'s converse fails even granting its containment
-hypothesis [1, §4]: a sound abstraction can still be too loose to see a
-separation the original network has. The witness keeps `nnAbs` a genuine
-`Layer.linearWithError` [2] abstraction of `nn` — same weights and bias, an
-error box centred at `0` so the two agree exactly — and makes the box wide
-enough that the enclosed output ties, though the exact one never does. This
-loss of precision is exactly why refinement exists.
+hypothesis, as [1, Sec. 4] itself says of its running example: "although every
+abstract explanation is valid for the original network, the reverse is not
+necessarily true". A sound abstraction can be too loose to see a separation the
+original network has, which is exactly why refinement exists. The witness keeps
+`nnAbs` a genuine `Layer.linearWithError` [2] abstraction of `nn` — same weights
+and bias, an error box centred at `0` so the two agree exactly — and makes the
+box wide enough that the enclosed output ties, though the exact one never does.
 
 ## References
 

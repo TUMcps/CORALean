@@ -8,11 +8,11 @@ import CORALean.Specification.Specification
 /-!
 # Sufficient explanation for an abstract network
 
-`def:suff-explanation-abstract` [1]: `nnAbs` outputs a set, so sufficiency
-becomes separation — propagating `explainBox` must never let a rival tie or
-beat the target class `l`. This is `disjoint_misclassified_of_bounds`'s
-conclusion in the paper's notation: a bound per rival label, each negative, is
-exactly "the target's minimum exceeds every rival's maximum".
+[1, Def. 3]: `nnAbs` outputs a set, so sufficiency becomes separation —
+propagating `explainBox` must never let a rival tie or beat the target class
+`l`. This is `disjoint_misclassified_of_bounds`'s conclusion in the paper's
+notation: a bound per rival label, each negative, is exactly "the target's
+minimum exceeds every rival's maximum".
 
 ## References
 

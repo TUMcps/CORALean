@@ -5,10 +5,9 @@ import CORALean.NN.Theorems.SuffExplanationExactOfRefined
 /-!
 # Minimality transfers from a refinement to the coarser network
 
-`col:transitive-min-suff-explanation` [1] beside
-`MinSuffExplanationAbstractOfRefined.lean`, stated against the containment
-[1, Prop. 3] actually asks for: a droppable feature at `nnAbs` would be
-droppable at `nnRef` too.
+[1, Prop. 4] beside `MinSuffExplanationAbstractOfRefined.lean`, stated against
+the containment [1, Prop. 2] actually asks for: a droppable feature at `nnAbs`
+would be droppable at `nnRef` too.
 
 Transfer runs from the abstract predicate into the exact one, so the
 refinement's minimality has to negate the exact predicate — `hmin` is
@@ -41,7 +40,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OfInterval S] {n
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Minimal for the refinement `nnRef` gives minimal for the coarser `nnAbs`,
-under the containment [1, Prop. 3] states. -/
+under the containment [1, Prop. 2] states. -/
 theorem NeuralNetwork.minSuffExplanationExact_of_refined (nnAbs : NeuralNetwork S n m)
     (f : Vec ℝ n → Vec ℝ m)
     (x : Vec ℝ n) (ε : ℝ) (E : Finset (Fin n)) (l : Fin m)
