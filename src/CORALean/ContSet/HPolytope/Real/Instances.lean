@@ -1,5 +1,6 @@
 import CORALean.ContSet.HPolytope.Real.HPolytope
 import CORALean.ContSet.HPolytope.Real.Theorems.AndExact
+import CORALean.ContSet.HPolytope.Real.Theorems.MapEquivExact
 
 /-!
 # What `HPolytope` instantiates
@@ -19,12 +20,12 @@ here needs a type excluding unbounded sets first.
 `OfInterval` could be instantiated as it stands, `Interval.hPolytope` being
 exact, but the class lives in `Conversion`, so the instance would put every
 importer of `OfInterval` behind `HPolytope`. `And` now lands too, at any real
-module; `comap`, `mapEquiv` and `translate` stay named, each exact with none.
+module; `mapEquiv` backs `Reindex` below, and `comap`, `translate` stay named.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       01-September-2026
--- Last update:   06-September-2026
+-- Last update:   07-September-2026
 -- Last revision: ---
 
 
@@ -46,6 +47,12 @@ instance : Reduce (HPolytope α) α where
 instance : And (HPolytope α) α where
   and := HPolytope.and
   and_outer P₁ P₂ := (HPolytope.and_exact P₁ P₂).subset
+
+/-- `mapEquiv` wants an equivalence, not a linear map, so a reindexing goes
+through `LinearEquiv.funCongrLeft`, whose coercion is `reindexLin` again. -/
+instance : Reindex (fun n => HPolytope (Vec ℝ n)) where
+  reindex e P := HPolytope.mapEquiv (LinearEquiv.funCongrLeft ℝ ℝ e) P
+  reindex_exact e P := (HPolytope.mapEquiv_exact (LinearEquiv.funCongrLeft ℝ ℝ e) P).symm
 
 end CORALean.Real
 

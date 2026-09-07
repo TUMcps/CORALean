@@ -1,6 +1,7 @@
 import CORALean.ContSet.ContSet.CompactSet
 import CORALean.ContSet.ConPolyZono.Real.Theorems.AndExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.IsCompact
+import CORALean.ContSet.ConPolyZono.Real.Theorems.MapExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.MtimesExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.OfPointMem
 import CORALean.ContSet.ConPolyZono.Real.Theorems.PlusExact
@@ -79,6 +80,10 @@ instance : Mtimes (Mat ℝ) (fun n => ConPolyZono (Vec ℝ n)) where
 /-- The constrained-polynomial-zonotope family over vectors. The elaborator
 cannot read the family off one member, so a use site names it: `(S := 𝒞𝒫𝒵)`. -/
 scoped notation "𝒞𝒫𝒵" => fun n => ConPolyZono (Vec ℝ n)
+
+instance : Reindex 𝒞𝒫𝒵 where
+  reindex e C := ConPolyZono.map (reindexLin e) C
+  reindex_exact e C := (ConPolyZono.map_exact (reindexLin e) C).symm
 
 end CORALean.Real
 

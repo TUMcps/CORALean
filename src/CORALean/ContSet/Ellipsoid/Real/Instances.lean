@@ -1,4 +1,5 @@
 import CORALean.ContSet.ContSet.ContSet
+import CORALean.ContSet.Ellipsoid.Real.Theorems.MapExact
 import CORALean.ContSet.Ellipsoid.Real.Theorems.MtimesExact
 import CORALean.ContSet.Ellipsoid.Real.Theorems.PlusOuter
 
@@ -25,7 +26,7 @@ already indexed by the dimension, so a use site writes `(S := Ellipsoid)`.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   06-September-2026
+-- Last update:   07-September-2026
 -- Last revision: ---
 
 
@@ -56,6 +57,12 @@ instance : Mtimes (Mat ℝ) (fun n => Ellipsoid n) where
   mtimes_outer M E := by
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact (Ellipsoid.mtimes_exact M E).subset
+
+/-- `map_exact` carries no hypothesis at all — a generator matrix has no rank
+condition to preserve — so a reindexing needs no more than any other map does. -/
+noncomputable instance : Reindex (fun n => Ellipsoid n) where
+  reindex e E := Ellipsoid.map (reindexLin e) E
+  reindex_exact e E := (Ellipsoid.map_exact (reindexLin e) E).symm
 
 end CORALean.Real
 

@@ -5,6 +5,7 @@ import CORALean.ContSet.ConZonotope.Real.Theorems.AndExact
 import CORALean.ContSet.ConZonotope.Real.Theorems.Convex
 import CORALean.ContSet.ConZonotope.Real.Theorems.IsCompact
 import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombOuter
+import CORALean.ContSet.ConZonotope.Real.Theorems.MapExact
 import CORALean.ContSet.ConZonotope.Real.Theorems.MtimesExact
 import CORALean.ContSet.ConZonotope.Real.Theorems.MtimesIntervalMatOuter
 import CORALean.ContSet.ConZonotope.Real.Theorems.OfPointMem
@@ -96,6 +97,10 @@ reachability needs, so a constrained zonotope now runs it. -/
 noncomputable instance : Mtimes ℐ 𝒞 where
   mtimes := ConZonotope.mtimesIntervalMat
   mtimes_outer IM C := ConZonotope.mtimesIntervalMat_outer IM C
+
+instance : Reindex 𝒞 where
+  reindex e C := ConZonotope.map (reindexLin e) C
+  reindex_exact e C := (ConZonotope.map_exact (reindexLin e) C).symm
 
 end CORALean.Real
 
