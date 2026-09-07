@@ -1,7 +1,9 @@
+import CORALean.NN.Graph.Theorems.AdjAtSupportSubset
 import CORALean.NN.Graph.Theorems.BallEnumBallEnumIdx
 import CORALean.NN.Graph.Theorems.BallEnumIdx
 import CORALean.NN.Graph.Theorems.BallEnumInjective
 import CORALean.NN.Graph.Theorems.BallMono
+import CORALean.NN.Graph.Theorems.BallMonoOfSupport
 import CORALean.NN.Graph.Theorems.BallSubsetSucc
 import CORALean.NN.Graph.Theorems.ConvExact
 import CORALean.NN.Graph.Theorems.ConvExactOfAdjacency
@@ -10,6 +12,7 @@ import CORALean.NN.Graph.Theorems.DegreeAtEq
 import CORALean.NN.Graph.Theorems.EvalStepsRowBall
 import CORALean.NN.Graph.Theorems.EvalStepsRowBallEnum
 import CORALean.NN.Graph.Theorems.EvalStepsRowMask
+import CORALean.NN.Graph.Theorems.EvalStepsRowMaskUncertain
 import CORALean.NN.Graph.Theorems.EvalStepsSubmatrix
 import CORALean.NN.Graph.Theorems.GcnSharedExact
 import CORALean.NN.Graph.Theorems.GcnSharedPoint
@@ -34,23 +37,23 @@ The two layer guarantees at a known graph are equalities, not enclosures: both a
 `PolyZonotope.map_exact` at a linear map, so every outer approximation a graph network pays is paid
 by an activation layer or an edge, never by a graph layer that assumes nothing of `P`.
 
-`UncertainAdjExact` is a third equality: the uncertain adjacency is exactly the adjacencies its
-edges allow. `DegreeAtEq` writes the degree affinely in the edge weights, and
-`UncertainDegreeBounds` brackets it, carrying the lower bound of `1` that keeps the root total.
+`UncertainAdjExact` is a third equality; `DegreeAtEq` writes the degree affinely in the edge
+weights, and `UncertainDegreeBounds` brackets it, keeping the root's lower bound at `1`.
+`MessagePassingEnclosureOuter` is the one enclosure: at any admissible weights the graph's own
+`D̃^(-1/2) Ã D̃^(-1/2)` is a *point* of it, carried through by `ConvUncertainExact`/`GcnSharedExact`
+and `GcnStepsExact`, `GcnSharedPoint`/`GcnStepsPoint`/`GcnUncertainOuter`/`GcnStepsOuter` the point
+and the statement a caller wants.
 
-`MessagePassingEnclosureOuter` is the one enclosure rather than an equality: at any admissible edge
-weights the graph's own `D̃^(-1/2) Ã D̃^(-1/2)` is a *point* of it, which `ConvUncertainExact` and
-`GcnSharedExact` carry through the layer at no extra cost, `GcnStepsExact` over `L + 1` steps,
-`GcnSharedPoint`/`GcnStepsPoint` supplying the point each step lands on, `GcnUncertainOuter` and
-`GcnStepsOuter` the statements a caller wants.
+`SubmatrixMulOfClosed`/`EvalStepsSubmatrix` are `[1, §4.3]`'s locality given `hclosed`, supplied by
+`EvalStepsRowMask` at a mask or, needing none, by `EvalStepsRowBall` itself — `[1, §4.3]` proper.
+`MemBallSelf`/`BallSubsetSucc`/`BallMono`/`MemBallSuccOfMessagePassing`/`MessagePassingNeZero` are
+the ball's own facts; `BallEnumInjective`/`MemBallEnumIff`/`BallEnumIdx`/`BallEnumBallEnumIdx` build
+the `κ` `EvalStepsRowBall` asks for, and `EvalStepsRowBallEnum` instantiates it for a caller.
 
-`SubmatrixMulOfClosed`/`EvalStepsSubmatrix` are `[1, §4.3]`'s locality at one step and over a whole
-chain, given `hclosed`. `MemBallSelf`, `BallSubsetSucc`, `BallMono` and
-`MemBallSuccOfMessagePassing`/`MessagePassingNeZero` are the ball's own facts; `EvalStepsRowMask`
-supplies `hclosed`'s reason, at a mask rather than a hypothesis, and `EvalStepsRowBall` is `[1,
-§4.3]` itself: a ball's own enumeration needs no `hclosed` at all.
-`BallEnumInjective`/`MemBallEnumIff`/`BallEnumIdx`/`BallEnumBallEnumIdx` build one;
-`EvalStepsRowBallEnum` instantiates `EvalStepsRowBall` at it, with nothing left for a caller.
+`BallMonoOfSupport`/`AdjAtSupportSubset` carry that locality to an uncertain graph: nonnegativity
+makes `adjMax A U` (every edge at `1`) dominate every admissible `adjAt`'s support, hence its ball.
+`EvalStepsRowMaskUncertain` is the uniform result: one `S` sized against that ball serves every
+`lam`, via `EvalStepsRowMask`'s inclusion — `EvalStepsRowBall`'s exact `hκ` does not compose.
 
 ## References
 
