@@ -2,6 +2,7 @@ import CORALean.ContSet.ContSet.CompactSet
 import CORALean.ContSet.ContSet.ContSet
 import CORALean.ContSet.ContSet.ConvexSet
 import CORALean.ContSet.ContSet.SupportBound
+import CORALean.ContSet.ContSet.Float.SupportBound
 import CORALean.ContSet.ContSet.Theorems.API
 
 /-!
@@ -19,4 +20,7 @@ of the representation instead of proved again at each one.
 
 `Theorems` holds what the operation classes give together: `OfPoint` and
 `LinComb` already give the segment from the origin to a point.
+
+`Float/SupportBound` is the same bound over the floating-point scalar: an
+interface operation needs its bound rule here rather than in `Global`.
 -/

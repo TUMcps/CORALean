@@ -36,4 +36,7 @@ One per component, each at a concrete representation, and compiled with
 everything else — so an instance that stops resolving fails the build rather
 than waiting for someone to try the library. A library cannot notice that from
 the inside; only a use site can.
+
+`Demo.lean` is deliberately not collected here: the demo is a target of its own,
+an executable that is run rather than a use site that is compiled.
 -/

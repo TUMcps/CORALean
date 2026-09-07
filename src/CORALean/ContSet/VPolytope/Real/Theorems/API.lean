@@ -11,6 +11,7 @@ import CORALean.ContSet.VPolytope.Real.Theorems.MtimesExact
 import CORALean.ContSet.VPolytope.Real.Theorems.BilinOuter
 import CORALean.ContSet.VPolytope.Real.Theorems.MtimesMatPolytopeOuter
 import CORALean.ContSet.VPolytope.Real.Theorems.PlusExact
+import CORALean.ContSet.VPolytope.Real.Theorems.PerturbSubset
 
 /-!
 # What `VPolytope` guarantees
@@ -22,4 +23,8 @@ range, every other guarantee is hull algebra applied to `Set.range V`, and
 `bilin_outer` is the one guarantee that is an outer inclusion rather than an
 equality: not because anything is lost, but because the convex-hull equality
 behind it is not proved here. `mtimesMatPolytope_outer` reads it back at `*ᵥ`.
+
+`PerturbSubset` is what the float layer owes when it stores rounded vertices:
+displacing every vertex by something a convex `D` admits widens the hull by no
+more than `D`.
 -/
