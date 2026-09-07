@@ -6,7 +6,7 @@ import CORALean.Specification.Theorems.HoldsOfOuter
 
 `LinearSysDT.holds_of_reach`'s statement, at a system matrix ranging over a
 set: `reach_outer` handed to `Specification.holds_of_outer`, the same step a
-network's output set takes, on the same theorem.
+network's exact image takes, on the same theorem.
 -/
 
 -- Authors:       Tobias Ladner

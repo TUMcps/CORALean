@@ -469,7 +469,7 @@ sound by growing.
 ## Verification
 
 An algorithm here returns a superset of a set nothing computes: the reachable
-set of a system, the output set of a network. `Specification` is what turns that
+set of a system, the exact image of a network. `Specification` is what turns that
 into an answer — a safe set every point must lie in, or an unsafe set no point
 may — and `holds_of_outer` says a check passed on the superset is passed by
 everything inside it. One theorem, both directions, and it knows nothing about
