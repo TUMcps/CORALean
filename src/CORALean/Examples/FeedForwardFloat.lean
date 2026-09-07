@@ -1,5 +1,6 @@
 import CORALean.NN.Float.Layers.Linear
 import CORALean.NN.Float.Layers.ReLU
+import CORALean.NN.Float.Layers.SigmoidPoly
 import CORALean.NN.Float.Layers.Tanh
 import CORALean.NN.Theorems.Classifies
 import CORALean.NN.Theorems.MarginDir
@@ -11,9 +12,8 @@ import CORALean.NN.Theorems.EncloseOuter
 
 `Examples.FeedForward` at `Float.Zonotope 𝕋` instead of `Real.Zonotope`, and the
 point of compiling it is what does *not* appear below: `NeuralNetwork`, `.cons`,
-`enclose`, `enclose_outer`, `mem_safeSet` and `classifies` are the exact
-layer's, used unchanged. Only the three layer constructors are float ones, and
-only because their weights are stored in `𝕋`.
+`enclose`, `enclose_outer`, `mem_safeSet` and `classifies` are the exact layer's,
+used unchanged. Only the layer constructors are float ones, their weights in `𝕋`.
 
 So the network is a `Real.NeuralNetwork` over a float representation, and that
 is not a loophole: `Layer` is indexed by a `ContSet` whose ambient type is
@@ -24,12 +24,13 @@ floats describe, composed with the exact `relu`.
 Every operation here computes, unlike the exact version, provided `𝕋` does —
 which is the whole reason for the float layer. `sigmoidTanhNet` is the same
 point where it used to fail: `Layer` stores no function, so a chain holding
-sigmoid and tanh is a plain `def` and its soundness is a theorem beside it.
+sigmoid and tanh is a plain `def`. `sigmoidPolyNet` is the last chain to join
+them, its relaxation storing floats and naming `Real.sigmoid` only in a proof.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   07-September-2026
 -- Last revision: ---
 
 
@@ -98,6 +99,26 @@ theorem Example.sigmoidTanhNet_sound (k : ℕ) (W₁ : Mat 𝕋 3 2) (b₁ : Vec
     (Real.NeuralNetwork.sound_cons (Layer.sigmoid_sound k)
       (Real.NeuralNetwork.sound_cons (Layer.linear_sound W₂ b₂)
         (Real.NeuralNetwork.ofLayer_sound (Layer.tanh_sound k))))).congr fun _ => rfl
+
+/-- The polynomial relaxation in a chain, over a float polynomial zonotope, and
+a `def` for the same reason: the fits and the grids are floats. -/
+def Example.sigmoidPolyNet (k : ℕ) (W₁ : Mat 𝕋 3 2) (b₁ : Vec 𝕋 3) (W₂ : Mat 𝕋 2 3)
+    (b₂ : Vec 𝕋 2) (c : Fin 3 → 𝕋 → 𝕋 → Fin 3 → 𝕋) (dx : Fin 3 → 𝕋 → 𝕋 → 𝕋)
+    (p : Fin 3 → 𝕋 → 𝕋 → Fin 5 → 𝕋) : Real.NeuralNetwork (PolyZonotope 𝕋) 2 2 :=
+  .cons (Layer.linear (S := PolyZonotope 𝕋) W₁ b₁)
+    (.cons (Layer.sigmoidPoly k c dx p) (.cons (Layer.linear W₂ b₂) .nil))
+
+/-- And what it computes, `Real.sigmoid` arriving only here. -/
+theorem Example.sigmoidPolyNet_sound (k : ℕ) (W₁ : Mat 𝕋 3 2) (b₁ : Vec 𝕋 3)
+    (W₂ : Mat 𝕋 2 3) (b₂ : Vec 𝕋 2) (c : Fin 3 → 𝕋 → 𝕋 → Fin 3 → 𝕋) (dx : Fin 3 → 𝕋 → 𝕋 → 𝕋)
+    (p : Fin 3 → 𝕋 → 𝕋 → Fin 5 → 𝕋) :
+    (Example.sigmoidPolyNet k W₁ b₁ W₂ b₂ c dx p).Sound fun x =>
+      Scalar.toRealMat W₂ *ᵥ (fun j =>
+          Real.sigmoid ((Scalar.toRealMat W₁ *ᵥ x + Scalar.toRealVec b₁) j))
+        + Scalar.toRealVec b₂ :=
+  (Real.NeuralNetwork.sound_cons (Layer.linear_sound W₁ b₁)
+    (Real.NeuralNetwork.sound_cons (Layer.sigmoidPoly_sound k c dx p)
+      (Real.NeuralNetwork.ofLayer_sound (Layer.linear_sound W₂ b₂)))).congr fun _ => rfl
 
 end CORALean.Float
 

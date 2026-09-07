@@ -10,8 +10,11 @@ activation layer evaluates one coefficient list, so the fits have to meet at a
 common degree.
 
 Nothing rounds and nothing is lost. `zero` is exact and every added term is
-`0 · t ^ j`, so `sound` carries over through `Real.evalPoly_padCoeffs` with the
-error untouched, and a neuron below the layer's maximum order pays nothing.
+`0 · t ^ j`, so soundness carries over through `Real.evalPoly_padCoeffs` with
+the error untouched, and a neuron below the layer's maximum order pays nothing.
+`k ≤ M` is what that carrying needs and all it is needed for, so it is a
+hypothesis of `padTo_sound` and not an argument of `padTo`: the padding itself
+is float data, and truncating would be data too, merely unsound.
 
 ## References
 
@@ -21,8 +24,8 @@ error untouched, and a neuron below the layer's maximum order pays nothing.
 
 -- Authors:       Tobias Ladner
 -- Written:       06-September-2026
--- Last update:   ---
--- Last revision: ---
+-- Last update:   07-September-2026
+-- Last revision: 07-September-2026
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
@@ -49,25 +52,28 @@ theorem toReal_padCoeffs (c : Fin (k + 1) → 𝕋) (M : ℕ) (j : Fin (M + 1)) 
 
 /-- A float relaxation at a higher degree, which is how the neurons of one layer
 meet at a common one. -/
-def PolyRelaxation.padTo (P : PolyRelaxation 𝕋 σ k) (M : ℕ) (h : k ≤ M) :
-    PolyRelaxation 𝕋 σ M where
+def PolyRelaxation.padTo (P : PolyRelaxation 𝕋 k) (M : ℕ) : PolyRelaxation 𝕋 M where
   coeffs l u := padCoeffs (P.coeffs l u) M
   error := P.error
-  sound {l u _t} hl hu := by
-    -- the padded polynomial is the original one, so `sound` is the original's
-    have hco : (fun j => toReal (padCoeffs (P.coeffs l u) M j))
-        = Real.padCoeffs (fun i => toReal (P.coeffs l u i)) M := by
-      funext j
-      exact toReal_padCoeffs (P.coeffs l u) M j
-    rw [hco, Real.evalPoly_padCoeffs _ h]
-    exact P.sound hl hu
+
+/-- Where the degree bound is spent: the padded polynomial is the original one,
+so the original's enclosure is the padded one's. -/
+theorem PolyRelaxation.padTo_sound {P : PolyRelaxation 𝕋 k} (h : k ≤ M)
+    (hP : P.Sound σ) : (P.padTo M).Sound σ := by -- --- PROOF ---
+  refine ⟨fun {l u _t} hl hu => ?_⟩
+  have hco : (fun j => toReal ((P.padTo M).coeffs l u j))
+      = Real.padCoeffs (fun i => toReal (P.coeffs l u i)) M := by
+    funext j
+    exact toReal_padCoeffs (P.coeffs l u) M j
+  rw [hco, Real.evalPoly_padCoeffs _ h]
+  exact hP.sound hl hu
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Padding leaves the error alone, which is what makes it free. -/
-theorem PolyRelaxation.padTo_error (P : PolyRelaxation 𝕋 σ k) (M : ℕ) (h : k ≤ M) :
-    (P.padTo M h).error = P.error := rfl
+theorem PolyRelaxation.padTo_error (P : PolyRelaxation 𝕋 k) (M : ℕ) :
+    (P.padTo M).error = P.error := rfl
 
 end CORALean.Float
 

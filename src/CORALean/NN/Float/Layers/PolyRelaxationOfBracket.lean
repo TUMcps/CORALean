@@ -9,11 +9,15 @@ ends averaged into the constant coefficient, and what is left is a radius. Over
 the one `sound` is then measured against.
 
 That makes the shift the *only* coefficient rounding anything pays for. The
-fit's own is free — `PolyRelaxation.sound` quantifies over the floats stored, so
+fit's own is free — `PolyRelaxation.Sound` quantifies over the floats stored, so
 a rounded fit is a different fit and not a wrong one — while the shift is
 applied after the bracket was taken, so it moves the polynomial out from under
 it. `bracketError` is the payment: how far the stored constant actually moved,
 bracketed by a `subDown` and a `subUp`, each end widening the end it can hurt.
+
+The bracket is a hypothesis of `ofBracket_sound` and not an argument of
+`ofBracket`, which is what keeps `σ` out of the data: the two ends are floats
+however they were found, and only their soundness names a real function.
 
 ## References
 
@@ -23,7 +27,7 @@ bracketed by a `subDown` and a `subUp`, each end widening the end it can hurt.
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   07-September-2026
 -- Last revision: ---
 
 
@@ -95,17 +99,25 @@ theorem abs_sub_le_bracketError {c0 lo hi : 𝕋} {y : ℝ}
 
 /-- A float relaxation out of any bracket for `σ` minus the fit, recentred. The
 fit is free and the bracket owes everything, exactly as over ℝ. -/
-def PolyRelaxation.ofBracket (c : 𝕋 → 𝕋 → Fin (m + 1) → 𝕋) (lo hi : 𝕋 → 𝕋 → 𝕋)
+def PolyRelaxation.ofBracket (c : 𝕋 → 𝕋 → Fin (m + 1) → 𝕋) (lo hi : 𝕋 → 𝕋 → 𝕋) :
+    PolyRelaxation 𝕋 m where
+  coeffs l u := shiftConst (c l u) (bracketShift (lo l u) (hi l u))
+  error l u := bracketError (c l u 0) (lo l u) (hi l u)
+
+/-- What the bracket buys, and the only place `σ` appears: the recentred fit
+encloses it wherever the two ends did. -/
+theorem PolyRelaxation.ofBracket_sound {c : 𝕋 → 𝕋 → Fin (m + 1) → 𝕋} {lo hi : 𝕋 → 𝕋 → 𝕋}
     (hb : ∀ (l u : 𝕋) (t : ℝ), toReal l ≤ t → t ≤ toReal u →
       toReal (lo l u) ≤ σ t - Real.evalPoly (fun k => toReal (c l u k)) t
         ∧ σ t - Real.evalPoly (fun k => toReal (c l u k)) t ≤ toReal (hi l u)) :
-    PolyRelaxation 𝕋 σ m where
-  coeffs l u := shiftConst (c l u) (bracketShift (lo l u) (hi l u))
-  error l u := bracketError (c l u 0) (lo l u) (hi l u)
-  sound {l u t} hl hu := by
-    obtain ⟨h1, h2⟩ := hb l u t hl hu
-    rw [evalPoly_shiftConst, sub_add_eq_sub_sub]
-    exact abs_sub_le_bracketError h1 h2
+    (PolyRelaxation.ofBracket c lo hi).Sound σ := by -- --- PROOF ---
+  refine ⟨fun {l u t} hl hu => ?_⟩
+  obtain ⟨h1, h2⟩ := hb l u t hl hu
+  show |σ t - Real.evalPoly
+      (fun k => toReal (shiftConst (c l u) (bracketShift (lo l u) (hi l u)) k)) t|
+    ≤ toReal (bracketError (c l u 0) (lo l u) (hi l u))
+  rw [evalPoly_shiftConst, sub_add_eq_sub_sub]
+  exact abs_sub_le_bracketError h1 h2
 
 end CORALean.Float
 
