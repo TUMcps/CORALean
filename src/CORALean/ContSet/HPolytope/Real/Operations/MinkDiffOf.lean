@@ -2,9 +2,9 @@ import CORALean.ContSet.HPolytope.Real.HPolytope
 import CORALean.Global.LinProg.API
 
 /-!
-# `HPolytope.minusOf`
+# `HPolytope.minkDiffOf`
 
-The halfspace analogue of `Minus`. No instance: the subtrahend is a plain
+The halfspace analogue of `MinkDiff`. No instance: the subtrahend is a plain
 `Set α`, and its per-row support bounds are data the representation cannot
 compute, taken in exactly as `mtimesOf` takes what it cannot compute either —
 #49 already records that `HPolytope` instantiates almost nothing, and this is
@@ -29,7 +29,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def HPolytope.minusOf (P : HPolytope α) (T : Set α) (u : ∀ i, SupportBound T (P.A i)) :
+def HPolytope.minkDiffOf (P : HPolytope α) (T : Set α) (u : ∀ i, SupportBound T (P.A i)) :
     HPolytope α where
   m := P.m; A := P.A; b := fun i => P.b i - (u i).val
   me := P.me; Ae := P.Ae; be := P.be

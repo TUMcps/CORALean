@@ -139,10 +139,10 @@ class And (S : Type) (α : outParam Type) [AddCommGroup α] [Module ℝ α]
 /-- CORA's Minkowski difference. The opposite of `Plus`: a difference is a
 *guarantee*, so an implementation may only ever *under*-approximate — never
 over — and the obligation below is an **inner**, not an outer, inclusion. -/
-class Minus (S : Type) (α : outParam Type) [AddCommGroup α] [Module ℝ α]
+class MinkDiff (S : Type) (α : outParam Type) [AddCommGroup α] [Module ℝ α]
     [ContSet S α] where
-  minus : S → S → S
-  minus_inner (s t : S) : construct (minus s t) ⊆ minkowskiDiff (construct s) (construct t)
+  minkDiff : S → S → S
+  minkDiff_inner (s t : S) : construct (minkDiff s t) ⊆ minkowskiDiff (construct s) (construct t)
 
 /-- CORA's `linComb`, not the convex hull: the two agree only when both sets are
 convex, and this is what keeps a non-convex representation non-convex. -/

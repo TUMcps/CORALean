@@ -22,8 +22,8 @@ which only enlarges the set, so it needs no error box, unlike every other
 
 `CompactSet` is not an instance: at `k = 0` the set is `univ`, not compact, so
 the class's unconditional obligation cannot be discharged. `isCompact_construct`
-states the conditional fact instead, at `0 < B.k`. No `Minus` either — that
-needs `Zonotope.minus`, an open design decision on #85.
+states the conditional fact instead, at `0 < B.k`. No `MinkDiff` either — that
+needs `Zonotope.minkDiff`, an open design decision on #85.
 -/
 
 -- Authors:       Tobias Ladner
