@@ -29,6 +29,9 @@ import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterConvexCompact
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterHorizon
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterHorizonInputSolution
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterInputSolution
+import CORALean.ContDynamics.LinearSys.Theorems.ReachSetOuter
+import CORALean.ContDynamics.LinearSys.Theorems.ReachSetSubsetReach
+import CORALean.ContDynamics.LinearSys.Theorems.ReachSetSubsetTimeIntervalInputSolution
 import CORALean.ContDynamics.LinearSys.Theorems.Restrict
 import CORALean.ContDynamics.LinearSys.Theorems.StepInputConstEq
 import CORALean.ContDynamics.LinearSys.Theorems.StepInputEqShifted
@@ -54,6 +57,9 @@ input-integral facts those two rest on.
 Both enclosures are stated once, over `ConvexSet` and `CompactSet`, and name no
 representation. `TimeIntervalOuterSplit` is the same: dropping `0 ∈ U` needs
 only `Recentre` and `OfPoint`, which any representation with a centre has.
+
+The `ReachSet` trio is the same guarantees stated of a set: every trajectory is
+in `reachSet`, which is inside what `reach` and `timeIntervalStep` compute.
 
 `Restrict` is what makes the time domain a parameter worth having: a guarantee
 over one step applies to a run over all forward time by throwing the rest away.
