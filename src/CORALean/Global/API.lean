@@ -5,6 +5,7 @@ import CORALean.Global.Entrywise
 import CORALean.Global.Hadamard
 import CORALean.Global.Partition
 import CORALean.Global.Sort
+import CORALean.Global.Block
 import CORALean.Global.Corners
 import CORALean.Global.Cost
 import CORALean.Global.EuclideanNorm
