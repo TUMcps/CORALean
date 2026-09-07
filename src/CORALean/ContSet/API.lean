@@ -30,9 +30,9 @@ constraints are polynomial in the factors and so cannot be a polytope. There a
 constraint's right-hand side is an interval, so a rounded bound has a direction
 to be widened in, which is what gives `and` a float counterpart.
 
-Three of the seven intersect exactly: the two constrained representations, and
-`ZonoBundle`, which keeps every enclosing zonotope side by side rather than
-folding an intersection into one representation's own coefficients.
+Five intersect exactly, but only three interestingly: a box and a halfspace
+description are closed under intersection by construction, where the constrained
+pair pays in its constraints and `ZonoBundle` keeps its zonotopes side by side.
 
 `Capsule` stands apart: convex and compact, but closed under none of `Plus`,
 `Mtimes`, or `LinComb` — CORA uses it to describe an obstacle, not to carry a set.
