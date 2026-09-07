@@ -7,10 +7,9 @@ import CORALean.ContSet.ContSet.ConvexSet
 /-!
 # `NeurNetContrSys.reach` contains every sampled run at the period boundaries
 
-An induction on the control period, whose step is `Trajectory.period` — the
-run's own period read as a linear run under the enclosed input set — handed
-to `reach_outer_horizon_inputSolution` for `N` steps. Both halves were written
-without the other in view; this file only lines the clocks up.
+An induction on the control period, whose step is `Trajectory.period` — the run's own period read as
+a linear run under the enclosed input set — handed to `reach_outer_horizon_inputSolution` for `N`
+steps; both halves were written without the other in view, and this file only lines the clocks up.
 
 The horizon is exactly the period, `Set.Icc 0 (N Δt)` both times, so nothing is
 assumed about the run beyond the periods the trajectory speaks about. That is
@@ -21,8 +20,9 @@ Period boundaries only. Between them `reach` says nothing and the network is
 not invoked either, so the two silences coincide — unlike `relinReach`, whose
 dynamics keep running between steps and get a stated time-interval enclosure.
 
-Stated at a convex, compact representation, which is what makes `inputSolution`'s
-six topological hypotheses instances rather than arguments.
+Stated at a convex, compact representation, which is what makes `inputSolution`'s six topological
+hypotheses instances rather than arguments. Reach for `reachSet_subset_reach` for the same guarantee
+restated on the reachable set rather than on one run.
 -/
 
 -- Authors:       Tobias Ladner
