@@ -10,9 +10,9 @@ which is `Layer.linear` at a square matrix and for the same reason — a
 representation closed under both loses nothing here.
 
 The argument is the set *already cut down by the guard*. Intersecting here would
-either name a representation or invent an `And` class, only two representations
-having one, so `JumpOuter` takes an enclosure of the intersection as its one
-hypothesis and `JumpOuterConZonotope` discharges it exactly.
+tie this definition to `And`, which not every representation instantiates, so
+`JumpOuter` takes an enclosure of the intersection as its one hypothesis instead;
+`JumpAnd` is the call site that supplies `And.and` where one exists.
 
 The offset enters as a box of zero width through `OfInterval`, so no translation
 operation is needed — and that is what keeps `ConPolyZono` out, having `plus`
@@ -25,7 +25,7 @@ over a real box, whatever `𝕋` stores.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   04-September-2026
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 

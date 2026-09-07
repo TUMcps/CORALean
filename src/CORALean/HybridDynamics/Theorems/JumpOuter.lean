@@ -10,11 +10,11 @@ present when the guard is met, an enclosure of the states just after the reset.
 Guard intersection first, reset second.
 
 The intersection arrives as the hypothesis `hand` rather than as a call, and that
-is the deliberate half of this file. There is no `And` class — only two
-representations implement an intersection — so a theorem intersecting generically
-would have to invent the interface. `hand` is the `SupportBound` bargain instead:
-the caller brings whatever encloses the intersection together with its proof.
-`JumpOuterConZonotope` discharges it with nothing given away.
+is the deliberate half of this file: the `And` class exists, but not every
+representation instantiates it, so this stays generic over `hand`, a
+`SupportBound` bargain, rather than calling `And.and` outright. `JumpAndOuter`
+is the case where an `And` instance discharges it; `JumpOuterConZonotope`
+discharges it with nothing given away at a representation with neither.
 
 Only *soundness* is at stake. `hand` may be satisfied by the incoming set itself,
 ignoring the guard entirely, and the step stays correct while losing everything
@@ -24,7 +24,7 @@ is worth having.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   04-September-2026
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 

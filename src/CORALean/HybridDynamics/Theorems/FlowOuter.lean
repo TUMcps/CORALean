@@ -10,10 +10,10 @@ is `LinearSys`'s over one step, applied on the location's own clock. `hT` is
 `subset_rfl` here — the stay is defined on `Set.Icc 0 τ` and on nothing else,
 which is the case the time domain was made a parameter for.
 
-The invariant does not appear. It cannot make the enclosure unsound and can only
-shrink it, and shrinking it means intersecting with `ℓ.inv` — the same
-intersection the guard wants and the same missing interface, so it is left to a
-caller with a representation that can do it, exactly as in `JumpOuter`.
+The invariant does not appear here. It cannot make the enclosure unsound and can
+only shrink it, and shrinking it means intersecting with `ℓ.inv` — left to
+`TimeIntervalInvOuter`, which restates this theorem cut to the invariant at a
+representation with an `And` instance.
 
 `0 < τ` rather than `0 ≤ τ`: `timeIntervalStep` divides by the step length, and a
 zero-length stay needs no enclosure of its own.
@@ -25,7 +25,7 @@ statement its `ℓ` already pinned.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   02-September-2026
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 

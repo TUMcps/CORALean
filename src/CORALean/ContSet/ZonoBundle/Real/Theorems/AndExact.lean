@@ -7,13 +7,13 @@ Appending the two families of zonotopes intersects what each bundle denoted:
 `Fin.forall_fin_add` splits membership in the appended family the same way
 `Fin.append` splits the family itself.
 
-No `And` class exists to instantiate (#10), so this stays a plain theorem
-rather than an instance obligation.
+Stays a plain theorem rather than an instance obligation: `Instances` is what
+turns it into the `And (ZonoBundle α) α` instance.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       06-September-2026
--- Last update:   ---
+-- Last update:   06-September-2026
 -- Last revision: ---
 
 
