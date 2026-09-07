@@ -4,16 +4,15 @@ import CORALean.NN.Theorems.SuffExplanationRefined
 /-!
 # Minimality transfers from a refinement to the coarser network
 
-Split out of `MinSuffExplanationTransfer.lean` (issue #62):
-`col:transitive-min-suff-explanation` [1]'s other direction, alongside
-`MinSuffExplanationAbstractOfMin.lean`.
+Split out of `MinSuffExplanationTransfer.lean` (issue #62): [1, Prop. 4]'s other
+direction, alongside `MinSuffExplanationAbstractOfMin.lean`.
 
 Minimal for a refinement `nnRef` gives minimal for the coarser `nnAbs`: a
 droppable feature there would be droppable at `nnRef` by monotonicity.
 
 `hrefine` is the enclosure-to-enclosure containment, so this reads
 `suffExplanationAbstract_of_refined`. `minSuffExplanationExact_of_refined` is
-the same corollary under the containment [1, Prop. 3] states, and needs
+the same corollary under the containment [1, Prop. 2] states, and needs
 `nnRef`'s minimality in the exact predicate to match what transfer lands in.
 
 ## References

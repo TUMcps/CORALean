@@ -6,9 +6,9 @@ import CORALean.Specification.Theorems.HoldsOfOuter
 /-!
 # Transfer: sufficient for the abstract network is sufficient for the original
 
-`col:suff-nn-suff-nnabs` [1]: a sufficient explanation of `nnAbs` is one of `nn`,
-given that `nnAbs`'s enclosed enclosure of `explainBox` contains `nn`'s exact
-image there. The hypothesis `hcontain` is what an abstraction owes.
+[1, Prop. 1]: a sufficient explanation of `nnAbs` is one of `nn`, given that
+`nnAbs`'s enclosed enclosure of `explainBox` contains `nn`'s exact image there.
+The hypothesis `hcontain` is what an abstraction owes.
 
 `SuffExplanationOfNeuronMerging.lean` and `SuffExplanationOfEnclose.lean` are
 the two corollaries the refinement loop [1, Alg. 2] actually visits, each
@@ -42,9 +42,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OfInterval S] {n
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- Transfer (`col:suff-nn-suff-nnabs` [1]): sufficient for `nnAbs` is sufficient
-for `nn`, given that `nnAbs`'s enclosure of `explainBox` contains `nn`'s exact
-image there. -/
+/-- Transfer ([1, Prop. 1]): sufficient for `nnAbs` is sufficient for `nn`,
+given that `nnAbs`'s enclosure of `explainBox` contains `nn`'s exact image
+there. -/
 theorem suffExplanation_of_abstract (f : Vec ℝ n → Vec ℝ m) (nnAbs : NeuralNetwork S n m)
     (x : Vec ℝ n) (ε : ℝ) (E : Finset (Fin n)) (l : Fin m)
     (hcontain : f '' construct (ofInterval (explainBox x ε E) : S n)

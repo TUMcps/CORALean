@@ -5,14 +5,13 @@ import CORALean.NN.Theorems.SuffExplanationTransfer
 /-!
 # Minimality transfers from a network to its abstraction
 
-Split out of `MinSuffExplanationTransfer.lean` (issue #62):
-`col:transitive-min-suff-explanation` [1]'s first direction, alongside
-`MinSuffExplanationAbstractOfRefined.lean`.
+Split out of `MinSuffExplanationTransfer.lean` (issue #62): [1, Prop. 4]'s first
+direction, alongside `MinSuffExplanationAbstractOfRefined.lean`.
 
 Minimal for `nn` and abstractly sufficient for `nnAbs` gives minimal for
-`nnAbs`: a droppable feature there would be droppable at `nn` by transfer.
-Both hypotheses are asked for at every `E'`, not only at `E`: minimality is
-about the queries one feature down.
+`nnAbs`: a droppable feature there would be droppable at `nn` by transfer. Both
+hypotheses are asked for at every `E'`, not only at `E`: minimality is about the
+queries one feature down.
 
 ## References
 

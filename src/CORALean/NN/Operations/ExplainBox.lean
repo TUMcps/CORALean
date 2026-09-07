@@ -3,9 +3,9 @@ import CORALean.ContSet.Interval.Real.Interval
 /-!
 # The explanation query's input set
 
-The box `def:suff-explanation` [1] quantifies over: `E`'s coordinates pinned to
-`x`, the rest free within the `ℓ∞` ball of radius `ε`. An `ℓp` ball for `p ≠ ∞`
-is not a box and is not covered.
+The box [1, Def. 1] quantifies over: `E`'s coordinates pinned to `x`, the rest
+free within the `ℓ∞` ball of radius `ε`. An `ℓp` ball for `p ≠ ∞` is not a box
+and is not covered.
 
 ## References
 

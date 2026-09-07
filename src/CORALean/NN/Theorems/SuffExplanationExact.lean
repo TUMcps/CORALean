@@ -7,15 +7,14 @@ import CORALean.Specification.Specification
 /-!
 # Sufficient explanation, read at the exact image
 
-`def:suff-explanation-abstract` [1] read at `image` rather than at
-`enclose`: separation on the network's *exact* image of `explainBox`, which
-is what the paper means by a refined network's output. Weaker than
-`IsSuffExplanationAbstract` by `image_subset`, and it is the conclusion
-`Specification.holds_of_outer` hands back from a containment whose left side is
-an exact image — the shape `reducesAt_outer` and `neuronMerging_network_outer`
-prove. Stronger than `IsSuffExplanation`, which ranges over
-`construct (explainBox …)` and not over its `ofInterval` image;
-`suffExplanation_of_exact` is that step.
+[1, Def. 3] read at `image` rather than at `enclose`: separation on the
+network's *exact* image of `explainBox`, which is what the paper means by a
+refined network's output. Weaker than `IsSuffExplanationAbstract` by
+`image_subset`, and it is the conclusion `Specification.holds_of_outer` hands
+back from a containment whose left side is an exact image — the shape
+`reducesAt_outer` and `neuronMerging_network_outer` prove. Stronger than
+`IsSuffExplanation`, which ranges over `construct (explainBox …)` and not over
+its `ofInterval` image; `suffExplanation_of_exact` is that step.
 
 ## References
 

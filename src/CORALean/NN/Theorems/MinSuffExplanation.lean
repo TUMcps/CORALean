@@ -3,8 +3,8 @@ import CORALean.NN.Theorems.SuffExplanation
 /-!
 # Minimal sufficient explanation
 
-`def:min-suff-explanation` [1]: a sufficient explanation minimal under `⊆` —
-dropping any one of its features breaks sufficiency.
+[1, Def. 2]: a sufficient explanation minimal under `⊆` — dropping any one of
+its features breaks sufficiency.
 
 ## References
 
