@@ -1,11 +1,11 @@
 import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
-import CORALean.ContSet.ConPolyZono.Float.Theorems.AndD
+import CORALean.ContSet.ConPolyZono.Float.Theorems.IntersectionD
 import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealAgreeRow
-import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealMatAndA
-import CORALean.ContSet.ConPolyZono.Float.Theorems.NominalAndB
-import CORALean.ContSet.ConPolyZono.Float.Theorems.NominalAndDep
-import CORALean.ContSet.ConPolyZono.Float.Theorems.AndDepOuter
-import CORALean.ContSet.ConPolyZono.Float.Theorems.AndOuter
+import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealMatIntersectionA
+import CORALean.ContSet.ConPolyZono.Float.Theorems.NominalIntersectionB
+import CORALean.ContSet.ConPolyZono.Float.Theorems.NominalIntersectionDep
+import CORALean.ContSet.ConPolyZono.Float.Theorems.IntersectionDepOuter
+import CORALean.ContSet.ConPolyZono.Float.Theorems.IntersectionOuter
 import CORALean.ContSet.ConPolyZono.Float.Theorems.Merge
 import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactGensOuter
 import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactConsOuter
@@ -33,7 +33,7 @@ import CORALean.ContSet.ConPolyZono.Float.Theorems.ReduceOrder
 /-!
 # What `ConPolyZono` guarantees
 
-The exact layer's `plus`, `map`, `and`, `compact` and `reduce` read as
+The exact layer's `plus`, `map`, `intersection`, `compact` and `reduce` read as
 enclosures, `dependent` still exactly. `reduce_order_le` is the one guarantee
 here that is not an enclosure, and the one this layer needs most: an unbounded
 generator count is memory and time per step.
@@ -46,7 +46,7 @@ rounding can go, the state's error box being of the wrong dimension.
 `satisfies_plus_iff` is the exact layer's `holds_plus_iff` at the read-back
 matrices, and `satisfies_mtimes` is `Iff.rfl`.
 
-`and_outer` is the one that computes a constraint, and it is the file to read.
+`intersection_outer` is the one that computes a constraint, and it is the file to read.
 The two nominal points it has to make agree differ by whatever the two error
 boxes admit, so the agreement rows carry an interval wide enough for that
 difference — which leaves the rounding of the centres nowhere to go but into an

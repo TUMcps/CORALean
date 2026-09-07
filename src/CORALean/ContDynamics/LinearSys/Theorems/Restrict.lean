@@ -17,7 +17,7 @@ applies to it without restating the hypotheses.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar
 
@@ -35,7 +35,7 @@ theorem LinearSys.Trajectory.restrict (traj : sys.Trajectory T R₀ U x u) (hT :
   input t ht := traj.input t (hT ht)
   flow t ht := (traj.flow t (hT ht)).mono hT
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

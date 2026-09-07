@@ -23,8 +23,9 @@ index stays: `relinTimeInterval` is one set per step by construction.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix ContSet Scalar NormedSpace Plus Mtimes OfInterval
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
@@ -67,7 +68,7 @@ theorem NonlinearSys.reachSet_subset_relinTimeInterval (sys : NonlinearSys n m)
     (fun j hj s hs => hR j hj s hs (traj.reachSet_outer s)) q hε hconv hclosed hbdd h0
     hRconv hRclosed hRbdd ho i hi ht
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

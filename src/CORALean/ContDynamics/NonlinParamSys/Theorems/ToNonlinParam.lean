@@ -19,7 +19,7 @@ representation. The guarantee that trajectories agree is
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 variable {n m q : ℕ}
 
@@ -30,7 +30,7 @@ variable {n m q : ℕ}
 def NonlinearSys.toNonlinParam (sys : NonlinearSys n m) : NonlinParamSys n m q :=
   ⟨fun x u _ => sys.f x u⟩
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

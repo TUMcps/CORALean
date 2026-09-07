@@ -5,7 +5,7 @@ import CORALean.ContSet.ConZonotope.Real.Operations.Plus
 
 `plus`'s generator count: the two operands' concatenated, exactly as a
 zonotope's would. The constraint counts add too — `comap` leaves a row list
-untouched and `and` concatenates it, so pulling each operand's polytope back
+untouched and `intersection` concatenates it, so pulling each operand's polytope back
 onto its own block and intersecting costs nothing beyond what each already
 had. `rfl` against the structure instance in `Operations/Plus.lean`.
 -/

@@ -20,14 +20,14 @@ run stayed in the region each step's certificate was issued for.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar Plus Reduce Mtimes
 
 variable {n m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
-variable [Mtimes (Mat ℝ) S] [OfInterval S]
+variable [Mtimes (Mat ℝ) S] [Real.OfInterval S]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -40,7 +40,7 @@ theorem NonlinearSysDT.not_holds_of_simulate (sys : NonlinearSysDT n m) {U : S m
     ¬ spec.Holds (construct (sys.reach o ho steps R₀ k)) :=
   fun h => hbad (sys.holds_of_reach ho steps R₀ spec (sys.simulate_trajectory hx₀ hu) hR k h)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

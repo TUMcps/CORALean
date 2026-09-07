@@ -22,7 +22,7 @@ real whatever the system stores.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar
 
@@ -44,7 +44,7 @@ theorem LinearSys.Trajectory.reach_outer {sys : LinearSys 𝕋 n} {T : Set ℝ} 
     x (k * Δt) ∈ construct ((sys.discretize Δt).reach o ho R₀ Ud k) :=
   LinearSysDT.reach_outer _ ho R₀ Ud (traj.discretize hΔt hT hU hUd) k
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

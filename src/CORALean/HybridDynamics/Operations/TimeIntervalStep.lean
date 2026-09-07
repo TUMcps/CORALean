@@ -20,8 +20,9 @@ pinned the family. Read off `ℓ` instead, the family comes with the location.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix ContSet Scalar
 
 variable {n : ℕ} {L 𝕋 : Type} [Scalar 𝕋]
@@ -37,7 +38,7 @@ noncomputable def Location.timeIntervalStep (ℓ : Location S G L 𝕋 n) (r : �
     (X₀ : S n) : S n :=
   ℓ.dynamics.timeIntervalStep r η X₀
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

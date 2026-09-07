@@ -17,7 +17,7 @@ directly.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -27,7 +27,7 @@ rule here is an instance of. -/
 def Schedule.raise (sch : Schedule) (l : ℕ) (b : ℕ → ℕ) : Schedule :=
   Function.update sch l fun j => sch l j + b j
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

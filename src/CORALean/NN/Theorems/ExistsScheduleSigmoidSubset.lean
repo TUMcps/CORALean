@@ -20,21 +20,21 @@ Some schedule is inside any inflation of the exact image, which with
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Pointwise ContSet
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem exists_schedule_sigmoid_subset {n : ℕ} (X : PolyZonotope (Vec ℝ n)) {ε : ℝ}
+theorem exists_schedule_sigmoid_subset {n : ℕ} (X : Real.PolyZonotope (Vec ℝ n)) {ε : ℝ}
     (hε : 0 < ε) : ∃ sch : Schedule,
-      construct ((sigmoidRefinableNetwork n).encloseAt sch X)
-        ⊆ (sigmoidRefinableNetwork n).image (construct X) + Metric.closedBall 0 ε :=
-  (sigmoidRefinableNetwork n).exists_schedule_encloseAt_subset
+      construct ((Real.sigmoidRefinableNetwork n).encloseAt sch X)
+        ⊆ (Real.sigmoidRefinableNetwork n).image (construct X) + Metric.closedBall 0 ε :=
+  (Real.sigmoidRefinableNetwork n).exists_schedule_encloseAt_subset
     (sigmoidRefinableNetwork_convergent n) X ε hε
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

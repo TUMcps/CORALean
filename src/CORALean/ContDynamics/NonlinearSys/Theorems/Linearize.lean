@@ -29,13 +29,13 @@ confinement over one step buys a linear run over one step —
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
-open Matrix ContSet Scalar Plus Mtimes OfInterval
+open Matrix ContSet Scalar Plus Mtimes Real.OfInterval
 
 variable {n m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
-variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [OfInterval S]
+variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Real.OfInterval S]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -62,7 +62,7 @@ theorem NonlinearSys.Trajectory.linearize {sys : NonlinearSys n m} {T : Set ℝ}
     rw [he]
     exact traj.flow t ht
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

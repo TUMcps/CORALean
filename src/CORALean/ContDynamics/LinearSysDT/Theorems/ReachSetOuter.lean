@@ -17,7 +17,7 @@ built from the step and nothing else. So this holds at a representation with no
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix Pointwise ContSet Scalar
 
@@ -37,7 +37,7 @@ theorem LinearSysDT.reachSet_outer (sys : LinearSysDT 𝕋 n) (R₀ U : S n)
     rw [traj.step k]
     exact Set.add_mem_add ⟨x k, ih, rfl⟩ (traj.input k)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

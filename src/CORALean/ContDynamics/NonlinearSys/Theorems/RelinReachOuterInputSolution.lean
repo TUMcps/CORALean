@@ -18,8 +18,9 @@ shift appears, unlike in `relinReach_outer`'s own induction.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix ContSet Scalar NormedSpace Plus Mtimes OfInterval
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
@@ -60,7 +61,7 @@ theorem NonlinearSys.Trajectory.relinReach_outer_inputSolution [Mtimes ℐ S]
   exact hlin.stepInput_outer hΔt η (hε i hi) (hconv i hi) (hclosed i hi) (hbdd i hi)
     (hRconv i hi) (hRclosed i hi) (hRbdd i hi) i subset_rfl
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -21,7 +21,7 @@ per step chosen from `sys.A`, and carries no set instance of its own.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Plus Reduce Mtimes
 
@@ -49,7 +49,7 @@ def LinParamSysDT.simulate (sys : LinParamSysDT 𝕄 n) (A : ℕ → Mat ℝ n n
   | 0 => x₀
   | k + 1 => A k *ᵥ sys.simulate A x₀ u k + u k
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

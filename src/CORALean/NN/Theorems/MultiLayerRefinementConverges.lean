@@ -34,8 +34,9 @@ of labour the loop assumes [1].
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Pointwise ContSet
 
 variable {n m : ℕ}
@@ -44,23 +45,24 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem sigmoidLinearSigmoidNetwork_convergent (W : Mat ℝ m n) (b : Vec ℝ m) :
-    (sigmoidLinearSigmoidNetwork W b).Convergent := by -- --- PROOF ---
+    (Real.sigmoidLinearSigmoidNetwork W b).Convergent := by -- --- PROOF ---
   -- the last activation on its own, which is where the tail bound bottoms out
   have h₂ : (RefinableNetwork.cons (S := 𝒫𝒵)
-      (Layer.activationPolyRefinable (n := m) sigmoidPolyFamily) .nil).LipschitzLayers :=
+      (Real.Layer.activationPolyRefinable (n := m) Real.sigmoidPolyFamily) .nil).LipschitzLayers :=
     ⟨⟨1, Layer.lipschitzWith_activation_eval lipschitzWith_sigmoid m⟩, trivial⟩
   -- and the matrix in front of it, whose constant is its largest row sum
   have h₁ : (RefinableNetwork.cons (S := 𝒫𝒵)
-      ((Layer.linear W b).refinable (Layer.linear_sound W b))
-      (.cons (Layer.activationPolyRefinable (n := m) sigmoidPolyFamily) .nil)).LipschitzLayers :=
+      ((Real.Layer.linear W b).refinable (Real.Layer.linear_sound W b))
+      (.cons (Real.Layer.activationPolyRefinable (n := m) Real.sigmoidPolyFamily)
+        .nil)).LipschitzLayers :=
     ⟨⟨_, Layer.lipschitzWith_linear_eval W b⟩, h₂⟩
-  exact ⟨Layer.activationPolySigmoid_convergent n,
+  exact ⟨Real.Layer.activationPolySigmoid_convergent n,
     RefinableNetwork.exists_lipschitzWith_eval _ h₁,
     Layer.linear_refinable_convergent W b,
     RefinableNetwork.exists_lipschitzWith_eval _ h₂,
-    Layer.activationPolySigmoid_convergent m, ⟨1, LipschitzWith.id⟩, trivial⟩
+    Real.Layer.activationPolySigmoid_convergent m, ⟨1, LipschitzWith.id⟩, trivial⟩
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -31,13 +31,13 @@ set is what a step is *run* with rather than what the linearization *is*.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet
 
 variable {n m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
-variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [OfInterval S]
+variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Real.OfInterval S]
 
 
 -- ========================================  MAIN TYPE  ========================================= --
@@ -56,9 +56,9 @@ structure NonlinearSys.LinStep (sys : NonlinearSys n m) (U : S m) where
 /-- The input set this step's linear system has to be given. -/
 def NonlinearSys.LinStep.linInput {sys : NonlinearSys n m} {U : S m}
     (step : sys.LinStep U) : S n :=
-  CORALean.Real.linInput sys.f step.A step.B step.xs step.us U step.L
+  CORALean.linInput sys.f step.A step.B step.xs step.us U step.L
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

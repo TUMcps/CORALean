@@ -34,7 +34,7 @@ cannot be recursed through, so the layer maps have to arrive as data.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -47,7 +47,7 @@ noncomputable def Chain.sensitivity : ∀ {n m : ℕ}, Chain n m → Vec ℝ n �
   | _, _, .nil, _ => 1
   | _, _, .cons f rest, x => rest.sensitivity (f x) * layerSensitivity f x
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

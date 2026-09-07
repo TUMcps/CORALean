@@ -19,7 +19,7 @@ sub-network sound has proved the layer sound, with nothing left to check.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -32,7 +32,7 @@ theorem NeuralNetwork.toLayer_sound {nn : NeuralNetwork S n m} {f : Vec ℝ n �
     (hf : nn.Sound f) : nn.toLayer.Sound f :=
   ⟨hf.enclose_outer⟩
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

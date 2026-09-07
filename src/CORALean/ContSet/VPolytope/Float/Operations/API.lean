@@ -10,7 +10,7 @@ import CORALean.ContSet.VPolytope.Float.Operations.BoundProj
 import CORALean.ContSet.VPolytope.Float.Operations.BoundNegProj
 import CORALean.ContSet.VPolytope.Float.Operations.NominalBoundDot
 import CORALean.ContSet.VPolytope.Float.Operations.SupportBound
-import CORALean.ContSet.VPolytope.Float.Operations.And
+import CORALean.ContSet.VPolytope.Float.Operations.Intersection
 
 /-!
 # What the float `VPolytope` computes

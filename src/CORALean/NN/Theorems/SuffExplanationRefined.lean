@@ -33,11 +33,11 @@ here does.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
-open ContSet OfInterval
+open ContSet Real.OfInterval
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OfInterval S] {n m : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real.OfInterval S] {n m : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -52,7 +52,7 @@ theorem NeuralNetwork.suffExplanationAbstract_of_refined (nnAbs nnRef : NeuralNe
     nnRef.IsSuffExplanationAbstract x ε E l :=
   (Specification.unsafeSet (misclassified m l)).holds_of_outer hrefine hsuffAbs
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -66,7 +66,7 @@ theorem ConZonotope.linComb_outer (cZ₁ cZ₂ : ConZonotope α) :
       rw [abs_le]
       constructor <;> linarith
   -- each block answers to its own constraints at the weight the parameter names
-  · exact HPolytope.mem_and_iff.mpr
+  · exact HPolytope.mem_intersection_iff.mpr
       ⟨HPolytope.mem_halfScaled_comap hpar hl0 hd₁ hf₁,
         HPolytope.mem_halfScaled_comap hpar' hm0 hd₂ hf₂⟩
   -- the value: each block gives back its own weighted sum, the fresh generator the centres

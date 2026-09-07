@@ -28,7 +28,7 @@ reach the boundary of `R` exactly at `b`, and nothing keeps it inside after.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -114,7 +114,7 @@ theorem NonlinearSys.Trajectory.confined_of_ball {sys : NonlinearSys n m} {T : S
     linarith)
   exact htB.2 (hVsub ⟨htV, htB.1⟩)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

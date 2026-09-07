@@ -32,7 +32,7 @@ matrix product is what composes the chain.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -44,7 +44,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 noncomputable def layerSensitivity (f : Vec ℝ n → Vec ℝ m) (x : Vec ℝ n) : Mat ℝ m n :=
   LinearMap.toMatrix' (fderiv ℝ f x : Vec ℝ n →L[ℝ] Vec ℝ m).toLinearMap
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

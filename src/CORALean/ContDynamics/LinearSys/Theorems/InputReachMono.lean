@@ -27,7 +27,7 @@ interval with the one at its end.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar NormedSpace MeasureTheory Pointwise
 
@@ -71,7 +71,7 @@ theorem LinearSys.inputReach_mono (sys : LinearSys 𝕋 n) {U : S n} {t r : ℝ}
     (Set.mem_image_of_mem _ (sys.aux_zero_mem_inputReach (r - t) h0)) hy)
   simpa using hmem
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

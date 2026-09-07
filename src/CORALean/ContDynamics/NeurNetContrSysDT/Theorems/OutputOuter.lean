@@ -21,7 +21,7 @@ already notes at the state.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar Plus Reduce Mtimes
 
@@ -41,7 +41,7 @@ theorem NeurNetContrSysDT.output_outer (sys : NeurNetContrSysDT 𝕋 S n)
   out.outputSet_outer _ _ (sys.reach_outer ho R₀ hπ traj k)
     (hπ.enclose_outer _ _ (sys.reach_outer ho R₀ hπ traj k))
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

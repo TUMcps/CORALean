@@ -28,7 +28,7 @@ order would have nothing to bound.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar Mtimes
 
@@ -45,7 +45,7 @@ def LinearSysDT.backReachForall (sys : LinearSysDT 𝕋 n) (Ainv : Mat 𝕋 n n)
   | 0 => some T
   | k + 1 => (sys.backReachForall Ainv diff T U k).bind fun P => (diff P U).map (mtimes Ainv)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

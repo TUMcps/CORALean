@@ -15,17 +15,17 @@ The total case of `reach_outer_on`, `K := k` and `le_rfl` away via
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar Plus Reduce Mtimes
 
 variable {n m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
-variable [Mtimes (Mat ℝ) S] [OfInterval S]
+variable [Mtimes (Mat ℝ) S] [Real.OfInterval S]
 
 omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
-  [OfInterval S] in
+  [Real.OfInterval S] in
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
@@ -48,7 +48,7 @@ theorem NonlinearSysDT.reach_outer (sys : NonlinearSysDT n m) {U : S m} {o : ℕ
     x k ∈ construct (sys.reach o ho steps R₀ k) :=
   sys.reach_outer_on ho steps R₀ (traj.aux_toTrajectoryOn k) (fun i _ => hR i) k le_rfl
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

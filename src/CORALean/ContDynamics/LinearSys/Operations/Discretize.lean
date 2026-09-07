@@ -25,7 +25,7 @@ norm — or the terms will not match.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix Scalar NormedSpace
 
@@ -41,7 +41,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 noncomputable def LinearSys.discretize (sys : LinearSys 𝕋 n) (Δt : ℝ) : LinearSysDT ℝ n :=
   ⟨exp (Δt • toRealMat sys.A)⟩
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

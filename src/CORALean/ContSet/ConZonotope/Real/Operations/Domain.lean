@@ -27,7 +27,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def ConZonotope.domain (cZ : ConZonotope α) : HPolytope (Vec ℝ cZ.h) :=
-  (HPolytope.unitBox cZ.h).and cZ.P
+  (HPolytope.unitBox cZ.h).intersection cZ.P
 
 end CORALean.Real
 

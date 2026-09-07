@@ -18,7 +18,7 @@ itself a derivative.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix NormedSpace
 
@@ -49,7 +49,7 @@ theorem hasDerivWithinAt_expNeg_mulVec (A : Mat ℝ n n) (x u : ℝ → Vec ℝ 
     abel
   exact key ▸ HasDerivWithinAt.clm_apply hC hx
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

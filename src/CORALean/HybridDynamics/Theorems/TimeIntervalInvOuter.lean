@@ -5,12 +5,12 @@ import CORALean.HybridDynamics.Theorems.FlowOuter
 # A stay is enclosed by the invariant-cut time-interval step
 
 `timeInterval_outer` restated against `timeIntervalStepInv`: the invariant
-holds of every state of the stay, `x t ∈ construct ℓ.inv`, so `And.and_outer`
+holds of every state of the stay, `x t ∈ construct ℓ.inv`, so `Intersection.intersection_outer`
 cuts the enclosure `timeInterval_outer` already gives down to it. The cut lands
 on the sum with `Ud`, not on `timeIntervalStep` alone — the invariant is a fact
 about `x t`, not about the homogeneous part in isolation.
 
-`And.and` is homogeneous, so this is one of the two places that ask a location's
+`Intersection.intersection` is homogeneous, so this is one of the two places that ask a location's
 invariant to be in the state's own family, `Location S S L 𝕋 n` (#39).
 -/
 
@@ -22,8 +22,9 @@ invariant to be in the state's own family, `Location S S L 𝕋 n` (#39).
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix ContSet Scalar NormedSpace MeasureTheory
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
@@ -32,7 +33,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 variable {n : ℕ} {L 𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
-variable [∀ n, And (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
+variable [∀ n, Intersection (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -48,10 +49,10 @@ theorem Location.Trajectory.timeIntervalInv_outer {ℓ : Location S S L 𝕋 n} 
     (hUd : (∫ s in (0:ℝ)..t, exp ((t - s) • toRealMat ℓ.dynamics.A) *ᵥ u s)
       ∈ construct Ud) :
     x t ∈ construct (ℓ.timeIntervalStepInv τ (m + 2) R₀ Ud) :=
-  And.and_outer _ _ ⟨traj.timeInterval_outer h₀ hτ hε ht0 htτ hU hUd,
+  Intersection.intersection_outer _ _ ⟨traj.timeInterval_outer h₀ hτ hε ht0 htτ hU hUd,
     traj.invariant t ⟨ht0, htτ⟩⟩
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

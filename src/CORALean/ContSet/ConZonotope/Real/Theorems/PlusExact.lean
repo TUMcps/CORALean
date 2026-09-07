@@ -5,7 +5,7 @@ import CORALean.ContSet.ConZonotope.Real.Operations.Plus
 
 The witness is `Fin.append β₁ β₂`, as for a zonotope. What the constraints add is
 that the concatenated coefficients satisfy the combined polytope exactly when
-each half satisfies its own — which is `HPolytope.mem_and_iff` composed with the
+each half satisfies its own — which is `HPolytope.mem_intersection_iff` composed with the
 preimage being a preimage, and holds by `rfl` once `comap` is what pulls a block
 back.
 -/
@@ -45,7 +45,7 @@ theorem ConZonotope.aux_mem_plus_P_iff (cZ₁ cZ₂ : ConZonotope α) (β : Vec 
     β ∈ (cZ₁.plus cZ₂).P.construct ↔
       blockLeft cZ₁.h cZ₂.h β ∈ cZ₁.P.construct
         ∧ blockRight cZ₁.h cZ₂.h β ∈ cZ₂.P.construct :=
-  HPolytope.mem_and_iff
+  HPolytope.mem_intersection_iff
 
 theorem ConZonotope.aux_value_plus' (cZ₁ cZ₂ : ConZonotope α) (β : Fin (cZ₁.h + cZ₂.h) → ℝ) :
     (cZ₁.plus cZ₂).c + ∑ j : Fin (cZ₁.plus cZ₂).h, β j • (cZ₁.plus cZ₂).G j

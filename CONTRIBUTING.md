@@ -92,9 +92,9 @@ algorithm that must reach a box, or come back from one, without naming what it
 is propagating. Only the representations that can do it without certificates
 instantiate them, which is the same rule as everywhere else.
 
-An operation may be *implemented* by conversion — `VPolytope.and` goes out to
-halfspaces, where intersection is free, and comes back — and then imports these
-files by exact path. That is a dependency, not a cycle: the conversion imports
+An operation may be *implemented* by conversion — `VPolytope.intersection` goes
+out to halfspaces, where intersection is free, and comes back — and then imports
+these files by exact path. That is a dependency, not a cycle: the conversion imports
 the representation's own files, never its `API.lean`.
 
 A representation holds one directory per arithmetic layer, named for the
@@ -104,6 +104,30 @@ and then only the namespace says which. The remaining directory names —
 `ContSet`, `Interval`, `Operations` — are organizational and appear in no
 namespace, so a path never contradicts a namespace. `ContSet` itself belongs to
 neither layer and sits in namespace `CORALean`.
+
+### Which layer a declaration belongs to
+
+`ContSet` is not a special case. A declaration sits in `CORALean.Real` or
+`CORALean.Float` when it *names an arithmetic*: a representation that stores
+numbers of one kind, an operation computed in one kind, or a class whose two
+layers are two different classes, as `Real.OfInterval` and `Float.OfInterval`
+are. A declaration parametric in the representation, whose only ℝ is the
+ambient space both layers denote into, belongs to `CORALean`: the system classes
+in `ContDynamics`, the automaton in `HybridDynamics`, and `Layer`,
+`NeuralNetwork` and the refinement framework in `NN`. `Layer` stores
+`enclose : S n → S m` and nothing real — the exact function it refines lives in
+a `Prop` — which is what lets a float network hold one. The standard layers that
+*build* a `Layer` do name an arithmetic and stay: `Real.Layer.linear` against
+`Mat ℝ`, `Float.Layer.linear` against `Mat 𝕋`.
+
+A Lean namespace cannot be split. `sys.reach` resolves to
+`CORALean.LinearSysDT.reach` and looks nowhere else, so a type takes its whole
+namespace with it. Where one of its theorems is then about a particular
+representation — `LinearSysDT.reach_order_le` at a zonotope,
+`LinearSys.timeIntervalStep` at the exact interval matrices — the representation
+is named with its layer, `Real.Zonotope`, rather than left to the enclosing
+namespace to supply; a file that needs the scoped family notation `𝒵` or `ℐ`
+says `open CORALean.Real` and that line is the record of which layer it works at.
 
 ### The ambient type
 
@@ -532,9 +556,9 @@ other way, which is `Source.contains_target`, or both hold and it is
 Not a relation of its own: the statement stays `X.construct ⊆ Y.construct`. A
 `contains` over `ContSet` would need both instances, and `Instances.lean`
 imports the operations, some of which are implemented by conversion —
-`VPolytope.andH` is — so a conversion file cannot import it without a cycle.
-The one word used everywhere is what fixes the direction; there is nothing else
-it could mean.
+`VPolytope.intersectionH` is — so a conversion file cannot import it without a
+cycle. The one word used everywhere is what fixes the direction; there is
+nothing else it could mean.
 
 `subset_` is left where one side is a bare `Set` and not a representation:
 `HPolytope.subset_ofBounds`, `Interval.subset_nominal_zonotope`. `_outer` is
@@ -668,13 +692,15 @@ still reaches every `CORALean.*` file, which is nearly the whole library.
 
 `Global/Partition.lean` learned this the hard way: its two-part notation once
 read `Split α into β and γ`, and the bare word `and` then blocked named-field
-syntax on every `And` instance in the library. The fix is not scoping harder;
-it is not choosing an English word in the first place. The notation now reads
-`Split α into β ⊕ γ`, which is also the right connective on the merits, since
-`Partition₂ α β γ` states exactly that `β ⊕ γ ≃ α`.
+syntax on every instance of the intersection class, whose field was then called
+`and`. The fix is not scoping harder; it is not choosing an English word in the
+first place. The notation now reads `Split α into β ⊕ γ`, which is also the
+right connective on the merits, since `Partition₂ α β γ` states exactly that
+`β ⊕ γ ≃ α`.
 
 A class field named after an English word is worth checking against notations
-in scope before naming.
+in scope before naming — and better still, not named after one: the class is
+now `Intersection` and its field `intersection`, which no notation can take.
 
 ### An expected type that will not unify
 

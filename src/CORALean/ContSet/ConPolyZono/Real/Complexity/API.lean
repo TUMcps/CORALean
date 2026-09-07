@@ -1,4 +1,4 @@
-import CORALean.ContSet.ConPolyZono.Real.Complexity.And
+import CORALean.ContSet.ConPolyZono.Real.Complexity.Intersection
 import CORALean.ContSet.ConPolyZono.Real.Complexity.Plus
 import CORALean.ContSet.ConPolyZono.Real.Complexity.Mtimes
 import CORALean.ContSet.ConPolyZono.Real.Complexity.Compact
@@ -23,5 +23,5 @@ The number of scalar operations each operation costs is not yet stated here.
 take: not a bare count, but the count's growth in `O`-notation, tied to the
 operation through a family of growing operands. `quadMap` is the operation
 whose count multiplies rather than adds, so it carries this directory's
-O-statement rather than `and`, `plus`, `mtimes` or `compact`.
+O-statement rather than `intersection`, `plus`, `mtimes` or `compact`.
 -/

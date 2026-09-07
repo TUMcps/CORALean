@@ -25,7 +25,7 @@ one `mtimes` and one `plus`, and unifying that fold for both classes at once is
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet
 
@@ -54,7 +54,7 @@ structure LinParamSys.ConstTrajectory (sys : LinParamSys 𝕄 n) (T : Set ℝ) (
   param : A ∈ construct sys.A
   flow (t : ℝ) (ht : t ∈ T) : HasDerivWithinAt x (A *ᵥ x t + u t) T t
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

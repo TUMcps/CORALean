@@ -19,8 +19,9 @@ proves, not one invented ahead of it.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix ContSet
 
 variable {n m : ℕ}
@@ -40,7 +41,7 @@ noncomputable def NonlinearSys.relinTimeInterval (sys : NonlinearSys n m) {U : S
   ((NonlinearSys.linearize (steps i).A).timeIntervalStep Δt η
     (sys.relinReach o ho Δt steps Ud R₀ i)) ⊞ Ud i
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

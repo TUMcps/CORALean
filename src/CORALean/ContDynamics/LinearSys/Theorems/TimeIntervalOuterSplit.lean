@@ -27,8 +27,9 @@ sits, at every representation with a centre.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix ContSet Scalar NormedSpace MeasureTheory
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
@@ -85,7 +86,7 @@ theorem LinearSys.Trajectory.timeInterval_outer_split [Mtimes ℐ S] [∀ n, OfP
         (MatExp.inputRemainder (toRealMat sys.A) r (m + 2)) (Recentre.recentre U)))
       ht0 htr)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

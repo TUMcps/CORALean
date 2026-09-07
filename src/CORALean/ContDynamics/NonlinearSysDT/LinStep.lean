@@ -25,13 +25,13 @@ with.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet
 
 variable {n m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
-variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [OfInterval S]
+variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Real.OfInterval S]
 
 
 -- ========================================  MAIN TYPE  ========================================= --
@@ -50,9 +50,9 @@ structure NonlinearSysDT.LinStep (sys : NonlinearSysDT n m) (U : S m) where
 /-- The input set this step's linear system has to be given. -/
 def NonlinearSysDT.LinStep.linInput {sys : NonlinearSysDT n m} {U : S m}
     (step : sys.LinStep U) : S n :=
-  CORALean.Real.linInput sys.f step.A step.B step.xs step.us U step.L
+  CORALean.linInput sys.f step.A step.B step.xs step.us U step.L
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

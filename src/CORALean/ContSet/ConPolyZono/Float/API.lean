@@ -13,6 +13,6 @@ error box means.
 
 The representation's docstring is where to read where a float operation may pay:
 into the ambient error box, as everywhere else, and — this representation alone —
-into the interval a constraint's right-hand side is. `and` is the operation that
-needs both at once, and the one this representation exists for.
+into the interval a constraint's right-hand side is. `intersection` is the
+operation that needs both at once, and the one this representation exists for.
 -/

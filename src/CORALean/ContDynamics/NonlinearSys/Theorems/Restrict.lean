@@ -16,7 +16,7 @@ for confinement on one step only: restrict first, linearize second.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -35,7 +35,7 @@ theorem NonlinearSys.Trajectory.restrict {sys : NonlinearSys n m} {T T' : Set â„
   input t ht := traj.input t (hT ht)
   flow t ht := (traj.flow t (hT ht)).mono hT
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -31,7 +31,7 @@ to the plan, exactly what a real relaxation's output box always has.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix
 
@@ -40,13 +40,13 @@ open Matrix
 
 /-- The bucket-error box `EB` `neuronMerging_sandwich_outer` adds is no wider than `2δ` per unit
 of `W`'s row: driving the tolerance to `0` drives the merge's cost to `0`. -/
-theorem mergeError_width_le {n n₂ : ℕ} (Y : Interval (Vec ℝ n)) (y δ : ℝ) (hδ : 0 ≤ δ)
+theorem mergeError_width_le {n n₂ : ℕ} (Y : Real.Interval (Vec ℝ n)) (y δ : ℝ) (hδ : 0 ≤ δ)
     (hY : Y.IsNonempty) (W : Mat ℝ n₂ n) (i : Fin n₂) :
-    let EB := Interval.mtimes (W.submatrix id (mergeSplit Y y δ).right)
+    let EB := Real.Interval.mtimes (W.submatrix id (mergeSplit Y y δ).right)
       ⟨Y.inf ∘ (mergeSplit Y y δ).right, Y.sup ∘ (mergeSplit Y y δ).right⟩
     EB.sup i - EB.inf i ≤ (∑ k, |W i ((mergeSplit Y y δ).right k)|) * (2 * δ) := by -- --- PROOF ---
   intro EB
-  rw [show EB = _ from rfl, Interval.mtimes_width, Finset.sum_mul]
+  rw [show EB = _ from rfl, Real.Interval.mtimes_width, Finset.sum_mul]
   -- each column's width is at most `2δ`, its index lying in the bucket
   refine Finset.sum_le_sum fun k _ => mul_le_mul_of_nonneg_left ?_ (abs_nonneg _)
   have hbucket : mergeBucket Y y δ ((mergeSplit Y y δ).right k) :=
@@ -58,7 +58,7 @@ theorem mergeError_width_le {n n₂ : ℕ} (Y : Interval (Vec ℝ n)) (y δ : �
   show |Y.sup ((mergeSplit Y y δ).right k) - Y.inf ((mergeSplit Y y δ).right k)| ≤ 2 * δ
   exact abs_le.mpr ⟨by linarith, hwidth⟩
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

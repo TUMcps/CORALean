@@ -18,7 +18,7 @@ of `map` at its own starting point.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet Scalar
 
@@ -48,7 +48,7 @@ theorem NeurNetContrSysDT.Trajectory.eq_of_init {sys : NeurNetContrSysDT 𝕋 S 
   funext k
   rw [hx.aux_eq_iterate k, hy.aux_eq_iterate k, h]
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

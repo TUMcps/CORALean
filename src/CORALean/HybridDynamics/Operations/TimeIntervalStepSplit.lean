@@ -23,8 +23,9 @@ sits and so is the one a location can actually supply.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix ContSet Scalar
 
 variable {n : ℕ} {L 𝕋 : Type} [Scalar 𝕋]
@@ -51,7 +52,7 @@ noncomputable def Location.timeIntervalStepSplit [∀ n, OfPoint (S n) (Vec ℝ 
           (OfPoint.ofPoint (Recentre.centre ℓ.U))))
       (ℓ.dynamics.inputSolution r η (Recentre.recentre ℓ.U)))
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

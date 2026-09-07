@@ -26,8 +26,9 @@ representation must multiply by one of those and not only by a plain matrix.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix ContSet Scalar
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
@@ -44,7 +45,7 @@ noncomputable def LinearSys.inputSolution
   sys.inputTaylorSum r U η ⊞
     Mtimes.mtimes (𝕄 := ℐ) (MatExp.inputRemainder (toRealMat sys.A) r η) U
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

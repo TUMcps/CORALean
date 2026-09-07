@@ -27,7 +27,9 @@ where the two meet.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
+
+open CORALean.Real
 
 variable {n : ℕ}
 
@@ -51,7 +53,7 @@ def LinearSysDT.reachStepBound (n hU o : ℕ) : Cost :=
   Zonotope.mtimesCost n n (o * n) + Zonotope.plusCost n
     + Zonotope.reduceGirardCost n (o * n + hU)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

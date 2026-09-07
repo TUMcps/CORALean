@@ -30,7 +30,7 @@ step, which `MatExp` does not yet offer.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar
 
@@ -62,7 +62,7 @@ theorem NeurNetContrSys.Trajectory.period {sys : NeurNetContrSys 𝕋 S n} {Δtc
     have h := (traj.flow i hi _ (hmaps ht)).scomp t hg hmaps
     simpa [Function.comp_def] using h
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

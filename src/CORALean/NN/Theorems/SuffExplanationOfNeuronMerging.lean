@@ -15,7 +15,7 @@ assumed.
 * [1] S. Bassan, Y. Y. Elboher, T. Ladner, M. Althoff and G. Katz. "Explaining
       Fast and Slow: Abstraction and Refinement of Provable Explanations".
       ICML 2025.
-* [2] `CORALean.Real.neuronMerging_network_outer`.
+* [2] `CORALean.neuronMerging_network_outer`.
 -/
 
 -- Authors:       Tobias Ladner
@@ -26,21 +26,21 @@ assumed.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
-open Matrix ContSet Plus Mtimes IntervalOuter OfInterval
+open Matrix ContSet Plus Mtimes Real.IntervalOuter Real.OfInterval
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OfInterval S] {n m : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real.OfInterval S] {n m : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NeuralNetwork.suffExplanation_of_neuronMerging [∀ n, Plus (S n) (Vec ℝ n)]
-    [Mtimes (Mat ℝ) S] [IntervalOuter S] {n₀ n₁ nk n₂ n₃ d r : ℕ}
+    [Mtimes (Mat ℝ) S] [Real.IntervalOuter S] {n₀ n₁ nk n₂ n₃ d r : ℕ}
     (pre : NeuralNetwork S n₀ n₁) (post : NeuralNetwork S n₂ n₃)
     (part : Split (Fin nk) into (Fin d) ⊕ (Fin r))
-    (W0 : Mat ℝ nk n₁) (b0 : Vec ℝ nk) {σ : ℝ → ℝ} (R : Relaxation σ)
-    (W1 : Mat ℝ n₂ nk) (b1 : Vec ℝ n₂) (Y : Interval (Vec ℝ nk))
+    (W0 : Mat ℝ nk n₁) (b0 : Vec ℝ nk) {σ : ℝ → ℝ} (R : Real.Relaxation σ)
+    (W1 : Mat ℝ n₂ nk) (b1 : Vec ℝ n₂) (Y : Real.Interval (Vec ℝ nk))
     (x : Vec ℝ n₀) (ε : ℝ) (E : Finset (Fin n₀)) (l : Fin n₃)
     {fpre : Vec ℝ n₀ → Vec ℝ n₁} (hpre : pre.Sound fpre)
     {fpost : Vec ℝ n₂ → Vec ℝ n₃} (hpost : post.Sound fpost)
@@ -48,10 +48,10 @@ theorem NeuralNetwork.suffExplanation_of_neuronMerging [∀ n, Plus (S n) (Vec �
       (fun i => σ ((W0 *ᵥ z + b0) i)) ∈ construct Y)
     -- the reduced network: both linear layers trimmed to `part.left`, the bucket boxed into `k+1`
     (hsuffAbs : (NeuralNetwork.cons pre.toLayer
-        (.cons (Layer.linear (W0.submatrix part.left id) (b0 ∘ part.left))
-          (.cons (Layer.activation R)
-            (.cons (Layer.linearWithError (W1.submatrix id part.left) b1
-                (Interval.mtimes (W1.submatrix id part.right)
+        (.cons (Real.Layer.linear (W0.submatrix part.left id) (b0 ∘ part.left))
+          (.cons (Real.Layer.activation R)
+            (.cons (Real.Layer.linearWithError (W1.submatrix id part.left) b1
+                (Real.Interval.mtimes (W1.submatrix id part.right)
                   ⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩))
               post)))).IsSuffExplanationAbstract x ε E l) :
     -- and the original, whose exact image `neuronMerging_network_outer` puts inside it
@@ -61,7 +61,7 @@ theorem NeuralNetwork.suffExplanation_of_neuronMerging [∀ n, Plus (S n) (Vec �
     (neuronMerging_network_outer pre post part W0 b0 R W1 b1 Y
       (ofInterval (explainBox x ε E)) hpre hpost hY) hsuffAbs
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

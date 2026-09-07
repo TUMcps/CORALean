@@ -1,9 +1,9 @@
 import CORALean.ContSet.ConPolyZono.Float.Operations.AgreeRow
-import CORALean.ContSet.ConPolyZono.Float.Operations.AndA
-import CORALean.ContSet.ConPolyZono.Float.Operations.AndAgree
-import CORALean.ContSet.ConPolyZono.Float.Operations.AndB
-import CORALean.ContSet.ConPolyZono.Float.Operations.AndDep
-import CORALean.ContSet.ConPolyZono.Float.Operations.And
+import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionA
+import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionAgree
+import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionB
+import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionDep
+import CORALean.ContSet.ConPolyZono.Float.Operations.Intersection
 import CORALean.ContSet.ConPolyZono.Float.Operations.MergedCol
 import CORALean.ContSet.ConPolyZono.Float.Operations.MergedColUp
 import CORALean.ContSet.ConPolyZono.Float.Operations.CompactGensGap
@@ -34,7 +34,7 @@ constraint system only by copying — `plus` places the two matrices
 block-diagonally, `mtimes` leaves them alone. `dependent` copies everything and
 rounds nothing at all.
 
-`and` is the one that computes constraint data, and the one the representation
+`intersection` is the one that computes constraint data, and the one the representation
 exists for. It is possible here only because the right-hand side of a constraint
 is an interval: its agreement rows have to admit the difference of two nominal
 points that each carry an error box, so they were never going to be an equality,

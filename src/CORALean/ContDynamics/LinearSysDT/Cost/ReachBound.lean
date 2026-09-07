@@ -26,7 +26,9 @@ The bound is linear in `k` because `reduce` runs every step; without it the
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
+
+open CORALean.Real
 
 variable {n : ℕ}
 
@@ -66,7 +68,7 @@ theorem LinearSysDT.reachCost_le (sys : LinearSysDT ℝ n) {o : ℕ} (ho : 0 < o
     refine Cost.le_iff.mpr ?_
     simpa [LinearSysDT.reachCost, Nat.succ_mul] using h
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

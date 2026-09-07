@@ -29,13 +29,13 @@ additive and so state-dimensional, take it unchanged.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
-open Matrix ContSet Plus Mtimes OfInterval
+open Matrix ContSet Plus Mtimes Real.OfInterval
 
 variable {n m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
-variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [OfInterval S]
+variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Real.OfInterval S]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -44,11 +44,11 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [OfInterval S]
 that stays where the certificate holds. -/
 def linInput (f : Vec ℝ n → Vec ℝ m → Vec ℝ n) (A : Mat ℝ n n) (B : Mat ℝ n m)
     (xs : Vec ℝ n) (us : Vec ℝ m) (U : S m) (L : S n) : S n :=
-  ofInterval (Interval.point (f xs us - A *ᵥ xs))
-    ⊞ mtimes B (U ⊞ ofInterval (Interval.point (-us)))
+  ofInterval (Real.Interval.point (f xs us - A *ᵥ xs))
+    ⊞ mtimes B (U ⊞ ofInterval (Real.Interval.point (-us)))
     ⊞ L
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

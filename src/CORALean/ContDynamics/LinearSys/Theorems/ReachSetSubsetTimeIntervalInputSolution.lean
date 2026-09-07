@@ -22,8 +22,9 @@ That is what `reachSet` buys over the sampled statements: between `kΔt` and
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix ContSet Scalar
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
@@ -57,7 +58,7 @@ theorem LinearSys.reachSet_subset_timeInterval_inputSolution (sys : LinearSys �
   exact traj.timeInterval_outer_inputSolution hr hT hε ht0 htr hconv hclosed hbdd
     hRconv hRclosed hRbdd h0
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

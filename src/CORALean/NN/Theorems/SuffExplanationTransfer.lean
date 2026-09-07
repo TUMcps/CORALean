@@ -33,11 +33,11 @@ that back as the pointwise definition.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
-open ContSet OfInterval
+open ContSet Real.OfInterval
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OfInterval S] {n m : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real.OfInterval S] {n m : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -54,7 +54,7 @@ theorem suffExplanation_of_abstract (f : Vec ℝ n → Vec ℝ m) (nnAbs : Neura
   suffExplanation_of_exact f x ε E l
     ((Specification.unsafeSet (misclassified m l)).holds_of_outer hcontain hsuffAbs)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

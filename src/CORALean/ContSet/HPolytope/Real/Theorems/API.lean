@@ -1,6 +1,6 @@
 import CORALean.ContSet.HPolytope.Real.Theorems.MemConstruct
-import CORALean.ContSet.HPolytope.Real.Theorems.MemAnd
-import CORALean.ContSet.HPolytope.Real.Theorems.AndExact
+import CORALean.ContSet.HPolytope.Real.Theorems.MemIntersection
+import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
 import CORALean.ContSet.HPolytope.Real.Theorems.PlusOfOuter
 import CORALean.ContSet.HPolytope.Real.Theorems.MinkDiffOfInner
 import CORALean.ContSet.HPolytope.Real.Theorems.LinCombOfOuter

@@ -5,7 +5,7 @@ import CORALean.ContSet.HPolytope.Real.Operations.Fullspace
 # A zonotope is a constrained one with nothing to satisfy
 
 Exact, and the reason a constrained zonotope needs no separate treatment of the
-unconstrained case: `fullspace` is the unit of the coefficient domain's `and`,
+unconstrained case: `fullspace` is the unit of the coefficient domain's `intersection`,
 so the empty constraint list denotes the whole coefficient space.
 -/
 

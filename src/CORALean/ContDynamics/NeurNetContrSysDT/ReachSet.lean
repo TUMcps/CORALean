@@ -23,7 +23,7 @@ enclosure. `Theorems.ReachSetOuter` puts every run into it,
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet Scalar
 
@@ -39,7 +39,7 @@ def NeurNetContrSysDT.reachSet (sys : NeurNetContrSysDT 𝕋 S n) (π : Vec ℝ 
     (R₀ : S n) (k : ℕ) : Set (Vec ℝ n) :=
   {y | ∃ x : ℕ → Vec ℝ n, sys.Trajectory π R₀ x ∧ x k = y}
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

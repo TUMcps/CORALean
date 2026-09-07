@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-! ## Average pooling -/
 
-def Layer.avgPool (winv : 𝕋) (tap : Fin m → Fin k → Fin n) : Real.Layer S n m :=
+def Layer.avgPool (winv : 𝕋) (tap : Fin m → Fin k → Fin n) : Layer S n m :=
   Layer.linear (tapMat tap fun _ _ => winv) fun _ => zero
 
 theorem Layer.avgPool_sound (winv : 𝕋) (tap : Fin m → Fin k → Fin n)
@@ -103,7 +103,7 @@ theorem le_maxPoolGapUp (tap : Fin m → Fin (k + 1) → Fin n) (p : Fin m → F
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def Layer.maxPool (tap : Fin m → Fin (k + 1) → Fin n)
-    (pivot : Interval 𝕋 n → Fin m → Fin (k + 1)) : Real.Layer S n m where
+    (pivot : Interval 𝕋 n → Fin m → Fin (k + 1)) : Layer S n m where
   enclose s :=
     plus (mtimes (selectMat (𝕋 := 𝕋) fun j => tap j (pivot (interval s) j)) s)
       (ofInterval (⟨fun _ => zero, maxPoolGapUp tap (pivot (interval s)) (interval s)⟩ :

@@ -31,7 +31,7 @@ subset of the state space; `subsetAt` is the set of states it reaches.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix
 
@@ -43,14 +43,14 @@ variable {n m : ℕ}
 /-- At the state factor vector `a` names, the remainder of the affine split is
 `L`'s point at that same `a`, widened by `W`. -/
 structure PolyAbstractionError (f : Vec ℝ n → Vec ℝ m → Vec ℝ n) (A : Mat ℝ n n)
-    (B : Mat ℝ n m) (xs : Vec ℝ n) (us : Vec ℝ m) (pZ : PolyZonotope (Vec ℝ n))
-    (Ba : Set (Fin pZ.p → ℝ)) (U : Set (Vec ℝ m)) (L : PolyZonotope (Vec ℝ n))
-    (hp : L.p = pZ.p) (W : PolyZonotope (Vec ℝ n)) : Prop where
+    (B : Mat ℝ n m) (xs : Vec ℝ n) (us : Vec ℝ m) (pZ : Real.PolyZonotope (Vec ℝ n))
+    (Ba : Set (Fin pZ.p → ℝ)) (U : Set (Vec ℝ m)) (L : Real.PolyZonotope (Vec ℝ n))
+    (hp : L.p = pZ.p) (W : Real.PolyZonotope (Vec ℝ n)) : Prop where
   encloses : ∀ a ∈ Ba, ∀ u ∈ U,
     f (pZ.point a) u - (f xs us + A *ᵥ (pZ.point a - xs) + B *ᵥ (u - us))
       - L.point (fun k => a (Fin.cast hp k)) ∈ W.construct
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

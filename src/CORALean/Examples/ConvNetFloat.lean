@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 /-- `W` and `bn` are batch normalization's folded scale and shift, which is all
 `BatchNorm` ever was; `k` is the softmax exponential's reduction depth. -/
 def Example.convNet (k : ℕ) (K : Fin 1 → Fin 2 → 𝕋) (b : Vec 𝕋 5)
-    (W : Mat 𝕋 2 2) (bn : Vec 𝕋 2) : Real.NeuralNetwork (Zonotope 𝕋) 6 2 :=
+    (W : Mat 𝕋 2 2) (bn : Vec 𝕋 2) : NeuralNetwork (Zonotope 𝕋) 6 2 :=
   .cons (Real.Layer.reshape (S := Zonotope 𝕋) (Real.Fin.transposeEquiv 3 2))
     (.cons (Layer.conv (fun _ => 0) Real.Example.convTap K b)
       (.cons (Layer.relu)
@@ -60,18 +60,18 @@ example (k : ℕ) (K : Fin 1 → Fin 2 → 𝕋) (b : Vec 𝕋 5) (W : Mat 𝕋 
   (Example.convNet k K b W bn).enclose X
 
 /-- Every output over the whole input set is in the zonotope that comes back. -/
-example {nn : Real.NeuralNetwork (Zonotope 𝕋) 6 2} {f : Vec ℝ 6 → Vec ℝ 2}
+example {nn : NeuralNetwork (Zonotope 𝕋) 6 2} {f : Vec ℝ 6 → Vec ℝ 2}
     (hf : nn.Sound f) (X : Zonotope 𝕋 6) {x : Vec ℝ 6}
     (hx : x ∈ construct X) : f x ∈ construct (nn.enclose X) :=
   hf.enclose_outer X x hx
 
 /-- Robust classification, discharged by the same bound per rival label. -/
-example {nn : Real.NeuralNetwork (Zonotope 𝕋) 6 2} {f : Vec ℝ 6 → Vec ℝ 2}
+example {nn : NeuralNetwork (Zonotope 𝕋) 6 2} {f : Vec ℝ 6 → Vec ℝ 2}
     (hf : nn.Sound f) (X : Zonotope 𝕋 6) (l : Fin 2)
-    (u : ∀ j, SupportBound (construct (nn.enclose X)) (Real.marginDir 2 j l))
+    (u : ∀ j, SupportBound (construct (nn.enclose X)) (marginDir 2 j l))
     (h : ∀ j, j ≠ l → (u j).val < 0) {x : Vec ℝ 6} (hx : x ∈ construct X)
     {j : Fin 2} (hj : j ≠ l) : f x j < f x l :=
-  Real.NeuralNetwork.classifies hf X l u h hx hj
+  NeuralNetwork.classifies hf X l u h hx hj
 
 /-- The stored kernel denotes the convolution exactly, the stencil's entries
 being placed rather than summed. -/
@@ -93,7 +93,7 @@ example (X : Zonotope 𝕋 6) :
 
 /-- Average pooling takes its reciprocal as data, `1 / k` being no float; for a
 window of two it is `half one`, which is exact. -/
-def Example.avgPoolTwo : Real.Layer (Zonotope 𝕋) 5 2 :=
+def Example.avgPoolTwo : Layer (Zonotope 𝕋) 5 2 :=
   Layer.avgPool (FloatOps.half FloatOps.one) Real.Example.poolTap
 
 end CORALean.Float

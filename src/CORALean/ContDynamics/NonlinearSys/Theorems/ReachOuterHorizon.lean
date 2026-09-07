@@ -17,9 +17,9 @@ nothing past `KΔt` — which is what re-linearizing from there needs.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
-open Matrix ContSet Scalar NormedSpace Plus Mtimes OfInterval
+open Matrix ContSet Scalar NormedSpace Plus Mtimes Real.OfInterval
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
@@ -27,7 +27,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 variable {n m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
-variable [Mtimes (Mat ℝ) S] [OfInterval S]
+variable [Mtimes (Mat ℝ) S] [Real.OfInterval S]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -49,7 +49,7 @@ theorem NonlinearSys.Trajectory.reach_outer_horizon {sys : NonlinearSys n m} {T 
       construct (((NonlinearSys.linearize A).discretize Δt).reach o ho R₀ Ud k) :=
   (traj.linearize_horizon cert hT hR).reach_outer_horizon hΔt subset_rfl hU hUd ho
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

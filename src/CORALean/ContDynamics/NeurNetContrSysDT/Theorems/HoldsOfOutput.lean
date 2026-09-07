@@ -17,7 +17,7 @@ than the state, and for the same reason there — `C` in general not invertible.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar Plus Reduce Mtimes
 
@@ -38,7 +38,7 @@ theorem NeurNetContrSysDT.holds_of_output (sys : NeurNetContrSysDT 𝕋 S n)
   spec.holds_of_outer
     (Set.singleton_subset_iff.mpr (sys.output_outer out ho R₀ hπ traj k)) h
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -1,5 +1,5 @@
 import CORALean.ContSet.ContSet.ConvexSet
-import CORALean.ContSet.ZonoBundle.Real.Theorems.AndExact
+import CORALean.ContSet.ZonoBundle.Real.Theorems.IntersectionExact
 import CORALean.ContSet.ZonoBundle.Real.Theorems.Convex
 import CORALean.ContSet.ZonoBundle.Real.Theorems.PlusOuter
 import CORALean.ContSet.ZonoBundle.Real.Theorems.LinCombOuter
@@ -15,7 +15,7 @@ import CORALean.ContSet.ZonoBundle.Real.Theorems.ReduceOuter
 
 `ContSet`, `ConvexSet` — an intersection of convex sets — `Plus`, `LinComb`
 and `Mtimes`, the last at a point matrix and at a matrix zonotope alike, from
-the enclosure operations, and `And` from `and_exact`:
+the enclosure operations, and `Intersection` from `intersection_exact`:
 appending the two families of zonotopes is exact, at any real module.
 `OfPoint` bundles one point-zonotope, and `Reindex` lifts `Zonotope`'s at
 `reindexLin e`, which `map_exact` needs *bijective* rather than merely
@@ -71,9 +71,9 @@ noncomputable instance : LinComb (ZonoBundle α) α where
   linComb := ZonoBundle.linComb
   linComb_outer := ZonoBundle.linComb_outer
 
-instance : And (ZonoBundle α) α where
-  and := ZonoBundle.and
-  and_outer zB₁ zB₂ := (ZonoBundle.and_exact zB₁ zB₂).symm.subset
+instance : Intersection (ZonoBundle α) α where
+  intersection := ZonoBundle.intersection
+  intersection_outer zB₁ zB₂ := (ZonoBundle.intersection_exact zB₁ zB₂).symm.subset
 
 instance : OfPoint (ZonoBundle α) α where
   ofPoint := ZonoBundle.ofPoint

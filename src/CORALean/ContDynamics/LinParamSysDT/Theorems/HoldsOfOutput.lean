@@ -17,7 +17,7 @@ reason `LinearSysDT`'s pair exists — `C` is in general not invertible.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar Plus Reduce Mtimes
 
@@ -38,7 +38,7 @@ theorem LinParamSysDT.holds_of_output (sys : LinParamSysDT 𝕄 n) (out : Output
   spec.holds_of_outer
     (Set.singleton_subset_iff.mpr (sys.output_outer out ho R₀ U traj k)) h
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

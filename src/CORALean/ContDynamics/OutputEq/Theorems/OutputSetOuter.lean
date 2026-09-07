@@ -21,7 +21,7 @@ from the run's own input set.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar Plus Mtimes
 
@@ -39,7 +39,7 @@ theorem OutputEq.outputSet_outer (out : OutputEq 𝕋 n m r) (R : S n) (U : S m)
     (mtimes_outer out.C R (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hx)))
     (mtimes_outer out.D U (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hu))))
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

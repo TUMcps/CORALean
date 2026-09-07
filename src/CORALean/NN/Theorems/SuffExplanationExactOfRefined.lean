@@ -33,11 +33,11 @@ image is not an enclosure, so `image_subset` composes in one direction only
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
-open ContSet OfInterval
+open ContSet Real.OfInterval
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OfInterval S] {n m : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real.OfInterval S] {n m : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -53,7 +53,7 @@ theorem suffExplanationExact_of_refined (nnAbs : NeuralNetwork S n m)
     IsSuffExplanationExact S f x ε E l :=
   (Specification.unsafeSet (misclassified m l)).holds_of_outer hrefine hsuffAbs
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

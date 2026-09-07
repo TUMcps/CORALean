@@ -31,9 +31,9 @@ two boxes; and reshape `Reindex` alone, whose guarantee is an equality.
 Precision is decided in three places: a `Relaxation` (`ReLU`, `Sigmoid`, `Tanh`), a pooled window's
 pivot, and `Softmax`'s box; everything else is exact at a representation closed under what it uses.
 
-Only the layers sit in two arithmetic layers. Everything outside `Layers/` is already
-indifferent to the scalar — `Layer` is a structure over any `ContSet` whose ambient type is
-`Vec ℝ n`, so the graph and its induction run over a float representation unchanged, and
-`Float/` holds the layer constructors alone. `RefinableLayer` and `RefinableNetwork` are that
-graph with an order per neuron still to choose, which `Schedule` reads and refines.
+Only the layers sit in an arithmetic layer's namespace. Everything outside `Layers/` and
+`Graph/` is indifferent to the scalar and sits in `CORALean` — `Layer` stores `enclose` and
+nothing real, so the graph and its induction run over a float representation unchanged, and
+`Layers/` and `Float/Layers/` hold the constructors alone. `RefinableLayer` and
+`RefinableNetwork` are that graph with an order per neuron still to choose, read by `Schedule`.
 -/

@@ -1,5 +1,5 @@
-import CORALean.ContSet.HPolytope.Float.Operations.And
-import CORALean.ContSet.HPolytope.Float.Operations.MemAndIff
+import CORALean.ContSet.HPolytope.Float.Operations.Intersection
+import CORALean.ContSet.HPolytope.Float.Operations.MemIntersectionIff
 import CORALean.ContSet.HPolytope.Float.Operations.Ineqs
 import CORALean.ContSet.HPolytope.Float.Operations.MemIneqsIff
 
@@ -59,7 +59,7 @@ theorem negIdentityMat_mulVec (x : Vec ℝ n) (i : Fin n) :
     exact absurd (Finset.mem_univ i) hc
 
 def Interval.hPolytope (I : Interval 𝕋 n) : HPolytope 𝕋 n :=
-  (HPolytope.ineqs (identityMat 𝕋 n) I.sup).and
+  (HPolytope.ineqs (identityMat 𝕋 n) I.sup).intersection
     (HPolytope.ineqs (negIdentityMat 𝕋 n) fun j => neg (I.inf j))
 
 
@@ -70,7 +70,7 @@ theorem Interval.hPolytope_exact (I : Interval 𝕋 n) :
     (Interval.hPolytope I).construct = I.construct := by -- --- PROOF ---
   ext x
   simp only [Interval.hPolytope]
-  rw [HPolytope.mem_and_iff, HPolytope.mem_ineqs_iff, HPolytope.mem_ineqs_iff]
+  rw [HPolytope.mem_intersection_iff, HPolytope.mem_ineqs_iff, HPolytope.mem_ineqs_iff]
   constructor
   · rintro ⟨hup, hlo⟩ j
     have h₁ : x j ≤ toReal (I.sup j) := by rw [← identityMat_mulVec (𝕋 := 𝕋) x j]; exact hup j

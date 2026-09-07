@@ -30,8 +30,9 @@ abstraction error, and `hρ` is strict for the reason `confined_of_ball` is.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix ContSet Scalar NormedSpace Plus Mtimes OfInterval
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
@@ -93,7 +94,7 @@ theorem NonlinearSys.Trajectory.confinement_of_subset [Mtimes ℐ S]
       (hM i hiN) (by rw [show ((i : ℝ) + 1) * Δt - (i : ℝ) * Δt = Δt from by ring]; exact hρ)
       (hsub i hiN _ hstart)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

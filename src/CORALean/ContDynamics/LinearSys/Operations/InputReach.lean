@@ -23,7 +23,7 @@ norm — or the terms will not match.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar NormedSpace MeasureTheory intervalIntegral
 
@@ -46,7 +46,7 @@ noncomputable def LinearSys.inputReach (sys : LinearSys 𝕋 n) (U : S n) (τ : 
       AEStronglyMeasurable u (volume.restrict (Set.Icc 0 τ)) ∧
       y = ∫ s in (0:ℝ)..τ, exp ((τ - s) • toRealMat sys.A) *ᵥ u s}
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

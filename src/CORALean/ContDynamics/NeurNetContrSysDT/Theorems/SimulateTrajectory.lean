@@ -18,7 +18,7 @@ run is determined by its initial state alone, with nothing for `input` to say.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar
 
@@ -35,7 +35,7 @@ theorem NeurNetContrSysDT.simulate_trajectory (sys : NeurNetContrSysDT 𝕋 S n)
   init := hx₀
   step _ := rfl
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

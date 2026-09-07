@@ -22,7 +22,7 @@ duplicated into each.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 variable {m : ℕ}
 
@@ -45,7 +45,7 @@ theorem disjoint_misclassified_of_bounds {O : Set (Vec ℝ m)} (l : Fin m)
   rw [aux_marginDir_apply] at hb
   linarith [h j hj]
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

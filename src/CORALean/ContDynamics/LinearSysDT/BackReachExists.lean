@@ -29,7 +29,7 @@ No `reduce` in the loop, where `backReachForall` had nothing for one to bound:
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar Plus Mtimes
 
@@ -47,7 +47,7 @@ def LinearSysDT.backReachExists (sys : LinearSysDT 𝕋 n) (Ainv : Mat 𝕋 n n)
   | 0 => T
   | k + 1 => mtimes Ainv (plus (sys.backReachExists Ainv T negU k) negU)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

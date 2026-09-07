@@ -9,7 +9,7 @@ intersection, exactly — the representation §3.5.5 introduces because a
 zonotope is not closed under intersection.
 
 The specification in `Real`, and in `Float` the same family at float zonotopes.
-Nothing rounds at the bundle level: `and` appends and `reduce` forgets, while
+Nothing rounds at the bundle level: `intersection` appends and `reduce` forgets, while
 `plus`, `linComb` and `mtimes` hand each member to its own float operation, so
 every error box in sight is a member's.
 

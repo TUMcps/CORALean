@@ -90,7 +90,7 @@ def LayerRelaxation.box (P : LayerRelaxation 𝕋 n m) (I : Interval 𝕋 n) : I
 /-- The activation layer of a polynomial relaxation: `dependent` first, then
 each neuron's fit on the set, then the residual box. -/
 def Layer.activationPoly (P : LayerRelaxation 𝕋 n m) :
-    Real.Layer (PolyZonotope 𝕋) n n where
+    Layer (PolyZonotope 𝕋) n n where
   enclose s := plus (s.dependent.evalPoly (P.coeffList s.interval))
     (Interval.polyZonotope (P.box s.interval))
 

@@ -19,7 +19,7 @@ runs here is a set of initial states, and the enclosure is still loose,
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar
 
@@ -38,7 +38,7 @@ theorem NeurNetContrSysDT.trajectory_iterate (sys : NeurNetContrSysDT 𝕋 S n)
   init := hx₀
   step k := Function.iterate_succ_apply' (sys.map π) k x₀
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -21,7 +21,7 @@ is that constant.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix Scalar
 
@@ -34,9 +34,9 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 applied to that one vector. -/
 noncomputable def LinearSys.stepInputConst (sys : LinearSys 𝕋 n) (c : Vec ℝ n) (Δt : ℝ) :
     Vec ℝ n :=
-  MatExp.expIntegral (toRealMat sys.A) Δt *ᵥ c
+  Real.MatExp.expIntegral (toRealMat sys.A) Δt *ᵥ c
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

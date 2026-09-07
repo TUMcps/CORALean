@@ -24,8 +24,9 @@ region to be conservative over.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix ContSet Scalar NormedSpace Plus Mtimes OfInterval
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
@@ -71,7 +72,7 @@ theorem NonlinearSys.reachSet_subset_relinTimeInterval_of_subset (sys : Nonlinea
       hRconv hRclosed hRbdd hM₀ hM hρ ho hsub)
     q hε hconv hclosed hbdd h0 hRconv hRclosed hRbdd ho i hi ht
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

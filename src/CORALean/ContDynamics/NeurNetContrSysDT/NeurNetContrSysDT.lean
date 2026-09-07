@@ -30,7 +30,7 @@ is no input set and no free input, so a run is the orbit of `map` from a point o
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar
 
@@ -59,7 +59,7 @@ structure NeurNetContrSysDT.Trajectory (sys : NeurNetContrSysDT 𝕋 S n)
   init : x 0 ∈ construct R₀
   step (k : ℕ) : x (k + 1) = toRealMat sys.plant.A *ᵥ x k + π (x k)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

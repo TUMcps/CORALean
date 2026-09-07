@@ -14,9 +14,9 @@ are counted because none of them builds a constraint: the first two carry `P`
 over as the field it already is, and `reduce` drops to the enclosing zonotope
 and reduces that, so its count is `Zonotope`'s.
 
-`plus`, `and`, `linComb` and `mtimesIntervalMat` are **not** counted, and not
+`plus`, `intersection`, `linComb` and `mtimesIntervalMat` are **not** counted, and not
 because the work is hard to read off. `HPolytope` stores a row as a linear
-functional `α →ₗ[ℝ] ℝ`, so what `comap`, `and` and `halfScaled` cost depends on
+functional `α →ₗ[ℝ] ℝ`, so what `comap`, `intersection` and `halfScaled` cost depends on
 whether a row is a dense vector or a composition held unevaluated — which the
 definition does not fix and this model cannot guess. A number here would be a
 guess presented as a bound, and would compose into every algorithm over

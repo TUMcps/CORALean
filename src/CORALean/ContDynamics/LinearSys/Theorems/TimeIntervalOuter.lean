@@ -23,8 +23,9 @@ integral, which is `TrajectoryTimeIntervalOuter`.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix Pointwise ContSet Scalar NormedSpace
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
@@ -71,7 +72,7 @@ theorem LinearSys.timeIntervalStep_outer (sys : LinearSys 𝕋 n) {r : ℝ} (hr 
       (MatExp.expDiff_mem_correctionMatrix A hr hε ht0 htr)
       (Set.mem_image_of_mem _ hx₀))
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

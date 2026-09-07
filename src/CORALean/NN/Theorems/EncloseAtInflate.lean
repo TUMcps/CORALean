@@ -28,7 +28,7 @@ would be the one case the statement is easiest in.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Pointwise ContSet
 
@@ -127,7 +127,7 @@ theorem RefinableNetwork.exists_schedule_encloseAt_subset :
     rw [aux_encloseAt_cons]
     exact aux_subset_inflate_trans himg hsch (by linarith)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

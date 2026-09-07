@@ -24,7 +24,7 @@ domain restricts to this one.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet Scalar
 
@@ -45,7 +45,7 @@ theorem Location.Trajectory.linearSys {ℓ : Location S G L 𝕋 n} {τ : ℝ}
   input := traj.input
   flow := traj.flow
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

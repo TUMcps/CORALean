@@ -28,7 +28,7 @@ make the two types mutually recursive for no gain.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix Scalar
 
@@ -47,7 +47,7 @@ structure Transition (G : ℕ → Type) (L : Type) (𝕋 : Type) (n : ℕ) where
 def Transition.reset (e : Transition G L 𝕋 n) (x : Vec ℝ n) : Vec ℝ n :=
   toRealMat e.W *ᵥ x + toRealVec e.w
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

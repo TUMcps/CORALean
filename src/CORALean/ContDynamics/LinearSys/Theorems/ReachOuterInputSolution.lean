@@ -17,8 +17,9 @@ input is left to the caller beyond the properties of `U` itself.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix ContSet Scalar
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
@@ -48,7 +49,7 @@ theorem LinearSys.Trajectory.reach_outer_inputSolution [Mtimes ℐ S]
   LinearSysDT.reach_outer _ ho R₀ _
     (traj.discretize_inputSolution hΔt hT η hε hconv hclosed hbdd hRconv hRclosed hRbdd) k
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

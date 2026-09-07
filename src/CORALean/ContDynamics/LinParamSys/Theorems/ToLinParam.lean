@@ -20,7 +20,7 @@ not only the point-matrix one. The trajectory correspondence is
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar
 
@@ -34,7 +34,7 @@ variable {𝕄 : ℕ → ℕ → Type} [∀ m n, ContSet (𝕄 m n) (Mat ℝ m n
 def LinearSys.toLinParam (sys : LinearSys 𝕋 n) : LinParamSys 𝕄 n :=
   ⟨OfPoint.ofPoint (toRealMat sys.A)⟩
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

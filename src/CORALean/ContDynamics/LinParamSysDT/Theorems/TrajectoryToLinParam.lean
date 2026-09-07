@@ -17,7 +17,7 @@ membership `rfl`.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar
 
@@ -34,7 +34,7 @@ theorem LinearSysDT.Trajectory.toLinParam {sys : LinearSysDT 𝕋 n} {R₀ U : S
   input := traj.input
   step k := ⟨toRealMat sys.A, rfl, traj.step k⟩
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

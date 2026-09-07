@@ -6,8 +6,8 @@ import CORALean.ContSet.Zonotope.Real.Instances
 # Two zonotopes whose intersection is not one, bundled exactly
 
 A box and a diamond centred off it: their intersection has no centre of
-symmetry, so no `Zonotope` denotes it, where `ZonoBundle.and_exact` denotes it
-outright — `and`, not merely `and_outer`. `Plus` and `Mtimes` still run at a
+symmetry, so no `Zonotope` denotes it, where `ZonoBundle.intersection_exact` denotes it
+outright — `intersection`, not merely `intersection_outer`. `Plus` and `Mtimes` still run at a
 bundle exactly as at any other `ContSet`, which is the second point: a bundle
 pays for its exact intersection with nothing else.
 
@@ -46,16 +46,16 @@ noncomputable def Example.diamondBundle : ZonoBundle (Vec ℝ 2) := ⟨1, fun _ 
 /-- Exact, where a single zonotope holding the box and the diamond could only
 have enclosed. -/
 example :
-    (Example.boxBundle.and Example.diamondBundle).construct
+    (Example.boxBundle.intersection Example.diamondBundle).construct
       = Example.boxBundle.construct ∩ Example.diamondBundle.construct :=
-  ZonoBundle.and_exact Example.boxBundle Example.diamondBundle
+  ZonoBundle.intersection_exact Example.boxBundle Example.diamondBundle
 
-/-- The same fact, read through the generic `And` class rather than the bundle's
+/-- The same fact, read through the generic `Intersection` class rather than the bundle's
 own theorem: no use site needs to know it is exact to call it. -/
 example :
     construct Example.boxBundle ∩ construct Example.diamondBundle
-      ⊆ construct (And.and Example.boxBundle Example.diamondBundle) :=
-  And.and_outer Example.boxBundle Example.diamondBundle
+      ⊆ construct (Intersection.intersection Example.boxBundle Example.diamondBundle) :=
+  Intersection.intersection_outer Example.boxBundle Example.diamondBundle
 
 /-- `plus`, at a bundle like at any other representation. -/
 example :

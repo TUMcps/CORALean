@@ -7,7 +7,7 @@ Shifting by a point: every bound moves by what its own constraint reads off the
 shift, and the constraint matrix is untouched.
 
 Exact, and the case `comap` cannot reach — `comap` precomposes with a *linear*
-map, and a translation is affine. Composed with `and` this is CORA's `plus`
+map, and a translation is affine. Composed with `intersection` this is CORA's `plus`
 against a single point, which is the one Minkowski sum a halfspace description
 can take without enumerating vertices.
 -/

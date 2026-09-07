@@ -33,9 +33,9 @@ but not the same term.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
-open Matrix PolyZonotope
+open Matrix Real.PolyZonotope
 
 variable {n m : ℕ}
 
@@ -45,8 +45,8 @@ variable {n m : ℕ}
 /-- The certificate at a re-parametrized factor: the same substitution on both
 sets, and `W` unchanged. -/
 theorem PolyAbstractionError.getSubset {f : Vec ℝ n → Vec ℝ m → Vec ℝ n} {A : Mat ℝ n n}
-    {B : Mat ℝ n m} {xs : Vec ℝ n} {us : Vec ℝ m} {pZ : PolyZonotope (Vec ℝ n)}
-    {Ba : Set (Fin pZ.p → ℝ)} {U : Set (Vec ℝ m)} {L W : PolyZonotope (Vec ℝ n)}
+    {B : Mat ℝ n m} {xs : Vec ℝ n} {us : Vec ℝ m} {pZ : Real.PolyZonotope (Vec ℝ n)}
+    {Ba : Set (Fin pZ.p → ℝ)} {U : Set (Vec ℝ m)} {L W : Real.PolyZonotope (Vec ℝ n)}
     {hp : L.p = pZ.p} (cert : PolyAbstractionError f A B xs us pZ Ba U L hp W)
     (k : Fin pZ.p) (cen rad : ℝ) {Ba' : Set (Fin (pZ.getSubset k cen rad).p → ℝ)}
     (hBa' : ∀ b ∈ Ba', Function.update b k (cen + rad * b k) ∈ Ba) :
@@ -67,8 +67,8 @@ theorem PolyAbstractionError.getSubset {f : Vec ℝ n → Vec ℝ m → Vec ℝ 
             intro h
             exact hj (Fin.val_inj.mp (by simpa using congrArg Fin.val h))
           rw [Function.update_of_ne hj, hne]
-    rw [PolyZonotope.getSubset_point pZ k cen rad b,
-      PolyZonotope.getSubset_point L (Fin.cast hp.symm k) cen rad _]
+    rw [Real.PolyZonotope.getSubset_point pZ k cen rad b,
+      Real.PolyZonotope.getSubset_point L (Fin.cast hp.symm k) cen rad _]
     -- back into `L.p` and `pZ.p`, where `hupd` and the certificate are both stated
     show f (pZ.point (Function.update b k (cen + rad * b k))) u
         - (f xs us + A *ᵥ (pZ.point (Function.update b k (cen + rad * b k)) - xs)
@@ -78,7 +78,7 @@ theorem PolyAbstractionError.getSubset {f : Vec ℝ n → Vec ℝ m → Vec ℝ 
     rw [hupd]
     exact cert.encloses _ (hBa' b hb) u hu
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

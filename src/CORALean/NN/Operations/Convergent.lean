@@ -17,7 +17,7 @@ to relate to `construct`, or to prove complete.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Pointwise ContSet
 
@@ -32,7 +32,7 @@ def RefinableLayer.Convergent (L : RefinableLayer S n m) : Prop :=
     ∃ t : OrderPattern n,
       construct (L.enclose t s) ⊆ L.eval '' construct s + Metric.closedBall 0 ε
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

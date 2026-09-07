@@ -17,7 +17,9 @@ independent of `k`, and `reach_order_le`'s `o * n` is still the bound behind it.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
+
+open CORALean.Real
 
 variable {n : ℕ} {𝕄 : ℕ → ℕ → Type} [∀ m n, ContSet (𝕄 m n) (Mat ℝ m n)] [Mtimes 𝕄 𝒵]
 
@@ -33,7 +35,7 @@ theorem LinParamSysDT.reach_h_isBigO (sys : LinParamSysDT 𝕄 n) {o : ℕ} (ho 
   rw [Real.norm_of_nonneg (by positivity), Real.norm_of_nonneg (by positivity), mul_one]
   exact_mod_cast sys.reach_order_le ho R₀ U k
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -18,7 +18,7 @@ not provide.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -37,7 +37,7 @@ theorem NonlinearSys.Trajectory.toNonlinParam {sys : NonlinearSys n m} {T : Set 
   param _ _ := hP.choose_spec
   flow := traj.flow
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -16,7 +16,7 @@ reading `toRealMat sys.A` straight off the equation.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix Pointwise ContSet Plus Reduce Mtimes
 
@@ -43,7 +43,7 @@ theorem LinParamSysDT.reach_outer_on (sys : LinParamSysDT 𝕄 n) {o : ℕ} (ho 
     rw [hstep]
     exact sys.reach_one_outer ho _ _ hA (ih hkK.le) (traj.input k hkK)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

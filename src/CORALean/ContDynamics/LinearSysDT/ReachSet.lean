@@ -24,7 +24,7 @@ puts it inside `reach`, and `ReachSetBound` propagates a bound along it.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix Pointwise ContSet Scalar
 
@@ -40,7 +40,7 @@ def LinearSysDT.reachSet (sys : LinearSysDT 𝕋 n) (R₀ U : S n) : ℕ → Set
   | 0 => construct R₀
   | k + 1 => mulVecLin (toRealMat sys.A) '' sys.reachSet R₀ U k + construct U
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -116,7 +116,7 @@ places them. -/
 def Relaxation.slopeMat (R : Relaxation 𝕋) (I : Interval 𝕋 n) : Mat 𝕋 n n :=
   diagonalBlock fun i => R.slope (I.inf i) (I.sup i)
 
-def Layer.activation (R : Relaxation 𝕋) : Real.Layer S n n where
+def Layer.activation (R : Relaxation 𝕋) : Layer S n n where
   enclose s := plus (mtimes (R.slopeMat (interval s)) s) (ofInterval (R.box (interval s)))
 
 /-- `σ` coordinatewise is what the layer encloses, which is where `σ` first

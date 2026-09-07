@@ -27,7 +27,7 @@ and `ReachSetSubsetTimeIntervalInputSolution` put it inside what is computed.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar
 
@@ -43,7 +43,7 @@ def LinearSys.reachSet (sys : LinearSys 𝕋 n) (T : Set ℝ) (R₀ U : S n) (t 
     Set (Vec ℝ n) :=
   {y | ∃ x u : ℝ → Vec ℝ n, sys.Trajectory T R₀ U x u ∧ x t = y}
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

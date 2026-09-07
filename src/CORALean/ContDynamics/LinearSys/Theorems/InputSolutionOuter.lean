@@ -32,8 +32,9 @@ extend it to all of `[0,r]`.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix ContSet Scalar NormedSpace MeasureTheory Pointwise
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
@@ -102,8 +103,8 @@ theorem aux_remainder_entry_le (A : Mat ℝ n n) {r τ : ℝ} (η : ℕ) (hr : 0
     calc ‖τ • A‖ / ((η : ℝ) + 2) ≤ ‖r • A‖ / ((η : ℝ) + 2) := by gcongr
       _ < 1 := hε
   calc |(exp (τ • A) - MatExp.expTaylor (τ • A) η) j k|
-      ≤ ‖exp (τ • A) - MatExp.expTaylor (τ • A) η‖ := abs_entry_le_norm _ j k
-    _ ≤ MatExp.expRemainderBound (τ • A) η := norm_exp_sub_expTaylor_le _ η hετ
+      ≤ ‖exp (τ • A) - MatExp.expTaylor (τ • A) η‖ := Real.abs_entry_le_norm _ j k
+    _ ≤ MatExp.expRemainderBound (τ • A) η := Real.norm_exp_sub_expTaylor_le _ η hετ
     _ ≤ MatExp.expRemainderBound (r • A) η :=
         MatExp.expRemainderBound_mono η hnorm hε
 
@@ -304,7 +305,7 @@ theorem LinearSys.inputSolution_outer [Mtimes ℐ S]
   exact Plus.plus_outer _ _ (Set.add_mem_add
     (sys.aux_inputTaylorSum_outer r U _ η hterm) hrem)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

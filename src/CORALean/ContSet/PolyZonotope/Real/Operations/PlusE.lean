@@ -4,7 +4,7 @@ import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 # The exponent matrix `plus` assembles
 
 Split out of `Plus.lean` (issue #62): built again by `dependent` and `linComb`
-in this directory, and by `ConPolyZono`'s own `plus`, `and` and `dependent`,
+in this directory, and by `ConPolyZono`'s own `plus`, `intersection` and `dependent`,
 all outside this file.
 
 Two exponent matrices side by side, block-diagonally: neither set's factors

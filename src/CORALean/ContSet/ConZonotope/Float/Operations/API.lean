@@ -12,5 +12,5 @@ unit box by the interpolation parameter; halving is exact, so the only rounding
 is the centre's and the centre generator's. `reduce` goes through the enclosing
 zonotope and gives the constraints up, as it does over ℝ.
 
-`mtimes` and `and` are not here yet — see this directory's `API` for why.
+`mtimes` and `intersection` are not here yet — see this directory's `API` for why.
 -/

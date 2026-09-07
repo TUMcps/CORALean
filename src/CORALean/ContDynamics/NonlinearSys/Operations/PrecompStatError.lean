@@ -27,7 +27,7 @@ first, which is exact and empties the independent block.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix
 
@@ -38,11 +38,11 @@ variable {n : ℕ}
 
 /-- The second-order term of the expansion at `xs`, as a polynomial zonotope
 over `pZ`'s own factors. -/
-def precompStatError (Q : Fin n → Mat ℝ n n) (xs : Vec ℝ n) (pZ : PolyZonotope (Vec ℝ n)) :
-    PolyZonotope (Vec ℝ n) :=
-  PolyZonotope.quadMapDep Q { pZ with c := pZ.c - xs }
+def precompStatError (Q : Fin n → Mat ℝ n n) (xs : Vec ℝ n) (pZ : Real.PolyZonotope (Vec ℝ n)) :
+    Real.PolyZonotope (Vec ℝ n) :=
+  Real.PolyZonotope.quadMapDep Q { pZ with c := pZ.c - xs }
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

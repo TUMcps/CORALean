@@ -27,8 +27,9 @@ is the division of labour the refinement loop assumes [1].
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix Pointwise ContSet
 
 variable {n m : ℕ}
@@ -37,11 +38,11 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Layer.linear_refinable_convergent (W : Mat ℝ m n) (b : Vec ℝ m) :
-    ((Layer.linear (S := 𝒫𝒵) W b).refinable
-      (Layer.linear_sound W b)).Convergent := by -- --- PROOF ---
+    ((Real.Layer.linear (S := 𝒫𝒵) W b).refinable
+      (Real.Layer.linear_sound W b)).Convergent := by -- --- PROOF ---
   intro s ε hε
   refine ⟨fun _ => 0, ?_⟩
-  show construct ((Layer.linear (S := 𝒫𝒵) W b).enclose s)
+  show construct ((Real.Layer.linear (S := 𝒫𝒵) W b).enclose s)
       ⊆ (fun x => W *ᵥ x + b) '' construct s + Metric.closedBall 0 ε
   rw [Layer.linear_exact]
   intro y hy
@@ -52,7 +53,7 @@ theorem Layer.linear_refinable_convergent (W : Mat ℝ m n) (b : Vec ℝ m) :
   have hmem := Set.add_mem_add hy h0
   rwa [add_zero] at hmem
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

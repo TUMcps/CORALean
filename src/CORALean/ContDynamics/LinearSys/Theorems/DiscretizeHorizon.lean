@@ -18,7 +18,7 @@ without asking for all of forward time.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar
 
@@ -39,7 +39,7 @@ theorem LinearSys.Trajectory.discretize_horizon {sys : LinearSys 𝕋 n} {T : Se
   input k hk := hUd k hk
   step k hk := by simpa using traj.discretize_step hΔt hU k (step_subset_horizon hΔt hT hk)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

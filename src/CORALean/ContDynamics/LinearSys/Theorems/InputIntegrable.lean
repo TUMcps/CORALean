@@ -26,7 +26,7 @@ enough, the missing point being null.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar NormedSpace MeasureTheory
 
@@ -94,7 +94,7 @@ theorem LinearSys.Trajectory.intervalIntegrable_input {sys : LinearSys 𝕋 n} {
     _ ≤ CE * CU := mul_le_mul (hCE s ⟨hs.1.le, hs.2⟩)
         (hCU _ (traj.input s (hT ⟨hs.1.le, hs.2⟩))) (norm_nonneg _) hCE0
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

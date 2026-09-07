@@ -3,7 +3,7 @@ import CORALean.NN.Layers.Sigmoid
 /-!
 # The sigmoid is nonexpansive
 
-`abs_sigmoidDeriv_le_one` is already there — `σ' = σ · σ (-·)` is a product of
+`Real.abs_sigmoidDeriv_le_one` is already there — `σ' = σ · σ (-·)` is a product of
 two numbers in `(0, 1)` — and the mean value theorem turns a derivative bound
 into a Lipschitz bound on all of ℝ, the domain being convex.
 
@@ -20,20 +20,20 @@ without a second argument about where `σ'` is maximal.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem lipschitzWith_sigmoid : LipschitzWith 1 sigmoid := by -- --- PROOF ---
+theorem lipschitzWith_sigmoid : LipschitzWith 1 Real.sigmoid := by -- --- PROOF ---
   refine lipschitzWith_of_nnnorm_deriv_le
-    (fun t => (hasDerivAt_sigmoid t).differentiableAt) fun t => ?_
+    (fun t => (Real.hasDerivAt_sigmoid t).differentiableAt) fun t => ?_
   -- the derivative is named, so the bound is the one already proved of it
-  rw [(hasDerivAt_sigmoid t).deriv, ← NNReal.coe_le_coe, coe_nnnorm, NNReal.coe_one,
+  rw [(Real.hasDerivAt_sigmoid t).deriv, ← NNReal.coe_le_coe, coe_nnnorm, NNReal.coe_one,
     Real.norm_eq_abs]
-  exact abs_sigmoidDeriv_le_one t
+  exact Real.abs_sigmoidDeriv_le_one t
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

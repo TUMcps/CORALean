@@ -16,7 +16,7 @@ one step at a time instead of asking for all of forward time.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -29,7 +29,7 @@ theorem step_subset_horizon {T : Set ℝ} {Δt : ℝ} {K k : ℕ} (hΔt : 0 ≤ 
   refine le_trans hs.2 (mul_le_mul_of_nonneg_right ?_ hΔt)
   exact_mod_cast Nat.succ_le_of_lt hk
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

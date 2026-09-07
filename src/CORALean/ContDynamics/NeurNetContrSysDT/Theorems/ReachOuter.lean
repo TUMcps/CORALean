@@ -29,7 +29,7 @@ reachable set rather than on one run.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar Plus Reduce Mtimes
 
@@ -52,7 +52,7 @@ theorem NeurNetContrSysDT.reach_outer (sys : NeurNetContrSysDT 𝕋 S n) {o : �
     rw [traj.step k]
     exact sys.plant.reach_one_outer ho _ _ ih (hπ.enclose_outer _ _ ih)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

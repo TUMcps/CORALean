@@ -10,7 +10,7 @@ import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 
 The zonotope's argument with one step added, and that step costs nothing: the
 concatenated coefficients satisfy the padded constraints exactly when each half
-satisfies its own, which is `mem_and_iff` composed with `blockLeft_append`. Only
+satisfies its own, which is `mem_intersection_iff` composed with `blockLeft_append`. Only
 the centre rounds, and its residual is what the box absorbs.
 -/
 
@@ -55,7 +55,7 @@ theorem ConZonotope.aux_plus_nominal (cZ₁ cZ₂ : ConZonotope 𝕋 n) :
     · rw [Fin.append_right]; exact hβ₂ l
   · -- through `mpr` rather than `rw`: the goal spells the count as
     -- `(cZ₁.plus cZ₂).h`, which is the padding lemma's `cZ₁.h + cZ₂.h` only up to defeq
-    refine HPolytope.mem_and_iff.mpr ⟨HPolytope.mem_padLeft_iff.mpr ?_,
+    refine HPolytope.mem_intersection_iff.mpr ⟨HPolytope.mem_padLeft_iff.mpr ?_,
       HPolytope.mem_padRight_iff.mpr ?_⟩
     · rw [blockLeft_append]; exact hP₁
     · rw [blockRight_append]; exact hP₂

@@ -16,8 +16,8 @@ other one.
 Rounding therefore has two channels. The centre and the generators have no
 slack, so theirs goes into the ambient error box; the constraint bounds do, `b`
 being an interval, so theirs goes into `b`, widened outward and hence enclosing.
-`plus` and `mtimes` copy the constraint block and pay nothing; `and` and
-`compact` need both at once. `and`'s agreement rows relate two nominal points as
+`plus` and `mtimes` copy the constraint block and pay nothing; `intersection` and
+`compact` need both at once. `intersection`'s agreement rows relate two nominal points as
 far apart as their error boxes allow, and the rounding of `c₂ - c₁` is added to
 that tolerance, downward on the low side and upward on the high.
 -/

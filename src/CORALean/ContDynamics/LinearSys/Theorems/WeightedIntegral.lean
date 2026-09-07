@@ -29,7 +29,7 @@ normalised integral wanted, normalised by the total weight.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open MeasureTheory Pointwise
 
@@ -107,7 +107,7 @@ theorem integral_pow_smul_mem {S : Set (Vec ℝ n)} (hconv : Convex ℝ S) (hclo
   have := Set.smul_mem_smul_set (a := r ^ (i + 1) / ((i : ℝ) + 1)) havg
   rwa [smul_inv_smul₀ hW0.ne'] at this
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

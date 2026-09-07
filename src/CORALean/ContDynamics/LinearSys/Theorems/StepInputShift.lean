@@ -17,7 +17,7 @@ the original clock while each step is proved on a clock starting at zero.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 
@@ -31,7 +31,7 @@ theorem LinearSys.stepInput_shift (sys : LinearSys 𝕋 n) (u : ℝ → Vec ℝ 
     sys.stepInput_eq_shifted u Δt k]
   simp only [Nat.cast_zero, zero_mul, zero_add]
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

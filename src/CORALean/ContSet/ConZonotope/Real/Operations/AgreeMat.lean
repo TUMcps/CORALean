@@ -4,7 +4,7 @@ import CORALean.ContSet.ConZonotope.Real.ConZonotope
 # `ConZonotope.agreeMat`
 
 The rows pinning the two points together, one per coordinate: the one
-constraint `and` adds that reads both generator blocks at once.
+constraint `intersection` adds that reads both generator blocks at once.
 -/
 
 -- Authors:       Tobias Ladner

@@ -27,8 +27,9 @@ so the conclusion is `Set` inclusion and no operation class answers for it.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix ContSet Scalar NormedSpace Plus Mtimes OfInterval
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
@@ -69,7 +70,7 @@ theorem NonlinearSys.reachSet_confinement_of_subset [Mtimes ℐ S] (sys : Nonlin
   exact traj.confinement_of_subset hΔt hT η hε hconv hclosed hbdd hRconv hRclosed hRbdd
     hM₀ hM hρ ho hsub i hi t ht
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

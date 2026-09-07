@@ -16,7 +16,7 @@ directly off `enclose_outer`, with no `Specification` in sight.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -31,7 +31,7 @@ theorem NeuralNetwork.not_mem_unsafeSet {nn : NeuralNetwork S n m} {f : Vec ℝ 
     {x : Vec ℝ n} (hx : x ∈ construct X) : f x ∉ unsafe' :=
   Set.disjoint_left.mp h (hf.enclose_outer X x hx)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

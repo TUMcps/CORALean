@@ -22,7 +22,7 @@ ask for the window they speak about.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -40,7 +40,7 @@ theorem NonlinearSys.Trajectory.reachSet_outer {sys : NonlinearSys n m} {T : Set
     x t ∈ sys.reachSet T R₀ U t :=
   ⟨x, u, traj, rfl⟩
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

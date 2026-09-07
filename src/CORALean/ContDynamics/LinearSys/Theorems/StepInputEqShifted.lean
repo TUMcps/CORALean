@@ -22,7 +22,7 @@ file makes the same one as everything else reasoning about `stepInput` — the
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix Scalar NormedSpace MeasureTheory
 
@@ -48,7 +48,7 @@ theorem LinearSys.stepInput_eq_shifted (sys : LinearSys 𝕋 n) (u : ℝ → Vec
   rw [LinearSys.stepInput, hsplit]
   exact key.symm
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

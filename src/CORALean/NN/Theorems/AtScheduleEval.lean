@@ -21,7 +21,7 @@ is what `NeuralNetwork.Sound.enclose_outer` then answers from.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -38,7 +38,7 @@ theorem RefinableNetwork.atSchedule_sound : ∀ {n m : ℕ} (rn : RefinableNetwo
       .cons (L.atPattern_sound (Schedule.head sch _))
         (rest.atSchedule_sound (Schedule.tail sch)) fun _ => rfl
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

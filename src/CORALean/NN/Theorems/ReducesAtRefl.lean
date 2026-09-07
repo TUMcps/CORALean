@@ -17,10 +17,10 @@ different claim: taking `nn' = nn` — no `merge` step anywhere — is one of th
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
-  [Mtimes (Mat ℝ) S] [IntervalOuter S] [OfInterval S]
+  [Mtimes (Mat ℝ) S] [Real.IntervalOuter S] [Real.OfInterval S]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -32,7 +32,7 @@ theorem NeuralNetwork.ReducesAt.refl : ∀ {n m : ℕ} {s : S n} {nn : NeuralNet
   | _, _, s, _, _, .cons hL hrest hcomp =>
       .keep s _ hL hcomp (NeuralNetwork.ReducesAt.refl hrest)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

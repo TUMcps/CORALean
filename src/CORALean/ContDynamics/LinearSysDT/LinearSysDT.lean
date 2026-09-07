@@ -34,7 +34,7 @@ produces it and `reach_outer_horizon` consumes it. No `bound` field on
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar
 
@@ -70,7 +70,7 @@ structure LinearSysDT.HeldTrajectory (sys : LinearSysDT 𝕋 n) (R₀ U : S n)
   input : u ∈ construct U
   step (k : ℕ) : x (k + 1) = toRealMat sys.A *ᵥ x k + u
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

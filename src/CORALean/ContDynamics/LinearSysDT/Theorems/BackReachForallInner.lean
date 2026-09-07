@@ -26,7 +26,7 @@ anywhere else. `Zonotope` supplies `hinv` and `hdiff` both — see
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar Mtimes
 
@@ -66,7 +66,7 @@ theorem LinearSysDT.backReachForall_inner (sys : LinearSysDT 𝕋 n) {Ainv : Mat
     rw [hAy]
     exact ih B hB (hdiff B U D hD hy w hw)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

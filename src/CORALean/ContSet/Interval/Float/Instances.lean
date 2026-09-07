@@ -1,6 +1,6 @@
 import CORALean.ContSet.ContSet.CompactSet
 import CORALean.ContSet.ContSet.ConvexSet
-import CORALean.ContSet.Interval.Float.Operations.AndExact
+import CORALean.ContSet.Interval.Float.Operations.IntersectionExact
 import CORALean.ContSet.Interval.Float.Theorems.LinCombOuter
 import CORALean.ContSet.Interval.Float.Theorems.MinkDiffInner
 import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
@@ -16,7 +16,7 @@ The same obligations the exact layer discharges, since a float interval denotes 
 set of real points just as an exact one does; only the scalar the operations run
 in differs. `ConvexSet` and `CompactSet` cost no float proof: `construct` is
 `nominal.construct` by definition, so the exact layer's theorems apply to
-`I.nominal` unchanged. `And` is exact here too, nothing rounding.
+`I.nominal` unchanged. `Intersection` is exact here too, nothing rounding.
 
 `reduce` gives up no order, as over ℝ: an interval has none to give up. No
 `OfPoint`: it would round a real point into `𝕋`, an operation this layer lacks.
@@ -62,9 +62,9 @@ instance : MinkDiff (Interval 𝕋 n) (Vec ℝ n) where
     rw [Interval.materialise_eq]
     exact Interval.minkDiff_inner I₁ I₂
 
-instance : And (Interval 𝕋 n) (Vec ℝ n) where
-  and := Interval.and
-  and_outer I₁ I₂ := (Interval.and_exact I₁ I₂).symm.subset
+instance : Intersection (Interval 𝕋 n) (Vec ℝ n) where
+  intersection := Interval.intersection
+  intersection_outer I₁ I₂ := (Interval.intersection_exact I₁ I₂).symm.subset
 
 instance : LinComb (Interval 𝕋 n) (Vec ℝ n) where
   linComb I₁ I₂ := (Interval.linComb I₁ I₂).materialise

@@ -1,4 +1,4 @@
-import CORALean.ContSet.ZonoBundle.Float.Operations.And
+import CORALean.ContSet.ZonoBundle.Float.Operations.Intersection
 import CORALean.ContSet.ZonoBundle.Float.Operations.Plus
 import CORALean.ContSet.ZonoBundle.Float.Operations.LinComb
 import CORALean.ContSet.ZonoBundle.Float.Operations.Mtimes
@@ -9,7 +9,7 @@ import CORALean.ContSet.ZonoBundle.Float.Operations.SupportBound
 /-!
 # What a float zonotope bundle computes, collected
 
-`and`, exact and the whole point of the representation; `plus`, `linComb` and
+`intersection`, exact and the whole point of the representation; `plus`, `linComb` and
 `mtimes`, enclosures over the family that leave each member's rounding in that
 member's own error box; `reindex`, which does no arithmetic at all; and
 `reduce`, which forgets members rather than absorbing them; and `supportBound`,

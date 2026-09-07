@@ -8,7 +8,7 @@ import CORALean.NN.Theorems.NeuronMergingOuter
 because those are the three it changes. A merge is applied at a layer *inside* a
 network, though, and this is that statement: the same sandwich between an
 arbitrary prefix and an arbitrary suffix, which is the containment
-`NeuralNetwork.suffExplanation_of_abstract` [2] takes as its hypothesis.
+`suffExplanation_of_abstract` [2] takes as its hypothesis.
 
 Neither side of the sandwich is assumed anything of. The prefix contributes only
 its own enclosure, which every network has, and so the bounds `Y` are asked for
@@ -25,7 +25,7 @@ instances of this theorem.
 
 * [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for
       Formal Verification". TMLR. arXiv:2305.01932.
-* [2] `CORALean.Real.NeuralNetwork.suffExplanation_of_abstract`.
+* [2] `CORALean.suffExplanation_of_abstract`.
 -/
 
 -- Authors:       Tobias Ladner
@@ -36,12 +36,12 @@ instances of this theorem.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
-open Matrix ContSet Plus Mtimes IntervalOuter OfInterval
+open Matrix ContSet Plus Mtimes Real.IntervalOuter Real.OfInterval
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
-  [Mtimes (Mat ℝ) S] [IntervalOuter S] [OfInterval S]
+  [Mtimes (Mat ℝ) S] [Real.IntervalOuter S] [Real.OfInterval S]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -52,18 +52,18 @@ bound the nonlinear layer over what `pre` reaches. -/
 theorem neuronMerging_network_outer {n₀ n₁ n n₂ n₃ d r : ℕ}
     (pre : NeuralNetwork S n₀ n₁) (post : NeuralNetwork S n₂ n₃)
     (part : Split (Fin n) into (Fin d) ⊕ (Fin r))
-    (W0 : Mat ℝ n n₁) (b0 : Vec ℝ n) {σ : ℝ → ℝ} (R : Relaxation σ)
-    (W1 : Mat ℝ n₂ n) (b1 : Vec ℝ n₂) (Y : Interval (Vec ℝ n)) (X : S n₀)
+    (W0 : Mat ℝ n n₁) (b0 : Vec ℝ n) {σ : ℝ → ℝ} (R : Real.Relaxation σ)
+    (W1 : Mat ℝ n₂ n) (b1 : Vec ℝ n₂) (Y : Real.Interval (Vec ℝ n)) (X : S n₀)
     {fpre : Vec ℝ n₀ → Vec ℝ n₁} (hpre : pre.Sound fpre)
     {fpost : Vec ℝ n₂ → Vec ℝ n₃} (hpost : post.Sound fpost)
     (hY : ∀ x ∈ construct (pre.enclose X),
       (fun i => σ ((W0 *ᵥ x + b0) i)) ∈ construct Y) :
     (fun x => fpost (W1 *ᵥ (fun i => σ ((W0 *ᵥ fpre x + b0) i)) + b1)) '' construct X
       ⊆ construct ((NeuralNetwork.cons pre.toLayer
-          (.cons (Layer.linear (W0.submatrix part.left id) (b0 ∘ part.left))
-            (.cons (Layer.activation R)
-              (.cons (Layer.linearWithError (W1.submatrix id part.left) b1
-                  (Interval.mtimes (W1.submatrix id part.right)
+          (.cons (Real.Layer.linear (W0.submatrix part.left id) (b0 ∘ part.left))
+            (.cons (Real.Layer.activation R)
+              (.cons (Real.Layer.linearWithError (W1.submatrix id part.left) b1
+                  (Real.Interval.mtimes (W1.submatrix id part.right)
                     ⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩))
                 post)))).enclose X) := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩
@@ -74,7 +74,7 @@ theorem neuronMerging_network_outer {n₀ n₁ n n₂ n₃ d r : ℕ}
   -- the suffix is unchanged, so its own obligation carries the point the rest of the way
   exact hpost.enclose_outer _ _ hmid
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

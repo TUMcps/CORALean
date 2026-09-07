@@ -16,7 +16,7 @@ apart from `toRun` since the direction back needs the count, `toRun` does not.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet Scalar
 
@@ -32,7 +32,7 @@ theorem HybridAutomaton.Run.exists_runOn {HA : HybridAutomaton S G L 𝕋 n} {�
   | flow h => exact ⟨0, .flow h⟩
   | jump h hmem hguard _ ih => exact ⟨ih.choose + 1, .jump h hmem hguard ih.choose_spec⟩
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -19,7 +19,9 @@ touching `k`.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
+
+open CORALean.Real
 
 variable {n : ℕ} {𝕄 : ℕ → ℕ → Type} [∀ m n, ContSet (𝕄 m n) (Mat ℝ m n)] [Mtimes 𝕄 𝒵]
 
@@ -34,7 +36,7 @@ theorem LinParamSysDT.reach_order_le (sys : LinParamSysDT 𝕄 n) {o : ℕ} (ho 
     (sys.reach (S := 𝒵) o ho R₀ U (k + 1)).h ≤ o * n :=
   Zonotope.reduce_order_le _ ho
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

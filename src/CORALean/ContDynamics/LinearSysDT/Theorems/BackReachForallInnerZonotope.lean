@@ -28,8 +28,9 @@ theorem to read `hinv` off.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix ContSet Scalar Mtimes
 
 variable {n : ℕ}
@@ -52,7 +53,7 @@ theorem LinearSysDT.backReachForall_inner_zonotope (sys : LinearSysDT ℝ n) {Ai
     rw [Scalar.toRealMat_real]
     exact (Zonotope.mtimes_exact Ainv s).symm.subset
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -20,7 +20,7 @@ moves. One `raise` at a single coordinate.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -30,7 +30,7 @@ order, and nothing else moves. -/
 def Schedule.refine (sch : Schedule) (l j : ℕ) : Schedule :=
   Schedule.raise sch l fun i => if i = j then 1 else 0
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

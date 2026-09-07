@@ -12,7 +12,7 @@ convertible. This is additive — `jump` stays as it is, so a representation
 with `OfInterval` keeps its existing route, and one with only `OfPoint`, such
 as `ConPolyZono`, gains this one instead.
 
-With `ConPolyZono.ofPoint` and its `And` instance, `Transition.jumpAndOfPoint`
+With `ConPolyZono.ofPoint` and its `Intersection` instance, `Transition.jumpIntersectionOfPoint`
 now cuts a non-convex reachable set by a guard exactly. The guard's own
 representation `G` is not read here either, so this asks nothing of it.
 -/
@@ -25,8 +25,9 @@ representation `G` is not read here either, so this asks nothing of it.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix ContSet Scalar Plus Mtimes OfPoint
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
@@ -45,7 +46,7 @@ above is what fills the gap. -/
 example (e : Transition 𝒞𝒫𝒵 L ℝ n) (Rg : ConPolyZono (Vec ℝ n)) : ConPolyZono (Vec ℝ n) :=
   e.jumpOfPoint (S := 𝒞𝒫𝒵) Rg
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

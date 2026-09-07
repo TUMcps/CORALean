@@ -19,7 +19,7 @@ times over, at the three windows a concatenation splits into.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar NormedSpace MeasureTheory
 
@@ -85,7 +85,7 @@ theorem intervalIntegrable_expSub_mulVec {A : Mat ℝ n n} {U : S n} {c τ : ℝ
     _ ≤ CE * CU := mul_le_mul (hCE s ⟨hs.1.le, hs.2⟩)
         (hCU _ (hu s ⟨hs.1.le, hs.2⟩)) (norm_nonneg _) hCE0
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

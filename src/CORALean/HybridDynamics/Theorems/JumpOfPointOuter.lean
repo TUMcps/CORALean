@@ -4,7 +4,7 @@ import CORALean.HybridDynamics.Theorems.JumpOuter
 /-!
 # `Transition.jumpOfPoint` contains the states that leave through the transition
 
-`jump_outer`'s guarantee, `hand` and all, at `ofPoint` in place of whatever
+`jump_outer`'s guarantee, `hinter` and all, at `ofPoint` in place of whatever
 `OfInterval` supplied for the offset — the proof is the same shape, one
 membership fact swapped for another.
 -/
@@ -17,7 +17,7 @@ membership fact swapped for another.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar Plus Mtimes OfPoint
 
@@ -31,16 +31,16 @@ variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)] {L : Type} {n : �
 /-- `R` encloses the state at the moment of the jump, `Rg` its intersection with
 the guard; the reset image then lands in `jumpOfPoint Rg`. -/
 theorem Transition.jumpOfPoint_outer (e : Transition G L 𝕋 n) {R Rg : S n}
-    (hand : construct R ∩ construct e.guard ⊆ construct Rg) {z : Vec ℝ n}
+    (hinter : construct R ∩ construct e.guard ⊆ construct Rg) {z : Vec ℝ n}
     (hz : z ∈ construct R) (hguard : z ∈ construct e.guard) :
     e.reset z ∈ construct (e.jumpOfPoint Rg) := by -- --- PROOF ---
   show toRealMat e.W *ᵥ z + toRealVec e.w ∈ construct (e.jumpOfPoint Rg)
   exact plus_outer _ _ (Set.add_mem_add
     (mtimes_outer e.W Rg
-      (Set.mem_biUnion rfl (Set.mem_image_of_mem _ (hand ⟨hz, hguard⟩))))
+      (Set.mem_biUnion rfl (Set.mem_image_of_mem _ (hinter ⟨hz, hguard⟩))))
     (mem_ofPoint (toRealVec e.w)))
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

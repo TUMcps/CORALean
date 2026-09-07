@@ -6,8 +6,8 @@ import CORALean.ContSet.VPolytope.Float.Theorems.API
 `Plus`, `LinComb`, `Reduce` — the identity again — and `Mtimes`, as the exact
 layer's. `ContSet` comes from `InflatedContSet` and is not declared here.
 
-`And` too, and needs no direction family here: it goes through the float box's
-own exact `and`, unlike the exact layer's, which must be handed one. No
+`Intersection` too, and needs no direction family here: it goes through the float box's
+own exact `intersection`, unlike the exact layer's, which must be handed one. No
 `OfPoint`: it would round a real point into `𝕋`, an operation this layer lacks.
 -/
 
@@ -32,9 +32,9 @@ instance : Plus (VPolytope 𝕋 n) (Vec ℝ n) where
     rw [VPolytope.materialise_eq]
     exact VPolytope.plus_outer P₁ P₂
 
-instance : And (VPolytope 𝕋 n) (Vec ℝ n) where
-  and := VPolytope.and
-  and_outer := VPolytope.and_outer
+instance : Intersection (VPolytope 𝕋 n) (Vec ℝ n) where
+  intersection := VPolytope.intersection
+  intersection_outer := VPolytope.intersection_outer
 
 instance : LinComb (VPolytope 𝕋 n) (Vec ℝ n) where
   linComb P₁ P₂ := (VPolytope.linComb P₁ P₂).materialise

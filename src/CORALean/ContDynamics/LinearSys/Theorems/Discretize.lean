@@ -22,7 +22,7 @@ no partial form. A bounded domain goes through `reach_outer_horizon` instead.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar
 
@@ -47,7 +47,7 @@ theorem LinearSys.Trajectory.discretize {sys : LinearSys 𝕋 n} {T : Set ℝ} {
   step k := by
     simpa using traj.discretize_step hΔt hU k (step_subset hΔt hT k)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

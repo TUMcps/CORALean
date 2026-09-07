@@ -22,7 +22,7 @@ its tails follow.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -36,7 +36,7 @@ def RefinableNetwork.LipschitzLayers : ∀ {n m : ℕ}, RefinableNetwork S n m �
   | _, _, .nil => True
   | _, _, .cons L rest => (∃ K : NNReal, LipschitzWith K L.eval) ∧ rest.LipschitzLayers
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

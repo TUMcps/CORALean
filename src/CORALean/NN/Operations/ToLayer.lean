@@ -20,7 +20,7 @@ is exactly `Layer.Sound` at the same function.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -32,7 +32,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 def NeuralNetwork.toLayer (nn : NeuralNetwork S n m) : Layer S n m where
   enclose := nn.enclose
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

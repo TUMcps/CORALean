@@ -18,7 +18,7 @@ correspondence, in both directions, is `TrajectoryToNonlinearSys.lean` and
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 variable {n m q : ℕ}
 
@@ -29,7 +29,7 @@ variable {n m q : ℕ}
 def NonlinParamSys.toNonlinearSys (sys : NonlinParamSys n m q) : NonlinearSys n (m + q) :=
   ⟨fun x w => sys.f x (w ∘ Fin.castAdd q) (w ∘ Fin.natAdd m)⟩
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

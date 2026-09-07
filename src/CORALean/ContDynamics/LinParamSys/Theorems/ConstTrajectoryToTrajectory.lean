@@ -17,7 +17,7 @@ having no counterexample constructed.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -36,7 +36,7 @@ theorem LinParamSys.constTrajectory_toTrajectory {sys : LinParamSys 𝕄 n} {T :
   param _ _ := traj.param
   flow := traj.flow
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

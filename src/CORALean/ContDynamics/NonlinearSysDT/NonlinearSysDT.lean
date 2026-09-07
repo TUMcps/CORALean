@@ -25,7 +25,7 @@ only for its first `K` steps.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -52,7 +52,7 @@ structure NonlinearSysDT.TrajectoryOn (sys : NonlinearSysDT n m) (R₀ : S n) (U
   input (k : ℕ) (hk : k < K) : u k ∈ construct U
   step (k : ℕ) (hk : k < K) : x (k + 1) = sys.f (x k) (u k)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

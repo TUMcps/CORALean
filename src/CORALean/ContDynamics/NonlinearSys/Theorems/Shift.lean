@@ -26,7 +26,7 @@ proof, and asking for them is what makes this compose.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -51,7 +51,7 @@ theorem NonlinearSys.Trajectory.shift {sys : NonlinearSys n m} {T T' : Set ℝ}
     have h := (traj.flow _ (hT ht)).scomp t hg hT
     simpa [Function.comp_def] using h
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -16,7 +16,7 @@ stated once so nothing downstream redoes the induction on `reach`.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Plus Reduce Mtimes
 
@@ -33,7 +33,7 @@ theorem LinParamSysDT.simulate_mem_reach (sys : LinParamSysDT 𝕄 n) {o : ℕ} 
     sys.simulate A x₀ u k ∈ construct (sys.reach o ho R₀ U k) :=
   sys.reach_outer ho R₀ U (sys.simulate_trajectory hA hx₀ hu) k
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

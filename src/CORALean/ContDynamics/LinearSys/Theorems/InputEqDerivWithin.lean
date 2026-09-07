@@ -18,7 +18,7 @@ is stated once here rather than duplicated into each.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar
 
@@ -35,7 +35,7 @@ theorem LinearSys.Trajectory.input_eq_derivWithin {sys : LinearSys 𝕋 n} {T : 
   rw [(traj.flow_Ici hT ht).derivWithin (uniqueDiffWithinAt_Ici t)]
   abel
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

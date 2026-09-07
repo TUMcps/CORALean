@@ -17,8 +17,9 @@ Available to a representation that is convex and closed; `Zonotope` is both.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix ContSet Scalar
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
@@ -50,7 +51,7 @@ theorem LinearSys.Trajectory.discretize_inputSolution [Mtimes ℐ S]
     (fun k => traj.stepInput_outer hΔt η hε hconv hclosed hbdd hRconv hRclosed hRbdd k
       (step_subset hΔt.le hT k))
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

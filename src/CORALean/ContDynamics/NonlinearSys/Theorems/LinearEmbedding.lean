@@ -18,7 +18,7 @@ guarantee that trajectories agree is `TrajectoryIffNonlinearSys.lean`.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix Scalar
 
@@ -31,7 +31,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 def LinearSys.nonlinearSys (sys : LinearSys 𝕋 n) : NonlinearSys n n :=
   ⟨fun x u => toRealMat sys.A *ᵥ x + u⟩
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

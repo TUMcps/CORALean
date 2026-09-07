@@ -20,7 +20,7 @@ invariant at `k + 1`. The `jump` case then owes an index rearrangement,
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet Scalar
 
@@ -42,7 +42,7 @@ theorem HybridAutomaton.RunOn.mem_of_invariantOn {HA : HybridAutomaton S G L ùï
     rw [hk]
     exact ih (hinv.jump hmem (hinv.flow h hx h.mem_Icc_right) hguard)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

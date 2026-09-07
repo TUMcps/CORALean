@@ -33,8 +33,9 @@ exist to hand the network; covering the times inside a period is the same gap
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix ContSet Scalar NormedSpace
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
@@ -57,7 +58,7 @@ noncomputable def NeurNetContrSys.reach (sys : NeurNetContrSys 𝕋 S n) (o η N
   | i + 1 => (sys.plant.discretize Δt).reach o ho (sys.reach o η N ho Δt R₀ i)
       (sys.plant.inputSolution Δt η (sys.contr.enclose (sys.reach o η N ho Δt R₀ i))) N
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

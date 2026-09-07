@@ -32,28 +32,29 @@ Choosing *where* to reduce — Alg. 2 — owes no proof: this holds at every der
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
-open Matrix ContSet Plus Mtimes IntervalOuter OfInterval
+open Matrix ContSet Plus Mtimes Real.IntervalOuter Real.OfInterval
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
-  [Mtimes (Mat ℝ) S] [IntervalOuter S] [OfInterval S]
+  [Mtimes (Mat ℝ) S] [Real.IntervalOuter S] [Real.OfInterval S]
 
 /-- The unreduced sandwich a `merge` step replaces: linear, activation, linear. -/
-def sandwich {n n₁ n₂ : ℕ} (W0 : Mat ℝ n₁ n) (b0 : Vec ℝ n₁) {σ : ℝ → ℝ} (R : Relaxation σ)
+def sandwich {n n₁ n₂ : ℕ} (W0 : Mat ℝ n₁ n) (b0 : Vec ℝ n₁) {σ : ℝ → ℝ} (R : Real.Relaxation σ)
     (W1 : Mat ℝ n₂ n₁) (b1 : Vec ℝ n₂) : NeuralNetwork S n n₂ :=
-  .cons (Layer.linear W0 b0) (.cons (Layer.activation R) (.ofLayer (Layer.linear W1 b1)))
+  .cons (Real.Layer.linear W0 b0)
+    (.cons (Real.Layer.activation R) (.ofLayer (Real.Layer.linear W1 b1)))
 
 /-- The reduced sandwich `neuronMerging_sandwich_outer` bounds `sandwich` by, trimmed to
 `part.left` and boxing `part.right`'s contribution to `k+1` from `Y`. -/
 noncomputable def mergedSandwich {n n₁ n₂ d r : ℕ}
     (part : Split (Fin n₁) into (Fin d) ⊕ (Fin r))
-    (W0 : Mat ℝ n₁ n) (b0 : Vec ℝ n₁) {σ : ℝ → ℝ} (R : Relaxation σ)
-    (W1 : Mat ℝ n₂ n₁) (b1 : Vec ℝ n₂) (Y : Interval (Vec ℝ n₁)) : NeuralNetwork S n n₂ :=
-  .cons (Layer.linear (W0.submatrix part.left id) (b0 ∘ part.left))
-    (.cons (Layer.activation R)
-      (.ofLayer (Layer.linearWithError (W1.submatrix id part.left) b1
-        (Interval.mtimes (W1.submatrix id part.right)
+    (W0 : Mat ℝ n₁ n) (b0 : Vec ℝ n₁) {σ : ℝ → ℝ} (R : Real.Relaxation σ)
+    (W1 : Mat ℝ n₂ n₁) (b1 : Vec ℝ n₂) (Y : Real.Interval (Vec ℝ n₁)) : NeuralNetwork S n n₂ :=
+  .cons (Real.Layer.linear (W0.submatrix part.left id) (b0 ∘ part.left))
+    (.cons (Real.Layer.activation R)
+      (.ofLayer (Real.Layer.linearWithError (W1.submatrix id part.left) b1
+        (Real.Interval.mtimes (W1.submatrix id part.right)
           ⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩))))
 
 
@@ -72,24 +73,24 @@ inductive NeuralNetwork.ReducesAt :
       ReducesAt (L.enclose s) rest rest' h → ReducesAt s (.cons L rest) (.cons L rest') f
   -- reduces one sandwich: `part.left` survives, `part.right`'s contribution is boxed from `Y`
   | merge {n n₁ n₂ m d r : ℕ} (s : S n) (part : Split (Fin n₁) into (Fin d) ⊕ (Fin r))
-      (W0 : Mat ℝ n₁ n) (b0 : Vec ℝ n₁) {σ : ℝ → ℝ} (R : Relaxation σ)
-      (W1 : Mat ℝ n₂ n₁) (b1 : Vec ℝ n₂) (Y : Interval (Vec ℝ n₁))
+      (W0 : Mat ℝ n₁ n) (b0 : Vec ℝ n₁) {σ : ℝ → ℝ} (R : Real.Relaxation σ)
+      (W1 : Mat ℝ n₂ n₁) (b1 : Vec ℝ n₂) (Y : Real.Interval (Vec ℝ n₁))
       (hY : ∀ x ∈ construct s, (fun i => σ ((W0 *ᵥ x + b0) i)) ∈ construct Y)
       {rest rest' : NeuralNetwork S n₂ m} {h : Vec ℝ n₂ → Vec ℝ m}
       {f : Vec ℝ n → Vec ℝ m}
       (hf : ∀ x, f x = h (W1 *ᵥ (fun i => σ ((W0 *ᵥ x + b0) i)) + b1)) :
       ReducesAt ((mergedSandwich part W0 b0 R W1 b1 Y).enclose s) rest rest' h →
       ReducesAt s
-        (.cons (Layer.linear W0 b0) (.cons (Layer.activation R)
-          (.cons (Layer.linear W1 b1) rest)))
-        (.cons (Layer.linear (W0.submatrix part.left id) (b0 ∘ part.left))
-          (.cons (Layer.activation R)
-            (.cons (Layer.linearWithError (W1.submatrix id part.left) b1
-              (Interval.mtimes (W1.submatrix id part.right)
+        (.cons (Real.Layer.linear W0 b0) (.cons (Real.Layer.activation R)
+          (.cons (Real.Layer.linear W1 b1) rest)))
+        (.cons (Real.Layer.linear (W0.submatrix part.left id) (b0 ∘ part.left))
+          (.cons (Real.Layer.activation R)
+            (.cons (Real.Layer.linearWithError (W1.submatrix id part.left) b1
+              (Real.Interval.mtimes (W1.submatrix id part.right)
                 ⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩)) rest')))
         f
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -33,12 +33,12 @@ holds at every pair of partitions.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
-open Matrix ContSet Plus Mtimes IntervalOuter OfInterval
+open Matrix ContSet Plus Mtimes Real.IntervalOuter Real.OfInterval
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
-  [Mtimes (Mat ℝ) S] [IntervalOuter S] [OfInterval S]
+  [Mtimes (Mat ℝ) S] [Real.IntervalOuter S] [Real.OfInterval S]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -48,15 +48,15 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n
 survivors `part.left`, and boxing the bucket's contribution to `k+1` from `Y`. -/
 theorem neuronMerging_sandwich_outer {n0 n n2 d r : ℕ}
     (part : Split (Fin n) into (Fin d) ⊕ (Fin r))
-    (W0 : Mat ℝ n n0) (b0 : Vec ℝ n) {σ : ℝ → ℝ} (R : Relaxation σ)
-    (W1 : Mat ℝ n2 n) (b1 : Vec ℝ n2) (Y : Interval (Vec ℝ n)) (X : S n0)
+    (W0 : Mat ℝ n n0) (b0 : Vec ℝ n) {σ : ℝ → ℝ} (R : Real.Relaxation σ)
+    (W1 : Mat ℝ n2 n) (b1 : Vec ℝ n2) (Y : Real.Interval (Vec ℝ n)) (X : S n0)
     (hY : ∀ x ∈ construct X, (fun i => σ ((W0 *ᵥ x + b0) i)) ∈ construct Y) :
     (fun x => W1 *ᵥ (fun i => σ ((W0 *ᵥ x + b0) i)) + b1) '' construct X
       ⊆ construct
-        ((NeuralNetwork.cons (Layer.linear (W0.submatrix part.left id) (b0 ∘ part.left))
-            (NeuralNetwork.cons (Layer.activation R)
-              (NeuralNetwork.ofLayer (Layer.linearWithError (W1.submatrix id part.left) b1
-                (Interval.mtimes (W1.submatrix id part.right)
+        ((NeuralNetwork.cons (Real.Layer.linear (W0.submatrix part.left id) (b0 ∘ part.left))
+            (NeuralNetwork.cons (Real.Layer.activation R)
+              (NeuralNetwork.ofLayer (Real.Layer.linearWithError (W1.submatrix id part.left) b1
+                (Real.Interval.mtimes (W1.submatrix id part.right)
                   ⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩)))) :
           NeuralNetwork S n0 n2).enclose X) := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩
@@ -71,25 +71,25 @@ theorem neuronMerging_sandwich_outer {n0 n n2 d r : ℕ}
     show ((W0.submatrix part.left id) *ᵥ x) i + b0 (part.left i) = h0 (part.left i)
     rw [hrow, hh0]
     rfl
-  have hA1 : h0 ∘ part.left ∈ construct ((Layer.linear (W0.submatrix part.left id)
+  have hA1 : h0 ∘ part.left ∈ construct ((Real.Layer.linear (W0.submatrix part.left id)
       (b0 ∘ part.left)).enclose X) :=
-    heval1 ▸ (Layer.linear_sound (S := S) (W0.submatrix part.left id)
+    heval1 ▸ (Real.Layer.linear_sound (S := S) (W0.submatrix part.left id)
       (b0 ∘ part.left)).enclose_outer X x hx
   have heval2 : (fun i => σ ((h0 ∘ part.left) i)) = hk ∘ part.left := by
     funext i
     show σ ((h0 ∘ part.left) i) = hk (part.left i)
     rw [hhk]
     rfl
-  have hA2 : hk ∘ part.left ∈ construct ((Layer.activation R).enclose
-      ((Layer.linear (W0.submatrix part.left id) (b0 ∘ part.left)).enclose X)) :=
-    heval2 ▸ (Layer.activation_sound (S := S) R).enclose_outer _ _ hA1
+  have hA2 : hk ∘ part.left ∈ construct ((Real.Layer.activation R).enclose
+      ((Real.Layer.linear (W0.submatrix part.left id) (b0 ∘ part.left)).enclose X)) :=
+    heval2 ▸ (Real.Layer.activation_sound (S := S) R).enclose_outer _ _ hA1
   -- the bucket's exact output lies in `Y`, hence in `Y` restricted to the bucket
   have hB : hk ∘ part.right ∈ construct
-      (⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩ : Interval (Vec ℝ r)) :=
+      (⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩ : Real.Interval (Vec ℝ r)) :=
     fun i => hY x hx (part.right i)
-  set s2' : S d := (Layer.activation R).enclose
-      ((Layer.linear (W0.submatrix part.left id) (b0 ∘ part.left)).enclose X) with hs2'
-  set EB : Interval (Vec ℝ n2) := Interval.mtimes (W1.submatrix id part.right)
+  set s2' : S d := (Real.Layer.activation R).enclose
+      ((Real.Layer.linear (W0.submatrix part.left id) (b0 ∘ part.left)).enclose X) with hs2'
+  set EB : Real.Interval (Vec ℝ n2) := Real.Interval.mtimes (W1.submatrix id part.right)
       ⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩ with hEB
   -- layer `k+1`'s dot product splits along the survivors and the bucket
   have hval : W1 *ᵥ hk + b1
@@ -114,18 +114,18 @@ theorem neuronMerging_sandwich_outer {n0 n n2 d r : ℕ}
     apply mtimes_outer
     exact Set.mem_biUnion rfl (Set.mem_image_of_mem _ hA2)
   have hEBmem : (W1.submatrix id part.right) *ᵥ (hk ∘ part.right) ∈ construct EB :=
-    Interval.mtimes_outer (W1.submatrix id part.right)
+    Real.Interval.mtimes_outer (W1.submatrix id part.right)
       ⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩ (Set.mem_image_of_mem _ hB)
   have hBoxmem : b1 + (W1.submatrix id part.right) *ᵥ (hk ∘ part.right)
-      ∈ construct (Interval.plus (Interval.point b1) EB) :=
-    Interval.plus_outer _ _ (Set.add_mem_add (Interval.mem_point b1) hEBmem)
+      ∈ construct (Real.Interval.plus (Real.Interval.point b1) EB) :=
+    Real.Interval.plus_outer _ _ (Set.add_mem_add (Real.Interval.mem_point b1) hEBmem)
   show W1 *ᵥ hk + b1 ∈ construct
       (plus (mtimes (𝕄 := Mat ℝ) (W1.submatrix id part.left) s2')
-        (ofInterval (Interval.plus (Interval.point b1) EB)))
+        (ofInterval (Real.Interval.plus (Real.Interval.point b1) EB)))
   rw [hval]
   exact plus_outer _ _ (Set.add_mem_add hAmem (ofInterval_outer _ hBoxmem))
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

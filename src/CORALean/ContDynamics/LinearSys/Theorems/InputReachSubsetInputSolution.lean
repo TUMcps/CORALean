@@ -20,8 +20,9 @@ composes with a second time for its intermediate window.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix ContSet Scalar NormedSpace
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
@@ -56,7 +57,7 @@ theorem LinearSys.inputReach_subset_inputSolution [Mtimes ℐ S]
   intro σ hσ
   exact hmem _ ⟨by linarith [hσ.2], by linarith [hσ.1]⟩
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

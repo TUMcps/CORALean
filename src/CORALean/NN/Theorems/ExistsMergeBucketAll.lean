@@ -32,14 +32,14 @@ at `n = 0` too. Same trick as `exists_mergeTolerance`'s `1 + ∑ …` denominato
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- At a tolerance wide enough — the sum, over every neuron, of its distance to `y` on both
 sides — every neuron is in the bucket. -/
-theorem exists_mergeBucket_all {n : ℕ} (Y : Interval (Vec ℝ n)) (y : ℝ) :
+theorem exists_mergeBucket_all {n : ℕ} (Y : Real.Interval (Vec ℝ n)) (y : ℝ) :
     ∃ δ : ℝ, 0 ≤ δ ∧ ∀ i, mergeBucket Y y δ i := by -- --- PROOF ---
   refine ⟨∑ i, (|y - Y.inf i| + |Y.sup i - y|), Finset.sum_nonneg fun i _ => by positivity, ?_⟩
   intro i
@@ -50,7 +50,7 @@ theorem exists_mergeBucket_all {n : ℕ} (Y : Interval (Vec ℝ n)) (y : ℝ) :
   exact ⟨by linarith [le_abs_self (y - Y.inf i), abs_nonneg (Y.sup i - y)],
     by linarith [le_abs_self (Y.sup i - y), abs_nonneg (y - Y.inf i)]⟩
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

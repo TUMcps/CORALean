@@ -20,7 +20,7 @@ Two representations at once, which is what a separate guard parameter buys
 — the floor met from above — which no zonotope states, and `ballBox` is the
 invariant as a slab. Neither is ever read except through `construct`.
 
-`Zonotope` has no `And` instance still, so `timeIntervalStepInv` and `jumpAnd`
+`Zonotope` has no `Intersection` instance still, so `timeIntervalStepInv` and `jumpIntersection`
 stay out of reach; `InvariantOfEnclosureCut` needs neither, cutting with `ℓ.inv`
 and with the guard as set inclusions. `ballZono` is the invariant said again as
 a zonotope, which is what `R` has to be, and `bounceCut` the guard intersection

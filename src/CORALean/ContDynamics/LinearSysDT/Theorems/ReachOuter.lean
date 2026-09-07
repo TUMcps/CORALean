@@ -15,7 +15,7 @@ via `aux_toTrajectoryOn`, so nothing here is proved twice.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix Pointwise ContSet Scalar Plus Reduce Mtimes
 
@@ -44,7 +44,7 @@ theorem LinearSysDT.reach_outer (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o
     x k ∈ construct (sys.reach o ho R₀ U k) :=
   sys.reach_outer_on ho R₀ U (traj.aux_toTrajectoryOn k) k le_rfl
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

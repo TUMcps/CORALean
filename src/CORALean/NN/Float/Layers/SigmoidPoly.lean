@@ -64,7 +64,7 @@ theorem sigmoidPolyRelaxation_sound (k : ℕ) (c : 𝕋 → 𝕋 → Fin (m + 1)
 activation layer over a float scalar, built rather than merely stated. -/
 def Layer.sigmoidPoly (k : ℕ) (c : Fin n → 𝕋 → 𝕋 → Fin (m + 1) → 𝕋)
     (dx : Fin n → 𝕋 → 𝕋 → 𝕋) (p : Fin n → 𝕋 → 𝕋 → Fin (N + 1) → 𝕋) :
-    Real.Layer (PolyZonotope 𝕋) n n :=
+    Layer (PolyZonotope 𝕋) n n :=
   Layer.activationPoly fun i => sigmoidPolyRelaxation k (c i) (dx i) (p i)
 
 /-- `Real.sigmoid` coordinatewise, which the layer itself never mentions. -/

@@ -1,4 +1,4 @@
-import CORALean.ContSet.HPolytope.Real.Complexity.And
+import CORALean.ContSet.HPolytope.Real.Complexity.Intersection
 import CORALean.ContSet.HPolytope.Real.Complexity.Mtimes
 import CORALean.ContSet.HPolytope.Real.Complexity.MinkDiffOf
 

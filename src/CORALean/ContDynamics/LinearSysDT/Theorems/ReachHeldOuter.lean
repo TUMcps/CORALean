@@ -20,7 +20,7 @@ names — no `reduce_outer`, since `reachHeld` calls no `reduce`.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar Plus Mtimes
 
@@ -62,7 +62,7 @@ theorem LinearSysDT.reachHeld_outer (sys : LinearSysDT ℝ n) (R₀ U : S n)
     (mtimes_outer _ _ (Set.mem_biUnion rfl (Set.mem_image_of_mem _ h.init)))
     (mtimes_outer _ _ (Set.mem_biUnion rfl (Set.mem_image_of_mem _ h.input))))
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

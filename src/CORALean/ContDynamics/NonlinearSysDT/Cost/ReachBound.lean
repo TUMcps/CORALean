@@ -28,7 +28,9 @@ count and the re-linearization is free in it.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
+
+open CORALean.Real
 
 variable {n m : ℕ}
 
@@ -74,7 +76,7 @@ theorem NonlinearSysDT.reachCost_le (sys : NonlinearSysDT n m) {U : Zonotope (Ve
     refine Cost.le_iff.mpr ?_
     simpa [NonlinearSysDT.reachCost, Nat.succ_mul] using h
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

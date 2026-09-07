@@ -24,28 +24,28 @@ CORA reads the subgradient there instead, and either choice is a heuristic.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem not_differentiableAt_relu_zero : ¬ DifferentiableAt ℝ relu 0 := by -- --- PROOF ---
+theorem not_differentiableAt_relu_zero : ¬ DifferentiableAt ℝ Real.relu 0 := by -- --- PROOF ---
   intro h
-  have hd : HasDerivAt relu (deriv relu 0) 0 := h.hasDerivAt
-  -- to the right `relu` is the identity, to the left the constant zero
-  have hid : HasDerivWithinAt relu 1 (Set.Ici 0) 0 :=
+  have hd : HasDerivAt Real.relu (deriv Real.relu 0) 0 := h.hasDerivAt
+  -- to the right `Real.relu` is the identity, to the left the constant zero
+  have hid : HasDerivWithinAt Real.relu 1 (Set.Ici 0) 0 :=
     (hasDerivWithinAt_id (0:ℝ) (Set.Ici 0)).congr (fun _ ht => max_eq_left ht) (max_self 0)
-  have hz : HasDerivWithinAt relu 0 (Set.Iic 0) 0 :=
+  have hz : HasDerivWithinAt Real.relu 0 (Set.Iic 0) 0 :=
     (hasDerivWithinAt_const (0:ℝ) (Set.Iic (0:ℝ)) 0).congr (fun _ ht => max_eq_right ht)
       (max_self 0)
-  have h1 : deriv relu 0 = 1 :=
+  have h1 : deriv Real.relu 0 = 1 :=
     (uniqueDiffOn_Ici 0 0 Set.self_mem_Ici).eq_deriv _ hd.hasDerivWithinAt hid
-  have h0 : deriv relu 0 = 0 :=
+  have h0 : deriv Real.relu 0 = 0 :=
     (uniqueDiffOn_Iic 0 0 Set.self_mem_Iic).eq_deriv _ hd.hasDerivWithinAt hz
   rw [h1] at h0
   exact one_ne_zero h0
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

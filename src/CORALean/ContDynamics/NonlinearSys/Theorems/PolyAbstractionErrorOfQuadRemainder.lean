@@ -28,9 +28,9 @@ cast.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
-open Matrix PolyZonotope
+open Matrix Real.PolyZonotope
 
 variable {n m : ℕ}
 
@@ -41,8 +41,8 @@ variable {n m : ℕ}
 `pZ`'s own factors. -/
 theorem PolyAbstractionError.of_quadRemainder {f : Vec ℝ n → Vec ℝ m → Vec ℝ n}
     {A : Mat ℝ n n} {B : Mat ℝ n m} {xs : Vec ℝ n} {us : Vec ℝ m}
-    {pZ : PolyZonotope (Vec ℝ n)} {Ba : Set (Fin pZ.p → ℝ)} {U : Set (Vec ℝ m)}
-    {W : PolyZonotope (Vec ℝ n)} (Q : Fin n → Mat ℝ n n)
+    {pZ : Real.PolyZonotope (Vec ℝ n)} {Ba : Set (Fin pZ.p → ℝ)} {U : Set (Vec ℝ m)}
+    {W : Real.PolyZonotope (Vec ℝ n)} (Q : Fin n → Mat ℝ n n)
     (hW : ∀ a ∈ Ba, ∀ u ∈ U,
       f (pZ.point a) u - (f xs us + A *ᵥ (pZ.point a - xs) + B *ᵥ (u - us))
         - quadEval Q (pZ.point a - xs) ∈ W.construct) :
@@ -52,7 +52,7 @@ theorem PolyAbstractionError.of_quadRemainder {f : Vec ℝ n → Vec ℝ m → V
     rw [precompStatError_point]
     exact hW a ha u hu
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

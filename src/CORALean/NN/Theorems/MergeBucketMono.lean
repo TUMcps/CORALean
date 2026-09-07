@@ -23,17 +23,17 @@ halves of `mergeBucket`'s conjunction are one-sided bounds on `δ`.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A neuron in a bucket at `δ` stays in the bucket at any wider `δ'`. -/
-theorem mergeBucket_mono {n : ℕ} (Y : Interval (Vec ℝ n)) (y : ℝ) {δ δ' : ℝ} (hδ : δ ≤ δ')
+theorem mergeBucket_mono {n : ℕ} (Y : Real.Interval (Vec ℝ n)) (y : ℝ) {δ δ' : ℝ} (hδ : δ ≤ δ')
     {i : Fin n} (hi : mergeBucket Y y δ i) : mergeBucket Y y δ' i :=
   ⟨by linarith [hi.1], by linarith [hi.2]⟩
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

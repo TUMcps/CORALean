@@ -28,7 +28,7 @@ the dynamics; `Theorems.BackReachForallInner` puts a computed set inside it.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar
 
@@ -45,7 +45,7 @@ def LinearSysDT.backReachSetForall (sys : LinearSysDT 𝕋 n) (T U : S n) : ℕ 
   | k + 1 => mulVecLin (toRealMat sys.A) ⁻¹'
       minkowskiDiff (sys.backReachSetForall T U k) (construct U)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

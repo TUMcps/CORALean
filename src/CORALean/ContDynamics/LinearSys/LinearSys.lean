@@ -34,7 +34,7 @@ pinned by `u t = ẋ(t) - A x(t)` wherever the flow holds.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar
 
@@ -54,7 +54,7 @@ structure LinearSys.Trajectory (sys : LinearSys 𝕋 n) (T : Set ℝ) (R₀ U : 
   flow (t : ℝ) (ht : t ∈ T) :
     HasDerivWithinAt x (toRealMat sys.A *ᵥ x t + u t) T t
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

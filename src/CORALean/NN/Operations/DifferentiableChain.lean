@@ -21,7 +21,7 @@ recurses through `f x` rather than quantifying over the input.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -34,7 +34,7 @@ def Chain.DifferentiableChain : ∀ {n m : ℕ}, Chain n m → Vec ℝ n → Pro
   | _, _, .nil, _ => True
   | _, _, .cons f rest, x => DifferentiableAt ℝ f x ∧ rest.DifferentiableChain (f x)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -3,7 +3,7 @@ import CORALean.ContSet.HPolytope.Real.HPolytope
 /-!
 # `HPolytope.fullspace`
 
-No constraints at all, so every point qualifies: the unit of `and`, and what a
+No constraints at all, so every point qualifies: the unit of `intersection`, and what a
 conversion starts from when it has rows to add but none yet.
 
 -/

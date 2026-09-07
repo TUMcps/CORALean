@@ -27,7 +27,7 @@ the interval version already asks of them.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar NormedSpace
 
@@ -51,11 +51,11 @@ theorem LinearSys.Trajectory.discretizeMatZonotope {sys : LinearSys 𝕋 n} {T :
   init := by simpa using traj.init
   input k := hUd k
   step k := ⟨exp (Δt • toRealMat sys.A),
-    MatExp.exp_mem_expMatZonoEnclosure _ η (Zonotope.mem_ofPoint _)
-      (by rwa [Zonotope.norm_absMax_ofPoint]), by
+    Real.MatExp.exp_mem_expMatZonoEnclosure _ η (Real.Zonotope.mem_ofPoint _)
+      (by rwa [Real.Zonotope.norm_absMax_ofPoint]), by
     simpa [LinearSys.discretize] using traj.discretize_step hΔt hU k (step_subset hΔt hT k)⟩
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

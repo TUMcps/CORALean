@@ -18,7 +18,7 @@ one fact needed here, so it is taken instead from the scaling law at `-1`.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open MeasureTheory
 
@@ -70,7 +70,7 @@ theorem aestronglyMeasurable_reflect_Ioc {u : ℝ → Vec ℝ n} {τ : ℝ}
   rw [sub_zero, sub_self] at h
   exact h.mono_measure (Measure.restrict_mono Set.Ioc_subset_Icc_self le_rfl)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

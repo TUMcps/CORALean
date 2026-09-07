@@ -17,7 +17,7 @@ a network is normally stated — directly off `enclose_outer`, with no
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -34,7 +34,7 @@ theorem NeuralNetwork.mem_safeSet {nn : NeuralNetwork S n m} {f : Vec ℝ n → 
     f x ∈ safe :=
   h (hf.enclose_outer X x hx)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

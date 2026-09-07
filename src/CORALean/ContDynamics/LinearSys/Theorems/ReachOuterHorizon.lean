@@ -17,7 +17,7 @@ flow on `[0, KΔt]` and nothing beyond. `discretize_horizon` handed to
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar
 
@@ -38,7 +38,7 @@ theorem LinearSys.Trajectory.reach_outer_horizon {sys : LinearSys 𝕋 n} {T : S
     ∀ k ≤ K, x ((k : ℝ) * Δt) ∈ construct ((sys.discretize Δt).reach o ho R₀ Ud k) :=
   (sys.discretize Δt).reach_outer_on ho R₀ Ud (traj.discretize_horizon hΔt hT hU hUd)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -18,7 +18,7 @@ here rather than proved inline at either call site.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet Scalar
 
@@ -32,7 +32,7 @@ theorem LinearSys.Trajectory.continuousOn_state {sys : LinearSys 𝕋 n} {T : Se
     {R₀ U : S n} {x u : ℝ → Vec ℝ n} (traj : sys.Trajectory T R₀ U x u) : ContinuousOn x T :=
   fun t ht => (traj.flow t ht).continuousWithinAt
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

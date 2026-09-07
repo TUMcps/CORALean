@@ -22,7 +22,7 @@ where the shifted factorial in `expIntegral` comes from.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix NormedSpace MeasureTheory Filter Topology
 
@@ -53,8 +53,8 @@ set_option maxHeartbeats 400000 in
 /-- The exponential series carried through to a vector. -/
 theorem aux_exp_mulVec_tsum (A : Mat ℝ n n) (v : Vec ℝ n) (σ : ℝ) :
     exp (σ • A) *ᵥ v = ∑' i : ℕ, (((Nat.factorial i : ℝ))⁻¹ * σ ^ i) • (A ^ i *ᵥ v) := by
-  rw [← aux_mulVecR_apply v, exp_smul_tsum A σ,
-    ContinuousLinearMap.map_tsum (aux_mulVecR v) (summable_exp_smul A σ)]
+  rw [← aux_mulVecR_apply v, Real.exp_smul_tsum A σ,
+    ContinuousLinearMap.map_tsum (aux_mulVecR v) (Real.summable_exp_smul A σ)]
   exact tsum_congr fun i => by rw [aux_mulVecR_apply, Matrix.smul_mulVec]
 
 -- a `calc` over the `linftyOp` norm, whose instances are local to this file
@@ -87,7 +87,7 @@ set_option maxHeartbeats 400000 in
 theorem aux_summable_expIntegral_mulVec (A : Mat ℝ n n) (v : Vec ℝ n) (t : ℝ) :
     Summable (fun i : ℕ =>
       (((Nat.factorial (i + 1) : ℝ))⁻¹ * t ^ (i + 1)) • (A ^ i *ᵥ v)) :=
-  aux_summable_smul_mulVec A v (MatExp.summable_norm_expIntegral A t)
+  aux_summable_smul_mulVec A v (Real.MatExp.summable_norm_expIntegral A t)
 
 /-- Each partial sum of the exponential series is continuous in the time. -/
 theorem aux_continuous_expPartial (A : Mat ℝ n n) (v : Vec ℝ n) (N : ℕ) :
@@ -102,12 +102,12 @@ theorem aux_continuous_expPartial (A : Mat ℝ n n) (v : Vec ℝ n) (N : ℕ) :
 -- dominated convergence with its bound proved inline, over the same norm instances
 set_option maxHeartbeats 1000000 in
 /-- `expIntegral` is what its name says, once a vector is supplied. -/
-theorem MatExp.expIntegral_mulVec (A : Mat ℝ n n) (v : Vec ℝ n) {t : ℝ} (ht : 0 ≤ t) :
-    MatExp.expIntegral A t *ᵥ v = ∫ σ in (0:ℝ)..t, exp (σ • A) *ᵥ v := by -- --- PROOF ---
-  have hseries : MatExp.expIntegral A t *ᵥ v
+theorem Real.MatExp.expIntegral_mulVec (A : Mat ℝ n n) (v : Vec ℝ n) {t : ℝ} (ht : 0 ≤ t) :
+    Real.MatExp.expIntegral A t *ᵥ v = ∫ σ in (0:ℝ)..t, exp (σ • A) *ᵥ v := by -- --- PROOF ---
+  have hseries : Real.MatExp.expIntegral A t *ᵥ v
       = ∑' i : ℕ, (((Nat.factorial (i + 1) : ℝ))⁻¹ * t ^ (i + 1)) • (A ^ i *ᵥ v) := by
-    rw [← aux_mulVecR_apply v, MatExp.expIntegral,
-      ContinuousLinearMap.map_tsum (aux_mulVecR v) (MatExp.summable_expIntegral A t)]
+    rw [← aux_mulVecR_apply v, Real.MatExp.expIntegral,
+      ContinuousLinearMap.map_tsum (aux_mulVecR v) (Real.MatExp.summable_expIntegral A t)]
     exact tsum_congr fun i => by rw [aux_mulVecR_apply, Matrix.smul_mulVec]
   -- each partial sum is the integral of the truncated series
   have hpartial : ∀ N : ℕ, (∑ i ∈ Finset.range N,
@@ -175,7 +175,7 @@ theorem MatExp.expIntegral_mulVec (A : Mat ℝ n n) (v : Vec ℝ n) {t : ℝ} (h
   exact ((aux_summable_expIntegral_mulVec A v t).hasSum_iff_tendsto_nat.mpr
     (hdom.congr fun N => (hpartial N).symm)).tsum_eq
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -16,34 +16,35 @@ layer is the error-free case of the adapted one, not a different construction.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
-open Matrix ContSet Plus Mtimes OfInterval
+open Matrix ContSet Plus Mtimes Real.OfInterval
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
-  [Mtimes (Mat ℝ) S] [OfInterval S] {n m : ℕ}
+  [Mtimes (Mat ℝ) S] [Real.OfInterval S] {n m : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Layer.linearWithError_zero (W : Mat ℝ m n) (b : Vec ℝ m) :
-    Layer.linearWithError (S := S) W b (Interval.point 0)
-      = Layer.linear (S := S) W b := by -- --- PROOF ---
-  have henclose : (Layer.linearWithError (S := S) W b (Interval.point 0)).enclose
-      = (Layer.linear (S := S) W b).enclose := by
+    Real.Layer.linearWithError (S := S) W b (Real.Interval.point 0)
+      = Real.Layer.linear (S := S) W b := by -- --- PROOF ---
+  have henclose : (Real.Layer.linearWithError (S := S) W b (Real.Interval.point 0)).enclose
+      = (Real.Layer.linear (S := S) W b).enclose := by
     funext s
-    show plus (mtimes W s) (ofInterval (Interval.plus (Interval.point b) (Interval.point 0)))
-        = plus (mtimes W s) (ofInterval (Interval.point b))
+    show plus (mtimes W s)
+        (ofInterval (Real.Interval.plus (Real.Interval.point b) (Real.Interval.point 0)))
+        = plus (mtimes W s) (ofInterval (Real.Interval.point b))
     -- a point box added to a point box is the point box of the sum
-    have hbox : Interval.plus (Interval.point b) (Interval.point (0 : Vec ℝ m))
-        = Interval.point b := by
-      show (⟨b + 0, b + 0⟩ : Interval (Vec ℝ m)) = ⟨b, b⟩
+    have hbox : Real.Interval.plus (Real.Interval.point b) (Real.Interval.point (0 : Vec ℝ m))
+        = Real.Interval.point b := by
+      show (⟨b + 0, b + 0⟩ : Real.Interval (Vec ℝ m)) = ⟨b, b⟩
       rw [add_zero]
     rw [hbox]
   -- a layer is its `enclose` and nothing else
   exact congrArg Layer.mk henclose
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

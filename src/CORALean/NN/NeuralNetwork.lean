@@ -28,7 +28,7 @@ constructor: `nil` is the identity and `cons` composes. The exact image is then
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -77,7 +77,7 @@ theorem NeuralNetwork.ofLayer_sound {L : Layer S n m} {f : Vec ℝ n → Vec ℝ
     (NeuralNetwork.ofLayer L).Sound f :=
   .cons h (.nil fun _ => rfl) fun _ => rfl
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

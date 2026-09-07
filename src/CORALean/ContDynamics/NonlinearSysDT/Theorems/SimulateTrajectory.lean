@@ -17,7 +17,7 @@ equation read as a recursive definition rather than as a predicate.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -35,7 +35,7 @@ theorem NonlinearSysDT.simulate_trajectory (sys : NonlinearSysDT n m) {R₀ : S 
   input := hu
   step _ := rfl
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

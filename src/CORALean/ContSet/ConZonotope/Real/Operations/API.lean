@@ -4,7 +4,7 @@ import CORALean.ContSet.ConZonotope.Real.Operations.Domain
 import CORALean.ContSet.ConZonotope.Real.Operations.MemDomainIff
 import CORALean.ContSet.ConZonotope.Real.Operations.Plus
 import CORALean.ContSet.ConZonotope.Real.Operations.AgreeMat
-import CORALean.ContSet.ConZonotope.Real.Operations.And
+import CORALean.ContSet.ConZonotope.Real.Operations.Intersection
 import CORALean.ContSet.ConZonotope.Real.Operations.Map
 import CORALean.ContSet.ConZonotope.Real.Operations.Mtimes
 import CORALean.ContSet.ConZonotope.Real.Operations.MtimesEqMap
@@ -16,7 +16,7 @@ import CORALean.ContSet.ConZonotope.Real.Operations.OfPoint
 /-!
 # What `ConZonotope` computes
 
-`and`, `plus`, `map` and `mtimes` keep the constraints and stay exact — `and`
+`intersection`, `plus`, `map` and `mtimes` keep the constraints and stay exact — `intersection`
 being the one a zonotope cannot have. Multiplication by an interval matrix keeps
 them too, and is outer for the zonotope's reason rather than for the
 constraints'. `linComb` keeps them as well, weighting each side's

@@ -18,7 +18,7 @@ is a corollary of `NeuralNetwork.Sound.enclose_outer` rather than a new inductio
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
@@ -32,7 +32,7 @@ def RefinableNetwork.atSchedule : ∀ {n m : ℕ}, RefinableNetwork S n m → Sc
   | _, _, .cons L rest, sch =>
       .cons (L.atPattern (Schedule.head sch _)) (rest.atSchedule (Schedule.tail sch))
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

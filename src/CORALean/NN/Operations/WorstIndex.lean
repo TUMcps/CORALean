@@ -19,7 +19,7 @@ go to the earlier index.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 variable {k : ℕ}
 
@@ -31,7 +31,7 @@ what `Tuple.sort` gives at index `0`. -/
 noncomputable def worstIndex (r : Fin (k + 1) → ℝ) : Fin (k + 1) :=
   (Tuple.sort fun l => -r l) 0
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

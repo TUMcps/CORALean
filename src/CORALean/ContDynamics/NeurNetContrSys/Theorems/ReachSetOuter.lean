@@ -16,7 +16,7 @@ content sits in the other half, `reachSet_subset_reach`.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet Scalar
 
@@ -34,7 +34,7 @@ theorem NeurNetContrSys.Trajectory.reachSet_outer {sys : NeurNetContrSys 𝕋 S 
     x t ∈ sys.reachSet π Δtc H R₀ t :=
   ⟨x, traj, rfl⟩
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

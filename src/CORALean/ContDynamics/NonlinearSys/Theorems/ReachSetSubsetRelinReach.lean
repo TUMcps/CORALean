@@ -25,8 +25,9 @@ Between the boundaries this says nothing; that is
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
+open CORALean.Real
 open Matrix ContSet Scalar NormedSpace Plus Mtimes OfInterval
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
@@ -65,7 +66,7 @@ theorem NonlinearSys.reachSet_subset_relinReach [Mtimes ℐ S] (sys : NonlinearS
     (fun j hj t ht => hR j hj t ht (traj.reachSet_outer t)) η hε hconv hclosed hbdd
     hRconv hRclosed hRbdd ho i hi
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

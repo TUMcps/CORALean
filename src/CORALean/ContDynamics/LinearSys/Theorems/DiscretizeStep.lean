@@ -19,7 +19,7 @@ it is stated apart from `discretize`, which needs every step at once.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar
 
@@ -42,7 +42,7 @@ theorem LinearSys.Trajectory.discretize_step {sys : LinearSys ùïã n} {T : Set ‚
   rw [hstep] at h
   simpa [LinearSys.discretize, LinearSys.stepInput] using h
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

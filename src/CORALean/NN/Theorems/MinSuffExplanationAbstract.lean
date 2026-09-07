@@ -24,11 +24,11 @@ stronger one, so a set minimal here can still be shrinkable at `nn`.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
-open ContSet OfInterval
+open ContSet Real.OfInterval
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OfInterval S] {n m : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real.OfInterval S] {n m : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -40,7 +40,7 @@ def NeuralNetwork.IsMinSuffExplanationAbstract (nnAbs : NeuralNetwork S n m) (x 
   nnAbs.IsSuffExplanationAbstract x ε E l ∧
     ∀ i ∈ E, ¬ nnAbs.IsSuffExplanationAbstract x ε (E \ {i}) l
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

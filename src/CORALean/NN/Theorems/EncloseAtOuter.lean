@@ -27,7 +27,7 @@ fact at a step and at the loop.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -41,7 +41,7 @@ theorem RefinableNetwork.encloseAt_outer (rn : RefinableNetwork S n m) (sch : Sc
     rn.eval x ∈ construct (rn.encloseAt sch X) := by
   exact (rn.atSchedule_sound sch).enclose_outer X x hx
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

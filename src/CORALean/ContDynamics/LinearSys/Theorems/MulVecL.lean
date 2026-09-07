@@ -17,7 +17,7 @@ what makes every piece of it continuous.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix
 
@@ -36,7 +36,7 @@ noncomputable def mulVecL : Mat ℝ n n →L[ℝ] (Vec ℝ n →L[ℝ] Vec ℝ n
       map_add' := by intro M N; ext v i; simp
       map_smul' := by intro c M; ext v i; simp }
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

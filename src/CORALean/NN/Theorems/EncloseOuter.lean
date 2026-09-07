@@ -23,7 +23,7 @@ all the precision goes, and why none of it is visible here.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -46,7 +46,7 @@ theorem NeuralNetwork.Sound.enclose_outer {n m : ℕ} {nn : NeuralNetwork S n m}
       rw [h x]
       exact ih _ _ (hL.enclose_outer s x hx)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

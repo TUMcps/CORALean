@@ -18,14 +18,14 @@ pass that check, exactly as `reach_outer_of_subset` is.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar Plus Reduce Mtimes
 
 variable {n m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
-variable [Mtimes (Mat ℝ) S] [OfInterval S]
+variable [Mtimes (Mat ℝ) S] [Real.OfInterval S]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -39,7 +39,7 @@ theorem NonlinearSysDT.holds_of_reach_of_subset (sys : NonlinearSysDT n m) {U : 
   spec.holds_of_outer
     (Set.singleton_subset_iff.mpr (sys.reach_outer_of_subset ho steps R₀ hsub traj k)) h
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

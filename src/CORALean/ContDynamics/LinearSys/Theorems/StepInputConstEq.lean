@@ -27,7 +27,7 @@ into `expIntegral · Δt` applied to `c`.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix Scalar NormedSpace MeasureTheory
 
@@ -46,7 +46,7 @@ theorem aux_stepInputConst_eq_shifted (sys : LinearSys 𝕋 n) (c : Vec ℝ n) {
     (hΔt : 0 ≤ Δt) :
     sys.stepInputConst c Δt
       = ∫ σ in (0:ℝ)..Δt, exp ((Δt - σ) • toRealMat sys.A) *ᵥ c := by
-  rw [LinearSys.stepInputConst, MatExp.expIntegral_mulVec (toRealMat sys.A) c hΔt]
+  rw [LinearSys.stepInputConst, Real.MatExp.expIntegral_mulVec (toRealMat sys.A) c hΔt]
   have h := intervalIntegral.integral_comp_sub_left (a := (0:ℝ)) (b := Δt)
     (fun σ : ℝ => exp (σ • toRealMat sys.A) *ᵥ c) Δt
   simpa using h.symm
@@ -70,7 +70,7 @@ theorem LinearSys.stepInput_const (sys : LinearSys 𝕋 n) (c : Vec ℝ n) {Δt 
     ⟨by linarith [hσ.1], by rw [hexpand]; linarith [hσ.2]⟩
   rw [hu _ hmem]
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

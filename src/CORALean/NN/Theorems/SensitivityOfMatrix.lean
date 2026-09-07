@@ -19,7 +19,7 @@ than as an abstract one, which is what makes `toMatrix'` invert it on the nose.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -35,7 +35,7 @@ theorem Layer.sensitivity_eq_of_hasFDerivAt {f : Vec ℝ n → Vec ℝ m} {A : M
   rw [layerSensitivity, h.fderiv, LinearMap.coe_toContinuousLinearMap,
     ← Matrix.toLin'_apply', LinearMap.toMatrix'_toLin']
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -18,7 +18,7 @@ of `t` on the left. `Set.Icc a b ⊆ T` with `t ∈ Ico a b` is what buys it —
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar
 
@@ -38,7 +38,7 @@ theorem LinearSys.Trajectory.flow_Ici (traj : sys.Trajectory T R₀ U x u) {a b 
     (mem_nhdsGE_iff_exists_Ico_subset.mpr
       ⟨b, ht.2, fun _ hs => hT ⟨le_trans ht.1 hs.1, hs.2.le⟩⟩)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -146,7 +146,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [IntervalOuter S 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Layer.softmax (k : ℕ) : Real.Layer S n n where
+def Layer.softmax (k : ℕ) : Layer S n n where
   enclose s := ofInterval (softmaxBox k (interval s))
 
 theorem Layer.softmax_sound (k : ℕ) :

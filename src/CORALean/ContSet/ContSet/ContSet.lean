@@ -141,10 +141,10 @@ class Plus (S : Type) (α : outParam Type) [AddCommGroup α] [Module ℝ α]
 /-- CORA's intersection, outer even though five of six implementations are
 exact: an intersection is a set an algorithm computes, and `VPolytope`'s goes
 through a halfspace round trip that only encloses, never exactly. -/
-class And (S : Type) (α : outParam Type) [AddCommGroup α] [Module ℝ α]
+class Intersection (S : Type) (α : outParam Type) [AddCommGroup α] [Module ℝ α]
     [ContSet S α] where
-  and : S → S → S
-  and_outer (s t : S) : construct s ∩ construct t ⊆ construct (and s t)
+  intersection : S → S → S
+  intersection_outer (s t : S) : construct s ∩ construct t ⊆ construct (intersection s t)
 
 /-- CORA's Minkowski difference. The opposite of `Plus`: a difference is a
 *guarantee*, so an implementation may only ever *under*-approximate — never

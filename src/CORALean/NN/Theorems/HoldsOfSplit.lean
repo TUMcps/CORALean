@@ -28,7 +28,7 @@ instance; nothing here searches for which coordinate `j` to bisect.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open ContSet
 
@@ -52,7 +52,7 @@ theorem NeuralNetwork.holds_of_split {ι : Type} {nn : NeuralNetwork S n m}
           Set.iUnion_mono fun i => hf.image_subset (parts i)
   exact spec.holds_of_outer hsub (spec.holds_iUnion h)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

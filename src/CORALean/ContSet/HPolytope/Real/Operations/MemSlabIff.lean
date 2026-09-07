@@ -1,6 +1,6 @@
 import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
 import CORALean.ContSet.HPolytope.Real.Operations.Slab
-import CORALean.ContSet.HPolytope.Real.Theorems.AndExact
+import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
 
 /-!
 # Membership in `HPolytope.slab`
@@ -28,7 +28,7 @@ theorem HPolytope.mem_slab_iff {Ae : Mat ℝ q n} {lo hi : Vec ℝ q} {x : Vec �
       ∀ i, lo i ≤ (Ae *ᵥ x) i ∧ (Ae *ᵥ x) i ≤ hi i := by -- --- PROOF ---
   have hand : x ∈ (HPolytope.slab Ae lo hi).construct ↔
       x ∈ (HPolytope.ineqs Ae hi).construct
-        ∧ x ∈ (HPolytope.ineqs (-Ae) (-lo)).construct := HPolytope.mem_and_iff
+        ∧ x ∈ (HPolytope.ineqs (-Ae) (-lo)).construct := HPolytope.mem_intersection_iff
   rw [hand, HPolytope.mem_ineqs_iff, HPolytope.mem_ineqs_iff]
   -- both directions, the lower bound being the negated row read back
   constructor

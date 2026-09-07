@@ -29,14 +29,14 @@ partition without picking one. No search is implemented.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar Plus Reduce Mtimes
 
 variable {n m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
-variable [Mtimes (Mat ℝ) S] [OfInterval S]
+variable [Mtimes (Mat ℝ) S] [Real.OfInterval S]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -55,7 +55,7 @@ theorem NonlinearSysDT.confinement_of_subset (sys : NonlinearSysDT n m) {U : S m
       ⟨traj.init, fun j _ => traj.input j, fun j _ => traj.step j⟩
     exact hsub k (sys.reach_outer_on ho steps R₀ hOn ih k le_rfl)
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

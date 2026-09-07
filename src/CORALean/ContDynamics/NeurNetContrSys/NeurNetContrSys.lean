@@ -30,7 +30,7 @@ developments touch.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
 open Matrix ContSet Scalar
 
@@ -57,7 +57,7 @@ structure NeurNetContrSys.Trajectory (sys : NeurNetContrSys 𝕋 S n)
       (toRealMat sys.plant.A *ᵥ x t + π (x ((i : ℝ) * Δtc)))
       (Set.Icc ((i : ℝ) * Δtc) (((i : ℝ) + 1) * Δtc)) t
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --
