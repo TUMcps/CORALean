@@ -68,11 +68,12 @@ theorem neuronMerging_network_outer {n₀ n₁ n n₂ n₃ d r : ℕ}
                     ⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩)
                   (Interval.mtimes_isNonempty _ _))
                 post)))).enclose X) := by -- --- PROOF ---
+  rw [NeuralNetwork.image_eq_eval_image]
   rintro _ ⟨x, hx, rfl⟩
   -- the prefix hands the sandwich a set, and that set is what `hY` is stated over
   have hpre : pre.eval x ∈ construct (pre.enclose X) := pre.enclose_outer X x hx
   have hmid := neuronMerging_sandwich_outer part W0 b0 R W1 b1 Y (pre.enclose X) hY
-    ⟨pre.eval x, hpre, rfl⟩
+    (by rw [NeuralNetwork.image_eq_eval_image]; exact ⟨pre.eval x, hpre, rfl⟩)
   -- the suffix is unchanged, so its own obligation carries the point the rest of the way
   exact post.enclose_outer _ _ hmid
 

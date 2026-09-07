@@ -94,6 +94,7 @@ theorem suffExplanation_of_abstract_converse_fails :
   refine ⟨aux_suffExplanationConverseFails_nn, aux_suffExplanationConverseFails_nnAbs,
     (fun _ => 0), 0, ∅, 1, ?_, ?_, ?_⟩
   · -- `nn` and `nnAbs` evaluate identically, so `nn`'s exact image lies in `nnAbs`'s enclosure
+    rw [NeuralNetwork.image_eq_eval_image]
     rintro _ ⟨x', hx', rfl⟩
     rw [← aux_suffExplanationConverseFails_eval_eq]
     exact aux_suffExplanationConverseFails_nnAbs.enclose_outer _ x' hx'

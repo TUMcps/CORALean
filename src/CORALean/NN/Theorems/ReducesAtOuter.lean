@@ -9,6 +9,7 @@ itself. `keep`: `L.enclose_outer` moves the point past the layer, then the hypot
 set. `merge`: `neuronMerging_sandwich_outer` moves it past the sandwich, then the hypothesis at
 that set — the four-layer chain splitting as `rest.eval (sandwich.eval x)` and likewise for
 `enclose`, both by `rfl` since `NeuralNetwork.eval`/`enclose` unfold definitionally on `cons`.
+`image_eq_eval_image` is what reopens each of those sets to a point in the first place.
 -/
 
 -- Authors:       Tobias Ladner
@@ -34,14 +35,19 @@ in the enclosure `nn'.enclose s` builds. -/
 theorem NeuralNetwork.reducesAt_outer :
     ∀ {n m : ℕ} {s : S n} {nn nn' : NeuralNetwork S n m},
       NeuralNetwork.ReducesAt s nn nn' → nn.image (construct s) ⊆ construct (nn'.enclose s)
-  | _, _, s, _, _, .nil _ => by rintro _ ⟨x, hx, rfl⟩; exact hx
+  | _, _, s, _, _, .nil _ => by
+      rw [NeuralNetwork.image_eq_eval_image]; rintro _ ⟨x, hx, rfl⟩; exact hx
   | _, _, s, _, _, .keep _ L h => by
-      rintro _ ⟨x, hx, rfl⟩
-      exact reducesAt_outer h ⟨L.eval x, L.enclose_outer s x hx, rfl⟩
-  | _, _, s, _, _, .merge _ part W0 b0 R W1 b1 Y hY h => by
+      rw [NeuralNetwork.image_eq_eval_image]
       rintro _ ⟨x, hx, rfl⟩
       exact reducesAt_outer h
-        ⟨_, neuronMerging_sandwich_outer part W0 b0 R W1 b1 Y s hY ⟨x, hx, rfl⟩, rfl⟩
+        (by rw [NeuralNetwork.image_eq_eval_image]; exact ⟨L.eval x, L.enclose_outer s x hx, rfl⟩)
+  | _, _, s, _, _, .merge _ part W0 b0 R W1 b1 Y hY h => by
+      rw [NeuralNetwork.image_eq_eval_image]
+      rintro _ ⟨x, hx, rfl⟩
+      have hsand := neuronMerging_sandwich_outer part W0 b0 R W1 b1 Y s hY
+        (by rw [NeuralNetwork.image_eq_eval_image]; exact ⟨x, hx, rfl⟩)
+      exact reducesAt_outer h (by rw [NeuralNetwork.image_eq_eval_image]; exact ⟨_, hsand, rfl⟩)
 
 end CORALean.Real
 

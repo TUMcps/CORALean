@@ -41,8 +41,9 @@ theorem NeuralNetwork.suffExplanation_of_exact (nn : NeuralNetwork S n m) (x : V
     (E : Finset (Fin n)) (l : Fin m) (hexact : nn.IsSuffExplanationExact x ε E l) :
     nn.IsSuffExplanation x ε E l := by -- --- PROOF ---
   intro x' hx' j hj
-  have hmem : nn.eval x' ∈ nn.image (construct (ofInterval (explainBox x ε E) : S n)) :=
-    ⟨x', ofInterval_outer _ hx', rfl⟩
+  have hmem : nn.eval x' ∈ nn.image (construct (ofInterval (explainBox x ε E) : S n)) := by
+    rw [NeuralNetwork.image_eq_eval_image]
+    exact ⟨x', ofInterval_outer _ hx', rfl⟩
   have hd := Set.disjoint_left.mp hexact hmem
   by_contra hc
   exact hd ⟨j, hj, not_lt.mp hc⟩
