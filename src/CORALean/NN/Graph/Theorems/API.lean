@@ -1,3 +1,6 @@
+import CORALean.NN.Graph.Theorems.BallEnumBallEnumIdx
+import CORALean.NN.Graph.Theorems.BallEnumIdx
+import CORALean.NN.Graph.Theorems.BallEnumInjective
 import CORALean.NN.Graph.Theorems.BallMono
 import CORALean.NN.Graph.Theorems.BallSubsetSucc
 import CORALean.NN.Graph.Theorems.ConvExact
@@ -5,6 +8,7 @@ import CORALean.NN.Graph.Theorems.ConvExactOfAdjacency
 import CORALean.NN.Graph.Theorems.ConvUncertainExact
 import CORALean.NN.Graph.Theorems.DegreeAtEq
 import CORALean.NN.Graph.Theorems.EvalStepsRowBall
+import CORALean.NN.Graph.Theorems.EvalStepsRowBallEnum
 import CORALean.NN.Graph.Theorems.EvalStepsRowMask
 import CORALean.NN.Graph.Theorems.EvalStepsSubmatrix
 import CORALean.NN.Graph.Theorems.GcnSharedExact
@@ -13,6 +17,7 @@ import CORALean.NN.Graph.Theorems.GcnStepsExact
 import CORALean.NN.Graph.Theorems.GcnStepsOuter
 import CORALean.NN.Graph.Theorems.GcnStepsPoint
 import CORALean.NN.Graph.Theorems.GcnUncertainOuter
+import CORALean.NN.Graph.Theorems.MemBallEnumIff
 import CORALean.NN.Graph.Theorems.MemBallSelf
 import CORALean.NN.Graph.Theorems.MemBallSuccOfMessagePassing
 import CORALean.NN.Graph.Theorems.MessagePassingEnclosureOuter
@@ -42,8 +47,10 @@ weights the graph's own `D̃^(-1/2) Ã D̃^(-1/2)` is a *point* of it, which `Co
 `SubmatrixMulOfClosed`/`EvalStepsSubmatrix` are `[1, §4.3]`'s locality at one step and over a whole
 chain, given `hclosed`. `MemBallSelf`, `BallSubsetSucc`, `BallMono` and
 `MemBallSuccOfMessagePassing`/`MessagePassingNeZero` are the ball's own facts; `EvalStepsRowMask`
-supplies `hclosed`'s reason, at a mask rather than a hypothesis, and `EvalStepsRowBall` is
-`[1, §4.3]` itself: a ball's own enumeration needs no `hclosed` at all.
+supplies `hclosed`'s reason, at a mask rather than a hypothesis, and `EvalStepsRowBall` is `[1,
+§4.3]` itself: a ball's own enumeration needs no `hclosed` at all.
+`BallEnumInjective`/`MemBallEnumIff`/`BallEnumIdx`/`BallEnumBallEnumIdx` build one;
+`EvalStepsRowBallEnum` instantiates `EvalStepsRowBall` at it, with nothing left for a caller.
 
 ## References
 
