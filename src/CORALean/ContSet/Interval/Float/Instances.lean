@@ -1,4 +1,5 @@
 import CORALean.ContSet.Interval.Float.Theorems.LinCombOuter
+import CORALean.ContSet.Interval.Float.Theorems.MinusInner
 import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
 import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 import CORALean.ContSet.Interval.Float.Theorems.ReindexExact
@@ -42,6 +43,12 @@ instance : Plus (Interval 𝕋 n) (Vec ℝ n) where
   plus_outer I₁ I₂ := by
     rw [Interval.materialise_eq]
     exact Interval.plus_outer I₁ I₂
+
+instance : Minus (Interval 𝕋 n) (Vec ℝ n) where
+  minus I₁ I₂ := (Interval.minus I₁ I₂).materialise
+  minus_inner I₁ I₂ := by
+    rw [Interval.materialise_eq]
+    exact Interval.minus_inner I₁ I₂
 
 instance : LinComb (Interval 𝕋 n) (Vec ℝ n) where
   linComb I₁ I₂ := (Interval.linComb I₁ I₂).materialise
