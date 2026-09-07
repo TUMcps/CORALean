@@ -1,0 +1,38 @@
+import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
+import CORALean.ContSet.Zonotope.Real.Operations.LinComb
+
+/-!
+# `ZonoBundle.linComb`
+
+Every pair of zonotopes, one from each bundle, combined by `Zonotope.linComb`
+and indexed through `finProdFinEquiv`, exactly as `plus` sums pairs. Also an
+enclosure, but for a different reason: `plus`'s loss is that a sum of
+intersections is not an intersection of sums, while here the interpolation
+weight `lam` is genuinely shared across every pair — only the endpoints vary.
+Whether that makes this tighter than `plus` in practice is not claimed here.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       07-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+noncomputable def ZonoBundle.linComb (B₁ B₂ : ZonoBundle α) : ZonoBundle α where
+  k := B₁.k * B₂.k
+  Z := fun p =>
+    Zonotope.linComb (B₁.Z (finProdFinEquiv.symm p).1) (B₂.Z (finProdFinEquiv.symm p).2)
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
