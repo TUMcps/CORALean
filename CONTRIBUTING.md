@@ -42,6 +42,9 @@ src/CORALean/
                    a graph of layers, and checking the result
     Layers/        the standard layers, one file each; every activation is a
                    `Relaxation` and nothing else
+  Examples/        one worked example per component, proved and never run
+    Demo/          the one executable, and the only place anything here is
+                   evaluated rather than proved
 ```
 
 A conversion goes in `Conversion/`, not in either representation: two
@@ -238,14 +241,38 @@ graph from each of their roots, so a new one belongs in both files.
 
 `CORALean` is the development. `Examples` is the worked examples, built
 alongside the library rather than inside it, so the library carries no use sites
-of its own. `Demo` runs `LinearSysDT.reach` and `NeuralNetwork.propagate` at
-`Dyadic` and prints what comes out — the definitions the theorems are about, not
-copies of them.
+of its own. `Demo` lives under `Examples/` and runs `LinearSysDT.reach` and
+`NeuralNetwork.propagate` at `Dyadic`, printing what comes out — the definitions
+the theorems are about, not copies of them.
+
+### An example and the demo are not the same thing
+
+Both are use sites and neither is in the library, which is why they sit
+together; what they catch is different, and each is blind to the other's
+failure.
+
+An **example** is proved and never runs. It holds `example`, `theorem` and `def`
+declarations, prints nothing, and its job is to fail the build when an instance
+stops resolving or an algorithm stops accepting a representation — something a
+library cannot notice from the inside, because only a use site asks.
+
+The **demo** runs, and is the only place a definition in this repository is ever
+evaluated. Its output is committed as `scripts/demo-expected.txt` and
+`check-demo.sh` diffs against it, so an enclosure that silently widens fails the
+build. No theorem can do that job: `_outer` is as true of a box the size of the
+state space as of a tight one, and the only way to tell those apart is to
+compute one and look. `Dyadic` is exact integer arithmetic, so the committed
+numbers do not depend on the machine, the compiler, or the order of anything.
+
+So: an example says the library still *fits together*; the demo says it still
+*computes, and computes tightly*. A change that loosens a bound passes every
+example in the tree.
 
 `lake exe demo` builds it as an executable, which has to link, and linking
 against Mathlib means compiling the C emitted for every module it reaches. CI
 and `check-demo.sh` therefore run the same `main` through the interpreter with
-`lake env lean --run src/Demo.lean`, which needs only the oleans.
+`lake env lean --run src/CORALean/Examples/Demo.lean`, which needs only the
+oleans.
 
 ## File roles
 

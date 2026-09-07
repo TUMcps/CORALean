@@ -23,7 +23,7 @@ already err in.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace Demo
+namespace CORALean.Demo
 
 open CORALean CORALean.Float
 
@@ -76,7 +76,7 @@ wide the box is. -/
 def showWidth {p n : ℕ} (I : Interval (Dyadic p) n) (i : Fin n) : String :=
   showUp (subUp (I.sup i) (I.inf i))
 
-end Demo
+end CORALean.Demo
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

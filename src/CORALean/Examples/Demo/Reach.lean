@@ -2,8 +2,8 @@ import CORALean.ContDynamics.LinearSysDT.Operations
 import CORALean.ContDynamics.OutputEq.Operations
 import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
 import CORALean.ContSet.Zonotope.Float.Instances
-import Demo.Decimal
-import Demo.Scalar
+import CORALean.Examples.Demo.Decimal
+import CORALean.Examples.Demo.Scalar
 
 /-!
 # `LinearSysDT.reach` at `Dyadic`, run
@@ -34,7 +34,7 @@ overflows on the third step and half the rows carry a rounded box.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace Demo
+namespace CORALean.Demo
 
 open CORALean CORALean.Float
 
@@ -129,7 +129,7 @@ def reachReport : String :=
     "   k  gens  y"] ++
     (List.range (steps + 1)).map (outputRow p))
 
-end Demo
+end CORALean.Demo
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -34,8 +34,9 @@ roots = ["CORALean.Examples.API"]
 [[lean_lib]]
 name = "Demo"
 srcDir = "src"
+roots = ["CORALean.Examples.Demo"]
 
 [[lean_exe]]
 name = "demo"
 srcDir = "src"
-root = "Demo"
+root = "CORALean.Examples.Demo"

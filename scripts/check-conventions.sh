@@ -596,7 +596,7 @@ list=$(mktemp)
 trap 'rm -f "$list"' EXIT INT TERM
 printf '%s\n' "$files" > "$list"
 
-out=$(awk -v LIST="$list" -v ROOTS="CORALean CORALean.Examples.API Demo" '
+out=$(awk -v LIST="$list" -v ROOTS="CORALean CORALean.Examples.API CORALean.Examples.Demo" '
 BEGIN { while ((getline f < LIST) > 0) if (f != "") ARGV[ARGC++] = f }
 function moduleOf(path,   m) {
   m = path; sub(/^src\//, "", m); sub(/\.lean$/, "", m); gsub("/", ".", m)
