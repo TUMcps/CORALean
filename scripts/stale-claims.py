@@ -32,18 +32,26 @@ def report(hits, path, message):
 def main():
     hits = []
 
-    # 1. A Real-layer file saying the float layer is unwritten, beside a Float/.
+    # 1. A collector saying the float layer is unwritten, beside a Float/. The
+    # representation's own API.lean sits one level above Real/ and is easy to
+    # miss: `ZonoBundle/API.lean` said "Real layer only" for a day after
+    # `ZonoBundle/Float/` landed, and this check did not look at it.
     pat = re.compile(
         r"float layer[^.]*?(is designed and not yet|not yet written|would )"
-        r"|specification only",
+        r"|specification only|real layer only|no float layer"
+        r"|nothing here rounds",
         re.IGNORECASE,
     )
     for path in sorted(SRC.rglob("*.lean")):
-        if "/Real/" not in path.as_posix():
+        posix = path.as_posix()
+        if "/Real/" in posix:
+            if path.name not in ("API.lean", "Instances.lean"):
+                continue
+            rep = Path(posix.split("/Real/")[0])
+        elif path.name == "API.lean" and (path.parent / "Real").is_dir():
+            rep = path.parent
+        else:
             continue
-        if path.name not in ("API.lean", "Instances.lean"):
-            continue
-        rep = Path(path.as_posix().split("/Real/")[0])
         if not (rep / "Float").is_dir():
             continue
         if pat.search(flat(path)):
