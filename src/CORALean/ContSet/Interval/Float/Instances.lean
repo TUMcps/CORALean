@@ -2,7 +2,7 @@ import CORALean.ContSet.ContSet.CompactSet
 import CORALean.ContSet.ContSet.ConvexSet
 import CORALean.ContSet.Interval.Float.Operations.AndExact
 import CORALean.ContSet.Interval.Float.Theorems.LinCombOuter
-import CORALean.ContSet.Interval.Float.Theorems.MinusInner
+import CORALean.ContSet.Interval.Float.Theorems.MinkDiffInner
 import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
 import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 import CORALean.ContSet.Interval.Float.Theorems.ReindexExact
@@ -56,11 +56,11 @@ instance : Plus (Interval 𝕋 n) (Vec ℝ n) where
     rw [Interval.materialise_eq]
     exact Interval.plus_outer I₁ I₂
 
-instance : Minus (Interval 𝕋 n) (Vec ℝ n) where
-  minus I₁ I₂ := (Interval.minus I₁ I₂).materialise
-  minus_inner I₁ I₂ := by
+instance : MinkDiff (Interval 𝕋 n) (Vec ℝ n) where
+  minkDiff I₁ I₂ := (Interval.minkDiff I₁ I₂).materialise
+  minkDiff_inner I₁ I₂ := by
     rw [Interval.materialise_eq]
-    exact Interval.minus_inner I₁ I₂
+    exact Interval.minkDiff_inner I₁ I₂
 
 instance : And (Interval 𝕋 n) (Vec ℝ n) where
   and := Interval.and

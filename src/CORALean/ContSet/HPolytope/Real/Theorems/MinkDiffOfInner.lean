@@ -1,4 +1,4 @@
-import CORALean.ContSet.HPolytope.Real.Operations.MinusOf
+import CORALean.ContSet.HPolytope.Real.Operations.MinkDiffOf
 
 /-!
 # The certified halfspace difference is an inner approximation
@@ -25,9 +25,9 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.minusOf_inner (P : HPolytope α) (T : Set α)
+theorem HPolytope.minkDiffOf_inner (P : HPolytope α) (T : Set α)
     (u : ∀ i, SupportBound T (P.A i)) (hker : ∀ i, ∀ y ∈ T, P.Ae i y = 0) :
-    (P.minusOf T u).construct ⊆ minkowskiDiff P.construct T := by -- --- PROOF ---
+    (P.minkDiffOf T u).construct ⊆ minkowskiDiff P.construct T := by -- --- PROOF ---
   intro x hx y hy
   refine ⟨fun i => ?_, fun i => ?_⟩
   · have h1 : P.A i x ≤ P.b i - (u i).val := hx.1 i

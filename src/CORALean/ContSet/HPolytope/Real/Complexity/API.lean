@@ -1,6 +1,6 @@
 import CORALean.ContSet.HPolytope.Real.Complexity.And
 import CORALean.ContSet.HPolytope.Real.Complexity.Mtimes
-import CORALean.ContSet.HPolytope.Real.Complexity.MinusOf
+import CORALean.ContSet.HPolytope.Real.Complexity.MinkDiffOf
 
 /-!
 # What `HPolytope` costs

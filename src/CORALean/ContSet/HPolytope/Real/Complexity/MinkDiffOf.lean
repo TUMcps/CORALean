@@ -1,11 +1,11 @@
-import CORALean.ContSet.HPolytope.Real.Operations.MinusOf
+import CORALean.ContSet.HPolytope.Real.Operations.MinkDiffOf
 
 /-!
-# `HPolytope.minusOf`'s counts
+# `HPolytope.minkDiffOf`'s counts
 
-Every row survives, inequalities and equalities alike — `minusOf` only shifts
+Every row survives, inequalities and equalities alike — `minkDiffOf` only shifts
 `b`, never adds or drops a row. `rfl` against the structure instance in
-`Operations/MinusOf.lean`.
+`Operations/MinkDiffOf.lean`.
 -/
 
 -- Authors:       Tobias Ladner
@@ -23,11 +23,11 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.minusOf_m (P : HPolytope α) (T : Set α) (u : ∀ i, SupportBound T (P.A i)) :
-    (P.minusOf T u).m = P.m := rfl
+theorem HPolytope.minkDiffOf_m (P : HPolytope α) (T : Set α) (u : ∀ i, SupportBound T (P.A i)) :
+    (P.minkDiffOf T u).m = P.m := rfl
 
-theorem HPolytope.minusOf_me (P : HPolytope α) (T : Set α) (u : ∀ i, SupportBound T (P.A i)) :
-    (P.minusOf T u).me = P.me := rfl
+theorem HPolytope.minkDiffOf_me (P : HPolytope α) (T : Set α)
+    (u : ∀ i, SupportBound T (P.A i)) : (P.minkDiffOf T u).me = P.me := rfl
 
 end CORALean.Real
 

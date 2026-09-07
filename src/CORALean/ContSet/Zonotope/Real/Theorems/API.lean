@@ -39,6 +39,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceGirardOrderLe
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceCombastelOrderLe
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOrder
+import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedInner
 
 /-!
 # What `Zonotope` guarantees
@@ -50,4 +51,6 @@ coordinatewise, which is what every one of them is stated against, and
 the float layer needs too. `BilinOuter` and `MtimesMatZonotopeOuter` are a
 matrix zonotope acting on a set, an enclosure and never exact. `OfPointMem`
 and the two `Recentre` facts are what those classes ask of a zonotope.
+`MinkDiffAlignedInner` is the one guarantee running the other way, sound
+without approximation at aligned generators.
 -/

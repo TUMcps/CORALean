@@ -18,6 +18,7 @@ import CORALean.ContSet.Zonotope.Real.Operations.ReduceBy
 import CORALean.ContSet.Zonotope.Real.Operations.ReduceGirard
 import CORALean.ContSet.Zonotope.Real.Operations.ReduceCombastel
 import CORALean.ContSet.Zonotope.Real.Operations.Reduce
+import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffAligned
 
 /-!
 # What `Zonotope` computes
@@ -26,4 +27,6 @@ Only `reduce` bounds the generator count; the others grow it freely. `bilin`
 and `mtimesMatZonotope` are a matrix zonotope acting on a set, at any bilinear
 map and at `Matrix.mulVecBilin` respectively. `ofPoint` and `recentre` are a
 point and the origin-holding remainder, what `OfPoint` and `Recentre` ask for.
+`minkDiffAligned` is CORA's exact aligned-generator case of `minkDiff`, the
+only one not needing an enclosure.
 -/

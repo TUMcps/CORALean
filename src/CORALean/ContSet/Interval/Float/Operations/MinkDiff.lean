@@ -1,9 +1,9 @@
 import CORALean.ContSet.Interval.Float.Interval
 
 /-!
-# `Interval.minus`
+# `Interval.minkDiff`
 
-A difference is a guarantee, so `Minus` owes an **inner** approximation: the
+A difference is a guarantee, so `MinkDiff` owes an **inner** approximation: the
 computed set may only ever be a subset of the true difference. Rounding the
 lower bound *up* and the upper bound *down* shrinks the box, which is the
 direction that keeps it inside. Every other float operation here widens; this
@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Interval.minus (I₁ I₂ : Interval 𝕋 n) : Interval 𝕋 n where
+def Interval.minkDiff (I₁ I₂ : Interval 𝕋 n) : Interval 𝕋 n where
   inf := fun i => subUp (I₁.inf i) (I₂.inf i)
   sup := fun i => subDown (I₁.sup i) (I₂.sup i)
 

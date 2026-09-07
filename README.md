@@ -54,7 +54,7 @@ can be tested against.
 The Minkowski difference is the exception, and worth knowing about before
 reading the interfaces: a difference is a *guarantee* — the states from which
 everything still lands where it should — so an implementation may only ever
-return a **subset**, and `Minus` accordingly owes an inner approximation. Its
+return a **subset**, and `MinkDiff` accordingly owes an inner approximation. Its
 float counterpart rounds inward, the only operation in that layer which does.
 
 
