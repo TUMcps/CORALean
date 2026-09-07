@@ -11,11 +11,16 @@ enclosed after any of these without knowing how the result is described.
 
 This is what makes the hard polytope operations definable: the enclosure is a
 list of directions, and its right-hand side is assembled here.
+
+What does *not* travel is an enclosure, and `exists_outer_without_supportBound`
+is that: every operation class guarantees exactly `exact ⊆ computed`, and a
+bound crosses an inclusion the other way, so a bound on `construct (plus s t)`
+comes from the representation and never from bounds on the two operands.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   07-September-2026
 -- Last revision: ---
 
 
@@ -71,6 +76,19 @@ def SupportBound.smul {r : ℝ} (hr : 0 ≤ r) (u : SupportBound S c) :
     show c (r • x) ≤ r * u.val
     rw [map_smul, smul_eq_mul]
     exact mul_le_mul_of_nonneg_left (u.le x hx) hr
+
+/-- A set that is enclosed carries none of the enclosure's bounds: `{0}` is
+bounded along `id` and the line containing it is not. Why no operation class
+composes a bound — each guarantees only that the computed set is the larger. -/
+theorem exists_outer_without_supportBound :
+    ∃ X Y : Set ℝ, X ⊆ Y ∧ Nonempty (SupportBound X LinearMap.id) ∧
+      IsEmpty (SupportBound Y LinearMap.id) := by -- --- PROOF ---
+  refine ⟨{0}, Set.univ, Set.subset_univ _, ⟨⟨0, ?_⟩⟩, ⟨fun u => ?_⟩⟩
+  · intro x hx
+    exact le_of_eq hx
+  · have h := u.le (u.val + 1) (Set.mem_univ _)
+    simp only [LinearMap.id_coe, id_eq] at h
+    linarith
 
 /-- The sublevel set of a linear functional, which is the halfspace a bound
 names. -/
