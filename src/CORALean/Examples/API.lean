@@ -1,6 +1,7 @@
 import CORALean.Examples.BallLocalityEnumerated
 import CORALean.Examples.BouncingBall
 import CORALean.Examples.BoundedHorizonInvariant
+import CORALean.Examples.CapsuleObstacle
 import CORALean.Examples.ConPolyZonoGuard
 import CORALean.Examples.ConversionRoundTrip
 import CORALean.Examples.ConvNet
