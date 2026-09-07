@@ -64,9 +64,9 @@ instance : Plus (ConZonotope (Vec ℝ n)) (Vec ℝ n) where
   plus := ConZonotope.plus
   plus_outer C₁ C₂ := (ConZonotope.plus_exact C₁ C₂).subset
 
-/-- The anonymous constructor, not named fields: `reduce`'s own imports reach
-`Global.Partition`'s `Split ... and ...` notation, which makes `and` a token
-here rather than an identifier, so `and := ...` cannot parse. -/
+/-- The anonymous constructor, not named fields: this file is itself inside
+`namespace CORALean.Real`, where `Global.Partition`'s `Split ... and ...`
+notation is active even scoped, so `and := ...` still cannot parse. -/
 instance : And (ConZonotope (Vec ℝ n)) (Vec ℝ n) :=
   ⟨ConZonotope.and, fun C₁ C₂ => (ConZonotope.and_exact C₁ C₂).subset⟩
 
