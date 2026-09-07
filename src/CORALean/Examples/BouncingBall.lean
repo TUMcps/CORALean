@@ -2,6 +2,7 @@ import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
 import CORALean.ContSet.Zonotope.Real.Instances
 import CORALean.HybridDynamics.Theorems.FlowOuter
 import CORALean.HybridDynamics.Theorems.HoldsOfRun
+import CORALean.HybridDynamics.Theorems.InvariantOfEnclosureCut
 import CORALean.HybridDynamics.Theorems.JumpOuter
 
 /-!
@@ -14,20 +15,20 @@ the reset flips the velocity and damps it by `d`. The invariant is a box, so
 `Zonotope` supplies every instance the pipeline asks for: `Mtimes` and `Plus` for
 the reset image, `LinComb` and `Mtimes ℐ` for the stay.
 
-Two things the automaton cannot say, and they are the interface's shape rather
-than this example's. The guard is a *bounded* set — the floor met with a speed of
-at most `v` — because a location's sets share one representation and a zonotope
-cannot be the halfspace `p = 0 ∧ v ≤ 0`; `HPolytope` states that halfspace and
-still cannot take the jump, computing `Plus` only on named directions.
+What the automaton cannot say is the interface's shape, not this example's: the
+guard is a *bounded* set, the floor met at a speed of at most `v`, since a
+location's sets share one representation and a zonotope cannot be the halfspace
+`p = 0 ∧ v ≤ 0` — which `HPolytope` states and still cannot jump from.
 
-And nothing here intersects: `Location.timeIntervalStepInv` and
-`Transition.jumpAnd` exist for exactly this now, but `Zonotope` has no `And`
-instance, so this example still cannot call either.
+`Zonotope` has no `And` instance still, so `timeIntervalStepInv` and `jumpAnd`
+stay out of reach; `InvariantOfEnclosureCut` needs neither, cutting with `ℓ.inv`
+and with the guard as set inclusions, which is what lets
+`bouncingBall_invariant` discharge it at the location's own invariant.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   04-September-2026
+-- Last update:   07-September-2026
 -- Last revision: ---
 
 
@@ -35,7 +36,7 @@ instance, so this example still cannot call either.
 
 namespace CORALean.Real
 
-open Matrix ContSet Scalar NormedSpace MeasureTheory
+open Matrix ContSet Scalar NormedSpace MeasureTheory Pointwise
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
@@ -102,6 +103,55 @@ example (e : Transition 𝒵 Unit ℝ 2) {R Rg : Zonotope (Vec ℝ 2)}
 needs `Mtimes`, `Plus` and `OfInterval` all at `Zonotope`. -/
 noncomputable example (d v : ℝ) (Rg : Zonotope (Vec ℝ 2)) : Zonotope (Vec ℝ 2) :=
   (Example.bounce d v).jump Rg
+
+/-- The reset image of the guard, in coordinates: the floor, left with an
+upward velocity of at most `d v`. -/
+theorem Example.mem_bounce_jump_guard {d v : ℝ} {x : Vec ℝ 2}
+    (hx : x ∈ construct ((Example.bounce d v).jump (Example.bounce d v).guard)) :
+    ∃ s : ℝ, |s| ≤ 1 ∧ x = ![0, d * v / 2 - d * v / 2 * s] := by -- --- PROOF ---
+  replace hx : x ∈ (Zonotope.mtimes (Example.bounce d v).W (Example.bounce d v).guard).construct
+      + ((Interval.point (toRealVec (Example.bounce d v).w)).zonotope).construct := by
+    rw [Zonotope.plus_exact]; exact hx
+  rw [← Zonotope.mtimes_exact] at hx
+  obtain ⟨a, ⟨z, ⟨β, hβ, rfl⟩, rfl⟩, b, ⟨γ, -, rfl⟩, rfl⟩ := hx
+  refine ⟨β ⟨0, Nat.zero_lt_one⟩, hβ _, ?_⟩
+  funext i
+  fin_cases i
+  · simp [Example.bounce, Interval.point, Interval.zonotope]
+  · simp [Example.bounce, Interval.point, Interval.zonotope]
+    ring
+
+/-- The criterion at this automaton: the location's own invariant is an
+inductive invariant, the flow half discharged by the cut and the jump half by
+the damping being at most one. -/
+theorem Example.bouncingBall_invariant (g p v : ℝ) {d : ℝ} (hd0 : 0 ≤ d) (hd1 : d ≤ 1) :
+    (Example.bouncingBall g d p v).Invariant
+      (fun ℓ => ((Example.bouncingBall g d p v).loc ℓ).inv) := by -- --- PROOF ---
+  refine HybridAutomaton.invariant_of_enclosure_cut _ _ (fun ℓ τ _ => ?_) (fun ℓ e he => ?_)
+  · -- the cut is the whole flow obligation: whatever the dwell time, the part
+    -- of the enclosure still inside the invariant is inside the invariant
+    refine ⟨⌈‖τ • toRealMat ((Example.bouncingBall g d p v).loc ℓ).dynamics.A‖⌉₊, ?_,
+      Set.inter_subset_right⟩
+    rw [div_lt_one (by positivity)]
+    push_cast
+    linarith [Nat.le_ceil ‖τ • toRealMat ((Example.bouncingBall g d p v).loc ℓ).dynamics.A‖]
+  · -- the bounce is the only transition, its own guard the enclosure `jump_outer`
+    -- asks for, and the reset image sits in the box exactly when `d ≤ 1`
+    simp only [Example.bouncingBall, List.mem_singleton] at he
+    subst he
+    refine ⟨(Example.bounce d v).guard, Set.inter_subset_right, fun x hx => ?_⟩
+    obtain ⟨s, hs, rfl⟩ := Example.mem_bounce_jump_guard hx
+    rw [abs_le] at hs
+    show _ ∈ Zonotope.construct (⟨2, ![p / 2, 0], ![![p / 2, 0], ![0, v]]⟩ : Zonotope (Vec ℝ 2))
+    refine ⟨![-1, d * (1 - s) / 2], Fin.forall_fin_two.2 ⟨by simp, ?_⟩, ?_⟩
+    · show |d * (1 - s) / 2| ≤ 1
+      rw [abs_le]
+      constructor <;> nlinarith [hs.1, hs.2]
+    · funext i
+      fin_cases i
+      · simp [Fin.sum_univ_two]
+      · simp [Fin.sum_univ_two]
+        ring
 
 end CORALean.Real
 

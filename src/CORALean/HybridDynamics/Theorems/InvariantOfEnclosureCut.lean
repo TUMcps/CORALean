@@ -1,0 +1,78 @@
+import CORALean.HybridDynamics.Invariant
+import CORALean.HybridDynamics.Theorems.FlowOuterSplit
+import CORALean.HybridDynamics.Theorems.JumpOuter
+
+/-!
+# `Invariant` from the enclosures, cut down by the location's invariant
+
+`InvariantOfEnclosure` without the two hypotheses no caller could meet.
+`FlowOuterSplit` stands in for `FlowOuterInputSolution`, so `0 ∈ ℓ.U` is gone;
+and `hflow`'s containment is asked only of the part of the enclosure still
+inside `ℓ.inv`, so a dwell time long enough to leave the location no longer has
+to be absorbed by `R`. A trajectory that leaves `ℓ.inv` has left the location.
+
+The cut is `∩ construct (HA.loc ℓ).inv` on sets rather than
+`Location.timeIntervalStepInv`: `And.and` computes that set, but the criterion
+needs only the containment, and asking for `And` would shut out `Zonotope`,
+which has none. `hjump` names `Rg` for the same reason — `jump_outer`'s bargain,
+any enclosure of the guard intersection, `And.and` where there is one.
+
+`R ℓ := (HA.loc ℓ).inv` meets `hflow` at every location outright, which is what
+makes the criterion reachable at all; `Examples.BouncingBall` is that witness.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       07-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+open Matrix ContSet Scalar
+
+attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
+  Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
+
+variable {n : ℕ} {L 𝕋 : Type} [Scalar 𝕋]
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
+variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S] [Mtimes (Mat 𝕋) S] [OfInterval S]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+/-- `Invariant.flow` is `FlowOuterSplit` at `hflow`, an order `m` per dwell
+time and the enclosure cut to `ℓ.inv`; `Invariant.jump` is `JumpOuter` at
+`hjump`, one enclosure per transition met. -/
+theorem HybridAutomaton.invariant_of_enclosure_cut [∀ n, OfPoint (S n) (Vec ℝ n)]
+    [∀ n, Recentre (S n) (Vec ℝ n)] [∀ n, ConvexSet (S n) (Vec ℝ n)]
+    [∀ n, CompactSet (S n) (Vec ℝ n)]
+    (HA : HybridAutomaton S L 𝕋 n) (R : L → S n)
+    (hflow : ∀ (ℓ : L) (τ : ℝ), 0 < τ → ∃ m : ℕ,
+      ‖τ • toRealMat (HA.loc ℓ).dynamics.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1 ∧
+      construct ((HA.loc ℓ).timeIntervalStepSplit τ (m + 2) (R ℓ))
+        ∩ construct (HA.loc ℓ).inv ⊆ construct (R ℓ))
+    (hjump : ∀ (ℓ : L) (e : Transition S L 𝕋 n), e ∈ (HA.loc ℓ).trans → ∃ Rg : S n,
+      construct (R ℓ) ∩ construct e.guard ⊆ construct Rg ∧
+      construct (e.jump Rg) ⊆ construct (R e.target)) :
+    HA.Invariant R where
+  flow {ℓ τ x u} h h₀ {t} ht := by
+    rcases h.nonneg.lt_or_eq with hτ | hτ0
+    · -- `τ > 0`: the stay's own state is in the enclosure and in `ℓ.inv`, and
+      -- `hflow`'s containment is asked of exactly that intersection
+      obtain ⟨m, hε, hsub⟩ := hflow ℓ τ hτ
+      exact hsub ⟨h.timeInterval_outer_split h₀ hτ hε ht.1 ht.2, h.invariant t ht⟩
+    · -- `τ = 0`: `Set.Icc 0 0` is `{0}`, and `h₀` already places `x 0`
+      subst hτ0
+      rwa [le_antisymm ht.2 ht.1]
+  jump {ℓ e} hmem {z} hz hguard := by
+    obtain ⟨Rg, hand, hsub⟩ := hjump ℓ e hmem
+    exact hsub (e.jump_outer hand hz hguard)
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
