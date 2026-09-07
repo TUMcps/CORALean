@@ -327,6 +327,12 @@ proof would say only what the source already shows. Required and refused on
 either side of one number, so the flag always means the same thing — 495 of
 them, on a little under half the theorems in the tree.
 
+It rides on a `theorem` or a `lemma` and on nothing else. A `def` that proves
+something in a structure field — `Ellipsoid.supportBound`'s `le :=`, eight lines
+of it — carries no flag however long that field runs, because the checker's
+notion of a declaration does not reach inside one. So the count above is a count
+of *theorems*, and a proof living in a `def` is invisible to it.
+
 Its length is what it spans: from the `:= by` to the proof's last line, blank
 lines inside it counted and the blank lines between it and whatever follows
 not. A theorem proved by a structure instance — `... : sys.Trajectory … where`
