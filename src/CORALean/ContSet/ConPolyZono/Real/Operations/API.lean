@@ -39,6 +39,9 @@ import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecPlusARight
 import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsPlusIff
 import CORALean.ContSet.ConPolyZono.Real.Operations.SatisfiesPlusIff
 import CORALean.ContSet.ConPolyZono.Real.Operations.Plus
+import CORALean.ContSet.ConPolyZono.Real.Operations.ToPolyZonotope
+import CORALean.ContSet.ConPolyZono.Real.Operations.LinComb
+import CORALean.ContSet.ConPolyZono.Real.Operations.SatisfiesLinCombIff
 import CORALean.ContSet.ConPolyZono.Real.Operations.QuadMapDep
 import CORALean.ContSet.ConPolyZono.Real.Operations.QuadMap
 import CORALean.ContSet.ConPolyZono.Real.Operations.OfPoint

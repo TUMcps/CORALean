@@ -1,0 +1,44 @@
+import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
+
+/-!
+# `ConPolyZono.toPolyZonotope`
+
+The generator data on its own, the constraint system left behind: CORA's
+`polyZonotope(cPZ.c,cPZ.G,cPZ.GI,cPZ.E,cPZ.id)`, which every `conPolyZono`
+operation that has a polynomial-zonotope counterpart starts by building.
+
+It is not a set-level operation and no theorem here reads it as one. What it is
+for is arithmetic: an operation applies a `PolyZonotope` one to the generators,
+then states the constraints it assembles itself over the same factors — the
+sharing the representation is built on, used in the one direction that keeps it.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       07-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- The generator data on its own, the constraint system left behind. -/
+def ConPolyZono.toPolyZonotope (cPZ : ConPolyZono α) : PolyZonotope α where
+  p := cPZ.p
+  h := cPZ.h
+  q := cPZ.q
+  c := cPZ.c
+  G := cPZ.G
+  E := cPZ.E
+  GI := cPZ.GI
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
