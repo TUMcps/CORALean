@@ -3,7 +3,9 @@ import CORALean.ContDynamics.LinParamSysDT.Theorems.HoldsOfReach
 import CORALean.ContDynamics.LinParamSysDT.Theorems.NotHoldsOfSimulate
 import CORALean.ContDynamics.LinParamSysDT.Theorems.OutputOuter
 import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachEqToLinParam
+import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachBigO
 import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOneOuter
+import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOrderLe
 import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuter
 import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuterInstances
 import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuterOn
@@ -35,6 +37,7 @@ file does not make.
 `SimulateTrajectory`/`SimulateMemReach` are `simulate` sampling one run, at a
 matrix chosen per step, landing inside `reach` — same shape as `LinearSysDT`'s.
 `NotHoldsOfSimulate` is the falsification corollary, mirroring `LinearSysDT`'s.
+`ReachOrderLe`/`ReachBigO` carry the size bound over unchanged.
 
 ## References
 
