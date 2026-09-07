@@ -46,10 +46,16 @@ expected to accept it.
 The formalization lives in `src/CORALean/`, mirroring CORA's structure and
 naming convention.
 
-Set representations and their operations are defined over ℝ and proved sound —
-each operation over-approximates the set it claims to. Every such theorem is
-then refined for floating-point arithmetic by rounding "outward", which an
-implementation can be tested against.
+Set representations and their operations are defined over ℝ and proved sound.
+Nearly every operation over-approximates the set it claims to, and the float
+layer refines each such theorem by rounding "outward", which an implementation
+can be tested against.
+
+The Minkowski difference is the exception, and worth knowing about before
+reading the interfaces: a difference is a *guarantee* — the states from which
+everything still lands where it should — so an implementation may only ever
+return a **subset**, and `Minus` accordingly owes an inner approximation. Its
+float counterpart rounds inward, the only operation in that layer which does.
 
 
 ## Findings
