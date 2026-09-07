@@ -1,0 +1,53 @@
+import CORALean.NN.Theorems.SuffExplanationExact
+import CORALean.NN.Theorems.SuffExplanation
+
+/-!
+# From separation on the exact output set to the pointwise definition
+
+`IsSuffExplanationExact` is `def:suff-explanation` [1] stated as a
+specification on a set; this reads it back as the inequality the definition is
+written with. The one gap is the input side: the predicate ranges over
+`construct (ofInterval (explainBox …))`, which `ofInterval_outer` says contains
+`construct (explainBox …)`, so the specification form is the stronger of the
+two and this direction is the only one that holds for every `S`.
+
+## References
+
+* [1] S. Bassan, Y. Y. Elboher, T. Ladner, M. Althoff and G. Katz. "Explaining
+      Fast and Slow: Abstraction and Refinement of Provable Explanations".
+      ICML 2025.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       07-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+open ContSet OfInterval
+
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OfInterval S] {n m : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+/-- Separation on the exact output set is sufficiency in the pointwise sense:
+every point of `explainBox` keeps `l` strictly ahead. -/
+theorem NeuralNetwork.suffExplanation_of_exact (nn : NeuralNetwork S n m) (x : Vec ℝ n) (ε : ℝ)
+    (E : Finset (Fin n)) (l : Fin m) (hexact : nn.IsSuffExplanationExact x ε E l) :
+    nn.IsSuffExplanation x ε E l := by -- --- PROOF ---
+  intro x' hx' j hj
+  have hmem : nn.eval x' ∈ nn.outputSet (ofInterval (explainBox x ε E)) :=
+    ⟨x', ofInterval_outer _ hx', rfl⟩
+  have hd := Set.disjoint_left.mp hexact hmem
+  by_contra hc
+  exact hd ⟨j, hj, not_lt.mp hc⟩
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

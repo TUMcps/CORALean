@@ -1,6 +1,6 @@
 import CORALean.NN.Theorems.Misclassified
 import CORALean.NN.Theorems.SuffExplanationAbstract
-import CORALean.NN.Theorems.SuffExplanation
+import CORALean.NN.Theorems.SuffExplanationOfExact
 import CORALean.Specification.Theorems.HoldsOfOuter
 
 /-!
@@ -14,6 +14,10 @@ image there. The hypothesis `hcontain` is what an abstraction owes.
 the two corollaries the refinement loop [1, Alg. 2] actually visits, each
 genuinely public and neither the other's helper, so each earns its own file.
 
+`hcontain` and `hsuffAbs` compose to `IsSuffExplanationExact`, which is all
+`holds_of_outer` gives; `suffExplanation_of_exact` is the second half, reading
+that back as the pointwise definition.
+
 ## References
 
 * [1] S. Bassan, Y. Y. Elboher, T. Ladner, M. Althoff and G. Katz. "Explaining
@@ -23,7 +27,7 @@ genuinely public and neither the other's helper, so each earns its own file.
 
 -- Authors:       Tobias Ladner
 -- Written:       05-September-2026
--- Last update:   06-September-2026
+-- Last update:   07-September-2026
 -- Last revision: ---
 
 
@@ -46,16 +50,9 @@ theorem NeuralNetwork.suffExplanation_of_abstract (nn nnAbs : NeuralNetwork S n 
     (hcontain : nn.outputSet (ofInterval (explainBox x ε E))
       ⊆ construct (nnAbs.propagate (ofInterval (explainBox x ε E))))
     (hsuffAbs : nnAbs.IsSuffExplanationAbstract x ε E l) :
-    nn.IsSuffExplanation x ε E l := by -- --- PROOF ---
-  have hspec : (Specification.unsafeSet (misclassified m l)).Holds
-      (nn.outputSet (ofInterval (explainBox x ε E))) :=
-    (Specification.unsafeSet (misclassified m l)).holds_of_outer hcontain hsuffAbs
-  intro x' hx' j hj
-  have hmem : nn.eval x' ∈ nn.outputSet (ofInterval (explainBox x ε E)) :=
-    ⟨x', ofInterval_outer _ hx', rfl⟩
-  have hd := Set.disjoint_left.mp hspec hmem
-  by_contra hc
-  exact hd ⟨j, hj, not_lt.mp hc⟩
+    nn.IsSuffExplanation x ε E l :=
+  nn.suffExplanation_of_exact x ε E l
+    ((Specification.unsafeSet (misclassified m l)).holds_of_outer hcontain hsuffAbs)
 
 end CORALean.Real
 

@@ -21,6 +21,8 @@ import CORALean.NN.Theorems.MinSuffExplanationAbstract
 import CORALean.NN.Theorems.MinSuffExplanationCounterexample
 import CORALean.NN.Theorems.MinSuffExplanationAbstractOfMin
 import CORALean.NN.Theorems.MinSuffExplanationAbstractOfRefined
+import CORALean.NN.Theorems.MinSuffExplanationExact
+import CORALean.NN.Theorems.MinSuffExplanationExactOfRefined
 import CORALean.NN.Theorems.Misclassified
 import CORALean.NN.Theorems.MultiLayerRefinementConverges
 import CORALean.NN.Theorems.ExistsMergeTolerance
@@ -54,6 +56,10 @@ import CORALean.NN.Theorems.ExistsScheduleSigmoidSubset
 import CORALean.NN.Theorems.SuffExplanation
 import CORALean.NN.Theorems.SuffExplanationAbstract
 import CORALean.NN.Theorems.SuffExplanationConverseFails
+import CORALean.NN.Theorems.SuffExplanationExact
+import CORALean.NN.Theorems.SuffExplanationExactOfRefined
+import CORALean.NN.Theorems.SuffExplanationExactOfReducesAt
+import CORALean.NN.Theorems.SuffExplanationOfExact
 import CORALean.NN.Theorems.SuffExplanationRefined
 import CORALean.NN.Theorems.SuffExplanationTransfer
 import CORALean.NN.Theorems.SuffExplanationOfNeuronMerging
@@ -77,11 +83,11 @@ bucket containment, the Minkowski split, tolerated by `ExistsMergeTolerance`'s `
 `MergeBucketMono`/`MergeBucketCardMono`/`ExistsMergeBucketAll` grow it; `PropagateNotMonotone`
 forces `Reduction`'s `ReducesAt` into one induction — `HoldsOfReducesAt` is [1, Thm. 1].
 
-`SuffExplanation`, `MinSuffExplanation` and their `Abstract` forms are local explanations [2].
-`SuffExplanationTransfer` carries sufficiency to the original network, discharged at a merged
-one; `SuffExplanationRefined` and `MinSuffExplanationAbstractOfMin`/`OfRefined` carry it and
-minimality along a refinement, `MinSuffExplanationCounterexample` certifies it, and
-`SuffExplanationConverseFails` is why it goes one way.
+`SuffExplanation`, `MinSuffExplanation` and their `Abstract` and `Exact` forms are local
+explanations [2]. `SuffExplanationTransfer`/`OfExact` carry sufficiency to the original network,
+`SuffExplanationRefined` and `MinSuffExplanationAbstractOfMin`/`OfRefined` carry it enclosure to
+enclosure; the `ExactOfRefined` pair with `SuffExplanationExactOfReducesAt` is [2, Prop. 3] and
+its discharge, `MinSuffExplanationCounterexample` and `SuffExplanationConverseFails` its limits.
 `SensitivityFDeriv` is what the refinement heuristic [3] rests on: the backpropagated Jacobian
 identified with `fderiv` wherever `EvalDifferentiable` holds, which `SensitivityOfMatrix` hands
 to `SensitivityLinear`/`SensitivityActivation`; `ReluNotDifferentiable` is why ReLU gets none.
