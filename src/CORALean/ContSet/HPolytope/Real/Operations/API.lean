@@ -15,6 +15,9 @@ import CORALean.ContSet.HPolytope.Real.Operations.MapEquiv
 import CORALean.ContSet.HPolytope.Real.Operations.Mtimes
 import CORALean.ContSet.HPolytope.Real.Operations.OfBounds
 import CORALean.ContSet.HPolytope.Real.Operations.SubsetOfBounds
+import CORALean.ContSet.HPolytope.Real.Operations.OfBoundsOpt
+import CORALean.ContSet.HPolytope.Real.Operations.SubsetOfBoundsOpt
+import CORALean.ContSet.HPolytope.Real.Operations.Rows
 import CORALean.ContSet.HPolytope.Real.Operations.RowLin
 import CORALean.ContSet.HPolytope.Real.Operations.Ineqs
 import CORALean.ContSet.HPolytope.Real.Operations.Eqs
@@ -34,6 +37,7 @@ import CORALean.ContSet.HPolytope.Real.Operations.MemHalfScaledComap
 import CORALean.ContSet.HPolytope.Real.Operations.RowsOfMemHalfScaledComap
 import CORALean.ContSet.HPolytope.Real.Operations.AbsLeOfUnitBoxRows
 import CORALean.ContSet.HPolytope.Real.Operations.OfPoint
+import CORALean.ContSet.HPolytope.Real.Operations.SupportBound
 
 /-!
 # What `HPolytope` computes
@@ -50,9 +54,9 @@ constraint that reads the weight, and a box is `2n` rows written out.
 Enclosing, because they are not: Minkowski sum, `linComb`, the image under a
 general map, and the bounding box all produce rows nobody named, so the caller
 names directions instead and each bound comes from a certificate — `ofBounds`
-is the shape they share, `BoundOfDual` where a halfspace description's own
-certificates come from. Soundness never depends on the directions, only
-precision does, so enumerating the true facets stays outside as an optimisation.
+is the shape they share, `BoundOfDual` and `SupportBound` where a halfspace
+description's own certificates come from, the latter by simplex and a check.
+Soundness never depends on the directions, only precision does.
 
 `Fullspace` and `EmptySet` are the unit and the absorbing element of the first
 group, each written out as the rows that denote it. `minkDiffOf` is exact too:

@@ -1,4 +1,8 @@
 import CORALean.ContSet.HPolytope.Real.HPolytope
+import CORALean.ContSet.ContSet.SupportBound
+import CORALean.ContSet.HPolytope.Real.Operations.Rows
+import CORALean.ContSet.HPolytope.Real.Operations.SupportBound
+import CORALean.ContSet.HPolytope.Real.Operations.SubsetOfBoundsOpt
 import CORALean.ContSet.HPolytope.Real.Theorems.AndExact
 import CORALean.ContSet.HPolytope.Real.Theorems.MapEquivExact
 import CORALean.ContSet.HPolytope.Real.Theorems.OfPointMem
@@ -10,18 +14,17 @@ import CORALean.ContSet.HPolytope.Real.Theorems.OfPointMem
 halfspaces and keeps the set exactly, so doing nothing is the sound stand-in
 until that algorithm is written.
 
-Not `Plus`, `LinComb` or `Mtimes`, though `plusOf`, `linCombOf` and `mtimesOf` all compute.
-Closing over their directions and support bounds — the way `Ellipsoid.plusInstance` closes over
-its scalings — would need bounds for *every* polytope, `plus : S → S → S` being total and
-summing sets the caller never sees. That oracle does not exist: a description with no rows
-denotes the whole space, unbounded in every direction. A useful `Plus` needs a type excluding
-unbounded sets first.
+`Plus` and `LinComb` at `Vec ℝ n`, where `supportBound` answers a direction by
+simplex. A description with no rows is still unbounded and still has no bound,
+so the answer is an `Option` and an unanswered direction contributes the vacuous
+row `0 x ≤ 0`: total without a type that excludes unbounded sets. The directions
+are the operands' own rows, among which a sum's facet normals lie.
 
-`OfInterval` could be instantiated as it stands, `Interval.hPolytope` being
-exact, but the class lives in `Conversion`, so the instance would put every
-importer of `OfInterval` behind `HPolytope`. `And` and `OfPoint` land too —
-the latter only at `Vec ℝ n`, `LinearMap.proj` needing coordinates —
-`mapEquiv` backs `Reindex` below, and `comap`, `translate` stay named.
+Not `Mtimes`: no direction on the target is named by the operands, so the choice
+would be a precision one and instance search may not make one. `And` and
+`OfPoint` land too — the latter only at `Vec ℝ n`, `LinearMap.proj` needing
+coordinates — `mapEquiv` backs `Reindex` below, and `comap`, `translate` stay
+named. `OfInterval` would land as it stands, but its class lives in `Conversion`.
 -/
 
 -- Authors:       Tobias Ladner
@@ -33,6 +36,8 @@ the latter only at `Vec ℝ n`, `LinearMap.proj` needing coordinates —
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
 namespace CORALean.Real
+
+open Pointwise
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
@@ -54,6 +59,23 @@ back, needs coordinates. -/
 instance {n : ℕ} : OfPoint (HPolytope (Vec ℝ n)) (Vec ℝ n) where
   ofPoint := HPolytope.ofPoint
   mem_ofPoint := HPolytope.mem_ofPoint
+
+/-- A sum enclosed on the operands' own rows, each bound certified against the
+dual candidate a simplex proposed. A direction with no bound contributes no
+constraint, which is what makes this total. -/
+noncomputable instance {n : ℕ} : Plus (HPolytope (Vec ℝ n)) (Vec ℝ n) where
+  plus P₁ P₂ := HPolytope.ofBoundsOpt (Fin.append P₁.rows P₂.rows) fun i =>
+    (P₁.supportBound (Fin.append P₁.rows P₂.rows i)).bind fun u =>
+      (P₂.supportBound (Fin.append P₁.rows P₂.rows i)).map u.add
+  plus_outer _ _ := HPolytope.subset_ofBoundsOpt _ _
+
+/-- The same directions and the same certificates, the larger of the two bounds
+serving: a point on a segment between the two beats neither. -/
+noncomputable instance {n : ℕ} : LinComb (HPolytope (Vec ℝ n)) (Vec ℝ n) where
+  linComb P₁ P₂ := HPolytope.ofBoundsOpt (Fin.append P₁.rows P₂.rows) fun i =>
+    (P₁.supportBound (Fin.append P₁.rows P₂.rows i)).bind fun u =>
+      (P₂.supportBound (Fin.append P₁.rows P₂.rows i)).map u.segments
+  linComb_outer _ _ := HPolytope.subset_ofBoundsOpt _ _
 
 /-- `mapEquiv` wants an equivalence, not a linear map, so a reindexing goes
 through `LinearEquiv.funCongrLeft`, whose coercion is `reindexLin` again. -/
