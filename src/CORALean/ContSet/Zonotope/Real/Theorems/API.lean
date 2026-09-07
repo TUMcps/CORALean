@@ -36,6 +36,8 @@ import CORALean.ContSet.Zonotope.Real.Theorems.ReduceByOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceGirardOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceCombastelOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.ReduceGirardOrderLe
+import CORALean.ContSet.Zonotope.Real.Theorems.ReduceCombastelOrderLe
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOrder
 
 /-!

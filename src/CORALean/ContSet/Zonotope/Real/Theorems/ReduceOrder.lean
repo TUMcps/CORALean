@@ -1,22 +1,16 @@
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceCombastel
+import CORALean.ContSet.Zonotope.Real.Operations.Reduce
+import CORALean.ContSet.Zonotope.Real.Theorems.ReduceGirardOrderLe
 
 /-!
-# `Zonotope.reduceCombastel` bounds the generator count
+# `Zonotope.reduce` bounds the generator count
 
-`reduceBy`'s shape is the whole argument: `h := q + n`, and at the split
-`aux_combastelSplit` builds, `q = (o-1)*n`, so the total is `o*n` outright —
-no clamping, since a `Zonotope` has one generator block, unlike `PolyZonotope`,
-where `reduceGirard_order_le` needs one to bound two blocks together.
-
-Girard's rule admits the identical bound by the identical argument; it is not
-stated here, since this addition is scoped to Combastel's rule alone.
-
-At `o = 0` there is nothing to state, as for `PolyZonotope`: CORA floors the
-reduced budget at nothing, so order zero lands at order one in both tools.
+One line, because `reduce` is Girard's rule under another name, as
+`ReduceOuter.lean` already reads it. A reachability bound built on top of this
+needs nothing about which rule `reduce` runs, only that some bound holds.
 -/
 
 -- Authors:       Tobias Ladner
--- Written:       04-September-2026
+-- Written:       07-September-2026
 -- Last update:   ---
 -- Last revision: ---
 
@@ -30,14 +24,11 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.reduceCombastel_order_le (Z : Zonotope (Vec ℝ n)) {o : ℕ} (ho : 0 < o) :
-    (Z.reduceCombastel o).h ≤ o * n := by -- --- PROOF ---
-  have hK : (o - 1) * n + n = o * n := by
-    rw [Nat.sub_one_mul, Nat.sub_add_cancel (Nat.le_mul_of_pos_left n ho)]
-  unfold Zonotope.reduceCombastel
-  split_ifs with hlt
-  · exact le_of_eq hK
-  · exact Nat.le_of_not_lt hlt
+/-- Girard's is the rule `reduce` runs, and this line is the whole of that
+choice: any other rule with the same order bound would discharge it too. -/
+theorem Zonotope.reduce_order_le (Z : Zonotope (Vec ℝ n)) {o : ℕ} (ho : 0 < o) :
+    (Z.reduce o).h ≤ o * n :=
+  Zonotope.reduceGirard_order_le Z ho
 
 end CORALean.Real
 
