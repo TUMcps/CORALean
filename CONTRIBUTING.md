@@ -527,6 +527,13 @@ when a class, an instance or a float layer lands. Better still, when a change
 fills a gap, ask which docstring explained that gap and fix it in the same
 merge request.
 
+It catches shapes, not sentences, so do not read a clean run as a clean tree.
+Four sentences went stale in one day that it cannot see: three named a *theorem*
+that was missing and has since been written — no pattern can know what the
+theorem was — and one sat in a representation's own `API.lean`, one level above
+`Real/`, which the float check did not look at until it was widened to. A rename
+invalidates prose by construction and the script sees none of that either.
+
 ### A notation's literal tokens are not available as identifiers
 
 A notation's literal string tokens take those words out of circulation as
