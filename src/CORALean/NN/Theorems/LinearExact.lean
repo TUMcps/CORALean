@@ -6,7 +6,7 @@ import CORALean.NN.Layers.Linear
 /-!
 # The linear layer loses nothing at a polynomial zonotope
 
-`Layer.linear` propagates by `mtimes` and then `plus`, and a polynomial zonotope
+`Layer.linear` encloses by `mtimes` and then `plus`, and a polynomial zonotope
 is exact under both: a linear map of the ambient space cannot touch the
 monomials, and `plus` keeps the two factor blocks apart rather than identifying
 them.
@@ -16,7 +16,7 @@ where the exactness of `plus` is actually needed — a singleton is what the
 `OfInterval` conversion has to denote, and it does, both the zonotope's centre
 and its generators collapsing onto the point.
 
-This is what makes a linear layer convergent for nothing: the propagated set
+This is what makes a linear layer convergent for nothing: the enclosed set
 *is* the image, so it lies inside every inflation of it and no level is spent.
 -/
 
@@ -66,7 +66,7 @@ theorem aux_construct_point_polyZonotope (b : Vec ℝ m) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Layer.linear_exact (W : Mat ℝ m n) (b : Vec ℝ m) (s : PolyZonotope (Vec ℝ n)) :
-    construct ((Layer.linear (S := 𝒫𝒵) W b).propagate s)
+    construct ((Layer.linear (S := 𝒫𝒵) W b).enclose s)
       = (Layer.linear (S := 𝒫𝒵) W b).eval '' construct s := by -- --- PROOF ---
   show ((PolyZonotope.mtimes W s).plus (Interval.point b).polyZonotope).construct
       = (fun x => W *ᵥ x + b) '' s.construct

@@ -21,7 +21,7 @@ so each proof below is the operation's own guarantee after one rewrite.
 It goes here rather than in `Operations/`: an algorithm reaches a representation
 through these five fields and through nothing else, so this is the one place
 that knows a set is about to be handed back to a loop. In the operations it
-would have to guess which of them a loop calls — `NeuralNetwork.propagate` calls
+would have to guess which of them a loop calls — `NeuralNetwork.enclose` calls
 neither `reduce` nor `linComb`.
 -/
 

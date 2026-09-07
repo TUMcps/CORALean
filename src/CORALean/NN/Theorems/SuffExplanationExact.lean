@@ -8,7 +8,7 @@ import CORALean.Specification.Specification
 # Sufficient explanation, read at the exact image
 
 `def:suff-explanation-abstract` [1] read at `image` rather than at
-`propagate`: separation on the network's *exact* image of `explainBox`, which
+`enclose`: separation on the network's *exact* image of `explainBox`, which
 is what the paper means by a refined network's output. Weaker than
 `IsSuffExplanationAbstract` by `image_subset`, and it is the conclusion
 `Specification.holds_of_outer` hands back from a containment whose left side is

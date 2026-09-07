@@ -125,10 +125,10 @@ theorem le_maxPoolGap (tap : Fin m → Fin (k + 1) → Fin n) (p : Fin m → Fin
 noncomputable def Layer.maxPool (tap : Fin m → Fin (k + 1) → Fin n)
     (pivot : Interval (Vec ℝ n) → Fin m → Fin (k + 1)) : Layer S n m where
   eval x := fun j => windowMax fun l => x (tap j l)
-  propagate s :=
+  enclose s :=
     plus (mtimes (selectMat fun j => tap j (pivot (interval s) j)) s)
       (ofInterval ⟨fun _ => 0, maxPoolGap tap (pivot (interval s)) (interval s)⟩)
-  propagate_outer s x hx := by
+  enclose_outer s x hx := by
     have hbox := interval_outer s hx
     set I := interval s with hI
     set p := pivot I with hp

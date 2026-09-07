@@ -4,7 +4,7 @@ import CORALean.Specification.Theorems.HoldsOfOuter
 /-!
 # A specification checked on the invariant holds along every run
 
-The same line `LinearSysDT.holds_of_reach` and `NeuralNetwork.holds_of_propagate`
+The same line `LinearSysDT.holds_of_reach` and `NeuralNetwork.holds_of_enclose`
 are: `run_outer` handed to `Specification.holds_of_outer`. Neither of those
 knows what a hybrid automaton is, and this does not need them to — all three
 only produce a superset of something not computable.

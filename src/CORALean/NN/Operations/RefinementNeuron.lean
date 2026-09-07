@@ -16,7 +16,7 @@ sum orders layers and cannot say which neuron inside one deserves the order; by
 [1, Lemma 4.3] a layer costs no more generators than its largest order anyway,
 so the two rules differ in the time spent and not in the size of the set.
 
-Nothing here is proved and nothing here can be wrong: `propagateAt_outer` holds
+Nothing here is proved and nothing here can be wrong: `encloseAt_outer` holds
 at every schedule, so `ω`, the tie-break and the ranking are free. The layers
 are ranked at one width, a `Schedule` being indexed by plain ℕ.
 

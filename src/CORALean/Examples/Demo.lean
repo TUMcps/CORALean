@@ -1,4 +1,4 @@
-import CORALean.Examples.Demo.Propagate
+import CORALean.Examples.Demo.Enclose
 import CORALean.Examples.Demo.Reach
 
 /-!
@@ -37,7 +37,7 @@ def main : IO Unit := do
   IO.println ""
   IO.println (CORALean.Demo.reachReport CORALean.Demo.smallP)
   IO.println ""
-  IO.println CORALean.Demo.propagateReport
+  IO.println CORALean.Demo.encloseReport
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

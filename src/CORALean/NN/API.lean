@@ -17,7 +17,7 @@ import CORALean.NN.Theorems.API
 CORA's `nn`. The pipeline is three things: an input set in whatever
 representation the caller likes, a graph of layers each of which encloses the
 image of the function it computes, and a specification checked on the result.
-`Theorems.HoldsOfPropagate`/`HoldsAllOfPropagate` is where those meet; `Graph/` the graph layers.
+`Theorems.HoldsOfEnclose`/`HoldsAllOfEnclose` is where those meet; `Graph/` the graph layers.
 `MergeBucket` cuts a nonlinear layer's neurons; `Reduction`'s `ReducesAt` reduces many, soundly.
 
 Written against the `ContSet` interfaces alone, so no layer names a

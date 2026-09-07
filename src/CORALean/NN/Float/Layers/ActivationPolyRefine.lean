@@ -8,7 +8,7 @@ The exact refinable layer with `PolyRelaxation` replaced by the float one, and
 cheap for the same reason the layer itself is: `sound` states an inequality
 against `error`, so a level's coefficients are sound however they were computed
 and only `error` pays. A schedule therefore changes nothing about correctness
-here either, which is what `Theorems.PropagateAtOuter` says for both layers at
+here either, which is what `Theorems.EncloseAtOuter` says for both layers at
 once — `RefinableLayer` is a structure over any `ContSet`, so nothing about the
 loop is written twice, the order pattern [1, Eq. 23] included.
 
@@ -17,7 +17,7 @@ fits to a common degree, which `PolyRelaxationPad` does exactly.
 
 Convergence is deliberately not stated here, and the reason is informative
 rather than an omission: the representation's own rounding is charged to an
-error box that no refinement level touches, so the propagated set does not
+error box that no refinement level touches, so the enclosed set does not
 approach the exact image, however much order is spent. The limit is a statement
 about ℝ, and the float layer's guarantee is the enclosure it composes with.
 
@@ -72,8 +72,8 @@ def PolyRelaxationFamily.atPattern (F : PolyRelaxationFamily 𝕋 σ) (t : Real.
 def Layer.activationPolyRefinable (F : PolyRelaxationFamily 𝕋 σ) :
     Real.RefinableLayer (PolyZonotope 𝕋) n n where
   eval x := fun i => σ (x i)
-  propagate t := (Layer.activationPoly (F.atPattern t)).propagate
-  propagate_outer t := (Layer.activationPoly (F.atPattern t)).propagate_outer
+  enclose t := (Layer.activationPoly (F.atPattern t)).enclose
+  enclose_outer t := (Layer.activationPoly (F.atPattern t)).enclose_outer
 
 end CORALean.Float
 

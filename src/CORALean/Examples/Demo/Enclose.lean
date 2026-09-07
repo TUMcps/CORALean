@@ -4,14 +4,14 @@ import CORALean.Examples.Demo.Decimal
 import CORALean.Examples.Demo.Scalar
 
 /-!
-# `NeuralNetwork.propagate` at `Dyadic`, run
+# `NeuralNetwork.enclose` at `Dyadic`, run
 
 `Examples.FeedForwardFloat`'s network — affine, ReLU, affine — at `Dyadic 24`,
 with an input box wide enough that all three hidden neurons cross zero, which is
 where a ReLU relaxation costs anything at all.
 
-`layerBoxes` is `propagate`'s own recursion with a line printed between the
-steps, so the last line it prints and the `propagate` line under it are the same
+`layerBoxes` is `enclose`'s own recursion with a line printed between the
+steps, so the last line it prints and the `enclose` line under it are the same
 computation reached two ways; they agree or the table says so.
 -/
 
@@ -54,15 +54,15 @@ def layerBoxes : {n m : ℕ} → Real.NeuralNetwork (Zonotope D) n m → Zonotop
     List String
   | _, _, .nil, _, _ => []
   | _, _, .cons L rest, Z, i =>
-    let Y := L.propagate Z
+    let Y := L.enclose Z
     layerLine i Y :: layerBoxes rest Y (i + 1)
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def propagateReport : String :=
+def encloseReport : String :=
   String.intercalate "\n" ([
-    "== NeuralNetwork.propagate at Dyadic 24 ==",
+    "== NeuralNetwork.enclose at Dyadic 24 ==",
     "",
     "affine 2 -> 3, ReLU, affine 3 -> 2, as in Examples.FeedForwardFloat",
     "X = [-1, 1]^2",
@@ -71,7 +71,7 @@ def propagateReport : String :=
     layerLine 0 X] ++
     layerBoxes net X 1 ++ [
     "",
-    "propagate  " ++ showBox (net.propagate X).interval])
+    "enclose  " ++ showBox (net.enclose X).interval])
 
 end CORALean.Demo
 

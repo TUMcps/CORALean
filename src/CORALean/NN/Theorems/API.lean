@@ -31,17 +31,17 @@ import CORALean.NN.Theorems.NeuronMergingNetworkOuter
 import CORALean.NN.Theorems.NeuronMergingOuter
 import CORALean.NN.Theorems.NotMemUnsafeSet
 import CORALean.NN.Theorems.ImageSubset
-import CORALean.NN.Theorems.PropagateAtInflate
-import CORALean.NN.Theorems.PropagateAtOuter
-import CORALean.NN.Theorems.ImageSubsetPropagateAt
-import CORALean.NN.Theorems.PropagateNotMonotone
+import CORALean.NN.Theorems.EncloseAtInflate
+import CORALean.NN.Theorems.EncloseAtOuter
+import CORALean.NN.Theorems.ImageSubsetEncloseAt
+import CORALean.NN.Theorems.EncloseNotMonotone
 import CORALean.NN.Theorems.ReducesAtOuter
 import CORALean.NN.Theorems.ReducesAtRefl
 import CORALean.NN.Theorems.HoldsOfReducesAt
 import CORALean.NN.Theorems.ImageSubsetRefine
 import CORALean.NN.Theorems.ImageSubsetRefineLayer
 import CORALean.NN.Theorems.ImageSubsetRefineLoop
-import CORALean.NN.Theorems.PropagateOuter
+import CORALean.NN.Theorems.EncloseOuter
 import CORALean.NN.Theorems.ReluNotDifferentiable
 import CORALean.NN.Theorems.Robustness
 import CORALean.NN.Theorems.SensitivityActivation
@@ -63,16 +63,16 @@ import CORALean.NN.Theorems.SuffExplanationOfExact
 import CORALean.NN.Theorems.SuffExplanationRefined
 import CORALean.NN.Theorems.SuffExplanationTransfer
 import CORALean.NN.Theorems.SuffExplanationOfNeuronMerging
-import CORALean.NN.Theorems.SuffExplanationOfPropagate
-import CORALean.NN.Theorems.HoldsOfPropagate
-import CORALean.NN.Theorems.HoldsAllOfPropagate
+import CORALean.NN.Theorems.SuffExplanationOfEnclose
+import CORALean.NN.Theorems.HoldsOfEnclose
+import CORALean.NN.Theorems.HoldsAllOfEnclose
 import CORALean.NN.Theorems.HoldsOfSplit
 import CORALean.NN.Theorems.VerifySplitSound
 
 /-!
 # What a network's enclosure guarantees, collected
 
-`PropagateOuter`/`ImageSubset` are the graph induction, its pointwise form; `Verified` composes
+`EncloseOuter`/`ImageSubset` are the graph induction, its pointwise form; `Verified` composes
 `Specification.holds_of_outer`, read by `MemSafeSet`/`NotMemUnsafeSet` against a safe or unsafe set.
 `Robustness` builds on `Misclassified`, `MarginDir`, `DisjointMisclassifiedOfBounds`, `Classifies`.
 `HoldsOfSplit`/`VerifySplitSound` make verification complete: split once, or recurse to a depth.
@@ -80,7 +80,7 @@ import CORALean.NN.Theorems.VerifySplitSound
 `LinearWithErrorZero`, `NeuronMergingOuter`, `NeuronMergingNetworkOuter`, `MergeErrorSplit`,
 `MergeErrorWidthLe`, `MergeErrorWidthLeRow` are neuron merging [1]: error-free linear layers,
 bucket containment, the Minkowski split, tolerated by `ExistsMergeTolerance`'s `δ`-linear cost;
-`MergeBucketMono`/`MergeBucketCardMono`/`ExistsMergeBucketAll` grow it; `PropagateNotMonotone`
+`MergeBucketMono`/`MergeBucketCardMono`/`ExistsMergeBucketAll` grow it; `EncloseNotMonotone`
 forces `Reduction`'s `ReducesAt` into one induction — `HoldsOfReducesAt` is [1, Thm. 1].
 
 `SuffExplanation`, `MinSuffExplanation` and their `Abstract` and `Exact` forms are local
@@ -91,7 +91,7 @@ its discharge, `MinSuffExplanationCounterexample` and `SuffExplanationConverseFa
 `SensitivityFDeriv` is what the refinement heuristic [3] rests on: the backpropagated Jacobian
 identified with `fderiv` wherever `EvalDifferentiable` holds, which `SensitivityOfMatrix` hands
 to `SensitivityLinear`/`SensitivityActivation`; `ReluNotDifferentiable` is why ReLU gets none.
-`AtScheduleEval`/`PropagateAtOuter`/`PropagateAtInflate` are the refinement loop: hypothesis
+`AtScheduleEval`/`EncloseAtOuter`/`EncloseAtInflate` are the refinement loop: hypothesis
 `SigmoidRefinementConverges` discharges one activation, `MultiLayerRefinementConverges` a chain.
 
 ## References

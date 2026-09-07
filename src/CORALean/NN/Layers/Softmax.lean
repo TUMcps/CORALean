@@ -150,8 +150,8 @@ noncomputable def softmaxBox (I : Interval (Vec ℝ n)) : Interval (Vec ℝ n) w
 appear, and this is the only layer here asking for neither. -/
 noncomputable def Layer.softmax : Layer S n n where
   eval := _root_.CORALean.Real.softmax
-  propagate s := ofInterval (softmaxBox (interval s))
-  propagate_outer s x hx := by
+  enclose s := ofInterval (softmaxBox (interval s))
+  enclose_outer s x hx := by
     have hbox : ∀ i, (interval s).inf i ≤ x i ∧ x i ≤ (interval s).sup i :=
       interval_outer s hx
     refine ofInterval_outer _ fun i => ?_

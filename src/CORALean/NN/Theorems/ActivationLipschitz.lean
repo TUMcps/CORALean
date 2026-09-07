@@ -11,7 +11,7 @@ argument would not.
 
 Stated at the function `fun x i => σ (x i)`, which is the `eval` of
 `Layer.activation`, of `Layer.activationPoly` and of
-`Layer.activationPolyRefinable` alike — a relaxation changes what is propagated,
+`Layer.activationPolyRefinable` alike — a relaxation changes what is enclosed,
 never what is computed.
 -/
 

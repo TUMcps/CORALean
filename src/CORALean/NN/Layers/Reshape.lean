@@ -4,11 +4,11 @@ import CORALean.NN.Layer
 # The reshape layer
 
 CORA's `nnReshapeLayer`: the same numbers read in a different order, `eval` being
-`x ↦ x ∘ e` and `propagate` the same relabelling of the representation. The only
+`x ↦ x ∘ e` and `enclose` the same relabelling of the representation. The only
 standard layer that loses nothing — `reshape_exact` is an equality.
 
 A relabelling is a linear map, so `Layer.linear` at a permutation matrix would
-propagate the same set. It is not used here, and the reason is the *guarantee*
+enclose the same set. It is not used here, and the reason is the *guarantee*
 rather than the arithmetic: `Mtimes.mtimes_outer` claims containment and has no
 room to claim more, so a reshape written that way could not state the one thing
 it is for. `Reindex` is that room — one method and one equality. The arithmetic
@@ -44,8 +44,8 @@ def Fin.transposeEquiv (p q : ℕ) : Fin (q * p) ≃ Fin (p * q) :=
 /-- `e i` is which input coordinate output coordinate `i` reads. -/
 def Layer.reshape (e : Fin m ≃ Fin n) : Layer S n m where
   eval x := reindexLin e x
-  propagate := reindex e
-  propagate_outer s x hx := by
+  enclose := reindex e
+  enclose_outer s x hx := by
     rw [reindex_exact]
     exact Set.mem_image_of_mem _ hx
 
@@ -54,7 +54,7 @@ def Layer.reshape (e : Fin m ≃ Fin n) : Layer S n m where
 
 /-- The layer's whole content, and the only `_exact` in `NN`. -/
 theorem Layer.reshape_exact (e : Fin m ≃ Fin n) (s : S n) :
-    construct ((Layer.reshape (S := S) e).propagate s)
+    construct ((Layer.reshape (S := S) e).enclose s)
       = (Layer.reshape (S := S) e).eval '' construct s :=
   reindex_exact e s
 

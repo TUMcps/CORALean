@@ -36,7 +36,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n
 original network's exact image, at any set of layers reduced. -/
 theorem NeuralNetwork.holds_of_reducesAt {n m : ℕ} {s : S n} {nn nn' : NeuralNetwork S n m}
     (h : NeuralNetwork.ReducesAt s nn nn') (spec : Specification (Vec ℝ m))
-    (hspec : spec.Holds (construct (nn'.propagate s))) : spec.Holds (nn.image (construct s)) :=
+    (hspec : spec.Holds (construct (nn'.enclose s))) : spec.Holds (nn.image (construct s)) :=
   spec.holds_of_outer (NeuralNetwork.reducesAt_outer h) hspec
 
 end CORALean.Real

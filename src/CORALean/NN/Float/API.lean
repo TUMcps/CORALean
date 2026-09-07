@@ -5,7 +5,7 @@ import CORALean.NN.Float.Layers.API
 
 Layers only, and that is the finding rather than an omission. `Layer` is a
 structure over any `ContSet` whose ambient type is `Vec ℝ n`, and a float
-representation is one through `InflatedContSet` — so `NeuralNetwork`, `propagate`
+representation is one through `InflatedContSet` — so `NeuralNetwork`, `enclose`
 and everything in `NN/Theorems` run at a float representation with nothing
 rewritten. Only the layer constructors name the scalar their weights are stored
 in.
@@ -23,5 +23,5 @@ gap and softmax's denominator. Slope and offset are never constrained,
 
 The layers that round *nowhere* are the ones whose weights are placed rather than
 computed: `Linear`, `Convolution`, and the selection matrix max pooling
-propagates through, `toRealMat_tapMat` being an equality with no hypothesis.
+encloses through, `toRealMat_tapMat` being an equality with no hypothesis.
 -/

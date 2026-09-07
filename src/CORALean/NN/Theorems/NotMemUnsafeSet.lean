@@ -1,11 +1,11 @@
-import CORALean.NN.Theorems.PropagateOuter
+import CORALean.NN.Theorems.EncloseOuter
 
 /-!
-# An unsafe set disjoint from the propagated set is never reached
+# An unsafe set disjoint from the enclosed set is never reached
 
 `MemSafeSet`'s counterpart, kept in its own file as `Specification`'s own
 `Containment` and `Separation` keep the safe and unsafe directions apart:
-directly off `propagate_outer`, with no `Specification` in sight.
+directly off `enclose_outer`, with no `Specification` in sight.
 -/
 
 -- Authors:       Tobias Ladner
@@ -26,9 +26,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NeuralNetwork.not_mem_unsafeSet (nn : NeuralNetwork S n m) (X : S n)
-    {unsafe' : Set (Vec ℝ m)} (h : Disjoint (construct (nn.propagate X)) unsafe')
+    {unsafe' : Set (Vec ℝ m)} (h : Disjoint (construct (nn.enclose X)) unsafe')
     {x : Vec ℝ n} (hx : x ∈ construct X) : nn.eval x ∉ unsafe' :=
-  Set.disjoint_left.mp h (nn.propagate_outer X x hx)
+  Set.disjoint_left.mp h (nn.enclose_outer X x hx)
 
 end CORALean.Real
 

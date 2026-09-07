@@ -43,8 +43,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OfInterval S] {n
 theorem NeuralNetwork.minSuffExplanationAbstract_of_refined (nnAbs nnRef : NeuralNetwork S n m)
     (x : Vec ℝ n) (ε : ℝ) (E : Finset (Fin n)) (l : Fin m)
     (hrefine : ∀ E' : Finset (Fin n),
-      construct (nnRef.propagate (ofInterval (explainBox x ε E')))
-        ⊆ construct (nnAbs.propagate (ofInterval (explainBox x ε E'))))
+      construct (nnRef.enclose (ofInterval (explainBox x ε E')))
+        ⊆ construct (nnAbs.enclose (ofInterval (explainBox x ε E'))))
     (hsuffAbs : nnAbs.IsSuffExplanationAbstract x ε E l)
     (hmin : nnRef.IsMinSuffExplanationAbstract x ε E l) :
     nnAbs.IsMinSuffExplanationAbstract x ε E l :=

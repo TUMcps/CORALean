@@ -5,12 +5,12 @@ import CORALean.NN.Schedule
 # A schedule does not change what the network computes
 
 The invariant the whole loop rests on, and it is `RefinableLayer` keeping `eval`
-outside `propagate`, carried along the chain. Without it "the exact image"
+outside `enclose`, carried along the chain. Without it "the exact image"
 would be a function of the schedule and no refinement could be said to converge
 to anything.
 
-It is also why `propagateAt_outer` needs no induction of its own: once the two
-`eval`s agree, `NeuralNetwork.propagate_outer` answers for every schedule.
+It is also why `encloseAt_outer` needs no induction of its own: once the two
+`eval`s agree, `NeuralNetwork.enclose_outer` answers for every schedule.
 -/
 
 -- Authors:       Tobias Ladner

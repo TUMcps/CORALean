@@ -9,11 +9,11 @@ import CORALean.Specification.Theorems.HoldsOfOuter
 The paper compares the refined network's *exact* output with the abstract
 network's enclosure: `nnRef` merges fewer neurons than `nnAbs`, and every
 merge it does make `nnAbs` makes too, so `nnRef`'s image of `explainBox` lies
-inside what `nnAbs` propagates. `hrefine` is that containment, and
+inside what `nnAbs` encloses. `hrefine` is that containment, and
 `suffExplanationExact_of_reducesAt` discharges it from the merging machinery.
 
 `suffExplanationAbstract_of_refined` is the enclosure-to-enclosure reading
-instead. Neither implies the other: `Layer.propagate_not_monotone` blocks
+instead. Neither implies the other: `Layer.enclose_not_monotone` blocks
 passing from a containment of input sets to one of enclosures, and an exact
 image is not an enclosure, so `image_subset` composes in one direction only
 — it weakens the enclosure hypothesis to this one, never the reverse.
@@ -47,7 +47,7 @@ for `nnAbs` is exactly sufficient for the refinement `nnRef` it encloses. -/
 theorem NeuralNetwork.suffExplanationExact_of_refined (nnAbs nnRef : NeuralNetwork S n m)
     (x : Vec ℝ n) (ε : ℝ) (E : Finset (Fin n)) (l : Fin m)
     (hrefine : nnRef.image (construct (ofInterval (explainBox x ε E) : S n))
-      ⊆ construct (nnAbs.propagate (ofInterval (explainBox x ε E))))
+      ⊆ construct (nnAbs.enclose (ofInterval (explainBox x ε E))))
     (hsuffAbs : nnAbs.IsSuffExplanationAbstract x ε E l) :
     nnRef.IsSuffExplanationExact x ε E l :=
   (Specification.unsafeSet (misclassified m l)).holds_of_outer hrefine hsuffAbs

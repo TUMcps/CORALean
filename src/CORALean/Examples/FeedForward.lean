@@ -4,7 +4,7 @@ import CORALean.NN.Layers.ReLU
 import CORALean.NN.Theorems.Classifies
 import CORALean.NN.Theorems.MarginDir
 import CORALean.NN.Theorems.MemSafeSet
-import CORALean.NN.Theorems.PropagateOuter
+import CORALean.NN.Theorems.EncloseOuter
 
 /-!
 # A feed-forward network, verified end to end
@@ -51,20 +51,20 @@ noncomputable def Example.feedForward (W₁ : Mat ℝ 3 2) (b₁ : Vec ℝ 3) (W
 
 /-- Every output over the whole input set is in the zonotope that comes back. -/
 example (nn : NeuralNetwork 𝒵 2 2) (X : Zonotope (Vec ℝ 2)) {x : Vec ℝ 2}
-    (hx : x ∈ construct X) : nn.eval x ∈ construct (nn.propagate X) :=
-  nn.propagate_outer X x hx
+    (hx : x ∈ construct X) : nn.eval x ∈ construct (nn.enclose X) :=
+  nn.enclose_outer X x hx
 
-/-- A safe set the propagated zonotope stays inside is a safe set every output
+/-- A safe set the enclosed zonotope stays inside is a safe set every output
 stays inside. -/
 example (nn : NeuralNetwork 𝒵 2 2) (X : Zonotope (Vec ℝ 2)) {safe : Set (Vec ℝ 2)}
-    (h : construct (nn.propagate X) ⊆ safe) {x : Vec ℝ 2} (hx : x ∈ construct X) :
+    (h : construct (nn.enclose X) ⊆ safe) {x : Vec ℝ 2} (hx : x ∈ construct X) :
     nn.eval x ∈ safe :=
   nn.mem_safeSet X h hx
 
 /-- Robust classification at two labels, so a single bound decides it: label `l`
 wins everywhere on `X` as soon as the rival cannot reach it. -/
 example (nn : NeuralNetwork 𝒵 2 2) (X : Zonotope (Vec ℝ 2)) (l : Fin 2)
-    (u : ∀ j, SupportBound (construct (nn.propagate X)) (marginDir 2 j l))
+    (u : ∀ j, SupportBound (construct (nn.enclose X)) (marginDir 2 j l))
     (h : ∀ j, j ≠ l → (u j).val < 0) {x : Vec ℝ 2} (hx : x ∈ construct X)
     {j : Fin 2} (hj : j ≠ l) : nn.eval x j < nn.eval x l :=
   nn.classifies X l u h hx hj
@@ -72,7 +72,7 @@ example (nn : NeuralNetwork 𝒵 2 2) (X : Zonotope (Vec ℝ 2)) (l : Fin 2)
 /-- The network above is one of those, which is the only thing left to check. -/
 noncomputable example (W₁ : Mat ℝ 3 2) (b₁ : Vec ℝ 3) (W₂ : Mat ℝ 2 3) (b₂ : Vec ℝ 2)
     (X : Zonotope (Vec ℝ 2)) : Zonotope (Vec ℝ 2) :=
-  (Example.feedForward W₁ b₁ W₂ b₂).propagate X
+  (Example.feedForward W₁ b₁ W₂ b₂).enclose X
 
 end CORALean.Real
 

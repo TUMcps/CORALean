@@ -4,7 +4,7 @@ import CORALean.NN.Operations.Refine
 # The refinement loop's schedule
 
 `k` steps, each at the `(layer, neuron)` pair `pick` names from the schedule
-reached so far. Nothing constrains `pick`, and `Theorems.PropagateAtOuter` is
+reached so far. Nothing constrains `pick`, and `Theorems.EncloseAtOuter` is
 why nothing has to: soundness holds at every schedule `refine` can reach.
 -/
 

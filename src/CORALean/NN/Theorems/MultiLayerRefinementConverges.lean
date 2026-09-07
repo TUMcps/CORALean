@@ -3,7 +3,7 @@ import CORALean.NN.Theorems.ActivationLipschitz
 import CORALean.NN.Theorems.EvalLipschitz
 import CORALean.NN.Theorems.LinearConvergent
 import CORALean.NN.Theorems.LinearLipschitz
-import CORALean.NN.Theorems.PropagateAtInflate
+import CORALean.NN.Theorems.EncloseAtInflate
 import CORALean.NN.Theorems.SigmoidLipschitz
 
 /-!
@@ -13,7 +13,7 @@ import CORALean.NN.Theorems.SigmoidLipschitz
 its Lipschitz constant is `LipschitzWith.id`. Here neither is free: the head
 activation's residual passes through a matrix and a second activation before it
 reaches the output, so the tail bound is a product of two real constants and the
-`K` in `PropagateAtInflate` is what the refinement level is divided by.
+`K` in `EncloseAtInflate` is what the refinement level is divided by.
 
 The linear layer meets `Convergent` at level `0` and every other level, its
 propagation being exact — so the schedule spends its levels on the two

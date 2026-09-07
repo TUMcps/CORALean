@@ -102,10 +102,10 @@ theorem le_maxPoolGapUp (tap : Fin m → Fin (k + 1) → Fin n) (p : Fin m → F
 noncomputable def Layer.maxPool (tap : Fin m → Fin (k + 1) → Fin n)
     (pivot : Interval 𝕋 n → Fin m → Fin (k + 1)) : Real.Layer S n m where
   eval x := fun j => Real.windowMax fun l => x (tap j l)
-  propagate s :=
+  enclose s :=
     plus (mtimes (selectMat fun j => tap j (pivot (interval s) j)) s)
       (ofInterval ⟨fun _ => zero, maxPoolGapUp tap (pivot (interval s)) (interval s)⟩)
-  propagate_outer s x hx := by
+  enclose_outer s x hx := by
     have hbox : ∀ i, toReal ((interval s).inf i) ≤ x i ∧ x i ≤ toReal ((interval s).sup i) :=
       interval_outer s hx
     set I := interval s with hI

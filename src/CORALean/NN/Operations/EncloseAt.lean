@@ -1,11 +1,11 @@
 import CORALean.NN.Operations.AtSchedule
-import CORALean.NN.Operations.Propagate
+import CORALean.NN.Operations.Enclose
 
 /-!
 # Propagating at a schedule
 
 `atSchedule` produces an ordinary `NeuralNetwork`, so propagating at a schedule
-is `propagate` there and nothing new — every guarantee `propagate` already has
+is `enclose` there and nothing new — every guarantee `enclose` already has
 transfers to every schedule for free.
 -/
 
@@ -24,9 +24,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Propagating at a schedule, which is `propagate` and nothing new. -/
-def RefinableNetwork.propagateAt (rn : RefinableNetwork S n m) (sch : Schedule) (X : S n) : S m :=
-  (rn.atSchedule sch).propagate X
+/-- Propagating at a schedule, which is `enclose` and nothing new. -/
+def RefinableNetwork.encloseAt (rn : RefinableNetwork S n m) (sch : Schedule) (X : S n) : S m :=
+  (rn.atSchedule sch).enclose X
 
 end CORALean.Real
 

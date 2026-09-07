@@ -1,10 +1,10 @@
 import CORALean.NN.Layers.SigmoidPolyRefine
-import CORALean.NN.Theorems.PropagateAtInflate
+import CORALean.NN.Theorems.EncloseAtInflate
 
 /-!
 # The network statement, at a network that exists
 
-`PropagateAtInflate` runs on a hypothesis — every layer convergent, every tail
+`EncloseAtInflate` runs on a hypothesis — every layer convergent, every tail
 Lipschitz — and a hypothesis is worth only what satisfies it. This discharges it
 at a sigmoid layer, so the schedule it produces is one an implementation could
 be asked for.

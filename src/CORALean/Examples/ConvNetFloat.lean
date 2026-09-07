@@ -4,7 +4,7 @@ import CORALean.NN.Float.Layers.ReLU
 import CORALean.NN.Float.Layers.Softmax
 import CORALean.NN.Theorems.Classifies
 import CORALean.NN.Theorems.MarginDir
-import CORALean.NN.Theorems.PropagateOuter
+import CORALean.NN.Theorems.EncloseOuter
 
 /-!
 # The same convolutional network, over a floating-point scalar
@@ -22,9 +22,9 @@ Batch normalization is the other with no float file, spelled out here as
 `Float.Layer.linear` at a folded scale and shift taken as parameters.
 
 One honest wrinkle, the bundle's rather than the float layer's: `Layer` carries
-`eval` alongside `propagate`, max pooling's `eval` is a supremum over ℝ, and
+`eval` alongside `enclose`, max pooling's `eval` is a supremum over ℝ, and
 ordering reals is not computable — so the network below cannot be run even though
-every step of its `propagate` is float arithmetic.
+every step of its `enclose` is float arithmetic.
 -/
 
 -- Authors:       Tobias Ladner
@@ -57,16 +57,16 @@ noncomputable def Example.convNet (k : ℕ) (K : Fin 1 → Fin 2 → 𝕋) (b : 
 /-- The whole chain is a network, which is the only thing left to check. -/
 noncomputable example (k : ℕ) (K : Fin 1 → Fin 2 → 𝕋) (b : Vec 𝕋 5) (W : Mat 𝕋 2 2)
     (bn : Vec 𝕋 2) (X : Zonotope 𝕋 6) : Zonotope 𝕋 2 :=
-  (Example.convNet k K b W bn).propagate X
+  (Example.convNet k K b W bn).enclose X
 
 /-- Every output over the whole input set is in the zonotope that comes back. -/
 example (nn : Real.NeuralNetwork (Zonotope 𝕋) 6 2) (X : Zonotope 𝕋 6) {x : Vec ℝ 6}
-    (hx : x ∈ construct X) : nn.eval x ∈ construct (nn.propagate X) :=
-  nn.propagate_outer X x hx
+    (hx : x ∈ construct X) : nn.eval x ∈ construct (nn.enclose X) :=
+  nn.enclose_outer X x hx
 
 /-- Robust classification, discharged by the same bound per rival label. -/
 example (nn : Real.NeuralNetwork (Zonotope 𝕋) 6 2) (X : Zonotope 𝕋 6) (l : Fin 2)
-    (u : ∀ j, SupportBound (construct (nn.propagate X)) (Real.marginDir 2 j l))
+    (u : ∀ j, SupportBound (construct (nn.enclose X)) (Real.marginDir 2 j l))
     (h : ∀ j, j ≠ l → (u j).val < 0) {x : Vec ℝ 6} (hx : x ∈ construct X)
     {j : Fin 2} (hj : j ≠ l) : nn.eval x j < nn.eval x l :=
   nn.classifies X l u h hx hj
@@ -82,7 +82,7 @@ example (K : Fin 1 → Fin 2 → 𝕋) (b : Vec 𝕋 5) (x : Vec ℝ 6) (j : Fin
 constructor of its own is worth. -/
 example (X : Zonotope 𝕋 6) :
     construct ((Real.Layer.reshape (S := Zonotope 𝕋)
-        (Real.Fin.transposeEquiv 3 2)).propagate X)
+        (Real.Fin.transposeEquiv 3 2)).enclose X)
       = (Real.Layer.reshape (S := Zonotope 𝕋)
         (Real.Fin.transposeEquiv 3 2)).eval '' construct X :=
   Real.Layer.reshape_exact _ X

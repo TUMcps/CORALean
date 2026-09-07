@@ -3,14 +3,14 @@ import CORALean.NN.Float.Layers.ReLU
 import CORALean.NN.Theorems.Classifies
 import CORALean.NN.Theorems.MarginDir
 import CORALean.NN.Theorems.MemSafeSet
-import CORALean.NN.Theorems.PropagateOuter
+import CORALean.NN.Theorems.EncloseOuter
 
 /-!
 # The same feed-forward network, over a floating-point scalar
 
 `Examples.FeedForward` at `Float.Zonotope 𝕋` instead of `Real.Zonotope`, and the
 point of compiling it is what does *not* appear below: `NeuralNetwork`, `.cons`,
-`propagate`, `propagate_outer`, `mem_safeSet` and `classifies` are the exact
+`enclose`, `enclose_outer`, `mem_safeSet` and `classifies` are the exact
 layer's, used unchanged. Only the three layer constructors are float ones, and
 only because their weights are stored in `𝕋`.
 
@@ -52,19 +52,19 @@ def Example.feedForward (W₁ : Mat 𝕋 3 2) (b₁ : Vec 𝕋 3) (W₂ : Mat �
 
 /-- Every output over the whole input set is in the zonotope that comes back. -/
 example (nn : Real.NeuralNetwork (Zonotope 𝕋) 2 2) (X : Zonotope 𝕋 2) {x : Vec ℝ 2}
-    (hx : x ∈ construct X) : nn.eval x ∈ construct (nn.propagate X) :=
-  nn.propagate_outer X x hx
+    (hx : x ∈ construct X) : nn.eval x ∈ construct (nn.enclose X) :=
+  nn.enclose_outer X x hx
 
-/-- A safe set the propagated zonotope stays inside is a safe set every output
+/-- A safe set the enclosed zonotope stays inside is a safe set every output
 stays inside. -/
 example (nn : Real.NeuralNetwork (Zonotope 𝕋) 2 2) (X : Zonotope 𝕋 2)
-    {safe : Set (Vec ℝ 2)} (h : construct (nn.propagate X) ⊆ safe) {x : Vec ℝ 2}
+    {safe : Set (Vec ℝ 2)} (h : construct (nn.enclose X) ⊆ safe) {x : Vec ℝ 2}
     (hx : x ∈ construct X) : nn.eval x ∈ safe :=
   nn.mem_safeSet X h hx
 
 /-- Robust classification, discharged by the same bound per rival label. -/
 example (nn : Real.NeuralNetwork (Zonotope 𝕋) 2 2) (X : Zonotope 𝕋 2) (l : Fin 2)
-    (u : ∀ j, SupportBound (construct (nn.propagate X)) (Real.marginDir 2 j l))
+    (u : ∀ j, SupportBound (construct (nn.enclose X)) (Real.marginDir 2 j l))
     (h : ∀ j, j ≠ l → (u j).val < 0) {x : Vec ℝ 2} (hx : x ∈ construct X)
     {j : Fin 2} (hj : j ≠ l) : nn.eval x j < nn.eval x l :=
   nn.classifies X l u h hx hj
@@ -72,7 +72,7 @@ example (nn : Real.NeuralNetwork (Zonotope 𝕋) 2 2) (X : Zonotope 𝕋 2) (l :
 /-- The network above is one of those, which is the only thing left to check. -/
 example (W₁ : Mat 𝕋 3 2) (b₁ : Vec 𝕋 3) (W₂ : Mat 𝕋 2 3) (b₂ : Vec 𝕋 2)
     (X : Zonotope 𝕋 2) : Zonotope 𝕋 2 :=
-  (Example.feedForward W₁ b₁ W₂ b₂).propagate X
+  (Example.feedForward W₁ b₁ W₂ b₂).enclose X
 
 end CORALean.Float
 

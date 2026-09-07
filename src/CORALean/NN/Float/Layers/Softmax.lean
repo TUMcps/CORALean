@@ -9,7 +9,7 @@ import CORALean.NN.Layers.Softmax
 The exact layer's box, with one bound missing and the normalization standing in
 for it. A raw lower bound would ask for an *upper* bound on an exponential, and
 `Global/Float`'s `expUp` carries a hypothesis on its argument that no total float
-expression discharges — where a layer cannot carry a hypothesis, `propagate`
+expression discharges — where a layer cannot carry a hypothesis, `enclose`
 being total.
 
 So this layer computes no raw lower bound. It passes `0`, which `softmax_nonneg`
@@ -148,8 +148,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [IntervalOuter S 
 
 noncomputable def Layer.softmax (k : ℕ) : Real.Layer S n n where
   eval := Real.softmax
-  propagate s := ofInterval (softmaxBox k (interval s))
-  propagate_outer s x hx := by
+  enclose s := ofInterval (softmaxBox k (interval s))
+  enclose_outer s x hx := by
     have hbox : ∀ i, toReal ((interval s).inf i) ≤ x i ∧ x i ≤ toReal ((interval s).sup i) :=
       interval_outer s hx
     set I := interval s with hI

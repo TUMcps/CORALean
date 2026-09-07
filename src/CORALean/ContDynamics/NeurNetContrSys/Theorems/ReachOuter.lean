@@ -8,7 +8,7 @@ import CORALean.ContSet.ContSet.ConvexSet
 # `NeurNetContrSys.reach` contains every sampled run at the period boundaries
 
 An induction on the control period, whose step is `Trajectory.period` — the
-run's own period read as a linear run under the propagated input set — handed
+run's own period read as a linear run under the enclosed input set — handed
 to `reach_outer_horizon_inputSolution` for `N` steps. Both halves were written
 without the other in view; this file only lines the clocks up.
 
@@ -76,7 +76,7 @@ theorem NeurNetContrSys.reach_outer (sys : NeurNetContrSys 𝕋 S n) (o η N : �
     show x (((i + 1 : ℕ) : ℝ) * ((N : ℝ) * Δt)) ∈ construct
       ((sys.plant.discretize Δt).reach o (sys.reach o η N Δt R₀ i)
         (sys.plant.inputSolution Δt η
-          (sys.contr.propagate (sys.reach o η N Δt R₀ i))) N)
+          (sys.contr.enclose (sys.reach o η N Δt R₀ i))) N)
     rw [show ((i + 1 : ℕ) : ℝ) * ((N : ℝ) * Δt)
       = (i : ℝ) * ((N : ℝ) * Δt) + (N : ℝ) * Δt from by push_cast; ring]
     exact key

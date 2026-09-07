@@ -8,7 +8,7 @@ it for every order pattern. `Layer`'s obligation is asked at each pattern, so
 every one is sound and a pattern is spent on precision alone — a polynomial
 order, a sample count, a partition — never on correctness.
 
-`eval` sits outside `propagate` rather than inside a family of `Layer`s, and
+`eval` sits outside `enclose` rather than inside a family of `Layer`s, and
 that placement is the invariant: a refinement may not change what the layer
 computes, or the exact set the enclosures are enclosures *of* would move with
 the schedule and nothing could be said about the limit.
@@ -44,15 +44,15 @@ abbrev OrderPattern (n : ℕ) := Fin n → ℕ
 
 structure RefinableLayer (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] (n m : ℕ) where
   eval : Vec ℝ n → Vec ℝ m
-  propagate : OrderPattern n → S n → S m
-  propagate_outer (t : OrderPattern n) (s : S n) (x : Vec ℝ n) (hx : x ∈ construct s) :
-    eval x ∈ construct (propagate t s)
+  enclose : OrderPattern n → S n → S m
+  enclose_outer (t : OrderPattern n) (s : S n) (x : Vec ℝ n) (hx : x ∈ construct s) :
+    eval x ∈ construct (enclose t s)
 
 /-- The layer a pattern names, which is the only thing a network ever runs. -/
 def RefinableLayer.atPattern (L : RefinableLayer S n m) (t : OrderPattern n) : Layer S n m where
   eval := L.eval
-  propagate := L.propagate t
-  propagate_outer := L.propagate_outer t
+  enclose := L.enclose t
+  enclose_outer := L.enclose_outer t
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -61,8 +61,8 @@ def RefinableLayer.atPattern (L : RefinableLayer S n m) (t : OrderPattern n) : L
 how a linear layer sits in a refinable network. -/
 def Layer.refinable (L : Layer S n m) : RefinableLayer S n m where
   eval := L.eval
-  propagate _ := L.propagate
-  propagate_outer _ := L.propagate_outer
+  enclose _ := L.enclose
+  enclose_outer _ := L.enclose_outer
 
 end CORALean.Real
 

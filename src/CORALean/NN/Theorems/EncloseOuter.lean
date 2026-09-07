@@ -1,10 +1,10 @@
-import CORALean.NN.Operations.Propagate
+import CORALean.NN.Operations.Enclose
 
 /-!
-# `NeuralNetwork.propagate` contains the image
+# `NeuralNetwork.enclose` contains the image
 
 Induction on the graph, applying each layer's own obligation in the order
-`propagate` applies the layers. Nothing else is used, so a new layer buys into
+`enclose` applies the layers. Nothing else is used, so a new layer buys into
 the whole pipeline by proving its one field and nothing more — which is the
 reason the obligation is a field of `Layer` rather than a theorem about a
 particular network.
@@ -32,11 +32,11 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem NeuralNetwork.propagate_outer : ∀ {n m : ℕ} (nn : NeuralNetwork S n m) (s : S n)
-    (x : Vec ℝ n), x ∈ construct s → nn.eval x ∈ construct (nn.propagate s)
+theorem NeuralNetwork.enclose_outer : ∀ {n m : ℕ} (nn : NeuralNetwork S n m) (s : S n)
+    (x : Vec ℝ n), x ∈ construct s → nn.eval x ∈ construct (nn.enclose s)
   | _, _, .nil, _, _, hx => hx
   | _, _, .cons L rest, s, x, hx =>
-      rest.propagate_outer _ _ (L.propagate_outer s x hx)
+      rest.enclose_outer _ _ (L.enclose_outer s x hx)
 
 end CORALean.Real
 

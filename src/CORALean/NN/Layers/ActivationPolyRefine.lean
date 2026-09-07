@@ -72,8 +72,8 @@ def PolyRelaxationFamily.atPattern (F : PolyRelaxationFamily σ) (t : OrderPatte
 noncomputable def Layer.activationPolyRefinable (F : PolyRelaxationFamily σ) :
     RefinableLayer 𝒫𝒵 n n where
   eval x := fun i => σ (x i)
-  propagate t := (Layer.activationPoly (F.atPattern t)).propagate
-  propagate_outer t := (Layer.activationPoly (F.atPattern t)).propagate_outer
+  enclose t := (Layer.activationPoly (F.atPattern t)).enclose
+  enclose_outer t := (Layer.activationPoly (F.atPattern t)).enclose_outer
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
@@ -127,7 +127,7 @@ theorem aux_exists_level (s : PolyZonotope (Vec ℝ n)) {ε : ℝ} (hε : 0 < ε
   ⟨fun i => (aux_exists_level_one (s.interval.inf i) (s.interval.sup i) hε).choose,
     fun i => (aux_exists_level_one (s.interval.inf i) (s.interval.sup i) hε).choose_spec⟩
 
-/-- Refinement converges at the layer: raising the pattern puts the propagated
+/-- Refinement converges at the layer: raising the pattern puts the enclosed
 set inside any inflation of the exact image. -/
 theorem Layer.activationPolyRefinable_convergent (hd : ∀ x, HasDerivAt σ (σ' x) x)
     (hσ : ∀ x, |σ' x| ≤ Mσ) :

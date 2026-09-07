@@ -44,8 +44,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 def Layer.linear (W : Mat 𝕋 m n) (b : Vec 𝕋 m) : Real.Layer S n m where
   eval x := toRealMat W *ᵥ x + toRealVec b
-  propagate s := plus (mtimes W s) (ofInterval (Interval.point b))
-  propagate_outer s _x hx :=
+  enclose s := plus (mtimes W s) (ofInterval (Interval.point b))
+  enclose_outer s _x hx :=
     plus_outer _ _ (Set.add_mem_add
       (mtimes_outer W s (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hx)))
       (ofInterval_outer _ (Interval.mem_point b)))
@@ -59,8 +59,8 @@ floats. -/
 noncomputable def Layer.linearWithError (W : Mat 𝕋 m n) (b : Vec 𝕋 m) (E : Interval 𝕋 m)
     (hE : E.nominal.IsNonempty) : Real.Layer S n m where
   eval x := toRealMat W *ᵥ x + toRealVec b + E.nominal.center
-  propagate s := plus (mtimes W s) (ofInterval (Interval.plus (Interval.point b) E))
-  propagate_outer s x hx := by
+  enclose s := plus (mtimes W s) (ofInterval (Interval.plus (Interval.point b) E))
+  enclose_outer s x hx := by
     -- the committed value is the centre of the box `E` denotes, which is inside it
     have hbox : toRealVec b + E.nominal.center
         ∈ construct (Interval.plus (Interval.point b) E) :=

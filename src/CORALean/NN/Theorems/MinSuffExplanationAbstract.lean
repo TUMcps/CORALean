@@ -5,7 +5,7 @@ import CORALean.NN.Theorems.SuffExplanationAbstract
 
 `def:min-suff-explanation` [1] read at the abstract predicate, which is the
 level [1, Alg. 2] actually searches at: every query it puts to a verifier is
-separation on a propagated set, never the exact image. Kept apart from
+separation on a enclosed set, never the exact image. Kept apart from
 `IsMinSuffExplanation` because minimality is not preserved by transfer — the
 abstract predicate is the stronger one, so a set minimal here can still be
 shrinkable at `nn`.

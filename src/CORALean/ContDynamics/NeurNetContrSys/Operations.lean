@@ -2,7 +2,7 @@ import CORALean.ContDynamics.LinearSys.Operations.Discretize
 import CORALean.ContDynamics.LinearSys.Operations.InputSolution
 import CORALean.ContDynamics.LinearSysDT.Operations
 import CORALean.ContDynamics.NeurNetContrSys.NeurNetContrSys
-import CORALean.NN.Operations.Propagate
+import CORALean.NN.Operations.Enclose
 
 /-!
 # The sampled loop: reachability at two rates
@@ -55,7 +55,7 @@ noncomputable def NeurNetContrSys.reach (sys : NeurNetContrSys 𝕋 S n) (o η N
     (R₀ : S n) : ℕ → S n
   | 0 => R₀
   | i + 1 => (sys.plant.discretize Δt).reach o (sys.reach o η N Δt R₀ i)
-      (sys.plant.inputSolution Δt η (sys.contr.propagate (sys.reach o η N Δt R₀ i))) N
+      (sys.plant.inputSolution Δt η (sys.contr.enclose (sys.reach o η N Δt R₀ i))) N
 
 end CORALean.Real
 
