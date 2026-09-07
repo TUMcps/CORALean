@@ -619,6 +619,15 @@ Every `[N]` cited is defined, every one defined is cited, and the numbering is
 dense from 1. An identifier that happens to carry a name — `reduceGirard` — is
 not a citation.
 
+**Cite where the result actually is.** Prefer the original paper: a *cumulative*
+thesis reproduces its chapters as papers, so cite the paper rather than the
+thesis — that is the case for Kochdumper's and Wetzlinger's. A monograph thesis
+is different: where a result appears only there, as much of Althoff's 2010 does,
+the thesis *is* the source and citing it is correct, not a fallback. A book is
+equally fine where no paper stands behind the result — CORA cites one for the
+matrix zonotope product, and so do we. Where none can be confirmed, leave the
+section out; a blank is honest and a wrong citation is not.
+
 ## Author blocks
 
 Content files carry a CORA-style block between the module docstring and the
