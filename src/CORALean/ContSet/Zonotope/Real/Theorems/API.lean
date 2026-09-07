@@ -43,6 +43,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.ReduceGirardOrderLe
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceCombastelOrderLe
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOrder
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedInner
+import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffRepInner
 
 /-!
 # What `Zonotope` guarantees
@@ -55,6 +56,7 @@ the float layer needs too. `BilinOuter` and `MtimesMatZonotopeOuter` are a
 matrix zonotope acting on a set, an enclosure and never exact. `OfPointMem`
 and the two `Recentre` facts are what those classes ask of a zonotope, and
 `AbsMaxOfPoint` reads the interval hull of a point back as the point.
-`MinkDiffAlignedInner` is the one guarantee running the other way, sound
-without approximation at aligned generators.
+`MinkDiffAlignedInner` and `MinkDiffRepInner` are the two guarantees running
+the other way, the first exact at aligned generators and the second sound at
+any representation of the subtrahend's generators in the minuend's.
 -/

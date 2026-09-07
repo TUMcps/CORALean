@@ -21,6 +21,7 @@ import CORALean.ContSet.Zonotope.Real.Operations.ReduceGirard
 import CORALean.ContSet.Zonotope.Real.Operations.ReduceCombastel
 import CORALean.ContSet.Zonotope.Real.Operations.Reduce
 import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffAligned
+import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffRep
 
 /-!
 # What `Zonotope` computes
@@ -31,5 +32,6 @@ map and at `Matrix.mulVecBilin` respectively; `matMul` is the same at matrix
 multiplication, which is what `matPow` iterates. `ofPoint` and `recentre` are a
 point and the origin-holding remainder, what `OfPoint` and `Recentre` ask for.
 `minkDiffAligned` is CORA's exact aligned-generator case of `minkDiff`, the
-only one not needing an enclosure.
+only one not needing an enclosure, and `minkDiffRep` is the general one, at a
+generator representation the caller offers and this checks.
 -/
