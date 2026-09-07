@@ -1,4 +1,5 @@
 import CORALean.NN.Graph.Theorems.EvalStepsRowBallOfAdjacencyUncertain
+import CORALean.NN.Graph.Theorems.NotMemBallOfIsolated
 
 /-!
 # One subgraph serves every admissible `lam` at once
@@ -63,14 +64,8 @@ theorem Example.uglA_nonneg (i j : Fin 5) : 0 ≤ Example.uglA i j := by -- --- 
 
 /-- Each summand of `A` is symmetric, both orientations written at once. -/
 theorem Example.uglA_symm (i j : Fin 5) :
-    Example.uglA i j = Example.uglA j i := by -- --- PROOF ---
-  have hE : ∀ (ij : Fin 5 × Fin 5) (a b : Fin 5),
-      GNN.edgeMat ij a b = GNN.edgeMat ij b a := by
-    intro ij a b
-    have h : ((a = ij.1 ∧ b = ij.2) ∨ (a = ij.2 ∧ b = ij.1)) ↔
-        ((b = ij.1 ∧ a = ij.2) ∨ (b = ij.2 ∧ a = ij.1)) := by tauto
-    simp only [GNN.edgeMat, h]
-  simp only [Example.uglA, Matrix.add_apply, hE _ i j]
+    Example.uglA i j = Example.uglA j i := by
+  simp only [Example.uglA, Matrix.add_apply, GNN.edgeMat_symm _ i j]
 
 /-- `lam := 0.5` for the one uncertain edge is admissible. -/
 theorem Example.uglLam_admissible (e : Fin 1) : 0 ≤ Example.uglLam e ∧ Example.uglLam e ≤ 1 := by
@@ -88,18 +83,9 @@ theorem Example.uglKappa_covers :
   have hiso : ∀ i, GNN.adjMax Example.uglA Example.uglU i 4 = 0 := by
     intro i
     simp [GNN.adjMax, GNN.adjAt, Example.uglA, Example.uglU, GNN.edgeMat]
-  have hnotin : ∀ r, (4 : Fin 5) ∉ GNN.ball (GNN.adjMax Example.uglA Example.uglU) 0 r := by
-    intro r
-    induction r with
-    | zero => simp [GNN.ball]
-    | succ r ih =>
-        intro hmem
-        obtain ⟨_, i, hi, hcase⟩ := Finset.mem_filter.mp hmem
-        rcases hcase with heq | hne
-        · exact ih (heq ▸ hi)
-        · exact hne (hiso i)
   intro x hx
-  have hxne : x ≠ (4 : Fin 5) := fun h => hnotin 3 (h ▸ hx)
+  have hxne : x ≠ (4 : Fin 5) := fun h =>
+    GNN.not_mem_ball_of_isolated _ 0 hiso (by decide) 3 (h ▸ hx)
   have hxlt : x.val < 4 := by
     have hlt5 := x.isLt
     have hne4 : x.val ≠ 4 := fun h => hxne (Fin.ext h)
