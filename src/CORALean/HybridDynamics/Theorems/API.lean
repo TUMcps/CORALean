@@ -1,7 +1,9 @@
 import CORALean.HybridDynamics.Theorems.FlowOuter
+import CORALean.HybridDynamics.Theorems.FlowOuterInputSolution
 import CORALean.HybridDynamics.Theorems.HoldsAllOfInvariant
 import CORALean.HybridDynamics.Theorems.HoldsOfRun
 import CORALean.HybridDynamics.Theorems.HoldsOfRunOn
+import CORALean.HybridDynamics.Theorems.InvariantOfEnclosure
 import CORALean.HybridDynamics.Theorems.InvariantOnOfInvariant
 import CORALean.HybridDynamics.Theorems.JumpAndOuter
 import CORALean.HybridDynamics.Theorems.JumpOuter
@@ -29,4 +31,8 @@ result into an answer, one specification or a list of them.
 The bounded-horizon reading: `RunOnToRun`/`RunExistsRunOn` relate `RunOn` to
 `Run`, `RunOnOuter` is `RunOuter` at an index, `HoldsOfRunOn` its corollary, and
 `InvariantOnOfInvariant` reads an `Invariant` as the constant-family case.
+
+`FlowOuterInputSolution` computes `FlowOuter`'s input contribution instead of
+naming it, and `InvariantOfEnclosure` is what that buys: a criterion on `R`
+built from it and `JumpAndOuter` that proves `HybridAutomaton.Invariant R`.
 -/
