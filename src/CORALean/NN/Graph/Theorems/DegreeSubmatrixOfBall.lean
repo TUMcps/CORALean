@@ -5,7 +5,8 @@ import CORALean.NN.Graph.Theorems.BallSubsetSucc
 
 `[1, §4.3]`'s extra hop, stated for `degree` itself: `GNN.degree A j` sums a whole column
 of `Ã = A + I`, so computing it on a subgraph needs every node one hop past `j`, not just
-`j`'s own ball. Given a `κ` enumerating `ball A v (r + 1)`, the degree at `j`'s index
+`j`'s own ball. Given a `κ` whose image *contains* `ball A v (r + 1)` — an inclusion, not
+an equality; the proof below never needs the reverse direction — the degree at `j`'s index
 survives restriction whenever `j` itself only reaches out to radius `r`.
 
 The direction needs `A`'s symmetry (`hSymm`), which `[1, §4.3]`'s undirected graph always
@@ -26,7 +27,7 @@ Get the "outside contributes zero" step from `Finset.sum_subset`, mirroring
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   07-September-2026
 -- Last revision: ---
 
 
@@ -43,7 +44,7 @@ open Matrix
 graph's, at any node whose own ball reaches only one radius short. -/
 theorem GNN.degree_submatrix_of_ball {N : ℕ} (A : Mat ℝ N N) (_hA : ∀ i j, 0 ≤ A i j)
     (hSymm : ∀ i j, A i j = A j i) (v : Fin N) (r : ℕ) {K : ℕ} (κ : Fin K → Fin N)
-    (hinj : Function.Injective κ) (hκ : ∀ i, (∃ k, κ k = i) ↔ i ∈ GNN.ball A v (r + 1))
+    (hinj : Function.Injective κ) (hκ : GNN.ball A v (r + 1) ⊆ Finset.univ.image κ)
     {j : Fin N} (hj : j ∈ GNN.ball A v r) (k : Fin K) (hk : κ k = j) :
     GNN.degree (A.submatrix κ κ) k = GNN.degree A j := by -- --- PROOF ---
   -- a nonzero row `i` puts `i` one hop past `j`, using the graph's own symmetry
@@ -58,8 +59,7 @@ theorem GNN.degree_submatrix_of_ball {N : ℕ} (A : Mat ℝ N N) (_hA : ∀ i j,
   have hcut : ∑ i, (A + 1) i j = ∑ i ∈ Finset.univ.image κ, (A + 1) i j := by
     refine (Finset.sum_subset (Finset.subset_univ _) fun i _ hi => ?_).symm
     by_contra hne
-    obtain ⟨l, hl⟩ := (hκ i).mpr (hmem i hne)
-    exact hi (Finset.mem_image.mpr ⟨l, Finset.mem_univ l, hl⟩)
+    exact hi (hκ (hmem i hne))
   -- the identity's off-diagonal entries vanish, and injectivity keeps the diagonal intact
   have hterm : ∀ i : Fin K, (A.submatrix κ κ + 1) i k = (A + 1) (κ i) j := by
     intro i
