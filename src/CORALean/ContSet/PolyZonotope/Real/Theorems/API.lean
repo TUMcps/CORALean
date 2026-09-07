@@ -62,6 +62,9 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxExpOuter
 import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsSubMonomialLeSum
 import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxExpEvenOuter
 import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxExpMultiOuter
+import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxExpGroupOuter
+import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxWidthGroupLeChain
+import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxExpGroupNotAlwaysTighter
 import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxExpMidOuter
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ExpEdgeAcyclic
 import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxExpEvenOuterOfEdge
@@ -78,15 +81,15 @@ independent block. `mem_ofPoint` needs none of that guarding — there is nothin
 
 `bilin_exact` equates a pairing with the image of the shared factors under `a ↦ f (point pZ₁ a)
 (point pZ₂ a)`, never `f` over the two sets; `mul_exact` is it entrywise, `evalPoly_exact` carries
-that to a polynomial per coordinate and `evalPolyReal_ofFn` matches Horner to the monomial sum.
-`padBack_point` and `padFront_point` say padding moves no point, so *independent* factors pair by
-`bilin` too. `point_mem_construct`/`subsetAt_subset_construct` are the way back and
-`exists_point_of_q_zero`/`subsetAt_unitBox` the way there, once nothing is independent.
-`relaxExp_outer` holds at every partition naming two generators, `eDiff` owing no optimality.
-`relaxExpEven_outer` adds evenness, `relaxExpMulti_outer` asks nothing, and
-`sub_monomial_mem_eDrift` brackets the drift out of `sub_pow_nonpos` and
-`sub_monomial_nonpos_of_pow`, letting `relaxExpMid_outer` shift at any parity. `expEdge_acyclic`
-has no cycles, `relaxExpEven_outer_of_edge` reads an edge, `relaxExpGreedy_outer` at any selection.
+it to a polynomial per coordinate and `evalPolyReal_ofFn` matches Horner to the monomial sum.
+`padBack_point`/`padFront_point` say padding moves no point, so *independent* factors pair too.
+`point_mem_construct`/`subsetAt_subset_construct` are the way back,
+`exists_point_of_q_zero`/`subsetAt_unitBox` the way there once nothing is independent.
+`relaxExp_outer` holds at every partition naming two generators, `relaxExpEven_outer` adds evenness,
+`relaxExpMulti_outer` asks nothing and `relaxExpGroup_outer` nothing of a whole group, priced by
+`relaxWidthGroup_le_chain`. `sub_monomial_mem_eDrift` brackets the drift out of `sub_pow_nonpos` and
+`sub_monomial_nonpos_of_pow`, letting `relaxExpMid_outer` shift at any parity. `expEdge_acyclic` has
+no cycles, `relaxExpEven_outer_of_edge` reads an edge, `relaxExpGreedy_outer` at any selection.
 
 `quadMap_exact` distinguishes the representation: no convex one here can state it. `compact_exact`
 is what an order bound rests on: the generator count may fall without the set moving, which

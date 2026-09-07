@@ -73,6 +73,8 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxDrift
 import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpMid
 import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxWidthMulti
 import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpMulti
+import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxWidthGroup
+import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpGroup
 import CORALean.ContSet.PolyZonotope.Real.Operations.ExpEdgeAt
 import CORALean.ContSet.PolyZonotope.Real.Operations.DecidableExpEdgeAt
 import CORALean.ContSet.PolyZonotope.Real.Operations.ExpEdge
@@ -96,11 +98,11 @@ Each of those grows the generator counts, and `compact` brings them back down wi
 set: equal exponent columns add, a zero generator goes, and so does a factor no column reads.
 `reduce` then cuts the count to an order the caller names, and loses; `ofPoint` needs none of it.
 
-`relaxExp` merges two dependent generators whose exponent columns agree off one index, paying the
-difference into one new independent generator at the price `eDiff` bounds. `relaxExpEven` halves
-that price where the drift is one-sided, `relaxExpMulti` drops the agreement and sums `eDiff` over
-every factor, and `eDrift` brackets the drift, read at the midpoint by `relaxDrift`/`relaxExpMid`.
-`ExpEdgeAt`/`ExpEdge` graph the pairs worth merging; `relaxExpGreedy` walks it at any pick.
+`relaxExp` merges two dependent generators whose columns agree off one index, paying the difference
+into a new independent generator, priced by `eDiff`; `eDrift` brackets that drift, read at the
+midpoint by `relaxDrift`/`relaxExpMid`. `relaxExpEven` halves the price at a one-sided drift,
+`relaxExpMulti` drops the agreement, summing over every factor, and `relaxExpGroup` merges a whole
+group at once; `ExpEdgeAt`/`ExpEdge` graph the pairs, `relaxExpGreedy` walking it at any pick.
 
 `plusE`, `linCombE` and `quadMapE` are the exponent matrices the size-changing operations assemble,
 each its own file (#62); `identE` is the block `dependent` appends and a conversion's whole answer.
