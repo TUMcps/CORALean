@@ -39,7 +39,8 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ} {L 𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable [∀ n, ContSet (G n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
@@ -48,7 +49,7 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
 /-- Every state a stay passes through lies in the location's time-interval
 enclosure, the initial set and the input contribution named by the caller. -/
-theorem Location.Trajectory.timeInterval_outer {ℓ : Location S L 𝕋 n} {τ : ℝ}
+theorem Location.Trajectory.timeInterval_outer {ℓ : Location S G L 𝕋 n} {τ : ℝ}
     {x u : ℝ → Vec ℝ n} (traj : ℓ.Trajectory τ x u) {R₀ Ud : S n}
     (h₀ : x 0 ∈ construct R₀) (hτ : 0 < τ) {m : ℕ}
     (hε : ‖τ • toRealMat ℓ.dynamics.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}

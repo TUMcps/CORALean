@@ -14,20 +14,20 @@ list of outgoing transitions; a transition is a guard, an affine reset and a
 target; and a run alternates the two, written as an inductive family so that
 chaining a guarantee along it is the family's own recursion.
 
-The guard and the invariant do cut the reachable set, but only where an `And`
-instance is available: `Theorems.JumpAndOuter` computes the guard intersection
-and `Theorems.TimeIntervalInvOuter` the invariant one. A representation
-without one still has `Theorems.JumpOuter`'s `hand` bargain, discharged with
-nothing lost at a representation whose intersection is exact, as
-`Theorems.JumpOuterConZonotope` shows.
+The guard and the invariant carry their own representation `G`, apart from the
+state's `S`, and every statement here asks `ContSet` of it and nothing else:
+they are read as `construct e.guard` and `construct ℓ.inv`, never computed with
+(#39). `Examples.BouncingBall` is a zonotope state with halfspace guards.
 
-Time-triggered only in the sense that nothing here is time-triggered: a stay
-runs for a dwell time the run chooses. No parallel composition and no Zeno
-analysis — the run's shape makes neither a well-formedness question, which is
-the point of choosing it.
+The exception is where a representation *computes* the cut: `Theorems.JumpAndOuter`
+and `Theorems.TimeIntervalInvOuter` call `And.and`, homogeneous, so those two
+alone ask the guard to be in `S`. Without an `And` instance there is still
+`Theorems.JumpOuter`'s `hand` bargain, lossless where the intersection is
+exact, as `Theorems.JumpOuterConZonotope` shows.
 
-A bounded-horizon reading is `RunOn`/`InvariantOn`: the same run and invariant,
-indexed by the jump count, so a location visited twice need not answer the same
-set both times. `Invariant.invariantOn` reads the unbounded notion as its
-constant-family special case.
+Time-triggered only in the sense that nothing here is: a stay runs for a dwell
+time the run chooses. No parallel composition and no Zeno analysis.
+
+A bounded-horizon reading is `RunOn`/`InvariantOn`: the same run and invariant
+indexed by the jump count. `Invariant.invariantOn` is its constant-family case.
 -/

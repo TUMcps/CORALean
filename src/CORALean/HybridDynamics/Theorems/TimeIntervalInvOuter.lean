@@ -9,6 +9,9 @@ holds of every state of the stay, `x t ∈ construct ℓ.inv`, so `And.and_outer
 cuts the enclosure `timeInterval_outer` already gives down to it. The cut lands
 on the sum with `Ud`, not on `timeIntervalStep` alone — the invariant is a fact
 about `x t`, not about the homogeneous part in isolation.
+
+`And.and` is homogeneous, so this is one of the two places that ask a location's
+invariant to be in the state's own family, `Location S S L 𝕋 n` (#39).
 -/
 
 -- Authors:       Tobias Ladner
@@ -37,7 +40,7 @@ variable [∀ n, And (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 /-- Every state a stay passes through lies in the location's invariant-cut
 time-interval enclosure, the initial set and the input contribution named by
 the caller. -/
-theorem Location.Trajectory.timeIntervalInv_outer {ℓ : Location S L 𝕋 n} {τ : ℝ}
+theorem Location.Trajectory.timeIntervalInv_outer {ℓ : Location S S L 𝕋 n} {τ : ℝ}
     {x u : ℝ → Vec ℝ n} (traj : ℓ.Trajectory τ x u) {R₀ Ud : S n}
     (h₀ : x 0 ∈ construct R₀) (hτ : 0 < τ) {m : ℕ}
     (hε : ‖τ • toRealMat ℓ.dynamics.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}

@@ -8,6 +8,9 @@ import CORALean.HybridDynamics.Theorems.JumpOuter
 exactly the inclusion `jump_outer` asks for, so the guard intersection needs no
 caller-supplied enclosure here, unlike at a representation with no `And`
 instance.
+
+The price is that `And.and` takes two sets of one type, so the guard is asked
+to be in the state's own family here: `Transition S L 𝕋 n` (#39).
 -/
 
 -- Authors:       Tobias Ladner

@@ -26,7 +26,7 @@ namespace CORALean.Real
 
 open ContSet Scalar
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (G n) (Vec ℝ n)]
 variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 
 
@@ -34,7 +34,7 @@ variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 
 /-- The check passed on the location the run ends in is passed by the state it
 ends at. -/
-theorem HybridAutomaton.holds_of_invariant {HA : HybridAutomaton S L 𝕋 n}
+theorem HybridAutomaton.holds_of_invariant {HA : HybridAutomaton S G L 𝕋 n}
     {R : L → S n} (hinv : HA.Invariant R) (spec : Specification (Vec ℝ n))
     {ℓ ℓ' : L} {x y : Vec ℝ n} (run : HA.Run ℓ x ℓ' y) (hx : x ∈ construct (R ℓ))
     (h : spec.Holds (construct (R ℓ'))) : spec.Holds {y} :=

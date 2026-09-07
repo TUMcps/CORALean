@@ -38,13 +38,13 @@ def BHI.trans (b : Bool) : Transition ℐ𝒱 Bool ℝ 1 where
 
 /-- Both locations share the same radius-`1` invariant and zero dynamics; only
 `trans` tells them apart. -/
-def BHI.loc (b : Bool) : Location ℐ𝒱 Bool ℝ 1 where
+def BHI.loc (b : Bool) : Location ℐ𝒱 ℐ𝒱 Bool ℝ 1 where
   inv := ⟨![(-1:ℝ)], ![1]⟩
   dynamics := ⟨0⟩
   U := ⟨![(0:ℝ)], ![0]⟩
   trans := [BHI.trans b]
 
-def BHI.HA : HybridAutomaton ℐ𝒱 Bool ℝ 1 := ⟨BHI.loc⟩
+def BHI.HA : HybridAutomaton ℐ𝒱 ℐ𝒱 Bool ℝ 1 := ⟨BHI.loc⟩
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

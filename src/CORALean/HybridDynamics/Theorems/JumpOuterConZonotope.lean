@@ -17,6 +17,9 @@ representation that does have the property is substituted in.
 Convex only, which a constrained zonotope is. A non-convex guard is
 `ConPolyZono.and`, equally exact, and reaches this theorem as soon as
 `OfInterval` covers that representation; nothing here would change.
+
+Guard and state are the same representation here because `and` is what supplies
+`hand`. `JumpOuter` itself keeps them apart, `hand` being an inclusion (#39).
 -/
 
 -- Authors:       Tobias Ladner
@@ -40,7 +43,7 @@ variable {L : Type} {𝕋 : Type} [Scalar 𝕋] [Mtimes (Mat 𝕋) 𝒞] {n : �
 theorem Transition.jump_outer_conZonotope (e : Transition 𝒞 L 𝕋 n)
     {R : ConZonotope (Vec ℝ n)} {z : Vec ℝ n} (hz : z ∈ construct R)
     (hguard : z ∈ construct e.guard) :
-    e.reset z ∈ construct (e.jump (R.and e.guard)) :=
+    e.reset z ∈ construct (e.jump (S := 𝒞) (R.and e.guard)) :=
   e.jump_outer (ConZonotope.and_exact R e.guard).subset hz hguard
 
 end CORALean.Real

@@ -13,12 +13,13 @@ with `OfInterval` keeps its existing route, and one with only `OfPoint`, such
 as `ConPolyZono`, gains this one instead.
 
 With `ConPolyZono.ofPoint` and its `And` instance, `Transition.jumpAndOfPoint`
-now cuts a non-convex reachable set by a guard exactly.
+now cuts a non-convex reachable set by a guard exactly. The guard's own
+representation `G` is not read here either, so this asks nothing of it.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   07-September-2026
 -- Last revision: ---
 
 
@@ -30,20 +31,19 @@ open Matrix ContSet Scalar Plus Mtimes OfPoint
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
 variable {𝕋 : Type} [Scalar 𝕋] [Mtimes (Mat 𝕋) S] [∀ n, OfPoint (S n) (Vec ℝ n)]
-variable {L : Type} {n : ℕ}
+variable {G : ℕ → Type} {L : Type} {n : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Transition.jumpOfPoint (e : Transition S L 𝕋 n) (Rg : S n) : S n :=
+def Transition.jumpOfPoint (e : Transition G L 𝕋 n) (Rg : S n) : S n :=
   plus (mtimes e.W Rg) (ofPoint (toRealVec e.w))
 
 /-- Anonymous, its content being that it elaborates (#38): `ConPolyZono` has no
 `OfInterval` instance, so `jump` is unavailable to it, and `jumpOfPoint`
 above is what fills the gap. -/
-example (e : Transition (fun n => ConPolyZono (Vec ℝ n)) L ℝ n) (Rg : ConPolyZono (Vec ℝ n)) :
-    ConPolyZono (Vec ℝ n) :=
-  e.jumpOfPoint Rg
+example (e : Transition 𝒞𝒫𝒵 L ℝ n) (Rg : ConPolyZono (Vec ℝ n)) : ConPolyZono (Vec ℝ n) :=
+  e.jumpOfPoint (S := 𝒞𝒫𝒵) Rg
 
 end CORALean.Real
 

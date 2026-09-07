@@ -9,11 +9,14 @@ before: the invariant holds of the two added together, and cutting the
 homogeneous part alone before the addition would not be sound.
 
 Takes `Ud` for that reason — the cut cannot be stated over `X₀` alone.
+
+`And.and` is homogeneous, so this is where a location's invariant has to be in
+the state's own family: `Location S S L 𝕋 n`, not the general `S G` (#39).
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       06-September-2026
--- Last update:   ---
+-- Last update:   07-September-2026
 -- Last revision: ---
 
 
@@ -33,7 +36,7 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
 /-- The stay enclosure over `X₀` and `Ud`, cut down to the location's invariant. -/
 noncomputable def Location.timeIntervalStepInv [∀ n, And (S n) (Vec ℝ n)]
-    (ℓ : Location S L 𝕋 n) (r : ℝ) (η : ℕ) (X₀ Ud : S n) : S n :=
+    (ℓ : Location S S L 𝕋 n) (r : ℝ) (η : ℕ) (X₀ Ud : S n) : S n :=
   And.and (Plus.plus (ℓ.timeIntervalStep r η X₀) Ud) ℓ.inv
 
 end CORALean.Real

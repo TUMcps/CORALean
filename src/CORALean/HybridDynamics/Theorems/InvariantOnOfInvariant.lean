@@ -21,7 +21,7 @@ namespace CORALean.Real
 
 open ContSet Scalar
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (G n) (Vec ℝ n)]
 variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 
 
@@ -29,7 +29,7 @@ variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 
 /-- The constant family at `R` satisfies `InvariantOn` whenever `R` satisfies
 `Invariant`. -/
-theorem HybridAutomaton.Invariant.invariantOn {HA : HybridAutomaton S L 𝕋 n} {R : L → S n}
+theorem HybridAutomaton.Invariant.invariantOn {HA : HybridAutomaton S G L 𝕋 n} {R : L → S n}
     (hinv : HA.Invariant R) : HA.InvariantOn (fun _ => R) where
   flow h h₀ _ ht := hinv.flow h h₀ ht
   jump hmem _ hz hguard := hinv.jump hmem hz hguard

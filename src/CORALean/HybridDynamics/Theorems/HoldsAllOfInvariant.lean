@@ -23,7 +23,7 @@ namespace CORALean.Real
 
 open ContSet Scalar
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (G n) (Vec ℝ n)]
 variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 
 
@@ -31,7 +31,7 @@ variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 
 /-- The requirement stated once for the automaton: checked at every location, it
 answers wherever a run ends. -/
-theorem HybridAutomaton.holdsAll_of_invariant {HA : HybridAutomaton S L 𝕋 n}
+theorem HybridAutomaton.holdsAll_of_invariant {HA : HybridAutomaton S G L 𝕋 n}
     {R : L → S n} (hinv : HA.Invariant R) (specs : List (Specification (Vec ℝ n)))
     {ℓ ℓ' : L} {x y : Vec ℝ n} (run : HA.Run ℓ x ℓ' y) (hx : x ∈ construct (R ℓ))
     (h : ∀ ℓ : L, Specification.HoldsAll specs (construct (R ℓ))) :

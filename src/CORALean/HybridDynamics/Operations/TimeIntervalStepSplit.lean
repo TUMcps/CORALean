@@ -17,7 +17,7 @@ sits and so is the one a location can actually supply.
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   07-September-2026
 -- Last revision: ---
 
 
@@ -28,7 +28,7 @@ namespace CORALean.Real
 open Matrix ContSet Scalar
 
 variable {n : ℕ} {L 𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
@@ -38,7 +38,7 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 /-- The stay enclosure over `X₀`, the input contribution split into the centre
 of `ℓ.U` and the remainder around zero. -/
 noncomputable def Location.timeIntervalStepSplit [∀ n, OfPoint (S n) (Vec ℝ n)]
-    [∀ n, Recentre (S n) (Vec ℝ n)] (ℓ : Location S L 𝕋 n) (r : ℝ) (η : ℕ) (X₀ : S n) : S n :=
+    [∀ n, Recentre (S n) (Vec ℝ n)] (ℓ : Location S G L 𝕋 n) (r : ℝ) (η : ℕ) (X₀ : S n) : S n :=
   Plus.plus (ℓ.timeIntervalStep r η X₀)
     (Plus.plus
       (Plus.plus

@@ -21,14 +21,15 @@ namespace CORALean.Real
 open ContSet Scalar
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
-variable {𝕋 : Type} [Scalar 𝕋] [Mtimes (Mat 𝕋) S] [OfInterval S] {L : Type} {n : ℕ}
+variable {𝕋 : Type} [Scalar 𝕋] [Mtimes (Mat 𝕋) S] [OfInterval S]
+variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)] {L : Type} {n : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The same as an inclusion of the set that leaves, which is the form a chain
 of steps composes in. -/
-theorem Transition.reset_image_subset (e : Transition S L 𝕋 n) {R Rg : S n}
+theorem Transition.reset_image_subset (e : Transition G L 𝕋 n) {R Rg : S n}
     (hand : construct R ∩ construct e.guard ⊆ construct Rg) :
     e.reset '' (construct R ∩ construct e.guard) ⊆ construct (e.jump Rg) := by
   rintro _ ⟨z, ⟨hz, hguard⟩, rfl⟩

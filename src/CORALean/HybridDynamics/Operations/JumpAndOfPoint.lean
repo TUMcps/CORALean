@@ -7,11 +7,14 @@ import CORALean.HybridDynamics.Operations.JumpOfPoint
 as `jumpAnd` is `jump` with it. At `ConPolyZono`, whose `And` is exact and
 whose only offset ask is `OfPoint`, this is what cuts a non-convex reachable
 set by a guard exactly — the payoff `OfPoint` exists for.
+
+As at `jumpAnd`, `And.and` is homogeneous, so the guard is asked to be in the
+state's own family here and nowhere else (#39).
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   07-September-2026
 -- Last revision: ---
 
 

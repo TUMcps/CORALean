@@ -32,7 +32,8 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ} {L 𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable [∀ n, ContSet (G n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
@@ -44,7 +45,7 @@ time-interval enclosure, wherever the location's input set sits. -/
 theorem Location.Trajectory.timeInterval_outer_split [∀ n, OfPoint (S n) (Vec ℝ n)]
     [∀ n, Recentre (S n) (Vec ℝ n)] [∀ n, ConvexSet (S n) (Vec ℝ n)]
     [∀ n, CompactSet (S n) (Vec ℝ n)]
-    {ℓ : Location S L 𝕋 n} {τ : ℝ} {x u : ℝ → Vec ℝ n} (traj : ℓ.Trajectory τ x u)
+    {ℓ : Location S G L 𝕋 n} {τ : ℝ} {x u : ℝ → Vec ℝ n} (traj : ℓ.Trajectory τ x u)
     {R₀ : S n} (h₀ : x 0 ∈ construct R₀) (hτ : 0 < τ) {m : ℕ}
     (hε : ‖τ • toRealMat ℓ.dynamics.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}
     (ht0 : 0 ≤ t) (htτ : t ≤ τ) :

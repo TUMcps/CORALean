@@ -20,13 +20,13 @@ namespace CORALean.Real
 
 open ContSet Scalar
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (G n) (Vec ℝ n)]
 variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HybridAutomaton.RunOn.toRun {HA : HybridAutomaton S L 𝕋 n} {k : ℕ} {ℓ ℓ' : L}
+theorem HybridAutomaton.RunOn.toRun {HA : HybridAutomaton S G L 𝕋 n} {k : ℕ} {ℓ ℓ' : L}
     {x y : Vec ℝ n} (run : HA.RunOn k ℓ x ℓ' y) : HA.Run ℓ x ℓ' y := by
   induction run with
   | flow h => exact .flow h

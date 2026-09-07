@@ -20,4 +20,8 @@ location's input set to hold the origin.
 `JumpOfPoint`/`JumpAndOfPoint` are the same pair at `OfPoint`, the weaker class
 the offset actually needs — what lets `ConPolyZono`, having no `OfInterval`
 instance, jump at all (#38).
+
+`Jump`, `JumpOfPoint` and both `TimeIntervalStep`s read nothing of the guard or
+the invariant, so they leave that representation free. The three that call
+`And.and` cannot: `And` is homogeneous, so they ask for it in `S` (#39).
 -/
