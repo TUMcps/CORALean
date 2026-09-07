@@ -1,5 +1,6 @@
 import CORALean.ContSet.ZonoBundle.Real.Theorems.AndExact
 import CORALean.ContSet.ZonoBundle.Real.Theorems.PlusOuter
+import CORALean.ContSet.ZonoBundle.Real.Theorems.LinCombOuter
 import CORALean.ContSet.ZonoBundle.Real.Theorems.MtimesOuter
 import CORALean.ContSet.ZonoBundle.Real.Theorems.MapExact
 import CORALean.ContSet.ZonoBundle.Real.Theorems.OfPointMem
@@ -11,10 +12,11 @@ import CORALean.ContSet.ZonoBundle.Real.Theorems.ReduceOrder
 /-!
 # What a zonotope bundle guarantees, collected
 
-`and` exactly, `plus` and `mtimes` as enclosures, and convexity unconditionally.
-`map_exact` needs `f` bijective, not merely injective — `Instances` supplies
-that at `reindexLin e` for `Reindex`. `isCompact_construct` is a plain theorem
-at `0 < B.k`, never a `CompactSet` instance: `ZonoBundle.lean`'s docstring says
-why `k = 0` rules that out. `reduce_outer` holds at any choice of survivors;
-`reduce_order_le` needs no such hypothesis, unlike `Zonotope`'s.
+`and` exactly, `plus`, `linComb` and `mtimes` as enclosures, and convexity
+unconditionally. `map_exact` needs `f` bijective, not merely injective —
+`Instances` supplies that at `reindexLin e` for `Reindex`. `isCompact_construct`
+is a plain theorem at `0 < B.k`, never a `CompactSet` instance:
+`ZonoBundle.lean`'s docstring says why `k = 0` rules that out. `reduce_outer`
+holds at any choice of survivors; `reduce_order_le` needs no such hypothesis,
+unlike `Zonotope`'s.
 -/

@@ -2,6 +2,7 @@ import CORALean.ContSet.ContSet.ConvexSet
 import CORALean.ContSet.ZonoBundle.Real.Theorems.AndExact
 import CORALean.ContSet.ZonoBundle.Real.Theorems.Convex
 import CORALean.ContSet.ZonoBundle.Real.Theorems.PlusOuter
+import CORALean.ContSet.ZonoBundle.Real.Theorems.LinCombOuter
 import CORALean.ContSet.ZonoBundle.Real.Theorems.MtimesOuter
 import CORALean.ContSet.ZonoBundle.Real.Theorems.MapExact
 import CORALean.ContSet.ZonoBundle.Real.Theorems.OfPointMem
@@ -10,18 +11,19 @@ import CORALean.ContSet.ZonoBundle.Real.Theorems.ReduceOuter
 /-!
 # What `ZonoBundle` instantiates
 
-`ContSet`, `ConvexSet` — an intersection of convex sets — `Plus` and `Mtimes`
-from the enclosure operations, and `And` from `and_exact`: appending the two
-families of zonotopes is exact, at any real module. `OfPoint` bundles one
-point-zonotope, and `Reindex` lifts `Zonotope`'s at `reindexLin e`, which
-`map_exact` needs *bijective* rather than merely injective — `e`'s own inverse
-supplies that. `Reduce` drops components, which only enlarges the set, so it
-needs no error box, unlike every other `reduce` in the tree.
+`ContSet`, `ConvexSet` — an intersection of convex sets — `Plus`, `LinComb`
+and `Mtimes` from the enclosure operations, and `And` from `and_exact`:
+appending the two families of zonotopes is exact, at any real module.
+`OfPoint` bundles one point-zonotope, and `Reindex` lifts `Zonotope`'s at
+`reindexLin e`, which `map_exact` needs *bijective* rather than merely
+injective — `e`'s own inverse supplies that. `Reduce` drops components,
+which only enlarges the set, so it needs no error box, unlike every other
+`reduce` in the tree.
 
 `CompactSet` is not an instance: at `k = 0` the set is `univ`, not compact, so
 the class's unconditional obligation cannot be discharged. `isCompact_construct`
-states the conditional fact instead, at `0 < B.k`. No `LinComb` or `Minus`
-either — nothing here combines by interpolation or subtracts.
+states the conditional fact instead, at `0 < B.k`. No `Minus` either — that
+needs `Zonotope.minus`, an open design decision on #85.
 -/
 
 -- Authors:       Tobias Ladner
@@ -61,6 +63,10 @@ instance : ConvexSet (ZonoBundle α) α := ⟨ZonoBundle.convex_construct⟩
 instance : Plus (ZonoBundle α) α where
   plus := ZonoBundle.plus
   plus_outer := ZonoBundle.plus_outer
+
+noncomputable instance : LinComb (ZonoBundle α) α where
+  linComb := ZonoBundle.linComb
+  linComb_outer := ZonoBundle.linComb_outer
 
 instance : And (ZonoBundle α) α where
   and := ZonoBundle.and
