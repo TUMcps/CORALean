@@ -396,6 +396,16 @@ asserts nothing of its own. That composition is the point of the arrangement:
 a new algorithm's bound is a size fact per operation, a cost per operation,
 monotonicity to join them, and induction over the loop.
 
+The primitives in `Global/Cost.lean` are the part of the model most likely to
+be restated, so a proof elsewhere reads their stated properties and not their
+shapes. `Cost.sort` was `k * k` and is now `k * (log₂ k + 1)`; the change cost
+nothing wherever `Cost.sort_mono` was what a caller used, and broke an `IsBigO`
+proof three directories away that had unfolded the old product by `rfl`. That
+proof goes through `Cost.sort_le_mul_succ` now, and a proof needing something
+else of a primitive should ask for a lemma beside the `def` rather than unfold
+it. `check-conventions.sh` cannot see this one: a `rfl`, `simp [Cost.…]` or
+`unfold` that reaches through a primitive is caught in review or not at all.
+
 `Asymptotics.IsBigO` is deliberately *not* the vehicle for the counts. It takes
 a function of one argument along one filter, while a cost grows in several
 sizes at once — a step of `reach` in the dimension, the order and the input
