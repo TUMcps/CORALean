@@ -44,6 +44,8 @@ import CORALean.ContSet.Zonotope.Real.Theorems.ReduceCombastelOrderLe
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOrder
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedInner
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffRepInner
+import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffOrEmptyInner
+import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffOrEmptyNeEmpty
 
 /-!
 # What `Zonotope` guarantees
@@ -59,4 +61,7 @@ and the two `Recentre` facts are what those classes ask of a zonotope, and
 `MinkDiffAlignedInner` and `MinkDiffRepInner` are the two guarantees running
 the other way, the first exact at aligned generators and the second sound at
 any representation of the subtrahend's generators in the minuend's.
+`MinkDiffOrEmptyInner` carries the second through the wrapper `MinkDiff` needs,
+and `MinkDiffOrEmptyNeEmpty` is what says that wrapper is not the empty set
+every time.
 -/

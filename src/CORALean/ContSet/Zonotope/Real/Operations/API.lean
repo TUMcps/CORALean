@@ -22,6 +22,7 @@ import CORALean.ContSet.Zonotope.Real.Operations.ReduceCombastel
 import CORALean.ContSet.Zonotope.Real.Operations.Reduce
 import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffAligned
 import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffRep
+import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffOrEmpty
 
 /-!
 # What `Zonotope` computes
@@ -34,4 +35,7 @@ point and the origin-holding remainder, what `OfPoint` and `Recentre` ask for.
 `minkDiffAligned` is CORA's exact aligned-generator case of `minkDiff`, the
 only one not needing an enclosure, and `minkDiffRep` is the general one, at a
 generator representation the caller offers and this checks.
+`minkDiffOrEmpty` is that one again with the candidate chosen here rather than
+by the caller, so that it is total — and wrapped, since the difference can be
+empty and no zonotope is.
 -/

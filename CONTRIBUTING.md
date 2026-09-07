@@ -12,6 +12,11 @@ src/CORALean/
   ContSet/         set representations, over whichever ambient type they suit
     ContSet/       the interface every representation instantiates
     InflatedContSet/  nominal part + error box, what a float representation adds
+    WithEmpty/     a representation or nothing, for an operation whose result
+                   can be empty where the representation cannot say so
+    EmptySet/      `∅` in a stated dimension, a set class of its own as in CORA
+    Fullspace/     the whole space, the same way; neither carries a scalar, so
+                   both are Real/ only
     Interval/
       Real/        Interval.lean (the type), Operations/ (one per operation),
                    Theorems/ (one per guarantee),
@@ -76,9 +81,9 @@ representations of equal standing cannot each import the other, so
 `VPolytope → HPolytope` inside `VPolytope/` and the reverse inside `HPolytope/`
 is a cycle Lean rejects. One file per ordered pair keeps a new pair to a file
 rather than a directory, and keeps every representation independent of every
-other. `Real/` holds every ordered pair of the nine representations that are
-not `Capsule` — 72 files — and `Capsule_to_Interval` besides; `Float/` holds the
-25 pairs written so far. The declaration is named for the target, as in CORA,
+other. `Real/` holds every ordered pair of the nine representations its own
+collector names — 72 files — and `Capsule_to_Interval` besides; `Float/` holds
+the 25 pairs written so far. The declaration is named for the target, as in CORA,
 where `interval(zonotope)` is how a zonotope becomes a box.
 
 Two of those files hold a class instead of a conversion: `ContSet_to_Interval`
