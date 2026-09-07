@@ -3,6 +3,7 @@ import CORALean.NN.Graph.Theorems.AdjAtSymm
 import CORALean.NN.Graph.Theorems.BallEnumBallEnumIdx
 import CORALean.NN.Graph.Theorems.BallEnumIdx
 import CORALean.NN.Graph.Theorems.BallEnumInjective
+import CORALean.NN.Graph.Theorems.BallEqOfSuccEq
 import CORALean.NN.Graph.Theorems.BallMono
 import CORALean.NN.Graph.Theorems.BallMonoOfSupport
 import CORALean.NN.Graph.Theorems.BallSubsetSucc
@@ -20,6 +21,7 @@ import CORALean.NN.Graph.Theorems.EvalStepsRowBallOfAdjacencyUncertain
 import CORALean.NN.Graph.Theorems.EvalStepsRowMask
 import CORALean.NN.Graph.Theorems.EvalStepsRowMaskUncertain
 import CORALean.NN.Graph.Theorems.EvalStepsSubmatrix
+import CORALean.NN.Graph.Theorems.ExistsBallStable
 import CORALean.NN.Graph.Theorems.GcnSharedExact
 import CORALean.NN.Graph.Theorems.GcnSharedPoint
 import CORALean.NN.Graph.Theorems.GcnStepsExact
