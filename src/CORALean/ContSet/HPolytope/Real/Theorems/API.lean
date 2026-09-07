@@ -11,6 +11,7 @@ import CORALean.ContSet.HPolytope.Real.Theorems.ExtremePoints
 import CORALean.ContSet.HPolytope.Real.Theorems.IsClosed
 import CORALean.ContSet.HPolytope.Real.Theorems.MapEquivExact
 import CORALean.ContSet.HPolytope.Real.Theorems.TranslateExact
+import CORALean.ContSet.HPolytope.Real.Theorems.OfPointMem
 
 /-!
 # What `HPolytope` guarantees
@@ -21,4 +22,5 @@ unbounded is what this representation admits and a vertex one cannot.
 `MemConstruct` names the pair of constraint blocks every one of them is stated
 against. `MinusOfInner` is the one guarantee running the other way: an inner
 approximation of the Minkowski difference, needing `hker` on the equality rows.
+`OfPointMem` is the one at `Vec ℝ n` alone, `LinearMap.proj` needing coordinates.
 -/

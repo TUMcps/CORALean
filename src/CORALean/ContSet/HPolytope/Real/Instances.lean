@@ -1,6 +1,7 @@
 import CORALean.ContSet.HPolytope.Real.HPolytope
 import CORALean.ContSet.HPolytope.Real.Theorems.AndExact
 import CORALean.ContSet.HPolytope.Real.Theorems.MapEquivExact
+import CORALean.ContSet.HPolytope.Real.Theorems.OfPointMem
 
 /-!
 # What `HPolytope` instantiates
@@ -9,18 +10,18 @@ import CORALean.ContSet.HPolytope.Real.Theorems.MapEquivExact
 halfspaces and keeps the set exactly, so doing nothing is the sound stand-in
 until that algorithm is written.
 
-Not `Plus`, `LinComb` or `Mtimes`, though `plusOf`, `linCombOf` and `mtimesOf`
-all compute. Closing over their directions and support bounds — the way
-`Ellipsoid.plusInstance` closes over its scalings — would need bounds for *every*
-polytope, `plus : S → S → S` being total and a recursive algorithm summing sets
-the caller never sees. That oracle does not exist: a description with no rows
-denotes the whole space, unbounded in every non-zero direction. A useful `Plus`
-here needs a type excluding unbounded sets first.
+Not `Plus`, `LinComb` or `Mtimes`, though `plusOf`, `linCombOf` and `mtimesOf` all compute.
+Closing over their directions and support bounds — the way `Ellipsoid.plusInstance` closes over
+its scalings — would need bounds for *every* polytope, `plus : S → S → S` being total and
+summing sets the caller never sees. That oracle does not exist: a description with no rows
+denotes the whole space, unbounded in every direction. A useful `Plus` needs a type excluding
+unbounded sets first.
 
 `OfInterval` could be instantiated as it stands, `Interval.hPolytope` being
 exact, but the class lives in `Conversion`, so the instance would put every
-importer of `OfInterval` behind `HPolytope`. `And` now lands too, at any real
-module; `mapEquiv` backs `Reindex` below, and `comap`, `translate` stay named.
+importer of `OfInterval` behind `HPolytope`. `And` and `OfPoint` land too —
+the latter only at `Vec ℝ n`, `LinearMap.proj` needing coordinates —
+`mapEquiv` backs `Reindex` below, and `comap`, `translate` stay named.
 -/
 
 -- Authors:       Tobias Ladner
@@ -47,6 +48,12 @@ instance : Reduce (HPolytope α) α where
 instance : And (HPolytope α) α where
   and := HPolytope.and
   and_outer P₁ P₂ := (HPolytope.and_exact P₁ P₂).subset
+
+/-- At `Vec ℝ n` alone: `LinearMap.proj`, which reads a point's equality rows
+back, needs coordinates. -/
+instance {n : ℕ} : OfPoint (HPolytope (Vec ℝ n)) (Vec ℝ n) where
+  ofPoint := HPolytope.ofPoint
+  mem_ofPoint := HPolytope.mem_ofPoint
 
 /-- `mapEquiv` wants an equivalence, not a linear map, so a reindexing goes
 through `LinearEquiv.funCongrLeft`, whose coercion is `reindexLin` again. -/
