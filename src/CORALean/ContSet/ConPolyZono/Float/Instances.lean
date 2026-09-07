@@ -18,8 +18,8 @@ costs precision and nothing else. No `CompactSet`, as at no other float
 representation: compactness is a statement about the exact specification.
 
 `And`'s anonymous constructor, not named fields, for the reason the exact
-layer's carries too: `reduce`'s imports reach `Global.Partition`'s
-`Split ... and ...` notation, which makes `and` a token here, not an identifier.
+layer's carries too: this file is itself inside `namespace CORALean.Float`,
+where `Global.Partition`'s `Split ... and ...` notation is active even scoped.
 -/
 
 -- Authors:       Tobias Ladner

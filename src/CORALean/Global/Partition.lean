@@ -17,7 +17,7 @@ predicate, for a caller that only has one of those, such as a merge bucket.
 
 -- Authors:       Tobias Ladner
 -- Written:       16-August-2026
--- Last update:   06-September-2026
+-- Last update:   07-September-2026
 -- Last revision: ---
 
 
@@ -41,8 +41,8 @@ def Pair (β γ : Type v) : Bool → Type v
 /-- Two parts, the common case. -/
 abbrev Partition₂ (α : Type*) (β γ : Type v) := Partition α (Pair β γ)
 
-notation:50 "Split " α:max " into " β:max => CORALean.Partition α β
-notation:50 "Split " α:max " into " β:max " and " γ:max => CORALean.Partition₂ α β γ
+scoped notation:50 "Split " α:max " into " β:max => CORALean.Partition α β
+scoped notation:50 "Split " α:max " into " β:max " and " γ:max => CORALean.Partition₂ α β γ
 
 instance {β γ : Type v} [Fintype β] [Fintype γ] : (b : Bool) → Fintype (Pair β γ b)
   | true => inferInstanceAs (Fintype β)

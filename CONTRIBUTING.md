@@ -502,24 +502,23 @@ merge request.
 
 ### A notation can turn a word into a keyword
 
-`Global/Partition.lean` declares, unscoped,
+`Global/Partition.lean` declares
 
 ```lean
-notation:50 "Split " α:max " into " β:max " and " γ:max => CORALean.Partition₂ α β γ
+scoped notation:50 "Split " α:max " into " β:max " and " γ:max => CORALean.Partition₂ α β γ
 ```
 
-so **every file that transitively imports it parses `and` as a token, not an
-identifier**. Named-field instance syntax then fails there — `and := Foo.and`
-gives "Fields missing", then "unexpected token 'and'" — while the anonymous
-constructor `⟨Foo.and, …⟩` works, never writing the bare word. The `And` class's
-instances hit this in exactly the two `Instances.lean` files whose imports reach
-`Partition` (through `reduce`, down to `Zonotope.reduceGirard`); the other four
-were unaffected, which is why the failure looks arbitrary until you check the
-import graph.
+`scoped` limits the notation to `namespace CORALean` (and its sub-namespaces)
+or after `open CORALean` — but nearly everything in this library lives inside
+that tree, so `and` stays a token there just as it did unscoped. Named-field
+syntax then fails wherever an `And` instance is declared inside
+`namespace CORALean.*` and reaches `Partition` through `reduce`: `and :=
+Foo.and` gives "Fields missing", then "unexpected token 'and'". The anonymous
+constructor `⟨Foo.and, …⟩` is still the escape hatch there; find the affected
+instances by searching for that form.
 
-Whether the notation should be `scoped` is open. Until it is, a class field
-named after an English word that appears in a notation is worth checking before
-naming, and the anonymous constructor is the escape hatch.
+A class field named after an English word that appears in a notation is worth
+checking before naming.
 
 ### An expected type that will not unify
 
