@@ -22,9 +22,9 @@ in `LinearSys` reads `Set.Icc 0 r ⊆ T` and `Trajectory.init` pins `x 0`, so
 price is a shifted trajectory, paid once for the flow in `Shift` and once for the
 input integral in `LinearSys.stepInput_shift`.
 
-Confinement is a hypothesis per step and stays one: CORA computes a candidate `R`
-and checks the step's reachable set against it afterwards, which no certificate
-can supply.
+Confinement is a hypothesis per step, asked on that step's own window alone.
+`confinement_of_subset` discharges it from a check on the computed sets, so a
+caller need not already know where the run goes in order to use this.
 
 Step boundaries only in this file; `relinTimeInterval_outer` covers the time
 between them, each step's enclosure at every time rather than just its ends.

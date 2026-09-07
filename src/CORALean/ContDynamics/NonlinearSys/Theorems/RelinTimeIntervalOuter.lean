@@ -14,6 +14,10 @@ run re-anchored there is a run of the linearized system on `[0, Δt]`, which is
 of that run at once. The extra cost beyond the discrete chain is `η ≥ 2` (the
 time-interval correction matrix needs it) and `0 ∈ linInput` (`inputReach_mono`'s
 own price), neither asked of `relinReach` at all.
+
+`hR` is asked at step `i` itself, not below it, so step `i`'s confinement can
+never come from this theorem's own conclusion; `confinement_of_subset` gets it
+from the step's start instead.
 -/
 
 -- Authors:       Tobias Ladner
