@@ -20,7 +20,7 @@ enumerations a caller happened to build, not a choice they made.
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   07-September-2026
 -- Last revision: ---
 
 
@@ -37,7 +37,7 @@ open Matrix
 `messagePassing` on that submatrix, then restrict once more to the `L`-ball inside it. -/
 theorem GNN.evalSteps_row_ball_of_adjacency {N F : ℕ} (A : Mat ℝ N N) (hA : ∀ i j, 0 ≤ A i j)
     (hSymm : ∀ i j, A i j = A j i) (v : Fin N) (L : ℕ) {K : ℕ} (κ : Fin K → Fin N)
-    (hinj : Function.Injective κ) (hκ : ∀ i, (∃ k, κ k = i) ↔ i ∈ GNN.ball A v (L + 1))
+    (hinj : Function.Injective κ) (hκ : GNN.ball A v (L + 1) ⊆ Finset.univ.image κ)
     (W : Fin L → Mat ℝ F F) (X : Mat ℝ N F) :
     ∃ φ : Fin (GNN.ball A v L).card → Fin K,
       GNN.evalSteps (GNN.messagePassing A) L W X v
@@ -47,7 +47,8 @@ theorem GNN.evalSteps_row_ball_of_adjacency {N F : ℕ} (A : Mat ℝ N N) (hA : 
   have hmemL : ∀ k : Fin (GNN.ball A v L).card, GNN.ballEnum A v L k ∈ GNN.ball A v L :=
     fun k => (GNN.mem_ballEnum_iff A v L _).mp ⟨k, rfl⟩
   have hex : ∀ k : Fin (GNN.ball A v L).card, ∃ l, κ l = GNN.ballEnum A v L k := fun k =>
-    (hκ (GNN.ballEnum A v L k)).mpr (GNN.ball_subset_succ A v L (hmemL k))
+    Finset.mem_image.mp (hκ (GNN.ball_subset_succ A v L (hmemL k)))
+      |>.imp fun _ h => h.2
   choose φ hφκ using hex
   refine ⟨φ, ?_⟩
   -- `messagePassing` agrees pointwise on the inner ball, read off `A`'s own outer submatrix

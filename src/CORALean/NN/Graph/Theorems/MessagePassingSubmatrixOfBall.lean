@@ -21,7 +21,7 @@ needs the extra ring, exactly as `degree_submatrix_of_ball`'s docstring explains
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   07-September-2026
 -- Last revision: ---
 
 
@@ -38,7 +38,7 @@ open Matrix
 graph's, between any two nodes whose own balls reach only one radius short. -/
 theorem GNN.messagePassing_submatrix_of_ball {N : ℕ} (A : Mat ℝ N N) (hA : ∀ i j, 0 ≤ A i j)
     (hSymm : ∀ i j, A i j = A j i) (v : Fin N) (r : ℕ) {K : ℕ} (κ : Fin K → Fin N)
-    (hinj : Function.Injective κ) (hκ : ∀ i, (∃ k, κ k = i) ↔ i ∈ GNN.ball A v (r + 1))
+    (hinj : Function.Injective κ) (hκ : GNN.ball A v (r + 1) ⊆ Finset.univ.image κ)
     {i j : Fin N} (hi : i ∈ GNN.ball A v r) (hj : j ∈ GNN.ball A v r)
     (ki kj : Fin K) (hki : κ ki = i) (hkj : κ kj = j) :
     GNN.messagePassing (A.submatrix κ κ) ki kj = GNN.messagePassing A i j := by -- --- PROOF ---

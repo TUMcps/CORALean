@@ -1,4 +1,5 @@
 import CORALean.NN.Graph.Theorems.AdjAtSupportSubset
+import CORALean.NN.Graph.Theorems.AdjAtSymm
 import CORALean.NN.Graph.Theorems.BallEnumBallEnumIdx
 import CORALean.NN.Graph.Theorems.BallEnumIdx
 import CORALean.NN.Graph.Theorems.BallEnumInjective
@@ -10,6 +11,7 @@ import CORALean.NN.Graph.Theorems.ConvExactOfAdjacency
 import CORALean.NN.Graph.Theorems.ConvUncertainExact
 import CORALean.NN.Graph.Theorems.DegreeAtEq
 import CORALean.NN.Graph.Theorems.DegreeSubmatrixOfBall
+import CORALean.NN.Graph.Theorems.DegreeSubmatrixOfBallUncertain
 import CORALean.NN.Graph.Theorems.EvalStepsRowBall
 import CORALean.NN.Graph.Theorems.EvalStepsRowBallEnum
 import CORALean.NN.Graph.Theorems.EvalStepsRowBallOfAdjacency
@@ -28,6 +30,7 @@ import CORALean.NN.Graph.Theorems.MemBallSuccOfMessagePassing
 import CORALean.NN.Graph.Theorems.MessagePassingEnclosureOuter
 import CORALean.NN.Graph.Theorems.MessagePassingNeZero
 import CORALean.NN.Graph.Theorems.MessagePassingSubmatrixOfBall
+import CORALean.NN.Graph.Theorems.MessagePassingSubmatrixOfBallUncertain
 import CORALean.NN.Graph.Theorems.PoolingExact
 import CORALean.NN.Graph.Theorems.SubmatrixMulOfClosed
 import CORALean.NN.Graph.Theorems.UncertainAdjExact
@@ -47,16 +50,16 @@ one enclosure — the graph's own `P` a *point* of it — carried through by `Co
 
 `SubmatrixMulOfClosed`/`EvalStepsSubmatrix` are `[1, §4.3]`'s locality given `hclosed`; supplied at
 a mask by `EvalStepsRowMask`, or needing none by `EvalStepsRowBall`, its `κ` built by
-`BallEnumInjective`/`MemBallEnumIff`/`BallEnumIdx`/`BallEnumBallEnumIdx` into `EvalStepsRowBallEnum`
-alongside `MemBallSelf`/`BallSubsetSucc`/`BallMono`/`MemBallSuccOfMessagePassing`/
-`MessagePassingNeZero`, the ball's own facts. `DegreeSubmatrixOfBall`/
-`MessagePassingSubmatrixOfBall` are the other half — a degree sums a column, so computing `P`
-needs the ring one hop past the ball — and `EvalStepsRowBallOfAdjacency` composes both: row `v`
-needs only `A`'s `(L + 1)`-ball.
+`BallEnumInjective`/`MemBallEnumIff`/`BallEnumIdx`/`BallEnumBallEnumIdx` into
+`EvalStepsRowBallEnum`. `DegreeSubmatrixOfBall`/`MessagePassingSubmatrixOfBall` are the other half
+— a degree sums a column, so computing `P` needs the ring one hop past the ball —
+`EvalStepsRowBallOfAdjacency` composing both into row `v` needing only `A`'s `(L + 1)`-ball.
 
 `BallMonoOfSupport`/`AdjAtSupportSubset` carry locality to an uncertain graph, `adjMax A U` (every
-edge at `1`) dominating every admissible `adjAt`'s support and hence its ball;
-`EvalStepsRowMaskUncertain` sizes one `S` against it, serving every `lam` via `EvalStepsRowMask`.
+edge at `1`) dominating every admissible `adjAt`'s support and hence its ball.
+`EvalStepsRowMaskUncertain` sizes one `S` against it for `evalSteps`; `AdjAtSymm` gives `adjAt` the
+symmetry the degree/`P` pair needs, so `DegreeSubmatrixOfBallUncertain`/
+`MessagePassingSubmatrixOfBallUncertain` reach them too, uniformly in `lam`.
 
 ## References
 
