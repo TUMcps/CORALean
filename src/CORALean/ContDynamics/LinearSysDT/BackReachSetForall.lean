@@ -5,8 +5,8 @@ import CORALean.ContDynamics.LinearSysDT.LinearSysDT
 
 Backward reachability, in the `∀` reading: `x` is in the `k`-step set when
 *every* input signal `U` admits carries it into `T` at step `k`. The `∃`
-reading — *some* signal does — is a different set, and `backReachSetExists` is
-where it would go, beside this one and never in place of it.
+reading — *some* signal does — is a different set: `backReachSetExists`, beside
+this one and never in place of it.
 
 The `∀` reading is what a Minkowski difference computes, which is why one was
 the prerequisite: `{x | ∀ u ∈ U, A x + u ∈ B}` is the preimage under `A` of

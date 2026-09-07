@@ -1,5 +1,8 @@
+import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachExistsOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachForallInner
 import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachForallInnerZonotope
+import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachSetExistsPreimage
+import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachSetExistsTrajectory
 import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachSetForallTrajectory
 import CORALean.ContDynamics.LinearSysDT.Theorems.HeldToTrajectory
 import CORALean.ContDynamics.LinearSysDT.Theorems.HoldsOfOutput
@@ -30,9 +33,9 @@ prove about a discrete run, and what checking a specification on it then buys.
 is what `reach` encloses, exactly; the three theorems named for it and
 `HoldsOfSeparating` check a specification by support bound, no set built at all.
 
-The `BackReach` three run the other way: `backReachSetForall` holds every run
-into the target, and `backReachForall` sits *inside* it — inner, a backward set
-being a guarantee — at the one representation `...Zonotope` names.
+The `BackReach` files run the other way: `backReachForall` sits inside
+`backReachSetForall` — inner, and only `Zonotope` discharges it — while the `∃`
+reading's step is a sum, so `backReachExists` is outer, at `Plus` and `Mtimes`.
 
 `OutputOuter` and `HoldsOfOutput` are those two again at an `OutputEq` paired
 with the run: a requirement about what the system emits, not only where it is.
