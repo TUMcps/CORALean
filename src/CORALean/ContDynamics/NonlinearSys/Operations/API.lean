@@ -1,6 +1,7 @@
 import CORALean.ContDynamics.NonlinearSys.Operations.LinInput
 import CORALean.ContDynamics.NonlinearSys.Operations.Linearize
 import CORALean.ContDynamics.NonlinearSys.Operations.RelinReach
+import CORALean.ContDynamics.NonlinearSys.Operations.RelinTimeInterval
 
 /-!
 # What a linearization computes
@@ -12,5 +13,6 @@ certificate, not a bound on `f`.
 
 `RelinReach` is what a sequence of them computes: one step of the linear
 recursion per linearization, the set reached at the end of a step becoming the
-initial set of the next.
+initial set of the next. `RelinTimeInterval` is the same step, over its whole
+interval rather than its end alone.
 -/
