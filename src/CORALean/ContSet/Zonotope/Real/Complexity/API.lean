@@ -3,6 +3,7 @@ import CORALean.ContSet.Zonotope.Real.Complexity.LinComb
 import CORALean.ContSet.Zonotope.Real.Complexity.Mtimes
 import CORALean.ContSet.Zonotope.Real.Complexity.MtimesIntervalMat
 import CORALean.ContSet.Zonotope.Real.Complexity.MtimesMatZonotope
+import CORALean.ContSet.Zonotope.Real.Complexity.MatMul
 import CORALean.ContSet.Zonotope.Real.Complexity.Bilin
 import CORALean.ContSet.Zonotope.Real.Complexity.ReduceBy
 import CORALean.ContSet.Zonotope.Real.Complexity.BilinBigO

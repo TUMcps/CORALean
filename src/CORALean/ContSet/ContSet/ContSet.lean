@@ -76,6 +76,16 @@ def matMulRight {p q r : ℕ} (M : Mat ℝ q r) : Mat ℝ p q →ₗ[ℝ] Mat �
   map_add' B C := Matrix.add_mul B C M
   map_smul' c B := Matrix.smul_mul c B M
 
+/-- Matrix multiplication as a bilinear map, which is what a set-valued product
+of two matrix representations is taken at. -/
+def matMulBilin {p q r : ℕ} : Mat ℝ p q →ₗ[ℝ] Mat ℝ q r →ₗ[ℝ] Mat ℝ p r where
+  toFun := matMulLeft
+  map_add' A B := LinearMap.ext fun C => Matrix.add_mul A B C
+  map_smul' c A := LinearMap.ext fun C => Matrix.smul_mul c A C
+
+@[simp] theorem matMulBilin_apply {p q r : ℕ} (A : Mat ℝ p q) (B : Mat ℝ q r) :
+    matMulBilin A B = A * B := rfl
+
 /-- A matrix acting on vectors. -/
 instance {𝕋 : Type} [Scalar 𝕋] {p q : ℕ} : LinMapSet (Mat 𝕋 p q) (Vec ℝ q) (Vec ℝ p) where
   denote M := {Matrix.mulVecLin (toRealMat M)}

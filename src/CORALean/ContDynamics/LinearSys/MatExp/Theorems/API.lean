@@ -7,6 +7,9 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpEnclosure
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegral
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalEnclosure
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalTaylor
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoEnclosure
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoRemainder
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoTaylor
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundMono
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSmulTsum
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.FactorialMulPowLe
@@ -26,5 +29,7 @@ That `e^{Ar}` lies in `expEnclosure`, that the two interpolation errors lie in
 the correction matrices, and that the integrated series converges. Each holds
 only under `‖A‖r / (η + 2) < 1`. `ExpIntervalTaylor`/`ExpIntervalEnclosure` are
 the same two facts widened to every member of an interval matrix, the second
-checkable from the interval matrix alone via its `absMax`.
+checkable from the interval matrix alone via its `absMax`. `ExpMatZonoEnclosure`
+is the same guarantee for a matrix zonotope, checkable from the zonotope alone
+through the interval matrix it encloses.
 -/

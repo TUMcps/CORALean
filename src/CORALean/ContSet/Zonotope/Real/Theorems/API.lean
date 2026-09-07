@@ -31,6 +31,8 @@ import CORALean.ContSet.Zonotope.Real.Theorems.AbsLeAbsBound
 import CORALean.ContSet.Zonotope.Real.Theorems.MtimesIntervalMatOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.BilinOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.MtimesMatZonotopeOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.MatMulOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.MatPowOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.SumUnivReduceBy
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceByOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceGirardOuter

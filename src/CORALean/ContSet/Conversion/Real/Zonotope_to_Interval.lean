@@ -9,13 +9,17 @@ in each coordinate. Not exact — a zonotope is generally not a box — but tigh
 since each coordinate's extreme is attained by taking every generator at its own
 sign.
 
+Over any ambient type with coordinates, not just `Vec ℝ n`: at `Mat ℝ m n` this
+is CORA's `intervalMatrix(matZonotope)`, which is how a matrix zonotope reaches
+a remainder bound, and the definition is the same one read through `Entrywise`.
+
 No linear program: a zonotope answers a direction by summing absolute values,
 which is the reason it is the representation reachability runs on.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       16-August-2026
--- Last update:   02-September-2026
+-- Last update:   07-September-2026
 -- Last revision: ---
 
 
@@ -23,35 +27,32 @@ which is the reason it is the representation reachability runs on.
 
 namespace CORALean.Real
 
-variable {n : ℕ}
+open Entrywise
 
-def Zonotope.interval (Z : Zonotope (Vec ℝ n)) : Interval (Vec ℝ n) where
-  inf := fun i => Z.c i - ∑ j, |Z.G j i|
-  sup := fun i => Z.c i + ∑ j, |Z.G j i|
+variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
+
+def Zonotope.interval (Z : Zonotope α) : Interval α where
+  inf := ofEntry fun i => entry Z.c i - ∑ j, |entry (Z.G j) i|
+  sup := ofEntry fun i => entry Z.c i + ∑ j, |entry (Z.G j) i|
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.interval_outer (Z : Zonotope (Vec ℝ n)) :
+theorem Zonotope.interval_outer (Z : Zonotope α) :
     Z.construct ⊆ Z.interval.construct := by -- --- PROOF ---
-  intro x hxmem
-  obtain ⟨β, hβ, hx⟩ := Zonotope.mem_construct_iff.mp hxmem
+  rintro x ⟨β, hβ, rfl⟩
   intro i
-  have key : |x i - Z.c i| ≤ ∑ j, |Z.G j i| := by
-    rw [hx i, add_sub_cancel_left]
-    calc |∑ j, Z.G j i * β j|
-        ≤ ∑ j, |Z.G j i * β j|   := Finset.abs_sum_le_sum_abs _ _
-      _ = ∑ j, |Z.G j i| * |β j| := by simp_rw [abs_mul]
-      _ ≤ ∑ j, |Z.G j i|         := by
+  have key : |∑ j, entry (Z.G j) i * β j| ≤ ∑ j, |entry (Z.G j) i| :=
+    calc |∑ j, entry (Z.G j) i * β j|
+        ≤ ∑ j, |entry (Z.G j) i * β j|   := Finset.abs_sum_le_sum_abs _ _
+      _ = ∑ j, |entry (Z.G j) i| * |β j| := by simp_rw [abs_mul]
+      _ ≤ ∑ j, |entry (Z.G j) i|         := by
           refine Finset.sum_le_sum fun j _ => ?_
-          simpa using mul_le_mul_of_nonneg_left (hβ j) (abs_nonneg (Z.G j i))
+          simpa using mul_le_mul_of_nonneg_left (hβ j) (abs_nonneg (entry (Z.G j) i))
   rw [abs_le] at key
   -- both faces, the same magnitude bound signed either way
-  constructor
-  · show Z.c i - ∑ j, |Z.G j i| ≤ x i
-    linarith [key.1]
-  · show x i ≤ Z.c i + ∑ j, |Z.G j i|
-    linarith [key.2]
+  simp only [Zonotope.interval, entry_ofEntry, entry_add_sum_smul]
+  constructor <;> linarith [key.1, key.2]
 
 end CORALean.Real
 
