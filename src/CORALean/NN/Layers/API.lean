@@ -42,7 +42,7 @@ its slope from convexity, the other two — and `InvSqrt`'s bracket, clamped at 
 `PolySampling` bounds the error, `PolyDerivBound` is what that needs and `PolyFit` what it does
 not, `PolyConvergence` with `PolyFitConvergence` drive it to zero, `PolyRelaxationPad` lifts one to
 a higher degree, and `SigmoidPoly` and `TanhPoly` instantiate them (via `PolyAffineConj`).
-`ActivationPoly` propagates per neuron at `PolyZonotope` alone, `ActivationPolyInflate` bounds the
+`ActivationPoly` encloses per neuron at `PolyZonotope` alone, `ActivationPolyInflate` bounds the
 widening, `PolyRangeConvergence` makes an order serve a whole range, `ActivationPolyRefine` is the
 three as a refinable layer, `SigmoidPolyRefine` at a real activation, and `SigmoidLinearSigmoid` a
 chain around a matrix.

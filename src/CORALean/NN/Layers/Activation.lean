@@ -85,8 +85,8 @@ def Relaxation.slopeMat {σ : ℝ → ℝ} (R : Relaxation σ) (I : Interval (Ve
 
 def Layer.activation {σ : ℝ → ℝ} (R : Relaxation σ) : Layer S n n where
   eval x := fun i => σ (x i)
-  propagate s := plus (mtimes (R.slopeMat (interval s)) s) (ofInterval (R.box (interval s)))
-  propagate_outer s x hx := by
+  enclose s := plus (mtimes (R.slopeMat (interval s)) s) (ofInterval (R.box (interval s)))
+  enclose_outer s x hx := by
     have hbox := interval_outer s hx
     -- the deviation from the chosen affine map, which is what the box holds
     set d : Vec ℝ n := fun i => σ (x i) - (R.slopeMat (interval s) *ᵥ x) i with hd

@@ -1,7 +1,7 @@
 import CORALean.NN.Operations.AtSchedule
-import CORALean.NN.Operations.PropagateAt
+import CORALean.NN.Operations.EncloseAt
 import CORALean.NN.Theorems.AtScheduleEval
-import CORALean.NN.Theorems.PropagateOuter
+import CORALean.NN.Theorems.EncloseOuter
 
 /-!
 # Every schedule encloses the image
@@ -13,9 +13,9 @@ slope in its bracket; this is that idiom at the loop.
 
 There is no induction here. `atSchedule` produces an ordinary `NeuralNetwork`
 and `atSchedule_eval` says it computes the same function, so the claim is
-`NeuralNetwork.propagate_outer` read at that network.
+`NeuralNetwork.enclose_outer` read at that network.
 
-`ImageSubsetPropagateAt.lean` and its own three corollaries state the same
+`ImageSubsetEncloseAt.lean` and its own three corollaries state the same
 fact at a step and at the loop.
 -/
 
@@ -36,11 +36,11 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem RefinableNetwork.propagateAt_outer (rn : RefinableNetwork S n m) (sch : Schedule)
+theorem RefinableNetwork.encloseAt_outer (rn : RefinableNetwork S n m) (sch : Schedule)
     (X : S n) (x : Vec ℝ n) (hx : x ∈ construct X) :
-    rn.eval x ∈ construct (rn.propagateAt sch X) := by
+    rn.eval x ∈ construct (rn.encloseAt sch X) := by
   rw [← congrFun (rn.atSchedule_eval sch) x]
-  exact (rn.atSchedule sch).propagate_outer X x hx
+  exact (rn.atSchedule sch).enclose_outer X x hx
 
 end CORALean.Real
 

@@ -242,7 +242,7 @@ graph from each of their roots, so a new one belongs in both files.
 `CORALean` is the development. `Examples` is the worked examples, built
 alongside the library rather than inside it, so the library carries no use sites
 of its own. `Demo` lives under `Examples/` and runs `LinearSysDT.reach` and
-`NeuralNetwork.propagate` at `Dyadic`, printing what comes out — the definitions
+`NeuralNetwork.enclose` at `Dyadic`, printing what comes out — the definitions
 the theorems are about, not copies of them.
 
 ### An example and the demo are not the same thing
@@ -474,7 +474,7 @@ into an answer — a safe set every point must lie in, or an unsafe set no point
 may — and `holds_of_outer` says a check passed on the superset is passed by
 everything inside it. One theorem, both directions, and it knows nothing about
 what produced either set, which is why `LinearSysDT.holds_of_reach` and
-`NeuralNetwork.holds_of_propagate` are a line each.
+`NeuralNetwork.holds_of_enclose` are a line each.
 
 The converse fails, and that is the method's whole cost: a specification that
 fails on the computed set is not a counterexample, and the answer to it is a

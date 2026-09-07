@@ -45,7 +45,7 @@ under the containment [1, Prop. 3] states. -/
 theorem NeuralNetwork.minSuffExplanationExact_of_refined (nnAbs nnRef : NeuralNetwork S n m)
     (x : Vec ℝ n) (ε : ℝ) (E : Finset (Fin n)) (l : Fin m)
     (hrefine : ∀ E' : Finset (Fin n), nnRef.image (construct (ofInterval (explainBox x ε E') : S n))
-      ⊆ construct (nnAbs.propagate (ofInterval (explainBox x ε E'))))
+      ⊆ construct (nnAbs.enclose (ofInterval (explainBox x ε E'))))
     (hsuffAbs : nnAbs.IsSuffExplanationAbstract x ε E l)
     (hmin : nnRef.IsMinSuffExplanationExact x ε E l) :
     nnAbs.IsMinSuffExplanationAbstract x ε E l :=

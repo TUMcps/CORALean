@@ -1,5 +1,5 @@
 import CORALean.NN.Operations.VerifySplit
-import CORALean.NN.Theorems.HoldsOfPropagate
+import CORALean.NN.Theorems.HoldsOfEnclose
 import CORALean.Specification.Theorems.HoldsUnion
 
 /-!
@@ -10,11 +10,11 @@ The splitter owes no proof beyond `hcov`, the checker no completeness beyond
 establish the specification, never that it fails.
 
 Induction on `d`, generalising `X`: the recursive calls sit at different sets.
-`d = 0` is `holds_of_propagate`; `d + 1` case-splits the `||`, the left
+`d = 0` is `holds_of_enclose`; `d + 1` case-splits the `||`, the left
 disjunct the same base case, the right combining both halves — verified at
 depth `d` by the induction hypothesis — through `hcov X` and the binary
 `Specification.holds_union`, `NeuralNetwork.holds_of_split` covers a single
-propagated part, not a recursively re-verified one.
+enclosed part, not a recursively re-verified one.
 
 At `Interval`, `Interval.splitAt` supplies `splitter` and `Interval.
 splitAt_cover` supplies `hcov`.
@@ -47,11 +47,11 @@ theorem NeuralNetwork.verifySplit_sound (nn : NeuralNetwork S n m)
     (d : ℕ) (X : S n) (hverify : nn.verifySplit check splitter d X = true) :
     spec.Holds (nn.image (construct X)) := by -- --- PROOF ---
   induction d generalizing X with
-  | zero => exact nn.holds_of_propagate X spec (hcheck _ hverify)
+  | zero => exact nn.holds_of_enclose X spec (hcheck _ hverify)
   | succ d ih =>
     rw [NeuralNetwork.verifySplit, Bool.or_eq_true] at hverify
     rcases hverify with h | h
-    · exact nn.holds_of_propagate X spec (hcheck _ h)
+    · exact nn.holds_of_enclose X spec (hcheck _ h)
     · rw [Bool.and_eq_true] at h
       have hsub : nn.image (construct X)
           ⊆ nn.image (construct (splitter X).1) ∪ nn.image (construct (splitter X).2) :=

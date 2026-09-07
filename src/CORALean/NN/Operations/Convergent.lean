@@ -30,7 +30,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 def RefinableLayer.Convergent (L : RefinableLayer S n m) : Prop :=
   ∀ (s : S n) (ε : ℝ), 0 < ε →
     ∃ t : OrderPattern n,
-      construct (L.propagate t s) ⊆ L.eval '' construct s + Metric.closedBall 0 ε
+      construct (L.enclose t s) ⊆ L.eval '' construct s + Metric.closedBall 0 ε
 
 end CORALean.Real
 

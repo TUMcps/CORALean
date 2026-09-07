@@ -54,7 +54,7 @@ theorem neuronMerging_network_outer {n₀ n₁ n n₂ n₃ d r : ℕ}
     (part : Split (Fin n) into (Fin d) ⊕ (Fin r))
     (W0 : Mat ℝ n n₁) (b0 : Vec ℝ n) {σ : ℝ → ℝ} (R : Relaxation σ)
     (W1 : Mat ℝ n₂ n) (b1 : Vec ℝ n₂) (Y : Interval (Vec ℝ n)) (X : S n₀)
-    (hY : ∀ x ∈ construct (pre.propagate X),
+    (hY : ∀ x ∈ construct (pre.enclose X),
       (fun i => σ ((W0 *ᵥ x + b0) i)) ∈ construct Y) :
     (NeuralNetwork.cons pre.toLayer
         (.cons (Layer.linear W0 b0)
@@ -67,14 +67,14 @@ theorem neuronMerging_network_outer {n₀ n₁ n n₂ n₃ d r : ℕ}
                   (Interval.mtimes (W1.submatrix id part.right)
                     ⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩)
                   (Interval.mtimes_isNonempty _ _))
-                post)))).propagate X) := by -- --- PROOF ---
+                post)))).enclose X) := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩
   -- the prefix hands the sandwich a set, and that set is what `hY` is stated over
-  have hpre : pre.eval x ∈ construct (pre.propagate X) := pre.propagate_outer X x hx
-  have hmid := neuronMerging_sandwich_outer part W0 b0 R W1 b1 Y (pre.propagate X) hY
+  have hpre : pre.eval x ∈ construct (pre.enclose X) := pre.enclose_outer X x hx
+  have hmid := neuronMerging_sandwich_outer part W0 b0 R W1 b1 Y (pre.enclose X) hY
     ⟨pre.eval x, hpre, rfl⟩
   -- the suffix is unchanged, so its own obligation carries the point the rest of the way
-  exact post.propagate_outer _ _ hmid
+  exact post.enclose_outer _ _ hmid
 
 end CORALean.Real
 

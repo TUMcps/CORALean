@@ -5,7 +5,7 @@ import CORALean.NN.Layers.Linear
 
 CORA's `nnConv2DLayer`, which is not a layer at all: a convolution is
 `Layer.linear` at a particular matrix, by definition. `Layer.conv` contributes no
-`propagate` and no soundness proof — only the matrix and `conv_eval`.
+`enclose` and no soundness proof — only the matrix and `conv_eval`.
 
 A convolution's weights are shared and its matrix is sparse, and neither buys
 anything here. Sharing is a property of the *argument*, `tapMat` taking a weight

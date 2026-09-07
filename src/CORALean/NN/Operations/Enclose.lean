@@ -9,7 +9,7 @@ but a set of the representation, so nothing here knows which representation that
 is or which layers these are.
 
 Precision is entirely the layers' business. A representation that loses nothing
-at a linear layer and a great deal at an activation propagates exactly that,
+at a linear layer and a great deal at an activation encloses exactly that,
 step by step, and this definition is unchanged by it.
 -/
 
@@ -30,9 +30,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def NeuralNetwork.propagate : ∀ {n m : ℕ}, NeuralNetwork S n m → S n → S m
+def NeuralNetwork.enclose : ∀ {n m : ℕ}, NeuralNetwork S n m → S n → S m
   | _, _, .nil, s => s
-  | _, _, .cons L rest, s => rest.propagate (L.propagate s)
+  | _, _, .cons L rest, s => rest.enclose (L.enclose s)
 
 end CORALean.Real
 

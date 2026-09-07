@@ -4,16 +4,16 @@ import CORALean.NN.Layers.ActivationPoly
 /-!
 # The polynomial activation layer, read the other way
 
-`propagate_outer` says the propagated set contains the image; this says how much
+`enclose_outer` says the enclosed set contains the image; this says how much
 larger it is. Every member is the polynomial at some point of the input set plus
 something from the residual box, so it is within `2 · error` of that point's true
 value — the fit's own error, and the box's, each once.
 
 An inflation and not an inclusion in the image: `evalPoly` is exact and `plus` is
-exact, but the box is a genuine widening, so the propagated set really is bigger
+exact, but the box is a genuine widening, so the enclosed set really is bigger
 and the honest statement is by how much. `Metric.closedBall` in the supremum norm
 is what `Vec ℝ n` already carries, so no metric on sets is needed here or in
-`Theorems.PropagateAtInflate`, which chains this along a network.
+`Theorems.EncloseAtInflate`, which chains this along a network.
 
 Two facts are derived rather than assumed: the input box is ordered, because a
 polynomial zonotope is never empty, and the error is therefore nonnegative,
@@ -37,12 +37,12 @@ variable {σ : ℝ → ℝ} {m n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- The propagated set is inside the image inflated by `ε`, at any `ε` the
+/-- The enclosed set is inside the image inflated by `ε`, at any `ε` the
 neurons' doubled errors fit under. -/
 theorem Layer.activationPoly_subset_inflate (P : LayerRelaxation σ n m)
     (s : PolyZonotope (Vec ℝ n)) {ε : ℝ} (hε : 0 ≤ ε)
     (hP : ∀ i, 2 * (P i).error (s.interval.inf i) (s.interval.sup i) ≤ ε) :
-    construct ((Layer.activationPoly P).propagate s)
+    construct ((Layer.activationPoly P).enclose s)
       ⊆ (Layer.activationPoly P).eval '' construct s + Metric.closedBall 0 ε := by -- --- PROOF ---
   -- the box is ordered, so `sound` at its left end says the error is nonnegative
   have herr : ∀ i, 0 ≤ (P i).error (s.interval.inf i) (s.interval.sup i) := fun i =>

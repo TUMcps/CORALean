@@ -5,7 +5,7 @@ import CORALean.Specification.Theorems.HoldsOfOuter
 /-!
 # Refining an abstraction, enclosure to enclosure
 
-Both sides here are *enclosures*: `nnRef`'s propagated set sits inside
+Both sides here are *enclosures*: `nnRef`'s enclosed set sits inside
 `nnAbs`'s, so separation survives the shrinking and what is sufficient for
 `nnAbs` is sufficient for `nnRef` — what lets each refinement step of
 [1, Alg. 2] only *free* further features, never lose one already freed.
@@ -46,8 +46,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OfInterval S] {n
 stays so for any `nnRef` whose enclosure `nnAbs`'s contains. -/
 theorem NeuralNetwork.suffExplanationAbstract_of_refined (nnAbs nnRef : NeuralNetwork S n m)
     (x : Vec ℝ n) (ε : ℝ) (E : Finset (Fin n)) (l : Fin m)
-    (hrefine : construct (nnRef.propagate (ofInterval (explainBox x ε E)))
-      ⊆ construct (nnAbs.propagate (ofInterval (explainBox x ε E))))
+    (hrefine : construct (nnRef.enclose (ofInterval (explainBox x ε E)))
+      ⊆ construct (nnAbs.enclose (ofInterval (explainBox x ε E))))
     (hsuffAbs : nnAbs.IsSuffExplanationAbstract x ε E l) :
     nnRef.IsSuffExplanationAbstract x ε E l :=
   (Specification.unsafeSet (misclassified m l)).holds_of_outer hrefine hsuffAbs

@@ -1,13 +1,13 @@
 import CORALean.NN.Theorems.DisjointMisclassifiedOfBounds
 import CORALean.NN.Theorems.MarginDir
-import CORALean.NN.Theorems.PropagateOuter
+import CORALean.NN.Theorems.EncloseOuter
 
 /-!
 # Every input in the set is classified the same
 
 The network-level form of `disjoint_misclassified_of_bounds`: read at the
-propagated image, a bound per rival label puts every point the input set
-propagates to on the target's side of every margin.
+enclosed image, a bound per rival label puts every point of that enclosure on
+the target's side of every margin.
 -/
 
 -- Authors:       Tobias Ladner
@@ -28,14 +28,14 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Every input in the set is classified `l`, on the strength of one bound per
-rival label against the propagated image. -/
+rival label against the enclosed image. -/
 theorem NeuralNetwork.classifies (nn : NeuralNetwork S n m) (X : S n) (l : Fin m)
-    (u : ∀ j, SupportBound (construct (nn.propagate X))
+    (u : ∀ j, SupportBound (construct (nn.enclose X))
       (marginDir m j l))
     (h : ∀ j, j ≠ l → (u j).val < 0) {x : Vec ℝ n} (hx : x ∈ construct X)
     {j : Fin m} (hj : j ≠ l) : nn.eval x j < nn.eval x l := by -- --- PROOF ---
   have hd := disjoint_misclassified_of_bounds l u h
-  have hmem := nn.propagate_outer X x hx
+  have hmem := nn.enclose_outer X x hx
   have hnot := Set.disjoint_left.mp hd hmem
   by_contra hc
   exact hnot ⟨j, hj, not_lt.mp hc⟩

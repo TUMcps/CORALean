@@ -1,10 +1,10 @@
 import CORALean.NN.Operations.RefineLayer
-import CORALean.NN.Theorems.ImageSubsetPropagateAt
+import CORALean.NN.Theorems.ImageSubsetEncloseAt
 
 /-!
 # Refining a whole layer keeps the enclosure
 
-Split out of `PropagateAtOuter.lean` (issue #62): one of five genuinely public
+Split out of `EncloseAtOuter.lean` (issue #62): one of five genuinely public
 declarations there, none used outside the file, so split one file each.
 
 Refining a whole layer [1, Def. 4.6], the rule that spends more orders for the
@@ -35,8 +35,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 
 theorem RefinableNetwork.image_subset_refineLayer (rn : RefinableNetwork S n m)
     (sch : Schedule) (l : ℕ) (X : S n) :
-    rn.image (construct X) ⊆ construct (rn.propagateAt (Schedule.refineLayer sch l) X) :=
-  rn.image_subset_propagateAt _ X
+    rn.image (construct X) ⊆ construct (rn.encloseAt (Schedule.refineLayer sch l) X) :=
+  rn.image_subset_encloseAt _ X
 
 end CORALean.Real
 

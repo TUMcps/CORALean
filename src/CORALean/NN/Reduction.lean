@@ -2,7 +2,7 @@ import CORALean.ContSet.Interval.Real.Theorems.MtimesIsNonempty
 import CORALean.Global.Partition
 import CORALean.NN.Layers.Activation
 import CORALean.NN.Layers.Linear
-import CORALean.NN.Operations.Propagate
+import CORALean.NN.Operations.Enclose
 
 /-!
 # Reducing at many layers of one network, and [1, Thm. 1]
@@ -11,7 +11,7 @@ import CORALean.NN.Operations.Propagate
 that actually reaches each one. `keep` walks a layer untouched, `merge` reduces one sandwich via
 `neuronMerging_sandwich_outer`, `nil` stops — several `merge`s in one derivation reduce at several
 layers. One induction, not `neuronMerging_network_outer` applied per layer:
-`Layer.propagate_not_monotone` rules that out.
+`Layer.enclose_not_monotone` rules that out.
 
 `reducesAt_outer` (soundness) and `holds_of_reducesAt` ([1, Thm. 1]) are in their own files.
 Choosing *where* to reduce — Alg. 2 — owes no proof: this holds at every derivation.
@@ -64,14 +64,14 @@ inductive NeuralNetwork.ReducesAt :
     ∀ {n m : ℕ}, S n → NeuralNetwork S n m → NeuralNetwork S n m → Prop where
   | nil {n : ℕ} (s : S n) : ReducesAt s .nil .nil
   | keep {n k m : ℕ} (s : S n) (L : Layer S n k) {rest rest' : NeuralNetwork S k m} :
-      ReducesAt (L.propagate s) rest rest' → ReducesAt s (.cons L rest) (.cons L rest')
+      ReducesAt (L.enclose s) rest rest' → ReducesAt s (.cons L rest) (.cons L rest')
   -- reduces one sandwich: `part.left` survives, `part.right`'s contribution is boxed from `Y`
   | merge {n n₁ n₂ m d r : ℕ} (s : S n) (part : Split (Fin n₁) into (Fin d) ⊕ (Fin r))
       (W0 : Mat ℝ n₁ n) (b0 : Vec ℝ n₁) {σ : ℝ → ℝ} (R : Relaxation σ)
       (W1 : Mat ℝ n₂ n₁) (b1 : Vec ℝ n₂) (Y : Interval (Vec ℝ n₁))
       (hY : ∀ x ∈ construct s, (fun i => σ ((W0 *ᵥ x + b0) i)) ∈ construct Y)
       {rest rest' : NeuralNetwork S n₂ m} :
-      ReducesAt ((mergedSandwich part W0 b0 R W1 b1 Y).propagate s) rest rest' →
+      ReducesAt ((mergedSandwich part W0 b0 R W1 b1 Y).enclose s) rest rest' →
       ReducesAt s
         (.cons (Layer.linear W0 b0) (.cons (Layer.activation R)
           (.cons (Layer.linear W1 b1) rest)))

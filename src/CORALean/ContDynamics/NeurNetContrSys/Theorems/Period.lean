@@ -1,13 +1,13 @@
 import CORALean.ContDynamics.NeurNetContrSys.NeurNetContrSys
-import CORALean.NN.Theorems.PropagateOuter
+import CORALean.NN.Theorems.EncloseOuter
 
 /-!
-# One control period is a linear run under the propagated input set
+# One control period is a linear run under the enclosed input set
 
 The join between the two halves, and the only place they touch. On period `i` the
 input is the single vector `π(x(i Δtc))`; the state at `i Δtc` is in whatever set
 the previous period was enclosed by, so the network's guarantee puts that vector
-in `propagate` of it — and a constant lying in a set is an admissible input of
+in `enclose` of it — and a constant lying in a set is an admissible input of
 `LinearSys.Trajectory` at that set.
 
 `R` is a parameter with its membership a hypothesis, as in
@@ -45,11 +45,11 @@ from `R` under the constant input the controller produced at its start. -/
 theorem NeurNetContrSys.Trajectory.period {sys : NeurNetContrSys 𝕋 S n} {Δtc : ℝ} {H : ℕ}
     {R₀ : S n} {x : ℝ → Vec ℝ n} (traj : sys.Trajectory Δtc H R₀ x) (i : ℕ) (hi : i < H)
     (R : S n) (hR : x ((i : ℝ) * Δtc) ∈ construct R) :
-    sys.plant.Trajectory (Set.Icc 0 Δtc) R (sys.contr.propagate R)
+    sys.plant.Trajectory (Set.Icc 0 Δtc) R (sys.contr.enclose R)
       (fun t => x ((i : ℝ) * Δtc + t))
       (fun _ => sys.contr.eval (x ((i : ℝ) * Δtc))) where
   init := by simpa using hR
-  input _ _ := sys.contr.propagate_outer R _ hR
+  input _ _ := sys.contr.enclose_outer R _ hR
   flow t ht := by
     have hmaps : Set.MapsTo (fun s => (i : ℝ) * Δtc + s) (Set.Icc 0 Δtc)
         (Set.Icc ((i : ℝ) * Δtc) (((i : ℝ) + 1) * Δtc)) := by

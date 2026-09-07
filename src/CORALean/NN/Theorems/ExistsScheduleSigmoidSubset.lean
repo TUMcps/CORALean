@@ -9,7 +9,7 @@ demoting one to `aux_` would have left the file with none — split instead,
 one file each, as `MultiLayerRefinementConverges.lean`'s pair does too.
 
 Some schedule is inside any inflation of the exact image, which with
-`propagateAt_outer` squeezes the enclosure onto it.
+`encloseAt_outer` squeezes the enclosure onto it.
 -/
 
 -- Authors:       Tobias Ladner
@@ -29,9 +29,9 @@ open Pointwise ContSet
 
 theorem exists_schedule_sigmoid_subset {n : ℕ} (X : PolyZonotope (Vec ℝ n)) {ε : ℝ}
     (hε : 0 < ε) : ∃ sch : Schedule,
-      construct ((sigmoidRefinableNetwork n).propagateAt sch X)
+      construct ((sigmoidRefinableNetwork n).encloseAt sch X)
         ⊆ (sigmoidRefinableNetwork n).image (construct X) + Metric.closedBall 0 ε :=
-  (sigmoidRefinableNetwork n).exists_schedule_propagateAt_subset
+  (sigmoidRefinableNetwork n).exists_schedule_encloseAt_subset
     (sigmoidRefinableNetwork_convergent n) X ε hε
 
 end CORALean.Real

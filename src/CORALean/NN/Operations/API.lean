@@ -4,8 +4,8 @@ import CORALean.NN.Operations.DifferentiableChain
 import CORALean.NN.Operations.ExplainBox
 import CORALean.NN.Operations.LayerSensitivity
 import CORALean.NN.Operations.NetworkConvergent
-import CORALean.NN.Operations.Propagate
-import CORALean.NN.Operations.PropagateAt
+import CORALean.NN.Operations.Enclose
+import CORALean.NN.Operations.EncloseAt
 import CORALean.NN.Operations.Raise
 import CORALean.NN.Operations.Refine
 import CORALean.NN.Operations.RefineLayer
@@ -22,9 +22,9 @@ import CORALean.NN.Operations.WorstIndex
 /-!
 # What a network does, collected
 
-`Propagate` is the pipeline itself; `ToLayer` is what makes a sub-network usable
+`Enclose` is the pipeline itself; `ToLayer` is what makes a sub-network usable
 as a layer, and so what makes the graph nest. `ExplainBox` is the input set a
-sufficient-explanation query is asked over. `VerifySplit` recurses `Propagate`
+sufficient-explanation query is asked over. `VerifySplit` recurses `Enclose`
 over a checker and a splitter, budgeted by depth, taking no side on either.
 
 `LayerSensitivity` and `Sensitivity` are the other direction: the Jacobian
@@ -34,7 +34,7 @@ depends on them — so `DifferentiableChain` is separate, the hypothesis under
 which `Theorems.SensitivityFDeriv` identifies them with the derivative.
 
 `NN.Schedule` is the refinement loop's state; `Raise`/`Refine`/`RefineLayer`/
-`RefineLoop` build one, and `AtSchedule`/`PropagateAt` read one against a
+`RefineLoop` build one, and `AtSchedule`/`EncloseAt` read one against a
 network. `RefinementRank`/`WorstIndex`/`RefineWorst` pick the layer a
 layer-wise step moves and `RefinementNeuron` the neuron a neuron-wise one does,
 out of the sensitivity and the error — rankings with no obligation, again.

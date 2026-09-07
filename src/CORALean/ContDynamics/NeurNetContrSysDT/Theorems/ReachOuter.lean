@@ -1,6 +1,6 @@
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOneOuter
 import CORALean.ContDynamics.NeurNetContrSysDT.Operations
-import CORALean.NN.Theorems.PropagateOuter
+import CORALean.NN.Theorems.EncloseOuter
 
 /-!
 # `NeurNetContrSysDT.reach` contains every closed-loop run
@@ -8,7 +8,7 @@ import CORALean.NN.Theorems.PropagateOuter
 Where the two halves of this repository meet, and the meeting is two lines: the
 controller's enclosure of the input it produces at the reached state, handed to
 the plant's one-step enclosure. Nothing else appears, and nothing new is proved
-here — `NeuralNetwork.propagate_outer` and `LinearSysDT.reach_one_outer` are
+here — `NeuralNetwork.enclose_outer` and `LinearSysDT.reach_one_outer` are
 both already stated against the interfaces, so neither knows it is being
 composed.
 
@@ -44,9 +44,9 @@ theorem NeurNetContrSysDT.reach_outer (sys : NeurNetContrSysDT 𝕋 S n) (o : �
   | zero => exact traj.init
   | succ k ih =>
     show x (k + 1) ∈ construct (sys.plant.reach o (sys.reach o R₀ k)
-      (sys.contr.propagate (sys.reach o R₀ k)) 1)
+      (sys.contr.enclose (sys.reach o R₀ k)) 1)
     rw [traj.step k]
-    exact sys.plant.reach_one_outer o _ _ ih (sys.contr.propagate_outer _ _ ih)
+    exact sys.plant.reach_one_outer o _ _ ih (sys.contr.enclose_outer _ _ ih)
 
 end CORALean.Real
 

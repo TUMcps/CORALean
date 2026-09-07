@@ -10,7 +10,7 @@ beyond `X`, all that matters is that nothing in `X` is missed — which is what
 a splitter that rounds outward, as any representation's bounded arithmetic
 does, still gives. Read `nn.eval '' construct X ⊆ nn.eval '' ⋃ i, construct
 (parts i) = ⋃ i, nn.eval '' construct (parts i)`, each part's image inside its
-own propagated set, then `holds_iUnion` with `holds_of_outer`.
+own enclosed set, then `holds_iUnion` with `holds_of_outer`.
 
 Which parts to split into owes no proof: the theorem holds at every cover, so
 the splitting heuristic is free, exactly as `ConPolyZono.reduceBy_outer` is
@@ -42,13 +42,13 @@ overshoot `X`, so this is a cover a splitter produces, not a `Partition`. -/
 theorem NeuralNetwork.holds_of_split {ι : Type} (nn : NeuralNetwork S n m) (X : S n)
     (parts : ι → S n) (hcov : construct X ⊆ ⋃ i, construct (parts i))
     (spec : Specification (Vec ℝ m))
-    (h : ∀ i, spec.Holds (construct (nn.propagate (parts i)))) :
+    (h : ∀ i, spec.Holds (construct (nn.enclose (parts i)))) :
     spec.Holds (nn.image (construct X)) := by -- --- PROOF ---
-  have hsub : nn.image (construct X) ⊆ ⋃ i, construct (nn.propagate (parts i)) :=
+  have hsub : nn.image (construct X) ⊆ ⋃ i, construct (nn.enclose (parts i)) :=
     calc nn.image (construct X) = nn.eval '' construct X := rfl
       _ ⊆ nn.eval '' ⋃ i, construct (parts i) := Set.image_mono hcov
       _ = ⋃ i, nn.eval '' construct (parts i) := Set.image_iUnion
-      _ ⊆ ⋃ i, construct (nn.propagate (parts i)) :=
+      _ ⊆ ⋃ i, construct (nn.enclose (parts i)) :=
           Set.iUnion_mono fun i => nn.image_subset (parts i)
   exact spec.holds_of_outer hsub (spec.holds_iUnion h)
 

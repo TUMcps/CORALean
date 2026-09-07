@@ -107,8 +107,8 @@ def Relaxation.slopeMat (R : Relaxation 𝕋 σ) (I : Interval 𝕋 n) : Mat �
 
 def Layer.activation (R : Relaxation 𝕋 σ) : Real.Layer S n n where
   eval x := fun i => σ (x i)
-  propagate s := plus (mtimes (R.slopeMat (interval s)) s) (ofInterval (R.box (interval s)))
-  propagate_outer s x hx := by
+  enclose s := plus (mtimes (R.slopeMat (interval s)) s) (ofInterval (R.box (interval s)))
+  enclose_outer s x hx := by
     have hbox := interval_outer s hx
     set J := interval s with hJ
     set A : Mat ℝ n n := Scalar.toRealMat (R.slopeMat J) with hA

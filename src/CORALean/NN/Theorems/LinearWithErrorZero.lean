@@ -4,7 +4,7 @@ import CORALean.NN.Layers.Linear
 # `Layer.linearWithError` degenerates to `Layer.linear`
 
 At `E = Interval.point 0` the committed centre is `0` and the added box is a
-point, so the two layers compute and propagate identically: a plain linear
+point, so the two layers compute and enclose identically: a plain linear
 layer is the error-free case of the adapted one, not a different construction.
 -/
 
@@ -39,8 +39,8 @@ theorem Layer.linearWithError_zero (W : Mat ℝ m n) (b : Vec ℝ m)
     funext x
     show W *ᵥ x + b + (Interval.point (0 : Vec ℝ m)).center = W *ᵥ x + b
     rw [hcenter, add_zero]
-  have hpropagate : (Layer.linearWithError (S := S) W b (Interval.point 0) hE).propagate
-      = (Layer.linear (S := S) W b).propagate := by
+  have henclose : (Layer.linearWithError (S := S) W b (Interval.point 0) hE).enclose
+      = (Layer.linear (S := S) W b).enclose := by
     funext s
     show plus (mtimes W s) (ofInterval (Interval.plus (Interval.point b) (Interval.point 0)))
         = plus (mtimes W s) (ofInterval (Interval.point b))
@@ -49,12 +49,12 @@ theorem Layer.linearWithError_zero (W : Mat ℝ m n) (b : Vec ℝ m)
       show (⟨b + 0, b + 0⟩ : Interval (Vec ℝ m)) = ⟨b, b⟩
       rw [add_zero]
     rw [hbox]
-  -- `eval` and `propagate` agree, and the soundness field is a proposition
-  have key : ∀ (L₁ L₂ : Layer S n m), L₁.eval = L₂.eval → L₁.propagate = L₂.propagate →
+  -- `eval` and `enclose` agree, and the soundness field is a proposition
+  have key : ∀ (L₁ L₂ : Layer S n m), L₁.eval = L₂.eval → L₁.enclose = L₂.enclose →
       L₁ = L₂ := by
     rintro ⟨e₁, p₁, o₁⟩ ⟨e₂, p₂, o₂⟩ rfl rfl
     rfl
-  exact key _ _ heval hpropagate
+  exact key _ _ heval henclose
 
 end CORALean.Real
 

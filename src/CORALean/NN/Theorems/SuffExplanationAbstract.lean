@@ -1,7 +1,7 @@
 import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
 import CORALean.NN.NeuralNetwork
 import CORALean.NN.Operations.ExplainBox
-import CORALean.NN.Operations.Propagate
+import CORALean.NN.Operations.Enclose
 import CORALean.NN.Theorems.Misclassified
 import CORALean.Specification.Specification
 
@@ -43,7 +43,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OfInterval S] {n
 def NeuralNetwork.IsSuffExplanationAbstract (nnAbs : NeuralNetwork S n m) (x : Vec ℝ n) (ε : ℝ)
     (E : Finset (Fin n)) (l : Fin m) : Prop :=
   (Specification.unsafeSet (misclassified m l)).Holds
-    (construct (nnAbs.propagate (ofInterval (explainBox x ε E))))
+    (construct (nnAbs.enclose (ofInterval (explainBox x ε E))))
 
 end CORALean.Real
 

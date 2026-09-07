@@ -1,4 +1,4 @@
-import CORALean.NN.Operations.Propagate
+import CORALean.NN.Operations.Enclose
 
 /-!
 # Verification by recursively splitting the input set
@@ -36,9 +36,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 recursively. `splitter` owes no proof here, only at `Theorems.VerifySplitSound`. -/
 def NeuralNetwork.verifySplit (nn : NeuralNetwork S n m) (check : S m → Bool)
     (splitter : S n → S n × S n) : ℕ → S n → Bool
-  | 0, X => check (nn.propagate X)
+  | 0, X => check (nn.enclose X)
   | d + 1, X =>
-      check (nn.propagate X) ||
+      check (nn.enclose X) ||
         (nn.verifySplit check splitter d (splitter X).1 &&
          nn.verifySplit check splitter d (splitter X).2)
 

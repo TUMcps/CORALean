@@ -12,7 +12,7 @@ definition is, so that the guarantee can be checked against the paper without
 unfolding anything; `sumPoolLin_apply` is what carries it across.
 
 The image lands in `Vec ℝ F`, so this equality is also the seam: a set that
-arrives matrix-shaped leaves in the shape `NeuralNetwork` propagates, and
+arrives matrix-shaped leaves in the shape `NeuralNetwork` encloses, and
 nothing is lost crossing it.
 
 ## References

@@ -6,7 +6,7 @@ import CORALean.NN.Theorems.SuffExplanationTransfer
 
 Split out of `SuffExplanationTransfer.lean` (issue #62): one of the two
 corollaries the refinement loop [1, Alg. 2] actually visits, alongside
-`SuffExplanationOfPropagate.lean` — merging the bucket `part.right` at one
+`SuffExplanationOfEnclose.lean` — merging the bucket `part.right` at one
 layer, `hcontain` is `neuronMerging_network_outer` [2] and nothing further is
 assumed.
 
@@ -42,7 +42,7 @@ theorem NeuralNetwork.suffExplanation_of_neuronMerging [∀ n, Plus (S n) (Vec �
     (W0 : Mat ℝ nk n₁) (b0 : Vec ℝ nk) {σ : ℝ → ℝ} (R : Relaxation σ)
     (W1 : Mat ℝ n₂ nk) (b1 : Vec ℝ n₂) (Y : Interval (Vec ℝ nk))
     (x : Vec ℝ n₀) (ε : ℝ) (E : Finset (Fin n₀)) (l : Fin n₃)
-    (hY : ∀ z ∈ construct (pre.propagate (ofInterval (explainBox x ε E))),
+    (hY : ∀ z ∈ construct (pre.enclose (ofInterval (explainBox x ε E))),
       (fun i => σ ((W0 *ᵥ z + b0) i)) ∈ construct Y)
     -- the reduced network: both linear layers trimmed to `part.left`, the bucket boxed into `k+1`
     (hsuffAbs : (NeuralNetwork.cons pre.toLayer

@@ -5,11 +5,11 @@ import CORALean.NN.RefinableLayer
 
 `NeuralNetwork` with a `RefinableLayer` at every node: the same chain, the same
 dimensions chaining, and one level per layer still to be chosen. Reading a
-schedule off it gives a `NeuralNetwork` back, so nothing downstream — `propagate`,
+schedule off it gives a `NeuralNetwork` back, so nothing downstream — `enclose`,
 its enclosure, `Specification` — knows a refinement loop exists.
 
 `eval` is defined here and not read off a schedule, which is the point of
-`RefinableLayer` keeping `eval` outside `propagate`: the exact image is one
+`RefinableLayer` keeping `eval` outside `enclose`: the exact image is one
 set, fixed before any level is chosen, and every schedule encloses that same set.
 
 `length` is what a heuristic ranks over — a schedule is an infinite sequence and

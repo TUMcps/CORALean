@@ -11,7 +11,7 @@ over a layer's neurons, `NeuralNetwork.aux_layerRank` reads that at the network'
 actual sensitivity, `aux_worstLayer` names the largest of `k + 1` such ranks, and
 `refineWorst` spends a `refineLayer` step there.
 
-Nothing here is proved and nothing here can be wrong: `propagateAt_outer` holds
+Nothing here is proved and nothing here can be wrong: `encloseAt_outer` holds
 at *every* schedule, so this file only decides where the next order is spent —
 the same freedom `reduceBy_outer` has at every partition. [1, Eq. 28] and
 CORA's `norm(...)` take the 2-norm of the per-neuron ranks instead; the

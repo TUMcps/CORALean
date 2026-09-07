@@ -1,7 +1,7 @@
 import CORALean.ContSet.Interval.Real.Instances
 import CORALean.ContSet.Interval.Real.Operations.Mtimes
 import CORALean.NN.Layers.Linear
-import CORALean.NN.Theorems.PropagateOuter
+import CORALean.NN.Theorems.EncloseOuter
 import CORALean.NN.Theorems.SuffExplanationAbstract
 import CORALean.NN.Theorems.SuffExplanation
 
@@ -87,7 +87,7 @@ theorem suffExplanation_of_abstract_converse_fails :
     ∃ (nn nnAbs : NeuralNetwork (fun n => Interval (Vec ℝ n)) 1 2) (x : Vec ℝ 1) (ε : ℝ)
       (E : Finset (Fin 1)) (l : Fin 2),
       nn.image (construct (ofInterval (S := fun n => Interval (Vec ℝ n)) (explainBox x ε E)))
-        ⊆ construct (nnAbs.propagate
+        ⊆ construct (nnAbs.enclose
           (ofInterval (S := fun n => Interval (Vec ℝ n)) (explainBox x ε E)))
       ∧ nn.IsSuffExplanation x ε E l
         ∧ ¬ nnAbs.IsSuffExplanationAbstract x ε E l := by -- --- PROOF ---
@@ -96,7 +96,7 @@ theorem suffExplanation_of_abstract_converse_fails :
   · -- `nn` and `nnAbs` evaluate identically, so `nn`'s exact image lies in `nnAbs`'s enclosure
     rintro _ ⟨x', hx', rfl⟩
     rw [← aux_suffExplanationConverseFails_eval_eq]
-    exact aux_suffExplanationConverseFails_nnAbs.propagate_outer _ x' hx'
+    exact aux_suffExplanationConverseFails_nnAbs.enclose_outer _ x' hx'
   · -- `nn` never ties: the only rival is strictly behind
     intro x' _ j hj
     have heval : aux_suffExplanationConverseFails_nn.eval x'
@@ -118,7 +118,7 @@ theorem suffExplanation_of_abstract_converse_fails :
       | 0 => Or.inl rfl
       | 1 => Or.inr rfl
     have hmem : (fun k => if k = 0 then (1 : ℝ) else 0) ∈
-        construct (aux_suffExplanationConverseFails_nnAbs.propagate X) := by
+        construct (aux_suffExplanationConverseFails_nnAbs.enclose X) := by
       intro i
       -- the zero weights drop out, leaving the `±1` box around `nn`'s bias
       have hz := hzero i

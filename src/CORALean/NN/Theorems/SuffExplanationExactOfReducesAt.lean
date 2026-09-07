@@ -13,7 +13,7 @@ merging neurons supplies a derivation, not a set containment.
 `ReducesAt` is indexed by the input set each layer is reduced over, and here
 that index is `ofInterval (explainBox x ε E)` itself, so the two line up with
 no side condition: the `hY` look-ahead inside the derivation is already stated
-over the propagated `explainBox`.
+over the enclosed `explainBox`.
 
 ## References
 

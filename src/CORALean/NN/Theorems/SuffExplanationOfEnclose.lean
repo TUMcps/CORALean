@@ -8,7 +8,7 @@ Split out of `SuffExplanationTransfer.lean` (issue #62): one of the two
 corollaries the refinement loop [1, Alg. 2] actually visits, alongside
 `SuffExplanationOfNeuronMerging.lean` — at the loop's last step, reduction
 rate `1`, the abstraction is `nn` itself, and separation on `nn`'s own
-propagated set is sufficiency for `nn` outright.
+enclosed set is sufficiency for `nn` outright.
 
 ## References
 
@@ -34,7 +34,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [OfInterval S] {n
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem NeuralNetwork.suffExplanation_of_propagate (nn : NeuralNetwork S n m)
+theorem NeuralNetwork.suffExplanation_of_enclose (nn : NeuralNetwork S n m)
     (x : Vec ℝ n) (ε : ℝ) (E : Finset (Fin n)) (l : Fin m)
     (hsuffAbs : nn.IsSuffExplanationAbstract x ε E l) :
     nn.IsSuffExplanation x ε E l :=

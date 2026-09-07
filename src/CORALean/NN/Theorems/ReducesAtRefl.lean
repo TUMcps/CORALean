@@ -3,7 +3,7 @@ import CORALean.NN.Reduction
 /-!
 # Doing nothing is a reduction
 
-`refl` is what makes `reducesAt_outer` a generalisation of `propagate_outer` rather than a
+`refl` is what makes `reducesAt_outer` a generalisation of `enclose_outer` rather than a
 different claim: taking `nn' = nn` — no `merge` step anywhere — is one of the derivations
 `reducesAt_outer` is proved sound for, by induction on `nn` through `keep`.
 -/
@@ -28,7 +28,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n
 theorem NeuralNetwork.ReducesAt.refl : ∀ {n m : ℕ} (s : S n) (nn : NeuralNetwork S n m),
     NeuralNetwork.ReducesAt s nn nn
   | _, _, s, .nil => .nil s
-  | _, _, s, .cons L rest => .keep s L (NeuralNetwork.ReducesAt.refl (L.propagate s) rest)
+  | _, _, s, .cons L rest => .keep s L (NeuralNetwork.ReducesAt.refl (L.enclose s) rest)
 
 end CORALean.Real
 

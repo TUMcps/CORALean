@@ -89,9 +89,9 @@ def LayerRelaxation.box (P : LayerRelaxation 𝕋 σ n m) (I : Interval 𝕋 n) 
 each neuron's fit on the set, then the residual box. -/
 def Layer.activationPoly (P : LayerRelaxation 𝕋 σ n m) : Real.Layer (PolyZonotope 𝕋) n n where
   eval x := fun i => σ (x i)
-  propagate s := plus (s.dependent.evalPoly (P.coeffList s.interval))
+  enclose s := plus (s.dependent.evalPoly (P.coeffList s.interval))
     (Interval.polyZonotope (P.box s.interval))
-  propagate_outer s x hx := by
+  enclose_outer s x hx := by
     have hbox := PolyZonotope.interval_outer s hx
     -- `dependent` leaves no independent generator, so `x` is a nominal point
     obtain ⟨a, ha, hxa⟩ := (nominal s.dependent).exists_point_of_q_zero rfl

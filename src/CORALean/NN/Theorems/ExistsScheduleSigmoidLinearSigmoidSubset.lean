@@ -10,7 +10,7 @@ split instead, one file each, as `SigmoidRefinementConverges.lean`'s pair
 does too.
 
 Some schedule is inside any inflation of the exact image, which with
-`propagateAt_outer` squeezes the enclosure onto it.
+`encloseAt_outer` squeezes the enclosure onto it.
 -/
 
 -- Authors:       Tobias Ladner
@@ -32,9 +32,9 @@ variable {n m : ℕ}
 
 theorem exists_schedule_sigmoidLinearSigmoid_subset (W : Mat ℝ m n) (b : Vec ℝ m)
     (X : PolyZonotope (Vec ℝ n)) {ε : ℝ} (hε : 0 < ε) : ∃ sch : Schedule,
-      construct ((sigmoidLinearSigmoidNetwork W b).propagateAt sch X)
+      construct ((sigmoidLinearSigmoidNetwork W b).encloseAt sch X)
         ⊆ (sigmoidLinearSigmoidNetwork W b).image (construct X) + Metric.closedBall 0 ε :=
-  (sigmoidLinearSigmoidNetwork W b).exists_schedule_propagateAt_subset
+  (sigmoidLinearSigmoidNetwork W b).exists_schedule_encloseAt_subset
     (sigmoidLinearSigmoidNetwork_convergent W b) X ε hε
 
 end CORALean.Real

@@ -30,7 +30,7 @@ with a fresh certificate each time.
 
 The two closed loops compute nothing of their own either, and are the only
 directories here that reach outside `ContDynamics`, the input set being what `NN`
-propagates. `NeurNetContrSysDT` alternates that with one discrete plant step;
+encloses. `NeurNetContrSysDT` alternates that with one discrete plant step;
 `NeurNetContrSys` is the sampled continuous loop, where the rates come apart and
 the controller acts every `N` reachability steps.
 -/

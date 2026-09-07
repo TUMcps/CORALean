@@ -10,7 +10,7 @@ returns a certificate rather than an appeal to how it searched, which is the
 same trade `Global.LinProg` makes for a bound.
 
 The counterexample is checked on `nn` itself, never on an abstraction: one found
-against a propagated set may be spurious, and [1, Alg. 2, l. 9] is exactly that
+against a enclosed set may be spurious, and [1, Alg. 2, l. 9] is exactly that
 check.
 
 ## References

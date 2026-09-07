@@ -17,7 +17,7 @@ run that a determined input forces: an orbit, not a family, settled by where
 it started.
 
 `OutputOuter`/`HoldsOfOutput` are those two at an `OutputEq`, read at the
-controller's own propagated enclosure in place of a free input set — there is
+controller's own enclosure in place of a free input set — there is
 none here, `map` already reading it off the state.
 
 `SimulateTrajectory`/`SimulateMemReach` are `simulate` sampling one run and

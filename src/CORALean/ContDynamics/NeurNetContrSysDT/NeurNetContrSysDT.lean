@@ -14,7 +14,7 @@ coordinates and `B u` is `Layer.linear B 0`, exact at every representation the
 controller's own linear layers already ask for.
 
 The system is indexed by the set representation, which no other system class in
-`ContDynamics` is. That is `Layer` carrying `propagate` and its soundness as
+`ContDynamics` is. That is `Layer` carrying `enclose` and its soundness as
 fields: a network is an object over a representation rather than a function.
 
 `Trajectory` is the substantive departure from the rest of `ContDynamics`: there

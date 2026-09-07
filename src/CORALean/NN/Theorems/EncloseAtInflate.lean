@@ -1,12 +1,12 @@
 import CORALean.NN.Operations.NetworkConvergent
-import CORALean.NN.Operations.PropagateAt
+import CORALean.NN.Operations.EncloseAt
 import CORALean.NN.Schedule
 
 /-!
 # Refinement converges to the exact image
 
-The other half of `PropagateAtOuter`: the image is always inside the propagated
-set, and some schedule brings the propagated set inside the image widened by any
+The other half of `EncloseAtOuter`: the image is always inside the enclosed
+set, and some schedule brings the enclosed set inside the image widened by any
 `ε`. Together they say refinement drives the enclosure onto the image, and
 neither statement needs a distance between sets.
 
@@ -39,12 +39,12 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m k : ℕ}
 
 /-- A schedule built by `Schedule.cons` runs its head layer at exactly the
 pattern it was built from, which is what lets the induction hand one down. -/
-theorem aux_propagateAt_cons (L : RefinableLayer S n m) (rest : RefinableNetwork S m k)
+theorem aux_encloseAt_cons (L : RefinableLayer S n m) (rest : RefinableNetwork S m k)
     (t : OrderPattern n) (sch : Schedule) (X : S n) :
-    (RefinableNetwork.cons L rest).propagateAt (Schedule.cons t sch) X
-      = rest.propagateAt sch (L.propagate t X) := by
-  show rest.propagateAt (Schedule.tail (Schedule.cons t sch))
-    (L.propagate (Schedule.head (Schedule.cons t sch) n) X) = _
+    (RefinableNetwork.cons L rest).encloseAt (Schedule.cons t sch) X
+      = rest.encloseAt sch (L.enclose t X) := by
+  show rest.encloseAt (Schedule.tail (Schedule.cons t sch))
+    (L.enclose (Schedule.head (Schedule.cons t sch) n) X) = _
   rw [Schedule.head_cons]
   rfl
 
@@ -85,14 +85,14 @@ theorem aux_image_inflate_subset {k : ℕ} {f : Vec ℝ m → Vec ℝ k} {K : NN
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem RefinableNetwork.exists_schedule_propagateAt_subset :
+theorem RefinableNetwork.exists_schedule_encloseAt_subset :
     ∀ {n m : ℕ} (rn : RefinableNetwork S n m), rn.Convergent → ∀ (X : S n) (ε : ℝ), 0 < ε →
       ∃ sch : Schedule,
-        construct (rn.propagateAt sch X)
+        construct (rn.encloseAt sch X)
           ⊆ rn.image (construct X) + Metric.closedBall 0 ε
   | k, _, .nil, _, X, ε, hε => by
     refine ⟨fun _ _ => 0, fun y hy => ?_⟩
-    -- the empty network propagates its input, and nothing has to be inflated
+    -- the empty network encloses its input, and nothing has to be inflated
     have h0 : (0 : Vec ℝ k) ∈ Metric.closedBall (0 : Vec ℝ k) ε := by -- --- PROOF ---
       rw [Metric.mem_closedBall, dist_self]
       exact hε.le
@@ -105,8 +105,8 @@ theorem RefinableNetwork.exists_schedule_propagateAt_subset :
     have hKpos : (0 : ℝ) < 2 * ((K : ℝ) + 1) := by linarith [K.coe_nonneg]
     -- the head layer's residual, shrunk by what the tail will do to it
     obtain ⟨o, ho⟩ := hL X (ε / (2 * ((K : ℝ) + 1))) (div_pos hε hKpos)
-    obtain ⟨sch, hsch⟩ := rest.exists_schedule_propagateAt_subset hrest
-      (L.propagate o X) (ε / 2) (by linarith)
+    obtain ⟨sch, hsch⟩ := rest.exists_schedule_encloseAt_subset hrest
+      (L.enclose o X) (ε / 2) (by linarith)
     refine ⟨Schedule.cons o sch, ?_⟩
     have hrad : (K : ℝ) * (ε / (2 * ((K : ℝ) + 1))) ≤ ε / 2 := by
       have hne : (2 * ((K : ℝ) + 1)) ≠ 0 := ne_of_gt hKpos
@@ -117,14 +117,14 @@ theorem RefinableNetwork.exists_schedule_propagateAt_subset :
       rw [Set.image_image]
       rfl
     -- the head's residual, carried through the tail and paid at half the budget
-    have himg : rest.eval '' construct (L.propagate o X)
+    have himg : rest.eval '' construct (L.enclose o X)
         ⊆ (RefinableNetwork.cons L rest).image (construct X)
           + Metric.closedBall 0 (ε / 2) := by
       refine subset_trans (Set.image_mono ho)
         (subset_trans (aux_image_inflate_subset hK _ _) ?_)
       rw [hset]
       exact Set.add_subset_add_left (Metric.closedBall_subset_closedBall hrad)
-    rw [aux_propagateAt_cons]
+    rw [aux_encloseAt_cons]
     exact aux_subset_inflate_trans himg hsch (by linarith)
 
 end CORALean.Real

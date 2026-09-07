@@ -8,7 +8,7 @@ What an output equation is added for: until there is one, a requirement can only
 be written about the state, and a system whose safety is a property of what it
 *emits* has no way to say so. This is `outputSet_outer` handed to
 `Specification.holds_of_outer`, the same step `LinearSysDT.holds_of_reach` and
-`NeuralNetwork.holds_of_propagate` take.
+`NeuralNetwork.holds_of_enclose` take.
 
 The specification lives at the output dimension `r`, not at `n`, which is the
 whole point: `C` is where the two come apart, and it is not invertible in the

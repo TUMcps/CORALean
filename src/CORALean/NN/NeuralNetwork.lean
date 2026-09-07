@@ -16,7 +16,7 @@ branches survives; splitting into two sets and recombining them would lose it,
 which is precisely the precision a skip connection is there to preserve.
 
 `image` is what verification is about and what nothing computes: the exact
-image, which `propagate` encloses.
+image, which `enclose` encloses.
 -/
 
 -- Authors:       Tobias Ladner
@@ -44,7 +44,7 @@ def NeuralNetwork.eval : ∀ {n m : ℕ}, NeuralNetwork S n m → Vec ℝ n → 
   | _, _, .nil, x => x
   | _, _, .cons L rest, x => rest.eval (L.eval x)
 
-/-- The exact image a network produces: not computable, and what `propagate`
+/-- The exact image a network produces: not computable, and what `enclose`
 encloses. -/
 def NeuralNetwork.image (nn : NeuralNetwork S n m) (X : Set (Vec ℝ n)) : Set (Vec ℝ m) :=
   nn.eval '' X

@@ -4,7 +4,7 @@ import CORALean.Global.Partition
 import CORALean.NN.Layers.Activation
 import CORALean.NN.Layers.Linear
 import CORALean.NN.NeuralNetwork
-import CORALean.NN.Operations.Propagate
+import CORALean.NN.Operations.Enclose
 
 /-!
 # Neuron merging: sound at every bucket
@@ -61,7 +61,7 @@ theorem neuronMerging_sandwich_outer {n0 n n2 d r : ℕ}
               (NeuralNetwork.ofLayer (Layer.linearWithError (W1.submatrix id part.left) b1
                 (Interval.mtimes (W1.submatrix id part.right)
                   ⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩)
-                (Interval.mtimes_isNonempty _ _))))).propagate X) := by -- --- PROOF ---
+                (Interval.mtimes_isNonempty _ _))))).enclose X) := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩
   set h0 : Vec ℝ n := W0 *ᵥ x + b0 with hh0
   set hk : Vec ℝ n := fun i => σ (h0 i) with hhk
@@ -76,22 +76,22 @@ theorem neuronMerging_sandwich_outer {n0 n n2 d r : ℕ}
     rw [hrow, hh0]
     rfl
   have hA1 : h0 ∘ part.left ∈ construct ((Layer.linear (W0.submatrix part.left id)
-      (b0 ∘ part.left)).propagate X) :=
-    heval1 ▸ (Layer.linear (W0.submatrix part.left id) (b0 ∘ part.left)).propagate_outer X x hx
+      (b0 ∘ part.left)).enclose X) :=
+    heval1 ▸ (Layer.linear (W0.submatrix part.left id) (b0 ∘ part.left)).enclose_outer X x hx
   have heval2 : (Layer.activation (S := S) R).eval (h0 ∘ part.left) = hk ∘ part.left := by
     funext i
     show σ ((h0 ∘ part.left) i) = hk (part.left i)
     rw [hhk]
     rfl
-  have hA2 : hk ∘ part.left ∈ construct ((Layer.activation R).propagate
-      ((Layer.linear (W0.submatrix part.left id) (b0 ∘ part.left)).propagate X)) :=
-    heval2 ▸ (Layer.activation R).propagate_outer _ _ hA1
+  have hA2 : hk ∘ part.left ∈ construct ((Layer.activation R).enclose
+      ((Layer.linear (W0.submatrix part.left id) (b0 ∘ part.left)).enclose X)) :=
+    heval2 ▸ (Layer.activation R).enclose_outer _ _ hA1
   -- the bucket's exact output lies in `Y`, hence in `Y` restricted to the bucket
   have hB : hk ∘ part.right ∈ construct
       (⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩ : Interval (Vec ℝ r)) :=
     fun i => hY x hx (part.right i)
-  set s2' : S d := (Layer.activation R).propagate
-      ((Layer.linear (W0.submatrix part.left id) (b0 ∘ part.left)).propagate X) with hs2'
+  set s2' : S d := (Layer.activation R).enclose
+      ((Layer.linear (W0.submatrix part.left id) (b0 ∘ part.left)).enclose X) with hs2'
   set EB : Interval (Vec ℝ n2) := Interval.mtimes (W1.submatrix id part.right)
       ⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩ with hEB
   -- layer `k+1`'s dot product splits along the survivors and the bucket
