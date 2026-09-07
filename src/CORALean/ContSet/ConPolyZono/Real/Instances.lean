@@ -1,6 +1,7 @@
 import CORALean.ContSet.ContSet.CompactSet
 import CORALean.ContSet.ConPolyZono.Real.Theorems.AndExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.IsCompact
+import CORALean.ContSet.ConPolyZono.Real.Theorems.LinCombOuter
 import CORALean.ContSet.ConPolyZono.Real.Theorems.MapExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.MtimesExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.OfPointMem
@@ -10,8 +11,8 @@ import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceOuter
 /-!
 # What `ConPolyZono` instantiates
 
-`ContSet`, `CompactSet`, `Plus`, `Mtimes`, `Reduce`, `And` and `OfPoint`, each obligation
-a theorem from `Theorems` read in the `⊆` direction.
+`ContSet`, `CompactSet`, `Plus`, `LinComb`, `Mtimes`, `Reduce`, `And` and `OfPoint`, each
+obligation a theorem from `Theorems` read in the `⊆` direction.
 
 No `ConvexSet`: the sets are generally not convex, which is the point of the
 representation. `CompactSet` holds all the same, and on the constraints rather
@@ -20,8 +21,8 @@ cuts the coefficient cube down to a closed subset of it.
 
 `Reduce` ranks both generator blocks together and boxes what it drops, leaving
 the constraint block alone; `compact`, which it runs first, is what bounds the
-constraint counts. No `LinComb`: it would have to relax the independent block as
-`PolyZonotope`'s does, and nothing here is faked.
+constraint counts. `LinComb` is `PolyZonotope`'s on the generators with both
+constraint systems carried along, outer for the reason that one is.
 
 `quadMap` alone has no class to instantiate, so a caller names
 `ConPolyZono.quadMap` directly — the one operation `And` (#10) does not cover.
@@ -54,6 +55,12 @@ instance {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α] : CompactSet (
 instance : Plus (ConPolyZono α) α where
   plus := ConPolyZono.plus
   plus_outer cPZ₁ cPZ₂ := (ConPolyZono.plus_exact cPZ₁ cPZ₂).subset
+
+/-- A separate instance, so a caller that never combines does not depend on the
+segment parameter this adds. -/
+noncomputable instance : LinComb (ConPolyZono α) α where
+  linComb := ConPolyZono.linComb
+  linComb_outer := ConPolyZono.linComb_outer
 
 instance : OfPoint (ConPolyZono α) α where
   ofPoint := ConPolyZono.ofPoint

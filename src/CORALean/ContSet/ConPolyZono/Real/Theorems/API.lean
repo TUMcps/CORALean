@@ -15,6 +15,7 @@ import CORALean.ContSet.ConPolyZono.Real.Theorems.MapExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.MtimesExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.OfPointMem
 import CORALean.ContSet.ConPolyZono.Real.Theorems.PlusExact
+import CORALean.ContSet.ConPolyZono.Real.Theorems.LinCombOuter
 import CORALean.ContSet.ConPolyZono.Real.Theorems.QuadMapDepExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.QuadMapExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.ConstructEqImage

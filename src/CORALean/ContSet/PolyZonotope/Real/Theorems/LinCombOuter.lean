@@ -1,10 +1,5 @@
 import CORALean.ContSet.ContSet.ContSet
-import CORALean.ContSet.PolyZonotope.Real.Operations.LinComb
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialLinCombEFst
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialLinCombELast
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialLinCombESnd
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
+import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombValue
 import CORALean.ContSet.Zonotope.Real.Theorems.LinCombOuter
 
 /-!
@@ -22,11 +17,14 @@ statement is `_outer` rather than `_exact`.
 
 Nothing here asks for convexity, as nothing in `segments` does; a polynomial
 zonotope is generally not convex and this claim is still the right one.
+
+What the witness evaluates to is `linComb_value`, stated apart so that
+`ConPolyZono.linComb` can reuse it; what is left here is the two box bounds.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   03-September-2026
+-- Last update:   07-September-2026
 -- Last revision: ---
 
 
@@ -35,44 +33,6 @@ zonotope is generally not convex and this claim is still the right one.
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
-
-
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
-/-- `Fin.sum_univ_add` at `linComb`'s dependent generator count, stated through
-the projection because that is the form the goal has. Only the outermost split
-needs it; the blocks it produces have plain counts simp can split itself. -/
-theorem PolyZonotope.aux_sum_univ_linComb_h {pZ₁ pZ₂ : PolyZonotope α}
-    (f : Fin (pZ₁.h + pZ₂.h + (pZ₁.h + pZ₂.h + 1)) → α) :
-    ∑ i : Fin (pZ₁.linComb pZ₂).h, f i
-      = ∑ i, f (Fin.castAdd (pZ₁.h + pZ₂.h + 1) i)
-        + ∑ i, f (Fin.natAdd (pZ₁.h + pZ₂.h) i) :=
-  Fin.sum_univ_add f
-
-/-- The same at the independent generator count. -/
-theorem PolyZonotope.aux_sum_univ_linComb_q {pZ₁ pZ₂ : PolyZonotope α}
-    (f : Fin (pZ₁.q + pZ₂.q) → α) :
-    ∑ j : Fin (pZ₁.linComb pZ₂).q, f j
-      = ∑ j, f (Fin.castAdd pZ₂.q j) + ∑ j, f (Fin.natAdd pZ₁.q j) :=
-  Fin.sum_univ_add f
-
-/-- A generator block scaled by a constant, with the constant pulled out of the
-sum: `module` cannot do this for itself, a sum being one atom to it. -/
-theorem PolyZonotope.aux_sum_scaled {k : ℕ} (s : ℝ) (m : Fin k → ℝ) (G : Fin k → α) :
-    ∑ i, m i • (s • G i) = s • ∑ i, m i • G i := by
-  rw [Finset.smul_sum]
-  refine Finset.sum_congr rfl fun i _ => ?_
-  rw [smul_smul, smul_smul, mul_comm]
-
-/-- The same where the coefficients also carry a common factor, which is the
-shape the second dependent block has. -/
-theorem PolyZonotope.aux_sum_scaled_mul {k : ℕ} (t s : ℝ) (m : Fin k → ℝ) (G : Fin k → α) :
-    ∑ i, (t * m i) • (s • G i) = (t * s) • ∑ i, m i • G i := by -- --- PROOF ---
-  rw [Finset.smul_sum]
-  refine Finset.sum_congr rfl fun i _ => ?_
-  rw [smul_smul, smul_smul]
-  congr 1
-  ring
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -100,20 +60,8 @@ theorem PolyZonotope.linComb_outer (pZ₁ pZ₂ : PolyZonotope α) :
       simpa using Zonotope.abs_pairCoeffSum_le_one hβ₁ hβ₂ hl0 hl1 j
     · intro j
       simpa using Zonotope.abs_pairCoeffDiff_le_one hβ₁ hβ₂ hl0 hl1 j
-  -- the value: the three dependent blocks and the paired independent one recombine
-  · rw [PolyZonotope.aux_sum_univ_linComb_h, PolyZonotope.aux_sum_univ_linComb_q]
-    simp only [PolyZonotope.linComb, Fin.sum_univ_add, Fin.sum_univ_one,
-      PolyZonotope.monomial_linCombE_fst, PolyZonotope.monomial_linCombE_snd,
-      PolyZonotope.monomial_linCombE_last, PolyZonotope.monomial_plusE_left,
-      PolyZonotope.monomial_plusE_right, Fin.append_left, Fin.append_right]
-    rw [PolyZonotope.aux_sum_scaled (2:ℝ)⁻¹ (PolyZonotope.monomial pZ₁.E a₁) pZ₁.G,
-      PolyZonotope.aux_sum_scaled (2:ℝ)⁻¹ (PolyZonotope.monomial pZ₂.E a₂) pZ₂.G,
-      PolyZonotope.aux_sum_scaled_mul (2 * lam - 1) (2:ℝ)⁻¹
-        (PolyZonotope.monomial pZ₁.E a₁) pZ₁.G,
-      PolyZonotope.aux_sum_scaled_mul (2 * lam - 1) (-(2:ℝ)⁻¹)
-        (PolyZonotope.monomial pZ₂.E a₂) pZ₂.G,
-      Zonotope.sum_pair pZ₁.GI pZ₂.GI β₁ β₂ lam]
-    module
+  -- the value: `linComb_value`, the arithmetic this witness was chosen for
+  · exact PolyZonotope.linComb_value pZ₁ pZ₂ a₁ β₁ a₂ β₂ lam
 
 end CORALean.Real
 
