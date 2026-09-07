@@ -11,9 +11,9 @@ the linear system `linearize A`, and the input signal
 certificate holds. The flow condition is then an identity — `A x + ũ = f(x,u)`
 — and everything `LinearSys` proves applies to `x` unchanged.
 
-The confinement `hR` stays a hypothesis: CORA computes a candidate `R` and
-*checks afterwards* that the step's reachable set is inside it, enlarging and
-retrying when it is not, which nothing in a certificate can supply.
+The confinement `hR` stays a hypothesis here, the certificate saying nothing
+outside `R`. It is discharged one level up, by `confinement_of_subset`, from a
+check on the computed sets — not by CORA's own check, which is circular.
 
 `hR` is asked for on the time domain and nowhere else, which is why that domain
 is a parameter: the linear run produced constrains its input on the same set, so

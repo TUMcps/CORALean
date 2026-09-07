@@ -1,3 +1,5 @@
+import CORALean.ContDynamics.NonlinearSys.Theorems.ConfinedOfBall
+import CORALean.ContDynamics.NonlinearSys.Theorems.ConfinementOfSubset
 import CORALean.ContDynamics.NonlinearSys.Theorems.LinInputOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.LinearEmbedding
 import CORALean.ContDynamics.NonlinearSys.Theorems.TrajectoryIffNonlinearSys
@@ -30,6 +32,10 @@ at zero, so `Shift` re-anchors the run and `RelinReachOuter` chains the steps by
 induction on the step count, each step's enclosure becoming the next one's
 initial set. Confinement stays a hypothesis per step, on that step's window
 alone. `RelinTimeIntervalOuter` covers every time of a step, not only its ends.
+
+`ConfinedOfBall` and `ConfinementOfSubset` are where that hypothesis is paid off:
+the run cannot cross a ball of radius `ρ > MΔt` about the start of a step, so
+inflating the computed set and checking it against `R` discharges confinement.
 
 The polynomialization variant, which propagates a `PolyZonotope` rather than
 re-linearizing, is not here.

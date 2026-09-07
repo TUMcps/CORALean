@@ -12,9 +12,9 @@ discrete step already reads `x(k+1) = f(x(k), u(k))` at the step index itself
 a step needs, in place of the hypothesis `NonlinearSys.relinReach_outer` takes
 on `Ud`.
 
-Confinement (`hR`) stays a hypothesis per step, as in every re-linearization
-guarantee here: CORA computes a candidate `R` and checks the step's reachable
-set against it afterwards, which no certificate can supply.
+Confinement (`hR`) stays a hypothesis per step, and the asymmetry — below `K`,
+never at `K` — is exactly what `confinement_of_subset` needs to discharge it
+from a check on the computed sets rather than on the trajectory.
 -/
 
 -- Authors:       Tobias Ladner

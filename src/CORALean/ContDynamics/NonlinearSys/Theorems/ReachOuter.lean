@@ -17,7 +17,8 @@ everywhere `discretize` is.
 
 `reach_outer` leaves the discrete input set to the caller and asks confinement
 of all forward time; the `_horizon` and `_inputSolution` variants relax each of
-those in turn.
+those in turn. Neither discharges confinement — `confinement_of_subset` does,
+over the steps of a re-linearization loop.
 -/
 
 -- Authors:       Tobias Ladner
