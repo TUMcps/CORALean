@@ -1,0 +1,80 @@
+import CORALean.ContSet.ZonoBundle.Real.Instances
+import CORALean.ContSet.ZonoBundle.Real.Theorems.IsCompact
+import CORALean.ContSet.Zonotope.Real.Instances
+
+/-!
+# Two zonotopes whose intersection is not one, bundled exactly
+
+A box and a diamond centred off it: their intersection has no centre of
+symmetry, so no `Zonotope` denotes it, where `ZonoBundle.and_exact` denotes it
+outright — `and`, not merely `and_outer`. `Plus` and `Mtimes` still run at a
+bundle exactly as at any other `ContSet`, which is the second point: a bundle
+pays for its exact intersection with nothing else.
+
+`CompactSet` is a theorem here, `isCompact_construct`, and not an instance:
+`ZonoBundle.construct` at `k = 0` is `⋂` over the empty family, which is `univ`,
+not compact, so the class's unconditional obligation has no proof to give it. A
+positive `k` is what the theorem asks for instead.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       07-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+open Matrix Pointwise ContSet
+
+-- A unit box at the origin, and a unit diamond centred away from it, sharing no centre.
+
+def Example.box : Zonotope (Vec ℝ 2) := ⟨2, ![0, 0], ![![1, 0], ![0, 1]]⟩
+
+noncomputable def Example.diamond : Zonotope (Vec ℝ 2) := ⟨2, ![(1:ℝ)/2, 1/2], ![![1, 1], ![1, -1]]⟩
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+def Example.boxBundle : ZonoBundle (Vec ℝ 2) := ⟨1, fun _ => Example.box⟩
+noncomputable def Example.diamondBundle : ZonoBundle (Vec ℝ 2) := ⟨1, fun _ => Example.diamond⟩
+
+-- anonymous, since their content is that they elaborate at this bundle
+
+/-- Exact, where a single zonotope holding the box and the diamond could only
+have enclosed. -/
+example :
+    (Example.boxBundle.and Example.diamondBundle).construct
+      = Example.boxBundle.construct ∩ Example.diamondBundle.construct :=
+  ZonoBundle.and_exact Example.boxBundle Example.diamondBundle
+
+/-- The same fact, read through the generic `And` class rather than the bundle's
+own theorem: no use site needs to know it is exact to call it. -/
+example :
+    construct Example.boxBundle ∩ construct Example.diamondBundle
+      ⊆ construct (And.and Example.boxBundle Example.diamondBundle) :=
+  And.and_outer Example.boxBundle Example.diamondBundle
+
+/-- `plus`, at a bundle like at any other representation. -/
+example :
+    construct Example.boxBundle + construct Example.diamondBundle
+      ⊆ construct (Plus.plus Example.boxBundle Example.diamondBundle) :=
+  Plus.plus_outer Example.boxBundle Example.diamondBundle
+
+/-- `mtimes` too, for any matrix — `S` named, as every generic family use
+site has to. -/
+example (M : Mat ℝ 2 2) :
+    (⋃ A ∈ construct M, (A *ᵥ ·) '' construct Example.boxBundle)
+      ⊆ construct (Mtimes.mtimes (S := fun n => ZonoBundle (Vec ℝ n)) M Example.boxBundle) :=
+  Mtimes.mtimes_outer (S := fun n => ZonoBundle (Vec ℝ n)) M Example.boxBundle
+
+/-- Compact, since this bundle's `k` is `1`, not `0`. -/
+example : IsCompact Example.boxBundle.construct :=
+  ZonoBundle.isCompact_construct (B := Example.boxBundle) (by simp [Example.boxBundle])
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
