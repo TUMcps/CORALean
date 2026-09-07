@@ -3,6 +3,7 @@ import CORALean.ContDynamics.LinearSysDT.API
 import CORALean.ContDynamics.LinParamSysDT.API
 import CORALean.ContDynamics.NeurNetContrSys.API
 import CORALean.ContDynamics.NeurNetContrSysDT.API
+import CORALean.ContDynamics.NonlinParamSys.API
 import CORALean.ContDynamics.NonlinearSys.API
 import CORALean.ContDynamics.NonlinearSysDT.API
 import CORALean.ContDynamics.OutputEq.API
