@@ -9,6 +9,11 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.ReachOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachOuterHorizon
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachOuterHorizonInputSolution
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachOuterInputSolution
+import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetConfinementOfSubset
+import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetOuter
+import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetSubsetRelinReach
+import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetSubsetRelinTimeInterval
+import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetSubsetRelinTimeIntervalOfSubset
 import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuterInputSolution
 import CORALean.ContDynamics.NonlinearSys.Theorems.RelinTimeIntervalOuter
@@ -19,23 +24,23 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
 # What `NonlinearSys` guarantees
 
 That it generalizes `LinearSys`, in `LinearEmbedding`, and that it reduces to
-it again, in the others: `LinInputOuter` is where the certificate is spent,
-`Linearize` turns a confined run into a linear one, and `ReachOuter` hands that
-run to the linear reachability already proved.
+it again, in the others: `LinInputOuter` spends the certificate, `Linearize`
+turns a confined run into a linear one, `ReachOuter` hands that run to the
+linear reachability already proved, and `Restrict` makes the one-step forms.
 
-`Restrict` is what makes the one-step forms possible: `linearize_horizon` asks
-confinement on `[0, τ]` and gives back a linear run on `[0, τ]`, which is
-conservative linearization as CORA runs it.
+`Shift` and `RelinReachOuter` are the loop: a step is proved on a clock
+starting at zero, so `Shift` re-anchors the run and `RelinReachOuter` chains
+the steps, each step's enclosure becoming the next one's initial set.
+`RelinTimeIntervalOuter` covers every time of a step, not only its ends.
 
-`Shift` and `RelinReachOuter` are the loop. A step is proved on a clock starting
-at zero, so `Shift` re-anchors the run and `RelinReachOuter` chains the steps by
-induction on the step count, each step's enclosure becoming the next one's
-initial set. Confinement stays a hypothesis per step, on that step's window
-alone. `RelinTimeIntervalOuter` covers every time of a step, not only its ends.
+`ConfinedOfBall` and `ConfinementOfSubset` pay off the confinement hypothesis
+those carry per step: the run cannot cross a ball of radius `ρ > MΔt` about the
+start of a step, so inflating the computed set and checking it discharges it.
 
-`ConfinedOfBall` and `ConfinementOfSubset` are where that hypothesis is paid off:
-the run cannot cross a ball of radius `ρ > MΔt` about the start of a step, so
-inflating the computed set and checking it against `R` discharges confinement.
+The `ReachSet` files say that of the reachable set rather than of a run:
+`ReachSetOuter` puts a run into it, `ReachSetConfinementOfSubset` confines it,
+and the `ReachSetSubset` files enclose it — the last on the computed sets
+alone.
 
 The polynomialization variant, which propagates a `PolyZonotope` rather than
 re-linearizing, is not here.
