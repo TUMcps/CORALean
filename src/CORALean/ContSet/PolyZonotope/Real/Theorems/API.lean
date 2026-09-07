@@ -28,9 +28,14 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapDepExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinPoint
 import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinExact
+import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinSubsetAt
+import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinSubsetAtSubsetImage2
 import CORALean.ContSet.PolyZonotope.Real.Theorems.PadBackPoint
+import CORALean.ContSet.PolyZonotope.Real.Theorems.PadBackSubsetAt
 import CORALean.ContSet.PolyZonotope.Real.Theorems.PadFrontPoint
+import CORALean.ContSet.PolyZonotope.Real.Theorems.PadFrontSubsetAt
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MulPoint
+import CORALean.ContSet.PolyZonotope.Real.Theorems.MulSubsetAt
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MulExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyReal
 import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyStepPoint
