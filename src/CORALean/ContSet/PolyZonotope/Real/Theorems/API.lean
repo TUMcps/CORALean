@@ -9,6 +9,10 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.ExistsPointOfQZero
 import CORALean.ContSet.PolyZonotope.Real.Theorems.SubsetAtMono
 import CORALean.ContSet.PolyZonotope.Real.Theorems.SubsetAtSubsetConstruct
 import CORALean.ContSet.PolyZonotope.Real.Theorems.SubsetAtUnitBox
+import CORALean.ContSet.PolyZonotope.Real.Theorems.GetSubsetPoint
+import CORALean.ContSet.PolyZonotope.Real.Theorems.GetSubsetSubsetAt
+import CORALean.ContSet.PolyZonotope.Real.Theorems.GetSubsetConstruct
+import CORALean.ContSet.PolyZonotope.Real.Theorems.GetSubsetFixed
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
 import CORALean.ContSet.PolyZonotope.Real.Theorems.PlusExact
@@ -89,8 +93,8 @@ independent block. `mem_ofPoint` needs none of that guarding — there is nothin
 (point pZ₂ a)`, never `f` over the two sets; `mul_exact` is it entrywise, `evalPoly_exact` carries
 it to a polynomial per coordinate and `evalPolyReal_ofFn` matches Horner to the monomial sum.
 `padBack_point`/`padFront_point` say padding moves no point, so *independent* factors pair too.
-`point_mem_construct`/`subsetAt_subset_construct` are the way back,
-`exists_point_of_q_zero`/`subsetAt_unitBox` the way there once nothing is independent.
+`point_mem_construct`/`subsetAt_subset_construct` are the way back, `exists_point_of_q_zero` and
+`subsetAt_unitBox` the way there; `getSubset_construct` then represents a factor sub-box *exactly*.
 `relaxExp_outer` holds at every partition naming two generators, `relaxExpEven_outer` adds evenness,
 `relaxExpMulti_outer` asks nothing and `relaxExpGroup_outer` nothing of a whole group, priced by
 `relaxWidthGroup_le_chain`. `sub_monomial_mem_eDrift` brackets the drift out of `sub_pow_nonpos` and
