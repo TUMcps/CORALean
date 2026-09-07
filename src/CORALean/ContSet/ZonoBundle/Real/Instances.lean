@@ -4,6 +4,8 @@ import CORALean.ContSet.ZonoBundle.Real.Theorems.Convex
 import CORALean.ContSet.ZonoBundle.Real.Theorems.PlusOuter
 import CORALean.ContSet.ZonoBundle.Real.Theorems.LinCombOuter
 import CORALean.ContSet.ZonoBundle.Real.Theorems.MtimesOuter
+import CORALean.ContSet.ZonoBundle.Real.Theorems.MtimesMatZonotopeOuter
+import CORALean.ContSet.Zonotope.Real.Instances
 import CORALean.ContSet.ZonoBundle.Real.Theorems.MapExact
 import CORALean.ContSet.ZonoBundle.Real.Theorems.OfPointMem
 import CORALean.ContSet.ZonoBundle.Real.Theorems.ReduceOuter
@@ -12,7 +14,8 @@ import CORALean.ContSet.ZonoBundle.Real.Theorems.ReduceOuter
 # What `ZonoBundle` instantiates
 
 `ContSet`, `ConvexSet` — an intersection of convex sets — `Plus`, `LinComb`
-and `Mtimes` from the enclosure operations, and `And` from `and_exact`:
+and `Mtimes`, the last at a point matrix and at a matrix zonotope alike, from
+the enclosure operations, and `And` from `and_exact`:
 appending the two families of zonotopes is exact, at any real module.
 `OfPoint` bundles one point-zonotope, and `Reindex` lifts `Zonotope`'s at
 `reindexLin e`, which `map_exact` needs *bijective* rather than merely
@@ -87,6 +90,12 @@ instance : Mtimes (Mat ℝ) (fun n => ZonoBundle (Vec ℝ n)) where
   mtimes_outer M zB := by
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact ZonoBundle.mtimes_outer M zB
+
+/-- The same operation at a matrix zonotope, which keeps the correlations an
+interval matrix would throw away. Componentwise, as `mtimes` is. -/
+noncomputable instance : Mtimes 𝕄𝒵 (fun n => ZonoBundle (Vec ℝ n)) where
+  mtimes := ZonoBundle.mtimesMatZonotope
+  mtimes_outer M zB := ZonoBundle.mtimesMatZonotope_outer M zB
 
 instance : Reduce (ZonoBundle α) α where
   reduce := ZonoBundle.reduce
