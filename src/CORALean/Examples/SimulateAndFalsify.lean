@@ -55,18 +55,18 @@ theorem SAF.sim_const (k : ℕ) :
 
 /-- `simulate`'s run sits inside `reach`'s enclosure at any order and any
 horizon — the half an enclosure is trusted for. -/
-example (o k : ℕ) :
+example {o : ℕ} (ho : 0 < o) (k : ℕ) :
     SAF.sys.simulate SAF.x0 (fun _ => (0 : Vec ℝ 2)) k
-      ∈ construct (SAF.sys.reach (S := ℐ𝒱) o SAF.R0 SAF.U k) :=
-  SAF.sys.simulate_mem_reach (S := ℐ𝒱) o SAF.R0 SAF.U
+      ∈ construct (SAF.sys.reach (S := ℐ𝒱) o ho SAF.R0 SAF.U k) :=
+  SAF.sys.simulate_mem_reach (S := ℐ𝒱) ho SAF.R0 SAF.U
     (Interval.mem_point SAF.x0) (fun _ => Interval.mem_point 0) k
 
 /-- The sampled run violates `spec` outright, so it refutes `spec` over
 whatever `reach` computes — the half a sample is trusted for, and an enclosure
 never could be, since the violation might be nothing but its own slack. -/
-example (o k : ℕ) :
-    ¬ SAF.spec.Holds (construct (SAF.sys.reach (S := ℐ𝒱) o SAF.R0 SAF.U k)) :=
-  SAF.sys.not_holds_of_simulate (S := ℐ𝒱) o SAF.R0 SAF.U SAF.spec
+example {o : ℕ} (ho : 0 < o) (k : ℕ) :
+    ¬ SAF.spec.Holds (construct (SAF.sys.reach (S := ℐ𝒱) o ho SAF.R0 SAF.U k)) :=
+  SAF.sys.not_holds_of_simulate (S := ℐ𝒱) ho SAF.R0 SAF.U SAF.spec
     (Interval.mem_point SAF.x0) (fun _ => Interval.mem_point 0) k
     (by rw [SAF.sim_const]; simp [SAF.spec, SAF.x0])
 

@@ -44,16 +44,16 @@ variable [Mtimes (Mat ℝ) S] [OfInterval S]
 /-- Confinement at every step, discharged from the computed sets: a caller
 checks `hsub`, that each step's computed reachable set lies inside its own
 certified region, instead of assuming confinement of the trajectory. -/
-theorem NonlinearSysDT.confinement_of_subset (sys : NonlinearSysDT n m) {U : S m} (o : ℕ)
-    (steps : ℕ → sys.LinStep U) (R₀ : S n)
-    (hsub : ∀ k, construct (sys.reach o steps R₀ k) ⊆ (steps k).R)
+theorem NonlinearSysDT.confinement_of_subset (sys : NonlinearSysDT n m) {U : S m} {o : ℕ}
+    (ho : 0 < o) (steps : ℕ → sys.LinStep U) (R₀ : S n)
+    (hsub : ∀ k, construct (sys.reach o ho steps R₀ k) ⊆ (steps k).R)
     {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ m} (traj : sys.Trajectory R₀ U x u) (k : ℕ) :
     x k ∈ (steps k).R := by -- --- PROOF ---
   induction k using Nat.strong_induction_on with
   | _ k ih =>
     have hOn : sys.TrajectoryOn R₀ U k x u :=
       ⟨traj.init, fun j _ => traj.input j, fun j _ => traj.step j⟩
-    exact hsub k (sys.reach_outer_on o steps R₀ hOn ih k le_rfl)
+    exact hsub k (sys.reach_outer_on ho steps R₀ hOn ih k le_rfl)
 
 end CORALean.Real
 

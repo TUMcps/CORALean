@@ -69,20 +69,20 @@ noncomputable def Example.nnControlled (A : Mat ℝ 2 2) (W₁ : Mat ℝ 3 2) (b
 
 /-- Every discrete closed-loop run from `R₀` is inside the alternating recursion
 at every step. -/
-example (sys : NeurNetContrSysDT ℝ 𝒵 2) (R₀ : Zonotope (Vec ℝ 2)) (o : ℕ)
+example (sys : NeurNetContrSysDT ℝ 𝒵 2) (R₀ : Zonotope (Vec ℝ 2)) {o : ℕ} (ho : 0 < o)
     {π : Vec ℝ 2 → Vec ℝ 2} (hπ : sys.contr.Sound π)
     {x : ℕ → Vec ℝ 2} (traj : sys.Trajectory π R₀ x) (k : ℕ) :
-    x k ∈ construct (sys.reach o R₀ k) :=
-  sys.reach_outer o R₀ hπ traj k
+    x k ∈ construct (sys.reach o ho R₀ k) :=
+  sys.reach_outer ho R₀ hπ traj k
 
 /-- A safe set the reached zonotope stays inside is a safe set the run stays
 inside — `Specification.holds_of_outer`, reached from the loop. -/
-example (sys : NeurNetContrSysDT ℝ 𝒵 2) (R₀ : Zonotope (Vec ℝ 2)) (o : ℕ)
+example (sys : NeurNetContrSysDT ℝ 𝒵 2) (R₀ : Zonotope (Vec ℝ 2)) {o : ℕ} (ho : 0 < o)
     (safe : Set (Vec ℝ 2)) {π : Vec ℝ 2 → Vec ℝ 2} (hπ : sys.contr.Sound π)
     {x : ℕ → Vec ℝ 2} (traj : sys.Trajectory π R₀ x) (k : ℕ)
-    (h : (Specification.safeSet safe).Holds (construct (sys.reach o R₀ k))) :
+    (h : (Specification.safeSet safe).Holds (construct (sys.reach o ho R₀ k))) :
     (Specification.safeSet safe).Holds {x k} :=
-  sys.holds_of_reach o R₀ _ hπ traj k h
+  sys.holds_of_reach ho R₀ _ hπ traj k h
 
 /-- The discrete loop is deterministic, so a run is settled by where it
 started. -/
@@ -93,32 +93,32 @@ example (sys : NeurNetContrSysDT ℝ 𝒵 2) (R₀ : Zonotope (Vec ℝ 2))
 
 /-- Every zero-order-hold run is inside the two-rate recursion at every control
 period boundary — `N` reachability steps of length `Δt` per period. -/
-example (sys : NeurNetContrSys ℝ 𝒵 2) (R₀ : Zonotope (Vec ℝ 2)) (o η N : ℕ) {Δt : ℝ}
-    (hΔt : 0 < Δt) (hε : ‖Δt • toRealMat sys.plant.A‖ / ((η : ℝ) + 2) < 1) {H : ℕ}
+example (sys : NeurNetContrSys ℝ 𝒵 2) (R₀ : Zonotope (Vec ℝ 2)) (o η N : ℕ) (ho : 0 < o)
+    {Δt : ℝ} (hΔt : 0 < Δt) (hε : ‖Δt • toRealMat sys.plant.A‖ / ((η : ℝ) + 2) < 1) {H : ℕ}
     {π : Vec ℝ 2 → Vec ℝ 2} (hπ : sys.contr.Sound π)
     {x : ℝ → Vec ℝ 2} (traj : sys.Trajectory π ((N : ℝ) * Δt) H R₀ x) (i : ℕ) (hi : i ≤ H) :
-    x ((i : ℝ) * ((N : ℝ) * Δt)) ∈ construct (sys.reach o η N Δt R₀ i) :=
-  sys.reach_outer o η N hΔt hε hπ traj i hi
+    x ((i : ℝ) * ((N : ℝ) * Δt)) ∈ construct (sys.reach o η N ho Δt R₀ i) :=
+  sys.reach_outer o η N ho hΔt hε hπ traj i hi
 
 /-- The same checked against a safe set. -/
-example (sys : NeurNetContrSys ℝ 𝒵 2) (R₀ : Zonotope (Vec ℝ 2)) (o η N : ℕ) {Δt : ℝ}
-    (hΔt : 0 < Δt) (hε : ‖Δt • toRealMat sys.plant.A‖ / ((η : ℝ) + 2) < 1) {H : ℕ}
+example (sys : NeurNetContrSys ℝ 𝒵 2) (R₀ : Zonotope (Vec ℝ 2)) (o η N : ℕ) (ho : 0 < o)
+    {Δt : ℝ} (hΔt : 0 < Δt) (hε : ‖Δt • toRealMat sys.plant.A‖ / ((η : ℝ) + 2) < 1) {H : ℕ}
     (safe : Set (Vec ℝ 2)) {π : Vec ℝ 2 → Vec ℝ 2} (hπ : sys.contr.Sound π)
     {x : ℝ → Vec ℝ 2} (traj : sys.Trajectory π ((N : ℝ) * Δt) H R₀ x)
     (i : ℕ) (hi : i ≤ H)
-    (h : (Specification.safeSet safe).Holds (construct (sys.reach o η N Δt R₀ i))) :
+    (h : (Specification.safeSet safe).Holds (construct (sys.reach o η N ho Δt R₀ i))) :
     (Specification.safeSet safe).Holds {x ((i : ℝ) * ((N : ℝ) * Δt))} :=
-  sys.holds_of_reach o η N hΔt hε hπ traj _ i hi h
+  sys.holds_of_reach o η N ho hΔt hε hπ traj _ i hi h
 
 /-- The loops above are ones of those, which is the only thing left to check. -/
 noncomputable example (A : Mat ℝ 2 2) (W₁ : Mat ℝ 3 2) (b₁ : Vec ℝ 3) (W₂ : Mat ℝ 2 3)
-    (b₂ : Vec ℝ 2) (R₀ : Zonotope (Vec ℝ 2)) (o k : ℕ) : Zonotope (Vec ℝ 2) :=
-  (Example.nnControlledDT A W₁ b₁ W₂ b₂).reach o R₀ k
+    (b₂ : Vec ℝ 2) (R₀ : Zonotope (Vec ℝ 2)) (o k : ℕ) (ho : 0 < o) : Zonotope (Vec ℝ 2) :=
+  (Example.nnControlledDT A W₁ b₁ W₂ b₂).reach o ho R₀ k
 
 noncomputable example (A : Mat ℝ 2 2) (W₁ : Mat ℝ 3 2) (b₁ : Vec ℝ 3) (W₂ : Mat ℝ 2 3)
-    (b₂ : Vec ℝ 2) (R₀ : Zonotope (Vec ℝ 2)) (o η N : ℕ) (Δt : ℝ) (i : ℕ) :
+    (b₂ : Vec ℝ 2) (R₀ : Zonotope (Vec ℝ 2)) (o η N : ℕ) (ho : 0 < o) (Δt : ℝ) (i : ℕ) :
     Zonotope (Vec ℝ 2) :=
-  (Example.nnControlled A W₁ b₁ W₂ b₂).reach o η N Δt R₀ i
+  (Example.nnControlled A W₁ b₁ W₂ b₂).reach o η N ho Δt R₀ i
 
 end CORALean.Real
 

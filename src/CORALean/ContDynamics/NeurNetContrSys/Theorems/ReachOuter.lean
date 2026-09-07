@@ -52,12 +52,12 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 /-- Every zero-order-hold run of `H` control periods is inside `reach` at every
 period boundary. `Δt` is the reachability step, `N Δt` the control period, and
 the two are related only here. -/
-theorem NeurNetContrSys.reach_outer (sys : NeurNetContrSys 𝕋 S n) (o η N : ℕ) {Δt : ℝ}
-    (hΔt : 0 < Δt) (hε : ‖Δt • toRealMat sys.plant.A‖ / ((η : ℝ) + 2) < 1) {H : ℕ}
+theorem NeurNetContrSys.reach_outer (sys : NeurNetContrSys 𝕋 S n) (o η N : ℕ) (ho : 0 < o)
+    {Δt : ℝ} (hΔt : 0 < Δt) (hε : ‖Δt • toRealMat sys.plant.A‖ / ((η : ℝ) + 2) < 1) {H : ℕ}
     {R₀ : S n} {π : Vec ℝ n → Vec ℝ n} (hπ : sys.contr.Sound π)
     {x : ℝ → Vec ℝ n} (traj : sys.Trajectory π ((N : ℝ) * Δt) H R₀ x) :
     ∀ i ≤ H,
-      x ((i : ℝ) * ((N : ℝ) * Δt)) ∈ construct (sys.reach o η N Δt R₀ i) := by -- --- PROOF ---
+      x ((i : ℝ) * ((N : ℝ) * Δt)) ∈ construct (sys.reach o η N ho Δt R₀ i) := by -- --- PROOF ---
   intro i
   -- the induction is on the control period, `traj.period` being its step
   induction i with
@@ -72,12 +72,12 @@ theorem NeurNetContrSys.reach_outer (sys : NeurNetContrSys 𝕋 S n) (o η N : �
       (K := N) hΔt subset_rfl η hε
       (ConvexSet.convex_construct _) (CompactSet.isClosed_construct _)
       (CompactSet.isBounded_construct _) (ConvexSet.convex_construct _)
-      (CompactSet.isClosed_construct _) (CompactSet.isBounded_construct _) o N le_rfl
+      (CompactSet.isClosed_construct _) (CompactSet.isBounded_construct _) ho N le_rfl
     -- the conclusion unfolded, so `key` matches it at the period's own clock
     show x (((i + 1 : ℕ) : ℝ) * ((N : ℝ) * Δt)) ∈ construct
-      ((sys.plant.discretize Δt).reach o (sys.reach o η N Δt R₀ i)
+      ((sys.plant.discretize Δt).reach o ho (sys.reach o η N ho Δt R₀ i)
         (sys.plant.inputSolution Δt η
-          (sys.contr.enclose (sys.reach o η N Δt R₀ i))) N)
+          (sys.contr.enclose (sys.reach o η N ho Δt R₀ i))) N)
     rw [show ((i + 1 : ℕ) : ℝ) * ((N : ℝ) * Δt)
       = (i : ℝ) * ((N : ℝ) * Δt) + (N : ℝ) * Δt from by push_cast; ring]
     exact key

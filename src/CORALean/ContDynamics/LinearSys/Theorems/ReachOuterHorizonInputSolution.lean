@@ -46,12 +46,12 @@ theorem LinearSys.Trajectory.reach_outer_horizon_inputSolution [Mtimes ℐ S]
     (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) Δt η) U)))
     (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat sys.A) Δt η) U))) (o : ℕ) :
+      (MatExp.inputRemainder (toRealMat sys.A) Δt η) U))) {o : ℕ} (ho : 0 < o) :
     ∀ k ≤ K, x ((k : ℝ) * Δt) ∈ construct
-      ((sys.discretize Δt).reach o R₀ (sys.inputSolution Δt η U) k) :=
+      ((sys.discretize Δt).reach o ho R₀ (sys.inputSolution Δt η U) k) :=
   traj.reach_outer_horizon hΔt.le hT hbdd
     (fun k hk => traj.stepInput_outer hΔt η hε hconv hclosed hbdd hRconv hRclosed hRbdd k
-      (step_subset_horizon hΔt.le hT hk)) o
+      (step_subset_horizon hΔt.le hT hk)) ho
 
 end CORALean.Real
 

@@ -56,14 +56,14 @@ theorem NonlinearSys.reachSet_subset_relinReach [Mtimes ℐ S] (sys : NonlinearS
     (hRclosed : ∀ i < N, IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (steps i).A Δt η) (steps i).linInput)))
     (hRbdd : ∀ i < N, Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (steps i).A Δt η) (steps i).linInput))) (o : ℕ) :
-    ∀ i ≤ N, sys.reachSet T R₀ U ((i : ℝ) * Δt) ⊆ construct (sys.relinReach o Δt steps
+      (MatExp.inputRemainder (steps i).A Δt η) (steps i).linInput))) {o : ℕ} (ho : 0 < o) :
+    ∀ i ≤ N, sys.reachSet T R₀ U ((i : ℝ) * Δt) ⊆ construct (sys.relinReach o ho Δt steps
       (fun i => (NonlinearSys.linearize (steps i).A).inputSolution Δt η
         (steps i).linInput) R₀ i) := by
   rintro i hi _ ⟨x, u, traj, rfl⟩
   exact traj.relinReach_outer_inputSolution hΔt hT
     (fun j hj t ht => hR j hj t ht (traj.reachSet_outer t)) η hε hconv hclosed hbdd
-    hRconv hRclosed hRbdd o i hi
+    hRconv hRclosed hRbdd ho i hi
 
 end CORALean.Real
 

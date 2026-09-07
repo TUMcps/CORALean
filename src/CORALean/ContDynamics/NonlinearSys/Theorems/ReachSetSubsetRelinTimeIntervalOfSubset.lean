@@ -58,18 +58,18 @@ theorem NonlinearSys.reachSet_subset_relinTimeInterval_of_subset (sys : Nonlinea
     (hRbdd : ∀ i < N, Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (steps i).A Δt (q + 2)) (steps i).linInput)))
     (hM₀ : 0 ≤ M) (hM : ∀ i < N, ∀ y ∈ (steps i).R, ∀ v ∈ construct U, ‖sys.f y v‖ ≤ M)
-    (hρ : M * Δt < ρ) (o : ℕ)
-    (hsub : ∀ i < N, ∀ y ∈ construct (sys.relinReach o Δt steps
+    (hρ : M * Δt < ρ) {o : ℕ} (ho : 0 < o)
+    (hsub : ∀ i < N, ∀ y ∈ construct (sys.relinReach o ho Δt steps
       (fun i => (NonlinearSys.linearize (steps i).A).inputSolution Δt (q + 2)
         (steps i).linInput) R₀ i), Metric.closedBall y ρ ⊆ (steps i).R)
     (i : ℕ) (hi : i < N) {t : ℝ} (ht : t ∈ Set.Icc ((i : ℝ) * Δt) (((i : ℝ) + 1) * Δt)) :
-    sys.reachSet T R₀ U t ⊆ construct (sys.relinTimeInterval o Δt (q + 2) steps
+    sys.reachSet T R₀ U t ⊆ construct (sys.relinTimeInterval o ho Δt (q + 2) steps
       (fun i => (NonlinearSys.linearize (steps i).A).inputSolution Δt (q + 2)
         (steps i).linInput) R₀ i) :=
   sys.reachSet_subset_relinTimeInterval R₀ U hΔt hT
     (sys.reachSet_confinement_of_subset R₀ U hΔt hT (q + 2) hε hconv hclosed hbdd
-      hRconv hRclosed hRbdd hM₀ hM hρ o hsub)
-    q hε hconv hclosed hbdd h0 hRconv hRclosed hRbdd o i hi ht
+      hRconv hRclosed hRbdd hM₀ hM hρ ho hsub)
+    q hε hconv hclosed hbdd h0 hRconv hRclosed hRbdd ho i hi ht
 
 end CORALean.Real
 

@@ -64,8 +64,8 @@ theorem NonlinearSys.Trajectory.confinement_of_subset [Mtimes ℐ S]
     (hRbdd : ∀ i < N, Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (steps i).A Δt η) (steps i).linInput)))
     (hM₀ : 0 ≤ M) (hM : ∀ i < N, ∀ y ∈ (steps i).R, ∀ v ∈ construct U, ‖sys.f y v‖ ≤ M)
-    (hρ : M * Δt < ρ) (o : ℕ)
-    (hsub : ∀ i < N, ∀ y ∈ construct (sys.relinReach o Δt steps
+    (hρ : M * Δt < ρ) {o : ℕ} (ho : 0 < o)
+    (hsub : ∀ i < N, ∀ y ∈ construct (sys.relinReach o ho Δt steps
       (fun i => (NonlinearSys.linearize (steps i).A).inputSolution Δt η (steps i).linInput)
       R₀ i), Metric.closedBall y ρ ⊆ (steps i).R) :
     ∀ i < N, ∀ t ∈ Set.Icc ((i : ℝ) * Δt) (((i : ℝ) + 1) * Δt),
@@ -87,7 +87,7 @@ theorem NonlinearSys.Trajectory.confinement_of_subset [Mtimes ℐ S]
       (fun j hj => hε j (lt_trans hj hiN)) (fun j hj => hconv j (lt_trans hj hiN))
       (fun j hj => hclosed j (lt_trans hj hiN)) (fun j hj => hbdd j (lt_trans hj hiN))
       (fun j hj => hRconv j (lt_trans hj hiN)) (fun j hj => hRclosed j (lt_trans hj hiN))
-      (fun j hj => hRbdd j (lt_trans hj hiN)) o i le_rfl
+      (fun j hj => hRbdd j (lt_trans hj hiN)) ho i le_rfl
     -- and the a priori ball carries it across the step it cannot enclose
     exact traj.confined_of_ball (by nlinarith) (step_subset_horizon hΔt.le hT hiN) hM₀
       (hM i hiN) (by rw [show ((i : ℝ) + 1) * Δt - (i : ℝ) * Δt = Δt from by ring]; exact hρ)

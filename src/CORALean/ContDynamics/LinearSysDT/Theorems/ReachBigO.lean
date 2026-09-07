@@ -29,7 +29,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋] [Mtimes (Mat 𝕋) 𝒵]
 
 theorem LinearSysDT.reach_h_isBigO (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o)
     (R₀ U : Zonotope (Vec ℝ n)) :
-    (fun k : ℕ => (((sys.reach (S := 𝒵) o R₀ U (k + 1)).h : ℕ) : ℝ))
+    (fun k : ℕ => (((sys.reach (S := 𝒵) o ho R₀ U (k + 1)).h : ℕ) : ℝ))
       =O[Filter.atTop] fun _ : ℕ => (1 : ℝ) := by
   apply Asymptotics.IsBigO.of_bound (o * n : ℝ)
   filter_upwards with k

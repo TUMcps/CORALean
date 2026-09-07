@@ -32,12 +32,13 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinParamSysDT.not_holds_of_simulate (sys : LinParamSysDT 𝕄 n) (o : ℕ) (R₀ U : S n)
-    (spec : Specification (Vec ℝ n)) {A : ℕ → Mat ℝ n n} (hA : ∀ k, A k ∈ construct sys.A)
+theorem LinParamSysDT.not_holds_of_simulate (sys : LinParamSysDT 𝕄 n) {o : ℕ} (ho : 0 < o)
+    (R₀ U : S n) (spec : Specification (Vec ℝ n)) {A : ℕ → Mat ℝ n n}
+    (hA : ∀ k, A k ∈ construct sys.A)
     {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ construct R₀) {u : ℕ → Vec ℝ n} (hu : ∀ k, u k ∈ construct U)
     (k : ℕ) (hbad : ¬ spec.Holds {sys.simulate A x₀ u k}) :
-    ¬ spec.Holds (construct (sys.reach o R₀ U k)) :=
-  fun h => hbad (sys.holds_of_reach o R₀ U spec (sys.simulate_trajectory hA hx₀ hu) k h)
+    ¬ spec.Holds (construct (sys.reach o ho R₀ U k)) :=
+  fun h => hbad (sys.holds_of_reach ho R₀ U spec (sys.simulate_trajectory hA hx₀ hu) k h)
 
 end CORALean.Real
 

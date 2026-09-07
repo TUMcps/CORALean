@@ -48,12 +48,12 @@ theorem NonlinearSys.Trajectory.relinReach_outer_inputSolution [Mtimes ℐ S]
     (hRclosed : ∀ i < N, IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (steps i).A Δt η) (steps i).linInput)))
     (hRbdd : ∀ i < N, Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (steps i).A Δt η) (steps i).linInput))) (o : ℕ) :
-    ∀ i ≤ N, x ((i : ℝ) * Δt) ∈ construct (sys.relinReach o Δt steps
+      (MatExp.inputRemainder (steps i).A Δt η) (steps i).linInput))) {o : ℕ} (ho : 0 < o) :
+    ∀ i ≤ N, x ((i : ℝ) * Δt) ∈ construct (sys.relinReach o ho Δt steps
       (fun i => (NonlinearSys.linearize (steps i).A).inputSolution Δt η
         (steps i).linInput) R₀ i) := by -- --- PROOF ---
   -- everything above is per step, so the loop is `relinReach_outer` plus one enclosure
-  refine traj.relinReach_outer hΔt.le hT hR hbdd ?_ o
+  refine traj.relinReach_outer hΔt.le hT hR hbdd ?_ ho
   intro i hi
   have hlin := (traj.restrict (step_subset_horizon hΔt.le hT hi)).linearize
     (steps i).cert (hR i hi)

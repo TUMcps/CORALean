@@ -30,13 +30,13 @@ variable [Mtimes 𝕄 S] [Mtimes (Mat 𝕋) S]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinParamSysDT.holds_of_output (sys : LinParamSysDT 𝕄 n) (out : OutputEq 𝕋 n n r) (o : ℕ)
-    (R₀ U : S n) (spec : Specification (Vec ℝ r)) {x u : ℕ → Vec ℝ n}
+theorem LinParamSysDT.holds_of_output (sys : LinParamSysDT 𝕄 n) (out : OutputEq 𝕋 n n r) {o : ℕ}
+    (ho : 0 < o) (R₀ U : S n) (spec : Specification (Vec ℝ r)) {x u : ℕ → Vec ℝ n}
     (traj : sys.Trajectory R₀ U x u) (k : ℕ)
-    (h : spec.Holds (construct (out.outputSet (sys.reach o R₀ U k) U))) :
+    (h : spec.Holds (construct (out.outputSet (sys.reach o ho R₀ U k) U))) :
     spec.Holds {out.eval (x k) (u k)} :=
   spec.holds_of_outer
-    (Set.singleton_subset_iff.mpr (sys.output_outer out o R₀ U traj k)) h
+    (Set.singleton_subset_iff.mpr (sys.output_outer out ho R₀ U traj k)) h
 
 end CORALean.Real
 

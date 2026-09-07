@@ -43,11 +43,12 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The reachable set of the closed loop after `k` steps, from `R₀`, held at
-maximum order `o`. -/
-def NeurNetContrSysDT.reach (sys : NeurNetContrSysDT 𝕋 S n) (o : ℕ) (R₀ : S n) : ℕ → S n
+maximum order `o`. `ho` is what rules out `o = 0`. -/
+def NeurNetContrSysDT.reach (sys : NeurNetContrSysDT 𝕋 S n) (o : ℕ) (ho : 0 < o) (R₀ : S n) :
+    ℕ → S n
   | 0 => R₀
-  | k + 1 => sys.plant.reach o (sys.reach o R₀ k)
-      (sys.contr.enclose (sys.reach o R₀ k)) 1
+  | k + 1 => sys.plant.reach o ho (sys.reach o ho R₀ k)
+      (sys.contr.enclose (sys.reach o ho R₀ k)) 1
 
 omit [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
     [Mtimes (Mat 𝕋) S] in

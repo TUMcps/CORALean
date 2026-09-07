@@ -32,14 +32,15 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSysDT.reachSet_subset_reach (sys : LinearSysDT 𝕋 n) (o : ℕ) (R₀ U : S n)
-    (k : ℕ) : sys.reachSet R₀ U k ⊆ construct (sys.reach o R₀ U k) := by -- --- PROOF ---
+theorem LinearSysDT.reachSet_subset_reach (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o)
+    (R₀ U : S n) (k : ℕ) :
+    sys.reachSet R₀ U k ⊆ construct (sys.reach o ho R₀ U k) := by -- --- PROOF ---
   induction k with
   | zero => exact subset_rfl
   | succ k ih =>
     rintro _ ⟨_, ⟨y, hy, rfl⟩, w, hw, rfl⟩
-    show toRealMat sys.A *ᵥ y + w ∈ construct (sys.reach o (sys.reach o R₀ U k) U 1)
-    exact sys.reach_one_outer o _ _ (ih hy) hw
+    show toRealMat sys.A *ᵥ y + w ∈ construct (sys.reach o ho (sys.reach o ho R₀ U k) U 1)
+    exact sys.reach_one_outer ho _ _ (ih hy) hw
 
 end CORALean.Real
 

@@ -29,9 +29,9 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 
 /-- `reach` contains every trajectory of a run known only up to step `K`, at
 every step within it. -/
-theorem LinParamSysDT.reach_outer_on (sys : LinParamSysDT 𝕄 n) (o : ℕ) (R₀ U : S n) {K : ℕ}
-    {x u : ℕ → Vec ℝ n} (traj : sys.TrajectoryOn R₀ U K x u) :
-    ∀ k ≤ K, x k ∈ construct (sys.reach o R₀ U k) := by -- --- PROOF ---
+theorem LinParamSysDT.reach_outer_on (sys : LinParamSysDT 𝕄 n) {o : ℕ} (ho : 0 < o) (R₀ U : S n)
+    {K : ℕ} {x u : ℕ → Vec ℝ n} (traj : sys.TrajectoryOn R₀ U K x u) :
+    ∀ k ≤ K, x k ∈ construct (sys.reach o ho R₀ U k) := by -- --- PROOF ---
   intro k
   induction k with
   | zero => intro _; exact traj.init
@@ -39,9 +39,9 @@ theorem LinParamSysDT.reach_outer_on (sys : LinParamSysDT 𝕄 n) (o : ℕ) (R�
     intro hk
     have hkK : k < K := Nat.lt_of_succ_le hk
     obtain ⟨A, hA, hstep⟩ := traj.step k hkK
-    show x (k + 1) ∈ construct (sys.reach o (sys.reach o R₀ U k) U 1)
+    show x (k + 1) ∈ construct (sys.reach o ho (sys.reach o ho R₀ U k) U 1)
     rw [hstep]
-    exact sys.reach_one_outer o _ _ hA (ih hkK.le) (traj.input k hkK)
+    exact sys.reach_one_outer ho _ _ hA (ih hkK.le) (traj.input k hkK)
 
 end CORALean.Real
 

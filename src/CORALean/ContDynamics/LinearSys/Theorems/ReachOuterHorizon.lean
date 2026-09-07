@@ -34,9 +34,9 @@ theorem LinearSys.Trajectory.reach_outer_horizon {sys : LinearSys 𝕋 n} {T : S
     {R₀ U Ud : S n} {x u : ℝ → Vec ℝ n} {Δt : ℝ} {K : ℕ}
     (traj : sys.Trajectory T R₀ U x u) (hΔt : 0 ≤ Δt)
     (hT : Set.Icc 0 ((K : ℝ) * Δt) ⊆ T) (hU : Bornology.IsBounded (construct U))
-    (hUd : ∀ k < K, sys.stepInput u Δt k ∈ construct Ud) (o : ℕ) :
-    ∀ k ≤ K, x ((k : ℝ) * Δt) ∈ construct ((sys.discretize Δt).reach o R₀ Ud k) :=
-  (sys.discretize Δt).reach_outer_on o R₀ Ud (traj.discretize_horizon hΔt hT hU hUd)
+    (hUd : ∀ k < K, sys.stepInput u Δt k ∈ construct Ud) {o : ℕ} (ho : 0 < o) :
+    ∀ k ≤ K, x ((k : ℝ) * Δt) ∈ construct ((sys.discretize Δt).reach o ho R₀ Ud k) :=
+  (sys.discretize Δt).reach_outer_on ho R₀ Ud (traj.discretize_horizon hΔt hT hU hUd)
 
 end CORALean.Real
 

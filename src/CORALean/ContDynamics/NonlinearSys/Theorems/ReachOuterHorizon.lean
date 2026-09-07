@@ -44,10 +44,10 @@ theorem NonlinearSys.Trajectory.reach_outer_horizon {sys : NonlinearSys n m} {T 
     (hR : ∀ t ∈ Set.Icc (0 : ℝ) ((K : ℝ) * Δt), x t ∈ R) (hΔt : 0 ≤ Δt)
     (hU : Bornology.IsBounded (construct (linInput sys.f A B xs us U L)))
     (hUd : ∀ k < K, (NonlinearSys.linearize A).stepInput
-      (fun t => sys.f (x t) (u t) - A *ᵥ x t) Δt k ∈ construct Ud) (o : ℕ) :
+      (fun t => sys.f (x t) (u t) - A *ᵥ x t) Δt k ∈ construct Ud) {o : ℕ} (ho : 0 < o) :
     ∀ k ≤ K, x ((k : ℝ) * Δt) ∈
-      construct (((NonlinearSys.linearize A).discretize Δt).reach o R₀ Ud k) :=
-  (traj.linearize_horizon cert hT hR).reach_outer_horizon hΔt subset_rfl hU hUd o
+      construct (((NonlinearSys.linearize A).discretize Δt).reach o ho R₀ Ud k) :=
+  (traj.linearize_horizon cert hT hR).reach_outer_horizon hΔt subset_rfl hU hUd ho
 
 end CORALean.Real
 

@@ -77,15 +77,15 @@ theorem Example.trajZ : Example.sysZ.Trajectory (S := 𝒵) Example.lpR0 Example
   step _ := ⟨1, Example.one_mem_sysZ, by simp [Example.lpX0, Matrix.one_mulVec]⟩
 
 /-- `reach_outer`, unchanged, at the interval matrix. -/
-example (o k : ℕ) :
-    Example.lpX0 ∈ construct (Example.sysI.reach (S := 𝒵) o Example.lpR0 Example.lpU k) :=
-  Example.sysI.reach_outer (S := 𝒵) o Example.lpR0 Example.lpU Example.trajI k
+example {o : ℕ} (ho : 0 < o) (k : ℕ) :
+    Example.lpX0 ∈ construct (Example.sysI.reach (S := 𝒵) o ho Example.lpR0 Example.lpU k) :=
+  Example.sysI.reach_outer (S := 𝒵) ho Example.lpR0 Example.lpU Example.trajI k
 
 /-- `reach_outer`, unchanged, at the matrix zonotope — the strictly tighter
 model, since it keeps the correlation an interval matrix throws away. -/
-example (o k : ℕ) :
-    Example.lpX0 ∈ construct (Example.sysZ.reach (S := 𝒵) o Example.lpR0 Example.lpU k) :=
-  Example.sysZ.reach_outer (S := 𝒵) o Example.lpR0 Example.lpU Example.trajZ k
+example {o : ℕ} (ho : 0 < o) (k : ℕ) :
+    Example.lpX0 ∈ construct (Example.sysZ.reach (S := 𝒵) o ho Example.lpR0 Example.lpU k) :=
+  Example.sysZ.reach_outer (S := 𝒵) ho Example.lpR0 Example.lpU Example.trajZ k
 
 end CORALean.Real
 

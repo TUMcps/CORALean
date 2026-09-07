@@ -33,10 +33,11 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The reachable set after `k` steps, from initial set `R₀` under inputs `U`,
-held at maximum order `o`, at a system matrix ranging over `sys.A`. -/
-def LinParamSysDT.reach (sys : LinParamSysDT 𝕄 n) (o : ℕ) (R₀ U : S n) : ℕ → S n
+held at maximum order `o`, at a system matrix ranging over `sys.A`. `ho` is
+what rules out `o = 0`, exactly as in `LinearSysDT.reach`. -/
+def LinParamSysDT.reach (sys : LinParamSysDT 𝕄 n) (o : ℕ) (ho : 0 < o) (R₀ U : S n) : ℕ → S n
   | 0 => R₀
-  | k + 1 => reduce (plus (mtimes sys.A (sys.reach o R₀ U k)) U) o
+  | k + 1 => reduce (plus (mtimes sys.A (sys.reach o ho R₀ U k)) U) o
 
 omit [∀ m n, ContSet (𝕄 m n) (Mat ℝ m n)] [∀ n, ContSet (S n) (Vec ℝ n)]
     [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes 𝕄 S] in

@@ -37,17 +37,17 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem NeurNetContrSysDT.reach_outer (sys : NeurNetContrSysDT 𝕋 S n) (o : ℕ) (R₀ : S n)
-    {π : Vec ℝ n → Vec ℝ n} (hπ : sys.contr.Sound π)
+theorem NeurNetContrSysDT.reach_outer (sys : NeurNetContrSysDT 𝕋 S n) {o : ℕ} (ho : 0 < o)
+    (R₀ : S n) {π : Vec ℝ n → Vec ℝ n} (hπ : sys.contr.Sound π)
     {x : ℕ → Vec ℝ n} (traj : sys.Trajectory π R₀ x) (k : ℕ) :
-    x k ∈ construct (sys.reach o R₀ k) := by -- --- PROOF ---
+    x k ∈ construct (sys.reach o ho R₀ k) := by -- --- PROOF ---
   induction k with
   | zero => exact traj.init
   | succ k ih =>
-    show x (k + 1) ∈ construct (sys.plant.reach o (sys.reach o R₀ k)
-      (sys.contr.enclose (sys.reach o R₀ k)) 1)
+    show x (k + 1) ∈ construct (sys.plant.reach o ho (sys.reach o ho R₀ k)
+      (sys.contr.enclose (sys.reach o ho R₀ k)) 1)
     rw [traj.step k]
-    exact sys.plant.reach_one_outer o _ _ ih (hπ.enclose_outer _ _ ih)
+    exact sys.plant.reach_one_outer ho _ _ ih (hπ.enclose_outer _ _ ih)
 
 end CORALean.Real
 

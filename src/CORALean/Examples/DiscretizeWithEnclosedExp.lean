@@ -66,16 +66,16 @@ theorem Example.traj : Example.sysD.Trajectory (S := ℐ𝒱) Example.R0 Example
     simp [Example.A0, Example.sys, Example.x0, exp_zero, Matrix.one_mulVec]⟩
 
 /-- `reach_outer`, at the interval matrix `discretizeEnclosure` produced. -/
-example (o k : ℕ) :
-    Example.x0 ∈ construct (Example.sysD.reach (S := ℐ𝒱) o Example.R0 Example.U k) :=
-  Example.sysD.reach_outer (S := ℐ𝒱) o Example.R0 Example.U Example.traj k
+example {o : ℕ} (ho : 0 < o) (k : ℕ) :
+    Example.x0 ∈ construct (Example.sysD.reach (S := ℐ𝒱) o ho Example.R0 Example.U k) :=
+  Example.sysD.reach_outer (S := ℐ𝒱) ho Example.R0 Example.U Example.traj k
 
 /-- `holds_of_reach`, closing the chain at whatever specification the caller
 checks the computed reachable set against. -/
-example (spec : Specification (Vec ℝ 1)) (o k : ℕ)
-    (h : spec.Holds (construct (Example.sysD.reach (S := ℐ𝒱) o Example.R0 Example.U k))) :
+example (spec : Specification (Vec ℝ 1)) {o : ℕ} (ho : 0 < o) (k : ℕ)
+    (h : spec.Holds (construct (Example.sysD.reach (S := ℐ𝒱) o ho Example.R0 Example.U k))) :
     spec.Holds {Example.x0} :=
-  Example.sysD.holds_of_reach (S := ℐ𝒱) o Example.R0 Example.U spec Example.traj k h
+  Example.sysD.holds_of_reach (S := ℐ𝒱) ho Example.R0 Example.U spec Example.traj k h
 
 end CORALean.Real
 

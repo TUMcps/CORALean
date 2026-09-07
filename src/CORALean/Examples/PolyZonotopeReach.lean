@@ -40,9 +40,9 @@ loses one of the three instances the discrete recursion propagates through. -/
 example {n : ℕ} (sys : LinearSys ℝ n) (T : Set ℝ) (R₀ U Ud : PolyZonotope (Vec ℝ n))
     (x u : ℝ → Vec ℝ n) (Δt : ℝ) (traj : sys.Trajectory (S := 𝒫𝒵) T R₀ U x u) (hΔt : 0 ≤ Δt)
     (hT : Set.Ici 0 ⊆ T) (hU : Bornology.IsBounded (construct U))
-    (hUd : ∀ k : ℕ, sys.stepInput u Δt k ∈ construct Ud) (o k : ℕ) :
-    x (k * Δt) ∈ construct ((sys.discretize Δt).reach (S := 𝒫𝒵) o R₀ Ud k) :=
-  traj.reach_outer hΔt hT hU hUd o k
+    (hUd : ∀ k : ℕ, sys.stepInput u Δt k ∈ construct Ud) {o : ℕ} (ho : 0 < o) (k : ℕ) :
+    x (k * Δt) ∈ construct ((sys.discretize Δt).reach (S := 𝒫𝒵) o ho R₀ Ud k) :=
+  traj.reach_outer hΔt hT hU hUd ho k
 
 /-- The bounded-horizon form, which is what a hybrid location could call: the
 domain covers `[0, KΔt]` and the conclusion stops at step `K`. -/
@@ -50,8 +50,8 @@ example {n : ℕ} (sys : LinearSys ℝ n) (T : Set ℝ) (R₀ U Ud : PolyZonotop
     (x u : ℝ → Vec ℝ n) (Δt : ℝ) (K : ℕ) (traj : sys.Trajectory (S := 𝒫𝒵) T R₀ U x u)
     (hΔt : 0 ≤ Δt) (hT : Set.Icc 0 ((K : ℝ) * Δt) ⊆ T)
     (hU : Bornology.IsBounded (construct U))
-    (hUd : ∀ k < K, sys.stepInput u Δt k ∈ construct Ud) (o : ℕ) :
-    ∀ k ≤ K, x ((k : ℝ) * Δt) ∈ construct ((sys.discretize Δt).reach (S := 𝒫𝒵) o R₀ Ud k) :=
-  traj.reach_outer_horizon hΔt hT hU hUd o
+    (hUd : ∀ k < K, sys.stepInput u Δt k ∈ construct Ud) {o : ℕ} (ho : 0 < o) :
+    ∀ k ≤ K, x ((k : ℝ) * Δt) ∈ construct ((sys.discretize Δt).reach (S := 𝒫𝒵) o ho R₀ Ud k) :=
+  traj.reach_outer_horizon hΔt hT hU hUd ho
 
 end CORALean.Real

@@ -35,9 +35,10 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 interval, from what `relinReach` reaches at `iΔt` and step `i`'s input
 enclosure. -/
 noncomputable def NonlinearSys.relinTimeInterval (sys : NonlinearSys n m) {U : S m} (o : ℕ)
-    (Δt : ℝ) (η : ℕ) (steps : ℕ → sys.LinStep U) (Ud : ℕ → S n) (R₀ : S n) (i : ℕ) : S n :=
+    (ho : 0 < o) (Δt : ℝ) (η : ℕ) (steps : ℕ → sys.LinStep U) (Ud : ℕ → S n) (R₀ : S n) (i : ℕ) :
+    S n :=
   ((NonlinearSys.linearize (steps i).A).timeIntervalStep Δt η
-    (sys.relinReach o Δt steps Ud R₀ i)) ⊞ Ud i
+    (sys.relinReach o ho Δt steps Ud R₀ i)) ⊞ Ud i
 
 end CORALean.Real
 

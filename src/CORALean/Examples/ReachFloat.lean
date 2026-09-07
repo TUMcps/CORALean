@@ -50,37 +50,37 @@ weights do. -/
 
 /-- The reachable set after `k` steps, at a float zonotope. Everything it calls —
 `mtimes`, `plus`, `reduce` — is the float representation's own. -/
-def Example.reachZonotopeFloat (sys : Real.LinearSysDT 𝕋 n) (o : ℕ)
+def Example.reachZonotopeFloat (sys : Real.LinearSysDT 𝕋 n) (o : ℕ) (ho : 0 < o)
     (R₀ U : Zonotope 𝕋 n) (k : ℕ) : Zonotope 𝕋 n :=
-  sys.reach (S := Zonotope 𝕋) o R₀ U k
+  sys.reach (S := Zonotope 𝕋) o ho R₀ U k
 
 /-- The same at a float box, where `reduce` is the identity. -/
-def Example.reachIntervalFloat (sys : Real.LinearSysDT 𝕋 n) (o : ℕ)
+def Example.reachIntervalFloat (sys : Real.LinearSysDT 𝕋 n) (o : ℕ) (ho : 0 < o)
     (R₀ U : Interval 𝕋 n) (k : ℕ) : Interval 𝕋 n :=
-  sys.reach (S := Interval 𝕋) o R₀ U k
+  sys.reach (S := Interval 𝕋) o ho R₀ U k
 
 -- Anonymous, since their content is that they elaborate.
 
 /-- Every run of the system is enclosed, by the exact layer's theorem read at a
 float representation. -/
-example (sys : Real.LinearSysDT 𝕋 n) (o : ℕ) (R₀ U : Zonotope 𝕋 n)
+example (sys : Real.LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o) (R₀ U : Zonotope 𝕋 n)
     {x u : ℕ → Vec ℝ n} (traj : sys.Trajectory (S := Zonotope 𝕋) R₀ U x u) (k : ℕ) :
-    x k ∈ construct (sys.reach (S := Zonotope 𝕋) o R₀ U k) :=
-  sys.reach_outer o R₀ U traj k
+    x k ∈ construct (sys.reach (S := Zonotope 𝕋) o ho R₀ U k) :=
+  sys.reach_outer ho R₀ U traj k
 
 /-- One step, which is what a closed loop needs and `reach_outer` cannot give. -/
-example (sys : Real.LinearSysDT 𝕋 n) (o : ℕ) (R U : Zonotope 𝕋 n) {x u : Vec ℝ n}
+example (sys : Real.LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o) (R U : Zonotope 𝕋 n) {x u : Vec ℝ n}
     (hx : x ∈ construct R) (hu : u ∈ construct U) :
-    Scalar.toRealMat sys.A *ᵥ x + u ∈ construct (sys.reach (S := Zonotope 𝕋) o R U 1) :=
-  sys.reach_one_outer o R U hx hu
+    Scalar.toRealMat sys.A *ᵥ x + u ∈ construct (sys.reach (S := Zonotope 𝕋) o ho R U 1) :=
+  sys.reach_one_outer ho R U hx hu
 
 /-- A specification checked on the computed set answers for the state. -/
-example (sys : Real.LinearSysDT 𝕋 n) (o : ℕ) (R₀ U : Zonotope 𝕋 n)
+example (sys : Real.LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o) (R₀ U : Zonotope 𝕋 n)
     (spec : Specification (Vec ℝ n)) {x u : ℕ → Vec ℝ n}
     (traj : sys.Trajectory (S := Zonotope 𝕋) R₀ U x u) (k : ℕ)
-    (h : spec.Holds (construct (sys.reach (S := Zonotope 𝕋) o R₀ U k))) :
+    (h : spec.Holds (construct (sys.reach (S := Zonotope 𝕋) o ho R₀ U k))) :
     spec.Holds {x k} :=
-  sys.holds_of_reach o R₀ U spec traj k h
+  sys.holds_of_reach ho R₀ U spec traj k h
 
 /-! ## An output equation
 
@@ -91,18 +91,18 @@ representation, and its matrices are stored floats like the plant's. -/
 /-- The output set at step `k`, at a float zonotope. The output dimension `r` is
 free of the state dimension, which is what an output is for. -/
 def Example.outputZonotopeFloat (sys : Real.LinearSysDT 𝕋 n) (out : Real.OutputEq 𝕋 n n r)
-    (o : ℕ) (R₀ U : Zonotope 𝕋 n) (k : ℕ) : Zonotope 𝕋 r :=
-  out.outputSet (sys.reach (S := Zonotope 𝕋) o R₀ U k) U
+    (o : ℕ) (ho : 0 < o) (R₀ U : Zonotope 𝕋 n) (k : ℕ) : Zonotope 𝕋 r :=
+  out.outputSet (sys.reach (S := Zonotope 𝕋) o ho R₀ U k) U
 
 /-- A specification checked on the output set answers for the output — the one
 question this repository could not ask before. -/
-example (sys : Real.LinearSysDT 𝕋 n) (out : Real.OutputEq 𝕋 n n r) (o : ℕ)
+example (sys : Real.LinearSysDT 𝕋 n) (out : Real.OutputEq 𝕋 n n r) {o : ℕ} (ho : 0 < o)
     (R₀ U : Zonotope 𝕋 n) (spec : Specification (Vec ℝ r)) {x u : ℕ → Vec ℝ n}
     (traj : sys.Trajectory (S := Zonotope 𝕋) R₀ U x u) (k : ℕ)
     (h : spec.Holds (construct
-      (out.outputSet (sys.reach (S := Zonotope 𝕋) o R₀ U k) U))) :
+      (out.outputSet (sys.reach (S := Zonotope 𝕋) o ho R₀ U k) U))) :
     spec.Holds {out.eval (x k) (u k)} :=
-  sys.holds_of_output out o R₀ U spec traj k h
+  sys.holds_of_output out ho R₀ U spec traj k h
 
 /-! ## A network controlling a discrete plant
 
@@ -119,14 +119,14 @@ def Example.closedLoopFloat (A : Mat 𝕋 2 2) (W₁ : Mat 𝕋 3 2) (b₁ : Vec
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def Example.reachClosedLoopFloat (sys : Real.NeurNetContrSysDT 𝕋 (Zonotope 𝕋) n)
-    (o : ℕ) (R₀ : Zonotope 𝕋 n) (k : ℕ) : Zonotope 𝕋 n :=
-  sys.reach o R₀ k
+    (o : ℕ) (ho : 0 < o) (R₀ : Zonotope 𝕋 n) (k : ℕ) : Zonotope 𝕋 n :=
+  sys.reach o ho R₀ k
 
-example (sys : Real.NeurNetContrSysDT 𝕋 (Zonotope 𝕋) n) (o : ℕ) (R₀ : Zonotope 𝕋 n)
-    {π : Vec ℝ n → Vec ℝ n} (hπ : sys.contr.Sound π)
+example (sys : Real.NeurNetContrSysDT 𝕋 (Zonotope 𝕋) n) {o : ℕ} (ho : 0 < o)
+    (R₀ : Zonotope 𝕋 n) {π : Vec ℝ n → Vec ℝ n} (hπ : sys.contr.Sound π)
     {x : ℕ → Vec ℝ n} (traj : sys.Trajectory π R₀ x) (k : ℕ) :
-    x k ∈ construct (sys.reach o R₀ k) :=
-  sys.reach_outer o R₀ hπ traj k
+    x k ∈ construct (sys.reach o ho R₀ k) :=
+  sys.reach_outer ho R₀ hπ traj k
 
 /-! ## A hybrid automaton
 

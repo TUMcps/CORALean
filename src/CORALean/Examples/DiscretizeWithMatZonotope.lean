@@ -71,16 +71,16 @@ theorem DMZ.traj : DMZ.sysD.Trajectory (S := 𝒵) DMZ.R0 DMZ.U
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `reach_outer`, at the matrix zonotope `discretizeMatZonotope` produced. -/
-theorem DMZ.mem_reach (o k : ℕ) :
-    DMZ.x0 ∈ construct (DMZ.sysD.reach (S := 𝒵) o DMZ.R0 DMZ.U k) :=
-  DMZ.sysD.reach_outer (S := 𝒵) o DMZ.R0 DMZ.U DMZ.traj k
+theorem DMZ.mem_reach {o : ℕ} (ho : 0 < o) (k : ℕ) :
+    DMZ.x0 ∈ construct (DMZ.sysD.reach (S := 𝒵) o ho DMZ.R0 DMZ.U k) :=
+  DMZ.sysD.reach_outer (S := 𝒵) ho DMZ.R0 DMZ.U DMZ.traj k
 
 /-- `holds_of_reach`, closing the chain at whatever specification the caller
 checks the computed reachable set against. -/
-example (spec : Specification (Vec ℝ 1)) (o k : ℕ)
-    (h : spec.Holds (construct (DMZ.sysD.reach (S := 𝒵) o DMZ.R0 DMZ.U k))) :
+example (spec : Specification (Vec ℝ 1)) {o : ℕ} (ho : 0 < o) (k : ℕ)
+    (h : spec.Holds (construct (DMZ.sysD.reach (S := 𝒵) o ho DMZ.R0 DMZ.U k))) :
     spec.Holds {DMZ.x0} :=
-  DMZ.sysD.holds_of_reach (S := 𝒵) o DMZ.R0 DMZ.U spec DMZ.traj k h
+  DMZ.sysD.holds_of_reach (S := 𝒵) ho DMZ.R0 DMZ.U spec DMZ.traj k h
 
 end CORALean.Real
 

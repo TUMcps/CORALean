@@ -74,7 +74,7 @@ def steps : ℕ := 5
 a table of `k` rows costs `k²/2` steps where a fold would cost `k`, and every
 row is one call to the definition the theorems are about. -/
 def R (k : ℕ) : Zonotope (Dyadic p) 2 :=
-  (sys p).reach (S := Zonotope (Dyadic p)) order (R₀ p) (U p) k
+  (sys p).reach (S := Zonotope (Dyadic p)) order (by decide) (R₀ p) (U p) k
 
 def reachRow (k : ℕ) : String :=
   let Z := R p k
