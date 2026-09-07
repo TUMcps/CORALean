@@ -13,6 +13,10 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.Dependent
 import CORALean.ContSet.PolyZonotope.Real.Operations.Point
 import CORALean.ContSet.PolyZonotope.Real.Operations.OfPoint
 import CORALean.ContSet.PolyZonotope.Real.Operations.SubsetAt
+import CORALean.ContSet.PolyZonotope.Real.Operations.MaxExp
+import CORALean.ContSet.PolyZonotope.Real.Operations.GetSubsetE
+import CORALean.ContSet.PolyZonotope.Real.Operations.GetSubsetG
+import CORALean.ContSet.PolyZonotope.Real.Operations.GetSubset
 import CORALean.ContSet.PolyZonotope.Real.Operations.ExtG
 import CORALean.ContSet.PolyZonotope.Real.Operations.ExtE
 import CORALean.ContSet.PolyZonotope.Real.Operations.ExtM
@@ -93,8 +97,8 @@ boxes an interval matrix's radius into fresh independent generators, priced by `
 
 `bilin` pairs two sets over shared factors by any bilinear map, exact against `point`; `mul` is it
 at `hadamardLin`, `quadMap` at `quadBilin`, `evalPoly` any degree. `padBack` and `padFront` widen by
-another set's factors at exponent zero, so *independent* factors reach it. `subsetAt` names the
-subset a sub-box of the factors reaches under `point`.
+another set's factors at exponent zero, so *independent* factors reach it. `subsetAt` names what a
+factor sub-box reaches; `getSubset` represents it, `getSubsetG` at `getSubsetE`, sized by `maxExp`.
 
 Each of those grows the generator counts, and `compact` brings them back down without changing the
 set: equal exponent columns add, a zero generator goes, and so does a factor no column reads.
