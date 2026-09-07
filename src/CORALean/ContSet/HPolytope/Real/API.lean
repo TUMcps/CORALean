@@ -8,11 +8,11 @@ import CORALean.ContSet.HPolytope.Real.Instances
 # Polytopes by halfspaces, collected
 
 CORA's `polytope` with `isHRep` set. `VPolytope` is the same sets by vertices,
-a separate representation with no conversion between them — either way is vertex
-enumeration, an algorithm in its own right.
+a separate representation, converting either way only by vertex enumeration, an
+algorithm in its own right.
 
-The specification only; the float layer is designed and not yet written, and
-rounding lands differently here than in the representations above.
+Both layers are specified. Rounding lands differently here than in the
+representations above, in `Float`.
 
 An inequality absorbs its rounding the way an `Interval` does: raise `b`, account
 for the rounding of `A`, and the halfspace only grows. An equality has no slack to

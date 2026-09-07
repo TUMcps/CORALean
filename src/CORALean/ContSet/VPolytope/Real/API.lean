@@ -8,10 +8,9 @@ import CORALean.ContSet.VPolytope.Real.Instances
 # Polytopes by vertices, collected
 
 CORA's `polytope` with `isVRep` set. `HPolytope` is the same sets described by
-halfspaces; the two are separate representations here, with no conversion
-between them — converting either way is vertex enumeration, an algorithm in its
-own right.
+halfspaces; the two are separate representations here, converting either way
+only by vertex enumeration, an algorithm in its own right.
 
-The specification only. A float layer would round the vertices outward into a
-hull, which no algorithm here needs yet.
+The specification. `Float` pays its rounding into an error box rather than
+into the vertices — a hull has no centre to move a rounded vertex away from.
 -/

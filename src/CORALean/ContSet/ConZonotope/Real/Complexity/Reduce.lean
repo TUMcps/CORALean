@@ -10,17 +10,15 @@ counts are exactly what they were. Either way neither count grows, so
 `≤ C.P.m` and `≤ C.P.me` hold unconditionally: `0 ≤ ·` in the first branch,
 `rfl` in the second once it is fixed.
 
-No generator-count bound is stated: that would need `Zonotope.reduce`'s own
-order bound, which does not exist — `Zonotope`'s `Complexity/ReduceBy.lean`
-bounds `reduceCombastel` only, Girard's identical argument deliberately left
-unstated (`Theorems/ReduceOrder.lean` says why), and `reduce` calls Girard's.
-Reproving it here to fill this file would be inventing a bound issue #5 asks
-this directory not to.
+No generator-count bound is stated: `Zonotope.reduce_order_le` now bounds
+`Zonotope.reduce`'s own order, added alongside `LinearSysDT.reach_order_le`,
+but issue #5 scopes that addition to `Zonotope` and the two `reach`es alone —
+every other representation's `reduce`, this one included, stays for later.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   07-September-2026
 -- Last revision: ---
 
 
