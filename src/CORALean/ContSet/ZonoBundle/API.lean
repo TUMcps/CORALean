@@ -1,14 +1,17 @@
 import CORALean.ContSet.ZonoBundle.Real.API
+import CORALean.ContSet.ZonoBundle.Float.API
 
 /-!
-# Zonotope bundles
+# Zonotope bundles, both layers
 
 CORA's `zonoBundle` [1, §3.5.5]: a finite family of zonotopes, denoting their
 intersection, exactly — the representation §3.5.5 introduces because a
 zonotope is not closed under intersection.
 
-Real layer only: nothing here rounds, `and` being generator concatenation and
-`plus`/`mtimes` an outer approximation already at every real generator.
+The specification in `Real`, and in `Float` the same family at float zonotopes.
+Nothing rounds at the bundle level: `and` appends and `reduce` forgets, while
+`plus`, `linComb` and `mtimes` hand each member to its own float operation, so
+every error box in sight is a member's.
 
 ## References
 
