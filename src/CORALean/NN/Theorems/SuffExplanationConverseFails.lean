@@ -86,7 +86,7 @@ abstractly sufficient for `nnAbs`. -/
 theorem suffExplanation_of_abstract_converse_fails :
     ∃ (nn nnAbs : NeuralNetwork (fun n => Interval (Vec ℝ n)) 1 2) (x : Vec ℝ 1) (ε : ℝ)
       (E : Finset (Fin 1)) (l : Fin 2),
-      nn.outputSet (ofInterval (S := fun n => Interval (Vec ℝ n)) (explainBox x ε E))
+      nn.image (construct (ofInterval (S := fun n => Interval (Vec ℝ n)) (explainBox x ε E)))
         ⊆ construct (nnAbs.propagate
           (ofInterval (S := fun n => Interval (Vec ℝ n)) (explainBox x ε E)))
       ∧ nn.IsSuffExplanation x ε E l

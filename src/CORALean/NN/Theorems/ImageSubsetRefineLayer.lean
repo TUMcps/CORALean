@@ -1,13 +1,19 @@
-import CORALean.NN.Operations.RefineLoop
-import CORALean.NN.Theorems.OutputSetSubsetPropagateAt
+import CORALean.NN.Operations.RefineLayer
+import CORALean.NN.Theorems.ImageSubsetPropagateAt
 
 /-!
-# The refinement loop keeps the enclosure
+# Refining a whole layer keeps the enclosure
 
 Split out of `PropagateAtOuter.lean` (issue #62): one of five genuinely public
 declarations there, none used outside the file, so split one file each.
 
-So does the loop, at every `pick` and every number of steps.
+Refining a whole layer [1, Def. 4.6], the rule that spends more orders for the
+same generator count, keeps the enclosure too.
+
+## References
+
+* [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural
+      Network Verification using Sensitivity Analysis". HSCC 2023.
 -/
 
 -- Authors:       Tobias Ladner
@@ -27,10 +33,10 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem RefinableNetwork.outputSet_subset_refineLoop (rn : RefinableNetwork S n m)
-    (pick : Schedule → ℕ × ℕ) (sch : Schedule) (k : ℕ) (X : S n) :
-    rn.outputSet X ⊆ construct (rn.propagateAt (Schedule.refineLoop pick sch k) X) :=
-  rn.outputSet_subset_propagateAt _ X
+theorem RefinableNetwork.image_subset_refineLayer (rn : RefinableNetwork S n m)
+    (sch : Schedule) (l : ℕ) (X : S n) :
+    rn.image (construct X) ⊆ construct (rn.propagateAt (Schedule.refineLayer sch l) X) :=
+  rn.image_subset_propagateAt _ X
 
 end CORALean.Real
 

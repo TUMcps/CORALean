@@ -9,7 +9,7 @@ schedule off it gives a `NeuralNetwork` back, so nothing downstream — `propaga
 its enclosure, `Specification` — knows a refinement loop exists.
 
 `eval` is defined here and not read off a schedule, which is the point of
-`RefinableLayer` keeping `eval` outside `propagate`: the exact output set is one
+`RefinableLayer` keeping `eval` outside `propagate`: the exact image is one
 set, fixed before any level is chosen, and every schedule encloses that same set.
 
 `length` is what a heuristic ranks over — a schedule is an infinite sequence and
@@ -42,10 +42,10 @@ def RefinableNetwork.eval : ∀ {n m : ℕ}, RefinableNetwork S n m → Vec ℝ 
   | _, _, .nil, x => x
   | _, _, .cons L rest, x => rest.eval (L.eval x)
 
-/-- The exact set the whole loop is about: fixed before a level is chosen, so
+/-- The exact image the whole loop is about: fixed before a level is chosen, so
 every schedule encloses it. -/
-def RefinableNetwork.outputSet (rn : RefinableNetwork S n m) (X : S n) : Set (Vec ℝ m) :=
-  rn.eval '' construct X
+def RefinableNetwork.image (rn : RefinableNetwork S n m) (X : Set (Vec ℝ n)) : Set (Vec ℝ m) :=
+  rn.eval '' X
 
 /-- How many levels a schedule is read at. -/
 def RefinableNetwork.length : ∀ {n m : ℕ}, RefinableNetwork S n m → ℕ

@@ -15,7 +15,7 @@ by another. That keeps every value in one set, so the dependency between the
 branches survives; splitting into two sets and recombining them would lose it,
 which is precisely the precision a skip connection is there to preserve.
 
-`outputSet` is what verification is about and what nothing computes: the exact
+`image` is what verification is about and what nothing computes: the exact
 image, which `propagate` encloses.
 -/
 
@@ -44,10 +44,10 @@ def NeuralNetwork.eval : ∀ {n m : ℕ}, NeuralNetwork S n m → Vec ℝ n → 
   | _, _, .nil, x => x
   | _, _, .cons L rest, x => rest.eval (L.eval x)
 
-/-- The exact set a network produces, which is not computable and is what an
-enclosure is an enclosure of. -/
-def NeuralNetwork.outputSet (nn : NeuralNetwork S n m) (X : S n) : Set (Vec ℝ m) :=
-  nn.eval '' construct X
+/-- The exact image a network produces: not computable, and what `propagate`
+encloses. -/
+def NeuralNetwork.image (nn : NeuralNetwork S n m) (X : Set (Vec ℝ n)) : Set (Vec ℝ m) :=
+  nn.eval '' X
 
 /-- One layer, so that a single layer needs no special case anywhere. -/
 def NeuralNetwork.ofLayer (L : Layer S n m) : NeuralNetwork S n m := .cons L .nil

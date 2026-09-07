@@ -1,4 +1,4 @@
-import CORALean.NN.Theorems.OutputSetSubset
+import CORALean.NN.Theorems.ImageSubset
 import CORALean.NN.Theorems.SuffExplanationTransfer
 
 /-!
@@ -38,7 +38,7 @@ theorem NeuralNetwork.suffExplanation_of_propagate (nn : NeuralNetwork S n m)
     (x : Vec ℝ n) (ε : ℝ) (E : Finset (Fin n)) (l : Fin m)
     (hsuffAbs : nn.IsSuffExplanationAbstract x ε E l) :
     nn.IsSuffExplanation x ε E l :=
-  nn.suffExplanation_of_abstract nn x ε E l (nn.outputSet_subset _) hsuffAbs
+  nn.suffExplanation_of_abstract nn x ε E l (nn.image_subset _) hsuffAbs
 
 end CORALean.Real
 

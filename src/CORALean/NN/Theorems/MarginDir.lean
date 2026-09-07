@@ -6,7 +6,7 @@ import CORALean.Global.Tensor
 How far label `j` closes the gap on label `l`: the direction a bound is asked
 for, one per rival, to certify a classification. Used directly at the outputs
 of concrete networks in `Examples`, and via `DisjointMisclassifiedOfBounds` and
-`Classifies` at any network's output set.
+`Classifies` at any network's image.
 -/
 
 -- Authors:       Tobias Ladner

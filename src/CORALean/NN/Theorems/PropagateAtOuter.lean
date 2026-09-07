@@ -4,7 +4,7 @@ import CORALean.NN.Theorems.AtScheduleEval
 import CORALean.NN.Theorems.PropagateOuter
 
 /-!
-# Every schedule encloses the output set
+# Every schedule encloses the image
 
 The central claim of the refinement loop, and the reason the heuristic owes
 nothing: soundness does not depend on which layers were refined, only precision
@@ -15,7 +15,7 @@ There is no induction here. `atSchedule` produces an ordinary `NeuralNetwork`
 and `atSchedule_eval` says it computes the same function, so the claim is
 `NeuralNetwork.propagate_outer` read at that network.
 
-`OutputSetSubsetPropagateAt.lean` and its own three corollaries state the same
+`ImageSubsetPropagateAt.lean` and its own three corollaries state the same
 fact at a step and at the loop.
 -/
 

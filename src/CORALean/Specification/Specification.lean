@@ -13,7 +13,7 @@ Stated over `Set α` and not over a representation, because the check is what an
 outer approximation is *for*: `Theorems.HoldsOfOuter` carries it from the
 computed set to the exact one, and that step knows nothing about how either set
 was described. So the same specification checks a reachable set and a network's
-output set.
+image.
 -/
 
 -- Authors:       Tobias Ladner

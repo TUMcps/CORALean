@@ -30,17 +30,17 @@ import CORALean.NN.Theorems.ExistsScheduleSigmoidLinearSigmoidSubset
 import CORALean.NN.Theorems.NeuronMergingNetworkOuter
 import CORALean.NN.Theorems.NeuronMergingOuter
 import CORALean.NN.Theorems.NotMemUnsafeSet
-import CORALean.NN.Theorems.OutputSetSubset
+import CORALean.NN.Theorems.ImageSubset
 import CORALean.NN.Theorems.PropagateAtInflate
 import CORALean.NN.Theorems.PropagateAtOuter
-import CORALean.NN.Theorems.OutputSetSubsetPropagateAt
+import CORALean.NN.Theorems.ImageSubsetPropagateAt
 import CORALean.NN.Theorems.PropagateNotMonotone
 import CORALean.NN.Theorems.ReducesAtOuter
 import CORALean.NN.Theorems.ReducesAtRefl
 import CORALean.NN.Theorems.HoldsOfReducesAt
-import CORALean.NN.Theorems.OutputSetSubsetRefine
-import CORALean.NN.Theorems.OutputSetSubsetRefineLayer
-import CORALean.NN.Theorems.OutputSetSubsetRefineLoop
+import CORALean.NN.Theorems.ImageSubsetRefine
+import CORALean.NN.Theorems.ImageSubsetRefineLayer
+import CORALean.NN.Theorems.ImageSubsetRefineLoop
 import CORALean.NN.Theorems.PropagateOuter
 import CORALean.NN.Theorems.ReluNotDifferentiable
 import CORALean.NN.Theorems.Robustness
@@ -72,7 +72,7 @@ import CORALean.NN.Theorems.VerifySplitSound
 /-!
 # What a network's enclosure guarantees, collected
 
-`PropagateOuter`/`OutputSetSubset` are the graph induction, its pointwise form; `Verified` composes
+`PropagateOuter`/`ImageSubset` are the graph induction, its pointwise form; `Verified` composes
 `Specification.holds_of_outer`, read by `MemSafeSet`/`NotMemUnsafeSet` against a safe or unsafe set.
 `Robustness` builds on `Misclassified`, `MarginDir`, `DisjointMisclassifiedOfBounds`, `Classifies`.
 `HoldsOfSplit`/`VerifySplitSound` make verification complete: split once, or recurse to a depth.

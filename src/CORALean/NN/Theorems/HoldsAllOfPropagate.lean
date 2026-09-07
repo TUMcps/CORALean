@@ -1,4 +1,4 @@
-import CORALean.NN.Theorems.OutputSetSubset
+import CORALean.NN.Theorems.ImageSubset
 import CORALean.Specification.Theorems.HoldsOfOuter
 import CORALean.Specification.Theorems.HoldsAllOfOuter
 
@@ -30,8 +30,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 theorem NeuralNetwork.holdsAll_of_propagate (nn : NeuralNetwork S n m) (X : S n)
     (specs : List (Specification (Vec ℝ m)))
     (h : Specification.HoldsAll specs (construct (nn.propagate X))) :
-    Specification.HoldsAll specs (nn.outputSet X) :=
-  Specification.holdsAll_of_outer specs (nn.outputSet_subset X) h
+    Specification.HoldsAll specs (nn.image (construct X)) :=
+  Specification.holdsAll_of_outer specs (nn.image_subset X) h
 
 end CORALean.Real
 

@@ -43,9 +43,12 @@ structure Layer (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] (n m : ℕ
   propagate_outer (s : S n) (x : Vec ℝ n) (hx : x ∈ construct s) :
     eval x ∈ construct (propagate s)
 
+/-- The image of a set under `eval`, without asking anything about `propagate`. -/
+def Layer.image (L : Layer S n m) (X : Set (Vec ℝ n)) : Set (Vec ℝ m) := L.eval '' X
+
 /-- The obligation as an inclusion, which is the form it composes in. -/
 theorem Layer.image_subset (L : Layer S n m) (s : S n) :
-    L.eval '' construct s ⊆ construct (L.propagate s) := by
+    L.image (construct s) ⊆ construct (L.propagate s) := by
   rintro _ ⟨x, hx, rfl⟩
   exact L.propagate_outer s x hx
 

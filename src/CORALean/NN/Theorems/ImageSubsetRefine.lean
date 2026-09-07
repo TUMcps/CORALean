@@ -1,14 +1,14 @@
-import CORALean.NN.Operations.RefineLayer
-import CORALean.NN.Theorems.OutputSetSubsetPropagateAt
+import CORALean.NN.Operations.Refine
+import CORALean.NN.Theorems.ImageSubsetPropagateAt
 
 /-!
-# Refining a whole layer keeps the enclosure
+# Refining one neuron keeps the enclosure
 
 Split out of `PropagateAtOuter.lean` (issue #62): one of five genuinely public
 declarations there, none used outside the file, so split one file each.
 
-Refining a whole layer [1, Def. 4.6], the rule that spends more orders for the
-same generator count, keeps the enclosure too.
+Refining any neuron keeps the enclosure [1, Def. 4.4], which is what leaves
+the ranking a ranking: a wrong choice costs precision and never correctness.
 
 ## References
 
@@ -33,10 +33,10 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem RefinableNetwork.outputSet_subset_refineLayer (rn : RefinableNetwork S n m)
-    (sch : Schedule) (l : ℕ) (X : S n) :
-    rn.outputSet X ⊆ construct (rn.propagateAt (Schedule.refineLayer sch l) X) :=
-  rn.outputSet_subset_propagateAt _ X
+theorem RefinableNetwork.image_subset_refine (rn : RefinableNetwork S n m)
+    (sch : Schedule) (l j : ℕ) (X : S n) :
+    rn.image (construct X) ⊆ construct (rn.propagateAt (Schedule.refine sch l j) X) :=
+  rn.image_subset_propagateAt _ X
 
 end CORALean.Real
 

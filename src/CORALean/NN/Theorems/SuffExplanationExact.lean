@@ -5,12 +5,12 @@ import CORALean.NN.Theorems.Misclassified
 import CORALean.Specification.Specification
 
 /-!
-# Sufficient explanation, read at the exact output set
+# Sufficient explanation, read at the exact image
 
-`def:suff-explanation-abstract` [1] read at `outputSet` rather than at
+`def:suff-explanation-abstract` [1] read at `image` rather than at
 `propagate`: separation on the network's *exact* image of `explainBox`, which
 is what the paper means by a refined network's output. Weaker than
-`IsSuffExplanationAbstract` by `outputSet_subset`, and it is the conclusion
+`IsSuffExplanationAbstract` by `image_subset`, and it is the conclusion
 `Specification.holds_of_outer` hands back from a containment whose left side is
 an exact image — the shape `reducesAt_outer` and `neuronMerging_network_outer`
 prove. Stronger than `IsSuffExplanation`, which ranges over
@@ -46,7 +46,7 @@ image of `explainBox`: no point of it lets a rival tie or beat `l`. -/
 def NeuralNetwork.IsSuffExplanationExact (nn : NeuralNetwork S n m) (x : Vec ℝ n) (ε : ℝ)
     (E : Finset (Fin n)) (l : Fin m) : Prop :=
   (Specification.unsafeSet (misclassified m l)).Holds
-    (nn.outputSet (ofInterval (explainBox x ε E)))
+    (nn.image (construct (ofInterval (explainBox x ε E) : S n)))
 
 end CORALean.Real
 

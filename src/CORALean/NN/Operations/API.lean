@@ -39,7 +39,7 @@ network. `RefinementRank`/`WorstIndex`/`RefineWorst` pick the layer a
 layer-wise step moves and `RefinementNeuron` the neuron a neuron-wise one does,
 out of the sensitivity and the error — rankings with no obligation, again.
 `Convergent`/`NetworkConvergent` are the other side, the hypotheses under which
-spending orders actually shrinks the enclosure onto the exact output set, and
+spending orders actually shrinks the enclosure onto the exact image, and
 `RefinementLipschitz` is the per-layer form of the bound those hypotheses ask of
 every tail.
 -/

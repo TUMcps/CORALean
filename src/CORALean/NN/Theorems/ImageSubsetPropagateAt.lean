@@ -1,7 +1,7 @@
 import CORALean.NN.Theorems.PropagateAtOuter
 
 /-!
-# A schedule's propagation encloses the output set
+# A schedule's propagation encloses the image
 
 Split out of `PropagateAtOuter.lean` (issue #62): all five declarations there
 were genuinely public — none used outside the file, and no single one is the
@@ -28,8 +28,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem RefinableNetwork.outputSet_subset_propagateAt (rn : RefinableNetwork S n m)
-    (sch : Schedule) (X : S n) : rn.outputSet X ⊆ construct (rn.propagateAt sch X) := by
+theorem RefinableNetwork.image_subset_propagateAt (rn : RefinableNetwork S n m)
+    (sch : Schedule) (X : S n) : rn.image (construct X) ⊆ construct (rn.propagateAt sch X) := by
   rintro _ ⟨x, hx, rfl⟩
   exact rn.propagateAt_outer sch X x hx
 
