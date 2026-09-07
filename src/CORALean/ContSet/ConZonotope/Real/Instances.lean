@@ -7,6 +7,7 @@ import CORALean.ContSet.ConZonotope.Real.Theorems.IsCompact
 import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombOuter
 import CORALean.ContSet.ConZonotope.Real.Theorems.MtimesExact
 import CORALean.ContSet.ConZonotope.Real.Theorems.MtimesIntervalMatOuter
+import CORALean.ContSet.ConZonotope.Real.Theorems.OfPointMem
 import CORALean.ContSet.ConZonotope.Real.Theorems.PlusExact
 import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceOuter
 
@@ -18,11 +19,15 @@ computed.
 
 `And` from `and_exact` read in the `⊆` direction: two constrained zonotopes
 intersect to one exactly, which is the whole reason the representation exists.
+
+`OfPoint` at no generators and no constraints, `HPolytope.fullspace` standing
+in for the empty polytope — the singleton the jump reset asks any
+representation to build, one `OfInterval` cheaper.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       01-September-2026
--- Last update:   06-September-2026
+-- Last update:   07-September-2026
 -- Last revision: ---
 
 
@@ -49,6 +54,10 @@ instance {α : Type} [AddCommGroup α] [Module ℝ α] : ConvexSet (ConZonotope 
 coefficient cube the constraints cut down. -/
 instance {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α] : CompactSet (ConZonotope α) α :=
   ⟨ConZonotope.isCompact_construct⟩
+
+instance {α : Type} [AddCommGroup α] [Module ℝ α] : OfPoint (ConZonotope α) α where
+  ofPoint := ConZonotope.ofPoint
+  mem_ofPoint := ConZonotope.mem_ofPoint
 
 instance : Plus (ConZonotope (Vec ℝ n)) (Vec ℝ n) where
   plus := ConZonotope.plus

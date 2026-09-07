@@ -11,6 +11,7 @@ import CORALean.ContSet.ConZonotope.Real.Operations.MtimesEqMap
 import CORALean.ContSet.ConZonotope.Real.Operations.MtimesIntervalMat
 import CORALean.ContSet.ConZonotope.Real.Operations.LinComb
 import CORALean.ContSet.ConZonotope.Real.Operations.Reduce
+import CORALean.ContSet.ConZonotope.Real.Operations.OfPoint
 
 /-!
 # What `ConZonotope` computes
@@ -27,6 +28,7 @@ gives the constraints up. CORA reduces the zonotope the constraint rows lift to
 and reads the rows back off it, which asks for the equality system CORA's
 constraints are and this representation's polytope need not be.
 
-`OfMat` is CORA's constructor, whose constraints are an equality system, and
-`Domain` is the coefficient polytope the unit box and `P` make together.
+`OfMat` is CORA's constructor, whose constraints are an equality system,
+`Domain` is the coefficient polytope the unit box and `P` make together, and
+`OfPoint` is the centre alone, at `HPolytope.fullspace`.
 -/

@@ -2,6 +2,7 @@ import CORALean.ContSet.Interval.Real.Instances
 import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombOuter
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MtimesExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MtimesIntervalMatOuter
+import CORALean.ContSet.PolyZonotope.Real.Theorems.OfPointMem
 import CORALean.ContSet.PolyZonotope.Real.Theorems.PlusExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceOuter
 
@@ -11,11 +12,10 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceOuter
 Each obligation is a theorem from `Theorems`, the exact ones read in the `⊆`
 direction.
 
-`Plus` and `LinComb` sit at every ambient type rather than at `Vec`: neither
-needs coordinates. `Reduce` pins down `Vec`, as `Zonotope`'s does, since a
-generator ranking and a box are both entrywise. `Mtimes` moves between
-dimensions at a plain matrix and, as `Zonotope` also carries, at an interval
-one. `quadMap` has no class, so a caller names `PolyZonotope.quadMap`.
+`Plus`, `LinComb` and `OfPoint` sit at every ambient type rather than at `Vec`: none needs
+coordinates. `Reduce` pins down `Vec`, as `Zonotope`'s does, since a generator ranking and a box are
+both entrywise. `Mtimes` moves between dimensions at a plain matrix and, as `Zonotope` also carries,
+at an interval one. `quadMap` has no class, so a caller names `PolyZonotope.quadMap`.
 
 `Reduce`'s one number bounds both generator blocks together, as the class
 field's `o` does everywhere else; the class carries only the enclosure.
@@ -28,7 +28,7 @@ module is zero, and the ranking orders reals.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   06-September-2026
+-- Last update:   07-September-2026
 -- Last revision: ---
 
 
@@ -48,6 +48,10 @@ instance : ContSet (PolyZonotope α) α := ⟨PolyZonotope.construct⟩
 instance : Plus (PolyZonotope α) α where
   plus := PolyZonotope.plus
   plus_outer PZ₁ PZ₂ := (PolyZonotope.plus_exact PZ₁ PZ₂).subset
+
+instance : OfPoint (PolyZonotope α) α where
+  ofPoint := PolyZonotope.ofPoint
+  mem_ofPoint := PolyZonotope.mem_ofPoint
 
 noncomputable instance : LinComb (PolyZonotope α) α where
   linComb := PolyZonotope.linComb

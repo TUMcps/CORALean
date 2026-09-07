@@ -8,6 +8,8 @@ import CORALean.HybridDynamics.Theorems.InvariantOnOfInvariant
 import CORALean.HybridDynamics.Theorems.JumpAndOuter
 import CORALean.HybridDynamics.Theorems.JumpOuter
 import CORALean.HybridDynamics.Theorems.JumpOuterConZonotope
+import CORALean.HybridDynamics.Theorems.JumpOfPointOuter
+import CORALean.HybridDynamics.Theorems.JumpAndOfPointOuter
 import CORALean.HybridDynamics.Theorems.LinearEmbedding
 import CORALean.HybridDynamics.Theorems.ResetImageSubset
 import CORALean.HybridDynamics.Theorems.RunExistsRunOn
@@ -35,4 +37,7 @@ The bounded-horizon reading: `RunOnToRun`/`RunExistsRunOn` relate `RunOn` to
 `FlowOuterInputSolution` computes `FlowOuter`'s input contribution instead of
 naming it, and `InvariantOfEnclosure` is what that buys: a criterion on `R`
 built from it and `JumpAndOuter` that proves `HybridAutomaton.Invariant R`.
+
+`JumpOfPointOuter`/`JumpAndOfPointOuter` read the same two guarantees at
+`OfPoint`, which `ConPolyZono` has and `OfInterval` it does not (#38).
 -/

@@ -15,6 +15,7 @@ import CORALean.ContSet.ConZonotope.Real.Theorems.IsCompactDomain
 import CORALean.ContSet.ConZonotope.Real.Theorems.IsCompact
 import CORALean.ContSet.ConZonotope.Real.Theorems.IsClosed
 import CORALean.ContSet.ConZonotope.Real.Theorems.IsBounded
+import CORALean.ContSet.ConZonotope.Real.Theorems.OfPointMem
 
 /-!
 # What `ConZonotope` guarantees
@@ -25,6 +26,9 @@ enclosures, `reduce` by way of `zonotope_outer`. `linComb` has both directions:
 the result is the convex hull itself and asks both sets to be nonempty. The
 topological facts go through `ConstructEqImage` and so through the polytope,
 which is where they differ from a zonotope's.
+
+`OfPointMem` needs no theorem of `HPolytope`'s: an empty row index discharges
+the constraint the same way it discharges the generator sum.
 
 Together these are everything `LinearSys` reachability asks of a representation.
 -/

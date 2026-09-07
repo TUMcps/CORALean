@@ -2,13 +2,14 @@ import CORALean.ContSet.ContSet.CompactSet
 import CORALean.ContSet.ConPolyZono.Real.Theorems.AndExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.IsCompact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.MtimesExact
+import CORALean.ContSet.ConPolyZono.Real.Theorems.OfPointMem
 import CORALean.ContSet.ConPolyZono.Real.Theorems.PlusExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceOuter
 
 /-!
 # What `ConPolyZono` instantiates
 
-`ContSet`, `CompactSet`, `Plus`, `Mtimes`, `Reduce` and `And`, each obligation
+`ContSet`, `CompactSet`, `Plus`, `Mtimes`, `Reduce`, `And` and `OfPoint`, each obligation
 a theorem from `Theorems` read in the `⊆` direction.
 
 No `ConvexSet`: the sets are generally not convex, which is the point of the
@@ -27,7 +28,7 @@ constraint counts. No `LinComb`: it would have to relax the independent block as
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   06-September-2026
+-- Last update:   07-September-2026
 -- Last revision: ---
 
 
@@ -52,6 +53,10 @@ instance {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α] : CompactSet (
 instance : Plus (ConPolyZono α) α where
   plus := ConPolyZono.plus
   plus_outer C₁ C₂ := (ConPolyZono.plus_exact C₁ C₂).subset
+
+instance : OfPoint (ConPolyZono α) α where
+  ofPoint := ConPolyZono.ofPoint
+  mem_ofPoint := ConPolyZono.mem_ofPoint
 
 /-- The anonymous constructor, not named fields: `reduce`'s own imports reach
 `Global.Partition`'s `Split ... and ...` notation, which makes `and` a token
