@@ -5,7 +5,7 @@ import CORALean.ContSet.Capsule.Real.Theorems.API
 /-!
 # What `Capsule` instantiates
 
-`ContSet`, `ConvexSet`, and `CompactSet` — nothing else.
+`ContSet`, `ConvexSet`, `CompactSet`, and `OfPoint` at `g = 0`, `r = 0`.
 
 No `Plus`, `Mtimes`, or `LinComb`: a capsule is closed under almost nothing.
 The Minkowski sum of two capsules is not a capsule (a segment thickened by two
@@ -17,7 +17,7 @@ reachable set through an operation.
 
 -- Authors:       Tobias Ladner
 -- Written:       06-September-2026
--- Last update:   ---
+-- Last update:   07-September-2026
 -- Last revision: ---
 
 
@@ -35,6 +35,10 @@ instance : ContSet (Capsule n) (Vec ℝ n) := ⟨Capsule.construct⟩
 instance : ConvexSet (Capsule n) (Vec ℝ n) := ⟨Capsule.convex_construct⟩
 
 instance : CompactSet (Capsule n) (Vec ℝ n) := ⟨Capsule.isCompact_construct⟩
+
+instance : OfPoint (Capsule n) (Vec ℝ n) where
+  ofPoint := Capsule.ofPoint
+  mem_ofPoint := Capsule.mem_ofPoint
 
 end CORALean.Real
 

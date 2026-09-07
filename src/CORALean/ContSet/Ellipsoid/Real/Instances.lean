@@ -2,26 +2,27 @@ import CORALean.ContSet.ContSet.ContSet
 import CORALean.ContSet.Ellipsoid.Real.Theorems.MapExact
 import CORALean.ContSet.Ellipsoid.Real.Theorems.MtimesExact
 import CORALean.ContSet.Ellipsoid.Real.Theorems.PlusOuter
+import CORALean.ContSet.Ellipsoid.Real.Theorems.OfPointMem
 
 /-!
 # What `Ellipsoid` instantiates
 
-`ContSet` and `Mtimes` by instance search, and `Plus` only once a caller has
-named the parameter it carries. An ellipsoid is closed under a linear image and
-nothing else the interface names: a Minkowski sum of two ellipsoids is not one,
-nor is a `linComb`, and `reduce` would be a fitting problem, not a ranking.
+`ContSet` and `Mtimes` by instance search, `OfPoint` at the degenerate case —
+`G` with no columns — and `Plus` only once a caller has named the parameter it
+carries. Otherwise closed under a linear image alone: a Minkowski sum of two
+ellipsoids is not one, nor is a `linComb`, and `reduce` would be a fitting
+problem, not a ranking.
 
 `Ellipsoid.plus_outer` holds at a fixed pair of scalings for every pair of
 ellipsoids, so fixing `s₁` and `s₂` — with the inequality they owe — yields a
 lawful `Plus`. It is a `def` and not an `instance` on purpose: instance search
 must not make a precision choice, so a caller writes
-`letI := Ellipsoid.plusInstance hne₁ hne₂ hs`. One instance then fixes the pair
-for a whole run, where the tightest depends on the operands and the direction;
-a caller wanting it per call names `Ellipsoid.plus`.
+`letI := Ellipsoid.plusInstance hne₁ hne₂ hs`, fixing the pair for a whole
+run, where the tightest depends on the operands and the direction; per-call
+precision names `Ellipsoid.plus` instead.
 
 At `Vec ℝ n` only: an ellipsoid is described by a Euclidean norm, which a
-general real module has none of. No family notation is missing — `Ellipsoid` is
-already indexed by the dimension, so a use site writes `(S := Ellipsoid)`.
+general real module has none of.
 -/
 
 -- Authors:       Tobias Ladner
@@ -42,6 +43,10 @@ variable {n : ℕ}
 -- ========================================  INSTANCES  ========================================= --
 
 instance : ContSet (Ellipsoid n) (Vec ℝ n) := ⟨Ellipsoid.construct⟩
+
+instance : OfPoint (Ellipsoid n) (Vec ℝ n) where
+  ofPoint := Ellipsoid.ofPoint
+  mem_ofPoint := Ellipsoid.mem_ofPoint
 
 /-- `Plus` at two scalings the caller chooses, with the inequality that makes
 them sound. Deliberately not an `instance`: picking the pair is a precision

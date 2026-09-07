@@ -1,10 +1,14 @@
 import CORALean.ContSet.ZonoBundle.Real.Operations.And
 import CORALean.ContSet.ZonoBundle.Real.Operations.Plus
 import CORALean.ContSet.ZonoBundle.Real.Operations.Mtimes
+import CORALean.ContSet.ZonoBundle.Real.Operations.Map
+import CORALean.ContSet.ZonoBundle.Real.Operations.OfPoint
 
 /-!
 # What a zonotope bundle computes, collected
 
 `and`, exact and the whole point of the representation; `plus` and `mtimes`,
-both enclosures over the family, one component at a time.
+both enclosures over the family, one component at a time; `map`, one linear
+image per component, which `Instances` reads at a bijective one for `Reindex`;
+and `ofPoint`, a bundle of one point-zonotope.
 -/
