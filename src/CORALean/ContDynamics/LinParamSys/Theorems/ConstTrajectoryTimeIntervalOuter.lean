@@ -1,0 +1,72 @@
+import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryToLinearSys
+import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalStepOuter
+import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
+import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+
+/-!
+# A constant-parameter run stays in the step enclosure, inputs and all
+
+`LinearSys.Trajectory.timeInterval_outer` at `'constParam'`: the closed form
+splits the run into what the initial set carries and what the inputs
+contributed, and `toLinearSys` is what lets that closed form be used at all —
+one matrix is fixed over the step, so `variation_of_constants` applies to it
+unchanged.
+
+The initial part is the box's `timeIntervalStep`, which knows no member. The
+input part is a set the caller supplies: `LinearSys.inputSolution`'s guarantee
+rests on the `inputReach` stack, which is written at a point matrix and is not
+carried over here, so no operation of `LinParamSys` discharges `hUd` yet.
+
+Integrability is not a hypothesis — `InputIntegrable` derives it from `U` being
+bounded.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       08-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open CORALean.Real
+open Matrix Pointwise ContSet Scalar NormedSpace MeasureTheory
+
+attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
+  Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
+
+variable {n : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
+variable [Mtimes ℐ S]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+-- the closed form is read at the point system the fixed matrix names
+set_option maxHeartbeats 400000 in
+/-- One step and nothing more, at every matrix the system's set holds: the
+domain has to cover `[0, r]` only. -/
+theorem LinParamSys.ConstTrajectory.timeInterval_outer {sys : LinParamSys ℐ n} {T : Set ℝ}
+    {R₀ U Ud : S n} {x u : ℝ → Vec ℝ n} {A : Mat ℝ n n} {r : ℝ}
+    (traj : sys.ConstTrajectory T R₀ U x u A) (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
+    (hε : ‖(Interval.smul r sys.A).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}
+    (ht0 : 0 ≤ t) (htr : t ≤ r)
+    (hU : Bornology.IsBounded (construct U))
+    (hUd : (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ u s) ∈ construct Ud) :
+    x t ∈ construct (Plus.plus (sys.timeIntervalStep r (m + 2) R₀) Ud) := by -- --- PROOF ---
+  have hTt : Set.Icc (0:ℝ) t ⊆ T := fun s hs => hT ⟨hs.1, le_trans hs.2 htr⟩
+  have lin := traj.toLinearSys
+  have hvoc := lin.variation_of_constants hTt ht0 (lin.intervalIntegrable_input hTt ht0 hU)
+  simp only [Scalar.toRealMat_real, sub_zero] at hvoc
+  rw [hvoc]
+  refine Plus.plus_outer _ _ (Set.add_mem_add ?_ hUd)
+  exact sys.timeIntervalStep_outer hr hε R₀ traj.param ht0 htr
+    (Set.mem_image_of_mem _ traj.init)
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
