@@ -6,6 +6,7 @@ import CORALean.ContSet.Zonotope.Real.Complexity.MtimesMatZonotope
 import CORALean.ContSet.Zonotope.Real.Complexity.MatMul
 import CORALean.ContSet.Zonotope.Real.Complexity.Bilin
 import CORALean.ContSet.Zonotope.Real.Complexity.ReduceBy
+import CORALean.ContSet.Zonotope.Real.Complexity.ReduceBox
 import CORALean.ContSet.Zonotope.Real.Complexity.BilinBigO
 
 /-!
@@ -19,6 +20,9 @@ reachability order bound built from these means something. Each theorem is
 `reduce`'s bounds are inequalities, not equalities, and stay in
 `Theorems/ReduceOrder.lean`: reduction is the one operation whose whole job is
 to make the count smaller, so its statement is a bound rather than a count.
+`reduceBox` splits on the same condition and stays here regardless: its count
+is exact on both sides of the `if`, `n` or `0`, since `reduceByBox` fixes its
+own count without reading how many generators it absorbed.
 
 How many scalar operations an operation costs is the other kind of claim and
 lives in `Cost/`: a size follows from a definition and a running cost does not,
