@@ -15,9 +15,11 @@ library answers soundly, which is what a tuning rule has to mean here.
 `timeIntervalStep_outer` takes; the selector's predicate carries it for exactly
 that reason.
 
-Soundness only. A smaller `ε` gives a tighter correction matrix, but no theorem
-here relates `ε` to the width of the enclosure, and it is not the reachable
-set's error either way.
+A smaller `ε` gives a tighter correction matrix, and
+`timeIntervalStep_subset_reach_add_error` is what turns that into a statement
+about the enclosure's own error. It also says `ε` reaches the smaller term
+only: over a whole step the convex hull costs a first-order excess that the
+correction matrix, second order, does not pay for.
 -/
 
 -- Authors:       Tobias Ladner

@@ -8,10 +8,12 @@ import CORALean.ContDynamics.LinearSys.Theorems.Discretize
 import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeEnclosure
 import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeEnclosureReach
 import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeHorizon
+import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeInputSolution
 import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeMatZonotope
 import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeMatZonotopeReach
-import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeInputSolution
 import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeStep
+import CORALean.ContDynamics.LinearSys.Theorems.ExistsTimeIntervalStepErrorLt
+import CORALean.ContDynamics.LinearSys.Theorems.ExistsTimePointStepErrorLt
 import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMulVec
 import CORALean.ContDynamics.LinearSys.Theorems.FlowIci
 import CORALean.ContDynamics.LinearSys.Theorems.FlowIoi
@@ -46,6 +48,9 @@ import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterConvexCompact
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterInputSolution
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterSplit
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepEpsOuter
+import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepSubsetAddError
+import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepOuter
+import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepSubsetAddError
 import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryDeltaReachOuter
 import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryTimeIntervalOuter
 import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
@@ -64,15 +69,15 @@ representation. `TimeIntervalOuterSplit` is the same: dropping `0 ∈ U` needs
 only `Recentre` and `OfPoint`, which any representation with a centre has.
 
 The `ReachSet` trio is the same guarantees stated of a set: every trajectory is
-in `reachSet`, which is inside what `reach` and `timeIntervalStep` compute.
+in `reachSet`, which is inside what `reach` and `timeIntervalStep` compute. The
+two `SubsetAddError` files run a step backwards against `StepError`, and the
+`Exists…Lt` pair makes that error as small as asked for.
 
 `Restrict` is what makes the time domain a parameter worth having: a guarantee
 over one step applies to a run over all forward time by throwing the rest away.
-Each statement asks for the window it speaks about, and only `discretize` and
-the `reach` statements built on it ask for `Set.Ici 0`.
+Only `discretize` and the `reach` statements built on it ask for `Set.Ici 0`.
 
 `DiscretizeEnclosure`/`DiscretizeEnclosureReach` are `Discretize`/`ReachOuter`
-again, at `discretizeEnclosure` in place of `discretize`, where the exponential
-is only enclosed rather than computed, and the `DiscretizeMatZonotope` pair is
-the same at a matrix zonotope, which keeps what a box drops.
+at `discretizeEnclosure`, where the exponential is only enclosed rather than
+computed; `DiscretizeMatZonotope` is the same at a matrix zonotope.
 -/

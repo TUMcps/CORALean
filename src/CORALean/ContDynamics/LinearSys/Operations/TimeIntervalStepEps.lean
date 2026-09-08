@@ -10,12 +10,12 @@ the least order meeting it. What that buys is in `timeIntervalStepEps_outer` —
 the side condition `‖rA‖/(η+2) < 1` a caller of `timeIntervalStep` has to
 discharge is discharged by the selector, so `0 < ε` is all that is left.
 
-**`ε` is not the enclosure's error.** It bounds the remainder of the matrix
-exponential's series, one contribution to the width of the correction matrix,
-and says nothing about how far `construct` of the result exceeds the exact
-reachable set. Adaptive reachability in the sense of [1] tunes the step size
-and the zonotope order as well, and splits a stated error across all of them;
-this is one knob of that, chosen soundly.
+**`ε` is one term of the enclosure's error and not all of it.**
+`timeIntervalStep_subset_reach_add_error` measures how far `construct` of the
+result exceeds what the flow visits, and `ε` reaches only the second-order part
+of that: over a whole step the convex hull costs a first-order excess no order
+touches. Adaptive reachability in the sense of [1] tunes the step size and the
+zonotope order as well; this is one knob of that, chosen soundly.
 
 ## References
 
