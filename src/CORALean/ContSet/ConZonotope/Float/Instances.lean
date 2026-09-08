@@ -14,7 +14,7 @@ of scope here.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   07-September-2026
+-- Last update:   08-September-2026
 -- Last revision: ---
 
 
@@ -27,19 +27,17 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- ========================================  INSTANCES  ========================================= --
 
-/-- The one computable field here, and so the only one storage can reach: the two
-below go through a linear program and are `noncomputable`. -/
 instance : Plus (ConZonotope 𝕋 n) (Vec ℝ n) where
   plus C₁ C₂ := (C₁.plus C₂).materialise
   plus_outer C₁ C₂ := by
     rw [ConZonotope.materialise_eq]
     exact ConZonotope.plus_outer C₁ C₂
 
-noncomputable instance : LinComb (ConZonotope 𝕋 n) (Vec ℝ n) where
+instance : LinComb (ConZonotope 𝕋 n) (Vec ℝ n) where
   linComb := ConZonotope.linComb
   linComb_outer := ConZonotope.linComb_outer
 
-noncomputable instance : Reduce (ConZonotope 𝕋 n) (Vec ℝ n) where
+instance : Reduce (ConZonotope 𝕋 n) (Vec ℝ n) where
   reduce := ConZonotope.reduce
   reduce_outer := ConZonotope.reduce_outer
 
