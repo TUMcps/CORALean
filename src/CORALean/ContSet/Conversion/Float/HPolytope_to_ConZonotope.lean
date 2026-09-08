@@ -26,7 +26,7 @@ already give.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   08-September-2026
 -- Last revision: ---
 
 
@@ -153,7 +153,7 @@ theorem HPolytope.subset_nominal_conZonotopeOf (P : HPolytope 𝕋 n) (Z : Zonot
     linarith [herr.1, herr.2]
 
 -- with certificates in hand: a box from the bounds, a zonotope from the box, these rows on it
-noncomputable def HPolytope.conZonotope {P : HPolytope 𝕋 n}
+def HPolytope.conZonotope {P : HPolytope 𝕋 n}
     (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
     (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) : ConZonotope 𝕋 n :=
   P.conZonotopeOf (HPolytope.zonotope up lo)

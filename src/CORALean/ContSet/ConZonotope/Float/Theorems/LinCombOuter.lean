@@ -22,11 +22,17 @@ The nominal obligation is the exact argument at the same coefficients — `λ β
 weighted rows are the incoming rows against a nonnegative weight, which is what
 `smul_mem_halfScaledLeft` and its mirror say. Only the centre and the centre
 generator are displaced from what ℝ would have, so only they are charged.
+
+`aux_linCombCoeff` and `aux_linCombGReal` are `noncomputable`: both name a real
+number — a real-scaled coefficient, a real-halved centre gap — only to state
+what this file proves about it, and neither is read back into
+`ConZonotope.linComb`, which stores no real. Inherent to arguing about ℝ, not a
+gap in what runs.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   06-September-2026
+-- Last update:   08-September-2026
 -- Last revision: ---
 
 

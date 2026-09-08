@@ -48,8 +48,10 @@ naming convention.
 
 Set representations and their operations are defined over ℝ and proved sound.
 Nearly every operation over-approximates the set it claims to, and the float
-layer refines each such theorem by rounding "outward" — computable for most of
-that layer, but not all of it; see `Examples/ReachFloat.lean` for the split.
+layer refines each such theorem by rounding "outward" — and runs: every float
+operation is a `def`, save the interface instantiated at ℝ itself, which is a
+specification proxy rather than a representation. Continuous-time reachability
+has no float counterpart at all; see `Examples/ReachFloat.lean` for the split.
 
 The Minkowski difference is the exception, and worth knowing about before
 reading the interfaces: a difference is a *guarantee* — the states from which

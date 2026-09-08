@@ -11,7 +11,7 @@ dropped; at or below it, nothing happens and the constraints survive. As over �
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   08-September-2026
 -- Last revision: ---
 
 
@@ -24,7 +24,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def ConZonotope.reduce (cZ : ConZonotope 𝕋 n) (o : ℕ) : ConZonotope 𝕋 n :=
+def ConZonotope.reduce (cZ : ConZonotope 𝕋 n) (o : ℕ) : ConZonotope 𝕋 n :=
   if o * n < cZ.h then (cZ.zonotope.reduce o).conZonotope else cZ
 
 end CORALean.Float
