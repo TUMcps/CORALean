@@ -18,6 +18,7 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetSubsetRelinReach
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetSubsetRelinTimeInterval
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetSubsetRelinTimeIntervalOfSubset
+import CORALean.ContDynamics.NonlinearSys.Theorems.RelinDeltaReachOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuterInputSolution
 import CORALean.ContDynamics.NonlinearSys.Theorems.RelinTimeIntervalOuter
@@ -32,10 +33,10 @@ it again, in the others: `LinInputOuter` spends the certificate, `Linearize`
 turns a confined run into a linear one, `ReachOuter` hands that run to the
 linear reachability already proved, and `Restrict` makes the one-step forms.
 
-`Shift` and `RelinReachOuter` are the loop: a step is proved on a clock
-starting at zero, so `Shift` re-anchors the run and `RelinReachOuter` chains
-the steps, each step's enclosure becoming the next one's initial set.
-`RelinTimeIntervalOuter` covers every time of a step, not only its ends.
+`Shift` and `RelinReachOuter` are the loop: a step is proved on a clock starting
+at zero, so `Shift` re-anchors the run and `RelinReachOuter` chains the steps,
+each enclosure becoming the next one's initial set. `RelinTimeIntervalOuter`
+covers every time of a step; `RelinDeltaReachOuter`, the differences it spans.
 
 `ConfinedOfBall` and `ConfinementOfSubset` pay off the confinement hypothesis
 those carry per step: the run cannot cross a ball of radius `ρ > MΔt` about a

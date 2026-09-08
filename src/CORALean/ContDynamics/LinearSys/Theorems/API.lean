@@ -2,6 +2,8 @@ import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
 import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInputReflected
 import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableReflectIoc
 import CORALean.ContDynamics.LinearSys.Theorems.ContinuousOnState
+import CORALean.ContDynamics.LinearSys.Theorems.DeltaReachOuter
+import CORALean.ContDynamics.LinearSys.Theorems.DeltaReachOuterInputSolution
 import CORALean.ContDynamics.LinearSys.Theorems.Discretize
 import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeEnclosure
 import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeEnclosureReach
@@ -43,6 +45,7 @@ import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuter
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterConvexCompact
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterInputSolution
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterSplit
+import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryDeltaReachOuter
 import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryTimeIntervalOuter
 import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 import CORALean.ContDynamics.LinearSys.Theorems.WeightedIntegral
@@ -50,11 +53,12 @@ import CORALean.ContDynamics.LinearSys.Theorems.WeightedIntegral
 /-!
 # What `LinearSys` guarantees
 
-The closed form of a trajectory, then the two enclosures built on it: `reach` at
-the sample times and `timeIntervalStep` over a whole step. The rest are the
-input-integral facts those two rest on.
+The closed form of a trajectory, then the three enclosures built on it: `reach`
+at the sample times, `timeIntervalStep` over a whole step, and `deltaReach` over
+the differences that step spans — what CORA's polynomialization variant measures
+its next abstraction error on. The rest are the input-integral facts they use.
 
-Both enclosures are stated once, over `ConvexSet` and `CompactSet`, and name no
+The first two are stated once, over `ConvexSet` and `CompactSet`, and name no
 representation. `TimeIntervalOuterSplit` is the same: dropping `0 ∈ U` needs
 only `Recentre` and `OfPoint`, which any representation with a centre has.
 

@@ -1,0 +1,63 @@
+import CORALean.ContDynamics.LinearSys.LinearSys
+import CORALean.ContDynamics.LinearSys.MatExp.Enclosures
+import CORALean.ContSet.Interval.Real.Instances
+
+/-!
+# The state differences a step spans
+
+CORA's `aux_deltaReach`: the set of state *differences* `x(t) - x(0)` over a
+step, not of states. It is `timeIntervalStep` with the segment anchored at the
+origin and the far end shifted, `CH(0, (e^{Ar} - I)X₀) ⊕ F X₀`, the same
+correction matrix covering the interpolation error either way.
+
+The origin end is written `0 · ((e^{Ar} - I)X₀)` and not a constructed zero set,
+which is CORA's own `zeros(n)*Rhom_tp_delta` and its comment "to retain
+dependencies": at a polynomial zonotope a zero *image* keeps the factors the
+segment is written over, where a fresh origin would not. It also asks for no
+class the rest of the definition does not already need.
+
+The inputs are not in here. CORA's `Rdelta = Rhom + RV` adds the particular
+solution, which at this level is an enclosure a caller supplies and
+`inputSolution` computes, exactly as `timeIntervalStep` leaves it.
+
+`exp` needs a norm on `Mat` — a choice, not an instance — the `l∞` operator one.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       08-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open CORALean.Real
+open Matrix ContSet Scalar NormedSpace
+
+attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
+  Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
+
+variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
+variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- CORA's `CH(0, (e^{Ar} - I)X₀) ⊕ F X₀`: every difference between a state of
+the step and the state it started from. -/
+noncomputable def LinearSys.deltaReach
+    (sys : LinearSys 𝕋 n) (r : ℝ) (η : ℕ) (X₀ : S n) : S n :=
+  LinComb.linComb
+      (Mtimes.mtimes (0 : Mat ℝ n n)
+        (Mtimes.mtimes (exp (r • toRealMat sys.A) - 1) X₀))
+      (Mtimes.mtimes (exp (r • toRealMat sys.A) - 1) X₀) ⊞
+    Mtimes.mtimes (𝕄 := ℐ) (MatExp.correctionMatrix (toRealMat sys.A) r η) X₀
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
