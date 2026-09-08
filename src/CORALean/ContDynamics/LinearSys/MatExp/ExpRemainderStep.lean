@@ -13,10 +13,12 @@ interval open at `0`, so there is no least one to name and minimality has no
 counterpart here. Where no step meets `ε`, which `0 < ε` rules out, the junk
 branch is `1`.
 
-**This is not adaptive reachability.** `ε` bounds what the truncated orders of
-the *exponential* contribute over a step, not the error of the reachable set,
-and [1] tunes more knobs than this one and the order, splitting a stated error
-between them.
+**`ε` is one term of a step's error and not all of it.**
+`LinearSys.timePointStepError` bounds how far a step's enclosure exceeds what
+the step reaches, and this is one of its two parts. The step is the knob that
+reaches the other one too: `exists_timePointStepError_lt` names a step at which
+the *whole* error is under a stated bound, where no order can. [1] tunes both,
+and the zonotope order besides.
 
 ## References
 

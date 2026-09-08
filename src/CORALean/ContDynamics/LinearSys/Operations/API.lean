@@ -8,6 +8,7 @@ import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSum
 import CORALean.ContDynamics.LinearSys.Operations.InputTerm
 import CORALean.ContDynamics.LinearSys.Operations.StepInput
 import CORALean.ContDynamics.LinearSys.Operations.StepInputConst
+import CORALean.ContDynamics.LinearSys.Operations.TimePointStep
 import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
 import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepEps
 

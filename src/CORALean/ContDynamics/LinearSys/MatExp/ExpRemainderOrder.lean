@@ -11,14 +11,14 @@ least such order, so it is a tuning rule and not an arbitrary pick.
 `OrderAdmissible` carries the soundness side condition `‖x‖/(η+2) < 1` beside
 the error — without it `expRemainderBound` is meaningless rather than merely
 loose — and `2 ≤ η`, the form every step theorem here takes.
-
 `sInf` over ℕ is `Nat.find` under classical decidability, which is what makes
 this noncomputable: no `Decidable` instance for a strict inequality between
 reals exists at this layer.
-
-**This is not adaptive reachability.** `ε` bounds the *matrix exponential's*
-remainder, not the error of the reachable set the enclosure denotes, and [1]
-tunes the step size and the zonotope order besides.
+**`ε` is one term of a step's error and not all of it.**
+`LinearSys.timePointStepError` bounds how far a step's enclosure exceeds what
+the step reaches; `expRemainderBound` is one of its two parts and the other, a
+Minkowski sum over the Taylor orders, no order reduces. Shortening the step
+reaches both, which is `exists_timePointStepError_lt`, and [1] tunes both.
 
 ## References
 
