@@ -1,4 +1,6 @@
 import CORALean.ContDynamics.LinearSys.MatExp.Enclosures
+import CORALean.ContDynamics.LinearSys.MatExp.ExpRemainderOrder
+import CORALean.ContDynamics.LinearSys.MatExp.ExpRemainderStep
 import CORALean.ContDynamics.LinearSys.MatExp.IntervalCorrection
 import CORALean.ContDynamics.LinearSys.MatExp.IntervalEnclosures
 import CORALean.ContDynamics.LinearSys.MatExp.MatZonoEnclosures
@@ -15,6 +17,12 @@ widens the two objects a continuous-time step needs besides the exponential —
 the correction matrix and the input remainder — the same way.
 `MatZonoEnclosures` is CORA's `expmInd`, which pays that cost on the remainder
 alone and keeps the Taylor sum as a matrix zonotope.
+
+`ExpRemainderOrder` and `ExpRemainderStep` run the choice the other way: they
+take an admissible error and name a parameter meeting it, rather than taking a
+parameter and reporting the bound. That is one step of adaptive parameter
+tuning and not the algorithm — the error bounded is the exponential's, not the
+reachable set's.
 
 Enclosures only, no representation — an interval matrix is `Interval (Mat ℝ m n)`
 like any other set.
