@@ -11,6 +11,7 @@ import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombOuter
 import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombInner
 import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceOuter
 import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceOrder
+import CORALean.ContSet.ConZonotope.Real.Theorems.EncloseOuter
 import CORALean.ContSet.ConZonotope.Real.Theorems.Convex
 import CORALean.ContSet.ConZonotope.Real.Theorems.IsCompactDomain
 import CORALean.ContSet.ConZonotope.Real.Theorems.IsCompact
@@ -25,9 +26,10 @@ import CORALean.ContSet.ConZonotope.Real.Theorems.OfPointMem
 enclosures, `reduce` by way of `zonotope_contains`, and `reduce_order_le` for its
 own generator-count bound. `linComb` has both directions: `_outer` is what the
 interface asks for and holds always, `_inner` is what says the result is the
-convex hull itself and asks both sets to be nonempty. The topological facts go
-through `ConstructEqImage` and so through the polytope, which is where they
-differ from a zonotope's.
+convex hull itself and asks both sets to be nonempty. `enclose_outer` is the
+one direction `enclose` gets, asking the constraints to agree besides. The
+topological facts go through `ConstructEqImage` and so through the polytope,
+which is where they differ from a zonotope's.
 
 `OfPointMem` needs no theorem of `HPolytope`'s: an empty row index discharges
 the constraint the same way it discharges the generator sum.
