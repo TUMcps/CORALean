@@ -28,8 +28,8 @@ gives at the member, which is what the entrywise bound needs.
 The three hypotheses on the remainder product are asked of the product and not
 of `U`, `R(τ)` varying with `τ`, exactly as in the point case.
 
-`0 ∈ U` is not needed: this is the enclosure at `r`, and the extension to all of
-`[0, r]` rests on `inputReach`, which is written at a point matrix only.
+`0 ∈ U` is not needed: this is the enclosure at `r`. The extension to all of
+`[0, r]` is `inputSolution_timeInterval_outer`, and that is where it is paid.
 -/
 
 -- Authors:       Tobias Ladner

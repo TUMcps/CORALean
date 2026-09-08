@@ -10,10 +10,13 @@ The system and its two trajectory predicates, `Trajectory` and
 every matrix the set holds, in `Operations`; the guarantees relating the two
 readings and enclosing a run in `Theorems`.
 
-Reachability is `'constParam'`, at `ℐ`, and over one step. `'constParam'`
-because a member fixed over the step is what makes the flow a matrix
-exponential at all; `ℐ` because the exponential of a matrix set and its
-correction matrix are interval matrices; one step because the input's
-enclosure is proved where the step ends, `LinearSys`'s extension to every time
-inside it resting on `inputReach`, which is written at a point matrix only.
+Reachability is at `ℐ` and over one step: `ℐ` because the exponential of a
+matrix set and its correction matrix are interval matrices, one step because
+that is what the enclosures are stated over. Both halves hold at every time of
+the step, the input's through the frozen member's own `inputReach`, which
+`inputReach_mono` grows with the window once the input set holds the origin.
+
+`'varParam'` is enclosed too, by freezing one member and paying the parameter
+mismatch into the input set — not by CORA's `expmIndMixed`, whose soundness
+needs a Peano-Baker expansion the tree has not got.
 -/

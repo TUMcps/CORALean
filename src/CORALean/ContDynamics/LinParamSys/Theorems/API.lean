@@ -1,10 +1,18 @@
+import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryInputSolutionTimeIntervalOuter
 import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryStepOuter
 import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryTimeIntervalOuter
+import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryTimeIntervalOuterInputSolution
 import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryToLinearSys
 import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryToTrajectory
+import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetInputSolution
 import CORALean.ContDynamics.LinParamSys.Theorems.InputSolutionOuter
 import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalStepOuter
 import CORALean.ContDynamics.LinParamSys.Theorems.ToLinParam
+import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryNormDriftLe
+import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryNormLe
+import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryTimeIntervalOuter
+import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryTimeIntervalOuterInputSolution
+import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryToLinearSys
 import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryToLinParam
 
 /-!
@@ -14,13 +22,19 @@ import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryToLinParam
 encloses, and where a constant-parameter run then is at every time of the step.
 `ConstTrajectoryToLinearSys` is what the second rests on — with one matrix
 fixed, the closed form of a `LinearSys` run applies unchanged.
-`InputSolutionOuter` is the other half of a step, what the input contributes
-over it, and `ConstTrajectoryStepOuter` puts the two together at the end of the
-step.
+`InputSolutionOuter` is the other half of a step, `ConstTrajectoryStepOuter`
+puts the two together at its end, and `InputReachSubsetInputSolution` with
+`ConstTrajectoryInputSolutionTimeIntervalOuter` extend that half to every time
+of the step once `0 ∈ U` — `ConstTrajectoryTimeIntervalOuterInputSolution`
+being the whole step there.
 
-`constTrajectory_toTrajectory`: CORA's `'constParam'` is a special case of
-`'varParam'`, at the constant function. `ToLinParam`/`TrajectoryToLinParam`:
-`LinearSys` is the constant-parameter instantiation at a point, in the
-direction `OfPoint` gives — the converse needs the matrix set to be only that
-point, which `OfPoint` does not say.
+`TrajectoryToLinearSys` is the same move at `'varParam'`, at the cost of an
+input set enlarged by the parameter drift: `TrajectoryNormLe` bounds the state
+a priori by Gronwall, `TrajectoryNormDriftLe` turns that into the radius the
+enlarged set needs, and `TrajectoryTimeIntervalOuter`/
+`TrajectoryTimeIntervalOuterInputSolution` are the step it then encloses.
+
+`ConstTrajectoryToTrajectory`, `ToLinParam` and `TrajectoryToLinParam` are the
+readings' conversions: `'constParam'` is `'varParam'` at a constant function,
+and `LinearSys` is `LinParamSys` at a point, in the direction `OfPoint` gives.
 -/

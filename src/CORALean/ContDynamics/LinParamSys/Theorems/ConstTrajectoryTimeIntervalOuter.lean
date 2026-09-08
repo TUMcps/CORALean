@@ -13,9 +13,9 @@ one matrix is fixed over the step, so `variation_of_constants` applies to it
 unchanged.
 
 The initial part is the box's `timeIntervalStep`, which knows no member. The
-input part is a set the caller supplies: `LinearSys.inputSolution`'s guarantee
-rests on the `inputReach` stack, which is written at a point matrix and is not
-carried over here, so no operation of `LinParamSys` discharges `hUd` yet.
+input part is a set the caller supplies, left open so that this file states the
+homogeneous half alone; `timeInterval_outer_inputSolution` discharges `hUd`
+with `sys.inputSolution`.
 
 Integrability is not a hypothesis — `InputIntegrable` derives it from `U` being
 bounded.

@@ -11,11 +11,10 @@ from the matrix set alone. Nothing is assumed of the run beyond the trajectory
 itself — the measurability the input solution wants is
 `aestronglyMeasurable_input_reflected`, which a trajectory always has.
 
-At the end of the step, not inside it: `timeIntervalStep` covers every `t` in
-`[0, r]`, but `inputSolution` is proved at `r` alone, and extending it to all of
-`[0, r]` rests on `inputReach`, which is written at a point matrix only. So this
-is the time-point solution at `r`, enclosed by the time-interval step of the
-homogeneous part.
+At the end of the step: `inputSolution_outer` is proved at `r`, so this is the
+time-point solution there, enclosed by the time-interval step of the
+homogeneous part. `timeInterval_outer_inputSolution` is the same statement at
+every `t` of the step, at the cost of `0 ∈ U`.
 
 The three hypotheses on the remainder product are what the input solution asks
 of `Mtimes` at an interval matrix, and are properties of a representation.
