@@ -1,5 +1,6 @@
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeNorm
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ConstCorrectionMatrix
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ContinuousExpDiff
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrCoeffBound
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrectionMatrix
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsExpRemainderBoundLt
@@ -15,10 +16,14 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoTaylor
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundAntitoneSucc
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundMono
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSmulTsum
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpTaylorSmulMulVec
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.FactorialMulPowLe
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalCorrectionMatrix
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputRemainder
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MulMemMinmax
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSubExpTaylorLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.PowSubEq
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.RemainderEntryLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ScalarTermLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SubLeZero
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableExpDiff
@@ -34,7 +39,9 @@ That `e^{Ar}` lies in `expEnclosure`, that the two interpolation errors lie in
 the correction matrices, and that the integrated series converges. Each holds
 only under `‖A‖r / (η + 2) < 1`. `ExpIntervalTaylor`/`ExpIntervalEnclosure` are
 the same two facts widened to every member of an interval matrix, the second
-checkable from the interval matrix alone via its `absMax`. `ExpMatZonoEnclosure`
+checkable from the interval matrix alone via its `absMax`, and
+`IntervalCorrectionMatrix`/`IntervalInputRemainder` are the corresponding two
+for a step's correction matrix and input remainder. `ExpMatZonoEnclosure`
 is the same guarantee for a matrix zonotope, checkable from the zonotope alone
 through the interval matrix it encloses.
 
@@ -43,4 +50,8 @@ through the interval matrix it encloses.
 adaptive parameter tuning rests on: the bound vanishes as the order grows or
 the step shrinks, so any admissible error is reachable by either knob.
 `ExpRemainderBoundAntitoneSucc` says one more order never costs precision.
+
+`ExpTaylorSmulMulVec`, `ContinuousExpDiff` and `RemainderEntryLe` are what an
+input solution needs of the truncation and its remainder: the time pulled out
+of each order, continuity in it, and one entrywise bound covering a whole step.
 -/

@@ -2,8 +2,10 @@ import CORALean.ContDynamics.LinearSys.Operations.InputSolution
 import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSum
 import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 import CORALean.ContDynamics.LinearSys.Theorems.WeightedIntegral
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ContinuousExpDiff
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpEnclosure
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundMono
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpTaylorSmulMulVec
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.RemainderEntryLe
 import CORALean.ContSet.Interval.Real.Theorems.MemMat
 
 /-!
@@ -79,45 +81,6 @@ theorem LinearSys.aux_inputTaylorSum_outer (sys : LinearSys 𝕋 n) (r : ℝ) (U
       (sys.aux_inputTaylorSum_outer r U x m fun i hi => hx i (le_trans hi (Nat.le_succ m)))
       (hx (m + 1) (le_refl _)))
 
-/-- The exponential's first `η+1` orders, applied to a vector, with the powers
-of `τ` pulled out as scalars. -/
-theorem aux_expTaylor_smul_mulVec (A : Mat ℝ n n) (η : ℕ) (τ : ℝ) (v : Vec ℝ n) :
-    MatExp.expTaylor (τ • A) η *ᵥ v
-      = ∑ i ∈ Finset.range (η + 1), ((Nat.factorial i : ℝ)⁻¹ * τ ^ i) • (A ^ i *ᵥ v) := by
-  rw [MatExp.expTaylor, Matrix.sum_mulVec]
-  refine Finset.sum_congr rfl fun i _ => ?_
-  rw [smul_pow, Matrix.smul_mulVec, Matrix.smul_mulVec, mul_smul]
-
-/-- Every entry of the remainder is within the step's bound, uniformly over the
-step: the bound grows with `‖τ • A‖`, so the value at `r` covers all of `[0,r]`. -/
-theorem aux_remainder_entry_le (A : Mat ℝ n n) {r τ : ℝ} (η : ℕ) (hr : 0 < r)
-    (hτ0 : 0 ≤ τ) (hτr : τ ≤ r) (hε : ‖r • A‖ / ((η : ℝ) + 2) < 1) (j k : Fin n) :
-    |(exp (τ • A) - MatExp.expTaylor (τ • A) η) j k|
-      ≤ MatExp.expRemainderBound (r • A) η := by -- --- PROOF ---
-  have hnorm : ‖τ • A‖ ≤ ‖r • A‖ := by
-    rw [norm_smul, norm_smul, Real.norm_eq_abs, Real.norm_eq_abs, abs_of_nonneg hτ0,
-      abs_of_nonneg hr.le]
-    exact mul_le_mul_of_nonneg_right hτr (norm_nonneg A)
-  have hετ : ‖τ • A‖ / ((η : ℝ) + 2) < 1 := by
-    have h2 : (0:ℝ) < (η : ℝ) + 2 := by positivity
-    calc ‖τ • A‖ / ((η : ℝ) + 2) ≤ ‖r • A‖ / ((η : ℝ) + 2) := by gcongr
-      _ < 1 := hε
-  calc |(exp (τ • A) - MatExp.expTaylor (τ • A) η) j k|
-      ≤ ‖exp (τ • A) - MatExp.expTaylor (τ • A) η‖ := Real.abs_entry_le_norm _ j k
-    _ ≤ MatExp.expRemainderBound (τ • A) η := Real.norm_exp_sub_expTaylor_le _ η hετ
-    _ ≤ MatExp.expRemainderBound (r • A) η :=
-        MatExp.expRemainderBound_mono η hnorm hε
-
-/-- The exponential and its truncation are continuous in the time, so their
-difference is too and the remainder integrand is measurable. -/
-theorem aux_continuous_expDiff (A : Mat ℝ n n) (η : ℕ) :
-    Continuous fun τ : ℝ => exp (τ • A) - MatExp.expTaylor (τ • A) η := by -- --- PROOF ---
-  have hsmul : Continuous fun τ : ℝ => τ • A := continuous_id.smul continuous_const
-  refine (exp_continuous.comp hsmul).sub ?_
-  simp only [MatExp.expTaylor]
-  refine continuous_finsetSum _ fun i _ => ?_
-  exact (continuous_const : Continuous fun _ : ℝ => ((Nat.factorial i : ℝ)⁻¹)).smul (hsmul.pow i)
-
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
@@ -166,7 +129,7 @@ theorem LinearSys.inputSolution_outer [Mtimes ℐ S]
       = (∑ i ∈ Finset.range (η + 1), ((Nat.factorial i : ℝ)⁻¹ * τ ^ i) • (A ^ i *ᵥ g τ))
         + (exp (τ • A) - MatExp.expTaylor (τ • A) η) *ᵥ g τ := by
     intro τ
-    rw [← aux_expTaylor_smul_mulVec A η τ (g τ), Matrix.sub_mulVec]
+    rw [← MatExp.expTaylor_smul_mulVec A η τ (g τ), Matrix.sub_mulVec]
     abel
   -- each exact order lands in its own term of the operation
   have hterm : ∀ i, i ≤ η →
@@ -233,7 +196,7 @@ theorem LinearSys.inputSolution_outer [Mtimes ℐ S]
       simp only [Finset.sum_apply]
     rw [← heq]
     exact Finset.aestronglyMeasurable_sum _ fun k _ =>
-      (((aux_continuous_expDiff A η).matrix_elem j k).aestronglyMeasurable).mul (hgk k)
+      (((MatExp.continuous_expDiff A η).matrix_elem j k).aestronglyMeasurable).mul (hgk k)
   -- every entry of `r · R(τ)` lies in the interval matrix `inputRemainder` names
   have hpt : ∀ τ ∈ Set.Ioc (0:ℝ) r,
       r • ((exp (τ • A) - MatExp.expTaylor (τ • A) η) *ᵥ g τ)
@@ -243,7 +206,7 @@ theorem LinearSys.inputSolution_outer [Mtimes ℐ S]
     have hM : (r • (exp (τ • A) - MatExp.expTaylor (τ • A) η))
         ∈ (MatExp.inputRemainder A r η).construct := by
       refine Interval.mem_mat_iff.mpr fun j k => ?_
-      have hb := aux_remainder_entry_le A η hr hτ.1.le hτ.2 hε j k
+      have hb := MatExp.remainder_entry_le A η hr hτ.1.le hτ.2 hε j k
       rw [abs_le] at hb
       refine ⟨?_, ?_⟩
       · show -(r * _) ≤ r * _
@@ -269,7 +232,7 @@ theorem LinearSys.inputSolution_outer [Mtimes ℐ S]
   have hRint : IntervalIntegrable
       (fun τ => (exp (τ • A) - MatExp.expTaylor (τ • A) η) *ᵥ g τ) volume 0 r := by
     obtain ⟨D, hD⟩ := (isCompact_Icc (a := (0:ℝ)) (b := r)).exists_bound_of_continuousOn
-      (aux_continuous_expDiff A η).continuousOn
+      (MatExp.continuous_expDiff A η).continuousOn
     refine hint _ (D * C) hRmeas fun τ hτ => ?_
     exact le_trans (Matrix.linfty_opNorm_mulVec _ _)
       (mul_le_mul (hD τ ⟨hτ.1.le, hτ.2⟩) (hgbd τ hτ) (norm_nonneg _)

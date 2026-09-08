@@ -57,9 +57,10 @@ src/CORALean/
     NonlinearSys/  conservative linearization, which hands a confined run to
                    LinearSys, and re-linearization, which iterates that with a
                    fresh certificate; NonlinearSysDT/ is the discrete case
-    LinParamSys/   a set-valued system matrix, with reachability in
-                   LinParamSysDT/ alone; NonlinParamSys/ is the nonlinear class
-                   with uncertain parameters, and has none either
+    LinParamSys/   a set-valued system matrix: one continuous-time step at an
+                   interval matrix, and the sampled case in LinParamSysDT/;
+                   NonlinParamSys/ is the nonlinear class with uncertain
+                   parameters, and has no reachability at all
     NeurNetContrSys/  a plant closed around a network, whose input set is what
                    NN encloses; NeurNetContrSysDT/ steps a discrete plant
     OutputEq/      y = C x + D u, kept out of the system classes so that it
