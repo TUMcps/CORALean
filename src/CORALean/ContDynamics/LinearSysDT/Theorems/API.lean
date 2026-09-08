@@ -19,6 +19,9 @@ import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOrderLeConZonotope
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOuterOn
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetBound
+import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetConvex
+import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetInnerOfOuter
+import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetIsCompact
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetSubsetReach
 import CORALean.ContDynamics.LinearSysDT.Theorems.SimulateMemReach
@@ -30,8 +33,8 @@ import CORALean.ContDynamics.LinearSysDT.Theorems.SimulateTrajectory
 That `reach` contains every trajectory, which is the one thing there is to
 prove about a discrete run, and what checking a specification on it then buys.
 `ReachOneOuter` is its step alone, which a closed loop takes instead. `ReachSet`
-is what `reach` encloses, exactly; the three theorems named for it and
-`HoldsOfSeparating` check a specification by support bound, no set built at all.
+is what `reach` encloses, exactly; its theorems bound it, check a specification
+by support bound, and — convex, compact, closed — feed `minkowskiDiff_inner_of_outer`.
 
 The `BackReach` files run the other way: `backReachForall` sits inside
 `backReachSetForall` — inner, and only `Zonotope` discharges it — while the `∃`
