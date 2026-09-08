@@ -60,6 +60,13 @@ import CORALean.ContSet.Zonotope.Real.Theorems.ReducePCAOrderLe
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOrder
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBoxOrderSpec
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBoxOrderLe
+import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBoxAbsBoundLe
+import CORALean.ContSet.Zonotope.Real.Theorems.SubsetClosedBallOfAbsBoundLe
+import CORALean.ContSet.Zonotope.Real.Theorems.AbsBoundLeOfSubsetClosedBall
+import CORALean.ContSet.Zonotope.Real.Theorems.MtimesSubsetClosedBall
+import CORALean.ContSet.Zonotope.Real.Theorems.PlusSubsetClosedBall
+import CORALean.ContSet.Zonotope.Real.Theorems.StepSubsetClosedBall
+import CORALean.ContSet.Zonotope.Real.Theorems.StepSubsetClosedBallOfReduceBoxOrder
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedInner
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffRepInner
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffOrEmptyInner
@@ -70,23 +77,23 @@ import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffOrEmptyNeEmpty
 
 `plus` and `map` exactly, `reduce` and the interval hull as enclosures, and the
 topological facts a set-valued integral needs. `MemConstruct` reads membership
-coordinatewise, which every one of them is stated against, and `Coefficient`
-with the two facts about it holds the shared proof devices the float layer
-needs too. `BilinOuter` and `MtimesMatZonotopeOuter` are a matrix zonotope
-acting on a set, an enclosure and never exact. `OfPointMem` and the two
-`Recentre` facts are what those classes ask, and `AbsMaxOfPoint` reads the
-interval hull of a point back as the point.
-`MinkDiffAlignedInner` and `MinkDiffRepInner` run the other way, the first exact
-at aligned generators and the second at any representation of the subtrahend's
-generators in the minuend's; `MinkDiffOrEmptyInner` carries the second through
-`MinkDiff`'s wrapper and `MinkDiffOrEmptyNeEmpty` says it is never empty.
+coordinatewise, and `Coefficient` with its two facts holds the shared proof
+devices the float layer needs too. `BilinOuter` and `MtimesMatZonotopeOuter`
+are a matrix zonotope acting on a set, never exact; `OfPointMem`, `Recentre`
+and `AbsMaxOfPoint` are what those classes ask, and read a point back as one.
+`MinkDiffAlignedInner` and `MinkDiffRepInner` run the reverse, exact at
+aligned generators and at any representation of the subtrahend's in the
+minuend's; `MinkDiffOrEmptyInner` carries the second through `MinkDiff`'s
+wrapper and `MinkDiffOrEmptyNeEmpty` says it is never empty.
 `MtimesIntervalMatSubsetClosedBall` bounds an interval-matrix product above.
 
-`ReduceBySubsetAddBox` is `ReduceByOuter` run backwards — the reduced zonotope
-sits inside the original plus the box it introduced — `ReduceSubsetAddBox`
-carries that to the `reduce` an algorithm calls, no-op branch included, and
-`MinkowskiDiffReduceByBoxInner` cancels the box off again, reading an enclosure
-backwards rather than starting from a Minkowski difference.
-`CentreMemConstruct` says a zonotope is nonempty, which every such cancellation
-asks of the set it cancels.
+`ReduceBySubsetAddBox` is `ReduceByOuter` backwards — the reduced zonotope
+sits inside the original plus the box it introduced — carried to `reduce`
+itself by `ReduceSubsetAddBox`; `MinkowskiDiffReduceByBoxInner` cancels the
+box off again and `CentreMemConstruct` says a zonotope is nonempty, which
+every such cancellation needs. `SubsetClosedBallOfAbsBoundLe` and its converse
+relate `absBound` to a sup-norm ball; `MtimesSubsetClosedBall`,
+`PlusSubsetClosedBall` and `ReduceBoxAbsBoundLe` carry one through `mtimes`,
+`plus` and `reduceBox`, and `StepSubsetClosedBall` composes them at `reach`'s
+shape, its box term discharged crudely or, via `reduceBoxOrder`, sharply.
 -/
