@@ -12,6 +12,7 @@ import CORALean.ContSet.ConZonotope.Real.Operations.MtimesIntervalMat
 import CORALean.ContSet.ConZonotope.Real.Operations.LinComb
 import CORALean.ContSet.ConZonotope.Real.Operations.Reduce
 import CORALean.ContSet.ConZonotope.Real.Operations.OfPoint
+import CORALean.ContSet.ConZonotope.Real.Operations.Enclose
 
 /-!
 # What `ConZonotope` computes
@@ -22,6 +23,12 @@ them too, and is outer for the zonotope's reason rather than for the
 constraints'. `linComb` keeps them as well, weighting each side's
 constraints by the interpolation parameter; between two nonempty sets it is the
 convex hull exactly, where the enclosing zonotope is only an enclosure of it.
+
+`enclose` keeps them too, for the aligned pair `linComb` also covers, at the
+same generator count — what it buys over `linComb` is a far smaller
+constraint system, one copy of `cZ₁.P`'s own rows rather than a halfScaled
+intersection of both sides'. The price is precision: `enclose` is only outer,
+where `linComb` is exact between nonempty sets. Neither replaces the other.
 
 `reduce` is the one operation that still goes through the enclosing zonotope and
 gives the constraints up. CORA reduces the zonotope the constraint rows lift to
