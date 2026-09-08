@@ -15,6 +15,9 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoRemainder
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoTaylor
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundAntitoneSucc
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundMono
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderOrderLe
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderOrderSpec
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderStepSpec
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSmulTsum
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpTaylorSmulMulVec
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.FactorialMulPowLe
@@ -49,7 +52,9 @@ through the interval matrix it encloses.
 `TendstoMulExpRemainderBoundZero`/`ExistsMulExpRemainderBoundLt` are the limits
 adaptive parameter tuning rests on: the bound vanishes as the order grows or
 the step shrinks, so any admissible error is reachable by either knob.
-`ExpRemainderBoundAntitoneSucc` says one more order never costs precision.
+`ExpRemainderBoundAntitoneSucc` says one more order never costs precision, and
+`ExpRemainderOrderSpec`/`ExpRemainderOrderLe`/`ExpRemainderStepSpec` say the
+parameter chosen for an admissible error meets it, the order least of those.
 
 `ExpTaylorSmulMulVec`, `ContinuousExpDiff` and `RemainderEntryLe` are what an
 input solution needs of the truncation and its remainder: the time pulled out
