@@ -8,6 +8,7 @@ import CORALean.ContDynamics.LinearSysDT.ReachError
 import CORALean.ContDynamics.LinearSysDT.ReachInner
 import CORALean.ContDynamics.LinearSysDT.ReachSet
 import CORALean.ContDynamics.LinearSysDT.Theorems.API
+import CORALean.ContDynamics.LinearSysDT.Complexity.API
 import CORALean.ContDynamics.LinearSysDT.Cost.API
 
 /-!
@@ -16,8 +17,9 @@ import CORALean.ContDynamics.LinearSysDT.Cost.API
 The system and what it denotes in `LinearSysDT`, reachability in `Operations`,
 the set reachability encloses in `ReachSet`, what a run of it owes in
 `ReachError` and the inner approximation that error buys in `ReachInner`, the
-guarantees in `Theorems`, and in `Cost` what running it costs — assembled from
-the operations it calls, and the one worked composition in the tree. No
+guarantees in `Theorems`, how large `reachError`'s own result is in
+`Complexity`, and in `Cost` what running it costs — assembled from the
+operations it calls, and the one worked composition in the tree. No
 `Instances`: an algorithm implements no class.
 
 `BackReachSetForall` is the same run read backwards — the states every
