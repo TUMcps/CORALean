@@ -1,4 +1,5 @@
 import CORALean.ContDynamics.NonlinearSys.Theorems.AbstractionErrorOfPoly
+import CORALean.ContDynamics.NonlinearSys.Theorems.RelinDeltaReachOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuter
 import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
 import CORALean.ContSet.PolyZonotope.Real.Instances
@@ -13,8 +14,12 @@ nothing added: the chain, the per-step confinement and the input enclosures are
 the ones already proved, because soundness was stated at an arbitrary
 certificate rather than at the one `alg = 'lin'` computes.
 
-The instances it takes are `Plus`, `Reduce`, `Mtimes (Mat ℝ)` and `OfInterval`,
-all of which `PolyZonotope` has; this file fails to compile the moment one goes.
+The instances it takes are `Plus`, `Reduce`, `Mtimes (Mat ℝ)`, `OfInterval`
+and, for the differences, `LinComb` and `Mtimes ℐ`; all six `PolyZonotope` has,
+and this file fails to compile the moment one goes.
+
+`relinDeltaReach_outer` is CORA's `Rdiff`, computed before the next abstraction
+error is estimated: the differences over a step, and not the states.
 
 What the poly certificate does change is where the run has to stay: `subsetAt`
 rather than a box. At `pZ.q = 0` the two agree, by `subsetAt_unitBox`.
