@@ -1,4 +1,5 @@
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffInnerOfOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
 import CORALean.ContSet.Zonotope.Real.Theorems.Convex
 import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
 import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed
@@ -13,7 +14,7 @@ original. `reduceBy_outer` is the other direction, so the two bracket `Z`
 between two computed zonotopes.
 
 Every hypothesis the bridge asks for is already proved of a zonotope: the box is
-nonempty because it contains its own centre, bounded and closed because a
+nonempty by `centre_mem_construct`, bounded and closed because a
 zonotope is compact, and `Z` is convex.
 
 Stated at `reduceBy` rather than at `reduceGirard` or `reduce`, which is where
@@ -25,7 +26,7 @@ strictly less than this does.
 
 -- Authors:       Tobias Ladner
 -- Written:       08-September-2026
--- Last update:   ---
+-- Last update:   08-September-2026
 -- Last revision: ---
 
 
@@ -36,14 +37,6 @@ namespace CORALean.Real
 variable {n q r : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
-/-- A zonotope contains its centre, at the zero coefficient vector — all the
-box has to supply for the cancellation law to apply to it. -/
-theorem Zonotope.aux_centre_mem_construct (W : Zonotope (Vec ℝ n)) : W.c ∈ W.construct :=
-  ⟨fun _ => 0, fun _ => by simp, by simp⟩
-
-
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- An outer approximation minus its own error bound is an inner approximation,
@@ -52,7 +45,7 @@ theorem Zonotope.minkowskiDiff_reduceBy_box_inner (Z : Zonotope (Vec ℝ n))
     (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) :
     minkowskiDiff (Z.reduceBy part).construct (Z.reduceByBox part).construct
       ⊆ Z.construct :=
-  minkowskiDiff_inner_of_outer ⟨_, Zonotope.aux_centre_mem_construct _⟩
+  minkowskiDiff_inner_of_outer ⟨_, Zonotope.centre_mem_construct _⟩
     (Zonotope.isBounded_construct _) (Zonotope.convex_construct Z)
     (Zonotope.isClosed_construct Z) (Z.reduceBy_subset_add_box part)
 

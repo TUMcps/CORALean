@@ -1,0 +1,82 @@
+import CORALean.ContDynamics.LinearSysDT.ReachError
+import CORALean.ContDynamics.LinearSysDT.ReachSet
+import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
+import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+import CORALean.ContSet.Zonotope.Real.Theorems.ReduceSubsetAddBox
+
+/-!
+# The computed run reaches no further than the exact set plus its own error
+
+`reach_outer` run backwards, and the inclusion an inner approximation needs:
+the computed set is inside the exact one *plus* `reachError`, so subtracting
+`reachError` off it lands back inside `reachSet`.
+
+The induction is the whole argument. `plus_exact` and `mtimes_exact` say a step
+loses nothing until it reduces, `reduce_subset_add_box` bounds what reducing
+costs, and the previous step's error rides through the step's own `A` — which
+is why `reachError` multiplies it rather than carrying it unchanged.
+
+At `k = 0` the run is `R₀` itself and the error is the origin.
+
+Not stated over `Reduce`: the class gives only `construct s ⊆ construct
+(reduce s o)`, which bounds nothing in this direction.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       08-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open CORALean.Real
+open Matrix Pointwise ContSet Scalar
+
+variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+/-- The reverse of `reach_outer`: what a run computes stays inside the exact
+reachable set widened by the error that run accumulated. -/
+theorem LinearSysDT.reach_subset_reachSet_add_error (sys : LinearSysDT ℝ n) {o : ℕ} (ho : 0 < o)
+    (R₀ U : Zonotope (Vec ℝ n)) (k : ℕ) :
+    (sys.reach (S := 𝒵) o ho R₀ U k).construct ⊆
+      sys.reachSet (S := 𝒵) R₀ U k + (sys.reachError o ho R₀ U k).construct := by -- --- PROOF ---
+  induction k with
+  | zero =>
+    -- the error is the origin, and every point of `R₀` is itself plus `0`
+    intro x hx
+    have h := Set.add_mem_add hx (Zonotope.mem_ofPoint (0 : Vec ℝ n))
+    rwa [add_zero] at h
+  | succ k ih =>
+    set Rk := sys.reach (S := 𝒵) o ho R₀ U k with hRk
+    set W := (Zonotope.mtimes sys.A Rk).plus U with hW
+    have hunfold : sys.reach (S := 𝒵) o ho R₀ U (k + 1) = Zonotope.reduce W o := rfl
+    have herr : sys.reachError o ho R₀ U (k + 1)
+        = (Zonotope.mtimes sys.A (sys.reachError o ho R₀ U k)).plus (Zonotope.reduceBox W o) :=
+      rfl
+    rw [hunfold, herr, ← Zonotope.plus_exact]
+    intro x hx
+    -- the step's own box comes off first, then `plus` and `mtimes` split exactly
+    obtain ⟨w, hw, b, hb, rfl⟩ := Zonotope.reduce_subset_add_box W o hx
+    rw [hW, ← Zonotope.plus_exact, ← Zonotope.mtimes_exact] at hw
+    obtain ⟨_, ⟨r, hr, rfl⟩, u, hu, rfl⟩ := hw
+    obtain ⟨y, hy, e, he, rfl⟩ := ih hr
+    -- the exact part and the error part, each carried through this step's `A`
+    refine ⟨sys.A *ᵥ y + u, ⟨sys.A *ᵥ y, ⟨y, hy, ?_⟩, u, hu, rfl⟩,
+      sys.A *ᵥ e + b, ⟨sys.A *ᵥ e, ?_, b, hb, rfl⟩, ?_⟩
+    · rw [Scalar.toRealMat_real]; rfl
+    · rw [← Zonotope.mtimes_exact]; exact ⟨e, he, rfl⟩
+    · show sys.A *ᵥ y + u + (sys.A *ᵥ e + b) = sys.A *ᵥ (y + e) + u + b
+      rw [Matrix.mulVec_add]
+      abel
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

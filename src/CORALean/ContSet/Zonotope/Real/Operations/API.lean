@@ -18,9 +18,11 @@ import CORALean.ContSet.Zonotope.Real.Operations.LinComb
 import CORALean.ContSet.Zonotope.Real.Operations.Recentre
 import CORALean.ContSet.Zonotope.Real.Operations.ReduceBy
 import CORALean.ContSet.Zonotope.Real.Operations.ReduceByBox
+import CORALean.ContSet.Zonotope.Real.Operations.GirardSplit
 import CORALean.ContSet.Zonotope.Real.Operations.ReduceGirard
 import CORALean.ContSet.Zonotope.Real.Operations.ReduceCombastel
 import CORALean.ContSet.Zonotope.Real.Operations.Reduce
+import CORALean.ContSet.Zonotope.Real.Operations.ReduceBox
 import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffAligned
 import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffRep
 import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffOrEmpty
@@ -40,7 +42,10 @@ generator representation the caller offers and this checks.
 by the caller, so that it is total — and wrapped, since the difference can be
 empty and no zonotope is.
 
-`reduceByBox` computes nothing new — it is the diagonal block `reduceBy` already
-builds, on its own and centred at the origin, which is what names the error a
-reduction pays and so what an inner approximation subtracts back off.
+`girardSplit` is the ranking `reduceGirard` reduces by, named on its own because
+`reduceBox` reads the same partition the other way round. `reduceByBox` computes
+nothing new — the diagonal block `reduceBy` already builds, centred at the
+origin — and `reduceBox` is that at the partition `reduce` actually picks, the
+origin where the order is already met. Together they name the error a reduction
+pays, which is what an inner approximation subtracts back off.
 -/

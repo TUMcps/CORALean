@@ -4,7 +4,7 @@ import CORALean.ContSet.Zonotope.Real.Operations.ReduceGirard
 # `Zonotope.reduceGirard` bounds the generator count
 
 `reduceBy`'s shape is the whole argument: `h := q + n`, and at the split
-`aux_girardSplit` builds, `q = (o-1)*n`, so the total is `o*n` outright — no
+`girardSplit` builds, `q = (o-1)*n`, so the total is `o*n` outright — no
 clamping, since a `Zonotope` has one generator block, unlike `PolyZonotope`,
 where `PolyZonotope.reduceGirard_order_le` needs one to bound two blocks
 together. Word for word `reduceCombastel_order_le`'s proof: the metric never
