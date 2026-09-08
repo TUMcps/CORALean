@@ -47,12 +47,16 @@ import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBySubsetAddBox
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkowskiDiffReduceByBoxInner
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceGirardOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceCombastelOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.PCACovarianceIsHermitian
+import CORALean.ContSet.Zonotope.Real.Theorems.PCABasisIsUnitDet
 import CORALean.ContSet.Zonotope.Real.Theorems.MethCVolumeLe
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceMethCOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.ReducePCAOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceGirardOrderLe
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceCombastelOrderLe
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceMethCOrderLe
+import CORALean.ContSet.Zonotope.Real.Theorems.ReducePCAOrderLe
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOrder
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBoxOrderSpec
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBoxOrderLe

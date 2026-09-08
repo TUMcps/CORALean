@@ -26,6 +26,9 @@ import CORALean.ContSet.Zonotope.Real.Operations.MethCFilter
 import CORALean.ContSet.Zonotope.Real.Operations.MethCVolume
 import CORALean.ContSet.Zonotope.Real.Operations.MethCBasis
 import CORALean.ContSet.Zonotope.Real.Operations.ReduceMethC
+import CORALean.ContSet.Zonotope.Real.Operations.PCACovariance
+import CORALean.ContSet.Zonotope.Real.Operations.PCABasis
+import CORALean.ContSet.Zonotope.Real.Operations.ReducePCA
 import CORALean.ContSet.Zonotope.Real.Operations.Reduce
 import CORALean.ContSet.Zonotope.Real.Operations.ReduceBox
 import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffAligned
@@ -54,6 +57,6 @@ origin — and `reduceBox` is that at the partition `reduce` actually picks, the
 origin where the order is already met. Together they name the error a reduction
 pays, which is what an inner approximation subtracts back off.
 
-`reduceByBasis` boxes along a basis rather than the axes; `methCFilter`,
-`methCVolume` and `methCBasis` are the prefilter and search `methC` picks it by.
+`reduceByBasis` boxes along a basis, not the axes: `methCFilter`, `methCVolume`
+and `methCBasis` pick `methC`'s, `pcaCovariance` and `pcaBasis` pick `pca`'s.
 -/
