@@ -1,3 +1,4 @@
+import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrPolySearch
 import CORALean.ContDynamics.NonlinearSys.Theorems.AbstractionErrorOfPoly
 import CORALean.ContDynamics.NonlinearSys.Theorems.RelinDeltaReachOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuter
@@ -18,11 +19,11 @@ The instances it takes are `Plus`, `Reduce`, `Mtimes (Mat ℝ)`, `OfInterval`
 and, for the differences, `LinComb` and `Mtimes ℐ`; all six `PolyZonotope` has,
 and this file fails to compile the moment one goes.
 
-`relinDeltaReach_outer` is CORA's `Rdiff`, computed before the next abstraction
-error is estimated: the differences over a step, and not the states.
-
-What the poly certificate does change is where the run has to stay: `subsetAt`
-rather than a box. At `pZ.q = 0` the two agree, by `subsetAt_unitBox`.
+`relinDeltaReach_outer` is CORA's `Rdiff`, the differences over a step rather
+than the states. What the poly certificate changes is where the run has to
+stay: `subsetAt` rather than a box, the two agreeing at `pZ.q = 0` by
+`subsetAt_unitBox`. `abstrErrPolySearch` is `linReach`'s while loop: a
+successful search hands back a `LinStep` certified by `AbstractionError.of_poly`.
 -/
 
 -- Authors:       Tobias Ladner
@@ -58,5 +59,15 @@ example {n m : ℕ} (sys : NonlinearSys n m) (T : Set ℝ) (R₀ : PolyZonotope 
     {o : ℕ} (ho : 0 < o) :
     ∀ i ≤ N, x ((i : ℝ) * Δt) ∈ construct (sys.relinReach o ho Δt steps Ud R₀ i) :=
   traj.relinReach_outer hΔt hT hR hU hUd ho
+
+/-- A search the certificate accepts hands back a `LinStep`, ready for
+`relinReach_outer` exactly as one built by hand. -/
+noncomputable example {n m : ℕ} (sys : NonlinearSys n m) (U : PolyZonotope (Vec ℝ m))
+    (A : Mat ℝ n n) (B : Mat ℝ n m) (xs : Vec ℝ n) (us : Vec ℝ m) (pZ L : PolyZonotope (Vec ℝ n))
+    (Ba : Set (Fin pZ.p → ℝ)) (hp : L.p = pZ.p) (hBa : ∀ a ∈ Ba, ∀ k, |a k| ≤ 1)
+    (Ws : ℕ → PolyZonotope (Vec ℝ n)) (fuel : ℕ)
+    (h : (sys.abstrErrPolySearch U A B xs us pZ Ba L hp hBa Ws fuel).isSome) :
+    sys.LinStep (S := 𝒫𝒵) U :=
+  (sys.abstrErrPolySearch U A B xs us pZ Ba L hp hBa Ws fuel).get h
 
 end CORALean.Real
