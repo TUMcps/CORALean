@@ -1,0 +1,52 @@
+import CORALean.ContSet.Zonotope.Real.ReduceBoxOrder
+import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
+import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBoxEqOfPoint
+
+/-!
+# The chosen order meets the error it was chosen for
+
+What turns `reduceBox_eq_ofPoint` into a rule: `Z.h` itself is always
+admissible once `0 ∈ B`, so the set `reduceBoxOrder` takes its infimum over is
+never empty and the order it names actually meets `B`.
+
+Needs `0 < n`: at `n = 0` no order drops `Z.h` generators unless `Z.h` already
+is `0`, `o * n` staying `0` throughout, so the witness below would not go
+through — a real restriction, not a formality dodged for convenience.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       08-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+/-- The order chosen for `B` is admissible for `B`, given `0 < n` and `0 ∈ B`:
+`Z.h` is always an admissible witness, so the infimum meets `B` too. -/
+theorem Zonotope.reduceBoxOrder_spec (Z : Zonotope (Vec ℝ n)) (hn : 0 < n)
+    {B : Set (Vec ℝ n)} (hB : (0 : Vec ℝ n) ∈ B) :
+    Z.ReduceBoxAdmissible B (Z.reduceBoxOrder B) := by -- --- PROOF ---
+  have hthr : Z.h ≤ Z.h * n := by
+    calc Z.h = Z.h * 1 := (mul_one Z.h).symm
+      _ ≤ Z.h * n := Nat.mul_le_mul (le_refl Z.h) hn
+  have hmem : Z.ReduceBoxAdmissible B Z.h := by
+    show (Z.reduceBox Z.h).construct ⊆ B
+    rw [Zonotope.reduceBox_eq_ofPoint hthr]
+    intro x hx
+    rw [Zonotope.mem_ofPoint_iff] at hx
+    rwa [hx]
+  have hne : {o : ℕ | Z.ReduceBoxAdmissible B o}.Nonempty := ⟨Z.h, hmem⟩
+  exact Nat.sInf_mem hne
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
