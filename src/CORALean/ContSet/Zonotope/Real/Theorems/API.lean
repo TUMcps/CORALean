@@ -36,6 +36,8 @@ import CORALean.ContSet.Zonotope.Real.Theorems.MatMulOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.MatPowOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.SumUnivReduceBy
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceByOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBySubsetAddBox
+import CORALean.ContSet.Zonotope.Real.Theorems.MinkowskiDiffReduceByBoxInner
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceGirardOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceCombastelOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOuter
@@ -64,4 +66,10 @@ any representation of the subtrahend's generators in the minuend's.
 `MinkDiffOrEmptyInner` carries the second through the wrapper `MinkDiff` needs,
 and `MinkDiffOrEmptyNeEmpty` is what says that wrapper is not the empty set
 every time.
+
+`ReduceBySubsetAddBox` is `ReduceByOuter` run backwards — the reduced zonotope
+sits inside the original plus the box it introduced — and
+`MinkowskiDiffReduceByBoxInner` cancels that box off again, which is the one
+guarantee here that reads an enclosure backwards rather than starting from a
+Minkowski difference.
 -/

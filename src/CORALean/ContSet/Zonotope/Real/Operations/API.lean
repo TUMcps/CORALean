@@ -17,6 +17,7 @@ import CORALean.ContSet.Zonotope.Real.Operations.PairDiff
 import CORALean.ContSet.Zonotope.Real.Operations.LinComb
 import CORALean.ContSet.Zonotope.Real.Operations.Recentre
 import CORALean.ContSet.Zonotope.Real.Operations.ReduceBy
+import CORALean.ContSet.Zonotope.Real.Operations.ReduceByBox
 import CORALean.ContSet.Zonotope.Real.Operations.ReduceGirard
 import CORALean.ContSet.Zonotope.Real.Operations.ReduceCombastel
 import CORALean.ContSet.Zonotope.Real.Operations.Reduce
@@ -38,4 +39,8 @@ generator representation the caller offers and this checks.
 `minkDiffOrEmpty` is that one again with the candidate chosen here rather than
 by the caller, so that it is total — and wrapped, since the difference can be
 empty and no zonotope is.
+
+`reduceByBox` computes nothing new — it is the diagonal block `reduceBy` already
+builds, on its own and centred at the origin, which is what names the error a
+reduction pays and so what an inner approximation subtracts back off.
 -/

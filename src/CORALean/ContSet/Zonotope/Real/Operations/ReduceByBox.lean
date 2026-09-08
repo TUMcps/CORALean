@@ -1,0 +1,47 @@
+import CORALean.ContSet.Zonotope.Real.Operations.ReduceBy
+
+/-!
+# `Zonotope.reduceByBox`
+
+The error `reduceBy` pays, as a set of its own: the diagonal block it puts in
+place of the dropped generators, centred at the origin. `reduceBy` is the kept
+generators plus this box, so this is exactly the `E` in `Ẑ ⊆ Z + E`.
+
+Centred at `0` and not at `Z.c`, which is the whole reason the reverse inclusion
+holds: the dropped generators contribute `0` to `Z` when their coefficients are
+set to `0`, so the reduced set never reaches further than `Z` plus this box.
+
+Not a `Reduce` operation and no class instantiates it — a caller wanting an
+inner approximation asks for the box beside the reduction, since only the two
+together say anything.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       08-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+open Matrix
+
+variable {n q r : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- The box `reduceBy` absorbs the dropped generators into, on its own: one
+entry per coordinate, the absorbed rows' `1`-norm, centred at the origin. -/
+def Zonotope.reduceByBox (Z : Zonotope (Vec ℝ n))
+    (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) : Zonotope (Vec ℝ n) where
+  h := n
+  c := 0
+  G := Matrix.diagonal fun i => ∑ l, |Z.G (part.right l) i|
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
