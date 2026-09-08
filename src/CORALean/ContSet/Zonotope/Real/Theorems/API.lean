@@ -3,6 +3,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
 import CORALean.ContSet.Zonotope.Real.Theorems.AbsMaxOfPoint
 import CORALean.ContSet.Zonotope.Real.Theorems.RecentreZeroMem
 import CORALean.ContSet.Zonotope.Real.Theorems.RecentreSubMem
+import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
 import CORALean.ContSet.Zonotope.Real.Theorems.Coefficient
 import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
 import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
@@ -36,6 +37,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.MatMulOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.MatPowOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.SumUnivReduceBy
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceByOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.ReduceSubsetAddBox
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBySubsetAddBox
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkowskiDiffReduceByBoxInner
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceGirardOuter
@@ -64,12 +66,13 @@ and the two `Recentre` facts are what those classes ask of a zonotope, and
 the other way, the first exact at aligned generators and the second sound at
 any representation of the subtrahend's generators in the minuend's.
 `MinkDiffOrEmptyInner` carries the second through the wrapper `MinkDiff` needs,
-and `MinkDiffOrEmptyNeEmpty` is what says that wrapper is not the empty set
-every time.
+and `MinkDiffOrEmptyNeEmpty` says that wrapper is not empty every time.
 
 `ReduceBySubsetAddBox` is `ReduceByOuter` run backwards — the reduced zonotope
-sits inside the original plus the box it introduced — and
-`MinkowskiDiffReduceByBoxInner` cancels that box off again, which is the one
-guarantee here that reads an enclosure backwards rather than starting from a
-Minkowski difference.
+sits inside the original plus the box it introduced — `ReduceSubsetAddBox`
+carries that to the `reduce` an algorithm calls, no-op branch included, and
+`MinkowskiDiffReduceByBoxInner` cancels the box off again — the one guarantee
+here reading an enclosure backwards rather than starting from a Minkowski
+difference. `CentreMemConstruct` says a zonotope is nonempty, which every such
+cancellation asks of the set it cancels.
 -/
