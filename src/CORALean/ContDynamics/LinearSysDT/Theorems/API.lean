@@ -27,6 +27,7 @@ import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOrderLe
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOrderLeConZonotope
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOrdersConstEqReach
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOrdersOuter
+import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOrdersStepSubsetClosedBallOfReduceBoxOrder
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOuterOn
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetBound
@@ -35,6 +36,8 @@ import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetInnerOfOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetIsCompact
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetSubsetReach
+import CORALean.ContDynamics.LinearSysDT.Theorems.ReachStepSubsetClosedBall
+import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSubsetClosedBall
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSubsetReachSetAddError
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSubsetReachSetAddErrorReduced
 import CORALean.ContDynamics.LinearSysDT.Theorems.SimulateMemReach
@@ -54,14 +57,14 @@ the exact set. `BackReachForall` sits inside `BackReachSetForall`, inner and
 only at `Zonotope`; `BackReachExists` is outer instead, at `Plus, Mtimes`.
 
 `OutputOuter` and `HoldsOfOutput` pair an `OutputEq` with the run.
-`HeldToTrajectory` and `ReachHeldOuter` are the zero-order-hold case, closed
-form. `SimulateTrajectory` and `SimulateMemReach` sample one run into `reach`;
+`HeldToTrajectory` and `ReachHeldOuter` are the zero-order-hold case, closed form.
+`SimulateTrajectory` and `SimulateMemReach` sample one run into `reach`;
 `NotHoldsOfSimulate` is the point, falsifying what an enclosure cannot.
-`ReachOrderLe` and `ReachBigO` are `reach`'s size, `reduce` keeping it bounded;
-the `ConZonotope` pair restate both, and the float three restate
-`ReachSubsetReachSetAddError` against three bounds, `ReachInnerFloatInner`
-composing it as `ReachInnerInner` does.
+`ReachOrderLe` and `ReachBigO` are `reach`'s size, `reduce` keeping it bounded; the
+`ConZonotope` pair restate both, and the float three restate `ReachSubsetReachSetAddError`
+against three bounds, `ReachInnerFloatInner` composing it as `ReachInnerInner` does.
 `ReachOrdersOuter` and `ReachOrdersConstEqReach` carry `reach_outer` to a
 per-step sequence, recovering `reach` at a constant one; `Orders` restates the
-reduced-error transfer there.
+reduced-error transfer there. The `ClosedBall` three bound `reach`'s width
+instead of its size, one at `reachOrders` sharpened by a caller's tolerance.
 -/
