@@ -12,10 +12,14 @@ import Mathlib.Analysis.ODE.Gronwall
 import Mathlib.Analysis.SpecialFunctions.Exponential
 import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
 import Mathlib.MeasureTheory.Integral.Bochner.ContinuousLinearMap
+import Mathlib.Data.Fin.Embedding
 import Mathlib.Data.Fin.Tuple.Sort
+import Mathlib.Data.Finset.Max
 import Mathlib.Data.Fintype.BigOperators
+import Mathlib.Data.Fintype.Pi
 import Mathlib.Data.Matrix.Mul
 import Mathlib.Data.Real.Basic
+import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 import Mathlib.Logic.Equiv.Fin.Basic
 import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
 import Mathlib.Order.Filter.AtTopBot.Defs

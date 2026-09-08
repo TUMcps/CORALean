@@ -18,9 +18,14 @@ import CORALean.ContSet.Zonotope.Real.Operations.LinComb
 import CORALean.ContSet.Zonotope.Real.Operations.Recentre
 import CORALean.ContSet.Zonotope.Real.Operations.ReduceBy
 import CORALean.ContSet.Zonotope.Real.Operations.ReduceByBox
+import CORALean.ContSet.Zonotope.Real.Operations.ReduceByBasis
 import CORALean.ContSet.Zonotope.Real.Operations.GirardSplit
 import CORALean.ContSet.Zonotope.Real.Operations.ReduceGirard
 import CORALean.ContSet.Zonotope.Real.Operations.ReduceCombastel
+import CORALean.ContSet.Zonotope.Real.Operations.MethCFilter
+import CORALean.ContSet.Zonotope.Real.Operations.MethCVolume
+import CORALean.ContSet.Zonotope.Real.Operations.MethCBasis
+import CORALean.ContSet.Zonotope.Real.Operations.ReduceMethC
 import CORALean.ContSet.Zonotope.Real.Operations.Reduce
 import CORALean.ContSet.Zonotope.Real.Operations.ReduceBox
 import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffAligned
@@ -48,4 +53,7 @@ nothing new — the diagonal block `reduceBy` already builds, centred at the
 origin — and `reduceBox` is that at the partition `reduce` actually picks, the
 origin where the order is already met. Together they name the error a reduction
 pays, which is what an inner approximation subtracts back off.
+
+`reduceByBasis` boxes along a basis rather than the axes; `methCFilter`,
+`methCVolume` and `methCBasis` are the prefilter and search `methC` picks it by.
 -/
