@@ -59,6 +59,22 @@ def call(method, path, payload=None):
         sys.exit("HTTP %d %s" % (e.code, e.read().decode()[:500]))
 
 
+def call_all(path):
+    """Every page, not just the first. GitLab defaults to 20 per page, so a
+    plain GET on `notes` silently dropped everything past the twentieth -- and
+    with `sort=asc` the ones dropped were the newest, which is exactly the half
+    a reader needs. Correcting an issue by commenting on it only works if the
+    comment can be read back."""
+    out, page = [], 1
+    while True:
+        sep = "&" if "?" in path else "?"
+        batch = call("GET", "%s%sper_page=100&page=%d" % (path, sep, page))
+        out += batch
+        if len(batch) < 100:
+            return out
+        page += 1
+
+
 def note(kind, iid, text):
     call("POST", "/%s/%s/notes" % (kind, iid), {"body": text})
     print("commented on %s %s" % (kind[:-1], iid))
@@ -79,10 +95,10 @@ group, cmd, rest = argv[0], (argv[1] if len(argv) > 1 else ""), argv[2:]
 
 if group == "issue":
     if cmd == "list":
-        q = "/issues?state=opened&per_page=100&order_by=created_at&sort=asc"
+        q = "/issues?state=opened&order_by=created_at&sort=asc"
         if rest:
             q += "&labels=" + rest[0]
-        for i in call("GET", q):
+        for i in call_all(q):
             print("#%-3d [%-16s] %s" % (i["iid"], ",".join(i["labels"])[:16], i["title"]))
     elif cmd == "show":
         i = call("GET", "/issues/%s" % rest[0])
@@ -90,7 +106,7 @@ if group == "issue":
         print("state: %s | labels: %s" % (i["state"], ", ".join(i["labels"])))
         print()
         print(i["description"] or "(no description)")
-        for n in call("GET", "/issues/%s/notes?sort=asc" % rest[0]):
+        for n in call_all("/issues/%s/notes?sort=asc" % rest[0]):
             if not n["system"]:
                 print("\n--- %s:\n%s" % (n["author"]["username"], n["body"]))
     elif cmd == "new":
@@ -116,7 +132,7 @@ if group == "issue":
 
 elif group == "mr":
     if cmd == "list":
-        for m in call("GET", "/merge_requests?state=opened&per_page=20"):
+        for m in call_all("/merge_requests?state=opened"):
             print("!%-3d %-34s %-9s squash=%s  %s"
                   % (m["iid"], m["source_branch"], m["state"], m["squash"], m["title"]))
     elif cmd == "show":
@@ -126,7 +142,7 @@ elif group == "mr":
               % (m["state"], m["squash"], m.get("detailed_merge_status")))
         print("TITLE:", m["title"])
         print(m["description"])
-        for n in call("GET", "/merge_requests/%s/notes?sort=asc" % rest[0]):
+        for n in call_all("/merge_requests/%s/notes?sort=asc" % rest[0]):
             if not n["system"]:
                 print("\n--- %s:\n%s" % (n["author"]["username"], n["body"]))
     elif cmd == "new":
