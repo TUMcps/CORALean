@@ -7,6 +7,7 @@ import Mathlib.Analysis.Calculus.Deriv.Mul
 import Mathlib.Analysis.Convex.Integral
 import Mathlib.Analysis.Convex.KreinMilman
 import Mathlib.Analysis.Matrix.Normed
+import Mathlib.Analysis.Matrix.Spectrum
 import Mathlib.Analysis.Normed.Algebra.MatrixExponential
 import Mathlib.Analysis.ODE.Gronwall
 import Mathlib.Analysis.SpecialFunctions.Exponential
