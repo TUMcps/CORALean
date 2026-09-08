@@ -1,3 +1,4 @@
+import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrPolySearch
 import CORALean.ContDynamics.NonlinearSys.Operations.LinInput
 import CORALean.ContDynamics.NonlinearSys.Operations.Linearize
 import CORALean.ContDynamics.NonlinearSys.Operations.PrecompStatError
@@ -22,4 +23,8 @@ initial set of the next. `RelinTimeInterval` is the same step, over its whole
 interval rather than its end alone, and `RelinDeltaReach` is CORA's `Rdiff`: how
 far that step moves from where it started, which is what `alg = 'poly'` measures
 its next error on.
+
+`AbstrErrPolySearch` is `linReach`'s while loop for `alg = 'poly'`: a fuel-bounded
+search over candidate applied errors, packaged into a `LinStep` the moment one is
+accepted by the certificate already proved sufficient.
 -/
