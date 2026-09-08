@@ -1,5 +1,6 @@
 import CORALean.ContDynamics.LinearSysDT.Complexity.ReachError
 import CORALean.ContDynamics.LinearSysDT.Complexity.ReachErrorReduced
+import CORALean.ContDynamics.LinearSysDT.Complexity.ReachOrders
 
 /-!
 # How large `LinearSysDT`'s computed sets are
@@ -13,7 +14,9 @@ described no more expensively than the run it comes off.
 
 `reach`'s own bound is `Theorems/ReachOrderLe.lean` rather than a file here,
 where it landed before this directory existed, and `Theorems/ReachBigO.lean`
-reads one parameter's slice off it.
+reads one parameter's slice off it. `ReachOrders` is that bound at a per-step
+order sequence, `o (k + 1) * n` in place of the one fixed `o * n`, and lives
+here since this directory now does.
 
 What running a step *costs* is the other kind of claim and lives in `Cost/`: a
 size follows from a definition and a running cost does not, so one is proved

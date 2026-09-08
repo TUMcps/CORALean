@@ -3,26 +3,32 @@ import CORALean.ContDynamics.LinearSysDT.LinearSysDT
 /-!
 # Discrete-time linear systems: reachability
 
-`reach` is written against `Plus` and `Reduce` and names no other operation, so
-it runs at a representation that has no `linComb` — which is the point of an
-operation being a class of its own.
+`reach` is written against `Plus` and `Reduce` alone, so it runs at a
+representation with no `linComb`.
 
-`reduce` is called once per step, which is what holds the representation at
-order `o`. `reach` demands `0 < o`: at `o = 0`, `Zonotope.reduceGirard`'s
-natural subtraction keeps `(0 - 1) * n = 0` generators, silently returning
-order 1 — stricter than CORA, whose `pickedGeneratorsFast` goes negative below
-order 1 and whose `@zonotope/reduce` checks `order` not at all.
+`reduce` is called once per step, holding the representation at order `o`.
+`reach` demands `0 < o`: at `o = 0`, `Zonotope.reduceGirard`'s natural
+subtraction keeps `(0 - 1) * n = 0` generators, silently returning order 1 —
+stricter than CORA, whose `pickedGeneratorsFast` goes negative below order 1.
 
-`reachHeld` is `reach` restricted to `𝕋 = ℝ` and a single held input, in closed
-form, needing no `reduce` and so no `0 < o`.
+`reachOrders` re-chooses the order at every step, `o k` for `reach`'s one
+fixed `o`; `reachOrders_const_eq_reach` recovers `reach` at a constant
+sequence. Expressible, as [1]'s tuning algorithm needs, not *chosen*.
+
+`reachHeld` is `reach` at `𝕋 = ℝ` and one held input, closed form, no `reduce`.
 
 `simulate` samples one run rather than enclosing all of them: a point
-computation, so it carries none of `reach`'s set instances.
+computation, carrying none of `reach`'s set instances.
+
+## References
+
+* [1] M. Wetzlinger, N. Kochdumper, M. Althoff. "Adaptive parameter tuning for
+      reachability analysis of linear systems". CDC 2020, pp. 5145–5152.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       18-August-2026
--- Last update:   06-September-2026
+-- Last update:   08-September-2026
 -- Last revision: ---
 
 
@@ -44,6 +50,13 @@ held at maximum order `o`. `ho` is what rules out `o = 0`. -/
 def LinearSysDT.reach (sys : LinearSysDT 𝕋 n) (o : ℕ) (ho : 0 < o) (R₀ U : S n) : ℕ → S n
   | 0 => R₀
   | k + 1 => reduce (plus (mtimes sys.A (sys.reach o ho R₀ U k)) U) o
+
+/-- `reach` with the order re-chosen at every step: `o k` at step `k`, in place
+of the one `o` `reach` fixes for the whole run. -/
+def LinearSysDT.reachOrders (sys : LinearSysDT 𝕋 n) (o : ℕ → ℕ) (ho : ∀ k, 0 < o k)
+    (R₀ U : S n) : ℕ → S n
+  | 0 => R₀
+  | k + 1 => reduce (plus (mtimes sys.A (sys.reachOrders o ho R₀ U k)) U) (o (k + 1))
 
 variable [Mtimes (Mat ℝ) S]
 
