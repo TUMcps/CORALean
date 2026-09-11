@@ -4,9 +4,16 @@ import CORALean.ContSet.Zonotope.Real.Theorems.BilinOuter
 /-!
 # A matrix zonotope's product over-approximates every matrix it denotes
 
+The result is [1, Prop. 3.5].
+
 `bilin_outer` at `Matrix.mulVecBilin ℝ ℝ`, whose application is `*ᵥ` by `rfl`
 (`Matrix.mulVecBilin_apply`) — so the two unions of images are the same set,
 matched pointwise rather than rewritten.
+
+## References
+
+* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
+      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
 -/
 
 -- Authors:       Tobias Ladner

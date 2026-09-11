@@ -12,6 +12,8 @@ import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
 /-!
 # Multiplying by an interval matrix over-approximates every matrix in it
 
+The result is [1, Thm. 3.3].
+
 Outer and never exact: the boxed generators are one per coordinate, so what the
 radius does to different coordinates is allowed to vary independently, which the
 matrices denoted do not.
@@ -23,6 +25,11 @@ coordinate of a zonotope never exceeds `absBound`.
 Nonnegativity of the radius is read off the witness rather than assumed: an
 `IntervalMat` with crossed bounds denotes nothing, and then there is nothing to
 prove.
+
+## References
+
+* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
+      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
 -/
 
 -- Authors:       Tobias Ladner

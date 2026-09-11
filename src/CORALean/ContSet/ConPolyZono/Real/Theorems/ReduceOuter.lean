@@ -5,10 +5,17 @@ import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceGirardOuter
 /-!
 # `ConPolyZono.reduce` over-approximates the set
 
+The operation and its guarantee are [1, Prop. 12].
+
 Compaction, which is an equality here as it is for `PolyZonotope`, followed by
 Girard's rule. Neither choice shows in the proof: any ranking would discharge
 the second step, and the first contributes nothing but a rewrite. What
 compaction buys is the order bound, which is stated in `ReduceOrder`.
+
+## References
+
+* [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta
+      Informatica, 2023.
 -/
 
 -- Authors:       Tobias Ladner

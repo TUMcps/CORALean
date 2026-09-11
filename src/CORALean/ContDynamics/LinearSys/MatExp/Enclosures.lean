@@ -3,7 +3,7 @@ import CORALean.ContSet.Interval.Real.Interval
 /-!
 # Interval matrices: enclosing a matrix exponential
 
-[1, Sec. 3.2, Eq. (3.2)–(3.3)]: truncate the exponential series at `η` and widen
+[1, Eq. (3.2)–(3.3)]: truncate the exponential series at `η` and widen
 by what the tail can still amount to. The truncation is the centre, the tail
 bound the radius.
 

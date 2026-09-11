@@ -7,6 +7,8 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
 /-!
 # `quadMapDep` is exact where every coefficient is dependent
 
+The result is [1, Prop. 12], the case with no independent generators.
+
 `bilin_exact` at `quadBilin`, which is what `quadMapDep` is. All this file adds
 is the step from `point` to `construct`: with no independent block the two
 describe the same set, so the pairing's claim about the evaluation map is a
@@ -17,6 +19,12 @@ only in that step.
 
 The empty independent block is a hypothesis rather than an arrangement here;
 `quadMap` is what supplies it, by running `dependent` first.
+
+## References
+
+* [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set
+      Representation for Reachability Analysis". IEEE Transactions on Automatic
+      Control, 2021.
 -/
 
 -- Authors:       Tobias Ladner

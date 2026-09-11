@@ -5,6 +5,8 @@ import CORALean.ContSet.Zonotope.Real.Zonotope
 /-!
 # A zonotope as a polynomial zonotope
 
+The construction is [1, Prop. 3].
+
 Exact, and the cleanest check on the definition: give each generator a factor of
 its own, appearing in that generator alone and to the first power, and every
 monomial collapses to the coefficient it stands for. The exponent matrix is the
@@ -17,6 +19,12 @@ exponent matrix can be brought to this shape.
 Both directions are stated through `show`: the counts of the result are
 projections of a definition, and only in their reduced spelling do the sum
 lemmas match.
+
+## References
+
+* [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set
+      Representation for Reachability Analysis". IEEE Transactions on Automatic
+      Control, 2021.
 -/
 
 -- Authors:       Tobias Ladner

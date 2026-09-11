@@ -4,7 +4,7 @@ import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 /-!
 # Constrained polynomial zonotopes: the representation
 
-CORA's `conPolyZono` [1]: a `PolyZonotope` whose factors additionally satisfy
+CORA's `conPolyZono`, and [1, Def. 5]: a `PolyZonotope` whose factors additionally satisfy
 polynomial constraints `A μ(α) ∈ b`, the constraint monomials read off `EC` over
 the *same* factors as the generators. That sharing is the content of the
 representation — a constraint and a generator are two readings of one

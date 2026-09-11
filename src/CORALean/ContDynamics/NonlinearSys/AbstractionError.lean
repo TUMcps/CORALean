@@ -3,7 +3,7 @@ import CORALean.ContSet.ContSet.ContSet
 /-!
 # The abstraction error of a linearization
 
-[1, ch. 3.4]. Splitting a nonlinear field at an expansion point,
+[1, Sec. 3.4]. Splitting a nonlinear field at an expansion point,
 `f(x,u) = f(x✱,u✱) + A(x - x✱) + B(u - u✱) + L(x,u)`, leaves a remainder `L`, and
 this is a set enclosing it over the whole of `R × U`.
 

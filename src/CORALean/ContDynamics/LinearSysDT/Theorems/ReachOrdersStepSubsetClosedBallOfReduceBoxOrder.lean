@@ -4,7 +4,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.StepSubsetClosedBallOfReduceBoxOr
 /-!
 # Closing the loop: `reachOrders` against a tolerance chosen per step
 
-The third obstruction [2]'s tuning left open: `reduceBoxOrder` could be handed
+The third obstruction [1]'s tuning left open: `reduceBoxOrder` could be handed
 a step's zonotope and a bound and return an order meeting it, but nothing
 said what that zonotope's box looks like across a run, so the selector could
 not be discharged there. `reach_subset_closedBall` answers that at a *fixed*
@@ -23,7 +23,6 @@ argument `o`, which is a further theorem, not this one.
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning
       for reachability analysis of linear systems". CDC, 2020, pp. 5145–5152.
-* [2] Issue #32, this morning's notes.
 -/
 
 -- Authors:       Tobias Ladner

@@ -4,8 +4,15 @@ import CORALean.ContSet.ConPolyZono.Real.Theorems.MapExact
 /-!
 # A matrix times a constrained polynomial zonotope is exact
 
+The result is [1, Prop. 5].
+
 `map_exact` at `A *ᵥ ·`, which is the case reachability runs. The constraint is
 on the factors, and a linear map of the ambient space moves points, not factors.
+
+## References
+
+* [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta
+      Informatica, 2023.
 -/
 
 -- Authors:       Tobias Ladner

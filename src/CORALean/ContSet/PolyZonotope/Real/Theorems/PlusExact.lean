@@ -5,6 +5,8 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
 /-!
 # `PolyZonotope.plus` is exactly the Minkowski sum
 
+The result is [1, Prop. 9].
+
 The witnesses are `Fin.append a₁ a₂` and `Fin.append β₁ β₂` on the factors and
 the independent coefficients, and the block-diagonal exponent matrix is what
 makes them work: a generator of one set carries exponent zero on every factor of
@@ -13,6 +15,12 @@ the other, so its monomial reads back as a monomial of its own set alone.
 Exactness is the point of separating the factors. Had the two sets' factors been
 identified, the reverse inclusion would fail — one factor cannot take two values
 at once, so the sum would come out too small rather than too large.
+
+## References
+
+* [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set
+      Representation for Reachability Analysis". IEEE Transactions on Automatic
+      Control, 2021.
 -/
 
 -- Authors:       Tobias Ladner

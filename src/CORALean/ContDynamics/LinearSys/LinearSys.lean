@@ -5,7 +5,7 @@ import CORALean.ContSet.ContSet.ContSet
 
 CORA's `linearSys`, reduced to `ẋ(t) = A x(t) + u(t)`: the class there is
 `ẋ = A x + B u + c` with an output `y = C x + D u + k`, and here only `A` is kept,
-the input entering in state coordinates as in [1]. `B U ⊕ c` is one `mtimes` and
+the input entering in state coordinates as in [1, Sec. 3.2]. `B U ⊕ c` is one `mtimes` and
 one `plus` on the input set, so the folded form reaches the same states.
 
 The output equation is `OutputEq`, paired with a computed set rather than stored

@@ -265,6 +265,13 @@ the size of the state space satisfies all of them, so a widening is invisible to
 the compiler and visible in that file. It needs a built tree, which is why it is
 not on the pre-commit hook.
 
+`scripts/check-references.py` checks `references/` against the tree: that every
+paper cited has a page, that every link on a page resolves and lands on a file
+that really cites that paper, that every result cited anywhere is a row, and
+that the README's counts are the counts. A coverage table is a claim about where
+a theorem lives, which is the kind of prose that rots quietly; this is what
+stops it. It runs beside the conventions, on the same hook and the same CI job.
+
 `scripts/gl.py` is the GitLab client: issues, merge requests and pipelines from
 the command line, so that reading an issue or leaving a comment is not a
 hand-rolled `curl`. The token is never an argument and never in the tree. It is
@@ -785,6 +792,17 @@ of the module docstring:
 Every `[N]` cited is defined, every one defined is cited, and the numbering is
 dense from 1. An identifier that happens to carry a name — `reduceGirard` — is
 not a citation.
+
+**Name the result, not only the paper.** `[1, Prop. 3.1]` is what lets
+[`references/`](references/README.md) put this file in that proposition's row;
+a bare `[1]` lands in the page's "cited without a result" list instead, which is
+where a reader looks to find out what is still imprecise. An entry in backticks
+— a CORALean declaration, or a path into CORA's own `.m` sources — is a
+cross-reference rather than a publication, and needs no page.
+
+**Every publication cited has a page under `references/`**, holding that paper's
+results and where each is formalized. Citing a paper for the first time means
+adding one; `check-references.py` says so if you forget.
 
 **Cite where the result actually is.** Prefer the original paper: a *cumulative*
 thesis reproduces its chapters as papers, so cite the paper rather than the

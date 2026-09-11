@@ -16,5 +16,5 @@ every error box in sight is a member's.
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010, §3.5.5.
+      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
 -/

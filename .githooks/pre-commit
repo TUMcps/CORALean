@@ -4,7 +4,9 @@
 # compile.
 #
 # Required, not optional: `git config core.hooksPath .githooks` is part of
-# setting the repository up, and CI runs the same script so a commit that
+# setting the repository up, and CI runs the same scripts so a commit that
 # bypasses it fails there instead.
 
-exec sh "$(git rev-parse --show-toplevel)/scripts/check-conventions.sh"
+root="$(git rev-parse --show-toplevel)"
+sh "$root/scripts/check-conventions.sh" || exit 1
+exec python3 "$root/scripts/check-references.py"

@@ -4,10 +4,17 @@ import CORALean.ContSet.ConPolyZono.Real.Theorems.QuadMapDepExact
 /-!
 # `ConPolyZono.quadMap` is exactly the image under a quadratic map
 
+The result is [1, Prop. 10].
+
 `quadMapDep` needs an empty independent block, which `hq` asks for; `quadMap`
 supplies it by running `dependent` first, and `dependent` is exact. Together
 with `intersection_exact` this is what a nonlinear reachability step needs: propagate
 through a quadratic map, then cut by a guard, neither losing anything.
+
+## References
+
+* [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta
+      Informatica, 2023.
 -/
 
 -- Authors:       Tobias Ladner
