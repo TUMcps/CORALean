@@ -5,6 +5,8 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
 /-!
 # A polynomial zonotope as a box
 
+The construction is [1, Prop. 2.7].
+
 The dependent generators are freed first, then the zonotope's own box. Cheap and
 loose in one particular way: the freeing is what costs precision, and the box
 that follows is tight for what it is given.
@@ -17,6 +19,11 @@ matrix, which this route has already thrown away.
 The box that comes out is always ordered, which the type does not say: a
 polynomial zonotope is never empty, and a box enclosing a point cannot have its
 `sup` below its `inf`. Anything reading the box as a radius needs that.
+
+## References
+
+* [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural
+      Network Verification using Sensitivity Analysis". HSCC 2023.
 -/
 
 -- Authors:       Tobias Ladner

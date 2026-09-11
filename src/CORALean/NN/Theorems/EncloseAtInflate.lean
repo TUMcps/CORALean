@@ -5,6 +5,8 @@ import CORALean.NN.Schedule
 /-!
 # Refinement converges to the exact image
 
+The result is [1, Thm. 4.14].
+
 The other half of `EncloseAtOuter`: the image is always inside the enclosed
 set, and some schedule brings the enclosed set inside the image widened by any
 `ε`. Together they say refinement drives the enclosure onto the image, and
@@ -18,6 +20,11 @@ earlier layer's residual, so a per-layer limit alone says nothing at the output.
 
 `ε / (2 (K + 1))` rather than `ε / (2 K)`: `K` may be zero, and a division by it
 would be the one case the statement is easiest in.
+
+## References
+
+* [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural
+      Network Verification using Sensitivity Analysis". HSCC 2023.
 -/
 
 -- Authors:       Tobias Ladner

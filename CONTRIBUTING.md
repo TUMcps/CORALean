@@ -800,9 +800,10 @@ where a reader looks to find out what is still imprecise. An entry in backticks
 — a CORALean declaration, or a path into CORA's own `.m` sources — is a
 cross-reference rather than a publication, and needs no page.
 
-**Every publication cited has a page under `references/`**, holding that paper's
-results and where each is formalized. Citing a paper for the first time means
-adding one; `check-references.py` says so if you forget.
+**Every publication cited has a page under `references/`**, in a directory for
+its year, holding that paper's results and where each is formalized. Citing a
+paper for the first time means adding one; `check-references.py` says so if you
+forget.
 
 **Cite where the result actually is.** Prefer the original paper: a *cumulative*
 thesis reproduces its chapters as papers, so cite the paper rather than the

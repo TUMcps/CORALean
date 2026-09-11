@@ -3,6 +3,8 @@ import CORALean.ContSet.ContSet.ContSet
 /-!
 # Polytopes: the halfspace representation
 
+The definition is [1, Def. 2].
+
 CORA's `polytope` with `isHRep` set: the points satisfying finitely many
 inequalities `A x ≤ b` and equalities `Ae x = be`.
 
@@ -13,6 +15,11 @@ Exact under intersection and preimage, and under nothing else — a Minkowski su
 or a convex hull of two halfspace descriptions needs vertex enumeration. That is
 what `VPolytope` is for, the two representations being good at disjoint
 operations.
+
+## References
+
+* [1] N. Kochdumper, B. Schürmann and M. Althoff. "Utilizing Dependencies to
+      Obtain Subsets of Reachable Sets". HSCC 2020. arXiv:1910.08354.
 -/
 
 -- Authors:       Tobias Ladner
