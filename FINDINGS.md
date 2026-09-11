@@ -1,22 +1,18 @@
 # Findings
 
-Where formalizing turned something up: an error or a gap in a source, or a place
-this formalization deliberately parts from CORA. A line each — the linked file's
-module docstring carries the argument.
+Where this formalization deliberately parts from CORA or from its sources. A line
+each — the linked file's module docstring carries the argument.
 
-**What belongs here.** Settled facts, which will not change: a source is wrong,
-or this formalization does something differently on purpose. Anything with work
-still to do goes to the issue tracker instead, under its label. A finding can
-give rise to both — the error is recorded here, the fixing of it is an issue.
+**An error in a paper is not here.** It lives on that paper's page under
+[references/](references/README.md), beside the result it is about, which is where
+someone asking "is this proposition formalized?" will be standing.
+[references/README.md](references/README.md#findings) lists the papers that have
+one.
 
-## Errors and omissions in the sources
-
-| Where | What is wrong or missing | Details |
-|---|---|---|
-| [Althoff's thesis](references/2010/althoff-thesis.md), Prop. 3.1 — the tail | The printed proof pulls one `[−1,1]` out of two independent remainders, and the bound does not follow; the proposition holds for another reason. | [`CorrectionMatrix.lean`](src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/CorrectionMatrix.lean), [`ExpDiff.lean`](src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/ExpDiff.lean) |
-| [Althoff's thesis](references/2010/althoff-thesis.md), Prop. 3.8 — the intersection | `Z₁ ∩ Z₂ = Z*` is read off `A + (B ∩ C) = (A + B) ∩ (A + C)`, which is false for sets, convex `A` included. The claim holds; what it needs is that `Z*` is convex. | [`SplitIntersection.lean`](src/CORALean/ContSet/Zonotope/Real/Theorems/SplitIntersection.lean) |
-| [AAAI'24 exponent relaxation](references/2024/ladner-aaai-exponent-relaxation.md), Thm. 1 | The centre shift reads `+ξ_E/2`; it is `−ξ_E/2`. And the evenness of `E_{k₀,j}` is omitted, without which the shift is zero. CORA is unaffected by either. | [`RelaxExp.lean`](src/CORALean/ContSet/PolyZonotope/Real/Operations/RelaxExp.lean) |
-| [HSCC'23 abstraction refinement](references/2023/ladner-hscc-abstraction-refinement.md) | Minor: (i) convergence needs a Lipschitz bound on every network tail; (ii) sensitivity analysis needs differentiability per layer, and differentiability of the network's evaluation does not suffice. | [`EncloseAtInflate.lean`](src/CORALean/NN/Theorems/EncloseAtInflate.lean), [`EvalDifferentiable.lean`](src/CORALean/NN/Theorems/EvalDifferentiable.lean) |
+**What belongs here.** Settled facts, which will not change: this formalization
+does something differently on purpose. Anything with work still to do goes to the
+issue tracker instead, under its label. A finding can give rise to both — the
+departure is recorded here, the closing of it is an issue.
 
 ## Where the formalization parts from CORA or its sources
 

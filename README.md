@@ -70,10 +70,11 @@ are of the paper, so they do not move when we do more work.
 
 ## Findings
 
-Formalizing turns things up. [FINDINGS.md](FINDINGS.md) tables the errors and
-gaps found in the papers, and the places this formalization parts from CORA,
-each pointing at the file that argues it. A paper with an error against it says
-so on its own page too.
+Formalizing turns things up. An error found in a paper is recorded on that
+paper's page under [references/](references/README.md), beside the result it is
+about. [FINDINGS.md](FINDINGS.md) is the other half: the places this
+formalization parts from CORA on purpose, each pointing at the file that argues
+it.
 
 
 ## Contributing

@@ -267,8 +267,9 @@ not on the pre-commit hook.
 
 `scripts/check-references.py` checks `references/` against the tree: that every
 paper cited has a page, that every link on a page resolves and lands on a file
-that really cites that paper, that every result cited anywhere is a row, and
-that the README's counts are the counts. A coverage table is a claim about where
+that really cites that paper, that every result cited anywhere is a row, that
+the README's counts are the counts, and that a paper's findings are listed where
+the index says they are. A coverage table is a claim about where
 a theorem lives, which is the kind of prose that rots quietly; this is what
 stops it. It runs beside the conventions, on the same hook and the same CI job.
 

@@ -65,6 +65,23 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Explaining Fast and Slow: Abstraction and Refinement of Provable Explanations](2025/bassan-icml-explaining-fast-and-slow.md) | Bassan, Elboher, Ladner, Althoff, Katz | ICML | 2025 | 🟡 9/14 \| 2 |
 | [Formal Verification of Graph Convolutional Networks with Uncertain Node Features and Uncertain Graph Structure](2025/ladner-tmlr-gcn.md) | Ladner, Eichelbeck, Althoff | TMLR | 2025 | 🟡 10/14 \| 4 |
 
+## Findings
+
+Formalizing a paper turns things up. Where a printed result is wrong or a proof
+does not follow, the paper's own page says so, under its own `## Findings`
+heading — beside the result, where someone checking that result will be. These
+pages carry one:
+
+<!-- findings -->
+* [Reachability Analysis and its Application to the Safety Assessment of Autonomous Cars](2010/althoff-thesis.md)
+* [Automatic Abstraction Refinement in Neural Network Verification using Sensitivity Analysis](2023/ladner-hscc-abstraction-refinement.md)
+* [Exponent Relaxation of Polynomial Zonotopes and Its Applications in Formal Neural Network Verification](2024/ladner-aaai-exponent-relaxation.md)
+
+[FINDINGS.md](../FINDINGS.md) is the other half, and stays at the root: the
+places this formalization parts from CORA on purpose, which belong to no paper.
+
+## Citing
+
 Cite as the papers are cited in the source — `[1]`, or `[1, Prop. 3.1]` — and see
 [CONTRIBUTING.md](../CONTRIBUTING.md#references) for what belongs in a `##
 References` block. [FINDINGS.md](../FINDINGS.md) records where a source turned
