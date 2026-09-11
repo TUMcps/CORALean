@@ -13,6 +13,10 @@ import CORALean.NN.Operations.RefineLoop
 import CORALean.NN.Operations.RefinementLipschitz
 import CORALean.NN.Operations.RefinementNeuron
 import CORALean.NN.Operations.RefinementRank
+import CORALean.NN.Operations.RefinementRankAll
+import CORALean.NN.Operations.RefinementRankApproxError
+import CORALean.NN.Operations.RefinementRankLayerBias
+import CORALean.NN.Operations.RefinementRankSensitivity
 import CORALean.NN.Operations.RefineWorst
 import CORALean.NN.Operations.Sensitivity
 import CORALean.NN.Operations.ToLayer
@@ -37,7 +41,8 @@ which `Theorems.SensitivityFDeriv` identifies them with the derivative.
 `RefineLoop` build one, and `AtSchedule`/`EncloseAt` read one against a
 network. `RefinementRank`/`WorstIndex`/`RefineWorst` pick the layer a
 layer-wise step moves and `RefinementNeuron` the neuron a neuron-wise one does,
-out of the sensitivity and the error — rankings with no obligation, again.
+out of the sensitivity and the error; the other `RefinementRank*` files are
+the paper's remaining heuristics, all the same freedom of ranking.
 `Convergent`/`NetworkConvergent` are the other side, the hypotheses under which
 spending orders actually shrinks the enclosure onto the exact image, and
 `RefinementLipschitz` is the per-layer form of the bound those hypotheses ask of
