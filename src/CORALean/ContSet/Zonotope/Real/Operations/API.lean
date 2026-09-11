@@ -20,6 +20,7 @@ import CORALean.ContSet.Zonotope.Real.Operations.ReduceBy
 import CORALean.ContSet.Zonotope.Real.Operations.ReduceByBox
 import CORALean.ContSet.Zonotope.Real.Operations.ReduceByBasis
 import CORALean.ContSet.Zonotope.Real.Operations.GirardSplit
+import CORALean.ContSet.Zonotope.Real.Operations.Split
 import CORALean.ContSet.Zonotope.Real.Operations.ReduceGirard
 import CORALean.ContSet.Zonotope.Real.Operations.ReduceCombastel
 import CORALean.ContSet.Zonotope.Real.Operations.MethCFilter
@@ -43,12 +44,11 @@ and `mtimesMatZonotope` are a matrix zonotope acting on a set, at any bilinear
 map and at `Matrix.mulVecBilin` respectively; `matMul` is the same at matrix
 multiplication, which is what `matPow` iterates. `ofPoint` and `recentre` are a
 point and the origin-holding remainder, what `OfPoint` and `Recentre` ask for.
-`minkDiffAligned` is CORA's exact aligned-generator case of `minkDiff`, the
-only one not needing an enclosure, and `minkDiffRep` is the general one, at a
-generator representation the caller offers and this checks.
-`minkDiffOrEmpty` is that one again with the candidate chosen here rather than
-by the caller, so that it is total — and wrapped, since the difference can be
-empty and no zonotope is.
+`minkDiffAligned` is CORA's exact aligned-generator case of `minkDiff`, the only
+one not needing an enclosure, and `minkDiffRep` is the general one, at a generator
+representation the caller offers and this checks. `minkDiffOrEmpty` is that one
+again with the candidate chosen here rather than by the caller, so that it is
+total — and wrapped, since the difference can be empty and no zonotope is.
 
 `girardSplit` is the ranking `reduceGirard` reduces by, named on its own because
 `reduceBox` reads the same partition the other way round. `reduceByBox` computes
@@ -59,4 +59,5 @@ pays, which is what an inner approximation subtracts back off.
 
 `reduceByBasis` boxes along a basis, not the axes: `methCFilter`, `methCVolume`
 and `methCBasis` pick `methC`'s, `pcaCovariance` and `pcaBasis` pick `pca`'s.
+`split` halves one generator into two zonotopes that cover the original.
 -/
