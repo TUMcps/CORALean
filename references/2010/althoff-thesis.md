@@ -57,10 +57,7 @@ for much of this and citing it is correct, not a fallback.
 
 ## Findings
 
-[FINDINGS.md](../../FINDINGS.md) — **Prop. 3.1**: the printed proof pulls one
-`[−1,1]` out of two independent remainders and the bound does not follow. The
-proposition is true; the argument for it here is a different one.
+**Prop. 3.1 — the tail.** The printed proof pulls one `[−1,1]` out of two independent remainders, and the bound does not follow; the proposition holds for another reason. [`CorrectionMatrix.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/CorrectionMatrix.lean), [`ExpDiff.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/ExpDiff.lean)
 
-[FINDINGS.md](../../FINDINGS.md) — **Prop. 3.8**: the intersection is derived
-from `A + (B ∩ C) = (A + B) ∩ (A + C)`, which no pair of sets need satisfy. The
-proposition is true; convexity of `Z*` is what carries the step.
+**Prop. 3.8 — the intersection.** `Z₁ ∩ Z₂ = Z*` is read off `A + (B ∩ C) = (A + B) ∩ (A + C)`, which is false for sets, convex `A` included. The claim holds; what it needs is that `Z*` is convex. [`SplitIntersection.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/SplitIntersection.lean)
+

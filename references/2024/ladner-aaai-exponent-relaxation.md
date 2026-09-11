@@ -30,6 +30,5 @@ buys. `PolyZonotope.relaxExp` and the theorems around it.
 
 ## Findings
 
-[FINDINGS.md](../../FINDINGS.md) — **Thm. 1**: the centre shift reads `+ξ_E/2`
-where it is `−ξ_E/2`, and the evenness of `E_{k₀,j}` is omitted, without which
-the shift is zero. CORA is unaffected by either.
+**Thm. 1.** The centre shift reads `+ξ_E/2`; it is `−ξ_E/2`. And the evenness of `E_{k₀,j}` is omitted, without which the shift is zero. CORA is unaffected by either. [`RelaxExp.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Operations/RelaxExp.lean)
+

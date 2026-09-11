@@ -273,26 +273,31 @@ def main():
                     say(f"{paper.rel}: `{result}` links {target.name}, which does "
                         "not cite this paper")
 
-    # --- FINDINGS.md against `references/` ---------------------------------- #
+    # --- findings ------------------------------------------------------------ #
 
-    # An error in a paper stays listed in one place, but the paper's own page is
-    # where someone asking "is Prop. 3.1 formalized?" will be standing, so the
-    # two point at each other.
+    # An error in a paper lives on that paper's page, beside the result. The
+    # index lists which pages have one, so the overview survives the split.
+    with_findings = {str(p.rel.relative_to(REFS.name)) for p in papers
+                     if re.search(r"^## Findings\s*$", p.path.read_text(encoding="utf-8"),
+                                  re.M)}
+    readme_text = (REFS / "README.md").read_text(encoding="utf-8") if \
+        (REFS / "README.md").exists() else ""
+    m = re.search(r"^## Findings\s*$(.*?)(?=^## |\Z)", readme_text, re.S | re.M)
+    # links out of `references/` in that section are prose, not entries
+    listed_findings = {l for l in (LINK.findall(m.group(1)) if m else [])
+                       if not l.startswith("../")}
+    for miss in sorted(with_findings - listed_findings):
+        say(f"references/README.md: {miss} has a `## Findings` section and is not "
+            "listed under `## Findings` here")
+    for extra in sorted(listed_findings - with_findings):
+        say(f"references/README.md: lists {extra} under `## Findings`, but that page "
+            "has no `## Findings` section")
+
     findings = ROOT / "FINDINGS.md"
-    if findings.exists():
-        m = re.search(r"^## Errors and omissions in the sources\s*$(.*?)(?=^## |\Z)",
-                      findings.read_text(encoding="utf-8"), re.S | re.M)
-        for link in LINK.findall(m.group(1)) if m else []:
-            if not link.startswith("references/"):
-                continue
-            paper = next(
-                (p for p in papers
-                 if str(p.rel) == link or str(p.rel.relative_to(REFS.name)) == link), None)
-            if paper is None:
-                say(f"FINDINGS.md: links {link}, which does not exist")
-            elif "FINDINGS.md" not in paper.path.read_text(encoding="utf-8"):
-                say(f"{paper.rel}: FINDINGS.md records an error in this paper; say "
-                    "so here and link it")
+    if findings.exists() and "## Errors and omissions in the sources" in \
+            findings.read_text(encoding="utf-8"):
+        say("FINDINGS.md: an error in a paper belongs on that paper's page under "
+            "references/, not here")
 
     # --- the README against both -------------------------------------------- #
 

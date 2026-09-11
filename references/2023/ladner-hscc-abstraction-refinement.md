@@ -53,9 +53,7 @@ refining only tightens.
 
 ## Findings
 
-[FINDINGS.md](../../FINDINGS.md) — two minor gaps: convergence needs a Lipschitz
-bound on every network tail, and the sensitivity analysis needs differentiability
-per layer, which differentiability of the network's evaluation does not give.
+**HSCC'23 abstraction refinement.** Minor: (i) convergence needs a Lipschitz bound on every network tail; (ii) sensitivity analysis needs differentiability per layer, and differentiability of the network's evaluation does not suffice. [`EncloseAtInflate.lean`](../../src/CORALean/NN/Theorems/EncloseAtInflate.lean), [`EvalDifferentiable.lean`](../../src/CORALean/NN/Theorems/EvalDifferentiable.lean)
 
 ## Cited without a result
 
