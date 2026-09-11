@@ -1,4 +1,5 @@
 import Mathlib.Algebra.BigOperators.Fin
+import Mathlib.Algebra.BigOperators.Pi
 import Mathlib.Algebra.Group.Pointwise.Set.Basic
 import Mathlib.Algebra.Order.BigOperators.Group.Finset
 import Mathlib.Analysis.Asymptotics.Defs
@@ -20,6 +21,7 @@ import Mathlib.Data.Fintype.BigOperators
 import Mathlib.Data.Fintype.Pi
 import Mathlib.Data.Matrix.Mul
 import Mathlib.Data.Real.Basic
+import Mathlib.Data.Set.Prod
 import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 import Mathlib.Logic.Equiv.Fin.Basic
 import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus

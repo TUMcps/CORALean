@@ -7,6 +7,7 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.RadiusReach
 import CORALean.ContSet.PolyZonotope.Real.Operations.MtimesIntervalMat
 import CORALean.ContSet.PolyZonotope.Real.Operations.PlusE
 import CORALean.ContSet.PolyZonotope.Real.Operations.Plus
+import CORALean.ContSet.PolyZonotope.Real.Operations.CartProd
 import CORALean.ContSet.PolyZonotope.Real.Operations.LinCombE
 import CORALean.ContSet.PolyZonotope.Real.Operations.LinComb
 import CORALean.ContSet.PolyZonotope.Real.Operations.Dependent
