@@ -5,7 +5,7 @@ import CORALean.ContDynamics.LinearSys.LinearSys
 
 `∫₀ʳ τⁱ f(τ) dτ ∈ (r^{i+1}/(i+1)) · S` whenever `f` is valued in `S` and `S` is
 convex and closed — the total weight `∫₀ʳ τⁱ dτ` scaling the set, and nothing
-worse. Every term of the input solution of [1] is one instance of it.
+worse. Every term of the input solution of [1, Thm. 3.1] is one instance of it.
 
 An integral is a limit of convex combinations of values of `f`, so convexity is
 what puts it in `S` and closedness is what turns the limit into membership.

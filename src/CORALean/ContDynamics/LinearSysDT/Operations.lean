@@ -22,8 +22,8 @@ computation, carrying none of `reach`'s set instances.
 
 ## References
 
-* [1] M. Wetzlinger, N. Kochdumper, M. Althoff. "Adaptive parameter tuning for
-      reachability analysis of linear systems". CDC 2020, pp. 5145–5152.
+* [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning
+      for reachability analysis of linear systems". CDC, 2020, pp. 5145–5152.
 -/
 
 -- Authors:       Tobias Ladner

@@ -35,13 +35,20 @@ conventions:
   # declares more than one public thing, whether the section markers still
   # signpost the declaration Lean buries last, whether an `API.lean` holds
   # anything but imports, whether a `Real` file reached into `Float`. The same
-  # script runs on the pre-commit hook.
+  # scripts run on the pre-commit hook.
+  #
+  # `check-references.py` is the second of them: the coverage tables under
+  # `references/` are prose, and prose about which theorem sits where is exactly
+  # what rots, so it is checked against the tree rather than trusted.
   interruptible: true
   before_script:
     # `slim` carries no guarantee of an awk, and the script is mostly awk.
-    - apt-get update -qq && apt-get install -y -qq --no-install-recommends mawk findutils
+    # `check-references.py` is the second script, and wants a python. The full
+    # `python3`, not `python3-minimal`, which is not guaranteed a `pathlib`.
+    - apt-get update -qq && apt-get install -y -qq --no-install-recommends mawk findutils python3
   script:
     - sh scripts/check-conventions.sh
+    - python3 scripts/check-references.py
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

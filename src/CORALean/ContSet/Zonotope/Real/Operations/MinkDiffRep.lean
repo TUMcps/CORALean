@@ -19,8 +19,8 @@ the check admits, and at `G₂ = diag(μ) G₁` it is `minkDiffAligned` again.
 
 ## References
 
-* [1] M. Althoff, "On Computing the Minkowski Difference of Zonotopes", arXiv,
-      2015.
+* [1] M. Althoff. "On Computing the Minkowski Difference of Zonotopes".
+      arXiv, 2015.
 -/
 
 -- Authors:       Tobias Ladner

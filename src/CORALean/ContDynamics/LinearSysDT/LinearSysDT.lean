@@ -5,7 +5,7 @@ import CORALean.ContSet.ContSet.ContSet
 
 CORA's `linearSysDT`, reduced to `x(k+1) = A x(k) + u(k)`: the class there is
 `x(k+1) = A x(k) + B u(k) + c` with an output `y = C x + D u + k`, and here only
-`A` is kept, the input entering in state coordinates as in [1]. `B U ⊕ c` is one
+`A` is kept, the input entering in state coordinates as in [1, Sec. 3.2]. `B U ⊕ c` is one
 `mtimes` and one `plus` on the input set, and the folded form reaches every state
 the system can.
 

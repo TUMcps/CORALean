@@ -4,7 +4,7 @@ import CORALean.ContSet.Zonotope.Real.Operations.MtimesMatZonotope
 /-!
 # `ZonoBundle.mtimesMatZonotope`
 
-CORA's `matZonotope * zonoBundle` [1, Sec. 4.4.1]: the same `k`, each component
+CORA's `matZonotope * zonoBundle` [1, Eq. (10)]: the same `k`, each component
 multiplied on its own, exactly as `mtimes` does for a point matrix.
 
 An enclosure twice over, and only the first reason is `mtimes`'s: an
@@ -15,8 +15,9 @@ component encloses on its own, so a correlation across components is lost.
 
 ## References
 
-* [1] M. Althoff et al. "Modeling, Design, and Simulation of Systems with
-      Uncertainties". Springer, 2011, Sec. 4.4.1.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Tobias Ladner

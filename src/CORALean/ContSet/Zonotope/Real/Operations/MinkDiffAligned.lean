@@ -16,8 +16,8 @@ no argument slot for a hypothesis at all.
 
 ## References
 
-* [1] M. Althoff, "On Computing the Minkowski Difference of Zonotopes", arXiv,
-      2015.
+* [1] M. Althoff. "On Computing the Minkowski Difference of Zonotopes".
+      arXiv, 2015.
 -/
 
 -- Authors:       Tobias Ladner

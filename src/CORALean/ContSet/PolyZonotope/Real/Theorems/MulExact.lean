@@ -4,6 +4,8 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinExact
 /-!
 # `mul` is exactly the product over shared factors
 
+The result is [1, Prop. 8].
+
 `bilin_exact` at the entrywise product, which is what `mul` is.
 
 What exactness can mean here, and what it cannot: `construct (mul pZ₁ pZ₂)` is not
@@ -15,6 +17,12 @@ the image of the admissible factors under `a ↦ point pZ₁ a ⊙ point pZ₂ a
 
 The independent blocks are not hypothesised away: `point` ignores them, so they
 take no part on either side.
+
+## References
+
+* [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set
+      Representation for Reachability Analysis". IEEE Transactions on Automatic
+      Control, 2021.
 -/
 
 -- Authors:       Tobias Ladner

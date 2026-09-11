@@ -60,11 +60,20 @@ return a **subset**, and `MinkDiff` accordingly owes an inner approximation. Its
 float counterpart rounds inward, the only operation in that layer which does.
 
 
+## What is formalized
+
+[references/](references/README.md) holds a page per publication this draws on,
+listing that paper's results and, for each, where it is formalized — so whether
+a given proposition is done is a lookup rather than a search. The page's counts
+are of the paper, so they do not move when we do more work.
+
+
 ## Findings
 
 Formalizing turns things up. [FINDINGS.md](FINDINGS.md) tables the errors and
 gaps found in the papers, and the places this formalization parts from CORA,
-each pointing at the file that argues it.
+each pointing at the file that argues it. A paper with an error against it says
+so on its own page too.
 
 
 ## Contributing

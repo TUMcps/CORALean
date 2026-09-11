@@ -4,9 +4,17 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.CompactGensExact
 /-!
 # Compaction loses nothing
 
+The result is [1, Prop. 2].
+
 The two stages composed. Every step is an equality of sets and needs no
 hypothesis, which is the point: `compact` is bookkeeping, and an order bound is
 only worth stating once the bookkeeping is done.
+
+## References
+
+* [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set
+      Representation for Reachability Analysis". IEEE Transactions on Automatic
+      Control, 2021.
 -/
 
 -- Authors:       Tobias Ladner

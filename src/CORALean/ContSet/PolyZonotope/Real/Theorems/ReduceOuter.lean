@@ -4,10 +4,18 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceGirardOuter
 /-!
 # `PolyZonotope.reduce` over-approximates the set
 
+The operation and its guarantee are [1, Prop. 16].
+
 Compaction, which is an equality, followed by Girard's rule. Neither choice
 shows in the proof: any ranking would discharge the second step, and the first
 contributes nothing but a rewrite. What compaction buys is the order bound,
 which is stated in `ReduceOrder`.
+
+## References
+
+* [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set
+      Representation for Reachability Analysis". IEEE Transactions on Automatic
+      Control, 2021.
 -/
 
 -- Authors:       Tobias Ladner

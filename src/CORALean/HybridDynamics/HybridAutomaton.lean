@@ -3,7 +3,7 @@ import CORALean.HybridDynamics.Location
 /-!
 # Hybrid automata: the automaton and its runs
 
-CORA's `hybridAutomaton`: the locations, indexed by a type. Finiteness is never
+CORA's `hybridAutomaton`, and [1, Def. 3.3]: the locations, indexed by a type. Finiteness is never
 used and so is not required; `Fin k` is the intended index.
 
 A run alternates: flow inside a location over `[0, τ]` staying in its invariant,
@@ -18,6 +18,11 @@ no meaning without the stay that brought the state to the guard.
 
 `RunOn` is `Run` with an exact jump count, not a bound: `RunOn k` for some
 `k ≤ K` is how a caller states a bound, so the constructors carry no inequality.
+
+## References
+
+* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
+      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
 -/
 
 -- Authors:       Tobias Ladner

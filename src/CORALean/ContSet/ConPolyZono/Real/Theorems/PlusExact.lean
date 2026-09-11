@@ -4,6 +4,8 @@ import CORALean.ContSet.ConPolyZono.Real.Operations.SatisfiesPlusIff
 /-!
 # `ConPolyZono.plus` is exactly the Minkowski sum
 
+The result is [1, Prop. 6].
+
 The witnesses are `Fin.append` on the factors and on the independent
 coefficients, and the block-diagonal layout is what makes them work twice over:
 a generator of one set carries exponent zero on every factor of the other, and
@@ -14,6 +16,11 @@ Exactness is what the separation buys. Had the two factor sets been identified,
 the reverse inclusion would fail — one factor cannot take two values at once —
 and had the constraint systems been merged, each set's rows would have
 constrained the other's factors.
+
+## References
+
+* [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta
+      Informatica, 2023.
 -/
 
 -- Authors:       Tobias Ladner

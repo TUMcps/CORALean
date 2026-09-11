@@ -3,6 +3,8 @@ import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
 /-!
 # `ConPolyZono.domain`
 
+The definition is [1, Def. 7].
+
 The coefficients the representation admits, split from the map they go
 through so that the set can be read as an image. Both blocks of factors
 travel together, as one point of a product, because the constraint couples
@@ -11,6 +13,11 @@ the dependent ones.
 No `HPolytope` here, unlike `ConZonotope.domain`: the constraint is polynomial
 in the factors, so what makes this domain closed is the continuity of a monomial
 and not a halfspace description.
+
+## References
+
+* [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta
+      Informatica, 2023.
 -/
 
 -- Authors:       Tobias Ladner

@@ -3,6 +3,8 @@ import CORALean.ContDynamics.LinearSys.LinearSys
 /-!
 # The set a continuous run actually reaches
 
+The definition is [1, Def. 3.1].
+
 Every state a trajectory of `sys` visits at time `t`, quantified over the runs
 themselves: no enclosure, nothing an implementation may widen, nothing a
 representation computes. So "the trajectory is in the reachable set" holds by
@@ -17,6 +19,11 @@ derivative that exists everywhere on `T`.
 
 `Theorems.ReachSetOuter` puts every trajectory into it; `ReachSetSubsetReach`
 and `ReachSetSubsetTimeIntervalInputSolution` put it inside what is computed.
+
+## References
+
+* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
+      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
 -/
 
 -- Authors:       Tobias Ladner

@@ -7,6 +7,8 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.SumMonomialMerge
 /-!
 # Merging equal generator exponent columns loses nothing
 
+The result is [1, Prop. 1].
+
 `compactGens` leaves the whole constraint block alone, so `satisfies` transfers
 by definition and only the generator sum moves. An equality of sets with no
 hypothesis, which is what makes this stage bookkeeping.
@@ -14,6 +16,11 @@ hypothesis, which is what makes this stage bookkeeping.
 The `key` is stated with the *original* centre and independent block on both
 sides. They are the compacted ones up to unfolding, and writing them so keeps
 the equation to the one sum that actually changes.
+
+## References
+
+* [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta
+      Informatica, 2023.
 -/
 
 -- Authors:       Tobias Ladner

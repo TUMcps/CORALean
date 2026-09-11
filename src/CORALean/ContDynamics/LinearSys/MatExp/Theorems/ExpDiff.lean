@@ -13,7 +13,7 @@ cancel against `I` and `(t/r)I`, and the linear terms cancel because
 `t - (t/r)r = 0` — which is why the correction is second order and why `r ≠ 0`
 is needed, since at `r = 0` Lean's `t/r` is `0` and that cancellation fails.
 
-Keeping the two exponentials in one series is what makes the `E(r)` bound of [1]
+Keeping the two exponentials in one series is what makes the `E(r)` bound of [1, Prop. 3.1]
 provable: the tail terms share `A^i`, so `t^i - t·r^(i-1)` is bounded once
 rather than each remainder separately and the two added. `CorrectionMatrix`
 spells out why splitting them would cost a factor of two.

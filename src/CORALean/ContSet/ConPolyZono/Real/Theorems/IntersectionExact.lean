@@ -5,11 +5,18 @@ import CORALean.ContSet.Interval.Real.Theorems.MemPoint
 /-!
 # `ConPolyZono.intersection` is exactly the intersection
 
+The result is [1, Prop. 11].
+
 The claim the representation exists for, and the one no convex representation
 here can make without giving something away.
 
 `intersectionDep_exact` at the zero-width box does the work; `dependent_exact` empties
 the independent blocks it asks for, and empties them costlessly.
+
+## References
+
+* [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta
+      Informatica, 2023.
 -/
 
 -- Authors:       Tobias Ladner

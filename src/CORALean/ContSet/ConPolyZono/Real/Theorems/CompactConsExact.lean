@@ -10,9 +10,16 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.SumMonomialMerge
 /-!
 # Merging equal constraint exponent columns loses nothing
 
+The result is [1, Prop. 2], the constraint-side counterpart.
+
 `compactCons` leaves the generators alone and moves only `A μ(α)`, which
 `holds_congr` is exactly the statement about, so the point equation is the same
 term on both sides and only the constraint vector is rewritten.
+
+## References
+
+* [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta
+      Informatica, 2023.
 -/
 
 -- Authors:       Tobias Ladner

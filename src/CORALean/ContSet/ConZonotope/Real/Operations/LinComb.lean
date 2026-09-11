@@ -23,8 +23,8 @@ equality, which a halfspace description states directly, so the count here is
 
 ## References
 
-* [1] V. Raghuraman, J. P. Koeln. "Set operations and order reductions for
-      constrained zonotopes". arXiv:2009.06039, 2020.
+* [1] V. Raghuraman and J. P. Koeln. "Set operations and order reductions for
+      constrained zonotopes". Automatica, 139:110204, 2022. arXiv:2009.06039.
 -/
 
 -- Authors:       Tobias Ladner
