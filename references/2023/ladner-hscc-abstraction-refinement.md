@@ -41,11 +41,11 @@ refining only tightens.
 | `Def. 4.4` | (§4.3, Neuron-wise Refinement) refine all neurons j of the layer k̃ with maximal heuristic value whose heuristic is within a factor W of the max, Eq. (27) | [`Refine.lean`](../../src/CORALean/NN/Operations/Refine.lean), [`RefinementNeuron.lean`](../../src/CORALean/NN/Operations/RefinementNeuron.lean), [`ImageSubsetRefine.lean`](../../src/CORALean/NN/Theorems/ImageSubsetRefine.lean) |
 | `Eq. 28` | (§4.3) the heuristic summed over a layer, which layer-wise refinement maximizes. | [`RefineWorst.lean`](../../src/CORALean/NN/Operations/RefineWorst.lean), [`RefinementRank.lean`](../../src/CORALean/NN/Operations/RefinementRank.lean) |
 | `Def. 4.6` | (§4.3, Layer-wise Refinement) refine all neuron abstractions of the layer k̃ = argmax_k of the summed heuristic over the layer, Eq. (28) | [`RefineLayer.lean`](../../src/CORALean/NN/Operations/RefineLayer.lean), [`RefineWorst.lean`](../../src/CORALean/NN/Operations/RefineWorst.lean), [`RefinementNeuron.lean`](../../src/CORALean/NN/Operations/RefinementNeuron.lean), [`ImageSubsetRefineLayer.lean`](../../src/CORALean/NN/Theorems/ImageSubsetRefineLayer.lean) |
-| `Def. 4.7` | (§4.3, σ-All) heuristic considering all neurons equally beneficial, Eq. (30) | — |
-| `Def. 4.8` | (§4.3, σ-Random) heuristic sampled uniformly in [0,1], Eq. (31) | — |
-| `Def. 4.9` | (§4.3, σ-Approximation Error) heuristic using the approximation error e_k(j), Eq. (32) | — |
-| `Def. 4.10` | (§4.3, σ-Layer Bias) heuristic biasing earlier layers, Eq. (33) | — |
-| `Def. 4.11` | (§4.3, σ-Sensitivity) heuristic based on sensitivity analysis via Euclidean norm of S_k(j,·), Eq. (34) | — |
+| `Def. 4.7` | (§4.3, σ-All) heuristic considering all neurons equally beneficial, Eq. (30) | [`RefinementRankAll.lean`](../../src/CORALean/NN/Operations/RefinementRankAll.lean) |
+| `Def. 4.8` | (§4.3, σ-Random) heuristic sampled uniformly in [0,1], Eq. (31) | n/a — defined by sampling a random variable, which a deterministic and total formalization cannot express; `refineWorst` already takes an arbitrary caller-supplied ranking, so nothing here depends on it |
+| `Def. 4.9` | (§4.3, σ-Approximation Error) heuristic using the approximation error e_k(j), Eq. (32) | [`RefinementRankApproxError.lean`](../../src/CORALean/NN/Operations/RefinementRankApproxError.lean) |
+| `Def. 4.10` | (§4.3, σ-Layer Bias) heuristic biasing earlier layers, Eq. (33) | [`RefinementRankLayerBias.lean`](../../src/CORALean/NN/Operations/RefinementRankLayerBias.lean) |
+| `Def. 4.11` | (§4.3, σ-Sensitivity) heuristic based on sensitivity analysis via Euclidean norm of S_k(j,·), Eq. (34) | [`RefinementRankSensitivity.lean`](../../src/CORALean/NN/Operations/RefinementRankSensitivity.lean) |
 | `Def. 4.12` | (§4.3, σ-Weighted Error) heuristic weighting approximation error by sensitivity, Eq. (35) | [`RefinementRank.lean`](../../src/CORALean/NN/Operations/RefinementRank.lean) |
 | `Alg. 3` | (§4, Automatic Abstraction Refinement) main refinement loop over layers/neurons using a heuristic σ | — |
 | `Prop. 4.13` | (§4.4, Layer Convergence) for a two-layer network, the output converges to the exact image as the number of iterations/order grows, using Alg. 3 | — |
