@@ -71,29 +71,32 @@ import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedInner
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffRepInner
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffOrEmptyInner
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffOrEmptyNeEmpty
+import CORALean.ContSet.Zonotope.Real.Theorems.SumSmulUpdate
+import CORALean.ContSet.Zonotope.Real.Theorems.SplitUnion
+import CORALean.ContSet.Zonotope.Real.Theorems.SplitIntersection
 
 /-!
 # What `Zonotope` guarantees
 
 `plus` and `map` exactly, `reduce` and the interval hull as enclosures, and the
 topological facts a set-valued integral needs. `MemConstruct` reads membership
-coordinatewise, and `Coefficient` with its two facts holds the shared proof
-devices the float layer needs too. `BilinOuter` and `MtimesMatZonotopeOuter`
-are a matrix zonotope acting on a set, never exact; `OfPointMem`, `Recentre`
-and `AbsMaxOfPoint` are what those classes ask, and read a point back as one.
-`MinkDiffAlignedInner` and `MinkDiffRepInner` run the reverse, exact at
-aligned generators and at any representation of the subtrahend's in the
-minuend's; `MinkDiffOrEmptyInner` carries the second through `MinkDiff`'s
-wrapper and `MinkDiffOrEmptyNeEmpty` says it is never empty.
+coordinatewise, and `Coefficient` with its two facts holds the shared proof devices the
+float layer needs too. `BilinOuter` and `MtimesMatZonotopeOuter` are a matrix zonotope
+acting on a set, never exact; `OfPointMem`, `Recentre` and `AbsMaxOfPoint` are what
+those classes ask, and read a point back as one. `MinkDiffAlignedInner` and
+`MinkDiffRepInner` run the reverse, exact at aligned generators and at any
+representation of the subtrahend's in the minuend's; `MinkDiffOrEmptyInner` carries the
+second through `MinkDiff`'s wrapper and `MinkDiffOrEmptyNeEmpty` says it is never empty.
 `MtimesIntervalMatSubsetClosedBall` bounds an interval-matrix product above.
 
-`ReduceBySubsetAddBox` is `ReduceByOuter` backwards — the reduced zonotope
-sits inside the original plus the box it introduced — carried to `reduce`
-itself by `ReduceSubsetAddBox`; `MinkowskiDiffReduceByBoxInner` cancels the
-box off again and `CentreMemConstruct` says a zonotope is nonempty, which
-every such cancellation needs. `SubsetClosedBallOfAbsBoundLe` and its converse
-relate `absBound` to a sup-norm ball; `MtimesSubsetClosedBall`,
-`PlusSubsetClosedBall` and `ReduceBoxAbsBoundLe` carry one through `mtimes`,
-`plus` and `reduceBox`, and `StepSubsetClosedBall` composes them at `reach`'s
-shape, its box term discharged crudely or, via `reduceBoxOrder`, sharply.
+`ReduceBySubsetAddBox` is `ReduceByOuter` backwards — the reduced zonotope sits inside
+the original plus the box it introduced — carried to `reduce` itself by
+`ReduceSubsetAddBox`; `MinkowskiDiffReduceByBoxInner` cancels the box off again and
+`CentreMemConstruct` says a zonotope is nonempty, which every such cancellation needs.
+`SubsetClosedBallOfAbsBoundLe` and its converse relate `absBound` to a sup-norm ball;
+`MtimesSubsetClosedBall`, `PlusSubsetClosedBall` and `ReduceBoxAbsBoundLe` carry one
+through `mtimes`, `plus` and `reduceBox`, and `StepSubsetClosedBall` composes them at
+`reach`'s shape, its box term discharged crudely or, via `reduceBoxOrder`, sharply.
+`SumSmulUpdate` is the one sum a split changes a term of, which `SplitUnion` and
+`SplitIntersection` read both halves and their overlap off.
 -/

@@ -45,7 +45,7 @@ for much of this and citing it is correct, not a fallback.
 | `Sec. 3.4` | Nonlinear systems by conservative linearization: a linear part plus a set enclosing the abstraction error. | [`AbstractionError.lean`](../../src/CORALean/ContDynamics/NonlinearSys/AbstractionError.lean) |
 | `Prop. 3.7` | "Over-approximation of the Set of Linearization Errors": bounds \| L_i \| ≤ [0, l_i] for the Lagrange remainder of the linearized nonlinear system, given the reachable zonotope Ẑ and parameter box P, via a max-norm/Jacobian bound. | — |
 | `Cor. 3.2` | "Optimal Linearization Point": the bound l of Prop. 3.7 is minimized by choosing the linearization point z* equal to the center c of the reachable zonotope Ẑ. | — |
-| `Prop. 3.8` | "Splitting of Zonotopes": a zonotope Z can be split along its j-th generator into two zonotopes Z1, Z2 with Z1 ∪ Z2 = Z and Z1 ∩ Z2 = Z* (Z with the j-th generator removed). | — |
+| `Prop. 3.8` | "Splitting of Zonotopes": a zonotope Z can be split along its j-th generator into two zonotopes Z1, Z2 with Z1 ∪ Z2 = Z and Z1 ∩ Z2 = Z* (Z with the j-th generator removed). | [`Split.lean`](../../src/CORALean/ContSet/Zonotope/Real/Operations/Split.lean), [`SplitUnion.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/SplitUnion.lean), [`SplitIntersection.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/SplitIntersection.lean) |
 | `Alg. 5` | "Compute R'_j within a location y_i": computes the continuous reachable set within one hybrid-automaton location up to leaving the invariant, and the enclosed intersection R_j with a guard set, using reach(), halfspaceConv(), intersectionTimes(), generatorConv(). | — |
 | `Sec. 3.5.5` | Several enclosing zonotopes at once, denoting their intersection — the zonotope bundle. Prose only; no numbered result of its own. | [`API.lean`](../../src/CORALean/ContSet/ZonoBundle/API.lean), [`ZonoBundle.lean`](../../src/CORALean/ContSet/ZonoBundle/Float/ZonoBundle.lean), [`ZonoBundle.lean`](../../src/CORALean/ContSet/ZonoBundle/Real/ZonoBundle.lean) |
 | `Def. 3.3` | "Hybrid Automaton": formal tuple HA = (Y, y0, X, X0, U, P, inv, T, g, h, f) with locations, invariants (polytopes), guard sets (polytopes), linear jump map x' = K x + k, and flow function f. | [`HybridAutomaton.lean`](../../src/CORALean/HybridDynamics/HybridAutomaton.lean) |
@@ -60,3 +60,7 @@ for much of this and citing it is correct, not a fallback.
 [FINDINGS.md](../../FINDINGS.md) — **Prop. 3.1**: the printed proof pulls one
 `[−1,1]` out of two independent remainders and the bound does not follow. The
 proposition is true; the argument for it here is a different one.
+
+[FINDINGS.md](../../FINDINGS.md) — **Prop. 3.8**: the intersection is derived
+from `A + (B ∩ C) = (A + B) ∩ (A + C)`, which no pair of sets need satisfy. The
+proposition is true; convexity of `Z*` is what carries the step.
