@@ -4,10 +4,10 @@ import CORALean.ContSet.Zonotope.Real.Zonotope
 /-!
 # A polynomial zonotope as a zonotope
 
-CORA's `zonotope(polyZonotope)` in its cheapest form: read every dependent
-generator as an independent one. Sound because a monomial in factors of `[-1,1]`
-is itself in `[-1,1]`, so each dependent coefficient is a coefficient a zonotope
-already admits.
+CORA's `zonotope(polyZonotope)` in its cheapest form, [1, Prop. 2.6] and
+[2, Prop. 1] before it: read every dependent generator as an independent one.
+Sound because a monomial in factors of `[-1,1]` is itself in `[-1,1]`, so each
+dependent coefficient is a coefficient a zonotope already admits.
 
 What is lost is the *sharing*, which is the whole representation: the dependent
 generators are freed to move independently, so the result is the convex zonotope
@@ -19,6 +19,13 @@ Not tight: CORA also offers a tighter enclosure that treats an even exponent
 separately, since `α^2` ranges over `[0,1]` rather than `[-1,1]` and its
 generator can be halved and its centre shifted. That is a second conversion, not
 this one.
+
+## References
+
+* [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural
+      Network Verification using Sensitivity Analysis". HSCC 2023.
+* [2] M. Althoff. "Reachability Analysis of Nonlinear Systems using Conservative
+      Polynomialization and Non-Convex Sets". HSCC 2013.
 -/
 
 -- Authors:       Tobias Ladner

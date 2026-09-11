@@ -3,6 +3,8 @@ import CORALean.ContSet.ContSet.ContSet
 /-!
 # Polytopes: the vertex representation
 
+The definition is [1, Def. 1].
+
 CORA's `polytope` with `isVRep` set: the convex hull of finitely many points,
 written here as the convex combinations of them.
 
@@ -12,6 +14,11 @@ differs: `∑ βⱼ = 1` with `βⱼ ≥ 0` here, `|βⱼ| ≤ 1` there.
 
 Zero vertices denote `∅`, no coefficient family over an empty index summing
 to one.
+
+## References
+
+* [1] N. Kochdumper, B. Schürmann and M. Althoff. "Utilizing Dependencies to
+      Obtain Subsets of Reachable Sets". HSCC 2020. arXiv:1910.08354.
 -/
 
 -- Authors:       Tobias Ladner

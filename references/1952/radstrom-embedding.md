@@ -24,4 +24,4 @@ What `Global/Radstrom.lean` proves is the cancellation law as stated above.
 
 These name the paper as a whole. A locator would put each in a row above.
 
-* [`Radstrom.lean`](../src/CORALean/Global/Radstrom.lean)
+* [`Radstrom.lean`](../../src/CORALean/Global/Radstrom.lean)

@@ -3,6 +3,8 @@ import CORALean.ContDynamics.NonlinearSys.NonlinearSys
 /-!
 # The set a nonlinear run actually reaches
 
+The definition is [1, Def. 6].
+
 `LinearSys.reachSet` at a nonlinear field: every state some trajectory of `sys`
 visits at time `t`, quantified over the runs rather than over an enclosure of
 them. Nothing is computed and nothing may be widened, so "the trajectory is in
@@ -17,6 +19,11 @@ confinement hypothesis where the linear ones carry none.
 `ReachSetConfinementOfSubset` keeps it inside each step's certified region, and
 `ReachSetSubsetRelinReach` and `ReachSetSubsetRelinTimeInterval` put it inside
 what is computed.
+
+## References
+
+* [1] N. Kochdumper, B. Schürmann and M. Althoff. "Utilizing Dependencies to
+      Obtain Subsets of Reachable Sets". HSCC 2020. arXiv:1910.08354.
 -/
 
 -- Authors:       Tobias Ladner

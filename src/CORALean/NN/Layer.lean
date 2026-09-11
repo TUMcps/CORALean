@@ -4,7 +4,7 @@ import CORALean.ContSet.ContSet.ContSet
 # What a layer is
 
 CORA's `nnLayer`, split in two: `Layer` is what a layer *computes* on a set, and
-`Layer.Sound` is the obligation tying that to an exact function. Everything
+`Layer.Sound` is the obligation tying that to an exact function, [1, Prop. 2.14]. Everything
 downstream is that obligation composed with itself.
 
 The split is what makes a layer runnable. A structure with a noncomputable field
@@ -19,6 +19,11 @@ once and they are told apart by their weights, not by their types.
 `Sound` is stated against a function of a point rather than a relation, which
 makes the obligation an image inclusion: a layer whose behaviour is genuinely
 set-valued is sound at the function it refines, and pays into `enclose`.
+
+## References
+
+* [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural
+      Network Verification using Sensitivity Analysis". HSCC 2023.
 -/
 
 -- Authors:       Tobias Ladner

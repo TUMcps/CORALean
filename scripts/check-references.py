@@ -30,8 +30,9 @@ LOCATOR = re.compile(
     r"Heuristic|Assumption|§|pp?\.)", re.I
 )
 LINK = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
-# A README row: the paper cell links the file, the last cell is the count.
-STATUS = re.compile(r"^(🟢|🟡|🔴|⚪)\s*(\d+)/(\d+)$")
+# A README row: the paper cell links the file, the last cell is the count —
+# formalized over in scope, then how many rows sit outside the count entirely.
+STATUS = re.compile(r"^(🟢|🟡|🔴|⚪)\s*(\d+)/(\d+)\s*\|\s*(\d+)$")
 
 FLAT = lambda s: re.sub(r"\s+", " ", s).strip()
 
@@ -147,9 +148,9 @@ class Paper:
             result = locator(result)
             if result in self.results:
                 say(f"{self.rel}: `{result}` is listed twice")
-            # Only a link into the tree is a formalization; an `n/a` note may
+            # Only a link at a Lean file is a formalization; an `n/a` note may
             # well link the page where the result is really tracked.
-            links = [l for l in LINK.findall(where) if l.startswith("../src/")]
+            links = [l for l in LINK.findall(where) if l.endswith(".lean")]
             planned = where.strip() in {"—", "-"}
             excluded = where.startswith("n/a")
             if links and planned:
@@ -171,15 +172,22 @@ class Paper:
         return [v for v in self.results.values() if v is not None]
 
     @property
+    def excluded(self):
+        """Rows the table puts outside the count, each saying why."""
+        return [v for v in self.results.values() if v is None]
+
+    @property
     def done(self):
         return [v for v in self.counted if v]
 
     @property
     def status(self):
-        n, d = len(self.done), len(self.counted)
+        n, d, x = len(self.done), len(self.counted), len(self.excluded)
         if d == 0:
-            return "⚪", n, d
-        return ("🟢" if n == d else "🔴" if n == 0 else "🟡"), n, d
+            # Nothing in scope is complete, not unknown — unless the table is
+            # empty, which means the paper has not been read.
+            return ("🟢" if x else "⚪"), n, d, x
+        return ("🟢" if n == d else "🔴" if n == 0 else "🟡"), n, d, x
 
 
 def main():
@@ -190,7 +198,8 @@ def main():
         print(f"no {REFS.relative_to(ROOT)}/ directory", file=sys.stderr)
         return 1
 
-    papers = [Paper(p, say) for p in sorted(REFS.glob("*.md")) if p.name != "README.md"]
+    # One directory per year, so the pages sort by year and then by name.
+    papers = [Paper(p, say) for p in sorted(REFS.glob("*/*.md"))]
 
     by_entry = {}
     for paper in papers:
@@ -276,7 +285,9 @@ def main():
         for link in LINK.findall(m.group(1)) if m else []:
             if not link.startswith("references/"):
                 continue
-            paper = next((p for p in papers if p.name == Path(link).name), None)
+            paper = next(
+                (p for p in papers
+                 if str(p.rel) == link or str(p.rel.relative_to(REFS.name)) == link), None)
             if paper is None:
                 say(f"FINDINGS.md: links {link}, which does not exist")
             elif "FINDINGS.md" not in paper.path.read_text(encoding="utf-8"):
@@ -297,7 +308,7 @@ def main():
             if not links:
                 continue
             listed.append((links[0], cells[-1]))
-        want = [p.name for p in papers]
+        want = [str(p.rel.relative_to(REFS.name)) for p in papers]
         got = [name for name, _ in listed]
         if got != want:
             missing = [n for n in want if n not in got]
@@ -310,28 +321,31 @@ def main():
                 say("references/README.md: rows are in a different order from the "
                     "files, which sort by year")
         for name, cell in listed:
-            paper = next((p for p in papers if p.name == name), None)
+            paper = next(
+                (p for p in papers if str(p.rel.relative_to(REFS.name)) == name), None)
             if paper is None:
                 continue
             m = STATUS.match(cell)
             if not m:
-                say(f"references/README.md: {name}: last cell reads "
-                    "`🟢 5/5` — an emoji, then formalized over in scope")
+                say(f"references/README.md: {name}: last cell reads `🟢 5/5 | 4` — "
+                    "an emoji, formalized over in scope, then how many are out of it")
                 continue
-            emoji, n, d = paper.status
-            if (m.group(1), int(m.group(2)), int(m.group(3))) != (emoji, n, d):
+            emoji, n, d, x = paper.status
+            got = (m.group(1), int(m.group(2)), int(m.group(3)), int(m.group(4)))
+            if got != (emoji, n, d, x):
                 say(f"references/README.md: {name}: says {cell}, but the file has "
-                    f"{emoji} {n}/{d}")
+                    f"{emoji} {n}/{d} | {x}")
 
     for line in problems:
         print(line)
     total = sum(len(p.counted) for p in papers)
     done = sum(len(p.done) for p in papers)
+    out = sum(len(p.excluded) for p in papers)
     if problems:
         print(f"references: {len(problems)} problem(s)")
         return 1
     print(f"references: {len(papers)} papers, {done}/{total} results formalized, "
-          "all checks passed")
+          f"{out} out of scope, all checks passed")
     return 0
 
 

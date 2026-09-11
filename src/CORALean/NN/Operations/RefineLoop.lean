@@ -3,9 +3,16 @@ import CORALean.NN.Operations.Refine
 /-!
 # The refinement loop's schedule
 
+The loop is [1, Alg. 3].
+
 `k` steps, each at the `(layer, neuron)` pair `pick` names from the schedule
 reached so far. Nothing constrains `pick`, and `Theorems.EncloseAtOuter` is
 why nothing has to: soundness holds at every schedule `refine` can reach.
+
+## References
+
+* [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural
+      Network Verification using Sensitivity Analysis". HSCC 2023.
 -/
 
 -- Authors:       Tobias Ladner

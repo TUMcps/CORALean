@@ -20,7 +20,7 @@ and `reachInnerReduced`, at both layers and both time domains.
 | `Def. 3` | (Polytope) Halfspace representation P:={x \| Cx≤d}. | — |
 | `Def. 4` | (Zonotope order reduction) reduce(Z,ρ_d) ⊇ Z returns an enclosing zonotope of order ≤ ρ_d. | — |
 | `Def. 5` | (Hausdorff distance) For compact sets S1,S2⊆R^n, d_H(S1,S2) = max{ sup_{s1} inf_{s2} ‖s1-s2‖2, sup_{s2} inf_{s1} ‖s1-s2‖2 }. | — |
-| `Def. 6` | (Reachable set) R(t) := {ξ(t;x(0),u(·)) \| x(0)∈X0, ∀θ∈[0,t]: u(θ)∈U}; also defines time-point R(t_k) and time-interval R(τ_k) reachable sets. | n/a — restated; tracked as `Def. 3.1` on [Althoff's thesis](2010-althoff-thesis.md) |
+| `Def. 6` | (Reachable set) R(t) := {ξ(t;x(0),u(·)) \| x(0)∈X0, ∀θ∈[0,t]: u(θ)∈U}; also defines time-point R(t_k) and time-interval R(τ_k) reachable sets. | n/a — restated; tracked as `Def. 3.1` on [Althoff's thesis](../2010/althoff-thesis.md) |
 | `Alg. 1` | "Reachability algorithm (manual tuning)": baseline reachability algorithm for linear systems with a fixed, user-supplied time step Δt, truncation order η, and zonotope order ρ, returning the outer-approximation R̂([0,t_end]). | — |
 | `Prop. 1` | (Affine dynamics error) Bounds the Hausdorff distance between the exact time-interval solution of the affine dynamics H(τ_k) and its outer-approximation. | — |
 | `Prop. 2` | (Time-point error in particular solution) Bounds the Hausdorff distance between the exact particular solution P^U(t_{k+1}) and its recursively computed outer-approximation P̂^U(t_{k+1}). | — |
@@ -45,4 +45,4 @@ and `reachInnerReduced`, at both layers and both time domains.
 
 These name the paper as a whole. A locator would put each in a row above.
 
-* [`StepInner.lean`](../src/CORALean/ContDynamics/LinearSys/StepInner.lean)
+* [`StepInner.lean`](../../src/CORALean/ContDynamics/LinearSys/StepInner.lean)

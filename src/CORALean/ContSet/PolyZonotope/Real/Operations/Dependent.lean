@@ -4,6 +4,8 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.Plus
 /-!
 # `PolyZonotope.dependent`
 
+The construction is [1, Prop. 1].
+
 Every independent generator made dependent, by giving it a fresh factor that
 appears in it alone and to the first power. Exact, and cheaply so: a factor
 occurring in one generator only is as free as the coefficient it replaces.
@@ -17,6 +19,11 @@ block would contribute.
 The exponent matrix is `plusE` against the identity, which is exactly right: the
 fresh factors must not reach the original generators, and the original factors
 must not reach the freed ones.
+
+## References
+
+* [1] N. Kochdumper, B. Schürmann and M. Althoff. "Utilizing Dependencies to
+      Obtain Subsets of Reachable Sets". HSCC 2020. arXiv:1910.08354.
 -/
 
 -- Authors:       Tobias Ladner

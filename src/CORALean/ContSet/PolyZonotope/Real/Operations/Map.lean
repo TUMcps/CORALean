@@ -3,6 +3,8 @@ import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 /-!
 # `PolyZonotope.map`
 
+The construction is [1, Prop. 2.8].
+
 A linear map applies to the centre and to both generator blocks, and touches
 neither the exponent matrix nor any of the three counts: the monomials are
 scalars, and a linear map commutes with scaling.
@@ -10,6 +12,11 @@ scalars, and a linear map commutes with scaling.
 That is the whole reason a polynomial zonotope propagates through a linear layer
 without loss, exactly as a zonotope does. Every multiplication this
 representation carries is this at a particular map.
+
+## References
+
+* [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural
+      Network Verification using Sensitivity Analysis". HSCC 2023.
 -/
 
 -- Authors:       Tobias Ladner

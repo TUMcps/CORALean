@@ -14,7 +14,7 @@ from, which is what `NN.enclose` does.
 | Result | What it says | In CORALean |
 |---|---|---|
 | `Def. 1` | (§2) feed-forward neural network: weight matrices W_i and bias vectors b_i, i in {1,...,κ+1} | n/a — a preliminary restated from the literature, not a result of this paper |
-| `Def. 2` | (§2) polynomial zonotope PZ = ⟨c, G, G_I, E⟩ with center c, dependent generators G, independent generators G_I, exponent matrix E | n/a — restated; tracked as `Def. 1` on [Sparse Polynomial Zonotopes](2021-kochdumper-tac-sparse-polyzonotopes.md) |
+| `Def. 2` | (§2) polynomial zonotope PZ = ⟨c, G, G_I, E⟩ with center c, dependent generators G, independent generators G_I, exponent matrix E | n/a — restated; tracked as `Def. 1` on [Sparse Polynomial Zonotopes](../2021/kochdumper-tac-sparse-polyzonotopes.md) |
 | `Def. 3` | (§4) reachable set: solution ξ(t, x0, u_c(·), w(·)) of the system over initial states, control law, and disturbance trajectory | — |
 | `Prop. 1` | (§2) interval enclosure of a polynomial zonotope, I = [c+g1-g2-g3-g4, c+g1+g2+g3+g4] ⊇ PZ | — |
 | `Prop. 2` | (§3) image of a quadratic function g(x)=a1 x^2+a2 x+a3 applied to a 1-D polynomial zonotope | — |
@@ -25,4 +25,4 @@ from, which is what `NN.enclose` does.
 
 These name the paper as a whole. A locator would put each in a row above.
 
-* [`PolyFit.lean`](../src/CORALean/NN/Layers/PolyFit.lean)
+* [`PolyFit.lean`](../../src/CORALean/NN/Layers/PolyFit.lean)
