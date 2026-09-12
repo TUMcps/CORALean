@@ -11,6 +11,7 @@ import CORALean.Examples.ConvNetFloat
 import CORALean.Examples.DiscretizeWithEnclosedExp
 import CORALean.Examples.DiscretizeWithMatZonotope
 import CORALean.Examples.EllipsoidPlus
+import CORALean.Examples.ExactSecondOrderExp
 import CORALean.Examples.ExpOfIntervalMatrix
 import CORALean.Examples.ExpRelaxGreedy
 import CORALean.Examples.FeedForward

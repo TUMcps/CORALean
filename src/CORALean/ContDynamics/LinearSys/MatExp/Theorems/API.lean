@@ -11,7 +11,13 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpDiff
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpEnclosure
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegral
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalEnclosure
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalEnclosureContainsExact
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalEnclosureExact
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalTaylor
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalTaylorExact
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalTaylorTail
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalWAttained
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalWOuter
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoEnclosure
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoRemainder
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoTaylor
@@ -22,6 +28,8 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderOrderSpec
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderStepSpec
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSmulTsum
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpTaylorSmulMulVec
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpTaylorTwo
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpWApply
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.FactorialMulPowLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalCorrectionMatrix
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputRemainder
@@ -30,6 +38,8 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpIntegralSubTaylorL
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpIntegralTermLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSubExpTaylorLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.PowSubEq
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.QuadTermAttained
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.QuadTermBetween
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.RemainderEntryLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ScalarTermLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SubLeZero
