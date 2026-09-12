@@ -1,0 +1,4 @@
+references: 24 papers, 162/274 results formalized, 80 out of scope, all checks passed
+conventions: 2110 files, all checks passed
+demo: output matches scripts/demo-expected.txt
+Build completed successfully (5022 jobs).

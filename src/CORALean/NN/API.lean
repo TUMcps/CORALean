@@ -4,6 +4,7 @@ import CORALean.NN.Graph.API
 import CORALean.NN.Layer
 import CORALean.NN.Layers.API
 import CORALean.NN.MergeBucket
+import CORALean.NN.MinimalAbstractExplanationSearch
 import CORALean.NN.MinimalExplanationSearch
 import CORALean.NN.NeuralNetwork
 import CORALean.NN.Operations.API
