@@ -18,6 +18,14 @@ At `Vec ℝ n` alone: the simplex reads coefficients, and a functional only has
 those once there are coordinates. Noncomputable, and unavoidably so at this
 layer — whether two reals are equal is not decidable, so neither is whether a
 weighting reproduces `c`. `Float` is where this same bridge runs.
+
+The linear program [1, Def. 3] names, with the dual solution kept as a reason.
+
+## References
+
+* [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated
+      Verification of Linear Systems Using Reachability Analysis with Support
+      Functions". HSCC, 2023, Article 5.
 -/
 
 -- Authors:       Tobias Ladner

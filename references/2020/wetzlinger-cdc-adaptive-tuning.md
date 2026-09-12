@@ -3,7 +3,7 @@
 M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning for reachability
 analysis of linear systems". CDC, 2020, pp. 5145–5152.
 
-**Source:** https://ar5iv.labs.arxiv.org/html/2006.12091  
+**Source:** https://arxiv.org/pdf/2006.12091 — the arXiv preprint of the CDC paper, read with `pypdf` (poppler is not installed here, so the Read tool's PDF-page mode is unavailable). The table was seeded from https://ar5iv.labs.arxiv.org/html/2006.12091, whose numbering is not to be trusted; every locator below has since been re-read off the PDF and none of them moved.  
 **Inventory:** confirmed
 
 Every tuning knob a reachability run has — the time step, the order a set is
@@ -34,7 +34,7 @@ neither is a reading that has not been done — so the honest reading of 🔴 is
 | `Prop. 4` | The error ε_P([t_i,t_{i+1}]) (particular-solution error, eq. (22)) converges to 0 as Δt_i → 0, and therefore satisfies Assumption 1. | — |
 | `Lemma 1` | The size of the matrix-exponential remainder E(Δt,η) decreases superlinearly with respect to Δt: for all φ∈(0,1), E(φΔt,η) ⊆ φ·E(Δt,η). | — |
 | `Thm. 2` | The error ε_P([t_i,t_{i+1}]) (eq. (22)) decreases superlinearly according to Def. 1: for all φ∈(0,1), ε_P([t_i,t_i+φΔt_i]) ≤ φ·ε_P([t_i,t_i+Δt_i]). | — |
-| `Def. 2` | (Zonotopes) Standard generator definition: Z = {x∈R^n \| x = c + Σ_{i=1}^γ β_i g^(i), -1≤β_i≤1} with center c and generators g^(1),...,g^(γ); the order is ρ = γ/n. Cites [27, Def. 1] (Girard 2005) as the source of the definition. | — |
+| `Def. 2` | (Zonotopes) [cites [27, Def. 1]] Z = {x∈R^n \| x = c + Σ_{i=1}^γ β_i g^(i), -1≤β_i≤1} with center c and generators g^(1),...,g^(γ); the order is ρ = γ/n. | n/a — restated from Girard 2005, which this formalization does not draw on directly |
 
 ## Cited without a result
 

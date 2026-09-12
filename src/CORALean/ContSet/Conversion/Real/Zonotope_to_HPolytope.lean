@@ -14,6 +14,15 @@ meet.
 The rows are the caller's, as always. Exact when they are the zonotope's own
 facet normals, of which there are `2·C(h, n-1)` — the reason CORA does not
 convert a zonotope to halfspaces unless it has to.
+
+`supportBound` is the `d̃` of [1, Prop. 4], where a halfspace description
+absorbs a zonotope without enumerating either one's vertices.
+
+## References
+
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
+      Perturbed Continuous-Time Linear Systems Using Set Propagation".
+      arXiv:2310.19083, 2023.
 -/
 
 -- Authors:       Tobias Ladner

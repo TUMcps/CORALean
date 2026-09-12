@@ -16,7 +16,11 @@ are exactly these four; they cite the work under the working title "Backward
 Reachability Analysis with State Constraints for Linear Systems using Set
 Propagation", which is not a separate publication — no such title exists on arXiv
 or in Crossref, and the AE/EA naming CORA uses is this paper's own from v2 onward.
-CORALean has no backward reachability at all yet, so every row below is open.
+CORALean's backward reachability is the discrete-time, single-quantifier case:
+`LinearSysDT.backReachSetForall` and `backReachSetExists`, computed by
+`backReachForall` and `backReachExists`. Those are `Def. 6` and `Def. 7` with the
+disturbance set dropped, over the discrete-time dynamics this paper continuizes —
+not the sets defined below, none of which is formalized.
 
 ## Results
 
@@ -34,7 +38,7 @@ CORALean has no backward reachability at all yet, so every row below is open.
 | `Assumption 1` | (Fixed parameters) The truncation order η in (23), the number of propagation steps ω, and the number h of halfspaces constraining X_end are fixed. | n/a — a standing hypothesis for the runtime-complexity analysis, not a claim to formalize |
 | `Def. 8` | (Viability/Discriminating kernel) [cites [47, Def. 6], [48, Def. 2]] D(τ,K) := {x_0∈K \| ∀w(·)∈W ∃u(·)∈U ∀t∈τ: ξ(t;x_0,u(·),w(·))∈K}; dropping w(·) gives the viability kernel V(K). | n/a — restated from Kaynama et al. (2011, 2015) in the related-work section, which this formalization does not draw on directly |
 | `Prop. 3` | (Minimal time-point backward reachable set) R^∀∃(-t) = e^{-At}((X_end ⊕ -Z_W(t)) ⊖ Z_U(t)), independently of the set representations chosen; a continuization of the discrete-time case of [38, Thm. 2.4]. | — |
-| `Prop. 4` | (Outer approximation of Minkowski sum) For a polytope P=⟨H,d⟩_H with h constraints and a zonotope Z, P ⊕ Z ⊆ P ⊕̂ Z := ⟨H, d+d̃⟩_H with d̃_(j) = ρ(Z, H^T_(j,·)), at complexity O(hnγ). | — |
+| `Prop. 4` | (Outer approximation of Minkowski sum) For a polytope P=⟨H,d⟩_H with h constraints and a zonotope Z, P ⊕ Z ⊆ P ⊕̂ Z := ⟨H, d+d̃⟩_H with d̃_(j) = ρ(Z, H^T_(j,·)), at complexity O(hnγ). | [`Plus.lean`](../../src/CORALean/ContSet/HPolytope/Real/Operations/Plus.lean), [`PlusOfOuter.lean`](../../src/CORALean/ContSet/HPolytope/Real/Theorems/PlusOfOuter.lean), [`Zonotope_to_HPolytope.lean`](../../src/CORALean/ContSet/Conversion/Real/Zonotope_to_HPolytope.lean) |
 | `Thm. 1` | (Time-interval minimal backward reachable set) With Û⊂U a set of q input trajectories, R^∀∃(-τ) is outer approximated by the union over the ω steps of R̂^∃(-τ_k;u_0(·)) ∩ ⟨N,p⟩_H, where u_0 is the center input trajectory, N's rows are the q directions ℓ_j, and p_(j) = min_i ρ(R̂^∃(-τ;u_i(·)), ℓ_j). | — |
 | `Alg. 1` | "Minimal time-interval backward reachable set": propagates the disturbance particular solution and the convex hull of the converted target set over ω steps, carries the support functions of the q input trajectories alongside, and intersects the constructed polytope with R̂^∃(-τ) to return R̂^∀∃(-τ). | — |
 | `Prop. 5` | (Maximal time-point backward reachable set) R^∃∀(-t) = e^{-At}((X_end ⊖ Z_W(t)) ⊕ -Z_U(t)), independently of the set representations chosen; a continuization of the discrete-time case of [38, Thm. 2.4]. | — |

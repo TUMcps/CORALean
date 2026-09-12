@@ -8,6 +8,15 @@ The maximum over a finite vertex list is the support value, attained rather
 than merely approached. This is the reason the two representations are kept
 apart, and the reason the conversion between them is cheap in exactly one
 direction.
+
+The value [1, Def. 3] gives the vertex form, `max_i ℓᵀvᵢ`, as a certificate;
+`Theorems.SupportBoundAttained` is where it becomes that paper's equality.
+
+## References
+
+* [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated
+      Verification of Linear Systems Using Reachability Analysis with Support
+      Functions". HSCC, 2023, Article 5.
 -/
 
 -- Authors:       Tobias Ladner

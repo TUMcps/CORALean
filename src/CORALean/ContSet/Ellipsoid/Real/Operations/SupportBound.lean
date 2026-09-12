@@ -9,6 +9,14 @@ there is no linear program to solve and no dual solution to check: Cauchy–Schw
 is the whole of the `≤` direction, and the bound holds for *every* direction at
 once rather than for the ones a caller enumerated. That is what makes the
 conversions out of an ellipsoid tight rather than merely sound.
+
+[1, Def. 4] prints it as `ℓᵀc + √(ℓᵀQℓ)`, which is this with `Q = G Gᵀ`.
+
+## References
+
+* [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated
+      Verification of Linear Systems Using Reachability Analysis with Support
+      Functions". HSCC, 2023, Article 5.
 -/
 
 -- Authors:       Tobias Ladner

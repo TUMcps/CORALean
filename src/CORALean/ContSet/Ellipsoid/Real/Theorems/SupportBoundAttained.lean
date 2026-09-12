@@ -14,6 +14,15 @@ The attaining point is `q + G (Gᵀd)/‖Gᵀd‖₂`, the unit-ball point Cauch
 is tight at. When `Gᵀd` vanishes the direction is one `G` collapses, the value
 is `⟨d, q⟩`, and the centre attains it — which is why the centre's membership is
 what the degenerate case needs.
+
+This is what makes [1, Def. 4] an equality here and not merely a bound; the
+support vector it prints is the non-degenerate branch alone.
+
+## References
+
+* [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated
+      Verification of Linear Systems Using Reachability Analysis with Support
+      Functions". HSCC, 2023, Article 5.
 -/
 
 -- Authors:       Tobias Ladner

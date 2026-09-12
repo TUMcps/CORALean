@@ -11,6 +11,15 @@ here.
 
 Not exact, and the loss is not in the proof but in the choice of directions —
 which is the caller's, and a precision knob rather than a correctness one.
+
+[1, Prop. 4] is the instance at `rows`: `P ⊕ Z` stays inside `P`'s own
+halfspaces with each offset raised by `Z`'s support value.
+
+## References
+
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
+      Perturbed Continuous-Time Linear Systems Using Set Propagation".
+      arXiv:2310.19083, 2023.
 -/
 
 -- Authors:       Tobias Ladner
