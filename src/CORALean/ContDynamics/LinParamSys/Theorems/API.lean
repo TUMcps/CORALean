@@ -10,6 +10,7 @@ import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryToLinearSys
 import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryToTrajectory
 import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetInputSolution
 import CORALean.ContDynamics.LinParamSys.Theorems.InputSolutionOuter
+import CORALean.ContDynamics.LinParamSys.Theorems.InputSolutionZonoOuter
 import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalStepOuter
 import CORALean.ContDynamics.LinParamSys.Theorems.ToLinParam
 import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryNormDriftLe
@@ -34,15 +35,15 @@ of the step once `0 ∈ U`; `…TimeIntervalOuterInputSolution` is the whole ste
 `TrajectoryToLinearSys` is the same move at `'varParam'`, at the cost of an
 input set enlarged by the parameter drift: `TrajectoryNormLe` bounds the state
 a priori by Gronwall, `TrajectoryNormDriftLe` turns that into the radius the
-enlarged set needs, and `TrajectoryTimeIntervalOuter`/
-`TrajectoryTimeIntervalOuterInputSolution` are the step it then encloses.
+enlarged set needs, and the `TrajectoryTimeIntervalOuter…` pair is the step.
 
 The `…Split` pair drops `0 ∈ U` by splitting the input set, and
 `ConstTrajectoryDiscretizeEnclosure`/`…MemReach` carry one step to a whole
 horizon through `LinParamSysDT.reach` — together, [1, Alg. 4].
 `ConstTrajectoryToTrajectory`, `ToLinParam` and `TrajectoryToLinParam` are the
 readings' conversions: `'constParam'` is `'varParam'` at a constant function,
-and `LinearSys` is `LinParamSys` at a point, in the direction `OfPoint` gives.
+and `LinearSys` is `LinParamSys` at a point. `InputSolutionZonoOuter` is
+`InputSolutionOuter` at a matrix zonotope instead.
 
 ## References
 
