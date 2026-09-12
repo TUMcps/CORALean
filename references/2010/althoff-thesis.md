@@ -53,7 +53,7 @@ for much of this and citing it is correct, not a fallback.
 | `Remark 3.1` | Notes the interval-matrix result of Lemma 3.2 is an exact interval enclosure, but the true image set (e.g. a line segment) need not itself be an interval matrix. | n/a — a remark on the construction, not a result |
 | `Remark 3.2` | Notes that the over-approximation in the proof of Lemma 3.3 coincides with the simpler enclosure S·box(Z) (comparing to Prop. 2.2). | n/a — a remark on the construction, not a result |
 | `Remark 3.3` | "Interval Matrix vs. Matrix Zonotope": discusses when to prefer the interval-matrix methods of §3.3.1 vs. the matrix-zonotope methods of §3.3.2 (independent vs. few-parameter uncertainty, accuracy/cost tradeoffs). | n/a — a remark on the construction, not a result |
-| `Heuristic 3.1` | "Generator Selection for Splitting of Reachable Sets": performance measure ϱ_j = max(l1,j/l̄) − max(l2,j/l̄) used to pick which generator j to split when the admissible linearization-error bound is exceeded. | — |
+| `Heuristic 3.1` | "Generator Selection for Splitting of Reachable Sets": performance measure ϱ_j = max(l1,j/l̄) · max(l2,j/l̄) used to pick which generator j to split when the admissible linearization-error bound is exceeded. | [`SplitRank.lean`](../../src/CORALean/ContSet/Zonotope/Real/Operations/SplitRank.lean) |
 
 ## Findings
 
@@ -64,4 +64,6 @@ for much of this and citing it is correct, not a fallback.
 **Lemma 3.1 — the vertex branch.** The statement carries no hypothesis on `t`, and at `t = 0` its `-1/t` branch returns `-1/2` where γ is constantly `0`: sound, but not the exact value claimed. [`QuadTermAttained.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/QuadTermAttained.lean)
 
 **Thm. 3.2 — `(At)^i`.** The sum's powers carry no association, and interval matrix multiplication is not associative — the same section says so two paragraphs earlier — so the printed formula names a family of enclosures rather than one. [`ExactIntervalEnclosures.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/ExactIntervalEnclosures.lean)
+
+**Heuristic 3.1 — the performance measure.** Printed as a product, `ϱ_j = max(l1,j/l̄) · max(l2,j/l̄)` (confirmed against two independent PDF extractions), but the very next sentence needs a sum: "the lowest performance measure is less than 1 ... implies `l1,j ≤ l̄` and `l2,j ≤ l̄`" only follows if both non-negative maxima are *added*, since a product under `1` bounds neither factor (`0.1 · 5 < 1`). Formalized as printed regardless — a heuristic carries no soundness obligation, only a usefulness one, and this repository proves neither. [`SplitRank.lean`](../../src/CORALean/ContSet/Zonotope/Real/Operations/SplitRank.lean)
 
