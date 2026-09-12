@@ -10,7 +10,7 @@ this is a set enclosing it over the whole of `R × U`.
 It is a certificate in the sense `SupportBound` is: it says nothing about where
 `L` came from, so whatever produced it stays outside the trusted base and a wrong
 `L` yields no certificate rather than a wrong reachable set. No derivative of `f`
-appears here or anywhere downstream.
+appears here or in anything that spends one — only in `of_hessian`, its supplier.
 
 `A` and `B` are consequently *not* required to be the Jacobians at `(x✱, u✱)`: any
 pair admits a certificate, a bad pair only making `L` large. So a linearization
@@ -28,7 +28,7 @@ having to enter a computed set, and a parameter rather than a field.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   04-September-2026
+-- Last update:   12-September-2026
 -- Last revision: ---
 
 

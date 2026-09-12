@@ -21,7 +21,9 @@ chains the steps, and restates both on that set rather than on a run.
 error is a polynomial in the factors the initial set is written in rather than a
 set around it, so splitting the set splits the error too.
 
-No derivative appears anywhere in the directory. What CORA obtains from an
-interval Hessian is asked for as a certificate instead, so how the abstraction
-error was computed is outside the trusted base.
+What CORA obtains from an interval Hessian is asked for as a certificate
+instead, so how the abstraction error was computed is outside the trusted base.
+`AbstractionErrorOfHessian` is the only file here that differentiates `f`, and it
+runs the other way: it *supplies* the certificate `AbstrErrLin` computes. Nothing
+that spends a certificate imports it, so the chain above stays derivative-free.
 -/

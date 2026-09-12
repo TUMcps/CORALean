@@ -1,4 +1,6 @@
+import CORALean.ContDynamics.NonlinearSys.Theorems.AbstractionErrorOfHessian
 import CORALean.ContDynamics.NonlinearSys.Theorems.AbstractionErrorOfPoly
+import CORALean.ContDynamics.NonlinearSys.Theorems.AbstrErrLinCenterSubset
 import CORALean.ContDynamics.NonlinearSys.Theorems.ConfinedOfBall
 import CORALean.ContDynamics.NonlinearSys.Theorems.ConfinementOfSubset
 import CORALean.ContDynamics.NonlinearSys.Theorems.LinInputOuter
@@ -29,9 +31,8 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
 # What `NonlinearSys` guarantees
 
 That it generalizes `LinearSys`, in `LinearEmbedding`, and that it reduces to
-it again, in the others: `LinInputOuter` spends the certificate, `Linearize`
-turns a confined run into a linear one, `ReachOuter` hands that run to the
-linear reachability already proved, and `Restrict` makes the one-step forms.
+it again: `LinInputOuter` spends the certificate, `Linearize` turns a confined
+run linear, `ReachOuter` hands it on, and `Restrict` makes the one-step forms.
 
 `Shift` and `RelinReachOuter` are the loop: a step is proved on a clock starting
 at zero, so `Shift` re-anchors the run and `RelinReachOuter` chains the steps,
@@ -46,7 +47,8 @@ The `ReachSet` files say that of the reachable set rather than of a run:
 `ReachSetOuter` puts a run into it, `ReachSetConfinementOfSubset` confines it,
 and the `ReachSetSubset` files enclose it — on the computed sets alone.
 
-The `PolyAbstractionError` files are the polynomialization variant's
-certificate: `OfQuadRemainder` builds one, `GetSubset` splits it, and
-`AbstractionErrorOfPoly` forgets the dependency, so everything above serves it.
+`AbstractionErrorOfHessian` is the one supplier, and `AbstrErrLinCenterSubset`
+minimises what it supplies at the set's centre. The `PolyAbstractionError`
+files are the polynomialization variant's certificate: `OfQuadRemainder` builds
+one, `GetSubset` splits it, `AbstractionErrorOfPoly` forgets the dependency.
 -/
