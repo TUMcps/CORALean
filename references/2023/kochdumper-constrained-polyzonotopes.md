@@ -36,7 +36,22 @@ what makes intersection exact. The `ConPolyZono` representation.
 | `Prop. 13` | (Constraint Reduction) Given a constraint index r and indices d,s satisfying a matching condition (eq. 33) between E and R, reduceCon(CPZ,r,d,s) removes constraint r and returns an enclosing CPZ. | — |
 | `Def. 7` | (Appendix A) Given constraint data A,b,R, constrDom(A,b,R) := {α \| Σ_i (Π_k α_k^R(k,i)) A_(·,i) = b, α_k∈[-1,1]}, the set of factor values satisfying the CPZ's constraint — used in the proof of Thm. 1. | [`Domain.lean`](../../src/CORALean/ContSet/ConPolyZono/Real/Operations/Domain.lean) |
 | `Lemma 2` | (Appendix A) For domains D1,D2 ⊆ [-1,1]^p, the polynomial-zonotope-style set over D1∪D2 equals the union of the sets over D1 and D2 separately (splits a CPZ's defining set by splitting its constraint domain) — used in the proof of Thm. 1. | [`DependentSetUnionDomain.lean`](../../src/CORALean/ContSet/ConPolyZono/Real/Theorems/DependentSetUnionDomain.lean) |
-| `Prop. 14` | (Appendix A) (Subset) Given CPZ, a factor index r, and an interval [l,u]⊆[-1,1], subset(CPZ,r,l,u) restricts/substitutes the domain of factor α_r to [l,u], giving a CPZ representing a subset of the original — used in the proof of Thm. 1. | — |
+| `Prop. 14` | (Appendix A) (Subset) Given CPZ, a factor index r, and an interval [l,u]⊆[-1,1], subset(CPZ,r,l,u) restricts/substitutes the domain of factor α_r to [l,u], giving a CPZ representing a subset of the original — used in the proof of Thm. 1. | [`GetSubset.lean`](../../src/CORALean/ContSet/ConPolyZono/Real/Operations/GetSubset.lean), [`GetSubsetConstruct.lean`](../../src/CORALean/ContSet/ConPolyZono/Real/Theorems/GetSubsetConstruct.lean) — named `getSubset` after CORA's `@conPolyZono/getSubset`, parametrized by `cen, rad` rather than `l, u` (`cen = (l+u)/2`, `rad = (u-l)/2`); see the finding below |
+
+## Findings
+
+**Prop. 14 — `v₂` divides by zero on symmetric intervals.** The printed closed form defines
+`v₁ = (u+l)/2` and `v₂ = (u−l)/(u+l)` and substitutes `α_r = v₁(1 + v₂ α̂_r)`. The only stated
+hypothesis is `[l,u] ⊆ [−1,1]`, so nothing excludes `u = −l` — where `v₂` is a division by zero
+and `v₁ v₂` is `0 · undefined` rather than the intended `(u−l)/2`. The cancellation is valid
+symbolically but not as an evaluation rule, and the singularity is removable but never removed:
+no hypothesis, footnote or remark in the statement, the proof (eqs. 49–50) or the Appendix B
+lead-in guards it. The case is not exotic — it includes `[l,u] = [−1,1]`, i.e. `subset` applied
+to a factor's own default domain, and every `[−a,a]`. CORA does not inherit the defect: its
+`@polyZonotope/getSubset` builds the powers of `a + b·α̂` from `a = center(val)`, `b = rad(val)`
+by polynomial convolution and never forms `v₂` at all. The formalization follows CORA and states
+the operation in `cen, rad`, which is total.
+[`GetSubset.lean`](../../src/CORALean/ContSet/ConPolyZono/Real/Operations/GetSubset.lean)
 
 ## Cited without a result
 

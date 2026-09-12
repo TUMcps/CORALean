@@ -30,6 +30,7 @@ import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceOuter
 import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceGirardOrderLe
 import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceOrder
 import CORALean.ContSet.ConPolyZono.Real.Theorems.DependentSetUnionDomain
+import CORALean.ContSet.ConPolyZono.Real.Theorems.GetSubsetConstruct
 
 /-!
 # What `ConPolyZono` guarantees
@@ -53,6 +54,6 @@ operation: a constraint row is a polynomial in the factors, so it closes the
 domain rather than opening it. What `holds` satisfies, and `MemConstruct`, are
 what the operations are stated over.
 
-`mem_ofPoint` needs none of that: `ofPoint`'s constraint system is empty, so
-`holds` is vacuous at it.
+`mem_ofPoint` needs none of that: `ofPoint`'s constraint system is empty. `getSubset_construct`
+is an equality, not an enclosure: the substitution it reads back is a polynomial identity.
 -/
