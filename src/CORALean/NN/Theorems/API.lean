@@ -15,6 +15,7 @@ import CORALean.NN.Theorems.ExistsScheduleSigmoidSubset
 import CORALean.NN.Theorems.HoldsAllOfEnclose
 import CORALean.NN.Theorems.HoldsOfEnclose
 import CORALean.NN.Theorems.HoldsOfReducesAt
+import CORALean.NN.Theorems.HoldsOfReducesAtSubset
 import CORALean.NN.Theorems.HoldsOfSplit
 import CORALean.NN.Theorems.ImageSubset
 import CORALean.NN.Theorems.ImageSubsetEncloseAt
