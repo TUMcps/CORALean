@@ -1,0 +1,39 @@
+import CORALean.ContSet.PolyZonotope.Real.Operations.Project
+import CORALean.ContSet.PolyZonotope.Real.Theorems.MapExact
+
+/-!
+# `project` is exactly the coordinate
+
+[1, Prop. 2.11] states the construction and leaves what it denotes implicit.
+`project` is a `map`, so `map_exact` says it: the image of the set under the
+coordinate functional, with nothing added and nothing lost.
+
+## References
+
+* [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural
+      Network Verification using Sensitivity Analysis". HSCC 2023.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       12-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem PolyZonotope.project_exact (pZ : PolyZonotope (Vec ℝ n)) (i : Fin n) :
+    (LinearMap.proj i : Vec ℝ n →ₗ[ℝ] ℝ) '' pZ.construct = (pZ.project i).construct :=
+  PolyZonotope.map_exact (LinearMap.proj i) pZ
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -1,0 +1,55 @@
+import CORALean.ContSet.PolyZonotope.Real.Operations.FiberSum
+import CORALean.ContSet.PolyZonotope.Real.Operations.MergeIdx
+
+/-!
+# `PolyZonotope.merge`
+
+[1, Prop. 3.3]: equal exponent columns are one monomial, so their generators
+add and one column carries them. What `compact` does, minus everything else it
+does — a generator that came out zero keeps its column, and no factor is
+dropped — because `sortPlus` needs the join and nothing further.
+
+[1] computes it in one pass over a *sorted* matrix, merging neighbours, which
+is where its `O(p h)` comes from. The specification here joins every equal
+column at once and so states no hypothesis; on a sorted operand the two agree.
+
+[1] calls the result regular. It is not, in general: equal columns are gone
+(`merge_col_injective`) but an all-zero column is not, and [1, Def. 2.4] forbids
+that too. Sorted it does stay (`merge_sorted`).
+
+## References
+
+* [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural
+      Network Verification using Sensitivity Analysis". HSCC 2023.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       12-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- Equal exponent columns added together, one column per class kept. -/
+noncomputable def PolyZonotope.merge (pZ : PolyZonotope α) : PolyZonotope α where
+  p := pZ.p
+  h := (PolyZonotope.mergeKeep pZ.E).card
+  q := pZ.q
+  c := pZ.c
+  G := fun j => PolyZonotope.fiberSum (PolyZonotope.rep pZ.E) pZ.G
+                  (PolyZonotope.mergeIdx pZ.E j)
+  E := fun k j => pZ.E k (PolyZonotope.mergeIdx pZ.E j)
+  GI := pZ.GI
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -1,0 +1,33 @@
+import CORALean.ContSet.PolyZonotope.Real.Operations.Rep
+
+/-!
+# Equal columns have the same representative
+
+`rep` is a `min'` over the columns equal to a given one, so it reads its
+argument only through `col`. Splitting the two generators of a class is
+therefore impossible, which is what `merge` needs in both directions: a dropped
+column gathers nothing, and two kept columns differ.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       12-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem PolyZonotope.rep_congr {p h : ℕ} (E : Fin p → Fin h → ℕ) {i j : Fin h}
+    (hij : PolyZonotope.col E i = PolyZonotope.col E j) :
+    PolyZonotope.rep E i = PolyZonotope.rep E j := by
+  simp only [PolyZonotope.rep, hij]
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

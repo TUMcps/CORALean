@@ -1,0 +1,45 @@
+import CORALean.ContSet.PolyZonotope.Real.Operations.SortPlus
+import CORALean.ContSet.PolyZonotope.Real.Theorems.MergeExact
+import CORALean.ContSet.PolyZonotope.Real.Theorems.SortExact
+
+/-!
+# `sortPlus` is the exact sum written differently
+
+[1, Prop. 3.4]'s own proof: *sortPlus computes the same set as the exact
+addition by construction*. Here that is two steps, each exact on its own —
+`sort` permutes the summation index and `merge` regroups it — so the claim
+needs nothing of the operands beyond the shared factor count `exactPlus`
+already asks for.
+
+What `exactPlus` denotes is `ExactPlusPoint.lean`'s subject, and is not the
+Minkowski sum; this theorem inherits that reading unchanged.
+
+## References
+
+* [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural
+      Network Verification using Sensitivity Analysis". HSCC 2023.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       12-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem PolyZonotope.sortPlus_exact (pZ₁ pZ₂ : PolyZonotope α) (hp : pZ₁.p = pZ₂.p) :
+    (pZ₁.exactPlus pZ₂ hp).construct = (pZ₁.sortPlus pZ₂ hp).construct :=
+  ((pZ₁.exactPlus pZ₂ hp).sort_exact).trans (pZ₁.exactPlus pZ₂ hp).sort.merge_exact
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
