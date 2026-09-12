@@ -5,7 +5,7 @@ import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolution
 import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuter
 import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ConstCorrectionMatrix
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMulVec
+import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
 
 /-!
 # A time-interval input enclosure when the input set misses the origin
@@ -72,17 +72,6 @@ theorem aux_mtimesIM_mem [Mtimes ℐ S]
   refine Mtimes.mtimes_outer _ _ ?_
   exact Set.mem_biUnion hM (Set.mem_image_of_mem _ hy)
 
--- `expIntegral_mulVec` carries the whole exponential series through the substitution
-set_option maxHeartbeats 400000 in
-/-- What a constant input contributes over `[0,t]`, in closed form. The
-substitution `σ = t - s` turns the propagator into the integrated exponential. -/
-theorem aux_const_integral (A : Mat ℝ n n) (c : Vec ℝ n) {t : ℝ} (ht : 0 ≤ t) :
-    (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ c) = MatExp.expIntegral A t *ᵥ c := by
-  rw [MatExp.expIntegral_mulVec A c ht]
-  have h := intervalIntegral.integral_comp_sub_left (a := (0:ℝ)) (b := t)
-    (fun σ : ℝ => exp (σ • A) *ᵥ c) t
-  simpa using h
-
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
@@ -147,7 +136,7 @@ theorem LinearSys.Trajectory.inputSolution_timeInterval_outer_split
   rw [hsum]
   refine Plus.plus_outer _ _ (Set.add_mem_add ?_ ?_)
   · -- the constant part: the straight line, widened by the interpolation error
-    rw [aux_const_integral A c ht0]
+    rw [MatExp.expIntegral_constInput A c ht0]
     have hdecomp : MatExp.expIntegral A t *ᵥ c
         = (MatExp.expIntegral A r *ᵥ ((t / r) • c))
           + (MatExp.expIntegral A t - (t / r) • MatExp.expIntegral A r) *ᵥ c := by

@@ -1,7 +1,11 @@
+import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryDiscretizeEnclosure
+import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryDiscretizeEnclosureMemReach
 import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryInputSolutionTimeIntervalOuter
+import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryInputSolutionTimeIntervalOuterSplit
 import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryStepOuter
 import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryTimeIntervalOuter
 import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryTimeIntervalOuterInputSolution
+import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryTimeIntervalOuterSplit
 import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryToLinearSys
 import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryToTrajectory
 import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetInputSolution
@@ -25,8 +29,7 @@ fixed, the closed form of a `LinearSys` run applies unchanged.
 `InputSolutionOuter` is the other half of a step, `ConstTrajectoryStepOuter`
 puts the two together at its end, and `InputReachSubsetInputSolution` with
 `ConstTrajectoryInputSolutionTimeIntervalOuter` extend that half to every time
-of the step once `0 ∈ U` — `ConstTrajectoryTimeIntervalOuterInputSolution`
-being the whole step there.
+of the step once `0 ∈ U`; `…TimeIntervalOuterInputSolution` is the whole step.
 
 `TrajectoryToLinearSys` is the same move at `'varParam'`, at the cost of an
 input set enlarged by the parameter drift: `TrajectoryNormLe` bounds the state
@@ -34,7 +37,15 @@ a priori by Gronwall, `TrajectoryNormDriftLe` turns that into the radius the
 enlarged set needs, and `TrajectoryTimeIntervalOuter`/
 `TrajectoryTimeIntervalOuterInputSolution` are the step it then encloses.
 
+The `…Split` pair drops `0 ∈ U` by splitting the input set, and
+`ConstTrajectoryDiscretizeEnclosure`/`…MemReach` carry one step to a whole
+horizon through `LinParamSysDT.reach` — together, [1, Alg. 4].
 `ConstTrajectoryToTrajectory`, `ToLinParam` and `TrajectoryToLinParam` are the
 readings' conversions: `'constParam'` is `'varParam'` at a constant function,
 and `LinearSys` is `LinParamSys` at a point, in the direction `OfPoint` gives.
+
+## References
+
+* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
+      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
 -/
