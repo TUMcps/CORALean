@@ -3,7 +3,7 @@
 N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set Representation
 for Reachability Analysis". IEEE Transactions on Automatic Control, 2021.
 
-**Source:** https://ar5iv.labs.arxiv.org/html/1901.01780  
+**Source:** https://arxiv.org/pdf/1901.01780 (read as the PDF, whose numbering agrees with the ar5iv rendering at https://ar5iv.labs.arxiv.org/html/1901.01780 this page was first read from)  
 **Inventory:** confirmed
 
 The polynomial zonotope: generators carrying monomials in the factors, so a
@@ -40,7 +40,7 @@ of what it can do.
 | `Prop. 16` | (Reduce) reduce(PZ,ρ_d) returns an SPZ of order ≤ ρ_d enclosing PZ, by moving a subset of dependent/independent generators into a zonotope over-approximation via zono() and reduce() on that zonotope. | [`ReduceOuter.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/ReduceOuter.lean) |
 | `Prop. 17` | (Restructure) restructure(PZ) returns an SPZ enclosing PZ with all independent generators removed, by reducing the independent-generator zonotope part to order 1 and re-expressing it with new dependent generators/exponents. | [`Restructure.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Operations/Restructure.lean) |
 | `Def. 8` | (Reachable Set) R^e_{X0}(t) := {ξ(t,x0,u(·)) \| x0∈X0, ∀τ∈[0,t] u(τ)∈U}, the standard reachable-set definition for the nonlinear system under study. | [`ReachSet.lean`](../../src/CORALean/ContDynamics/NonlinearSys/ReachSet.lean) |
-| `Alg. 1` | "Compute a tight enclosure of the reachable set": the paper's overall nonlinear reachability algorithm using SPZs (Taylor expansion at a linearization point z*, propagation, and set operations from the Propositions above). | — |
+| `Alg. 1` | "Compute a tight enclosure of the reachable set": the paper's overall nonlinear reachability algorithm using SPZs (Taylor expansion at a linearization point z*, propagation, and set operations from the Propositions above). | [`AbstrErrPolySearch.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/AbstrErrPolySearch.lean), [`RelinReach.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/RelinReach.lean), [`RelinTimeInterval.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/RelinTimeInterval.lean), [`ReachSetSubsetRelinTimeIntervalHorizon.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/ReachSetSubsetRelinTimeIntervalHorizon.lean), [`Polynomialization.lean`](../../src/CORALean/Examples/Polynomialization.lean); lines 19-21, the `volRatio` test and `restructure`, are not called from the loop, and line 17's `post` adds with `Prop. 9`'s Minkowski sum rather than `Prop. 10`'s exact addition — both cost tightness, not soundness |
 
 ## Findings
 
@@ -66,6 +66,15 @@ zero-one SPZ, which is the case Prop. 6 needs, is asserted in [40] in the prose 
 Alg. 2 rather than in a numbered result — [40, Prop. 5] is about where a polytope's
 vertices sit. Everything is right as intended.
 [`PolyZonotope_to_VPolytope.lean`](../../src/CORALean/ContSet/Conversion/Real/PolyZonotope_to_VPolytope.lean)
+
+**Alg. 1.** Its parameters do not match its text. `enlarge` is defined to take "a
+scalar factor λ ∈ ℝ_{>1}", and every value the paper gives for λ — the default and all
+three benchmarks — is `0.1`; read as the fractional increment CORA applies, a factor of
+`1.1`, the algorithm and the numbers agree and only the stated domain is wrong. And
+`Require:` lists `ρ_d` and `µ_d` but not `p_d`, the bound on the number of factors after
+restructuring that Sec. II-E.2 introduces and that every benchmark reports, so line 20's
+`restructure(R(t_{s+1}))` is written without the argument that limits it. Neither affects
+soundness.
 
 ## Cited without a result
 

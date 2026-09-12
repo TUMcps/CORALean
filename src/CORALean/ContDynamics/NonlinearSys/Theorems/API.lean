@@ -19,6 +19,7 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetConfinementOfSubset
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetSubsetRelinReach
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetSubsetRelinTimeInterval
+import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetSubsetRelinTimeIntervalHorizon
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetSubsetRelinTimeIntervalOfSubset
 import CORALean.ContDynamics.NonlinearSys.Theorems.RelinDeltaReachOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuter

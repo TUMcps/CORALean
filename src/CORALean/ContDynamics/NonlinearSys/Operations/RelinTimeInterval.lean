@@ -9,11 +9,20 @@ time of step `i`: `LinearSys.timeIntervalStep` of the linearized system at
 `(steps i).A`, applied to what `relinReach` reaches at the step's start, plus
 step `i`'s own input enclosure — the shape `Trajectory.timeInterval_outer`
 proves, not one invented ahead of it.
+
+`R(τ_s)` of [1, Alg. 1], its line 13, and what its line 22 collects into the
+union the algorithm returns.
+
+## References
+
+* [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set
+      Representation for Reachability Analysis". IEEE Transactions on Automatic
+      Control, 2021.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   13-September-2026
 -- Last revision: ---
 
 

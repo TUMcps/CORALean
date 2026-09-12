@@ -6,7 +6,8 @@ import CORALean.ContDynamics.NonlinearSys.Operations.Linearize
 /-!
 # The re-linearization loop
 
-CORA's `nonlinearSys/reach`: one linearization per time step, the enclosure
+CORA's `nonlinearSys/reach`, and the while loop of [1, Alg. 1] — its line 17
+`post` and its line 18 `reduce`: one linearization per time step, the enclosure
 reached at the end of a step becoming the initial set of the next. Step `i` runs
 the linear machinery of step `i`'s own system for exactly one step, so the whole
 loop is `LinearSysDT.reach ... 1` iterated at a matrix that changes each time.
@@ -21,11 +22,17 @@ uniform, so `relinReach` recurses on the step index alone.
 
 `exp` needs a norm on `Mat` — a choice, not an instance — and it is the `l∞`
 operator norm here as everywhere `discretize` is reasoned about.
+
+## References
+
+* [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set
+      Representation for Reachability Analysis". IEEE Transactions on Automatic
+      Control, 2021.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   13-September-2026
 -- Last revision: ---
 
 
