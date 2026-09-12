@@ -11,16 +11,22 @@ can make. `quadMapDep` does the work under an empty independent block, and
 `dependent` is what empties it — exactly, so nothing is lost on the way in
 either.
 
+At `Zonotope.polyZonotope` — no independent generators, and already dependent —
+this is the other half of [2, Thm. 1], the case [1] generalises: a zonotope's
+quadratic map is exactly a polynomial zonotope.
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set
       Representation for Reachability Analysis". IEEE Transactions on Automatic
       Control, 2021.
+* [2] M. Althoff. "Reachability Analysis of Nonlinear Systems using Conservative
+      Polynomialization and Non-Convex Sets". HSCC 2013.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   04-September-2026
+-- Last update:   12-September-2026
 -- Last revision: ---
 
 
