@@ -9,6 +9,7 @@ import Mathlib.Analysis.Calculus.Deriv.Pow
 import Mathlib.Analysis.Calculus.FDeriv.CompCLM
 import Mathlib.Analysis.Calculus.MeanValue
 import Mathlib.Analysis.Convex.Integral
+import Mathlib.Analysis.Convex.Join
 import Mathlib.Analysis.Convex.KreinMilman
 import Mathlib.Analysis.Matrix.Normed
 import Mathlib.Analysis.Matrix.Spectrum
