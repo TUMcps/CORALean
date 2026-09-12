@@ -1,3 +1,4 @@
+import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrLin
 import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrPolySearch
 import CORALean.ContDynamics.NonlinearSys.Operations.LinInput
 import CORALean.ContDynamics.NonlinearSys.Operations.Linearize
@@ -23,6 +24,9 @@ initial set of the next. `RelinTimeInterval` is the same step, over its whole
 interval rather than its end alone, and `RelinDeltaReach` is CORA's `Rdiff`: how
 far that step moves from where it started, which is what `alg = 'poly'` measures
 its next error on.
+
+`AbstrErrLin` is CORA's `priv_abstrerr_lin` at `tensorOrder = 2`: the error box a
+second-order expansion leaves, taken as data here and certified in `Theorems`.
 
 `AbstrErrPolySearch` is `linReach`'s while loop for `alg = 'poly'`: a fuel-bounded
 search over candidate applied errors, packaged into a `LinStep` the moment one is
