@@ -52,7 +52,7 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Reachability Analysis of Nonlinear Systems using Conservative Polynomialization and Non-Convex Sets](2013/althoff-hscc-conservative-polynomialization.md) | Althoff | HSCC | 2013 | 🔴 0/4 \| 2 |
 | [On Computing the Minkowski Difference of Zonotopes](2015/althoff-arxiv-minkowski-difference.md) | Althoff | arXiv | 2015 | 🟡 2/15 \| 1 |
 | [Semi-Supervised Classification with Graph Convolutional Networks](2017/kipf-iclr-gcn.md) | Kipf, Welling | ICLR | 2017 | 🟢 1/1 \| 4 |
-| [Utilizing Dependencies to Obtain Subsets of Reachable Sets](2020/kochdumper-hscc-utilizing-dependencies.md) | Kochdumper, Schürmann, Althoff | HSCC | 2020 | 🟡 2/13 \| 1 |
+| [Utilizing Dependencies to Obtain Subsets of Reachable Sets](2020/kochdumper-hscc-utilizing-dependencies.md) | Kochdumper, Schürmann, Althoff | HSCC | 2020 | 🟡 8/14 \| 1 |
 | [Adaptive parameter tuning for reachability analysis of linear systems](2020/wetzlinger-cdc-adaptive-tuning.md) | Wetzlinger, Kochdumper, Althoff | CDC, pp. 5145–5152 | 2020 | 🔴 0/13 \| 0 |
 | [Sparse Polynomial Zonotopes: A Novel Set Representation for Reachability Analysis](2021/kochdumper-tac-sparse-polyzonotopes.md) | Kochdumper, Althoff | IEEE Transactions on Automatic Control | 2021 | 🟡 20/22 \| 5 |
 | [Open- and Closed-Loop Neural Network Verification using Polynomial Zonotopes](2022/kochdumper-arxiv-nn-polyzono.md) | Kochdumper et al. | arXiv:2207.02715 | 2022 | 🟡 3/5 \| 2 |
