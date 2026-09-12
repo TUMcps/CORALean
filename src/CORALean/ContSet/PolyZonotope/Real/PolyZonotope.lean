@@ -14,16 +14,24 @@ CORA carries an identifier vector `id` naming each factor. Here identity is
 positional — a factor *is* its row index — which is why `plus` lays the two
 exponent matrices out block-diagonally rather than overlaying them.
 
+Instantiated at a matrix ambient type, `α = Mat ℝ n m`, this is [2, Def. 7]'s
+matrix polynomial zonotope with nothing added: `G : Fin h → Mat ℝ n m` already
+is its 3D generator tensor, and `construct`'s sum is its set expression
+unchanged. `NN/Graph` is where every use makes that instantiation.
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set
       Representation for Reachability Analysis". IEEE Transactions on Automatic
       Control, 2021.
+* [2] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph
+      Convolutional Networks with Uncertain Node Features and Uncertain Graph
+      Structure". TMLR, 2025. arXiv:2404.15065.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   04-September-2026
+-- Last update:   12-September-2026
 -- Last revision: ---
 
 
