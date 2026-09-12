@@ -18,6 +18,8 @@ import CORALean.ContSet.ConZonotope.Real.Theorems.IsCompact
 import CORALean.ContSet.ConZonotope.Real.Theorems.IsClosed
 import CORALean.ContSet.ConZonotope.Real.Theorems.IsBounded
 import CORALean.ContSet.ConZonotope.Real.Theorems.OfPointMem
+import CORALean.ContSet.ConZonotope.Real.Theorems.IsAffineImageIff
+import CORALean.ContSet.ConZonotope.Real.Theorems.IntersectsHyperplaneIff
 
 /-!
 # What `ConZonotope` guarantees
@@ -33,6 +35,11 @@ which is where they differ from a zonotope's.
 
 `OfPointMem` needs no theorem of `HPolytope`'s: an empty row index discharges
 the constraint the same way it discharges the generator sum.
+
+`IsAffineImageIff` is the representation itself characterized: exactly the
+bounded affine images of a polytope, `ConstructEqImage` and `HPolytope`'s own
+conversion read as the two halves of one iff. `IntersectsHyperplaneIff` reads
+`convex_construct` as a hyperplane test, exact between the extremes `h` takes.
 
 Together these are everything `LinearSys` reachability asks of a representation.
 -/
