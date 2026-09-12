@@ -6,22 +6,22 @@ import CORALean.ContSet.Interval.Real.Operations.Smul
 /-!
 # Interval matrices: the correction matrix and the input remainder of a box
 
-[1, Sec. 3.3.1] applied to the two objects a continuous-time step is built from
-rather than to the exponential alone: `correctionMatrix` and `inputRemainder`
-at an interval matrix, so a system whose matrix is a set has a step to take.
+[1, Sec. 3.3.1] applied to the objects a continuous-time step is built from
+rather than to the exponential alone: `correctionMatrix`, `constCorrectionMatrix`
+and `inputRemainder` at an interval matrix, so a system whose matrix is a set
+has a step to take.
 
 The finite orders are CORA's `priv_tie` of `@linParamSys`: the interval
-`[corrCoeff i, 0]` times the box `matPow A i`, one order at a time. Here the
-scalar factor is multiplied in by `Interval.smul` and the `min`/`max` against
-zero is what the second endpoint of `[corrCoeff i, 0]` contributes, so an entry
-is the same product of two intervals CORA takes.
-
-`matPow` is where the dependency loss is, as in `IntervalEnclosures`: it admits
-products of different members at different factors.
+`[corrCoeff i, 0]` times the box `matPow A i`, multiplied in by `Interval.smul`,
+`min`/`max` against zero being the second endpoint's contribution —
+`intervalConstCorrTerm` one factorial ahead of the power it multiplies, as
+`constCorrTerm` is of `corrTerm`. `matPow` is the dependency loss, as in
+`IntervalEnclosures`: it admits products of different members at each factor.
 
 The tail is taken at a dominating matrix for the reason `ExpIntervalEnclosure`
 gives — checkable from the box alone, before a member is fixed — and at `r • A`,
-so one condition serves this and the exponential enclosure of a step at once.
+so one condition serves this, the exponential enclosure, and (`r`-scaled) the
+constant correction's own tail all at once.
 
 ## References
 
@@ -53,6 +53,25 @@ noncomputable def MatExp.intervalInputRemainder (A : Interval (Mat ℝ n n)) (r 
     (η : ℕ) : Interval (Mat ℝ n n) where
   inf := fun _ _ => -(r * MatExp.expRemainderBound (Interval.smul r A).absMax η)
   sup := fun _ _ => r * MatExp.expRemainderBound (Interval.smul r A).absMax η
+
+/-- What order `i` contributes to the constant correction over a whole box:
+`constCorrTerm`'s scalar factor against the box the `(i+1)`-th power lies in. -/
+noncomputable def MatExp.intervalConstCorrTerm (A : Interval (Mat ℝ n n)) (r : ℝ) (i : ℕ) :
+    Interval (Mat ℝ n n) :=
+  Interval.smul (MatExp.corrCoeff (i + 2) * r ^ (i + 2) * ((Nat.factorial (i + 2) : ℝ))⁻¹)
+    (A.matPow (i + 1))
+
+/-- The `F̃` of [1] over a whole box: orders `1` through `η` from
+`intervalConstCorrTerm`, everything past `η` in the tail bound at `r • A`
+scaled by `r`, and indexed exactly as the point case is. -/
+noncomputable def MatExp.intervalConstCorrectionMatrix (A : Interval (Mat ℝ n n)) (r : ℝ)
+    (η : ℕ) : Interval (Mat ℝ n n) where
+  inf := fun j k => (∑ i ∈ Finset.range η,
+      min ((MatExp.intervalConstCorrTerm A r i).inf j k) 0)
+    - r * MatExp.expRemainderBound (Interval.smul r A).absMax η
+  sup := fun j k => (∑ i ∈ Finset.range η,
+      max ((MatExp.intervalConstCorrTerm A r i).sup j k) 0)
+    + r * MatExp.expRemainderBound (Interval.smul r A).absMax η
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

@@ -31,6 +31,7 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpTaylorSmulMulVec
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpTaylorTwo
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpWApply
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.FactorialMulPowLe
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalConstCorrectionMatrix
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalCorrectionMatrix
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputRemainder
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MulMemMinmax
@@ -61,10 +62,10 @@ the correction matrices, and that the integrated series converges. Each holds
 only under `‖A‖r / (η + 2) < 1`. `ExpIntervalTaylor`/`ExpIntervalEnclosure` are
 the same two facts widened to every member of an interval matrix, the second
 checkable from the interval matrix alone via its `absMax`, and
-`IntervalCorrectionMatrix`/`IntervalInputRemainder` are the corresponding two
-for a step's correction matrix and input remainder. `ExpMatZonoEnclosure`
-is the same guarantee for a matrix zonotope, checkable from the zonotope alone
-through the interval matrix it encloses.
+`IntervalCorrectionMatrix`/`IntervalConstCorrectionMatrix`/`IntervalInputRemainder`
+are the corresponding three for a step's two correction matrices and input
+remainder. `ExpMatZonoEnclosure` is the same guarantee for a matrix zonotope,
+checkable from the zonotope alone through the interval matrix it encloses.
 
 `TendstoExpRemainderBoundAtTop`/`ExistsExpRemainderBoundLt` and
 `TendstoMulExpRemainderBoundZero`/`ExistsMulExpRemainderBoundLt` are the limits
