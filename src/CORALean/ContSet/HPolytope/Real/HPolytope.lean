@@ -3,7 +3,7 @@ import CORALean.ContSet.ContSet.ContSet
 /-!
 # Polytopes: the halfspace representation
 
-The definition is [1, Def. 2].
+The definition is [1, Def. 2]; [2, Def. 3] restates it beside the vertex form.
 
 CORA's `polytope` with `isHRep` set: the points satisfying finitely many
 inequalities `A x ≤ b` and equalities `Ae x = be`.
@@ -20,6 +20,9 @@ operations.
 
 * [1] N. Kochdumper, B. Schürmann and M. Althoff. "Utilizing Dependencies to
       Obtain Subsets of Reachable Sets". HSCC 2020. arXiv:1910.08354.
+* [2] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated
+      Verification of Linear Systems Using Reachability Analysis with Support
+      Functions". HSCC, 2023, Article 5.
 -/
 
 -- Authors:       Tobias Ladner

@@ -3,9 +3,9 @@ import CORALean.Global.EuclideanNorm
 /-!
 # Ellipsoids: the representation
 
-CORA's `ellipsoid` stores a positive semi-definite shape matrix `Q` and a centre
-`q`. CORALean stores the *generator* matrix `G` instead and denotes the same
-family as the affine image of a Euclidean unit ball,
+The definition is [1, Def. 4]: CORA's `ellipsoid` stores a positive semi-definite
+shape matrix `Q` and a centre `q`. CORALean stores the *generator* matrix `G`
+instead and denotes the same family as the affine image of a Euclidean unit ball,
 
   `E = {q + G u | ‖u‖₂ ≤ 1}`,   `Q = G Gᵀ`.
 
@@ -19,6 +19,12 @@ square `G` would have forced one back in.
 
 `‖·‖₂` is `CORALean.norm₂`, deliberately not `‖·‖`: `Vec ℝ n` is `Fin n → ℝ` and
 carries the supremum norm.
+
+## References
+
+* [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated
+      Verification of Linear Systems Using Reachability Analysis with Support
+      Functions". HSCC, 2023, Article 5.
 -/
 
 -- Authors:       Tobias Ladner

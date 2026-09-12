@@ -11,6 +11,15 @@ is the two summands' extents in that direction, added.
 Exact when the directions happen to contain the sum's facet normals, which is
 what enumeration would have produced — so the enumeration is a precision
 question, not a soundness one.
+
+[1, Prop. 4] is this at the summand's own rows, the other summand's support
+values added on.
+
+## References
+
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
+      Perturbed Continuous-Time Linear Systems Using Set Propagation".
+      arXiv:2310.19083, 2023.
 -/
 
 -- Authors:       Tobias Ladner

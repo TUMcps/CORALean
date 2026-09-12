@@ -12,6 +12,7 @@ import CORALean.ContSet.VPolytope.Real.Theorems.BilinOuter
 import CORALean.ContSet.VPolytope.Real.Theorems.MtimesMatPolytopeOuter
 import CORALean.ContSet.VPolytope.Real.Theorems.PlusExact
 import CORALean.ContSet.VPolytope.Real.Theorems.PerturbSubset
+import CORALean.ContSet.VPolytope.Real.Theorems.SupportBoundAttained
 
 /-!
 # What `VPolytope` guarantees
