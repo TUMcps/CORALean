@@ -18,6 +18,10 @@ zonotope propagation does inside the interval look-ahead a merge uses. It is
 satisfied by `nnRef = nnAbs` and says nothing about `nn`, which is why nothing
 here does.
 
+The conclusion is [1, Def. 5]'s *refined* sufficient explanation read at
+`nnRef`; the hypothesis is [1, Def. 4]'s reading of it at `nnAbs`. Neither
+names more than `IsSuffExplanationAbstract` already does, so both cite it.
+
 ## References
 
 * [1] S. Bassan, Y. Y. Elboher, T. Ladner, M. Althoff and G. Katz. "Explaining
@@ -27,7 +31,7 @@ here does.
 
 -- Authors:       Tobias Ladner
 -- Written:       06-September-2026
--- Last update:   07-September-2026
+-- Last update:   12-September-2026
 -- Last revision: ---
 
 
