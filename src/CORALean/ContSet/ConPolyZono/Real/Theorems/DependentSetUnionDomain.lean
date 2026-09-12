@@ -4,7 +4,7 @@ import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 # The dependent generator map splits over a union of factor domains
 
 The result is [1, Lemma 2], a prerequisite for the union construction of
-[1, Thm. 7.1] — not itself formalized here, since its other prerequisite,
+[1, Thm. 1] — not itself formalized here, since its other prerequisite,
 [1, Prop. 14] (Appendix A, `subset`), is real work of its own: an expansion of
 one exponent column into as many as `E(r,i)+1` new ones, built from a binomial
 identity rather than from a block-diagonal layout like every other operation
