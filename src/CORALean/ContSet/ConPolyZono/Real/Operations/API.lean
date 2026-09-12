@@ -41,6 +41,8 @@ import CORALean.ContSet.ConPolyZono.Real.Operations.SatisfiesPlusIff
 import CORALean.ContSet.ConPolyZono.Real.Operations.Plus
 import CORALean.ContSet.ConPolyZono.Real.Operations.CartProd
 import CORALean.ContSet.ConPolyZono.Real.Operations.ToPolyZonotope
+import CORALean.ContSet.ConPolyZono.Real.Operations.ConsPolyZonotope
+import CORALean.ContSet.ConPolyZono.Real.Operations.GetSubset
 import CORALean.ContSet.ConPolyZono.Real.Operations.LinComb
 import CORALean.ContSet.ConPolyZono.Real.Operations.SatisfiesLinCombIff
 import CORALean.ContSet.ConPolyZono.Real.Operations.QuadMapDep
@@ -73,6 +75,6 @@ constraints read neither, so they constrain the image as they did the argument.
 by factors it does not read, and set beside another over the same factors, and
 `Domain` is the pair `construct` splits into, which compactness reads.
 
-`reduce` ranks both generator blocks as one and boxes what it drops; the
-constraint block passes through. No `linComb`; `Instances` says why. `ofPoint` needs neither block.
+`reduce` ranks both blocks as one and boxes what it drops; the constraint block passes
+through. No `linComb`. `getSubset` reweights one factor at both, via `consPolyZonotope`.
 -/
