@@ -1,0 +1,45 @@
+import CORALean.HybridDynamics.ReachSet
+import CORALean.HybridDynamics.Theorems.RunOuter
+
+/-!
+# `reachSet` is inside what an invariant supplies
+
+`Run.mem_of_invariant` with the run quantifier moved off the front, as
+`LinearSys.reachSet_subset_reach` does to `Trajectory.reach_outer`: what that
+says of every run into `ℓ`, this says of the set of them at once.
+
+`Invariant` is a hypothesis here, not something computed — there is no `reach`
+algorithm for a hybrid automaton — so unlike `reachSet_subset_reach` this asks
+for the enclosure outright rather than deriving one.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       11-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open ContSet Scalar
+
+variable {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (G n) (Vec ℝ n)]
+variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+/-- Reach for this where the invariant is already in hand; reach for
+`reachSet_outer` where one run is what is in hand instead. -/
+theorem HybridAutomaton.reachSet_subset_invariant {HA : HybridAutomaton S G L 𝕋 n} {R₀ : S n}
+    {ℓ₀ : L} {R : L → S n} (hinv : HA.Invariant R) (hR₀ : construct R₀ ⊆ construct (R ℓ₀))
+    (ℓ : L) : HA.reachSet R₀ ℓ₀ ℓ ⊆ construct (R ℓ) := by
+  rintro y ⟨x, hx, run⟩
+  exact run.mem_of_invariant hinv (hR₀ hx)
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

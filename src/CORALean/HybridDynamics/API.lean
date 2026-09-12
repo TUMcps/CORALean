@@ -3,6 +3,7 @@ import CORALean.HybridDynamics.Invariant
 import CORALean.HybridDynamics.InvariantOn
 import CORALean.HybridDynamics.Location
 import CORALean.HybridDynamics.Operations.API
+import CORALean.HybridDynamics.ReachSet
 import CORALean.HybridDynamics.Theorems.API
 import CORALean.HybridDynamics.Transition
 
@@ -21,13 +22,17 @@ they are read as `construct e.guard` and `construct ℓ.inv`, never computed wit
 
 The exception is where a representation *computes* the cut: `Theorems.JumpIntersectionOuter`
 and `Theorems.TimeIntervalInvOuter` call `Intersection.intersection`, homogeneous, so those two
-alone ask the guard to be in `S`. Without an `Intersection` instance there is still
-`Theorems.JumpOuter`'s `hinter` bargain, lossless where the intersection is
-exact, as `Theorems.JumpOuterConZonotope` shows.
+alone ask the guard to be in `S`. Without one there is still `Theorems.JumpOuter`'s
+`hinter` bargain, lossless where exact, as `Theorems.JumpOuterConZonotope` shows.
 
 Time-triggered only in the sense that nothing here is: a stay runs for a dwell
-time the run chooses. No parallel composition and no Zeno analysis.
+time the run chooses, and a bounded-horizon reading is `RunOn`/`InvariantOn`,
+the same run and invariant indexed by the jump count — `Invariant.invariantOn`
+its constant-family case. `ReachSet` names what `Run` quantifies over: `reachSet`
+at a location, `reachLocations` over all, [1, Def. 3.4]'s two reachable sets.
 
-A bounded-horizon reading is `RunOn`/`InvariantOn`: the same run and invariant
-indexed by the jump count. `Invariant.invariantOn` is its constant-family case.
+## References
+
+* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
+      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
 -/

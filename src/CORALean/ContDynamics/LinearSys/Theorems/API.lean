@@ -51,6 +51,9 @@ import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuter
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterConvexCompact
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterInputSolution
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterSplit
+import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetEqUnion
+import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetOuter
+import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetSubsetTimeIntervalInputSolution
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepEpsOuter
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepInnerInner
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepSubsetAddError
@@ -76,10 +79,9 @@ The first two are stated once, over `ConvexSet` and `CompactSet`, and name no
 representation. `TimeIntervalOuterSplit` is the same: dropping `0 ∈ U` needs
 only `Recentre` and `OfPoint`, which any representation with a centre has.
 
-The `ReachSet` trio is the same guarantees stated of a set: every trajectory is
-in `reachSet`, which is inside what `reach` and `timeIntervalStep` compute. The
-two `SubsetAddError` files run a step backwards against `StepError`, and the
-`Exists…Lt` pair makes that error as small as asked for.
+The `ReachSet` and `TimeIntervalReachSet` trios state the same guarantees of a
+set, at a time and over `[0, r]`; `_eq_iUnion` ties the latter to a union of the
+former. `SubsetAddError` runs a step backwards, `Exists…Lt` shrinks its error.
 
 `Restrict` is what makes the time domain a parameter worth having: a guarantee
 over one step applies to a run over all forward time by throwing the rest away.
