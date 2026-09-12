@@ -3,10 +3,10 @@ import CORALean.NN.Layers.PolySampling
 /-!
 # A concrete fit: least squares over the sample grid
 
-CORA's default `poly_method` [1]: sample the box at `10 (n + 1)` points and take
-the degree-`n` polynomial minimising the squared residual there. `taylor`,
-`bernstein` and `singh` are the alternatives, and choosing between them is a
-precision question only.
+CORA's default `poly_method`, [1, Alg. 1]'s line 7 "Polynomial Regression":
+sample the box at `10 (n + 1)` points and take the degree-`n` polynomial
+minimising the squared residual there. `taylor`, `bernstein` and `singh` are
+the alternatives, and choosing between them is a precision question only.
 
 Nothing here is proved, and nothing here can be wrong. `PolyRelaxation`'s
 `sound` quantifies over the coefficients it is handed, so the fit is a heuristic
@@ -26,7 +26,7 @@ with `10 (n + 1) > n + 1` of them makes that case vacuous anyway.
 
 -- Authors:       Tobias Ladner
 -- Written:       05-September-2026
--- Last update:   ---
+-- Last update:   12-September-2026
 -- Last revision: ---
 
 

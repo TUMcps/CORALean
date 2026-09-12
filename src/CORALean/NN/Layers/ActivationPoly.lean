@@ -11,32 +11,34 @@ import CORALean.NN.Layers.PolyRelaxation
 /-!
 # The activation layer at a polynomial relaxation
 
-CORA's `evaluatePolyZonotopeNeuron` [1]: a fit of its own per neuron, at the
-common degree `PolyRelaxationPad` brings them to, evaluated on the set through
+CORA's `evaluatePolyZonotopeNeuron` [1]: a fit per neuron, at the common
+degree `PolyRelaxationPad` brings them to, evaluated through
 `PolyZonotope.evalPoly` with only what the fits miss thrown into a box.
 `Layer.activation` keeps a slope and boxes the rest; this keeps a degree-`m`
-dependence on the input factors, which is the precision refinement spends.
+dependence, which is the precision refinement spends.
 
-Pinned to `PolyZonotope` rather than generic in `S`. `evalPoly` has no
-counterpart at a general representation — no convex one is closed under it — so
-a class carrying it would have a single implementor and say nothing, which is
-the judgement `Real/Instances.lean` already records for `quadMap`. One
-representation is the honest answer until a second one can implement it.
+Pinned to `PolyZonotope`, not generic in `S`: no other representation is
+closed under `evalPoly`, so a lone implementor is the honest answer for now.
 
-The independent block is not ignored: `evalPoly` takes no `dependent` wrapper,
-since running one on each of two sets would identify unrelated uncertainties, so
-this layer runs `dependent` once, on its own input. `exists_point_of_q_zero` is
-then what carries the resulting factors to every member.
+The independent block is not ignored: `dependent` runs once on the input
+first, and `exists_point_of_q_zero` carries its factors to every member.
+
+[2, Alg. 1] is this at `m = 2`; the paper calls higher degree
+`straightforward`. `evalPoly` is not [2, Prop. 2]'s own formula, though:
+`dependent` makes every independent generator a fresh dependent one first,
+so the cross terms Prop. 2 spends a new independent factor on are exact.
 
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural
       Network Verification using Sensitivity Analysis". HSCC 2023.
+* [2] N. Kochdumper et al. "Open- and Closed-Loop Neural Network Verification
+      using Polynomial Zonotopes". arXiv:2207.02715, 2022.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       05-September-2026
--- Last update:   06-September-2026
+-- Last update:   12-September-2026
 -- Last revision: ---
 
 

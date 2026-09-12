@@ -13,11 +13,18 @@ them `reachSet` says nothing and the network is not invoked either, so the two
 silences coincide. Unlike `LinearSys.reachSet`, whose flow gets a stated
 time-interval enclosure between sample points, there is no such statement to
 restate here — the gap sits in what the class proves, not only in this file.
+
+[1, Alg. 2]'s postcondition, `R ⊇ R([0, tF])`, read at one control cycle.
+
+## References
+
+* [1] N. Kochdumper et al. "Open- and Closed-Loop Neural Network Verification
+      using Polynomial Zonotopes". arXiv:2207.02715, 2022.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   12-September-2026
 -- Last revision: ---
 
 

@@ -15,14 +15,8 @@ from, which is what `NN.enclose` does.
 |---|---|---|
 | `Def. 1` | (§2) feed-forward neural network: weight matrices W_i and bias vectors b_i, i in {1,...,κ+1} | n/a — a preliminary restated from the literature, not a result of this paper |
 | `Def. 2` | (§2) polynomial zonotope PZ = ⟨c, G, G_I, E⟩ with center c, dependent generators G, independent generators G_I, exponent matrix E | n/a — restated; tracked as `Def. 1` on [Sparse Polynomial Zonotopes](../2021/kochdumper-tac-sparse-polyzonotopes.md) |
-| `Def. 3` | (§4) reachable set: solution ξ(t, x0, u_c(·), w(·)) of the system over initial states, control law, and disturbance trajectory | — |
-| `Prop. 1` | (§2) interval enclosure of a polynomial zonotope, I = [c+g1-g2-g3-g4, c+g1+g2+g3+g4] ⊇ PZ | — |
-| `Prop. 2` | (§3) image of a quadratic function g(x)=a1 x^2+a2 x+a3 applied to a 1-D polynomial zonotope | — |
-| `Alg. 1` | (§3) enclosure of the image of a neural network layer by layer, using quadratic approximation of the activation and an added approximation-error term | — |
-| `Alg. 2` | (§4) reachable set computation for a neural-network-controlled system, looping over control cycles: image through the controller (Alg. 1), Cartesian product with the plant reachable set, then nonlinear reachability analysis | — |
-
-## Cited without a result
-
-These name the paper as a whole. A locator would put each in a row above.
-
-* [`PolyFit.lean`](../../src/CORALean/NN/Layers/PolyFit.lean)
+| `Def. 3` | (§4) reachable set: solution ξ(t, x0, u_c(·), w(·)) of the system over initial states, control law, and disturbance trajectory | [`ReachSet.lean`](../../src/CORALean/ContDynamics/NeurNetContrSys/ReachSet.lean) |
+| `Prop. 1` | (§5) interval enclosure of a polynomial zonotope, I = [c+g1-g2-g3-g4, c+g1+g2+g3+g4] ⊇ PZ, splitting generators by exponent parity | — |
+| `Prop. 2` | (§5) image of a quadratic function g(x)=a1 x^2+a2 x+a3 applied to a 1-D polynomial zonotope | — |
+| `Alg. 1` | (§3) enclosure of the image of a neural network layer by layer, using quadratic approximation of the activation and an added approximation-error term | [`Enclose.lean`](../../src/CORALean/NN/Operations/Enclose.lean), [`EncloseOuter.lean`](../../src/CORALean/NN/Theorems/EncloseOuter.lean), [`ActivationPoly.lean`](../../src/CORALean/NN/Layers/ActivationPoly.lean), [`PolyFit.lean`](../../src/CORALean/NN/Layers/PolyFit.lean) |
+| `Alg. 2` | (§4) reachable set computation for a neural-network-controlled system, looping over control cycles: image through the controller (Alg. 1), Cartesian product with the plant reachable set, then nonlinear reachability analysis | [`Operations.lean`](../../src/CORALean/ContDynamics/NeurNetContrSys/Operations.lean), [`ReachSetSubsetReach.lean`](../../src/CORALean/ContDynamics/NeurNetContrSys/Theorems/ReachSetSubsetReach.lean) |
