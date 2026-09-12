@@ -8,6 +8,7 @@ import CORALean.Examples.ConPolyZonoGuard
 import CORALean.Examples.ConversionRoundTrip
 import CORALean.Examples.ConvNet
 import CORALean.Examples.ConvNetFloat
+import CORALean.Examples.DependencyPreservation
 import CORALean.Examples.DiscretizeWithEnclosedExp
 import CORALean.Examples.DiscretizeWithMatZonotope
 import CORALean.Examples.EllipsoidPlus

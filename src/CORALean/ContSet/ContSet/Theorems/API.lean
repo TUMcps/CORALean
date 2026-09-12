@@ -1,3 +1,5 @@
+import CORALean.ContSet.ContSet.Theorems.DependencyPreservingChain
+import CORALean.ContSet.ContSet.Theorems.DependencyPreservingComp
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddSubset
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffInnerOfOuter
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffMono
@@ -9,6 +11,12 @@ import CORALean.ContSet.ContSet.Theorems.SubsetMinkowskiDiffIff
 
 `smul_mem_linComb_ofPoint`: `LinComb` and `OfPoint` together already give the
 segment from the origin to a point, so no class needs a `segment` field.
+
+`DependencyPreserving.comp` and `.chain` are the closure properties a
+parameterized representation is judged by: composing two dependency-preserving
+operations keeps the property, and a whole loop of them keeps it too, which is
+what carries a subset of the initial parameters through to a subset of the
+result.
 
 The rest is `minkowskiDiff`, whose elementary theory lives here rather than
 beside the definition: the Galois connection `X ⊆ minkowskiDiff S T ↔ X + T ⊆ S`
