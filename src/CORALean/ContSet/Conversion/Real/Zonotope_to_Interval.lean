@@ -15,11 +15,19 @@ a remainder bound, and the definition is the same one read through `Entrywise`.
 
 No linear program: a zonotope answers a direction by summing absolute values,
 which is the reason it is the representation reachability runs on.
+
+`interval_contains` is [1, Prop. 1], which in turn cites Althoff 2010, Prop. 2.2 — not
+formalized separately, since nothing here draws on the thesis beyond this same formula.
+
+## References
+
+* [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for
+      Formal Verification". TMLR. arXiv:2305.01932.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       16-August-2026
--- Last update:   07-September-2026
+-- Last update:   12-September-2026
 -- Last revision: ---
 
 
@@ -38,6 +46,8 @@ def Zonotope.interval (Z : Zonotope α) : Interval α where
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
+/-- [1, Prop. 1]: the box built from a zonotope's centre and generator widths
+contains it. -/
 theorem Zonotope.interval_contains (Z : Zonotope α) :
     Z.construct ⊆ Z.interval.construct := by -- --- PROOF ---
   rintro x ⟨β, hβ, rfl⟩
