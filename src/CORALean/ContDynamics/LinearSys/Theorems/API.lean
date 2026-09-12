@@ -16,6 +16,7 @@ import CORALean.ContDynamics.LinearSys.Theorems.ExistsTimeIntervalStepErrorLt
 import CORALean.ContDynamics.LinearSys.Theorems.ExistsTimeIntervalStepInnerInner
 import CORALean.ContDynamics.LinearSys.Theorems.ExistsTimePointStepErrorLt
 import CORALean.ContDynamics.LinearSys.Theorems.ExistsTimePointStepInnerInner
+import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
 import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemInputReach
 import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMulVec
 import CORALean.ContDynamics.LinearSys.Theorems.FlowIci
@@ -90,4 +91,5 @@ Only `discretize` and the `reach` statements built on it ask for `Set.Ici 0`.
 `DiscretizeEnclosure`/`DiscretizeEnclosureReach` are `Discretize`/`ReachOuter`
 at `discretizeEnclosure`, where the exponential is only enclosed rather than
 computed; `DiscretizeMatZonotope` is the same at a matrix zonotope.
+`ExpIntegralConstInput` is what a constant input contributes, in closed form.
 -/
