@@ -13,6 +13,7 @@ import CORALean.NN.Graph.UncertainAdjPad
 import CORALean.NN.Graph.UncertainDegree
 import CORALean.NN.Graph.UncertainMax
 import CORALean.NN.Graph.UncertainSqrt
+import CORALean.NN.Graph.Complexity.API
 import CORALean.NN.Graph.Theorems.API
 
 /-!
