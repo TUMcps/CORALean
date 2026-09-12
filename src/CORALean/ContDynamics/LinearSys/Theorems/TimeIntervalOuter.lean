@@ -5,7 +5,8 @@ import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
 # `timeIntervalStep` contains the flow at every time in the step
 
 CORA's `HR([0,r]) = CH(X₀, e^{Ar}X₀) ⊕ F X₀`, and the guarantee that makes it
-usable: not just at the sample times, but at every `t` in `[0, r]`.
+usable: not just at the sample times, but at every `t` in `[0, r]`. The
+wrapping-effect-free construction of [1, Alg. 1], one step of it.
 
 The flow splits into the straight line from `X₀` to `e^{Ar}X₀`, a `linComb` at
 weight `1 - t/r`, and the interpolation error, the correction matrix acting on
@@ -13,6 +14,11 @@ weight `1 - t/r`, and the interpolation error, the correction matrix acting on
 
 Homogeneous only: with a non-zero input a trajectory also picks up the input
 integral, which is `TrajectoryTimeIntervalOuter`.
+
+## References
+
+* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
+      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
 -/
 
 -- Authors:       Tobias Ladner

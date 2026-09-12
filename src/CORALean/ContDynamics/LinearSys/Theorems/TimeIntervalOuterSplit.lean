@@ -15,8 +15,15 @@ remainder holding the origin, and `OfPoint` gives the constant its own
 singleton; `linComb (ofPoint 0) (ofPoint c)` is then the segment the constant
 is enclosed against, so no representation-specific development is needed.
 
-So Althoff's second case assumes nothing at all about where the input set
-sits, at every representation with a centre.
+So [1, Alg. 3] — the extension of [1, Alg. 2] to an input set not containing
+the origin, split into a constant part and a zero-containing remainder —
+assumes nothing at all about where the input set sits, at every representation
+with a centre.
+
+## References
+
+* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
+      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
 -/
 
 -- Authors:       Tobias Ladner
