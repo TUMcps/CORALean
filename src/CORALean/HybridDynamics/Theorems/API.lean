@@ -13,6 +13,9 @@ import CORALean.HybridDynamics.Theorems.JumpOuterConZonotope
 import CORALean.HybridDynamics.Theorems.JumpOfPointOuter
 import CORALean.HybridDynamics.Theorems.JumpIntersectionOfPointOuter
 import CORALean.HybridDynamics.Theorems.LinearEmbedding
+import CORALean.HybridDynamics.Theorems.ReachLocationsOuter
+import CORALean.HybridDynamics.Theorems.ReachSetOuter
+import CORALean.HybridDynamics.Theorems.ReachSetSubsetInvariant
 import CORALean.HybridDynamics.Theorems.ResetImageSubset
 import CORALean.HybridDynamics.Theorems.RunExistsRunOn
 import CORALean.HybridDynamics.Theorems.RunOnOuter
@@ -30,7 +33,8 @@ invariant; `JumpOuter` intersects with the guard and applies the reset,
 discharges the one hypothesis `JumpOuter` leaves without an `Intersection` instance,
 and `JumpIntersectionOuter` is the case where one discharges it. `RunOuter` chains the
 two by induction on the run, and `HoldsOfRun`/`HoldsAllOfInvariant` turn the
-result into an answer, one specification or a list of them.
+result into an answer, one specification or a list of them. `ReachSetOuter`/
+`ReachLocationsOuter`/`ReachSetSubsetInvariant` restate the same at a set of runs.
 
 The bounded-horizon reading: `RunOnToRun`/`RunExistsRunOn` relate `RunOn` to
 `Run`, `RunOnOuter` is `RunOuter` at an index, `HoldsOfRunOn` its corollary, and
