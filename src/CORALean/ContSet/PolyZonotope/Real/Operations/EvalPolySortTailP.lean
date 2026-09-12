@@ -1,0 +1,51 @@
+import CORALean.ContSet.PolyZonotope.Real.Operations.Map
+import CORALean.ContSet.PolyZonotope.Real.Operations.PowSort
+import CORALean.ContSet.PolyZonotope.Real.Operations.SortPlus
+import CORALean.Global.Hadamard
+
+/-!
+# [1, Alg. 2]'s sum over the powers
+
+Lines 12-15 without the constant term: `a_k·PZ^(k+1) + a_{k+1}·PZ^(k+2) + …`,
+each coefficient applied by `map` at the Hadamard multiplier (line 13, which is
+[1, Prop. 2.8]) and the terms added with `sortPlus` (line 15).
+
+[1] merges all `o` terms at once; here they are added in pairs, which is what
+`sortPlus` is written for and denotes the same set. The recursion carries the
+degree `k` down the list and the factor-count proof up, so no step needs one of
+its own.
+
+## References
+
+* [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural
+      Network Verification using Sensitivity Analysis". HSCC 2023.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       12-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- The tail of [1, Alg. 2]'s sum, from degree `k + 1` upward. -/
+noncomputable def PolyZonotope.evalPolySortTailP (pZ : PolyZonotope (Vec ℝ n)) :
+    List (Vec ℝ n) → ℕ → {R : PolyZonotope (Vec ℝ n) // R.p = pZ.p}
+  | [], _ => ⟨⟨pZ.p, 0, 0, 0, Fin.elim0, fun _ => Fin.elim0, Fin.elim0⟩, rfl⟩
+  | a :: rest, k =>
+      let T := (pZ.powSort k).1.map (Entrywise.hadamardLin a)
+      let S := PolyZonotope.evalPolySortTailP pZ rest (k + 1)
+      ⟨T.sortPlus S.1 ((pZ.powSort k).2.trans S.2.symm), (pZ.powSort k).2⟩
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

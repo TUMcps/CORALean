@@ -1,0 +1,60 @@
+import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolySort
+import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolySortP
+import CORALean.ContSet.PolyZonotope.Real.Operations.Sorted
+import CORALean.ContSet.PolyZonotope.Real.Theorems.SortPlusSorted
+
+/-!
+# [1, Alg. 2] returns a sorted matrix
+
+The half of [1, Prop. 3.5]'s *regular and sorted* that holds. Every term is a
+`sortPlus`, which sorts, and the constant term is a `shift`, which leaves the
+exponent matrix alone; an empty coefficient list gives no columns to order.
+
+Regularity does not follow, and for the reason `Merge.lean` gives: no two
+columns are equal (`merge_col_injective` applies here unchanged), but an
+all-zero column would survive — and cannot arise, since [1, Alg. 2]'s operand is
+regular and `sq` adds a non-zero column to every exponent it produces.
+
+## References
+
+* [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural
+      Network Verification using Sensitivity Analysis". HSCC 2023.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       12-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+-- file-local: only `evalPolySort_sorted` below needs it
+/-- Every tail is a `sortPlus`, or else empty. -/
+theorem PolyZonotope.aux_evalPolySortTail_sorted (pZ : PolyZonotope (Vec ℝ n))
+    (coeffs : List (Vec ℝ n)) (k : ℕ) :
+    PolyZonotope.Sorted (pZ.evalPolySortTailP coeffs k).1.E := by
+  match coeffs with
+  | [] => exact fun a _ _ => Fin.elim0 a
+  | _ :: rest => exact PolyZonotope.sortPlus_sorted _ _ _
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem PolyZonotope.evalPolySort_sorted (pZ : PolyZonotope (Vec ℝ n))
+    (coeffs : List (Vec ℝ n)) : PolyZonotope.Sorted (pZ.evalPolySort coeffs).E := by
+  match coeffs with
+  | [] => exact fun a _ _ => Fin.elim0 a
+  | _ :: rest => exact PolyZonotope.aux_evalPolySortTail_sorted pZ rest 0
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
