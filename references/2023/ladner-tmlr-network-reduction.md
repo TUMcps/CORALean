@@ -25,7 +25,7 @@ buckets under it.
 | `Prop. 3` | image enclosure of a nonlinear layer output set (cites Singh et al. 2018a) | n/a — restated from Singh et al. 2018, which this formalization does not draw on directly |
 | `Prop. 4` | neuron merging: constructs a sound reduced network from a merge bucket, with resulting weights/biases/interval error for layers k-1 and k+1 | [`NeuronMergingNetworkOuter.lean`](../../src/CORALean/NN/Theorems/NeuronMergingNetworkOuter.lean), [`NeuronMergingOuter.lean`](../../src/CORALean/NN/Theorems/NeuronMergingOuter.lean) |
 | `Thm. 1` | (Sound Neural Network Reduction) Alg. 2 constructs a reduced network Φ̂_ρ satisfying the problem statement of §2.5, for any input set X and reduction rate ρ | [`Reduction.lean`](../../src/CORALean/NN/Reduction.lean), [`API.lean`](../../src/CORALean/NN/Theorems/API.lean), [`HoldsOfReducesAt.lean`](../../src/CORALean/NN/Theorems/HoldsOfReducesAt.lean) |
-| `Cor. 1` | (Sound Compression) construction of a reduced network that compresses an uncertain image with formal error bounds, via an identity-like convolution kernel | — |
+| `Cor. 1` | (Sound Compression) construction of a reduced network that compresses an uncertain image with formal error bounds, via an identity-like convolution kernel | [`SoundCompression.lean`](../../src/CORALean/Examples/SoundCompression.lean) |
 | `Cor. 2` | (Reusing Reduced Network on Subsets) a reduced network Φ̂_ρ per Thm. 1 can be reused for any subset X' ⊆ X of the original input set | [`HoldsOfReducesAtSubset.lean`](../../src/CORALean/NN/Theorems/HoldsOfReducesAtSubset.lean) |
 
 ## Cited without a result

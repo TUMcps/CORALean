@@ -65,6 +65,7 @@ import CORALean.NN.Theorems.SuffExplanationConverseFails
 import CORALean.NN.Theorems.SuffExplanationExact
 import CORALean.NN.Theorems.SuffExplanationExactOfReducesAt
 import CORALean.NN.Theorems.SuffExplanationExactOfRefined
+import CORALean.NN.Theorems.SuffExplanationMono
 import CORALean.NN.Theorems.SuffExplanationOfEnclose
 import CORALean.NN.Theorems.SuffExplanationOfExact
 import CORALean.NN.Theorems.SuffExplanationOfNeuronMerging
