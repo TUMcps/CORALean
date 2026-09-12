@@ -29,6 +29,7 @@ import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceGirardOuter
 import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceOuter
 import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceGirardOrderLe
 import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceOrder
+import CORALean.ContSet.ConPolyZono.Real.Theorems.DependentSetUnionDomain
 
 /-!
 # What `ConPolyZono` guarantees
