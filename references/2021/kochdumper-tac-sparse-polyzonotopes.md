@@ -24,7 +24,7 @@ of what it can do.
 | `Def. 4` | (Taylor Model) [cites [21, Def. 2.1]] Standard Taylor-model definition over a polynomial vector field w and remainder interval I. | n/a — restated from an earlier paper, which this formalization does not draw on directly |
 | `Prop. 4` | (Conversion Taylor Model) A Taylor model T(x)=⟨w(x),I⟩_T on a domain D can be equivalently represented by an SPZ. | — |
 | `Prop. 5` | (Zonotope) zono(PZ) returns an enclosing zonotope for an SPZ PZ=⟨G,G_I,E,id⟩_PZ with complexity O(n²), by classifying generators into center-contributing (N), even-exponent (H), and remaining (K) sets. | [`PolyZonotope_to_Zonotope.lean`](../../src/CORALean/ContSet/Conversion/Real/PolyZonotope_to_Zonotope.lean) |
-| `Prop. 6` | (Polytope) poly(PZ) returns an enclosing polytope for an SPZ, computed via vertex enumeration of a related SPZ (using [40, Alg. 2]), complexity O(2^{n²}). | — |
+| `Prop. 6` | (Polytope) poly(PZ) returns an enclosing polytope for an SPZ, computed via vertex enumeration of a related SPZ (using [40, Alg. 2]), complexity O(2^{n²}). | [`PolyZonotope_to_VPolytope.lean`](../../src/CORALean/ContSet/Conversion/Real/PolyZonotope_to_VPolytope.lean) |
 | `Def. 5` | (Support Function) [cites [32, Def. 1]] s_S(d) = max_{x∈S} d^T x; exact for convex sets, an over-approximation for non-convex sets such as SPZs. | n/a — restated from an earlier paper, which this formalization does not draw on directly |
 | `Prop. 7` | (Support Function) An SPZ is over-approximated by the support function ŝ_PZ(d) = u + Σ\|ḡ_I(j)\|, computed via a Bernstein-type bound B(w(α),[-1,1]) on the dependent-generator polynomial. | [`SupportBound.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Operations/SupportBound.lean) |
 | `Prop. 8` | (Multiplication) M⊗PZ = ⟨MG,MG_I,E,id⟩_PZ for left-multiplication of an SPZ by matrix M, complexity O(mn²). | [`MulExact.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/MulExact.lean) |
@@ -54,6 +54,18 @@ right as intended, and CORA is unaffected.
 positive". It is non-negative — `α_k = 0` at a positive exponent gives `0` — and the
 proof's own next line writes the range as `[0,1]`, which is what the enclosure uses. The
 result is right either way. [`PolyZonotope_to_Zonotope.lean`](../../src/CORALean/ContSet/Conversion/Real/PolyZonotope_to_Zonotope.lean)
+
+**Prop. 6.** The SPZ it builds, `PZ̄`, carries an independent block `[G_I G_z]`, but the
+vertex enumeration it is handed to — [40, Alg. 2] — takes a representation with none. The
+independent generators have to be read as dependent ones at fresh factors of exponent one,
+which is the paper's own Prop. 3, and the statement does not say so. `Ḡ_(·,K)` and
+`Ē_(·,K)` in Eq. (9) carry overlines that are never defined; the proof writes both blocks
+plain. The sentence after the proof credits Fig. 3 (middle) to "Prop. 9", the Minkowski
+sum, where `(9)` is the equation and Prop. 6 the result. Soundness for a *non-convex*
+zero-one SPZ, which is the case Prop. 6 needs, is asserted in [40] in the prose under
+Alg. 2 rather than in a numbered result — [40, Prop. 5] is about where a polytope's
+vertices sit. Everything is right as intended.
+[`PolyZonotope_to_VPolytope.lean`](../../src/CORALean/ContSet/Conversion/Real/PolyZonotope_to_VPolytope.lean)
 
 ## Cited without a result
 
