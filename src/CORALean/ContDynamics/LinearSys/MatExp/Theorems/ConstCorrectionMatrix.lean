@@ -5,9 +5,9 @@ import CORALean.ContSet.Interval.Real.Theorems.MemMat
 /-!
 # The constant input's interpolation error lies in `constCorrectionMatrix`
 
-The `F̃` of [1, Prop. 3.1], the integrated counterpart of that `F`. What a constant
-input contributes over `[0,t]` is `∫₀ᵗ e^{Aσ}dσ` applied to it, and the straight
-line from `0` to its value at `r` misses that by this much.
+The `F̃` of [1, Prop. 3.4], the integrated counterpart of the `F` of Prop. 3.1.
+What a constant input contributes over `[0,t]` is `∫₀ᵗ e^{Aσ}dσ` applied to it,
+and the straight line from `0` to its value at `r` misses that by this much.
 
 The series is `∑ᵢ Aⁱ (t^{i+1} - (t/r)r^{i+1})/(i+1)!`, whose `i = 0` term
 cancels — one order lower than for `F`, where the constant *and* linear terms
