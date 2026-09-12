@@ -1,6 +1,8 @@
 import CORALean.ContSet.ContSet.Theorems.DependencyPreservingChain
 import CORALean.ContSet.ContSet.Theorems.DependencyPreservingComp
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddSubset
+import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddSubsetAdd
+import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffEnclSubsetAdd
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffInnerOfOuter
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffMono
 import CORALean.ContSet.ContSet.Theorems.SmulMemLinCombOfPoint
@@ -26,4 +28,8 @@ a bounded error set into an inner approximation of the exact set. Everything
 else running inner here starts from a computed Minkowski difference; this is
 the only route from an enclosure, and what an inner reachability algorithm
 would be built on.
+
+`minkowskiDiff_add_subset_add` and `minkowskiDiff_encl_subset_add` are
+Althoff's Prop. 3 and Prop. 4: adding a set to a difference stays inside the
+difference of the enlarged minuend.
 -/
