@@ -3,7 +3,7 @@ import CORALean.ContDynamics.NonlinearSys.NonlinearSys
 /-!
 # The set a nonlinear run actually reaches
 
-The definition is [1, Def. 6].
+The definition is [1, Def. 6], and [2, Def. 8]'s `Rᵉ_{X₀}(t)` is the same set.
 
 `LinearSys.reachSet` at a nonlinear field: every state some trajectory of `sys`
 visits at time `t`, quantified over the runs rather than over an enclosure of
@@ -24,6 +24,9 @@ what is computed.
 
 * [1] N. Kochdumper, B. Schürmann and M. Althoff. "Utilizing Dependencies to
       Obtain Subsets of Reachable Sets". HSCC 2020. arXiv:1910.08354.
+* [2] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set
+      Representation for Reachability Analysis". IEEE Transactions on Automatic
+      Control, 2021.
 -/
 
 -- Authors:       Tobias Ladner

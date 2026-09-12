@@ -13,8 +13,8 @@ that follows is tight for what it is given.
 
 CORA's `interval(polyZonotope)` does better by splitting the dependent
 generators on the parity of their exponents — an even monomial reaches only
-`[0,1]`, so half its generator can move into the centre. That needs the exponent
-matrix, which this route has already thrown away.
+`[0,1]`, so half its generator can move into the centre. That split is
+`PolyZonotope.zonotopeEven`, which this route could box instead and does not.
 
 The box that comes out is always ordered, which the type does not say: a
 polynomial zonotope is never empty, and a box enclosing a point cannot have its

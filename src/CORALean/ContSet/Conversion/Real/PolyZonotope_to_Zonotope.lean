@@ -4,21 +4,21 @@ import CORALean.ContSet.Zonotope.Real.Zonotope
 /-!
 # A polynomial zonotope as a zonotope
 
-CORA's `zonotope(polyZonotope)` in its cheapest form, [1, Prop. 2.6] and
-[2, Prop. 1] before it: read every dependent generator as an independent one.
-Sound because a monomial in factors of `[-1,1]` is itself in `[-1,1]`, so each
-dependent coefficient is a coefficient a zonotope already admits.
+Two enclosures, the cheaper first. `zonotope` reads every dependent generator as
+an independent one — [1, Prop. 2.6], and [2, Prop. 1] before it — since a
+monomial in factors of `[-1,1]` is itself in `[-1,1]`. What is lost is the
+*sharing*, which is the whole representation: the dependent generators are freed
+to move independently, so every non-convexity goes and so does the exactness of
+a quadratic map.
 
-What is lost is the *sharing*, which is the whole representation: the dependent
-generators are freed to move independently, so the result is the convex zonotope
-that the coupling was cutting down. Every non-convexity goes, and so does the
-exactness of a quadratic map — nothing of the exponent matrix survives but the
-generator vectors it indexed.
+`zonotopeEven` is [3, Prop. 5] and CORA's own `zonotope(polyZonotope)`: a column
+whose exponents are all even has its monomial in `[0,1]` rather than `[-1,1]`,
+so half of that generator moves into the centre and only the other half is left
+free. A column of zeros is the paper's `N` and moves across whole, its monomial
+being `1` exactly; CORA reads it as merely even and pays half a generator for
+it. Every other column is `zonotope`'s reading unchanged.
 
-Not tight: CORA also offers a tighter enclosure that treats an even exponent
-separately, since `α^2` ranges over `[0,1]` rather than `[-1,1]` and its
-generator can be halved and its centre shifted. That is a second conversion, not
-this one.
+Neither keeps anything of the exponent matrix but the generators it indexed.
 
 ## References
 
@@ -26,11 +26,14 @@ this one.
       Network Verification using Sensitivity Analysis". HSCC 2023.
 * [2] M. Althoff. "Reachability Analysis of Nonlinear Systems using Conservative
       Polynomialization and Non-Convex Sets". HSCC 2013.
+* [3] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set
+      Representation for Reachability Analysis". IEEE Transactions on Automatic
+      Control, 2021.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   12-September-2026
 -- Last revision: ---
 
 
@@ -57,9 +60,6 @@ theorem PolyZonotope.aux_sum_univ_zonotope {pZ : PolyZonotope α} (f : Fin (pZ.h
       = ∑ i, f (Fin.castAdd pZ.q i) + ∑ j, f (Fin.natAdd pZ.h j) :=
   Fin.sum_univ_add f
 
-
--- =======================================  MAIN THEOREM  ======================================= --
-
 theorem PolyZonotope.zonotope_contains (pZ : PolyZonotope α) :
     pZ.construct ⊆ pZ.zonotope.construct := by -- --- PROOF ---
   rintro _ ⟨a, b, ha, hb, rfl⟩
@@ -71,6 +71,104 @@ theorem PolyZonotope.zonotope_contains (pZ : PolyZonotope α) :
       simpa using hb j
   · rw [PolyZonotope.aux_sum_univ_zonotope]
     simp only [PolyZonotope.zonotope, Fin.append_left, Fin.append_right]
+    abel
+
+/-- How much of a dependent generator is left free: none of a constant column,
+half of an all-even one, all of the rest. -/
+noncomputable def PolyZonotope.aux_evenWeight {p h : ℕ} (E : Fin p → Fin h → ℕ) (i : Fin h) : ℝ :=
+  if ∀ k, E k i = 0 then 0 else if ∀ k, E k i % 2 = 0 then 1 / 2 else 1
+
+/-- The coefficient that free generator is given, so that what the centre already
+holds plus this much of the generator is the monomial. -/
+noncomputable def PolyZonotope.aux_evenCoeff {p h : ℕ} (E : Fin p → Fin h → ℕ)
+    (a : Fin p → ℝ) (i : Fin h) : ℝ :=
+  if ∀ k, E k i = 0 then 0
+  else if ∀ k, E k i % 2 = 0 then 2 * PolyZonotope.monomial E a i - 1
+  else PolyZonotope.monomial E a i
+
+/-- A column of zeros reads every factor at exponent zero, so its monomial is
+`1` whatever the factors are. -/
+theorem PolyZonotope.aux_monomial_eq_one {p h : ℕ} {E : Fin p → Fin h → ℕ} {i : Fin h}
+    (hE : ∀ k, E k i = 0) (a : Fin p → ℝ) : PolyZonotope.monomial E a i = 1 :=
+  Finset.prod_eq_one fun k _ => by rw [hE k, pow_zero]
+
+/-- An all-even column's monomial is a product of even powers, so it never goes
+below zero — which is what lets its generator be halved. -/
+theorem PolyZonotope.aux_monomial_nonneg {p h : ℕ} {E : Fin p → Fin h → ℕ} {i : Fin h}
+    (hE : ∀ k, E k i % 2 = 0) (a : Fin p → ℝ) : 0 ≤ PolyZonotope.monomial E a i :=
+  Finset.prod_nonneg fun k _ => Even.pow_nonneg (Nat.even_iff.mpr (hE k)) (a k)
+
+/-- What the centre keeps plus what the free generator reaches is the monomial,
+in each of the three cases. -/
+theorem PolyZonotope.aux_evenWeight_smul {p h : ℕ} (E : Fin p → Fin h → ℕ) (a : Fin p → ℝ)
+    (i : Fin h) :
+    (1 - PolyZonotope.aux_evenWeight E i)
+        + PolyZonotope.aux_evenCoeff E a i * PolyZonotope.aux_evenWeight E i
+      = PolyZonotope.monomial E a i := by -- --- PROOF ---
+  rw [PolyZonotope.aux_evenWeight, PolyZonotope.aux_evenCoeff]
+  split_ifs with hz he
+  · -- a constant column: the centre takes all of it
+    rw [PolyZonotope.aux_monomial_eq_one hz a]
+    ring
+  · -- an all-even column: half in the centre, half left free
+    ring
+  · -- anything else: the centre takes none of it
+    ring
+
+/-- Every coefficient a free generator is given is admissible, an all-even
+column because its monomial lies in `[0,1]`. -/
+theorem PolyZonotope.aux_abs_evenCoeff_le_one {p h : ℕ} (E : Fin p → Fin h → ℕ)
+    {a : Fin p → ℝ} (ha : ∀ k, |a k| ≤ 1) (i : Fin h) :
+    |PolyZonotope.aux_evenCoeff E a i| ≤ 1 := by -- --- PROOF ---
+  rw [PolyZonotope.aux_evenCoeff]
+  split_ifs with hz he
+  · rw [abs_zero]
+    exact zero_le_one
+  · -- `[0,1]` on the nose, so `2m - 1` stays inside `[-1,1]`
+    have h₀ : 0 ≤ PolyZonotope.monomial E a i := PolyZonotope.aux_monomial_nonneg he a
+    have h₁ : PolyZonotope.monomial E a i ≤ 1 :=
+      le_trans (le_abs_self _) (PolyZonotope.abs_monomial_le_one E ha i)
+    exact abs_le.mpr ⟨by linarith, by linarith⟩
+  · exact PolyZonotope.abs_monomial_le_one E ha i
+
+/-- The paper's `N`, `H` and `K` read off column by column rather than as three
+index sets: a zero weight is a generator the paper drops. -/
+noncomputable def PolyZonotope.zonotopeEven (pZ : PolyZonotope α) : Zonotope α where
+  h := pZ.h + pZ.q
+  c := pZ.c + ∑ i, (1 - PolyZonotope.aux_evenWeight pZ.E i) • pZ.G i
+  G := Fin.append (fun i => PolyZonotope.aux_evenWeight pZ.E i • pZ.G i) pZ.GI
+
+/-- `Fin.sum_univ_add` at the generator count the tighter conversion produces,
+the binder ascribed so that it matches the goal. -/
+theorem PolyZonotope.aux_sum_univ_zonotopeEven {pZ : PolyZonotope α}
+    (f : Fin (pZ.h + pZ.q) → α) :
+    ∑ l : Fin pZ.zonotopeEven.h, f l
+      = ∑ i, f (Fin.castAdd pZ.q i) + ∑ j, f (Fin.natAdd pZ.h j) :=
+  Fin.sum_univ_add f
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem PolyZonotope.zonotopeEven_contains (pZ : PolyZonotope α) :
+    pZ.construct ⊆ pZ.zonotopeEven.construct := by -- --- PROOF ---
+  rintro _ ⟨a, b, ha, hb, rfl⟩
+  refine ⟨Fin.append (fun i => PolyZonotope.aux_evenCoeff pZ.E a i) b, ?_, ?_⟩
+  · refine Fin.addCases ?_ ?_
+    · intro i
+      simpa using PolyZonotope.aux_abs_evenCoeff_le_one pZ.E ha i
+    · intro j
+      simpa using hb j
+  · -- the centre's share and the free generator's share add back to the monomial
+    have hsum : ∑ i, PolyZonotope.monomial pZ.E a i • pZ.G i
+        = ∑ i, (1 - PolyZonotope.aux_evenWeight pZ.E i) • pZ.G i
+          + ∑ i, PolyZonotope.aux_evenCoeff pZ.E a i
+              • (PolyZonotope.aux_evenWeight pZ.E i • pZ.G i) := by
+      rw [← Finset.sum_add_distrib]
+      refine Finset.sum_congr rfl fun i _ => ?_
+      rw [smul_smul, ← add_smul, PolyZonotope.aux_evenWeight_smul]
+    rw [PolyZonotope.aux_sum_univ_zonotopeEven]
+    simp only [PolyZonotope.zonotopeEven, Fin.append_left, Fin.append_right]
+    rw [hsum]
     abel
 
 end CORALean.Real
