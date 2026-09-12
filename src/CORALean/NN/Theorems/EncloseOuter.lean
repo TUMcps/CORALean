@@ -13,11 +13,19 @@ The enclosure degrades monotonically: each layer encloses the image of what it
 was handed, never of the exact set, so the error a layer introduces is carried
 by every layer after it. That is why an activation layer's relaxation is where
 all the precision goes, and why none of it is visible here.
+
+[1, Alg. 1]'s own postcondition, `PZ ⊇ Y`, proved once for any network rather
+than only the quadratic-approximation layers the algorithm itself builds.
+
+## References
+
+* [1] N. Kochdumper et al. "Open- and Closed-Loop Neural Network Verification
+      using Polynomial Zonotopes". arXiv:2207.02715, 2022.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   12-September-2026
 -- Last revision: ---
 
 

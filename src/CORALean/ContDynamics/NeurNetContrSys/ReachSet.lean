@@ -15,11 +15,20 @@ only within the `H` periods it names, so the set stays large outside them.
 indexed by — nothing between them, the same silence `ReachOuter` names.
 
 `Theorems.ReachSetOuter` puts every run into it.
+
+[1, Def. 3]'s `ξ(t, x0, uc(·), w(·))` is `x t` here, at whichever `x` a
+`Trajectory` supplies; this plant takes no disturbance `w`, so `R(t)` has none
+to quantify over.
+
+## References
+
+* [1] N. Kochdumper et al. "Open- and Closed-Loop Neural Network Verification
+      using Polynomial Zonotopes". arXiv:2207.02715, 2022.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   12-September-2026
 -- Last revision: ---
 
 
