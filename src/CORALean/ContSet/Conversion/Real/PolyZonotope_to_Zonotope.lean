@@ -5,18 +5,18 @@ import CORALean.ContSet.Zonotope.Real.Zonotope
 # A polynomial zonotope as a zonotope
 
 Two enclosures, the cheaper first. `zonotope` reads every dependent generator as
-an independent one — [1, Prop. 2.6], and [2, Prop. 1] before it — since a
-monomial in factors of `[-1,1]` is itself in `[-1,1]`. What is lost is the
-*sharing*, which is the whole representation: the dependent generators are freed
-to move independently, so every non-convexity goes and so does the exactness of
-a quadratic map.
+an independent one — [1, Prop. 2.6] — since a monomial in factors of `[-1,1]`
+is itself in `[-1,1]`. What is lost is the *sharing*, which is the whole
+representation: the dependent generators are freed to move independently, so
+every non-convexity goes and so does the exactness of a quadratic map.
 
-`zonotopeEven` is [3, Prop. 5] and CORA's own `zonotope(polyZonotope)`: a column
-whose exponents are all even has its monomial in `[0,1]` rather than `[-1,1]`,
-so half of that generator moves into the centre and only the other half is left
-free. A column of zeros is the paper's `N` and moves across whole, its monomial
-being `1` exactly; CORA reads it as merely even and pays half a generator for
-it. Every other column is `zonotope`'s reading unchanged.
+`zonotopeEven` is [2, Prop. 1], restated as [3, Prop. 5], and is CORA's own
+`zonotope(polyZonotope)`: a column whose exponents are all even has its
+monomial in `[0,1]` rather than `[-1,1]`, so half of that generator moves into
+the centre and only the other half is left free. A column of zeros is the
+paper's `N` and moves across whole, its monomial being `1` exactly; CORA reads
+it as merely even and pays half a generator for it. Every other column is
+`zonotope`'s reading unchanged.
 
 Neither keeps anything of the exponent matrix but the generators it indexed.
 

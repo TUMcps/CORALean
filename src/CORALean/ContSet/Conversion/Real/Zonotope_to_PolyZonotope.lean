@@ -18,18 +18,21 @@ exponent matrix can be brought to this shape.
 
 Both directions are stated through `show`: the counts of the result are
 projections of a definition, and only in their reduced spelling do the sum
-lemmas match.
+lemmas match. Composed with `PolyZonotope.quadMap_exact`, this is half of
+[2, Thm. 1]: a zonotope's quadratic-map image is exactly a polynomial zonotope.
 
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set
       Representation for Reachability Analysis". IEEE Transactions on Automatic
       Control, 2021.
+* [2] M. Althoff. "Reachability Analysis of Nonlinear Systems using Conservative
+      Polynomialization and Non-Convex Sets". HSCC 2013.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   12-September-2026
 -- Last revision: ---
 
 
