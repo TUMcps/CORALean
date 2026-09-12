@@ -1,0 +1,127 @@
+import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
+import CORALean.ContSet.Interval.Real.Operations.Center
+import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
+import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+
+/-!
+# A symmetric interval matrix map is `S · box(Z)`
+
+[1, Lemma 3.3], as [1, Remark 3.2] observes it. `Zonotope.mtimesIntervalMat` is
+already [1, Thm. 3.3]'s general interval-matrix map, and its diagonal generator
+block is already [1, Lemma 3.2]'s bound applied to `Z`'s own reach `|c| + Σ|g|`
+— exactly `radiusReach`. So Lemma 3.3 needs no new operation: what it adds is
+that mapping `Z` this way coincides with mapping `Z.interval.zonotope`, CORA's
+`S · box(Z)`. That is what this states.
+
+At a *symmetric* `IM` (`IM.inf = -IM.sup`), `IM.center = 0`, which turns
+`mtimesIntervalMat`'s leading `Z.h` (resp. `n`) generators — the image of `Z`'s
+own, carried over unmapped — into an all-zero block on both sides.
+`aux_construct_append_zero_left` drops it either way, leaving the diagonal
+`radiusReach` block alone; `aux_absBound_interval_zonotope` is why that block is
+the same block on both sides.
+
+## References
+
+* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
+      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       11-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {m n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- A leading block of all-zero generators changes nothing a zonotope denotes:
+its coefficients are free, and every one of them contributes nothing either
+way. -/
+theorem aux_construct_append_zero_left {j k : ℕ} (c : Vec ℝ m) (G : Fin k → Vec ℝ m) :
+    (⟨j + k, c, Fin.append (fun _ => (0 : Vec ℝ m)) G⟩ : Zonotope (Vec ℝ m)).construct
+      = (⟨k, c, G⟩ : Zonotope (Vec ℝ m)).construct := by -- --- PROOF ---
+  ext x
+  rw [Zonotope.mem_construct_iff, Zonotope.mem_construct_iff]
+  constructor
+  · rintro ⟨β, hβ, hx⟩
+    refine ⟨fun l => β (Fin.natAdd j l), fun l => hβ _, fun i => ?_⟩
+    have h := hx i
+    rw [Fin.sum_univ_add] at h
+    simpa using h
+  · rintro ⟨β, hβ, hx⟩
+    refine ⟨Fin.append (fun _ => (0 : ℝ)) β,
+      Fin.addCases (fun l => by norm_num) (fun l => by simpa using hβ l), fun i => ?_⟩
+    rw [Fin.sum_univ_add]
+    simpa using hx i
+
+/-- `Z.interval.zonotope` reaches exactly as far from the origin as `Z` does,
+coordinate by coordinate: its one nonzero generator per coordinate is `Z`'s own
+reach there, read off `Zonotope.interval`'s width. -/
+theorem aux_absBound_interval_zonotope (Z : Zonotope (Vec ℝ n)) :
+    (Z.interval.zonotope).absBound = Z.absBound := by -- --- PROOF ---
+  -- `Zonotope.interval`/`Interval.zonotope` unfold to these by `rfl`
+  have hsup : Z.interval.sup = fun i => Z.c i + ∑ k, |Z.G k i| := rfl
+  have hinf : Z.interval.inf = fun i => Z.c i - ∑ k, |Z.G k i| := rfl
+  funext j
+  have hc : (Z.interval.zonotope).c j = Z.c j := by
+    show (Z.interval.inf j + Z.interval.sup j) / 2 = Z.c j
+    rw [hinf, hsup]; ring
+  have hG : ∀ l : Fin n, (Z.interval.zonotope).G l j
+      = if j = l then ∑ k, |Z.G k j| else 0 := by
+    intro l
+    show (if j = l then (Z.interval.sup j - Z.interval.inf j) / 2 else 0)
+        = if j = l then ∑ k, |Z.G k j| else 0
+    rw [hinf, hsup]
+    split_ifs with h
+    · ring
+    · rfl
+  -- only the `l = j` generator is nonzero, so the sum collapses to its one term
+  have hsum : ∑ l : Fin n, |(Z.interval.zonotope).G l j| = ∑ k, |Z.G k j| := by
+    rw [Finset.sum_eq_single j]
+    · rw [hG j, if_pos rfl, abs_of_nonneg (Finset.sum_nonneg fun k _ => abs_nonneg _)]
+    · intro l _ hl
+      rw [hG l, if_neg (Ne.symm hl), abs_zero]
+    · intro hc'
+      exact absurd (Finset.mem_univ j) hc'
+  show |(Z.interval.zonotope).c j| + ∑ l, |(Z.interval.zonotope).G l j|
+      = |Z.c j| + ∑ k, |Z.G k j|
+  rw [hc]
+  congr 1
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem Zonotope.mtimesIntervalMat_symm_box {IM : Interval (Mat ℝ m n)}
+    (hIM : IM.inf = -IM.sup) (Z : Zonotope (Vec ℝ n)) :
+    (Zonotope.mtimesIntervalMat IM Z).construct
+      = (Zonotope.mtimesIntervalMat IM Z.interval.zonotope).construct := by -- --- PROOF ---
+  have hIMc : IM.center = 0 := by
+    simp only [Interval.center, hIM, neg_add_cancel, smul_zero]
+  have hrad : Zonotope.radiusReach IM Z = Zonotope.radiusReach IM Z.interval.zonotope := by
+    funext i
+    show (∑ j, IM.radius i j * Z.absBound j)
+        = ∑ j, IM.radius i j * (Z.interval.zonotope).absBound j
+    rw [aux_absBound_interval_zonotope]
+  -- a zero centre also zeroes the leading (image-of-`Z`'s-own) generator block
+  have hL : Zonotope.mtimesIntervalMat IM Z
+      = (⟨Z.h + m, 0, Fin.append (fun _ => (0 : Vec ℝ m))
+          (Matrix.diagonal (Zonotope.radiusReach IM Z))⟩ : Zonotope (Vec ℝ m)) := by
+    simp only [Zonotope.mtimesIntervalMat, hIMc, Matrix.zero_mulVec]
+  have hR : Zonotope.mtimesIntervalMat IM Z.interval.zonotope
+      = (⟨Z.interval.zonotope.h + m, 0, Fin.append (fun _ => (0 : Vec ℝ m))
+          (Matrix.diagonal (Zonotope.radiusReach IM Z))⟩ : Zonotope (Vec ℝ m)) := by
+    simp only [Zonotope.mtimesIntervalMat, hIMc, Matrix.zero_mulVec, ← hrad]
+  rw [hL, hR, aux_construct_append_zero_left, aux_construct_append_zero_left]
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

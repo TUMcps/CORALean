@@ -19,6 +19,7 @@ import CORALean.ContSet.Interval.Real.Theorems.RecentreZeroMem
 import CORALean.ContSet.Interval.Real.Theorems.RecentreSubMem
 import CORALean.ContSet.Interval.Real.Theorems.MtimesIntervalMatOuter
 import CORALean.ContSet.Interval.Real.Theorems.MatMulOuter
+import CORALean.ContSet.Interval.Real.Theorems.MatMulSymmPoint
 import CORALean.ContSet.Interval.Real.Theorems.MatPowOuter
 import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
 import CORALean.ContSet.Interval.Real.Theorems.NormLeAbsMax
@@ -39,14 +40,16 @@ row and column, and `MemCenter` is the one point a box always offers a layer
 that has to commit to a value. `RecentreZeroMem`/`RecentreSubMem` need that
 same nonemptiness to place the origin, a crossed box denoting `∅` instead.
 `MtimesIsNonempty` is why an image box needs no hypothesis before it is used
-as one. `MtimesWidth` is how far apart its bounds
-are, row by row, which is what a caller bounding an error box against a
-tolerance needs. `MulBetweenCorners` is the scalar fact `mtimes*` products
-against an interval matrix share, and `MatMulOuter` is its use on `matMul`, an
-enclosure and not an equality since a product entry's `k`-summands are bounded
-independently. `MatPowOuter` lifts that along `matPow`'s recursion, growing the
-same dependency loss with every power. `SmulOuter` is `MulBetweenEndpoints` read
-back through `Entrywise`. `SplitAtCover` is why `splitAt` is sound to feed
+as one. `MtimesWidth` is how far apart its bounds are, row by row, which is
+what a caller bounding an error box against a tolerance needs.
+`MulBetweenCorners` is the scalar fact `mtimes*` products against an interval
+matrix share, and `MatMulOuter` is its use on `matMul`, an enclosure and not an
+equality since a product entry's `k`-summands are bounded independently.
+`MatMulSymmPoint` is the case that loses nothing: a symmetric left factor
+against a point right one collapses to `|M|` scaled by the radius. `MatPowOuter`
+lifts the general bound along `matPow`'s recursion, growing the same dependency
+loss with every power. `SmulOuter` is `MulBetweenEndpoints` read back through
+`Entrywise`. `SplitAtCover` is why `splitAt` is sound to feed
 `NeuralNetwork.holds_of_split`: its two halves cover the box they bisected.
 `NormLeAbsMax` bounds the `l∞` operator norm uniformly over a box by its
 `AbsMax`, which is what makes an exponential enclosure hold at every member.

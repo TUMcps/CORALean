@@ -1,0 +1,89 @@
+import CORALean.ContSet.Interval.Real.Operations.IsNonempty
+import CORALean.ContSet.Interval.Real.Operations.MatMul
+import CORALean.ContSet.Interval.Real.Operations.Point
+
+/-!
+# A symmetric interval matrix times a point matrix, in closed form
+
+[1, Lemma 3.2]. `Interval.matMul` bounds a general interval-times-interval
+product through four corner bounds per summand; when the left factor is
+symmetric (`S.inf = -S.sup`) and the right one is a single ("regular", in the
+thesis's word for non-interval) matrix rather than an interval, those corners
+collapse entrywise to `|M|` scaled by `S.sup` — the thesis's `S M = [-S̄|M|, S̄|M|]`
+half of (3.18), the `M S` half following by the same argument transposed.
+
+Proved at full matrix generality rather than the thesis's row-times-column
+sketch: the same corner computation, one column of `M` at a time, needing no
+regularity of `M` at all — the proof never uses it, only that `M` is a point
+rather than an interval. The bound is stated entrywise, as CORA's row/column
+sum is, rather than through `Matrix.mul`, which needs no more from the reader.
+
+`S.IsNonempty` stands in for "`S = [-S̄, S̄]` is a genuine interval": crossed
+bounds would make `S.sup` negative somewhere, and the formula wrong there.
+
+## References
+
+* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
+      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       11-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {m n p : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- The two corners a symmetric term `[-s, s] * t` reaches. -/
+theorem aux_corners_symm_mul (s t : ℝ) (hs : 0 ≤ s) :
+    min (-(s * t)) (s * t) = -(s * |t|) ∧ max (-(s * t)) (s * t) = s * |t| := by -- --- PROOF ---
+  rcases le_total 0 t with ht | ht
+  · rw [abs_of_nonneg ht]
+    exact ⟨min_eq_left (by nlinarith), max_eq_right (by nlinarith)⟩
+  · rw [abs_of_nonpos ht]
+    exact ⟨by rw [min_eq_right (by nlinarith)]; ring, by rw [max_eq_left (by nlinarith)]; ring⟩
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem Interval.matMul_symm_point {S : Interval (Mat ℝ m n)} (hSne : S.IsNonempty)
+    (hSsymm : S.inf = -S.sup) (M : Mat ℝ n p) :
+    Interval.matMul S (Interval.point M) = ⟨fun i j => -(∑ k, S.sup i k * |M k j|),
+      fun i j => ∑ k, S.sup i k * |M k j|⟩ := by -- --- PROOF ---
+  have hSik : ∀ i k, S.inf i k = -(S.sup i k) := fun i k => by
+    simpa using congrFun (congrFun hSsymm i) k
+  have hSnn : ∀ i k, 0 ≤ S.sup i k := fun i k => by
+    have h := hSne (i, k)
+    simp only [Entrywise.entry_mat] at h
+    linarith [hSik i k ▸ h]
+  -- unfold `matMul` and `point` so `congr` can match the two fields in turn
+  show (⟨fun i j => ∑ k, Interval.mulLo (S.inf i k) (S.sup i k) (M k j) (M k j),
+        fun i j => ∑ k, Interval.mulHi (S.inf i k) (S.sup i k) (M k j) (M k j)⟩
+        : Interval (Mat ℝ m p))
+      = ⟨fun i j => -(∑ k, S.sup i k * |M k j|), fun i j => ∑ k, S.sup i k * |M k j|⟩
+  congr 1
+  · funext i j
+    have hterm : ∀ k, Interval.mulLo (S.inf i k) (S.sup i k) (M k j) (M k j)
+        = -(S.sup i k * |M k j|) := fun k => by
+      simp only [Interval.mulLo, hSik i k, neg_mul, min_self]
+      exact (aux_corners_symm_mul (S.sup i k) (M k j) (hSnn i k)).1
+    simp only [hterm, Finset.sum_neg_distrib]
+  · funext i j
+    have hterm : ∀ k, Interval.mulHi (S.inf i k) (S.sup i k) (M k j) (M k j)
+        = S.sup i k * |M k j| := fun k => by
+      simp only [Interval.mulHi, hSik i k, neg_mul, max_self]
+      exact (aux_corners_symm_mul (S.sup i k) (M k j) (hSnn i k)).2
+    simp only [hterm]
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
