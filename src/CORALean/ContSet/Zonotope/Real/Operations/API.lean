@@ -21,6 +21,7 @@ import CORALean.ContSet.Zonotope.Real.Operations.ReduceByBox
 import CORALean.ContSet.Zonotope.Real.Operations.ReduceByBasis
 import CORALean.ContSet.Zonotope.Real.Operations.GirardSplit
 import CORALean.ContSet.Zonotope.Real.Operations.Split
+import CORALean.ContSet.Zonotope.Real.Operations.SplitRank
 import CORALean.ContSet.Zonotope.Real.Operations.ReduceGirard
 import CORALean.ContSet.Zonotope.Real.Operations.ReduceCombastel
 import CORALean.ContSet.Zonotope.Real.Operations.MethCFilter
@@ -57,7 +58,7 @@ origin — and `reduceBox` is that at the partition `reduce` actually picks, the
 origin where the order is already met. Together they name the error a reduction
 pays, which is what an inner approximation subtracts back off.
 
-`reduceByBasis` boxes along a basis, not the axes: `methCFilter`, `methCVolume`
-and `methCBasis` pick `methC`'s, `pcaCovariance` and `pcaBasis` pick `pca`'s.
-`split` halves one generator into two zonotopes that cover the original.
+`reduceByBasis` boxes along a basis, not the axes: `methCFilter`, `methCVolume` and
+`methCBasis` pick `methC`'s, `pcaCovariance` and `pcaBasis` pick `pca`'s. `split` halves
+one generator into two zonotopes that cover the original; `splitRank` picks which one.
 -/
