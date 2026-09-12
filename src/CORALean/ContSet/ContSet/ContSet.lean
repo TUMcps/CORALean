@@ -19,11 +19,17 @@ move between ambient types, where the result has to land somewhere.
 A precision parameter stays out of the classes: an operand-independent one is
 closed over by a `def` returning the class, as `Ellipsoid.plusInstance` does; an
 operand-dependent one needs an oracle a total `plus : S → S → S` cannot have.
+
+## References
+
+* [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set
+      Representation for Reachability Analysis". IEEE Transactions on Automatic
+      Control, 2021.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       16-August-2026
--- Last update:   06-September-2026
+-- Last update:   11-September-2026
 -- Last revision: ---
 
 
@@ -120,7 +126,9 @@ class Reindex (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] where
   reindex_exact {n m : ℕ} (e : Fin m ≃ Fin n) (s : S n) :
     construct (reindex e s) = reindexLin e '' construct s
 
-/-- Every point on a segment running from one set to the other. -/
+/-- Every point on a segment running from one set to the other: [1, Def. 7],
+which writes the parameter over `[-1,1]` and calls the result a convex hull — it
+is one only where both sets are convex. -/
 def segments {α : Type} [AddCommGroup α] [Module ℝ α] (X Y : Set α) : Set α :=
   {x | ∃ y₁ ∈ X, ∃ y₂ ∈ Y, ∃ lam ∈ Set.Icc (0:ℝ) 1, x = lam • y₁ + (1 - lam) • y₂}
 

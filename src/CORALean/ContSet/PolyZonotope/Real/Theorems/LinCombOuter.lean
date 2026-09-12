@@ -13,18 +13,25 @@ The independent block is where something is given away. Its coefficients come
 out as `pairCoeffSum` and `pairCoeffDiff`, the zonotope pairing's, which do
 record that the two sides share one `λ`; what they cannot record is that the
 same `λ` also drives the dependent part. So the containment is one-way and the
-statement is `_outer` rather than `_exact`.
+statement is `_outer` rather than `_exact` — which is [1, Prop. 15]. Without an
+independent block it is the equality [1, Prop. 14], `linComb_exact_of_dependent`.
 
 Nothing here asks for convexity, as nothing in `segments` does; a polynomial
 zonotope is generally not convex and this claim is still the right one.
 
 What the witness evaluates to is `linComb_value`, stated apart so that
 `ConPolyZono.linComb` can reuse it; what is left here is the two box bounds.
+
+## References
+
+* [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set
+      Representation for Reachability Analysis". IEEE Transactions on Automatic
+      Control, 2021.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   07-September-2026
+-- Last update:   11-September-2026
 -- Last revision: ---
 
 
