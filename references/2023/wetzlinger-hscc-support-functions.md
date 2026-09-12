@@ -1,0 +1,34 @@
+# Fully-Automated Verification of Linear Systems Using Reachability Analysis with Support Functions
+
+M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of
+Linear Systems Using Reachability Analysis with Support Functions". HSCC, 2023, Article 5.
+
+**Source:** https://mediatum.ub.tum.de/doc/1725668/document.pdf — Wetzlinger's thesis, Appendix A.3 (pp. 79–91), a verbatim reprint of the ACM version, read with `pypdf` (poppler is not installed here, so the Read tool's PDF-page mode is unavailable, and the ACM version at https://doi.org/10.1145/3575870.3587121 is paywalled; the paper has no arXiv preprint).  
+**Inventory:** confirmed
+
+The support-function sibling of the
+[TAC 2023 verification paper](wetzlinger-fully-automated-verification.md): the same
+automated verify-or-falsify loop, but computing an upper *and* a lower bound on the
+support function of the reachable set in one direction rather than the set itself,
+which is what drops the propagation to O(n²) and lets the specification pick the
+directions. Its lower bound is the novel part — an inner approximation obtained from
+support vectors, computed exactly by simulating the equivalent discrete-time system
+under piecewise-constant inputs. The paper states almost nothing as a theorem: five
+definitions, a problem statement and three algorithms, with the bounds derived inline
+from the cited approximation model, so the count below is small by the paper's own
+construction. Nothing in the tree cites it yet.
+
+## Results
+
+| Result | What it says | In CORALean |
+|---|---|---|
+| `Def. 1` | (Support function) [cites [31, Sec. 2]] For compact convex S⊂R^n and ℓ∈R^n, ρ(S,ℓ) := max_{x∈S} ℓ^T x and the support vector ν(S,ℓ) := argmax_{x∈S} ℓ^T x, which need not be unique. | n/a — restated from Girard and Le Guernic 2008, which this formalization does not draw on directly |
+| `Def. 2` | (Zonotope) [cites [30, Def. 1]] Z := {c + Σ_{i=1}^γ G_(·,i) α_i \| α_i∈[-1,1]}, with ρ(Z,ℓ) = ℓ^T c + Σ_i \|ℓ^T G_(·,i)\| and ν(Z,ℓ) = c + Σ_i sgn(ℓ^T G_(·,i)) G_(·,i); shorthand Z=⟨c,G⟩_Z. | n/a — restated from Girard 2005, which this formalization does not draw on directly |
+| `Def. 3` | (Polytope) Halfspace representation P := {x \| Hx ≤ f} and vertex representation P := {Σ β_i v_i \| Σ β_i = 1, β_i ≥ 0}; for the vertex form the support function is max_i ℓ^T v_i and the support vector the maximizing vertex, for the halfspace form both come from a linear program. Shorthands ⟨H,f⟩_H and ⟨[v_1...v_s]⟩_V. | — |
+| `Def. 4` | (Ellipsoid) For a center c∈R^n and a positive semi-definite shape matrix Q, E := {x \| (x-c)^T Q^{-1} (x-c) ≤ 1}, with ρ(E,ℓ) = ℓ^T c + √(ℓ^T Qℓ) and ν(E,ℓ) = c + Qℓ/√(ℓ^T Qℓ); shorthand E=⟨c,Q⟩_E. | — |
+| `Def. 5` | (Reachable set) R(t) := {ξ(t,x(0),u(·)) \| x(0)∈X_0, ∀θ∈[0,t]: u(θ)∈U}, with R(t_k) the time-point and R(τ_k) the time-interval solution. | n/a — restated; tracked as `Def. 3.1` on [Althoff's thesis](../2010/althoff-thesis.md) |
+| `Problem 1` | (Verification) Given an LTI system with X_0, U and V, a safe set K=⟨H,f⟩_H and/or convex unsafe sets L_1..L_b, decide whether ∀t∈[0,t_end]: Y(t) ⊆ K and Y(t) ∩ ⋃_i L_i = ∅. | n/a — the task the paper's algorithms answer, not a claim to formalize |
+| `Alg. 1` | "Reachability analysis using support functions": for one direction ℓ, back-propagates the direction by (e^{AΔt})^T and propagates the particular solutions to return upper *and* lower bounds ρ(R̂(t_k),ℓ), ρ(R̲(t_k),ℓ), ρ(R̂(τ_k),ℓ), ρ(R̲(τ_k),ℓ) over the time horizon. | — |
+| `Alg. 2` | "Verification algorithm (halfspace specifications)": for each row ℓ_i of the safe set's H, halves Δt and re-runs Alg. 1 until either the upper bound stays below f_(i) for every time interval — safe — or the lower bound exceeds it — unsafe. | — |
+| `Alg. 3` | "Verification algorithm (arbitrary convex unsafe sets)": runs the Gilbert-Johnson-Keerthi algorithm on R(t) ⊖ L using support functions, building simplices from the support vectors of the outer and inner approximations, returning safe when a separating direction is found, unsafe when the inner simplex contains the origin, and halving Δt when neither settles it. | — |
+
