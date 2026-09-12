@@ -10,8 +10,17 @@ cuts the enclosure `timeInterval_outer` already gives down to it. The cut lands
 on the sum with `Ud`, not on `timeIntervalStep` alone — the invariant is a fact
 about `x t`, not about the homogeneous part in isolation.
 
+The continuous reachable set within a location, up to where it would leave the
+invariant: the first half of [1, Alg. 5], `jumpIntersection` and its theorems
+the second.
+
 `Intersection.intersection` is homogeneous, so this is one of the two places that ask a location's
 invariant to be in the state's own family, `Location S S L 𝕋 n` (#39).
+
+## References
+
+* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
+      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
 -/
 
 -- Authors:       Tobias Ladner
