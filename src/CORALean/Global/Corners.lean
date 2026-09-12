@@ -6,17 +6,18 @@ import CORALean.Global.Tensor
 A box has `2ⁿ` corners, one per choice of end per coordinate, and any weighting
 over those choices that is a product of per-coordinate factors behaves the same
 way: the weights sum to the product of the per-coordinate sums, and weighting
-them by one coordinate's own choice leaves that coordinate's average, every
-other coordinate's factors having summed away.
+them by a second such product leaves each coordinate's own average, since the
+sum factors coordinate by coordinate. `sum_prod_bool_mul` is that at a second
+product which is `1` away from one coordinate.
 
-Both facts are stated here rather than at the box, being about `Fin n → Bool`
+The facts are stated here rather than at the box, being about `Fin n → Bool`
 and nothing else. `signEquiv` is the bookkeeping that lets a list indexed by
 `Fin k` hold something indexed by those choices.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   12-September-2026
 -- Last revision: ---
 
 
@@ -36,6 +37,19 @@ theorem sum_prod_bool (f g : Fin n → ℝ) :
   rw [show (∏ j, (f j + g j)) = ∏ j, ∑ b : Bool, (if b then f j else g j) from
         Finset.prod_congr rfl fun j _ => by simp,
       Finset.prod_univ_sum, Fintype.piFinset_univ]
+
+theorem sum_prod_bool_prod (t u v : Fin n → ℝ) :
+    ∑ σ : Fin n → Bool,
+        (∏ j, (if σ j then t j else 1 - t j)) * ∏ j, (if σ j then u j else v j)
+      = ∏ j, (t j * u j + (1 - t j) * v j) := by -- --- PROOF ---
+  -- the two products merge factor by factor, each factor taking the same side
+  have key : ∀ σ : Fin n → Bool,
+      (∏ j, (if σ j then t j else 1 - t j)) * ∏ j, (if σ j then u j else v j)
+        = ∏ j, (if σ j then t j * u j else (1 - t j) * v j) := fun σ => by
+    rw [← Finset.prod_mul_distrib]
+    exact Finset.prod_congr rfl fun j _ => by cases hb : σ j <;> simp
+  rw [Finset.sum_congr rfl fun σ (_ : σ ∈ (Finset.univ : Finset (Fin n → Bool))) => key σ,
+    sum_prod_bool (fun j => t j * u j) fun j => (1 - t j) * v j]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
