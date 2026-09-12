@@ -1,12 +1,14 @@
 import CORALean.NN.Layers.Activation
 import CORALean.NN.Layers.ActivationPoly
 import CORALean.NN.Layers.ActivationPolyInflate
+import CORALean.NN.Layers.ActivationPolyOn
 import CORALean.NN.Layers.ActivationPolyRefine
 import CORALean.NN.Layers.BatchNorm
 import CORALean.NN.Layers.Convolution
 import CORALean.NN.Layers.Curvature
 import CORALean.NN.Layers.InvSqrt
 import CORALean.NN.Layers.Linear
+import CORALean.NN.Layers.LinearSigmoid
 import CORALean.NN.Layers.Pooling
 import CORALean.NN.Layers.PolyAffineConj
 import CORALean.NN.Layers.PolyConvergence
@@ -42,10 +44,11 @@ its slope from convexity, the other two — and `InvSqrt`'s bracket, clamped at 
 `PolySampling` bounds the error, `PolyDerivBound` is what that needs and `PolyFit` what it does
 not, `PolyConvergence` with `PolyFitConvergence` drive it to zero, `PolyRelaxationPad` lifts one to
 a higher degree, and `SigmoidPoly` and `TanhPoly` instantiate them (via `PolyAffineConj`).
-`ActivationPoly` encloses per neuron at `PolyZonotope` alone, `ActivationPolyInflate` bounds the
-widening, `PolyRangeConvergence` makes an order serve a whole range, `ActivationPolyRefine` is the
-three as a refinable layer, `SigmoidPolyRefine` at a real activation, and `SigmoidLinearSigmoid` a
-chain around a matrix.
+`ActivationPoly` encloses per neuron at `PolyZonotope` alone, `ActivationPolyOn` at a box handed
+to it rather than the input set's own, `ActivationPolyInflate` bounds the widening,
+`PolyRangeConvergence` makes an order serve a whole range, `ActivationPolyRefine` is the three as a
+refinable layer, `SigmoidPolyRefine` at a real activation, and `LinearSigmoid` and
+`SigmoidLinearSigmoid` are two chains around a matrix.
 
 **Neither.** `Reshape` is a relabelling, the only layer here *exact* rather than outer — it asks
 for `Reindex`. Max pooling in `Pooling` and `Softmax` need their own enclosures: the first

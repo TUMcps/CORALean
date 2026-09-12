@@ -10,8 +10,9 @@ because that enclosure is exact: any order pattern already lands the enclosed
 set on the image, and the inflation is spent on nothing.
 
 So the linear layer contributes no residual at all to `EncloseAtInflate`'s
-budget, and everything the schedule buys is bought at the activations — which
-is the division of labour the refinement loop assumes [1].
+budget, and everything the schedule buys is bought at the activations. That is
+where [1, Prop. 4.13]'s proof starts — "the linear layer is computed exactly" —
+and it is the division of labour the whole refinement loop assumes.
 
 ## References
 

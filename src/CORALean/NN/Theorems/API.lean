@@ -10,6 +10,7 @@ import CORALean.NN.Theorems.EvalDifferentiable
 import CORALean.NN.Theorems.EvalLipschitz
 import CORALean.NN.Theorems.ExistsMergeBucketAll
 import CORALean.NN.Theorems.ExistsMergeTolerance
+import CORALean.NN.Theorems.ExistsScheduleLinearSigmoidSubset
 import CORALean.NN.Theorems.ExistsScheduleSigmoidLinearSigmoidSubset
 import CORALean.NN.Theorems.ExistsScheduleSigmoidSubset
 import CORALean.NN.Theorems.HoldsAllOfEnclose
@@ -25,6 +26,7 @@ import CORALean.NN.Theorems.ImageSubsetRefineLoop
 import CORALean.NN.Theorems.LinearConvergent
 import CORALean.NN.Theorems.LinearExact
 import CORALean.NN.Theorems.LinearLipschitz
+import CORALean.NN.Theorems.LinearSigmoidConverges
 import CORALean.NN.Theorems.LinearWithErrorZero
 import CORALean.NN.Theorems.MarginDir
 import CORALean.NN.Theorems.MemSafeSet
@@ -93,8 +95,8 @@ its discharge, `MinSuffExplanationCounterexample` and `SuffExplanationConverseFa
 `SensitivityFDeriv` is what the refinement heuristic [3] rests on: the backpropagated Jacobian
 identified with `fderiv` wherever `EvalDifferentiable` holds, which `SensitivityOfMatrix` hands
 to `SensitivityLinear`/`SensitivityActivation`; `ReluNotDifferentiable` is why ReLU gets none.
-`AtScheduleEval`/`EncloseAtOuter`/`EncloseAtInflate` are the refinement loop: hypothesis
-`SigmoidRefinementConverges` discharges one activation, `MultiLayerRefinementConverges` a chain.
+`AtScheduleEval`/`EncloseAtOuter`/`EncloseAtInflate` are the refinement loop [3, Thm. 4.14], its
+hypothesis discharged by the `...Converges` files at one, two [3, Prop. 4.13] and three layers.
 
 ## References
 
