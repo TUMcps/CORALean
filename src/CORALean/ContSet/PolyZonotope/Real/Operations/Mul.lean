@@ -5,10 +5,11 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.MulG
 # `PolyZonotope.mul`
 
 The coordinatewise product of two polynomial zonotopes over the *same* factors,
-and what raises a polynomial abstraction above order two [1]: `quadMap` gives
-order two — the elementwise square is its case `Q k = eₖ eₖᵀ` — and every order
-above it is this operation applied again. Generator `(i, j)` is `mulG`, at the
-exponent column `mulE`, a monomial again, which is what the shared factors buy.
+which at one dimension is [1, Prop. 2.9], and what raises a polynomial
+abstraction above order two: `quadMap` gives order two — the elementwise square
+is its case `Q k = eₖ eₖᵀ` — and every order above it is this operation applied
+again, [1, Prop. 2.10]. Generator `(i, j)` is `mulG`, at the exponent column
+`mulE`, a monomial again, which is what the shared factors buy.
 
 Sharing is a hypothesis rather than a shape in the signature: `p` is a field, so
 two `PolyZonotope`s cannot be made to share it definitionally without

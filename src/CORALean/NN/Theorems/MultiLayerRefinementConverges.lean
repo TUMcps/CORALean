@@ -17,8 +17,8 @@ reaches the output, so the tail bound is a product of two real constants and the
 
 The linear layer meets `Convergent` at level `0` and every other level, its
 propagation being exact — so the schedule spends its levels on the two
-activations, and the middle layer only rescales what they leave — the division
-of labour the loop assumes [1].
+activations, and the middle layer only rescales what they leave. This is
+[1, Thm. 4.14]'s hypothesis met where the tail is not trivial.
 
 ## References
 

@@ -11,8 +11,9 @@ the second because `σ'` is a product of two sigmoids and each is inside `(0,1)`
 
 So the whole apparatus closes at a real activation rather than in principle:
 `Layer.activationPolySigmoid_convergent` is `RefinableLayer.Convergent` at a
-layer someone would actually build, and `sigmoidRefinableNetwork` puts it in a
-graph for `Theorems.SigmoidRefinementConverges` to run the network statement on.
+layer someone would actually build — the nonlinear half of [1, Prop. 4.13] —
+and `sigmoidRefinableNetwork` puts it in a graph for
+`Theorems.SigmoidRefinementConverges` to run the network statement on.
 
 The family is CORA's `nn.refine` at the sigmoid [1] with the choice of fit left
 open, which is the same freedom `sigmoidPolyRelaxation` already keeps: `sound`
