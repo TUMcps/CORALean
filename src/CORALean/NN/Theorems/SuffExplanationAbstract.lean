@@ -14,6 +14,12 @@ propagating `explainBox` must never let a rival tie or beat the target class
 notation: a bound per rival label, each negative, is exactly "the target's
 minimum exceeds every rival's maximum".
 
+[1, Def. 4] renames this same predicate rather than adding to it: a
+sufficient explanation for `nnAbs` is called an *abstract* sufficient
+explanation for whatever network `nnAbs` abstracts, without changing what it
+asks of `nnAbs` itself — so it is `IsSuffExplanationAbstract` again, read at
+the abstraction rather than at the network it abstracts.
+
 ## References
 
 * [1] S. Bassan, Y. Y. Elboher, T. Ladner, M. Althoff and G. Katz. "Explaining
@@ -23,7 +29,7 @@ minimum exceeds every rival's maximum".
 
 -- Authors:       Tobias Ladner
 -- Written:       05-September-2026
--- Last update:   ---
+-- Last update:   12-September-2026
 -- Last revision: ---
 
 
