@@ -27,6 +27,8 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialLinCombESnd
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialLinCombELast
 import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombValue
 import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombOuter
+import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombValueDependent
+import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombExactOfDependent
 import CORALean.ContSet.PolyZonotope.Real.Theorems.DependentExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.SumExtEqPoint
 import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadEvalSumExt
