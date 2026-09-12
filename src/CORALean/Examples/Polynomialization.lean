@@ -8,12 +8,12 @@ import CORALean.ContSet.PolyZonotope.Real.Instances
 /-!
 # The polynomialization variant runs the loop already proved
 
-What this records is that step three of CORA's `alg = 'poly'` is not a second
-induction. A `PolyAbstractionError` becomes a `LinStep` through
-`AbstractionError.of_poly`, and `relinReach_outer` then applies at `𝒫𝒵` with
-nothing added: the chain, the per-step confinement and the input enclosures are
-the ones already proved, because soundness was stated at an arbitrary
-certificate rather than at the one `alg = 'lin'` computes.
+What this records is that step three of CORA's `alg = 'poly'` — lines 4-18 of
+[1, Alg. 1] — is not a second induction. A `PolyAbstractionError` becomes a
+`LinStep` through `AbstractionError.of_poly`, and `relinReach_outer` then
+applies at `𝒫𝒵` with nothing added: the chain, the per-step confinement and the
+input enclosures are the ones already proved, because soundness was stated at an
+arbitrary certificate rather than at the one `alg = 'lin'` computes.
 
 The instances it takes are `Plus`, `Reduce`, `Mtimes (Mat ℝ)`, `OfInterval`
 and, for the differences, `LinComb` and `Mtimes ℐ`; all six `PolyZonotope` has,
@@ -24,11 +24,17 @@ than the states. What the poly certificate changes is where the run has to
 stay: `subsetAt` rather than a box, the two agreeing at `pZ.q = 0` by
 `subsetAt_unitBox`. `abstrErrPolySearch` is `linReach`'s while loop: a
 successful search hands back a `LinStep` certified by `AbstractionError.of_poly`.
+
+## References
+
+* [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set
+      Representation for Reachability Analysis". IEEE Transactions on Automatic
+      Control, 2021.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   13-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real

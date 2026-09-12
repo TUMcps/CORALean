@@ -8,8 +8,9 @@ A file's `## References` block says which papers it draws on and `[1, Prop. 3.3]
 says which result; these pages are that relation read the other way. Keeping the
 two in step is `scripts/check-references.py`'s job, which CI runs: it fails if a
 cited paper has no page here, if a link points at a file that does not cite that
-paper, if a result cited in the tree is missing from a table, or if a count below
-disagrees with the table it summarizes.
+paper, if a result cited in the tree is missing from a table, if a row deferring
+to an earlier paper names a row that is not on that paper's page, or if a count
+below disagrees with the table it summarizes.
 
 One directory per year of publication, so a paper is where its year says.
 
@@ -54,7 +55,7 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Semi-Supervised Classification with Graph Convolutional Networks](2017/kipf-iclr-gcn.md) | Kipf, Welling | ICLR | 2017 | 🟢 1/1 \| 4 |
 | [Utilizing Dependencies to Obtain Subsets of Reachable Sets](2020/kochdumper-hscc-utilizing-dependencies.md) | Kochdumper, Schürmann, Althoff | HSCC | 2020 | 🟡 10/11 \| 4 |
 | [Adaptive parameter tuning for reachability analysis of linear systems](2020/wetzlinger-cdc-adaptive-tuning.md) | Wetzlinger, Kochdumper, Althoff | CDC, pp. 5145–5152 | 2020 | 🔴 0/13 \| 0 |
-| [Sparse Polynomial Zonotopes: A Novel Set Representation for Reachability Analysis](2021/kochdumper-tac-sparse-polyzonotopes.md) | Kochdumper, Althoff | IEEE Transactions on Automatic Control | 2021 | 🟡 20/22 \| 5 |
+| [Sparse Polynomial Zonotopes: A Novel Set Representation for Reachability Analysis](2021/kochdumper-tac-sparse-polyzonotopes.md) | Kochdumper, Althoff | IEEE Transactions on Automatic Control | 2021 | 🟡 21/22 \| 5 |
 | [Adaptive Parameter Tuning for Reachability Analysis of Nonlinear Systems](2021/wetzlinger-hscc-adaptive-tuning-nonlinear.md) | Wetzlinger, Kulmburg, Althoff | HSCC | 2021 | 🔴 0/5 \| 1 |
 | [Open- and Closed-Loop Neural Network Verification using Polynomial Zonotopes](2022/kochdumper-arxiv-nn-polyzono.md) | Kochdumper et al. | arXiv:2207.02715 | 2022 | 🟢 4/4 \| 3 |
 | [Set operations and order reductions for constrained zonotopes](2022/raghuraman-koeln-constrained-zonotopes.md) | Raghuraman, Koeln | Automatica, 139:110204 | 2022 | 🟡 1/15 \| 2 |

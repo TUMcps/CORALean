@@ -8,7 +8,8 @@ results and, for each, where it is formalized. Nothing here reads Lean: the
 cites are in module docstrings, which `check-conventions.sh` already keeps
 well-formed. What this adds is that the two agree — every paper cited has a
 file, every link resolves and points at a file that really cites that result,
-every result cited somewhere is a row, and the README's counts are the counts.
+every result cited somewhere is a row, every result one page defers to another
+is a row there, and the README's counts are the counts.
 
 Exit status is 1 on any complaint, so it belongs in CI beside the conventions.
 """
@@ -30,6 +31,9 @@ LOCATOR = re.compile(
     r"Heuristic|Assumption|§|pp?\.)", re.I
 )
 LINK = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
+# A cell deferring a result to the page that owns it: ``tracked as `X` on
+# [Title](../year/file.md)``. The locator and the page are what get checked.
+TRACKED = re.compile(r"tracked as\s+`([^`]+)`\s+on\s+\[[^\]]*\]\(([^)]+)\)")
 # A README row: the paper cell links the file, the last cell is the count —
 # formalized over in scope, then how many rows sit outside the count entirely.
 STATUS = re.compile(r"^(🟢|🟡|🔴|⚪)\s*(\d+)/(\d+)\s*\|\s*(\d+)$")
@@ -133,6 +137,8 @@ class Paper:
         self.general = set(LINK.findall(m.group(1))) if m else None
 
         self.results = {}
+        # `{result: (locator, page)}` for the rows that defer to another page.
+        self.tracked = {}
         m = re.search(r"^## Results\s*$(.*?)(?=^## |\Z)", text, re.S | re.M)
         if not m:
             say(f"{self.rel}:1: no `## Results` section")
@@ -160,6 +166,9 @@ class Paper:
             elif not links and not planned:
                 say(f"{self.rel}: `{result}`: the third cell is a link to the "
                     "formalization, `—` for in scope and not done, or `n/a — <why>`")
+            tracked = TRACKED.search(where)
+            if tracked:
+                self.tracked[result] = (locator(tracked.group(1)), tracked.group(2))
             self.results[result] = links if links else (None if excluded else [])
 
     @property
@@ -272,6 +281,43 @@ def main():
                 if paper.entry not in cites_of(target):
                     say(f"{paper.rel}: `{result}` links {target.name}, which does "
                         "not cite this paper")
+
+    # --- one page against another -------------------------------------------- #
+
+    # A row belonging to an earlier paper says so and points at that paper's
+    # page. The pointer is a claim about the other table, so it is checked the
+    # way a link into the tree is: the page has to be here and the row it names
+    # has to be on it. Not that the row is *filled* — deferring to a result
+    # openly marked `—` is exactly right, and demanding otherwise would force a
+    # true statement out of the tree.
+    by_path = {p.path.resolve(): p for p in papers}
+    pointers = {}
+    for paper in papers:
+        for result, (loc, link) in sorted(paper.tracked.items()):
+            other = by_path.get((paper.path.parent / link).resolve())
+            if other is None:
+                say(f"{paper.rel}: `{result}` is tracked on {link}, which is not a "
+                    "page under references/")
+            elif loc not in other.results:
+                say(f"{paper.rel}: `{result}` is tracked as `{loc}` on {other.name}, "
+                    "which has no such row")
+            else:
+                pointers[(paper, result)] = (other, loc)
+
+    # Following the pointers has to end at the row that owns the result, and a
+    # chain returning to a row it has already been at never does.
+    reported = set()
+    for start in list(pointers):
+        node, seen = start, {start}
+        while node in pointers:
+            node = pointers[node]
+            if node in seen:
+                if node not in reported:
+                    reported.add(node)
+                    say(f"{node[0].rel}: `{node[1]}` is tracked in a cycle, so the "
+                        "chain names no page that owns it")
+                break
+            seen.add(node)
 
     # --- findings ------------------------------------------------------------ #
 

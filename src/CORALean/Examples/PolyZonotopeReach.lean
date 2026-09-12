@@ -14,8 +14,8 @@ generally *not* convex — no `ConvexSet`, no `CompactSet`, and none needed.
 That is why the plain `reach_outer` is the statement here and not
 `reach_outer_convexCompact`: the input contribution arrives as the hypothesis
 `hUd` rather than from `inputSolution`, which is the trade a non-convex
-representation makes. Discharging it needs `Mtimes ℐ`, an interval matrix acting
-on a polynomial zonotope, which no instance supplies.
+representation makes. Discharging it needs `ConvexSet` and `CompactSet`, which a
+representation whose sets are generally not convex has no way to instantiate.
 
 The Lean detail is `FeedForward.lean`'s: `S : ℕ → Type` cannot be read off `S n`,
 so a use site has to name the family, and `PolyZonotope` ships `𝒫𝒵` for that. It
@@ -25,7 +25,7 @@ standing will not unify against a metavariable applied to `n`.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   02-September-2026
+-- Last update:   13-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real

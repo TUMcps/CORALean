@@ -1,4 +1,4 @@
 .lake/
 .elan/
-build.log
+*.log
 __pycache__/

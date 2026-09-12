@@ -4,9 +4,10 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.AbstractionErrorOfPoly
 /-!
 # Searching for an applied error the certificate accepts
 
-CORA's `linReach` while loop for `alg = 'poly'`: `priv_abstrerr_poly` estimates the
-true error against an applied one, and a rejection multiplies the applied error by
-`1.1` and retries — `perfIndCurr = max(trueError ./ appliedError) ≤ 1` the test.
+CORA's `linReach` while loop for `alg = 'poly'`, and the repeat-until of [1, Alg. 1],
+its lines 8-16: `priv_abstrerr_poly` estimates the true error against an applied one,
+and a rejection multiplies the applied error by `1.1` and retries —
+`perfIndCurr = max(trueError ./ appliedError) ≤ 1` the test.
 
 That test is `PolyAbstractionError` itself, already landed: `AbstractionError.of_poly`
 already proves a step meeting it a sound enclosure, so nothing new is proved about
@@ -18,11 +19,17 @@ What is new is only the search: try `Ws 0, Ws 1, …`, package the first the cer
 accepts into a `LinStep`, `none` once `fuel` runs out — `minkDiffRep`'s shape. Building
 `Ws` from `sys.relinDeltaReach`'s output, bounding CORA's cross terms `quadMap(Zdelta,
 Z_diff, H)` by a box that grows until it fits, is the analysis this leaves undone.
+
+## References
+
+* [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set
+      Representation for Reachability Analysis". IEEE Transactions on Automatic
+      Control, 2021.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       08-September-2026
--- Last update:   ---
+-- Last update:   13-September-2026
 -- Last revision: ---
 
 
