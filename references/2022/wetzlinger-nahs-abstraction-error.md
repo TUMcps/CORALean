@@ -14,17 +14,19 @@ q comes out 0 — the error shrinks only linearly in the step size, so the wrapp
 effect cannot be tuned away, only paid for. Beside the main result it carries the zonotope-order-reduction bounds
 the adaptive algorithms use: `Thm. 1`'s ω_max is the bound the
 [HSCC 2021 paper](../2021/wetzlinger-hscc-adaptive-tuning-nonlinear.md) proved as its
-`Thm. 3.2`, joined here by ω_rad and ω_cut. `ReduceBoxOrder` and `ReduceBoxAntitone`
-are the natural place for those, but the tree cites the CDC 2020 paper there and
-nothing cites this one yet.
+`Thm. 3.2`, joined here by ω_rad and ω_cut. `Lemma 1` and ω_rad are proved, the
+first over any normed space and the second at the norm `Vec ℝ n` actually
+carries; ω_max and ω_cut are not. `ReduceBoxOrder` and `ReduceBoxAntitone` are
+where a chosen reduction order would be held against one of these bounds, and
+the tree still cites the CDC 2020 paper there.
 
 ## Results
 
 | Result | What it says | In CORALean |
 |---|---|---|
 | `Def. 1` | (Zonotopes) [cites [26, Def. 1]] Z := {x \| x = c + Σ_{i=1}^γ α_i g^(i), -1≤α_i≤1}, with order ρ := γ/n and shorthand ⟨c,G⟩_Z. | n/a — restated from Girard 2005, which this formalization does not draw on directly |
-| `Def. 2` | (Hausdorff Distance) For compact V,W⊂R^n, d_H(V,W) := max{d^(1)_H(V,W), d^(2)_H(V,W)} with d^(1)_H(V,W) := max_{v∈V} min_{w∈W} ‖v-w‖_2 and d^(2)_H symmetrically. | — |
-| `Lemma 1` | For compact S,V,W⊂R^n: d_H(S⊕V, S⊕W) ≤ d_H(V,W) — which is what lets order reduction be analyzed on the reduced part Z alone, since d_H(Z_full,Z_red) = d_H(Z'⊕Z, Z'⊕box(Z)) ≤ d_H(Z,box(Z)). | — |
+| `Def. 2` | (Hausdorff Distance) For compact V,W⊂R^n, d_H(V,W) := max{d^(1)_H(V,W), d^(2)_H(V,W)} with d^(1)_H(V,W) := max_{v∈V} min_{w∈W} ‖v-w‖_2 and d^(2)_H symmetrically. | n/a — Mathlib's `Metric.hausdorffDist` provides it, used in [`HausdorffDistAddLe.lean`](../../src/CORALean/ContSet/ContSet/Theorems/HausdorffDistAddLe.lean) and [`HausdorffDistIntervalLe.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/HausdorffDistIntervalLe.lean). Mathlib's is the distance of whatever metric the ambient type carries, which at `Vec ℝ n` is the supremum norm and not this definition's ‖·‖_2 |
+| `Lemma 1` | For compact S,V,W⊂R^n: d_H(S⊕V, S⊕W) ≤ d_H(V,W) — which is what lets order reduction be analyzed on the reduced part Z alone, since d_H(Z_full,Z_red) = d_H(Z'⊕Z, Z'⊕box(Z)) ≤ d_H(Z,box(Z)). | [`HausdorffDistAddLe.lean`](../../src/CORALean/ContSet/ContSet/Theorems/HausdorffDistAddLe.lean) — over any normed space, and on the exact Minkowski sum; `V` and `W` carry the compactness and nonemptiness Mathlib's real-valued distance needs to be the distance and not its junk value |
 | `Thm. 1` | For a zonotope Z=⟨c,G⟩_Z and Z_box := box(Z) ⊇ Z, the Hausdorff distance d_H(Z,Z_box) is over-approximated by three bounds: ω_max(Z) := 2‖Σ_p ĝ^(p)‖_2 (with ĝ^(p) zeroed at the (first) index i* attaining ‖g^(p)‖_∞), ω_rad(Z) := Σ_p ‖g^(p)‖_2, and ω_cut(Z) := √2 Σ_p ‖g^(p)‖_2 √(1 - Σ_i (g^(p)_i)^4/‖g^(p)‖_2^4). | — |
 | `Def. 3` | (Convergence Order of Classical ODE Solvers) The order of a solver for ẋ = f(x,t) is the q∈N_0 with local truncation error ε_{Δt,loc} := \|ξ_ex(Δt;t_0,x_0) - ξ̂(Δt;t_0,x_0)\| ≤ cΔt^{q+1} for all t_0,x_0, with c independent of t_0, x_0 and Δt. | — |
 | `Def. 4` | (Errors of Set-based Solvers) For a set-based approximation R = R̂ ⊕ R_abs, the local abstraction error at t_k is ε_{k,loc} := ‖d(box(R_abs(Δt;t_k,R(t_k))))‖_∞, and the global accumulated abstraction error over N steps is ε_N := ‖d(box(R(t_end) ⊖ R̂(t_end)))‖_∞. | — |
@@ -39,6 +41,17 @@ nothing cites this one yet.
 | `Alg. 2` | "Adaptively-tuned reachable set computation for one step k>1": updates the finite horizon h_k from the previous gain, runs the step twice — once to compute R_abs(h) and the optimal Δt*, once to compute the reachable set with it — and returns the next abstraction order κ_{k+1}, horizon h_k and gain φ^(1)_k. | — |
 
 ## Findings
+
+**`Thm. 1` — its bounds are at a norm this formalization does not carry.** `Vec ℝ n` is
+`Fin n → ℝ`, and Mathlib's `Pi` instance gives it the *supremum* norm; `‖·‖₂` is spelt out
+separately in `Global/EuclideanNorm.lean` rather than borrowed from `EuclideanSpace ℝ (Fin n)`,
+which every statement and every set would have to be transported across. `Metric.hausdorffDist`
+reads the ambient metric, so `d_H` here is the sup-norm distance, while all three of `Thm. 1`'s
+bounds — `ω_max`, `ω_rad`, `ω_cut` — are written at `‖·‖₂`. The sup-norm analogue of `ω_rad`
+is proved as `Zonotope.hausdorffDist_interval_le`, and it is a genuine bound, but `∑ₚ ‖g⁽ᵖ⁾‖_∞`
+is not `∑ₚ ‖g⁽ᵖ⁾‖₂` and neither statement implies the other. The row therefore stays open: this
+is a limitation of ours, not a defect of the paper.
+[`HausdorffDistIntervalLe.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/HausdorffDistIntervalLe.lean)
 
 **Eq. (40), in `Thm. 2`.** The gain order is defined as q_i = max{ j∈N_0 \| Σ_{p+q^(p)_i = j}
 ‖a^(p)_i‖_1 ≠ 0 }, but the maximum is a minimum. The limit h→0 is decided by the
