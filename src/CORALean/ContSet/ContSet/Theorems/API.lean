@@ -1,6 +1,7 @@
 import CORALean.ContSet.ContSet.Theorems.DependencyPreservingChain
 import CORALean.ContSet.ContSet.Theorems.DependencyPreservingComp
 import CORALean.ContSet.ContSet.Theorems.HausdorffDistAddLe
+import CORALean.ContSet.ContSet.Theorems.HausdorffDistMulVecLinAddLe
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddSubset
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddSubsetAdd
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffEnclSubsetAdd
@@ -29,7 +30,8 @@ only route from an enclosure, and what an inner reachability algorithm would be 
 `minkowskiDiff_add_subset_add` and `minkowskiDiff_encl_subset_add` are Althoff's Prop. 3 and
 Prop. 4: adding a set to a difference stays inside the difference of the enlarged minuend.
 
-`hausdorffDist_add_le` is the one distance here rather than an inclusion: adding the same
-compact set to both sides can only bring them together, which is what lets an order reduction
-be priced on the part it actually reduces.
+`hausdorffDist_add_le` and `hausdorffDist_mulVecLin_add_le` are the two distances here rather
+than inclusions: adding the same compact set to both sides, or perturbing a linear image by
+another matrix, can only bring the two sides together — the latter is Wetzlinger et al.'s
+Prop. 10, cited in its own file.
 -/
