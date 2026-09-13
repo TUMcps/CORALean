@@ -1,0 +1,54 @@
+import CORALean.ContSet.ConPolyZono.Real.Operations.UnionWithSel
+import CORALean.ContSet.ConPolyZono.Real.Operations.UnionCrossCol
+
+/-!
+# `ConPolyZono.unionConCol`
+
+The exponent columns of [1, Thm. 1]'s selector constraint, read column by column:
+`α₁`, `α₂`, then each operand's squares, each of those times `α₁`, then the cross
+terms and each of those times `α₁`. Eight groups, `2 + 2p₁ + 2p₂ + 2p₁p₂` columns.
+
+Given as a map from column index to column rather than as the transposed matrix
+the representation stores, since every group is defined by what its column *is*;
+`unionConEC` is this read the other way round.
+
+## References
+
+* [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta
+      Informatica, 2023.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       13-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- The monomials of the selector constraint, one per column. -/
+def ConPolyZono.unionConCol (p₁ p₂ : ℕ) :
+    Fin (2 + (p₁ + p₁ + (p₂ + p₂ + (p₁ * p₂ + p₁ * p₂)))) → Fin (p₁ + p₂ + 2) → ℕ :=
+  Fin.append
+    ![ConPolyZono.unitCol (ConPolyZono.unionSel p₁ p₂) 1,
+      ConPolyZono.unitCol (Fin.natAdd (p₁ + p₂) 1) 1]
+    (Fin.append
+      (Fin.append (fun j => ConPolyZono.unitCol (Fin.castAdd 2 (Fin.castAdd p₂ j)) 2)
+        (fun j => ConPolyZono.unionWithSel p₁ p₂
+          (ConPolyZono.unitCol (Fin.castAdd 2 (Fin.castAdd p₂ j)) 2)))
+      (Fin.append
+        (Fin.append (fun k => ConPolyZono.unitCol (Fin.castAdd 2 (Fin.natAdd p₁ k)) 2)
+          (fun k => ConPolyZono.unionWithSel p₁ p₂
+            (ConPolyZono.unitCol (Fin.castAdd 2 (Fin.natAdd p₁ k)) 2)))
+        (Fin.append (ConPolyZono.unionCrossCol p₁ p₂)
+          (fun l => ConPolyZono.unionWithSel p₁ p₂ (ConPolyZono.unionCrossCol p₁ p₂ l)))))
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
