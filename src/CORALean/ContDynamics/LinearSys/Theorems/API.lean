@@ -27,6 +27,8 @@ import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
 import CORALean.ContDynamics.LinearSys.Theorems.InputReachConvex
 import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
 import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparation
+import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationEq
+import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationSubset
 import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolution
 import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionOuter
 import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuter
