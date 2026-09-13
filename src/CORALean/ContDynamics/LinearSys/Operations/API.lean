@@ -6,6 +6,7 @@ import CORALean.ContDynamics.LinearSys.Operations.InputReach
 import CORALean.ContDynamics.LinearSys.Operations.InputSolution
 import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSum
 import CORALean.ContDynamics.LinearSys.Operations.InputTerm
+import CORALean.ContDynamics.LinearSys.Operations.PostDelta
 import CORALean.ContDynamics.LinearSys.Operations.StepInput
 import CORALean.ContDynamics.LinearSys.Operations.StepInputConst
 import CORALean.ContDynamics.LinearSys.Operations.TimePointStep
@@ -29,4 +30,12 @@ parameter tuning and not the algorithm.
 `DiscretizeEnclosure` is `Discretize` again, its matrix only enclosed: `e^{AΔt}`
 is transcendental, so where the exponential itself cannot be computed the
 result is a `LinParamSysDT` over an interval matrix rather than a `LinearSysDT`.
+
+`PostDelta` is CORA's `postΔ`: `DeltaReach` plus what a constant uncertain
+input set contributes as `InputSolution`, named for [1, Sec. 4.1].
+
+## References
+
+* [1] M. Althoff. "Reachability Analysis of Nonlinear Systems using Conservative
+      Polynomialization and Non-Convex Sets". HSCC 2013.
 -/

@@ -1,4 +1,5 @@
 import CORALean.ContDynamics.NonlinearSys.Theorems.AbstractionErrorOfHessian
+import CORALean.ContDynamics.NonlinearSys.Theorems.AbstractionErrorOfLagrange
 import CORALean.ContDynamics.NonlinearSys.Theorems.AbstractionErrorOfPoly
 import CORALean.ContDynamics.NonlinearSys.Theorems.AbstrErrLinCenterSubset
 import CORALean.ContDynamics.NonlinearSys.Theorems.ConfinedOfBall
@@ -36,20 +37,20 @@ it again: `LinInputOuter` spends the certificate, `Linearize` turns a confined
 run linear, `ReachOuter` hands it on, and `Restrict` makes the one-step forms.
 
 `Shift` and `RelinReachOuter` are the loop: a step is proved on a clock starting
-at zero, so `Shift` re-anchors the run and `RelinReachOuter` chains the steps,
-each enclosure becoming the next one's initial set. `RelinTimeIntervalOuter`
-covers every time of a step; `RelinDeltaReachOuter`, the differences it spans.
+at zero, so `Shift` re-anchors the run and `RelinReachOuter` chains the steps.
+`RelinTimeIntervalOuter` covers a step's interval; `RelinDeltaReachOuter` spans.
 
 `ConfinedOfBall` and `ConfinementOfSubset` pay off the confinement hypothesis
 those carry per step: the run cannot cross a ball of radius `ρ > MΔt` about a
 step's start, so inflating the computed set and checking it discharges it.
 
 The `ReachSet` files say that of the reachable set rather than of a run:
-`ReachSetOuter` puts a run into it, `ReachSetConfinementOfSubset` confines it,
-and the `ReachSetSubset` files enclose it — on the computed sets alone.
+`ReachSetOuter` puts a run into it, and the `ReachSetSubset` files enclose it.
 
-`AbstractionErrorOfHessian` is the one supplier, and `AbstrErrLinCenterSubset`
-minimises what it supplies at the set's centre. The `PolyAbstractionError`
-files are the polynomialization variant's certificate: `OfQuadRemainder` builds
-one, `GetSubset` splits it, `AbstractionErrorOfPoly` forgets the dependency.
+`AbstractionErrorOfHessian` is one supplier, `AbstrErrLinCenterSubset` minimises
+what it gives at the set's centre, and `AbstractionErrorOfLagrange` is the same
+one order up, of the field with its exact quadratic part shifted out. The
+`PolyAbstractionError` files are the polynomialization variant's certificate:
+`OfQuadRemainder` builds one, `GetSubset` splits it, `AbstractionErrorOfPoly`
+forgets the dependency.
 -/
