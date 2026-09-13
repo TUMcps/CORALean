@@ -26,6 +26,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.MatPowOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
 import CORALean.ContSet.Zonotope.Real.Theorems.MethCVolumeLe
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedInner
+import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffGenRecExact
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffOrEmptyInner
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffOrEmptyNeEmpty
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffRepInner
@@ -88,8 +89,9 @@ matrix zonotope acting on a set, never exact; `OfPointMem`, `Recentre` and `AbsM
 those classes ask, and read a point back as one. `MinkDiffAlignedInner` and `MinkDiffRepInner` run
 the reverse, exact at aligned generators and at any representation of the subtrahend's in the
 minuend's; `MinkDiffOrEmptyInner` carries the second through `MinkDiff`'s wrapper and
-`MinkDiffOrEmptyNeEmpty` says it is never empty. `MtimesIntervalMatSubsetClosedBall` bounds a
-product above; `MtimesIntervalMatSymmBox` is it at a symmetric matrix: `S · box(Z)`.
+`MinkDiffOrEmptyNeEmpty` says it is never empty, while `MinkDiffGenRecExact` alone is exact at
+every input — which is what costs it a representation. `MtimesIntervalMatSubsetClosedBall` bounds
+a product above; `MtimesIntervalMatSymmBox` is it at a symmetric matrix: `S · box(Z)`.
 
 `ReduceBySubsetAddBox` is `ReduceByOuter` backwards — the reduced zonotope sits inside the original
 plus the box it introduced — carried to `reduce` itself by `ReduceSubsetAddBox`;
@@ -100,6 +102,5 @@ Hausdorff distance to the zonotope is at most the generators' total length.
 `MtimesSubsetClosedBall`, `PlusSubsetClosedBall` and `ReduceBoxAbsBoundLe` carry one through
 `mtimes`, `plus` and `reduceBox`, and `StepSubsetClosedBall` composes them at `reach`'s shape, its
 box term discharged crudely or, via `reduceBoxOrder`, sharply. `SumSmulUpdate` is the one sum a
-split changes a term of, which `SplitUnion` and `SplitIntersection` read both halves and their
-overlap off.
+split changes a term of, which `SplitUnion` and `SplitIntersection` read both halves off.
 -/
