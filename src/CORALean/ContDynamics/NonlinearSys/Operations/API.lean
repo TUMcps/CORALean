@@ -7,6 +7,7 @@ import CORALean.ContDynamics.NonlinearSys.Operations.PrecompStatError
 import CORALean.ContDynamics.NonlinearSys.Operations.RelinDeltaReach
 import CORALean.ContDynamics.NonlinearSys.Operations.RelinReach
 import CORALean.ContDynamics.NonlinearSys.Operations.RelinTimeInterval
+import CORALean.ContDynamics.NonlinearSys.Operations.VarInputs
 
 /-!
 # What a linearization computes
