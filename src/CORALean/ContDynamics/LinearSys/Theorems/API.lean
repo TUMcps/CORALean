@@ -33,6 +33,7 @@ import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuter
 import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuterSplit
 import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
 import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+import CORALean.ContDynamics.LinearSys.Theorems.PostDeltaOuter
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOuter
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterConvexCompact
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterHorizon
@@ -81,15 +82,15 @@ representation. `TimeIntervalOuterSplit` is the same: dropping `0 ∈ U` needs
 only `Recentre` and `OfPoint`, which any representation with a centre has.
 
 The `ReachSet` and `TimeIntervalReachSet` trios state the same guarantees of a
-set, at a time and over `[0, r]`; `_eq_iUnion` ties the latter to a union of the
-former. `SubsetAddError` runs a step backwards, `Exists…Lt` shrinks its error.
+set; `_eq_iUnion` ties the latter to a union of the former, `SubsetAddError`
+runs a step backwards, `Exists…Lt` shrinks its error.
 
 `Restrict` is what makes the time domain a parameter worth having: a guarantee
 over one step applies to a run over all forward time by throwing the rest away.
 Only `discretize` and the `reach` statements built on it ask for `Set.Ici 0`.
 
 `DiscretizeEnclosure`/`DiscretizeEnclosureReach` are `Discretize`/`ReachOuter`
-at `discretizeEnclosure`, where the exponential is only enclosed rather than
-computed; `DiscretizeMatZonotope` is the same at a matrix zonotope.
-`ExpIntegralConstInput` is what a constant input contributes, in closed form.
+enclosed rather than computed; `DiscretizeMatZonotope` is the same at a matrix
+zonotope. `ExpIntegralConstInput` is a constant input's contribution, closed
+form; `PostDeltaOuter` is `DeltaReachOuterInputSolution` again, `postΔ`'s name.
 -/
