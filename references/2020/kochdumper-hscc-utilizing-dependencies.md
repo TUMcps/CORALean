@@ -28,7 +28,7 @@ by evaluating the polynomial zonotope at the factors that name it —
 | `Prop. 1` | Any polynomial zonotope with independent generators can be written without them, by expanding the exponent matrix. | [`Dependent.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Operations/Dependent.lean) |
 | `Lemma 1` | A composition of unary operations satisfying monotonicity satisfies it too. | n/a — Mathlib provides it: property (6) is `Monotone` at `Set` ordered by `⊆`, so this is `Monotone.comp`, which `DependencyPreservingComp.lean` takes as a hypothesis rather than reproving |
 | `Lemma 2` | A composition of dependency-preserving operations is dependency-preserving. | [`DependencyPreservingComp.lean`](../../src/CORALean/ContSet/ContSet/Theorems/DependencyPreservingComp.lean) |
-| `Lemma 3` | The abstraction-error computation satisfies the binary monotonicity property. | — |
+| `Lemma 3` | The abstraction-error computation satisfies the binary monotonicity property. | [`AbstrErr.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/AbstrErr.lean), [`AbstrErrMono.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/AbstrErrMono.lean), [`VarInputsMono.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/VarInputsMono.lean), [`LagrangeRemainderMono.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/LagrangeRemainderMono.lean), [`PolyZonotope_to_Zonotope.lean`](../../src/CORALean/ContSet/Conversion/Real/PolyZonotope_to_Zonotope.lean) |
 | `Lemma 4` | The post operator preserves dependencies with respect to the parameters. | [`PolyAbstractionErrorGetSubset.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/PolyAbstractionErrorGetSubset.lean) |
 | `Lemma 5` | The reach algorithm, a composition of the post operator over every time step, preserves dependencies with respect to the parameters. | [`DependencyPreservingChain.lean`](../../src/CORALean/ContSet/ContSet/Theorems/DependencyPreservingChain.lean) |
 | `Thm. 1` | A reachable subset can be read out of the computed reachable set by evaluating its polynomial zonotope at the parameters naming it. | [`SubsetAt.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Operations/SubsetAt.lean), [`GetSubset.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Operations/GetSubset.lean), [`GetSubsetConstruct.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/GetSubsetConstruct.lean), [`SubsetAtMono.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/SubsetAtMono.lean), [`SubsetAtSubsetConstruct.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/SubsetAtSubsetConstruct.lean) |
@@ -37,39 +37,50 @@ by evaluating the polynomial zonotope at the factors that name it —
 
 ## Findings
 
-**`Lemma 3` — its subject, Alg. 2's `abstrErr`, is not in the tree, and structurally cannot be
-stated in it as things stand.** Read directly off the PDF, Alg. 2 is seven lines computing
-`ΨΔ(τs)` from the two arguments `R(ts)` and `Ψ(τs)`: a `zono`, a Cartesian product, `postΔ`, a
-second `zono`, `varInputs`, a Minkowski sum, and `lagrangeRemainder`. The paper is explicit that
-`postΔ`, `varInputs` and `lagrangeRemainder` are "identical to the ones in" Althoff's HSCC 2013
-conservative-polynomialization paper, Sec. 4.1-4.2 — confirming the earlier pass's naming. All
-three are in the tree now, `postΔ` in `ContDynamics/LinearSys/Operations/PostDelta.lean` and
-`lagrangeRemainder` and `varInputs` in `ContDynamics/NonlinearSys/Operations/`, but nothing
-assembles them into the two-argument function Alg. 2 is: no `zono` of a Cartesian product feeds
-them, and no term is shaped like `abstrErr(R, Ψ)`.
+**`Lemma 3`'s content is entirely the paper's standing assumption about its
+primitives, and two of those are false of the implementations.** Alg. 2 is now
+in the tree as `abstrErr` over a polynomial zonotope: `postΔ`, the Cartesian
+products with the input set, `varInputs`, `lagrangeRemainder`, and the closing
+Minkowski sum, in that order — the algorithm itself stays tracked where the row
+above says, `abstrErr` existing here because `Lemma 3` needs a term to be about. Read off the PDF, `Lemma 3` claims an inclusion
+and not an equality, and its whole proof is one sentence — Alg. 2 is a
+composition of unary operations satisfying property (6) and binary ones
+satisfying (7) — where (6) and (7) are asserted once for *every* operation the
+paper uses, in its Sec. 2.3, and never proved of any. `abstrErr_mono` proves
+`Lemma 3` that way: discharging (6) and (7) where they hold, carrying them where
+the paper only assumes them.
 
-That absence is not incidental. `abstrErr` is a two-argument *function*, called once per
-iteration of Alg. 1's repeat-until loop (lines 5-9) until the applied error `Ψ(τs)` it feeds back
-stops growing — exactly the mechanism `Lemma 3`'s binary monotonicity is needed to support. This
-tree's abstraction-error apparatus takes a different shape entirely: `AbstractionError` and
-`PolyAbstractionError` are certificates — `Prop`s asserting that *some* enclosure exists, sound
-for any witness regardless of how it was produced — and its two suppliers sidestep the loop
-rather than model it. `abstrErrLin` takes one zonotope and one expansion point and returns a
-Hessian-bound box, with no applied-error argument at all; `AbstrErrPolySearch` instead searches a
-fuel-bounded sequence of caller-supplied candidate boxes for the first the certificate accepts.
-Confinement over a step is discharged once, by a ball check (`ConfinedOfBall`,
-`ConfinementOfSubset`), never by iterative enlargement. There is consequently no term shaped like
-`abstrErr(R, Ψ)` for a monotonicity property to be a statement about, in either argument.
+They hold, and are proved here, for the Cartesian products, for `varInputs` and
+for the closing sum, each being a composition of exact operations, so that what
+it denotes is a Minkowski sum of images of its arguments' own sets. They hold
+for `lagrangeRemainder` too, for a reason the paper does not give: its `γ` is
+not an artefact of the zonotope's generators but is exactly the largest
+`|z - z✱|` over what that zonotope denotes, hence a function of the set and
+monotone in it. That last proof needs `E` entrywise nonnegative, which is not a
+hypothesis added to the source but part of what `E` is — the `hEb` of
+`AbstractionError.of_lagrange`, its only supplier, already forces it.
 
-The generic fact `Lemma 3`'s own proof leans on — Lemma 1 extended from unary to binary
-operations, an unnumbered corollary the paper states in prose immediately before `Lemma 2` — is
-equally absent in binary form, and for the same reason nothing has needed it:
-`DependencyPreservingComp.lean` takes only the unary `Monotone A` as a hypothesis (Mathlib's
-`Monotone.comp`), because `Lemma 4`'s formalization (`PolyAbstractionErrorGetSubset.lean`)
-reaches its conclusion by re-reading one certificate at a narrower factor domain, never by
-composing monotone binary operations. Adding that composition lemma on its own, with nothing in
-the tree for it to certify `abstrErr` through, would be exactly the "weaker statement offered for
-a row claiming something stronger" shape this project is trying to avoid, so the row stays open.
+They are false for the other two, which is why those two enter `abstrErr_mono`
+as hypotheses. `zono` returns a function of the representation and not of the
+set: `zonotope_not_mono` exhibits the polynomial zonotopes `α²` and `1 + α`,
+the first denoting a subset of what the second denotes while its own enclosure,
+`[-1,1]`, is not inside the other's `[0,2]`. `postΔ` has none either, for the same reason one
+level down — its `linComb` and its interval-matrix product read centres and
+generators rather than points — though that one is read off the definitions
+rather than refuted in Lean. So `abstrErr` takes the region its
+remainder is computed over as a parameter, as `lagrangeRemainder` and
+`abstrErrLin` already do — which also sidesteps Alg. 2's line 5, printed as a
+sum of a set of `n` dimensions and one of `n + m` — and `abstrErr_mono` carries
+`postΔ`'s (7) as the hypothesis `hpost`. The applied error reaches the result
+through `postΔ` alone, so the paper's hypothesis on it is spent exactly there
+and appears inside `hpost` rather than as a binder of its own.
+
+**What is not proved.** `abstrErr` has no soundness theorem of its own. Its
+three operations each carry one — `postDelta_outer`, `varInputs_outer` and
+`AbstractionError.of_lagrange` — but chaining them needs `of_lagrange`'s
+quadratic term to be state-only where it is exact over the whole stacked pair,
+the gap that file's own docstring names. That is not what `Lemma 3` claims, and
+is left as work rather than recorded as a departure.
 
 ## Cited without a result
 
