@@ -1,7 +1,4 @@
 .lake/
 .elan/
 *.log
-
-# Pending a decision on whether it belongs in the repo. Remove this line to add it.
-docker/
 __pycache__/
