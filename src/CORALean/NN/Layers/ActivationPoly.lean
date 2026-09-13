@@ -1,8 +1,12 @@
 import CORALean.ContSet.Conversion.Real.Interval_to_PolyZonotope
 import CORALean.ContSet.Conversion.Real.PolyZonotope_to_Interval
+import CORALean.ContSet.PolyZonotope.Real.Complexity.Dependent
+import CORALean.ContSet.PolyZonotope.Real.Complexity.EvalPoly
+import CORALean.ContSet.PolyZonotope.Real.Complexity.Plus
 import CORALean.ContSet.PolyZonotope.Real.Instances
 import CORALean.ContSet.PolyZonotope.Real.Theorems.DependentExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyExact
+import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyQ
 import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyRealOfFn
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ExistsPointOfQZero
 import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
@@ -122,6 +126,35 @@ theorem Layer.activationPoly_sound (P : LayerRelaxation σ n m) :
     ring
   rw [hsplit]
   exact plus_outer _ _ (Set.add_mem_add hpmem (Interval.polyZonotope_contains _ hdev))
+
+/-- No independent generators survive `enclose`: `dependent` empties the input's
+own before the fit runs, and the residual box lands in `Interval.polyZonotope`,
+which is all dependent too. So `h` below is the *whole* generator count. -/
+theorem Layer.activationPoly_enclose_q (P : LayerRelaxation σ n m) (s : PolyZonotope (Vec ℝ n)) :
+    ((Layer.activationPoly P).enclose s).q = 0 := by
+  show (PolyZonotope.plus (s.dependent.evalPoly (P.coeffList s.interval))
+      (Interval.polyZonotope (P.box s.interval))).q = 0
+  rw [PolyZonotope.plus_q, PolyZonotope.evalPoly_q, Interval.polyZonotope_q]
+
+/-- [1, Lemma 4.3]: `enclose`'s generator count, a closed form in the input's own
+`s.h + s.q` and the layer's shared degree `m` — `Alg. 1` line 9's padding — with
+nothing of `P` beyond `m` reaching it, `n` more from the residual box. -/
+theorem Layer.activationPoly_enclose_h (P : LayerRelaxation σ n m) (s : PolyZonotope (Vec ℝ n)) :
+    ((Layer.activationPoly P).enclose s).h = (s.h + s.q + 1) *
+      (∑ i ∈ Finset.range (m + 1), (s.h + s.q + 1) ^ i) + n := by -- --- PROOF ---
+  show (PolyZonotope.plus (s.dependent.evalPoly (P.coeffList s.interval))
+      (Interval.polyZonotope (P.box s.interval))).h = _
+  have hlen : (P.coeffList s.interval).length = m + 1 := List.length_ofFn
+  rw [PolyZonotope.plus_h, PolyZonotope.evalPoly_h, PolyZonotope.dependent_h, hlen,
+    Interval.polyZonotope_h]
+
+/-- [1, Lemma 4.3] in words: same order pattern `m` on the same input, same
+generator count — whatever the individual neurons' own fits, `P` and `P'`
+never appearing in `activationPoly_enclose_h`'s formula. -/
+theorem Layer.activationPoly_enclose_h_indep (P P' : LayerRelaxation σ n m)
+    (s : PolyZonotope (Vec ℝ n)) :
+    ((Layer.activationPoly P).enclose s).h = ((Layer.activationPoly P').enclose s).h := by
+  rw [Layer.activationPoly_enclose_h, Layer.activationPoly_enclose_h]
 
 end CORALean.Real
 

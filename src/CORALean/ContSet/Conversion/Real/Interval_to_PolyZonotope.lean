@@ -41,6 +41,15 @@ theorem Interval.polyZonotope_contains (I : Interval (Vec ℝ n)) :
     I.construct ⊆ I.polyZonotope.construct :=
   subset_trans I.zonotope_contains (Zonotope.polyZonotope_exact _).subset
 
+/-- One factor and one dependent generator per coordinate — `Interval.zonotope`'s
+own count, `Zonotope.polyZonotope` carrying it across unchanged. -/
+theorem Interval.polyZonotope_p (I : Interval (Vec ℝ n)) : I.polyZonotope.p = n := rfl
+
+theorem Interval.polyZonotope_h (I : Interval (Vec ℝ n)) : I.polyZonotope.h = n := rfl
+
+/-- No independent generators, `Zonotope.polyZonotope` making every one dependent. -/
+theorem Interval.polyZonotope_q (I : Interval (Vec ℝ n)) : I.polyZonotope.q = 0 := rfl
+
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
