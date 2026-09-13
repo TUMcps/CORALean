@@ -33,7 +33,7 @@ what makes intersection exact. The `ConPolyZono` representation.
 | `Prop. 11` | (Intersection) CPZ1 ∩ CPZ2 = ⟨c1,G1,[E1;0],block-arranged A with G1,-G2 coupling,[b1;b2;c2-c1],[R1,0;0,R2;E1,0;0,E2]⟩_CPZ — encodes the intersection by adding a constraint that the two representations describe the same point. | [`IntersectionExact.lean`](../../src/CORALean/ContSet/ConPolyZono/Real/Theorems/IntersectionExact.lean) |
 | `Thm. 1` | (Union) Gives an explicit closed-form CPZ representation of CPZ1 ∪ CPZ2, using an extra binary-like factor to select between the two operands (center 0.5(c1+c2), and block-structured G, E, A, b, R). Proof in Appendix A, using Def. 7 and Lemma 2 (Prop. 14 is Appendix B's, for rescaling, and is not used here — see the finding below). | [`UnionExact.lean`](../../src/CORALean/ContSet/ConPolyZono/Real/Theorems/UnionExact.lean), the construction in [`Union.lean`](../../src/CORALean/ContSet/ConPolyZono/Real/Operations/Union.lean) — the equality, under the hypothesis the printed statement omits and is false without; see the finding below |
 | `Prop. 12` | (Order Reduction) reduce(CPZ,ρ_d) for a desired order ρ_d ≥ 2(n+m)/n returns a CPZ of order ≤ ρ_d enclosing CPZ, by partitioning generators/constraints into a kept set H and a reduced set K. | [`ReduceOuter.lean`](../../src/CORALean/ContSet/ConPolyZono/Real/Theorems/ReduceOuter.lean) |
-| `Prop. 13` | (Constraint Reduction) Given a constraint index r and indices d,s satisfying a matching condition (eq. 33) between E and R, reduceCon(CPZ,r,d,s) removes constraint r and returns an enclosing CPZ. | — |
+| `Prop. 13` | (Constraint Reduction) Given a constraint index r and indices d,s satisfying a matching condition (eq. 33) between E and R, reduceCon(CPZ,r,d,s) removes constraint r and returns an enclosing CPZ. | [`ReduceConOuter.lean`](../../src/CORALean/ContSet/ConPolyZono/Real/Theorems/ReduceConOuter.lean), the construction in [`ReduceCon.lean`](../../src/CORALean/ContSet/ConPolyZono/Real/Operations/ReduceCon.lean) — the enclosure the statement claims, under one hypothesis this representation needs and the source does not: `b` is an `Interval` here, and the row being solved for a monomial must be a point to determine one. The two cleanups the statement appends, `compactGens` and dropping the all-zero exponent rows, change the representation and not the set, and are not applied |
 | `Def. 7` | (Appendix A) Given constraint data A,b,R, constrDom(A,b,R) := {α \| Σ_i (Π_k α_k^R(k,i)) A_(·,i) = b, α_k∈[-1,1]}, the set of factor values satisfying the CPZ's constraint — used in the proof of Thm. 1. | [`Domain.lean`](../../src/CORALean/ContSet/ConPolyZono/Real/Operations/Domain.lean) |
 | `Lemma 2` | (Appendix A) For domains D1,D2 ⊆ [-1,1]^p, the polynomial-zonotope-style set over D1∪D2 equals the union of the sets over D1 and D2 separately (splits a CPZ's defining set by splitting its constraint domain) — used in the proof of Thm. 1. | [`DependentSetUnionDomain.lean`](../../src/CORALean/ContSet/ConPolyZono/Real/Theorems/DependentSetUnionDomain.lean) |
 | `Prop. 14` | (Appendix B) (Subset) Given CPZ, a factor index r, and an interval [l,u]⊆[-1,1], subset(CPZ,r,l,u) restricts/substitutes the domain of factor α_r to [l,u], giving a CPZ representing a subset of the original — used for rescaling (Sec. 4.4), not for `Thm. 1`: Appendix A's proof of the union never calls `subset`. | [`GetSubset.lean`](../../src/CORALean/ContSet/ConPolyZono/Real/Operations/GetSubset.lean), [`GetSubsetConstruct.lean`](../../src/CORALean/ContSet/ConPolyZono/Real/Theorems/GetSubsetConstruct.lean) — named `getSubset` after CORA's `@conPolyZono/getSubset`, parametrized by `cen, rad` rather than `l, u` (`cen = (l+u)/2`, `rad = (u-l)/2`); see the finding below |
@@ -52,6 +52,27 @@ to a factor's own default domain, and every `[−a,a]`. CORA does not inherit th
 by polynomial convolution and never forms `v₂` at all. The formalization follows CORA and states
 the operation in `cen, rad`, which is total.
 [`GetSubset.lean`](../../src/CORALean/ContSet/ConPolyZono/Real/Operations/GetSubset.lean)
+
+**Prop. 9 — the convex hull identity is false when exactly one operand is empty.**
+The proof's step (28), `CPZ1 ∪ CPZ2 ⊆ comb(CPZ1, CPZ2) ⊆ conv(CPZ1, CPZ2)`, is what lets
+the union in the definition (4) be replaced by the linear combination, and its left
+inclusion needs both operands non-empty: a point of `CPZ1` is a point of `comb` only at
+`λ = 1`, which still asks for a point of `CPZ2` to pair it with. Nothing in Def. 5, Prop. 8
+or Prop. 9 requires that. The closed form inherits `comb`'s constraint system `a = n+1`
+times over, so it is empty whenever either operand is, while (4) reads `s_i ∈ S1 ∪ S2` and
+is not. A minimal counterexample in one dimension: `CPZ1` the point `{0}` — no generators,
+no factors, no constraints — and `CPZ2` empty, with one factor, one constraint generator,
+`A = 1`, `b = 2` and `R = 1`, asking `α = 2` of a factor in `[-1,1]`. Then
+`conv(CPZ1, CPZ2)` is `{0}` by (4), while `comb(CPZ1, CPZ2)` is empty and the closed form's
+`a` copies of `α = 2` leave it empty too. CORA does not inherit the defect:
+`@conPolyZono/convHull_.m` returns the second set outright when the first `representsa_` an
+`emptySet`, the same guard `@conPolyZono/or.m` carries for `Thm. 1` — while
+`@conPolyZono/linComb.m`, where an empty operand really does empty the result, carries
+none. The row is open for a second reason as well, independent of this one: definition (4)
+is Carathéodory's, with exactly `n+1` points, so the substitution at (28) is the claim that
+a hull does not grow when its set is enlarged to anything still inside that hull — which is
+Carathéodory's theorem, not an algebraic identity. That theorem is not in the Mathlib
+surface this project imports, so it would have to be proved here first.
 
 **Thm. 1 — the union identity needs both operands' exponent matrices free of all-zero
 columns, which the statement never says.** Appendix A.3 argues that on the branch selecting

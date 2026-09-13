@@ -33,29 +33,30 @@ import CORALean.ContSet.ConPolyZono.Real.Theorems.DependentSetUnionDomain
 import CORALean.ContSet.ConPolyZono.Real.Theorems.GetSubsetConstruct
 import CORALean.ContSet.ConPolyZono.Real.Theorems.UnionDomainIff
 import CORALean.ContSet.ConPolyZono.Real.Theorems.UnionExact
+import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceConOuter
 
 /-!
 # What `ConPolyZono` guarantees
 
 `intersection`, `plus`, `map`, `quadMap`, `dependent` and `compact`, all six exactly, and
-`reduce` as an enclosure with an order bound beside it — the only operation here
-that gives anything up, and the only one that has to.
+`reduce` and `reduceCon` as enclosures — the two that give something up, `reduce`
+with an order bound beside it.
 
-`compact_exact` is three equalities in a row and no hypothesis anywhere, which
-is what makes it bookkeeping: merging the generators, merging the constraint
-columns, and dropping the factors neither block reads. `reduce_order_le` is what
-that bookkeeping is for.
+`compact_exact` is three equalities in a row and no hypothesis anywhere, which is what
+makes it bookkeeping: merging the generators, merging the constraint columns, and
+dropping the factors neither block reads. `reduce_order_le` is what that is for.
 
 `intersection_exact` is the one that distinguishes the representation. It is the only
-exact intersection in this repository that is not of convex sets, and together
-with `quadMap_exact` it is what a nonlinear reachability step needs: propagate
-through a quadratic map, then cut by a guard, neither losing anything.
+exact intersection in this repository that is not of convex sets, and with `quadMap_exact`
+it is what a nonlinear reachability step needs: a quadratic map, then a guard, losing
+nothing at either.
 
-`isCompact_construct` is the one guarantee about the set rather than an operation:
-a constraint row is a polynomial in the factors, so it closes the domain rather
-than opening it. `holds` and `MemConstruct` are what the operations are stated over.
-
+`isCompact_construct` is the one guarantee about the set rather than an operation: a
+constraint row is a polynomial in the factors, so it closes the domain rather than opening
+it. `holds` and `MemConstruct` are what the operations are stated over.
 `mem_ofPoint` needs none of that, and `getSubset_construct` is an equality, its
 substitution a polynomial identity. So is `union_exact_of_noZeroCol` — under a
 hypothesis the source omits and is false without, which its own file sets out.
+`reduceCon_outer` substitutes too, and only encloses: solving a row for a monomial is not
+reversible once the row is gone.
 -/
