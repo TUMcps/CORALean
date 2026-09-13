@@ -39,12 +39,35 @@ error term and stay open.
 | `Prop. 8` | (Intersection check) Polytope P and constrained zonotope CZ intersect if ν=0 for a linear program ν = min over x,α,δ of δ subject to containment/constraint conditions. | — |
 | `Alg. 3` | "Automated verification": combines Alg. 2's outer-approximation with an inner-approximation (via Prop. 6-8) to automatically prove or falsify a specification given by safe sets G_1..G_r and unsafe sets F_1..F_w. | — |
 | `Prop. 9` | (Appendix A) Given the homogeneous solution H(t_k)=⟨c_h,G_h⟩_Z and particular solution P^u(t_k)=c_p, bounds the Hausdorff distance between the exact linear combination S = comb(H(t_k),H(t_{k+1})) and its zonotope outer-approximation. | — |
-| `Prop. 10` | (Appendix A) For a compact set S⊂R^n and matrices M1,M2: d_H((M1+M2)S, M1 S) ≤ d_H(0, M2 S) — a general perturbation bound for linear maps of sets under the Hausdorff distance. | — |
+| `Prop. 10` | (Appendix A) For a compact set S⊂R^n and matrices M1,M2: d_H((M1+M2)S, M1 S) ≤ d_H(0, M2 S) — a general perturbation bound for linear maps of sets under the Hausdorff distance. | [`HausdorffDistMulVecLinAddLe.lean`](../../src/CORALean/ContSet/ContSet/Theorems/HausdorffDistMulVecLinAddLe.lean) |
 | `Prop. 11` | (Appendix A) Bounds the Hausdorff distance between the propagated exact particular solution e^{At_k}P^U(t_k) and its outer-approximation. | — |
 | `Lemma 1` | (Appendix B) The remainder of the exponential matrix E(Δt_k,η_k) (eq. 18) satisfies lim_{Δt_k→0} E = 0 and E ~ O(Δt_k^{η_k+1}). | — |
 | `Lemma 2` | (Appendix B) The error ε^U_k(Δt_k,η_k) (eq. 25) satisfies lim_{Δt_k→0} ε^U_k = 0 and ε^U_k ~ O(Δt_k²). | — |
 | `Lemma 3` | (Appendix B) The error ε^h_k(Δt_k,η_k) (eq. 23) satisfies lim_{Δt_k→0} ε^h_k = 0 and ε^h_k ~ O(Δt_k). | — |
 | `Lemma 4` | (Appendix B) The error ε^{U,τ}_k(Δt_k,η_k) (eq. 26) satisfies lim_{Δt_k→0} ε^{U,τ}_k = 0 and ε^{U,τ}_k ~ O(Δt_k). | — |
+
+## Findings
+
+**`Prop. 1`-`Prop. 4` bound a norm this formalization does not carry.** Each uses `err(S) :=
+rad(box(S))`, and the paper's own Notation section defines `rad` as the radius of the smallest
+hypersphere enclosing a set, explicitly "with respect to the Euclidean norm" — so every one of
+these bounds is a `‖·‖₂` quantity by construction, not incidentally. `Vec ℝ n` carries Mathlib's
+supremum norm, and `‖·‖₂` is deliberately not wired into a metric-space instance on it (see
+`Global/EuclideanNorm.lean`), so `Metric.hausdorffDist` cannot read it there; formalizing these
+as printed needs either a `PiLp 2` transport or a hand-built Euclidean Hausdorff-distance theory,
+neither of which exists here. This is the same gap that keeps NAHS'22 `Thm. 1` open, not a defect
+of the paper. `Prop. 1` and `Prop. 2` are additionally downstream of `Prop. 9` and `Prop. 11`
+(Appendix A), neither formalized; `Prop. 3` is downstream of `Prop. 2`'s error term.
+
+`Lemma 2`-`Lemma 4` are asymptotic claims about exactly these `err(·)`-valued quantities
+(`Δε^h_k`, `Δε^U_k`, `Δε^{U,τ}_k` respectively), so they inherit the same gap and are additionally
+downstream of `Prop. 1`-`Prop. 3`. `Lemma 1` is different: its subject `E(Δt,η)` (eq. 18) is an
+entrywise interval-matrix bound, `e^{|A|∆t} - Σ(|A|∆t)^i/i!`, with no norm dependency — but it is
+a different quantity from `MatExp.expRemainderBound`, which bounds the same remainder with a
+single scalar under the `l∞` operator norm rather than entrywise.
+`MatExp.tendsto_expRemainderBound_zero` proves the limit fact for that scalar bound by splitting
+it into a vanishing numerator and a bounded-and-converging denominator; the same argument should
+transfer to the entrywise object, but that object is not yet defined.
 
 ## Cited without a result
 
