@@ -25,7 +25,10 @@ import CORALean.ContSet.Zonotope.Real.Theorems.MatMulRightExact
 import CORALean.ContSet.Zonotope.Real.Theorems.MatPowOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
 import CORALean.ContSet.Zonotope.Real.Theorems.MethCVolumeLe
+import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedExact
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedInner
+import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedNotInner
+import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffGenRecExact
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffOrEmptyInner
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffOrEmptyNeEmpty
@@ -86,12 +89,12 @@ import CORALean.ContSet.Zonotope.Real.Theorems.SumUnivReduceBy
 set-valued integral needs. `MemConstruct` reads membership coordinatewise, and `Coefficient` holds
 the shared proof devices the float layer needs too. `BilinOuter` and `MtimesMatZonotopeOuter` are a
 matrix zonotope acting on a set, never exact; `OfPointMem`, `Recentre` and `AbsMaxOfPoint` are what
-those classes ask, and read a point back as one. `MinkDiffAlignedInner` and `MinkDiffRepInner` run
-the reverse, exact at aligned generators and at any representation of the subtrahend's in the
-minuend's; `MinkDiffOrEmptyInner` carries the second through `MinkDiff`'s wrapper and
-`MinkDiffOrEmptyNeEmpty` says it is never empty, while `MinkDiffGenRecExact` alone is exact at
-every input — which is what costs it a representation. `MtimesIntervalMatSubsetClosedBall` bounds
-a product above; `MtimesIntervalMatSymmBox` is it at a symmetric matrix: `S · box(Z)`.
+those classes ask. `MinkDiffAlignedInner` and `MinkDiffRepInner` run the reverse, at aligned and at
+represented generators; `MinkDiffAlignedOuter` closes the first to `MinkDiffAlignedExact`, whose
+scaling `MinkDiffAlignedNotInner` holds to `[0, 1]`. `MinkDiffOrEmptyInner` carries the second
+through `MinkDiff`'s wrapper, `MinkDiffOrEmptyNeEmpty` says it is never empty, and
+`MinkDiffGenRecExact` alone is exact at every input. `MtimesIntervalMatSubsetClosedBall` bounds a
+product above, `MtimesIntervalMatSymmBox` it at a symmetric matrix: `S · box(Z)`.
 
 `ReduceBySubsetAddBox` is `ReduceByOuter` backwards — the reduced zonotope sits inside the original
 plus the box it introduced — carried to `reduce` itself by `ReduceSubsetAddBox`;
