@@ -31,17 +31,10 @@ approximated otherwise. `minkDiffAligned` is the exact case; CORA's default
 | `Prop. 4` | For Z_{m,encl}⊇Z_s, (Z_{m,encl}⊖Z_s)⊕Z_{m,rem} ⊆ (Z_{m,encl}⊕Z_{m,rem})⊖Z_s — a distributivity-type inclusion relating Minkowski difference/sum when the minuend is split into an enclosing part and a remainder. | [`MinkowskiDiffEnclSubsetAdd.lean`](../../src/CORALean/ContSet/ContSet/Theorems/MinkowskiDiffEnclSubsetAdd.lean) |
 | `Alg. 1` | (Generator Selection for Z_m) Sorts the generators of Z_m by length and greedily adds them, comparing interval-hull (box) ratios against Z_s, to build an enclosing Z_{m,encl}⊇Z_s with as few generators as possible; used by Prop. 4. | — |
 | `Def. 3` | (Aligned zonotopes) Two zonotopes Z1=(c,g^(1),...,g^(p1)), Z2=(d,h^(1),...,h^(p2)) (each with no internally-aligned generators) are aligned if generators of Z1 and Z2 are pairwise parallel up to scaling. | — |
-| `Prop. 5` | (Minkowski difference for aligned generators) If Z_m is aligned with Z_s (γ_i g^(m,i) = g^(s,i) for i=1..p_s after reordering), then Z_m⊖Z_s is computed exactly as (c^(m)-c^(s), g^(m,1)-g^(s,1), ..., g^(m,ps)-g^(s,ps), g^(m,ps+1), ..., g^(m,pm)). | — |
+| `Prop. 5` | (Minkowski difference for aligned generators) If Z_m is aligned with Z_s (γ_i g^(m,i) = g^(s,i) for i=1..p_s after reordering), then Z_m⊖Z_s is computed exactly as (c^(m)-c^(s), g^(m,1)-g^(s,1), ..., g^(m,ps)-g^(s,ps), g^(m,ps+1), ..., g^(m,pm)). | [`MinkDiffAlignedExact.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/MinkDiffAlignedExact.lean), the closed form itself [`MinkDiffAligned.lean`](../../src/CORALean/ContSet/Zonotope/Real/Operations/MinkDiffAligned.lean) — proved with the alignment factor confined to `0 ≤ γ_i ≤ 1`, which the printed statement does not ask for and is false without; see the findings below |
 | `Prop. 6` | (Minkowski difference of two-dimensional zonotopes) Gives a closed-form zonotope (c^(m)-c^(s), Ĝ^(m)\|Ĉ+Ĝ^(m)\|^{-1}(Δd̂-Δd̂_trans)) for the Minkowski difference of two 2-dimensional zonotopes (exact, since the 2D case is always aligned/tractable). | — |
 
 ## Findings
-
-**`Prop. 5` — the aligned case is claimed exact, and only one inclusion is proved.**
-`Zonotope.minkDiffAligned_inner` gives `aligned ⊆ Z_m ⊖ Z_s`; the printed result says the
-difference *is* that zonotope. The row is open rather than linked, because a link would
-assert the equality. The reverse inclusion now looks tractable: `minkDiffGenRec_exact`
-computes `Z_m ⊖ Z_s` exactly for arbitrary zonotopes, so what remains is showing the
-recursive fold collapses to the aligned formula when the generators are parallel.
 
 **`Thm. 3` — sound only for the minuend's own facet normals.** The shifted-offset formula
 needs the halfspaces to *equal* the minuend, and `Zonotope.hPolytope_contains` gives the
@@ -56,3 +49,15 @@ zonotope and translates and intersections of convex sets stay convex. So the cla
 and needs no extra hypothesis — convexity is carried along the induction here rather than
 assumed.
 [`MinkDiffGenRecExact.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/MinkDiffGenRecExact.lean)
+
+**`Prop. 5` — the alignment factor is unconstrained, and the closed form is false
+outside `[0, 1]`.** `Def. 3` lets `γ_i` be any real and `Prop. 5` inherits it. One
+generator in ℝ refutes the printed statement: at `Z_m = (0, 1)` and `Z_s = (0, γ)` the
+form `(0, 1 - γ)` holds the point `1 - γ`, which `-γ ∈ Z_s` carries out of `Z_m` to
+`1 - 2γ` whenever `γ < 0` or `γ > 1`. So it is not the difference, nor even contained in
+it: at `γ > 1` the difference is empty while the form is not, and at `γ < 0` the
+subtrahend is the same set it is at `-γ` while the form lengthens the generator instead
+of shortening it. Formalized with `0 ≤ γ_i ≤ 1`, which is exactly where the paper's own
+`(Z_m ⊖ Z_s) ⊕ Z_s = Z_m` step holds, `|1 - γ_i| + |γ_i|` being `1` there and more
+elsewhere.
+[`MinkDiffAlignedNotInner.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/MinkDiffAlignedNotInner.lean)
