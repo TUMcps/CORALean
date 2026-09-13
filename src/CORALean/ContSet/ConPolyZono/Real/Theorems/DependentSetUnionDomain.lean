@@ -3,18 +3,19 @@ import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 /-!
 # The dependent generator map splits over a union of factor domains
 
-The result is [1, Lemma 2], a prerequisite for the union construction of
-[1, Thm. 1] — not itself formalized here, since its other prerequisite,
-[1, Prop. 14] (Appendix A, `subset`), is real work of its own: an expansion of
-one exponent column into as many as `E(r,i)+1` new ones, built from a binomial
-identity rather than from a block-diagonal layout like every other operation
-in this file's directory.
+The result is [1, Lemma 2], the step Appendix A takes once A.1 has cut the factor
+domain of the union in [1, Thm. 1] in two: a dependent generator map sends a
+union of domains to the union of its images.
 
 [1] states the domains `D₁, D₂` as subsets of the unit cube `[-1,1]ᵖ`; nothing
 in the proof reads that, so it is dropped here and the result specializes to
 [1]'s at that restriction. The proof is `Set.image_union`'s content, unfolded
 to the paper's set-builder notation rather than phrased through `Set.image`
 itself, since neither side names the underlying map on its own.
+
+`union_exact_of_noZeroCol` does not go through this statement: it reaches the
+same split by case analysis on the branch `union_domain_iff` hands back, which
+is what the assembled constraint system already makes available.
 
 ## References
 

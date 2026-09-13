@@ -52,6 +52,33 @@ import CORALean.ContSet.ConPolyZono.Real.Operations.DropRadius
 import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceBy
 import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceGirard
 import CORALean.ContSet.ConPolyZono.Real.Operations.Reduce
+import CORALean.ContSet.ConPolyZono.Real.Operations.NoZeroCol
+import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialEqZeroOfNoZeroCol
+import CORALean.ContSet.ConPolyZono.Real.Operations.UnitCol
+import CORALean.ContSet.ConPolyZono.Real.Operations.ProdUnitCol
+import CORALean.ContSet.ConPolyZono.Real.Operations.ProdAddCol
+import CORALean.ContSet.ConPolyZono.Real.Operations.UnionSel
+import CORALean.ContSet.ConPolyZono.Real.Operations.UnionMeanSq
+import CORALean.ContSet.ConPolyZono.Real.Operations.UnionWithSel
+import CORALean.ContSet.ConPolyZono.Real.Operations.ProdUnionWithSel
+import CORALean.ContSet.ConPolyZono.Real.Operations.UnionCrossCol
+import CORALean.ContSet.ConPolyZono.Real.Operations.UnionConCol
+import CORALean.ContSet.ConPolyZono.Real.Operations.UnionConCoef
+import CORALean.ContSet.ConPolyZono.Real.Operations.UnionConValue
+import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsSharedIff
+import CORALean.ContSet.ConPolyZono.Real.Operations.UnionUpperA
+import CORALean.ContSet.ConPolyZono.Real.Operations.UnionUpperB
+import CORALean.ContSet.ConPolyZono.Real.Operations.UnionUpperEC
+import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsUnionUpperIff
+import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerA
+import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerB
+import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerEC
+import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecUnionLowerLeft
+import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecUnionLowerRight
+import CORALean.ContSet.ConPolyZono.Real.Operations.UnionE
+import CORALean.ContSet.ConPolyZono.Real.Operations.UnionG
+import CORALean.ContSet.ConPolyZono.Real.Operations.SumUnionE
+import CORALean.ContSet.ConPolyZono.Real.Operations.Union
 
 /-!
 # What `ConPolyZono` computes
@@ -63,9 +90,8 @@ and `quadMap` exact rather than merely sound.
 `intersection` is the one to read: everything else a polynomial zonotope already
 computes, and this is what the constraints buy.
 
-`compact` is the one that has to know about the sharing. Merging is
-`PolyZonotope`'s at both blocks, but a factor is dropped only when neither `E`
-nor `EC` reads it, so the two exponent matrices are dropped from together.
+`compact` is the one that has to know about the sharing: merging is `PolyZonotope`'s at
+both blocks, but a factor is dropped only when neither `E` nor `EC` reads it.
 
 `quadMap` carries over from `PolyZonotope` unchanged, and that it does is worth
 knowing — a quadratic map reads the generators and the exponent matrix and the
@@ -76,5 +102,6 @@ by factors it does not read, and set beside another over the same factors, and
 `Domain` is the pair `construct` splits into, which compactness reads.
 
 `reduce` ranks both blocks as one and boxes what it drops; the constraint block passes
-through. No `linComb`. `getSubset` reweights one factor at both, via `consPolyZonotope`.
+through. `getSubset` reweights one factor at both, via `consPolyZonotope`. `union` is the
+largest construction here: two fresh factors, and one row that pins one operand's block.
 -/

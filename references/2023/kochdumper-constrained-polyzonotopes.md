@@ -31,7 +31,7 @@ what makes intersection exact. The `ConPolyZono` representation.
 | `Prop. 9` | (Convex Hull) conv(CPZ1,CPZ2) formula, extending comb (Prop. 8) with an extra scaling factor variable a to obtain the actual convex hull rather than just the linear combination. | — |
 | `Prop. 10` | (Quadratic Map) Gives sq(Q,CPZ) for a discrete set of matrices Q={Q1,...,Qw}, as a CPZ with new generator/exponent columns built from pairwise products of the original dependent generators. | [`QuadMapExact.lean`](../../src/CORALean/ContSet/ConPolyZono/Real/Theorems/QuadMapExact.lean) |
 | `Prop. 11` | (Intersection) CPZ1 ∩ CPZ2 = ⟨c1,G1,[E1;0],block-arranged A with G1,-G2 coupling,[b1;b2;c2-c1],[R1,0;0,R2;E1,0;0,E2]⟩_CPZ — encodes the intersection by adding a constraint that the two representations describe the same point. | [`IntersectionExact.lean`](../../src/CORALean/ContSet/ConPolyZono/Real/Theorems/IntersectionExact.lean) |
-| `Thm. 1` | (Union) Gives an explicit closed-form CPZ representation of CPZ1 ∪ CPZ2, using an extra binary-like factor to select between the two operands (center 0.5(c1+c2), and block-structured G, E, A, b, R). Proof in Appendix A, using Def. 7 and Lemma 2 (Prop. 14 is Appendix B's, for rescaling, and is not used here — see the finding below). | — |
+| `Thm. 1` | (Union) Gives an explicit closed-form CPZ representation of CPZ1 ∪ CPZ2, using an extra binary-like factor to select between the two operands (center 0.5(c1+c2), and block-structured G, E, A, b, R). Proof in Appendix A, using Def. 7 and Lemma 2 (Prop. 14 is Appendix B's, for rescaling, and is not used here — see the finding below). | [`UnionExact.lean`](../../src/CORALean/ContSet/ConPolyZono/Real/Theorems/UnionExact.lean), the construction in [`Union.lean`](../../src/CORALean/ContSet/ConPolyZono/Real/Operations/Union.lean) — the equality, under the hypothesis the printed statement omits and is false without; see the finding below |
 | `Prop. 12` | (Order Reduction) reduce(CPZ,ρ_d) for a desired order ρ_d ≥ 2(n+m)/n returns a CPZ of order ≤ ρ_d enclosing CPZ, by partitioning generators/constraints into a kept set H and a reduced set K. | [`ReduceOuter.lean`](../../src/CORALean/ContSet/ConPolyZono/Real/Theorems/ReduceOuter.lean) |
 | `Prop. 13` | (Constraint Reduction) Given a constraint index r and indices d,s satisfying a matching condition (eq. 33) between E and R, reduceCon(CPZ,r,d,s) removes constraint r and returns an enclosing CPZ. | — |
 | `Def. 7` | (Appendix A) Given constraint data A,b,R, constrDom(A,b,R) := {α \| Σ_i (Π_k α_k^R(k,i)) A_(·,i) = b, α_k∈[-1,1]}, the set of factor values satisfying the CPZ's constraint — used in the proof of Thm. 1. | [`Domain.lean`](../../src/CORALean/ContSet/ConPolyZono/Real/Operations/Domain.lean) |
@@ -53,24 +53,34 @@ by polynomial convolution and never forms `v₂` at all. The formalization follo
 the operation in `cen, rad`, which is total.
 [`GetSubset.lean`](../../src/CORALean/ContSet/ConPolyZono/Real/Operations/GetSubset.lean)
 
-**Thm. 1 — the union identity needs both operands regular, which the statement never says.**
-Appendix A.3 argues that on the branch selecting `CPZ1` (α₁=α₂=1), every term contributed by
-`CPZ2`'s generator block vanishes, because `CPZ2`'s own `p2` factors are pinned to `0` there and
-each such column carries a positive power of at least one of them. Nothing in Def. 5 or Thm. 1
-requires that: a dependent generator column whose exponent column is all-zero — a column of
-`E2` with every entry `0`, which is every column whenever `p2 = 0` — is a monomial of degree `0`,
-so it equals `1` regardless of which branch pins the factors, and it gets added on both branches,
-not just its own. Def. 5 names exactly this case (`regular` excludes columns that are all-zero,
-as well as duplicates), and Props. 5–9 each say "the resulting CPZ is regular if the operands
-are" — but that is a claim about the *output*, and Thm. 1 states no such hypothesis on its
-*inputs*. A minimal counterexample: `CPZ1 = ⟨0, [3], [[1]]⟩` (the interval `[-3,3]`) and
-`CPZ2 = ⟨0, [5], [[0]]⟩` (the point `{5}`, its one generator column depending on none of its own
-factors). `CPZ1 ∪ CPZ2 = [-3,3] ∪ {5}`, but Thm. 1's formula at `α1=α2=1` (selecting `CPZ1`),
-its own factor `α3=1`, and `CPZ2`'s factor forced to `α4=0`, evaluates to `3·1+5=8`, which is in
-neither set. CORA's `@conPolyZono/or.m` builds the identical matrices and inherits the same
-gap: it never checks or assumes its two inputs are regular, and the `compact_(...,'all',eps)`
-it applies at the end only cleans the *result*, too late to repair a non-regular *operand*.
-Left unformalized rather than adding regularity as an unstated hypothesis.
+**Thm. 1 — the union identity needs both operands' exponent matrices free of all-zero
+columns, which the statement never says.** Appendix A.3 argues that on the branch selecting
+`CPZ1` (α₁=α₂=1), every term contributed by `CPZ2`'s generator block vanishes, because
+`CPZ2`'s own `p2` factors are pinned to `0` there and each such column carries a positive
+power of at least one of them. Nothing in Def. 5 or Thm. 1 requires that: a dependent
+generator column whose exponent column is all-zero — which is every column whenever
+`p2 = 0` — is a monomial of degree `0`, so it equals `1` regardless of which branch pins
+the factors, and it gets added on both branches, not just its own. Def. 5 names exactly
+this case (`regular` excludes columns that are all-zero, as well as duplicates), and
+Props. 5–9 each say "the resulting CPZ is regular if the operands are" — but that is a
+claim about the *output*, and Thm. 1 states no such hypothesis on its *inputs*. A minimal
+counterexample: `CPZ1` the interval `[-3,3]`, one generator `3` at exponent `1`, and
+`CPZ2` the point `{5}`, one generator `5` at exponent `0` and so depending on none of its
+own factors. `CPZ1 ∪ CPZ2` is `[-3,3] ∪ {5}`, but Thm. 1's formula at `α1=α2=1` (selecting
+`CPZ1`), its own factor `α3=1`, and `CPZ2`'s factor forced to `α4=0`, evaluates to
+`3·1+5=8`, which is in neither set. CORA's `@conPolyZono/or.m` builds the identical
+matrices and inherits the same gap: it never checks or assumes its two inputs are regular,
+and the `compact_(...,'all',eps)` it applies at the end only cleans the *result*, too late
+to repair a non-regular *operand*. Formalized with that hypothesis added and recorded as a
+departure: `NoZeroCol` on all four exponent matrices, which is weaker than Def. 5's
+`regular` — the duplicate-free half never enters Appendix A — and is the weakest condition
+on the exponent matrices alone, an all-zero column of `E2` being broken by putting all of
+`G2` on it. The identity is an equality, not an enclosure. Two further hypotheses are the
+representation's rather than the paper's: neither operand has independent generators, as
+Def. 5 has none and `Prop. 8` is stated the same way, and each `b` is non-crossed, which
+is automatic where Def. 5's `b` is a crisp vector and is needed here because a crossed `b`
+would leave *both* branches unsatisfiable rather than only its own.
+[`UnionExact.lean`](../../src/CORALean/ContSet/ConPolyZono/Real/Theorems/UnionExact.lean)
 
 ## Cited without a result
 

@@ -1,0 +1,39 @@
+import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
+
+/-!
+# `ConPolyZono.unitCol`
+
+One column of an exponent matrix, reading a single factor to the power `e` and
+no other factor at all. The building block every column of the union's selector
+constraint in [1, Thm. 1] is assembled from, by adding such columns.
+
+`PolyZonotope.identE` is the same shape at `e = 1`, but as a whole square matrix
+rather than as a column, which is what an assembly needs.
+
+## References
+
+* [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta
+      Informatica, 2023.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       13-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- The exponent column with `e` at factor `i` and zero everywhere else. -/
+def ConPolyZono.unitCol {p : ℕ} (i : Fin p) (e : ℕ) : Fin p → ℕ :=
+  fun k => if k = i then e else 0
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -31,6 +31,8 @@ import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceGirardOrderLe
 import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceOrder
 import CORALean.ContSet.ConPolyZono.Real.Theorems.DependentSetUnionDomain
 import CORALean.ContSet.ConPolyZono.Real.Theorems.GetSubsetConstruct
+import CORALean.ContSet.ConPolyZono.Real.Theorems.UnionDomainIff
+import CORALean.ContSet.ConPolyZono.Real.Theorems.UnionExact
 
 /-!
 # What `ConPolyZono` guarantees
@@ -49,11 +51,11 @@ exact intersection in this repository that is not of convex sets, and together
 with `quadMap_exact` it is what a nonlinear reachability step needs: propagate
 through a quadratic map, then cut by a guard, neither losing anything.
 
-`isCompact_construct` is the one guarantee about the set rather than an
-operation: a constraint row is a polynomial in the factors, so it closes the
-domain rather than opening it. What `holds` satisfies, and `MemConstruct`, are
-what the operations are stated over.
+`isCompact_construct` is the one guarantee about the set rather than an operation:
+a constraint row is a polynomial in the factors, so it closes the domain rather
+than opening it. `holds` and `MemConstruct` are what the operations are stated over.
 
-`mem_ofPoint` needs none of that: `ofPoint`'s constraint system is empty. `getSubset_construct`
-is an equality, not an enclosure: the substitution it reads back is a polynomial identity.
+`mem_ofPoint` needs none of that, and `getSubset_construct` is an equality, its
+substitution a polynomial identity. So is `union_exact_of_noZeroCol` — under a
+hypothesis the source omits and is false without, which its own file sets out.
 -/
