@@ -1,3 +1,4 @@
+import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErr
 import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrLin
 import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrPolySearch
 import CORALean.ContDynamics.NonlinearSys.Operations.LagrangeRemainder
@@ -30,5 +31,7 @@ subtracted exactly rather than boxed.
 
 `AbstrErrPolySearch` is `linReach`'s while loop for `alg = 'poly'`: a fuel-bounded
 search over candidate applied errors, packaged into a `LinStep` the moment one is
-accepted by the certificate already proved sufficient.
+accepted by the certificate already proved sufficient. `AbstrErr` is the other
+paper's `abstrErr`, the whole of one step's error assembled out of `postΔ`,
+`VarInputs` and `LagrangeRemainder`.
 -/

@@ -2,6 +2,8 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.AbstractionErrorOfHessian
 import CORALean.ContDynamics.NonlinearSys.Theorems.AbstractionErrorOfLagrange
 import CORALean.ContDynamics.NonlinearSys.Theorems.AbstractionErrorOfPoly
 import CORALean.ContDynamics.NonlinearSys.Theorems.AbstrErrLinCenterSubset
+import CORALean.ContDynamics.NonlinearSys.Theorems.AbstrErrMono
+import CORALean.ContDynamics.NonlinearSys.Theorems.LagrangeRemainderMono
 import CORALean.ContDynamics.NonlinearSys.Theorems.ConfinedOfBall
 import CORALean.ContDynamics.NonlinearSys.Theorems.ConfinementOfSubset
 import CORALean.ContDynamics.NonlinearSys.Theorems.LinInputOuter
@@ -28,6 +30,7 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuterInputSolution
 import CORALean.ContDynamics.NonlinearSys.Theorems.RelinTimeIntervalOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.Restrict
 import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
+import CORALean.ContDynamics.NonlinearSys.Theorems.VarInputsMono
 import CORALean.ContDynamics.NonlinearSys.Theorems.VarInputsOuter
 
 /-!
@@ -49,9 +52,9 @@ The `ReachSet` files say that of the reachable set rather than of a run:
 `ReachSetOuter` puts a run into it, and the `ReachSetSubset` files enclose it.
 
 `AbstractionErrorOfHessian` is one supplier, `AbstrErrLinCenterSubset` minimises
-what it gives at the set's centre, and `AbstractionErrorOfLagrange` is the same
-one order up, of the field with its exact quadratic part shifted out. The
-`PolyAbstractionError` files are the polynomialization variant's certificate:
-`OfQuadRemainder` builds one, `GetSubset` splits it, `AbstractionErrorOfPoly`
-forgets the dependency.
+what it gives at the centre, `AbstractionErrorOfLagrange` is the same one order
+up, and the `PolyAbstractionError` files are the polynomialization variant's:
+`OfQuadRemainder` builds one, `GetSubset` splits it, `...OfPoly` forgets the
+dependency. The `Mono` files are what a dependency argument asks instead —
+`AbstrErr` grows with the sets it runs on, as `VarInputs` and the remainder do.
 -/

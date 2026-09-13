@@ -16,11 +16,13 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.GetSubsetFixed
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
 import CORALean.ContSet.PolyZonotope.Real.Theorems.PlusExact
+import CORALean.ContSet.PolyZonotope.Real.Theorems.PlusMono
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ExactPlusPoint
 import CORALean.ContSet.PolyZonotope.Real.Theorems.CartProdExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ExactCartProdPoint
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MapExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ProjectExact
+import CORALean.ContSet.PolyZonotope.Real.Theorems.MapMono
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MapPoint
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MapSubsetAt
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MtimesExact
