@@ -4,7 +4,7 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.SubsetAtUnitBox
 /-!
 # `getSubset` represents the subset a factor sub-box reaches
 
-Naming that subset is [1]'s subject; this represents it. The sub-box restricting
+Naming that subset is [1, Thm. 1]'s subject; this represents it. The sub-box restricting
 factor `k` to `cen ± rad` reaches *exactly* `getSubset`'s set — an equality, not
 an enclosure, and at every degree: the re-parametrization is affine in the
 factor, the monomials above degree one expand binomially, and that expansion is

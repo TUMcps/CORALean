@@ -4,7 +4,7 @@ import CORALean.ContSet.Conversion.Real.Interval_to_PolyZonotope
 /-!
 # `lagrangeRemainder` grows with the region it is taken over
 
-`[2]`'s property (6) for `[1, Sec. 4.1]`'s remainder box, proved rather than
+`[2, Lemma 3]`'s property (6) for `[1, Sec. 4.1]`'s remainder box, proved rather than
 assumed. It holds for a reason worth naming: `γ` is not an artefact of the
 zonotope's generators but exactly `max |z - z✱|` over what it denotes, so a
 larger denoted set gives a larger `γ` whatever representation carries it — which

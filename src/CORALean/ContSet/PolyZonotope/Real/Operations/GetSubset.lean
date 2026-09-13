@@ -6,7 +6,7 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.GetSubsetG
 
 CORA's `@polyZonotope/getSubset`: one factor re-parametrized onto a sub-interval
 `cen ± rad` of `[-1,1]`, so that the unit box of the new factors reaches what
-that sub-interval of the old one reached. What such a sub-box names is [1]'s
+that sub-interval of the old one reached. What such a sub-box names is [1, Thm. 1]'s
 subject; this is the representation of it, `getSubsetG` at `getSubsetE`.
 
 An exact change of variables and not an enclosure, above degree one as much as

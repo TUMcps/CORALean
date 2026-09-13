@@ -3,7 +3,7 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.SubsetAt
 /-!
 # `subsetAt` is monotone in the sub-box
 
-`subsetAt` is `point`'s image of the sub-box that names [1]'s dependent subset,
+`subsetAt` is `point`'s image of the sub-box that names [1, Thm. 1]'s dependent subset,
 and image is monotone in the set mapped: a larger sub-box reaches more of it.
 
 ## References

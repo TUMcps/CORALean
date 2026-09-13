@@ -4,7 +4,7 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
 /-!
 # A sub-box of admissible factors reaches only members
 
-Every point [1]'s `subsetAt` names from a sub-box of admissible factors is a
+Every point [1, Thm. 1]'s `subsetAt` names from a sub-box of admissible factors is a
 member of `construct`: `point_mem_construct` at each of `B`'s vectors.
 
 ## References

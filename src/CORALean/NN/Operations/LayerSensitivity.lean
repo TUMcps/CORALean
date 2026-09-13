@@ -5,7 +5,7 @@ import CORALean.NN.Layer
 
 CORA's `evaluateSensitivity`: the Jacobian of what the layer computes at a
 point — rows output neurons, columns input neurons — which is what weights a
-neuron's approximation error by how much it moves the output [1].
+neuron's approximation error by how much it moves the output [1, Def. 2.3].
 
 Total, and carrying no obligation: ReLU has no derivative at zero, so asking for
 one would be a lie and a differentiability hypothesis would exclude the

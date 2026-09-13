@@ -471,8 +471,10 @@ theorem aux_norm_constTail_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) (η : ℕ
 A proof of **five lines or more** must carry one, and a shorter proof must
 not: below that the `:= by` is still in view, and a flag on every two-line
 proof would say only what the source already shows. Required and refused on
-either side of one number, so the flag always means the same thing — 661 of
-them, on two theorems in five.
+either side of one number, so the flag always means the same thing — and it
+lands on roughly two theorems in five. No exact count is quoted here: it moves
+with every proof written, and a figure CI cannot keep honest goes stale the
+day after it is written.
 
 It rides on a `theorem` or a `lemma` and on nothing else. A `def` that proves
 something in a structure field — `Ellipsoid.supportBound`'s `le :=`, eight lines

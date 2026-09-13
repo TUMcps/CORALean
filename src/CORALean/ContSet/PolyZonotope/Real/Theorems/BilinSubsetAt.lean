@@ -9,7 +9,7 @@ image of `B` under `a ↦ f (pZ₁.point a) (pZ₂.point (a ∘ Fin.cast hp.symm
 factor vector driving both points at once — *not*
 `Set.image2 f (pZ₁.subsetAt B) (pZ₂.subsetAt _)`, which lets the two points range
 independently. `bilin_subsetAt_subset_image2` proves the diagonal is contained
-in that pairwise image and is generally strictly smaller: the gap is [1]'s
+in that pairwise image and is generally strictly smaller: the gap is [1, Def. 4]'s
 whole point, what a dependency-preserving representation buys over one that
 can only pair sets.
 
