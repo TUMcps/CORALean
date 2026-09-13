@@ -37,6 +37,7 @@ import Mathlib.Tactic.Linarith
 import Mathlib.Tactic.Ring
 import Mathlib.Tactic.Tauto
 import Mathlib.Topology.ContinuousMap.Weierstrass
+import Mathlib.Topology.MetricSpace.HausdorffDistance
 
 /-!
 # The Mathlib surface CORALean uses

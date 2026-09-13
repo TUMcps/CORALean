@@ -11,10 +11,10 @@ Verifying a linear system with no parameters to tune, by computing an inner
 approximation beside the outer one and stopping when they answer. `reachInner`
 and `reachInnerReduced`, at both layers and both time domains.
 
-Every error bound the paper proves is a Hausdorff distance, and CORALean has no
-Hausdorff distance: Mathlib's `Metric.hausdorffDist` exists but is not among the
-imports `Global/Mathlib.lean` admits, so `Def. 5` and the propositions bounding it
-are open rather than provided.
+Every error bound the paper proves is a Hausdorff distance. `Def. 5` is
+Mathlib's `Metric.hausdorffDist`, which `Global/Mathlib.lean` admits and two
+files use; the propositions bounding it are each about a reachability-specific
+error term and stay open.
 
 ## Results
 
@@ -24,7 +24,7 @@ are open rather than provided.
 | `Def. 2` | (Constrained zonotope) CZ := {c + Σ G_(·,i) α_i \| Σ A_(·,i) α_i = b, α_i∈[-1,1]}, shorthand CZ=⟨c,G,A,b⟩_CZ; used to represent inner-approximations of reachable sets. | n/a — restated from Scott et al. 2016, which this formalization does not draw on directly |
 | `Def. 3` | (Polytope) [cites [45, Sec. 1.1]] Halfspace representation P:={x \| Cx≤d}, equivalently the vertex representation P:={Σ β_i v_i \| Σ β_i = 1, β_i ≥ 0}; shorthands ⟨C,d⟩_H and ⟨[v_1...v_s]⟩_V. | n/a — restated from Ziegler's *Lectures on Polytopes*, which this formalization does not draw on directly |
 | `Def. 4` | (Zonotope order reduction) [cites [11, Sec. 3.4]] reduce(Z,ρ_d) ⊇ Z returns an enclosing zonotope of order ≤ ρ_d, by boxing the χ = γ-⌊(ρ_d-1)n⌋ generators smallest under ‖G_(·,i)‖_1 - ‖G_(·,i)‖_∞. | n/a — restated from Girard 2005, which this formalization does not draw on directly |
-| `Def. 5` | (Hausdorff distance) For compact sets S1,S2⊆R^n, d_H(S1,S2) = max{ sup_{s1} inf_{s2} ‖s1-s2‖2, sup_{s2} inf_{s1} ‖s1-s2‖2 }. | — |
+| `Def. 5` | (Hausdorff distance) For compact sets S1,S2⊆R^n, d_H(S1,S2) = max{ sup_{s1} inf_{s2} ‖s1-s2‖2, sup_{s2} inf_{s1} ‖s1-s2‖2 }. | n/a — Mathlib's `Metric.hausdorffDist` provides it, used in [`HausdorffDistAddLe.lean`](../../src/CORALean/ContSet/ContSet/Theorems/HausdorffDistAddLe.lean) and [`HausdorffDistIntervalLe.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/HausdorffDistIntervalLe.lean); the same definition as `Def. 2` on the [NAHS 2022 page](../2022/wetzlinger-nahs-abstraction-error.md), whose row says which norm Mathlib's reads it in |
 | `Def. 6` | (Reachable set) R(t) := {ξ(t;x(0),u(·)) \| x(0)∈X0, ∀θ∈[0,t]: u(θ)∈U}; also defines time-point R(t_k) and time-interval R(τ_k) reachable sets. | n/a — restated; tracked as `Def. 3.1` on [Althoff's thesis](../2010/althoff-thesis.md) |
 | `Alg. 1` | "Reachability algorithm (manual tuning)": baseline reachability algorithm for linear systems with a fixed, user-supplied time step Δt, truncation order η, and zonotope order ρ, returning the outer-approximation R̂([0,t_end]). | — |
 | `Prop. 1` | (Affine dynamics error) Bounds the Hausdorff distance between the exact time-interval solution of the affine dynamics H(τ_k) and its outer-approximation. | — |
