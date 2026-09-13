@@ -8,6 +8,7 @@ import Mathlib.Analysis.Calculus.Deriv.Mul
 import Mathlib.Analysis.Calculus.Deriv.Pow
 import Mathlib.Analysis.Calculus.FDeriv.CompCLM
 import Mathlib.Analysis.Calculus.MeanValue
+import Mathlib.Analysis.Convex.Caratheodory
 import Mathlib.Analysis.Convex.Integral
 import Mathlib.Analysis.Convex.Join
 import Mathlib.Analysis.Convex.KreinMilman
@@ -26,6 +27,7 @@ import Mathlib.Data.Fintype.Pi
 import Mathlib.Data.Matrix.Mul
 import Mathlib.Data.Real.Basic
 import Mathlib.Data.Set.Prod
+import Mathlib.LinearAlgebra.AffineSpace.FiniteDimensional
 import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 import Mathlib.Logic.Equiv.Fin.Basic
 import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
