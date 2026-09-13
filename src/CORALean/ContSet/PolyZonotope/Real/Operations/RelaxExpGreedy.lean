@@ -4,7 +4,7 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpMulti
 # `PolyZonotope.relaxExpGreedy`
 
 The loop of `[1, Thm. 2]`: merge the two dependent generators a selection names, and repeat
-until it names none. `[1]` walks the greedy subgraph of `[1, Def. 5]` — the smallest-weight
+until it names none. `[1, Alg. 2]` walks the greedy subgraph of `[1, Def. 5]` — the smallest-weight
 outgoing edge of each node, merged along the forest that leaves — one selection among many.
 
 The selection is a parameter and owes no proof. Soundness holds wherever it points, so the

@@ -9,7 +9,7 @@ with some point of `pZ₂`'s subset at the reindexed box — namely the same sha
 factor vector, read through each set's own point. The reverse containment need
 not hold, and generally does not: a pairwise `image2` also reaches every
 combination of an `pZ₁`-point at one factor vector with an `pZ₂`-point at an
-unrelated one, which no shared factor vector names. That gap is [1]'s whole
+unrelated one, which no shared factor vector names. That gap is [1, Def. 4]'s whole
 point, and is not proved strict here — only crossed one way.
 
 ## References

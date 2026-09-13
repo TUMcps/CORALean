@@ -7,6 +7,9 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
 /-!
 # Making the independent generators dependent loses nothing
 
+[1, Prop. 1]: every polynomial zonotope with independent generators can be
+written without them, by expanding the exponent matrix.
+
 The fresh factors are what the independent coefficients were: each occurs in one
 generator, to the first power, and nowhere else, so it ranges over `[-1,1]`
 under no constraint the coefficient did not already have. `monomial_identE` is
@@ -15,6 +18,11 @@ the line that says so.
 Both directions are stated through `show`, since the counts of the result are
 projections of a definition and the sum lemmas match only in their reduced
 spelling.
+
+## References
+
+* [1] N. Kochdumper, B. Schürmann and M. Althoff. "Utilizing Dependencies to
+      Obtain Subsets of Reachable Sets". HSCC 2020. arXiv:1910.08354.
 -/
 
 -- Authors:       Tobias Ladner

@@ -3,7 +3,7 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.Map
 /-!
 # Summation pooling across nodes
 
-CORA's `nnGNNGlobalPoolingLayer` at the sum, and [1, Prop. 3]: `H ↦ (1 H)ᵀ`,
+CORA's `nnGNNGlobalPoolingLayer` at the sum — [1, Def. 5] — and [1, Prop. 3]: `H ↦ (1 H)ᵀ`,
 which aggregates the nodes away and leaves one feature vector for the graph.
 Linear again, so its propagation is `PolyZonotope.map` and its guarantee
 `map_exact`.

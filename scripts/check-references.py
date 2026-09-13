@@ -7,7 +7,8 @@
 results and, for each, where it is formalized. Nothing here reads Lean: the
 cites are in module docstrings, which `check-conventions.sh` already keeps
 well-formed. What this adds is that the two agree — every paper cited has a
-file, every link resolves and points at a file that really cites that result,
+file, every link resolves and points at a file that cites that very result,
+every row asserting something links a file that proves something,
 every result cited somewhere is a row, every result one page defers to another
 is a row there, and the README's counts are the counts.
 
@@ -31,6 +32,12 @@ LOCATOR = re.compile(
     r"Heuristic|Assumption|§|pp?\.)", re.I
 )
 LINK = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
+# A row that asserts something, as against one naming a definition, a section or
+# an algorithm. Only these are held to linking a file that proves something.
+CLAIM = re.compile(r"^(Thm\.|Prop\.|Lemma|Cor\.)", re.I)
+# A file proves something if it declares a theorem, or discharges a field of a
+# structure that carries its own guarantee -- `SupportBound`'s `le := by ...`.
+PROOF = re.compile(r"^(theorem|lemma)\s|:=\s*by\b", re.M)
 # A cell deferring a result to the page that owns it: ``tracked as `X` on
 # [Title](../year/file.md)``. The locator and the page are what get checked.
 TRACKED = re.compile(r"tracked as\s+`([^`]+)`\s+on\s+\[[^\]]*\]\(([^)]+)\)")
@@ -271,6 +278,7 @@ def main():
 
     for paper in papers:
         for result, links in sorted(paper.results.items()):
+            targets = []
             for link in links or []:
                 target = (paper.path.parent / link).resolve()
                 if not target.exists():
@@ -278,9 +286,23 @@ def main():
                     continue
                 if target.suffix != ".lean":
                     continue
-                if paper.entry not in cites_of(target):
+                cites = cites_of(target)
+                if paper.entry not in cites:
                     say(f"{paper.rel}: `{result}` links {target.name}, which does "
                         "not cite this paper")
+                    continue
+                targets.append(target)
+                if locator(result) not in cites[paper.entry]:
+                    named = sorted(l for l in cites[paper.entry] if l)
+                    says = f"cites {', '.join(named)}" if named else "cites it bare"
+                    say(f"{paper.rel}: `{result}` links {target.name}, which {says} "
+                        f"— a link is a claim that the file answers to `{result}`")
+            if targets and CLAIM.match(result) and not any(
+                    PROOF.search(t.read_text(encoding="utf-8", errors="replace"))
+                    for t in targets):
+                say(f"{paper.rel}: `{result}` asserts something, and links only "
+                    f"{', '.join(t.name for t in targets)}, which prove nothing. A "
+                    "citation in a docstring is not a proof")
 
     # --- one page against another -------------------------------------------- #
 

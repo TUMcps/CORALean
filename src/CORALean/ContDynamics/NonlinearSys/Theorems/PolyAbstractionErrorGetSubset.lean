@@ -5,7 +5,7 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.GetSubsetPoint
 # Narrowing a factor narrows the error with it
 
 What the polynomialization variant buys, in one statement: re-parametrizing
-factor `k` of the initial set onto a sub-interval — [1]'s `getSubset`, which is
+factor `k` of the initial set onto a sub-interval — [1, Lemma 4]'s `getSubset`, which is
 how a set is split — re-parametrizes the *abstraction error* by the same
 substitution. The error over a piece of the initial set is a piece of the error,
 not the whole of it.

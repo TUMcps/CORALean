@@ -22,7 +22,7 @@ approximated otherwise. `minkDiffAligned` is the exact case; CORA's default
 | `Def. 2` | (n-dimensional cross product) [cites [47]] For n-1 vectors h^(i) stored in H, nX(H) = [det(H^[1]), -det(H^[2]), ..., (-1)^{n+1}det(H^[n])]^T, where H^[i] is H with row i removed. | — |
 | `Thm. 2` | (H-Representation of Zonotopes) [cites [10, Thm. 7]] Gives the halfspace representation Cx≤d of a zonotope (c,G) with p independent generators, using the normalized cross products nX of combinations of generators for C, and Δd = Σ\|C+g^(υ)\| for the offset. | — |
 | `Lemma 2` | (H-Representation of Intersection of Translated Zonotopes) For Z_o=(c-h,G) and Z_t=(c+h,G), the halfspace representation of Z_o∩Z_t has the same C matrix as Thm. 2 but a d vector adjusted by Δd_trans = \|C+h\|. | — |
-| `Thm. 3` | (H-Representation of the Minkowski Difference) For zonotopes Z_m=(c^(m),G^(m)) and Z_s=(c^(s),G^(s)), gives the halfspace representation Cx≤d of Z_m⊖Z_s, with the same C matrix as Thm. 2 and d adjusted by both Δd and Δd_trans. | [`MinkDiffRep.lean`](../../src/CORALean/ContSet/Zonotope/Real/Operations/MinkDiffRep.lean) |
+| `Thm. 3` | (H-Representation of the Minkowski Difference) For zonotopes Z_m=(c^(m),G^(m)) and Z_s=(c^(s),G^(s)), gives the halfspace representation Cx≤d of Z_m⊖Z_s, with the same C matrix as Thm. 2 and d adjusted by both Δd and Δd_trans. | n/a — deliberately done differently: the halfspace route is sound only for the minuend's own facet normals, and the scaling it needs is a pseudoinverse solution nothing checks. See `Zonotope Minkowski difference` in [FINDINGS.md](../../FINDINGS.md) |
 | `Prop. 1` | (Zonotopes are not closed under Minkowski difference) Gives an explicit 3D counterexample zonotope pair Z_m, Z_s for which Z_m⊖Z_s is not itself a zonotope. | — |
 | `Prop. 2` | (Generator removal) Gives a necessary-and-sufficient combinatorial condition (a sum of indicator terms equal to 2·C(p_m-1,n-2)) for the i-th generator of the minuend Z_m to be droppable without affecting Z_m⊖Z_s; states the O(C(p_m,n-1)·p_m²) complexity of checking this. | — |
 | `Thm. 4` | (Under-Approximative G-Representation of the Minkowski Difference) Gives an under-approximating generator representation (ĉ,Ĝ) of Z_m⊖Z_s, with ĉ=c^(m)-c^(s) and Ĝ=Ĝ^(m)μ*, μ* the solution of an LP maximizing ζ^Tμ subject to Âμ≤b̂, μ≥0. | — |
@@ -31,10 +31,22 @@ approximated otherwise. `minkDiffAligned` is the exact case; CORA's default
 | `Prop. 4` | For Z_{m,encl}⊇Z_s, (Z_{m,encl}⊖Z_s)⊕Z_{m,rem} ⊆ (Z_{m,encl}⊕Z_{m,rem})⊖Z_s — a distributivity-type inclusion relating Minkowski difference/sum when the minuend is split into an enclosing part and a remainder. | [`MinkowskiDiffEnclSubsetAdd.lean`](../../src/CORALean/ContSet/ContSet/Theorems/MinkowskiDiffEnclSubsetAdd.lean) |
 | `Alg. 1` | (Generator Selection for Z_m) Sorts the generators of Z_m by length and greedily adds them, comparing interval-hull (box) ratios against Z_s, to build an enclosing Z_{m,encl}⊇Z_s with as few generators as possible; used by Prop. 4. | — |
 | `Def. 3` | (Aligned zonotopes) Two zonotopes Z1=(c,g^(1),...,g^(p1)), Z2=(d,h^(1),...,h^(p2)) (each with no internally-aligned generators) are aligned if generators of Z1 and Z2 are pairwise parallel up to scaling. | — |
-| `Prop. 5` | (Minkowski difference for aligned generators) If Z_m is aligned with Z_s (γ_i g^(m,i) = g^(s,i) for i=1..p_s after reordering), then Z_m⊖Z_s is computed exactly as (c^(m)-c^(s), g^(m,1)-g^(s,1), ..., g^(m,ps)-g^(s,ps), g^(m,ps+1), ..., g^(m,pm)). | [`MinkDiffAligned.lean`](../../src/CORALean/ContSet/Zonotope/Real/Operations/MinkDiffAligned.lean) |
+| `Prop. 5` | (Minkowski difference for aligned generators) If Z_m is aligned with Z_s (γ_i g^(m,i) = g^(s,i) for i=1..p_s after reordering), then Z_m⊖Z_s is computed exactly as (c^(m)-c^(s), g^(m,1)-g^(s,1), ..., g^(m,ps)-g^(s,ps), g^(m,ps+1), ..., g^(m,pm)). | — |
 | `Prop. 6` | (Minkowski difference of two-dimensional zonotopes) Gives a closed-form zonotope (c^(m)-c^(s), Ĝ^(m)\|Ĉ+Ĝ^(m)\|^{-1}(Δd̂-Δd̂_trans)) for the Minkowski difference of two 2-dimensional zonotopes (exact, since the 2D case is always aligned/tractable). | — |
 
 ## Findings
+
+**`Prop. 5` — the aligned case is claimed exact, and only one inclusion is proved.**
+`Zonotope.minkDiffAligned_inner` gives `aligned ⊆ Z_m ⊖ Z_s`; the printed result says the
+difference *is* that zonotope. The row is open rather than linked, because a link would
+assert the equality. The reverse inclusion now looks tractable: `minkDiffGenRec_exact`
+computes `Z_m ⊖ Z_s` exactly for arbitrary zonotopes, so what remains is showing the
+recursive fold collapses to the aligned formula when the generators are parallel.
+
+**`Thm. 3` — sound only for the minuend's own facet normals.** The shifted-offset formula
+needs the halfspaces to *equal* the minuend, and `Zonotope.hPolytope_contains` gives the
+enclosing direction alone; the scaling CORA applies is a pseudoinverse solution nothing
+checks. Out of scope by decision, with the alternative in `FINDINGS.md`.
 
 **`Thm. 1` — eq. (8) is stated for a set, and is false off the convex ones.** The proof's
 eq. (8), `A ⊖ ([-1,1] ⊗ g) = (A + g) ∩ (A − g)`, is asserted "for a set `A`". At

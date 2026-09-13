@@ -3,9 +3,9 @@ import CORALean.Global.Tensor
 /-!
 # A neuron's share of the output error
 
-The paper's per-neuron weight [1, Eq. 28]: a neuron's column of the
+The paper's per-neuron weight [1, Def. 4.12]: a neuron's column of the
 backpropagated Jacobian, summed in magnitude, against the error its own
-relaxation leaves. `Operations.RefineWorst` sums it into a layer's rank and
+relaxation leaves. `Operations.RefineWorst` sums it into a layer's rank [1, Eq. 28] and
 `Operations.RefineWorstNeurons` reads it unaggregated — the same quantity
 ranks both rules, only the aggregate differs.
 

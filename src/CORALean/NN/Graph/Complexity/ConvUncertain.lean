@@ -6,6 +6,7 @@ import CORALean.NN.Graph.ConvUncertain
 [1, Prop. 5]'s `O(h₁ h₂³)`: the layer at an uncertain graph is
 [1, Lemma 1]'s multiplication followed by an affine map, so its dependent
 generator count is `(P.h + 1) * (H.h + 1)` — the product [1, Lemma 1] predicts —
+and one of the per-layer counts [1, Thm. 1]'s overall bound is assembled from —
 and its independent block is empty, `bilin` being a claim about `point`. `rfl`
 against the structure instances in `ConvUncertain.lean` and
 `Operations/Bilin.lean`.

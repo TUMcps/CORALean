@@ -4,7 +4,7 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.Map
 /-!
 # The graph convolutional layer, at a fixed graph
 
-CORA's `nnGCNLayer` and [1, Prop. 2]: `H ↦ P H W` with the message passing
+CORA's `nnGCNLayer`, [1, Def. 4], and [1, Prop. 2]: `H ↦ P H W` with the message passing
 `P = D̃^(-1/2) Ã D̃^(-1/2)` of [2, Eq. 2]. The layer *is* a linear map of
 matrices, so its propagation is `PolyZonotope.map` at that map and nothing else,
 which is what makes `Theorems/ConvExact` a corollary of `map_exact` — and why

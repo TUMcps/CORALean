@@ -8,7 +8,7 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
 `point` ignores the independent block, so the factor domain indexes all of
 `construct` exactly when there is none: `hq : pZ.q = 0` is load-bearing, not a
 simplifying assumption. With `q > 0` the inclusion is strict and a subset
-statement is only ever about the dependent part — [1]'s point: dependency
+statement is only ever about the dependent part — [1, Def. 3]'s point: dependency
 lives in the dependent block, the independent one carries none.
 
 ## References

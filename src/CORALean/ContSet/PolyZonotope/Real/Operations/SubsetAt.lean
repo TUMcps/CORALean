@@ -4,7 +4,7 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.Point
 # `PolyZonotope.subsetAt`: the subset a sub-box of the factors picks out
 
 The image of `point` restricted to a sub-box `B ⊆ Fin pZ.p → ℝ` of the factor
-domain — [1]'s dependency result in one line: a subset of the initial factors
+domain — [1, Def. 3]'s dependency result in one line: a subset of the initial factors
 names the corresponding subset of the reachable set, because `point` is what a
 factor vector picks out in the first place.
 

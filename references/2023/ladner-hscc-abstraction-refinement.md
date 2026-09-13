@@ -25,9 +25,9 @@ sorted, and no generator count or running cost is claimed for it.
 | `Prop. 2.6` | (Zonotope Enclosure, [23, Prop. 3.1.14]) PZ enclosed by Z=zonotope(PZ), Eq. (8) | [`PolyZonotope_to_Zonotope.lean`](../../src/CORALean/ContSet/Conversion/Real/PolyZonotope_to_Zonotope.lean) |
 | `Def. 2.5` | (Zonotope, [12, Def. 1]) center c and generator matrix G, Eq. (7) | n/a — restated from A. Girard, "Reachability of Uncertain Linear Systems Using Zonotopes", HSCC 2005, where the representation is introduced |
 | `Prop. 2.7` | (Interval Enclosure, [1, Prop. 2.2]) interval bounds [l,u] of a zonotope, Eq. (9) | [`PolyZonotope_to_Interval.lean`](../../src/CORALean/ContSet/Conversion/Real/PolyZonotope_to_Interval.lean) |
-| `Prop. 2.8` | (Linear Map, [23, Prop. 3.1.18/19]) linear map of a polynomial zonotope, Eq. (10) | [`Map.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Operations/Map.lean) |
-| `Prop. 2.9` | (Quadratic Map, [23, Prop. 3.1.30]) standard quadratic map sq(PZ1,PZ2) of two polynomial zonotopes, Eq. (11) | [`Mul.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Operations/Mul.lean) |
-| `Prop. 2.10` | (Polynomial Map, [23, Prop. A.1]) polynomial map poly(PZ,o) of order o via repeated quadratic maps, Eq. (12) | [`Mul.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Operations/Mul.lean) |
+| `Prop. 2.8` | (Linear Map, [23, Prop. 3.1.18/19]) linear map of a polynomial zonotope, Eq. (10) | n/a — restated; the row's own `[23, Prop. 3.1.18/19]` is the paper's attribution. Tracked as `Prop. 8` on [Sparse Polynomial Zonotopes](../2021/kochdumper-tac-sparse-polyzonotopes.md) |
+| `Prop. 2.9` | (Quadratic Map, [23, Prop. 3.1.30]) standard quadratic map sq(PZ1,PZ2) of two polynomial zonotopes, Eq. (11) | n/a — restated; the row's own `[23, Prop. 3.1.30]` is the paper's attribution. Tracked as `Prop. 13` on [Sparse Polynomial Zonotopes](../2021/kochdumper-tac-sparse-polyzonotopes.md) |
+| `Prop. 2.10` | (Polynomial Map, [23, Prop. A.1]) polynomial map poly(PZ,o) of order o via repeated quadratic maps, Eq. (12) | n/a — restated; the row's own `[23, Prop. A.1]` is the paper's attribution, to a source this repository has no page for, so there is nothing to point at |
 | `Prop. 2.11` | (Projection, [23, Prop. 3.1.16]) projection of a polynomial zonotope on dimension i, Eq. (13) | [`Project.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Operations/Project.lean), [`ProjectExact.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/ProjectExact.lean) |
 | `Prop. 2.12` | (Cartesian Product, [25, Prop. 2]) Cartesian product of two polynomial zonotopes with common identifier vector, Eq. (14) | [`ExactCartProd.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Operations/ExactCartProd.lean), [`ExactCartProdPoint.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/ExactCartProdPoint.lean); shares the independent generators too, so it is not the product (see Findings) |
 | `Prop. 2.13` | (Order Reduction, [23, Prop. 3.1.39]) reduce(PZ,o') returns a polynomial zonotope of order ≤ o' enclosing PZ, Eq. (15) | n/a — restated; tracked as `Prop. 16` on [Sparse Polynomial Zonotopes](../2021/kochdumper-tac-sparse-polyzonotopes.md) |
@@ -69,8 +69,5 @@ These name the paper as a whole. A locator would put each in a row above.
 * [`PolyConvergence.lean`](../../src/CORALean/NN/Layers/PolyConvergence.lean)
 * [`PolyFitConvergence.lean`](../../src/CORALean/NN/Layers/PolyFitConvergence.lean)
 * [`PolyRangeConvergence.lean`](../../src/CORALean/NN/Layers/PolyRangeConvergence.lean)
-* [`PolyRelaxation.lean`](../../src/CORALean/NN/Layers/PolyRelaxation.lean)
 * [`PolySampling.lean`](../../src/CORALean/NN/Layers/PolySampling.lean)
 * [`SigmoidLinearSigmoid.lean`](../../src/CORALean/NN/Layers/SigmoidLinearSigmoid.lean)
-* [`LayerSensitivity.lean`](../../src/CORALean/NN/Operations/LayerSensitivity.lean)
-* [`Sensitivity.lean`](../../src/CORALean/NN/Operations/Sensitivity.lean)

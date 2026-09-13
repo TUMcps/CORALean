@@ -6,7 +6,7 @@ import CORALean.NN.Operations.LayerSensitivity
 
 CORA's `calcSensitivity`: a forward pass to place each layer's input, then the
 Jacobians multiplied back from the output, `S ← S · Jᵢ` — the chain rule and
-nothing else [1].
+nothing else [1, Def. 2.3].
 
 Written as the recursion the graph already is: the rest of the network's
 sensitivity at this layer's output, times this layer's own. Every partial

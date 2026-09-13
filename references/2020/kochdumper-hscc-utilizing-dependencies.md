@@ -25,13 +25,13 @@ by evaluating the polynomial zonotope at the factors that name it —
 | `Def. 4` | (Dependency Preservation) An operation preserves dependencies if applying it to a parameterized subset lands inside the evaluation of the operation on the whole. | [`DependencyPreserving.lean`](../../src/CORALean/ContSet/ContSet/DependencyPreserving.lean), [`MapSubsetAt.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/MapSubsetAt.lean), [`BilinSubsetAt.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/BilinSubsetAt.lean), [`BilinSubsetAtSubsetImage2.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/BilinSubsetAtSubsetImage2.lean) |
 | `Def. 5` | (Polynomial Zonotope) Dependent factors carrying monomials, plus independent generators. | n/a — restated; tracked as `Def. 1` on [Sparse Polynomial Zonotopes](../2021/kochdumper-tac-sparse-polyzonotopes.md) |
 | `Def. 6` | (Reachable Set) Every state reachable from the initial set under the dynamics and admissible inputs. | [`ReachSet.lean`](../../src/CORALean/ContDynamics/NonlinearSys/ReachSet.lean) |
-| `Prop. 1` | Any polynomial zonotope with independent generators can be written without them, by expanding the exponent matrix. | [`Dependent.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Operations/Dependent.lean) |
+| `Prop. 1` | Any polynomial zonotope with independent generators can be written without them, by expanding the exponent matrix. | [`DependentExact.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/DependentExact.lean) |
 | `Lemma 1` | A composition of unary operations satisfying monotonicity satisfies it too. | n/a — Mathlib provides it: property (6) is `Monotone` at `Set` ordered by `⊆`, so this is `Monotone.comp`, which `DependencyPreservingComp.lean` takes as a hypothesis rather than reproving |
 | `Lemma 2` | A composition of dependency-preserving operations is dependency-preserving. | [`DependencyPreservingComp.lean`](../../src/CORALean/ContSet/ContSet/Theorems/DependencyPreservingComp.lean) |
 | `Lemma 3` | The abstraction-error computation satisfies the binary monotonicity property. | [`AbstrErr.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/AbstrErr.lean), [`AbstrErrMono.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/AbstrErrMono.lean), [`VarInputsMono.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/VarInputsMono.lean), [`LagrangeRemainderMono.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/LagrangeRemainderMono.lean), [`PolyZonotope_to_Zonotope.lean`](../../src/CORALean/ContSet/Conversion/Real/PolyZonotope_to_Zonotope.lean) |
 | `Lemma 4` | The post operator preserves dependencies with respect to the parameters. | [`PolyAbstractionErrorGetSubset.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/PolyAbstractionErrorGetSubset.lean) |
 | `Lemma 5` | The reach algorithm, a composition of the post operator over every time step, preserves dependencies with respect to the parameters. | [`DependencyPreservingChain.lean`](../../src/CORALean/ContSet/ContSet/Theorems/DependencyPreservingChain.lean) |
-| `Thm. 1` | A reachable subset can be read out of the computed reachable set by evaluating its polynomial zonotope at the parameters naming it. | [`SubsetAt.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Operations/SubsetAt.lean), [`GetSubset.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Operations/GetSubset.lean), [`GetSubsetConstruct.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/GetSubsetConstruct.lean), [`SubsetAtMono.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/SubsetAtMono.lean), [`SubsetAtSubsetConstruct.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/SubsetAtSubsetConstruct.lean) |
+| `Thm. 1` | A reachable subset can be read out of the computed reachable set by evaluating its polynomial zonotope at the parameters naming it. | [`GetSubset.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Operations/GetSubset.lean), [`GetSubsetConstruct.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/GetSubsetConstruct.lean), [`SubsetAtMono.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/SubsetAtMono.lean), [`SubsetAtSubsetConstruct.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/SubsetAtSubsetConstruct.lean) |
 | `Alg. 1` | (reach) Reachable sets through Taylor-expansion-based abstraction of the nonlinear dynamics. | n/a — restated; the paper says it is "taken from" its [26], so tracked as `Alg. 1` on [Sparse Polynomial Zonotopes](../2021/kochdumper-tac-sparse-polyzonotopes.md) |
 | `Alg. 2` | (abstrErr) The abstraction error of that Taylor approximation. | n/a — restated; it is line 7 and lines 10-15 of that same algorithm, named and factored out, so tracked as `Alg. 1` on [Sparse Polynomial Zonotopes](../2021/kochdumper-tac-sparse-polyzonotopes.md) |
 
@@ -82,17 +82,3 @@ quadratic term to be state-only where it is exact over the whole stacked pair,
 the gap that file's own docstring names. That is not what `Lemma 3` claims, and
 is left as work rather than recorded as a departure.
 
-## Cited without a result
-
-These name the paper as a whole. A locator would put each in a row above.
-
-* [`PolyAbstractionErrorGetSubset.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/PolyAbstractionErrorGetSubset.lean)
-* [`GetSubset.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Operations/GetSubset.lean)
-* [`SubsetAt.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Operations/SubsetAt.lean)
-* [`BilinSubsetAt.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/BilinSubsetAt.lean)
-* [`BilinSubsetAtSubsetImage2.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/BilinSubsetAtSubsetImage2.lean)
-* [`GetSubsetConstruct.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/GetSubsetConstruct.lean)
-* [`MapSubsetAt.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/MapSubsetAt.lean)
-* [`SubsetAtMono.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/SubsetAtMono.lean)
-* [`SubsetAtSubsetConstruct.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/SubsetAtSubsetConstruct.lean)
-* [`SubsetAtUnitBox.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/SubsetAtUnitBox.lean)

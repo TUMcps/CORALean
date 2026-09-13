@@ -16,7 +16,8 @@ of the first piece, and `integral_comp_add_left` moves the second back to a
 window starting at zero, `aux_aestronglyMeasurable_comp_add_left` carrying the
 measurability with it.
 
-The two inclusions together are the equality [1] prints; see
+The two inclusions together are the equality [1, Prop. 3.2] prints, and with
+it [1, Cor. 3.1], which is that proposition at `a = Δt` and `b = r`; see
 `InputReachSeparationEq`.
 
 ## References

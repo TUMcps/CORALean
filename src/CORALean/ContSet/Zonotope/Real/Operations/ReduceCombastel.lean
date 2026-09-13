@@ -8,6 +8,11 @@ Combastel's metric [1, Sec. 3.2], `‖g‖₂`, measures only magnitude — it c
 a generator Girard would keep for free, and keep one Girard would box for
 nothing. Neither dominates the other.
 
+The operator is that section's four steps: sort the generators by that metric
+[1, Eq. 20], cut the sorted list into blocks [1, Eq. 21], replace the
+smallest-norm blocks by one interval hull [1, Eq. 22], and read the reduced
+zonotope back off [1, Eq. 23].
+
 ## References
 
 * [1] C. Combastel. "A state bounding observer based on zonotopes". ECC 2003.

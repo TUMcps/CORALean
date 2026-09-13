@@ -3,7 +3,7 @@ import CORALean.NN.Layers.Activation
 /-!
 # The polynomial abstraction of an activation function
 
-CORA's `computeApproxPoly` [1]: on a neuron's input interval the activation is
+CORA's `computeApproxPoly` [1, Alg. 1]: on a neuron's input interval the activation is
 enclosed by a polynomial of degree `n` and a remaining error, where `Relaxation`
 carries the degree-1 case. Spending a higher order on a neuron that deserves it
 is the whole precision gain of the refinement loop, and a first-order
