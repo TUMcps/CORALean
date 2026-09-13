@@ -10,9 +10,10 @@ import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 `[0,a]` with one over `[0,b]` gives an input over `[0,a+b]`, and what it
 contributes is `e^{Ab}` applied to the first contribution plus the second.
 
-[1] states this as an equality; only `⊇` is used downstream, and it is the
-direction that has to build an input rather than take one apart. Taking `a = Δt`
-and `b = r` is [1, Cor. 3.1], which the two-argument form already covers.
+This is the direction that has to build an input rather than take one apart;
+`InputReachSeparationSubset` takes one apart, and `InputReachSeparationEq` puts
+the two together into the equality [1] prints. Taking `a = Δt` and `b = r` is
+[1, Cor. 3.1], which the two-argument form already covers.
 
 The concatenation is measured by splitting the window and rebuilding it:
 `intervalIntegrable_expSub_mulVec` gives integrability on each half, and
