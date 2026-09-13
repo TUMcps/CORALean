@@ -28,6 +28,7 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuterInputSolution
 import CORALean.ContDynamics.NonlinearSys.Theorems.RelinTimeIntervalOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.Restrict
 import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
+import CORALean.ContDynamics.NonlinearSys.Theorems.VarInputsOuter
 
 /-!
 # What `NonlinearSys` guarantees

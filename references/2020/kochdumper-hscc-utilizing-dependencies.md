@@ -42,8 +42,11 @@ stated in it as things stand.** Read directly off the PDF, Alg. 2 is seven lines
 `ΨΔ(τs)` from the two arguments `R(ts)` and `Ψ(τs)`: a `zono`, a Cartesian product, `postΔ`, a
 second `zono`, `varInputs`, a Minkowski sum, and `lagrangeRemainder`. The paper is explicit that
 `postΔ`, `varInputs` and `lagrangeRemainder` are "identical to the ones in" Althoff's HSCC 2013
-conservative-polynomialization paper, Sec. 4.1-4.2 — confirming the earlier pass's naming — and
-none of the three, nor a `zono` combinator, occur anywhere under `ContDynamics/NonlinearSys/`.
+conservative-polynomialization paper, Sec. 4.1-4.2 — confirming the earlier pass's naming. All
+three are in the tree now, `postΔ` in `ContDynamics/LinearSys/Operations/PostDelta.lean` and
+`lagrangeRemainder` and `varInputs` in `ContDynamics/NonlinearSys/Operations/`, but nothing
+assembles them into the two-argument function Alg. 2 is: no `zono` of a Cartesian product feeds
+them, and no term is shaped like `abstrErr(R, Ψ)`.
 
 That absence is not incidental. `abstrErr` is a two-argument *function*, called once per
 iteration of Alg. 1's repeat-until loop (lines 5-9) until the applied error `Ψ(τs)` it feeds back
