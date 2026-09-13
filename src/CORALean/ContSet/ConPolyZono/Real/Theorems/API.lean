@@ -34,6 +34,9 @@ import CORALean.ContSet.ConPolyZono.Real.Theorems.GetSubsetConstruct
 import CORALean.ContSet.ConPolyZono.Real.Theorems.UnionDomainIff
 import CORALean.ContSet.ConPolyZono.Real.Theorems.UnionExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceConOuter
+import CORALean.ContSet.ConPolyZono.Real.Theorems.ConvHullSingleConstruct
+import CORALean.ContSet.ConPolyZono.Real.Theorems.ConvHullSingleExact
+import CORALean.ContSet.ConPolyZono.Real.Theorems.ConvHullExact
 
 /-!
 # What `ConPolyZono` guarantees
@@ -55,8 +58,8 @@ nothing at either.
 constraint row is a polynomial in the factors, so it closes the domain rather than opening
 it. `holds` and `MemConstruct` are what the operations are stated over.
 `mem_ofPoint` needs none of that, and `getSubset_construct` is an equality, its
-substitution a polynomial identity. So is `union_exact_of_noZeroCol` — under a
-hypothesis the source omits and is false without, which its own file sets out.
-`reduceCon_outer` substitutes too, and only encloses: solving a row for a monomial is not
-reversible once the row is gone.
+substitution a polynomial identity. So are `union_exact_of_noZeroCol` and
+`convHull_exact_of_nonempty` — each under a hypothesis the source omits and is false
+without, which their own files set out. `reduceCon_outer` substitutes too, and only
+encloses: solving a row for a monomial is not reversible once the row is gone.
 -/

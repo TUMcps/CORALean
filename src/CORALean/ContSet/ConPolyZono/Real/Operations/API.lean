@@ -84,6 +84,20 @@ import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceConB
 import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceConE
 import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceConG
 import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceCon
+import CORALean.ContSet.ConPolyZono.Real.Operations.BlkDiag
+import CORALean.ContSet.ConPolyZono.Real.Operations.RepVec
+import CORALean.ContSet.ConPolyZono.Real.Operations.SumRep
+import CORALean.ContSet.ConPolyZono.Real.Operations.ProdBlkDiag
+import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecBlkDiag
+import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullE
+import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullG
+import CORALean.ContSet.ConPolyZono.Real.Operations.SumConvHullE
+import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullA
+import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullB
+import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullEC
+import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsConvHullIff
+import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullSingle
+import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHull
 
 /-!
 # What `ConPolyZono` computes
@@ -105,8 +119,8 @@ neither, so they constrain the image as they did the argument.
 it does not read, and set beside another over the same factors — and `Domain` is the pair
 `construct` splits into, which compactness reads.
 
-`reduce` ranks both blocks as one and boxes what it drops; the constraint block passes
-through. `getSubset` reweights one factor at both, via `consPolyZonotope`. `union` is the
-largest construction here: two fresh factors, and one row that pins one operand's block.
-`reduceCon` spends generators to buy a constraint back, solving one row for a monomial.
+`reduce` ranks both blocks as one and boxes what it drops; `getSubset` reweights one
+factor at both, and `reduceCon` spends generators to buy a constraint back. The two
+largest constructions are `union`, two fresh factors and a row pinning one operand's
+block, and `convHull`, `n + 1` weighted copies of `linComb`.
 -/

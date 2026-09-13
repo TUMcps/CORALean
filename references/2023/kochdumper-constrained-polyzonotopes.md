@@ -3,7 +3,11 @@
 N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta Informatica,
 2023.
 
-**Source:** https://ar5iv.labs.arxiv.org/html/2005.08849  
+**Source:** https://arxiv.org/pdf/2005.08849 (the PDF, read with `pypdf`; poppler is not
+installed. The page was seeded from ar5iv, which renumbers results and has corrupted four of
+our six ar5iv-sourced pages — but `Def. 5`, `Prop. 8`, `Prop. 9`, `Prop. 13`, `Prop. 14`,
+`Thm. 1`, eq. (4) and eq. (27)-(28) were all checked against the PDF and agree, so this page
+is not one of the corrupted ones)  
 **Inventory:** confirmed
 
 Polynomial zonotopes with polynomial constraints on their factors, which is
@@ -28,7 +32,7 @@ what makes intersection exact. The `ConPolyZono` representation.
 | `Prop. 6` | (Minkowski Sum) CPZ1 ⊕ CPZ2 = ⟨c1+c2,[G1 G2],block-diag(E1,E2),block-diag(A1,A2),[b1;b2],block-diag(R1,R2)⟩_CPZ. | [`PlusExact.lean`](../../src/CORALean/ContSet/ConPolyZono/Real/Theorems/PlusExact.lean) |
 | `Prop. 7` | (Cartesian Product) CPZ1 × CPZ2 formula analogous to Prop. 6 but stacking centers and block-diagonalizing all matrices for the product set. | [`CartProdExact.lean`](../../src/CORALean/ContSet/ConPolyZono/Real/Theorems/CartProdExact.lean) |
 | `Prop. 8` | (Linear Combination) Gives comb(CPZ1,CPZ2), the CPZ representing {0.5(1+λ)x1+0.5(1-λ)x2 \| x1∈CPZ1,x2∈CPZ2,λ∈[-1,1]} as an explicit generator/exponent/constraint construction. | [`LinCombExactOfDependent.lean`](../../src/CORALean/ContSet/ConPolyZono/Real/Theorems/LinCombExactOfDependent.lean) |
-| `Prop. 9` | (Convex Hull) conv(CPZ1,CPZ2) formula, extending comb (Prop. 8) with an extra scaling factor variable a to obtain the actual convex hull rather than just the linear combination. | — |
+| `Prop. 9` | (Convex Hull) conv(CPZ1,CPZ2) as a = n+1 copies of comb(CPZ1,CPZ2) (Prop. 8) laid out block-diagonally, plus a fresh factors weighting the copies and one constraint row fixing their sum — definition (4), which is Carathéodory's, with the union replaced by comb. | [`ConvHullExact.lean`](../../src/CORALean/ContSet/ConPolyZono/Real/Theorems/ConvHullExact.lean), the construction in [`ConvHull.lean`](../../src/CORALean/ContSet/ConPolyZono/Real/Operations/ConvHull.lean) — the equality, under the hypothesis the printed statement omits and is false without; see the finding below |
 | `Prop. 10` | (Quadratic Map) Gives sq(Q,CPZ) for a discrete set of matrices Q={Q1,...,Qw}, as a CPZ with new generator/exponent columns built from pairwise products of the original dependent generators. | [`QuadMapExact.lean`](../../src/CORALean/ContSet/ConPolyZono/Real/Theorems/QuadMapExact.lean) |
 | `Prop. 11` | (Intersection) CPZ1 ∩ CPZ2 = ⟨c1,G1,[E1;0],block-arranged A with G1,-G2 coupling,[b1;b2;c2-c1],[R1,0;0,R2;E1,0;0,E2]⟩_CPZ — encodes the intersection by adding a constraint that the two representations describe the same point. | [`IntersectionExact.lean`](../../src/CORALean/ContSet/ConPolyZono/Real/Theorems/IntersectionExact.lean) |
 | `Thm. 1` | (Union) Gives an explicit closed-form CPZ representation of CPZ1 ∪ CPZ2, using an extra binary-like factor to select between the two operands (center 0.5(c1+c2), and block-structured G, E, A, b, R). Proof in Appendix A, using Def. 7 and Lemma 2 (Prop. 14 is Appendix B's, for rescaling, and is not used here — see the finding below). | [`UnionExact.lean`](../../src/CORALean/ContSet/ConPolyZono/Real/Theorems/UnionExact.lean), the construction in [`Union.lean`](../../src/CORALean/ContSet/ConPolyZono/Real/Operations/Union.lean) — the equality, under the hypothesis the printed statement omits and is false without; see the finding below |
@@ -68,11 +72,20 @@ no factors, no constraints — and `CPZ2` empty, with one factor, one constraint
 `@conPolyZono/convHull_.m` returns the second set outright when the first `representsa_` an
 `emptySet`, the same guard `@conPolyZono/or.m` carries for `Thm. 1` — while
 `@conPolyZono/linComb.m`, where an empty operand really does empty the result, carries
-none. The row is open for a second reason as well, independent of this one: definition (4)
-is Carathéodory's, with exactly `n+1` points, so the substitution at (28) is the claim that
-a hull does not grow when its set is enlarged to anything still inside that hull — which is
-Carathéodory's theorem, not an algebraic identity. That theorem is not in the Mathlib
-surface this project imports, so it would have to be proved here first.
+none. Formalized with that hypothesis added and recorded as a departure: both operands
+non-empty, which is exactly what step (28)'s left inclusion asks for and is the weakest
+thing that will do, an empty operand emptying the closed form outright. The identity is an
+equality, not an enclosure. Definition (4) is Carathéodory's, with exactly `n+1` points, so
+the substitution at (28) is the claim that a hull does not grow when its set is enlarged to
+anything still inside that hull — Carathéodory's theorem, not an algebraic identity, and
+`Global/Caratheodory.lean` proves it over a fixed index, `Mathlib.Analysis.Convex.Caratheodory`
+having been brought into the imported surface for it. Unlike `Thm. 1`, no condition on the
+exponent matrices enters: every replicated generator column also appears multiplied by its
+copy's fresh weight factor, a monomial of degree `1`, so an all-zero column of `E` is
+reproduced exactly like any other. One further hypothesis is the representation's rather
+than the paper's: neither operand carries independent generators, as Def. 5 has none and
+`Prop. 8` is stated the same way.
+[`ConvHullExact.lean`](../../src/CORALean/ContSet/ConPolyZono/Real/Theorems/ConvHullExact.lean)
 
 **Thm. 1 — the union identity needs both operands' exponent matrices free of all-zero
 columns, which the statement never says.** Appendix A.3 argues that on the branch selecting
