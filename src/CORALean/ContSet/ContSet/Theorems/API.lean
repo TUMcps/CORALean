@@ -2,6 +2,7 @@ import CORALean.ContSet.ContSet.Theorems.DependencyPreservingChain
 import CORALean.ContSet.ContSet.Theorems.DependencyPreservingComp
 import CORALean.ContSet.ContSet.Theorems.HausdorffDistAddLe
 import CORALean.ContSet.ContSet.Theorems.HausdorffDistMulVecLinAddLe
+import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddAssoc
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddSubset
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddSubsetAdd
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffEnclSubsetAdd
@@ -16,22 +17,22 @@ import CORALean.ContSet.ContSet.Theorems.SubsetMinkowskiDiffIff
 `smul_mem_linComb_ofPoint`: `LinComb` and `OfPoint` together already give the segment from the
 origin to a point, so no class needs a `segment` field.
 
-`DependencyPreserving.comp` and `.chain` are the closure properties a parameterized
-representation is judged by: composing two dependency-preserving operations keeps the property,
-and a whole loop of them keeps it too, which is what carries a subset of the initial parameters
-through to a subset of the result.
+`DependencyPreserving.comp` and `.chain` are the closure properties a parameterized representation
+is judged by: composing two dependency-preserving operations keeps the property, and a whole loop
+of them keeps it too, which carries a subset of the initial parameters through to the result.
 
 Then `minkowskiDiff`, whose elementary theory lives here rather than beside the definition: the
-Galois connection `X ⊆ minkowskiDiff S T ↔ X + T ⊆ S` and its counit, monotonicity in each
-argument, and — the point of the whole group — `minkowskiDiff_inner_of_outer`, which turns an
-outer approximation with a bounded error set into an inner approximation of the exact set.
-Everything else running inner here starts from a computed Minkowski difference; this is the
-only route from an enclosure, and what an inner reachability algorithm would be built on.
-`minkowskiDiff_add_subset_add` and `minkowskiDiff_encl_subset_add` are Althoff's Prop. 3 and
-Prop. 4: adding a set to a difference stays inside the difference of the enlarged minuend.
+Galois connection `X ⊆ minkowskiDiff S T ↔ X + T ⊆ S` and its counit, monotonicity in each argument,
+and — the point of the whole group — `minkowskiDiff_inner_of_outer`, which turns an outer
+approximation with a bounded error set into an inner approximation of the exact set.
+Everything else running inner here starts from a computed Minkowski difference; this is the only
+route from an enclosure, and what an inner reachability algorithm would be built on. Althoff's
+Prop. 3 and Prop. 4 are `minkowskiDiff_add_subset_add` and `minkowskiDiff_encl_subset_add`: adding
+a set to a difference stays inside the difference of the enlarged minuend. `minkowskiDiff_add_assoc`
+subtracts a sum one summand at a time, which is what his Thm. 1 recurses on.
 
-`hausdorffDist_add_le` and `hausdorffDist_mulVecLin_add_le` are the two distances here rather
-than inclusions: adding the same compact set to both sides, or perturbing a linear image by
-another matrix, can only bring the two sides together — the latter is Wetzlinger et al.'s
-Prop. 10, cited in its own file.
+`hausdorffDist_add_le` and `hausdorffDist_mulVecLin_add_le` are the two distances here rather than
+inclusions: adding the same compact set to both sides, or perturbing a linear image by another
+matrix, can only bring the two sides together — the latter is Wetzlinger et al.'s Prop. 10, cited
+in its own file.
 -/
