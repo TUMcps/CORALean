@@ -79,6 +79,11 @@ import CORALean.ContSet.ConPolyZono.Real.Operations.UnionE
 import CORALean.ContSet.ConPolyZono.Real.Operations.UnionG
 import CORALean.ContSet.ConPolyZono.Real.Operations.SumUnionE
 import CORALean.ContSet.ConPolyZono.Real.Operations.Union
+import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceConA
+import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceConB
+import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceConE
+import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceConG
+import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceCon
 
 /-!
 # What `ConPolyZono` computes
@@ -92,16 +97,16 @@ computes, and this is what the constraints buy.
 
 `compact` is the one that has to know about the sharing: merging is `PolyZonotope`'s at
 both blocks, but a factor is dropped only when neither `E` nor `EC` reads it.
+`quadMap` carries over from `PolyZonotope` unchanged, and that it does is worth knowing —
+a quadratic map reads the generators and the exponent matrix and the constraints read
+neither, so they constrain the image as they did the argument.
 
-`quadMap` carries over from `PolyZonotope` unchanged, and that it does is worth
-knowing — a quadratic map reads the generators and the exponent matrix and the
-constraints read neither, so they constrain the image as they did the argument.
-
-`PadE` and `AppendE` are the two ways a constraint block is reshaped — widened
-by factors it does not read, and set beside another over the same factors, and
-`Domain` is the pair `construct` splits into, which compactness reads.
+`PadE` and `AppendE` are the two ways a constraint block is reshaped — widened by factors
+it does not read, and set beside another over the same factors — and `Domain` is the pair
+`construct` splits into, which compactness reads.
 
 `reduce` ranks both blocks as one and boxes what it drops; the constraint block passes
 through. `getSubset` reweights one factor at both, via `consPolyZonotope`. `union` is the
 largest construction here: two fresh factors, and one row that pins one operand's block.
+`reduceCon` spends generators to buy a constraint back, solving one row for a monomial.
 -/
