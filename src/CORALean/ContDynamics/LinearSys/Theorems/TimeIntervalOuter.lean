@@ -1,5 +1,5 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrectionMatrix
 import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
+import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepOuterSegments
 
 /-!
 # `timeIntervalStep` contains the flow at every time in the step
@@ -8,9 +8,9 @@ CORA's `HR([0,r]) = CH(X₀, e^{Ar}X₀) ⊕ F X₀`, and the guarantee that mak
 usable: not just at the sample times, but at every `t` in `[0, r]`. The
 wrapping-effect-free construction of [1, Alg. 1], one step of it.
 
-The flow splits into the straight line from `X₀` to `e^{Ar}X₀`, a `linComb` at
-weight `1 - t/r`, and the interpolation error, the correction matrix acting on
-`X₀`.
+`timeIntervalStep_outer_segments` is the whole argument, at the level of `Set`s;
+this is that composed with `LinComb.linComb_outer` and `Plus.plus_outer`, the two
+lifts it takes to land in `construct (timeIntervalStep ...)`.
 
 Homogeneous only: with a non-zero input a trajectory also picks up the input
 integral, which is `TrajectoryTimeIntervalOuter`.
@@ -47,36 +47,18 @@ variable [Mtimes ℐ S]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 omit [∀ n, Reduce (S n) (Vec ℝ n)] in
--- the interpolation error is assembled entrywise from three interval matrices at once
-set_option maxHeartbeats 1000000 in
 /-- Every image of the initial set under the flow, at every time of the step. -/
 theorem LinearSys.timeIntervalStep_outer (sys : LinearSys 𝕋 n) {r : ℝ} (hr : 0 < r) {m : ℕ}
     (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) (X₀ : S n)
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) :
     (fun x₀ => exp (t • toRealMat sys.A) *ᵥ x₀) '' construct X₀
       ⊆ construct (sys.timeIntervalStep r (m + 2) X₀) := by -- --- PROOF ---
-  set A := toRealMat sys.A with hA
-  rintro y ⟨x₀, hx₀, rfl⟩
-  have hs0 : 0 ≤ t / r := div_nonneg ht0 hr.le
-  have hs1 : t / r ≤ 1 := (div_le_one hr).mpr htr
-  -- the flow is the straight line plus what the curvature adds
-  have hdecomp : exp (t • A) *ᵥ x₀
-      = ((1 - t / r) • x₀ + (t / r) • (exp (r • A) *ᵥ x₀))
-        + (exp (t • A) - 1 - (t / r) • (exp (r • A) - 1)) *ᵥ x₀ := by
-    simp only [Matrix.sub_mulVec, smul_mulVec, Matrix.one_mulVec, sub_smul, smul_sub, one_smul]
-    abel
-  show exp (t • A) *ᵥ x₀ ∈ _
-  rw [hdecomp]
-  refine Plus.plus_outer _ _ (Set.add_mem_add ?_ ?_)
-  · -- the straight line is a segment between `X₀` and its image
-    refine LinComb.linComb_outer _ _ ⟨x₀, hx₀, exp (r • A) *ᵥ x₀, ?_, 1 - t / r, ?_, ?_⟩
-    · exact Mtimes.mtimes_outer _ _ (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hx₀))
-    · exact ⟨by linarith, by linarith⟩
-    · rw [sub_sub_cancel]
-  · -- and the curvature term is the correction matrix acting on `X₀`
-    exact Mtimes.mtimes_outer _ _ (Set.mem_biUnion
-      (MatExp.expDiff_mem_correctionMatrix A hr hε ht0 htr)
-      (Set.mem_image_of_mem _ hx₀))
+  -- the two lifts `timeIntervalStep_outer_segments` stops short of
+  refine (sys.timeIntervalStep_outer_segments hr hε X₀ ht0 htr).trans
+    ((Set.add_subset_add ?_ subset_rfl).trans (Plus.plus_outer _ _))
+  rintro _ ⟨y₁, hy₁, y₂, hy₂, lam, hlam, rfl⟩
+  exact LinComb.linComb_outer _ _
+    ⟨y₁, hy₁, y₂, Mtimes.mtimes_outer _ _ (Set.mem_biUnion rfl hy₂), lam, hlam, rfl⟩
 
 end CORALean
 

@@ -53,15 +53,19 @@ import CORALean.ContDynamics.LinearSys.Theorems.StepSubset
 import CORALean.ContDynamics.LinearSys.Theorems.StepSubsetHorizon
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuter
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterConvexCompact
+import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalBound
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterInputSolution
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterSplit
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetEqUnion
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetOuter
+import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetSubsetSegmentsSum
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetSubsetTimeIntervalInputSolution
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepEpsOuter
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepInnerInner
+import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepOuterSegments
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepSubsetAddError
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepSubsetInitialAddError
+import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalWitness
 import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepInnerInner
 import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepOuter
 import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepSubsetAddError
@@ -85,7 +89,8 @@ only `Recentre` and `OfPoint`, which any representation with a centre has.
 
 The `ReachSet` and `TimeIntervalReachSet` trios state the same guarantees of a
 set; `_eq_iUnion` ties the latter to a union of the former, `SubsetAddError`
-runs a step backwards, `Exists…Lt` shrinks its error.
+runs a step backwards, `Exists…Lt` shrinks its error, `SegmentsSum` feeds
+`TimeIntervalBound` a genuine `+`/`segments`, and `TimeIntervalWitness` its dual.
 
 `Restrict` is what makes the time domain a parameter worth having: a guarantee
 over one step applies to a run over all forward time by throwing the rest away.
@@ -93,6 +98,5 @@ Only `discretize` and the `reach` statements built on it ask for `Set.Ici 0`.
 
 `DiscretizeEnclosure`/`DiscretizeEnclosureReach` are `Discretize`/`ReachOuter`
 enclosed rather than computed; `DiscretizeMatZonotope` is the same at a matrix
-zonotope. `ExpIntegralConstInput` is a constant input's contribution, closed
-form; `PostDeltaOuter` is `DeltaReachOuterInputSolution` again, `postΔ`'s name.
+zonotope, and `PostDeltaOuter` is `DeltaReachOuterInputSolution` again, `postΔ`'s name.
 -/
