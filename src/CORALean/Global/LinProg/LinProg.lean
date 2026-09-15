@@ -17,11 +17,13 @@ is the proof that gets carried. Nothing here is axiomatised and nothing is
 Stated over a `Set`, not a representation, so a bound transfers along the set
 operations rather than along any particular description of them —
 `Duality` says where bounds come from, `Composition` how they travel.
+
+`SupportWitness` is the dual: a value with a point attaining it; no `ofEmpty`.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   15-September-2026
 -- Last revision: ---
 
 
@@ -50,6 +52,20 @@ def SupportBound.raise (u : SupportBound S c) {v : ℝ} (h : u.val ≤ v) : Supp
 /-- Nothing to exceed, so any number will do. -/
 def SupportBound.ofEmpty (v : ℝ) : SupportBound (∅ : Set α) c :=
   ⟨v, fun _ h => h.elim⟩
+
+structure SupportWitness (S : Set α) (c : α →ₗ[ℝ] ℝ) where
+  val : ℝ
+  mem : ∃ x ∈ S, val ≤ c x
+
+/-- A witness for `S` is a witness for any larger set — the opposite direction
+from `SupportBound.mono`. -/
+def SupportWitness.mono (h : S ⊆ T) (u : SupportWitness S c) : SupportWitness T c :=
+  ⟨u.val, let ⟨x, hx, hv⟩ := u.mem; ⟨x, h hx, hv⟩⟩
+
+/-- A witness may always be weakened downward, which is what makes rounding it
+inward sound. -/
+def SupportWitness.lower (u : SupportWitness S c) {v : ℝ} (h : v ≤ u.val) : SupportWitness S c :=
+  ⟨v, let ⟨x, hx, hv⟩ := u.mem; ⟨x, hx, le_trans h hv⟩⟩
 
 end CORALean
 
