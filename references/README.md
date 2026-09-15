@@ -83,6 +83,7 @@ pages carry one:
 * [On Computing the Minkowski Difference of Zonotopes](2015/althoff-arxiv-minkowski-difference.md)
 * [Utilizing Dependencies to Obtain Subsets of Reachable Sets](2020/kochdumper-hscc-utilizing-dependencies.md)
 * [Sparse Polynomial Zonotopes: A Novel Set Representation for Reachability Analysis](2021/kochdumper-tac-sparse-polyzonotopes.md)
+* [Adaptive parameter tuning for reachability analysis of linear systems](2020/wetzlinger-cdc-adaptive-tuning.md)
 * [Adaptive Parameter Tuning for Reachability Analysis of Nonlinear Systems](2021/wetzlinger-hscc-adaptive-tuning-nonlinear.md)
 * [Adaptive Reachability Algorithms for Nonlinear Systems Using Abstraction Error Analysis](2022/wetzlinger-nahs-abstraction-error.md)
 * [Constrained Polynomial Zonotopes](2023/kochdumper-constrained-polyzonotopes.md)
