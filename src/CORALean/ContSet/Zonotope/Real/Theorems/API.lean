@@ -81,6 +81,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
 import CORALean.ContSet.Zonotope.Real.Theorems.SumPair
 import CORALean.ContSet.Zonotope.Real.Theorems.SumSmulUpdate
 import CORALean.ContSet.Zonotope.Real.Theorems.SumUnivReduceBy
+import CORALean.ContSet.Zonotope.Real.Theorems.SupportBoundAttained
 
 /-!
 # What `Zonotope` guarantees

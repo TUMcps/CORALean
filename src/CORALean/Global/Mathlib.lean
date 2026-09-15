@@ -26,6 +26,7 @@ import Mathlib.Data.Fintype.BigOperators
 import Mathlib.Data.Fintype.Pi
 import Mathlib.Data.Matrix.Mul
 import Mathlib.Data.Real.Basic
+import Mathlib.Data.Real.Sign
 import Mathlib.Data.Set.Prod
 import Mathlib.LinearAlgebra.AffineSpace.FiniteDimensional
 import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
