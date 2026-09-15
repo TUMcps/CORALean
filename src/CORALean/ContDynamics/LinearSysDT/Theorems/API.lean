@@ -36,6 +36,7 @@ import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetInnerOfOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetIsCompact
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetSubsetReach
+import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetWitness
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachStepSubsetClosedBall
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSubsetClosedBall
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSubsetReachSetAddError

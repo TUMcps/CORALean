@@ -16,11 +16,14 @@ What does *not* travel is an enclosure, and `exists_outer_without_supportBound`
 is that: every operation class guarantees exactly `exact ⊆ computed`, and a
 bound crosses an inclusion the other way, so a bound on `construct (plus s t)`
 comes from the representation and never from bounds on the two operands.
+
+`SupportWitness` travels the same way, `union`'s `max` now chosen by a case
+split, since only one of the two points attains it.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   07-September-2026
+-- Last update:   15-September-2026
 -- Last revision: ---
 
 
@@ -77,6 +80,46 @@ def SupportBound.smul {r : ℝ} (hr : 0 ≤ r) (u : SupportBound S c) :
     rw [map_smul, smul_eq_mul]
     exact mul_le_mul_of_nonneg_left (u.le x hx) hr
 
+/-- Pointwise Minkowski sum, dual to `SupportBound.add`. -/
+def SupportWitness.add (u : SupportWitness S c) (v : SupportWitness T c) :
+    SupportWitness (S + T) c where
+  val := u.val + v.val
+  mem := by
+    obtain ⟨x, hx, hu⟩ := u.mem
+    obtain ⟨y, hy, hv⟩ := v.mem
+    exact ⟨x + y, Set.add_mem_add hx hy, by rw [map_add]; exact add_le_add hu hv⟩
+
+/-- The image under `M` witnesses at least as much in direction `d` as the
+source does in direction `d ∘ M`, dual to `SupportBound.image`. -/
+def SupportWitness.image {d : β →ₗ[ℝ] ℝ} (M : α →ₗ[ℝ] β) (u : SupportWitness S (d.comp M)) :
+    SupportWitness (M '' S) d where
+  val := u.val
+  mem := by
+    obtain ⟨x, hx, hu⟩ := u.mem
+    exact ⟨M x, Set.mem_image_of_mem M hx, hu⟩
+
+/-- Whichever witness is larger carries its own point across the union: dual to
+`SupportBound.union`, chosen by a case split rather than handed to both sides. -/
+def SupportWitness.union (u : SupportWitness S c) (v : SupportWitness T c) :
+    SupportWitness (S ∪ T) c where
+  val := max u.val v.val
+  mem := by
+    obtain ⟨x, hx, hu⟩ := u.mem
+    obtain ⟨y, hy, hv⟩ := v.mem
+    rcases le_total u.val v.val with h | h
+    · exact ⟨y, Or.inr hy, by simpa [max_eq_right h] using hv⟩
+    · exact ⟨x, Or.inl hx, by simpa [max_eq_left h] using hu⟩
+
+def SupportWitness.smul {r : ℝ} (hr : 0 ≤ r) (u : SupportWitness S c) :
+    SupportWitness (r • S) c where
+  val := r * u.val
+  mem := by
+    obtain ⟨x, hx, hu⟩ := u.mem
+    refine ⟨r • x, Set.smul_mem_smul_set hx, ?_⟩
+    show r * u.val ≤ c (r • x)
+    rw [map_smul, smul_eq_mul]
+    exact mul_le_mul_of_nonneg_left hu hr
+
 /-- A set that is enclosed carries none of the enclosure's bounds: `{0}` is
 bounded along `id` and the line containing it is not. Why no operation class
 composes a bound — each guarantees only that the computed set is the larger. -/
@@ -108,6 +151,11 @@ This is what lets a convex hull be enclosed without ever forming it. -/
 def SupportBound.convexHull (u : SupportBound S c) : SupportBound (convexHull ℝ S) c where
   val := u.val
   le _ hx := convexHull_min (fun y hy => u.le y hy) (convex_le c u.val) hx
+
+/-- Immediate from `mono` and `subset_convexHull`: the point already witnesses
+`S`, and `S` sits inside its own hull. -/
+def SupportWitness.convexHull (u : SupportWitness S c) : SupportWitness (convexHull ℝ S) c :=
+  u.mono (subset_convexHull ℝ S)
 
 end CORALean
 
