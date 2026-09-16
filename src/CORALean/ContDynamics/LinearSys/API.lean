@@ -1,3 +1,6 @@
+import CORALean.ContDynamics.LinearSys.ClosedForm
+import CORALean.ContDynamics.LinearSys.IntegralReachSet
+import CORALean.ContDynamics.LinearSys.IntegralTrajectory
 import CORALean.ContDynamics.LinearSys.LinearSys
 import CORALean.ContDynamics.LinearSys.MatExp.API
 import CORALean.ContDynamics.LinearSys.Operations.API
