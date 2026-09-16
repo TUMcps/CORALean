@@ -36,6 +36,21 @@ and the ellipsoid alike the support function is an equality rather than a bound.
 
 ## Findings
 
+**`Alg. 2` can never return "unsafe".** Its two tests are nested — line 7 is
+`if ρ(R̂(τ_k),ℓ_i) > f_(i) then verified ← false`, and line 9 the `else if
+ρ(R̲(τ_k),ℓ_i) > f_(i) then return unsafe`. The second is reached only when the first
+fails, that is when `ρ(R̂(τ_k),ℓ_i) ≤ f_(i)`; and `R̲` is an inner approximation of the
+same set `R̂` encloses, so `ρ(R̲,ℓ) ≤ ρ(R,ℓ) ≤ ρ(R̂,ℓ) ≤ f_(i)` and line 9's condition
+cannot hold. Line 10 is dead code, and the loop as printed is a semi-decision procedure
+for safety alone. That contradicts the algorithm's own `Ensure` clause, "Safe ... or
+unsafe", and the paper's prose that "Both algorithms also check for falsification and
+return a counterexample in case of a safety violation". The repair is one character of
+structure: the falsification test is an independent `if`, not an `else if` — which is how
+[`VerifyHalfspace.lean`](../../src/CORALean/Specification/VerifyHalfspace.lean) writes it,
+and the reason its two soundness theorems both have reachable hypotheses. `Alg. 3` does not
+share the defect: there the safety exit, the `falsifiable` flag and the intersection exit
+are three separate tests.
+
 **`Def. 4`.** The shape matrix is called positive semi-*definite*, but the set is written
 with `Q^{-1}` and the support vector with `Qℓ/√(ℓ^T Qℓ)`, neither of which a singular `Q`
 admits — and a degenerate ellipsoid, which semi-definiteness allows, is exactly that. Only
