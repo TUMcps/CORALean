@@ -1,4 +1,4 @@
-import CORALean.Global.Mathlib
+import CORALean.Specification.VerifyAnswer
 
 /-!
 # [1, Alg. 2]: verifying a halfspace safe set, one round at a time
@@ -31,13 +31,6 @@ one, so `return unsafe` is dead code and the printed loop only proves safety. It
 
 namespace CORALean
 
-/-- What one run of `[1, Alg. 2]` concludes: the safe set holds throughout, a point of the
-reachable set already falls outside it, or `fuel` ran out with neither settled. -/
-inductive VerifyAnswer
-  | safe
-  | «unsafe»
-  | undecided
-
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
@@ -48,11 +41,11 @@ otherwise the step halves and the search continues on `fuel`. -/
 noncomputable def verifyHalfspace {ι : Type} (bndUp bndLo : (r : ℕ) → Fin (2 ^ r) → ι → ℝ)
     (d : ι → ℝ) : ℕ → ℕ → VerifyAnswer
   | r, 0 =>
-      if ∃ (k : Fin (2 ^ r)) (i : ι), d i < bndLo r k i then .«unsafe»
+      if ∃ (k : Fin (2 ^ r)) (i : ι), d i < bndLo r k i then .violated
       else if ∀ (k : Fin (2 ^ r)) (i : ι), bndUp r k i ≤ d i then .safe
       else .undecided
   | r, fuel + 1 =>
-      if ∃ (k : Fin (2 ^ r)) (i : ι), d i < bndLo r k i then .«unsafe»
+      if ∃ (k : Fin (2 ^ r)) (i : ι), d i < bndLo r k i then .violated
       else if ∀ (k : Fin (2 ^ r)) (i : ι), bndUp r k i ≤ d i then .safe
       else verifyHalfspace bndUp bndLo d (r + 1) fuel
 

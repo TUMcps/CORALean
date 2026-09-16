@@ -89,6 +89,7 @@ import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryDeltaReachOuter
 import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryIntegralTrajectory
 import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryTimeIntervalOuter
 import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+import CORALean.ContDynamics.LinearSys.Theorems.VerifyConvexUnsafe
 import CORALean.ContDynamics.LinearSys.Theorems.WeightedIntegral
 
 /-!

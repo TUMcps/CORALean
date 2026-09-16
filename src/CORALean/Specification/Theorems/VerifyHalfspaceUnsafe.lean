@@ -35,8 +35,8 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α]
 /-- `verifyHalfspace` only ever returns `unsafe` because some round already finds a step and
 direction whose lower bound crosses the offset — the round the recursion actually stopped
 at. -/
-theorem aux_exists_unsafe_round {bndUp bndLo : (r : ℕ) → Fin (2 ^ r) → ι → ℝ} {d : ι → ℝ} :
-    ∀ {r fuel : ℕ}, verifyHalfspace bndUp bndLo d r fuel = .«unsafe» →
+theorem aux_exists_violated_round {bndUp bndLo : (r : ℕ) → Fin (2 ^ r) → ι → ℝ} {d : ι → ℝ} :
+    ∀ {r fuel : ℕ}, verifyHalfspace bndUp bndLo d r fuel = .violated →
       ∃ r' ≥ r, ∃ (k : Fin (2 ^ r')) (i : ι), d i < bndLo r' k i
   | r, 0, h => by
       simp only [verifyHalfspace] at h
@@ -46,7 +46,7 @@ theorem aux_exists_unsafe_round {bndUp bndLo : (r : ℕ) → Fin (2 ^ r) → ι 
       simp only [verifyHalfspace] at h
       split_ifs at h with h1 h2
       · exact ⟨r, le_refl r, h1⟩
-      · obtain ⟨r', hr', hb⟩ := aux_exists_unsafe_round h
+      · obtain ⟨r', hr', hb⟩ := aux_exists_violated_round h
         exact ⟨r', le_trans (Nat.le_succ r) hr', hb⟩
 
 
@@ -55,13 +55,13 @@ theorem aux_exists_unsafe_round {bndUp bndLo : (r : ℕ) → Fin (2 ^ r) → ι 
 /-- `[1, Alg. 2]`: once `verifyHalfspace` settles `unsafe`, `R` — anything some round's steps
 sit inside, by `hsub` — cannot satisfy the halfspace specification `d` cuts out in the
 directions `ℓ`. -/
-theorem not_holds_safeSet_of_verifyHalfspace_unsafe {ℓ : ι → α →ₗ[ℝ] ℝ} {d : ι → ℝ}
+theorem not_holds_safeSet_of_verifyHalfspace_violated {ℓ : ι → α →ₗ[ℝ] ℝ} {d : ι → ℝ}
     {S : (r : ℕ) → Fin (2 ^ r) → Set α} {R : Set α} {bndUp : (r : ℕ) → Fin (2 ^ r) → ι → ℝ}
     (w : ∀ (r : ℕ) (k : Fin (2 ^ r)) (i : ι), SupportWitness (S r k) (ℓ i))
     (hsub : ∀ (r : ℕ) (k : Fin (2 ^ r)), S r k ⊆ R) {r fuel : ℕ}
-    (h : verifyHalfspace bndUp (fun r k i => (w r k i).val) d r fuel = .«unsafe») :
+    (h : verifyHalfspace bndUp (fun r k i => (w r k i).val) d r fuel = .violated) :
     ¬ (Specification.safeSet {x | ∀ i, ℓ i x ≤ d i}).Holds R := by
-  obtain ⟨r', hr', k, i, hlt⟩ := aux_exists_unsafe_round h
+  obtain ⟨r', hr', k, i, hlt⟩ := aux_exists_violated_round h
   obtain ⟨x, hxS, hxle⟩ := (w r' k i).mem
   refine Specification.not_holds_safeSet_of_mem (hsub r' k hxS) fun hmem => ?_
   exact absurd (hmem i) (not_le.mpr (lt_of_lt_of_le hlt hxle))

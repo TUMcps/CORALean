@@ -9,6 +9,7 @@ import CORALean.Specification.Theorems.SubsetHPolytope
 import CORALean.Specification.Theorems.VerifyHalfspaceSafe
 import CORALean.Specification.Theorems.VerifyHalfspaceUnsafe
 import CORALean.Specification.Theorems.Violation
+import CORALean.Specification.Theorems.VerifyConvexSafe
 
 /-!
 # Checking a specification, collected
@@ -20,6 +21,6 @@ which is what makes verification by splitting the input sound.
 `Separation`, `Containment` and `SubsetHPolytope` discharge the check itself,
 each turning it into bounds `Global.LinProg` supplies; `Violation` and
 `Intersection` are the falsification exits of the same two algorithms.
-`VerifyHalfspaceSafe`/`VerifyHalfspaceUnsafe` assemble both exits into
-`verifyHalfspace`'s two conclusive answers.
+`VerifyHalfspaceSafe`/`VerifyHalfspaceUnsafe` and `VerifyConvexSafe` assemble
+those exits into the decision procedures' conclusive answers.
 -/
