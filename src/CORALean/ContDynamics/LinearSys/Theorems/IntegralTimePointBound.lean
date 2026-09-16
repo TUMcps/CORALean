@@ -1,0 +1,56 @@
+import CORALean.ContDynamics.LinearSys.Theorems.IntegralReachSetEq
+import CORALean.Global.LinProg.API
+
+/-!
+# A support bound on the integral reachable set, term for term
+
+[1, Alg. 1]'s lines 10-12, over `integralReachSet` rather than `reachSet`:
+`ρ(R₀, ℓᵀe^{tA}) + ρ(P, ℓ)`, assembled by `SupportBound.image` and `.add` and
+carried across `integralReachSet_eq`, an equality rather than an enclosure, so
+no `mono` is needed.
+
+## References
+
+* [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated
+      Verification of Linear Systems Using Reachability Analysis with Support
+      Functions". HSCC, 2023, Article 5.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       16-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open Matrix ContSet Scalar NormedSpace
+
+attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
+  Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
+
+variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- A bound on `R₀` and on `sys.inputReach U t`, in every direction, give a
+bound on the time-point integral reachable set at `t` — no set built, and
+`integralReachSet` named only in the conclusion. -/
+noncomputable def LinearSys.integralTimePointBound (sys : LinearSys 𝕋 n) (R₀ U : S n)
+    {t : ℝ} (ht : 0 ≤ t) (hU : Bornology.IsBounded (construct U))
+    (b₀ : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, SupportBound (construct R₀) d)
+    (bP : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, SupportBound (sys.inputReach U t) d)
+    (c : Vec ℝ n →ₗ[ℝ] ℝ) :
+    SupportBound (sys.integralReachSet (Set.Icc 0 t) R₀ U t) c :=
+  sys.integralReachSet_eq R₀ U ht hU ▸
+    (SupportBound.image (mulVecLin (exp (t • toRealMat sys.A)))
+      (b₀ (c.comp (mulVecLin (exp (t • toRealMat sys.A)))))).add (bP c)
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

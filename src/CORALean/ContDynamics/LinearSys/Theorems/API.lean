@@ -41,6 +41,8 @@ import CORALean.ContDynamics.LinearSys.Theorems.IntegralTimeIntervalBound
 import CORALean.ContDynamics.LinearSys.Theorems.IntegralTimeIntervalReachSetEqUnion
 import CORALean.ContDynamics.LinearSys.Theorems.IntegralTimeIntervalReachSetSubsetSegmentsSum
 import CORALean.ContDynamics.LinearSys.Theorems.IntegralTimeIntervalWitness
+import CORALean.ContDynamics.LinearSys.Theorems.IntegralTimePointBound
+import CORALean.ContDynamics.LinearSys.Theorems.IntegralTimePointWitness
 import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionOuter
 import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuter
 import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuterSplit
