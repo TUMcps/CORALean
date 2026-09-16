@@ -1,6 +1,9 @@
 import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
 import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInputReflected
 import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableReflectIoc
+import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormContinuousOn
+import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormFlow
+import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormZero
 import CORALean.ContDynamics.LinearSys.Theorems.ContinuousOnState
 import CORALean.ContDynamics.LinearSys.Theorems.DeltaReachOuter
 import CORALean.ContDynamics.LinearSys.Theorems.DeltaReachOuterInputSolution
@@ -31,6 +34,9 @@ import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparation
 import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationEq
 import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationSubset
 import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolution
+import CORALean.ContDynamics.LinearSys.Theorems.IntegralReachSetEq
+import CORALean.ContDynamics.LinearSys.Theorems.IntegralReachSetSubset
+import CORALean.ContDynamics.LinearSys.Theorems.IntegralReachSetSuperset
 import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionOuter
 import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuter
 import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuterSplit
@@ -74,6 +80,7 @@ import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepOuter
 import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepSubsetAddError
 import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepSubsetConstInputAddError
 import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryDeltaReachOuter
+import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryIntegralTrajectory
 import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryTimeIntervalOuter
 import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 import CORALean.ContDynamics.LinearSys.Theorems.WeightedIntegral
