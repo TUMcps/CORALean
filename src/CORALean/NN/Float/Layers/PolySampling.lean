@@ -45,6 +45,20 @@ private def allOver : {k : ℕ} → (Fin k → Bool) → Bool
   | 0, _ => true
   | _ + 1, f => f 0 && allOver fun i => f i.succ
 
+/-- The same conjunction as a loop. It gives up the early exit on the first
+`false`, which only a grid that fails the check would have reached. -/
+private def allOverImpl {k : ℕ} (f : Fin k → Bool) : Bool :=
+  Fin.foldr k (fun i acc => f i && acc) true
+
+@[csimp] private theorem allOver_eq_impl : @allOver = @allOverImpl := by -- --- PROOF ---
+  funext k
+  induction k with
+  | zero => funext f; rw [allOverImpl, Fin.foldr_zero]; rfl
+  | succ k ih =>
+    funext f
+    rw [allOverImpl, Fin.foldr_succ, ← allOverImpl, ← congrFun ih fun i => f i.succ]
+    rfl
+
 private theorem allOver_apply : ∀ {k : ℕ} (f : Fin k → Bool),
     allOver f = true → ∀ i, f i = true := by -- --- PROOF ---
   intro k
