@@ -42,6 +42,22 @@ def tapEntry {n : ℕ} : {k : ℕ} → (Fin k → Fin n) → (Fin k → 𝕋) �
   | _ + 1, t, v, i =>
     if t 0 = i then v 0 else tapEntry (fun l => t l.succ) (fun l => v l.succ) i
 
+/-- The same scan as a loop. `Fin.foldr` nests to the right, so the *first* tap
+reading `i` still wins; it costs the whole kernel where the recursion stopped at
+that tap, and saves the closure per tap that made the miss quadratic. -/
+def tapEntryImpl {n k : ℕ} (t : Fin k → Fin n) (v : Fin k → 𝕋) (i : Fin n) : 𝕋 :=
+  Fin.foldr k (fun l acc => if t l = i then v l else acc) zero
+
+@[csimp] theorem tapEntry_eq_impl : @tapEntry = @tapEntryImpl := by -- --- PROOF ---
+  funext 𝕋 _ n k
+  induction k with
+  | zero => funext t v i; rw [tapEntryImpl, Fin.foldr_zero]; rfl
+  | succ k ih =>
+    funext t v i
+    rw [tapEntryImpl, Fin.foldr_succ, ← tapEntryImpl,
+      ← congrFun (congrFun (congrFun ih fun l => t l.succ) fun l => v l.succ) i]
+    rfl
+
 /-- Which is why the entry reads back exactly, `if` commuting with `toReal`. -/
 theorem toReal_tapEntry {n : ℕ} :
     ∀ {k : ℕ} (t : Fin k → Fin n) (v : Fin k → 𝕋) (i : Fin n),

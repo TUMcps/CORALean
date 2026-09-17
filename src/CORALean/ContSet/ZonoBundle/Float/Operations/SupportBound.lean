@@ -36,6 +36,22 @@ def ZonoBundle.aux_minimumFrom : {k : ℕ} → 𝕋 → (Fin k → 𝕋) → �
   | 0, b, _ => b
   | _ + 1, b, u => minimum (u 0) (ZonoBundle.aux_minimumFrom b fun i => u i.succ)
 
+/-- The same fold as a loop, `b` at the bottom where the recursion leaves it.
+Swapped in below, so `boundDot` is compiled against this one. -/
+def ZonoBundle.aux_minimumFromImpl {k : ℕ} (b : 𝕋) (u : Fin k → 𝕋) : 𝕋 :=
+  Fin.foldr k (fun i acc => minimum (u i) acc) b
+
+@[csimp] theorem ZonoBundle.aux_minimumFrom_eq_impl :
+    @ZonoBundle.aux_minimumFrom = @ZonoBundle.aux_minimumFromImpl := by -- --- PROOF ---
+  funext 𝕋 _ k
+  induction k with
+  | zero => funext b u; rw [ZonoBundle.aux_minimumFromImpl, Fin.foldr_zero]; rfl
+  | succ k ih =>
+    funext b u
+    rw [ZonoBundle.aux_minimumFromImpl, Fin.foldr_succ, ← ZonoBundle.aux_minimumFromImpl,
+      ← congrFun (congrFun ih b) fun i => u i.succ]
+    rfl
+
 /-- Anything under `b` and under every entry is under the fold, `minimum` being
 exact. This is the whole of what the bound below owes. -/
 theorem ZonoBundle.aux_le_minimumFrom : ∀ {k : ℕ} {b : 𝕋} {u : Fin k → 𝕋} {x : ℝ},
