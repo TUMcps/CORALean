@@ -12,6 +12,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.ClosedBallEq
 import CORALean.ContSet.Zonotope.Real.Theorems.Coefficient
 import CORALean.ContSet.Zonotope.Real.Theorems.ContinuousAffine
 import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDist2IntervalLe
 import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDistIntervalLe
 import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
 import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed
@@ -101,10 +102,10 @@ product above, `MtimesIntervalMatSymmBox` it at a symmetric matrix: `S · box(Z)
 plus the box it introduced — carried to `reduce` itself by `ReduceSubsetAddBox`;
 `MinkowskiDiffReduceByBoxInner` cancels the box off again and `CentreMemConstruct` says a zonotope
 is nonempty, which every cancellation needs. `HausdorffDistIntervalLe` prices that box instead: its
-Hausdorff distance to the zonotope is at most the generators' total length.
-`SubsetClosedBallOfAbsBoundLe` and its converse relate `absBound` to a sup-norm ball;
-`MtimesSubsetClosedBall`, `PlusSubsetClosedBall` and `ReduceBoxAbsBoundLe` carry one through
-`mtimes`, `plus` and `reduceBox`, and `StepSubsetClosedBall` composes them at `reach`'s shape, its
-box term discharged crudely or, via `reduceBoxOrder`, sharply. `SumSmulUpdate` is the one sum a
-split changes a term of, which `SplitUnion` and `SplitIntersection` read both halves off.
+distance to the zonotope is at most the generators' total length, and `HausdorffDist2IntervalLe` is
+that bound at `‖·‖₂`. `SubsetClosedBallOfAbsBoundLe` and its converse relate `absBound` to a
+sup-norm ball; `MtimesSubsetClosedBall`, `PlusSubsetClosedBall` and `ReduceBoxAbsBoundLe` carry one
+through `mtimes`, `plus` and `reduceBox`, and `StepSubsetClosedBall` composes them at `reach`'s
+shape, its box term discharged crudely or, via `reduceBoxOrder`, sharply. `SumSmulUpdate` is the
+one sum a split changes a term of, which `SplitUnion` and `SplitIntersection` read both halves off.
 -/
