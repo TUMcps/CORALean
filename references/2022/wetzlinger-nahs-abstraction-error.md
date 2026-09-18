@@ -20,6 +20,16 @@ the paper states them in. `ReduceBoxOrder` and `ReduceBoxAntitone` are
 where a chosen reduction order would be held against one of these bounds, and
 the tree still cites the CDC 2020 paper there.
 
+`Def. 4`'s two error measures, `Def. 5`'s gain function and `Def. 6`'s gain order
+are formalized, all three over one `d(box(·))` on a bare set: the sets they measure
+are a Minkowski difference and an infinite Minkowski sum, and neither is a
+representation with an `Interval.radius` to double. `Prop. 1` is not. It is an exact
+equality whose Appendix-B proof is sound, so it is a row waiting on a proof rather
+than on a decision — the modelling question, how to write `R^∞_abs`, is answered by
+`AbstrSolInf`. What the proof still needs is summability of
+Σ_p h^{p+1}/(p+1)!·‖A(h)‖^p at the l-infinity operator norm, and the fact that each
+summand's maximum over Ψ(h) is attained at a sign pattern of the generators.
+
 ## Results
 
 | Result | What it says | In CORALean |
@@ -29,13 +39,13 @@ the tree still cites the CDC 2020 paper there.
 | `Lemma 1` | For compact S,V,W⊂R^n: d_H(S⊕V, S⊕W) ≤ d_H(V,W) — which is what lets order reduction be analyzed on the reduced part Z alone, since d_H(Z_full,Z_red) = d_H(Z'⊕Z, Z'⊕box(Z)) ≤ d_H(Z,box(Z)). | [`HausdorffDistAddLe.lean`](../../src/CORALean/ContSet/ContSet/Theorems/HausdorffDistAddLe.lean) — over any normed space, and on the exact Minkowski sum; `V` and `W` carry the compactness and nonemptiness Mathlib's real-valued distance needs to be the distance and not its junk value |
 | `Thm. 1` | For a zonotope Z=⟨c,G⟩_Z and Z_box := box(Z) ⊇ Z, the Hausdorff distance d_H(Z,Z_box) is over-approximated by three bounds: ω_max(Z) := 2‖Σ_p ĝ^(p)‖_2 (with ĝ^(p) zeroed at the (first) index i* attaining ‖g^(p)‖_∞), ω_rad(Z) := Σ_p ‖g^(p)‖_2, and ω_cut(Z) := √2 Σ_p ‖g^(p)‖_2 √(1 - Σ_i (g^(p)_i)^4/‖g^(p)‖_2^4). | ω_max in [`HausdorffDist2IntervalLeMax.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/HausdorffDist2IntervalLeMax.lean), ω_rad in [`HausdorffDist2IntervalLe.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/HausdorffDist2IntervalLe.lean) and ω_cut in [`HausdorffDist2IntervalLeCut.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/HausdorffDist2IntervalLeCut.lean) — each at `hausdorffDist₂`, `Def. 2`'s distance rather than the supremum-norm one `Vec ℝ n` carries; see the finding below |
 | `Def. 3` | (Convergence Order of Classical ODE Solvers) The order of a solver for ẋ = f(x,t) is the q∈N_0 with local truncation error ε_{Δt,loc} := \|ξ_ex(Δt;t_0,x_0) - ξ̂(Δt;t_0,x_0)\| ≤ cΔt^{q+1} for all t_0,x_0, with c independent of t_0, x_0 and Δt. | — |
-| `Def. 4` | (Errors of Set-based Solvers) For a set-based approximation R = R̂ ⊕ R_abs, the local abstraction error at t_k is ε_{k,loc} := ‖d(box(R_abs(Δt;t_k,R(t_k))))‖_∞, and the global accumulated abstraction error over N steps is ε_N := ‖d(box(R(t_end) ⊖ R̂(t_end)))‖_∞. | — |
+| `Def. 4` | (Errors of Set-based Solvers) For a set-based approximation R = R̂ ⊕ R_abs, the local abstraction error at t_k is ε_{k,loc} := ‖d(box(R_abs(Δt;t_k,R(t_k))))‖_∞, and the global accumulated abstraction error over N steps is ε_N := ‖d(box(R(t_end) ⊖ R̂(t_end)))‖_∞. | [`LocalAbstrErr.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/LocalAbstrErr.lean) and [`GlobalAbstrErr.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/GlobalAbstrErr.lean), both over `CORALean.boxDiameter`, which is `d(box(·))` of a bare set — a Minkowski difference is not a representation and has no `Interval.radius` to double. `‖·‖_∞` is the norm `Vec ℝ n` already carries, so no conversion is needed. (28)'s two forms are shown equal in [`GlobalAbstrErrEqLocalAbstrErr.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/GlobalAbstrErrEqLocalAbstrErr.lean), under the hypotheses the finding below names |
 | `Lemma 2` | (Local and Global Abstraction Error) For solvers of the form (10), ε_N ≤ (c/Δt)·max_{1≤ℓ≤N} ε_{ℓ,loc}, with a constant c that may depend on t_end but not on Δt or N. | — |
-| `Def. 5` | (Gain Function) The gain over the time span h with relative increment δ∈[0,1] is φ(h;δ) = max_i φ_i(h;δ), where φ_i(h;δ) = d_i(box(R^∞_abs(δh)))/d_i(box(R^∞_abs(h))). | — |
+| `Def. 5` | (Gain Function) The gain over the time span h with relative increment δ∈[0,1] is φ(h;δ) = max_i φ_i(h;δ), where φ_i(h;δ) = d_i(box(R^∞_abs(δh)))/d_i(box(R^∞_abs(h))). | [`Gain.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/Gain.lean) over [`GainDim.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/GainDim.lean), both over [`AbstrSolInf.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/AbstrSolInf.lean), which is (32) itself — an infinite Minkowski sum has no generator matrix, so nothing in `ContSet` names it and it is the `Set` of what the series sums to over independent choices from Ψ(h). `A` and `Ψ` are functions of h, since (6)'s linearization point moves with the step. Where the denominator vanishes Lean's `x / 0 = 0` applies, which is not the paper's reading; the nonvanishing hypothesis belongs to whatever reads φ_i, as it does in (19). No theorem yet holds `AbstrSolInf` against the paper — `Prop. 1` is the one that would |
 | `Prop. 1` | (Diameter of Set of Abstraction Errors) If Ψ(h) is the zonotope ⟨c(h),G(h)⟩_Z, then d_i(box(R^∞_abs(h))) = 2 Σ_{p≥0} h^{p+1}/(p+1)! ·‖A^p(h)G(h)‖_{1,i}, the 1-norm of the i-th row. | — |
 | `Lemma 3` | (Expansion of Coefficients) For smooth f, A(h) and G(h) are smooth and every coefficient is either ‖A^p(h)G(h)‖_{1,i} = h^{q^(p)_i}‖a^(p)_i + b^(p)_i(h)‖_1 with q^(p)_i∈N_0, a^(p)_i ≠ 0, b^(p)_i(h)=O(h), or identically 0 (convention: q^(p)_i = ∞, a^(p)_i = 0); and Q^(p)_i(h) = ‖a^(p)_i + b^(p)_i(h)‖_1 is non-negative and piecewise smooth. | — |
 | `Thm. 2` | (Limit Gain) For smooth f, lim_{h→0} φ_i(h;δ) = δ^{q_i+1}, where q_i is the index j at which the coefficient sum Σ_{p+q^(p)_i = j} ‖a^(p)_i‖_1 first fails to vanish (Eq. (40); see the finding below). | — |
-| `Def. 6` | (Gain Order of Set-based Solvers) q := min_i q_i is the gain order of the method and q_i that of the i-th dimension; the method has zero abstraction error iff q = ∞. | — |
+| `Def. 6` | (Gain Order of Set-based Solvers) q := min_i q_i is the gain order of the method and q_i that of the i-th dimension; the method has zero abstraction error iff q = ∞. | [`GainOrder.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/GainOrder.lean) over [`GainOrderDim.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/GainOrderDim.lean), at `ℕ∞`, where `∞` is a value of the definition rather than a failure case and `sInf ∅ = ⊤` is the convention (40) needs. Stated as the *minimum* of (40), per the finding below. The closing sentence is [`GainOrderEqTopIff.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/GainOrderEqTopIff.lean), which carries `Lemma 3`'s convention as a hypothesis |
 | `Prop. 2` | (Derivative of Gain) If all Q^(p)_i are differentiable at 0, then lim_{h→0} dφ_i(h;δ)/dh ≤ 0 for δ∈[0,1]; and for fixed h, if every Q^(p)_i is constant on [0,h], then φ_i(t;δ) ≤ δ^{q_i+1} for all t∈[0,h]. | — |
 | `Alg. 1` | "Reachability analysis of continuous-time nonlinear systems using abstractions in the state space": the on-the-fly abstraction loop (linearization point, Taylor expansion, `linReach`, abstraction-error fixed point, addition, order reduction), stated for nonlinear differential-algebraic systems and specializing to the other system classes. | — |
 | `Alg. 2` | "Adaptively-tuned reachable set computation for one step k>1": updates the finite horizon h_k from the previous gain, runs the step twice — once to compute R_abs(h) and the optimal Δt*, once to compute the reachable set with it — and returns the next abstraction order κ_{k+1}, horizon h_k and gain φ^(1)_k. | — |
@@ -67,3 +77,11 @@ not exist a tuple (p,q^(p)_i) such that p + q^(p)_i = j, or ... a^(p)_i = 0"), i
 negation of the condition as printed, and the proof uses only that the coefficient at q_i
 is non-zero. Reading (40) as a minimum makes the theorem, its proof, and `Def. 6`'s
 "q = ∞ iff zero abstraction error" agree.
+
+**`Def. 4` — (28)'s two forms of the local error are equal only under cancellation.**
+(28) writes ε_{k,loc} both as `d(box(R ⊖ R̂))_∞` and as `d(box(R_abs))_∞`, on the strength of
+`R = R̂ ⊕ R_abs`. Only one direction of that is free: `R_abs ⊆ (R̂ ⊕ R_abs) ⊖ R̂` always, while
+the reverse is Rådström cancellation and needs `R_abs` convex and closed and `R̂` nonempty and
+bounded. Every step of `Alg. 1` meets those — both sets are zonotopes — so the row flips and the
+hypotheses sit on the theorem rather than on either definition, which are about any solver at all.
+[`GlobalAbstrErrEqLocalAbstrErr.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/GlobalAbstrErrEqLocalAbstrErr.lean)

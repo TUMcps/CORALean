@@ -1,0 +1,42 @@
+import CORALean.ContDynamics.NonlinearSys.Operations.GainOrderDim
+
+/-!
+# The gain order of a set-based solver
+
+`[1, Def. 6]`: the gain order of the method is the smallest of its dimensions'
+gain orders, so that `φ(h;δ) ≤ δ^{q+1}` holds in every dimension at once.
+
+`ℕ∞` and not `ℕ` because `⊤` is a value the definition needs and not a failure
+case: `[1, Def. 6]` reads `q = ∞` as the method committing no abstraction error
+at all, which is `gainOrder_eq_top_iff`.
+
+## References
+
+* [1] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive
+      Reachability Algorithms for Nonlinear Systems Using Abstraction Error
+      Analysis". Nonlinear Analysis: Hybrid Systems, vol. 46, 2022, p. 101252.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       18-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+variable {n m : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- `q := minᵢ qᵢ`, the gain order of the method. -/
+noncomputable def gainOrder (q : ℕ → Fin n → ℕ∞) (a : ℕ → Fin n → Vec ℝ m) : ℕ∞ :=
+  ⨅ i, gainOrderDim q a i
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
