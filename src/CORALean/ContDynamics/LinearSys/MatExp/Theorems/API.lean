@@ -23,6 +23,7 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoRemainder
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoTaylor
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundAntitoneSucc
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundMono
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundSuperlinear
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderOrderLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderOrderSpec
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderStepSpec
@@ -49,6 +50,7 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SumExpTailLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableExpDiff
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableExpSmul
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableNormExpIntegral
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SuperlinearDecreaseExpRemainder
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoExpRemainderBoundAtTop
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoExpRemainderBoundZero
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoMulExpRemainderBoundZero

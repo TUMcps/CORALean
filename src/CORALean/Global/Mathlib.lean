@@ -1,6 +1,7 @@
 import Mathlib.Algebra.BigOperators.Fin
 import Mathlib.Algebra.BigOperators.Pi
 import Mathlib.Algebra.Group.Pointwise.Set.Basic
+import Mathlib.Algebra.Group.Pointwise.Set.Scalar
 import Mathlib.Algebra.Order.BigOperators.Group.Finset
 import Mathlib.Analysis.Asymptotics.Defs
 import Mathlib.Analysis.Calculus.Deriv.Comp

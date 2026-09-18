@@ -28,6 +28,7 @@ import CORALean.ContSet.Interval.Real.Theorems.MtimesOuter
 import CORALean.ContSet.Interval.Real.Theorems.MtimesWidth
 import CORALean.ContSet.Interval.Real.Theorems.ReindexExact
 import CORALean.ContSet.Interval.Real.Theorems.SplitAtCover
+import CORALean.ContSet.Interval.Real.Theorems.HausdorffDist2AddLeBoxRadius
 
 /-!
 # What `Interval` guarantees
@@ -40,8 +41,7 @@ row and column, and `MemCenter` is the one point a box always offers a layer
 that has to commit to a value. `RecentreZeroMem`/`RecentreSubMem` need that
 same nonemptiness to place the origin, a crossed box denoting `∅` instead.
 `MtimesIsNonempty` is why an image box needs no hypothesis before it is used
-as one. `MtimesWidth` is how far apart its bounds are, row by row, which is
-what a caller bounding an error box against a tolerance needs.
+as one. `MtimesWidth` is how far apart its bounds are, for an error tolerance.
 `MulBetweenCorners` is the scalar fact `mtimes*` products against an interval
 matrix share, and `MatMulOuter` is its use on `matMul`, an enclosure and not an
 equality since a product entry's `k`-summands are bounded independently.
@@ -52,5 +52,6 @@ loss with every power. `SmulOuter` is `MulBetweenEndpoints` read back through
 `Entrywise`. `SplitAtCover` is why `splitAt` is sound to feed
 `NeuralNetwork.holds_of_split`: its two halves cover the box they bisected.
 `NormLeAbsMax` bounds the `l∞` operator norm uniformly over a box by its
-`AbsMax`, which is what makes an exponential enclosure hold at every member.
+`AbsMax`, an exponential enclosure's own requirement. `HausdorffDist2AddLeBoxRadius`
+bounds a Minkowski sum's move by any box enclosing what got added.
 -/
