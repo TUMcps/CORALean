@@ -16,6 +16,8 @@ import CORALean.Global.Radstrom
 import CORALean.Global.Caratheodory
 import CORALean.Global.Minimax
 import CORALean.Global.SuperlinearDecrease
+import CORALean.Global.ErrorConvergesToZero
+import CORALean.Global.HorizonErrorBudget
 import CORALean.Global.LinProg.API
 
 /-!
@@ -29,9 +31,10 @@ the tightest box over a set, the Euclidean norm a vector does not carry by
 default and the Hausdorff distance read through it, the cancellation law that
 turns an outer approximation into an inner one, Carathéodory's theorem over a
 fixed index, the minimax inequality a parametrized infimum's continuity gives
-over two compact sets, when a set-based evaluation shrinks superlinearly, and
-the linear programming every set representation ends up asking for. Mathlib
-enters the project only through this directory.
+over two compact sets, when a set-based evaluation shrinks superlinearly, when a
+step error converges to zero, a fixed horizon's error budget, and the linear
+programming every set representation ends up asking for. Mathlib enters the
+project only through this directory.
 
 `Float/` is deliberately not collected here — it holds the floating-point
 scalar, and importing it would put that in reach of every `Real` file.
