@@ -13,6 +13,8 @@ import CORALean.ContSet.Zonotope.Real.Theorems.Coefficient
 import CORALean.ContSet.Zonotope.Real.Theorems.ContinuousAffine
 import CORALean.ContSet.Zonotope.Real.Theorems.Convex
 import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDist2IntervalLe
+import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDist2IntervalLeCut
+import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDist2IntervalLeMax
 import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDistIntervalLe
 import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
 import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed
@@ -98,12 +100,12 @@ through `MinkDiff`'s wrapper, `MinkDiffOrEmptyNeEmpty` says it is never empty, a
 `MinkDiffGenRecExact` alone is exact at every input. `MtimesIntervalMatSubsetClosedBall` bounds a
 product above, `MtimesIntervalMatSymmBox` it at a symmetric matrix: `S · box(Z)`.
 
-`ReduceBySubsetAddBox` is `ReduceByOuter` backwards — the reduced zonotope sits inside the original
-plus the box it introduced — carried to `reduce` itself by `ReduceSubsetAddBox`;
-`MinkowskiDiffReduceByBoxInner` cancels the box off again and `CentreMemConstruct` says a zonotope
-is nonempty, which every cancellation needs. `HausdorffDistIntervalLe` prices that box instead: its
-distance to the zonotope is at most the generators' total length, and `HausdorffDist2IntervalLe` is
-that bound at `‖·‖₂`. `SubsetClosedBallOfAbsBoundLe` and its converse relate `absBound` to a
+`ReduceBySubsetAddBox` is `ReduceByOuter` backwards — the reduced set sits inside the original plus
+its box — carried to `reduce` itself by `ReduceSubsetAddBox`; `MinkowskiDiffReduceByBoxInner`
+cancels the box off again and `CentreMemConstruct` says a zonotope is nonempty, which every
+cancellation needs. `HausdorffDistIntervalLe` prices that box at the sup norm, and
+`HausdorffDist2IntervalLe`, `HausdorffDist2IntervalLeMax` and `HausdorffDist2IntervalLeCut` the
+three at `‖·‖₂`. `SubsetClosedBallOfAbsBoundLe` and its converse relate `absBound` to a
 sup-norm ball; `MtimesSubsetClosedBall`, `PlusSubsetClosedBall` and `ReduceBoxAbsBoundLe` carry one
 through `mtimes`, `plus` and `reduceBox`, and `StepSubsetClosedBall` composes them at `reach`'s
 shape, its box term discharged crudely or, via `reduceBoxOrder`, sharply. `SumSmulUpdate` is the
