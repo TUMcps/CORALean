@@ -6,6 +6,7 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.AbstrErrMono
 import CORALean.ContDynamics.NonlinearSys.Theorems.BoxDiameterAbstrSolInf
 import CORALean.ContDynamics.NonlinearSys.Theorems.GainOrderEqTopIff
 import CORALean.ContDynamics.NonlinearSys.Theorems.GlobalAbstrErrEqLocalAbstrErr
+import CORALean.ContDynamics.NonlinearSys.Theorems.GlobalAbstrErrLeLocalAbstrErr
 import CORALean.ContDynamics.NonlinearSys.Theorems.LagrangeRemainderMono
 import CORALean.ContDynamics.NonlinearSys.Theorems.ConfinedOfBall
 import CORALean.ContDynamics.NonlinearSys.Theorems.ConfinementOfSubset
@@ -51,13 +52,13 @@ those carry per step: the run cannot cross a ball of radius `ρ > MΔt` about a
 step's start, so inflating the computed set and checking it discharges it. The
 `ReachSet` files say that of the reachable set rather than of a run:
 `ReachSetOuter` puts a run into it, and the `ReachSetSubset` files enclose it.
-
 `AbstractionErrorOfHessian` is one supplier, `AbstrErrLinCenterSubset` minimises
 what it gives at the centre, `AbstractionErrorOfLagrange` is the same one order
 up, and the `PolyAbstractionError` files are the polynomialization variant's:
 `OfQuadRemainder` builds one, `GetSubset` splits it, `...OfPoly` forgets the
 dependency. The `Mono` files are what a dependency argument asks instead.
-`GlobalAbstrErrEqLocalAbstrErr` reads a step's error as its local one — Rådström
-cancellation — `BoxDiameterAbstrSolInf` puts that in closed form at a zonotope,
-and `GainOrderEqTopIff` is the gain order's point: an infinite one is exact.
+`GlobalAbstrErrEqLocalAbstrErr` reads a step's error as its local one —
+Rådström cancellation — `BoxDiameterAbstrSolInf` closes that at a zonotope,
+`GlobalAbstrErrLeLocalAbstrErr` reads a run's error off its worst step, and
+`GainOrderEqTopIff` is the gain order's point: infinite abstracts exactly.
 -/
