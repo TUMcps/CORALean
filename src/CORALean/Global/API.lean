@@ -13,6 +13,7 @@ import CORALean.Global.EuclideanNorm
 import CORALean.Global.EuclideanHausdorffDist
 import CORALean.Global.Radstrom
 import CORALean.Global.Caratheodory
+import CORALean.Global.Minimax
 import CORALean.Global.SuperlinearDecrease
 import CORALean.Global.LinProg.API
 
@@ -25,7 +26,8 @@ one, the entrywise product bundled as a bilinear map, the corner combinatorics a
 box needs, the model every asserted running cost is stated against, the
 Euclidean norm a vector does not carry by default and the Hausdorff distance
 read through it, the cancellation law that turns an outer approximation into an
-inner one, Carathéodory's theorem over a fixed index, when a set-based
+inner one, Carathéodory's theorem over a fixed index, the minimax inequality a
+parametrized infimum's continuity gives over two compact sets, when a set-based
 evaluation shrinks superlinearly, and the linear programming every set
 representation ends up asking for. Mathlib enters the project only through
 this directory.
