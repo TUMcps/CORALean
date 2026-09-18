@@ -59,6 +59,13 @@ noncomputable def MatExp.inputRemainder (A : Mat ℝ n n) (r : ℝ) (η : ℕ) :
   inf := fun _ _ => -(r * MatExp.expRemainderBound (r • A) η)
   sup := fun _ _ => r * MatExp.expRemainderBound (r • A) η
 
+/-- The `E(Δt, η)` of [1] itself, without `inputRemainder`'s extra `r ·`.
+`Theorems/SuperlinearDecreaseExpRemainder` is `Lemma 1` about this. -/
+noncomputable def MatExp.expRemainder (A : Mat ℝ n n) (Δt : ℝ) (η : ℕ) :
+    Interval (Mat ℝ n n) where
+  inf := fun _ _ => -MatExp.expRemainderBound (Δt • A) η
+  sup := fun _ _ => MatExp.expRemainderBound (Δt • A) η
+
 /-- `∫₀ᵗ e^{Aσ} dσ`, as the series `∑ᵢ Aⁱ t^{i+1}/(i+1)!`: `Matrix` carries no
 metrizable-space instance Bochner integration can see, so `expIntegral_mulVec`
 ties it back to the integral one vector at a time. -/
