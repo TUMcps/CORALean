@@ -5,8 +5,8 @@ import CORALean.Global.EuclideanHausdorffDist
 /-!
 # How far a zonotope's box can be from the zonotope, at the Euclidean norm
 
-[1, Thm. 1]'s `ω_rad` bound as the paper states it, at `‖·‖₂`. The paper's two
-sharper bounds, `ω_max` and `ω_cut`, are not proved here.
+[1, Thm. 1]'s `ω_rad` bound as the paper states it, at `‖·‖₂`. `ω_max` and
+`ω_cut` are `HausdorffDist2IntervalLeMax` and `HausdorffDist2IntervalLeCut`.
 
 `hausdorffDist₂` is Mathlib's distance taken through `toEuclidean`, so this is
 not `Zonotope.hausdorffDist_interval_le`, the same argument at the supremum
