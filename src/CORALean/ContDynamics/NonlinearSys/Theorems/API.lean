@@ -3,6 +3,7 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.AbstractionErrorOfLagrange
 import CORALean.ContDynamics.NonlinearSys.Theorems.AbstractionErrorOfPoly
 import CORALean.ContDynamics.NonlinearSys.Theorems.AbstrErrLinCenterSubset
 import CORALean.ContDynamics.NonlinearSys.Theorems.AbstrErrMono
+import CORALean.ContDynamics.NonlinearSys.Theorems.BoxDiameterAbstrSolInf
 import CORALean.ContDynamics.NonlinearSys.Theorems.GainOrderEqTopIff
 import CORALean.ContDynamics.NonlinearSys.Theorems.GlobalAbstrErrEqLocalAbstrErr
 import CORALean.ContDynamics.NonlinearSys.Theorems.LagrangeRemainderMono
@@ -56,7 +57,7 @@ what it gives at the centre, `AbstractionErrorOfLagrange` is the same one order
 up, and the `PolyAbstractionError` files are the polynomialization variant's:
 `OfQuadRemainder` builds one, `GetSubset` splits it, `...OfPoly` forgets the
 dependency. The `Mono` files are what a dependency argument asks instead.
-`GlobalAbstrErrEqLocalAbstrErr` is what it costs to read a step's accumulated
-error as its local one — Rådström cancellation — and `GainOrderEqTopIff` is what
-the gain order is for: an infinite order is a method that abstracts exactly.
+`GlobalAbstrErrEqLocalAbstrErr` reads a step's error as its local one — Rådström
+cancellation — `BoxDiameterAbstrSolInf` puts that in closed form at a zonotope,
+and `GainOrderEqTopIff` is the gain order's point: an infinite one is exact.
 -/
