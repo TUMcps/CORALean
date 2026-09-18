@@ -6,7 +6,9 @@ import CORALean.Global.EuclideanHausdorffDist
 # The `ω_max` bound on how far a zonotope's box can be from the zonotope
 
 [1, Thm. 1]'s `ω_max`, at the `‖·‖₂` the paper states it in, beside
-`Zonotope.hausdorffDist₂_interval_le`, which is the same theorem's `ω_rad`.
+`Zonotope.hausdorffDist₂_interval_le`, which is the same theorem's `ω_rad`; the
+same bound, unnamed, is [2, Thm. 3.2]. [2]'s Eq. (15) misprints the selector
+as `k ≠ i*` for `i ≠ i*`, per that paper's own reference page; followed here.
 
 `aux_ghat` is the paper's `ĝ`: a generator's entrywise magnitude with its first
 `‖·‖_∞`-attaining entry zeroed. "First maximal entry" is a predicate here —
@@ -25,6 +27,8 @@ taking it at coefficient `0`.
 * [1] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive Reachability
       Algorithms for Nonlinear Systems Using Abstraction Error Analysis". Nonlinear
       Analysis: Hybrid Systems, vol. 46, 2022, p. 101252.
+* [2] M. Wetzlinger, A. Kulmburg and M. Althoff. "Adaptive Parameter Tuning for
+      Reachability Analysis of Nonlinear Systems". HSCC, 2021, Article 16.
 -/
 
 -- Authors:       Tobias Ladner
@@ -116,8 +120,9 @@ theorem aux_exists_coeff (g lam : Vec ℝ n) (hlam : ∀ i, |lam i| ≤ 1) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- [1, Thm. 1], the `ω_max` bound: the box is never further from the zonotope
-than twice the generators' trimmed magnitudes reach, at `‖·‖₂`. -/
+/-- [1, Thm. 1] and [2, Thm. 3.2], the `ω_max` bound: the box is never further
+from the zonotope than twice the generators' trimmed magnitudes reach, at
+`‖·‖₂`. -/
 theorem Zonotope.hausdorffDist₂_interval_le_max (Z : Zonotope (Vec ℝ n)) :
     hausdorffDist₂ Z.construct Z.interval.construct
       ≤ 2 * ‖∑ p, aux_ghat (Z.G p)‖₂ := by -- --- PROOF ---
