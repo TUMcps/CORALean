@@ -23,12 +23,13 @@ the tree still cites the CDC 2020 paper there.
 `Def. 4`'s two error measures, `Def. 5`'s gain function and `Def. 6`'s gain order
 are formalized, all three over one `d(box(·))` on a bare set: the sets they measure
 are a Minkowski difference and an infinite Minkowski sum, and neither is a
-representation with an `Interval.radius` to double. `Prop. 1` is not. It is an exact
-equality whose Appendix-B proof is sound, so it is a row waiting on a proof rather
-than on a decision — the modelling question, how to write `R^∞_abs`, is answered by
-`AbstrSolInf`. What the proof still needs is summability of
-Σ_p h^{p+1}/(p+1)!·‖A(h)‖^p at the l-infinity operator norm, and the fact that each
-summand's maximum over Ψ(h) is attained at a sign pattern of the generators.
+representation with an `Interval.radius` to double. `Prop. 1` is what holds that
+infinite sum against the paper, and it is an exact equality rather than an
+enclosure: each summand's maximum over Ψ(h) is attained at a sign pattern of the
+generators and the summands' choices are independent, so the series of row norms is
+reached and not merely bounded. Its two ingredients are `Zonotope.supportBound`,
+attained, and summability of Σ_p h^{p+1}/(p+1)!·‖A(h)‖^p at the l-infinity operator
+norm, which asks nothing of A — the exponential series dominates it termwise.
 
 ## Results
 
@@ -41,8 +42,8 @@ summand's maximum over Ψ(h) is attained at a sign pattern of the generators.
 | `Def. 3` | (Convergence Order of Classical ODE Solvers) The order of a solver for ẋ = f(x,t) is the q∈N_0 with local truncation error ε_{Δt,loc} := \|ξ_ex(Δt;t_0,x_0) - ξ̂(Δt;t_0,x_0)\| ≤ cΔt^{q+1} for all t_0,x_0, with c independent of t_0, x_0 and Δt. | — |
 | `Def. 4` | (Errors of Set-based Solvers) For a set-based approximation R = R̂ ⊕ R_abs, the local abstraction error at t_k is ε_{k,loc} := ‖d(box(R_abs(Δt;t_k,R(t_k))))‖_∞, and the global accumulated abstraction error over N steps is ε_N := ‖d(box(R(t_end) ⊖ R̂(t_end)))‖_∞. | [`LocalAbstrErr.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/LocalAbstrErr.lean) and [`GlobalAbstrErr.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/GlobalAbstrErr.lean), both over `CORALean.boxDiameter`, which is `d(box(·))` of a bare set — a Minkowski difference is not a representation and has no `Interval.radius` to double. `‖·‖_∞` is the norm `Vec ℝ n` already carries, so no conversion is needed. (28)'s two forms are shown equal in [`GlobalAbstrErrEqLocalAbstrErr.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/GlobalAbstrErrEqLocalAbstrErr.lean), under the hypotheses the finding below names |
 | `Lemma 2` | (Local and Global Abstraction Error) For solvers of the form (10), ε_N ≤ (c/Δt)·max_{1≤ℓ≤N} ε_{ℓ,loc}, with a constant c that may depend on t_end but not on Δt or N. | — |
-| `Def. 5` | (Gain Function) The gain over the time span h with relative increment δ∈[0,1] is φ(h;δ) = max_i φ_i(h;δ), where φ_i(h;δ) = d_i(box(R^∞_abs(δh)))/d_i(box(R^∞_abs(h))). | [`Gain.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/Gain.lean) over [`GainDim.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/GainDim.lean), both over [`AbstrSolInf.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/AbstrSolInf.lean), which is (32) itself — an infinite Minkowski sum has no generator matrix, so nothing in `ContSet` names it and it is the `Set` of what the series sums to over independent choices from Ψ(h). `A` and `Ψ` are functions of h, since (6)'s linearization point moves with the step. Where the denominator vanishes Lean's `x / 0 = 0` applies, which is not the paper's reading; the nonvanishing hypothesis belongs to whatever reads φ_i, as it does in (19). No theorem yet holds `AbstrSolInf` against the paper — `Prop. 1` is the one that would |
-| `Prop. 1` | (Diameter of Set of Abstraction Errors) If Ψ(h) is the zonotope ⟨c(h),G(h)⟩_Z, then d_i(box(R^∞_abs(h))) = 2 Σ_{p≥0} h^{p+1}/(p+1)! ·‖A^p(h)G(h)‖_{1,i}, the 1-norm of the i-th row. | — |
+| `Def. 5` | (Gain Function) The gain over the time span h with relative increment δ∈[0,1] is φ(h;δ) = max_i φ_i(h;δ), where φ_i(h;δ) = d_i(box(R^∞_abs(δh)))/d_i(box(R^∞_abs(h))). | [`Gain.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/Gain.lean) over [`GainDim.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/GainDim.lean), both over [`AbstrSolInf.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/AbstrSolInf.lean), which is (32) itself — an infinite Minkowski sum has no generator matrix, so nothing in `ContSet` names it and it is the `Set` of what the series sums to over independent choices from Ψ(h). `A` and `Ψ` are functions of h, since (6)'s linearization point moves with the step. Where the denominator vanishes Lean's `x / 0 = 0` applies, which is not the paper's reading; the nonvanishing hypothesis belongs to whatever reads φ_i, as it does in (19). `Prop. 1` is what holds `AbstrSolInf` against the paper, and it is proved |
+| `Prop. 1` | (Diameter of Set of Abstraction Errors) If Ψ(h) is the zonotope ⟨c(h),G(h)⟩_Z, then d_i(box(R^∞_abs(h))) = 2 Σ_{p≥0} h^{p+1}/(p+1)! ·‖A^p(h)G(h)‖_{1,i}, the 1-norm of the i-th row. | [`BoxDiameterAbstrSolInf.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/BoxDiameterAbstrSolInf.lean) — the exact `=`, with both extremes attained rather than bounded, and `h ≥ 0` its only hypothesis; see the finding below. Generators are a family and not a matrix here, so ‖A^p(h)G(h)‖_{1,i} reads Σ_j \|(A^p(h) g^(j))_i\|, and Ψ(h) is asked to be a zonotope at this h alone, which is all (35) uses |
 | `Lemma 3` | (Expansion of Coefficients) For smooth f, A(h) and G(h) are smooth and every coefficient is either ‖A^p(h)G(h)‖_{1,i} = h^{q^(p)_i}‖a^(p)_i + b^(p)_i(h)‖_1 with q^(p)_i∈N_0, a^(p)_i ≠ 0, b^(p)_i(h)=O(h), or identically 0 (convention: q^(p)_i = ∞, a^(p)_i = 0); and Q^(p)_i(h) = ‖a^(p)_i + b^(p)_i(h)‖_1 is non-negative and piecewise smooth. | — |
 | `Thm. 2` | (Limit Gain) For smooth f, lim_{h→0} φ_i(h;δ) = δ^{q_i+1}, where q_i is the index j at which the coefficient sum Σ_{p+q^(p)_i = j} ‖a^(p)_i‖_1 first fails to vanish (Eq. (40); see the finding below). | — |
 | `Def. 6` | (Gain Order of Set-based Solvers) q := min_i q_i is the gain order of the method and q_i that of the i-th dimension; the method has zero abstraction error iff q = ∞. | [`GainOrder.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/GainOrder.lean) over [`GainOrderDim.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/GainOrderDim.lean), at `ℕ∞`, where `∞` is a value of the definition rather than a failure case and `sInf ∅ = ⊤` is the convention (40) needs. Stated as the *minimum* of (40), per the finding below. The closing sentence is [`GainOrderEqTopIff.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/GainOrderEqTopIff.lean), which carries `Lemma 3`'s convention as a hypothesis |
@@ -85,3 +86,15 @@ the reverse is Rådström cancellation and needs `R_abs` convex and closed and `
 bounded. Every step of `Alg. 1` meets those — both sets are zonotopes — so the row flips and the
 hypotheses sit on the theorem rather than on either definition, which are about any solver at all.
 [`GlobalAbstrErrEqLocalAbstrErr.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/GlobalAbstrErrEqLocalAbstrErr.lean)
+
+**`Prop. 1` — (35) holds for h ≥ 0, and asks nothing else.** The proposition is stated over a
+time span and reads h^{p+1} at face value, so h ≥ 0 is left implicit; at h < 0 the odd-index
+coefficients change sign and the identity would carry |h|^{p+1} instead. That is the one
+hypothesis the formalization adds. No convergence condition joins it: the term
+h^{p+1}/(p+1)!·‖A^p(h)G(h)‖_{1,i} is under h·R·(h‖A(h)‖)^p/p! with R the zonotope's reach, and
+the exponential series dominates that for every A(h) and every Ψ(h) — which is also what makes
+R^∞_abs(h) nonempty and its box finite, neither of which (32) says. The maxima the Appendix-B
+proof takes through Bauer's maximum principle are support values of a zonotope in the directions
+±e_i, attained at a sign pattern of the generators and independent across the summands, so the
+row flips on an `=` and not on a `⊆`.
+[`BoxDiameterAbstrSolInf.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/BoxDiameterAbstrSolInf.lean)
