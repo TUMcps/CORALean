@@ -15,27 +15,29 @@ this paper; what is still missing is threading a per-step tolerance through
 The count was 🔴 0/12 because the older work here follows the paper's
 *approach* without proving any of its numbered results — every one of the
 nineteen files that cited the paper was read against it, and not one stated a
-result. `Prop. 1`, `Def. 1` and `Lemma 1` are the three self-contained
-exceptions since: a generic Hausdorff-distance bound, a predicate over any
-real vector space, and a fact about the matrix-exponential remainder already
-in the tree. The findings say what stands in the way of the rest.
+result. `Prop. 1`, `Def. 1` and `Lemma 1` landed first: a generic
+Hausdorff-distance bound, a predicate over any real vector space, and a fact
+about the matrix-exponential remainder already in the tree. `Assumption 1`,
+`Prop. 2`, `Prop. 3`, `Prop. 4` and `Thm. 2` — the convergence block sitting on
+top of them — landed next; the findings say what each needed and what still
+stands in the way of `Thm. 1` and `Alg. 1`-`Alg. 3`.
 
 ## Results
 
 | Result | What it says | In CORALean |
 |---|---|---|
 | `Prop. 1` | Bounds the Hausdorff distance between a set S= and its Minkowski sum S_tot = S= ⊕ S+ (0 ∈ S+) by err(S+) := r(box(S+)), the enclosing radius of the box over-approximation of S+. | [`HausdorffDist2AddLeBoxRadius.lean`](../../src/CORALean/ContSet/Interval/Real/Theorems/HausdorffDist2AddLeBoxRadius.lean) |
-| `Assumption 1` | (Convergence of ε_H and ε_P) Floating-point errors are neglected so that ε_H([t_i,t_{i+1}]) → 0 and ε_P([t_i,t_{i+1}]) → 0 as Δt_i → 0. | — |
+| `Assumption 1` | (Convergence of ε_H and ε_P) Floating-point errors are neglected so that ε_H([t_i,t_{i+1}]) → 0 and ε_P([t_i,t_{i+1}]) → 0 as Δt_i → 0. | [`ErrorConvergesToZero.lean`](../../src/CORALean/Global/ErrorConvergesToZero.lean) |
 | `Def. 1` | (Superlinear decrease) A continuous function f's set-based evaluation f(S(t)) decreases superlinearly if for all φ∈(0,1), f(S([t,t+φΔt])) ⊆ φ·f(S([t,t+Δt])). | [`SuperlinearDecrease.lean`](../../src/CORALean/Global/SuperlinearDecrease.lean) |
-| `Prop. 2` | If ε_P([t_i,t_{i+1}]) decreases superlinearly (Def. 1), then for any ε_{P,max} > 0 there exists a sequence of time intervals such that the sum of the errors stays below ε_{P,max}. | — |
+| `Prop. 2` | If ε_P(Δt)/Δt → 0 as Δt → 0 — what [1]'s "decreases superlinearly (Def. 1)" has to mean for its own claim to hold, see Findings — then for any ε_{P,max} > 0 and any horizon t_f > 0 there is a finite partition of [0,t_f] whose ε_P-errors sum below ε_{P,max}. | [`HorizonErrorBudget.lean`](../../src/CORALean/Global/HorizonErrorBudget.lean) |
 | `Thm. 1` | Alg. 1 (fully automated parameter tuning) terminates and keeps the overall error below a user-defined bound ε_max, assuming the set-representation-size reduction step in each iteration is optional. | — |
 | `Alg. 1` | "Fully automated parameter tuning": given ε_{H,max}, ε_{P,max}, ε_{S,max}, t_f, iteratively computes Δt_i, calls Alg. 2 and Alg. 3 to tune the time step and set representation size, and returns the reachable set R([0,t_f]). | — |
 | `Alg. 2` | "Adapt values for Δt, Φ_prop": computes the time step size Δt_i and the proportional error budget Φ_prop,i for the current step, given the running error ε_P([0,t_i]). | — |
 | `Alg. 3` | "Adapt values for Φ_set": adapts the target zonotope order/set-representation-size parameter Φ_set by decreasing the number of generators of the particular-solution reachable set. | — |
-| `Prop. 3` | The error ε_H([t_i,t_{i+1}]) (linearization-error-enclosure error, eq. (21)) converges to 0 as Δt_i → 0, and therefore satisfies Assumption 1. | — |
-| `Prop. 4` | The error ε_P([t_i,t_{i+1}]) (particular-solution error, eq. (22)) converges to 0 as Δt_i → 0, and therefore satisfies Assumption 1. | — |
+| `Prop. 3` | The error ε_H([t_i,t_{i+1}]) — eq. (21), the *homogeneous*-solution enclosure's widening term, not a "linearization" error: CDC 2020 is about linear systems — converges to 0 as Δt_i → 0 at the base step (t_i=0), and therefore satisfies Assumption 1. | [`ErrorConvergesToZeroTimeIntervalStepCurvatureError.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/ErrorConvergesToZeroTimeIntervalStepCurvatureError.lean) |
+| `Prop. 4` | The error ε_P([t_i,t_{i+1}]) (particular-solution enclosure's widening term, eq. (22)) converges to 0 as Δt_i → 0 at the base step (t_i=0), and therefore satisfies Assumption 1. | [`ErrorConvergesToZeroTimePointStepRemainderError.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/ErrorConvergesToZeroTimePointStepRemainderError.lean) |
 | `Lemma 1` | The size of the matrix-exponential remainder E(Δt,η) decreases superlinearly with respect to Δt: for all φ∈(0,1), E(φΔt,η) ⊆ φ·E(Δt,η). | [`SuperlinearDecreaseExpRemainder.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/SuperlinearDecreaseExpRemainder.lean) |
-| `Thm. 2` | The error ε_P([t_i,t_{i+1}]) (eq. (22)) decreases superlinearly according to Def. 1: for all φ∈(0,1), ε_P([t_i,t_i+φΔt_i]) ≤ φ·ε_P([t_i,t_i+Δt_i]). | — |
+| `Thm. 2` | The error ε_P([t_i,t_{i+1}]) (eq. (22), at the base step t_i=0) decreases superlinearly according to Def. 1: for all φ∈(0,1), ε_P([0,φΔt]) ≤ φ·ε_P([0,Δt]). | [`SuperlinearDecreaseTimePointStepRemainderError.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/SuperlinearDecreaseTimePointStepRemainderError.lean) |
 | `Def. 2` | (Zonotopes) [cites [27, Def. 1]] Z = {x∈R^n \| x = c + Σ_{i=1}^γ β_i g^(i), -1≤β_i≤1} with center c and generators g^(1),...,g^(γ); the order is ρ = γ/n. | n/a — restated from Girard 2005, which this formalization does not draw on directly |
 
 ## Findings
@@ -59,10 +61,51 @@ scaled by a series remainder rather than the Euclidean radius of a box.
 [`TimeIntervalStepSubsetInitialAddError.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/TimeIntervalStepSubsetInitialAddError.lean),
 [`TimePointStepSubsetConstInputAddError.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/TimePointStepSubsetConstInputAddError.lean)
 
+**What ε_H and ε_P actually are.** The page used to gloss ε_H as a
+"linearization-error-enclosure error", which cannot be right: CDC 2020 is
+about *linear* systems, there is no linearization anywhere in it. Reading eq.
+(19)-(22) directly: `HR([0,Δt]) = conv(X₀,e^{AΔt}X₀) ⊕ Fx(Δt,η)X₀ ⊕
+Fu(Δt,η)c_u`, with the first (labelled `HR=`) the exact convex-hull term and
+the rest (labelled `HR+`) the widening the curvature costs; ε_H := err(HR+) is
+the size of *that widening alone*, not a distance from the hull to any true
+trajectory. Symmetrically ε_P := err(PR+) with `PR+ = E(Δt,η)·Δt·U`. `HR+`
+is exactly `MatExp.correctionMatrix`'s image under `X₀` — `curv` in
+`LinearSys.timeIntervalStep` — and `PR+` is `MatExp.inputRemainder`'s image
+under `U`. Both are proper *subterms* of this tree's existing
+`timeIntervalStepError`/`timePointStepError`, which bound a strictly larger
+quantity: `timeIntervalStepError` also carries a *hull* term (`‖e^{rA}-I‖`,
+first order in the step, independent of η) that measures the hull's own
+distance from the states the flow visits, which eq. (21) does not fold into
+ε_H at all; `timePointStepError` similarly carries a "dependency" term ε_P
+does not have. `timeIntervalStepCurvatureError`/`timePointStepRemainderError`
+(`StepConvergenceError.lean`) name exactly the non-hull halves, so `Prop. 3`
+and `Prop. 4`/`Thm. 2` are proved of the paper's own quantities, not of the
+combined figure the existing `Exists…StepError_lt` theorems bound — citing
+those instead would have put a false equivalence on this page. Both are
+stated at the base step `[0,r]` only, the scope `timeIntervalStep`/
+`timePointStep` themselves already have; extending to the `i`-th interval
+needs the `e^{At_i}` pre-multiplication eq. (21)-(22) carry, which is
+composition and out of scope here.
+
+**`Prop. 2` needs more than `Def. 1` gives.** [1]'s own proof of `Prop. 2`
+treats "ε_P decreases superlinearly" as if it forced ε_P(Δt)/Δt → 0, but
+`SuperlinearDecrease` read at one reference length Δt only bounds ε_P(Δt) by
+the *line through* `(Δt_ref,ε_P(Δt_ref))` — a linear ε_P (equality
+throughout) satisfies Def. 1 exactly, and for it ε_P(Δt)/Δt is a fixed
+positive constant that no ε_{P,max} budget could beat. `HorizonErrorBudget.lean`
+proves the proposition from the hypothesis that actually makes it true,
+ε_P(Δt)/Δt → 0, and does so for eq. (22)'s own ε_P too: since
+`expRemainderBound` is `O(Δt^{η+1})` near `0`, `timePointStepRemainderError`
+is `O(Δt^{η+2})` and its ratio to Δt genuinely vanishes. The theorem proved
+is the horizon-covering reading — a finite partition of a *fixed* `[0,t_f]`
+— not the strictly weaker "some sequence exists, of whatever total length",
+which `Assumption 1` already gives for free and which `Thm. 1` could not use.
+
 ## Cited without a result
 
 These name the paper as a whole. A locator would put each in a row above.
 
+* [`StepConvergenceError.lean`](../../src/CORALean/ContDynamics/LinearSys/StepConvergenceError.lean)
 * [`ExpRemainderOrder.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/ExpRemainderOrder.lean)
 * [`ExpRemainderStep.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/ExpRemainderStep.lean)
 * [`ExistsExpRemainderBoundLt.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/ExistsExpRemainderBoundLt.lean)

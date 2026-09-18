@@ -16,6 +16,8 @@ import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeMatZonotope
 import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeMatZonotopeReach
 import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeReachSetSubsetInputReach
 import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeStep
+import CORALean.ContDynamics.LinearSys.Theorems.ErrorConvergesToZeroTimeIntervalStepCurvatureError
+import CORALean.ContDynamics.LinearSys.Theorems.ErrorConvergesToZeroTimePointStepRemainderError
 import CORALean.ContDynamics.LinearSys.Theorems.ExistsTimeIntervalStepErrorLt
 import CORALean.ContDynamics.LinearSys.Theorems.ExistsTimeIntervalStepInnerInner
 import CORALean.ContDynamics.LinearSys.Theorems.ExistsTimePointStepErrorLt
@@ -65,6 +67,7 @@ import CORALean.ContDynamics.LinearSys.Theorems.StepInputOuter
 import CORALean.ContDynamics.LinearSys.Theorems.StepInputShift
 import CORALean.ContDynamics.LinearSys.Theorems.StepSubset
 import CORALean.ContDynamics.LinearSys.Theorems.StepSubsetHorizon
+import CORALean.ContDynamics.LinearSys.Theorems.SuperlinearDecreaseTimePointStepRemainderError
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuter
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterConvexCompact
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalBound
