@@ -1,0 +1,45 @@
+import CORALean.ContDynamics.NonlinearSys.Operations.GainDim
+
+/-!
+# The gain function
+
+`[1, Def. 5]`: `φ(h;δ) = maxᵢ φᵢ(h;δ)`, the worst dimension's gain, which is
+what `[1, Alg. 2]` tunes the time step size against. The maximum and not an
+average: a step size is good enough only if every dimension's error shrinks
+with it.
+
+`⨆` rather than a `Finset.max'`, so that no nonemptiness proof has to be carried
+through; in `n = 0` dimensions it is `sSup ∅ = 0`, junk of the same kind
+`boxDiameter` returns off its domain and for the same reason.
+
+## References
+
+* [1] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive
+      Reachability Algorithms for Nonlinear Systems Using Abstraction Error
+      Analysis". Nonlinear Analysis: Hybrid Systems, vol. 46, 2022, p. 101252.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       18-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+variable {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- `φ(h;δ)`: the largest share of its width any dimension of the error set
+keeps when the time span shrinks from `h` to `δh`. -/
+noncomputable def gain (A : ℝ → Mat ℝ n n) (Ψ : ℝ → Set (Vec ℝ n)) (h δ : ℝ) : ℝ :=
+  ⨆ i, gainDim A Ψ h δ i
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
