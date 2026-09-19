@@ -30,8 +30,8 @@ it specializes) now excepted.
 | `Def. 4` | (Zonotope order reduction) [cites [11, Sec. 3.4]] reduce(Z,ρ_d) ⊇ Z returns an enclosing zonotope of order ≤ ρ_d, by boxing the χ = γ-⌊(ρ_d-1)n⌋ generators smallest under ‖G_(·,i)‖_1 - ‖G_(·,i)‖_∞. | n/a — restated from Girard 2005, which this formalization does not draw on directly |
 | `Def. 5` | (Hausdorff distance) For compact sets S1,S2⊆R^n, d_H(S1,S2) = max{ sup_{s1} inf_{s2} ‖s1-s2‖2, sup_{s2} inf_{s1} ‖s1-s2‖2 }. | n/a — Mathlib's `Metric.hausdorffDist` provides it, used in [`HausdorffDistAddLe.lean`](../../src/CORALean/ContSet/ContSet/Theorems/HausdorffDistAddLe.lean) and [`HausdorffDistIntervalLe.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/HausdorffDistIntervalLe.lean); the same definition as `Def. 2` on the [NAHS 2022 page](../2022/wetzlinger-nahs-abstraction-error.md), whose row says which norm Mathlib's reads it in |
 | `Def. 6` | (Reachable set) R(t) := {ξ(t;x(0),u(·)) \| x(0)∈X0, ∀θ∈[0,t]: u(θ)∈U}; also defines time-point R(t_k) and time-interval R(τ_k) reachable sets. | n/a — restated; tracked as `Def. 3.1` on [Althoff's thesis](../2010/althoff-thesis.md) |
-| `Alg. 1` | "Reachability algorithm (manual tuning)": baseline reachability algorithm for linear systems with a fixed, user-supplied time step Δt, truncation order η, and zonotope order ρ, returning the outer-approximation R̂([0,t_end]). | [`ManualReach.lean`](../../src/CORALean/ContDynamics/LinearSys/ManualReach.lean) — `manualStep`/`manualRun`/`manualReach`, lines 1-13. [`ManualRunHExact.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/ManualRunHExact.lean) establishes line 7's `H(t_k)` exact outright, and [`ManualRunTEq.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/ManualRunTEq.lean) that the loop reaches `t_k=k·Δt`; the outer half (that `R̂` contains the true reachable set) needs `Prop. 1`-`Prop. 3`, open below |
-| `Prop. 1` | (Affine dynamics error) Bounds the Hausdorff distance between the exact time-interval solution of the affine dynamics H(τ_k) and its outer-approximation. | — |
+| `Alg. 1` | "Reachability algorithm (manual tuning)": baseline reachability algorithm for linear systems with a fixed, user-supplied time step Δt, truncation order η, and zonotope order ρ, returning the outer-approximation R̂([0,t_end]). | [`ManualReach.lean`](../../src/CORALean/ContDynamics/LinearSys/ManualReach.lean) — `manualStep`/`manualRun`/`manualReach`, lines 1-13. [`ManualRunHExact.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/ManualRunHExact.lean) establishes line 7's `H(t_k)` exact outright, and [`ManualRunTEq.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/ManualRunTEq.lean) that the loop reaches `t_k=k·Δt`; the outer half (that `R̂` contains the true reachable set) needs `Prop. 1`-`Prop. 3`, whose own enclosure halves stay open below |
+| `Prop. 1` | (Affine dynamics error) Bounds the Hausdorff distance between the exact time-interval solution of the affine dynamics H(τ_k) and its outer-approximation. | [`HausdorffDist2AffineDynamicsLe.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/HausdorffDist2AffineDynamicsLe.lean) — eq. (23) itself, `d_H(H(τ_k),Ĥ(τ_k)) ≤ 2err(C) + √γ_h‖G^{(-)}_h‖₂`, between the exact tube [`H(τ_k)`](../../src/CORALean/ContDynamics/LinearSys/MatExp/AffineTimeIntervalSolution.lean) — the paper's own display, `A^{-1}(e^{A(t-t_k)}-I_n)` read as the power series [1] falls back on when `A` is singular — and eq. (22)'s computed `Ĥ(τ_k)`, with `µ` discharged from the formalized `Prop. 9` rather than assumed. The two inclusions [1]'s own proof uses without proving stay hypotheses: eq. (22)'s soundness `H(τ_k) ⊆ Ĥ(τ_k)`, which [1] cites to [12], and its inner-approximation claim, stated in the Minkowski-*sum* form `comb(H(t_k),H(t_{k+1})) ⊆ H(τ_k) ⊕ C` that the printed constant actually needs — see the finding below |
 | `Prop. 2` | (Time-point error in particular solution) Bounds the Hausdorff distance between the exact particular solution P^U(t_{k+1}) and its recursively computed outer-approximation P̂^U(t_{k+1}). | [`HausdorffDist2InputReachStepLe.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/HausdorffDist2InputReachStepLe.lean) — eq. (24)'s displayed step only: `d_H(P^U(t_k+Δt_k), P̂^U(t_k) ⊕ e^{At_k}P̂^U(Δt_k)) ≤ ε^U_k + Δε^U_k(Δt_k,η_k)`, with `ε^U_k` the error already standing at `t_k` taken as a hypothesis the way eq. (24) presupposes it, the four sets compact as `Def. 5` requires of everything it measures, and eq. (20)'s soundness carried over from `Prop. 11`. Eq. (21)'s accumulation over the horizon is not proved |
 | `Prop. 3` | (Time-interval error in particular solution) Bounds the maximum Hausdorff distance over t∈τ_k between the exact time-interval particular solution P^U(t) and its outer-approximation. | — |
 | `Prop. 4` | (Zonotope order reduction error) Bounds the Hausdorff distance introduced by iteratively reducing the particular solution's zonotope order, giving the recursion ε^r_{k+1} = ε^r_k + ε^r_k(ρ_k). | [`HausdorffDist2ReduceByLe.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/HausdorffDist2ReduceByLe.lean) — the displayed per-step bound eq. (29) only, `d_H(Z, reduce(Z,ρ)) ≤ err(⟨0,G_red⟩_Z)` with [`⟨0,G_red⟩_Z`](../../src/CORALean/ContSet/Zonotope/Real/Operations/ReduceByDropped.lean) the dropped generators; proved at *every* partition, so it does not need `Def. 4`'s ranking. Eq. (28)'s accumulation ε^r_{k+1} = ε^r_k + Δε^r_k is not proved |
@@ -92,12 +92,36 @@ radius already in
 `err` carries monotonicity (`err_mono`), subadditivity under a Minkowski sum (`err_add_le`),
 boundedness under a linear image (`err_mulVec_le`), and two bridges to `boxDiameter`'s own,
 more-developed `add_le`/`mulVec_image_le` bounds. `Prop. 2`'s displayed step now follows from Appendix A's
-`Prop. 9`/`Prop. 11`, both formalized (see the findings below); `Prop. 1` and `Prop. 3` stay open
-regardless, the first on an inner-approximation by Minkowski difference that [1] asserts without
-proof, the second on eq. (21)'s accumulation of `Prop. 2`'s own error term over the horizon — a
-*soundness* bound relating the error to the exact reachable set, which `err`'s existence does
-not supply. `Prop. 4` (zonotope order reduction error) is `err(·)`-valued too, and its displayed
+`Prop. 9`/`Prop. 11`, both formalized (see the findings below), and so does `Prop. 1`'s eq. (23);
+`Prop. 3` stays open regardless, on eq. (21)'s accumulation of `Prop. 2`'s own error term over the
+horizon — a *soundness* bound relating the error to the exact reachable set, which `err`'s
+existence does not supply. `Prop. 4` (zonotope order reduction error) is `err(·)`-valued too, and its displayed
 bound eq. (29) is now proved: see the `Prop. 4` finding below.
+
+**`Prop. 1`'s claim is the OUTER bound, and the inner-approximation is only a step of its proof —
+a step that does not carry the printed constant.** A prior reading of this row recorded `Prop. 1`
+as *being* the inner-approximation `qH(τ_k) = comb(·) ⊖ B_µ ⊖ C ⊆ H(τ_k)` and therefore
+unformalizable. It is not: [1]'s statement is `d_H(H(τ_k),Ĥ(τ_k)) ≤ Δε^h_k := 2err(C) +
+√γ_h‖G^{(-)}_h‖₂` for the eq. (22) enclosure `Ĥ(τ_k) = comb(H(t_k),H(t_{k+1})) ⊕ C`, and `qH(τ_k)`
+appears only inside the two-sentence proof. That proof ends "the error `Δε^h_k` bounds the distance
+between `qH(τ_k)` and the outer-approximation `Ĥ(τ_k)`", and *that* sentence is false as a general
+fact about the two sets: eroding by a ball does not compose additively with the Hausdorff distance.
+Take `C = {0}` (so `err(C) = 0`) and `Ŝ = [0,L]×[-h,h]` with `h > µ`; then
+`Ŝ ⊖ B_µ = [µ,L-µ]×[-(h-µ),h-µ]`, and the corner `(0,h)` of `Ŝ` is `√2µ` from it, not `µ`. So the
+route through `qH(τ_k)` reaches a constant with a `√2` in it, not the printed one. What does reach
+the printed one is the Minkowski-*sum* reading of the same geometric claim,
+`comb(H(t_k),H(t_{k+1})) ⊆ H(τ_k) ⊕ C` — every point of the straight combination is within the
+curvature set of the true tube — and the bound is then one triangle inequality: `err(C)` for the
+`⊕ C` of eq. (22), `Prop. 9`'s `µ` for `linComb`'s own enclosure error, `err(C)` again for the
+curvature the inner claim spends. That is the hypothesis the row's theorem takes, beside eq. (22)'s
+soundness `H(τ_k) ⊆ Ĥ(τ_k)`; [1] proves neither, exactly as eq. (20)'s soundness stays a hypothesis
+for `Prop. 2`/`Prop. 11`. Two smaller things fell out of writing it down. [1]'s display runs the
+flow map as `e^{At}` at *absolute* time `t ∈ τ_k` while every other set in it is relative to `t_k`,
+which does not compose — the formalized tube runs over the elapsed time `t - t_k ∈ [0,Δt]`. And
+reading a `d_H ≤ r` back as an actual nearby point needs the set searched to be compact, which is
+what [`isCompact_segments`](../../src/CORALean/ContSet/ContSet/Theorems/IsCompactSegments.lean) and
+`hausdorffDist₂_exists_mem_dist_le` supply; `Def. 5` states the distance for compact sets in the
+first place, so nothing is assumed there that `Def. 5` does not already ask.
 
 **`Prop. 9` is proved at `‖·‖₂`, and `linComb` does compute exactly the set `S` the paper's proof
 needs — no convex-hull/`linComb` gap here.** `S := comb(H(t_k),H(t_{k+1}))` is

@@ -55,6 +55,33 @@ theorem hausdorffDist₂_le_of_mem_dist {S T : Set (Vec ℝ n)} {r : ℝ} (hr : 
     obtain ⟨y, hy, hxy⟩ := h₂ x hx
     exact ⟨toEuclidean y, ⟨y, hy, rfl⟩, by rwa [dist_eq_norm, ← map_sub, norm_toEuclidean]⟩
 
+/-- The converse reading: a Hausdorff bound produces an actual nearby point, provided the
+set the point is sought in is compact — only then is the infimum distance attained. -/
+theorem hausdorffDist₂_exists_mem_dist_le {S T : Set (Vec ℝ n)} {r : ℝ} (hS : IsCompact S)
+    (hSne : S.Nonempty) (hT : Bornology.IsBounded T) (hTne : T.Nonempty)
+    (h : hausdorffDist₂ S T ≤ r) {x : Vec ℝ n} (hx : x ∈ T) :
+    ∃ y ∈ S, ‖x - y‖₂ ≤ r := by -- --- PROOF ---
+  have hSc : IsCompact (toEuclidean '' S) := hS.image toEuclidean.continuous
+  have hSb : Bornology.IsBounded (toEuclidean '' S) := hSc.isBounded
+  have hTb : Bornology.IsBounded (toEuclidean '' T) := by
+    obtain ⟨C, hC⟩ := isBounded_iff_forall_norm_le.mp hT
+    refine isBounded_iff_forall_norm_le.mpr ⟨Real.sqrt n * C, ?_⟩
+    rintro _ ⟨z, hz, rfl⟩
+    rw [norm_toEuclidean]
+    exact (norm₂_le_sqrt_mul_norm z).trans
+      (mul_le_mul_of_nonneg_left (hC z hz) (Real.sqrt_nonneg _))
+  have hfin : Metric.hausdorffEDist (toEuclidean '' T) (toEuclidean '' S) ≠ ⊤ :=
+    Metric.hausdorffEDist_ne_top_of_nonempty_of_bounded (hTne.image _) (hSne.image _) hTb hSb
+  -- the infimum distance is under the bound, and compactness turns it into a point
+  have hinf : Metric.infDist (toEuclidean x) (toEuclidean '' S) ≤ r := by
+    refine (Metric.infDist_le_hausdorffDist_of_mem (Set.mem_image_of_mem _ hx) hfin).trans ?_
+    rwa [Metric.hausdorffDist_comm]
+  obtain ⟨y', hy', hy'eq⟩ := hSc.exists_infDist_eq_dist (hSne.image _) (toEuclidean x)
+  obtain ⟨y, hy, rfl⟩ := hy'
+  refine ⟨y, hy, ?_⟩
+  rw [← norm_toEuclidean, map_sub, ← dist_eq_norm, ← hy'eq]
+  exact hinf
+
 end CORALean
 
 
