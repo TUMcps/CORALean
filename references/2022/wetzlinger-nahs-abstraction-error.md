@@ -50,7 +50,7 @@ differentiate.
 | `Thm. 1` | For a zonotope Z=⟨c,G⟩_Z and Z_box := box(Z) ⊇ Z, the Hausdorff distance d_H(Z,Z_box) is over-approximated by three bounds: ω_max(Z) := 2‖Σ_p ĝ^(p)‖_2 (with ĝ^(p) zeroed at the (first) index i* attaining ‖g^(p)‖_∞), ω_rad(Z) := Σ_p ‖g^(p)‖_2, and ω_cut(Z) := √2 Σ_p ‖g^(p)‖_2 √(1 - Σ_i (g^(p)_i)^4/‖g^(p)‖_2^4). | ω_max in [`HausdorffDist2IntervalLeMax.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/HausdorffDist2IntervalLeMax.lean), ω_rad in [`HausdorffDist2IntervalLe.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/HausdorffDist2IntervalLe.lean) and ω_cut in [`HausdorffDist2IntervalLeCut.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/HausdorffDist2IntervalLeCut.lean) — each at `hausdorffDist₂`, `Def. 2`'s distance rather than the supremum-norm one `Vec ℝ n` carries; see the finding below |
 | `Def. 3` | (Convergence Order of Classical ODE Solvers) The order of a solver for ẋ = f(x,t) is the q∈N_0 with local truncation error ε_{Δt,loc} := \|ξ_ex(Δt;t_0,x_0) - ξ̂(Δt;t_0,x_0)\| ≤ cΔt^{q+1} for all t_0,x_0, with c independent of t_0, x_0 and Δt. | [`ConvergenceOrder.lean`](../../src/CORALean/Global/ConvergenceOrder.lean) — `ξex` and `ξhat` are plain functions of `(Δt,t0,x0)`, not tied to any particular ODE; the binder order puts `c` first, ahead of `Δt`, `t0` and `x0`, which is the definition's whole content |
 | `Def. 4` | (Errors of Set-based Solvers) For a set-based approximation R = R̂ ⊕ R_abs, the local abstraction error at t_k is ε_{k,loc} := ‖d(box(R_abs(Δt;t_k,R(t_k))))‖_∞, and the global accumulated abstraction error over N steps is ε_N := ‖d(box(R(t_end) ⊖ R̂(t_end)))‖_∞. | [`LocalAbstrErr.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/LocalAbstrErr.lean) and [`GlobalAbstrErr.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/GlobalAbstrErr.lean), both over `CORALean.boxDiameter`, which is `d(box(·))` of a bare set — a Minkowski difference is not a representation and has no `Interval.radius` to double. `‖·‖_∞` is the norm `Vec ℝ n` already carries, so no conversion is needed. (28)'s two forms are shown equal in [`GlobalAbstrErrEqLocalAbstrErr.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/GlobalAbstrErrEqLocalAbstrErr.lean), under the hypotheses the finding below names |
-| `Lemma 2` | (Local and Global Abstraction Error) For solvers of the form (10), ε_N ≤ (c/Δt)·max_{1≤ℓ≤N} ε_{ℓ,loc}, with a constant c that may depend on t_end but not on Δt or N. | — |
+| `Lemma 2` | (Local and Global Abstraction Error) For solvers of the form (10), ε_N ≤ (c/Δt)·max_{1≤ℓ≤N} ε_{ℓ,loc}, with a constant c that may depend on t_end but not on Δt or N. | [`GlobalAbstrErrLeLocalAbstrErrOfSolver.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/GlobalAbstrErrLeLocalAbstrErrOfSolver.lean) — at one fixed linearization matrix `A ≠ 0`; see the finding below |
 | `Def. 5` | (Gain Function) The gain over the time span h with relative increment δ∈[0,1] is φ(h;δ) = max_i φ_i(h;δ), where φ_i(h;δ) = d_i(box(R^∞_abs(δh)))/d_i(box(R^∞_abs(h))). | [`Gain.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/Gain.lean) over [`GainDim.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/GainDim.lean), both over [`AbstrSolInf.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/AbstrSolInf.lean), which is (32) itself — an infinite Minkowski sum has no generator matrix, so nothing in `ContSet` names it and it is the `Set` of what the series sums to over independent choices from Ψ(h). `A` and `Ψ` are functions of h, since (6)'s linearization point moves with the step. Where the denominator vanishes Lean's `x / 0 = 0` applies, which is not the paper's reading; the nonvanishing hypothesis belongs to whatever reads φ_i, as it does in (19). `Prop. 1` is what holds `AbstrSolInf` against the paper, and it is proved |
 | `Prop. 1` | (Diameter of Set of Abstraction Errors) If Ψ(h) is the zonotope ⟨c(h),G(h)⟩_Z, then d_i(box(R^∞_abs(h))) = 2 Σ_{p≥0} h^{p+1}/(p+1)! ·‖A^p(h)G(h)‖_{1,i}, the 1-norm of the i-th row. | [`BoxDiameterAbstrSolInf.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/BoxDiameterAbstrSolInf.lean) — the exact `=`, with both extremes attained rather than bounded, and `h ≥ 0` its only hypothesis; see the finding below. Generators are a family and not a matrix here, so ‖A^p(h)G(h)‖_{1,i} reads Σ_j \|(A^p(h) g^(j))_i\|, and Ψ(h) is asked to be a zonotope at this h alone, which is all (35) uses |
 | `Lemma 3` | (Expansion of Coefficients) For smooth f, A(h) and G(h) are smooth and every coefficient is either ‖A^p(h)G(h)‖_{1,i} = h^{q^(p)_i}‖a^(p)_i + b^(p)_i(h)‖_1 with q^(p)_i∈N_0, a^(p)_i ≠ 0, b^(p)_i(h)=O(h), or identically 0 (convention: q^(p)_i = ∞, a^(p)_i = 0); and Q^(p)_i(h) = ‖a^(p)_i + b^(p)_i(h)‖_1 is non-negative and piecewise smooth. | [`RowNormExpansionOfAnalytic.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/RowNormExpansionOfAnalytic.lean) — proved for an *analytic* right-hand side and not for a smooth one: the printed dichotomy is false as stated, and the finding below gives the counterexample. `≡ 0` reads as vanishing on a neighbourhood of 0, which is what analyticity gives and all the limit h→0 uses; a^(p)_i is a vector of m generator coefficients rather than (36)'s scalar, ‖·‖_1 there being the 1-norm of a *row* of A^p(h)G(h); and Q^(p)_i is shown continuous at 0 rather than piecewise smooth, continuity being what `Thm. 2` and `Prop. 2` read off it. Analyticity is asked of the entries of A and G, so no norm has to be put on a matrix |
@@ -88,30 +88,40 @@ negation of the condition as printed, and the proof uses only that the coefficie
 is non-zero. Reading (40) as a minimum makes the theorem, its proof, and `Def. 6`'s
 "q = ∞ iff zero abstraction error" agree.
 
-**`Lemma 2` stays open: its second half is proved, its first half is assumed.**
-The row is `—` because what the tree can state is not yet the printed claim —
-"for solvers of the form (10)" is the half that is missing, and it is the half
-that ties the bound to a solver at all. Appendix B's proof of
-`Lemma 2` has two parts: first, (10)'s recursion — sharing `P(τ_k)` between `R`
-and `R̂` — is expanded, via the triangle inequality and a Taylor bound on
-`e^{AΔt}`, into `ε_{k+1} ≤ (1+LΔt)ε_k + ε_{k,loc}` for an `L` Lipschitz in `Δt`
-over `[0,t_end]`; second, that recursion is unrolled by the discrete Grönwall
-argument the paper cites from Süli & Mayers to reach (30). `hstep` in
-[`GlobalAbstrErrLeLocalAbstrErr.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/GlobalAbstrErrLeLocalAbstrErr.lean)
-is exactly that first part's *conclusion*, taken as a hypothesis rather than
-proved from a concrete `A`, the exponential's remainder and its Lipschitz
-constant — none of which are in the tree yet, which is why the row does not
-flip on it. What the file proves in full is
-the second part, `aux_gronwall`, which is where the accumulation over `N`
-steps and the `(c/Δt)` factor actually come from. A further restriction sits
-inside the paper's own proof of the first part and not in `Lemma 2`'s
-statement: (B.1)–(B.2) use one fixed matrix `A`, dropping its `Δt`-dependency
-"for ease of notation", but say nothing about it varying with the step index
-`k` either — which a re-linearizing run (`Alg. 1`, applied `N` times) does.
-`Lemma 2` as printed does not flag this; the Lean statement inherits it
-through `hstep`'s single `L`, so a proof deriving `hstep` from an actual
-`NonlinearSys` run would need either a uniform Lipschitz bound over every
-step's own `A_k`, or the restriction made explicit.
+**`Lemma 2` — both halves now proved, at one fixed `A`; a re-linearizing run stays
+out of scope, stated rather than silently inherited.**
+Appendix B's proof has two parts: first, (10)'s recursion — sharing `P(τ_k)`
+between `R` and `R̂` — is expanded, via the triangle inequality and a Taylor
+bound on `e^{AΔt}`, into `ε_{k+1} ≤ (1+LΔt)ε_k + ε_{k,loc}` for an `L`
+Lipschitz in `Δt` over `[0,t_end]`; second, that recursion is unrolled by the
+discrete Grönwall argument the paper cites from Süli & Mayers to reach (30).
+The second part is `aux_gronwall` in
+[`GlobalAbstrErrLeLocalAbstrErr.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/GlobalAbstrErrLeLocalAbstrErr.lean),
+landed earlier and unchanged. The first part — `hstep` — was there taken as a
+hypothesis; it is now derived, in
+[`GlobalAbstrErrStepOfSolver.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/GlobalAbstrErrStepOfSolver.lean),
+from a formal reading of (B.1)–(B.2) themselves: rather than cancel the shared
+`P(τ_k)` through `⊖` — the erosion `minkowskiDiff` on a bare set is not a group
+subtraction, so `(X+P)⊖(Y+P) = X⊖Y` is false in general (checked directly:
+`A=[0,1]`, `B=[-1,1]`, `C=[0,2]` gives `∅ ⊊ [-1,0]`) — the recursion is tracked
+forward as an explicit, honestly-composed error set `E(k+1) := e^{AΔt}E(k) ⊞
+Rabs(k)`, `E(0) = {0}`, giving `R(k) = R̂(k) + E(k)` by pure reassociation; `Def.
+4`'s two forms of the local error, already proved equal, then read `hstep` off
+two `boxDiameter` facts — subadditivity under `⊕`, and a bound under a linear
+image by its operator norm — with `L := ‖A‖e^{t_end‖A‖}` from an unconditional
+Taylor bound `‖e^{tA}-1‖ ≤ t‖A‖e^{t‖A‖}` (valid for every `t ≥ 0`, not only
+small `t`, unlike the tree's existing geometric-series remainder bound).
+`A ≠ 0` is the one restriction beyond the paper's own: `aux_gronwall` divides
+by `L`, needing `‖A‖ > 0`.
+The restriction the paper's own proof carries but its statement does not is
+kept explicit rather than inherited silently: (B.1)–(B.2) use one fixed matrix
+`A`, dropping its `Δt`-dependency "for ease of notation", but say nothing
+about it varying with the step index `k` — which a re-linearizing run (`Alg.
+1`, applied `N` times) does.
+[`GlobalAbstrErrLeLocalAbstrErrOfSolver.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/GlobalAbstrErrLeLocalAbstrErrOfSolver.lean)
+composes both halves into `[1, Lemma 2]` outright, for that fixed-`A` reading;
+a re-linearizing run — the honest general statement, with a uniform Lipschitz
+bound over every step's own `A_k` — is not attempted here.
 
 **`Def. 4` — (28)'s two forms of the local error are equal only under cancellation.**
 (28) writes ε_{k,loc} both as `d(box(R ⊖ R̂))_∞` and as `d(box(R_abs))_∞`, on the strength of

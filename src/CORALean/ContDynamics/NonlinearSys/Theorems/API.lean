@@ -9,6 +9,8 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.GainDimTendstoPow
 import CORALean.ContDynamics.NonlinearSys.Theorems.GainOrderEqTopIff
 import CORALean.ContDynamics.NonlinearSys.Theorems.GlobalAbstrErrEqLocalAbstrErr
 import CORALean.ContDynamics.NonlinearSys.Theorems.GlobalAbstrErrLeLocalAbstrErr
+import CORALean.ContDynamics.NonlinearSys.Theorems.GlobalAbstrErrLeLocalAbstrErrOfSolver
+import CORALean.ContDynamics.NonlinearSys.Theorems.GlobalAbstrErrStepOfSolver
 import CORALean.ContDynamics.NonlinearSys.Theorems.LagrangeRemainderMono
 import CORALean.ContDynamics.NonlinearSys.Theorems.ConfinedOfBall
 import CORALean.ContDynamics.NonlinearSys.Theorems.ConfinementOfSubset

@@ -33,11 +33,9 @@ namespace CORALean
 variable {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
 /-- The coordinate images of a bounded set are bounded above, which is what
 `sSup` needs to be the supremum rather than its junk value. -/
-theorem aux_bddAbove_eval_image {S : Set (Vec ℝ n)} (hS : Bornology.IsBounded S) (i : Fin n) :
+theorem bddAbove_eval_image {S : Set (Vec ℝ n)} (hS : Bornology.IsBounded S) (i : Fin n) :
     BddAbove ((fun x : Vec ℝ n => x i) '' S) := by -- --- PROOF ---
   obtain ⟨C, hC⟩ := hS.exists_norm_le
   refine ⟨C, ?_⟩
@@ -48,8 +46,8 @@ theorem aux_bddAbove_eval_image {S : Set (Vec ℝ n)} (hS : Bornology.IsBounded 
     _ ≤ ‖x‖ := norm_le_pi_norm x i
     _ ≤ C := hC x hx
 
-/-- The same bound below, `sInf`'s side of `aux_bddAbove_eval_image`. -/
-theorem aux_bddBelow_eval_image {S : Set (Vec ℝ n)} (hS : Bornology.IsBounded S) (i : Fin n) :
+/-- The same bound below, `sInf`'s side of `bddAbove_eval_image`. -/
+theorem bddBelow_eval_image {S : Set (Vec ℝ n)} (hS : Bornology.IsBounded S) (i : Fin n) :
     BddBelow ((fun x : Vec ℝ n => x i) '' S) := by -- --- PROOF ---
   obtain ⟨C, hC⟩ := hS.exists_norm_le
   refine ⟨-C, ?_⟩
@@ -76,8 +74,26 @@ theorem boxDiameter_mono {S T : Set (Vec ℝ n)} (hne : S.Nonempty)
     Set.image_mono hST
   have hne' : ((fun x : Vec ℝ n => x i) '' S).Nonempty := hne.image _
   -- the supremum grows and the infimum falls, and the difference of the two does both
-  exact sub_le_sub (csSup_le_csSup (aux_bddAbove_eval_image hT i) hne' himg)
-    (csInf_le_csInf (aux_bddBelow_eval_image hT i) hne' himg)
+  exact sub_le_sub (csSup_le_csSup (bddAbove_eval_image hT i) hne' himg)
+    (csInf_le_csInf (bddBelow_eval_image hT i) hne' himg)
+
+/-- Two points of a bounded `S` never differ, at any one coordinate, by more
+than `S`'s own box diameter there. -/
+theorem abs_sub_le_boxDiameter {S : Set (Vec ℝ n)} (hS : Bornology.IsBounded S)
+    {x y : Vec ℝ n} (hx : x ∈ S) (hy : y ∈ S) (i : Fin n) :
+    |x i - y i| ≤ boxDiameter S i := by -- --- PROOF ---
+  rw [abs_sub_le_iff]
+  refine ⟨?_, ?_⟩
+  · have h1 : x i ≤ sSup ((fun z : Vec ℝ n => z i) '' S) :=
+      le_csSup (bddAbove_eval_image hS i) ⟨x, hx, rfl⟩
+    have h2 : sInf ((fun z : Vec ℝ n => z i) '' S) ≤ y i :=
+      csInf_le (bddBelow_eval_image hS i) ⟨y, hy, rfl⟩
+    rw [boxDiameter]; linarith
+  · have h1 : y i ≤ sSup ((fun z : Vec ℝ n => z i) '' S) :=
+      le_csSup (bddAbove_eval_image hS i) ⟨y, hy, rfl⟩
+    have h2 : sInf ((fun z : Vec ℝ n => z i) '' S) ≤ x i :=
+      csInf_le (bddBelow_eval_image hS i) ⟨x, hx, rfl⟩
+    rw [boxDiameter]; linarith
 
 end CORALean
 
