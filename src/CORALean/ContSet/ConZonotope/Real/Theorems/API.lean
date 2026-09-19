@@ -2,6 +2,7 @@ import CORALean.ContSet.ConZonotope.Real.Theorems.MemConstruct
 import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructEqImage
 import CORALean.ContSet.ConZonotope.Real.Theorems.PlusExact
 import CORALean.ContSet.ConZonotope.Real.Theorems.IntersectionExact
+import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructFoldlIntersectionEq
 import CORALean.ContSet.ConZonotope.Real.Theorems.MapExact
 import CORALean.ContSet.ConZonotope.Real.Theorems.MtimesExact
 import CORALean.ContSet.ConZonotope.Real.Theorems.MtimesIntervalMatOuter
@@ -20,26 +21,28 @@ import CORALean.ContSet.ConZonotope.Real.Theorems.IsBounded
 import CORALean.ContSet.ConZonotope.Real.Theorems.OfPointMem
 import CORALean.ContSet.ConZonotope.Real.Theorems.IsAffineImageIff
 import CORALean.ContSet.ConZonotope.Real.Theorems.IntersectsHyperplaneIff
+import CORALean.ContSet.ConZonotope.Real.Theorems.MinkDiffVExact
 
 /-!
 # What `ConZonotope` guarantees
 
-`intersection`, `plus` and `map` exactly; the interval-matrix product and `reduce` as
-enclosures, `reduce` by way of `zonotope_contains`, and `reduce_order_le` for its
-own generator-count bound. `linComb` has both directions: `_outer` is what the
-interface asks for and holds always, `_inner` is what says the result is the
-convex hull itself and asks both sets to be nonempty. `enclose_outer` is the
-one direction `enclose` gets, asking the constraints to agree besides. The
-topological facts go through `ConstructEqImage` and so through the polytope,
-which is where they differ from a zonotope's.
+`intersection`, `plus` and `map` exactly; the interval-matrix product and `reduce` as enclosures,
+`reduce` by way of `zonotope_contains`, and `reduce_order_le` for its own generator-count bound.
+`linComb` has both directions: `_outer` is what the interface asks for and holds always, `_inner`
+is what says the result is the convex hull itself and asks both sets to be nonempty. `enclose_outer`
+is the one direction `enclose` gets, asking the constraints to agree besides. The topological facts
+go through `ConstructEqImage` and so through the polytope, which is where they differ from a
+zonotope's.
 
-`OfPointMem` needs no theorem of `HPolytope`'s: an empty row index discharges
-the constraint the same way it discharges the generator sum.
+`OfPointMem` needs no theorem of `HPolytope`'s: an empty row index discharges the constraint the
+same way it discharges the generator sum. `IsAffineImageIff` is the representation itself
+characterized: exactly the bounded affine images of a polytope, `ConstructEqImage` and
+`HPolytope`'s own conversion read as the two halves of one iff. `IntersectsHyperplaneIff` reads
+`convex_construct` as a hyperplane test, exact between the extremes `h` takes. Together these are
+everything `LinearSys` reachability asks of a representation.
 
-`IsAffineImageIff` is the representation itself characterized: exactly the
-bounded affine images of a polytope, `ConstructEqImage` and `HPolytope`'s own
-conversion read as the two halves of one iff. `IntersectsHyperplaneIff` reads
-`convex_construct` as a hyperplane test, exact between the extremes `h` takes.
-
-Together these are everything `LinearSys` reachability asks of a representation.
+`ConstructFoldlIntersectionEq` reads `intersection_exact` along a fold: any finite conjunction of
+constrained-zonotope memberships is itself one. `MinkDiffVExact` is that fold applied to a zonotope
+translated by a polytope's vertices — Prop. 6, an equality rather than the enclosure every other
+`MinkDiff` here is.
 -/

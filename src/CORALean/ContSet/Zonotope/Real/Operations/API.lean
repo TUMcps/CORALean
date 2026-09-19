@@ -37,6 +37,7 @@ import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffAligned
 import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffRep
 import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffOrEmpty
 import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffGenRec
+import CORALean.ContSet.Zonotope.Real.Operations.Shift
 import CORALean.ContSet.Zonotope.Real.Operations.SupportBound
 
 /-!
@@ -62,5 +63,5 @@ reduction pays, which is what an inner approximation subtracts back off.
 `reduceByBasis` boxes along a basis, not the axes: `methCFilter`, `methCVolume` and `methCBasis`
 pick `methC`'s, `pcaCovariance` and `pcaBasis` pick `pca`'s. `split` halves one generator into two
 zonotopes that cover the original; `splitRank` picks which one. `supportBound` answers a direction
-with no solver; the value is attained.
+with no solver, the value attained; `shift` translates the centre alone — Prop. 6's `Z − vᵢ`.
 -/

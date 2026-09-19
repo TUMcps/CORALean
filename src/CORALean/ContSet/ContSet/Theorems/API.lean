@@ -1,6 +1,7 @@
 import CORALean.ContSet.ContSet.Theorems.DependencyPreservingChain
 import CORALean.ContSet.ContSet.Theorems.DependencyPreservingComp
 import CORALean.ContSet.ContSet.Theorems.HausdorffDistAddLe
+import CORALean.ContSet.ContSet.Theorems.HausdorffDistImageLe
 import CORALean.ContSet.ContSet.Theorems.HausdorffDistMulVecLinAddLe
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddAssoc
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddSubset
@@ -31,8 +32,8 @@ Prop. 3 and Prop. 4 are `minkowskiDiff_add_subset_add` and `minkowskiDiff_encl_s
 a set to a difference stays inside the difference of the enlarged minuend. `minkowskiDiff_add_assoc`
 subtracts a sum one summand at a time, which is what his Thm. 1 recurses on.
 
-`hausdorffDist_add_le` and `hausdorffDist_mulVecLin_add_le` are the two distances here rather than
-inclusions: adding the same compact set to both sides, or perturbing a linear image by another
-matrix, can only bring the two sides together — the latter is Wetzlinger et al.'s Prop. 10, cited
-in its own file.
+`hausdorffDist_add_le`, `hausdorffDist_image_le` and `hausdorffDist_mulVecLin_add_le` are the
+three distances here rather than inclusions: adding the same compact set to both sides, moving two
+sets through a continuous linear map, or perturbing a linear image by another matrix, can each
+only bring the two sides together — the last is Wetzlinger et al.'s Prop. 10, cited in its file.
 -/

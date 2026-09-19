@@ -7,6 +7,7 @@ import CORALean.ContSet.VPolytope.Real.Theorems.IsClosed
 import CORALean.ContSet.VPolytope.Real.Theorems.IsBounded
 import CORALean.ContSet.VPolytope.Real.Theorems.LinCombOuter
 import CORALean.ContSet.VPolytope.Real.Theorems.MapExact
+import CORALean.ContSet.VPolytope.Real.Theorems.MinkowskiDiffEqIInter
 import CORALean.ContSet.VPolytope.Real.Theorems.MtimesExact
 import CORALean.ContSet.VPolytope.Real.Theorems.BilinOuter
 import CORALean.ContSet.VPolytope.Real.Theorems.MtimesMatPolytopeOuter
@@ -28,4 +29,7 @@ behind it is not proved here. `mtimesMatPolytope_outer` reads it back at `*ᵥ`.
 `PerturbSubset` is what the float layer owes when it stores rounded vertices:
 displacing every vertex by something a convex `D` admits widens the hull by no
 more than `D`.
+
+`MinkowskiDiffEqIInter` names no vertex representation of its own: a convex minuend's Minkowski
+difference by a `VPolytope` needs only its vertices checked, one at a time.
 -/
