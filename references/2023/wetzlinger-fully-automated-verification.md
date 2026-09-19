@@ -45,33 +45,42 @@ it specializes) now excepted.
 | `Prop. 9` | (Appendix A) Given the homogeneous solution H(t_k)=⟨c_h,G_h⟩_Z and particular solution P^u(t_k)=c_p, bounds the Hausdorff distance between the exact linear combination S = comb(H(t_k),H(t_{k+1})) and its zonotope outer-approximation. | — |
 | `Prop. 10` | (Appendix A) For a compact set S⊂R^n and matrices M1,M2: d_H((M1+M2)S, M1 S) ≤ d_H(0, M2 S) — a general perturbation bound for linear maps of sets under the Hausdorff distance. | [`HausdorffDistMulVecLinAddLe.lean`](../../src/CORALean/ContSet/ContSet/Theorems/HausdorffDistMulVecLinAddLe.lean) |
 | `Prop. 11` | (Appendix A) Bounds the Hausdorff distance between the propagated exact particular solution e^{At_k}P^U(t_k) and its outer-approximation. | — |
-| `Lemma 1` | (Appendix B) The remainder of the exponential matrix E(Δt_k,η_k) (eq. 18) satisfies lim_{Δt_k→0} E = 0 and E ~ O(Δt_k^{η_k+1}). | — |
+| `Lemma 1` | (Appendix B) The remainder of the exponential matrix E(Δt_k,η_k) (eq. 18) satisfies lim_{Δt_k→0} E = 0 and E ~ O(Δt_k^{η_k+1}). | [`ExpRemainderMat.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/ExpRemainderMat.lean), [`TendstoExpRemainderMatZero.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/TendstoExpRemainderMatZero.lean), [`ExpRemainderMatIsBigO.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/ExpRemainderMatIsBigO.lean) |
 | `Lemma 2` | (Appendix B) The error ε^U_k(Δt_k,η_k) (eq. 25) satisfies lim_{Δt_k→0} ε^U_k = 0 and ε^U_k ~ O(Δt_k²). | — |
 | `Lemma 3` | (Appendix B) The error ε^h_k(Δt_k,η_k) (eq. 23) satisfies lim_{Δt_k→0} ε^h_k = 0 and ε^h_k ~ O(Δt_k). | — |
 | `Lemma 4` | (Appendix B) The error ε^{U,τ}_k(Δt_k,η_k) (eq. 26) satisfies lim_{Δt_k→0} ε^{U,τ}_k = 0 and ε^{U,τ}_k ~ O(Δt_k). | — |
 
 ## Findings
 
-**`Prop. 1`-`Prop. 4` bound a norm this formalization does not carry.** Each uses `err(S) :=
-rad(box(S))`, and the paper's own Notation section defines `rad` as the radius of the smallest
-hypersphere enclosing a set, explicitly "with respect to the Euclidean norm" — so every one of
-these bounds is a `‖·‖₂` quantity by construction, not incidentally. `Vec ℝ n` carries Mathlib's
-supremum norm, and `‖·‖₂` is deliberately not wired into a metric-space instance on it (see
-`Global/EuclideanNorm.lean`), so `Metric.hausdorffDist` cannot read it there; formalizing these
-as printed needs either a `PiLp 2` transport or a hand-built Euclidean Hausdorff-distance theory,
-neither of which exists here. This is the same gap that keeps NAHS'22 `Thm. 1` open, not a defect
-of the paper. `Prop. 1` and `Prop. 2` are additionally downstream of `Prop. 9` and `Prop. 11`
-(Appendix A), neither formalized; `Prop. 3` is downstream of `Prop. 2`'s error term.
+**`Prop. 1`-`Prop. 4` are stated at `‖·‖₂`, and that is no longer what blocks them.** Each uses
+`err(S) := rad(box(S))`, and the paper's Notation section defines `rad` as the radius of the
+smallest enclosing hypersphere, explicitly "with respect to the Euclidean norm" — a `‖·‖₂`
+quantity by construction. `Vec ℝ n` carries Mathlib's supremum norm, so `Metric.hausdorffDist`
+there is the sup-norm one; but `Global/EuclideanHausdorffDist.lean` now takes it through
+`toEuclidean` as `hausdorffDist₂`, which is that definition exactly, and `Global/BoxDiameter.lean`
+names `d(box(·))` coordinatewise. CDC 2020's `Prop. 1` is already proved at its own `err(·)`, the
+origin-centred Euclidean box radius, in
+[`HausdorffDist2AddLeBoxRadius.lean`](../../src/CORALean/ContSet/Interval/Real/Theorems/HausdorffDist2AddLeBoxRadius.lean),
+and NAHS'22 `Thm. 1` is closed at `‖·‖₂` as well. So what remains here is the work, not the
+ambient norm: `err(·)` wants a named operator of its own, built from `boxDiameter`. `Prop. 1` and
+`Prop. 2` are additionally downstream of `Prop. 9` and `Prop. 11` (Appendix A), neither
+formalized; `Prop. 3` is downstream of `Prop. 2`'s error term.
 
 `Lemma 2`-`Lemma 4` are asymptotic claims about exactly these `err(·)`-valued quantities
-(`Δε^h_k`, `Δε^U_k`, `Δε^{U,τ}_k` respectively), so they inherit the same gap and are additionally
-downstream of `Prop. 1`-`Prop. 3`. `Lemma 1` is different: its subject `E(Δt,η)` (eq. 18) is an
-entrywise interval-matrix bound, `e^{|A|∆t} - Σ(|A|∆t)^i/i!`, with no norm dependency — but it is
-a different quantity from `MatExp.expRemainderBound`, which bounds the same remainder with a
-single scalar under the `l∞` operator norm rather than entrywise.
-`MatExp.tendsto_expRemainderBound_zero` proves the limit fact for that scalar bound by splitting
-it into a vanishing numerator and a bounded-and-converging denominator; the same argument should
-transfer to the entrywise object, but that object is not yet defined.
+(`Δε^h_k`, `Δε^U_k`, `Δε^{U,τ}_k` respectively), so they wait on that same named operator and are
+additionally downstream of `Prop. 1`-`Prop. 3` (eq. (23) and (25) both name `err(·)` directly; eq. (26)'s
+`Δε^{U,τ}_k := err(e^{At_k} P̂^U(Δt_k))` does too). They are not the CDC'20 `ε_H`/`ε_P` widening
+terms tracked in `StepConvergenceError.lean`: those are built from `Zonotope.absBound`, a
+generator-sum radius under the sup norm, not `rad(box(·))` under `‖·‖₂` — a different formula for
+a differently-normed quantity, not the same error under two names, so nothing there transfers
+either. `Lemma 1` is different: its subject `E(Δt,η)` (eq. 18) is `e^{|A|∆t} - Σ(|A|∆t)^i/i!`, a
+plain matrix built from `A`'s entrywise absolute value, with no norm dependency at all — a
+*different* quantity from `MatExp.expRemainderBound`, which bounds the same remainder with a
+single scalar under the `l∞` operator norm rather than entrywise, so `expRemainderMat` names it
+fresh. Both halves of `Lemma 1` hold as printed: `tendsto_expRemainderMat_zero` and
+`expRemainderMat_isBigO` reuse `norm_exp_sub_expTaylor_le` and
+`MatExp.tendsto_expRemainderBound_zero` at `|A|` in place of `A`, the side condition
+`‖Δt • |A|‖/(η+2) < 1` holding eventually as `Δt → 0` exactly as it does for `expRemainderBound`.
 
 ## Cited without a result
 

@@ -1,6 +1,7 @@
 import CORALean.ContDynamics.LinearSys.MatExp.Enclosures
 import CORALean.ContDynamics.LinearSys.MatExp.ExactIntervalEnclosures
 import CORALean.ContDynamics.LinearSys.MatExp.ExactSecondOrder
+import CORALean.ContDynamics.LinearSys.MatExp.ExpRemainderMat
 import CORALean.ContDynamics.LinearSys.MatExp.ExpRemainderOrder
 import CORALean.ContDynamics.LinearSys.MatExp.ExpRemainderStep
 import CORALean.ContDynamics.LinearSys.MatExp.IntervalCorrection
@@ -29,5 +30,6 @@ tuning and not the algorithm — the error bounded is the exponential's, not the
 reachable set's.
 
 Enclosures only, no representation — an interval matrix is `Interval (Mat ℝ m n)`
-like any other set.
+like any other set. `ExpRemainderMat` is a second, sharper remainder at `|A|`
+entrywise rather than at `‖A‖`, for `Theorems`' entrywise convergence rates.
 -/

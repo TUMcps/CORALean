@@ -24,6 +24,7 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoTaylor
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundAntitoneSucc
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundMono
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundSuperlinear
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderMatIsBigO
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderOrderLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderOrderSpec
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderStepSpec
@@ -54,6 +55,7 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableNormExpIntegral
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SuperlinearDecreaseExpRemainder
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoExpRemainderBoundAtTop
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoExpRemainderBoundZero
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoExpRemainderMatZero
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoMulExpRemainderBoundZero
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TsumLeExpTail
 
@@ -77,8 +79,8 @@ the step shrinks, so any admissible error is reachable by either knob.
 `ExpRemainderBoundAntitoneSucc` says one more order never costs precision, and
 `ExpRemainderOrderSpec`/`ExpRemainderOrderLe`/`ExpRemainderStepSpec` say the
 parameter chosen for an admissible error meets it, the order least of those.
-
-`ExpTaylorSmulMulVec`, `ContinuousExpDiff` and `RemainderEntryLe` are what an
-input solution needs of the truncation and its remainder: the time pulled out
-of each order, continuity in it, and one entrywise bound covering a whole step.
+`TendstoExpRemainderMatZero`/`ExpRemainderMatIsBigO` are the same two limits at
+`ExpRemainderMat`'s sharper, entrywise remainder. `ExpTaylorSmulMulVec`,
+`ContinuousExpDiff` and `RemainderEntryLe` are what an input solution needs of
+the truncation and its remainder.
 -/
