@@ -4,6 +4,8 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.AbstractionErrorOfPoly
 import CORALean.ContDynamics.NonlinearSys.Theorems.AbstrErrLinCenterSubset
 import CORALean.ContDynamics.NonlinearSys.Theorems.AbstrErrMono
 import CORALean.ContDynamics.NonlinearSys.Theorems.BoxDiameterAbstrSolInf
+import CORALean.ContDynamics.NonlinearSys.Theorems.GainDimLePow
+import CORALean.ContDynamics.NonlinearSys.Theorems.GainDimTendstoPow
 import CORALean.ContDynamics.NonlinearSys.Theorems.GainOrderEqTopIff
 import CORALean.ContDynamics.NonlinearSys.Theorems.GlobalAbstrErrEqLocalAbstrErr
 import CORALean.ContDynamics.NonlinearSys.Theorems.GlobalAbstrErrLeLocalAbstrErr
@@ -23,6 +25,7 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.ReachOuterHorizon
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachOuterHorizonInputSolution
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachOuterInputSolution
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetConfinementOfSubset
+import CORALean.ContDynamics.NonlinearSys.Theorems.RowNormExpansionOfAnalytic
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetSubsetRelinReach
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetSubsetRelinTimeInterval
@@ -57,8 +60,8 @@ what it gives at the centre, `AbstractionErrorOfLagrange` is the same one order
 up, and the `PolyAbstractionError` files are the polynomialization variant's:
 `OfQuadRemainder` builds one, `GetSubset` splits it, `...OfPoly` forgets the
 dependency. The `Mono` files are what a dependency argument asks instead.
-`GlobalAbstrErrEqLocalAbstrErr` reads a step's error as its local one —
-Rådström cancellation — `BoxDiameterAbstrSolInf` closes that at a zonotope,
-`GlobalAbstrErrLeLocalAbstrErr` reads a run's error off its worst step, and
-`GainOrderEqTopIff` is the gain order's point: infinite abstracts exactly.
+`GlobalAbstrErrEqLocalAbstrErr` reads a step's error as its local one — Rådström cancellation —
+`GlobalAbstrErrLeLocalAbstrErr` reads a run's off its worst step, `BoxDiameterAbstrSolInf` closes
+that at a zonotope, `RowNormExpansionOfAnalytic` expands its coefficients, `GainDimTendstoPow` is
+the limit gain, `GainDimLePow` its bound, and `GainOrderEqTopIff` the gain order's point.
 -/
