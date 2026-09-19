@@ -103,6 +103,21 @@ theorem abs_le_norm₂ (x : Vec ℝ n) (i : Fin n) : |x i| ≤ ‖x‖₂ := by
   rw [← norm_toEuclidean, ← Real.norm_eq_abs, ← toEuclidean_apply x i]
   exact PiLp.norm_apply_le _ _
 
+/-- And the whole never exceeds `√n` coordinates, which is what converts a bound
+at the ambient supremum norm into one at `‖·‖₂`. -/
+theorem norm₂_le_sqrt_mul_norm (x : Vec ℝ n) : ‖x‖₂ ≤ Real.sqrt n * ‖x‖ := by -- --- PROOF ---
+  have hle : ∀ i : Fin n, x i ^ 2 ≤ ‖x‖ ^ 2 := fun i =>
+    calc x i ^ 2 = |x i| ^ 2 := (sq_abs _).symm
+      _ ≤ ‖x‖ ^ 2 := pow_le_pow_left₀ (abs_nonneg _)
+          (by simpa [Real.norm_eq_abs] using norm_le_pi_norm x i) 2
+  have hsum : ∑ i, x i ^ 2 ≤ (n : ℝ) * ‖x‖ ^ 2 := by
+    calc ∑ i, x i ^ 2 ≤ ∑ _i : Fin n, ‖x‖ ^ 2 := Finset.sum_le_sum fun i _ => hle i
+      _ = (n : ℝ) * ‖x‖ ^ 2 := by simp
+  calc ‖x‖₂ = Real.sqrt (∑ i, x i ^ 2) := rfl
+    _ ≤ Real.sqrt ((n : ℝ) * ‖x‖ ^ 2) := Real.sqrt_le_sqrt hsum
+    _ = Real.sqrt n * ‖x‖ := by
+        rw [Real.sqrt_mul (Nat.cast_nonneg n), Real.sqrt_sq (norm_nonneg _)]
+
 /-- The closed unit ball, which is what an ellipsoid is the affine image of. -/
 def unitBall₂ (n : ℕ) : Set (Vec ℝ n) := {x | ‖x‖₂ ≤ 1}
 

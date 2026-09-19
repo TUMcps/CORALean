@@ -38,7 +38,7 @@ equalities in — see the findings below.
 | `Def. 5` | (Forward reachable set) R(t) := {ξ(t;x_0,u(·)) \| x_0∈X_0, ∀θ∈[0,t]: u(θ)∈U} for ẋ = Ax + u. | n/a — restated; tracked as `Def. 3.1` on [Althoff's thesis](../2010/althoff-thesis.md) |
 | `Def. 6` | (Minimal backward reachable set) [cites [17, Def. 2 and Def. 4]] R^∀∃(-t) := {x_0 \| ∀u(·)∈U ∃w(·)∈W: ξ(t;x_0,u(·),w(·))∈X_end} — the states that cannot avoid the target — and its time-interval version, which requires the state to pass through X_end at some t∈τ. | [`BackReachSetForallExists.lean`](../../src/CORALean/ContDynamics/LinearSys/BackReachSetForallExists.lean), [`TimeIntervalBackReachSetForallExists.lean`](../../src/CORALean/ContDynamics/LinearSys/TimeIntervalBackReachSetForallExists.lean), and, for the Carathéodory reading the findings below argue for, [`IntegralBackReachSetForallExists.lean`](../../src/CORALean/ContDynamics/LinearSys/IntegralBackReachSetForallExists.lean) and [`IntegralTimeIntervalBackReachSetForallExists.lean`](../../src/CORALean/ContDynamics/LinearSys/IntegralTimeIntervalBackReachSetForallExists.lean) |
 | `Def. 7` | (Maximal backward reachable set) [cites [17, Def. 1 and Def. 3]] R^∃∀(-t) := {x_0 \| ∃u(·)∈U ∀w(·)∈W: ξ(t;x_0,u(·),w(·))∈X_end} — the states that can be steered into the target despite any disturbance — and its time-interval version. | [`BackReachSetExistsForall.lean`](../../src/CORALean/ContDynamics/LinearSys/BackReachSetExistsForall.lean), [`TimeIntervalBackReachSetExistsForall.lean`](../../src/CORALean/ContDynamics/LinearSys/TimeIntervalBackReachSetExistsForall.lean), and, for the Carathéodory reading the findings below argue for, [`IntegralBackReachSetExistsForall.lean`](../../src/CORALean/ContDynamics/LinearSys/IntegralBackReachSetExistsForall.lean) and [`IntegralTimeIntervalBackReachSetExistsForall.lean`](../../src/CORALean/ContDynamics/LinearSys/IntegralTimeIntervalBackReachSetExistsForall.lean) |
-| `Prop. 1` | (Convergence of particular solution) The outer approximation (23) and the inner approximation (24) of the particular solution Z_S, propagated by (25), both converge to the exact particular solution Z_S(t) = {∫_0^t e^{A(t-θ)}s(θ)dθ \| s(θ)∈S} as Δt→0. | — |
+| `Prop. 1` | (Convergence of particular solution) The outer approximation (23) and the inner approximation (24) of the particular solution Z_S, propagated by (25), both converge to the exact particular solution Z_S(t) = {∫_0^t e^{A(t-θ)}s(θ)dθ \| s(θ)∈S} as Δt→0. | [`InputSolutionSetConverges.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/InputSolutionSetConverges.lean) and [`InputSolutionInnerConverges.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/InputSolutionInnerConverges.lean) — both halves outright, and with the rate the limit follows from: the Euclidean Hausdorff distance to `LinearSys.inputReach` over t = ωΔt is at most a constant times Δt. (23) is [`InputSolutionSet.lean`](../../src/CORALean/ContDynamics/LinearSys/Operations/InputSolutionSet.lean), written as the set it is because `Plus` and `Mtimes` only ever over-approximate and a distance needs both bounds — see the findings for its printed lower index; (24) is [`InputSolutionInner.lean`](../../src/CORALean/ContDynamics/LinearSys/Operations/InputSolutionInner.lean) at the power series rather than A⁻¹, so A may be singular, as the paper itself allows; (25) is [`PropagateInputSolution.lean`](../../src/CORALean/ContDynamics/LinearSys/Operations/PropagateInputSolution.lean), which [`PropagateInputReach.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/PropagateInputReach.lean) shows is *exact* on the exact particular solution. Both distances are measured through the inner approximation, as the paper's own proof is, so neither uses Z_S ⊆ Ẑ_S and nothing of [14] is needed; U convex, closed, bounded, non-empty and Δt‖A‖ ≤ 1 |
 | `Prop. 2` | (Union) [cites [1, Prop. 2]] ⋃_{t∈τ} R^∀∃(-t) ⊆ R^∀∃(-τ) and ⋃_{t∈τ} R^∃∀(-t) ⊆ R^∃∀(-τ); the proof is the order of the quantifiers. | n/a — restated from Mitchell 2007, which this formalization does not draw on directly |
 | `Assumption 1` | (Fixed parameters) The truncation order η in (23), the number of propagation steps ω, and the number h of halfspaces constraining X_end are fixed. | n/a — a standing hypothesis for the runtime-complexity analysis, not a claim to formalize |
 | `Def. 8` | (Viability/Discriminating kernel) [cites [47, Def. 6], [48, Def. 2]] D(τ,K) := {x_0∈K \| ∀w(·)∈W ∃u(·)∈U ∀t∈τ: ξ(t;x_0,u(·),w(·))∈K}; dropping w(·) gives the viability kernel V(K). | n/a — restated from Kaynama et al. (2011, 2015) in the related-work section, which this formalization does not draw on directly |
@@ -89,6 +89,26 @@ statements need only `U` and `W` bounded, and `A` may be singular: `e^{-At}` is 
 bijection for every `A` and `t`. "Independently of the set representations chosen" is
 exact — both are proved over `Set (Vec ℝ n)`, at the exact particular solutions, with no
 representation in sight.
+
+**(23) sums from `i = 1`, one order too late, and the enclosure it claims then fails.**
+[9, Eq. (3.7)], which (23) cites, is `⊕_{i=0}^{η} Aⁱ Δt^{i+1}/(i+1)! S ⊕ E(Δt)·Δt·S`;
+v1's (23) prints `⊕_{i=1}^{η}`, dropping the `i = 0` term `Δt·S` — the whole first
+order, and the dominant one. `Z_S ⊆ Ẑ_S(Δt)` then fails outright rather than becoming
+loose: at `A = 0` the remainder `E(Δt,η) = e^{|A|Δt} - ∑_{i≤η}(|A|Δt)^i/i!` is the zero
+matrix, so the printed right-hand side is `{0}` while `Z_S(Δt) = Δt·S`. arXiv v3 restores
+`i = 0` (its (24), the equations having shifted by one). `LinearSys.inputSolutionSet` sums
+from `i = 0`.
+
+**`Prop. 1` needs nothing from [14].** Its proof defers the whole estimate to [14, Prop.
+2], [14, Lemma 2] and [14, Prop. 11], none of which this formalization has. It does not
+have to: (23), (24) and (25) are explicit, the two approximations are nested around the
+exact solution, and the distance between *them* over one step is `O(Δt²)` by three
+elementary bounds — the orders `i ≥ 1`, the remainder factor, and the integrated
+exponential's own tail. Summed over `ω = t/Δt` steps at a factor `‖e^{At_k}‖ ≤ e^{‖A‖t}`
+each, that is `O(Δt)`. The inner side needs one idea the paper does not state: the point
+of `S` to compare a step of `Z_S` against must be the input's *mean* `Δt⁻¹∫₀^{Δt}u`, which
+lies in `S` because `S` is convex and closed and which cancels the zeroth order exactly;
+any other point of `S` leaves an `O(Δt)` per step, and `t/Δt` of those converge to nothing.
 
 **`Alg. 1` folds `p_(j)` in the wrong direction, and arXiv v3's repair leaves line 4
 behind.** By (46), `p_(j)` is to be `ρ(R̂^∃(-τ;u_j(·)), ℓ_j)`, and (42) makes that set the
