@@ -32,8 +32,8 @@ stands in the way of `Thm. 1` and `Alg. 1`-`Alg. 3`.
 | `Prop. 2` | If ε_P(Δt)/Δt → 0 as Δt → 0 — what [1]'s "decreases superlinearly (Def. 1)" has to mean for its own claim to hold, see Findings — then for any ε_{P,max} > 0 and any horizon t_f > 0 there is a finite partition of [0,t_f] whose ε_P-errors sum below ε_{P,max}. | [`HorizonErrorBudget.lean`](../../src/CORALean/Global/HorizonErrorBudget.lean) |
 | `Thm. 1` | Alg. 1 (fully automated parameter tuning) terminates and keeps the overall error below a user-defined bound ε_max, assuming the set-representation-size reduction step in each iteration is optional. | — |
 | `Alg. 1` | "Fully automated parameter tuning": given ε_{H,max}, ε_{P,max}, ε_{S,max}, t_f, iteratively computes Δt_i, calls Alg. 2 and Alg. 3 to tune the time step and set representation size, and returns the reachable set R([0,t_f]). | — |
-| `Alg. 2` | "Adapt values for Δt, Φ_prop": computes the time step size Δt_i and the proportional error budget Φ_prop,i for the current step, given the running error ε_P([0,t_i]). | — |
-| `Alg. 3` | "Adapt values for Φ_set": adapts the target zonotope order/set-representation-size parameter Φ_set by decreasing the number of generators of the particular-solution reachable set. | — |
+| `Alg. 2` | "Adapt values for Δt, Φ_prop": picks the step size Δt_i and the propagation parameters Φ_prop,i — the truncation order η at [1]'s own implementation, not an error budget — for the current step, given the running error ε_P([0,t_i]). | [`AdaptTimeStep.lean`](../../src/CORALean/ContDynamics/LinearSys/AdaptTimeStep.lean), held to line 12's two bounds by [`AdaptTimeStepBudget.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/AdaptTimeStepBudget.lean) and shown to succeed at some fuel by [`ExistsAdaptTimeStepFuel.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/ExistsAdaptTimeStepFuel.lean); line 12's printed connective and the step sweep's missing iteration bound are in the Findings |
+| `Alg. 3` | "Adapt values for Φ_set": adapts the target zonotope order/set-representation-size parameter Φ_set by decreasing the number of generators of the particular-solution reachable set. | [`AdaptSetOrder.lean`](../../src/CORALean/ContSet/Zonotope/Real/AdaptSetOrder.lean), held to line 7's bound by [`AdaptSetOrderBudget.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/AdaptSetOrderBudget.lean); line 7's printed connective and which order it leaves the loop holding are in the Findings |
 | `Prop. 3` | The error ε_H([t_i,t_{i+1}]) — eq. (21), the *homogeneous*-solution enclosure's widening term, not a "linearization" error: CDC 2020 is about linear systems — converges to 0 as Δt_i → 0 at the base step (t_i=0), and therefore satisfies Assumption 1. | [`ErrorConvergesToZeroTimeIntervalStepCurvatureError.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/ErrorConvergesToZeroTimeIntervalStepCurvatureError.lean) |
 | `Prop. 4` | The error ε_P([t_i,t_{i+1}]) (particular-solution enclosure's widening term, eq. (22)) converges to 0 as Δt_i → 0 at the base step (t_i=0), and therefore satisfies Assumption 1. | [`ErrorConvergesToZeroTimePointStepRemainderError.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/ErrorConvergesToZeroTimePointStepRemainderError.lean) |
 | `Lemma 1` | The size of the matrix-exponential remainder E(Δt,η) decreases superlinearly with respect to Δt: for all φ∈(0,1), E(φΔt,η) ⊆ φ·E(Δt,η). | [`SuperlinearDecreaseExpRemainder.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/SuperlinearDecreaseExpRemainder.lean) |
@@ -100,6 +100,52 @@ is `O(Δt^{η+2})` and its ratio to Δt genuinely vanishes. The theorem proved
 is the horizon-covering reading — a finite partition of a *fixed* `[0,t_f]`
 — not the strictly weaker "some sequence exists, of whatever total length",
 which `Assumption 1` already gives for free and which `Thm. 1` could not use.
+
+**Both printed loop conditions have the wrong connective, and `Alg. 3`'s is
+wrong twice.** `Alg. 2` line 12 is `while ε_H > ε_H,max ∧ ε_P > ε_P,max,i`: a
+do-while repeating while *that* holds leaves as soon as *either* error is met,
+so a step clearing ε_H alone is accepted with its ε_P unbounded. `Thm. 1`'s own
+proof asks for both — "∀i : ε_P([t_i,t_{i+1}]) ≤ ε_P,max,i , ε_H([t_i,t_{i+1}])
+≤ ε_H,max" — and the negation of that exit condition is the *disjunction*, which
+is what
+[`AdaptTimeStep.lean`](../../src/CORALean/ContDynamics/LinearSys/AdaptTimeStep.lean)
+writes. `Alg. 3` line 7 is `while ε_S < ε_S,max,i ∨ decr(Φ_set) = Φ_set`, whose
+second disjunct says a further decrement is *impossible*: as printed the loop
+never leaves once the order bottoms out. `Thm. 1` again says the loop exits when
+either the bound is exceeded or the parameters "have been reduced as much as
+possible", so that `∨` is an `∧`. Beyond the connective, lines 4-6 decrement,
+reduce and *then* measure, and line 7 exits on the measurement failing — so the
+`PR([0,t_{i+1}])` line 8 hands back is the one reduced past the budget, and the
+ε_S it accumulates exceeds the share eq. (13) allows.
+[`AdaptSetOrder.lean`](../../src/CORALean/ContSet/Zonotope/Real/AdaptSetOrder.lean)
+keeps the last order that passed, which is what makes `adaptSetOrder_budget`
+true at all.
+
+**`Alg. 2`'s step sweep has no termination bound in [1]; `Alg. 3`'s loop needs
+none.** `Alg. 2` shrinks Δt_i by μ and restarts, and `Thm. 1` argues termination
+from `Prop. 2` without an iteration count following from it, so the definition
+carries an explicit `fuel` and returns `none` where it runs out — never a step
+it did not check.
+[`ExistsAdaptTimeStepFuel.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/ExistsAdaptTimeStepFuel.lean)
+supplies the missing half at the coarsest order: for 0 < μ < 1, a positive
+ε_H,max and a positive remaining share, some fuel suffices, because ε_H → 0
+(`Prop. 3`) while ε_P's cofactor past the Δt_i it carries → 0 against a share
+that is merely *linear* in Δt_i — the asymmetry `Prop. 2` turns on, here at one
+geometric sequence rather than over a partition. The order sweep is bounded by
+[1]'s own Φ_prop,max, and `Alg. 3` by the set's own generator count: `Z.h`
+decrements reach every order there is.
+
+**The comparison is an argument, not a classical decision.** Both subroutines
+take `le : ℝ → ℝ → Bool` and put every decision through it, so each search is a
+bounded structural recursion rather than a `Nat.find`, and a float layer
+transcribes it with `FloatOps.le` and runs it; they are `noncomputable` only
+because ℝ arithmetic is. Soundness asks `le a b = true → a ≤ b` alone, so a
+check that gives up early loses candidates and never reports a wrong one; the
+existence half asks the converse instead. This is deliberately *not* the shape
+of `MatExp.expRemainderOrder`, `MatExp.expRemainderStep` and
+`Zonotope.reduceBoxOrder` — the three knobs of this same paper already in the
+tree, all three `Nat.find` or `Classical.choose` under classical decidability,
+and none of them runnable.
 
 ## Cited without a result
 

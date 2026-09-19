@@ -1,0 +1,118 @@
+import CORALean.ContDynamics.LinearSys.AdaptTimeStep
+
+/-!
+# What `Alg. 2` returns is inside the budgets it searched for
+
+The soundness of [1, Alg. 2] as written here: a step it *reports* meets both
+of line 12's bounds — `ε_H` under `ε_H,max`, and `ε_P` under eq. (10)'s share
+of what is left of the `ε_P` budget, read at the step actually returned — and
+the third component is eq. (9)'s accumulation.
+
+One hypothesis, on the caller's check: `le a b = true` implies `a ≤ b`. Nothing
+asks the converse, so a check that gives up early loses steps and never reports
+a wrong one — which is why the search returns an `Option` rather than a value
+with a junk branch.
+
+Both sweeps are proved by induction on their own fuel, the invariant being
+carried by the check alone; nothing here needs the search to terminate.
+
+## References
+
+* [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning
+      for reachability analysis of linear systems". CDC, 2020, pp. 5145–5152.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       18-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open CORALean.Real
+
+variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- The order sweep reports only orders its own check cleared. -/
+theorem aux_adaptTimeStepOrder_budget (sys : LinearSys 𝕋 n) {le : ℝ → ℝ → Bool}
+    (hle : ∀ a b, le a b = true → a ≤ b) (X₀ U : Zonotope (Vec ℝ n)) (εHmax εPi Δt : ℝ) :
+    ∀ (k η η' : ℕ), LinearSys.adaptTimeStepOrder sys le X₀ U εHmax εPi Δt η k = some η' →
+      sys.timeIntervalStepCurvatureError Δt η' X₀ ≤ εHmax ∧
+        sys.timePointStepRemainderError Δt η' U ≤ εPi := by -- --- PROOF ---
+  intro k
+  induction k with
+  | zero => intro η η' h; rw [LinearSys.adaptTimeStepOrder] at h; exact absurd h (by simp)
+  | succ k ih =>
+    intro η η' h
+    simp only [LinearSys.adaptTimeStepOrder] at h
+    split at h
+    -- the check cleared `η`, and `η` is what was reported
+    · rename_i hc
+      rw [Option.some.injEq] at h
+      subst h
+      rw [Bool.and_eq_true] at hc
+      exact ⟨hle _ _ hc.1, hle _ _ hc.2⟩
+    · exact ih _ _ h
+
+/-- The step sweep reports only steps at which the order sweep succeeded, the
+share being the one read at that very step. -/
+theorem aux_adaptTimeStepSearch_budget (sys : LinearSys 𝕋 n) {le : ℝ → ℝ → Bool}
+    (hle : ∀ a b, le a b = true → a ≤ b) (X₀ U : Zonotope (Vec ℝ n))
+    (εHmax εPmax εPacc tf ti μ : ℝ) (ηmax : ℕ) :
+    ∀ (k : ℕ) (Δt Δti : ℝ) (ηi : ℕ),
+      LinearSys.adaptTimeStepSearch sys le X₀ U εHmax εPmax εPacc tf ti μ ηmax Δt k
+        = some (Δti, ηi) →
+      sys.timeIntervalStepCurvatureError Δti ηi X₀ ≤ εHmax ∧
+        sys.timePointStepRemainderError Δti ηi U
+          ≤ (εPmax - εPacc) / (tf - ti) * Δti := by -- --- PROOF ---
+  intro k
+  induction k with
+  | zero =>
+    intro Δt Δti ηi h
+    rw [LinearSys.adaptTimeStepSearch] at h
+    exact absurd h (by simp)
+  | succ k ih =>
+    intro Δt Δti ηi h
+    simp only [LinearSys.adaptTimeStepSearch] at h
+    split at h
+    -- an order cleared both bounds at this `Δt`, so this `Δt` is what was reported
+    · rename_i η hsw
+      rw [Option.some.injEq, Prod.mk.injEq] at h
+      obtain ⟨rfl, rfl⟩ := h
+      exact aux_adaptTimeStepOrder_budget sys hle X₀ U εHmax _ _ _ _ _ hsw
+    · exact ih _ _ _ h
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+/-- [1, Alg. 2]: a step the search reports is inside `ε_H,max` and inside its
+own share of the `ε_P` budget, and the error it accumulates is eq. (9)'s. -/
+theorem LinearSys.adaptTimeStep_budget (sys : LinearSys 𝕋 n) {le : ℝ → ℝ → Bool}
+    (hle : ∀ a b, le a b = true → a ≤ b) (X₀ U : Zonotope (Vec ℝ n))
+    (εHmax εPmax εPacc tf ti Δtprev μ : ℝ) (ηmax fuel : ℕ) {Δti εP : ℝ} {ηi : ℕ}
+    (h : sys.adaptTimeStep le X₀ U εHmax εPmax εPacc tf ti Δtprev μ ηmax fuel
+      = some (Δti, ηi, εP)) :
+    sys.timeIntervalStepCurvatureError Δti ηi X₀ ≤ εHmax ∧
+      sys.timePointStepRemainderError Δti ηi U ≤ (εPmax - εPacc) / (tf - ti) * Δti ∧
+        εP = εPacc + sys.timePointStepRemainderError Δti ηi U := by -- --- PROOF ---
+  simp only [LinearSys.adaptTimeStep] at h
+  split at h
+  · exact absurd h (by simp)
+  -- the sweep settled on a step, and the third component is read off it
+  · rename_i Δt' η' hsw
+    rw [Option.some.injEq, Prod.mk.injEq, Prod.mk.injEq] at h
+    obtain ⟨rfl, rfl, rfl⟩ := h
+    exact ⟨(aux_adaptTimeStepSearch_budget sys hle X₀ U εHmax εPmax εPacc tf ti μ ηmax
+      fuel _ _ _ hsw).1, (aux_adaptTimeStepSearch_budget sys hle X₀ U εHmax εPmax εPacc tf ti μ
+      ηmax fuel _ _ _ hsw).2, rfl⟩
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
