@@ -10,6 +10,8 @@ import CORALean.Global.Corners
 import CORALean.Global.DropIdx
 import CORALean.Global.Cost
 import CORALean.Global.BoxDiameter
+import CORALean.Global.BoxDiameterAddLe
+import CORALean.Global.BoxDiameterMulVecImageLe
 import CORALean.Global.EuclideanNorm
 import CORALean.Global.EuclideanHausdorffDist
 import CORALean.Global.Radstrom
