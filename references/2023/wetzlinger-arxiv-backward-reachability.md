@@ -37,7 +37,7 @@ equalities in — see the findings below.
 | `Def. 4` | (Constrained zonotope) [cites [12, Def. 3]] CZ := {c + Σ G_(·,i) α_i \| Σ K_(·,i) α_i = l, α_i∈[-1,1]}; shorthand CZ=⟨c,G,K,l⟩_CZ. | n/a — restated from Scott et al. 2016, which this formalization does not draw on directly |
 | `Def. 5` | (Forward reachable set) R(t) := {ξ(t;x_0,u(·)) \| x_0∈X_0, ∀θ∈[0,t]: u(θ)∈U} for ẋ = Ax + u. | n/a — restated; tracked as `Def. 3.1` on [Althoff's thesis](../2010/althoff-thesis.md) |
 | `Def. 6` | (Minimal backward reachable set) [cites [17, Def. 2 and Def. 4]] R^∀∃(-t) := {x_0 \| ∀u(·)∈U ∃w(·)∈W: ξ(t;x_0,u(·),w(·))∈X_end} — the states that cannot avoid the target — and its time-interval version, which requires the state to pass through X_end at some t∈τ. | [`BackReachSetForallExists.lean`](../../src/CORALean/ContDynamics/LinearSys/BackReachSetForallExists.lean), [`TimeIntervalBackReachSetForallExists.lean`](../../src/CORALean/ContDynamics/LinearSys/TimeIntervalBackReachSetForallExists.lean), and, for the Carathéodory reading the findings below argue for, [`IntegralBackReachSetForallExists.lean`](../../src/CORALean/ContDynamics/LinearSys/IntegralBackReachSetForallExists.lean) and [`IntegralTimeIntervalBackReachSetForallExists.lean`](../../src/CORALean/ContDynamics/LinearSys/IntegralTimeIntervalBackReachSetForallExists.lean) |
-| `Def. 7` | (Maximal backward reachable set) [cites [17, Def. 1 and Def. 3]] R^∃∀(-t) := {x_0 \| ∃u(·)∈U ∀w(·)∈W: ξ(t;x_0,u(·),w(·))∈X_end} — the states that can be steered into the target despite any disturbance — and its time-interval version. | [`BackReachSetExistsForall.lean`](../../src/CORALean/ContDynamics/LinearSys/BackReachSetExistsForall.lean), [`TimeIntervalBackReachSetExistsForall.lean`](../../src/CORALean/ContDynamics/LinearSys/TimeIntervalBackReachSetExistsForall.lean), and, for the Carathéodory reading the findings below argue for, [`IntegralBackReachSetExistsForall.lean`](../../src/CORALean/ContDynamics/LinearSys/IntegralBackReachSetExistsForall.lean) |
+| `Def. 7` | (Maximal backward reachable set) [cites [17, Def. 1 and Def. 3]] R^∃∀(-t) := {x_0 \| ∃u(·)∈U ∀w(·)∈W: ξ(t;x_0,u(·),w(·))∈X_end} — the states that can be steered into the target despite any disturbance — and its time-interval version. | [`BackReachSetExistsForall.lean`](../../src/CORALean/ContDynamics/LinearSys/BackReachSetExistsForall.lean), [`TimeIntervalBackReachSetExistsForall.lean`](../../src/CORALean/ContDynamics/LinearSys/TimeIntervalBackReachSetExistsForall.lean), and, for the Carathéodory reading the findings below argue for, [`IntegralBackReachSetExistsForall.lean`](../../src/CORALean/ContDynamics/LinearSys/IntegralBackReachSetExistsForall.lean) and [`IntegralTimeIntervalBackReachSetExistsForall.lean`](../../src/CORALean/ContDynamics/LinearSys/IntegralTimeIntervalBackReachSetExistsForall.lean) |
 | `Prop. 1` | (Convergence of particular solution) The outer approximation (23) and the inner approximation (24) of the particular solution Z_S, propagated by (25), both converge to the exact particular solution Z_S(t) = {∫_0^t e^{A(t-θ)}s(θ)dθ \| s(θ)∈S} as Δt→0. | — |
 | `Prop. 2` | (Union) [cites [1, Prop. 2]] ⋃_{t∈τ} R^∀∃(-t) ⊆ R^∀∃(-τ) and ⋃_{t∈τ} R^∃∀(-t) ⊆ R^∃∀(-τ); the proof is the order of the quantifiers. | n/a — restated from Mitchell 2007, which this formalization does not draw on directly |
 | `Assumption 1` | (Fixed parameters) The truncation order η in (23), the number of propagation steps ω, and the number h of halfspaces constraining X_end are fixed. | n/a — a standing hypothesis for the runtime-complexity analysis, not a claim to formalize |
@@ -48,8 +48,8 @@ equalities in — see the findings below.
 | `Alg. 1` | "Minimal time-interval backward reachable set": propagates the disturbance particular solution and the convex hull of the converted target set over ω steps, carries the support functions of the q input trajectories alongside, and intersects the constructed polytope with R̂^∃(-τ) to return R̂^∀∃(-τ). | [`MinBackReachTimeInterval.lean`](../../src/CORALean/ContDynamics/LinearSys/MinBackReachTimeInterval.lean) — all sixteen lines, over the time-inverted dynamics, and held to `Thm. 1` above. Two departures, both in the findings below: `p` folds with `max` rather than line 14's `min`, and line 13 reads the support off the step's own set rather than by (44). The caller supplies the constrained zonotope's support oracle — a linear program — and (26)'s centre-trajectory solution |
 | `Prop. 5` | (Maximal time-point backward reachable set) R^∃∀(-t) = e^{-At}((X_end ⊖ Z_W(t)) ⊕ -Z_U(t)), independently of the set representations chosen; a continuization of the discrete-time case of [38, Thm. 2.4]. | [`IntegralBackReachSetExistsForallEq.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/IntegralBackReachSetExistsForallEq.lean) — an equality, at the exact particular solutions `LinearSys.inputReach`, for `Def. 7` read with Carathéodory runs, which the derivative-everywhere reading empties, see the findings below |
 | `Lemma 1` | (Distributivity of Minkowski difference over convex hull) For compact, convex, non-empty S1,S2,S3⊂R^n: conv(S1 ⊖ S3, S2 ⊖ S3) ⊆ conv(S1,S2) ⊖ S3. | [`SegmentsMinkowskiDiffSubset.lean`](../../src/CORALean/ContSet/ContSet/Theorems/SegmentsMinkowskiDiffSubset.lean) |
-| `Thm. 2` | (Time-interval maximal backward reachable set) The union ⋃_{t∈τ_k} R^∃∀(-t) is inner approximated by e^{-At_{k+1}}(-Z̲_U(t_k) ⊕ conv(CZ(X_end ⊖ F box(X_end) ⊖ B_µ ⊖ Ẑ_W(τ_k)), CZ(e^{AΔt}X_end ⊖ F box(X_end) ⊖ B_µ ⊖ Ẑ_W(τ_k)))), and the union over all ω steps inner approximates R^∃∀(-τ). | — |
-| `Alg. 2` | "Maximal time-interval backward reachable set": pre-computes the input and disturbance particular solutions up to t_0 and the two polytopes P1, P2 of the inner-approximated homogeneous time-interval solution, then implements Thm. 2 step by step and returns the union. | — |
+| `Thm. 2` | (Time-interval maximal backward reachable set) The union ⋃_{t∈τ_k} R^∃∀(-t) is inner approximated by e^{-At_{k+1}}(-Z̲_U(t_k) ⊕ conv(CZ(X_end ⊖ F box(X_end) ⊖ B_µ ⊖ Ẑ_W(τ_k)), CZ(e^{AΔt}X_end ⊖ F box(X_end) ⊖ B_µ ⊖ Ẑ_W(τ_k)))), and the union over all ω steps inner approximates R^∃∀(-τ). | [`MaxBackReachTimeIntervalInner.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/MaxBackReachTimeIntervalInner.lean) — the `⊆` (51) claims, over `Alg. 2`'s own sets. Line 12's linear map and `⊕ -Z̲_U(t_k)`, line 11's hull, conversion and erosion, `Lemma 1` carrying the hull of two Minkowski differences into the difference of the hull, `Prop. 5` in its inner direction, `Prop. 2` and line 14's union are proved outright; that the two polytopes' eroded hull and the inner input particular solution really are reached at a *single* `t ∈ τ_k`, (21) and (24)-(27), is hypothesis, and the findings below say why the paper's own union-level form of it is too weak |
+| `Alg. 2` | "Maximal time-interval backward reachable set": pre-computes the input and disturbance particular solutions up to t_0 and the two polytopes P1, P2 of the inner-approximated homogeneous time-interval solution, then implements Thm. 2 step by step and returns the union. | [`MaxBackReachTimeInterval.lean`](../../src/CORALean/ContDynamics/LinearSys/MaxBackReachTimeInterval.lean) — all fourteen lines, held to `Thm. 2` above. Three departures, the first two in the findings below: `P₁` and `P₂` are supplied rather than computed inside, as `CZ` is to `Alg. 1`; line 3's `µ` is taken at the Frobenius norm, which dominates (22)'s spectral one and so only erodes more; and line 14's union is no constrained zonotope, so the result is a `Set`. The caller supplies the polytope's support oracle — a linear program — and (26)'s centre-trajectory solution |
 
 ## Findings
 
@@ -120,3 +120,44 @@ the `i`-th row needs `ρ(R̂^∃(-τ;u_j(·)), ℓ_i)`. With that reading the ro
 over `j` is (46) and the proof goes through, which is why
 `LinearSys.minBackReachTimeInterval_outer` asks only that each row `j` be bounded by some
 one trajectory's set — the content of (46)'s `min_i` — and nothing about the others.
+
+**`Thm. 2`'s proof erodes a union slice by slice, which only holds one way.** Both
+versions reduce `⋃_{t∈τ_k} R^∃∀(-t)` to a single expression by substituting union-level
+containments — v1 writes `Z̲_U(t_k) ⊆ Z_U(τ_k)` and `Z_W(τ_k) ⊆ Ẑ_W(τ_k)` for the
+*time-interval* particular solutions and then uses those inside one `⊖` and one `⊕`; v3's
+rewritten proof spells the same move out as `{e^{-At} Z_W(t) | t ∈ τ_k} ⊆ e^{-At_{k+1}}
+Ẑ_W(τ_k)` and `{e^{-At}(-Z_U(t)) | t ∈ τ_k} ⊇ e^{-At_{k+1}}(-Z̲_U(t_k))`, concluding
+`S_1 ⊇ S_2 = e^{-At_{k+1}}((H(τ_0) ⊖ Z_W(τ_k)) ⊕ -Z_U(τ_k))`. The `⊕` half is fine: a
+summand contained in *every* `C_t` distributes over the union. The `⊖` half is not.
+`(⋃_t A_t) ⊖ B ⊇ ⋃_t (A_t ⊖ B)` always, and the reverse fails — with `n = 1`,
+`X_end = [1,2]`, `e^{-At}` sweeping `[1,2]` over `τ_k` and `Ẑ_W(τ_k) = [0, 3/2]`,
+`(⋃_t e^{-At}X_end) ⊖ Ẑ_W(τ_k) = [1, 5/2]` while `⋃_t (e^{-At}X_end ⊖ Ẑ_W(τ_k)) =
+[3/2, 5/2]`. So the containments cited do not license the step, whichever version is read.
+What the argument needs, and what `LinearSys.maxBackReachTimeInterval_inner` asks for
+instead, is the per-`t` form: each point of the eroded hull of `P₁`, `P₂` is reached at
+*one* `t ∈ τ_k`, and `Z̲_U(t_k)` sits inside `e^{A(t_{k+1}-t)} Z_U(t)` for *that* `t`. For
+`W = {0}` the per-`t` form is exactly (21) and nothing is assumed beyond the paper; the gap
+opens only once the disturbance is present. The conclusion is not thereby refuted: `R̂^∃∀(-τ_k)`
+takes the hull *after* eroding each polytope, so the counterexample above does not reach it.
+
+**(50) is a family of sets where the union is meant, and v3's complexity argument
+over-reaches.** (50), unchanged as v3's (120), asserts `⋃_{t∈τ_k} R^∃∀(-t) = {e^{-At}((X_end
+⊖ Z_W(t)) ⊕ -Z_U(t)) | t ∈ τ_k}` — the right-hand side is a set of subsets of `R^n`, not
+their union, and the proof reads it as the union throughout. Separately, the runtime
+argument claims `∀t ∈ τ, ∀i ∈ {1,2}: P_i ⊖ Ẑ_W(t) ⊆ box(X_end)` so that one pre-computed
+box serves every `CZ(·)`. It holds for `i = 1`, where `P₁ ⊆ X_end`, and fails for `i = 2`,
+where `P₂ ⊆ e^{AΔt}X_end` — a set the flow has moved out of `box(X_end)` whenever `A`
+rotates. The consequence is benign in the inner direction, since [12, Thm. 1] with too small
+an enclosure returns a subset of `CZ(P)` rather than `CZ(P)`; but the conversion is then no
+longer exact and `Alg. 2` no longer costs what the section claims.
+`LinearSys.maxBackReachCZ` takes the enclosure off the eroded polytope itself, through the
+caller's own support oracle, so it is exact and pays the linear programs.
+
+**`Alg. 2`'s loop carries no fold, so `Alg. 1`'s initialiser defect does not recur.** Lines
+8-10 accumulate with `⊕` from line 2's pre-loop values rather than folding a scalar from a
+sentinel, and line 14 is a plain union, so there is no `min`/`max` direction and no `±∞` to
+absorb. The one place an off-by-one could hide is line 12, which uses `Z̲_U(t_k)` — the value
+*before* line 8's update to `t_{k+1}` — as (51) requires; `LinearSys.maxBackReachStep` keeps
+the pre-update field for exactly that reason. arXiv v3 renumbers this to `Alg. 3` and changes
+nothing in it but the explicit parenthesisation of the chained `⊖`; unlike `Alg. 1`, it had
+nothing to correct.
