@@ -5,6 +5,7 @@ import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrPolySearch
 import CORALean.ContDynamics.NonlinearSys.Operations.AbstrSolInf
 import CORALean.ContDynamics.NonlinearSys.Operations.Gain
 import CORALean.ContDynamics.NonlinearSys.Operations.GainDim
+import CORALean.ContDynamics.NonlinearSys.Operations.GainMax
 import CORALean.ContDynamics.NonlinearSys.Operations.GainOrder
 import CORALean.ContDynamics.NonlinearSys.Operations.GainOrderDim
 import CORALean.ContDynamics.NonlinearSys.Operations.GlobalAbstrErr
@@ -40,7 +41,7 @@ applied errors, packaged into a `LinStep` the moment one is accepted by the
 certificate already proved sufficient. `AbstrErr` is the other paper's
 `abstrErr`, one step's whole error out of `postΔ`, `VarInputs` and the latter.
 
-`LocalAbstrErr` and `GlobalAbstrErr` measure what a step and a run add to the
-exact answer. `AbstrSolInf` is the untruncated set of those errors, `GainDim` and
-`Gain` how much of its width a smaller step keeps, `GainOrder` the limit order.
+`LocalAbstrErr` and `GlobalAbstrErr` measure what a step and a run add to the exact answer.
+`AbstrSolInf` is the untruncated set of those errors, `GainDim` and `Gain` how much of its width a
+smaller step keeps, `GainMax` that ratio off two boxes, `GainOrder` the limit order.
 -/

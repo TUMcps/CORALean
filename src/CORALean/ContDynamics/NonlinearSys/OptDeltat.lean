@@ -3,17 +3,17 @@ import CORALean.Global.Tensor
 /-!
 # `optDeltat`: the time step size that balances the two wrapping effects
 
-Line 10 of [1, Alg. 2], which is its §5.4: over a finite horizon `h` walked in
-`λ = ζ_δ^{-λ'}` steps, eq. (57) estimates the size the start set reaches, and
-eq. (58) minimizes it over `λ'`. Too large a step makes the set of abstraction
+Line 10 of [1, Alg. 2], which is its §5.4, and lines 8 and 12 of [2, Alg. 2],
+whose (30) and (31) are eq. (57) and eq. (58) here: over a finite horizon `h`
+walked in `λ = ζ_δ^{-λ'}` steps, (57) estimates the size the start set reaches
+and (58) minimizes it over `λ'`. Too large a step makes the set of abstraction
 errors large, too small a step reduces too often; the minimum is the balance.
 
 Scalars throughout, which is [1]'s own simplification: `r₀` and `r_abs` are the
 radii of `R(t)` and of `R_abs(h)`, and `ζ_A = e^{tr(Ah)}` is eq. (50)'s
 determinant estimate. Nothing here is a set.
 
-`λ` is the lambda binder, so eq. (57)'s `λ` is `lam` and its `λ'` — the number
-of times the horizon has been scaled by `ζ_δ` — is `scalings`.
+`λ` is the lambda binder, so eq. (57)'s `λ` is `lam` and its `λ'` is `scalings`.
 
 `λ'` is searched by increasing it while the estimate falls, as [1] says to do
 — no `Nat.find` and no `Classical.choose`, every decision going through the
@@ -25,6 +25,8 @@ caller's `le`, and `fuel` bounding a loop with no stated iteration count.
 * [1] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive
       Reachability Algorithms for Nonlinear Systems Using Abstraction Error
       Analysis". Nonlinear Analysis: Hybrid Systems, vol. 46, 2022, p. 101252.
+* [2] M. Wetzlinger, A. Kulmburg and M. Althoff. "Adaptive Parameter Tuning for
+      Reachability Analysis of Nonlinear Systems". HSCC, 2021, Article 16.
 -/
 
 -- Authors:       Tobias Ladner

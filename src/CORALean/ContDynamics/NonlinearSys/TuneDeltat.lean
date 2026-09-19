@@ -1,0 +1,84 @@
+import CORALean.ContDynamics.NonlinearSys.EstimateGain
+import CORALean.ContDynamics.NonlinearSys.Operations.GainMax
+
+/-!
+# `Alg. 2`: tuning of the time step size Δt
+
+[1, Alg. 2], which is its §3.4. Both branches end in eq. (31)'s `Δt* = Δ ζ_δ^{k'_*}`,
+`optDeltat`; what differs is where the finite horizon `Δ` comes from. From the second
+step on (lines 10-13) it is the last step's `Δ` rescaled by the gain, which is then
+updated for the next step; in the first (lines 2-8) there is no last step, so `Δ` is
+shrunk by `ζ_δ` from an arbitrary start until eq. (32)'s `φ₁ ≥ ζ_Δ` holds.
+
+Line 3 is printed as a `while`, testing `φ₁` before lines 5-6 have ever computed one;
+read as the `repeat … until` the prose describes, which is the only reading under which
+the first step has a `φ₁` to test. See the reference page.
+
+Scalars throughout, as `optDeltat` is: `dabs Δt` is `d(box(R_abs(Δt)))`, what (25)
+compares, and `rabs Δt` is `r(R_abs(Δt))`, simplification (1)'s radius — both the caller's.
+
+Lines 3-7 shrink `Δ` with no stated iteration count, so `fuel` is an argument and the
+result an `Option`. [2, Alg. 2]'s line 1 is line 10 here, and `optDeltat` and
+`estimateGain` are shared unchanged: (27), (29), (30), (31) are [2]'s (54), (56), (57), (58).
+
+## References
+
+* [1] M. Wetzlinger, A. Kulmburg and M. Althoff. "Adaptive Parameter Tuning for
+      Reachability Analysis of Nonlinear Systems". HSCC, 2021, Article 16.
+* [2] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive
+      Reachability Algorithms for Nonlinear Systems Using Abstraction Error
+      Analysis". Nonlinear Analysis: Hybrid Systems, vol. 46, 2022, p. 101252.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       18-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+variable {n : ℕ}
+
+/-- Lines 3-7: shrink `Δ` by `ζ_δ` until the gain it yields reaches `ζ_Δ`, and
+`none` once `fuel` shrinkings have not. -/
+noncomputable def tuneDeltatInit (le : ℝ → ℝ → Bool) (dabs : ℝ → Fin n → ℝ) (ζδ ζΔ : ℝ) :
+    ℝ → ℕ → Option (ℝ × ℝ)
+  | _, 0 => none
+  | Δ, k + 1 =>
+    let Δnext := ζδ * Δ                                        -- 4. Δ ← ζ_δ Δ
+    let dΔ := dabs Δnext                                       -- 5. d(box(R_abs(Δ)))
+    let dδΔ := dabs (ζδ * Δnext)                               -- 5. d(box(R_abs(ζ_δ Δ)))
+    let φ1 := gainMax le dΔ dδΔ                                -- 6. φ₁ by (25)
+    if le ζΔ φ1 then some (Δnext, φ1)                          -- 3. while φ₁ < ζ_Δ
+    else tuneDeltatInit le dabs ζδ ζΔ Δnext k
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- [1, Alg. 2]: the optimal time step size `Δt*` and the gain `φ₁` to hand the
+next step, and `none` where the first step's search for `Δ` gave out. -/
+noncomputable def tuneDeltat (le : ℝ → ℝ → Bool) (dabs : ℝ → Fin n → ℝ) (rabs : ℝ → ℝ)
+    (ζδ ζΔ ζZ ζP r₀ φ1 Δ Δinit : ℝ) (s fuel : ℕ) : Option (ℝ × ℝ) :=
+  if s = 1 then                                                -- 1. if s = 1 then
+    let Δ₀ := Δinit                                            -- 2. initialize Δt
+    match tuneDeltatInit le dabs ζδ ζΔ Δ₀ fuel with            -- 3.-7. the loop of (32)
+    | none => none
+    | some (Δ₁, φ₁) =>
+      let opt := optDeltat le ζδ ζZ ζP φ₁ r₀ (rabs Δ₁) Δ₁ fuel -- 8. Δt* by (31)
+      some (opt.1, φ₁)
+  else                                                         -- 9. else
+    let Δk := Δ * (ζδ - ζΔ) / (ζδ - φ1)                        -- 10. Δ ← Δ(ζ_δ-ζ_Δ)/(ζ_δ-φ₁)
+    let rabs1 := rabs Δk                                       -- 11. R_abs(Δ), and r_abs,1
+    let opt := optDeltat le ζδ ζZ ζP φ1 r₀ rabs1 Δk fuel       -- 12. Δt* by (31)
+    let rabsk := rabs opt.1                                    -- 13. (29)'s r_abs,k, at Δt*
+    let φ₁ := estimateGain le ζδ ((1 / ζδ) ^ opt.2)            -- 13. φ₁ by (29)
+      rabs1 rabsk opt.2 fuel
+    some (opt.1, φ₁)
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

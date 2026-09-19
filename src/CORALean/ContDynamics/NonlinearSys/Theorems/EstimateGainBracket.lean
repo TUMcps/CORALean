@@ -12,6 +12,9 @@ It is not a root: eq. (56)'s left-hand side is not shown continuous here, so
 nothing says a crossing point exists. What the theorem gives is the bracket,
 which is what a caller can act on and all a float layer could ever check.
 
+Line 13 of [2, Alg. 2] solves the same implicit equation, its (29) being (56)
+here, so this is what its bisection buys there too.
+
 The two hypotheses are the starting bracket, `φ⁽¹⁾ = 0` under the target and
 `φ⁽¹⁾ = 1` over it. A gain is a ratio of two widths, so that is where the
 answer lies whenever there is one; where there is not, the search still returns
@@ -22,6 +25,8 @@ a value in `[0,1]` and the theorem simply does not apply.
 * [1] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive
       Reachability Algorithms for Nonlinear Systems Using Abstraction Error
       Analysis". Nonlinear Analysis: Hybrid Systems, vol. 46, 2022, p. 101252.
+* [2] M. Wetzlinger, A. Kulmburg and M. Althoff. "Adaptive Parameter Tuning for
+      Reachability Analysis of Nonlinear Systems". HSCC, 2021, Article 16.
 -/
 
 -- Authors:       Tobias Ladner

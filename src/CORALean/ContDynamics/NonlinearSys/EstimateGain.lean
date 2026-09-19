@@ -8,6 +8,8 @@ Line 16 of [1, Alg. 2]: eq. (56) fixes `φ⁽¹⁾` implicitly, by asking the pr
 — the two radii the step's two passes just computed. [1] calls solving it
 `estimateGain` and says nothing about how.
 
+Line 13 of [2, Alg. 2] is the same equation, its (29) being (56) here.
+
 How, here, is bisection on `[0,1]`: every factor of the left-hand side grows
 with `φ⁽¹⁾`, so the product does, and halving the bracket toward the crossing
 converges to the solution. A gain is a ratio of two widths, so `[0,1]` is where
@@ -23,6 +25,8 @@ accompanying theorem is what it buys.
 * [1] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive
       Reachability Algorithms for Nonlinear Systems Using Abstraction Error
       Analysis". Nonlinear Analysis: Hybrid Systems, vol. 46, 2022, p. 101252.
+* [2] M. Wetzlinger, A. Kulmburg and M. Althoff. "Adaptive Parameter Tuning for
+      Reachability Analysis of Nonlinear Systems". HSCC, 2021, Article 16.
 -/
 
 -- Authors:       Tobias Ladner

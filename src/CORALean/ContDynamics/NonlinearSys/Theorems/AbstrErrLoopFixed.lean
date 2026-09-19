@@ -3,9 +3,9 @@ import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrLoop
 /-!
 # What the abstraction error's loop reports is conservative
 
-The soundness of lines 8-11 of [1, Alg. 1]: an error the loop reports was
-computed from an applied error that contains it. That is line 11's exit
-condition read as sets, and it is what makes line 12's `abstrSol` an
+The soundness of lines 8-11 of [1, Alg. 1], which are lines 7-10 of [2, Alg. 1]:
+an error the loop reports was computed from an applied error that contains it.
+That is line 11's exit condition read as sets, and it is what makes line 12's `abstrSol` an
 over-approximation — the sets `abstrErr` was evaluated against were at least as
 large as the error they turned out to induce.
 
@@ -22,6 +22,8 @@ check alone; nothing here needs the loop to terminate.
 * [1] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive
       Reachability Algorithms for Nonlinear Systems Using Abstraction Error
       Analysis". Nonlinear Analysis: Hybrid Systems, vol. 46, 2022, p. 101252.
+* [2] M. Wetzlinger, A. Kulmburg and M. Althoff. "Adaptive Parameter Tuning for
+      Reachability Analysis of Nonlinear Systems". HSCC, 2021, Article 16.
 -/
 
 -- Authors:       Tobias Ladner
