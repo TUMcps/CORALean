@@ -3,6 +3,8 @@ import Mathlib.Algebra.BigOperators.Pi
 import Mathlib.Algebra.Group.Pointwise.Set.Basic
 import Mathlib.Algebra.Group.Pointwise.Set.Scalar
 import Mathlib.Algebra.Order.BigOperators.Group.Finset
+import Mathlib.Analysis.Analytic.Constructions
+import Mathlib.Analysis.Analytic.Order
 import Mathlib.Analysis.Asymptotics.Defs
 import Mathlib.Analysis.Calculus.Deriv.Comp
 import Mathlib.Analysis.Calculus.Deriv.Mul

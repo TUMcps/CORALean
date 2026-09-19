@@ -31,6 +31,15 @@ reached and not merely bounded. Its two ingredients are `Zonotope.supportBound`,
 attained, and summability of Σ_p h^{p+1}/(p+1)!·‖A(h)‖^p at the l-infinity operator
 norm, which asks nothing of A — the exponential series dominates it termwise.
 
+`Lemma 3`, `Thm. 2` and `Prop. 2` are what that expansion is for, and two of the
+three carry a hypothesis the paper does not print: `Lemma 3`'s dichotomy needs f
+analytic and not merely smooth, and `Thm. 2`'s limit needs the expansion already
+in factored form, which is the one step of its proof that passes to the limit
+inside an infinite series. `Prop. 2`'s (42) needs neither — with the Q^(p)_i held
+constant the bound φ_i ≤ δ^{q_i+1} falls out of (35) one term at a time — and its
+(41) is what is left open, there being no differentiability of φ_i in the tree to
+differentiate.
+
 ## Results
 
 | Result | What it says | In CORALean |
@@ -44,10 +53,10 @@ norm, which asks nothing of A — the exponential series dominates it termwise.
 | `Lemma 2` | (Local and Global Abstraction Error) For solvers of the form (10), ε_N ≤ (c/Δt)·max_{1≤ℓ≤N} ε_{ℓ,loc}, with a constant c that may depend on t_end but not on Δt or N. | — |
 | `Def. 5` | (Gain Function) The gain over the time span h with relative increment δ∈[0,1] is φ(h;δ) = max_i φ_i(h;δ), where φ_i(h;δ) = d_i(box(R^∞_abs(δh)))/d_i(box(R^∞_abs(h))). | [`Gain.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/Gain.lean) over [`GainDim.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/GainDim.lean), both over [`AbstrSolInf.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/AbstrSolInf.lean), which is (32) itself — an infinite Minkowski sum has no generator matrix, so nothing in `ContSet` names it and it is the `Set` of what the series sums to over independent choices from Ψ(h). `A` and `Ψ` are functions of h, since (6)'s linearization point moves with the step. Where the denominator vanishes Lean's `x / 0 = 0` applies, which is not the paper's reading; the nonvanishing hypothesis belongs to whatever reads φ_i, as it does in (19). `Prop. 1` is what holds `AbstrSolInf` against the paper, and it is proved |
 | `Prop. 1` | (Diameter of Set of Abstraction Errors) If Ψ(h) is the zonotope ⟨c(h),G(h)⟩_Z, then d_i(box(R^∞_abs(h))) = 2 Σ_{p≥0} h^{p+1}/(p+1)! ·‖A^p(h)G(h)‖_{1,i}, the 1-norm of the i-th row. | [`BoxDiameterAbstrSolInf.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/BoxDiameterAbstrSolInf.lean) — the exact `=`, with both extremes attained rather than bounded, and `h ≥ 0` its only hypothesis; see the finding below. Generators are a family and not a matrix here, so ‖A^p(h)G(h)‖_{1,i} reads Σ_j \|(A^p(h) g^(j))_i\|, and Ψ(h) is asked to be a zonotope at this h alone, which is all (35) uses |
-| `Lemma 3` | (Expansion of Coefficients) For smooth f, A(h) and G(h) are smooth and every coefficient is either ‖A^p(h)G(h)‖_{1,i} = h^{q^(p)_i}‖a^(p)_i + b^(p)_i(h)‖_1 with q^(p)_i∈N_0, a^(p)_i ≠ 0, b^(p)_i(h)=O(h), or identically 0 (convention: q^(p)_i = ∞, a^(p)_i = 0); and Q^(p)_i(h) = ‖a^(p)_i + b^(p)_i(h)‖_1 is non-negative and piecewise smooth. | — |
-| `Thm. 2` | (Limit Gain) For smooth f, lim_{h→0} φ_i(h;δ) = δ^{q_i+1}, where q_i is the index j at which the coefficient sum Σ_{p+q^(p)_i = j} ‖a^(p)_i‖_1 first fails to vanish (Eq. (40); see the finding below). | — |
+| `Lemma 3` | (Expansion of Coefficients) For smooth f, A(h) and G(h) are smooth and every coefficient is either ‖A^p(h)G(h)‖_{1,i} = h^{q^(p)_i}‖a^(p)_i + b^(p)_i(h)‖_1 with q^(p)_i∈N_0, a^(p)_i ≠ 0, b^(p)_i(h)=O(h), or identically 0 (convention: q^(p)_i = ∞, a^(p)_i = 0); and Q^(p)_i(h) = ‖a^(p)_i + b^(p)_i(h)‖_1 is non-negative and piecewise smooth. | [`RowNormExpansionOfAnalytic.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/RowNormExpansionOfAnalytic.lean) — proved for an *analytic* right-hand side and not for a smooth one: the printed dichotomy is false as stated, and the finding below gives the counterexample. `≡ 0` reads as vanishing on a neighbourhood of 0, which is what analyticity gives and all the limit h→0 uses; a^(p)_i is a vector of m generator coefficients rather than (36)'s scalar, ‖·‖_1 there being the 1-norm of a *row* of A^p(h)G(h); and Q^(p)_i is shown continuous at 0 rather than piecewise smooth, continuity being what `Thm. 2` and `Prop. 2` read off it. Analyticity is asked of the entries of A and G, so no norm has to be put on a matrix |
+| `Thm. 2` | (Limit Gain) For smooth f, lim_{h→0} φ_i(h;δ) = δ^{q_i+1}, where q_i is the index j at which the coefficient sum Σ_{p+q^(p)_i = j} ‖a^(p)_i‖_1 first fails to vanish (Eq. (40); see the finding below). | [`GainDimTendstoPow.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/GainDimTendstoPow.lean) — the limit itself, as h→0 from the right and for every δ ≥ 0. Its hypothesis is the expansion in factored form, d_i(box(R^∞_abs(t))) = t^{q_i+1}·g(t) with g continuous at 0 and g(0) ≠ 0: that is `Lemma 3` grouped by j = p + q^(p)_i, read at the *lowest* such j per the (40) finding, and g(0) ≠ 0 is also the nonvanishing denominator (19) asks for and `Def. 5` defers to its readers. What the hypothesis stands in for is the one step of the paper's proof that is not justified there — passing to the limit inside the series termwise, with no uniform control over p; see the finding below. δ ≤ 1 is not needed for the limit to exist, only for it to be a contraction |
 | `Def. 6` | (Gain Order of Set-based Solvers) q := min_i q_i is the gain order of the method and q_i that of the i-th dimension; the method has zero abstraction error iff q = ∞. | [`GainOrder.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/GainOrder.lean) over [`GainOrderDim.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/GainOrderDim.lean), at `ℕ∞`, where `∞` is a value of the definition rather than a failure case and `sInf ∅ = ⊤` is the convention (40) needs. Stated as the *minimum* of (40), per the finding below. The closing sentence is [`GainOrderEqTopIff.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/GainOrderEqTopIff.lean), which carries `Lemma 3`'s convention as a hypothesis |
-| `Prop. 2` | (Derivative of Gain) If all Q^(p)_i are differentiable at 0, then lim_{h→0} dφ_i(h;δ)/dh ≤ 0 for δ∈[0,1]; and for fixed h, if every Q^(p)_i is constant on [0,h], then φ_i(t;δ) ≤ δ^{q_i+1} for all t∈[0,h]. | — |
+| `Prop. 2` | (Derivative of Gain) If all Q^(p)_i are differentiable at 0, then lim_{h→0} dφ_i(h;δ)/dh ≤ 0 for δ∈[0,1]; and for fixed h, if every Q^(p)_i is constant on [0,h], then φ_i(t;δ) ≤ δ^{q_i+1} for all t∈[0,h]. | [`GainDimLePow.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/GainDimLePow.lean) — **(42) only**. With every Q^(p)_i constant on [0,h], shrinking the span to δt multiplies the p-th term of (35) by δ^{p+q^(p)_i+1}, and p + q^(p)_i ≥ q_i for every term that survives — (40) as a minimum, which is how `GainOrderDim` has it — so δ ≤ 1 pulls δ^{q_i+1} out of the whole series at once. That is shorter than the paper's route through (41) and needs no continuity, no monotonicity and no proof by contradiction, and it holds on all of [0,h] rather than only near 0. (41), the derivative half, is **not** formalized: it asks for dφ_i/dh and nothing in the tree yet says φ_i is differentiable in h. (43), the inequality the paper reaches *from* (41), is this theorem |
 | `Alg. 1` | "Reachability analysis of continuous-time nonlinear systems using abstractions in the state space": the on-the-fly abstraction loop (linearization point, Taylor expansion, `linReach`, abstraction-error fixed point, addition, order reduction), stated for nonlinear differential-algebraic systems and specializing to the other system classes. | — |
 | `Alg. 2` | "Adaptively-tuned reachable set computation for one step k>1": updates the finite horizon h_k from the previous gain, runs the step twice — once to compute R_abs(h) and the optimal Δt*, once to compute the reachable set with it — and returns the next abstraction order κ_{k+1}, horizon h_k and gain φ^(1)_k. | — |
 
@@ -123,3 +132,29 @@ proof takes through Bauer's maximum principle are support values of a zonotope i
 ±e_i, attained at a sign pattern of the generators and independent across the summands, so the
 row flips on an `=` and not on a `⊆`.
 [`BoxDiameterAbstrSolInf.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/BoxDiameterAbstrSolInf.lean)
+
+**`Lemma 3` — the dichotomy is false for a merely smooth f.** (36) and (37) say that every
+coefficient ‖A^p(h)G(h)‖_{1,i} is either h^{q^(p)_i}‖a^(p)_i + b^(p)_i(h)‖_1 with a^(p)_i ≠ 0 and
+b^(p)_i(h) = O(h), or identically 0. A smooth function can be neither: h ↦ exp(-1/h²), extended by
+0 at the origin, is C^∞, vanishes only at 0, and is o(h^q) for every q, so it has no leading term
+and is not identically zero. Appendix B is where the gap shows — "if for all N ∈ N_0 such an index
+does not exist, it trivially follows that [A^p(h)G(h)]_i ≡ 0" reads a vanishing Taylor series as a
+vanishing function, which is what *analytic* means rather than something *smooth* implies. The
+hypothesis that makes the lemma true is that f, and hence A and G, are real-analytic; that is what
+the formalization asks, entrywise, so that nothing has to put a norm on a matrix. Everything
+downstream uses the lemma's conclusion and not its hypothesis, so `Thm. 2`, `Def. 6` and `Prop. 2`
+are unaffected beyond inheriting it.
+[`RowNormExpansionOfAnalytic.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/RowNormExpansionOfAnalytic.lean)
+
+**`Thm. 2` — the limit is taken inside the series without uniform control.** The proof rewrites
+d_i(box(R^∞_abs(h))) as 2 Σ_j h^{j+1} Σ_{p+q^(p)_i=j} ‖a^(p)_i + b^(p)_i(h)‖_1/(p+1)! and lets
+h→0 term by term, "using the fact that b^(p)_i = O(h)". Each b^(p)_i is O(h) for its own p; making
+the tail of the j-sum vanish needs an estimate uniform in p, which `Lemma 3` does not supply and
+which does not follow from `Prop. 1`'s majorant either — that one bounds ‖A^p(h)G(h)‖_{1,i}, while
+the tail is in Q^(p)_i(h) = h^{-q^(p)_i}‖A^p(h)G(h)‖_{1,i}, which it says nothing about. So the
+formalization takes the conclusion of that step as its hypothesis — d_i(box(R^∞_abs(t))) =
+t^{q_i+1}·g(t) with g continuous at 0 and g(0) ≠ 0 — and proves the limit from it. `Prop. 2`'s
+constant-Q^(p)_i case is where the step is elementary, and that case is proved outright, straight
+from (35) and with no limit taken at all.
+[`GainDimTendstoPow.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/GainDimTendstoPow.lean),
+[`GainDimLePow.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/GainDimLePow.lean)
