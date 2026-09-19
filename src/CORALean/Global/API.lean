@@ -15,6 +15,7 @@ import CORALean.Global.BoxDiameterMulVecImageLe
 import CORALean.Global.Err
 import CORALean.Global.EuclideanNorm
 import CORALean.Global.EuclideanHausdorffDist
+import CORALean.Global.EuclideanGenOpNorm
 import CORALean.Global.Radstrom
 import CORALean.Global.Caratheodory
 import CORALean.Global.Minimax
@@ -32,8 +33,9 @@ index partitions, the sort that chooses them, the enumeration of every index but
 one, the entrywise product bundled as a bilinear map, the corner combinatorics a
 box needs, the model every asserted running cost is stated against, the width of
 the tightest box over a set and the origin-centred Euclidean radius of that box
-(`err`), the Euclidean norm a vector does not carry by default and the
-Hausdorff distance read through it, the cancellation law that
+(`err`), the Euclidean norm a vector does not carry by default, the Hausdorff
+distance read through it, a family of generators' own induced operator norm
+(`genOpNorm₂`), the cancellation law that
 turns an outer approximation into an inner one, Carathéodory's theorem over a
 fixed index, the minimax inequality a parametrized infimum's continuity gives
 over two compact sets, when a set-based evaluation shrinks superlinearly, when a
