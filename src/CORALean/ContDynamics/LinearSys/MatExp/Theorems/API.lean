@@ -2,6 +2,7 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsConstCorrectionMatrixL
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsCorrCoeffLeOne
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsCorrectionMatrixLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeNorm
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsParticularTailEntryLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsPowEntryLeAbsMatPow
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AffineDynamicsErrorIsBigO
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ConstCorrectionMatrix
@@ -36,6 +37,7 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpTaylorSmulMulVec
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpTaylorTwo
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpWApply
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.FactorialMulPowLe
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.HausdorffDist2ParticularSolutionLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalConstCorrectionMatrix
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalCorrectionMatrix
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputRemainder

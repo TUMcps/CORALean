@@ -15,6 +15,7 @@ import CORALean.Global.BoxDiameterMulVecImageLe
 import CORALean.Global.Err
 import CORALean.Global.EuclideanNorm
 import CORALean.Global.EuclideanHausdorffDist
+import CORALean.Global.EuclideanHausdorffDistAddLe
 import CORALean.Global.EuclideanGenOpNorm
 import CORALean.Global.Radstrom
 import CORALean.Global.Caratheodory
