@@ -64,6 +64,8 @@ import CORALean.ContDynamics.LinearSys.Theorems.IntegralTimePointWitness
 import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
 import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableMulVecAdd
 import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableOfMemBounded
+import CORALean.ContDynamics.LinearSys.Theorems.ManualRunHExact
+import CORALean.ContDynamics.LinearSys.Theorems.ManualRunTEq
 import CORALean.ContDynamics.LinearSys.Theorems.MemExpNegImageIff
 import CORALean.ContDynamics.LinearSys.Theorems.MaxBackReachTimeIntervalInner
 import CORALean.ContDynamics.LinearSys.Theorems.MinBackReachTimeIntervalOuter

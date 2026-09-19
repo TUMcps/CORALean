@@ -30,12 +30,12 @@ it specializes) now excepted.
 | `Def. 4` | (Zonotope order reduction) [cites [11, Sec. 3.4]] reduce(Z,ρ_d) ⊇ Z returns an enclosing zonotope of order ≤ ρ_d, by boxing the χ = γ-⌊(ρ_d-1)n⌋ generators smallest under ‖G_(·,i)‖_1 - ‖G_(·,i)‖_∞. | n/a — restated from Girard 2005, which this formalization does not draw on directly |
 | `Def. 5` | (Hausdorff distance) For compact sets S1,S2⊆R^n, d_H(S1,S2) = max{ sup_{s1} inf_{s2} ‖s1-s2‖2, sup_{s2} inf_{s1} ‖s1-s2‖2 }. | n/a — Mathlib's `Metric.hausdorffDist` provides it, used in [`HausdorffDistAddLe.lean`](../../src/CORALean/ContSet/ContSet/Theorems/HausdorffDistAddLe.lean) and [`HausdorffDistIntervalLe.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/HausdorffDistIntervalLe.lean); the same definition as `Def. 2` on the [NAHS 2022 page](../2022/wetzlinger-nahs-abstraction-error.md), whose row says which norm Mathlib's reads it in |
 | `Def. 6` | (Reachable set) R(t) := {ξ(t;x(0),u(·)) \| x(0)∈X0, ∀θ∈[0,t]: u(θ)∈U}; also defines time-point R(t_k) and time-interval R(τ_k) reachable sets. | n/a — restated; tracked as `Def. 3.1` on [Althoff's thesis](../2010/althoff-thesis.md) |
-| `Alg. 1` | "Reachability algorithm (manual tuning)": baseline reachability algorithm for linear systems with a fixed, user-supplied time step Δt, truncation order η, and zonotope order ρ, returning the outer-approximation R̂([0,t_end]). | — |
+| `Alg. 1` | "Reachability algorithm (manual tuning)": baseline reachability algorithm for linear systems with a fixed, user-supplied time step Δt, truncation order η, and zonotope order ρ, returning the outer-approximation R̂([0,t_end]). | [`ManualReach.lean`](../../src/CORALean/ContDynamics/LinearSys/ManualReach.lean) — `manualStep`/`manualRun`/`manualReach`, lines 1-13. [`ManualRunHExact.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/ManualRunHExact.lean) establishes line 7's `H(t_k)` exact outright, and [`ManualRunTEq.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/ManualRunTEq.lean) that the loop reaches `t_k=k·Δt`; the outer half (that `R̂` contains the true reachable set) needs `Prop. 1`-`Prop. 3`, open below |
 | `Prop. 1` | (Affine dynamics error) Bounds the Hausdorff distance between the exact time-interval solution of the affine dynamics H(τ_k) and its outer-approximation. | — |
 | `Prop. 2` | (Time-point error in particular solution) Bounds the Hausdorff distance between the exact particular solution P^U(t_{k+1}) and its recursively computed outer-approximation P̂^U(t_{k+1}). | [`HausdorffDist2InputReachStepLe.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/HausdorffDist2InputReachStepLe.lean) — eq. (24)'s displayed step only: `d_H(P^U(t_k+Δt_k), P̂^U(t_k) ⊕ e^{At_k}P̂^U(Δt_k)) ≤ ε^U_k + Δε^U_k(Δt_k,η_k)`, with `ε^U_k` the error already standing at `t_k` taken as a hypothesis the way eq. (24) presupposes it, the four sets compact as `Def. 5` requires of everything it measures, and eq. (20)'s soundness carried over from `Prop. 11`. Eq. (21)'s accumulation over the horizon is not proved |
 | `Prop. 3` | (Time-interval error in particular solution) Bounds the maximum Hausdorff distance over t∈τ_k between the exact time-interval particular solution P^U(t) and its outer-approximation. | — |
 | `Prop. 4` | (Zonotope order reduction error) Bounds the Hausdorff distance introduced by iteratively reducing the particular solution's zonotope order, giving the recursion ε^r_{k+1} = ε^r_k + ε^r_k(ρ_k). | [`HausdorffDist2ReduceByLe.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/HausdorffDist2ReduceByLe.lean) — the displayed per-step bound eq. (29) only, `d_H(Z, reduce(Z,ρ)) ≤ err(⟨0,G_red⟩_Z)` with [`⟨0,G_red⟩_Z`](../../src/CORALean/ContSet/Zonotope/Real/Operations/ReduceByDropped.lean) the dropped generators; proved at *every* partition, so it does not need `Def. 4`'s ranking. Eq. (28)'s accumulation ε^r_{k+1} = ε^r_k + Δε^r_k is not proved |
-| `Alg. 2` | "Reachability algorithm (automated tuning)": reachability algorithm that internally tunes the time step Δt_k and truncation order η_k given only an overall error bound ε_max. | — |
+| `Alg. 2` | "Reachability algorithm (automated tuning)": reachability algorithm that internally tunes the time step Δt_k and truncation order η_k given only an overall error bound ε_max. | [`AutoTuneDeltaT.lean`](../../src/CORALean/ContDynamics/LinearSys/AutoTuneDeltaT.lean) (`Δt_k`,`η_k`, lines 5-15), [`AutoTuneSetOrder.lean`](../../src/CORALean/ContSet/Zonotope/Real/AutoTuneSetOrder.lean) (`ρ_k`, lines 19-22) and [`AutoTuneReach.lean`](../../src/CORALean/ContDynamics/LinearSys/AutoTuneReach.lean) (`autoStep`/`autoRun`/`autoReach`, the rest) — computable throughout, no `Nat.find`/`Classical.choose`; shaped for `Thm. 1` (a separate package) as `Option`-valued steps with `ε^a_k`/`ε^r_k` named state fields, no soundness theorem attempted here |
 | `Thm. 1` | (Convergence) Alg. 2 terminates in finite time for arbitrary error bounds ε_max > 0 (proof uses Lemmas 1-4 from Appendix B: quadratic decrease of the accumulating error, at-least-linear decrease of the non-accumulating error). | — |
 | `Prop. 5` | Given the error ε^x_k (eq. 31) of the reachable set R̂(τ_k), the corresponding output set Ŷ(τ_k) has error d_H(Y(τ_k),Ŷ(τ_k)) ≤ ε^y_k := ε^x_k·‖C‖. | [`HausdorffDist2EvalLe.lean`](../../src/CORALean/ContDynamics/OutputEq/Theorems/HausdorffDist2EvalLe.lean) |
 | `Prop. 6` | (Minkowski difference) Gives a constrained-zonotope formula for the Minkowski difference Z ⊖ P of a zonotope Z=⟨c,G⟩_Z and a vertex-represented polytope P=⟨v_1...v_s⟩_V. | [`MinkDiffVExact.lean`](../../src/CORALean/ContSet/ConZonotope/Real/Theorems/MinkDiffVExact.lean) |
@@ -232,6 +232,41 @@ fresh. Both halves of `Lemma 1` hold as printed: `tendsto_expRemainderMat_zero` 
 `expRemainderMat_isBigO` reuse `norm_exp_sub_expTaylor_le` and
 `MatExp.tendsto_expRemainderBound_zero` at `|A|` in place of `A`, the side condition
 `‖Δt • |A|‖/(η+2) < 1` holding eventually as `Δt → 0` exactly as it does for `expRemainderBound`.
+
+**`Alg. 1` line 5 assigns to `τ_{k+1}`, but lines 9, 11 and 13 all read `τ_k`, which line 5
+never sets.** Read at glyph level against the v2 PDF (two independent extractors agree): line
+5 is `t_{k+1}←t_k+Δt, τ_{k+1}←[t_k,t_{k+1}]`, the subscript on `τ` unambiguously `k+1`. Every
+later use of the interval — `Ĥ(τ_k)` at line 9, `R̂(τ_k)` at line 11, the union at line 13 —
+reads `τ_k`, which this iteration of the loop has not assigned; taken literally, line 9 would
+combine the *previous* iteration's interval `[t_{k-1},t_k]` with the *current* iteration's
+`H(t_k)`,`H(t_{k+1})`, a set no iteration actually computes. `[1]`'s own `Def. 6` and every
+later `Prop. 1`-`Prop. 3` fix `τ_k:=[t_k,t_{k+1}]`, so the printed `τ_{k+1}` is the one out of
+step. `manualStep` computes `Ĥ(τ_k)`/`R̂(τ_k)` over `[t_k,t_{k+1}]` directly, under the name
+line 9 onward uses for it — the same species of index slip this project has found before (a
+loop condition's connective, a fold's initial value, a subscript one too high), now in a
+`τ`-subscript.
+
+**`Alg. 2` line 27 hats `H(t_k)`, and no other line ever produces that object.** `C ←
+F(Δt_k,η_k)Ĥ(t_k) ⊕ G(Δt_k,η_k)ũ` as printed puts a hat on the *time-point* solution — but
+`[1]`'s own hat is reserved for enclosures, and `H(t_k)` is exact throughout `Alg. 2`: line 1
+sets `H(t_0)←X_0` and line 26 recomputes `H(t_{k+1})←e^{At_{k+1}}X_0+P^u(t_{k+1})` directly
+from `X_0`, never as a widened set, and the very next line (28) reads the same quantity
+unhatted: `comb(H(t_k),H(t_{k+1}))`. No `Ĥ(t_k)` is ever defined elsewhere in `[1]`, and
+`Alg. 1` line 8 computes the corresponding `C` from the unhatted `H(t_k)` too. `autoStep`
+uses the state's own `H` (unhatted), matching both.
+
+**`Alg. 2`'s own `η_k`-tuning device (lines 8-12) is a numerical convergence check, decoupled
+from the bounds `Alg. 2` actually needs, and its own index is ill-defined at `η_k=1`.**
+Eq. (39)'s `T(j):=⊕_{i=1}^j I_i(Δt)Aⁱ/i!` is tracked until its relative Frobenius-norm change
+is under `10^{-10}` — a stopping rule for a floating-point implementation, not for what ties
+`η_k` to `ε^{a,τ}_k`/`ε^{n,τ}_k` (that is lines 13-15, checked only *after* `T(j)` has already
+converged). Worse, `I_i(Δt)` (eq. 17) has exponent `-1/(i-1)`, undefined at `i=1` — exactly
+the first term `η_k=1` would add. `LinearSys.autoTuneOrder` ties `η_k` directly to the bounds
+lines 13-15 check instead, sweeping upward from `η=2` against `le`, the way CDC'20's
+`adaptTimeStepOrder` (this project's own precedent for the same shape of tuning loop) already
+does — simpler, well-defined at every step, and no weaker a specification of what `Alg. 2`
+promises: a coarsest `η_k` clearing both bounds, not a value `T(j)` happens to have
+stabilized at under an arbitrary tolerance the paper never ties to `ε_max`.
 
 ## Cited without a result
 

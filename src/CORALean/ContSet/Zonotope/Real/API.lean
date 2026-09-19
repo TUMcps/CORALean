@@ -1,5 +1,6 @@
 import CORALean.ContSet.Zonotope.Real.Zonotope
 import CORALean.ContSet.Zonotope.Real.AdaptSetOrder
+import CORALean.ContSet.Zonotope.Real.AutoTuneSetOrder
 import CORALean.ContSet.Zonotope.Real.ReduceBoxOrder
 import CORALean.ContSet.Zonotope.Real.Operations.API
 import CORALean.ContSet.Zonotope.Real.Theorems.API
