@@ -7,6 +7,10 @@ import CORALean.ContDynamics.LinearSys.MatExp.ExpRemainderStep
 import CORALean.ContDynamics.LinearSys.MatExp.IntervalCorrection
 import CORALean.ContDynamics.LinearSys.MatExp.IntervalEnclosures
 import CORALean.ContDynamics.LinearSys.MatExp.MatZonoEnclosures
+import CORALean.ContDynamics.LinearSys.MatExp.ParticularSolutionError
+import CORALean.ContDynamics.LinearSys.MatExp.ParticularSolutionOuter
+import CORALean.ContDynamics.LinearSys.MatExp.ParticularSolutionOuterCorrelated
+import CORALean.ContDynamics.LinearSys.MatExp.ParticularSolutionTauError
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.API
 
 /-!
@@ -22,14 +26,15 @@ the correction matrix and the input remainder — the same way.
 alone and keeps the Taylor sum as a matrix zonotope. `ExactSecondOrder` and
 `ExactIntervalEnclosures` pay it on orders three and up only, the second-order
 term being exactly computable, and enclose more narrowly for it.
-
 `ExpRemainderOrder` and `ExpRemainderStep` run the choice the other way: they
 take an admissible error and name a parameter meeting it, rather than taking a
 parameter and reporting the bound. That is one step of adaptive parameter
 tuning and not the algorithm — the error bounded is the exponential's, not the
 reachable set's.
-
 Enclosures only, no representation — an interval matrix is `Interval (Mat ℝ m n)`
 like any other set. `ExpRemainderMat` is a second, sharper remainder at `|A|`
 entrywise rather than at `‖A‖`, for `Theorems`' entrywise convergence rates.
+`ParticularSolutionOuter`/`ParticularSolutionOuterCorrelated` read `bPU`, `bPU_∞` and its
+correlated summand as `Set`s; `ParticularSolutionTauError`/`ParticularSolutionError` are `err`
+of those, `Δε^{U,τ}_k`/`Δε^U_k`.
 -/

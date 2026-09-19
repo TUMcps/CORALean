@@ -41,6 +41,8 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpIntegralSubTaylorL
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpIntegralTermLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSmulSubOneLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSubExpTaylorLe
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ParticularSolutionErrorIsBigO
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ParticularSolutionTauErrorIsBigO
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.PowSubEq
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.QuadTermAttained
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.QuadTermBetween
@@ -57,6 +59,8 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoExpRemainderBoundA
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoExpRemainderBoundZero
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoExpRemainderMatZero
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoMulExpRemainderBoundZero
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoParticularSolutionErrorZero
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoParticularSolutionTauErrorZero
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TsumLeExpTail
 
 /-!
@@ -71,7 +75,6 @@ checkable from the interval matrix alone via its `absMax`, and
 are the corresponding three for a step's two correction matrices and input
 remainder. `ExpMatZonoEnclosure` is the same guarantee for a matrix zonotope,
 checkable from the zonotope alone through the interval matrix it encloses.
-
 `TendstoExpRemainderBoundAtTop`/`ExistsExpRemainderBoundLt` and
 `TendstoMulExpRemainderBoundZero`/`ExistsMulExpRemainderBoundLt` are the limits
 adaptive parameter tuning rests on: the bound vanishes as the order grows or
@@ -80,7 +83,8 @@ the step shrinks, so any admissible error is reachable by either knob.
 `ExpRemainderOrderSpec`/`ExpRemainderOrderLe`/`ExpRemainderStepSpec` say the
 parameter chosen for an admissible error meets it, the order least of those.
 `TendstoExpRemainderMatZero`/`ExpRemainderMatIsBigO` are the same two limits at
-`ExpRemainderMat`'s sharper, entrywise remainder. `ExpTaylorSmulMulVec`,
-`ContinuousExpDiff` and `RemainderEntryLe` are what an input solution needs of
-the truncation and its remainder.
+`ExpRemainderMat`'s sharper, entrywise remainder, matched by `Lemma 2`'s and `Lemma 4`'s own
+two-halves pairs (`TendstoParticularSolutionErrorZero`, `..TauErrorZero`, and their `IsBigO`
+matches) for `Δε^U_k`/`Δε^{U,τ}_k`. `ExpTaylorSmulMulVec`, `ContinuousExpDiff` and
+`RemainderEntryLe` are what an input solution needs of the truncation and its remainder.
 -/
