@@ -3,10 +3,11 @@ import CORALean.ContSet.ContSet.ContSet
 /-!
 # `abstrErrLoop`, the abstraction error's fixed point
 
-Lines 8-11 of [1, Alg. 1], which its `Alg. 2` line 7 names `abstrErrLoop`:
-guess an applied error, compute the true one it induces, and enlarge and retry
-until the true error sits inside the applied one. What comes back is the *true*
-error — the tighter of the two — and line 12 is what spends it.
+Lines 8-11 of [1, Alg. 1] — lines 7-10 of [2, Alg. 1], which numbers the same
+loop one lower — and what [1, Alg. 2] line 7 names `abstrErrLoop`: guess an
+applied error, compute the true one it induces, and enlarge and retry until the
+true error sits inside the applied one. What comes back is the *true* error —
+the tighter of the two — and line 12 is what spends it.
 
 `enlarge` and the true-error map `Φ` are supplied. Neither is a property of a
 set: `enlarge` is [1]'s "constant factor greater than 1", and `Φ` is the
@@ -24,6 +25,8 @@ the polynomial abstraction. `Ψ̄` is no Lean identifier, so the applied error i
 * [1] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive
       Reachability Algorithms for Nonlinear Systems Using Abstraction Error
       Analysis". Nonlinear Analysis: Hybrid Systems, vol. 46, 2022, p. 101252.
+* [2] M. Wetzlinger, A. Kulmburg and M. Althoff. "Adaptive Parameter Tuning for
+      Reachability Analysis of Nonlinear Systems". HSCC, 2021, Article 16.
 -/
 
 -- Authors:       Tobias Ladner

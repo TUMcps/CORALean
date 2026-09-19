@@ -1,11 +1,13 @@
-import CORALean.ContDynamics.NonlinearSys.Theorems.AbstractionErrorOfHessian
-import CORALean.ContDynamics.NonlinearSys.Theorems.AbstractionErrorOfLagrange
-import CORALean.ContDynamics.NonlinearSys.Theorems.AbstractionErrorOfPoly
 import CORALean.ContDynamics.NonlinearSys.Theorems.AbstrErrLinCenterSubset
 import CORALean.ContDynamics.NonlinearSys.Theorems.AbstrErrLoopFixed
 import CORALean.ContDynamics.NonlinearSys.Theorems.AbstrErrMono
+import CORALean.ContDynamics.NonlinearSys.Theorems.AbstractionErrorOfHessian
+import CORALean.ContDynamics.NonlinearSys.Theorems.AbstractionErrorOfLagrange
+import CORALean.ContDynamics.NonlinearSys.Theorems.AbstractionErrorOfPoly
 import CORALean.ContDynamics.NonlinearSys.Theorems.AdaptStepInvariant
 import CORALean.ContDynamics.NonlinearSys.Theorems.BoxDiameterAbstrSolInf
+import CORALean.ContDynamics.NonlinearSys.Theorems.ConfinedOfBall
+import CORALean.ContDynamics.NonlinearSys.Theorems.ConfinementOfSubset
 import CORALean.ContDynamics.NonlinearSys.Theorems.EstimateGainBracket
 import CORALean.ContDynamics.NonlinearSys.Theorems.GainDimLePow
 import CORALean.ContDynamics.NonlinearSys.Theorems.GainDimTendstoPow
@@ -16,23 +18,19 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.GlobalAbstrErrLeLocalAbstrErr
 import CORALean.ContDynamics.NonlinearSys.Theorems.GlobalAbstrErrLeLocalAbstrErrOfSolver
 import CORALean.ContDynamics.NonlinearSys.Theorems.GlobalAbstrErrStepOfSolver
 import CORALean.ContDynamics.NonlinearSys.Theorems.LagrangeRemainderMono
-import CORALean.ContDynamics.NonlinearSys.Theorems.ConfinedOfBall
-import CORALean.ContDynamics.NonlinearSys.Theorems.ConfinementOfSubset
 import CORALean.ContDynamics.NonlinearSys.Theorems.LinInputOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.LinearEmbedding
-import CORALean.ContDynamics.NonlinearSys.Theorems.TrajectoryIffNonlinearSys
 import CORALean.ContDynamics.NonlinearSys.Theorems.Linearize
 import CORALean.ContDynamics.NonlinearSys.Theorems.LinearizeHorizon
+import CORALean.ContDynamics.NonlinearSys.Theorems.OptDeltatDescent
 import CORALean.ContDynamics.NonlinearSys.Theorems.PolyAbstractionErrorGetSubset
 import CORALean.ContDynamics.NonlinearSys.Theorems.PolyAbstractionErrorOfQuadRemainder
-import CORALean.ContDynamics.NonlinearSys.Theorems.OptDeltatDescent
 import CORALean.ContDynamics.NonlinearSys.Theorems.PrecompStatErrorPoint
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachOuterHorizon
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachOuterHorizonInputSolution
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachOuterInputSolution
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetConfinementOfSubset
-import CORALean.ContDynamics.NonlinearSys.Theorems.RowNormExpansionOfAnalytic
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetSubsetRelinReach
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetSubsetRelinTimeInterval
@@ -43,8 +41,12 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuterInputSolution
 import CORALean.ContDynamics.NonlinearSys.Theorems.RelinTimeIntervalOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.Restrict
+import CORALean.ContDynamics.NonlinearSys.Theorems.RowNormExpansionOfAnalytic
 import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
 import CORALean.ContDynamics.NonlinearSys.Theorems.SubsetAbstrReach
+import CORALean.ContDynamics.NonlinearSys.Theorems.SubsetCentreAbstrReach
+import CORALean.ContDynamics.NonlinearSys.Theorems.TrajectoryIffNonlinearSys
+import CORALean.ContDynamics.NonlinearSys.Theorems.TuneDeltatInitGain
 import CORALean.ContDynamics.NonlinearSys.Theorems.VarInputsMono
 import CORALean.ContDynamics.NonlinearSys.Theorems.VarInputsOuter
 
@@ -58,18 +60,17 @@ run linear, `ReachOuter` hands it on, and `Restrict` makes the one-step forms.
 at zero, so `Shift` re-anchors the run and `RelinReachOuter` chains the steps.
 `RelinTimeIntervalOuter` covers a step's interval; `RelinDeltaReachOuter` spans.
 
-`ConfinedOfBall` and `ConfinementOfSubset` pay off the confinement hypothesis
-those carry per step: the run cannot cross a ball of radius `ρ > MΔt` about a
-step's start, so inflating the computed set and checking it discharges it. The
-`ReachSet` files say that of the reachable set rather than of a run.
-`AbstractionErrorOfHessian` is one supplier, `AbstrErrLinCenterSubset` minimises
-what it gives at the centre, `AbstractionErrorOfLagrange` is the same one order
-up, and the `PolyAbstractionError` files are the polynomialization variant's:
-`OfQuadRemainder` builds one, `GetSubset` splits it, `...OfPoly` forgets it.
-`GlobalAbstrErrEqLocalAbstrErr` reads a step's error as its local one — Rådström cancellation —
-`GlobalAbstrErrLeLocalAbstrErr` reads a run's off its worst step, `BoxDiameterAbstrSolInf` closes
-that at a zonotope, `RowNormExpansionOfAnalytic` expands its coefficients, `GainDimTendstoPow` is
-the limit gain, `GainDimLePow` its bound, `GainOrderEqTopIff` the gain order's point, and
-`AbstrErrLoopFixed`, `SubsetAbstrReach`, `OptDeltatDescent`, `EstimateGainBracket` and
-`AdaptStepInvariant` are what the two adaptive algorithms are held to.
+`ConfinedOfBall` and `ConfinementOfSubset` pay off the confinement hypothesis those carry per step:
+the run cannot cross a ball of radius `ρ > MΔt` about a step's start, so inflating the computed set
+and checking it discharges it. The `ReachSet` files say that of the reachable set rather than of a
+run. `AbstractionErrorOfHessian` is one supplier, `AbstrErrLinCenterSubset` minimises what it gives
+at the centre, `AbstractionErrorOfLagrange` is the same one order up, and the
+`PolyAbstractionError` files are the polynomialization variant's: `OfQuadRemainder` builds one,
+`GetSubset` splits it, `...OfPoly` forgets it. `GlobalAbstrErrEqLocalAbstrErr` reads a step's error
+as its local one — Rådström cancellation — `GlobalAbstrErrLeLocalAbstrErr` reads a run's off its
+worst step, `BoxDiameterAbstrSolInf` closes that at a zonotope, `RowNormExpansionOfAnalytic`
+expands its coefficients, `GainDimTendstoPow` is the limit gain, `GainDimLePow` its bound,
+`GainOrderEqTopIff` the gain order's point; and `AbstrErrLoopFixed`, `SubsetAbstrReach`,
+`OptDeltatDescent`, `EstimateGainBracket`, `AdaptStepInvariant`, `SubsetCentreAbstrReach` and
+`TuneDeltatInitGain` are what both papers' algorithms are held to.
 -/

@@ -12,6 +12,8 @@ That is the whole guarantee, and saying so is the point: eq. (57) is not shown
 convex here, so a `λ'` past the first increase may well be better. [1] makes no
 claim otherwise.
 
+[2, Alg. 2] evaluates the same argmin at its lines 8 and 12, its (31) over (30).
+
 One hypothesis, on the caller's check: `le a b = true` implies `a ≤ b`. Nothing
 asks the converse, so a check that gives up early stops the walk sooner and
 never reports a `λ'` it has not beaten.
@@ -23,6 +25,8 @@ The induction is on the search's own fuel; nothing here needs it to terminate.
 * [1] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive
       Reachability Algorithms for Nonlinear Systems Using Abstraction Error
       Analysis". Nonlinear Analysis: Hybrid Systems, vol. 46, 2022, p. 101252.
+* [2] M. Wetzlinger, A. Kulmburg and M. Althoff. "Adaptive Parameter Tuning for
+      Reachability Analysis of Nonlinear Systems". HSCC, 2021, Article 16.
 -/
 
 -- Authors:       Tobias Ladner
