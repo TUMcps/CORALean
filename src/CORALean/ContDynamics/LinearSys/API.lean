@@ -2,12 +2,15 @@ import CORALean.ContDynamics.LinearSys.AdaptTimeStep
 import CORALean.ContDynamics.LinearSys.BackReachSetExistsForall
 import CORALean.ContDynamics.LinearSys.BackReachSetForallExists
 import CORALean.ContDynamics.LinearSys.ClosedForm
+import CORALean.ContDynamics.LinearSys.IntegralBackReachSetExistsForall
+import CORALean.ContDynamics.LinearSys.IntegralBackReachSetForallExists
 import CORALean.ContDynamics.LinearSys.IntegralReachSet
 import CORALean.ContDynamics.LinearSys.IntegralTimeIntervalReachSet
 import CORALean.ContDynamics.LinearSys.IntegralTrajectory
 import CORALean.ContDynamics.LinearSys.LinearSys
 import CORALean.ContDynamics.LinearSys.MatExp.API
 import CORALean.ContDynamics.LinearSys.Operations.API
+import CORALean.ContDynamics.LinearSys.PerturbedIntegralTrajectory
 import CORALean.ContDynamics.LinearSys.PerturbedTrajectory
 import CORALean.ContDynamics.LinearSys.ReachSet
 import CORALean.ContDynamics.LinearSys.StepConvergenceError
@@ -37,4 +40,7 @@ Backward, `PerturbedTrajectory` is `Trajectory` with a second, independently
 quantified signal `w`: `backReachSetForallExists` and `backReachSetExistsForall`
 are Wetzlinger and Althoff's Def. 6 and Def. 7, minimal and maximal, each with
 a `timeInterval...` sibling for the interval reading of the same definition.
+`PerturbedIntegralTrajectory` reads those two runs as integral equations, the
+way `IntegralTrajectory` reads `Trajectory`, and `integralBackReach...` are the
+two sets over it — the reading in which Prop. 3 and Prop. 5 are equalities.
 -/
