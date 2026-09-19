@@ -9,6 +9,7 @@ import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddSubsetAdd
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffEnclSubsetAdd
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffInnerOfOuter
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffMono
+import CORALean.ContSet.ContSet.Theorems.SegmentsMinkowskiDiffSubset
 import CORALean.ContSet.ContSet.Theorems.SmulMemLinCombOfPoint
 import CORALean.ContSet.ContSet.Theorems.SubsetMinkowskiDiffIff
 
@@ -25,12 +26,11 @@ of them keeps it too, which carries a subset of the initial parameters through t
 Then `minkowskiDiff`, whose elementary theory lives here rather than beside the definition: the
 Galois connection `X ⊆ minkowskiDiff S T ↔ X + T ⊆ S` and its counit, monotonicity in each argument,
 and — the point of the whole group — `minkowskiDiff_inner_of_outer`, which turns an outer
-approximation with a bounded error set into an inner approximation of the exact set.
-Everything else running inner here starts from a computed Minkowski difference; this is the only
-route from an enclosure, and what an inner reachability algorithm would be built on. Althoff's
-Prop. 3 and Prop. 4 are `minkowskiDiff_add_subset_add` and `minkowskiDiff_encl_subset_add`: adding
-a set to a difference stays inside the difference of the enlarged minuend. `minkowskiDiff_add_assoc`
-subtracts a sum one summand at a time, which is what his Thm. 1 recurses on.
+approximation with a bounded error set into an inner approximation of the exact set. Everything
+else running inner starts from a computed Minkowski difference, what an inner reachability
+algorithm is built on. Althoff's Prop. 3 and Prop. 4 are `minkowskiDiff_add_subset_add` and
+`minkowskiDiff_encl_subset_add`; `minkowskiDiff_add_assoc` is his Thm. 1's recursion step, and
+`segments_minkowskiDiff_subset` is Wetzlinger and Althoff's Lemma 1.
 
 `hausdorffDist_add_le`, `hausdorffDist_image_le` and `hausdorffDist_mulVecLin_add_le` are the
 three distances here rather than inclusions: adding the same compact set to both sides, moving two

@@ -16,11 +16,14 @@ are exactly these four; they cite the work under the working title "Backward
 Reachability Analysis with State Constraints for Linear Systems using Set
 Propagation", which is not a separate publication — no such title exists on arXiv
 or in Crossref, and the AE/EA naming CORA uses is this paper's own from v2 onward.
-CORALean's backward reachability is the discrete-time, single-quantifier case:
-`LinearSysDT.backReachSetForall` and `backReachSetExists`, computed by
-`backReachForall` and `backReachExists`. Those are `Def. 6` and `Def. 7` with the
-disturbance set dropped, over the discrete-time dynamics this paper continuizes —
-not the sets defined below, none of which is formalized.
+CORALean's discrete-time backward reachability — `LinearSysDT.backReachSetForall` and
+`backReachSetExists`, computed by `backReachForall` and `backReachExists` — is `Def. 6`
+and `Def. 7` with the disturbance set dropped, over the discrete-time dynamics this
+paper continuizes. The continuous-time sets themselves are now `LinearSys.
+backReachSetForallExists` and `backReachSetExistsForall`, each with a `timeInterval...`
+sibling, over a new two-input run `LinearSys.PerturbedTrajectory` that keeps the input
+and disturbance separately quantified, as the paper's `∀u∃w` and `∃u∀w` require; nothing
+past the definitions — `Prop. 3`, `Prop. 5` and onward — is formalized yet.
 
 ## Results
 
@@ -31,8 +34,8 @@ not the sets defined below, none of which is formalized.
 | `Def. 3` | (Zonotope) [cites [8, Def. 1]] Z := {c + Σ_{i=1}^γ G_(·,i) α_i \| α_i∈[-1,1]}; shorthand Z=⟨c,G⟩_Z. | n/a — restated from Girard 2005, which this formalization does not draw on directly |
 | `Def. 4` | (Constrained zonotope) [cites [12, Def. 3]] CZ := {c + Σ G_(·,i) α_i \| Σ K_(·,i) α_i = l, α_i∈[-1,1]}; shorthand CZ=⟨c,G,K,l⟩_CZ. | n/a — restated from Scott et al. 2016, which this formalization does not draw on directly |
 | `Def. 5` | (Forward reachable set) R(t) := {ξ(t;x_0,u(·)) \| x_0∈X_0, ∀θ∈[0,t]: u(θ)∈U} for ẋ = Ax + u. | n/a — restated; tracked as `Def. 3.1` on [Althoff's thesis](../2010/althoff-thesis.md) |
-| `Def. 6` | (Minimal backward reachable set) [cites [17, Def. 2 and Def. 4]] R^∀∃(-t) := {x_0 \| ∀u(·)∈U ∃w(·)∈W: ξ(t;x_0,u(·),w(·))∈X_end} — the states that cannot avoid the target — and its time-interval version, which requires the state to pass through X_end at some t∈τ. | — |
-| `Def. 7` | (Maximal backward reachable set) [cites [17, Def. 1 and Def. 3]] R^∃∀(-t) := {x_0 \| ∃u(·)∈U ∀w(·)∈W: ξ(t;x_0,u(·),w(·))∈X_end} — the states that can be steered into the target despite any disturbance — and its time-interval version. | — |
+| `Def. 6` | (Minimal backward reachable set) [cites [17, Def. 2 and Def. 4]] R^∀∃(-t) := {x_0 \| ∀u(·)∈U ∃w(·)∈W: ξ(t;x_0,u(·),w(·))∈X_end} — the states that cannot avoid the target — and its time-interval version, which requires the state to pass through X_end at some t∈τ. | [`BackReachSetForallExists.lean`](../../src/CORALean/ContDynamics/LinearSys/BackReachSetForallExists.lean), [`TimeIntervalBackReachSetForallExists.lean`](../../src/CORALean/ContDynamics/LinearSys/TimeIntervalBackReachSetForallExists.lean) |
+| `Def. 7` | (Maximal backward reachable set) [cites [17, Def. 1 and Def. 3]] R^∃∀(-t) := {x_0 \| ∃u(·)∈U ∀w(·)∈W: ξ(t;x_0,u(·),w(·))∈X_end} — the states that can be steered into the target despite any disturbance — and its time-interval version. | [`BackReachSetExistsForall.lean`](../../src/CORALean/ContDynamics/LinearSys/BackReachSetExistsForall.lean), [`TimeIntervalBackReachSetExistsForall.lean`](../../src/CORALean/ContDynamics/LinearSys/TimeIntervalBackReachSetExistsForall.lean) |
 | `Prop. 1` | (Convergence of particular solution) The outer approximation (23) and the inner approximation (24) of the particular solution Z_S, propagated by (25), both converge to the exact particular solution Z_S(t) = {∫_0^t e^{A(t-θ)}s(θ)dθ \| s(θ)∈S} as Δt→0. | — |
 | `Prop. 2` | (Union) [cites [1, Prop. 2]] ⋃_{t∈τ} R^∀∃(-t) ⊆ R^∀∃(-τ) and ⋃_{t∈τ} R^∃∀(-t) ⊆ R^∃∀(-τ); the proof is the order of the quantifiers. | n/a — restated from Mitchell 2007, which this formalization does not draw on directly |
 | `Assumption 1` | (Fixed parameters) The truncation order η in (23), the number of propagation steps ω, and the number h of halfspaces constraining X_end are fixed. | n/a — a standing hypothesis for the runtime-complexity analysis, not a claim to formalize |
@@ -42,7 +45,7 @@ not the sets defined below, none of which is formalized.
 | `Thm. 1` | (Time-interval minimal backward reachable set) With Û⊂U a set of q input trajectories, R^∀∃(-τ) is outer approximated by the union over the ω steps of R̂^∃(-τ_k;u_0(·)) ∩ ⟨N,p⟩_H, where u_0 is the center input trajectory, N's rows are the q directions ℓ_j, and p_(j) = min_i ρ(R̂^∃(-τ;u_i(·)), ℓ_j). | — |
 | `Alg. 1` | "Minimal time-interval backward reachable set": propagates the disturbance particular solution and the convex hull of the converted target set over ω steps, carries the support functions of the q input trajectories alongside, and intersects the constructed polytope with R̂^∃(-τ) to return R̂^∀∃(-τ). | — |
 | `Prop. 5` | (Maximal time-point backward reachable set) R^∃∀(-t) = e^{-At}((X_end ⊖ Z_W(t)) ⊕ -Z_U(t)), independently of the set representations chosen; a continuization of the discrete-time case of [38, Thm. 2.4]. | — |
-| `Lemma 1` | (Distributivity of Minkowski difference over convex hull) For compact, convex, non-empty S1,S2,S3⊂R^n: conv(S1 ⊖ S3, S2 ⊖ S3) ⊆ conv(S1,S2) ⊖ S3. | — |
+| `Lemma 1` | (Distributivity of Minkowski difference over convex hull) For compact, convex, non-empty S1,S2,S3⊂R^n: conv(S1 ⊖ S3, S2 ⊖ S3) ⊆ conv(S1,S2) ⊖ S3. | [`SegmentsMinkowskiDiffSubset.lean`](../../src/CORALean/ContSet/ContSet/Theorems/SegmentsMinkowskiDiffSubset.lean) |
 | `Thm. 2` | (Time-interval maximal backward reachable set) The union ⋃_{t∈τ_k} R^∃∀(-t) is inner approximated by e^{-At_{k+1}}(-Z̲_U(t_k) ⊕ conv(CZ(X_end ⊖ F box(X_end) ⊖ B_µ ⊖ Ẑ_W(τ_k)), CZ(e^{AΔt}X_end ⊖ F box(X_end) ⊖ B_µ ⊖ Ẑ_W(τ_k)))), and the union over all ω steps inner approximates R^∃∀(-τ). | — |
 | `Alg. 2` | "Maximal time-interval backward reachable set": pre-computes the input and disturbance particular solutions up to t_0 and the two polytopes P1, P2 of the inner-approximated homogeneous time-interval solution, then implements Thm. 2 step by step and returns the union. | — |
 
