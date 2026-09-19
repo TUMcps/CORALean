@@ -17,6 +17,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDist2IntervalLe
 import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDist2IntervalLeCut
 import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDist2IntervalLeMax
 import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDist2LinCombLe
+import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDist2ReduceByLe
 import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDistIntervalLe
 import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
 import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed

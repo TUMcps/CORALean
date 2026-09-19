@@ -1,6 +1,8 @@
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsConstCorrectionMatrixLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsCorrCoeffLeOne
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsCorrectionMatrixLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeNorm
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AffineDynamicsErrorIsBigO
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ConstCorrectionMatrix
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ContinuousExpDiff
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrCoeffBound
@@ -56,6 +58,7 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableExpDiff
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableExpSmul
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableNormExpIntegral
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SuperlinearDecreaseExpRemainder
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoAffineDynamicsErrorZero
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoExpRemainderBoundAtTop
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoExpRemainderBoundZero
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoExpRemainderMatZero
