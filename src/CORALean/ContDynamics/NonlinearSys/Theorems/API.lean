@@ -9,6 +9,7 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.BoxDiameterAbstrSolInf
 import CORALean.ContDynamics.NonlinearSys.Theorems.EstimateGainBracket
 import CORALean.ContDynamics.NonlinearSys.Theorems.GainDimLePow
 import CORALean.ContDynamics.NonlinearSys.Theorems.GainDimTendstoPow
+import CORALean.ContDynamics.NonlinearSys.Theorems.GainDimTendstoPowConst
 import CORALean.ContDynamics.NonlinearSys.Theorems.GainOrderEqTopIff
 import CORALean.ContDynamics.NonlinearSys.Theorems.GlobalAbstrErrEqLocalAbstrErr
 import CORALean.ContDynamics.NonlinearSys.Theorems.GlobalAbstrErrLeLocalAbstrErr
