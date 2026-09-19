@@ -1,4 +1,5 @@
 import CORALean.ContSet.Zonotope.Real.AdaptSetOrder
+import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBoxErrorEqZero
 
 /-!
 # What `Alg. 3` returns is inside the budget it searched for
@@ -37,17 +38,6 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- An order large enough to drop nothing costs nothing: `reduceBox` is the
-origin there, whose box reaches `0` from the origin. -/
-theorem aux_reduceBoxError_eq_zero (Z : Zonotope (Vec ℝ n)) {o : ℕ} (h : Z.h ≤ o * n) :
-    Z.reduceBoxError o = 0 := by -- --- PROOF ---
-  have hbox : Z.reduceBox o = Zonotope.ofPoint 0 := by
-    rw [Zonotope.reduceBox, dif_neg (Nat.not_lt.mpr h)]
-  have hzero : (fun j => (Zonotope.ofPoint (0 : Vec ℝ n)).absBound j) = (0 : Vec ℝ n) := by
-    funext j
-    simp [Zonotope.absBound, Zonotope.ofPoint]
-  rw [Zonotope.reduceBoxError, hbox, hzero, norm₂_zero]
-
 /-- Lines 3-7 keep an admissible order admissible: every decrement the loop
 takes is one the check cleared, and every exit hands back what it came in
 with. -/
@@ -84,7 +74,7 @@ theorem Zonotope.adaptSetOrder_budget {le : ℝ → ℝ → Bool} (hle : ∀ a b
         + Z.reduceBoxError (Z.adaptSetOrder le εSmax εSacc tf ti Δt).1 := by -- --- PROOF ---
   -- `param(PR)` drops no generator, so the loop starts admissible
   have hstart : Z.reduceBoxError Z.h ≤ (εSmax - εSacc) / (tf - ti) * Δt := by
-    rw [aux_reduceBoxError_eq_zero Z (Nat.le_mul_of_pos_right _ hn)]
+    rw [Zonotope.reduceBoxError_eq_zero Z (Nat.le_mul_of_pos_right _ hn)]
     exact hεSi
   exact ⟨aux_adaptSetOrderLoop_le hle Z _ _ hstart, rfl⟩
 

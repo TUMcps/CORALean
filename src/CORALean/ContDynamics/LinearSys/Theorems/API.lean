@@ -21,6 +21,9 @@ import CORALean.ContDynamics.LinearSys.Theorems.EqClosedFormOfFlow
 import CORALean.ContDynamics.LinearSys.Theorems.ErrorConvergesToZeroTimeIntervalStepCurvatureError
 import CORALean.ContDynamics.LinearSys.Theorems.ErrorConvergesToZeroTimePointStepRemainderError
 import CORALean.ContDynamics.LinearSys.Theorems.ExistsAdaptTimeStepFuel
+import CORALean.ContDynamics.LinearSys.Theorems.ExistsAutoStep
+import CORALean.ContDynamics.LinearSys.Theorems.ExistsAutoStepAutoInit
+import CORALean.ContDynamics.LinearSys.Theorems.ExistsAutoTuneDeltaT
 import CORALean.ContDynamics.LinearSys.Theorems.ExistsTimeIntervalStepErrorLt
 import CORALean.ContDynamics.LinearSys.Theorems.ExistsTimeIntervalStepInnerInner
 import CORALean.ContDynamics.LinearSys.Theorems.ExistsTimePointStepErrorLt
@@ -66,8 +69,8 @@ import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableMulVecAdd
 import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableOfMemBounded
 import CORALean.ContDynamics.LinearSys.Theorems.ManualRunHExact
 import CORALean.ContDynamics.LinearSys.Theorems.ManualRunTEq
-import CORALean.ContDynamics.LinearSys.Theorems.MemExpNegImageIff
 import CORALean.ContDynamics.LinearSys.Theorems.MaxBackReachTimeIntervalInner
+import CORALean.ContDynamics.LinearSys.Theorems.MemExpNegImageIff
 import CORALean.ContDynamics.LinearSys.Theorems.MinBackReachTimeIntervalOuter
 import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
 import CORALean.ContDynamics.LinearSys.Theorems.PerturbedIntegralTrajectoryClosedForm
