@@ -2,6 +2,7 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsConstCorrectionMatrixL
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsCorrCoeffLeOne
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsCorrectionMatrixLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeNorm
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsPowEntryLeAbsMatPow
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AffineDynamicsErrorIsBigO
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ConstCorrectionMatrix
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ContinuousExpDiff
@@ -66,6 +67,7 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoMulExpRemainderBou
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoParticularSolutionErrorZero
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoParticularSolutionTauErrorZero
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TsumLeExpTail
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TsumMatrixEntryEq
 
 /-!
 # What the exponential enclosures guarantee
