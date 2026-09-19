@@ -34,7 +34,7 @@ it specializes) now excepted.
 | `Prop. 1` | (Affine dynamics error) Bounds the Hausdorff distance between the exact time-interval solution of the affine dynamics H(τ_k) and its outer-approximation. | — |
 | `Prop. 2` | (Time-point error in particular solution) Bounds the Hausdorff distance between the exact particular solution P^U(t_{k+1}) and its recursively computed outer-approximation P̂^U(t_{k+1}). | — |
 | `Prop. 3` | (Time-interval error in particular solution) Bounds the maximum Hausdorff distance over t∈τ_k between the exact time-interval particular solution P^U(t) and its outer-approximation. | — |
-| `Prop. 4` | (Zonotope order reduction error) Bounds the Hausdorff distance introduced by iteratively reducing the particular solution's zonotope order, giving the recursion ε^r_{k+1} = ε^r_k + ε^r_k(ρ_k). | — |
+| `Prop. 4` | (Zonotope order reduction error) Bounds the Hausdorff distance introduced by iteratively reducing the particular solution's zonotope order, giving the recursion ε^r_{k+1} = ε^r_k + ε^r_k(ρ_k). | [`HausdorffDist2ReduceByLe.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/HausdorffDist2ReduceByLe.lean) — the displayed per-step bound eq. (29) only, `d_H(Z, reduce(Z,ρ)) ≤ err(⟨0,G_red⟩_Z)` with [`⟨0,G_red⟩_Z`](../../src/CORALean/ContSet/Zonotope/Real/Operations/ReduceByDropped.lean) the dropped generators; proved at *every* partition, so it does not need `Def. 4`'s ranking. Eq. (28)'s accumulation ε^r_{k+1} = ε^r_k + Δε^r_k is not proved |
 | `Alg. 2` | "Reachability algorithm (automated tuning)": reachability algorithm that internally tunes the time step Δt_k and truncation order η_k given only an overall error bound ε_max. | — |
 | `Thm. 1` | (Convergence) Alg. 2 terminates in finite time for arbitrary error bounds ε_max > 0 (proof uses Lemmas 1-4 from Appendix B: quadratic decrease of the accumulating error, at-least-linear decrease of the non-accumulating error). | — |
 | `Prop. 5` | Given the error ε^x_k (eq. 31) of the reachable set R̂(τ_k), the corresponding output set Ŷ(τ_k) has error d_H(Y(τ_k),Ŷ(τ_k)) ≤ ε^y_k := ε^x_k·‖C‖. | [`HausdorffDist2EvalLe.lean`](../../src/CORALean/ContDynamics/OutputEq/Theorems/HausdorffDist2EvalLe.lean) |
@@ -47,7 +47,7 @@ it specializes) now excepted.
 | `Prop. 11` | (Appendix A) Bounds the Hausdorff distance between the propagated exact particular solution e^{At_k}P^U(t_k) and its outer-approximation. | — |
 | `Lemma 1` | (Appendix B) The remainder of the exponential matrix E(Δt_k,η_k) (eq. 18) satisfies lim_{Δt_k→0} E = 0 and E ~ O(Δt_k^{η_k+1}). | [`ExpRemainderMat.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/ExpRemainderMat.lean), [`TendstoExpRemainderMatZero.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/TendstoExpRemainderMatZero.lean), [`ExpRemainderMatIsBigO.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/ExpRemainderMatIsBigO.lean) |
 | `Lemma 2` | (Appendix B) The error ε^U_k(Δt_k,η_k) (eq. 25) satisfies lim_{Δt_k→0} ε^U_k = 0 and ε^U_k ~ O(Δt_k²). | [`ParticularSolutionError.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/ParticularSolutionError.lean), [`TendstoParticularSolutionErrorZero.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/TendstoParticularSolutionErrorZero.lean), [`ParticularSolutionErrorIsBigO.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/ParticularSolutionErrorIsBigO.lean) |
-| `Lemma 3` | (Appendix B) The error ε^h_k(Δt_k,η_k) (eq. 23) satisfies lim_{Δt_k→0} ε^h_k = 0 and ε^h_k ~ O(Δt_k). | — |
+| `Lemma 3` | (Appendix B) The error ε^h_k(Δt_k,η_k) (eq. 23) satisfies lim_{Δt_k→0} ε^h_k = 0 and ε^h_k ~ O(Δt_k). | [`AffineDynamicsError.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/AffineDynamicsError.lean), [`TendstoAffineDynamicsErrorZero.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/TendstoAffineDynamicsErrorZero.lean), [`AffineDynamicsErrorIsBigO.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/AffineDynamicsErrorIsBigO.lean) — both halves, for every `A`, `H(t_k)`, `ũ` and `η` |
 | `Lemma 4` | (Appendix B) The error ε^{U,τ}_k(Δt_k,η_k) (eq. 26) satisfies lim_{Δt_k→0} ε^{U,τ}_k = 0 and ε^{U,τ}_k ~ O(Δt_k). | [`ParticularSolutionTauError.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/ParticularSolutionTauError.lean), [`TendstoParticularSolutionTauErrorZero.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/TendstoParticularSolutionTauErrorZero.lean), [`ParticularSolutionTauErrorIsBigO.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/ParticularSolutionTauErrorIsBigO.lean) |
 
 ## Findings
@@ -95,10 +95,8 @@ more-developed `add_le`/`mulVec_image_le` bounds. `Prop. 1`-`Prop. 3` stay open 
 is additionally downstream of Appendix A's `Prop. 9`/`Prop. 11` (`Prop. 9` now formalized,
 `Prop. 11` still open — see below) or, for `Prop. 3`, of `Prop. 2`'s own error term — a
 *soundness* bound relating the error to the exact reachable set, which `err`'s existence does
-not supply. `Prop. 4` (zonotope order reduction error) is `err(·)`-valued too and so is now
-reachable in principle, but needs `Zonotope.reduce` and its generator-selection set (`Def. 4`,
-itself `n/a` on this page) plus its own soundness argument — a separate, larger task not taken
-up here.
+not supply. `Prop. 4` (zonotope order reduction error) is `err(·)`-valued too, and its displayed
+bound eq. (29) is now proved: see the `Prop. 4` finding below.
 
 **`Prop. 9` is proved at `‖·‖₂`, and `linComb` does compute exactly the set `S` the paper's proof
 needs — no convex-hull/`linComb` gap here.** `S := comb(H(t_k),H(t_{k+1}))` is
@@ -150,16 +148,60 @@ little the printed proofs use. Checked against CDC'20's `ε_H`/`ε_P` in `StepCo
 again: still a `Zonotope.absBound` sum under the sup norm, a different formula for a
 differently-normed quantity, so nothing there was reused.
 
-**`Lemma 3` is open, for a genuinely different reason than `Lemma 2`/`Lemma 4` were.** Its printed
-proof is equally free of any `Prop.` citation, so the same correction applies to it, but its
-subject `Δε^h_k(Δt,η) = 2·err(C) + √γ_h‖G_h^{(-)}‖_2` (eq. 23) needs `C = F(Δt,η)H(t_k) ⊕
-G(Δt,η)ũ` (Line 8 of `Alg. 1`), built from the interval matrices `F`/`G` (eq. 15-16) and the
-scalar interval `I_i(Δt)` (eq. 17). `I_i(Δt)`'s interval is asymmetric (`[i^{-i/(i-1)} -
-i^{-1/(i-1)}, 0]·Δt^i`), so bounding `err(C)` needs an interval-matrix-action-on-a-set operator
-beyond `intervalMulVecSet`'s symmetric `|M i j| ≤ |E i j|` reading, plus `H(t_k)` as a second
-free set alongside `U0` and the generator count `γ_h` as a second dimension. None of this is
-built this session; the row stays `—` rather than guessing at a definition eq. (17) does not
-force.
+**`Lemma 3` is proved, both halves, and the apparatus it was said to need was already here.**
+The previous revision of this page recorded `Lemma 3` as blocked on eq. (15)-(17)'s `F`/`G`/`I_i(Δt)`
+and on an "asymmetric interval-matrix action on a set the tree does not have". Checked against the
+PDF and the tree, all three parts of that were stale. `F(Δt,η) = ⊕_{i=2}^{η} I_i(Δt)A^i/i! ⊕ E(Δt,η)`
+(eq. 15) *is*
+[`MatExp.correctionMatrix`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Enclosures.lean), and
+`G(Δt,η) = ⊕_{i=2}^{η+1} I_i(Δt)A^{i-1}/i! ⊕ E(Δt,η)Δt` (eq. 16) *is* `MatExp.constCorrectionMatrix`
+in the same file — the tree names them for CORA's `F` and `F̃` and cites Althoff's thesis, which is
+where this paper takes them from ([12, Sec. 3.2]), so neither had to be defined. Eq. (17)'s
+asymmetry is not a gap either: `I_i(Δt) = [(i^{-i/(i-1)} - i^{-1/(i-1)})Δt^i, 0]` is exactly the
+`min (corrTerm A Δt i j k) 0` … `max (corrTerm A Δt i j k) 0` pair those two definitions already
+carry, one endpoint per sign of the entry. And `Zonotope.mtimesIntervalMat` is *not* restricted to
+symmetric interval matrices: it acts through `Interval.center` and `Interval.radius` separately, so
+an interval lying entirely on one side of zero is an ordinary argument to it. Only one thing really
+was missing — a matrix `‖·‖₂` for `‖G^{(-)}_h‖₂` — and that is
+[`genOpNorm₂`](../../src/CORALean/Global/EuclideanGenOpNorm.lean), which `Prop. 9` landed the same
+day and which `Lemma 3` therefore shares: `√γ_h‖G^{(-)}_h‖₂` is exactly `Prop. 9`'s own `µ`, so the
+two rows had better read it in the same norm. `genOpNorm₂_le_sum_norm₂` is what this row added to
+it — the *upper* bound on the operator norm, which `Prop. 9` did not need and an error term
+shrinking to `0` does.
+`Δε^h_k(Δt,η) = 2·err(C) + √γ_h‖G^{(-)}_h‖₂` is then read with `C` the zonotope Line 8 of `Alg. 1`
+actually computes — `mtimesIntervalMat F H(t_k) ⊞ mtimesIntervalMat G ⟨ũ⟩`, the enclosure and not
+the exact interval-matrix product it encloses, which is what `err(C)` is about, `C` entering
+eq. (22) as a computed set — and both halves go through for every `A`, `H(t_k)`, `ũ` and `η`, with
+no side condition: `abs_correctionMatrix_le` and the new `abs_constCorrectionMatrix_le` bound the
+two interval matrices entrywise, `mtimesIntervalMat_subset_closedBall` turns those into a ball, and
+`norm_exp_smul_sub_one_le` prices `(e^{AΔt} - I)G_h`.
+
+**`Lemma 3`'s printed proof substitutes `Δt = 0` into the term whose rate it is about, and its
+`O(Δt²)` step silently needs `η ≥ 1`.** Two defects, neither touching the lemma's own claim. The
+asymptotic display reads `2(err(F(0,η)H(t_k)) + err(G(0,η)ũ)) ∼ O(Δt_k²)` — at `Δt = 0` both
+interval matrices are identically `0`, so as printed the statement is about the constant `0` and
+says nothing; the intended subject is `F(Δt_k,η_k)`/`G(Δt_k,η_k)`, carried over unchanged from the
+limit display two lines above, where substituting `0` *is* the point. Separately, the reason given
+for `O(Δt²)` is that "the minimal index is `i = 2`" in `I_i(Δt)`, which is true of the sum but not
+of the `⊕ E(Δt,η)` beside it: `Lemma 1` makes `E(Δt,η)` only `O(Δt^{η+1})`, so for `η = 0` the
+curvature term is `O(Δt)` and not `O(Δt²)`. `Lemma 3`'s stated conclusion, `Δε^h_k ∼ O(Δt_k)`, holds
+for every `η` regardless — the `√γ_h‖G^{(-)}_h‖₂` term is linear in `Δt` anyway and is what sets the
+rate — which is why the row above flips on the printed claim and not on the printed proof.
+
+**`Prop. 4` holds at every partition, and `err` of the dropped generators pays for the whole box by
+attainment.** The printed proof is one sentence — "the error `Δε^r_k(ρ_k)` for one time step is
+given by the box enclosure of the zonotope formed by the generators selected for reduction" — and
+it leaves out the step that makes `err(⟨0,G_red⟩_Z)` rather than `err(box(⟨0,G_red⟩_Z))` the right
+number. It is the right number, and the reason is attainment: coordinate `i`'s extreme
+`∑_l |G_red(i,l)|` is reached by the point of `⟨0,G_red⟩_Z` whose coefficients are the signs of row
+`i`, so the box `err` reads off that zonotope already contains the whole substituted block. Nothing
+in the argument uses `Def. 4`'s ranking by `‖G_(·,i)‖_1 - ‖G_(·,i)‖_∞`, so the row is stated at an
+arbitrary `Partition` — the generality `Zonotope.reduceBy_outer` already has, and the reason CORA's
+twenty-odd reduction rules all inherit the bound. What is *not* proved is eq. (28): the prose calls
+the right-hand side of (29) the distance to the "iteratively reduced" counterpart while the display
+is a single reduction, and the accumulation `ε^r_{k+1} = ε^r_k + Δε^r_k(ρ_k)` needs a Hausdorff
+triangle inequality and the invariance of `d_H` under a common Minkowski summand on top of (29).
+The row says which half it carries.
 
 `Lemma 1` is different again: its subject `E(Δt,η)` (eq. 18) is `e^{|A|∆t} - Σ(|A|∆t)^i/i!`, a
 plain matrix built from `A`'s entrywise absolute value, with no norm dependency at all — a
@@ -176,3 +218,4 @@ These name the paper as a whole. A locator would put each in a row above.
 
 * [`StepInner.lean`](../../src/CORALean/ContDynamics/LinearSys/StepInner.lean)
 * [`ParticularSolutionOuterCorrelated.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/ParticularSolutionOuterCorrelated.lean) — eq. (25)'s correlated summand, shared by `Lemma 2`'s proof but not itself the subject of any numbered result
+* [`AbsConstCorrectionMatrixLe.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/AbsConstCorrectionMatrixLe.lean) — eq. (16)'s `G(Δt,η)` bounded entrywise, the counterpart of `AbsCorrectionMatrixLe` for `Lemma 3`'s second interval matrix; not itself a numbered result

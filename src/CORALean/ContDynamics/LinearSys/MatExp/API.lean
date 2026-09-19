@@ -10,6 +10,7 @@ import CORALean.ContDynamics.LinearSys.MatExp.MatZonoEnclosures
 import CORALean.ContDynamics.LinearSys.MatExp.ParticularSolutionError
 import CORALean.ContDynamics.LinearSys.MatExp.ParticularSolutionOuter
 import CORALean.ContDynamics.LinearSys.MatExp.ParticularSolutionOuterCorrelated
+import CORALean.ContDynamics.LinearSys.MatExp.AffineDynamicsError
 import CORALean.ContDynamics.LinearSys.MatExp.ParticularSolutionTauError
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.API
 

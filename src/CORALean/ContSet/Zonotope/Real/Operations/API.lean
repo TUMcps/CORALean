@@ -18,6 +18,7 @@ import CORALean.ContSet.Zonotope.Real.Operations.LinComb
 import CORALean.ContSet.Zonotope.Real.Operations.Recentre
 import CORALean.ContSet.Zonotope.Real.Operations.ReduceBy
 import CORALean.ContSet.Zonotope.Real.Operations.ReduceByBox
+import CORALean.ContSet.Zonotope.Real.Operations.ReduceByDropped
 import CORALean.ContSet.Zonotope.Real.Operations.ReduceByBasis
 import CORALean.ContSet.Zonotope.Real.Operations.GirardSplit
 import CORALean.ContSet.Zonotope.Real.Operations.Split
