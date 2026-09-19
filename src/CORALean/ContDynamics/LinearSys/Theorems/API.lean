@@ -57,6 +57,7 @@ import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
 import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableMulVecAdd
 import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableOfMemBounded
 import CORALean.ContDynamics.LinearSys.Theorems.MemExpNegImageIff
+import CORALean.ContDynamics.LinearSys.Theorems.MinBackReachTimeIntervalOuter
 import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
 import CORALean.ContDynamics.LinearSys.Theorems.PerturbedIntegralTrajectoryClosedForm
 import CORALean.ContDynamics.LinearSys.Theorems.PerturbedSuperposition
