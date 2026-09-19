@@ -137,6 +137,29 @@ theorem isCompact_unitBall₂ : IsCompact (unitBall₂ n) := by
   rw [unitBall₂_eq_image]
   exact (isCompact_closedBall _ _).image toEuclidean.symm.continuous
 
+/-- The Euclidean norm never exceeds the sum of magnitudes: the square of the latter has every
+cross term the former drops, all of them nonnegative. -/
+theorem norm₂_le_sum_abs (x : Vec ℝ n) : ‖x‖₂ ≤ ∑ i, |x i| := by -- --- PROOF ---
+  have hsq : ∑ i, x i ^ 2 ≤ (∑ i, |x i|) ^ 2 := by
+    have hi : ∀ i, x i ^ 2 ≤ |x i| * ∑ j, |x j| := fun i => by
+      rw [← sq_abs (x i), sq]
+      exact mul_le_mul_of_nonneg_left
+        (Finset.single_le_sum (fun j _ => abs_nonneg (x j)) (Finset.mem_univ i)) (abs_nonneg _)
+    calc ∑ i, x i ^ 2 ≤ ∑ i, |x i| * ∑ j, |x j| := Finset.sum_le_sum fun i _ => hi i
+      _ = (∑ i, |x i|) * ∑ j, |x j| := (Finset.sum_mul _ _ _).symm
+      _ = (∑ i, |x i|) ^ 2 := (sq _).symm
+  exact (Real.sqrt_le_sqrt hsq).trans_eq (Real.sqrt_sq (by positivity))
+
+/-- Applying a matrix scales the Euclidean norm by at most the sum of its rows' own: each row's
+dot product with `x` is Cauchy–Schwarz-bounded, and the Euclidean norm is under the row sum. -/
+theorem norm₂_mulVec_le (M : Mat ℝ n n) (x : Vec ℝ n) :
+    ‖M.mulVec x‖₂ ≤ (∑ i, ‖(fun j => M i j)‖₂) * ‖x‖₂ := by -- --- PROOF ---
+  have hrow : ∀ i, |M.mulVec x i| ≤ ‖(fun j => M i j)‖₂ * ‖x‖₂ :=
+    fun i => abs_dotProduct_le_norm₂_mul_norm₂ (fun j => M i j) x
+  calc ‖M.mulVec x‖₂ ≤ ∑ i, |M.mulVec x i| := norm₂_le_sum_abs _
+    _ ≤ ∑ i, ‖(fun j => M i j)‖₂ * ‖x‖₂ := Finset.sum_le_sum fun i _ => hrow i
+    _ = (∑ i, ‖(fun j => M i j)‖₂) * ‖x‖₂ := (Finset.sum_mul _ _ _).symm
+
 end CORALean
 
 

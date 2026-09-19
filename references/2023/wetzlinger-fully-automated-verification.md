@@ -46,34 +46,61 @@ it specializes) now excepted.
 | `Prop. 10` | (Appendix A) For a compact set S⊂R^n and matrices M1,M2: d_H((M1+M2)S, M1 S) ≤ d_H(0, M2 S) — a general perturbation bound for linear maps of sets under the Hausdorff distance. | [`HausdorffDistMulVecLinAddLe.lean`](../../src/CORALean/ContSet/ContSet/Theorems/HausdorffDistMulVecLinAddLe.lean) |
 | `Prop. 11` | (Appendix A) Bounds the Hausdorff distance between the propagated exact particular solution e^{At_k}P^U(t_k) and its outer-approximation. | — |
 | `Lemma 1` | (Appendix B) The remainder of the exponential matrix E(Δt_k,η_k) (eq. 18) satisfies lim_{Δt_k→0} E = 0 and E ~ O(Δt_k^{η_k+1}). | [`ExpRemainderMat.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/ExpRemainderMat.lean), [`TendstoExpRemainderMatZero.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/TendstoExpRemainderMatZero.lean), [`ExpRemainderMatIsBigO.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/ExpRemainderMatIsBigO.lean) |
-| `Lemma 2` | (Appendix B) The error ε^U_k(Δt_k,η_k) (eq. 25) satisfies lim_{Δt_k→0} ε^U_k = 0 and ε^U_k ~ O(Δt_k²). | — |
+| `Lemma 2` | (Appendix B) The error ε^U_k(Δt_k,η_k) (eq. 25) satisfies lim_{Δt_k→0} ε^U_k = 0 and ε^U_k ~ O(Δt_k²). | [`ParticularSolutionError.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/ParticularSolutionError.lean), [`TendstoParticularSolutionErrorZero.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/TendstoParticularSolutionErrorZero.lean), [`ParticularSolutionErrorIsBigO.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/ParticularSolutionErrorIsBigO.lean) |
 | `Lemma 3` | (Appendix B) The error ε^h_k(Δt_k,η_k) (eq. 23) satisfies lim_{Δt_k→0} ε^h_k = 0 and ε^h_k ~ O(Δt_k). | — |
-| `Lemma 4` | (Appendix B) The error ε^{U,τ}_k(Δt_k,η_k) (eq. 26) satisfies lim_{Δt_k→0} ε^{U,τ}_k = 0 and ε^{U,τ}_k ~ O(Δt_k). | — |
+| `Lemma 4` | (Appendix B) The error ε^{U,τ}_k(Δt_k,η_k) (eq. 26) satisfies lim_{Δt_k→0} ε^{U,τ}_k = 0 and ε^{U,τ}_k ~ O(Δt_k). | [`ParticularSolutionTauError.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/ParticularSolutionTauError.lean), [`TendstoParticularSolutionTauErrorZero.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/TendstoParticularSolutionTauErrorZero.lean), [`ParticularSolutionTauErrorIsBigO.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/ParticularSolutionTauErrorIsBigO.lean) |
 
 ## Findings
 
-**`Prop. 1`-`Prop. 4` are stated at `‖·‖₂`, and that is no longer what blocks them.** Each uses
-`err(S) := rad(box(S))`, and the paper's Notation section defines `rad` as the radius of the
-smallest enclosing hypersphere, explicitly "with respect to the Euclidean norm" — a `‖·‖₂`
-quantity by construction. `Vec ℝ n` carries Mathlib's supremum norm, so `Metric.hausdorffDist`
-there is the sup-norm one; but `Global/EuclideanHausdorffDist.lean` now takes it through
-`toEuclidean` as `hausdorffDist₂`, which is that definition exactly, and `Global/BoxDiameter.lean`
-names `d(box(·))` coordinatewise. CDC 2020's `Prop. 1` is already proved at its own `err(·)`, the
-origin-centred Euclidean box radius, in
-[`HausdorffDist2AddLeBoxRadius.lean`](../../src/CORALean/ContSet/Interval/Real/Theorems/HausdorffDist2AddLeBoxRadius.lean),
-and NAHS'22 `Thm. 1` is closed at `‖·‖₂` as well. So what remains here is the work, not the
-ambient norm: `err(·)` wants a named operator of its own, built from `boxDiameter`. `Prop. 1` and
-`Prop. 2` are additionally downstream of `Prop. 9` and `Prop. 11` (Appendix A), neither
-formalized; `Prop. 3` is downstream of `Prop. 2`'s error term.
+**`err(·)` now has a named operator, `Global/Err.lean`'s `err`, settling `Prop. 1`-`Prop. 4`'s
+gap of a norm.** `err(S) := rad(box(S))` (eq. 11), and the Notation section (Sec. II-A) reads
+`rad` as "the radius of the smallest hypersphere centered at the origin and enclosing a set" and
+`box` as "the tightest axis-aligned interval outer-approximation of `S`" — the ORIGIN-centred
+Euclidean radius of `S`'s box, not `Interval.radius`'s own-centre one (`‖boxDiameter S / 2‖₂`,
+a different number whenever the box is not centred at `0`), matching CDC'20 `Prop. 1`'s box
+radius already in
+[`HausdorffDist2AddLeBoxRadius.lean`](../../src/CORALean/ContSet/Interval/Real/Theorems/HausdorffDist2AddLeBoxRadius.lean).
+`err` carries monotonicity (`err_mono`), subadditivity under a Minkowski sum (`err_add_le`),
+boundedness under a linear image (`err_mulVec_le`), and two bridges to `boxDiameter`'s own,
+more-developed `add_le`/`mulVec_image_le` bounds. `Prop. 1`-`Prop. 3` stay open regardless: each
+is additionally downstream of Appendix A's `Prop. 9`/`Prop. 11` (neither formalized) or, for
+`Prop. 3`, of `Prop. 2`'s own error term — a *soundness* bound relating the error to the exact
+reachable set, which `err`'s existence does not supply. `Prop. 4` (zonotope order reduction
+error) is `err(·)`-valued too and so is now reachable in principle, but needs `Zonotope.reduce`
+and its generator-selection set (`Def. 4`, itself `n/a` on this page) plus its own soundness
+argument — a separate, larger task not taken up here.
 
-`Lemma 2`-`Lemma 4` are asymptotic claims about exactly these `err(·)`-valued quantities
-(`Δε^h_k`, `Δε^U_k`, `Δε^{U,τ}_k` respectively), so they wait on that same named operator and are
-additionally downstream of `Prop. 1`-`Prop. 3` (eq. (23) and (25) both name `err(·)` directly; eq. (26)'s
-`Δε^{U,τ}_k := err(e^{At_k} P̂^U(Δt_k))` does too). They are not the CDC'20 `ε_H`/`ε_P` widening
-terms tracked in `StepConvergenceError.lean`: those are built from `Zonotope.absBound`, a
-generator-sum radius under the sup norm, not `rad(box(·))` under `‖·‖₂` — a different formula for
-a differently-normed quantity, not the same error under two names, so nothing there transfers
-either. `Lemma 1` is different: its subject `E(Δt,η)` (eq. 18) is `e^{|A|∆t} - Σ(|A|∆t)^i/i!`, a
+**`Lemma 2` and `Lemma 4` do NOT depend on `Prop. 1`-`Prop. 3`, and are now proved, both
+halves.** The claim in this file's own prior revision — that `Lemma 2`-`Lemma 4` are
+"additionally downstream of `Prop. 1`-`Prop. 3`" — was wrong, and checking it against the PDF is
+what this session's rows rest on: `Lemma 2`'s and `Lemma 4`'s printed proofs cite only eq. (18)'s
+`E(Δt,η)`, `Lemma 1`, and the algebra of eq. (19)/(20)/(25)/(26) themselves — no `Prop.` anywhere
+in either proof. `Δε^{U,τ}_k(Δt,η) := err(e^{At_k} bPU(Δt))` (eq. 26) and `Δε^U_k`'s two `err`
+terms (eq. 25, the correlated sum `(Σ_{i=1}^η Ãᵢ)U0` and the decorrelated one `⊕_{i=1}^η ÃᵢU0`,
+each `⊕ E(Δt,η)ΔtU0`) are read as `Set`s directly from eq. (19)-(20) — `Ãᵢ := Aⁱ Δtⁱ⁺¹/(i+1)!`
+is `MatExp.particularCoeff`, `E(Δt,η)ΔtU0` is `MatExp.intervalMulVecSet`, `bPU` (any lower index
+`i0`, `0` for eq. (20) or `1` for eq. (27)'s `bPU_∞`) is `MatExp.particularSolutionOuter`, and
+the correlated sum is `MatExp.particularSolutionOuterCorrelated`. Both lemmas' pointwise bounds
+(`norm₂_le_of_mem_particularSolutionOuter`/`...Correlated`) reduce `err`'s asymptotics to a
+`Δt`-polynomial via `err_le_of_forall_norm₂_le`, and `Lemma 1`'s own rate bounds the `E(Δt,η)Δt`
+term; both the `Tendsto` and the `IsBigO` halves go through with `U0` an arbitrary bounded set
+containing `0` — the concrete zonotope structure `U0 = ⟨0,BG_u⟩_Z` plays no role, matching how
+little the printed proofs use. Checked against CDC'20's `ε_H`/`ε_P` in `StepConvergenceError.lean`
+again: still a `Zonotope.absBound` sum under the sup norm, a different formula for a
+differently-normed quantity, so nothing there was reused.
+
+**`Lemma 3` is open, for a genuinely different reason than `Lemma 2`/`Lemma 4` were.** Its printed
+proof is equally free of any `Prop.` citation, so the same correction applies to it, but its
+subject `Δε^h_k(Δt,η) = 2·err(C) + √γ_h‖G_h^{(-)}‖_2` (eq. 23) needs `C = F(Δt,η)H(t_k) ⊕
+G(Δt,η)ũ` (Line 8 of `Alg. 1`), built from the interval matrices `F`/`G` (eq. 15-16) and the
+scalar interval `I_i(Δt)` (eq. 17). `I_i(Δt)`'s interval is asymmetric (`[i^{-i/(i-1)} -
+i^{-1/(i-1)}, 0]·Δt^i`), so bounding `err(C)` needs an interval-matrix-action-on-a-set operator
+beyond `intervalMulVecSet`'s symmetric `|M i j| ≤ |E i j|` reading, plus `H(t_k)` as a second
+free set alongside `U0` and the generator count `γ_h` as a second dimension. None of this is
+built this session; the row stays `—` rather than guessing at a definition eq. (17) does not
+force.
+
+`Lemma 1` is different again: its subject `E(Δt,η)` (eq. 18) is `e^{|A|∆t} - Σ(|A|∆t)^i/i!`, a
 plain matrix built from `A`'s entrywise absolute value, with no norm dependency at all — a
 *different* quantity from `MatExp.expRemainderBound`, which bounds the same remainder with a
 single scalar under the `l∞` operator norm rather than entrywise, so `expRemainderMat` names it
@@ -87,3 +114,4 @@ fresh. Both halves of `Lemma 1` hold as printed: `tendsto_expRemainderMat_zero` 
 These name the paper as a whole. A locator would put each in a row above.
 
 * [`StepInner.lean`](../../src/CORALean/ContDynamics/LinearSys/StepInner.lean)
+* [`ParticularSolutionOuterCorrelated.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/ParticularSolutionOuterCorrelated.lean) — eq. (25)'s correlated summand, shared by `Lemma 2`'s proof but not itself the subject of any numbered result
