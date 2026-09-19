@@ -7,6 +7,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.AbsPairCoeffDiffLeOne
 import CORALean.ContSet.Zonotope.Real.Theorems.AbsPairCoeffSumLeOne
 import CORALean.ContSet.Zonotope.Real.Theorems.AbsWeightedLe
 import CORALean.ContSet.Zonotope.Real.Theorems.AdaptSetOrderBudget
+import CORALean.ContSet.Zonotope.Real.Theorems.AutoTuneSetOrderLe
 import CORALean.ContSet.Zonotope.Real.Theorems.BilinOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
 import CORALean.ContSet.Zonotope.Real.Theorems.ClosedBallEq
@@ -19,6 +20,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDist2IntervalLeCut
 import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDist2IntervalLeMax
 import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDist2LinCombLe
 import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDist2ReduceByLe
+import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDist2ReduceLe
 import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDistIntervalLe
 import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
 import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed
