@@ -5,10 +5,13 @@ import CORALean.ContDynamics.LinearSys.ClosedForm
 import CORALean.ContDynamics.LinearSys.IntegralBackReachSetExistsForall
 import CORALean.ContDynamics.LinearSys.IntegralBackReachSetForallExists
 import CORALean.ContDynamics.LinearSys.IntegralReachSet
+import CORALean.ContDynamics.LinearSys.IntegralTimeIntervalBackReachSetForallExists
+import CORALean.ContDynamics.LinearSys.IntegralTimeIntervalBackReachSetOfInput
 import CORALean.ContDynamics.LinearSys.IntegralTimeIntervalReachSet
 import CORALean.ContDynamics.LinearSys.IntegralTrajectory
 import CORALean.ContDynamics.LinearSys.LinearSys
 import CORALean.ContDynamics.LinearSys.MatExp.API
+import CORALean.ContDynamics.LinearSys.MinBackReachTimeInterval
 import CORALean.ContDynamics.LinearSys.Operations.API
 import CORALean.ContDynamics.LinearSys.PerturbedIntegralTrajectory
 import CORALean.ContDynamics.LinearSys.PerturbedTrajectory
@@ -43,4 +46,5 @@ a `timeInterval...` sibling for the interval reading of the same definition.
 `PerturbedIntegralTrajectory` reads those two runs as integral equations, the
 way `IntegralTrajectory` reads `Trajectory`, and `integralBackReach...` are the
 two sets over it — the reading in which Prop. 3 and Prop. 5 are equalities.
+`minBackReachTimeInterval` is their Alg. 1, held to Thm. 1 in `Theorems`.
 -/
