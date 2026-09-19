@@ -19,8 +19,11 @@ result. `Prop. 1`, `Def. 1` and `Lemma 1` landed first: a generic
 Hausdorff-distance bound, a predicate over any real vector space, and a fact
 about the matrix-exponential remainder already in the tree. `Assumption 1`,
 `Prop. 2`, `Prop. 3`, `Prop. 4` and `Thm. 2` — the convergence block sitting on
-top of them — landed next; the findings say what each needed and what still
-stands in the way of `Thm. 1` and `Alg. 1`-`Alg. 3`.
+top of them — landed next, then the three algorithms and `Thm. 1`. Every row in
+scope now points at a file, and six findings say where the printed result had to
+be departed from: two loop conditions with the wrong connective, a proposition
+that does not follow from the definition it cites, a missing termination bound,
+and `Thm. 1`'s termination half, which is not established here.
 
 ## Results
 
@@ -30,8 +33,8 @@ stands in the way of `Thm. 1` and `Alg. 1`-`Alg. 3`.
 | `Assumption 1` | (Convergence of ε_H and ε_P) Floating-point errors are neglected so that ε_H([t_i,t_{i+1}]) → 0 and ε_P([t_i,t_{i+1}]) → 0 as Δt_i → 0. | [`ErrorConvergesToZero.lean`](../../src/CORALean/Global/ErrorConvergesToZero.lean) |
 | `Def. 1` | (Superlinear decrease) A continuous function f's set-based evaluation f(S(t)) decreases superlinearly if for all φ∈(0,1), f(S([t,t+φΔt])) ⊆ φ·f(S([t,t+Δt])). | [`SuperlinearDecrease.lean`](../../src/CORALean/Global/SuperlinearDecrease.lean) |
 | `Prop. 2` | If ε_P(Δt)/Δt → 0 as Δt → 0 — what [1]'s "decreases superlinearly (Def. 1)" has to mean for its own claim to hold, see Findings — then for any ε_{P,max} > 0 and any horizon t_f > 0 there is a finite partition of [0,t_f] whose ε_P-errors sum below ε_{P,max}. | [`HorizonErrorBudget.lean`](../../src/CORALean/Global/HorizonErrorBudget.lean) |
-| `Thm. 1` | Alg. 1 (fully automated parameter tuning) terminates and keeps the overall error below a user-defined bound ε_max, assuming the set-representation-size reduction step in each iteration is optional. | — |
-| `Alg. 1` | "Fully automated parameter tuning": given ε_{H,max}, ε_{P,max}, ε_{S,max}, t_f, iteratively computes Δt_i, calls Alg. 2 and Alg. 3 to tune the time step and set representation size, and returns the reachable set R([0,t_f]). | — |
+| `Thm. 1` | Alg. 1 (fully automated parameter tuning) terminates and keeps the overall error below a user-defined bound ε_max, assuming the set-representation-size reduction step in each iteration is optional. | the *error* half, outright: [`TunedRunErrorBudget.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/TunedRunErrorBudget.lean) — a run that does not step past t_f keeps ε_P([0,t_i]) ≤ ε_{P,max}, ε_S([0,t_i]) ≤ ε_{S,max} and the last step's ε_H ≤ ε_{H,max}, so the budgeted total stays under ε_max = ε_{H,max}+ε_{P,max}+ε_{S,max}. The *termination* half is not established — see the Findings |
+| `Alg. 1` | "Fully automated parameter tuning": given ε_{H,max}, ε_{P,max}, ε_{S,max}, t_f, iteratively computes Δt_i, calls Alg. 2 and Alg. 3 to tune the time step and set representation size, and returns the reachable set R([0,t_f]). | [`TunedReach.lean`](../../src/CORALean/ContDynamics/LinearSys/TunedReach.lean) — lines 5-10 as `tunedStep`, the loop of lines 4-11 as `tunedRun`, line 12 as `tunedReach`; the error budget it keeps is `Thm. 1`'s row |
 | `Alg. 2` | "Adapt values for Δt, Φ_prop": picks the step size Δt_i and the propagation parameters Φ_prop,i — the truncation order η at [1]'s own implementation, not an error budget — for the current step, given the running error ε_P([0,t_i]). | [`AdaptTimeStep.lean`](../../src/CORALean/ContDynamics/LinearSys/AdaptTimeStep.lean), held to line 12's two bounds by [`AdaptTimeStepBudget.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/AdaptTimeStepBudget.lean) and shown to succeed at some fuel by [`ExistsAdaptTimeStepFuel.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/ExistsAdaptTimeStepFuel.lean); line 12's printed connective and the step sweep's missing iteration bound are in the Findings |
 | `Alg. 3` | "Adapt values for Φ_set": adapts the target zonotope order/set-representation-size parameter Φ_set by decreasing the number of generators of the particular-solution reachable set. | [`AdaptSetOrder.lean`](../../src/CORALean/ContSet/Zonotope/Real/AdaptSetOrder.lean), held to line 7's bound by [`AdaptSetOrderBudget.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/AdaptSetOrderBudget.lean); line 7's printed connective and which order it leaves the loop holding are in the Findings |
 | `Prop. 3` | The error ε_H([t_i,t_{i+1}]) — eq. (21), the *homogeneous*-solution enclosure's widening term, not a "linearization" error: CDC 2020 is about linear systems — converges to 0 as Δt_i → 0 at the base step (t_i=0), and therefore satisfies Assumption 1. | [`ErrorConvergesToZeroTimeIntervalStepCurvatureError.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/ErrorConvergesToZeroTimeIntervalStepCurvatureError.lean) |
@@ -146,6 +149,38 @@ of `MatExp.expRemainderOrder`, `MatExp.expRemainderStep` and
 `Zonotope.reduceBoxOrder` — the three knobs of this same paper already in the
 tree, all three `Nat.find` or `Classical.choose` under classical decidability,
 and none of them runnable.
+
+**`Thm. 1` is two claims, and only the error one closes.** [1]'s proof of
+`Thm. 1` runs termination first and the bound second, and the two do not lean
+on each other. *Termination.* Three loops. `Alg. 3`'s is bounded by the set's
+own generator count, as above. `Alg. 2`'s is not, and `Alg. 1` inherits that
+through the `Option`
+[`TunedReach.lean`](../../src/CORALean/ContDynamics/LinearSys/TunedReach.lean)
+returns. The main loop's own argument — "the time `t` monotonically increases
+(line 10), eventually reaching `t_f`" — does not follow: `Alg. 2` shrinks
+`Δt_i` by `μ` with no positive lower bound, and a monotonically increasing `t`
+whose increments shrink geometrically need not reach `t_f` at all; `Prop. 2`
+exhibits *a* partition of `[0,t_f]`, but nothing shows `Alg. 1`'s greedy
+choices are one, and `Prop. 2` as printed is itself the gap recorded above. So
+no termination is claimed here. *The bound.* It is about the budgeted error
+terms, not about a Hausdorff distance from `R_ex`: `Prop. 1` relates each
+`err(·)` to the distance one summand costs, and nothing in [1] composes the
+three into a distance from the exact reachable set — reading `Thm. 1` as the
+latter would be the false claim. What [1] then proves is weaker still: that
+each of `ε_{H,max}`, `ε_{P,max}`, `ε_{S,max}` is *satisfiable*, not that a run
+of `Alg. 1` stays inside them.
+[`TunedRunErrorBudget.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/TunedRunErrorBudget.lean)
+proves the accumulation does, by eq. (10)/(11)'s telescoping: a share of what
+is left of the budget, proportional to the step, keeps `ε_P([0,t_i])` under
+`ε_{P,max}·t_i/t_f`, and the same for `ε_S`. [1]'s hypothesis "assuming the
+reduction of the set representation in each step is optional" is what makes
+`ε_{S,max}` satisfiable at all — reduce nothing and `ε_S([t_i,t_{i+1}]) = 0`,
+the remark under eq. (13) — and it is discharged rather than assumed:
+`Alg. 3` starts at `param(PR)`, which drops no generator. One side condition
+is left standing, and it is [1]'s omission rather than the theorem's: nothing
+in `Alg. 1` clips `Δt_i` to `t_f - t_i`, and eq. (10)'s share is only a share
+while it is clipped, so the theorem asks that the run does not step past the
+horizon.
 
 ## Cited without a result
 
