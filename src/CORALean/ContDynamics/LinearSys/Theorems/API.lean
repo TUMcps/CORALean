@@ -2,6 +2,7 @@ import CORALean.ContDynamics.LinearSys.Theorems.AdaptTimeStepBudget
 import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
 import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInputReflected
 import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableReflectIoc
+import CORALean.ContDynamics.LinearSys.Theorems.AutoRunBudget
 import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormContinuousOn
 import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormFlow
 import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormZero
@@ -23,6 +24,7 @@ import CORALean.ContDynamics.LinearSys.Theorems.ErrorConvergesToZeroTimePointSte
 import CORALean.ContDynamics.LinearSys.Theorems.ExistsAdaptTimeStepFuel
 import CORALean.ContDynamics.LinearSys.Theorems.ExistsAutoStep
 import CORALean.ContDynamics.LinearSys.Theorems.ExistsAutoStepAutoInit
+import CORALean.ContDynamics.LinearSys.Theorems.ExistsAutoStepAutoRun
 import CORALean.ContDynamics.LinearSys.Theorems.ExistsAutoTuneDeltaT
 import CORALean.ContDynamics.LinearSys.Theorems.ExistsTimeIntervalStepErrorLt
 import CORALean.ContDynamics.LinearSys.Theorems.ExistsTimeIntervalStepInnerInner
@@ -35,8 +37,10 @@ import CORALean.ContDynamics.LinearSys.Theorems.FlowIci
 import CORALean.ContDynamics.LinearSys.Theorems.FlowIoi
 import CORALean.ContDynamics.LinearSys.Theorems.HasDerivWithinAtExpNegMulVec
 import CORALean.ContDynamics.LinearSys.Theorems.HausdorffDist2InputReachLe
+import CORALean.ContDynamics.LinearSys.Theorems.HausdorffDist2InputReachRunLe
 import CORALean.ContDynamics.LinearSys.Theorems.HausdorffDist2InputReachStepLe
 import CORALean.ContDynamics.LinearSys.Theorems.HausdorffDist2InputReachTauLe
+import CORALean.ContDynamics.LinearSys.Theorems.HausdorffDist2ManualRunReduceLe
 import CORALean.ContDynamics.LinearSys.Theorems.InputEqDerivWithin
 import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
 import CORALean.ContDynamics.LinearSys.Theorems.InputReachConvex
