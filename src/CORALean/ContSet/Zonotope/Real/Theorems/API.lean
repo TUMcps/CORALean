@@ -13,6 +13,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.ClosedBallEq
 import CORALean.ContSet.Zonotope.Real.Theorems.Coefficient
 import CORALean.ContSet.Zonotope.Real.Theorems.ContinuousAffine
 import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+import CORALean.ContSet.Zonotope.Real.Theorems.ExistsAutoTuneSetOrder
 import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDist2IntervalLe
 import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDist2IntervalLeCut
 import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDist2IntervalLeMax
@@ -61,6 +62,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.RecentreZeroMem
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBoxAbsBoundLe
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBoxAntitone
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBoxEqOfPoint
+import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBoxErrorEqZero
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBoxOrderLe
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBoxOrderSpec
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceByBasisOuter
