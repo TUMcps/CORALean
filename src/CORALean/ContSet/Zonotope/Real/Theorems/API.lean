@@ -16,6 +16,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.Convex
 import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDist2IntervalLe
 import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDist2IntervalLeCut
 import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDist2IntervalLeMax
+import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDist2LinCombLe
 import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDistIntervalLe
 import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
 import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed
@@ -101,15 +102,15 @@ scaling `MinkDiffAlignedNotInner` holds to `[0, 1]`. `MinkDiffOrEmptyInner` carr
 through `MinkDiff`'s wrapper, `MinkDiffOrEmptyNeEmpty` says it is never empty, and
 `MinkDiffGenRecExact` alone is exact at every input. `MtimesIntervalMatSubsetClosedBall` bounds a
 product above, `MtimesIntervalMatSymmBox` it at a symmetric matrix: `S · box(Z)`.
-
 `ReduceBySubsetAddBox` is `ReduceByOuter` backwards — the reduced set sits inside the original plus
 its box — carried to `reduce` itself by `ReduceSubsetAddBox`; `MinkowskiDiffReduceByBoxInner`
-cancels the box off again and `CentreMemConstruct` says a zonotope is nonempty, which every
-cancellation needs. `HausdorffDistIntervalLe` prices that box at the sup norm, and
-`HausdorffDist2IntervalLe`, `HausdorffDist2IntervalLeMax` and `HausdorffDist2IntervalLeCut` the
-three at `‖·‖₂`. `SubsetClosedBallOfAbsBoundLe` and its converse relate `absBound` to a
-sup-norm ball; `MtimesSubsetClosedBall`, `PlusSubsetClosedBall` and `ReduceBoxAbsBoundLe` carry one
-through `mtimes`, `plus` and `reduceBox`, and `StepSubsetClosedBall` composes them at `reach`'s
-shape, its box term discharged crudely or, via `reduceBoxOrder`, sharply. `SumSmulUpdate` is the
-one sum a split changes a term of, which `SplitUnion` and `SplitIntersection` read both halves off.
+cancels the box off again and `CentreMemConstruct` gives the nonemptiness cancellation needs.
+`HausdorffDistIntervalLe` prices that box at the sup norm, `HausdorffDist2IntervalLe`,
+`HausdorffDist2IntervalLeMax` and `HausdorffDist2IntervalLeCut` the three at `‖·‖₂`, and
+`HausdorffDist2LinCombLe` `linComb`'s own. `SubsetClosedBallOfAbsBoundLe` and its converse relate
+`absBound` to a sup-norm ball; `MtimesSubsetClosedBall`, `PlusSubsetClosedBall` and
+`ReduceBoxAbsBoundLe` carry one through `mtimes`, `plus` and `reduceBox`, and
+`StepSubsetClosedBall` composes them at `reach`'s shape, its box term discharged crudely or, via
+`reduceBoxOrder`, sharply. `SumSmulUpdate` is the one sum a split changes, read by `SplitUnion`
+and `SplitIntersection`.
 -/

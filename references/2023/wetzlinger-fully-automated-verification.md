@@ -42,7 +42,7 @@ it specializes) now excepted.
 | `Prop. 7` | (Containment check) CZ ⊆ P (constrained zonotope in halfspace polytope) iff max(ν_1,...,ν_a) ≤ 0, where each ν_i is the optimum of a linear program (eq. 45). | [`IneqsContainsIff.lean`](../../src/CORALean/ContSet/ConZonotope/Real/Theorems/IneqsContainsIff.lean) — the `iff`, each ν_i taken as a hypothesis (`IsGreatest`) as the paper's own `max` does; [`ExistsIsGreatestIneqs.lean`](../../src/CORALean/ContSet/ConZonotope/Real/Theorems/ExistsIsGreatestIneqs.lean) discharges that hypothesis for a nonempty CZ, so the `max` is earned rather than assumed |
 | `Prop. 8` | (Intersection check) Polytope P and constrained zonotope CZ intersect if ν ≤ 0 for the linear program ν = min over x,α,δ of δ subject to C_(i,·)x−d_(i) ≤ δ, x = c+Gα, Aα = b, α∈[−1,1]. | [`InterIneqsNonemptyIff.lean`](../../src/CORALean/ContSet/ConZonotope/Real/Theorems/InterIneqsNonemptyIff.lean) — proved as an equivalence, which is more than the printed one-way `if`; ν taken as a hypothesis (`IsLeast`) as the paper's own `min` does |
 | `Alg. 3` | "Automated verification": combines Alg. 2's outer-approximation with an inner-approximation (via Prop. 6-8) to automatically prove or falsify a specification given by safe sets G_1..G_r and unsafe sets F_1..F_w. | — |
-| `Prop. 9` | (Appendix A) Given the homogeneous solution H(t_k)=⟨c_h,G_h⟩_Z and particular solution P^u(t_k)=c_p, bounds the Hausdorff distance between the exact linear combination S = comb(H(t_k),H(t_{k+1})) and its zonotope outer-approximation. | — |
+| `Prop. 9` | (Appendix A) Given the homogeneous solution H(t_k)=⟨c_h,G_h⟩_Z and particular solution P^u(t_k)=c_p, bounds the Hausdorff distance between the exact linear combination S = comb(H(t_k),H(t_{k+1})) and its zonotope outer-approximation. | [`HausdorffDist2LinCombLe.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/HausdorffDist2LinCombLe.lean) |
 | `Prop. 10` | (Appendix A) For a compact set S⊂R^n and matrices M1,M2: d_H((M1+M2)S, M1 S) ≤ d_H(0, M2 S) — a general perturbation bound for linear maps of sets under the Hausdorff distance. | [`HausdorffDistMulVecLinAddLe.lean`](../../src/CORALean/ContSet/ContSet/Theorems/HausdorffDistMulVecLinAddLe.lean) |
 | `Prop. 11` | (Appendix A) Bounds the Hausdorff distance between the propagated exact particular solution e^{At_k}P^U(t_k) and its outer-approximation. | — |
 | `Lemma 1` | (Appendix B) The remainder of the exponential matrix E(Δt_k,η_k) (eq. 18) satisfies lim_{Δt_k→0} E = 0 and E ~ O(Δt_k^{η_k+1}). | [`ExpRemainderMat.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/ExpRemainderMat.lean), [`TendstoExpRemainderMatZero.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/TendstoExpRemainderMatZero.lean), [`ExpRemainderMatIsBigO.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/ExpRemainderMatIsBigO.lean) |
@@ -92,12 +92,44 @@ radius already in
 `err` carries monotonicity (`err_mono`), subadditivity under a Minkowski sum (`err_add_le`),
 boundedness under a linear image (`err_mulVec_le`), and two bridges to `boxDiameter`'s own,
 more-developed `add_le`/`mulVec_image_le` bounds. `Prop. 1`-`Prop. 3` stay open regardless: each
-is additionally downstream of Appendix A's `Prop. 9`/`Prop. 11` (neither formalized) or, for
-`Prop. 3`, of `Prop. 2`'s own error term — a *soundness* bound relating the error to the exact
-reachable set, which `err`'s existence does not supply. `Prop. 4` (zonotope order reduction
-error) is `err(·)`-valued too and so is now reachable in principle, but needs `Zonotope.reduce`
-and its generator-selection set (`Def. 4`, itself `n/a` on this page) plus its own soundness
-argument — a separate, larger task not taken up here.
+is additionally downstream of Appendix A's `Prop. 9`/`Prop. 11` (`Prop. 9` now formalized,
+`Prop. 11` still open — see below) or, for `Prop. 3`, of `Prop. 2`'s own error term — a
+*soundness* bound relating the error to the exact reachable set, which `err`'s existence does
+not supply. `Prop. 4` (zonotope order reduction error) is `err(·)`-valued too and so is now
+reachable in principle, but needs `Zonotope.reduce` and its generator-selection set (`Def. 4`,
+itself `n/a` on this page) plus its own soundness argument — a separate, larger task not taken
+up here.
+
+**`Prop. 9` is proved at `‖·‖₂`, and `linComb` does compute exactly the set `S` the paper's proof
+needs — no convex-hull/`linComb` gap here.** `S := comb(H(t_k),H(t_{k+1}))` is
+[1]'s own `Def. 7` (this repository's `segments`, the union of every segment between a point of
+one set and a point of the other), and since every zonotope is convex, `segments` here already
+*is* the convex hull `Zonotope.linComb_outer` needs only the inclusion direction of: the finding
+that `linComb` is not CORA's convex hull (recorded on the NAHS'22 page) matters when one of the
+two operands is *not* convex — H(t_k) and its propagated image H(t_{k+1}) both are, so the gap
+does not bite for this row. `[1]`'s own bound uses `‖G_h^{(-)}‖₂` as a *matrix* (induced operator)
+norm, not a vector one — a different `‖·‖₂` from every other row on this page, and the one place
+so far this repository has needed it; `Global/EuclideanGenOpNorm.lean`'s `genOpNorm₂` reads it
+off `Mathlib.Analysis.CStarAlgebra.Matrix`'s `Matrix.Norms.L2Operator` instance rather than
+building operator-norm machinery from scratch. The witness for the Hausdorff bound's hard
+direction is elementary (`‖v‖₂ ≤ ‖βDiff‖₂ + |βExtra|·‖βSum‖₂ ≤ 2√γ_h` by the triangle inequality)
+rather than [1]'s own Bauer-maximum-principle argument, reaching the same tight constant.
+
+**`Prop. 11` stays open: the missing piece is an entrywise bound this session did not build, not a
+norm mismatch.** [1]'s proof needs `qP^U(Δt_k) := ∫₀^{Δt_k} e^{A(Δt_k-θ)}dθ · U_0 ⊆ P^U(Δt_k)`
+(the exact set for *constant* inputs, a subcase of the exact one) — available for free from
+`Real.MatExp.expIntegral_constInput`, and `MatExp.expIntegral A t := ∑' i, Ãᵢ` is *already* the
+tsum `Δt•I_n + Σ_{i=1}^∞ Ãᵢ` eq. (20)'s proof splits off, so neither of those needs new work. What
+does: bounding the *infinite* tail `Σ_{i=η+1}^∞ Ãᵢ` entrywise by the *finite* `E(Δt,η)·Δt`
+(`MatExp.expRemainderMat`) that `particularSolutionOuter`/`particularSolutionError` (this
+session's `Lemma 2` work) are already built from — a genuine new lemma (`expRemainderMat`'s own
+tail is a *different* series, `(|A|Δt)ⁱ/i!` from `i=η+1`, not `Aⁱ Δtⁱ⁺¹/(i+1)!`; bridging them
+needs `|Aⁱ_{jk}| ≤ (|A|ⁱ)_{jk}` and `(i+1)!⁻¹ ≤ Δt·i!⁻¹` for `Δt ≤ 1`, then a `tsum` comparison),
+not present anywhere in this tree. `Prop. 10`'s own proof is additionally at `Vec ℝ n`'s sup norm
+by design (its own docstring), not `‖·‖₂`, so [1]'s `Prop. 11` — a `hausdorffDist₂` claim — needs
+either a Euclidean twin of that argument or the sup-norm one carried through `toEuclidean`; neither
+is built either. Landing all of this was judged too large for this session alongside `Prop. 9`;
+the row stays `—` rather than a partial or weakened claim.
 
 **`Lemma 2` and `Lemma 4` do NOT depend on `Prop. 1`-`Prop. 3`, and are now proved, both
 halves.** The claim in this file's own prior revision — that `Lemma 2`-`Lemma 4` are
