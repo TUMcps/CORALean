@@ -13,8 +13,12 @@ and `reachInnerReduced`, at both layers and both time domains.
 
 Every error bound the paper proves is a Hausdorff distance. `Def. 5` is
 Mathlib's `Metric.hausdorffDist`, which `Global/Mathlib.lean` admits and two
-files use; the propositions bounding it are each about a reachability-specific
-error term and stay open.
+files use, read at `‖·‖₂` (`Global/EuclideanHausdorffDist.lean`'s
+`hausdorffDist₂`) since that is the norm `Def. 5` names; most of the
+propositions bounding it are each about a reachability-specific error term and
+stay open, `Prop. 5` (and the shared, paper-independent
+[`hausdorffDist_image_le`](../../src/CORALean/ContSet/ContSet/Theorems/HausdorffDistImageLe.lean)
+it specializes) now excepted.
 
 ## Results
 
@@ -33,8 +37,8 @@ error term and stay open.
 | `Prop. 4` | (Zonotope order reduction error) Bounds the Hausdorff distance introduced by iteratively reducing the particular solution's zonotope order, giving the recursion ε^r_{k+1} = ε^r_k + ε^r_k(ρ_k). | — |
 | `Alg. 2` | "Reachability algorithm (automated tuning)": reachability algorithm that internally tunes the time step Δt_k and truncation order η_k given only an overall error bound ε_max. | — |
 | `Thm. 1` | (Convergence) Alg. 2 terminates in finite time for arbitrary error bounds ε_max > 0 (proof uses Lemmas 1-4 from Appendix B: quadratic decrease of the accumulating error, at-least-linear decrease of the non-accumulating error). | — |
-| `Prop. 5` | Given the error ε^x_k (eq. 31) of the reachable set R̂(τ_k), the corresponding output set Ŷ(τ_k) has error d_H(Y(τ_k),Ŷ(τ_k)) ≤ ε^y_k := ε^x_k·‖C‖. | — |
-| `Prop. 6` | (Minkowski difference) Gives a constrained-zonotope formula for the Minkowski difference Z ⊖ P of a zonotope Z=⟨c,G⟩_Z and a vertex-represented polytope P=⟨v_1...v_s⟩_V. | — |
+| `Prop. 5` | Given the error ε^x_k (eq. 31) of the reachable set R̂(τ_k), the corresponding output set Ŷ(τ_k) has error d_H(Y(τ_k),Ŷ(τ_k)) ≤ ε^y_k := ε^x_k·‖C‖. | [`HausdorffDist2EvalLe.lean`](../../src/CORALean/ContDynamics/OutputEq/Theorems/HausdorffDist2EvalLe.lean) |
+| `Prop. 6` | (Minkowski difference) Gives a constrained-zonotope formula for the Minkowski difference Z ⊖ P of a zonotope Z=⟨c,G⟩_Z and a vertex-represented polytope P=⟨v_1...v_s⟩_V. | [`MinkDiffVExact.lean`](../../src/CORALean/ContSet/ConZonotope/Real/Theorems/MinkDiffVExact.lean) |
 | `Prop. 7` | (Containment check) CZ ⊆ P (constrained zonotope in halfspace polytope) iff max(ν_1,...,ν_a) ≤ 0, where each ν_i is the optimum of a linear program (eq. 45). | — |
 | `Prop. 8` | (Intersection check) Polytope P and constrained zonotope CZ intersect if ν=0 for a linear program ν = min over x,α,δ of δ subject to containment/constraint conditions. | — |
 | `Alg. 3` | "Automated verification": combines Alg. 2's outer-approximation with an inner-approximation (via Prop. 6-8) to automatically prove or falsify a specification given by safe sets G_1..G_r and unsafe sets F_1..F_w. | — |

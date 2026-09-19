@@ -74,6 +74,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.ReducePCAOrderLe
 import CORALean.ContSet.Zonotope.Real.Theorems.ReducePCAOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceSubsetAddBox
+import CORALean.ContSet.Zonotope.Real.Theorems.ShiftMemIff
 import CORALean.ContSet.Zonotope.Real.Theorems.SplitIntersection
 import CORALean.ContSet.Zonotope.Real.Theorems.SplitUnion
 import CORALean.ContSet.Zonotope.Real.Theorems.StepSubsetClosedBall
