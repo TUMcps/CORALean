@@ -34,12 +34,12 @@ and `Thm. 1`'s termination half, which is not established here.
 | `Def. 1` | (Superlinear decrease) A continuous function f's set-based evaluation f(S(t)) decreases superlinearly if for all φ∈(0,1), f(S([t,t+φΔt])) ⊆ φ·f(S([t,t+Δt])). | [`SuperlinearDecrease.lean`](../../src/CORALean/Global/SuperlinearDecrease.lean) |
 | `Prop. 2` | If ε_P(Δt)/Δt → 0 as Δt → 0 — what [1]'s "decreases superlinearly (Def. 1)" has to mean for its own claim to hold, see Findings — then for any ε_{P,max} > 0 and any horizon t_f > 0 there is a finite partition of [0,t_f] whose ε_P-errors sum below ε_{P,max}. | [`HorizonErrorBudget.lean`](../../src/CORALean/Global/HorizonErrorBudget.lean) |
 | `Thm. 1` | Alg. 1 (fully automated parameter tuning) terminates and keeps the overall error below a user-defined bound ε_max, assuming the set-representation-size reduction step in each iteration is optional. | the *error* half, outright: [`TunedRunErrorBudget.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/TunedRunErrorBudget.lean) — a run that does not step past t_f keeps ε_P([0,t_i]) ≤ ε_{P,max}, ε_S([0,t_i]) ≤ ε_{S,max} and the last step's ε_H ≤ ε_{H,max}, so the budgeted total stays under ε_max = ε_{H,max}+ε_{P,max}+ε_{S,max}. The *termination* half is not established — see the Findings |
-| `Alg. 1` | "Fully automated parameter tuning": given ε_{H,max}, ε_{P,max}, ε_{S,max}, t_f, iteratively computes Δt_i, calls Alg. 2 and Alg. 3 to tune the time step and set representation size, and returns the reachable set R([0,t_f]). | [`TunedReach.lean`](../../src/CORALean/ContDynamics/LinearSys/TunedReach.lean) — lines 5-10 as `tunedStep`, the loop of lines 4-11 as `tunedRun`, line 12 as `tunedReach`; the error budget it keeps is `Thm. 1`'s row |
+| `Alg. 1` | "Fully automated parameter tuning": given ε_{H,max}, ε_{P,max}, ε_{S,max}, t_f, iteratively computes Δt_i, calls Alg. 2 and Alg. 3 to tune the time step and set representation size, and returns the reachable set R([0,t_f]). | [`TunedReach.lean`](../../src/CORALean/ContDynamics/LinearSys/TunedReach.lean) — lines 5-10 as `tunedStep`, the loop of lines 4-11 as `tunedRun`, line 12 as `tunedReach`; line 6's `HR` is `timeIntervalStep`, without eq. (19)'s `Fu(Δt,η)c_u` term; the error budget it keeps is `Thm. 1`'s row |
 | `Alg. 2` | "Adapt values for Δt, Φ_prop": picks the step size Δt_i and the propagation parameters Φ_prop,i — the truncation order η at [1]'s own implementation, not an error budget — for the current step, given the running error ε_P([0,t_i]). | [`AdaptTimeStep.lean`](../../src/CORALean/ContDynamics/LinearSys/AdaptTimeStep.lean), held to line 12's two bounds by [`AdaptTimeStepBudget.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/AdaptTimeStepBudget.lean) and shown to succeed at some fuel by [`ExistsAdaptTimeStepFuel.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/ExistsAdaptTimeStepFuel.lean); line 12's printed connective and the step sweep's missing iteration bound are in the Findings |
 | `Alg. 3` | "Adapt values for Φ_set": adapts the target zonotope order/set-representation-size parameter Φ_set by decreasing the number of generators of the particular-solution reachable set. | [`AdaptSetOrder.lean`](../../src/CORALean/ContSet/Zonotope/Real/AdaptSetOrder.lean), held to line 7's bound by [`AdaptSetOrderBudget.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/AdaptSetOrderBudget.lean); line 7's printed connective and which order it leaves the loop holding are in the Findings |
-| `Prop. 3` | The error ε_H([t_i,t_{i+1}]) — eq. (21), the *homogeneous*-solution enclosure's widening term, not a "linearization" error: CDC 2020 is about linear systems — converges to 0 as Δt_i → 0 at the base step (t_i=0), and therefore satisfies Assumption 1. | [`ErrorConvergesToZeroTimeIntervalStepCurvatureError.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/ErrorConvergesToZeroTimeIntervalStepCurvatureError.lean) |
+| `Prop. 3` | The error ε_H([t_i,t_{i+1}]) — eq. (21), the *homogeneous*-solution enclosure's widening term, not a "linearization" error: CDC 2020 is about linear systems — converges to 0 as Δt_i → 0 at the base step (t_i=0), and therefore satisfies Assumption 1. | [`ErrorConvergesToZeroTimeIntervalStepCurvatureError.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/ErrorConvergesToZeroTimeIntervalStepCurvatureError.lean) — of `timeIntervalStepCurvatureError`, a scalar upper bound of eq. (19)'s `Fx(Δt,η)X₀` half; see the Findings |
 | `Prop. 4` | The error ε_P([t_i,t_{i+1}]) (particular-solution enclosure's widening term, eq. (22)) converges to 0 as Δt_i → 0 at the base step (t_i=0), and therefore satisfies Assumption 1. | [`ErrorConvergesToZeroTimePointStepRemainderError.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/ErrorConvergesToZeroTimePointStepRemainderError.lean) |
-| `Lemma 1` | The size of the matrix-exponential remainder E(Δt,η) decreases superlinearly with respect to Δt: for all φ∈(0,1), E(φΔt,η) ⊆ φ·E(Δt,η), given the usual side condition ‖Δt·A‖/(η+2) < 1 that `Enclosures.lean` already asks of `expRemainderBound`. | [`SuperlinearDecreaseExpRemainder.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/SuperlinearDecreaseExpRemainder.lean) |
+| `Lemma 1` | The size of the matrix-exponential remainder E(Δt,η) decreases superlinearly with respect to Δt: for all φ∈(0,1), E(φΔt,η) ⊆ φ·E(Δt,η), given the usual side condition ‖Δt·A‖/(η+2) < 1 that `Enclosures.lean` already asks of `expRemainderBound`. | [`SuperlinearDecreaseExpRemainder.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/SuperlinearDecreaseExpRemainder.lean) — of `expRemainder`, the uniform box CORA's bound gives, not of (15)-(16)'s entrywise series, which needs no side condition; the condition is that bound's |
 | `Thm. 2` | The error ε_P([t_i,t_{i+1}]) (eq. (22), at the base step t_i=0) decreases superlinearly according to Def. 1: for all φ∈(0,1), ε_P([0,φΔt]) ≤ φ·ε_P([0,Δt]), given Δt > 0 and the same side condition ‖Δt·A‖/(η+2) < 1. | [`SuperlinearDecreaseTimePointStepRemainderError.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/SuperlinearDecreaseTimePointStepRemainderError.lean) |
 | `Def. 2` | (Zonotopes) [cites [27, Def. 1]] Z = {x∈R^n \| x = c + Σ_{i=1}^γ β_i g^(i), -1≤β_i≤1} with center c and generators g^(1),...,g^(γ); the order is ρ = γ/n. | n/a — restated from Girard 2005, which this formalization does not draw on directly |
 
@@ -53,11 +53,11 @@ itself carries Mathlib's *supremum* norm, not that one.
 16-September-2026, is `Metric.hausdorffDist` taken through `toEuclidean`, so it
 reads `‖·‖₂` without a metric instance on `Vec ℝ n` itself, and
 [`HausdorffDist2AddLeBoxRadius.lean`](../../src/CORALean/ContSet/Interval/Real/Theorems/HausdorffDist2AddLeBoxRadius.lean)
-states and proves `Prop. 1` through it. The same route removes the norm
-blocker from `Assumption 1`, `Prop. 2`, `Prop. 3`,
-`Prop. 4` and `Thm. 2` too, all five stated in terms of `err(·)` values —
-nothing further about those five is claimed here, and the same gap still holds
-open at NAHS'22 `Thm. 1` and TAC'23 `Prop. 1`-`Prop. 4`. Two theorems in the
+states and proves `Prop. 1` through it. The same route would remove the norm
+blocker from `Assumption 1`, `Prop. 2`, `Prop. 3`, `Prop. 4` and `Thm. 2` too,
+all five stated in terms of `err(·)` values; none of those five is stated at
+`hausdorffDist₂` here, and nothing further about them is claimed. NAHS'22
+`Thm. 1` and TAC'23 `Prop. 1`-`Prop. 4` have since taken that route. Two theorems in the
 tree share `Prop. 1`'s shape, an image inside a base widened by a ball, and are
 still not it: the balls are sup-norm, and the radius is `(∑ⱼ absBound j)`
 scaled by a series remainder rather than the Euclidean radius of a box.
@@ -71,20 +71,25 @@ about *linear* systems, there is no linearization anywhere in it. Reading eq.
 Fu(Δt,η)c_u`, with the first (labelled `HR=`) the exact convex-hull term and
 the rest (labelled `HR+`) the widening the curvature costs; ε_H := err(HR+) is
 the size of *that widening alone*, not a distance from the hull to any true
-trajectory. Symmetrically ε_P := err(PR+) with `PR+ = E(Δt,η)·Δt·U`. `HR+`
-is exactly `MatExp.correctionMatrix`'s image under `X₀` — `curv` in
-`LinearSys.timeIntervalStep` — and `PR+` is `MatExp.inputRemainder`'s image
-under `U`. Both are proper *subterms* of this tree's existing
+trajectory. Symmetrically ε_P := err(PR+) with `PR+ = E(Δt,η)·Δt·U`. `HR+`'s
+`Fx(Δt,η)X₀` half is `MatExp.correctionMatrix`'s image under `X₀` — `curv` in
+`LinearSys.timeIntervalStep`, which carries no `Fu(Δt,η)c_u` term at all — and
+`PR+` is `MatExp.inputRemainder`'s image under `U`. Both are proper *subterms* of this tree's existing
 `timeIntervalStepError`/`timePointStepError`, which bound a strictly larger
 quantity: `timeIntervalStepError` also carries a *hull* term (`‖e^{rA}-I‖`,
 first order in the step, independent of η) that measures the hull's own
 distance from the states the flow visits, which eq. (21) does not fold into
 ε_H at all; `timePointStepError` similarly carries a "dependency" term ε_P
 does not have. `timeIntervalStepCurvatureError`/`timePointStepRemainderError`
-(`StepConvergenceError.lean`) name exactly the non-hull halves, so `Prop. 3`
-and `Prop. 4`/`Thm. 2` are proved of the paper's own quantities, not of the
-combined figure the existing `Exists…StepError_lt` theorems bound — citing
-those instead would have put a false equivalence on this page. Both are
+(`StepConvergenceError.lean`) are the non-hull halves rather than the combined
+figure the existing `Exists…StepError_lt` theorems bound — citing those instead
+would have put a false equivalence on this page. Two gaps remain between them
+and eq. (21)-(22) themselves, and the rows carry them: each is a scalar *upper
+bound* built from `Σⱼ absBound j` and a norm of `A`, not `err(·) = r(box(·))`
+itself, and `timeIntervalStepCurvatureError` bounds only the `Fx(Δt,η)X₀` half
+of `HR+`. `Prop. 4` and `Thm. 2` carry over to eq. (22)'s ε_P regardless, both
+properties being scale-invariant; `Prop. 3` is convergence of that upper bound
+of the `Fx` half. Both are
 stated at the base step `[0,r]` only, the scope `timeIntervalStep`/
 `timePointStep` themselves already have; extending to the `i`-th interval
 needs the `e^{At_i}` pre-multiplication eq. (21)-(22) carry, which is
@@ -116,7 +121,8 @@ writes. `Alg. 3` line 7 is `while ε_S < ε_S,max,i ∨ decr(Φ_set) = Φ_set`, 
 second disjunct says a further decrement is *impossible*: as printed the loop
 never leaves once the order bottoms out. `Thm. 1` again says the loop exits when
 either the bound is exceeded or the parameters "have been reduced as much as
-possible", so that `∨` is an `∧`. Beyond the connective, lines 4-6 decrement,
+possible", so that `∨` is an `∧` and its second conjunct `decr(Φ_set) ≠ Φ_set`:
+flipping the connective alone still never leaves once the order bottoms out. Beyond the connective, lines 4-6 decrement,
 reduce and *then* measure, and line 7 exits on the measurement failing — so the
 `PR([0,t_{i+1}])` line 8 hands back is the one reduced past the budget, and the
 ε_S it accumulates exceeds the share eq. (13) allows.
