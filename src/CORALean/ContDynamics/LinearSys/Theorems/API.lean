@@ -31,6 +31,8 @@ import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMulVec
 import CORALean.ContDynamics.LinearSys.Theorems.FlowIci
 import CORALean.ContDynamics.LinearSys.Theorems.FlowIoi
 import CORALean.ContDynamics.LinearSys.Theorems.HasDerivWithinAtExpNegMulVec
+import CORALean.ContDynamics.LinearSys.Theorems.HausdorffDist2InputReachLe
+import CORALean.ContDynamics.LinearSys.Theorems.HausdorffDist2InputReachStepLe
 import CORALean.ContDynamics.LinearSys.Theorems.InputEqDerivWithin
 import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
 import CORALean.ContDynamics.LinearSys.Theorems.InputReachConvex

@@ -32,7 +32,7 @@ it specializes) now excepted.
 | `Def. 6` | (Reachable set) R(t) := {ξ(t;x(0),u(·)) \| x(0)∈X0, ∀θ∈[0,t]: u(θ)∈U}; also defines time-point R(t_k) and time-interval R(τ_k) reachable sets. | n/a — restated; tracked as `Def. 3.1` on [Althoff's thesis](../2010/althoff-thesis.md) |
 | `Alg. 1` | "Reachability algorithm (manual tuning)": baseline reachability algorithm for linear systems with a fixed, user-supplied time step Δt, truncation order η, and zonotope order ρ, returning the outer-approximation R̂([0,t_end]). | — |
 | `Prop. 1` | (Affine dynamics error) Bounds the Hausdorff distance between the exact time-interval solution of the affine dynamics H(τ_k) and its outer-approximation. | — |
-| `Prop. 2` | (Time-point error in particular solution) Bounds the Hausdorff distance between the exact particular solution P^U(t_{k+1}) and its recursively computed outer-approximation P̂^U(t_{k+1}). | — |
+| `Prop. 2` | (Time-point error in particular solution) Bounds the Hausdorff distance between the exact particular solution P^U(t_{k+1}) and its recursively computed outer-approximation P̂^U(t_{k+1}). | [`HausdorffDist2InputReachStepLe.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/HausdorffDist2InputReachStepLe.lean) — eq. (24)'s displayed step only: `d_H(P^U(t_k+Δt_k), P̂^U(t_k) ⊕ e^{At_k}P̂^U(Δt_k)) ≤ ε^U_k + Δε^U_k(Δt_k,η_k)`, with `ε^U_k` the error already standing at `t_k` taken as a hypothesis the way eq. (24) presupposes it, the four sets compact as `Def. 5` requires of everything it measures, and eq. (20)'s soundness carried over from `Prop. 11`. Eq. (21)'s accumulation over the horizon is not proved |
 | `Prop. 3` | (Time-interval error in particular solution) Bounds the maximum Hausdorff distance over t∈τ_k between the exact time-interval particular solution P^U(t) and its outer-approximation. | — |
 | `Prop. 4` | (Zonotope order reduction error) Bounds the Hausdorff distance introduced by iteratively reducing the particular solution's zonotope order, giving the recursion ε^r_{k+1} = ε^r_k + ε^r_k(ρ_k). | [`HausdorffDist2ReduceByLe.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/HausdorffDist2ReduceByLe.lean) — the displayed per-step bound eq. (29) only, `d_H(Z, reduce(Z,ρ)) ≤ err(⟨0,G_red⟩_Z)` with [`⟨0,G_red⟩_Z`](../../src/CORALean/ContSet/Zonotope/Real/Operations/ReduceByDropped.lean) the dropped generators; proved at *every* partition, so it does not need `Def. 4`'s ranking. Eq. (28)'s accumulation ε^r_{k+1} = ε^r_k + Δε^r_k is not proved |
 | `Alg. 2` | "Reachability algorithm (automated tuning)": reachability algorithm that internally tunes the time step Δt_k and truncation order η_k given only an overall error bound ε_max. | — |
@@ -44,7 +44,7 @@ it specializes) now excepted.
 | `Alg. 3` | "Automated verification": combines Alg. 2's outer-approximation with an inner-approximation (via Prop. 6-8) to automatically prove or falsify a specification given by safe sets G_1..G_r and unsafe sets F_1..F_w. | — |
 | `Prop. 9` | (Appendix A) Given the homogeneous solution H(t_k)=⟨c_h,G_h⟩_Z and particular solution P^u(t_k)=c_p, bounds the Hausdorff distance between the exact linear combination S = comb(H(t_k),H(t_{k+1})) and its zonotope outer-approximation. | [`HausdorffDist2LinCombLe.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/HausdorffDist2LinCombLe.lean) |
 | `Prop. 10` | (Appendix A) For a compact set S⊂R^n and matrices M1,M2: d_H((M1+M2)S, M1 S) ≤ d_H(0, M2 S) — a general perturbation bound for linear maps of sets under the Hausdorff distance. | [`HausdorffDistMulVecLinAddLe.lean`](../../src/CORALean/ContSet/ContSet/Theorems/HausdorffDistMulVecLinAddLe.lean) |
-| `Prop. 11` | (Appendix A) Bounds the Hausdorff distance between the propagated exact particular solution e^{At_k}P^U(t_k) and its outer-approximation. | — |
+| `Prop. 11` | (Appendix A) Bounds the Hausdorff distance between the propagated exact particular solution e^{At_k}P^U(Δt_k) and its outer-approximation e^{At_k}P̂^U(Δt_k). | [`HausdorffDist2ParticularSolutionLe.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/HausdorffDist2ParticularSolutionLe.lean) — eq. (25) bounds `hausdorffDist₂` for every `P` between [1]'s own constant-input inner-approximation `qP^U(Δt_k)` and eq. (20)'s outer one; [`HausdorffDist2InputReachLe.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/HausdorffDist2InputReachLe.lean) is the same at `P = P^U(Δt_k)` itself (`LinearSys.inputReach`), discharging the inner inclusion rather than assuming it. Eq. (20)'s soundness `P^U(Δt_k) ⊆ P̂^U(Δt_k)`, which [1]'s own proof also uses without restating, stays a hypothesis — see the finding below |
 | `Lemma 1` | (Appendix B) The remainder of the exponential matrix E(Δt_k,η_k) (eq. 18) satisfies lim_{Δt_k→0} E = 0 and E ~ O(Δt_k^{η_k+1}). | [`ExpRemainderMat.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/ExpRemainderMat.lean), [`TendstoExpRemainderMatZero.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/TendstoExpRemainderMatZero.lean), [`ExpRemainderMatIsBigO.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/ExpRemainderMatIsBigO.lean) |
 | `Lemma 2` | (Appendix B) The error ε^U_k(Δt_k,η_k) (eq. 25) satisfies lim_{Δt_k→0} ε^U_k = 0 and ε^U_k ~ O(Δt_k²). | [`ParticularSolutionError.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/ParticularSolutionError.lean), [`TendstoParticularSolutionErrorZero.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/TendstoParticularSolutionErrorZero.lean), [`ParticularSolutionErrorIsBigO.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/ParticularSolutionErrorIsBigO.lean) |
 | `Lemma 3` | (Appendix B) The error ε^h_k(Δt_k,η_k) (eq. 23) satisfies lim_{Δt_k→0} ε^h_k = 0 and ε^h_k ~ O(Δt_k). | [`AffineDynamicsError.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/AffineDynamicsError.lean), [`TendstoAffineDynamicsErrorZero.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/TendstoAffineDynamicsErrorZero.lean), [`AffineDynamicsErrorIsBigO.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/AffineDynamicsErrorIsBigO.lean) — both halves, for every `A`, `H(t_k)`, `ũ` and `η` |
@@ -91,9 +91,10 @@ radius already in
 [`HausdorffDist2AddLeBoxRadius.lean`](../../src/CORALean/ContSet/Interval/Real/Theorems/HausdorffDist2AddLeBoxRadius.lean).
 `err` carries monotonicity (`err_mono`), subadditivity under a Minkowski sum (`err_add_le`),
 boundedness under a linear image (`err_mulVec_le`), and two bridges to `boxDiameter`'s own,
-more-developed `add_le`/`mulVec_image_le` bounds. `Prop. 1`-`Prop. 3` stay open regardless: each
-is additionally downstream of Appendix A's `Prop. 9`/`Prop. 11` (`Prop. 9` now formalized,
-`Prop. 11` still open — see below) or, for `Prop. 3`, of `Prop. 2`'s own error term — a
+more-developed `add_le`/`mulVec_image_le` bounds. `Prop. 2`'s displayed step now follows from Appendix A's
+`Prop. 9`/`Prop. 11`, both formalized (see the findings below); `Prop. 1` and `Prop. 3` stay open
+regardless, the first on an inner-approximation by Minkowski difference that [1] asserts without
+proof, the second on eq. (21)'s accumulation of `Prop. 2`'s own error term over the horizon — a
 *soundness* bound relating the error to the exact reachable set, which `err`'s existence does
 not supply. `Prop. 4` (zonotope order reduction error) is `err(·)`-valued too, and its displayed
 bound eq. (29) is now proved: see the `Prop. 4` finding below.
@@ -113,21 +114,41 @@ building operator-norm machinery from scratch. The witness for the Hausdorff bou
 direction is elementary (`‖v‖₂ ≤ ‖βDiff‖₂ + |βExtra|·‖βSum‖₂ ≤ 2√γ_h` by the triangle inequality)
 rather than [1]'s own Bauer-maximum-principle argument, reaching the same tight constant.
 
-**`Prop. 11` stays open: the missing piece is an entrywise bound this session did not build, not a
-norm mismatch.** [1]'s proof needs `qP^U(Δt_k) := ∫₀^{Δt_k} e^{A(Δt_k-θ)}dθ · U_0 ⊆ P^U(Δt_k)`
-(the exact set for *constant* inputs, a subcase of the exact one) — available for free from
-`Real.MatExp.expIntegral_constInput`, and `MatExp.expIntegral A t := ∑' i, Ãᵢ` is *already* the
-tsum `Δt•I_n + Σ_{i=1}^∞ Ãᵢ` eq. (20)'s proof splits off, so neither of those needs new work. What
-does: bounding the *infinite* tail `Σ_{i=η+1}^∞ Ãᵢ` entrywise by the *finite* `E(Δt,η)·Δt`
-(`MatExp.expRemainderMat`) that `particularSolutionOuter`/`particularSolutionError` (this
-session's `Lemma 2` work) are already built from — a genuine new lemma (`expRemainderMat`'s own
-tail is a *different* series, `(|A|Δt)ⁱ/i!` from `i=η+1`, not `Aⁱ Δtⁱ⁺¹/(i+1)!`; bridging them
-needs `|Aⁱ_{jk}| ≤ (|A|ⁱ)_{jk}` and `(i+1)!⁻¹ ≤ Δt·i!⁻¹` for `Δt ≤ 1`, then a `tsum` comparison),
-not present anywhere in this tree. `Prop. 10`'s own proof is additionally at `Vec ℝ n`'s sup norm
-by design (its own docstring), not `‖·‖₂`, so [1]'s `Prop. 11` — a `hausdorffDist₂` claim — needs
-either a Euclidean twin of that argument or the sup-norm one carried through `toEuclidean`; neither
-is built either. Landing all of this was judged too large for this session alongside `Prop. 9`;
-the row stays `—` rather than a partial or weakened claim.
+**`Prop. 11` is proved, and both reasons the previous revision of this page gave for its being
+blocked were stale.** That revision said the tail domination needed `(i+1)!⁻¹ ≤ Δt·i!⁻¹` and hence
+`Δt ≤ 1`, and that `Prop. 10`'s sup-norm proof had to be carried to `‖·‖₂`. Neither is so. The two
+series already carry the *same* power of `Δt`: `Ãᵢ = Aⁱ Δtⁱ⁺¹/(i+1)!` against `E(Δt,η)Δt`'s own
+`(|A|Δt)ⁱ/i! · Δt = |A|ⁱ Δtⁱ⁺¹/i!`, so the comparison is `abs_pow_entry_le_absMat_pow_entry`
+followed by `(i+1)! ≥ i!`, term for term, with no side condition at all — that is
+[`AbsParticularTailEntryLe.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/AbsParticularTailEntryLe.lean),
+the step [1] writes as a bare `(18)`. And `Prop. 10` is not needed: for a point `Δtx₀ ⊕ r` of
+`P̂^U(Δt_k)` the nearby exact point is `qP^U`'s own `(∫₀^{Δt_k}e^{A(Δt_k-θ)}dθ)x₀` at the *same*
+`x₀`, so the gap is `(Σ_{i≥1}Ãᵢ)x₀ ⊕ r` — eq. (25)'s correlated summand and its decorrelated one,
+one `err` each — and that single witness replaces [1]'s two-step triangle inequality through
+`Δt_kU_0`. Nothing in the proof reads a norm of `Prop. 10`'s kind, so the mismatch never arises.
+What does stay a hypothesis is eq. (20)'s soundness `P^U(Δt_k) ⊆ P̂^U(Δt_k)`: [1]'s chain uses it
+silently in `d_H(P^U,P̂^U) ≤ d_H(qP^U,P̂^U)` and cites it to Althoff's thesis rather than proving it.
+It cannot be taken over from `inputReach_subset_inputSolution`, which is about
+`MatExp.inputRemainder`'s *norm*-based remainder block and not eq. (20)'s entrywise `E(Δt,η)`, the
+two being incomparable; and proving it for the entrywise block is not a copy of
+`inputSolution_outer` either, since that proof puts the remainder integral into a convex closed set
+by a mean-value argument while `MatExp.intervalMulVecSet` is the *exact* union
+`⋃_{|M|≤E} M(Δt_kU_0)`, which is not convex — the zonotope over-approximation CORA actually
+computes is. The rows say which half they carry.
+
+**`Prop. 2` is the one-step display and nothing more, and the split it rests on is exact.** [1]'s
+proof is one sentence — the one-step error is `Prop. 11`, the rest "follows by error propagation as
+in (21)" — so what is provable as printed is the step `ε^U_{k+1} = ε^U_k + Δε^U_k(Δt_k,η_k)` of
+eq. (24), and that is what the row carries. The step works because the *exact* set really does
+split the way the computed recursion does: `P^U(t_k+Δt_k) = P^U(t_k) ⊕ e^{At_k}P^U(Δt_k)` is
+Althoff's `Prop. 3.2`, already in this tree as `inputReach_separation_eq`, so the two summands can
+be compared one at a time — `ε^U_k` on the accumulated one, `Prop. 11` on the new one — through the
+new, paper-independent
+[`hausdorffDist₂_add_le`](../../src/CORALean/Global/EuclideanHausdorffDistAddLe.lean). That lemma
+needs the four sets compact, which is not an extra assumption: `Def. 5` states the Hausdorff
+distance for compact sets in the first place. What is *not* proved is eq. (21) itself, exactly as
+for `Prop. 4`'s eq. (28): summing the steps needs a recursion over the horizon that neither
+proposition states, and [1] gives no argument for either.
 
 **`Lemma 2` and `Lemma 4` do NOT depend on `Prop. 1`-`Prop. 3`, and are now proved, both
 halves.** The claim in this file's own prior revision — that `Lemma 2`-`Lemma 4` are
@@ -220,4 +241,5 @@ These name the paper as a whole. A locator would put each in a row above.
 * [`ParticularSolutionOuterCorrelated.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/ParticularSolutionOuterCorrelated.lean) — eq. (25)'s correlated summand, shared by `Lemma 2`'s proof but not itself the subject of any numbered result
 * [`AbsConstCorrectionMatrixLe.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/AbsConstCorrectionMatrixLe.lean) — eq. (16)'s `G(Δt,η)` bounded entrywise, the counterpart of `AbsCorrectionMatrixLe` for `Lemma 3`'s second interval matrix; not itself a numbered result
 * [`AbsPowEntryLeAbsMatPow.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/AbsPowEntryLeAbsMatPow.lean) — a matrix power's entry is dominated in magnitude by the same entry of the power of its entrywise absolute value; the first half of what `Prop. 11`'s tail domination needs, and not itself a numbered result
+* [`AbsParticularTailEntryLe.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/AbsParticularTailEntryLe.lean) — `Σ_{i>η}Ãᵢ` entrywise under `E(Δt,η)Δt`, the step `Prop. 11`'s proof writes as a bare `(18)`; not itself a numbered result
 * [`TsumMatrixEntryEq.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/TsumMatrixEntryEq.lean) — a convergent matrix `tsum` read at one entry is the `tsum` of that entry, evaluation being additive and `1`-Lipschitz under the `l∞` operator norm; the second half, and likewise not a numbered result
