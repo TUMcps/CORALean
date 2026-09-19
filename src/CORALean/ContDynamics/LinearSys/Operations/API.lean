@@ -4,14 +4,17 @@ import CORALean.ContDynamics.LinearSys.Operations.DiscretizeEnclosure
 import CORALean.ContDynamics.LinearSys.Operations.DiscretizeMatZonotope
 import CORALean.ContDynamics.LinearSys.Operations.InputReach
 import CORALean.ContDynamics.LinearSys.Operations.InputSolution
+import CORALean.ContDynamics.LinearSys.Operations.InputSolutionInner
+import CORALean.ContDynamics.LinearSys.Operations.InputSolutionSet
 import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSum
 import CORALean.ContDynamics.LinearSys.Operations.InputTerm
 import CORALean.ContDynamics.LinearSys.Operations.PostDelta
+import CORALean.ContDynamics.LinearSys.Operations.PropagateInputSolution
 import CORALean.ContDynamics.LinearSys.Operations.StepInput
 import CORALean.ContDynamics.LinearSys.Operations.StepInputConst
-import CORALean.ContDynamics.LinearSys.Operations.TimePointStep
 import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
 import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepEps
+import CORALean.ContDynamics.LinearSys.Operations.TimePointStep
 
 /-!
 # What a continuous-time linear system computes

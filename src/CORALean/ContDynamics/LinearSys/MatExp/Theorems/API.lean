@@ -39,6 +39,7 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputRemainder
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MulMemMinmax
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpIntegralSubTaylorLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpIntegralTermLe
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSmulLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSmulSubOneLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSubExpTaylorLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ParticularSolutionErrorIsBigO
