@@ -1,5 +1,6 @@
 import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErr
 import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrLin
+import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrLoop
 import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrPolySearch
 import CORALean.ContDynamics.NonlinearSys.Operations.AbstrSolInf
 import CORALean.ContDynamics.NonlinearSys.Operations.Gain
@@ -9,6 +10,7 @@ import CORALean.ContDynamics.NonlinearSys.Operations.GainOrderDim
 import CORALean.ContDynamics.NonlinearSys.Operations.GlobalAbstrErr
 import CORALean.ContDynamics.NonlinearSys.Operations.LagrangeRemainder
 import CORALean.ContDynamics.NonlinearSys.Operations.LinInput
+import CORALean.ContDynamics.NonlinearSys.Operations.LinPoint
 import CORALean.ContDynamics.NonlinearSys.Operations.Linearize
 import CORALean.ContDynamics.NonlinearSys.Operations.LocalAbstrErr
 import CORALean.ContDynamics.NonlinearSys.Operations.PrecompStatError
