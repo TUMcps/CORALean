@@ -3,6 +3,7 @@ import CORALean.ContSet.ContSet.Theorems.DependencyPreservingComp
 import CORALean.ContSet.ContSet.Theorems.HausdorffDistAddLe
 import CORALean.ContSet.ContSet.Theorems.HausdorffDistImageLe
 import CORALean.ContSet.ContSet.Theorems.HausdorffDistMulVecLinAddLe
+import CORALean.ContSet.ContSet.Theorems.IsCompactSegments
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddAssoc
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddSubset
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddSubsetAdd
@@ -36,4 +37,5 @@ algorithm is built on. Althoff's Prop. 3 and Prop. 4 are `minkowskiDiff_add_subs
 three distances here rather than inclusions: adding the same compact set to both sides, moving two
 sets through a continuous linear map, or perturbing a linear image by another matrix, can each
 only bring the two sides together — the last is Wetzlinger et al.'s Prop. 10, cited in its file.
+`isCompact_segments` lets such a distance be read back as a witness.
 -/

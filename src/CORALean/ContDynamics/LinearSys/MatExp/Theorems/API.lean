@@ -37,6 +37,7 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpTaylorSmulMulVec
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpTaylorTwo
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpWApply
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.FactorialMulPowLe
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.HausdorffDist2AffineDynamicsLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.HausdorffDist2ParticularSolutionLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalConstCorrectionMatrix
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalCorrectionMatrix
@@ -84,15 +85,15 @@ are the corresponding three for a step's two correction matrices and input
 remainder. `ExpMatZonoEnclosure` is the same guarantee for a matrix zonotope,
 checkable from the zonotope alone through the interval matrix it encloses.
 `TendstoExpRemainderBoundAtTop`/`ExistsExpRemainderBoundLt` and
-`TendstoMulExpRemainderBoundZero`/`ExistsMulExpRemainderBoundLt` are the limits
-adaptive parameter tuning rests on: the bound vanishes as the order grows or
-the step shrinks, so any admissible error is reachable by either knob.
+`TendstoMulExpRemainderBoundZero`/`ExistsMulExpRemainderBoundLt` are the limits adaptive
+parameter tuning rests on: the bound vanishes as the order grows or the step shrinks.
 `ExpRemainderBoundAntitoneSucc` says one more order never costs precision, and
-`ExpRemainderOrderSpec`/`ExpRemainderOrderLe`/`ExpRemainderStepSpec` say the
-parameter chosen for an admissible error meets it, the order least of those.
+`ExpRemainderOrderSpec`/`ExpRemainderOrderLe`/`ExpRemainderStepSpec` say the parameter
+chosen for an admissible error meets it, the order least of those.
 `TendstoExpRemainderMatZero`/`ExpRemainderMatIsBigO` are the same two limits at
 `ExpRemainderMat`'s sharper, entrywise remainder, matched by `Lemma 2`'s and `Lemma 4`'s own
-two-halves pairs (`TendstoParticularSolutionErrorZero`, `..TauErrorZero`, and their `IsBigO`
-matches) for `Δε^U_k`/`Δε^{U,τ}_k`. `ExpTaylorSmulMulVec`, `ContinuousExpDiff` and
+two-halves pairs for `Δε^U_k`/`Δε^{U,τ}_k`. `ExpTaylorSmulMulVec`, `ContinuousExpDiff` and
 `RemainderEntryLe` are what an input solution needs of the truncation and its remainder.
+`HausdorffDist2ParticularSolutionLe` and `HausdorffDist2AffineDynamicsLe` are the two one-step
+error bounds themselves, `Prop. 11`'s eq. (25) and `Prop. 1`'s eq. (23).
 -/
