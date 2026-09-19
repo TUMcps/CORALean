@@ -5,12 +5,14 @@ import CORALean.ContDynamics.LinearSys.ClosedForm
 import CORALean.ContDynamics.LinearSys.IntegralBackReachSetExistsForall
 import CORALean.ContDynamics.LinearSys.IntegralBackReachSetForallExists
 import CORALean.ContDynamics.LinearSys.IntegralReachSet
+import CORALean.ContDynamics.LinearSys.IntegralTimeIntervalBackReachSetExistsForall
 import CORALean.ContDynamics.LinearSys.IntegralTimeIntervalBackReachSetForallExists
 import CORALean.ContDynamics.LinearSys.IntegralTimeIntervalBackReachSetOfInput
 import CORALean.ContDynamics.LinearSys.IntegralTimeIntervalReachSet
 import CORALean.ContDynamics.LinearSys.IntegralTrajectory
 import CORALean.ContDynamics.LinearSys.LinearSys
 import CORALean.ContDynamics.LinearSys.MatExp.API
+import CORALean.ContDynamics.LinearSys.MaxBackReachTimeInterval
 import CORALean.ContDynamics.LinearSys.MinBackReachTimeInterval
 import CORALean.ContDynamics.LinearSys.Operations.API
 import CORALean.ContDynamics.LinearSys.PerturbedIntegralTrajectory
