@@ -1,4 +1,6 @@
 import CORALean.ContDynamics.LinearSys.AdaptTimeStep
+import CORALean.ContDynamics.LinearSys.BackReachSetExistsForall
+import CORALean.ContDynamics.LinearSys.BackReachSetForallExists
 import CORALean.ContDynamics.LinearSys.ClosedForm
 import CORALean.ContDynamics.LinearSys.IntegralReachSet
 import CORALean.ContDynamics.LinearSys.IntegralTimeIntervalReachSet
@@ -6,11 +8,14 @@ import CORALean.ContDynamics.LinearSys.IntegralTrajectory
 import CORALean.ContDynamics.LinearSys.LinearSys
 import CORALean.ContDynamics.LinearSys.MatExp.API
 import CORALean.ContDynamics.LinearSys.Operations.API
+import CORALean.ContDynamics.LinearSys.PerturbedTrajectory
 import CORALean.ContDynamics.LinearSys.ReachSet
 import CORALean.ContDynamics.LinearSys.StepConvergenceError
 import CORALean.ContDynamics.LinearSys.StepError
 import CORALean.ContDynamics.LinearSys.StepInner
 import CORALean.ContDynamics.LinearSys.Theorems.API
+import CORALean.ContDynamics.LinearSys.TimeIntervalBackReachSetExistsForall
+import CORALean.ContDynamics.LinearSys.TimeIntervalBackReachSetForallExists
 import CORALean.ContDynamics.LinearSys.TimeIntervalReachSet
 import CORALean.ContDynamics.LinearSys.TunedReach
 
@@ -27,4 +32,9 @@ guarantees in `Theorems`.
 Reachability holds at the sample times, by sampling into `LinearSysDT`, or, once
 `e^{AΔt}` is only enclosed rather than computed, into `LinParamSysDT`. Between
 the sample times it is open: that needs a set enclosing the curve over a step.
+
+Backward, `PerturbedTrajectory` is `Trajectory` with a second, independently
+quantified signal `w`: `backReachSetForallExists` and `backReachSetExistsForall`
+are Wetzlinger and Althoff's Def. 6 and Def. 7, minimal and maximal, each with
+a `timeInterval...` sibling for the interval reading of the same definition.
 -/
