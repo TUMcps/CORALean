@@ -39,8 +39,8 @@ it specializes) now excepted.
 | `Thm. 1` | (Convergence) Alg. 2 terminates in finite time for arbitrary error bounds ε_max > 0 (proof uses Lemmas 1-4 from Appendix B: quadratic decrease of the accumulating error, at-least-linear decrease of the non-accumulating error). | — |
 | `Prop. 5` | Given the error ε^x_k (eq. 31) of the reachable set R̂(τ_k), the corresponding output set Ŷ(τ_k) has error d_H(Y(τ_k),Ŷ(τ_k)) ≤ ε^y_k := ε^x_k·‖C‖. | [`HausdorffDist2EvalLe.lean`](../../src/CORALean/ContDynamics/OutputEq/Theorems/HausdorffDist2EvalLe.lean) |
 | `Prop. 6` | (Minkowski difference) Gives a constrained-zonotope formula for the Minkowski difference Z ⊖ P of a zonotope Z=⟨c,G⟩_Z and a vertex-represented polytope P=⟨v_1...v_s⟩_V. | [`MinkDiffVExact.lean`](../../src/CORALean/ContSet/ConZonotope/Real/Theorems/MinkDiffVExact.lean) |
-| `Prop. 7` | (Containment check) CZ ⊆ P (constrained zonotope in halfspace polytope) iff max(ν_1,...,ν_a) ≤ 0, where each ν_i is the optimum of a linear program (eq. 45). | — |
-| `Prop. 8` | (Intersection check) Polytope P and constrained zonotope CZ intersect if ν=0 for a linear program ν = min over x,α,δ of δ subject to containment/constraint conditions. | — |
+| `Prop. 7` | (Containment check) CZ ⊆ P (constrained zonotope in halfspace polytope) iff max(ν_1,...,ν_a) ≤ 0, where each ν_i is the optimum of a linear program (eq. 45). | [`IneqsContainsIff.lean`](../../src/CORALean/ContSet/ConZonotope/Real/Theorems/IneqsContainsIff.lean) — the `iff`, each ν_i taken as a hypothesis (`IsGreatest`) as the paper's own `max` does; [`ExistsIsGreatestIneqs.lean`](../../src/CORALean/ContSet/ConZonotope/Real/Theorems/ExistsIsGreatestIneqs.lean) discharges that hypothesis for a nonempty CZ, so the `max` is earned rather than assumed |
+| `Prop. 8` | (Intersection check) Polytope P and constrained zonotope CZ intersect if ν ≤ 0 for the linear program ν = min over x,α,δ of δ subject to C_(i,·)x−d_(i) ≤ δ, x = c+Gα, Aα = b, α∈[−1,1]. | [`InterIneqsNonemptyIff.lean`](../../src/CORALean/ContSet/ConZonotope/Real/Theorems/InterIneqsNonemptyIff.lean) — proved as an equivalence, which is more than the printed one-way `if`; ν taken as a hypothesis (`IsLeast`) as the paper's own `min` does |
 | `Alg. 3` | "Automated verification": combines Alg. 2's outer-approximation with an inner-approximation (via Prop. 6-8) to automatically prove or falsify a specification given by safe sets G_1..G_r and unsafe sets F_1..F_w. | — |
 | `Prop. 9` | (Appendix A) Given the homogeneous solution H(t_k)=⟨c_h,G_h⟩_Z and particular solution P^u(t_k)=c_p, bounds the Hausdorff distance between the exact linear combination S = comb(H(t_k),H(t_{k+1})) and its zonotope outer-approximation. | — |
 | `Prop. 10` | (Appendix A) For a compact set S⊂R^n and matrices M1,M2: d_H((M1+M2)S, M1 S) ≤ d_H(0, M2 S) — a general perturbation bound for linear maps of sets under the Hausdorff distance. | [`HausdorffDistMulVecLinAddLe.lean`](../../src/CORALean/ContSet/ContSet/Theorems/HausdorffDistMulVecLinAddLe.lean) |
@@ -51,6 +51,35 @@ it specializes) now excepted.
 | `Lemma 4` | (Appendix B) The error ε^{U,τ}_k(Δt_k,η_k) (eq. 26) satisfies lim_{Δt_k→0} ε^{U,τ}_k = 0 and ε^{U,τ}_k ~ O(Δt_k). | [`ParticularSolutionTauError.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/ParticularSolutionTauError.lean), [`TendstoParticularSolutionTauErrorZero.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/TendstoParticularSolutionTauErrorZero.lean), [`ParticularSolutionTauErrorIsBigO.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/ParticularSolutionTauErrorIsBigO.lean) |
 
 ## Findings
+
+**`Prop. 7` and `Prop. 8` are characterizations, and `Global/LinProg` is not where their `ν` comes
+from.** That directory carries `SupportBound`/`SupportWitness` — a bound with its dual reason, and a
+value some point attains — plus a simplex trusted for nothing; neither is *the optimum*, which is
+what both propositions are about. So both rows are stated against `IsGreatest`/`IsLeast` over the
+program's feasible set, the way
+[`IntersectsHyperplaneIff.lean`](../../src/CORALean/ContSet/ConZonotope/Real/Theorems/IntersectsHyperplaneIff.lean)
+already states Raghuraman–Koeln's `Lemma 2`: the paper writes `max`/`min` and presupposes an
+optimum rather than producing one. No solver is invented and none is needed — the content of both
+propositions is the equivalence, not the algorithm. Eq. (45)'s feasible region `α∈[−1,1]`, `Aα=b`
+read through `x = c+Gα` *is* `ConZonotope.construct`, so both objectives are taken over the set
+directly and neither theorem needs a coefficient-space restatement of the program. `Prop. 7`'s
+`max` is then earned rather than assumed: `exists_isGreatest_ineqs` produces each `ν_i` from
+`isCompact_construct` whenever CZ is nonempty. Both rows are about `⟨C,d⟩_H`, inequalities only, as
+`Def. 3` has it; CORALean's `HPolytope` also admits equality rows, which a family of maxima cannot
+test, one bounded direction saying nothing about the opposite one.
+
+**`Prop. 8` is printed as `ν ≤ 0`, and holds as an `iff`.** This page previously recorded the test
+as `ν = 0`; the arXiv v2/IEEE text reads "intersect if `ν ≤ 0`", and the row now says so. The
+converse the paper does not state holds in one line and is proved beside it: a point of P ∩ CZ
+makes `δ = 0` feasible, so the minimum is at most `0`. The printed `if` is the half `Alg. 3` calls,
+and the `iff` is what makes `ν` the distance its Lines 13-16 treat it as.
+
+**Both propositions presuppose a feasible program, and for `Prop. 8` that presupposition is
+load-bearing.** For `Prop. 7` an infeasible program means CZ = ∅, which is contained in every
+polytope, so the `⇔` survives while no `ν_i` exists to state it with. For `Prop. 8` the gap bites:
+an infeasible program has no minimum, and reading `min ∅` as any number `≤ 0` — Lean's junk
+`sInf ∅ = 0` among them — claims an intersection that is not there. Taking `ν` as an `IsLeast`
+hypothesis is what keeps that out; a `sInf`-valued `Prop. 8` would be false.
 
 **`err(·)` now has a named operator, `Global/Err.lean`'s `err`, settling `Prop. 1`-`Prop. 4`'s
 gap of a norm.** `err(S) := rad(box(S))` (eq. 11), and the Notation section (Sec. II-A) reads
