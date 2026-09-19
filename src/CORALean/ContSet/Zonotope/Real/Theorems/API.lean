@@ -6,6 +6,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.AbsMulLeOne
 import CORALean.ContSet.Zonotope.Real.Theorems.AbsPairCoeffDiffLeOne
 import CORALean.ContSet.Zonotope.Real.Theorems.AbsPairCoeffSumLeOne
 import CORALean.ContSet.Zonotope.Real.Theorems.AbsWeightedLe
+import CORALean.ContSet.Zonotope.Real.Theorems.AdaptSetOrderBudget
 import CORALean.ContSet.Zonotope.Real.Theorems.BilinOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
 import CORALean.ContSet.Zonotope.Real.Theorems.ClosedBallEq
