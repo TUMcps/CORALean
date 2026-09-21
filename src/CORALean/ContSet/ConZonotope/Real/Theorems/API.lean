@@ -25,6 +25,7 @@ import CORALean.ContSet.ConZonotope.Real.Theorems.MinkDiffVExact
 import CORALean.ContSet.ConZonotope.Real.Theorems.IneqsContainsIff
 import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsIsGreatestIneqs
 import CORALean.ContSet.ConZonotope.Real.Theorems.InterIneqsNonemptyIff
+import CORALean.ContSet.ConZonotope.Real.Theorems.IntersectHalfspaceExact
 
 /-!
 # What `ConZonotope` guarantees

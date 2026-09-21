@@ -46,6 +46,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffOrEmptyNeEmpty
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffStretchInner
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffStretchOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffRepInner
+import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffScaledInner
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkowskiDiffApplyLe
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkowskiDiffReduceByBoxInner
 import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
@@ -86,7 +87,9 @@ import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOrder
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.ReducePCAOrderLe
 import CORALean.ContSet.Zonotope.Real.Theorems.ReducePCAOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.ReduceSignedInner
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceSubsetAddBox
+import CORALean.ContSet.Zonotope.Real.Theorems.ScaledRPI
 import CORALean.ContSet.Zonotope.Real.Theorems.ShiftMemIff
 import CORALean.ContSet.Zonotope.Real.Theorems.SplitIntersection
 import CORALean.ContSet.Zonotope.Real.Theorems.SplitUnion
