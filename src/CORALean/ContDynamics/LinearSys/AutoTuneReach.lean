@@ -1,4 +1,5 @@
 import CORALean.ContDynamics.LinearSys.AutoTuneDeltaT
+import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumTail
 import CORALean.ContDynamics.LinearSys.Operations.StepInputConst
 import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
 import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
@@ -15,12 +16,12 @@ line 33's union is `autoReach`.
 
 `bPU_0(Δt_k)`/`bPU_∞(Δt_k)`, eq. (27)'s split of `bPU(Δt_k)`, read the underbrace as lines
 17-18 use it: `e^{At_k}` multiplies each *afterward*, so `bPU_0 := Δt_k·U₀` and `bPU_∞ :=
-⊕_{i=1}^η ÃᵢU₀ ⊕ E(Δt_k,η_k)Δt_kU₀` carry no `e^{At_k}` of their own. `box(·)` (line 17) is
-`Zonotope.interval` composed with `Interval.zonotope`.
+⊕_{i=1}^η ÃᵢU₀ ⊕ E(Δt_k,η_k)Δt_kU₀` carry no `e^{At_k}`. `box(·)` (line 17) is
+`Zonotope.interval` after `Interval.zonotope`; `⊕_{i=1}^η ÃᵢU₀` is `inputTaylorSumTail`, the
+Minkowski sum (27) prints and not the smaller `(Σ_i Ãᵢ)U₀` under the summed matrix.
 
-One correction: line 27 reads `C ← F(Δt_k,η_k)Ĥ(t_k) ⊕ G(Δt_k,η_k)ũ`, a hat on `H(t_k)` no
-other line produces — `H` is exact throughout, and line 28 reads the same `H(t_k)`
-unhatted one line later. `autoStep` uses the unhatted `H`, matching Alg. 1's line 8.
+One correction: line 27 hats an `H(t_k)` no other line produces — `H` is exact throughout and
+line 28 reads it unhatted; `autoStep` uses the unhatted `H`, matching Alg. 1's line 8.
 
 `Thm. 1` is a separate package; this file leaves `autoStep`/`autoRun` `Option`-valued,
 `none` where a step cannot satisfy `ε_max`, `ε^a_k`/`ε^r_k` named fields to induct on.
@@ -97,8 +98,8 @@ noncomputable def LinearSys.autoStep (sys : LinearSys 𝕋 n) (le : ℝ → ℝ 
     let Φtk1 := exp (tk1 • toRealMat sys.A)                            -- e^{A t_{k+1}}
     let A' := toRealMat sys.A
     let bPU0Δt := Zonotope.mtimes (MatExp.particularCoeff A' Δtk 0) U₀ -- 16. bPU_0(Δt_k), eq. (27)
-    let coeffSum := MatExp.particularCoeffSum A' Δtk 1 ηk              -- 16. Σ_{i=1}^{η_k} Ãᵢ
-    let bPUinfΔt := Zonotope.plus (Zonotope.mtimes coeffSum U₀)        -- 16. bPU_∞(Δt_k)
+    let bPUinfΔt := Zonotope.plus                                      -- 16. bPU_∞(Δt_k), eq. (27)
+      (sys.inputTaylorSumTail (S := 𝒵) Δtk U₀ ηk)                      --     ⊕_{i=1}^{η_k} ÃᵢU₀
       (Zonotope.mtimesIntervalMat (MatExp.inputRemainder A' Δtk ηk) U₀)
     let PUinfProp := Zonotope.mtimes Φtk bPUinfΔt                      -- 17. e^{At_k}bPU_∞(Δt_k)
     let PUinfBox := PUinfProp.interval.zonotope                        -- 17. box(·)

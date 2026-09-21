@@ -40,7 +40,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m k : ℕ}
 
 /-- A layer's own rank, its neurons' summed: what the layer-wise rule ranks
 layers by, the neurons of the layer it names all moving together. -/
-def aux_layerRank (J : Mat ℝ m n) (d : Vec ℝ n) : ℝ := ∑ j, refinementRank J d j
+noncomputable def aux_layerRank (J : Mat ℝ m n) (d : Vec ℝ n) : ℝ :=
+  ∑ j, refinementRank J d j
 
 /-- The rank at what CORA actually backpropagates: the network's sensitivity at
 a point of the input set, weighing the errors the layer's relaxation leaves. -/

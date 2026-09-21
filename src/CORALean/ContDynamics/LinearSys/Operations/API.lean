@@ -7,6 +7,7 @@ import CORALean.ContDynamics.LinearSys.Operations.InputSolution
 import CORALean.ContDynamics.LinearSys.Operations.InputSolutionInner
 import CORALean.ContDynamics.LinearSys.Operations.InputSolutionSet
 import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSum
+import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumTail
 import CORALean.ContDynamics.LinearSys.Operations.InputTerm
 import CORALean.ContDynamics.LinearSys.Operations.PostDelta
 import CORALean.ContDynamics.LinearSys.Operations.PropagateInputSolution
@@ -33,6 +34,10 @@ parameter tuning and not the algorithm.
 `DiscretizeEnclosure` is `Discretize` again, its matrix only enclosed: `e^{AΔt}`
 is transcendental, so where the exponential itself cannot be computed the
 result is a `LinParamSysDT` over an interval matrix rather than a `LinearSysDT`.
+
+`InputTaylorSumTail` is `InputTaylorSum` from order `1` instead of `0`, the
+split Wetzlinger et al.'s adaptive reachability needs, which keeps order `0`
+out as a term of its own.
 
 `PostDelta` is CORA's `postΔ`: `DeltaReach` plus what a constant uncertain
 input set contributes as `InputSolution`, named for [1, Sec. 4.1].

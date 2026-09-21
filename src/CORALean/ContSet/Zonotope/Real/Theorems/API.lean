@@ -57,6 +57,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.PCACovarianceIsHermitian
 import CORALean.ContSet.Zonotope.Real.Theorems.PairCoeffDiff
 import CORALean.ContSet.Zonotope.Real.Theorems.PairCoeffSum
 import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+import CORALean.ContSet.Zonotope.Real.Theorems.PlusIntervalExact
 import CORALean.ContSet.Zonotope.Real.Theorems.PlusIntervalOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.PlusSubsetClosedBall
 import CORALean.ContSet.Zonotope.Real.Theorems.RecentreSubMem
