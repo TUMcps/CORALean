@@ -3,12 +3,12 @@ import CORALean.ContSet.Zonotope.Real.Zonotope
 /-!
 # `Zonotope.minkDiffStretch`
 
-The generator representation [1, Thm. 4] and [1, Thm. 5] both return: the
-centres subtracted, and each generator of the minuend stretched by its own
-factor `μ`. The two theorems differ only in which linear program picks `μ` —
-one pushing it up until the halfspaces of the stretched minuend sit inside
-those of the difference, the other down until they sit outside — so the
-operation is shared and the direction lives on the theorems.
+The generator representation [1, Thm. 4], [1, Thm. 5] and [1, Prop. 6] all
+return: the centres subtracted, and each generator of the minuend stretched by
+its own factor `μ`. They differ only in what picks `μ` — a linear program
+pushing it up until the halfspaces of the stretched minuend sit inside those of
+the difference, one pushing it down until they sit outside, or (22) solved
+exactly — so the operation is shared and the direction lives on the theorems.
 
 `μ` is an argument, not computed here. [1]'s own `μ*` is an optimum, and an
 optimum is a choice of objective (`ζ`, "a user-specified vector") on top of the
