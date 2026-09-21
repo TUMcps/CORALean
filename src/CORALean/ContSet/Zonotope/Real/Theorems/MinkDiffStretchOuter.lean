@@ -18,8 +18,8 @@ it weakens `hμ`, which is the whole point of that linear program.
 `hCd` is the standing premise, as in `minkDiffStretch_inner` but read at the
 *stretched* minuend: (12b) is an equivalence only when `C` describes the set,
 and [1] notes in so many words that the over-approximation may not drop a
-halfspace where the under-approximation may. The tree has no facet enumeration
-to discharge it with; [1, Thm. 2]'s normals are what [1] discharges it with.
+halfspace where the under-approximation may. `hRep_lin_subset` discharges it at
+[1, Thm. 2]'s own normals, whose positive rescaling by `µ` that lemma allows.
 
 ## References
 
@@ -29,7 +29,7 @@ to discharge it with; [1, Thm. 2]'s normals are what [1] discharges it with.
 
 -- Authors:       Tobias Ladner
 -- Written:       18-September-2026
--- Last update:   ---
+-- Last update:   21-September-2026
 -- Last revision: ---
 
 
@@ -44,8 +44,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- [1, Thm. 5]: at a `µ` feasible for `Âµ ≥ b̃`, the stretched minuend covers
 the Minkowski difference. -/
-theorem Zonotope.minkDiffStretch_outer {q : ℕ} (Z₁ Z₂ : Zonotope α)
-    (C : Fin q → (α →ₗ[ℝ] ℝ)) (μ : Fin Z₁.h → ℝ) (hμ0 : ∀ υ, 0 ≤ μ υ) (b : Fin q → ℝ)
+theorem Zonotope.minkDiffStretch_outer {ι : Type} (Z₁ Z₂ : Zonotope α)
+    (C : ι → (α →ₗ[ℝ] ℝ)) (μ : Fin Z₁.h → ℝ) (hμ0 : ∀ υ, 0 ≤ μ υ) (b : ι → ℝ)
     (hb : ∀ i, ∀ x ∈ minkowskiDiff Z₁.construct Z₂.construct, C i (x - (Z₁.c - Z₂.c)) ≤ b i)
     (hμ : ∀ i, b i ≤ ∑ υ, |C i (Z₁.G υ)| * μ υ)
     (hCd : {y | ∀ i, C i (y - (Z₁.minkDiffStretch Z₂ μ).c)

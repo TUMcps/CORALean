@@ -16,6 +16,9 @@ import CORALean.ContSet.Zonotope.Real.Theorems.ContinuousAffine
 import CORALean.ContSet.Zonotope.Real.Theorems.Convex
 import CORALean.ContSet.Zonotope.Real.Theorems.EnclGenSelSubset
 import CORALean.ContSet.Zonotope.Real.Theorems.ExistsAutoTuneSetOrder
+import CORALean.ContSet.Zonotope.Real.Theorems.HRepEq
+import CORALean.ContSet.Zonotope.Real.Theorems.HRepInterEq
+import CORALean.ContSet.Zonotope.Real.Theorems.HRepLinSubset
 import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDist2IntervalLe
 import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDist2IntervalLeCut
 import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDist2IntervalLeMax

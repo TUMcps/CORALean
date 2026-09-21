@@ -11,10 +11,10 @@ rests on, so any feasible `µ` is admitted, `µ*` included.
 `hCm` is the theorem's own standing premise, made explicit: its proof reads
 (12) off [1, Thm. 2], which needs the directions `C` to *describe* the minuend
 and not merely enclose it. The enclosing half is free and is proved inline;
-the describing half is the one [1, Thm. 2] supplies and this tree does not, so
-it is a hypothesis here rather than a silent assumption. Any exact halfspace
-description discharges it — the cross-product normals of [1, Thm. 2] are one,
-and the statement needs no facet enumeration to say so.
+the describing half is what [1, Thm. 2] supplies, and `hRep_lin_subset`
+discharges `hCm` at the cross-product normals themselves. It stays a hypothesis
+so that any other exact description serves, and `C` is indexed by a type rather
+than a `Fin q` so that the normals' own index can be handed over unchanged.
 
 The direction is inner, as `MinkDiff` obliges: `minkDiffStretch_outer` is the
 other one and is a different theorem about a different `µ`.
@@ -27,7 +27,7 @@ other one and is a different theorem about a different `µ`.
 
 -- Authors:       Tobias Ladner
 -- Written:       18-September-2026
--- Last update:   ---
+-- Last update:   21-September-2026
 -- Last revision: ---
 
 
@@ -42,8 +42,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- [1, Thm. 4]: at a `µ` feasible for `Âµ ≤ Δd - Δd_trans`, the stretched
 minuend stays inside the Minkowski difference. -/
-theorem Zonotope.minkDiffStretch_inner {q : ℕ} (Z₁ Z₂ : Zonotope α)
-    (C : Fin q → (α →ₗ[ℝ] ℝ)) (μ : Fin Z₁.h → ℝ) (hμ0 : ∀ υ, 0 ≤ μ υ)
+theorem Zonotope.minkDiffStretch_inner {ι : Type} (Z₁ Z₂ : Zonotope α)
+    (C : ι → (α →ₗ[ℝ] ℝ)) (μ : Fin Z₁.h → ℝ) (hμ0 : ∀ υ, 0 ≤ μ υ)
     (hCm : {y | ∀ i, C i (y - Z₁.c) ≤ ∑ υ, |C i (Z₁.G υ)|} ⊆ Z₁.construct)
     (hμ : ∀ i, ∑ υ, |C i (Z₁.G υ)| * μ υ
             ≤ (∑ υ, |C i (Z₁.G υ)|) - ∑ υ, |C i (Z₂.G υ)|) :
