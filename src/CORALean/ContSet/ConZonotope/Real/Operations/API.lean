@@ -19,6 +19,7 @@ import CORALean.ContSet.ConZonotope.Real.Operations.RowBound
 import CORALean.ContSet.ConZonotope.Real.Operations.TightenCoeff
 import CORALean.ContSet.ConZonotope.Real.Operations.TightenRow
 import CORALean.ContSet.ConZonotope.Real.Operations.Tighten
+import CORALean.ContSet.ConZonotope.Real.Operations.Eliminate
 
 /-!
 # What `ConZonotope` computes
@@ -42,6 +43,6 @@ need not be.
 coefficient polytope the unit box and `P` make together, and `OfPoint` is the centre alone, at
 `HPolytope.fullspace`. `MinkDiffV` folds `intersection` over a zonotope translated by each of a
 polytope's vertices — Wetzlinger et al.'s Prop. 6, exact where every other difference here encloses.
-`rowBound`, `tightenCoeff`, `tightenRow` and `tighten` are Raghuraman and Koeln's Algorithm 1, one
-step, row and pass at a time, against which `Thm. 2`'s constraint elimination is stated.
+`rowBound`, `tightenCoeff`, `tightenRow` and `tighten` are Raghuraman and Koeln's Algorithm 1;
+`eliminate` is `Thm. 2`'s own construction against it, solving one row for one coefficient.
 -/
