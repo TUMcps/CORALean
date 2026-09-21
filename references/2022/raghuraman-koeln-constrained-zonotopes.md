@@ -35,7 +35,7 @@ constraints. `ConZonotope.linComb` is the one used here.
 | `Lemma 1` | [cites Girard 2005, Sec. 5.1 — not Scott et al., whose "CG-Rep" is only this page's own name for the representation] The zonotope Z={G,c} intersects hyperplane H={x\|h^Tx=f} iff \|f-h^Tc\| ≤ Σ\|h^Tg_i\| (eq. 4); if so, the intersection with the corresponding halfspace is representable in CG-Rep by adding exactly one generator and one equality constraint. | n/a — restated from Girard 2005, which this formalization does not draw on directly |
 | `Thm. 1` | If zonotope Z intersects hyperplane H (per Lemma 1), the intersection Z_h = Z∩H₋ with the halfspace H₋ is a constrained zonotope, with an explicit generator/constraint formula (eq. 5). | [`IntersectHalfspace.lean`](../../src/CORALean/ContSet/ConZonotope/Real/Operations/IntersectHalfspace.lean), [`IntersectHalfspaceExact.lean`](../../src/CORALean/ContSet/ConZonotope/Real/Theorems/IntersectHalfspaceExact.lean) — "Z intersects H" taken directly as the hypothesis (`∃ x ∈ Z, h x = f`), as Lemma 1 only restates that condition algebraically |
 | `Lemma 2` | The constrained zonotope Z_c={G,c,A,b} intersects hyperplane H={x\|h^Tx=f} iff f_min ≤ f ≤ f_max, where f_min/f_max are the min/max of h^T(c+Gξ) subject to \|ξ\|∞≤1, Aξ=b. | [`IntersectsHyperplaneIff.lean`](../../src/CORALean/ContSet/ConZonotope/Real/Theorems/IntersectsHyperplaneIff.lean) — f_min/f_max taken as hypotheses (`IsLeast`/`IsGreatest`), as the paper's own "min"/"max" also assume rather than derive |
-| `Alg. 1` | "Constrained zonotope intervals": computes, row by row of Aξ=b, an interval enclosure E_k of each coefficient's feasible range within B∞(A,b) = {ξ \| Aξ=b, \|ξ\|∞≤1} (used by `Thm. 2`'s eq. 12, and to detect Z_c=∅ without an LP). | [`RowBound.lean`](../../src/CORALean/ContSet/ConZonotope/Real/Operations/RowBound.lean), [`TightenCoeff.lean`](../../src/CORALean/ContSet/ConZonotope/Real/Operations/TightenCoeff.lean), [`TightenRow.lean`](../../src/CORALean/ContSet/ConZonotope/Real/Operations/TightenRow.lean), [`Tighten.lean`](../../src/CORALean/ContSet/ConZonotope/Real/Operations/Tighten.lean), [`TightenOuter.lean`](../../src/CORALean/ContSet/ConZonotope/Real/Theorems/TightenOuter.lean) — a single pass, not the paper's own further outer iteration of the whole algorithm on its own output; `Rⱼ`'s separate array is folded into `Eⱼ` since the two coincide throughout (see `Tighten.lean`'s docstring) |
+| `Alg. 1` | "Constrained zonotope intervals": computes, row by row of Aξ=b, an interval enclosure E_k of each coefficient's feasible range within B∞(A,b) = {ξ \| Aξ=b, \|ξ\|∞≤1} (used by `Thm. 2`'s eq. 12, and to detect Z_c=∅ without an LP). | [`RowBound.lean`](../../src/CORALean/ContSet/ConZonotope/Real/Operations/RowBound.lean), [`TightenCoeff.lean`](../../src/CORALean/ContSet/ConZonotope/Real/Operations/TightenCoeff.lean), [`TightenRow.lean`](../../src/CORALean/ContSet/ConZonotope/Real/Operations/TightenRow.lean), [`Tighten.lean`](../../src/CORALean/ContSet/ConZonotope/Real/Operations/Tighten.lean), [`TightenOuter.lean`](../../src/CORALean/ContSet/ConZonotope/Real/Theorems/TightenOuter.lean), [`TightenOuterSafe.lean`](../../src/CORALean/ContSet/ConZonotope/Real/Theorems/TightenOuterSafe.lean) — a single pass, not the paper's own further outer iteration of the whole algorithm on its own output; `Rⱼ`'s separate array is folded into `Eⱼ` since the two coincide throughout (see `Tighten.lean`'s docstring) |
 | `Thm. 2` | Gives a sufficient condition (existence of indices r,c with a_{r,c}≠0 and R_{r,c}⊆[-1,1], eq. 12, using E_k from Algorithm 1) under which a constrained zonotope Z_c can be exactly represented by a constrained zonotope with one fewer constraint (constraint elimination / redundancy removal). | — |
 | `Lemma 3` | [cites Sadraddini & Tedrake, Thm. 3] Given zonotopes X={G_x,c_x}, Y={G_y,c_y}, X⊆Y if there exist Γ, β satisfying G_x=G_yΓ, c_y-c_x=G_yβ, \|Γ\|·1+\|β\|≤1 (a sufficient zonotope-containment condition). | n/a — restated from Sadraddini and Tedrake 2019, which this formalization does not draw on directly |
 | `Thm. 3` | Gives a sufficient condition for a reduced-order zonotope Z_r={G_r,c} (with G_r=GT, T entries in {-1,0,1}) to be an inner-approximation Z_r⊆Z of the original zonotope Z={G,c}. | [`ReduceSignedInner.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/ReduceSignedInner.lean) |
@@ -73,12 +73,51 @@ in `[-1,1]` — but `tighten_outer` only concludes `β_k ∈ E_k` from the *full
 `∀j, |β j| ≤ 1`, which includes `j = c`, the very coordinate not yet known to be bounded. Since
 Algorithm 1's row-by-row updates are Gauss–Seidel, not Gauss–Jordan, a column's final `E_k` can
 depend on every other column's running bound, `c` included, so this is not an artifact of how the
-soundness proof was stated — a coordinate-`c`-free version of `tighten_outer` (sound from the
-*other* coordinates' boxes alone) would need tracking, through the fold, which columns each row's
-update actually depended on, a genuinely different induction from the one here. The paper's own
-proof paragraph elides this, leaning on the fuller argument in [18] it cites rather than
-reproving it, so the row stays `—` rather than forcing the `⊆` direction through with a hypothesis
-standing in for a fact not established here.
+soundness proof was stated.
+
+**The natural fix — a coordinate-`c`-free `tighten_outer`, sound at every column but `c` from the
+*other* columns' boxes alone — is false in general, not merely unproved.** A 2-row, 2-column
+witness (checked by running Algorithm 1's pass literally, not just argued): row 0 is
+`ξ_0 + ξ_1 = 10.5`, row 1 is `ξ_0 - ξ_1 = -9.5`; the unique solution is `ξ_0 = 0.5`, `ξ_1 = 10`, so
+`|ξ_0| ≤ 1` holds and only `ξ_1` (the coordinate to be excluded) is unbounded. Running the pass with
+no hypothesis at `ξ_1`: row 0 tightens `E_0` to `[9.5, 1]` (already inverted, i.e. empty, since the
+row-derived bound is clipped against the starting `[-1,1]`) and then `E_1` to `[1, 1]`; row 1 then
+reads that corrupted `E_1 = [1,1]` to drive `E_0` down to `[9.5, -8.5]` — an interval that does not
+contain the true `ξ_0 = 0.5` at all, even though `ξ_0` was bounded the whole time and its own rows
+never carried a zero coefficient on `ξ_1`. (Row 1's own update to `E_1`, reading the now-corrupted
+`E_0`, leaves it at `[1,1]` — unchanged, but already wrong, since the true `ξ_1 = 10` was excluded
+from the very first row.) The corruption is real, not a proof artifact: Gauss–Seidel genuinely lets
+an unbounded coordinate's row updates poison a *bounded* coordinate's, once the two share a row.
+
+What does survive, proved here as `ConZonotope.tighten_outer_safe`
+([`TightenOuterSafe.lean`](../../src/CORALean/ContSet/ConZonotope/Real/Theorems/TightenOuterSafe.lean)),
+is soundness restricted to a set `S` of coordinates *closed* under "what a row reads when it
+touches a coordinate of `S`": for every `j ∈ S` and row `i` with `a_{i,j} ≠ 0`, every other column
+`l` that row reads (`a_{i,l} ≠ 0`) must also be in `S`. Given that closure, `Aβ = b` and
+`|β j| ≤ 1` only for `j ∈ S`, every `k ∈ S` lands in `tighten`'s bound at `k` — no hypothesis at
+all on the coordinates outside `S`. The witness above is exactly a case where no such `S` containing
+column 0 but excluding column 1 exists (row 1 reads both with nonzero coefficient, so any `S`
+containing 0 is forced to contain 1 too), which is why the unrestricted version fails there.
+
+**The paper's own proof of `Thm. 2` (page 6 of the arXiv PDF) does not cross this point — it
+asserts the `⊆` direction as a one-line consequence and never argues it.** After defining `Zr` via
+`Λ_G`, `Λ_A`, it says only: "Through this transformation, the `r`th constraint is still imposed in
+`Zr` but the ability to constrain `|ξ_c| ≤ 1` is lost. However, since `R_{r,c} ⊆ [-1,1]`, this
+constraint is imposed by the remaining equality and norm constraints, and thus `Zr = Zc`." No
+argument for *why* `R_{r,c}` (built from the final `E_k`, `k ≠ c`, of a full Algorithm 1 run on the
+unreduced system) actually bounds `ξ̃_c` is given or cited at this step. Immediately after the proof,
+the paper adds a procedural remark: "As in [18], Gauss-Jordan elimination with full pivoting should
+be applied to `Zc` prior to applying Algorithm 1 to determine the intervals `Ek` required to compute
+(12)." That is not part of `Thm. 2`'s stated hypotheses (only `a_{r,c} ≠ 0` and `R_{r,c} ⊆ [-1,1]`
+are), and the paper never connects it back to the proof — but full pivoting is exactly the kind of
+structural condition that could confine which columns a row's update depends on (a triangular
+dependency has no cycle for corruption to run around), which is what the witness above shows is
+otherwise needed. So this is a real gap in the paper, not only in this formalization: as literally
+stated, `Thm. 2` is not established by its own proof, and proving it here would need either an
+explicit dependency-closure hypothesis (`tighten_outer_safe`'s `S`, verified to cover column `c`'s
+row `r`) or a formal argument that full-pivoted Gauss-Jordan preprocessing produces one — both
+outside this pass. The row stays `—` rather than forcing the `⊆` direction through with a
+hypothesis the paper does not state and does not discharge either.
 
 The elimination construction itself — `Zr = {G−Λ_G A, c+Λ_G b, A−Λ_A A, b−Λ_A b}` via the rank-one
 `Λ_G`, `Λ_A` of the paper's proof, dropping the zero row and column that result — is still
