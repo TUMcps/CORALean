@@ -14,6 +14,7 @@ import CORALean.ContSet.ConZonotope.Real.Operations.Reduce
 import CORALean.ContSet.ConZonotope.Real.Operations.OfPoint
 import CORALean.ContSet.ConZonotope.Real.Operations.Enclose
 import CORALean.ContSet.ConZonotope.Real.Operations.MinkDiffV
+import CORALean.ContSet.ConZonotope.Real.Operations.IntersectHalfspace
 
 /-!
 # What `ConZonotope` computes
