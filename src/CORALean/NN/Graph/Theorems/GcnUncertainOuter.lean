@@ -5,7 +5,7 @@ import CORALean.NN.Graph.Theorems.MessagePassingEnclosureOuter
 /-!
 # The uncertain-graph layer contains what the graph actually computes
 
-The composite, and the statement a caller of [1] wants: whatever the uncertain
+The composite, and the enclosure [1, Prop. 5] claims: whatever the uncertain
 edges weigh, the layer `P H W` that *that* graph computes at any point of the
 node-feature set is a point of `gcnUncertain W 𝒫 H`.
 
