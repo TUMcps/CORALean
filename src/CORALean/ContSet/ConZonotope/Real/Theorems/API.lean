@@ -28,6 +28,7 @@ import CORALean.ContSet.ConZonotope.Real.Theorems.InterIneqsNonemptyIff
 import CORALean.ContSet.ConZonotope.Real.Theorems.IntersectHalfspaceExact
 import CORALean.ContSet.ConZonotope.Real.Theorems.TightenOuter
 import CORALean.ContSet.ConZonotope.Real.Theorems.TightenOuterSafe
+import CORALean.ContSet.ConZonotope.Real.Theorems.EliminateExact
 
 /-!
 # What `ConZonotope` guarantees
@@ -51,6 +52,6 @@ translated by a polytope's vertices — Prop. 6, an equality rather than an encl
 `IneqsContainsIff` and `InterIneqsNonemptyIff` are the containment and intersection checks a
 specification asks for, each an equivalence with one linear program's optimum, taken as a
 hypothesis as the paper's own `max`/`min` do; `ExistsIsGreatestIneqs` supplies the first.
-`TightenOuter` is `tighten`'s soundness, Algorithm 1's own guarantee and what `Thm. 2` draws its
-`E_k` from; `TightenOuterSafe` is the same, restricted to a dependency-closed set of coordinates.
+`TightenOuter` is `tighten`'s soundness, Algorithm 1's own guarantee; `TightenOuterSafe` is the
+same restricted to a dependency-closed set, and `EliminateExact` is `Thm. 2` itself under it.
 -/
