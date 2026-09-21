@@ -14,6 +14,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.ClosedBallEq
 import CORALean.ContSet.Zonotope.Real.Theorems.Coefficient
 import CORALean.ContSet.Zonotope.Real.Theorems.ContinuousAffine
 import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+import CORALean.ContSet.Zonotope.Real.Theorems.EnclGenSelSubset
 import CORALean.ContSet.Zonotope.Real.Theorems.ExistsAutoTuneSetOrder
 import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDist2IntervalLe
 import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDist2IntervalLeCut
@@ -34,6 +35,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.MatMulRightExact
 import CORALean.ContSet.Zonotope.Real.Theorems.MatPowOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
 import CORALean.ContSet.Zonotope.Real.Theorems.MethCVolumeLe
+import CORALean.ContSet.Zonotope.Real.Theorems.AlignedWithOfSmul
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedExact
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedInner
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedNotInner
@@ -41,7 +43,10 @@ import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffGenRecExact
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffOrEmptyInner
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffOrEmptyNeEmpty
+import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffStretchInner
+import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffStretchOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffRepInner
+import CORALean.ContSet.Zonotope.Real.Theorems.MinkowskiDiffApplyLe
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkowskiDiffReduceByBoxInner
 import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 import CORALean.ContSet.Zonotope.Real.Theorems.MtimesIntervalMatOuter
@@ -98,25 +103,25 @@ import CORALean.ContSet.Zonotope.Real.Theorems.SupportBoundAttained
 /-!
 # What `Zonotope` guarantees
 
-`plus` and `map` exactly, `reduce` and the interval hull as enclosures, and the topological facts a
-set-valued integral needs. `MemConstruct` reads membership coordinatewise, and `Coefficient` holds
-the shared proof devices the float layer needs too. `BilinOuter` and `MtimesMatZonotopeOuter` are a
-matrix zonotope acting on a set, never exact; `OfPointMem`, `Recentre` and `AbsMaxOfPoint` are what
-those classes ask. `MinkDiffAlignedInner` and `MinkDiffRepInner` run the reverse, at aligned and at
-represented generators; `MinkDiffAlignedOuter` closes the first to `MinkDiffAlignedExact`, whose
-scaling `MinkDiffAlignedNotInner` holds to `[0, 1]`. `MinkDiffOrEmptyInner` carries the second
-through `MinkDiff`'s wrapper, `MinkDiffOrEmptyNeEmpty` says it is never empty, and
-`MinkDiffGenRecExact` alone is exact at every input. `MtimesIntervalMatSubsetClosedBall` bounds a
-product above, `MtimesIntervalMatSymmBox` it at a symmetric matrix: `S · box(Z)`.
-`ReduceBySubsetAddBox` is `ReduceByOuter` backwards — the reduced set sits inside the original plus
-its box — carried to `reduce` itself by `ReduceSubsetAddBox`; `MinkowskiDiffReduceByBoxInner`
-cancels the box off again and `CentreMemConstruct` gives the nonemptiness cancellation needs.
-`HausdorffDistIntervalLe` prices that box at the sup norm, `HausdorffDist2IntervalLe`,
-`HausdorffDist2IntervalLeMax` and `HausdorffDist2IntervalLeCut` the three at `‖·‖₂`, and
-`HausdorffDist2LinCombLe` `linComb`'s own. `SubsetClosedBallOfAbsBoundLe` and its converse relate
-`absBound` to a sup-norm ball; `MtimesSubsetClosedBall`, `PlusSubsetClosedBall` and
-`ReduceBoxAbsBoundLe` carry one through `mtimes`, `plus` and `reduceBox`, and
-`StepSubsetClosedBall` composes them at `reach`'s shape, its box term discharged crudely or, via
-`reduceBoxOrder`, sharply. `SumSmulUpdate` is the one sum a split changes, read by `SplitUnion`
-and `SplitIntersection`.
+`plus` and `map` exactly, `reduce` and the interval hull as enclosures, plus what a set-valued
+integral needs. `MemConstruct` reads membership coordinatewise, `Coefficient` holds the proof
+devices the float layer shares. `BilinOuter` and `MtimesMatZonotopeOuter` are a matrix zonotope on
+a set, never exact; `OfPointMem`, `Recentre` and `AbsMaxOfPoint` are what those classes ask.
+`MinkDiffAlignedInner` and `MinkDiffRepInner` run the reverse, at aligned and at represented
+generators; `MinkDiffAlignedOuter` closes the first to `MinkDiffAlignedExact`, whose scaling
+`MinkDiffAlignedNotInner` holds to `[0, 1]` and whose pairing `AlignedWithOfSmul` reads back as the
+alignment relation. `MinkDiffStretchInner` and `MinkDiffStretchOuter` are Althoff's two
+linear-programming approximations, each in its own direction and each wanting a halfspace
+description of the minuend that `MinkowskiDiffApplyLe` does without; `EnclGenSelSubset` keeps his
+generator selection inside the minuend. `MinkDiffOrEmptyInner` carries `minkDiffRep` through
+`MinkDiff`'s wrapper, `MinkDiffOrEmptyNeEmpty` says it is never empty, and `MinkDiffGenRecExact`
+alone is exact everywhere. `MtimesIntervalMatSubsetClosedBall` bounds a product,
+`MtimesIntervalMatSymmBox` it at a symmetric matrix. `ReduceBySubsetAddBox` is `ReduceByOuter`
+backwards — the reduced set sits inside the original plus its box — carried to `reduce` by
+`ReduceSubsetAddBox`, cancelled again by `MinkowskiDiffReduceByBoxInner` on `CentreMemConstruct`'s
+nonemptiness, and priced by `HausdorffDistIntervalLe` at the sup norm and the `HausdorffDist2*`
+group at `‖·‖₂`. `SubsetClosedBallOfAbsBoundLe` and its converse tie `absBound` to a sup-norm ball,
+which `MtimesSubsetClosedBall`, `PlusSubsetClosedBall` and `ReduceBoxAbsBoundLe` carry through
+their operations, `StepSubsetClosedBall` composes at `reach`'s shape, and `SumSmulUpdate` is the
+sum a split changes, read by `SplitUnion`/`SplitIntersection`.
 -/

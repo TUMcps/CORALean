@@ -12,25 +12,46 @@ The Minkowski difference of zonotopes: exact where the generators align, and
 approximated otherwise. `minkDiffAligned` is the exact case; CORA's default
 `'approx'` is not followed here — see [FINDINGS.md](../../FINDINGS.md).
 
+**Why the five `—` rows are `—`.** Four of them share one gate: `Thm. 2`, the
+halfspace representation of a zonotope. Its *enclosing* half — `Cx ≤ d` at every
+point of the zonotope — is free, and is proved where it is used, in
+[`MinkowskiDiffApplyLe.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/MinkowskiDiffApplyLe.lean);
+the identity needs that the 2·C(p,n−1) cross-product normals *exhaust* the
+facets, and no facet enumeration exists here. Not issue #49, which is closed —
+`HPolytope` has a checked simplex support oracle now; the gap is the
+zonotope→halfspace direction itself. `Lemma 2` rests on that C matrix still
+describing the intersection. `Prop. 2` counts *redundant* halfspaces of it, and
+needs a linear program to say which are redundant. `Prop. 6` is the same gate at
+n = 2: its closed form is exact exactly when (22) has a unique solution, i.e.
+when the p normals of (23) are the facets, and that is `Thm. 2` again. `Prop. 1`
+is the odd one out: its proof is a plot ("as one can see in the plot of Z_m⊖Z_s
+in Fig. 6"), and replacing it needs both the explicit polytope of the
+three-dimensional difference and the fact that every face of a zonotope is
+centrally symmetric, which is what rules out a zonotope having the face the plot
+shows.
+
+`Thm. 4` and `Thm. 5` do not wait for `Thm. 2` — they ask for it as an explicit
+hypothesis, which is exactly what their own printed proofs take from it.
+
 ## Results
 
 | Result | What it says | In CORALean |
 |---|---|---|
 | `Def. 1` | (Zonotope, G-Representation) Z = {c + Σ β_i g^(i) \| β_i∈[-1,1]}, order ϱ=p/n; shorthand Z=(c,g^(1),...,g^(p)). | n/a — restated from A. Girard, "Reachability of Uncertain Linear Systems Using Zonotopes", HSCC 2005, where the representation is introduced |
-| `Lemma 1` | (Minkowski Difference from Finitely Many Intersections) [cites [37, Thm 2.1]] For convex subtrahend Z_s, Z_m ⊖ Z_s = ⋂_{v^(i)∈V} (Z_m - v^(i)) over the vertices V of Z_s. | — |
+| `Lemma 1` | (Minkowski Difference from Finitely Many Intersections) [cites [37, Thm 2.1]] For convex subtrahend Z_s, Z_m ⊖ Z_s = ⋂_{v^(i)∈V} (Z_m - v^(i)) over the vertices V of Z_s. | [`MinkowskiDiffEqIInter.lean`](../../src/CORALean/ContSet/ContSet/Theorems/MinkowskiDiffEqIInter.lean) — at any `V` whose convex hull covers `Z_s`, the paper's vertex set being one such `V`, and nothing here needs `V` finite. Convexity is asked of the **minuend**, not, as printed, of the subtrahend: the hull argument runs on `{z \| x + z ∈ Z_m}`, and `Z_s` convex is neither used nor implied |
 | `Thm. 1` | (Minkowski Difference from Generators) For zonotopes Z_m, Z_s, Z_m ⊖ Z_s can be computed by a recursive procedure using only the generators of Z_s: Z_int^(1) = Z_m - c^(s), Z_int^(i+1) = (Z_int^(i)+g^(s,i)) ∩ (Z_int^(i)-g^(s,i)), giving Z_m⊖Z_s = Z_int^(p_s+1). | [`MinkDiffGenRecExact.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/MinkDiffGenRecExact.lean) |
-| `Def. 2` | (n-dimensional cross product) [cites [47]] For n-1 vectors h^(i) stored in H, nX(H) = [det(H^[1]), -det(H^[2]), ..., (-1)^{n+1}det(H^[n])]^T, where H^[i] is H with row i removed. | — |
+| `Def. 2` | (n-dimensional cross product) [cites [47]] For n-1 vectors h^(i) stored in H, nX(H) = [det(H^[1]), -det(H^[2]), ..., (-1)^{n+1}det(H^[n])]^T, where H^[i] is H with row i removed. | [`CrossProduct.lean`](../../src/CORALean/Global/CrossProduct.lean) — at `Mat ℝ (n+1) n`, the printed `Mat ℝ n (n-1)` with the ambient dimension named as a successor so that dropping a row needs no truncated subtraction; the printed sign `(-1)^{i+1}` counts rows from one and is `(-1)^i` at a zero-based index. The same file proves what makes it a normal vector, `nX(H)` annihilating every column of `H` |
 | `Thm. 2` | (H-Representation of Zonotopes) [cites [10, Thm. 7]] Gives the halfspace representation Cx≤d of a zonotope (c,G) with p independent generators, using the normalized cross products nX of combinations of generators for C, and Δd = Σ\|C+g^(υ)\| for the offset. | — |
 | `Lemma 2` | (H-Representation of Intersection of Translated Zonotopes) For Z_o=(c-h,G) and Z_t=(c+h,G), the halfspace representation of Z_o∩Z_t has the same C matrix as Thm. 2 but a d vector adjusted by Δd_trans = \|C+h\|. | — |
 | `Thm. 3` | (H-Representation of the Minkowski Difference) For zonotopes Z_m=(c^(m),G^(m)) and Z_s=(c^(s),G^(s)), gives the halfspace representation Cx≤d of Z_m⊖Z_s, with the same C matrix as Thm. 2 and d adjusted by both Δd and Δd_trans. | n/a — deliberately done differently: the halfspace route is sound only for the minuend's own facet normals, and the scaling it needs is a pseudoinverse solution nothing checks. See `Zonotope Minkowski difference` in [FINDINGS.md](../../FINDINGS.md) |
 | `Prop. 1` | (Zonotopes are not closed under Minkowski difference) Gives an explicit 3D counterexample zonotope pair Z_m, Z_s for which Z_m⊖Z_s is not itself a zonotope. | — |
 | `Prop. 2` | (Generator removal) Gives a necessary-and-sufficient combinatorial condition (a sum of indicator terms equal to 2·C(p_m-1,n-2)) for the i-th generator of the minuend Z_m to be droppable without affecting Z_m⊖Z_s; states the O(C(p_m,n-1)·p_m²) complexity of checking this. | — |
-| `Thm. 4` | (Under-Approximative G-Representation of the Minkowski Difference) Gives an under-approximating generator representation (ĉ,Ĝ) of Z_m⊖Z_s, with ĉ=c^(m)-c^(s) and Ĝ=Ĝ^(m)μ*, μ* the solution of an LP maximizing ζ^Tμ subject to Âμ≤b̂, μ≥0. | — |
-| `Thm. 5` | (Over-Approximative G-Representation of the Minkowski Difference) Gives an over-approximating generator representation (c̃,G̃) analogous to Thm. 4, with μ* solving a differently-signed LP (minimizing ζ^Tμ subject to -Âμ≤-b̃, μ≥0). | — |
+| `Thm. 4` | (Under-Approximative G-Representation of the Minkowski Difference) Gives an under-approximating generator representation (ĉ,Ĝ) of Z_m⊖Z_s, with ĉ=c^(m)-c^(s) and Ĝ=Ĝ^(m)μ*, μ* the solution of an LP maximizing ζ^Tμ subject to Âμ≤b̂, μ≥0. | [`MinkDiffStretchInner.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/MinkDiffStretchInner.lean), the representation itself [`MinkDiffStretch.lean`](../../src/CORALean/ContSet/Zonotope/Real/Operations/MinkDiffStretch.lean) — inner, as `MinkDiff` obliges. Two departures. `μ` is any point feasible for `Âμ ≤ b̂`, not (15)'s optimum: `ζ` is "a user-specified vector" and the objective picks among feasible `μ` without carrying the guarantee, so an optimum is a tightening and not a soundness condition. And the premise the printed proof takes from `Thm. 2` — that the directions `C` *describe* the minuend rather than only enclose it — is an explicit hypothesis here, since that row is `—`; any exact halfspace description discharges it, and no facet enumeration is needed to say so. `Ĝ^(m)` is `G^(m)` with no generator removal, which is what the paper's own HC-u runs |
+| `Thm. 5` | (Over-Approximative G-Representation of the Minkowski Difference) Gives an over-approximating generator representation (c̃,G̃) analogous to Thm. 4, with μ* solving a differently-signed LP (minimizing ζ^Tμ subject to -Âμ≤-b̃, μ≥0). | [`MinkDiffStretchOuter.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/MinkDiffStretchOuter.lean) over the same [`MinkDiffStretch.lean`](../../src/CORALean/ContSet/Zonotope/Real/Operations/MinkDiffStretch.lean) — outer, and recorded only here: `Thm. 4`'s row is the inner one and neither stands in for the other. `b̃` is a parameter with the one property (18) is wanted for, that it bounds the exact difference in each direction; [`MinkowskiDiffApplyLe.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/MinkowskiDiffApplyLe.lean) proves `Δd - Δd_trans` is such a `b̃` — the most conservative admissible one, which is why (18) may lower it. Same `Thm. 2` premise as `Thm. 4`, read at the stretched minuend |
 | `Prop. 3` | For C⊆A, {a+b \| a⊕C⊆A, b∈B} ⊆ {a+b \| a+b⊕C⊆A⊕B} — a general set-enclosure monotonicity lemma used in later proofs about combining Minkowski differences and sums. | [`MinkowskiDiffAddSubsetAdd.lean`](../../src/CORALean/ContSet/ContSet/Theorems/MinkowskiDiffAddSubsetAdd.lean) — proved without the printed `C ⊆ A` hypothesis, which neither the paper's proof nor ours uses; `Prop. 4` keeps it in its signature for fidelity to the printed statement |
 | `Prop. 4` | For Z_{m,encl}⊇Z_s, (Z_{m,encl}⊖Z_s)⊕Z_{m,rem} ⊆ (Z_{m,encl}⊕Z_{m,rem})⊖Z_s — a distributivity-type inclusion relating Minkowski difference/sum when the minuend is split into an enclosing part and a remainder. | [`MinkowskiDiffEnclSubsetAdd.lean`](../../src/CORALean/ContSet/ContSet/Theorems/MinkowskiDiffEnclSubsetAdd.lean) |
-| `Alg. 1` | (Generator Selection for Z_m) Sorts the generators of Z_m by length and greedily adds them, comparing interval-hull (box) ratios against Z_s, to build an enclosing Z_{m,encl}⊇Z_s with as few generators as possible; used by Prop. 4. | — |
-| `Def. 3` | (Aligned zonotopes) Two zonotopes Z1=(c,g^(1),...,g^(p1)), Z2=(d,h^(1),...,h^(p2)) (each with no internally-aligned generators): Z1 is aligned with Z2 if every generator of Z2 is parallel (up to scaling) to some generator of Z1; if that holds both ways, the zonotopes are mutually aligned. | — |
+| `Alg. 1` | (Generator Selection for Z_m) Sorts the generators of Z_m by length and greedily adds them, comparing interval-hull (box) ratios against Z_s, to build an enclosing Z_{m,encl}⊇Z_s with as few generators as possible; used by Prop. 4. | [`EnclGenSel.lean`](../../src/CORALean/ContSet/Zonotope/Real/EnclGenSel.lean) — all fourteen lines, one `let` per printed step, over [`GenSelection.lean`](../../src/CORALean/ContSet/Zonotope/Real/Operations/GenSelection.lean)'s `(c, g_sort^(1..ξ))`. Three departures, all in the findings below: lines 6 and 9 are one cross-multiplied test because line 4's `µ ← inf` is no real number, `sort` ranks by the squared length rather than `‖·‖₂`, and line 11's containment test is the caller's `encloses`. What holds whatever that oracle answers is [`EnclGenSelSubset.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/EnclGenSelSubset.lean), `Z_{m,encl} ⊆ Z_m` — the enclosure `Z_{m,encl} ⊇ Z_s` is the oracle's claim and is not proved here |
+| `Def. 3` | (Aligned zonotopes) Two zonotopes Z1=(c,g^(1),...,g^(p1)), Z2=(d,h^(1),...,h^(p2)) (each with no internally-aligned generators): Z1 is aligned with Z2 if every generator of Z2 is parallel (up to scaling) to some generator of Z1; if that holds both ways, the zonotopes are mutually aligned. | [`Aligned.lean`](../../src/CORALean/ContSet/Zonotope/Real/Aligned.lean) — `AlignedWith`, `MutuallyAligned`, and the standing "no internally-aligned generators" assumption as `NoAlignedGens`, which is a normalization of each operand and so is not a hypothesis of the relation. The scaling γ is unconstrained, exactly as printed; that `minkDiffAligned`'s index-for-index pairing is a witness for it is [`AlignedWithOfSmul.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/AlignedWithOfSmul.lean) |
 | `Prop. 5` | (Minkowski difference for aligned generators) If Z_m is aligned with Z_s (γ_i g^(m,i) = g^(s,i) for i=1..p_s after reordering), then Z_m⊖Z_s is computed exactly as (c^(m)-c^(s), g^(m,1)-g^(s,1), ..., g^(m,ps)-g^(s,ps), g^(m,ps+1), ..., g^(m,pm)). | [`MinkDiffAlignedExact.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/MinkDiffAlignedExact.lean), the closed form itself [`MinkDiffAligned.lean`](../../src/CORALean/ContSet/Zonotope/Real/Operations/MinkDiffAligned.lean) — proved with the alignment factor confined to `0 ≤ γ_i ≤ 1`, which the printed statement does not ask for and is false without (see the findings below), and at equal generator counts (`Z₁.h = Z₂.h`; the printed statement allows `p_s ≤ p_m`, padding `Z_s` with zero generators — `μ = 0` is allowed — recovers it) |
 | `Prop. 6` | (Minkowski difference of two-dimensional zonotopes) Gives a closed-form zonotope (c^(m)-c^(s), Ĝ^(m)\|Ĉ+Ĝ^(m)\|^{-1}(Δd̂-Δd̂_trans)) for the Minkowski difference of two 2-dimensional zonotopes (exact, since the 2D case is always aligned/tractable). | — |
 
@@ -56,3 +77,18 @@ of shortening it. Formalized with `0 ≤ γ_i ≤ 1`, which is exactly where the
 `(Z_m ⊖ Z_s) ⊕ Z_s = Z_m` step holds, `|1 - γ_i| + |γ_i|` being `1` there and more
 elsewhere.
 [`MinkDiffAlignedNotInner.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/MinkDiffAlignedNotInner.lean)
+
+**`Alg. 1` — line 4's `µ ← inf` is not a real number, and line 11's test is printed the
+wrong way round.** Two transcription departures, neither optional. Line 4 initializes `µ`
+to infinity precisely because line 2 sets `r_sel = 0` and line 9's `maxᵢ r_{s,i}/r_{sel,i}`
+is then a division by zero; over ℝ, `0/0 = 0`, which would stop the loop at once instead of
+entering it. Lines 6 and 9 are therefore one cross-multiplied test, `µ̄ · r_{sel,i} <
+r_{s,i}`, which is total, agrees with the ratio wherever the ratio is defined, and reads
+`r_sel = 0` as the intended infinity. Line 11 as printed loops `while Z_s ⊃ (c_s,
+g_sort^(1..ξ))` — while the *subtrahend* strictly contains the selection — and leaving on
+the negation of that gives `Z_s ⊉ selection`, which is not the enclosure the line exists to
+establish. The prose above the listing says what is meant: "Afterwards, more generators are
+added in case Z_{m,encl} ⊉ Z_s". That is what is transcribed. The sort key is a third,
+harmless one: generators are ranked by `∑ₖ gₖ²` rather than `‖·‖₂`, the same order without
+a square root.
+[`EnclGenSel.lean`](../../src/CORALean/ContSet/Zonotope/Real/EnclGenSel.lean)
