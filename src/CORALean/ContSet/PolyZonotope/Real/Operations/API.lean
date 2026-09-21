@@ -17,11 +17,13 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.Dependent
 import CORALean.ContSet.PolyZonotope.Real.Operations.Point
 import CORALean.ContSet.PolyZonotope.Real.Operations.OfPoint
 import CORALean.ContSet.PolyZonotope.Real.Operations.SubsetAt
+import CORALean.ContSet.PolyZonotope.Real.Operations.EvalOn
 import CORALean.ContSet.PolyZonotope.Real.Operations.SupportBound
 import CORALean.ContSet.PolyZonotope.Real.Operations.MaxExp
 import CORALean.ContSet.PolyZonotope.Real.Operations.GetSubsetE
 import CORALean.ContSet.PolyZonotope.Real.Operations.GetSubsetG
 import CORALean.ContSet.PolyZonotope.Real.Operations.GetSubset
+import CORALean.ContSet.PolyZonotope.Real.Operations.PlusBox
 import CORALean.ContSet.PolyZonotope.Real.Operations.ExtG
 import CORALean.ContSet.PolyZonotope.Real.Operations.ExtE
 import CORALean.ContSet.PolyZonotope.Real.Operations.ExtM
@@ -91,6 +93,8 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.GirardSplit
 import CORALean.ContSet.PolyZonotope.Real.Operations.ReduceGirard
 import CORALean.ContSet.PolyZonotope.Real.Operations.ReduceGirardDependent
 import CORALean.ContSet.PolyZonotope.Real.Operations.Reduce
+import CORALean.ContSet.PolyZonotope.Real.Operations.ReduceBox
+import CORALean.ContSet.PolyZonotope.Real.Operations.PostBox
 import CORALean.ContSet.PolyZonotope.Real.Operations.Restructure
 import CORALean.ContSet.PolyZonotope.Real.Operations.RestructureReduce
 import CORALean.ContSet.PolyZonotope.Real.Operations.ReduceDependent
