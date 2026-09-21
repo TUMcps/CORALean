@@ -8,6 +8,7 @@ import CORALean.Global.Sort
 import CORALean.Global.Block
 import CORALean.Global.Corners
 import CORALean.Global.DropIdx
+import CORALean.Global.FoldInduction
 import CORALean.Global.CrossProduct
 import CORALean.Global.Cost
 import CORALean.Global.BoxDiameter
@@ -35,7 +36,8 @@ import CORALean.Global.LinProg.API
 
 What both arithmetic layers share: the array types, the scalar they compute in,
 index partitions, the sort that chooses them, the enumeration of every index but
-one, the `n`-dimensional cross product that enumeration builds, the entrywise
+one, the induction principle carrying a property through a `Fin.foldl`, the
+`n`-dimensional cross product that enumeration builds, the entrywise
 product bundled as a bilinear map, the corner combinatorics a
 box needs, the model every asserted running cost is stated against, the width of
 the tightest box over a set and the origin-centred Euclidean radius of that box

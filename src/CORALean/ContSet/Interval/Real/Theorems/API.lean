@@ -11,6 +11,7 @@ import CORALean.ContSet.Interval.Real.Theorems.PlusExact
 import CORALean.ContSet.Interval.Real.Theorems.MinkDiffInner
 import CORALean.ContSet.Interval.Real.Theorems.MinkDiffExact
 import CORALean.ContSet.Interval.Real.Theorems.MulBetweenEndpoints
+import CORALean.ContSet.Interval.Real.Theorems.DivBetweenEndpoints
 import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
 import CORALean.ContSet.Interval.Real.Theorems.LinCombOuter
 import CORALean.ContSet.Interval.Real.Theorems.MemCenter
@@ -42,9 +43,9 @@ that has to commit to a value. `RecentreZeroMem`/`RecentreSubMem` need that
 same nonemptiness to place the origin, a crossed box denoting `∅` instead.
 `MtimesIsNonempty` is why an image box needs no hypothesis before it is used
 as one. `MtimesWidth` is how far apart its bounds are, for an error tolerance.
-`MulBetweenCorners` is the scalar fact `mtimes*` products against an interval
-matrix share, and `MatMulOuter` is its use on `matMul`, an enclosure and not an
-equality since a product entry's `k`-summands are bounded independently.
+`DivBetweenEndpoints` solves `MulBetweenEndpoints` back for the point. `MulBetweenCorners` is
+the scalar fact `mtimes*` products against an interval matrix share, and `MatMulOuter` is its
+use on `matMul`, an enclosure since a product's `k`-summands bound independently.
 `MatMulSymmPoint` is the case that loses nothing: a symmetric left factor
 against a point right one collapses to `|M|` scaled by the radius. `MatPowOuter`
 lifts the general bound along `matPow`'s recursion, growing the same dependency

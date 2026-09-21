@@ -26,6 +26,7 @@ import CORALean.ContSet.ConZonotope.Real.Theorems.IneqsContainsIff
 import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsIsGreatestIneqs
 import CORALean.ContSet.ConZonotope.Real.Theorems.InterIneqsNonemptyIff
 import CORALean.ContSet.ConZonotope.Real.Theorems.IntersectHalfspaceExact
+import CORALean.ContSet.ConZonotope.Real.Theorems.TightenOuter
 
 /-!
 # What `ConZonotope` guarantees
@@ -43,12 +44,12 @@ same way it discharges the generator sum. `IsAffineImageIff` is the representati
 characterized: exactly the bounded affine images of a polytope, `ConstructEqImage` and
 `HPolytope`'s own conversion read as the two halves of one iff. `IntersectsHyperplaneIff` reads
 `convex_construct` as a hyperplane test.
-
 `ConstructFoldlIntersectionEq` reads `intersection_exact` along a fold: any finite conjunction of
 constrained-zonotope memberships is itself one. `MinkDiffVExact` is that fold applied to a zonotope
 translated by a polytope's vertices — Prop. 6, an equality rather than an enclosure.
-
 `IneqsContainsIff` and `InterIneqsNonemptyIff` are the containment and intersection checks a
 specification asks for, each an equivalence with one linear program's optimum, taken as a
 hypothesis as the paper's own `max`/`min` do; `ExistsIsGreatestIneqs` supplies the first.
+`TightenOuter` is `tighten`'s soundness, Algorithm 1's own guarantee and what `Thm. 2` draws
+its `E_k` from.
 -/
