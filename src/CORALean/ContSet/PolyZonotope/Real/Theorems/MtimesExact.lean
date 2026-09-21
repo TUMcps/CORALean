@@ -4,14 +4,22 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.MapExact
 /-!
 # A matrix times a polynomial zonotope is exact
 
+The result is [1, Prop. 8].
+
 `map_exact` at `A *ᵥ ·`, which is the case reachability runs. The exponent
 matrix never enters: the monomials are scalars, so a linear map of the ambient
 space cannot touch them.
+
+## References
+
+* [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set
+      Representation for Reachability Analysis". IEEE Transactions on Automatic
+      Control, 2021.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   04-September-2026
+-- Last update:   21-September-2026
 -- Last revision: ---
 
 
