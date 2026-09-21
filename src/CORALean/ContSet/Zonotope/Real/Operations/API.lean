@@ -1,4 +1,5 @@
 import CORALean.ContSet.Zonotope.Real.Operations.GenMap
+import CORALean.ContSet.Zonotope.Real.Operations.GenSelection
 import CORALean.ContSet.Zonotope.Real.Operations.Map
 import CORALean.ContSet.Zonotope.Real.Operations.LinMtimes
 import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
@@ -36,6 +37,7 @@ import CORALean.ContSet.Zonotope.Real.Operations.Reduce
 import CORALean.ContSet.Zonotope.Real.Operations.ReduceBox
 import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffAligned
 import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffRep
+import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffStretch
 import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffOrEmpty
 import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffGenRec
 import CORALean.ContSet.Zonotope.Real.Operations.Shift
