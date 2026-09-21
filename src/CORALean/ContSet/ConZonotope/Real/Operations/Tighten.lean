@@ -1,0 +1,45 @@
+import CORALean.ContSet.ConZonotope.Real.Operations.TightenRow
+import CORALean.Global.FoldInduction
+
+/-!
+# `ConZonotope.tighten`
+
+[1]'s Algorithm 1: the coefficient box `B∞(A,b) = {ξ | Aξ = b, ‖ξ‖∞ ≤ 1}` of a
+constrained zonotope `Zc = {G,c,A,b}` is not itself a box, but every row of `Aξ = b`
+tightens one further, and running every row once — the way Gauss-Jordan elimination
+does — gives an interval enclosure of it. `Thm. 2`'s `E_k` and `R_{r,c}` (eq. 12) are
+what a single pass buys.
+
+The paper's own outer refinement — running Algorithm 1 again on its own output — is a
+separate procedure `Thm. 2` does not ask for and is not formalized here.
+
+## References
+
+* [1] V. Raghuraman and J. P. Koeln. "Set operations and order reductions for
+      constrained zonotopes". Automatica, 139:110204, 2022. arXiv:2009.06039.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       21-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- [1, Alg. 1]: the interval enclosure of the feasible coefficient box `B∞(A,b)`, one
+coordinate tightened at a time by every row of `Aξ = b` in turn. -/
+noncomputable def ConZonotope.tighten {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc) :
+    Interval (Vec ℝ ng) :=
+  let E₀ : Interval (Vec ℝ ng) := ⟨fun _ => -1, fun _ => 1⟩                  -- 1. Ej ← [-1,1]
+  Fin.foldl nc (fun E i => ConZonotope.tightenRow A b i E) E₀                -- 1, 9-10: i ← 1..nc
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
