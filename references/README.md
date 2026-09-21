@@ -48,14 +48,14 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Note on the derivatives with respect to a parameter of the solutions of a system of differential equations](1919/gronwall-annals-derivatives.md) | Gronwall | Annals of Mathematics, 20(4):292-296 | 1919 | 🟢 0/0 \| 6 |
 | [An embedding theorem for spaces of convex sets](1952/radstrom-embedding.md) | Rådström | Proc. Amer. Math. Soc. 3, pp. 165-169 | 1952 | ⚪ 0/0 \| 0 |
 | [A state bounding observer based on zonotopes](2003/combastel-ecc-state-bounding-observer.md) | Combastel | ECC | 2003 | 🟢 5/5 \| 1 |
-| [Reachability Analysis and its Application to the Safety Assessment of Autonomous Cars](2010/althoff-thesis.md) | Althoff | PhD thesis, TU München | 2010 | 🟢 33/33 \| 3 |
+| [Reachability Analysis and its Application to the Safety Assessment of Autonomous Cars](2010/althoff-thesis.md) | Althoff | PhD thesis, TU München | 2010 | 🟢 34/34 \| 2 |
 | [Analyzing Reachability of Linear Dynamic Systems with Parametric Uncertainties](2011/althoff-reachability-parametric-uncertainties.md) | Althoff, Krogh, Stursberg | In A. Rauh and E. Auer (eds.), Modeling, Design, and Simulation of Systems with Uncertainties, Springer | 2011 | 🟡 2/4 \| 0 |
 | [Reachability Analysis of Nonlinear Systems using Conservative Polynomialization and Non-Convex Sets](2013/althoff-hscc-conservative-polynomialization.md) | Althoff | HSCC | 2013 | 🟡 4/6 \| 2 |
 | [On Computing the Minkowski Difference of Zonotopes](2015/althoff-arxiv-minkowski-difference.md) | Althoff | arXiv | 2015 | 🟡 4/15 \| 2 |
 | [Semi-Supervised Classification with Graph Convolutional Networks](2017/kipf-iclr-gcn.md) | Kipf, Welling | ICLR | 2017 | 🟢 1/1 \| 4 |
-| [Utilizing Dependencies to Obtain Subsets of Reachable Sets](2020/kochdumper-hscc-utilizing-dependencies.md) | Kochdumper, Schürmann, Althoff | HSCC | 2020 | 🟢 11/11 \| 4 |
+| [Utilizing Dependencies to Obtain Subsets of Reachable Sets](2020/kochdumper-hscc-utilizing-dependencies.md) | Kochdumper, Schürmann, Althoff | HSCC | 2020 | 🟡 9/11 \| 4 |
 | [Adaptive parameter tuning for reachability analysis of linear systems](2020/wetzlinger-cdc-adaptive-tuning.md) | Wetzlinger, Kochdumper, Althoff | CDC, pp. 5145–5152 | 2020 | 🟢 12/12 \| 1 |
-| [Sparse Polynomial Zonotopes: A Novel Set Representation for Reachability Analysis](2021/kochdumper-tac-sparse-polyzonotopes.md) | Kochdumper, Althoff | IEEE Transactions on Automatic Control | 2021 | 🟢 21/21 \| 6 |
+| [Sparse Polynomial Zonotopes: A Novel Set Representation for Reachability Analysis](2021/kochdumper-tac-sparse-polyzonotopes.md) | Kochdumper, Althoff | IEEE Transactions on Automatic Control | 2021 | 🟡 20/21 \| 6 |
 | [Adaptive Parameter Tuning for Reachability Analysis of Nonlinear Systems](2021/wetzlinger-hscc-adaptive-tuning-nonlinear.md) | Wetzlinger, Kulmburg, Althoff | HSCC | 2021 | 🟢 5/5 \| 1 |
 | [Open- and Closed-Loop Neural Network Verification using Polynomial Zonotopes](2022/kochdumper-arxiv-nn-polyzono.md) | Kochdumper et al. | arXiv:2207.02715 | 2022 | 🟢 4/4 \| 3 |
 | [Set operations and order reductions for constrained zonotopes](2022/raghuraman-koeln-constrained-zonotopes.md) | Raghuraman, Koeln | Automatica, 139:110204 | 2022 | 🟡 3/8 \| 9 |
