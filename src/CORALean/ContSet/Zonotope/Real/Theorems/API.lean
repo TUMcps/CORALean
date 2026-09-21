@@ -38,6 +38,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.MatMulRightExact
 import CORALean.ContSet.Zonotope.Real.Theorems.MatPowOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
 import CORALean.ContSet.Zonotope.Real.Theorems.MethCVolumeLe
+import CORALean.ContSet.Zonotope.Real.Theorems.QuadTaylorOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.AlignedWithOfSmul
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedExact
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedInner
@@ -111,8 +112,8 @@ import CORALean.ContSet.Zonotope.Real.Theorems.SupportBoundAttained
 
 `plus` and `map` exactly, `reduce` and the interval hull as enclosures, plus what a set-valued
 integral needs. `MemConstruct` reads membership coordinatewise, `Coefficient` holds the proof
-devices the float layer shares. `BilinOuter` and `MtimesMatZonotopeOuter` are a matrix zonotope on
-a set, never exact; `OfPointMem`, `Recentre` and `AbsMaxOfPoint` are what those classes ask.
+devices the float layer shares; `BilinOuter`, `MtimesMatZonotopeOuter`, `QuadTaylorOuter` are a
+matrix zonotope on a set, never exact — `OfPointMem`/`Recentre`/`AbsMaxOfPoint` are what those ask.
 `MinkDiffAlignedInner` and `MinkDiffRepInner` run the reverse, at aligned and at represented
 generators; `MinkDiffAlignedOuter` closes the first to `MinkDiffAlignedExact`, whose scaling
 `MinkDiffAlignedNotInner` holds to `[0, 1]` and whose pairing `AlignedWithOfSmul` reads back as the

@@ -87,6 +87,7 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolySortExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolySortSorted
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceByOuter
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceByEvalOn
+import CORALean.ContSet.PolyZonotope.Real.Theorems.DropIndepStretchOuter
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceGirardOuter
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceGirardDependentOuter
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceDependentOuter
