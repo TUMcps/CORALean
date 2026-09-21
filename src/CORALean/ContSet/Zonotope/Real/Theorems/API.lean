@@ -16,6 +16,8 @@ import CORALean.ContSet.Zonotope.Real.Theorems.ContinuousAffine
 import CORALean.ContSet.Zonotope.Real.Theorems.Convex
 import CORALean.ContSet.Zonotope.Real.Theorems.EnclGenSelSubset
 import CORALean.ContSet.Zonotope.Real.Theorems.ExistsAutoTuneSetOrder
+import CORALean.ContSet.Zonotope.Real.Theorems.FaceCentrallySymmetric
+import CORALean.ContSet.Zonotope.Real.Theorems.GenRemovableIff
 import CORALean.ContSet.Zonotope.Real.Theorems.HRepEq
 import CORALean.ContSet.Zonotope.Real.Theorems.HRepInterEq
 import CORALean.ContSet.Zonotope.Real.Theorems.HRepLinSubset
@@ -48,10 +50,12 @@ import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffGenRecExact
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffOrEmptyInner
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffOrEmptyNeEmpty
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffStretchInner
+import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffStretchEq
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffStretchOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffRepInner
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffScaledInner
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkowskiDiffApplyLe
+import CORALean.ContSet.Zonotope.Real.Theorems.MinkowskiDiffNotZonotope
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkowskiDiffReduceByBoxInner
 import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 import CORALean.ContSet.Zonotope.Real.Theorems.MtimesIntervalMatOuter
