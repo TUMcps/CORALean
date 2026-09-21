@@ -8,6 +8,7 @@ import CORALean.ContDynamics.NonlinearSys.NonlinearSys
 import CORALean.ContDynamics.NonlinearSys.Operations.API
 import CORALean.ContDynamics.NonlinearSys.OptDeltat
 import CORALean.ContDynamics.NonlinearSys.PolyAbstractionError
+import CORALean.ContDynamics.NonlinearSys.PolyReach
 import CORALean.ContDynamics.NonlinearSys.ReachSet
 import CORALean.ContDynamics.NonlinearSys.Theorems.API
 import CORALean.ContDynamics.NonlinearSys.TuneAbstrOrder
@@ -24,13 +25,13 @@ given and the loop that re-linearizes, `ReachSet` is the set the flow actually
 reaches, and `Theorems` shows a confined run is a run of the linear system,
 chains the steps, and restates both on that set rather than on a run.
 
-`PolyAbstractionError` is the same certificate for CORA's `alg = 'poly'`: the
-error is a polynomial in the factors the initial set is written in rather than a
-set around it, so splitting the set splits the error too.
+`PolyAbstractionError` is the same certificate for CORA's `alg = 'poly'`: a polynomial in the
+initial set's own factors rather than a set around it, so splitting the set splits the error too.
 
 `AbstrReach` is the on-the-fly abstraction loop and `AdaptReach` the adaptively-tuned step on it,
 with `OptDeltat`, `EstimateGain` and `TuneAbstrOrder` its subroutines; `CentreAbstrReach` is the
-earlier paper's same loop at the centre, and `TuneDeltat` its own tuning of the step.
+earlier paper's same loop at the centre, `PolyReach` the HSCC'13 original it descends from, and
+`TuneDeltat` its own tuning of the step.
 
 What CORA obtains from an interval Hessian is asked for as a certificate
 instead, so how the abstraction error was computed is outside the trusted base.

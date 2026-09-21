@@ -87,6 +87,8 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolySortP
 import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolySort
 import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolySortFactorCount
 import CORALean.ContSet.PolyZonotope.Real.Operations.DropRadius
+import CORALean.ContSet.PolyZonotope.Real.Operations.DropIndepMat
+import CORALean.ContSet.PolyZonotope.Real.Operations.DropIndepStretch
 import CORALean.ContSet.PolyZonotope.Real.Operations.ReduceBy
 import CORALean.ContSet.PolyZonotope.Real.Operations.GirardMetric
 import CORALean.ContSet.PolyZonotope.Real.Operations.GirardSplit

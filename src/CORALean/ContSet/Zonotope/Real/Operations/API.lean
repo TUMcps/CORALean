@@ -14,6 +14,7 @@ import CORALean.ContSet.Zonotope.Real.Operations.Bilin
 import CORALean.ContSet.Zonotope.Real.Operations.MtimesMatZonotope
 import CORALean.ContSet.Zonotope.Real.Operations.MatMul
 import CORALean.ContSet.Zonotope.Real.Operations.MatPow
+import CORALean.ContSet.Zonotope.Real.Operations.QuadTaylor
 import CORALean.ContSet.Zonotope.Real.Operations.PairSum
 import CORALean.ContSet.Zonotope.Real.Operations.PairDiff
 import CORALean.ContSet.Zonotope.Real.Operations.LinComb
@@ -49,8 +50,8 @@ import CORALean.ContSet.Zonotope.Real.Operations.SupportBound
 
 Only `reduce` bounds the generator count; the others grow it freely. `bilin` and `mtimesMatZonotope`
 are a matrix zonotope acting on a set, at any bilinear map and at `Matrix.mulVecBilin` respectively;
-`matMul` is the same at matrix multiplication, which is what `matPow` iterates. `ofPoint` and
-`recentre` are a point and the origin-holding remainder, what `OfPoint` and `Recentre` ask for.
+`matMul` is the same at matrix multiplication, `matPow` iterates it and `quadTaylor` sums into
+Prop. 3's Taylor term; `ofPoint`/`recentre` are a point and the origin-holding remainder.
 `minkDiffAligned` is CORA's exact aligned-generator case of `minkDiff`, the only one not needing an
 enclosure, and `minkDiffRep` is the general one, at a generator representation the caller offers and
 this checks. `minkDiffOrEmpty` is that one again with the candidate chosen here rather than by the
