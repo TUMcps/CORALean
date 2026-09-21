@@ -1,3 +1,4 @@
+import CORALean.ContSet.Zonotope.Real.Operations.FacetNormal
 import CORALean.ContSet.Zonotope.Real.Operations.GenMap
 import CORALean.ContSet.Zonotope.Real.Operations.GenSelection
 import CORALean.ContSet.Zonotope.Real.Operations.Map

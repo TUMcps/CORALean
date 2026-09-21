@@ -21,6 +21,8 @@ import CORALean.Global.EuclideanHausdorffDistTriangle
 import CORALean.Global.EuclideanGenOpNorm
 import CORALean.Global.Radstrom
 import CORALean.Global.Caratheodory
+import CORALean.Global.ConeEdge
+import CORALean.Global.EqSmulNCross
 import CORALean.Global.Minimax
 import CORALean.Global.SuperlinearDecrease
 import CORALean.Global.ErrorConvergesToZero

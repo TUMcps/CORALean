@@ -1,0 +1,46 @@
+import CORALean.Global.CrossProduct
+import CORALean.ContSet.Zonotope.Real.Zonotope
+
+/-!
+# One row of [1, Thm. 2]'s `C`
+
+The normal the theorem attaches to a choice of `n` generators out of `p`: their
+`n`-dimensional cross product, [1, Def. 2]'s `nX`, taken at the matrix holding
+those generators as columns.
+
+Unnormalized, where the printed `C⁽ⁱ⁾ = nX(...)ᵀ / ‖nX(...)‖₂` divides by the
+length. A halfspace is unchanged by scaling its normal and its offset together,
+and `Δd = ∑ |C G⁽ᵘ⁾|` scales with `C`, so the two describe the same set; the
+norm is there to make the rows comparable, which nothing here needs.
+
+The `2·C(p, n-1)` rows of the printed `C` are these `C(p, n-1)` normals and
+their negatives, which is why every statement over them takes an absolute value.
+
+## References
+
+* [1] M. Althoff. "On Computing the Minkowski Difference of Zonotopes".
+      arXiv, 2015.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       18-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- [1, Thm. 2]'s normal at the `n` generators `S` selects: their cross product. -/
+def Zonotope.facetNormal {n : ℕ} (Z : Zonotope (Vec ℝ (n + 1))) (S : Fin n → Fin Z.h) :
+    Vec ℝ (n + 1) :=
+  nCross (Matrix.of fun i j => Z.G (S j) i)
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
