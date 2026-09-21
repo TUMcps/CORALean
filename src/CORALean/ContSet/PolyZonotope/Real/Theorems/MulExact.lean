@@ -4,7 +4,8 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinExact
 /-!
 # `mul` is exactly the product over shared factors
 
-The result is [1, Prop. 8].
+At one dimension, this is [1, Prop. 2.9], the same reading `Mul.lean` gives the
+operation itself; `mul` and this exactness proof generalize it coordinatewise.
 
 `bilin_exact` at the entrywise product, which is what `mul` is.
 
@@ -20,14 +21,13 @@ take no part on either side.
 
 ## References
 
-* [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set
-      Representation for Reachability Analysis". IEEE Transactions on Automatic
-      Control, 2021.
+* [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural
+      Network Verification using Sensitivity Analysis". HSCC 2023.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       05-September-2026
--- Last update:   06-September-2026
+-- Last update:   21-September-2026
 -- Last revision: ---
 
 
