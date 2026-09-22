@@ -1,3 +1,4 @@
+import CORALean.Examples.Demo.Binary64
 import CORALean.Examples.Demo.Enclose
 import CORALean.Examples.Demo.Reach
 
@@ -16,9 +17,10 @@ compares the two, so an enclosure that silently widens fails the build.
 `Dyadic` is exact integer arithmetic, so the numbers do not depend on the
 machine, the compiler or the order of anything.
 
-`LinearSysDT.reach` runs twice, at `Dyadic 24` and at the smaller
-`Dyadic CORALean.Demo.smallP`: 24 bits carries the whole run exactly, so the second run is
-the only place directed rounding is put under any load at all.
+`LinearSysDT.reach` runs three times: at `Dyadic 24` and at the smaller
+`Dyadic CORALean.Demo.smallP`, where 24 bits carries the whole run exactly and 8 does not,
+and then at native `Float`, where the numbers do depend on the machine — see
+`Demo/Binary64.lean` for what that run shows and what it assumes.
 -/
 
 -- Authors:       Tobias Ladner
@@ -36,6 +38,8 @@ def main : IO Unit := do
   IO.println (CORALean.Demo.reachReport 24)
   IO.println ""
   IO.println (CORALean.Demo.reachReport CORALean.Demo.smallP)
+  IO.println ""
+  IO.println CORALean.Demo.reachReportBinary64
   IO.println ""
   IO.println CORALean.Demo.encloseReport
 

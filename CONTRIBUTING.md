@@ -232,7 +232,8 @@ out, that no file imports its own directory's collector, that no `Real` file
 reaches into `Float`, that a file under `Real/` or `Float/` declares the
 namespace its directory claims, that every file carries a module docstring and
 — unless it is a collector — a well-formed author block one line under it, that
-nothing is `sorry`, `axiom` or a search tactic, that every `maxHeartbeats` bump
+nothing is `sorry` or a search tactic, that nothing outside the one file named
+in the script is an `axiom`, that every `maxHeartbeats` bump
 carries a reason, that a `def` under `Cost/` is named for the cost it asserts,
 that every `[N]` cited resolves, that the comment lengths and the comment
 density above are respected, and that every module is reachable from one of the
@@ -330,6 +331,9 @@ build. No theorem can do that job: `_outer` is as true of a box the size of the
 state space as of a tight one, and the only way to tell those apart is to
 compute one and look. `Dyadic` is exact integer arithmetic, so the committed
 numbers do not depend on the machine, the compiler, or the order of anything.
+The last table is the exception and is meant to be: it runs the same system at
+native binary64, where the numbers are reproducible only because IEEE 754 fixes
+every operation, and where the error box is nonzero from the first step.
 
 So: an example says the library still *fits together*; the demo says it still
 *computes, and computes tightly*. A change that loosens a bound passes every
@@ -607,6 +611,31 @@ it needs a decidable order the float scalar has and ℝ does not, or the roundin
 has a genuine design choice behind it. A real definition alone is a specification
 of something no machine runs, and it is far cheaper to refine an operation while
 its proof is still in hand than to come back to it.
+
+### Two scalars a definition can be run at
+
+`SoundFloatArithmetic` fixes no format, so the float layer has more than one
+model. `Dyadic p` is exact integer arithmetic with an unbounded exponent: every
+obligation is a theorem, nothing overflows, and a result computed there rests on
+`propext`, `Classical.choice` and `Quot.sound` and on nothing else. Native
+binary64 is Lean's `Float`, compiled to a machine double and fast — and opaque
+in the logic, so the ten obligations are bundled into one property,
+`TrustedHardware`, and assumed in one line in
+`Global/Float/Instances/Binary64/Axioms.lean` — the one file in the tree that
+may carry an `axiom`, and the one `check-conventions.sh` names. A result that
+reaches `Float` therefore reports exactly one name beyond Lean's own, and a
+verified model of binary64 would discharge it without another line changing.
+
+The assumptions are true of IEEE 754 binary64 on a run in which every value
+stays finite and nothing underflows into the subnormals. Neither restriction can
+be written into the class, whose obligations are unconditional, and neither is
+checked at runtime. Prefer `Dyadic` where the cost is bearable, reach for
+`Float` where it is not, and say which a number came from.
+
+Directed rounding is achieved without a rounding mode and without C of its own:
+the machine's round-to-nearest result is stepped one unit in the last place
+outward by an increment of its bit pattern. It costs one ulp per operation, paid
+whether or not the operation rounded, which the demo's third table shows.
 
 ## Certificates, not algorithms
 

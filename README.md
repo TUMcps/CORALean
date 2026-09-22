@@ -53,6 +53,13 @@ operation is a `def`, save the interface instantiated at ℝ itself, which is a
 specification proxy rather than a representation. Continuous-time reachability
 has no float counterpart at all; see `Examples/ReachFloat.lean` for the split.
 
+The float layer fixes no format, and the same definition runs at either of two
+scalars: `Dyadic p`, exact integer arithmetic whose soundness obligations are
+theorems, and native binary64, which is fast and whose obligations are assumed
+instead — all ten as a single `TrustedHardware` axiom in
+`Global/Float/Instances/Binary64/Axioms.lean`, the only file here that assumes
+anything. Every `Float` result carries that one name in `#print axioms`.
+
 The Minkowski difference is the exception, and worth knowing about before
 reading the interfaces: a difference is a *guarantee* — the states from which
 everything still lands where it should — so an implementation may only ever

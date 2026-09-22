@@ -72,6 +72,30 @@ OutputEq.outputSet for y = x1 + u2, as Zonotope.interval:
    4      8  [   0.458984375,    0.925781250 ]
    5      8  [   0.347656250,    0.851562500 ]
 
+== LinearSysDT.reach at native binary64 ==
+
+the same A, R0, U and order as above, every constant exact in binary64
+
+Zonotope.interval of the reachable set, nominal part and error box together:
+
+   k  gens  x1                              x2
+   0      2  [   0.874999999,    1.125000001 ] [  -0.125000001,    0.125000001 ]
+   1      4  [   0.789062499,    1.085937501 ] [  -0.023437501,    0.273437501 ]
+   2      6  [   0.693847656,    1.032714844 ] [   0.064941406,    0.403808594 ]
+   3      6  [   0.592193603,    0.967864991 ] [   0.139801025,    0.515472413 ]
+   4      6  [   0.486276626,    0.894369126 ] [   0.200616836,    0.608709336 ]
+   5      6  [   0.378096222,    0.815093399 ] [   0.247163414,    0.684160591 ]
+
+the error box alone, as an exact width per coordinate:
+
+   k                     width 1                   width 2
+   0                           0                         0
+   1    65583669573582895*2^-106  24206847997116435*2^-106
+   2    65909125015404611*2^-105  31595566135771179*2^-105
+   3    50488199557939277*2^-104  32598870496116789*2^-104
+   4    36294268947529799*2^-103  26405493295546425*2^-103
+   5    23421968225140791*2^-102  37577853209935969*2^-103
+
 == NeuralNetwork.enclose at Dyadic 24 ==
 
 affine 2 -> 3, ReLU, affine 3 -> 2, as in Examples.FeedForwardFloat
