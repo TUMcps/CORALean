@@ -30,6 +30,12 @@ MAX_DECL_DOC=3        # docstring ahead of a declaration
 MAX_LINES_WO_COMMENT=20  # a minimum density, not a maximum: proofs need signposts
 MAX_PUBLIC_DECL=1     # public declarations per `Operations/`/`Theorems/` file (#62)
 
+# The one file that may carry an `axiom`. `Float` is opaque in Lean's logic, so
+# the native binary64 backend has to assume what the hardware does; every other
+# file in the tree proves what it states, and naming the exception here is what
+# keeps it one file rather than a habit.
+AXIOM_FILE=src/CORALean/Global/Float/Instances/Binary64/Axioms.lean
+
 status=0
 
 report() {
@@ -49,7 +55,8 @@ out=$(printf '%s\n' "$files" | xargs awk \
   -v MAX_COLLECTOR_DOC="$MAX_COLLECTOR_DOC" \
   -v MAX_DECL_DOC="$MAX_DECL_DOC" \
   -v MAX_LINES_WO_COMMENT="$MAX_LINES_WO_COMMENT" \
-  -v MAX_PUBLIC_DECL="$MAX_PUBLIC_DECL" '
+  -v MAX_PUBLIC_DECL="$MAX_PUBLIC_DECL" \
+  -v AXIOM_FILE="$AXIOM_FILE" '
 BEGIN {
   CONT = "[\200-\277]"
   MONTH = "(January|February|March|April|May|June|July|August|September|October|November|December)"
@@ -499,8 +506,8 @@ FNR == 1 {
 
   if (code ~ /(^|[^A-Za-z0-9_'"'"'.])sorry([^A-Za-z0-9_'"'"']|$)/)
     say(FILENAME ":" FNR ": `sorry` — finish the proof or drop the declaration")
-  if (code ~ /^axiom[ \t]/)
-    say(FILENAME ":" FNR ": `axiom` — nothing here is axiomatised")
+  if (code ~ /^axiom[ \t]/ && FILENAME != AXIOM_FILE)
+    say(FILENAME ":" FNR ": `axiom` — only " AXIOM_FILE " axiomatises anything")
 
   # Search tactics cost compile time that nothing bounds, and the whole point of
   # the heartbeat limit in `lakefile.toml` is that a proof does not start
