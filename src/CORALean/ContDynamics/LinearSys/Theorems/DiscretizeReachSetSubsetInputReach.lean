@@ -19,14 +19,15 @@ composed with `ReachSet.lean`'s definition to reach one.
 Driven by induction on the step count: `inputReach_separation` supplies the
 one step `e^{Δt A} P^R(kΔt) + P^R(Δt) ⊆ P^R((k+1)Δt)`, and
 `expIntegral_mem_inputReach` places `stepInputConst c Δt` inside `P^R(Δt)`.
-`h0` and `hbdd` are not part of the CORA algorithm modelled; they are what
-`inputReach_separation` and the `k = 0` base case need from `U` and are exactly
-the hypotheses `InputReachMono.lean` already carries for the neighbouring fact.
+`hne` and `hbdd` are not part of the CORA algorithm modelled; they are what
+the `k = 0` base case and `inputReach_separation` need from `U`. Nonemptiness
+is all the base case needs: holding any one point of `U` over `[0, 0]` is
+admissible and contributes the empty integral, `0`.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       15-September-2026
--- Last update:   ---
+-- Last update:   23-September-2026
 -- Last revision: ---
 
 
@@ -52,12 +53,11 @@ theorem aux_exp_add (A : Mat ℝ n n) (c d : ℝ) : exp (c • A) * exp (d • A
   rw [add_smul]
   exact (exp_add_of_commute hc).symm
 
-/-- Holding the input at the origin over `[0, τ]` is admissible whenever `U`
-contains it, and contributes nothing — `InputReachMono.lean`'s own fact,
-restated file-locally since `aux_` names do not cross files. -/
-theorem aux_zero_mem_inputReach (sys : LinearSys 𝕋 n) (U : S n) (τ : ℝ)
-    (h0 : (0 : Vec ℝ n) ∈ construct U) : (0 : Vec ℝ n) ∈ sys.inputReach U τ :=
-  ⟨fun _ => 0, fun _ _ => h0, aestronglyMeasurable_const, by simp⟩
+/-- Over `[0, 0]` any admissible input contributes the empty integral, and a
+nonempty `U` has one: hold it at any of its points. -/
+theorem aux_zero_mem_inputReach_zero (sys : LinearSys 𝕋 n) (U : S n)
+    (hne : (construct U).Nonempty) : (0 : Vec ℝ n) ∈ sys.inputReach U 0 :=
+  ⟨fun _ => hne.some, fun _ _ => hne.some_mem, aestronglyMeasurable_const, by simp⟩
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -67,7 +67,7 @@ applied to a point of `R₀` plus a point of `U`'s own `kΔt`-window input reach
 — the zero-order-hold input that realises it is exhibited, not asserted. -/
 theorem LinearSys.discretize_reachSet_subset_inputReach (sys : LinearSys 𝕋 n) {Δt : ℝ}
     (hΔt : 0 < Δt) (R₀ U Ud : S n) (hbdd : Bornology.IsBounded (construct U))
-    (h0 : (0 : Vec ℝ n) ∈ construct U)
+    (hne : (construct U).Nonempty)
     (hUd : construct Ud ⊆ (fun c => sys.stepInputConst c Δt) '' construct U) (k : ℕ) :
     (sys.discretize Δt).reachSet R₀ Ud k
       ⊆ (exp (((k : ℝ) * Δt) • toRealMat sys.A)).mulVecLin '' construct R₀
@@ -77,7 +77,7 @@ theorem LinearSys.discretize_reachSet_subset_inputReach (sys : LinearSys 𝕋 n)
     intro y hy
     have hy' : y ∈ construct R₀ := by simpa [LinearSysDT.reachSet] using hy
     simp only [Nat.cast_zero, zero_mul]
-    refine ⟨y, ⟨y, hy', ?_⟩, 0, aux_zero_mem_inputReach sys U 0 h0, ?_⟩ <;> simp
+    refine ⟨y, ⟨y, hy', ?_⟩, 0, aux_zero_mem_inputReach_zero sys U hne, ?_⟩ <;> simp
   | succ k ih =>
     intro y hy
     -- the matrix part and the fresh input `d`, itself a step contribution of some `c ∈ U`

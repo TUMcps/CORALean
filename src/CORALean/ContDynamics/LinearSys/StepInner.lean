@@ -1,7 +1,9 @@
 import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
 import CORALean.ContDynamics.LinearSys.Operations.TimePointStep
 import CORALean.ContDynamics.LinearSys.StepError
+import CORALean.ContDynamics.LinearSys.StepErrorBox
 import CORALean.ContSet.Zonotope.Real.Instances
+import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffRep
 
 /-!
 # Inner approximations of a continuous step
@@ -10,11 +12,12 @@ import CORALean.ContSet.Zonotope.Real.Instances
 the ball its own error is bounded by. `StepError` names those radii, and taking
 one back off is what turns an outer approximation into an inner one.
 
-Both are `Set`s. `minkowskiDiff` is a specification and computes nothing, and
-the subtrahend here is a ball rather than a representation, so there is no
-`minkDiffRep` counterpart to pair them with — a representation of the difference
-would need the error as a zonotope, which is what `LinearSysDT.reachError`
-supplies discretely and `StepError` deliberately does not.
+Both are `Set`s: `minkowskiDiff` is a specification and computes nothing, and
+the subtrahend is a ball rather than a representation. In the supremum norm a
+ball is a box, though, and `timePointStepErrorBox` is that box as a zonotope, so
+`timePointStepInnerRep` is the time-point difference at a representation:
+`minkDiffRep` of the step by its error box, at a generator representation `M`
+the caller offers and the operation checks, `none` where it does not.
 
 Soundness never depends on the radius being tight, only on it being an upper
 bound: a larger error yields a smaller inner approximation, possibly empty, and
@@ -32,7 +35,7 @@ time-interval counterpart are where that is proved.
 
 -- Authors:       Tobias Ladner
 -- Written:       08-September-2026
--- Last update:   ---
+-- Last update:   23-September-2026
 -- Last revision: ---
 
 
@@ -64,6 +67,15 @@ noncomputable def LinearSys.timeIntervalStepInner (sys : LinearSys 𝕋 n) (r : 
     (X₀ : Zonotope (Vec ℝ n)) : Set (Vec ℝ n) :=
   minkowskiDiff (sys.timeIntervalStep (S := 𝒵) r η X₀).construct
     (Metric.closedBall (0 : Vec ℝ n) (sys.timeIntervalStepError r η X₀))
+
+/-- The step's end minus its error box, at a representation: `none` where the
+caller's generator representation `M` does not check out. -/
+noncomputable def LinearSys.timePointStepInnerRep (sys : LinearSys 𝕋 n) (r : ℝ) (η : ℕ)
+    (X₀ U : Zonotope (Vec ℝ n))
+    (M : Fin (sys.timePointStep (S := 𝒵) r η X₀ U).h →
+      Fin (sys.timePointStepErrorBox r η U).h → ℝ) :
+    Option (Zonotope (Vec ℝ n)) :=
+  (sys.timePointStep (S := 𝒵) r η X₀ U).minkDiffRep (sys.timePointStepErrorBox r η U) M
 
 end CORALean
 
