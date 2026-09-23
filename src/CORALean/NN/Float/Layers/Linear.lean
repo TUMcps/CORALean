@@ -28,7 +28,7 @@ and the nominal value its soundness commits to is the centre of what that box
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   06-September-2026
+-- Last update:   23-September-2026
 -- Last revision: ---
 
 
@@ -75,6 +75,20 @@ theorem Layer.linearWithError_sound (W : Mat 𝕋 m n) (b : Vec 𝕋 m) (E : Int
   show toRealMat W *ᵥ x + toRealVec b + E.nominal.center ∈ construct
       (plus (mtimes W s) (ofInterval (Interval.plus (Interval.point b) E)))
   rw [add_assoc]
+  exact plus_outer _ _ (Set.add_mem_add
+    (mtimes_outer W s (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hx)))
+    (ofInterval_outer _ hbox))
+
+/-- What the layer encloses at *every* value of the error, not only its centre:
+`W x + c` for any `c` within what `E` denotes of `b`. -/
+theorem Layer.linearWithError_mem (W : Mat 𝕋 m n) {b : Vec 𝕋 m} {c : Vec ℝ m}
+    {E : Interval 𝕋 m} (hc : c - toRealVec b ∈ E.construct) (s : S n) {x : Vec ℝ n}
+    (hx : x ∈ construct s) :
+    toRealMat W *ᵥ x + c ∈
+      construct ((Layer.linearWithError (S := S) W b E).enclose s) := by -- --- PROOF ---
+  have hbox : toRealVec b + (c - toRealVec b) ∈ construct (Interval.plus (Interval.point b) E) :=
+    Interval.plus_outer _ _ (Set.add_mem_add (Interval.mem_point b) hc)
+  rw [add_sub_cancel] at hbox
   exact plus_outer _ _ (Set.add_mem_add
     (mtimes_outer W s (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hx)))
     (ofInterval_outer _ hbox))

@@ -15,7 +15,8 @@ narrow every statement here for nothing.
 
 `mergeRowWeight` sums a row of `W`, in absolute value, over *every* neuron
 rather than over a bucket, since [1]'s tolerance search must pick `δ` before
-any bucket exists to sum over.
+any bucket exists to sum over. `MergeBuckets` names which of [1]'s two (Sec. 3.2)
+initialisations a layer's buckets come from; [1, Alg. 1] builds them.
 
 ## References
 
@@ -25,7 +26,7 @@ any bucket exists to sum over.
 
 -- Authors:       Tobias Ladner
 -- Written:       06-September-2026
--- Last update:   06-September-2026
+-- Last update:   23-September-2026
 -- Last revision: ---
 
 
@@ -60,6 +61,17 @@ def mergeRowWeight {n n₂ : ℕ} (W : Mat ℝ n₂ n) (i : Fin n₂) : ℝ := �
 theorem mergeRowWeight_nonneg {n n₂ : ℕ} (W : Mat ℝ n₂ n) (i : Fin n₂) :
     0 ≤ mergeRowWeight W i :=
   Finset.sum_nonneg fun k _ => abs_nonneg (W i k)
+
+/-- [1]'s two ways (Sec. 3.2) to initialise a layer's buckets: `static` at the activation's
+asymptotic values, eq. (5) — `[0, 1]` for sigmoid, `[-1, 1]` for tanh, `[0]` for ReLU — and
+`dynamic` at every neuron's own centre, eq. (6). The values are stored, so either layer runs it. -/
+inductive MergeBuckets (𝕂 : Type) where
+  | static (ys : List 𝕂)
+  | dynamic
+
+/-- `Σ_{B ∈ B_{k,δ}} |B|` for buckets given as one mask, `true` on a merged neuron: the
+buckets being disjoint, how many neurons they merge between them. -/
+def bucketed {n : ℕ} (B : Fin n → Bool) : ℕ := (Finset.univ.filter fun i => B i = true).card
 
 end CORALean
 

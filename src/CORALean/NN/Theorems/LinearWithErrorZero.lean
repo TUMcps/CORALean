@@ -6,11 +6,18 @@ import CORALean.NN.Layers.Linear
 At `E = Interval.point 0` the committed centre is `0` and the added box is a
 point, so the two layers compute and enclose identically: a plain linear
 layer is the error-free case of the adapted one, not a different construction.
+That is [1, Eq. 2]'s initialization, `I'_k = [0, 0]`: a network adapted to carry the
+error of merging denotes, before any merge, the network it was adapted from.
+
+## References
+
+* [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for
+      Formal Verification". TMLR. arXiv:2305.01932.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       05-September-2026
--- Last update:   ---
+-- Last update:   23-September-2026
 -- Last revision: ---
 
 

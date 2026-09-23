@@ -10,11 +10,14 @@ set. `merge`: `neuronMerging_sandwich_outer` moves it past the sandwich, then th
 that set — the four-layer chain splitting as `rest.eval (sandwich.eval x)` and likewise for
 `enclose`, both by `rfl` since `NeuralNetwork.eval`/`enclose` unfold definitionally on `cons`.
 `image_eq_eval_image` is what reopens each of those sets to a point in the first place.
+`widen`: `linearWithError_mem`, the bias being one value of the box. `freeze`: the survivors
+pass the trimmed layers as in `merge`, and the bucket's own value `w` is the one the hypothesis
+is read at, layer `k+1`'s sum splitting along the partition exactly as it does there.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       06-September-2026
--- Last update:   ---
+-- Last update:   23-September-2026
 -- Last revision: ---
 
 
@@ -22,7 +25,7 @@ that set — the four-layer chain splitting as `rest.eval (sandwich.eval x)` and
 
 namespace CORALean
 
-open ContSet
+open Matrix ContSet
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat ℝ) S] [Real.IntervalOuter S] [Real.OfInterval S]
@@ -48,6 +51,34 @@ theorem NeuralNetwork.reducesAt_outer :
       have hsand := neuronMerging_sandwich_outer part W0 b0 R W1 b1 Y s hY ⟨x, hx, rfl⟩
       rw [hcomp x]
       exact reducesAt_outer h ⟨_, hsand, rfl⟩
+  | _, _, s, _, _, _, .widen _ W c b E hc hcomp h => by
+      rintro _ ⟨x, hx, rfl⟩
+      rw [hcomp x]
+      exact reducesAt_outer h ⟨_, Real.Layer.linearWithError_mem W hc s hx, rfl⟩
+  | _, _, s, _, _, _, .freeze (σ := σ) _ part W0 c0 b0 E0 hc0 R W1 c1 Y hY hcomp h => by
+      rintro _ ⟨x, hx, rfl⟩
+      set v : Vec ℝ _ := fun i => σ ((W0 *ᵥ x + c0) i) with hv
+      -- the survivors pass the trimmed layer `k-1`, their error a restriction of `E0`
+      have hrow : (W0.submatrix part.left id) *ᵥ x + c0 ∘ part.left
+          = (W0 *ᵥ x + c0) ∘ part.left :=
+        funext fun i => by simp [Matrix.mulVec, Matrix.submatrix_apply, dotProduct]
+      have hc : c0 ∘ part.left - b0 ∘ part.left
+          ∈ construct (⟨E0.inf ∘ part.left, E0.sup ∘ part.left⟩ : Real.Interval (Vec ℝ _)) :=
+        fun i => hc0 (part.left i)
+      have hA1 := Real.Layer.linearWithError_mem (S := S) (W0.submatrix part.left id) hc s hx
+      rw [hrow] at hA1
+      have hA2 := (Real.Layer.activation_sound (S := S) R).enclose_outer _ _ hA1
+      -- the bucket is frozen at its own value, which its bounds admit
+      have hw : v ∘ part.right
+          ∈ construct (⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩ : Real.Interval (Vec ℝ _)) :=
+        fun i => hY x hx (part.right i)
+      -- layer `k+1`'s dot product splits along the survivors and the bucket
+      have hval : W1 *ᵥ v + c1 = (W1.submatrix id part.left) *ᵥ (v ∘ part.left)
+          + (c1 + (W1.submatrix id part.right) *ᵥ (v ∘ part.right)) := by
+        rw [part.mulVec_split₂ W1 v]
+        abel
+      rw [hcomp x, hval]
+      exact reducesAt_outer (h _ hw) ⟨v ∘ part.left, hA2, rfl⟩
 
 end CORALean
 
