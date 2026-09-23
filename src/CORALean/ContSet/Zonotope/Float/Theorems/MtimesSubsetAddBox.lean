@@ -1,7 +1,7 @@
+import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 import CORALean.ContSet.Zonotope.Float.Operations.MtimesBox
+import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
 import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 
 /-!
 # `mtimes` reaches no further than the image of its operand plus `mtimesBox`
@@ -10,8 +10,9 @@ The reverse of `mtimes_outer`. `mtimes` keeps `Z`'s own generator count, one
 rounded value per generator plus one for the centre, so the same coefficients
 `Z`'s point used reproduce the exact image up to exactly `mtimesBox`'s
 generators — the same regrouping `mtimes_outer`'s own proof does, run in the
-other direction. `Z`'s own error box is absorbed at `0`, spent the same way
-`plus_subset_add_box` spends it.
+other direction, and the same `matMulDiff` bound `mtimes_outer` itself proves
+for `mtimesResidual`, at the opposite sign. `Z`'s own error box is absorbed at
+`0`, spent the same way `plus_subset_add_box` spends it.
 -/
 
 -- Authors:       Tobias Ladner
@@ -52,6 +53,19 @@ theorem Zonotope.aux_mulVec_nominal_box (M : Mat 𝕋 m n) (Z : Zonotope 𝕋 n)
         rw [Finset.sum_comm]
         exact congrArg _ (Finset.sum_congr rfl fun j _ => (Finset.sum_mul _ _ _).symm)
 
+/-- Each stored generator entry is wrong by at most `matMulDiff`, `mtimes_outer`'s
+own bound at the opposite sign. -/
+theorem Zonotope.aux_matMulDown_sub_le (M : Mat 𝕋 m n) (Z : Zonotope 𝕋 n) (i : Fin m)
+    (j : Fin Z.h) : |toReal (matMulDown M Z.G i j) - ∑ k, toReal (M i k) * toReal (Z.G k j)|
+      ≤ toReal (matMulDiff M Z.G i j) := by -- --- PROOF ---
+  have hlo : toReal (matMulDown M Z.G i j) ≤ ∑ k, toReal (M i k) * toReal (Z.G k j) :=
+    dotDown_le (M i) (fun k => Z.G k j)
+  have hhi : ∑ k, toReal (M i k) * toReal (Z.G k j) ≤ toReal (matMulUp M Z.G i j) :=
+    le_dotUp (M i) (fun k => Z.G k j)
+  have hgap := sub_le_subUp (matMulUp M Z.G i j) (matMulDown M Z.G i j)
+  rw [abs_le]
+  exact ⟨by simp only [matMulDiff]; linarith, by simp only [matMulDiff]; linarith⟩
+
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
@@ -75,16 +89,35 @@ theorem Zonotope.mtimes_subset_add_box (M : Mat 𝕋 m n) (Z : Zonotope 𝕋 n)
   set g : Vec ℝ m := fun i => (toReal (mulVecDown M Z.c i) - ∑ k, toReal (M i k) * toReal (Z.c k))
       + ∑ j, (toReal (matMulDown M Z.G i j) - ∑ k, toReal (M i k) * toReal (Z.G k j)) * β j
     with hgdefeq
-  -- `g` and `mtimes`'s own error box, read back into `mtimesBox`
+  -- the centre's rounding gap, bounded in `𝕋` as `plusBox`'s is
+  have hg1 : (fun i => toReal (mulVecDown M Z.c i) - ∑ k, toReal (M i k) * toReal (Z.c k)) ∈
+      (⟨fun i => subDown (mulVecDown M Z.c i) (mulVecUp M Z.c i), fun _ => (zero : 𝕋)⟩ :
+        Interval 𝕋 m).construct := fun i =>
+    ⟨by show toReal (subDown (mulVecDown M Z.c i) (mulVecUp M Z.c i)) ≤
+          toReal (mulVecDown M Z.c i) - ∑ k, toReal (M i k) * toReal (Z.c k)
+        have h1 := subDown_le_sub (mulVecDown M Z.c i) (mulVecUp M Z.c i)
+        have h2 : (∑ k, toReal (M i k) * toReal (Z.c k)) ≤ toReal (mulVecUp M Z.c i) :=
+          le_dotUp (M i) Z.c
+        linarith,
+     by show toReal (mulVecDown M Z.c i) - ∑ k, toReal (M i k) * toReal (Z.c k)
+          ≤ toReal (zero : 𝕋)
+        have h3 : toReal (mulVecDown M Z.c i) ≤ ∑ k, toReal (M i k) * toReal (Z.c k) :=
+          dotDown_le (M i) Z.c
+        rw [toReal_zero]; linarith⟩
+  -- each generator's rounding gap, scaled by the same coefficients `β`
+  have hg2 : (fun i => ∑ j, (toReal (matMulDown M Z.G i j)
+      - ∑ k, toReal (M i k) * toReal (Z.G k j)) * β j) ∈
+      (Zonotope.generatorError (matMulDiff M Z.G)).construct :=
+    Zonotope.mem_generatorError (fun i j => Zonotope.aux_matMulDown_sub_le M Z i j) hβ
+  -- `g` and `mtimes`'s own error box, read back into `mtimesBox` by two more `⊆` steps
   have hgmem : g + y₂ ∈ (Zonotope.mtimesBox M Z).construct := by
-    show g + y₂ ∈
-      ((⟨Z.h, fun i => toReal (mulVecDown M Z.c i) - ∑ k, toReal (M i k) * toReal (Z.c k),
-          fun j i => toReal (matMulDown M Z.G i j)
-            - ∑ k, toReal (M i k) * toReal (Z.G k j)⟩ : Real.Zonotope (Vec ℝ m)).plus
-        ((Zonotope.mtimes M Z).E.nominal.zonotope)).construct
-    rw [← Real.Zonotope.plus_exact]
-    refine Set.add_mem_add ?_ (Real.Interval.zonotope_contains _ hy₂)
-    exact Real.Zonotope.mem_construct_iff.mpr ⟨β, hβ, fun i => rfl⟩
+    have hg12 : g = (fun i => toReal (mulVecDown M Z.c i) - ∑ k, toReal (M i k) * toReal (Z.c k))
+        + fun i => ∑ j, (toReal (matMulDown M Z.G i j)
+            - ∑ k, toReal (M i k) * toReal (Z.G k j)) * β j := by
+      rw [hgdefeq]; rfl
+    rw [hg12, add_assoc]
+    exact Interval.plus_outer _ _
+      (Set.add_mem_add hg1 (Interval.plus_outer _ _ (Set.add_mem_add hg2 hy₂)))
   refine ⟨_, hxmem, _, hgmem, ?_⟩
   funext i
   -- the exact image at `x`, regrouped so the centre and each generator appear once

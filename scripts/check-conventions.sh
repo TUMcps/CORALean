@@ -36,6 +36,16 @@ MAX_PUBLIC_DECL=1     # public declarations per `Operations/`/`Theorems/` file (
 # keeps it one file rather than a habit.
 AXIOM_FILE=src/CORALean/Global/Float/Instances/Binary64/Axioms.lean
 
+# `noncomputable` outside `Real/` is legitimate only for an `aux_` declaration
+# in a `Theorems/` file or a name listed here with a reason — see the file's
+# own header for what a reason must say. The name is the declaration's own,
+# exactly as written after `noncomputable` — a dotted prefix and all, so a
+# bare `reach` here excuses only a bare `reach`, never `LinearSys.reach` too.
+# Under `Float/` even that allowlist does not reach: only the
+# `aux_`-in-`Theorems/` exemption does, because the whole point of the float
+# layer is that it runs.
+ALLOWLIST=scripts/noncomputable-allowlist.txt
+
 status=0
 
 report() {
@@ -47,20 +57,51 @@ report() {
 
 files=$(find src -name '*.lean' | sed 's#\\#/#g' | sort)
 
-# Per-file conventions, one pass. `depth` tracks nesting of `/- -/` across
-# lines, so a docstring mentioning `aux_` or `sorry` is not mistaken for code.
-out=$(printf '%s\n' "$files" | xargs awk \
+# The file list reaches awk through a list file rather than the command line,
+# for every pass below, not only the two that are global by nature. `xargs`
+# splits an argument list that does not fit — on Windows the limit is 32 KB,
+# and the environment a git hook adds is enough to cross it at this repository
+# size — and the allowlist's stale-entry report is global exactly the way the
+# reachability check is: a split would see only one batch's declarations and
+# call every entry the other batch owns stale.
+list=$(mktemp)
+trap 'rm -f "$list"' EXIT INT TERM
+printf '%s\n' "$files" > "$list"
+
+# Per-file conventions, one pass, plus the allowlist's own stale-entry report
+# at the end, which needs every file's declarations to have been seen.
+# `depth` tracks nesting of `/- -/` across lines, so a docstring mentioning
+# `aux_` or `sorry` is not mistaken for code.
+out=$(awk \
+  -v LIST="$list" \
   -v MAX_LINE="$MAX_LINE" \
   -v MAX_MODULE_DOC="$MAX_MODULE_DOC" \
   -v MAX_COLLECTOR_DOC="$MAX_COLLECTOR_DOC" \
   -v MAX_DECL_DOC="$MAX_DECL_DOC" \
   -v MAX_LINES_WO_COMMENT="$MAX_LINES_WO_COMMENT" \
   -v MAX_PUBLIC_DECL="$MAX_PUBLIC_DECL" \
-  -v AXIOM_FILE="$AXIOM_FILE" '
+  -v AXIOM_FILE="$AXIOM_FILE" \
+  -v ALLOWLIST="$ALLOWLIST" '
 BEGIN {
+  while ((getline f < LIST) > 0) if (f != "") ARGV[ARGC++] = f
   CONT = "[\200-\277]"
   MONTH = "(January|February|March|April|May|June|July|August|September|October|November|December)"
   DATE = "^(0[1-9]|[12][0-9]|3[01])-" MONTH "-[0-9][0-9][0-9][0-9]$"
+
+  # The allowlist: `<qualified name>  <reason>` per line, `#` comments and
+  # blank lines ignored. `allowLine` is kept for the stale-entry report at
+  # the end.
+  while ((getline aline < ALLOWLIST) > 0) {
+    allowFNR++
+    line = aline
+    sub(/^[ \t]+/, "", line)
+    if (line == "" || line ~ /^#/) continue
+    name = line
+    sub(/[ \t].*$/, "", name)
+    allowNC[name] = 1
+    allowLine[name] = allowFNR
+  }
+  close(ALLOWLIST)
 
   # A declaration, optionally carrying one attribute — `@[simp] theorem …` is as
   # much a declaration as `theorem …`, and every rule that scans for one needs to
@@ -508,6 +549,13 @@ FNR == 1 {
     say(FILENAME ":" FNR ": `sorry` — finish the proof or drop the declaration")
   if (code ~ /^axiom[ \t]/ && FILENAME != AXIOM_FILE)
     say(FILENAME ":" FNR ": `axiom` — only " AXIOM_FILE " axiomatises anything")
+  # Banned outright rather than tracked per-section: nothing in the tree uses
+  # it today, and tracking which declarations a `section` covers would mean a
+  # second, stateful way to be `noncomputable` beside marking a declaration
+  # itself — one form is simpler than two and keeps every check below exact.
+  if (code ~ /^noncomputable section([ \t]|$)/)
+    say(FILENAME ":" FNR ": `noncomputable section` — mark each declaration" \
+        " `noncomputable` individually, so this check can see it")
 
   # Search tactics cost compile time that nothing bounds, and the whole point of
   # the heartbeat limit in `lakefile.toml` is that a proof does not start
@@ -546,6 +594,16 @@ FNR == 1 {
     sub(DECL_PREFIX, "", decl)
     sub(/[^A-Za-z0-9_'"'"'.].*$/, "", decl)
     b = base(decl)
+    # The declaration name as written, for the `noncomputable` allowlist:
+    # unlike `decl`/`b`, kept whole rather than trimmed to identifier
+    # characters, so a dotted prefix (`LinearSys.reach`) and a non-ASCII byte
+    # (`norm₂`, a UTF-8 continuation byte under `LC_ALL=C`) both survive, and
+    # two representations own same-named operations stay two distinct entries.
+    # Cut only at what can never appear inside an identifier: whitespace, or
+    # the start of a binder or a type ascription.
+    qualDecl = code
+    sub(DECL_PREFIX, "", qualDecl)
+    sub(/[ \t([{:].*$/, "", qualDecl)
     nDeclTotal++
 
     # Whatever `MAIN ...`/`INSTANCES` marker is still open closes on the first
@@ -567,6 +625,33 @@ FNR == 1 {
     if (FILENAME ~ /\/Cost\// && kind == "def" && b !~ /^aux_/ && b !~ /(Cost|Bound)$/)
       say(FILENAME ":" FNR ": a `def` under `Cost/` is an asserted cost, named" \
           " `...Cost` or `...Bound`, not `" b "`")
+
+    # `noncomputable` is free under `Real/` (rule 1) and, since that path
+    # literally reads `.../Float/Instances/Real/...`, that same test covers
+    # rule 2 as well. Elsewhere it is free only for an `aux_` declaration in a
+    # `Theorems/` file (rule 3) or a name the allowlist gives a reason
+    # (rule 4) — and under `Float/` even the allowlist does not reach: the
+    # float layer exists to run.
+    if (prefix ~ /noncomputable /) {
+      isAux = (b ~ /^aux_/ && FILENAME ~ /\/Theorems\//)
+      if (FILENAME !~ /\/Real\//) {
+        if (FILENAME ~ /\/Float\//) {
+          if (!isAux)
+            say(FILENAME ":" FNR ": `noncomputable` under `Float/` — only an" \
+                " `aux_` declaration in a `Theorems/` file may be; the float" \
+                " layer must run")
+        } else if (isAux) {
+          # exempt
+        } else if (qualDecl in allowNC) {
+          usedAllow[qualDecl] = 1
+        } else {
+          say(FILENAME ":" FNR ": `noncomputable` outside `Real/`/`Float/`, not" \
+              " an `aux_` declaration in `Theorems/`, and `" qualDecl "` is not in `" \
+              ALLOWLIST "` — add it there with a reason, or make the" \
+              " declaration computable")
+        }
+      }
+    }
 
     if (b ~ /^aux_/) {
       declAux[b] = FNR
@@ -591,24 +676,22 @@ FNR == 1 {
   }
 }
 
-END { if (prev != "") check(prev) }
+END {
+  if (prev != "") check(prev)
+  for (name in allowNC)
+    if (!(name in usedAllow))
+      say(ALLOWLIST ":" allowLine[name] ": stale allowlist entry `" name \
+          "` — no longer matches any `noncomputable` declaration outside `Real/`/`Float/`")
+}
 ')
 report "$out"
 
 # Every module reachable from a root, so a file that was written but never
 # collected is caught rather than silently left out of the build. The roots are
 # the roots of the targets `lakefile.toml` names, and a new target belongs in
-# both places.
-#
-# The file list reaches awk through a list file rather than the command line.
-# `xargs` splits an argument list that does not fit — on Windows the limit is
-# 32 KB, and the environment a git hook adds is enough to cross it at this
-# repository size — and each batch would then walk a partial import graph and
-# report every module it happened not to see an importer for. The per-file pass
-# above tolerates a split; this one cannot, since it is global by nature.
-list=$(mktemp)
-trap 'rm -f "$list"' EXIT INT TERM
-printf '%s\n' "$files" > "$list"
+# both places. Reuses `$list`, built above for the same reason this pass needs
+# it: it is global by nature, and a split would report every module it
+# happened not to see an importer for.
 
 out=$(awk -v LIST="$list" -v ROOTS="CORALean CORALean.Examples.API CORALean.Examples.Demo" '
 BEGIN { while ((getline f < LIST) > 0) if (f != "") ARGV[ARGC++] = f }
