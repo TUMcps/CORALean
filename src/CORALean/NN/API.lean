@@ -1,4 +1,6 @@
+import CORALean.NN.BucketTolerance
 import CORALean.NN.Chain
+import CORALean.NN.CompressionPreprocessing
 import CORALean.NN.Float.API
 import CORALean.NN.Graph.API
 import CORALean.NN.Layer
@@ -8,6 +10,8 @@ import CORALean.NN.MinimalAbstractExplanationSearch
 import CORALean.NN.MinimalExplanationSearch
 import CORALean.NN.NeuralNetwork
 import CORALean.NN.Operations.API
+import CORALean.NN.ReduceOnTheFly
+import CORALean.NN.ReducibleNetwork
 import CORALean.NN.Reduction
 import CORALean.NN.RefinableLayer
 import CORALean.NN.RefinableNetwork
@@ -21,7 +25,8 @@ CORA's `nn`. The pipeline is three things: an input set in whatever
 representation the caller likes, a graph of layers each of which encloses the
 image of the function it computes, and a specification checked on the result.
 `Theorems.HoldsOfEnclose`/`HoldsAllOfEnclose` is where those meet; `Graph/` the graph layers.
-`MergeBucket` cuts a nonlinear layer's neurons; `Reduction`'s `ReducesAt` reduces many, soundly.
+`MergeBucket` cuts a nonlinear layer's neurons, `Reduction`'s `ReducesAt` reduces many soundly,
+and `BucketTolerance`, `ReduceOnTheFly`, `CompressionPreprocessing` choose where to.
 
 Written against the `ContSet` interfaces alone, so no layer names a
 representation, and what a layer asks for is what it calls: the linear layer —
@@ -33,9 +38,8 @@ two boxes; and reshape `Reindex` alone, whose guarantee is an equality.
 Precision is decided in three places: a `Relaxation` (`ReLU`, `Sigmoid`, `Tanh`), a pooled window's
 pivot, and `Softmax`'s box; everything else is exact at a representation closed under what it uses.
 
-Only the layers sit in an arithmetic layer's namespace. Everything outside `Layers/` and
-`Graph/` is indifferent to the scalar and sits in `CORALean` — `Layer` stores `enclose` and
-nothing real, so the graph and its induction run over a float representation unchanged, and
-`Layers/` and `Float/Layers/` hold the constructors alone. `RefinableLayer` and
-`RefinableNetwork` are that graph with an order per neuron still to choose, read by `Schedule`.
+Only what reads weights sits in an arithmetic layer's namespace — the layers, and the reduction
+over a `ReducibleNetwork`; the rest sits in `CORALean`. `Layer` stores `enclose` and nothing
+real, so the graph and its induction run over a float representation unchanged. `RefinableLayer`
+and `RefinableNetwork` are that graph with an order per neuron still to choose, read by `Schedule`.
 -/

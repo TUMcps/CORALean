@@ -1,6 +1,9 @@
 import CORALean.NN.Theorems.ActivationLipschitz
 import CORALean.NN.Theorems.AtScheduleEval
+import CORALean.NN.Theorems.BucketToleranceApprox
+import CORALean.NN.Theorems.BucketToleranceNone
 import CORALean.NN.Theorems.Classifies
+import CORALean.NN.Theorems.CompressionPreprocessingOuter
 import CORALean.NN.Theorems.DisjointMisclassifiedOfBounds
 import CORALean.NN.Theorems.EncloseAtInflate
 import CORALean.NN.Theorems.EncloseAtOuter
@@ -15,6 +18,7 @@ import CORALean.NN.Theorems.ExistsScheduleSigmoidLinearSigmoidSubset
 import CORALean.NN.Theorems.ExistsScheduleSigmoidSubset
 import CORALean.NN.Theorems.HoldsAllOfEnclose
 import CORALean.NN.Theorems.HoldsOfEnclose
+import CORALean.NN.Theorems.HoldsOfReduceOnTheFly
 import CORALean.NN.Theorems.HoldsOfReducesAt
 import CORALean.NN.Theorems.HoldsOfReducesAtSubset
 import CORALean.NN.Theorems.HoldsOfSplit
@@ -47,6 +51,8 @@ import CORALean.NN.Theorems.MultiLayerRefinementConverges
 import CORALean.NN.Theorems.NeuronMergingNetworkOuter
 import CORALean.NN.Theorems.NeuronMergingOuter
 import CORALean.NN.Theorems.NotMemUnsafeSet
+import CORALean.NN.Theorems.ReduceOnTheFlyReducesAt
+import CORALean.NN.Theorems.ReducesAtCongr
 import CORALean.NN.Theorems.ReducesAtOuter
 import CORALean.NN.Theorems.ReducesAtRefl
 import CORALean.NN.Theorems.ReluNotDifferentiable
