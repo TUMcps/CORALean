@@ -10,8 +10,7 @@ rather than bounded by a single scalar under an operator norm. It is a
 entry, and with no side condition of its own, since it is a plain difference of
 two convergent series rather than a bound written as a ratio that can blow up.
 [1]'s interval matrix `[−E(Δt,η), E(Δt,η)]` is this matrix read as a symmetric
-radius, which converging to `0` trivializes, so nothing further is defined for
-it here.
+radius, `expRemainderInterval`: the matrices entrywise within it of `0`.
 
 ## References
 
@@ -49,6 +48,10 @@ Taylor remainder taken at `|A|` rather than at `A`, entrywise dominating the
 true remainder. -/
 noncomputable def MatExp.expRemainderMat (A : Mat ℝ n n) (Δt : ℝ) (η : ℕ) : Mat ℝ n n :=
   exp (Δt • MatExp.absMat A) - MatExp.expTaylor (Δt • MatExp.absMat A) η
+
+/-- The interval matrix `[−E(Δt,η), E(Δt,η)]`, as the set of matrices it contains. -/
+def MatExp.expRemainderInterval (A : Mat ℝ n n) (Δt : ℝ) (η : ℕ) : Set (Mat ℝ n n) :=
+  {M | ∀ j k, |M j k| ≤ MatExp.expRemainderMat A Δt η j k}
 
 end CORALean.Real
 

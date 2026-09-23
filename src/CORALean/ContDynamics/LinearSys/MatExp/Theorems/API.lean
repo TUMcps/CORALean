@@ -36,7 +36,10 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSmulTsum
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpTaylorSmulMulVec
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpTaylorTwo
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpWApply
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ErrorConvergesToZeroHomogeneousRemainderError
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ErrorConvergesToZeroParticularRemainderError
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.FactorialMulPowLe
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.HasSumExpRemainderMatEntry
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.HausdorffDist2AffineDynamicsLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.HausdorffDist2ParticularSolutionLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalConstCorrectionMatrix
@@ -48,6 +51,7 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpIntegralTermLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSmulLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSmulSubOneLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSubExpTaylorLe
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ParticularRemainderErrorSuperlinear
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ParticularSolutionErrorIsBigO
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ParticularSolutionTauErrorIsBigO
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.PowSubEq
@@ -62,6 +66,7 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableExpDiff
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableExpSmul
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableNormExpIntegral
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SuperlinearDecreaseExpRemainder
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SuperlinearDecreaseExpRemainderMat
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoAffineDynamicsErrorZero
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoExpRemainderBoundAtTop
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoExpRemainderBoundZero
@@ -90,10 +95,10 @@ parameter tuning rests on: the bound vanishes as the order grows or the step shr
 `ExpRemainderBoundAntitoneSucc` says one more order never costs precision, and
 `ExpRemainderOrderSpec`/`ExpRemainderOrderLe`/`ExpRemainderStepSpec` say the parameter
 chosen for an admissible error meets it, the order least of those.
-`TendstoExpRemainderMatZero`/`ExpRemainderMatIsBigO` are the same two limits at
-`ExpRemainderMat`'s sharper, entrywise remainder, matched by `Lemma 2`'s and `Lemma 4`'s own
-two-halves pairs for `Δε^U_k`/`Δε^{U,τ}_k`. `ExpTaylorSmulMulVec`, `ContinuousExpDiff` and
-`RemainderEntryLe` are what an input solution needs of the truncation and its remainder.
-`HausdorffDist2ParticularSolutionLe` and `HausdorffDist2AffineDynamicsLe` are the two one-step
-error bounds themselves, `Prop. 11`'s eq. (25) and `Prop. 1`'s eq. (23).
+`TendstoExpRemainderMatZero`/`ExpRemainderMatIsBigO` are the same two limits at the entrywise
+`ExpRemainderMat`, as `Lemma 2`'s and `Lemma 4`'s pairs are for `Δε^U_k`/`Δε^{U,τ}_k`; at it,
+`SuperlinearDecreaseExpRemainderMat`, `ErrorConvergesToZero*RemainderError` and
+`ParticularRemainderErrorSuperlinear` are CDC 2020's `Lemma 1`, `Prop. 3`/`4` and `Thm. 2`.
+`ExpTaylorSmulMulVec`, `ContinuousExpDiff` and `RemainderEntryLe` serve an input solution, and
+`HausdorffDist2ParticularSolutionLe`/`HausdorffDist2AffineDynamicsLe` are eqs. (25) and (23).
 -/

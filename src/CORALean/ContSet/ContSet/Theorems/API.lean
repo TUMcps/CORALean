@@ -1,5 +1,6 @@
 import CORALean.ContSet.ContSet.Theorems.DependencyPreservingChain
 import CORALean.ContSet.ContSet.Theorems.DependencyPreservingComp
+import CORALean.ContSet.ContSet.Theorems.HausdorffDist2MulVecLinAddLe
 import CORALean.ContSet.ContSet.Theorems.HausdorffDistAddLe
 import CORALean.ContSet.ContSet.Theorems.HausdorffDistImageLe
 import CORALean.ContSet.ContSet.Theorems.HausdorffDistMulVecLinAddLe
