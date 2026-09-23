@@ -18,6 +18,7 @@ average of `y₁ … yₙ` — in `Y` by convexity — displaced by `(eₙ - e�
 boundedness sends to `0`. Closedness collects the limit.
 
 Boundedness and not compactness of `E`: only `‖eₙ - e₀‖ ≤ 2M` is ever used.
+`E` nonempty is needed and not printed, since `X + ∅ ⊆ Y + ∅` always holds.
 
 ## References
 
@@ -86,8 +87,8 @@ theorem aux_radstrom_telescope {a : α} {y e : ℕ → α}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- Rådström's cancellation law [1]: a bounded nonempty summand cancels against
-a convex closed set. Neither convexity of `X` nor closedness of `E` is used. -/
+/-- Rådström's cancellation law [1, Lemma 1]: a bounded nonempty summand cancels
+against a convex closed set. Neither convexity of `X` nor closedness of `E` is used. -/
 theorem radstrom_cancel {X Y E : Set α} (hE : E.Nonempty) (hEb : Bornology.IsBounded E)
     (hYconv : Convex ℝ Y) (hYcl : IsClosed Y) (h : X + E ⊆ Y + E) : X ⊆ Y := by -- --- PROOF ---
   intro a ha

@@ -22,6 +22,8 @@ import CORALean.Global.EuclideanHausdorffDistTriangle
 import CORALean.Global.EuclideanHausdorffDistZero
 import CORALean.Global.EuclideanGenOpNorm
 import CORALean.Global.Radstrom
+import CORALean.Global.RadstromEq
+import CORALean.Global.RadstromHausdorff
 import CORALean.Global.Caratheodory
 import CORALean.Global.ConeEdge
 import CORALean.Global.EqSmulNCross

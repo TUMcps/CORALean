@@ -2,6 +2,7 @@
 """Checks `references/` against the tree, so a coverage table cannot rot.
 
     python3 scripts/check-references.py
+    python3 scripts/check-references.py --fix   # rewrite stale README counts
 
 `references/` holds one file per publication, listing that paper's numbered
 results and, for each, where it is formalized. Nothing here reads Lean: the
@@ -13,6 +14,9 @@ every result cited somewhere is a row, every result one page defers to another
 is a row there, and the README's counts are the counts.
 
 Exit status is 1 on any complaint, so it belongs in CI beside the conventions.
+`--fix` writes the counts it computed into the README's cells in place of the
+stale ones, so a count is never typed by hand; every other complaint it only
+reports, since each of those is a judgement about a page.
 """
 import re
 import sys
@@ -206,6 +210,18 @@ class Paper:
         return ("🟢" if n == d else "🔴" if n == 0 else "🟡"), n, d, x
 
 
+def fix_count(text, name, old, new):
+    """`text` with the count cell of `name`'s README row reading `new`. A cell's
+    `|` is escaped in the file, which `rows_of` undid on the way in."""
+    esc = lambda c: c.replace("|", "\\|")
+    lines = text.split("\n")
+    for i, line in enumerate(lines):
+        if f"]({name})" in line and line.rstrip().endswith(f"{esc(old)} |"):
+            head = line.rstrip()[: -len(f"{esc(old)} |")]
+            lines[i] = f"{head}{esc(new)} |"
+    return "\n".join(lines)
+
+
 def main():
     problems = []
     say = problems.append
@@ -374,6 +390,7 @@ def main():
         say("references/README.md: missing — it is the index")
     else:
         text = readme.read_text(encoding="utf-8")
+        fixed = []
         m = re.search(r"^\|.*\n(?:\|.*\n)+", text, re.M)
         listed = []
         for cells in rows_of(m.group(0)) if m else []:
@@ -406,8 +423,15 @@ def main():
             emoji, n, d, x = paper.status
             got = (m.group(1), int(m.group(2)), int(m.group(3)), int(m.group(4)))
             if got != (emoji, n, d, x):
+                if "--fix" in sys.argv[1:]:
+                    text = fix_count(text, name, cell, f"{emoji} {n}/{d} | {x}")
+                    fixed.append(name)
+                    continue
                 say(f"references/README.md: {name}: says {cell}, but the file has "
                     f"{emoji} {n}/{d} | {x}")
+        if fixed:
+            readme.write_text(text, encoding="utf-8")
+            print("references/README.md: rewrote the count of " + ", ".join(fixed))
 
     for line in problems:
         print(line)

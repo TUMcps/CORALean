@@ -275,6 +275,10 @@ and that a paper's findings are listed where the index says they are. A coverage
 a theorem lives, which is the kind of prose that rots quietly; this is what
 stops it. It runs beside the conventions, on the same hook and the same CI job.
 
+Nobody types a count. After a row changes, `python3 scripts/check-references.py
+--fix` writes the counts it computed into the README's cells. Everything else it
+finds, it only reports.
+
 `scripts/gl.py` is the GitLab client: issues, merge requests and pipelines from
 the command line, so that reading an issue or leaving a comment is not a
 hand-rolled `curl`. The token is never an argument and never in the tree. It is
