@@ -4,9 +4,11 @@ import CORALean.ContDynamics.LinearSys.MatExp.ExactSecondOrder
 import CORALean.ContDynamics.LinearSys.MatExp.ExpRemainderMat
 import CORALean.ContDynamics.LinearSys.MatExp.ExpRemainderOrder
 import CORALean.ContDynamics.LinearSys.MatExp.ExpRemainderStep
+import CORALean.ContDynamics.LinearSys.MatExp.HomogeneousRemainderError
 import CORALean.ContDynamics.LinearSys.MatExp.IntervalCorrection
 import CORALean.ContDynamics.LinearSys.MatExp.IntervalEnclosures
 import CORALean.ContDynamics.LinearSys.MatExp.MatZonoEnclosures
+import CORALean.ContDynamics.LinearSys.MatExp.ParticularRemainderError
 import CORALean.ContDynamics.LinearSys.MatExp.ParticularSolutionError
 import CORALean.ContDynamics.LinearSys.MatExp.ParticularSolutionOuter
 import CORALean.ContDynamics.LinearSys.MatExp.ParticularSolutionOuterCorrelated
@@ -32,11 +34,11 @@ term being exactly computable, and enclose more narrowly for it.
 take an admissible error and name a parameter meeting it. That is one step of
 adaptive parameter tuning and not the algorithm — the error bounded is the
 exponential's, not the reachable set's.
-Enclosures only, no representation — an interval matrix is `Interval (Mat ℝ m n)`
-like any other set. `ExpRemainderMat` is a second, sharper remainder at `|A|`
-entrywise rather than at `‖A‖`, for `Theorems`' entrywise convergence rates.
+Enclosures only, no representation. `ExpRemainderMat` is a second, sharper remainder
+at `|A|` entrywise rather than at `‖A‖`, for `Theorems`' entrywise convergence rates.
 `ParticularSolutionOuter`/`ParticularSolutionOuterCorrelated` read `bPU`, `bPU_∞` and its
 correlated summand as `Set`s; `ParticularSolutionTauError`/`ParticularSolutionError` are `err`
-of those, `Δε^{U,τ}_k`/`Δε^U_k`, and `AffineDynamicsError`/`AffineTimeIntervalSolution` are
-`Δε^h_k` and the three sets it is the distance between.
+of those, `Δε^{U,τ}_k`/`Δε^U_k`, `HomogeneousRemainderError`/`ParticularRemainderError` CDC
+2020's `ε_H`/`ε_P` of eq. (21)-(22), and `AffineDynamicsError`/`AffineTimeIntervalSolution` are
+`Δε^h_k` and the sets it separates.
 -/

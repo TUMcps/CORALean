@@ -156,6 +156,27 @@ theorem err_add_le {S T : Set (Vec ℝ n)} (hSne : S.Nonempty) (hTne : T.Nonempt
         aux_err_norm₂_le_of_abs_le hcoord
     _ ≤ err S + err T := norm₂_add_le _ _
 
+/-- `err` scales with a non-negative factor: the box of `c • S` is `c` times `S`'s, both
+endpoints scaling with it, and so is its farthest corner — what a superlinear-decrease argument
+uses to take a factor `φ` out of an error term. -/
+theorem err_smul_of_nonneg {c : ℝ} (hc : 0 ≤ c) (S : Set (Vec ℝ n)) :
+    err (c • S) = c * err S := by -- --- PROOF ---
+  have himg : ∀ i : Fin n, (fun x : Vec ℝ n => x i) '' (c • S)
+      = c • ((fun x : Vec ℝ n => x i) '' S) := by
+    intro i
+    rw [← Set.image_smul, ← Set.image_smul, Set.image_image, Set.image_image]
+    rfl
+  -- each coordinate's endpoints scale by `c`, and so does the larger of their magnitudes
+  have hvec : (fun i => max |sSup ((fun x : Vec ℝ n => x i) '' (c • S))|
+        |sInf ((fun x : Vec ℝ n => x i) '' (c • S))|)
+      = c • fun i => max |sSup ((fun x : Vec ℝ n => x i) '' S)|
+        |sInf ((fun x : Vec ℝ n => x i) '' S)| := by
+    funext i
+    rw [himg, Real.sSup_smul_of_nonneg hc, Real.sInf_smul_of_nonneg hc, Pi.smul_apply,
+      smul_eq_mul, smul_eq_mul, smul_eq_mul, abs_mul, abs_mul, abs_of_nonneg hc,
+      mul_max_of_nonneg _ _ hc]
+  rw [err, hvec, norm₂_smul, abs_of_nonneg hc, err]
+
 /-- `boxDiameter`'s own width is at most twice `err`'s reach, the two endpoints' magnitudes each
 bounding it. -/
 theorem norm_boxDiameter_le_two_mul_err (S : Set (Vec ℝ n)) (hSne : S.Nonempty)
