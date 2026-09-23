@@ -359,6 +359,7 @@ theorem about the `fuel` rather than about [1].
 These name the paper as a whole. A locator would put each in a row above.
 
 * [`StepInner.lean`](../../src/CORALean/ContDynamics/LinearSys/StepInner.lean)
+* [`ReachInner.lean`](../../src/CORALean/ContDynamics/LinearSys/ReachInner.lean) — the same route over a whole sampled run, the error a zonotope carried through `e^{AΔt}`; no numbered result states a run's inner approximation
 * [`ParticularSolutionOuterCorrelated.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/ParticularSolutionOuterCorrelated.lean) — eq. (25)'s correlated summand, shared by `Lemma 2`'s proof but not itself the subject of any numbered result
 * [`AbsConstCorrectionMatrixLe.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/AbsConstCorrectionMatrixLe.lean) — eq. (16)'s `G(Δt,η)` bounded entrywise, the counterpart of `AbsCorrectionMatrixLe` for `Lemma 3`'s second interval matrix; not itself a numbered result
 * [`AbsPowEntryLeAbsMatPow.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/AbsPowEntryLeAbsMatPow.lean) — a matrix power's entry is dominated in magnitude by the same entry of the power of its entrywise absolute value; the first half of what `Prop. 11`'s tail domination needs, and not itself a numbered result

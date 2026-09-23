@@ -20,9 +20,13 @@ import CORALean.ContDynamics.LinearSys.MinBackReachTimeInterval
 import CORALean.ContDynamics.LinearSys.Operations.API
 import CORALean.ContDynamics.LinearSys.PerturbedIntegralTrajectory
 import CORALean.ContDynamics.LinearSys.PerturbedTrajectory
+import CORALean.ContDynamics.LinearSys.ReachError
+import CORALean.ContDynamics.LinearSys.ReachInner
+import CORALean.ContDynamics.LinearSys.ReachInputError
 import CORALean.ContDynamics.LinearSys.ReachSet
 import CORALean.ContDynamics.LinearSys.StepConvergenceError
 import CORALean.ContDynamics.LinearSys.StepError
+import CORALean.ContDynamics.LinearSys.StepErrorBox
 import CORALean.ContDynamics.LinearSys.StepInner
 import CORALean.ContDynamics.LinearSys.Theorems.API
 import CORALean.ContDynamics.LinearSys.TimeIntervalBackReachSetExistsForall
@@ -36,10 +40,11 @@ import CORALean.ContDynamics.LinearSys.Verify
 
 The system and what it denotes in `LinearSys`, sampling in `Operations`, the
 set the flow reaches in `ReachSet` and over an interval in `TimeIntervalReachSet`,
-how far a step's enclosure exceeds it in `StepError`, that excess taken back off
-in `StepInner`, the two halves of it that converge and decrease superlinearly
-in `StepConvergenceError`, the closed form of a trajectory and what `reach` then
-guarantees in `Theorems`.
+how far a step's enclosure exceeds it in `StepError`, as a zonotope in
+`StepErrorBox`, that excess taken back off in `StepInner`, and over a whole
+sampled run, accumulated in `ReachError`, in `ReachInner`; the two halves of it
+that converge and decrease superlinearly in `StepConvergenceError`, the closed
+form of a trajectory and what `reach` then guarantees in `Theorems`.
 
 Reachability holds at the sample times, by sampling into `LinearSysDT`, or, once
 `e^{AΔt}` is only enclosed rather than computed, into `LinParamSysDT`. Between

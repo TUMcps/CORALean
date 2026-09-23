@@ -11,6 +11,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.AutoTuneSetOrderLe
 import CORALean.ContSet.Zonotope.Real.Theorems.BilinOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
 import CORALean.ContSet.Zonotope.Real.Theorems.ClosedBallEq
+import CORALean.ContSet.Zonotope.Real.Theorems.ClosedBallSubsetDiagonal
 import CORALean.ContSet.Zonotope.Real.Theorems.Coefficient
 import CORALean.ContSet.Zonotope.Real.Theorems.ContinuousAffine
 import CORALean.ContSet.Zonotope.Real.Theorems.Convex
