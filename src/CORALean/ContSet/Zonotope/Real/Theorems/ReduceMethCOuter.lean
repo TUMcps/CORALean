@@ -34,6 +34,7 @@ variable {n : ℕ}
 theorem Zonotope.reduceMethC_outer (Z : Zonotope (Vec ℝ n)) (o : ℕ) :
     Z.construct ⊆ (Z.reduceMethC o).construct := by -- --- PROOF ---
   unfold Zonotope.reduceMethC
+  simp only []
   split_ifs with hlt hdet
   · exact Zonotope.reduceByBasis_outer Z _ hdet
   · exact Zonotope.reduceBy_outer Z _

@@ -50,9 +50,11 @@ boxed along the filtered generators of largest spanned volume — along the axes
 where that basis is singular, and nothing at all at order `o` or below. -/
 noncomputable def Zonotope.reduceMethC (Z : Zonotope (Vec ℝ n)) (o : ℕ) : Zonotope (Vec ℝ n) :=
   if hlt : o * n < Z.h then
-    if IsUnit (Z.methCBasis (Z.girardSplit o hlt)).det then
-      Z.reduceByBasis (Z.girardSplit o hlt) (Z.methCBasis (Z.girardSplit o hlt))
-    else Z.reduceBy (Z.girardSplit o hlt)
+    let split := Z.girardSplit o hlt                 -- Girard's partition, kept and dropped
+    let basis := Z.methCBasis split                   -- the filtered candidate basis
+    if IsUnit basis.det then
+      Z.reduceByBasis split basis                      -- box along that basis
+    else Z.reduceBy split                              -- singular: box along the axes instead
   else Z
 
 end CORALean.Real

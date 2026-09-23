@@ -32,6 +32,7 @@ theorem Zonotope.reduceMethC_order_le (Z : Zonotope (Vec ℝ n)) {o : ℕ} (ho :
   have hK : (o - 1) * n + n = o * n := by
     rw [Nat.sub_one_mul, Nat.sub_add_cancel (Nat.le_mul_of_pos_left n ho)]
   unfold Zonotope.reduceMethC
+  simp only []
   split_ifs with hlt hdet
   · exact le_of_eq hK
   · exact le_of_eq hK
