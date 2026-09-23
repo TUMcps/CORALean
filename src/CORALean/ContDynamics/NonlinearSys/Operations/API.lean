@@ -1,6 +1,7 @@
 import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErr
 import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrLin
 import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrLoop
+import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrPolyCandidates
 import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrPolySearch
 import CORALean.ContDynamics.NonlinearSys.Operations.AbstrSolInf
 import CORALean.ContDynamics.NonlinearSys.Operations.Gain
@@ -12,6 +13,7 @@ import CORALean.ContDynamics.NonlinearSys.Operations.GlobalAbstrErr
 import CORALean.ContDynamics.NonlinearSys.Operations.LagrangeRemainder
 import CORALean.ContDynamics.NonlinearSys.Operations.LinInput
 import CORALean.ContDynamics.NonlinearSys.Operations.LinPoint
+import CORALean.ContDynamics.NonlinearSys.Operations.LinReachPoly
 import CORALean.ContDynamics.NonlinearSys.Operations.Linearize
 import CORALean.ContDynamics.NonlinearSys.Operations.LocalAbstrErr
 import CORALean.ContDynamics.NonlinearSys.Operations.PrecompStatError
@@ -36,10 +38,10 @@ is CORA's `Rdiff`. `AbstrErrLin` is CORA's `priv_abstrerr_lin` at
 `tensorOrder = 2`: the error box a second-order expansion leaves, data here and
 certified in `Theorems`. `LagrangeRemainder` is the same one order up, once the
 quadratic term is subtracted exactly rather than boxed. `AbstrErrPolySearch` is
-`linReach`'s while loop for `alg = 'poly'`: a fuel-bounded search over candidate
-applied errors, packaged into a `LinStep` the moment one is accepted by the
-certificate already proved sufficient. `AbstrErr` is the other paper's
-`abstrErr`, one step's whole error out of `postΔ`, `VarInputs` and the latter.
+`linReach`'s while loop for `alg = 'poly'`, a fuel-bounded search over the candidates
+`AbstrErrPolyCandidates` computes, and `LinReachPoly` runs both from a start set.
+`AbstrErr` is the other paper's `abstrErr`, one step's whole error out of `postΔ`,
+`VarInputs` and the latter.
 
 `LocalAbstrErr` and `GlobalAbstrErr` measure what a step and a run add to the exact answer.
 `AbstrSolInf` is the untruncated set of those errors, `GainDim` and `Gain` how much of its width a

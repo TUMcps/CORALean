@@ -1,6 +1,7 @@
 import CORALean.ContDynamics.NonlinearSys.Theorems.AbstrErrLinCenterSubset
 import CORALean.ContDynamics.NonlinearSys.Theorems.AbstrErrLoopFixed
 import CORALean.ContDynamics.NonlinearSys.Theorems.AbstrErrMono
+import CORALean.ContDynamics.NonlinearSys.Theorems.AbstrErrPolySearchEqSome
 import CORALean.ContDynamics.NonlinearSys.Theorems.AbstractionErrorOfHessian
 import CORALean.ContDynamics.NonlinearSys.Theorems.AbstractionErrorOfLagrange
 import CORALean.ContDynamics.NonlinearSys.Theorems.AbstractionErrorOfPoly
@@ -19,6 +20,8 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.GlobalAbstrErrLeLocalAbstrErr
 import CORALean.ContDynamics.NonlinearSys.Theorems.GlobalAbstrErrStepOfSolver
 import CORALean.ContDynamics.NonlinearSys.Theorems.LagrangeRemainderMono
 import CORALean.ContDynamics.NonlinearSys.Theorems.LinInputOuter
+import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachPolyOuter
+import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachPolyRegion
 import CORALean.ContDynamics.NonlinearSys.Theorems.LinearEmbedding
 import CORALean.ContDynamics.NonlinearSys.Theorems.Linearize
 import CORALean.ContDynamics.NonlinearSys.Theorems.LinearizeHorizon
@@ -68,11 +71,12 @@ and checking it discharges it. The `ReachSet` files say that of the reachable se
 run. `AbstractionErrorOfHessian` is one supplier, `AbstrErrLinCenterSubset` minimises what it gives
 at the centre, `AbstractionErrorOfLagrange` is the same one order up, and the
 `PolyAbstractionError` files are the polynomialization variant's: `OfQuadRemainder` builds one,
-`GetSubset` splits it, `...OfPoly` forgets it. `GlobalAbstrErrEqLocalAbstrErr` reads a step's error
-as its local one — Rådström cancellation — `GlobalAbstrErrLeLocalAbstrErr` reads a run's off its
-worst step, `BoxDiameterAbstrSolInf` closes that at a zonotope, `RowNormExpansionOfAnalytic`
-expands its coefficients, `GainDimTendstoPow` is the limit gain, `GainDimLePow` its bound,
-`GainOrderEqTopIff` the gain order's point; and `AbstrErrLoopFixed`, `SubsetAbstrReach`,
-`OptDeltatDescent`, `EstimateGainBracket`, `AdaptStepInvariant`, `SubsetCentreAbstrReach` and
-`TuneDeltatInitGain` are what both papers' algorithms are held to.
+`GetSubset` splits it, `...OfPoly` forgets it; `AbstrErrPolySearchEqSome`, `LinReachPolyRegion`
+and `LinReachPolyOuter` read back what its search accepted. `GlobalAbstrErrEqLocalAbstrErr` reads
+a step's error as its local one — Rådström cancellation — `GlobalAbstrErrLeLocalAbstrErr` reads a
+run's off its worst step, `BoxDiameterAbstrSolInf` closes that at a zonotope,
+`RowNormExpansionOfAnalytic` expands its coefficients, `GainDimTendstoPow` is the limit gain,
+`GainDimLePow` its bound, `GainOrderEqTopIff` the gain order's point; and `AbstrErrLoopFixed`,
+`SubsetAbstrReach`, `OptDeltatDescent`, `EstimateGainBracket`, `AdaptStepInvariant`,
+`SubsetCentreAbstrReach` and `TuneDeltatInitGain` are what both papers' algorithms are held to.
 -/

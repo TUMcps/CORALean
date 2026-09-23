@@ -1,5 +1,6 @@
 import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrPolySearch
 import CORALean.ContDynamics.NonlinearSys.Theorems.AbstractionErrorOfPoly
+import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachPolyOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.RelinDeltaReachOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuter
 import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
@@ -19,11 +20,10 @@ The instances it takes are `Plus`, `Reduce`, `Mtimes (Mat ℝ)`, `OfInterval`
 and, for the differences, `LinComb` and `Mtimes ℐ`; all six `PolyZonotope` has,
 and this file fails to compile the moment one goes.
 
-`relinDeltaReach_outer` is CORA's `Rdiff`, the differences over a step rather
-than the states. What the poly certificate changes is where the run has to
-stay: `subsetAt` rather than a box, the two agreeing at `pZ.q = 0` by
-`subsetAt_unitBox`. `abstrErrPolySearch` is `linReach`'s while loop: a
-successful search hands back a `LinStep` certified by `AbstractionError.of_poly`.
+`relinDeltaReach_outer` is CORA's `Rdiff`. The poly certificate confines the run
+to `subsetAt` rather than a box, the two agreeing at `pZ.q = 0`. `abstrErrPolySearch`
+is `linReach`'s while loop, and `linReachPoly` runs it on the candidates CORA's loop
+computes, from nothing but a system's derivatives and a start set.
 
 ## References
 
@@ -34,7 +34,7 @@ successful search hands back a `LinStep` certified by `AbstractionError.of_poly`
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   13-September-2026
+-- Last update:   23-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -69,11 +69,38 @@ example {n m : ℕ} (sys : NonlinearSys n m) (T : Set ℝ) (R₀ : PolyZonotope 
 /-- A search the certificate accepts hands back a `LinStep`, ready for
 `relinReach_outer` exactly as one built by hand. -/
 noncomputable example {n m : ℕ} (sys : NonlinearSys n m) (U : PolyZonotope (Vec ℝ m))
-    (A : Mat ℝ n n) (B : Mat ℝ n m) (xs : Vec ℝ n) (us : Vec ℝ m) (pZ L : PolyZonotope (Vec ℝ n))
-    (Ba : Set (Fin pZ.p → ℝ)) (hp : L.p = pZ.p) (hBa : ∀ a ∈ Ba, ∀ k, |a k| ≤ 1)
+    (A : Mat ℝ n n) (B : Mat ℝ n m) (xs : Vec ℝ n) (us : Vec ℝ m)
+    (pZ L : ℕ → PolyZonotope (Vec ℝ n)) (Ba : ∀ k, Set (Fin (pZ k).p → ℝ))
+    (hp : ∀ k, (L k).p = (pZ k).p) (hBa : ∀ k, ∀ a ∈ Ba k, ∀ j, |a j| ≤ 1)
     (Ws : ℕ → PolyZonotope (Vec ℝ n)) (fuel : ℕ)
     (h : (sys.abstrErrPolySearch U A B xs us pZ Ba L hp hBa Ws fuel).isSome) :
     sys.LinStep (S := 𝒫𝒵) U :=
   (sys.abstrErrPolySearch U A B xs us pZ Ba L hp hBa Ws fuel).get h
+
+/-- CORA's `linReach` at `alg = 'poly'` on `ẋ = x² + u`, end to end: nothing but its
+derivatives at `(xs, us)` — `A = 2xs`, `B = 1`, the Hessian `2` in the state block, no
+third derivative — and the start set is handed in, no candidate error. -/
+noncomputable example (U X₀ : PolyZonotope (Vec ℝ 1)) (xs us : Vec ℝ 1) :
+    Option ((⟨fun x u i => x i ^ 2 + u i⟩ : NonlinearSys 1 1).LinStep (S := 𝒫𝒵) U) :=
+  (⟨fun x u i => x i ^ 2 + u i⟩ : NonlinearSys 1 1).linReachPoly U
+    (Matrix.of fun _ _ => 2 * xs 0) 1 xs us
+    (fun _ => Matrix.of fun i j => if i = 0 ∧ j = 0 then 2 else 0) (fun _ _ => 0)
+    (1 / 100) 4 50 50 X₀ 0 10
+
+/-- Whatever step such a run returns, a trajectory confined to the region it
+certified is inside the linearized reachable set at `Δt`. -/
+example (sys : NonlinearSys 1 1) (U X₀ Ud : PolyZonotope (Vec ℝ 1)) (A : Mat ℝ 1 1)
+    (xs us : Vec ℝ 1) (x : ℝ → Vec ℝ 1) (u : ℝ → Vec ℝ 1) (step : sys.LinStep (S := 𝒫𝒵) U)
+    (traj : sys.Trajectory (S := 𝒫𝒵) (Set.Icc 0 (1 / 100)) X₀ U x u)
+    (h : sys.linReachPoly U A 1 xs us
+      (fun _ => Matrix.of fun i j => if i = 0 ∧ j = 0 then 2 else 0) (fun _ _ => 0)
+      (1 / 100) 4 50 50 X₀ 0 10 = some step)
+    (hR : ∀ t ∈ Set.Icc (0 : ℝ) (1 / 100), x t ∈ step.R)
+    (hU : Bornology.IsBounded (construct step.linInput))
+    (hUd : (NonlinearSys.linearize A).stepInput
+      (fun t => sys.f (x t) (u t) - A *ᵥ x t) (1 / 100) 0 ∈ construct Ud) :
+    x (1 / 100) ∈ construct (((NonlinearSys.linearize A).discretize (1 / 100)).reach
+      (S := 𝒫𝒵) 1 one_pos X₀ Ud 1) :=
+  traj.linReachPoly_outer h subset_rfl hR (by norm_num) hU hUd one_pos
 
 end CORALean.Real

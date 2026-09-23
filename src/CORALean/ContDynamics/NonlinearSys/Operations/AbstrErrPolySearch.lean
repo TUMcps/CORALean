@@ -15,10 +15,10 @@ acceptance — the return type below is the proof. Any `some step` carries `step
 so a wrong `Ws k` costs no soundness, only convergence, as a wrong pivot costs
 `dualCandidate` nothing but a `none`.
 
-What is new is only the search: try `Ws 0, Ws 1, …`, package the first the certificate
-accepts into a `LinStep`, `none` once `fuel` runs out — `minkDiffRep`'s shape. Building
-`Ws` from `sys.relinDeltaReach`'s output, bounding CORA's cross terms `quadMap(Zdelta,
-Z_diff, H)` by a box that grows until it fits, is the analysis this leaves undone.
+What is new is only the search: package the first candidate the certificate accepts
+into a `LinStep`, `none` once `fuel` runs out — `minkDiffRep`'s shape. A candidate is a
+region `pZ k`, its sub-box and static error as well as `Ws k`, since CORA's `Rmax`
+grows with the applied error; `abstrErrPolyCandidates` computes them.
 
 ## References
 
@@ -29,7 +29,7 @@ Z_diff, H)` by a box that grows until it fits, is the analysis this leaves undon
 
 -- Authors:       Tobias Ladner
 -- Written:       08-September-2026
--- Last update:   13-September-2026
+-- Last update:   23-September-2026
 -- Last revision: ---
 
 
@@ -55,16 +55,18 @@ noncomputable def aux_search (P : ℕ → Prop) : ℕ → ℕ → Option {k // P
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The first `Ws k` a `PolyAbstractionError` accepts, packaged as a `LinStep`;
-`none` once `fuel` is exhausted with none accepted. -/
+/-- The first candidate `(pZ k, Ba k, L k, Ws k)` a `PolyAbstractionError` accepts,
+packaged as a `LinStep`; `none` once `fuel` is exhausted with none accepted. -/
 noncomputable def NonlinearSys.abstrErrPolySearch (sys : NonlinearSys n m)
     (U : PolyZonotope (Vec ℝ m)) (A : Mat ℝ n n) (B : Mat ℝ n m) (xs : Vec ℝ n) (us : Vec ℝ m)
-    (pZ : PolyZonotope (Vec ℝ n)) (Ba : Set (Fin pZ.p → ℝ)) (L : PolyZonotope (Vec ℝ n))
-    (hp : L.p = pZ.p) (hBa : ∀ a ∈ Ba, ∀ k, |a k| ≤ 1) (Ws : ℕ → PolyZonotope (Vec ℝ n))
+    (pZ : ℕ → PolyZonotope (Vec ℝ n)) (Ba : ∀ k, Set (Fin (pZ k).p → ℝ))
+    (L : ℕ → PolyZonotope (Vec ℝ n)) (hp : ∀ k, (L k).p = (pZ k).p)
+    (hBa : ∀ k, ∀ a ∈ Ba k, ∀ j, |a j| ≤ 1) (Ws : ℕ → PolyZonotope (Vec ℝ n))
     (fuel : ℕ) : Option (sys.LinStep (S := 𝒫𝒵) U) :=
-  (aux_search
-      (fun k => PolyAbstractionError sys.f A B xs us pZ Ba (construct U) L hp (Ws k)) 0 fuel).map
-    fun ⟨k, h⟩ => ⟨A, B, xs, us, pZ.subsetAt Ba, L ⊞ Ws k, AbstractionError.of_poly hBa h⟩
+  (aux_search (fun k => PolyAbstractionError sys.f A B xs us (pZ k) (Ba k) (construct U) (L k)
+      (hp k) (Ws k)) 0 fuel).map
+    fun ⟨k, h⟩ => ⟨A, B, xs, us, (pZ k).subsetAt (Ba k), L k ⊞ Ws k,
+      AbstractionError.of_poly (hBa k) h⟩
 
 end CORALean
 
