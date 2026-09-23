@@ -9,10 +9,11 @@ that makes that superset useful: a specification holding on the computed set
 holds on the exact one, in *both* directions of the definition and for opposite
 reasons.
 
-A safe set is closed downward under `⊆`, so containment survives shrinking. An
-unsafe set is avoided by everything a set that avoids it contains. Neither
-argument mentions how either set was computed, which is why the check sits here
-rather than in any one algorithm.
+A safe set (and an invariant, checked the same way) is closed downward under
+`⊆`, so containment survives shrinking. An unsafe set is avoided by everything
+a set that avoids it contains. Neither argument mentions how either set was
+computed, which is why the check sits here rather than in any one algorithm.
+`Specification.custom` needs no case of its own: it is built as a safe set.
 
 The converse fails, and that is the whole cost of the method: a specification
 violated on the computed set says nothing, the violation possibly lying in the
@@ -35,11 +36,12 @@ variable {α : Type} {X O : Set α}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Specification.holds_of_outer (spec : Specification α) (h : X ⊆ O)
-    (hO : spec.Holds O) : spec.Holds X := by
+    (hO : spec.Holds O) : spec.Holds X := by -- --- PROOF ---
   obtain ⟨s, k⟩ := spec
   cases k
   · exact subset_trans h hO
   · exact hO.mono_left h
+  · exact subset_trans h hO
 
 end CORALean
 
