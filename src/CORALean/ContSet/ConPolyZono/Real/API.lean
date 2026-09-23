@@ -2,6 +2,7 @@ import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
 import CORALean.ContSet.ConPolyZono.Real.Operations.API
 import CORALean.ContSet.ConPolyZono.Real.Theorems.API
 import CORALean.ContSet.ConPolyZono.Real.Complexity.API
+import CORALean.ContSet.ConPolyZono.Real.Cost.API
 import CORALean.ContSet.ConPolyZono.Real.Instances
 
 /-!

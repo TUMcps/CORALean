@@ -1,6 +1,7 @@
 import CORALean.NN.BucketTolerance
 import CORALean.NN.Chain
 import CORALean.NN.CompressionPreprocessing
+import CORALean.NN.Cost.API
 import CORALean.NN.Float.API
 import CORALean.NN.Graph.API
 import CORALean.NN.Layer
