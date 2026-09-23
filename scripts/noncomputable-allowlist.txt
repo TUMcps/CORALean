@@ -1,0 +1,358 @@
+# Allowlist for `noncomputable` outside `Real/` and `Float/`.
+#
+# `check-conventions.sh` rejects every `noncomputable` declaration that is not
+# under a `Real/` directory (rule 1), not the ℝ model of the scalar interface
+# under `Global/Float/Instances/Real/` (rule 2, covered by rule 1), and not an
+# `aux_*` declaration in a `Theorems/` file (rule 3), unless its name is listed
+# here with a reason. Under a `/Float/` path there is no listing: only rule 3
+# excuses a float declaration, because the whole point of the float layer is
+# that it runs.
+#
+# One line per entry: `<name>  <reason>`, the name exactly as `check-
+# conventions.sh` reads it — the declaration's own written name in full,
+# dotted prefix and all (`LinearSys.reach`, not `reach`), and with every byte
+# kept, including a non-ASCII one (`norm₂`, not `norm`): two representations'
+# same-named operations are two distinct declarations and get two distinct
+# entries. A declaration written with no dotted prefix is listed as that bare
+# name, which is still one specific declaration's spelling. A reason starts
+# with one of:
+#   spec:      a specification object — a reachable set defined by
+#              trajectories, a norm, a Hausdorff distance, a real-valued
+#              certificate — never meant to run.
+#   cost:      an asserted running cost under `Cost/`.
+#   real-layer: part of the real (ℝ-valued) half of a representation or of the
+#              NN layer that predates or sits beside its `Float/` refinement,
+#              or reached only from such a definition and nothing runnable.
+#   pending #N: an algorithm with no float refinement yet, for a reason
+#              `check-conventions.sh`'s own comments do not repeat per entry;
+#              see the reason text on each line for which blocker. `#N` is
+#              the GitLab issue the blocker is tracked under.
+#
+# An entry that stops matching any `noncomputable` declaration is an error —
+# "stale allowlist entry" — so this list only shrinks honestly.
+#
+# pending #1: every continuous-time algorithm (`LinearSys`, `LinParamSys`,
+# `NonlinearSys`, the hybrid `Location.timeIntervalStep*`) takes `r : ℝ` and
+# runs the real matrix exponential. The fix is to re-index the float `Interval`
+# by its ambient type so a float interval matrix exists; that is a separate,
+# larger piece of work and not attempted here.
+BReach.D  real-layer: a worked example over the real specification layer, proved and never run
+Chain.aux_layerRank  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+Chain.aux_neuronRank  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+Chain.sensitivity  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+DMZ.A0  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+DMZ.R0  real-layer: a worked example over the real specification layer, proved and never run
+DMZ.U  real-layer: a worked example over the real specification layer, proved and never run
+DMZ.sysD  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+EIM.A  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+ESO.A  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+Example.A0  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+Example.ballBox  real-layer: a worked example over the real specification layer, proved and never run
+Example.ballZono  real-layer: a worked example over the real specification layer, proved and never run
+Example.bounce  real-layer: a worked example over the real specification layer, proved and never run
+Example.bounceCut  real-layer: a worked example over the real specification layer, proved and never run
+Example.bouncingBall  real-layer: a worked example over the real specification layer, proved and never run
+Example.check  real-layer: a worked example over the real specification layer, proved and never run
+Example.compressNetwork  real-layer: a worked example over the real specification layer, proved and never run
+Example.compressPart  real-layer: a worked example over the real specification layer, proved and never run
+Example.compressW  real-layer: a worked example over the real specification layer, proved and never run
+Example.convNet  real-layer: a worked example over the real specification layer, proved and never run
+Example.diamond  real-layer: a worked example over the real specification layer, proved and never run
+Example.diamondBundle  real-layer: a worked example over the real specification layer, proved and never run
+Example.feedForward  real-layer: a worked example over the real specification layer, proved and never run
+Example.floorGuard  real-layer: a worked example over the real specification layer, proved and never run
+Example.nn  real-layer: a worked example over the real specification layer, proved and never run
+Example.nnControlled  real-layer: a worked example over the real specification layer, proved and never run
+Example.nnControlledDT  real-layer: a worked example over the real specification layer, proved and never run
+Example.nnController  real-layer: a worked example over the real specification layer, proved and never run
+Example.splitter  real-layer: a worked example over the real specification layer, proved and never run
+Example.sqDeriv  real-layer: a worked example over the real specification layer, proved and never run
+Example.sqHess  real-layer: a worked example over the real specification layer, proved and never run
+Example.sysD  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+GNN.ball  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+GNN.ballEnum  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+GNN.ballEnumIdx  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+GNN.mask  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+GNN.messagePassing  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+GNN.messagePassingEnclosure  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+GNN.sqrtBroadcast  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+GNN.sqrtCol  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+GNN.sqrtConst  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+GNN.sqrtEdgeCoeff  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+GNN.sqrtError  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+GNN.sqrtOffset  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+GNN.sqrtRow  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+GNN.sqrtSlope  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+GNN.uncertainAdj  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+GNN.uncertainAdjPad  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+Layer.activationPoly  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+Layer.activationPolyOn  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+Layer.activationPolyRefinable  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+Layer.avgPool  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+Layer.batchNorm  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+Layer.maxPool  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+Layer.softmax  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+LinParamSys.discretizeEnclosure  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinParamSys.inputSolution  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinParamSys.inputSolutionZono  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinParamSys.inputTaylorSum  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinParamSys.inputTaylorSumTail  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinParamSys.inputTerm  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinParamSys.inputTermZono  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinParamSys.timeIntervalStep  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.adaptTimeStep  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.adaptTimeStepOrder  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.adaptTimeStepSearch  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.autoInit  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.autoReach  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.autoRun  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.autoStep  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.autoTuneDeltaT  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.autoTuneOrder  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.autoTuneSearch  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.closedForm  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.deltaReach  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.discretize  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.discretizeEnclosure  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.discretizeMatZonotope  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.inputReach  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.inputSolution  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.inputSolutionInner  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.inputSolutionSet  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.inputTaylorSum  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.inputTaylorSumTail  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.inputTerm  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.integralTimeIntervalBound  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.integralTimePointBound  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.integralTimePointWitness  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.manualInit  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.manualReach  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.manualRun  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.manualStep  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.maxBackReachCZ  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.maxBackReachInit  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.maxBackReachMu  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.maxBackReachPoly  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.maxBackReachRun  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.maxBackReachStep  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.maxBackReachTimeInterval  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.minBackReachInit  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.minBackReachP  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.minBackReachRun  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.minBackReachStep  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.minBackReachSupport  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.minBackReachTimeInterval  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.postDelta  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.propagateInputSolution  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.stepInput  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.stepInputConst  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.timeIntervalBound  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.timeIntervalStep  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.timeIntervalStepCurvatureError  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.timeIntervalStepEps  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.timeIntervalStepError  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.timeIntervalStepInner  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.timePointBound  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.timePointStep  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.timePointStepError  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.timePointStepInner  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.timePointStepRemainderError  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.tunedInit  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.tunedReach  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.tunedRun  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.tunedStep  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.verify  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.verifyRun  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.verifyStep  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSysDT.reachCost  cost: an asserted running cost under `Cost/`, never meant to compute
+LinearSysDT.reachError  spec: what a run owes/what an inner approximation is, a real-valued guarantee object; `minkowskiDiff` computes nothing
+LinearSysDT.reachErrorFloat  spec: what a float run owes, summed from the four Box operations' float error terms into a real accumulator; the terms are now computed in 𝕋, this recursion over them is not
+LinearSysDT.reachErrorOrders  spec: what a run owes/what an inner approximation is, a real-valued guarantee object; `minkowskiDiff` computes nothing
+LinearSysDT.reachErrorReduced  spec: what a run owes/what an inner approximation is, a real-valued guarantee object; `minkowskiDiff` computes nothing
+LinearSysDT.reachErrorReducedOrders  spec: what a run owes/what an inner approximation is, a real-valued guarantee object; `minkowskiDiff` computes nothing
+LinearSysDT.reachInner  spec: what a run owes/what an inner approximation is, a real-valued guarantee object; `minkowskiDiff` computes nothing
+LinearSysDT.reachInnerFloat  spec: the computed float run minus `reachErrorFloat`; a guarantee about a set, `minkowskiDiff` computes nothing, as at `reachInner`
+LinearSysDT.reachInnerReduced  spec: what a run owes/what an inner approximation is, a real-valued guarantee object; `minkowskiDiff` computes nothing
+LinearSysDT.reachInnerRep  spec: what a run owes/what an inner approximation is, a real-valued guarantee object; `minkowskiDiff` computes nothing
+Location.timeIntervalStep  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+Location.timeIntervalStepInv  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+Location.timeIntervalStepSplit  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.absMat  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.affineDynamicsError  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.affineDynamicsErrorBound  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.affineTimeIntervalOuter  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.affineTimeIntervalSolution  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.affineTimePointNext  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.constCorrTerm  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.constCorrectionMatrix  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.corrCoeff  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.corrCritical  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.corrTerm  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.correctionMatrix  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.curvatureEnclosure  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.expEnclosure  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.expIntegral  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.expIntervalEnclosure  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.expIntervalEnclosureExact  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.expIntervalTaylor  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.expIntervalTaylorExact  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.expIntervalTaylorTail  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.expIntervalW  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.expMatZonoEnclosure  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.expMatZonoRemainder  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.expMatZonoTaylor  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.expMatZonoTerm  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.expRemainder  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.expRemainderBound  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.expRemainderMat  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.expRemainderOrder  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.expRemainderStep  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.expTaylor  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.expW  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.genMinus  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.homogeneousRemainderError  spec: CDC'20 eq. (21)'s ε_H, a real-valued error measure that states the convergence results, never computed
+MatExp.homogeneousRemainderSet  spec: the set CDC'20 eq. (21) takes err of, a real-valued error measure that states the convergence results, never computed
+MatExp.inputCorrectionSet  spec: CDC'20 eq. (18)'s F_u, a real-valued error measure that states the convergence results, never computed
+MatExp.inputRemainder  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.intervalConstCorrTerm  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.intervalConstCorrectionMatrix  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.intervalCorrTerm  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.intervalCorrectionMatrix  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.intervalInputRemainder  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.intervalMulVecSet  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.particularCoeff  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.particularCoeffSum  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.particularRemainderError  spec: CDC'20 eq. (22)'s ε_P, a real-valued error measure that states the convergence results, never computed
+MatExp.particularRemainderSet  spec: the set CDC'20 eq. (22) takes err of, a real-valued error measure that states the convergence results, never computed
+MatExp.particularSolutionError  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.particularSolutionErrorBound  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.particularSolutionOuter  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.particularSolutionOuterCorrelated  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.particularSolutionTauError  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.particularSolutionTauErrorBound  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.quadTerm  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.quadTermHi  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.quadTermLo  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.stateCorrectionSet  spec: CDC'20 eq. (17)'s F_x, a real-valued error measure that states the convergence results, never computed
+NeurNetContrSys.reach  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+NeurNetContrSysDT.simulate  spec: an idealised real-valued closed-loop trajectory, used only in a correctness statement
+NonlinearSys.abstrErrPolySearch  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+NonlinearSys.abstrReach  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+NonlinearSys.abstrRun  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+NonlinearSys.abstrStep  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+NonlinearSys.adaptLinPass  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+NonlinearSys.adaptRun  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+NonlinearSys.adaptStep  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+NonlinearSys.centreAbstrReach  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+NonlinearSys.centreAbstrRun  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+NonlinearSys.centreAbstrStep  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+NonlinearSys.linPoint  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+NonlinearSys.polyReachReach  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+NonlinearSys.polyReachRun  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+NonlinearSys.polyReachStep  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+NonlinearSys.relinDeltaReach  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+NonlinearSys.relinReach  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+NonlinearSys.relinTimeInterval  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+NonlinearSysDT.reachCost  cost: an asserted running cost under `Cost/`, never meant to compute
+Partition.ofPred  real-layer: reached only from NN/MergeBucket.lean's real-valued merge-bucket construction (mergeSplit), which nothing runnable calls; Partition.split/reindex/on stay computable and are used generically, including at Float
+PolyRelaxation.ofAffineConj  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+PolyRelaxation.ofSampling  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+Relaxation.ofAffineConj  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+Relaxation.ofAntitone  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+Relaxation.ofDeriv  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+Relaxation.ofMonotone  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+Relaxation.tighter  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+Schedule.refineWorst  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+Schedule.refineWorstNeurons  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+abstrErr  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+abstrErrLin  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+abstrSolInf  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+aux_diffPoint  spec: a real-valued certificate (support witness/bound), quantifying over arbitrary linear functionals
+aux_invSqrtDerivHi  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+aux_invSqrtDerivLo  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+aux_layerRank  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+aux_neuronwiseStep  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+aux_search  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+aux_verifyConvexStep  spec: a real-valued certificate (support witness/bound), quantifying over arbitrary linear functionals
+aux_worstLayer  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+aux_worstNeuron  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+batchNormScale  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+batchNormShift  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+boxDiameter  spec: a norm or Hausdorff distance over ℝ, used only to state a guarantee
+boxHalfRange  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+ellipsoidInputTaylorSum  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+err  spec: a norm or Hausdorff distance over ℝ, used only to state a guarantee
+estimateGain  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+estimateGainSearch  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+gain  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+gainDim  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+gainMax  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+gainOrder  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+gainOrderDim  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+genOpNorm₂  spec: a norm or Hausdorff distance over ℝ, used only to state a guarantee
+globalAbstrErr  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+hausdorffDist₂  spec: a norm or Hausdorff distance over ℝ, used only to state a guarantee
+interpGain  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+invSqrt  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+invSqrtRelaxation  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+invSqrtRelaxationDeriv  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+invSqrtRelaxationRange  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+lagrangeRemainder  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+layerSensitivity  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+leastSquaresFit  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+linearSigmoidNetwork  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+localAbstrErr  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+maxPoolGap  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+mergeBucket.decidablePred  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+mergeSplit  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+mergedSandwich  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+mulVecL  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+norm₂  spec: a norm or Hausdorff distance over ℝ, used only to state a guarantee
+optDeltat  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+optDeltatSearch  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+polyDerivDiff  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+polyDerivRadius  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+polyFit  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+polyRelaxationFamily  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+reachSizeEstimate  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+refinementRank  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+refinementRankLayerBias  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+refinementRankSensitivity  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+relu  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+reluGap  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+reluRelaxation  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+reluSlope  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+sampleGrid  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+sampleInf  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+sampleSup  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+sampleVandermonde  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+samplingError  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+sigmoid  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+sigmoidCurvatureRelaxation  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+sigmoidDeriv  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+sigmoidDerivHi  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+sigmoidDerivLo  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+sigmoidLinearSigmoidNetwork  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+sigmoidPolyFamily  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+sigmoidPolyRelaxation  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+sigmoidPolyRelaxationFit  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+sigmoidRefinableNetwork  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+sigmoidRelaxation  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+sigmoidSlope  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+softmax  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+softmaxBox  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+softmaxRawLower  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+softmaxRawUpper  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+tanh  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+tanhPolyRelaxation  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+tanhPolyRelaxationFit  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+tanhRelaxation  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+toEuclidean  spec: a norm or Hausdorff distance over ℝ, used only to state a guarantee
+tuneAbstrOrder  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+tuneDeltat  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+tuneDeltatInit  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+varInputs  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+verifyConvex  spec: a real-valued certificate (support witness/bound), quantifying over arbitrary linear functionals
+verifyHalfspace  spec: a real-valued certificate (support witness/bound), quantifying over arbitrary linear functionals
+windowMax  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+worstIndex  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/

@@ -1,6 +1,6 @@
+import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 import CORALean.ContSet.Zonotope.Float.Operations.PlusBox
 import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 
 /-!
 # `plus` reaches no further than its operands plus `plusBox`
@@ -8,10 +8,12 @@ import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 The reverse of `plus_outer`, and what a float step's own accumulated error
 needs: `plus`'s generators concatenate exactly, so its nominal part misses
 `nominalSet Z₁ + nominalSet Z₂` by exactly the centre's rounding, a single
-point; its error box is read back into `plusBox` unchanged. Both operands' own
-error boxes are absorbed at `0`, which is where `h₁`, `h₂` are spent — not
-because the sum needs them small, but because `plusBox` was built to add
-`plus`'s own error box as-is rather than to reprove what rounded it.
+point bounded in `𝕋` the same two ways `addDown`/`addUp` already bound it;
+`Interval.plus_outer` reads that bound and `plus`'s own error box into
+`plusBox`. Both operands' own error boxes are absorbed at `0`, which is where
+`h₁`, `h₂` are spent — not because the sum needs them small, but because
+`plusBox` was built to add `plus`'s own error box as-is rather than to reprove
+what rounded it.
 -/
 
 -- Authors:       Tobias Ladner
@@ -67,12 +69,19 @@ theorem Zonotope.plus_subset_add_box (Z₁ Z₂ : Zonotope 𝕋 n)
     have h := Set.add_mem_add (Zonotope.mem_nominalSet_iff.mpr
       ⟨fun l => β (Fin.natAdd Z₁.h l), fun l => hβ _, fun _ => rfl⟩) h₂
     rwa [add_zero] at h
-  -- `d` and `plus`'s own error box, read back into `plusBox` via the exact `Real` `plus`
-  have hbox : d + y₂ ∈ (Zonotope.plusBox Z₁ Z₂).construct := by
-    show d + y₂ ∈
-      ((Real.Zonotope.ofPoint d).plus ((Z₁.plus Z₂).E.nominal.zonotope)).construct
-    rw [← Real.Zonotope.plus_exact]
-    exact Set.add_mem_add (Real.Zonotope.mem_ofPoint d) (Real.Interval.zonotope_contains _ hy₂)
+  -- `d` bounded in `𝕋` by the same two roundings that produced it
+  have hd : d ∈ (⟨fun i => subDown (addDown (Z₁.c i) (Z₂.c i)) (addUp (Z₁.c i) (Z₂.c i)),
+      fun _ => (zero : 𝕋)⟩ : Interval 𝕋 n).construct := fun i =>
+    ⟨by show toReal (subDown (addDown (Z₁.c i) (Z₂.c i)) (addUp (Z₁.c i) (Z₂.c i))) ≤ d i
+        have h1 := subDown_le_sub (addDown (Z₁.c i) (Z₂.c i)) (addUp (Z₁.c i) (Z₂.c i))
+        have h2 := add_le_addUp (Z₁.c i) (Z₂.c i)
+        rw [hddef]; linarith,
+     by show d i ≤ toReal (zero : 𝕋)
+        have h3 := addDown_le_add (Z₁.c i) (Z₂.c i)
+        rw [hddef, toReal_zero]; linarith⟩
+  -- and `plus`'s own error box, read back into `plusBox` by one more `⊆` step
+  have hbox : d + y₂ ∈ (Zonotope.plusBox Z₁ Z₂).construct :=
+    Interval.plus_outer _ _ (Set.add_mem_add hd hy₂)
   refine ⟨_, Set.add_mem_add hp₁ hp₂, _, hbox, ?_⟩
   funext i
   have hsum := Zonotope.aux_sum_univ_plus_box (Z₁ := Z₁) (Z₂ := Z₂)

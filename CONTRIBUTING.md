@@ -236,9 +236,25 @@ nothing is `sorry` or a search tactic, that nothing outside the one file named
 in the script is an `axiom`, that every `maxHeartbeats` bump
 carries a reason, that a `def` under `Cost/` is named for the cost it asserts,
 that every `[N]` cited resolves, that the comment lengths and the comment
-density above are respected, and that every module is reachable from one of the
+density above are respected, that every module is reachable from one of the
 target roots, so a file written but never collected is caught rather than
-silently left out of the build.
+silently left out of the build, and that `noncomputable` stays where it is
+legitimate — see below.
+
+`noncomputable` is checked against the rule the float layer exists to keep:
+free under `Real/`, and free of an `aux_` declaration in a `Theorems/` file
+anywhere, since that is a proof helper rather than something a caller runs.
+Everywhere else it needs a reason, on one line of
+`scripts/noncomputable-allowlist.txt`: `spec:` for a specification object with
+nothing to compute (a reachable set defined by trajectories, a norm, a
+Hausdorff distance, a real-valued certificate), `cost:` for an asserted
+running cost, `real-layer:` for the real half of a representation or of the
+NN layer whose `Float/` refinement is elsewhere, or `pending #N:` for an
+algorithm with no float refinement yet. Under `Float/` even the allowlist
+does not reach: a float declaration is free only as that same kind of `aux_`,
+because the whole point of the float layer is that it runs. An allowlist
+entry that stops matching anything is itself an error, so the list only
+shrinks honestly.
 
 Every limit it applies is a named variable at the top of the script, set from
 what the tree actually contains, so raising one is a decision rather than a
@@ -326,18 +342,27 @@ failure.
 An **example** is proved and never runs. It holds `example`, `theorem` and `def`
 declarations, prints nothing, and its job is to fail the build when an instance
 stops resolving or an algorithm stops accepting a representation — something a
-library cannot notice from the inside, because only a use site asks.
+library cannot notice from the inside, because only a use site asks. Every
+`def` in one is a plain `def`: a `noncomputable def` compiles the same way a
+`def` does, so it would pass unnoticed, and a structure *parameter* is erased
+by the code generator where an ordinary function argument is not, so a generic
+`def` can compile and only fail once instantiated at a concrete
+representation — which is what `Examples/RunnableFloat.lean` instantiates
+every runnable algorithm at, one small value per representation. It may carry
+a handful of `#eval`s, uncommitted and undiffed, to show a definition runs to
+a value and not only that it elaborates; that alone does not make it a demo.
 
-The **demo** runs, and is the only place a definition in this repository is ever
-evaluated. Its output is committed as `scripts/demo-expected.txt` and
-`check-demo.sh` diffs against it, so an enclosure that silently widens fails the
-build. No theorem can do that job: `_outer` is as true of a box the size of the
-state space as of a tight one, and the only way to tell those apart is to
-compute one and look. `Dyadic` is exact integer arithmetic, so the committed
-numbers do not depend on the machine, the compiler, or the order of anything.
-The last table is the exception and is meant to be: it runs the same system at
-native binary64, where the numbers are reproducible only because IEEE 754 fixes
-every operation, and where the error box is nonzero from the first step.
+The **demo** runs, and is the only place a definition in this repository is
+evaluated *and checked*. Its output is committed as `scripts/demo-expected.txt`
+and `check-demo.sh` diffs against it, so an enclosure that silently widens
+fails the build. No theorem can do that job: `_outer` is as true of a box the
+size of the state space as of a tight one, and the only way to tell those
+apart is to compute one and look. `Dyadic` is exact integer arithmetic, so the
+committed numbers do not depend on the machine, the compiler, or the order of
+anything. The last table is the exception and is meant to be: it runs the
+same system at native binary64, where the numbers are reproducible only
+because IEEE 754 fixes every operation, and where the error box is nonzero
+from the first step.
 
 So: an example says the library still *fits together*; the demo says it still
 *computes, and computes tightly*. A change that loosens a bound passes every

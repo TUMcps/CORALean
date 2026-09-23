@@ -1,15 +1,16 @@
 import CORALean.ContSet.Zonotope.Float.Operations.ReduceByBox
 import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMul
 
 /-!
 # `reduceBy` reaches no further than its operand plus `reduceByBox`
 
 The reverse of `reduceBy_outer`, and `Real`'s own `reduceBy_subset_add_box`
-argument carried across: the kept coefficients read back onto `Z`, the dropped
-ones set to `0`, and what is left is the diagonal block — rounded up here via
-`radius`, which is also what `reduceBy`'s own diagonal block stores, so the two
-match exactly rather than merely bound one another.
+argument carried across, now computed in `𝕋`: the kept coefficients read back
+onto `Z`, the dropped ones set to `0`, and what is left is the diagonal block —
+rounded up here via `radius`, which is also what `reduceBy`'s own diagonal
+block stores, so the two match exactly rather than merely bound one another.
+`reduceByBox`'s own error box is degenerately `0`, so its membership costs
+nothing beyond the nominal part.
 
 `reduceBy` never touches the box — `E := Z.E` — so `y₂` witnesses membership in
 `Z`'s own error box directly, with no need of a `0`-in-the-box hypothesis the
@@ -18,7 +19,7 @@ way `plus` and `mtimes` do.
 
 -- Authors:       Tobias Ladner
 -- Written:       08-September-2026
--- Last update:   ---
+-- Last update:   23-September-2026
 -- Last revision: ---
 
 
@@ -70,50 +71,54 @@ theorem Zonotope.reduceBy_subset_add_box (Z : Zonotope 𝕋 n)
     cases s with
     | inl l => simpa using hβ (Fin.castAdd n l)
     | inr l => simp
-  -- the two summands: `Z` at `α`, with `y₂` absorbed, and the rounded-up dropped box
-  refine ⟨_, Set.add_mem_add
-      (Zonotope.mem_nominalSet_iff.mpr ⟨α, hαbound, fun _ => rfl⟩) hy₂,
-    fun i => ∑ l : Fin n, Matrix.diagonal
-      (fun i' => toReal (radius (fun i l => Z.G i (part.right l)) i')) l i * β (Fin.natAdd q l),
-    Real.Zonotope.mem_construct_iff.mpr
-      ⟨fun l => β (Fin.natAdd q l), fun l => hβ _, fun i => by
-        show _ = (0:ℝ) + ∑ l : Fin n, Matrix.diagonal (fun i' => toReal
-          (radius (fun i l => Z.G i (part.right l)) i')) l i * β (Fin.natAdd q l)
-        rw [zero_add]⟩, ?_⟩
-  funext i
   -- the dropped-generator diagonal picks out one coordinate and drops the rest
-  have hdiag : ∀ x : Fin n, toReal (diagonalBlock (radius fun i l => Z.G i (part.right l)) i x)
+  have hdiag : ∀ i x : Fin n, toReal (diagonalBlock (radius fun i l => Z.G i (part.right l)) i x)
       = if i = x then toReal (radius (fun i l => Z.G i (part.right l)) i) else 0 := by
-    intro x
+    intro i x
     unfold diagonalBlock
     split_ifs with hix
     · rfl
     · exact toReal_zero
-  have hdiagsum : ∑ x : Fin n, toReal (diagonalBlock
+  have hdiagsum : ∀ i, ∑ x : Fin n, toReal (diagonalBlock
       (radius fun i l => Z.G i (part.right l)) i x) * β (Fin.natAdd q x)
       = toReal (radius (fun i l => Z.G i (part.right l)) i) * β (Fin.natAdd q i) := by
+    intro i
     rw [Finset.sum_eq_single i]
-    · rw [hdiag i, if_pos rfl]
+    · rw [hdiag i i, if_pos rfl]
     · intro b _ hb
-      rw [hdiag b, if_neg (Ne.symm hb), zero_mul]
+      rw [hdiag i b, if_neg (Ne.symm hb), zero_mul]
     · intro hi; exact absurd (Finset.mem_univ i) hi
+  -- the box's own point: the dropped rows' rounded-up radius, at `β`'s natAdd half
+  set z : Vec ℝ n :=
+    fun i => toReal (radius (fun i l => Z.G i (part.right l)) i) * β (Fin.natAdd q i) with hzdef
+  have hzero : (0 : Vec ℝ n) ∈ (Zonotope.reduceByBox Z part).E.construct := fun i =>
+    ⟨by show toReal (zero : 𝕋) ≤ (0 : Vec ℝ n) i
+        rw [toReal_zero]; exact le_refl 0,
+     by show (0 : Vec ℝ n) i ≤ toReal (zero : 𝕋)
+        rw [toReal_zero]; exact le_refl 0⟩
+  have hznom : z ∈ nominalSet (Zonotope.reduceByBox Z part) :=
+    Zonotope.mem_nominalSet_iff.mpr ⟨fun l => β (Fin.natAdd q l), fun l => hβ _, fun i => by
+      show z i = toReal (zero : 𝕋) + ∑ x, toReal
+          (diagonalBlock (radius fun i l => Z.G i (part.right l)) i x) * β (Fin.natAdd q x)
+      rw [hzdef, toReal_zero, zero_add, hdiagsum]⟩
+  have hzmem : z ∈ (Zonotope.reduceByBox Z part).construct := by
+    rw [show z = z + (0 : Vec ℝ n) from (add_zero z).symm]
+    exact Set.add_mem_add hznom hzero
+  refine ⟨_, Set.add_mem_add
+      (Zonotope.mem_nominalSet_iff.mpr ⟨α, hαbound, fun _ => rfl⟩) hy₂, _, hzmem, ?_⟩
+  funext i
   -- `y₁`'s own generator sum, split into the kept half and the dropped diagonal
   have hsum := Zonotope.aux_sum_univ_reduceBy_box (Z := Z) (part := part)
     (fun j => toReal (Fin.append (fun l => Z.G i (part.left l))
       (diagonalBlock (radius fun i l => Z.G i (part.right l)) i) j) * β j)
   simp only [Fin.append_left, Fin.append_right] at hsum
-  rw [hdiagsum] at hsum
+  rw [hdiagsum i] at hsum
   have hy₁i : y₁ i = toReal (Z.c i)
       + (∑ l, toReal (Z.G i (part.left l)) * β (Fin.castAdd n l)
         + toReal (radius (fun i l => Z.G i (part.right l)) i) * β (Fin.natAdd q i)) :=
     (hy₁eq i).trans (congrArg (toReal (Z.c i) + ·) hsum)
-  -- `reduceByBox`'s own generator sum collapses to the same single term
-  have hboxsum : ∑ x : Fin n, Matrix.diagonal
-      (fun i' => toReal (radius (fun i l => Z.G i (part.right l)) i')) x i * β (Fin.natAdd q x)
-      = toReal (radius (fun i l => Z.G i (part.right l)) i) * β (Fin.natAdd q i) :=
-    Real.Zonotope.sum_diagonal_mul' _ _ i
   simp only [Pi.add_apply]
-  rw [hy₁i, part.sum_split₂ fun j => toReal (Z.G i j) * α j, hboxsum]
+  rw [hy₁i, part.sum_split₂ fun j => toReal (Z.G i j) * α j]
   simp only [hleft, hright, mul_zero, Finset.sum_const_zero, add_zero]
   ring
 

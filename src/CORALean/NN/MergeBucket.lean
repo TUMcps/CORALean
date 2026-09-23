@@ -40,7 +40,7 @@ namespace CORALean
 def mergeBucket {n : ℕ} (Y : Real.Interval (Vec ℝ n)) (y δ : ℝ) (i : Fin n) : Prop :=
   y - δ ≤ Y.inf i ∧ Y.sup i ≤ y + δ
 
-noncomputable instance {n : ℕ} (Y : Real.Interval (Vec ℝ n)) (y δ : ℝ) :
+noncomputable instance mergeBucket.decidablePred {n : ℕ} (Y : Real.Interval (Vec ℝ n)) (y δ : ℝ) :
     DecidablePred (mergeBucket Y y δ) :=
   fun i => by unfold mergeBucket; infer_instance
 

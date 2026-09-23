@@ -14,16 +14,14 @@ constrains each outward only — so a step loses ground at every operation, not
 only at `reduce`, and this recursion carries a box per operation.
 
 `mtimesBox`, `plusBox` and `reduceGirardBox` bound how far a float result
-reaches beyond the exact operation on its operand, computed from the *same*
-float values `reach` produces that step; the previous step's error rides
-through this step's `mtimes` exactly, `Real.Zonotope.mtimes` being exact on an
-already real-valued operand. `U.E.nominal.zonotope` has no `reachError`
+reaches beyond the exact operation on its operand, computed entirely in `𝕋`
+from the *same* float values `reach` produces that step, and read back into
+this real accumulator by `.nominal`, the same conversion the box's own
+`construct` already goes through. `U.E.nominal.zonotope` has no `reachError`
 counterpart: `plusBox` bounds `(M.plus U).construct` against `U`'s *float*
-construct while `reachSet` advances by its *nominal* construct alone, and this
-closes that gap.
+construct while `reachSet` advances by its *nominal* construct alone.
 
-At `k = 0` the error is `R₀`'s own error box, read back as a zonotope:
-`reach`'s base case is `R₀` itself.
+At `k = 0` the error is `R₀`'s own error box, read back as a zonotope.
 -/
 
 -- Authors:       Tobias Ladner
@@ -36,7 +34,7 @@ At `k = 0` the error is `R₀`'s own error box, read back as a zonotope:
 
 namespace CORALean
 
-open CORALean.Float
+open CORALean.Float InflatedContSet
 
 variable {n : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
@@ -54,9 +52,9 @@ noncomputable def LinearSysDT.reachErrorFloat (sys : LinearSysDT 𝕋 n) (o : �
     let M := Zonotope.mtimes sys.A Rk
     let W := M.plus U
     (Real.Zonotope.mtimes (Scalar.toRealMat sys.A) (sys.reachErrorFloat o ho R₀ U k)).plus
-      ((Zonotope.mtimesBox sys.A Rk).plus
-        ((Zonotope.plusBox M U).plus
-          ((Zonotope.reduceGirardBox W o).plus U.E.nominal.zonotope)))
+      ((Zonotope.mtimesBox sys.A Rk).nominal.zonotope.plus
+        ((Zonotope.plusBox M U).nominal.zonotope.plus
+          ((nominal (Zonotope.reduceGirardBox W o)).plus U.E.nominal.zonotope)))
 
 end CORALean
 
