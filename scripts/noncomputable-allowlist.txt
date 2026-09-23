@@ -243,6 +243,7 @@ MatExp.stateCorrectionSet  spec: CDC'20 eq. (17)'s F_x, a real-valued error meas
 NeurNetContrSys.reach  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 NeurNetContrSysDT.reachCost  cost: an asserted running cost under `Cost/`, never meant to compute
 NeurNetContrSysDT.simulate  spec: an idealised real-valued closed-loop trajectory, used only in a correctness statement
+NonlinearSys.abstrErrPolyCandidates  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 NonlinearSys.abstrErrPolySearch  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 NonlinearSys.abstrReach  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 NonlinearSys.abstrRun  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
@@ -254,6 +255,7 @@ NonlinearSys.centreAbstrReach  pending #1: a continuous-time algorithm at a real
 NonlinearSys.centreAbstrRun  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 NonlinearSys.centreAbstrStep  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 NonlinearSys.linPoint  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+NonlinearSys.linReachPoly  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 NonlinearSys.polyReachReach  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 NonlinearSys.polyReachRun  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 NonlinearSys.polyReachStep  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
