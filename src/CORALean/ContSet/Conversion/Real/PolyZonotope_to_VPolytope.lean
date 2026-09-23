@@ -212,14 +212,15 @@ def PolyZonotope.aux_high (pZ : PolyZonotope α) : PolyZonotope α where
 
 /-- The paper's `PZ̄`: what `H` reaches is made independent, through the tight
 zonotope enclosure of [1, Prop. 5], and `K` keeps its exponents. -/
-noncomputable def PolyZonotope.aux_binarize (pZ : PolyZonotope α) : PolyZonotope α where
-  p := pZ.p
-  h := pZ.h
-  q := pZ.h + pZ.q
-  c := pZ.c + pZ.aux_high.zonotopeEven.c
-  G := fun i => if ∀ k, pZ.E k i ≤ 1 then pZ.G i else 0
-  E := fun k i => if ∀ k', pZ.E k' i ≤ 1 then pZ.E k i else 0
-  GI := pZ.aux_high.zonotopeEven.G
+noncomputable def PolyZonotope.aux_binarize (pZ : PolyZonotope α) : PolyZonotope α :=
+  let H := pZ.aux_high.zonotopeEven                       -- [1, Prop. 5]'s tight enclosure of H
+  { p := pZ.p
+    h := pZ.h
+    q := pZ.h + pZ.q
+    c := pZ.c + H.c
+    G := fun i => if ∀ k, pZ.E k i ≤ 1 then pZ.G i else 0
+    E := fun k i => if ∀ k', pZ.E k' i ≤ 1 then pZ.E k i else 0
+    GI := H.G }
 
 theorem PolyZonotope.aux_binarize_E_le (pZ : PolyZonotope α) (k : Fin pZ.aux_binarize.p)
     (i : Fin pZ.aux_binarize.h) : pZ.aux_binarize.E k i ≤ 1 := by

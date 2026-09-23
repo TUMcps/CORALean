@@ -87,16 +87,16 @@ theorem aux_prod_error (M : Mat 𝕋 q n) (G : Mat 𝕋 n h) (β : Vec ℝ h)
 
 /-- The rows, carried onto the coefficients and widened by what carrying them
 rounds off. -/
-def HPolytope.onCoefficients (P : HPolytope 𝕋 n) (Z : Zonotope 𝕋 n) : HPolytope 𝕋 Z.h where
-  m := P.m
-  A := matMulDown P.A Z.G
-  b := fun i => addUp (subUp (P.b i) (dotDown (P.A i) Z.c)) (radius (matMulDiff P.A Z.G) i)
-  me := P.me
-  Ae := matMulDown P.Ae Z.G
-  be := ⟨fun i => subDown (subDown (P.be.inf i) (dotUp (P.Ae i) Z.c))
-            (radius (matMulDiff P.Ae Z.G) i),
-         fun i => addUp (subUp (P.be.sup i) (dotDown (P.Ae i) Z.c))
-            (radius (matMulDiff P.Ae Z.G) i)⟩
+def HPolytope.onCoefficients (P : HPolytope 𝕋 n) (Z : Zonotope 𝕋 n) : HPolytope 𝕋 Z.h :=
+  let err := radius (matMulDiff P.A Z.G)          -- how far a row's carried product can be off
+  let errE := radius (matMulDiff P.Ae Z.G)        -- the same, for the equality rows
+  { m := P.m
+    A := matMulDown P.A Z.G
+    b := fun i => addUp (subUp (P.b i) (dotDown (P.A i) Z.c)) (err i)
+    me := P.me
+    Ae := matMulDown P.Ae Z.G
+    be := ⟨fun i => subDown (subDown (P.be.inf i) (dotUp (P.Ae i) Z.c)) (errE i),
+           fun i => addUp (subUp (P.be.sup i) (dotDown (P.Ae i) Z.c)) (errE i)⟩ }
 
 def HPolytope.conZonotopeOf (P : HPolytope 𝕋 n) (Z : Zonotope 𝕋 n) : ConZonotope 𝕋 n where
   h := Z.h

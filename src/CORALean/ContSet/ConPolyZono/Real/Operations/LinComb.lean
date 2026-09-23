@@ -38,19 +38,20 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def ConPolyZono.linComb (cPZ₁ cPZ₂ : ConPolyZono α) : ConPolyZono α where
-  p := cPZ₁.p + cPZ₂.p + 1
-  h := cPZ₁.h + cPZ₂.h + (cPZ₁.h + cPZ₂.h + 1)
-  q := cPZ₁.q + cPZ₂.q
-  m := cPZ₁.m + cPZ₂.m
-  s := cPZ₁.s + cPZ₂.s
-  c := (cPZ₁.toPolyZonotope.linComb cPZ₂.toPolyZonotope).c
-  G := (cPZ₁.toPolyZonotope.linComb cPZ₂.toPolyZonotope).G
-  E := (cPZ₁.toPolyZonotope.linComb cPZ₂.toPolyZonotope).E
-  GI := (cPZ₁.toPolyZonotope.linComb cPZ₂.toPolyZonotope).GI
-  A := ConPolyZono.plusA cPZ₁.A cPZ₂.A
-  b := ConPolyZono.plusB cPZ₁.b cPZ₂.b
-  EC := ConPolyZono.padE (PolyZonotope.plusE cPZ₁.EC cPZ₂.EC) 1
+noncomputable def ConPolyZono.linComb (cPZ₁ cPZ₂ : ConPolyZono α) : ConPolyZono α :=
+  let pZ := cPZ₁.toPolyZonotope.linComb cPZ₂.toPolyZonotope   -- the segment's generators
+  { p := cPZ₁.p + cPZ₂.p + 1
+    h := cPZ₁.h + cPZ₂.h + (cPZ₁.h + cPZ₂.h + 1)
+    q := cPZ₁.q + cPZ₂.q
+    m := cPZ₁.m + cPZ₂.m
+    s := cPZ₁.s + cPZ₂.s
+    c := pZ.c
+    G := pZ.G
+    E := pZ.E
+    GI := pZ.GI
+    A := ConPolyZono.plusA cPZ₁.A cPZ₂.A
+    b := ConPolyZono.plusB cPZ₁.b cPZ₂.b
+    EC := ConPolyZono.padE (PolyZonotope.plusE cPZ₁.EC cPZ₂.EC) 1 }
 
 end CORALean.Real
 

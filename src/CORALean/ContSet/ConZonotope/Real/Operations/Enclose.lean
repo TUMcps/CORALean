@@ -40,14 +40,17 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 construction. `hh` casts `cZ₂`'s generators and constraints against `cZ₁`'s
 own index. -/
 noncomputable def ConZonotope.enclose (cZ₁ cZ₂ : ConZonotope α) (hh : cZ₁.h = cZ₂.h) :
-    ConZonotope α where
-  h := cZ₁.h + cZ₁.h + 1
-  c := (2:ℝ)⁻¹ • (cZ₁.c + cZ₂.c)
-  G := Fin.append
-    (Fin.append (fun j => (2:ℝ)⁻¹ • (cZ₁.G j + cZ₂.G (Fin.cast hh j)))
-      (fun j => (2:ℝ)⁻¹ • (cZ₁.G j - cZ₂.G (Fin.cast hh j))))
-    (fun _ : Fin 1 => (2:ℝ)⁻¹ • (cZ₁.c - cZ₂.c))
-  P := cZ₁.P.comap ((blockLeft cZ₁.h cZ₁.h).comp (blockLeft (cZ₁.h + cZ₁.h) 1))
+    ConZonotope α :=
+  let mid := (2:ℝ)⁻¹ • (cZ₁.c + cZ₂.c)                          -- the segment's midpoint
+  -- generators both keep
+  let shared := fun j => (2:ℝ)⁻¹ • (cZ₁.G j + cZ₂.G (Fin.cast hh j))
+  -- generators they differ on
+  let apart := fun j => (2:ℝ)⁻¹ • (cZ₁.G j - cZ₂.G (Fin.cast hh j))
+  let half := fun _ : Fin 1 => (2:ℝ)⁻¹ • (cZ₁.c - cZ₂.c)         -- the segment's own generator
+  { h := cZ₁.h + cZ₁.h + 1
+    c := mid
+    G := Fin.append (Fin.append shared apart) half
+    P := cZ₁.P.comap ((blockLeft cZ₁.h cZ₁.h).comp (blockLeft (cZ₁.h + cZ₁.h) 1)) }
 
 end CORALean.Real
 
