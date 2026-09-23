@@ -1,3 +1,4 @@
+import CORALean.ContDynamics.NonlinearSys.Operations.LinStepLinInput
 import CORALean.ContDynamics.NonlinearSys.Operations.LinReachPoly
 import CORALean.ContDynamics.NonlinearSys.Theorems.AbstrErrPolySearchEqSome
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachOuterHorizon

@@ -1,4 +1,4 @@
-import CORALean.HybridDynamics.Invariant
+import CORALean.HybridDynamics.Definitions.Invariant
 import CORALean.HybridDynamics.Theorems.FlowOuterSplit
 import CORALean.HybridDynamics.Theorems.JumpOuter
 

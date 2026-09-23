@@ -1,5 +1,5 @@
-import CORALean.ContDynamics.LinearSys.IntegralTimeIntervalBackReachSetForallExists
-import CORALean.ContDynamics.LinearSys.IntegralTimeIntervalBackReachSetOfInput
+import CORALean.ContDynamics.LinearSys.Definitions.IntegralTimeIntervalBackReachSetForallExists
+import CORALean.ContDynamics.LinearSys.Definitions.IntegralTimeIntervalBackReachSetOfInput
 import CORALean.ContDynamics.LinearSys.MinBackReachTimeInterval
 import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
 

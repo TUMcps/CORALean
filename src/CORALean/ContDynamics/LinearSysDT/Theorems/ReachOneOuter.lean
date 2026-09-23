@@ -1,4 +1,7 @@
-import CORALean.ContDynamics.LinearSysDT.Operations
+import CORALean.ContDynamics.LinearSysDT.Operations.Reach
+import CORALean.ContDynamics.LinearSysDT.Operations.ReachOrders
+import CORALean.ContDynamics.LinearSysDT.Operations.ReachHeld
+import CORALean.ContDynamics.LinearSysDT.Operations.Simulate
 
 /-!
 # One step of `LinearSysDT.reach` encloses one step of the dynamics

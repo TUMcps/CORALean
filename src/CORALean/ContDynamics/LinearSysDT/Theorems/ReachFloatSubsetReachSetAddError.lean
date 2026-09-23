@@ -1,5 +1,5 @@
-import CORALean.ContDynamics.LinearSysDT.ReachErrorFloat
-import CORALean.ContDynamics.LinearSysDT.ReachSet
+import CORALean.ContDynamics.LinearSysDT.Operations.ReachErrorFloat
+import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachFloatZeroMemError
 import CORALean.ContSet.Zonotope.Float.Theorems.MtimesSubsetAddBox
 import CORALean.ContSet.Zonotope.Float.Theorems.PlusSubsetAddBox

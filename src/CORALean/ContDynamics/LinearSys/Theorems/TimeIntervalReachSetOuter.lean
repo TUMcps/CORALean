@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.LinearSys.TimeIntervalReachSet
+import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalReachSet
 
 /-!
 # `timeIntervalReachSet` contains every trajectory over the interval

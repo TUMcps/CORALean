@@ -1,5 +1,5 @@
-import CORALean.HybridDynamics.InvariantOn
-import CORALean.HybridDynamics.Invariant
+import CORALean.HybridDynamics.Definitions.InvariantOn
+import CORALean.HybridDynamics.Definitions.Invariant
 
 /-!
 # An unbounded invariant is an indexed one at the constant family

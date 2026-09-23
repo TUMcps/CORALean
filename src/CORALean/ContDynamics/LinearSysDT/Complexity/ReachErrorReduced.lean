@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.LinearSysDT.ReachErrorReduced
+import CORALean.ContDynamics.LinearSysDT.Operations.ReachErrorReduced
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOrder
 
 /-!

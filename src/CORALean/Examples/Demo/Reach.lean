@@ -1,5 +1,8 @@
-import CORALean.ContDynamics.LinearSysDT.Operations
-import CORALean.ContDynamics.OutputEq.Operations
+import CORALean.ContDynamics.LinearSysDT.Operations.Reach
+import CORALean.ContDynamics.LinearSysDT.Operations.ReachOrders
+import CORALean.ContDynamics.LinearSysDT.Operations.ReachHeld
+import CORALean.ContDynamics.LinearSysDT.Operations.Simulate
+import CORALean.ContDynamics.OutputEq.Operations.OutputSet
 import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
 import CORALean.ContSet.Zonotope.Float.Instances
 import CORALean.Examples.Demo.Decimal

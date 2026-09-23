@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.LinearSysDT.ReachError
+import CORALean.ContDynamics.LinearSysDT.Operations.ReachError
 import CORALean.ContSet.Zonotope.Real.Complexity.Mtimes
 import CORALean.ContSet.Zonotope.Real.Complexity.Plus
 import CORALean.ContSet.Zonotope.Real.Complexity.ReduceBox

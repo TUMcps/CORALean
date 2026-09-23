@@ -1,5 +1,6 @@
-import CORALean.ContDynamics.LinearSys.IntegralTimeIntervalReachSet
-import CORALean.ContDynamics.LinearSys.StepInner
+import CORALean.ContDynamics.LinearSys.Definitions.IntegralTimeIntervalReachSet
+import CORALean.ContDynamics.LinearSys.Definitions.StepInner
+import CORALean.ContDynamics.LinearSys.Operations.TimePointStepInnerRep
 import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormContinuousOn
 import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormFlow
 import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormZero

@@ -1,5 +1,6 @@
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundSuperlinear
-import CORALean.ContDynamics.LinearSys.StepConvergenceError
+import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepCurvatureError
+import CORALean.ContDynamics.LinearSys.Operations.TimePointStepRemainderError
 import CORALean.Global.SuperlinearDecrease
 
 /-!

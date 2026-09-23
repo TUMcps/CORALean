@@ -44,6 +44,15 @@ import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffOrEmpty
 import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffGenRec
 import CORALean.ContSet.Zonotope.Real.Operations.Shift
 import CORALean.ContSet.Zonotope.Real.Operations.SupportBound
+import CORALean.ContSet.Zonotope.Real.Operations.ReduceBoxError
+import CORALean.ContSet.Zonotope.Real.Operations.AdaptSetOrderLoop
+import CORALean.ContSet.Zonotope.Real.Operations.AdaptSetOrder
+import CORALean.ContSet.Zonotope.Real.Operations.RatioExceeds
+import CORALean.ContSet.Zonotope.Real.Operations.EnclRatioLoop
+import CORALean.ContSet.Zonotope.Real.Operations.EnclCoverLoop
+import CORALean.ContSet.Zonotope.Real.Operations.EnclGenSel
+import CORALean.ContSet.Zonotope.Real.Operations.ReduceBoxOrder
+import CORALean.ContSet.Zonotope.Real.Operations.AutoTuneSetOrder
 
 /-!
 # What `Zonotope` computes

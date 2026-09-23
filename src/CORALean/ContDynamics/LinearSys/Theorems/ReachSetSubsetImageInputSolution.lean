@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.LinearSys.ReachSet
+import CORALean.ContDynamics.LinearSys.Definitions.ReachSet
 import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
 import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
 import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolution

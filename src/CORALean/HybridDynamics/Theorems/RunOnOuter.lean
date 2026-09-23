@@ -1,4 +1,5 @@
-import CORALean.HybridDynamics.InvariantOn
+import CORALean.HybridDynamics.Theorems.TrajectoryMemIccRight
+import CORALean.HybridDynamics.Definitions.InvariantOn
 
 /-!
 # A run never leaves the invariant, up to its own jump count

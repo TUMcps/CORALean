@@ -1,5 +1,6 @@
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOneOuter
-import CORALean.ContDynamics.NeurNetContrSysDT.Operations
+import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Reach
+import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Simulate
 import CORALean.NN.Theorems.EncloseOuter
 
 /-!

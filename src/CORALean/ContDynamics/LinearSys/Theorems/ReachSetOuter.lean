@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.LinearSys.ReachSet
+import CORALean.ContDynamics.LinearSys.Definitions.ReachSet
 
 /-!
 # `reachSet` contains every trajectory

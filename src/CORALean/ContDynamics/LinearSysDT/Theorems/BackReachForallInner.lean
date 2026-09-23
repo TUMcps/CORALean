@@ -1,5 +1,5 @@
-import CORALean.ContDynamics.LinearSysDT.BackReachForall
-import CORALean.ContDynamics.LinearSysDT.BackReachSetForall
+import CORALean.ContDynamics.LinearSysDT.Operations.BackReachForall
+import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachSetForall
 
 /-!
 # `backReachForall` is an inner approximation of the backward reachable set

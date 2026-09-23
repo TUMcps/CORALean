@@ -1,4 +1,7 @@
-import CORALean.ContDynamics.LinearSysDT.Operations
+import CORALean.ContDynamics.LinearSysDT.Operations.Reach
+import CORALean.ContDynamics.LinearSysDT.Operations.ReachOrders
+import CORALean.ContDynamics.LinearSysDT.Operations.ReachHeld
+import CORALean.ContDynamics.LinearSysDT.Operations.Simulate
 
 /-!
 # `LinearSysDT.reachHeld` encloses every held run

@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.LinearSys.ClosedForm
+import CORALean.ContDynamics.LinearSys.Definitions.ClosedForm
 
 /-!
 # The closed form starts where it says it does

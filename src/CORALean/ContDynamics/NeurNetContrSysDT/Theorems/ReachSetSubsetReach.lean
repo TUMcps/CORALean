@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.NeurNetContrSysDT.ReachSet
+import CORALean.ContDynamics.NeurNetContrSysDT.Definitions.ReachSet
 import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachOuter
 
 /-!

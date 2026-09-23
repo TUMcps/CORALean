@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.LinearSys.IntegralTimeIntervalBackReachSetExistsForall
+import CORALean.ContDynamics.LinearSys.Definitions.IntegralTimeIntervalBackReachSetExistsForall
 import CORALean.ContDynamics.LinearSys.MaxBackReachTimeInterval
 import CORALean.ContDynamics.LinearSys.Theorems.IntegralBackReachSetExistsForallEq
 import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombInner

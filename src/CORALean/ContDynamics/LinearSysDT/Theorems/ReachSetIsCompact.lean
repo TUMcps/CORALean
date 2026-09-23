@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.LinearSysDT.ReachSet
+import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
 
 /-!
 # `reachSet` is compact

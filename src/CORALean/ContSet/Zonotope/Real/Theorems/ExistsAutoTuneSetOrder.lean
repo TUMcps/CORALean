@@ -1,4 +1,4 @@
-import CORALean.ContSet.Zonotope.Real.AutoTuneSetOrder
+import CORALean.ContSet.Zonotope.Real.Operations.AutoTuneSetOrder
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBoxErrorEqZero
 
 /-!

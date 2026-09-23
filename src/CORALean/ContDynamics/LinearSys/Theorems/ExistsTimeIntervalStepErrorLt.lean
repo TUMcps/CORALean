@@ -1,5 +1,6 @@
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoExpRemainderBoundZero
-import CORALean.ContDynamics.LinearSys.StepError
+import CORALean.ContDynamics.LinearSys.Operations.TimePointStepError
+import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepError
 
 /-!
 # Any admissible error is reachable, over the whole step

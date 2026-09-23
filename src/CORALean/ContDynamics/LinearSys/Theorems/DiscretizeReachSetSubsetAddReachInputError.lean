@@ -1,6 +1,6 @@
-import CORALean.ContDynamics.LinearSys.ReachInputError
+import CORALean.ContDynamics.LinearSys.Operations.ReachInputError
 import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionSubsetConstInputAddErrorBox
-import CORALean.ContDynamics.LinearSysDT.ReachSet
+import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
 import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 
 /-!

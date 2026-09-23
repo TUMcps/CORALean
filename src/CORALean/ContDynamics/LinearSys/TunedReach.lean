@@ -1,7 +1,9 @@
-import CORALean.ContDynamics.LinearSys.AdaptTimeStep
+import CORALean.ContDynamics.LinearSys.Operations.AdaptTimeStep
 import CORALean.ContDynamics.LinearSys.Operations.InputSolution
 import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
-import CORALean.ContSet.Zonotope.Real.AdaptSetOrder
+import CORALean.ContSet.Zonotope.Real.Operations.ReduceBoxError
+import CORALean.ContSet.Zonotope.Real.Operations.AdaptSetOrderLoop
+import CORALean.ContSet.Zonotope.Real.Operations.AdaptSetOrder
 import CORALean.ContSet.Zonotope.Real.Instances
 import CORALean.ContSet.Zonotope.Real.Operations.Reduce
 

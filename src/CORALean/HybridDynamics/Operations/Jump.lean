@@ -1,6 +1,6 @@
 import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
 import CORALean.ContSet.Interval.Real.Operations.Point
-import CORALean.HybridDynamics.Transition
+import CORALean.HybridDynamics.Definitions.Transition
 
 /-!
 # `Transition.jump`

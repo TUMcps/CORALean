@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.NonlinearSys.PolyAbstractionError
+import CORALean.ContDynamics.NonlinearSys.Definitions.PolyAbstractionError
 import CORALean.ContSet.PolyZonotope.Real.Theorems.GetSubsetPoint
 
 /-!

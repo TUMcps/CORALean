@@ -1,5 +1,5 @@
-import CORALean.ContDynamics.LinearSys.IntegralReachSet
-import CORALean.ContDynamics.LinearSys.IntegralTimeIntervalReachSet
+import CORALean.ContDynamics.LinearSys.Definitions.IntegralReachSet
+import CORALean.ContDynamics.LinearSys.Definitions.IntegralTimeIntervalReachSet
 
 /-!
 # The integral interval set is exactly the union [1, Def. 3.2] states

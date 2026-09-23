@@ -1,4 +1,5 @@
-import CORALean.ContSet.Zonotope.Real.ReduceBoxOrder
+import CORALean.ContSet.Zonotope.Real.Definitions.ReduceBoxAdmissible
+import CORALean.ContSet.Zonotope.Real.Operations.ReduceBoxOrder
 
 /-!
 # The chosen order is the least admissible one

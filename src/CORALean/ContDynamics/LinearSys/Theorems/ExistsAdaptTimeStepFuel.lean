@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.LinearSys.AdaptTimeStep
+import CORALean.ContDynamics.LinearSys.Operations.AdaptTimeStep
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoExpRemainderBoundZero
 import CORALean.ContDynamics.LinearSys.Theorems.ErrorConvergesToZeroTimeIntervalStepCurvatureError
 

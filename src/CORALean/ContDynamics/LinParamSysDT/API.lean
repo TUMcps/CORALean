@@ -1,5 +1,5 @@
 import CORALean.ContDynamics.LinParamSysDT.LinParamSysDT
-import CORALean.ContDynamics.LinParamSysDT.Operations
+import CORALean.ContDynamics.LinParamSysDT.Operations.API
 import CORALean.ContDynamics.LinParamSysDT.Theorems.API
 
 /-!

@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.LinearSysDT.ReachInnerReduced
+import CORALean.ContDynamics.LinearSysDT.Definitions.ReachInnerReduced
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetInnerOfOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSubsetReachSetAddErrorReduced
 import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct

@@ -35,8 +35,8 @@ and `Thm. 1`'s termination half, which is not established here.
 | `Prop. 2` | If ε_P(Δt)/Δt → 0 as Δt → 0 — what [1]'s "decreases superlinearly (Def. 1)" has to mean for its own claim to hold, see Findings — then for any ε_{P,max} > 0 and any horizon t_f > 0 there is a finite partition of [0,t_f] whose ε_P-errors sum below ε_{P,max}. | [`HorizonErrorBudget.lean`](../../src/CORALean/Global/HorizonErrorBudget.lean) |
 | `Thm. 1` | Alg. 1 (fully automated parameter tuning) terminates and keeps the overall error below a user-defined bound ε_max, assuming the set-representation-size reduction step in each iteration is optional. | the *error* half, outright: [`TunedRunErrorBudget.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/TunedRunErrorBudget.lean) — a run that does not step past t_f keeps ε_P([0,t_i]) ≤ ε_{P,max}, ε_S([0,t_i]) ≤ ε_{S,max} and the last step's ε_H ≤ ε_{H,max}, so the budgeted total stays under ε_max = ε_{H,max}+ε_{P,max}+ε_{S,max}. The *termination* half is not established — see the Findings |
 | `Alg. 1` | "Fully automated parameter tuning": given ε_{H,max}, ε_{P,max}, ε_{S,max}, t_f, iteratively computes Δt_i, calls Alg. 2 and Alg. 3 to tune the time step and set representation size, and returns the reachable set R([0,t_f]). | [`TunedReach.lean`](../../src/CORALean/ContDynamics/LinearSys/TunedReach.lean) — lines 5-10 as `tunedStep`, the loop of lines 4-11 as `tunedRun`, line 12 as `tunedReach`; line 6's `HR` is `timeIntervalStep`, without eq. (19)'s `Fu(Δt,η)c_u` term; the error budget it keeps is `Thm. 1`'s row |
-| `Alg. 2` | "Adapt values for Δt, Φ_prop": picks the step size Δt_i and the propagation parameters Φ_prop,i — the truncation order η at [1]'s own implementation, not an error budget — for the current step, given the running error ε_P([0,t_i]). | [`AdaptTimeStep.lean`](../../src/CORALean/ContDynamics/LinearSys/AdaptTimeStep.lean), held to line 12's two bounds by [`AdaptTimeStepBudget.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/AdaptTimeStepBudget.lean) and shown to succeed at some fuel by [`ExistsAdaptTimeStepFuel.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/ExistsAdaptTimeStepFuel.lean); line 12's printed connective and the step sweep's missing iteration bound are in the Findings |
-| `Alg. 3` | "Adapt values for Φ_set": adapts the target zonotope order/set-representation-size parameter Φ_set by decreasing the number of generators of the particular-solution reachable set. | [`AdaptSetOrder.lean`](../../src/CORALean/ContSet/Zonotope/Real/AdaptSetOrder.lean), held to line 7's bound by [`AdaptSetOrderBudget.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/AdaptSetOrderBudget.lean); line 7's printed connective and which order it leaves the loop holding are in the Findings |
+| `Alg. 2` | "Adapt values for Δt, Φ_prop": picks the step size Δt_i and the propagation parameters Φ_prop,i — the truncation order η at [1]'s own implementation, not an error budget — for the current step, given the running error ε_P([0,t_i]). | [`AdaptTimeStep.lean`](../../src/CORALean/ContDynamics/LinearSys/Operations/AdaptTimeStep.lean), held to line 12's two bounds by [`AdaptTimeStepBudget.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/AdaptTimeStepBudget.lean) and shown to succeed at some fuel by [`ExistsAdaptTimeStepFuel.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/ExistsAdaptTimeStepFuel.lean); line 12's printed connective and the step sweep's missing iteration bound are in the Findings |
+| `Alg. 3` | "Adapt values for Φ_set": adapts the target zonotope order/set-representation-size parameter Φ_set by decreasing the number of generators of the particular-solution reachable set. | [`AdaptSetOrder.lean`](../../src/CORALean/ContSet/Zonotope/Real/Operations/AdaptSetOrder.lean), held to line 7's bound by [`AdaptSetOrderBudget.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/AdaptSetOrderBudget.lean); line 7's printed connective and which order it leaves the loop holding are in the Findings |
 | `Prop. 3` | The error ε_H([t_i,t_{i+1}]) of eq. (21), err(e^{At_i}F_x(Δt_i,η_i)X_0 ⊕ e^{At_i}F_u(Δt_i,η_i)c_u) — the *homogeneous*-solution enclosure's widening term, not a "linearization" error: CDC 2020 is about linear systems — converges to 0 for Δt_i → 0, and therefore satisfies Assumption 1. | [`ErrorConvergesToZeroHomogeneousRemainderError.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/ErrorConvergesToZeroHomogeneousRemainderError.lean) — of `homogeneousRemainderError`, `err` of eq. (21)'s set itself at every t_i, with F_x and F_u built as eq. (17)-(18) print them over eq. (15)-(16)'s entrywise E; `X_0` bounded, as the zonotope [1] takes it to be. The earlier [`ErrorConvergesToZeroTimeIntervalStepCurvatureError.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/ErrorConvergesToZeroTimeIntervalStepCurvatureError.lean) is the same limit for a scalar upper bound of the F_x half at t_i = 0 |
 | `Prop. 4` | The error ε_P([t_i,t_{i+1}]) of eq. (22), err(e^{At_i}E(Δt_i,η_i)Δt_iU) — the particular-solution enclosure's widening term — converges to 0 for Δt_i → 0, and therefore satisfies Assumption 1. | [`ErrorConvergesToZeroParticularRemainderError.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/ErrorConvergesToZeroParticularRemainderError.lean) — of `particularRemainderError`, `err` of eq. (22)'s set itself at every t_i, E being eq. (15)-(16)'s; `U` bounded, as the zonotope [1] takes it to be. The earlier [`ErrorConvergesToZeroTimePointStepRemainderError.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/ErrorConvergesToZeroTimePointStepRemainderError.lean) is the same limit for a scalar upper bound at t_i = 0 |
 | `Lemma 1` | The size of the matrix-exponential remainder E(Δt,η) = [−E_abs(Δt,η), E_abs(Δt,η)] of eq. (15)-(16), E_abs(Δt,η) = Σ_{k=η+1}^∞ (\|A\|Δt)^k/k!, decreases superlinearly with respect to Δt: for all φ∈(0,1), E(φΔt,η) ⊆ φ·E(Δt,η). | [`SuperlinearDecreaseExpRemainderMat.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/SuperlinearDecreaseExpRemainderMat.lean) — of `expRemainderInterval`, eq. (15)-(16)'s entrywise interval matrix, for every step Δt ≥ 0 and with no further condition. [`SuperlinearDecreaseExpRemainder.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/SuperlinearDecreaseExpRemainder.lean) is the same inclusion for `expRemainder`, the uniform box CORA's operator-norm bound gives, under that bound's side condition ‖Δt·A‖/(η+2) < 1 |
@@ -117,7 +117,7 @@ so a step clearing ε_H alone is accepted with its ε_P unbounded. `Thm. 1`'s ow
 proof asks for both — "∀i : ε_P([t_i,t_{i+1}]) ≤ ε_P,max,i , ε_H([t_i,t_{i+1}])
 ≤ ε_H,max" — and the negation of that exit condition is the *disjunction*, which
 is what
-[`AdaptTimeStep.lean`](../../src/CORALean/ContDynamics/LinearSys/AdaptTimeStep.lean)
+[`AdaptTimeStep.lean`](../../src/CORALean/ContDynamics/LinearSys/Operations/AdaptTimeStep.lean)
 writes. `Alg. 3` line 7 is `while ε_S < ε_S,max,i ∨ decr(Φ_set) = Φ_set`, whose
 second disjunct says a further decrement is *impossible*: as printed the loop
 never leaves once the order bottoms out. `Thm. 1` again says the loop exits when
@@ -127,7 +127,7 @@ flipping the connective alone still never leaves once the order bottoms out. Bey
 reduce and *then* measure, and line 7 exits on the measurement failing — so the
 `PR([0,t_{i+1}])` line 8 hands back is the one reduced past the budget, and the
 ε_S it accumulates exceeds the share eq. (13) allows.
-[`AdaptSetOrder.lean`](../../src/CORALean/ContSet/Zonotope/Real/AdaptSetOrder.lean)
+[`AdaptSetOrder.lean`](../../src/CORALean/ContSet/Zonotope/Real/Operations/AdaptSetOrder.lean)
 keeps the last order that passed, which is what makes `adaptSetOrder_budget`
 true at all.
 
@@ -193,7 +193,10 @@ horizon.
 
 These name the paper as a whole. A locator would put each in a row above.
 
-* [`StepConvergenceError.lean`](../../src/CORALean/ContDynamics/LinearSys/StepConvergenceError.lean)
+* [`TimeIntervalStepCurvatureError.lean`](../../src/CORALean/ContDynamics/LinearSys/Operations/TimeIntervalStepCurvatureError.lean)
+* [`AdaptTimeStepOrder.lean`](../../src/CORALean/ContDynamics/LinearSys/Operations/AdaptTimeStepOrder.lean)
+* [`AdaptTimeStepSearch.lean`](../../src/CORALean/ContDynamics/LinearSys/Operations/AdaptTimeStepSearch.lean)
+* [`TimePointStepRemainderError.lean`](../../src/CORALean/ContDynamics/LinearSys/Operations/TimePointStepRemainderError.lean)
 * [`ExpRemainderOrder.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/ExpRemainderOrder.lean)
 * [`ExpRemainderStep.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/ExpRemainderStep.lean)
 * [`ExistsExpRemainderBoundLt.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/ExistsExpRemainderBoundLt.lean)
@@ -201,15 +204,18 @@ These name the paper as a whole. A locator would put each in a row above.
 * [`TendstoExpRemainderBoundAtTop.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/TendstoExpRemainderBoundAtTop.lean)
 * [`TendstoMulExpRemainderBoundZero.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/TendstoMulExpRemainderBoundZero.lean)
 * [`TimeIntervalStepEps.lean`](../../src/CORALean/ContDynamics/LinearSys/Operations/TimeIntervalStepEps.lean)
-* [`StepError.lean`](../../src/CORALean/ContDynamics/LinearSys/StepError.lean)
+* [`TimePointStepError.lean`](../../src/CORALean/ContDynamics/LinearSys/Operations/TimePointStepError.lean)
+* [`TimeIntervalStepError.lean`](../../src/CORALean/ContDynamics/LinearSys/Operations/TimeIntervalStepError.lean)
 * [`ExistsTimeIntervalStepErrorLt.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/ExistsTimeIntervalStepErrorLt.lean)
 * [`ExistsTimePointStepErrorLt.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/ExistsTimePointStepErrorLt.lean)
 * [`TimeIntervalStepSubsetInitialAddError.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/TimeIntervalStepSubsetInitialAddError.lean)
 * [`TimePointStepSubsetConstInputAddError.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/TimePointStepSubsetConstInputAddError.lean)
-* [`Operations.lean`](../../src/CORALean/ContDynamics/LinearSysDT/Operations.lean)
+* [`ReachOrders.lean`](../../src/CORALean/ContDynamics/LinearSysDT/Operations/ReachOrders.lean)
 * [`ReachOrdersStepSubsetClosedBallOfReduceBoxOrder.lean`](../../src/CORALean/ContDynamics/LinearSysDT/Theorems/ReachOrdersStepSubsetClosedBallOfReduceBoxOrder.lean)
 * [`ReachSubsetClosedBall.lean`](../../src/CORALean/ContDynamics/LinearSysDT/Theorems/ReachSubsetClosedBall.lean)
-* [`ReduceBoxOrder.lean`](../../src/CORALean/ContSet/Zonotope/Real/ReduceBoxOrder.lean)
+* [`ReduceBoxOrder.lean`](../../src/CORALean/ContSet/Zonotope/Real/Operations/ReduceBoxOrder.lean)
+* [`ReduceBoxAdmissible.lean`](../../src/CORALean/ContSet/Zonotope/Real/Definitions/ReduceBoxAdmissible.lean)
+* [`AdaptSetOrderLoop.lean`](../../src/CORALean/ContSet/Zonotope/Real/Operations/AdaptSetOrderLoop.lean)
 * [`ReduceBoxAntitone.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/ReduceBoxAntitone.lean)
 * [`ReduceBoxEqOfPoint.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/ReduceBoxEqOfPoint.lean)
 * [`StepSubsetClosedBallOfReduceBoxOrder.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/StepSubsetClosedBallOfReduceBoxOrder.lean)

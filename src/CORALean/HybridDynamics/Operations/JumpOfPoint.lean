@@ -1,6 +1,6 @@
 import CORALean.ContSet.ConPolyZono.Real.Instances
 import CORALean.ContSet.ContSet.ContSet
-import CORALean.HybridDynamics.Transition
+import CORALean.HybridDynamics.Definitions.Transition
 
 /-!
 # `Transition.jump`, asking only for a singleton

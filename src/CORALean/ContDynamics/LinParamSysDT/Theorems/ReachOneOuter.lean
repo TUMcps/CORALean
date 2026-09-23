@@ -1,4 +1,5 @@
-import CORALean.ContDynamics.LinParamSysDT.Operations
+import CORALean.ContDynamics.LinParamSysDT.Operations.Reach
+import CORALean.ContDynamics.LinParamSysDT.Operations.Simulate
 
 /-!
 # One step of `LinParamSysDT.reach` encloses one step of the dynamics

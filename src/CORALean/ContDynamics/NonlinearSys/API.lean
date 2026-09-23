@@ -1,18 +1,7 @@
-import CORALean.ContDynamics.NonlinearSys.AbstrReach
-import CORALean.ContDynamics.NonlinearSys.AbstractionError
-import CORALean.ContDynamics.NonlinearSys.AdaptReach
-import CORALean.ContDynamics.NonlinearSys.CentreAbstrReach
-import CORALean.ContDynamics.NonlinearSys.EstimateGain
-import CORALean.ContDynamics.NonlinearSys.LinStep
 import CORALean.ContDynamics.NonlinearSys.NonlinearSys
+import CORALean.ContDynamics.NonlinearSys.Definitions.API
 import CORALean.ContDynamics.NonlinearSys.Operations.API
-import CORALean.ContDynamics.NonlinearSys.OptDeltat
-import CORALean.ContDynamics.NonlinearSys.PolyAbstractionError
-import CORALean.ContDynamics.NonlinearSys.PolyReach
-import CORALean.ContDynamics.NonlinearSys.ReachSet
 import CORALean.ContDynamics.NonlinearSys.Theorems.API
-import CORALean.ContDynamics.NonlinearSys.TuneAbstrOrder
-import CORALean.ContDynamics.NonlinearSys.TuneDeltat
 
 /-!
 # Nonlinear systems, collected

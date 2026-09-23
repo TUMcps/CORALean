@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.LinearSys.ReachError
+import CORALean.ContDynamics.LinearSys.Operations.ReachError
 import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeReachSetSubsetAddReachInputError
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSubsetReachSetAddError
 

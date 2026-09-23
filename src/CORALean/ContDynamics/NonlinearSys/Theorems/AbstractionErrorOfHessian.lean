@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.NonlinearSys.AbstractionError
+import CORALean.ContDynamics.NonlinearSys.Definitions.AbstractionError
 import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrLin
 import CORALean.ContSet.Interval.Real.Instances
 

@@ -1,4 +1,5 @@
-import CORALean.ContSet.Zonotope.Real.ReduceBoxOrder
+import CORALean.ContSet.Zonotope.Real.Definitions.ReduceBoxAdmissible
+import CORALean.ContSet.Zonotope.Real.Operations.ReduceBoxOrder
 import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBoxEqOfPoint
 

@@ -1,4 +1,5 @@
-import CORALean.ContDynamics.LinearSys.StepInner
+import CORALean.ContDynamics.LinearSys.Definitions.StepInner
+import CORALean.ContDynamics.LinearSys.Operations.TimePointStepInnerRep
 import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemInputReach
 import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepSubsetConstInputAddError
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffInnerOfOuter

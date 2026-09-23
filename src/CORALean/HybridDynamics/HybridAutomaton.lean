@@ -1,4 +1,4 @@
-import CORALean.HybridDynamics.Location
+import CORALean.HybridDynamics.Definitions.Location
 
 /-!
 # Hybrid automata: the automaton and its runs

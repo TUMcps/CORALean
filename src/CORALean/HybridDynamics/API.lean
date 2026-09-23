@@ -1,12 +1,8 @@
 import CORALean.HybridDynamics.HybridAutomaton
-import CORALean.HybridDynamics.Invariant
-import CORALean.HybridDynamics.InvariantOn
-import CORALean.HybridDynamics.Location
+import CORALean.HybridDynamics.Definitions.API
 import CORALean.HybridDynamics.Operations.API
-import CORALean.HybridDynamics.ReachSet
 import CORALean.HybridDynamics.Theorems.API
 import CORALean.HybridDynamics.Cost.API
-import CORALean.HybridDynamics.Transition
 
 /-!
 # Hybrid automata, collected

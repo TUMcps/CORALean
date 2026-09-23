@@ -1,6 +1,9 @@
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOneOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.LinInputOuter
-import CORALean.ContDynamics.NonlinearSysDT.Operations
+import CORALean.ContDynamics.NonlinearSysDT.Operations.Linearize
+import CORALean.ContDynamics.NonlinearSysDT.Operations.LinInput
+import CORALean.ContDynamics.NonlinearSysDT.Operations.Reach
+import CORALean.ContDynamics.NonlinearSysDT.Operations.Simulate
 
 /-!
 # `reach` contains every trajectory known only up to a bound

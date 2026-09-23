@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.OutputEq.Operations
+import CORALean.ContDynamics.OutputEq.Operations.API
 import CORALean.ContDynamics.OutputEq.OutputEq
 import CORALean.ContDynamics.OutputEq.Theorems.API
 

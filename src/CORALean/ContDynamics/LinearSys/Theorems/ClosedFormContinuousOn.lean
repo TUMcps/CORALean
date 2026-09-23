@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.LinearSys.ClosedForm
+import CORALean.ContDynamics.LinearSys.Definitions.ClosedForm
 import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
 import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
 

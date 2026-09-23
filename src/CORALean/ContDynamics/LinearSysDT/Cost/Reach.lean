@@ -1,4 +1,7 @@
-import CORALean.ContDynamics.LinearSysDT.Operations
+import CORALean.ContDynamics.LinearSysDT.Operations.Reach
+import CORALean.ContDynamics.LinearSysDT.Operations.ReachOrders
+import CORALean.ContDynamics.LinearSysDT.Operations.ReachHeld
+import CORALean.ContDynamics.LinearSysDT.Operations.Simulate
 import CORALean.ContSet.Zonotope.Real.Cost.API
 import CORALean.ContSet.Zonotope.Real.Instances
 

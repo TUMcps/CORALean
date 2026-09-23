@@ -1,6 +1,6 @@
-import CORALean.ContDynamics.NonlinearSysDT.LinStep
 import CORALean.ContDynamics.NonlinearSysDT.NonlinearSysDT
-import CORALean.ContDynamics.NonlinearSysDT.Operations
+import CORALean.ContDynamics.NonlinearSysDT.Definitions.API
+import CORALean.ContDynamics.NonlinearSysDT.Operations.API
 import CORALean.ContDynamics.NonlinearSysDT.Theorems.API
 import CORALean.ContDynamics.NonlinearSysDT.Cost.API
 

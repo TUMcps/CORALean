@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinParamSysDT.Operations
-import CORALean.ContDynamics.LinearSysDT.Operations
+import CORALean.ContDynamics.LinParamSysDT.Operations.Reach
+import CORALean.ContDynamics.LinParamSysDT.Operations.Simulate
+import CORALean.ContDynamics.LinearSysDT.Operations.Reach
+import CORALean.ContDynamics.LinearSysDT.Operations.ReachOrders
+import CORALean.ContDynamics.LinearSysDT.Operations.ReachHeld
+import CORALean.ContDynamics.LinearSysDT.Operations.Simulate
 import CORALean.ContDynamics.LinParamSysDT.Theorems.ToLinParam
 
 /-!

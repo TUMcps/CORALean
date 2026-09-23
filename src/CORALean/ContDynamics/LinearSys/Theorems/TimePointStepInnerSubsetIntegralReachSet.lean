@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.LinearSys.IntegralReachSet
+import CORALean.ContDynamics.LinearSys.Definitions.IntegralReachSet
 import CORALean.ContDynamics.LinearSys.Theorems.IntegralReachSetSuperset
 import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepInnerInner
 import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded

@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.LinearSys.IntegralBackReachSetForallExists
+import CORALean.ContDynamics.LinearSys.Definitions.IntegralBackReachSetForallExists
 import CORALean.ContDynamics.LinearSys.Operations.InputReach
 import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormZero
 import CORALean.ContDynamics.LinearSys.Theorems.MemExpNegImageIff

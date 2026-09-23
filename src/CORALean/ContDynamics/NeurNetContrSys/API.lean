@@ -1,6 +1,6 @@
 import CORALean.ContDynamics.NeurNetContrSys.NeurNetContrSys
-import CORALean.ContDynamics.NeurNetContrSys.Operations
-import CORALean.ContDynamics.NeurNetContrSys.ReachSet
+import CORALean.ContDynamics.NeurNetContrSys.Definitions.API
+import CORALean.ContDynamics.NeurNetContrSys.Operations.API
 import CORALean.ContDynamics.NeurNetContrSys.Theorems.API
 
 /-!

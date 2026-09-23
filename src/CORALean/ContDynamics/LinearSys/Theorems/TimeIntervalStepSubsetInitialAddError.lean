@@ -1,6 +1,7 @@
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsCorrectionMatrixLe
 import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
-import CORALean.ContDynamics.LinearSys.StepError
+import CORALean.ContDynamics.LinearSys.Operations.TimePointStepError
+import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepError
 import CORALean.ContSet.Zonotope.Real.Instances
 import CORALean.ContSet.Zonotope.Real.Operations.PairDiff
 import CORALean.ContSet.Zonotope.Real.Operations.PairSum

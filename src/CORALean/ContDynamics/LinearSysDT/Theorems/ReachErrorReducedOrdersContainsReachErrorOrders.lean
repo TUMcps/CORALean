@@ -1,5 +1,5 @@
-import CORALean.ContDynamics.LinearSysDT.ReachErrorOrders
-import CORALean.ContDynamics.LinearSysDT.ReachErrorReducedOrders
+import CORALean.ContDynamics.LinearSysDT.Operations.ReachErrorOrders
+import CORALean.ContDynamics.LinearSysDT.Operations.ReachErrorReducedOrders
 import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOuter

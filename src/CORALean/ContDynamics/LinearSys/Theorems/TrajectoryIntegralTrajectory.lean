@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.LinearSys.IntegralTrajectory
+import CORALean.ContDynamics.LinearSys.Definitions.IntegralTrajectory
 import CORALean.ContDynamics.LinearSys.Theorems.FlowIci
 import CORALean.ContDynamics.LinearSys.Theorems.FlowIoi
 import CORALean.ContDynamics.LinearSys.Theorems.MulVecL

@@ -1,4 +1,4 @@
-import CORALean.HybridDynamics.Location
+import CORALean.HybridDynamics.Definitions.Location
 
 /-!
 # A stay in a location is a linear trajectory

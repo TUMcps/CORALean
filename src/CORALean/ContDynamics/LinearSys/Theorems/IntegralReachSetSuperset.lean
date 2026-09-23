@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.LinearSys.IntegralReachSet
+import CORALean.ContDynamics.LinearSys.Definitions.IntegralReachSet
 import CORALean.ContDynamics.LinearSys.Operations.InputReach
 import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormContinuousOn
 import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormFlow
