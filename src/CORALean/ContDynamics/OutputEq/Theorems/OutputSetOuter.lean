@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.OutputEq.Operations
+import CORALean.ContDynamics.OutputEq.Operations.OutputSet
 
 /-!
 # `outputSet` contains the output of every state-input pair it was given

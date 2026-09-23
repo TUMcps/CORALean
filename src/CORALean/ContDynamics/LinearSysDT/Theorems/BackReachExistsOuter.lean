@@ -1,5 +1,5 @@
-import CORALean.ContDynamics.LinearSysDT.BackReachExists
-import CORALean.ContDynamics.LinearSysDT.BackReachSetExists
+import CORALean.ContDynamics.LinearSysDT.Operations.BackReachExists
+import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachSetExists
 
 /-!
 # `backReachExists` encloses the backward reachable set

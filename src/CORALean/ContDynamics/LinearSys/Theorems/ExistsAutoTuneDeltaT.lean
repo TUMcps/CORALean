@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.LinearSys.AutoTuneDeltaT
+import CORALean.ContDynamics.LinearSys.Operations.AutoTuneDeltaT
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ParticularSolutionErrorIsBigO
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoAffineDynamicsErrorZero
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoParticularSolutionTauErrorZero

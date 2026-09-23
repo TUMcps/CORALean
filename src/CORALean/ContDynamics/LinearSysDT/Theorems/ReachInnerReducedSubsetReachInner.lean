@@ -1,5 +1,5 @@
-import CORALean.ContDynamics.LinearSysDT.ReachInner
-import CORALean.ContDynamics.LinearSysDT.ReachInnerReduced
+import CORALean.ContDynamics.LinearSysDT.Definitions.ReachInner
+import CORALean.ContDynamics.LinearSysDT.Definitions.ReachInnerReduced
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachErrorReducedContainsReachError
 
 /-!

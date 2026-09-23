@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.LinearSysDT.ReachSet
+import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOneOuter
 
 /-!

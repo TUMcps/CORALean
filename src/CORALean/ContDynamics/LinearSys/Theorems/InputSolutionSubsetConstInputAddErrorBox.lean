@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.LinearSys.StepErrorBox
+import CORALean.ContDynamics.LinearSys.Operations.StepErrorBox
 import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepSubsetConstInputAddError
 import CORALean.ContSet.Zonotope.Real.Theorems.ClosedBallSubsetDiagonal
 import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem

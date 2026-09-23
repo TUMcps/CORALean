@@ -1,6 +1,9 @@
 import CORALean.ContDynamics.LinearSys.Operations.Discretize
-import CORALean.ContDynamics.LinearSysDT.Operations
-import CORALean.ContDynamics.NonlinearSys.LinStep
+import CORALean.ContDynamics.LinearSysDT.Operations.Reach
+import CORALean.ContDynamics.LinearSysDT.Operations.ReachOrders
+import CORALean.ContDynamics.LinearSysDT.Operations.ReachHeld
+import CORALean.ContDynamics.LinearSysDT.Operations.Simulate
+import CORALean.ContDynamics.NonlinearSys.Definitions.LinStep
 import CORALean.ContDynamics.NonlinearSys.Operations.Linearize
 
 /-!

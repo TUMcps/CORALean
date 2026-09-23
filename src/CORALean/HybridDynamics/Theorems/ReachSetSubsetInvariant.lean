@@ -1,4 +1,4 @@
-import CORALean.HybridDynamics.ReachSet
+import CORALean.HybridDynamics.Definitions.ReachSet
 import CORALean.HybridDynamics.Theorems.RunOuter
 
 /-!

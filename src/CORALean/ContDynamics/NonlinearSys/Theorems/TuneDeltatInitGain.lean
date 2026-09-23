@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.NonlinearSys.TuneDeltat
+import CORALean.ContDynamics.NonlinearSys.Operations.TuneDeltatInit
 
 /-!
 # What the first step's search for `Δ` buys

@@ -1,4 +1,6 @@
-import CORALean.ContSet.Zonotope.Real.AdaptSetOrder
+import CORALean.ContSet.Zonotope.Real.Operations.ReduceBoxError
+import CORALean.ContSet.Zonotope.Real.Operations.AdaptSetOrderLoop
+import CORALean.ContSet.Zonotope.Real.Operations.AdaptSetOrder
 import CORALean.ContSet.Zonotope.Real.Theorems.AbsLeAbsBound
 import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOuter

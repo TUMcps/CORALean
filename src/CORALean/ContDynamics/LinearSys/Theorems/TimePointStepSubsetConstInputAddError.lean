@@ -1,7 +1,8 @@
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpIntegralSubTaylorLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SumExpTailLe
 import CORALean.ContDynamics.LinearSys.Operations.TimePointStep
-import CORALean.ContDynamics.LinearSys.StepError
+import CORALean.ContDynamics.LinearSys.Operations.TimePointStepError
+import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepError
 import CORALean.ContSet.Zonotope.Real.Theorems.AbsLeAbsBound
 import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
 import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact

@@ -1,4 +1,4 @@
-import CORALean.ContSet.Zonotope.Real.AutoTuneSetOrder
+import CORALean.ContSet.Zonotope.Real.Operations.AutoTuneSetOrder
 
 /-!
 # What `Alg. 2` lines 19-22 report is inside the share they searched for

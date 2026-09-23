@@ -16,6 +16,21 @@ import CORALean.ContDynamics.LinearSys.Operations.StepInputConst
 import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
 import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepEps
 import CORALean.ContDynamics.LinearSys.Operations.TimePointStep
+import CORALean.ContDynamics.LinearSys.Operations.ReachError
+import CORALean.ContDynamics.LinearSys.Operations.ReachInputError
+import CORALean.ContDynamics.LinearSys.Operations.StepErrorBox
+import CORALean.ContDynamics.LinearSys.Operations.TimePointStepError
+import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepError
+import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepCurvatureError
+import CORALean.ContDynamics.LinearSys.Operations.TimePointStepRemainderError
+import CORALean.ContDynamics.LinearSys.Operations.ReachInnerRep
+import CORALean.ContDynamics.LinearSys.Operations.TimePointStepInnerRep
+import CORALean.ContDynamics.LinearSys.Operations.AdaptTimeStepOrder
+import CORALean.ContDynamics.LinearSys.Operations.AdaptTimeStepSearch
+import CORALean.ContDynamics.LinearSys.Operations.AdaptTimeStep
+import CORALean.ContDynamics.LinearSys.Operations.AutoTuneOrder
+import CORALean.ContDynamics.LinearSys.Operations.AutoTuneSearch
+import CORALean.ContDynamics.LinearSys.Operations.AutoTuneDeltaT
 
 /-!
 # What a continuous-time linear system computes

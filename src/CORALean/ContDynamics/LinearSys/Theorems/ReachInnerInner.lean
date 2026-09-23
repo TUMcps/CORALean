@@ -1,5 +1,6 @@
-import CORALean.ContDynamics.LinearSys.IntegralReachSet
-import CORALean.ContDynamics.LinearSys.ReachInner
+import CORALean.ContDynamics.LinearSys.Definitions.IntegralReachSet
+import CORALean.ContDynamics.LinearSys.Definitions.ReachInner
+import CORALean.ContDynamics.LinearSys.Operations.ReachInnerRep
 import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeReachSetSubsetInputReach
 import CORALean.ContDynamics.LinearSys.Theorems.IntegralReachSetSuperset
 import CORALean.ContDynamics.LinearSys.Theorems.ReachSubsetDiscretizeReachSetAddError

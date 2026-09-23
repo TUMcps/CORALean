@@ -1,3 +1,4 @@
+import CORALean.ContDynamics.NonlinearSys.Operations.LinStepLinInput
 import CORALean.ContDynamics.LinearSys.Operations.InputSolution
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterHorizon
 import CORALean.ContDynamics.LinearSys.Theorems.StepInputOuter

@@ -20,7 +20,33 @@ import CORALean.ContDynamics.NonlinearSys.Operations.PrecompStatError
 import CORALean.ContDynamics.NonlinearSys.Operations.RelinDeltaReach
 import CORALean.ContDynamics.NonlinearSys.Operations.RelinReach
 import CORALean.ContDynamics.NonlinearSys.Operations.RelinTimeInterval
+import CORALean.ContDynamics.NonlinearSys.Operations.TuneAbstrOrder
 import CORALean.ContDynamics.NonlinearSys.Operations.VarInputs
+import CORALean.ContDynamics.NonlinearSys.Operations.AbstrInit
+import CORALean.ContDynamics.NonlinearSys.Operations.AbstrStep
+import CORALean.ContDynamics.NonlinearSys.Operations.AbstrRun
+import CORALean.ContDynamics.NonlinearSys.Operations.AbstrReach
+import CORALean.ContDynamics.NonlinearSys.Operations.AdaptInit
+import CORALean.ContDynamics.NonlinearSys.Operations.AdaptLinPass
+import CORALean.ContDynamics.NonlinearSys.Operations.AdaptStep
+import CORALean.ContDynamics.NonlinearSys.Operations.AdaptRun
+import CORALean.ContDynamics.NonlinearSys.Operations.CentreAbstrInit
+import CORALean.ContDynamics.NonlinearSys.Operations.CentreAbstrStep
+import CORALean.ContDynamics.NonlinearSys.Operations.CentreAbstrRun
+import CORALean.ContDynamics.NonlinearSys.Operations.CentreAbstrReach
+import CORALean.ContDynamics.NonlinearSys.Operations.EstimateGainSearch
+import CORALean.ContDynamics.NonlinearSys.Operations.EstimateGain
+import CORALean.ContDynamics.NonlinearSys.Operations.InterpGain
+import CORALean.ContDynamics.NonlinearSys.Operations.ReachSizeEstimate
+import CORALean.ContDynamics.NonlinearSys.Operations.OptDeltatSearch
+import CORALean.ContDynamics.NonlinearSys.Operations.OptDeltat
+import CORALean.ContDynamics.NonlinearSys.Operations.LinStepLinInput
+import CORALean.ContDynamics.NonlinearSys.Operations.TuneDeltatInit
+import CORALean.ContDynamics.NonlinearSys.Operations.TuneDeltat
+import CORALean.ContDynamics.NonlinearSys.Operations.PolyReachInit
+import CORALean.ContDynamics.NonlinearSys.Operations.PolyReachStep
+import CORALean.ContDynamics.NonlinearSys.Operations.PolyReachRun
+import CORALean.ContDynamics.NonlinearSys.Operations.PolyReachReach
 
 /-!
 # What a linearization computes

@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.NonlinearSys.EstimateGain
+import CORALean.ContDynamics.NonlinearSys.Operations.EstimateGain
 
 /-!
 # What `estimateGain`'s bisection buys

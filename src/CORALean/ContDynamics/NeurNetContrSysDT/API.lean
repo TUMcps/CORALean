@@ -1,6 +1,6 @@
 import CORALean.ContDynamics.NeurNetContrSysDT.NeurNetContrSysDT
-import CORALean.ContDynamics.NeurNetContrSysDT.Operations
-import CORALean.ContDynamics.NeurNetContrSysDT.ReachSet
+import CORALean.ContDynamics.NeurNetContrSysDT.Definitions.API
+import CORALean.ContDynamics.NeurNetContrSysDT.Operations.API
 import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.API
 import CORALean.ContDynamics.NeurNetContrSysDT.Cost.API
 

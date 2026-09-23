@@ -22,6 +22,7 @@ import CORALean.HybridDynamics.Theorems.RunOnOuter
 import CORALean.HybridDynamics.Theorems.RunOnToRun
 import CORALean.HybridDynamics.Theorems.RunOuter
 import CORALean.HybridDynamics.Theorems.TimeIntervalInvOuter
+import CORALean.HybridDynamics.Theorems.TrajectoryMemIccRight
 
 /-!
 # What a hybrid run guarantees, collected

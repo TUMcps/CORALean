@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.NonlinearSys.CentreAbstrReach
+import CORALean.ContDynamics.NonlinearSys.Operations.CentreAbstrReach
 
 /-!
 # Line 17 collects what the loop computed

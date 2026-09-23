@@ -1,9 +1,9 @@
-import CORALean.ContDynamics.LinearSys.AutoTuneDeltaT
+import CORALean.ContDynamics.LinearSys.Operations.AutoTuneDeltaT
 import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumTail
 import CORALean.ContDynamics.LinearSys.Operations.StepInputConst
 import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
 import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
-import CORALean.ContSet.Zonotope.Real.AutoTuneSetOrder
+import CORALean.ContSet.Zonotope.Real.Operations.AutoTuneSetOrder
 import CORALean.ContSet.Zonotope.Real.Instances
 
 /-!

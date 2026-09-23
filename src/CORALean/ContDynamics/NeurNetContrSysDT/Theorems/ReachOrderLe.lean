@@ -1,4 +1,5 @@
-import CORALean.ContDynamics.NeurNetContrSysDT.Operations
+import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Reach
+import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Simulate
 import CORALean.ContSet.Zonotope.Real.Instances
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOrder
 

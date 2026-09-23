@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.NonlinearSys.OptDeltat
+import CORALean.ContDynamics.NonlinearSys.Operations.OptDeltat
 
 /-!
 # `optDeltat` returns the best `λ'` it saw

@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.LinearSys.PerturbedIntegralTrajectory
+import CORALean.ContDynamics.LinearSys.Definitions.PerturbedIntegralTrajectory
 import CORALean.ContDynamics.LinearSys.Theorems.EqClosedFormOfFlow
 
 /-!

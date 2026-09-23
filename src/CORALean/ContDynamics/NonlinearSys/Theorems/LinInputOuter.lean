@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.NonlinearSys.AbstractionError
+import CORALean.ContDynamics.NonlinearSys.Definitions.AbstractionError
 import CORALean.ContDynamics.NonlinearSys.Operations.LinInput
 import CORALean.ContSet.Interval.Real.Operations.Point
 import CORALean.ContSet.Interval.Real.Theorems.MemPoint

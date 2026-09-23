@@ -1,5 +1,5 @@
 import CORALean.ContSet.ContSet.ContSet
-import CORALean.ContSet.Zonotope.Real.EnclGenSel
+import CORALean.ContSet.Zonotope.Real.Operations.EnclGenSel
 
 /-!
 # [1, Alg. 1] never leaves the minuend

@@ -1,4 +1,5 @@
-import CORALean.ContDynamics.NeurNetContrSysDT.Operations
+import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Reach
+import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Simulate
 
 /-!
 # `simulate` samples a trajectory

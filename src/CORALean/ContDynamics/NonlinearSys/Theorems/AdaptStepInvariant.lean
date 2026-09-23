@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.NonlinearSys.AdaptReach
+import CORALean.ContDynamics.NonlinearSys.Operations.AdaptRun
 
 /-!
 # What one step of `Alg. 2` reports

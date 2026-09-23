@@ -1,4 +1,6 @@
-import CORALean.ContSet.Zonotope.Real.AdaptSetOrder
+import CORALean.ContSet.Zonotope.Real.Operations.ReduceBoxError
+import CORALean.ContSet.Zonotope.Real.Operations.AdaptSetOrderLoop
+import CORALean.ContSet.Zonotope.Real.Operations.AdaptSetOrder
 
 /-!
 # An order that drops no generator costs nothing

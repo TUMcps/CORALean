@@ -1,5 +1,5 @@
-import CORALean.ContDynamics.NonlinearSys.AbstractionError
-import CORALean.ContDynamics.NonlinearSys.PolyAbstractionError
+import CORALean.ContDynamics.NonlinearSys.Definitions.AbstractionError
+import CORALean.ContDynamics.NonlinearSys.Definitions.PolyAbstractionError
 import CORALean.ContSet.PolyZonotope.Real.Instances
 import CORALean.ContSet.PolyZonotope.Real.Operations.SubsetAt
 import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct

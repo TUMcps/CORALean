@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.NonlinearSys.LinStep
+import CORALean.ContDynamics.NonlinearSys.Definitions.LinStep
 import CORALean.ContDynamics.NonlinearSys.Theorems.AbstractionErrorOfPoly
 
 /-!

@@ -1,5 +1,5 @@
-import CORALean.ContDynamics.LinearSys.ReachSet
-import CORALean.ContDynamics.LinearSys.TimeIntervalReachSet
+import CORALean.ContDynamics.LinearSys.Definitions.ReachSet
+import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalReachSet
 
 /-!
 # The interval set is exactly the union [1, Def. 3.2] states

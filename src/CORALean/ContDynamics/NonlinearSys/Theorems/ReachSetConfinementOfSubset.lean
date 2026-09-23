@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.NonlinearSys.ReachSet
+import CORALean.ContDynamics.NonlinearSys.Definitions.ReachSet
 import CORALean.ContDynamics.NonlinearSys.Theorems.ConfinementOfSubset
 
 /-!
