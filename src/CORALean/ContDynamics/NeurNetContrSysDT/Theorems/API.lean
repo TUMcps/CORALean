@@ -3,6 +3,7 @@ import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.HoldsOfOutput
 import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.HoldsOfReach
 import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.NotHoldsOfSimulate
 import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.OutputOuter
+import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachOrderLe
 import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachOuter
 import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachSetOuter
 import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachSetSubsetReach
@@ -18,11 +19,11 @@ a specification on it buys, and `TrajectoryIterate`/`EqOfInit` the reading of a
 run that a determined input forces: an orbit, not a family, settled by where
 it started.
 
-`ReachSetOuter`/`ReachSetSubsetReach` restate `ReachOuter` on the reachable set.
+`ReachSetOuter`/`ReachSetSubsetReach` restate `ReachOuter` on the reachable
+set; `ReachOrderLe` bounds its generator count at `𝒵`.
 
 `OutputOuter`/`HoldsOfOutput` are those two at an `OutputEq`, read at the
-controller's own enclosure in place of a free input set — there is
-none here, `map` already reading it off the state.
+controller's own enclosure in place of a free input set — none here, `map` already reading it off.
 
 `SimulateTrajectory`/`SimulateMemReach` are `simulate` sampling one run and
 landing inside `reach`, with two obligations rather than three: the controller
@@ -32,6 +33,6 @@ it, where an enclosure can only ever fail to prove safety.
 
 No `reach_outer_on`: there is no `TrajectoryOn` here to hand it a bounded run
 from, since a run is already the orbit of `map` from its start
-(`TrajectoryIterate`) — nothing a horizon could leave unknown that `reach_outer`
-does not already cover at every `k`.
+(`TrajectoryIterate`) — nothing a horizon leaves unknown that `reach_outer`
+does not cover at every `k`.
 -/

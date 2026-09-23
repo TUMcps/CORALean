@@ -5,6 +5,7 @@ import CORALean.HybridDynamics.Location
 import CORALean.HybridDynamics.Operations.API
 import CORALean.HybridDynamics.ReachSet
 import CORALean.HybridDynamics.Theorems.API
+import CORALean.HybridDynamics.Cost.API
 import CORALean.HybridDynamics.Transition
 
 /-!

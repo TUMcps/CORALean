@@ -5,6 +5,7 @@ import CORALean.NN.Layers.ActivationPolyOn
 import CORALean.NN.Layers.ActivationPolyRefine
 import CORALean.NN.Layers.BatchNorm
 import CORALean.NN.Layers.Convolution
+import CORALean.NN.Layers.Cost.API
 import CORALean.NN.Layers.Curvature
 import CORALean.NN.Layers.InvSqrt
 import CORALean.NN.Layers.Linear
