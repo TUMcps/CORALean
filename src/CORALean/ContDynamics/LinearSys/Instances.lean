@@ -46,14 +46,14 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 noncomputable instance LinearSys.reachInstance : Reach (LinearSys 𝕋) LinearSys.ReachParams S where
   reachExact sys p X₀ := sys.reachExact p.tFinal X₀
   reach sys p X₀ := some (sys.reach p.tFinal p.Δt p.η X₀)
-  reach_outer sys p X₀ _ h := Option.mem_some_iff.mp h ▸ sys.reach_outer p.hΔt X₀
+  reach_outer sys p X₀ := sys.reach_outer p.hΔt X₀
 
 noncomputable instance LinearSys.WithInput.reachInstance
     [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ n)] :
     Reach (LinearSys.WithInput 𝕋 S) LinearSys.ReachParams S where
   reachExact sys p X₀ := sys.reachExact p.tFinal X₀
   reach sys p X₀ := some (sys.reach p.tFinal p.Δt p.η X₀)
-  reach_outer sys p X₀ _ h := Option.mem_some_iff.mp h ▸ sys.reach_outer p.hΔt X₀
+  reach_outer sys p X₀ := sys.reach_outer p.hΔt X₀
 
 noncomputable instance LinearSys.WithInputSplit.reachInstance
     [∀ n, OfPoint (S n) (Vec ℝ n)] [∀ n, Recentre (S n) (Vec ℝ n)]
@@ -61,7 +61,7 @@ noncomputable instance LinearSys.WithInputSplit.reachInstance
     Reach (LinearSys.WithInputSplit 𝕋 S) LinearSys.ReachParams S where
   reachExact sys p X₀ := sys.reachExact p.tFinal X₀
   reach sys p X₀ := some (sys.reach p.tFinal p.Δt p.η X₀)
-  reach_outer sys p X₀ _ h := Option.mem_some_iff.mp h ▸ sys.reach_outer p.hΔt X₀
+  reach_outer sys p X₀ := sys.reach_outer p.hΔt X₀
 
 end CORALean
 

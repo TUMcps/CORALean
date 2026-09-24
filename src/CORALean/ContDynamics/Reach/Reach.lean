@@ -43,7 +43,9 @@ class Reach (Sys : ℕ → Type u) (Params : Type) (S : ℕ → Type) [∀ n, Co
   reachExact {n : ℕ} : Sys n → Params → Set (Vec ℝ n) → Set (Vec ℝ n)
   reach {n : ℕ} : Sys n → Params → S n → Option (SetUnion (S n))
   reach_outer {n : ℕ} (sys : Sys n) (p : Params) (X₀ : S n) :
-    ∀ R ∈ reach sys p X₀, reachExact sys p (construct X₀) ⊆ construct R
+    match reach sys p X₀ with
+    | some R => reachExact sys p (construct X₀) ⊆ construct R
+    | none => True
 
 end CORALean
 
