@@ -1,4 +1,10 @@
-import CORALean.NN.Layers.Sigmoid
+import CORALean.NN.Layers.Definitions.Enclosure
+import CORALean.NN.Layers.Definitions.ScaleRounding
+import CORALean.NN.Layers.Definitions.Sigmoid
+import CORALean.NN.Layers.Definitions.SigmoidRelaxation
+import CORALean.NN.Layers.Operations.Sigmoid
+import CORALean.NN.Layers.Theorems.Real.AbsSigmoidDerivLeOne
+import CORALean.NN.Layers.Theorems.Real.HasDerivAtSigmoid
 
 /-!
 # The sigmoid is nonexpansive

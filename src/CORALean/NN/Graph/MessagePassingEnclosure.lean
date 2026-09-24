@@ -46,7 +46,7 @@ open Matrix
 
 /-- [1]'s `𝒫`: the padded adjacency paired entrywise with the row and the column
 of inverse square roots, over one shared set of factors. -/
-noncomputable def GNN.messagePassingEnclosure {N m : ℕ} (R : Relaxation invSqrt)
+noncomputable def GNN.messagePassingEnclosure {N m : ℕ} (R : Relaxation ℝ)
     (A : Mat ℝ N N) (U : Fin m → Fin N × Fin N) : PolyZonotope (Mat ℝ N N) :=
   ((GNN.uncertainAdjPad A U).bilin Entrywise.hadamardLin (GNN.sqrtRow R A U) rfl).bilin
     Entrywise.hadamardLin (GNN.sqrtCol R A U) rfl

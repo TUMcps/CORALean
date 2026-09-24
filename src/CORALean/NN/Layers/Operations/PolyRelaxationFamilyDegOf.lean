@@ -1,0 +1,41 @@
+import CORALean.NN.Definitions.RefinableLayer
+import CORALean.NN.Layers.Definitions.PolyRelaxation
+import CORALean.NN.Layers.Layer
+
+/-!
+# The degree a whole layer is read at
+
+The largest any of its neurons asks for, at an order pattern [1, Eq. 23], which padding lifts
+the others to.
+
+## References
+
+* [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural
+      Network Verification using Sensitivity Analysis". HSCC 2023.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-September-2026
+-- Last update:   23-September-2026
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open Float Float.FloatOps
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- The largest degree any neuron of the layer asks for. -/
+def PolyRelaxationFamily.degOf (F : PolyRelaxationFamily 𝕋) (t : OrderPattern n) : ℕ :=
+  Finset.univ.sup fun i => F.deg (t i)
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

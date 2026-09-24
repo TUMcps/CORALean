@@ -2,6 +2,7 @@ import CORALean.ContDynamics.LinearSysDT.Operations.Reach
 import CORALean.ContDynamics.LinearSysDT.Operations.ReachOrders
 import CORALean.ContDynamics.LinearSysDT.Operations.ReachHeld
 import CORALean.ContDynamics.LinearSysDT.Operations.Simulate
+import CORALean.ContSet.ConPolyZono.Float.Instances
 import CORALean.ContSet.Conversion.Float.ConZonotope_to_ConPolyZono
 import CORALean.ContSet.Conversion.Float.ConZonotope_to_HPolytope
 import CORALean.ContSet.Conversion.Float.ConZonotope_to_Interval
@@ -15,21 +16,21 @@ import CORALean.ContSet.Conversion.Float.Zonotope_to_ConZonotope
 import CORALean.ContSet.Conversion.Float.Zonotope_to_HPolytope
 import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
 import CORALean.ContSet.Conversion.Float.Zonotope_to_VPolytope
-import CORALean.ContSet.ConPolyZono.Float.Instances
 import CORALean.ContSet.Ellipsoid.Float.Instances
 import CORALean.ContSet.HPolytope.Float.Instances
 import CORALean.ContSet.PolyZonotope.Float.Instances
 import CORALean.ContSet.VPolytope.Float.Instances
+import CORALean.ContSet.ZonoBundle.Float.Instances
 import CORALean.ContSet.Zonotope.Float.Operations.MtimesBox
 import CORALean.ContSet.Zonotope.Float.Operations.PlusBox
 import CORALean.ContSet.Zonotope.Float.Operations.ReduceByBox
 import CORALean.ContSet.Zonotope.Float.Operations.ReduceGirardBox
-import CORALean.ContSet.ZonoBundle.Float.Instances
 import CORALean.Global.Float.Instances.Dyadic.Instances
+import CORALean.NN.Layers.Definitions.Relu
+import CORALean.NN.Layers.Operations.Linear
+import CORALean.NN.Layers.Operations.Relu
 import CORALean.NN.NeuralNetwork
 import CORALean.NN.Operations.Enclose
-import CORALean.NN.Float.Layers.Linear
-import CORALean.NN.Float.Layers.ReLU
 
 /-!
 # Every runnable algorithm, instantiated at a concrete float representation

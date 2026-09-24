@@ -1,4 +1,4 @@
-import CORALean.NN.Chain
+import CORALean.NN.Definitions.Chain
 import CORALean.NN.Operations.LayerSensitivity
 
 /-!

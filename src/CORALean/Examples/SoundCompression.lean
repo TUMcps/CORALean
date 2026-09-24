@@ -1,7 +1,19 @@
-import CORALean.NN.Reduction
+import CORALean.Global.Float.Instances.Real.Theorems.ToRealMatReal
+import CORALean.NN.Definitions.Reduction
+import CORALean.NN.Layers.Definitions.Relu
+import CORALean.NN.Layers.Operations.Activation
+import CORALean.NN.Layers.Operations.Conv
+import CORALean.NN.Layers.Operations.Linear
+import CORALean.NN.Layers.Operations.LinearWithError
+import CORALean.NN.Layers.Operations.Relu
+import CORALean.NN.Layers.Operations.ReluRelaxation
+import CORALean.NN.Layers.Operations.ReluSlope
+import CORALean.NN.Layers.Operations.TapMat
+import CORALean.NN.Layers.Theorems.ConvSound
+import CORALean.NN.Layers.Theorems.ReluRelaxationSound
+import CORALean.NN.Layers.Theorems.ReluSound
+import CORALean.NN.Layers.Theorems.TapMatMulVec
 import CORALean.NN.Theorems.ReducesAtOuter
-import CORALean.NN.Layers.Convolution
-import CORALean.NN.Layers.ReLU
 
 /-!
 # Sound compression by an identity convolution, and [1, Cor. 1]
@@ -29,7 +41,7 @@ proof does not depend on which.
 
 -- Authors:       Tobias Ladner
 -- Written:       12-September-2026
--- Last update:   ---
+-- Last update:   23-September-2026
 -- Last revision: ---
 
 
@@ -58,9 +70,11 @@ noncomputable def Example.compressW : Mat ℝ 3 3 :=
 theorem Example.compressW_apply (v : Vec ℝ 3) :
     Example.compressW *ᵥ v = v := by -- --- PROOF ---
   funext j
+  have h := tapMat_mulVec Example.compressTap Example.compressK
+    Example.compressTap_injective v j
+  rw [Float.toRealMat_real] at h
   show (tapMat Example.compressTap Example.compressK *ᵥ v) j = v j
-  rw [tapMat_mulVec Example.compressTap Example.compressK
-    Example.compressTap_injective v j, Fin.sum_univ_one]
+  rw [h, Fin.sum_univ_one]
   show (1 : ℝ) * v j = v j
   ring
 
@@ -76,7 +90,8 @@ noncomputable def Example.compressPart : Split (Fin 3) into (Fin 1) ⊕ (Fin 2) 
 identity kernel, sandwiching one ReLU. -/
 noncomputable def Example.compressNetwork : NeuralNetwork 𝒵 3 3 :=
   .cons (Layer.conv id Example.compressTap Example.compressK 0)
-    (.cons Layer.relu (.ofLayer (Layer.conv id Example.compressTap Example.compressK 0)))
+    (.cons (Layer.relu reluSlope)
+      (.ofLayer (Layer.conv id Example.compressTap Example.compressK 0)))
 
 /-- The kernel computes the identity on both sides, so the whole network
 computes `relu` alone. -/
@@ -93,8 +108,9 @@ theorem Example.compressNetwork_sound :
         rw [Fin.sum_univ_one]
         show x j = (1 : ℝ) * x j + 0
         ring
-  have hrelu : (Layer.relu (S := 𝒵) (n := 3)).Sound (fun x i => Real.relu (x i)) :=
-    Layer.activation_sound reluRelaxation
+  have hrelu : (Layer.relu (S := 𝒵) (n := 3) reluSlope).Sound
+      (fun x i => Real.relu (x i)) :=
+    Layer.relu_sound reluSlope
   -- composing `id ∘ relu ∘ id` and simplifying the two identities away
   have h1 := NeuralNetwork.ofLayer_sound hconv
   have h2 := (NeuralNetwork.sound_cons hrelu h1).congr fun _ => rfl
@@ -108,28 +124,29 @@ theorem Example.exists_compressed_network_contains (X : 𝒵 3)
     ∃ nn' : NeuralNetwork 𝒵 3 3, construct X ⊆ construct (nn'.enclose X) := by -- --- PROOF ---
   -- the identity's output on `X` is `X` itself, so its interval box bounds it
   have hY : ∀ x ∈ construct X, (fun i => Real.relu ((Example.compressW *ᵥ x + 0) i))
-      ∈ construct (IntervalOuter.interval (S := 𝒵) X) := by
+      ∈ construct (Float.IntervalOuter.interval (S := 𝒵) X) := by
     intro x hx
     have hzero : Example.compressW *ᵥ x + 0 = x := by
       rw [add_zero]; exact Example.compressW_apply x
     have hid : (fun i => Real.relu ((Example.compressW *ᵥ x + 0) i)) = x := by
       rw [hzero]; funext i; exact max_eq_left (hX x hx i)
     rw [hid]
-    exact IntervalOuter.interval_outer (S := 𝒵) X hx
+    exact Float.IntervalOuter.interval_outer (S := 𝒵) X hx
   -- [1, Thm. 1]'s own machinery: `compressNetwork` reduces at the split above
   have hred : NeuralNetwork.ReducesAt X Example.compressNetwork
       (.cons (Layer.linear (Example.compressW.submatrix Example.compressPart.left id)
           ((0 : Vec ℝ 3) ∘ Example.compressPart.left))
-        (.cons (Layer.activation reluRelaxation)
+        (.cons (Layer.activation (reluRelaxation reluSlope))
           (.ofLayer (Layer.linearWithError
             (Example.compressW.submatrix id Example.compressPart.left) (0 : Vec ℝ 3)
-            (Interval.mtimes (Example.compressW.submatrix id Example.compressPart.right)
-              ⟨(IntervalOuter.interval (S := 𝒵) X).inf ∘ Example.compressPart.right,
-                (IntervalOuter.interval (S := 𝒵) X).sup ∘ Example.compressPart.right⟩)))))
+            (Float.Interval.mtimes (Example.compressW.submatrix id Example.compressPart.right)
+              ⟨(Float.IntervalOuter.interval (S := 𝒵) X).inf ∘ Example.compressPart.right,
+                (Float.IntervalOuter.interval (S := 𝒵) X).sup ∘ Example.compressPart.right⟩)))))
       (fun x i => Real.relu (x i)) := by
     unfold Example.compressNetwork Layer.conv Layer.relu NeuralNetwork.ofLayer
     exact NeuralNetwork.ReducesAt.merge (S := 𝒵) X Example.compressPart Example.compressW 0
-      reluRelaxation Example.compressW 0 (IntervalOuter.interval (S := 𝒵) X) hY
+      (reluRelaxation reluSlope) (reluRelaxation_sound reluSlope)
+      Example.compressW 0 (Float.IntervalOuter.interval (S := 𝒵) X) hY
       (h := id) (hf := fun x => by
         -- the identity matrix twice over, wrapping the elementwise `relu`
         have h1 : Example.compressW *ᵥ x + 0 = x := by

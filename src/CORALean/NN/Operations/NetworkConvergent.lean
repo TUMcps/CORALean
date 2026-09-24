@@ -1,5 +1,7 @@
+import CORALean.NN.Definitions.RefinableNetwork
+import CORALean.NN.Layers.Layer
 import CORALean.NN.Operations.Convergent
-import CORALean.NN.RefinableNetwork
+import CORALean.NN.Operations.RefinableNetworkEval
 
 /-!
 # What it takes for a whole network's refinement to converge

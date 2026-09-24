@@ -1,4 +1,4 @@
-import CORALean.NN.MergeBucket
+import CORALean.NN.Definitions.MergeBucket
 
 /-!
 # The bucket grows with the tolerance

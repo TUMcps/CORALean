@@ -1,4 +1,5 @@
-import CORALean.NN.Reduction
+import CORALean.Global.Float.Instances.Real.Theorems.ToRealMatReal
+import CORALean.NN.Definitions.Reduction
 import CORALean.NN.Theorems.NeuronMergingOuter
 
 /-!
@@ -46,16 +47,16 @@ theorem NeuralNetwork.reducesAt_outer :
       rintro _ ⟨x, hx, rfl⟩
       rw [hcomp x]
       exact reducesAt_outer h ⟨_, hg.enclose_outer s x hx, rfl⟩
-  | _, _, s, _, _, _, .merge _ part W0 b0 R W1 b1 Y hY hcomp h => by
+  | _, _, s, _, _, _, .merge _ part W0 b0 R hR W1 b1 Y hY hcomp h => by
       rintro _ ⟨x, hx, rfl⟩
-      have hsand := neuronMerging_sandwich_outer part W0 b0 R W1 b1 Y s hY ⟨x, hx, rfl⟩
+      have hsand := neuronMerging_sandwich_outer part W0 b0 R hR W1 b1 Y s hY ⟨x, hx, rfl⟩
       rw [hcomp x]
       exact reducesAt_outer h ⟨_, hsand, rfl⟩
   | _, _, s, _, _, _, .widen _ W c b E hc hcomp h => by
       rintro _ ⟨x, hx, rfl⟩
       rw [hcomp x]
-      exact reducesAt_outer h ⟨_, Real.Layer.linearWithError_mem W hc s hx, rfl⟩
-  | _, _, s, _, _, _, .freeze (σ := σ) _ part W0 c0 b0 E0 hc0 R W1 c1 Y hY hcomp h => by
+      exact reducesAt_outer h ⟨_, Layer.linearWithError_mem W hc s hx, rfl⟩
+  | _, _, s, _, _, _, .freeze (σ := σ) _ part W0 c0 b0 E0 hc0 R hR W1 c1 Y hY hcomp h => by
       rintro _ ⟨x, hx, rfl⟩
       set v : Vec ℝ _ := fun i => σ ((W0 *ᵥ x + c0) i) with hv
       -- the survivors pass the trimmed layer `k-1`, their error a restriction of `E0`
@@ -63,14 +64,14 @@ theorem NeuralNetwork.reducesAt_outer :
           = (W0 *ᵥ x + c0) ∘ part.left :=
         funext fun i => by simp [Matrix.mulVec, Matrix.submatrix_apply, dotProduct]
       have hc : c0 ∘ part.left - b0 ∘ part.left
-          ∈ construct (⟨E0.inf ∘ part.left, E0.sup ∘ part.left⟩ : Real.Interval (Vec ℝ _)) :=
+          ∈ construct (⟨E0.inf ∘ part.left, E0.sup ∘ part.left⟩ : Float.Interval ℝ _) :=
         fun i => hc0 (part.left i)
-      have hA1 := Real.Layer.linearWithError_mem (S := S) (W0.submatrix part.left id) hc s hx
-      rw [hrow] at hA1
-      have hA2 := (Real.Layer.activation_sound (S := S) R).enclose_outer _ _ hA1
+      have hA1 := Layer.linearWithError_mem (S := S) (W0.submatrix part.left id) hc s hx
+      rw [Float.toRealMat_real, hrow] at hA1
+      have hA2 := (Layer.activation_sound (S := S) hR).enclose_outer _ _ hA1
       -- the bucket is frozen at its own value, which its bounds admit
       have hw : v ∘ part.right
-          ∈ construct (⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩ : Real.Interval (Vec ℝ _)) :=
+          ∈ construct (⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩ : Float.Interval ℝ _) :=
         fun i => hY x hx (part.right i)
       -- layer `k+1`'s dot product splits along the survivors and the bucket
       have hval : W1 *ᵥ v + c1 = (W1.submatrix id part.left) *ᵥ (v ∘ part.left)

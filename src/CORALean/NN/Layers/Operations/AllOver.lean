@@ -1,0 +1,48 @@
+import CORALean.Global.Tensor
+
+/-!
+# Every index passing its check
+
+A conjunction over `Fin k`, as a fold rather than a `Finset`: the recursion is what proofs see,
+and `@[csimp]` swaps in the same conjunction as a loop, giving up the early exit on the first
+`false`, which only a check that fails would have reached.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-September-2026
+-- Last update:   23-September-2026
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- Every index passing its own check, as a fold rather than a `Finset`. -/
+def allOver : {k : ℕ} → (Fin k → Bool) → Bool
+  | 0, _ => true
+  | _ + 1, f => f 0 && allOver fun i => f i.succ
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- The same conjunction as a loop. -/
+def aux_allOverImpl {k : ℕ} (f : Fin k → Bool) : Bool :=
+  Fin.foldr k (fun i acc => f i && acc) true
+
+@[csimp] theorem aux_allOver_eq_impl : @allOver = @aux_allOverImpl := by -- --- PROOF ---
+  funext k
+  induction k with
+  | zero => funext f; rw [aux_allOverImpl, Fin.foldr_zero]; rfl
+  | succ k ih =>
+    funext f
+    rw [aux_allOverImpl, Fin.foldr_succ, ← aux_allOverImpl, ← congrFun ih fun i => f i.succ]
+    rfl
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -1,0 +1,30 @@
+import CORALean.NN.Definitions.Schedule
+
+/-!
+# A schedule's tail
+
+What the rest of a network reads, the head layer's pattern dropped.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       05-September-2026
+-- Last update:   23-September-2026
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+variable {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- What the rest of a network reads, the head layer's pattern dropped. -/
+def Schedule.tail (sch : Schedule) : Schedule := fun l => sch (l + 1)
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

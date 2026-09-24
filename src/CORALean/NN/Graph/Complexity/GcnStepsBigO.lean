@@ -45,7 +45,7 @@ variable {N F m : ℕ}
 
 /-- The chain's count against the cubic in `m`, before any cast: the constant
 collects the node count and the input set, the growth is the power of `m`. -/
-theorem aux_gcnSteps_h_le_pow (R : Relaxation invSqrt) (A : Mat ℝ N N)
+theorem aux_gcnSteps_h_le_pow (R : Relaxation ℝ) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) (L : ℕ) (W : Fin L → Mat ℝ F F)
     (X : PolyZonotope (Mat ℝ N F)) (hm : 1 ≤ m) :
     (GNN.gcnSteps ((GNN.messagePassingEnclosure R A U).padBack X.p) L W
@@ -81,7 +81,7 @@ theorem aux_gcnSteps_h_le_pow (R : Relaxation invSqrt) (A : Mat ℝ N N)
 
 /-- [1, Thm. 1] for the graph layers: `L` message-passing steps at an uncertain
 graph are polynomial of degree `3L` in the number of uncertain edges. -/
-theorem GNN.gcnSteps_h_isBigO (R : Relaxation invSqrt) (A : Mat ℝ N N)
+theorem GNN.gcnSteps_h_isBigO (R : Relaxation ℝ) (A : Mat ℝ N N)
     (U : ∀ m : ℕ, Fin m → Fin N × Fin N) (L : ℕ) (W : Fin L → Mat ℝ F F)
     (X : PolyZonotope (Mat ℝ N F)) :
     (fun m : ℕ => (((GNN.gcnSteps ((GNN.messagePassingEnclosure R A (U m)).padBack X.p) L W

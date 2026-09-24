@@ -1,11 +1,24 @@
-import CORALean.NN.Float.Layers.Linear
-import CORALean.NN.Float.Layers.ReLU
-import CORALean.NN.Float.Layers.SigmoidPoly
-import CORALean.NN.Float.Layers.Tanh
+import CORALean.NN.Layers.Definitions.Enclosure
+import CORALean.NN.Layers.Definitions.PolyRelaxation
+import CORALean.NN.Layers.Definitions.Relaxation
+import CORALean.NN.Layers.Definitions.Relu
+import CORALean.NN.Layers.Definitions.ScaleRounding
+import CORALean.NN.Layers.Definitions.Sigmoid
+import CORALean.NN.Layers.Definitions.SigmoidRelaxation
+import CORALean.NN.Layers.Definitions.TanhRelaxation
+import CORALean.NN.Layers.Operations.Linear
+import CORALean.NN.Layers.Operations.Relu
+import CORALean.NN.Layers.Operations.Sigmoid
+import CORALean.NN.Layers.Operations.SigmoidPoly
+import CORALean.NN.Layers.Operations.Tanh
+import CORALean.NN.Layers.Theorems.LinearSound
+import CORALean.NN.Layers.Theorems.SigmoidPolySound
+import CORALean.NN.Layers.Theorems.SigmoidSound
+import CORALean.NN.Layers.Theorems.TanhSound
 import CORALean.NN.Theorems.Classifies
+import CORALean.NN.Theorems.EncloseOuter
 import CORALean.NN.Theorems.MarginDir
 import CORALean.NN.Theorems.MemSafeSet
-import CORALean.NN.Theorems.EncloseOuter
 
 /-!
 # The same feed-forward network, over a floating-point scalar

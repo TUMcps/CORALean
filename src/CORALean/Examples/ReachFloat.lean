@@ -4,8 +4,11 @@ import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachOuter
 import CORALean.ContSet.Interval.Float.Instances
 import CORALean.ContSet.Zonotope.Float.Instances
 import CORALean.HybridDynamics.Theorems.HoldsOfRun
-import CORALean.NN.Float.Layers.Linear
-import CORALean.NN.Float.Layers.ReLU
+import CORALean.NN.Layers.Definitions.Enclosure
+import CORALean.NN.Layers.Definitions.Relaxation
+import CORALean.NN.Layers.Definitions.Relu
+import CORALean.NN.Layers.Operations.Linear
+import CORALean.NN.Layers.Operations.Relu
 
 /-!
 # Reachability at a floating-point representation

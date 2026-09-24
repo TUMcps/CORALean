@@ -1,8 +1,20 @@
-import CORALean.NN.Layers.LinearSigmoid
+import CORALean.NN.Layers.Definitions.ActivationPolyRefinable
+import CORALean.NN.Layers.Definitions.Enclosure
+import CORALean.NN.Layers.Definitions.ScaleRounding
+import CORALean.NN.Layers.Definitions.Sigmoid
+import CORALean.NN.Layers.Definitions.SigmoidNetworks
+import CORALean.NN.Layers.Definitions.SigmoidPolyFamily
+import CORALean.NN.Layers.Definitions.SigmoidRelaxation
+import CORALean.NN.Layers.Operations.Activation
+import CORALean.NN.Layers.Operations.ActivationPolyRefinable
+import CORALean.NN.Layers.Operations.Linear
+import CORALean.NN.Layers.Operations.Sigmoid
+import CORALean.NN.Layers.Theorems.Real.ActivationPolySigmoidConvergent
+import CORALean.NN.Layers.Theorems.Real.SigmoidPolyFamilySound
 import CORALean.NN.Operations.NetworkConvergent
 import CORALean.NN.Theorems.ActivationLipschitz
 import CORALean.NN.Theorems.EvalLipschitz
-import CORALean.NN.Theorems.LinearConvergent
+import CORALean.NN.Theorems.Real.LinearConvergent
 import CORALean.NN.Theorems.SigmoidLipschitz
 
 /-!
@@ -46,7 +58,8 @@ theorem linearSigmoidNetwork_convergent (W : Mat ℝ m n) (b : Vec ℝ m) :
     (Real.linearSigmoidNetwork W b).Convergent := by -- --- PROOF ---
   -- the activation on its own, which is the whole tail behind the matrix
   have h : (RefinableNetwork.cons (S := 𝒫𝒵)
-      (Real.Layer.activationPolyRefinable (n := m) Real.sigmoidPolyFamily) .nil).LipschitzLayers :=
+      (Real.Layer.activationPolyRefinable (n := m) Real.sigmoidPolyFamily
+        Real.sigmoidPolyFamily_sound) .nil).LipschitzLayers :=
     ⟨⟨1, Layer.lipschitzWith_activation_eval lipschitzWith_sigmoid m⟩, trivial⟩
   exact ⟨Layer.linear_refinable_convergent W b,
     RefinableNetwork.exists_lipschitzWith_eval _ h,

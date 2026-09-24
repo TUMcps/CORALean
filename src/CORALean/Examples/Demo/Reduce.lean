@@ -1,9 +1,14 @@
 import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
 import CORALean.Examples.Demo.Decimal
 import CORALean.Examples.Demo.Scalar
-import CORALean.NN.Float.Layers.ReLU
-import CORALean.NN.Float.ReduceOnTheFly
+import CORALean.NN.Layers.Operations.Activation
+import CORALean.NN.Layers.Operations.Linear
+import CORALean.NN.Layers.Operations.RelaxationBox
+import CORALean.NN.Layers.Operations.ReluRelaxation
+import CORALean.NN.Layers.Operations.ReluSlope
 import CORALean.NN.Operations.Enclose
+import CORALean.NN.Operations.ReduceOnTheFly
+import CORALean.NN.Operations.ReducibleNetworkToNetwork
 
 /-!
 # [1, Alg. 2] at `Dyadic`, run
@@ -26,7 +31,7 @@ neurons with a box, which forgets how they depend on the input.
 
 -- Authors:       Tobias Ladner
 -- Written:       23-September-2026
--- Last update:   ---
+-- Last update:   23-September-2026
 -- Last revision: ---
 
 
@@ -72,7 +77,7 @@ def lookAhead : Interval D 4 :=
     ((ReducedLinear.toLayer (S := Interval D) ⟨Wr₁, br₁, zeroBox 4⟩).enclose Xr.interval)
 
 def mergedLine : String :=
-  match bucketTolerance tolr fuelr (.static [dy 0 0]) lookAhead ρr with
+  match bucketTolerance FloatOps.le tolr fuelr (.static [dy 0 0]) lookAhead ρr with
   | none => "Alg. 1 ran out of fuel"
   | some B => "merged by Alg. 1: neurons " ++
       String.intercalate ", " ((List.finRange 4).filterMap fun i =>
@@ -102,7 +107,7 @@ def reduceReport : String :=
     "look-ahead I_2  " ++ showBox lookAhead,
     mergedLine,
     ""]
-  match reduceOnTheFly (S := Zonotope D) tolr fuelr Xr ρr reducible with
+  match reduceOnTheFly (S := Zonotope D) FloatOps.le tolr fuelr Xr ρr reducible with
   | none => String.intercalate "\n" (header ++ ["Alg. 2 ran out of fuel"])
   | some (Φhat, Y) => String.intercalate "\n" (header ++ [
       "widths  " ++ toString (widths reducible) ++ " -> " ++ toString (widths Φhat),

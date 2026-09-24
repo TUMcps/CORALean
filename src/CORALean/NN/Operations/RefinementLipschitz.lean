@@ -1,4 +1,6 @@
-import CORALean.NN.RefinableNetwork
+import CORALean.NN.Definitions.RefinableNetwork
+import CORALean.NN.Layers.Layer
+import CORALean.NN.Operations.RefinableNetworkEval
 
 /-!
 # The Lipschitz hypothesis, asked of a layer instead of a tail

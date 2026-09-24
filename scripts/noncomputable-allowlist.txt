@@ -1,12 +1,13 @@
-# Allowlist for `noncomputable` outside `Real/` and `Float/`.
+# Allowlist for `noncomputable` where the rules do not already allow it.
 #
 # `check-conventions.sh` rejects every `noncomputable` declaration that is not
-# under a `Real/` directory (rule 1), not the ℝ model of the scalar interface
-# under `Global/Float/Instances/Real/` (rule 2, covered by rule 1), and not an
-# `aux_*` declaration in a `Theorems/` file (rule 3), unless its name is listed
-# here with a reason. Under a `/Float/` path there is no listing: only rule 3
-# excuses a float declaration, because the whole point of the float layer is
-# that it runs.
+# in the `Real/` layer of a `ContSet/` representation (rule 1), not the ℝ model
+# of the scalar interface under `Global/Float/Instances/Real/` (rule 2), not an
+# `aux_*` declaration (rule 3) and not in a `Definitions/` file, which says what
+# an object means and is never run, unless its name is listed here with a
+# reason. Under a `/Float/` path there is no listing: only rule 3 excuses a
+# float declaration, because the whole point of the float layer is that it
+# runs.
 #
 # One line per entry: `<name>  <reason>`, the name exactly as `check-
 # conventions.sh` reads it — the declaration's own written name in full,
@@ -20,8 +21,8 @@
 #              trajectories, a norm, a Hausdorff distance, a real-valued
 #              certificate — never meant to run.
 #   cost:      an asserted running cost under `Cost/`.
-#   real-layer: part of the real (ℝ-valued) half of a representation or of the
-#              NN layer that predates or sits beside its `Float/` refinement,
+#   real-layer: part of the real (ℝ-valued) half of a representation, or an
+#              ℝ-only part of a directory otherwise written over the scalar,
 #              or reached only from such a definition and nothing runnable.
 #   pending #N: an algorithm with no float refinement yet, for a reason
 #              `check-conventions.sh`'s own comments do not repeat per entry;
@@ -37,9 +38,7 @@
 # by its ambient type so a float interval matrix exists; that is a separate,
 # larger piece of work and not attempted here.
 BReach.D  real-layer: a worked example over the real specification layer, proved and never run
-Chain.aux_layerRank  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-Chain.aux_neuronRank  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-Chain.sensitivity  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+Chain.sensitivity  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
 DMZ.A0  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 DMZ.R0  real-layer: a worked example over the real specification layer, proved and never run
 DMZ.U  real-layer: a worked example over the real specification layer, proved and never run
@@ -69,29 +68,22 @@ Example.splitter  real-layer: a worked example over the real specification layer
 Example.sqDeriv  real-layer: a worked example over the real specification layer, proved and never run
 Example.sqHess  real-layer: a worked example over the real specification layer, proved and never run
 Example.sysD  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
-GNN.ball  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-GNN.ballEnum  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-GNN.ballEnumIdx  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-GNN.mask  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-GNN.messagePassing  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-GNN.messagePassingEnclosure  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-GNN.sqrtBroadcast  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-GNN.sqrtCol  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-GNN.sqrtConst  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-GNN.sqrtEdgeCoeff  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-GNN.sqrtError  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-GNN.sqrtOffset  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-GNN.sqrtRow  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-GNN.sqrtSlope  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-GNN.uncertainAdj  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-GNN.uncertainAdjPad  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-Layer.activationPoly  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-Layer.activationPolyOn  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-Layer.activationPolyRefinable  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-Layer.avgPool  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-Layer.batchNorm  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-Layer.maxPool  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-Layer.softmax  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+GNN.ball  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
+GNN.ballEnum  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
+GNN.ballEnumIdx  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
+GNN.mask  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
+GNN.messagePassing  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
+GNN.messagePassingEnclosure  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
+GNN.sqrtBroadcast  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
+GNN.sqrtCol  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
+GNN.sqrtConst  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
+GNN.sqrtEdgeCoeff  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
+GNN.sqrtError  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
+GNN.sqrtOffset  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
+GNN.sqrtRow  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
+GNN.sqrtSlope  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
+GNN.uncertainAdj  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
+GNN.uncertainAdjPad  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
 LinParamSys.discretizeEnclosure  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinParamSys.inputSolution  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinParamSys.inputSolutionZono  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
@@ -110,7 +102,6 @@ LinearSys.autoStep  pending #1: a continuous-time algorithm at a real matrix exp
 LinearSys.autoTuneDeltaT  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.autoTuneOrder  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.autoTuneSearch  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
-LinearSys.closedForm  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.deltaReach  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.discretize  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.discretizeEnclosure  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
@@ -145,7 +136,6 @@ LinearSys.minBackReachTimeInterval  pending #1: a continuous-time algorithm at a
 LinearSys.postDelta  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.propagateInputSolution  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.reachError  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
-LinearSys.reachInner  spec: an inner approximation over a run, a Set-valued guarantee object; `minkowskiDiff` computes nothing
 LinearSys.reachInnerRep  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.reachInputError  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.stepInput  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
@@ -155,12 +145,10 @@ LinearSys.timeIntervalStep  pending #1: a continuous-time algorithm at a real ma
 LinearSys.timeIntervalStepCurvatureError  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.timeIntervalStepEps  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.timeIntervalStepError  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
-LinearSys.timeIntervalStepInner  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.timePointBound  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.timePointStep  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.timePointStepError  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.timePointStepErrorBox  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
-LinearSys.timePointStepInner  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.timePointStepInnerRep  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.timePointStepRemainderError  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.tunedInit  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
@@ -176,10 +164,7 @@ LinearSysDT.reachErrorFloat  spec: what a float run owes, summed from the four B
 LinearSysDT.reachErrorOrders  spec: what a run owes/what an inner approximation is, a real-valued guarantee object; `minkowskiDiff` computes nothing
 LinearSysDT.reachErrorReduced  spec: what a run owes/what an inner approximation is, a real-valued guarantee object; `minkowskiDiff` computes nothing
 LinearSysDT.reachErrorReducedOrders  spec: what a run owes/what an inner approximation is, a real-valued guarantee object; `minkowskiDiff` computes nothing
-LinearSysDT.reachInner  spec: what a run owes/what an inner approximation is, a real-valued guarantee object; `minkowskiDiff` computes nothing
-LinearSysDT.reachInnerFloat  spec: the computed float run minus `reachErrorFloat`; a guarantee about a set, `minkowskiDiff` computes nothing, as at `reachInner`
-LinearSysDT.reachInnerReduced  spec: what a run owes/what an inner approximation is, a real-valued guarantee object; `minkowskiDiff` computes nothing
-LinearSysDT.reachInnerRep  spec: what a run owes/what an inner approximation is, a real-valued guarantee object; `minkowskiDiff` computes nothing
+LinearSysDT.reachInnerRep  real-layer: an operation over the exact zonotope layer, noncomputable because its `reduce` is; the float run's counterpart goes through `Float.Zonotope.minkDiffRep`
 Location.timeIntervalStep  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 Location.timeIntervalStepInv  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 Location.timeIntervalStepSplit  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
@@ -263,37 +248,12 @@ NonlinearSys.relinDeltaReach  pending #1: a continuous-time algorithm at a real 
 NonlinearSys.relinReach  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 NonlinearSys.relinTimeInterval  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 NonlinearSysDT.reachCost  cost: an asserted running cost under `Cost/`, never meant to compute
-PolyRelaxation.ofAffineConj  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-PolyRelaxation.ofSampling  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-ReducedLinear.identity  real-layer: TMLR'23 reduction (Alg. 1-3) over ℝ, the specification its computable `NN/Float/` counterpart is proved against
-ReducedLinear.mergeCols  real-layer: TMLR'23 reduction (Alg. 1-3) over ℝ, the specification its computable `NN/Float/` counterpart is proved against
-Relaxation.ofAffineConj  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-Relaxation.ofAntitone  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-Relaxation.ofDeriv  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-Relaxation.ofMonotone  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-Relaxation.tighter  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-Schedule.refineWorst  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-Schedule.refineWorstNeurons  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+Schedule.refineWorst  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
+Schedule.refineWorstNeurons  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
 abstrErr  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 abstrErrLin  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 abstrSolInf  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
-aux_diffPoint  spec: a real-valued certificate (support witness/bound), quantifying over arbitrary linear functionals
-aux_invSqrtDerivHi  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-aux_invSqrtDerivLo  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-aux_layerRank  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-aux_neuronwiseStep  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-aux_search  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
-aux_verifyConvexStep  spec: a real-valued certificate (support witness/bound), quantifying over arbitrary linear functionals
-aux_worstLayer  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-aux_worstNeuron  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-batchNormScale  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-batchNormShift  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-bisectBucketTolerance  real-layer: TMLR'23 reduction (Alg. 1-3) over ℝ, the specification its computable `NN/Float/` counterpart is proved against
 boxDiameter  spec: a norm or Hausdorff distance over ℝ, used only to state a guarantee
-boxHalfRange  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-bucketTolerance  real-layer: TMLR'23 reduction (Alg. 1-3) over ℝ, the specification its computable `NN/Float/` counterpart is proved against
-compressionPreprocessing  real-layer: TMLR'23 reduction (Alg. 1-3) over ℝ, the specification its computable `NN/Float/` counterpart is proved against
-dynamicMergeBuckets  real-layer: TMLR'23 reduction (Alg. 1-3) over ℝ, the specification its computable `NN/Float/` counterpart is proved against
 ellipsoidInputTaylorSum  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 err  spec: a norm or Hausdorff distance over ℝ, used only to state a guarantee
 estimateGain  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
@@ -305,68 +265,19 @@ gainOrder  pending #1: a continuous-time algorithm at a real matrix exponential;
 gainOrderDim  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 genOpNorm₂  spec: a norm or Hausdorff distance over ℝ, used only to state a guarantee
 globalAbstrErr  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
-growBucketTolerance  real-layer: TMLR'23 reduction (Alg. 1-3) over ℝ, the specification its computable `NN/Float/` counterpart is proved against
 hausdorffDist₂  spec: a norm or Hausdorff distance over ℝ, used only to state a guarantee
-initMergeBuckets  real-layer: TMLR'23 reduction (Alg. 1-3) over ℝ, the specification its computable `NN/Float/` counterpart is proved against
 interpGain  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
-invSqrt  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-invSqrtRelaxation  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-invSqrtRelaxationDeriv  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-invSqrtRelaxationRange  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
 lagrangeRemainder  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
-layerSensitivity  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-leastSquaresFit  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-linearSigmoidNetwork  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+layerSensitivity  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
 localAbstrErr  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
-maxOver  real-layer: TMLR'23 reduction (Alg. 1-3) over ℝ, the specification its computable `NN/Float/` counterpart is proved against
-maxPoolGap  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-mergeBucket.decidablePred  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-mergeSplit  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-mergedSandwich  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-minOver  real-layer: TMLR'23 reduction (Alg. 1-3) over ℝ, the specification its computable `NN/Float/` counterpart is proved against
 mulVecL  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 norm₂  spec: a norm or Hausdorff distance over ℝ, used only to state a guarantee
 optDeltat  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 optDeltatSearch  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
-polyDerivDiff  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-polyDerivRadius  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-polyFit  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-polyRelaxationFamily  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
 reachSizeEstimate  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
-reduceOnTheFly  real-layer: TMLR'23 reduction (Alg. 1-3) over ℝ, the specification its computable `NN/Float/` counterpart is proved against
-reduceOnTheFlyFrom  real-layer: TMLR'23 reduction (Alg. 1-3) over ℝ, the specification its computable `NN/Float/` counterpart is proved against
-refinementRank  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-refinementRankLayerBias  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-refinementRankSensitivity  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-relu  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-reluGap  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-reluRelaxation  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-reluSlope  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-sampleGrid  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-sampleInf  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-sampleSup  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-sampleVandermonde  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-samplingError  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-sigmoid  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-sigmoidCurvatureRelaxation  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-sigmoidDeriv  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-sigmoidDerivHi  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-sigmoidDerivLo  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-sigmoidLinearSigmoidNetwork  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-sigmoidPolyFamily  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-sigmoidPolyRelaxation  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-sigmoidPolyRelaxationFit  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-sigmoidRefinableNetwork  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-sigmoidRelaxation  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-sigmoidSlope  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-softmax  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-softmaxBox  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-softmaxRawLower  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-softmaxRawUpper  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-tanh  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-tanhPolyRelaxation  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-tanhPolyRelaxationFit  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-tanhRelaxation  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+refinementRank  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
+refinementRankLayerBias  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
+refinementRankSensitivity  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
 toEuclidean  spec: a norm or Hausdorff distance over ℝ, used only to state a guarantee
 tuneAbstrOrder  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 tuneDeltat  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
@@ -374,5 +285,4 @@ tuneDeltatInit  pending #1: a continuous-time algorithm at a real matrix exponen
 varInputs  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 verifyConvex  spec: a real-valued certificate (support witness/bound), quantifying over arbitrary linear functionals
 verifyHalfspace  spec: a real-valued certificate (support witness/bound), quantifying over arbitrary linear functionals
-windowMax  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
-worstIndex  real-layer: the real NN layer (NN/Layers, NN/Graph, NN/Operations); the float layer is NN/Float/
+worstIndex  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet

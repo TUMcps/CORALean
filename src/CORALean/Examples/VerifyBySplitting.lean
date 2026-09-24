@@ -1,5 +1,8 @@
 import CORALean.ContSet.Interval.Real.Theorems.SplitAtCover
-import CORALean.NN.Layers.ReLU
+import CORALean.NN.Layers.Definitions.Enclosure
+import CORALean.NN.Layers.Definitions.Relaxation
+import CORALean.NN.Layers.Definitions.Relu
+import CORALean.NN.Layers.Operations.Relu
 import CORALean.NN.Theorems.VerifySplitSound
 
 /-!

@@ -1,7 +1,8 @@
 import CORALean.NN.Theorems.ActivationLipschitz
 import CORALean.NN.Theorems.AtScheduleEval
 import CORALean.NN.Theorems.BucketToleranceApprox
-import CORALean.NN.Theorems.BucketToleranceNone
+import CORALean.NN.Theorems.ChainEvalCons
+import CORALean.NN.Theorems.ChainEvalNil
 import CORALean.NN.Theorems.Classifies
 import CORALean.NN.Theorems.CompressionPreprocessingOuter
 import CORALean.NN.Theorems.DisjointMisclassifiedOfBounds
@@ -16,6 +17,8 @@ import CORALean.NN.Theorems.ExistsMergeTolerance
 import CORALean.NN.Theorems.ExistsScheduleLinearSigmoidSubset
 import CORALean.NN.Theorems.ExistsScheduleSigmoidLinearSigmoidSubset
 import CORALean.NN.Theorems.ExistsScheduleSigmoidSubset
+import CORALean.NN.Theorems.ExplanationRefineLoopIff
+import CORALean.NN.Theorems.GreedyAbstractExplanationEqGreedyMinimalExplanation
 import CORALean.NN.Theorems.HoldsAllOfEnclose
 import CORALean.NN.Theorems.HoldsOfEnclose
 import CORALean.NN.Theorems.HoldsOfReduceOnTheFly
@@ -27,11 +30,10 @@ import CORALean.NN.Theorems.ImageSubsetEncloseAt
 import CORALean.NN.Theorems.ImageSubsetRefine
 import CORALean.NN.Theorems.ImageSubsetRefineLayer
 import CORALean.NN.Theorems.ImageSubsetRefineLoop
-import CORALean.NN.Theorems.LinearConvergent
-import CORALean.NN.Theorems.LinearExact
+import CORALean.NN.Theorems.IsMinSuffExplanationGreedyAbstractExplanation
+import CORALean.NN.Theorems.IsMinSuffExplanationGreedyMinimalExplanation
 import CORALean.NN.Theorems.LinearLipschitz
 import CORALean.NN.Theorems.LinearSigmoidConverges
-import CORALean.NN.Theorems.LinearWithErrorZero
 import CORALean.NN.Theorems.MarginDir
 import CORALean.NN.Theorems.MemSafeSet
 import CORALean.NN.Theorems.MergeBucketCardMono
@@ -51,12 +53,15 @@ import CORALean.NN.Theorems.MultiLayerRefinementConverges
 import CORALean.NN.Theorems.NeuronMergingNetworkOuter
 import CORALean.NN.Theorems.NeuronMergingOuter
 import CORALean.NN.Theorems.NotMemUnsafeSet
-import CORALean.NN.Theorems.ReduceOnTheFlyReducesAt
+import CORALean.NN.Theorems.Real.API
+import CORALean.NN.Theorems.ReduceOnTheFlyOuter
 import CORALean.NN.Theorems.ReducesAtCongr
 import CORALean.NN.Theorems.ReducesAtOuter
 import CORALean.NN.Theorems.ReducesAtRefl
+import CORALean.NN.Theorems.RefinableLayerAtPatternSound
 import CORALean.NN.Theorems.ReluNotDifferentiable
 import CORALean.NN.Theorems.Robustness
+import CORALean.NN.Theorems.ScheduleHeadCons
 import CORALean.NN.Theorems.SensitivityActivation
 import CORALean.NN.Theorems.SensitivityFDeriv
 import CORALean.NN.Theorems.SensitivityLinear
@@ -83,16 +88,16 @@ import CORALean.NN.Theorems.VerifySplitSound
 /-!
 # What a network's enclosure guarantees, collected
 
-`EncloseOuter`/`ImageSubset` are the graph induction, its pointwise form; `Verified` composes
-`Specification.holds_of_outer`, read by `MemSafeSet`/`NotMemUnsafeSet` against a safe or unsafe set.
-`Robustness` builds on `Misclassified`, `MarginDir`, `DisjointMisclassifiedOfBounds`, `Classifies`.
-`HoldsOfSplit`/`VerifySplitSound` make verification complete: split once, or recurse to a depth.
+`EncloseOuter`/`ImageSubset` are the graph induction; `Verified` composes `holds_of_outer`, read by
+`MemSafeSet`/`NotMemUnsafeSet`; `Robustness` builds on `Misclassified`, `MarginDir`,
+`DisjointMisclassifiedOfBounds`, `Classifies`; `HoldsOfSplit`/`VerifySplitSound` split and recurse.
 
-`LinearWithErrorZero`, `NeuronMergingOuter`, `NeuronMergingNetworkOuter`, `MergeErrorSplit`,
-`MergeErrorWidthLe`, `MergeErrorWidthLeRow` are neuron merging [1]: error-free linear layers,
-bucket containment, the Minkowski split, tolerated by `ExistsMergeTolerance`'s `δ`-linear cost;
-`MergeBucketMono`/`MergeBucketCardMono`/`ExistsMergeBucketAll` grow it; `EncloseNotMonotone`
-forces `Reduction`'s `ReducesAt` into one induction — `HoldsOfReducesAt` is [1, Thm. 1].
+`LinearWithErrorZero`, `NeuronMergingOuter`, `NeuronMergingNetworkOuter`, `MergeError*` are
+neuron merging [1]: error-free linear layers, bucket containment, the Minkowski split, tolerated
+by `ExistsMergeTolerance`; `MergeBucketMono`/`MergeBucketCardMono`/`ExistsMergeBucketAll` grow it.
+`EncloseNotMonotone` forces `ReducesAt` into one induction — `HoldsOfReducesAt` is [1, Thm. 1] —
+and [1, Algs. 1-3] are sound at every scalar (`ReduceOnTheFlyOuter`, `HoldsOfReduceOnTheFly`,
+`CompressionPreprocessingOuter`, `BucketToleranceApprox`); `Real/` holds what needs ℝ.
 
 `SuffExplanation`, `MinSuffExplanation` and their `Abstract` and `Exact` forms are local
 explanations [2]. `SuffExplanationTransfer`/`OfExact` carry sufficiency to the original network,

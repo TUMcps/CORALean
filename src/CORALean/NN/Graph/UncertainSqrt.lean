@@ -1,5 +1,11 @@
 import CORALean.NN.Graph.Theorems.DegreeAtEq
-import CORALean.NN.Layers.InvSqrt
+import CORALean.NN.Layers.Definitions.Enclosure
+import CORALean.NN.Layers.Definitions.InvSqrt
+import CORALean.NN.Layers.Definitions.InvSqrtRelaxation
+import CORALean.NN.Layers.Definitions.Relaxation
+import CORALean.NN.Layers.Definitions.ScaleRounding
+import CORALean.NN.Layers.Operations.LayerRelaxationBox
+import CORALean.NN.Layers.Operations.RelaxationBox
 
 /-!
 # `D̃^(-1/2)` at an uncertain degree, as an affine function of the edge factors
@@ -40,29 +46,29 @@ def GNN.degreeCoeff (U : Fin m → Fin N × Fin N) (e : Fin m) (j : Fin N) : ℝ
   ∑ i, GNN.edgeMat (U e) i j
 
 /-- The relaxation's slope over node `j`'s own degree interval. -/
-noncomputable def GNN.sqrtSlope (R : Relaxation invSqrt) (A : Mat ℝ N N)
+noncomputable def GNN.sqrtSlope (R : Relaxation ℝ) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) (j : Fin N) : ℝ :=
   R.slope (GNN.degreeInf A U j) (GNN.degreeSup A U j)
 
 /-- The relaxation's offset over that same interval. -/
-noncomputable def GNN.sqrtOffset (R : Relaxation invSqrt) (A : Mat ℝ N N)
+noncomputable def GNN.sqrtOffset (R : Relaxation ℝ) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) (j : Fin N) : ℝ :=
   R.offset (GNN.degreeInf A U j) (GNN.degreeSup A U j)
 
 /-- How far the affine map may miss `invSqrt` over that interval. -/
-noncomputable def GNN.sqrtError (R : Relaxation invSqrt) (A : Mat ℝ N N)
+noncomputable def GNN.sqrtError (R : Relaxation ℝ) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) (j : Fin N) : ℝ :=
   R.error (GNN.degreeInf A U j) (GNN.degreeSup A U j)
 
 /-- `s_j` at all edge factors zero, which is every edge at half weight. -/
-noncomputable def GNN.sqrtConst (R : Relaxation invSqrt) (A : Mat ℝ N N)
+noncomputable def GNN.sqrtConst (R : Relaxation ℝ) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) (j : Fin N) : ℝ :=
   GNN.sqrtSlope R A U j * (GNN.degree A j + ∑ e, GNN.degreeCoeff U e j / 2)
     + GNN.sqrtOffset R A U j
 
 /-- The generator `s_j` puts on edge `e`'s factor: half that edge's column sum,
 through the relaxation's slope. -/
-noncomputable def GNN.sqrtEdgeCoeff (R : Relaxation invSqrt) (A : Mat ℝ N N)
+noncomputable def GNN.sqrtEdgeCoeff (R : Relaxation ℝ) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) (j : Fin N) (e : Fin m) : ℝ :=
   GNN.sqrtSlope R A U j * GNN.degreeCoeff U e j / 2
 
@@ -71,7 +77,7 @@ noncomputable def GNN.sqrtEdgeCoeff (R : Relaxation invSqrt) (A : Mat ℝ N N)
 
 /-- The relaxation's affine map at an uncertain degree, rewritten over the edge
 factors `α = 2λ - 1` the uncertain adjacency is built on. -/
-theorem GNN.sqrt_affine (R : Relaxation invSqrt) (A : Mat ℝ N N) (U : Fin m → Fin N × Fin N)
+theorem GNN.sqrt_affine (R : Relaxation ℝ) (A : Mat ℝ N N) (U : Fin m → Fin N × Fin N)
     (lam : Fin m → ℝ) (j : Fin N) :
     GNN.sqrtSlope R A U j * GNN.degreeAt A U lam j + GNN.sqrtOffset R A U j
       = GNN.sqrtConst R A U j

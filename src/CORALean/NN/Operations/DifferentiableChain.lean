@@ -1,4 +1,4 @@
-import CORALean.NN.Chain
+import CORALean.NN.Definitions.Chain
 
 /-!
 # Differentiable layer by layer, along the forward pass

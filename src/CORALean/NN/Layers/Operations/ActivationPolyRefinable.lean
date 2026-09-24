@@ -1,0 +1,51 @@
+import CORALean.NN.Definitions.RefinableLayer
+import CORALean.NN.Layers.Layer
+import CORALean.NN.Layers.Operations.ActivationPoly
+import CORALean.NN.Layers.Operations.PolyRelaxationFamilyAtPattern
+import CORALean.NN.Layers.Theorems.ActivationPolySound
+import CORALean.NN.Layers.Theorems.AtPatternSound
+import CORALean.NN.Operations.RefinableLayerAtPattern
+import CORALean.NN.Theorems.RefinableLayerAtPatternSound
+
+/-!
+# The polynomial activation layer as a refinable layer
+
+A family reads an order pattern [1, Eq. 23] as one level per neuron, every level sound, so a
+schedule changes nothing about correctness. `RefinableLayer` stores `eval`, so `σ` is an argument
+here and nowhere below. Convergence is stated over ℝ only: at a machine scalar the representation's
+own rounding is charged to an error box no refinement level touches.
+
+## References
+
+* [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural
+      Network Verification using Sensitivity Analysis". HSCC 2023.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-September-2026
+-- Last update:   23-September-2026
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open Float Float.FloatOps
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ} {σ : ℝ → ℝ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- The activation layer of a family: one `σ`, one enclosure per pattern. -/
+def Layer.activationPolyRefinable {F : PolyRelaxationFamily 𝕋} (hF : F.Sound σ) :
+    RefinableLayer (Float.PolyZonotope 𝕋) n n where
+  eval x := fun i => σ (x i)
+  enclose t := (Layer.activationPoly (F.atPattern t)).enclose
+  enclose_outer t := (Layer.activationPoly_sound (F.atPattern_sound hF t)).enclose_outer
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

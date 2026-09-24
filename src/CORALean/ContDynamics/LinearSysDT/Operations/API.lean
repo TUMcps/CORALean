@@ -9,6 +9,7 @@ import CORALean.ContDynamics.LinearSysDT.Operations.ReachErrorFloat
 import CORALean.ContDynamics.LinearSysDT.Operations.ReachErrorOrders
 import CORALean.ContDynamics.LinearSysDT.Operations.ReachErrorReduced
 import CORALean.ContDynamics.LinearSysDT.Operations.ReachErrorReducedOrders
+import CORALean.ContDynamics.LinearSysDT.Operations.ReachInnerRep
 
 /-!
 # What `LinearSysDT` computes
@@ -20,5 +21,6 @@ import CORALean.ContDynamics.LinearSysDT.Operations.ReachErrorReducedOrders
 `BackReachForall`/`BackReachExists` read a run backwards, against a matrix
 inverse rather than the forward dynamics. `ReachError` and its `Reduced`,
 `Orders` and `Float` variants accumulate what a run owes as a zonotope, each
-one an algorithm rather than the `reach` it is measured against.
+one an algorithm rather than the `reach` it is measured against. `ReachInnerRep`
+is the inner approximation at a representation.
 -/

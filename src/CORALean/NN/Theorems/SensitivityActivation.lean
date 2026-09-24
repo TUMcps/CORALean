@@ -1,4 +1,4 @@
-import CORALean.NN.Layers.Activation
+import CORALean.NN.Layers.Operations.Activation
 import CORALean.NN.Theorems.SensitivityOfMatrix
 
 /-!

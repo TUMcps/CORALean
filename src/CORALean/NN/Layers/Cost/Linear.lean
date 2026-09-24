@@ -1,10 +1,9 @@
-import CORALean.NN.Layers.Linear
 import CORALean.Global.Cost
 
 /-!
 # `Layer.linearCost`
 
-Asserted, not proved: `Layers/Linear.lean` is `plus (mtimes W s) (embed b)` —
+Asserted, not proved: `Operations/Linear.lean` is `plus (mtimes W s) (embed b)` —
 one `mtimes`, one `plus`, one embedded bias — and nothing else; the same three
 calls `Transition.jumpCost` prices for a hybrid automaton's reset.
 

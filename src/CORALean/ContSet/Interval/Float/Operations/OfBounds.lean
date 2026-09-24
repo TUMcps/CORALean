@@ -1,5 +1,5 @@
 import CORALean.ContSet.Interval.Float.Interval
-import CORALean.Global.LinProg.Float.API
+import CORALean.Global.Float.FloatBound
 
 /-!
 # `Interval.ofBounds`, over a floating-point scalar

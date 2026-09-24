@@ -46,7 +46,7 @@ variable {N F m : ℕ}
 
 /-- Several message-passing steps at an uncertain graph are sound: the graph's
 own iteration, at any point of the feature set, lies in the chain. -/
-theorem GNN.evalSteps_mem_gcnSteps (R : Relaxation invSqrt) (A : Mat ℝ N N)
+theorem GNN.evalSteps_mem_gcnSteps (R : Relaxation ℝ) (hR : R.Sound invSqrt) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) (hA : ∀ i j, 0 ≤ A i j) (lam : Fin m → ℝ)
     (hlam : ∀ e, 0 ≤ lam e ∧ lam e ≤ 1) (L : ℕ) (W : Fin (L + 1) → Mat ℝ F F)
     (H : PolyZonotope (Mat ℝ N F)) (aH : Fin H.p → ℝ) (haH : ∀ k, |aH k| ≤ 1) :
@@ -55,7 +55,7 @@ theorem GNN.evalSteps_mem_gcnSteps (R : Relaxation invSqrt) (A : Mat ℝ N N)
           (H.padFront (GNN.messagePassingEnclosure R A U).p) rfl).construct := by -- --- PROOF ---
   -- the enclosure keeps nothing independent, so a member of it is a point of it
   obtain ⟨aP, haP, hP⟩ := PolyZonotope.exists_point_of_q_zero (GNN.messagePassingEnclosure R A U)
-    rfl (GNN.messagePassing_mem_enclosure R A U hA lam hlam)
+    rfl (GNN.messagePassing_mem_enclosure R hR A U hA lam hlam)
   have hadm : ∀ k, |Fin.append aP aH k| ≤ 1 := by
     intro k
     refine Fin.addCases (fun e => ?_) (fun t => ?_) k

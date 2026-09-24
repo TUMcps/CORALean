@@ -1,4 +1,9 @@
-import CORALean.NN.Layers.SigmoidPolyRefine
+import CORALean.NN.Layers.Definitions.Sigmoid
+import CORALean.NN.Layers.Definitions.SigmoidNetworks
+import CORALean.NN.Layers.Definitions.SigmoidRelaxation
+import CORALean.NN.Layers.Operations.Activation
+import CORALean.NN.Layers.Operations.Sigmoid
+import CORALean.NN.Layers.Theorems.Real.ActivationPolySigmoidConvergent
 import CORALean.NN.Theorems.EncloseAtInflate
 
 /-!

@@ -1,4 +1,5 @@
-import CORALean.NN.Layers.ReLU
+import CORALean.NN.Layers.Definitions.Relu
+import CORALean.NN.Layers.Operations.Relu
 
 /-!
 # ReLU has no derivative at zero

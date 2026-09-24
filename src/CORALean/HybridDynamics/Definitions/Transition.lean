@@ -44,7 +44,7 @@ structure Transition (G : ℕ → Type) (L : Type) (𝕋 : Type) (n : ℕ) where
   target : L
 
 /-- The map the coefficients denote, which is what a run applies at a jump. -/
-def Transition.reset (e : Transition G L 𝕋 n) (x : Vec ℝ n) : Vec ℝ n :=
+noncomputable def Transition.reset (e : Transition G L 𝕋 n) (x : Vec ℝ n) : Vec ℝ n :=
   toRealMat e.W *ᵥ x + toRealVec e.w
 
 end CORALean

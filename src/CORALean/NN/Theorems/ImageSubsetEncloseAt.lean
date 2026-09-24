@@ -1,3 +1,4 @@
+import CORALean.NN.Definitions.RefinableNetworkImage
 import CORALean.NN.Theorems.EncloseAtOuter
 
 /-!

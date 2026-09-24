@@ -1,0 +1,44 @@
+import CORALean.NN.Layers.Definitions.PolyRelaxation
+import CORALean.NN.Layers.Operations.BracketError
+import CORALean.NN.Layers.Operations.ShiftConst
+
+/-!
+# A polynomial relaxation out of a bracket, recentred
+
+`computeApproxError`'s last step [1]: a bracket for `σ - p` over the box, its two ends averaged
+into the constant coefficient, and what is left is a radius. The bracket is a hypothesis of
+`ofBracket_sound` and not an argument here, which keeps `σ` out of the data.
+
+## References
+
+* [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural
+      Network Verification using Sensitivity Analysis". HSCC 2023.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-September-2026
+-- Last update:   23-September-2026
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open Float Float.FloatOps
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- A relaxation out of any bracket for `σ` minus the fit, recentred. -/
+def PolyRelaxation.ofBracket (c : 𝕋 → 𝕋 → Fin (m + 1) → 𝕋) (lo hi : 𝕋 → 𝕋 → 𝕋) :
+    PolyRelaxation 𝕋 m where
+  coeffs l u := shiftConst (c l u) (bracketShift (lo l u) (hi l u))
+  error l u := bracketError (c l u 0) (lo l u) (hi l u)
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

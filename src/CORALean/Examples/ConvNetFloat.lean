@@ -1,10 +1,24 @@
 import CORALean.Examples.ConvNet
-import CORALean.NN.Float.Layers.Pooling
-import CORALean.NN.Float.Layers.ReLU
-import CORALean.NN.Float.Layers.Softmax
+import CORALean.NN.Layers.Definitions.Enclosure
+import CORALean.NN.Layers.Definitions.PolyRelaxation
+import CORALean.NN.Layers.Definitions.Relaxation
+import CORALean.NN.Layers.Definitions.Relu
+import CORALean.NN.Layers.Definitions.ScaleRounding
+import CORALean.NN.Layers.Definitions.Softmax
+import CORALean.NN.Layers.Operations.AvgPool
+import CORALean.NN.Layers.Operations.BatchNorm
+import CORALean.NN.Layers.Operations.Conv
+import CORALean.NN.Layers.Operations.MaxPool
+import CORALean.NN.Layers.Operations.Relu
+import CORALean.NN.Layers.Operations.Reshape
+import CORALean.NN.Layers.Operations.Softmax
+import CORALean.NN.Layers.Operations.TransposeEquiv
+import CORALean.NN.Layers.Theorems.ConvSound
+import CORALean.NN.Layers.Theorems.MaxPoolSound
+import CORALean.NN.Layers.Theorems.ReshapeExact
 import CORALean.NN.Theorems.Classifies
-import CORALean.NN.Theorems.MarginDir
 import CORALean.NN.Theorems.EncloseOuter
+import CORALean.NN.Theorems.MarginDir
 
 /-!
 # The same convolutional network, over a floating-point scalar
@@ -14,12 +28,10 @@ lines changed and which did not. The taps did not: `Example.convTap` and
 `Example.poolTap` are the exact layer's, reused verbatim, because an index
 function has no scalar in it.
 
-The reshape did not either: `Layer.reshape` below is `Real.Layer.reshape` at a
-float representation, sound there because a relabelling carries no weights, and
-`Zonotope 𝕋` has the `Reindex` instance it owes.
-
-Batch normalization is the other with no float file, spelled out here as
-`Float.Layer.linear` at a folded scale and shift taken as parameters.
+The layers did not either: each is written once over the scalar, and this is it at
+`𝕋`. The reshape carries no scalar at all, sound here because `Zonotope 𝕋` has the
+`Reindex` instance it owes; batch normalization takes its scale and shift folded,
+in the scalar, as the network read in stores them.
 
 `Layer` no longer carries what a layer computes, so nothing here stores a real
 function: the network below is a plain `def` and every step of its `enclose` is
@@ -29,7 +41,7 @@ which is a `Prop`.
 
 -- Authors:       Tobias Ladner
 -- Written:       03-September-2026
--- Last update:   ---
+-- Last update:   23-September-2026
 -- Last revision: ---
 
 
@@ -41,23 +53,23 @@ open ContSet SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
-/-- `W` and `bn` are batch normalization's folded scale and shift, which is all
+/-- `sc` and `sh` are batch normalization's folded scale and shift, which is all
 `BatchNorm` ever was; `k` is the softmax exponential's reduction depth. -/
 def Example.convNet (k : ℕ) (K : Fin 1 → Fin 2 → 𝕋) (b : Vec 𝕋 5)
-    (W : Mat 𝕋 2 2) (bn : Vec 𝕋 2) : NeuralNetwork (Zonotope 𝕋) 6 2 :=
-  .cons (Real.Layer.reshape (S := Zonotope 𝕋) (Real.Fin.transposeEquiv 3 2))
+    (sc sh : Vec 𝕋 2) : NeuralNetwork (Zonotope 𝕋) 6 2 :=
+  .cons (Layer.reshape (S := Zonotope 𝕋) (Fin.transposeEquiv 3 2))
     (.cons (Layer.conv (fun _ => 0) Real.Example.convTap K b)
       (.cons (Layer.relu)
         (.cons (Layer.maxPool Real.Example.poolTap fun _ _ => 0)
-          (.cons (Layer.linear W bn)
+          (.cons (Layer.batchNorm id sc sh)
             (.cons (Layer.softmax k) .nil)))))
 
 -- anonymous: each is the exact layer's theorem, read at a float representation
 
 /-- The whole chain is a network, which is the only thing left to check. -/
-example (k : ℕ) (K : Fin 1 → Fin 2 → 𝕋) (b : Vec 𝕋 5) (W : Mat 𝕋 2 2)
-    (bn : Vec 𝕋 2) (X : Zonotope 𝕋 6) : Zonotope 𝕋 2 :=
-  (Example.convNet k K b W bn).enclose X
+example (k : ℕ) (K : Fin 1 → Fin 2 → 𝕋) (b : Vec 𝕋 5) (sc sh : Vec 𝕋 2)
+    (X : Zonotope 𝕋 6) : Zonotope 𝕋 2 :=
+  (Example.convNet k K b sc sh).enclose X
 
 /-- Every output over the whole input set is in the zonotope that comes back. -/
 example {nn : NeuralNetwork (Zonotope 𝕋) 6 2} {f : Vec ℝ 6 → Vec ℝ 2}
@@ -80,13 +92,11 @@ example (K : Fin 1 → Fin 2 → 𝕋) (b : Vec 𝕋 5) :
       fun x j => (∑ l, toReal (K 0 l) * x (Real.Example.convTap j l)) + toReal (b j) :=
   Layer.conv_sound _ _ _ _ Real.Example.convTap_injective
 
-/-- Exact at a float representation too, which is what having no float
-constructor of its own is worth. -/
+/-- Exact at a float representation too, a relabelling carrying no scalar. -/
 example (X : Zonotope 𝕋 6) :
-    construct ((Real.Layer.reshape (S := Zonotope 𝕋)
-        (Real.Fin.transposeEquiv 3 2)).enclose X)
-      = CORALean.reindexLin (Real.Fin.transposeEquiv 3 2) '' construct X :=
-  Real.Layer.reshape_exact _ X
+    construct ((Layer.reshape (S := Zonotope 𝕋) (Fin.transposeEquiv 3 2)).enclose X)
+      = CORALean.reindexLin (Fin.transposeEquiv 3 2) '' construct X :=
+  Layer.reshape_exact _ X
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

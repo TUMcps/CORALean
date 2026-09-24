@@ -1,0 +1,89 @@
+import CORALean.NN.Layers.Theorems.AbsSubEvalPolyDerivLe
+import CORALean.NN.Layers.Theorems.AbsSubLeBracketError
+import CORALean.NN.Layers.Theorems.AbsSubLeSpread
+import CORALean.NN.Layers.Theorems.ActivationPolySound
+import CORALean.NN.Layers.Theorems.ActivationSound
+import CORALean.NN.Layers.Theorems.AllOverApply
+import CORALean.NN.Layers.Theorems.AtPatternSound
+import CORALean.NN.Layers.Theorems.AvgPoolSound
+import CORALean.NN.Layers.Theorems.BatchNormSound
+import CORALean.NN.Layers.Theorems.ClampUnitLeOne
+import CORALean.NN.Layers.Theorems.ClampUnitNonneg
+import CORALean.NN.Layers.Theorems.CoarseBounds
+import CORALean.NN.Layers.Theorems.CoeffListCoord
+import CORALean.NN.Layers.Theorems.ConvSound
+import CORALean.NN.Layers.Theorems.DegLeDegOf
+import CORALean.NN.Layers.Theorems.DoubleRoundingSound
+import CORALean.NN.Layers.Theorems.EvalPolyDownLe
+import CORALean.NN.Layers.Theorems.EvalPolyShiftConst
+import CORALean.NN.Layers.Theorems.ExistsGridClose
+import CORALean.NN.Layers.Theorems.GridMemOfChecked
+import CORALean.NN.Layers.Theorems.LeEvalPolyUp
+import CORALean.NN.Layers.Theorems.LeMaxPoolGapUp
+import CORALean.NN.Layers.Theorems.LeMulRangeUp
+import CORALean.NN.Layers.Theorems.LeSampleDevUp
+import CORALean.NN.Layers.Theorems.LeSigmoidDerivHi
+import CORALean.NN.Layers.Theorems.LinearSound
+import CORALean.NN.Layers.Theorems.LinearWithErrorMem
+import CORALean.NN.Layers.Theorems.LinearWithErrorSound
+import CORALean.NN.Layers.Theorems.MaxPoolGapUpNonneg
+import CORALean.NN.Layers.Theorems.MaxPoolSound
+import CORALean.NN.Layers.Theorems.MulRangeDownLe
+import CORALean.NN.Layers.Theorems.OfAffineConjSound
+import CORALean.NN.Layers.Theorems.OfAntitoneSound
+import CORALean.NN.Layers.Theorems.OfBracketSound
+import CORALean.NN.Layers.Theorems.OfDerivSound
+import CORALean.NN.Layers.Theorems.OfMonotoneSound
+import CORALean.NN.Layers.Theorems.OfSamplingSound
+import CORALean.NN.Layers.Theorems.PadToError
+import CORALean.NN.Layers.Theorems.PadToSound
+import CORALean.NN.Layers.Theorems.PolyDerivRadiusLe
+import CORALean.NN.Layers.Theorems.PowRangeBounds
+import CORALean.NN.Layers.Theorems.Real.API
+import CORALean.NN.Layers.Theorems.ReluGapOfSlopeLe
+import CORALean.NN.Layers.Theorems.ReluRelaxationSound
+import CORALean.NN.Layers.Theorems.ReluSound
+import CORALean.NN.Layers.Theorems.ReshapeExact
+import CORALean.NN.Layers.Theorems.ReshapeSound
+import CORALean.NN.Layers.Theorems.SampleBoundsOfCover
+import CORALean.NN.Layers.Theorems.SampleBoundsOfDeriv
+import CORALean.NN.Layers.Theorems.SampleDevLoLe
+import CORALean.NN.Layers.Theorems.SelectMatMulVec
+import CORALean.NN.Layers.Theorems.SigmoidCurvatureRelaxationSound
+import CORALean.NN.Layers.Theorems.SigmoidDerivLoLe
+import CORALean.NN.Layers.Theorems.SigmoidEnclosureSound
+import CORALean.NN.Layers.Theorems.SigmoidPolyRelaxationSound
+import CORALean.NN.Layers.Theorems.SigmoidPolySound
+import CORALean.NN.Layers.Theorems.SigmoidRelaxationSound
+import CORALean.NN.Layers.Theorems.SigmoidSound
+import CORALean.NN.Layers.Theorems.SoftmaxLeRawUpper
+import CORALean.NN.Layers.Theorems.SoftmaxSound
+import CORALean.NN.Layers.Theorems.SumEraseLeSumOffUp
+import CORALean.NN.Layers.Theorems.SumIteZero
+import CORALean.NN.Layers.Theorems.SumOffDownLe
+import CORALean.NN.Layers.Theorems.TanhRelaxationSound
+import CORALean.NN.Layers.Theorems.TanhSound
+import CORALean.NN.Layers.Theorems.TapEntryDot
+import CORALean.NN.Layers.Theorems.TapEntryEqZero
+import CORALean.NN.Layers.Theorems.TapMatMulVec
+import CORALean.NN.Layers.Theorems.TighterSound
+import CORALean.NN.Layers.Theorems.ToPolySound
+import CORALean.NN.Layers.Theorems.ToPolyToRelaxation
+import CORALean.NN.Layers.Theorems.ToRealIteZero
+import CORALean.NN.Layers.Theorems.ToRealMatTapMat
+import CORALean.NN.Layers.Theorems.ToRealPadCoeffs
+import CORALean.NN.Layers.Theorems.ToRealPolyDerivCenter
+import CORALean.NN.Layers.Theorems.ToRealTapEntry
+import CORALean.NN.Layers.Theorems.ToRelaxationSound
+
+/-!
+# What the standard layers enclose, collected
+
+One soundness theorem per layer, at every scalar: `LinearSound`, `LinearWithErrorSound`,
+`ActivationSound`, `ReluSound`, `SigmoidSound`, `TanhSound`, `SoftmaxSound`, `ConvSound`,
+`AvgPoolSound`, `MaxPoolSound`, `BatchNormSound`, `ReshapeSound`, `ActivationPolySound`,
+`SigmoidPolySound`, and `ReshapeExact`, the one equality. One per relaxation constructor —
+`OfMonotoneSound`, `OfAntitoneSound`, `OfDerivSound`, `TighterSound`, `OfAffineConjSound`,
+`OfSamplingSound`, `OfBracketSound`, `PadToSound` — and the rest is what those rest on: rounded
+sums, ranges and polynomial evaluations bounding the exact ones, a stencil reading back exactly.
+-/

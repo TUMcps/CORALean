@@ -1,4 +1,4 @@
-import CORALean.NN.Layer
+import CORALean.NN.Layers.Layer
 
 /-!
 # What an activation layer does to a distance

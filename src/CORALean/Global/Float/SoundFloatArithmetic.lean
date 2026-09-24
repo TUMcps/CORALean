@@ -61,10 +61,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m h : ℕ}
 def toRealVec (v : Vec 𝕋 n) : Vec ℝ n := fun i => toReal (v i)
 def toRealMat (M : Mat 𝕋 m n) : Mat ℝ m n := fun i j => toReal (M i j)
 
-/-- What the exact layer needs of the scalar, and all it needs. -/
+/-- What the exact layer needs of the scalar, and all it needs. The fields are written out
+rather than naming `toRealMat`, so that at `𝕋 := ℝ` instance search sees this is ℝ's own. -/
 instance : Scalar 𝕋 where
-  toRealMat M := CORALean.Float.toRealMat M
-  toRealVec v := CORALean.Float.toRealVec v
+  toRealMat M := fun i j => toReal (M i j)
+  toRealVec v := fun i => toReal (v i)
 
 /-! ## What the derived operations inherit -/
 
