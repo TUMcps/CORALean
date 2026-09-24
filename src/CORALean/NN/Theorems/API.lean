@@ -21,6 +21,7 @@ import CORALean.NN.Theorems.ExistsScheduleSigmoidSubset
 import CORALean.NN.Theorems.ExplanationRefineLoopIff
 import CORALean.NN.Theorems.GreedyAbstractExplanationEqGreedyMinimalExplanation
 import CORALean.NN.Theorems.HoldsAllOfEnclose
+import CORALean.NN.Theorems.HoldsOfCheck
 import CORALean.NN.Theorems.HoldsOfEnclose
 import CORALean.NN.Theorems.HoldsOfReduceOnTheFly
 import CORALean.NN.Theorems.HoldsOfReducesAt
@@ -75,6 +76,7 @@ import CORALean.NN.Theorems.SoundEval
 import CORALean.NN.Theorems.SoundHoldsAllOfEnclose
 import CORALean.NN.Theorems.SoundHoldsOfEnclose
 import CORALean.NN.Theorems.SoundVerifySplitSound
+import CORALean.NN.Theorems.SoundVerifySplitWithSound
 import CORALean.NN.Theorems.SuffExplanation
 import CORALean.NN.Theorems.SuffExplanationAbstract
 import CORALean.NN.Theorems.SuffExplanationConverseFails
@@ -89,13 +91,14 @@ import CORALean.NN.Theorems.SuffExplanationRefined
 import CORALean.NN.Theorems.SuffExplanationTransfer
 import CORALean.NN.Theorems.ToLayerSound
 import CORALean.NN.Theorems.VerifySplitSound
+import CORALean.NN.Theorems.VerifySplitWithSound
 
 /-!
 # What a network's enclosure guarantees, collected
 
 `EncloseOuter`/`ImageSubset` are the graph induction; `Verified` composes `holds_of_outer`, read by
-`MemSafeSet`/`NotMemUnsafeSet`; `Robustness` builds on `Misclassified`, `MarginDir`,
-`DisjointMisclassifiedOfBounds`, `Classifies`; `HoldsOfSplit`/`VerifySplitSound` split and recurse.
+`MemSafeSet`/`NotMemUnsafeSet`, and `HoldsOfCheck` computes it; `Robustness` builds on `MarginDir`,
+`Misclassified`, `DisjointMisclassifiedOfBounds`, `Classifies`; `HoldsOfSplit`/`VerifySplit*` split.
 
 `LinearWithErrorZero`, `NeuronMergingOuter`, `NeuronMergingNetworkOuter`, `MergeError*` are
 neuron merging [1]: error-free linear layers, bucket containment, the Minkowski split, tolerated

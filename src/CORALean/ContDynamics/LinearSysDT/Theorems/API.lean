@@ -4,6 +4,7 @@ import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachSetExistsPreimage
 import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachSetExistsTrajectory
 import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachSetForallTrajectory
 import CORALean.ContDynamics.LinearSysDT.Theorems.HeldToTrajectory
+import CORALean.ContDynamics.LinearSysDT.Theorems.HoldsOfCheck
 import CORALean.ContDynamics.LinearSysDT.Theorems.HoldsOfOutput
 import CORALean.ContDynamics.LinearSysDT.Theorems.HoldsOfReach
 import CORALean.ContDynamics.LinearSysDT.Theorems.HoldsOfSeparating

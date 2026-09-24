@@ -15,7 +15,7 @@ Reachability and simulation answer opposite halves of the same question.
 
 -- Authors:       Tobias Ladner
 -- Written:       06-September-2026
--- Last update:   ---
+-- Last update:   24-September-2026
 -- Last revision: ---
 
 
@@ -28,12 +28,13 @@ open Matrix ContSet Scalar Plus Reduce Mtimes
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
+variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSysDT.not_holds_of_simulate (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o)
-    (R₀ U : S n) (spec : Specification (Vec ℝ n)) {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ construct R₀)
+    (R₀ U : S n) (spec : Specification ContSet) {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ construct R₀)
     {u : ℕ → Vec ℝ n} (hu : ∀ k, u k ∈ construct U) (k : ℕ)
     (hbad : ¬ spec.Holds {sys.simulate x₀ u k}) :
     ¬ spec.Holds (construct (sys.reach o ho R₀ U k)) :=

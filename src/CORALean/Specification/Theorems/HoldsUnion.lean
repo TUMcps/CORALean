@@ -14,7 +14,7 @@ The binary case a two-part split needs; `HoldsIUnion` is the indexed form
 
 -- Authors:       Tobias Ladner
 -- Written:       06-September-2026
--- Last update:   ---
+-- Last update:   24-September-2026
 -- Last revision: ---
 
 
@@ -22,12 +22,12 @@ The binary case a two-part split needs; `HoldsIUnion` is the indexed form
 
 namespace CORALean
 
-variable {α : Type} {X Y : Set α}
+variable {ContSet α : Type} [CORALean.ContSet ContSet α] {X Y : Set α}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Specification.holds_union (spec : Specification α) (hX : spec.Holds X)
+theorem Specification.holds_union (spec : Specification ContSet) (hX : spec.Holds X)
     (hY : spec.Holds Y) : spec.Holds (X ∪ Y) := by -- --- PROOF ---
   obtain ⟨s, k⟩ := spec
   cases k

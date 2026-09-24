@@ -1,3 +1,4 @@
+import CORALean.ContDynamics.NeurNetContrSys.Theorems.HoldsOfCheck
 import CORALean.ContDynamics.NeurNetContrSys.Theorems.HoldsOfReach
 import CORALean.ContDynamics.NeurNetContrSys.Theorems.Period
 import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachOuter

@@ -15,7 +15,7 @@ records as missing.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   24-September-2026
 -- Last revision: ---
 
 
@@ -34,6 +34,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
 variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ n)]
+variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -42,7 +43,7 @@ theorem NeurNetContrSys.holds_of_reach (sys : NeurNetContrSys 𝕋 S n) (o η N 
     {Δt : ℝ} (hΔt : 0 < Δt) (hε : ‖Δt • toRealMat sys.plant.A‖ / ((η : ℝ) + 2) < 1) {H : ℕ}
     {R₀ : S n} {π : Vec ℝ n → Vec ℝ n} (hπ : sys.contr.Sound π)
     {x : ℝ → Vec ℝ n} (traj : sys.Trajectory π ((N : ℝ) * Δt) H R₀ x)
-    (spec : Specification (Vec ℝ n)) (i : ℕ) (hi : i ≤ H)
+    (spec : Specification ContSet) (i : ℕ) (hi : i ≤ H)
     (h : spec.Holds (construct (sys.reach o η N ho Δt R₀ i))) :
     spec.Holds {x ((i : ℝ) * ((N : ℝ) * Δt))} :=
   spec.holds_of_outer

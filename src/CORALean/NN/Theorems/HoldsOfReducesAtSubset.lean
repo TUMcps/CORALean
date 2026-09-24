@@ -19,7 +19,7 @@ sidesteps that rather than needing it.
 
 -- Authors:       Tobias Ladner
 -- Written:       12-September-2026
--- Last update:   ---
+-- Last update:   24-September-2026
 -- Last revision: ---
 
 
@@ -41,7 +41,8 @@ specification check on the image of any subset `s' ⊆ construct s` — no re-de
 theorem NeuralNetwork.holds_of_reducesAt_subset {n m : ℕ} {s : S n} {s' : Set (Vec ℝ n)}
     {nn nn' : NeuralNetwork S n m} {f : Vec ℝ n → Vec ℝ m}
     (h : NeuralNetwork.ReducesAt s nn nn' f) (hsub : s' ⊆ construct s)
-    (spec : Specification (Vec ℝ m)) (hspec : spec.Holds (construct (nn'.enclose s))) :
+    {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ m)]
+    (spec : Specification ContSet) (hspec : spec.Holds (construct (nn'.enclose s))) :
     spec.Holds (f '' s') :=
   spec.holds_of_outer ((Set.image_mono hsub).trans (NeuralNetwork.reducesAt_outer h)) hspec
 

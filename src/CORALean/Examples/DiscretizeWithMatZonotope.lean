@@ -21,7 +21,7 @@ generators, and the step is tighter for it.
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   24-September-2026
 -- Last revision: ---
 
 
@@ -77,7 +77,7 @@ theorem DMZ.mem_reach {o : ℕ} (ho : 0 < o) (k : ℕ) :
 
 /-- `holds_of_reach`, closing the chain at whatever specification the caller
 checks the computed reachable set against. -/
-example (spec : Specification (Vec ℝ 1)) {o : ℕ} (ho : 0 < o) (k : ℕ)
+example (spec : Specification (Set (Vec ℝ 1))) {o : ℕ} (ho : 0 < o) (k : ℕ)
     (h : spec.Holds (construct (DMZ.sysD.reach (S := 𝒵) o ho DMZ.R0 DMZ.U k))) :
     spec.Holds {DMZ.x0} :=
   DMZ.sysD.holds_of_reach (S := 𝒵) ho DMZ.R0 DMZ.U spec DMZ.traj k h

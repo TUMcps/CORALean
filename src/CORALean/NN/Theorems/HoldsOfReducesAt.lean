@@ -16,7 +16,7 @@ reduced network's enclosure holds on the original network's exact image, by
 
 -- Authors:       Tobias Ladner
 -- Written:       06-September-2026
--- Last update:   ---
+-- Last update:   24-September-2026
 -- Last revision: ---
 
 
@@ -36,7 +36,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n
 original network's exact image, at any set of layers reduced. -/
 theorem NeuralNetwork.holds_of_reducesAt {n m : ℕ} {s : S n} {nn nn' : NeuralNetwork S n m}
     {f : Vec ℝ n → Vec ℝ m} (h : NeuralNetwork.ReducesAt s nn nn' f)
-    (spec : Specification (Vec ℝ m))
+    {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ m)]
+    (spec : Specification ContSet)
     (hspec : spec.Holds (construct (nn'.enclose s))) : spec.Holds (f '' construct s) :=
   spec.holds_of_outer (NeuralNetwork.reducesAt_outer h) hspec
 

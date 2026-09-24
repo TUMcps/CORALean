@@ -15,7 +15,7 @@ this at each `k`.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   24-September-2026
 -- Last revision: ---
 
 
@@ -28,12 +28,13 @@ open Matrix ContSet Scalar Plus Reduce Mtimes
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
+variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NeurNetContrSysDT.holds_of_reach (sys : NeurNetContrSysDT 𝕋 S n) {o : ℕ} (ho : 0 < o)
-    (R₀ : S n) (spec : Specification (Vec ℝ n)) {π : Vec ℝ n → Vec ℝ n} (hπ : sys.contr.Sound π)
+    (R₀ : S n) (spec : Specification ContSet) {π : Vec ℝ n → Vec ℝ n} (hπ : sys.contr.Sound π)
     {x : ℕ → Vec ℝ n} (traj : sys.Trajectory π R₀ x) (k : ℕ)
     (h : spec.Holds (construct (sys.reach o ho R₀ k))) : spec.Holds {x k} :=
   spec.holds_of_outer (Set.singleton_subset_iff.mpr (sys.reach_outer ho R₀ hπ traj k)) h

@@ -17,7 +17,7 @@ about the network.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   06-September-2026
+-- Last update:   24-September-2026
 -- Last revision: ---
 
 
@@ -28,13 +28,14 @@ namespace CORALean
 open ContSet
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ m)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NeuralNetwork.Sound.holds_of_enclose {nn : NeuralNetwork S n m} {f : Vec ℝ n → Vec ℝ m}
     (hf : nn.Sound f) (X : S n)
-    (spec : Specification (Vec ℝ m)) (h : spec.Holds (construct (nn.enclose X))) :
+    (spec : Specification ContSet) (h : spec.Holds (construct (nn.enclose X))) :
     spec.Holds (f '' construct X) :=
   spec.holds_of_outer (hf.image_subset X) h
 

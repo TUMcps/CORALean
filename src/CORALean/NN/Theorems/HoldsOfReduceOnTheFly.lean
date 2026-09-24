@@ -19,7 +19,7 @@ the original network — every `I' = [0, 0]` — being the one [1] means.
 
 -- Authors:       Tobias Ladner
 -- Written:       23-September-2026
--- Last update:   23-September-2026
+-- Last update:   24-September-2026
 -- Last revision: ---
 
 
@@ -41,7 +41,8 @@ original network's exact image of `X`. -/
 theorem holds_of_reduceOnTheFly {le : 𝕋 → 𝕋 → Bool} {tol : 𝕋} {fuel : ℕ} {ρ : 𝕋} {n m : ℕ}
     {X : S n} {Φ Φhat : ReducibleNetwork 𝕋 n m} {Y : S m} {f : Vec ℝ n → Vec ℝ m}
     (hΦ : Φ.Instance f) (hrun : reduceOnTheFly le tol fuel X ρ Φ = some (Φhat, Y))
-    (spec : Specification (Vec ℝ m)) (hspec : spec.Holds (construct Y)) :
+    {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ m)]
+    (spec : Specification ContSet) (hspec : spec.Holds (construct Y)) :
     spec.Holds (f '' construct X) :=
   spec.holds_of_outer (reduceOnTheFly_outer hΦ hrun).1 hspec
 

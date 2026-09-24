@@ -5,17 +5,20 @@ import CORALean.NN.Layers.Definitions.Relu
 import CORALean.NN.Layers.Instances
 import CORALean.NN.Layers.Operations.Relu
 import CORALean.NN.Layers.Operations.ReluSlope
-import CORALean.NN.Theorems.VerifySplitSound
+import CORALean.NN.Theorems.VerifySplitWithSound
 
 /-!
-# `verifySplit` decides nothing on its own
+# `verifySplitWith` decides nothing on its own
 
-`verifySplit` is a pure `Bool` recursion: it owes no soundness itself, and
-`verifySplit_sound` is where a caller pays for it, in exactly two currencies —
+`verifySplitWith` is a pure `Bool` recursion: it owes no soundness itself, and
+`verifySplitWith_sound` is where a caller pays for it, in exactly two currencies —
 `hcheck`, that its `check` never says `true` of an output box the specification
 does not hold on, and `hcov`, that its `splitter` never drops a point when it
-bisects. Neither is `verifySplit`'s to prove, and a `false` result carries
-neither: it only says this depth and this `splitter` failed to find them.
+bisects. Neither is its to prove, and a `false` result carries neither: it only
+says this depth and this `splitter` failed to find them. `verifySplit` is the same
+at `Specification.check`, which brings its own `hcheck`; the check here is an exact
+real comparison, which no `Contains` instance computes, so this file takes the
+general form.
 
 `Interval.splitAt` supplies the splitter and `splitAt_cover` discharges `hcov`
 in one line. The network is one ReLU neuron, the one activation whose box
@@ -25,7 +28,7 @@ anything to buy at all.
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   24-September-2026
 -- Last revision: ---
 
 
@@ -40,7 +43,7 @@ noncomputable def Example.nn : NeuralNetwork ℐ𝒱 1 1 :=
   NeuralNetwork.ofLayer (ReluLayer.mk (𝕋 := ℝ) (n := 1) reluSlope rfl)
 
 /-- Safe: output at most `10`. -/
-def Example.spec : Specification (Vec ℝ 1) := Specification.safeSet {x | x 0 ≤ 10}
+def Example.spec : Specification (Set (Vec ℝ 1)) := Specification.safeSet {x | x 0 ≤ 10}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -68,17 +71,17 @@ theorem Example.hcov (I : Interval (Vec ℝ 1)) :
 network's exact image — never a computed one, since nothing here evaluates
 a real comparison. -/
 example (d : ℕ) (X : Interval (Vec ℝ 1))
-    (hverify : Example.nn.verifySplit Example.check Example.splitter d X = true) :
+    (hverify : Example.nn.verifySplitWith Example.check Example.splitter d X = true) :
     Example.spec.Holds (Example.nn.eval.out '' construct X) :=
-  Example.nn.verifySplit_sound Example.spec Example.check Example.hcheck
+  Example.nn.verifySplitWith_sound Example.spec Example.check Example.hcheck
     Example.splitter Example.hcov d X hverify
 
 /-- The same at any function the network is sound at, which is where a reduced
 network's guarantee about its original lands. -/
 example {f : Vec ℝ 1 → Vec ℝ 1} (hf : Example.nn.Sound f) (d : ℕ) (X : Interval (Vec ℝ 1))
-    (hverify : Example.nn.verifySplit Example.check Example.splitter d X = true) :
+    (hverify : Example.nn.verifySplitWith Example.check Example.splitter d X = true) :
     Example.spec.Holds (f '' construct X) :=
-  hf.verifySplit_sound Example.spec Example.check Example.hcheck
+  hf.verifySplitWith_sound Example.spec Example.check Example.hcheck
     Example.splitter Example.hcov d X hverify
 
 end CORALean.Real

@@ -16,7 +16,7 @@ list.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   24-September-2026
 -- Last revision: ---
 
 
@@ -29,12 +29,13 @@ open Matrix ContSet Scalar Plus Reduce Mtimes
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
+variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSysDT.holds_of_reach (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o) (R₀ U : S n)
-    (spec : Specification (Vec ℝ n)) {x u : ℕ → Vec ℝ n}
+    (spec : Specification ContSet) {x u : ℕ → Vec ℝ n}
     (traj : sys.Trajectory R₀ U x u) (k : ℕ)
     (h : spec.Holds (construct (sys.reach o ho R₀ U k))) : spec.Holds {x k} :=
   spec.holds_of_outer (Set.singleton_subset_iff.mpr (sys.reach_outer ho R₀ U traj k)) h

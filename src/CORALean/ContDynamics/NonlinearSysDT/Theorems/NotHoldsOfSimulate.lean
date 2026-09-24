@@ -14,7 +14,7 @@ run stayed in the region each step's certificate was issued for.
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   24-September-2026
 -- Last revision: ---
 
 
@@ -28,12 +28,13 @@ variable {n m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
 variable [Mtimes (Mat ℝ) S] [Real.OfInterval S]
+variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NonlinearSysDT.not_holds_of_simulate (sys : NonlinearSysDT n m) {U : S m} {o : ℕ}
-    (ho : 0 < o) (steps : ℕ → sys.LinStep U) (R₀ : S n) (spec : Specification (Vec ℝ n))
+    (ho : 0 < o) (steps : ℕ → sys.LinStep U) (R₀ : S n) (spec : Specification ContSet)
     {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ construct R₀) {u : ℕ → Vec ℝ m} (hu : ∀ k, u k ∈ construct U)
     (hR : ∀ k, sys.simulate x₀ u k ∈ (steps k).R) (k : ℕ)
     (hbad : ¬ spec.Holds {sys.simulate x₀ u k}) :

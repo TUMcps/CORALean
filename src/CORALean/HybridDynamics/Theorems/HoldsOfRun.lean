@@ -16,7 +16,7 @@ specifications rather than one.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   24-September-2026
 -- Last revision: ---
 
 
@@ -28,6 +28,7 @@ open ContSet Scalar
 
 variable {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (G n) (Vec ℝ n)]
 variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
+variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -35,7 +36,7 @@ variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 /-- The check passed on the location the run ends in is passed by the state it
 ends at. -/
 theorem HybridAutomaton.holds_of_invariant {HA : HybridAutomaton S G L 𝕋 n}
-    {R : L → S n} (hinv : HA.Invariant R) (spec : Specification (Vec ℝ n))
+    {R : L → S n} (hinv : HA.Invariant R) (spec : Specification ContSet)
     {ℓ ℓ' : L} {x y : Vec ℝ n} (run : HA.Run ℓ x ℓ' y) (hx : x ∈ construct (R ℓ))
     (h : spec.Holds (construct (R ℓ'))) : spec.Holds {y} :=
   spec.holds_of_outer (Set.singleton_subset_iff.mpr (run.mem_of_invariant hinv hx)) h

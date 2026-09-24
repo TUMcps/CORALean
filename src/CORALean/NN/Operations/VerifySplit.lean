@@ -1,24 +1,17 @@
-import CORALean.NN.Operations.Enclose
+import CORALean.NN.Operations.VerifySplitWith
+import CORALean.Specification.Operations.Check
 
 /-!
-# Verification by recursively splitting the input set
+# Verification by recursively splitting the input set, against a specification
 
-`spec.Holds (construct s)` is a statement about a set of reals, not decidable,
-so there is deliberately no `Decidable` instance here: the loop takes a
-**sound checker**, a `Bool`-valued test whose `true` result a proof backs, and
-the recursion is only about *where* to spend that checker, never about
-deciding anything itself.
-
-`d` is a depth budget, not a step count: the recursion is a binary tree and
-`d` bounds its height. The `||` short-circuits, so a box the checker already
-verifies is not split further, which is the whole point of the method.
-
-`false` means only that this budget and this `splitter` did not establish the
-specification here, not that it fails; see `Theorems.VerifySplitSound`.
+`verifySplitWith` at the checker the specification carries: `spec.check`, which asks the
+specification's own set about each enclosed output through the representation pair's
+`Contains` or `IsDisjoint`. So the caller supplies the specification and the splitter and
+no soundness proof for the checker; `Theorems.VerifySplitSound` needs only the splitter's.
 -/
 
 -- Authors:       Tobias Ladner
--- Written:       06-September-2026
+-- Written:       24-September-2026
 -- Last update:   ---
 -- Last revision: ---
 
@@ -28,19 +21,15 @@ specification here, not that it fails; see `Theorems.VerifySplitSound`.
 namespace CORALean
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ m)]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Check the whole box; if that fails and depth remains, split it and check both halves,
-recursively. `splitter` owes no proof here, only at `Theorems.VerifySplitSound`. -/
-def NeuralNetwork.verifySplit (nn : NeuralNetwork S n m) (check : S m → Bool)
-    (splitter : S n → S n × S n) : ℕ → S n → Bool
-  | 0, X => check (nn.enclose X)
-  | d + 1, X =>
-      check (nn.enclose X) ||
-        (nn.verifySplit check splitter d (splitter X).1 &&
-         nn.verifySplit check splitter d (splitter X).2)
+def NeuralNetwork.verifySplit [Contains ContSet (S m)] [IsDisjoint ContSet (S m)]
+    (nn : NeuralNetwork S n m) (spec : Specification ContSet)
+    (splitter : S n → S n × S n) : ℕ → S n → Bool :=
+  nn.verifySplitWith spec.check splitter
 
 end CORALean
 
