@@ -3,10 +3,10 @@ import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.HoldsOfOutput
 import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.HoldsOfReach
 import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.NotHoldsOfSimulate
 import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.OutputOuter
-import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachOrderLe
 import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachOuter
 import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachSetOuter
 import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachSetSubsetReach
+import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.Real.API
 import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.SimulateMemReach
 import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.SimulateTrajectory
 import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.TrajectoryIterate
@@ -20,7 +20,7 @@ run that a determined input forces: an orbit, not a family, settled by where
 it started.
 
 `ReachSetOuter`/`ReachSetSubsetReach` restate `ReachOuter` on the reachable
-set; `ReachOrderLe` bounds its generator count at `𝒵`.
+set; `Real/` bounds its generator count at `𝒵`, `ReachOrderLe` only holding at ℝ.
 
 `OutputOuter`/`HoldsOfOutput` are those two at an `OutputEq`, read at the
 controller's own enclosure in place of a free input set — none here, `map` already reading it off.

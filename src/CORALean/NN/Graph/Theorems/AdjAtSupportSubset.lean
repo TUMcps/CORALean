@@ -1,4 +1,5 @@
-import CORALean.NN.Graph.UncertainMax
+import CORALean.NN.Graph.Operations.AdjMax
+import CORALean.NN.Graph.Theorems.EdgeMatNonneg
 
 /-!
 # The maximal adjacency's support dominates every admissible one

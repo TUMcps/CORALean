@@ -1,4 +1,4 @@
-import CORALean.NN.Graph.MessagePassingEnclosure
+import CORALean.NN.Graph.Operations.MessagePassingEnclosure
 
 /-!
 # `GNN.messagePassingEnclosure`'s counts

@@ -1,4 +1,4 @@
-import CORALean.NN.Graph.BallEnum
+import CORALean.NN.Graph.Operations.BallEnum
 
 /-!
 # The enumeration never repeats a node

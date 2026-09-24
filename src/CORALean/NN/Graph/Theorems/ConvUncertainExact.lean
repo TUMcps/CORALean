@@ -1,5 +1,6 @@
 import CORALean.ContSet.PolyZonotope.Real.Theorems.PadBackPoint
 import CORALean.ContSet.PolyZonotope.Real.Theorems.PadFrontPoint
+import CORALean.NN.Graph.Operations.GcnUncertain
 import CORALean.NN.Graph.Theorems.GcnSharedExact
 
 /-!

@@ -1,4 +1,4 @@
-import CORALean.NN.Graph.Ball
+import CORALean.NN.Graph.Operations.Ball
 
 /-!
 # A node no edge points at never joins the ball

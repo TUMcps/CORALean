@@ -1,4 +1,4 @@
-import CORALean.NN.Graph.Conv
+import CORALean.NN.Graph.Operations.Gcn
 
 /-!
 # `GNN.gcn`'s counts

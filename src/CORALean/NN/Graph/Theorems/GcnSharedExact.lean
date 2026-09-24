@@ -1,6 +1,6 @@
 import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MapExact
-import CORALean.NN.Graph.ConvUncertain
+import CORALean.NN.Graph.Operations.GcnShared
 
 /-!
 # A shared-factor convolution loses nothing

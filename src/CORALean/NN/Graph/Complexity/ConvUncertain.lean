@@ -1,4 +1,5 @@
-import CORALean.NN.Graph.ConvUncertain
+import CORALean.NN.Graph.Operations.GcnShared
+import CORALean.NN.Graph.Operations.GcnUncertain
 
 /-!
 # `GNN.gcnShared`'s and `GNN.gcnUncertain`'s counts

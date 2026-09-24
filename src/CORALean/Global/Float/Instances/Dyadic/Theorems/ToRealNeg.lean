@@ -1,4 +1,4 @@
-import CORALean.Global.Float.Instances.Dyadic.Operations
+import CORALean.Global.Float.Instances.Dyadic.Operations.Neg
 
 /-!
 # Negation is exact

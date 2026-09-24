@@ -1,4 +1,5 @@
-import CORALean.NN.Graph.GcnSteps
+import CORALean.NN.Graph.Operations.EvalSteps
+import CORALean.NN.Graph.Operations.GcnSteps
 import CORALean.NN.Graph.Theorems.GcnSharedExact
 import CORALean.NN.Graph.Theorems.GcnSharedPoint
 

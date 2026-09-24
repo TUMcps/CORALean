@@ -1,0 +1,34 @@
+import CORALean.Global.Float.Instances.Binary64.Operations.DivUp
+
+/-!
+# Division, rounded down
+
+The dividend is what gets negated, so the divisor stays positive and the
+assumed bound applies unchanged — which is why this mirrors `a` and not `b`,
+and why `Theorems` needs the same hypothesis on the divisor that `div_le_divUp`
+carries and no more.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       22-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+namespace Binary64
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+def divDown (a b : Float) : Float := -divUp (-a) b
+
+end Binary64
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

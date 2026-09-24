@@ -1,5 +1,5 @@
 import CORALean.ContDynamics.NeurNetContrSysDT.Cost.Reach
-import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachOrderLe
+import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.Real.ReachOrderLe
 
 /-!
 # `reach` costs at most `k` worst-case steps

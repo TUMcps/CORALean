@@ -1,0 +1,37 @@
+import CORALean.NN.Graph.Operations.Degree
+import CORALean.NN.Graph.Operations.DegreeCoeff
+import CORALean.NN.Graph.Operations.SqrtOffset
+import CORALean.NN.Graph.Operations.SqrtSlope
+
+/-!
+# `s_j` at every uncertain edge factor zero
+
+`s_j` at all edge factors zero, which is every edge at half weight: the
+constant term of `s_j`'s affine form in the edge factors.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       06-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {N m : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- `s_j` at all edge factors zero, which is every edge at half weight. -/
+noncomputable def GNN.sqrtConst (R : Relaxation ℝ) (A : Mat ℝ N N)
+    (U : Fin m → Fin N × Fin N) (j : Fin N) : ℝ :=
+  GNN.sqrtSlope R A U j * (GNN.degree A j + ∑ e, GNN.degreeCoeff U e j / 2)
+    + GNN.sqrtOffset R A U j
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

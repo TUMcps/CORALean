@@ -1,3 +1,4 @@
+import CORALean.NN.Graph.Operations.Degree
 import CORALean.NN.Graph.Theorems.BallSubsetSucc
 
 /-!

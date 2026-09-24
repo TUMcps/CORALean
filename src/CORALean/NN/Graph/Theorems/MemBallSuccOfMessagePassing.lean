@@ -1,3 +1,4 @@
+import CORALean.NN.Graph.Operations.Ball
 import CORALean.NN.Graph.Theorems.MessagePassingNeZero
 
 /-!

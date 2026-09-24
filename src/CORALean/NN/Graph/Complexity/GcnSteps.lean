@@ -1,5 +1,5 @@
 import CORALean.NN.Graph.Complexity.ConvUncertain
-import CORALean.NN.Graph.GcnSteps
+import CORALean.NN.Graph.Operations.GcnSteps
 
 /-!
 # `GNN.gcnSteps`'s count over a chain of steps

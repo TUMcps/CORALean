@@ -1,3 +1,4 @@
+import CORALean.NN.Graph.Operations.AdjAt
 import CORALean.NN.Graph.Theorems.EdgeMatSymm
 
 /-!

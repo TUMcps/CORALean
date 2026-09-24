@@ -1,6 +1,6 @@
 import CORALean.ContDynamics.LinearSys.Operations.ReachError
 import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeReachSetSubsetAddReachInputError
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSubsetReachSetAddError
+import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachSubsetReachSetAddError
 
 /-!
 # A sampled run, against held inputs and its own error

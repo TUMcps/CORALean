@@ -1,5 +1,5 @@
 import CORALean.Global.Float.Instances.Dyadic.Dyadic
-import CORALean.Global.Float.Instances.Dyadic.Operations
+import CORALean.Global.Float.Instances.Dyadic.Operations.API
 import CORALean.Global.Float.Instances.Dyadic.Theorems.API
 import CORALean.Global.Float.Instances.Dyadic.Instances
 

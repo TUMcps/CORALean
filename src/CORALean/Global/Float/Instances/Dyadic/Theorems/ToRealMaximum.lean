@@ -1,3 +1,4 @@
+import CORALean.Global.Float.Instances.Dyadic.Operations.Maximum
 import CORALean.Global.Float.Instances.Dyadic.Theorems.LeIff
 
 /-!

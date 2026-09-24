@@ -1,5 +1,6 @@
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MapExact
-import CORALean.NN.Graph.Pooling
+import CORALean.NN.Graph.Operations.SumPool
+import CORALean.NN.Graph.Theorems.SumPoolLinApply
 
 /-!
 # Summation pooling loses nothing

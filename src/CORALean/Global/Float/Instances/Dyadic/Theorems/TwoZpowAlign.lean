@@ -1,4 +1,4 @@
-import CORALean.Global.Float.Instances.Dyadic.Operations
+import CORALean.Global.Float.Instances.Dyadic.Operations.Shift
 
 /-!
 # Splitting a power of two across an exponent shift

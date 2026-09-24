@@ -1,3 +1,5 @@
+import CORALean.Global.Float.Instances.Binary64.Definitions.Axioms
+import CORALean.Global.Float.Instances.Binary64.Operations.API
 import CORALean.Global.Float.Instances.Binary64.Theorems.API
 
 /-!

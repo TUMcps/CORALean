@@ -1,7 +1,13 @@
 import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
 import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinPoint
 import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
-import CORALean.NN.Graph.MessagePassingEnclosure
+import CORALean.NN.Graph.Operations.AdjAt
+import CORALean.NN.Graph.Operations.Degree
+import CORALean.NN.Graph.Operations.DegreeAt
+import CORALean.NN.Graph.Operations.MessagePassing
+import CORALean.NN.Graph.Operations.MessagePassingEnclosure
+import CORALean.NN.Graph.Theorems.SmulEdgeHalf
+import CORALean.NN.Graph.Theorems.SqrtAffine
 import CORALean.NN.Graph.Theorems.UncertainDegreeBounds
 import CORALean.NN.Layers.Theorems.Real.InvSqrtEqOfOneLe
 

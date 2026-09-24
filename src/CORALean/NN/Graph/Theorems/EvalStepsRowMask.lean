@@ -1,5 +1,6 @@
-import CORALean.NN.Graph.GcnSteps
-import CORALean.NN.Graph.Mask
+import CORALean.NN.Graph.Operations.EvalSteps
+import CORALean.NN.Graph.Operations.Mask
+import CORALean.NN.Graph.Operations.MessagePassing
 import CORALean.NN.Graph.Theorems.MemBallSelf
 import CORALean.NN.Graph.Theorems.BallMono
 import CORALean.NN.Graph.Theorems.MemBallSuccOfMessagePassing

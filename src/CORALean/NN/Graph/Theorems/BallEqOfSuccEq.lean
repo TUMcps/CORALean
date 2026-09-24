@@ -1,4 +1,4 @@
-import CORALean.NN.Graph.Ball
+import CORALean.NN.Graph.Operations.Ball
 
 /-!
 # One stable step means stable forever
