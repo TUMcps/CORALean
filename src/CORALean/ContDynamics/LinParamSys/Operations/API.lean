@@ -1,3 +1,5 @@
+import CORALean.ContDynamics.LinParamSys.Operations.ConstInputSolution
+import CORALean.ContDynamics.LinParamSys.Operations.ConstPropagate
 import CORALean.ContDynamics.LinParamSys.Operations.DiscretizeEnclosure
 import CORALean.ContDynamics.LinParamSys.Operations.ExpEnclosure
 import CORALean.ContDynamics.LinParamSys.Operations.InputSolution
@@ -13,6 +15,8 @@ import CORALean.ContDynamics.LinParamSys.Operations.ReachUnion
 import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStep
 import CORALean.ContDynamics.LinParamSys.Operations.WithInputReachStepk
 import CORALean.ContDynamics.LinParamSys.Operations.WithInputReachUnion
+import CORALean.ContDynamics.LinParamSys.Operations.WithInputSplitReachStepk
+import CORALean.ContDynamics.LinParamSys.Operations.WithInputSplitReachUnion
 
 /-!
 # What a continuous-time linear system with a set-valued matrix computes
@@ -20,9 +24,11 @@ import CORALean.ContDynamics.LinParamSys.Operations.WithInputReachUnion
 Two enclosures of what happens inside a step, at every matrix the system's set
 holds at once: `InputSolution` for what the input adds, `TimeIntervalStep` for
 where the homogeneous flow goes. `InputTerm` and `InputTaylorSum` are the exact
-orders the first is built from. `ReachOrder`/`ReachUnion`/`WithInputReachUnion` are `Instances`',
-over windows: `ReachStepk` and `ParticularSolution` carry the first window's sets
-to later ones by `ExpEnclosure`, `e^{At_k}` at every member at once.
+orders the first is built from. `ReachOrder`/`ReachUnion`/`WithInputReachUnion`/
+`WithInputSplitReachUnion` are `Instances`', over windows: `ReachStepk` and
+`ParticularSolution` carry the first window's sets to later ones by
+`ExpEnclosure`, `e^{At_k}` at every member at once; `ConstInputSolution` and
+`ConstPropagate` do the same for a split input set's constant half.
 
 `DiscretizeEnclosure` is the step taken over a whole horizon instead: the
 exponential of the box, handed to `LinParamSysDT` so its recursion runs it.

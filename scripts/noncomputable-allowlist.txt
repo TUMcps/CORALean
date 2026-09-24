@@ -84,6 +84,8 @@ GNN.sqrtRow  real-layer: an ℝ-only part of NN (the graph layers, sensitivity a
 GNN.sqrtSlope  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
 GNN.uncertainAdj  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
 GNN.uncertainAdjPad  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
+LinParamSys.constInputSolution  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinParamSys.constPropagate  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinParamSys.discretizeEnclosure  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinParamSys.expEnclosure  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinParamSys.inputSolution  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
@@ -101,6 +103,9 @@ LinParamSys.timeIntervalStep  pending #1: a continuous-time algorithm at a real 
 LinParamSys.WithInput.reachInstance  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinParamSys.WithInput.reachStepk  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinParamSys.WithInput.reachUnion  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinParamSys.WithInputSplit.reachInstance  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinParamSys.WithInputSplit.reachStepk  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinParamSys.WithInputSplit.reachUnion  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.adaptTimeStep  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.adaptTimeStepOrder  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.adaptTimeStepSearch  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
