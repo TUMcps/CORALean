@@ -263,6 +263,10 @@ def checkUnsafeNear : Bool := (Specification.unsafeSet (halfAbove 1)).check encl
 /-- A halfspace description safe set, `Z`'s own hull, against `Z` itself. -/
 def checkSafeHull : Bool := (Specification.safeSet H).check Z
 
+/-- `Contains` lifted through `SetUnion`, exact: both branches of `uZ`, `Z` and
+`Z_mtimes`, lie in `[-10, 10]`. -/
+def checkSafeUnion : Bool := safeBox.check uZ
+
 /-- A splitter that never splits, covering trivially: enough to run `verifySplit`. -/
 def verifySplitRun : Bool := net.verifySplit safeBox (fun X => (X, X)) 2 Z
 
@@ -275,6 +279,7 @@ example : (safeBox.check (net.enclose Z) = true) →
 #eval checkUnsafeFar
 #eval checkUnsafeNear
 #eval checkSafeHull
+#eval checkSafeUnion
 #eval verifySplitRun
 
 end CORALean.RunnableFloat

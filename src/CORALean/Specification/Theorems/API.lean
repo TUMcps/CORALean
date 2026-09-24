@@ -5,6 +5,7 @@ import CORALean.Specification.Theorems.ExistsConvexHullOfVerifyConvexEqUnsafe
 import CORALean.Specification.Theorems.ExistsSeparatingOfVerifyConvexEqSafe
 import CORALean.Specification.Theorems.HoldsOfOuter
 import CORALean.Specification.Theorems.HoldsAllOfOuter
+import CORALean.Specification.Theorems.HoldsAllSetIntersection
 import CORALean.Specification.Theorems.HoldsUnion
 import CORALean.Specification.Theorems.HoldsIUnion
 import CORALean.Specification.Theorems.Intersection
@@ -24,6 +25,8 @@ import CORALean.Specification.Theorems.VerifyConvexSafe
 a verification question at all. `HoldsUnion`/`HoldsIUnion` are the other half
 of the same case split: a specification survives a union of checked sets,
 which is what makes verification by splitting the input sound.
+`HoldsAllSetIntersection` reads `HoldsAll` over safe sets alone as `Holds` on
+their `SetIntersection`.
 `Separation`, `Containment`, `InvariantOfBounds` and `SubsetHPolytope`
 discharge the check itself, each turning it into bounds `Global.LinProg`
 supplies; `Violation` and `Intersection` are the falsification exits of the
