@@ -19,6 +19,7 @@ import CORALean.ContSet.Conversion.Float.Zonotope_to_VPolytope
 import CORALean.ContSet.Ellipsoid.Float.Instances
 import CORALean.ContSet.HPolytope.Float.Instances
 import CORALean.ContSet.PolyZonotope.Float.Instances
+import CORALean.ContSet.SetUnion.Instances
 import CORALean.ContSet.VPolytope.Float.Instances
 import CORALean.ContSet.ZonoBundle.Float.Instances
 import CORALean.ContSet.Zonotope.Float.Operations.MtimesBox
@@ -120,6 +121,13 @@ def Z_reduce : Zonotope D 2 := Z.reduce 1
 def Z_reindex : Zonotope D 2 := Reindex.reindex (Equiv.refl (Fin 2)) Z
 def Z_mtimes : Zonotope D 2 := Mtimes.mtimes (identityMat D 2) Z
 
+-- `SetUnion (Zonotope D)`: `Plus`, `Reduce`, `Mtimes`, generic over the member type
+def uZ : SetUnion (Zonotope D 2) := ⟨[Z, Z_mtimes]⟩
+def uZ_plus : SetUnion (Zonotope D 2) := Plus.plus uZ uZ
+def uZ_reduce : SetUnion (Zonotope D 2) := Reduce.reduce uZ 1
+def uZ_mtimes : SetUnion (Zonotope D 2) :=
+  Mtimes.mtimes (S := fun n => SetUnion (Zonotope D n)) (identityMat D 2) uZ
+
 -- `Interval`: `Plus`, `MinkDiff`, `Intersection`, `LinComb`, `Reduce`, `Reindex`, `Mtimes`
 def I_plus : Interval D 2 := Plus.plus I I
 def I_minkDiff : Interval D 2 := MinkDiff.minkDiff I I
@@ -220,6 +228,10 @@ def mixedEncloseRun : Zonotope D 2 := mixedNet.enclose Z
 #eval mixedEncloseRun.c 0
 #eval mixedEncloseRun.interval.sup 0
 #eval plusBoxRun.sup 0
+
+-- A `SetUnion` of float zonotopes, pushed through `Mtimes`: two branches in, two branches out.
+#eval uZ_mtimes.sets.length
+#eval (uZ_mtimes.sets.getD 0 Z).c 0
 
 
 /-! ## A specification check, computed rather than asserted
