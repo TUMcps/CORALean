@@ -67,6 +67,21 @@ omit [FloatOps 𝕋] in
 @[simp] theorem Interval.materialise_eq (I : Interval (Vec 𝕋 n)) : I.materialise = I := by
   simp [Interval.materialise]
 
+variable {m : ℕ}
+
+/-- The same storage at `Mat 𝕋 m n`, needed once the interval-matrix chain
+(`matMul`, `matPow`, `expIntervalTaylor`) starts nesting recursive calls: each
+row is materialised, then the rows themselves. -/
+def Interval.materialiseMat (I : Interval (Mat 𝕋 m n)) : Interval (Mat 𝕋 m n) :=
+  let lo : Vector (Vector 𝕋 n) m := Vector.ofFn fun i => Vector.ofFn (I.inf i)
+  let hi : Vector (Vector 𝕋 n) m := Vector.ofFn fun i => Vector.ofFn (I.sup i)
+  ⟨fun i j => (lo[i.val]'i.isLt)[j.val]'j.isLt, fun i j => (hi[i.val]'i.isLt)[j.val]'j.isLt⟩
+
+omit [FloatOps 𝕋] in
+@[simp] theorem Interval.materialiseMat_eq (I : Interval (Mat 𝕋 m n)) :
+    I.materialiseMat = I := by
+  simp [Interval.materialiseMat]
+
 end CORALean.Float
 
 

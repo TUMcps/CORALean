@@ -3,17 +3,19 @@ import CORALean.ContSet.Interval.Float.Interval
 /-!
 # `Interval.point`, over a floating-point scalar
 
-Zero width, which is the singleton the stored floats denote. Nothing is
-rounded: the point is whatever `𝕋` already holds. The membership fact,
-`mem_point`, is `Theorems/MemPoint.lean`.
+Zero width, which is the singleton the stored value denotes. Nothing is
+rounded: the point is whatever `𝕋`-valued `α` already holds. The membership
+fact, `mem_point`, is `Theorems/MemPoint.lean`.
 
-Composed with `plus` this is a translation, so a layer needs no operation of its
-own for a bias — which is how a linear layer's offset reaches a set here.
+Generic over the ambient type, as `Real.Interval.point` is, so `matPow`'s
+identity `Interval.point 1 : Interval (Mat 𝕋 n n)` reaches it too. Composed with
+`plus`/`matPlus` this is a translation, so a layer needs no operation of its own
+for a bias — which is how a linear layer's offset reaches a set here.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       04-September-2026
--- Last update:   ---
+-- Last update:   24-September-2026
 -- Last revision: ---
 
 
@@ -21,14 +23,10 @@ own for a bias — which is how a linear layer's offset reaches a set here.
 
 namespace CORALean.Float
 
-open SoundFloatArithmetic
-
-variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
-
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Interval.point (v : Vec 𝕋 n) : Interval (Vec 𝕋 n) := ⟨v, v⟩
+def Interval.point {α : Type} (v : α) : Interval α := ⟨v, v⟩
 
 end CORALean.Float
 

@@ -1,8 +1,10 @@
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclosureFloat
 import CORALean.ContDynamics.LinearSysDT.Operations.Reach
 import CORALean.ContDynamics.LinearSysDT.Operations.ReachHeld
 import CORALean.ContDynamics.LinearSysDT.Operations.ReachOrders
 import CORALean.ContDynamics.LinearSysDT.Operations.Simulate
 import CORALean.ContSet.ConPolyZono.Float.Instances
+import CORALean.ContSet.Interval.Float.Instances
 import CORALean.ContSet.Conversion.Float.ConZonotope_to_ConPolyZono
 import CORALean.ContSet.Conversion.Float.ConZonotope_to_HPolytope
 import CORALean.ContSet.Conversion.Float.ConZonotope_to_Interval
@@ -142,6 +144,21 @@ def I_reindex : Interval (Vec D 2) :=
 def I_mtimes : Interval (Vec D 2) :=
   Mtimes.mtimes (S := fun n => Interval (Vec D n)) (identityMat D 2) I
 
+
+/-! ## The float interval-matrix chain: `matMul`/`matPow`/`smul`/`expIntervalEnclosure`
+
+A point interval matrix, its float `expIntervalEnclosure`, and an interval
+matrix times a box through the interval-matrix `Mtimes` instance (#1, phase 2). -/
+
+def matExpA : Interval (Mat D 2 2) :=
+  ⟨!![d 0 0, d 1 (-1); d (-1) (-1), d 0 0], !![d 0 0, d 1 (-1); d (-1) (-1), d 0 0]⟩
+
+def expEnclosureRun : Interval (Mat D 2 2) := MatExp.expIntervalEnclosure matExpA 4
+
+def mtimesIntervalMatRun : Interval (Vec D 2) :=
+  Mtimes.mtimes (𝕄 := fun m n => Interval (Mat D m n)) (S := fun n => Interval (Vec D n))
+    matExpA I
+
 -- `HPolytope`: `Reduce`, `Intersection`
 def H_reduce : HPolytope D 2 := Reduce.reduce H 1
 def H_intersection : HPolytope D 2 := Intersection.intersection H H
@@ -237,6 +254,12 @@ def mixedEncloseRun : Zonotope D 2 := mixedNet.enclose Z
 -- A `SetUnion` of float zonotopes, pushed through `Mtimes`: two branches in, two branches out.
 #eval uZ_mtimes.sets.length
 #eval (uZ_mtimes.sets.getD 0 Z).c 0
+
+-- The float interval-matrix chain (#1): `e^A`'s enclosure, then a matrix times a box.
+#eval expEnclosureRun.inf 0 0
+#eval expEnclosureRun.sup 0 0
+#eval mtimesIntervalMatRun.inf 0
+#eval mtimesIntervalMatRun.sup 0
 
 
 /-! ## A specification check, computed rather than asserted
