@@ -1,0 +1,52 @@
+import CORALean.ContDynamics.NonlinearSys.Operations.LinStepLinInput
+
+/-!
+# A nonlinear system, bundled with what its `Reach` run spends
+
+`Reach.Params` is one plain `Type`, not indexed by `n`, so the input set `U`,
+the chain of linearizations `steps` and everything else of one dimension is
+bundled with the system, as in `NonlinearSysDT.WithSteps`, one `Reach` instance
+per input dimension `m`. `region i` is a representation `Contains` can test,
+inside the arbitrary set `(steps i).R` step `i`'s certificate was issued for.
+
+`M` bounds the field over every certified region, the a priori bound
+`confined_of_ball` spends: a run cannot move farther than `MΔt` in one step, so
+a region that holds a ball of radius `2MΔt` about every state a step starts
+from holds the whole step. `0 ∈ linInput` is `timeInterval_outer`'s own price.
+Neither involves the step width or the horizon, which `ReachParams` holds.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       24-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open ContSet
+
+
+-- ========================================  MAIN TYPE  ========================================= --
+
+/-- `sys` with its input set `U`, a chain of linearizations `steps`, for each step
+a checkable region inside its certified one, and a bound `M` on the field there. -/
+structure NonlinearSys.WithSteps (S Rg : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)]
+    [∀ n, ContSet (Rg n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
+    [Real.OfInterval S] (m n : ℕ) where
+  sys : NonlinearSys n m
+  U : S m
+  steps : ℕ → sys.LinStep U
+  region : ℕ → Rg n
+  region_subset (i : ℕ) : construct (region i) ⊆ (steps i).R
+  M : ℝ
+  M_pos : 0 < M
+  norm_f_le (i : ℕ) : ∀ y ∈ (steps i).R, ∀ v ∈ construct U, ‖sys.f y v‖ ≤ M
+  zero_mem_linInput (i : ℕ) : (0 : Vec ℝ n) ∈ construct (steps i).linInput
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

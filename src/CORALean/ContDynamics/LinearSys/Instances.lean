@@ -8,7 +8,7 @@ import CORALean.ContSet.Interval.Real.Instances
 
 `reachExact`, `reach` and `reach_outer` are `LinearSys`'s own, at the horizon,
 window width and Taylor order `Params` holds — homogeneous only, `U` having no
-room in `Params`.
+room in `Params`; `reach` is always `some`, nothing here failing at run time.
 -/
 
 -- Authors:       Tobias Ladner
@@ -33,8 +33,8 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
 noncomputable instance LinearSys.reachInstance : Reach (LinearSys 𝕋) LinearSys.ReachParams S where
   reachExact sys p X₀ := sys.reachExact p.tFinal X₀
-  reach sys p X₀ := sys.reach p.tFinal p.Δt p.η X₀
-  reach_outer sys p X₀ := sys.reach_outer p.hΔt X₀
+  reach sys p X₀ := some (sys.reach p.tFinal p.Δt p.η X₀)
+  reach_outer sys p X₀ _ h := Option.mem_some_iff.mp h ▸ sys.reach_outer p.hΔt X₀
 
 end CORALean
 

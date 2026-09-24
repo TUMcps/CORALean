@@ -1,15 +1,16 @@
-import CORALean.ContDynamics.Reach.Reach
+import CORALean.ContDynamics.Reach.Operations.Check
 import CORALean.Specification.Theorems.CheckSound
 import CORALean.Specification.Theorems.HoldsOfOuter
 
 /-!
 # A passed check on `reach` holds on `reachExact`, for every system class
 
-`check_sound` puts the specification on what `reach` denotes, and `reach_outer`
-is the outer approximation `holds_of_outer` carries it back across: a `true`,
-found by evaluation, is the specification on the exact reachable set, at any
-instance of `Reach` and with nothing left to prove by hand. `reachExact` never
-mentions `S`, so the class leaves it explicit there, named `(S := S)` below.
+A `true` from `Reach.check` means `reach` returned a set and the specification
+checked on it: `check_sound` puts the specification on what that set denotes,
+and `reach_outer` is the outer approximation `holds_of_outer` carries it back
+across. Found by evaluation, it is the specification on the exact reachable set,
+at any instance of `Reach` and with nothing left to prove by hand. `reachExact`
+never mentions `S`, so the class leaves it explicit there, named `(S := S)`.
 -/
 
 -- Authors:       Tobias Ladner
@@ -35,9 +36,15 @@ variable {n : ℕ} {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
 theorem Reach.holds_of_check [Reach Sys Params S] [Contains ContSet (SetUnion (S n))]
     [IsDisjoint ContSet (SetUnion (S n))] (sys : Sys n) (p : Params) (X₀ : S n)
     (spec : Specification ContSet) :
-    (spec.check (Reach.reach sys p X₀) = true) →
-    (spec.Holds (Reach.reachExact (S := S) sys p (construct X₀))) :=
-  fun h => spec.holds_of_outer (Reach.reach_outer sys p X₀) (spec.check_sound _ h)
+    (Reach.check sys p X₀ spec = true) →
+    (spec.Holds (Reach.reachExact (S := S) sys p (construct X₀))) := by -- --- PROOF ---
+  unfold Reach.check
+  -- `none` checks `false`, so only a returned set is left, and it encloses
+  cases hR : Reach.reach sys p X₀ with
+  | none => intro h; exact absurd h Bool.false_ne_true
+  | some R =>
+    intro h
+    exact spec.holds_of_outer (Reach.reach_outer sys p X₀ R hR) (spec.check_sound _ h)
 
 end CORALean
 
