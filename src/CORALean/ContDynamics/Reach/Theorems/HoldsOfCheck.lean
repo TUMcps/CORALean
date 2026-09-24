@@ -44,7 +44,9 @@ theorem Reach.holds_of_check [Reach Sys Params S] [Contains ContSet (SetUnion (S
   | none => intro h; exact absurd h Bool.false_ne_true
   | some R =>
     intro h
-    exact spec.holds_of_outer (Reach.reach_outer sys p X₀ R hR) (spec.check_sound _ h)
+    have hout := Reach.reach_outer sys p X₀
+    rw [hR] at hout
+    exact spec.holds_of_outer hout (spec.check_sound _ h)
 
 end CORALean
 

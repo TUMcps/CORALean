@@ -34,26 +34,30 @@ variable [Mtimes (Mat ℝ) S] [Real.OfInterval S] [∀ n, Contains (Rg n) (S n)]
 
 theorem NonlinearSysDT.WithSteps.reachUnion_outer (sys : NonlinearSysDT.WithSteps S Rg m n)
     (p : NonlinearSysDT.ReachParams) (X₀ : S n) :
-    ∀ R ∈ sys.reachUnion p X₀,
-      sys.reachUnionExact p (construct X₀) ⊆ construct R := by -- --- PROOF ---
-  intro R hR y hy
-  simp only [NonlinearSysDT.WithSteps.reachUnion, Option.mem_def] at hR
-  split at hR
-  case isFalse => exact absurd hR (by simp)
-  case isTrue hconf =>
-    -- every test passed, so each step `k < K` starts inside its certified region
-    have hsub : ∀ k < p.K,
-        construct (sys.sys.reach p.o p.ho sys.steps X₀ k) ⊆ (sys.steps k).R :=
-      fun k hk => (Contains.contains_sound _ _
-        (List.all_eq_true.mp hconf k (List.mem_range.mpr hk))).trans (sys.region_subset k)
-    obtain ⟨k, hk, x, u, traj, rfl⟩ := Set.mem_iUnion₂.mp hy
-    -- the run from the bare set `construct X₀` is a run from the representation `X₀`
-    have traj' : sys.sys.TrajectoryOn X₀ sys.U p.K x u := ⟨traj.init, traj.input, traj.step⟩
-    have hx := sys.sys.reach_outer_on p.ho sys.steps X₀ traj'
-      (sys.sys.confinement_of_subset_on p.ho sys.steps X₀ hsub traj') k hk
-    rw [← Option.some_inj.mp hR]
-    exact SetUnion.mem_construct.mpr ⟨_, List.mem_map_of_mem (List.mem_range.mpr
-      (Nat.lt_succ_of_le hk)), hx⟩
+    match sys.reachUnion p X₀ with
+    | some R => sys.reachUnionExact p (construct X₀) ⊆ construct R
+    | none => True := by -- --- PROOF ---
+  cases hR : sys.reachUnion p X₀ with
+  | none => trivial
+  | some R =>
+    intro y hy
+    simp only [NonlinearSysDT.WithSteps.reachUnion] at hR
+    split at hR
+    case isFalse => exact absurd hR (by simp)
+    case isTrue hconf =>
+      -- every test passed, so each step `k < K` starts inside its certified region
+      have hsub : ∀ k < p.K,
+          construct (sys.sys.reach p.o p.ho sys.steps X₀ k) ⊆ (sys.steps k).R :=
+        fun k hk => (Contains.contains_sound _ _
+          (List.all_eq_true.mp hconf k (List.mem_range.mpr hk))).trans (sys.region_subset k)
+      obtain ⟨k, hk, x, u, traj, rfl⟩ := Set.mem_iUnion₂.mp hy
+      -- the run from the bare set `construct X₀` is a run from the representation `X₀`
+      have traj' : sys.sys.TrajectoryOn X₀ sys.U p.K x u := ⟨traj.init, traj.input, traj.step⟩
+      have hx := sys.sys.reach_outer_on p.ho sys.steps X₀ traj'
+        (sys.sys.confinement_of_subset_on p.ho sys.steps X₀ hsub traj') k hk
+      rw [← Option.some_inj.mp hR]
+      exact SetUnion.mem_construct.mpr ⟨_, List.mem_map_of_mem (List.mem_range.mpr
+        (Nat.lt_succ_of_le hk)), hx⟩
 
 end CORALean
 

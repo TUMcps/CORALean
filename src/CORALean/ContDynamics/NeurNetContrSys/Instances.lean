@@ -35,7 +35,7 @@ noncomputable instance NeurNetContrSys.reachInstance :
     Reach (NeurNetContrSys 𝕋 S) NeurNetContrSys.ReachParams S where
   reachExact sys p X₀ := sys.reachUnionExact p X₀
   reach sys p X₀ := some (sys.reachUnion p X₀)
-  reach_outer sys p X₀ _ h := Option.mem_some_iff.mp h ▸ sys.reachUnion_outer p X₀
+  reach_outer sys p X₀ := sys.reachUnion_outer p X₀
 
 end CORALean
 

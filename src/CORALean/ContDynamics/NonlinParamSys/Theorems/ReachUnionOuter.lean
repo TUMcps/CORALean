@@ -40,39 +40,45 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 
 theorem NonlinParamSys.WithSteps.reachUnion_outer (sys : NonlinParamSys.WithSteps S Rg m q n)
     (p : NonlinearSys.ReachParams) (X₀ : S n) :
-    ∀ R ∈ sys.reachUnion p X₀,
-      sys.reachUnionExact p (construct X₀) ⊆ construct R := by -- --- PROOF ---
-  intro R hR y hy
-  simp only [NonlinParamSys.WithSteps.reachUnion, Option.mem_def, Option.map_eq_some_iff] at hR
-  obtain ⟨Ra, hRa, rfl⟩ := hR
-  set Z₀ : S (n + q) := Mtimes.mtimes (𝕄 := Mat ℝ) (LinearMap.toMatrix' (blockPadLeft n q)) X₀ ⊞
-    Mtimes.mtimes (𝕄 := Mat ℝ) (LinearMap.toMatrix' (blockPadRight n q)) sys.P
-  -- every pair `(x₀, p)` lies in the product computed, `(x₀, 0) + (0, p)`
-  have hZ : ∀ v ∈ construct X₀, ∀ w ∈ construct sys.P, Fin.append v w ∈ construct Z₀ := by
-    intro v hv w hw
-    have hE := Mtimes.mtimes_outer (𝕄 := Mat ℝ) (LinearMap.toMatrix' (blockPadLeft n q)) X₀
-      (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hv))
-    have hF := Mtimes.mtimes_outer (𝕄 := Mat ℝ) (LinearMap.toMatrix' (blockPadRight n q)) sys.P
-      (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hw))
-    refine Plus.plus_outer _ _ ⟨_, hE, _, hF, ?_⟩
-    simp only [Scalar.toRealMat_real, LinearMap.toMatrix'_mulVec]
-    funext j
-    refine Fin.addCases (fun i => ?_) (fun i => ?_) j <;> simp [blockPadLeft, blockPadRight]
-  -- the run, its parameter appended, is one of the augmented system from `Z₀`
-  simp only [NonlinParamSys.WithSteps.reachUnionExact, Set.mem_iUnion, Set.mem_setOf_eq] at hy
-  obtain ⟨t, ht, x, u, c, traj, rfl⟩ := hy
-  have hz : Fin.append (x t) c ∈ construct Ra := by
-    refine sys.aug.reachUnion_outer p Z₀ Ra hRa ?_
-    simp only [NonlinearSys.WithSteps.reachUnionExact, Set.mem_iUnion]
-    refine ⟨t, ht, fun s => Fin.append (x s) c, u, ?_, rfl⟩
-    rw [sys.aug_sys]
-    exact traj.toAugment (Z₀ := construct Z₀) fun v hv w hw => hZ v hv w hw
-  -- the member holding `(x t, c)` maps to the projected one holding `x t`
-  obtain ⟨s, hs, hzs⟩ := SetUnion.mem_construct.mp hz
-  refine SetUnion.mem_construct.mpr ⟨_, List.mem_map_of_mem hs, ?_⟩
-  have hPr := Mtimes.mtimes_outer (𝕄 := Mat ℝ) (LinearMap.toMatrix' (blockLeft n q)) s
-    (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hzs))
-  rwa [Scalar.toRealMat_real, LinearMap.toMatrix'_mulVec, blockLeft_append] at hPr
+    match sys.reachUnion p X₀ with
+    | some R => sys.reachUnionExact p (construct X₀) ⊆ construct R
+    | none => True := by -- --- PROOF ---
+  cases hR : sys.reachUnion p X₀ with
+  | none => trivial
+  | some R =>
+    intro y hy
+    simp only [NonlinParamSys.WithSteps.reachUnion, Option.map_eq_some_iff] at hR
+    obtain ⟨Ra, hRa, rfl⟩ := hR
+    set Z₀ : S (n + q) := Mtimes.mtimes (𝕄 := Mat ℝ) (LinearMap.toMatrix' (blockPadLeft n q)) X₀ ⊞
+      Mtimes.mtimes (𝕄 := Mat ℝ) (LinearMap.toMatrix' (blockPadRight n q)) sys.P
+    -- every pair `(x₀, p)` lies in the product computed, `(x₀, 0) + (0, p)`
+    have hZ : ∀ v ∈ construct X₀, ∀ w ∈ construct sys.P, Fin.append v w ∈ construct Z₀ := by
+      intro v hv w hw
+      have hE := Mtimes.mtimes_outer (𝕄 := Mat ℝ) (LinearMap.toMatrix' (blockPadLeft n q)) X₀
+        (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hv))
+      have hF := Mtimes.mtimes_outer (𝕄 := Mat ℝ) (LinearMap.toMatrix' (blockPadRight n q)) sys.P
+        (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hw))
+      refine Plus.plus_outer _ _ ⟨_, hE, _, hF, ?_⟩
+      simp only [Scalar.toRealMat_real, LinearMap.toMatrix'_mulVec]
+      funext j
+      refine Fin.addCases (fun i => ?_) (fun i => ?_) j <;> simp [blockPadLeft, blockPadRight]
+    -- the run, its parameter appended, is one of the augmented system from `Z₀`
+    simp only [NonlinParamSys.WithSteps.reachUnionExact, Set.mem_iUnion, Set.mem_setOf_eq] at hy
+    obtain ⟨t, ht, x, u, c, traj, rfl⟩ := hy
+    have hz : Fin.append (x t) c ∈ construct Ra := by
+      have haug := sys.aug.reachUnion_outer p Z₀
+      rw [hRa] at haug
+      refine haug ?_
+      simp only [NonlinearSys.WithSteps.reachUnionExact, Set.mem_iUnion]
+      refine ⟨t, ht, fun s => Fin.append (x s) c, u, ?_, rfl⟩
+      rw [sys.aug_sys]
+      exact traj.toAugment (Z₀ := construct Z₀) fun v hv w hw => hZ v hv w hw
+    -- the member holding `(x t, c)` maps to the projected one holding `x t`
+    obtain ⟨s, hs, hzs⟩ := SetUnion.mem_construct.mp hz
+    refine SetUnion.mem_construct.mpr ⟨_, List.mem_map_of_mem hs, ?_⟩
+    have hPr := Mtimes.mtimes_outer (𝕄 := Mat ℝ) (LinearMap.toMatrix' (blockLeft n q)) s
+      (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hzs))
+    rwa [Scalar.toRealMat_real, LinearMap.toMatrix'_mulVec, blockLeft_append] at hPr
 
 end CORALean
 
