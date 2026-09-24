@@ -1,4 +1,5 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Enclosures
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrCoeff
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrCritical
 
 /-!
 # The correction coefficient bounds `s^i - s` from below

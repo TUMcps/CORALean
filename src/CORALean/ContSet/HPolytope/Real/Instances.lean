@@ -1,5 +1,5 @@
 import CORALean.ContSet.HPolytope.Real.HPolytope
-import CORALean.ContSet.ContSet.SupportBound
+import CORALean.ContSet.ContSet.Operations.SupportBoundSegments
 import CORALean.ContSet.HPolytope.Real.Operations.Rows
 import CORALean.ContSet.HPolytope.Real.Operations.SupportBound
 import CORALean.ContSet.HPolytope.Real.Operations.SubsetOfBoundsOpt

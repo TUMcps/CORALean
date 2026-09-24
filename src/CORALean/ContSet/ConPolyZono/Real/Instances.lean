@@ -1,4 +1,4 @@
-import CORALean.ContSet.ContSet.CompactSet
+import CORALean.ContSet.ContSet.Definitions.CompactSet
 import CORALean.ContSet.ConPolyZono.Real.Theorems.IntersectionExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.IsCompact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.LinCombOuter

@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.LinearSys.MatExp.ExpRemainderOrder
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderOrder
 import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
 
 /-!

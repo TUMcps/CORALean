@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Enclosures
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBound
 
 /-!
 # Shortening the step drives the remainder bound to zero

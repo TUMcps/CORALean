@@ -1,5 +1,8 @@
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalW
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpWApply
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.QuadTermAttained
+import CORALean.ContSet.Interval.Real.Operations.MulHi
+import CORALean.ContSet.Interval.Real.Operations.MulLo
 import CORALean.ContSet.Interval.Real.Theorems.MemMat
 
 /-!

@@ -168,11 +168,8 @@ LinearSysDT.reachInnerRep  real-layer: an operation over the exact zonotope laye
 Location.timeIntervalStep  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 Location.timeIntervalStepInv  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 Location.timeIntervalStepSplit  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
-MatExp.absMat  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 MatExp.affineDynamicsError  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
-MatExp.affineDynamicsErrorBound  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 MatExp.affineTimeIntervalOuter  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
-MatExp.affineTimeIntervalSolution  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 MatExp.affineTimePointNext  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 MatExp.constCorrTerm  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 MatExp.constCorrectionMatrix  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
@@ -195,15 +192,11 @@ MatExp.expMatZonoTaylor  pending #1: a continuous-time algorithm at a real matri
 MatExp.expMatZonoTerm  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 MatExp.expRemainder  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 MatExp.expRemainderBound  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
-MatExp.expRemainderMat  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 MatExp.expRemainderOrder  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 MatExp.expRemainderStep  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 MatExp.expTaylor  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 MatExp.expW  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 MatExp.genMinus  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
-MatExp.homogeneousRemainderError  spec: CDC'20 eq. (21)'s ε_H, a real-valued error measure that states the convergence results, never computed
-MatExp.homogeneousRemainderSet  spec: the set CDC'20 eq. (21) takes err of, a real-valued error measure that states the convergence results, never computed
-MatExp.inputCorrectionSet  spec: CDC'20 eq. (18)'s F_u, a real-valued error measure that states the convergence results, never computed
 MatExp.inputRemainder  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 MatExp.intervalConstCorrTerm  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 MatExp.intervalConstCorrectionMatrix  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
@@ -213,18 +206,13 @@ MatExp.intervalInputRemainder  pending #1: a continuous-time algorithm at a real
 MatExp.intervalMulVecSet  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 MatExp.particularCoeff  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 MatExp.particularCoeffSum  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
-MatExp.particularRemainderError  spec: CDC'20 eq. (22)'s ε_P, a real-valued error measure that states the convergence results, never computed
-MatExp.particularRemainderSet  spec: the set CDC'20 eq. (22) takes err of, a real-valued error measure that states the convergence results, never computed
 MatExp.particularSolutionError  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
-MatExp.particularSolutionErrorBound  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 MatExp.particularSolutionOuter  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 MatExp.particularSolutionOuterCorrelated  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 MatExp.particularSolutionTauError  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
-MatExp.particularSolutionTauErrorBound  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 MatExp.quadTerm  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 MatExp.quadTermHi  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 MatExp.quadTermLo  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
-MatExp.stateCorrectionSet  spec: CDC'20 eq. (17)'s F_x, a real-valued error measure that states the convergence results, never computed
 NeurNetContrSys.reach  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 NeurNetContrSysDT.reachCost  cost: an asserted running cost under `Cost/`, never meant to compute
 NeurNetContrSysDT.simulate  spec: an idealised real-valued closed-loop trajectory, used only in a correctness statement
@@ -254,6 +242,7 @@ abstrErr  pending #1: a continuous-time algorithm at a real matrix exponential; 
 abstrErrLin  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 abstrSolInf  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 boxDiameter  spec: a norm or Hausdorff distance over ℝ, used only to state a guarantee
+diffPoint  spec: a real-valued certificate (support witness/bound), quantifying over arbitrary linear functionals
 ellipsoidInputTaylorSum  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 err  spec: a norm or Hausdorff distance over ℝ, used only to state a guarantee
 estimateGain  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
@@ -284,5 +273,6 @@ tuneDeltat  pending #1: a continuous-time algorithm at a real matrix exponential
 tuneDeltatInit  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 varInputs  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 verifyConvex  spec: a real-valued certificate (support witness/bound), quantifying over arbitrary linear functionals
+verifyConvexStep  spec: a real-valued certificate (support witness/bound), quantifying over arbitrary linear functionals
 verifyHalfspace  spec: a real-valued certificate (support witness/bound), quantifying over arbitrary linear functionals
 worstIndex  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet

@@ -1,4 +1,4 @@
-import CORALean.Specification.VerifyHalfspace
+import CORALean.Specification.Operations.VerifyHalfspace
 import CORALean.Specification.Theorems.Containment
 import CORALean.Specification.Theorems.HoldsIUnion
 

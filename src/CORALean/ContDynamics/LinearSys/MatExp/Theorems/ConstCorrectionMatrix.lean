@@ -1,3 +1,5 @@
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ConstCorrectionMatrix
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrectionMatrix
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegral
 import CORALean.ContSet.Interval.Real.Theorems.MemMat

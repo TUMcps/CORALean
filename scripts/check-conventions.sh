@@ -58,10 +58,6 @@ CLASS_ROOT_EXEMPT=src/CORALean/ContSet/Conversion
 # shrinks: an entry whose directory now passes, or is gone, is reported the way
 # a stale allowlist entry is.
 CLASS_ROOT_PENDING="
-src/CORALean/ContDynamics/LinearSys
-src/CORALean/ContDynamics/LinearSys/MatExp
-src/CORALean/ContSet/ContSet
-src/CORALean/Specification
 "
 
 status=0

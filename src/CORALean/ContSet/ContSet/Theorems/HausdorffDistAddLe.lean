@@ -1,4 +1,4 @@
-import CORALean.ContSet.ContSet.CompactSet
+import CORALean.ContSet.ContSet.Definitions.CompactSet
 
 /-!
 # Adding a set to both sides cannot move them apart

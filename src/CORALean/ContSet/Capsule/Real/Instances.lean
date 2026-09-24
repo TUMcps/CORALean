@@ -1,5 +1,5 @@
-import CORALean.ContSet.ContSet.ConvexSet
-import CORALean.ContSet.ContSet.CompactSet
+import CORALean.ContSet.ContSet.Definitions.ConvexSet
+import CORALean.ContSet.ContSet.Definitions.CompactSet
 import CORALean.ContSet.Capsule.Real.Theorems.API
 
 /-!

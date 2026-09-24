@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.LinearSys.ManualReach
+import CORALean.ContDynamics.LinearSys.Operations.ManualRun
 
 /-!
 # `manualRun` reaches `t_k = k·Δt`

@@ -1,4 +1,4 @@
-import CORALean.ContSet.ContSet.ConvexSet
+import CORALean.ContSet.ContSet.Definitions.ConvexSet
 import CORALean.ContSet.ZonoBundle.Float.Theorems.Convex
 import CORALean.ContSet.ZonoBundle.Float.Theorems.IntersectionExact
 import CORALean.ContSet.ZonoBundle.Float.Theorems.PlusOuter

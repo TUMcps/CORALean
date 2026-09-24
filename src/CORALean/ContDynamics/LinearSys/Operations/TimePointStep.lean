@@ -1,4 +1,3 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Enclosures
 import CORALean.ContDynamics.LinearSys.Operations.InputSolution
 import CORALean.ContSet.Interval.Real.Instances
 

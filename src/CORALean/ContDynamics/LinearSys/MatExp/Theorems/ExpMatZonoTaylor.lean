@@ -1,4 +1,6 @@
-import CORALean.ContDynamics.LinearSys.MatExp.MatZonoEnclosures
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoTaylor
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoTerm
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpTaylor
 import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
 import CORALean.ContSet.Zonotope.Real.Theorems.MatPowOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact

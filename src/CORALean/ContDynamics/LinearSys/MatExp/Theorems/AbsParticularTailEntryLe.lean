@@ -1,4 +1,5 @@
-import CORALean.ContDynamics.LinearSys.MatExp.ParticularSolutionOuter
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeff
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsPowEntryLeAbsMatPow
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegral
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSmulTsum

@@ -1,4 +1,5 @@
-import CORALean.ContDynamics.LinearSys.MatExp.ParticularSolutionTauError
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionTauError
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsParticularSolutionTauErrorLeConstMul
 
 /-!
 # `Lemma 4`, the rate half: `Δε^{U,τ}_k(Δt,η) ∼ O(Δt)` as `Δt → 0⁺`

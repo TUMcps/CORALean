@@ -1,4 +1,5 @@
-import CORALean.ContDynamics.LinearSys.MatExp.ExpRemainderOrder
+import CORALean.ContDynamics.LinearSys.MatExp.Definitions.OrderAdmissible
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderOrder
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsExpRemainderBoundLt
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundAntitoneSucc
 

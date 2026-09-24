@@ -2,8 +2,10 @@ import CORALean.ContDynamics.LinearSys.Operations.InputSolution
 import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
 import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuterSplit
 import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryTimeIntervalOuter
-import CORALean.ContSet.ContSet.CompactSet
-import CORALean.ContSet.ContSet.ConvexSet
+import CORALean.ContSet.ContSet.Definitions.CompactSet
+import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
+import CORALean.ContSet.ContSet.Theorems.IsClosedConstruct
+import CORALean.ContSet.ContSet.Definitions.ConvexSet
 import CORALean.ContSet.ContSet.Theorems.SmulMemLinCombOfPoint
 
 /-!

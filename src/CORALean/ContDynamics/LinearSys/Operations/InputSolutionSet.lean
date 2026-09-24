@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Enclosures
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.InputRemainder
 import CORALean.ContDynamics.LinearSys.Operations.InputTerm
 
 /-!

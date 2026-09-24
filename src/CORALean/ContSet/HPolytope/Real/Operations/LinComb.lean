@@ -1,5 +1,5 @@
 import CORALean.ContSet.HPolytope.Real.Operations.OfBounds
-import CORALean.ContSet.ContSet.SupportBound
+import CORALean.ContSet.ContSet.Operations.SupportBoundSegments
 
 /-!
 # `HPolytope.linCombOf`

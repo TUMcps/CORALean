@@ -1,6 +1,6 @@
 import CORALean.ContDynamics.LinParamSys.LinParamSys
-import CORALean.ContDynamics.LinearSys.MatExp.IntervalCorrection
-import CORALean.ContDynamics.LinearSys.MatExp.IntervalEnclosures
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrix
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclosure
 import CORALean.ContSet.Interval.Real.Instances
 import CORALean.ContSet.Interval.Real.Operations.Smul
 

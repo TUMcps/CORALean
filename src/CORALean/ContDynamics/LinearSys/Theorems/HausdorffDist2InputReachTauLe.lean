@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.LinearSys.MatExp.ParticularSolutionTauError
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionTauError
 import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
 import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationEq
 import CORALean.ContDynamics.LinearSys.Theorems.MulVecL

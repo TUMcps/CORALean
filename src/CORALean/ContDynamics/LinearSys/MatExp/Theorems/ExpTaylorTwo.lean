@@ -1,5 +1,5 @@
-import CORALean.ContDynamics.LinearSys.MatExp.ExactSecondOrder
-import CORALean.ContDynamics.LinearSys.MatExp.Enclosures
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpW
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpTaylor
 
 /-!
 # The second-order truncation is `I + W(t)`

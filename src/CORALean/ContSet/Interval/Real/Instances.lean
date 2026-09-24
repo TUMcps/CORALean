@@ -1,5 +1,5 @@
-import CORALean.ContSet.ContSet.CompactSet
-import CORALean.ContSet.ContSet.ConvexSet
+import CORALean.ContSet.ContSet.Definitions.CompactSet
+import CORALean.ContSet.ContSet.Definitions.ConvexSet
 import CORALean.ContSet.Interval.Real.Operations.IntersectionExact
 import CORALean.ContSet.Interval.Real.Theorems.Convex
 import CORALean.ContSet.Interval.Real.Theorems.IsCompact

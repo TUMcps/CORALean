@@ -1,4 +1,5 @@
-import CORALean.ContDynamics.LinearSys.MatExp.IntervalCorrection
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalConstCorrTerm
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalConstCorrectionMatrix
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ConstCorrectionMatrix
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundMono
 import CORALean.ContSet.Interval.Real.Theorems.MatPowOuter

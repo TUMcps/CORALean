@@ -1,4 +1,4 @@
-import CORALean.ContSet.ContSet.ConvexSet
+import CORALean.ContSet.ContSet.Definitions.ConvexSet
 import CORALean.ContSet.Fullspace.Real.Theorems.API
 
 /-!

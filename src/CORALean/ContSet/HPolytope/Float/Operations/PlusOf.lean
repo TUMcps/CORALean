@@ -1,5 +1,5 @@
 import CORALean.ContSet.HPolytope.Float.Operations.OfBounds
-import CORALean.ContSet.ContSet.Float.SupportBound
+import CORALean.ContSet.ContSet.Float.Operations.SupportBound
 
 /-!
 # `HPolytope.plusOf`

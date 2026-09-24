@@ -4,6 +4,8 @@ import CORALean.ContSet.ContSet.Theorems.HausdorffDist2MulVecLinAddLe
 import CORALean.ContSet.ContSet.Theorems.HausdorffDistAddLe
 import CORALean.ContSet.ContSet.Theorems.HausdorffDistImageLe
 import CORALean.ContSet.ContSet.Theorems.HausdorffDistMulVecLinAddLe
+import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
+import CORALean.ContSet.ContSet.Theorems.IsClosedConstruct
 import CORALean.ContSet.ContSet.Theorems.IsCompactSegments
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddAssoc
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddSubset

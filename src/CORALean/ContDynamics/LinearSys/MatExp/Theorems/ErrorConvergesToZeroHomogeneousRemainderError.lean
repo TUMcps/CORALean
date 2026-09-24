@@ -1,4 +1,6 @@
-import CORALean.ContDynamics.LinearSys.MatExp.HomogeneousRemainderError
+import CORALean.ContDynamics.LinearSys.MatExp.Definitions.HomogeneousRemainderError
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeOfMemInputCorrectionSet
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeOfMemStateCorrectionSet
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoExpRemainderMatZero
 import CORALean.Global.ErrorConvergesToZero
 

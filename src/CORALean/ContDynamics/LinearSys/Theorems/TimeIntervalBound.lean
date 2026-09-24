@@ -1,5 +1,5 @@
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetSubsetSegmentsSum
-import CORALean.ContSet.ContSet.SupportBound
+import CORALean.ContSet.ContSet.Operations.SupportBoundSegments
 
 /-!
 # A support bound over a whole step, not a time point

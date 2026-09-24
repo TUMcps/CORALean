@@ -1,4 +1,5 @@
-import CORALean.Specification.VerifyConvex
+import CORALean.Specification.Operations.VerifyConvex
+import CORALean.Specification.Theorems.ExistsSeparatingOfVerifyConvexEqSafe
 import CORALean.Specification.Theorems.Separation
 
 /-!

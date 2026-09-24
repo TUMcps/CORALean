@@ -1,4 +1,4 @@
-import CORALean.ContSet.ContSet.DependencyPreserving
+import CORALean.ContSet.ContSet.Definitions.DependencyPreserving
 
 /-!
 # [1, Lemma 5]: the whole loop preserves dependencies, not only one step

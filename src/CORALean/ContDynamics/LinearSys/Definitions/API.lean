@@ -17,6 +17,12 @@ import CORALean.ContDynamics.LinearSys.Definitions.IntegralTimeIntervalBackReach
 import CORALean.ContDynamics.LinearSys.Definitions.IntegralTimeIntervalBackReachSetOfInput
 import CORALean.ContDynamics.LinearSys.Definitions.ReachInner
 import CORALean.ContDynamics.LinearSys.Definitions.StepInner
+import CORALean.ContDynamics.LinearSys.Definitions.AutoState
+import CORALean.ContDynamics.LinearSys.Definitions.ManualState
+import CORALean.ContDynamics.LinearSys.Definitions.MaxBackReachState
+import CORALean.ContDynamics.LinearSys.Definitions.MinBackReachState
+import CORALean.ContDynamics.LinearSys.Definitions.TunedState
+import CORALean.ContDynamics.LinearSys.Definitions.VerifyIter
 
 /-!
 # What a continuous-time linear system means
