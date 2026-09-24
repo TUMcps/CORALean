@@ -1,17 +1,19 @@
+import CORALean.ContDynamics.LinearSys.Definitions.ReachParams
+import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterWindows
 import CORALean.ContDynamics.Reach.Reach
-import CORALean.ContDynamics.LinearSys.Theorems.ReachUnionOuter
 import CORALean.ContSet.Interval.Real.Instances
 
 /-!
 # `LinearSys` instantiates `Reach`
 
-`reachExact` is `reachUnionExact`, `reach` is `reachUnion`, and the guarantee
-is `reachUnion_outer` — homogeneous only, `U` having no room in `Params`.
+`reachExact`, `reach` and `reach_outer` are `LinearSys`'s own, at the horizon,
+window width and Taylor order `Params` holds — homogeneous only, `U` having no
+room in `Params`.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   24-September-2026
 -- Last revision: ---
 
 
@@ -30,9 +32,9 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 -- ========================================  INSTANCES  ========================================= --
 
 noncomputable instance LinearSys.reachInstance : Reach (LinearSys 𝕋) LinearSys.ReachParams S where
-  reachExact sys p X₀ := sys.reachUnionExact p X₀
-  reach sys p X₀ := sys.reachUnion p X₀
-  reach_outer sys p X₀ := sys.reachUnion_outer p X₀
+  reachExact sys p X₀ := sys.reachExact p.tFinal X₀
+  reach sys p X₀ := sys.reach p.tFinal p.Δt p.η X₀
+  reach_outer sys p X₀ := sys.reach_outer p.hΔt X₀
 
 end CORALean
 

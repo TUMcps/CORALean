@@ -1,11 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Definitions.ReachParams
+import CORALean.ContDynamics.LinearSys.LinearSys
 
 /-!
 # The exact set `Reach LinearSys` is asked to enclose
 
 Every image of a bare initial set under the homogeneous flow, at every time
-of `[0, p.r]` — [1, Def. 3.1] at `U = 0`, the case `Reach.reachExact` has room
-for. `reachUnion_outer` is `timeIntervalStep_outer` at every such time.
+of `[0, tFinal]` — [1, Def. 3.1] at `U = 0`, the case `Reach.reachExact` has
+room for. `reach_outer` puts it inside `reach`, one window at a time.
 
 ## References
 
@@ -30,11 +30,11 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Every image of a bare initial set `X` under `exp (t • sys.A)`, at every
-`t ∈ [0, p.r]`. -/
-noncomputable def LinearSys.reachUnionExact (sys : LinearSys 𝕋 n) (p : LinearSys.ReachParams)
-    (X : Set (Vec ℝ n)) : Set (Vec ℝ n) :=
-  {x | ∃ t ∈ Set.Icc (0 : ℝ) p.r, ∃ x₀ ∈ X, x = exp (t • toRealMat sys.A) *ᵥ x₀}
+/-- Every image of a bare initial set `X₀` under `exp (t • sys.A)`, at every
+`t ∈ [0, tFinal]`. -/
+noncomputable def LinearSys.reachExact (sys : LinearSys 𝕋 n) (tFinal : ℝ)
+    (X₀ : Set (Vec ℝ n)) : Set (Vec ℝ n) :=
+  {x | ∃ t ∈ Set.Icc 0 tFinal, ∃ x₀ ∈ X₀, x = exp (t • toRealMat sys.A) *ᵥ x₀}
 
 end CORALean
 
