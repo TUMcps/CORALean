@@ -25,8 +25,10 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegral
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalEnclosure
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalEnclosureContainsExact
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalEnclosureExact
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalEnclosureFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalTaylor
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalTaylorExact
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalTaylorFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalTaylorTail
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalWAttained
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalWOuter
@@ -34,6 +36,7 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoEnclosure
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoRemainder
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoTaylor
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundAntitoneSucc
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundMono
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundSuperlinear
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderMatIsBigO
@@ -46,8 +49,13 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpTaylorTwo
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpWApply
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ErrorConvergesToZeroHomogeneousRemainderError
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ErrorConvergesToZeroParticularRemainderError
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.FactorialDownFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.FactorialMulPowLe
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.FactorialUpFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.HasSumExpRemainderMatEntry
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.InvFactorialBoundsFloat
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormUpperBoundFloat
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.PowUpFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.HausdorffDist2AffineDynamicsLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.HausdorffDist2ParticularSolutionLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalConstCorrectionMatrix

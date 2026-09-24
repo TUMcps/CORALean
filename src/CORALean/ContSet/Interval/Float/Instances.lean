@@ -3,6 +3,7 @@ import CORALean.ContSet.ContSet.Definitions.ConvexSet
 import CORALean.ContSet.Interval.Float.Operations.IntersectionExact
 import CORALean.ContSet.Interval.Float.Theorems.LinCombOuter
 import CORALean.ContSet.Interval.Float.Theorems.MinkDiffInner
+import CORALean.ContSet.Interval.Float.Theorems.MtimesIntervalMatOuter
 import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
 import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 import CORALean.ContSet.Interval.Float.Theorems.ReindexExact
@@ -99,6 +100,15 @@ instance : Mtimes (Mat 𝕋) (fun n => Interval (Vec 𝕋 n)) where
   mtimes_outer M I := by
     simp only [ContSet.construct_mat, Set.biUnion_singleton, Interval.materialise_eq]
     exact Interval.mtimes_outer M I
+
+/-- The same operation at an interval matrix, which the float `expIntervalTaylor`
+chain builds towards: a box needs no fresh generator to absorb the rounding.
+No scoped `ℐ` here, unlike `Real`'s: it would have to close over `𝕋`. -/
+instance : Mtimes (fun m n => Interval (Mat 𝕋 m n)) (fun n => Interval (Vec 𝕋 n)) where
+  mtimes IM I := (Interval.mtimesIntervalMat IM I).materialise
+  mtimes_outer IM I := by
+    rw [Interval.materialise_eq]
+    exact Interval.mtimesIntervalMat_outer IM I
 
 end CORALean.Float
 

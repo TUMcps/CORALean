@@ -1,12 +1,20 @@
+import CORALean.ContSet.Interval.Float.Theorems.LeMulHi
 import CORALean.ContSet.Interval.Float.Theorems.LinCombOuter
+import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
+import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
+import CORALean.ContSet.Interval.Float.Theorems.MatPowOuter
 import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 import CORALean.ContSet.Interval.Float.Theorems.MinkDiffInner
+import CORALean.ContSet.Interval.Float.Theorems.MtimesIntervalMatOuter
 import CORALean.ContSet.Interval.Float.Theorems.MtimesIsNonempty
 import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
+import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
+import CORALean.ContSet.Interval.Float.Theorems.MulLoLe
 import CORALean.ContSet.Interval.Float.Theorems.NonemptyHullIsNonempty
 import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 import CORALean.ContSet.Interval.Float.Theorems.ReindexExact
 import CORALean.ContSet.Interval.Float.Theorems.ReindexNominal
+import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
 import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
 import CORALean.ContSet.Interval.Float.Theorems.SubsetNonemptyHull
 
