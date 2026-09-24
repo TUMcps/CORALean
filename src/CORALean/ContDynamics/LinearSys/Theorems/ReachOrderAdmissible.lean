@@ -3,14 +3,14 @@ import CORALean.ContDynamics.LinearSys.Operations.ReachOrder
 /-!
 # `reachOrder` clears `timeIntervalStep_outer`'s side condition
 
-`Nat.le_ceil` puts `‖r • A‖` at or under `reachOrder r`, so adding `4` puts it
-strictly under the denominator `timeIntervalStep_outer` divides by, at `m :=
-reachOrder r`.
+`Nat.le_ceil` puts `‖r • A‖` at or under `reachOrder r`, so any order `η` at or
+above `reachOrder r + 2` puts it strictly under `η + 2`, the denominator
+`timeIntervalStep_outer` divides by. `reach` raises its `η` to exactly such one.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   24-September-2026
 -- Last revision: ---
 
 
@@ -28,12 +28,14 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSys.reachOrder_admissible (sys : LinearSys 𝕋 n) (r : ℝ) :
-    ‖r • toRealMat sys.A‖ / (((sys.reachOrder r + 2 : ℕ) : ℝ) + 2) < 1 := by -- --- PROOF ---
+theorem LinearSys.reachOrder_admissible (sys : LinearSys 𝕋 n) (r : ℝ) {η : ℕ}
+    (hη : sys.reachOrder r + 2 ≤ η) :
+    ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1 := by -- --- PROOF ---
   have hle : ‖r • toRealMat sys.A‖ ≤ (sys.reachOrder r : ℝ) := Nat.le_ceil _
-  have hpos : (0:ℝ) < ((sys.reachOrder r + 2 : ℕ) : ℝ) + 2 := by positivity
+  have hη' : ((sys.reachOrder r + 2 : ℕ) : ℝ) ≤ η := by exact_mod_cast hη
+  have hpos : (0:ℝ) < (η : ℝ) + 2 := by positivity
   rw [div_lt_one hpos]
-  push_cast
+  push_cast at hη'
   linarith
 
 end CORALean

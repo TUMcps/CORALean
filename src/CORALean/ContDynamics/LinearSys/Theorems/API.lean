@@ -136,8 +136,9 @@ import CORALean.ContDynamics.LinearSys.Theorems.TunedRunErrorBudget
 import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 import CORALean.ContDynamics.LinearSys.Theorems.VerifyConvexUnsafe
 import CORALean.ContDynamics.LinearSys.Theorems.WeightedIntegral
+import CORALean.ContDynamics.LinearSys.Theorems.HoldsOfCheck
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderAdmissible
-import CORALean.ContDynamics.LinearSys.Theorems.ReachUnionOuter
+import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterWindows
 
 /-!
 # What `LinearSys` guarantees
@@ -162,5 +163,5 @@ away. Only `discretize` and `reach` built on it ask for `Set.Ici 0`.
 `DiscretizeEnclosure`/`DiscretizeEnclosureReach` are `Discretize`/`ReachOuter`
 enclosed rather than computed; `DiscretizeMatZonotope` is the same at a matrix
 zonotope, `PostDeltaOuter` is `DeltaReachOuterInputSolution` again, `postΔ`'s
-name, and `ReachOrderAdmissible`/`ReachUnionOuter` are `Instances`' guarantee.
+name, `ReachOrderAdmissible`/`ReachOuterWindows`/`HoldsOfCheck` `Instances`' guarantee.
 -/

@@ -4,10 +4,10 @@ import CORALean.ContDynamics.LinearSys.LinearSys
 # An order admissible for a window and its matrix
 
 `⌈‖r • toRealMat sys.A‖⌉₊`, no search: `timeIntervalStep_outer`'s side
-condition needs `‖r • A‖` under `m + 4`, and this order clears it outright,
-`reachOrder_admissible` its proof. Read for `reach` and no further, so no
-tightness is claimed — a caller wanting one closer to `[1, Alg. 1]`'s tuned
-choice reaches for `tunedStep` directly.
+condition at order `η` needs `‖r • A‖` under `η + 2`, and every `η` from this
+order plus `2` up clears it outright, `reachOrder_admissible` its proof. Read
+for `reach`'s floor on `η` and no further, so no tightness is claimed — a caller
+wanting one closer to `[1, Alg. 1]`'s tuned choice reaches for `tunedStep`.
 
 ## References
 
@@ -17,7 +17,7 @@ choice reaches for `tunedStep` directly.
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   24-September-2026
 -- Last revision: ---
 
 
@@ -35,8 +35,8 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- An order admissible for the window `r` at `sys.A`, `m` in
-`timeIntervalStep r (m + 2)`'s own naming. -/
+/-- An order admissible for the window `r` at `sys.A` once `2` is added: every
+`timeIntervalStep r η` with `η` at or above that is enclosing. -/
 noncomputable def LinearSys.reachOrder (sys : LinearSys 𝕋 n) (r : ℝ) : ℕ :=
   ⌈‖r • toRealMat sys.A‖⌉₊
 

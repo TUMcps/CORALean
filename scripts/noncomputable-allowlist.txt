@@ -51,6 +51,8 @@ Example.ballZono  real-layer: a worked example over the real specification layer
 Example.bounce  real-layer: a worked example over the real specification layer, proved and never run
 Example.bounceCut  real-layer: a worked example over the real specification layer, proved and never run
 Example.bouncingBall  real-layer: a worked example over the real specification layer, proved and never run
+Example.boxContainsZonotope  real-layer: a worked example over the real specification layer, proved and never run
+Example.boxIsDisjointZonotope  real-layer: a worked example over the real specification layer, proved and never run
 Example.check  real-layer: a worked example over the real specification layer, proved and never run
 Example.compressNetwork  real-layer: a worked example over the real specification layer, proved and never run
 Example.compressPart  real-layer: a worked example over the real specification layer, proved and never run
@@ -138,12 +140,13 @@ LinearSys.minBackReachSupport  pending #1: a continuous-time algorithm at a real
 LinearSys.minBackReachTimeInterval  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.postDelta  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.propagateInputSolution  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.reach  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.reachError  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.reachInnerRep  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.reachInputError  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.reachInstance  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.reachOrder  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
-LinearSys.reachUnion  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.reachStepk  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.stepInput  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.stepInputConst  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.timeIntervalBound  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
