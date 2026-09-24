@@ -23,7 +23,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Interval.plus (I₁ I₂ : Interval 𝕋 n) : Interval 𝕋 n where
+def Interval.plus (I₁ I₂ : Interval (Vec 𝕋 n)) : Interval (Vec 𝕋 n) where
   inf := fun i => addDown (I₁.inf i) (I₂.inf i)
   sup := fun i => addUp (I₁.sup i) (I₂.sup i)
 

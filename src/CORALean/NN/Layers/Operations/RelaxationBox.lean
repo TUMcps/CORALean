@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The box each neuron's deviation from its affine map is confined to, widened outward. -/
-def Relaxation.box (R : Relaxation 𝕋) (I : Interval 𝕋 n) : Interval 𝕋 n where
+def Relaxation.box (R : Relaxation 𝕋) (I : Interval (Vec 𝕋 n)) : Interval (Vec 𝕋 n) where
   inf := fun i => subDown (R.offset (I.inf i) (I.sup i)) (R.error (I.inf i) (I.sup i))
   sup := fun i => addUp (R.offset (I.inf i) (I.sup i)) (R.error (I.inf i) (I.sup i))
 

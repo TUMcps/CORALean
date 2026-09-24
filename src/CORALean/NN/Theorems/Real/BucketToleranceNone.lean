@@ -39,10 +39,11 @@ open Float Float.FloatOps
 bucket at `0`, whenever `ρ < 1`. -/
 theorem bucketTolerance_eq_none_of_point {tol ρ : ℝ} (hρ : ρ < 1) (fuel : ℕ) :
     bucketTolerance (fun a b => decide (a ≤ b)) tol fuel (.static [0])
-      (Float.Interval.point (fun _ => (1 : ℝ)) : Float.Interval ℝ 1) ρ = none := by -- --- PROOF ---
+      (Float.Interval.point (fun _ => (1 : ℝ)) : Float.Interval (Vec ℝ 1)) ρ
+      = none := by -- --- PROOF ---
   -- the bounds are one point, so `δmax` starts at `0` and tenfold growth keeps it there
-  have hδ : subUp (maxOver (Float.Interval.point (fun _ => (1 : ℝ)) : Float.Interval ℝ 1).sup)
-      (minOver (Float.Interval.point (fun _ => (1 : ℝ)) : Float.Interval ℝ 1).inf) = 0 := by
+  have hδ : subUp (maxOver (Float.Interval.point (fun _ => (1 : ℝ)) : Float.Interval (Vec ℝ 1)).sup)
+      (minOver (Float.Interval.point (fun _ => (1 : ℝ)) : Float.Interval (Vec ℝ 1)).inf) = 0 := by
     simp only [maxOver, minOver, Fin.foldl_succ, Fin.foldl_zero]
     show max (1 : ℝ) 1 + -min 1 1 = 0
     norm_num
@@ -53,7 +54,7 @@ theorem bucketTolerance_eq_none_of_point {tol ρ : ℝ} (hρ : ρ < 1) (fuel : �
     | succ k ih => show (0 : ℝ) + nsmulUp k 0 = 0; rw [ih, add_zero]
   -- at `δ = 0` the bucket at `0` holds nothing, so `n̂/n = 1 > ρ` every round
   have hB : initMergeBuckets (fun a b => decide (a ≤ b)) (.static [0])
-      (Float.Interval.point (fun _ => (1 : ℝ)) : Float.Interval ℝ 1) 0 = fun _ => false := by
+      (Float.Interval.point (fun _ => (1 : ℝ)) : Float.Interval (Vec ℝ 1)) 0 = fun _ => false := by
     funext i
     show (decide ((0 : ℝ) + -0 ≤ 1) && decide ((1 : ℝ) ≤ 0 + 0) || false) = false
     norm_num
@@ -64,7 +65,7 @@ theorem bucketTolerance_eq_none_of_point {tol ρ : ℝ} (hρ : ρ < 1) (fuel : �
     norm_num
   -- so every round of the growth phase finds the same nothing, and so does its last
   have hgrow : ∀ k, growBucketTolerance (fun a b => decide (a ≤ b)) (.static [0])
-      (Float.Interval.point (fun _ => (1 : ℝ)) : Float.Interval ℝ 1) ρ 0 k = none := by
+      (Float.Interval.point (fun _ => (1 : ℝ)) : Float.Interval (Vec ℝ 1)) ρ 0 k = none := by
     intro k
     induction k with
     | zero => rfl

@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m k : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem le_maxPoolGapUp (tap : Fin m → Fin (k + 1) → Fin n) (p : Fin m → Fin (k + 1))
-    (I : Interval 𝕋 n) (j : Fin m) {l : Fin (k + 1)} (hl : l ≠ p j) :
+    (I : Interval (Vec 𝕋 n)) (j : Fin m) {l : Fin (k + 1)} (hl : l ≠ p j) :
     toReal (I.sup (tap j l)) - toReal (I.inf (tap j (p j)))
       ≤ toReal (maxPoolGapUp tap p I j) := by
   have h := le_maximumOver

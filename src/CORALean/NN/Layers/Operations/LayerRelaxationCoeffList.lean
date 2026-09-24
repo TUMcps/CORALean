@@ -24,7 +24,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The coefficient vectors, lowest degree first. -/
-def LayerRelaxation.coeffList (P : LayerRelaxation 𝕋 n m) (I : Interval 𝕋 n) :
+def LayerRelaxation.coeffList (P : LayerRelaxation 𝕋 n m) (I : Interval (Vec 𝕋 n)) :
     List (Vec 𝕋 n) := List.ofFn (P.coeffVec I)
 
 end CORALean

@@ -24,7 +24,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Interval.mtimes (M : Mat 𝕋 m n) (I : Interval 𝕋 n) : Interval 𝕋 m where
+def Interval.mtimes (M : Mat 𝕋 m n) (I : Interval (Vec 𝕋 n)) : Interval (Vec 𝕋 m) where
   inf := fun i => sumDown fun k => minimum (mulDown (M i k) (I.inf k)) (mulDown (M i k) (I.sup k))
   sup := fun i => sumUp fun k => maximum (mulUp (M i k) (I.inf k)) (mulUp (M i k) (I.sup k))
 

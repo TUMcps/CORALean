@@ -58,7 +58,7 @@ theorem negIdentityMat_mulVec (x : Vec ℝ n) (i : Fin n) :
   · intro hc
     exact absurd (Finset.mem_univ i) hc
 
-def Interval.hPolytope (I : Interval 𝕋 n) : HPolytope 𝕋 n :=
+def Interval.hPolytope (I : Interval (Vec 𝕋 n)) : HPolytope 𝕋 n :=
   (HPolytope.ineqs (identityMat 𝕋 n) I.sup).intersection
     (HPolytope.ineqs (negIdentityMat 𝕋 n) fun j => neg (I.inf j))
 
@@ -66,7 +66,7 @@ def Interval.hPolytope (I : Interval 𝕋 n) : HPolytope 𝕋 n :=
 -- =======================================  MAIN THEOREM  ======================================= --
 
 -- the two row blocks are exactly the two ends of the box, so nothing rounds
-theorem Interval.hPolytope_exact (I : Interval 𝕋 n) :
+theorem Interval.hPolytope_exact (I : Interval (Vec 𝕋 n)) :
     (Interval.hPolytope I).construct = I.construct := by -- --- PROOF ---
   ext x
   simp only [Interval.hPolytope]

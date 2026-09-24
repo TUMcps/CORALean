@@ -24,7 +24,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LayerRelaxation.coeffList_coord (P : LayerRelaxation 𝕋 n m) (I : Interval 𝕋 n)
+theorem LayerRelaxation.coeffList_coord (P : LayerRelaxation 𝕋 n m) (I : Interval (Vec 𝕋 n))
     (i : Fin n) : ((P.coeffList I).map fun v => toReal (v i))
       = List.ofFn fun k => toReal ((P i).coeffs (I.inf i) (I.sup i) k) := by
   rw [LayerRelaxation.coeffList, List.map_ofFn]

@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Neuron `i`'s coefficient of `t ^ k`, from its own fit on its own range. -/
-def LayerRelaxation.coeffVec (P : LayerRelaxation 𝕋 n m) (I : Interval 𝕋 n)
+def LayerRelaxation.coeffVec (P : LayerRelaxation 𝕋 n m) (I : Interval (Vec 𝕋 n))
     (k : Fin (m + 1)) : Vec 𝕋 n := fun i => (P i).coeffs (I.inf i) (I.sup i) k
 
 end CORALean

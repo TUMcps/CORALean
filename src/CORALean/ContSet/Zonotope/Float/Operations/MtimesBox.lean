@@ -34,8 +34,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 /-- The centre's rounding gap, bounded as `plusBox`'s is, together with what
 inexact generators cost — `matMulDiff`'s rounding gap read through
 `generatorError` — and the result's own error box. -/
-def Zonotope.mtimesBox (M : Mat 𝕋 m n) (Z : Zonotope 𝕋 n) : Interval 𝕋 m :=
-  (⟨fun i => subDown (mulVecDown M Z.c i) (mulVecUp M Z.c i), fun _ => zero⟩ : Interval 𝕋 m).plus
+def Zonotope.mtimesBox (M : Mat 𝕋 m n) (Z : Zonotope 𝕋 n) : Interval (Vec 𝕋 m) :=
+  (⟨fun i => subDown (mulVecDown M Z.c i) (mulVecUp M Z.c i), fun _ => zero⟩ :
+      Interval (Vec 𝕋 m)).plus
     ((Zonotope.generatorError (matMulDiff M Z.G)).plus (Zonotope.mtimes M Z).E)
 
 end CORALean.Float

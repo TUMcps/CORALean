@@ -28,13 +28,13 @@ open Pointwise FloatOps SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- Any point of the box would do; the midpoint keeps the generators small. -/
-def Interval.center (I : Interval 𝕋 n) : Vec 𝕋 n := fun i => half (addUp (I.inf i) (I.sup i))
+def Interval.center (I : Interval (Vec 𝕋 n)) : Vec 𝕋 n := fun i => half (addUp (I.inf i) (I.sup i))
 
 /-- Far enough from the stored centre to reach both ends. -/
-def Interval.radiusFrom (I : Interval 𝕋 n) : Vec 𝕋 n :=
+def Interval.radiusFrom (I : Interval (Vec 𝕋 n)) : Vec 𝕋 n :=
   fun i => maximum (subUp (I.sup i) (I.center i)) (subUp (I.center i) (I.inf i))
 
-theorem Interval.reaches (I : Interval 𝕋 n) (i : Fin n) :
+theorem Interval.reaches (I : Interval (Vec 𝕋 n)) (i : Fin n) :
     toReal (I.center i) - toReal (I.radiusFrom i) ≤ toReal (I.inf i)
       ∧ toReal (I.sup i) ≤ toReal (I.center i) + toReal (I.radiusFrom i) := by -- --- PROOF ---
   have hhi := sub_le_subUp (I.sup i) (I.center i)
@@ -51,7 +51,7 @@ theorem Interval.reaches (I : Interval 𝕋 n) (i : Fin n) :
     linarith
 
 -- the stored centre, and one diagonal generator per coordinate
-def Interval.zonotope (I : Interval 𝕋 n) : Zonotope 𝕋 n where
+def Interval.zonotope (I : Interval (Vec 𝕋 n)) : Zonotope 𝕋 n where
   h := n
   c := I.center
   G := diagonalBlock I.radiusFrom
@@ -59,7 +59,7 @@ def Interval.zonotope (I : Interval 𝕋 n) : Zonotope 𝕋 n where
 
 /-- The generators alone already cover the box, before the error box is even
 consulted — which is what lets a caller read off coefficients directly. -/
-theorem Interval.subset_nominal_zonotope (I : Interval 𝕋 n) :
+theorem Interval.subset_nominal_zonotope (I : Interval (Vec 𝕋 n)) :
     I.construct ⊆ InflatedContSet.nominalSet I.zonotope := by -- --- PROOF ---
   intro x hx
   have hlo : ∀ i, toReal (I.inf i) ≤ x i := fun i => (hx i).1
@@ -112,7 +112,7 @@ theorem Interval.subset_nominal_zonotope (I : Interval 𝕋 n) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 -- the error box adds nothing, the generators already covering the box
-theorem Interval.zonotope_contains (I : Interval 𝕋 n) :
+theorem Interval.zonotope_contains (I : Interval (Vec 𝕋 n)) :
     I.construct ⊆ I.zonotope.construct := fun x hx =>
   ⟨x, I.subset_nominal_zonotope hx, 0, fun i => by
     show toReal (zero : 𝕋) ≤ (0 : Vec ℝ n) i ∧ (0 : Vec ℝ n) i ≤ toReal (zero : 𝕋)

@@ -28,7 +28,7 @@ open FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
-def Interval.polyZonotope (I : Interval 𝕋 n) : PolyZonotope 𝕋 n where
+def Interval.polyZonotope (I : Interval (Vec 𝕋 n)) : PolyZonotope 𝕋 n where
   p := 0
   h := 0
   q := 0
@@ -41,7 +41,7 @@ def Interval.polyZonotope (I : Interval 𝕋 n) : PolyZonotope 𝕋 n where
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.polyZonotope_contains (I : Interval 𝕋 n) :
+theorem Interval.polyZonotope_contains (I : Interval (Vec 𝕋 n)) :
     I.construct ⊆ I.polyZonotope.construct := fun x hx => by
   -- the nominal part is the origin, so the box carries the whole point
   refine ⟨0, PolyZonotope.mem_nominalSet_iff.mpr

@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def VPolytope.columnGap {k : ℕ} (lo hi : Mat 𝕋 n k) : Interval 𝕋 n :=
+def VPolytope.columnGap {k : ℕ} (lo hi : Mat 𝕋 n k) : Interval (Vec 𝕋 n) :=
   ⟨fun _ => zero, fun i => maximumOver fun l => subUp (hi i l) (lo i l)⟩
 
 end CORALean.Float

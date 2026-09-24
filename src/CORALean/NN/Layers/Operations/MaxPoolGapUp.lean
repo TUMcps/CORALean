@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m k : ℕ}
 
 /-- Zero at the pivot, every other tap's reach rounded up. -/
 def maxPoolGapUp (tap : Fin m → Fin (k + 1) → Fin n) (p : Fin m → Fin (k + 1))
-    (I : Interval 𝕋 n) (j : Fin m) : 𝕋 :=
+    (I : Interval (Vec 𝕋 n)) (j : Fin m) : 𝕋 :=
   maximumOver fun l =>
     if l = p j then zero else subUp (I.sup (tap j l)) (I.inf (tap j (p j)))
 

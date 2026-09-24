@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Interval.residual (lo hi stored : Vec 𝕋 n) : Interval 𝕋 n :=
+def Interval.residual (lo hi stored : Vec 𝕋 n) : Interval (Vec 𝕋 n) :=
   ⟨fun i => subDown (lo i) (stored i), fun i => subUp (hi i) (stored i)⟩
 
 end CORALean.Float

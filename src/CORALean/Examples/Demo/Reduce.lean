@@ -75,9 +75,10 @@ def tolr : D := dy 1 (-3)
 def fuelr : ℕ := 40
 
 /-- Line 5's look-ahead box at the hidden layer, and the neurons line 6 merges there. -/
-def lookAhead : Interval D 4 :=
-  (Layer.activation (S := Interval D) (reluRelaxation reluSlope)).enclose
-    ((ReducedLinear.toLayer (S := Interval D) ⟨Wr₁, br₁, zeroBox 4⟩).enclose Xr.interval)
+def lookAhead : Interval (Vec D 4) :=
+  (Layer.activation (S := fun n => Interval (Vec D n)) (reluRelaxation reluSlope)).enclose
+    ((ReducedLinear.toLayer (S := fun n => Interval (Vec D n)) ⟨Wr₁, br₁, zeroBox 4⟩).enclose
+      Xr.interval)
 
 def mergedLine : String :=
   match bucketTolerance FloatOps.le tolr fuelr (.static [dy 0 0]) lookAhead ρr with

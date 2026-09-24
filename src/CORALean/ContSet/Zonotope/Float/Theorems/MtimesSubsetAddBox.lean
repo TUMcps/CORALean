@@ -92,7 +92,7 @@ theorem Zonotope.mtimes_subset_add_box (M : Mat 𝕋 m n) (Z : Zonotope 𝕋 n)
   -- the centre's rounding gap, bounded in `𝕋` as `plusBox`'s is
   have hg1 : (fun i => toReal (mulVecDown M Z.c i) - ∑ k, toReal (M i k) * toReal (Z.c k)) ∈
       (⟨fun i => subDown (mulVecDown M Z.c i) (mulVecUp M Z.c i), fun _ => (zero : 𝕋)⟩ :
-        Interval 𝕋 m).construct := fun i =>
+        Interval (Vec 𝕋 m)).construct := fun i =>
     ⟨by show toReal (subDown (mulVecDown M Z.c i) (mulVecUp M Z.c i)) ≤
           toReal (mulVecDown M Z.c i) - ∑ k, toReal (M i k) * toReal (Z.c k)
         have h1 := subDown_le_sub (mulVecDown M Z.c i) (mulVecUp M Z.c i)

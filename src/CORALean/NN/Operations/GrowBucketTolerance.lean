@@ -33,8 +33,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Lines 2-6: `δmax` grown tenfold until at most `ρ n_k` neurons remain; `none` past `fuel`. -/
-def growBucketTolerance (le : 𝕋 → 𝕋 → Bool) (B : MergeBuckets 𝕋) (I_k : Interval 𝕋 n) (ρ : 𝕋) :
-    𝕋 → ℕ → Option 𝕋
+def growBucketTolerance (le : 𝕋 → 𝕋 → Bool) (B : MergeBuckets 𝕋) (I_k : Interval (Vec 𝕋 n))
+    (ρ : 𝕋) : 𝕋 → ℕ → Option 𝕋
   | _, 0 => none
   | δmax, fuel + 1 =>
     let δmax := nsmulUp 10 δmax                                     -- Alg. 1, line 3

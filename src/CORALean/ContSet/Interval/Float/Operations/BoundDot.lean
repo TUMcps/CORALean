@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- A box answers an arbitrary direction too: a linear function of one
 coordinate is largest at one end of its range, so each term takes the endpoint
 its sign picks and the terms are summed upward. -/
-def Interval.boundDot (I : Interval 𝕋 n) {c : Vec ℝ n →ₗ[ℝ] ℝ} (a : Vec 𝕋 n)
+def Interval.boundDot (I : Interval (Vec 𝕋 n)) {c : Vec ℝ n →ₗ[ℝ] ℝ} (a : Vec 𝕋 n)
     (hc : ∀ x : Vec ℝ n, c x = ∑ j, toReal (a j) * x j) : FloatBound 𝕋 I.construct c where
   val := sumUp fun j => maximum (mulUp (a j) (I.sup j)) (mulUp (a j) (I.inf j))
   le x hx := by

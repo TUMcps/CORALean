@@ -66,7 +66,7 @@ theorem NeuralNetwork.reducesAt_outer :
           = (W0 *ᵥ x + c0) ∘ part.left :=
         funext fun i => by simp [Matrix.mulVec, Matrix.submatrix_apply, dotProduct]
       have hc : c0 ∘ part.left - b0 ∘ part.left
-          ∈ construct (⟨E0.inf ∘ part.left, E0.sup ∘ part.left⟩ : Float.Interval ℝ _) :=
+          ∈ construct (⟨E0.inf ∘ part.left, E0.sup ∘ part.left⟩ : Float.Interval (Vec ℝ _)) :=
         fun i => hc0 (part.left i)
       have hA1 := Layer.linearWithError_mem (S := S) (W0.submatrix part.left id)
         (Float.Interval.construct_subset_nonemptyHull _ hc) s hx
@@ -74,7 +74,7 @@ theorem NeuralNetwork.reducesAt_outer :
       have hA2 := (Layer.activation_sound (S := S) hR).enclose_outer _ _ hA1
       -- the bucket is frozen at its own value, which its bounds admit
       have hw : v ∘ part.right
-          ∈ construct (⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩ : Float.Interval ℝ _) :=
+          ∈ construct (⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩ : Float.Interval (Vec ℝ _)) :=
         fun i => hY x hx (part.right i)
       -- layer `k+1`'s dot product splits along the survivors and the bucket
       have hval : W1 *ᵥ v + c1 = (W1.submatrix id part.left) *ᵥ (v ∘ part.left)

@@ -28,13 +28,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Interval.aux_mtimes_outer_refines (M : Mat 𝕋 m n) (I : Interval 𝕋 n) :
+theorem Interval.aux_mtimes_outer_refines (M : Mat 𝕋 m n) (I : Interval (Vec 𝕋 n)) :
     (Real.Interval.mtimes (toRealMat M) I.nominal).construct ⊆
       (Interval.mtimes M I).construct := by -- --- PROOF ---
   intro x hx i
   -- the exact bound has to be a visible sum before it can be compared termwise
   have h := hx i
-  simp only [Real.Interval.mtimes, toRealMat, Interval.nominal, toRealVec] at h
+  simp only [Real.Interval.mtimes, toRealMat, Interval.nominal, RealImage.realImage,
+    toRealVec] at h
   have hinf : ∀ k, toReal (minimum (mulDown (M i k) (I.inf k)) (mulDown (M i k) (I.sup k)))
       ≤ min (toReal (M i k) * toReal (I.inf k)) (toReal (M i k) * toReal (I.sup k)) := by
     intro k
@@ -51,7 +52,7 @@ theorem Interval.aux_mtimes_outer_refines (M : Mat 𝕋 m n) (I : Interval 𝕋 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.mtimes_outer (M : Mat 𝕋 m n) (I : Interval 𝕋 n) :
+theorem Interval.mtimes_outer (M : Mat 𝕋 m n) (I : Interval (Vec 𝕋 n)) :
     ((toRealMat M) *ᵥ ·) '' I.construct ⊆ (Interval.mtimes M I).construct :=
   subset_trans (Real.Interval.mtimes_outer (toRealMat M) I.nominal)
     (Interval.aux_mtimes_outer_refines M I)

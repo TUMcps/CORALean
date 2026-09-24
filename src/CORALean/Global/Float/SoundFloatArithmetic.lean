@@ -16,6 +16,10 @@ plus one ulp outward both discharge these obligations.
 `toReal` is total into ℝ, so no instance has NaN or an infinity. Overflow is
 assumed away rather than modelled, and an implementation owes a range argument;
 that is the one gap between these axioms and a machine.
+
+`RealImage` lifts the reading to an ambient type, so that a representation is
+indexed by the type it stores, as the exact `Interval α` is, not by a dimension:
+`Interval (Mat 𝕋 m n)` then denotes an interval matrix with no second type.
 -/
 
 -- Authors:       Tobias Ladner
@@ -66,6 +70,15 @@ rather than naming `toRealMat`, so that at `𝕋 := ℝ` instance search sees th
 instance : Scalar 𝕋 where
   toRealMat M := fun i j => toReal (M i j)
   toRealVec v := fun i => toReal (v i)
+
+/-- The real ambient type a stored one denotes, and the reading: a vector of `𝕋`
+reads as a vector of ℝ, a matrix as a matrix. -/
+class RealImage (α : Type) (β : outParam Type) where
+  realImage : α → β
+
+instance : RealImage (Vec 𝕋 n) (Vec ℝ n) := ⟨toRealVec⟩
+
+instance : RealImage (Mat 𝕋 m n) (Mat ℝ m n) := ⟨toRealMat⟩
 
 /-! ## What the derived operations inherit -/
 

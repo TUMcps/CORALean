@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- [1, Def. 3]'s `I_k(i) ⊆ [y - δ, y + δ]`, decided by `le`. -/
-def inMergeBucket (le : 𝕋 → 𝕋 → Bool) (I : Interval 𝕋 n) (y δ : 𝕋) (i : Fin n) : Bool :=
+def inMergeBucket (le : 𝕋 → 𝕋 → Bool) (I : Interval (Vec 𝕋 n)) (y δ : 𝕋) (i : Fin n) : Bool :=
   le (subDown y δ) (I.inf i) && le (I.sup i) (addUp y δ)
 
 end CORALean

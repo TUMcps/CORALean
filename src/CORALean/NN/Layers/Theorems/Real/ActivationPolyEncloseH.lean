@@ -40,11 +40,11 @@ theorem Layer.activationPoly_enclose_h (P : LayerRelaxation ℝ n m)
       (∑ i ∈ Finset.range (m + 1), (s.h + s.q + 1) ^ i) + n := by -- --- PROOF ---
   show (PolyZonotope.plus
       (s.dependent.evalPoly (P.coeffList
-        (⟨s.interval.inf, s.interval.sup⟩ : Float.Interval ℝ n)))
+        (⟨s.interval.inf, s.interval.sup⟩ : Float.Interval (Vec ℝ n))))
       (Interval.polyZonotope (P.box
-        (⟨s.interval.inf, s.interval.sup⟩ : Float.Interval ℝ n)).nominal)).h = _
+        (⟨s.interval.inf, s.interval.sup⟩ : Float.Interval (Vec ℝ n))).nominal)).h = _
   have hlen :
-      (P.coeffList (⟨s.interval.inf, s.interval.sup⟩ : Float.Interval ℝ n)).length = m + 1 :=
+      (P.coeffList (⟨s.interval.inf, s.interval.sup⟩ : Float.Interval (Vec ℝ n))).length = m + 1 :=
     List.length_ofFn
   rw [PolyZonotope.plus_h, PolyZonotope.evalPoly_h, PolyZonotope.dependent_h, hlen,
     Interval.polyZonotope_h]

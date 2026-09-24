@@ -38,7 +38,7 @@ variable {σ : ℝ → ℝ} {m n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- the polynomial part, one neuron's own fit per coordinate, read without the scalar
-theorem aux_coord (P : LayerRelaxation ℝ n m) (J : Float.Interval ℝ n) (i : Fin n) :
+theorem aux_coord (P : LayerRelaxation ℝ n m) (J : Float.Interval (Vec ℝ n)) (i : Fin n) :
     ((P.coeffList J).map fun v => v i) = List.ofFn fun k => (P i).coeffs (J.inf i) (J.sup i) k :=
   LayerRelaxation.coeffList_coord P J i
 
@@ -52,7 +52,7 @@ theorem Layer.activationPoly_subset_inflate {P : LayerRelaxation ℝ n m}
     (hP : ∀ i, 2 * (P i).error (s.interval.inf i) (s.interval.sup i) ≤ ε) :
     construct ((Layer.activationPoly P).enclose s)
       ⊆ (fun x i => σ (x i)) '' construct s + Metric.closedBall 0 ε := by -- --- PROOF ---
-  set J : Float.Interval ℝ n := ⟨s.interval.inf, s.interval.sup⟩
+  set J : Float.Interval (Vec ℝ n) := ⟨s.interval.inf, s.interval.sup⟩
   -- the box is ordered, so `sound` at its left end says the error is nonnegative
   have herr : ∀ i, 0 ≤ (P i).error (s.interval.inf i) (s.interval.sup i) := fun i =>
     le_trans (abs_nonneg _)

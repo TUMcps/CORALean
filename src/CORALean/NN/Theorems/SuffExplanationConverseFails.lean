@@ -51,7 +51,7 @@ noncomputable def aux_suffExplanationConverseFails_nn :
   NeuralNetwork.ofLayer (LinearLayer.mk (0 : Mat ℝ 2 1) (fun k => if k = 1 then (1 : ℝ) else 0))
 
 /-- The symmetric `±1` error box: centred at `0`, wide enough to tie. -/
-def aux_suffExplanationConverseFails_box : Float.Interval ℝ 2 := ⟨fun _ => -1, fun _ => 1⟩
+def aux_suffExplanationConverseFails_box : Float.Interval (Vec ℝ 2) := ⟨fun _ => -1, fun _ => 1⟩
 
 -- the committed error is the centre of the box the layer runs, the box itself, so `0`
 theorem aux_suffExplanationConverseFails_box_center :

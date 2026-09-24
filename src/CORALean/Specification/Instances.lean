@@ -47,10 +47,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 abbrev aux_dirLin (a : Vec 𝕋 n) : Vec ℝ n →ₗ[ℝ] ℝ := rowLin (fun (_ : Fin 1) => a) 0
 
 /-- A box's bound along `a`. -/
-def aux_boxBound (I : Interval 𝕋 n) (a : Vec 𝕋 n) : 𝕋 :=
+def aux_boxBound (I : Interval (Vec 𝕋 n)) (a : Vec 𝕋 n) : 𝕋 :=
   (I.boundDot (c := aux_dirLin a) a fun _ => rfl).val
 
-theorem aux_boxBound_le (I : Interval 𝕋 n) :
+theorem aux_boxBound_le (I : Interval (Vec 𝕋 n)) :
     ∀ a, ∀ x ∈ I.construct, ∑ j, toReal (a j) * x j ≤ toReal (aux_boxBound I a) :=
   fun a => (I.boundDot (c := aux_dirLin a) a fun _ => rfl).le
 
@@ -63,10 +63,10 @@ theorem aux_zonoBound_le (Z : Zonotope 𝕋 n) :
   fun a => (Z.boundDot (c := aux_dirLin a) a fun _ => rfl).le
 
 /-- Every coordinate of `B` inside `I`'s. -/
-def aux_containsBox (I B : Interval 𝕋 n) : Bool :=
+def aux_containsBox (I B : Interval (Vec 𝕋 n)) : Bool :=
   (List.finRange n).all fun j => le (I.inf j) (B.inf j) && le (B.sup j) (I.sup j)
 
-theorem aux_containsBox_sound {I B : Interval 𝕋 n} (h : aux_containsBox I B = true) :
+theorem aux_containsBox_sound {I B : Interval (Vec 𝕋 n)} (h : aux_containsBox I B = true) :
     B.construct ⊆ I.construct := by -- --- PROOF ---
   simp only [aux_containsBox, List.all_eq_true, List.mem_finRange, Bool.and_eq_true,
     forall_const] at h
@@ -76,10 +76,10 @@ theorem aux_containsBox_sound {I B : Interval 𝕋 n} (h : aux_containsBox I B =
   exact ⟨le_trans (toReal_le_of_le (h j).1) hlo, le_trans hhi (toReal_le_of_le (h j).2)⟩
 
 /-- One coordinate in which `B` lies strictly to one side of `I`. -/
-def aux_disjointBox (I B : Interval 𝕋 n) : Bool :=
+def aux_disjointBox (I B : Interval (Vec 𝕋 n)) : Bool :=
   (List.finRange n).any fun j => ltStrict (B.sup j) (I.inf j) || ltStrict (I.sup j) (B.inf j)
 
-theorem aux_disjointBox_sound {I B : Interval 𝕋 n} (h : aux_disjointBox I B = true) :
+theorem aux_disjointBox_sound {I B : Interval (Vec 𝕋 n)} (h : aux_disjointBox I B = true) :
     Disjoint B.construct I.construct := by -- --- PROOF ---
   simp only [aux_disjointBox, List.any_eq_true, List.mem_finRange, Bool.or_eq_true,
     true_and] at h
@@ -141,17 +141,17 @@ theorem aux_disjointRows_sound {P : HPolytope 𝕋 n} {X : Set (Vec ℝ n)} {bnd
 
 /-- Through the interval hull, so exact at a box and, for `contains`, at a zonotope. -/
 instance {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [IntervalOuter S 𝕋] :
-    Contains (Interval 𝕋 n) (S n) where
+    Contains (Interval (Vec 𝕋 n)) (S n) where
   contains I s := aux_containsBox I (IntervalOuter.interval s)
   contains_sound _ s h := (IntervalOuter.interval_outer s).trans (aux_containsBox_sound h)
 
 /-- Axis-aligned separation of the interval hull: conservative beyond a box. -/
 instance {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [IntervalOuter S 𝕋] :
-    IsDisjoint (Interval 𝕋 n) (S n) where
+    IsDisjoint (Interval (Vec 𝕋 n)) (S n) where
   isDisjoint I s := aux_disjointBox I (IntervalOuter.interval s)
   isDisjoint_sound _ s h := (aux_disjointBox_sound h).mono_left (IntervalOuter.interval_outer s)
 
-instance : Contains (HPolytope 𝕋 n) (Interval 𝕋 n) where
+instance : Contains (HPolytope 𝕋 n) (Interval (Vec 𝕋 n)) where
   contains P I := aux_containsRows P (aux_boxBound I)
   contains_sound _ I := aux_containsRows_sound (aux_boxBound_le I)
 
@@ -159,7 +159,7 @@ instance : Contains (HPolytope 𝕋 n) (Zonotope 𝕋 n) where
   contains P Z := aux_containsRows P (aux_zonoBound Z)
   contains_sound _ Z := aux_containsRows_sound (aux_zonoBound_le Z)
 
-instance : IsDisjoint (HPolytope 𝕋 n) (Interval 𝕋 n) where
+instance : IsDisjoint (HPolytope 𝕋 n) (Interval (Vec 𝕋 n)) where
   isDisjoint P I := aux_disjointRows P (aux_boxBound I)
   isDisjoint_sound _ I := aux_disjointRows_sound (aux_boxBound_le I)
 
@@ -171,14 +171,14 @@ open scoped CORALean.Real in
 /-- The box's `Contains`/`IsDisjoint` at an exact real-layer family, `S` fixed rather than
 inferred — what the generic instance above cannot do at a family written as a lambda. -/
 noncomputable instance containsBoxRealInterval :
-    Contains (Interval ℝ n) (Real.Interval (Vec ℝ n)) where
+    Contains (Interval (Vec ℝ n)) (Real.Interval (Vec ℝ n)) where
   contains I s := aux_containsBox I (IntervalOuter.interval (S := ℐ𝒱) s)
   contains_sound _ s h :=
     (IntervalOuter.interval_outer (S := ℐ𝒱) s).trans (aux_containsBox_sound h)
 
 open scoped CORALean.Real in
 noncomputable instance isDisjointBoxRealInterval :
-    IsDisjoint (Interval ℝ n) (Real.Interval (Vec ℝ n)) where
+    IsDisjoint (Interval (Vec ℝ n)) (Real.Interval (Vec ℝ n)) where
   isDisjoint I s := aux_disjointBox I (IntervalOuter.interval (S := ℐ𝒱) s)
   isDisjoint_sound _ s h :=
     (aux_disjointBox_sound h).mono_left (IntervalOuter.interval_outer (S := ℐ𝒱) s)
@@ -186,14 +186,14 @@ noncomputable instance isDisjointBoxRealInterval :
 -- The same pair at the second exact family a box can be hulled from.
 open scoped CORALean.Real in
 noncomputable instance containsBoxRealZonotope :
-    Contains (Interval ℝ n) (Real.Zonotope (Vec ℝ n)) where
+    Contains (Interval (Vec ℝ n)) (Real.Zonotope (Vec ℝ n)) where
   contains I s := aux_containsBox I (IntervalOuter.interval (S := 𝒵) s)
   contains_sound _ s h :=
     (IntervalOuter.interval_outer (S := 𝒵) s).trans (aux_containsBox_sound h)
 
 open scoped CORALean.Real in
 noncomputable instance isDisjointBoxRealZonotope :
-    IsDisjoint (Interval ℝ n) (Real.Zonotope (Vec ℝ n)) where
+    IsDisjoint (Interval (Vec ℝ n)) (Real.Zonotope (Vec ℝ n)) where
   isDisjoint I s := aux_disjointBox I (IntervalOuter.interval (S := 𝒵) s)
   isDisjoint_sound _ s h :=
     (aux_disjointBox_sound h).mono_left (IntervalOuter.interval_outer (S := 𝒵) s)
@@ -201,14 +201,14 @@ noncomputable instance isDisjointBoxRealZonotope :
 -- The same pair once more, at the third exact family a box can be hulled from.
 open scoped CORALean.Real in
 noncomputable instance containsBoxRealConZonotope :
-    Contains (Interval ℝ n) (Real.ConZonotope (Vec ℝ n)) where
+    Contains (Interval (Vec ℝ n)) (Real.ConZonotope (Vec ℝ n)) where
   contains I s := aux_containsBox I (IntervalOuter.interval (S := 𝒞) s)
   contains_sound _ s h :=
     (IntervalOuter.interval_outer (S := 𝒞) s).trans (aux_containsBox_sound h)
 
 open scoped CORALean.Real in
 noncomputable instance isDisjointBoxRealConZonotope :
-    IsDisjoint (Interval ℝ n) (Real.ConZonotope (Vec ℝ n)) where
+    IsDisjoint (Interval (Vec ℝ n)) (Real.ConZonotope (Vec ℝ n)) where
   isDisjoint I s := aux_disjointBox I (IntervalOuter.interval (S := 𝒞) s)
   isDisjoint_sound _ s h :=
     (aux_disjointBox_sound h).mono_left (IntervalOuter.interval_outer (S := 𝒞) s)

@@ -37,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 structure VPolytope (𝕋 : Type) (n : ℕ) where
   k : ℕ
   V : Mat 𝕋 n k
-  E : Interval 𝕋 n
+  E : Interval (Vec 𝕋 n)
 
 instance [SoundFloatArithmetic 𝕋] :
     InflatedContSet (VPolytope 𝕋 n) (CORALean.Real.VPolytope (Vec ℝ n)) 𝕋 n where

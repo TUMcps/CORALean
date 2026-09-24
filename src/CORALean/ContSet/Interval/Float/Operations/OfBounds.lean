@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ} {S 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def Interval.ofBounds (up : ∀ j, FloatBound 𝕋 S (LinearMap.proj j))
-    (lo : ∀ j, FloatBound 𝕋 S (-LinearMap.proj j)) : Interval 𝕋 n where
+    (lo : ∀ j, FloatBound 𝕋 S (-LinearMap.proj j)) : Interval (Vec 𝕋 n) where
   inf := fun j => neg (lo j).val
   sup := fun j => (up j).val
 

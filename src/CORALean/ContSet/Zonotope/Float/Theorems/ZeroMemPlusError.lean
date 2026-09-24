@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- `Interval.plus` of two boxes that bracket `0` brackets `0`: each rounded
 bound sits on the sound side of the sum of the two exact ones. -/
-theorem Zonotope.aux_zero_mem_interval_plus {I J : Interval 𝕋 n}
+theorem Zonotope.aux_zero_mem_interval_plus {I J : Interval (Vec 𝕋 n)}
     (hI : (0 : Vec ℝ n) ∈ I.construct) (hJ : (0 : Vec ℝ n) ∈ J.construct) :
     (0 : Vec ℝ n) ∈ (I.plus J).construct := by -- --- PROOF ---
   intro i

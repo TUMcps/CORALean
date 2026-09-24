@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m h : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Zonotope.aux_zero_mem_interval_plus' {I J : Interval 𝕋 n}
+theorem Zonotope.aux_zero_mem_interval_plus' {I J : Interval (Vec 𝕋 n)}
     (hI : (0 : Vec ℝ n) ∈ I.construct) (hJ : (0 : Vec ℝ n) ∈ J.construct) :
     (0 : Vec ℝ n) ∈ (I.plus J).construct := by -- --- PROOF ---
   intro i
@@ -44,7 +44,7 @@ theorem Zonotope.aux_zero_mem_interval_plus' {I J : Interval 𝕋 n}
 
 /-- `Interval.mtimes` keeps `0`: each row's rounded bound is charged against a
 term whose real value already sits on the sound side of `0`. -/
-theorem Zonotope.aux_zero_mem_interval_mtimes {M : Mat 𝕋 m n} {I : Interval 𝕋 n}
+theorem Zonotope.aux_zero_mem_interval_mtimes {M : Mat 𝕋 m n} {I : Interval (Vec 𝕋 n)}
     (hI : (0 : Vec ℝ n) ∈ I.construct) :
     (0 : Vec ℝ m) ∈ (Interval.mtimes M I).construct := by -- --- PROOF ---
   intro i

@@ -37,7 +37,7 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- The box, given one proposed length per coordinate. -/
-def Ellipsoid.interval (E : Ellipsoid 𝕋 n) (s : Vec 𝕋 n) : Interval 𝕋 n where
+def Ellipsoid.interval (E : Ellipsoid 𝕋 n) (s : Vec 𝕋 n) : Interval (Vec 𝕋 n) where
   inf := fun i => addDown (subDown (E.q i) (absolute (s i))) (E.err.inf i)
   sup := fun i => addUp (addUp (E.q i) (absolute (s i))) (E.err.sup i)
 

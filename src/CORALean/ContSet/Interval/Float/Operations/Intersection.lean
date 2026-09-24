@@ -24,7 +24,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Interval.intersection (I₁ I₂ : Interval 𝕋 n) : Interval 𝕋 n where
+def Interval.intersection (I₁ I₂ : Interval (Vec 𝕋 n)) : Interval (Vec 𝕋 n) where
   inf := fun j => maximum (I₁.inf j) (I₂.inf j)
   sup := fun j => minimum (I₁.sup j) (I₂.sup j)
 

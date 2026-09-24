@@ -24,8 +24,8 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The two right-hand sides side by side. Copied, so nothing here rounds. -/
-def ConPolyZono.plusB {m₁ m₂ : ℕ} (b₁ : Interval 𝕋 m₁) (b₂ : Interval 𝕋 m₂) :
-    Interval 𝕋 (m₁ + m₂) :=
+def ConPolyZono.plusB {m₁ m₂ : ℕ} (b₁ : Interval (Vec 𝕋 m₁)) (b₂ : Interval (Vec 𝕋 m₂)) :
+    Interval (Vec 𝕋 (m₁ + m₂)) :=
   ⟨Fin.append b₁.inf b₂.inf, Fin.append b₁.sup b₂.sup⟩
 
 end CORALean.Float

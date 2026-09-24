@@ -48,7 +48,7 @@ merging has added to its output. -/
 structure ReducedLinear (𝕋 : Type) (n m : ℕ) where
   W : Mat 𝕋 m n
   b : Vec 𝕋 m
-  I' : Float.Interval 𝕋 m
+  I' : Float.Interval (Vec 𝕋 m)
 
 
 -- ========================================  MAIN TYPE  ========================================= --

@@ -24,7 +24,7 @@ open FloatOps SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ} {P : HPolytope 𝕋 n}
 
 def HPolytope.interval (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
-    (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) : Interval 𝕋 n :=
+    (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) : Interval (Vec 𝕋 n) :=
   Interval.ofBounds up lo
 
 

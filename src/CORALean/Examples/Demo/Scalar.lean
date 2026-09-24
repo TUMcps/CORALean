@@ -38,7 +38,7 @@ def dy {p : ℕ} (m e : ℤ) : Dyadic p := ⟨m, e⟩
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Zero width in every coordinate: what a set that has not rounded yet owes. -/
-def zeroBox {p : ℕ} (n : ℕ) : Interval (Dyadic p) n := ⟨fun _ => dy 0 0, fun _ => dy 0 0⟩
+def zeroBox {p : ℕ} (n : ℕ) : Interval (Vec (Dyadic p) n) := ⟨fun _ => dy 0 0, fun _ => dy 0 0⟩
 
 end CORALean.Demo
 

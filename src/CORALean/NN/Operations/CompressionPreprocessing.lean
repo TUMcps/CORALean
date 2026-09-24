@@ -43,21 +43,22 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 by `Φ_pre` first and reduced on the fly at rate `ρ`; `none` where [1, Alg. 1] gave out. -/
 def compressionPreprocessing (le : 𝕋 → 𝕋 → Bool) (tol : 𝕋) (fuel : ℕ) (R_relu : Relaxation 𝕋)
     (hσ_relu : ∃ σ : ℝ → ℝ, R_relu.Sound σ)
-    {n n₁ m : ℕ} (I_X : Interval 𝕋 n) (L_1 : ReducedLinear 𝕋 n n₁) (L_2 : Relaxation 𝕋)
+    {n n₁ m : ℕ} (I_X : Interval (Vec 𝕋 n)) (L_1 : ReducedLinear 𝕋 n n₁) (L_2 : Relaxation 𝕋)
     (hσ_2 : ∃ σ : ℝ → ℝ, L_2.Sound σ)
     (B_2 : MergeBuckets 𝕋) (rest : ReducibleNetwork 𝕋 n₁ m) (ρ : 𝕋) : Option (S m) :=
   let L_m2 := ReducedLinear.identity (𝕋 := 𝕋) n                     -- Alg. 3, line 1: L_{-2}
   let L_m1 := R_relu                                                -- Alg. 3, line 1: L_{-1}
-  let I_m1 := (Layer.activation (S := Interval 𝕋) L_m1).enclose
-    ((L_m2.toLayer (S := Interval 𝕋)).enclose I_X)                  -- Alg. 3, line 2 (Alg. 2, l. 5)
+  let I_m1 :=                                                       -- Alg. 3, line 2 (Alg. 2, l. 5)
+    (Layer.activation (S := fun n => Interval (Vec 𝕋 n)) L_m1).enclose
+      ((L_m2.toLayer (S := fun n => Interval (Vec 𝕋 n))).enclose I_X)
   match bucketTolerance le tol fuel .dynamic I_m1 ρ with            -- Alg. 3, line 2 (Alg. 2, l. 6)
   | none => none
   | some B_m1δ =>
     let part := Partition.ofPred fun i => B_m1δ i = true            -- Alg. 3, line 2 (Alg. 2, l. 7)
     let Lhat_m2 := L_m2.mergeRows part                              -- Alg. 3, line 2: L̂_{-2}
     let Lhat_1 := L_1.mergeCols part I_m1                           -- Alg. 3, line 2: L̂_0, in L_1
-    let H_m2 := ofInterval
-      ((Lhat_m2.toLayer (S := Interval 𝕋)).enclose I_X)             -- Alg. 3, line 3
+    let H_m2 := ofInterval                                          -- Alg. 3, line 3
+      ((Lhat_m2.toLayer (S := fun n => Interval (Vec 𝕋 n))).enclose I_X)
     let Φ'_org := ReducibleNetwork.cons (ReducedLinear.identity _) L_m1 hσ_relu .dynamic
       (.cons Lhat_1 L_2 hσ_2 B_2 rest)                              -- Alg. 3, line 4
     match reduceOnTheFly le tol fuel H_m2 ρ Φ'_org with             -- Alg. 3, line 5

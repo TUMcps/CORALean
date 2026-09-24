@@ -38,7 +38,7 @@ variable {σ : ℝ → ℝ} {m n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- the polynomial part, one neuron's own fit per coordinate, read without the scalar
-theorem aux_coord (P : LayerRelaxation ℝ n m) (J : Float.Interval ℝ n) (i : Fin n) :
+theorem aux_coord (P : LayerRelaxation ℝ n m) (J : Float.Interval (Vec ℝ n)) (i : Fin n) :
     ((P.coeffList J).map fun v => v i) = List.ofFn fun k => (P i).coeffs (J.inf i) (J.sup i) k :=
   LayerRelaxation.coeffList_coord P J i
 
@@ -53,7 +53,7 @@ theorem Layer.activationPolyOn_outer {P : LayerRelaxation ℝ n m} (hP : ∀ i, 
     rw [← PolyZonotope.dependent_exact s]
     exact hx
   obtain ⟨a, ha, hxa⟩ := s.dependent.exists_point_of_q_zero rfl hxd
-  set J' : Float.Interval ℝ n := ⟨J.inf, J.sup⟩
+  set J' : Float.Interval (Vec ℝ n) := ⟨J.inf, J.sup⟩
   -- the polynomial part, read at the very factors `x` itself came from
   have hpval : (s.dependent.evalPoly (P.coeffList J')).point
         (fun k => a (Fin.cast (s.dependent.evalPoly_p (P.coeffList J')) k))

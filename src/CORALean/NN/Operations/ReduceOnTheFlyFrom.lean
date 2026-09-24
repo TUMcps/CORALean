@@ -51,8 +51,9 @@ def reduceOnTheFlyFrom (le : 𝕋 → 𝕋 → Bool) (tol : 𝕋) (fuel : ℕ) (
     some (.cons Lhat_km1 L_k hσ_k B .nil, H_k)                      -- Alg. 2, line 13: Y ← H_κ
   | _, _, _, H_km2, Lhat_km1, L_k, hσ_k, B, .cons L_kp1 L_kp2 hσ_kp2 B' rest =>  -- l. 3: k < κ
     let I_km2 := interval H_km2                                     -- Alg. 2, line 4
-    let I_k := (Layer.activation (S := Interval 𝕋) L_k).enclose
-      ((Lhat_km1.toLayer (S := Interval 𝕋)).enclose I_km2)          -- Alg. 2, line 5
+    let I_k :=                                                      -- Alg. 2, line 5
+      (Layer.activation (S := fun n => Interval (Vec 𝕋 n)) L_k).enclose
+        ((Lhat_km1.toLayer (S := fun n => Interval (Vec 𝕋 n))).enclose I_km2)
     match bucketTolerance le tol fuel B I_k ρ with                  -- Alg. 2, line 6
     | none => none
     | some B_kδ =>

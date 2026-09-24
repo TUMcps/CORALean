@@ -22,7 +22,7 @@ open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
-def Zonotope.interval (Z : Zonotope 𝕋 n) : Interval 𝕋 n where
+def Zonotope.interval (Z : Zonotope 𝕋 n) : Interval (Vec 𝕋 n) where
   inf := fun i => addDown (subDown (Z.c i) (radius Z.G i)) (Z.E.inf i)
   sup := fun i => addUp (addUp (Z.c i) (radius Z.G i)) (Z.E.sup i)
 

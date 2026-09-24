@@ -24,7 +24,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Interval.linComb (I₁ I₂ : Interval 𝕋 n) : Interval 𝕋 n where
+def Interval.linComb (I₁ I₂ : Interval (Vec 𝕋 n)) : Interval (Vec 𝕋 n) where
   inf := fun i => minimum (I₁.inf i) (I₂.inf i)
   sup := fun i => maximum (I₁.sup i) (I₂.sup i)
 

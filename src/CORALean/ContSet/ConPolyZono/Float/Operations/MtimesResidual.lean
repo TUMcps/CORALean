@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n k : ℕ}
 
 /-- What `mtimes` owes beyond its nominal part: the centre, and both generator
 blocks. The constraints owe nothing, being copied. -/
-def ConPolyZono.mtimesResidual (M : Mat 𝕋 k n) (cPZ : ConPolyZono 𝕋 n) : Interval 𝕋 k :=
+def ConPolyZono.mtimesResidual (M : Mat 𝕋 k n) (cPZ : ConPolyZono 𝕋 n) : Interval (Vec 𝕋 k) :=
   ((Interval.residual (mulVecDown M cPZ.c) (mulVecUp M cPZ.c) (mulVecDown M cPZ.c)).plus
       (PolyZonotope.generatorError (matMulDiff M cPZ.G))).plus
     (PolyZonotope.generatorError (matMulDiff M cPZ.GI))
