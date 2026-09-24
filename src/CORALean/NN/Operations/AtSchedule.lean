@@ -1,3 +1,4 @@
+import CORALean.NN.Layers.Instances
 import CORALean.NN.Definitions.RefinableNetwork
 import CORALean.NN.Definitions.Schedule
 import CORALean.NN.Layers.Layer
@@ -34,9 +35,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- The network a schedule names: each layer at its own pattern. -/
 def RefinableNetwork.atSchedule : ∀ {n m : ℕ}, RefinableNetwork S n m → Schedule →
     NeuralNetwork S n m
-  | _, _, .nil, _ => .nil
+  | _, _, .nil, _ => .output
   | _, _, .cons L rest, sch =>
-      .cons (L.atPattern (Schedule.head sch _)) (rest.atSchedule (Schedule.tail sch))
+      .layer (L.atPattern (Schedule.head sch _)) (rest.atSchedule (Schedule.tail sch))
 
 end CORALean
 

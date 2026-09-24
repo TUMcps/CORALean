@@ -10,6 +10,7 @@ import CORALean.NN.Theorems.EncloseAtInflate
 import CORALean.NN.Theorems.EncloseAtOuter
 import CORALean.NN.Theorems.EncloseNotMonotone
 import CORALean.NN.Theorems.EncloseOuter
+import CORALean.NN.Theorems.EncloseOuterEval
 import CORALean.NN.Theorems.EvalDifferentiable
 import CORALean.NN.Theorems.EvalLipschitz
 import CORALean.NN.Theorems.ExistsMergeBucketAll
@@ -70,6 +71,10 @@ import CORALean.NN.Theorems.SensitivitySigmoid
 import CORALean.NN.Theorems.SensitivityTanh
 import CORALean.NN.Theorems.SigmoidLipschitz
 import CORALean.NN.Theorems.SigmoidRefinementConverges
+import CORALean.NN.Theorems.SoundEval
+import CORALean.NN.Theorems.SoundHoldsAllOfEnclose
+import CORALean.NN.Theorems.SoundHoldsOfEnclose
+import CORALean.NN.Theorems.SoundVerifySplitSound
 import CORALean.NN.Theorems.SuffExplanation
 import CORALean.NN.Theorems.SuffExplanationAbstract
 import CORALean.NN.Theorems.SuffExplanationConverseFails

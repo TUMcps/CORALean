@@ -1,6 +1,7 @@
 import CORALean.NN.Layers.Theorems.AbsSubEvalPolyDerivLe
 import CORALean.NN.Layers.Theorems.AbsSubLeBracketError
 import CORALean.NN.Layers.Theorems.AbsSubLeSpread
+import CORALean.NN.Layers.Theorems.ActivationLayerOfSound
 import CORALean.NN.Layers.Theorems.ActivationPolySound
 import CORALean.NN.Layers.Theorems.ActivationSound
 import CORALean.NN.Layers.Theorems.AllOverApply

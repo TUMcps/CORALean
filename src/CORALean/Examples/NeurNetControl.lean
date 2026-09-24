@@ -7,8 +7,10 @@ import CORALean.ContSet.Zonotope.Real.Instances
 import CORALean.NN.Layers.Definitions.Enclosure
 import CORALean.NN.Layers.Definitions.Relaxation
 import CORALean.NN.Layers.Definitions.Relu
+import CORALean.NN.Layers.Instances
 import CORALean.NN.Layers.Operations.Linear
 import CORALean.NN.Layers.Operations.Relu
+import CORALean.NN.Layers.Operations.ReluSlope
 
 /-!
 # A two-state plant with a ReLU controller, verified end to end
@@ -51,8 +53,8 @@ out. The input is read straight as the plant's — neither plant carries a `B`, 
 the controller's last layer is where an actuation matrix would go. -/
 noncomputable def Example.nnController (W₁ : Mat ℝ 3 2) (b₁ : Vec ℝ 3) (W₂ : Mat ℝ 2 3)
     (b₂ : Vec ℝ 2) : NeuralNetwork 𝒵 2 2 :=
-  .cons (Layer.linear (S := 𝒵) W₁ b₁)
-    (.cons Layer.relu (.cons (Layer.linear W₂ b₂) .nil))
+  .layer (LinearLayer.mk W₁ b₁)
+    (.layer (ReluLayer.mk (𝕋 := ℝ) reluSlope rfl) (.layer (LinearLayer.mk W₂ b₂) .output))
 
 noncomputable def Example.nnControlledDT (A : Mat ℝ 2 2) (W₁ : Mat ℝ 3 2) (b₁ : Vec ℝ 3)
     (W₂ : Mat ℝ 2 3) (b₂ : Vec ℝ 2) : NeurNetContrSysDT ℝ 𝒵 2 where

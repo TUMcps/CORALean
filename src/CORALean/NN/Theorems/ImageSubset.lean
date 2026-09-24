@@ -3,8 +3,8 @@ import CORALean.NN.Operations.Enclose
 /-!
 # The image sits inside the enclosed one
 
-Induction on `Sound`, the exact map and `enclose` unfolding in step: at `nil`
-both are the identity, at `cons` `Layer.Sound.image_subset` gets the head
+Induction on `Sound`, the exact map and `enclose` unfolding in step: at `output`
+both are the identity, at `layer` `Layer.Sound.image_subset` gets the head
 layer's set inside the head layer's enclosure, and the tail's own induction
 carries that the rest of the way — the form `Verified` composes with
 `Specification.holds_of_outer`.
@@ -35,11 +35,11 @@ theorem NeuralNetwork.Sound.aux_image_subset {n m : ℕ} {nn : NeuralNetwork S n
     ∀ (A : Set (Vec ℝ n)) (b : S n), A ⊆ construct b →
       f '' A ⊆ construct (nn.enclose b) := by -- --- PROOF ---
   induction hf with
-  | nil hn =>
+  | output hn =>
       rintro A b h _ ⟨x, hx, rfl⟩
       rw [hn x]
       exact h hx
-  | cons hL _ hcons ih =>
+  | layer hL _ hcons ih =>
       rintro A b h _ ⟨x, hx, rfl⟩
       rw [hcons x]
       exact ih _ _ ((Set.image_mono h).trans (hL.image_subset b)) ⟨_, ⟨x, hx, rfl⟩, rfl⟩

@@ -6,10 +6,10 @@ import CORALean.NN.Theorems.NeuronMergingOuter
 # `ReducesAt` is sound
 
 Induction on the derivation. `nil`: `eval` is the identity, so `image` is `construct s`
-itself. `keep`: `L.enclose_outer` moves the point past the layer, then the hypothesis at that
+itself. `keep`: `hg.enclose_outer` moves the point past the layer, then the hypothesis at that
 set. `merge`: `neuronMerging_sandwich_outer` moves it past the sandwich, then the hypothesis at
 that set — the four-layer chain splitting as `rest.eval (sandwich.eval x)` and likewise for
-`enclose`, both by `rfl` since `NeuralNetwork.eval`/`enclose` unfold definitionally on `cons`.
+`enclose`, both by `rfl` since `NeuralNetwork.eval`/`enclose` unfold definitionally on `layer`.
 `image_eq_eval_image` is what reopens each of those sets to a point in the first place.
 `widen`: `linearWithError_mem`, the bias being one value of the box. `freeze`: the survivors
 pass the trimmed layers as in `merge`, and the bucket's own value `w` is the one the hypothesis
@@ -43,7 +43,7 @@ theorem NeuralNetwork.reducesAt_outer :
       rintro _ ⟨x, hx, rfl⟩
       rw [hid x]
       exact hx
-  | _, _, s, _, _, _, .keep _ L hg hcomp h => by
+  | _, _, s, _, _, _, .keep (inst := _) _ curr hg hcomp h => by
       rintro _ ⟨x, hx, rfl⟩
       rw [hcomp x]
       exact reducesAt_outer h ⟨_, hg.enclose_outer s x hx, rfl⟩
@@ -55,7 +55,9 @@ theorem NeuralNetwork.reducesAt_outer :
   | _, _, s, _, _, _, .widen _ W c b E hc hcomp h => by
       rintro _ ⟨x, hx, rfl⟩
       rw [hcomp x]
-      exact reducesAt_outer h ⟨_, Layer.linearWithError_mem W hc s hx, rfl⟩
+      -- the layer runs the box's nonempty hull, which holds the box
+      have hE := Float.Interval.construct_subset_nonemptyHull _ hc
+      exact reducesAt_outer h ⟨_, Layer.linearWithError_mem W hE s hx, rfl⟩
   | _, _, s, _, _, _, .freeze (σ := σ) _ part W0 c0 b0 E0 hc0 R hR W1 c1 Y hY hcomp h => by
       rintro _ ⟨x, hx, rfl⟩
       set v : Vec ℝ _ := fun i => σ ((W0 *ᵥ x + c0) i) with hv
@@ -66,7 +68,8 @@ theorem NeuralNetwork.reducesAt_outer :
       have hc : c0 ∘ part.left - b0 ∘ part.left
           ∈ construct (⟨E0.inf ∘ part.left, E0.sup ∘ part.left⟩ : Float.Interval ℝ _) :=
         fun i => hc0 (part.left i)
-      have hA1 := Layer.linearWithError_mem (S := S) (W0.submatrix part.left id) hc s hx
+      have hA1 := Layer.linearWithError_mem (S := S) (W0.submatrix part.left id)
+        (Float.Interval.construct_subset_nonemptyHull _ hc) s hx
       rw [Float.toRealMat_real, hrow] at hA1
       have hA2 := (Layer.activation_sound (S := S) hR).enclose_outer _ _ hA1
       -- the bucket is frozen at its own value, which its bounds admit

@@ -6,6 +6,8 @@ import CORALean.NN.Layers.Definitions.Relaxation
 import CORALean.NN.Layers.Definitions.Relu
 import CORALean.NN.Layers.Definitions.ScaleRounding
 import CORALean.NN.Layers.Definitions.Softmax
+import CORALean.NN.Layers.Definitions.SoftmaxExactLayer
+import CORALean.NN.Layers.Instances
 import CORALean.NN.Layers.Operations.AvgPool
 import CORALean.NN.Layers.Operations.BatchNorm
 import CORALean.NN.Layers.Operations.Conv
@@ -14,6 +16,7 @@ import CORALean.NN.Layers.Operations.Linear
 import CORALean.NN.Layers.Operations.MaxPool
 import CORALean.NN.Layers.Operations.RelaxationBox
 import CORALean.NN.Layers.Operations.Relu
+import CORALean.NN.Layers.Operations.ReluSlope
 import CORALean.NN.Layers.Operations.Reshape
 import CORALean.NN.Layers.Operations.Softmax
 import CORALean.NN.Layers.Operations.TransposeEquiv
@@ -76,13 +79,13 @@ theorem Example.convTap_injective (j : Fin 5) : Function.Injective (Example.conv
 normalized and turned into two class scores. -/
 noncomputable def Example.convNet (K : Fin 1 → Fin 2 → ℝ) (b : Vec ℝ 5)
     (gamma beta mean var : Vec ℝ 2) : NeuralNetwork 𝒵 6 2 :=
-  .cons (Layer.reshape (S := 𝒵) (Fin.transposeEquiv 3 2))
-    (.cons (Layer.conv (fun _ => 0) Example.convTap K b)
-      (.cons Layer.relu
-        (.cons (Layer.maxPool Example.poolTap fun _ _ => 0)
-          (.cons (Layer.batchNorm id (fun k => batchNormScale (gamma k) (var k) 1e-5)
-              fun k => batchNormShift (gamma k) (beta k) (mean k) (var k) 1e-5)
-            (.cons Layer.softmax .nil)))))
+  .layer (ReshapeLayer.mk (Fin.transposeEquiv 3 2))
+    (.layer (ConvLayer.mk 1 2 (fun _ => 0) Example.convTap K b Example.convTap_injective)
+      (.layer (ReluLayer.mk (𝕋 := ℝ) reluSlope rfl)
+        (.layer (MaxPoolLayer.mk (𝕋 := ℝ) 1 Example.poolTap fun _ _ => 0)
+          (.layer (BatchNormLayer.mk 2 id (fun k => batchNormScale (gamma k) (var k) 1e-5)
+              (fun k => batchNormShift (gamma k) (beta k) (mean k) (var k) 1e-5) rfl)
+            (.layer (SoftmaxLayer.mk rfl) .output)))))
 
 -- anonymous, since their content is that they elaborate at this network
 

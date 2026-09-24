@@ -1,12 +1,14 @@
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.MinkDiffInner
 import CORALean.ContSet.Interval.Float.Theorems.LinCombOuter
+import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+import CORALean.ContSet.Interval.Float.Theorems.MinkDiffInner
 import CORALean.ContSet.Interval.Float.Theorems.MtimesIsNonempty
 import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
-import CORALean.ContSet.Interval.Float.Theorems.MemPoint
-import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
-import CORALean.ContSet.Interval.Float.Theorems.ReindexNominal
+import CORALean.ContSet.Interval.Float.Theorems.NonemptyHullIsNonempty
+import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 import CORALean.ContSet.Interval.Float.Theorems.ReindexExact
+import CORALean.ContSet.Interval.Float.Theorems.ReindexNominal
+import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
+import CORALean.ContSet.Interval.Float.Theorems.SubsetNonemptyHull
 
 /-!
 # What `Interval` guarantees

@@ -1,5 +1,6 @@
 import CORALean.NN.Layers.Cost.API
 import CORALean.NN.Layers.Definitions.API
+import CORALean.NN.Layers.Instances
 import CORALean.NN.Layers.Layer
 import CORALean.NN.Layers.Operations.API
 import CORALean.NN.Layers.Theorems.API

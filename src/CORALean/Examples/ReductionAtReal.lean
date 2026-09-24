@@ -62,7 +62,7 @@ example {d r n0 n2 : ℕ} (part : Split (Fin n) into (Fin d) ⊕ (Fin r)) (W0 : 
     (b1 : Vec ℝ n2) (Y : Float.Interval ℝ n) (X : S n0)
     (hY : ∀ x ∈ construct X, (fun i => σ ((W0 *ᵥ x + b0) i)) ∈ construct Y) :
     (fun x => W1 *ᵥ (fun i => σ ((W0 *ᵥ x + b0) i)) + b1) '' construct X
-      ⊆ construct ((mergedSandwich part W0 b0 R W1 b1 Y : NeuralNetwork S n0 n2).enclose X) :=
+      ⊆ construct ((mergedSandwich part W0 b0 hR W1 b1 Y : NeuralNetwork S n0 n2).enclose X) :=
   neuronMerging_sandwich_outer part W0 b0 R hR W1 b1 Y X hY
 
 /-- [1, Thm. 1] at a network of layers: an instance network is an instance. -/
@@ -78,10 +78,11 @@ example {le : ℝ → ℝ → Bool} {tol : ℝ} {fuel : ℕ} {ρ : ℝ} {X : S n
 example {le : ℝ → ℝ → Bool} {tol : ℝ} {fuel : ℕ} {R_relu : Relaxation ℝ}
     (hR : R_relu.Sound Real.relu) {n₁ : ℕ} {I_X : Float.Interval ℝ n}
     (hX : ∀ x ∈ I_X.construct, ∀ i, 0 ≤ x i) {L_1 : ReducedLinear ℝ n n₁}
-    {L_2 : Relaxation ℝ} {B_2 : MergeBuckets ℝ} {rest : ReducibleNetwork ℝ n₁ m}
-    {nn : NeuralNetwork S n m} {f : Vec ℝ n → Vec ℝ m}
-    (hΦ : (ReducibleNetwork.cons L_1 L_2 B_2 rest).InstanceNetwork nn f) {ρ : ℝ} {Y : S m}
-    (hrun : compressionPreprocessing le tol fuel R_relu I_X L_1 L_2 B_2 rest ρ = some Y) :
+    {L_2 : Relaxation ℝ} {hL_2 : ∃ σ : ℝ → ℝ, L_2.Sound σ} {B_2 : MergeBuckets ℝ}
+    {rest : ReducibleNetwork ℝ n₁ m} {nn : NeuralNetwork S n m} {f : Vec ℝ n → Vec ℝ m}
+    (hΦ : (ReducibleNetwork.cons L_1 L_2 hL_2 B_2 rest).InstanceNetwork nn f) {ρ : ℝ} {Y : S m}
+    (hrun : compressionPreprocessing le tol fuel R_relu ⟨_, hR⟩ I_X L_1 L_2 hL_2 B_2 rest ρ
+      = some Y) :
     f '' I_X.construct ⊆ construct Y :=
   compressionPreprocessing_outer hR hX (instance_of_instanceNetwork hΦ) hrun
 

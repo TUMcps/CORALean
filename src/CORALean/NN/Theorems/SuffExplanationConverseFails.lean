@@ -1,9 +1,9 @@
+import CORALean.ContSet.Interval.Float.Theorems.NonemptyHullIsNonempty
 import CORALean.ContSet.Interval.Real.Instances
 import CORALean.ContSet.Interval.Real.Operations.Mtimes
 import CORALean.NN.Layers.Definitions.Enclosure
 import CORALean.NN.Layers.Definitions.Relaxation
-import CORALean.NN.Layers.Operations.Linear
-import CORALean.NN.Layers.Operations.LinearWithError
+import CORALean.NN.Layers.Instances
 import CORALean.NN.Layers.Theorems.LinearSound
 import CORALean.NN.Layers.Theorems.LinearWithErrorSound
 import CORALean.NN.Theorems.EncloseOuter
@@ -48,21 +48,16 @@ open ContSet Real.OfInterval Matrix
 /-- The constant `(0, 1)` network: class `1` always strictly wins. -/
 noncomputable def aux_suffExplanationConverseFails_nn :
     NeuralNetwork (fun n => Real.Interval (Vec ℝ n)) 1 2 :=
-  NeuralNetwork.ofLayer (Layer.linear (0 : Mat ℝ 2 1) (fun k => if k = 1 then (1 : ℝ) else 0))
+  NeuralNetwork.ofLayer (LinearLayer.mk (0 : Mat ℝ 2 1) (fun k => if k = 1 then (1 : ℝ) else 0))
 
 /-- The symmetric `±1` error box: centred at `0`, wide enough to tie. -/
 def aux_suffExplanationConverseFails_box : Float.Interval ℝ 2 := ⟨fun _ => -1, fun _ => 1⟩
 
-theorem aux_suffExplanationConverseFails_box_isNonempty :
-    aux_suffExplanationConverseFails_box.nominal.IsNonempty := fun _ => by
-  show (-1 : ℝ) ≤ 1
-  norm_num
-
--- the committed error is the box's own centre, which is `0` since the box is symmetric
+-- the committed error is the centre of the box the layer runs, the box itself, so `0`
 theorem aux_suffExplanationConverseFails_box_center :
-    aux_suffExplanationConverseFails_box.nominal.center = 0 := by
+    aux_suffExplanationConverseFails_box.nonemptyHull.nominal.center = 0 := by
   funext i
-  show (2 : ℝ)⁻¹ * ((-1 : ℝ) + 1) = 0
+  show (2 : ℝ)⁻¹ * ((-1 : ℝ) + max (-1) 1) = 0
   norm_num
 
 /-- What both networks compute, which neither of them stores. -/
@@ -77,20 +72,22 @@ theorem aux_suffExplanationConverseFails_nn_sound :
 `±1` box. -/
 noncomputable def aux_suffExplanationConverseFails_nnAbs :
     NeuralNetwork (fun n => Real.Interval (Vec ℝ n)) 1 2 :=
-  NeuralNetwork.ofLayer (Layer.linearWithError (0 : Mat ℝ 2 1)
+  NeuralNetwork.ofLayer (LinearWithErrorLayer.mk (0 : Mat ℝ 2 1)
     (fun k => if k = 1 then (1 : ℝ) else 0) aux_suffExplanationConverseFails_box)
 
 -- the box's error is committed at its own centre, `0`, so the exact networks agree
 theorem aux_suffExplanationConverseFails_nnAbs_sound :
     aux_suffExplanationConverseFails_nnAbs.Sound
       aux_suffExplanationConverseFails_f := by -- --- PROOF ---
-  refine (NeuralNetwork.ofLayer_sound (Layer.linearWithError_sound (0 : Mat ℝ 2 1)
-    (fun k => if k = 1 then (1 : ℝ) else 0) aux_suffExplanationConverseFails_box
-    aux_suffExplanationConverseFails_box_isNonempty)).congr fun x' => ?_
+  refine (NeuralNetwork.ofLayer_sound (S := fun n => Real.Interval (Vec ℝ n))
+    (curr := LinearWithErrorLayer.mk (0 : Mat ℝ 2 1) (fun k => if k = 1 then (1 : ℝ) else 0)
+      aux_suffExplanationConverseFails_box) (Layer.linearWithError_sound (0 : Mat ℝ 2 1)
+    (fun k => if k = 1 then (1 : ℝ) else 0) aux_suffExplanationConverseFails_box.nonemptyHull
+    aux_suffExplanationConverseFails_box.nonemptyHull_isNonempty)).congr fun x' => ?_
   funext i
   show ((0 : Mat ℝ 2 1) *ᵥ x') i + (if i = 1 then (1 : ℝ) else 0)
       = ((0 : Mat ℝ 2 1) *ᵥ x') i + (if i = 1 then (1 : ℝ) else 0)
-        + aux_suffExplanationConverseFails_box.nominal.center i
+        + aux_suffExplanationConverseFails_box.nonemptyHull.nominal.center i
   rw [aux_suffExplanationConverseFails_box_center]
   simp
 
@@ -147,9 +144,12 @@ theorem suffExplanation_of_abstract_converse_fails :
         rw [hz.1]
         rcases hi01 i with hi | hi <;> subst hi <;>
           norm_num [aux_suffExplanationConverseFails_box]
+      -- the upper end runs at the box's nonempty hull, the box itself here
       · show (if i = 0 then (1 : ℝ) else 0) ≤
             (Real.Interval.mtimes (0 : Mat ℝ 2 1) X).sup i +
-              ((if i = 1 then (1 : ℝ) else 0) + aux_suffExplanationConverseFails_box.sup i)
+              ((if i = 1 then (1 : ℝ) else 0)
+                + max (aux_suffExplanationConverseFails_box.inf i)
+                  (aux_suffExplanationConverseFails_box.sup i))
         rw [hz.2]
         rcases hi01 i with hi | hi <;> subst hi <;>
           norm_num [aux_suffExplanationConverseFails_box]

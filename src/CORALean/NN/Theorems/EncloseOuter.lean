@@ -45,11 +45,11 @@ theorem NeuralNetwork.Sound.enclose_outer {n m : ℕ} {nn : NeuralNetwork S n m}
     ∀ (s : S n) (x : Vec ℝ n), x ∈ construct s →
       f x ∈ construct (nn.enclose s) := by -- --- PROOF ---
   induction hf with
-  | nil h =>
+  | output h =>
       intro _ x hx
       rw [h x]
       exact hx
-  | cons hL _ h ih =>
+  | layer hL _ h ih =>
       intro s x hx
       rw [h x]
       exact ih _ _ (hL.enclose_outer s x hx)

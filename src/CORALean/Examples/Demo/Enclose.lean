@@ -52,10 +52,10 @@ def layerLine (i : ℕ) {n : ℕ} (Z : Zonotope D n) : String :=
 /-- One line per layer, the set handed on being the set printed. -/
 def layerBoxes : {n m : ℕ} → NeuralNetwork (Zonotope D) n m → Zonotope D n → ℕ →
     List String
-  | _, _, .nil, _, _ => []
-  | _, _, .cons L rest, Z, i =>
-    let Y := L.enclose Z
-    layerLine i Y :: layerBoxes rest Y (i + 1)
+  | _, _, .output, _, _ => []
+  | _, _, .layer (inst := _) curr tail, Z, i =>
+    let Y := Enclose.enclose curr Z
+    layerLine i Y :: layerBoxes tail Y (i + 1)
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

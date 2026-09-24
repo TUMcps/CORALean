@@ -5,11 +5,13 @@ import CORALean.NN.Layers.Definitions.Relaxation
 import CORALean.NN.Layers.Definitions.Relu
 import CORALean.NN.Layers.Definitions.ScaleRounding
 import CORALean.NN.Layers.Definitions.Softmax
+import CORALean.NN.Layers.Instances
 import CORALean.NN.Layers.Operations.AvgPool
 import CORALean.NN.Layers.Operations.BatchNorm
 import CORALean.NN.Layers.Operations.Conv
 import CORALean.NN.Layers.Operations.MaxPool
 import CORALean.NN.Layers.Operations.Relu
+import CORALean.NN.Layers.Operations.ReluSlope
 import CORALean.NN.Layers.Operations.Reshape
 import CORALean.NN.Layers.Operations.Softmax
 import CORALean.NN.Layers.Operations.TransposeEquiv
@@ -57,12 +59,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 `BatchNorm` ever was; `k` is the softmax exponential's reduction depth. -/
 def Example.convNet (k : ℕ) (K : Fin 1 → Fin 2 → 𝕋) (b : Vec 𝕋 5)
     (sc sh : Vec 𝕋 2) : NeuralNetwork (Zonotope 𝕋) 6 2 :=
-  .cons (Layer.reshape (S := Zonotope 𝕋) (Fin.transposeEquiv 3 2))
-    (.cons (Layer.conv (fun _ => 0) Real.Example.convTap K b)
-      (.cons (Layer.relu)
-        (.cons (Layer.maxPool Real.Example.poolTap fun _ _ => 0)
-          (.cons (Layer.batchNorm id sc sh)
-            (.cons (Layer.softmax k) .nil)))))
+  .layer (ReshapeLayer.mk (Fin.transposeEquiv 3 2))
+    (.layer (ConvLayer.mk 1 2 (fun _ => 0) Real.Example.convTap K b
+        Real.Example.convTap_injective)
+      (.layer (ReluLayer.mk (𝕋 := 𝕋) reluSlope rfl)
+        (.layer (MaxPoolLayer.mk (𝕋 := 𝕋) 1 Real.Example.poolTap fun _ _ => 0)
+          (.layer (BatchNormLayer.mk 2 id sc sh rfl)
+            (.layer (SoftmaxLayer.mk (𝕋 := 𝕋) k rfl) .output)))))
 
 -- anonymous: each is the exact layer's theorem, read at a float representation
 

@@ -6,8 +6,10 @@ import CORALean.NN.Layers.Definitions.ScaleRounding
 import CORALean.NN.Layers.Definitions.Sigmoid
 import CORALean.NN.Layers.Definitions.SigmoidRelaxation
 import CORALean.NN.Layers.Definitions.TanhRelaxation
+import CORALean.NN.Layers.Instances
 import CORALean.NN.Layers.Operations.Linear
 import CORALean.NN.Layers.Operations.Relu
+import CORALean.NN.Layers.Operations.ReluSlope
 import CORALean.NN.Layers.Operations.Sigmoid
 import CORALean.NN.Layers.Operations.SigmoidPoly
 import CORALean.NN.Layers.Operations.Tanh
@@ -62,8 +64,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 /-- Affine, ReLU, affine: two inputs, three hidden neurons, two labels. -/
 def Example.feedForward (W₁ : Mat 𝕋 3 2) (b₁ : Vec 𝕋 3) (W₂ : Mat 𝕋 2 3) (b₂ : Vec 𝕋 2) :
     NeuralNetwork (Zonotope 𝕋) 2 2 :=
-  .cons (Layer.linear (S := Zonotope 𝕋) W₁ b₁)
-    (.cons (Layer.relu) (.cons (Layer.linear W₂ b₂) .nil))
+  .layer (LinearLayer.mk W₁ b₁)
+    (.layer (ReluLayer.mk (𝕋 := 𝕋) reluSlope rfl) (.layer (LinearLayer.mk W₂ b₂) .output))
 
 -- anonymous: each is the exact layer's theorem, read at a float representation
 
@@ -94,12 +96,13 @@ example (W₁ : Mat 𝕋 3 2) (b₁ : Vec 𝕋 3) (W₂ : Mat 𝕋 2 3) (b₂ : 
     (X : Zonotope 𝕋 2) : Zonotope 𝕋 2 :=
   (Example.feedForward W₁ b₁ W₂ b₂).enclose X
 
-/-- Sigmoid and tanh in one chain, and it is a `def`: `Layer` stores nothing
-that mentions `ℝ`, so nothing here is noncomputable. -/
+/-- Sigmoid and tanh in one chain, and it is a `def`: each kind's `eval` is `Erased`,
+so nothing here is noncomputable. -/
 def Example.sigmoidTanhNet (k : ℕ) (W₁ : Mat 𝕋 3 2) (b₁ : Vec 𝕋 3) (W₂ : Mat 𝕋 2 3)
     (b₂ : Vec 𝕋 2) : NeuralNetwork (Zonotope 𝕋) 2 2 :=
-  .cons (Layer.linear (S := Zonotope 𝕋) W₁ b₁)
-    (.cons (Layer.sigmoid k) (.cons (Layer.linear W₂ b₂) (.cons (Layer.tanh k) .nil)))
+  .layer (LinearLayer.mk W₁ b₁)
+    (.layer (SigmoidLayer.mk (𝕋 := 𝕋) k rfl)
+      (.layer (LinearLayer.mk W₂ b₂) (.layer (TanhLayer.mk (𝕋 := 𝕋) k rfl) .output)))
 
 /-- And what it computes, which is where `Real.sigmoid` and `Real.tanh` appear. -/
 theorem Example.sigmoidTanhNet_sound (k : ℕ) (W₁ : Mat 𝕋 3 2) (b₁ : Vec 𝕋 3)
@@ -107,19 +110,21 @@ theorem Example.sigmoidTanhNet_sound (k : ℕ) (W₁ : Mat 𝕋 3 2) (b₁ : Vec
     (Example.sigmoidTanhNet k W₁ b₁ W₂ b₂).Sound fun x i =>
       Real.tanh ((Scalar.toRealMat W₂ *ᵥ (fun j =>
           Real.sigmoid ((Scalar.toRealMat W₁ *ᵥ x + Scalar.toRealVec b₁) j))
-        + Scalar.toRealVec b₂) i) :=
-  (NeuralNetwork.sound_cons (Layer.linear_sound W₁ b₁)
-    (NeuralNetwork.sound_cons (Layer.sigmoid_sound k)
-      (NeuralNetwork.sound_cons (Layer.linear_sound W₂ b₂)
-        (NeuralNetwork.ofLayer_sound (Layer.tanh_sound k))))).congr fun _ => rfl
+        + Scalar.toRealVec b₂) i) := by -- --- PROOF ---
+  delta Example.sigmoidTanhNet
+  exact .layer (Layer.linear_sound W₁ b₁)
+    (.layer (Layer.sigmoid_sound k)
+      (.layer (Layer.linear_sound W₂ b₂)
+        (.layer (Layer.tanh_sound k) (.output fun _ => rfl) fun _ => rfl) fun _ => rfl)
+      fun _ => rfl) fun _ => rfl
 
 /-- The polynomial relaxation in a chain, over a float polynomial zonotope, and
 a `def` for the same reason: the fits and the grids are floats. -/
 def Example.sigmoidPolyNet (k : ℕ) (W₁ : Mat 𝕋 3 2) (b₁ : Vec 𝕋 3) (W₂ : Mat 𝕋 2 3)
     (b₂ : Vec 𝕋 2) (c : Fin 3 → 𝕋 → 𝕋 → Fin 3 → 𝕋) (dx : Fin 3 → 𝕋 → 𝕋 → 𝕋)
     (p : Fin 3 → 𝕋 → 𝕋 → Fin 5 → 𝕋) : NeuralNetwork (PolyZonotope 𝕋) 2 2 :=
-  .cons (Layer.linear (S := PolyZonotope 𝕋) W₁ b₁)
-    (.cons (Layer.sigmoidPoly k c dx p) (.cons (Layer.linear W₂ b₂) .nil))
+  .layer (LinearLayer.mk W₁ b₁)
+    (.layer (SigmoidPolyLayer.mk k 2 4 c dx p rfl) (.layer (LinearLayer.mk W₂ b₂) .output))
 
 /-- And what it computes, `Real.sigmoid` arriving only here. -/
 theorem Example.sigmoidPolyNet_sound (k : ℕ) (W₁ : Mat 𝕋 3 2) (b₁ : Vec 𝕋 3)
@@ -128,10 +133,12 @@ theorem Example.sigmoidPolyNet_sound (k : ℕ) (W₁ : Mat 𝕋 3 2) (b₁ : Vec
     (Example.sigmoidPolyNet k W₁ b₁ W₂ b₂ c dx p).Sound fun x =>
       Scalar.toRealMat W₂ *ᵥ (fun j =>
           Real.sigmoid ((Scalar.toRealMat W₁ *ᵥ x + Scalar.toRealVec b₁) j))
-        + Scalar.toRealVec b₂ :=
-  (NeuralNetwork.sound_cons (Layer.linear_sound W₁ b₁)
-    (NeuralNetwork.sound_cons (Layer.sigmoidPoly_sound k c dx p)
-      (NeuralNetwork.ofLayer_sound (Layer.linear_sound W₂ b₂)))).congr fun _ => rfl
+        + Scalar.toRealVec b₂ := by -- --- PROOF ---
+  delta Example.sigmoidPolyNet
+  exact .layer (Layer.linear_sound W₁ b₁)
+    (.layer (Layer.sigmoidPoly_sound k c dx p)
+      (.layer (Layer.linear_sound W₂ b₂) (.output fun _ => rfl) fun _ => rfl) fun _ => rfl)
+    fun _ => rfl
 
 end CORALean.Float
 

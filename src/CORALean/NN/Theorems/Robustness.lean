@@ -35,7 +35,7 @@ theorem NeuralNetwork.holds_robustness {nn : NeuralNetwork S n m} {f : Vec ℝ n
       (marginDir m j l))
     (h : ∀ j, j ≠ l → (u j).val < 0) :
     (Specification.unsafeSet (misclassified m l)).Holds (f '' construct X) :=
-  NeuralNetwork.holds_of_enclose hf X _ (disjoint_misclassified_of_bounds l u h)
+  hf.holds_of_enclose X _ (disjoint_misclassified_of_bounds l u h)
 
 end CORALean
 

@@ -2,8 +2,10 @@ import CORALean.ContSet.Conversion.Real.API
 import CORALean.NN.Layers.Definitions.Enclosure
 import CORALean.NN.Layers.Definitions.Relaxation
 import CORALean.NN.Layers.Definitions.Relu
+import CORALean.NN.Layers.Instances
 import CORALean.NN.Layers.Operations.Linear
 import CORALean.NN.Layers.Operations.Relu
+import CORALean.NN.Layers.Operations.ReluSlope
 import CORALean.NN.Theorems.Classifies
 import CORALean.NN.Theorems.EncloseOuter
 import CORALean.NN.Theorems.MarginDir
@@ -48,7 +50,8 @@ open Matrix ContSet
 /-- Affine, ReLU, affine: two inputs, three hidden neurons, two labels. -/
 noncomputable def Example.feedForward (W₁ : Mat ℝ 3 2) (b₁ : Vec ℝ 3) (W₂ : Mat ℝ 2 3)
     (b₂ : Vec ℝ 2) : NeuralNetwork 𝒵 2 2 :=
-  .cons (Layer.linear (S := 𝒵) W₁ b₁) (.cons Layer.relu (.cons (Layer.linear W₂ b₂) .nil))
+  .layer (LinearLayer.mk W₁ b₁)
+    (.layer (ReluLayer.mk (𝕋 := ℝ) reluSlope rfl) (.layer (LinearLayer.mk W₂ b₂) .output))
 
 -- anonymous, since their content is that they elaborate at this network
 

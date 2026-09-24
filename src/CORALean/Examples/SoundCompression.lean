@@ -9,7 +9,9 @@ import CORALean.NN.Layers.Operations.Relu
 import CORALean.NN.Layers.Operations.ReluRelaxation
 import CORALean.NN.Layers.Operations.ReluSlope
 import CORALean.NN.Layers.Operations.TapMat
+import CORALean.NN.Layers.Theorems.ActivationLayerOfSound
 import CORALean.NN.Layers.Theorems.ConvSound
+import CORALean.NN.Layers.Theorems.LinearSound
 import CORALean.NN.Layers.Theorems.ReluRelaxationSound
 import CORALean.NN.Layers.Theorems.ReluSound
 import CORALean.NN.Layers.Theorems.TapMatMulVec
@@ -20,10 +22,10 @@ import CORALean.NN.Theorems.ReducesAtOuter
 
 `Cor. 1`'s network: two convolutional layers at the identity-like kernel
 `K(k,l,1,1) = δ_{kl}`, sandwiching one ReLU, applied to a nonnegative "uncertain
-image" `X`. `Layer.conv` takes the kernel as `(chan, tap, K)` rather than the
-paper's four-index array: folding `l = k` into `tap` rather than summing over it
-turns the size-`cI` diagonal into a single tap of weight `1` per output, the
-same matrix up to reindexing.
+image" `X`. A convolution is `Layer.linear` at its stencil matrix, and the network is
+written with that matrix, `compressW = tapMat compressTap compressK`, as `LinearLayer`s,
+the form `ReducesAt.merge` matches: folding `l = k` into `tap` turns the size-`cI` diagonal
+into a single tap of weight `1` per output, the same matrix up to reindexing.
 
 The corollary needs nothing beyond `Thm. 1` applied at this one network: the two
 convolutions compute the identity, so on a nonnegative image the ReLU between
@@ -89,32 +91,27 @@ noncomputable def Example.compressPart : Split (Fin 3) into (Fin 1) ⊕ (Fin 2) 
 /-- [1, Cor. 1]'s compression network: two convolutional layers at the
 identity kernel, sandwiching one ReLU. -/
 noncomputable def Example.compressNetwork : NeuralNetwork 𝒵 3 3 :=
-  .cons (Layer.conv id Example.compressTap Example.compressK 0)
-    (.cons (Layer.relu reluSlope)
-      (.ofLayer (Layer.conv id Example.compressTap Example.compressK 0)))
+  .layer (LinearLayer.mk Example.compressW 0)
+    (.layer (ActivationLayer.of (n := 3) (reluRelaxation_sound (𝕋 := ℝ) reluSlope))
+      (.ofLayer (LinearLayer.mk Example.compressW 0)))
 
 /-- The kernel computes the identity on both sides, so the whole network
 computes `relu` alone. -/
 theorem Example.compressNetwork_sound :
     Example.compressNetwork.Sound (fun x i => Real.relu (x i)) := by -- --- PROOF ---
-  -- each convolution is `Layer.conv` at a single tap of weight `1`, i.e. `id`
-  have hconv : (Layer.conv (S := 𝒵) id Example.compressTap Example.compressK
-      (0 : Vec ℝ 3)).Sound (id : Vec ℝ 3 → Vec ℝ 3) :=
-    (Layer.conv_sound id Example.compressTap Example.compressK 0
-      Example.compressTap_injective).congr fun x => by
-        funext j
-        show x j = (∑ l : Fin 1, Example.compressK (id j) l * x (Example.compressTap j l))
-          + (0 : Vec ℝ 3) j
-        rw [Fin.sum_univ_one]
-        show x j = (1 : ℝ) * x j + 0
-        ring
-  have hrelu : (Layer.relu (S := 𝒵) (n := 3) reluSlope).Sound
-      (fun x i => Real.relu (x i)) :=
-    Layer.relu_sound reluSlope
+  -- each convolution is its stencil matrix, a single tap of weight `1`, i.e. `id`
+  have hconv : (Enclose.toLayer (S := 𝒵) (LinearLayer.mk Example.compressW
+      (0 : Vec ℝ 3))).Sound (id : Vec ℝ 3 → Vec ℝ 3) :=
+    (Layer.linear_sound Example.compressW 0).congr fun x => by
+      show x = Float.toRealMat Example.compressW *ᵥ x + Float.toRealVec (0 : Vec ℝ 3)
+      rw [Float.toRealMat_real]
+      show x = Example.compressW *ᵥ x + 0
+      rw [add_zero, Example.compressW_apply]
+  have hrelu := ActivationLayer.of_sound (S := 𝒵) (n := 3)
+    (reluRelaxation_sound (𝕋 := ℝ) reluSlope)
   -- composing `id ∘ relu ∘ id` and simplifying the two identities away
-  have h1 := NeuralNetwork.ofLayer_sound hconv
-  have h2 := (NeuralNetwork.sound_cons hrelu h1).congr fun _ => rfl
-  exact (NeuralNetwork.sound_cons hconv h2).congr fun _ => rfl
+  exact .layer hconv (.layer hrelu (.layer hconv (.output fun _ => rfl) fun _ => rfl)
+    fun _ => rfl) fun _ => rfl
 
 /-- [1, Cor. 1] (Sound Compression): reducing the compression network at any
 split of its hidden layer keeps every point of a nonnegative "uncertain image"
@@ -134,16 +131,16 @@ theorem Example.exists_compressed_network_contains (X : 𝒵 3)
     exact Float.IntervalOuter.interval_outer (S := 𝒵) X hx
   -- [1, Thm. 1]'s own machinery: `compressNetwork` reduces at the split above
   have hred : NeuralNetwork.ReducesAt X Example.compressNetwork
-      (.cons (Layer.linear (Example.compressW.submatrix Example.compressPart.left id)
+      (.layer (LinearLayer.mk (Example.compressW.submatrix Example.compressPart.left id)
           ((0 : Vec ℝ 3) ∘ Example.compressPart.left))
-        (.cons (Layer.activation (reluRelaxation reluSlope))
-          (.ofLayer (Layer.linearWithError
+        (.layer (ActivationLayer.of (reluRelaxation_sound (𝕋 := ℝ) reluSlope))
+          (.ofLayer (LinearWithErrorLayer.mk
             (Example.compressW.submatrix id Example.compressPart.left) (0 : Vec ℝ 3)
             (Float.Interval.mtimes (Example.compressW.submatrix id Example.compressPart.right)
               ⟨(Float.IntervalOuter.interval (S := 𝒵) X).inf ∘ Example.compressPart.right,
                 (Float.IntervalOuter.interval (S := 𝒵) X).sup ∘ Example.compressPart.right⟩)))))
       (fun x i => Real.relu (x i)) := by
-    unfold Example.compressNetwork Layer.conv Layer.relu NeuralNetwork.ofLayer
+    unfold Example.compressNetwork NeuralNetwork.ofLayer
     exact NeuralNetwork.ReducesAt.merge (S := 𝒵) X Example.compressPart Example.compressW 0
       (reluRelaxation reluSlope) (reluRelaxation_sound reluSlope)
       Example.compressW 0 (Float.IntervalOuter.interval (S := 𝒵) X) hY

@@ -6,6 +6,7 @@ import CORALean.NN.Layers.Operations.Linear
 import CORALean.NN.Layers.Operations.RelaxationBox
 import CORALean.NN.Layers.Operations.ReluRelaxation
 import CORALean.NN.Layers.Operations.ReluSlope
+import CORALean.NN.Layers.Theorems.ReluRelaxationSound
 import CORALean.NN.Operations.Enclose
 import CORALean.NN.Operations.ReduceOnTheFly
 import CORALean.NN.Operations.ReducibleNetworkToNetwork
@@ -54,8 +55,10 @@ def br₂ : Vec D 2 := ![dy 0 0, dy 0 0]
 
 /-- Affine, ReLU, affine, ReLU, every error box `[0, 0]` and both buckets static at `0`. -/
 def reducible : ReducibleNetwork D 2 2 :=
-  .cons ⟨Wr₁, br₁, zeroBox 4⟩ (reluRelaxation reluSlope) (.static [dy 0 0])
-    (.cons ⟨Wr₂, br₂, zeroBox 2⟩ (reluRelaxation reluSlope) (.static [dy 0 0]) .nil)
+  .cons ⟨Wr₁, br₁, zeroBox 4⟩ (reluRelaxation reluSlope) ⟨_, reluRelaxation_sound reluSlope⟩
+      (.static [dy 0 0])
+    (.cons ⟨Wr₂, br₂, zeroBox 2⟩ (reluRelaxation reluSlope) ⟨_, reluRelaxation_sound reluSlope⟩
+      (.static [dy 0 0]) .nil)
 
 /-- `[1, 2] × [0, 1/2]`. -/
 def Xr : Zonotope D 2 where
@@ -86,12 +89,12 @@ def mergedLine : String :=
 /-- The layer widths of a network in [1, Eq. 2]'s form. -/
 def widths : {n m : ℕ} → ReducibleNetwork D n m → List ℕ
   | n, _, .nil => [n]
-  | n, _, .cons _ _ _ rest => n :: widths rest
+  | n, _, .cons _ _ _ _ rest => n :: widths rest
 
 /-- The error box each linear layer carries, one line per layer. -/
 def errorLines : {n m : ℕ} → ReducibleNetwork D n m → ℕ → List String
   | _, _, .nil, _ => []
-  | _, _, .cons L _ _ rest, k => ("  layer " ++ toString k ++ "  " ++ showBox L.I') ::
+  | _, _, .cons L _ _ _ rest, k => ("  layer " ++ toString k ++ "  " ++ showBox L.I') ::
       errorLines rest (k + 2)
 
 

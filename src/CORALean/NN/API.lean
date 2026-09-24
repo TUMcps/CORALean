@@ -1,6 +1,7 @@
 import CORALean.NN.Cost.API
 import CORALean.NN.Definitions.API
 import CORALean.NN.Graph.API
+import CORALean.NN.Instances
 import CORALean.NN.Layers.API
 import CORALean.NN.NeuralNetwork
 import CORALean.NN.Operations.API
