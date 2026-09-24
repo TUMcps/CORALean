@@ -31,7 +31,9 @@ import CORALean.ContDynamics.LinearSys.Theorems.ExistsTimeIntervalStepErrorLt
 import CORALean.ContDynamics.LinearSys.Theorems.ExistsTimeIntervalStepInnerInner
 import CORALean.ContDynamics.LinearSys.Theorems.ExistsTimePointStepErrorLt
 import CORALean.ContDynamics.LinearSys.Theorems.ExistsTimePointStepInnerInner
+import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralAddMulVec
 import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
+import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemConstInputSolution
 import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemInputReach
 import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMulVec
 import CORALean.ContDynamics.LinearSys.Theorems.FlowIci
@@ -139,6 +141,11 @@ import CORALean.ContDynamics.LinearSys.Theorems.WeightedIntegral
 import CORALean.ContDynamics.LinearSys.Theorems.HoldsOfCheck
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderAdmissible
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterWindows
+import CORALean.ContDynamics.LinearSys.Theorems.ExistsReachWindow
+import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetParticularSolution
+import CORALean.ContDynamics.LinearSys.Theorems.ReachStepkOuter
+import CORALean.ContDynamics.LinearSys.Theorems.WithInputReachOuter
+import CORALean.ContDynamics.LinearSys.Theorems.WithInputSplitReachOuter
 
 /-!
 # What `LinearSys` guarantees
@@ -162,6 +169,6 @@ over one step applies to a run over all forward time by throwing the rest
 away. Only `discretize` and `reach` built on it ask for `Set.Ici 0`.
 `DiscretizeEnclosure`/`DiscretizeEnclosureReach` are `Discretize`/`ReachOuter`
 enclosed rather than computed; `DiscretizeMatZonotope` is the same at a matrix
-zonotope, `PostDeltaOuter` is `DeltaReachOuterInputSolution` again, `postΔ`'s
-name, `ReachOrderAdmissible`/`ReachOuterWindows`/`HoldsOfCheck` `Instances`' guarantee.
+zonotope, `PostDeltaOuter` is `DeltaReachOuterInputSolution` again; `ReachOuterWindows`
+and `WithInputReachOuter` are `Instances`' guarantees, built window by window.
 -/

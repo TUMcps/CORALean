@@ -18,8 +18,8 @@ form of a trajectory and what `reach` then guarantees in `Theorems`.
 
 Reachability holds at the sample times, by sampling into `LinearSysDT`, or, once
 `e^{AΔt}` is only enclosed rather than computed, into `LinParamSysDT`. Between
-the sample times it is `reach`, `Instances`' `Reach`: homogeneous, one
-`timeIntervalStep` window per `Δt` of `[0, tFinal]`, each carried by `e^{A t_k}`.
+the sample times it is `reach`, `Instances`' `Reach`: one `timeIntervalStep` window
+per `Δt`, carried by `e^{A t_k}`, plus at `WithInput` the input accumulated so far.
 
 Backward, `PerturbedTrajectory` is `Trajectory` with a second, independently
 quantified signal `w`: `backReachSetForallExists` and `backReachSetExistsForall`

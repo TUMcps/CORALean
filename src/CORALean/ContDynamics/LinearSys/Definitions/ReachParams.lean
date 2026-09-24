@@ -3,12 +3,13 @@ import CORALean.ContDynamics.LinearSys.LinearSys
 /-!
 # What `Reach LinearSys` needs beyond the initial set
 
-Homogeneous only, as `timeIntervalStep` is: `tFinal` is the horizon `[0, tFinal]`,
-`Δt` the width of one window and `hΔt` its side condition, `η` the Taylor order
-each window is taken at. `η` is a request rather than a promise: `reach` raises it
-to `reachOrder`'s order wherever that is higher, since only an order admissible
-for `Δt` and `sys.A` makes `timeIntervalStep_outer` hold, and the matrix is not
-here to state that as a field.
+`tFinal` is the horizon `[0, tFinal]`, `Δt` the width of one window and `hΔt`
+its side condition, `η` the Taylor order each window is taken at — for
+`LinearSys`, its `WithInput`/`WithInputSplit` and `LinParamSys ℐ`'s alike. `η` is
+a request rather than a promise: `reach` raises it to `reachOrder`'s order
+wherever that is higher, since only an order admissible for `Δt` and `sys.A`
+makes `timeIntervalStep_outer` hold, and the matrix is not here to state that
+as a field.
 -/
 
 -- Authors:       Tobias Ladner

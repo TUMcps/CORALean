@@ -5,6 +5,7 @@ import CORALean.ContSet.Conversion.Float.ContSet_to_Interval
 import CORALean.ContSet.Conversion.Real.ContSet_to_Interval
 import CORALean.ContSet.SetUnion.Instances
 import CORALean.ContSet.Zonotope.Real.Instances
+import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
 import CORALean.Global.Float.Instances.Real.Instances
 import CORALean.Specification.Instances
 
@@ -20,11 +21,15 @@ interval hull — the float box at `𝕋 := ℝ`, which is where the checks live
 here; what is shown is that `holds_of_check` applies as stated, once at the
 system's own `reach` and once through the `Reach` instance, so a `true` from a
 float refinement would need nothing further to answer for every trajectory.
+The third example adds the input box `[-1/10, 1/10]²` as `LinearSys.WithInput`,
+its `0 ∈ U` the zonotope's centre, and answers for every run under it; the
+fourth moves that box off the origin, to `[1/10, 3/10] × [-1/10, 1/10]`, as
+`LinearSys.WithInputSplit`, which asks for no `0 ∈ U` at all.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   24-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -51,6 +56,38 @@ example :
       (Specification.safeSet (⟨![-10, -10], ![10, 10]⟩ : Float.Interval (Vec ℝ 2))) = true) →
     ((Specification.safeSet (⟨![-10, -10], ![10, 10]⟩ : Float.Interval (Vec ℝ 2))).Holds
       (Reach.reachExact (S := 𝒵) (⟨!![-1, 1; 0, -2]⟩ : LinearSys ℝ 2)
+        (⟨1, 1 / 10, 4, by norm_num⟩ : LinearSys.ReachParams)
+        (construct (⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2))))) :=
+  Reach.holds_of_check (S := 𝒵) _ _ _ _
+
+/-- With inputs in `[-1/10, 1/10]²`: the same box answers for every run under them. -/
+example :
+    (Reach.check (S := 𝒵)
+      (⟨⟨!![-1, 1; 0, -2]⟩, ⟨2, 0, ![![1 / 10, 0], ![0, 1 / 10]]⟩,
+        Zonotope.centre_mem_construct _⟩ : LinearSys.WithInput ℝ 𝒵 2)
+      (⟨1, 1 / 10, 4, by norm_num⟩ : LinearSys.ReachParams)
+      (⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2))
+      (Specification.safeSet (⟨![-10, -10], ![10, 10]⟩ : Float.Interval (Vec ℝ 2))) = true) →
+    ((Specification.safeSet (⟨![-10, -10], ![10, 10]⟩ : Float.Interval (Vec ℝ 2))).Holds
+      (Reach.reachExact (S := 𝒵)
+        (⟨⟨!![-1, 1; 0, -2]⟩, ⟨2, 0, ![![1 / 10, 0], ![0, 1 / 10]]⟩,
+          Zonotope.centre_mem_construct _⟩ : LinearSys.WithInput ℝ 𝒵 2)
+        (⟨1, 1 / 10, 4, by norm_num⟩ : LinearSys.ReachParams)
+        (construct (⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2))))) :=
+  Reach.holds_of_check (S := 𝒵) _ _ _ _
+
+/-- With inputs in a box off the origin, split at its centre: the same answer. -/
+example :
+    (Reach.check (S := 𝒵)
+      (⟨⟨!![-1, 1; 0, -2]⟩, ⟨2, ![1 / 5, 0], ![![1 / 10, 0], ![0, 1 / 10]]⟩⟩ :
+        LinearSys.WithInputSplit ℝ 𝒵 2)
+      (⟨1, 1 / 10, 4, by norm_num⟩ : LinearSys.ReachParams)
+      (⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2))
+      (Specification.safeSet (⟨![-10, -10], ![10, 10]⟩ : Float.Interval (Vec ℝ 2))) = true) →
+    ((Specification.safeSet (⟨![-10, -10], ![10, 10]⟩ : Float.Interval (Vec ℝ 2))).Holds
+      (Reach.reachExact (S := 𝒵)
+        (⟨⟨!![-1, 1; 0, -2]⟩, ⟨2, ![1 / 5, 0], ![![1 / 10, 0], ![0, 1 / 10]]⟩⟩ :
+          LinearSys.WithInputSplit ℝ 𝒵 2)
         (⟨1, 1 / 10, 4, by norm_num⟩ : LinearSys.ReachParams)
         (construct (⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2))))) :=
   Reach.holds_of_check (S := 𝒵) _ _ _ _

@@ -25,6 +25,10 @@ import CORALean.ContDynamics.LinearSys.Definitions.TunedState
 import CORALean.ContDynamics.LinearSys.Definitions.VerifyIter
 import CORALean.ContDynamics.LinearSys.Definitions.ReachExact
 import CORALean.ContDynamics.LinearSys.Definitions.ReachParams
+import CORALean.ContDynamics.LinearSys.Definitions.WithInput
+import CORALean.ContDynamics.LinearSys.Definitions.WithInputReachExact
+import CORALean.ContDynamics.LinearSys.Definitions.WithInputSplit
+import CORALean.ContDynamics.LinearSys.Definitions.WithInputSplitReachExact
 
 /-!
 # What a continuous-time linear system means
@@ -42,7 +46,9 @@ interval, and the `Integral...` families reading those over
 `PerturbedIntegralTrajectory` instead. `IntegralTimeIntervalBackReachSetOfInput`
 is the set under one fixed input signal, [1, Thm. 1]'s intersection target.
 
-`ReachParams`/`ReachExact` are what `Reach` asks of it, homogeneous.
+`ReachParams`/`ReachExact` are what `Reach` asks of it, homogeneous;
+`WithInput`/`WithInputReachExact` the same with an input set holding the
+origin, `WithInputSplit`/`WithInputSplitReachExact` with one anywhere.
 
 ## References
 
