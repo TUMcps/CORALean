@@ -8,6 +8,8 @@ import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryTimeIntervalOut
 import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryTimeIntervalOuterSplit
 import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryToLinearSys
 import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryToTrajectory
+import CORALean.ContDynamics.LinParamSys.Theorems.ExpIntegralMemConstInputSolution
+import CORALean.ContDynamics.LinParamSys.Theorems.ExpIntegralMemConstPropagate
 import CORALean.ContDynamics.LinParamSys.Theorems.ExpMemExpEnclosure
 import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetInputSolution
 import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetParticularSolution
@@ -25,6 +27,7 @@ import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryTimeIntervalOuterInp
 import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryToLinearSys
 import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryToLinParam
 import CORALean.ContDynamics.LinParamSys.Theorems.WithInputReachUnionOuter
+import CORALean.ContDynamics.LinParamSys.Theorems.WithInputSplitReachUnionOuter
 
 /-!
 # What `LinParamSys` gives, collected
