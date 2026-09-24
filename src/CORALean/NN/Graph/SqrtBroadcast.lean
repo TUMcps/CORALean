@@ -36,7 +36,7 @@ variable {N m : ℕ}
 
 /-- The matrix whose entry `(i,j)` is node `idx i j`'s inverse square root, over
 the edge factors and one residual factor per node. -/
-noncomputable def GNN.sqrtBroadcast (R : Relaxation invSqrt) (A : Mat ℝ N N)
+noncomputable def GNN.sqrtBroadcast (R : Relaxation ℝ) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) (idx : Fin N → Fin N → Fin N) : PolyZonotope (Mat ℝ N N) where
   p := m + N
   h := m + N
@@ -48,12 +48,12 @@ noncomputable def GNN.sqrtBroadcast (R : Relaxation invSqrt) (A : Mat ℝ N N)
   GI := Fin.elim0
 
 /-- `s_i` broadcast along each row, the left factor of the normalisation. -/
-noncomputable def GNN.sqrtRow (R : Relaxation invSqrt) (A : Mat ℝ N N)
+noncomputable def GNN.sqrtRow (R : Relaxation ℝ) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) : PolyZonotope (Mat ℝ N N) :=
   GNN.sqrtBroadcast R A U fun i _ => i
 
 /-- `s_j` broadcast along each column, the right factor of the normalisation. -/
-noncomputable def GNN.sqrtCol (R : Relaxation invSqrt) (A : Mat ℝ N N)
+noncomputable def GNN.sqrtCol (R : Relaxation ℝ) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) : PolyZonotope (Mat ℝ N N) :=
   GNN.sqrtBroadcast R A U fun _ j => j
 

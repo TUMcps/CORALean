@@ -1,0 +1,37 @@
+import CORALean.NN.Layers.Definitions.TanhRelaxation
+import CORALean.NN.Layers.Theorems.OfAffineConjSound
+import CORALean.NN.Layers.Theorems.Real.ScaleRoundingExactSound
+import CORALean.NN.Layers.Theorems.Real.SigmoidRelaxationSound
+import CORALean.NN.Layers.Theorems.Real.TanhEqSigmoid
+
+/-!
+# The tanh relaxation over ℝ is sound
+
+ℝ-only, the relaxation being the exact sigmoid one at the exact doubling: the sigmoid's
+soundness transported along the conjugation identity.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       03-September-2026
+-- Last update:   23-September-2026
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem tanhRelaxation_sound : tanhRelaxation.Sound Real.tanh :=
+  Relaxation.ofAffineConj_sound sigmoidRelaxation_sound (scaleRounding_exact_sound 2)
+    (scaleRounding_exact_sound 2) (by norm_num) (by norm_num)
+    (fun t => by
+      show Real.tanh t = 2 * sigmoid (2 * t) + -1
+      rw [tanh_eq_sigmoid]; ring)
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -1,6 +1,6 @@
 import CORALean.ContSet.HPolytope.Float.Operations.Ineqs
 import CORALean.ContSet.HPolytope.Float.Operations.RowLin
-import CORALean.Global.LinProg.Float.API
+import CORALean.Global.Float.FloatBound
 
 /-!
 # `HPolytope.ofBounds`, over a floating-point scalar

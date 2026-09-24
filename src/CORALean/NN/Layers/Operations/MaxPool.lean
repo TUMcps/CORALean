@@ -1,0 +1,48 @@
+import CORALean.ContSet.Conversion.Float.ContSet_to_Interval
+import CORALean.ContSet.Conversion.Float.Interval_to_ContSet
+import CORALean.NN.Layers.Layer
+import CORALean.NN.Layers.Operations.MaxPoolGapUp
+import CORALean.NN.Layers.Operations.SelectMat
+
+/-!
+# The max pooling layer
+
+CORA's `nnMaxPool2DLayer`, which does not fit `Relaxation`: a pooled output is a function of
+`k + 1` inputs over `k + 1` intervals, and its affine part is a *selection*, not a diagonal. What
+carries over is the shape: an affine part through `mtimes` and a box for the rest. The affine
+part is one input per window, the pivot, and the box is `[0, gap]`, a maximum never being below
+its arguments; `gap` is zero exactly when the pivot dominates the window, so a stable window is
+exact. `pivot` is precision and never soundness, as ReLU's slope is, so it may read `le`.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       02-September-2026
+-- Last update:   23-September-2026
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+-- `Matrix` unscoped would make `FloatOps.zero` ambiguous
+open ContSet Plus Mtimes Float Float.IntervalOuter Float.OfInterval Float.FloatOps
+
+variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
+  {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
+  [Mtimes (Mat 𝕋) S] [Float.IntervalOuter S 𝕋] [Float.OfInterval S 𝕋] {n m k : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+def Layer.maxPool (tap : Fin m → Fin (k + 1) → Fin n)
+    (pivot : Interval 𝕋 n → Fin m → Fin (k + 1)) : Layer S n m where
+  enclose s :=
+    plus (mtimes (selectMat (𝕋 := 𝕋) fun j => tap j (pivot (interval s) j)) s)
+      (ofInterval (⟨fun _ => zero, maxPoolGapUp tap (pivot (interval s)) (interval s)⟩ :
+        Interval 𝕋 m))
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

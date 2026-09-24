@@ -1,0 +1,31 @@
+import CORALean.NN.Layers.Definitions.PolyFamily
+
+/-!
+# The family is sound at every level
+
+ℝ-only, as the family is: each level is a sampled relaxation, sound at every box.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       05-September-2026
+-- Last update:   23-September-2026
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem polyRelaxationFamily_sound {σ σ' : ℝ → ℝ} {Mσ : ℝ}
+    (hd : ∀ x, HasDerivAt σ (σ' x) x) (hσ : ∀ x, |σ' x| ≤ Mσ) :
+    (polyRelaxationFamily hd hσ).Sound σ :=
+  ⟨fun o => (exists_polyRelaxation_error_lt (L := -(o : ℝ)) (U := (o : ℝ)) hd hσ
+    (show (0 : ℝ) < 1 / ((o : ℝ) + 1) by positivity)).choose_spec.choose_spec.1⟩
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

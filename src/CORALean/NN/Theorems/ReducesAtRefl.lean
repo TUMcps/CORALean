@@ -1,4 +1,4 @@
-import CORALean.NN.Reduction
+import CORALean.NN.Definitions.Reduction
 
 /-!
 # Doing nothing is a reduction

@@ -1,0 +1,43 @@
+import CORALean.NN.Definitions.RefinableNetwork
+
+/-!
+# Schedules
+
+A schedule is an order pattern per layer, read layer first and neuron second:
+layer `0` is the network's first and the tail reads the schedule shifted. That
+is CORA's order pattern tuple [1, Eq. 23], holding the refinement loop's state
+and nothing else.
+
+Plain ℕ indices rather than a `Fin` per layer: a dependent schedule would need
+widths `RefinableNetwork` does not carry, and would make `tail`, `cons` and
+every operation on it dependently typed for nothing. A layer reads its own
+width, via `head`. How a schedule is taken apart and put together — `head`, `tail`, `cons` —
+and what it is *for* — `raise`, the refinement rules, the loop, and reading one against a
+network — are `Operations/*.lean`, one file each.
+
+## References
+
+* [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural
+      Network Verification using Sensitivity Analysis". HSCC 2023.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       05-September-2026
+-- Last update:   23-September-2026
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- One order pattern per layer, layer `0` first and neuron second. -/
+abbrev Schedule := ℕ → ℕ → ℕ
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

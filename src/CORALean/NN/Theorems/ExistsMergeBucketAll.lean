@@ -1,4 +1,4 @@
-import CORALean.NN.MergeBucket
+import CORALean.NN.Definitions.MergeBucket
 
 /-!
 # A large enough tolerance takes every neuron

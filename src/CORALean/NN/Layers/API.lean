@@ -1,57 +1,15 @@
-import CORALean.NN.Layers.Activation
-import CORALean.NN.Layers.ActivationPoly
-import CORALean.NN.Layers.ActivationPolyInflate
-import CORALean.NN.Layers.ActivationPolyOn
-import CORALean.NN.Layers.ActivationPolyRefine
-import CORALean.NN.Layers.BatchNorm
-import CORALean.NN.Layers.Convolution
 import CORALean.NN.Layers.Cost.API
-import CORALean.NN.Layers.Curvature
-import CORALean.NN.Layers.InvSqrt
-import CORALean.NN.Layers.Linear
-import CORALean.NN.Layers.LinearSigmoid
-import CORALean.NN.Layers.Pooling
-import CORALean.NN.Layers.PolyAffineConj
-import CORALean.NN.Layers.PolyConvergence
-import CORALean.NN.Layers.PolyDerivBound
-import CORALean.NN.Layers.PolyFit
-import CORALean.NN.Layers.PolyFitConvergence
-import CORALean.NN.Layers.PolyRangeConvergence
-import CORALean.NN.Layers.PolyRelaxation
-import CORALean.NN.Layers.PolyRelaxationPad
-import CORALean.NN.Layers.PolySampling
-import CORALean.NN.Layers.ReLU
-import CORALean.NN.Layers.Reshape
-import CORALean.NN.Layers.Sigmoid
-import CORALean.NN.Layers.SigmoidLinearSigmoid
-import CORALean.NN.Layers.SigmoidPoly
-import CORALean.NN.Layers.SigmoidPolyRefine
-import CORALean.NN.Layers.Softmax
-import CORALean.NN.Layers.Tanh
-import CORALean.NN.Layers.TanhPoly
+import CORALean.NN.Layers.Definitions.API
+import CORALean.NN.Layers.Layer
+import CORALean.NN.Layers.Operations.API
+import CORALean.NN.Layers.Theorems.API
 
 /-!
 # The standard layers, collected
 
-**Linear in disguise.** `Linear`, and then `Convolution`, average pooling in `Pooling` and
-`BatchNorm`: each is `Layer.linear` at a particular matrix, by definition and not up to a lemma,
-so each contributes a matrix and a proof of what it computes. At a representation closed under
-`mtimes` and `plus` all four are exact.
-
-**Relaxations.** `ReLU`, `Sigmoid` and `Tanh` are `Activation` at a `Relaxation`: an affine map per
-neuron and the error to allow for, where every bit of a network's precision is decided. `ReLU` gets
-its slope from convexity, the other two — and `InvSqrt`'s bracket, clamped at a degree bound — from
-`Curvature`. `PolyRelaxation` is that at degree `n` and `Relaxation` its order-1 case;
-`PolySampling` bounds the error, `PolyDerivBound` is what that needs and `PolyFit` what it does
-not, `PolyConvergence` with `PolyFitConvergence` drive it to zero, `PolyRelaxationPad` lifts one to
-a higher degree, and `SigmoidPoly` and `TanhPoly` instantiate them (via `PolyAffineConj`).
-`ActivationPoly` encloses per neuron at `PolyZonotope` alone, `ActivationPolyOn` at a box handed
-to it rather than the input set's own, `ActivationPolyInflate` bounds the widening,
-`PolyRangeConvergence` makes an order serve a whole range, `ActivationPolyRefine` is the three as a
-refinable layer, `SigmoidPolyRefine` at a real activation, and `LinearSigmoid` and
-`SigmoidLinearSigmoid` are two chains around a matrix.
-
-**Neither.** `Reshape` is a relabelling, the only layer here *exact* rather than outer — it asks
-for `Reindex`. Max pooling in `Pooling` and `Softmax` need their own enclosures: the first
-because its output depends on a window not a coordinate, the second on every coordinate at once.
+`Operations/` holds the layers, each written once over the scalar and each run at `ℝ` and at a
+machine scalar alike; `Theorems/` proves them sound at every scalar. `Definitions/` holds what
+they mean — the functions over ℝ a layer encloses and never runs, the soundness predicates, and
+the exact relaxations and polynomial fits that exist only over ℝ, being built from `Real.exp` or
+by choice; `Theorems/Real/` holds what only ℝ can state of those. `Cost/` prices the linear layer.
 -/

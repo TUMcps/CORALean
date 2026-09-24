@@ -1,4 +1,5 @@
-import CORALean.NN.Layers.Linear
+import CORALean.Global.Tensor
+
 
 /-!
 # What a linear layer does to a distance

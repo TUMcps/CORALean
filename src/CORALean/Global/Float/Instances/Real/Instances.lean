@@ -40,7 +40,7 @@ noncomputable instance : FloatOps ℝ where
 
 -- every field is `rfl` or `le_refl`: at ℝ each rounding is the exact operation
 noncomputable instance : SoundFloatArithmetic ℝ where
-  toReal := id
+  toReal x := x
   toReal_neg _ := rfl
   toReal_zero := rfl
   toReal_one := rfl

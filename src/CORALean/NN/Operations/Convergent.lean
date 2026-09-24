@@ -1,4 +1,5 @@
-import CORALean.NN.RefinableLayer
+import CORALean.NN.Definitions.RefinableLayer
+import CORALean.NN.Layers.Layer
 
 /-!
 # What it takes for one layer's refinement to converge

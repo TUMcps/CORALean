@@ -1,10 +1,13 @@
 import CORALean.ContSet.Conversion.Real.API
-import CORALean.NN.Layers.Linear
-import CORALean.NN.Layers.ReLU
+import CORALean.NN.Layers.Definitions.Enclosure
+import CORALean.NN.Layers.Definitions.Relaxation
+import CORALean.NN.Layers.Definitions.Relu
+import CORALean.NN.Layers.Operations.Linear
+import CORALean.NN.Layers.Operations.Relu
 import CORALean.NN.Theorems.Classifies
+import CORALean.NN.Theorems.EncloseOuter
 import CORALean.NN.Theorems.MarginDir
 import CORALean.NN.Theorems.MemSafeSet
-import CORALean.NN.Theorems.EncloseOuter
 
 /-!
 # A feed-forward network, verified end to end

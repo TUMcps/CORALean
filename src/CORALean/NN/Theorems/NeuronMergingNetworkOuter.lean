@@ -14,8 +14,8 @@ Neither side of the sandwich is assumed anything of. The prefix contributes only
 its own enclosure, which every network has, and so the bounds `Y` are asked for
 only at the points the prefix actually reaches. The suffix is applied to a set on
 both sides, so nothing about it has to be re-proved — which is why the reduction
-composes with the rest of the network for free and merges at two *distant*
-layers compose by applying this twice.
+composes with the rest of the network for free, at every scalar, and merges at two
+*distant* layers compose by applying this twice.
 
 Merges two nonlinear layers apart do not: they share the linear layer between
 them, one trimming its rows and the other its columns, so they are not two
@@ -30,7 +30,7 @@ instances of this theorem.
 
 -- Authors:       Tobias Ladner
 -- Written:       06-September-2026
--- Last update:   ---
+-- Last update:   23-September-2026
 -- Last revision: ---
 
 
@@ -38,10 +38,11 @@ instances of this theorem.
 
 namespace CORALean
 
-open Matrix ContSet Plus Mtimes Real.IntervalOuter Real.OfInterval
+open Matrix ContSet Float Float.SoundFloatArithmetic
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
-  [Mtimes (Mat ℝ) S] [Real.IntervalOuter S] [Real.OfInterval S]
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
+  {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
+  [Mtimes (Mat 𝕋) S] [IntervalOuter S 𝕋] [OfInterval S 𝕋]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -52,24 +53,25 @@ bound the nonlinear layer over what `pre` reaches. -/
 theorem neuronMerging_network_outer {n₀ n₁ n n₂ n₃ d r : ℕ}
     (pre : NeuralNetwork S n₀ n₁) (post : NeuralNetwork S n₂ n₃)
     (part : Split (Fin n) into (Fin d) ⊕ (Fin r))
-    (W0 : Mat ℝ n n₁) (b0 : Vec ℝ n) {σ : ℝ → ℝ} (R : Real.Relaxation σ)
-    (W1 : Mat ℝ n₂ n) (b1 : Vec ℝ n₂) (Y : Real.Interval (Vec ℝ n)) (X : S n₀)
+    (W0 : Mat 𝕋 n n₁) (b0 : Vec 𝕋 n) {σ : ℝ → ℝ} (R : Relaxation 𝕋) (hR : R.Sound σ)
+    (W1 : Mat 𝕋 n₂ n) (b1 : Vec 𝕋 n₂) (Y : Interval 𝕋 n) (X : S n₀)
     {fpre : Vec ℝ n₀ → Vec ℝ n₁} (hpre : pre.Sound fpre)
     {fpost : Vec ℝ n₂ → Vec ℝ n₃} (hpost : post.Sound fpost)
     (hY : ∀ x ∈ construct (pre.enclose X),
-      (fun i => σ ((W0 *ᵥ x + b0) i)) ∈ construct Y) :
-    (fun x => fpost (W1 *ᵥ (fun i => σ ((W0 *ᵥ fpre x + b0) i)) + b1)) '' construct X
+      (fun i => σ ((toRealMat W0 *ᵥ x + toRealVec b0) i)) ∈ Y.construct) :
+    (fun x => fpost (toRealMat W1 *ᵥ (fun i => σ ((toRealMat W0 *ᵥ fpre x + toRealVec b0) i))
+        + toRealVec b1)) '' construct X
       ⊆ construct ((NeuralNetwork.cons pre.toLayer
-          (.cons (Real.Layer.linear (W0.submatrix part.left id) (b0 ∘ part.left))
-            (.cons (Real.Layer.activation R)
-              (.cons (Real.Layer.linearWithError (W1.submatrix id part.left) b1
-                  (Real.Interval.mtimes (W1.submatrix id part.right)
+          (.cons (Layer.linear (W0.submatrix part.left id) (b0 ∘ part.left))
+            (.cons (Layer.activation R)
+              (.cons (Layer.linearWithError (W1.submatrix id part.left) b1
+                  (Interval.mtimes (W1.submatrix id part.right)
                     ⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩))
                 post)))).enclose X) := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩
   -- the prefix hands the sandwich a set, and that set is what `hY` is stated over
   have hp : fpre x ∈ construct (pre.enclose X) := hpre.enclose_outer X x hx
-  have hmid := neuronMerging_sandwich_outer part W0 b0 R W1 b1 Y (pre.enclose X) hY
+  have hmid := neuronMerging_sandwich_outer part W0 b0 R hR W1 b1 Y (pre.enclose X) hY
     ⟨fpre x, hp, rfl⟩
   -- the suffix is unchanged, so its own obligation carries the point the rest of the way
   exact hpost.enclose_outer _ _ hmid

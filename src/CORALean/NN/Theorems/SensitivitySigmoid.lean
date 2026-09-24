@@ -1,4 +1,7 @@
-import CORALean.NN.Layers.Sigmoid
+import CORALean.NN.Layers.Definitions.Sigmoid
+import CORALean.NN.Layers.Definitions.SigmoidRelaxation
+import CORALean.NN.Layers.Operations.Sigmoid
+import CORALean.NN.Layers.Theorems.Real.HasDerivAtSigmoid
 import CORALean.NN.Theorems.SensitivityActivation
 
 /-!

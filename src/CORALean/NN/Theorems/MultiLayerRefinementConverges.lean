@@ -1,9 +1,19 @@
-import CORALean.NN.Layers.SigmoidLinearSigmoid
+import CORALean.NN.Layers.Definitions.ActivationPolyRefinable
+import CORALean.NN.Layers.Definitions.Enclosure
+import CORALean.NN.Layers.Definitions.ScaleRounding
+import CORALean.NN.Layers.Definitions.SigmoidNetworks
+import CORALean.NN.Layers.Definitions.SigmoidPolyFamily
+import CORALean.NN.Layers.Operations.Activation
+import CORALean.NN.Layers.Operations.ActivationPolyRefinable
+import CORALean.NN.Layers.Operations.Linear
+import CORALean.NN.Layers.Theorems.LinearSound
+import CORALean.NN.Layers.Theorems.Real.ActivationPolySigmoidConvergent
+import CORALean.NN.Layers.Theorems.Real.SigmoidPolyFamilySound
 import CORALean.NN.Theorems.ActivationLipschitz
-import CORALean.NN.Theorems.EvalLipschitz
-import CORALean.NN.Theorems.LinearConvergent
-import CORALean.NN.Theorems.LinearLipschitz
 import CORALean.NN.Theorems.EncloseAtInflate
+import CORALean.NN.Theorems.EvalLipschitz
+import CORALean.NN.Theorems.LinearLipschitz
+import CORALean.NN.Theorems.Real.LinearConvergent
 import CORALean.NN.Theorems.SigmoidLipschitz
 
 /-!
@@ -48,12 +58,14 @@ theorem sigmoidLinearSigmoidNetwork_convergent (W : Mat ℝ m n) (b : Vec ℝ m)
     (Real.sigmoidLinearSigmoidNetwork W b).Convergent := by -- --- PROOF ---
   -- the last activation on its own, which is where the tail bound bottoms out
   have h₂ : (RefinableNetwork.cons (S := 𝒫𝒵)
-      (Real.Layer.activationPolyRefinable (n := m) Real.sigmoidPolyFamily) .nil).LipschitzLayers :=
+      (Real.Layer.activationPolyRefinable (n := m) Real.sigmoidPolyFamily
+        Real.sigmoidPolyFamily_sound) .nil).LipschitzLayers :=
     ⟨⟨1, Layer.lipschitzWith_activation_eval lipschitzWith_sigmoid m⟩, trivial⟩
   -- and the matrix in front of it, whose constant is its largest row sum
   have h₁ : (RefinableNetwork.cons (S := 𝒫𝒵)
-      ((Real.Layer.linear W b).refinable (Real.Layer.linear_sound W b))
-      (.cons (Real.Layer.activationPolyRefinable (n := m) Real.sigmoidPolyFamily)
+      ((Layer.linear W b).refinable (Layer.linear_sound W b))
+      (.cons (Real.Layer.activationPolyRefinable (n := m) Real.sigmoidPolyFamily
+        Real.sigmoidPolyFamily_sound)
         .nil)).LipschitzLayers :=
     ⟨⟨_, Layer.lipschitzWith_linear_eval W b⟩, h₂⟩
   exact ⟨Real.Layer.activationPolySigmoid_convergent n,

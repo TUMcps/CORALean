@@ -1,0 +1,31 @@
+import CORALean.NN.Definitions.MergeBucket
+
+/-!
+# A bucketed neuron's width
+
+ℝ-only, the bucket being read off exact bounds: both `y ± δ` lie between a bucketed neuron's
+bounds, so they are within `2δ` of each other.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       06-September-2026
+-- Last update:   23-September-2026
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+/-- A bucketed neuron's bounds are within `2δ` of each other, `y ± δ` both between them. -/
+theorem mergeBucket_width {n : ℕ} (Y : Real.Interval (Vec ℝ n)) (y δ : ℝ) {i : Fin n}
+    (hi : mergeBucket Y y δ i) : Y.sup i - Y.inf i ≤ 2 * δ := by
+  linarith [hi.1, hi.2]
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

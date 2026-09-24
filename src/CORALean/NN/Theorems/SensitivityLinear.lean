@@ -1,4 +1,3 @@
-import CORALean.NN.Layers.Linear
 import CORALean.NN.Theorems.SensitivityOfMatrix
 
 /-!
@@ -23,10 +22,9 @@ normalization — reads its sensitivity off this one, at its own matrix.
 
 namespace CORALean
 
-open Matrix ContSet Plus Mtimes Real.OfInterval
+open Matrix
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
-  [Mtimes (Mat ℝ) S] [Real.OfInterval S] {n m : ℕ}
+variable {n m : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

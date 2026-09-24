@@ -40,7 +40,7 @@ variable {N : ℕ}
 
 /-- The enclosure of [1, Prop. 4] grows cubically in the number of uncertain
 edges, at a fixed graph size. -/
-theorem GNN.messagePassingEnclosure_h_isBigO (R : Relaxation invSqrt) (A : Mat ℝ N N)
+theorem GNN.messagePassingEnclosure_h_isBigO (R : Relaxation ℝ) (A : Mat ℝ N N)
     (U : ∀ m : ℕ, Fin m → Fin N × Fin N) :
     (fun m : ℕ => (((GNN.messagePassingEnclosure R A (U m)).h : ℕ) : ℝ))
       =O[Filter.atTop] fun m : ℕ => (m : ℝ) ^ 3 := by -- --- PROOF ---

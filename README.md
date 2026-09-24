@@ -52,6 +52,9 @@ layer refines each such theorem by rounding "outward" — and runs: every float
 operation is a `def`, save the interface instantiated at ℝ itself, which is a
 specification proxy rather than a representation. Continuous-time reachability
 has no float counterpart at all; see `Examples/ReachFloat.lean` for the split.
+Outside the set representations, the neural network layers among them, an
+algorithm is written once over the scalar instead, and run at ℝ and at a
+machine scalar alike.
 
 The float layer fixes no format, and the same definition runs at either of two
 scalars: `Dyadic p`, exact integer arithmetic whose soundness obligations are

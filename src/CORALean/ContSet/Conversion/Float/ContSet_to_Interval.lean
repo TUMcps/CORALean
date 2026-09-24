@@ -1,8 +1,10 @@
 import CORALean.ContSet.Conversion.Float.ConZonotope_to_Interval
 import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+import CORALean.ContSet.Conversion.Real.ContSet_to_Interval
 import CORALean.ContSet.ConZonotope.Float.Instances
 import CORALean.ContSet.Interval.Float.Instances
 import CORALean.ContSet.Zonotope.Float.Instances
+import CORALean.Global.Float.Instances.Real.Instances
 
 /-!
 # Enclosing itself in a box, over a floating-point scalar
@@ -19,11 +21,14 @@ back in the scalar the representation stores rather than in ℝ; a caller writes
 The instance list is the exact layer's, minus the polytopes for the same reason:
 a box from halfspaces or vertices is `2n` linear programs, so `interval` there
 takes certificates and is no function of the representation alone.
+
+An exact representation is one at `𝕋 := ℝ`, through its own class: that is what lets an
+algorithm written once over the scalar run on `Real.Zonotope` as well as on a float one.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   23-September-2026
 -- Last revision: ---
 
 
@@ -57,6 +62,12 @@ instance : IntervalOuter (fun n => Zonotope 𝕋 n) 𝕋 where
 instance : IntervalOuter (fun n => ConZonotope 𝕋 n) 𝕋 where
   interval C := C.interval
   interval_outer C := ConZonotope.interval_contains C
+
+/-- An exact representation boxes itself at `𝕋 := ℝ`, the box its exact class returns. -/
+instance {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real.IntervalOuter S] :
+    IntervalOuter S ℝ where
+  interval s := ⟨(Real.IntervalOuter.interval s).inf, (Real.IntervalOuter.interval s).sup⟩
+  interval_outer s := Real.IntervalOuter.interval_outer s
 
 end CORALean.Float
 

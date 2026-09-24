@@ -1,4 +1,4 @@
-import CORALean.NN.Reduction
+import CORALean.NN.Definitions.Reduction
 
 /-!
 # `ReducesAt` is about a function, not how it is written
@@ -32,12 +32,12 @@ theorem NeuralNetwork.ReducesAt.congr {n m : ℕ} {s : S n} {nn nn' : NeuralNetw
   cases h with
   | nil _ hf => exact .nil _ fun x => (hff x).trans (hf x)
   | keep _ L hg hf hrest => exact .keep _ L hg (fun x => (hff x).trans (hf x)) hrest
-  | merge _ part W0 b0 R W1 b1 Y hY hf hrest =>
-    exact .merge _ part W0 b0 R W1 b1 Y hY (fun x => (hff x).trans (hf x)) hrest
+  | merge _ part W0 b0 R hR W1 b1 Y hY hf hrest =>
+    exact .merge _ part W0 b0 R hR W1 b1 Y hY (fun x => (hff x).trans (hf x)) hrest
   | widen _ W c b E hc hf hrest =>
     exact .widen _ W c b E hc (fun x => (hff x).trans (hf x)) hrest
-  | freeze _ part W0 c0 b0 E0 hc0 R W1 c1 Y hY hf hrest =>
-    exact .freeze _ part W0 c0 b0 E0 hc0 R W1 c1 Y hY (fun x => (hff x).trans (hf x)) hrest
+  | freeze _ part W0 c0 b0 E0 hc0 R hR W1 c1 Y hY hf hrest =>
+    exact .freeze _ part W0 c0 b0 E0 hc0 R hR W1 c1 Y hY (fun x => (hff x).trans (hf x)) hrest
 
 end CORALean
 

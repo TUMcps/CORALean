@@ -1,5 +1,5 @@
-import CORALean.NN.Theorems.HoldsOfReducesAt
-import CORALean.NN.Theorems.ReduceOnTheFlyReducesAt
+import CORALean.NN.Theorems.ReduceOnTheFlyOuter
+import CORALean.Specification.Theorems.HoldsOfOuter
 
 /-!
 # [1, Thm. 1] for what [1, Alg. 2] actually returns
@@ -7,9 +7,9 @@ import CORALean.NN.Theorems.ReduceOnTheFlyReducesAt
 [1, Thm. 1]: given an input set `X`, a network `Φ` and a reduction rate `ρ`, [1, Alg. 2]
 constructs a reduced network `Φ̂_ρ` for which verification entails verifying `Φ` — checking
 a specification on the output set `Y` the algorithm computed is checking it on `Φ(X)`.
-`reduceOnTheFly_reducesAt` puts the output in `ReducesAt`, and `holds_of_reducesAt` is the
-rest. It holds at every `le`, `tol`, `fuel` and `ρ`, and at every instance of a network in
-[1, Eq. 2]'s form, the original network — every `I' = [0, 0]` — being the one [1] means.
+`reduceOnTheFly_outer` is the inclusion and `holds_of_outer` the rest. It holds at every
+scalar, `le`, `tol`, `fuel` and `ρ`, and at every instance of a network in [1, Eq. 2]'s form,
+the original network — every `I' = [0, 0]` — being the one [1] means.
 
 ## References
 
@@ -19,34 +19,33 @@ rest. It holds at every `le`, `tol`, `fuel` and `ρ`, and at every instance of a
 
 -- Authors:       Tobias Ladner
 -- Written:       23-September-2026
--- Last update:   ---
+-- Last update:   23-September-2026
 -- Last revision: ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
-open ContSet
+open ContSet Float
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
-  [Mtimes (Mat ℝ) S] [IntervalOuter S] [OfInterval S]
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
+  {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
+  [Mtimes (Mat 𝕋) S] [IntervalOuter S 𝕋] [OfInterval S 𝕋]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Thm. 1]: a specification holding on the output set `Y` of [1, Alg. 2] holds on the
 original network's exact image of `X`. -/
-theorem holds_of_reduceOnTheFly {le : ℝ → ℝ → Bool} {tol : ℝ} {fuel : ℕ} {ρ : ℝ} {n m : ℕ}
-    {X : S n} {Φ Φhat : ReducibleNetwork n m} {Y : S m} {nn : NeuralNetwork S n m}
-    {f : Vec ℝ n → Vec ℝ m} (hΦ : Φ.Instance nn f)
-    (hrun : reduceOnTheFly le tol fuel X ρ Φ = some (Φhat, Y))
+theorem holds_of_reduceOnTheFly {le : 𝕋 → 𝕋 → Bool} {tol : 𝕋} {fuel : ℕ} {ρ : 𝕋} {n m : ℕ}
+    {X : S n} {Φ Φhat : ReducibleNetwork 𝕋 n m} {Y : S m} {f : Vec ℝ n → Vec ℝ m}
+    (hΦ : Φ.Instance f) (hrun : reduceOnTheFly le tol fuel X ρ Φ = some (Φhat, Y))
     (spec : Specification (Vec ℝ m)) (hspec : spec.Holds (construct Y)) :
-    spec.Holds (f '' construct X) := by
-  obtain ⟨hred, rfl⟩ := reduceOnTheFly_reducesAt hΦ hrun
-  exact NeuralNetwork.holds_of_reducesAt hred spec hspec
+    spec.Holds (f '' construct X) :=
+  spec.holds_of_outer (reduceOnTheFly_outer hΦ hrun).1 hspec
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

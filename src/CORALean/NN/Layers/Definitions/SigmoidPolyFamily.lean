@@ -1,0 +1,38 @@
+import CORALean.NN.Layers.Definitions.PolyFamily
+import CORALean.NN.Layers.Theorems.Real.AbsSigmoidDerivLeOne
+import CORALean.NN.Layers.Theorems.Real.HasDerivAtSigmoid
+
+/-!
+# The refinement loop's family at the sigmoid
+
+`polyRelaxationFamily` asks for a derivative and a bound on it over all of ℝ, and the sigmoid
+has both, `σ'` being a product of two sigmoids each inside `(0,1)`. CORA's `nn.refine` at the
+sigmoid [1], with the choice of fit left open. Over ℝ, as the family is.
+
+## References
+
+* [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural
+      Network Verification using Sensitivity Analysis". HSCC 2023.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       06-September-2026
+-- Last update:   23-September-2026
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- Level `o` fits the sigmoid on `[-o, o]` to within `1 / (o + 1)`. -/
+noncomputable def sigmoidPolyFamily : PolyRelaxationFamily ℝ :=
+  polyRelaxationFamily hasDerivAt_sigmoid abs_sigmoidDeriv_le_one
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

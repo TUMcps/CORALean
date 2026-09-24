@@ -4,8 +4,11 @@ import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.HoldsOfReach
 import CORALean.ContSet.Conversion.Real.ContSet_to_Interval
 import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
 import CORALean.ContSet.Zonotope.Real.Instances
-import CORALean.NN.Layers.Linear
-import CORALean.NN.Layers.ReLU
+import CORALean.NN.Layers.Definitions.Enclosure
+import CORALean.NN.Layers.Definitions.Relaxation
+import CORALean.NN.Layers.Definitions.Relu
+import CORALean.NN.Layers.Operations.Linear
+import CORALean.NN.Layers.Operations.Relu
 
 /-!
 # A two-state plant with a ReLU controller, verified end to end

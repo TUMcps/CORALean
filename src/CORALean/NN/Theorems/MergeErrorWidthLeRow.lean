@@ -1,3 +1,4 @@
+import CORALean.NN.Operations.MergeRowWeight
 import CORALean.NN.Theorems.MergeErrorWidthLe
 
 /-!

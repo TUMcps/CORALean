@@ -1,12 +1,27 @@
 import CORALean.ContSet.Conversion.Real.API
-import CORALean.NN.Layers.BatchNorm
-import CORALean.NN.Layers.Pooling
-import CORALean.NN.Layers.ReLU
-import CORALean.NN.Layers.Reshape
-import CORALean.NN.Layers.Softmax
+import CORALean.NN.Layers.Definitions.BatchNorm
+import CORALean.NN.Layers.Definitions.Enclosure
+import CORALean.NN.Layers.Definitions.PolyRelaxation
+import CORALean.NN.Layers.Definitions.Relaxation
+import CORALean.NN.Layers.Definitions.Relu
+import CORALean.NN.Layers.Definitions.ScaleRounding
+import CORALean.NN.Layers.Definitions.Softmax
+import CORALean.NN.Layers.Operations.AvgPool
+import CORALean.NN.Layers.Operations.BatchNorm
+import CORALean.NN.Layers.Operations.Conv
+import CORALean.NN.Layers.Operations.LayerRelaxationBox
+import CORALean.NN.Layers.Operations.Linear
+import CORALean.NN.Layers.Operations.MaxPool
+import CORALean.NN.Layers.Operations.RelaxationBox
+import CORALean.NN.Layers.Operations.Relu
+import CORALean.NN.Layers.Operations.Reshape
+import CORALean.NN.Layers.Operations.Softmax
+import CORALean.NN.Layers.Operations.TransposeEquiv
+import CORALean.NN.Layers.Theorems.ConvSound
+import CORALean.NN.Layers.Theorems.ReshapeExact
 import CORALean.NN.Theorems.Classifies
-import CORALean.NN.Theorems.MarginDir
 import CORALean.NN.Theorems.EncloseOuter
+import CORALean.NN.Theorems.MarginDir
 
 /-!
 # A convolutional network, and the six layers it puts in one chain
@@ -31,7 +46,7 @@ and layout.
 
 -- Authors:       Tobias Ladner
 -- Written:       03-September-2026
--- Last update:   ---
+-- Last update:   23-September-2026
 -- Last revision: ---
 
 
@@ -65,7 +80,8 @@ noncomputable def Example.convNet (K : Fin 1 → Fin 2 → ℝ) (b : Vec ℝ 5)
     (.cons (Layer.conv (fun _ => 0) Example.convTap K b)
       (.cons Layer.relu
         (.cons (Layer.maxPool Example.poolTap fun _ _ => 0)
-          (.cons (Layer.batchNorm id gamma beta mean var 1e-5)
+          (.cons (Layer.batchNorm id (fun k => batchNormScale (gamma k) (var k) 1e-5)
+              fun k => batchNormShift (gamma k) (beta k) (mean k) (var k) 1e-5)
             (.cons Layer.softmax .nil)))))
 
 -- anonymous, since their content is that they elaborate at this network
@@ -105,7 +121,7 @@ example (X : Zonotope (Vec ℝ 6)) :
 /-- Average pooling is not in the chain above because it is the convolution
 already there at a constant kernel; it is checked separately for the same
 reason. -/
-noncomputable example : Layer 𝒵 5 2 := Layer.avgPool Example.poolTap
+noncomputable example : Layer 𝒵 5 2 := Layer.avgPool (2 : ℝ)⁻¹ Example.poolTap
 
 end CORALean.Real
 

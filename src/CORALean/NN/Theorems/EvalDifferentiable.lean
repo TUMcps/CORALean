@@ -1,3 +1,4 @@
+import CORALean.NN.Operations.ChainEval
 import CORALean.NN.Operations.DifferentiableChain
 
 /-!

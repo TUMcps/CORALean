@@ -1,5 +1,5 @@
 import CORALean.ContSet.ContSet.SupportBound
-import CORALean.Global.LinProg.Float.API
+import CORALean.Global.Float.FloatBound
 
 /-!
 # Float bounds across `segments`

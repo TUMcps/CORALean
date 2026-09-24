@@ -36,15 +36,38 @@ MAX_PUBLIC_DECL=1     # public declarations per `Operations/`/`Theorems/` file (
 # keeps it one file rather than a habit.
 AXIOM_FILE=src/CORALean/Global/Float/Instances/Binary64/Axioms.lean
 
-# `noncomputable` outside `Real/` is legitimate only for an `aux_` declaration
-# in a `Theorems/` file or a name listed here with a reason — see the file's
-# own header for what a reason must say. The name is the declaration's own,
+# `noncomputable` outside a representation's `Real/` layer, the scalar
+# interface's instance at ℝ and a `Definitions/` file is legitimate only for an
+# `aux_` declaration or a name listed here with a reason — see the file's own
+# header for what a reason must say. The name is the declaration's own,
 # exactly as written after `noncomputable` — a dotted prefix and all, so a
 # bare `reach` here excuses only a bare `reach`, never `LinearSys.reach` too.
-# Under `Float/` even that allowlist does not reach: only the
-# `aux_`-in-`Theorems/` exemption does, because the whole point of the float
-# layer is that it runs.
+# Under `Float/` even that allowlist does not reach: only the `aux_` exemption
+# does, because the whole point of the float layer is that it runs.
 ALLOWLIST=scripts/noncomputable-allowlist.txt
+
+# Rule A. A class root, a directory holding an `Operations/`, `Theorems/` or
+# `Definitions/` folder, holds its class file, `Instances.lean` and `API.lean`
+# and nothing else: every other file has a role folder beside them. Which of
+# the remaining files is the class file is not guessed at, so the rule is that
+# there is at most one. `ContSet/Conversion/` is exempt by name, a pairwise
+# table of conversions rather than a class.
+CLASS_ROOT_EXEMPT=src/CORALean/ContSet/Conversion
+
+# Class roots not yet sorted into role folders, one per line. The list only
+# shrinks: an entry whose directory now passes, or is gone, is reported the way
+# a stale allowlist entry is. `NN/Graph` is ℝ-only, its algorithms awaiting a
+# rewrite over the scalar; sorting it by computability now would file them as
+# meanings.
+CLASS_ROOT_PENDING="
+src/CORALean/ContDynamics/LinearSys
+src/CORALean/ContDynamics/LinearSys/MatExp
+src/CORALean/ContSet/ContSet
+src/CORALean/Global/Float/Instances/Binary64
+src/CORALean/Global/Float/Instances/Dyadic
+src/CORALean/NN/Graph
+src/CORALean/Specification
+"
 
 status=0
 
@@ -185,6 +208,53 @@ function base(name,   k) {
   return parts[k]
 }
 
+# Whether the result type of a declaration header is `Prop` or a `Set`: the text
+# after its last colon outside brackets, then after its last arrow outside
+# brackets, which is the codomain once every argument is applied.
+function propOrSet(h,   i, c, d, cut, t, seg) {
+  sub(/:=.*$/, "", h); sub(/ where([ \t].*)?$/, "", h); sub(/[ \t]\|.*$/, "", h)
+  d = 0; cut = 0
+  for (i = 1; i <= length(h); i++) {
+    c = substr(h, i, 1)
+    if (c == "(" || c == "{" || c == LBRACK) d++
+    else if (c == ")" || c == "}" || c == RBRACK) d--
+    else if (c == ":" && d == 0) cut = i
+  }
+  if (cut == 0) return 0
+  t = substr(h, cut + 1); d = 0; seg = t
+  for (i = 1; i <= length(t); i++) {
+    c = substr(t, i, 1)
+    if (c == "(" || c == "{" || c == LBRACK) d++
+    else if (c == ")" || c == "}" || c == RBRACK) d--
+    else if (d == 0 && substr(t, i, 3) == "→") seg = substr(t, i + 3)
+  }
+  sub(/^[ \t]+/, "", seg); sub(/[ \t]+$/, "", seg)
+  return (seg == "Prop" || seg ~ /^Set([ \t(]|$)/)
+}
+
+# Whether the codomain of a declaration header, read as `propOrSet` reads it,
+# is an `Option`.
+function returnsOption(h,   i, c, d, cut, t, seg) {
+  sub(/:=.*$/, "", h); sub(/ where([ \t].*)?$/, "", h)
+  d = 0; cut = 0
+  for (i = 1; i <= length(h); i++) {
+    c = substr(h, i, 1)
+    if (c == "(" || c == "{" || c == LBRACK) d++
+    else if (c == ")" || c == "}" || c == RBRACK) d--
+    else if (c == ":" && d == 0) cut = i
+  }
+  if (cut == 0) return 0
+  t = substr(h, cut + 1); d = 0; seg = t
+  for (i = 1; i <= length(t); i++) {
+    c = substr(t, i, 1)
+    if (c == "(" || c == "{" || c == LBRACK) d++
+    else if (c == ")" || c == "}" || c == RBRACK) d--
+    else if (d == 0 && substr(t, i, 3) == "→") seg = substr(t, i + 3)
+  }
+  sub(/^[ \t]+/, "", seg)
+  return (seg ~ /^Option([ \t(]|$)/)
+}
+
 function moduleOf(path,   m) {
   m = path
   sub(/^src\//, "", m)
@@ -291,7 +361,9 @@ function check(f,   i, n, collector, want, dir, cap) {
   for (i = 1; i <= nimp; i++) {
     if (imp[i] == want)
       say(f ":" impLine[i] ": imports the `API.lean` of its own directory, which is a cycle")
-    if (f ~ /\/Real\// && f !~ /\/Float\// && imp[i] ~ /\.Float\./)
+    # Only the two layers of a representation are kept apart so: a `Theorems/Real/` statement
+    # elsewhere is about an operation written once over the scalar, which imports both.
+    if (f ~ /\/ContSet\/.*\/Real\// && imp[i] ~ /\.Float\./)
       say(f ":" impLine[i] ": a `Real` file must not import `Float`")
   }
 
@@ -301,10 +373,12 @@ function check(f,   i, n, collector, want, dir, cap) {
 
   # A layer directory and the namespace it declares must agree, since the path
   # is what a reader navigates by and the namespace is what Lean resolves by.
+  # Only a representation has layers: a `Theorems/Real/` folder elsewhere holds
+  # statements about the one scalar-generic object at `ℝ`, in the namespace of that object.
   if (!collector && nsLine > 0) {
     if (f ~ /\/Float\// && ns !~ /(^|\.)Float(\.|$)/)
       say(f ":" nsLine ": a file under `Float/` declares `namespace ...Float`, not `" ns "`")
-    if (f ~ /\/Real\// && f !~ /\/Float\// && ns !~ /(^|\.)Real(\.|$)/)
+    if (f ~ /\/ContSet\/.*\/Real\// && f !~ /\/Float\// && ns !~ /(^|\.)Real(\.|$)/)
       say(f ":" nsLine ": a file under `Real/` declares `namespace ...Real`, not `" ns "`")
   }
 
@@ -366,7 +440,7 @@ FNR == 1 {
   blockKind = ""; blockStart = 0; declDocEnd = 0
   prevPureComment = 0; prevLineComment = 0; run = 0; blanks = 0; inRefs = 0; refsLine = 0
   firstDeclSeen = 0; firstBodyFound = 0; firstBodyLine = 0
-  npub = 0; nDeclTotal = 0; lastFNR = 0
+  npub = 0; nDeclTotal = 0; lastFNR = 0; defPending = 0
   beginCount = 0; endCount = 0; auxCount = 0; mainishCount = 0
   beginFNR = 0; endFNR = 0
   afterPending = 0; afterLabel = ""; afterMarkerFNR = 0; afterBlanks = 0
@@ -626,30 +700,49 @@ FNR == 1 {
       say(FILENAME ":" FNR ": a `def` under `Cost/` is an asserted cost, named" \
           " `...Cost` or `...Bound`, not `" b "`")
 
-    # `noncomputable` is free under `Real/` (rule 1) and, since that path
-    # literally reads `.../Float/Instances/Real/...`, that same test covers
-    # rule 2 as well. Elsewhere it is free only for an `aux_` declaration in a
-    # `Theorems/` file (rule 3) or a name the allowlist gives a reason
-    # (rule 4) — and under `Float/` even the allowlist does not reach: the
-    # float layer exists to run.
+    # `noncomputable` is free in the `Real/` layer of a representation (rule 1),
+    # in the instance of the scalar interface at ℝ, `Global/Float/Instances/Real/`
+    # (rule 2), and in a `Definitions/` file, which says what an object means
+    # and is never run. Elsewhere it is free only for an `aux_` declaration
+    # (rule 3) or a name the allowlist gives a reason (rule 4), and under
+    # `Float/` even the allowlist does not reach: the float layer exists to run.
     if (prefix ~ /noncomputable /) {
-      isAux = (b ~ /^aux_/ && FILENAME ~ /\/Theorems\//)
-      if (FILENAME !~ /\/Real\//) {
+      isAux = (b ~ /^aux_/)
+      if (FILENAME !~ /\/ContSet\/.*\/Real\// && FILENAME !~ /\/Global\/Float\/Instances\/Real\// &&
+          FILENAME !~ /\/Definitions\//) {
         if (FILENAME ~ /\/Float\//) {
           if (!isAux)
             say(FILENAME ":" FNR ": `noncomputable` under `Float/` — only an" \
-                " `aux_` declaration in a `Theorems/` file may be; the float" \
-                " layer must run")
+                " `aux_` declaration may be; the float layer must run")
         } else if (isAux) {
           # exempt
         } else if (qualDecl in allowNC) {
           usedAllow[qualDecl] = 1
         } else {
-          say(FILENAME ":" FNR ": `noncomputable` outside `Real/`/`Float/`, not" \
-              " an `aux_` declaration in `Theorems/`, and `" qualDecl "` is not in `" \
+          say(FILENAME ":" FNR ": `noncomputable` outside a `Real/` layer or" \
+              " `Definitions/`, not an `aux_` declaration, and `" qualDecl "` is not in `" \
               ALLOWLIST "` — add it there with a reason, or make the" \
               " declaration computable")
         }
+      }
+    }
+
+    # Rule B. A `Definitions/` file holds meanings: types, propositions, sets,
+    # and what is `noncomputable` because it is a specification. A theorem
+    # there belongs in `Theorems/`, and a computable `def` returning data is
+    # an algorithm, which belongs in `Operations/`; its header is read up to
+    # `:=` below, since the result type may sit lines after the name.
+    if (FILENAME ~ /\/Definitions\// && FILENAME !~ /\/API\.lean$/) {
+      if (kind == "theorem" || kind == "lemma")
+        say(FILENAME ":" FNR ": a theorem in `Definitions/` — `" qualDecl \
+            "` belongs in `Theorems/`")
+      else if ((kind == "def" || kind == "instance") && prefix !~ /noncomputable /) {
+        defPending = 1; defFNR = FNR; defHdr = ""; defName = qualDecl; defNC = 0
+      }
+      # `noncomputable` does not make a partial algorithm a meaning: a `def`
+      # returning `Option …` searches or can fail, which is an Operation.
+      else if (kind == "def" && prefix ~ /noncomputable /) {
+        defPending = 1; defFNR = FNR; defHdr = ""; defName = qualDecl; defNC = 1
       }
     }
 
@@ -668,6 +761,20 @@ FNR == 1 {
     else if (prefix !~ /private /) { npub++; pubList[npub] = b }
   }
 
+  if (defPending) {
+    defHdr = defHdr " " code
+    if (defHdr ~ /:=/ || defHdr ~ / where([ \t]|$)/ || (FNR > defFNR && code ~ /^[ \t]*\|/)) {
+      defPending = 0
+      if (defNC && returnsOption(defHdr))
+        say(FILENAME ":" defFNR ": `" defName "` returns an `Option`, a search that" \
+            " can fail, which is an Operation — move it to `Operations/`")
+      else if (!defNC && !propOrSet(defHdr))
+        say(FILENAME ":" defFNR ": `" defName "` is a computable `def` returning data," \
+            " which is an Operation — move it to `Operations/`, or it is a `Prop`/`Set`" \
+            " and should say so in its type")
+    }
+  }
+
   rest = code
   while (match(rest, /aux_[A-Za-z0-9_'"'"']*/)) {
     tok = substr(rest, RSTART, RLENGTH)
@@ -681,7 +788,7 @@ END {
   for (name in allowNC)
     if (!(name in usedAllow))
       say(ALLOWLIST ":" allowLine[name] ": stale allowlist entry `" name \
-          "` — no longer matches any `noncomputable` declaration outside `Real/`/`Float/`")
+          "` — no longer matches any `noncomputable` declaration the rules do not already allow")
 }
 ')
 report "$out"
@@ -716,6 +823,54 @@ END {
   }
   for (m in known)
     if (!(m in seen)) print m ": not reachable from a target root — nothing imports it"
+}
+' | sort)
+report "$out"
+
+# The layout, read off the file list alone: Rule A, and where a scalar folder
+# may sit. The scalar is a folder only where the data of a type differs by
+# layer, which is exactly the representations of `ContSet/`; everywhere else an
+# object is written once over the scalar, `Theorems/Real/` holds what only ℝ
+# can state of it, and `Global/Float/` is the scalar interface itself.
+out=$(awk -v LIST="$list" -v EXEMPT="$CLASS_ROOT_EXEMPT" \
+  -v PENDING="$(printf '%s' "$CLASS_ROOT_PENDING" | tr '\n' ' ')" '
+function dirOf(p,   d) { d = p; sub(/\/[^\/]*$/, "", d); return d }
+function baseOf(p,   b) { b = p; sub(/^.*\//, "", b); return b }
+BEGIN {
+  n = split(PENDING, pl, " ")
+  for (i = 1; i <= n; i++) if (pl[i] != "") pending[pl[i]] = 1
+  while ((getline f < LIST) > 0) {
+    if (f == "") continue
+    d = dirOf(f); b = baseOf(f)
+    if (b != "API.lean" && b != "Instances.lean") { nextra[d]++; extra[d] = extra[d] " `" b "`" }
+    # A directory is a class root once any role folder sits directly in it.
+    cur = d
+    while (cur ~ /\//) {
+      nm = baseOf(cur); par = dirOf(cur)
+      if (nm == "Operations" || nm == "Theorems" || nm == "Definitions") root[par] = 1
+      cur = par
+    }
+    if (f ~ /^src\/CORALean\/ContSet\//) continue
+    t = f; gsub(/\/Theorems\/Real\//, "/Theorems/-/", t)
+    if (t ~ /\/Real\// && f !~ /^src\/CORALean\/Global\/Float\//)
+      print f ": a `Real/` folder outside `ContSet/` is a `Theorems/Real/` only," \
+            " for what holds of a scalar-generic object at ℝ alone"
+    if (f ~ /\/Float\// && f !~ /^src\/CORALean\/Global\/Float\//)
+      print f ": a `Float/` folder outside `ContSet/` is `Global/Float/` only, the scalar" \
+            " interface; everything else is written once over the scalar"
+  }
+  for (d in root) {
+    if (d == EXEMPT || index(d, EXEMPT "/") == 1) continue
+    if (d in pending) continue
+    if (nextra[d] > 1)
+      print d ": a class root holds its class file, `Instances.lean` and `API.lean` only," \
+            " and this one holds " nextra[d] ":" extra[d] " — one is the class file, the" \
+            " rest belong in `Definitions/`, `Operations/` or `Theorems/`"
+  }
+  for (d in pending)
+    if (!(d in root) || nextra[d] <= 1)
+      print "scripts/check-conventions.sh: `" d "` is on CLASS_ROOT_PENDING but" \
+            " already has its role folders sorted — drop it from the list"
 }
 ' | sort)
 report "$out"

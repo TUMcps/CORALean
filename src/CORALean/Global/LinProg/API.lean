@@ -12,6 +12,7 @@ its reason, `Duality` produces reasons from a solver's dual solution,
 `Composition` carries them across the set operations, and `Simplex` is the
 solver — unverified, and the one thing here nothing else relies on being right.
 
-`Float/` is deliberately not collected here, matching `Global/API.lean`:
-importing it would put the floating-point scalar in reach of every `Real` file.
+The same bound stored in a scalar is `Global/Float/FloatBound`, with the scalar interface: a
+bound is scalar-generic like everything else, and only its home keeps the floating-point scalar
+out of reach of every `Real` file, matching `Global/API.lean`.
 -/

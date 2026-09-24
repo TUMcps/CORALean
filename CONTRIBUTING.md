@@ -6,9 +6,9 @@
 src/CORALean/
   Global/          shared: array types, the scalar, index partitions, the model
                    every running cost is stated against, Mathlib
-    Float/         the floating-point scalar, and models of it
+    Float/         the floating-point scalar, models of it, and the support
+                   bound stored in it
     LinProg/       bounds on a linear objective, and what certifies them
-      Float/       the same bound with a machine-representable value
   ContSet/         set representations, over whichever ambient type they suit
     ContSet/       the interface every representation instantiates
     InflatedContSet/  nominal part + error box, what a float representation adds
@@ -68,10 +68,14 @@ src/CORALean/
   HybridDynamics/  locations, transitions and the automaton; a run alternates
                    flowing inside a location with jumping between them
   NN/              neural network verification: propagating an input set through
-                   a graph of layers, and checking the result
-    Layers/        the standard layers, one file each; an elementwise
-                   activation is a `Relaxation` and nothing else, softmax the
-                   exception, its outputs sharing a denominator
+                   a graph of layers, and checking the result, written once over
+                   the scalar; NeuralNetwork.lean (the class), Definitions/ (what
+                   a network means), Operations/, Theorems/ and Theorems/Real/
+    Layers/        the standard layers, Layer.lean their class, laid out the
+                   same way; an elementwise activation is a `Relaxation` and
+                   nothing else, softmax the exception, its outputs sharing a
+                   denominator
+    Graph/         graph neural networks, over ℝ only so far
   Examples/        one worked example per component, proved and never run
     Demo/          the one executable, and the only place anything here is
                    evaluated rather than proved
@@ -100,11 +104,36 @@ the representation's own files, never its `API.lean`.
 
 A representation holds one directory per arithmetic layer, named for the
 namespace it declares, and keeps it when only one layer is written: `Capsule`
-has a `Real/` and no `Float/`. Elsewhere a single-layer directory stays flat,
-and then only the namespace says which. The remaining directory names —
-`ContSet`, `Interval`, `Operations` — are organizational and appear in no
-namespace, so a path never contradicts a namespace. `ContSet` itself belongs to
-neither layer and sits in namespace `CORALean`.
+has a `Real/` and no `Float/`. That split is permanent, and it is the only one:
+the scalar is a folder only where the data of a type differs by layer, which is
+exactly `ContSet/`'s representations — a float zonotope stores an error box a
+real one has no use for. Everywhere else an object is written once over the
+scalar `𝕋`, ℝ among its instances, and no `Real/` or `Float/` folder appears:
+`Operations/` holds the algorithms, generic over `𝕋`; `Definitions/` holds what
+an object means — its types, the propositions and sets its guarantees are
+stated in, and the exact objects only ℝ has, built from `Real.exp` or by choice,
+which are free to be `noncomputable`; `Theorems/` holds the statements that do
+not fix the scalar, and `Theorems/Real/` those only ℝ can state — the
+per-statement version of a representation's whole `<Rep>/Real/Theorems/`.
+`Global/Float/` is the scalar interface itself, and the one other `Float/`.
+
+A directory holding any of `Operations/`, `Theorems/` or `Definitions/` is a
+*class root*: beside them it holds its class file, `Instances.lean` and
+`API.lean`, and nothing else. `ContSet/Conversion/` is the exception, a table of
+pairs rather than a class. A `Definitions/` file declares types, `abbrev`s,
+propositions, sets and `noncomputable` specifications; a computable `def`
+returning data is an algorithm, and belongs in `Operations/`, as does any `def`
+returning an `Option` — a search that can fail — and a theorem belongs in
+`Theorems/`. All of this is checked, and the class roots not yet sorted are a
+named list in the script, which only shrinks. Two things no script can see are
+review items: whether a statement in `Theorems/` secretly holds only at ℝ, and
+whether one in `Theorems/Real/` really needs ℝ.
+
+The remaining directory names — `ContSet`, `Interval`, `Operations` — are
+organizational and appear in no namespace, so a path never contradicts a
+namespace; a `Theorems/Real/` file outside `ContSet/` keeps the namespace of the
+object it states a fact of. `ContSet` itself belongs to neither layer and sits
+in namespace `CORALean`.
 
 ### Which layer a declaration belongs to
 
@@ -118,8 +147,10 @@ in `ContDynamics`, the automaton in `HybridDynamics`, and `Layer`,
 `NeuralNetwork` and the refinement framework in `NN`. `Layer` stores
 `enclose : S n → S m` and nothing real — the exact function it refines lives in
 a `Prop` — which is what lets a float network hold one. The standard layers that
-*build* a `Layer` do name an arithmetic and stay: `Real.Layer.linear` against
-`Mat ℝ`, `Float.Layer.linear` against `Mat 𝕋`.
+*build* a `Layer` are written once, `Layer.linear` against `Mat 𝕋` in `CORALean`:
+at `𝕋 := ℝ` every rounding is the exact operation, so the exact layer is the same
+definition. Only what ℝ alone has — the exact sigmoid relaxation, an exact
+polynomial fit — sits in `CORALean.Real`, under `Definitions/`.
 
 A Lean namespace cannot be split. `sys.reach` resolves to
 `CORALean.LinearSysDT.reach` and looks nowhere else, so a type takes its whole
@@ -228,9 +259,13 @@ builds from cold.
 compiler cannot: that an `aux_` name is used only in the file that declares it,
 that an `API.lean` holds nothing but imports, that it collects its whole
 directory unless its own docstring says which sibling it deliberately leaves
-out, that no file imports its own directory's collector, that no `Real` file
-reaches into `Float`, that a file under `Real/` or `Float/` declares the
-namespace its directory claims, that every file carries a module docstring and
+out, that no file imports its own directory's collector, that no `Real` file of
+a representation reaches into `Float`, that a file under a representation's
+`Real/` or any `Float/` declares the namespace its directory claims, that a class
+root holds only its class file, `Instances.lean` and `API.lean`, that a
+`Definitions/` file declares only meanings, that no `Real/` or `Float/` folder
+sits outside `ContSet/` but a `Theorems/Real/` and `Global/Float/`, that every
+file carries a module docstring and
 — unless it is a collector — a well-formed author block one line under it, that
 nothing is `sorry` or a search tactic, that nothing outside the one file named
 in the script is an `axiom`, that every `maxHeartbeats` bump
@@ -242,14 +277,15 @@ silently left out of the build, and that `noncomputable` stays where it is
 legitimate — see below.
 
 `noncomputable` is checked against the rule the float layer exists to keep:
-free under `Real/`, and free of an `aux_` declaration in a `Theorems/` file
-anywhere, since that is a proof helper rather than something a caller runs.
-Everywhere else it needs a reason, on one line of
-`scripts/noncomputable-allowlist.txt`: `spec:` for a specification object with
-nothing to compute (a reachable set defined by trajectories, a norm, a
-Hausdorff distance, a real-valued certificate), `cost:` for an asserted
-running cost, `real-layer:` for the real half of a representation or of the
-NN layer whose `Float/` refinement is elsewhere, or `pending #N:` for an
+free in a representation's `Real/` layer, in the ℝ model of the scalar
+interface, in a `Definitions/` file, which says what an object means and is
+never run, and on an `aux_` declaration anywhere, since that is a helper
+rather than something a caller runs. Everywhere else it needs a reason, on one
+line of `scripts/noncomputable-allowlist.txt`: `spec:` for a specification
+object with nothing to compute (a reachable set defined by trajectories, a
+norm, a Hausdorff distance, a real-valued certificate), `cost:` for an asserted
+running cost, `real-layer:` for the real half of a representation or an ℝ-only
+part of a directory otherwise written over the scalar, or `pending #N:` for an
 algorithm with no float refinement yet. Under `Float/` even the allowlist
 does not reach: a float declaration is free only as that same kind of `aux_`,
 because the whole point of the float layer is that it runs. An allowlist
@@ -568,9 +604,8 @@ about, rather than in a list inside a script that nothing makes anyone reread;
 `check-conventions.sh` also reports a marker that excuses nothing, so an
 exception cannot outlive the thing it was written for.
 
-Four omissions are stated that way today. `Global/API.lean` and
-`Global/LinProg/API.lean` each leave out their `Float/`, which every `Real` file
-would otherwise reach, breaking the rule below that deleting `Float` leaves the
+Three omissions are stated that way today. `Global/API.lean` leaves out its
+`Float/`, which every `Real` file would otherwise reach, breaking the rule below that deleting `Float` leaves the
 specification standing. `CORALean.lean` leaves out `Examples/` and
 `Examples/API.lean` leaves out `Demo.lean`, both being targets of their own, so
 that the library holds the development and nothing that merely uses it.
@@ -630,7 +665,10 @@ float operation pays its rounding into an interval error box via
 
 `𝕋` is the scalar a layer computes in — ℝ in `Real`, a machine scalar in `Float`.
 `Global.Scalar` reads a matrix of it as a real one, which is how a guarantee
-stated once covers both layers.
+stated once covers both layers. Outside `ContSet/` the two layers are one
+definition: `Global/Float/Instances/Real` instantiates the scalar interface at ℝ
+with every rounding exact, so a generic algorithm at `𝕋 := ℝ` *is* the exact
+one, and its soundness theorem, stated once, is both layers' guarantee.
 
 **The float layer is part of the work, not a follow-up.** New work carries both
 layers wherever it can, and a contribution that lands only the `Real` half must
@@ -688,9 +726,9 @@ a hull as no further than its points. Soundness never depends on the directions,
 only precision does, so enumerating the true facets stays outside as an
 optimisation.
 
-`FloatBound` is the same object with a float value. Its composition rules are
-these with `+` replaced by `addUp` and `max` by `maximum` — a bound only stays
-sound by growing.
+`FloatBound` is the same object with a float value, and lives with the scalar
+interface in `Global/Float/`. Its composition rules are these with `+` replaced
+by `addUp` and `max` by `maximum` — a bound only stays sound by growing.
 
 ## Verification
 

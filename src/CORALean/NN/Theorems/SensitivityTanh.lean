@@ -1,4 +1,7 @@
-import CORALean.NN.Layers.Tanh
+import CORALean.NN.Layers.Definitions.Sigmoid
+import CORALean.NN.Layers.Definitions.TanhRelaxation
+import CORALean.NN.Layers.Operations.Tanh
+import CORALean.NN.Layers.Theorems.Real.HasDerivAtTanh
 import CORALean.NN.Theorems.SensitivityActivation
 
 /-!

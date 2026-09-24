@@ -5,7 +5,7 @@ import CORALean.Global.Mathlib
 
 Split out of `EvalPolyExact.lean` (issue #62): read again by the float layer's
 own `Theorems/EvalPolyOuter.lean`, by `Theorems/EvalPolyRealOfFn.lean`, and by
-`NN.Float.Layers.ActivationPoly`, all outside this file.
+`NN.Layers.Theorems.ActivationPolySound`, all outside this file.
 -/
 
 -- Authors:       Tobias Ladner

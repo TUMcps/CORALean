@@ -1,9 +1,14 @@
 import CORALean.ContSet.Interval.Real.Instances
 import CORALean.ContSet.Interval.Real.Operations.Mtimes
-import CORALean.NN.Layers.Linear
+import CORALean.NN.Layers.Definitions.Enclosure
+import CORALean.NN.Layers.Definitions.Relaxation
+import CORALean.NN.Layers.Operations.Linear
+import CORALean.NN.Layers.Operations.LinearWithError
+import CORALean.NN.Layers.Theorems.LinearSound
+import CORALean.NN.Layers.Theorems.LinearWithErrorSound
 import CORALean.NN.Theorems.EncloseOuter
-import CORALean.NN.Theorems.SuffExplanationAbstract
 import CORALean.NN.Theorems.SuffExplanation
+import CORALean.NN.Theorems.SuffExplanationAbstract
 
 /-!
 # The transfer theorem's converse fails under its own hypothesis
@@ -22,12 +27,12 @@ box wide enough that the enclosed output ties, though the exact one never does.
 * [1] S. Bassan, Y. Y. Elboher, T. Ladner, M. Althoff and G. Katz. "Explaining
       Fast and Slow: Abstraction and Refinement of Provable Explanations".
       ICML 2025.
-* [2] `CORALean.Real.Layer.linearWithError`.
+* [2] `CORALean.Layer.linearWithError`.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       05-September-2026
--- Last update:   05-September-2026
+-- Last update:   23-September-2026
 -- Last revision: ---
 
 
@@ -41,20 +46,21 @@ open ContSet Real.OfInterval Matrix
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The constant `(0, 1)` network: class `1` always strictly wins. -/
-def aux_suffExplanationConverseFails_nn : NeuralNetwork (fun n => Real.Interval (Vec ℝ n)) 1 2 :=
-  NeuralNetwork.ofLayer (Real.Layer.linear (0 : Mat ℝ 2 1) (fun k => if k = 1 then (1 : ℝ) else 0))
+noncomputable def aux_suffExplanationConverseFails_nn :
+    NeuralNetwork (fun n => Real.Interval (Vec ℝ n)) 1 2 :=
+  NeuralNetwork.ofLayer (Layer.linear (0 : Mat ℝ 2 1) (fun k => if k = 1 then (1 : ℝ) else 0))
 
 /-- The symmetric `±1` error box: centred at `0`, wide enough to tie. -/
-def aux_suffExplanationConverseFails_box : Real.Interval (Vec ℝ 2) := ⟨fun _ => -1, fun _ => 1⟩
+def aux_suffExplanationConverseFails_box : Float.Interval ℝ 2 := ⟨fun _ => -1, fun _ => 1⟩
 
 theorem aux_suffExplanationConverseFails_box_isNonempty :
-    aux_suffExplanationConverseFails_box.IsNonempty := fun _ => by
+    aux_suffExplanationConverseFails_box.nominal.IsNonempty := fun _ => by
   show (-1 : ℝ) ≤ 1
   norm_num
 
 -- the committed error is the box's own centre, which is `0` since the box is symmetric
 theorem aux_suffExplanationConverseFails_box_center :
-    aux_suffExplanationConverseFails_box.center = 0 := by
+    aux_suffExplanationConverseFails_box.nominal.center = 0 := by
   funext i
   show (2 : ℝ)⁻¹ * ((-1 : ℝ) + 1) = 0
   norm_num
@@ -65,26 +71,26 @@ def aux_suffExplanationConverseFails_f : Vec ℝ 1 → Vec ℝ 2 :=
 
 theorem aux_suffExplanationConverseFails_nn_sound :
     aux_suffExplanationConverseFails_nn.Sound aux_suffExplanationConverseFails_f :=
-  NeuralNetwork.ofLayer_sound (Real.Layer.linear_sound _ _)
+  NeuralNetwork.ofLayer_sound (Layer.linear_sound _ _)
 
 /-- `nn`'s abstraction: the same weights and bias, over-approximated by the
 `±1` box. -/
-def aux_suffExplanationConverseFails_nnAbs :
+noncomputable def aux_suffExplanationConverseFails_nnAbs :
     NeuralNetwork (fun n => Real.Interval (Vec ℝ n)) 1 2 :=
-  NeuralNetwork.ofLayer (Real.Layer.linearWithError (0 : Mat ℝ 2 1)
+  NeuralNetwork.ofLayer (Layer.linearWithError (0 : Mat ℝ 2 1)
     (fun k => if k = 1 then (1 : ℝ) else 0) aux_suffExplanationConverseFails_box)
 
 -- the box's error is committed at its own centre, `0`, so the exact networks agree
 theorem aux_suffExplanationConverseFails_nnAbs_sound :
     aux_suffExplanationConverseFails_nnAbs.Sound
       aux_suffExplanationConverseFails_f := by -- --- PROOF ---
-  refine (NeuralNetwork.ofLayer_sound (Real.Layer.linearWithError_sound (0 : Mat ℝ 2 1)
+  refine (NeuralNetwork.ofLayer_sound (Layer.linearWithError_sound (0 : Mat ℝ 2 1)
     (fun k => if k = 1 then (1 : ℝ) else 0) aux_suffExplanationConverseFails_box
     aux_suffExplanationConverseFails_box_isNonempty)).congr fun x' => ?_
   funext i
   show ((0 : Mat ℝ 2 1) *ᵥ x') i + (if i = 1 then (1 : ℝ) else 0)
       = ((0 : Mat ℝ 2 1) *ᵥ x') i + (if i = 1 then (1 : ℝ) else 0)
-        + aux_suffExplanationConverseFails_box.center i
+        + aux_suffExplanationConverseFails_box.nominal.center i
   rw [aux_suffExplanationConverseFails_box_center]
   simp
 

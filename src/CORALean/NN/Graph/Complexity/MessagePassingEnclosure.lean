@@ -39,19 +39,19 @@ variable {N m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem GNN.messagePassingEnclosure_p (R : Relaxation invSqrt) (A : Mat ℝ N N)
+theorem GNN.messagePassingEnclosure_p (R : Relaxation ℝ) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) : (GNN.messagePassingEnclosure R A U).p = m + N := rfl
 
-theorem GNN.messagePassingEnclosure_h (R : Relaxation invSqrt) (A : Mat ℝ N N)
+theorem GNN.messagePassingEnclosure_h (R : Relaxation ℝ) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) : (GNN.messagePassingEnclosure R A U).h
       = ((m + N + 1) * (m + N + 1) + 1) * (m + N + 1) := rfl
 
-theorem GNN.messagePassingEnclosure_q (R : Relaxation invSqrt) (A : Mat ℝ N N)
+theorem GNN.messagePassingEnclosure_q (R : Relaxation ℝ) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) : (GNN.messagePassingEnclosure R A U).q = 0 := rfl
 
 /-- The cubic bound [1, Thm. 1] carries into the message-passing steps, with the
 node count in the constant. -/
-theorem GNN.messagePassingEnclosure_h_le (R : Relaxation invSqrt) (A : Mat ℝ N N)
+theorem GNN.messagePassingEnclosure_h_le (R : Relaxation ℝ) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) (hm : 1 ≤ m) : (GNN.messagePassingEnclosure R A U).h
       ≤ ((N + 2) * (N + 2) + 1) * (N + 2) * m ^ 3 := by -- --- PROOF ---
   rw [GNN.messagePassingEnclosure_h]

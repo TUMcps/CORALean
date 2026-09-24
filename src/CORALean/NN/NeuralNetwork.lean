@@ -1,4 +1,4 @@
-import CORALean.NN.Layer
+import CORALean.NN.Layers.Layer
 
 /-!
 # Neural networks: the computation graph

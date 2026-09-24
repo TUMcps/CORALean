@@ -1,10 +1,12 @@
 import CORALean.ContSet.Conversion.Float.Interval_to_ConZonotope
 import CORALean.ContSet.Conversion.Float.Interval_to_PolyZonotope
 import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
 import CORALean.ContSet.ConZonotope.Float.Instances
 import CORALean.ContSet.Interval.Float.Instances
 import CORALean.ContSet.PolyZonotope.Float.Instances
 import CORALean.ContSet.Zonotope.Float.Instances
+import CORALean.Global.Float.Instances.Real.Instances
 
 /-!
 # Absorbing a box, over a floating-point scalar
@@ -16,11 +18,14 @@ approximation error.
 Nothing here rounds. The box arrives already in `𝕋`, and each conversion pays
 whatever its own centring costs — `Interval.zonotope` measures its radius from
 the centre it actually stored, so the box is covered by the generators alone.
+
+An exact representation is one at `𝕋 := ℝ`, through its own class, as in
+`ContSet_to_Interval`.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   23-September-2026
 -- Last revision: ---
 
 
@@ -57,6 +62,13 @@ instance : OfInterval (fun n => ConZonotope 𝕋 n) 𝕋 where
 instance : OfInterval (fun n => PolyZonotope 𝕋 n) 𝕋 where
   ofInterval I := I.polyZonotope
   ofInterval_outer I := Interval.polyZonotope_contains I
+
+/-- An exact representation absorbs a box at `𝕋 := ℝ` through its exact class, the box's
+bounds being real already. -/
+instance {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real.OfInterval S] :
+    OfInterval S ℝ where
+  ofInterval I := Real.OfInterval.ofInterval ⟨I.inf, I.sup⟩
+  ofInterval_outer I := Real.OfInterval.ofInterval_outer ⟨I.inf, I.sup⟩
 
 end CORALean.Float
 
