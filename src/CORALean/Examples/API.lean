@@ -26,6 +26,7 @@ import CORALean.Examples.MinkowskiDifference
 import CORALean.Examples.NeurNetControl
 import CORALean.Examples.NonlinearReachCheck
 import CORALean.Examples.NonlinearSysDTReach
+import CORALean.Examples.NonlinParamReachCheck
 import CORALean.Examples.Polynomialization
 import CORALean.Examples.PolyZonotopeReach
 import CORALean.Examples.ReachFloat
