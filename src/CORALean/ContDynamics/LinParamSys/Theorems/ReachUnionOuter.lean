@@ -1,20 +1,28 @@
 import CORALean.ContDynamics.LinParamSys.Definitions.ReachUnionExact
 import CORALean.ContDynamics.LinParamSys.Operations.ReachUnion
 import CORALean.ContDynamics.LinParamSys.Theorems.ReachOrderAdmissible
-import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalStepOuter
+import CORALean.ContDynamics.LinParamSys.Theorems.ReachStepkOuter
+import CORALean.ContDynamics.LinearSys.Theorems.ExistsReachWindow
 import CORALean.ContSet.SetUnion.SetUnion
 
 /-!
-# `reachUnion` encloses `reachUnionExact`
+# `reachUnion` encloses `reachUnionExact`, one window at a time
 
-`timeIntervalStep_outer` at `reachOrder_admissible`, for every member `A` and
-every `t ∈ [0, p.r]` at once: the single branch of `reachUnion` is the same
-set throughout, exactly `LinearSys.reachUnion_outer`'s argument.
+A time `t ∈ [0, tFinal]` falls in a window `τ_k` `reachUnion` keeps
+(`LinearSys.exists_reach_window`), and `reachStepk_outer` puts `e^{At} x₀` in
+that window's set, at whichever member `A` the run fixed. The order is
+`reachUnion`'s own, admissible by `reachOrder_admissible` and the raise:
+[1, Alg. 4]'s soundness at `U = {0}`.
+
+## References
+
+* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
+      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   24-September-2026
 -- Last revision: ---
 
 
@@ -25,6 +33,9 @@ namespace CORALean
 open CORALean.Real
 open Matrix ContSet
 
+attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
+  Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
+
 variable {n : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)] [Mtimes ℐ S]
@@ -32,14 +43,27 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)] [Mti
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinParamSys.reachUnion_outer (sys : LinParamSys ℐ n) (p : LinParamSys.ReachParams)
+/-- Every image of `X₀` under every member's flow, at every time of `[0, p.tFinal]`,
+is in one of `reachUnion`'s windows. -/
+theorem LinParamSys.reachUnion_outer (sys : LinParamSys ℐ n) (p : LinearSys.ReachParams)
     (X₀ : S n) :
     sys.reachUnionExact p (construct X₀) ⊆ construct (sys.reachUnion p X₀) := by -- --- PROOF ---
   rintro _ ⟨A, hA, t, ht, x₀, hx₀, rfl⟩
-  refine SetUnion.mem_construct.mpr ⟨sys.timeIntervalStep p.r (sys.reachOrder p.r + 2) X₀,
-    List.mem_singleton_self _, ?_⟩
-  exact sys.timeIntervalStep_outer p.hr (sys.reachOrder_admissible p.r) X₀ hA ht.1 ht.2
-    (Set.mem_image_of_mem _ hx₀)
+  obtain ⟨k, hk, hkt, htk⟩ := LinearSys.exists_reach_window p.hΔt ht
+  -- the order `reachUnion` runs at, `m + 2` in `reachStepk_outer`'s naming
+  obtain ⟨m, hm⟩ : ∃ m, max p.η (sys.reachOrder p.Δt + 2) = m + 2 :=
+    ⟨max p.η (sys.reachOrder p.Δt + 2) - 2, by omega⟩
+  have hε : ‖(Interval.smul p.Δt sys.A).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1 := by
+    have hadm := sys.reachOrder_admissible p.Δt
+    have hle : ((sys.reachOrder p.Δt + 2 : ℕ) : ℝ) ≤ ((m + 2 : ℕ) : ℝ) := by
+      exact_mod_cast hm ▸ le_max_right _ _
+    exact lt_of_le_of_lt (div_le_div_of_nonneg_left (norm_nonneg _) (by positivity)
+      (by linarith)) hadm
+  -- window `k` is `e^{[A] t_k} H^R(τ_0)`, and `k < N`
+  refine SetUnion.mem_construct.mpr ⟨sys.reachStepk p.Δt (m + 2) X₀ k, ?_, ?_⟩
+  · rw [← hm]
+    exact List.mem_map.mpr ⟨k, List.mem_range.mpr hk, rfl⟩
+  · exact sys.reachStepk_outer p.hΔt hε X₀ hA hkt htk (Set.mem_image_of_mem _ hx₀)
 
 end CORALean
 

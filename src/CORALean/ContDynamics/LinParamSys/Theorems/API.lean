@@ -8,10 +8,13 @@ import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryTimeIntervalOut
 import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryTimeIntervalOuterSplit
 import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryToLinearSys
 import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryToTrajectory
+import CORALean.ContDynamics.LinParamSys.Theorems.ExpMemExpEnclosure
 import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetInputSolution
+import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetParticularSolution
 import CORALean.ContDynamics.LinParamSys.Theorems.InputSolutionOuter
 import CORALean.ContDynamics.LinParamSys.Theorems.InputSolutionZonoOuter
 import CORALean.ContDynamics.LinParamSys.Theorems.ReachOrderAdmissible
+import CORALean.ContDynamics.LinParamSys.Theorems.ReachStepkOuter
 import CORALean.ContDynamics.LinParamSys.Theorems.ReachUnionOuter
 import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalStepOuter
 import CORALean.ContDynamics.LinParamSys.Theorems.ToLinParam
@@ -21,6 +24,7 @@ import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryTimeIntervalOuter
 import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryTimeIntervalOuterInputSolution
 import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryToLinearSys
 import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryToLinParam
+import CORALean.ContDynamics.LinParamSys.Theorems.WithInputReachUnionOuter
 
 /-!
 # What `LinParamSys` gives, collected
@@ -45,7 +49,7 @@ horizon through `LinParamSysDT.reach` — together, [1, Alg. 4].
 readings' conversions: `'constParam'` is `'varParam'` at a constant function,
 and `LinearSys` is `LinParamSys` at a point. `InputSolutionZonoOuter` is
 `InputSolutionOuter` at a matrix zonotope instead, and
-`ReachOrderAdmissible`/`ReachUnionOuter` are `Instances`' guarantee.
+`ReachOrderAdmissible`/`ReachUnionOuter`/`WithInputReachUnionOuter` are `Instances`'.
 
 ## References
 
