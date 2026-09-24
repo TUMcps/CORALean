@@ -60,7 +60,7 @@ src/CORALean/
     LinParamSys/   a set-valued system matrix: one continuous-time step at an
                    interval matrix, and the sampled case in LinParamSysDT/;
                    NonlinParamSys/ is the nonlinear class with uncertain
-                   parameters, and has no reachability at all
+                   parameters, reached with the parameter as extra states
     NeurNetContrSys/  a plant closed around a network, whose input set is what
                    NN encloses; NeurNetContrSysDT/ steps a discrete plant
     OutputEq/      y = C x + D u, kept out of the system classes so that it
