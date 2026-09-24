@@ -1,4 +1,5 @@
-import CORALean.ContDynamics.LinearSys.MatExp.IntervalEnclosures
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclosure
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylor
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeNorm
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalTaylor
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundMono

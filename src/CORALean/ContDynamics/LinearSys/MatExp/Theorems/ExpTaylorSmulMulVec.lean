@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Enclosures
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpTaylor
 
 /-!
 # The truncated series applied to a vector, with the time pulled out

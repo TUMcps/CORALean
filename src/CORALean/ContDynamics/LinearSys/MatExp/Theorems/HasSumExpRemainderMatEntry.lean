@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.LinearSys.MatExp.ExpRemainderMat
+import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ExpRemainderMat
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeNorm
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSmulTsum
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableExpSmul

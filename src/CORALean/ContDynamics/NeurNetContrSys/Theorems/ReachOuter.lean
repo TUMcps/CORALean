@@ -1,8 +1,10 @@
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterHorizonInputSolution
 import CORALean.ContDynamics.NeurNetContrSys.Operations.Reach
 import CORALean.ContDynamics.NeurNetContrSys.Theorems.Period
-import CORALean.ContSet.ContSet.CompactSet
-import CORALean.ContSet.ContSet.ConvexSet
+import CORALean.ContSet.ContSet.Definitions.CompactSet
+import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
+import CORALean.ContSet.ContSet.Theorems.IsClosedConstruct
+import CORALean.ContSet.ContSet.Definitions.ConvexSet
 
 /-!
 # `NeurNetContrSys.reach` contains every sampled run at the period boundaries

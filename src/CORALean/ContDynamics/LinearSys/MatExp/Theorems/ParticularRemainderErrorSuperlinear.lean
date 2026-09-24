@@ -1,4 +1,5 @@
-import CORALean.ContDynamics.LinearSys.MatExp.ParticularRemainderError
+import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ParticularRemainderError
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IsBoundedParticularRemainderSet
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SuperlinearDecreaseExpRemainderMat
 
 /-!

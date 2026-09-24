@@ -1,5 +1,5 @@
 import CORALean.ContDynamics.LinearSys.LinearSys
-import CORALean.ContDynamics.LinearSys.MatExp.Enclosures
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrectionMatrix
 import CORALean.ContSet.Interval.Real.Instances
 
 /-!

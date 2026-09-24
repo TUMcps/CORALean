@@ -1,4 +1,5 @@
 import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegral
 
 /-!

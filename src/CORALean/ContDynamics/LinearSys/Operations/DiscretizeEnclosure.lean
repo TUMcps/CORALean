@@ -1,5 +1,5 @@
 import CORALean.ContDynamics.LinearSys.LinearSys
-import CORALean.ContDynamics.LinearSys.MatExp.Enclosures
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpEnclosure
 import CORALean.ContDynamics.LinParamSysDT.LinParamSysDT
 
 /-!

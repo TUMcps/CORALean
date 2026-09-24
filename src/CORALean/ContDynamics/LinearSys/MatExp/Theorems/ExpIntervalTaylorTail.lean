@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.LinearSys.MatExp.ExactIntervalEnclosures
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylorTail
 import CORALean.ContSet.Interval.Real.Theorems.MatPowOuter
 import CORALean.ContSet.Interval.Real.Theorems.MemPoint
 import CORALean.ContSet.Interval.Real.Theorems.PlusOuter

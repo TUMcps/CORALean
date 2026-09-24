@@ -1,5 +1,4 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Enclosures
-
+import CORALean.ContSet.Interval.Real.Interval
 /-!
 # The integrated series is dominated by the exponential's own
 

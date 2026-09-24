@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Enclosures
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBound
 
 /-!
 # `expRemainderBound` is monotone in `‖A‖`

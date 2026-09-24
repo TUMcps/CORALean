@@ -1,3 +1,4 @@
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclosure
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalEnclosureExact
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalTaylor
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalWAttained

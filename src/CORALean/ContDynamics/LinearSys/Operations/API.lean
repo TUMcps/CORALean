@@ -31,6 +31,34 @@ import CORALean.ContDynamics.LinearSys.Operations.AdaptTimeStep
 import CORALean.ContDynamics.LinearSys.Operations.AutoTuneOrder
 import CORALean.ContDynamics.LinearSys.Operations.AutoTuneSearch
 import CORALean.ContDynamics.LinearSys.Operations.AutoTuneDeltaT
+import CORALean.ContDynamics.LinearSys.Operations.AutoInit
+import CORALean.ContDynamics.LinearSys.Operations.AutoStep
+import CORALean.ContDynamics.LinearSys.Operations.AutoRun
+import CORALean.ContDynamics.LinearSys.Operations.AutoReach
+import CORALean.ContDynamics.LinearSys.Operations.ManualInit
+import CORALean.ContDynamics.LinearSys.Operations.ManualStep
+import CORALean.ContDynamics.LinearSys.Operations.ManualRun
+import CORALean.ContDynamics.LinearSys.Operations.ManualReach
+import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachMu
+import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachPoly
+import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachInit
+import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachCZ
+import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachStep
+import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachRun
+import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachTimeInterval
+import CORALean.ContDynamics.LinearSys.Operations.MinBackReachInit
+import CORALean.ContDynamics.LinearSys.Operations.MinBackReachStep
+import CORALean.ContDynamics.LinearSys.Operations.MinBackReachRun
+import CORALean.ContDynamics.LinearSys.Operations.MinBackReachSupport
+import CORALean.ContDynamics.LinearSys.Operations.MinBackReachP
+import CORALean.ContDynamics.LinearSys.Operations.MinBackReachTimeInterval
+import CORALean.ContDynamics.LinearSys.Operations.TunedInit
+import CORALean.ContDynamics.LinearSys.Operations.TunedStep
+import CORALean.ContDynamics.LinearSys.Operations.TunedRun
+import CORALean.ContDynamics.LinearSys.Operations.TunedReach
+import CORALean.ContDynamics.LinearSys.Operations.VerifyStep
+import CORALean.ContDynamics.LinearSys.Operations.VerifyRun
+import CORALean.ContDynamics.LinearSys.Operations.Verify
 
 /-!
 # What a continuous-time linear system computes

@@ -1,7 +1,8 @@
 import CORALean.ContDynamics.LinearSys.Theorems.IntegralReachSetEq
 import CORALean.ContDynamics.LinearSys.Theorems.InputReachConvex
 import CORALean.Specification.Theorems.Intersection
-import CORALean.Specification.VerifyConvex
+import CORALean.Specification.Operations.VerifyConvex
+import CORALean.Specification.Theorems.ExistsConvexHullOfVerifyConvexEqUnsafe
 
 /-!
 # [1, Alg. 3, l. 12-13]: `verifyConvex`'s `violated` answer is sound

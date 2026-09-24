@@ -1,8 +1,10 @@
 import CORALean.ContDynamics.LinearSys.Operations.Discretize
 import CORALean.ContDynamics.LinearSys.Operations.InputSolution
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterInputSolution
-import CORALean.ContSet.ContSet.CompactSet
-import CORALean.ContSet.ContSet.ConvexSet
+import CORALean.ContSet.ContSet.Definitions.CompactSet
+import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
+import CORALean.ContSet.ContSet.Theorems.IsClosedConstruct
+import CORALean.ContSet.ContSet.Definitions.ConvexSet
 
 /-!
 # Reachability at any convex, compact representation

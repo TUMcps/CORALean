@@ -1,5 +1,4 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Enclosures
-
+import CORALean.ContSet.Interval.Real.Interval
 /-!
 # An entry never exceeds the `l∞` operator norm
 

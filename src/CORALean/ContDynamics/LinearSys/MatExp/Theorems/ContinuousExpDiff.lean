@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Enclosures
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpTaylor
 
 /-!
 # The exponential's remainder is continuous in the time

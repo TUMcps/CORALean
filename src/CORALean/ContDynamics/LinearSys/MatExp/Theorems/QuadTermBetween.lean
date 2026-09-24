@@ -1,4 +1,6 @@
-import CORALean.ContDynamics.LinearSys.MatExp.ExactSecondOrder
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTerm
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermHi
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermLo
 
 /-!
 # The diagonal parabola stays between its two bounds

@@ -1,4 +1,6 @@
-import CORALean.ContDynamics.LinearSys.MatExp.AffineDynamicsError
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.AffineDynamicsError
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AffineDynamicsErrorNonneg
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsAffineDynamicsErrorLeConstMul
 
 /-!
 # `Lemma 3`, the limit half: `Δε^h_k(Δt,η) → 0` as `Δt → 0⁺`

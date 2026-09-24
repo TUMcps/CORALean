@@ -1,3 +1,5 @@
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ConstCorrectionMatrix
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
 import CORALean.ContDynamics.LinearSys.Operations.InputSolution
 import CORALean.HybridDynamics.Operations.TimeIntervalStep
 

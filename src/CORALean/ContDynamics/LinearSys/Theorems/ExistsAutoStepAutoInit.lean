@@ -1,3 +1,4 @@
+import CORALean.ContDynamics.LinearSys.Operations.AutoInit
 import CORALean.ContDynamics.LinearSys.Theorems.ExistsAutoStep
 
 /-!

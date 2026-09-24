@@ -1,5 +1,4 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Enclosures
-
+import CORALean.ContSet.Interval.Real.Interval
 /-!
 # The series behind `exp (t • A)`, at the unscaled matrix, is summable
 

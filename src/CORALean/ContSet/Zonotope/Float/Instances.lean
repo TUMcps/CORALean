@@ -1,5 +1,5 @@
-import CORALean.ContSet.ContSet.CompactSet
-import CORALean.ContSet.ContSet.ConvexSet
+import CORALean.ContSet.ContSet.Definitions.CompactSet
+import CORALean.ContSet.ContSet.Definitions.ConvexSet
 import CORALean.ContSet.Zonotope.Float.Theorems.Convex
 import CORALean.ContSet.Zonotope.Float.Theorems.IsClosed
 import CORALean.ContSet.Zonotope.Float.Theorems.LinCombOuter

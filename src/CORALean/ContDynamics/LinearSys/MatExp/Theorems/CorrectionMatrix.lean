@@ -1,3 +1,5 @@
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrectionMatrix
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBound
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeNorm
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrCoeffBound
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpDiff

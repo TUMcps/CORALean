@@ -1,5 +1,6 @@
-import CORALean.ContDynamics.LinearSys.MatExp.ParticularSolutionError
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionError
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsParticularTailEntryLe
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormLeOfMemParticularSolutionOuterCorrelated
 import CORALean.Global.EuclideanHausdorffDist
 
 /-!

@@ -1,3 +1,4 @@
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalW
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpWApply
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.QuadTermBetween
 import CORALean.ContSet.Interval.Real.Theorems.MemMat

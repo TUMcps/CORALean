@@ -1,7 +1,9 @@
 import CORALean.ContDynamics.LinearSys.Operations.TimePointStep
 import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolution
-import CORALean.ContSet.ContSet.CompactSet
-import CORALean.ContSet.ContSet.ConvexSet
+import CORALean.ContSet.ContSet.Definitions.CompactSet
+import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
+import CORALean.ContSet.ContSet.Theorems.IsClosedConstruct
+import CORALean.ContSet.ContSet.Definitions.ConvexSet
 
 /-!
 # `timePointStep` contains every state the step can end at

@@ -1,5 +1,5 @@
-import CORALean.ContSet.ContSet.CompactSet
-import CORALean.ContSet.ContSet.ConvexSet
+import CORALean.ContSet.ContSet.Definitions.CompactSet
+import CORALean.ContSet.ContSet.Definitions.ConvexSet
 import CORALean.ContSet.Interval.Float.Operations.IntersectionExact
 import CORALean.ContSet.Interval.Float.Theorems.LinCombOuter
 import CORALean.ContSet.Interval.Float.Theorems.MinkDiffInner

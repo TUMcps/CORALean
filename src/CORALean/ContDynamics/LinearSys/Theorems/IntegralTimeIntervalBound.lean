@@ -1,5 +1,5 @@
 import CORALean.ContDynamics.LinearSys.Theorems.IntegralTimeIntervalReachSetSubsetSegmentsSum
-import CORALean.ContSet.ContSet.SupportBound
+import CORALean.ContSet.ContSet.Operations.SupportBoundSegments
 
 /-!
 # A support bound over a whole step of the exact reachable set

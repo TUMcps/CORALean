@@ -1,4 +1,5 @@
-import CORALean.ContDynamics.LinearSys.MatExp.ExpRemainderStep
+import CORALean.ContDynamics.LinearSys.MatExp.Definitions.StepAdmissible
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderStep
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMulExpRemainderBoundLt
 
 /-!

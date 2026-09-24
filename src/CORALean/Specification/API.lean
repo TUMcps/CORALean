@@ -1,8 +1,7 @@
+import CORALean.Specification.Definitions.API
+import CORALean.Specification.Operations.API
 import CORALean.Specification.Specification
-import CORALean.Specification.VerifyHalfspace
 import CORALean.Specification.Theorems.API
-import CORALean.Specification.VerifyConvex
-import CORALean.Specification.VerifyAnswer
 
 /-!
 # Specifications, collected
@@ -10,9 +9,9 @@ import CORALean.Specification.VerifyAnswer
 What a requirement is in `Specification`, and what checking one buys in
 `Theorems`. Belongs to neither arithmetic layer: a specification is a set of
 points, whatever computed it. `VerifyHalfspace` and `VerifyConvex` are the two
-algorithms here, `[1, Alg. 2]`'s and `[1, Alg. 3]`'s decision procedures, so they
-sit beside `Specification` rather than inside `Theorems`; both have their
-soundness proved there.
+algorithms here, `[1, Alg. 2]`'s and `[1, Alg. 3]`'s decision procedures — the
+first in `Operations`, the second in `Definitions` beside its two soundness
+theorems — and both have more soundness proved in `Theorems`.
 
 ## References
 

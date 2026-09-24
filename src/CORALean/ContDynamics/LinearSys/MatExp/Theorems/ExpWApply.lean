@@ -1,4 +1,5 @@
-import CORALean.ContDynamics.LinearSys.MatExp.ExactSecondOrder
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpW
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTerm
 
 /-!
 # `W(t)`, entry by entry, in the shape [1, Lemma 3.1] evaluates

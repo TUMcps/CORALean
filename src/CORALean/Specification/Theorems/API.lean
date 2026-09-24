@@ -1,4 +1,7 @@
 import CORALean.Specification.Theorems.Containment
+import CORALean.Specification.Theorems.DiffPointMemSub
+import CORALean.Specification.Theorems.ExistsConvexHullOfVerifyConvexEqUnsafe
+import CORALean.Specification.Theorems.ExistsSeparatingOfVerifyConvexEqSafe
 import CORALean.Specification.Theorems.HoldsOfOuter
 import CORALean.Specification.Theorems.HoldsAllOfOuter
 import CORALean.Specification.Theorems.HoldsUnion
@@ -7,6 +10,7 @@ import CORALean.Specification.Theorems.Intersection
 import CORALean.Specification.Theorems.InvariantOfBounds
 import CORALean.Specification.Theorems.Separation
 import CORALean.Specification.Theorems.SubsetHPolytope
+import CORALean.Specification.Theorems.VerifyConvexFoldInv
 import CORALean.Specification.Theorems.VerifyHalfspaceSafe
 import CORALean.Specification.Theorems.VerifyHalfspaceUnsafe
 import CORALean.Specification.Theorems.Violation
@@ -24,5 +28,8 @@ discharge the check itself, each turning it into bounds `Global.LinProg`
 supplies; `Violation` and `Intersection` are the falsification exits of the
 same two algorithms. `VerifyHalfspaceSafe`/`VerifyHalfspaceUnsafe` and
 `VerifyConvexSafe` assemble those exits into the decision procedures'
-conclusive answers.
+conclusive answers. `DiffPointMemSub` and `VerifyConvexFoldInv` are
+`VerifyConvex`'s own loop invariant, and `ExistsSeparatingOfVerifyConvexEqSafe`/
+`ExistsConvexHullOfVerifyConvexEqUnsafe` read a `safe`/`violated` verdict back
+as a witness.
 -/

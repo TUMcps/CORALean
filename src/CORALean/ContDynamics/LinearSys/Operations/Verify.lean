@@ -1,0 +1,47 @@
+import CORALean.ContDynamics.LinearSys.Operations.VerifyRun
+
+/-!
+# `Alg. 3` line 1: automated verification
+
+`verify`: `true` where the specification given by the safe sets `G` and unsafe sets `F` is
+verified, `false` where it is falsified, `none` where `fuel` repeat-until iterations did not
+reach a verdict. Line 1's "estimated from simulations" is left a parameter, `ε_max₀`.
+
+## References
+
+* [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of
+      Linear Systems Using Inner- and Outer-Approximations of Reachable Sets". IEEE
+      Transactions on Automatic Control, vol. 68, no. 12, 2023, pp. 7771–7786.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       19-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open CORALean.Real
+
+variable {n r w : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- [1, Alg. 3]: `true` where the specification given by the safe sets `G` and unsafe sets `F`
+is verified, `false` where it is falsified, `none` where `fuel` repeat-until iterations did not
+reach a verdict. -/
+noncomputable def LinearSys.verify (reachFn : ℝ → Zonotope (Vec ℝ n))
+    (innerApprox : Zonotope (Vec ℝ n) → ℝ → ConZonotope (Vec ℝ n))
+    (distG distF : ConZonotope (Vec ℝ n) → HPolytope (Vec ℝ n) → ℝ)
+    (G : Fin (r + 1) → HPolytope (Vec ℝ n)) (F : Fin (w + 1) → HPolytope (Vec ℝ n))
+    (le : ℝ → ℝ → Bool) (εmax₀ : ℝ) (fuel : ℕ) : Option Bool :=
+  LinearSys.verifyRun reachFn innerApprox distG distF G F le εmax₀ fuel        -- 1. ε_max ← ε_max₀
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

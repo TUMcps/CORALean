@@ -1,4 +1,3 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Enclosures
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSmulTsum
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableExpSmul
 

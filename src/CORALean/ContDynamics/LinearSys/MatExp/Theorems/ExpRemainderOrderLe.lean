@@ -1,4 +1,5 @@
-import CORALean.ContDynamics.LinearSys.MatExp.ExpRemainderOrder
+import CORALean.ContDynamics.LinearSys.MatExp.Definitions.OrderAdmissible
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderOrder
 
 /-!
 # The chosen order is the least admissible one

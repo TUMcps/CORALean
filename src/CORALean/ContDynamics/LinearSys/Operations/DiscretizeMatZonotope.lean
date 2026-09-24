@@ -1,5 +1,5 @@
 import CORALean.ContDynamics.LinearSys.LinearSys
-import CORALean.ContDynamics.LinearSys.MatExp.MatZonoEnclosures
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoEnclosure
 import CORALean.ContDynamics.LinParamSysDT.LinParamSysDT
 import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
 

@@ -1,5 +1,4 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Enclosures
-
+import CORALean.ContSet.Interval.Real.Interval
 /-!
 # A factorial outgrows a power by at least one factor per step
 

@@ -1,6 +1,6 @@
 import CORALean.ContDynamics.LinParamSys.Operations.InputTaylorSumTail
 import CORALean.ContDynamics.LinParamSys.Operations.InputTermZono
-import CORALean.ContDynamics.LinearSys.MatExp.IntervalCorrection
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputRemainder
 import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
 
 /-!

@@ -1,5 +1,4 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Enclosures
-
+import CORALean.ContSet.Interval.Real.Interval
 /-!
 # `s^i - s ≤ 0` on `[0,1]`
 

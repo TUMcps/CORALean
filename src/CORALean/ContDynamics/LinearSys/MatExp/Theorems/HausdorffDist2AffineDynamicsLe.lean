@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.MatExp.AffineTimeIntervalSolution
+import CORALean.ContDynamics.LinearSys.MatExp.Definitions.AffineTimeIntervalSolution
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.AffineDynamicsError
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.AffineTimeIntervalOuter
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.AffineTimePointNext
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AffineDynamicsErrorNonneg
 import CORALean.ContSet.ContSet.Theorems.IsCompactSegments
 import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDist2LinCombLe
 import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded

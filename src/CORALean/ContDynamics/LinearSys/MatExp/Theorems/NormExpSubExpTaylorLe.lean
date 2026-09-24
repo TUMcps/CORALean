@@ -1,4 +1,5 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Enclosures
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBound
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpTaylor
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.FactorialMulPowLe
 
 /-!

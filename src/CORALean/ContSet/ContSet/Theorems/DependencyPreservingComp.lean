@@ -1,4 +1,4 @@
-import CORALean.ContSet.ContSet.DependencyPreserving
+import CORALean.ContSet.ContSet.Definitions.DependencyPreserving
 
 /-!
 # [1, Lemma 2]: a composition preserves dependencies

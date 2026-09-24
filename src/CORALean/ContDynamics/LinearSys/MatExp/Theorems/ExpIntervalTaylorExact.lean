@@ -1,3 +1,4 @@
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylorExact
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalTaylorTail
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalWOuter
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpTaylorTwo

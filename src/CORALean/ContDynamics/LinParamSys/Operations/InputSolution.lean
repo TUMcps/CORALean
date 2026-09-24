@@ -1,5 +1,5 @@
 import CORALean.ContDynamics.LinParamSys.Operations.InputTaylorSum
-import CORALean.ContDynamics.LinearSys.MatExp.IntervalCorrection
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputRemainder
 
 /-!
 # The set every input contributes over one step, at a set-valued matrix
