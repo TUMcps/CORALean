@@ -1,11 +1,12 @@
 import CORALean.NN.Operations.ReducedLinearToLayer
-import CORALean.NN.Layers.Operations.Activation
+import CORALean.NN.Layers.Instances
 
 /-!
 # The network [1, Eq. 2]'s layers form
 
-Each pair unfolded into its two layers — `W h + b ⊕ I'`, then the activation — which is the
-network of layers every enclosure theorem reads.
+Each pair unfolded into its two layers — `W h + b ⊕ I'`, then the activation at the proof the
+pair stores — which is the network of layers every enclosure theorem reads. The
+linear layer runs on `I'.nonemptyHull`, which is `I'` whenever `I'` is nonempty.
 
 ## References
 
@@ -34,8 +35,10 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 
 /-- The layers [1, Eq. 2] names: `W h + b ⊕ I'`, then the activation. -/
 def ReducibleNetwork.toNetwork : ∀ {n m : ℕ}, ReducibleNetwork 𝕋 n m → NeuralNetwork S n m
-  | _, _, .nil => .nil
-  | _, _, .cons L R _ rest => .cons L.toLayer (.cons (Layer.activation R) rest.toNetwork)
+  | _, _, .nil => .output
+  | _, _, .cons L R hR _ rest =>
+      .layer (LinearWithErrorLayer.mk L.W L.b L.I')
+        (.layer (⟨R, hR, rfl⟩ : ActivationLayer 𝕋 _ _) rest.toNetwork)
 
 end CORALean
 

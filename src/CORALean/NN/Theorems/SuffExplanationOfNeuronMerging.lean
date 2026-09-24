@@ -49,10 +49,10 @@ theorem NeuralNetwork.suffExplanation_of_neuronMerging [∀ n, Plus (S n) (Vec �
     (hY : ∀ z ∈ construct (pre.enclose (ofInterval (explainBox x ε E))),
       (fun i => σ ((toRealMat W0 *ᵥ z + toRealVec b0) i)) ∈ Y.construct)
     -- the reduced network: both linear layers trimmed to `part.left`, the bucket boxed into `k+1`
-    (hsuffAbs : (NeuralNetwork.cons pre.toLayer
-        (.cons (Layer.linear (W0.submatrix part.left id) (b0 ∘ part.left))
-          (.cons (Layer.activation R)
-            (.cons (Layer.linearWithError (W1.submatrix id part.left) b1
+    (hsuffAbs : (NeuralNetwork.layer (Enclose.pack (S := S) pre)
+        (.layer (LinearLayer.mk (W0.submatrix part.left id) (b0 ∘ part.left))
+          (.layer (ActivationLayer.of hR)
+            (.layer (LinearWithErrorLayer.mk (W1.submatrix id part.left) b1
                 (Float.Interval.mtimes (W1.submatrix id part.right)
                   ⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩))
               post)))).IsSuffExplanationAbstract x ε E l) :

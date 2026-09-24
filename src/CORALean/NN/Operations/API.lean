@@ -9,6 +9,7 @@ import CORALean.NN.Operations.DifferentiableChain
 import CORALean.NN.Operations.DynamicMergeBuckets
 import CORALean.NN.Operations.Enclose
 import CORALean.NN.Operations.EncloseAt
+import CORALean.NN.Operations.Eval
 import CORALean.NN.Operations.ExplainBox
 import CORALean.NN.Operations.ExplanationRefineLoop
 import CORALean.NN.Operations.GreedyAbstractExplanation

@@ -2,7 +2,9 @@ import CORALean.ContSet.Interval.Real.Theorems.SplitAtCover
 import CORALean.NN.Layers.Definitions.Enclosure
 import CORALean.NN.Layers.Definitions.Relaxation
 import CORALean.NN.Layers.Definitions.Relu
+import CORALean.NN.Layers.Instances
 import CORALean.NN.Layers.Operations.Relu
+import CORALean.NN.Layers.Operations.ReluSlope
 import CORALean.NN.Theorems.VerifySplitSound
 
 /-!
@@ -34,7 +36,8 @@ namespace CORALean.Real
 open ContSet
 
 /-- One neuron, ReLU, over boxes. -/
-noncomputable def Example.nn : NeuralNetwork ℐ𝒱 1 1 := NeuralNetwork.ofLayer (Layer.relu (n := 1))
+noncomputable def Example.nn : NeuralNetwork ℐ𝒱 1 1 :=
+  NeuralNetwork.ofLayer (ReluLayer.mk (𝕋 := ℝ) (n := 1) reluSlope rfl)
 
 /-- Safe: output at most `10`. -/
 def Example.spec : Specification (Vec ℝ 1) := Specification.safeSet {x | x 0 ≤ 10}
@@ -64,10 +67,18 @@ theorem Example.hcov (I : Interval (Vec ℝ 1)) :
 /-- A `true` run at depth `d` is the only thing this file needs to reach the
 network's exact image — never a computed one, since nothing here evaluates
 a real comparison. -/
+example (d : ℕ) (X : Interval (Vec ℝ 1))
+    (hverify : Example.nn.verifySplit Example.check Example.splitter d X = true) :
+    Example.spec.Holds (Example.nn.eval.out '' construct X) :=
+  Example.nn.verifySplit_sound Example.spec Example.check Example.hcheck
+    Example.splitter Example.hcov d X hverify
+
+/-- The same at any function the network is sound at, which is where a reduced
+network's guarantee about its original lands. -/
 example {f : Vec ℝ 1 → Vec ℝ 1} (hf : Example.nn.Sound f) (d : ℕ) (X : Interval (Vec ℝ 1))
     (hverify : Example.nn.verifySplit Example.check Example.splitter d X = true) :
     Example.spec.Holds (f '' construct X) :=
-  NeuralNetwork.verifySplit_sound hf Example.spec Example.check Example.hcheck
+  hf.verifySplit_sound Example.spec Example.check Example.hcheck
     Example.splitter Example.hcov d X hverify
 
 end CORALean.Real

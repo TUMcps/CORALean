@@ -3,26 +3,26 @@ import CORALean.NN.Layers.Layer
 /-!
 # Neural networks: the computation graph
 
-CORA's `neuralNetwork`: layers applied one after another, the dimensions
-chaining so that a network is well-formed by construction and nothing needs a
-side condition.
+CORA's `neuralNetwork`: layers applied one after another, first layer first, the dimensions
+chaining so that a network is well-formed by construction. `output` ends the chain, and
+`layer curr tail` puts one layer of any `Enclose` kind in front of the rest: the kinds mix
+freely, the instance travelling with each layer. Storing the kind puts `NeuralNetwork` in
+`Type 1`; a network is itself an `Enclose` kind, and nests into another through
+`Enclose.pack`, which forgets the kind in `Type`.
 
-A chain rather than a node-and-edge graph, and that is not a restriction. A
-layer is any function with an enclosure, so a branch is expressed by widening
-the vector and carrying the branched coordinates along — `Layer.identity` on
-that block, a linear layer to route or to duplicate, and the two paths rejoined
-by another. That keeps every value in one set, so the dependency between the
-branches survives.
+A chain rather than a node-and-edge graph, and that is not a restriction: a branch widens the
+vector and carries the branched coordinates along — `IdentityLayer` on that block, a linear
+layer to route or duplicate — so every value stays in one set and the dependency survives.
 
-The network holds `Layer`s, which store no function, so a network of float
-layers is a plain `def`. What it computes is said by `Sound`, one `Prop` per
-constructor: `nil` is the identity and `cons` composes. The exact image is then
-`f '' X` for any `f` the network is sound at, and nothing computes it.
+What a network computes is its layers' `eval`s composed, `NeuralNetwork.eval`. `Sound` is the
+weaker, relational statement the reduction and refinement results need: the network encloses
+some `f`, each layer some function of its own, which a reduced network satisfies for the
+function of the network it was reduced from rather than for its own.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   07-September-2026
+-- Last update:   24-September-2026
 -- Last revision: 07-September-2026
 
 
@@ -37,45 +37,51 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m k : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
-inductive NeuralNetwork (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] : ℕ → ℕ → Type where
-  | nil {n : ℕ} : NeuralNetwork S n n
-  | cons {n m k : ℕ} (L : Layer S n m) (rest : NeuralNetwork S m k) : NeuralNetwork S n k
+inductive NeuralNetwork (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] : ℕ → ℕ → Type 1 where
+  | output {n : ℕ} : NeuralNetwork S n n
+  | layer {n m k : ℕ} {L : ℕ → ℕ → Type} [inst : Enclose L S] (curr : L n m)
+      (tail : NeuralNetwork S m k) : NeuralNetwork S n k
 
-/-- What a network computes, as a relation rather than a field: the layers'
-own obligations, chained in the order `enclose` applies them. -/
+/-- That the network encloses `f`, as a relation: each layer sound at some function of its
+own, and `f` their composite, whichever functions those are. -/
 inductive NeuralNetwork.Sound :
     ∀ {n m : ℕ}, NeuralNetwork S n m → (Vec ℝ n → Vec ℝ m) → Prop where
-  | nil {n : ℕ} {f : Vec ℝ n → Vec ℝ n} (hf : ∀ x, f x = x) :
-      NeuralNetwork.Sound (.nil : NeuralNetwork S n n) f
-  | cons {n m k : ℕ} {L : Layer S n m} {rest : NeuralNetwork S m k}
-      {g : Vec ℝ n → Vec ℝ m} {h : Vec ℝ m → Vec ℝ k} {f : Vec ℝ n → Vec ℝ k}
-      (hL : L.Sound g) (hrest : rest.Sound h) (hf : ∀ x, f x = h (g x)) :
-      NeuralNetwork.Sound (.cons L rest) f
+  | output {n : ℕ} {f : Vec ℝ n → Vec ℝ n} (hf : ∀ x, f x = x) :
+      NeuralNetwork.Sound (.output : NeuralNetwork S n n) f
+  | layer {n m k : ℕ} {L : ℕ → ℕ → Type} [inst : Enclose L S] {curr : L n m}
+      {tail : NeuralNetwork S m k} {g : Vec ℝ n → Vec ℝ m} {h : Vec ℝ m → Vec ℝ k}
+      {f : Vec ℝ n → Vec ℝ k} (hL : (Enclose.toLayer (S := S) curr).Sound g)
+      (htail : tail.Sound h) (hf : ∀ x, f x = h (g x)) :
+      NeuralNetwork.Sound (.layer curr tail) f
 
-/-- The identity at `nil`, which is the constructor read at `f = id`. -/
-theorem NeuralNetwork.sound_nil : (NeuralNetwork.nil : NeuralNetwork S n n).Sound id :=
-  .nil fun _ => rfl
+/-- The identity at `output`, which is the constructor read at `f = id`. -/
+theorem NeuralNetwork.sound_output : (NeuralNetwork.output : NeuralNetwork S n n).Sound id :=
+  .output fun _ => rfl
 
-/-- Composition at `cons`, which is the constructor read at `f = h ∘ g`. -/
-theorem NeuralNetwork.sound_cons {L : Layer S n m} {rest : NeuralNetwork S m k}
-    {g : Vec ℝ n → Vec ℝ m} {h : Vec ℝ m → Vec ℝ k} (hL : L.Sound g) (hrest : rest.Sound h) :
-    (NeuralNetwork.cons L rest).Sound (h ∘ g) :=
-  .cons hL hrest fun _ => rfl
+/-- Composition at `layer`, which is the constructor read at `f = h ∘ g`. -/
+theorem NeuralNetwork.sound_layer {L : ℕ → ℕ → Type} [Enclose L S] {curr : L n m}
+    {tail : NeuralNetwork S m k} {g : Vec ℝ n → Vec ℝ m} {h : Vec ℝ m → Vec ℝ k}
+    (hL : (Enclose.toLayer (S := S) curr).Sound g) (htail : tail.Sound h) :
+    (NeuralNetwork.layer curr tail).Sound (h ∘ g) :=
+  .layer hL htail fun _ => rfl
 
 /-- Soundness is stable under replacing the function by one that agrees with it
 everywhere, which is what lets a caller name the composite in its own terms. -/
 theorem NeuralNetwork.Sound.congr {nn : NeuralNetwork S n m} {f f' : Vec ℝ n → Vec ℝ m}
     (h : nn.Sound f) (hff : ∀ x, f' x = f x) : nn.Sound f' := by
   induction h with
-  | nil hf => exact .nil fun x => by rw [hff x, hf x]
-  | cons hL hrest hf _ => exact .cons hL hrest fun x => by rw [hff x, hf x]
+  | output hf => exact .output fun x => by rw [hff x, hf x]
+  | layer hL htail hf _ => exact .layer hL htail fun x => by rw [hff x, hf x]
 
 /-- One layer, so that a single layer needs no special case anywhere. -/
-def NeuralNetwork.ofLayer (L : Layer S n m) : NeuralNetwork S n m := .cons L .nil
+def NeuralNetwork.ofLayer {L : ℕ → ℕ → Type} [Enclose L S] (curr : L n m) :
+    NeuralNetwork S n m :=
+  .layer curr .output
 
-theorem NeuralNetwork.ofLayer_sound {L : Layer S n m} {f : Vec ℝ n → Vec ℝ m} (h : L.Sound f) :
-    (NeuralNetwork.ofLayer L).Sound f :=
-  .cons h (.nil fun _ => rfl) fun _ => rfl
+theorem NeuralNetwork.ofLayer_sound {L : ℕ → ℕ → Type} [Enclose L S] {curr : L n m}
+    {f : Vec ℝ n → Vec ℝ m} (h : (Enclose.toLayer (S := S) curr).Sound f) :
+    (NeuralNetwork.ofLayer (S := S) curr).Sound f :=
+  .layer h (.output fun _ => rfl) fun _ => rfl
 
 end CORALean
 

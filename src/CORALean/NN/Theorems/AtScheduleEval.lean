@@ -39,10 +39,10 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 theorem RefinableNetwork.atSchedule_sound : ∀ {n m : ℕ} (rn : RefinableNetwork S n m)
     (sch : Schedule), (rn.atSchedule sch).Sound rn.eval
-  | _, _, .nil, _ => .nil fun _ => rfl
+  | _, _, .nil, _ => .output fun _ => rfl
   -- the head layer computes `L.eval` at every level, so only the tail moves
   | _, _, .cons L rest, sch =>
-      .cons (L.atPattern_sound (Schedule.head sch _))
+      .layer (L.atPattern_sound (Schedule.head sch _))
         (rest.atSchedule_sound (Schedule.tail sch)) fun _ => rfl
 
 end CORALean

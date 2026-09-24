@@ -12,8 +12,8 @@ Precision is entirely the layers' business: a representation that loses
 nothing at a linear layer and plenty at an activation encloses exactly that.
 
 [1, Def. 7]'s abstract network is this recursion, read at whichever
-representation and layers a caller supplies: `H'_0` is `nil`'s case, the
-input handed back untouched, and `H'_k := L'_k(H'_{k-1})` is `cons`'s. The
+representation and layers a caller supplies: `H'_0` is `output`'s case, the
+input handed back untouched, and `H'_k := L'_k(H'_{k-1})` is `layer`'s. The
 paper's own `L'_k` — an affine map, Minkowski-summed with an error box, then
 an elementwise `σ` — is one instance among the layers `NN/Layers/` builds,
 not what this definition is tied to. [2, Alg. 1]'s own per-layer loop is
@@ -46,8 +46,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def NeuralNetwork.enclose : ∀ {n m : ℕ}, NeuralNetwork S n m → S n → S m
-  | _, _, .nil, s => s
-  | _, _, .cons L rest, s => rest.enclose (L.enclose s)
+  | _, _, .output, s => s
+  | _, _, .layer (inst := _) curr tail, s => tail.enclose (Enclose.enclose curr s)
 
 end CORALean
 

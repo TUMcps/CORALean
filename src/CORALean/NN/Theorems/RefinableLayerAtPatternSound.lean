@@ -1,3 +1,4 @@
+import CORALean.NN.Layers.Instances
 import CORALean.NN.Operations.RefinableLayerAtPattern
 
 /-!
@@ -25,7 +26,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem RefinableLayer.atPattern_sound (L : RefinableLayer S n m) (t : OrderPattern n) :
-    (L.atPattern t).Sound L.eval :=
+    (Enclose.toLayer (S := S) (L.atPattern t)).Sound L.eval :=
   ⟨L.enclose_outer t⟩
 
 end CORALean

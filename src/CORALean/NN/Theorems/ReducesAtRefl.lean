@@ -28,8 +28,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n
 /-- No layer is reduced: `nn` "reduces" to itself, through `keep` at every layer. -/
 theorem NeuralNetwork.ReducesAt.refl : ∀ {n m : ℕ} {s : S n} {nn : NeuralNetwork S n m}
     {f : Vec ℝ n → Vec ℝ m}, nn.Sound f → NeuralNetwork.ReducesAt s nn nn f
-  | _, _, s, _, _, .nil hid => .nil s hid
-  | _, _, s, _, _, .cons hL hrest hcomp =>
+  | _, _, s, _, _, .output hid => .nil s hid
+  | _, _, s, _, _, .layer (inst := _) hL hrest hcomp =>
       .keep s _ hL hcomp (NeuralNetwork.ReducesAt.refl hrest)
 
 end CORALean

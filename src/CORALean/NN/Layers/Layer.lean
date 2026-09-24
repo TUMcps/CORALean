@@ -1,24 +1,24 @@
 import CORALean.ContSet.ContSet.ContSet
+import Mathlib.Data.Erased
 
 /-!
 # What a layer is
 
 CORA's `nnLayer`, split in two: `Layer` is what a layer *computes* on a set, and
-`Layer.Sound` is the obligation tying that to an exact function, [1, Prop. 2.14]. Everything
-downstream is that obligation composed with itself.
+`Layer.Sound` is the obligation tying that to an exact function, [1, Prop. 2.14], stated
+against a function of a point, so a set-valued layer is sound at the function it refines.
+No field of `Layer` mentions `ℝ`: a structure with a noncomputable field is noncomputable
+to construct, so every mention of `ℝ` lives in a `Prop` and a float layer is a plain `def`.
+A layer is a structure, not a class: a network holds many, told apart by their weights.
 
-The split is what makes a layer runnable. A structure with a noncomputable field
-is noncomputable to construct, and `Vec ℝ n → Vec ℝ m` is such a field: storing
-the specification beside `enclose` poisoned the computation next to it. So no
-field of `Layer` mentions `ℝ`, every mention of it lives in a `Prop`, and a
-float layer is a plain `def` whose soundness is a theorem.
-
-A layer is a structure and not a class because a network holds many of them at
-once and they are told apart by their weights, not by their types.
-
-`Sound` is stated against a function of a point rather than a relation, which
-makes the obligation an image inclusion: a layer whose behaviour is genuinely
-set-valued is sound at the function it refines, and pays into `enclose`.
+The class is one level up, per *kind*: `Enclose L S` is to the weights `l : L n m` of a
+kind what `Mtimes` is to a matrix. `enclose` propagates, `eval` is the function over ℝ it
+encloses, and `enclose_outer` is proved once per kind for all weights, a hypothesis on the
+weights riding along as a `Prop` field of them. `eval` is `Erased`: `Erased.mk` is
+`macro_inline`, so its argument lands in a closure returning a `Prop`, is erased, and is
+never compiled, and only the noncomputable `Erased.out`, in proofs, reads it back. So an
+instance whose `eval` is `Real.exp`-built still runs. `Enclose.toLayer` forgets the kind,
+which is how a chain mixes kinds and is read off a file at run time.
 
 ## References
 
@@ -28,11 +28,13 @@ set-valued is sound at the function it refines, and pays into `enclose`.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   07-September-2026
+-- Last update:   24-September-2026
 -- Last revision: 07-September-2026
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+universe u
 
 namespace CORALean
 
@@ -79,6 +81,23 @@ def Layer.comp (L₂ : Layer S m k) (L₁ : Layer S n m) : Layer S n k where
 theorem Layer.comp_sound {L₂ : Layer S m k} {L₁ : Layer S n m} (h₂ : L₂.Sound g)
     (h₁ : L₁.Sound f) : (L₂.comp L₁).Sound (g ∘ f) :=
   ⟨fun s x hx => h₂.enclose_outer _ _ (h₁.enclose_outer s x hx)⟩
+
+/-- A kind's enclosure: `enclose` on its weights, the function `eval` it encloses, held `Erased`,
+and the guarantee, proved once for all weights. -/
+class Enclose (L : ℕ → ℕ → Type u) (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] where
+  eval {n m : ℕ} : L n m → Erased (Vec ℝ n → Vec ℝ m)
+  enclose {n m : ℕ} : L n m → S n → S m
+  enclose_outer {n m : ℕ} (l : L n m) (s : S n) :
+    (eval l).out '' construct s ⊆ construct (enclose l s)
+
+/-- One layer of a kind, the kind forgotten, which is how a network holds it. -/
+def Enclose.toLayer {L : ℕ → ℕ → Type u} [Enclose L S] (l : L n m) : Layer S n m where
+  enclose := Enclose.enclose l
+
+/-- What forgetting the kind keeps: the layer is sound at its kind's `eval`. -/
+theorem Enclose.toLayer_sound {L : ℕ → ℕ → Type u} [Enclose L S] (l : L n m) :
+    (Enclose.toLayer (S := S) l).Sound (Enclose.eval (S := S) l).out :=
+  ⟨fun s _x hx => Enclose.enclose_outer l s (Set.mem_image_of_mem _ hx)⟩
 
 end CORALean
 

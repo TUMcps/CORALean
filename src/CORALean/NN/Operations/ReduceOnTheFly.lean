@@ -41,10 +41,10 @@ set `Y` it computes on the way; `none` where [1, Alg. 1] ran out of `fuel` at so
 def reduceOnTheFly (le : 𝕋 → 𝕋 → Bool) (tol : 𝕋) (fuel : ℕ) {n m : ℕ} (X : S n) (ρ : 𝕋) :
     ReducibleNetwork 𝕋 n m → Option (ReducibleNetwork 𝕋 n m × S m)
   | .nil => some (.nil, X)                                          -- κ = 0: no layer to reduce
-  | .cons L_1 L_2 B rest =>
+  | .cons L_1 L_2 hσ B rest =>
     let H_0 := X                                                    -- Alg. 2, line 1
     let Lhat_1 := L_1                                               -- Alg. 2, line 1
-    reduceOnTheFlyFrom le tol fuel ρ H_0 Lhat_1 L_2 B rest          -- Alg. 2, lines 2-13
+    reduceOnTheFlyFrom le tol fuel ρ H_0 Lhat_1 L_2 hσ B rest       -- Alg. 2, lines 2-13
 
 end CORALean
 

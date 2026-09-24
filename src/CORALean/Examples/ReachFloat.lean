@@ -7,8 +7,10 @@ import CORALean.HybridDynamics.Theorems.HoldsOfRun
 import CORALean.NN.Layers.Definitions.Enclosure
 import CORALean.NN.Layers.Definitions.Relaxation
 import CORALean.NN.Layers.Definitions.Relu
+import CORALean.NN.Layers.Instances
 import CORALean.NN.Layers.Operations.Linear
 import CORALean.NN.Layers.Operations.Relu
+import CORALean.NN.Layers.Operations.ReluSlope
 
 /-!
 # Reachability at a floating-point representation
@@ -115,8 +117,8 @@ and neither the system type nor `reach` notices. -/
 /-- Affine, ReLU, affine, in the loop with a two-state plant. -/
 def Example.closedLoopFloat (A : Mat 𝕋 2 2) (W₁ : Mat 𝕋 3 2) (b₁ : Vec 𝕋 3)
     (W₂ : Mat 𝕋 2 3) (b₂ : Vec 𝕋 2) : NeurNetContrSysDT 𝕋 (Zonotope 𝕋) 2 :=
-  ⟨⟨A⟩, .cons (Layer.linear (S := Zonotope 𝕋) W₁ b₁)
-    (.cons Layer.relu (.cons (Layer.linear W₂ b₂) .nil))⟩
+  ⟨⟨A⟩, .layer (LinearLayer.mk W₁ b₁)
+    (.layer (ReluLayer.mk (𝕋 := 𝕋) reluSlope rfl) (.layer (LinearLayer.mk W₂ b₂) .output))⟩
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

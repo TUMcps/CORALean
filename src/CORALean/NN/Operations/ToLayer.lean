@@ -3,13 +3,10 @@ import CORALean.NN.Theorems.EncloseOuter
 /-!
 # A network is a layer
 
-Which is what makes a block one: a sub-network fits wherever a layer does, and
-`Layer.comp` and `NeuralNetwork.cons` describe the same graph. Nesting costs
-nothing and is checked by nobody.
-
-A layer is its `enclose` and nothing else, so this is that field and no proof:
-what the block computes is said by `NeuralNetwork.Sound.enclose_outer`, which
-is exactly `Layer.Sound` at the same function.
+The network's `enclose` as a plain `Layer`, for a statement that wants one: a layer is its
+`enclose` and nothing else, so this is that field and no proof, and what the block computes is
+said by `NeuralNetwork.Sound.enclose_outer`, exactly `Layer.Sound` at the same function. To
+put a network inside another, it is an `Enclose` kind and goes in through `Enclose.pack`.
 -/
 
 -- Authors:       Tobias Ladner

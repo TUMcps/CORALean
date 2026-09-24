@@ -5,6 +5,9 @@ import CORALean.NN.Layers.Definitions.Relaxation
 import CORALean.NN.Layers.Operations.Activation
 import CORALean.NN.Layers.Operations.Linear
 import CORALean.NN.Layers.Operations.LinearWithError
+import CORALean.ContSet.Interval.Float.Theorems.SubsetNonemptyHull
+import CORALean.NN.Layers.Instances
+import CORALean.NN.Layers.Operations.ActivationLayerOf
 import CORALean.NN.Layers.Theorems.ActivationSound
 import CORALean.NN.Layers.Theorems.LinearSound
 import CORALean.NN.Layers.Theorems.LinearWithErrorMem
@@ -62,9 +65,9 @@ theorem neuronMerging_sandwich_outer {n0 n n2 d r : ℕ}
     (fun x => toRealMat W1 *ᵥ (fun i => σ ((toRealMat W0 *ᵥ x + toRealVec b0) i))
         + toRealVec b1) '' construct X
       ⊆ construct
-        ((NeuralNetwork.cons (Layer.linear (W0.submatrix part.left id) (b0 ∘ part.left))
-            (NeuralNetwork.cons (Layer.activation R)
-              (NeuralNetwork.ofLayer (Layer.linearWithError (W1.submatrix id part.left) b1
+        ((NeuralNetwork.layer (LinearLayer.mk (W0.submatrix part.left id) (b0 ∘ part.left))
+            (NeuralNetwork.layer (ActivationLayer.of hR)
+              (NeuralNetwork.ofLayer (LinearWithErrorLayer.mk (W1.submatrix id part.left) b1
                 (Interval.mtimes (W1.submatrix id part.right)
                   ⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩)))) :
           NeuralNetwork S n0 n2).enclose X) := by -- --- PROOF ---
@@ -90,7 +93,8 @@ theorem neuronMerging_sandwich_outer {n0 n n2 d r : ℕ}
           ⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩).construct := by
     rw [add_sub_cancel_left]
     exact Interval.mtimes_outer (W1.submatrix id part.right) _ ⟨_, hB, rfl⟩
-  have hA3 := Layer.linearWithError_mem (S := S) (W1.submatrix id part.left) hc _ hA2
+  have hA3 := Layer.linearWithError_mem (S := S) (W1.submatrix id part.left)
+    (Interval.construct_subset_nonemptyHull _ hc) _ hA2
   -- layer `k+1`'s dot product splits along the survivors and the bucket
   have hval : W1' *ᵥ hk + toRealVec b1 = W1'.submatrix id part.left *ᵥ (hk ∘ part.left)
       + (toRealVec b1 + W1'.submatrix id part.right *ᵥ (hk ∘ part.right)) := by

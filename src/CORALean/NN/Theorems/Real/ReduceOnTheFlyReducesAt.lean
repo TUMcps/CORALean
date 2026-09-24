@@ -1,8 +1,10 @@
 import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
 import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+import CORALean.ContSet.Interval.Float.Theorems.SubsetNonemptyHull
+import CORALean.NN.Layers.Theorems.ActivationLayerOfSound
+import CORALean.NN.Theorems.Real.InstanceOfInstanceNetwork
 import CORALean.NN.Theorems.ReduceOnTheFlyOuter
 import CORALean.NN.Theorems.ReducesAtCongr
-import CORALean.NN.Theorems.Real.InstanceOfInstanceNetwork
 
 /-!
 # What [1, Alg. 2] returns is a reduction, and computes its own output set
@@ -47,26 +49,27 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n
 pending layer `L̂_{k-1}` admits. -/
 theorem aux_reduceOnTheFlyFrom_reducesAt :
     ∀ {n n₁ m : ℕ} (rest : ReducibleNetwork ℝ n₁ m) (H : S n) (L : ReducedLinear ℝ n n₁)
-      (R : Relaxation ℝ) {σ : ℝ → ℝ} (_hR : R.Sound σ) (B : MergeBuckets ℝ)
+      (R : Relaxation ℝ) (hτ : ∃ σ : ℝ → ℝ, R.Sound σ) {σ : ℝ → ℝ} (_hR : R.Sound σ)
+      (B : MergeBuckets ℝ)
       {c : Vec ℝ n₁} (_hc : c - L.b ∈ L.I'.construct) {nn : NeuralNetwork S n₁ m}
       {h : Vec ℝ n₁ → Vec ℝ m} (_hrest : rest.InstanceNetwork nn h)
       {Φhat : ReducibleNetwork ℝ n m} {Y : S m},
-      reduceOnTheFlyFrom le tol fuel ρ H L R B rest = some (Φhat, Y) →
+      reduceOnTheFlyFrom le tol fuel ρ H L R hτ B rest = some (Φhat, Y) →
       NeuralNetwork.ReducesAt H
-        (.cons (Layer.linear L.W c) (.cons (Layer.activation R) nn))
+        (.layer (LinearLayer.mk L.W c) (.layer (ActivationLayer.of (n := n₁) _hR) nn))
         Φhat.toNetwork (fun x => h (fun i => σ ((L.W *ᵥ x + c) i)))
-  | _, _, _, .nil, H, L, R, _, hR, B, c, hc, _, _, hrest, Φhat, Y, hrun => by
+  | _, _, _, .nil, H, L, R, hτ, σ, hR, B, c, hc, _, h, hrest, Φhat, Y, hrun => by
       cases hrest with
       | nil hid =>
         simp only [reduceOnTheFlyFrom, Option.some.injEq, Prod.mk.injEq] at hrun
         obtain ⟨rfl, rfl⟩ := hrun
         -- k = κ: the pending layer's box holds `c`, and the last activation is kept
-        exact .widen H L.W c L.b L.I' hc (fun _ => rfl)
-          (.keep _ (Layer.activation R) (Layer.activation_sound hR) (fun _ => rfl)
+        exact .widen H L.W c L.b L.I' hc (h := fun y => h fun i => σ (y i)) (fun _ => rfl)
+          (.keep _ (ActivationLayer.of hR) (ActivationLayer.of_sound (S := S) hR) (fun _ => rfl)
             (.nil _ hid))
-  | _, _, _, .cons L1 R1 B1 rest1, H, L, R, σ, hR, B, c, hc, _, _, hrest, _, _, hrun => by
+  | _, _, _, .cons L1 R1 hτ1 B1 rest1, H, L, R, hτ, σ, hR, B, c, hc, _, _, hrest, _, _, hrun => by
       cases hrest with
-      | @cons _ _ _ _ c1 _ σ1 _ _ nn1 h1 _ hR1 hc1 hrest1 hf1 =>
+      | @cons _ _ _ _ c1 _ _ σ1 _ _ nn1 h1 _ hR1 hc1 hrest1 hf1 =>
         simp only [reduceOnTheFlyFrom] at hrun
         split at hrun
         · exact absurd hrun (by simp)
@@ -82,7 +85,8 @@ theorem aux_reduceOnTheFlyFrom_reducesAt :
             -- line 5's box bounds the exact layer `k` at every point that reaches it
             have hY : ∀ x ∈ construct H, (fun i => σ ((L.W *ᵥ x + c) i)) ∈ construct I_k :=
               fun x hx => (Layer.activation_sound (S := Float.Interval ℝ) hR).enclose_outer
-                _ _ (Layer.linearWithError_mem (S := Float.Interval ℝ) L.W hc _
+                _ _ (Layer.linearWithError_mem (S := Float.Interval ℝ) L.W
+                  (Float.Interval.construct_subset_nonemptyHull _ hc) _
                   (Float.IntervalOuter.interval_outer H hx))
             refine .freeze H part L.W c L.b L.I' hc R hR L1.W c1 I_k hY
               (h := fun y => h1 (fun i => σ1 (y i))) (fun x => hf1 _) fun w hw => ?_
@@ -95,7 +99,7 @@ theorem aux_reduceOnTheFlyFrom_reducesAt :
               rw [hsplit]
               exact Float.Interval.plus_outer _ _ (Set.add_mem_add hc1
                 (Float.Interval.mtimes_outer (L1.W.submatrix id part.right) _ ⟨w, hw, rfl⟩))
-            exact aux_reduceOnTheFlyFrom_reducesAt rest1 _ _ R1 hR1 B1 hc' hrest1 hrec
+            exact aux_reduceOnTheFlyFrom_reducesAt rest1 _ _ R1 hτ1 hR1 B1 hc' hrest1 hrec
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -113,8 +117,8 @@ theorem reduceOnTheFly_reducesAt {n m : ℕ} {X : S n} {Φ Φhat : ReducibleNetw
     simp only [reduceOnTheFly, Option.some.injEq, Prod.mk.injEq] at hrun
     obtain ⟨rfl, rfl⟩ := hrun
     exact .nil X hid
-  | @cons _ _ _ L c R _ B rest _ _ _ hR hc hrest hf =>
-    exact (aux_reduceOnTheFlyFrom_reducesAt rest X L R hR B hc hrest hrun).congr hf
+  | @cons _ _ _ L c R hτ _ B rest _ _ _ hR hc hrest hf =>
+    exact (aux_reduceOnTheFlyFrom_reducesAt rest X L R hτ hR B hc hrest hrun).congr hf
 
 end CORALean.Real
 

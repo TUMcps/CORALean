@@ -1,4 +1,5 @@
 import CORALean.NN.Layers.Operations.Activation
+import CORALean.NN.Layers.Operations.ActivationLayerOf
 import CORALean.NN.Layers.Operations.ActivationPoly
 import CORALean.NN.Layers.Operations.ActivationPolyRefinable
 import CORALean.NN.Layers.Operations.AllOver
@@ -40,6 +41,7 @@ import CORALean.NN.Layers.Operations.MaxPoolGapUp
 import CORALean.NN.Layers.Operations.MulRangeDown
 import CORALean.NN.Layers.Operations.MulRangeUp
 import CORALean.NN.Layers.Operations.OnePlusExpDown
+import CORALean.NN.Layers.Operations.Pack
 import CORALean.NN.Layers.Operations.PadCoeffs
 import CORALean.NN.Layers.Operations.PolyDerivBoundUp
 import CORALean.NN.Layers.Operations.PolyDerivCenter

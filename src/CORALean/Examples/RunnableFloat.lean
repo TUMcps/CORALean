@@ -1,6 +1,6 @@
 import CORALean.ContDynamics.LinearSysDT.Operations.Reach
-import CORALean.ContDynamics.LinearSysDT.Operations.ReachOrders
 import CORALean.ContDynamics.LinearSysDT.Operations.ReachHeld
+import CORALean.ContDynamics.LinearSysDT.Operations.ReachOrders
 import CORALean.ContDynamics.LinearSysDT.Operations.Simulate
 import CORALean.ContSet.ConPolyZono.Float.Instances
 import CORALean.ContSet.Conversion.Float.ConZonotope_to_ConPolyZono
@@ -26,9 +26,15 @@ import CORALean.ContSet.Zonotope.Float.Operations.PlusBox
 import CORALean.ContSet.Zonotope.Float.Operations.ReduceByBox
 import CORALean.ContSet.Zonotope.Float.Operations.ReduceGirardBox
 import CORALean.Global.Float.Instances.Dyadic.Instances
+import CORALean.NN.Instances
 import CORALean.NN.Layers.Definitions.Relu
+import CORALean.NN.Layers.Instances
 import CORALean.NN.Layers.Operations.Linear
+import CORALean.NN.Layers.Operations.ActivationLayerOf
+import CORALean.NN.Layers.Operations.Pack
 import CORALean.NN.Layers.Operations.Relu
+import CORALean.NN.Layers.Operations.ReluSlope
+import CORALean.NN.Layers.Theorems.SigmoidRelaxationSound
 import CORALean.NN.NeuralNetwork
 import CORALean.NN.Operations.Enclose
 
@@ -191,14 +197,28 @@ def sys : LinearSysDT D 2 := ⟨!![d 15 (-4), d (-1) (-3); d 1 (-3), d 15 (-4)]�
 def reachRun : Zonotope D 2 := sys.reach (S := Zonotope D) 2 (by decide) Z Z 5
 
 def net : NeuralNetwork (Zonotope D) 2 2 :=
-  .cons (Layer.linear (S := Zonotope D) (identityMat D 2) (fun _ => d 0 0))
-    (.cons Layer.relu .nil)
+  .layer (⟨identityMat D 2, fun _ => d 0 0⟩ : LinearLayer D 2 2)
+    (.layer (⟨reluSlope, rfl⟩ : ReluLayer D 2 2) .output)
 
 def encloseRun : Zonotope D 2 := net.enclose Z
+
+/-- Linear, sigmoid, activation at `Real.sigmoid`, linear, and `net` nested as one layer:
+five `Enclose` kinds in one chain, each `eval` over ℝ held `Erased`, which is what this
+compiling and running checks. -/
+def mixedNet : NeuralNetwork (Zonotope D) 2 2 :=
+  .layer (⟨identityMat D 2, fun _ => d 0 0⟩ : LinearLayer D 2 2)
+    (.layer (⟨2, rfl⟩ : SigmoidLayer D 2 2)
+      (.layer (ActivationLayer.of (sigmoidRelaxation_sound (𝕋 := D) 2))
+        (.layer (Enclose.pack (S := Zonotope D) net)
+          (.layer (⟨identityMat D 2, fun _ => d 0 0⟩ : LinearLayer D 2 2) .output))))
+
+def mixedEncloseRun : Zonotope D 2 := mixedNet.enclose Z
 
 #eval reachRun.h
 #eval reachRun.c 0
 #eval encloseRun.c 0
+#eval mixedEncloseRun.c 0
+#eval mixedEncloseRun.interval.sup 0
 #eval plusBoxRun.sup 0
 
 

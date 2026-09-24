@@ -1,10 +1,13 @@
+import CORALean.ContSet.Interval.Float.Operations.NonemptyHull
 import CORALean.NN.Definitions.ReducibleNetwork
 import CORALean.NN.Layers.Operations.LinearWithError
 
 /-!
 # The layer [1, Eq. 2] names
 
-`W h + b ⊕ I'`: the generic linear layer carrying the box of errors merging has added.
+`W h + b ⊕ I'`: the generic linear layer carrying the box of errors merging has added, at
+`I'.nonemptyHull`, which is what `LinearWithErrorLayer` runs and is `I'` whenever `I'` is
+nonempty: the layers [1, Alg. 2] propagates through are then exactly `toNetwork`'s.
 
 ## References
 
@@ -33,7 +36,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 
 /-- The layer [1, Eq. 2] names, `W h + b ⊕ I'`. -/
 def ReducedLinear.toLayer {n m : ℕ} (L : ReducedLinear 𝕋 n m) : Layer S n m :=
-  Layer.linearWithError L.W L.b L.I'
+  Layer.linearWithError L.W L.b L.I'.nonemptyHull
 
 end CORALean
 
