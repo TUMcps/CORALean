@@ -43,12 +43,12 @@ example :
         (construct (⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2))))) :=
   LinearSys.holds_of_check (S := 𝒵) _ (by norm_num) 4 _ _
 
-/-- The same through `Reach`, the parameters bundled as `LinearSys.ReachParams`. -/
+/-- The same through `Reach.check`, the parameters bundled as `LinearSys.ReachParams`. -/
 example :
-    ((Specification.safeSet (⟨![-10, -10], ![10, 10]⟩ : Float.Interval (Vec ℝ 2))).check
-      (Reach.reach (S := 𝒵) (⟨!![-1, 1; 0, -2]⟩ : LinearSys ℝ 2)
-        (⟨1, 1 / 10, 4, by norm_num⟩ : LinearSys.ReachParams)
-        (⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2))) = true) →
+    (Reach.check (S := 𝒵) (⟨!![-1, 1; 0, -2]⟩ : LinearSys ℝ 2)
+      (⟨1, 1 / 10, 4, by norm_num⟩ : LinearSys.ReachParams)
+      (⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2))
+      (Specification.safeSet (⟨![-10, -10], ![10, 10]⟩ : Float.Interval (Vec ℝ 2))) = true) →
     ((Specification.safeSet (⟨![-10, -10], ![10, 10]⟩ : Float.Interval (Vec ℝ 2))).Holds
       (Reach.reachExact (S := 𝒵) (⟨!![-1, 1; 0, -2]⟩ : LinearSys ℝ 2)
         (⟨1, 1 / 10, 4, by norm_num⟩ : LinearSys.ReachParams)

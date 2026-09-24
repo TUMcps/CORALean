@@ -3,6 +3,7 @@ import CORALean.ContDynamics.NonlinearSysDT.Definitions.API
 import CORALean.ContDynamics.NonlinearSysDT.Operations.API
 import CORALean.ContDynamics.NonlinearSysDT.Theorems.API
 import CORALean.ContDynamics.NonlinearSysDT.Cost.API
+import CORALean.ContDynamics.NonlinearSysDT.Instances
 
 /-!
 # Discrete-time nonlinear systems, collected
@@ -13,7 +14,8 @@ and `linInput`, both stated over the map rather than a system, so nothing here
 claims a flow that a discrete step does not have. `Operations` runs
 `LinearSysDT.reach` one step per linearization, `Theorems` shows the loop
 contains every trajectory, and `Cost` prices the loop by using the linear run's
-own bound at one step.
+own bound at one step. `WithSteps` bundles the system with its linearizations and
+checkable regions, and `Instances` makes that `Reach`, its region tests run at run time.
 
 No `Δt`, no `discretize`, no `MatExp`: a discrete step is already what
 `LinearSysDT` steps with, so nothing here converts a continuous system into

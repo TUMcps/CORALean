@@ -24,6 +24,7 @@ import CORALean.Examples.LinearSysCheck
 import CORALean.Examples.LinParamUncertainMatrix
 import CORALean.Examples.MinkowskiDifference
 import CORALean.Examples.NeurNetControl
+import CORALean.Examples.NonlinearReachCheck
 import CORALean.Examples.NonlinearSysDTReach
 import CORALean.Examples.Polynomialization
 import CORALean.Examples.PolyZonotopeReach

@@ -47,6 +47,7 @@ import CORALean.ContDynamics.NonlinearSys.Operations.PolyReachInit
 import CORALean.ContDynamics.NonlinearSys.Operations.PolyReachStep
 import CORALean.ContDynamics.NonlinearSys.Operations.PolyReachRun
 import CORALean.ContDynamics.NonlinearSys.Operations.PolyReachReach
+import CORALean.ContDynamics.NonlinearSys.Operations.ReachUnion
 
 /-!
 # What a linearization computes
@@ -57,17 +58,16 @@ mentions a derivative — what the split costs is an `AbstractionError`
 certificate, not a bound on `f`. `PrecompStatError` is CORA's
 `priv_precompStatError`, computing the second-order term instead of boxing it.
 
-`RelinReach` is what a sequence of steps computes: one linear recursion step per
-linearization, the set reached at a step's end the next one's initial set.
-`RelinTimeInterval` is the same step over its whole interval; `RelinDeltaReach`
-is CORA's `Rdiff`. `AbstrErrLin` is CORA's `priv_abstrerr_lin` at
-`tensorOrder = 2`: the error box a second-order expansion leaves, data here and
-certified in `Theorems`. `LagrangeRemainder` is the same one order up, once the
-quadratic term is subtracted exactly rather than boxed. `AbstrErrPolySearch` is
-`linReach`'s while loop for `alg = 'poly'`, a fuel-bounded search over the candidates
-`AbstrErrPolyCandidates` computes, and `LinReachPoly` runs both from a start set.
-`AbstrErr` is the other paper's `abstrErr`, one step's whole error out of `postΔ`,
-`VarInputs` and the latter.
+`RelinReach` is what a sequence of steps computes: one linear recursion step per linearization, the
+set reached at a step's end the next one's initial set. `RelinTimeInterval` is the same step over
+its whole interval, and `ReachUnion` the union of those steps as `Reach` runs them, `none` once a
+run-time region test fails; `RelinDeltaReach` is CORA's `Rdiff`. `AbstrErrLin` is CORA's
+`priv_abstrerr_lin` at `tensorOrder = 2`: the error box a second-order expansion leaves, data here
+and certified in `Theorems`. `LagrangeRemainder` is the same one order up, once the quadratic term
+is subtracted exactly rather than boxed. `AbstrErrPolySearch` is `linReach`'s while loop for
+`alg = 'poly'`, a fuel-bounded search over the candidates `AbstrErrPolyCandidates` computes, and
+`LinReachPoly` runs both from a start set. `AbstrErr` is the other paper's `abstrErr`, one step's
+whole error out of `postΔ`, `VarInputs` and the latter.
 
 `LocalAbstrErr` and `GlobalAbstrErr` measure what a step and a run add to the exact answer.
 `AbstrSolInf` is the untruncated set of those errors, `GainDim` and `Gain` how much of its width a

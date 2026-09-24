@@ -30,7 +30,7 @@ either, and are the only directories reaching outside `ContDynamics`, the input
 set being what `NN` encloses; `NeurNetContrSys` is the sampled continuous case.
 
 `Reach` is the shared reachability class every system below instantiates where
-it fits: `NonlinearSys`, `NonlinearSysDT` and `NonlinParamSys` do not, their
-soundness resting on a confinement of the actual run, or, for the last, on no
-reachability result at all.
+it fits. `NonlinearSys` and `NonlinearSysDT` do, bundled with their linearizations,
+their `reach` returning `none` where a run-time test cannot confirm the
+confinement the linearizations assume; `NonlinParamSys` has no reachability.
 -/
