@@ -1,3 +1,4 @@
+import CORALean.Global.Float.Instances.Dyadic.Operations.RoundDown
 import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealShift
 
 /-!

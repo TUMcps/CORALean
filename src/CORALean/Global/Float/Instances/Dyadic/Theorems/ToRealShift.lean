@@ -1,4 +1,4 @@
-import CORALean.Global.Float.Instances.Dyadic.Operations
+import CORALean.Global.Float.Instances.Dyadic.Dyadic
 
 /-!
 # Reading a dyadic after dropping bits into its exponent

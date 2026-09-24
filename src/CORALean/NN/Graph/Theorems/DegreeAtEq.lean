@@ -1,4 +1,4 @@
-import CORALean.NN.Graph.UncertainDegree
+import CORALean.NN.Graph.Operations.DegreeAt
 
 /-!
 # The uncertain degree, written affinely in the edge weights

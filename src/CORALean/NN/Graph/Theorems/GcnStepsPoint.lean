@@ -1,5 +1,7 @@
-import CORALean.NN.Graph.GcnSteps
+import CORALean.NN.Graph.Operations.EvalSteps
+import CORALean.NN.Graph.Operations.GcnSteps
 import CORALean.NN.Graph.Theorems.GcnSharedPoint
+import CORALean.NN.Graph.Theorems.GcnStepsP
 
 /-!
 # The chain, at one factor vector

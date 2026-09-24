@@ -1,4 +1,8 @@
+import CORALean.NN.Graph.Operations.DegreeInf
+import CORALean.NN.Graph.Operations.DegreeSup
 import CORALean.NN.Graph.Theorems.DegreeAtEq
+import CORALean.NN.Graph.Theorems.EdgeMatNonneg
+import CORALean.NN.Graph.Theorems.OneLeDegree
 
 /-!
 # The uncertain degree is bracketed, and never below `1`

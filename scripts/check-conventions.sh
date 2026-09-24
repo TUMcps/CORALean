@@ -34,7 +34,7 @@ MAX_PUBLIC_DECL=1     # public declarations per `Operations/`/`Theorems/` file (
 # the native binary64 backend has to assume what the hardware does; every other
 # file in the tree proves what it states, and naming the exception here is what
 # keeps it one file rather than a habit.
-AXIOM_FILE=src/CORALean/Global/Float/Instances/Binary64/Axioms.lean
+AXIOM_FILE=src/CORALean/Global/Float/Instances/Binary64/Definitions/Axioms.lean
 
 # `noncomputable` outside a representation's `Real/` layer, the scalar
 # interface's instance at ℝ and a `Definitions/` file is legitimate only for an
@@ -56,16 +56,11 @@ CLASS_ROOT_EXEMPT=src/CORALean/ContSet/Conversion
 
 # Class roots not yet sorted into role folders, one per line. The list only
 # shrinks: an entry whose directory now passes, or is gone, is reported the way
-# a stale allowlist entry is. `NN/Graph` is ℝ-only, its algorithms awaiting a
-# rewrite over the scalar; sorting it by computability now would file them as
-# meanings.
+# a stale allowlist entry is.
 CLASS_ROOT_PENDING="
 src/CORALean/ContDynamics/LinearSys
 src/CORALean/ContDynamics/LinearSys/MatExp
 src/CORALean/ContSet/ContSet
-src/CORALean/Global/Float/Instances/Binary64
-src/CORALean/Global/Float/Instances/Dyadic
-src/CORALean/NN/Graph
 src/CORALean/Specification
 "
 

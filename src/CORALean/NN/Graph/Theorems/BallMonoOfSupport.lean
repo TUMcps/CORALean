@@ -1,4 +1,4 @@
-import CORALean.NN.Graph.Ball
+import CORALean.NN.Graph.Operations.Ball
 
 /-!
 # The ball depends on the matrix only through its support

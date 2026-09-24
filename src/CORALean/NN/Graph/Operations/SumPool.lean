@@ -1,0 +1,43 @@
+import CORALean.ContSet.PolyZonotope.Real.Operations.Map
+import CORALean.NN.Graph.Operations.SumPoolLin
+
+/-!
+# Summation pooling on a matrix polynomial zonotope
+
+CORA's `nnGNNGlobalPoolingLayer` at the sum, [1, Prop. 3]: linear, so its
+propagation is `PolyZonotope.map` at `sumPoolLin` and its guarantee
+`map_exact`.
+
+## References
+
+* [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph
+      Convolutional Networks with Uncertain Node Features and Uncertain Graph
+      Structure". TMLR, 2025. arXiv:2404.15065.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       06-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+open Matrix
+
+variable {N F : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- Summation pooling on a matrix polynomial zonotope, landing in the vector
+shape the layers after it read. -/
+def GNN.sumPool (pZ : PolyZonotope (Mat ℝ N F)) : PolyZonotope (Vec ℝ F) :=
+  pZ.map (GNN.sumPoolLin N F)
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

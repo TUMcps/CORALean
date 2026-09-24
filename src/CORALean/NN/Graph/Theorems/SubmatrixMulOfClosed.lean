@@ -1,4 +1,4 @@
-import CORALean.NN.Graph.Subgraph
+import CORALean.ContSet.ContSet.ContSet
 
 /-!
 # The matrix statement behind `[1, §4.3]`'s locality argument

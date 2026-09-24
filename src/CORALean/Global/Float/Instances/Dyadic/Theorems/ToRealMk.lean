@@ -1,4 +1,4 @@
-import CORALean.Global.Float.Instances.Dyadic.Operations
+import CORALean.Global.Float.Instances.Dyadic.Dyadic
 
 /-!
 # A dyadic literal, read back

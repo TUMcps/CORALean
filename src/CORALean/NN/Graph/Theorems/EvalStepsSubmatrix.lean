@@ -1,4 +1,4 @@
-import CORALean.NN.Graph.GcnSteps
+import CORALean.NN.Graph.Operations.EvalSteps
 import CORALean.NN.Graph.Theorems.SubmatrixMulOfClosed
 
 /-!

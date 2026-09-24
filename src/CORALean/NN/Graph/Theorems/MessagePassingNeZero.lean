@@ -1,4 +1,4 @@
-import CORALean.NN.Graph.Ball
+import CORALean.NN.Graph.Operations.MessagePassing
 
 /-!
 # A nonzero message reads off `Ã`, not the division

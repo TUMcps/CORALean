@@ -1,19 +1,5 @@
-import CORALean.NN.Graph.Ball
-import CORALean.NN.Graph.BallEnum
-import CORALean.NN.Graph.Conv
-import CORALean.NN.Graph.ConvUncertain
-import CORALean.NN.Graph.GcnSteps
-import CORALean.NN.Graph.Mask
-import CORALean.NN.Graph.MessagePassingEnclosure
-import CORALean.NN.Graph.Pooling
-import CORALean.NN.Graph.SqrtBroadcast
-import CORALean.NN.Graph.Subgraph
-import CORALean.NN.Graph.Uncertain
-import CORALean.NN.Graph.UncertainAdjPad
-import CORALean.NN.Graph.UncertainDegree
-import CORALean.NN.Graph.UncertainMax
-import CORALean.NN.Graph.UncertainSqrt
 import CORALean.NN.Graph.Complexity.API
+import CORALean.NN.Graph.Operations.API
 import CORALean.NN.Graph.Theorems.API
 
 /-!

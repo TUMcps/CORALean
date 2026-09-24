@@ -1,4 +1,4 @@
-import CORALean.NN.Graph.Uncertain
+import CORALean.NN.Graph.Operations.EdgeMat
 
 /-!
 # `edgeMat` is symmetric

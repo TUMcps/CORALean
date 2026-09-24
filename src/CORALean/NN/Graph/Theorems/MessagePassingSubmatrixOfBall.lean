@@ -1,3 +1,4 @@
+import CORALean.NN.Graph.Operations.MessagePassing
 import CORALean.NN.Graph.Theorems.DegreeSubmatrixOfBall
 
 /-!

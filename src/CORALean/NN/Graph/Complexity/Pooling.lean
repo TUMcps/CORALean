@@ -1,4 +1,4 @@
-import CORALean.NN.Graph.Pooling
+import CORALean.NN.Graph.Operations.SumPool
 
 /-!
 # `GNN.sumPool`'s counts

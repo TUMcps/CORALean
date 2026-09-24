@@ -1,5 +1,6 @@
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MapExact
-import CORALean.NN.Graph.Conv
+import CORALean.NN.Graph.Operations.Gcn
+import CORALean.NN.Graph.Theorems.GcnLinApply
 
 /-!
 # A graph convolutional layer loses nothing, at any matrix `P`

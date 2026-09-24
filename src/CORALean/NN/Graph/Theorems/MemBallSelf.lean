@@ -1,4 +1,4 @@
-import CORALean.NN.Graph.Ball
+import CORALean.NN.Graph.Operations.Ball
 
 /-!
 # A node is its own centre

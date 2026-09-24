@@ -1,6 +1,5 @@
 import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachExistsOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachForallInner
-import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachForallInnerZonotope
 import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachSetExistsPreimage
 import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachSetExistsTrajectory
 import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachSetForallTrajectory
@@ -12,22 +11,14 @@ import CORALean.ContDynamics.LinearSysDT.Theorems.NotHoldsOfSimulate
 import CORALean.ContDynamics.LinearSysDT.Theorems.OutputOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachBigO
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachBigOConZonotope
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachHeldOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOneOuter
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachErrorReducedContainsReachError
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachErrorReducedOrdersContainsReachErrorOrders
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachFloatSubsetReachSetAddError
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachFloatZeroMemError
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachInnerFloatInner
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachInnerInner
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachInnerReducedInner
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachInnerReducedSubsetReachInner
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachInnerRepInner
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOrderLe
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOrderLeConZonotope
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOrdersConstEqReach
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOrdersOuter
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOrdersStepSubsetClosedBallOfReduceBoxOrder
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOuterOn
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetBound
@@ -37,10 +28,7 @@ import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetIsCompact
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetSubsetReach
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetWitness
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachStepSubsetClosedBall
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSubsetClosedBall
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSubsetReachSetAddError
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSubsetReachSetAddErrorReduced
+import CORALean.ContDynamics.LinearSysDT.Theorems.Real.API
 import CORALean.ContDynamics.LinearSysDT.Theorems.SimulateMemReach
 import CORALean.ContDynamics.LinearSysDT.Theorems.SimulateTrajectory
 
@@ -65,7 +53,6 @@ only at `Zonotope`; `BackReachExists` is outer instead, at `Plus, Mtimes`.
 `ConZonotope` pair restate both, and the float three restate `ReachSubsetReachSetAddError`
 against three bounds, `ReachInnerFloatInner` composing it as `ReachInnerInner` does.
 `ReachOrdersOuter` and `ReachOrdersConstEqReach` carry `reach_outer` to a
-per-step sequence, recovering `reach` at a constant one; `Orders` restates the
-reduced-error transfer there. The `ClosedBall` three bound `reach`'s width
-instead of its size, one at `reachOrders` sharpened by a caller's tolerance.
+per-step sequence, recovering `reach` at a constant one; `Real/` holds what
+needs ℝ, the reduced-error transfer and the `ClosedBall` bounds among them.
 -/

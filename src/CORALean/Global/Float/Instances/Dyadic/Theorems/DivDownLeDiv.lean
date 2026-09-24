@@ -1,3 +1,4 @@
+import CORALean.Global.Float.Instances.Dyadic.Operations.DivDown
 import CORALean.Global.Float.Instances.Dyadic.Theorems.MantissaPos
 import CORALean.Global.Float.Instances.Dyadic.Theorems.RoundDownLe
 import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealDivEq
