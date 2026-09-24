@@ -59,6 +59,8 @@ import CORALean.ContDynamics.LinearSys.Operations.TunedReach
 import CORALean.ContDynamics.LinearSys.Operations.VerifyStep
 import CORALean.ContDynamics.LinearSys.Operations.VerifyRun
 import CORALean.ContDynamics.LinearSys.Operations.Verify
+import CORALean.ContDynamics.LinearSys.Operations.ReachOrder
+import CORALean.ContDynamics.LinearSys.Operations.ReachUnion
 
 /-!
 # What a continuous-time linear system computes
@@ -80,10 +82,9 @@ result is a `LinParamSysDT` over an interval matrix rather than a `LinearSysDT`.
 
 `InputTaylorSumTail` is `InputTaylorSum` from order `1` instead of `0`, the
 split Wetzlinger et al.'s adaptive reachability needs, which keeps order `0`
-out as a term of its own.
-
-`PostDelta` is CORA's `postΔ`: `DeltaReach` plus what a constant uncertain
-input set contributes as `InputSolution`, named for [1, Sec. 4.1].
+out as a term of its own. `ReachOrder`/`ReachUnion` are `Instances`' order
+and `SetUnion`; `PostDelta` is CORA's `postΔ`, `DeltaReach` plus what a
+constant uncertain input set contributes as `InputSolution`, [1, Sec. 4.1].
 
 ## References
 

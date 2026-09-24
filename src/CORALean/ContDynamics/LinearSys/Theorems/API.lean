@@ -136,6 +136,8 @@ import CORALean.ContDynamics.LinearSys.Theorems.TunedRunErrorBudget
 import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 import CORALean.ContDynamics.LinearSys.Theorems.VerifyConvexUnsafe
 import CORALean.ContDynamics.LinearSys.Theorems.WeightedIntegral
+import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderAdmissible
+import CORALean.ContDynamics.LinearSys.Theorems.ReachUnionOuter
 
 /-!
 # What `LinearSys` guarantees
@@ -145,9 +147,9 @@ at the sample times, `timeIntervalStep` over a whole step, and `deltaReach` over
 the differences that step spans — what CORA's polynomialization variant measures
 its next abstraction error on. The rest are the input-integral facts they use.
 
-The first two are stated once, over `ConvexSet` and `CompactSet`, and name no
-representation. `TimeIntervalOuterSplit` is the same: dropping `0 ∈ U` needs
-only `Recentre` and `OfPoint`, which any representation with a centre has.
+The first two are stated once, over `ConvexSet` and `CompactSet`, name no
+representation. `TimeIntervalOuterSplit` drops `0 ∈ U`, needing only
+`Recentre`/`OfPoint`, which any representation with a centre has.
 
 The `ReachSet` and `TimeIntervalReachSet` trios state the same guarantees of a
 set; `_eq_iUnion` ties the latter to a union of the former, `SubsetAddError`
@@ -155,10 +157,10 @@ runs a step backwards, `Exists…Lt` shrinks its error, `SegmentsSum` feeds
 `TimeIntervalBound` a genuine `+`/`segments`, and `TimeIntervalWitness` its dual.
 
 `Restrict` is what makes the time domain a parameter worth having: a guarantee
-over one step applies to a run over all forward time by throwing the rest away.
-Only `discretize` and the `reach` statements built on it ask for `Set.Ici 0`.
-
+over one step applies to a run over all forward time by throwing the rest
+away. Only `discretize` and `reach` built on it ask for `Set.Ici 0`.
 `DiscretizeEnclosure`/`DiscretizeEnclosureReach` are `Discretize`/`ReachOuter`
 enclosed rather than computed; `DiscretizeMatZonotope` is the same at a matrix
-zonotope, and `PostDeltaOuter` is `DeltaReachOuterInputSolution` again, `postΔ`'s name.
+zonotope, `PostDeltaOuter` is `DeltaReachOuterInputSolution` again, `postΔ`'s
+name, and `ReachOrderAdmissible`/`ReachUnionOuter` are `Instances`' guarantee.
 -/

@@ -8,6 +8,7 @@ import CORALean.ContDynamics.NonlinParamSys.API
 import CORALean.ContDynamics.NonlinearSys.API
 import CORALean.ContDynamics.NonlinearSysDT.API
 import CORALean.ContDynamics.OutputEq.API
+import CORALean.ContDynamics.Reach.API
 
 /-!
 # Systems and their reachability, collected
@@ -24,13 +25,12 @@ of use, which is what lets a sampled system read `u` from the set its run was
 described by rather than from the one its discretization steps with.
 
 `NonlinearSys` computes nothing of its own: conservative linearization hands a
-confined run to `LinearSys`, so every reachability guarantee in the directory is
-a linear one applied to a widened input set. Re-linearizing is that step iterated
-with a fresh certificate each time.
+confined run to `LinearSys`. The two closed loops compute nothing of their own
+either, and are the only directories reaching outside `ContDynamics`, the input
+set being what `NN` encloses; `NeurNetContrSys` is the sampled continuous case.
 
-The two closed loops compute nothing of their own either, and are the only
-directories here that reach outside `ContDynamics`, the input set being what `NN`
-encloses. `NeurNetContrSysDT` alternates that with one discrete plant step;
-`NeurNetContrSys` is the sampled continuous loop, where the rates come apart and
-the controller acts every `N` reachability steps.
+`Reach` is the shared reachability class every system below instantiates where
+it fits: `NonlinearSys`, `NonlinearSysDT` and `NonlinParamSys` do not, their
+soundness resting on a confinement of the actual run, or, for the last, on no
+reachability result at all.
 -/

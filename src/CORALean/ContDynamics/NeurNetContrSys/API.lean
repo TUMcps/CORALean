@@ -1,5 +1,6 @@
 import CORALean.ContDynamics.NeurNetContrSys.NeurNetContrSys
 import CORALean.ContDynamics.NeurNetContrSys.Definitions.API
+import CORALean.ContDynamics.NeurNetContrSys.Instances
 import CORALean.ContDynamics.NeurNetContrSys.Operations.API
 import CORALean.ContDynamics.NeurNetContrSys.Theorems.API
 
@@ -7,9 +8,9 @@ import CORALean.ContDynamics.NeurNetContrSys.Theorems.API
 # A neural network in the loop of a continuous-time plant, collected
 
 The plant, the controller and what a zero-order-hold run of the two is in
-`NeurNetContrSys`, the two-rate recursion in `Operations`, the set a run reaches
-in `ReachSet`, its guarantee in `Theorems`. No `Instances`: an algorithm
-implements no class.
+`NeurNetContrSys`, the two-rate recursion in `Operations`, the set a run
+reaches in `ReachSet`, its guarantee in `Theorems`, and `Instances`, its
+`Reach`: one homogeneous-plant period per branch, at a derived Taylor order.
 
 The enclosure is the loose reading of a held input. A period is handed to
 `LinearSys` as a set of admissible inputs, which admits every input that jitters

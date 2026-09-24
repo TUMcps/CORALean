@@ -7,6 +7,7 @@ import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.OutputOuter
 import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachOuter
 import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachSetOuter
 import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachSetSubsetReach
+import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachUnionOuter
 import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.Real.API
 import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.SimulateMemReach
 import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.SimulateTrajectory
@@ -35,5 +36,5 @@ it, where an enclosure can only ever fail to prove safety.
 No `reach_outer_on`: there is no `TrajectoryOn` here to hand it a bounded run
 from, since a run is already the orbit of `map` from its start
 (`TrajectoryIterate`) — nothing a horizon leaves unknown that `reach_outer`
-does not cover at every `k`.
+does not cover at every `k`. `ReachUnionOuter` is `Instances`' guarantee.
 -/

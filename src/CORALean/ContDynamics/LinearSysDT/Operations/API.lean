@@ -10,6 +10,7 @@ import CORALean.ContDynamics.LinearSysDT.Operations.ReachErrorOrders
 import CORALean.ContDynamics.LinearSysDT.Operations.ReachErrorReduced
 import CORALean.ContDynamics.LinearSysDT.Operations.ReachErrorReducedOrders
 import CORALean.ContDynamics.LinearSysDT.Operations.ReachInnerRep
+import CORALean.ContDynamics.LinearSysDT.Operations.ReachUnion
 
 /-!
 # What `LinearSysDT` computes
@@ -17,6 +18,7 @@ import CORALean.ContDynamics.LinearSysDT.Operations.ReachInnerRep
 `Reach` holds every representation with `Plus` and `Reduce` at order `o`;
 `ReachOrders` re-chooses the order at every step, `ReachHeld` is `reach` at
 `𝕋 = ℝ` and one held input in closed form, and `Simulate` samples one run.
+`ReachUnion` packages `reach`'s steps as `Reach`'s `SetUnion`.
 
 `BackReachForall`/`BackReachExists` read a run backwards, against a matrix
 inverse rather than the forward dynamics. `ReachError` and its `Reduced`,
