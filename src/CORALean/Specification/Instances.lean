@@ -1,7 +1,9 @@
 import CORALean.ContSet.Conversion.Float.ContSet_to_Interval
 import CORALean.ContSet.Conversion.Float.Zonotope_to_HPolytope
+import CORALean.ContSet.Conversion.Real.ContSet_to_Interval
 import CORALean.ContSet.HPolytope.Float.Instances
 import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+import CORALean.Global.Float.Instances.Real.Instances
 
 /-!
 # What a specification set can be checked against, computed
@@ -17,6 +19,11 @@ only rounding. A polytope `contains` by bounding the set along every row —
 row the set lies strictly beyond — `holds_unsafeSet_of_separating` at the row's
 direction, `verifyConvex`'s `safe` exit at a fixed direction list — and so is exact
 only for a halfspace. `ltStrict`'s margin is what makes a separation strict.
+
+The box-against-`IntervalOuter` instance above is generic over a family `S : ℕ → Type`,
+which instance search cannot read off a real-layer family written as a lambda
+(`Real.Zonotope (Vec ℝ n)` does not unify with `S n`): fixing `S` to each exact real
+representation below is what makes those fire.
 -/
 
 -- Authors:       Tobias Ladner
@@ -159,6 +166,52 @@ instance : IsDisjoint (HPolytope 𝕋 n) (Interval 𝕋 n) where
 instance : IsDisjoint (HPolytope 𝕋 n) (Zonotope 𝕋 n) where
   isDisjoint P Z := aux_disjointRows P (aux_zonoBound Z)
   isDisjoint_sound _ Z := aux_disjointRows_sound (aux_zonoBound_le Z)
+
+open scoped CORALean.Real in
+/-- The box's `Contains`/`IsDisjoint` at an exact real-layer family, `S` fixed rather than
+inferred — what the generic instance above cannot do at a family written as a lambda. -/
+noncomputable instance containsBoxRealInterval :
+    Contains (Interval ℝ n) (Real.Interval (Vec ℝ n)) where
+  contains I s := aux_containsBox I (IntervalOuter.interval (S := ℐ𝒱) s)
+  contains_sound _ s h :=
+    (IntervalOuter.interval_outer (S := ℐ𝒱) s).trans (aux_containsBox_sound h)
+
+open scoped CORALean.Real in
+noncomputable instance isDisjointBoxRealInterval :
+    IsDisjoint (Interval ℝ n) (Real.Interval (Vec ℝ n)) where
+  isDisjoint I s := aux_disjointBox I (IntervalOuter.interval (S := ℐ𝒱) s)
+  isDisjoint_sound _ s h :=
+    (aux_disjointBox_sound h).mono_left (IntervalOuter.interval_outer (S := ℐ𝒱) s)
+
+-- The same pair at the second exact family a box can be hulled from.
+open scoped CORALean.Real in
+noncomputable instance containsBoxRealZonotope :
+    Contains (Interval ℝ n) (Real.Zonotope (Vec ℝ n)) where
+  contains I s := aux_containsBox I (IntervalOuter.interval (S := 𝒵) s)
+  contains_sound _ s h :=
+    (IntervalOuter.interval_outer (S := 𝒵) s).trans (aux_containsBox_sound h)
+
+open scoped CORALean.Real in
+noncomputable instance isDisjointBoxRealZonotope :
+    IsDisjoint (Interval ℝ n) (Real.Zonotope (Vec ℝ n)) where
+  isDisjoint I s := aux_disjointBox I (IntervalOuter.interval (S := 𝒵) s)
+  isDisjoint_sound _ s h :=
+    (aux_disjointBox_sound h).mono_left (IntervalOuter.interval_outer (S := 𝒵) s)
+
+-- The same pair once more, at the third exact family a box can be hulled from.
+open scoped CORALean.Real in
+noncomputable instance containsBoxRealConZonotope :
+    Contains (Interval ℝ n) (Real.ConZonotope (Vec ℝ n)) where
+  contains I s := aux_containsBox I (IntervalOuter.interval (S := 𝒞) s)
+  contains_sound _ s h :=
+    (IntervalOuter.interval_outer (S := 𝒞) s).trans (aux_containsBox_sound h)
+
+open scoped CORALean.Real in
+noncomputable instance isDisjointBoxRealConZonotope :
+    IsDisjoint (Interval ℝ n) (Real.ConZonotope (Vec ℝ n)) where
+  isDisjoint I s := aux_disjointBox I (IntervalOuter.interval (S := 𝒞) s)
+  isDisjoint_sound _ s h :=
+    (aux_disjointBox_sound h).mono_left (IntervalOuter.interval_outer (S := 𝒞) s)
 
 end CORALean.Float
 
