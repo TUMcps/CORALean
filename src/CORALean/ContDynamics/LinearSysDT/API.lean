@@ -5,7 +5,12 @@ import CORALean.ContDynamics.LinearSysDT.Operations.API
 import CORALean.ContDynamics.LinearSysDT.Definitions.ReachInner
 import CORALean.ContDynamics.LinearSysDT.Definitions.ReachInnerFloat
 import CORALean.ContDynamics.LinearSysDT.Definitions.ReachInnerReduced
+import CORALean.ContDynamics.LinearSysDT.Definitions.ReachParams
 import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
+import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSetOfInit
+import CORALean.ContDynamics.LinearSysDT.Definitions.ReachUnionExact
+import CORALean.ContDynamics.LinearSysDT.Definitions.WithInput
+import CORALean.ContDynamics.LinearSysDT.Instances
 import CORALean.ContDynamics.LinearSysDT.Theorems.API
 import CORALean.ContDynamics.LinearSysDT.Complexity.API
 import CORALean.ContDynamics.LinearSysDT.Cost.API
@@ -17,21 +22,21 @@ The system and what it denotes in `LinearSysDT`, reachability in `Operations`,
 the set reachability encloses in `ReachSet`, what a run of it owes in
 `ReachError` and the inner approximation that buys in `ReachInner`, the
 guarantees in `Theorems`, how large the owed error is in `Complexity`, and in
-`Cost` what running it costs. No `Instances`: an algorithm implements no class.
+`Cost` what running it costs.
 
-`ReachErrorReduced` and `ReachInnerReduced` are the same pair with the error
-reduced at every step, sound because the error is *added* to the exact set.
-`ReachErrorFloat` and `ReachInnerFloat` are the same pair for a run computed at
-a float scalar, where every operation loses ground, not only `reduce`; its
-inner approximation sits inside the *exact*, real-valued `reachSet`.
+`WithInput` pairs a system with the input set `Reach.Params` cannot hold;
+`ReachParams`, `ReachSetOfInit` and `ReachUnionExact` are what `Reach` needs
+beyond that, and `Instances` is the instance itself.
 
-`BackReachSetForall` is the same run read backwards — the states every
-admissible input carries into a target — and `BackReachForall` computes inside
-it, which is the one direction an implementation of a guarantee may claim.
-`BackReachSetExists` is the other reading, where *some* input suffices, and
-`BackReachExists` encloses it: a sum rather than a difference, so both halves
-are outer and every representation with `Plus` and `Mtimes` runs it.
+`ReachErrorReduced`/`ReachInnerReduced` are the same pair with the error
+reduced at every step, sound since it is *added* to the exact set.
+`ReachErrorFloat`/`ReachInnerFloat` are the same pair for a run computed at a
+float scalar; its inner approximation sits inside the *exact* `reachSet`.
 
-`ReachErrorOrders` and `ReachErrorReducedOrders` are `ReachError` and
+`BackReachSetForall` is the run read backwards — the states every admissible
+input carries into a target — and `BackReachForall` computes inside it.
+`BackReachSetExists` is the other reading, *some* input suffices, and
+`BackReachExists` encloses it: a sum, so both halves are outer at `Plus,
+Mtimes`. `ReachErrorOrders`/`ReachErrorReducedOrders` are `ReachError`/
 `ReachErrorReduced` at `Operations.reachOrders`'s per-step order sequence.
 -/

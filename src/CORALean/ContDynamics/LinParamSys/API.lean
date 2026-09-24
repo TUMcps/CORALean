@@ -1,3 +1,5 @@
+import CORALean.ContDynamics.LinParamSys.Definitions.API
+import CORALean.ContDynamics.LinParamSys.Instances
 import CORALean.ContDynamics.LinParamSys.LinParamSys
 import CORALean.ContDynamics.LinParamSys.Operations.API
 import CORALean.ContDynamics.LinParamSys.Theorems.API
@@ -19,4 +21,7 @@ the step, the input's through the frozen member's own `inputReach`, which
 `'varParam'` is enclosed too, by freezing one member and paying the parameter
 mismatch into the input set — not by CORA's `expmIndMixed`, whose soundness
 needs a Peano-Baker expansion the tree has not got.
+
+`Instances` is `Reach`'s, at `ℐ`: `LinearSys`'s homogeneous single-step
+instance, `ConstTrajectory` in place of `Trajectory`.
 -/
