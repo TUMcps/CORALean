@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- An underestimated denominator, so the quotient is an overestimate. -/
-def softmaxRawUpper (k : ℕ) (I : Interval 𝕋 n) (i : Fin n) : 𝕋 :=
+def softmaxRawUpper (k : ℕ) (I : Interval (Vec 𝕋 n)) (i : Fin n) : 𝕋 :=
   divUp one (softmaxDenomDown k I i)
 
 end CORALean

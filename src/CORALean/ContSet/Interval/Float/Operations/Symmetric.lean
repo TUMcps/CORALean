@@ -23,7 +23,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Interval.symmetric (r : Vec 𝕋 n) : Interval 𝕋 n := ⟨fun i => neg (r i), r⟩
+def Interval.symmetric (r : Vec 𝕋 n) : Interval (Vec 𝕋 n) := ⟨fun i => neg (r i), r⟩
 
 end CORALean.Float
 

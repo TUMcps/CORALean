@@ -31,7 +31,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 
 /-- `W x + c` for any `c` within what `E` denotes of `b`. -/
 theorem Layer.linearWithError_mem (W : Mat 𝕋 m n) {b : Vec 𝕋 m} {c : Vec ℝ m}
-    {E : Interval 𝕋 m} (hc : c - toRealVec b ∈ E.construct) (s : S n) {x : Vec ℝ n}
+    {E : Interval (Vec 𝕋 m)} (hc : c - toRealVec b ∈ E.construct) (s : S n) {x : Vec ℝ n}
     (hx : x ∈ construct s) :
     toRealMat W *ᵥ x + c ∈
       construct ((Layer.linearWithError (S := S) W b E).enclose s) := by -- --- PROOF ---

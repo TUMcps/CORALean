@@ -34,7 +34,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- [1, Eq. 6]'s dynamic buckets, one at each neuron's centre in turn, kept disjoint by
 skipping the neurons already merged and used only when they hold two or more. -/
-def dynamicMergeBuckets (le : 𝕋 → 𝕋 → Bool) (I : Interval 𝕋 n) (δ : 𝕋) : Fin n → Bool :=
+def dynamicMergeBuckets (le : 𝕋 → 𝕋 → Bool) (I : Interval (Vec 𝕋 n)) (δ : 𝕋) : Fin n → Bool :=
   Fin.foldl n (fun merged j =>
       let c := half (addUp (I.inf j) (I.sup j))                     -- [1, Eq. 6]'s `c(j)`
       let B_cδ := fun i => !merged i && inMergeBucket le I c δ i    -- `B_{k,c(j),δ}`, disjoint

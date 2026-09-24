@@ -33,7 +33,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `Layer.linear` with an added error box `E`, CORA's `W h + b ⊕ E`. -/
-def Layer.linearWithError (W : Mat 𝕋 m n) (b : Vec 𝕋 m) (E : Float.Interval 𝕋 m) :
+def Layer.linearWithError (W : Mat 𝕋 m n) (b : Vec 𝕋 m) (E : Float.Interval (Vec 𝕋 m)) :
     Layer S n m where
   enclose s := plus (mtimes W s) (ofInterval (Float.Interval.plus (Float.Interval.point b) E))
 

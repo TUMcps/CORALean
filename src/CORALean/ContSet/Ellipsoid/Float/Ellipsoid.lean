@@ -44,7 +44,7 @@ structure Ellipsoid (𝕋 : Type) (n : ℕ) where
   G : Mat 𝕋 n k
   /-- The error box. Named `err` rather than `E`, which reads as an exponent
   matrix nowhere here but as the exact layer's ellipsoid everywhere. -/
-  err : Interval 𝕋 n
+  err : Interval (Vec 𝕋 n)
 
 instance [SoundFloatArithmetic 𝕋] :
     InflatedContSet (Ellipsoid 𝕋 n) (CORALean.Real.Ellipsoid n) 𝕋 n where

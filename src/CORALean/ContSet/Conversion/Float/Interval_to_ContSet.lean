@@ -44,10 +44,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 to be called after. -/
 class OfInterval (S : ℕ → Type) (𝕋 : outParam Type) [FloatOps 𝕋]
     [SoundFloatArithmetic 𝕋] [∀ n, ContSet (S n) (Vec ℝ n)] where
-  ofInterval {n : ℕ} : Interval 𝕋 n → S n
-  ofInterval_outer {n : ℕ} (I : Interval 𝕋 n) : construct I ⊆ construct (ofInterval I)
+  ofInterval {n : ℕ} : Interval (Vec 𝕋 n) → S n
+  ofInterval_outer {n : ℕ} (I : Interval (Vec 𝕋 n)) : construct I ⊆ construct (ofInterval I)
 
-instance : OfInterval (fun n => Interval 𝕋 n) 𝕋 where
+instance : OfInterval (fun n => Interval (Vec 𝕋 n)) 𝕋 where
   ofInterval I := I
   ofInterval_outer _ := subset_rfl
 

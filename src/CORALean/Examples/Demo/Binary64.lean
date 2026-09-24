@@ -39,7 +39,7 @@ def Ab : Mat Float 2 2 := !![0.9375, -0.125; 0.125, 0.9375]
 def sysb : LinearSysDT Float 2 := ⟨Ab⟩
 
 /-- Zero width in every coordinate, as `zeroBox` is at `Dyadic`. -/
-def zeroBoxB (n : ℕ) : Interval Float n := ⟨fun _ => 0.0, fun _ => 0.0⟩
+def zeroBoxB (n : ℕ) : Interval (Vec Float n) := ⟨fun _ => 0.0, fun _ => 0.0⟩
 
 /-- `[0.875, 1.125] × [-0.125, 0.125]`. -/
 def R₀b : Zonotope Float 2 where
@@ -65,11 +65,11 @@ def Rb (k : ℕ) : Zonotope Float 2 :=
 A finite `Float` is a dyadic, so the decimals are `Decimal`'s, taken through the
 bit decoding and rounded outward exactly as the `Dyadic` tables are. -/
 
-def showBoundB {n : ℕ} (I : Interval Float n) (i : Fin n) : String :=
+def showBoundB {n : ℕ} (I : Interval (Vec Float n)) (i : Fin n) : String :=
   "[" ++ pad 14 (showDown (Binary64.toDyadic (I.inf i))) ++ "," ++
     pad 15 (showUp (Binary64.toDyadic (I.sup i))) ++ " ]"
 
-def showBoxB {n : ℕ} (I : Interval Float n) : String :=
+def showBoxB {n : ℕ} (I : Interval (Vec Float n)) : String :=
   String.intercalate " " (List.ofFn fun i => showBoundB I i)
 
 /-- `m · 2 ^ e`, written out. The error box here is a few units in the last
@@ -85,7 +85,7 @@ def reachRowB (k : ℕ) : String :=
 /-- The width of one coordinate of the error box, differenced as dyadics rather
 than as floats: `subUp` would add a step of its own and report the width of a
 box that is exactly zero as one unit in the last place. -/
-def widthB {n : ℕ} (I : Interval Float n) (i : Fin n) : Dyadic 53 :=
+def widthB {n : ℕ} (I : Interval (Vec Float n)) (i : Fin n) : Dyadic 53 :=
   Dyadic.exactAdd (Binary64.toDyadic (I.sup i))
     (CORALean.Float.Dyadic.neg (Binary64.toDyadic (I.inf i)))
 

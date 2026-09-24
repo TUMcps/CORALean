@@ -30,7 +30,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n k : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Ellipsoid.generatorError (G : Mat 𝕋 n k) : Interval 𝕋 n := Interval.symmetric (radius G)
+def Ellipsoid.generatorError (G : Mat 𝕋 n k) : Interval (Vec 𝕋 n) := Interval.symmetric (radius G)
 
 end CORALean.Float
 

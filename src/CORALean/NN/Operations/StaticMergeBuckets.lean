@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- [1, Eq. 5]'s static buckets `B_{k,y,δ}`, one per asymptotic value `y`: a neuron is merged
 when one of them holds it, and belongs to the first that does. -/
-def staticMergeBuckets (le : 𝕋 → 𝕋 → Bool) (ys : List 𝕋) (I : Interval 𝕋 n) (δ : 𝕋) :
+def staticMergeBuckets (le : 𝕋 → 𝕋 → Bool) (ys : List 𝕋) (I : Interval (Vec 𝕋 n)) (δ : 𝕋) :
     Fin n → Bool :=
   fun i => ys.any fun y => inMergeBucket le I y δ i
 

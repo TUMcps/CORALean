@@ -35,9 +35,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The centre's rounding gap, bounded in `𝕋`, together with the result's own
 error box. -/
-def Zonotope.plusBox (Z₁ Z₂ : Zonotope 𝕋 n) : Interval 𝕋 n :=
+def Zonotope.plusBox (Z₁ Z₂ : Zonotope 𝕋 n) : Interval (Vec 𝕋 n) :=
   (⟨fun i => subDown (addDown (Z₁.c i) (Z₂.c i)) (addUp (Z₁.c i) (Z₂.c i)),
-      fun _ => zero⟩ : Interval 𝕋 n).plus (Z₁.plus Z₂).E
+      fun _ => zero⟩ : Interval (Vec 𝕋 n)).plus (Z₁.plus Z₂).E
 
 end CORALean.Float
 

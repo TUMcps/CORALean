@@ -24,7 +24,7 @@ namespace CORALean
 structure MaxPoolLayer (𝕋 : Type) (n m : ℕ) where
   k : ℕ
   tap : Fin m → Fin (k + 1) → Fin n
-  pivot : Float.Interval 𝕋 n → Fin m → Fin (k + 1)
+  pivot : Float.Interval (Vec 𝕋 n) → Fin m → Fin (k + 1)
 
 end CORALean
 

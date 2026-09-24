@@ -23,7 +23,7 @@ open Pointwise FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
-def Interval.vPolytope (I : Interval 𝕋 n) : VPolytope 𝕋 n where
+def Interval.vPolytope (I : Interval (Vec 𝕋 n)) : VPolytope 𝕋 n where
   k := 2 ^ n
   V := fun i l => if signEquiv n l i then I.sup i else I.inf i
   E := ⟨fun _ => zero, fun _ => zero⟩
@@ -31,7 +31,7 @@ def Interval.vPolytope (I : Interval 𝕋 n) : VPolytope 𝕋 n where
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.vPolytope_contains (I : Interval 𝕋 n) :
+theorem Interval.vPolytope_contains (I : Interval (Vec 𝕋 n)) :
     I.construct ⊆ (Interval.vPolytope I).construct := by -- --- PROOF ---
   intro x hx
   have hnom : x ∈ InflatedContSet.nominalSet (Interval.vPolytope I) := by

@@ -38,10 +38,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- One generator per coordinate, the box's own radius scaled by the proposed
 `√n` and rounded up. -/
-def Interval.ellipsoidG (I : Interval 𝕋 n) (σ : 𝕋) : Mat 𝕋 n n :=
+def Interval.ellipsoidG (I : Interval (Vec 𝕋 n)) (σ : 𝕋) : Mat 𝕋 n n :=
   diagonalBlock fun i => mulUp σ (I.radiusFrom i)
 
-def Interval.ellipsoid (I : Interval 𝕋 n) (σ : 𝕋) : Ellipsoid 𝕋 n where
+def Interval.ellipsoid (I : Interval (Vec 𝕋 n)) (σ : 𝕋) : Ellipsoid 𝕋 n where
   k := n
   q := I.center
   G := I.ellipsoidG σ
@@ -56,7 +56,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The stored generator covers the exact scaling, so no coordinate's
 coefficient exceeds `1/σ`. -/
-theorem Interval.aux_ellipsoidG_ge (I : Interval 𝕋 n) (σ : 𝕋) (i : Fin n) :
+theorem Interval.aux_ellipsoidG_ge (I : Interval (Vec 𝕋 n)) (σ : 𝕋) (i : Fin n) :
     toReal σ * toReal (I.radiusFrom i) ≤ toReal (I.ellipsoidG σ i i) := by
   show _ ≤ toReal (diagonalBlock (fun i => mulUp σ (I.radiusFrom i)) i i)
   rw [diagonalBlock, if_pos rfl]
@@ -64,7 +64,7 @@ theorem Interval.aux_ellipsoidG_ge (I : Interval 𝕋 n) (σ : 𝕋) (i : Fin n)
 
 -- each coordinate splits on a vanishing generator and both branches redo the division bounds
 set_option maxHeartbeats 400000 in
-theorem Interval.subset_nominal_ellipsoid (I : Interval 𝕋 n) (σ : 𝕋) (hσ : 0 < toReal σ)
+theorem Interval.subset_nominal_ellipsoid (I : Interval (Vec 𝕋 n)) (σ : 𝕋) (hσ : 0 < toReal σ)
     (hn : (n : ℝ) ≤ toReal (mulDown σ σ)) :
     I.construct ⊆ nominalSet (I.ellipsoid σ) := by -- --- PROOF ---
   intro x hx
@@ -166,7 +166,7 @@ theorem Interval.subset_nominal_ellipsoid (I : Interval 𝕋 n) (σ : 𝕋) (hσ
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.ellipsoid_contains (I : Interval 𝕋 n) (σ : 𝕋) (hσ : 0 < toReal σ)
+theorem Interval.ellipsoid_contains (I : Interval (Vec 𝕋 n)) (σ : 𝕋) (hσ : 0 < toReal σ)
     (hn : (n : ℝ) ≤ toReal (mulDown σ σ)) :
     I.construct ⊆ (I.ellipsoid σ).construct := fun x hx =>
   ⟨x, I.subset_nominal_ellipsoid σ hσ hn hx, 0, fun i => by

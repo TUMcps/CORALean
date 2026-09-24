@@ -47,7 +47,7 @@ structure PolyZonotope (𝕋 : Type) (n : ℕ) where
   G : Mat 𝕋 n h
   E : Fin p → Fin h → ℕ
   GI : Mat 𝕋 n q
-  err : Interval 𝕋 n
+  err : Interval (Vec 𝕋 n)
 
 instance [SoundFloatArithmetic 𝕋] :
     InflatedContSet (PolyZonotope 𝕋 n) (CORALean.Real.PolyZonotope (Vec ℝ n)) 𝕋 n where

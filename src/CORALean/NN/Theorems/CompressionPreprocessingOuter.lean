@@ -48,7 +48,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 instance of `Φ_org` at every point of `I_X`. -/
 theorem compressionPreprocessing_outer {le : 𝕋 → 𝕋 → Bool} {tol : 𝕋} {fuel : ℕ}
     {R_relu : Relaxation 𝕋} (hR : R_relu.Sound Real.relu)
-    {hσ_relu : ∃ σ : ℝ → ℝ, R_relu.Sound σ} {n n₁ m : ℕ} {I_X : Interval 𝕋 n}
+    {hσ_relu : ∃ σ : ℝ → ℝ, R_relu.Sound σ} {n n₁ m : ℕ} {I_X : Interval (Vec 𝕋 n)}
     (hX : ∀ x ∈ I_X.construct, ∀ i, 0 ≤ x i) {L_1 : ReducedLinear 𝕋 n n₁} {L_2 : Relaxation 𝕋}
     {hσ_2 : ∃ σ : ℝ → ℝ, L_2.Sound σ}
     {B_2 : MergeBuckets 𝕋} {rest : ReducibleNetwork 𝕋 n₁ m} {f : Vec ℝ n → Vec ℝ m}
@@ -66,8 +66,9 @@ theorem compressionPreprocessing_outer {le : 𝕋 → 𝕋 → Bool} {tol : 𝕋
     · rename_i Φhat Y' hrun2
       cases hrun
       set part := Partition.ofPred fun i => B_m1δ i = true
-      set I_m1 := (Layer.activation (S := Interval 𝕋) R_relu).enclose
-        (((ReducedLinear.identity (𝕋 := 𝕋) n).toLayer (S := Interval 𝕋)).enclose I_X)
+      set I_m1 := (Layer.activation (S := fun n => Interval (Vec 𝕋 n)) R_relu).enclose
+        (((ReducedLinear.identity (𝕋 := 𝕋) n).toLayer
+          (S := fun n => Interval (Vec 𝕋 n))).enclose I_X)
       rintro _ ⟨x, hx, rfl⟩
       -- the stored identity denotes the identity, and the stored zeros zero
       have hId : ∀ k, toRealMat (diagonalBlock fun _ : Fin k => (FloatOps.one : 𝕋)) = 1 := by
@@ -92,23 +93,25 @@ theorem compressionPreprocessing_outer {le : 𝕋 → 𝕋 → Bool} {tol : 𝕋
         simp [Real.relu, hX x hx i]
       -- line 2's look-ahead box holds `x`, so its bucket `B` holds `x`'s merged pixels
       have hxI : x ∈ I_m1.construct := by
-        have h := (Layer.activation_sound (S := Interval 𝕋) hR).enclose_outer _ _
-          (Layer.linearWithError_mem (S := Interval 𝕋) (diagonalBlock fun _ => FloatOps.one)
+        have h := (Layer.activation_sound (S := fun n => Interval (Vec 𝕋 n)) hR).enclose_outer _ _
+          (Layer.linearWithError_mem (S := fun n => Interval (Vec 𝕋 n))
+            (diagonalBlock fun _ => FloatOps.one)
             (Interval.construct_subset_nonemptyHull _ (h00 n)) I_X hx)
         rwa [hId, hrelu] at h
       set w := x ∘ part.right
-      have hw : w ∈ (⟨I_m1.inf ∘ part.right, I_m1.sup ∘ part.right⟩ : Interval 𝕋 _).construct :=
+      have hw :
+          w ∈ (⟨I_m1.inf ∘ part.right, I_m1.sup ∘ part.right⟩ : Interval (Vec 𝕋 _)).construct :=
         fun i => hxI (part.right i)
       -- and line 3's `H_{-2}` holds its surviving pixels
       have hxl : x ∘ part.left ∈ construct (ofInterval (S := S)
           ((((ReducedLinear.identity (𝕋 := 𝕋) n).mergeRows part).toLayer
-            (S := Interval 𝕋)).enclose I_X)) := by
+            (S := fun n => Interval (Vec 𝕋 n))).enclose I_X)) := by
         apply ofInterval_outer
         have hc : (0 : Vec ℝ n) ∘ part.left
             - toRealVec ((ReducedLinear.identity (𝕋 := 𝕋) n).mergeRows part).b
             ∈ ((ReducedLinear.identity (𝕋 := 𝕋) n).mergeRows part).I'.construct :=
           fun i => h00 n (part.left i)
-        have h := Layer.linearWithError_mem (S := Interval 𝕋)
+        have h := Layer.linearWithError_mem (S := fun n => Interval (Vec 𝕋 n))
           ((ReducedLinear.identity (𝕋 := 𝕋) n).mergeRows part).W
           (Interval.construct_subset_nonemptyHull _ hc) I_X hx
         have hW : toRealMat ((ReducedLinear.identity (𝕋 := 𝕋) n).mergeRows part).W

@@ -24,7 +24,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {q n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def HPolytope.eqs (Ae : Mat 𝕋 q n) (be : Interval 𝕋 q) : HPolytope 𝕋 n where
+def HPolytope.eqs (Ae : Mat 𝕋 q n) (be : Interval (Vec 𝕋 q)) : HPolytope 𝕋 n where
   m := 0
   A := fun i => i.elim0
   b := fun i => i.elim0

@@ -59,7 +59,7 @@ survivors `part.left`, and boxing the bucket's contribution to `k+1` from `Y`. -
 theorem neuronMerging_sandwich_outer {n0 n n2 d r : ℕ}
     (part : Split (Fin n) into (Fin d) ⊕ (Fin r))
     (W0 : Mat 𝕋 n n0) (b0 : Vec 𝕋 n) {σ : ℝ → ℝ} (R : Relaxation 𝕋) (hR : R.Sound σ)
-    (W1 : Mat 𝕋 n2 n) (b1 : Vec 𝕋 n2) (Y : Interval 𝕋 n) (X : S n0)
+    (W1 : Mat 𝕋 n2 n) (b1 : Vec 𝕋 n2) (Y : Interval (Vec 𝕋 n)) (X : S n0)
     (hY : ∀ x ∈ construct X,
       (fun i => σ ((toRealMat W0 *ᵥ x + toRealVec b0) i)) ∈ Y.construct) :
     (fun x => toRealMat W1 *ᵥ (fun i => σ ((toRealMat W0 *ᵥ x + toRealVec b0) i))
@@ -84,7 +84,7 @@ theorem neuronMerging_sandwich_outer {n0 n n2 d r : ℕ}
   have hA2 := (Layer.activation_sound (S := S) hR).enclose_outer _ _ hA1
   -- the bucket's exact output lies in `Y`, hence in `Y` restricted to the bucket
   have hB : hk ∘ part.right
-      ∈ (⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩ : Interval 𝕋 r).construct :=
+      ∈ (⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩ : Interval (Vec 𝕋 r)).construct :=
     fun i => hY x hx (part.right i)
   -- the bucket's contribution, which is what the error box of layer `k+1` holds
   set W1' := toRealMat W1

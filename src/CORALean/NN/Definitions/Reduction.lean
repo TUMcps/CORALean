@@ -58,7 +58,7 @@ noncomputable def sandwich {n n₁ n₂ : ℕ} (W0 : Mat ℝ n₁ n) (b0 : Vec �
 noncomputable def mergedSandwich {n n₁ n₂ d r : ℕ}
     (part : Split (Fin n₁) into (Fin d) ⊕ (Fin r))
     (W0 : Mat ℝ n₁ n) (b0 : Vec ℝ n₁) {σ : ℝ → ℝ} {R : Relaxation ℝ} (hR : R.Sound σ)
-    (W1 : Mat ℝ n₂ n₁) (b1 : Vec ℝ n₂) (Y : Float.Interval ℝ n₁) :
+    (W1 : Mat ℝ n₂ n₁) (b1 : Vec ℝ n₂) (Y : Float.Interval (Vec ℝ n₁)) :
     NeuralNetwork S n n₂ :=
   .layer (LinearLayer.mk (W0.submatrix part.left id) (b0 ∘ part.left))
     (.layer (ActivationLayer.of (n := d) hR)
@@ -85,7 +85,7 @@ inductive NeuralNetwork.ReducesAt :
   -- reduces one sandwich: `part.left` survives, `part.right`'s contribution is boxed from `Y`
   | merge {n n₁ n₂ m d r : ℕ} (s : S n) (part : Split (Fin n₁) into (Fin d) ⊕ (Fin r))
       (W0 : Mat ℝ n₁ n) (b0 : Vec ℝ n₁) {σ : ℝ → ℝ} (R : Relaxation ℝ) (hR : R.Sound σ)
-      (W1 : Mat ℝ n₂ n₁) (b1 : Vec ℝ n₂) (Y : Float.Interval ℝ n₁)
+      (W1 : Mat ℝ n₂ n₁) (b1 : Vec ℝ n₂) (Y : Float.Interval (Vec ℝ n₁))
       (hY : ∀ x ∈ construct s, (fun i => σ ((W0 *ᵥ x + b0) i)) ∈ construct Y)
       {rest rest' : NeuralNetwork S n₂ m} {h : Vec ℝ n₂ → Vec ℝ m}
       {f : Vec ℝ n → Vec ℝ m}
@@ -102,7 +102,7 @@ inductive NeuralNetwork.ReducesAt :
         f
   -- a bias known only up to `E`: the reduced layer carries the box, [1, Eq. 2]
   | widen {n n₁ m : ℕ} (s : S n) (W : Mat ℝ n₁ n) (c b : Vec ℝ n₁)
-      (E : Float.Interval ℝ n₁) (hc : c - b ∈ construct E)
+      (E : Float.Interval (Vec ℝ n₁)) (hc : c - b ∈ construct E)
       {rest rest' : NeuralNetwork S n₁ m} {h : Vec ℝ n₁ → Vec ℝ m} {f : Vec ℝ n → Vec ℝ m}
       (hf : ∀ x, f x = h (W *ᵥ x + c)) :
       ReducesAt (Enclose.enclose (LinearWithErrorLayer.mk W b E) s) rest rest' h →
@@ -110,15 +110,15 @@ inductive NeuralNetwork.ReducesAt :
         (.layer (LinearWithErrorLayer.mk W b E) rest') f
   -- merges at `k`, then resumes at every value `w` the bucket's bounds admit
   | freeze {n n₁ n₂ m d r : ℕ} (s : S n) (part : Split (Fin n₁) into (Fin d) ⊕ (Fin r))
-      (W0 : Mat ℝ n₁ n) (c0 b0 : Vec ℝ n₁) (E0 : Float.Interval ℝ n₁)
+      (W0 : Mat ℝ n₁ n) (c0 b0 : Vec ℝ n₁) (E0 : Float.Interval (Vec ℝ n₁))
       (hc0 : c0 - b0 ∈ construct E0) {σ : ℝ → ℝ} (R : Relaxation ℝ) (hR : R.Sound σ)
-      (W1 : Mat ℝ n₂ n₁) (c1 : Vec ℝ n₂) (Y : Float.Interval ℝ n₁)
+      (W1 : Mat ℝ n₂ n₁) (c1 : Vec ℝ n₂) (Y : Float.Interval (Vec ℝ n₁))
       (hY : ∀ x ∈ construct s, (fun i => σ ((W0 *ᵥ x + c0) i)) ∈ construct Y)
       {rest : NeuralNetwork S n₂ m} {rest' : NeuralNetwork S d m}
       {h : Vec ℝ n₂ → Vec ℝ m} {f : Vec ℝ n → Vec ℝ m}
       (hf : ∀ x, f x = h (W1 *ᵥ (fun i => σ ((W0 *ᵥ x + c0) i)) + c1)) :
       -- the rest of the network, once for every value `w` of the bucket, folded into a bias
-      (∀ w ∈ construct (⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩ : Float.Interval ℝ r),
+      (∀ w ∈ construct (⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩ : Float.Interval (Vec ℝ r)),
         ReducesAt (Enclose.enclose (ActivationLayer.of (n := d) hR)
             (Enclose.enclose (LinearWithErrorLayer.mk (W0.submatrix part.left id) (b0 ∘ part.left)
               ⟨E0.inf ∘ part.left, E0.sup ∘ part.left⟩) s))

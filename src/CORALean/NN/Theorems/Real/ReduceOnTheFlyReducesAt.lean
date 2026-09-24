@@ -80,12 +80,14 @@ theorem aux_reduceOnTheFlyFrom_reducesAt :
             simp only [Option.some.injEq, Prod.mk.injEq] at hrun
             obtain ⟨rfl, rfl⟩ := hrun
             set part := Partition.ofPred fun i => B_kδ i = true
-            set I_k := (Layer.activation (S := Float.Interval ℝ) R).enclose
-              ((L.toLayer (S := Float.Interval ℝ)).enclose (Float.IntervalOuter.interval H))
+            set I_k := (Layer.activation (S := fun n => Float.Interval (Vec ℝ n)) R).enclose
+              ((L.toLayer (S := fun n => Float.Interval (Vec ℝ n))).enclose
+                (Float.IntervalOuter.interval H))
             -- line 5's box bounds the exact layer `k` at every point that reaches it
             have hY : ∀ x ∈ construct H, (fun i => σ ((L.W *ᵥ x + c) i)) ∈ construct I_k :=
-              fun x hx => (Layer.activation_sound (S := Float.Interval ℝ) hR).enclose_outer
-                _ _ (Layer.linearWithError_mem (S := Float.Interval ℝ) L.W
+              fun x hx =>
+                (Layer.activation_sound (S := fun n => Float.Interval (Vec ℝ n)) hR).enclose_outer
+                _ _ (Layer.linearWithError_mem (S := fun n => Float.Interval (Vec ℝ n)) L.W
                   (Float.Interval.construct_subset_nonemptyHull _ hc) _
                   (Float.IntervalOuter.interval_outer H hx))
             refine .freeze H part L.W c L.b L.I' hc R hR L1.W c1 I_k hY

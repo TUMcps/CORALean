@@ -45,7 +45,7 @@ theorem Zonotope.aux_zero_mem_zeroZonotope :
       show (0 : Vec ℝ n) i = toReal (zero : 𝕋) + ∑ _j : Fin n, toReal (zero : 𝕋) * (0 : ℝ)
       simp [toReal_zero]⟩
   have herr : (0 : Vec ℝ n) ∈
-      (⟨fun _ => (zero : 𝕋), fun _ => (zero : 𝕋)⟩ : Interval 𝕋 n).construct := fun i =>
+      (⟨fun _ => (zero : 𝕋), fun _ => (zero : 𝕋)⟩ : Interval (Vec 𝕋 n)).construct := fun i =>
     ⟨by show toReal (zero : 𝕋) ≤ (0 : Vec ℝ n) i
         rw [toReal_zero]; exact le_refl 0,
      by show (0 : Vec ℝ n) i ≤ toReal (zero : 𝕋)

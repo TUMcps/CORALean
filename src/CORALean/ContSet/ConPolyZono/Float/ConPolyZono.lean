@@ -57,9 +57,9 @@ structure ConPolyZono (𝕋 : Type) (n : ℕ) where
   A : Mat 𝕋 m s
   /-- Interval-valued, as over ℝ, and this is one of the two places a float
   operation may pay its rounding. -/
-  b : Interval 𝕋 m
+  b : Interval (Vec 𝕋 m)
   EC : Fin p → Fin s → ℕ
-  err : Interval 𝕋 n
+  err : Interval (Vec 𝕋 n)
 
 instance [SoundFloatArithmetic 𝕋] :
     InflatedContSet (ConPolyZono 𝕋 n) (CORALean.Real.ConPolyZono (Vec ℝ n)) 𝕋 n where

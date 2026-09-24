@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Storing the lower of the two directed midpoints leaves this much to pay. -/
-def PolyZonotope.midpointResidual (a b : Vec 𝕋 n) : Interval 𝕋 n :=
+def PolyZonotope.midpointResidual (a b : Vec 𝕋 n) : Interval (Vec 𝕋 n) :=
   Interval.residual (fun i => half (addDown (a i) (b i)))
     (fun i => half (addUp (a i) (b i))) (PolyZonotope.midpoint a b)
 

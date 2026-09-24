@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Interval.nonemptyHull (I : Interval 𝕋 n) : Interval 𝕋 n :=
+def Interval.nonemptyHull (I : Interval (Vec 𝕋 n)) : Interval (Vec 𝕋 n) :=
   ⟨I.inf, fun i => maximum (I.inf i) (I.sup i)⟩
 
 end CORALean.Float

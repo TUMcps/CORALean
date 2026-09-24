@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 /-- What `mtimes` owes beyond its nominal part: the centre, and the
 generators. -/
-def Ellipsoid.mtimesResidual (M : Mat 𝕋 m n) (E : Ellipsoid 𝕋 n) : Interval 𝕋 m :=
+def Ellipsoid.mtimesResidual (M : Mat 𝕋 m n) (E : Ellipsoid 𝕋 n) : Interval (Vec 𝕋 m) :=
   (Interval.residual (mulVecDown M E.q) (mulVecUp M E.q) (mulVecDown M E.q)).plus
     (Ellipsoid.generatorError (matMulDiff M E.G))
 

@@ -34,9 +34,9 @@ theorem Layer.activationPoly_enclose_q (P : LayerRelaxation ℝ n m)
     ((Layer.activationPoly P).enclose s).q = 0 := by -- --- PROOF ---
   show (PolyZonotope.plus
       (s.dependent.evalPoly (P.coeffList
-        (⟨s.interval.inf, s.interval.sup⟩ : Float.Interval ℝ n)))
+        (⟨s.interval.inf, s.interval.sup⟩ : Float.Interval (Vec ℝ n))))
       (Interval.polyZonotope (P.box
-        (⟨s.interval.inf, s.interval.sup⟩ : Float.Interval ℝ n)).nominal)).q = 0
+        (⟨s.interval.inf, s.interval.sup⟩ : Float.Interval (Vec ℝ n))).nominal)).q = 0
   rw [PolyZonotope.plus_q, PolyZonotope.evalPoly_q, Interval.polyZonotope_q]
 
 end CORALean.Real

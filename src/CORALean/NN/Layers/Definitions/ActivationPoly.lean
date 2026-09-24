@@ -50,15 +50,15 @@ variable {m n : ℕ}
 noncomputable def Layer.activationPoly (P : LayerRelaxation ℝ n m) : Layer 𝒫𝒵 n n where
   enclose s :=
     plus (s.dependent.evalPoly (P.coeffList
-        (⟨s.interval.inf, s.interval.sup⟩ : Float.Interval ℝ n)))
+        (⟨s.interval.inf, s.interval.sup⟩ : Float.Interval (Vec ℝ n))))
       (Interval.polyZonotope (P.box
-        (⟨s.interval.inf, s.interval.sup⟩ : Float.Interval ℝ n)).nominal)
+        (⟨s.interval.inf, s.interval.sup⟩ : Float.Interval (Vec ℝ n))).nominal)
 
 /-- The activation layer at a box `J` handed to it: every fit and the residual box read `J`. -/
 noncomputable def Layer.activationPolyOn (P : LayerRelaxation ℝ n m)
     (J : Interval (Vec ℝ n)) : Layer 𝒫𝒵 n n where
-  enclose s := plus (s.dependent.evalPoly (P.coeffList (⟨J.inf, J.sup⟩ : Float.Interval ℝ n)))
-    (Interval.polyZonotope (P.box (⟨J.inf, J.sup⟩ : Float.Interval ℝ n)).nominal)
+  enclose s := plus (s.dependent.evalPoly (P.coeffList (⟨J.inf, J.sup⟩ : Float.Interval (Vec ℝ n))))
+    (Interval.polyZonotope (P.box (⟨J.inf, J.sup⟩ : Float.Interval (Vec ℝ n))).nominal)
 
 end CORALean.Real
 

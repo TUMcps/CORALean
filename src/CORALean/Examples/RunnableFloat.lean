@@ -81,7 +81,7 @@ abbrev D := Dyadic 24
 def d {p : ℕ} (m e : ℤ) : Dyadic p := ⟨m, e⟩
 
 /-- Zero width in every coordinate. -/
-def zbox (n : ℕ) : Interval D n := ⟨fun _ => d 0 0, fun _ => d 0 0⟩
+def zbox (n : ℕ) : Interval (Vec D n) := ⟨fun _ => d 0 0, fun _ => d 0 0⟩
 
 
 /-! ## Every representation, built or converted to, at `D`
@@ -96,7 +96,7 @@ def Z : Zonotope D 2 where
   G := !![d 1 (-2), d 0 0; d 0 0, d 1 (-2)]
   E := zbox 2
 
-def I : Interval D 2 := Z.interval
+def I : Interval (Vec D 2) := Z.interval
 def V : VPolytope D 2 := Z.vPolytope
 def cZ : ConZonotope D 2 := Z.conZonotope
 def H : HPolytope D 2 := Z.hPolytope (identityMat D 2)
@@ -132,13 +132,15 @@ def uZ_mtimes : SetUnion (Zonotope D 2) :=
   Mtimes.mtimes (S := fun n => SetUnion (Zonotope D n)) (identityMat D 2) uZ
 
 -- `Interval`: `Plus`, `MinkDiff`, `Intersection`, `LinComb`, `Reduce`, `Reindex`, `Mtimes`
-def I_plus : Interval D 2 := Plus.plus I I
-def I_minkDiff : Interval D 2 := MinkDiff.minkDiff I I
-def I_intersection : Interval D 2 := Intersection.intersection I I
-def I_linComb : Interval D 2 := LinComb.linComb I I
-def I_reduce : Interval D 2 := Reduce.reduce I 1
-def I_reindex : Interval D 2 := Reindex.reindex (Equiv.refl (Fin 2)) I
-def I_mtimes : Interval D 2 := Mtimes.mtimes (identityMat D 2) I
+def I_plus : Interval (Vec D 2) := Plus.plus I I
+def I_minkDiff : Interval (Vec D 2) := MinkDiff.minkDiff I I
+def I_intersection : Interval (Vec D 2) := Intersection.intersection I I
+def I_linComb : Interval (Vec D 2) := LinComb.linComb I I
+def I_reduce : Interval (Vec D 2) := Reduce.reduce I 1
+def I_reindex : Interval (Vec D 2) :=
+  Reindex.reindex (S := fun n => Interval (Vec D n)) (Equiv.refl (Fin 2)) I
+def I_mtimes : Interval (Vec D 2) :=
+  Mtimes.mtimes (S := fun n => Interval (Vec D n)) (identityMat D 2) I
 
 -- `HPolytope`: `Reduce`, `Intersection`
 def H_reduce : HPolytope D 2 := Reduce.reduce H 1
@@ -185,8 +187,8 @@ def E_mtimes : Ellipsoid D 2 := Mtimes.mtimes (identityMat D 2) E
 Each used to return a `Real.Zonotope`, read back through `toReal`, and so was
 `noncomputable`; each now computes in `D` directly. -/
 
-def plusBoxRun : Interval D 2 := Zonotope.plusBox Z Z
-def mtimesBoxRun : Interval D 2 := Zonotope.mtimesBox (identityMat D 2) Z
+def plusBoxRun : Interval (Vec D 2) := Zonotope.plusBox Z Z
+def mtimesBoxRun : Interval (Vec D 2) := Zonotope.mtimesBox (identityMat D 2) Z
 def reduceByBoxRun : Zonotope D 2 :=
   Z.reduceByBox (Partition.split 2 0 : Split (Fin Z.h) into (Fin 2) ⊕ (Fin 0))
 def reduceGirardBoxRun : Zonotope D 2 := Zonotope.reduceGirardBox Z 1
@@ -245,7 +247,7 @@ row of it (`Contains`) or for one row it lies strictly beyond (`IsDisjoint`). Wh
 `true` is worth is `NeuralNetwork.holds_of_check`, stated below the runs. -/
 
 /-- Safe: every output coordinate within `[-10, 10]`. -/
-def safeBox : Specification (Interval D 2) := .safeSet ⟨fun _ => d (-10) 0, fun _ => d 10 0⟩
+def safeBox : Specification (Interval (Vec D 2)) := .safeSet ⟨fun _ => d (-10) 0, fun _ => d 10 0⟩
 
 /-- `x₀ ≥ t` as one row, `-x₀ ≤ -t`, with no equality rows. -/
 def halfAbove (t : ℤ) : HPolytope D 2 :=

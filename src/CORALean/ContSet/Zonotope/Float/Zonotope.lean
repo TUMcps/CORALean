@@ -30,7 +30,7 @@ structure Zonotope (𝕋 : Type) (n : ℕ) where
   h : ℕ
   c : Vec 𝕋 n
   G : Mat 𝕋 n h
-  E : Interval 𝕋 n
+  E : Interval (Vec 𝕋 n)
 
 instance [SoundFloatArithmetic 𝕋] :
     InflatedContSet (Zonotope 𝕋 n) (CORALean.Real.Zonotope (Vec ℝ n)) 𝕋 n where

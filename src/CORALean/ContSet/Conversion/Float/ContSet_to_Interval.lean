@@ -47,11 +47,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 `interval(S)`. -/
 class IntervalOuter (S : ℕ → Type) (𝕋 : outParam Type) [FloatOps 𝕋]
     [SoundFloatArithmetic 𝕋] [∀ n, ContSet (S n) (Vec ℝ n)] where
-  interval {n : ℕ} : S n → Interval 𝕋 n
+  interval {n : ℕ} : S n → Interval (Vec 𝕋 n)
   interval_outer {n : ℕ} (s : S n) : construct s ⊆ construct (interval s)
 
 /-- A box is its own. -/
-instance : IntervalOuter (fun n => Interval 𝕋 n) 𝕋 where
+instance : IntervalOuter (fun n => Interval (Vec 𝕋 n)) 𝕋 where
   interval I := I
   interval_outer _ := subset_rfl
 

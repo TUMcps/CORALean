@@ -24,7 +24,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.reindex_nominal (e : Fin m ≃ Fin n) (I : Interval 𝕋 n) :
+theorem Interval.reindex_nominal (e : Fin m ≃ Fin n) (I : Interval (Vec 𝕋 n)) :
     (I.reindex e).nominal = I.nominal.reindex e := rfl
 
 end CORALean.Float

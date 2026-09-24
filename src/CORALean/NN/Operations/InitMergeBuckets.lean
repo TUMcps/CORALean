@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- "Initialize merge buckets `B_{k,δ}`", whichever way (Sec. 3.2) the layer names. -/
-def initMergeBuckets (le : 𝕋 → 𝕋 → Bool) : MergeBuckets 𝕋 → Interval 𝕋 n → 𝕋 → Fin n → Bool
+def initMergeBuckets (le : 𝕋 → 𝕋 → Bool) : MergeBuckets 𝕋 → Interval (Vec 𝕋 n) → 𝕋 → Fin n → Bool
   | .static ys => staticMergeBuckets le ys
   | .dynamic => dynamicMergeBuckets le
 

@@ -35,7 +35,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 /-- [1, Prop. 4] at layer `k+1`: `Ŵ_{k+1} = W_{k+1}(·,B̄)`, `b̂_{k+1} = b_{k+1}`, and the bucket
 `B` on the right of `part` paying `W_{k+1}(·,B) I_k(B)` into the error. -/
 def ReducedLinear.mergeCols {n₁ n₂ d r : ℕ} (L : ReducedLinear 𝕋 n₁ n₂)
-    (part : Split (Fin n₁) into (Fin d) ⊕ (Fin r)) (I_k : Float.Interval 𝕋 n₁) :
+    (part : Split (Fin n₁) into (Fin d) ⊕ (Fin r)) (I_k : Float.Interval (Vec 𝕋 n₁)) :
     ReducedLinear 𝕋 d n₂ where
   W := L.W.submatrix id part.left
   b := L.b

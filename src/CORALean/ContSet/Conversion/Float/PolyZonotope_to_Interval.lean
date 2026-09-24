@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- The centre, then each block's reach in turn: three directed roundings rather
 than one, so no intermediate sum is ever rounded the wrong way. -/
-def PolyZonotope.interval (pZ : PolyZonotope 𝕋 n) : Interval 𝕋 n where
+def PolyZonotope.interval (pZ : PolyZonotope 𝕋 n) : Interval (Vec 𝕋 n) where
   inf := fun i => subDown (subDown (subDown (pZ.c i) (radius pZ.G i)) (radius pZ.GI i))
     (PolyZonotope.errorBound pZ.err i)
   sup := fun i => addUp (addUp (addUp (pZ.c i) (radius pZ.G i)) (radius pZ.GI i))

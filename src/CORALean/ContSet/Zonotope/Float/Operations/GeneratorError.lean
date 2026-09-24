@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n h : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Zonotope.generatorError (G : Mat 𝕋 n h) : Interval 𝕋 n := Interval.symmetric (radius G)
+def Zonotope.generatorError (G : Mat 𝕋 n h) : Interval (Vec 𝕋 n) := Interval.symmetric (radius G)
 
 end CORALean.Float
 

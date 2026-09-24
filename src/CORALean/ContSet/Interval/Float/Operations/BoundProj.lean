@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- A box answers a coordinate direction with its own bound, exactly. Every
 representation carrying an ambient error box charges its rounding through
 these. -/
-def Interval.boundProj (I : Interval 𝕋 n) (j : Fin n) :
+def Interval.boundProj (I : Interval (Vec 𝕋 n)) (j : Fin n) :
     FloatBound 𝕋 I.construct (LinearMap.proj j) :=
   ⟨I.sup j, fun _ hx => (hx j).2⟩
 

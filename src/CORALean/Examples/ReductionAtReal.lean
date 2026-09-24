@@ -38,7 +38,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n
 /-- [1, Alg. 1] at ℝ: what `bucketTolerance_approx` says is the fraction of neurons left within
 `tol` of `ρ`, exactly, at any order `le` sound on a `true`. -/
 example {le : ℝ → ℝ → Bool} (hle : ∀ a b, le a b = true → a ≤ b) {tol : ℝ} {fuel : ℕ}
-    {B : MergeBuckets ℝ} {I_k : Float.Interval ℝ n} {ρ : ℝ} {B_kδ : Fin n → Bool}
+    {B : MergeBuckets ℝ} {I_k : Float.Interval (Vec ℝ n)} {ρ : ℝ} {B_kδ : Fin n → Bool}
     (h : bucketTolerance le tol fuel B I_k ρ = some B_kδ) :
     |((n - bucketed B_kδ : ℕ) : ℝ) / n - ρ| ≤ tol := by
   -- counting is exact at ℝ, so the scalar's quotient is the quotient
@@ -59,7 +59,7 @@ example {le : ℝ → ℝ → Bool} (hle : ∀ a b, le a b = true → a ≤ b) {
 /-- [1, Prop. 4] at real weights: the generic statement, its `toRealMat` reading `W` itself. -/
 example {d r n0 n2 : ℕ} (part : Split (Fin n) into (Fin d) ⊕ (Fin r)) (W0 : Mat ℝ n n0)
     (b0 : Vec ℝ n) {σ : ℝ → ℝ} (R : Relaxation ℝ) (hR : R.Sound σ) (W1 : Mat ℝ n2 n)
-    (b1 : Vec ℝ n2) (Y : Float.Interval ℝ n) (X : S n0)
+    (b1 : Vec ℝ n2) (Y : Float.Interval (Vec ℝ n)) (X : S n0)
     (hY : ∀ x ∈ construct X, (fun i => σ ((W0 *ᵥ x + b0) i)) ∈ construct Y) :
     (fun x => W1 *ᵥ (fun i => σ ((W0 *ᵥ x + b0) i)) + b1) '' construct X
       ⊆ construct ((mergedSandwich part W0 b0 hR W1 b1 Y : NeuralNetwork S n0 n2).enclose X) :=
@@ -76,7 +76,7 @@ example {le : ℝ → ℝ → Bool} {tol : ℝ} {fuel : ℕ} {ρ : ℝ} {X : S n
 
 /-- [1, Alg. 3] at a network of layers, the ReLU any relaxation sound for it. -/
 example {le : ℝ → ℝ → Bool} {tol : ℝ} {fuel : ℕ} {R_relu : Relaxation ℝ}
-    (hR : R_relu.Sound Real.relu) {n₁ : ℕ} {I_X : Float.Interval ℝ n}
+    (hR : R_relu.Sound Real.relu) {n₁ : ℕ} {I_X : Float.Interval (Vec ℝ n)}
     (hX : ∀ x ∈ I_X.construct, ∀ i, 0 ≤ x i) {L_1 : ReducedLinear ℝ n n₁}
     {L_2 : Relaxation ℝ} {hL_2 : ∃ σ : ℝ → ℝ, L_2.Sound σ} {B_2 : MergeBuckets ℝ}
     {rest : ReducibleNetwork ℝ n₁ m} {nn : NeuralNetwork S n m} {f : Vec ℝ n → Vec ℝ m}

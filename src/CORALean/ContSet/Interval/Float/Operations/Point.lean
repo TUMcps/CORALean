@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Interval.point (v : Vec 𝕋 n) : Interval 𝕋 n := ⟨v, v⟩
+def Interval.point (v : Vec 𝕋 n) : Interval (Vec 𝕋 n) := ⟨v, v⟩
 
 end CORALean.Float
 

@@ -24,7 +24,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.nonemptyHull_isNonempty (I : Interval 𝕋 n) :
+theorem Interval.nonemptyHull_isNonempty (I : Interval (Vec 𝕋 n)) :
     I.nonemptyHull.nominal.IsNonempty := fun i => by
   show toReal (I.inf i) ≤ toReal (maximum (I.inf i) (I.sup i))
   rw [toReal_maximum]

@@ -34,7 +34,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- Lines 7-16: bisect `[δmin, δmax]` until `n̂_k/n_k ≈ ρ`; `none` past `fuel`. -/
 def bisectBucketTolerance (le : 𝕋 → 𝕋 → Bool) (tol : 𝕋) (B : MergeBuckets 𝕋)
-    (I_k : Interval 𝕋 n) (ρ : 𝕋) : 𝕋 → 𝕋 → ℕ → Option (Fin n → Bool)
+    (I_k : Interval (Vec 𝕋 n)) (ρ : 𝕋) : 𝕋 → 𝕋 → ℕ → Option (Fin n → Bool)
   | _, _, 0 => none
   | δmin, δmax, fuel + 1 =>
     let δ := half (addUp δmin δmax)                                 -- Alg. 1, line 8

@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 /-- [1, Alg. 1]: the merge buckets `B_{k,δ}` of the layer bounded by `I_k = [l_k, u_k]` that
 leave `≈ ρ n_k` of its neurons, `none` where `fuel` runs out first. -/
 def bucketTolerance (le : 𝕋 → 𝕋 → Bool) (tol : 𝕋) (fuel : ℕ) (B : MergeBuckets 𝕋)
-    (I_k : Interval 𝕋 n) (ρ : 𝕋) : Option (Fin n → Bool) :=
+    (I_k : Interval (Vec 𝕋 n)) (ρ : 𝕋) : Option (Fin n → Bool) :=
   let δmin := (zero : 𝕋)                                            -- Alg. 1, line 1
   let δmax := subUp (maxOver I_k.sup) (minOver I_k.inf)             -- Alg. 1, line 1
   match growBucketTolerance le B I_k ρ δmax fuel with               -- Alg. 1, lines 2-6

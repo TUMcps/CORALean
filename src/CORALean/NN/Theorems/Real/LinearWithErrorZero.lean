@@ -45,7 +45,7 @@ theorem Layer.linearWithError_zero (W : Mat ℝ m n) (b : Vec ℝ m) :
   -- a point box added to a point box is the point box of the sum, exactly at ℝ
   have hbox : Float.Interval.plus (Float.Interval.point b) (Float.Interval.point (0 : Vec ℝ m))
       = Float.Interval.point b := by
-    show (⟨fun i => b i + 0, fun i => b i + 0⟩ : Float.Interval ℝ m) = ⟨b, b⟩
+    show (⟨fun i => b i + 0, fun i => b i + 0⟩ : Float.Interval (Vec ℝ m)) = ⟨b, b⟩
     simp only [add_zero]
   -- a layer is its `enclose` and nothing else
   unfold Layer.linearWithError Layer.linear

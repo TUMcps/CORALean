@@ -43,7 +43,7 @@ def ConZonotope.conA (cZ : ConZonotope 𝕋 n) : Mat 𝕋 (cZ.P.m + cZ.P.me) cZ.
 /-- The upper bounds are `P`'s own. An inequality has no lower bound, and gets
 the free one: no factor leaves `[-1,1]`, so no row falls below minus its row sum
 of absolute values, which `radius` computes upward. -/
-def ConZonotope.conB (cZ : ConZonotope 𝕋 n) : Interval 𝕋 (cZ.P.m + cZ.P.me) :=
+def ConZonotope.conB (cZ : ConZonotope 𝕋 n) : Interval (Vec 𝕋 (cZ.P.m + cZ.P.me)) :=
   ⟨Fin.append (fun i => neg (radius cZ.P.A i)) cZ.P.be.inf,
    Fin.append cZ.P.b cZ.P.be.sup⟩
 
@@ -97,11 +97,12 @@ theorem ConZonotope.satisfies_conPolyZono (cZ : ConZonotope 𝕋 n) {β : Vec �
       have hrad : |(toRealMat cZ.P.A *ᵥ β) i| ≤ toReal (radius cZ.P.A i) :=
         abs_sum_le_radius (fun _ _ => le_rfl) hβ i
       rw [abs_le] at hrad
-      simp only [ConZonotope.conB, Interval.nominal, toRealVec, Fin.append_left,
-        toReal_neg]
+      simp only [ConZonotope.conB, Interval.nominal, RealImage.realImage, toRealVec,
+        Fin.append_left, toReal_neg]
       exact ⟨hrad.1, hle i⟩
     · rw [hEq i]
-      simp only [ConZonotope.conB, Interval.nominal, toRealVec, Fin.append_right]
+      simp only [ConZonotope.conB, Interval.nominal, RealImage.realImage, toRealVec,
+        Fin.append_right]
       exact heq i
   show Real.ConPolyZono.holds (toRealMat (ConZonotope.conA cZ)) (ConZonotope.conB cZ).nominal
     (Real.PolyZonotope.identE cZ.h) β

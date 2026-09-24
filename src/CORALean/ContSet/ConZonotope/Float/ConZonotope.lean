@@ -41,7 +41,7 @@ structure ConZonotope (𝕋 : Type) (n : ℕ) where
   c : Vec 𝕋 n
   G : Mat 𝕋 n h
   P : HPolytope 𝕋 h
-  E : Interval 𝕋 n
+  E : Interval (Vec 𝕋 n)
 
 instance [SoundFloatArithmetic 𝕋] :
     InflatedContSet (ConZonotope 𝕋 n) (CORALean.Real.ConZonotope (Vec ℝ n)) 𝕋 n where

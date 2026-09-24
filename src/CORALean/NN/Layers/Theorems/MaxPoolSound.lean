@@ -34,7 +34,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Layer.maxPool_sound (tap : Fin m → Fin (k + 1) → Fin n)
-    (pivot : Interval 𝕋 n → Fin m → Fin (k + 1)) :
+    (pivot : Interval (Vec 𝕋 n) → Fin m → Fin (k + 1)) :
     (Layer.maxPool (S := S) tap pivot).Sound
       (fun x j => Real.windowMax fun l => x (tap j l)) := by -- --- PROOF ---
   refine ⟨fun s x hx => ?_⟩
@@ -56,7 +56,7 @@ theorem Layer.maxPool_sound (tap : Fin m → Fin (k + 1) → Fin n)
     ring
   -- the window's bound, at the rounded-up gap it was stated for
   have hmem : d ∈ Interval.construct
-      (⟨fun _ => zero, maxPoolGapUp tap p I⟩ : Interval 𝕋 m) := by
+      (⟨fun _ => zero, maxPoolGapUp tap p I⟩ : Interval (Vec 𝕋 m)) := by
     intro j
     have h := Real.maxPool_bounds (tap j) (p j) (toRealVec I.inf) (toRealVec I.sup) x hbox
       (maxPoolGapUp_nonneg tap p I j) fun l hl => le_maxPoolGapUp tap p I j hl

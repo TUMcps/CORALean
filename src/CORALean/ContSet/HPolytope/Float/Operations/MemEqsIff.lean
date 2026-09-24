@@ -21,7 +21,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {q n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.mem_eqs_iff {Ae : Mat 𝕋 q n} {be : Interval 𝕋 q} {x : Vec ℝ n} :
+theorem HPolytope.mem_eqs_iff {Ae : Mat 𝕋 q n} {be : Interval (Vec 𝕋 q)} {x : Vec ℝ n} :
     x ∈ (HPolytope.eqs Ae be).construct ↔
       ∀ i, toReal (be.inf i) ≤ (toRealMat Ae *ᵥ x) i
            ∧ (toRealMat Ae *ᵥ x) i ≤ toReal (be.sup i) :=

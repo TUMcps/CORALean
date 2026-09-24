@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Never below one, so `divUp` never meets an unconstrained divisor. -/
-def softmaxDenomDown (k : ℕ) (I : Interval 𝕋 n) (i : Fin n) : 𝕋 :=
+def softmaxDenomDown (k : ℕ) (I : Interval (Vec 𝕋 n)) (i : Fin n) : 𝕋 :=
   maximum one (addDown one
     (sumOffDown i fun j => expDown k (subDown (I.inf j) (I.sup i))))
 

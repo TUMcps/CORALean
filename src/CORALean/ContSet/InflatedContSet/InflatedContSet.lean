@@ -39,7 +39,7 @@ class InflatedContSet (S : Type) (N : outParam Type) (𝕋 : outParam Type) (n :
   nominal : S → N
   /-- Everything rounding has cost, as a box. Held in `𝕋` because operations
   compute it. -/
-  error : S → Interval 𝕋 n
+  error : S → Interval (Vec 𝕋 n)
 
 namespace InflatedContSet
 

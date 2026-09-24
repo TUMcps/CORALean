@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The affine map the relaxation chose, as a matrix, so that `mtimes` carries it. -/
-def Relaxation.slopeMat (R : Relaxation 𝕋) (I : Interval 𝕋 n) : Mat 𝕋 n n :=
+def Relaxation.slopeMat (R : Relaxation 𝕋) (I : Interval (Vec 𝕋 n)) : Mat 𝕋 n n :=
   diagonalBlock fun i => R.slope (I.inf i) (I.sup i)
 
 end CORALean

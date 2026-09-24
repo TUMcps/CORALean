@@ -65,8 +65,8 @@ def Example.reachZonotopeFloat (sys : LinearSysDT 𝕋 n) (o : ℕ) (ho : 0 < o)
 
 /-- The same at a float box, where `reduce` is the identity. -/
 def Example.reachIntervalFloat (sys : LinearSysDT 𝕋 n) (o : ℕ) (ho : 0 < o)
-    (R₀ U : Interval 𝕋 n) (k : ℕ) : Interval 𝕋 n :=
-  sys.reach (S := Interval 𝕋) o ho R₀ U k
+    (R₀ U : Interval (Vec 𝕋 n)) (k : ℕ) : Interval (Vec 𝕋 n) :=
+  sys.reach (S := fun n => Interval (Vec 𝕋 n)) o ho R₀ U k
 
 -- Anonymous, since their content is that they elaborate.
 
@@ -147,7 +147,7 @@ example (sys : NeurNetContrSysDT 𝕋 (Zonotope 𝕋) n) {o : ℕ} (ho : 0 < o)
 
 /-- A box safe set checked on the closed loop's computed zonotope. -/
 example (sys : NeurNetContrSysDT 𝕋 (Zonotope 𝕋) n) {o : ℕ} (ho : 0 < o)
-    (R₀ : Zonotope 𝕋 n) (spec : Specification (Interval 𝕋 n)) {π : Vec ℝ n → Vec ℝ n}
+    (R₀ : Zonotope 𝕋 n) (spec : Specification (Interval (Vec 𝕋 n))) {π : Vec ℝ n → Vec ℝ n}
     (hπ : sys.contr.Sound π) {x : ℕ → Vec ℝ n} (traj : sys.Trajectory π R₀ x) (k : ℕ) :
     (spec.check (sys.reach o ho R₀ k) = true) → (spec.Holds {x k}) :=
   sys.holds_of_check ho R₀ spec hπ traj k
@@ -173,7 +173,7 @@ example {HA : HybridAutomaton (Zonotope 𝕋) (Zonotope 𝕋) L 𝕋 n} {R : L �
 
 /-- The same, checked: the invariant at the location the run ends in, against a box. -/
 example {HA : HybridAutomaton (Zonotope 𝕋) (Zonotope 𝕋) L 𝕋 n} {R : L → Zonotope 𝕋 n}
-    (hinv : HA.Invariant R) (spec : Specification (Interval 𝕋 n)) {ℓ ℓ' : L}
+    (hinv : HA.Invariant R) (spec : Specification (Interval (Vec 𝕋 n))) {ℓ ℓ' : L}
     {x y : Vec ℝ n} (run : HA.Run ℓ x ℓ' y) (hx : x ∈ construct (R ℓ)) :
     (spec.check (R ℓ') = true) → (spec.Holds {y}) :=
   HybridAutomaton.holds_of_check hinv spec run hx

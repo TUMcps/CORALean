@@ -45,7 +45,7 @@ structure HPolytope (𝕋 : Type) (n : ℕ) where
   Ae : Mat 𝕋 me n
   /-- Interval-valued, unlike the exact layer's point: this is where an
   equality's rounding goes. -/
-  be : Interval 𝕋 me
+  be : Interval (Vec 𝕋 me)
 
 def HPolytope.nominal [SoundFloatArithmetic 𝕋] (P : HPolytope 𝕋 n) :
     CORALean.Real.HPolytope (Vec ℝ n) :=

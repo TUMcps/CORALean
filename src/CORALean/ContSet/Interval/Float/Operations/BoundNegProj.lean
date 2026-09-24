@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Interval.boundNegProj (I : Interval 𝕋 n) (j : Fin n) :
+def Interval.boundNegProj (I : Interval (Vec 𝕋 n)) (j : Fin n) :
     FloatBound 𝕋 I.construct (-LinearMap.proj j) :=
   ⟨neg (I.inf j), fun x hx => by
     -- ascribed, `linarith` reading membership no further than reducible defeq

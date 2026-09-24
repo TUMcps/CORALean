@@ -26,7 +26,7 @@ structure LinearWithErrorLayer (𝕋 : Type) [Float.FloatOps 𝕋] [Float.SoundF
     (n m : ℕ) where
   W : Mat 𝕋 m n
   b : Vec 𝕋 m
-  E : Float.Interval 𝕋 m
+  E : Float.Interval (Vec 𝕋 m)
 
 end CORALean
 

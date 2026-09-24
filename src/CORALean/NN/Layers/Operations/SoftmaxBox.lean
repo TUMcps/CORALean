@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The normalization below, the raw bound capped at one above. -/
-def softmaxBox (k : ℕ) (I : Interval 𝕋 n) : Interval 𝕋 n where
+def softmaxBox (k : ℕ) (I : Interval (Vec 𝕋 n)) : Interval (Vec 𝕋 n) where
   inf := fun i =>
     maximum zero (subDown one (sumOffUp i fun j => softmaxRawUpper k I j))
   sup := fun i => minimum (softmaxRawUpper k I i) one

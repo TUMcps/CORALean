@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Interval.aux_linComb_outer_refines (I₁ I₂ : Interval 𝕋 n) :
+theorem Interval.aux_linComb_outer_refines (I₁ I₂ : Interval (Vec 𝕋 n)) :
     (I₁.nominal.linComb I₂.nominal).construct ⊆ (I₁.linComb I₂).construct := by -- --- PROOF ---
   intro x hx i
   refine ⟨?_, ?_⟩
@@ -42,7 +42,7 @@ theorem Interval.aux_linComb_outer_refines (I₁ I₂ : Interval 𝕋 n) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.linComb_outer (I₁ I₂ : Interval 𝕋 n) :
+theorem Interval.linComb_outer (I₁ I₂ : Interval (Vec 𝕋 n)) :
     segments I₁.construct I₂.construct ⊆ (I₁.linComb I₂).construct :=
   subset_trans (Real.Interval.linComb_outer I₁.nominal I₂.nominal)
     (Interval.aux_linComb_outer_refines I₁ I₂)

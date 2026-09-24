@@ -61,11 +61,11 @@ def pad (w : ℕ) (s : String) : String :=
   String.ofList (List.replicate (w - s.length) ' ') ++ s
 
 /-- One coordinate of a box, each end rounded away from it. -/
-def showBound {p n : ℕ} (I : Interval (Dyadic p) n) (i : Fin n) : String :=
+def showBound {p n : ℕ} (I : Interval (Vec (Dyadic p) n)) (i : Fin n) : String :=
   "[" ++ pad 14 (showDown (I.inf i)) ++ "," ++ pad 15 (showUp (I.sup i)) ++ " ]"
 
 /-- Every coordinate of a box, in order. -/
-def showBox {p n : ℕ} (I : Interval (Dyadic p) n) : String :=
+def showBox {p n : ℕ} (I : Interval (Vec (Dyadic p) n)) : String :=
   String.intercalate " " (List.ofFn fun i => showBound I i)
 
 
@@ -73,7 +73,7 @@ def showBox {p n : ℕ} (I : Interval (Dyadic p) n) : String :=
 
 /-- The width of one coordinate, rounded up, so the number never understates how
 wide the box is. -/
-def showWidth {p n : ℕ} (I : Interval (Dyadic p) n) (i : Fin n) : String :=
+def showWidth {p n : ℕ} (I : Interval (Vec (Dyadic p) n)) (i : Fin n) : String :=
   showUp (subUp (I.sup i) (I.inf i))
 
 end CORALean.Demo

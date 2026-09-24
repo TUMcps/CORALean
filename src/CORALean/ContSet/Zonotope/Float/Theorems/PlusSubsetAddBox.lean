@@ -71,7 +71,7 @@ theorem Zonotope.plus_subset_add_box (Z₁ Z₂ : Zonotope 𝕋 n)
     rwa [add_zero] at h
   -- `d` bounded in `𝕋` by the same two roundings that produced it
   have hd : d ∈ (⟨fun i => subDown (addDown (Z₁.c i) (Z₂.c i)) (addUp (Z₁.c i) (Z₂.c i)),
-      fun _ => (zero : 𝕋)⟩ : Interval 𝕋 n).construct := fun i =>
+      fun _ => (zero : 𝕋)⟩ : Interval (Vec 𝕋 n)).construct := fun i =>
     ⟨by show toReal (subDown (addDown (Z₁.c i) (Z₂.c i)) (addUp (Z₁.c i) (Z₂.c i))) ≤ d i
         have h1 := subDown_le_sub (addDown (Z₁.c i) (Z₂.c i)) (addUp (Z₁.c i) (Z₂.c i))
         have h2 := add_le_addUp (Z₁.c i) (Z₂.c i)
