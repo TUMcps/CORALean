@@ -20,10 +20,6 @@ interval hull — the float box at `𝕋 := ℝ`, which is where the checks live
 here; what is shown is that `holds_of_check` applies as stated, once at the
 system's own `reach` and once through the `Reach` instance, so a `true` from a
 float refinement would need nothing further to answer for every trajectory.
-
-The box's `Contains` and `IsDisjoint` at a real zonotope are named below, not
-found: `Specification`'s instances match `S n`, which instance search cannot
-solve against `Zonotope (Vec ℝ 2)`, `𝒵` being a lambda rather than a constant.
 -/
 
 -- Authors:       Tobias Ladner
@@ -31,27 +27,9 @@ solve against `Zonotope (Vec ℝ 2)`, `𝒵` being a lambda rather than a consta
 -- Last update:   ---
 -- Last revision: ---
 
-
--- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
-
 namespace CORALean.Real
 
 open ContSet
-
-/-- The box's `IsDisjoint` at a real zonotope, through its interval hull. -/
-noncomputable abbrev Example.boxIsDisjointZonotope {n : ℕ} :
-    IsDisjoint (Float.Interval ℝ n) (Zonotope (Vec ℝ n)) :=
-  Float.instIsDisjointIntervalVecRealOfIntervalOuter (S := 𝒵)
-
-
--- =====================================  MAIN DEFINITION  ====================================== --
-
-/-- The box's `Contains` at a real zonotope, through its interval hull. -/
-noncomputable abbrev Example.boxContainsZonotope {n : ℕ} :
-    Contains (Float.Interval ℝ n) (Zonotope (Vec ℝ n)) :=
-  Float.instContainsIntervalVecRealOfIntervalOuter (S := 𝒵)
-
-attribute [local instance] Example.boxContainsZonotope Example.boxIsDisjointZonotope
 
 -- Anonymous, since their content is that they elaborate.
 
@@ -78,6 +56,3 @@ example :
   Reach.holds_of_check (S := 𝒵) _ _ _ _
 
 end CORALean.Real
-
-
--- ---------------------------------------  END OF CODE  ---------------------------------------- --

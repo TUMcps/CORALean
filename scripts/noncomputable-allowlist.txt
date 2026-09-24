@@ -51,8 +51,6 @@ Example.ballZono  real-layer: a worked example over the real specification layer
 Example.bounce  real-layer: a worked example over the real specification layer, proved and never run
 Example.bounceCut  real-layer: a worked example over the real specification layer, proved and never run
 Example.bouncingBall  real-layer: a worked example over the real specification layer, proved and never run
-Example.boxContainsZonotope  real-layer: a worked example over the real specification layer, proved and never run
-Example.boxIsDisjointZonotope  real-layer: a worked example over the real specification layer, proved and never run
 Example.check  real-layer: a worked example over the real specification layer, proved and never run
 Example.compressNetwork  real-layer: a worked example over the real specification layer, proved and never run
 Example.compressPart  real-layer: a worked example over the real specification layer, proved and never run
@@ -254,6 +252,9 @@ abstrErr  pending #1: a continuous-time algorithm at a real matrix exponential; 
 abstrErrLin  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 abstrSolInf  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 boxDiameter  spec: a norm or Hausdorff distance over ℝ, used only to state a guarantee
+containsBoxRealConZonotope  real-layer: `S` fixed to an exact real family so instance search finds it, `Real.ConZonotope` against a box
+containsBoxRealInterval  real-layer: `S` fixed to an exact real family so instance search finds it, `Real.Interval` against a box
+containsBoxRealZonotope  real-layer: `S` fixed to an exact real family so instance search finds it, `Real.Zonotope` against a box
 diffPoint  spec: a real-valued certificate (support witness/bound), quantifying over arbitrary linear functionals
 ellipsoidInputTaylorSum  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 err  spec: a norm or Hausdorff distance over ℝ, used only to state a guarantee
@@ -268,6 +269,9 @@ genOpNorm₂  spec: a norm or Hausdorff distance over ℝ, used only to state a 
 globalAbstrErr  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 hausdorffDist₂  spec: a norm or Hausdorff distance over ℝ, used only to state a guarantee
 interpGain  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+isDisjointBoxRealConZonotope  real-layer: `S` fixed to an exact real family so instance search finds it, `Real.ConZonotope` against a box
+isDisjointBoxRealInterval  real-layer: `S` fixed to an exact real family so instance search finds it, `Real.Interval` against a box
+isDisjointBoxRealZonotope  real-layer: `S` fixed to an exact real family so instance search finds it, `Real.Zonotope` against a box
 lagrangeRemainder  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 layerSensitivity  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
 localAbstrErr  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
