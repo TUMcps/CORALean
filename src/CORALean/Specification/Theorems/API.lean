@@ -1,3 +1,4 @@
+import CORALean.Specification.Theorems.CheckSound
 import CORALean.Specification.Theorems.Containment
 import CORALean.Specification.Theorems.DiffPointMemSub
 import CORALean.Specification.Theorems.ExistsConvexHullOfVerifyConvexEqUnsafe
@@ -31,5 +32,5 @@ same two algorithms. `VerifyHalfspaceSafe`/`VerifyHalfspaceUnsafe` and
 conclusive answers. `DiffPointMemSub` and `VerifyConvexFoldInv` are
 `VerifyConvex`'s own loop invariant, and `ExistsSeparatingOfVerifyConvexEqSafe`/
 `ExistsConvexHullOfVerifyConvexEqUnsafe` read a `safe`/`violated` verdict back
-as a witness.
+as a witness. `CheckSound` is what a passed `check` is worth.
 -/

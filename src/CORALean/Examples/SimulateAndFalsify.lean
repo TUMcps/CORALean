@@ -18,7 +18,7 @@ falsification needs no steps to find.
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   24-September-2026
 -- Last revision: ---
 
 
@@ -41,7 +41,7 @@ def SAF.R0 : Interval (Vec ℝ 2) := Interval.point SAF.x0
 def SAF.U : Interval (Vec ℝ 2) := Interval.point (0 : Vec ℝ 2)
 
 /-- Safe: the first coordinate at most `1`. `x0` already fails it. -/
-def SAF.spec : Specification (Vec ℝ 2) := Specification.safeSet {x | x 0 ≤ 1}
+def SAF.spec : Specification (Set (Vec ℝ 2)) := Specification.safeSet {x | x 0 ≤ 1}
 
 /-- Held at `x0`, at every step: the identity system moved by a zero input. -/
 theorem SAF.sim_const (k : ℕ) :

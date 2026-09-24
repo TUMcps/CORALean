@@ -12,7 +12,7 @@ pass that check, exactly as `reach_outer_of_subset` is.
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   24-September-2026
 -- Last revision: ---
 
 
@@ -26,6 +26,7 @@ variable {n m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
 variable [Mtimes (Mat ℝ) S] [Real.OfInterval S]
+variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -33,7 +34,7 @@ variable [Mtimes (Mat ℝ) S] [Real.OfInterval S]
 theorem NonlinearSysDT.holds_of_reach_of_subset (sys : NonlinearSysDT n m) {U : S m} {o : ℕ}
     (ho : 0 < o) (steps : ℕ → sys.LinStep U) (R₀ : S n)
     (hsub : ∀ k, construct (sys.reach o ho steps R₀ k) ⊆ (steps k).R)
-    (spec : Specification (Vec ℝ n)) {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ m}
+    (spec : Specification ContSet) {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ m}
     (traj : sys.Trajectory R₀ U x u) (k : ℕ)
     (h : spec.Holds (construct (sys.reach o ho steps R₀ k))) : spec.Holds {x k} :=
   spec.holds_of_outer

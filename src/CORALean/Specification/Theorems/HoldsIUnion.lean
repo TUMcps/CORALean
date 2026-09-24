@@ -13,7 +13,7 @@ needed.
 
 -- Authors:       Tobias Ladner
 -- Written:       06-September-2026
--- Last update:   ---
+-- Last update:   24-September-2026
 -- Last revision: ---
 
 
@@ -21,12 +21,12 @@ needed.
 
 namespace CORALean
 
-variable {α : Type}
+variable {ContSet α : Type} [CORALean.ContSet ContSet α]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Specification.holds_iUnion {ι : Type} (spec : Specification α) {X : ι → Set α}
+theorem Specification.holds_iUnion {ι : Type} (spec : Specification ContSet) {X : ι → Set α}
     (h : ∀ i, spec.Holds (X i)) : spec.Holds (⋃ i, X i) := by -- --- PROOF ---
   obtain ⟨s, k⟩ := spec
   cases k

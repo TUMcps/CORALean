@@ -22,7 +22,7 @@ instance; nothing here searches for which coordinate `j` to bisect.
 
 -- Authors:       Tobias Ladner
 -- Written:       06-September-2026
--- Last update:   ---
+-- Last update:   24-September-2026
 -- Last revision: ---
 
 
@@ -33,6 +33,7 @@ namespace CORALean
 open ContSet
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ m)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -42,7 +43,7 @@ overshoot `X`, so this is a cover a splitter produces, not a `Partition`. -/
 theorem NeuralNetwork.holds_of_split {ι : Type} {nn : NeuralNetwork S n m}
     {f : Vec ℝ n → Vec ℝ m} (hf : nn.Sound f) (X : S n)
     (parts : ι → S n) (hcov : construct X ⊆ ⋃ i, construct (parts i))
-    (spec : Specification (Vec ℝ m))
+    (spec : Specification ContSet)
     (h : ∀ i, spec.Holds (construct (nn.enclose (parts i)))) :
     spec.Holds (f '' construct X) := by -- --- PROOF ---
   have hsub : f '' construct X ⊆ ⋃ i, construct (nn.enclose (parts i)) :=

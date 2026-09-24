@@ -1,8 +1,11 @@
+import CORALean.ContDynamics.LinearSysDT.Theorems.HoldsOfCheck
 import CORALean.ContDynamics.LinearSysDT.Theorems.HoldsOfOutput
 import CORALean.ContDynamics.LinearSysDT.Theorems.HoldsOfReach
+import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.HoldsOfCheck
 import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachOuter
 import CORALean.ContSet.Interval.Float.Instances
 import CORALean.ContSet.Zonotope.Float.Instances
+import CORALean.HybridDynamics.Theorems.HoldsOfCheck
 import CORALean.HybridDynamics.Theorems.HoldsOfRun
 import CORALean.NN.Layers.Definitions.Enclosure
 import CORALean.NN.Layers.Definitions.Relaxation
@@ -11,6 +14,7 @@ import CORALean.NN.Layers.Instances
 import CORALean.NN.Layers.Operations.Linear
 import CORALean.NN.Layers.Operations.Relu
 import CORALean.NN.Layers.Operations.ReluSlope
+import CORALean.Specification.Instances
 
 /-!
 # Reachability at a floating-point representation
@@ -35,7 +39,7 @@ operations ask for `Mtimes ℐ S` at the *exact* interval-matrix family.
 
 -- Authors:       Tobias Ladner
 -- Written:       03-September-2026
--- Last update:   04-September-2026
+-- Last update:   24-September-2026
 -- Last revision: ---
 
 
@@ -81,11 +85,19 @@ example (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o) (R U : Zonotope 𝕋 n
 
 /-- A specification checked on the computed set answers for the state. -/
 example (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o) (R₀ U : Zonotope 𝕋 n)
-    (spec : Specification (Vec ℝ n)) {x u : ℕ → Vec ℝ n}
+    (spec : Specification (Set (Vec ℝ n))) {x u : ℕ → Vec ℝ n}
     (traj : sys.Trajectory (S := Zonotope 𝕋) R₀ U x u) (k : ℕ)
     (h : spec.Holds (construct (sys.reach (S := Zonotope 𝕋) o ho R₀ U k))) :
     spec.Holds {x k} :=
   sys.holds_of_reach ho R₀ U spec traj k h
+
+/-- The same with nothing left to prove by hand: a halfspace description checked on the
+computed zonotope by `Specification.check`, which runs. -/
+example (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o) (R₀ U : Zonotope 𝕋 n)
+    (spec : Specification (HPolytope 𝕋 n)) {x u : ℕ → Vec ℝ n}
+    (traj : sys.Trajectory (S := Zonotope 𝕋) R₀ U x u) (k : ℕ) :
+    (spec.check (sys.reach (S := Zonotope 𝕋) o ho R₀ U k) = true) → (spec.Holds {x k}) :=
+  sys.holds_of_check ho R₀ U spec traj k
 
 /-! ## An output equation
 
@@ -102,7 +114,7 @@ def Example.outputZonotopeFloat (sys : LinearSysDT 𝕋 n) (out : OutputEq 𝕋 
 /-- A specification checked on the output set answers for the output — the one
 question this repository could not ask before. -/
 example (sys : LinearSysDT 𝕋 n) (out : OutputEq 𝕋 n n r) {o : ℕ} (ho : 0 < o)
-    (R₀ U : Zonotope 𝕋 n) (spec : Specification (Vec ℝ r)) {x u : ℕ → Vec ℝ n}
+    (R₀ U : Zonotope 𝕋 n) (spec : Specification (Set (Vec ℝ r))) {x u : ℕ → Vec ℝ n}
     (traj : sys.Trajectory (S := Zonotope 𝕋) R₀ U x u) (k : ℕ)
     (h : spec.Holds (construct
       (out.outputSet (sys.reach (S := Zonotope 𝕋) o ho R₀ U k) U))) :
@@ -133,6 +145,13 @@ example (sys : NeurNetContrSysDT 𝕋 (Zonotope 𝕋) n) {o : ℕ} (ho : 0 < o)
     x k ∈ construct (sys.reach o ho R₀ k) :=
   sys.reach_outer ho R₀ hπ traj k
 
+/-- A box safe set checked on the closed loop's computed zonotope. -/
+example (sys : NeurNetContrSysDT 𝕋 (Zonotope 𝕋) n) {o : ℕ} (ho : 0 < o)
+    (R₀ : Zonotope 𝕋 n) (spec : Specification (Interval 𝕋 n)) {π : Vec ℝ n → Vec ℝ n}
+    (hπ : sys.contr.Sound π) {x : ℕ → Vec ℝ n} (traj : sys.Trajectory π R₀ x) (k : ℕ) :
+    (spec.check (sys.reach o ho R₀ k) = true) → (spec.Holds {x k}) :=
+  sys.holds_of_check ho R₀ spec hπ traj k
+
 /-! ## A hybrid automaton
 
 The automaton, its runs and its invariant are propositions over whatever the
@@ -147,10 +166,17 @@ error box exists to pay that rounding into, which is exactly what
 `CORALean.Float.OfInterval` is for instead. -/
 
 example {HA : HybridAutomaton (Zonotope 𝕋) (Zonotope 𝕋) L 𝕋 n} {R : L → Zonotope 𝕋 n}
-    (hinv : HA.Invariant R) (spec : Specification (Vec ℝ n)) {ℓ ℓ' : L}
+    (hinv : HA.Invariant R) (spec : Specification (Set (Vec ℝ n))) {ℓ ℓ' : L}
     {x y : Vec ℝ n} (run : HA.Run ℓ x ℓ' y) (hx : x ∈ construct (R ℓ))
     (h : spec.Holds (construct (R ℓ'))) : spec.Holds {y} :=
   HA.holds_of_invariant hinv spec run hx h
+
+/-- The same, checked: the invariant at the location the run ends in, against a box. -/
+example {HA : HybridAutomaton (Zonotope 𝕋) (Zonotope 𝕋) L 𝕋 n} {R : L → Zonotope 𝕋 n}
+    (hinv : HA.Invariant R) (spec : Specification (Interval 𝕋 n)) {ℓ ℓ' : L}
+    {x y : Vec ℝ n} (run : HA.Run ℓ x ℓ' y) (hx : x ∈ construct (R ℓ)) :
+    (spec.check (R ℓ') = true) → (spec.Holds {y}) :=
+  HybridAutomaton.holds_of_check hinv spec run hx
 
 end CORALean.Float
 

@@ -25,7 +25,7 @@ is what `ratio` reads at `𝕋 := ℝ` once the repeated additions are summed.
 
 -- Authors:       Tobias Ladner
 -- Written:       23-September-2026
--- Last update:   ---
+-- Last update:   24-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -70,7 +70,7 @@ example {le : ℝ → ℝ → Bool} {tol : ℝ} {fuel : ℕ} {ρ : ℝ} {X : S n
     {Φ Φhat : ReducibleNetwork ℝ n m} {Y : S m} {nn : NeuralNetwork S n m}
     {f : Vec ℝ n → Vec ℝ m} (hΦ : Φ.InstanceNetwork nn f)
     (hrun : reduceOnTheFly le tol fuel X ρ Φ = some (Φhat, Y))
-    (spec : Specification (Vec ℝ m)) (hspec : spec.Holds (construct Y)) :
+    (spec : Specification (Set (Vec ℝ m))) (hspec : spec.Holds (construct Y)) :
     spec.Holds (f '' construct X) :=
   holds_of_reduceOnTheFly (instance_of_instanceNetwork hΦ) hrun spec hspec
 

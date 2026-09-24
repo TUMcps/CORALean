@@ -18,7 +18,7 @@ sensor reading fewer numbers than the state carries.
 
 -- Authors:       Tobias Ladner
 -- Written:       03-September-2026
--- Last update:   ---
+-- Last update:   24-September-2026
 -- Last revision: ---
 
 
@@ -31,12 +31,13 @@ open Matrix ContSet Scalar Plus Mtimes
 variable {n m r : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
+variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ r)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem OutputEq.holds_of_outputSet (out : OutputEq 𝕋 n m r) (R : S n) (U : S m)
-    (spec : Specification (Vec ℝ r)) {x : Vec ℝ n} {u : Vec ℝ m}
+    (spec : Specification ContSet) {x : Vec ℝ n} {u : Vec ℝ m}
     (hx : x ∈ construct R) (hu : u ∈ construct U)
     (h : spec.Holds (construct (out.outputSet R U))) : spec.Holds {out.eval x u} :=
   spec.holds_of_outer (Set.singleton_subset_iff.mpr (out.outputSet_outer R U hx hu)) h

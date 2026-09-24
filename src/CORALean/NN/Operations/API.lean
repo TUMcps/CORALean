@@ -54,13 +54,14 @@ import CORALean.NN.Operations.Sensitivity
 import CORALean.NN.Operations.StaticMergeBuckets
 import CORALean.NN.Operations.ToLayer
 import CORALean.NN.Operations.VerifySplit
+import CORALean.NN.Operations.VerifySplitWith
 import CORALean.NN.Operations.WorstIndex
 
 /-!
 # What a network does, collected
 
-`Enclose` is the pipeline; `ToLayer` nests a sub-network as a layer; `VerifySplit` recurses
-`Enclose` over a checker and a splitter; `ChainEval` is an exact chain's composite. `ExplainBox`
+`Enclose` is the pipeline; `ToLayer` nests a sub-network as a layer; `VerifySplit(With)` recurses
+`Enclose` over a spec's check (a checker); `ChainEval` is an exact chain's composite. `ExplainBox`
 is the set an explanation query asks over, `GreedyMinimalExplanation` (`GreedyExplanationStep`)
 and `GreedyAbstractExplanation` (`ExplanationRefineLoop`) the searches for one.
 

@@ -38,6 +38,9 @@ import CORALean.NN.Layers.Operations.ReluSlope
 import CORALean.NN.Layers.Theorems.SigmoidRelaxationSound
 import CORALean.NN.NeuralNetwork
 import CORALean.NN.Operations.Enclose
+import CORALean.NN.Operations.VerifySplit
+import CORALean.NN.Theorems.HoldsOfCheck
+import CORALean.Specification.Instances
 
 /-!
 # Every runnable algorithm, instantiated at a concrete float representation
@@ -62,7 +65,7 @@ each ask for a `FloatBound`/`SupportBound` a solver alone can supply.
 
 -- Authors:       Tobias Ladner
 -- Written:       23-September-2026
--- Last update:   ---
+-- Last update:   24-September-2026
 -- Last revision: ---
 
 
@@ -236,14 +239,43 @@ def mixedEncloseRun : Zonotope D 2 := mixedNet.enclose Z
 
 /-! ## A specification check, computed rather than asserted
 
-`Zonotope.interval`'s bounds are computed with no solver — a zonotope answers
-a direction algebraically — so `I.sup` is a genuine float bound, and
-`FloatOps.le` against a threshold is the check a caller runs. -/
+`Specification.check` at float representations, both instances solver-free: a box safe
+set asks `Contains` of the enclosure's interval hull, a halfspace description asks each
+row of it (`Contains`) or for one row it lies strictly beyond (`IsDisjoint`). What a
+`true` is worth is `NeuralNetwork.holds_of_check`, stated below the runs. -/
 
-/-- Does `Z`'s enclosure stay under `10` in coordinate `0`? -/
-def checkSafe : Bool := le (I.sup 0) (d 10 0)
+/-- Safe: every output coordinate within `[-10, 10]`. -/
+def safeBox : Specification (Interval D 2) := .safeSet ⟨fun _ => d (-10) 0, fun _ => d 10 0⟩
+
+/-- `x₀ ≥ t` as one row, `-x₀ ≤ -t`, with no equality rows. -/
+def halfAbove (t : ℤ) : HPolytope D 2 :=
+  ⟨1, fun _ j => if j = 0 then d (-1) 0 else d 0 0, fun _ => d (-t) 0, 0, fun i => i.elim0,
+    ⟨fun i => i.elim0, fun i => i.elim0⟩⟩
+
+def checkSafe : Bool := safeBox.check encloseRun
+
+/-- `true`: the output never reaches `x₀ ≥ 10`. -/
+def checkUnsafeFar : Bool := (Specification.unsafeSet (halfAbove 10)).check encloseRun
+
+/-- `false`: the output does reach `x₀ ≥ 1`, so no row can separate. -/
+def checkUnsafeNear : Bool := (Specification.unsafeSet (halfAbove 1)).check encloseRun
+
+/-- A halfspace description safe set, `Z`'s own hull, against `Z` itself. -/
+def checkSafeHull : Bool := (Specification.safeSet H).check Z
+
+/-- A splitter that never splits, covering trivially: enough to run `verifySplit`. -/
+def verifySplitRun : Bool := net.verifySplit safeBox (fun X => (X, X)) 2 Z
+
+/-- What `checkSafe`'s `true` is worth: the specification on the network's exact image. -/
+example : (safeBox.check (net.enclose Z) = true) →
+    (safeBox.Holds (net.eval.out '' ContSet.construct Z)) :=
+  net.holds_of_check Z safeBox
 
 #eval checkSafe
+#eval checkUnsafeFar
+#eval checkUnsafeNear
+#eval checkSafeHull
+#eval verifySplitRun
 
 end CORALean.RunnableFloat
 

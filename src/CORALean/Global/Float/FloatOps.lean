@@ -21,7 +21,7 @@ it, so a use above the attribute would keep the recursion and its cost.
 
 -- Authors:       Tobias Ladner
 -- Written:       16-August-2026
--- Last update:   07-September-2026
+-- Last update:   24-September-2026
 -- Last revision: ---
 
 
@@ -148,6 +148,16 @@ def minimumOver {n : ℕ} (f : Fin n → 𝕋) : 𝕋 := neg (maximumOver fun i 
 /-- Exact. Not named `abs`, which would make `|·|` ambiguous wherever this
 namespace is open. -/
 def absolute (a : 𝕋) : 𝕋 := maximum a (neg a)
+
+/-! ## Strict comparison
+
+`le` certifies `≤` only, which cannot keep two closed sets apart. `ltStrict` asks `le`
+of `a` raised by a positive margin, rounded up, so a `true` still certifies `<`. -/
+
+/-- `2⁻⁶⁴`, exactly: `one` halved, and `half` rounds nothing. -/
+def strictMargin : 𝕋 := half^[64] one
+
+def ltStrict (a b : 𝕋) : Bool := le (addUp a strictMargin) b
 
 /-! ## Dot products
 

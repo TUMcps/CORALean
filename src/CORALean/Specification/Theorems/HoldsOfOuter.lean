@@ -22,7 +22,7 @@ approximation error alone.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   24-September-2026
 -- Last revision: ---
 
 
@@ -30,12 +30,12 @@ approximation error alone.
 
 namespace CORALean
 
-variable {α : Type} {X O : Set α}
+variable {ContSet α : Type} [CORALean.ContSet ContSet α] {X O : Set α}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Specification.holds_of_outer (spec : Specification α) (h : X ⊆ O)
+theorem Specification.holds_of_outer (spec : Specification ContSet) (h : X ⊆ O)
     (hO : spec.Holds O) : spec.Holds X := by -- --- PROOF ---
   obtain ⟨s, k⟩ := spec
   cases k

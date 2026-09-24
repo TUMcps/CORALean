@@ -2,6 +2,7 @@ import CORALean.HybridDynamics.Theorems.FlowOuter
 import CORALean.HybridDynamics.Theorems.FlowOuterInputSolution
 import CORALean.HybridDynamics.Theorems.FlowOuterSplit
 import CORALean.HybridDynamics.Theorems.HoldsAllOfInvariant
+import CORALean.HybridDynamics.Theorems.HoldsOfCheck
 import CORALean.HybridDynamics.Theorems.HoldsOfRun
 import CORALean.HybridDynamics.Theorems.HoldsOfRunOn
 import CORALean.HybridDynamics.Theorems.InvariantOfEnclosure

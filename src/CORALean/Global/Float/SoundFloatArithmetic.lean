@@ -20,7 +20,7 @@ that is the one gap between these axioms and a machine.
 
 -- Authors:       Tobias Ladner
 -- Written:       16-August-2026
--- Last update:   07-September-2026
+-- Last update:   24-September-2026
 -- Last revision: ---
 
 
@@ -68,6 +68,19 @@ instance : Scalar 𝕋 where
   toRealVec v := fun i => toReal (v i)
 
 /-! ## What the derived operations inherit -/
+
+theorem toReal_strictMargin_pos : 0 < toReal (strictMargin : 𝕋) := by -- --- PROOF ---
+  have h : ∀ k : ℕ, 0 < toReal (half^[k] (one : 𝕋)) := by
+    intro k
+    induction k with
+    | zero => rw [Function.iterate_zero_apply, toReal_one]; exact one_pos
+    | succ k ih => rw [Function.iterate_succ_apply', toReal_half]; exact half_pos ih
+  exact h 64
+
+/-- The margin is positive, so `ltStrict`'s `true` is strict. -/
+theorem toReal_lt_of_ltStrict {a b : 𝕋} (h : ltStrict a b = true) : toReal a < toReal b :=
+  lt_of_lt_of_le (lt_add_of_pos_right _ toReal_strictMargin_pos)
+    (le_trans (add_le_addUp a strictMargin) (toReal_le_of_le h))
 
 theorem toReal_absolute (a : 𝕋) : toReal (absolute a) = |toReal a| := by
   rw [absolute, toReal_maximum, toReal_neg]

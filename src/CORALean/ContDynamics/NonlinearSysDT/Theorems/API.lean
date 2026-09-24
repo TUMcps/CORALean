@@ -1,4 +1,5 @@
 import CORALean.ContDynamics.NonlinearSysDT.Theorems.ConfinementOfSubset
+import CORALean.ContDynamics.NonlinearSysDT.Theorems.HoldsOfCheck
 import CORALean.ContDynamics.NonlinearSysDT.Theorems.HoldsOfReach
 import CORALean.ContDynamics.NonlinearSysDT.Theorems.HoldsOfReachOfSubset
 import CORALean.ContDynamics.NonlinearSysDT.Theorems.NotHoldsOfSimulate

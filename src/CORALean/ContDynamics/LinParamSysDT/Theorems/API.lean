@@ -1,3 +1,4 @@
+import CORALean.ContDynamics.LinParamSysDT.Theorems.HoldsOfCheck
 import CORALean.ContDynamics.LinParamSysDT.Theorems.HoldsOfOutput
 import CORALean.ContDynamics.LinParamSysDT.Theorems.HoldsOfReach
 import CORALean.ContDynamics.LinParamSysDT.Theorems.NotHoldsOfSimulate

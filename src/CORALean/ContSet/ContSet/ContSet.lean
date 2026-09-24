@@ -13,8 +13,8 @@ meaningful at strictly more types than the operations are: a zonotope denotes a
 set over any real module, but `reduce` needs coordinates, and a plain matrix
 denotes the singleton it is without being closed under anything.
 
-`Mtimes` and `Reindex` keep a family indexed by ℕ, being the operations that
-move between ambient types, where the result has to land somewhere.
+`Mtimes` and `Reindex` keep a family indexed by ℕ, being the operations that move
+between ambient types; `Contains` and `IsDisjoint` take two representations of one.
 
 A precision parameter stays out of the classes: an operand-independent one is
 closed over by a `def` returning the class, as `Ellipsoid.plusInstance` does; an
@@ -29,7 +29,7 @@ operand-dependent one needs an oracle a total `plus : S → S → S` cannot have
 
 -- Authors:       Tobias Ladner
 -- Written:       16-August-2026
--- Last update:   11-September-2026
+-- Last update:   24-September-2026
 -- Last revision: ---
 
 
@@ -47,11 +47,19 @@ class ContSet (S : Type) (α : outParam Type) where
 
 open ContSet
 
-/-- `x ∈ s` for a representation means what it denotes. -/
-instance {S α : Type} [ContSet S α] : Membership α S := ⟨fun s x => x ∈ construct s⟩
+/-- `x ∈ s` for a representation means what it denotes. Low priority, so that at
+`Set α`, itself a representation below, Mathlib's own membership is the one found. -/
+instance (priority := low) {S α : Type} [ContSet S α] : Membership α S :=
+  ⟨fun s x => x ∈ construct s⟩
 
 theorem ContSet.mem_iff {S α : Type} [ContSet S α] {s : S} {x : α} :
     x ∈ s ↔ x ∈ construct s := Iff.rfl
+
+/-- A plain set denotes itself: what lets a specification or a guarantee stated at
+a representation take a set with no representation at all. -/
+instance {α : Type} : ContSet (Set α) α := ⟨id⟩
+
+@[simp] theorem ContSet.construct_set {α : Type} (X : Set α) : construct X = X := rfl
 
 open Scalar
 
@@ -211,6 +219,19 @@ class LinMtimes (M S : Type) (T : outParam Type) (α : outParam Type) (β : outP
   lmtimes : M → S → T
   lmtimes_outer (m : M) (s : S) :
     (⋃ f ∈ LinMapSet.denote (β := β) m, f '' construct s) ⊆ construct (lmtimes m s)
+
+/-- CORA's `contains`: `true` only if `t` holds all of `s`. Conservative, so `false`
+says only that containment was not shown. `T` the container, as in CORA. -/
+class Contains (T S : Type) {α : outParam Type} [ContSet T α] [ContSet S α] where
+  contains : T → S → Bool
+  contains_sound (t : T) (s : S) : contains t s = true → construct s ⊆ construct t
+
+/-- The negation of CORA's `isIntersecting`: `true` only if `t` and `s` share no
+point, and as conservative as `Contains`. -/
+class IsDisjoint (T S : Type) {α : outParam Type} [ContSet T α] [ContSet S α] where
+  isDisjoint : T → S → Bool
+  isDisjoint_sound (t : T) (s : S) :
+    isDisjoint t s = true → Disjoint (construct s) (construct t)
 
 end CORALean
 

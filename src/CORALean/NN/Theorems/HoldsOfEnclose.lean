@@ -13,7 +13,7 @@ function the network is sound at, which a reduced network needs.
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   24-September-2026
 -- Last revision: ---
 
 
@@ -24,12 +24,13 @@ namespace CORALean
 open ContSet
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ m)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NeuralNetwork.holds_of_enclose (nn : NeuralNetwork S n m) (X : S n)
-    (spec : Specification (Vec ℝ m)) (h : spec.Holds (construct (nn.enclose X))) :
+    (spec : Specification ContSet) (h : spec.Holds (construct (nn.enclose X))) :
     spec.Holds (nn.eval.out '' construct X) :=
   (NeuralNetwork.sound_eval nn).holds_of_enclose X spec h
 

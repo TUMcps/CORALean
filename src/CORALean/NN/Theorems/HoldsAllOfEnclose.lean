@@ -10,7 +10,7 @@ the enclosed set holds of the network's own image, with no hypothesis.
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   24-September-2026
 -- Last revision: ---
 
 
@@ -21,12 +21,13 @@ namespace CORALean
 open ContSet
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ m)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NeuralNetwork.holdsAll_of_enclose (nn : NeuralNetwork S n m) (X : S n)
-    (specs : List (Specification (Vec ℝ m)))
+    (specs : List (Specification ContSet))
     (h : Specification.HoldsAll specs (construct (nn.enclose X))) :
     Specification.HoldsAll specs (nn.eval.out '' construct X) :=
   (NeuralNetwork.sound_eval nn).holdsAll_of_enclose X specs h
