@@ -1,8 +1,10 @@
 import CORALean.ContSet.ContSet.Definitions.CompactSet
 import CORALean.ContSet.ContSet.Definitions.ConvexSet
+import CORALean.ContSet.Interval.Float.Instances
 import CORALean.ContSet.Zonotope.Float.Theorems.Convex
 import CORALean.ContSet.Zonotope.Float.Theorems.IsClosed
 import CORALean.ContSet.Zonotope.Float.Theorems.LinCombOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.MtimesIntervalMatOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.ReduceOuter
@@ -83,6 +85,15 @@ instance : Mtimes (Mat 𝕋) (Zonotope 𝕋) where
   mtimes_outer M Z := by
     simp only [ContSet.construct_mat, Set.biUnion_singleton, Zonotope.materialise_eq]
     exact Zonotope.mtimes_outer M Z
+
+/-- The same operation at a float interval matrix, which the float
+`expIntervalEnclosure` chain builds towards, exactly as `Real`'s `Mtimes ℐ 𝒵`
+does at the exact layer. -/
+instance : Mtimes (fun m n => Interval (Mat 𝕋 m n)) (Zonotope 𝕋) where
+  mtimes IM Z := (Zonotope.mtimesIntervalMat IM Z).materialise
+  mtimes_outer IM Z := by
+    rw [Zonotope.materialise_eq]
+    exact Zonotope.mtimesIntervalMat_outer IM Z
 
 end CORALean.Float
 

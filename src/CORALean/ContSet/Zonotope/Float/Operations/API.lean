@@ -1,3 +1,4 @@
+import CORALean.ContSet.Zonotope.Float.Operations.AbsBoundError
 import CORALean.ContSet.Zonotope.Float.Operations.GeneratorError
 import CORALean.ContSet.Zonotope.Float.Operations.CenterResidual
 import CORALean.ContSet.Zonotope.Float.Operations.Plus
@@ -12,6 +13,7 @@ import CORALean.ContSet.Zonotope.Float.Operations.LinComb
 import CORALean.ContSet.Zonotope.Float.Operations.MtimesResidual
 import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
 import CORALean.ContSet.Zonotope.Float.Operations.MtimesBox
+import CORALean.ContSet.Zonotope.Float.Operations.MtimesIntervalMat
 import CORALean.ContSet.Zonotope.Float.Operations.ShiftDown
 import CORALean.ContSet.Zonotope.Float.Operations.ShiftUp
 import CORALean.ContSet.Zonotope.Float.Operations.ErrorRadius

@@ -1,4 +1,8 @@
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdmissibleOrderFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclosureFloat
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrixFloat
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputRemainderFloat
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputTermFloat
 import CORALean.ContDynamics.LinearSysDT.Operations.Reach
 import CORALean.ContDynamics.LinearSysDT.Operations.ReachHeld
 import CORALean.ContDynamics.LinearSysDT.Operations.ReachOrders
@@ -59,10 +63,10 @@ here just as a tight one does.
 
 Left out, and why: every continuous-time algorithm (`LinearSys`,
 `LinParamSys`, `NonlinearSys`, `Location.timeIntervalStep*`) has no float
-refinement yet (`pending #1`); `reachErrorFloat`/`reachInnerFloat` are
-real-valued guarantee objects, legitimately `spec:`; `HPolytope.zonotope`/
-`vPolytopeBox`/`interval`/`conZonotope` and `verifyHalfspace`/`verifyConvex`
-each ask for a `FloatBound`/`SupportBound` a solver alone can supply.
+refinement yet (`pending #1`), only its step's matrices; `reachErrorFloat`/
+`reachInnerFloat` are real-valued guarantee objects, legitimately `spec:`;
+`HPolytope.zonotope`/`vPolytopeBox`/`interval`/`conZonotope` and `verifyHalfspace`/
+`verifyConvex` each ask for a `FloatBound`/`SupportBound` a solver alone can supply.
 -/
 
 -- Authors:       Tobias Ladner
@@ -159,6 +163,10 @@ def mtimesIntervalMatRun : Interval (Vec D 2) :=
   Mtimes.mtimes (𝕄 := fun m n => Interval (Mat D m n)) (S := fun n => Interval (Vec D n))
     matExpA I
 
+-- the same interval matrix, at `expEnclosureRun`, times a float zonotope (#1, phase 3 prep)
+def mtimesIntervalMatZonoRun : Zonotope D 2 :=
+  Mtimes.mtimes (𝕄 := fun m n => Interval (Mat D m n)) (S := Zonotope D) expEnclosureRun Z
+
 -- `HPolytope`: `Reduce`, `Intersection`
 def H_reduce : HPolytope D 2 := Reduce.reduce H 1
 def H_intersection : HPolytope D 2 := Intersection.intersection H H
@@ -197,6 +205,21 @@ def zB_mtimes : ZonoBundle D 2 := Mtimes.mtimes (identityMat D 2) zB
 
 -- `Ellipsoid`: `Mtimes` alone — the rest of its operations have no float file yet
 def E_mtimes : Ellipsoid D 2 := Mtimes.mtimes (identityMat D 2) E
+
+
+/-! ## The matrices a continuous-time step multiplies by (#1, phase 3)
+
+`A = [-1 -4; 4 -1]` over a step `r = 2⁻⁵`: the order the float remainder admits,
+then `F`, the input term of order `1` and the input remainder at order `4`. -/
+
+def stepA : Interval (Mat D 2 2) := Interval.point !![d (-1) 0, d (-4) 0; d 4 0, d (-1) 0]
+def stepR : D := d 1 (-5)
+
+def stepOrderRun : Option ℕ :=
+  MatExp.admissibleOrder (MatExp.normUpperBound (Interval.smul stepR stepR stepA)) 2 20
+def correctionRun : Interval (Mat D 2 2) := MatExp.intervalCorrectionMatrix stepA stepR 4
+def inputTermRun : Interval (Mat D 2 2) := MatExp.intervalInputTerm stepA stepR 1
+def inputRemainderRun : Interval (Mat D 2 2) := MatExp.intervalInputRemainder stepA stepR 4
 
 
 /-! ## The four Box operations `LinearSysDT.reachErrorFloat` sums
@@ -260,6 +283,16 @@ def mixedEncloseRun : Zonotope D 2 := mixedNet.enclose Z
 #eval expEnclosureRun.sup 0 0
 #eval mtimesIntervalMatRun.inf 0
 #eval mtimesIntervalMatRun.sup 0
+#eval mtimesIntervalMatZonoRun.c 0
+#eval mtimesIntervalMatZonoRun.E.sup 0
+
+-- The step matrices (#1, phase 3): an admissible order, then one entry of each box.
+#eval stepOrderRun
+#eval correctionRun.inf 0 0
+#eval correctionRun.sup 0 0
+#eval inputTermRun.inf 0 1
+#eval inputTermRun.sup 0 1
+#eval inputRemainderRun.sup 0 0
 
 
 /-! ## A specification check, computed rather than asserted
