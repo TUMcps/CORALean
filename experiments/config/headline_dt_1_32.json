@@ -1,0 +1,57 @@
+{
+  "_comment": "Same as headline_default.json but dt = 1/32 -- the other candidate step size, still exact at 2 significand bits (binary4/E2M1): mantissa 1, exponent -5.",
+  "system": {
+    "a": "1/16",
+    "b": "1"
+  },
+  "x0": {
+    "center": [
+      "1",
+      "0"
+    ],
+    "generators": [
+      [
+        "1/8",
+        "0"
+      ],
+      [
+        "0",
+        "1/8"
+      ]
+    ]
+  },
+  "dt": "1/32",
+  "eta": 4,
+  "eta_comment": "TO TUNE -- Taylor order for the continuous-time enclosure, placeholder",
+  "rho": 10,
+  "rho_comment": "TO TUNE -- zonotope order bound, placeholder",
+  "turns": 3,
+  "steps": 604,
+  "steps_comment": "N = ceil(2*pi*turns/dt) = ceil(2*pi*3/(1/32)) = ceil(603.19...) = 604",
+  "reps": 3,
+  "precisions": [
+    {
+      "type": "dyadic",
+      "format": "binary4"
+    },
+    {
+      "type": "dyadic",
+      "format": "binary8"
+    },
+    {
+      "type": "dyadic",
+      "format": "binary16"
+    },
+    {
+      "type": "dyadic",
+      "format": "binary32"
+    },
+    {
+      "type": "dyadic",
+      "format": "binary64"
+    },
+    {
+      "type": "float"
+    }
+  ]
+}

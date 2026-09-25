@@ -791,7 +791,8 @@ report "$out"
 # it: it is global by nature, and a split would report every module it
 # happened not to see an importer for.
 
-out=$(awk -v LIST="$list" -v ROOTS="CORALean CORALean.Examples.API CORALean.Examples.Demo" '
+out=$(awk -v LIST="$list" \
+  -v ROOTS="CORALean CORALean.Examples.API CORALean.Examples.Demo CORALean.Examples.Bench" '
 BEGIN { while ((getline f < LIST) > 0) if (f != "") ARGV[ARGC++] = f }
 function moduleOf(path,   m) {
   m = path; sub(/^src\//, "", m); sub(/\.lean$/, "", m); gsub("/", ".", m)

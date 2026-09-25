@@ -1,5 +1,5 @@
 name = "CORALean"
-defaultTargets = ["CORALean", "Examples", "Demo"]
+defaultTargets = ["CORALean", "Examples", "Demo", "Bench"]
 
 [leanOptions]
 pp.unicode.fun = true
@@ -40,3 +40,17 @@ roots = ["CORALean.Examples.Demo"]
 name = "demo"
 srcDir = "src"
 root = "CORALean.Examples.Demo"
+
+# The experiment harness, the same way: a library so `lake build` elaborates it
+# for the price of an olean, and an executable for `lake exe bench <exp> ...`.
+# `lake env lean --run src/CORALean/Examples/Bench.lean <args>` is the
+# interpreter backend `experiments/README.md` documents, needing no link step.
+[[lean_lib]]
+name = "Bench"
+srcDir = "src"
+roots = ["CORALean.Examples.Bench"]
+
+[[lean_exe]]
+name = "bench"
+srcDir = "src"
+root = "CORALean.Examples.Bench"

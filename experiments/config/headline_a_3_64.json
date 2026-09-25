@@ -1,0 +1,57 @@
+{
+  "_comment": "Same as headline_default.json but a = 3/64 -- the other candidate spiral rate the paper authors named, still exact at 2 significand bits (binary4/E2M1): mantissa 3, exponent -6.",
+  "system": {
+    "a": "3/64",
+    "b": "1"
+  },
+  "x0": {
+    "center": [
+      "1",
+      "0"
+    ],
+    "generators": [
+      [
+        "1/8",
+        "0"
+      ],
+      [
+        "0",
+        "1/8"
+      ]
+    ]
+  },
+  "dt": "1/64",
+  "eta": 4,
+  "eta_comment": "TO TUNE -- Taylor order for the continuous-time enclosure, placeholder",
+  "rho": 10,
+  "rho_comment": "TO TUNE -- zonotope order bound, placeholder",
+  "turns": 3,
+  "steps": 1207,
+  "steps_comment": "N = ceil(2*pi*turns/dt); dt unchanged from the default, so N is the same",
+  "reps": 3,
+  "precisions": [
+    {
+      "type": "dyadic",
+      "format": "binary4"
+    },
+    {
+      "type": "dyadic",
+      "format": "binary8"
+    },
+    {
+      "type": "dyadic",
+      "format": "binary16"
+    },
+    {
+      "type": "dyadic",
+      "format": "binary32"
+    },
+    {
+      "type": "dyadic",
+      "format": "binary64"
+    },
+    {
+      "type": "float"
+    }
+  ]
+}
