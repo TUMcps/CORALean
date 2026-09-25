@@ -1,0 +1,70 @@
+import CORALean.ContDynamics.LinearSys.Operations.ReachRecursiveFloat
+import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
+import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepFloatOuter
+
+/-!
+# `reachRecursiveFloat`'s time-point sets hold the exact flow at `k Δt`
+
+By induction on `k`: `R_0 = X₀` holds `e^{0} x₀ = x₀`, and
+`e^{A (k+1) Δt} x₀ = e^{AΔt} (e^{A k Δt} x₀)`, which `timePointStepFloat_outer`
+puts in `[e^{AΔt}] R_k` — the run's step, its matrix computed once — and
+`Reduce.reduce_outer` keeps in `R_{k+1}`. No sign is asked of `Δt`.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       25-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open CORALean.Float SoundFloatArithmetic NormedSpace Matrix
+
+attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
+  Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem LinearSys.reachRecursiveFloat_timePoint_outer (sys : LinearSys 𝕋 n)
+    {X₀ : Zonotope 𝕋 n} {Δt : 𝕋} {η ρ N : ℕ} {Rti Rtp : List (Zonotope 𝕋 n)}
+    (h : sys.reachRecursiveFloat X₀ Δt η ρ N = some (Rti, Rtp)) :
+    Rtp.length = N + 1 ∧ ∀ (k : ℕ) (hk : k < Rtp.length), ∀ x₀ ∈ X₀.construct,
+      exp (((k : ℝ) * toReal Δt) • Scalar.toRealMat sys.A) *ᵥ x₀
+        ∈ Rtp[k].construct := by -- --- PROOF ---
+  simp only [LinearSys.reachRecursiveFloat, Option.bind_eq_bind, Option.bind_eq_some_iff,
+    Option.pure_def, Option.some.injEq, Prod.mk.injEq] at h
+  obtain ⟨η', hη', -, rfl⟩ := h
+  have hadm := (LinearSys.reachOrderFloat_spec hη').1
+  refine ⟨List.length_iterate _ _ _, fun k hk x₀ hx₀ => ?_⟩
+  rw [List.getElem_iterate]
+  clear hk
+  induction k with
+  | zero => simp [hx₀]
+  | succ k ih =>
+    -- `e^{A (k+1) Δt} = e^{AΔt} e^{A k Δt}`, both powers of the same matrix
+    have hc : Commute (toReal Δt • Scalar.toRealMat sys.A)
+        (((k : ℝ) * toReal Δt) • Scalar.toRealMat sys.A) :=
+      ((Commute.refl _).smul_left _).smul_right _
+    have hexp : exp ((((k + 1 : ℕ) : ℝ) * toReal Δt) • Scalar.toRealMat sys.A) *ᵥ x₀
+        = exp (toReal Δt • Scalar.toRealMat sys.A)
+          *ᵥ (exp (((k : ℝ) * toReal Δt) • Scalar.toRealMat sys.A) *ᵥ x₀) := by
+      have h := exp_add_of_commute hc
+      rw [← add_smul, show toReal Δt + (k : ℝ) * toReal Δt = (((k + 1 : ℕ) : ℝ)) * toReal Δt
+        by push_cast; ring] at h
+      rw [Matrix.mulVec_mulVec]
+      exact congrArg (· *ᵥ x₀) h
+    rw [hexp, Function.iterate_succ_apply']
+    -- the run's step is `timePointStepFloat`, its matrix bound once
+    exact Reduce.reduce_outer (sys.timePointStepFloat Δt η' _) ρ
+      (sys.timePointStepFloat_outer hadm _ ih)
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -146,14 +146,23 @@ import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetParticularSoluti
 import CORALean.ContDynamics.LinearSys.Theorems.ReachStepkOuter
 import CORALean.ContDynamics.LinearSys.Theorems.WithInputReachOuter
 import CORALean.ContDynamics.LinearSys.Theorems.WithInputSplitReachOuter
+import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
+import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
+import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
+import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepFloatOuter
+import CORALean.ContDynamics.LinearSys.Theorems.ReachStepkFloatOuter
+import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatOuter
+import CORALean.ContDynamics.LinearSys.Theorems.ReachRecursiveFloatTimePointOuter
+import CORALean.ContDynamics.LinearSys.Theorems.ReachRecursiveFloatOuter
+import CORALean.ContDynamics.LinearSys.Theorems.WindowOrderFloatSpec
 
 /-!
 # What `LinearSys` guarantees
 
 The closed form of a trajectory, then the three enclosures built on it: `reach`
 at the sample times, `timeIntervalStep` over a whole step, and `deltaReach` over
-the differences that step spans — what CORA's polynomialization variant measures
-its next abstraction error on. The rest are the input-integral facts they use.
+the differences that step spans, where CORA's polynomialization measures its
+abstraction error; the rest are the input-integral facts they use.
 
 The first two are stated once, over `ConvexSet` and `CompactSet`, name no
 representation. `TimeIntervalOuterSplit` drops `0 ∈ U`, needing only
@@ -164,11 +173,11 @@ set; `_eq_iUnion` ties the latter to a union of the former, `SubsetAddError`
 runs a step backwards, `Exists…Lt` shrinks its error, `SegmentsSum` feeds
 `TimeIntervalBound` a genuine `+`/`segments`, and `TimeIntervalWitness` its dual.
 
-`Restrict` is what makes the time domain a parameter worth having: a guarantee
-over one step applies to a run over all forward time by throwing the rest
-away. Only `discretize` and `reach` built on it ask for `Set.Ici 0`.
-`DiscretizeEnclosure`/`DiscretizeEnclosureReach` are `Discretize`/`ReachOuter`
-enclosed rather than computed; `DiscretizeMatZonotope` is the same at a matrix
-zonotope, `PostDeltaOuter` is `DeltaReachOuterInputSolution` again; `ReachOuterWindows`
-and `WithInputReachOuter` are `Instances`' guarantees, built window by window.
+`Restrict` is what makes the time domain a parameter worth having: a guarantee over one step
+applies to a run over all forward time by throwing the rest away. Only `discretize` and `reach`
+built on it ask for `Set.Ici 0`. `DiscretizeEnclosure`/`DiscretizeEnclosureReach` are
+`Discretize`/`ReachOuter` enclosed rather than computed; `DiscretizeMatZonotope` is the same at
+a matrix zonotope, `PostDeltaOuter` is `DeltaReachOuterInputSolution` again; `ReachOuterWindows`
+and `WithInputReachOuter` are `Instances`' guarantees, built window by window, and `…FloatOuter`
+the float runs'.
 -/

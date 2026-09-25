@@ -18,7 +18,7 @@ out, which is `roundDown_le` composed on.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   25-September-2026
 -- Last revision: ---
 
 
@@ -33,10 +33,11 @@ private theorem quotDown_le_div (a b : Dyadic p) (hb : 0 < toReal b) :
     toReal (quotDown a b) ≤ toReal a / toReal b := by -- --- PROOF ---
   have hm : 0 < b.mantissa := mantissa_pos hb
   have hmR : (0 : ℝ) < (b.mantissa : ℝ) := Int.cast_pos.mpr hm
-  rw [toReal_div_eq a b (ne_of_gt hmR), quotDown, toReal_mk]
+  rw [toReal_div_eq a b (p + b.mantissa.natAbs.log2 + 1) (ne_of_gt hmR), quotDown, toReal_mk]
   refine mul_le_mul_of_nonneg_right ?_ (le_of_lt (zpow_pos two_pos _))
   rw [le_div_iff₀ hmR]
-  exact_mod_cast Int.ediv_mul_le (a.mantissa * 2 ^ p) (ne_of_gt hm)
+  exact_mod_cast Int.ediv_mul_le (a.mantissa * 2 ^ (p + b.mantissa.natAbs.log2 + 1))
+    (ne_of_gt hm)
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

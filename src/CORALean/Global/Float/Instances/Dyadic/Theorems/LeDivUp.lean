@@ -16,7 +16,7 @@ one, `quotDown_le_div`, at a negated dividend; the grid rounding on top,
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   25-September-2026
 -- Last revision: ---
 
 
@@ -31,12 +31,13 @@ private theorem le_quotUp (a b : Dyadic p) (hb : 0 < toReal b) :
     toReal a / toReal b ≤ toReal (quotUp a b) := by -- --- PROOF ---
   have hm : 0 < b.mantissa := mantissa_pos hb
   have hmR : (0 : ℝ) < (b.mantissa : ℝ) := Int.cast_pos.mpr hm
-  rw [toReal_div_eq a b (ne_of_gt hmR), quotUp, toReal_mk]
+  rw [toReal_div_eq a b (p + b.mantissa.natAbs.log2 + 1) (ne_of_gt hmR), quotUp, toReal_mk]
   refine mul_le_mul_of_nonneg_right ?_ (le_of_lt (zpow_pos two_pos _))
   rw [div_le_iff₀ hmR]
-  have h := Int.ediv_mul_le (-(a.mantissa * 2 ^ p)) (ne_of_gt hm)
-  have h' : a.mantissa * 2 ^ p
-      ≤ -(-(a.mantissa * 2 ^ p) / b.mantissa) * b.mantissa := by
+  set s := p + b.mantissa.natAbs.log2 + 1
+  have h := Int.ediv_mul_le (-(a.mantissa * 2 ^ s)) (ne_of_gt hm)
+  have h' : a.mantissa * 2 ^ s
+      ≤ -(-(a.mantissa * 2 ^ s) / b.mantissa) * b.mantissa := by
     rw [neg_mul]
     linarith
   exact_mod_cast h'

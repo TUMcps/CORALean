@@ -3,13 +3,13 @@ import CORALean.Global.Float.Instances.Dyadic.Dyadic
 /-!
 # The quotient, rounded up while dividing
 
-`quotDown`'s mirror: negates the shifted dividend twice, turning the floor
-into a ceiling exactly as `roundUp` does.
+`quotDown`'s mirror, at the same shift: negates the shifted dividend twice,
+turning the floor into a ceiling exactly as `roundUp` does.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       16-August-2026
--- Last update:   02-September-2026
+-- Last update:   25-September-2026
 -- Last revision: ---
 
 
@@ -25,7 +25,8 @@ variable {p : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def quotUp (a b : Dyadic p) : Dyadic p :=
-  ⟨-(-(a.mantissa * 2 ^ p) / b.mantissa), a.exponent - b.exponent - p⟩
+  ⟨-(-(a.mantissa * 2 ^ (p + b.mantissa.natAbs.log2 + 1)) / b.mantissa),
+    a.exponent - b.exponent - ((p + b.mantissa.natAbs.log2 + 1 : ℕ) : ℤ)⟩
 
 end Dyadic
 
