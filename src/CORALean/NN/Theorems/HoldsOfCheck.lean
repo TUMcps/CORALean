@@ -30,7 +30,7 @@ variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ m)]
 
 theorem NeuralNetwork.holds_of_check [Contains ContSet (S m)] [IsDisjoint ContSet (S m)]
     (nn : NeuralNetwork S n m) (X : S n) (spec : Specification ContSet) :
-    (spec.check (nn.enclose X) = true) → (spec.Holds (nn.eval.out '' construct X)) :=
+    spec.check (nn.enclose X) → (spec.Holds (nn.eval.out '' construct X)) :=
   fun h => nn.holds_of_enclose X spec (spec.check_sound _ h)
 
 end CORALean

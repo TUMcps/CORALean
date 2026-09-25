@@ -42,7 +42,7 @@ theorem NeurNetContrSys.holds_of_check [Contains ContSet (S n)] [IsDisjoint Cont
     {π : Vec ℝ n → Vec ℝ n} (hπ : sys.contr.Sound π)
     {x : ℝ → Vec ℝ n} (traj : sys.Trajectory π ((N : ℝ) * Δt) H R₀ x)
     (spec : Specification ContSet) (i : ℕ) (hi : i ≤ H) :
-    (spec.check (sys.reach o η N ho Δt R₀ i) = true) →
+    spec.check (sys.reach o η N ho Δt R₀ i) →
       (spec.Holds {x ((i : ℝ) * ((N : ℝ) * Δt))}) :=
   fun h => sys.holds_of_reach o η N ho hΔt hε hπ traj spec i hi (spec.check_sound _ h)
 

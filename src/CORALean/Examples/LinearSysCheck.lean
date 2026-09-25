@@ -40,9 +40,9 @@ open ContSet
 
 /-- The safe box on the windows answers for every state the flow reaches by `1`. -/
 example :
-    ((Specification.safeSet (⟨![-10, -10], ![10, 10]⟩ : Float.Interval (Vec ℝ 2))).check
+    (Specification.safeSet (⟨![-10, -10], ![10, 10]⟩ : Float.Interval (Vec ℝ 2))).check
       ((⟨!![-1, 1; 0, -2]⟩ : LinearSys ℝ 2).reach (S := 𝒵) 1 (1 / 10) 4
-        (⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2))) = true) →
+        (⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2))) →
     ((Specification.safeSet (⟨![-10, -10], ![10, 10]⟩ : Float.Interval (Vec ℝ 2))).Holds
       ((⟨!![-1, 1; 0, -2]⟩ : LinearSys ℝ 2).reachExact 1
         (construct (⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2))))) :=
@@ -50,10 +50,10 @@ example :
 
 /-- The same through `Reach.check`, the parameters bundled as `LinearSys.ReachParams`. -/
 example :
-    (Reach.check (S := 𝒵) (⟨!![-1, 1; 0, -2]⟩ : LinearSys ℝ 2)
+    Reach.check (S := 𝒵) (⟨!![-1, 1; 0, -2]⟩ : LinearSys ℝ 2)
       (⟨1, 1 / 10, 4, by norm_num⟩ : LinearSys.ReachParams)
       (⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2))
-      (Specification.safeSet (⟨![-10, -10], ![10, 10]⟩ : Float.Interval (Vec ℝ 2))) = true) →
+      (Specification.safeSet (⟨![-10, -10], ![10, 10]⟩ : Float.Interval (Vec ℝ 2))) →
     ((Specification.safeSet (⟨![-10, -10], ![10, 10]⟩ : Float.Interval (Vec ℝ 2))).Holds
       (Reach.reachExact (S := 𝒵) (⟨!![-1, 1; 0, -2]⟩ : LinearSys ℝ 2)
         (⟨1, 1 / 10, 4, by norm_num⟩ : LinearSys.ReachParams)
@@ -62,12 +62,12 @@ example :
 
 /-- With inputs in `[-1/10, 1/10]²`: the same box answers for every run under them. -/
 example :
-    (Reach.check (S := 𝒵)
+    Reach.check (S := 𝒵)
       (⟨⟨!![-1, 1; 0, -2]⟩, ⟨2, 0, ![![1 / 10, 0], ![0, 1 / 10]]⟩,
         Zonotope.centre_mem_construct _⟩ : LinearSys.WithInput ℝ 𝒵 2)
       (⟨1, 1 / 10, 4, by norm_num⟩ : LinearSys.ReachParams)
       (⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2))
-      (Specification.safeSet (⟨![-10, -10], ![10, 10]⟩ : Float.Interval (Vec ℝ 2))) = true) →
+      (Specification.safeSet (⟨![-10, -10], ![10, 10]⟩ : Float.Interval (Vec ℝ 2))) →
     ((Specification.safeSet (⟨![-10, -10], ![10, 10]⟩ : Float.Interval (Vec ℝ 2))).Holds
       (Reach.reachExact (S := 𝒵)
         (⟨⟨!![-1, 1; 0, -2]⟩, ⟨2, 0, ![![1 / 10, 0], ![0, 1 / 10]]⟩,
@@ -78,12 +78,12 @@ example :
 
 /-- With inputs in a box off the origin, split at its centre: the same answer. -/
 example :
-    (Reach.check (S := 𝒵)
+    Reach.check (S := 𝒵)
       (⟨⟨!![-1, 1; 0, -2]⟩, ⟨2, ![1 / 5, 0], ![![1 / 10, 0], ![0, 1 / 10]]⟩⟩ :
         LinearSys.WithInputSplit ℝ 𝒵 2)
       (⟨1, 1 / 10, 4, by norm_num⟩ : LinearSys.ReachParams)
       (⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2))
-      (Specification.safeSet (⟨![-10, -10], ![10, 10]⟩ : Float.Interval (Vec ℝ 2))) = true) →
+      (Specification.safeSet (⟨![-10, -10], ![10, 10]⟩ : Float.Interval (Vec ℝ 2))) →
     ((Specification.safeSet (⟨![-10, -10], ![10, 10]⟩ : Float.Interval (Vec ℝ 2))).Holds
       (Reach.reachExact (S := 𝒵)
         (⟨⟨!![-1, 1; 0, -2]⟩, ⟨2, ![1 / 5, 0], ![![1 / 10, 0], ![0, 1 / 10]]⟩⟩ :

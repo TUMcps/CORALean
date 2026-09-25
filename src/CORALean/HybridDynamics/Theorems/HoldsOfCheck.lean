@@ -32,7 +32,7 @@ theorem HybridAutomaton.holds_of_check [Contains ContSet (S n)] [IsDisjoint Cont
     {HA : HybridAutomaton S G L 𝕋 n} {R : L → S n} (hinv : HA.Invariant R)
     (spec : Specification ContSet) {ℓ ℓ' : L} {x y : Vec ℝ n} (run : HA.Run ℓ x ℓ' y)
     (hx : x ∈ construct (R ℓ)) :
-    (spec.check (R ℓ') = true) → (spec.Holds {y}) :=
+    spec.check (R ℓ') → (spec.Holds {y}) :=
   fun h => HybridAutomaton.holds_of_invariant hinv spec run hx (spec.check_sound _ h)
 
 end CORALean

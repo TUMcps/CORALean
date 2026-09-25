@@ -42,10 +42,10 @@ variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ m)]
 counterexample from a `false` result, and never that further splitting would help. -/
 theorem NeuralNetwork.Sound.verifySplitWith_sound {nn : NeuralNetwork S n m}
     {f : Vec ℝ n → Vec ℝ m} (hf : nn.Sound f) (spec : Specification ContSet) (check : S m → Bool)
-    (hcheck : ∀ s, check s = true → spec.Holds (construct s))
+    (hcheck : ∀ s, check s → spec.Holds (construct s))
     (splitter : S n → S n × S n)
     (hcov : ∀ Y : S n, construct Y ⊆ construct (splitter Y).1 ∪ construct (splitter Y).2)
-    (d : ℕ) (X : S n) (hverify : nn.verifySplitWith check splitter d X = true) :
+    (d : ℕ) (X : S n) (hverify : nn.verifySplitWith check splitter d X) :
     spec.Holds (f '' construct X) := by -- --- PROOF ---
   induction d generalizing X with
   | zero => exact hf.holds_of_enclose X spec (hcheck _ hverify)

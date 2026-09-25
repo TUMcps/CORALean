@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {N : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem grid_mem_of_checked {p : Fin (N + 1) → 𝕋} {l u dx : 𝕋}
-    (h : gridChecked p l u dx = true) (i : Fin (N + 1)) :
+    (h : gridChecked p l u dx) (i : Fin (N + 1)) :
     toReal l ≤ toReal (p i) ∧ toReal (p i) ≤ toReal u := by
   simp only [gridChecked, Bool.and_eq_true] at h
   have hi := allOver_apply _ h.2 i

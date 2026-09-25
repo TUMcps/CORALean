@@ -56,8 +56,8 @@ noncomputable def Example.splitter (I : Interval (Vec ℝ 1)) :
     Interval (Vec ℝ 1) × Interval (Vec ℝ 1) :=
   I.splitAt (0 : Fin 1)
 
-/-- What `check = true` is worth: the box's own bound is the spec's. -/
-theorem Example.hcheck : ∀ s : Interval (Vec ℝ 1), Example.check s = true →
+/-- What a passed `check` is worth: the box's own bound is the spec's. -/
+theorem Example.hcheck : ∀ s : Interval (Vec ℝ 1), Example.check s →
     Example.spec.Holds (construct s) := by
   intro s hs x hx
   exact le_trans (hx 0).2 (of_decide_eq_true hs)
@@ -71,7 +71,7 @@ theorem Example.hcov (I : Interval (Vec ℝ 1)) :
 network's exact image — never a computed one, since nothing here evaluates
 a real comparison. -/
 example (d : ℕ) (X : Interval (Vec ℝ 1))
-    (hverify : Example.nn.verifySplitWith Example.check Example.splitter d X = true) :
+    (hverify : Example.nn.verifySplitWith Example.check Example.splitter d X) :
     Example.spec.Holds (Example.nn.eval.out '' construct X) :=
   Example.nn.verifySplitWith_sound Example.spec Example.check Example.hcheck
     Example.splitter Example.hcov d X hverify
@@ -79,7 +79,7 @@ example (d : ℕ) (X : Interval (Vec ℝ 1))
 /-- The same at any function the network is sound at, which is where a reduced
 network's guarantee about its original lands. -/
 example {f : Vec ℝ 1 → Vec ℝ 1} (hf : Example.nn.Sound f) (d : ℕ) (X : Interval (Vec ℝ 1))
-    (hverify : Example.nn.verifySplitWith Example.check Example.splitter d X = true) :
+    (hverify : Example.nn.verifySplitWith Example.check Example.splitter d X) :
     Example.spec.Holds (f '' construct X) :=
   hf.verifySplitWith_sound Example.spec Example.check Example.hcheck
     Example.splitter Example.hcov d X hverify
