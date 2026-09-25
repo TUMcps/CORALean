@@ -44,7 +44,11 @@ theorem Interval.matPow_outer (A : Interval (Mat 𝕋 n n)) {M : Mat ℝ n n}
   | zero =>
     rw [pow_zero, ← aux_toRealMat_diagonalBlock_one (𝕋 := 𝕋)]
     exact Interval.mem_point (diagonalBlock fun _ : Fin n => (one : 𝕋))
-  | succ k ih => rw [pow_succ']; exact Interval.matMul_outer A (A.matPow k) hM ih
+  | succ k ih =>
+    rw [pow_succ']
+    show M * M ^ k ∈ (Interval.matMul A (Interval.matPow A k)).materialiseMat.construct
+    rw [Interval.materialiseMat_eq]
+    exact Interval.matMul_outer A (A.matPow k) hM ih
 
 end CORALean.Float
 

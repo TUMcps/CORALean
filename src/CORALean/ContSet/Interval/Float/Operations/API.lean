@@ -1,12 +1,14 @@
 import CORALean.ContSet.Interval.Float.Operations.BoundDot
 import CORALean.ContSet.Interval.Float.Operations.BoundNegProj
 import CORALean.ContSet.Interval.Float.Operations.BoundProj
+import CORALean.ContSet.Interval.Float.Operations.CentreMat
 import CORALean.ContSet.Interval.Float.Operations.Intersection
 import CORALean.ContSet.Interval.Float.Operations.IntersectionExact
 import CORALean.ContSet.Interval.Float.Operations.LinComb
 import CORALean.ContSet.Interval.Float.Operations.MatMul
 import CORALean.ContSet.Interval.Float.Operations.MatPlus
 import CORALean.ContSet.Interval.Float.Operations.MatPow
+import CORALean.ContSet.Interval.Float.Operations.MatResidual
 import CORALean.ContSet.Interval.Float.Operations.MinkDiff
 import CORALean.ContSet.Interval.Float.Operations.MtimesIntervalMat
 import CORALean.ContSet.Interval.Float.Operations.Mtimes

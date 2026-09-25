@@ -15,6 +15,7 @@ import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 import CORALean.ContSet.Interval.Float.Theorems.ReindexExact
 import CORALean.ContSet.Interval.Float.Theorems.ReindexNominal
 import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
+import CORALean.ContSet.Interval.Float.Theorems.SubMemMatResidual
 import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
 import CORALean.ContSet.Interval.Float.Theorems.SubsetNonemptyHull
 

@@ -47,8 +47,8 @@ theorem MatExp.expTaylor_mem_expIntervalTaylor (A : Interval (Mat 𝕋 n n))
         ∈ (Interval.matPlus
              (Interval.smul (MatExp.invFactorialBounds (k + 1)).1
                (MatExp.invFactorialBounds (k + 1)).2 (Interval.matPow A (k + 1)))
-             (MatExp.expIntervalTaylor A k)).construct
-    rw [Finset.sum_range_succ, add_comm (∑ i ∈ Finset.range (k + 1),
+             (MatExp.expIntervalTaylor A k)).materialiseMat.construct
+    rw [Interval.materialiseMat_eq, Finset.sum_range_succ, add_comm (∑ i ∈ Finset.range (k + 1),
       ((Nat.factorial i : ℝ)⁻¹) • M ^ i) (((Nat.factorial (k + 1) : ℝ)⁻¹) • M ^ (k + 1))]
     exact Interval.matPlus_outer _ _
       (Interval.smul_outer (MatExp.invFactorialBounds_mem (k + 1)).1
