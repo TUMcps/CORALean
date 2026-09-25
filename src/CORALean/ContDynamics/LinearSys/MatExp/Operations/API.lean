@@ -59,6 +59,8 @@ import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTerm
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermHi
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermLo
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.TaylorCoeffBoundsFloat
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.AccurateOrderFloat
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.AccurateOrderFromFloat
 
 /-!
 # What enclosing a matrix exponential computes

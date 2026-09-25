@@ -61,9 +61,9 @@ Not a guarantee: precision — `scripts/check-demo.sh` is what catches a silent
 widening; an enclosure the size of the state space satisfies every theorem
 here just as a tight one does.
 
-Left out, and why: every continuous-time algorithm (`LinearSys`,
-`LinParamSys`, `NonlinearSys`, `Location.timeIntervalStep*`) has no float
-refinement yet (`pending #1`), only its step's matrices; `reachErrorFloat`/
+Left out, and why: `LinearSys`'s float runs are run in `RotationFloat`; the other
+continuous-time algorithms (`LinParamSys`, `NonlinearSys`, `Location.timeIntervalStep*`)
+have no float refinement yet (`pending #1`), only their steps' matrices; `reachErrorFloat`/
 `reachInnerFloat` are real-valued guarantee objects, legitimately `spec:`;
 `HPolytope.zonotope`/`vPolytopeBox`/`interval`/`conZonotope` and `verifyHalfspace`/
 `verifyConvex` each ask for a `FloatBound`/`SupportBound` a solver alone can supply.

@@ -3,13 +3,13 @@ import CORALean.ContDynamics.LinearSys.MatExp.Operations.FactorialUpFloat
 /-!
 # `MatExp.factorialUp` bounds a factorial from above
 
-`le_nsmulUp` at `one`, `toReal one = 1` collapsing the `k!` copies to `k!`
-itself.
+By induction: `le_nsmulUp` at `one` puts each factor at or above `k`, and a
+product of nonnegative upper bounds is one, so `mulUp` stays above `k · (k-1)!`.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   25-September-2026
 -- Last revision: ---
 
 
@@ -25,10 +25,16 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem MatExp.factorial_le_factorialUp (k : ℕ) :
-    (Nat.factorial k : ℝ) ≤ toReal (MatExp.factorialUp (𝕋 := 𝕋) k) := by
-  rw [MatExp.factorialUp]
-  have h := le_nsmulUp (Nat.factorial k) (one : 𝕋)
-  rwa [toReal_one, mul_one] at h
+    (Nat.factorial k : ℝ) ≤ toReal (MatExp.factorialUp (𝕋 := 𝕋) k) := by -- --- PROOF ---
+  induction k with
+  | zero => rw [MatExp.factorialUp, toReal_one, Nat.factorial_zero, Nat.cast_one]
+  | succ k ih =>
+    -- the factor never undershoots `k + 1`, and both factors are nonnegative
+    have hc := le_nsmulUp (k + 1) (one : 𝕋)
+    rw [toReal_one, mul_one] at hc
+    rw [MatExp.factorialUp, Nat.factorial_succ, Nat.cast_mul]
+    refine le_trans ?_ (mul_le_mulUp _ _)
+    exact mul_le_mul hc ih (by positivity) (le_trans (by positivity) hc)
 
 end CORALean.Float
 

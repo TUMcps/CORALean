@@ -68,6 +68,14 @@ import CORALean.ContDynamics.LinearSys.Operations.WithInputReachStepk
 import CORALean.ContDynamics.LinearSys.Operations.WithInputReach
 import CORALean.ContDynamics.LinearSys.Operations.WithInputSplitReach
 import CORALean.ContDynamics.LinearSys.Operations.WithInputSplitReachStepk
+import CORALean.ContDynamics.LinearSys.Operations.ExpIntervalFloat
+import CORALean.ContDynamics.LinearSys.Operations.ReachOrderFloat
+import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepFloat
+import CORALean.ContDynamics.LinearSys.Operations.TimePointStepFloat
+import CORALean.ContDynamics.LinearSys.Operations.ReachStepkFloat
+import CORALean.ContDynamics.LinearSys.Operations.ReachFloat
+import CORALean.ContDynamics.LinearSys.Operations.ReachRecursiveFloat
+import CORALean.ContDynamics.LinearSys.Operations.WindowOrderFloat
 
 /-!
 # What a continuous-time linear system computes
@@ -80,8 +88,7 @@ those two are measured against; `StepInputConst` is `StepInput` at one held
 vector rather than a whole signal.
 
 `TimeIntervalStepEps` is `TimeIntervalStep` with its truncation order chosen
-from an admissible error rather than given, which is one knob of adaptive
-parameter tuning and not the algorithm.
+from an admissible error, one knob of adaptive tuning and not the algorithm.
 
 `DiscretizeEnclosure` is `Discretize` again, its matrix only enclosed: `e^{AΔt}`
 is transcendental, so where the exponential itself cannot be computed the
@@ -93,6 +100,7 @@ out as a term of its own. `ReachStepk`/`Reach`/`ReachOrder` are `Instances`'
 window, `SetUnion` and order, `WithInputReach…` with `ParticularSolution`,
 `WithInputSplitReach…` with `ConstInputSolution` too; `PostDelta` is CORA's
 `postΔ`, `DeltaReach` plus an uncertain input's `InputSolution`, [1, Sec. 4.1].
+`…Float` run it in `𝕋`: `ReachFloat` wrapping-free, `ReachRecursiveFloat` not.
 
 ## References
 

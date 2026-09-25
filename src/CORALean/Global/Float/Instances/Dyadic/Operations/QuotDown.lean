@@ -5,8 +5,10 @@ import CORALean.Global.Float.Instances.Dyadic.Dyadic
 
 A quotient of dyadics is a general rational, so the direction has to be
 chosen while the integers are still there rather than afterwards, unlike the
-other operations. The dividend is shifted left by `p` bits first, which is
-what buys the quotient its mantissa.
+other operations. The dividend is shifted left first, by `p` bits plus the
+divisor's own length, which is what buys the quotient its `p`-bit mantissa
+whatever the dividend's: a shift of `p` alone leaves `1 / k!` one bit once `k!`
+fills `p` bits of its own.
 
 A divisor of zero divides by zero in ℤ, which is `0` — and bounds nothing,
 which is why `SoundFloatArithmetic` asks for a positive one.
@@ -14,7 +16,7 @@ which is why `SoundFloatArithmetic` asks for a positive one.
 
 -- Authors:       Tobias Ladner
 -- Written:       16-August-2026
--- Last update:   02-September-2026
+-- Last update:   25-September-2026
 -- Last revision: ---
 
 
@@ -30,7 +32,8 @@ variable {p : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def quotDown (a b : Dyadic p) : Dyadic p :=
-  ⟨a.mantissa * 2 ^ p / b.mantissa, a.exponent - b.exponent - p⟩
+  ⟨a.mantissa * 2 ^ (p + b.mantissa.natAbs.log2 + 1) / b.mantissa,
+    a.exponent - b.exponent - ((p + b.mantissa.natAbs.log2 + 1 : ℕ) : ℤ)⟩
 
 end Dyadic
 

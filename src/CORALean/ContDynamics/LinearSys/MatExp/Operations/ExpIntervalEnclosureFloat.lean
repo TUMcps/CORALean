@@ -7,12 +7,13 @@ import CORALean.ContDynamics.LinearSys.MatExp.Operations.NormUpperBoundFloat
 
 `Real.MatExp.expIntervalEnclosure` rounded: the float Taylor box, `expUp`ended
 by the remainder bound taken at `normUpperBound`, exactly as the exact layer
-widens by `expRemainderBound` at `A.absMax`.
+widens by `expRemainderBound` at `A.absMax`. Both are bound once, outside the
+entries, so reading every entry evaluates the Taylor sum once, not per entry.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   25-September-2026
 -- Last revision: ---
 
 
@@ -27,11 +28,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def MatExp.expIntervalEnclosure (A : Interval (Mat 𝕋 n n)) (η : ℕ) : Interval (Mat 𝕋 n n) where
-  inf := fun i j => subDown ((MatExp.expIntervalTaylor A η).inf i j)
-    (MatExp.expRemainderBound (MatExp.normUpperBound A) η)
-  sup := fun i j => addUp ((MatExp.expIntervalTaylor A η).sup i j)
-    (MatExp.expRemainderBound (MatExp.normUpperBound A) η)
+def MatExp.expIntervalEnclosure (A : Interval (Mat 𝕋 n n)) (η : ℕ) : Interval (Mat 𝕋 n n) :=
+  let T := MatExp.expIntervalTaylor A η                                -- the Taylor box
+  let E := MatExp.expRemainderBound (MatExp.normUpperBound A) η       -- its tail, entrywise
+  ⟨fun i j => subDown (T.inf i j) E, fun i j => addUp (T.sup i j) E⟩
 
 end CORALean.Float
 

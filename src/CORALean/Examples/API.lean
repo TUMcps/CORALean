@@ -34,6 +34,7 @@ import CORALean.Examples.ReachFloat
 import CORALean.Examples.ReachOrderStaysBounded
 import CORALean.Examples.ReachSpecializations
 import CORALean.Examples.ReductionAtReal
+import CORALean.Examples.RotationFloat
 import CORALean.Examples.RunnableFloat
 import CORALean.Examples.SimulateAndFalsify
 import CORALean.Examples.SoundCompression
