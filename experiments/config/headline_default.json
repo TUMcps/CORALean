@@ -1,0 +1,59 @@
+{
+  "_comment": "Single source of truth for the headline experiment's fixed system, read by both the Lean harness (Lean.Json) and the MATLAB/CORA scripts (jsondecode). Every real-valued field is a decimal-free rational string 'm/d' or an integer string, exactly representable as m*2^-k for some k >= 0 -- the Lean side rejects one that is not, rather than round it silently. Every value here is exact at 2 significand bits (binary4/E2M1), since the precision ablation runs the same config down to binary4. This is the DEFAULT development config: a = 1/16, b = 1, dt = 1/64, as directed by the paper authors.",
+  "system": {
+    "_comment": "Outward clockwise spiral A = [[a, b], [-b, a]]; eigenvalues a +/- i*b, so the spiral rate is set by a alone.",
+    "a": "1/16",
+    "b": "1"
+  },
+  "x0": {
+    "_comment": "Center + generator columns, all multiples of 1/8. h = 2 generators here.",
+    "center": [
+      "1",
+      "0"
+    ],
+    "generators": [
+      [
+        "1/8",
+        "0"
+      ],
+      [
+        "0",
+        "1/8"
+      ]
+    ]
+  },
+  "dt": "1/64",
+  "eta": 4,
+  "eta_comment": "TO TUNE -- Taylor order for the continuous-time enclosure, placeholder",
+  "rho": 10,
+  "rho_comment": "TO TUNE -- zonotope order bound, placeholder",
+  "turns": 3,
+  "steps": 1207,
+  "steps_comment": "N = ceil(2*pi*turns/dt); given explicitly rather than computed at run time, per the harness contract. 2*pi*3/(1/64) = 1206.37...",
+  "reps": 3,
+  "precisions": [
+    {
+      "type": "dyadic",
+      "format": "binary4"
+    },
+    {
+      "type": "dyadic",
+      "format": "binary8"
+    },
+    {
+      "type": "dyadic",
+      "format": "binary16"
+    },
+    {
+      "type": "dyadic",
+      "format": "binary32"
+    },
+    {
+      "type": "dyadic",
+      "format": "binary64"
+    },
+    {
+      "type": "float"
+    }
+  ]
+}

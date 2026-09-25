@@ -1,0 +1,31 @@
+function run_all_cora(outDir)
+% run_all_cora - runs `run_headline` for every `experiments/config/headline_*.json`
+%    at both schemes -- the CORA-side counterpart of `experiments/run_all.sh`,
+%    kept a separate, documented step since it needs MATLAB and CORA on the
+%    path, neither of which the Lean side's one-command reproduction can
+%    assume.
+%
+% Syntax:
+%    run_all_cora(outDir)
+%
+% Inputs:
+%    outDir - results root (default: 'experiments/results')
+
+% Authors:       Tobias Ladner
+% Written:       25-September-2026
+
+if nargin < 1 || isempty(outDir)
+    outDir = 'experiments/results';
+end
+
+here = fileparts(mfilename('fullpath'));
+repoRoot = fileparts(fileparts(here));
+configs = dir(fullfile(repoRoot, 'experiments', 'config', 'headline_*.json'));
+
+for i = 1:numel(configs)
+    configPath = fullfile(configs(i).folder, configs(i).name);
+    run_headline(configPath, 'a', outDir);
+    run_headline(configPath, 'b', outDir);
+end
+
+end

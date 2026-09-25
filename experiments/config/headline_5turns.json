@@ -1,0 +1,57 @@
+{
+  "_comment": "Same as headline_default.json but a 5-turn horizon instead of 3, the other end of the range the paper authors named.",
+  "system": {
+    "a": "1/16",
+    "b": "1"
+  },
+  "x0": {
+    "center": [
+      "1",
+      "0"
+    ],
+    "generators": [
+      [
+        "1/8",
+        "0"
+      ],
+      [
+        "0",
+        "1/8"
+      ]
+    ]
+  },
+  "dt": "1/64",
+  "eta": 4,
+  "eta_comment": "TO TUNE -- Taylor order for the continuous-time enclosure, placeholder",
+  "rho": 10,
+  "rho_comment": "TO TUNE -- zonotope order bound, placeholder",
+  "turns": 5,
+  "steps": 2011,
+  "steps_comment": "N = ceil(2*pi*turns/dt) = ceil(2*pi*5/(1/64)) = ceil(2010.6...) = 2011",
+  "reps": 3,
+  "precisions": [
+    {
+      "type": "dyadic",
+      "format": "binary4"
+    },
+    {
+      "type": "dyadic",
+      "format": "binary8"
+    },
+    {
+      "type": "dyadic",
+      "format": "binary16"
+    },
+    {
+      "type": "dyadic",
+      "format": "binary32"
+    },
+    {
+      "type": "dyadic",
+      "format": "binary64"
+    },
+    {
+      "type": "float"
+    }
+  ]
+}
