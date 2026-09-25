@@ -34,7 +34,7 @@ open ContSet
 example (sys : NonlinParamSys.WithSteps 𝒵 (fun n => Float.Interval (Vec ℝ n)) 1 1 2)
     (p : NonlinearSys.ReachParams) (X₀ : Zonotope (Vec ℝ 2))
     (spec : Specification (Float.Interval (Vec ℝ 2))) :
-    (Reach.check (S := 𝒵) sys p X₀ spec = true) →
+    Reach.check (S := 𝒵) sys p X₀ spec →
     (spec.Holds (Reach.reachExact (S := 𝒵) sys p (construct X₀))) :=
   Reach.holds_of_check _ _ _ _
 

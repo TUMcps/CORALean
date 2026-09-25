@@ -32,7 +32,7 @@ variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
 theorem LinearSysDT.holds_of_check [Contains ContSet (S n)] [IsDisjoint ContSet (S n)]
     (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o) (R₀ U : S n) (spec : Specification ContSet)
     {x u : ℕ → Vec ℝ n} (traj : sys.Trajectory R₀ U x u) (k : ℕ) :
-    (spec.check (sys.reach o ho R₀ U k) = true) → (spec.Holds {x k}) :=
+    spec.check (sys.reach o ho R₀ U k) → (spec.Holds {x k}) :=
   fun h => sys.holds_of_reach ho R₀ U spec traj k (spec.check_sound _ h)
 
 end CORALean

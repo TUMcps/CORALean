@@ -296,7 +296,7 @@ def checkSafeUnion : Bool := safeBox.check uZ
 def verifySplitRun : Bool := net.verifySplit safeBox (fun X => (X, X)) 2 Z
 
 /-- What `checkSafe`'s `true` is worth: the specification on the network's exact image. -/
-example : (safeBox.check (net.enclose Z) = true) →
+example : safeBox.check (net.enclose Z) →
     (safeBox.Holds (net.eval.out '' ContSet.construct Z)) :=
   net.holds_of_check Z safeBox
 

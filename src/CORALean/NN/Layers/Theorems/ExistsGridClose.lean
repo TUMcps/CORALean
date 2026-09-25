@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {N : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem exists_grid_close {p : Fin (N + 1) → 𝕋} {l u dx : 𝕋} {t : ℝ}
-    (h : gridChecked p l u dx = true) (hl : toReal l ≤ t) (hu : t ≤ toReal u) :
+    (h : gridChecked p l u dx) (hl : toReal l ≤ t) (hu : t ≤ toReal u) :
     ∃ i, |t - toReal (p i)| ≤ toReal dx := by -- --- PROOF ---
   simp only [gridChecked, Bool.and_eq_true] at h
   obtain ⟨⟨⟨h0, hgap⟩, hend⟩, -⟩ := h

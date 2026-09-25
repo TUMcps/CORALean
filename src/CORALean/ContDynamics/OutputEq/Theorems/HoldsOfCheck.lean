@@ -32,7 +32,7 @@ variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ r)]
 theorem OutputEq.holds_of_check [Contains ContSet (S r)] [IsDisjoint ContSet (S r)]
     (out : OutputEq 𝕋 n m r) (R : S n) (U : S m) (spec : Specification ContSet)
     {x : Vec ℝ n} {u : Vec ℝ m} (hx : x ∈ construct R) (hu : u ∈ construct U) :
-    (spec.check (out.outputSet R U) = true) → (spec.Holds {out.eval x u}) :=
+    spec.check (out.outputSet R U) → (spec.Holds {out.eval x u}) :=
   fun h => out.holds_of_outputSet R U spec hx hu (spec.check_sound _ h)
 
 end CORALean

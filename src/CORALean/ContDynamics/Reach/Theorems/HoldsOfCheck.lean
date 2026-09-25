@@ -36,7 +36,7 @@ variable {n : ℕ} {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
 theorem Reach.holds_of_check [Reach Sys Params S] [Contains ContSet (SetUnion (S n))]
     [IsDisjoint ContSet (SetUnion (S n))] (sys : Sys n) (p : Params) (X₀ : S n)
     (spec : Specification ContSet) :
-    (Reach.check sys p X₀ spec = true) →
+    Reach.check sys p X₀ spec →
     (spec.Holds (Reach.reachExact (S := S) sys p (construct X₀))) := by -- --- PROOF ---
   unfold Reach.check
   -- `none` checks `false`, so only a returned set is left, and it encloses
