@@ -267,8 +267,9 @@ root holds only its class file, `Instances.lean` and `API.lean`, that a
 sits outside `ContSet/` but a `Theorems/Real/` and `Global/Float/`, that every
 file carries a module docstring and
 — unless it is a collector — a well-formed author block one line under it, that
-nothing is `sorry` or a search tactic, that nothing outside the one file named
-in the script is an `axiom`, that every `maxHeartbeats` bump
+nothing is `sorry` or a search tactic, that nothing outside the two files named
+in the script is an `axiom` — the second holding `nearestUnsound` alone, and
+imported from nowhere outside `Examples/Bench/` — that every `maxHeartbeats` bump
 carries a reason, that a `def` under `Cost/` is named for the cost it asserts,
 that every `[N]` cited resolves, that the comment lengths and the comment
 density above are respected, that every module is reachable from one of the
@@ -317,6 +318,14 @@ keeps it fast and dependency-free. It reports; it never rewrites.
 the size of the state space satisfies all of them, so a widening is invisible to
 the compiler and visible in that file. It needs a built tree, which is why it is
 not on the pre-commit hook.
+
+`scripts/check-axioms.sh` asks Lean, through `collectAxioms` on the built tree,
+whether any library declaration rests on `nearestUnsound`, the bench's false
+round-to-nearest axiom: the headline guarantees by name, every declaration of
+every module outside `Examples/Bench/` by sweep, and two deliberately tainted
+copies of `reachFloat_outer` as the positive control. It also asserts that this
+and `trustedHardware` are the only two axioms CORALean declares. It needs a built tree too,
+and runs beside `check-demo.sh` in CI's build job.
 
 `scripts/check-references.py` checks `references/` against the tree: that every
 paper cited has a page, that every link on a page resolves and lands on a file
@@ -703,6 +712,15 @@ Directed rounding is achieved without a rounding mode and without C of its own:
 the machine's round-to-nearest result is stepped one unit in the last place
 outward by an increment of its bit pattern. It costs one ulp per operation, paid
 whether or not the operation rounded, which the demo's third table shows.
+
+A third pair of scalars is not a model at all. `Examples/Bench/NearestUnsound`
+rounds to nearest in both directions, as CORA does, and instantiates the class
+by one axiom, `nearestUnsound`, that is FALSE by design — the paper's
+"round-to-nearest (as in CORA)" baseline, run by `bench --type nearest` on the
+unchanged library. Where `trustedHardware` states what the hardware really does,
+it states what it does not; it is tolerable only because nothing outside the
+bench can reach it, which `check-conventions.sh` and `check-axioms.sh` check
+between them. CORALean has exactly these two axioms.
 
 ## Certificates, not algorithms
 

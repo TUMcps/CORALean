@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 # run_runtime.sh -- the number-type runtime ablation on headline_default:
-# schemes headline-a and headline-b, each at four backends --
+# schemes headline-a and headline-b, each at five backends --
 #   * Dyadic binary64, compiled (`lake exe bench`)
 #   * native Float, compiled
+#   * round-to-nearest `NearestFloat`, compiled (`--type nearest`: the unsound
+#     CORA-style baseline, what directed rounding costs against it)
 #   * Dyadic binary64, interpreter (`lake env lean --run`)
 #   * native Float, interpreter
-# -- eight runs, `medianNs` read back from each run's own JSON (the same
+# -- ten runs, `medianNs` read back from each run's own JSON (the same
 # median-over-`--reps` `Timing.lean` computes), into one runtime.csv/.json
 # table under `<out>/headline_default/runtime/`.
 #
@@ -84,6 +86,11 @@ for scheme in headline-a headline-b; do
     --out "$RUNTIME_DIR/compiled-float"
   record "$scheme" compiled float \
     "$RUNTIME_DIR/compiled-float/headline_default/$scheme/float.json"
+
+  lake exe bench "$scheme" --type nearest --config "$CONFIG" --reps "$REPS" \
+    --out "$RUNTIME_DIR/compiled-nearest"
+  record "$scheme" compiled nearest-binary64 \
+    "$RUNTIME_DIR/compiled-nearest/headline_default/$scheme/nearest-binary64.json"
 
   lake env lean --run "$BENCH_ROOT" "$scheme" --type dyadic --format binary64 --config "$CONFIG" \
     --reps "$REPS" --out "$RUNTIME_DIR/interp-dyadic"

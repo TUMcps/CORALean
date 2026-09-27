@@ -1,7 +1,7 @@
 import CORALean.Examples.Bench.Format
 
 /-!
-# `lake exe bench <exp> --type dyadic|float --format binary64 [--config FILE] ...`
+# `lake exe bench <exp> --type dyadic|float|nearest --format binary64 [--config FILE] ...`
 
 The one place the command line is read. `--reps` and `--out` override the
 config's own `reps` and the harness's default output directory; everything
@@ -15,7 +15,7 @@ anything, `Dyadic` accepting any `p`; `--prec` wins if both are given.
 
 -- Authors:       Tobias Ladner
 -- Written:       25-September-2026
--- Last update:   25-September-2026
+-- Last update:   27-September-2026
 -- Last revision: ---
 
 
@@ -43,7 +43,7 @@ structure CliArgs where
 name, which is positional and first. Each flag pattern binds its value
 directly, `"--type" :: v :: rest`, so the recursion stays visibly structural. -/
 def parseArgs : List String → Except String CliArgs
-  | [] => throw "usage: bench <experiment> [--type dyadic|float] \
+  | [] => throw "usage: bench <experiment> [--type dyadic|float|nearest] \
       [--format binary64|binary32|binary16|binary8|binary4] [--prec P] \
       [--config FILE] [--reps N] [--out DIR] [--exact]"
   | exp :: rest => go rest { experiment := exp }
@@ -51,7 +51,8 @@ where
   go : List String → CliArgs → Except String CliArgs
     | [], a => pure a
     | "--type" :: v :: rest, a => do
-      if v ≠ "dyadic" ∧ v ≠ "float" then throw s!"`--type` is `dyadic` or `float`, not `{v}`"
+      if v ≠ "dyadic" ∧ v ≠ "float" ∧ v ≠ "nearest" then
+        throw s!"`--type` is `dyadic`, `float` or `nearest`, not `{v}`"
       go rest { a with ty := v }
     | "--format" :: v :: rest, a => do
       let _ ← formatToPrec v

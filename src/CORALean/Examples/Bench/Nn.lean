@@ -1,5 +1,6 @@
 import CORALean.Examples.Bench.Cli
 import CORALean.Examples.Bench.GitInfo
+import CORALean.Examples.Bench.NearestUnsound.Instances
 import CORALean.Examples.Bench.NnNetwork
 import CORALean.Examples.Bench.Timing
 import CORALean.Global.Float.Instances.Binary64.API
@@ -13,7 +14,9 @@ network the weights denote violates it at `xStar`; CORALean's enclosure, sound a
 `Dyadic 24` and at `Float`, does not certify it. Six analyses, each timed over
 `--reps` runs (default `5`): naive IBP and naive zonotopes in round-to-nearest
 `Float32`, and `NeuralNetwork.enclose` over float intervals and float zonotopes at
-both sound scalars. `--type`/`--format`/`--prec`/`--config` are ignored.
+both sound scalars. Two more rows run that same `enclose` at `NearestDyadic 24`,
+round-to-nearest binary32 as CORA would: the paper's baseline, with NO guarantee.
+`--type`/`--format`/`--prec`/`--config` are ignored.
 
 Writes `<out>/nn/nn-float32.json` -- the network, `X`, the property, `xStar`, the
 exact and binary32 outputs there, each analysis's bounds, verdict and timings, and
@@ -26,7 +29,7 @@ the compiler cannot hoist a closed analysis out of the loop and time nothing.
 
 -- Authors:       Tobias Ladner
 -- Written:       27-September-2026
--- Last update:   ---
+-- Last update:   27-September-2026
 -- Last revision: ---
 
 
@@ -185,11 +188,20 @@ def sound (reps : ℕ) (arithmetic : String) (inst : ExactDyadic → 𝕋) (toD 
     ⟨"zonotope", arithmetic, true, toExact (H.inf 0), toExact (H.sup 0),
       some (toExact (Z.E.inf 0), toExact (Z.E.sup 0)), okZ, sZ, mZ⟩)
 
+open CORALean.Bench.NearestUnsound in
+/-- `sound`'s two analyses at `NearestDyadic 24`, round-to-nearest binary32 — the
+same `enclose`, unverified — and so reported unsound. -/
+def nearest (reps : ℕ) : IO (Outcome × Outcome) := do
+  let (I, Z) ← sound (𝕋 := NearestDyadic 24) reps "round-to-nearest binary32 (unverified)"
+    (fun d => ⟨ExactDyadic.toDyadicPUnchecked d⟩) (fun x => dyadicToFloatApprox x.val)
+    (fun x => ofDyadic x.val)
+  pure ({ I with sound := false }, { Z with sound := false })
+
 /-- `s` padded with spaces to `w` characters. -/
 def pad (w : ℕ) (s : String) : String := s.pushn ' ' (w - s.length)
 
 def row (o : Outcome) : String :=
-  pad 10 o.method ++ pad 36 o.arithmetic ++ pad 7 (if o.sound then "yes" else "no")
+  pad 10 o.method ++ pad 40 o.arithmetic ++ pad 7 (if o.sound then "yes" else "no")
     ++ pad 30 s!"[{o.lo.decimal false}, {o.hi.decimal true}]"
     ++ pad 11 (if o.certifies then "YES" else "no") ++ s!"{o.medianNs}"
 
@@ -200,7 +212,7 @@ open Nn
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Checks the data fits binary32, runs the six analyses and both point
+/-- Checks the data fits binary32, runs the eight analyses and both point
 evaluations, prints the table and writes `<out>/nn/nn-float32.json`. -/
 def runNnFloat32 (args : CliArgs) : IO Unit := do
   let reps := args.reps.getD 5
@@ -215,7 +227,7 @@ def runNnFloat32 (args : CliArgs) : IO Unit := do
   let L₁ := layer₁.map ExactDyadic.toFloat32
   let L₂ := layer₂.map ExactDyadic.toFloat32
   let X : Box32 := ⟨boxLo.map ExactDyadic.toFloat32, boxHi.map ExactDyadic.toFloat32⟩
-  -- the six analyses: naive binary32, then sound at `Dyadic 24` and at `Float`
+  -- the analyses: naive binary32, then sound at `Dyadic 24` and at `Float`
   let ibpO ← naive reps "interval" (ibp L₁ L₂) X
   -- the naive zonotope's input: `X`'s center and radius, both exact in binary32
   let zonoO ← naive reps "zonotope" (fun B => Zono32.box (zono L₁ L₂
@@ -225,14 +237,16 @@ def runNnFloat32 (args : CliArgs) : IO Unit := do
     ExactDyadic.toDyadicPUnchecked dyadicToFloatApprox ofDyadic
   let (f64I, f64Z) ← sound (𝕋 := Float) reps "binary64 (Float), outward rounding"
     ExactDyadic.toFloatUnchecked id ofFloat
-  let outcomes := #[ibpO, zonoO, d24I, d24Z, f64I, f64Z]
+  -- the unsound baseline: the same `enclose`, rounding to nearest as CORA does
+  let (nI, nZ) ← nearest reps
+  let outcomes := #[ibpO, zonoO, d24I, d24Z, f64I, f64Z, nI, nZ]
   -- the table: the example, then one row per analysis
   let first (a : Array ExactDyadic) : String := (a.getD 0 ExactDyadic.zero).decimal false
   IO.println s!"nn-float32: y = relu(x + 2^24) - 2^24 on X = [{first boxLo}, {first boxHi}], \
     property y <= {threshold.decimal false}"
   IO.println s!"  x* = {first xStar}: exact y = {yExact.decimal false}, \
     binary32 y = {yF32.decimal false}"
-  IO.println (pad 10 "method" ++ pad 36 "arithmetic" ++ pad 7 "sound" ++ pad 30 "y in"
+  IO.println (pad 10 "method" ++ pad 40 "arithmetic" ++ pad 7 "sound" ++ pad 30 "y in"
     ++ pad 11 "certifies" ++ "median ns")
   for o in outcomes do IO.println (row o)
   -- the same, and everything else a reader needs to rerun it, as JSON

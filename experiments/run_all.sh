@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 # One-command reproduction of the paper's headline runs, for every
 # experiments/config/headline_*.json (or one, with `--config`): headline-a
-# and headline-b at dyadic binary64 and float, exp2-timepoint at every
-# dyadic format (the precision ablation) -- then the plotting pass
+# and headline-b at dyadic binary64, float and the unsound round-to-nearest
+# baseline (`--type nearest`, binary64), exp2-timepoint at every dyadic format
+# and at every round-to-nearest one (the precision ablation) -- then the plotting pass
 # (to_pgfplots.py --merged) and simulate.py. Also one nn-float32 run.
 # `dtdemo` (the placeholder Euler discretization, not a paper result) is not
 # part of this sweep; `lake exe bench dtdemo ...` still runs it directly.
@@ -108,18 +109,24 @@ for config in $configs; do
   [ -f "$config" ] || continue
   echo "== $config =="
 
-  # headline-a / headline-b: the headline pair, dyadic binary64 and float
+  # headline-a / headline-b: the headline pair, dyadic binary64, float and the
+  # round-to-nearest baseline (NO guarantee, as in CORA)
   for exp in headline-a headline-b; do
     run_experiment "$config $exp dyadic binary64" bench_run "$exp" --type dyadic \
       --format binary64 --config "$config" --out "$OUT_DIR" "${REPS_ARGS[@]}"
     run_experiment "$config $exp float" bench_run "$exp" --type float \
       --config "$config" --out "$OUT_DIR" "${REPS_ARGS[@]}"
+    run_experiment "$config $exp nearest binary64" bench_run "$exp" --type nearest \
+      --config "$config" --out "$OUT_DIR" "${REPS_ARGS[@]}"
   done
 
-  # exp2-timepoint: the precision ablation, every dyadic format binary4..binary64
+  # exp2-timepoint: the precision ablation, every format binary4..binary64, both
+  # outward-rounded (dyadic) and round-to-nearest (nearest, the unsound baseline)
   for format in $PRECISION_FORMATS; do
     run_experiment "$config exp2-timepoint dyadic $format" bench_run exp2-timepoint \
       --type dyadic --format "$format" --config "$config" --out "$OUT_DIR" "${REPS_ARGS[@]}"
+    run_experiment "$config exp2-timepoint nearest $format" bench_run exp2-timepoint \
+      --type nearest --format "$format" --config "$config" --out "$OUT_DIR" "${REPS_ARGS[@]}"
   done
 done
 
