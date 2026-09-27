@@ -36,6 +36,16 @@ MAX_PUBLIC_DECL=1     # public declarations per `Operations/`/`Theorems/` file (
 # keeps it one file rather than a habit.
 AXIOM_FILE=src/CORALean/Global/Float/Instances/Binary64/Definitions/Axioms.lean
 
+# The other file, and the opposite case: `nearestUnsound`, the bench's
+# round-to-nearest baseline, FALSE by design so that the unchanged library runs
+# on what CORA computes with. Tolerable only while nothing but the bench can
+# reach it, so that file may declare this one name and nothing else, and a file
+# outside `BENCH_DIR` that imports a `NearestUnsound` module is refused.
+# `scripts/check-axioms.sh` asks Lean the same question of the proof terms.
+NEAREST_AXIOM_FILE=src/CORALean/Examples/Bench/NearestUnsound/Axioms.lean
+NEAREST_AXIOM=nearestUnsound
+BENCH_DIR=src/CORALean/Examples/Bench/
+
 # `noncomputable` outside a representation's `Real/` layer, the scalar
 # interface's instance at ℝ and a `Definitions/` file is legitimate only for an
 # `aux_` declaration or a name listed here with a reason — see the file's own
@@ -95,6 +105,9 @@ out=$(awk \
   -v MAX_LINES_WO_COMMENT="$MAX_LINES_WO_COMMENT" \
   -v MAX_PUBLIC_DECL="$MAX_PUBLIC_DECL" \
   -v AXIOM_FILE="$AXIOM_FILE" \
+  -v NEAREST_AXIOM_FILE="$NEAREST_AXIOM_FILE" \
+  -v NEAREST_AXIOM="$NEAREST_AXIOM" \
+  -v BENCH_DIR="$BENCH_DIR" \
   -v ALLOWLIST="$ALLOWLIST" '
 BEGIN {
   while ((getline f < LIST) > 0) if (f != "") ARGV[ARGC++] = f
@@ -356,6 +369,10 @@ function check(f,   i, n, collector, want, dir, cap) {
     # elsewhere is about an operation written once over the scalar, which imports both.
     if (f ~ /\/ContSet\/.*\/Real\// && imp[i] ~ /\.Float\./)
       say(f ":" impLine[i] ": a `Real` file must not import `Float`")
+    # The false axioms of the unsound baseline stay inside the bench: `NEAREST_AXIOM_FILE`.
+    if (imp[i] ~ /(^|\.)NearestUnsound(\.|$)/ && index(f, BENCH_DIR) != 1)
+      say(f ":" impLine[i] ": imports `" imp[i] "`, whose axioms are false — only" \
+          " files under " BENCH_DIR " may")
   }
 
   if (f ~ /\/Conversion\// && !(f ~ /\/API\.lean$/) &&
@@ -612,8 +629,13 @@ FNR == 1 {
 
   if (code ~ /(^|[^A-Za-z0-9_'"'"'.])sorry([^A-Za-z0-9_'"'"']|$)/)
     say(FILENAME ":" FNR ": `sorry` — finish the proof or drop the declaration")
-  if (code ~ /^axiom[ \t]/ && FILENAME != AXIOM_FILE)
-    say(FILENAME ":" FNR ": `axiom` — only " AXIOM_FILE " axiomatises anything")
+  if (code ~ /^axiom[ \t]/ && FILENAME == NEAREST_AXIOM_FILE) {
+    if (code !~ ("^axiom[ \t]+" NEAREST_AXIOM "([ \t:]|$)"))
+      say(FILENAME ":" FNR ": `axiom` — this file assumes `" NEAREST_AXIOM "` and" \
+          " nothing else, so one name in `#print axioms` flags the false baseline")
+  } else if (code ~ /^axiom[ \t]/ && FILENAME != AXIOM_FILE)
+    say(FILENAME ":" FNR ": `axiom` — only " AXIOM_FILE " axiomatises anything" \
+        " (and " NEAREST_AXIOM_FILE ", the unsound bench baseline)")
   # Banned outright rather than tracked per-section: nothing in the tree uses
   # it today, and tracking which declarations a `section` covers would mean a
   # second, stateful way to be `noncomputable` beside marking a declaration

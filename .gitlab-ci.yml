@@ -142,11 +142,15 @@ build:
     # outside the tree — and rebuild the library from scratch, twenty minutes
     # for the sake of a step that costs under a second once the tree is built.
     - sh scripts/check-demo.sh
+    # What no build and no text check can say: whether a proof term reaches
+    # `nearestUnsound`, the bench's false round-to-nearest axiom. `collectAxioms`
+    # on the built tree, seconds once built, so here for the demo's reason.
+    - sh scripts/check-axioms.sh
   # Only for a failure of the runner itself. Not `script_failure`: the clone is
   # the one step that fails for reasons outside the tree and it retries itself
-  # above, so a script failure here is a compile error, a warning or a demo whose
-  # numbers moved — all deterministic, and retrying one costs three minutes to
-  # reach the same answer.
+  # above, so a script failure here is a compile error, a warning, a demo whose
+  # numbers moved or a tainted axiom set — all deterministic, and retrying one
+  # costs three minutes to reach the same answer.
   retry:
     max: 2
     when:

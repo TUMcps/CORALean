@@ -49,7 +49,7 @@ CORA/MATLAB, a separate step needing MATLAB and a checked-out CORA -- see
 ## Running an experiment
 
 ```
-lake exe bench <experiment> --type dyadic|float [--format F] [--prec P] [--config FILE] [--reps N] [--out DIR] [--exact]
+lake exe bench <experiment> --type dyadic|float|nearest [--format F] [--prec P] [--config FILE] [--reps N] [--out DIR] [--exact]
 ```
 
 or, without the link step `lake exe` costs (`lake exe bench` links against
@@ -57,7 +57,7 @@ Mathlib's emitted C, which can take a long time; the interpreter needs only
 the built oleans):
 
 ```
-lake env lean --run src/CORALean/Examples/Bench.lean <experiment> --type dyadic|float [--format F] [--prec P] [--config FILE] [--reps N] [--out DIR] [--exact]
+lake env lean --run src/CORALean/Examples/Bench.lean <experiment> --type dyadic|float|nearest [--format F] [--prec P] [--config FILE] [--reps N] [--out DIR] [--exact]
 ```
 
 Flags:
@@ -69,6 +69,8 @@ Flags:
   p`, exact integer arithmetic with the precision below; `float` runs at
   native binary64, `Float`, where the numbers depend on the machine's IEEE 754
   unit and the ten `SoundFloatArithmetic` assumptions `Axioms.lean` states.
+  `nearest` is the unsound round-to-nearest baseline, with NO guarantee: see
+  "Round-to-nearest baseline" below for how `--format`/`--prec` apply to it.
 * `--format F` -- the IEEE-shaped precision label for `--type dyadic`, one of
   `binary64|binary32|binary16|binary8|binary4`, mapped to a `Dyadic`
   significand width (see the table below). Default `binary64` (53 bits, chosen
@@ -336,9 +338,10 @@ sh experiments/run_all.sh [--interp] [--config FILE] [--reps N]
 ```
 
 For every `experiments/config/headline_*.json` (or one, with `--config`):
-`headline-a` and `headline-b` at `--type dyadic --format binary64` and
-`--type float`, `exp2-timepoint` at every dyadic `--format` (the precision
-ablation). Also one `nn-float32 --reps 11` run. Then the plotting pass
+`headline-a` and `headline-b` at `--type dyadic --format binary64`,
+`--type float` and `--type nearest` (the unsound round-to-nearest baseline),
+`exp2-timepoint` at every `--format`, both `--type dyadic` and `--type nearest`
+(the precision ablation). Also one `nn-float32 --reps 11` run. Then the plotting pass
 (`to_pgfplots.py --merged`) over every JSON it produced, and `simulate.py`
 per config. `dtdemo` (the placeholder Euler discretization, not a paper
 result) is not part of this sweep -- `lake exe bench dtdemo ...` still runs
@@ -366,8 +369,9 @@ sh experiments/run_runtime.sh [--out DIR] [--reps N] [--cold-build]
 ```
 
 The number-type runtime ablation on `headline_default`: `headline-a` and
-`headline-b`, each at Dyadic binary64 compiled, native Float compiled, Dyadic
-binary64 interpreted and native Float interpreted -- eight runs, one
+`headline-b`, each at Dyadic binary64 compiled, native Float compiled,
+round-to-nearest `NearestFloat` compiled (`--type nearest`, the unsound
+baseline), Dyadic binary64 interpreted and native Float interpreted -- ten runs, one
 `<out>/headline_default/runtime/runtime.csv`/`.json` table (`scheme,
 backend, number_type, medianNs`), `medianNs` read back out of each run's own
 JSON. `--cold-build` additionally times a cold build of `bench`'s own
@@ -389,15 +393,18 @@ property `y <= 0`. Over the reals the network is the identity on `X`, so
 `x* = 1/4` gives `y = 1/4` and violates the property. In binary32, `2^24`
 absorbs every point of `X`: its neighbours are `2^24 - 1` and `2^24 + 2`.
 
-The experiment runs six analyses, each timed over `--reps` runs (default 5).
+The experiment runs eight analyses, each timed over `--reps` runs (default 5).
 Naive interval bound propagation and naive DeepZ zonotopes, both in
 round-to-nearest `Float32`, get `y in [-2, 0]` and certify the property.
 CORALean's `NeuralNetwork.enclose` over float intervals and over float
 zonotopes, with outward rounding at `Dyadic 24` (binary32's significand) and at
 `Float`, does not certify it. At `Dyadic 24` the bounds are `[-2, 2]` for
 intervals and `[-2, 1]` for zonotopes, error box `[0, 1]` included; at `Float`
-they are `[-7/4, 1/4]` widened by about `3e-8`. The run also reports the network
-at `x*`: exactly, and executed in binary32, where the result is `0`.
+they are `[-7/4, 1/4]` widened by about `3e-8`. The last two rows run that same
+`enclose` at `NearestDyadic 24`, round-to-nearest binary32 as CORA would (see
+below): `[-2, 0]` both ways, error box `[0, 0]`, and a certificate as wrong as
+the naive ones. The run also reports the network at `x*`: exactly, and executed
+in binary32, where the result is `0`.
 `--type`, `--format`, `--prec` and `--config` are ignored.
 
 The run writes `DIR/nn/nn-float32.json`, with `DIR` defaulting to
@@ -410,6 +417,36 @@ unsound baseline, and `NnNetwork` holds the example and
 `naive_float32.py` uses only the Python standard library. It recomputes the
 naive bounds and `y(x*)` with `struct`-rounded binary32 and `fractions`, and
 given the JSON it checks that every one of those numbers agrees.
+
+## Round-to-nearest baseline (`--type nearest`)
+
+```
+lake exe bench <experiment> --type nearest [--format binary32|binary16|binary8|binary4] [--prec P]
+```
+
+The paper's "round-to-nearest (as in CORA)" baseline: every experiment, run by
+the *unchanged* library code on a scalar whose upward and downward operations
+are the same round-to-nearest one, as in CORA. It carries NO guarantee. Plain
+`--type nearest` (or `--format binary64`) is `NearestFloat`, native `Float`
+without the outward step; a narrower `--format`, or `--prec P`, is
+`NearestDyadic p`, round-to-nearest-even at `p` bits on `Dyadic`'s exact
+arithmetic (unbounded exponent, so a format's precision and not its range). At
+`p = 53` it agrees with `NearestFloat` on every one of 1200 random sums, products
+and quotients in the normal range; `--prec 53` runs it, and writes the same file
+as `--type nearest` unless `--out` differs. The JSON's `meta` says
+`"sound": false` and `"label": "round-to-nearest (as in CORA)"`; every other
+type says `"sound": true`.
+
+Its instances live in `src/CORALean/Examples/Bench/NearestUnsound/`, `scoped`
+and opened only by `Registry.dispatchNearest` (and `Nn.nearest`). Their six
+rounding laws are projections of one axiom, `nearestUnsound`, FALSE by design;
+every other law is proved. `scripts/check-axioms.sh` asserts, through Lean's
+`collectAxioms`, that no library declaration reaches it, and that
+`reachFloat_outer` instantiated at the nearest scalars does. The float error box
+`E` is built only from differences of upward and downward roundings, so here it
+is exactly `[0, 0]` on every set, as in CORA, with no library change: checked on
+`dtdemo` (1208 sets), `headline-a`/`headline-b` at binary64 and binary32, and
+`exp2-timepoint` at binary16, on `headline_default`.
 
 ## Pinned versions
 

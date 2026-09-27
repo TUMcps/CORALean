@@ -3,6 +3,7 @@ import CORALean.ContDynamics.LinearSys.Operations.ReachRecursiveFloat
 import CORALean.ContDynamics.LinearSys.Operations.ReachTimePointFloat
 import CORALean.Examples.Bench.Cli
 import CORALean.Examples.Bench.ContRollout
+import CORALean.Examples.Bench.NearestUnsound.API
 import CORALean.Examples.Bench.Nn
 import CORALean.Examples.Bench.Output
 import CORALean.Global.Float.Instances.Binary64.API
@@ -170,9 +171,28 @@ def resolvedPrec (args : CliArgs) : ℕ :=
     | some fmt => (formatToPrec fmt).toOption.getD 53
     | none => 53
 
+open CORALean.Bench.NearestUnsound in
+/-- `--type nearest`, with NO guarantees: `NearestFloat`, or `NearestDyadic p` once
+`--prec` or a `--format` other than `binary64` asks for one. The only code that
+opens the unsound instances, and it runs the same `aux_runAt` as the others. -/
+def dispatchNearest (args : CliArgs) : IO Unit :=
+  match args.prec, args.format with
+  | none, none | none, some "binary64" =>
+    let toExact := if args.exact then some (fun (x : NearestFloat) =>
+      let d := Binary64.toDyadic x.val; s!"{d.mantissa}*2^{d.exponent}") else none
+    aux_runAt (𝕋 := NearestFloat) args (fun field d => (ExactDyadic.toFloat field d).map (⟨·⟩))
+      (fun d => ⟨ExactDyadic.toFloatUnchecked d⟩) (·.val) "binary64" toExact 53
+  | _, _ =>
+    let p := resolvedPrec args
+    let toExact := if args.exact then
+      some (fun (x : NearestDyadic p) => s!"{x.val.mantissa}*2^{x.val.exponent}") else none
+    aux_runAt (𝕋 := NearestDyadic p) args (fun field d => (d.toDyadicP field p).map (⟨·⟩))
+      (fun d => ⟨ExactDyadic.toDyadicPUnchecked d⟩) (fun x => dyadicToFloatApprox x.val)
+      (precToFormat p) toExact p
+
 /-- Runs `args.experiment` at the scalar `args.ty` names -- `Dyadic p` (`p`
-from `resolvedPrec`) or `Float`, the one branch here that picks the type
-`aux_runAt` is generic over. -/
+from `resolvedPrec`), `Float`, or the unsound `nearest` baseline, the one branch
+here that picks the type `aux_runAt` is generic over. -/
 def dispatch (args : CliArgs) : IO Unit :=
   match args.ty with
   | "float" =>
@@ -180,6 +200,7 @@ def dispatch (args : CliArgs) : IO Unit :=
       s!"{d.mantissa}*2^{d.exponent}") else none
     aux_runAt (𝕋 := Float) args ExactDyadic.toFloat ExactDyadic.toFloatUnchecked id
       "binary64" toExact 53
+  | "nearest" => dispatchNearest args
   | _ =>
     let p := resolvedPrec args
     let toExact := if args.exact then

@@ -9,7 +9,7 @@ import CORALean.Global.Float.Instances.Binary64.Operations.MulUp
 One property with ten conjuncts: everything `SoundFloatArithmetic` asks of a
 scalar, stated about `Float`'s own operations and about the decoding `toReal`
 defines. `Axioms` assumes this once, and that assumption is the only one in the
-repository.
+library.
 
 Bundled rather than left as ten separate assumptions so that the trust is a
 single object: one name in every `#print axioms` that reaches `Float`, one place
@@ -24,7 +24,7 @@ them.
 
 -- Authors:       Tobias Ladner
 -- Written:       22-September-2026
--- Last update:   ---
+-- Last update:   27-September-2026
 -- Last revision: ---
 
 

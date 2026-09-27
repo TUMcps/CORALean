@@ -20,12 +20,13 @@ round-trip 17-digit decimal (`FloatPrint.lean`), not `Float.toString`'s six.
 actually reads: the interval hull's width per dimension and the error box's
 radius, derived once here so `experiments/plot/` never recomputes them from
 `G`. `format`/`sig` are the IEEE-shaped label and significand width
-`Format.lean` maps to and from.
+`Format.lean` maps to and from; `sound`, in every `meta`, is `false` for
+`--type nearest` alone, the round-to-nearest baseline.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       25-September-2026
--- Last update:   ---
+-- Last update:   27-September-2026
 -- Last revision: ---
 
 
@@ -61,19 +62,26 @@ def stepJson (toD : 𝕋 → Float) (toExact : Option (𝕋 → String)) (k : �
         [ ("inf", Json.arr (Array.ofFn fun i => sj (Z.E.inf i))),
           ("sup", Json.arr (Array.ofFn fun i => sj (Z.E.sup i))) ]) ]
 
+/-- `sound` and `label`: `nearest` is the unsound round-to-nearest baseline, and
+every other type is outward-rounded. In every `meta`, `writeRunNone`'s included. -/
+def soundFields (ty : String) : List (String × Json) :=
+  [ ("sound", Lean.toJson (ty != "nearest")),
+    ("label", Json.str (if ty = "nearest" then "round-to-nearest (as in CORA)"
+      else "outward rounding (sound)")) ]
+
 /-- `meta`: everything about the run that is not a per-step number. `configJ`
 is the config file's own parsed `Json`, echoed back verbatim rather than
 re-serialised, so it can never drift from what was read. -/
 def metaJson (experiment scheme ty format : String) (sig : ℕ) (configJ : Json) (eta : ℕ)
     (commit leanVer : String) (mach : MachineInfo) (samples : Array Nat) (medianNs : Nat) :
     IO Json := do
-  pure (Json.mkObj
+  pure (Json.mkObj (
     [ ("experiment", Json.str experiment),
       ("scheme", Json.str scheme),
       ("type", Json.str ty),
       ("format", Json.str format),
-      ("significand_bits", Lean.toJson sig),
-      ("config", configJ),
+      ("significand_bits", Lean.toJson sig) ] ++ soundFields ty ++
+    [ ("config", configJ),
       ("eta", Lean.toJson eta),
       ("gitCommit", Json.str commit),
       ("leanVersion", Json.str leanVer),
@@ -81,7 +89,7 @@ def metaJson (experiment scheme ty format : String) (sig : ℕ) (configJ : Json)
         [ ("uname", Json.str mach.uname), ("cpu", Json.str mach.cpu),
           ("cores", Lean.toJson mach.cores) ]),
       ("timingsNs", Json.arr (samples.map Lean.toJson)),
-      ("medianNs", Lean.toJson medianNs) ])
+      ("medianNs", Lean.toJson medianNs) ]))
 
 /-- One row of the CSV per step: `k`, `t`, the nominal hull's width per
 dimension (`2 * sum |G_ij|`, CORA's own interval-hull formula), and the error
@@ -135,14 +143,14 @@ plus `rho`, `N`, `dt` (the run's own, not just the config's) and `summary`. -/
 def metaJsonRun (experiment scheme ty format : String) (sig : ℕ) (configJ : Json) (eta rho N : ℕ)
     (dtFloat : Float) (commit leanVer : String) (mach : MachineInfo) (samples : Array Nat)
     (medianNs : Nat) (summaryTi summaryTp : Json) : Json :=
-  Json.mkObj
+  Json.mkObj (
     [ ("status", Json.str "ok"),
       ("experiment", Json.str experiment),
       ("scheme", Json.str scheme),
       ("type", Json.str ty),
       ("format", Json.str format),
-      ("significand_bits", Lean.toJson sig),
-      ("config", configJ),
+      ("significand_bits", Lean.toJson sig) ] ++ soundFields ty ++
+    [ ("config", configJ),
       -- the run's own tuning, not just the config's requested `eta`
       ("eta", Lean.toJson eta),
       ("rho", Lean.toJson rho),
@@ -156,7 +164,7 @@ def metaJsonRun (experiment scheme ty format : String) (sig : ℕ) (configJ : Js
       ("timingsNs", Json.arr (samples.map Lean.toJson)),
       ("medianNs", Lean.toJson medianNs),
       -- `Summary.summaryJson`'s object, one per array -- see that file for the fields
-      ("summary", Json.mkObj [("ti", summaryTi), ("tp", summaryTp)]) ]
+      ("summary", Json.mkObj [("ti", summaryTi), ("tp", summaryTp)]) ])
 
 /-- Writes `<out>.json` (`meta`, `sets_ti`, `sets_tp`) and `<out>.csv` (both
 arrays, tagged) for `headline-a`/`headline-b`/`exp2-timepoint` -- either array
@@ -195,15 +203,15 @@ def writeRunNone (out : System.FilePath) (experiment scheme ty format : String) 
   match out.parent with
   | some dir => IO.FS.createDirAll dir
   | none => pure ()
-  let doc := Json.mkObj
+  let doc := Json.mkObj (
     [ ("status", Json.str "none"),
       ("experiment", Json.str experiment),
       ("scheme", Json.str scheme),
       ("type", Json.str ty),
       ("format", Json.str format),
-      ("significand_bits", Lean.toJson sig),
-      ("config", configJ),
-      ("reason", Json.str reason) ]
+      ("significand_bits", Lean.toJson sig) ] ++ soundFields ty ++
+    [ ("config", configJ),
+      ("reason", Json.str reason) ])
   IO.FS.writeFile (out.toString ++ ".json") doc.pretty
 
 end CORALean.Bench
