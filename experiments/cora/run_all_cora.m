@@ -5,6 +5,11 @@ function run_all_cora(outDir)
 %    path, neither of which the Lean side's one-command reproduction can
 %    assume.
 %
+%    A relative `outDir` (the default included) is resolved against this
+%    file's own directory by `run_headline` itself, robust to the working
+%    directory having drifted since the caller's `cd` -- see that file's
+%    module docstring.
+%
 % Syntax:
 %    run_all_cora(outDir)
 %
@@ -13,6 +18,7 @@ function run_all_cora(outDir)
 
 % Authors:       Tobias Ladner
 % Written:       25-September-2026
+% Last update:   27-September-2026
 
 if nargin < 1 || isempty(outDir)
     outDir = 'experiments/results';

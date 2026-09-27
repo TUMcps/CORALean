@@ -76,6 +76,29 @@ def timeRollout (toD : 𝕋 → Float) (S : System 𝕋) (o N reps : ℕ) :
     lastSum := cs
   pure (samples, medianNanos samples, lastSum, lastArr)
 
+/-- Runs `f ()` -- a `headline-a`/`headline-b`/`exp2-timepoint` algorithm call
+-- `reps` times, forcing a `some` result's lists through `checksum` exactly as
+`timeRollout` forces `rollout`'s; a `none` needs no forcing. -/
+def timeAlgo (toD : 𝕋 → Float)
+    (f : Unit → Option (List (Zonotope 𝕋 2) × List (Zonotope 𝕋 2))) (reps : ℕ) :
+    IO (Array Nat × Nat × Option (List (Zonotope 𝕋 2) × List (Zonotope 𝕋 2))) := do
+  let mut samples := #[]
+  let mut lastR : Option (List (Zonotope 𝕋 2) × List (Zonotope 𝕋 2)) := none
+  for _ in [0:reps] do
+    let t0 ← IO.monoNanosNow
+    let r := f ()
+    match r with
+    | none => pure ()
+    | some (ti, tp) =>
+      let cs := checksum toD ti.toArray + checksum toD tp.toArray
+      if cs.isNaN then
+        IO.eprintln "bench: checksum is NaN -- a step likely overflowed at this precision"
+      else pure ()
+    let t1 ← IO.monoNanosNow
+    samples := samples.push (t1 - t0)
+    lastR := r
+  pure (samples, medianNanos samples, lastR)
+
 end CORALean.Bench
 
 

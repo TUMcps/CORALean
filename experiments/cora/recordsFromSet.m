@@ -16,12 +16,21 @@ function recs = recordsFromSet(setCell, timeCell, isInterval)
 %
 % Outputs:
 %    recs - struct array, one entry per step, fields k, t0, t1, c, G, Einf,
-%           Esup
+%           Esup, kept as doubles here -- writeRunFiles.m is where every one
+%           is formatted, at full (%.17g) precision.
 
 % Authors:       Tobias Ladner
 % Written:       25-September-2026
+% Last update:   27-September-2026
 
 n = numel(setCell);
+if n == 0
+    % `recs(0) = ...` is not valid MATLAB -- an explicit 0x0 struct array
+    % instead, so a scheme with no time-point set (or none requested) writes
+    % `sets_tp: []` rather than erroring.
+    recs = struct('k', {}, 't0', {}, 't1', {}, 'c', {}, 'G', {}, 'Einf', {}, 'Esup', {});
+    return
+end
 recs(n) = struct('k', 0, 't0', 0, 't1', 0, 'c', [], 'G', [], 'Einf', [], 'Esup', []);
 for k = 1:n
     Z = setCell{k};

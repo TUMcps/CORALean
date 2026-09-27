@@ -47,7 +47,7 @@ structure System (𝕋 : Type) where
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A row of the config's `x0.generators`, read into `𝕋` -- one column of `X0.G`
-once `aux_buildX0` transposes the rows CORA-style into columns. -/
+once `buildX0` transposes the rows CORA-style into columns. -/
 def aux_readVec (field : String) (inst : String → ExactDyadic → Except String 𝕋)
     (row : Array String) : Except String (Array 𝕋) :=
   row.mapM fun s => do inst field (← parseExact s)
@@ -58,8 +58,9 @@ def aux_zeroInput (z0 : 𝕋) : Zonotope 𝕋 2 :=
   { h := 0, c := fun _ => z0, G := fun _ j => j.elim0, E := ⟨fun _ => z0, fun _ => z0⟩ }
 
 /-- `X0` from the config's center and generator rows, all read into `𝕋` through
-`inst`; `zeroI` is the box `X0` starts with, no rounding having happened yet. -/
-def aux_buildX0 (cfg : HeadlineConfig) (inst : String → ExactDyadic → Except String 𝕋)
+`inst` -- shared with `ContRollout.buildContSystem`, so not `aux_`-named despite
+living beside the auxiliaries it is built from. -/
+def buildX0 (cfg : HeadlineConfig) (inst : String → ExactDyadic → Except String 𝕋)
     (z0 : 𝕋) : Except String (Zonotope 𝕋 2) := do
   if cfg.x0Center.size ≠ 2 then throw "config `x0.center` must have exactly 2 entries" else
   let cArr ← aux_readVec "x0.center" inst cfg.x0Center
@@ -94,7 +95,7 @@ def buildSystem (cfg : HeadlineConfig) (inst : String → ExactDyadic → Except
   let a11 := instUnchecked (ExactDyadic.one.add dtA11)
   let z0 ← inst "0" ExactDyadic.zero
   let Ad : Mat 𝕋 2 2 := Matrix.of ![![a00, a01], ![a10, a11]]
-  let X0 ← aux_buildX0 cfg inst z0
+  let X0 ← buildX0 cfg inst z0
   pure ⟨⟨Ad⟩, X0, aux_zeroInput z0⟩
 
 /-- One step of `LinearSysDT.reach`'s own recursion, exposed so `rollout` and
