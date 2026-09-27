@@ -11,6 +11,12 @@ else about a run comes from the config file, which is the point of having one.
 reported once rather than resurfacing wherever `args.format` is read later.
 `--prec` is the raw-bit-count escape hatch and is not checked against
 anything, `Dyadic` accepting any `p`; `--prec` wins if both are given.
+
+`--net` and `--images` are `nn-mnist`'s own: which of the three converted
+networks (`experiments/nn/mnist/nets/`) to run, and how many of the 100
+converted images to use. Left `none` and defaulted by the experiment itself,
+the way `--reps` is, rather than validated here -- neither name means
+anything to `dtdemo` or `nn-float32`.
 -/
 
 -- Authors:       Tobias Ladner
@@ -35,6 +41,8 @@ structure CliArgs where
   reps : Option Nat := none
   outDir : String := "experiments/results"
   exact : Bool := false
+  net : Option String := none
+  images : Option Nat := none
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -45,7 +53,8 @@ directly, `"--type" :: v :: rest`, so the recursion stays visibly structural. -/
 def parseArgs : List String → Except String CliArgs
   | [] => throw "usage: bench <experiment> [--type dyadic|float|nearest] \
       [--format binary64|binary32|binary16|binary8|binary4] [--prec P] \
-      [--config FILE] [--reps N] [--out DIR] [--exact]"
+      [--config FILE] [--reps N] [--out DIR] [--exact] [--net small|medium|large] \
+      [--images K]"
   | exp :: rest => go rest { experiment := exp }
 where
   go : List String → CliArgs → Except String CliArgs
@@ -68,6 +77,11 @@ where
       | none => throw s!"`--reps` needs a natural number, not `{v}`"
     | "--out" :: v :: rest, a => go rest { a with outDir := v }
     | "--exact" :: rest, a => go rest { a with exact := true }
+    | "--net" :: v :: rest, a => go rest { a with net := some v }
+    | "--images" :: v :: rest, a =>
+      match v.toNat? with
+      | some k => go rest { a with images := some k }
+      | none => throw s!"`--images` needs a natural number, not `{v}`"
     | [flag], _ => throw s!"`{flag}` needs a value"
     | flag :: _, _ => throw s!"unrecognised argument `{flag}`"
 

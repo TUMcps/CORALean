@@ -13,7 +13,8 @@ experiments/
                 MATLAB/CORA scripts (jsondecode). See "Config format" below.
   cora/         MATLAB scripts running the same experiments through CORA,
                 a separate documented step -- see "CORA" below.
-  nn/           naive_float32.py, the `nn-float32` cross-check.
+  nn/           naive_float32.py, the `nn-float32` cross-check; mnist/, the
+                `nn-mnist` ablation's converted networks, data and scripts.
   plot/         to_pgfplots.py and simulate.py: Python 3 standard library
                 only, turn a run's JSON (or a config) into pgfplots .dat
                 files for the paper's TikZ figures.
@@ -63,8 +64,9 @@ lake env lean --run src/CORALean/Examples/Bench.lean <experiment> --type dyadic|
 Flags:
 
 * `<experiment>` -- one of `dtdemo`, `headline-a`, `headline-b`,
-  `exp2-timepoint`, `nn-float32` (the last ignores `--type`/`--format`/
-  `--prec`/`--config`; see its own section below).
+  `exp2-timepoint`, `nn-float32` (ignores `--type`/`--format`/`--prec`/
+  `--config`), `nn-mnist` (ignores `--config`, takes its own `--net`/
+  `--images`; see their own sections below).
 * `--type dyadic|float` -- `dyadic` (default) runs at `CORALean.Float.Dyadic
   p`, exact integer arithmetic with the precision below; `float` runs at
   native binary64, `Float`, where the numbers depend on the machine's IEEE 754
@@ -417,6 +419,128 @@ unsound baseline, and `NnNetwork` holds the example and
 `naive_float32.py` uses only the Python standard library. It recomputes the
 naive bounds and `y(x*)` with `struct`-rounded binary32 and `fractions`, and
 given the JSON it checks that every one of those numbers agrees.
+
+## MNIST rounding-error ablation (`nn-mnist`)
+
+```
+lake exe bench nn-mnist --net small|medium|large --type dyadic|float [--format F] \
+  [--reps N] [--images K] [--out DIR]
+bash experiments/nn/mnist/run_mnist.sh [--interp] [--net NAME] [--images K] [--reps N]
+python3 experiments/nn/mnist/make_table.py DIR DIR/nn-mnist/mnist_table
+```
+
+How much sound enclosure radius accumulates through a *real* classifier
+rather than `nn-float32`'s one-neuron example: the three VNN-COMP 2021
+`mnistfc` networks (`small`/`medium`/`large`, 2/4/6 hidden ReLU layers of
+256, 784 inputs, 10 outputs), converted once (`experiments/nn/mnist/`, see
+`SOURCES.md` for the exact commands, URLs and checksums) into a flat
+hex-float32 text format `MnistParse.lean` decodes exactly, propagated by
+`NeuralNetwork.enclose` -- the same library call `nn-float32` uses -- over
+the first 100 MNIST test images.
+
+Propagated as a **box** (`Float.Interval (Vec 𝕋 n)`), not a zonotope. Every
+input here is a single point `x = k / 255`, so its zonotope would start with
+no generators at all; the only ones a run through this network would ever
+carry come from the interval-weight affine layers below (never from the
+input), and a plain box already encloses those exactly as tightly as a
+zero-generator zonotope would -- so propagating as a box loses nothing that
+matters here, at a fraction of the cost (`Mtimes`/`Relu` on a box cost
+`O(rows × cols)` per layer with no generator bookkeeping at all, where a
+zonotope pays a full layer-width of *new* generators at every `affineLayer`
+and every `Relu`). Float-zonotope propagation was tried first and dropped
+for exactly this reason -- `MnistNetwork.runLayers`'s own docstring has the
+detail.
+
+Every weight and bias is `float32`; at `binary32` and wider it sits on the
+run's grid exactly, and narrower than that `MnistNetwork.affineLayer` rounds
+it outward into an interval matrix instead of rejecting it (the library's
+`NN/Layers/` has no interval-weight linear layer; `affineLayer` reuses the
+interval-matrix `Mtimes` instance built for `LinParamSys`'s uncertain system
+matrix) -- one construction sound at every precision. Each pixel `k / 255` is
+enclosed by the box `[divDown k 255, divUp k 255]`, both directed roundings
+of the same ratio (`inputBox`, `MnistNetwork.inputBox_sound`).
+
+Per image: `certified` is the enclosure's own bounds (`ltStrict`, a sound,
+one-ulp-margined `<`) showing the predicted class's lower bound beats every
+other logit's upper bound; `predicted` is the propagated box's own midpoint
+argmax, `accuracy` (`predicted = label`) reported for context, not as the
+point of the experiment. A box has no generators to separate from rounding
+error, so `error_radius` and `total_radius` are the same width, both
+reported for the JSON shape a zonotope run would have used. The per-layer
+mean width, one row per `Gemm`, goes to
+`<out>/nn-mnist/<net>/<type>[-<format>]-layers.dat`
+(`# layer mean_radius max_radius`, `mean`/`max` over images) for a log-scale
+growth plot; the full per-image detail sits in the matching `.json`.
+
+**Performance**: `Vec`/`Mat` are function types, and a *named* Lean
+declaration whose result is a function type is compiled eta-expanded to that
+further arity (`Global/Tensor.lean`'s own docstring) -- so a `def` that
+builds an array and returns it as a bare `Mat`/`Vec` does not cache that
+array across reads, and every `(i, j)` read recomputes the whole thing. This
+first showed up as ~2 s/image at native `Float` on the smallest network
+(256×2, some 270k multiply-adds -- three to four orders of magnitude too
+slow), confirmed by timing 1/2/3-layer synthetic nets and seeing the cost
+jump the moment a 256-wide hidden layer appeared rather than scale smoothly
+with layer count. The fix stays inside this bench:
+`MnistNetwork.materialiseVec`/`materialiseMat` wrap the materialised array
+in a one-field structure (`VecBox`/`MatBox`) so the `def` producing it ends
+in a structure type and is not eta-expanded, and the input box is forced
+once per image through the library's own `Interval.materialise`.
+Before/after, native `Float`, median ns/image:
+
+| net | before | after |
+| --- | --- | --- |
+| small (2 hidden) | 3.04 s | 0.92 s |
+| medium (4 hidden) | 3.84 s | 1.43 s |
+| large (6 hidden) | 5.28 s | 1.95 s |
+
+The fix removes the quadratic blow-up (confirmed linear growth with layer
+count afterwards) and is a genuine 2.7-3.3x win, but does not reach a
+`< 50 ms`/image target. A second suspect was `Array.getD`'s default
+argument: Lean evaluates arguments strictly, so a default of `v i`/`M i j`
+(the original, unmaterialised closure) would still force it on every read;
+both now default to `zero` instead, never actually returned since a
+`Fin`-bounded index is always in range. Measured with and without: no
+further change past noise, so this was a correctness/style fix (a
+strict-language default must be cheap), not the bottleneck. What remains
+looks like a roughly-constant per-elementary-operation overhead (typeclass
+dispatch, `Fin`-indexed access) inherent to this generic, verified Lean code
+at 256-wide layers, not a further caching bug found so far. At the numbers
+above, the full sweep below (100 images, every net × precision) runs in
+minutes rather than hours.
+
+`--images` defaults to 100; `run_mnist.sh` sweeps every network, every
+dyadic `--format`, `--type float`, and (where the tree has it) `--type
+nearest`'s round-to-nearest baseline at every format, and writes
+`mnist_table.tex`/`.csv` (`make_table.py`, stdlib only) -- one row per
+network, one column per precision labelled the paper's own way (`p =
+4/8/16/32/64`, the IEEE format's total width), each cell `mean error radius
+/ % certified / median ms`. A `nearest` column is headed "round-to-nearest
+(as in CORA), unverified" and its certified cell always reads "n/a
+(unsound)" -- `--type nearest` carries no soundness guarantee at all (see
+below), so its `certified` fraction is never printed as if it were one; the
+JSON's own `meta.sound`/`meta.label` say the same:
+
+Each cell: mean/max output error radius (`E`) -- % certified, accuracy -- median ms/image.
+
+| net | p=4 | p=8 | p=16 | p=32 | p=64 | float (p=64) |
+|---|---|---|---|---|---|---|
+| small | 3.3e+91 / 3.3e+93 -- 0%, 5% -- 1775 ms | 2e+16 / 1.3e+18 -- 0%, 14% -- 1574 ms | 0.38 / 0.86 -- 100%, 100% -- 1663 ms | 4.3e-05 / 0.0001 -- 100%, 100% -- 1880 ms | 7.8e-14 / 1.9e-13 -- 100%, 100% -- 2117 ms | 1.3e-12 / 2.5e-12 -- 100%, 100% -- 946 ms |
+| medium | 4.8e+169 / 4.8e+171 -- 0%, 5% -- 2847 ms | 1.2e+38 / 8.2e+39 -- 0%, 13% -- 2587 ms | 1.1 / 9.1 -- 78%, 100% -- 2587 ms | 0.00011 / 0.00058 -- 100%, 100% -- 2905 ms | 1.9e-13 / 1.1e-12 -- 100%, 100% -- 3290 ms | 2.9e-12 / 9.4e-12 -- 100%, 100% -- 1460 ms |
+| large | 2.5e+248 / 2.5e+250 -- 0%, 10% -- 4003 ms | 2.8e+57 / 1.6e+59 -- 0%, 7% -- 3672 ms | 6.9e+03 / 1.3e+05 -- 0%, 32% -- 3541 ms | 0.00038 / 0.0022 -- 100%, 99% -- 3936 ms | 6.8e-13 / 4.1e-12 -- 100%, 99% -- 4436 ms | 9.7e-12 / 3.6e-11 -- 100%, 99% -- 2029 ms |
+
+Round-to-nearest (as in CORA), unverified -- `certified` is always "n/a (unsound)"; cell: accuracy -- median ms/image.
+
+| net | p=4 | p=8 | p=16 | p=32 | p=64 |
+|---|---|---|---|---|---|
+| small | 87% -- 1149 ms | 100% -- 1180 ms | 100% -- 1191 ms | 100% -- 1250 ms | 100% -- 276 ms |
+| medium | 89% -- 1780 ms | 100% -- 1810 ms | 100% -- 1833 ms | 100% -- 1900 ms | 100% -- 424 ms |
+| large | 90% -- 2379 ms | 100% -- 2433 ms | 99% -- 2473 ms | 99% -- 2524 ms | 99% -- 552 ms |
+
+Sanity checks run once, by hand: plain accuracy at `binary64`/`Float` is in
+the mid-to-high 90s (these nets are trained), and one image's logits agree
+with a numpy `float64` re-implementation reading the same ONNX weights (see
+`SOURCES.md`).
 
 ## Round-to-nearest baseline (`--type nearest`)
 

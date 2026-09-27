@@ -4,7 +4,10 @@
 # and headline-b at dyadic binary64, float and the unsound round-to-nearest
 # baseline (`--type nearest`, binary64), exp2-timepoint at every dyadic format
 # and at every round-to-nearest one (the precision ablation) -- then the plotting pass
-# (to_pgfplots.py --merged) and simulate.py. Also one nn-float32 run.
+# (to_pgfplots.py --merged) and simulate.py. Also one nn-float32 run, and the
+# full `nn-mnist` rounding-error ablation (`experiments/nn/mnist/run_mnist.sh`,
+# every network and precision), run last so its own JSONs (a different
+# schema) never reach the `to_pgfplots.py` sweep above them.
 # `dtdemo` (the placeholder Euler discretization, not a paper result) is not
 # part of this sweep; `lake exe bench dtdemo ...` still runs it directly.
 #
@@ -134,7 +137,7 @@ echo "== plotting =="
 while IFS= read -r run; do
   run_experiment "plot $run" python3 experiments/plot/to_pgfplots.py "$run" \
     "${run%.json}-plot" --merged
-done < <(find "$OUT_DIR" -name '*.json')
+done < <(find "$OUT_DIR" -name '*.json' -not -path '*/nn-mnist/*')
 
 echo "== simulation =="
 for config in $configs; do
@@ -143,6 +146,15 @@ for config in $configs; do
   run_experiment "simulate $config" python3 experiments/plot/simulate.py "$config" \
     "$OUT_DIR/$name/simulate.dat"
 done
+
+echo "== nn-mnist =="
+if ! BENCH_OUT_DIR="$OUT_DIR" BENCH_BACKEND="$BACKEND" \
+    bash experiments/nn/mnist/run_mnist.sh "${REPS_ARGS[@]}"; then
+  FAILED_RUNS+=("nn-mnist sweep (see its own output above)")
+fi
+if ! python3 experiments/nn/mnist/make_table.py "$OUT_DIR" "$OUT_DIR/nn-mnist/mnist_table"; then
+  FAILED_RUNS+=("nn-mnist make_table.py")
+fi
 
 if [ "${#FAILED_RUNS[@]}" -gt 0 ]; then
   echo "run_all: FAILED (${#FAILED_RUNS[@]} run(s)):"
