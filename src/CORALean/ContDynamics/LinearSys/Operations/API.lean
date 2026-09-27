@@ -60,9 +60,9 @@ import CORALean.ContDynamics.LinearSys.Operations.TunedReach
 import CORALean.ContDynamics.LinearSys.Operations.VerifyStep
 import CORALean.ContDynamics.LinearSys.Operations.VerifyRun
 import CORALean.ContDynamics.LinearSys.Operations.Verify
-import CORALean.ContDynamics.LinearSys.Operations.Reach
+import CORALean.ContDynamics.LinearSys.Operations.ReachWrappingFree
 import CORALean.ContDynamics.LinearSys.Operations.ReachOrder
-import CORALean.ContDynamics.LinearSys.Operations.ReachStepk
+import CORALean.ContDynamics.LinearSys.Operations.ReachStepkWrappingFree
 import CORALean.ContDynamics.LinearSys.Operations.ParticularSolution
 import CORALean.ContDynamics.LinearSys.Operations.WithInputReachStepk
 import CORALean.ContDynamics.LinearSys.Operations.WithInputReach
@@ -72,13 +72,13 @@ import CORALean.ContDynamics.LinearSys.Operations.ExpIntervalFloat
 import CORALean.ContDynamics.LinearSys.Operations.ReachOrderFloat
 import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepFloat
 import CORALean.ContDynamics.LinearSys.Operations.TimePointStepFloat
-import CORALean.ContDynamics.LinearSys.Operations.ReachStepkFloat
+import CORALean.ContDynamics.LinearSys.Operations.ReachStepkWrappingFreeFloat
+import CORALean.ContDynamics.LinearSys.Operations.ReachWrappingFreeFloat
 import CORALean.ContDynamics.LinearSys.Operations.ReachFloat
-import CORALean.ContDynamics.LinearSys.Operations.ReachRecursiveFloat
 import CORALean.ContDynamics.LinearSys.Operations.SquaringsFloat
 import CORALean.ContDynamics.LinearSys.Operations.SampleTimeFloat
 import CORALean.ContDynamics.LinearSys.Operations.ExpSquaringFloat
-import CORALean.ContDynamics.LinearSys.Operations.ReachTimePointFloat
+import CORALean.ContDynamics.LinearSys.Operations.ReachTimePointWrappingFreeFloat
 
 /-!
 # What a continuous-time linear system computes
@@ -99,11 +99,11 @@ result is a `LinParamSysDT` over an interval matrix rather than a `LinearSysDT`.
 
 `InputTaylorSumTail` is `InputTaylorSum` from order `1` instead of `0`, the
 split Wetzlinger et al.'s adaptive reachability needs, which keeps order `0`
-out as a term of its own. `ReachStepk`/`Reach`/`ReachOrder` are `Instances`'
-window, `SetUnion` and order, `WithInputReach…` with `ParticularSolution`,
-`WithInputSplitReach…` with `ConstInputSolution` too; `PostDelta` is CORA's
-`postΔ`, `DeltaReach` plus an uncertain input's `InputSolution`, [1, Sec. 4.1].
-`…Float` run it in `𝕋`: `ReachFloat` wrapping-free, `ReachRecursiveFloat` not.
+out as a term of its own. `ReachStepkWrappingFree`/`ReachWrappingFree`/`ReachOrder`
+are `Instances`' window, `SetUnion` and order, `WithInputReach…` with `ParticularSolution`,
+`WithInputSplitReach…` with `ConstInputSolution` too; `PostDelta` is CORA's `postΔ`,
+`DeltaReach` plus an uncertain input's `InputSolution`, [1, Sec. 4.1]. `…Float` run it in
+`𝕋`: `ReachFloat` recursive, CORA's default, `ReachWrappingFreeFloat` wrapping-free.
 
 ## References
 

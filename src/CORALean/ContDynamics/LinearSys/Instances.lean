@@ -1,5 +1,5 @@
 import CORALean.ContDynamics.LinearSys.Definitions.ReachParams
-import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterWindows
+import CORALean.ContDynamics.LinearSys.Theorems.ReachWrappingFreeOuter
 import CORALean.ContDynamics.LinearSys.Theorems.WithInputReachOuter
 import CORALean.ContDynamics.LinearSys.Theorems.WithInputSplitReachOuter
 import CORALean.ContDynamics.Reach.Reach
@@ -15,7 +15,8 @@ among its fields, and asks the representation to be convex and compact, what
 [1, Thm. 3.1]'s enclosure needs of `U` — [1, Alg. 2]. `LinearSys.WithInputSplit`
 drops `0 ∈ U` and asks for `Recentre` and `OfPoint` too — [1, Alg. 3].
 `LinearSys` is the homogeneous case, kept because it asks for none of these: a
-non-convex representation still reaches.
+non-convex representation still reaches. Its `reach` is `reachWrappingFree`,
+whose `η` is raised until admissible, so `ReachParams` need not say it is.
 
 ## References
 
@@ -45,8 +46,8 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
 noncomputable instance LinearSys.reachInstance : Reach (LinearSys 𝕋) LinearSys.ReachParams S where
   reachExact sys p X₀ := sys.reachExact p.tFinal X₀
-  reach sys p X₀ := some (sys.reach p.tFinal p.Δt p.η X₀)
-  reach_outer sys p X₀ := sys.reach_outer p.hΔt X₀
+  reach sys p X₀ := some (sys.reachWrappingFree p.tFinal p.Δt p.η X₀)
+  reach_outer sys p X₀ := sys.reachWrappingFree_outer p.hΔt X₀
 
 noncomputable instance LinearSys.WithInput.reachInstance
     [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ n)] :

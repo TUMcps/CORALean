@@ -4,7 +4,7 @@ import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStep
 /-!
 # One window of `reachUnion`: the homogeneous set over `τ_k = [t_k, t_k + Δt]`
 
-`LinearSys.reachStepk` at a set of matrices: `H^R(τ_k) = e^{A t_k} H^R(τ_0)`,
+`LinearSys.reachStepkWrappingFree` at a set of matrices: `H^R(τ_k) = e^{A t_k} H^R(τ_0)`,
 with `H^R(τ_0)` the step `timeIntervalStep` and `e^{A t_k}` the interval
 matrix `expEnclosure` of the box `t_k • sys.A`, applied by one `Mtimes ℐ`.
 Taken from the first window rather than from the previous one, as in the point

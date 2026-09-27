@@ -9,7 +9,7 @@ import CORALean.ContSet.Interval.Float.Operations.Smul
 The matrix every float step multiplies by: the float `MatExp.expIntervalEnclosure`
 at the interval matrix `[tLo, tHi] · A`, so one box holds `e^{At}` for every `t`
 in the range. A range, not a time, because a time `k Δt` a float cannot hold is
-only known to lie between two it can: `reachStepkFloat` encloses `e^{A t_k}`
+only known to lie between two it can: `reachStepkWrappingFreeFloat` encloses `e^{A t_k}`
 that way, sound at every float `Δt`. Stored once, since a step reads every entry
 `h` times and the enclosure would otherwise be recomputed on each read.
 -/

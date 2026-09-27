@@ -1,5 +1,5 @@
+import CORALean.ContDynamics.LinearSys.Theorems.ReachWrappingFreeFloatOuter
 import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatOuter
-import CORALean.ContDynamics.LinearSys.Theorems.ReachRecursiveFloatOuter
 import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
 import CORALean.Global.Float.Instances.Binary64.API
 import CORALean.Global.Float.Instances.Dyadic.Instances
@@ -9,8 +9,8 @@ import CORALean.Global.Float.Instances.Dyadic.Instances
 
 `ẋ = [[0, 1], [-1, 0]] x`, the undamped clockwise rotation, from a box of
 radius `1/16` around `(1, 0)`, over steps `Δt = 2⁻⁶`, at `Dyadic 64` and at
-native `Float`: `LinearSys.reachFloat` (wrapping-free) and
-`LinearSys.reachRecursiveFloat` (one step at a time), each with the guarantee
+native `Float`: `LinearSys.reachWrappingFreeFloat` (wrapping-free) and
+`LinearSys.reachFloat` (one step at a time), each with the guarantee
 it carries against the exact flow. Every constant is a dyadic of a few bits, so
 both scalars start from the same numbers.
 
@@ -69,11 +69,11 @@ def X₀D : Zonotope (Dyadic 64) 2 where
 def ΔtD : Dyadic 64 := d 1 (-6)
 
 /-- Eight windows, Taylor order at least `4`, the first window reduced to order `10`. -/
-def wrapFreeD : Option (List (Zonotope (Dyadic 64) 2)) := sysD.reachFloat X₀D ΔtD 4 10 8
+def wrapFreeD : Option (List (Zonotope (Dyadic 64) 2)) := sysD.reachWrappingFreeFloat X₀D ΔtD 4 10 8
 
 /-- The same settings, one step at a time: the windows, then `R_0, …, R_8`. -/
 def recursiveD : Option (List (Zonotope (Dyadic 64) 2) × List (Zonotope (Dyadic 64) 2)) :=
-  sysD.reachRecursiveFloat X₀D ΔtD 4 10 8
+  sysD.reachFloat X₀D ΔtD 4 10 8
 
 theorem ΔtD_pos : 0 < toReal ΔtD := by
   show 0 < Dyadic.toReal ΔtD
@@ -82,15 +82,15 @@ theorem ΔtD_pos : 0 < toReal ΔtD := by
 
 /-- What a successful wrapping-free run is worth: the exact flow, over every window. -/
 example {Rs : List (Zonotope (Dyadic 64) 2)} (h : wrapFreeD = some Rs) :=
-  sysD.reachFloat_outer ΔtD_pos h
+  sysD.reachWrappingFreeFloat_outer ΔtD_pos h
 
 /-- And the recursive one's, over every window. -/
 example {Rti Rtp : List (Zonotope (Dyadic 64) 2)} (h : recursiveD = some (Rti, Rtp)) :=
-  sysD.reachRecursiveFloat_outer ΔtD_pos h
+  sysD.reachFloat_outer ΔtD_pos h
 
 /-- And at every step, where `Δt` need not even be positive. -/
 example {Rti Rtp : List (Zonotope (Dyadic 64) 2)} (h : recursiveD = some (Rti, Rtp)) :=
-  sysD.reachRecursiveFloat_timePoint_outer h
+  sysD.reachFloat_timePoint_outer h
 
 
 /-! ## At native `Float` -/
@@ -109,10 +109,10 @@ def ΔtF : Float := 0.015625
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The Dyadic runs' settings at binary64. -/
-def wrapFreeF : Option (List (Zonotope Float 2)) := sysF.reachFloat X₀F ΔtF 4 10 8
+def wrapFreeF : Option (List (Zonotope Float 2)) := sysF.reachWrappingFreeFloat X₀F ΔtF 4 10 8
 
 def recursiveF : Option (List (Zonotope Float 2) × List (Zonotope Float 2)) :=
-  sysF.reachRecursiveFloat X₀F ΔtF 4 10 8
+  sysF.reachFloat X₀F ΔtF 4 10 8
 
 #eval wrapFreeD.map (·.map (summary dToFloat))
 #eval recursiveD.map fun r => r.1.map (summary dToFloat)

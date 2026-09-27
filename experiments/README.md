@@ -111,11 +111,12 @@ writes `experiments/results/headline_default/headline-a/dyadic-binary64.json`,
 
 ## The three verified experiments
 
-* **`headline-a`**, scheme (a), wrapping-free: `LinearSys.reachFloat`'s
-  time-interval windows (`sets_ti`) beside `LinearSys.reachTimePointFloat`'s
+* **`headline-a`**, scheme (a), wrapping-free:
+  `LinearSys.reachWrappingFreeFloat`'s time-interval windows (`sets_ti`) beside
+  `LinearSys.reachTimePointWrappingFreeFloat`'s
   time-point sets (`sets_tp`), both at `X0`, `dt`, `eta`, `rho`, `N` from the
   config -- no window's error compounds into the next one's.
-* **`headline-b`**, scheme (b), recursive: `LinearSys.reachRecursiveFloat`'s
+* **`headline-b`**, scheme (b), recursive: `LinearSys.reachFloat`'s
   own `(Rti, Rtp)` pair directly. Its own time-interval windows are *not*
   reduced (see that file's module docstring), so their generator count grows
   past the config's `rho` -- `to_pgfplots.py` accounts for this (see
@@ -663,8 +664,8 @@ experiments/paper/make_paper.sh experiments/results-paper
   for later.
 * `eta` and `rho` in every config are placeholder values, marked
   `_comment`/`eta_comment`/`rho_comment` "TO TUNE" in the JSON itself.
-* The verified time-point sets for scheme (a) (`reachTimePointFloat`) are a
-  new, small corollary of `reachStepkFloat_outer`, not yet cross-checked
+* The verified time-point sets for scheme (a) (`reachTimePointWrappingFreeFloat`)
+  are a new, small corollary of `reachStepkWrappingFreeFloat_outer`, not yet cross-checked
   against CORA's own `wrapping-free` time-point numbers beyond the
   inside-the-polygon simulation check above -- the CORA side of that
   comparison needs a MATLAB run this environment cannot perform.

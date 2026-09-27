@@ -5,7 +5,8 @@ import CORALean.ContDynamics.LinearSys.LinearSys
 
 Every image of a bare initial set under the homogeneous flow, at every time
 of `[0, tFinal]` — [1, Def. 3.1] at `U = 0`, the case `Reach.reachExact` has
-room for. `reach_outer` puts it inside `reach`, one window at a time.
+room for. `reachWrappingFree_outer` puts it inside `reachWrappingFree`, one window
+at a time.
 
 ## References
 

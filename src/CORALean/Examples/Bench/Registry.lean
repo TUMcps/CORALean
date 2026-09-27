@@ -1,6 +1,6 @@
+import CORALean.ContDynamics.LinearSys.Operations.ReachWrappingFreeFloat
 import CORALean.ContDynamics.LinearSys.Operations.ReachFloat
-import CORALean.ContDynamics.LinearSys.Operations.ReachRecursiveFloat
-import CORALean.ContDynamics.LinearSys.Operations.ReachTimePointFloat
+import CORALean.ContDynamics.LinearSys.Operations.ReachTimePointWrappingFreeFloat
 import CORALean.Examples.Bench.Cli
 import CORALean.Examples.Bench.ContRollout
 import CORALean.Examples.Bench.Mnist
@@ -20,7 +20,7 @@ goes through `runAt`, generic in the scalar `𝕋`, instantiated once at
 discretization. The other three run the verified continuous-time algorithms
 (`ContRollout.buildContSystem`'s exact `A`, `X0`) through `aux_runTiTp`, shared
 over the one difference between them, `aux_algoHeadlineA`/`B`/`Exp2` -- which
-call of `reachFloat`/`reachTimePointFloat`/`reachRecursiveFloat` each is.
+call of `reachWrappingFreeFloat`/`reachTimePointWrappingFreeFloat`/`reachFloat` each is.
 
 A `dyadic` run's significand width, `resolvedPrec`, is `--prec` if given (a
 raw bit count, for a precision none of the five `--format` labels name), else
@@ -72,30 +72,30 @@ def runDtdemo {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] (args : 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- Scheme (a), wrapping-free: `reachFloat`'s time-interval windows beside
-`reachTimePointFloat`'s time-point sets at the same `X₀`, `dt`, `eta`, `rho`,
+/-- Scheme (a), wrapping-free: `reachWrappingFreeFloat`'s time-interval windows beside
+`reachTimePointWrappingFreeFloat`'s time-point sets at the same `X₀`, `dt`, `eta`, `rho`,
 `N` -- `headline-a`'s whole algorithm call, both `some` or the pair is `none`. -/
 def aux_algoHeadlineA {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
     (sys : LinearSys 𝕋 2) (X0 : Zonotope 𝕋 2) (dt : 𝕋) (cfg : HeadlineConfig) :
     Unit → Option (List (Zonotope 𝕋 2) × List (Zonotope 𝕋 2)) :=
-  fun _ => match sys.reachFloat X0 dt cfg.eta cfg.rho cfg.steps,
-      sys.reachTimePointFloat X0 dt cfg.eta cfg.steps with
+  fun _ => match sys.reachWrappingFreeFloat X0 dt cfg.eta cfg.rho cfg.steps,
+      sys.reachTimePointWrappingFreeFloat X0 dt cfg.eta cfg.steps with
     | some ti, some tp => some (ti, tp)
     | _, _ => none
 
-/-- Scheme (b), recursive: `reachRecursiveFloat`'s own `(Rti, Rtp)` pair
+/-- Scheme (b), recursive: `reachFloat`'s own `(Rti, Rtp)` pair
 directly -- `headline-b`'s whole algorithm call. -/
 def aux_algoHeadlineB {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
     (sys : LinearSys 𝕋 2) (X0 : Zonotope 𝕋 2) (dt : 𝕋) (cfg : HeadlineConfig) :
     Unit → Option (List (Zonotope 𝕋 2) × List (Zonotope 𝕋 2)) :=
-  fun _ => sys.reachRecursiveFloat X0 dt cfg.eta cfg.rho cfg.steps
+  fun _ => sys.reachFloat X0 dt cfg.eta cfg.rho cfg.steps
 
 /-- Scheme (b) again, keeping only the time-point half -- `exp2-timepoint`'s
 whole algorithm call, for the precision ablation at every `--format`. -/
 def aux_algoExp2 {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
     (sys : LinearSys 𝕋 2) (X0 : Zonotope 𝕋 2) (dt : 𝕋) (cfg : HeadlineConfig) :
     Unit → Option (List (Zonotope 𝕋 2) × List (Zonotope 𝕋 2)) :=
-  fun _ => (sys.reachRecursiveFloat X0 dt cfg.eta cfg.rho cfg.steps).map fun (_, Rtp) => ([], Rtp)
+  fun _ => (sys.reachFloat X0 dt cfg.eta cfg.rho cfg.steps).map fun (_, Rtp) => ([], Rtp)
 
 /-- Loads the config, builds the continuous-time system, checks `eta` is
 admissible, times `mkAlgo`'s closure over `reps` repetitions, and writes the

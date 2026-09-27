@@ -1,20 +1,24 @@
 import CORALean.ContDynamics.LinearSys.Operations.ReachOrderFloat
-import CORALean.ContDynamics.LinearSys.Operations.ReachStepkFloat
 import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepFloat
 
 /-!
-# Wrapping-free reachability in floats: `R(τ_k) = [e^{A t_k}] R(τ_0)`
+# Recursive reachability in floats: `R_{k+1} = reduce([e^{AΔt}] R_k, ρ)`
 
-[1, Alg. 1] without an input, computed in `𝕋`: the first window is
-`timeIntervalStepFloat`, reduced by Girard's rule to order `ρ` (`ρ` at or above
-its order leaves it alone), and window `k < N` is that one set carried by an
-enclosure of `e^{A t_k}` taken at `t_k` directly — `reachStepkFloat` — so no
-window's error compounds into the next one's.
+[1, Alg. 4] at a point matrix and without an input, computed in `𝕋`: the
+time-point sets `R_0 = X₀, …, R_N` by `timePointStepFloat` and Girard's
+reduction to order `ρ`, and window `k < N` by `timeIntervalStepFloat` from
+`R_k`. The windows are not reduced; nothing is propagated from them.
 
-`η` is raised with `reachOrderFloat` to the first order from `max η 2` the float
-remainder bound at `Δt · A` admits; each window scales `t_k` down to the step
-by squarings and keeps that order. `none` when a search fails; otherwise `N`
-windows.
+The error box is never folded into a generator: `mtimesIntervalMat` multiplies
+it by the interval matrix every step, the matrix's own width going to `n` new
+generators as in CORA, and `reduce` keeps it as it is, Girard's box of the
+dropped generators becoming `n` generators. So the box holds rounding alone and
+wraps — it grows with the matrix's norm, step after step — which is the effect
+`reachWrappingFreeFloat` avoids; the generators, `n` more per step, stay at order `ρ`.
+
+The two matrices are computed once, `η` raised as `reachWrappingFreeFloat` raises it, and
+the steps apply them in place: `timePointStepFloat` and `timeIntervalStepFloat`
+compute them per call, which the compiler does not share across calls.
 
 ## References
 
@@ -39,13 +43,20 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The windows `τ_0, …, τ_{N-1}` of width `Δt` from `X₀`, the first reduced to
-order `ρ`, at Taylor order `η` raised until admissible. -/
-def LinearSys.reachFloat (sys : LinearSys 𝕋 n) (X₀ : Zonotope 𝕋 n) (Δt : 𝕋) (η ρ N : ℕ) :
-    Option (List (Zonotope 𝕋 n)) := do
+/-- The windows `R(τ_0), …, R(τ_{N-1})` and the time-point sets `R_0, …, R_N`
+from `X₀`, reducing to order `ρ` after every step. -/
+def LinearSys.reachFloat (sys : LinearSys 𝕋 n) (X₀ : Zonotope 𝕋 n) (Δt : 𝕋)
+    (η ρ N : ℕ) : Option (List (Zonotope 𝕋 n) × List (Zonotope 𝕋 n)) := do
   let η' ← sys.reachOrderFloat Δt Δt η                              -- η, raised until admissible
-  let Rτ₀ := Reduce.reduce (sys.timeIntervalStepFloat Δt η' X₀) ρ   -- R(τ_0), to order ρ
-  (List.range N).mapM (sys.reachStepkFloat Δt η' Rτ₀)              -- R(τ_k) = [e^{A t_k}] R(τ_0)
+  let eAΔt := sys.expIntervalFloat Δt Δt η'                         -- [e^{AΔt}], once
+  let F := MatExp.intervalCorrectionMatrix (Interval.point sys.A) Δt η'   -- [F], once
+  let next := fun R =>                                              -- reduce([e^{AΔt}] R_k, ρ)
+    Reduce.reduce (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) eAΔt R) ρ
+  let Rtp := List.iterate next X₀ (N + 1)                           -- R_0, …, R_N
+  let Rti := (Rtp.take N).map fun R =>                              -- R(τ_k) from R_k
+    LinComb.linComb R (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) eAΔt R) ⊞
+      Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) F R
+  pure (Rti, Rtp)
 
 end CORALean
 

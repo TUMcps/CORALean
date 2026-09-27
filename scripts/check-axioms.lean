@@ -32,9 +32,9 @@ def allowedAxioms : Array Name := #[`CORALean.Float.Binary64.trustedHardware, un
 
 /-- The guarantees a reader of the paper relies on, by their full names. -/
 def headlineTheorems : Array Name := #[
+  `CORALean.LinearSys.reachWrappingFreeFloat_outer,
   `CORALean.LinearSys.reachFloat_outer,
-  `CORALean.LinearSys.reachRecursiveFloat_outer,
-  `CORALean.LinearSys.reachRecursiveFloat_timePoint_outer,
+  `CORALean.LinearSys.reachFloat_timePoint_outer,
   `CORALean.LinearSys.holds_of_check,
   `CORALean.Reach.holds_of_check,
   `CORALean.Specification.check_sound,

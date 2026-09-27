@@ -8,7 +8,7 @@ import CORALean.ContSet.SetUnion.SetUnion
 
 [1, Alg. 4]'s loop at `U = {0}`: the windows `τ_0, …, τ_{N-1}`, one
 `reachStepk` each, collected as `Reach`'s `SetUnion`, `N = ⌈tFinal / Δt⌉` of
-them and never fewer than one, exactly `LinearSys.reach`'s count. `η` is the
+them and never fewer than one, exactly `LinearSys.reachWrappingFree`'s count. `η` is the
 Taylor order asked for, raised to `reachOrder Δt + 2` where that is higher:
 `timeIntervalStep`'s enclosure holds only at an order admissible for `Δt`.
 

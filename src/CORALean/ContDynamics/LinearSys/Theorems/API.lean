@@ -140,24 +140,24 @@ import CORALean.ContDynamics.LinearSys.Theorems.VerifyConvexUnsafe
 import CORALean.ContDynamics.LinearSys.Theorems.WeightedIntegral
 import CORALean.ContDynamics.LinearSys.Theorems.HoldsOfCheck
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderAdmissible
-import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterWindows
+import CORALean.ContDynamics.LinearSys.Theorems.ReachWrappingFreeOuter
 import CORALean.ContDynamics.LinearSys.Theorems.ExistsReachWindow
 import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetParticularSolution
-import CORALean.ContDynamics.LinearSys.Theorems.ReachStepkOuter
+import CORALean.ContDynamics.LinearSys.Theorems.ReachStepkWrappingFreeOuter
 import CORALean.ContDynamics.LinearSys.Theorems.WithInputReachOuter
 import CORALean.ContDynamics.LinearSys.Theorems.WithInputSplitReachOuter
 import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
 import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepFloatOuter
-import CORALean.ContDynamics.LinearSys.Theorems.ReachStepkFloatOuter
+import CORALean.ContDynamics.LinearSys.Theorems.ReachStepkWrappingFreeFloatOuter
+import CORALean.ContDynamics.LinearSys.Theorems.ReachWrappingFreeFloatOuter
+import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatTimePointOuter
 import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatOuter
-import CORALean.ContDynamics.LinearSys.Theorems.ReachRecursiveFloatTimePointOuter
-import CORALean.ContDynamics.LinearSys.Theorems.ReachRecursiveFloatOuter
 import CORALean.ContDynamics.LinearSys.Theorems.SquaringsFloatSpec
 import CORALean.ContDynamics.LinearSys.Theorems.SampleTimeFloatMem
 import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpSquaringFloat
-import CORALean.ContDynamics.LinearSys.Theorems.ReachTimePointFloatOuter
+import CORALean.ContDynamics.LinearSys.Theorems.ReachTimePointWrappingFreeFloatOuter
 
 /-!
 # What `LinearSys` guarantees
@@ -180,7 +180,7 @@ runs a step backwards, `Exists…Lt` shrinks its error, `SegmentsSum` feeds
 applies to a run over all forward time by throwing the rest away. Only `discretize` and `reach`
 built on it ask for `Set.Ici 0`. `DiscretizeEnclosure`/`DiscretizeEnclosureReach` are
 `Discretize`/`ReachOuter` enclosed rather than computed; `DiscretizeMatZonotope` is the same at
-a matrix zonotope, `PostDeltaOuter` is `DeltaReachOuterInputSolution` again; `ReachOuterWindows`
-and `WithInputReachOuter` are `Instances`' guarantees, built window by window, and `…FloatOuter`
-the float runs'.
+a matrix zonotope, `PostDeltaOuter` is `DeltaReachOuterInputSolution` again;
+`ReachWrappingFreeOuter` and `WithInputReachOuter` are `Instances`' guarantees, built window by
+window, and `…FloatOuter` the float runs'.
 -/

@@ -16,7 +16,7 @@ more (an axis-aligned box *is* a zonotope, so the Minkowski sum is exact and
 needs no separate hull step), vertices computed exactly by sorting the
 generators by angle and walking the boundary (`zonotope_vertices`), CCW,
 closed. `headline-b`'s own time-interval windows reach some 60+ generators
-(not reduced, by design -- see `ReachRecursiveFloat.lean`'s docstring), where
+(not reduced, by design -- see `ReachFloat.lean`'s docstring), where
 the older convex-hull-over-every-sign-combination method costs `2^h` and is
 no longer an option. Two output shapes:
 

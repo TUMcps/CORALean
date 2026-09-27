@@ -6,7 +6,7 @@ import CORALean.ContDynamics.LinearSys.LinearSys
 `reach` covers `[0, tFinal]` with `max 1 ⌈tFinal / Δt⌉₊` windows
 `[k Δt, (k + 1) Δt]`; a time `t` of the horizon is in the one with
 `k = ⌈t / Δt⌉ - 1`, the window whose right end is the first to reach `t`, and
-`t = 0` in the first. Stated once for `LinearSys.reach` and
+`t = 0` in the first. Stated once for `LinearSys.reachWrappingFree` and
 `LinearSys.WithInput.reach` alike, the two counting their windows the same way.
 -/
 
