@@ -61,8 +61,10 @@ import CORALean.ContDynamics.LinearSys.Operations.VerifyStep
 import CORALean.ContDynamics.LinearSys.Operations.VerifyRun
 import CORALean.ContDynamics.LinearSys.Operations.Verify
 import CORALean.ContDynamics.LinearSys.Operations.ReachWrappingFree
+import CORALean.ContDynamics.LinearSys.Operations.Reach
 import CORALean.ContDynamics.LinearSys.Operations.ReachOrder
 import CORALean.ContDynamics.LinearSys.Operations.ReachStepkWrappingFree
+import CORALean.ContDynamics.LinearSys.Operations.ReachStepk
 import CORALean.ContDynamics.LinearSys.Operations.ParticularSolution
 import CORALean.ContDynamics.LinearSys.Operations.WithInputReachStepk
 import CORALean.ContDynamics.LinearSys.Operations.WithInputReach
@@ -97,13 +99,13 @@ from an admissible error, one knob of adaptive tuning and not the algorithm.
 is transcendental, so where the exponential itself cannot be computed the
 result is a `LinParamSysDT` over an interval matrix rather than a `LinearSysDT`.
 
-`InputTaylorSumTail` is `InputTaylorSum` from order `1` instead of `0`, the
-split Wetzlinger et al.'s adaptive reachability needs, which keeps order `0`
-out as a term of its own. `ReachStepkWrappingFree`/`ReachWrappingFree`/`ReachOrder`
-are `Instances`' window, `SetUnion` and order, `WithInputReach…` with `ParticularSolution`,
-`WithInputSplitReach…` with `ConstInputSolution` too; `PostDelta` is CORA's `postΔ`,
-`DeltaReach` plus an uncertain input's `InputSolution`, [1, Sec. 4.1]. `…Float` run it in
-`𝕋`: `ReachFloat` recursive, CORA's default, `ReachWrappingFreeFloat` wrapping-free.
+`InputTaylorSumTail` is `InputTaylorSum` from order `1` instead of `0`, the split Wetzlinger et
+al.'s adaptive reachability needs, which keeps order `0` out as a term of its own.
+`ReachStepk`/`Reach` are CORA's default, recursive scheme;
+`ReachStepkWrappingFree`/`ReachWrappingFree`/`ReachOrder` are `Instances`' window, `SetUnion`
+and order, `WithInputReach…` with `ParticularSolution`, `WithInputSplitReach…` with
+`ConstInputSolution` too; `PostDelta` is CORA's `postΔ`, `DeltaReach` plus an uncertain input's
+`InputSolution`, [1, Sec. 4.1]. `…Float` run them in `𝕋`, each named after its scheme.
 
 ## References
 

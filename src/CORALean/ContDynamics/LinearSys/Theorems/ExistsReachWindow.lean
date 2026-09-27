@@ -3,11 +3,12 @@ import CORALean.ContDynamics.LinearSys.LinearSys
 /-!
 # Every time of the horizon falls in a window `reach` keeps
 
-`reach` covers `[0, tFinal]` with `max 1 ⌈tFinal / Δt⌉₊` windows
+`reachWrappingFree` covers `[0, tFinal]` with `max 1 ⌈tFinal / Δt⌉₊` windows
 `[k Δt, (k + 1) Δt]`; a time `t` of the horizon is in the one with
 `k = ⌈t / Δt⌉ - 1`, the window whose right end is the first to reach `t`, and
 `t = 0` in the first. Stated once for `LinearSys.reachWrappingFree` and
-`LinearSys.WithInput.reach` alike, the two counting their windows the same way.
+`LinearSys.WithInput.reach` alike, the two counting their windows the same way;
+`LinearSys.reach` keeps `⌈tFinal / Δt⌉₊`, the same count once `0 < tFinal`.
 -/
 
 -- Authors:       Tobias Ladner
