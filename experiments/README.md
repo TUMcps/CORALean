@@ -14,13 +14,18 @@ experiments/
   cora/         MATLAB scripts running the same experiments through CORA,
                 a separate documented step -- see "CORA" below.
   nn/           naive_float32.py, the `nn-float32` cross-check; mnist/, the
-                `nn-mnist` ablation's converted networks, data and scripts.
+                `nn-mnist` ablation's converted networks, data and scripts,
+                including run_mnist.sh, its own one-command sweep (~30 min).
   plot/         to_pgfplots.py and simulate.py: Python 3 standard library
                 only, turn a run's JSON (or a config) into pgfplots .dat
                 files for the paper's TikZ figures.
   results/      generated output, one directory per config (git-ignored).
+  results-paper/  the paper's own results, committed on results/paper-v1 --
+                see experiments/results-paper/README.md for its layout.
+  paper/        make_paper.sh and its Python helpers: regenerate every figure
+                .dat file and every table body from a results directory.
   run_all.sh    the paper's headline runs, every config, then plots.
-  run_runtime.sh  the number-type runtime ablation on headline_default.
+  run_runtime.sh  the number-type runtime ablation, default headline_5turns.
 ```
 
 The Lean side of the harness lives under
@@ -152,13 +157,15 @@ scheme has none.
   - `finalTotalWidth`: `finalWidth` plus the final error box's own width on
     both sides, `finalWidth + 2 * finalEradius`.
   - `firstErrorDominantStep`: the first step `k` at which the (max-over-dim)
-    error radius exceeds the (max-over-dim) nominal half-width, `null` if it
-    never does. Once both are large enough to saturate to `Infinity` (a
-    genuine blow-up), IEEE comparisons involving `Infinity`/`NaN` no longer
-    order, so this can stay `null` even after `firstBlowupStep` fires --
-    not a bug, just what a saturated comparison means.
-  - `firstBlowupStep`: the first step whose (max-over-dim) error radius
-    exceeds `1`, `null` if it never does.
+    error radius `e` or the (max-over-dim) nominal half-width `w` is
+    non-finite (`Inf`/`NaN`), or `e` genuinely exceeds `w`; `null` if no step
+    ever does (`Summary.lean`'s `aux_isDominant`). A plain `e > w` alone
+    would miss this once either side saturates to `Infinity` (IEEE `>` never
+    holds against `Infinity`/`NaN`, on either side, not only when both have
+    saturated) -- reported here, not silently `null` past a genuine blow-up.
+  - `firstBlowupStep`: the first step whose (max-over-dim) error radius is
+    non-finite or genuinely exceeds `1`, `null` if no step ever does
+    (`Summary.lean`'s `aux_isBlowup`, the same non-finite-first rule).
 * `sets`/`sets_ti`/`sets_tp`: one record per step, `{k, t0, t1, c, G, E: {inf,
   sup}}`. A scalar is its nearest double by default, printed so it
   round-trips (17 significant decimal digits, `FloatPrint.floatToJson`/
@@ -336,7 +343,7 @@ from `\addplot table` in the paper's TikZ.
 ## `run_all.sh`
 
 ```
-sh experiments/run_all.sh [--interp] [--config FILE] [--reps N]
+sh experiments/run_all.sh [--interp] [--config FILE] [--reps N] [--out DIR] [--skip-mnist]
 ```
 
 For every `experiments/config/headline_*.json` (or one, with `--config`):
@@ -345,9 +352,11 @@ For every `experiments/config/headline_*.json` (or one, with `--config`):
 `exp2-timepoint` at every `--format`, both `--type dyadic` and `--type nearest`
 (the precision ablation). Also one `nn-float32 --reps 11` run. Then the plotting pass
 (`to_pgfplots.py --merged`) over every JSON it produced, and `simulate.py`
-per config. `dtdemo` (the placeholder Euler discretization, not a paper
-result) is not part of this sweep -- `lake exe bench dtdemo ...` still runs
-it directly.
+per config, and finally the full `nn-mnist` rounding-error ablation
+(`experiments/nn/mnist/run_mnist.sh`, every network and precision -- see its
+own section below; some 30 minutes on its own). `dtdemo` (the placeholder
+Euler discretization, not a paper result) is not part of this sweep --
+`lake exe bench dtdemo ...` still runs it directly.
 
 Compiled by default (`lake exe bench`), matching the paper's own reported
 timings; `--interp`/`BENCH_BACKEND=interp` switches to the interpreter
@@ -355,7 +364,13 @@ backend (`lake env lean --run`, no link step, only a built tree needed),
 4-7x slower but useful for a quick check. `--config FILE` restricts the
 sweep to one config; `--reps N` overrides every config's own `reps`, for a
 quick smoke test (e.g. `--config experiments/config/headline_default.json
---reps 1`). `BENCH_OUT_DIR` overrides the results root.
+--reps 1`). `--out DIR`/`BENCH_OUT_DIR` overrides the results root (default
+`experiments/results`) -- `--out` wins if both are given, matching
+`run_runtime.sh`'s own flag of the same name. `--skip-mnist` drops the
+nn-mnist pass, since it does not depend on which headline config just ran --
+`--config` implies it (a config smoke test does not need its own ~30
+minutes every time); pass `--skip-mnist` explicitly to drop it on a full,
+every-config sweep too.
 
 A run whose own JSON reports `"status": "none"` (an inadmissible Taylor
 order, or a genuine blow-up saturating to `Infinity`/`NaN`) is a legitimate
@@ -367,17 +382,20 @@ run by name.
 ## `run_runtime.sh`
 
 ```
-sh experiments/run_runtime.sh [--out DIR] [--reps N] [--cold-build]
+sh experiments/run_runtime.sh [--out DIR] [--config FILE] [--reps N] [--cold-build]
 ```
 
-The number-type runtime ablation on `headline_default`: `headline-a` and
-`headline-b`, each at Dyadic binary64 compiled, native Float compiled,
-round-to-nearest `NearestFloat` compiled (`--type nearest`, the unsound
-baseline), Dyadic binary64 interpreted and native Float interpreted -- ten runs, one
-`<out>/headline_default/runtime/runtime.csv`/`.json` table (`scheme,
-backend, number_type, medianNs`), `medianNs` read back out of each run's own
-JSON. `--cold-build` additionally times a cold build of `bench`'s own
-modules alone (their sources touched, so lake considers only those stale --
+The number-type runtime ablation on `--config`'s config (default
+`headline_5turns`, the paper's own reported headline run; `headline_default`
+is a second table alongside it, both from an explicit `--config`):
+`headline-a` and `headline-b`, each at Dyadic binary64 compiled, native
+Float compiled, round-to-nearest `NearestFloat` compiled (`--type nearest`,
+the unsound baseline), Dyadic binary64 interpreted and native Float
+interpreted -- ten runs, one `<out>/<config>/runtime/runtime_<config>.csv`/
+`.json` table (`scheme, backend, number_type, medianNs`), `medianNs` read
+back out of each run's own JSON. `--cold-build` additionally times a cold
+build of `bench`'s own modules
+alone (their sources touched, so lake considers only those stale --
 Mathlib and every other library stay cached, not a whole-tree rebuild),
 recorded as the table's own `coldBuildNs`.
 
@@ -571,6 +589,61 @@ every other law is proved. `scripts/check-axioms.sh` asserts, through Lean's
 is exactly `[0, 0]` on every set, as in CORA, with no library change: checked on
 `dtdemo` (1208 sets), `headline-a`/`headline-b` at binary64 and binary32, and
 `exp2-timepoint` at binary16, on `headline_default`.
+
+## `experiments/paper/make_paper.sh`
+
+```
+experiments/paper/make_paper.sh [RESULTS_DIR]     # default experiments/results-paper
+```
+
+From an existing results directory (`run_all.sh` and `run_runtime.sh`'s own
+output, plus CORA's, if that directory holds it), regenerates every figure
+`.dat` file this README's "Plotting" section describes -- for every config x
+{`headline-a`, `headline-b`} x {dyadic binary64, float, nearest, cora} it
+finds, a merged tube at `--every 1` and again at `--every 10` (thinned), plus
+`X0` and the per-step hull box, and one `simulate.dat` per config -- and every
+table body the paper `\input`s (`experiments/paper/gen_tables.py`, a
+standard-library Python helper beside it): the headline table, the precision
+ablation's table (`exp2-timepoint` on `headline_default`, one row per
+precision, plus a per-step error-radius `.dat` for a log-scale plot), the
+`nn-float32` table, the runtime table, and the round-to-nearest-vs-CORA
+validation. All of it under `<RESULTS_DIR>/paper/` -- see
+`experiments/results-paper/README.md` for the exact naming scheme and what
+each table's columns mean.
+
+`experiments/paper/render_png.py` additionally renders a PNG preview of every
+reach-tube figure and the precision plot, only if `matplotlib` is importable
+(it is not part of this repository's own dependencies, so `make_paper.sh`
+skips it with a message rather than failing when it is missing) -- a
+convenience, not part of the artifact's reproduction contract.
+
+`experiments/paper/gen_figures.py`'s `-paper-ti-union.dat` (every `sets_ti`
+step's polygon unioned into one shape with `shapely`, no thinning) needs
+`shapely` (`experiments/paper/requirements.txt` pins the version):
+`make_paper.sh` checks it is importable before doing anything else and
+FAILS with a clear message if it is not -- there is no silent skip, unlike
+`render_png.py`'s optional `matplotlib`.
+
+```
+python3 -m venv .venv && .venv/bin/pip install -r experiments/paper/requirements.txt
+# or: pip install --user -r experiments/paper/requirements.txt
+```
+
+The artifact evaluator's own command sequence, after "Reproducing from
+scratch" above but writing to `experiments/results-paper/` and adding the
+table/figure regeneration pass:
+
+```
+git clone https://gitlab.lrz.de/cps/coralean.git && cd coralean
+lake exe cache get
+lake build
+experiments/run_all.sh --out experiments/results-paper   # includes nn-mnist, run last inside it
+experiments/run_runtime.sh --out experiments/results-paper
+experiments/run_runtime.sh --out experiments/results-paper --config experiments/config/headline_default.json
+python3 -m venv .venv && .venv/bin/pip install -r experiments/paper/requirements.txt
+source .venv/bin/activate   # so make_paper.sh's own `python3` calls see shapely
+experiments/paper/make_paper.sh experiments/results-paper
+```
 
 ## Pinned versions
 

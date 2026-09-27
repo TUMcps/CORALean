@@ -6,7 +6,8 @@
 # and at every round-to-nearest one (the precision ablation) -- then the plotting pass
 # (to_pgfplots.py --merged) and simulate.py. Also one nn-float32 run, and the
 # full `nn-mnist` rounding-error ablation (`experiments/nn/mnist/run_mnist.sh`,
-# every network and precision), run last so its own JSONs (a different
+# every network and precision -- some 30 minutes on its own, see that
+# script's own module docstring), run last so its own JSONs (a different
 # schema) never reach the `to_pgfplots.py` sweep above them.
 # `dtdemo` (the placeholder Euler discretization, not a paper result) is not
 # part of this sweep; `lake exe bench dtdemo ...` still runs it directly.
@@ -17,6 +18,13 @@
 # for a quick check without paying `lake exe`'s link cost. `--config FILE`
 # restricts the sweep to one config instead of every `headline_*.json`;
 # `--reps N` overrides every config's own `reps`, for a quick smoke test.
+# `--out DIR`/`BENCH_OUT_DIR` sets the results root (default `experiments/
+# results`) -- `--out` wins if both are given, matching `run_runtime.sh`'s
+# own flag of the same name. `--skip-mnist` drops the nn-mnist pass (it does
+# not depend on which headline config ran, so a `--config` smoke test does
+# not need to drag in its own ~30 minutes every time); `--config` implies it,
+# on the same reasoning -- pass `--skip-mnist` explicitly with no `--config`
+# to skip it on a full sweep too.
 #
 # A run whose own JSON reports `"status": "none"` (an inadmissible Taylor
 # order, or a genuine blow-up saturating to `Infinity`/`NaN`) is a legitimate
@@ -44,14 +52,17 @@ BENCH_ROOT="src/CORALean/Examples/Bench.lean"
 PRECISION_FORMATS="binary4 binary8 binary16 binary32 binary64"
 CONFIG_FILTER=""
 REPS_OVERRIDE=""
+SKIP_MNIST=0
 
 while [ $# -gt 0 ]; do
   case "$1" in
     --interp) BACKEND="interp"; shift ;;
-    --config) CONFIG_FILTER="$2"; shift 2 ;;
+    --config) CONFIG_FILTER="$2"; SKIP_MNIST=1; shift 2 ;;
     --reps) REPS_OVERRIDE="$2"; shift 2 ;;
+    --out) OUT_DIR="$2"; shift 2 ;;
+    --skip-mnist) SKIP_MNIST=1; shift ;;
     *)
-      echo "usage: run_all.sh [--interp] [--config FILE] [--reps N]" >&2
+      echo "usage: run_all.sh [--interp] [--config FILE] [--reps N] [--out DIR] [--skip-mnist]" >&2
       exit 1
       ;;
   esac
@@ -147,13 +158,18 @@ for config in $configs; do
     "$OUT_DIR/$name/simulate.dat"
 done
 
-echo "== nn-mnist =="
-if ! BENCH_OUT_DIR="$OUT_DIR" BENCH_BACKEND="$BACKEND" \
-    bash experiments/nn/mnist/run_mnist.sh "${REPS_ARGS[@]}"; then
-  FAILED_RUNS+=("nn-mnist sweep (see its own output above)")
-fi
-if ! python3 experiments/nn/mnist/make_table.py "$OUT_DIR" "$OUT_DIR/nn-mnist/mnist_table"; then
-  FAILED_RUNS+=("nn-mnist make_table.py")
+if [ "$SKIP_MNIST" -eq 1 ]; then
+  echo "== nn-mnist: skipped (--skip-mnist, or implied by --config -- see this" \
+    "script's own module docstring) =="
+else
+  echo "== nn-mnist =="
+  if ! BENCH_OUT_DIR="$OUT_DIR" BENCH_BACKEND="$BACKEND" \
+      bash experiments/nn/mnist/run_mnist.sh "${REPS_ARGS[@]}"; then
+    FAILED_RUNS+=("nn-mnist sweep (see its own output above)")
+  fi
+  if ! python3 experiments/nn/mnist/make_table.py "$OUT_DIR" "$OUT_DIR/nn-mnist/mnist_table"; then
+    FAILED_RUNS+=("nn-mnist make_table.py")
+  fi
 fi
 
 if [ "${#FAILED_RUNS[@]}" -gt 0 ]; then

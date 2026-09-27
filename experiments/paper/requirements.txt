@@ -1,0 +1,10 @@
+# Only make_paper.sh's -paper-ti-union.dat step needs this (gen_figures.py's
+# gen_paper_ti_union); every other script under experiments/ is standard
+# library only. Install with:
+#
+#   python3 -m venv .venv && .venv/bin/pip install -r experiments/paper/requirements.txt
+#
+# or, without a venv:
+#
+#   pip install --user -r experiments/paper/requirements.txt
+shapely==2.0.7

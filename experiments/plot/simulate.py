@@ -107,7 +107,7 @@ def write_merged(path: Path, trajectories: list[list[tuple[float, float]]]) -> N
             if i > 0:
                 f.write("nan nan\n")
             for x, y in traj:
-                f.write(f"{x:.9g} {y:.9g}\n")
+                f.write(f"{x:.6g} {y:.6g}\n")
 
 
 def main(argv: list[str]) -> int:
