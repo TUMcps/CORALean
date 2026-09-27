@@ -26,8 +26,8 @@
   "rho": 10,
   "rho_comment": "TO TUNE -- zonotope order bound, placeholder",
   "turns": 3,
-  "steps": 1207,
-  "steps_comment": "N = ceil(2*pi*turns/dt); dt unchanged from the default, so N is the same",
+  "steps": 1200,
+  "steps_comment": "N = 1200, as in the default: dt is unchanged, so t_final = 18.75.",
   "reps": 3,
   "precisions": [
     {

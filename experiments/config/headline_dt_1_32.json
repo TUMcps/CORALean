@@ -26,8 +26,8 @@
   "rho": 10,
   "rho_comment": "TO TUNE -- zonotope order bound, placeholder",
   "turns": 3,
-  "steps": 604,
-  "steps_comment": "N = ceil(2*pi*turns/dt) = ceil(2*pi*3/(1/32)) = ceil(603.19...) = 604",
+  "steps": 600,
+  "steps_comment": "N = 600, so t_final = N*dt = 600/32 = 18.75, the default's horizon at twice the step.",
   "reps": 3,
   "precisions": [
     {
