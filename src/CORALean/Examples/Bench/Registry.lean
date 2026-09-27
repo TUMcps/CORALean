@@ -3,6 +3,7 @@ import CORALean.ContDynamics.LinearSys.Operations.ReachRecursiveFloat
 import CORALean.ContDynamics.LinearSys.Operations.ReachTimePointFloat
 import CORALean.Examples.Bench.Cli
 import CORALean.Examples.Bench.ContRollout
+import CORALean.Examples.Bench.Mnist
 import CORALean.Examples.Bench.NearestUnsound.API
 import CORALean.Examples.Bench.Nn
 import CORALean.Examples.Bench.Output
@@ -147,6 +148,7 @@ def aux_runAt {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] (args : 
     IO Unit :=
   match args.experiment with
   | "nn-float32" => runNnFloat32 args
+  | "nn-mnist" => runNnMnist args inst instUnchecked toD format toExact sig
   | "dtdemo" => runDtdemo args inst instUnchecked toD format toExact sig
   | "headline-a" =>
     aux_runTiTp args inst toD format toExact sig "headline-a" "wrapping-free" aux_algoHeadlineA
@@ -156,7 +158,7 @@ def aux_runAt {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] (args : 
     aux_runTiTp args inst toD format toExact sig "exp2-timepoint" "standard" aux_algoExp2
   | other => do
     IO.eprintln s!"unknown experiment `{other}` -- one of dtdemo, headline-a, \
-      headline-b, exp2-timepoint, nn-float32"
+      headline-b, exp2-timepoint, nn-float32, nn-mnist"
     IO.Process.exit 1
 
 
