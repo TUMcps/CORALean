@@ -8,8 +8,8 @@ import CORALean.Specification.Theorems.HoldsOfOuter
 `check_sound` on the windows of the recursive `reach`, then `reach_outer` carried
 back by `holds_of_outer`. A `true` is the specification on every state the
 homogeneous flow reaches from `X₀` by `tFinal`, at an order admissible for `Δt`.
-`holds_of_check_wrappingFree` is the same at `reachWrappingFree`, which is what
-`Reach.holds_of_check` reaches at `LinearSys`.
+`holds_of_check_wrappingFree` is the same at `reachWrappingFree`; `Reach.holds_of_check`
+reaches this one at `LinearSys`, `reachInstance` now running the same recursive `reach`.
 -/
 
 -- Authors:       Tobias Ladner

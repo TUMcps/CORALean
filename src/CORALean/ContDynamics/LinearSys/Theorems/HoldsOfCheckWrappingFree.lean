@@ -5,11 +5,12 @@ import CORALean.Specification.Theorems.HoldsOfOuter
 /-!
 # A passed check on `reachWrappingFree` holds at every time of `[0, tFinal]`
 
-`Reach.holds_of_check` at `LinearSys`, whose instance runs `reachWrappingFree`, stated
-at that and `reachExact` rather than through `Params`: `check_sound` on the windows,
-then `reachWrappingFree_outer` carried back by `holds_of_outer`. A `true` is the
-specification on every state the homogeneous flow reaches from `X₀` by `tFinal`, at
-any `η`; `holds_of_check` is the same at the recursive `reach`.
+The same shape as `Reach.holds_of_check`, but at `reachWrappingFree` and `reachExact`
+directly rather than through `Params` and the (now recursive) `LinearSys` instance:
+`check_sound` on the windows, then `reachWrappingFree_outer` carried back by
+`holds_of_outer`. A `true` is the specification on every state the homogeneous flow
+reaches from `X₀` by `tFinal`, at any `η`; `holds_of_check` is the same at the recursive
+`reach`, which `LinearSys.reachInstance` runs.
 -/
 
 -- Authors:       Tobias Ladner

@@ -1,4 +1,5 @@
 import CORALean.ContDynamics.LinearSys.Definitions.ReachParams
+import CORALean.ContDynamics.LinearSys.Theorems.ReachAdmissibleOuter
 import CORALean.ContDynamics.LinearSys.Theorems.ReachWrappingFreeOuter
 import CORALean.ContDynamics.LinearSys.Theorems.WithInputReachOuter
 import CORALean.ContDynamics.LinearSys.Theorems.WithInputSplitReachOuter
@@ -9,14 +10,20 @@ import CORALean.ContSet.Interval.Real.Instances
 # `LinearSys` and `LinearSys.WithInput` instantiate `Reach`
 
 `reachExact`, `reach` and `reach_outer` are each system's own, at the horizon,
-window width and Taylor order `Params` holds; `reach` is always `some`, nothing
-here failing at run time. `LinearSys.WithInput` carries the input set, `0 ∈ U`
-among its fields, and asks the representation to be convex and compact, what
-[1, Thm. 3.1]'s enclosure needs of `U` — [1, Alg. 2]. `LinearSys.WithInputSplit`
-drops `0 ∈ U` and asks for `Recentre` and `OfPoint` too — [1, Alg. 3].
+window width and Taylor order `Params` holds. `LinearSys.WithInput` carries the
+input set, `0 ∈ U` among its fields, and asks the representation to be convex
+and compact, what [1, Thm. 3.1]'s enclosure needs of `U` — [1, Alg. 2].
+`LinearSys.WithInputSplit` drops `0 ∈ U` and asks for `Recentre` and `OfPoint`
+too — [1, Alg. 3]. Both are always `some`, nothing here failing at run time.
+
 `LinearSys` is the homogeneous case, kept because it asks for none of these: a
-non-convex representation still reaches. Its `reach` is `reachWrappingFree`,
-whose `η` is raised until admissible, so `ReachParams` need not say it is.
+non-convex representation still reaches. `LinearSys.reachInstance` runs
+`reach`, CORA's `standard` scheme and its default — [1, Alg. 4], recursively —
+`some` wherever `0 < tFinal` keeps a window, `none` otherwise, `η` raised until
+admissible by `reachAdmissible`, so `ReachParams` need not say it is.
+`LinearSys.reachWrappingFreeInstance` is the same interface at
+`reachWrappingFree`, [1, Alg. 1]'s window-by-window construction, kept as a
+named `def` rather than an `instance` so resolution stays unambiguous.
 
 ## References
 
@@ -45,6 +52,17 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 -- ========================================  INSTANCES  ========================================= --
 
 noncomputable instance LinearSys.reachInstance : Reach (LinearSys 𝕋) LinearSys.ReachParams S where
+  reachExact sys p X₀ := sys.reachExact p.tFinal X₀
+  reach sys p X₀ := if 0 < p.tFinal then some (sys.reachAdmissible p.tFinal p.Δt p.η X₀) else none
+  reach_outer sys p X₀ := by
+    split_ifs with h
+    · exact sys.reachAdmissible_outer h p.hΔt p.η X₀
+    · trivial
+
+/-- Kept as a named `def` rather than an `instance`, so instance resolution stays
+unambiguous between it and `LinearSys.reachInstance`. -/
+@[reducible] noncomputable def LinearSys.reachWrappingFreeInstance :
+    Reach (LinearSys 𝕋) LinearSys.ReachParams S where
   reachExact sys p X₀ := sys.reachExact p.tFinal X₀
   reach sys p X₀ := some (sys.reachWrappingFree p.tFinal p.Δt p.η X₀)
   reach_outer sys p X₀ := sys.reachWrappingFree_outer p.hΔt X₀

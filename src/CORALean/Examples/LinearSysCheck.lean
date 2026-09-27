@@ -17,10 +17,12 @@ import CORALean.Specification.Instances
 `[-10, 10]²`, checked on every window by `Contains` through the zonotope's
 interval hull — the float box at `𝕋 := ℝ`, which is where the checks live.
 
-`reachWrappingFree` names `exp`, which is `pending #1`, so the check cannot be evaluated
-here; what is shown is that `holds_of_check_wrappingFree` applies as stated, once at the
-system's own `reachWrappingFree` and once through the `Reach` instance, so a `true` from a
-float refinement would need nothing further to answer for every trajectory.
+`reach` and `reachWrappingFree` both name `exp`, which is `pending #1`, so neither check
+can be evaluated here; what is shown is that `holds_of_check_wrappingFree` applies as
+stated at the system's own `reachWrappingFree`, kept but no longer the `Reach` instance,
+and that the generic `Reach.holds_of_check` applies through that instance, now the
+recursive `reach`, so a `true` from a float refinement would need nothing further to
+answer for every trajectory.
 The third example adds the input box `[-1/10, 1/10]²` as `LinearSys.WithInput`,
 its `0 ∈ U` the zonotope's centre, and answers for every run under it; the
 fourth moves that box off the origin, to `[1/10, 3/10] × [-1/10, 1/10]`, as
