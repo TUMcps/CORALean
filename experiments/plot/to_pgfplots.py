@@ -34,6 +34,12 @@ same closed/CCW polygon format.
 Usage:
     python3 to_pgfplots.py <run.json> <out-prefix> [--every N] [--steps K,...] [--merged]
 
+`<run.json>` may instead be `<run.json>.gz` -- the results-paper artifact
+gzips every per-run JSON over `check-conventions.sh`'s size budget (see
+`experiments/paper/make_paper.sh`) -- given either spelling, or a bare
+`<run.json>` whose file was replaced by its `.gz`, `load_run_json` reads
+whichever of the two actually exists.
+
 Each .dat file is whitespace-separated columns with a header comment line,
 directly usable from a pgfplots `\\addplot table` in the paper's TikZ.
 """
@@ -45,10 +51,22 @@ directly usable from a pgfplots `\\addplot table` in the paper's TikZ.
 from __future__ import annotations
 
 import argparse
+import gzip
 import json
 import math
 import sys
 from pathlib import Path
+
+
+def load_run_json(path: Path) -> dict:
+    """`path` itself if it exists (gzipped, when it ends `.gz`, else plain),
+    else `path` with `.gz` appended -- so a caller can name either the
+    original run JSON or its gzipped replacement and get the same document."""
+    candidate = path if path.exists() else path.with_name(path.name + ".gz")
+    if candidate.suffix == ".gz":
+        with gzip.open(candidate, "rt") as f:
+            return json.load(f)
+    return json.loads(candidate.read_text())
 
 
 def scalar(x):
@@ -61,16 +79,79 @@ def scalar(x):
     return float(x)
 
 
+def merge_parallel_generators(gens: list[tuple[float, float]],
+                               tol: float = 1e-9) -> list[tuple[float, float]]:
+    """`gens`, every subset lying on a common line through the origin
+    (parallel or antiparallel, `|cross| ≤ tol * |g_i| * |g_ref|`) combined
+    into one generator along the group's first member's own direction --
+    the Minkowski sum of centered segments on the same line is one centered
+    segment whose half-length is the SUM of theirs (`|g1| + |g2|`, always,
+    a segment `[-g, g]` being the same set whether `g` is written with a `+`
+    or a `-` sign, so an antiparallel pair widens the segment exactly as a
+    parallel one does -- it does not cancel). `O(h^2)`, h the generator
+    count -- fine at the h this harness ever reaches (headline-b's own
+    unreduced count, in the low hundreds)."""
+    groups: list[list[float]] = []  # [ref_x, ref_y, ref_norm, magnitude_sum]
+    for gx, gy in gens:
+        norm = math.hypot(gx, gy)
+        for group in groups:
+            rx, ry, rnorm, _ = group
+            cross = gx * ry - gy * rx
+            if abs(cross) <= tol * norm * rnorm:
+                group[3] += norm
+                break
+        else:
+            groups.append([gx, gy, norm, norm])
+    return [(rx * (mag / rnorm), ry * (mag / rnorm)) for rx, ry, rnorm, mag in groups]
+
+
+def simplify_polygon(verts: list[tuple[float, float]], dedup_eps: float = 1e-9,
+                      collinear_eps: float = 1e-12) -> list[tuple[float, float]]:
+    """`verts` (closed loop, open/not-yet-repeated) with consecutive
+    duplicates dropped (`dedup_eps` relative to the polygon's own coordinate
+    scale) and a middle vertex of three dropped when its triple's cross
+    product is within `collinear_eps * scale` of flat -- CCW and open
+    either way, just fewer rows for the same shape."""
+    if len(verts) <= 2:
+        return verts
+    scale = max((abs(x) + abs(y) for x, y in verts), default=1.0) or 1.0
+
+    def close(p: tuple[float, float], q: tuple[float, float]) -> bool:
+        return abs(p[0] - q[0]) <= dedup_eps * scale and abs(p[1] - q[1]) <= dedup_eps * scale
+
+    deduped: list[tuple[float, float]] = []
+    for v in verts:
+        if not deduped or not close(deduped[-1], v):
+            deduped.append(v)
+    if len(deduped) > 1 and close(deduped[0], deduped[-1]):
+        deduped.pop()
+    if len(deduped) <= 2:
+        return deduped
+
+    n = len(deduped)
+    keep = []
+    for i in range(n):
+        a, b, cn = deduped[i - 1], deduped[i], deduped[(i + 1) % n]
+        cross = (b[0] - a[0]) * (cn[1] - a[1]) - (b[1] - a[1]) * (cn[0] - a[0])
+        if abs(cross) > collinear_eps * scale:
+            keep.append(b)
+    return keep if len(keep) >= 3 else deduped
+
+
 def zonotope_vertices(c: tuple[float, float],
                        gens: list[tuple[float, float]]) -> list[tuple[float, float]]:
     """Every vertex of a 2D zonotope with center `c` and generators `gens`,
-    `O(h log h)`: flip each generator into the upper half-plane (`[-1, 1]`
-    is symmetric, so `g` and `-g` trace the same edge), sort by angle, and
-    walk from the bottom vertex to the top by adding `2g` each step -- the
-    right half of the boundary; the left half is its reflection through `c`,
-    walked back. CCW, open (endpoint not repeated); a zero generator is
-    dropped first, `c` alone if none are left."""
-    gens = [g for g in gens if g[0] != 0.0 or g[1] != 0.0]
+    `O(h log h)` beyond the `O(h^2)` merge: drop zero generators, merge
+    parallel/antiparallel ones (`merge_parallel_generators`), flip each
+    survivor into the upper half-plane (`[-1, 1]` is symmetric, so `g` and
+    `-g` trace the same edge), sort by angle, and walk from the bottom
+    vertex to the top by adding `2g` each step -- the right half of the
+    boundary; the left half is its reflection through `c`, walked back.
+    `simplify_polygon` then drops duplicate/collinear vertices the merge
+    itself did not already remove. CCW, open (endpoint not repeated); `c`
+    alone if no generator survives (a genuine point, or every one merged
+    away)."""
+    gens = merge_parallel_generators([g for g in gens if g[0] != 0.0 or g[1] != 0.0])
     if not gens:
         return [c]
     norm = [(-x, -y) if (y < 0.0 or (y == 0.0 and x < 0.0)) else (x, y) for x, y in gens]
@@ -82,7 +163,7 @@ def zonotope_vertices(c: tuple[float, float],
         px, py = upper[-1]
         upper.append((px + 2.0 * gx, py + 2.0 * gy))
     reflected = [(2.0 * c[0] - px, 2.0 * c[1] - py) for px, py in upper]
-    return upper[:-1] + reflected[:-1]
+    return simplify_polygon(upper[:-1] + reflected[:-1])
 
 
 def record_polygon(rec: dict) -> list[tuple[float, float]]:
@@ -112,7 +193,7 @@ def write_polygon(path: Path, verts: list[tuple[float, float]]) -> None:
     with path.open("w") as f:
         f.write("# x y\n")
         for x, y in closed(verts):
-            f.write(f"{x:.9g} {y:.9g}\n")
+            f.write(f"{x:.6g} {y:.6g}\n")
 
 
 def write_merged(path: Path, polygons: list[list[tuple[float, float]]]) -> None:
@@ -125,7 +206,7 @@ def write_merged(path: Path, polygons: list[list[tuple[float, float]]]) -> None:
             if i > 0:
                 f.write("nan nan\n")
             for x, y in closed(poly):
-                f.write(f"{x:.9g} {y:.9g}\n")
+                f.write(f"{x:.6g} {y:.6g}\n")
 
 
 def pick_steps(all_ks: list[int], every: int, explicit: list[int] | None) -> list[int]:
@@ -164,7 +245,7 @@ def process_array(sets: list[dict], out_prefix: str, suffix: str, every: int,
             ymin = c[1] - radius[1] + e_inf[1]
             ymax = c[1] + radius[1] + e_sup[1]
             t = scalar(rec["t1"])
-            hf.write(f"{rec['k']} {t:.9g} {xmin:.9g} {xmax:.9g} {ymin:.9g} {ymax:.9g}\n")
+            hf.write(f"{rec['k']} {t:.6g} {xmin:.6g} {xmax:.6g} {ymin:.6g} {ymax:.6g}\n")
 
             if rec["k"] in chosen:
                 poly = record_polygon(rec)
@@ -203,7 +284,7 @@ def main(argv: list[str]) -> int:
                      help="one -tube.dat per array instead of one file per step")
     args = ap.parse_args(argv)
 
-    doc = json.loads(args.run_json.read_text())
+    doc = load_run_json(args.run_json)
     explicit = [int(s) for s in args.steps.split(",")] if args.steps else None
     out_prefix = str(args.out_prefix)
 
