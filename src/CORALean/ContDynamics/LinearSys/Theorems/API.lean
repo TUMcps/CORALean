@@ -143,6 +143,7 @@ import CORALean.ContDynamics.LinearSys.Theorems.HoldsOfCheckWrappingFree
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderAdmissible
 import CORALean.ContDynamics.LinearSys.Theorems.ReachWrappingFreeOuter
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterWindows
+import CORALean.ContDynamics.LinearSys.Theorems.ReachAdmissibleOuter
 import CORALean.ContDynamics.LinearSys.Theorems.ExistsReachWindow
 import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetParticularSolution
 import CORALean.ContDynamics.LinearSys.Theorems.ReachStepkWrappingFreeOuter
@@ -173,17 +174,17 @@ abstraction error; the rest are the input-integral facts they use.
 The first two are stated once, over `ConvexSet` and `CompactSet`, name no
 representation. `TimeIntervalOuterSplit` drops `0 ∈ U`, needing only
 `Recentre`/`OfPoint`, which any representation with a centre has.
-
 The `ReachSet` and `TimeIntervalReachSet` trios state the same guarantees of a
 set; `_eq_iUnion` ties the latter to a union of the former, `SubsetAddError`
 runs a step backwards, `Exists…Lt` shrinks its error, `SegmentsSum` feeds
 `TimeIntervalBound` a genuine `+`/`segments`, and `TimeIntervalWitness` its dual.
-
 `Restrict` is what makes the time domain a parameter worth having: a guarantee over one step
 applies to a run over all forward time by throwing the rest away. Only `discretize` and `reach`
 built on it ask for `Set.Ici 0`. `DiscretizeEnclosure`/`DiscretizeEnclosureReach` are
 `Discretize`/`ReachOuter` enclosed rather than computed; `DiscretizeMatZonotope` is the same at
 a matrix zonotope, `PostDeltaOuter` is `DeltaReachOuterInputSolution` again;
-`ReachWrappingFreeOuter` and `WithInputReachOuter` are `Instances`' guarantees, built window by
-window, `ReachOuterWindows` the recursive `reach`'s, and `…FloatOuter` the float runs'.
+`ReachOuterWindows` is the recursive `reach`'s, `ReachAdmissibleOuter` the same at an `η` raised
+until admissible, `Instances`' own guarantee; `ReachWrappingFreeOuter` and `WithInputReachOuter`
+are the wrapping-free scheme's and its `WithInput` sibling, built window by window, and
+`…FloatOuter` the float runs'.
 -/

@@ -65,6 +65,7 @@ import CORALean.ContDynamics.LinearSys.Operations.Reach
 import CORALean.ContDynamics.LinearSys.Operations.ReachOrder
 import CORALean.ContDynamics.LinearSys.Operations.ReachStepkWrappingFree
 import CORALean.ContDynamics.LinearSys.Operations.ReachStepk
+import CORALean.ContDynamics.LinearSys.Operations.ReachAdmissible
 import CORALean.ContDynamics.LinearSys.Operations.ParticularSolution
 import CORALean.ContDynamics.LinearSys.Operations.WithInputReachStepk
 import CORALean.ContDynamics.LinearSys.Operations.WithInputReach
@@ -94,18 +95,18 @@ vector rather than a whole signal.
 
 `TimeIntervalStepEps` is `TimeIntervalStep` with its truncation order chosen
 from an admissible error, one knob of adaptive tuning and not the algorithm.
-
 `DiscretizeEnclosure` is `Discretize` again, its matrix only enclosed: `e^{AΔt}`
 is transcendental, so where the exponential itself cannot be computed the
 result is a `LinParamSysDT` over an interval matrix rather than a `LinearSysDT`.
 
 `InputTaylorSumTail` is `InputTaylorSum` from order `1` instead of `0`, the split Wetzlinger et
 al.'s adaptive reachability needs, which keeps order `0` out as a term of its own.
-`ReachStepk`/`Reach` are CORA's default, recursive scheme;
-`ReachStepkWrappingFree`/`ReachWrappingFree`/`ReachOrder` are `Instances`' window, `SetUnion`
-and order, `WithInputReach…` with `ParticularSolution`, `WithInputSplitReach…` with
-`ConstInputSolution` too; `PostDelta` is CORA's `postΔ`, `DeltaReach` plus an uncertain input's
-`InputSolution`, [1, Sec. 4.1]. `…Float` run them in `𝕋`, each named after its scheme.
+`ReachStepk`/`Reach` are CORA's default, recursive scheme, `ReachAdmissible` raising its `η`
+until admissible, `Instances`' own; `ReachStepkWrappingFree`/`ReachWrappingFree`/`ReachOrder` are
+the wrapping-free scheme's, kept but no longer `Instances`', `WithInputReach…` with
+`ParticularSolution`, `WithInputSplitReach…` with `ConstInputSolution` too; `PostDelta` is CORA's
+`postΔ`, `DeltaReach` plus an uncertain input's `InputSolution`, [1, Sec. 4.1]. `…Float` run them
+in `𝕋`, each named after its scheme.
 
 ## References
 
