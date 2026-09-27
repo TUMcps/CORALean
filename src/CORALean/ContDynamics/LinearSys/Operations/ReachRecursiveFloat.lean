@@ -10,10 +10,11 @@ reduction to order `ρ`, and window `k < N` by `timeIntervalStepFloat` from
 `R_k`. The windows are not reduced; nothing is propagated from them.
 
 The error box is never folded into a generator: `mtimesIntervalMat` multiplies
-it by the interval matrix every step and `reduce` keeps it as it is, Girard's
-box of the dropped generators becoming `n` generators, as in CORA. So the box
-wraps — it grows with the interval matrix's own norm, step after step — which
-is the effect `reachFloat` avoids.
+it by the interval matrix every step, the matrix's own width going to `n` new
+generators as in CORA, and `reduce` keeps it as it is, Girard's box of the
+dropped generators becoming `n` generators. So the box holds rounding alone and
+wraps — it grows with the matrix's norm, step after step — which is the effect
+`reachFloat` avoids; the generators, `n` more per step, stay at order `ρ`.
 
 The two matrices are computed once, `η` raised as `reachFloat` raises it, and
 the steps apply them in place: `timePointStepFloat` and `timeIntervalStepFloat`

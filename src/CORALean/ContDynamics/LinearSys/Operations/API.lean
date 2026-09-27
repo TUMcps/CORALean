@@ -75,7 +75,9 @@ import CORALean.ContDynamics.LinearSys.Operations.TimePointStepFloat
 import CORALean.ContDynamics.LinearSys.Operations.ReachStepkFloat
 import CORALean.ContDynamics.LinearSys.Operations.ReachFloat
 import CORALean.ContDynamics.LinearSys.Operations.ReachRecursiveFloat
-import CORALean.ContDynamics.LinearSys.Operations.WindowOrderFloat
+import CORALean.ContDynamics.LinearSys.Operations.SquaringsFloat
+import CORALean.ContDynamics.LinearSys.Operations.SampleTimeFloat
+import CORALean.ContDynamics.LinearSys.Operations.ExpSquaringFloat
 
 /-!
 # What a continuous-time linear system computes

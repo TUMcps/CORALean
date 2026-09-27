@@ -12,9 +12,9 @@ enclosure of `e^{A t_k}` taken at `t_k` directly — `reachStepkFloat` — so no
 window's error compounds into the next one's.
 
 `η` is raised with `reachOrderFloat` to the first order from `max η 2` the float
-remainder bound at `Δt · A` admits, and each window raises it again, with
-`windowOrderFloat`, until its remainder at `t_k · A` is no larger than the
-step's. `none` when a search finds no order; otherwise `N` windows.
+remainder bound at `Δt · A` admits; each window scales `t_k` down to the step
+by squarings and keeps that order. `none` when a search fails; otherwise `N`
+windows.
 
 ## References
 

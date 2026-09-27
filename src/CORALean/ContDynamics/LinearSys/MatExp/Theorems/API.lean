@@ -107,8 +107,6 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoParticularSolution
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoParticularSolutionTauErrorZero
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TsumLeExpTail
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TsumMatrixEntryEq
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AccurateOrderFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AccurateOrderFromFloat
 
 /-!
 # What the exponential enclosures guarantee

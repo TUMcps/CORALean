@@ -154,7 +154,9 @@ import CORALean.ContDynamics.LinearSys.Theorems.ReachStepkFloatOuter
 import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatOuter
 import CORALean.ContDynamics.LinearSys.Theorems.ReachRecursiveFloatTimePointOuter
 import CORALean.ContDynamics.LinearSys.Theorems.ReachRecursiveFloatOuter
-import CORALean.ContDynamics.LinearSys.Theorems.WindowOrderFloatSpec
+import CORALean.ContDynamics.LinearSys.Theorems.SquaringsFloatSpec
+import CORALean.ContDynamics.LinearSys.Theorems.SampleTimeFloatMem
+import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpSquaringFloat
 
 /-!
 # What `LinearSys` guarantees

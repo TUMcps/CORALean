@@ -91,7 +91,7 @@ theorem LinearSys.reachFloat_outer (sys : LinearSys 𝕋 n) {X₀ : Zonotope �
     rw [Matrix.mulVec_mulVec]
     exact congrArg (· *ᵥ x₀) h
   rw [hexp]
-  exact sys.reachStepkFloat_outer hwin hτ₀
+  exact sys.reachStepkFloat_outer hadm.1 hwin hτ₀
 
 end CORALean
 
