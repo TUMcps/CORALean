@@ -236,6 +236,42 @@ skipped) at every `type`/`precision` every `experiments/config/headline_*.json`
 lists, through the interpreter backend, then runs the plotting pass over
 every JSON it produced. `BENCH_OUT_DIR` overrides the results root.
 
+## Neural network: `nn-float32`
+
+```
+lake exe bench nn-float32 [--reps N] [--out DIR]
+python3 experiments/nn/naive_float32.py [DIR/nn/nn-float32.json]
+```
+
+Naive floating-point verification is unsound; CORALean's is not. The network is
+`y = relu(x + 2^24) - 2^24` (one input, one hidden ReLU neuron, one output, every
+weight and bias exact in binary32), the input box `X = [-7/4, 1/4]` and the
+property `y <= 0`. Over the reals the network is the identity on `X`, so
+`x* = 1/4` gives `y = 1/4` and violates the property. In binary32, `2^24`
+absorbs every point of `X`: its neighbours are `2^24 - 1` and `2^24 + 2`.
+
+The experiment runs six analyses, each timed over `--reps` runs (default 5).
+Naive interval bound propagation and naive DeepZ zonotopes, both in
+round-to-nearest `Float32`, get `y in [-2, 0]` and certify the property.
+CORALean's `NeuralNetwork.enclose` over float intervals and over float
+zonotopes, with outward rounding at `Dyadic 24` (binary32's significand) and at
+`Float`, does not certify it. At `Dyadic 24` the bounds are `[-2, 2]` for
+intervals and `[-2, 1]` for zonotopes, error box `[0, 1]` included; at `Float`
+they are `[-7/4, 1/4]` widened by about `3e-8`. The run also reports the network
+at `x*`: exactly, and executed in binary32, where the result is `0`.
+`--type`, `--format`, `--prec` and `--config` are ignored.
+
+The run writes `DIR/nn/nn-float32.json`, with `DIR` defaulting to
+`experiments/results`. It holds the weights, `X`, the property, `x*`, `y(x*)`
+both ways, and each analysis's bounds, verdict, timings and error box, with git
+and machine info. Every number appears as an exact `"m/2^k"` string and as its
+double. The Lean side is `src/CORALean/Examples/Bench/Nn*.lean`: `NnNaive` is the
+unsound baseline, and `NnNetwork` holds the example and
+`network_mem_enclose`, the soundness corollary the sound runs rely on.
+`naive_float32.py` uses only the Python standard library. It recomputes the
+naive bounds and `y(x*)` with `struct`-rounded binary32 and `fractions`, and
+given the JSON it checks that every one of those numbers agrees.
+
 ## Pinned versions
 
 * Lean/Lake toolchain: `leanprover/lean4:v4.32.0` (`lean-toolchain`).
