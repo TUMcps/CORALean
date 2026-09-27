@@ -157,6 +157,7 @@ import CORALean.ContDynamics.LinearSys.Theorems.ReachRecursiveFloatOuter
 import CORALean.ContDynamics.LinearSys.Theorems.SquaringsFloatSpec
 import CORALean.ContDynamics.LinearSys.Theorems.SampleTimeFloatMem
 import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpSquaringFloat
+import CORALean.ContDynamics.LinearSys.Theorems.ReachTimePointFloatOuter
 
 /-!
 # What `LinearSys` guarantees
