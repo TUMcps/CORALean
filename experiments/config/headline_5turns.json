@@ -26,8 +26,8 @@
   "rho": 10,
   "rho_comment": "TO TUNE -- zonotope order bound, placeholder",
   "turns": 5,
-  "steps": 2011,
-  "steps_comment": "N = ceil(2*pi*turns/dt) = ceil(2*pi*5/(1/64)) = ceil(2010.6...) = 2011",
+  "steps": 2000,
+  "steps_comment": "N = 2000, a round count: t_final = N*dt = 2000/64 = 31.25, just under 5 turns (2*pi*5 = 31.42).",
   "reps": 3,
   "precisions": [
     {

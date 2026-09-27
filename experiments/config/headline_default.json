@@ -28,8 +28,8 @@
   "rho": 10,
   "rho_comment": "TO TUNE -- zonotope order bound, placeholder",
   "turns": 3,
-  "steps": 1207,
-  "steps_comment": "N = ceil(2*pi*turns/dt); given explicitly rather than computed at run time, per the harness contract. 2*pi*3/(1/64) = 1206.37...",
+  "steps": 1200,
+  "steps_comment": "N = 1200, a round count: t_final = N*dt = 1200/64 = 18.75, just under 3 turns (2*pi*3 = 18.85). Given explicitly rather than computed at run time, per the harness contract.",
   "reps": 3,
   "precisions": [
     {

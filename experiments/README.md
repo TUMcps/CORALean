@@ -202,7 +202,7 @@ with an *odd* numerator of `1` or `3` -- `1/8, 1/4, 3/8, 1/2, 3/4` are exact,
   "eta": 4,        // Taylor order -- TO TUNE, current value a placeholder
   "rho": 10,       // zonotope order -- TO TUNE, current value a placeholder
   "turns": 3,      // documentation only; `steps` is what every reader uses
-  "steps": 1207,   // N, explicit rather than computed at run time
+  "steps": 1200,   // N, explicit rather than computed at run time
   "reps": 3,
   "precisions": [
     { "type": "dyadic", "format": "binary4" }, /* ... */ { "type": "float" }
@@ -217,10 +217,10 @@ headline runs are `binary64`/`float`; the precision ablation is every
 
 | File | What it varies |
 | --- | --- |
-| `headline_default.json` | the development default: `a = 1/16`, `b = 1`, `dt = 1/64`, 3 turns |
+| `headline_default.json` | the development default: `a = 1/16`, `b = 1`, `dt = 1/64`, t_final = 18.75 (1200 steps, just under 3 turns) |
 | `headline_a_3_64.json` | `a = 3/64` instead |
 | `headline_dt_1_32.json` | `dt = 1/32` instead |
-| `headline_5turns.json` | a 5-turn horizon instead of 3 |
+| `headline_5turns.json` | t_final = 31.25 (2000 steps, just under 5 turns) instead, the headline run |
 
 `run_all.sh` runs every `headline_*.json` it finds in `experiments/config/`.
 
