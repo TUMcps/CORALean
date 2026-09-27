@@ -1,13 +1,13 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterWindows
+import CORALean.ContDynamics.LinearSys.Theorems.ReachWrappingFreeOuter
 import CORALean.Specification.Theorems.CheckSound
 import CORALean.Specification.Theorems.HoldsOfOuter
 
 /-!
-# A passed check on `reach` holds at every time of `[0, tFinal]`
+# A passed check on `reachWrappingFree` holds at every time of `[0, tFinal]`
 
-`Reach.holds_of_check` at `LinearSys`, stated at the system's own `reach` and
+`Reach.holds_of_check` at `LinearSys`, stated at the system's own `reachWrappingFree` and
 `reachExact` rather than through `Params`: `check_sound` on the windows, then
-`reach_outer` carried back by `holds_of_outer`. A `true` is the specification on
+`reachWrappingFree_outer` carried back by `holds_of_outer`. A `true` is the specification on
 every state the homogeneous flow reaches from `X₀` by `tFinal`, at any `η`.
 -/
 
@@ -36,9 +36,9 @@ variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
 theorem LinearSys.holds_of_check [Contains ContSet (SetUnion (S n))]
     [IsDisjoint ContSet (SetUnion (S n))] (sys : LinearSys 𝕋 n) {tFinal Δt : ℝ} (hΔt : 0 < Δt)
     (η : ℕ) (X₀ : S n) (spec : Specification ContSet) :
-    spec.check (sys.reach tFinal Δt η X₀) →
+    spec.check (sys.reachWrappingFree tFinal Δt η X₀) →
     (spec.Holds (sys.reachExact tFinal (construct X₀))) :=
-  fun h => spec.holds_of_outer (sys.reach_outer hΔt X₀) (spec.check_sound _ h)
+  fun h => spec.holds_of_outer (sys.reachWrappingFree_outer hΔt X₀) (spec.check_sound _ h)
 
 end CORALean
 

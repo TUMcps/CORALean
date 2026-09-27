@@ -7,8 +7,8 @@ import CORALean.Examples.Bench.Rollout
 Where `Rollout.buildSystem` discretizes `A` by a first-order Euler step for
 `dtdemo`'s placeholder, `buildContSystem` reads `A = [[a, b], [-b, a]]` itself
 into `𝕋`, exactly, through the checked `inst` (config values are exact at 2
-bits, so this never rejects a config that also fits `X0`). `LinearSys.reachFloat`,
-`.reachRecursiveFloat` and `.reachTimePointFloat` take `A` this way, unlike
+bits, so this never rejects a config that also fits `X0`). `LinearSys.reachWrappingFreeFloat`,
+`.reachFloat` and `.reachTimePointWrappingFreeFloat` take `A` this way, unlike
 `LinearSysDT.reach`, which needs the discretized matrix `buildSystem` builds.
 -/
 

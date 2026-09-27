@@ -1,10 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Operations.ReachStepkFloat
+import CORALean.ContDynamics.LinearSys.Operations.ReachStepkWrappingFreeFloat
 import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpSquaringFloat
 import CORALean.ContDynamics.LinearSys.Theorems.SampleTimeFloatMem
 import CORALean.ContDynamics.LinearSys.Theorems.SquaringsFloatSpec
 
 /-!
-# A window of `reachFloat` carries its first window by the exact `e^{A t_k}`
+# A window of `reachWrappingFreeFloat` carries its first window by the exact `e^{A t_k}`
 
 `t_k = k Δt` lies in its bracket `sampleTimeFloat Δt k`, so
 `exp_mem_expSquaringFloat` puts `e^{A t_k}` in the window's matrix at the count
@@ -32,11 +32,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSys.reachStepkFloat_outer (sys : LinearSys 𝕋 n) {Δt : 𝕋} {η k : ℕ} (h2 : 2 ≤ η)
-    {Rτ₀ R : Zonotope 𝕋 n} (h : sys.reachStepkFloat Δt η Rτ₀ k = some R) {y : Vec ℝ n}
-    (hy : y ∈ Rτ₀.construct) :
+theorem LinearSys.reachStepkWrappingFreeFloat_outer (sys : LinearSys 𝕋 n) {Δt : 𝕋} {η k : ℕ}
+    (h2 : 2 ≤ η) {Rτ₀ R : Zonotope 𝕋 n} (h : sys.reachStepkWrappingFreeFloat Δt η Rτ₀ k = some R)
+    {y : Vec ℝ n} (hy : y ∈ Rτ₀.construct) :
     exp (((k : ℝ) * toReal Δt) • Scalar.toRealMat sys.A) *ᵥ y ∈ R.construct := by -- --- PROOF ---
-  simp only [LinearSys.reachStepkFloat, Option.bind_eq_bind, Option.bind_eq_some_iff,
+  simp only [LinearSys.reachStepkWrappingFreeFloat, Option.bind_eq_bind, Option.bind_eq_some_iff,
     Option.pure_def, Option.some.injEq] at h
   obtain ⟨sk, hsk, rfl⟩ := h
   -- `t_k` lies in its bracket

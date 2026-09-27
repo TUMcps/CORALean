@@ -7,7 +7,7 @@ import CORALean.ContSet.Zonotope.Float.Instances
 `timePointStep` without an input, computed in `𝕋`: `[e^{AΔt}] R`, the float
 enclosure `expIntervalFloat` at the point range `[Δt, Δt]` applied by
 `Zonotope.mtimesIntervalMat`, which carries the error box through the interval
-matrix as a box. The step `reachRecursiveFloat` iterates.
+matrix as a box. The step `reachFloat` iterates.
 -/
 
 -- Authors:       Tobias Ladner

@@ -5,7 +5,7 @@ import CORALean.ContDynamics.LinearSys.Theorems.ExistsReachWindow
 import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
 import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetParticularSolution
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderAdmissible
-import CORALean.ContDynamics.LinearSys.Theorems.ReachStepkOuter
+import CORALean.ContDynamics.LinearSys.Theorems.ReachStepkWrappingFreeOuter
 import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 
 /-!
@@ -14,7 +14,7 @@ import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 [1, Alg. 2]'s soundness. A run on `[0, tFinal]` is at time `t` at
 `e^{At} x(0) + ∫₀ᵗ e^{A(t-s)} u(s) ds` (`variation_of_constants`), and `t` falls
 in a window `τ_k` `reach` keeps. The first term is in `H^R(τ_k)`
-(`reachStepk_outer`); the second is one admissible input's contribution by `t`,
+(`reachStepkWrappingFree_outer`); the second is one admissible input's contribution by `t`,
 so in `P^R(t_{k+1})` (`inputReach_subset_particularSolution`, where `0 ∈ U`
 is spent). `plus_outer` puts the sum in the window's set.
 
@@ -78,7 +78,8 @@ theorem LinearSys.WithInput.reach_outer (sys : LinearSys.WithInput 𝕋 S n) {tF
     exact List.mem_map.mpr ⟨k, List.mem_range.mpr hk, rfl⟩
   · rw [hvoc]
     refine Plus.plus_outer _ _ (Set.add_mem_add ?_ ?_)
-    · exact sys.sys.reachStepk_outer hΔt hε X₀ hkt htk (Set.mem_image_of_mem _ traj.init)
+    · exact sys.sys.reachStepkWrappingFree_outer hΔt hε X₀ hkt htk
+        (Set.mem_image_of_mem _ traj.init)
     · exact sys.sys.inputReach_subset_particularSolution hΔt hε sys.zero_mem_U k ht.1 htk1 hin
 
 end CORALean

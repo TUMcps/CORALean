@@ -1,12 +1,12 @@
 import CORALean.ContDynamics.LinearSys.Definitions.WithInput
 import CORALean.ContDynamics.LinearSys.Operations.ParticularSolution
-import CORALean.ContDynamics.LinearSys.Operations.ReachStepk
+import CORALean.ContDynamics.LinearSys.Operations.ReachStepkWrappingFree
 
 /-!
 # One window of `reach` with inputs: the set over `τ_k = [t_k, t_k + Δt]`
 
 `R(τ_k) = H^R(τ_k) ⊕ P^R(t_{k+1})`, [1, Alg. 2]'s window: the homogeneous set
-`reachStepk` carries to `τ_k`, plus everything the input can have contributed
+`reachStepkWrappingFree` carries to `τ_k`, plus everything the input can have contributed
 by the window's right end. One set serves every time of the window because
 `0 ∈ U` makes that contribution grow with time [1, Prop. 3.3], so the right end
 bounds every earlier instant.
@@ -42,7 +42,7 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 `sys.U`: `R(τ_k) = H^R(τ_k) ⊕ P^R(t_{k+1})`. -/
 noncomputable def LinearSys.WithInput.reachStepk (sys : LinearSys.WithInput 𝕋 S n) (Δt : ℝ)
     (η : ℕ) (X₀ : S n) (k : ℕ) : S n :=
-  let HRτk := sys.sys.reachStepk Δt η X₀ k                       -- H^R(τ_k) = e^{A t_k} H^R(τ_0)
+  let HRτk := sys.sys.reachStepkWrappingFree Δt η X₀ k           -- H^R(τ_k) = e^{A t_k} H^R(τ_0)
   let PRtk := sys.sys.particularSolution Δt η sys.U k            -- P^R(t_{k+1})
   Plus.plus HRτk PRtk                                            -- R(τ_k) = H^R(τ_k) ⊕ P^R(t_{k+1})
 

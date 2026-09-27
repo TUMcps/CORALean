@@ -1,15 +1,15 @@
-import CORALean.ContDynamics.LinearSys.Operations.ReachTimePointFloat
+import CORALean.ContDynamics.LinearSys.Operations.ReachTimePointWrappingFreeFloat
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
-import CORALean.ContDynamics.LinearSys.Theorems.ReachStepkFloatOuter
+import CORALean.ContDynamics.LinearSys.Theorems.ReachStepkWrappingFreeFloatOuter
 
 /-!
-# `reachTimePointFloat` holds the exact flow at every sample time
+# `reachTimePointWrappingFreeFloat` holds the exact flow at every sample time
 
-At `t_k = k Δt`, the flow is `e^{A t_k} x₀`: `reachStepkFloat_outer` carries
+At `t_k = k Δt`, the flow is `e^{A t_k} x₀`: `reachStepkWrappingFreeFloat_outer` carries
 every point of `X₀` through the window's matrix directly, `k = 0` included --
 `e^{A · 0} = I` needs nothing beyond that same lemma. `η'` is the order the
 run used, certified admissible by `reachOrderFloat_spec` exactly as
-`reachFloat_outer` uses it; `aux_mapM_some` reads one `mapM` result per `k`.
+`reachWrappingFreeFloat_outer` uses it; `aux_mapM_some` reads one `mapM` result per `k`.
 -/
 
 -- Authors:       Tobias Ladner
@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A `mapM` into `Option` that succeeds has one result per entry, each the
-function's value there -- `ReachFloatOuter.lean`'s own lemma, copied rather
+function's value there -- `ReachWrappingFreeFloatOuter.lean`'s own lemma, copied rather
 than imported, since an `aux_` name stays local to the file that declares it. -/
 theorem LinearSys.aux_mapM_some {α β : Type} {f : α → Option β} :
     ∀ {l : List α} {l' : List β}, l.mapM f = some l' →
@@ -60,12 +60,14 @@ theorem LinearSys.aux_mapM_some {α β : Type} {f : α → Option β} :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSys.reachTimePointFloat_outer (sys : LinearSys 𝕋 n) {X₀ : Zonotope 𝕋 n} {Δt : 𝕋}
-    {η N : ℕ} {Rs : List (Zonotope 𝕋 n)} (h : sys.reachTimePointFloat X₀ Δt η N = some Rs) :
+theorem LinearSys.reachTimePointWrappingFreeFloat_outer (sys : LinearSys 𝕋 n) {X₀ : Zonotope 𝕋 n}
+    {Δt : 𝕋} {η N : ℕ} {Rs : List (Zonotope 𝕋 n)}
+    (h : sys.reachTimePointWrappingFreeFloat X₀ Δt η N = some Rs) :
     Rs.length = N + 1 ∧ ∀ (k : ℕ) (hk : k < Rs.length), ∀ x₀ ∈ X₀.construct,
       exp (((k : ℝ) * toReal Δt) • Scalar.toRealMat sys.A) *ᵥ x₀
         ∈ Rs[k].construct := by -- --- PROOF ---
-  simp only [LinearSys.reachTimePointFloat, Option.bind_eq_bind, Option.bind_eq_some_iff] at h
+  simp only [LinearSys.reachTimePointWrappingFreeFloat, Option.bind_eq_bind,
+    Option.bind_eq_some_iff] at h
   obtain ⟨η', hη', hRs⟩ := h
   have hadm := (LinearSys.reachOrderFloat_spec hη').1
   obtain ⟨hlen, hget⟩ := LinearSys.aux_mapM_some hRs
@@ -73,8 +75,8 @@ theorem LinearSys.reachTimePointFloat_outer (sys : LinearSys 𝕋 n) {X₀ : Zon
   refine ⟨hlen, fun k hk x₀ hx₀ => ?_⟩
   have hwin := hget k hk
   simp only [List.getElem_range] at hwin
-  -- window `k` is `reachStepkFloat` at `X₀` directly, `k = 0` included
-  exact sys.reachStepkFloat_outer hadm.1 hwin hx₀
+  -- window `k` is `reachStepkWrappingFreeFloat` at `X₀` directly, `k = 0` included
+  exact sys.reachStepkWrappingFreeFloat_outer hadm.1 hwin hx₀
 
 end CORALean
 

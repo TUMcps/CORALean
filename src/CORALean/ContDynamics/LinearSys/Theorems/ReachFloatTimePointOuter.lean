@@ -1,9 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.ReachRecursiveFloat
+import CORALean.ContDynamics.LinearSys.Operations.ReachFloat
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
 import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepFloatOuter
 
 /-!
-# `reachRecursiveFloat`'s time-point sets hold the exact flow at `k Δt`
+# `reachFloat`'s time-point sets hold the exact flow at `k Δt`
 
 By induction on `k`: `R_0 = X₀` holds `e^{0} x₀ = x₀`, and
 `e^{A (k+1) Δt} x₀ = e^{AΔt} (e^{A k Δt} x₀)`, which `timePointStepFloat_outer`
@@ -31,13 +31,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSys.reachRecursiveFloat_timePoint_outer (sys : LinearSys 𝕋 n)
+theorem LinearSys.reachFloat_timePoint_outer (sys : LinearSys 𝕋 n)
     {X₀ : Zonotope 𝕋 n} {Δt : 𝕋} {η ρ N : ℕ} {Rti Rtp : List (Zonotope 𝕋 n)}
-    (h : sys.reachRecursiveFloat X₀ Δt η ρ N = some (Rti, Rtp)) :
+    (h : sys.reachFloat X₀ Δt η ρ N = some (Rti, Rtp)) :
     Rtp.length = N + 1 ∧ ∀ (k : ℕ) (hk : k < Rtp.length), ∀ x₀ ∈ X₀.construct,
       exp (((k : ℝ) * toReal Δt) • Scalar.toRealMat sys.A) *ᵥ x₀
         ∈ Rtp[k].construct := by -- --- PROOF ---
-  simp only [LinearSys.reachRecursiveFloat, Option.bind_eq_bind, Option.bind_eq_some_iff,
+  simp only [LinearSys.reachFloat, Option.bind_eq_bind, Option.bind_eq_some_iff,
     Option.pure_def, Option.some.injEq, Prod.mk.injEq] at h
   obtain ⟨η', hη', -, rfl⟩ := h
   have hadm := (LinearSys.reachOrderFloat_spec hη').1

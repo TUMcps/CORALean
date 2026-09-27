@@ -7,11 +7,11 @@ import CORALean.ContSet.SetUnion.SetUnion
 
 [1, Alg. 2], `0 ∈ U`: the windows `τ_0, …, τ_{N-1}`, one `reachStepk` each,
 collected as a `SetUnion`, `N = ⌈tFinal / Δt⌉` of them and never fewer than one,
-exactly `LinearSys.reach`'s count. No `box()` on the accumulated input set: that
+exactly `LinearSys.reachWrappingFree`'s count. No `box()` on the accumulated input set: that
 bounds a zonotope's order and is a reduction, which an enclosure need not make.
 
 `η` is the Taylor order asked for, raised to `reachOrder Δt + 2` where that is
-higher, as in `LinearSys.reach`: `timeIntervalStep_outer` and `inputSolution`'s
+higher, as in `LinearSys.reachWrappingFree`: `timeIntervalStep_outer` and `inputSolution`'s
 enclosure both hold only at an order admissible for `Δt` and `sys.A`.
 
 ## References

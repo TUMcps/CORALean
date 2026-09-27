@@ -4,9 +4,9 @@ import CORALean.ContDynamics.LinearSys.Operations.SquaringsFloat
 import CORALean.ContSet.Zonotope.Float.Instances
 
 /-!
-# One window of `reachFloat`: `R(τ_k) = [e^{A t_k}] R(τ_0)`, in floats
+# One window of `reachWrappingFreeFloat`: `R(τ_k) = [e^{A t_k}] R(τ_0)`, in floats
 
-`reachStepk` computed in `𝕋`. The matrix is enclosed afresh at `t_k` itself,
+`reachStepkWrappingFree` computed in `𝕋`. The matrix is enclosed afresh at `t_k` itself,
 never as a power of `[e^{AΔt}]`, so no window pays for the ones before it. A
 float need not hold `t_k = k Δt`, so the window brackets it, `sampleTimeFloat`,
 and encloses `e^{At}` over that whole range: sound at every float `Δt`. The
@@ -36,8 +36,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The window `τ_k = [k Δt, (k + 1) Δt]` from the first one `Rτ₀`, the
 exponential at order `η` after scaling `t_k` down to the step. -/
-def LinearSys.reachStepkFloat (sys : LinearSys 𝕋 n) (Δt : 𝕋) (η : ℕ) (Rτ₀ : Zonotope 𝕋 n)
-    (k : ℕ) : Option (Zonotope 𝕋 n) := do
+def LinearSys.reachStepkWrappingFreeFloat (sys : LinearSys 𝕋 n) (Δt : 𝕋) (η : ℕ)
+    (Rτ₀ : Zonotope 𝕋 n) (k : ℕ) : Option (Zonotope 𝕋 n) := do
   let tk := LinearSys.sampleTimeFloat Δt k                          -- [t_k], bracketed
   let sk ← sys.squaringsFloat Δt tk.1 tk.2 η                        -- t_k / 2^s within Δt
   let eAtk := sys.expSquaringFloat tk.1 tk.2 η sk                   -- [e^{A t_k}], squared

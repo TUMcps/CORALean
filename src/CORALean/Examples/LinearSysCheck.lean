@@ -17,9 +17,9 @@ import CORALean.Specification.Instances
 `[-10, 10]²`, checked on every window by `Contains` through the zonotope's
 interval hull — the float box at `𝕋 := ℝ`, which is where the checks live.
 
-`reach` names `exp`, which is `pending #1`, so the check cannot be evaluated
+`reachWrappingFree` names `exp`, which is `pending #1`, so the check cannot be evaluated
 here; what is shown is that `holds_of_check` applies as stated, once at the
-system's own `reach` and once through the `Reach` instance, so a `true` from a
+system's own `reachWrappingFree` and once through the `Reach` instance, so a `true` from a
 float refinement would need nothing further to answer for every trajectory.
 The third example adds the input box `[-1/10, 1/10]²` as `LinearSys.WithInput`,
 its `0 ∈ U` the zonotope's centre, and answers for every run under it; the
@@ -41,7 +41,7 @@ open ContSet
 /-- The safe box on the windows answers for every state the flow reaches by `1`. -/
 example :
     (Specification.safeSet (⟨![-10, -10], ![10, 10]⟩ : Float.Interval (Vec ℝ 2))).check
-      ((⟨!![-1, 1; 0, -2]⟩ : LinearSys ℝ 2).reach (S := 𝒵) 1 (1 / 10) 4
+      ((⟨!![-1, 1; 0, -2]⟩ : LinearSys ℝ 2).reachWrappingFree (S := 𝒵) 1 (1 / 10) 4
         (⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2))) →
     ((Specification.safeSet (⟨![-10, -10], ![10, 10]⟩ : Float.Interval (Vec ℝ 2))).Holds
       ((⟨!![-1, 1; 0, -2]⟩ : LinearSys ℝ 2).reachExact 1
