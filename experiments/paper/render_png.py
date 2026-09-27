@@ -146,7 +146,7 @@ def main(argv: list[str]) -> int:
     for config_dir in sorted(results_dir.iterdir()):
         if not config_dir.is_dir() or config_dir.name in ("nn", "paper"):
             continue
-        for scheme_dir, scheme_label in (("headline-a", "a"), ("headline-b", "b")):
+        for scheme_dir, scheme_label in (("headline-b", "(a)"), ("headline-a", "(b)")):
             if (config_dir / scheme_dir).is_dir():
                 render_reach_tube(results_dir, config_dir.name, scheme_dir, scheme_label,
                                    out_dir)

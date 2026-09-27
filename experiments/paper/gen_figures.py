@@ -87,7 +87,7 @@ def gen_paper_ti_union(results_dir: Path, config: str, scheme: str, type_stem: s
     made valid with `Polygon(...).buffer(0)`, unioned with
     `shapely.ops.unary_union`, then `.simplify(1e-4)` -- no thinning at all,
     the whole run's reachable tube as one (possibly disconnected, possibly
-    holed -- scheme (b)'s own blow-up can swallow an inner turn whole, e.g.
+    holed -- scheme (a)'s own blow-up can swallow an inner turn whole, e.g.
     `headline_5turns`'s Dyadic tube) shape. Written ring by ring (a
     `Polygon`'s exterior, then each of its interiors -- a `MultiPolygon`
     repeats this per member, in `shapely`'s own iteration order), each ring
