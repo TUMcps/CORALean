@@ -1,5 +1,5 @@
 import CORALean.ContDynamics.LinearSys.Instances
-import CORALean.ContDynamics.LinearSys.Theorems.HoldsOfCheck
+import CORALean.ContDynamics.LinearSys.Theorems.HoldsOfCheckWrappingFree
 import CORALean.ContDynamics.Reach.Theorems.HoldsOfCheck
 import CORALean.ContSet.Conversion.Float.ContSet_to_Interval
 import CORALean.ContSet.Conversion.Real.ContSet_to_Interval
@@ -18,7 +18,7 @@ import CORALean.Specification.Instances
 interval hull — the float box at `𝕋 := ℝ`, which is where the checks live.
 
 `reachWrappingFree` names `exp`, which is `pending #1`, so the check cannot be evaluated
-here; what is shown is that `holds_of_check` applies as stated, once at the
+here; what is shown is that `holds_of_check_wrappingFree` applies as stated, once at the
 system's own `reachWrappingFree` and once through the `Reach` instance, so a `true` from a
 float refinement would need nothing further to answer for every trajectory.
 The third example adds the input box `[-1/10, 1/10]²` as `LinearSys.WithInput`,
@@ -46,7 +46,7 @@ example :
     ((Specification.safeSet (⟨![-10, -10], ![10, 10]⟩ : Float.Interval (Vec ℝ 2))).Holds
       ((⟨!![-1, 1; 0, -2]⟩ : LinearSys ℝ 2).reachExact 1
         (construct (⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2))))) :=
-  LinearSys.holds_of_check (S := 𝒵) _ (by norm_num) 4 _ _
+  LinearSys.holds_of_check_wrappingFree (S := 𝒵) _ (by norm_num) 4 _ _
 
 /-- The same through `Reach.check`, the parameters bundled as `LinearSys.ReachParams`. -/
 example :

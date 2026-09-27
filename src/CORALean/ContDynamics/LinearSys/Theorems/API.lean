@@ -139,11 +139,14 @@ import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 import CORALean.ContDynamics.LinearSys.Theorems.VerifyConvexUnsafe
 import CORALean.ContDynamics.LinearSys.Theorems.WeightedIntegral
 import CORALean.ContDynamics.LinearSys.Theorems.HoldsOfCheck
+import CORALean.ContDynamics.LinearSys.Theorems.HoldsOfCheckWrappingFree
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderAdmissible
 import CORALean.ContDynamics.LinearSys.Theorems.ReachWrappingFreeOuter
+import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterWindows
 import CORALean.ContDynamics.LinearSys.Theorems.ExistsReachWindow
 import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetParticularSolution
 import CORALean.ContDynamics.LinearSys.Theorems.ReachStepkWrappingFreeOuter
+import CORALean.ContDynamics.LinearSys.Theorems.ReachStepkOuter
 import CORALean.ContDynamics.LinearSys.Theorems.WithInputReachOuter
 import CORALean.ContDynamics.LinearSys.Theorems.WithInputSplitReachOuter
 import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
@@ -182,5 +185,5 @@ built on it ask for `Set.Ici 0`. `DiscretizeEnclosure`/`DiscretizeEnclosureReach
 `Discretize`/`ReachOuter` enclosed rather than computed; `DiscretizeMatZonotope` is the same at
 a matrix zonotope, `PostDeltaOuter` is `DeltaReachOuterInputSolution` again;
 `ReachWrappingFreeOuter` and `WithInputReachOuter` are `Instances`' guarantees, built window by
-window, and `…FloatOuter` the float runs'.
+window, `ReachOuterWindows` the recursive `reach`'s, and `…FloatOuter` the float runs'.
 -/
