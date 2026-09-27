@@ -31,7 +31,12 @@ from common import (booktabs_rows, find_run, fmt_csv, fmt_nicefrac, fmt_tex,
 
 TYPES = [("dyadic-binary64", "$p=64$"), ("float", "Float"),
          ("nearest-binary64", "round-to-nearest"), ("cora", "CORA")]
-SCHEMES = [("headline-a", "a"), ("headline-b", "b")]
+# The paper's figure panel (a) is the RECURSIVE scheme (bench `headline-b`),
+# panel (b) the WRAPPING-FREE one (bench `headline-a`) -- every table below
+# lists them in this order, recursive first, with these `(a)`/`(b)` labels.
+# `scheme_name` is the unambiguous machine-readable counterpart, next to the
+# label in every CSV this writes.
+SCHEMES = [("headline-b", "(a)", "recursive"), ("headline-a", "(b)", "wrapping-free")]
 PRECISION_FORMATS = ["binary4", "binary8", "binary16", "binary32", "binary64"]
 PRECISION_BITS = {"binary4": 4, "binary8": 8, "binary16": 16, "binary32": 32, "binary64": 64}
 
@@ -77,7 +82,7 @@ def headline_rows(results_dir: Path, configs: list[str]) -> list[dict]:
     """One dict per `config`/`scheme`, `metrics: {name: [value_per_type]}`."""
     rows = []
     for config in configs:
-        for scheme_dir, scheme_label in SCHEMES:
+        for scheme_dir, scheme_label, scheme_name in SCHEMES:
             metas = {stem: run_summary(results_dir, config, scheme_dir, stem)
                      for stem, _ in TYPES}
             metrics: dict[str, list] = {name: [] for name, _, _ in METRICS}
@@ -92,7 +97,8 @@ def headline_rows(results_dir: Path, configs: list[str]) -> list[dict]:
                 metrics["total_width"].append(max_dim(ti["finalTotalWidth"]))
                 metrics["eradius"].append(max_dim(ti["finalEradius"]))
                 metrics["runtime"].append(meta["medianNs"] / 1e9)
-            rows.append({"config": config, "scheme": scheme_label, "metrics": metrics})
+            rows.append({"config": config, "scheme": scheme_label,
+                         "scheme_name": scheme_name, "metrics": metrics})
     return rows
 
 
@@ -102,9 +108,11 @@ def headline_table_body(rows: list[dict], with_config: bool) -> tuple[list[list]
     for row in rows:
         for name, label, unit in METRICS:
             vals = row["metrics"][name]
-            prefix = [row["config"], row["scheme"]] if with_config else [row["scheme"]]
-            tex_rows.append(prefix + [f"{label}{unit}"] + [fmt_tex(v) for v in vals])
-            csv_rows.append(prefix + [name] + [fmt_csv(v) for v in vals])
+            tex_prefix = [row["config"], row["scheme"]] if with_config else [row["scheme"]]
+            csv_prefix = ([row["config"], row["scheme"], row["scheme_name"]] if with_config
+                          else [row["scheme"], row["scheme_name"]])
+            tex_rows.append(tex_prefix + [f"{label}{unit}"] + [fmt_tex(v) for v in vals])
+            csv_rows.append(csv_prefix + [name] + [fmt_csv(v) for v in vals])
         midrules.add(len(tex_rows))
     midrules.discard(len(tex_rows))
     return tex_rows, csv_rows, midrules
@@ -113,7 +121,7 @@ def headline_table_body(rows: list[dict], with_config: bool) -> tuple[list[list]
 def write_headline_table(results_dir: Path, configs: list[str]) -> None:
     rows = headline_rows(results_dir, configs)
     tex_rows, csv_rows, midrules = headline_table_body(rows, with_config=True)
-    header = ["config", "scheme", "metric"] + [label for _, label in TYPES]
+    header = ["config", "scheme", "scheme_name", "metric"] + [label for _, label in TYPES]
     write_csv(results_dir / "paper" / "headline_table.csv", header, csv_rows)
     write_tex(results_dir / "paper" / "headline_table.tex", booktabs_rows(tex_rows, midrules))
 
@@ -132,17 +140,17 @@ def write_headline_summary(results_dir: Path, configs: list[str]) -> None:
     type, so a later session can filter/pick a config without re-deriving
     anything from the raw runs -- nominal/total width, `E` radius, runtime,
     and the first (ti) blow-up step ("never" if none)."""
-    header = ["config", "scheme", "type", "nominal_width", "total_width", "eradius",
-              "runtime_s", "first_blowup_step"]
+    header = ["config", "scheme", "scheme_name", "type", "nominal_width", "total_width",
+              "eradius", "runtime_s", "first_blowup_step"]
     rows = []
     for config in configs:
-        for scheme_dir, scheme_label in SCHEMES:
+        for scheme_dir, scheme_label, scheme_name in SCHEMES:
             for stem, label in TYPES:
                 meta = run_summary(results_dir, config, scheme_dir, stem)
                 if meta is None:
                     continue
                 ti = meta["summary"]["ti"]
-                rows.append([config, scheme_label, label,
+                rows.append([config, scheme_label, scheme_name, label,
                              fmt_csv(max_dim(ti["finalWidth"])),
                              fmt_csv(max_dim(ti["finalTotalWidth"])),
                              fmt_csv(max_dim(ti["finalEradius"])),
@@ -294,7 +302,8 @@ def write_nn_table(results_dir: Path) -> None:
 
 
 # ---------------------------------------------------------------------------
-# (d) runtime_table: schemes a/b, one column per backend, one call per config.
+# (d) runtime_table: schemes (a)/(b) -- recursive then wrapping-free -- one
+# column per backend, one call per config.
 # ---------------------------------------------------------------------------
 
 def runtime_table(results_dir: Path, config: str) -> tuple[list[list], list[list]]:
@@ -304,7 +313,7 @@ def runtime_table(results_dir: Path, config: str) -> tuple[list[list], list[list
     rows_by_key = {(r["scheme"], r["backend"], r["number_type"]): int(r["medianNs"])
                    for r in read_csv_rows(csv_path)}
     tex_rows, csv_rows = [], []
-    for scheme_dir, scheme_label in SCHEMES:
+    for scheme_dir, scheme_label, scheme_name in SCHEMES:
         dyadic_c = rows_by_key.get((scheme_dir, "compiled", "dyadic-binary64"))
         dyadic_i = rows_by_key.get((scheme_dir, "interpreter", "dyadic-binary64"))
         float_c = rows_by_key.get((scheme_dir, "compiled", "float"))
@@ -317,7 +326,7 @@ def runtime_table(results_dir: Path, config: str) -> tuple[list[list], list[list
         tex_rows.append([scheme_label] + [fmt_tex(v) for v in vals_s[:-1]] +
                          [(fmt_tex(vals_s[-1]) + "$^{\\dagger}$") if vals_s[-1] is not None
                           else "--"])
-        csv_rows.append([scheme_label] + [fmt_csv(v) for v in vals_s])
+        csv_rows.append([scheme_label, scheme_name] + [fmt_csv(v) for v in vals_s])
     return tex_rows, csv_rows
 
 
@@ -328,8 +337,8 @@ def write_runtime_table(results_dir: Path, config: str) -> None:
     if not csv_path.exists():
         return
     tex_rows, csv_rows = runtime_table(results_dir, config)
-    header = ["scheme", "dyadic64_compiled_s", "dyadic64_interp_s", "float_compiled_s",
-              "float_interp_s", "nearest_compiled_s", "cora_s"]
+    header = ["scheme", "scheme_name", "dyadic64_compiled_s", "dyadic64_interp_s",
+              "float_compiled_s", "float_interp_s", "nearest_compiled_s", "cora_s"]
     write_csv(results_dir / "paper" / f"runtime_table_{config}.csv", header, csv_rows)
     body = booktabs_rows(tex_rows) + \
         "\\multicolumn{7}{l}{$\\dagger$ not part of the repeatability package} \\\\\n"
@@ -347,7 +356,7 @@ def nearest_vs_cora_table(results_dir: Path, configs: list[str]) -> tuple[list[l
     tex_rows, csv_rows = [], []
     midrules = set()
     for config in configs:
-        for scheme_dir, scheme_label in SCHEMES:
+        for scheme_dir, scheme_label, scheme_name in SCHEMES:
             nearest_meta = run_summary(results_dir, config, scheme_dir, "nearest-binary64")
             cora_meta = run_summary(results_dir, config, scheme_dir, "cora")
             for set_key, set_label in (("tp", "time-point"), ("ti", "time-interval")):
@@ -359,7 +368,7 @@ def nearest_vs_cora_table(results_dir: Path, configs: list[str]) -> tuple[list[l
                 tex_rows.append([config, scheme_label, set_label, fmt_tex(n_width),
                                   fmt_tex(c_width), fmt_tex(rel * 100 if rel is not None else None)
                                   + ("\\%" if rel is not None else "")])
-                csv_rows.append([config, scheme_label, set_label, fmt_csv(n_width),
+                csv_rows.append([config, scheme_label, scheme_name, set_label, fmt_csv(n_width),
                                   fmt_csv(c_width), fmt_csv(rel)])
             midrules.add(len(tex_rows))
     midrules.discard(len(tex_rows))
@@ -368,8 +377,8 @@ def nearest_vs_cora_table(results_dir: Path, configs: list[str]) -> tuple[list[l
 
 def write_nearest_vs_cora(results_dir: Path, configs: list[str]) -> None:
     tex_rows, csv_rows, midrules = nearest_vs_cora_table(results_dir, configs)
-    header = ["config", "scheme", "set", "nearest_final_width", "cora_final_width",
-               "relative_difference"]
+    header = ["config", "scheme", "scheme_name", "set", "nearest_final_width",
+              "cora_final_width", "relative_difference"]
     write_csv(results_dir / "paper" / "nearest_vs_cora.csv", header, csv_rows)
     write_tex(results_dir / "paper" / "nearest_vs_cora.tex", booktabs_rows(tex_rows, midrules))
 
