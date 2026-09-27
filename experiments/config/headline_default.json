@@ -8,7 +8,7 @@
   "x0": {
     "_comment": "Center + generator columns, all multiples of 1/8. h = 2 generators here.",
     "center": [
-      "1",
+      "-1",
       "0"
     ],
     "generators": [
