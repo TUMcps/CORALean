@@ -1,4 +1,5 @@
 import CORALean.Examples.Bench.Cli
+import CORALean.Examples.Bench.Nn
 import CORALean.Examples.Bench.Output
 import CORALean.Global.Float.Instances.Binary64.API
 import CORALean.Global.Float.Instances.Dyadic.API
@@ -82,6 +83,7 @@ def aux_runAt {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] (args : 
     (toD : 𝕋 → Float) (format : String) (toExact : Option (𝕋 → String)) (sig : ℕ) :
     IO Unit :=
   match args.experiment with
+  | "nn-float32" => runNnFloat32 args
   | "dtdemo" => runDtdemo args inst instUnchecked toD format toExact sig
   | "headline-a" => stub "headline-a" "(A X0 dt eta rho N : _) → Array (Zonotope 𝕋 2)"
   | "headline-b" => stub "headline-b" "(A X0 dt eta rho N : _) → Array (Zonotope 𝕋 2)"
