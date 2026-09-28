@@ -1,0 +1,77 @@
+{
+ "sum_v": {
+  "bit_identical_to_seq_nearest": true,
+  "ieee_contains_exact": true,
+  "ieee_contains_matlab_loop": true,
+  "ieee_contains_matlab_builtin": true,
+  "hardware_contains_exact": true,
+  "hardware_contains_matlab_loop": true,
+  "hardware_contains_matlab_builtin": true,
+  "ieee_width_ulp": 6311,
+  "hardware_width_ulp": 12710
+ },
+ "sum_cancel": {
+  "bit_identical_to_seq_nearest": true,
+  "ieee_contains_exact": true,
+  "ieee_contains_matlab_loop": true,
+  "ieee_contains_matlab_builtin": true,
+  "hardware_contains_exact": true,
+  "hardware_contains_matlab_loop": true,
+  "hardware_contains_matlab_builtin": true,
+  "ieee_width_ulp": 1091952485335040,
+  "hardware_width_ulp": 2144941027360770
+ },
+ "dot_vw": {
+  "bit_identical_to_seq_nearest": true,
+  "ieee_contains_exact": true,
+  "ieee_contains_matlab_loop": true,
+  "ieee_contains_matlab_builtin": true,
+  "hardware_contains_exact": true,
+  "hardware_contains_matlab_loop": true,
+  "hardware_contains_matlab_builtin": true,
+  "ieee_width_ulp": 11840,
+  "hardware_width_ulp": 23853
+ },
+ "mtimes100": {
+  "entries": 10000,
+  "bit_identical_to_seq_nearest": 10000,
+  "ieee_contains_matlab_loop": 10000,
+  "ieee_contains_matlab_builtin": 10000,
+  "hardware_contains_matlab_loop": 10000,
+  "hardware_contains_matlab_builtin": 10000,
+  "exact_sample_size": 10000,
+  "ieee_contains_exact_sample": 10000,
+  "hardware_contains_exact_sample": 10000,
+  "ieee_width_ulp": {
+   "min": 15,
+   "median": 74,
+   "max": 753664
+  },
+  "hardware_width_ulp": {
+   "min": 33,
+   "median": 164,
+   "max": 1839106
+  }
+ },
+ "mtimes500": {
+  "entries": 250000,
+  "bit_identical_to_seq_nearest": 250000,
+  "ieee_contains_matlab_loop": 250000,
+  "ieee_contains_matlab_builtin": 250000,
+  "hardware_contains_matlab_loop": 250000,
+  "hardware_contains_matlab_builtin": 250000,
+  "exact_sample_size": 2000,
+  "ieee_contains_exact_sample": 2000,
+  "hardware_contains_exact_sample": 2000,
+  "ieee_width_ulp": {
+   "min": 58,
+   "median": 360,
+   "max": 95420416
+  },
+  "hardware_width_ulp": {
+   "min": 129,
+   "median": 758,
+   "max": 203735042
+  }
+ }
+}

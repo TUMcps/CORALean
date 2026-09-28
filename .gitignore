@@ -8,3 +8,9 @@ experiments/results/
 # which is otherwise committed on the results/paper-vN branches) --
 # paper_floats.pdf itself is copied out to <results>/paper/ and IS committed.
 **/paper-latex/
+
+# experiments/matlab-ops: the large inputs and per-tool results (45 MB) live on the
+# data branch results/matlab-ops-v1; regenerate or fetch them, see experiments/README.md.
+experiments/matlab-ops/inputs.json
+experiments/matlab-ops/matlab_results.json
+experiments/matlab-ops/coralean_results.json

@@ -45,6 +45,9 @@ structure CliArgs where
   exact : Bool := false
   net : Option String := none
   images : Option Nat := none
+  /-- `--in`: `opcompare`'s own input file, `experiments/matlab-ops/inputs.json` if `none` --
+  no other experiment reads it. -/
+  inFile : Option String := none
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -56,7 +59,7 @@ def parseArgs : List String → Except String CliArgs
   | [] => throw "usage: bench <experiment> [--type dyadic|ieee|float|nearest|fixed] \
       [--format binary64|binary32|binary16|binary8|binary4] [--prec P] [--digits F] \
       [--config FILE] [--reps N] [--out DIR] [--exact] [--net small|medium|large] \
-      [--images K]"
+      [--images K] [--in FILE]"
   | exp :: rest => go rest { experiment := exp }
 where
   go : List String → CliArgs → Except String CliArgs
@@ -88,6 +91,7 @@ where
       match v.toNat? with
       | some k => go rest { a with images := some k }
       | none => throw s!"`--images` needs a natural number, not `{v}`"
+    | "--in" :: v :: rest, a => go rest { a with inFile := some v }
     | [flag], _ => throw s!"`{flag}` needs a value"
     | flag :: _, _ => throw s!"unrecognised argument `{flag}`"
 

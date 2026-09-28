@@ -845,6 +845,35 @@ experiments/paper/make_paper.sh experiments/results-paper   # -> .../paper/paper
 "Reproducing from scratch" above) runs the `headline_5turns` part of this in
 one command; it does not set up the `shapely` venv itself.
 
+## Elementary operations vs MATLAB (`opcompare`)
+
+Sums, a dot product and matrix products (n = 10^4, an ill-conditioned sum of
+2000 terms, 100x100 and 500x500), computed strictly left to right, one rounded
+multiply then one rounded add per term, in five ways: plain `Float`
+(round-to-nearest), the hardware instance's down/up, and `IEEE .binary64`'s
+down/up. They are then compared with MATLAB's loops and built-ins (MKL) and with
+exact rational arithmetic.
+
+```
+cd experiments/matlab-ops
+python3 make_inputs.py                 # inputs.json (deterministic, seed 20260928)
+matlab -batch matlab_ops               # matlab_results.json (optional, needs MATLAB)
+cd ../.. && lake exe bench opcompare --in experiments/matlab-ops/inputs.json
+cd experiments/matlab-ops && python3 compare.py   # comparison.json, coralean_summary.json
+```
+
+The scripts read and write their files in `experiments/matlab-ops/`, so run them from there.
+
+The three large JSON files (45 MB: inputs, MATLAB's and CORALean's results)
+are not on `main`. They are on the data branch `results/matlab-ops-v1`, fetched
+with `git checkout origin/results/matlab-ops-v1 -- experiments/matlab-ops`. The
+MATLAB results there come from a one-off run (R2025b, MKL 2024.1).
+`coralean_summary.json` holds the outcome: plain `Float` matches sequential
+round-to-nearest bit for bit, and every IEEE and hardware interval contains the
+exact value and both MATLAB results. The hardware intervals are about twice as
+wide in ulp as the IEEE ones, since they round to nearest and then step one ulp
+outward.
+
 ## Pinned versions
 
 * Lean/Lake toolchain: `leanprover/lean4:v4.32.0` (`lean-toolchain`).
