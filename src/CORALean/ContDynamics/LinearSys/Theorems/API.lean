@@ -120,11 +120,13 @@ import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetSubsetTimeIn
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepEpsOuter
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepInnerInner
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepInnerSubsetIntegralReach
+import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepOuter
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepOuterSegments
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepSubsetAddError
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepSubsetInitialAddError
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalWitness
 import CORALean.ContDynamics.LinearSys.Theorems.TimePointBound
+import CORALean.ContDynamics.LinearSys.Theorems.TimePointOuter
 import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepInnerInner
 import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepInnerRepInner
 import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepInnerSubsetIntegralReachSet
@@ -157,6 +159,7 @@ import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepFloatOuter
 import CORALean.ContDynamics.LinearSys.Theorems.ReachStepkWrappingFreeFloatOuter
 import CORALean.ContDynamics.LinearSys.Theorems.ReachWrappingFreeFloatOuter
 import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatTimePointOuter
+import CORALean.ContDynamics.LinearSys.Theorems.TimePointSubsetReachFloat
 import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatOuter
 import CORALean.ContDynamics.LinearSys.Theorems.SquaringsFloatSpec
 import CORALean.ContDynamics.LinearSys.Theorems.SampleTimeFloatMem

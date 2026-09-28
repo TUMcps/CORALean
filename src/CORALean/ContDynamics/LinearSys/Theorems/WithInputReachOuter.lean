@@ -57,7 +57,7 @@ theorem LinearSys.WithInput.reach_outer (sys : LinearSys.WithInput 𝕋 S n) {tF
   rintro _ ⟨x, u, traj, t, ht, rfl⟩
   obtain ⟨k, hk, hkt, htk⟩ := LinearSys.exists_reach_window hΔt ht
   have htk1 : t ≤ ((k + 1 : ℕ) : ℝ) * Δt := by push_cast; linarith
-  -- the order `reach` runs at, `m + 2` in `timeIntervalStep_outer`'s naming
+  -- the order `reach` runs at, `m + 2` in `timeIntervalStep_outer_at`'s naming
   obtain ⟨m, hm⟩ : ∃ m, max η (sys.sys.reachOrder Δt + 2) = m + 2 :=
     ⟨max η (sys.sys.reachOrder Δt + 2) - 2, by omega⟩
   have hε : ‖Δt • toRealMat sys.sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1 :=

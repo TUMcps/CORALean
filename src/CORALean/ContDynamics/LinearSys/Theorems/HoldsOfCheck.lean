@@ -39,12 +39,12 @@ variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
 
 theorem LinearSys.holds_of_check [Contains ContSet (SetUnion (S n))]
     [IsDisjoint ContSet (SetUnion (S n))] (sys : LinearSys 𝕋 n) {tFinal Δt : ℝ}
-    (htFinal : 0 < tFinal) (hΔt : 0 < Δt) {m : ℕ}
-    (hε : ‖Δt • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) (X₀ : S n)
+    (htFinal : 0 < tFinal) (hΔt : 0 < Δt) {η : ℕ} (hη : 2 ≤ η)
+    (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) (X₀ : S n)
     (spec : Specification ContSet) :
-    spec.check (sys.reach tFinal Δt (m + 2) X₀) →
+    spec.check (sys.reach tFinal Δt η X₀) →
     (spec.Holds (sys.reachExact tFinal (construct X₀))) :=
-  fun h => spec.holds_of_outer (sys.reach_outer htFinal hΔt hε X₀) (spec.check_sound _ h)
+  fun h => spec.holds_of_outer (sys.reach_outer htFinal hΔt hη hε X₀) (spec.check_sound _ h)
 
 end CORALean
 

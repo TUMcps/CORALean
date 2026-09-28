@@ -44,7 +44,7 @@ theorem LinearSys.reachWrappingFree_outer (sys : LinearSys 𝕋 n) {tFinal Δt :
       ⊆ construct (sys.reachWrappingFree tFinal Δt η X₀) := by -- --- PROOF ---
   rintro _ ⟨t, ht, x₀, hx₀, rfl⟩
   obtain ⟨k, hk, hkt, htk⟩ := LinearSys.exists_reach_window hΔt ht
-  -- the order `reachWrappingFree` runs at, `m + 2` in `timeIntervalStep_outer`'s naming
+  -- the order `reachWrappingFree` runs at, `m + 2` in `timeIntervalStep_outer_at`'s naming
   obtain ⟨m, hm⟩ : ∃ m, max η (sys.reachOrder Δt + 2) = m + 2 :=
     ⟨max η (sys.reachOrder Δt + 2) - 2, by omega⟩
   have hε : ‖Δt • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1 :=

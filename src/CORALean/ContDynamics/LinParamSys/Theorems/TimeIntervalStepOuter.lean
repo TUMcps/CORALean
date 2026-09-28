@@ -6,7 +6,7 @@ import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
 /-!
 # `timeIntervalStep` contains the flow of every matrix the set holds
 
-`LinearSys.timeIntervalStep_outer` at a matrix drawn from `construct sys.A`
+`LinearSys.timeIntervalStep_outer_at` at a matrix drawn from `construct sys.A`
 instead of the one a point system stores: the straight line from `X₀` to its
 image is a `linComb` at weight `1 - t/r` as before, and the interpolation error
 is what the box's correction matrix spans.
