@@ -3,3 +3,8 @@
 *.log
 __pycache__/
 experiments/results/
+# make_paper.sh's own paper_floats.pdf build dir, written inside whichever
+# results directory it is pointed at (including experiments/results-paper/,
+# which is otherwise committed on the results/paper-vN branches) --
+# paper_floats.pdf itself is copied out to <results>/paper/ and IS committed.
+**/paper-latex/

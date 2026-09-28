@@ -1,0 +1,39 @@
+% precision ablation: radius of the interval error per step for each precision p, next to the width of the reachable set
+\begin{tikzpicture}
+\footnotesize
+\def\datadir{figures/evaluation/data/precision_5turns}
+
+\begin{axis}[
+    width=0.78\linewidth,
+    height=3.4cm,
+    scale only axis,
+    rounded axis,
+    xmin=0, xmax=2000,
+    ymode=log, ymin=1e-16, ymax=1e20,
+    ytick={1e-15,1e-10,1e-5,1e0,1e5,1e10,1e15,1e20},
+    xlabel={Step $k$},
+    ylabel={Radius},
+    legend columns=6,
+    legend to name=precisionlegend,
+    legend style={legend cell align=left, align=left, draw=white!15!black,
+        /tikz/every even column/.append style={column sep=1ex}},
+    xticklabel style={/pgf/number format/1000 sep={}},
+]
+
+\addplot[CORAcolorReachSet, line width=1.5pt] table {\datadir/width.dat};
+\addlegendentry{Width of $\contSet{X}_k$}
+\addplot[CORAcolor1, thick] table {\datadir/eradius-p4.dat};
+\addlegendentry{$p=4$}
+\addplot[CORAcolor2, thick] table {\datadir/eradius-p8.dat};
+\addlegendentry{$p=8$}
+\addplot[CORAcolor3, thick] table {\datadir/eradius-p16.dat};
+\addlegendentry{$p=16$}
+\addplot[CORAcolor4, thick] table {\datadir/eradius-p32.dat};
+\addlegendentry{$p=32$}
+\addplot[CORAcolor5, thick] table {\datadir/eradius-p64.dat};
+\addlegendentry{$p=64$}
+
+\end{axis}
+
+\node[anchor=north, yshift=-1ex] at (current bounding box.south) {\ref*{precisionlegend}};
+\end{tikzpicture}

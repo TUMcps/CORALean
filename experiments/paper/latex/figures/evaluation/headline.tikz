@@ -1,0 +1,53 @@
+% headline: reach tubes (union of all time-interval sets) of CORALean (p=64, Dyadic) below CORA
+\begin{tikzpicture}
+\footnotesize
+\pgfplotsset{
+    reach tube/.style={area legend, draw=#1, fill=#1, even odd rule, line width=0.1pt, unbounded coords=jump},
+    simulations/.style={color=CORAcolorSimulations, unbounded coords=jump},
+}
+\def\datadir{figures/evaluation/data/headline_5turns}
+
+\begin{groupplot}[
+    group style={group size=2 by 1, horizontal sep=1.3cm},
+    width=4.4cm,
+    height=4.4cm,
+    scale only axis,
+    rounded axis,
+    title style={font=\footnotesize, yshift=-0.5ex},
+    legend to name=headlinelegend,
+    legend columns=4,
+    legend style={legend cell align=left, align=left, draw=white!15!black,
+        /tikz/every even column/.append style={column sep=1.5ex}},
+]
+
+% (a) and (b): reach tubes; #1 panel, #2 scheme directory, #3 title
+\newcommand{\headlinepanel}[3]{%
+    \nextgroupplot[
+        title={(#1) #3},
+        xmin=-8, xmax=10.5, ymin=-7, ymax=8.5,
+        xlabel={$x_{(1)}$}, ylabel={$x_{(2)}$},
+        xtick={-5,0,5,10}, ytick={-5,0,5},
+        ylabel style={yshift=-1ex},
+    ]
+    \addplot[reach tube=CORAcolorReachSet2, forget plot] table {\datadir/headline-#2/dyadic-binary64-paper-ti-union.dat};
+    \addplot[reach tube=CORAcolorReachSet, forget plot] table {\datadir/headline-#2/cora-paper-ti-union.dat};
+    \addplot[simulations, forget plot] table {\datadir/simulate-paper.dat};
+    \addplot[area legend, draw=black, fill=CORAcolorInitialSet, thin, forget plot] table {\datadir/x0.dat} -- cycle;
+}
+\headlinepanel{a}{b}{Recursive}
+\headlinepanel{b}{a}{Wrapping-free}
+
+% legend
+\addlegendimage{area legend, draw=CORAcolorReachSet, fill=CORAcolorReachSet}
+\addlegendentry{CORA}
+\addlegendimage{area legend, draw=CORAcolorReachSet2, fill=CORAcolorReachSet2}
+\addlegendentry{CORALean}
+\addlegendimage{area legend, draw=black, fill=CORAcolorInitialSet}
+\addlegendentry{Initial set}
+\addlegendimage{simulations}
+\addlegendentry{Simulations}
+
+\end{groupplot}
+
+\node[anchor=north, yshift=-1ex] at (current bounding box.south) {\ref*{headlinelegend}};
+\end{tikzpicture}
