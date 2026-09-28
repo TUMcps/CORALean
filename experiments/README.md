@@ -291,6 +291,26 @@ Both schemes export `R.timeInterval` (`sets_ti`) and `R.timePoint`
 `sets_tp` is written `[]` if `R.timePoint` holds nothing for a scheme (CORA's
 own choice, not every `linAlg` need populate it the same way).
 
+### The runtime table's CORA column
+
+`gen_tables.py`'s `runtime_table` reads the CORA column's timing straight out
+of each config/scheme's own `cora.json` (`meta.medianNs`, the same file this
+section's `run_headline.m` writes) -- `make_paper.sh` only reads that stored
+number, it never recomputes it, so the column does not change when the
+Lean-only sweep is rerun. The paper's own CORA numbers are a one-off MATLAB
+run recorded on branch `results/cora-v4` (MATLAB R2025b, CORA commit
+`904a4442e68b1dc149a34e917dd63a7d3fb49a3a`, the paper authors' Windows
+desktop). A fresh rerun into an empty results directory therefore has no
+CORA column unless those files are copied in first:
+
+```
+git checkout origin/results/cora-v4 -- experiments/results-paper
+```
+
+(or taken from `results/paper-v6`, which already carries them).
+`experiments/cora/` above reproduces them from scratch, given MATLAB and a
+checked-out CORA.
+
 ## Plotting
 
 ```

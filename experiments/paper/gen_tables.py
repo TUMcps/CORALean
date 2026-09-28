@@ -405,9 +405,7 @@ def runtime_table(results_dir: Path, config: str) -> tuple[list[list], list[list
         cora_ns = cora_meta["medianNs"] if cora_meta is not None else None
         vals_s = [v / 1e9 if v is not None else None
                   for v in (dyadic_c, dyadic_i, float_c, float_i, nearest_c, cora_ns)]
-        tex_rows.append([scheme_label] + [fmt_tex(v) for v in vals_s[:-1]] +
-                         [(fmt_tex(vals_s[-1]) + "$^{\\dagger}$") if vals_s[-1] is not None
-                          else "--"])
+        tex_rows.append([scheme_label] + [fmt_tex(v) for v in vals_s])
         csv_rows.append([scheme_label, scheme_name] + [fmt_csv(v) for v in vals_s])
     return tex_rows, csv_rows
 
@@ -422,8 +420,7 @@ def write_runtime_table(results_dir: Path, config: str) -> None:
     header = ["scheme", "scheme_name", "dyadic64_compiled_s", "dyadic64_interp_s",
               "float_compiled_s", "float_interp_s", "nearest_compiled_s", "cora_s"]
     write_csv(results_dir / "paper" / f"runtime_table_{config}.csv", header, csv_rows)
-    body = booktabs_rows(tex_rows) + \
-        "\\multicolumn{7}{l}{$\\dagger$ not part of the repeatability package} \\\\\n"
+    body = booktabs_rows(tex_rows)
     write_tex(results_dir / "paper" / f"runtime_table_{config}.tex", body)
     if config == "headline_5turns":  # the paper's own headline run, the unsuffixed name
         write_csv(results_dir / "paper" / "runtime_table.csv", header, csv_rows)
