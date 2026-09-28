@@ -3,7 +3,7 @@
 \begin{figure}[t]
     \centering
     \includetikz{./figures/evaluation/headline}
-    \caption{Reachable sets of the spiral over $2000$ steps computed by CORA and by CORALean (\texttt{Dyadic}, $p=64$): (a) \Cref{alg:linearSys-reach}. (b) Wrapping-free variant.}
+    \caption{Reachable sets of the spiral over $2000$ steps computed by CORA and by CORALean (\texttt{IEEE}, $p=64$): (a) \Cref{alg:linearSys-reach}. (b) Wrapping-free variant.}
     \label{fig:eval-headline}
 \end{figure}
 
@@ -52,8 +52,8 @@
     \begin{tabular}{lcccccccc}
         \toprule
         & \multicolumn{6}{c}{Verified Code} &  \\
-        \cmidrule(lr){2-7} % \cmidrule(lr){8-9}
-        & \multicolumn{2}{c}{IEEE} & \multicolumn{2}{c}{\texttt{Dyadic}} & \multicolumn{2}{c}{Hardware} & \multicolumn{2}{c}{Nearest} \\
+        \cmidrule(lr){2-7}
+        & \multicolumn{2}{c}{\texttt{IEEE}} & \multicolumn{2}{c}{\texttt{Dyadic}} & \multicolumn{2}{c}{Hardware} & \multicolumn{2}{c}{Nearest} \\
         \cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}\cmidrule(lr){8-9}
         & Lean & C & Lean & C & Lean & C & Matlab & C \\
         \midrule
