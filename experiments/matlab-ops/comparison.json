@@ -1,0 +1,58 @@
+[
+ {
+  "op": "sum(v), n=1e4",
+  "exact (rounded)": -129.33983032309806,
+  "matlab builtin - exact [ulp]": 0,
+  "matlab loop == seq nearest": true,
+  "seq nearest - exact [ulp]": 19,
+  "rel. diff builtin vs exact": 2.6904536514872175e-17,
+  "hardware nearest == seq nearest": true,
+  "IEEE [down,up] contains exact": true,
+  "IEEE [down,up] contains matlab builtin": true,
+  "IEEE width [ulp]": 6311
+ },
+ {
+  "op": "sum(cancel), n=2e3",
+  "exact (rounded)": 62955.2925422594,
+  "matlab builtin - exact [ulp]": 2846011320934,
+  "matlab loop == seq nearest": true,
+  "seq nearest - exact [ulp]": 12879054924390,
+  "rel. diff builtin vs exact": 0.0003289232232016388,
+  "hardware nearest == seq nearest": true,
+  "IEEE [down,up] contains exact": true,
+  "IEEE [down,up] contains matlab builtin": true,
+  "IEEE width [ulp]": 1091952485335040
+ },
+ {
+  "op": "v'*w, n=1e4",
+  "exact (rounded)": -123.83564801805171,
+  "matlab builtin - exact [ulp]": 2,
+  "matlab loop == seq nearest": true,
+  "seq nearest - exact [ulp]": -50,
+  "rel. diff builtin vs exact": 2.1384914436964467e-16,
+  "hardware nearest == seq nearest": true,
+  "IEEE [down,up] contains exact": true,
+  "IEEE [down,up] contains matlab builtin": true,
+  "IEEE width [ulp]": 11840
+ },
+ {
+  "op": "A*B, 100x100",
+  "entries": 10000,
+  "builtin==exact_rounded": 1602,
+  "builtin==seq": 2572,
+  "loop==seq": 10000,
+  "max |builtin-exact| ulp": 27293,
+  "max |seq-exact| ulp": 10398,
+  "max rel diff builtin": 3.652053623128817e-12
+ },
+ {
+  "op": "A*B, 500x500",
+  "entries": 2000,
+  "builtin==exact_rounded": 201,
+  "builtin==seq": 151,
+  "loop==seq": 2000,
+  "max |builtin-exact| ulp": 1542,
+  "max |seq-exact| ulp": 2870,
+  "max rel diff builtin": 1.8923220384401935e-13
+ }
+]

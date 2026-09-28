@@ -7,6 +7,7 @@ import CORALean.Examples.Bench.Ieee
 import CORALean.Examples.Bench.Mnist
 import CORALean.Examples.Bench.NearestUnsound.API
 import CORALean.Examples.Bench.Nn
+import CORALean.Examples.Bench.OpCompareRun
 import CORALean.Examples.Bench.Output
 import CORALean.Global.Float.Instances.Binary64.API
 import CORALean.Global.Float.Instances.Dyadic.API
@@ -28,6 +29,9 @@ A `dyadic` run's significand width, `resolvedPrec`, is `--prec` if given (a
 raw bit count, for a precision none of the five `--format` labels name), else
 `--format` mapped through `formatToPrec` (already validated by `parseArgs`),
 else `53` -- `binary64`, so the default agrees with native `Float`.
+
+`opcompare` is unrelated and intercepted ahead of `runAt`: `OpCompareRun.lean`
+needs every scalar's bound at once, not the one `--type` picks.
 -/
 
 -- Authors:       Tobias Ladner
@@ -215,8 +219,9 @@ def dispatchIeee (args : CliArgs) : IO Unit := do
 
 /-- Runs `args.experiment` at the scalar `args.ty` names -- `Dyadic p`, `IEEE fmt`,
 `Float`, `nearest` or `FixedPoint f` -- the one branch here that picks the type
-`runAt` is generic over. -/
+`runAt` is generic over; `opcompare` is intercepted ahead of it, see above. -/
 def dispatch (args : CliArgs) : IO Unit :=
+  if args.experiment = "opcompare" then runOpCompare args else
   match args.ty with
   | "float" =>
     let toExact := if args.exact then some (fun x => let d := Binary64.toDyadic x
