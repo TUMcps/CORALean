@@ -51,11 +51,11 @@ and `shapely` (see "`paper_floats.pdf`" below).
 
 | Paper float | Section of `repeatability.sh` | Output (under `<out>/`) |
 |---|---|---|
-| Fig. 4 (`fig:eval-headline`) | `lake exe bench headline-{b,a}`, Dyadic p=64 and `--type nearest`: the CORA reach set in the figure is computed by CORALean's round-to-nearest baseline (`--type nearest`), which matches CORA's MATLAB result to 2e-5 relative (validation: `nearest_vs_cora`) | `headline_5turns/headline-{a,b}/*-paper-ti-union.dat` |
-| Fig. 5 (`fig:eval-precision`) | `lake exe bench exp2-timepoint`, p = 4..64 | `paper/precision_headline_5turns/*.dat` |
-| Tab. 1 (`tab:eval-nn`) | `lake exe bench nn-float32` | `paper/nn_table.tex` |
-| Tab. 2 (`tab:eval-mnist`) | `lake exe bench nn-mnist`, 3 networks, p = 16, 32, 64 and Float | `paper/mnist_table.tex` |
-| Tab. 3 (`tab:eval-runtime`) | `run_runtime.sh --config headline_5turns.json` | `paper/runtime_table_headline_5turns.tex` |
+| Fig. 4 (`fig:eval-headline`) | `lake exe bench headline-{b,a}`, `--type ieee --format binary64` (p=64) and `--type nearest`: the CORA reach set in the figure is computed by CORALean's round-to-nearest baseline (`--type nearest`), which matches CORA's MATLAB result to 2e-5 relative (validation: `nearest_vs_cora`) | `headline_5turns/headline-{a,b}/*-paper-ti-union.dat` |
+| Fig. 5 (`fig:eval-precision`) | `lake exe bench exp2-timepoint --type ieee`, p = 4..64 (E2M1, E4M3, binary16, binary32, binary64) | `paper/precision_headline_5turns/*.dat` |
+| Tab. 2 (`tab:eval-nn`) | `lake exe bench nn-float32` | `paper/nn_table.tex` |
+| Tab. 3 (`tab:eval-mnist`) | `lake exe bench nn-mnist`, 3 networks, `--type ieee` p = 16, 32, 64 and Float | `paper/mnist_table.tex` |
+| Tab. 4 (`tab:eval-runtime`) | `run_runtime.sh --config headline_5turns.json` | `paper/runtime_table_headline_5turns.tex` |
 | all of them | `paper/make_paper.sh` | `paper/paper_floats.pdf` |
 
 Everything is computed by CORALean, without MATLAB, with one exception: the
@@ -63,10 +63,15 @@ runtime table's MATLAB column, CORA's measured runtimes, which
 `repeatability.sh` copies from the stored one-off MATLAB run on branch
 `results/cora-v4` (see "The runtime table's CORA column" below).
 
+Every `p` in the paper is an IEEE format, `--type ieee`; `--dyadic` also runs
+Fig. 4, Fig. 5 and Tab. 3 at `Dyadic`, the same significand widths with no
+exponent bound, as an ablation (`paper/precision_headline_5turns_dyadic/`,
+`paper/mnist_table_dyadic.tex`), wired into no float.
+
 Measured wall time (one run on the development machine, compiled bench
 already built): 75 min in total -- Fig. 4 2.5 min,
-Fig. 5 5 min, Tab. 1 5 s, Tab. 2 52 min,
-Tab. 3 15 min, `paper_floats.pdf` 1 min. `sh
+Fig. 5 5 min, Tab. 2 5 s, Tab. 3 52 min,
+Tab. 4 15 min, `paper_floats.pdf` 1 min. `sh
 experiments/repeatability.sh --smoke` runs only the Fig. 4
 section and its figure data (no PDF), in 3 min, as a quick check that the
 toolchain works.
@@ -94,7 +99,7 @@ CORA/MATLAB, a separate step needing MATLAB and a checked-out CORA -- see
 ## Running an experiment
 
 ```
-lake exe bench <experiment> --type dyadic|float|nearest [--format F] [--prec P] [--config FILE] [--reps N] [--out DIR] [--exact]
+lake exe bench <experiment> --type dyadic|ieee|float|nearest|fixed [--format F] [--prec P] [--config FILE] [--reps N] [--out DIR] [--exact]
 ```
 
 or, without the link step `lake exe` costs (`lake exe bench` links against
@@ -102,7 +107,7 @@ Mathlib's emitted C, which can take a long time; the interpreter needs only
 the built oleans):
 
 ```
-lake env lean --run src/CORALean/Examples/Bench.lean <experiment> --type dyadic|float|nearest [--format F] [--prec P] [--config FILE] [--reps N] [--out DIR] [--exact]
+lake env lean --run src/CORALean/Examples/Bench.lean <experiment> --type dyadic|ieee|float|nearest|fixed [--format F] [--prec P] [--config FILE] [--reps N] [--out DIR] [--exact]
 ```
 
 Flags:
@@ -111,19 +116,23 @@ Flags:
   `exp2-timepoint`, `nn-float32` (ignores `--type`/`--format`/`--prec`/
   `--config`), `nn-mnist` (ignores `--config`, takes its own `--net`/
   `--images`; see their own sections below).
-* `--type dyadic|float|fixed` -- `dyadic` (default) runs at `CORALean.Float.Dyadic
-  p`, exact integer arithmetic with the precision below; `float` runs at
+* `--type dyadic|ieee|float|nearest|fixed` -- `dyadic` (default) runs at `CORALean.Float.Dyadic
+  p`, exact integer arithmetic with the precision below, at an unbounded
+  exponent; `ieee` runs at `CORALean.Float.IEEE fmt`, the same rounding onto a
+  real format's grid, subnormals included, overflow detected: see "IEEE
+  formats" below; `float` runs at
   native binary64, `Float`, where the numbers depend on the machine's IEEE 754
   unit and the ten `SoundFloatArithmetic` assumptions `Axioms.lean` states.
   `fixed` runs at `CORALean.Float.FixedPoint f`, decimal fixed-point at
   `--digits F` fractional digits: see "Decimal fixed-point" below.
   `nearest` is the unsound round-to-nearest baseline, with NO guarantee: see
   "Round-to-nearest baseline" below for how `--format`/`--prec` apply to it.
-* `--format F` -- the IEEE-shaped precision label for `--type dyadic`, one of
-  `binary64|binary32|binary16|binary8|binary4`, mapped to a `Dyadic`
-  significand width (see the table below). Default `binary64` (53 bits, chosen
-  to agree with native `Float`). Ignored for `--type float`, whose format is
-  always `binary64`.
+* `--format F` -- one of `binary64|binary32|binary16|binary8|binary4`. For
+  `--type ieee` the format itself; for `--type dyadic` (and `nearest`) only a
+  significand width (see the table below), so a Dyadic run is labelled
+  `dyadic p=16 (11-bit significand, unbounded exponent)`, never `binary16`.
+  Default `binary64` (53 bits, chosen to agree with native `Float`). Ignored
+  for `--type float`, whose format is always `binary64`.
 * `--prec P` -- a raw significand-bit count for `--type dyadic`, for a
   precision none of the five labels name. Wins over `--format` if both are
   given.
@@ -134,13 +143,13 @@ Flags:
 * `--exact` -- alongside every scalar's nearest double, also emits it exactly
   as `"m*2^e"`.
 
-| `--format` | `Dyadic` significand bits |
-| --- | --- |
-| `binary64` | 53 (agrees with native `Float`) |
-| `binary32` | 24 |
-| `binary16` | 11 |
-| `binary8` (E4M3) | 4 |
-| `binary4` (E2M1) | 2 |
+| `--format` | `Dyadic` significand bits | `--type ieee` format |
+| --- | --- | --- |
+| `binary64` | 53 (agrees with native `Float`) | IEEE 754 binary64 |
+| `binary32` | 24 | IEEE 754 binary32 |
+| `binary16` | 11 | IEEE 754 binary16 |
+| `binary8` | 4 | OCP MX E4M3 |
+| `binary4` | 2 | OCP MX E2M1 |
 
 ```
 lake exe bench headline-a --type dyadic --format binary64 --config experiments/config/headline_default.json
@@ -448,10 +457,11 @@ bash experiments/run_runtime.sh [--out DIR] [--config FILE] [--reps N] [--cold-b
 The number-type runtime ablation on `--config`'s config (default
 `headline_5turns`, the paper's own reported headline run; `headline_default`
 is a second table alongside it, both from an explicit `--config`):
-`headline-a` and `headline-b`, each at Dyadic binary64 compiled, native
+`headline-a` and `headline-b`, each at IEEE binary64 compiled and
+interpreted, Dyadic binary64 compiled, native
 Float compiled, round-to-nearest `NearestFloat` compiled (`--type nearest`,
 the unsound baseline), Dyadic binary64 interpreted and native Float
-interpreted -- ten runs, one `<out>/<config>/runtime/runtime_<config>.csv`/
+interpreted -- fourteen runs, one `<out>/<config>/runtime/runtime_<config>.csv`/
 `.json` table (`scheme, backend, number_type, medianNs`), `medianNs` read
 back out of each run's own JSON. `--cold-build` additionally times a cold
 build of `bench`'s own modules
@@ -473,12 +483,13 @@ property `y <= 0`. Over the reals the network is the identity on `X`, so
 `x* = 1/4` gives `y = 1/4` and violates the property. In binary32, `2^24`
 absorbs every point of `X`: its neighbours are `2^24 - 1` and `2^24 + 2`.
 
-The experiment runs eight analyses, each timed over `--reps` runs (default 5).
+The experiment runs twelve analyses, each timed over `--reps` runs (default 5).
 Naive interval bound propagation and naive DeepZ zonotopes, both in
 round-to-nearest `Float32`, get `y in [-2, 0]` and certify the property.
 CORALean's `NeuralNetwork.enclose` over float intervals and over float
 zonotopes, with outward rounding at `Dyadic 24` (binary32's significand) and at
-`Float`, does not certify it. At `Dyadic 24` the bounds are `[-2, 2]` for
+`Float`, and at `IEEE binary32`/`IEEE binary64` (the paper's rows, the others
+an ablation), does not certify it. At `Dyadic 24` the bounds are `[-2, 2]` for
 intervals and `[-2, 1]` for zonotopes, error box `[0, 1]` included; at `Float`
 they are `[-7/4, 1/4]` widened by about `3e-8`. The last two rows run that same
 `enclose` at `NearestDyadic 24`, round-to-nearest binary32 as CORA would (see
@@ -620,6 +631,36 @@ the mid-to-high 90s (these nets are trained), and one image's logits agree
 with a numpy `float64` re-implementation reading the same ONNX weights (see
 `SOURCES.md`).
 
+## IEEE formats (`--type ieee`)
+
+```
+lake exe bench <experiment> --type ieee --format binary64|binary32|binary16|binary8|binary4 [...]
+```
+
+`IEEE fmt` (`src/CORALean/Global/Float/Instances/IEEE/`) is a proved model, like
+`Dyadic`: every directed operation rounds to `p` significand bits and never
+finer than the smallest subnormal `2^(emin - p + 1)`, which is IEEE 754's
+round-toward-±∞, subnormals included. The five formats (`p`, `emin`, `emax`,
+largest finite value): binary64 (53, -1022, 1023, `(2^53-1)*2^971`), binary32
+(24, -126, 127, `(2^24-1)*2^104`), binary16 (11, -14, 15, 65504) from IEEE
+754-2019, and `binary8` = OCP MX E4M3 (4, -6, 8, 448) and `binary4` = OCP MX
+E2M1 (2, 0, 2, 6), neither with infinities. `half` alone is exact below the
+grid, the next rounded operation rounding back onto it.
+
+The exponent is unbounded, so values beyond the format's range are detected and
+reported as overflow, never silently continued: `meta.overflow_step` is the first
+step at which any stored number of a set exceeds the largest finite value
+(`null` if none), every record from it on carries `"overflow": true`, and
+`summary.{ti,tp}.overflowStep` repeats it; the figure scripts cut a curve there.
+`nn-mnist` flags an image any layer of which overflows, counts it as not
+certified, and its table cell reads `overflow`. A config value the format
+cannot hold -- more than `p` bits, below the smallest subnormal, or past the
+largest finite value -- is rejected, not rounded, and the run writes
+`"status": "unrepresentable"` and why (exit code 0): the headline system's
+`a = 1/16` is below E2M1's smallest subnormal `0.5`, so Fig. 5 has no p=4 curve.
+`meta` carries `number_type` and `ieee_format` (`p`, `emin`, `emax`,
+`max_finite`, `min_subnormal`).
+
 ## Round-to-nearest baseline (`--type nearest`)
 
 ```
@@ -737,7 +778,7 @@ reproduction of the paper's figures and tables.
 ### `paper_floats.pdf`
 
 Finally (unless `--no-latex`), `make_paper.sh` reproduces the paper's own
-evaluation floats (Fig. 4-5, Tab. 1-3) as a PDF:
+evaluation floats (Fig. 4-5, Tab. 2-4) as a PDF:
 
 ```
 sh experiments/paper/latex/collect.sh <RESULTS_DIR> <out-dir>   # -> <out-dir>/figures/evaluation/{data,tables}

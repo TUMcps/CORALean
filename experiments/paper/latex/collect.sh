@@ -11,12 +11,13 @@ T=$O/figures/evaluation/tables
 
 mkdir -p "$D/headline_5turns/headline-a" "$D/headline_5turns/headline-b" "$D/precision_5turns" "$T"
 for s in a b; do
-  cp "$H/headline-$s/dyadic-binary64-paper-ti-union.dat" "$D/headline_5turns/headline-$s/"
+  # CORALean's set: IEEE binary64, into the slot the paper's TikZ names
+  cp "$H/headline-$s/ieee-binary64-paper-ti-union.dat" "$D/headline_5turns/headline-$s/dyadic-binary64-paper-ti-union.dat"
   # the figure's CORA set: CORALean's round-to-nearest baseline, CORA's own arithmetic (no MATLAB)
   cp "$H/headline-$s/nearest-binary64-paper-ti-union.dat" "$D/headline_5turns/headline-$s/cora-paper-ti-union.dat"
 done
 cp "$H/simulate-paper.dat" "$D/headline_5turns/simulate-paper.dat"
-cp "$H/headline-a/dyadic-binary64-every1-x0.dat" "$D/headline_5turns/x0.dat"
+cp "$H/headline-a/ieee-binary64-every1-x0.dat" "$D/headline_5turns/x0.dat"
 cp "$R"/paper/precision_headline_5turns/*.dat "$D/precision_5turns/"
 for f in nn_table mnist_table runtime_table_headline_5turns; do
   cp "$R/paper/$f.tex" "$T/$f.tex"

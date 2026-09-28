@@ -9,11 +9,14 @@ rather than changing that script).
 Standard library only. For `net` in `small`, `medium`, `large`:
 
 * `mnist_table.{tex,csv}`: one row per net, two cells (mean output radius,
-  percent certified) per column, one column per `p = 16, 32, 64` (Dyadic,
-  outward rounding) and `p = 64 (Float)` (native binary64, outward
-  rounding) -- `p = 4, 8` are excluded from the `.tex` table (both diverge
-  for every net: accuracy and certification collapse) but still recorded as
-  two extra columns in `mnist_table.csv` alone, per the paper's own review.
+  percent certified) per column, one column per `p = 16, 32, 64` (IEEE
+  binary16/32/64, outward rounding) and `p = 64 (Float)` (native binary64,
+  outward rounding). A run in which any image stored a value past its
+  format's range reads `overflow` in the radius cell; such an image is
+  never counted as certified.
+* `mnist_table_dyadic.{tex,csv}`: the same at Dyadic, the same significand
+  widths at an unbounded exponent, the ablation -- plus its `p = 4, 8`
+  columns (both diverge for every net) in the `.csv` alone.
 * `mnist_nets.csv`: net, hidden layers x neurons (parsed from
   `experiments/nn/mnist/nets/<net>.txt`'s own token format --
   `TokStream`'s own tokenizing in `MnistParse.lean`'s module docstring:
@@ -27,6 +30,7 @@ Usage:
 
 # Authors:       Tobias Ladner
 # Written:       27-September-2026
+# Last update:   28-September-2026
 
 from __future__ import annotations
 
@@ -37,12 +41,14 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import booktabs_rows, find_run, fmt_tex, load_json, write_csv, write_tex  # noqa: E402,E501
 
 NETS = ["small", "medium", "large"]
-COLUMNS = [("dyadic-binary16", "p=16"), ("dyadic-binary32", "p=32"),
-           ("dyadic-binary64", "p=64"), ("float", "p=64 (Float)")]
+COLUMNS = [("ieee-binary16", "p=16"), ("ieee-binary32", "p=32"),
+           ("ieee-binary64", "p=64"), ("float", "p=64 (Float)")]
+DYADIC_COLUMNS = [("dyadic-binary16", "dyadic p=16"), ("dyadic-binary32", "dyadic p=32"),
+                  ("dyadic-binary64", "dyadic p=64"), ("float", "p=64 (Float)")]
 # Both diverge for every network (accuracy and certification collapse) --
 # dropped from the `.tex` table (per the paper's own review) but still
-# recorded in `mnist_table.csv`, as two extra columns past `COLUMNS`.
-DIVERGE_COLUMNS = [("dyadic-binary4", "p=4"), ("dyadic-binary8", "p=8")]
+# recorded in `mnist_table_dyadic.csv`, as two extra columns.
+DIVERGE_COLUMNS = [("dyadic-binary4", "dyadic p=4"), ("dyadic-binary8", "dyadic p=8")]
 
 
 def load(results_dir: Path, net: str, label: str) -> dict | None:
@@ -79,6 +85,8 @@ def build_table(results_dir: Path, columns: list[tuple[str, str]],
             doc = load(results_dir, net, label)
             if doc is None:
                 cells += (["--", "--"] if as_tex else ["", ""])
+            elif doc["summary"].get("overflowed_images", 0) > 0:
+                cells += ["overflow", certified_cell(doc)]
             else:
                 r = mean_radius(doc)
                 cells += [(fmt_tex(r) if as_tex else repr(r)), certified_cell(doc)]
@@ -86,14 +94,15 @@ def build_table(results_dir: Path, columns: list[tuple[str, str]],
     return rows
 
 
-def write_mnist_table(results_dir: Path) -> None:
-    tex_rows = build_table(results_dir, COLUMNS, as_tex=True)
-    csv_rows = build_table(results_dir, COLUMNS + DIVERGE_COLUMNS, as_tex=False)
+def write_mnist_table(results_dir: Path, name: str, columns: list[tuple[str, str]],
+                      csv_only: list[tuple[str, str]]) -> None:
+    tex_rows = build_table(results_dir, columns, as_tex=True)
+    csv_rows = build_table(results_dir, columns + csv_only, as_tex=False)
     header = ["net"]
-    for _, label in COLUMNS + DIVERGE_COLUMNS:
+    for _, label in columns + csv_only:
         header += [f"{label}_mean_radius", f"{label}_certified"]
-    write_csv(results_dir / "paper" / "mnist_table.csv", header, csv_rows)
-    write_tex(results_dir / "paper" / "mnist_table.tex", booktabs_rows(tex_rows))
+    write_csv(results_dir / "paper" / f"{name}.csv", header, csv_rows)
+    write_tex(results_dir / "paper" / f"{name}.tex", booktabs_rows(tex_rows))
 
 
 # ---------------------------------------------------------------------------
@@ -151,9 +160,10 @@ def main(argv: list[str]) -> int:
         print(f"mnist_table: no nn-mnist results under {results_dir}, skipping", file=sys.stderr)
         return 0
     (results_dir / "paper").mkdir(parents=True, exist_ok=True)
-    write_mnist_table(results_dir)
+    write_mnist_table(results_dir, "mnist_table", COLUMNS, [])
+    write_mnist_table(results_dir, "mnist_table_dyadic", DYADIC_COLUMNS, DIVERGE_COLUMNS)
     write_mnist_nets(results_dir, nets_dir)
-    print(f"mnist_table: wrote mnist_table.{{tex,csv}} and mnist_nets.csv under "
+    print(f"mnist_table: wrote mnist_table{{,_dyadic}}.{{tex,csv}} and mnist_nets.csv under "
           f"{results_dir / 'paper'}")
     return 0
 

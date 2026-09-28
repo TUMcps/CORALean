@@ -5,10 +5,10 @@ import CORALean.Global.Float.Instances.Binary64.Theorems.API
 /-!
 # Native binary64 as a sound float model
 
-The rounded operations come from `Operations`, the exact ones straight from
-core — `Neg.neg`, `min`, `max` and the decidable `≤` are the machine's own — and
-every obligation is either assumed in `Axioms` or proved from those assumptions
-in `Theorems`.
+The rounded operations come from `Operations`, and so do `minimum`/`maximum`,
+core's `min`/`max` carrying a NaN through; `Neg.neg` and the decidable `≤` are
+the machine's own. Every obligation is either assumed in `Axioms` or proved
+from those assumptions in `Theorems`.
 
 Computable, like `Dyadic`'s and unlike ℝ's: `toReal` decodes bits, so an
 algorithm written against the operation classes runs at `Float` as it runs at
@@ -18,7 +18,7 @@ be evaluated.
 
 -- Authors:       Tobias Ladner
 -- Written:       22-September-2026
--- Last update:   ---
+-- Last update:   28-September-2026
 -- Last revision: ---
 
 
@@ -39,8 +39,8 @@ instance : FloatOps Float where
   mulDown := Binary64.mulDown
   divUp := Binary64.divUp
   divDown := Binary64.divDown
-  minimum := min
-  maximum := max
+  minimum := Binary64.minimum
+  maximum := Binary64.maximum
   le := fun a b => decide (a ≤ b)
   half := Binary64.half
 

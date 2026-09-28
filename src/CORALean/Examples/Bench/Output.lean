@@ -1,5 +1,6 @@
 import CORALean.Examples.Bench.FloatPrint
 import CORALean.Examples.Bench.GitInfo
+import CORALean.Examples.Bench.NumberType
 import CORALean.Examples.Bench.Summary
 import CORALean.Examples.Bench.Timing
 import Lean.Data.Json
@@ -11,8 +12,7 @@ import Lean.Data.Json
 (`headline-a`/`headline-b`/`exp2-timepoint`): `meta` beside two arrays,
 `sets_ti` (`t0 < t1`) and `sets_tp` (`t0 = t1`), either empty where a scheme has
 none, plus `meta.summary.ti`/`.tp` (`Summary.lean`) and the run's own
-`eta`/`rho`/`N`/`dt`. `writeRunNone` is the `"status": "none"` case: the
-algorithm returned `none`, so only why is written.
+`eta`/`rho`/`N`/`dt`. `writeRunNone` writes only why there is no run.
 
 Every "nearest double", JSON or CSV, is `floatToJson`/`floatToCsv`'s
 round-trip 17-digit decimal (`FloatPrint.lean`), not `Float.toString`'s six.
@@ -21,12 +21,14 @@ actually reads: the interval hull's width per dimension and the error box's
 radius, derived once here so `experiments/plot/` never recomputes them from
 `G`. `format`/`sig` are the IEEE-shaped label and significand width
 `Format.lean` maps to and from; `sound`, in every `meta`, is `false` for
-`--type nearest` alone, the round-to-nearest baseline.
+`--type nearest` alone, the round-to-nearest baseline. `NumberType` adds
+`number_type`, and at a type with a range `overflow_step`: every record from
+that step on carries `"overflow": true`, its numbers past what the format holds.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       25-September-2026
--- Last update:   27-September-2026
+-- Last update:   28-September-2026
 -- Last revision: ---
 
 
@@ -50,9 +52,9 @@ def scalarJson (toD : 𝕋 → Float) (toExact : Option (𝕋 → String)) (x : 
 /-- One `sets`/`sets_ti`/`sets_tp` record: `k`, the time interval it covers
 (equal endpoints for a time-point set), and the zonotope's own fields. -/
 def stepJson (toD : 𝕋 → Float) (toExact : Option (𝕋 → String)) (k : ℕ) (t0 t1 : Float)
-    (Z : Zonotope 𝕋 2) : Json :=
+    (Z : Zonotope 𝕋 2) (overflowed : Bool := false) : Json :=
   let sj := scalarJson toD toExact
-  Json.mkObj
+  Json.mkObj <| (if overflowed then [("overflow", Json.bool true)] else []) ++
     [ ("k", Lean.toJson k),
       ("t0", floatToJson t0),
       ("t1", floatToJson t1),
@@ -142,7 +144,7 @@ def writeRun (out : System.FilePath) (experiment scheme ty format : String) (sig
 plus `rho`, `N`, `dt` (the run's own, not just the config's) and `summary`. -/
 def metaJsonRun (experiment scheme ty format : String) (sig : ℕ) (configJ : Json) (eta rho N : ℕ)
     (dtFloat : Float) (commit leanVer : String) (mach : MachineInfo) (samples : Array Nat)
-    (medianNs : Nat) (summaryTi summaryTp : Json) : Json :=
+    (medianNs : Nat) (summaryTi summaryTp : Json) (extra : List (String × Json)) : Json :=
   Json.mkObj (
     [ ("status", Json.str "ok"),
       ("experiment", Json.str experiment),
@@ -164,29 +166,39 @@ def metaJsonRun (experiment scheme ty format : String) (sig : ℕ) (configJ : Js
       ("timingsNs", Json.arr (samples.map Lean.toJson)),
       ("medianNs", Lean.toJson medianNs),
       -- `Summary.summaryJson`'s object, one per array -- see that file for the fields
-      ("summary", Json.mkObj [("ti", summaryTi), ("tp", summaryTp)]) ])
+      ("summary", Json.mkObj [("ti", summaryTi), ("tp", summaryTp)]) ] ++ extra)
 
 /-- Writes `<out>.json` (`meta`, `sets_ti`, `sets_tp`) and `<out>.csv` (both
 arrays, tagged) for `headline-a`/`headline-b`/`exp2-timepoint` -- either array
 may be empty, the scheme that has none of one kind. -/
 def writeRunTiTp (out : System.FilePath) (experiment scheme ty format : String) (sig : ℕ)
     (configJ : Json) (eta rho N : ℕ) (samples : Array Nat) (medianNs : Nat) (toD : 𝕋 → Float)
-    (toExact : Option (𝕋 → String)) (dtFloat : Float) (ti tp : Array (Zonotope 𝕋 2)) :
-    IO Unit := do
+    (toExact : Option (𝕋 → String)) (dtFloat : Float) (ti tp : Array (Zonotope 𝕋 2))
+    (nt : NumberType 𝕋 := {}) : IO Unit := do
   match out.parent with
   | some dir => IO.FS.createDirAll dir
   | none => pure ()
   let commit ← gitCommit
   let leanVer ← leanVersion
   let mach ← machineInfo
+  -- the first step either array stores a value past the range; every record from it on is flagged
+  let overflowStep : Option ℕ := nt.overflows.bind fun f =>
+    match firstOverflowStep f ti, firstOverflowStep f tp with
+    | some a, some b => some (min a b)
+    | a, b => a <|> b
+  let past (k : ℕ) : Bool := match overflowStep with | some K => K ≤ k | none => false
   -- `sets_ti`'s window `k` covers `[k Δt, (k+1) Δt]`; `sets_tp`'s covers `[k Δt, k Δt]`
   let setsTi := Json.arr (ti.mapIdx fun k Z =>
-    stepJson toD toExact k (dtFloat * Nat.toFloat k) (dtFloat * Nat.toFloat (k + 1)) Z)
+    stepJson toD toExact k (dtFloat * Nat.toFloat k) (dtFloat * Nat.toFloat (k + 1)) Z (past k))
   let setsTp := Json.arr (tp.mapIdx fun k Z =>
     let t := dtFloat * Nat.toFloat k
-    stepJson toD toExact k t t Z)
+    stepJson toD toExact k t t Z (past k))
+  let overflowJ : List (String × Json) := if nt.overflows.isSome then
+    [("overflow_step", match overflowStep with | some K => Lean.toJson K | none => Json.null)]
+    else []
   let metaJ := metaJsonRun experiment scheme ty format sig configJ eta rho N dtFloat commit
-    leanVer mach samples medianNs (summaryJson toD ti) (summaryJson toD tp)
+    leanVer mach samples medianNs (summaryJson toD ti nt.overflows)
+    (summaryJson toD tp nt.overflows) (nt.metaFields ++ overflowJ)
   let doc := Json.mkObj [("meta", metaJ), ("sets_ti", setsTi), ("sets_tp", setsTp)]
   IO.FS.writeFile (out.toString ++ ".json") doc.pretty
   let rowsTi := ti.mapIdx fun k Z => csvRowTagged toD "ti" k (dtFloat * Nat.toFloat k) Z
@@ -195,23 +207,24 @@ def writeRunTiTp (out : System.FilePath) (experiment scheme ty format : String) 
     String.intercalate "\n" (rowsTi ++ rowsTp).toList ++ "\n"
   IO.FS.writeFile (out.toString ++ ".csv") csv
 
-/-- Writes `<out>.json` alone, `{"status": "none", "reason": ...}` beside the
-same identifying fields `writeRunTiTp` carries -- the algorithm returned
-`none`; there is no `sets_ti`/`sets_tp`, only why, and no CSV. -/
+/-- Writes `<out>.json` alone, `{"status": "none", "reason": ...}` beside `writeRunTiTp`'s
+identifying fields: the algorithm returned `none`, or with `status` `"unrepresentable"` could
+not be given the config at all. No `sets_ti`/`sets_tp`, only why, and no CSV. -/
 def writeRunNone (out : System.FilePath) (experiment scheme ty format : String) (sig : ℕ)
-    (configJ : Json) (reason : String) : IO Unit := do
+    (configJ : Json) (reason : String) (extra : List (String × Json) := [])
+    (status : String := "none") : IO Unit := do
   match out.parent with
   | some dir => IO.FS.createDirAll dir
   | none => pure ()
   let doc := Json.mkObj (
-    [ ("status", Json.str "none"),
+    [ ("status", Json.str status),
       ("experiment", Json.str experiment),
       ("scheme", Json.str scheme),
       ("type", Json.str ty),
       ("format", Json.str format),
       ("significand_bits", Lean.toJson sig) ] ++ soundFields ty ++
     [ ("config", configJ),
-      ("reason", Json.str reason) ])
+      ("reason", Json.str reason) ] ++ extra)
   IO.FS.writeFile (out.toString ++ ".json") doc.pretty
 
 end CORALean.Bench

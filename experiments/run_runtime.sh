@@ -3,14 +3,15 @@
 # (default headline_5turns -- the paper's own reported runtimes are the
 # headline run, `headline_default` a second table alongside it, both from
 # an explicit `--config`): schemes headline-a and headline-b, each at
-# five backends --
+# seven backends --
+#   * IEEE binary64, compiled (`lake exe bench --type ieee`), and interpreter
 #   * Dyadic binary64, compiled (`lake exe bench`)
 #   * native Float, compiled
 #   * round-to-nearest `NearestFloat`, compiled (`--type nearest`: the unsound
 #     CORA-style baseline, what directed rounding costs against it)
 #   * Dyadic binary64, interpreter (`lake env lean --run`)
 #   * native Float, interpreter
-# -- ten runs, `medianNs` read back from each run's own JSON (the same
+# -- fourteen runs, `medianNs` read back from each run's own JSON (the same
 # median-over-`--reps` `Timing.lean` computes), into one
 # `runtime_<config>.csv/.json` table under `<out>/<config>/runtime/`.
 #
@@ -85,6 +86,11 @@ else
 fi
 
 for scheme in headline-a headline-b; do
+  lake exe bench "$scheme" --type ieee --format binary64 --config "$CONFIG" --reps "$REPS" \
+    --out "$RUNTIME_DIR/compiled-ieee"
+  record "$scheme" compiled ieee-binary64 \
+    "$RUNTIME_DIR/compiled-ieee/$CONFIG_NAME/$scheme/ieee-binary64.json"
+
   lake exe bench "$scheme" --type dyadic --format binary64 --config "$CONFIG" --reps "$REPS" \
     --out "$RUNTIME_DIR/compiled-dyadic"
   record "$scheme" compiled dyadic-binary64 \
@@ -99,6 +105,11 @@ for scheme in headline-a headline-b; do
     --out "$RUNTIME_DIR/compiled-nearest"
   record "$scheme" compiled nearest-binary64 \
     "$RUNTIME_DIR/compiled-nearest/$CONFIG_NAME/$scheme/nearest-binary64.json"
+
+  lake env lean --run "$BENCH_ROOT" "$scheme" --type ieee --format binary64 --config "$CONFIG" \
+    --reps "$REPS" --out "$RUNTIME_DIR/interp-ieee"
+  record "$scheme" interpreter ieee-binary64 \
+    "$RUNTIME_DIR/interp-ieee/$CONFIG_NAME/$scheme/ieee-binary64.json"
 
   lake env lean --run "$BENCH_ROOT" "$scheme" --type dyadic --format binary64 --config "$CONFIG" \
     --reps "$REPS" --out "$RUNTIME_DIR/interp-dyadic"

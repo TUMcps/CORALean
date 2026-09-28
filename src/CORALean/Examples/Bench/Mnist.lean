@@ -2,6 +2,7 @@ import CORALean.Examples.Bench.Cli
 import CORALean.Examples.Bench.FloatPrint
 import CORALean.Examples.Bench.GitInfo
 import CORALean.Examples.Bench.MnistNetwork
+import CORALean.Examples.Bench.NumberType
 import CORALean.Examples.Bench.Timing
 import CORALean.Global.Float.Instances.Binary64.API
 import CORALean.Global.Float.Instances.Dyadic.API
@@ -22,12 +23,14 @@ Per image: `predicted` is the argmax of the propagated box's own midpoint;
 -margined, not a comparison of the printed doubles. A box has no generators
 to separate from rounding error, so `error_radius` and `total_radius` are the
 same width, both reported for the same JSON shape a zonotope run would have
-used; `accuracy` (`predicted = label`) is for context only.
+used; `accuracy` (`predicted = label`) is for context only. At a type with a
+range, an image any layer of which stores a value past it is `overflow` and not
+certified, and `summary.overflowed_images` counts them.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       27-September-2026
--- Last update:   ---
+-- Last update:   28-September-2026
 -- Last revision: ---
 
 
@@ -85,9 +88,10 @@ structure ImageResult where
   lo : Array Float
   hi : Array Float
   timeNs : ℕ
+  overflow : Bool := false
 
 def ImageResult.json (r : ImageResult) : Json :=
-  Json.mkObj
+  Json.mkObj <| (if r.overflow then [("overflow", Json.bool true)] else []) ++
     [ ("label", Lean.toJson r.label),
       ("predicted", Lean.toJson r.predicted),
       ("certified", Json.bool r.certified),
@@ -110,32 +114,33 @@ def forceBox {m : ℕ} (toD : 𝕋 → Float) (H : Interval (Vec 𝕋 m)) (radii
 /-- Runs one image `reps` times, timing each with `IO.monoNanosNow` and
 forcing the result through `forceBox`; returns the median of the `reps`
 samples and the last propagation (every rep computes the same). -/
-def aux_timeImage (instUnchecked : ExactDyadic → 𝕋) (toD : 𝕋 → Float) (layers : List MnistAffine)
-    (reps : ℕ) (img : MnistImage) :
-    IO (ℕ × Interval (Vec 𝕋 (finalDim layers img.pixels.size)) × Array Float) := do
+def aux_timeImage (instUnchecked : ExactDyadic → 𝕋) (toD : 𝕋 → Float)
+    (overflows : Option (𝕋 → Bool)) (layers : List MnistAffine) (reps : ℕ) (img : MnistImage) :
+    IO (ℕ × Interval (Vec 𝕋 (finalDim layers img.pixels.size)) × Array Float × Bool) := do
   let mut samples := #[]
   let mut last := none
   for _ in [0:reps] do
     let t0 ← IO.monoNanosNow
     -- `.materialise`: unmaterialised, the first layer's sum reads every pixel once per output row
     let X0 := (inputBox (𝕋 := 𝕋) instUnchecked img.pixels).materialise
-    let (H, radii) := runReport instUnchecked toD layers X0
-    if (forceBox toD H radii).isNaN then
+    let (H, radii, over) := runReport instUnchecked toD overflows layers X0
+    if (forceBox toD H radii).isNaN || over then
       IO.eprintln "nn-mnist: a bound is NaN -- likely overflow at this precision"
     else pure ()
     let t1 ← IO.monoNanosNow
     samples := samples.push (t1 - t0)
-    last := some (H, radii)
-  let (H, radii) := last.getD (runReport instUnchecked toD layers
+    last := some (H, radii, over)
+  let (H, radii, over) := last.getD (runReport instUnchecked toD overflows layers
     (inputBox (𝕋 := 𝕋) instUnchecked img.pixels).materialise)
-  pure (medianNanos samples, H, radii)
+  pure (medianNanos samples, H, radii, over)
 
 /-- One image's full record, plus its per-layer radii for `-layers.dat` --
 `lo`/`hi` and the argmax read off the doubles, `certified` off `𝕋`'s own
 bounds instead, through `ltStrict`. -/
-def aux_runImage (instUnchecked : ExactDyadic → 𝕋) (toD : 𝕋 → Float) (layers : List MnistAffine)
-    (reps : ℕ) (img : MnistImage) : IO (ImageResult × Array Float) := do
-  let (medianNs, H, radii) ← aux_timeImage instUnchecked toD layers reps img
+def aux_runImage (instUnchecked : ExactDyadic → 𝕋) (toD : 𝕋 → Float)
+    (overflows : Option (𝕋 → Bool)) (layers : List MnistAffine) (reps : ℕ) (img : MnistImage) :
+    IO (ImageResult × Array Float) := do
+  let (medianNs, H, radii, over) ← aux_timeImage instUnchecked toD overflows layers reps img
   let m := finalDim layers img.pixels.size
   let lo := Array.ofFn fun i : Fin m => toD (H.inf i)
   let hi := Array.ofFn fun i : Fin m => toD (H.sup i)
@@ -143,8 +148,8 @@ def aux_runImage (instUnchecked : ExactDyadic → 𝕋) (toD : 𝕋 → Float) (
   let hiT := Array.ofFn fun i : Fin m => H.sup i
   let predicted := argmaxFloat (Array.ofFn fun i : Fin m => (lo.getD i 0.0 + hi.getD i 0.0) / 2.0)
   let predLo := loT.getD predicted zero
-  -- every other logit's upper bound must fall strictly below the predicted class's lower bound
-  let certified := Id.run do
+  -- every other logit's upper bound strictly below the predicted class's lower bound, in range
+  let certified := !over && Id.run do
     let mut ok := true
     for j in [0:m] do
       if j ≠ predicted then
@@ -152,7 +157,7 @@ def aux_runImage (instUnchecked : ExactDyadic → 𝕋) (toD : 𝕋 → Float) (
     pure ok
   -- a box carries no separate generators/error box, so both radii coincide
   let radius := maxRadiusArr lo hi
-  pure (⟨img.label, predicted, certified, radius, radius, lo, hi, medianNs⟩, radii)
+  pure (⟨img.label, predicted, certified, radius, radius, lo, hi, medianNs, over⟩, radii)
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -168,7 +173,7 @@ def mnistOutPath (outDir net ty format : String) : System.FilePath :=
 files. `inst`/`toExact` are unused: nothing here needs either. -/
 def runNnMnist (args : CliArgs) (_inst : String → ExactDyadic → Except String 𝕋)
     (instUnchecked : ExactDyadic → 𝕋) (toD : 𝕋 → Float) (format : String)
-    (_toExact : Option (𝕋 → String)) (sig : ℕ) : IO Unit := do
+    (_toExact : Option (𝕋 → String)) (sig : ℕ) (nt : NumberType 𝕋 := {}) : IO Unit := do
   let netName := args.net.getD "small"
   let netPath ← match netFile netName with
     | .ok p => pure p
@@ -192,7 +197,7 @@ def runNnMnist (args : CliArgs) (_inst : String → ExactDyadic → Except Strin
   let mut results : Array ImageResult := #[]
   let mut layerRadiiPerImage : Array (Array Float) := #[]
   for img in images do
-    let (r, radii) ← aux_runImage instUnchecked toD layers reps img
+    let (r, radii) ← aux_runImage instUnchecked toD nt.overflows layers reps img
     results := results.push r
     layerRadiiPerImage := layerRadiiPerImage.push radii
   let n := results.size
@@ -217,7 +222,7 @@ def runNnMnist (args : CliArgs) (_inst : String → ExactDyadic → Except Strin
   -- `--type nearest` (CORA's own round-to-nearest) has no soundness guarantee at all
   let sound := args.ty ≠ "nearest"
   -- everything about the run that is not a per-image number
-  let metaJ := Json.mkObj
+  let metaJ := Json.mkObj (
     [ ("experiment", Json.str "nn-mnist"),
       ("net", Json.str netName),
       ("type", Json.str args.ty),
@@ -232,9 +237,11 @@ def runNnMnist (args : CliArgs) (_inst : String → ExactDyadic → Except Strin
       ("leanVersion", Json.str leanVer),
       ("machine", Json.mkObj
         [ ("uname", Json.str mach.uname), ("cpu", Json.str mach.cpu),
-          ("cores", Lean.toJson mach.cores) ]) ]
+          ("cores", Lean.toJson mach.cores) ]) ] ++ nt.metaFields)
+  let overflowed := results.foldl (fun acc r => if r.overflow then acc + 1 else acc) 0
   -- `experiments/README.md`'s table; `certified_fraction` is a string, not a number, if `!sound`
-  let summaryJ := Json.mkObj
+  let summaryJ := Json.mkObj <|
+    (if nt.overflows.isSome then [("overflowed_images", Lean.toJson overflowed)] else []) ++
     [ ("accuracy", floatToJson accuracy),
       ("certified_fraction", if sound then floatToJson certifiedFrac else Json.str "n/a (unsound)"),
       ("error_radius", Json.mkObj [("mean", floatToJson (meanOf (·.errorRadius))),
@@ -259,9 +266,11 @@ def runNnMnist (args : CliArgs) (_inst : String → ExactDyadic → Except Strin
   IO.FS.writeFile (out.toString ++ "-layers.dat")
     ("# layer mean_radius max_radius\n" ++ String.intercalate "\n" datRows.toList ++ "\n")
   let certifiedStr := if sound then toString certifiedFrac else "n/a (unsound)"
-  IO.println s!"nn-mnist: {netName} {args.ty}{if args.ty = "float" then "" else s!"-{format}"}: \
-    {n} images, accuracy {accuracy}, certified {certifiedStr}, mean error radius \
-    {meanOf (·.errorRadius)}, max {maxOf (·.errorRadius)}, median {medianTimeNs} ns/image"
+  let tyStr := if nt.description = "" then args.ty else nt.description
+  let overStr := if nt.overflows.isSome then s!", {overflowed} overflowed" else ""
+  IO.println s!"nn-mnist: {netName} {tyStr}: {n} images, accuracy {accuracy}, certified \
+    {certifiedStr}{overStr}, mean error radius {meanOf (·.errorRadius)}, max \
+    {maxOf (·.errorRadius)}, median {medianTimeNs} ns/image"
   IO.println s!"nn-mnist: wrote {out}.json and {out}-layers.dat"
 
 end CORALean.Bench

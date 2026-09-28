@@ -1,5 +1,6 @@
 import CORALean.Examples.Bench.Cli
 import CORALean.Examples.Bench.GitInfo
+import CORALean.Examples.Bench.Ieee
 import CORALean.Examples.Bench.NearestUnsound.Instances
 import CORALean.Examples.Bench.NnNetwork
 import CORALean.Examples.Bench.Timing
@@ -11,10 +12,10 @@ import CORALean.Global.Float.Instances.Dyadic.API
 
 Naive binary32 verification certifies `y ≤ 0` for `NnNetwork`'s network; the real
 network the weights denote violates it at `xStar`; CORALean's enclosure, sound at
-`Dyadic 24` and at `Float`, does not certify it. Six analyses, each timed over
-`--reps` runs (default `5`): naive IBP and naive zonotopes in round-to-nearest
-`Float32`, and `NeuralNetwork.enclose` over float intervals and float zonotopes at
-both sound scalars. Two more rows run that same `enclose` at `NearestDyadic 24`,
+`IEEE binary32`, `IEEE binary64`, `Dyadic 24` and `Float`, does not certify it. Ten
+analyses, each timed over `--reps` runs (default `5`): naive IBP and naive zonotopes
+in round-to-nearest `Float32`, and `NeuralNetwork.enclose` over float intervals and
+float zonotopes at the four sound scalars. Two more run that same `enclose` at `NearestDyadic 24`,
 round-to-nearest binary32 as CORA would: the paper's baseline, with NO guarantee.
 `--type`/`--format`/`--prec`/`--config` are ignored.
 
@@ -29,7 +30,7 @@ the compiler cannot hoist a closed analysis out of the loop and time nothing.
 
 -- Authors:       Tobias Ladner
 -- Written:       27-September-2026
--- Last update:   27-September-2026
+-- Last update:   28-September-2026
 -- Last revision: ---
 
 
@@ -212,7 +213,7 @@ open Nn
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Checks the data fits binary32, runs the eight analyses and both point
+/-- Checks the data fits binary32, runs the twelve analyses and both point
 evaluations, prints the table and writes `<out>/nn/nn-float32.json`. -/
 def runNnFloat32 (args : CliArgs) : IO Unit := do
   let reps := args.reps.getD 5
@@ -227,7 +228,7 @@ def runNnFloat32 (args : CliArgs) : IO Unit := do
   let L₁ := layer₁.map ExactDyadic.toFloat32
   let L₂ := layer₂.map ExactDyadic.toFloat32
   let X : Box32 := ⟨boxLo.map ExactDyadic.toFloat32, boxHi.map ExactDyadic.toFloat32⟩
-  -- the analyses: naive binary32, then sound at `Dyadic 24` and at `Float`
+  -- the analyses: naive binary32, then sound at `Dyadic 24`, `Float` and the two formats
   let ibpO ← naive reps "interval" (ibp L₁ L₂) X
   -- the naive zonotope's input: `X`'s center and radius, both exact in binary32
   let zonoO ← naive reps "zonotope" (fun B => Zono32.box (zono L₁ L₂
@@ -237,9 +238,14 @@ def runNnFloat32 (args : CliArgs) : IO Unit := do
     ExactDyadic.toDyadicPUnchecked dyadicToFloatApprox ofDyadic
   let (f64I, f64Z) ← sound (𝕋 := Float) reps "binary64 (Float), outward rounding"
     ExactDyadic.toFloatUnchecked id ofFloat
+  -- the formats themselves, subnormals and all; every input here is a binary32 number
+  let (i32I, i32Z) ← sound (𝕋 := IEEE .binary32) reps "IEEE binary32, outward rounding"
+    ExactDyadic.toIEEEUnchecked ieeeToFloatApprox fun x => ⟨x.mantissa, x.exponent⟩
+  let (i64I, i64Z) ← sound (𝕋 := IEEE .binary64) reps "IEEE binary64, outward rounding"
+    ExactDyadic.toIEEEUnchecked ieeeToFloatApprox fun x => ⟨x.mantissa, x.exponent⟩
   -- the unsound baseline: the same `enclose`, rounding to nearest as CORA does
   let (nI, nZ) ← nearest reps
-  let outcomes := #[ibpO, zonoO, d24I, d24Z, f64I, f64Z, nI, nZ]
+  let outcomes := #[ibpO, zonoO, d24I, d24Z, f64I, f64Z, nI, nZ, i32I, i32Z, i64I, i64Z]
   -- the table: the example, then one row per analysis
   let first (a : Array ExactDyadic) : String := (a.getD 0 ExactDyadic.zero).decimal false
   IO.println s!"nn-float32: y = relu(x + 2^24) - 2^24 on X = [{first boxLo}, {first boxHi}], \
