@@ -1,5 +1,6 @@
 #!/bin/sh
-# Builds the one archive `bench-flint` links: `ffi/coralean_flint.c` compiled
+# Builds the one archive `bench-flint` links: the C shim
+# `src/CORALean/Global/Float/Instances/Flint/coralean_flint.c`, compiled
 # and combined with FLINT's, MPFR's and GMP's static libraries into a single
 # relocatable object, then stripped of every global symbol but the shim's own
 # `coralean_flint_*` six. That last step is not cosmetic: Lean's runtime links
@@ -36,7 +37,7 @@ done
 # uses the system `cc` instead, pointed at `lean.h` under the toolchain
 # `lean --print-prefix` names, plus FLINT's own include directory.
 LEAN_PREFIX=$(lean --print-prefix)
-cc -c ffi/coralean_flint.c -I "$LEAN_PREFIX/include" -I "$PREFIX/include" -O2 -fPIC \
+cc -c src/CORALean/Global/Float/Instances/Flint/coralean_flint.c -I "$LEAN_PREFIX/include" -I "$PREFIX/include" -O2 -fPIC \
   -o "$OUT/coralean_flint.o"
 
 # Pulls in only the FLINT/MPFR/GMP object members the shim's calls (and their

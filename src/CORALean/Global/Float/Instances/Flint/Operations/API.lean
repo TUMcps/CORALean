@@ -13,6 +13,6 @@ import CORALean.Global.Float.Instances.Flint.Operations.Neg
 /-!
 # The operations of `Flint p`, collected
 
-Six rounded ones, each an `opaque` call into FLINT through `ffi/coralean_flint.c`,
+Six rounded ones, each an `opaque` call into FLINT through `Flint/coralean_flint.c`,
 and five exact ones in pure Lean, the comparison `Dyadic.le` itself.
 -/
