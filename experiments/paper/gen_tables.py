@@ -384,9 +384,15 @@ def write_nn_table(results_dir: Path) -> None:
 
 
 # ---------------------------------------------------------------------------
-# (d) runtime_table: schemes (a)/(b) -- recursive then wrapping-free -- one
-# column per backend, one call per config.
+# (d) runtime_table: schemes recursive then wrapping-free -- one column per
+# backend, one call per config. Unlike every other table above, this one
+# spells the row label out ("Recursive"/"Wrapping-free") instead of using
+# the (a)/(b) tags -- the CSV's `scheme` column mirrors the tex label, since
+# it carries that same string, for consistency.
 # ---------------------------------------------------------------------------
+
+RUNTIME_ROW_LABELS = {"headline-b": "Recursive", "headline-a": "Wrapping-free"}
+
 
 def runtime_table(results_dir: Path, config: str) -> tuple[list[list], list[list]]:
     csv_path = results_dir / config / "runtime" / f"runtime_{config}.csv"
@@ -395,7 +401,8 @@ def runtime_table(results_dir: Path, config: str) -> tuple[list[list], list[list
     rows_by_key = {(r["scheme"], r["backend"], r["number_type"]): int(r["medianNs"])
                    for r in read_csv_rows(csv_path)}
     tex_rows, csv_rows = [], []
-    for scheme_dir, scheme_label, scheme_name in SCHEMES:
+    for scheme_dir, _, scheme_name in SCHEMES:
+        row_label = RUNTIME_ROW_LABELS[scheme_dir]
         dyadic_c = rows_by_key.get((scheme_dir, "compiled", "dyadic-binary64"))
         dyadic_i = rows_by_key.get((scheme_dir, "interpreter", "dyadic-binary64"))
         float_c = rows_by_key.get((scheme_dir, "compiled", "float"))
@@ -405,8 +412,8 @@ def runtime_table(results_dir: Path, config: str) -> tuple[list[list], list[list
         cora_ns = cora_meta["medianNs"] if cora_meta is not None else None
         vals_s = [v / 1e9 if v is not None else None
                   for v in (dyadic_c, dyadic_i, float_c, float_i, nearest_c, cora_ns)]
-        tex_rows.append([scheme_label] + [fmt_tex(v) for v in vals_s])
-        csv_rows.append([scheme_label, scheme_name] + [fmt_csv(v) for v in vals_s])
+        tex_rows.append([row_label] + [fmt_tex(v) for v in vals_s])
+        csv_rows.append([row_label, scheme_name] + [fmt_csv(v) for v in vals_s])
     return tex_rows, csv_rows
 
 
