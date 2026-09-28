@@ -1,5 +1,5 @@
 name = "CORALean"
-defaultTargets = ["CORALean", "Examples", "Demo", "Bench"]
+defaultTargets = ["CORALean", "Examples", "Demo", "Bench", "BenchFlint"]
 
 [leanOptions]
 pp.unicode.fun = true
@@ -15,9 +15,14 @@ name = "mathlib"
 git = "https://github.com/leanprover-community/mathlib4.git"
 rev = "v4.32.0"
 
+# The optional FLINT backend is a second root: elaborated with the library, so
+# its proofs are checked on every commit, but imported by nothing a default
+# executable links, since running it needs the C library (README, "FLINT
+# backend (optional)").
 [[lean_lib]]
 name = "CORALean"
 srcDir = "src"
+roots = ["CORALean", "CORALean.Global.Float.Instances.Flint.API"]
 
 # The worked examples, built alongside the library rather than inside it, so the
 # library carries no use sites of its own and an executable has somewhere to
@@ -54,3 +59,24 @@ roots = ["CORALean.Examples.Bench"]
 name = "bench"
 srcDir = "src"
 root = "CORALean.Examples.Bench"
+
+# The optional FLINT-backed bench, the same shape once more: a library, in
+# `defaultTargets`, so its Lean side (opaque `extern` declarations, no FLINT
+# needed to elaborate them) is checked on every commit, and an executable,
+# outside `defaultTargets`, so plain `lake build` never links FLINT. Only
+# `lake build bench-flint` / `lake exe bench-flint` does, against the archive
+# `scripts/build-flint-shim.sh` produces (README, "FLINT backend (optional)").
+# Two roots, not one: `main` sits in `BenchFlintMain.lean` alone, so
+# `scripts/check-axioms.lean` can import `BenchFlint.lean`'s
+# `reachFloat_outer_flint` beside `Examples/Bench.lean` without two top-level
+# `main`s in the same environment.
+[[lean_lib]]
+name = "BenchFlint"
+srcDir = "src"
+roots = ["CORALean.Examples.BenchFlint", "CORALean.Examples.BenchFlintMain"]
+
+[[lean_exe]]
+name = "bench-flint"
+srcDir = "src"
+root = "CORALean.Examples.BenchFlintMain"
+moreLinkArgs = [".lake/flint/libcoralean_flint.a"]

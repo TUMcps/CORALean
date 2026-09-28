@@ -143,7 +143,7 @@ def aux_runTiTp {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] (args 
         {tp.length} tp steps, median {medianNs} ns over {reps} rep(s), eta = {etaUsed})"
 
 /-- `args.experiment`, run at whichever `𝕋` `dispatch` picked. -/
-def aux_runAt {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] (args : CliArgs)
+def runAt {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] (args : CliArgs)
     (inst : String → ExactDyadic → Except String 𝕋) (instUnchecked : ExactDyadic → 𝕋)
     (toD : 𝕋 → Float) (format : String) (toExact : Option (𝕋 → String)) (sig : ℕ) :
     IO Unit :=
@@ -180,31 +180,31 @@ def resolvedDigits (args : CliArgs) : ℕ := args.digits.getD 4
 open CORALean.Bench.NearestUnsound in
 /-- `--type nearest`, with NO guarantees: `NearestFloat`, or `NearestDyadic p` once
 `--prec` or a `--format` other than `binary64` asks for one. The only code that
-opens the unsound instances, and it runs the same `aux_runAt` as the others. -/
+opens the unsound instances, and it runs the same `runAt` as the others. -/
 def dispatchNearest (args : CliArgs) : IO Unit :=
   match args.prec, args.format with
   | none, none | none, some "binary64" =>
     let toExact := if args.exact then some (fun (x : NearestFloat) =>
       let d := Binary64.toDyadic x.val; s!"{d.mantissa}*2^{d.exponent}") else none
-    aux_runAt (𝕋 := NearestFloat) args (fun field d => (ExactDyadic.toFloat field d).map (⟨·⟩))
+    runAt (𝕋 := NearestFloat) args (fun field d => (ExactDyadic.toFloat field d).map (⟨·⟩))
       (fun d => ⟨ExactDyadic.toFloatUnchecked d⟩) (·.val) "binary64" toExact 53
   | _, _ =>
     let p := resolvedPrec args
     let toExact := if args.exact then
       some (fun (x : NearestDyadic p) => s!"{x.val.mantissa}*2^{x.val.exponent}") else none
-    aux_runAt (𝕋 := NearestDyadic p) args (fun field d => (d.toDyadicP field p).map (⟨·⟩))
+    runAt (𝕋 := NearestDyadic p) args (fun field d => (d.toDyadicP field p).map (⟨·⟩))
       (fun d => ⟨ExactDyadic.toDyadicPUnchecked d⟩) (fun x => dyadicToFloatApprox x.val)
       (precToFormat p) toExact p
 
 /-- Runs `args.experiment` at the scalar `args.ty` names -- `Dyadic p`, `Float`,
 `nearest` or `FixedPoint f` -- the one branch here that picks the type
-`aux_runAt` is generic over. -/
+`runAt` is generic over. -/
 def dispatch (args : CliArgs) : IO Unit :=
   match args.ty with
   | "float" =>
     let toExact := if args.exact then some (fun x => let d := Binary64.toDyadic x
       s!"{d.mantissa}*2^{d.exponent}") else none
-    aux_runAt (𝕋 := Float) args ExactDyadic.toFloat ExactDyadic.toFloatUnchecked id
+    runAt (𝕋 := Float) args ExactDyadic.toFloat ExactDyadic.toFloatUnchecked id
       "binary64" toExact 53
   | "nearest" => dispatchNearest args
   | "fixed" =>
@@ -212,13 +212,13 @@ def dispatch (args : CliArgs) : IO Unit :=
     let toExact := if args.exact then
       some (fun (x : FixedPoint f) => s!"{x.m}e-{x.d}") else none
     -- `format`/`significand_bits`, named for `Dyadic`, carry `"decimal<f>"`/`f` here.
-    aux_runAt (𝕋 := FixedPoint f) args (fun field d => d.toFixedPoint field f)
+    runAt (𝕋 := FixedPoint f) args (fun field d => d.toFixedPoint field f)
       ExactDyadic.toFixedPointUnchecked fixedPointToFloatApprox s!"decimal{f}" toExact f
   | _ =>
     let p := resolvedPrec args
     let toExact := if args.exact then
       some (fun (x : Dyadic p) => s!"{x.mantissa}*2^{x.exponent}") else none
-    aux_runAt (𝕋 := Dyadic p) args (fun field d => d.toDyadicP field p)
+    runAt (𝕋 := Dyadic p) args (fun field d => d.toDyadicP field p)
       ExactDyadic.toDyadicPUnchecked dyadicToFloatApprox (precToFormat p) toExact p
 
 end CORALean.Bench

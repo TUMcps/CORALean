@@ -17,4 +17,8 @@ hardware costs is invisible against `Dyadic` alone.
 reaches it is true of IEEE 754 binary64 on the assumptions its `Axioms` lists;
 the same result at `Dyadic p` or `FixedPoint f` rests on nothing beyond Lean's
 own axioms.
+
+`Flint/` is deliberately not collected here: its rounded operations call FLINT,
+so only an executable that links the C library may import it, and the library
+elaborates it as a root of its own.
 -/

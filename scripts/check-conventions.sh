@@ -44,6 +44,12 @@ AXIOM_FILE=src/CORALean/Global/Float/Instances/Binary64/Definitions/Axioms.lean
 # `scripts/check-axioms.sh` asks Lean the same question of the proof terms.
 NEAREST_AXIOM_FILE=src/CORALean/Examples/Bench/NearestUnsound/Axioms.lean
 NEAREST_AXIOM=nearestUnsound
+
+# The third, true like the first: `trustedFlint`, that FLINT's `arf_*` calls
+# round as documented, assumed by the optional FLINT backend. That file may
+# declare this one name and nothing else.
+FLINT_AXIOM_FILE=src/CORALean/Global/Float/Instances/Flint/Definitions/Axioms.lean
+FLINT_AXIOM=trustedFlint
 BENCH_DIR=src/CORALean/Examples/Bench/
 
 # `noncomputable` outside a representation's `Real/` layer, the scalar
@@ -107,6 +113,8 @@ out=$(awk \
   -v AXIOM_FILE="$AXIOM_FILE" \
   -v NEAREST_AXIOM_FILE="$NEAREST_AXIOM_FILE" \
   -v NEAREST_AXIOM="$NEAREST_AXIOM" \
+  -v FLINT_AXIOM_FILE="$FLINT_AXIOM_FILE" \
+  -v FLINT_AXIOM="$FLINT_AXIOM" \
   -v BENCH_DIR="$BENCH_DIR" \
   -v ALLOWLIST="$ALLOWLIST" '
 BEGIN {
@@ -138,7 +146,7 @@ BEGIN {
   BSLASH = "\134"; LBRACK = "\133"; RBRACK = "\135"
   ATTR = "(@" BSLASH LBRACK "[^" RBRACK "]*" BSLASH RBRACK "[ \t]*)?"
   MODS = "(private |protected |noncomputable |partial |scoped )*"
-  KIND = "(def|theorem|lemma|abbrev|instance|structure|inductive|class)"
+  KIND = "(def|theorem|lemma|abbrev|instance|structure|inductive|class|opaque)"
   DECL_START = "^" ATTR MODS KIND " "
   DECL_PREFIX = "^" ATTR MODS KIND "[ \t]+"
 
@@ -173,6 +181,7 @@ BEGIN {
   mainLabelForKind["lemma"]      = "MAIN THEOREM"
   mainLabelForKind["def"]        = "MAIN DEFINITION"
   mainLabelForKind["abbrev"]     = "MAIN DEFINITION"
+  mainLabelForKind["opaque"]     = "MAIN DEFINITION"
   mainLabelForKind["instance"]   = "MAIN INSTANCE"
   mainLabelForKind["structure"]  = "MAIN TYPE"
   mainLabelForKind["class"]      = "MAIN TYPE"
@@ -633,9 +642,14 @@ FNR == 1 {
     if (code !~ ("^axiom[ \t]+" NEAREST_AXIOM "([ \t:]|$)"))
       say(FILENAME ":" FNR ": `axiom` — this file assumes `" NEAREST_AXIOM "` and" \
           " nothing else, so one name in `#print axioms` flags the false baseline")
+  } else if (code ~ /^axiom[ \t]/ && FILENAME == FLINT_AXIOM_FILE) {
+    if (code !~ ("^axiom[ \t]+" FLINT_AXIOM "([ \t:]|$)"))
+      say(FILENAME ":" FNR ": `axiom` — this file assumes `" FLINT_AXIOM "` and" \
+          " nothing else, so one name in `#print axioms` flags the FLINT backend")
   } else if (code ~ /^axiom[ \t]/ && FILENAME != AXIOM_FILE)
     say(FILENAME ":" FNR ": `axiom` — only " AXIOM_FILE " axiomatises anything" \
-        " (and " NEAREST_AXIOM_FILE ", the unsound bench baseline)")
+        " (and " NEAREST_AXIOM_FILE ", the unsound bench baseline, and " \
+        FLINT_AXIOM_FILE ", the optional FLINT backend)")
   # Banned outright rather than tracked per-section: nothing in the tree uses
   # it today, and tracking which declarations a `section` covers would mean a
   # second, stateful way to be `noncomputable` beside marking a declaration
@@ -814,7 +828,9 @@ report "$out"
 # happened not to see an importer for.
 
 out=$(awk -v LIST="$list" \
-  -v ROOTS="CORALean CORALean.Examples.API CORALean.Examples.Demo CORALean.Examples.Bench" '
+  -v ROOTS="CORALean CORALean.Global.Float.Instances.Flint.API CORALean.Examples.API \
+    CORALean.Examples.Demo CORALean.Examples.Bench CORALean.Examples.BenchFlint \
+    CORALean.Examples.BenchFlintMain" '
 BEGIN { while ((getline f < LIST) > 0) if (f != "") ARGV[ARGC++] = f }
 function moduleOf(path,   m) {
   m = path; sub(/^src\//, "", m); sub(/\.lean$/, "", m); gsub("/", ".", m)

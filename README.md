@@ -70,6 +70,43 @@ return a **subset**, and `MinkDiff` accordingly owes an inner approximation. Its
 float counterpart rounds inward, the only operation in that layer which does.
 
 
+## FLINT backend (optional)
+
+A third scalar, `Flint p` (`Global/Float/Instances/Flint/`): the same
+`(mantissa, exponent)` pair `Dyadic p` is, but its six rounded operations call
+[FLINT](https://flintlib.org)'s `arf_add`/`arf_mul`/`arf_div` through a small C
+shim rather than pure Lean, so an algorithm runs at arbitrary precision without
+paying `Dyadic`'s big-integer cost in Lean itself. It is opt-in: nothing in the
+default `lake build`, including the default `bench` executable, needs FLINT to
+compile or link — the Flint instances elaborate as a second root of the
+`CORALean` library (proofs checked on every commit) but are imported by no
+default executable.
+
+Building it needs FLINT, MPFR and GMP newer than the ones Lean's own runtime
+links statically, so they are built into a private prefix and combined into
+one archive whose only global symbols are the shim's own, keeping the two GMPs
+from ever meeting at link time:
+
+```
+bash scripts/install-flint.sh       # once: GMP 6.3.0, MPFR 4.2.2, FLINT 3.6.0
+                                     # into $HOME/.local/flint-prefix
+bash scripts/build-flint-shim.sh    # combines them into .lake/flint/libcoralean_flint.a
+lake build bench-flint              # or: lake exe bench-flint <experiment> --type flint ...
+```
+
+`bench-flint selftest` differential-tests `Flint p` against `Dyadic p` at every
+op, precision and a few thousand pseudo-random operands (including values past
+`2^64` and negative, to exercise the FFI's `Int` conversion), and reports any
+mismatch by exact value — none found so far.
+
+The one thing trusted beyond `Dyadic p`'s own theorems is `trustedFlint`
+(`Global/Float/Instances/Flint/Definitions/Axioms.lean`): that FLINT's directed
+rounding does what its documentation says, and that the shim's `Int`/`fmpz`
+conversion is exact. `scripts/check-axioms.sh` keeps it out of every result
+outside this backend and `Examples/BenchFlint.lean`, the way it keeps the
+bench's false `nearestUnsound` out of the library.
+
+
 ## What is formalized
 
 [references/](references/README.md) holds a page per publication this draws on,
