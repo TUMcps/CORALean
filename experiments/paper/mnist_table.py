@@ -11,9 +11,9 @@ Standard library only. For `net` in `small`, `medium`, `large`:
 * `mnist_table.{tex,csv}`: one row per net, two cells (mean output radius,
   percent certified) per column, one column per `p = 16, 32, 64` (Dyadic,
   outward rounding) and `p = 64 (Float)` (native binary64, outward
-  rounding) -- `p = 4, 8` are excluded from the columns (both diverge for
-  every net: accuracy and certification collapse) and noted in a line of
-  their own instead of a column, per the paper's own review.
+  rounding) -- `p = 4, 8` are excluded from the `.tex` table (both diverge
+  for every net: accuracy and certification collapse) but still recorded as
+  two extra columns in `mnist_table.csv` alone, per the paper's own review.
 * `mnist_nets.csv`: net, hidden layers x neurons (parsed from
   `experiments/nn/mnist/nets/<net>.txt`'s own token format --
   `TokStream`'s own tokenizing in `MnistParse.lean`'s module docstring:
@@ -39,7 +39,10 @@ from common import booktabs_rows, find_run, fmt_tex, load_json, write_csv, write
 NETS = ["small", "medium", "large"]
 COLUMNS = [("dyadic-binary16", "p=16"), ("dyadic-binary32", "p=32"),
            ("dyadic-binary64", "p=64"), ("float", "p=64 (Float)")]
-DIVERGE_NOTE = "$p\\in\\{4,8\\}$: diverges for every network"
+# Both diverge for every network (accuracy and certification collapse) --
+# dropped from the `.tex` table (per the paper's own review) but still
+# recorded in `mnist_table.csv`, as two extra columns past `COLUMNS`.
+DIVERGE_COLUMNS = [("dyadic-binary4", "p=4"), ("dyadic-binary8", "p=8")]
 
 
 def load(results_dir: Path, net: str, label: str) -> dict | None:
@@ -67,34 +70,30 @@ def certified_cell(doc: dict) -> str:
     return f"{100.0 * c:.0f}\\%"
 
 
-def build_table(results_dir: Path) -> tuple[list[list], list[list]]:
-    tex_rows, csv_rows = [], []
+def build_table(results_dir: Path, columns: list[tuple[str, str]],
+                 as_tex: bool) -> list[list]:
+    rows = []
     for net in NETS:
-        tex_cells = []
-        csv_cells = []
-        for label, _ in COLUMNS:
+        cells = []
+        for label, _ in columns:
             doc = load(results_dir, net, label)
             if doc is None:
-                tex_cells += ["--", "--"]
-                csv_cells += ["", ""]
+                cells += (["--", "--"] if as_tex else ["", ""])
             else:
                 r = mean_radius(doc)
-                tex_cells += [fmt_tex(r), certified_cell(doc)]
-                csv_cells += [repr(r), certified_cell(doc)]
-        tex_rows.append([net] + tex_cells)
-        csv_rows.append([net] + csv_cells)
-    return tex_rows, csv_rows
+                cells += [(fmt_tex(r) if as_tex else repr(r)), certified_cell(doc)]
+        rows.append([net] + cells)
+    return rows
 
 
 def write_mnist_table(results_dir: Path) -> None:
-    tex_rows, csv_rows = build_table(results_dir)
+    tex_rows = build_table(results_dir, COLUMNS, as_tex=True)
+    csv_rows = build_table(results_dir, COLUMNS + DIVERGE_COLUMNS, as_tex=False)
     header = ["net"]
-    for _, label in COLUMNS:
+    for _, label in COLUMNS + DIVERGE_COLUMNS:
         header += [f"{label}_mean_radius", f"{label}_certified"]
     write_csv(results_dir / "paper" / "mnist_table.csv", header, csv_rows)
-    body = booktabs_rows(tex_rows) + "\\midrule\n" + \
-        f"\\multicolumn{{{1 + 2 * len(COLUMNS)}}}{{l}}{{{DIVERGE_NOTE}}} \\\\\n"
-    write_tex(results_dir / "paper" / "mnist_table.tex", body)
+    write_tex(results_dir / "paper" / "mnist_table.tex", booktabs_rows(tex_rows))
 
 
 # ---------------------------------------------------------------------------
