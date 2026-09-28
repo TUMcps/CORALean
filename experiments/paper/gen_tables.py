@@ -17,7 +17,7 @@ Usage:
 
 # Authors:       Tobias Ladner
 # Written:       27-September-2026
-# Last update:   27-September-2026
+# Last update:   28-September-2026
 
 from __future__ import annotations
 
@@ -25,9 +25,8 @@ import math
 import sys
 from pathlib import Path
 
-from common import (booktabs_rows, find_run, fmt_csv, fmt_nicefrac, fmt_tex,
-                     load_json, max_dim, num, read_csv_rows, round_outward_str,
-                     write_csv, write_tex)
+from common import (booktabs_rows, find_run, fmt_csv, fmt_tex, load_json, max_dim,
+                     num, read_csv_rows, round_outward_str, write_csv, write_tex)
 
 TYPES = [("dyadic-binary64", "$p=64$"), ("float", "Float"),
          ("nearest-binary64", "round-to-nearest"), ("cora", "CORA")]
@@ -248,28 +247,115 @@ def write_precision_table(results_dir: Path) -> None:
 
 
 # ---------------------------------------------------------------------------
-# (c) nn_table: nn-float32.json's eight analyses, plus the counterexample line.
+# (b2) precision_<config> figure data: the precision ablation's own plot,
+# one `eradius-p<P>.dat` per format (dyadic) plus one shared `width.dat`
+# (dyadic p=64), and a `precision_<config>.csv` summary -- `config` is a
+# parameter (default `headline_5turns`, the paper's own headline run) so it
+# is not hard-coded a second time next to `precision_table`'s own
+# `headline_default`.
 # ---------------------------------------------------------------------------
 
-# (method, arithmetic) -> (method label, exactly as the paper's tables name it).
+PRECISION_FIG_CUTOFF = 1e30  # the .dat/.csv "last finite" cut -- past this the run has
+                              # effectively blown up even where IEEE would still call the
+                              # double finite (`Infinity` follows a handful of steps later)
+
+
+def precision_figure_rows(results_dir: Path, config: str) -> list[list]:
+    """Writes `precision_<config>/eradius-p<P>.dat` (one per format, from
+    the dyadic run) and `precision_<config>/width.dat` (dyadic p=64) into
+    `<results>/paper/`, and returns the summary rows for
+    `precision_<config>.csv`."""
+    config_dir = results_dir / config / "exp2-timepoint"
+    out_dir = results_dir / "paper" / f"precision_{config}"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    csv_rows = []
+    for fmt in PRECISION_FORMATS:
+        p_bits = PRECISION_BITS[fmt]
+        dyadic_csv = config_dir / f"dyadic-{fmt}.csv"
+        nearest_csv = config_dir / f"nearest-{fmt}.csv"
+        dominant = blowup = last_finite = final_e = nearest_width = None
+        if dyadic_csv.exists():
+            rows = read_csv_rows(dyadic_csv)
+            dominant, blowup = robust_precision_steps(rows)
+            stopped = False
+            dat_lines = []
+            for r in rows:
+                k = int(r["k"])
+                e = max(abs(num(r["Eradius0"])), abs(num(r["Eradius1"]))) / 2.0
+                final_e = e  # ends up the very last row's value, once the loop finishes
+                e_ok = math.isfinite(e) and e <= PRECISION_FIG_CUTOFF
+                if e_ok:
+                    last_finite = k
+                if not stopped:
+                    if not e_ok:
+                        stopped = True
+                    elif e != 0:
+                        dat_lines.append(f"{k} {e:.6g}")
+            out_path = out_dir / f"eradius-p{p_bits}.dat"
+            with out_path.open("w") as f:
+                f.write("# k Eradius\n")
+                for line in dat_lines:
+                    f.write(line + "\n")
+        if nearest_csv.exists():
+            nrows = read_csv_rows(nearest_csv)
+            if nrows:
+                last = nrows[-1]
+                nearest_width = max(abs(num(last["width0"])), abs(num(last["width1"])))
+        csv_rows.append([p_bits, step_or_never(dominant), step_or_never(blowup),
+                          step_or_never(last_finite), fmt_csv(final_e), fmt_csv(nearest_width)])
+
+    width64_csv = config_dir / "dyadic-binary64.csv"
+    if width64_csv.exists():
+        rows = read_csv_rows(width64_csv)
+        out_path = out_dir / "width.dat"
+        with out_path.open("w") as f:
+            f.write("# k width\n")
+            for r in rows:
+                k = int(r["k"])
+                w = max(abs(num(r["width0"])), abs(num(r["width1"])))
+                f.write(f"{k} {w:.6g}\n")
+    return csv_rows
+
+
+def write_precision_figure(results_dir: Path, config: str = "headline_5turns") -> None:
+    csv_rows = precision_figure_rows(results_dir, config)
+    header = ["p", "first_dominant_step", "first_blowup_step", "last_finite_step",
+              "final_E_radius", "nearest_final_width"]
+    write_csv(results_dir / "paper" / f"precision_{config}.csv", header, csv_rows)
+
+
+# ---------------------------------------------------------------------------
+# (c) nn_table: nn-float32.json's eight analyses.
+# ---------------------------------------------------------------------------
+
+# (method, arithmetic) -> (method label, p) -- the paper's own reformatted
+# columns: "method" and "p" (a bare bit count, no `$p=...$` math mode) split
+# apart, no "(unverified)"/"(Float)" annotation and no counterexample row
+# anymore (both were folded into the combined label/a trailing multicolumn
+# row this table used to carry).
 NN_ROW_ORDER = [
-    ("interval", "binary32, round to nearest", "Naive, $p=32$"),
-    ("zonotope", "binary32, round to nearest", "Naive, $p=32$"),
-    ("interval", "round-to-nearest binary32 (unverified)", "Nearest, $p=32$ (unverified)"),
-    ("zonotope", "round-to-nearest binary32 (unverified)", "Nearest, $p=32$ (unverified)"),
-    ("interval", "Dyadic 24, outward rounding", "CORALean, $p=32$"),
-    ("zonotope", "Dyadic 24, outward rounding", "CORALean, $p=32$"),
-    ("interval", "binary64 (Float), outward rounding", "CORALean, $p=64$ (Float)"),
-    ("zonotope", "binary64 (Float), outward rounding", "CORALean, $p=64$ (Float)"),
+    ("interval", "binary32, round to nearest", "Naive", 32),
+    ("zonotope", "binary32, round to nearest", "Naive", 32),
+    ("interval", "round-to-nearest binary32 (unverified)", "Nearest", 32),
+    ("zonotope", "round-to-nearest binary32 (unverified)", "Nearest", 32),
+    ("interval", "Dyadic 24, outward rounding", "CORALean", 32),
+    ("zonotope", "Dyadic 24, outward rounding", "CORALean", 32),
+    ("interval", "binary64 (Float), outward rounding", "CORALean", 64),
+    ("zonotope", "binary64 (Float), outward rounding", "CORALean", 64),
 ]
-SET_LABEL = {"interval": "interval", "zonotope": "zonotope"}
+SET_LABEL = {"interval": "interval", "zonotope": "zonotope"}  # nn_table.csv -- unchanged, lowercase
+SET_LABEL_TEX = {"interval": "Interval", "zonotope": "Zonotope"}  # nn_table.tex -- capitalised
+NN_METHOD_WIDTH = 9  # the paper's own column width -- left-justified, `" & "`-joined like any
+                     # other `booktabs_rows` cell, so the padding lives in the cell itself
 
 
-def nn_table(results_dir: Path) -> tuple[list[list], list[list], str]:
+def nn_table(results_dir: Path) -> tuple[list[list], list[list]]:
+    """`tex_rows` drops the two "Naive" rows (still in `csv_rows`, and in
+    the underlying bench -- only the paper's own `.tex` excludes them)."""
     doc = load_json(results_dir / "nn" / "nn-float32.json")
     by_key = {(a["method"], a["arithmetic"]): a for a in doc["analyses"]}
     tex_rows, csv_rows = [], []
-    for method, arith, label in NN_ROW_ORDER:
+    for method, arith, method_label, p in NN_ROW_ORDER:
         a = by_key[(method, arith)]
         lo, hi = num(a["y_lower"]), num(a["y_upper"])
         # Outward: the lower bound floored, the upper ceiled, so a printed
@@ -282,23 +368,19 @@ def nn_table(results_dir: Path) -> tuple[list[list], list[list], str]:
         bounds = f"$[{round_outward_str(lo, 'down')},\\,{round_outward_str(hi, 'up')}]$"
         certified = "yes" if a["certifies"] else "no"
         runtime_us = a["medianNs"] / 1e3
-        tex_rows.append([label, SET_LABEL[method], bounds, certified,
-                          fmt_tex(runtime_us) + "~$\\mu$s"])
-        csv_rows.append([label, SET_LABEL[method], fmt_csv(lo), fmt_csv(hi), certified,
-                          fmt_csv(a["medianNs"])])
-    counterexample = (f"$x^* = {fmt_nicefrac(doc['x_star'][0]['exact'])}$, exact "
-                       f"$y = {fmt_nicefrac(doc['y_exact']['exact'])}$, binary32 "
-                       f"$y = {fmt_nicefrac(doc['y_binary32']['exact'])}$")
-    return tex_rows, csv_rows, counterexample
+        if method_label != "Naive":
+            tex_rows.append([f"{method_label:<{NN_METHOD_WIDTH}}", str(p), SET_LABEL_TEX[method],
+                              bounds, certified, fmt_tex(runtime_us) + "~$\\mu$s"])
+        csv_rows.append([method_label, p, SET_LABEL[method], fmt_csv(lo), fmt_csv(hi),
+                          certified, fmt_csv(a["medianNs"])])
+    return tex_rows, csv_rows
 
 
 def write_nn_table(results_dir: Path) -> None:
-    tex_rows, csv_rows, counterexample = nn_table(results_dir)
-    header = ["method", "set", "y_lower", "y_upper", "certified", "median_ns"]
+    tex_rows, csv_rows = nn_table(results_dir)
+    header = ["method", "p", "set", "y_lower", "y_upper", "certified", "median_ns"]
     write_csv(results_dir / "paper" / "nn_table.csv", header, csv_rows)
-    body = booktabs_rows(tex_rows) + "\\midrule\n" + \
-        f"\\multicolumn{{5}}{{l}}{{{counterexample}}} \\\\\n"
-    write_tex(results_dir / "paper" / "nn_table.tex", body)
+    write_tex(results_dir / "paper" / "nn_table.tex", booktabs_rows(tex_rows))
 
 
 # ---------------------------------------------------------------------------
@@ -393,6 +475,8 @@ def main(argv: list[str]) -> int:
     write_headline_table(results_dir, configs)
     write_headline_summary(results_dir, configs)
     write_precision_table(results_dir)
+    if (results_dir / "headline_5turns" / "exp2-timepoint").is_dir():
+        write_precision_figure(results_dir)
     write_nn_table(results_dir)
     for config in configs:
         write_runtime_table(results_dir, config)

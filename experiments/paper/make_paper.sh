@@ -26,7 +26,10 @@
 # script): the booktabs bodies `experiments/README.md`'s callers expect --
 # headline_table (plus its per-config and long-format siblings), precision_table,
 # nn_table, runtime_table (per config), nearest_vs_cora -- plus the precision
-# ablation's per-step error-radius `.dat` files. Then `mnist_table.py`, the
+# ablation's per-step error-radius `.dat` files, and (if the config's
+# `exp2-timepoint` directory exists) the precision ablation's own figure
+# data under `precision_<config>/` (default config `headline_5turns`) plus
+# its `precision_<config>.csv` summary. Then `mnist_table.py`, the
 # same idea over `<results>/nn-mnist/` (skipped, not a failure, if that
 # directory does not exist): mnist_table.{tex,csv} and mnist_nets.csv. All
 # under `<results>/paper/`.
