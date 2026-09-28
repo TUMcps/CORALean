@@ -4,7 +4,7 @@ import CORALean.ContDynamics.LinearSys.Operations.DeltaReach
 /-!
 # `deltaReach` contains every difference the step can span
 
-`timeIntervalStep_outer`'s statement about the *difference* rather than the
+`timeIntervalStep_outer_at`'s statement about the *difference* rather than the
 state: at every `t` of `[0, r]`, `e^{At}x₀ - x₀` is in the set, and at `t = 0`
 that is the origin, which is what makes the anchored segment right.
 

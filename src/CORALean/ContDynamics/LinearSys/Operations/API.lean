@@ -64,6 +64,7 @@ import CORALean.ContDynamics.LinearSys.Operations.ReachWrappingFree
 import CORALean.ContDynamics.LinearSys.Operations.Reach
 import CORALean.ContDynamics.LinearSys.Operations.ReachOrder
 import CORALean.ContDynamics.LinearSys.Operations.ReachStepkWrappingFree
+import CORALean.ContDynamics.LinearSys.Operations.TimePoint
 import CORALean.ContDynamics.LinearSys.Operations.ReachStepk
 import CORALean.ContDynamics.LinearSys.Operations.ReachAdmissible
 import CORALean.ContDynamics.LinearSys.Operations.ParticularSolution

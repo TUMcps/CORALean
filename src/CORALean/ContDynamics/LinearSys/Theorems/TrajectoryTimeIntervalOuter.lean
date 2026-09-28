@@ -63,7 +63,7 @@ theorem LinearSys.Trajectory.timeInterval_outer {sys : LinearSys 𝕋 n} {T : Se
   rw [sub_zero] at hvoc
   rw [hvoc]
   refine Plus.plus_outer _ _ (Set.add_mem_add ?_ hUd)
-  exact sys.timeIntervalStep_outer hr hε R₀ ht0 htr
+  exact sys.timeIntervalStep_outer_at hr hε R₀ ht0 htr
     (Set.mem_image_of_mem _ traj.init)
 
 end CORALean

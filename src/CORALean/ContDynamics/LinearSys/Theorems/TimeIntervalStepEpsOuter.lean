@@ -5,14 +5,14 @@ import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuter
 /-!
 # An enclosure asked for by error rather than by order
 
-`timeIntervalStep_outer` carried over to the chosen order, and the point of
+`timeIntervalStep_outer_at` carried over to the chosen order, and the point of
 choosing one: its side condition `‖rA‖/(η+2) < 1` is gone, discharged by
 `expRemainderOrder_spec`, and `0 < ε` is the only thing a caller supplies
 beyond the step. So "enclose this with a remainder under `ε`" is a request the
 library answers soundly, which is what a tuning rule has to mean here.
 
 `2 ≤ η` is what lets the chosen order be written in the `m + 2` form
-`timeIntervalStep_outer` takes; the selector's predicate carries it for exactly
+`timeIntervalStep_outer_at` takes; the selector's predicate carries it for exactly
 that reason.
 
 A smaller `ε` gives a tighter correction matrix, and
@@ -58,7 +58,7 @@ theorem LinearSys.timeIntervalStepEps_outer (sys : LinearSys 𝕋 n) {r : ℝ} (
     ⟨MatExp.expRemainderOrder (r • toRealMat sys.A) ε - 2, by omega⟩
   simp only [LinearSys.timeIntervalStepEps]
   rw [hm] at hs ⊢
-  exact sys.timeIntervalStep_outer hr hs X₀ ht0 htr
+  exact sys.timeIntervalStep_outer_at hr hs X₀ ht0 htr
 
 end CORALean
 

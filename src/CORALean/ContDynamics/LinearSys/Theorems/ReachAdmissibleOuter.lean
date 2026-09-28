@@ -6,9 +6,9 @@ import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterWindows
 # `reachAdmissible` encloses `reachExact`, at any `η`
 
 `reach_outer`'s own statement, at the order `reachAdmissible` raises to, so its
-caller supplies no `m` and no `hε`: `reachOrder_admissible` gives both, the
-raised order written `m + 2` by the same subtraction `reachWrappingFree_outer`
-runs. `LinearSys.reachInstance` states its guarantee through this.
+caller supplies no `hη` and no `hε`: `reachOrder_admissible` gives `hε`
+directly at that raised order, and `2 ≤ max η (reachOrder Δt + 2)` is
+immediate. `LinearSys.reachInstance` states its guarantee through this.
 -/
 
 -- Authors:       Tobias Ladner
@@ -40,14 +40,12 @@ is in one of `reachAdmissible`'s windows, at any order `η`. -/
 theorem LinearSys.reachAdmissible_outer (sys : LinearSys 𝕋 n) {tFinal Δt : ℝ}
     (htFinal : 0 < tFinal) (hΔt : 0 < Δt) (η : ℕ) (X₀ : S n) : sys.reachExact tFinal (construct X₀)
       ⊆ construct (sys.reachAdmissible tFinal Δt η X₀) := by -- --- PROOF ---
-  -- the order `reachAdmissible` runs at, `m + 2` in `reach_outer`'s naming
-  obtain ⟨m, hm⟩ : ∃ m, max η (sys.reachOrder Δt + 2) = m + 2 :=
-    ⟨max η (sys.reachOrder Δt + 2) - 2, by omega⟩
-  have hε : ‖Δt • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1 :=
-    sys.reachOrder_admissible Δt (hm ▸ le_max_right _ _)
   unfold LinearSys.reachAdmissible
-  rw [hm]
-  exact sys.reach_outer htFinal hΔt hε X₀
+  -- `reachOrder_admissible` gives `hε` at the order `reachAdmissible` runs at directly
+  have hη : 2 ≤ max η (sys.reachOrder Δt + 2) :=
+    le_trans (Nat.le_add_left 2 (sys.reachOrder Δt)) (le_max_right _ _)
+  have hε := sys.reachOrder_admissible Δt (le_max_right η (sys.reachOrder Δt + 2))
+  exact sys.reach_outer htFinal hΔt hη hε X₀
 
 end CORALean
 

@@ -7,7 +7,9 @@ import CORALean.ContSet.SetUnion.SetUnion
 The windows `τ_0, …, τ_{N-1}`, one `reachStepk` each, collected as a `SetUnion`:
 `N = ⌈tFinal / Δt⌉` of them, so the last may overshoot `tFinal`, which an outer
 enclosure may. CORA's `standard` scheme, its default: [1, Alg. 4] at a point
-matrix, with no input and no order reduction.
+matrix, with no input and no order reduction — `reachStepk`'s own recursion
+runs on the time-point sets `timePoint`, and encloses window `τ_k` from
+`timePoint Δt X₀ k` alone.
 
 Unlike `reachWrappingFree`, `η` is taken as given and `N` is not raised to one:
 `reach_outer` asks for what `timeIntervalStep_outer` needs of the order, and for

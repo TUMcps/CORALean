@@ -1,15 +1,18 @@
 import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
+import CORALean.ContDynamics.LinearSys.Operations.TimePoint
 
 /-!
-# One window of `reach`, recursively: `R(τ_{k+1}) = e^{AΔt} R(τ_k)`
+# One window of `reach`, enclosed from its own time point: `HR(τ_k) = HR(t_k, t_{k+1})`
 
 CORA's `standard` scheme, its default, and [1, Alg. 4]'s recursion at a point
-matrix with no input and no order reduction: the first window is
-`timeIntervalStep`, and every later one is the window before it carried one
-step further by `e^{AΔt}`. Where `mtimes` only encloses, each step's
-overapproximation is carried into all later windows and compounds, which is the
-wrapping effect `reachStepkWrappingFree` avoids by applying `e^{A t_k}` to the
-first window directly.
+matrix with no input and no order reduction: the recursion runs over the
+time-point sets `timePoint`, `R(t_{k+1}) = e^{AΔt} R(t_k)`, and the window
+`τ_k = [k Δt, (k + 1) Δt]` is `timeIntervalStep` run once, from `R(t_k)`
+directly, rather than carried step by step the way `timePoint` itself is.
+Where `mtimes` only encloses, this keeps a window's own overapproximation out
+of every later one, the wrapping effect `reachStepkWrappingFree` avoids the
+same way, by applying `e^{A t_k}` to the first window directly rather than
+`e^{AΔt}` to the window before.
 
 ## References
 
@@ -41,12 +44,11 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The window `τ_k = [k Δt, (k + 1) Δt]` at Taylor order `η`: `R(τ_0)` is
-`timeIntervalStep`, and `R(τ_{k+1}) = e^{AΔt} R(τ_k)`. -/
-noncomputable def LinearSys.reachStepk (sys : LinearSys 𝕋 n) (Δt : ℝ) (η : ℕ) (X₀ : S n) :
-    ℕ → S n
-  | 0     => sys.timeIntervalStep Δt η X₀
-  | k + 1 => mtimes (exp (Δt • toRealMat sys.A)) (sys.reachStepk Δt η X₀ k)
+/-- The window `τ_k = [k Δt, (k + 1) Δt]` at Taylor order `η`: `timeIntervalStep`
+run once, from the time-point set `timePoint Δt X₀ k`. -/
+noncomputable def LinearSys.reachStepk (sys : LinearSys 𝕋 n) (Δt : ℝ) (η : ℕ) (X₀ : S n)
+    (k : ℕ) : S n :=
+  sys.timeIntervalStep Δt η (sys.timePoint Δt X₀ k)
 
 end CORALean
 

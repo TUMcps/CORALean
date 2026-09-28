@@ -68,7 +68,7 @@ theorem LinearSys.WithInputSplit.reach_outer (sys : LinearSys.WithInputSplit �
   have htk1 : t ≤ ((k + 1 : ℕ) : ℝ) * Δt := by push_cast; linarith
   have hτ0 : 0 ≤ t - k * Δt := sub_nonneg.mpr hkt
   have htk0 : 0 ≤ (k : ℝ) * Δt := by positivity
-  -- the order `reach` runs at, `m + 2` in `timeIntervalStep_outer`'s naming
+  -- the order `reach` runs at, `m + 2` in `timeIntervalStep_outer_at`'s naming
   obtain ⟨m, hm⟩ : ∃ m, max η (sys.sys.reachOrder Δt + 2) = m + 2 :=
     ⟨max η (sys.sys.reachOrder Δt + 2) - 2, by omega⟩
   have hε : ‖Δt • toRealMat sys.sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1 :=
@@ -133,7 +133,7 @@ theorem LinearSys.WithInputSplit.reach_outer (sys : LinearSys.WithInputSplit �
     · -- `e^{A t_k}` of a point of `H^R(τ_0) ⊕ P̃^R(τ_0)`
       refine Mtimes.mtimes_outer _ _ (Set.mem_biUnion rfl (Set.mem_image_of_mem _
         (Plus.plus_outer _ _ (Set.add_mem_add ?_ ?_))))
-      · exact sys.sys.timeIntervalStep_outer hΔt hε X₀ hτ0 htk
+      · exact sys.sys.timeIntervalStep_outer_at hΔt hε X₀ hτ0 htk
           (Set.mem_image_of_mem _ traj.init)
       · exact sys.sys.expIntegral_mem_constInputSolution hΔt (m + 2) hε uc hτ0 htk
     · -- one admissible `Ũ`-input's contribution by `t`, in `P^R_Ũ(t_{k+1})`

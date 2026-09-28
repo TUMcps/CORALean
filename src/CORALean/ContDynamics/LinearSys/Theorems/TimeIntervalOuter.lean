@@ -5,8 +5,11 @@ import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepOuterSegments
 # `timeIntervalStep` contains the flow at every time in the step
 
 CORA's `HR([0,r]) = CH(X₀, e^{Ar}X₀) ⊕ F X₀`, and the guarantee that makes it
-usable: not just at the sample times, but at every `t` in `[0, r]`. The
-wrapping-effect-free construction of [1, Alg. 1], one step of it.
+usable: not just at the sample times, but at every `t` in `[0, r]`, one named
+time at a time — `timeIntervalStep_outer`, the quantified statement through
+`reachExact`, is what a caller with no particular `t` in hand wants, and is
+proved from this one. The wrapping-effect-free construction of [1, Alg. 1], one
+step of it.
 
 `timeIntervalStep_outer_segments` is the whole argument, at the level of `Set`s;
 this is that composed with `LinComb.linComb_outer` and `Plus.plus_outer`, the two
@@ -47,8 +50,10 @@ variable [Mtimes ℐ S]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 omit [∀ n, Reduce (S n) (Vec ℝ n)] in
-/-- Every image of the initial set under the flow, at every time of the step. -/
-theorem LinearSys.timeIntervalStep_outer (sys : LinearSys 𝕋 n) {r : ℝ} (hr : 0 < r) {m : ℕ}
+/-- Every image of the initial set under the flow, at a named time of the step.
+`timeIntervalStep_outer` is the same guarantee, quantified over every such
+time at once. -/
+theorem LinearSys.timeIntervalStep_outer_at (sys : LinearSys 𝕋 n) {r : ℝ} (hr : 0 < r) {m : ℕ}
     (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) (X₀ : S n)
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) :
     (fun x₀ => exp (t • toRealMat sys.A) *ᵥ x₀) '' construct X₀
