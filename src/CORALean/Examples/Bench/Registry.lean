@@ -9,6 +9,7 @@ import CORALean.Examples.Bench.Nn
 import CORALean.Examples.Bench.Output
 import CORALean.Global.Float.Instances.Binary64.API
 import CORALean.Global.Float.Instances.Dyadic.API
+import CORALean.Global.Float.Instances.FixedPoint.API
 
 /-!
 # `dtdemo`, `headline-a`, `headline-b`, `exp2-timepoint`
@@ -173,6 +174,9 @@ def resolvedPrec (args : CliArgs) : ℕ :=
     | some fmt => (formatToPrec fmt).toOption.getD 53
     | none => 53
 
+/-- The decimal digit count a `fixed` run picks: `--digits` if given, else `4`. -/
+def resolvedDigits (args : CliArgs) : ℕ := args.digits.getD 4
+
 open CORALean.Bench.NearestUnsound in
 /-- `--type nearest`, with NO guarantees: `NearestFloat`, or `NearestDyadic p` once
 `--prec` or a `--format` other than `binary64` asks for one. The only code that
@@ -192,9 +196,9 @@ def dispatchNearest (args : CliArgs) : IO Unit :=
       (fun d => ⟨ExactDyadic.toDyadicPUnchecked d⟩) (fun x => dyadicToFloatApprox x.val)
       (precToFormat p) toExact p
 
-/-- Runs `args.experiment` at the scalar `args.ty` names -- `Dyadic p` (`p`
-from `resolvedPrec`), `Float`, or the unsound `nearest` baseline, the one branch
-here that picks the type `aux_runAt` is generic over. -/
+/-- Runs `args.experiment` at the scalar `args.ty` names -- `Dyadic p`, `Float`,
+`nearest` or `FixedPoint f` -- the one branch here that picks the type
+`aux_runAt` is generic over. -/
 def dispatch (args : CliArgs) : IO Unit :=
   match args.ty with
   | "float" =>
@@ -203,6 +207,13 @@ def dispatch (args : CliArgs) : IO Unit :=
     aux_runAt (𝕋 := Float) args ExactDyadic.toFloat ExactDyadic.toFloatUnchecked id
       "binary64" toExact 53
   | "nearest" => dispatchNearest args
+  | "fixed" =>
+    let f := resolvedDigits args
+    let toExact := if args.exact then
+      some (fun (x : FixedPoint f) => s!"{x.m}e-{x.d}") else none
+    -- `format`/`significand_bits`, named for `Dyadic`, carry `"decimal<f>"`/`f` here.
+    aux_runAt (𝕋 := FixedPoint f) args (fun field d => d.toFixedPoint field f)
+      ExactDyadic.toFixedPointUnchecked fixedPointToFloatApprox s!"decimal{f}" toExact f
   | _ =>
     let p := resolvedPrec args
     let toExact := if args.exact then

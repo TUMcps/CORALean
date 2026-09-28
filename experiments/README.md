@@ -111,10 +111,12 @@ Flags:
   `exp2-timepoint`, `nn-float32` (ignores `--type`/`--format`/`--prec`/
   `--config`), `nn-mnist` (ignores `--config`, takes its own `--net`/
   `--images`; see their own sections below).
-* `--type dyadic|float` -- `dyadic` (default) runs at `CORALean.Float.Dyadic
+* `--type dyadic|float|fixed` -- `dyadic` (default) runs at `CORALean.Float.Dyadic
   p`, exact integer arithmetic with the precision below; `float` runs at
   native binary64, `Float`, where the numbers depend on the machine's IEEE 754
   unit and the ten `SoundFloatArithmetic` assumptions `Axioms.lean` states.
+  `fixed` runs at `CORALean.Float.FixedPoint f`, decimal fixed-point at
+  `--digits F` fractional digits: see "Decimal fixed-point" below.
   `nearest` is the unsound round-to-nearest baseline, with NO guarantee: see
   "Round-to-nearest baseline" below for how `--format`/`--prec` apply to it.
 * `--format F` -- the IEEE-shaped precision label for `--type dyadic`, one of
@@ -647,6 +649,47 @@ every other law is proved. `scripts/check-axioms.sh` asserts, through Lean's
 is exactly `[0, 0]` on every set, as in CORA, with no library change: checked on
 `dtdemo` (1208 sets), `headline-a`/`headline-b` at binary64 and binary32, and
 `exp2-timepoint` at binary16, on `headline_default`.
+
+## Decimal fixed-point (`--type fixed`)
+
+```
+lake exe bench <experiment> --type fixed --digits F [--config FILE] [--reps N] [--out DIR] [--exact]
+```
+
+A second sound scalar beside `Dyadic`, `CORALean.Float.FixedPoint f`:
+`mantissa · 10 ^ (-digits)`, CORA's "cut off after `f` fractional digits" made
+sound by flooring `Down` and ceiling `Up` at `10 ^ (-f)` instead of truncating
+toward zero. `--digits F` sets `f` (default `4`); every generic experiment
+runs at it exactly as at `Dyadic p`, through the same `aux_runAt`. `meta`
+carries `"type": "fixed"`, `"format": "decimal<F>"` and `"significand_bits": F`
+(the digit count, in the slot `Dyadic`'s bit count uses) and, like every type
+but `nearest`, `"sound": true`.
+
+A config value is read in exactly or not at all, the same rule `Dyadic`'s
+`fitsPrecision` applies at its bit count: `ExactDyadic.toFixedPoint` checks
+`digits + exponent ≥ 0` (a binary fraction `2 ^ exponent` terminates in decimal
+past that many places), and rejects a value that fails it with a message
+naming the field and how many digits it would need -- `1 / 64 = 2 ^ (-6)`
+needs `--digits 6`, so `headline_default.json`'s `dt` rejects `--digits 4`
+outright rather than silently rounding it. A *computed* quantity (`dtdemo`'s
+discretized matrix) goes through `toFixedPointUnchecked` instead, which floors
+when the same condition fails, `Dyadic`'s unbounded exponent having no
+decimal counterpart to fall back on.
+
+Smoke test, `headline_default` (`dt = 1/64`, needing `--digits ≥ 6`):
+
+| run | final `E` radius | final hull width | first blow-up step |
+| --- | --- | --- | --- |
+| `exp2-timepoint --digits 6` | ≈ 7.84 × 10⁵ | ≈ 1.02 | 371 |
+| `exp2-timepoint --digits 8` | ≈ 7.79 × 10³ | ≈ 0.885 | 653 |
+| `exp2-timepoint --digits 12` | ≈ 0.784 | ≈ 0.883 | none (`N = 1200`) |
+| `exp2-timepoint --type dyadic --prec 24` (≈ 7.2 decimal digits) | ≈ 1718 | ≈ 0.887 | 745 |
+
+`FixedPoint`'s digit count is an *absolute* precision, unlike `Dyadic`'s
+significand bits, which stay relative to a value's own magnitude as it grows;
+that is why `--digits 8` (nominally close to `p = 24`'s ~7.2 decimal digits)
+blows up earlier and with a larger `E` than `Dyadic` does at the same
+experiment, and why `--digits 12` clears it with room to spare.
 
 ## `experiments/paper/make_paper.sh`
 

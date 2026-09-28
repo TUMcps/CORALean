@@ -1,4 +1,5 @@
 import CORALean.Global.Float.Instances.Dyadic.Dyadic
+import CORALean.Global.Float.Instances.FixedPoint.FixedPoint
 
 /-!
 # Exact dyadic rationals, read from a config file
@@ -13,10 +14,12 @@ caller asked for, and rejected rather than silently rounded if it does not
 fit.
 
 That rejection is right for a config leaf, read once and meant to be exact --
-but not for a value `Rollout.buildSystem` *computes*, such as `A_d`, which
-nothing requires to already sit on the target grid the way a config value
-does; the `...Unchecked` counterparts read those in regardless, trusting the
-first arithmetic operation applied to round the result as it always would.
+but not for a value `Rollout.buildSystem` *computes*, which nothing requires
+to already sit on the target grid; the `...Unchecked` counterparts read those
+in regardless, trusting the first operation to round the result as always.
+`toFixedPoint` is the same check at decimal digits: exact iff `digits +
+exponent ≥ 0` (`1/64` needs `digits ≥ 6`), past which the binary exponent has
+no finite decimal expansion at all.
 -/
 
 -- Authors:       Tobias Ladner
@@ -155,6 +158,44 @@ rendering a `Dyadic p` value into the JSON output's nearest-double field, where
 def dyadicToFloatApprox {p : Nat} (d : CORALean.Float.Dyadic p) : Float :=
   let m : Float := Nat.toFloat d.mantissa.natAbs
   (if d.mantissa < 0 then -m else m) * pow2Float d.exponent
+
+/-- Whether `d`'s binary fraction terminates within `digits` decimal places --
+`1/64 = 2^-6` needs `digits ≥ 6`; `digits ≥ 0` always suffices once `exponent`
+itself is nonnegative. -/
+def ExactDyadic.fitsDigits (digits : Nat) (d : ExactDyadic) : Bool :=
+  0 ≤ (digits : ℤ) + d.exponent
+
+/-- `d` at `FixedPoint digits` when `fitsDigits` holds -- `10^digits =
+2^digits*5^digits` supplies the missing power of two -- else an error naming
+the field and digit count; right for a config leaf. -/
+def ExactDyadic.toFixedPoint (field : String) (digits : Nat) (d : ExactDyadic) :
+    Except String (CORALean.Float.FixedPoint digits) :=
+  if d.fitsDigits digits then
+    pure ⟨d.mantissa * 2 ^ ((digits : ℤ) + d.exponent).toNat * 5 ^ digits, digits⟩
+  else
+    throw s!"config field `{field}`: {d.mantissa}*2^{d.exponent} is not exact at \
+      {digits} decimal digits (needs at least {(-d.exponent).toNat})"
+
+/-- `d` at `FixedPoint digits`, unconditionally -- exact when `fitsDigits`
+holds, else floored, unlike `toDyadicPUnchecked`. Right only for a *computed*
+quantity, never a config leaf. -/
+def ExactDyadic.toFixedPointUnchecked {digits : Nat} (d : ExactDyadic) :
+    CORALean.Float.FixedPoint digits :=
+  if 0 ≤ d.exponent then
+    ⟨d.mantissa * 2 ^ d.exponent.toNat * 10 ^ digits, digits⟩
+  else
+    ⟨(d.mantissa * 10 ^ digits) / 2 ^ (-d.exponent).toNat, digits⟩
+
+/-- `10 ^ n` as a native `Float`, by repeated exact-enough multiplication --
+mirrors `pow2Float`, but `FixedPoint`'s digit count is never negative. -/
+def pow10Float (n : Nat) : Float := (List.replicate n ()).foldl (fun acc _ => acc * 10.0) 1.0
+
+/-- `x.m / 10 ^ x.d` as a native `Float`, unconditionally -- the `FixedPoint`
+counterpart of `dyadicToFloatApprox`, for the JSON output's nearest-double
+field. -/
+def fixedPointToFloatApprox {digits : Nat} (x : CORALean.Float.FixedPoint digits) : Float :=
+  let m : Float := Nat.toFloat x.m.natAbs
+  (if x.m < 0 then -m else m) / pow10Float x.d
 
 end CORALean.Bench
 
