@@ -612,6 +612,20 @@ validation. All of it under `<RESULTS_DIR>/paper/` -- see
 `experiments/results-paper/README.md` for the exact naming scheme and what
 each table's columns mean.
 
+The precision ablation also gets its own figure data, from
+`exp2-timepoint` on a config given as a parameter (default
+`headline_5turns`, the paper's own headline run --
+`gen_tables.py`'s `write_precision_figure`): one `eradius-p<P>.dat`
+(`k Eradius`) per precision `P` in {4, 8, 16, 32, 64} from that config's
+dyadic run, `Eradius` the max-over-dim time-point error radius, rows with
+`Eradius = 0` skipped and the file stopped (exclusive) at the first
+non-finite value or value past `1e30`; a shared `width.dat` (`k width`) with
+the dyadic p=64 run's max-over-dim nominal hull width at every step; and a
+`precision_<config>.csv` summary (`p, first_dominant_step,
+first_blowup_step, last_finite_step, final_E_radius, nearest_final_width`)
+under `<RESULTS_DIR>/paper/precision_<config>/` and
+`<RESULTS_DIR>/paper/precision_<config>.csv` respectively.
+
 `experiments/paper/render_png.py` additionally renders a PNG preview of every
 reach-tube figure and the precision plot, only if `matplotlib` is importable
 (it is not part of this repository's own dependencies, so `make_paper.sh`
