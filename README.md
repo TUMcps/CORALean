@@ -56,12 +56,18 @@ Outside the set representations, the neural network layers among them, an
 algorithm is written once over the scalar instead, and run at ℝ and at a
 machine scalar alike.
 
-The float layer fixes no format, and the same definition runs at either of two
-scalars: `Dyadic p`, exact integer arithmetic whose soundness obligations are
-theorems, and native binary64, which is fast and whose obligations are assumed
-instead — all ten as a single `TrustedHardware` axiom in
-`Global/Float/Instances/Binary64/Axioms.lean`, the only file here that assumes
-anything. Every `Float` result carries that one name in `#print axioms`.
+The float layer fixes no format, and the same definition runs at any of its
+scalars: `Dyadic p`, exact integer arithmetic at a `p`-bit significand whose
+soundness obligations are theorems; `IEEE fmt`, the same at a real binary
+format — binary64, binary32, binary16, OCP E4M3 or E2M1, subnormals included —
+whose values past the format's range are detected and reported as overflow,
+never silently continued; and native binary64, which is fast and whose
+obligations are assumed instead — all ten as a single `TrustedHardware` axiom in
+`Global/Float/Instances/Binary64/Definitions/Axioms.lean`, the only file here that assumes
+anything. Every `Float` result carries that one name in `#print axioms`. The
+hardware instance is only trusted while all values remain in the normal range of
+binary64; operations that overflow or underflow return NaN, which propagates to
+the result, so such runs are detected at run time.
 
 The Minkowski difference is the exception, and worth knowing about before
 reading the interfaces: a difference is a *guarantee* — the states from which

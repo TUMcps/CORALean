@@ -19,7 +19,7 @@ guarantee whatsoever.
 
 -- Authors:       Tobias Ladner
 -- Written:       27-September-2026
--- Last update:   ---
+-- Last update:   28-September-2026
 -- Last revision: ---
 
 
@@ -43,8 +43,8 @@ scoped instance : FloatOps NearestFloat where
   mulDown := NearestFloat.mul
   divUp := NearestFloat.div
   divDown := NearestFloat.div
-  minimum a b := ⟨min a.val b.val⟩
-  maximum a b := ⟨max a.val b.val⟩
+  minimum a b := ⟨Binary64.minimum a.val b.val⟩
+  maximum a b := ⟨Binary64.maximum a.val b.val⟩
   le a b := decide (a.val ≤ b.val)
   half a := ⟨Binary64.half a.val⟩
 

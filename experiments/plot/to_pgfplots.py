@@ -42,11 +42,15 @@ whichever of the two actually exists.
 
 Each .dat file is whitespace-separated columns with a header comment line,
 directly usable from a pgfplots `\\addplot table` in the paper's TikZ.
+
+A record flagged `"overflow": true` (an `--type ieee` run, from the first step
+that stored a value past its format's range) is never drawn: every array is
+cut at the first such record, `in_range`.
 """
 
 # Authors:       Tobias Ladner
 # Written:       25-September-2026
-# Last update:   27-September-2026
+# Last update:   28-September-2026
 
 from __future__ import annotations
 
@@ -77,6 +81,15 @@ def scalar(x):
     if isinstance(x, dict):
         return float(x["double"])
     return float(x)
+
+
+def in_range(sets: list[dict]) -> list[dict]:
+    """`sets` up to, not including, its first record flagged `"overflow"`:
+    past it the run holds numbers its format does not have."""
+    for i, rec in enumerate(sets):
+        if rec.get("overflow"):
+            return sets[:i]
+    return sets
 
 
 def merge_parallel_generators(gens: list[tuple[float, float]],
@@ -225,6 +238,7 @@ def process_array(sets: list[dict], out_prefix: str, suffix: str, every: int,
     """One array (`sets`/`sets_ti`/`sets_tp`)'s `-hulls.dat` and, per
     `merged`, either its `-tube.dat` or its per-step `-step<k>-poly.dat`
     files. Returns how many polygons were written."""
+    sets = in_range(sets)
     all_ks = [rec["k"] for rec in sets]
     if not all_ks:
         return 0

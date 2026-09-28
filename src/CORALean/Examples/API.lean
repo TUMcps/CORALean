@@ -20,6 +20,7 @@ import CORALean.Examples.FeedForwardFloat
 import CORALean.Examples.FixedPointDemo
 import CORALean.Examples.GuardCutThenReset
 import CORALean.Examples.HPolytopePlus
+import CORALean.Examples.IEEERounding
 import CORALean.Examples.LagrangeRemainder
 import CORALean.Examples.LinearSysCheck
 import CORALean.Examples.LinParamSysCheck

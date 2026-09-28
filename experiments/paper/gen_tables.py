@@ -9,7 +9,9 @@ booktabs table body plus the precision ablation's per-step error-radius
 `.dat` files into `<results>/paper/` -- see `make_paper.sh` for how this is
 invoked and `experiments/results-paper/README.md` for the naming scheme.
 `p = ...` names every number type everywhere here (`Dyadic`/`binary32` never
-appear in a paper table, only in the results directory's own file names).
+appear in a paper table, only in the results directory's own file names). The
+paper's `p` is the IEEE format (`ieee-*` runs); the `dyadic-*` runs, the same
+significand widths at an unbounded exponent, are written beside as an ablation.
 
 Usage:
     python3 gen_tables.py <results-dir>
@@ -28,7 +30,7 @@ from pathlib import Path
 from common import (booktabs_rows, find_run, fmt_csv, fmt_tex, load_json, max_dim,
                      num, read_csv_rows, round_outward_str, write_csv, write_tex)
 
-TYPES = [("dyadic-binary64", "$p=64$"), ("float", "Float"),
+TYPES = [("ieee-binary64", "$p=64$"), ("dyadic-binary64", "Dyadic $p=64$"), ("float", "Float"),
          ("nearest-binary64", "round-to-nearest"), ("cora", "CORA")]
 # The paper's figure panel (a) is the RECURSIVE scheme (bench `headline-b`),
 # panel (b) the WRAPPING-FREE one (bench `headline-a`) -- every table below
@@ -248,10 +250,11 @@ def write_precision_table(results_dir: Path) -> None:
 
 # ---------------------------------------------------------------------------
 # (b2) precision_<config> figure data: the precision ablation's own plot,
-# one `eradius-p<P>.dat` per format (dyadic) plus one shared `width.dat`
-# (dyadic p=64), and a `precision_<config>.csv` summary -- `config` is a
-# parameter (default `headline_5turns`, the paper's own headline run) so it
-# is not hard-coded a second time next to `precision_table`'s own
+# one `eradius-p<P>.dat` per format plus one shared `width.dat` (p=64), and a
+# `precision_<config>.csv` summary -- from the `ieee-*` runs, the paper's; the
+# `dyadic-*` runs, where present, go to `precision_<config>_dyadic/` beside it.
+# `config` is a parameter (default `headline_5turns`, the paper's own headline
+# run) so it is not hard-coded a second time next to `precision_table`'s own
 # `headline_default`.
 # ---------------------------------------------------------------------------
 
@@ -260,40 +263,70 @@ PRECISION_FIG_CUTOFF = 1e30  # the .dat/.csv "last finite" cut -- past this the 
                               # double finite (`Infinity` follows a handful of steps later)
 
 
-def precision_figure_rows(results_dir: Path, config: str) -> list[list]:
-    """Writes `precision_<config>/eradius-p<P>.dat` (one per format, from
-    the dyadic run) and `precision_<config>/width.dat` (dyadic p=64) into
+def run_meta_any(results_dir: Path, config: str, scheme_dir: str, stem: str) -> dict | None:
+    """The run's `meta` (or, for a run with none to write, its top-level
+    `status`/`reason` object), whatever its status -- `run_summary` above
+    keeps `"ok"` runs only."""
+    p = find_run(results_dir / config / scheme_dir, stem)
+    if p is None:
+        return None
+    doc = load_json(p)
+    if doc is None:
+        return None
+    return doc.get("meta", doc)
+
+
+def precision_figure_rows(results_dir: Path, config: str, prefix: str = "ieee",
+                           out_suffix: str = "") -> list[list]:
+    """Writes `precision_<config><out_suffix>/eradius-p<P>.dat` (one per
+    format, from the `<prefix>-<fmt>` run) and `width.dat` (p=64) into
     `<results>/paper/`, and returns the summary rows for
-    `precision_<config>.csv`."""
+    `precision_<config><out_suffix>.csv`. A curve stops at its last finite
+    step, and at an IEEE run's `overflow_step`: from there on the run stores
+    numbers its format does not have. A format that cannot hold the config
+    at all (`"status": "unrepresentable"`) gets a `.dat` with one point off the
+    axis and none on it."""
     config_dir = results_dir / config / "exp2-timepoint"
-    out_dir = results_dir / "paper" / f"precision_{config}"
+    out_dir = results_dir / "paper" / f"precision_{config}{out_suffix}"
     out_dir.mkdir(parents=True, exist_ok=True)
     csv_rows = []
     for fmt in PRECISION_FORMATS:
         p_bits = PRECISION_BITS[fmt]
-        dyadic_csv = config_dir / f"dyadic-{fmt}.csv"
+        run_csv = config_dir / f"{prefix}-{fmt}.csv"
         nearest_csv = config_dir / f"nearest-{fmt}.csv"
-        dominant = blowup = last_finite = final_e = nearest_width = None
-        if dyadic_csv.exists():
-            rows = read_csv_rows(dyadic_csv)
-            dominant, blowup = robust_precision_steps(rows)
+        meta = run_meta_any(results_dir, config, "exp2-timepoint", f"{prefix}-{fmt}")
+        status = meta.get("status", "ok") if meta is not None else "missing"
+        overflow = meta.get("overflow_step") if meta is not None else None
+        dominant = blowup = last_finite = final_e = last_e = nearest_width = None
+        dat_lines = []
+        if run_csv.exists():
+            rows = read_csv_rows(run_csv)
+            # past the overflow the numbers are not the format's, so neither marker is read there
+            dominant, blowup = robust_precision_steps(
+                [r for r in rows if overflow is None or int(r["k"]) < overflow])
             stopped = False
-            dat_lines = []
             for r in rows:
                 k = int(r["k"])
                 e = max(abs(num(r["Eradius0"])), abs(num(r["Eradius1"]))) / 2.0
                 final_e = e  # ends up the very last row's value, once the loop finishes
-                e_ok = math.isfinite(e) and e <= PRECISION_FIG_CUTOFF
-                if e_ok:
-                    last_finite = k
+                in_range = overflow is None or k < overflow
+                e_ok = math.isfinite(e) and e <= PRECISION_FIG_CUTOFF and in_range
+                if e_ok and not stopped:
+                    last_finite, last_e = k, e
                 if not stopped:
                     if not e_ok:
                         stopped = True
                     elif e != 0:
                         dat_lines.append(f"{k} {e:.6g}")
-            out_path = out_dir / f"eradius-p{p_bits}.dat"
-            with out_path.open("w") as f:
+        if run_csv.exists() or status == "unrepresentable":
+            with (out_dir / f"eradius-p{p_bits}.dat").open("w") as f:
                 f.write("# k Eradius\n")
+                if status == "unrepresentable":
+                    # pgfplots drops a plot with no coordinates, and every legend entry after
+                    # it would shift onto the next curve: one point at k = -1, outside the axis
+                    f.write(f"# no run: {meta.get('reason', '')}\n")
+                    f.write("# placeholder at k = -1, outside the axis, so the curve keeps its "
+                            "legend entry\n-1 1\n")
                 for line in dat_lines:
                     f.write(line + "\n")
         if nearest_csv.exists():
@@ -301,10 +334,11 @@ def precision_figure_rows(results_dir: Path, config: str) -> list[list]:
             if nrows:
                 last = nrows[-1]
                 nearest_width = max(abs(num(last["width0"])), abs(num(last["width1"])))
-        csv_rows.append([p_bits, step_or_never(dominant), step_or_never(blowup),
-                          step_or_never(last_finite), fmt_csv(final_e), fmt_csv(nearest_width)])
+        csv_rows.append([p_bits, status, step_or_never(dominant), step_or_never(blowup),
+                          step_or_never(overflow), step_or_never(last_finite), fmt_csv(last_e),
+                          fmt_csv(final_e), fmt_csv(nearest_width)])
 
-    width64_csv = config_dir / "dyadic-binary64.csv"
+    width64_csv = config_dir / f"{prefix}-binary64.csv"
     if width64_csv.exists():
         rows = read_csv_rows(width64_csv)
         out_path = out_dir / "width.dat"
@@ -318,10 +352,15 @@ def precision_figure_rows(results_dir: Path, config: str) -> list[list]:
 
 
 def write_precision_figure(results_dir: Path, config: str = "headline_5turns") -> None:
-    csv_rows = precision_figure_rows(results_dir, config)
-    header = ["p", "first_dominant_step", "first_blowup_step", "last_finite_step",
-              "final_E_radius", "nearest_final_width"]
-    write_csv(results_dir / "paper" / f"precision_{config}.csv", header, csv_rows)
+    header = ["p", "status", "first_dominant_step", "first_blowup_step", "overflow_step",
+              "last_finite_step", "E_radius_at_last_finite_step", "final_E_radius",
+              "nearest_final_width"]
+    for prefix, suffix in (("ieee", ""), ("dyadic", "_dyadic")):
+        if not any((results_dir / config / "exp2-timepoint" / f"{prefix}-{fmt}.csv").exists()
+                   for fmt in PRECISION_FORMATS):
+            continue
+        csv_rows = precision_figure_rows(results_dir, config, prefix, suffix)
+        write_csv(results_dir / "paper" / f"precision_{config}{suffix}.csv", header, csv_rows)
 
 
 # ---------------------------------------------------------------------------
@@ -332,17 +371,23 @@ def write_precision_figure(results_dir: Path, config: str = "headline_5turns") -
 # columns: "method" and "p" (a bare bit count, no `$p=...$` math mode) split
 # apart, no "(unverified)"/"(Float)" annotation and no counterexample row
 # anymore (both were folded into the combined label/a trailing multicolumn
-# row this table used to carry).
+# row this table used to carry). CORALean's rows are the IEEE formats; the
+# Dyadic 24 and hardware Float rows stay in `nn_table.csv` as an ablation.
 NN_ROW_ORDER = [
     ("interval", "binary32, round to nearest", "Naive", 32),
     ("zonotope", "binary32, round to nearest", "Naive", 32),
     ("interval", "round-to-nearest binary32 (unverified)", "Nearest", 32),
     ("zonotope", "round-to-nearest binary32 (unverified)", "Nearest", 32),
-    ("interval", "Dyadic 24, outward rounding", "CORALean", 32),
-    ("zonotope", "Dyadic 24, outward rounding", "CORALean", 32),
-    ("interval", "binary64 (Float), outward rounding", "CORALean", 64),
-    ("zonotope", "binary64 (Float), outward rounding", "CORALean", 64),
+    ("interval", "IEEE binary32, outward rounding", "CORALean", 32),
+    ("zonotope", "IEEE binary32, outward rounding", "CORALean", 32),
+    ("interval", "IEEE binary64, outward rounding", "CORALean", 64),
+    ("zonotope", "IEEE binary64, outward rounding", "CORALean", 64),
+    ("interval", "Dyadic 24, outward rounding", "Dyadic", 32),
+    ("zonotope", "Dyadic 24, outward rounding", "Dyadic", 32),
+    ("interval", "binary64 (Float), outward rounding", "Hardware", 64),
+    ("zonotope", "binary64 (Float), outward rounding", "Hardware", 64),
 ]
+NN_TEX_METHODS = ("Nearest", "CORALean")  # the paper's rows; the rest are CSV only
 SET_LABEL = {"interval": "interval", "zonotope": "zonotope"}  # nn_table.csv -- unchanged, lowercase
 SET_LABEL_TEX = {"interval": "Interval", "zonotope": "Zonotope"}  # nn_table.tex -- capitalised
 NN_METHOD_WIDTH = 9  # the paper's own column width -- left-justified, `" & "`-joined like any
@@ -350,13 +395,16 @@ NN_METHOD_WIDTH = 9  # the paper's own column width -- left-justified, `" & "`-j
 
 
 def nn_table(results_dir: Path) -> tuple[list[list], list[list]]:
-    """`tex_rows` drops the two "Naive" rows (still in `csv_rows`, and in
-    the underlying bench -- only the paper's own `.tex` excludes them)."""
+    """`tex_rows` keeps the paper's rows, `NN_TEX_METHODS`: the "Naive" and
+    ablation rows are in `csv_rows` only (and a run without a row is
+    skipped, so an older `nn-float32.json` still reads)."""
     doc = load_json(results_dir / "nn" / "nn-float32.json")
     by_key = {(a["method"], a["arithmetic"]): a for a in doc["analyses"]}
     tex_rows, csv_rows = [], []
     for method, arith, method_label, p in NN_ROW_ORDER:
-        a = by_key[(method, arith)]
+        a = by_key.get((method, arith))
+        if a is None:
+            continue
         lo, hi = num(a["y_lower"]), num(a["y_upper"])
         # Outward: the lower bound floored, the upper ceiled, so a printed
         # cell stays a sound enclosure of the run's own bound, at enough
@@ -368,7 +416,7 @@ def nn_table(results_dir: Path) -> tuple[list[list], list[list]]:
         bounds = f"$[{round_outward_str(lo, 'down')},\\,{round_outward_str(hi, 'up')}]$"
         certified = "yes" if a["certifies"] else "no"
         runtime_us = a["medianNs"] / 1e3
-        if method_label != "Naive":
+        if method_label in NN_TEX_METHODS:
             tex_rows.append([f"{method_label:<{NN_METHOD_WIDTH}}", str(p), SET_LABEL_TEX[method],
                               bounds, certified, fmt_tex(runtime_us) + "~$\\mu$s"])
         csv_rows.append([method_label, p, SET_LABEL[method], fmt_csv(lo), fmt_csv(hi),
@@ -391,7 +439,7 @@ def write_nn_table(results_dir: Path) -> None:
 # it carries that same string, for consistency.
 #
 # Column order, per group, is interpreter/Lean first then compiled C:
-# Dyadic (interp, compiled), Float/Hardware (interp, compiled), Nearest
+# IEEE (interp, compiled), Dyadic (interp, compiled), Float/Hardware (interp, compiled), Nearest
 # (MATLAB = CORA, then C = nearest compiled) -- both the .tex and the .csv
 # use this same order, so a reader lining the two up side by side sees
 # matching columns.
@@ -409,6 +457,8 @@ def runtime_table(results_dir: Path, config: str) -> tuple[list[list], list[list
     tex_rows, csv_rows = [], []
     for scheme_dir, _, scheme_name in SCHEMES:
         row_label = RUNTIME_ROW_LABELS[scheme_dir]
+        ieee_c = rows_by_key.get((scheme_dir, "compiled", "ieee-binary64"))
+        ieee_i = rows_by_key.get((scheme_dir, "interpreter", "ieee-binary64"))
         dyadic_c = rows_by_key.get((scheme_dir, "compiled", "dyadic-binary64"))
         dyadic_i = rows_by_key.get((scheme_dir, "interpreter", "dyadic-binary64"))
         float_c = rows_by_key.get((scheme_dir, "compiled", "float"))
@@ -417,7 +467,8 @@ def runtime_table(results_dir: Path, config: str) -> tuple[list[list], list[list
         cora_meta = run_summary(results_dir, config, scheme_dir, "cora")
         cora_ns = cora_meta["medianNs"] if cora_meta is not None else None
         vals_s = [v / 1e9 if v is not None else None
-                  for v in (dyadic_i, dyadic_c, float_i, float_c, cora_ns, nearest_c)]
+                  for v in (ieee_i, ieee_c, dyadic_i, dyadic_c, float_i, float_c, cora_ns,
+                            nearest_c)]
         tex_rows.append([row_label] + [fmt_tex(v) for v in vals_s])
         csv_rows.append([row_label, scheme_name] + [fmt_csv(v) for v in vals_s])
     return tex_rows, csv_rows
@@ -430,7 +481,8 @@ def write_runtime_table(results_dir: Path, config: str) -> None:
     if not csv_path.exists():
         return
     tex_rows, csv_rows = runtime_table(results_dir, config)
-    header = ["scheme", "scheme_name", "dyadic64_interp_s", "dyadic64_compiled_s",
+    header = ["scheme", "scheme_name", "ieee64_interp_s", "ieee64_compiled_s",
+              "dyadic64_interp_s", "dyadic64_compiled_s",
               "float_interp_s", "float_compiled_s", "cora_s", "nearest_compiled_s"]
     write_csv(results_dir / "paper" / f"runtime_table_{config}.csv", header, csv_rows)
     body = booktabs_rows(tex_rows)

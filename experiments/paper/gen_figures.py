@@ -8,6 +8,8 @@ first -- this module raises a clear `SystemExit` on its own if it is not,
 for a caller that invokes it directly). Three outputs, one call per
 config/scheme/type as `make_paper.sh` loops:
 
+Each stops at a run's first `"overflow"` record (`to_pgfplots.in_range`).
+
 * `<config>/<scheme>/<type>-eradius.dat` (`gen_eradius_dat`, standard
   library only): the time-interval set's own error radius over the whole
   run, `t Eradius`, `t` the window's own `t1`.
@@ -26,7 +28,7 @@ Usage:
 
 # Authors:       Tobias Ladner
 # Written:       27-September-2026
-# Last update:   27-September-2026
+# Last update:   28-September-2026
 
 from __future__ import annotations
 
@@ -34,7 +36,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "plot"))
-from to_pgfplots import load_run_json, record_polygon, scalar, write_merged  # noqa: E402
+from to_pgfplots import in_range, load_run_json, record_polygon, scalar, write_merged  # noqa: E402,E501
 import simulate as simulate_mod  # noqa: E402
 
 INTERIOR_SEED = 1234
@@ -51,7 +53,7 @@ def gen_eradius_dat(results_dir: Path, config: str, scheme: str, type_stem: str)
     if not run_path.exists() and not run_path.with_name(run_path.name + ".gz").exists():
         return False
     doc = load_run_json(run_path)
-    sets_ti = doc.get("sets_ti", [])
+    sets_ti = in_range(doc.get("sets_ti", []))
     if not sets_ti:
         return False
     out_path = scheme_dir / f"{type_stem}-eradius.dat"
@@ -104,7 +106,7 @@ def gen_paper_ti_union(results_dir: Path, config: str, scheme: str, type_stem: s
     if not run_path.exists() and not run_path.with_name(run_path.name + ".gz").exists():
         return False
     doc = load_run_json(run_path)
-    sets_ti = doc.get("sets_ti", [])
+    sets_ti = in_range(doc.get("sets_ti", []))
     if not sets_ti:
         return False
 

@@ -11,12 +11,13 @@ total width once `E` is added back on both sides. Beside them, for the
 time-point sets a precision ablation cares about: the first step whose
 (max-over-dim) error radius exceeds the nominal half-width at that step -- the
 set is then mostly error -- and the first step whose error radius exceeds `1`,
-a blow-up marker. Both are `none` if the run never crosses either line.
+a blow-up marker. Both are `none` if the run never crosses either line. At a
+type with a range, the first step storing a value past it, `firstOverflowStep`.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       27-September-2026
--- Last update:   ---
+-- Last update:   28-September-2026
 -- Last revision: ---
 
 
@@ -79,13 +80,23 @@ def aux_isBlowup (e : Float) : Bool := decide (e > 1.0) || aux_notFinite e
 #guard aux_isBlowup 2.0 = true
 #guard aux_isBlowup 0.5 = false
 
+/-- Whether any number `Z` stores is past the type's range: centre, generators, error box. -/
+def zonoOverflows (overflows : 𝕋 → Bool) (Z : Zonotope 𝕋 2) : Bool :=
+  (List.finRange 2).any fun i => overflows (Z.c i) || overflows (Z.E.inf i) ||
+    overflows (Z.E.sup i) || (List.finRange Z.h).any fun j => overflows (Z.G i j)
+
+/-- The first step whose set stores a value past the range, `none` if none does. -/
+def firstOverflowStep (overflows : 𝕋 → Bool) (steps : Array (Zonotope 𝕋 2)) : Option ℕ :=
+  steps.findIdx? (zonoOverflows overflows)
+
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- One run's summary, over its own `steps` -- final/max error radius, final
-nominal and total hull width, and the first step the error dominates or
-blows up past `1`. `null`/`{"empty": true}` on an empty run. -/
-def summaryJson (toD : 𝕋 → Float) (steps : Array (Zonotope 𝕋 2)) : Json :=
+/-- One run's summary, over its own `steps` -- final/max error radius, final nominal and total
+hull width, the first step the error dominates or blows up past `1`, and, given `overflows`, the
+first step past the range. `{"empty": true}` on an empty run. -/
+def summaryJson (toD : 𝕋 → Float) (steps : Array (Zonotope 𝕋 2))
+    (overflows : Option (𝕋 → Bool) := none) : Json :=
   match steps.back? with
   | none => Json.mkObj [("empty", Json.bool true)]
   | some last =>
@@ -102,7 +113,11 @@ def summaryJson (toD : 𝕋 → Float) (steps : Array (Zonotope 𝕋 2)) : Json 
       steps
     let blowup := aux_firstIndexWhere
       (fun Z => aux_isBlowup (aux_maxOverDims (aux_eRadius toD) Z)) steps
-    Json.mkObj
+    let overflowJ := match overflows with
+      | none => []
+      | some f => [("overflowStep", match firstOverflowStep f steps with
+          | some k => Lean.toJson k | none => Json.null)]
+    Json.mkObj (
       [ ("finalEradius", Json.arr (finalR.map floatToJson)),
         ("maxEradius", Json.arr (maxR.map floatToJson)),
         ("finalWidth", Json.arr (finalWidth.map floatToJson)),
@@ -110,6 +125,7 @@ def summaryJson (toD : 𝕋 → Float) (steps : Array (Zonotope 𝕋 2)) : Json 
         ("firstErrorDominantStep",
           match dominant with | some k => Lean.toJson k | none => Json.null),
         ("firstBlowupStep", match blowup with | some k => Lean.toJson k | none => Json.null) ]
+      ++ overflowJ)
 
 end CORALean.Bench
 

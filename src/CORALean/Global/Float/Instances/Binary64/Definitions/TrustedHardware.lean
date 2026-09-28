@@ -1,6 +1,8 @@
 import CORALean.Global.Float.Instances.Binary64.Operations.AddUp
 import CORALean.Global.Float.Instances.Binary64.Operations.DivUp
 import CORALean.Global.Float.Instances.Binary64.Operations.Half
+import CORALean.Global.Float.Instances.Binary64.Operations.Maximum
+import CORALean.Global.Float.Instances.Binary64.Operations.Minimum
 import CORALean.Global.Float.Instances.Binary64.Operations.MulUp
 
 /-!
@@ -24,7 +26,7 @@ them.
 
 -- Authors:       Tobias Ladner
 -- Written:       22-September-2026
--- Last update:   27-September-2026
+-- Last update:   28-September-2026
 -- Last revision: ---
 
 
@@ -37,16 +39,16 @@ namespace Binary64
 
 -- ========================================  MAIN TYPE  ========================================= --
 
-/-- True of IEEE 754 binary64 on a run in which every value stays finite and
-nothing underflows into the subnormals. Neither restriction is expressible here,
-and neither is checked: see `Axioms` for what that costs. -/
+/-- True of IEEE 754 binary64 while every value stays in its normal range. Not expressible
+here, so stated unconditionally and false beyond it; the operations return NaN where a value
+would leave the range, which makes such a run visible: see `Axioms`. -/
 structure TrustedHardware : Prop where
   /-- Negation flips the sign bit and touches nothing else. -/
   toReal_neg : ∀ a : Float, toReal (-a) = -toReal a
   /-- Choosing between two floats invents no digits. -/
-  toReal_min : ∀ a b : Float, toReal (min a b) = min (toReal a) (toReal b)
+  toReal_min : ∀ a b : Float, toReal (minimum a b) = min (toReal a) (toReal b)
   /-- And neither does choosing the other one. -/
-  toReal_max : ∀ a b : Float, toReal (max a b) = max (toReal a) (toReal b)
+  toReal_max : ∀ a b : Float, toReal (maximum a b) = max (toReal a) (toReal b)
   /-- One direction only, which is all the class asks and all a NaN leaves
   true: every comparison against one is `false`. -/
   toReal_le_of_le : ∀ a b : Float, a ≤ b → toReal a ≤ toReal b
@@ -56,10 +58,10 @@ structure TrustedHardware : Prop where
   /-- And the same for `1.0`. -/
   toReal_one : toReal 1.0 = 1
   /-- Exact on a binary format, where halving moves the exponent alone — except
-  at the bottom of the range, where the result is subnormal and a bit is lost. -/
+  at the bottom of the range, where the result is subnormal and `half` is NaN. -/
   toReal_half : ∀ a : Float, toReal (half a) = toReal a / 2
   /-- The machine's round-to-nearest sum, stepped one unit in the last place up,
-  is at least the exact sum — true whenever that step lands on a float. -/
+  is at least the exact sum — true whenever that step lands on a normal float. -/
   add_le_addUp : ∀ a b : Float, toReal a + toReal b ≤ toReal (addUp a b)
   /-- The same of the product. -/
   mul_le_mulUp : ∀ a b : Float, toReal a * toReal b ≤ toReal (mulUp a b)

@@ -1,16 +1,15 @@
 import CORALean.Examples.Bench.Format
 
 /-!
-# `lake exe bench <exp> --type dyadic|float|nearest|fixed --format binary64 [--config FILE] ...`
+# `lake exe bench <exp> --type dyadic|ieee|float|nearest|fixed --format binary64 [--config FILE]`
 
 The one place the command line is read. `--reps` and `--out` override the
 config's own `reps` and the harness's default output directory; everything
 else about a run comes from the config file, which is the point of having one.
 
-`--format` is validated here, against `formatToPrec`, so a bad label is
-reported once rather than resurfacing wherever `args.format` is read later.
-`--prec` is the raw-bit-count escape hatch and is not checked against
-anything, `Dyadic` accepting any `p`; `--prec` wins if both are given.
+`--format` is validated here, against `formatToPrec`, once. It names the format
+for `--type ieee`, only a significand width for `dyadic`/`nearest`. `--prec` is
+the raw-bit-count escape hatch, unchecked, and wins if both are given.
 `--digits` is its `--type fixed` counterpart, the decimal digit count
 `FixedPoint f` rounds to, likewise unchecked.
 
@@ -23,7 +22,7 @@ anything to `dtdemo` or `nn-float32`.
 
 -- Authors:       Tobias Ladner
 -- Written:       25-September-2026
--- Last update:   27-September-2026
+-- Last update:   28-September-2026
 -- Last revision: ---
 
 
@@ -54,7 +53,7 @@ structure CliArgs where
 name, which is positional and first. Each flag pattern binds its value
 directly, `"--type" :: v :: rest`, so the recursion stays visibly structural. -/
 def parseArgs : List String → Except String CliArgs
-  | [] => throw "usage: bench <experiment> [--type dyadic|float|nearest|fixed] \
+  | [] => throw "usage: bench <experiment> [--type dyadic|ieee|float|nearest|fixed] \
       [--format binary64|binary32|binary16|binary8|binary4] [--prec P] [--digits F] \
       [--config FILE] [--reps N] [--out DIR] [--exact] [--net small|medium|large] \
       [--images K]"
@@ -63,8 +62,8 @@ where
   go : List String → CliArgs → Except String CliArgs
     | [], a => pure a
     | "--type" :: v :: rest, a => do
-      if v ≠ "dyadic" ∧ v ≠ "float" ∧ v ≠ "nearest" ∧ v ≠ "fixed" then
-        throw s!"`--type` is `dyadic`, `float`, `nearest` or `fixed`, not `{v}`"
+      if v ≠ "dyadic" ∧ v ≠ "float" ∧ v ≠ "nearest" ∧ v ≠ "fixed" ∧ v ≠ "ieee" then
+        throw s!"`--type` is `dyadic`, `ieee`, `float`, `nearest` or `fixed`, not `{v}`"
       go rest { a with ty := v }
     | "--format" :: v :: rest, a => do
       let _ ← formatToPrec v

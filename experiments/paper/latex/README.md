@@ -1,6 +1,6 @@
 # Paper figures and tables
 
-Renders the evaluation floats of the paper (Fig. 4-5, Tab. 1-3) from the generated results,
+Renders the evaluation floats of the paper (Fig. 4-5, Tab. 2-4) from the generated results,
 with the paper's own TikZ files, table headers and captions (verbatim copies).
 
 ```

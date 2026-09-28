@@ -1,18 +1,18 @@
-import CORALean.Global.Float.Instances.Binary64.Operations.NextUp
+import CORALean.Global.Float.Instances.Binary64.Operations.StepUp
 
 /-!
 # Addition, rounded up
 
-The machine rounds to nearest, which bounds nothing in a stated direction, so
-this is the machine's sum followed by one step outward: `nextUp` of a
-round-to-nearest result is strictly above the exact value, because the exact
-value is never as far as a whole step from the nearest float to it. The price
-is one unit in the last place, paid whether or not the machine rounded at all.
+The machine rounds to nearest, which bounds nothing in a stated direction, so this is the
+machine's sum followed by one step outward, `stepUp`: `nextUp` of a round-to-nearest result is
+strictly above the exact value, because the exact value is never as far as a whole step from the
+nearest float to it. A sum that rounds to zero is exactly zero, subnormals being what make
+addition exact near zero, so a zero is kept; a sum outside the normal range is NaN.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       22-September-2026
--- Last update:   ---
+-- Last update:   28-September-2026
 -- Last revision: ---
 
 
@@ -25,7 +25,7 @@ namespace Binary64
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def addUp (a b : Float) : Float := nextUp (a + b)
+def addUp (a b : Float) : Float := stepUp (a + b)
 
 end Binary64
 

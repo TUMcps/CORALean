@@ -30,7 +30,7 @@ so `inputBox` encloses it, both bounds rounded outward.
 
 -- Authors:       Tobias Ladner
 -- Written:       27-September-2026
--- Last update:   ---
+-- Last update:   28-September-2026
 -- Last revision: ---
 
 
@@ -196,20 +196,28 @@ def meanRadius (toD : 𝕋 → Float) {n : ℕ} (I : Interval (Vec 𝕋 n)) : Fl
   if n = 0 then 0.0 else
     ((Array.ofFn fun i : Fin n => toD (I.sup i) - toD (I.inf i)).foldl (· + ·) 0.0) / n.toFloat
 
-/-- `runLayers`, specialised at the box representation, reporting the mean
-width after every completed layer beside the final box. -/
-def runReport (instUnchecked : ExactDyadic → 𝕋) (toD : 𝕋 → Float) :
+/-- Whether a bound of `I` is past the type's range, `false` at a type without one. -/
+def boxOverflows (overflows : Option (𝕋 → Bool)) {n : ℕ} (I : Interval (Vec 𝕋 n)) : Bool :=
+  match overflows with
+  | none => false
+  | some f => (List.finRange n).any fun i => f (I.inf i) || f (I.sup i)
+
+/-- `runLayers`, specialised at the box representation, reporting the mean width after every
+completed layer beside the final box, and whether any layer's box held a value past the range. -/
+def runReport (instUnchecked : ExactDyadic → 𝕋) (toD : 𝕋 → Float)
+    (overflows : Option (𝕋 → Bool)) :
     (layers : List MnistAffine) → {n : ℕ} → Interval (Vec 𝕋 n) →
-      Interval (Vec 𝕋 (finalDim layers n)) × Array Float
-  | [], _, s => (s, #[])
+      Interval (Vec 𝕋 (finalDim layers n)) × Array Float × Bool
+  | [], _, s => (s, #[], false)
   | l :: rest, n, s =>
     let s1 : Interval (Vec 𝕋 l.outDim) :=
       (affineLayer (S := fun n => Interval (Vec 𝕋 n)) (layerMat instUnchecked l n).get
         (layerVec instUnchecked l).get).enclose s
     let s2 : Interval (Vec 𝕋 l.outDim) :=
       if l.relu then (Layer.relu (S := fun n => Interval (Vec 𝕋 n)) reluSlope).enclose s1 else s1
-    let (final, restRadii) := runReport instUnchecked toD rest s2
-    (final, #[meanRadius toD s2] ++ restRadii)
+    let (final, restRadii, restOver) := runReport instUnchecked toD overflows rest s2
+    (final, #[meanRadius toD s2] ++ restRadii,
+      boxOverflows overflows s1 || boxOverflows overflows s2 || restOver)
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

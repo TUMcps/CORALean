@@ -3,6 +3,7 @@ import CORALean.ContDynamics.LinearSys.Operations.ReachFloat
 import CORALean.ContDynamics.LinearSys.Operations.ReachTimePointWrappingFreeFloat
 import CORALean.Examples.Bench.Cli
 import CORALean.Examples.Bench.ContRollout
+import CORALean.Examples.Bench.Ieee
 import CORALean.Examples.Bench.Mnist
 import CORALean.Examples.Bench.NearestUnsound.API
 import CORALean.Examples.Bench.Nn
@@ -31,7 +32,7 @@ else `53` -- `binary64`, so the default agrees with native `Float`.
 
 -- Authors:       Tobias Ladner
 -- Written:       25-September-2026
--- Last update:   27-September-2026
+-- Last update:   28-September-2026
 -- Last revision: ---
 
 
@@ -105,25 +106,29 @@ def aux_runTiTp {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] (args 
     (inst : String → ExactDyadic → Except String 𝕋) (toD : 𝕋 → Float) (format : String)
     (toExact : Option (𝕋 → String)) (sig : ℕ) (experiment scheme : String)
     (mkAlgo : LinearSys 𝕋 2 → Zonotope 𝕋 2 → 𝕋 → HeadlineConfig →
-      Unit → Option (List (Zonotope 𝕋 2) × List (Zonotope 𝕋 2))) :
-    IO Unit := do
+      Unit → Option (List (Zonotope 𝕋 2) × List (Zonotope 𝕋 2)))
+    (nt : NumberType 𝕋 := {}) : IO Unit := do
   let (configJ, cfg) ← loadConfig args.config
-  let (sys, X0) ← match buildContSystem cfg inst with
-    | .ok v => pure v
-    | .error e => throw (IO.userError s!"{args.config}: {e}")
   let exact ← IO.ofExcept (parseExact cfg.dt)
-  let dt ← match inst "dt" exact with
-    | .ok v => pure v
-    | .error e => throw (IO.userError e)
+  let out := outPath args.outDir args.config experiment args.ty format
+  match buildContSystem cfg inst, inst "dt" exact with
+  | .error e, _ | .ok _, .error e =>
+    -- a format that cannot hold the config is this run's outcome; at any other type, an error
+    if args.ty = "ieee" then
+      writeRunNone out experiment scheme args.ty format sig configJ e nt.metaFields
+        "unrepresentable"
+      IO.eprintln s!"{experiment}: wrote {out}.json (status: unrepresentable -- {e})"
+    else throw (IO.userError s!"{args.config}: {e}")
+  | .ok (sys, X0), .ok dt =>
   let dtFloat ← match ExactDyadic.toFloat "dt" exact with
     | .ok v => pure v
     | .error e => throw (IO.userError e)
-  let out := outPath args.outDir args.config experiment args.ty format
   -- checked once, cheaply, ahead of `mkAlgo`'s own (larger) call, for a clear "no order" reason
   match sys.reachOrderFloat dt dt cfg.eta with
   | none =>
     writeRunNone out experiment scheme args.ty format sig configJ
       s!"no admissible Taylor order (from max {cfg.eta} 2) found within the search bound"
+      nt.metaFields
     IO.eprintln s!"{experiment}: wrote {out}.json (status: none -- no admissible order)"
     IO.Process.exit 1
   | some etaUsed =>
@@ -133,30 +138,30 @@ def aux_runTiTp {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] (args 
     | none =>
       writeRunNone out experiment scheme args.ty format sig configJ
         s!"the algorithm returned none despite an admissible order eta = {etaUsed} -- \
-          likely a window's squaring search failed"
+          likely a window's squaring search failed" nt.metaFields
       IO.eprintln s!"{experiment}: wrote {out}.json (status: none)"
       IO.Process.exit 1
     | some (ti, tp) =>
       writeRunTiTp out experiment scheme args.ty format sig configJ etaUsed cfg.rho cfg.steps
-        samples medianNs toD toExact dtFloat ti.toArray tp.toArray
+        samples medianNs toD toExact dtFloat ti.toArray tp.toArray nt
       IO.println s!"{experiment}: wrote {out}.json and {out}.csv ({ti.length} ti, \
         {tp.length} tp steps, median {medianNs} ns over {reps} rep(s), eta = {etaUsed})"
 
 /-- `args.experiment`, run at whichever `𝕋` `dispatch` picked. -/
 def runAt {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] (args : CliArgs)
     (inst : String → ExactDyadic → Except String 𝕋) (instUnchecked : ExactDyadic → 𝕋)
-    (toD : 𝕋 → Float) (format : String) (toExact : Option (𝕋 → String)) (sig : ℕ) :
-    IO Unit :=
+    (toD : 𝕋 → Float) (format : String) (toExact : Option (𝕋 → String)) (sig : ℕ)
+    (nt : NumberType 𝕋 := {}) : IO Unit :=
   match args.experiment with
   | "nn-float32" => runNnFloat32 args
-  | "nn-mnist" => runNnMnist args inst instUnchecked toD format toExact sig
+  | "nn-mnist" => runNnMnist args inst instUnchecked toD format toExact sig nt
   | "dtdemo" => runDtdemo args inst instUnchecked toD format toExact sig
   | "headline-a" =>
-    aux_runTiTp args inst toD format toExact sig "headline-a" "wrapping-free" aux_algoHeadlineA
+    aux_runTiTp args inst toD format toExact sig "headline-a" "wrapping-free" aux_algoHeadlineA nt
   | "headline-b" =>
-    aux_runTiTp args inst toD format toExact sig "headline-b" "standard" aux_algoHeadlineB
+    aux_runTiTp args inst toD format toExact sig "headline-b" "standard" aux_algoHeadlineB nt
   | "exp2-timepoint" =>
-    aux_runTiTp args inst toD format toExact sig "exp2-timepoint" "standard" aux_algoExp2
+    aux_runTiTp args inst toD format toExact sig "exp2-timepoint" "standard" aux_algoExp2 nt
   | other => do
     IO.eprintln s!"unknown experiment `{other}` -- one of dtdemo, headline-a, \
       headline-b, exp2-timepoint, nn-float32, nn-mnist"
@@ -188,6 +193,7 @@ def dispatchNearest (args : CliArgs) : IO Unit :=
       let d := Binary64.toDyadic x.val; s!"{d.mantissa}*2^{d.exponent}") else none
     runAt (𝕋 := NearestFloat) args (fun field d => (ExactDyadic.toFloat field d).map (⟨·⟩))
       (fun d => ⟨ExactDyadic.toFloatUnchecked d⟩) (·.val) "binary64" toExact 53
+      { description := "round-to-nearest binary64 (native Float, unsound)" }
   | _, _ =>
     let p := resolvedPrec args
     let toExact := if args.exact then
@@ -195,9 +201,20 @@ def dispatchNearest (args : CliArgs) : IO Unit :=
     runAt (𝕋 := NearestDyadic p) args (fun field d => (d.toDyadicP field p).map (⟨·⟩))
       (fun d => ⟨ExactDyadic.toDyadicPUnchecked d⟩) (fun x => dyadicToFloatApprox x.val)
       (precToFormat p) toExact p
+      { description := s!"round-to-nearest {dyadicDescription (precToFormat p) p}, unsound" }
 
-/-- Runs `args.experiment` at the scalar `args.ty` names -- `Dyadic p`, `Float`,
-`nearest` or `FixedPoint f` -- the one branch here that picks the type
+/-- `--type ieee`: `IEEE fmt` at the format `--format` names, `binary64` by default; `--prec`
+does not apply, a format being more than a width. -/
+def dispatchIeee (args : CliArgs) : IO Unit := do
+  let label := args.format.getD "binary64"
+  let fmt ← IO.ofExcept (ieeeFormat label)
+  let toExact := if args.exact then
+    some (fun (x : IEEE fmt) => s!"{x.mantissa}*2^{x.exponent}") else none
+  runAt (𝕋 := IEEE fmt) args (fun field d => d.toIEEE field fmt) ExactDyadic.toIEEEUnchecked
+    ieeeToFloatApprox label toExact fmt.p (ieeeNumberType label fmt)
+
+/-- Runs `args.experiment` at the scalar `args.ty` names -- `Dyadic p`, `IEEE fmt`,
+`Float`, `nearest` or `FixedPoint f` -- the one branch here that picks the type
 `runAt` is generic over. -/
 def dispatch (args : CliArgs) : IO Unit :=
   match args.ty with
@@ -206,6 +223,7 @@ def dispatch (args : CliArgs) : IO Unit :=
       s!"{d.mantissa}*2^{d.exponent}") else none
     runAt (𝕋 := Float) args ExactDyadic.toFloat ExactDyadic.toFloatUnchecked id
       "binary64" toExact 53
+      { description := "hardware binary64 (native Float, trusted, NaN outside the normal range)" }
   | "nearest" => dispatchNearest args
   | "fixed" =>
     let f := resolvedDigits args
@@ -214,12 +232,15 @@ def dispatch (args : CliArgs) : IO Unit :=
     -- `format`/`significand_bits`, named for `Dyadic`, carry `"decimal<f>"`/`f` here.
     runAt (𝕋 := FixedPoint f) args (fun field d => d.toFixedPoint field f)
       ExactDyadic.toFixedPointUnchecked fixedPointToFloatApprox s!"decimal{f}" toExact f
+      { description := s!"decimal fixed point, {f} fractional digits" }
+  | "ieee" => dispatchIeee args
   | _ =>
     let p := resolvedPrec args
     let toExact := if args.exact then
       some (fun (x : Dyadic p) => s!"{x.mantissa}*2^{x.exponent}") else none
     runAt (𝕋 := Dyadic p) args (fun field d => d.toDyadicP field p)
       ExactDyadic.toDyadicPUnchecked dyadicToFloatApprox (precToFormat p) toExact p
+      { description := dyadicDescription (precToFormat p) p }
 
 end CORALean.Bench
 
