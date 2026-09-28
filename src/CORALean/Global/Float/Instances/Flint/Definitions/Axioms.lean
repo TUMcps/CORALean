@@ -8,7 +8,7 @@ documented — correctly, to at most `prec` significand bits, towards minus
 infinity under `ARF_RND_FLOOR` and plus infinity under `ARF_RND_CEIL`, with the
 error "at most 1 ulp with directed rounding modes" (https://flintlib.org/doc/arf.html,
 "arf.h", module introduction and "Types, macros and constants") — and if the
-shim `ffi/coralean_flint.c` converts exactly, `arf_set_fmpz_2exp` and
+shim `Flint/coralean_flint.c` converts exactly, `arf_set_fmpz_2exp` and
 `arf_get_fmpz_2exp` being exact. It trusts that code as `trustedHardware`
 trusts IEEE 754 hardware. The shim rounds a `p` below 2 at 2 bits; a direction
 holds at any precision, so every `p` is covered. `fmpz` exponents cannot

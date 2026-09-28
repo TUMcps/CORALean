@@ -3,7 +3,7 @@ import CORALean.Global.Float.Instances.Flint.Flint
 /-!
 # Addition, rounded up
 
-`arf_add` at `p` bits with `ARF_RND_CEIL`, run by the C shim `ffi/coralean_flint.c`, which
+`arf_add` at `p` bits with `ARF_RND_CEIL`, run by the C shim `Flint/coralean_flint.c`, which
 converts both operands to `arf_t` exactly and the result back. `opaque`: Lean
 knows nothing of what it returns, so its direction is assumed in
 `Definitions/Axioms` and nowhere proved.
