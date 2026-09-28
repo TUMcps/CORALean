@@ -82,7 +82,7 @@ def fmt_tex(x, sig: int = 3) -> str:
     as a `.tex`-ready cell: `None` is an em-dash, a string passes through
     unchanged, `nan`/`inf` become `$\\mathrm{NaN}$`/`$\\infty$`, and every
     other number gets `sig` significant digits, switching to LaTeX scientific
-    notation (`$a\\times 10^{b}$`) once fixed-point would need a leading or
+    notation (`$a{\\times}10^{b}$`) once fixed-point would need a leading or
     trailing run of zeros to show them."""
     if x is None:
         return "--"
@@ -111,7 +111,7 @@ def fmt_tex(x, sig: int = 3) -> str:
     if abs(mantissa) >= 10:
         mantissa /= 10
         exp += 1
-    return f"${mantissa:.{sig - 1}f}\\times 10^{{{exp}}}$"
+    return f"${mantissa:.{sig - 1}f}{{\\times}}10^{{{exp}}}$"
 
 
 def fmt_csv(x) -> str:
