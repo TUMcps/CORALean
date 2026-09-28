@@ -804,10 +804,10 @@ TeX Live requirements (`experiments/paper/latex/README.md`): `llncs`,
 package install covers it).
 
 If `<RESULTS_DIR>/paper-tree-expected/` exists (the committed snapshot of
-the paper's `figures/evaluation/` tree at `results/paper-v9`, see
+the paper's `figures/evaluation/` tree at `results/paper-v11`, see
 `experiments/results-paper/README.md`), `make_paper.sh` also `diff -r`s it
 against the freshly collected `<RESULTS_DIR>/paper-latex/figures/evaluation/`
-and FAILS on any difference -- a rerun on `results/paper-v9`'s own committed
+and FAILS on any difference -- a rerun on `results/paper-v11`'s own committed
 state reproduces that tree byte for byte, so this is a regression check, not
 just a build step.
 

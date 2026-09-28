@@ -13,7 +13,7 @@
     ytick={1e-15,1e-10,1e-5,1e0,1e5,1e10,1e15,1e20},
     xlabel={Step $k$},
     ylabel={Radius},
-    legend columns=6,
+    legend columns=5,
     legend to name=precisionlegend,
     legend style={legend cell align=left, align=left, draw=white!15!black,
         /tikz/every even column/.append style={column sep=1ex}},
@@ -22,8 +22,6 @@
 
 \addplot[CORAcolorReachSet, line width=1.5pt] table {\datadir/width.dat};
 \addlegendentry{Width of $\contSet{X}_k$}
-\addplot[CORAcolor1, thick] table {\datadir/eradius-p4.dat};
-\addlegendentry{$p=4$}
 \addplot[CORAcolor2, thick] table {\datadir/eradius-p8.dat};
 \addlegendentry{$p=8$}
 \addplot[CORAcolor3, thick] table {\datadir/eradius-p16.dat};
