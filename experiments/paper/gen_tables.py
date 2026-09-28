@@ -389,6 +389,12 @@ def write_nn_table(results_dir: Path) -> None:
 # spells the row label out ("Recursive"/"Wrapping-free") instead of using
 # the (a)/(b) tags -- the CSV's `scheme` column mirrors the tex label, since
 # it carries that same string, for consistency.
+#
+# Column order, per group, is interpreter/Lean first then compiled C:
+# Dyadic (interp, compiled), Float/Hardware (interp, compiled), Nearest
+# (MATLAB = CORA, then C = nearest compiled) -- both the .tex and the .csv
+# use this same order, so a reader lining the two up side by side sees
+# matching columns.
 # ---------------------------------------------------------------------------
 
 RUNTIME_ROW_LABELS = {"headline-b": "Recursive", "headline-a": "Wrapping-free"}
@@ -411,7 +417,7 @@ def runtime_table(results_dir: Path, config: str) -> tuple[list[list], list[list
         cora_meta = run_summary(results_dir, config, scheme_dir, "cora")
         cora_ns = cora_meta["medianNs"] if cora_meta is not None else None
         vals_s = [v / 1e9 if v is not None else None
-                  for v in (dyadic_c, dyadic_i, float_c, float_i, nearest_c, cora_ns)]
+                  for v in (dyadic_i, dyadic_c, float_i, float_c, cora_ns, nearest_c)]
         tex_rows.append([row_label] + [fmt_tex(v) for v in vals_s])
         csv_rows.append([row_label, scheme_name] + [fmt_csv(v) for v in vals_s])
     return tex_rows, csv_rows
@@ -424,8 +430,8 @@ def write_runtime_table(results_dir: Path, config: str) -> None:
     if not csv_path.exists():
         return
     tex_rows, csv_rows = runtime_table(results_dir, config)
-    header = ["scheme", "scheme_name", "dyadic64_compiled_s", "dyadic64_interp_s",
-              "float_compiled_s", "float_interp_s", "nearest_compiled_s", "cora_s"]
+    header = ["scheme", "scheme_name", "dyadic64_interp_s", "dyadic64_compiled_s",
+              "float_interp_s", "float_compiled_s", "cora_s", "nearest_compiled_s"]
     write_csv(results_dir / "paper" / f"runtime_table_{config}.csv", header, csv_rows)
     body = booktabs_rows(tex_rows)
     write_tex(results_dir / "paper" / f"runtime_table_{config}.tex", body)
@@ -481,7 +487,8 @@ def main(argv: list[str]) -> int:
     write_precision_table(results_dir)
     if (results_dir / "headline_5turns" / "exp2-timepoint").is_dir():
         write_precision_figure(results_dir)
-    write_nn_table(results_dir)
+    if (results_dir / "nn").is_dir():
+        write_nn_table(results_dir)
     for config in configs:
         write_runtime_table(results_dir, config)
     write_nearest_vs_cora(results_dir, configs)

@@ -23,9 +23,13 @@ experiments/
   results-paper/  the paper's own results, committed on results/paper-v1 --
                 see experiments/results-paper/README.md for its layout.
   paper/        make_paper.sh and its Python helpers: regenerate every figure
-                .dat file and every table body from a results directory.
+                .dat file and every table body from a results directory, then
+                (unless --no-latex) compile paper_floats.pdf -- see "Paper
+                figures and tables" below.
   run_all.sh    the paper's headline runs, every config, then plots.
   run_runtime.sh  the number-type runtime ablation, default headline_5turns.
+  repeatability.sh  runs every experiment of the paper's Sec. 4 and
+                builds paper_floats.pdf -- see "Reproducing from scratch".
 ```
 
 The Lean side of the harness lives under
@@ -36,13 +40,48 @@ executable.
 ## Reproducing from scratch
 
 ```
+lake exe cache get && lake build   # build CORALean
+sh experiments/repeatability.sh    # run all experiments of Sec. 4, build paper_floats.pdf
+```
+
+`experiments/repeatability.sh` has one marked section per float of the
+paper, in paper order; everything goes to `experiments/results/` (`--out
+DIR`), `paper_floats.pdf` needs a TeX Live or docker (`--no-latex` skips it)
+and `shapely` (see "`paper_floats.pdf`" below).
+
+| Paper float | Section of `repeatability.sh` | Output (under `<out>/`) |
+|---|---|---|
+| Fig. 4 (`fig:eval-headline`) | `lake exe bench headline-{b,a}`, Dyadic p=64 and `--type nearest`: the CORA reach set in the figure is computed by CORALean's round-to-nearest baseline (`--type nearest`), which matches CORA's MATLAB result to 2e-5 relative (validation: `nearest_vs_cora`) | `headline_5turns/headline-{a,b}/*-paper-ti-union.dat` |
+| Fig. 5 (`fig:eval-precision`) | `lake exe bench exp2-timepoint`, p = 4..64 | `paper/precision_headline_5turns/*.dat` |
+| Tab. 1 (`tab:eval-nn`) | `lake exe bench nn-float32` | `paper/nn_table.tex` |
+| Tab. 2 (`tab:eval-mnist`) | `lake exe bench nn-mnist`, 3 networks, p = 16, 32, 64 and Float | `paper/mnist_table.tex` |
+| Tab. 3 (`tab:eval-runtime`) | `run_runtime.sh --config headline_5turns.json` | `paper/runtime_table_headline_5turns.tex` |
+| all of them | `paper/make_paper.sh` | `paper/paper_floats.pdf` |
+
+Everything is computed by CORALean, without MATLAB, with one exception: the
+runtime table's MATLAB column, CORA's measured runtimes, which
+`repeatability.sh` copies from the stored one-off MATLAB run on branch
+`results/cora-v4` (see "The runtime table's CORA column" below).
+
+Measured wall time (one run on the development machine, compiled bench
+already built): 75 min in total -- Fig. 4 2.5 min,
+Fig. 5 5 min, Tab. 1 5 s, Tab. 2 52 min,
+Tab. 3 15 min, `paper_floats.pdf` 1 min. `sh
+experiments/repeatability.sh --smoke` runs only the Fig. 4
+section and its figure data (no PDF), in 3 min, as a quick check that the
+toolchain works.
+
+The wider sweep, every `headline_*.json` config (beyond what the paper
+shows), one command at a time:
+
+```
 git clone https://gitlab.lrz.de/cps/coralean.git
 cd coralean
 lake exe cache get      # Mathlib's prebuilt oleans, so `lake build` need not recompile it
 lake build              # elaborates every file, including Bench -- 0 errors, 0 warnings
 lake exe bench headline-a --type float --config experiments/config/headline_default.json
-sh experiments/run_all.sh
-sh experiments/run_runtime.sh
+bash experiments/run_all.sh
+bash experiments/run_runtime.sh
 python3 experiments/plot/to_pgfplots.py experiments/results/headline_default/headline-a/float.json \
   experiments/results/headline_default/headline-a/float-plot --merged
 python3 experiments/plot/simulate.py experiments/config/headline_default.json \
@@ -300,14 +339,12 @@ number, it never recomputes it, so the column does not change when the
 Lean-only sweep is rerun. The paper's own CORA numbers are a one-off MATLAB
 run recorded on branch `results/cora-v4` (MATLAB R2025b, CORA commit
 `904a4442e68b1dc149a34e917dd63a7d3fb49a3a`, the paper authors' Windows
-desktop). A fresh rerun into an empty results directory therefore has no
-CORA column unless those files are copied in first:
+desktop). `repeatability.sh` copies the `headline_5turns` ones into its
+results directory before `make_paper.sh` runs; by hand:
 
 ```
 git checkout origin/results/cora-v4 -- experiments/results-paper
 ```
-
-(or taken from `results/paper-v6`, which already carries them).
 `experiments/cora/` above reproduces them from scratch, given MATLAB and a
 checked-out CORA.
 
@@ -364,7 +401,7 @@ from `\addplot table` in the paper's TikZ.
 ## `run_all.sh`
 
 ```
-sh experiments/run_all.sh [--interp] [--config FILE] [--reps N] [--out DIR] [--skip-mnist]
+bash experiments/run_all.sh [--interp] [--config FILE] [--reps N] [--out DIR] [--skip-mnist]
 ```
 
 For every `experiments/config/headline_*.json` (or one, with `--config`):
@@ -403,7 +440,7 @@ run by name.
 ## `run_runtime.sh`
 
 ```
-sh experiments/run_runtime.sh [--out DIR] [--config FILE] [--reps N] [--cold-build]
+bash experiments/run_runtime.sh [--out DIR] [--config FILE] [--reps N] [--cold-build]
 ```
 
 The number-type runtime ablation on `--config`'s config (default
@@ -614,7 +651,7 @@ is exactly `[0, 0]` on every set, as in CORA, with no library change: checked on
 ## `experiments/paper/make_paper.sh`
 
 ```
-experiments/paper/make_paper.sh [RESULTS_DIR]     # default experiments/results-paper
+experiments/paper/make_paper.sh [RESULTS_DIR] [--no-latex]  # default experiments/results-paper
 ```
 
 From an existing results directory (`run_all.sh` and `run_runtime.sh`'s own
@@ -649,8 +686,46 @@ under `<RESULTS_DIR>/paper/precision_<config>/` and
 `experiments/paper/render_png.py` additionally renders a PNG preview of every
 reach-tube figure and the precision plot, only if `matplotlib` is importable
 (it is not part of this repository's own dependencies, so `make_paper.sh`
-skips it with a message rather than failing when it is missing) -- a
-convenience, not part of the artifact's reproduction contract.
+skips it with a message rather than failing when it is missing) -- an
+OPTIONAL EXTRA, a quick look without a LaTeX toolchain, not part of the
+artifact's reproduction contract: `paper_floats.pdf` (below) is the actual
+reproduction of the paper's figures and tables.
+
+### `paper_floats.pdf`
+
+Finally (unless `--no-latex`), `make_paper.sh` reproduces the paper's own
+evaluation floats (Fig. 4-5, Tab. 1-3) as a PDF:
+
+```
+sh experiments/paper/latex/collect.sh <RESULTS_DIR> <out-dir>   # -> <out-dir>/figures/evaluation/{data,tables}
+cd <out-dir> && latexmk -pdf paper_floats.tex                   # -> paper_floats.pdf
+```
+
+`make_paper.sh` runs this itself, into `<RESULTS_DIR>/paper-latex/` (a copy
+of `experiments/paper/latex/` -- the paper's own llncs driver, `floats.tex`,
+the TikZ files and `cora-macs.sty`, all verbatim copies -- plus this run's
+own collected `figures/evaluation/{data,tables}`), then copies the result to
+`<RESULTS_DIR>/paper/paper_floats.pdf`. It picks a toolchain in this order:
+local `latexmk -pdf`, else 3x local `pdflatex` (no `latexmk` on `PATH`), else
+`docker run` of a pinned, dated `texlive/texlive` image (e.g.
+`texlive/texlive:TL2025-historic`, never `:latest`) if `docker` is on
+`PATH`, else it FAILS with a message naming what is missing -- never a
+faked or silently-missing PDF. `--no-latex` skips this whole step (figure
+`.dat`s and table `.tex`s are still written).
+
+TeX Live requirements (`experiments/paper/latex/README.md`): `llncs`,
+`pgfplots`, `siunitx`, `nicefrac`, `booktabs`, `cleveref` (a `scheme-basic`/
+`scheme-small` TeX Live plus these, `tlmgr install`ed, is enough --
+`cora-macs.sty` ships in this repository, not on CTAN's own path, so no
+package install covers it).
+
+If `<RESULTS_DIR>/paper-tree-expected/` exists (the committed snapshot of
+the paper's `figures/evaluation/` tree at `results/paper-v9`, see
+`experiments/results-paper/README.md`), `make_paper.sh` also `diff -r`s it
+against the freshly collected `<RESULTS_DIR>/paper-latex/figures/evaluation/`
+and FAILS on any difference -- a rerun on `results/paper-v9`'s own committed
+state reproduces that tree byte for byte, so this is a regression check, not
+just a build step.
 
 `experiments/paper/gen_figures.py`'s `-paper-ti-union.dat` (every `sets_ti`
 step's polygon unioned into one shape with `shapely`, no thinning) needs
@@ -666,7 +741,9 @@ python3 -m venv .venv && .venv/bin/pip install -r experiments/paper/requirements
 
 The artifact evaluator's own command sequence, after "Reproducing from
 scratch" above but writing to `experiments/results-paper/` and adding the
-table/figure regeneration pass:
+table/figure regeneration pass -- `make_paper.sh`'s last step also compiles
+`experiments/results-paper/paper/paper_floats.pdf` (add `--no-latex` if no
+TeX Live/docker is available; see "`paper_floats.pdf`" above):
 
 ```
 git clone https://gitlab.lrz.de/cps/coralean.git && cd coralean
@@ -677,8 +754,12 @@ experiments/run_runtime.sh --out experiments/results-paper
 experiments/run_runtime.sh --out experiments/results-paper --config experiments/config/headline_default.json
 python3 -m venv .venv && .venv/bin/pip install -r experiments/paper/requirements.txt
 source .venv/bin/activate   # so make_paper.sh's own `python3` calls see shapely
-experiments/paper/make_paper.sh experiments/results-paper
+experiments/paper/make_paper.sh experiments/results-paper   # -> .../paper/paper_floats.pdf
 ```
+
+`sh experiments/repeatability.sh --out experiments/results-paper` (see
+"Reproducing from scratch" above) runs the `headline_5turns` part of this in
+one command; it does not set up the `shapely` venv itself.
 
 ## Pinned versions
 
