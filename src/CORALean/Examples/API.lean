@@ -17,6 +17,7 @@ import CORALean.Examples.ExpOfIntervalMatrix
 import CORALean.Examples.ExpRelaxGreedy
 import CORALean.Examples.FeedForward
 import CORALean.Examples.FeedForwardFloat
+import CORALean.Examples.FixedPointDemo
 import CORALean.Examples.GuardCutThenReset
 import CORALean.Examples.HPolytopePlus
 import CORALean.Examples.LagrangeRemainder

@@ -1,7 +1,7 @@
 import CORALean.Examples.Bench.Format
 
 /-!
-# `lake exe bench <exp> --type dyadic|float|nearest --format binary64 [--config FILE] ...`
+# `lake exe bench <exp> --type dyadic|float|nearest|fixed --format binary64 [--config FILE] ...`
 
 The one place the command line is read. `--reps` and `--out` override the
 config's own `reps` and the harness's default output directory; everything
@@ -11,6 +11,8 @@ else about a run comes from the config file, which is the point of having one.
 reported once rather than resurfacing wherever `args.format` is read later.
 `--prec` is the raw-bit-count escape hatch and is not checked against
 anything, `Dyadic` accepting any `p`; `--prec` wins if both are given.
+`--digits` is its `--type fixed` counterpart, the decimal digit count
+`FixedPoint f` rounds to, likewise unchecked.
 
 `--net` and `--images` are `nn-mnist`'s own: which of the three converted
 networks (`experiments/nn/mnist/nets/`) to run, and how many of the 100
@@ -37,6 +39,7 @@ structure CliArgs where
   ty : String := "dyadic"
   format : Option String := none
   prec : Option Nat := none
+  digits : Option Nat := none
   config : String := "experiments/config/headline_default.json"
   reps : Option Nat := none
   outDir : String := "experiments/results"
@@ -51,8 +54,8 @@ structure CliArgs where
 name, which is positional and first. Each flag pattern binds its value
 directly, `"--type" :: v :: rest`, so the recursion stays visibly structural. -/
 def parseArgs : List String → Except String CliArgs
-  | [] => throw "usage: bench <experiment> [--type dyadic|float|nearest] \
-      [--format binary64|binary32|binary16|binary8|binary4] [--prec P] \
+  | [] => throw "usage: bench <experiment> [--type dyadic|float|nearest|fixed] \
+      [--format binary64|binary32|binary16|binary8|binary4] [--prec P] [--digits F] \
       [--config FILE] [--reps N] [--out DIR] [--exact] [--net small|medium|large] \
       [--images K]"
   | exp :: rest => go rest { experiment := exp }
@@ -60,8 +63,8 @@ where
   go : List String → CliArgs → Except String CliArgs
     | [], a => pure a
     | "--type" :: v :: rest, a => do
-      if v ≠ "dyadic" ∧ v ≠ "float" ∧ v ≠ "nearest" then
-        throw s!"`--type` is `dyadic`, `float` or `nearest`, not `{v}`"
+      if v ≠ "dyadic" ∧ v ≠ "float" ∧ v ≠ "nearest" ∧ v ≠ "fixed" then
+        throw s!"`--type` is `dyadic`, `float`, `nearest` or `fixed`, not `{v}`"
       go rest { a with ty := v }
     | "--format" :: v :: rest, a => do
       let _ ← formatToPrec v
@@ -70,6 +73,10 @@ where
       match v.toNat? with
       | some p => go rest { a with prec := some p }
       | none => throw s!"`--prec` needs a natural number, not `{v}`"
+    | "--digits" :: v :: rest, a =>
+      match v.toNat? with
+      | some d => go rest { a with digits := some d }
+      | none => throw s!"`--digits` needs a natural number, not `{v}`"
     | "--config" :: v :: rest, a => go rest { a with config := v }
     | "--reps" :: v :: rest, a =>
       match v.toNat? with
