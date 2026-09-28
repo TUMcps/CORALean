@@ -20,7 +20,7 @@ experiments/
                 only, turn a run's JSON (or a config) into pgfplots .dat
                 files for the paper's TikZ figures.
   results/      generated output, one directory per config (git-ignored).
-  results-paper/  the paper's own results, committed on results/paper-v1 --
+  results-paper/  the paper's own results, committed on the data branch results/paper --
                 see experiments/results-paper/README.md for its layout.
   paper/        make_paper.sh and its Python helpers: regenerate every figure
                 .dat file and every table body from a results directory, then
@@ -61,7 +61,7 @@ and `shapely` (see "`paper_floats.pdf`" below).
 Everything is computed by CORALean, without MATLAB, with one exception: the
 runtime table's MATLAB column, CORA's measured runtimes, which
 `repeatability.sh` copies from the stored one-off MATLAB run on branch
-`results/cora-v4` (see "The runtime table's CORA column" below).
+`results/cora` (see "The runtime table's CORA column" below).
 
 Every `p` in the paper is an IEEE format, `--type ieee`; `--dyadic` also runs
 Fig. 4, Fig. 5 and Tab. 3 at `Dyadic`, the same significand widths with no
@@ -348,13 +348,13 @@ of each config/scheme's own `cora.json` (`meta.medianNs`, the same file this
 section's `run_headline.m` writes) -- `make_paper.sh` only reads that stored
 number, it never recomputes it, so the column does not change when the
 Lean-only sweep is rerun. The paper's own CORA numbers are a one-off MATLAB
-run recorded on branch `results/cora-v4` (MATLAB R2025b, CORA commit
+run recorded on branch `results/cora` (MATLAB R2025b, CORA commit
 `904a4442e68b1dc149a34e917dd63a7d3fb49a3a`, the paper authors' Windows
 desktop). `repeatability.sh` copies the `headline_5turns` ones into its
 results directory before `make_paper.sh` runs; by hand:
 
 ```
-git checkout origin/results/cora-v4 -- experiments/results-paper
+git checkout origin/results/cora -- experiments/results-paper
 ```
 `experiments/cora/` above reproduces them from scratch, given MATLAB and a
 checked-out CORA.
@@ -804,10 +804,10 @@ TeX Live requirements (`experiments/paper/latex/README.md`): `llncs`,
 package install covers it).
 
 If `<RESULTS_DIR>/paper-tree-expected/` exists (the committed snapshot of
-the paper's `figures/evaluation/` tree at `results/paper-v11`, see
+the paper's `figures/evaluation/` tree at `results/paper`, see
 `experiments/results-paper/README.md`), `make_paper.sh` also `diff -r`s it
 against the freshly collected `<RESULTS_DIR>/paper-latex/figures/evaluation/`
-and FAILS on any difference -- a rerun on `results/paper-v11`'s own committed
+and FAILS on any difference -- a rerun on `results/paper`'s own committed
 state reproduces that tree byte for byte, so this is a regression check, not
 just a build step.
 
@@ -865,8 +865,8 @@ cd experiments/matlab-ops && python3 compare.py   # comparison.json, coralean_su
 The scripts read and write their files in `experiments/matlab-ops/`, so run them from there.
 
 The three large JSON files (45 MB: inputs, MATLAB's and CORALean's results)
-are not on `main`. They are on the data branch `results/matlab-ops-v1`, fetched
-with `git checkout origin/results/matlab-ops-v1 -- experiments/matlab-ops`. The
+are not on `main`. They are on the data branch `results/matlab-ops`, fetched
+with `git checkout origin/results/matlab-ops -- experiments/matlab-ops`. The
 MATLAB results there come from a one-off run (R2025b, MKL 2024.1).
 `coralean_summary.json` holds the outcome: plain `Float` matches sequential
 round-to-nearest bit for bit, and every IEEE and hardware interval contains the

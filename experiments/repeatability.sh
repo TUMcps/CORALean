@@ -61,11 +61,11 @@ done
 # ===== Tab. 4 (Sec. 4.2): runtimes, Lean interpreter vs compiled C =====
 section "Tab. 4"
 bash experiments/run_runtime.sh --out "$OUT" --config $C
-# The one number not computed here: the MATLAB column, CORA's stored runtimes (results/cora-v4).
-if git rev-parse -q --verify origin/results/cora-v4 >/dev/null 2>&1; then
-  git archive origin/results/cora-v4 experiments/results-paper/headline_5turns | tar -x --strip-components=2 -C "$OUT"
+# The one number not computed here: the MATLAB column, CORA's stored runtimes (results/cora).
+if git rev-parse -q --verify origin/results/cora >/dev/null 2>&1; then
+  git archive origin/results/cora experiments/results-paper/headline_5turns | tar -x --strip-components=2 -C "$OUT"
 else
-  echo "repeatability.sh: origin/results/cora-v4 not available, the runtime table's MATLAB column stays empty"
+  echo "repeatability.sh: origin/results/cora not available, the runtime table's MATLAB column stays empty"
 fi
 
 # ===== Ablation (--dyadic): Fig. 4, Fig. 5 and Tab. 3 at Dyadic, the same widths, no exponent bound =====
