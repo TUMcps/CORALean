@@ -25,7 +25,7 @@ clear message rather than skipping or faking the PDF), and copies the result
 to `<RESULTS_DIR>/paper/paper_floats.pdf`. `--no-latex` skips this whole
 step (the figure `.dat`s and table `.tex`s above are still written). If
 `<RESULTS_DIR>/paper-tree-expected/` exists (the committed snapshot of this
-collected `figures/evaluation/` tree, at `results/paper-v11`), it also
+collected `figures/evaluation/` tree, at `results/paper`), it also
 `diff -r`s it against the freshly collected tree and fails on any
 difference. See `experiments/README.md`'s "`experiments/paper/make_paper.sh`"
 section for the full command sequence from a results directory to
