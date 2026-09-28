@@ -54,4 +54,6 @@ the inside; only a use site can.
 `Demo.lean` is deliberately not collected here: it is a target of its own, an
 executable that is run rather than a use site that is compiled.
 `Bench.lean` is deliberately not collected here, for the same reason.
+`BenchFlint.lean` is deliberately not collected here, for the same reason.
+`BenchFlintMain.lean` is deliberately not collected here, for the same reason.
 -/

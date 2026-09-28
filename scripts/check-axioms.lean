@@ -1,23 +1,35 @@
 import CORALean
 import CORALean.Examples.API
 import CORALean.Examples.Bench
+import CORALean.Examples.BenchFlint
+import CORALean.Global.Float.Instances.Flint.API
 
 /-!
-# No library result rests on the bench's false axiom
+# No library result rests on the bench's false axiom, and `trustedFlint` stays opt-in
 
-Run by `scripts/check-axioms.sh` through `lake env lean`, against a built tree.
-`CORALean.Examples.Bench.NearestUnsound` assumes `nearestUnsound`, FALSE by
-design, so that the unchanged library runs on round-to-nearest as CORA does. A
-false axiom taints exactly the declarations whose proof terms reach it, and
-`Lean.collectAxioms` is what says which those are. Four questions:
+Run by `scripts/check-axioms.sh` through `lake env lean`, against a built tree
+— importing `Examples.BenchFlint` here needs no FLINT, since `lake env lean`
+only elaborates, never links. `CORALean.Examples.Bench.NearestUnsound` assumes
+`nearestUnsound`, FALSE by design, so that the unchanged library runs on
+round-to-nearest as CORA does. A false axiom taints exactly the declarations
+whose proof terms reach it, and `Lean.collectAxioms` is what says which those
+are. `CORALean.Global.Float.Instances.Flint` assumes `trustedFlint` instead,
+true but opt-in: the same sweep says whether anything outside that backend and
+its bench reaches it, whether or not the axiom itself is true. Six questions:
 
-1. Are `trustedHardware` and `nearestUnsound` the only axioms any `CORALean`
-   module declares?
+1. Are `trustedHardware`, `nearestUnsound` and `trustedFlint` the only axioms
+   any `CORALean` module declares?
 2. Do the library's headline guarantees, named below, avoid `nearestUnsound`?
 3. Does any declaration of any `CORALean` module outside `Examples/Bench/` reach
    it? The sweep reads the axiom sets Lean stored in each olean: a lookup each.
 4. Do the two instantiations in `NearestUnsound.Tainted` reach it? The positive
    control: a check that cannot see a taint would pass 2 and 3 vacuously.
+5. Does any declaration of any `CORALean` module outside `Flint/` and
+   `Examples/BenchFlint` reach `trustedFlint`? The same sweep as 3, for the
+   opt-in backend, over the whole tree rather than only outside the bench,
+   since `Flint` is not itself part of the bench.
+6. Does `BenchFlint.reachFloat_outer_flint` reach `trustedFlint`? The positive
+   control 4 is for `nearestUnsound`, here for `trustedFlint`.
 
 Every failure is an error, so `lean` exits nonzero.
 -/
@@ -27,8 +39,14 @@ open Lean Elab Command
 /-- The false axiom of the bench's round-to-nearest baseline. -/
 def unsoundAxiom : Name := `CORALean.Bench.nearestUnsound
 
-/-- The whole of what CORALean assumes: the hardware, true, and the baseline, false. -/
-def allowedAxioms : Array Name := #[`CORALean.Float.Binary64.trustedHardware, unsoundAxiom]
+/-- What the optional FLINT backend assumes: true, unlike `unsoundAxiom`, but opt-in
+the same way -- see `Global/Float/Instances/Flint/Definitions/Axioms.lean`. -/
+def flintAxiom : Name := `CORALean.Float.Flint.trustedFlint
+
+/-- The whole of what CORALean assumes: the hardware, true; the baseline, false;
+the optional FLINT backend, true but opt-in. -/
+def allowedAxioms : Array Name :=
+  #[`CORALean.Float.Binary64.trustedHardware, unsoundAxiom, flintAxiom]
 
 /-- The guarantees a reader of the paper relies on, by their full names. -/
 def headlineTheorems : Array Name := #[
@@ -53,9 +71,27 @@ def taintedTheorems : Array Name := #[
   `CORALean.Bench.NearestUnsound.reachFloat_outer_nearestFloat,
   `CORALean.Bench.NearestUnsound.reachFloat_outer_nearestDyadic]
 
-/-- Whether module `m` is CORALean's, and whether it is library code, outside the bench. -/
+/-- The positive control for `trustedFlint`: `reachFloat_outer` at `Flint 53`. -/
+def flintTheorems : Array Name := #[`CORALean.Bench.reachFloat_outer_flint]
+
+/-- Whether module `m` is CORALean's, and whether it is library code, outside
+the bench -- `BenchFlint`/`BenchFlintMain` count as bench here too, even
+though they sit beside `Examples/Bench/` rather than inside it (so that file
+stays untouched): `dispatchFlint` calls the shared `runAt`, which reaches
+`nearestUnsound` whenever `args.experiment = "nn-float32"`, exactly as
+`Registry.lean`'s own `dispatch` does, and that is the bench harness's
+intended baseline row, not a leak into the library. -/
 def isOurs (m : Name) : Bool := (`CORALean).isPrefixOf m
-def isLibraryModule (m : Name) : Bool := isOurs m && !(`CORALean.Examples.Bench).isPrefixOf m
+def isLibraryModule (m : Name) : Bool :=
+  isOurs m && !(`CORALean.Examples.Bench).isPrefixOf m &&
+    m != `CORALean.Examples.BenchFlint && m != `CORALean.Examples.BenchFlintMain
+
+/-- Whether `m` is the FLINT backend or its bench, the only modules that may
+reach `trustedFlint` -- `Flint/` sits under `Global/Float/Instances`, not
+under `Examples/Bench/`, so this is not `isLibraryModule`'s exclusion. -/
+def isFlintAllowed (m : Name) : Bool :=
+  (`CORALean.Global.Float.Instances.Flint).isPrefixOf m ||
+    m == `CORALean.Examples.BenchFlint || m == `CORALean.Examples.BenchFlintMain
 
 run_cmd do
   let env ← getEnv
@@ -69,6 +105,8 @@ run_cmd do
     unless allowedAxioms.contains n do logError m!"{n}: an axiom nobody allowed"
   unless declared.contains unsoundAxiom do
     logError m!"{unsoundAxiom} not found — renamed? update scripts/check-axioms.lean"
+  unless declared.contains flintAxiom do
+    logError m!"{flintAxiom} not found — renamed? update scripts/check-axioms.lean"
   -- 2. the headline guarantees, by name
   for n in headlineTheorems do
     unless env.contains n do
@@ -98,3 +136,27 @@ run_cmd do
       logInfo m!"ok      {n} reaches {unsoundAxiom}, as it must"
     else
       logError m!"{n} should reach {unsoundAxiom} and does not — the check sees no taint"
+  -- 5. the sweep, for `trustedFlint`: every declaration of every module outside
+  -- the FLINT backend and its bench, over the whole tree rather than only
+  -- outside `Examples/Bench/`, since `Flint/` sits elsewhere
+  let mut sweptFlint : Nat := 0
+  let mut reachedFlint : Array Name := #[]
+  for (n, _) in env.constants.map₁.toList do
+    unless ((moduleOf n).map isOurs).getD false do continue
+    if ((moduleOf n).map isFlintAllowed).getD false then continue
+    sweptFlint := sweptFlint + 1
+    if (← collectAxioms n).contains flintAxiom then reachedFlint := reachedFlint.push n
+  if reachedFlint.isEmpty then
+    logInfo m!"ok      {sweptFlint} declarations outside Flint/BenchFlint: none reaches {flintAxiom}"
+  else
+    logError m!"{reachedFlint.size} declarations reach {flintAxiom} outside the opt-in backend: \
+      {reachedFlint.toList.take 20}"
+  -- 6. the positive control for `trustedFlint`
+  for n in flintTheorems do
+    unless env.contains n do
+      logError m!"{n}: not found — the positive control is missing"
+      continue
+    if (← collectAxioms n).contains flintAxiom then
+      logInfo m!"ok      {n} reaches {flintAxiom}, as it must"
+    else
+      logError m!"{n} should reach {flintAxiom} and does not — the check sees no reach"

@@ -4,21 +4,21 @@ import CORALean.Global.Float.Instances.Binary64.Definitions.TrustedHardware
 # The one thing this repository assumes
 
 `Float` is opaque in Lean's logic — `Float.add` is a constant with no equations
-— so nothing about the machine is provable and what it does has to be trusted
-instead. This is where that happens, once: `TrustedHardware` is everything
-`SoundFloatArithmetic` asks of a scalar, and `trustedHardware` says the machine
-supplies it. Every `Float` result in the tree carries this one name and no other.
+— so what the machine does has to be trusted instead, once: `TrustedHardware` is
+everything `SoundFloatArithmetic` asks of a scalar, and `trustedHardware` says
+the machine supplies it. Every `Float` result carries this one name and no other.
 
 What it does not cover cannot be written into the class, whose obligations are
 unconditional: an overflow to `∞` is bounded by nothing real, and a halving into
-the subnormals is not exact. So the assumption holds on runs in which every value
-stays finite and nothing underflows, which nothing checks — an implementation owes
-a range argument. `toReal` of a non-finite float denotes no number; nothing is claimed.
+the subnormals is not exact. The assumption holds on runs where every value stays
+finite and nothing underflows, which nothing checks; `toReal` of a non-finite
+float denotes no number, and nothing is claimed of it.
 
-`Dyadic p` has none of this: its exponent is unbounded, and all ten are theorems
-there; prefer it wherever its cost is bearable. The bench's `nearestUnsound` is
-this one's opposite, FALSE by design where this is true on IEEE 754 hardware,
-and `scripts/check-axioms.sh` keeps it out of the library.
+`Dyadic p` has none of this: its exponent is unbounded, all ten are theorems
+there. CORALean declares three axioms in total: this one; the optional
+backend's `trustedFlint` (`Global/Float/Instances/Flint/`), true of FLINT and
+opt-in; and the bench's `nearestUnsound`, this one's opposite, FALSE BY DESIGN
+-- both kept out of the library, which `check-axioms.sh` checks.
 -/
 
 -- Authors:       Tobias Ladner

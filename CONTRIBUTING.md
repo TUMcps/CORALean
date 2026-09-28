@@ -267,9 +267,10 @@ root holds only its class file, `Instances.lean` and `API.lean`, that a
 sits outside `ContSet/` but a `Theorems/Real/` and `Global/Float/`, that every
 file carries a module docstring and
 — unless it is a collector — a well-formed author block one line under it, that
-nothing is `sorry` or a search tactic, that nothing outside the two files named
-in the script is an `axiom` — the second holding `nearestUnsound` alone, and
-imported from nowhere outside `Examples/Bench/` — that every `maxHeartbeats` bump
+nothing is `sorry` or a search tactic, that nothing outside the three files
+named in the script is an `axiom` — the second holding `nearestUnsound` alone
+and imported from nowhere outside `Examples/Bench/`, the third holding
+`trustedFlint` alone — that every `maxHeartbeats` bump
 carries a reason, that a `def` under `Cost/` is named for the cost it asserts,
 that every `[N]` cited resolves, that the comment lengths and the comment
 density above are respected, that every module is reachable from one of the
@@ -323,9 +324,13 @@ not on the pre-commit hook.
 whether any library declaration rests on `nearestUnsound`, the bench's false
 round-to-nearest axiom: the headline guarantees by name, every declaration of
 every module outside `Examples/Bench/` by sweep, and two deliberately tainted
-copies of `reachFloat_outer` as the positive control. It also asserts that this
-and `trustedHardware` are the only two axioms CORALean declares. It needs a built tree too,
-and runs beside `check-demo.sh` in CI's build job.
+copies of `reachFloat_outer` as the positive control. It runs the same sweep
+for `trustedFlint`, the optional FLINT backend's axiom, over the whole tree
+outside `Global/Float/Instances/Flint/` and `Examples/BenchFlint.lean`, with
+`reachFloat_outer` at `Flint 53` as that sweep's positive control. It also
+asserts that these and `trustedHardware` are the only three axioms CORALean
+declares. It needs a built tree too, and runs beside `check-demo.sh` in CI's
+build job.
 
 `scripts/check-references.py` checks `references/` against the tree: that every
 paper cited has a page, that every link on a page resolves and lands on a file
@@ -720,7 +725,17 @@ by one axiom, `nearestUnsound`, that is FALSE by design — the paper's
 unchanged library. Where `trustedHardware` states what the hardware really does,
 it states what it does not; it is tolerable only because nothing outside the
 bench can reach it, which `check-conventions.sh` and `check-axioms.sh` check
-between them. CORALean has exactly these two axioms.
+between them.
+
+A fourth scalar is optional and not built by default: `Flint p`
+(`Global/Float/Instances/Flint/`, README "FLINT backend (optional)") is
+`Dyadic p`'s own representation with its six rounded operations handed to
+FLINT's `arf_add`/`arf_mul`/`arf_div` through a C shim instead of pure Lean, for
+arbitrary precision without `Dyadic`'s big-integer cost. `trustedFlint`
+(`Global/Float/Instances/Flint/Definitions/Axioms.lean`) is TRUE, unlike
+`nearestUnsound`, but opt-in the same way: `check-conventions.sh` and
+`check-axioms.sh` keep it out of every result outside that backend and
+`Examples/BenchFlint.lean`. CORALean has exactly these three axioms.
 
 ## Certificates, not algorithms
 

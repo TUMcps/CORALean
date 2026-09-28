@@ -660,7 +660,7 @@ A second sound scalar beside `Dyadic`, `CORALean.Float.FixedPoint f`:
 `mantissa · 10 ^ (-digits)`, CORA's "cut off after `f` fractional digits" made
 sound by flooring `Down` and ceiling `Up` at `10 ^ (-f)` instead of truncating
 toward zero. `--digits F` sets `f` (default `4`); every generic experiment
-runs at it exactly as at `Dyadic p`, through the same `aux_runAt`. `meta`
+runs at it exactly as at `Dyadic p`, through the same `runAt`. `meta`
 carries `"type": "fixed"`, `"format": "decimal<F>"` and `"significand_bits": F`
 (the digit count, in the slot `Dyadic`'s bit count uses) and, like every type
 but `nearest`, `"sound": true`.
