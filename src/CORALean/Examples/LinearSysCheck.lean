@@ -31,7 +31,7 @@ fourth moves that box off the origin, to `[1/10, 3/10] × [-1/10, 1/10]`, as
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   24-September-2026
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -43,12 +43,12 @@ open ContSet
 /-- The safe box on the windows answers for every state the flow reaches by `1`. -/
 example :
     (Specification.safeSet (⟨![-10, -10], ![10, 10]⟩ : Float.Interval (Vec ℝ 2))).check
-      ((⟨!![-1, 1; 0, -2]⟩ : LinearSys ℝ 2).reachWrappingFree (S := 𝒵) 1 (1 / 10) 4
-        (⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2))) →
+      ((⟨!![-1, 1; 0, -2]⟩ : LinearSys ℝ 2).reachWrappingFree (S := 𝒵)
+        ⟨(⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2)), 0, 1⟩ ⟨1 / 10, 4⟩) →
     ((Specification.safeSet (⟨![-10, -10], ![10, 10]⟩ : Float.Interval (Vec ℝ 2))).Holds
-      ((⟨!![-1, 1; 0, -2]⟩ : LinearSys ℝ 2).reachExact 1
+      ((⟨!![-1, 1; 0, -2]⟩ : LinearSys ℝ 2).reachExact (1 - 0)
         (construct (⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2))))) :=
-  LinearSys.holds_of_check_wrappingFree (S := 𝒵) _ (by norm_num) 4 _ _
+  LinearSys.holds_of_check_wrappingFree (S := 𝒵) _ _ (by norm_num) _
 
 /-- The same through `Reach.check`, the parameters bundled as `LinearSys.ReachParams`. -/
 example :

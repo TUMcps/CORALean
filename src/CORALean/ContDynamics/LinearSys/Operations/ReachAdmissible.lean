@@ -1,19 +1,20 @@
+import CORALean.ContDynamics.LinearSys.Definitions.ReachStepOptions
 import CORALean.ContDynamics.LinearSys.Operations.Reach
 import CORALean.ContDynamics.LinearSys.Operations.ReachOrder
 
 /-!
 # `reach` at an order raised until admissible
 
-`η` is the order asked for, raised to `reachOrder Δt + 2` where that is higher,
-the same raise `reachWrappingFree` runs: `reach_outer` needs an order admissible
-for `Δt` and `sys.A`, and `ReachParams` has no field for it, the matrix not
+`η = options.taylorTerms` is the order asked for, raised to `reachOrder Δt + 2` where that
+is higher, the same raise `reachWrappingFree` runs: `reach_outer` needs an order admissible
+for `Δt` and `sys.A`, and `ReachStepOptions` has no field for it, the matrix not
 being there to decide it. `LinearSys.reachInstance` runs this instead of `reach`
 itself, so it asks its caller for no side condition on `η` at all.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       27-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -32,11 +33,14 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- One time-interval set per window `τ_k`, `k < ⌈tFinal / Δt⌉`, at order `η`
+/-- One time-interval set per window `τ_k`, `k < ⌈(tFinal - tStart) / Δt⌉`, at order `η`
 raised until admissible. -/
-noncomputable def LinearSys.reachAdmissible (sys : LinearSys 𝕋 n) (tFinal Δt : ℝ) (η : ℕ)
-    (X₀ : S n) : SetUnion (S n) :=
-  sys.reach tFinal Δt (max η (sys.reachOrder Δt + 2)) X₀
+noncomputable def LinearSys.reachAdmissible (sys : LinearSys 𝕋 n)
+    (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachStepOptions ℝ) : SetUnion (S n) :=
+  let Δt := options.timeStep
+  let η := options.taylorTerms
+  let η' := max η (sys.reachOrder Δt + 2)                        -- η, raised until admissible
+  sys.reach params ⟨Δt, η'⟩
 
 end CORALean
 

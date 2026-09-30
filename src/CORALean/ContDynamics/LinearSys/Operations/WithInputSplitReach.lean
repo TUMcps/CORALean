@@ -1,18 +1,21 @@
+import CORALean.ContDynamics.LinearSys.Definitions.ReachStepOptions
 import CORALean.ContDynamics.LinearSys.Operations.ReachOrder
 import CORALean.ContDynamics.LinearSys.Operations.WithInputSplitReachStepk
+import CORALean.ContDynamics.Reach.Definitions.Params
 import CORALean.ContSet.SetUnion.SetUnion
 
 /-!
-# Reachability with an input set anywhere, over `[0, tFinal]`
+# Reachability with an input set anywhere, over `[tStart, tFinal]`
 
 [1, Alg. 3]: the windows `τ_0, …, τ_{N-1}`, one `WithInputSplit.reachStepk`
-each, collected as a `SetUnion`, `N = ⌈tFinal / Δt⌉` of them and never fewer
+each, collected as a `SetUnion`, `N = ⌈(tFinal - tStart) / Δt⌉` of them and never fewer
 than one, exactly `LinearSys.WithInput.reach`'s count. No `box()` on the
 accumulated input set, as there.
 
-`η` is the Taylor order asked for, raised to `reachOrder Δt + 2` where that is
-higher: `timeIntervalStep`, `inputSolution` and `constInputSolution` all hold
-only at an order admissible for `Δt` and `sys.A`.
+`X₀ = params.R0`, `Δt = options.timeStep`, `η = options.taylorTerms`, the Taylor order
+asked for, raised to `reachOrder Δt + 2` where that is higher: `timeIntervalStep`,
+`inputSolution` and `constInputSolution` all hold only at an order admissible for `Δt` and
+`sys.A`. The times are real, as in `LinearSys.reachWrappingFree`.
 
 ## References
 
@@ -22,7 +25,7 @@ only at an order admissible for `Δt` and `sys.A`.
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -42,11 +45,14 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- One time-interval set per window `τ_k`, `k < ⌈tFinal / Δt⌉` (at least one),
+/-- One time-interval set per window `τ_k`, `k < ⌈(tFinal - tStart) / Δt⌉` (at least one),
 inputs in `sys.U` split at its centre, at order `η` raised until admissible. -/
 noncomputable def LinearSys.WithInputSplit.reach (sys : LinearSys.WithInputSplit 𝕋 S n)
-    (tFinal Δt : ℝ) (η : ℕ) (X₀ : S n) : SetUnion (S n) :=
-  let N := max 1 ⌈tFinal / Δt⌉₊                                 -- windows τ_0, …, τ_{N-1}
+    (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachStepOptions ℝ) : SetUnion (S n) :=
+  let X₀ := params.R0                                           -- the paper's symbols
+  let Δt := options.timeStep
+  let η := options.taylorTerms
+  let N := max 1 ⌈(params.tFinal - params.tStart) / Δt⌉₊      -- windows τ_0, …, τ_{N-1}
   let η' := max η (sys.sys.reachOrder Δt + 2)                    -- η, raised until admissible
   ⟨(List.range N).map (sys.reachStepk Δt η' X₀)⟩                -- ⋃_{k < N} R(τ_k)
 

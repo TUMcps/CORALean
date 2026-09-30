@@ -23,7 +23,7 @@ point matrix with no input.
 
 -- Authors:       Tobias Ladner
 -- Written:       27-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -45,12 +45,19 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- Every image of the initial set under the flow, at every `t ∈ [0, tFinal]`,
+/-- Every image of the initial set under the flow, at every `t ∈ [0, tFinal - tStart]`,
 is in one of `reach`'s windows. -/
-theorem LinearSys.reach_outer (sys : LinearSys 𝕋 n) {tFinal Δt : ℝ} (htFinal : 0 < tFinal)
-    (hΔt : 0 < Δt) {η : ℕ} (hη : 2 ≤ η) (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
-    (X₀ : S n) : sys.reachExact tFinal (construct X₀)
-      ⊆ construct (sys.reach tFinal Δt η X₀) := by -- --- PROOF ---
+theorem LinearSys.reach_outer (sys : LinearSys 𝕋 n) {params : Reach.Params (S n) ℝ}
+    {options : LinearSys.ReachStepOptions ℝ} (htFinal : 0 < params.tFinal - params.tStart)
+    (hΔt : 0 < options.timeStep) (hη : 2 ≤ options.taylorTerms)
+    (hε : ‖options.timeStep • toRealMat sys.A‖ / ((options.taylorTerms : ℝ) + 2) < 1) :
+    sys.reachExact (params.tFinal - params.tStart) (construct params.R0)
+      ⊆ construct (sys.reach params options) := by -- --- PROOF ---
+  unfold LinearSys.reach
+  obtain ⟨X₀, tStart, tF⟩ := params
+  obtain ⟨Δt, η⟩ := options
+  dsimp only at *
+  generalize tF - tStart = tFinal at *
   rintro _ ⟨t, ht, x₀, hx₀, rfl⟩
   obtain ⟨k, hk, hkt, htk⟩ := LinearSys.exists_reach_window hΔt ht
   -- `0 < tFinal` keeps at least one window, so `max 1` changes nothing
