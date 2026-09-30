@@ -46,7 +46,8 @@ reachable set widened by the error that run accumulated. -/
 theorem LinearSysDT.reach_subset_reachSet_add_error (sys : LinearSysDT ℝ n) {o : ℕ} (ho : 0 < o)
     (R₀ U : Zonotope (Vec ℝ n)) (k : ℕ) :
     (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct ⊆
-      sys.reachSet (S := 𝒵) R₀ U k + (sys.reachError o ho R₀ U k).construct := by -- --- PROOF ---
+      sys.reachSet (S := 𝒵) R₀ U k
+        + (sys.reachError ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct := by -- --- PROOF ---
   induction k with
   | zero =>
     -- the error is the origin, and every point of `R₀` is itself plus `0`
@@ -57,8 +58,9 @@ theorem LinearSysDT.reach_subset_reachSet_add_error (sys : LinearSysDT ℝ n) {o
     set Rk := sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ with hRk
     set W := (Zonotope.mtimes sys.A Rk).plus U with hW
     have hunfold : sys.reach (S := 𝒵) ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩ = Zonotope.reduce W o := rfl
-    have herr : sys.reachError o ho R₀ U (k + 1)
-        = (Zonotope.mtimes sys.A (sys.reachError o ho R₀ U k)).plus (Zonotope.reduceBox W o) :=
+    have herr : sys.reachError ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩
+        = (Zonotope.mtimes sys.A (sys.reachError ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)).plus
+            (Zonotope.reduceBox W o) :=
       rfl
     rw [hunfold, herr, ← Zonotope.plus_exact]
     intro x hx

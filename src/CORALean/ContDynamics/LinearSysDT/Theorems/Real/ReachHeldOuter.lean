@@ -17,7 +17,7 @@ names — no `reduce_outer`, since `reachHeld` calls no `reduce`.
 
 -- Authors:       Tobias Ladner
 -- Written:       06-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -59,7 +59,7 @@ theorem aux_x_eq {sys : LinearSysDT ℝ n} {R₀ U : S n} {x : ℕ → Vec ℝ n
 
 theorem LinearSysDT.reachHeld_outer (sys : LinearSysDT ℝ n) (R₀ U : S n)
     {x : ℕ → Vec ℝ n} {u : Vec ℝ n} (h : sys.HeldTrajectory R₀ U x u) (N : ℕ) :
-    x N ∈ construct (sys.reachHeld R₀ U N) := by
+    x N ∈ construct (sys.reachHeld ⟨R₀, U, 0, N⟩) := by
   rw [aux_x_eq h N]
   exact plus_outer _ _ (Set.add_mem_add
     (mtimes_outer _ _ (Set.mem_biUnion rfl (Set.mem_image_of_mem _ h.init)))

@@ -19,7 +19,7 @@ No induction: the bound is a fact about the last step alone.
 
 -- Authors:       Tobias Ladner
 -- Written:       08-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -38,7 +38,7 @@ variable {n : ℕ}
 steps — the origin at `k = 0`, and a `reduce` at every step after. -/
 theorem LinearSysDT.reachErrorReduced_h_le (sys : LinearSysDT ℝ n) {o : ℕ} (ho : 0 < o)
     (R₀ U : Zonotope (Vec ℝ n)) (k : ℕ) :
-    (sys.reachErrorReduced o ho R₀ U k).h ≤ o * n := by
+    (sys.reachErrorReduced ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).h ≤ o * n := by
   cases k with
   | zero => exact Nat.zero_le _
   | succ k => exact Zonotope.reduce_order_le _ ho

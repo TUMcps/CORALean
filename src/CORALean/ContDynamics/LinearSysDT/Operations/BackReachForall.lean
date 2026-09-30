@@ -1,4 +1,6 @@
+import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachForallOptions
 import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+import CORALean.ContDynamics.Reach.Definitions.InputParams
 
 /-!
 # Backward reachability, computed
@@ -8,7 +10,7 @@ difference, and `mtimes Ainv` for the preimage under `A`, taken as the image
 under a right inverse the caller hands in. `sys` is carried and never read —
 the dynamics enter through `backReachForall_inner`'s `hA` alone.
 
-`diff` is a parameter rather than the `MinkDiff` class because `Zonotope` has
+`diff` is an option rather than the `MinkDiff` class because `Zonotope` has
 no instance of it and can have none: a zonotope difference exists only at a
 checked generator representation, so `Zonotope.minkDiffRep` is `Option`-valued
 and a total `minkDiff : S → S → S` has nowhere to fail. This is `Option`-valued
@@ -22,7 +24,7 @@ order would have nothing to bound.
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -40,10 +42,18 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋
 
 /-- The computed backward reachable set: `diff` against the input set, then the
 image under `Ainv`, and `none` as soon as `diff` cannot certify a step. -/
-def LinearSysDT.backReachForall (sys : LinearSysDT 𝕋 n) (Ainv : Mat 𝕋 n n)
-    (diff : S n → S n → Option (S n)) (T U : S n) : ℕ → Option (S n)
-  | 0 => some T
-  | k + 1 => (sys.backReachForall Ainv diff T U k).bind fun P => (diff P U).map (mtimes Ainv)
+def LinearSysDT.backReachForall (_sys : LinearSysDT 𝕋 n)
+    (params : Reach.InputParams (S n) (S n) ℕ)
+    (options : LinearSysDT.BackReachForallOptions 𝕋 S n) : Option (S n) :=
+  let T := params.R0                                                -- the target
+  let U := params.U
+  let Ainv := options.Ainv
+  let diff := options.diff
+  let N := params.tFinal - params.tStart                           -- steps, in sampling periods
+  let rec P : ℕ → Option (S n)                                     -- P_k, the set k steps back
+    | 0 => some T
+    | k + 1 => (P k).bind fun Pk => (diff Pk U).map (mtimes Ainv)
+  P N
 
 end CORALean
 

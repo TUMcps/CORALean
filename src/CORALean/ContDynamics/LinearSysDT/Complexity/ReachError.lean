@@ -44,20 +44,23 @@ in the number of steps taken, unlike `reach_order_le`'s `o * n`, which does
 not. -/
 theorem LinearSysDT.reachError_h_le (sys : LinearSysDT ℝ n) {o : ℕ} (ho : 0 < o)
     (R₀ U : Zonotope (Vec ℝ n)) (k : ℕ) :
-    (sys.reachError o ho R₀ U k).h ≤ k * n := by -- --- PROOF ---
+    (sys.reachError ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).h ≤ k * n := by -- --- PROOF ---
   induction k with
-  | zero => simp [LinearSysDT.reachError, Zonotope.ofPoint]
+  | zero =>
+    -- the origin has no generators
+    show (Zonotope.ofPoint (0 : Vec ℝ n)).h ≤ 0 * n
+    simp [Zonotope.ofPoint]
   | succ k ih =>
-    have herr : sys.reachError o ho R₀ U (k + 1)
-        = (Zonotope.mtimes sys.A (sys.reachError o ho R₀ U k)).plus
+    have herr : sys.reachError ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩
+        = (Zonotope.mtimes sys.A (sys.reachError ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)).plus
             (Zonotope.reduceBox
               ((Zonotope.mtimes sys.A (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)).plus U) o) :=
       rfl
     have hbox : (Zonotope.reduceBox
         ((Zonotope.mtimes sys.A (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)).plus U) o).h ≤ n := by
       rw [Zonotope.reduceBox_h]; split_ifs <;> omega
-    calc (sys.reachError o ho R₀ U (k + 1)).h
-        = (sys.reachError o ho R₀ U k).h
+    calc (sys.reachError ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩).h
+        = (sys.reachError ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).h
             + (Zonotope.reduceBox
                 ((Zonotope.mtimes sys.A
                   (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)).plus U) o).h := by

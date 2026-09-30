@@ -21,7 +21,7 @@ instances: `Zonotope` and `𝕋 = ℝ`.
 
 -- Authors:       Tobias Ladner
 -- Written:       08-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -39,14 +39,23 @@ variable {n : ℕ}
 /-- What `reachOrders` owes after `k` steps, reduced at every step: the same
 recursion as `reachErrorOrders` with one `reduce` on top, at that step's own
 order. -/
-noncomputable def LinearSysDT.reachErrorReducedOrders (sys : LinearSysDT ℝ n) (o : ℕ → ℕ)
-    (ho : ∀ k, 0 < o k) (R₀ U : Zonotope (Vec ℝ n)) : ℕ → Zonotope (Vec ℝ n)
-  | 0 => Zonotope.ofPoint 0
-  | k + 1 => Zonotope.reduce
-      ((Zonotope.mtimes sys.A (sys.reachErrorReducedOrders o ho R₀ U k)).plus
-        (Zonotope.reduceBox
-          ((Zonotope.mtimes sys.A (sys.reachOrders (S := 𝒵) o ho R₀ U k)).plus U) (o (k + 1))))
-      (o (k + 1))
+noncomputable def LinearSysDT.reachErrorReducedOrders (sys : LinearSysDT ℝ n)
+    (params : Reach.InputParams (Zonotope (Vec ℝ n)) (Zonotope (Vec ℝ n)) ℕ)
+    (options : LinearSysDT.ReachOrdersOptions) :
+    Zonotope (Vec ℝ n) :=
+  let R₀ := params.R0                                               -- the paper's symbols
+  let U := params.U
+  let o := options.zonotopeOrder
+  let N := params.tFinal - params.tStart                           -- steps, in sampling periods
+  let rec E : ℕ → Zonotope (Vec ℝ n)  -- E_k
+    | 0 => Zonotope.ofPoint 0
+    | k + 1 => Zonotope.reduce
+        ((Zonotope.mtimes sys.A (E k)).plus
+          (Zonotope.reduceBox
+            ((Zonotope.mtimes sys.A (sys.reachOrders (S := 𝒵) ⟨R₀, U, 0, k⟩ options)).plus U)
+            (o (k + 1))))
+        (o (k + 1))
+  E N
 
 end CORALean
 

@@ -19,7 +19,7 @@ fact about the last step alone.
 
 -- Authors:       Tobias Ladner
 -- Written:       08-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -39,7 +39,7 @@ generators, at every `S := 𝒵`: the order the sequence supplies for the step
 just taken, in place of `reach_order_le`'s one fixed `o`. -/
 theorem LinearSysDT.reachOrders_order_le (sys : LinearSysDT 𝕋 n) {o : ℕ → ℕ}
     (ho : ∀ k, 0 < o k) (R₀ U : Zonotope (Vec ℝ n)) (k : ℕ) :
-    (sys.reachOrders (S := 𝒵) o ho R₀ U (k + 1)).h ≤ o (k + 1) * n :=
+    (sys.reachOrders (S := 𝒵) ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩).h ≤ o (k + 1) * n :=
   Zonotope.reduce_order_le _ (ho (k + 1))
 
 end CORALean

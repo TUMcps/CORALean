@@ -43,12 +43,20 @@ variable {n : ℕ}
 
 /-- What `reach` owes after `k` steps: every step's reduction box, each carried
 forward by one `A` per step taken since. -/
-noncomputable def LinearSysDT.reachError (sys : LinearSysDT ℝ n) (o : ℕ) (ho : 0 < o)
-    (R₀ U : Zonotope (Vec ℝ n)) : ℕ → Zonotope (Vec ℝ n)
-  | 0 => Zonotope.ofPoint 0
-  | k + 1 => (Zonotope.mtimes sys.A (sys.reachError o ho R₀ U k)).plus
-      (Zonotope.reduceBox
-        ((Zonotope.mtimes sys.A (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)).plus U) o)
+noncomputable def LinearSysDT.reachError (sys : LinearSysDT ℝ n)
+    (params : Reach.InputParams (Zonotope (Vec ℝ n)) (Zonotope (Vec ℝ n)) ℕ)
+    (options : LinearSysDT.ReachOptions) :
+    Zonotope (Vec ℝ n) :=
+  let R₀ := params.R0                                               -- the paper's symbols
+  let U := params.U
+  let o := options.zonotopeOrder
+  let N := params.tFinal - params.tStart                           -- steps, in sampling periods
+  let rec E : ℕ → Zonotope (Vec ℝ n)  -- E_k
+    | 0 => Zonotope.ofPoint 0
+    | k + 1 => (Zonotope.mtimes sys.A (E k)).plus
+        (Zonotope.reduceBox
+          ((Zonotope.mtimes sys.A (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ options)).plus U) o)
+  E N
 
 end CORALean
 

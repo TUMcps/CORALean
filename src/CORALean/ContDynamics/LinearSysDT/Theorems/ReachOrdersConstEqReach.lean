@@ -34,12 +34,12 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 
 theorem LinearSysDT.reachOrders_const_eq_reach (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o)
     (R₀ U : S n) (k : ℕ) :
-    sys.reachOrders (fun _ => o) (fun _ => ho) R₀ U k
+    sys.reachOrders ⟨R₀, U, 0, k⟩ ⟨fun _ => o, fun _ => ho⟩
       = sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ := by -- --- PROOF ---
   induction k with
   | zero => rfl
   | succ k ih =>
-    show reduce (plus (mtimes sys.A (sys.reachOrders (fun _ => o) (fun _ => ho) R₀ U k)) U) o
+    show reduce (plus (mtimes sys.A (sys.reachOrders ⟨R₀, U, 0, k⟩ ⟨fun _ => o, fun _ => ho⟩)) U) o
       = reduce (plus (mtimes sys.A (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)) U) o
     rw [ih]
 

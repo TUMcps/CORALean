@@ -39,7 +39,7 @@ reduced error, the error being the side of the inclusion that may grow. -/
 theorem LinearSysDT.reach_subset_reachSet_add_errorReduced (sys : LinearSysDT ℝ n) {o : ℕ}
     (ho : 0 < o) (R₀ U : Zonotope (Vec ℝ n)) (k : ℕ) :
     (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct ⊆
-      sys.reachSet (S := 𝒵) R₀ U k + (sys.reachErrorReduced o ho R₀ U k).construct :=
+      sys.reachSet (S := 𝒵) R₀ U k + (sys.reachErrorReduced ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct :=
   subset_trans (sys.reach_subset_reachSet_add_error ho R₀ U k)
     (Set.add_subset_add_left (sys.reachErrorReduced_contains_reachError ho R₀ U k))
 
