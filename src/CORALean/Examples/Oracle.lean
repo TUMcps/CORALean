@@ -1,4 +1,4 @@
-import CORALean.Examples.Oracle.Dispatch
+import CORALean.Examples.Oracle.Run
 
 /-!
 # `lake exe oracle`: a JSON-lines float-set oracle for CORA.cpp
@@ -31,30 +31,10 @@ cwd (`Oracle/GitInfo.lean`), `"unknown"`/`false` when that cannot be told.
 
 open CORALean.Oracle
 
-/-- `line`, its trailing `\n` and, on Windows, `\r`, dropped -- `stdin.getLine`'s own shape,
-mirrored from `IO.FS.Stream.lines`. -/
-def stripNewline (line : String) : String :=
-  if line.isEmpty then line
-  else if line.back == '\n' then
-    let line := line.dropEnd 1 |>.copy
-    if !line.isEmpty && line.back == '\r' then line.dropEnd 1 |>.copy else line
-  else line
-
-/-- One line in, one line out, until `stdin.getLine` returns empty -- EOF, `Stream.getLine`'s
-own convention, at which point `main` returns and the process exits `0`. -/
-partial def loop (version : CoraleanVersion) (stdin stdout : IO.FS.Stream) : IO Unit := do
-  let line ← stdin.getLine
-  if line.isEmpty then pure () else
-    stdout.putStrLn (respond version (stripNewline line)).compress
-    stdout.flush
-    loop version stdin stdout
-
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def main : IO Unit := do
-  let version ← coraleanCommit
-  loop version (← IO.getStdin) (← IO.getStdout)
+def main : IO Unit := run sounds
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

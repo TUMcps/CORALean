@@ -1,0 +1,5 @@
+{"id": 1, "op": "ping"}
+{"id": 2, "op": "from", "dtype": "nearest", "x": {"rows": 2, "cols": 1, "data": ["3*2^0", "-1*2^-1"]}}
+{"id": 3, "op": "mtimes", "dtype": "nearest", "Z": {"c": {"rows": 2, "cols": 1, "data": ["1*2^0", "2*2^0"]}, "G": {"rows": 2, "cols": 1, "data": ["1*2^0", "1*2^0"]}, "E": {"inf": {"rows": 2, "cols": 1, "data": ["0*2^0", "0*2^0"]}, "sup": {"rows": 2, "cols": 1, "data": ["0*2^0", "0*2^0"]}}}, "M": {"rows": 2, "cols": 2, "data": ["2*2^0", "0*2^0", "0*2^0", "3*2^0"]}}
+{"id": 5, "op": "roundTo", "dtype": "nearest", "mode": "down", "x": {"rows": 1, "cols": 1, "data": ["1*2^0"]}}
+{"id": 6, "op": "from", "dtype": "binary64", "x": {"rows": 1, "cols": 1, "data": ["5"]}}

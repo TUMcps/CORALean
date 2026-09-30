@@ -1,5 +1,6 @@
 name = "CORALean"
-defaultTargets = ["CORALean", "Examples", "Demo", "Bench", "BenchFlint", "Oracle", "HardwareCheck"]
+defaultTargets = ["CORALean", "Examples", "Demo", "Bench", "BenchFlint", "Oracle", "HardwareCheck",
+  "OracleUnsound"]
 
 [leanOptions]
 pp.unicode.fun = true
@@ -109,3 +110,15 @@ roots = ["CORALean.Examples.HardwareCheck"]
 name = "hardwarecheck"
 srcDir = "src"
 root = "CORALean.Examples.HardwareCheck"
+
+# The same oracle with the dtype `nearest`, round-to-nearest WITHOUT guarantees, for comparing CORA.cpp
+# against the same arithmetic. Under `Examples/Bench/`: the false axiom behind it may not reach `oracle`.
+[[lean_lib]]
+name = "OracleUnsound"
+srcDir = "src"
+roots = ["CORALean.Examples.Bench.OracleUnsound"]
+
+[[lean_exe]]
+name = "oracle-unsound"
+srcDir = "src"
+root = "CORALean.Examples.Bench.OracleUnsound"

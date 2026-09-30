@@ -5,14 +5,16 @@
 # ORACLE="cmd", e.g. the interpreter:
 #   ORACLE="lake env lean --run src/CORALean/Examples/Oracle.lean" \
 #     sh experiments/oracle/selftest.sh
+# and the unsound oracle, whose fixtures are the -unsound files:
+#   UNSOUND=1 ORACLE=.lake/build/bin/oracle-unsound REQ=experiments/oracle/requests-unsound.jsonl \n#     EXPECTED=experiments/oracle/expected-unsound.jsonl sh experiments/oracle/selftest.sh
 
 set -eu
 
 cd "$(dirname "$0")/../.."
 
 ORACLE="${ORACLE:-.lake/build/bin/oracle}"
-REQ=experiments/oracle/requests.jsonl
-EXPECTED=experiments/oracle/expected.jsonl
+REQ="${REQ:-experiments/oracle/requests.jsonl}"
+EXPECTED="${EXPECTED:-experiments/oracle/expected.jsonl}"
 actual=$(mktemp)
 expected_norm=$(mktemp)
 actual_norm=$(mktemp)
@@ -38,6 +40,9 @@ else
   printf 'selftest: output differs from %s\n' "$EXPECTED"
   exit 1
 fi
+
+# The unsound oracle (UNSOUND=1) has no soundness to check: the diff is all its self-test is.
+if [ -n "${UNSOUND:-}" ]; then exit 0; fi
 
 # Required, not optional: a missing `python3` fails the self-test loudly rather than the
 # diff above silently standing in for the soundness check it never ran.

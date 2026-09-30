@@ -56,31 +56,31 @@ def handleOp {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] (dops : D
   | "linearSysReach" => handleLinearSysReach dops req
   | o => throw s!"unknown op `{o}` -- one of {String.intercalate ", " opNames}"
 
-def pingFields (version : CoraleanVersion) : List (String × Json) :=
+def pingFields (dtypes : DtypeSet) (version : CoraleanVersion) : List (String × Json) :=
   [ ("version", Json.str version.version),
     ("dirty", Json.bool version.dirty),
-    ("dtypes", Json.arr (dtypeForms.toArray.map Json.str)),
+    ("dtypes", Json.arr (dtypes.forms.toArray.map Json.str)),
     ("ops", Json.arr (opNames.toArray.map Json.str)) ]
 
 /-- `j`'s `op`, at its `dtype` unless it is `"ping"`, which needs none. -/
-def handleRequest (version : CoraleanVersion) (j : Json) :
+def handleRequest (dtypes : DtypeSet) (version : CoraleanVersion) (j : Json) :
     Except String (List (String × Json)) := do
   let op ← strField j "op"
-  if op = "ping" then pure (pingFields version) else
+  if op = "ping" then pure (pingFields dtypes version) else
     let dtypeStr ← strField j "dtype"
-    withDtype dtypeStr fun {𝕋} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] dops =>
+    dtypes.resolve dtypeStr fun {𝕋} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] dops =>
       handleOp dops op j
 
 /-- One request line to one response line's `Json` -- never throws, an invalid line becoming
 `{"ok":false, ...}` exactly as a valid request's own failure does. -/
-def respond (version : CoraleanVersion) (line : String) : Json :=
+def respond (dtypes : DtypeSet) (version : CoraleanVersion) (line : String) : Json :=
   match Json.parse line with
   | .error e => Json.mkObj [("ok", Json.bool false), ("error", Json.str s!"invalid JSON: {e}")]
   | .ok j =>
     let idFields := match fieldOpt j "id" with
       | some idj => [("id", idj)]
       | none => []
-    match handleRequest version j with
+    match handleRequest dtypes version j with
     | .ok fields => Json.mkObj (("ok", Json.bool true) :: fields ++ idFields)
     | .error e => Json.mkObj (("ok", Json.bool false) :: ("error", Json.str e) :: idFields)
 
