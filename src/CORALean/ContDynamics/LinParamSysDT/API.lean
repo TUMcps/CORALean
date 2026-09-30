@@ -1,3 +1,4 @@
+import CORALean.ContDynamics.LinParamSysDT.Definitions.ReachOptions
 import CORALean.ContDynamics.LinParamSysDT.Definitions.ReachParams
 import CORALean.ContDynamics.LinParamSysDT.Definitions.ReachSetOfInit
 import CORALean.ContDynamics.LinParamSysDT.Definitions.ReachUnionExact

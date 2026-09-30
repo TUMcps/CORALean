@@ -22,7 +22,7 @@ count and the re-linearization is free in it.
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -41,7 +41,7 @@ variable {n m : ℕ}
 `reduce`, and the caller's hypothesis covers the set before the first. -/
 theorem NonlinearSysDT.aux_reach_h_le (sys : NonlinearSysDT n m) {U : Zonotope (Vec ℝ m)}
     {o : ℕ} (ho : 0 < o) (steps : ℕ → sys.LinStep (S := 𝒵) U) (R₀ : Zonotope (Vec ℝ n))
-    (hR₀ : R₀.h ≤ o * n) : ∀ k, (sys.reach (S := 𝒵) o ho steps R₀ k).h ≤ o * n
+    (hR₀ : R₀.h ≤ o * n) : ∀ k, (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps).h ≤ o * n
   | 0 => hR₀
   | _ + 1 => LinearSysDT.reach_order_le _ ho _ _ 0
 
@@ -65,12 +65,12 @@ theorem NonlinearSysDT.reachCost_le (sys : NonlinearSysDT n m) {U : Zonotope (Ve
   | succ k ih =>
     -- one linear step, at the set reached so far and at this step's own input
     have h1 := (NonlinearSysDT.linearize (steps k).A).reachCost_le ho
-      (sys.reach (S := 𝒵) o ho steps R₀ k) (steps k).linInput
+      (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps) (steps k).linInput
       (sys.aux_reach_h_le ho steps R₀ hR₀ k) 1
     have h2 := NonlinearSysDT.aux_stepBound_mono n o (hL k)
     -- and that step's own input is within the uniform bound the caller gave
     have hstep : (NonlinearSysDT.linearize (steps k).A).reachCost o ho
-        (sys.reach (S := 𝒵) o ho steps R₀ k) (steps k).linInput 1
+        (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps) (steps k).linInput 1
           ≤ LinearSysDT.reachStepBound n hU o := le_trans h1 (by simpa using h2)
     have h := Nat.add_le_add (Cost.le_iff.mp ih) (Cost.le_iff.mp hstep)
     refine Cost.le_iff.mpr ?_

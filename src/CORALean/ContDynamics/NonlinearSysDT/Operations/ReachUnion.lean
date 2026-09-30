@@ -18,7 +18,7 @@ The last set, step `K`'s, is tested against nothing: no step starts from it.
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -38,7 +38,7 @@ variable [Mtimes (Mat ℝ) S] [Real.OfInterval S] [∀ n, Contains (Rg n) (S n)]
 `k < p.K` starts from is not shown inside `sys.region k`. -/
 def NonlinearSysDT.WithSteps.reachUnion (sys : NonlinearSysDT.WithSteps S Rg m n)
     (p : NonlinearSysDT.ReachParams) (X₀ : S n) : Option (SetUnion (S n)) :=
-  let R := sys.sys.reach p.o p.ho sys.steps X₀                        -- R(k), k = 0, 1, …
+  let R := fun k => sys.sys.reach ⟨X₀, sys.U, 0, k⟩ ⟨p.o, p.ho⟩ sys.steps -- R(k), k = 0, 1, …
   let confined := (List.range p.K).all fun k =>                       -- R(k) ⊆ region k, k < K
     Contains.contains (sys.region k) (R k)
   if confined then some ⟨(List.range (p.K + 1)).map R⟩ else none     -- ⋃_{k ≤ K} R(k), or fail

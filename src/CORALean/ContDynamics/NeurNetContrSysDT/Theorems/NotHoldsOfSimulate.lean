@@ -15,7 +15,7 @@ Reachability and simulation answer opposite halves of the same question.
 
 -- Authors:       Tobias Ladner
 -- Written:       06-September-2026
--- Last update:   24-September-2026
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -37,7 +37,7 @@ theorem NeurNetContrSysDT.not_holds_of_simulate (sys : NeurNetContrSysDT 𝕋 S 
     (ho : 0 < o) (R₀ : S n) (spec : Specification ContSet) {π : Vec ℝ n → Vec ℝ n}
     (hπ : sys.contr.Sound π) {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ construct R₀)
     (k : ℕ) (hbad : ¬ spec.Holds {sys.simulate π x₀ k}) :
-    ¬ spec.Holds (construct (sys.reach o ho R₀ k)) :=
+    ¬ spec.Holds (construct (sys.reach ⟨R₀, 0, k⟩ ⟨o, ho⟩)) :=
   fun h => hbad (sys.holds_of_reach ho R₀ spec hπ (sys.simulate_trajectory π hx₀) k h)
 
 end CORALean

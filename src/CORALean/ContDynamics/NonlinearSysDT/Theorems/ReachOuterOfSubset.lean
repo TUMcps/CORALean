@@ -17,7 +17,7 @@ implemented or proved here.
 
 -- Authors:       Tobias Ladner
 -- Written:       06-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -39,9 +39,9 @@ variable [Mtimes (Mat ℝ) S] [Real.OfInterval S]
 check a caller can actually run against the computed sets. -/
 theorem NonlinearSysDT.reach_outer_of_subset (sys : NonlinearSysDT n m) {U : S m} {o : ℕ}
     (ho : 0 < o) (steps : ℕ → sys.LinStep U) (R₀ : S n)
-    (hsub : ∀ k, construct (sys.reach o ho steps R₀ k) ⊆ (steps k).R)
+    (hsub : ∀ k, construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps) ⊆ (steps k).R)
     {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ m} (traj : sys.Trajectory R₀ U x u) (k : ℕ) :
-    x k ∈ construct (sys.reach o ho steps R₀ k) :=
+    x k ∈ construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps) :=
   sys.reach_outer ho steps R₀ traj (sys.confinement_of_subset ho steps R₀ hsub traj) k
 
 end CORALean

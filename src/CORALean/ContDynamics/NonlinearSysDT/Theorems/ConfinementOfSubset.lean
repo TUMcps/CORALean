@@ -23,7 +23,7 @@ partition without picking one. No search is implemented.
 
 -- Authors:       Tobias Ladner
 -- Written:       06-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -46,7 +46,7 @@ checks `hsub`, that each step's computed reachable set lies inside its own
 certified region, instead of assuming confinement of the trajectory. -/
 theorem NonlinearSysDT.confinement_of_subset (sys : NonlinearSysDT n m) {U : S m} {o : ℕ}
     (ho : 0 < o) (steps : ℕ → sys.LinStep U) (R₀ : S n)
-    (hsub : ∀ k, construct (sys.reach o ho steps R₀ k) ⊆ (steps k).R)
+    (hsub : ∀ k, construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps) ⊆ (steps k).R)
     {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ m} (traj : sys.Trajectory R₀ U x u) (k : ℕ) :
     x k ∈ (steps k).R := by -- --- PROOF ---
   induction k using Nat.strong_induction_on with

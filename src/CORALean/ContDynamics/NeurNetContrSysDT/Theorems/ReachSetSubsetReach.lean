@@ -16,7 +16,7 @@ arise in the purely discrete loop.
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -37,7 +37,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 not to a run of it. -/
 theorem NeurNetContrSysDT.reachSet_subset_reach (sys : NeurNetContrSysDT 𝕋 S n) {o : ℕ}
     (ho : 0 < o) (R₀ : S n) {π : Vec ℝ n → Vec ℝ n} (hπ : sys.contr.Sound π) (k : ℕ) :
-    sys.reachSet π R₀ k ⊆ construct (sys.reach o ho R₀ k) := by
+    sys.reachSet π R₀ k ⊆ construct (sys.reach ⟨R₀, 0, k⟩ ⟨o, ho⟩) := by
   rintro _ ⟨x, traj, rfl⟩
   exact sys.reach_outer ho R₀ hπ traj k
 

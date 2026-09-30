@@ -17,7 +17,7 @@ built on a zonotope.
 
 -- Authors:       Tobias Ladner
 -- Written:       06-September-2026
--- Last update:   06-September-2026
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 namespace CORALean
@@ -30,20 +30,20 @@ open Matrix ContSet
 /-- §3.3.1: the system matrix bounded by an interval matrix. -/
 example {n : ℕ} (sys : LinParamSysDT ℐ n) {o : ℕ} (ho : 0 < o) (R₀ U : Zonotope (Vec ℝ n))
     {x u : ℕ → Vec ℝ n} (traj : sys.Trajectory (S := 𝒵) R₀ U x u) (k : ℕ) :
-    x k ∈ construct (sys.reach (S := 𝒵) o ho R₀ U k) :=
+    x k ∈ construct (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) :=
   sys.reach_outer (S := 𝒵) ho R₀ U traj k
 
 /-- §3.3.2: the system matrix bounded by a matrix zonotope, strictly tighter
 than an interval matrix, which throws away every correlation between entries. -/
 example {n : ℕ} (sys : LinParamSysDT 𝕄𝒵 n) {o : ℕ} (ho : 0 < o) (R₀ U : Zonotope (Vec ℝ n))
     {x u : ℕ → Vec ℝ n} (traj : sys.Trajectory (S := 𝒵) R₀ U x u) (k : ℕ) :
-    x k ∈ construct (sys.reach (S := 𝒵) o ho R₀ U k) :=
+    x k ∈ construct (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) :=
   sys.reach_outer (S := 𝒵) ho R₀ U traj k
 
 /-- The point-matrix case, `𝕄 := Mat ℝ`: `LinearSysDT` again. -/
 example {n : ℕ} (sys : LinParamSysDT (Mat ℝ) n) {o : ℕ} (ho : 0 < o) (R₀ U : Zonotope (Vec ℝ n))
     {x u : ℕ → Vec ℝ n} (traj : sys.Trajectory (S := 𝒵) R₀ U x u) (k : ℕ) :
-    x k ∈ construct (sys.reach (S := 𝒵) o ho R₀ U k) :=
+    x k ∈ construct (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) :=
   sys.reach_outer (S := 𝒵) ho R₀ U traj k
 
 /-- §3.3.3: the system matrix bounded by a matrix polytope, the only one of
@@ -51,7 +51,7 @@ the four whose set family is not `𝒵`. -/
 example {n : ℕ} (sys : LinParamSysDT 𝕄𝒫 n) {o : ℕ} (ho : 0 < o) (R₀ U : VPolytope (Vec ℝ n))
     {x u : ℕ → Vec ℝ n}
     (traj : sys.Trajectory (S := fun n => VPolytope (Vec ℝ n)) R₀ U x u) (k : ℕ) :
-    x k ∈ construct (sys.reach (S := fun n => VPolytope (Vec ℝ n)) o ho R₀ U k) :=
+    x k ∈ construct (sys.reach (S := fun n => VPolytope (Vec ℝ n)) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) :=
   sys.reach_outer (S := fun n => VPolytope (Vec ℝ n)) ho R₀ U traj k
 
 end CORALean

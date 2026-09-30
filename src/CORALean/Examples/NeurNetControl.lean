@@ -77,7 +77,7 @@ at every step. -/
 example (sys : NeurNetContrSysDT ℝ 𝒵 2) (R₀ : Zonotope (Vec ℝ 2)) {o : ℕ} (ho : 0 < o)
     {π : Vec ℝ 2 → Vec ℝ 2} (hπ : sys.contr.Sound π)
     {x : ℕ → Vec ℝ 2} (traj : sys.Trajectory π R₀ x) (k : ℕ) :
-    x k ∈ construct (sys.reach o ho R₀ k) :=
+    x k ∈ construct (sys.reach ⟨R₀, 0, k⟩ ⟨o, ho⟩) :=
   sys.reach_outer ho R₀ hπ traj k
 
 /-- A safe set the reached zonotope stays inside is a safe set the run stays
@@ -85,7 +85,7 @@ inside — `Specification.holds_of_outer`, reached from the loop. -/
 example (sys : NeurNetContrSysDT ℝ 𝒵 2) (R₀ : Zonotope (Vec ℝ 2)) {o : ℕ} (ho : 0 < o)
     (safe : Set (Vec ℝ 2)) {π : Vec ℝ 2 → Vec ℝ 2} (hπ : sys.contr.Sound π)
     {x : ℕ → Vec ℝ 2} (traj : sys.Trajectory π R₀ x) (k : ℕ)
-    (h : (Specification.safeSet safe).Holds (construct (sys.reach o ho R₀ k))) :
+    (h : (Specification.safeSet safe).Holds (construct (sys.reach ⟨R₀, 0, k⟩ ⟨o, ho⟩))) :
     (Specification.safeSet safe).Holds {x k} :=
   sys.holds_of_reach ho R₀ _ hπ traj k h
 
@@ -118,7 +118,7 @@ example (sys : NeurNetContrSys ℝ 𝒵 2) (R₀ : Zonotope (Vec ℝ 2)) (o η N
 /-- The loops above are ones of those, which is the only thing left to check. -/
 noncomputable example (A : Mat ℝ 2 2) (W₁ : Mat ℝ 3 2) (b₁ : Vec ℝ 3) (W₂ : Mat ℝ 2 3)
     (b₂ : Vec ℝ 2) (R₀ : Zonotope (Vec ℝ 2)) (o k : ℕ) (ho : 0 < o) : Zonotope (Vec ℝ 2) :=
-  (Example.nnControlledDT A W₁ b₁ W₂ b₂).reach o ho R₀ k
+  (Example.nnControlledDT A W₁ b₁ W₂ b₂).reach ⟨R₀, 0, k⟩ ⟨o, ho⟩
 
 noncomputable example (A : Mat ℝ 2 2) (W₁ : Mat ℝ 3 2) (b₁ : Vec ℝ 3) (W₂ : Mat ℝ 2 3)
     (b₂ : Vec ℝ 2) (R₀ : Zonotope (Vec ℝ 2)) (o η N : ℕ) (ho : 0 < o) (Δt : ℝ) (i : ℕ) :

@@ -11,7 +11,7 @@ network's exact image takes, on the same theorem.
 
 -- Authors:       Tobias Ladner
 -- Written:       06-September-2026
--- Last update:   24-September-2026
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -32,7 +32,7 @@ variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
 theorem LinParamSysDT.holds_of_reach (sys : LinParamSysDT 𝕄 n) {o : ℕ} (ho : 0 < o) (R₀ U : S n)
     (spec : Specification ContSet) {x u : ℕ → Vec ℝ n}
     (traj : sys.Trajectory R₀ U x u) (k : ℕ)
-    (h : spec.Holds (construct (sys.reach o ho R₀ U k))) : spec.Holds {x k} :=
+    (h : spec.Holds (construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩))) : spec.Holds {x k} :=
   spec.holds_of_outer (Set.singleton_subset_iff.mpr (sys.reach_outer ho R₀ U traj k)) h
 
 end CORALean

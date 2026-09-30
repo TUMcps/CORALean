@@ -25,7 +25,7 @@ reason: `plus` and `reduce` cost what a representation makes them cost.
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -49,7 +49,7 @@ noncomputable def NonlinearSysDT.reachCost (sys : NonlinearSysDT n m)
   | k + 1 =>
       sys.reachCost o ho steps R₀ k
         + (NonlinearSysDT.linearize (steps k).A).reachCost o ho
-            (sys.reach (S := 𝒵) o ho steps R₀ k) (steps k).linInput 1
+            (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps) (steps k).linInput 1
 
 end CORALean
 

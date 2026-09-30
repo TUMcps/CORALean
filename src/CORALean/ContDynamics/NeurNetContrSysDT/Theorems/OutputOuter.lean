@@ -15,7 +15,7 @@ already notes at the state.
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -37,7 +37,8 @@ theorem NeurNetContrSysDT.output_outer (sys : NeurNetContrSysDT 𝕋 S n)
     (hπ : sys.contr.Sound π) {x : ℕ → Vec ℝ n}
     (traj : sys.Trajectory π R₀ x) (k : ℕ) :
     out.eval (x k) (π (x k)) ∈ construct
-      (out.outputSet (sys.reach o ho R₀ k) (sys.contr.enclose (sys.reach o ho R₀ k))) :=
+      (out.outputSet (sys.reach ⟨R₀, 0, k⟩ ⟨o, ho⟩)
+        (sys.contr.enclose (sys.reach ⟨R₀, 0, k⟩ ⟨o, ho⟩))) :=
   out.outputSet_outer _ _ (sys.reach_outer ho R₀ hπ traj k)
     (hπ.enclose_outer _ _ (sys.reach_outer ho R₀ hπ traj k))
 

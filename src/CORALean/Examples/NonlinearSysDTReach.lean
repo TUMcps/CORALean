@@ -23,7 +23,7 @@ over ℝ and `def` would still be `noncomputable`.
 
 -- Authors:       Tobias Ladner
 -- Written:       04-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -99,8 +99,8 @@ in hand. -/
 example (p q r : ℝ) (U R₀ : Interval (Vec ℝ 1)) {o : ℕ} (ho : 0 < o) {x u : ℕ → Vec ℝ 1}
     (traj : Example.quadraticStep.Trajectory (S := fun n => Interval (Vec ℝ n)) R₀ U x u)
     (hR : ∀ k, x k ∈ Example.quadraticRegion p r) (k : ℕ) :
-    x k ∈ construct (Example.quadraticStep.reach (S := fun n => Interval (Vec ℝ n)) o ho
-      (fun _ => Example.quadraticLinStep p q r U) R₀ k) :=
+    x k ∈ construct (Example.quadraticStep.reach (S := fun n => Interval (Vec ℝ n))
+      ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ (fun _ => Example.quadraticLinStep p q r U)) :=
   Example.quadraticStep.reach_outer ho (fun _ => Example.quadraticLinStep p q r U) R₀ traj hR k
 
 /-- The bounded-horizon form, for a run known only up to step `K`. -/
@@ -109,8 +109,8 @@ example (p q r : ℝ) (U R₀ : Interval (Vec ℝ 1)) {o : ℕ} (ho : 0 < o) (K 
     (traj : Example.quadraticStep.TrajectoryOn (S := fun n => Interval (Vec ℝ n))
       R₀ U K x u)
     (hR : ∀ k < K, x k ∈ Example.quadraticRegion p r) (k : ℕ) (hk : k ≤ K) :
-    x k ∈ construct (Example.quadraticStep.reach (S := fun n => Interval (Vec ℝ n)) o ho
-      (fun _ => Example.quadraticLinStep p q r U) R₀ k) :=
+    x k ∈ construct (Example.quadraticStep.reach (S := fun n => Interval (Vec ℝ n))
+      ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ (fun _ => Example.quadraticLinStep p q r U)) :=
   Example.quadraticStep.reach_outer_on ho (fun _ => Example.quadraticLinStep p q r U) R₀ traj hR k
     hk
 

@@ -44,12 +44,13 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 theorem NeurNetContrSysDT.reach_outer (sys : NeurNetContrSysDT 𝕋 S n) {o : ℕ} (ho : 0 < o)
     (R₀ : S n) {π : Vec ℝ n → Vec ℝ n} (hπ : sys.contr.Sound π)
     {x : ℕ → Vec ℝ n} (traj : sys.Trajectory π R₀ x) (k : ℕ) :
-    x k ∈ construct (sys.reach o ho R₀ k) := by -- --- PROOF ---
+    x k ∈ construct (sys.reach ⟨R₀, 0, k⟩ ⟨o, ho⟩) := by -- --- PROOF ---
   induction k with
   | zero => exact traj.init
   | succ k ih =>
     show x (k + 1) ∈ construct (sys.plant.reach
-      ⟨sys.reach o ho R₀ k, sys.contr.enclose (sys.reach o ho R₀ k), 0, 1⟩ ⟨o, ho⟩)
+      ⟨sys.reach ⟨R₀, 0, k⟩ ⟨o, ho⟩, sys.contr.enclose (sys.reach ⟨R₀, 0, k⟩ ⟨o, ho⟩), 0, 1⟩
+        ⟨o, ho⟩)
     rw [traj.step k]
     exact sys.plant.reach_one_outer ho _ _ ih (hπ.enclose_outer _ _ ih)
 

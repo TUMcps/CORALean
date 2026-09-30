@@ -1,3 +1,4 @@
+import CORALean.ContDynamics.NeurNetContrSysDT.Definitions.ReachOptions
 import CORALean.ContDynamics.NeurNetContrSysDT.Definitions.ReachParams
 import CORALean.ContDynamics.NeurNetContrSysDT.Definitions.ReachSet
 import CORALean.ContDynamics.NeurNetContrSysDT.Definitions.ReachUnionExact

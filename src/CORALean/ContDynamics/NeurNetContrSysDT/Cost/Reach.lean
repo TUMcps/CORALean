@@ -25,7 +25,7 @@ gives, an activation layer's relaxation being free to grow it.
 
 -- Authors:       Tobias Ladner
 -- Written:       23-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -48,11 +48,11 @@ noncomputable def NeurNetContrSysDT.reachCost (sys : NeurNetContrSysDT ℝ 𝒵 
   | k + 1 =>
       sys.reachCost o ho R₀ LC k
         + (NeuralNetwork.encloseCost LC sys.contr
-            + (Zonotope.mtimesCost n n (sys.reach (S := 𝒵) o ho R₀ k).h
+            + (Zonotope.mtimesCost n n (sys.reach (S := 𝒵) ⟨R₀, 0, k⟩ ⟨o, ho⟩).h
                 + Zonotope.plusCost n
                 + Zonotope.reduceGirardCost n
-                    ((sys.reach (S := 𝒵) o ho R₀ k).h
-                      + (sys.contr.enclose (sys.reach (S := 𝒵) o ho R₀ k)).h)))
+                    ((sys.reach (S := 𝒵) ⟨R₀, 0, k⟩ ⟨o, ho⟩).h
+                      + (sys.contr.enclose (sys.reach (S := 𝒵) ⟨R₀, 0, k⟩ ⟨o, ho⟩)).h)))
 
 /-- The same costs at a step's worst case: `o * n` generators reaching the
 `mtimes`, and `hEnc` a bound on what the controller's enclosure carries into

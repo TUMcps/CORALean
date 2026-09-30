@@ -11,7 +11,7 @@ reason `LinearSysDT`'s pair exists — `C` is in general not invertible.
 
 -- Authors:       Tobias Ladner
 -- Written:       06-September-2026
--- Last update:   24-September-2026
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -34,7 +34,7 @@ variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ r)]
 theorem LinParamSysDT.holds_of_output (sys : LinParamSysDT 𝕄 n) (out : OutputEq 𝕋 n n r) {o : ℕ}
     (ho : 0 < o) (R₀ U : S n) (spec : Specification ContSet) {x u : ℕ → Vec ℝ n}
     (traj : sys.Trajectory R₀ U x u) (k : ℕ)
-    (h : spec.Holds (construct (out.outputSet (sys.reach o ho R₀ U k) U))) :
+    (h : spec.Holds (construct (out.outputSet (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) U))) :
     spec.Holds {out.eval (x k) (u k)} :=
   spec.holds_of_outer
     (Set.singleton_subset_iff.mpr (sys.output_outer out ho R₀ U traj k)) h
