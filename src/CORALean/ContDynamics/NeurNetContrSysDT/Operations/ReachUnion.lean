@@ -11,7 +11,7 @@ the `Reach.reach` field of the instance, computable wherever `reach` is.
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -32,7 +32,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 `X₀`. -/
 def NeurNetContrSysDT.reachUnion (sys : NeurNetContrSysDT 𝕋 S n)
     (p : NeurNetContrSysDT.ReachParams) (X₀ : S n) : SetUnion (S n) :=
-  ⟨(List.range (p.K + 1)).map (fun k => sys.reach p.o p.ho X₀ k)⟩
+  ⟨(List.range (p.K + 1)).map (fun k => sys.reach ⟨X₀, 0, k⟩ ⟨p.o, p.ho⟩)⟩
 
 end CORALean
 

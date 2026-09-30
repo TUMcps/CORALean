@@ -26,7 +26,7 @@ restriction of this rather than a second statement.
 
 -- Authors:       Tobias Ladner
 -- Written:       12-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -56,7 +56,7 @@ theorem LinParamSys.ConstTrajectory.discretizeEnclosure_mem_reach {sys : LinPara
     (hUd : ∀ k : ℕ, (LinearSys.mk A : LinearSys ℝ n).stepInput u Δt k ∈ construct Ud)
     (hε : ‖(Interval.smul Δt sys.A).absMax‖ / ((η : ℝ) + 2) < 1)
     {o : ℕ} (ho : 0 < o) (k : ℕ) :
-    x (k * Δt) ∈ construct ((sys.discretizeEnclosure Δt η).reach o ho R₀ Ud k) :=
+    x (k * Δt) ∈ construct ((sys.discretizeEnclosure Δt η).reach ⟨R₀, Ud, 0, k⟩ ⟨o, ho⟩) :=
   (sys.discretizeEnclosure Δt η).reach_outer ho R₀ Ud
     (traj.discretizeEnclosure hΔt hT hU hUd hε) k
 

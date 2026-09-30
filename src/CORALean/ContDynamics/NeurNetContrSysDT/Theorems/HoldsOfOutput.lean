@@ -11,7 +11,7 @@ than the state, and for the same reason there — `C` in general not invertible.
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   24-September-2026
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -33,8 +33,8 @@ theorem NeurNetContrSysDT.holds_of_output (sys : NeurNetContrSysDT 𝕋 S n)
     (out : OutputEq 𝕋 n n r) {o : ℕ} (ho : 0 < o) (R₀ : S n) (spec : Specification ContSet)
     {π : Vec ℝ n → Vec ℝ n} (hπ : sys.contr.Sound π)
     {x : ℕ → Vec ℝ n} (traj : sys.Trajectory π R₀ x) (k : ℕ)
-    (h : spec.Holds (construct (out.outputSet (sys.reach o ho R₀ k)
-      (sys.contr.enclose (sys.reach o ho R₀ k))))) :
+    (h : spec.Holds (construct (out.outputSet (sys.reach ⟨R₀, 0, k⟩ ⟨o, ho⟩)
+      (sys.contr.enclose (sys.reach ⟨R₀, 0, k⟩ ⟨o, ho⟩))))) :
     spec.Holds {out.eval (x k) (π (x k))} :=
   spec.holds_of_outer
     (Set.singleton_subset_iff.mpr (sys.output_outer out ho R₀ hπ traj k)) h

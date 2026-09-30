@@ -12,7 +12,7 @@ there.
 
 -- Authors:       Tobias Ladner
 -- Written:       06-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -34,7 +34,7 @@ theorem NonlinearSysDT.simulate_mem_reach (sys : NonlinearSysDT n m) {U : S m} {
     (ho : 0 < o) (steps : ℕ → sys.LinStep U) (R₀ : S n) {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ construct R₀)
     {u : ℕ → Vec ℝ m} (hu : ∀ k, u k ∈ construct U)
     (hR : ∀ k, sys.simulate x₀ u k ∈ (steps k).R) (k : ℕ) :
-    sys.simulate x₀ u k ∈ construct (sys.reach o ho steps R₀ k) :=
+    sys.simulate x₀ u k ∈ construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps) :=
   sys.reach_outer ho steps R₀ (sys.simulate_trajectory hx₀ hu) hR k
 
 end CORALean

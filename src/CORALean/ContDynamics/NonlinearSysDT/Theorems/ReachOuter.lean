@@ -9,7 +9,7 @@ The total case of `reach_outer_on`, `K := k` and `le_rfl` away via
 
 -- Authors:       Tobias Ladner
 -- Written:       04-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -45,7 +45,7 @@ theorem NonlinearSysDT.Trajectory.aux_toTrajectoryOn {sys : NonlinearSysDT n m} 
 theorem NonlinearSysDT.reach_outer (sys : NonlinearSysDT n m) {U : S m} {o : ℕ} (ho : 0 < o)
     (steps : ℕ → sys.LinStep U) (R₀ : S n) {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ m}
     (traj : sys.Trajectory R₀ U x u) (hR : ∀ k, x k ∈ (steps k).R) (k : ℕ) :
-    x k ∈ construct (sys.reach o ho steps R₀ k) :=
+    x k ∈ construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps) :=
   sys.reach_outer_on ho steps R₀ (traj.aux_toTrajectoryOn k) (fun i _ => hR i) k le_rfl
 
 end CORALean

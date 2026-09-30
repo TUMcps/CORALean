@@ -138,19 +138,19 @@ def Example.closedLoopFloat (A : Mat 𝕋 2 2) (W₁ : Mat 𝕋 3 2) (b₁ : Vec
 
 def Example.reachClosedLoopFloat (sys : NeurNetContrSysDT 𝕋 (Zonotope 𝕋) n)
     (o : ℕ) (ho : 0 < o) (R₀ : Zonotope 𝕋 n) (k : ℕ) : Zonotope 𝕋 n :=
-  sys.reach o ho R₀ k
+  sys.reach ⟨R₀, 0, k⟩ ⟨o, ho⟩
 
 example (sys : NeurNetContrSysDT 𝕋 (Zonotope 𝕋) n) {o : ℕ} (ho : 0 < o)
     (R₀ : Zonotope 𝕋 n) {π : Vec ℝ n → Vec ℝ n} (hπ : sys.contr.Sound π)
     {x : ℕ → Vec ℝ n} (traj : sys.Trajectory π R₀ x) (k : ℕ) :
-    x k ∈ construct (sys.reach o ho R₀ k) :=
+    x k ∈ construct (sys.reach ⟨R₀, 0, k⟩ ⟨o, ho⟩) :=
   sys.reach_outer ho R₀ hπ traj k
 
 /-- A box safe set checked on the closed loop's computed zonotope. -/
 example (sys : NeurNetContrSysDT 𝕋 (Zonotope 𝕋) n) {o : ℕ} (ho : 0 < o)
     (R₀ : Zonotope 𝕋 n) (spec : Specification (Interval (Vec 𝕋 n))) {π : Vec ℝ n → Vec ℝ n}
     (hπ : sys.contr.Sound π) {x : ℕ → Vec ℝ n} (traj : sys.Trajectory π R₀ x) (k : ℕ) :
-    spec.check (sys.reach o ho R₀ k) → (spec.Holds {x k}) :=
+    spec.check (sys.reach ⟨R₀, 0, k⟩ ⟨o, ho⟩) → (spec.Holds {x k}) :=
   sys.holds_of_check ho R₀ spec hπ traj k
 
 /-! ## A hybrid automaton

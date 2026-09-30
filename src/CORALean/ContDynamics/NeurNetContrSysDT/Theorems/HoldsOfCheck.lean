@@ -11,7 +11,7 @@ evaluation, is the specification on the exact state, with nothing left to prove 
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -33,7 +33,7 @@ theorem NeurNetContrSysDT.holds_of_check [Contains ContSet (S n)] [IsDisjoint Co
     (sys : NeurNetContrSysDT 𝕋 S n) {o : ℕ} (ho : 0 < o) (R₀ : S n)
     (spec : Specification ContSet) {π : Vec ℝ n → Vec ℝ n} (hπ : sys.contr.Sound π)
     {x : ℕ → Vec ℝ n} (traj : sys.Trajectory π R₀ x) (k : ℕ) :
-    spec.check (sys.reach o ho R₀ k) → (spec.Holds {x k}) :=
+    spec.check (sys.reach ⟨R₀, 0, k⟩ ⟨o, ho⟩) → (spec.Holds {x k}) :=
   fun h => sys.holds_of_reach ho R₀ spec hπ traj k (spec.check_sound _ h)
 
 end CORALean

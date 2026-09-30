@@ -12,7 +12,7 @@ each step's image at every `A ∈ construct sys.sys.A`, plus every input in
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -32,14 +32,15 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 theorem LinParamSysDT.WithInput.reachSetOfInit_subset_reach (sys : LinParamSysDT.WithInput 𝕄 S n)
     (p : LinParamSysDT.ReachParams) (R₀ : S n) (k : ℕ) :
     sys.reachSetOfInit (construct R₀) k
-      ⊆ construct (sys.sys.reach p.o p.ho R₀ sys.U k) := by -- --- PROOF ---
+      ⊆ construct (sys.sys.reach ⟨R₀, sys.U, 0, k⟩ ⟨p.o, p.ho⟩) := by -- --- PROOF ---
   induction k with
   | zero => exact subset_rfl
   | succ k ih =>
     rintro _ ⟨z, hz, w, hw, rfl⟩
     obtain ⟨A, hA, y, hy, rfl⟩ := Set.mem_iUnion₂.mp hz
     show A *ᵥ y + w ∈
-      construct (sys.sys.reach p.o p.ho (sys.sys.reach p.o p.ho R₀ sys.U k) sys.U 1)
+      construct (sys.sys.reach ⟨sys.sys.reach ⟨R₀, sys.U, 0, k⟩ ⟨p.o, p.ho⟩, sys.U, 0, 1⟩
+        ⟨p.o, p.ho⟩)
     exact sys.sys.reach_one_outer p.ho _ _ hA (ih hy) hw
 
 end CORALean

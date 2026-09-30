@@ -12,7 +12,7 @@ The trajectory still owes `hR`, staying where each step's linearization was cert
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -35,7 +35,7 @@ theorem NonlinearSysDT.holds_of_check [Contains ContSet (S n)] [IsDisjoint ContS
     (sys : NonlinearSysDT n m) {U : S m} {o : ℕ} (ho : 0 < o) (steps : ℕ → sys.LinStep U)
     (R₀ : S n) (spec : Specification ContSet) {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ m}
     (traj : sys.Trajectory R₀ U x u) (hR : ∀ k, x k ∈ (steps k).R) (k : ℕ) :
-    spec.check (sys.reach o ho steps R₀ k) → (spec.Holds {x k}) :=
+    spec.check (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps) → (spec.Holds {x k}) :=
   fun h => sys.holds_of_reach ho steps R₀ spec traj hR k (spec.check_sound _ h)
 
 end CORALean

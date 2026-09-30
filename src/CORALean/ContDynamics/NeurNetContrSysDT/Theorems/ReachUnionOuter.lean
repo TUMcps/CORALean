@@ -14,7 +14,7 @@ step, and every step lands in its own branch of the `SetUnion`.
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -36,7 +36,7 @@ theorem NeurNetContrSysDT.reachUnion_outer (sys : NeurNetContrSysDT 𝕋 S n)
     sys.reachUnionExact p (construct X₀) ⊆ construct (sys.reachUnion p X₀) := by -- --- PROOF ---
   intro y hy
   obtain ⟨k, hk, x₀, hx₀, rfl⟩ := Set.mem_iUnion₂.mp hy
-  refine SetUnion.mem_construct.mpr ⟨sys.reach p.o p.ho X₀ k, ?_,
+  refine SetUnion.mem_construct.mpr ⟨sys.reach ⟨X₀, 0, k⟩ ⟨p.o, p.ho⟩, ?_,
     sys.reach_outer p.ho X₀ sys.contr.sound_eval (sys.trajectory_iterate _ hx₀) k⟩
   exact List.mem_map_of_mem (List.mem_range.mpr (Nat.lt_succ_of_le hk))
 

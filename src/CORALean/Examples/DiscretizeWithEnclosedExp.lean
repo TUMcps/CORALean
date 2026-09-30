@@ -19,7 +19,7 @@ against.
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   24-September-2026
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -67,13 +67,14 @@ theorem Example.traj : Example.sysD.Trajectory (S := ℐ𝒱) Example.R0 Example
 
 /-- `reach_outer`, at the interval matrix `discretizeEnclosure` produced. -/
 example {o : ℕ} (ho : 0 < o) (k : ℕ) :
-    Example.x0 ∈ construct (Example.sysD.reach (S := ℐ𝒱) o ho Example.R0 Example.U k) :=
+    Example.x0 ∈ construct (Example.sysD.reach (S := ℐ𝒱) ⟨Example.R0, Example.U, 0, k⟩ ⟨o, ho⟩) :=
   Example.sysD.reach_outer (S := ℐ𝒱) ho Example.R0 Example.U Example.traj k
 
 /-- `holds_of_reach`, closing the chain at whatever specification the caller
 checks the computed reachable set against. -/
 example (spec : Specification (Set (Vec ℝ 1))) {o : ℕ} (ho : 0 < o) (k : ℕ)
-    (h : spec.Holds (construct (Example.sysD.reach (S := ℐ𝒱) o ho Example.R0 Example.U k))) :
+    (h : spec.Holds
+      (construct (Example.sysD.reach (S := ℐ𝒱) ⟨Example.R0, Example.U, 0, k⟩ ⟨o, ho⟩))) :
     spec.Holds {Example.x0} :=
   Example.sysD.holds_of_reach (S := ℐ𝒱) ho Example.R0 Example.U spec Example.traj k h
 

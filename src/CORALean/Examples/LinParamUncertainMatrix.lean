@@ -19,7 +19,7 @@ each representation, with no line of `reach` itself touched.
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -78,13 +78,15 @@ theorem Example.trajZ : Example.sysZ.Trajectory (S := 𝒵) Example.lpR0 Example
 
 /-- `reach_outer`, unchanged, at the interval matrix. -/
 example {o : ℕ} (ho : 0 < o) (k : ℕ) :
-    Example.lpX0 ∈ construct (Example.sysI.reach (S := 𝒵) o ho Example.lpR0 Example.lpU k) :=
+    Example.lpX0 ∈
+      construct (Example.sysI.reach (S := 𝒵) ⟨Example.lpR0, Example.lpU, 0, k⟩ ⟨o, ho⟩) :=
   Example.sysI.reach_outer (S := 𝒵) ho Example.lpR0 Example.lpU Example.trajI k
 
 /-- `reach_outer`, unchanged, at the matrix zonotope — the strictly tighter
 model, since it keeps the correlation an interval matrix throws away. -/
 example {o : ℕ} (ho : 0 < o) (k : ℕ) :
-    Example.lpX0 ∈ construct (Example.sysZ.reach (S := 𝒵) o ho Example.lpR0 Example.lpU k) :=
+    Example.lpX0 ∈
+      construct (Example.sysZ.reach (S := 𝒵) ⟨Example.lpR0, Example.lpU, 0, k⟩ ⟨o, ho⟩) :=
   Example.sysZ.reach_outer (S := 𝒵) ho Example.lpR0 Example.lpU Example.trajZ k
 
 end CORALean.Real

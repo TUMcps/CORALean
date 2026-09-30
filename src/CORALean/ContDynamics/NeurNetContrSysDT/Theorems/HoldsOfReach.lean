@@ -15,7 +15,7 @@ this at each `k`.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   24-September-2026
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -36,7 +36,7 @@ variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
 theorem NeurNetContrSysDT.holds_of_reach (sys : NeurNetContrSysDT 𝕋 S n) {o : ℕ} (ho : 0 < o)
     (R₀ : S n) (spec : Specification ContSet) {π : Vec ℝ n → Vec ℝ n} (hπ : sys.contr.Sound π)
     {x : ℕ → Vec ℝ n} (traj : sys.Trajectory π R₀ x) (k : ℕ)
-    (h : spec.Holds (construct (sys.reach o ho R₀ k))) : spec.Holds {x k} :=
+    (h : spec.Holds (construct (sys.reach ⟨R₀, 0, k⟩ ⟨o, ho⟩))) : spec.Holds {x k} :=
   spec.holds_of_outer (Set.singleton_subset_iff.mpr (sys.reach_outer ho R₀ hπ traj k)) h
 
 end CORALean

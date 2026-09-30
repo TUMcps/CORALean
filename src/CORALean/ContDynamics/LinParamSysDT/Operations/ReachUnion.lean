@@ -13,7 +13,7 @@ The steps `0` through `p.K` of `sys.sys.reach`, one per branch of the
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -34,7 +34,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 `X₀` and the paired input `sys.U`. -/
 def LinParamSysDT.WithInput.reachUnion (sys : LinParamSysDT.WithInput 𝕄 S n)
     (p : LinParamSysDT.ReachParams) (X₀ : S n) : SetUnion (S n) :=
-  ⟨(List.range (p.K + 1)).map (fun k => sys.sys.reach p.o p.ho X₀ sys.U k)⟩
+  ⟨(List.range (p.K + 1)).map (fun k => sys.sys.reach ⟨X₀, sys.U, 0, k⟩ ⟨p.o, p.ho⟩)⟩
 
 end CORALean
 

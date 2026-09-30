@@ -12,7 +12,7 @@ tests at run time: the set step `K` ends in starts no step of the horizon.
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -34,7 +34,7 @@ variable [Mtimes (Mat ℝ) S] [Real.OfInterval S]
 set lying inside that step's certified region. -/
 theorem NonlinearSysDT.confinement_of_subset_on (sys : NonlinearSysDT n m) {U : S m} {o : ℕ}
     (ho : 0 < o) (steps : ℕ → sys.LinStep U) (R₀ : S n) {K : ℕ}
-    (hsub : ∀ k < K, construct (sys.reach o ho steps R₀ k) ⊆ (steps k).R)
+    (hsub : ∀ k < K, construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps) ⊆ (steps k).R)
     {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ m} (traj : sys.TrajectoryOn R₀ U K x u) :
     ∀ k < K, x k ∈ (steps k).R := by -- --- PROOF ---
   intro k

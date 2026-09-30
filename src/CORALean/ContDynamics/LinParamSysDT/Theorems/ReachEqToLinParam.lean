@@ -35,11 +35,12 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 
 theorem LinearSysDT.reach_eq_toLinParam (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o)
     (R₀ U : S n) (k : ℕ) :
-    sys.toLinParam.reach o ho R₀ U k = sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ := by -- --- PROOF ---
+    sys.toLinParam.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ =
+      sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ := by -- --- PROOF ---
   induction k with
   | zero => rfl
   | succ k ih =>
-    show reduce (plus (mtimes sys.toLinParam.A (sys.toLinParam.reach o ho R₀ U k)) U) o =
+    show reduce (plus (mtimes sys.toLinParam.A (sys.toLinParam.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)) U) o =
       reduce (plus (mtimes sys.A (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)) U) o
     rw [ih]
     rfl

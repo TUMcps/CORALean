@@ -12,7 +12,7 @@ branch of the `SetUnion`.
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -34,7 +34,7 @@ theorem LinParamSysDT.WithInput.reachUnion_outer (sys : LinParamSysDT.WithInput 
     sys.reachUnionExact p (construct X₀) ⊆ construct (sys.reachUnion p X₀) := by -- --- PROOF ---
   intro y hy
   obtain ⟨k, hk, hy⟩ := Set.mem_iUnion₂.mp hy
-  refine SetUnion.mem_construct.mpr ⟨sys.sys.reach p.o p.ho X₀ sys.U k, ?_,
+  refine SetUnion.mem_construct.mpr ⟨sys.sys.reach ⟨X₀, sys.U, 0, k⟩ ⟨p.o, p.ho⟩, ?_,
     sys.reachSetOfInit_subset_reach p X₀ k hy⟩
   exact List.mem_map_of_mem (List.mem_range.mpr (Nat.lt_succ_of_le hk))
 

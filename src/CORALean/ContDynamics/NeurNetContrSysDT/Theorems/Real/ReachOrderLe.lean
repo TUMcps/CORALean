@@ -14,7 +14,7 @@ output size. No induction, and the controller's enclosure never enters.
 
 -- Authors:       Tobias Ladner
 -- Written:       23-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -34,7 +34,7 @@ generators, at `S := 𝒵`: unfold one step of `reach` and `reduce_order_le`
 bounds what it ends in. -/
 theorem NeurNetContrSysDT.reach_order_le (sys : NeurNetContrSysDT ℝ 𝒵 n) {o : ℕ} (ho : 0 < o)
     (R₀ : Zonotope (Vec ℝ n)) (k : ℕ) :
-    (sys.reach (S := 𝒵) o ho R₀ (k + 1)).h ≤ o * n :=
+    (sys.reach (S := 𝒵) ⟨R₀, 0, k + 1⟩ ⟨o, ho⟩).h ≤ o * n :=
   Zonotope.reduce_order_le _ ho
 
 end CORALean

@@ -1,6 +1,8 @@
 import CORALean.ContDynamics.LinearSysDT.Operations.Reach
+import CORALean.ContDynamics.NonlinearSysDT.Definitions.ReachOptions
 import CORALean.ContDynamics.NonlinearSysDT.Operations.LinInput
 import CORALean.ContDynamics.NonlinearSysDT.Operations.Linearize
+import CORALean.ContDynamics.Reach.Definitions.InputParams
 
 /-!
 # Reachability of a discrete nonlinear system
@@ -12,11 +14,14 @@ the next. Unlike `NonlinearSys.relinReach` there is no `discretize` and no
 `Δt`: the matrix a step's certificate is issued for is already the discrete
 system's own, so nothing converts it.
 
-`Ud` is not a parameter, unlike `LinearSysDT.reach`'s `U`: the discrete step
-needs no more than `linInput`, so there is nothing for a caller to name beyond
-the linearization itself — the discrete analogue of `NonlinearSys
-.reach_outer_inputSolution`, folded into the definition rather than proved
-separately, since here the "solution" is one evaluation, not an integral.
+Time is counted in sampling periods (`ℕ`), as in `LinearSysDT.reach`, and step `i`
+is the `i`-th after `tStart`. `steps` stays positional, unlike CORA, which
+computes the linearizations inside `reach`: here they are certificates a caller
+supplies.
+
+`params.U` is the input set the linearizations `steps` are issued for; the
+discrete step itself needs no more than `linInput`, the discrete analogue of
+`NonlinearSys.reach_outer_inputSolution`, folded into the definition.
 -/
 
 -- Authors:       Tobias Ladner
@@ -37,14 +42,15 @@ variable [Mtimes (Mat ℝ) S] [Real.OfInterval S]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The reachable set after `k` re-linearized steps, from `R₀` under the
-per-step linearizations `steps`, held at maximum order `o`. `ho` is what rules
-out `o = 0`. -/
-def NonlinearSysDT.reach (sys : NonlinearSysDT n m) {U : S m} (o : ℕ) (ho : 0 < o)
-    (steps : ℕ → sys.LinStep U) (R₀ : S n) : ℕ → S n
-  | 0 => R₀
-  | k + 1 => (NonlinearSysDT.linearize (steps k).A).reach
-      ⟨sys.reach o ho steps R₀ k, (steps k).linInput, 0, 1⟩ ⟨o, ho⟩
+/-- The reachable set at time `tFinal`, from `R₀` at `tStart` under the per-step
+linearizations `steps`, held at maximum order `zonotopeOrder`. -/
+def NonlinearSysDT.reach (sys : NonlinearSysDT n m) (params : Reach.InputParams (S n) (S m) ℕ)
+    (options : NonlinearSysDT.ReachOptions) (steps : ℕ → sys.LinStep params.U) : S n :=
+  let R₀ := params.R0                                               -- the paper's symbols
+  let N := params.tFinal - params.tStart                           -- steps, in sampling periods
+  let step := fun (i : ℕ) (R : S n) => (NonlinearSysDT.linearize (steps i).A).reach
+    ⟨R, (steps i).linInput, 0, 1⟩ ⟨options.zonotopeOrder, options.hZonotopeOrder⟩
+  Nat.fold N (fun i _ R => step i R) R₀                            -- R_N
 
 end CORALean
 

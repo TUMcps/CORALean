@@ -45,7 +45,7 @@ every step within it, confined to each step's own certified region. -/
 theorem NonlinearSysDT.reach_outer_on (sys : NonlinearSysDT n m) {U : S m} {o : ℕ} (ho : 0 < o)
     (steps : ℕ → sys.LinStep U) (R₀ : S n) {K : ℕ} {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ m}
     (traj : sys.TrajectoryOn R₀ U K x u) (hR : ∀ k < K, x k ∈ (steps k).R) :
-    ∀ k ≤ K, x k ∈ construct (sys.reach o ho steps R₀ k) := by -- --- PROOF ---
+    ∀ k ≤ K, x k ∈ construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps) := by -- --- PROOF ---
   -- the induction is on the step count, one linearization spent per step
   intro k
   induction k with
@@ -54,13 +54,13 @@ theorem NonlinearSysDT.reach_outer_on (sys : NonlinearSysDT n m) {U : S m} {o : 
     intro hk
     have hkK : k < K := Nat.lt_of_succ_le hk
     show x (k + 1) ∈ construct ((NonlinearSysDT.linearize (steps k).A).reach
-      ⟨sys.reach o ho steps R₀ k, (steps k).linInput, 0, 1⟩ ⟨o, ho⟩)
+      ⟨sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps, (steps k).linInput, 0, 1⟩ ⟨o, ho⟩)
     rw [traj.step k hkK]
     -- the certificate's whole job: `f(x,u) - A x` lies in the widened input
     have hu : sys.f (x k) (u k) - (steps k).A *ᵥ x k ∈ construct (steps k).linInput :=
       linInput_outer (f := sys.f) (steps k).cert (hR k hkK) (traj.input k hkK)
     have key := LinearSysDT.reach_one_outer (NonlinearSysDT.linearize (steps k).A) ho
-      (sys.reach o ho steps R₀ k) (steps k).linInput (ih hkK.le) hu
+      (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps) (steps k).linInput (ih hkK.le) hu
     -- `A x + (f(x,u) - A x)` is `f(x,u)`, so `key` already says what is wanted
     have heq : toRealMat (NonlinearSysDT.linearize (steps k).A).A *ᵥ x k
         + (sys.f (x k) (u k) - (steps k).A *ᵥ x k) = sys.f (x k) (u k) := by

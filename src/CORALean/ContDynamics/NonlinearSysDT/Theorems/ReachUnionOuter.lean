@@ -14,7 +14,7 @@ any run; `none` is where it could not be shown.
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -47,7 +47,7 @@ theorem NonlinearSysDT.WithSteps.reachUnion_outer (sys : NonlinearSysDT.WithStep
     case isTrue hconf =>
       -- every test passed, so each step `k < K` starts inside its certified region
       have hsub : ∀ k < p.K,
-          construct (sys.sys.reach p.o p.ho sys.steps X₀ k) ⊆ (sys.steps k).R :=
+          construct (sys.sys.reach ⟨X₀, sys.U, 0, k⟩ ⟨p.o, p.ho⟩ sys.steps) ⊆ (sys.steps k).R :=
         fun k hk => (Contains.contains_sound _ _
           (List.all_eq_true.mp hconf k (List.mem_range.mpr hk))).trans (sys.region_subset k)
       obtain ⟨k, hk, x, u, traj, rfl⟩ := Set.mem_iUnion₂.mp hy

@@ -15,7 +15,7 @@ is genuinely violated.
 
 -- Authors:       Tobias Ladner
 -- Written:       06-September-2026
--- Last update:   24-September-2026
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -38,7 +38,7 @@ theorem LinParamSysDT.not_holds_of_simulate (sys : LinParamSysDT 𝕄 n) {o : �
     (hA : ∀ k, A k ∈ construct sys.A)
     {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ construct R₀) {u : ℕ → Vec ℝ n} (hu : ∀ k, u k ∈ construct U)
     (k : ℕ) (hbad : ¬ spec.Holds {sys.simulate A x₀ u k}) :
-    ¬ spec.Holds (construct (sys.reach o ho R₀ U k)) :=
+    ¬ spec.Holds (construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)) :=
   fun h => hbad (sys.holds_of_reach ho R₀ U spec (sys.simulate_trajectory hA hx₀ hu) k h)
 
 end CORALean
