@@ -1,5 +1,5 @@
 name = "CORALean"
-defaultTargets = ["CORALean", "Examples", "Demo", "Bench", "BenchFlint", "Oracle"]
+defaultTargets = ["CORALean", "Examples", "Demo", "Bench", "BenchFlint", "Oracle", "HardwareCheck"]
 
 [leanOptions]
 pp.unicode.fun = true
@@ -95,3 +95,17 @@ roots = ["CORALean.Examples.Oracle"]
 name = "oracle"
 srcDir = "src"
 root = "CORALean.Examples.Oracle"
+
+# The empirical check of `TrustedHardware`, the same shape again: a library, in
+# `defaultTargets`, so `lake build` elaborates it for the price of an olean, and an
+# executable for `lake build hardwarecheck` && `lake exe hardwarecheck`. CI links it, because
+# what it tests is the C lake emits, which `lake env lean --run` (precompiled primitives) does not.
+[[lean_lib]]
+name = "HardwareCheck"
+srcDir = "src"
+roots = ["CORALean.Examples.HardwareCheck"]
+
+[[lean_exe]]
+name = "hardwarecheck"
+srcDir = "src"
+root = "CORALean.Examples.HardwareCheck"

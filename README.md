@@ -76,6 +76,22 @@ return a **subset**, and `MinkDiff` accordingly owes an inner approximation. Its
 float counterpart rounds inward, the only operation in that layer which does.
 
 
+## Testing the hardware axiom
+
+`TrustedHardware` is trusted, not proved, so `lake exe hardwarecheck [--seed N] [--n N]` samples it:
+every native operation (`addUp`, `mulUp`, `divUp` and their `Down`s, `half`, `neg`, `minimum`,
+`maximum`, `≤`, the literals `0.0` and `1.0`) is compared, exactly, with the axiom-free `IEEE .binary64`
+on random bit patterns and structured inputs (zeros, subnormals, both ends of the range, ties,
+cancellation, `1 ± ulp`, operands about `2 ^ 53` apart), and must return NaN exactly outside the
+normal range. It checks the soundness bound and that the step is no more than one. It prints the first
+failing input per operation and exits `1` on a violation. This is a **sample**, not a proof, and
+covers the machine and compiler it runs on: CI runs it linked, on Linux, as
+`lake build hardwarecheck && .lake/build/bin/hardwarecheck`. Linking is what makes it test the C lake
+emits from our definitions; `lake env lean --run src/CORALean/Examples/HardwareCheck.lean` runs the
+toolchain's precompiled primitives instead. Not covered: NaN inputs, where `toReal (-a) = -toReal a` and
+the other conjuncts are false as stated (Lean's `toBits` reports every NaN as one pattern), and other
+platforms or compilers.
+
 ## FLINT backend (optional)
 
 A third scalar, `Flint p` (`Global/Float/Instances/Flint/`): the same
