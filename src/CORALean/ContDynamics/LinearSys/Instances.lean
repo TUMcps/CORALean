@@ -33,7 +33,7 @@ named `def` rather than an `instance` so resolution stays unambiguous.
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   24-September-2026
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -53,10 +53,12 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
 noncomputable instance LinearSys.reachInstance : Reach (LinearSys 𝕋) LinearSys.ReachParams S where
   reachExact sys p X₀ := sys.reachExact p.tFinal X₀
-  reach sys p X₀ := if 0 < p.tFinal then some (sys.reachAdmissible p.tFinal p.Δt p.η X₀) else none
+  reach sys p X₀ :=
+    if 0 < p.tFinal then some (sys.reachAdmissible ⟨X₀, 0, p.tFinal⟩ ⟨p.Δt, p.η⟩) else none
   reach_outer sys p X₀ := by
     split_ifs with h
-    · exact sys.reachAdmissible_outer h p.hΔt p.η X₀
+    · simpa using sys.reachAdmissible_outer (params := ⟨X₀, 0, p.tFinal⟩)
+        (options := ⟨p.Δt, p.η⟩) (by simpa using h) p.hΔt
     · trivial
 
 /-- Kept as a named `def` rather than an `instance`, so instance resolution stays
@@ -64,23 +66,33 @@ unambiguous between it and `LinearSys.reachInstance`. -/
 @[reducible] noncomputable def LinearSys.reachWrappingFreeInstance :
     Reach (LinearSys 𝕋) LinearSys.ReachParams S where
   reachExact sys p X₀ := sys.reachExact p.tFinal X₀
-  reach sys p X₀ := some (sys.reachWrappingFree p.tFinal p.Δt p.η X₀)
-  reach_outer sys p X₀ := sys.reachWrappingFree_outer p.hΔt X₀
+  -- the horizon `[0, tFinal]` as params, the window and order as options
+  reach sys p X₀ := some (sys.reachWrappingFree ⟨X₀, 0, p.tFinal⟩ ⟨p.Δt, p.η⟩)
+  reach_outer sys p X₀ := by
+    -- the params' horizon is `tFinal - 0`
+    simpa using sys.reachWrappingFree_outer (params := ⟨X₀, 0, p.tFinal⟩)
+      (options := ⟨p.Δt, p.η⟩) p.hΔt
 
 noncomputable instance LinearSys.WithInput.reachInstance
     [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ n)] :
     Reach (LinearSys.WithInput 𝕋 S) LinearSys.ReachParams S where
   reachExact sys p X₀ := sys.reachExact p.tFinal X₀
-  reach sys p X₀ := some (sys.reach p.tFinal p.Δt p.η X₀)
-  reach_outer sys p X₀ := sys.reach_outer p.hΔt X₀
+  reach sys p X₀ := some (sys.reach ⟨X₀, 0, p.tFinal⟩ ⟨p.Δt, p.η⟩)
+  reach_outer sys p X₀ := by
+    -- the params' horizon is `tFinal - 0`
+    simpa using sys.reach_outer (params := ⟨X₀, 0, p.tFinal⟩)
+      (options := ⟨p.Δt, p.η⟩) p.hΔt
 
 noncomputable instance LinearSys.WithInputSplit.reachInstance
     [∀ n, OfPoint (S n) (Vec ℝ n)] [∀ n, Recentre (S n) (Vec ℝ n)]
     [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ n)] :
     Reach (LinearSys.WithInputSplit 𝕋 S) LinearSys.ReachParams S where
   reachExact sys p X₀ := sys.reachExact p.tFinal X₀
-  reach sys p X₀ := some (sys.reach p.tFinal p.Δt p.η X₀)
-  reach_outer sys p X₀ := sys.reach_outer p.hΔt X₀
+  reach sys p X₀ := some (sys.reach ⟨X₀, 0, p.tFinal⟩ ⟨p.Δt, p.η⟩)
+  reach_outer sys p X₀ := by
+    -- the params' horizon is `tFinal - 0`
+    simpa using sys.reach_outer (params := ⟨X₀, 0, p.tFinal⟩)
+      (options := ⟨p.Δt, p.η⟩) p.hΔt
 
 end CORALean
 

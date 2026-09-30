@@ -14,7 +14,7 @@ reaches this one at `LinearSys`, `reachInstance` now running the same recursive 
 
 -- Authors:       Tobias Ladner
 -- Written:       27-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -38,13 +38,14 @@ variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.holds_of_check [Contains ContSet (SetUnion (S n))]
-    [IsDisjoint ContSet (SetUnion (S n))] (sys : LinearSys 𝕋 n) {tFinal Δt : ℝ}
-    (htFinal : 0 < tFinal) (hΔt : 0 < Δt) {η : ℕ} (hη : 2 ≤ η)
-    (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) (X₀ : S n)
+    [IsDisjoint ContSet (SetUnion (S n))] (sys : LinearSys 𝕋 n) {params : Reach.Params (S n) ℝ}
+    {options : LinearSys.ReachStepOptions ℝ} (htFinal : 0 < params.tFinal - params.tStart)
+    (hΔt : 0 < options.timeStep) (hη : 2 ≤ options.taylorTerms)
+    (hε : ‖options.timeStep • toRealMat sys.A‖ / ((options.taylorTerms : ℝ) + 2) < 1)
     (spec : Specification ContSet) :
-    spec.check (sys.reach tFinal Δt η X₀) →
-    (spec.Holds (sys.reachExact tFinal (construct X₀))) :=
-  fun h => spec.holds_of_outer (sys.reach_outer htFinal hΔt hη hε X₀) (spec.check_sound _ h)
+    spec.check (sys.reach params options) →
+    (spec.Holds (sys.reachExact (params.tFinal - params.tStart) (construct params.R0))) :=
+  fun h => spec.holds_of_outer (sys.reach_outer htFinal hΔt hη hε) (spec.check_sound _ h)
 
 end CORALean
 

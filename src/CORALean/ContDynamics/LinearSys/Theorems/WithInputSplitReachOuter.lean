@@ -31,7 +31,7 @@ in `P^R_Ũ(t_{k+1})`, `0 ∈ Ũ` being `Recentre`'s.
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -57,12 +57,18 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 
 -- the window's five summands, each elaborating a `Mtimes` instance at `Mat ℝ` or `ℐ`
 set_option maxHeartbeats 1000000 in
-/-- Every state a run on `[0, tFinal]` from `X₀`, under inputs in `sys.U`
-wherever it sits, reaches is in one of `reach`'s windows. -/
+/-- Every state a run on `[0, tFinal - tStart]` from `X₀ = params.R0`, under inputs in
+`sys.U` wherever it sits, reaches is in one of `reach`'s windows. -/
 theorem LinearSys.WithInputSplit.reach_outer (sys : LinearSys.WithInputSplit 𝕋 S n)
-    {tFinal Δt : ℝ} {η : ℕ} (hΔt : 0 < Δt) (X₀ : S n) :
-    sys.reachExact tFinal (construct X₀)
-      ⊆ construct (sys.reach tFinal Δt η X₀) := by -- --- PROOF ---
+    (params : Reach.Params (S n) ℝ) {options : LinearSys.ReachStepOptions ℝ}
+    (hΔt : 0 < options.timeStep) :
+    sys.reachExact (params.tFinal - params.tStart) (construct params.R0)
+      ⊆ construct (sys.reach params options) := by -- --- PROOF ---
+  obtain ⟨X₀, tStart, tF⟩ := params
+  obtain ⟨Δt, η⟩ := options
+  unfold LinearSys.WithInputSplit.reach
+  dsimp only at *
+  generalize tF - tStart = tFinal at *
   rintro _ ⟨x, u, traj, t, ht, rfl⟩
   obtain ⟨k, hk, hkt, htk⟩ := LinearSys.exists_reach_window hΔt ht
   have htk1 : t ≤ ((k + 1 : ℕ) : ℝ) * Δt := by push_cast; linarith

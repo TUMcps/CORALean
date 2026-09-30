@@ -13,7 +13,7 @@ immediate. `LinearSys.reachInstance` states its guarantee through this.
 
 -- Authors:       Tobias Ladner
 -- Written:       27-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -35,17 +35,20 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- Every image of the initial set under the flow, at every `t ∈ [0, tFinal]`,
+/-- Every image of the initial set under the flow, at every `t ∈ [0, tFinal - tStart]`,
 is in one of `reachAdmissible`'s windows, at any order `η`. -/
-theorem LinearSys.reachAdmissible_outer (sys : LinearSys 𝕋 n) {tFinal Δt : ℝ}
-    (htFinal : 0 < tFinal) (hΔt : 0 < Δt) (η : ℕ) (X₀ : S n) : sys.reachExact tFinal (construct X₀)
-      ⊆ construct (sys.reachAdmissible tFinal Δt η X₀) := by -- --- PROOF ---
+theorem LinearSys.reachAdmissible_outer (sys : LinearSys 𝕋 n)
+    {params : Reach.Params (S n) ℝ} {options : LinearSys.ReachStepOptions ℝ}
+    (htFinal : 0 < params.tFinal - params.tStart) (hΔt : 0 < options.timeStep) :
+    sys.reachExact (params.tFinal - params.tStart) (construct params.R0)
+      ⊆ construct (sys.reachAdmissible params options) := by -- --- PROOF ---
   unfold LinearSys.reachAdmissible
   -- `reachOrder_admissible` gives `hε` at the order `reachAdmissible` runs at directly
-  have hη : 2 ≤ max η (sys.reachOrder Δt + 2) :=
-    le_trans (Nat.le_add_left 2 (sys.reachOrder Δt)) (le_max_right _ _)
-  have hε := sys.reachOrder_admissible Δt (le_max_right η (sys.reachOrder Δt + 2))
-  exact sys.reach_outer htFinal hΔt hη hε X₀
+  have hη : 2 ≤ max options.taylorTerms (sys.reachOrder options.timeStep + 2) :=
+    le_trans (Nat.le_add_left 2 (sys.reachOrder options.timeStep)) (le_max_right _ _)
+  have hε := sys.reachOrder_admissible options.timeStep
+    (le_max_right options.taylorTerms (sys.reachOrder options.timeStep + 2))
+  exact sys.reach_outer (options := ⟨options.timeStep, _⟩) htFinal hΔt hη hε
 
 end CORALean
 

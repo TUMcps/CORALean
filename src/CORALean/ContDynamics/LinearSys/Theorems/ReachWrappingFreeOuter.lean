@@ -37,11 +37,18 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- Every image of the initial set under the flow, at every `t ∈ [0, tFinal]`,
+/-- Every image of the initial set under the flow, at every `t ∈ [0, tFinal - tStart]`,
 is in one of `reachWrappingFree`'s windows. -/
-theorem LinearSys.reachWrappingFree_outer (sys : LinearSys 𝕋 n) {tFinal Δt : ℝ} {η : ℕ}
-    (hΔt : 0 < Δt) (X₀ : S n) : sys.reachExact tFinal (construct X₀)
-      ⊆ construct (sys.reachWrappingFree tFinal Δt η X₀) := by -- --- PROOF ---
+theorem LinearSys.reachWrappingFree_outer (sys : LinearSys 𝕋 n)
+    (params : Reach.Params (S n) ℝ) {options : LinearSys.ReachStepOptions ℝ}
+    (hΔt : 0 < options.timeStep) :
+    sys.reachExact (params.tFinal - params.tStart) (construct params.R0)
+      ⊆ construct (sys.reachWrappingFree params options) := by -- --- PROOF ---
+  obtain ⟨X₀, tStart, tF⟩ := params
+  obtain ⟨Δt, η⟩ := options
+  unfold LinearSys.reachWrappingFree
+  dsimp only at *
+  generalize tF - tStart = tFinal at *
   rintro _ ⟨t, ht, x₀, hx₀, rfl⟩
   obtain ⟨k, hk, hkt, htk⟩ := LinearSys.exists_reach_window hΔt ht
   -- the order `reachWrappingFree` runs at, `m + 2` in `timeIntervalStep_outer_at`'s naming
