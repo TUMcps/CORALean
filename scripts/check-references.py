@@ -20,7 +20,7 @@ reports, since each of those is a judgement about a page.
 """
 import re
 import sys
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "src"
@@ -184,7 +184,8 @@ class Paper:
 
     @property
     def rel(self):
-        return self.path.relative_to(ROOT)
+        # POSIX spelling, so `1919\\x.md` on Windows is `1919/x.md`, as in the README's links.
+        return PurePosixPath(self.path.relative_to(ROOT).as_posix())
 
     @property
     def counted(self):
@@ -227,7 +228,7 @@ def main():
     say = problems.append
 
     if not REFS.is_dir():
-        print(f"no {REFS.relative_to(ROOT)}/ directory", file=sys.stderr)
+        print(f"no {REFS.relative_to(ROOT).as_posix()}/ directory", file=sys.stderr)
         return 1
 
     # One directory per year, so the pages sort by year and then by name.
@@ -256,7 +257,7 @@ def main():
     for entry, locs in sorted(cited.items()):
         paper = by_entry.get(entry)
         if paper is None:
-            where = sorted({str(p.relative_to(ROOT)) for s in locs.values() for p in s})
+            where = sorted({p.relative_to(ROOT).as_posix() for s in locs.values() for p in s})
             near = [p.name for p in papers if p.entry and p.entry[:25] == entry[:25]]
             say(f"{where[0]}: cites a publication with no file in references/: "
                 f"{entry[:70]}…" + (f" (did you mean {near[0]}?)" if near else ""))
@@ -264,7 +265,7 @@ def main():
         for loc, files in sorted(locs.items()):
             if not loc or loc in paper.results:
                 continue
-            first = sorted(str(f.relative_to(ROOT)) for f in files)[0]
+            first = sorted(f.relative_to(ROOT).as_posix() for f in files)[0]
             say(f"{first}: cites `{loc}`, which is not a row in {paper.name}")
 
         # A file citing the paper and naming no result is in no row, so it would
@@ -272,7 +273,7 @@ def main():
         # names none of its results is worth seeing.
         bare = {p for p in locs.get("", set()) if not any(
             loc and p in fs for loc, fs in locs.items())}
-        want = {str(p.relative_to(ROOT)) for p in bare}
+        want = {p.relative_to(ROOT).as_posix() for p in bare}
         if not want:
             if paper.general is not None:
                 say(f"{paper.rel}: has a `## Cited without a result` section, but "
@@ -282,7 +283,7 @@ def main():
             say(f"{paper.rel}: {len(want)} file(s) cite this paper without naming a "
                 "result; list them under `## Cited without a result`")
             continue
-        got = {str((paper.path.parent / l).resolve().relative_to(ROOT))
+        got = {(paper.path.parent / l).resolve().relative_to(ROOT).as_posix()
                for l in paper.general}
         for miss in sorted(want - got):
             say(f"{paper.rel}: `## Cited without a result` omits {miss}")
@@ -361,7 +362,7 @@ def main():
 
     # An error in a paper lives on that paper's page, beside the result. The
     # index lists which pages have one, so the overview survives the split.
-    with_findings = {str(p.rel.relative_to(REFS.name)) for p in papers
+    with_findings = {p.rel.relative_to(REFS.name).as_posix() for p in papers
                      if re.search(r"^## Findings\s*$", p.path.read_text(encoding="utf-8"),
                                   re.M)}
     readme_text = (REFS / "README.md").read_text(encoding="utf-8") if \
@@ -398,7 +399,7 @@ def main():
             if not links:
                 continue
             listed.append((links[0], cells[-1]))
-        want = [str(p.rel.relative_to(REFS.name)) for p in papers]
+        want = [p.rel.relative_to(REFS.name).as_posix() for p in papers]
         got = [name for name, _ in listed]
         if got != want:
             missing = [n for n in want if n not in got]
@@ -412,7 +413,7 @@ def main():
                     "files, which sort by year")
         for name, cell in listed:
             paper = next(
-                (p for p in papers if str(p.rel.relative_to(REFS.name)) == name), None)
+                (p for p in papers if p.rel.relative_to(REFS.name).as_posix() == name), None)
             if paper is None:
                 continue
             m = STATUS.match(cell)

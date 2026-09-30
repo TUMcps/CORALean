@@ -53,12 +53,11 @@ conventions:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
-build:
+# The toolchain setup that `build` and `release-oracle-build` share: the image, the Mathlib
+# fetch and elan in `before_script`, and `lake exe cache get` as `script`, which each job pulls in
+# with `!reference`.
+.lean-setup:
   image: debian:bookworm-slim
-  # A push while a job is running does not cancel it. The project's "Auto-cancel
-  # redundant pipelines" setting only cancels jobs that opt in here, and a job
-  # that has already spent minutes cloning is not worth restarting.
-  interruptible: false
   before_script:
     # `python3`, full as the conventions job's own comment explains, for the oracle's `check_sound.py`.
     - apt-get update -qq && apt-get install -y -qq --no-install-recommends curl git ca-certificates python3
@@ -125,6 +124,15 @@ build:
         echo "cache get failed; waiting $((n * 120))s for the rate-limit window"
         sleep $((n * 120))
       done
+
+build:
+  extends: .lean-setup
+  # A push while a job is running does not cancel it. The project's "Auto-cancel
+  # redundant pipelines" setting only cancels jobs that opt in here, and a job
+  # that has already spent minutes cloning is not worth restarting.
+  interruptible: false
+  script:
+    - !reference [.lean-setup, script]
     # A warning is a failure: the tree is warning-free, and Mathlib's linters are
     # what catch unused hypotheses and stray `Try this` suggestions. Matched on
     # `src/` so that a partial Mathlib cache, which compiles Mathlib and may warn,
@@ -151,6 +159,12 @@ build:
     # `check-demo.sh` is: under 5s once the tree is built, well inside this job.
     - |
       ORACLE="lake env lean --run src/CORALean/Examples/Oracle.lean" \
+        sh experiments/oracle/selftest.sh
+    # The unsound oracle's, likewise through the interpreter; its fixtures are the `-unsound` files.
+    - |
+      UNSOUND=1 REQ=experiments/oracle/requests-unsound.jsonl \
+        EXPECTED=experiments/oracle/expected-unsound.jsonl \
+        ORACLE="lake env lean --run src/CORALean/Examples/Bench/OracleUnsound.lean" \
         sh experiments/oracle/selftest.sh
     # What no proof can say: whether the machine and the C lake emits do what `TrustedHardware`
     # assumes. Sampled, exactly, against the soft-float `IEEE .binary64`; see the README.
@@ -183,3 +197,61 @@ build:
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+# Release binaries: only on a tag pipeline, `vX.Y.Z`. Two jobs, since the release step wants
+# `release-cli`'s image and the build wants Lean's. `release-oracle-build` links `oracle` and
+# `oracle-unsound`, runs both self-tests against the linked binaries and uploads them to the Generic
+# Package Registry, which unlike a job artifact neither expires nor depends on the job; the shell
+# steps are `scripts/release-oracle.sh`, which runs locally with `DRY_RUN=1`. `release-oracle`
+# creates the GitLab release, linking those uploads. It costs a full link of the two executables,
+# as the `hardwarecheck` step of `build` does, on top of the ~20 minutes of `build`'s own setup.
+release-oracle-build:
+  extends: .lean-setup
+  interruptible: false
+  before_script:
+    - !reference [.lean-setup, before_script]
+    # `objdump`, for the minimum glibc the binaries need; `ldd` is in the base image.
+    - apt-get install -y -qq --no-install-recommends binutils
+  script:
+    - !reference [.lean-setup, script]
+    - sh scripts/release-oracle.sh
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
+  artifacts:
+    paths:
+      - release/
+    expire_in: never
+  rules:
+    - if: $CI_COMMIT_TAG
+
+release-oracle:
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  needs:
+    - job: release-oracle-build
+      artifacts: true
+  script:
+    - echo "releasing $CI_COMMIT_TAG"
+  release:
+    tag_name: $CI_COMMIT_TAG
+    name: "CORALean $CI_COMMIT_TAG"
+    # The `ldd` output, glibc minimum and checksums, written by the build job.
+    description: release/release-description.md
+    assets:
+      links:
+        - name: oracle-linux-x86_64
+          url: "$CI_API_V4_URL/projects/$CI_PROJECT_ID/packages/generic/oracle/$CI_COMMIT_TAG/oracle-linux-x86_64"
+          link_type: package
+        - name: oracle-linux-x86_64.sha256
+          url: "$CI_API_V4_URL/projects/$CI_PROJECT_ID/packages/generic/oracle/$CI_COMMIT_TAG/oracle-linux-x86_64.sha256"
+          link_type: other
+        - name: oracle-unsound-linux-x86_64
+          url: "$CI_API_V4_URL/projects/$CI_PROJECT_ID/packages/generic/oracle/$CI_COMMIT_TAG/oracle-unsound-linux-x86_64"
+          link_type: package
+        - name: oracle-unsound-linux-x86_64.sha256
+          url: "$CI_API_V4_URL/projects/$CI_PROJECT_ID/packages/generic/oracle/$CI_COMMIT_TAG/oracle-unsound-linux-x86_64.sha256"
+          link_type: other
+  rules:
+    - if: $CI_COMMIT_TAG

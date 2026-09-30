@@ -1,8 +1,14 @@
 import CORALean
 import CORALean.Examples.API
-import CORALean.Examples.Bench
+import CORALean.Examples.Bench.Registry
 import CORALean.Examples.BenchFlint
 import CORALean.Global.Float.Instances.Flint.API
+import CORALean.Examples.Oracle.Run
+import CORALean.Examples.Oracle.Ops.Reach
+import CORALean.Examples.Oracle.Ops.FromRound
+import CORALean.Examples.Oracle.Ops.ZonotopeOps
+import CORALean.Examples.Oracle.Ops.Enclosure
+import CORALean.Examples.Bench.OracleUnsound
 
 /-!
 # No library result rests on the bench's false axiom, and `trustedFlint` stays opt-in
@@ -15,7 +21,7 @@ round-to-nearest as CORA does. A false axiom taints exactly the declarations
 whose proof terms reach it, and `Lean.collectAxioms` is what says which those
 are. `CORALean.Global.Float.Instances.Flint` assumes `trustedFlint` instead,
 true but opt-in: the same sweep says whether anything outside that backend and
-its bench reaches it, whether or not the axiom itself is true. Six questions:
+its bench reaches it, whether or not the axiom itself is true. Eight questions:
 
 1. Are `trustedHardware`, `nearestUnsound` and `trustedFlint` the only axioms
    any `CORALean` module declares?
@@ -30,6 +36,14 @@ its bench reaches it, whether or not the axiom itself is true. Six questions:
    since `Flint` is not itself part of the bench.
 6. Does `BenchFlint.reachFloat_outer_flint` reach `trustedFlint`? The positive
    control 4 is for `nearestUnsound`, here for `trustedFlint`.
+
+7. Does anything `lake exe oracle` runs, by entry declaration, reach `nearestUnsound` or
+   `trustedFlint`? Its modules are imported here, not the root `Examples/Oracle.lean`, whose `main`
+   would clash with the bench's; `Oracle.lean`'s `main` is `run sounds`, so `run` and `sounds`
+   cover it. Question 3 sweeps these modules too, but a by-name list says what the executable is.
+8. Does `Bench.OracleUnsound.dtypes` reach `nearestUnsound`? The positive control for 7: the
+   unsound executable is the same code with one more dtype, so a check that cannot see that
+   dtype's taint would pass 7 vacuously.
 
 Every failure is an error, so `lean` exits nonzero.
 -/
@@ -73,6 +87,20 @@ def taintedTheorems : Array Name := #[
 
 /-- The positive control for `trustedFlint`: `reachFloat_outer` at `Flint 53`. -/
 def flintTheorems : Array Name := #[`CORALean.Bench.reachFloat_outer_flint]
+
+/-- What `lake exe oracle` runs, by entry: `main` is `run sounds`, `run` loops on `respond`,
+which is `handleRequest` and so `handleOp` and one handler per op. -/
+def oracleEntries : Array Name := #[
+  `CORALean.Oracle.run, `CORALean.Oracle.respond, `CORALean.Oracle.handleRequest,
+  `CORALean.Oracle.handleOp, `CORALean.Oracle.sounds,
+  `CORALean.Oracle.handleFrom, `CORALean.Oracle.handleRoundTo, `CORALean.Oracle.handleMtimes,
+  `CORALean.Oracle.handleMtimesInterval, `CORALean.Oracle.handlePlus,
+  `CORALean.Oracle.handlePlusBox, `CORALean.Oracle.handleLinComb, `CORALean.Oracle.handleReduce,
+  `CORALean.Oracle.handleInterval, `CORALean.Oracle.handleEnclosure,
+  `CORALean.Oracle.handleLinearSysReach]
+
+/-- The positive control for `oracleEntries`: the unsound oracle's dtypes, which add `nearest`. -/
+def oracleUnsoundTaints : Array Name := #[`CORALean.Bench.OracleUnsound.dtypes]
 
 /-- Whether module `m` is CORALean's, and whether it is library code, outside
 the bench -- `BenchFlint`/`BenchFlintMain` count as bench here too, even
@@ -160,3 +188,21 @@ run_cmd do
       logInfo m!"ok      {n} reaches {flintAxiom}, as it must"
     else
       logError m!"{n} should reach {flintAxiom} and does not — the check sees no reach"
+  -- 7. the oracle, by entry declaration: neither the false axiom nor FLINT
+  for n in oracleEntries do
+    unless env.contains n do
+      logError m!"{n}: not found — renamed? update scripts/check-axioms.lean"
+      continue
+    let axs ← collectAxioms n
+    if axs.contains unsoundAxiom || axs.contains flintAxiom then
+      logError m!"TAINTED oracle entry {n} depends on {unsoundAxiom} or {flintAxiom}"
+    else logInfo m!"ok      oracle {n}: {axs}"
+  -- 8. the positive control for 7
+  for n in oracleUnsoundTaints do
+    unless env.contains n do
+      logError m!"{n}: not found — the positive control is missing"
+      continue
+    if (← collectAxioms n).contains unsoundAxiom then
+      logInfo m!"ok      {n} reaches {unsoundAxiom}, as it must"
+    else
+      logError m!"{n} should reach {unsoundAxiom} and does not — the oracle check sees no taint"

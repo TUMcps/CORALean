@@ -6,7 +6,8 @@
 #   ORACLE="lake env lean --run src/CORALean/Examples/Oracle.lean" \
 #     sh experiments/oracle/selftest.sh
 # and the unsound oracle, whose fixtures are the -unsound files:
-#   UNSOUND=1 ORACLE=.lake/build/bin/oracle-unsound REQ=experiments/oracle/requests-unsound.jsonl \n#     EXPECTED=experiments/oracle/expected-unsound.jsonl sh experiments/oracle/selftest.sh
+#   UNSOUND=1 ORACLE=.lake/build/bin/oracle-unsound REQ=experiments/oracle/requests-unsound.jsonl \
+#     EXPECTED=experiments/oracle/expected-unsound.jsonl sh experiments/oracle/selftest.sh
 
 set -eu
 

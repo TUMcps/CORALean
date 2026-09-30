@@ -31,6 +31,18 @@ a separate executable under `Examples/Bench/` because `nearest` rests on the fal
 `NearestUnsound/Axioms.lean`, which the sound `oracle` must never reach. `roundTo` is not offered for
 it. Self-test: see the header of `selftest.sh` (`requests-unsound.jsonl`, `expected-unsound.jsonl`).
 
+## Release binaries
+
+A release, cut by pushing a tag `vX.Y.Z`, carries the linked Linux x86_64 executables as
+`oracle-linux-x86_64` and `oracle-unsound-linux-x86_64`, each with a checksum file
+(`oracle-linux-x86_64.sha256`, `oracle-unsound-linux-x86_64.sha256`, for `sha256sum -c`).
+
+On a tag pipeline `.gitlab-ci.yml`'s `release-oracle-build` links both, runs both self-tests against
+the linked binaries, and uploads the four files to the project's Generic Package Registry
+(`scripts/release-oracle.sh`; `DRY_RUN=1 OUT=<dir> sh scripts/release-oracle.sh` runs it locally
+without the upload). `release-oracle` then creates the GitLab release linking them, its description
+listing each binary's `ldd` output, sha256 and the minimum glibc it needs.
+
 ## Protocol summary
 
 One JSON object per line on stdin, one line of `{"ok":true, ...}` or
