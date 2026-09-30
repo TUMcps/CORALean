@@ -35,7 +35,7 @@ Nothing here evaluates to a number. Over ℝ every operation is noncomputable, a
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -102,7 +102,7 @@ example (sys : NeurNetContrSys ℝ 𝒵 2) (R₀ : Zonotope (Vec ℝ 2)) (o η N
     {Δt : ℝ} (hΔt : 0 < Δt) (hε : ‖Δt • toRealMat sys.plant.A‖ / ((η : ℝ) + 2) < 1) {H : ℕ}
     {π : Vec ℝ 2 → Vec ℝ 2} (hπ : sys.contr.Sound π)
     {x : ℝ → Vec ℝ 2} (traj : sys.Trajectory π ((N : ℝ) * Δt) H R₀ x) (i : ℕ) (hi : i ≤ H) :
-    x ((i : ℝ) * ((N : ℝ) * Δt)) ∈ construct (sys.reach o η N ho Δt R₀ i) :=
+    x ((i : ℝ) * ((N : ℝ) * Δt)) ∈ construct (sys.reach ⟨R₀, 0, i⟩ ⟨Δt, N, η, o, ho⟩) :=
   sys.reach_outer o η N ho hΔt hε hπ traj i hi
 
 /-- The same checked against a safe set. -/
@@ -111,7 +111,7 @@ example (sys : NeurNetContrSys ℝ 𝒵 2) (R₀ : Zonotope (Vec ℝ 2)) (o η N
     (safe : Set (Vec ℝ 2)) {π : Vec ℝ 2 → Vec ℝ 2} (hπ : sys.contr.Sound π)
     {x : ℝ → Vec ℝ 2} (traj : sys.Trajectory π ((N : ℝ) * Δt) H R₀ x)
     (i : ℕ) (hi : i ≤ H)
-    (h : (Specification.safeSet safe).Holds (construct (sys.reach o η N ho Δt R₀ i))) :
+    (h : (Specification.safeSet safe).Holds (construct (sys.reach ⟨R₀, 0, i⟩ ⟨Δt, N, η, o, ho⟩))) :
     (Specification.safeSet safe).Holds {x ((i : ℝ) * ((N : ℝ) * Δt))} :=
   sys.holds_of_reach o η N ho hΔt hε hπ traj _ i hi h
 
@@ -123,7 +123,7 @@ noncomputable example (A : Mat ℝ 2 2) (W₁ : Mat ℝ 3 2) (b₁ : Vec ℝ 3) 
 noncomputable example (A : Mat ℝ 2 2) (W₁ : Mat ℝ 3 2) (b₁ : Vec ℝ 3) (W₂ : Mat ℝ 2 3)
     (b₂ : Vec ℝ 2) (R₀ : Zonotope (Vec ℝ 2)) (o η N : ℕ) (ho : 0 < o) (Δt : ℝ) (i : ℕ) :
     Zonotope (Vec ℝ 2) :=
-  (Example.nnControlled A W₁ b₁ W₂ b₂).reach o η N ho Δt R₀ i
+  (Example.nnControlled A W₁ b₁ W₂ b₂).reach ⟨R₀, 0, i⟩ ⟨Δt, N, η, o, ho⟩
 
 end CORALean.Real
 

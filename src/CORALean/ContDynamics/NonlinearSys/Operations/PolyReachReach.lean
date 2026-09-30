@@ -1,4 +1,6 @@
 import CORALean.ContDynamics.NonlinearSys.Operations.PolyReachRun
+import CORALean.ContDynamics.NonlinearSys.Definitions.PolyReachOptions
+import CORALean.ContDynamics.Reach.Definitions.InputParams
 
 /-!
 # `Alg. 1` line 18: the reachable set
@@ -14,7 +16,7 @@ time-interval sets.
 
 -- Authors:       Tobias Ladner
 -- Written:       21-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -31,14 +33,15 @@ variable {n m o : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- [1, Alg. 1] line 18: `R([0,t_f])`, the union of the first `K` iterations' time-interval
-sets. -/
-noncomputable def NonlinearSys.polyReachReach (U UΔ : PolyZonotope (Vec ℝ m))
-    (taylor : NonlinearSys.PolyTaylor n m o) (combine : PolyZonotope (Vec ℝ n) →
-      PolyZonotope (Vec ℝ m) → PolyZonotope (Vec ℝ o)) (post : NonlinearSys.PolyPost n m o)
-    (sub : PolyZonotope (Vec ℝ n) → PolyZonotope (Vec ℝ n) → Bool)
-    (enlarge : PolyZonotope (Vec ℝ n) → PolyZonotope (Vec ℝ n)) (r tf : ℝ) (η fuel K : ℕ)
-    (X₀ : PolyZonotope (Vec ℝ n)) : Set (Vec ℝ n) :=
-  ⋃ j < K, ⋃ s ∈ NonlinearSys.polyReachRun U UΔ taylor combine post sub enlarge r tf η fuel
+sets. The horizon is `params.tFinal - params.tStart`, the loop's clock starting at `0`. -/
+noncomputable def NonlinearSys.polyReachReach
+    (params : Reach.InputParams (PolyZonotope (Vec ℝ n)) (PolyZonotope (Vec ℝ m)) ℝ)
+    (options : NonlinearSys.PolyReachOptions n m o) : Set (Vec ℝ n) :=
+  let X₀ := params.R0                                               -- the paper's symbols
+  let U := params.U
+  let tf := params.tFinal - params.tStart
+  ⋃ j < options.K, ⋃ s ∈ NonlinearSys.polyReachRun U options.UΔ options.taylor options.combine
+    options.post options.sub options.enlarge options.timeStep tf options.taylorTerms options.fuel
     X₀ (j + 1), construct s.Rτ
 
 end CORALean

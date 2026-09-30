@@ -15,7 +15,7 @@ records as missing.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   24-September-2026
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -44,7 +44,7 @@ theorem NeurNetContrSys.holds_of_reach (sys : NeurNetContrSys 𝕋 S n) (o η N 
     {R₀ : S n} {π : Vec ℝ n → Vec ℝ n} (hπ : sys.contr.Sound π)
     {x : ℝ → Vec ℝ n} (traj : sys.Trajectory π ((N : ℝ) * Δt) H R₀ x)
     (spec : Specification ContSet) (i : ℕ) (hi : i ≤ H)
-    (h : spec.Holds (construct (sys.reach o η N ho Δt R₀ i))) :
+    (h : spec.Holds (construct (sys.reach ⟨R₀, 0, i⟩ ⟨Δt, N, η, o, ho⟩))) :
     spec.Holds {x ((i : ℝ) * ((N : ℝ) * Δt))} :=
   spec.holds_of_outer
     (Set.singleton_subset_iff.mpr (sys.reach_outer o η N ho hΔt hε hπ traj i hi)) h

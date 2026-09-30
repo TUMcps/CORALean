@@ -24,7 +24,7 @@ the computed sets.
 
 -- Authors:       Tobias Ladner
 -- Written:       18-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -66,13 +66,14 @@ theorem NonlinearSys.reachSet_subset_evalOn (sys : NonlinearSys n m)
       (S := 𝒫𝒵) Δt η (steps i).linInput) ⊆ construct (Ud i))
     -- and the evaluation, carried by the sub-boxes the loop's own bookkeeping leaves
     {o : ℕ} (ho : 0 < o) (X₀ : 𝒫𝒵 n)
-    (Bs : ∀ i, Set (Fin (sys.relinReach (S := 𝒫𝒵) o ho Δt steps Ud X₀ i).p → ℝ))
+    (Bs : ∀ i, Set (Fin (sys.relinReach (S := 𝒫𝒵) ⟨X₀, 0, i⟩ ⟨Δt, o, ho⟩ steps Ud).p → ℝ))
     (h0 : construct R₀ ⊆ X₀.evalOn (Bs 0))
     (hunit : ∀ i, ∀ a ∈ Bs i, ∀ k, |a k| ≤ 1)
     (hnext : ∀ i, PolyZonotope.postBox ((NonlinearSys.linearize (steps i).A).discretize Δt).A
-      (sys.relinReach (S := 𝒫𝒵) o ho Δt steps Ud X₀ i) (Ud i) o (Bs i) ⊆ Bs (i + 1)) :
+      (sys.relinReach (S := 𝒫𝒵) ⟨X₀, 0, i⟩ ⟨Δt, o, ho⟩ steps Ud) (Ud i) o (Bs i) ⊆ Bs (i + 1)) :
     ∀ i ≤ N, sys.reachSet (S := 𝒫𝒵) T R₀ U ((i : ℝ) * Δt)
-      ⊆ (sys.relinReach (S := 𝒫𝒵) o ho Δt steps Ud X₀ i).evalOn (Bs i) := by -- --- PROOF ---
+      ⊆ (sys.relinReach (S := 𝒫𝒵) ⟨X₀, 0, i⟩ ⟨Δt, o, ho⟩ steps Ud).evalOn
+        (Bs i) := by -- --- PROOF ---
   rintro i hi _ ⟨x, u, traj, rfl⟩
   -- every step's input integral enclosed on the original clock, as [1, Alg. 1] leaves it
   have hstep : ∀ j < N, (NonlinearSys.linearize (steps j).A).stepInput

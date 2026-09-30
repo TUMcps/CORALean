@@ -24,7 +24,7 @@ and boundedness are the representation's own, `ConvexSet` and `CompactSet`.
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -86,9 +86,9 @@ theorem NonlinearSys.WithSteps.reachUnion_outer (sys : NonlinearSys.WithSteps S 
           (MatExp.inputRemainder (sys.steps i).A p.Δt (q + 2)) (sys.steps i).linInput)) :=
         fun _ _ => (CompactSet.isCompact_construct _).isBounded
       -- every test passed: the ball of radius `2MΔt` about each start lies in the region
-      have hsub : ∀ i < p.N, ∀ y ∈ construct (sys.sys.relinReach p.o p.ho p.Δt sys.steps
-          (fun i => (NonlinearSys.linearize (sys.steps i).A).inputSolution p.Δt (q + 2)
-            (sys.steps i).linInput) X₀ i),
+      have hsub : ∀ i < p.N, ∀ y ∈ construct (sys.sys.relinReach ⟨X₀, 0, i⟩ ⟨p.Δt, p.o, p.ho⟩
+        sys.steps (fun i => (NonlinearSys.linearize (sys.steps i).A).inputSolution p.Δt (q + 2)
+            (sys.steps i).linInput)),
           Metric.closedBall y (2 * sys.M * p.Δt) ⊆ (sys.steps i).R := by
         intro i hi z hz w hw
         have hc := Contains.contains_sound _ _ (List.all_eq_true.mp hconf i (List.mem_range.mpr hi))

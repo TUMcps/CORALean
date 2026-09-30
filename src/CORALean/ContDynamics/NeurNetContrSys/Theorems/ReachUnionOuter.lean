@@ -15,7 +15,7 @@ the `SetUnion`.
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -41,7 +41,8 @@ theorem NeurNetContrSys.reachUnion_outer (sys : NeurNetContrSys 𝕋 S n)
   intro y hy
   obtain ⟨i, hi, x, hx0, hflow, rfl⟩ := Set.mem_iUnion₂.mp hy
   have traj : sys.Trajectory sys.contr.eval.out ((p.N : ℝ) * p.Δt) p.H X₀ x := ⟨hx0, hflow⟩
-  refine SetUnion.mem_construct.mpr ⟨sys.reach p.o (sys.reachOrder p.Δt) p.N p.ho p.Δt X₀ i, ?_,
+  refine SetUnion.mem_construct.mpr ⟨sys.reach ⟨X₀, 0, i⟩ ⟨p.Δt, p.N, sys.reachOrder p.Δt, p.o,
+    p.ho⟩, ?_,
     sys.reach_outer p.o (sys.reachOrder p.Δt) p.N p.ho p.hΔt (sys.reachOrder_admissible p.Δt)
       sys.contr.sound_eval traj i hi⟩
   exact List.mem_map_of_mem (List.mem_range.mpr (Nat.lt_succ_of_le hi))

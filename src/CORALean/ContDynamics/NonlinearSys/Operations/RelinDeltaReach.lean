@@ -1,4 +1,5 @@
 import CORALean.ContDynamics.LinearSys.Operations.DeltaReach
+import CORALean.ContDynamics.NonlinearSys.Definitions.RelinDeltaReachOptions
 import CORALean.ContDynamics.NonlinearSys.Operations.RelinReach
 
 /-!
@@ -20,7 +21,7 @@ differences and not only the states.
 
 -- Authors:       Tobias Ladner
 -- Written:       08-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -39,14 +40,17 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Every difference between a state of step `i` and the state that step
-started from, from what `relinReach` reaches at `iΔt` and step `i`'s input
-enclosure. -/
-noncomputable def NonlinearSys.relinDeltaReach (sys : NonlinearSys n m) {U : S m} (o : ℕ)
-    (ho : 0 < o) (Δt : ℝ) (η : ℕ) (steps : ℕ → sys.LinStep U) (Ud : ℕ → S n) (R₀ : S n) (i : ℕ) :
-    S n :=
-  ((NonlinearSys.linearize (steps i).A).deltaReach Δt η
-    (sys.relinReach o ho Δt steps Ud R₀ i)) ⊞ Ud i
+/-- Every difference between a state of step `i = params.tFinal - params.tStart` and
+the state that step started from, from what `relinReach` reaches at `iΔt` and step
+`i`'s input enclosure. Time is counted in steps, as in `relinReach`. -/
+noncomputable def NonlinearSys.relinDeltaReach (sys : NonlinearSys n m) {U : S m}
+    (params : Reach.Params (S n) ℕ) (options : NonlinearSys.RelinDeltaReachOptions)
+    (steps : ℕ → sys.LinStep U) (Ud : ℕ → S n) : S n :=
+  let Δt := options.timeStep                                       -- the paper's symbols
+  let η := options.taylorTerms
+  let i := params.tFinal - params.tStart                           -- the step
+  let R := sys.relinReach params options.toRelinReachOptions steps Ud  -- R(iΔt)
+  ((NonlinearSys.linearize (steps i).A).deltaReach Δt η R) ⊞ Ud i
 
 end CORALean
 

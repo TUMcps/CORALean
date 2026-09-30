@@ -13,7 +13,7 @@ one per branch of the `SetUnion` — the `Reach.reach` field of the instance.
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -37,7 +37,7 @@ and the shared initial set `X₀`. -/
 noncomputable def NeurNetContrSys.reachUnion (sys : NeurNetContrSys 𝕋 S n)
     (p : NeurNetContrSys.ReachParams) (X₀ : S n) : SetUnion (S n) :=
   ⟨(List.range (p.H + 1)).map (fun i =>
-    sys.reach p.o (sys.reachOrder p.Δt) p.N p.ho p.Δt X₀ i)⟩
+    sys.reach ⟨X₀, 0, i⟩ ⟨p.Δt, p.N, sys.reachOrder p.Δt, p.o, p.ho⟩)⟩
 
 end CORALean
 

@@ -29,7 +29,7 @@ what discharges the step.
 
 -- Authors:       Tobias Ladner
 -- Written:       18-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -59,13 +59,15 @@ theorem NonlinearSys.Trajectory.relinReach_evalOn {sys : NonlinearSys n m} {T : 
     (hU : ∀ i < N, Bornology.IsBounded (construct (steps i).linInput))
     (hUd : ∀ i < N, (NonlinearSys.linearize (steps i).A).stepInput
       (fun t => sys.f (x t) (u t) - (steps i).A *ᵥ x t) Δt i ∈ construct (Ud i))
-    (X₀ : 𝒫𝒵 n) (Bs : ∀ i, Set (Fin (sys.relinReach (S := 𝒫𝒵) o ho Δt steps Ud X₀ i).p → ℝ))
+    (X₀ : 𝒫𝒵 n) (Bs : ∀ i, Set (Fin (sys.relinReach (S := 𝒫𝒵) ⟨X₀, 0, i⟩ ⟨Δt, o, ho⟩ steps Ud).p →
+      ℝ))
     (h0 : construct R₀ ⊆ X₀.evalOn (Bs 0))
     (hunit : ∀ i, ∀ a ∈ Bs i, ∀ k, |a k| ≤ 1)
     (hnext : ∀ i, PolyZonotope.postBox ((NonlinearSys.linearize (steps i).A).discretize Δt).A
-      (sys.relinReach (S := 𝒫𝒵) o ho Δt steps Ud X₀ i) (Ud i) o (Bs i) ⊆ Bs (i + 1)) :
+      (sys.relinReach (S := 𝒫𝒵) ⟨X₀, 0, i⟩ ⟨Δt, o, ho⟩ steps Ud) (Ud i) o (Bs i) ⊆ Bs (i + 1)) :
     ∀ i ≤ N, x ((i : ℝ) * Δt)
-      ∈ (sys.relinReach (S := 𝒫𝒵) o ho Δt steps Ud X₀ i).evalOn (Bs i) := by -- --- PROOF ---
+      ∈ (sys.relinReach (S := 𝒫𝒵) ⟨X₀, 0, i⟩ ⟨Δt, o, ho⟩ steps Ud).evalOn
+        (Bs i) := by -- --- PROOF ---
   intro i
   induction i with
   | zero =>
@@ -83,7 +85,7 @@ theorem NonlinearSys.Trajectory.relinReach_evalOn {sys : NonlinearSys n m} {T : 
     rw [Scalar.toRealMat_real] at hstep
     have hmem : x (((i : ℝ) + 1) * Δt)
         ∈ (((NonlinearSys.linearize (steps i).A).discretize Δt).A *ᵥ ·)
-            '' (sys.relinReach (S := 𝒫𝒵) o ho Δt steps Ud X₀ i).evalOn (Bs i)
+            '' (sys.relinReach (S := 𝒫𝒵) ⟨X₀, 0, i⟩ ⟨Δt, o, ho⟩ steps Ud).evalOn (Bs i)
           + construct (Ud i) := by
       rw [hstep]
       exact Set.add_mem_add ⟨_, ih hiN.le, rfl⟩ (hUd i hiN)

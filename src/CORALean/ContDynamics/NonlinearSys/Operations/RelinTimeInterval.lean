@@ -22,7 +22,7 @@ union the algorithm returns.
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   13-September-2026
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -48,7 +48,7 @@ noncomputable def NonlinearSys.relinTimeInterval (sys : NonlinearSys n m) {U : S
     (ho : 0 < o) (Δt : ℝ) (η : ℕ) (steps : ℕ → sys.LinStep U) (Ud : ℕ → S n) (R₀ : S n) (i : ℕ) :
     S n :=
   ((NonlinearSys.linearize (steps i).A).timeIntervalStep Δt η
-    (sys.relinReach o ho Δt steps Ud R₀ i)) ⊞ Ud i
+    (sys.relinReach ⟨R₀, 0, i⟩ ⟨Δt, o, ho⟩ steps Ud)) ⊞ Ud i
 
 end CORALean
 

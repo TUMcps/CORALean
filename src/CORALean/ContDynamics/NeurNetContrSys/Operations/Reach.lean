@@ -4,7 +4,9 @@ import CORALean.ContDynamics.LinearSysDT.Operations.Reach
 import CORALean.ContDynamics.LinearSysDT.Operations.ReachOrders
 import CORALean.ContDynamics.LinearSysDT.Operations.ReachHeld
 import CORALean.ContDynamics.LinearSysDT.Operations.Simulate
+import CORALean.ContDynamics.NeurNetContrSys.Definitions.ReachOptions
 import CORALean.ContDynamics.NeurNetContrSys.NeurNetContrSys
+import CORALean.ContDynamics.Reach.Definitions.Params
 import CORALean.NN.Operations.Enclose
 
 /-!
@@ -18,14 +20,14 @@ under that one set, and it is `LinearSys`'s own machinery — `discretize`
 samples the flow, `reach ... N` takes the steps, `inputSolution` encloses what
 the input contributes to each.
 
-`Δt` and `N` are separate parameters and the control period is `N Δt`. Passing
-`N = 1` recovers a controller running at the integrator's rate, the case that
-does not arise in practice and the reason the two are not one parameter.
+`timeStep` and `N` are separate options and the control period is `N Δt`. Nothing
+new is computed, and only the period boundaries are reachable by this recursion,
+the gap `relinReach` has.
 
-Nothing new is computed: every operation here was written for the open-loop
-system, and the loop only chooses what to hand them. Only the period
-boundaries are reachable by this recursion — covering the times inside one is
-the same gap `relinReach` has.
+Time is counted in control periods, `tStart` and `tFinal` being ℕ as in
+`LinearSysDT.reach`: `timeStep` is an ℝ that `discretize` needs, so no exact ℚ
+quotient sets the period count. The count `tFinal - tStart` is exact, and every
+guarantee is stated at `tStart = 0`.
 
 ## References
 
@@ -57,15 +59,19 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The reachable set at the end of `i` control periods, each `N` steps of
-length `Δt` under one held input set, from `R₀`, at Taylor order `η` and
-maximum order `o`. `ho` is what rules out `o = 0`. -/
-noncomputable def NeurNetContrSys.reach (sys : NeurNetContrSys 𝕋 S n) (o η N : ℕ) (ho : 0 < o)
-    (Δt : ℝ) (R₀ : S n) : ℕ → S n
-  | 0 => R₀
-  | i + 1 => (sys.plant.discretize Δt).reach
-      ⟨sys.reach o η N ho Δt R₀ i,
-        sys.plant.inputSolution Δt η (sys.contr.enclose (sys.reach o η N ho Δt R₀ i)), 0, N⟩ ⟨o, ho⟩
+/-- The reachable set at the end of `params.tFinal - params.tStart` control periods,
+each `options.N` steps of length `options.timeStep` under one held input set. -/
+noncomputable def NeurNetContrSys.reach (sys : NeurNetContrSys 𝕋 S n)
+    (params : Reach.Params (S n) ℕ) (options : NeurNetContrSys.ReachOptions) : S n :=
+  let R₀ := params.R0                                               -- the paper's symbols
+  let Δt := options.timeStep
+  let N := options.N
+  let η := options.taylorTerms
+  let o := options.zonotopeOrder
+  let H := params.tFinal - params.tStart                           -- control periods
+  let period := fun R => (sys.plant.discretize Δt).reach          -- N steps under one held input
+    ⟨R, sys.plant.inputSolution Δt η (sys.contr.enclose R), 0, N⟩ ⟨o, options.hZonotopeOrder⟩
+  Nat.rec (motive := fun _ => S n) R₀ (fun _ R => period R) H       -- R(HNΔt)
 
 end CORALean
 

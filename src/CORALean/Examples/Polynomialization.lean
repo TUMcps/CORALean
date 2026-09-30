@@ -63,7 +63,7 @@ example {n m : ℕ} (sys : NonlinearSys n m) (T : Set ℝ) (R₀ : PolyZonotope 
     (hUd : ∀ i < N, (NonlinearSys.linearize (steps i).A).stepInput
       (fun t => sys.f (x t) (u t) - (steps i).A *ᵥ x t) Δt i ∈ construct (Ud i))
     {o : ℕ} (ho : 0 < o) :
-    ∀ i ≤ N, x ((i : ℝ) * Δt) ∈ construct (sys.relinReach o ho Δt steps Ud R₀ i) :=
+    ∀ i ≤ N, x ((i : ℝ) * Δt) ∈ construct (sys.relinReach ⟨R₀, 0, i⟩ ⟨Δt, o, ho⟩ steps Ud) :=
   traj.relinReach_outer hΔt hT hR hU hUd ho
 
 /-- A search the certificate accepts hands back a `LinStep`, ready for

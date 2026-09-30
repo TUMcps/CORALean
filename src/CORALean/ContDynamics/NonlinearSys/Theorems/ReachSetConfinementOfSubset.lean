@@ -21,7 +21,7 @@ so the conclusion is `Set` inclusion and no operation class answers for it.
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -61,9 +61,9 @@ theorem NonlinearSys.reachSet_confinement_of_subset [Mtimes ℐ S] (sys : Nonlin
       (MatExp.inputRemainder (steps i).A Δt η) (steps i).linInput)))
     (hM₀ : 0 ≤ M) (hM : ∀ i < N, ∀ y ∈ (steps i).R, ∀ v ∈ construct U, ‖sys.f y v‖ ≤ M)
     (hρ : M * Δt < ρ) {o : ℕ} (ho : 0 < o)
-    (hsub : ∀ i < N, ∀ y ∈ construct (sys.relinReach o ho Δt steps
-      (fun i => (NonlinearSys.linearize (steps i).A).inputSolution Δt η (steps i).linInput)
-      R₀ i), Metric.closedBall y ρ ⊆ (steps i).R) :
+    (hsub : ∀ i < N, ∀ y ∈ construct (sys.relinReach ⟨R₀, 0, i⟩ ⟨Δt, o, ho⟩ steps (fun i =>
+      (NonlinearSys.linearize (steps i).A).inputSolution Δt η (steps i).linInput)),
+      Metric.closedBall y ρ ⊆ (steps i).R) :
     ∀ i < N, ∀ t ∈ Set.Icc ((i : ℝ) * Δt) (((i : ℝ) + 1) * Δt),
       sys.reachSet T R₀ U t ⊆ (steps i).R := by
   rintro i hi t ht _ ⟨x, u, traj, rfl⟩
