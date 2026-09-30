@@ -24,7 +24,7 @@ where the two meet.
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -46,9 +46,9 @@ noncomputable def LinearSysDT.reachCost (sys : LinearSysDT ℝ n) (o : ℕ) (ho 
   | 0 => 0
   | k + 1 =>
       sys.reachCost o ho R₀ U k
-        + (Zonotope.mtimesCost n n (sys.reach (S := 𝒵) o ho R₀ U k).h
+        + (Zonotope.mtimesCost n n (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).h
             + Zonotope.plusCost n
-            + Zonotope.reduceGirardCost n ((sys.reach (S := 𝒵) o ho R₀ U k).h + U.h))
+            + Zonotope.reduceGirardCost n ((sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).h + U.h))
 
 /-- The same three costs at a step's worst case: `o * n` generators reaching
 the `mtimes`, `o * n + hU` reaching the `reduce`. -/

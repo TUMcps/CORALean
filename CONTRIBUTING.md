@@ -49,6 +49,9 @@ src/CORALean/
                    answers for the exact set
   ContDynamics/    one directory per system class, written against the
                    interfaces alone
+    Reach/         the reachability class every system instantiates, and how a
+                   reach operation takes its arguments: CORA's `params` (the
+                   problem) and `options` (the algorithm), as two structures
     LinearSysDT/   discrete-time linear systems, and reachability
     LinearSys/     continuous-time linear systems: the flow in closed form,
                    reachability at the sample times by sampling into

@@ -16,7 +16,7 @@ nothing here needs a bound to discharge.
 
 -- Authors:       Tobias Ladner
 -- Written:       08-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -41,8 +41,8 @@ theorem LinearSysDT.reachOrders_outer (sys : LinearSysDT 𝕋 n) {o : ℕ → �
   induction k with
   | zero => exact traj.init
   | succ k ih =>
-    show x (k + 1) ∈ construct (sys.reach (o (k + 1)) (ho (k + 1))
-        (sys.reachOrders o ho R₀ U k) U 1)
+    show x (k + 1) ∈
+      construct (sys.reach ⟨sys.reachOrders o ho R₀ U k, U, 0, 1⟩ ⟨o (k + 1), ho (k + 1)⟩)
     rw [traj.step k]
     exact sys.reach_one_outer (ho (k + 1)) _ _ ih (traj.input k)
 

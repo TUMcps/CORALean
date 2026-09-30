@@ -13,7 +13,7 @@ Every step's inclusion, `LinearSysDT.reachSet_subset_reach` read at
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -36,7 +36,7 @@ theorem LinearSysDT.WithInput.reachUnion_outer (sys : LinearSysDT.WithInput 𝕋
   intro y hy
   obtain ⟨k, hk, hy⟩ := Set.mem_iUnion₂.mp hy
   rw [sys.reachSetOfInit_eq_reachSet] at hy
-  refine SetUnion.mem_construct.mpr ⟨sys.sys.reach p.o p.ho X₀ sys.U k, ?_,
+  refine SetUnion.mem_construct.mpr ⟨sys.sys.reach ⟨X₀, sys.U, 0, k⟩ ⟨p.o, p.ho⟩, ?_,
     sys.sys.reachSet_subset_reach p.ho X₀ sys.U k hy⟩
   exact List.mem_map_of_mem (List.mem_range.mpr (Nat.lt_succ_of_le hk))
 

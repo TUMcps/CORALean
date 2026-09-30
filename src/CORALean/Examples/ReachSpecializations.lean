@@ -25,7 +25,7 @@ interval *matrix* family, not this one.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   02-September-2026
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -42,8 +42,8 @@ example {n : ℕ} {sys : LinearSys ℝ n} {T : Set ℝ} {R₀ U : Zonotope (Vec 
     {x u : ℝ → Vec ℝ n} {Δt : ℝ} (traj : sys.Trajectory (S := 𝒵) T R₀ U x u)
     (hΔt : 0 < Δt) (hT : Set.Ici 0 ⊆ T) (η : ℕ)
     (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) {o : ℕ} (ho : 0 < o) (k : ℕ) :
-    x (k * Δt) ∈ construct ((sys.discretize Δt).reach (S := 𝒵) o ho R₀
-      (sys.inputSolution (S := 𝒵) Δt η U) k) :=
+    x (k * Δt) ∈ construct ((sys.discretize Δt).reach (S := 𝒵)
+      ⟨R₀, sys.inputSolution (S := 𝒵) Δt η U, 0, k⟩ ⟨o, ho⟩) :=
   traj.reach_outer_convexCompact hΔt hT η hε ho k
 
 /-- The same at a constrained zonotope, whose compactness comes from its
@@ -52,8 +52,8 @@ example {n : ℕ} {sys : LinearSys ℝ n} {T : Set ℝ} {R₀ U : ConZonotope (V
     {x u : ℝ → Vec ℝ n} {Δt : ℝ} (traj : sys.Trajectory (S := 𝒞) T R₀ U x u)
     (hΔt : 0 < Δt) (hT : Set.Ici 0 ⊆ T) (η : ℕ)
     (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) {o : ℕ} (ho : 0 < o) (k : ℕ) :
-    x (k * Δt) ∈ construct ((sys.discretize Δt).reach (S := 𝒞) o ho R₀
-      (sys.inputSolution (S := 𝒞) Δt η U) k) :=
+    x (k * Δt) ∈ construct ((sys.discretize Δt).reach (S := 𝒞)
+      ⟨R₀, sys.inputSolution (S := 𝒞) Δt η U, 0, k⟩ ⟨o, ho⟩) :=
   traj.reach_outer_convexCompact hΔt hT η hε ho k
 
 /-- The same at an interval, where `reduce` is the identity, so the enclosure
@@ -64,8 +64,8 @@ example {n : ℕ} {sys : LinearSys ℝ n} {T : Set ℝ} {R₀ U : Interval (Vec 
     (hΔt : 0 < Δt) (hT : Set.Ici 0 ⊆ T) (η : ℕ)
     (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) {o : ℕ} (ho : 0 < o) (k : ℕ) :
     x (k * Δt) ∈ construct ((sys.discretize Δt).reach
-      (S := fun m => Interval (Vec ℝ m)) o ho R₀
-      (sys.inputSolution (S := fun m => Interval (Vec ℝ m)) Δt η U) k) :=
+      (S := fun m => Interval (Vec ℝ m))
+      ⟨R₀, sys.inputSolution (S := fun m => Interval (Vec ℝ m)) Δt η U, 0, k⟩ ⟨o, ho⟩) :=
   traj.reach_outer_convexCompact hΔt hT η hε ho k
 
 /-- The step enclosure at a zonotope: every time of the step, not only its end.

@@ -26,7 +26,7 @@ rounded outward: an informal soundness claim, not a theorem restated here.
 
 -- Authors:       Tobias Ladner
 -- Written:       30-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -193,7 +193,7 @@ def dtypeForms : List String :=
 dtype string becomes a type. `binary64` is `ieee:binary64`'s alias, the axiom-free `IEEE`
 instance, never hardware `Float`. -/
 def withDtype {α : Type} (dtypeStr : String)
-    (k : {𝕋 : Type} → [FloatOps 𝕋] → [SoundFloatArithmetic 𝕋] →
+    (k : {𝕋 : Type} → [FloatOps 𝕋] → [SoundFloatArithmetic 𝕋] → [ToRat 𝕋] →
       DtypeOps 𝕋 → Except String α) :
     Except String α :=
   -- one arm per `dtypeForms` entry; `dyadic:`/`fixedpoint:` parse their own suffix
@@ -219,7 +219,7 @@ def withDtype {α : Type} (dtypeStr : String)
 /-- What resolves a `dtype` string onto a scalar and hands it to `k`: `withDtype`, or one that
 knows more dtypes. -/
 abbrev Resolver : Type 1 :=
-  {α : Type} → String → ({𝕋 : Type} → [FloatOps 𝕋] → [SoundFloatArithmetic 𝕋] →
+  {α : Type} → String → ({𝕋 : Type} → [FloatOps 𝕋] → [SoundFloatArithmetic 𝕋] → [ToRat 𝕋] →
     DtypeOps 𝕋 → Except String α) → Except String α
 
 /-- The dtypes an oracle executable serves: their names, for `ping`, and their resolver. -/

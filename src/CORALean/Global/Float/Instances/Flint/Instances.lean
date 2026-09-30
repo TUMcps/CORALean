@@ -1,3 +1,5 @@
+import CORALean.Global.Float.Instances.Dyadic.Theorems.CastToRat
+import CORALean.Global.Float.ToRat
 import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealMkZero
 import CORALean.Global.Float.Instances.Flint.Definitions.Axioms
 import CORALean.Global.Float.Instances.Flint.Operations.API
@@ -14,7 +16,7 @@ operation classes runs here once the executable links FLINT.
 
 -- Authors:       Tobias Ladner
 -- Written:       28-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -59,6 +61,12 @@ instance {p : ℕ} : SoundFloatArithmetic (Flint p) where
   toReal_maximum := Flint.toReal_maximum
   toReal_le_of_le := Flint.toReal_le_of_le
   toReal_half := Flint.toReal_half
+
+/-- The mantissa and exponent read back from FLINT, decoded exactly: the same
+`toDyadic` `toReal` reads, so `trustedFlint` is not involved. -/
+instance {p : ℕ} : ToRat (Flint p) where
+  toRat a := a.toDyadic.toRat
+  toReal_toRat a := Dyadic.cast_toRat a.toDyadic
 
 end CORALean.Float
 

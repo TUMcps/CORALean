@@ -31,7 +31,7 @@ overflows on the third step and half the rows carry a rounded box.
 
 -- Authors:       Tobias Ladner
 -- Written:       03-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -77,7 +77,7 @@ def steps : ℕ := 5
 a table of `k` rows costs `k²/2` steps where a fold would cost `k`, and every
 row is one call to the definition the theorems are about. -/
 def R (k : ℕ) : Zonotope (Dyadic p) 2 :=
-  (sys p).reach (S := Zonotope (Dyadic p)) order (by decide) (R₀ p) (U p) k
+  (sys p).reach (S := Zonotope (Dyadic p)) ⟨R₀ p, U p, 0, k⟩ ⟨order, by decide⟩
 
 def reachRow (k : ℕ) : String :=
   let Z := R p k

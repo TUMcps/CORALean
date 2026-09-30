@@ -30,7 +30,7 @@ prove`.
 
 -- Authors:       Tobias Ladner
 -- Written:       08-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -55,7 +55,7 @@ theorem LinearSysDT.reach_subset_closedBall (sys : LinearSysDT ℝ n) {o : ℕ} 
     {R₀ U : Zonotope (Vec ℝ n)} {r₀ rU : ℝ}
     (hR₀ : R₀.construct ⊆ Metric.closedBall (0 : Vec ℝ n) r₀) (hr₀ : 0 ≤ r₀)
     (hU : U.construct ⊆ Metric.closedBall (0 : Vec ℝ n) rU) (hrU : 0 ≤ rU) (k : ℕ) :
-    (sys.reach (S := 𝒵) o ho R₀ U k).construct
+    (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct
       ⊆ Metric.closedBall (0 : Vec ℝ n) ((2 * ‖sys.A‖) ^ k * r₀
         + 2 * rU * ∑ j ∈ Finset.range k, (2 * ‖sys.A‖) ^ j) := by -- --- PROOF ---
   induction k with
@@ -77,7 +77,7 @@ theorem LinearSysDT.reach_subset_closedBall (sys : LinearSysDT ℝ n) {o : ℕ} 
       have := mul_nonneg hAnn hrknn
       linarith
     set W : Zonotope (Vec ℝ n) :=
-      Zonotope.plus (Zonotope.mtimes sys.A (sys.reach (S := 𝒵) o ho R₀ U k)) U with hWdef
+      Zonotope.plus (Zonotope.mtimes sys.A (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)) U with hWdef
     have hpre : W.construct ⊆ Metric.closedBall (0 : Vec ℝ n) (‖sys.A‖ * rk + rU) :=
       Zonotope.plus_subset_closedBall (Zonotope.mtimes_subset_closedBall sys.A ih) hU
     -- the box the reduction pays is dominated by `W`'s own reach, hence the same radius

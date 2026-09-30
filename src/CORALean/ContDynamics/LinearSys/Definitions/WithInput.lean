@@ -3,7 +3,7 @@ import CORALean.ContDynamics.LinearSys.LinearSys
 /-!
 # A continuous-time system paired with its input set
 
-`Reach.Params` is one plain `Type`, not indexed by `n`, so it cannot hold the
+`Reach`'s `Params` is one plain `Type`, not indexed by `n`, so it cannot hold the
 input set `U` a `Trajectory` draws from: it is bundled with the system instead,
 as `LinearSysDT.WithInput` bundles it, and `Reach LinearSys.WithInput` reads it
 off the system it is asked about, exactly as it reads `sys.A`.
@@ -21,7 +21,7 @@ so one accumulated set serves a whole window. An input set off the origin is
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 

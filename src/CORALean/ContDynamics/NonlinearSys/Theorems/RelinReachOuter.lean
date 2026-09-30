@@ -33,7 +33,7 @@ between them, each step's enclosure at every time rather than just its ends.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -115,8 +115,8 @@ theorem NonlinearSys.Trajectory.relinReach_outer {sys : NonlinearSys n m} {T : S
     have key := shifted.reach_outer_horizon (K := 1) (steps i).cert hT1 hR1 hΔt
       (hU i hiN) hUd1 ho 1 le_rfl
     show x (((i + 1 : ℕ) : ℝ) * Δt) ∈ construct
-      (((NonlinearSys.linearize (steps i).A).discretize Δt).reach o ho
-        (sys.relinReach o ho Δt steps Ud R₀ i) (Ud i) 1)
+      (((NonlinearSys.linearize (steps i).A).discretize Δt).reach
+        ⟨sys.relinReach o ho Δt steps Ud R₀ i, Ud i, 0, 1⟩ ⟨o, ho⟩)
     rw [show ((i + 1 : ℕ) : ℝ) * Δt = (i : ℝ) * Δt + ((1 : ℕ) : ℝ) * Δt from by
       push_cast; ring]
     exact key

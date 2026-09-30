@@ -1,3 +1,4 @@
+import CORALean.ContDynamics.Reach.Theorems.StepsSpecToReal
 import CORALean.ContDynamics.LinearSys.Operations.ReachWrappingFreeFloat
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
 import CORALean.ContDynamics.LinearSys.Theorems.ReachStepkWrappingFreeFloatOuter
@@ -10,13 +11,14 @@ At `t = t_k + s`, `s ∈ [0, Δt]`, the flow is `e^{A t_k} e^{As} x₀`:
 `timeIntervalStepFloat_outer` puts `e^{As} x₀` in the first window,
 `Reduce.reduce_outer` keeps it there, and `reachStepkWrappingFreeFloat_outer` carries it to
 window `k`. Nothing is asked of `η`: the order the run used is the one
-`reachOrderFloat_spec` certifies. `Δt` must be positive, the one hypothesis the
-correction matrix `F` needs; the windows themselves ask nothing of its sign.
+`reachOrderFloat_spec` certifies. `Δt > 0`, the one thing the correction matrix
+`F` needs, is what `Reach.steps` checked before the run took a step; `N` steps of
+it span `[tStart, tFinal]` exactly.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       25-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -29,7 +31,7 @@ open CORALean.Float SoundFloatArithmetic NormedSpace Matrix
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
-variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n : ℕ}
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
@@ -62,19 +64,24 @@ theorem LinearSys.aux_mapM_some {α β : Type} {f : α → Option β} :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSys.reachWrappingFreeFloat_outer (sys : LinearSys 𝕋 n) {X₀ : Zonotope 𝕋 n} {Δt : 𝕋}
-    {η ρ N : ℕ} {Rs : List (Zonotope 𝕋 n)} (hΔt : 0 < toReal Δt)
-    (h : sys.reachWrappingFreeFloat X₀ Δt η ρ N = some Rs) :
-    Rs.length = N ∧ ∀ (k : ℕ) (hk : k < Rs.length), ∀ x₀ ∈ X₀.construct,
-      ∀ s ∈ Set.Icc 0 (toReal Δt),
-        exp (((k : ℝ) * toReal Δt + s) • Scalar.toRealMat sys.A) *ᵥ x₀
-          ∈ Rs[k].construct := by -- --- PROOF ---
+theorem LinearSys.reachWrappingFreeFloat_outer (sys : LinearSys 𝕋 n)
+    {params : Reach.Params (Zonotope 𝕋 n) ℚ} {options : LinearSys.ReachOptions 𝕋}
+    {Rs : List (Zonotope 𝕋 n)} (h : sys.reachWrappingFreeFloat params options = some Rs) :
+    ∃ N : ℕ, (N : ℝ) * toReal options.timeStep = (params.tFinal : ℝ) - params.tStart ∧
+      Rs.length = N ∧ ∀ (k : ℕ) (hk : k < Rs.length), ∀ x₀ ∈ params.R0.construct,
+        ∀ s ∈ Set.Icc 0 (toReal options.timeStep),
+          exp (((k : ℝ) * toReal options.timeStep + s) • Scalar.toRealMat sys.A) *ᵥ x₀
+            ∈ Rs[k].construct := by -- --- PROOF ---
+  obtain ⟨X₀, tStart, tFinal⟩ := params
+  obtain ⟨Δt, η, ρ⟩ := options
+  dsimp only at h ⊢
   simp only [LinearSys.reachWrappingFreeFloat, Option.bind_eq_bind, Option.bind_eq_some_iff] at h
-  obtain ⟨η', hη', hRs⟩ := h
+  obtain ⟨N, hN, η', hη', hRs⟩ := h
+  obtain ⟨hΔt, hNΔt⟩ := Reach.steps_spec_toReal hN
   have hadm := (LinearSys.reachOrderFloat_spec hη').1
   obtain ⟨hlen, hget⟩ := LinearSys.aux_mapM_some hRs
   rw [List.length_range] at hlen
-  refine ⟨hlen, fun k hk x₀ hx₀ s ⟨hs0, hs⟩ => ?_⟩
+  refine ⟨N, hNΔt, hlen, fun k hk x₀ hx₀ s ⟨hs0, hs⟩ => ?_⟩
   -- `e^{As} x₀` is in the first window, reduced or not
   have hτ₀ := Reduce.reduce_outer (sys.timeIntervalStepFloat Δt η' X₀) ρ
     (sys.timeIntervalStepFloat_outer hΔt hadm X₀ hx₀ hs0 hs)

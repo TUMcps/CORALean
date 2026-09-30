@@ -23,7 +23,7 @@ readily, and needs a generator representation `M` from the caller to do it.
 
 -- Authors:       Tobias Ladner
 -- Written:       08-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -43,7 +43,7 @@ variable {n : ℕ}
 `o * n` generators rather than growing a box per step. -/
 noncomputable def LinearSysDT.reachInnerReduced (sys : LinearSysDT ℝ n) (o : ℕ) (ho : 0 < o)
     (R₀ U : Zonotope (Vec ℝ n)) (k : ℕ) : Set (Vec ℝ n) :=
-  minkowskiDiff (sys.reach (S := 𝒵) o ho R₀ U k).construct
+  minkowskiDiff (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct
     (sys.reachErrorReduced o ho R₀ U k).construct
 
 end CORALean

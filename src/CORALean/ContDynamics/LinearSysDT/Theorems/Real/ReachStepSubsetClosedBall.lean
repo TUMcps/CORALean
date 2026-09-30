@@ -22,7 +22,7 @@ reach rather than its generator count, one step at a time and no induction —
 
 -- Authors:       Tobias Ladner
 -- Written:       08-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -45,12 +45,12 @@ given a ball for the state reached at step `k`, one for `U`, and one for the
 box that step's own reduction pays. -/
 theorem LinearSysDT.reach_step_subset_closedBall (sys : LinearSysDT ℝ n) {o : ℕ} (ho : 0 < o)
     {R₀ U : Zonotope (Vec ℝ n)} {r rU rbox : ℝ} (k : ℕ)
-    (hR : (sys.reach (S := 𝒵) o ho R₀ U k).construct ⊆ Metric.closedBall (0 : Vec ℝ n) r)
+    (hR : (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct ⊆ Metric.closedBall (0 : Vec ℝ n) r)
     (hU : U.construct ⊆ Metric.closedBall (0 : Vec ℝ n) rU)
     (hbox : (((Zonotope.mtimes sys.A
-        (sys.reach (S := 𝒵) o ho R₀ U k)).plus U).reduceBox o).construct
+        (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)).plus U).reduceBox o).construct
         ⊆ Metric.closedBall (0 : Vec ℝ n) rbox) :
-    (sys.reach (S := 𝒵) o ho R₀ U (k + 1)).construct
+    (sys.reach (S := 𝒵) ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩).construct
       ⊆ Metric.closedBall (0 : Vec ℝ n) (‖sys.A‖ * r + rU + rbox) :=
   Zonotope.step_subset_closedBall sys.A hR hU hbox
 

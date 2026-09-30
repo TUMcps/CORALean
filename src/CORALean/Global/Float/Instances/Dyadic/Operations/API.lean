@@ -16,6 +16,7 @@ import CORALean.Global.Float.Instances.Dyadic.Operations.QuotUp
 import CORALean.Global.Float.Instances.Dyadic.Operations.RoundDown
 import CORALean.Global.Float.Instances.Dyadic.Operations.RoundUp
 import CORALean.Global.Float.Instances.Dyadic.Operations.Shift
+import CORALean.Global.Float.Instances.Dyadic.Operations.ToRat
 
 /-!
 # Dyadic numbers at a fixed precision: the operations, collected
@@ -26,5 +27,5 @@ by shifting the mantissa right by `shift` bits, taking the floor or the ceiling.
 exception, and the only operation with no exact step: a quotient of dyadics is not dyadic, so
 `quotUp`/`quotDown` round while dividing, and `divUp`/`divDown` round a second time past that.
 `le`/`minimum`/`maximum` are exact, needing no rounding; `neg`/`half` touch the mantissa or the
-exponent alone.
+exponent alone. `toRat` is the exact decoding into ℚ, nothing rounded.
 -/

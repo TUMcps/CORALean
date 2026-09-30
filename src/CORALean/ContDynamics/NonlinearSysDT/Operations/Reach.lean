@@ -6,7 +6,7 @@ import CORALean.ContDynamics.NonlinearSysDT.Operations.Linearize
 # Reachability of a discrete nonlinear system
 
 CORA's `nonlinearSysDT/reach`, one linearization per step: step `k` runs
-`LinearSysDT.reach ... 1` at `(steps k).A`, on the widened input `(steps k)
+`LinearSysDT.reach` for one step at `(steps k).A`, on the widened input `(steps k)
 .linInput`, the set reached at the end of a step becoming the initial set of
 the next. Unlike `NonlinearSys.relinReach` there is no `discretize` and no
 `Δt`: the matrix a step's certificate is issued for is already the discrete
@@ -21,7 +21,7 @@ separately, since here the "solution" is one evaluation, not an integral.
 
 -- Authors:       Tobias Ladner
 -- Written:       04-September-2026
--- Last update:   06-September-2026
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -43,8 +43,8 @@ out `o = 0`. -/
 def NonlinearSysDT.reach (sys : NonlinearSysDT n m) {U : S m} (o : ℕ) (ho : 0 < o)
     (steps : ℕ → sys.LinStep U) (R₀ : S n) : ℕ → S n
   | 0 => R₀
-  | k + 1 => (NonlinearSysDT.linearize (steps k).A).reach o ho
-      (sys.reach o ho steps R₀ k) (steps k).linInput 1
+  | k + 1 => (NonlinearSysDT.linearize (steps k).A).reach
+      ⟨sys.reach o ho steps R₀ k, (steps k).linInput, 0, 1⟩ ⟨o, ho⟩
 
 end CORALean
 

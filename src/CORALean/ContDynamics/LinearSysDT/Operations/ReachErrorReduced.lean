@@ -29,7 +29,7 @@ Otherwise the recursion of `reachError` unchanged, and at the same instances:
 
 -- Authors:       Tobias Ladner
 -- Written:       08-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -53,7 +53,7 @@ noncomputable def LinearSysDT.reachErrorReduced (sys : LinearSysDT ℝ n) (o : �
   | k + 1 => Zonotope.reduce
       ((Zonotope.mtimes sys.A (sys.reachErrorReduced o ho R₀ U k)).plus
         (Zonotope.reduceBox
-          ((Zonotope.mtimes sys.A (sys.reach (S := 𝒵) o ho R₀ U k)).plus U) o)) o
+          ((Zonotope.mtimes sys.A (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)).plus U) o)) o
 
 end CORALean
 

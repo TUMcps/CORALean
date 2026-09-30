@@ -3,7 +3,7 @@ import CORALean.ContDynamics.LinParamSysDT.LinParamSysDT
 /-!
 # A system paired with its input set
 
-`Reach.Params` is one plain `Type`, not indexed by `n`, so it cannot hold a
+`Reach`'s `Params` is one plain `Type`, not indexed by `n`, so it cannot hold a
 per-dimension representation — the input set `U` a step's `Trajectory` reads
 from. Bundled with the system itself instead, exactly as `LinearSysDT
 .WithInput` is.
@@ -11,7 +11,7 @@ from. Bundled with the system itself instead, exactly as `LinearSysDT
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 

@@ -15,7 +15,7 @@ shows the check can see a taint at all — while the library's own
 
 -- Authors:       Tobias Ladner
 -- Written:       27-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -31,14 +31,14 @@ open CORALean.Bench.NearestUnsound
 /-- `reachFloat_outer` at `NearestFloat`, in the plane: accepted, and FALSE in
 substance, since it rests on `nearestUnsound`. Never cite it. -/
 theorem NearestUnsound.reachFloat_outer_nearestFloat :
-    type_of% (@LinearSys.reachFloat_outer NearestFloat _ _ 2) :=
-  @LinearSys.reachFloat_outer NearestFloat _ _ 2
+    type_of% (@LinearSys.reachFloat_outer NearestFloat _ _ _ 2) :=
+  @LinearSys.reachFloat_outer NearestFloat _ _ _ 2
 
 /-- The same at `NearestDyadic 24`, round-to-nearest binary32, resting on
 `nearestUnsound` too. Never cite it. -/
 theorem NearestUnsound.reachFloat_outer_nearestDyadic :
-    type_of% (@LinearSys.reachFloat_outer (NearestDyadic 24) _ _ 2) :=
-  @LinearSys.reachFloat_outer (NearestDyadic 24) _ _ 2
+    type_of% (@LinearSys.reachFloat_outer (NearestDyadic 24) _ _ _ 2) :=
+  @LinearSys.reachFloat_outer (NearestDyadic 24) _ _ _ 2
 
 end CORALean.Bench
 

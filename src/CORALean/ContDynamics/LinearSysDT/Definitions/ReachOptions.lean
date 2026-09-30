@@ -1,0 +1,38 @@
+import Mathlib.Data.Nat.Basic
+
+/-!
+# CORA's `options` for a discrete-time linear reach
+
+`zonotopeOrder`, the one option CORA's `config_linearSysDT_reach` makes
+mandatory. CORA's default is `inf`, no reduction at all, which `ℕ` has no value
+for, so here it is mandatory.
+
+`hZonotopeOrder` rules out `0`, as the positional `ho` did: at `o = 0`,
+`Zonotope.reduceGirard`'s natural subtraction keeps `(0 - 1) · n = 0` generators
+and silently returns order 1, where CORA's `geone` check refuses the value. Its
+default proof closes it at any positive literal, so a literal order costs a
+caller nothing; an order held in a variable brings its own proof.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       30-September-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+
+-- ========================================  MAIN TYPE  ========================================= --
+
+/-- The maximum order `zonotopeOrder` every step is reduced to, positive. -/
+structure LinearSysDT.ReachOptions where
+  zonotopeOrder : ℕ
+  hZonotopeOrder : 0 < zonotopeOrder := by exact Nat.zero_lt_succ _
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

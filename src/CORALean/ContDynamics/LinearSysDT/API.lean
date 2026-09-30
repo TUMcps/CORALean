@@ -5,6 +5,7 @@ import CORALean.ContDynamics.LinearSysDT.Operations.API
 import CORALean.ContDynamics.LinearSysDT.Definitions.ReachInner
 import CORALean.ContDynamics.LinearSysDT.Definitions.ReachInnerFloat
 import CORALean.ContDynamics.LinearSysDT.Definitions.ReachInnerReduced
+import CORALean.ContDynamics.LinearSysDT.Definitions.ReachOptions
 import CORALean.ContDynamics.LinearSysDT.Definitions.ReachParams
 import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
 import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSetOfInit
@@ -18,13 +19,13 @@ import CORALean.ContDynamics.LinearSysDT.Cost.API
 /-!
 # Discrete-time linear systems, collected
 
-The system and what it denotes in `LinearSysDT`, reachability in `Operations`,
-the set reachability encloses in `ReachSet`, what a run of it owes in
-`ReachError` and the inner approximation that buys in `ReachInner`, the
-guarantees in `Theorems`, how large the owed error is in `Complexity`, and in
-`Cost` what running it costs.
+The system and what it denotes in `LinearSysDT`, reachability in `Operations`
+at CORA's `options` in `ReachOptions`, the set reachability encloses in
+`ReachSet`, what a run of it owes in `ReachError` and the inner approximation
+that buys in `ReachInner`, the guarantees in `Theorems`, how large the owed
+error is in `Complexity`, and in `Cost` what running it costs.
 
-`WithInput` pairs a system with the input set `Reach.Params` cannot hold;
+`WithInput` pairs a system with the input set `Reach`'s `Params` cannot hold;
 `ReachParams`, `ReachSetOfInit` and `ReachUnionExact` are what `Reach` needs
 beyond that, and `Instances` is the instance itself.
 

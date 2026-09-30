@@ -11,7 +11,7 @@ nothing past `KΔt` — which is what re-linearizing from there needs.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -46,7 +46,7 @@ theorem NonlinearSys.Trajectory.reach_outer_horizon {sys : NonlinearSys n m} {T 
     (hUd : ∀ k < K, (NonlinearSys.linearize A).stepInput
       (fun t => sys.f (x t) (u t) - A *ᵥ x t) Δt k ∈ construct Ud) {o : ℕ} (ho : 0 < o) :
     ∀ k ≤ K, x ((k : ℝ) * Δt) ∈
-      construct (((NonlinearSys.linearize A).discretize Δt).reach o ho R₀ Ud k) :=
+      construct (((NonlinearSys.linearize A).discretize Δt).reach ⟨R₀, Ud, 0, k⟩ ⟨o, ho⟩) :=
   (traj.linearize_horizon cert hT hR).reach_outer_horizon hΔt subset_rfl hU hUd ho
 
 end CORALean

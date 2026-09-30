@@ -4,7 +4,7 @@ import CORALean.ContSet.Interval.Real.Instances
 /-!
 # A set-valued continuous-time system paired with its input set
 
-`LinearSys.WithInput` at an interval system matrix: `Reach.Params` is not
+`LinearSys.WithInput` at an interval system matrix: `Reach`'s `Params` is not
 indexed by `n`, so the input set `U` is bundled with the system, and `0 ∈ U` is
 a field, being what buys one enclosure for the whole step
 (`ConstTrajectory.inputSolution_timeInterval_outer`). An input set off the
@@ -14,7 +14,7 @@ not do.
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 

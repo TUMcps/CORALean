@@ -1,3 +1,5 @@
+import CORALean.Global.Float.Instances.Dyadic.Theorems.CastToRat
+import CORALean.Global.Float.ToRat
 import CORALean.Global.Float.Instances.Dyadic.Operations.API
 import CORALean.Global.Float.Instances.Dyadic.Theorems.DivDownLeDiv
 import CORALean.Global.Float.Instances.Dyadic.Theorems.LeDivUp
@@ -23,7 +25,7 @@ on the mantissa is needed: leaving the grid costs precision, never soundness.
 
 -- Authors:       Tobias Ladner
 -- Written:       16-August-2026
--- Last update:   04-September-2026
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -70,6 +72,11 @@ instance {p : ℕ} : SoundFloatArithmetic (Dyadic p) where
   toReal_maximum := Dyadic.toReal_maximum
   toReal_le_of_le := Dyadic.toReal_le_of_le
   toReal_half := Dyadic.toReal_half
+
+/-- `m · 2 ^ e` in ℚ, exact. -/
+instance {p : ℕ} : ToRat (Dyadic p) where
+  toRat := Dyadic.toRat
+  toReal_toRat := Dyadic.cast_toRat
 
 end CORALean.Float
 

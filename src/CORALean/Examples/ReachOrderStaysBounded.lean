@@ -17,7 +17,7 @@ caller's own set, never reduced.
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -41,13 +41,14 @@ def Example.rosU : Zonotope (Vec ℝ 2) := Zonotope.ofPoint (0 : Vec ℝ 2)
 /-- The generator bound at every step past the first, `o = 3` and `n = 2` fixed
 so the right side reads as a number rather than a product. -/
 example (k : ℕ) :
-    (Example.rosSys.reach (S := 𝒵) 3 (by norm_num) Example.rosR0 Example.rosU (k + 1)).h ≤ 6 :=
+    (Example.rosSys.reach (S := 𝒵) ⟨Example.rosR0, Example.rosU, 0, k + 1⟩
+      ⟨3, by norm_num⟩).h ≤ 6 :=
   Example.rosSys.reach_order_le (by norm_num) Example.rosR0 Example.rosU k
 
 /-- The same fact restated as growth: the count is `O(1)` in the step index. -/
 example :
-    (fun k : ℕ => (((Example.rosSys.reach (S := 𝒵) 3 (by norm_num) Example.rosR0 Example.rosU
-        (k + 1)).h : ℕ) : ℝ))
+    (fun k : ℕ => (((Example.rosSys.reach (S := 𝒵) ⟨Example.rosR0, Example.rosU, 0, k + 1⟩
+        ⟨3, by norm_num⟩).h : ℕ) : ℝ))
       =O[Filter.atTop] fun _ : ℕ => (1 : ℝ) :=
   Example.rosSys.reach_h_isBigO (by norm_num) Example.rosR0 Example.rosU
 
@@ -63,7 +64,8 @@ theorem Example.rosTraj : Example.rosSys.Trajectory (S := 𝒵) Example.rosR0 Ex
 neither fact was bought at the other's expense. -/
 example (k : ℕ) :
     Example.rosX0 ∈
-      construct (Example.rosSys.reach (S := 𝒵) 3 (by norm_num) Example.rosR0 Example.rosU k) :=
+      construct (Example.rosSys.reach (S := 𝒵) ⟨Example.rosR0, Example.rosU, 0, k⟩
+        ⟨3, by norm_num⟩) :=
   Example.rosSys.reach_outer (S := 𝒵) (by norm_num) Example.rosR0 Example.rosU Example.rosTraj k
 
 end CORALean.Real

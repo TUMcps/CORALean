@@ -9,7 +9,7 @@ import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceOrder
 # `LinearSysDT.reach` bounds the generator count, at `ConZonotope` too
 
 Word for word `ReachOrderLe.lean`'s argument, because that argument was never
-about `Zonotope`: `reach o R₀ U (k + 1)` ends in a `reduce`, whichever
+about `Zonotope`: `reach ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩` ends in a `reduce`, whichever
 representation runs it, so the bound is a property of the last operation each
 step performs, not of what the operation is reducing. Any representation whose
 `reduce` bounds its own size — `ConZonotope.reduce_order_le` here — gives the
@@ -18,7 +18,7 @@ same conclusion the same way, no induction needed either time.
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -38,7 +38,7 @@ generators, at every `S := 𝒞`: unfold one step of `reach` and
 `Real.ConZonotope.reduce_order_le` bounds what it ends in. -/
 theorem LinearSysDT.reach_order_le_conZonotope (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o)
     (R₀ U : Real.ConZonotope (Vec ℝ n)) (k : ℕ) :
-    (sys.reach (S := 𝒞) o ho R₀ U (k + 1)).h ≤ o * n :=
+    (sys.reach (S := 𝒞) ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩).h ≤ o * n :=
   Real.ConZonotope.reduce_order_le _ ho
 
 end CORALean

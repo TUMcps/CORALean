@@ -1,3 +1,5 @@
+import CORALean.Global.Float.Instances.Dyadic.Theorems.CastToRat
+import CORALean.Global.Float.ToRat
 import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealMkZero
 import CORALean.Global.Float.Instances.IEEE.Operations.API
 import CORALean.Global.Float.Instances.IEEE.Theorems.API
@@ -11,7 +13,7 @@ as `Dyadic`'s does and `Float`'s does not. `zero` and `one` are numbers of every
 
 -- Authors:       Tobias Ladner
 -- Written:       28-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -56,6 +58,11 @@ instance {fmt : IEEEFormat} : SoundFloatArithmetic (IEEE fmt) where
   toReal_maximum := IEEE.toReal_maximum
   toReal_le_of_le h := (IEEE.le_iff _ _).mp h
   toReal_half := IEEE.toReal_half
+
+/-- The stored dyadic, decoded exactly. -/
+instance {fmt : IEEEFormat} : ToRat (IEEE fmt) where
+  toRat x := x.toDyadic.toRat
+  toReal_toRat x := Dyadic.cast_toRat x.toDyadic
 
 end CORALean.Float
 

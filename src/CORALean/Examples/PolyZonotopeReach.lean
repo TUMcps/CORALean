@@ -25,7 +25,7 @@ standing will not unify against a metavariable applied to `n`.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   13-September-2026
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -41,7 +41,7 @@ example {n : ℕ} (sys : LinearSys ℝ n) (T : Set ℝ) (R₀ U Ud : PolyZonotop
     (x u : ℝ → Vec ℝ n) (Δt : ℝ) (traj : sys.Trajectory (S := 𝒫𝒵) T R₀ U x u) (hΔt : 0 ≤ Δt)
     (hT : Set.Ici 0 ⊆ T) (hU : Bornology.IsBounded (construct U))
     (hUd : ∀ k : ℕ, sys.stepInput u Δt k ∈ construct Ud) {o : ℕ} (ho : 0 < o) (k : ℕ) :
-    x (k * Δt) ∈ construct ((sys.discretize Δt).reach (S := 𝒫𝒵) o ho R₀ Ud k) :=
+    x (k * Δt) ∈ construct ((sys.discretize Δt).reach (S := 𝒫𝒵) ⟨R₀, Ud, 0, k⟩ ⟨o, ho⟩) :=
   traj.reach_outer hΔt hT hU hUd ho k
 
 /-- The bounded-horizon form, which is what a hybrid location could call: the
@@ -51,7 +51,8 @@ example {n : ℕ} (sys : LinearSys ℝ n) (T : Set ℝ) (R₀ U Ud : PolyZonotop
     (hΔt : 0 ≤ Δt) (hT : Set.Icc 0 ((K : ℝ) * Δt) ⊆ T)
     (hU : Bornology.IsBounded (construct U))
     (hUd : ∀ k < K, sys.stepInput u Δt k ∈ construct Ud) {o : ℕ} (ho : 0 < o) :
-    ∀ k ≤ K, x ((k : ℝ) * Δt) ∈ construct ((sys.discretize Δt).reach (S := 𝒫𝒵) o ho R₀ Ud k) :=
+    ∀ k ≤ K, x ((k : ℝ) * Δt) ∈
+      construct ((sys.discretize Δt).reach (S := 𝒫𝒵) ⟨R₀, Ud, 0, k⟩ ⟨o, ho⟩) :=
   traj.reach_outer_horizon hΔt hT hU hUd ho
 
 end CORALean.Real

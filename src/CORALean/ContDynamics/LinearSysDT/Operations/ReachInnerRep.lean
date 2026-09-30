@@ -14,7 +14,7 @@ It is noncomputable because the exact layer's `reduce` is.
 
 -- Authors:       Tobias Ladner
 -- Written:       08-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -33,9 +33,9 @@ variable {n : ℕ}
 generator representation `M` does not check out. -/
 noncomputable def LinearSysDT.reachInnerRep (sys : LinearSysDT ℝ n) (o : ℕ) (ho : 0 < o)
     (R₀ U : Zonotope (Vec ℝ n)) (k : ℕ)
-    (M : Fin (sys.reach (S := 𝒵) o ho R₀ U k).h →
+    (M : Fin (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).h →
       Fin (sys.reachError o ho R₀ U k).h → ℝ) : Option (Zonotope (Vec ℝ n)) :=
-  (sys.reach (S := 𝒵) o ho R₀ U k).minkDiffRep (sys.reachError o ho R₀ U k) M
+  (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).minkDiffRep (sys.reachError o ho R₀ U k) M
 
 end CORALean
 

@@ -18,7 +18,7 @@ falsification needs no steps to find.
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   24-September-2026
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -57,7 +57,7 @@ theorem SAF.sim_const (k : ℕ) :
 horizon — the half an enclosure is trusted for. -/
 example {o : ℕ} (ho : 0 < o) (k : ℕ) :
     SAF.sys.simulate SAF.x0 (fun _ => (0 : Vec ℝ 2)) k
-      ∈ construct (SAF.sys.reach (S := ℐ𝒱) o ho SAF.R0 SAF.U k) :=
+      ∈ construct (SAF.sys.reach (S := ℐ𝒱) ⟨SAF.R0, SAF.U, 0, k⟩ ⟨o, ho⟩) :=
   SAF.sys.simulate_mem_reach (S := ℐ𝒱) ho SAF.R0 SAF.U
     (Interval.mem_point SAF.x0) (fun _ => Interval.mem_point 0) k
 
@@ -65,7 +65,7 @@ example {o : ℕ} (ho : 0 < o) (k : ℕ) :
 whatever `reach` computes — the half a sample is trusted for, and an enclosure
 never could be, since the violation might be nothing but its own slack. -/
 example {o : ℕ} (ho : 0 < o) (k : ℕ) :
-    ¬ SAF.spec.Holds (construct (SAF.sys.reach (S := ℐ𝒱) o ho SAF.R0 SAF.U k)) :=
+    ¬ SAF.spec.Holds (construct (SAF.sys.reach (S := ℐ𝒱) ⟨SAF.R0, SAF.U, 0, k⟩ ⟨o, ho⟩)) :=
   SAF.sys.not_holds_of_simulate (S := ℐ𝒱) ho SAF.R0 SAF.U SAF.spec
     (Interval.mem_point SAF.x0) (fun _ => Interval.mem_point 0) k
     (by rw [SAF.sim_const]; simp [SAF.spec, SAF.x0])

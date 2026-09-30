@@ -3,7 +3,7 @@ import CORALean.ContDynamics.NonlinearSysDT.Definitions.LinStep
 /-!
 # A discrete nonlinear system, bundled with what its `Reach` run spends
 
-`Reach.Params` is one plain `Type`, not indexed by `n`, so it cannot hold the
+`Reach`'s `Params` is one plain `Type`, not indexed by `n`, so it cannot hold the
 input set `U`, the chain of linearizations `steps` or anything else of one
 dimension; they are bundled with the system instead, as
 `LinearSysDT.WithInput` bundles `U`. The input dimension `m` is a parameter of
@@ -17,7 +17,7 @@ inside `(steps i).R`. `reach` checks against `region i` and proves against
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 

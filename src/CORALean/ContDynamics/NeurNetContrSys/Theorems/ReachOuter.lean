@@ -29,7 +29,7 @@ restated on the reachable set rather than on one run.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -78,9 +78,8 @@ theorem NeurNetContrSys.reach_outer (sys : NeurNetContrSys 𝕋 S n) (o η N : �
       (CompactSet.isClosed_construct _) (CompactSet.isBounded_construct _) ho N le_rfl
     -- the conclusion unfolded, so `key` matches it at the period's own clock
     show x (((i + 1 : ℕ) : ℝ) * ((N : ℝ) * Δt)) ∈ construct
-      ((sys.plant.discretize Δt).reach o ho (sys.reach o η N ho Δt R₀ i)
-        (sys.plant.inputSolution Δt η
-          (sys.contr.enclose (sys.reach o η N ho Δt R₀ i))) N)
+      ((sys.plant.discretize Δt).reach ⟨sys.reach o η N ho Δt R₀ i, sys.plant.inputSolution Δt η
+          (sys.contr.enclose (sys.reach o η N ho Δt R₀ i)), 0, N⟩ ⟨o, ho⟩)
     rw [show ((i + 1 : ℕ) : ℝ) * ((N : ℝ) * Δt)
       = (i : ℝ) * ((N : ℝ) * Δt) + (N : ℝ) * Δt from by push_cast; ring]
     exact key

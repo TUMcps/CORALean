@@ -26,7 +26,7 @@ representation, and `minkDiffRep` can take it as an operand.
 
 -- Authors:       Tobias Ladner
 -- Written:       08-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -47,7 +47,8 @@ noncomputable def LinearSysDT.reachError (sys : LinearSysDT ℝ n) (o : ℕ) (ho
     (R₀ U : Zonotope (Vec ℝ n)) : ℕ → Zonotope (Vec ℝ n)
   | 0 => Zonotope.ofPoint 0
   | k + 1 => (Zonotope.mtimes sys.A (sys.reachError o ho R₀ U k)).plus
-      (Zonotope.reduceBox ((Zonotope.mtimes sys.A (sys.reach (S := 𝒵) o ho R₀ U k)).plus U) o)
+      (Zonotope.reduceBox
+        ((Zonotope.mtimes sys.A (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)).plus U) o)
 
 end CORALean
 

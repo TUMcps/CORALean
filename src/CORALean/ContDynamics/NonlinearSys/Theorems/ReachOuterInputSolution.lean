@@ -12,7 +12,7 @@ depending on the trajectory survives into the hypotheses. Its price is that
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -52,9 +52,9 @@ theorem NonlinearSys.Trajectory.reach_outer_inputSolution [Mtimes ℐ S]
     (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder A Δt η) (linInput sys.f A B xs us U L)))) {o : ℕ} (ho : 0 < o)
     (k : ℕ) :
-    x (k * Δt) ∈ construct (((NonlinearSys.linearize A).discretize Δt).reach o ho R₀
-      ((NonlinearSys.linearize A).inputSolution Δt η
-        (linInput sys.f A B xs us U L)) k) :=
+    x (k * Δt) ∈ construct (((NonlinearSys.linearize A).discretize Δt).reach
+      ⟨R₀, (NonlinearSys.linearize A).inputSolution Δt η (linInput sys.f A B xs us U L), 0, k⟩
+      ⟨o, ho⟩) :=
   ((traj.restrict hT).linearize cert hR).reach_outer_inputSolution hΔt subset_rfl η hε
     hconv hclosed hbdd hRconv hRclosed hRbdd ho k
 

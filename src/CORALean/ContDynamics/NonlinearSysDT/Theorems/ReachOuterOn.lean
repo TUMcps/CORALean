@@ -22,7 +22,7 @@ from a check on the computed sets rather than on the trajectory.
 
 -- Authors:       Tobias Ladner
 -- Written:       04-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -53,8 +53,8 @@ theorem NonlinearSysDT.reach_outer_on (sys : NonlinearSysDT n m) {U : S m} {o : 
   | succ k ih =>
     intro hk
     have hkK : k < K := Nat.lt_of_succ_le hk
-    show x (k + 1) ∈ construct ((NonlinearSysDT.linearize (steps k).A).reach o ho
-      (sys.reach o ho steps R₀ k) (steps k).linInput 1)
+    show x (k + 1) ∈ construct ((NonlinearSysDT.linearize (steps k).A).reach
+      ⟨sys.reach o ho steps R₀ k, (steps k).linInput, 0, 1⟩ ⟨o, ho⟩)
     rw [traj.step k hkK]
     -- the certificate's whole job: `f(x,u) - A x` lies in the widened input
     have hu : sys.f (x k) (u k) - (steps k).A *ᵥ x k ∈ construct (steps k).linInput :=

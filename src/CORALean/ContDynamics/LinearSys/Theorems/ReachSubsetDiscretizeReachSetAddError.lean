@@ -18,7 +18,7 @@ which is what the inner approximation needs of it.
 
 -- Authors:       Tobias Ladner
 -- Written:       23-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -42,7 +42,8 @@ widened by the error that run accumulated. -/
 theorem LinearSys.reach_subset_discretize_reachSet_add_error (sys : LinearSys 𝕋 n)
     {Δt : ℝ} (hΔt : 0 < Δt) (η : ℕ) (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
     {o : ℕ} (ho : 0 < o) (R₀ U : Zonotope (Vec ℝ n)) (k : ℕ) :
-    ((sys.discretize Δt).reach (S := 𝒵) o ho R₀ (sys.inputSolution (S := 𝒵) Δt η U) k).construct
+    ((sys.discretize Δt).reach (S := 𝒵) ⟨R₀, sys.inputSolution (S := 𝒵) Δt η U, 0, k⟩
+        ⟨o, ho⟩).construct
       ⊆ (sys.discretize Δt).reachSet (S := 𝒵) R₀
           (Zonotope.mtimes (MatExp.expIntegral (toRealMat sys.A) Δt) U) k
         + (sys.reachError Δt η o ho R₀ U k).construct := by -- --- PROOF ---

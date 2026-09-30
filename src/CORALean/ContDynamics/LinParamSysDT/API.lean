@@ -13,7 +13,7 @@ import CORALean.ContDynamics.LinParamSysDT.Theorems.API
 The system and what it denotes in `LinParamSysDT`, reachability in
 `Operations`, its guarantee in `Theorems`.
 
-`WithInput` pairs a system with the input set `Reach.Params` cannot hold;
+`WithInput` pairs a system with the input set `Reach`'s `Params` cannot hold;
 `ReachParams`, `ReachSetOfInit` and `ReachUnionExact` are what `Reach` needs
 beyond that, and `Instances` is the instance itself.
 -/

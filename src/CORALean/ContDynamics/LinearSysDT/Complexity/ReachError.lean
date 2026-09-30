@@ -24,7 +24,7 @@ can ever reach, which is the sharp form of the worry `ReachInner.lean` records.
 
 -- Authors:       Tobias Ladner
 -- Written:       08-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -51,15 +51,16 @@ theorem LinearSysDT.reachError_h_le (sys : LinearSysDT ℝ n) {o : ℕ} (ho : 0 
     have herr : sys.reachError o ho R₀ U (k + 1)
         = (Zonotope.mtimes sys.A (sys.reachError o ho R₀ U k)).plus
             (Zonotope.reduceBox
-              ((Zonotope.mtimes sys.A (sys.reach (S := 𝒵) o ho R₀ U k)).plus U) o) :=
+              ((Zonotope.mtimes sys.A (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)).plus U) o) :=
       rfl
     have hbox : (Zonotope.reduceBox
-        ((Zonotope.mtimes sys.A (sys.reach (S := 𝒵) o ho R₀ U k)).plus U) o).h ≤ n := by
+        ((Zonotope.mtimes sys.A (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)).plus U) o).h ≤ n := by
       rw [Zonotope.reduceBox_h]; split_ifs <;> omega
     calc (sys.reachError o ho R₀ U (k + 1)).h
         = (sys.reachError o ho R₀ U k).h
             + (Zonotope.reduceBox
-                ((Zonotope.mtimes sys.A (sys.reach (S := 𝒵) o ho R₀ U k)).plus U) o).h := by
+                ((Zonotope.mtimes sys.A
+                  (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)).plus U) o).h := by
           rw [herr, Zonotope.plus_h, Zonotope.mtimes_h]
       _ ≤ k * n + n := by omega
       _ = (k + 1) * n := by ring

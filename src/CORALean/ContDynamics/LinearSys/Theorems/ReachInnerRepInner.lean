@@ -16,7 +16,7 @@ not about the system.
 
 -- Authors:       Tobias Ladner
 -- Written:       23-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -40,8 +40,8 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 theorem LinearSys.reachInnerRep_inner (sys : LinearSys 𝕋 n) {Δt : ℝ} (hΔt : 0 < Δt) (η : ℕ)
     (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) {o : ℕ} (ho : 0 < o)
     (R₀ U : Zonotope (Vec ℝ n)) (k : ℕ)
-    (M : Fin ((sys.discretize Δt).reach (S := 𝒵) o ho R₀ (sys.inputSolution (S := 𝒵) Δt η U) k).h
-      → Fin (sys.reachError Δt η o ho R₀ U k).h → ℝ) {D : Zonotope (Vec ℝ n)}
+    (M : Fin ((sys.discretize Δt).reach (S := 𝒵) ⟨R₀, sys.inputSolution (S := 𝒵) Δt η U, 0, k⟩
+      ⟨o, ho⟩).h → Fin (sys.reachError Δt η o ho R₀ U k).h → ℝ) {D : Zonotope (Vec ℝ n)}
     (hD : sys.reachInnerRep Δt η o ho R₀ U k M = some D) :
     construct D ⊆ sys.integralReachSet (S := 𝒵) (Set.Icc 0 ((k : ℝ) * Δt)) R₀ U ((k : ℝ) * Δt) :=
   (Zonotope.minkDiffRep_inner _ _ M hD).trans (sys.reachInner_inner hΔt η hε ho R₀ U k)

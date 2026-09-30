@@ -29,7 +29,7 @@ Each box's own `construct` is computed in `𝕋` now, so it reaches
 
 -- Authors:       Tobias Ladner
 -- Written:       08-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -87,7 +87,7 @@ provided both `R₀` and `U` bracket `0` in their own error boxes. -/
 theorem LinearSysDT.reach_float_subset_reachSet_add_error (sys : LinearSysDT 𝕋 n) {o : ℕ}
     (ho : 0 < o) {R₀ U : Zonotope 𝕋 n} (hR₀ : (0 : Vec ℝ n) ∈ R₀.E.construct)
     (hU : (0 : Vec ℝ n) ∈ U.E.construct) (k : ℕ) :
-    (sys.reach (S := Zonotope 𝕋) o ho R₀ U k).construct ⊆
+    (sys.reach (S := Zonotope 𝕋) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct ⊆
       sys.reachSet (S := fun n => Real.Zonotope (Vec ℝ n)) (nominal R₀) (nominal U) k
         + (sys.reachErrorFloat o ho R₀ U k).construct := by -- --- PROOF ---
   induction k with
@@ -96,11 +96,11 @@ theorem LinearSysDT.reach_float_subset_reachSet_add_error (sys : LinearSysDT �
     obtain ⟨n₀, hn₀, e₀, he₀, rfl⟩ := hx
     exact ⟨n₀, hn₀, e₀, Real.Interval.zonotope_contains _ he₀, rfl⟩
   | succ k ih =>
-    set Rk := sys.reach (S := Zonotope 𝕋) o ho R₀ U k with hRkdef
+    set Rk := sys.reach (S := Zonotope 𝕋) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ with hRkdef
     set M := Zonotope.mtimes sys.A Rk with hMdef
     set W := M.plus U with hWdef
     -- `reach`'s step, past the `Plus`/`Mtimes`/`Reduce` instances' own `materialise`
-    have hstep : sys.reach (S := Zonotope 𝕋) o ho R₀ U (k + 1) = W.reduceGirard o := by
+    have hstep : sys.reach (S := Zonotope 𝕋) ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩ = W.reduceGirard o := by
       show Reduce.reduce (Plus.plus (Mtimes.mtimes sys.A Rk) U) o = _
       simp only [Mtimes.mtimes, Plus.plus, Reduce.reduce, Zonotope.materialise_eq,
         Zonotope.reduce, hMdef, hWdef]

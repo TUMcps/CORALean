@@ -25,7 +25,7 @@ exact set, and the name reads with the receiver elided.
 
 -- Authors:       Tobias Ladner
 -- Written:       08-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -52,7 +52,7 @@ theorem LinearSysDT.reachErrorReduced_contains_reachError (sys : LinearSysDT ℝ
   | succ k ih =>
     -- the step's own box is the same on both sides; only what is carried differs
     set B := Zonotope.reduceBox
-      ((Zonotope.mtimes sys.A (sys.reach (S := 𝒵) o ho R₀ U k)).plus U) o
+      ((Zonotope.mtimes sys.A (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)).plus U) o
     have hl : sys.reachError o ho R₀ U (k + 1)
         = (Zonotope.mtimes sys.A (sys.reachError o ho R₀ U k)).plus B := rfl
     have hr : sys.reachErrorReduced o ho R₀ U (k + 1)
