@@ -7,6 +7,10 @@ import CORALean.ContDynamics.NonlinearSys.Definitions.CentreAbstrState
 import CORALean.ContDynamics.NonlinearSys.Definitions.PolyReach
 import CORALean.ContDynamics.NonlinearSys.Definitions.ReachSet
 import CORALean.ContDynamics.NonlinearSys.Definitions.ReachParams
+import CORALean.ContDynamics.NonlinearSys.Definitions.RelinReachOptions
+import CORALean.ContDynamics.NonlinearSys.Definitions.RelinDeltaReachOptions
+import CORALean.ContDynamics.NonlinearSys.Definitions.AbstrReachOptions
+import CORALean.ContDynamics.NonlinearSys.Definitions.PolyReachOptions
 import CORALean.ContDynamics.NonlinearSys.Definitions.ReachUnionExact
 import CORALean.ContDynamics.NonlinearSys.Definitions.WithSteps
 
@@ -19,5 +23,7 @@ is checked against; `LinStep` bundles one linearization with its certificate.
 `PolyTaylor`/`PolyPost`) are what each reachability loop hands its next
 iteration. `ReachSet` is the set the flow actually reaches. `WithSteps` bundles the
 system with a chain of `LinStep`s and checkable regions, `ReachParams` is what a
-`Reach` run takes, and `ReachUnionExact` is the set it encloses.
+`Reach` run takes, and `ReachUnionExact` is the set it encloses. `RelinReachOptions`,
+`RelinDeltaReachOptions`, `AbstrReachOptions` and `PolyReachOptions` are CORA's
+`options` for the algorithms of those names.
 -/

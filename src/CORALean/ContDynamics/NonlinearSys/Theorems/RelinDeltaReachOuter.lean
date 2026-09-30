@@ -21,7 +21,7 @@ the shift has already named.
 
 -- Authors:       Tobias Ladner
 -- Written:       08-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -67,9 +67,9 @@ theorem NonlinearSys.Trajectory.relinDeltaReach_outer {sys : NonlinearSys n m} {
       (MatExp.inputRemainder (steps i).A Δt (q + 2)) (steps i).linInput)))
     {o : ℕ} (ho : 0 < o) (i : ℕ) (hi : i < N)
     {t : ℝ} (ht : t ∈ Set.Icc ((i : ℝ) * Δt) (((i : ℝ) + 1) * Δt)) :
-    x t - x ((i : ℝ) * Δt) ∈ construct (sys.relinDeltaReach o ho Δt (q + 2) steps
+    x t - x ((i : ℝ) * Δt) ∈ construct (sys.relinDeltaReach ⟨R₀, 0, i⟩ ⟨⟨Δt, o, ho⟩, (q + 2)⟩ steps
       (fun i => (NonlinearSys.linearize (steps i).A).inputSolution Δt (q + 2)
-        (steps i).linInput) R₀ i) := by -- --- PROOF ---
+        (steps i).linInput)) := by -- --- PROOF ---
   set Ud : ℕ → S n := fun i => (NonlinearSys.linearize (steps i).A).inputSolution Δt (q + 2)
     (steps i).linInput with hUd_def
   -- `relinReach_outer_inputSolution` places `x (iΔt)` at the start of step `i`
@@ -98,7 +98,7 @@ theorem NonlinearSys.Trajectory.relinDeltaReach_outer {sys : NonlinearSys n m} {
     (hconv i hi) (hclosed i hi) (hbdd i hi) (hRconv i hi) (hRclosed i hi) (hRbdd i hi) (h0 i hi)
   show x t - x ((i : ℝ) * Δt) ∈ construct (Plus.plus
     ((NonlinearSys.linearize (steps i).A).deltaReach Δt (q + 2)
-      (sys.relinReach o ho Δt steps Ud R₀ i)) (Ud i))
+      (sys.relinReach ⟨R₀, 0, i⟩ ⟨Δt, o, ho⟩ steps Ud)) (Ud i))
   simp only [add_zero] at key
   rw [← hbeta]
   exact key

@@ -4,7 +4,9 @@ import CORALean.ContDynamics.LinearSysDT.Operations.ReachOrders
 import CORALean.ContDynamics.LinearSysDT.Operations.ReachHeld
 import CORALean.ContDynamics.LinearSysDT.Operations.Simulate
 import CORALean.ContDynamics.NonlinearSys.Definitions.LinStep
+import CORALean.ContDynamics.NonlinearSys.Definitions.RelinReachOptions
 import CORALean.ContDynamics.NonlinearSys.Operations.Linearize
+import CORALean.ContDynamics.Reach.Definitions.Params
 
 /-!
 # The re-linearization loop
@@ -15,16 +17,16 @@ reached at the end of a step becoming the initial set of the next. Step `i` runs
 the linear machinery of step `i`'s own system for exactly one step, so the whole
 loop is one step of `LinearSysDT.reach` iterated at a matrix that changes each time.
 
-Nothing new is computed. `linearize` gives the system, `discretize` samples it and
-`reach` takes the step; what re-linearizing costs is a fresh certificate per step,
-which is data the caller supplies.
+Nothing new is computed: what re-linearizing costs is a fresh certificate per step,
+data the caller supplies. One step per linearization, so the sample times are the
+step boundaries and absolute time is `iΔt`.
 
-One step per linearization rather than a horizon per linearization, so the sample
-times are the step boundaries and absolute time is `iΔt`. `Δt` and `o` are
-uniform, so `relinReach` recurses on the step index alone.
-
-`exp` needs a norm on `Mat` — a choice, not an instance — and it is the `l∞`
-operator norm here as everywhere `discretize` is reasoned about.
+Time is counted in steps, `tStart` and `tFinal` being ℕ as in `LinearSysDT.reach`,
+not in ℚ with `Reach.steps`: `timeStep` is an ℝ that `discretize` needs, and the
+guarantees are stated at every boundary `iΔt`, which in ℚ time would be a partial
+`Option` per horizon. The count `tFinal - tStart` is exact, and every guarantee is
+stated at `tStart = 0`. `steps` and `Ud` are the certificates CORA computes inside
+`reach`. `exp` takes the `l∞` operator norm on `Mat`, a choice.
 
 ## References
 
@@ -55,14 +57,19 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The reachable set after `i` re-linearized steps of length `Δt`, from `R₀`
-under the per-step input enclosures `Ud`, held at maximum order `o`. `ho` is
-what rules out `o = 0`. -/
-noncomputable def NonlinearSys.relinReach (sys : NonlinearSys n m) {U : S m} (o : ℕ) (ho : 0 < o)
-    (Δt : ℝ) (steps : ℕ → sys.LinStep U) (Ud : ℕ → S n) (R₀ : S n) : ℕ → S n
-  | 0 => R₀
-  | i + 1 => ((NonlinearSys.linearize (steps i).A).discretize Δt).reach
-      ⟨sys.relinReach o ho Δt steps Ud R₀ i, Ud i, 0, 1⟩ ⟨o, ho⟩
+/-- The reachable set after `params.tFinal - params.tStart` re-linearized steps of
+length `options.timeStep`, from `params.R0` under the per-step input enclosures
+`Ud`, held at maximum order `options.zonotopeOrder`. -/
+noncomputable def NonlinearSys.relinReach (sys : NonlinearSys n m) {U : S m}
+    (params : Reach.Params (S n) ℕ) (options : NonlinearSys.RelinReachOptions)
+    (steps : ℕ → sys.LinStep U) (Ud : ℕ → S n) : S n :=
+  let R₀ := params.R0                                               -- the paper's symbols
+  let Δt := options.timeStep
+  let o := options.zonotopeOrder
+  let N := params.tFinal - params.tStart                           -- steps
+  let step := fun i R => ((NonlinearSys.linearize (steps i).A).discretize Δt).reach
+    ⟨R, Ud i, 0, 1⟩ ⟨o, options.hZonotopeOrder⟩                    -- one linearization, one step
+  Nat.rec (motive := fun _ => S n) R₀ step N                        -- R(NΔt)
 
 end CORALean
 

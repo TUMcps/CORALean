@@ -12,7 +12,7 @@ shift appears, unlike in `relinReach_outer`'s own induction.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -50,9 +50,9 @@ theorem NonlinearSys.Trajectory.relinReach_outer_inputSolution [Mtimes ℐ S]
       (MatExp.inputRemainder (steps i).A Δt η) (steps i).linInput)))
     (hRbdd : ∀ i < N, Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (steps i).A Δt η) (steps i).linInput))) {o : ℕ} (ho : 0 < o) :
-    ∀ i ≤ N, x ((i : ℝ) * Δt) ∈ construct (sys.relinReach o ho Δt steps
-      (fun i => (NonlinearSys.linearize (steps i).A).inputSolution Δt η
-        (steps i).linInput) R₀ i) := by -- --- PROOF ---
+    ∀ i ≤ N, x ((i : ℝ) * Δt) ∈ construct (sys.relinReach ⟨R₀, 0, i⟩ ⟨Δt, o, ho⟩ steps (fun i =>
+      (NonlinearSys.linearize (steps i).A).inputSolution Δt η
+        (steps i).linInput)) := by -- --- PROOF ---
   -- everything above is per step, so the loop is `relinReach_outer` plus one enclosure
   refine traj.relinReach_outer hΔt.le hT hR hbdd ?_ ho
   intro i hi

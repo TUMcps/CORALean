@@ -27,7 +27,7 @@ proved only for runs already confined over the whole step.
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -54,7 +54,7 @@ noncomputable def NonlinearSys.WithSteps.reachUnion (sys : NonlinearSys.WithStep
     (NonlinearSys.linearize (sys.steps i).A).reachOrder p.Δt)     --   at every step's matrix
   let Ud := fun i => (NonlinearSys.linearize (sys.steps i).A).inputSolution p.Δt (q + 2)
     (sys.steps i).linInput                                        -- step i's input solution
-  let R := sys.sys.relinReach p.o p.ho p.Δt sys.steps Ud X₀      -- R(iΔt), where step i starts
+  let R := fun i => sys.sys.relinReach ⟨X₀, 0, i⟩ ⟨p.Δt, p.o, p.ho⟩ sys.steps Ud  -- R(iΔt)
   let ρ := 2 * sys.M * p.Δt                                       -- beyond what one step moves
   let B : S n := OfInterval.ofInterval ⟨fun _ => -ρ, fun _ => ρ⟩  -- the box ‖·‖∞ ≤ ρ
   let confined := (List.range p.N).all fun i =>                   -- R(iΔt) ⊕ B ⊆ region i

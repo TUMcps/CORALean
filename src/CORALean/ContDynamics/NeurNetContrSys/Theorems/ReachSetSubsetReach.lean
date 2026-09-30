@@ -24,7 +24,7 @@ restate here — the gap sits in what the class proves, not only in this file.
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   12-September-2026
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -54,7 +54,7 @@ theorem NeurNetContrSys.reachSet_subset_reach (sys : NeurNetContrSys 𝕋 S n) (
     (hε : ‖Δt • toRealMat sys.plant.A‖ / ((η : ℝ) + 2) < 1) {H : ℕ} (R₀ : S n)
     {π : Vec ℝ n → Vec ℝ n} (hπ : sys.contr.Sound π) {i : ℕ} (hi : i ≤ H) :
     sys.reachSet π ((N : ℝ) * Δt) H R₀ ((i : ℝ) * ((N : ℝ) * Δt))
-      ⊆ construct (sys.reach o η N ho Δt R₀ i) := by
+      ⊆ construct (sys.reach ⟨R₀, 0, i⟩ ⟨Δt, N, η, o, ho⟩) := by
   rintro _ ⟨x, traj, rfl⟩
   exact sys.reach_outer o η N ho hΔt hε hπ traj i hi
 

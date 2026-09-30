@@ -1,4 +1,6 @@
 import CORALean.ContDynamics.NonlinearSys.Operations.CentreAbstrRun
+import CORALean.ContDynamics.NonlinearSys.Definitions.AbstrReachOptions
+import CORALean.ContDynamics.Reach.Definitions.InputParams
 
 /-!
 # `Alg. 1` line 17, linearizing at the centre
@@ -14,7 +16,7 @@ time-interval sets. Line 17's union is no zonotope, so this is a `Set`.
 
 -- Authors:       Tobias Ladner
 -- Written:       18-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -38,13 +40,17 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S] [Real.OfInterval S]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- [1, Alg. 1] line 17: `R([0,t_K])`, the union of the first `K` iterations'
-time-interval sets. -/
-noncomputable def NonlinearSys.centreAbstrReach (sys : NonlinearSys n m) (U : S m)
-    (lin : Vec ℝ n → Vec ℝ m → Mat ℝ n n × Mat ℝ n m) (Φ : S n → S n → S n)
-    (sub : S n → S n → Bool) (enlarge : S n → S n) (Δt tK : ℝ) (ηlin ηabs o fuel K : ℕ)
-    (X₀ : S n) : Set (Vec ℝ n) :=
-  ⋃ j < K, ⋃ s ∈ sys.centreAbstrRun U lin Φ sub enlarge Δt tK ηlin ηabs o fuel X₀ (j + 1),
-    construct s.Rτ
+time-interval sets. The horizon is `params.tFinal - params.tStart`, the loop's clock
+starting at `0`. -/
+noncomputable def NonlinearSys.centreAbstrReach (sys : NonlinearSys n m)
+    (params : Reach.InputParams (S n) (S m) ℝ) (options : NonlinearSys.AbstrReachOptions S n m) :
+    Set (Vec ℝ n) :=
+  let X₀ := params.R0                                               -- the paper's symbols
+  let U := params.U
+  let tK := params.tFinal - params.tStart
+  ⋃ j < options.K, ⋃ s ∈ sys.centreAbstrRun U options.lin options.Φ options.sub options.enlarge
+    options.timeStep tK options.taylorTerms options.taylorTermsAbstr options.zonotopeOrder
+    options.fuel X₀ (j + 1), construct s.Rτ
 
 end CORALean
 

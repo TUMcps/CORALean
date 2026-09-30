@@ -24,7 +24,7 @@ over the ones the horizon would force.
 
 -- Authors:       Tobias Ladner
 -- Written:       18-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -49,12 +49,13 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S] [Real.OfInterval S]
 
 /-- [1, Alg. 1] line 17: every iteration's `R(τ_j)` is inside the union the
 algorithm returns. -/
-theorem NonlinearSys.subset_centreAbstrReach (sys : NonlinearSys n m) (U : S m)
-    (lin : Vec ℝ n → Vec ℝ m → Mat ℝ n n × Mat ℝ n m) (Φ : S n → S n → S n)
-    (sub : S n → S n → Bool) (enlarge : S n → S n) (Δt tK : ℝ) (ηlin ηabs o fuel K : ℕ)
-    (X₀ : S n) {j : ℕ} (hj : j < K) {s : NonlinearSys.CentreAbstrState S n}
-    (h : sys.centreAbstrRun U lin Φ sub enlarge Δt tK ηlin ηabs o fuel X₀ (j + 1) = some s) :
-    construct s.Rτ ⊆ sys.centreAbstrReach U lin Φ sub enlarge Δt tK ηlin ηabs o fuel K X₀ := by
+theorem NonlinearSys.subset_centreAbstrReach (sys : NonlinearSys n m)
+    (params : Reach.InputParams (S n) (S m) ℝ) (options : NonlinearSys.AbstrReachOptions S n m)
+    {j : ℕ} (hj : j < options.K) {s : NonlinearSys.CentreAbstrState S n}
+    (h : sys.centreAbstrRun params.U options.lin options.Φ options.sub options.enlarge
+      options.timeStep (params.tFinal - params.tStart) options.taylorTerms
+      options.taylorTermsAbstr options.zonotopeOrder options.fuel params.R0 (j + 1) = some s) :
+    construct s.Rτ ⊆ sys.centreAbstrReach params options := by
   intro x hx
   simp only [NonlinearSys.centreAbstrReach, Set.mem_iUnion, exists_prop]
   exact ⟨j, hj, s, h, hx⟩

@@ -60,7 +60,8 @@ theorem NeurNetContrSys.reach_outer (sys : NeurNetContrSys 𝕋 S n) (o η N : �
     {R₀ : S n} {π : Vec ℝ n → Vec ℝ n} (hπ : sys.contr.Sound π)
     {x : ℝ → Vec ℝ n} (traj : sys.Trajectory π ((N : ℝ) * Δt) H R₀ x) :
     ∀ i ≤ H,
-      x ((i : ℝ) * ((N : ℝ) * Δt)) ∈ construct (sys.reach o η N ho Δt R₀ i) := by -- --- PROOF ---
+      x ((i : ℝ) * ((N : ℝ) * Δt)) ∈
+        construct (sys.reach ⟨R₀, 0, i⟩ ⟨Δt, N, η, o, ho⟩) := by -- --- PROOF ---
   intro i
   -- the induction is on the control period, `traj.period` being its step
   induction i with
@@ -78,8 +79,9 @@ theorem NeurNetContrSys.reach_outer (sys : NeurNetContrSys 𝕋 S n) (o η N : �
       (CompactSet.isClosed_construct _) (CompactSet.isBounded_construct _) ho N le_rfl
     -- the conclusion unfolded, so `key` matches it at the period's own clock
     show x (((i + 1 : ℕ) : ℝ) * ((N : ℝ) * Δt)) ∈ construct
-      ((sys.plant.discretize Δt).reach ⟨sys.reach o η N ho Δt R₀ i, sys.plant.inputSolution Δt η
-          (sys.contr.enclose (sys.reach o η N ho Δt R₀ i)), 0, N⟩ ⟨o, ho⟩)
+      ((sys.plant.discretize Δt).reach ⟨sys.reach ⟨R₀, 0, i⟩ ⟨Δt, N, η, o, ho⟩,
+          sys.plant.inputSolution Δt η
+            (sys.contr.enclose (sys.reach ⟨R₀, 0, i⟩ ⟨Δt, N, η, o, ho⟩)), 0, N⟩ ⟨o, ho⟩)
     rw [show ((i + 1 : ℕ) : ℝ) * ((N : ℝ) * Δt)
       = (i : ℝ) * ((N : ℝ) * Δt) + (N : ℝ) * Δt from by push_cast; ring]
     exact key
