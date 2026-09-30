@@ -1,4 +1,4 @@
-{"dtypes":["binary64","ieee:binary64","ieee:binary32","ieee:binary16","ieee:binary8","ieee:binary4","dyadic:<p>","fixedpoint:<k>"],"id":1,"ok":true,"ops":["ping","from","roundTo","mtimes","mtimesInterval","plus","plusBox","plusInterval","linComb","reduce","interval","enclosure","linearSysReach"],"version":"GITREV"}
+{"dirty":DIRTY,"dtypes":["binary64","ieee:binary64","ieee:binary32","ieee:binary16","ieee:binary8","ieee:binary4","dyadic:<p>","fixedpoint:<k>"],"id":1,"ok":true,"ops":["ping","from","roundTo","mtimes","mtimesInterval","plus","plusBox","plusInterval","linComb","reduce","interval","enclosure","linearSysReach"],"version":"GITREV"}
 {"id":2,"ok":true,"value":{"cols":1,"data":["3*2^0","-1*2^-1"],"rows":2}}
 {"id":3,"ok":true,"value":{"cols":1,"data":["255*2^0"],"rows":1}}
 {"error":"config field `data[0]`: 257 * 2^0 needs more than 8 bits","id":4,"ok":false}

@@ -1,4 +1,4 @@
-import CORALean.Examples.Bench.GitInfo
+import CORALean.Examples.Oracle.GitInfo
 import CORALean.Examples.Oracle.Ops.Enclosure
 import CORALean.Examples.Oracle.Ops.FromRound
 import CORALean.Examples.Oracle.Ops.Reach
@@ -20,7 +20,7 @@ a type, and `handleOp`, which is where an op name becomes a handler.
 
 -- Authors:       Tobias Ladner
 -- Written:       30-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -56,13 +56,15 @@ def handleOp {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] (dops : D
   | "linearSysReach" => handleLinearSysReach dops req
   | o => throw s!"unknown op `{o}` -- one of {String.intercalate ", " opNames}"
 
-def pingFields (version : String) : List (String × Json) :=
-  [ ("version", Json.str version),
+def pingFields (version : CoraleanVersion) : List (String × Json) :=
+  [ ("version", Json.str version.version),
+    ("dirty", Json.bool version.dirty),
     ("dtypes", Json.arr (dtypeForms.toArray.map Json.str)),
     ("ops", Json.arr (opNames.toArray.map Json.str)) ]
 
 /-- `j`'s `op`, at its `dtype` unless it is `"ping"`, which needs none. -/
-def handleRequest (version : String) (j : Json) : Except String (List (String × Json)) := do
+def handleRequest (version : CoraleanVersion) (j : Json) :
+    Except String (List (String × Json)) := do
   let op ← strField j "op"
   if op = "ping" then pure (pingFields version) else
     let dtypeStr ← strField j "dtype"
@@ -71,7 +73,7 @@ def handleRequest (version : String) (j : Json) : Except String (List (String ×
 
 /-- One request line to one response line's `Json` -- never throws, an invalid line becoming
 `{"ok":false, ...}` exactly as a valid request's own failure does. -/
-def respond (version : String) (line : String) : Json :=
+def respond (version : CoraleanVersion) (line : String) : Json :=
   match Json.parse line with
   | .error e => Json.mkObj [("ok", Json.bool false), ("error", Json.str s!"invalid JSON: {e}")]
   | .ok j =>

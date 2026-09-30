@@ -34,8 +34,14 @@ Every request names an `"op"` and, except `"ping"`, a `"dtype"`:
 `binary64` (alias for `ieee:binary64`, the axiom-free `IEEE` instance, never
 hardware `Float`), `ieee:binary64|binary32|binary16|binary8|binary4`,
 `dyadic:<p>` (`p`-bit significand, unbounded exponent), `fixedpoint:<k>` (`k`
-decimal fractional digits). `"ping"` answers with the version, the valid
-`dtype` forms and every `op` name.
+decimal fractional digits). `"ping"` answers with the valid `dtype` forms,
+every `op` name, and CORALean's own version: `"version"`, its short commit,
+and `"dirty"`, whether its working tree has uncommitted changes -- both
+resolved from where the oracle itself was built or run from, never the
+caller's current directory, so a client that spawns the oracle from its own
+repository (`CORA.cpp`, for instance) still gets CORALean's revision rather
+than its own; `"unknown"`/`false` if no CORALean checkout can be found at all
+(`src/CORALean/Examples/Oracle/GitInfo.lean`).
 
 Scalars are `"m*2^e"` (or a plain integer, or an integer-valued JSON number) on
 the way in, normalised `"m*2^e"` on the way out -- except `fixedpoint:<k>`,

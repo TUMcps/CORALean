@@ -21,15 +21,19 @@ trap 'rm -f "$actual" "$expected_norm" "$actual_norm"' EXIT INT TERM
 # shellcheck disable=SC2086 -- ORACLE may be a multi-word command (the interpreter backend)
 $ORACLE < "$REQ" > "$actual"
 
-# `ping`'s "version" is the current git commit, which a fixture committed at one commit cannot
-# pin against a later one; normalised out of both sides before the diff, so the self-test
-# checks everything `ping` reports except that one always-moving field.
-norm() { sed -E 's/"version":"[0-9a-fA-F]+"/"version":"GITREV"/' "$1"; }
+# `ping`'s "version" is the current git commit and "dirty" whether the tree has uncommitted
+# changes, neither of which a fixture committed at one commit can pin against a later one, or a
+# working tree that may or may not be clean when the self-test runs; both normalised out of both
+# sides before the diff, so the self-test checks everything `ping` reports except those two
+# always-moving fields.
+norm() {
+  sed -E 's/"version":"[0-9a-fA-F]+"/"version":"GITREV"/; s/"dirty":(true|false)/"dirty":DIRTY/' "$1"
+}
 norm "$EXPECTED" > "$expected_norm"
 norm "$actual" > "$actual_norm"
 
 if diff -u "$expected_norm" "$actual_norm"; then
-  printf 'selftest: output matches %s (version field normalised)\n' "$EXPECTED"
+  printf 'selftest: output matches %s (version/dirty fields normalised)\n' "$EXPECTED"
 else
   printf 'selftest: output differs from %s\n' "$EXPECTED"
   exit 1

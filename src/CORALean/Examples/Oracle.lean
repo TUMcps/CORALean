@@ -15,20 +15,21 @@ forms and `roundTo`'s exact rounding in `Oracle/Dtype.lean`; `op` names and
 routing in `Oracle/Dispatch.lean`; each op's own semantics in `Oracle/Ops/*.lean`.
 The client is stateless and echoes values back: every scalar the oracle prints
 also parses back as input, at the dtype it was printed for (`Codec.lean`'s
-`ExactScalar`, `Dtype.lean`'s `showExact`). `experiments/oracle/README.md` is
-the human-facing summary, pointing back here.
+`ExactScalar`, `Dtype.lean`'s `showExact`). `ping`'s `"version"`/`"dirty"` are CORALean's own
+commit and working-tree state, resolved from where the executable runs rather than the caller's
+cwd (`Oracle/GitInfo.lean`), `"unknown"`/`false` when that cannot be told.
+`experiments/oracle/README.md` is the human-facing summary, pointing back here.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       30-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
 open CORALean.Oracle
-open CORALean.Bench (runOrUnknown)
 
 /-- `line`, its trailing `\n` and, on Windows, `\r`, dropped -- `stdin.getLine`'s own shape,
 mirrored from `IO.FS.Stream.lines`. -/
@@ -41,7 +42,7 @@ def stripNewline (line : String) : String :=
 
 /-- One line in, one line out, until `stdin.getLine` returns empty -- EOF, `Stream.getLine`'s
 own convention, at which point `main` returns and the process exits `0`. -/
-partial def loop (version : String) (stdin stdout : IO.FS.Stream) : IO Unit := do
+partial def loop (version : CoraleanVersion) (stdin stdout : IO.FS.Stream) : IO Unit := do
   let line ← stdin.getLine
   if line.isEmpty then pure () else
     stdout.putStrLn (respond version (stripNewline line)).compress
@@ -52,7 +53,7 @@ partial def loop (version : String) (stdin stdout : IO.FS.Stream) : IO Unit := d
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def main : IO Unit := do
-  let version ← runOrUnknown "git" #["rev-parse", "--short", "HEAD"]
+  let version ← coraleanCommit
   loop version (← IO.getStdin) (← IO.getStdout)
 
 
