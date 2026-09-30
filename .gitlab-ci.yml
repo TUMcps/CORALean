@@ -152,6 +152,18 @@ build:
     - |
       ORACLE="lake env lean --run src/CORALean/Examples/Oracle.lean" \
         sh experiments/oracle/selftest.sh
+    # What no proof can say: whether the machine and the C lake emits do what `TrustedHardware`
+    # assumes. Sampled, exactly, against the soft-float `IEEE .binary64`; see the README.
+    # LINKED, unlike the two checks above: the interpreter would run the toolchain's precompiled
+    # primitives, and this is about the C compiled from our own definitions. The link compiles the
+    # emitted C of what the executable imports, and the timings below say what that costs.
+    - t0=$(date +%s)
+    - lake build hardwarecheck 2>&1 | tee hardwarecheck-build.log
+    - t1=$(date +%s)
+    - echo "hardwarecheck link took $((t1 - t0))s"
+    - "\"$(dirname \"$(elan which lean)\")/clang\" --version | head -1"
+    - .lake/build/bin/hardwarecheck | tee hardwarecheck.log
+    - echo "hardwarecheck link and run took $(($(date +%s) - t0))s"
   # Only for a failure of the runner itself. Not `script_failure`: the clone is
   # the one step that fails for reasons outside the tree and it retries itself
   # above, so a script failure here is a compile error, a warning, a demo whose
@@ -163,9 +175,10 @@ build:
       - runner_system_failure
       - stuck_or_timeout_failure
   artifacts:
-    when: on_failure
+    when: always
     paths:
       - build.log
+      - hardwarecheck.log
     expire_in: 1 week
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
