@@ -4,25 +4,24 @@ import CORALean.Examples.Oracle.Dtype
 /-!
 # `"linearSysReach"`, via `LinearSys.reachFloat`
 
-`A` is read square and dynamic, `X0` at the dimension `A` fixes; `taylorTerms`
-is `η`, `zonotopeOrder` is `ρ`, and `N := tFinal / timeStep`. `LinearSys` here
+`A` is read square and dynamic, `X0` at the dimension `A` fixes; `X0` and the
+exact `tFinal` are `reachFloat`'s `params` (`tStart = 0`), `timeStep`,
+`taylorTerms` and `zonotopeOrder` its `options`, same names. `LinearSys` here
 carries no input (`LinearSys.lean`'s own docstring), so `B`/`U` have nothing to
 enter through -- rejected unless every entry is exactly zero, `aux_checkNoInput`.
 
-`timeStep`/`tFinal` are read as arbitrary exact reals, not through the dtype's
-checked reader: `N` is computed from them as an exact rational (`exactDiv`, each
-as a `(num, den)` fraction, cross-multiplied and checked to divide exactly)
-before either is asked to fit `𝕋` at all, so an inexact ratio is refused for
-what it is, not a nonnegative integer, rather than for a grid it never had to
-fit. `timeStep` is then read into `𝕋` exactly, since it is `reachFloat`'s own
-`Δt`: refused by name if it does not fit, since rounding it would run a
-different time grid than the one asked for. `reachFloat` needs `0 < toReal Δt`,
-which `exactDiv`'s own positivity check gives before any grid question is asked.
+`timeStep`/`tFinal` are read as arbitrary exact reals: `exactDiv` checks that
+`tFinal / timeStep` is a nonnegative integer, cross-multiplied, before either is
+asked to fit `𝕋`, so an inexact ratio is refused by name, not for a grid. It is
+the check `reachFloat` makes itself, `Reach.steps`, done first for its message.
+`timeStep` is then read into `𝕋` exactly, since it is `reachFloat`'s own `Δt`:
+refused by name if it does not fit, since rounding it would run a different
+time grid than the one asked for.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       30-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -76,7 +75,7 @@ def exactDiv (tFinal timeStep : ExactScalar) : Except String Nat := do
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def handleLinearSysReach {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
+def handleLinearSysReach {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋]
     (dops : DtypeOps 𝕋) (req : Json) : Except String (List (String × Json)) := do
   aux_checkNoInput req
   let dmA ← parseMatDyn dops.readExact (← field req "A")
@@ -86,14 +85,20 @@ def handleLinearSysReach {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic �
     let X0 ← parseZonotopeFixed dops.readExact n (← field req "X0")
     let timeStep ← scalarField req "timeStep"
     let tFinal ← scalarField req "tFinal"
-    let N ← exactDiv tFinal timeStep
+    -- refused by name before the run would refuse it with `none`: the same exact division
+    let _ ← exactDiv tFinal timeStep
     let Δt ← match dops.readExact "timeStep" timeStep with
       | .ok v => pure v
       | .error _ => throw s!"linearSysReach: timeStep {showScalarForMessage timeStep} is not \
         exactly representable in {dops.label}; reachFloat's time grid would change"
     let eta ← natField req "taylorTerms"
     let rho ← natField req "zonotopeOrder"
-    match LinearSys.reachFloat (𝕋 := 𝕋) ⟨A⟩ X0 Δt eta rho N with
+    -- CORA's `params` and `options`, under CORA's own names
+    let params : Reach.Params (Zonotope 𝕋 n) ℚ :=
+      { R0 := X0, tFinal := (aux_toRat tFinal).1 / (aux_toRat tFinal).2 }
+    let options : LinearSys.ReachOptions 𝕋 :=
+      { timeStep := Δt, taylorTerms := eta, zonotopeOrder := rho }
+    match LinearSys.reachFloat (𝕋 := 𝕋) ⟨A⟩ params options with
     | none => throw s!"linearSysReach: reachFloat returned none -- no admissible Taylor order \
         (raised from taylorTerms = {eta}) was found for this timeStep"
     | some (Rti, Rtp) =>

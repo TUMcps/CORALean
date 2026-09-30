@@ -1,5 +1,6 @@
 import CORALean.Global.Float.FloatOps
 import CORALean.Global.Float.SoundFloatArithmetic
+import CORALean.Global.Float.ToRat
 import CORALean.Global.Float.EuclideanNorm
 import CORALean.Global.Float.Exp
 import CORALean.Global.Float.Log
@@ -10,7 +11,8 @@ import CORALean.Global.Float.FloatBound
 # The floating-point scalar, collected
 
 `FloatOps` gives the rounded operations, `SoundFloatArithmetic` says their
-directions are honest, `Exp` and `Log` are the transcendentals built on top of
+directions are honest, `ToRat` decodes a scalar exactly into ℚ where one can,
+`Exp` and `Log` are the transcendentals built on top of
 them, and `Instances` supplies models of both classes.
 
 `EuclideanNorm` is the third place the scalar is asked for something it has not

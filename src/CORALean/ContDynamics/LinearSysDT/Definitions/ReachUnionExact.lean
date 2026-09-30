@@ -5,12 +5,12 @@ import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSetOfInit
 # The exact set `Reach LinearSysDT.WithInput` is asked to enclose
 
 Every state reachable in at most `K` steps from a bare initial set, `K` from
-`Reach.Params` — the `Reach.reachExact` field of the instance.
+`Reach`'s `Params` — the `Reach.reachExact` field of the instance.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 

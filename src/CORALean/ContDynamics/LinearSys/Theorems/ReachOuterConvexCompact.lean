@@ -24,7 +24,7 @@ statement by instantiating this, and any later one does the same.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -54,7 +54,7 @@ theorem LinearSys.Trajectory.reach_outer_convexCompact [Mtimes ℐ S]
     (traj : sys.Trajectory T R₀ U x u) (hΔt : 0 < Δt) (hT : Set.Ici 0 ⊆ T) (η : ℕ)
     (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) {o : ℕ} (ho : 0 < o) (k : ℕ) :
     x (k * Δt) ∈ construct
-      ((sys.discretize Δt).reach o ho R₀ (sys.inputSolution Δt η U) k) :=
+      ((sys.discretize Δt).reach ⟨R₀, sys.inputSolution Δt η U, 0, k⟩ ⟨o, ho⟩) :=
   traj.reach_outer_inputSolution hΔt hT η hε
     (ConvexSet.convex_construct U) (CompactSet.isClosed_construct U)
     (CompactSet.isBounded_construct U)

@@ -10,7 +10,7 @@ quantity depending on the trajectory survives into the hypotheses.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -51,9 +51,9 @@ theorem NonlinearSys.Trajectory.reach_outer_horizon_inputSolution [Mtimes ℐ S]
     (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder A Δt η) (linInput sys.f A B xs us U L)))) {o : ℕ} (ho : 0 < o) :
     ∀ k ≤ K, x ((k : ℝ) * Δt) ∈ construct
-      (((NonlinearSys.linearize A).discretize Δt).reach o ho R₀
-        ((NonlinearSys.linearize A).inputSolution Δt η
-          (linInput sys.f A B xs us U L)) k) :=
+      (((NonlinearSys.linearize A).discretize Δt).reach
+        ⟨R₀, (NonlinearSys.linearize A).inputSolution Δt η (linInput sys.f A B xs us U L), 0, k⟩
+        ⟨o, ho⟩) :=
   (traj.linearize_horizon cert hT hR).reach_outer_horizon_inputSolution hΔt subset_rfl η hε
     hconv hclosed hbdd hRconv hRclosed hRbdd ho
 

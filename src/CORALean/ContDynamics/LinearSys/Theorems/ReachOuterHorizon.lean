@@ -11,7 +11,7 @@ flow on `[0, KΔt]` and nothing beyond. `discretize_horizon` handed to
 
 -- Authors:       Tobias Ladner
 -- Written:       18-August-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -35,7 +35,7 @@ theorem LinearSys.Trajectory.reach_outer_horizon {sys : LinearSys 𝕋 n} {T : S
     (traj : sys.Trajectory T R₀ U x u) (hΔt : 0 ≤ Δt)
     (hT : Set.Icc 0 ((K : ℝ) * Δt) ⊆ T) (hU : Bornology.IsBounded (construct U))
     (hUd : ∀ k < K, sys.stepInput u Δt k ∈ construct Ud) {o : ℕ} (ho : 0 < o) :
-    ∀ k ≤ K, x ((k : ℝ) * Δt) ∈ construct ((sys.discretize Δt).reach o ho R₀ Ud k) :=
+    ∀ k ≤ K, x ((k : ℝ) * Δt) ∈ construct ((sys.discretize Δt).reach ⟨R₀, Ud, 0, k⟩ ⟨o, ho⟩) :=
   (sys.discretize Δt).reach_outer_on ho R₀ Ud (traj.discretize_horizon hΔt hT hU hUd)
 
 end CORALean

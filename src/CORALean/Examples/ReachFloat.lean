@@ -39,7 +39,7 @@ operations ask for `Mtimes ℐ S` at the *exact* interval-matrix family.
 
 -- Authors:       Tobias Ladner
 -- Written:       03-September-2026
--- Last update:   24-September-2026
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -61,12 +61,12 @@ weights do. -/
 `mtimes`, `plus`, `reduce` — is the float representation's own. -/
 def Example.reachZonotopeFloat (sys : LinearSysDT 𝕋 n) (o : ℕ) (ho : 0 < o)
     (R₀ U : Zonotope 𝕋 n) (k : ℕ) : Zonotope 𝕋 n :=
-  sys.reach (S := Zonotope 𝕋) o ho R₀ U k
+  sys.reach (S := Zonotope 𝕋) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩
 
 /-- The same at a float box, where `reduce` is the identity. -/
 def Example.reachIntervalFloat (sys : LinearSysDT 𝕋 n) (o : ℕ) (ho : 0 < o)
     (R₀ U : Interval (Vec 𝕋 n)) (k : ℕ) : Interval (Vec 𝕋 n) :=
-  sys.reach (S := fun n => Interval (Vec 𝕋 n)) o ho R₀ U k
+  sys.reach (S := fun n => Interval (Vec 𝕋 n)) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩
 
 -- Anonymous, since their content is that they elaborate.
 
@@ -74,20 +74,21 @@ def Example.reachIntervalFloat (sys : LinearSysDT 𝕋 n) (o : ℕ) (ho : 0 < o)
 float representation. -/
 example (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o) (R₀ U : Zonotope 𝕋 n)
     {x u : ℕ → Vec ℝ n} (traj : sys.Trajectory (S := Zonotope 𝕋) R₀ U x u) (k : ℕ) :
-    x k ∈ construct (sys.reach (S := Zonotope 𝕋) o ho R₀ U k) :=
+    x k ∈ construct (sys.reach (S := Zonotope 𝕋) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) :=
   sys.reach_outer ho R₀ U traj k
 
 /-- One step, which is what a closed loop needs and `reach_outer` cannot give. -/
 example (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o) (R U : Zonotope 𝕋 n) {x u : Vec ℝ n}
     (hx : x ∈ construct R) (hu : u ∈ construct U) :
-    Scalar.toRealMat sys.A *ᵥ x + u ∈ construct (sys.reach (S := Zonotope 𝕋) o ho R U 1) :=
+    Scalar.toRealMat sys.A *ᵥ x + u ∈
+      construct (sys.reach (S := Zonotope 𝕋) ⟨R, U, 0, 1⟩ ⟨o, ho⟩) :=
   sys.reach_one_outer ho R U hx hu
 
 /-- A specification checked on the computed set answers for the state. -/
 example (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o) (R₀ U : Zonotope 𝕋 n)
     (spec : Specification (Set (Vec ℝ n))) {x u : ℕ → Vec ℝ n}
     (traj : sys.Trajectory (S := Zonotope 𝕋) R₀ U x u) (k : ℕ)
-    (h : spec.Holds (construct (sys.reach (S := Zonotope 𝕋) o ho R₀ U k))) :
+    (h : spec.Holds (construct (sys.reach (S := Zonotope 𝕋) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩))) :
     spec.Holds {x k} :=
   sys.holds_of_reach ho R₀ U spec traj k h
 
@@ -96,7 +97,7 @@ computed zonotope by `Specification.check`, which runs. -/
 example (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o) (R₀ U : Zonotope 𝕋 n)
     (spec : Specification (HPolytope 𝕋 n)) {x u : ℕ → Vec ℝ n}
     (traj : sys.Trajectory (S := Zonotope 𝕋) R₀ U x u) (k : ℕ) :
-    spec.check (sys.reach (S := Zonotope 𝕋) o ho R₀ U k) → (spec.Holds {x k}) :=
+    spec.check (sys.reach (S := Zonotope 𝕋) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) → (spec.Holds {x k}) :=
   sys.holds_of_check ho R₀ U spec traj k
 
 /-! ## An output equation
@@ -109,7 +110,7 @@ representation, and its matrices are stored floats like the plant's. -/
 free of the state dimension, which is what an output is for. -/
 def Example.outputZonotopeFloat (sys : LinearSysDT 𝕋 n) (out : OutputEq 𝕋 n n r)
     (o : ℕ) (ho : 0 < o) (R₀ U : Zonotope 𝕋 n) (k : ℕ) : Zonotope 𝕋 r :=
-  out.outputSet (sys.reach (S := Zonotope 𝕋) o ho R₀ U k) U
+  out.outputSet (sys.reach (S := Zonotope 𝕋) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) U
 
 /-- A specification checked on the output set answers for the output — the one
 question this repository could not ask before. -/
@@ -117,7 +118,7 @@ example (sys : LinearSysDT 𝕋 n) (out : OutputEq 𝕋 n n r) {o : ℕ} (ho : 0
     (R₀ U : Zonotope 𝕋 n) (spec : Specification (Set (Vec ℝ r))) {x u : ℕ → Vec ℝ n}
     (traj : sys.Trajectory (S := Zonotope 𝕋) R₀ U x u) (k : ℕ)
     (h : spec.Holds (construct
-      (out.outputSet (sys.reach (S := Zonotope 𝕋) o ho R₀ U k) U))) :
+      (out.outputSet (sys.reach (S := Zonotope 𝕋) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) U))) :
     spec.Holds {out.eval (x k) (u k)} :=
   sys.holds_of_output out ho R₀ U spec traj k h
 

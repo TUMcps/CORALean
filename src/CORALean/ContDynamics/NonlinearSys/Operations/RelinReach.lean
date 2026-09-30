@@ -13,7 +13,7 @@ CORA's `nonlinearSys/reach`, and the while loop of [1, Alg. 1] — its line 17
 `post` and its line 18 `reduce`: one linearization per time step, the enclosure
 reached at the end of a step becoming the initial set of the next. Step `i` runs
 the linear machinery of step `i`'s own system for exactly one step, so the whole
-loop is `LinearSysDT.reach ... 1` iterated at a matrix that changes each time.
+loop is one step of `LinearSysDT.reach` iterated at a matrix that changes each time.
 
 Nothing new is computed. `linearize` gives the system, `discretize` samples it and
 `reach` takes the step; what re-linearizing costs is a fresh certificate per step,
@@ -35,7 +35,7 @@ operator norm here as everywhere `discretize` is reasoned about.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   13-September-2026
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -61,8 +61,8 @@ what rules out `o = 0`. -/
 noncomputable def NonlinearSys.relinReach (sys : NonlinearSys n m) {U : S m} (o : ℕ) (ho : 0 < o)
     (Δt : ℝ) (steps : ℕ → sys.LinStep U) (Ud : ℕ → S n) (R₀ : S n) : ℕ → S n
   | 0 => R₀
-  | i + 1 => ((NonlinearSys.linearize (steps i).A).discretize Δt).reach o ho
-      (sys.relinReach o ho Δt steps Ud R₀ i) (Ud i) 1
+  | i + 1 => ((NonlinearSys.linearize (steps i).A).discretize Δt).reach
+      ⟨sys.relinReach o ho Δt steps Ud R₀ i, Ud i, 0, 1⟩ ⟨o, ho⟩
 
 end CORALean
 

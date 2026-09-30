@@ -10,7 +10,7 @@ import CORALean.ContDynamics.LinearSysDT.Operations.Simulate
 land inside what `reach` returns after one step. Stated separately because a
 closed loop needs exactly this and cannot use `reach_outer` — there the input
 set is fixed for the whole run, while a controller produces a fresh one at every
-step, so each step is a `reach ... 1` at a set the previous step computed.
+step, so each step is a `reach` at `steps = 1` from a set the previous step computed.
 
 Only `plus_outer`, `mtimes_outer` and `reduce_outer` are used, so it asks for no
 more than `reach` itself does.
@@ -18,7 +18,7 @@ more than `reach` itself does.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -37,7 +37,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 
 theorem LinearSysDT.reach_one_outer (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o) (R U : S n)
     {x u : Vec ℝ n} (hx : x ∈ construct R) (hu : u ∈ construct U) :
-    toRealMat sys.A *ᵥ x + u ∈ construct (sys.reach o ho R U 1) :=
+    toRealMat sys.A *ᵥ x + u ∈ construct (sys.reach ⟨R, U, 0, 1⟩ ⟨o, ho⟩) :=
   reduce_outer _ _ (plus_outer _ _
     (Set.add_mem_add
       (mtimes_outer sys.A _ (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hx)))

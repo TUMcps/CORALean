@@ -22,7 +22,7 @@ are theorems, and here they rest on the one axiom `Axioms` states.
 
 -- Authors:       Tobias Ladner
 -- Written:       22-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -58,7 +58,7 @@ def Ub : Zonotope Float 2 where
 /-- The same `order` and the same `steps` as the `Dyadic` runs, so the three
 tables are the same computation and nothing else. -/
 def Rb (k : ℕ) : Zonotope Float 2 :=
-  sysb.reach (S := Zonotope Float) order (by decide) R₀b Ub k
+  sysb.reach (S := Zonotope Float) ⟨R₀b, Ub, 0, k⟩ ⟨order, by decide⟩
 
 /-! ## On the page
 

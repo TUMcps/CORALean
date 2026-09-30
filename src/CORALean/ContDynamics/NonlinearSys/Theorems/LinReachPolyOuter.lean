@@ -20,7 +20,7 @@ concludes it from `trueError ≤ appliedError`, which this tree does not reprodu
 
 -- Authors:       Tobias Ladner
 -- Written:       23-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -52,7 +52,7 @@ theorem NonlinearSys.Trajectory.linReachPoly_outer {sys : NonlinearSys n m} {T :
     (hUd : (NonlinearSys.linearize A).stepInput
       (fun t => sys.f (x t) (u t) - A *ᵥ x t) Δt 0 ∈ construct Ud) {o : ℕ} (ho : 0 < o) :
     x Δt ∈ construct (((NonlinearSys.linearize A).discretize Δt).reach (S := 𝒫𝒵)
-      o ho Rinit Ud 1) := by -- --- PROOF ---
+      ⟨Rinit, Ud, 0, 1⟩ ⟨o, ho⟩) := by -- --- PROOF ---
   -- the step is the linearization at the `A`, `B`, `xs`, `us` the run was handed
   unfold NonlinearSys.linReachPoly at h
   obtain ⟨k, -, hA, hB, hxs, hus, -, -⟩ := NonlinearSys.abstrErrPolySearch_eq_some h

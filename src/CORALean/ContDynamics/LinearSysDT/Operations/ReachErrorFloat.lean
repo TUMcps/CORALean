@@ -29,7 +29,7 @@ At `k = 0` the error is `R₀`'s own error box, read back as a zonotope.
 
 -- Authors:       Tobias Ladner
 -- Written:       08-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -51,7 +51,7 @@ noncomputable def LinearSysDT.reachErrorFloat (sys : LinearSysDT 𝕋 n) (o : �
     (R₀ U : Zonotope 𝕋 n) : ℕ → Real.Zonotope (Vec ℝ n)
   | 0 => R₀.E.nominal.zonotope
   | k + 1 =>
-    let Rk := sys.reach (S := Zonotope 𝕋) o ho R₀ U k
+    let Rk := sys.reach (S := Zonotope 𝕋) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩
     let M := Zonotope.mtimes sys.A Rk
     let W := M.plus U
     (Real.Zonotope.mtimes (Scalar.toRealMat sys.A) (sys.reachErrorFloat o ho R₀ U k)).plus

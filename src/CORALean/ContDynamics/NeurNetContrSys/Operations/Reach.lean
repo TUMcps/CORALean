@@ -35,7 +35,7 @@ the same gap `relinReach` has.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   12-September-2026
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -63,8 +63,9 @@ maximum order `o`. `ho` is what rules out `o = 0`. -/
 noncomputable def NeurNetContrSys.reach (sys : NeurNetContrSys 𝕋 S n) (o η N : ℕ) (ho : 0 < o)
     (Δt : ℝ) (R₀ : S n) : ℕ → S n
   | 0 => R₀
-  | i + 1 => (sys.plant.discretize Δt).reach o ho (sys.reach o η N ho Δt R₀ i)
-      (sys.plant.inputSolution Δt η (sys.contr.enclose (sys.reach o η N ho Δt R₀ i))) N
+  | i + 1 => (sys.plant.discretize Δt).reach
+      ⟨sys.reach o η N ho Δt R₀ i,
+        sys.plant.inputSolution Δt η (sys.contr.enclose (sys.reach o η N ho Δt R₀ i)), 0, N⟩ ⟨o, ho⟩
 
 end CORALean
 

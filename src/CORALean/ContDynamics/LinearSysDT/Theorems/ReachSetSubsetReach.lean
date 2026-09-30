@@ -15,7 +15,7 @@ tighter of the two is available at every step without either being trusted.
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -34,12 +34,13 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 
 theorem LinearSysDT.reachSet_subset_reach (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o)
     (R₀ U : S n) (k : ℕ) :
-    sys.reachSet R₀ U k ⊆ construct (sys.reach o ho R₀ U k) := by -- --- PROOF ---
+    sys.reachSet R₀ U k ⊆ construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) := by -- --- PROOF ---
   induction k with
   | zero => exact subset_rfl
   | succ k ih =>
     rintro _ ⟨_, ⟨y, hy, rfl⟩, w, hw, rfl⟩
-    show toRealMat sys.A *ᵥ y + w ∈ construct (sys.reach o ho (sys.reach o ho R₀ U k) U 1)
+    show toRealMat sys.A *ᵥ y + w ∈
+      construct (sys.reach ⟨sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩, U, 0, 1⟩ ⟨o, ho⟩)
     exact sys.reach_one_outer ho _ _ (ih hy) hw
 
 end CORALean

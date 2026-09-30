@@ -21,7 +21,7 @@ here the bound is a zonotope, carried along the run rather than restated.
 
 -- Authors:       Tobias Ladner
 -- Written:       23-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -41,7 +41,8 @@ the reachable set at `t = kΔt`, as a set. -/
 noncomputable def LinearSys.reachInner (sys : LinearSys 𝕋 n) (Δt : ℝ) (η o : ℕ) (ho : 0 < o)
     (R₀ U : Zonotope (Vec ℝ n)) (k : ℕ) : Set (Vec ℝ n) :=
   minkowskiDiff
-    ((sys.discretize Δt).reach (S := 𝒵) o ho R₀ (sys.inputSolution (S := 𝒵) Δt η U) k).construct
+    ((sys.discretize Δt).reach (S := 𝒵) ⟨R₀, sys.inputSolution (S := 𝒵) Δt η U, 0, k⟩
+      ⟨o, ho⟩).construct
     (sys.reachError Δt η o ho R₀ U k).construct
 
 end CORALean

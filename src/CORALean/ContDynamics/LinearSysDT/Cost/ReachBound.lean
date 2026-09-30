@@ -20,7 +20,7 @@ The bound is linear in `k` because `reduce` runs every step; without it the
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -39,7 +39,7 @@ variable {n : ℕ}
 step, and the caller's hypothesis at it. -/
 theorem LinearSysDT.aux_reach_h_le (sys : LinearSysDT ℝ n) {o : ℕ} (ho : 0 < o)
     (R₀ U : Zonotope (Vec ℝ n)) (hR₀ : R₀.h ≤ o * n) :
-    ∀ k, (sys.reach (S := 𝒵) o ho R₀ U k).h ≤ o * n
+    ∀ k, (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).h ≤ o * n
   | 0 => hR₀
   | k + 1 => sys.reach_order_le ho R₀ U k
 

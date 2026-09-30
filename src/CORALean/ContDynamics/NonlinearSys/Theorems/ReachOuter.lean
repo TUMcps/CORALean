@@ -23,7 +23,7 @@ over the steps of a re-linearization loop.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   04-September-2026
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -56,7 +56,7 @@ theorem NonlinearSys.Trajectory.reach_outer {sys : NonlinearSys n m} {T : Set �
     (hUd : ∀ k : ℕ, (NonlinearSys.linearize A).stepInput
       (fun t => sys.f (x t) (u t) - A *ᵥ x t) Δt k ∈ construct Ud) {o : ℕ} (ho : 0 < o) (k : ℕ) :
     x (k * Δt) ∈
-      construct (((NonlinearSys.linearize A).discretize Δt).reach o ho R₀ Ud k) :=
+      construct (((NonlinearSys.linearize A).discretize Δt).reach ⟨R₀, Ud, 0, k⟩ ⟨o, ho⟩) :=
   ((traj.restrict hT).linearize cert hR).reach_outer hΔt subset_rfl hU hUd ho k
 
 end CORALean

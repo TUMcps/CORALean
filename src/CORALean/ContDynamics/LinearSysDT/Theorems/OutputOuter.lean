@@ -17,7 +17,7 @@ where the two sets come apart.
 
 -- Authors:       Tobias Ladner
 -- Written:       03-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -36,7 +36,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 
 theorem LinearSysDT.output_outer (sys : LinearSysDT 𝕋 n) (out : OutputEq 𝕋 n n r) {o : ℕ}
     (ho : 0 < o) (R₀ U : S n) {x u : ℕ → Vec ℝ n} (traj : sys.Trajectory R₀ U x u) (k : ℕ) :
-    out.eval (x k) (u k) ∈ construct (out.outputSet (sys.reach o ho R₀ U k) U) :=
+    out.eval (x k) (u k) ∈ construct (out.outputSet (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) U) :=
   out.outputSet_outer _ _ (sys.reach_outer ho R₀ U traj k) (traj.input k)
 
 end CORALean

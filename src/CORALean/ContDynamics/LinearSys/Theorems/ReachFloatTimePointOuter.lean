@@ -1,3 +1,4 @@
+import CORALean.ContDynamics.Reach.Theorems.StepsSpecToReal
 import CORALean.ContDynamics.LinearSys.Operations.ReachFloat
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
 import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepFloatOuter
@@ -8,12 +9,13 @@ import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepFloatOuter
 By induction on `k`: `R_0 = X₀` holds `e^{0} x₀ = x₀`, and
 `e^{A (k+1) Δt} x₀ = e^{AΔt} (e^{A k Δt} x₀)`, which `timePointStepFloat_outer`
 puts in `[e^{AΔt}] R_k` — the run's step, its matrix computed once — and
-`Reduce.reduce_outer` keeps in `R_{k+1}`. No sign is asked of `Δt`.
+`Reduce.reduce_outer` keeps in `R_{k+1}`. The run's `N` is the one `Reach.steps`
+derived, so `N` time steps span `[tStart, tFinal]` exactly (`steps_spec_toReal`).
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       25-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -26,22 +28,26 @@ open CORALean.Float SoundFloatArithmetic NormedSpace Matrix
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
-variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.reachFloat_timePoint_outer (sys : LinearSys 𝕋 n)
-    {X₀ : Zonotope 𝕋 n} {Δt : 𝕋} {η ρ N : ℕ} {Rti Rtp : List (Zonotope 𝕋 n)}
-    (h : sys.reachFloat X₀ Δt η ρ N = some (Rti, Rtp)) :
-    Rtp.length = N + 1 ∧ ∀ (k : ℕ) (hk : k < Rtp.length), ∀ x₀ ∈ X₀.construct,
-      exp (((k : ℝ) * toReal Δt) • Scalar.toRealMat sys.A) *ᵥ x₀
-        ∈ Rtp[k].construct := by -- --- PROOF ---
+    {params : Reach.Params (Zonotope 𝕋 n) ℚ} {options : LinearSys.ReachOptions 𝕋}
+    {Rti Rtp : List (Zonotope 𝕋 n)} (h : sys.reachFloat params options = some (Rti, Rtp)) :
+    ∃ N : ℕ, (N : ℝ) * toReal options.timeStep = (params.tFinal : ℝ) - params.tStart ∧
+      Rtp.length = N + 1 ∧ ∀ (k : ℕ) (hk : k < Rtp.length), ∀ x₀ ∈ params.R0.construct,
+        exp (((k : ℝ) * toReal options.timeStep) • Scalar.toRealMat sys.A) *ᵥ x₀
+          ∈ Rtp[k].construct := by -- --- PROOF ---
+  obtain ⟨X₀, tStart, tFinal⟩ := params
+  obtain ⟨Δt, η, ρ⟩ := options
+  dsimp only at h ⊢
   simp only [LinearSys.reachFloat, Option.bind_eq_bind, Option.bind_eq_some_iff,
     Option.pure_def, Option.some.injEq, Prod.mk.injEq] at h
-  obtain ⟨η', hη', -, rfl⟩ := h
+  obtain ⟨N, hN, η', hη', -, rfl⟩ := h
   have hadm := (LinearSys.reachOrderFloat_spec hη').1
-  refine ⟨List.length_iterate _ _ _, fun k hk x₀ hx₀ => ?_⟩
+  refine ⟨N, (Reach.steps_spec_toReal hN).2, List.length_iterate _ _ _, fun k hk x₀ hx₀ => ?_⟩
   rw [List.getElem_iterate]
   clear hk
   induction k with

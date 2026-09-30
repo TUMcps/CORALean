@@ -34,7 +34,7 @@ computes, from nothing but a system's derivatives and a start set.
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   23-September-2026
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -100,7 +100,7 @@ example (sys : NonlinearSys 1 1) (U X₀ Ud : PolyZonotope (Vec ℝ 1)) (A : Mat
     (hUd : (NonlinearSys.linearize A).stepInput
       (fun t => sys.f (x t) (u t) - A *ᵥ x t) (1 / 100) 0 ∈ construct Ud) :
     x (1 / 100) ∈ construct (((NonlinearSys.linearize A).discretize (1 / 100)).reach
-      (S := 𝒫𝒵) 1 one_pos X₀ Ud 1) :=
+      (S := 𝒫𝒵) ⟨X₀, Ud, 0, 1⟩ ⟨1, one_pos⟩) :=
   traj.linReachPoly_outer h subset_rfl hR (by norm_num) hU hUd one_pos
 
 end CORALean.Real

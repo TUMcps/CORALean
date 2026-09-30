@@ -19,7 +19,7 @@ statement about the system, only about how much the reductions took.
 
 -- Authors:       Tobias Ladner
 -- Written:       08-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -38,7 +38,7 @@ variable {n : ℕ}
 /-- Whatever `reachInnerRep` returns is inside the exact reachable set. -/
 theorem LinearSysDT.reachInnerRep_inner (sys : LinearSysDT ℝ n) {o : ℕ} (ho : 0 < o)
     (R₀ U : Zonotope (Vec ℝ n)) (k : ℕ)
-    (M : Fin (sys.reach (S := 𝒵) o ho R₀ U k).h →
+    (M : Fin (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).h →
       Fin (sys.reachError o ho R₀ U k).h → ℝ) {D : Zonotope (Vec ℝ n)}
     (hD : sys.reachInnerRep o ho R₀ U k M = some D) :
     construct D ⊆ sys.reachSet (S := 𝒵) R₀ U k :=

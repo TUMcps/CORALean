@@ -71,7 +71,7 @@ have no float refinement yet (`pending #1`), only their steps' matrices; `reachE
 
 -- Authors:       Tobias Ladner
 -- Written:       23-September-2026
--- Last update:   24-September-2026
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -247,7 +247,7 @@ def sys : LinearSysDT D 2 := ⟨!![d 15 (-4), d (-1) (-3); d 1 (-3), d 15 (-4)]�
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Five reachability steps, order at most `4`. -/
-def reachRun : Zonotope D 2 := sys.reach (S := Zonotope D) 2 (by decide) Z Z 5
+def reachRun : Zonotope D 2 := sys.reach (S := Zonotope D) ⟨Z, Z, 0, 5⟩ ⟨2, by decide⟩
 
 def net : NeuralNetwork (Zonotope D) 2 2 :=
   .layer (⟨identityMat D 2, fun _ => d 0 0⟩ : LinearLayer D 2 2)

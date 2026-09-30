@@ -23,7 +23,7 @@ box together, which no operation here builds; `reachErrorFloat`'s own
 
 -- Authors:       Tobias Ladner
 -- Written:       08-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -42,7 +42,7 @@ variable {n : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 approximation of the exact reachable set, as a set. -/
 noncomputable def LinearSysDT.reachInnerFloat (sys : LinearSysDT 𝕋 n) (o : ℕ) (ho : 0 < o)
     (R₀ U : Zonotope 𝕋 n) (k : ℕ) : Set (Vec ℝ n) :=
-  minkowskiDiff (sys.reach (S := Zonotope 𝕋) o ho R₀ U k).construct
+  minkowskiDiff (sys.reach (S := Zonotope 𝕋) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct
     (sys.reachErrorFloat o ho R₀ U k).construct
 
 end CORALean

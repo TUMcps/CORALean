@@ -8,7 +8,7 @@ import CORALean.NN.Operations.Enclose
 The alternation and nothing else: run the controller over the current
 enclosure to enclose the inputs it can produce there, and hand that to the
 plant as one step's input set. Both halves are already written, so this file
-computes nothing new — `LinearSysDT.reach ... 1` is the step and
+computes nothing new — one step of `LinearSysDT.reach` is the step and
 `NeuralNetwork.enclose` is the input set it takes.
 
 The precision is lost in one place, and it is worth naming. `enclose` runs on
@@ -21,7 +21,7 @@ controller produces at that state. No order bound recovers the difference.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   06-September-2026
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -43,8 +43,8 @@ maximum order `o`. `ho` is what rules out `o = 0`. -/
 def NeurNetContrSysDT.reach (sys : NeurNetContrSysDT 𝕋 S n) (o : ℕ) (ho : 0 < o) (R₀ : S n) :
     ℕ → S n
   | 0 => R₀
-  | k + 1 => sys.plant.reach o ho (sys.reach o ho R₀ k)
-      (sys.contr.enclose (sys.reach o ho R₀ k)) 1
+  | k + 1 => sys.plant.reach
+      ⟨sys.reach o ho R₀ k, sys.contr.enclose (sys.reach o ho R₀ k), 0, 1⟩ ⟨o, ho⟩
 
 end CORALean
 

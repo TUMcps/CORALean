@@ -1,3 +1,5 @@
+import CORALean.Global.Float.Instances.Dyadic.Theorems.CastToRat
+import CORALean.Global.Float.ToRat
 import CORALean.Global.Float.Instances.Binary64.Definitions.Axioms
 import CORALean.Global.Float.Instances.Binary64.Operations.API
 import CORALean.Global.Float.Instances.Binary64.Theorems.API
@@ -18,7 +20,7 @@ be evaluated.
 
 -- Authors:       Tobias Ladner
 -- Written:       22-September-2026
--- Last update:   28-September-2026
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -62,6 +64,12 @@ instance : SoundFloatArithmetic Float where
   toReal_maximum := Binary64.trustedHardware.toReal_max
   toReal_le_of_le h := Binary64.trustedHardware.toReal_le_of_le _ _ (of_decide_eq_true h)
   toReal_half := Binary64.trustedHardware.toReal_half
+
+/-- The bits, decoded exactly: `toReal` is defined through the same `toDyadic`,
+so this is proved, not assumed — `trustedHardware` is not involved. -/
+instance : ToRat Float where
+  toRat x := (Binary64.toDyadic x).toRat
+  toReal_toRat x := Dyadic.cast_toRat (Binary64.toDyadic x)
 
 end CORALean.Float
 

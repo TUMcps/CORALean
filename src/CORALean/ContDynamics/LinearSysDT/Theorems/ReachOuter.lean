@@ -9,7 +9,7 @@ via `aux_toTrajectoryOn`, so nothing here is proved twice.
 
 -- Authors:       Tobias Ladner
 -- Written:       18-August-2026
--- Last update:   04-September-2026
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -41,7 +41,7 @@ theorem LinearSysDT.Trajectory.aux_toTrajectoryOn {sys : LinearSysDT 𝕋 n} {R�
 
 theorem LinearSysDT.reach_outer (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o) (R₀ U : S n)
     {x u : ℕ → Vec ℝ n} (traj : sys.Trajectory R₀ U x u) (k : ℕ) :
-    x k ∈ construct (sys.reach o ho R₀ U k) :=
+    x k ∈ construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) :=
   sys.reach_outer_on ho R₀ U (traj.aux_toTrajectoryOn k) k le_rfl
 
 end CORALean

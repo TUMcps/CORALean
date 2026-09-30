@@ -1,11 +1,17 @@
+import CORALean.ContDynamics.LinearSys.Definitions.ReachOptions
 import CORALean.ContDynamics.LinearSys.Operations.ReachOrderFloat
 import CORALean.ContDynamics.LinearSys.Operations.ReachStepkWrappingFreeFloat
 import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepFloat
+import CORALean.ContDynamics.Reach.Definitions.Params
+import CORALean.ContDynamics.Reach.Operations.Steps
+import CORALean.Global.Float.ToRat
 
 /-!
 # Wrapping-free reachability in floats: `R(τ_k) = [e^{A t_k}] R(τ_0)`
 
-[1, Alg. 1] without an input, computed in `𝕋`: the first window is
+[1, Alg. 1] without an input, computed in `𝕋`, CORA's `linAlg =
+'wrapping-free'`, at `params` and `options` read as `reachFloat` reads them: the
+first window is
 `timeIntervalStepFloat`, reduced by Girard's rule to order `ρ` (`ρ` at or above
 its order leaves it alone), and window `k < N` is that one set carried by an
 enclosure of `e^{A t_k}` taken at `t_k` directly — `reachStepkWrappingFreeFloat` — so no
@@ -13,7 +19,8 @@ window's error compounds into the next one's.
 
 `η` is raised with `reachOrderFloat` to the first order from `max η 2` the float
 remainder bound at `Δt · A` admits; each window scales `t_k` down to the step
-by squarings and keeps that order. `none` when a search fails; otherwise `N`
+by squarings and keeps that order. `N = (tFinal - tStart) / Δt` by `Reach.steps`.
+`none` when that is no natural number or a search fails; otherwise `N`
 windows.
 
 ## References
@@ -24,7 +31,7 @@ windows.
 
 -- Authors:       Tobias Ladner
 -- Written:       25-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -34,15 +41,21 @@ namespace CORALean
 
 open CORALean.Float
 
-variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The windows `τ_0, …, τ_{N-1}` of width `Δt` from `X₀`, the first reduced to
 order `ρ`, at Taylor order `η` raised until admissible. -/
-def LinearSys.reachWrappingFreeFloat (sys : LinearSys 𝕋 n) (X₀ : Zonotope 𝕋 n) (Δt : 𝕋)
-    (η ρ N : ℕ) : Option (List (Zonotope 𝕋 n)) := do
+def LinearSys.reachWrappingFreeFloat (sys : LinearSys 𝕋 n)
+    (params : Reach.Params (Zonotope 𝕋 n) ℚ) (options : LinearSys.ReachOptions 𝕋) :
+    Option (List (Zonotope 𝕋 n)) := do
+  let X₀ := params.R0                                               -- the paper's symbols
+  let Δt := options.timeStep
+  let η := options.taylorTerms
+  let ρ := options.zonotopeOrder
+  let N ← Reach.steps params.tStart params.tFinal (ToRat.toRat Δt) -- (tFinal - tStart) / Δt ∈ ℕ
   let η' ← sys.reachOrderFloat Δt Δt η                              -- η, raised until admissible
   let Rτ₀ := Reduce.reduce (sys.timeIntervalStepFloat Δt η' X₀) ρ   -- R(τ_0), to order ρ
   (List.range N).mapM (sys.reachStepkWrappingFreeFloat Δt η' Rτ₀)     -- R(τ_k) = [e^{A t_k}] R(τ_0)

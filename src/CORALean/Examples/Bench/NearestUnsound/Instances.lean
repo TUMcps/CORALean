@@ -1,3 +1,5 @@
+import CORALean.Global.Float.Instances.Dyadic.Theorems.CastToRat
+import CORALean.Global.Float.ToRat
 import CORALean.Examples.Bench.NearestUnsound.Axioms
 
 /-!
@@ -19,7 +21,7 @@ guarantee whatsoever.
 
 -- Authors:       Tobias Ladner
 -- Written:       27-September-2026
--- Last update:   28-September-2026
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -100,6 +102,16 @@ scoped instance {p : ℕ} : SoundFloatArithmetic (NearestDyadic p) where
   toReal_maximum a b := Dyadic.toReal_maximum a.val b.val
   toReal_le_of_le h := Dyadic.toReal_le_of_le h
   toReal_half a := Dyadic.toReal_half a.val
+
+/-- The bits, decoded exactly, as for `Float`: no `nearestUnsound` involved. -/
+scoped instance : ToRat NearestFloat where
+  toRat a := (Binary64.toDyadic a.val).toRat
+  toReal_toRat a := Dyadic.cast_toRat (Binary64.toDyadic a.val)
+
+/-- The stored dyadic, decoded exactly. -/
+scoped instance {p : ℕ} : ToRat (NearestDyadic p) where
+  toRat a := a.val.toRat
+  toReal_toRat a := Dyadic.cast_toRat a.val
 
 end CORALean.Bench.NearestUnsound
 

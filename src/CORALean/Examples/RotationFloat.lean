@@ -23,7 +23,7 @@ not checked here — the demo is where that happens.
 
 -- Authors:       Tobias Ladner
 -- Written:       25-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -68,27 +68,27 @@ def X₀D : Zonotope (Dyadic 64) 2 where
 
 def ΔtD : Dyadic 64 := d 1 (-6)
 
-/-- Eight windows, Taylor order at least `4`, the first window reduced to order `10`. -/
-def wrapFreeD : Option (List (Zonotope (Dyadic 64) 2)) := sysD.reachWrappingFreeFloat X₀D ΔtD 4 10 8
+/-- `[0, 1/8]` in eight windows, Taylor order at least `4`, the first window reduced to
+order `10`. -/
+def wrapFreeD : Option (List (Zonotope (Dyadic 64) 2)) :=
+  sysD.reachWrappingFreeFloat { R0 := X₀D, tFinal := 1 / 8 }
+    { timeStep := ΔtD, taylorTerms := 4, zonotopeOrder := 10 }
 
 /-- The same settings, one step at a time: the windows, then `R_0, …, R_8`. -/
 def recursiveD : Option (List (Zonotope (Dyadic 64) 2) × List (Zonotope (Dyadic 64) 2)) :=
-  sysD.reachFloat X₀D ΔtD 4 10 8
+  sysD.reachFloat { R0 := X₀D, tFinal := 1 / 8 }
+    { timeStep := ΔtD, taylorTerms := 4, zonotopeOrder := 10 }
 
-theorem ΔtD_pos : 0 < toReal ΔtD := by
-  show 0 < Dyadic.toReal ΔtD
-  rw [Dyadic.toReal_def]
-  norm_num [ΔtD, d]
-
-/-- What a successful wrapping-free run is worth: the exact flow, over every window. -/
+/-- What a successful wrapping-free run is worth: the exact flow, over every window,
+`1/8 = 8 Δt` split into the eight windows `Reach.steps` derived. -/
 example {Rs : List (Zonotope (Dyadic 64) 2)} (h : wrapFreeD = some Rs) :=
-  sysD.reachWrappingFreeFloat_outer ΔtD_pos h
+  sysD.reachWrappingFreeFloat_outer h
 
 /-- And the recursive one's, over every window. -/
 example {Rti Rtp : List (Zonotope (Dyadic 64) 2)} (h : recursiveD = some (Rti, Rtp)) :=
-  sysD.reachFloat_outer ΔtD_pos h
+  sysD.reachFloat_outer h
 
-/-- And at every step, where `Δt` need not even be positive. -/
+/-- And at every step. -/
 example {Rti Rtp : List (Zonotope (Dyadic 64) 2)} (h : recursiveD = some (Rti, Rtp)) :=
   sysD.reachFloat_timePoint_outer h
 
@@ -109,10 +109,13 @@ def ΔtF : Float := 0.015625
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The Dyadic runs' settings at binary64. -/
-def wrapFreeF : Option (List (Zonotope Float 2)) := sysF.reachWrappingFreeFloat X₀F ΔtF 4 10 8
+def wrapFreeF : Option (List (Zonotope Float 2)) :=
+  sysF.reachWrappingFreeFloat { R0 := X₀F, tFinal := 1 / 8 }
+    { timeStep := ΔtF, taylorTerms := 4, zonotopeOrder := 10 }
 
 def recursiveF : Option (List (Zonotope Float 2) × List (Zonotope Float 2)) :=
-  sysF.reachFloat X₀F ΔtF 4 10 8
+  sysF.reachFloat { R0 := X₀F, tFinal := 1 / 8 }
+    { timeStep := ΔtF, taylorTerms := 4, zonotopeOrder := 10 }
 
 #eval wrapFreeD.map (·.map (summary dToFloat))
 #eval recursiveD.map fun r => r.1.map (summary dToFloat)

@@ -95,6 +95,10 @@ re-tuned per step. `LinearSys` here carries no input term, so a nonzero `B`/`U`
 is refused as `not supported`; `N := tFinal / timeStep`, computed as an exact
 rational and required to be a nonnegative integer, and `timeStep` itself is
 read into the dtype exactly, never rounded, since it is `reachFloat`'s own `Δt`.
+The request's `X0` and `tFinal` reach `reachFloat` as CORA's `params` (`R0`,
+`tFinal`, `tStart = 0`), and `timeStep`, `taylorTerms` and `zonotopeOrder` as its
+`options`, same names; `reachFloat` derives `N` itself and would refuse the same
+ratio, which the oracle refuses first, by name.
 
 ## Self-test
 

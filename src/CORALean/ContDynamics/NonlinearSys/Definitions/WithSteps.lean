@@ -3,7 +3,7 @@ import CORALean.ContDynamics.NonlinearSys.Operations.LinStepLinInput
 /-!
 # A nonlinear system, bundled with what its `Reach` run spends
 
-`Reach.Params` is one plain `Type`, not indexed by `n`, so the input set `U`,
+`Reach`'s `Params` is one plain `Type`, not indexed by `n`, so the input set `U`,
 the chain of linearizations `steps` and everything else of one dimension is
 bundled with the system, as in `NonlinearSysDT.WithSteps`, one `Reach` instance
 per input dimension `m`. `region i` is a representation `Contains` can test,
@@ -18,7 +18,7 @@ Neither involves the step width or the horizon, which `ReachParams` holds.
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 

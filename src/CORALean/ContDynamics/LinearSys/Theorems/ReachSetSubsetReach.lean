@@ -21,7 +21,7 @@ Between the sample times this says nothing; that is
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -45,7 +45,7 @@ theorem LinearSys.reachSet_subset_reach (sys : LinearSys 𝕋 n) {T : Set ℝ} (
     (hUd : ∀ x u : ℝ → Vec ℝ n, sys.Trajectory T R₀ U x u →
       ∀ k : ℕ, sys.stepInput u Δt k ∈ construct Ud) {o : ℕ} (ho : 0 < o) (k : ℕ) :
     sys.reachSet T R₀ U ((k : ℝ) * Δt)
-      ⊆ construct ((sys.discretize Δt).reach o ho R₀ Ud k) := by
+      ⊆ construct ((sys.discretize Δt).reach ⟨R₀, Ud, 0, k⟩ ⟨o, ho⟩) := by
   rintro _ ⟨x, u, traj, rfl⟩
   exact traj.reach_outer hΔt hT hU (hUd x u traj) ho k
 

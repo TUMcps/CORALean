@@ -20,7 +20,7 @@ everything downstream inherits it by induction.
 
 -- Authors:       Tobias Ladner
 -- Written:       08-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -39,12 +39,13 @@ variable {n : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 theorem LinearSysDT.reachFloat_zero_mem_error (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o)
     {R₀ U : Zonotope 𝕋 n} (hR₀ : (0 : Vec ℝ n) ∈ R₀.E.construct)
     (hU : (0 : Vec ℝ n) ∈ U.E.construct) (k : ℕ) :
-    (0 : Vec ℝ n) ∈ (sys.reach (S := Zonotope 𝕋) o ho R₀ U k).E.construct := by -- --- PROOF ---
+    (0 : Vec ℝ n) ∈
+      (sys.reach (S := Zonotope 𝕋) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).E.construct := by -- --- PROOF ---
   induction k with
   | zero => exact hR₀
   | succ k ih =>
-    set Rk := sys.reach (S := Zonotope 𝕋) o ho R₀ U k with hRk
-    have hstep : sys.reach (S := Zonotope 𝕋) o ho R₀ U (k + 1)
+    set Rk := sys.reach (S := Zonotope 𝕋) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ with hRk
+    have hstep : sys.reach (S := Zonotope 𝕋) ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩
         = Zonotope.reduceGirard ((Zonotope.mtimes sys.A Rk).plus U) o := by
       show Reduce.reduce (Plus.plus (Mtimes.mtimes sys.A Rk) U) o = _
       simp only [Mtimes.mtimes, Plus.plus, Reduce.reduce, Zonotope.materialise_eq,

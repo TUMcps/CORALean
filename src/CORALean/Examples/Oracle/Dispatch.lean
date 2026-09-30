@@ -40,7 +40,8 @@ def opNames : List String :=
     "linComb", "reduce", "interval", "enclosure", "linearSysReach" ]
 
 /-- `op`, run at the scalar `dops` names. -/
-def handleOp {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] (dops : DtypeOps 𝕋) (op : String)
+def handleOp {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] (dops : DtypeOps 𝕋)
+    (op : String)
     (req : Json) : Except String (List (String × Json)) :=
   match op with
   | "from" => handleFrom dops req
@@ -68,7 +69,7 @@ def handleRequest (dtypes : DtypeSet) (version : CoraleanVersion) (j : Json) :
   let op ← strField j "op"
   if op = "ping" then pure (pingFields dtypes version) else
     let dtypeStr ← strField j "dtype"
-    dtypes.resolve dtypeStr fun {𝕋} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] dops =>
+    dtypes.resolve dtypeStr fun {𝕋} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] dops =>
       handleOp dops op j
 
 /-- One request line to one response line's `Json` -- never throws, an invalid line becoming

@@ -25,7 +25,7 @@ Not stated over `Reduce`: the class gives only `construct s ⊆ construct
 
 -- Authors:       Tobias Ladner
 -- Written:       08-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -45,7 +45,7 @@ variable {n : ℕ}
 reachable set widened by the error that run accumulated. -/
 theorem LinearSysDT.reach_subset_reachSet_add_error (sys : LinearSysDT ℝ n) {o : ℕ} (ho : 0 < o)
     (R₀ U : Zonotope (Vec ℝ n)) (k : ℕ) :
-    (sys.reach (S := 𝒵) o ho R₀ U k).construct ⊆
+    (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct ⊆
       sys.reachSet (S := 𝒵) R₀ U k + (sys.reachError o ho R₀ U k).construct := by -- --- PROOF ---
   induction k with
   | zero =>
@@ -54,9 +54,9 @@ theorem LinearSysDT.reach_subset_reachSet_add_error (sys : LinearSysDT ℝ n) {o
     have h := Set.add_mem_add hx (Zonotope.mem_ofPoint (0 : Vec ℝ n))
     rwa [add_zero] at h
   | succ k ih =>
-    set Rk := sys.reach (S := 𝒵) o ho R₀ U k with hRk
+    set Rk := sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ with hRk
     set W := (Zonotope.mtimes sys.A Rk).plus U with hW
-    have hunfold : sys.reach (S := 𝒵) o ho R₀ U (k + 1) = Zonotope.reduce W o := rfl
+    have hunfold : sys.reach (S := 𝒵) ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩ = Zonotope.reduce W o := rfl
     have herr : sys.reachError o ho R₀ U (k + 1)
         = (Zonotope.mtimes sys.A (sys.reachError o ho R₀ U k)).plus (Zonotope.reduceBox W o) :=
       rfl

@@ -9,7 +9,7 @@ zero dynamics, so what a run spends is `NonlinearSys.WithSteps`'s data for the
 augmented system in dimension `n + q`: its input set, its chain of
 linearizations, their checkable regions and the field bound. `aug_sys` ties
 that data to `sys`. The parameter set `P` is bundled beside it, since
-`Reach.Params` is one plain `Type` and `P` has dimension `q`, one `Reach`
+`Reach`'s `Params` is one plain `Type` and `P` has dimension `q`, one `Reach`
 instance per input dimension `m` and parameter dimension `q`.
 
 The linearizations are of the augmented field, so each certificate already
@@ -20,7 +20,7 @@ step, is not what is run here.
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 

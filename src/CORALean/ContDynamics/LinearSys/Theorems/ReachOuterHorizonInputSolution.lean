@@ -12,7 +12,7 @@ Only the steps inside the horizon are enclosed, which is exactly what
 
 -- Authors:       Tobias Ladner
 -- Written:       18-August-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -49,7 +49,7 @@ theorem LinearSys.Trajectory.reach_outer_horizon_inputSolution [Mtimes ℐ S]
     (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) Δt η) U))) {o : ℕ} (ho : 0 < o) :
     ∀ k ≤ K, x ((k : ℝ) * Δt) ∈ construct
-      ((sys.discretize Δt).reach o ho R₀ (sys.inputSolution Δt η U) k) :=
+      ((sys.discretize Δt).reach ⟨R₀, sys.inputSolution Δt η U, 0, k⟩ ⟨o, ho⟩) :=
   traj.reach_outer_horizon hΔt.le hT hbdd
     (fun k hk => traj.stepInput_outer hΔt η hε hconv hclosed hbdd hRconv hRclosed hRbdd k
       (step_subset_horizon hΔt.le hT hk)) ho

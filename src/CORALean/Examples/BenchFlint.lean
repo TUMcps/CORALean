@@ -25,7 +25,7 @@ file and the `Flint` instances may reach.
 
 -- Authors:       Tobias Ladner
 -- Written:       28-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -157,8 +157,8 @@ def dispatchFlint (args : CliArgs) : IO Unit :=
 /-- `reachFloat_outer` at `Flint 53`: `check-axioms.sh`'s positive control
 for `trustedFlint`. Never a use site of its own. -/
 theorem reachFloat_outer_flint :
-    type_of% (@LinearSys.reachFloat_outer (Flint 53) _ _ 2) :=
-  @LinearSys.reachFloat_outer (Flint 53) _ _ 2
+    type_of% (@LinearSys.reachFloat_outer (Flint 53) _ _ _ 2) :=
+  @LinearSys.reachFloat_outer (Flint 53) _ _ _ 2
 
 end CORALean.Bench
 

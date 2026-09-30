@@ -12,7 +12,7 @@ goes, the same fact `reduce` in the loop buys at either representation.
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -29,7 +29,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋] [Mtimes (Mat 𝕋) 𝒞]
 
 theorem LinearSysDT.reach_h_isBigO_conZonotope (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o)
     (R₀ U : Real.ConZonotope (Vec ℝ n)) :
-    (fun k : ℕ => (((sys.reach (S := 𝒞) o ho R₀ U (k + 1)).h : ℕ) : ℝ))
+    (fun k : ℕ => (((sys.reach (S := 𝒞) ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩).h : ℕ) : ℝ))
       =O[Filter.atTop] fun _ : ℕ => (1 : ℝ) := by
   apply Asymptotics.IsBigO.of_bound (o * n : ℝ)
   filter_upwards with k

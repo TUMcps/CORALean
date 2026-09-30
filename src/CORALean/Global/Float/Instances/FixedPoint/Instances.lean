@@ -1,3 +1,4 @@
+import CORALean.Global.Float.ToRat
 import CORALean.Global.Float.Instances.FixedPoint.Operations.API
 import CORALean.Global.Float.Instances.FixedPoint.Theorems.DivDownLeDiv
 import CORALean.Global.Float.Instances.FixedPoint.Theorems.LeDivUp
@@ -24,7 +25,7 @@ soundness.
 
 -- Authors:       Tobias Ladner
 -- Written:       28-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -71,6 +72,11 @@ instance {f : ℕ} : SoundFloatArithmetic (FixedPoint f) where
   toReal_maximum := FixedPoint.toReal_maximum
   toReal_le_of_le := FixedPoint.toReal_le_of_le
   toReal_half := FixedPoint.toReal_half
+
+/-- `m / 10 ^ d`, the rational `toReal` already casts. -/
+instance {f : ℕ} : ToRat (FixedPoint f) where
+  toRat x := (x.m : ℚ) / 10 ^ x.d
+  toReal_toRat _ := rfl
 
 end CORALean.Float
 

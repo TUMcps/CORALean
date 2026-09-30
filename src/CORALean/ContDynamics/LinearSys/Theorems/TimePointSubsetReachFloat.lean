@@ -1,3 +1,4 @@
+import CORALean.ContDynamics.Reach.Theorems.StepsSpecToReal
 import CORALean.ContDynamics.LinearSys.Operations.ReachFloat
 import CORALean.ContDynamics.LinearSys.Operations.TimePoint
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
@@ -21,7 +22,7 @@ compared here.
 
 -- Authors:       Tobias Ladner
 -- Written:       28-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -34,7 +35,7 @@ open CORALean.Float SoundFloatArithmetic NormedSpace Matrix ContSet
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
-variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -43,14 +44,17 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 `reachFloat`'s float one. -/
 theorem LinearSys.timePoint_subset_reachFloat (sys : LinearSys 𝕋 n)
     {X₀ : Real.Zonotope (Vec ℝ n)} {X₀float : Zonotope 𝕋 n}
-    (hX₀ : construct X₀ ⊆ X₀float.construct) {Δt : 𝕋} {η ρ N : ℕ}
-    {Rti Rtp : List (Zonotope 𝕋 n)} (h : sys.reachFloat X₀float Δt η ρ N = some (Rti, Rtp)) :
+    (hX₀ : construct X₀ ⊆ X₀float.construct) {tStart tFinal : ℚ}
+    {options : LinearSys.ReachOptions 𝕋} {Rti Rtp : List (Zonotope 𝕋 n)}
+    (h : sys.reachFloat ⟨X₀float, tStart, tFinal⟩ options = some (Rti, Rtp)) :
     ∀ (k : ℕ) (hk : k < Rtp.length),
-      construct (sys.timePoint (S := fun n => Real.Zonotope (Vec ℝ n)) (toReal Δt) X₀ k)
-        ⊆ Rtp[k].construct := by -- --- PROOF ---
+      construct (sys.timePoint (S := fun n => Real.Zonotope (Vec ℝ n)) (toReal options.timeStep)
+        X₀ k) ⊆ Rtp[k].construct := by -- --- PROOF ---
+  obtain ⟨Δt, η, ρ⟩ := options
+  dsimp only at h ⊢
   simp only [LinearSys.reachFloat, Option.bind_eq_bind, Option.bind_eq_some_iff,
     Option.pure_def, Option.some.injEq, Prod.mk.injEq] at h
-  obtain ⟨η', hη', -, rfl⟩ := h
+  obtain ⟨N, -, η', hη', -, rfl⟩ := h
   have hadm := (LinearSys.reachOrderFloat_spec hη').1
   intro k hk
   rw [List.getElem_iterate]
