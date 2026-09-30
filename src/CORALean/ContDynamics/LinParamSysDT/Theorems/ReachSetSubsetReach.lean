@@ -1,13 +1,12 @@
-import CORALean.ContDynamics.LinParamSysDT.Definitions.ReachParams
-import CORALean.ContDynamics.LinParamSysDT.Definitions.ReachSetOfInit
+import CORALean.ContDynamics.LinParamSysDT.Definitions.ReachSet
 import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOneOuter
 
 /-!
-# `reachSetOfInit` at `construct R₀` stays inside `reach`
+# `reachSet` stays inside `reach`
 
-`reach_outer_on`'s induction, off a bare set rather than off one trajectory:
-each step's image at every `A ∈ construct sys.sys.A`, plus every input in
-`construct sys.U`, is exactly what `reach_one_outer` already bounds.
+`reach_outer_on`'s induction, off a represented set rather than off one
+trajectory: each step's image at every `A ∈ construct sys.A`, plus every input in
+`construct U`, is exactly what `reach_one_outer` already bounds.
 -/
 
 -- Authors:       Tobias Ladner
@@ -29,19 +28,16 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinParamSysDT.WithInput.reachSetOfInit_subset_reach (sys : LinParamSysDT.WithInput 𝕄 S n)
-    (p : LinParamSysDT.ReachParams) (R₀ : S n) (k : ℕ) :
-    sys.reachSetOfInit (construct R₀) k
-      ⊆ construct (sys.sys.reach ⟨R₀, sys.U, 0, k⟩ ⟨p.o, p.ho⟩) := by -- --- PROOF ---
+theorem LinParamSysDT.reachSet_subset_reach (sys : LinParamSysDT 𝕄 n) {o : ℕ} (ho : 0 < o)
+    (R₀ U : S n) (k : ℕ) :
+    sys.reachSet R₀ U k ⊆ construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) := by -- --- PROOF ---
   induction k with
   | zero => exact subset_rfl
   | succ k ih =>
     rintro _ ⟨z, hz, w, hw, rfl⟩
     obtain ⟨A, hA, y, hy, rfl⟩ := Set.mem_iUnion₂.mp hz
-    show A *ᵥ y + w ∈
-      construct (sys.sys.reach ⟨sys.sys.reach ⟨R₀, sys.U, 0, k⟩ ⟨p.o, p.ho⟩, sys.U, 0, 1⟩
-        ⟨p.o, p.ho⟩)
-    exact sys.sys.reach_one_outer p.ho _ _ hA (ih hy) hw
+    show A *ᵥ y + w ∈ construct (sys.reach ⟨sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩, U, 0, 1⟩ ⟨o, ho⟩)
+    exact sys.reach_one_outer ho _ _ hA (ih hy) hw
 
 end CORALean
 

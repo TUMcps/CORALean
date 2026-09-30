@@ -3,11 +3,11 @@ import CORALean.ContDynamics.NonlinearSysDT.Definitions.LinStep
 /-!
 # A discrete nonlinear system, bundled with what its `Reach` run spends
 
-`Reach`'s `Params` is one plain `Type`, not indexed by `n`, so it cannot hold the
-input set `U`, the chain of linearizations `steps` or anything else of one
-dimension; they are bundled with the system instead, as
-`LinearSysDT.WithInput` bundles `U`. The input dimension `m` is a parameter of
-the bundle, so each `m` is one `Reach` instance.
+Each step's certificate `steps i` is issued for the input set `U`, its type
+depends on it, so `U` is bundled with the system and the chain rather than taken
+from CORA's `params.U`: a `params` could name another input set than the
+certificates were issued for. The input dimension `m` is a parameter of the
+bundle, so each `m` is one `Reach` instance.
 
 `(steps i).R` is an arbitrary set, which nothing can test containment in, so
 the bundle also carries `region i`, a representation whose `Contains` can run,

@@ -10,7 +10,7 @@ import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOrderLe
 import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuter
 import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuterInstances
 import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuterOn
-import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachSetOfInitSubsetReach
+import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachSetSubsetReach
 import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachUnionOuter
 import CORALean.ContDynamics.LinParamSysDT.Theorems.SimulateMemReach
 import CORALean.ContDynamics.LinParamSysDT.Theorems.SimulateTrajectory
@@ -40,7 +40,7 @@ open re-expression question — a call this file does not make.
 matrix chosen per step, landing inside `reach` — same shape as `LinearSysDT`'s.
 `NotHoldsOfSimulate` is the falsification corollary, mirroring `LinearSysDT`'s.
 `ReachOrderLe`/`ReachBigO` carry the size bound over unchanged, and
-`ReachSetOfInitSubsetReach`/`ReachUnionOuter` are what `Instances` needs.
+`ReachSetSubsetReach`/`ReachUnionOuter` are what `Instances` needs.
 
 ## References
 

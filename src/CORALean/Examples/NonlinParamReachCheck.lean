@@ -21,7 +21,7 @@ then answers for every constant-parameter trajectory, no confinement assumed.
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -32,10 +32,10 @@ open ContSet
 
 /-- A parametric system, its augmented run's region tests and `Reach.check`. -/
 example (sys : NonlinParamSys.WithSteps 𝒵 (fun n => Float.Interval (Vec ℝ n)) 1 1 2)
-    (p : NonlinearSys.ReachParams) (X₀ : Zonotope (Vec ℝ 2))
+    (params : Reach.Params (Zonotope (Vec ℝ 2)) ℝ) (options : LinearSys.ReachOptions ℝ)
     (spec : Specification (Float.Interval (Vec ℝ 2))) :
-    Reach.check (S := 𝒵) sys p X₀ spec →
-    (spec.Holds (Reach.reachExact (S := 𝒵) sys p (construct X₀))) :=
+    Reach.check (S := 𝒵) sys params options spec →
+    (spec.Holds (Reach.reachExact (S := 𝒵) sys params)) :=
   Reach.holds_of_check _ _ _ _
 
 end CORALean.Real

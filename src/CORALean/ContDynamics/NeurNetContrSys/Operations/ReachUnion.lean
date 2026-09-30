@@ -1,4 +1,3 @@
-import CORALean.ContDynamics.NeurNetContrSys.Definitions.ReachParams
 import CORALean.ContDynamics.NeurNetContrSys.Operations.Reach
 import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachOrder
 import CORALean.ContSet.Interval.Real.Instances
@@ -7,8 +6,10 @@ import CORALean.ContSet.SetUnion.SetUnion
 /-!
 # `NeurNetContrSys.reach`, packaged as `Reach`'s `SetUnion`
 
-The periods `0` through `p.H` of `reach`, at `reachOrder`'s own Taylor order,
-one per branch of the `SetUnion` — the `Reach.reach` field of the instance.
+The periods `0` through `H = tFinal - tStart` of `reach`, one per branch of the
+`SetUnion` — the `Reach.reach` field of the instance. `taylorTerms` is a floor,
+raised to `reachOrder`'s order where that is higher, since only an order admissible
+for `timeStep` and the plant's matrix makes `reach_outer` hold.
 -/
 
 -- Authors:       Tobias Ladner
@@ -32,12 +33,16 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The periods `0` through `p.H` of `sys.reach`, at `reachOrder`'s own order
-and the shared initial set `X₀`. -/
+/-- The periods `0` through `tFinal - tStart` of `reach`, from `R0`, at `taylorTerms`
+raised to `reachOrder`'s order. -/
 noncomputable def NeurNetContrSys.reachUnion (sys : NeurNetContrSys 𝕋 S n)
-    (p : NeurNetContrSys.ReachParams) (X₀ : S n) : SetUnion (S n) :=
-  ⟨(List.range (p.H + 1)).map (fun i =>
-    sys.reach ⟨X₀, 0, i⟩ ⟨p.Δt, p.N, sys.reachOrder p.Δt, p.o, p.ho⟩)⟩
+    (params : Reach.Params (S n) ℕ) (options : NeurNetContrSys.ReachOptions) : SetUnion (S n) :=
+  let R₀ := params.R0                                               -- the paper's symbols
+  let Δt := options.timeStep
+  let H := params.tFinal - params.tStart                           -- control periods
+  let η := max options.taylorTerms (sys.reachOrder Δt)             -- raised until admissible
+  ⟨(List.range (H + 1)).map (fun i =>                               -- ⋃_{i ≤ H} R(iNΔt)
+    sys.reach ⟨R₀, 0, i⟩ ⟨Δt, options.N, η, options.zonotopeOrder, options.hZonotopeOrder⟩)⟩
 
 end CORALean
 

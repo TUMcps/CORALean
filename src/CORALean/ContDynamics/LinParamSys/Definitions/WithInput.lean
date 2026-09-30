@@ -4,9 +4,9 @@ import CORALean.ContSet.Interval.Real.Instances
 /-!
 # A set-valued continuous-time system paired with its input set
 
-`LinearSys.WithInput` at an interval system matrix: `Reach`'s `Params` is not
-indexed by `n`, so the input set `U` is bundled with the system, and `0 ∈ U` is
-a field, being what buys one enclosure for the whole step
+`LinearSys.WithInput` at an interval system matrix: the input set `U` is bundled
+with the system rather than taken from CORA's `params.U`, since `0 ∈ U` is a field,
+a proof `params` cannot carry, being what buys one enclosure for the whole step
 (`ConstTrajectory.inputSolution_timeInterval_outer`). An input set off the
 origin is the split case, a constant taken off first, which `reachUnion` does
 not do.

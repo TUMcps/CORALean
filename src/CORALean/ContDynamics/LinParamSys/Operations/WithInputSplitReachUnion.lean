@@ -1,16 +1,17 @@
 import CORALean.ContDynamics.LinParamSys.Operations.ReachOrder
 import CORALean.ContDynamics.LinParamSys.Operations.WithInputSplitReachStepk
-import CORALean.ContDynamics.LinearSys.Definitions.ReachParams
+import CORALean.ContDynamics.LinearSys.Definitions.ReachStepOptions
+import CORALean.ContDynamics.Reach.Definitions.Params
 import CORALean.ContSet.SetUnion.SetUnion
 
 /-!
-# Reachability with an input set anywhere, over `[0, p.tFinal]`
+# Reachability with an input set anywhere, over `[tStart, tFinal]`
 
 `LinParamSys.WithInput.reachUnion` with [1, Alg. 4]'s input set split: the
 windows `τ_0, …, τ_{N-1}`, one `WithInputSplit.reachStepk` each, collected as a
-`SetUnion`, `N = ⌈p.tFinal / p.Δt⌉` of them and never fewer than one.
+`SetUnion`, `N = ⌈(tFinal - tStart) / Δt⌉` of them and never fewer than one.
 
-`η` is raised to `reachOrder p.Δt + 2` where that is higher, since only an
+`η = taylorTerms` is raised to `reachOrder Δt + 2` where that is higher, since only an
 order admissible for `Δt` and every member of `sys.A` makes `timeIntervalStep`,
 `constInputSolution` and `constPropagate` hold.
 
@@ -22,7 +23,7 @@ order admissible for `Δt` and every member of `sys.A` makes `timeIntervalStep`,
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -41,14 +42,16 @@ variable [∀ n, OfPoint (S n) (Vec ℝ n)] [∀ n, Recentre (S n) (Vec ℝ n)] 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- One time-interval set per window `τ_k`, `k < ⌈p.tFinal / p.Δt⌉` (at least
-one), inputs in `sys.U` split at its centre, at order `p.η` raised until
+/-- One time-interval set per window `τ_k`, `k < ⌈(tFinal - tStart) / Δt⌉` (at least
+one), inputs in `sys.U` split at its centre, at order `taylorTerms` raised until
 admissible. -/
 noncomputable def LinParamSys.WithInputSplit.reachUnion (sys : LinParamSys.WithInputSplit S n)
-    (p : LinearSys.ReachParams) (X₀ : S n) : SetUnion (S n) :=
-  let N := max 1 ⌈p.tFinal / p.Δt⌉₊                              -- windows τ_0, …, τ_{N-1}
-  let η' := max p.η (sys.sys.reachOrder p.Δt + 2)                 -- η, raised until admissible
-  ⟨(List.range N).map (sys.reachStepk p.Δt η' X₀)⟩                -- ⋃_{k < N} R(τ_k)
+    (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachStepOptions ℝ) : SetUnion (S n) :=
+  let X₀ := params.R0                                             -- the paper's symbols
+  let Δt := options.timeStep
+  let N := max 1 ⌈(params.tFinal - params.tStart) / Δt⌉₊         -- windows τ_0, …, τ_{N-1}
+  let η' := max options.taylorTerms (sys.sys.reachOrder Δt + 2)   -- η, raised until admissible
+  ⟨(List.range N).map (sys.reachStepk Δt η' X₀)⟩                  -- ⋃_{k < N} R(τ_k)
 
 end CORALean
 

@@ -4,24 +4,27 @@ import CORALean.ContSet.SetUnion.SetUnion
 /-!
 # One reachability interface, over every system class
 
-CORA's `reach`, read as a class the way `Mtimes` and `Enclose` are: `reachExact`
-is what a system's dynamics actually reach, a `Set` and nothing an
-implementation may widen; `reach` is what a representation computes for it,
-`none` where the algorithm could not certify its own soundness conditions at
-run time — CORA's failure mode, as when a linearization region does not contain
-the set computed in it; `reach_outer` encloses the first in every result.
+CORA's `reach(sys, params, options)`, read as a class the way `Mtimes` and
+`Enclose` are. `reachExact sys params` is what the dynamics reach, a `Set` nothing
+may widen; `reach sys params options` is what an algorithm computes for it, `none`
+where it could not certify its soundness conditions at run time — CORA's failure
+mode, as when a linearization region misses the set computed in it, or a horizon is
+no multiple of `timeStep`. `reach_outer` encloses the first in every result.
 
-`Params` bundles what an algorithm needs beyond the initial set, every side
-condition a `Prop` field of it or checked at run time, so `reach_outer` asks for
-nothing beyond `sys`, `p` and `X₀`. One plain `Type`, not indexed by `n` or `S`:
-a system whose algorithm needs a per-dimension datum (an input set) carries it
-in `Sys` instead. `Sys` is universe-polymorphic, as `Enclose`'s layer kind is: a
-closed-loop system stores a `NeuralNetwork`, which sits in `Type 1`.
+`P n` is CORA's `params`, the problem: `R0`, the horizon `[tStart, tFinal]`, and `U`
+where the system does not bind its input set itself — `Reach.Params` or
+`Reach.InputParams` at the family's time type, which is `P`'s business and no
+parameter of the class. `O` is CORA's `options`, the algorithm. `reachExact` takes
+no options: what a system reaches does not depend on how it is enclosed. Both are
+`outParam`s, as CORA's `reach` dispatches on the class of `sys` alone: one instance
+per system class and representation fixes them, `⟨R₀, 0, 1⟩` elaborates against it,
+and `reachExact`, which never mentions `O`, still resolves. `Sys` may sit in
+`Type 1`, as a closed loop storing a `NeuralNetwork` does.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -36,15 +39,16 @@ open ContSet
 
 -- ========================================  MAIN TYPE  ========================================= --
 
-/-- `reachExact` is the exact set a system's dynamics reach; `reach` is what a
-representation computes for it, `none` if it could not certify itself;
+/-- `reachExact sys params` is the exact set the problem `params` asks for; `reach sys params
+options` is what an algorithm computes for it, `none` if it could not certify itself;
 `reach_outer` is the enclosure between them, at every result `reach` returns. -/
-class Reach (Sys : ℕ → Type u) (Params : Type) (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] where
-  reachExact {n : ℕ} : Sys n → Params → Set (Vec ℝ n) → Set (Vec ℝ n)
-  reach {n : ℕ} : Sys n → Params → S n → Option (SetUnion (S n))
-  reach_outer {n : ℕ} (sys : Sys n) (p : Params) (X₀ : S n) :
-    match reach sys p X₀ with
-    | some R => reachExact sys p (construct X₀) ⊆ construct R
+class Reach (Sys : ℕ → Type u) (P : outParam (ℕ → Type)) (O : outParam Type) (S : ℕ → Type)
+    [∀ n, ContSet (S n) (Vec ℝ n)] where
+  reachExact {n : ℕ} : Sys n → P n → Set (Vec ℝ n)
+  reach {n : ℕ} : Sys n → P n → O → Option (SetUnion (S n))
+  reach_outer {n : ℕ} (sys : Sys n) (params : P n) (options : O) :
+    match reach sys params options with
+    | some R => reachExact sys params ⊆ construct R
     | none => True
 
 end CORALean

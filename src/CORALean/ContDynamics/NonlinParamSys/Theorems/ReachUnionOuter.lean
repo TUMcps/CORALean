@@ -18,7 +18,7 @@ to the one holding its first half, which is the state.
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -39,22 +39,24 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NonlinParamSys.WithSteps.reachUnion_outer (sys : NonlinParamSys.WithSteps S Rg m q n)
-    (p : NonlinearSys.ReachParams) (X₀ : S n) :
-    match sys.reachUnion p X₀ with
-    | some R => sys.reachUnionExact p (construct X₀) ⊆ construct R
+    (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachOptions ℝ) :
+    match sys.reachUnion params options with
+    | some R => sys.reachUnionExact (params.tFinal - params.tStart) (construct params.R0)
+        ⊆ construct R
     | none => True := by -- --- PROOF ---
-  cases hR : sys.reachUnion p X₀ with
+  cases hR : sys.reachUnion params options with
   | none => trivial
   | some R =>
     intro y hy
     simp only [NonlinParamSys.WithSteps.reachUnion, Option.map_eq_some_iff] at hR
     obtain ⟨Ra, hRa, rfl⟩ := hR
-    set Z₀ : S (n + q) := Mtimes.mtimes (𝕄 := Mat ℝ) (LinearMap.toMatrix' (blockPadLeft n q)) X₀ ⊞
+    set Z₀ : S (n + q) :=
+      Mtimes.mtimes (𝕄 := Mat ℝ) (LinearMap.toMatrix' (blockPadLeft n q)) params.R0 ⊞
       Mtimes.mtimes (𝕄 := Mat ℝ) (LinearMap.toMatrix' (blockPadRight n q)) sys.P
     -- every pair `(x₀, p)` lies in the product computed, `(x₀, 0) + (0, p)`
-    have hZ : ∀ v ∈ construct X₀, ∀ w ∈ construct sys.P, Fin.append v w ∈ construct Z₀ := by
+    have hZ : ∀ v ∈ construct params.R0, ∀ w ∈ construct sys.P, Fin.append v w ∈ construct Z₀ := by
       intro v hv w hw
-      have hE := Mtimes.mtimes_outer (𝕄 := Mat ℝ) (LinearMap.toMatrix' (blockPadLeft n q)) X₀
+      have hE := Mtimes.mtimes_outer (𝕄 := Mat ℝ) (LinearMap.toMatrix' (blockPadLeft n q)) params.R0
         (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hv))
       have hF := Mtimes.mtimes_outer (𝕄 := Mat ℝ) (LinearMap.toMatrix' (blockPadRight n q)) sys.P
         (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hw))
@@ -66,7 +68,7 @@ theorem NonlinParamSys.WithSteps.reachUnion_outer (sys : NonlinParamSys.WithStep
     simp only [NonlinParamSys.WithSteps.reachUnionExact, Set.mem_iUnion, Set.mem_setOf_eq] at hy
     obtain ⟨t, ht, x, u, c, traj, rfl⟩ := hy
     have hz : Fin.append (x t) c ∈ construct Ra := by
-      have haug := sys.aug.reachUnion_outer p Z₀
+      have haug := sys.aug.reachUnion_outer ⟨Z₀, params.tStart, params.tFinal⟩ options
       rw [hRa] at haug
       refine haug ?_
       simp only [NonlinearSys.WithSteps.reachUnionExact, Set.mem_iUnion]

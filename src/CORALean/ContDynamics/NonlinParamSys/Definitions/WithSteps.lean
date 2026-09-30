@@ -8,8 +8,9 @@ import CORALean.ContDynamics.NonlinearSys.Definitions.WithSteps
 zero dynamics, so what a run spends is `NonlinearSys.WithSteps`'s data for the
 augmented system in dimension `n + q`: its input set, its chain of
 linearizations, their checkable regions and the field bound. `aug_sys` ties
-that data to `sys`. The parameter set `P` is bundled beside it, since
-`Reach`'s `Params` is one plain `Type` and `P` has dimension `q`, one `Reach`
+that data to `sys`. The parameter set `P`, CORA's `params.paramInt`, is bundled
+beside it rather than taken from `params`: the regions the certificates are issued
+for cover the parameter's coordinates, so `P` is chosen with them. One `Reach`
 instance per input dimension `m` and parameter dimension `q`.
 
 The linearizations are of the augmented field, so each certificate already

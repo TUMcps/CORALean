@@ -3,10 +3,10 @@ import CORALean.ContDynamics.LinearSys.LinearSys
 /-!
 # A continuous-time system paired with its input set
 
-`Reach`'s `Params` is one plain `Type`, not indexed by `n`, so it cannot hold the
-input set `U` a `Trajectory` draws from: it is bundled with the system instead,
-as `LinearSysDT.WithInput` bundles it, and `Reach LinearSys.WithInput` reads it
-off the system it is asked about, exactly as it reads `sys.A`.
+The input set `U` a `Trajectory` draws from is bundled with the system rather
+than taken from CORA's `params.U`, because `0 ∈ U` is a proof about it that
+`params` cannot carry; `Reach LinearSys.WithInput` reads it off the system it is
+asked about, exactly as it reads `sys.A`.
 
 `0 ∈ U` is a field, being [1, Alg. 2]'s own precondition: with the origin
 admissible, what the input contributes only grows with time (`inputReach_mono`),

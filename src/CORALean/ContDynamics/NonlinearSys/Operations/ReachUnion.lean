@@ -1,8 +1,9 @@
+import CORALean.ContDynamics.LinearSys.Definitions.ReachOptions
 import CORALean.ContDynamics.LinearSys.Operations.InputSolution
 import CORALean.ContDynamics.LinearSys.Operations.ReachOrder
-import CORALean.ContDynamics.NonlinearSys.Definitions.ReachParams
 import CORALean.ContDynamics.NonlinearSys.Definitions.WithSteps
 import CORALean.ContDynamics.NonlinearSys.Operations.RelinTimeInterval
+import CORALean.ContDynamics.Reach.Definitions.Params
 import CORALean.ContSet.SetUnion.SetUnion
 
 /-!
@@ -10,9 +11,12 @@ import CORALean.ContSet.SetUnion.SetUnion
 
 `relinTimeInterval` at steps `0` through `N - 1`, one member of the `SetUnion`
 per step — the `Reach.reach` field of the instance, [1, Alg. 1]'s `R([0, t_f])`.
-Step `i`'s certificate is conservative only while the run stays in
-`(steps i).R`, so, as CORA does, each step is tested before it is trusted, and
-one failed test makes the answer `none`; `List.all` stops at the first `false`.
+`N = (tFinal - tStart) / timeStep`, `none` unless it is a positive natural number,
+CORA's integer-steps check, decided in ℝ since `timeStep` is the real `discretize`
+takes; `none` too at `zonotopeOrder = 0`, CORA's `geone`. `taylorTerms` is a floor,
+raised to what every step's matrix admits. Step `i`'s certificate is conservative
+only while the run stays in `(steps i).R`, so, as CORA does, each step is tested
+before it is trusted, and one failed test makes the answer `none`.
 
 The test is the one `confined_of_ball` proves sound: the set step `i` starts
 from, inflated by the box `‖·‖∞ ≤ 2MΔt`, inside `region i`. CORA tests the
@@ -46,21 +50,29 @@ variable [Mtimes (Mat ℝ) S] [OfInterval S] [Mtimes ℐ S] [∀ n, Contains (Rg
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Steps `0` through `p.N - 1` of `relinTimeInterval`, or `none` once the set
-some step starts from, inflated by `2MΔt`, is not shown inside its region. -/
+/-- Steps `0` through `N - 1` of `relinTimeInterval`, `N = (tFinal - tStart) / timeStep`,
+or `none` if `N` is no positive natural, the order is `0`, or a step's start, inflated
+by `2MΔt`, is not shown inside its region. -/
 noncomputable def NonlinearSys.WithSteps.reachUnion (sys : NonlinearSys.WithSteps S Rg m n)
-    (p : NonlinearSys.ReachParams) (X₀ : S n) : Option (SetUnion (S n)) :=
-  let q := max p.q ((Finset.range p.N).sup fun i =>              -- order q + 2, admissible
-    (NonlinearSys.linearize (sys.steps i).A).reachOrder p.Δt)     --   at every step's matrix
-  let Ud := fun i => (NonlinearSys.linearize (sys.steps i).A).inputSolution p.Δt (q + 2)
-    (sys.steps i).linInput                                        -- step i's input solution
-  let R := fun i => sys.sys.relinReach ⟨X₀, 0, i⟩ ⟨p.Δt, p.o, p.ho⟩ sys.steps Ud  -- R(iΔt)
-  let ρ := 2 * sys.M * p.Δt                                       -- beyond what one step moves
-  let B : S n := OfInterval.ofInterval ⟨fun _ => -ρ, fun _ => ρ⟩  -- the box ‖·‖∞ ≤ ρ
-  let confined := (List.range p.N).all fun i =>                   -- R(iΔt) ⊕ B ⊆ region i
-    Contains.contains (sys.region i) (R i ⊞ B)
-  if confined then                                                -- ⋃_{i < N} R(τ_i), or fail
-    some ⟨(List.range p.N).map (sys.sys.relinTimeInterval p.o p.ho p.Δt (q + 2) sys.steps Ud X₀)⟩
+    (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachOptions ℝ) :
+    Option (SetUnion (S n)) :=
+  let X₀ := params.R0                                             -- the paper's symbols
+  let Δt := options.timeStep
+  let o := options.zonotopeOrder
+  let N := ⌈(params.tFinal - params.tStart) / Δt⌉₊               -- steps
+  if h : 0 < Δt ∧ 0 < N ∧ (N : ℝ) * Δt = params.tFinal - params.tStart ∧ 0 < o then
+    let q := max options.taylorTerms ((Finset.range N).sup fun i => -- order q + 2, admissible
+      (NonlinearSys.linearize (sys.steps i).A).reachOrder Δt)     --   at every step's matrix
+    let Ud := fun i => (NonlinearSys.linearize (sys.steps i).A).inputSolution Δt (q + 2)
+      (sys.steps i).linInput                                      -- step i's input solution
+    let R := fun i => sys.sys.relinReach ⟨X₀, 0, i⟩ ⟨Δt, o, h.2.2.2⟩ sys.steps Ud  -- R(iΔt)
+    let ρ := 2 * sys.M * Δt                                       -- beyond what one step moves
+    let B : S n := OfInterval.ofInterval ⟨fun _ => -ρ, fun _ => ρ⟩  -- the box ‖·‖∞ ≤ ρ
+    let confined := (List.range N).all fun i =>                   -- R(iΔt) ⊕ B ⊆ region i
+      Contains.contains (sys.region i) (R i ⊞ B)
+    if confined then                                              -- ⋃_{i < N} R(τ_i), or fail
+      some ⟨(List.range N).map (sys.sys.relinTimeInterval o h.2.2.2 Δt (q + 2) sys.steps Ud X₀)⟩
+    else none
   else none
 
 end CORALean
