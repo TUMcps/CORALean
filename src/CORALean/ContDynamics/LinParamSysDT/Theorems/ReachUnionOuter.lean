@@ -1,13 +1,13 @@
 import CORALean.ContDynamics.LinParamSysDT.Definitions.ReachUnionExact
 import CORALean.ContDynamics.LinParamSysDT.Operations.ReachUnion
-import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachSetOfInitSubsetReach
+import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachSetSubsetReach
 import CORALean.ContSet.SetUnion.SetUnion
 
 /-!
 # `reachUnion` encloses `reachUnionExact`
 
-Every step's inclusion, `reachSetOfInit_subset_reach`, landing in its own
-branch of the `SetUnion`.
+Every step's inclusion, `reachSet_subset_reach`, landing in its own branch of the
+`SetUnion`.
 -/
 
 -- Authors:       Tobias Ladner
@@ -29,13 +29,14 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinParamSysDT.WithInput.reachUnion_outer (sys : LinParamSysDT.WithInput 𝕄 S n)
-    (p : LinParamSysDT.ReachParams) (X₀ : S n) :
-    sys.reachUnionExact p (construct X₀) ⊆ construct (sys.reachUnion p X₀) := by -- --- PROOF ---
+theorem LinParamSysDT.reachUnion_outer (sys : LinParamSysDT 𝕄 n)
+    (params : Reach.InputParams (S n) (S n) ℕ) (options : LinParamSysDT.ReachOptions) :
+    sys.reachUnionExact params.R0 params.U (params.tFinal - params.tStart)
+      ⊆ construct (sys.reachUnion params options) := by -- --- PROOF ---
   intro y hy
   obtain ⟨k, hk, hy⟩ := Set.mem_iUnion₂.mp hy
-  refine SetUnion.mem_construct.mpr ⟨sys.sys.reach ⟨X₀, sys.U, 0, k⟩ ⟨p.o, p.ho⟩, ?_,
-    sys.reachSetOfInit_subset_reach p X₀ k hy⟩
+  refine SetUnion.mem_construct.mpr ⟨sys.reach ⟨params.R0, params.U, 0, k⟩ options, ?_,
+    sys.reachSet_subset_reach options.hZonotopeOrder params.R0 params.U k hy⟩
   exact List.mem_map_of_mem (List.mem_range.mpr (Nat.lt_succ_of_le hk))
 
 end CORALean

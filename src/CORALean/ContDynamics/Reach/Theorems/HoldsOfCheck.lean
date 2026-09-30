@@ -9,13 +9,13 @@ A `true` from `Reach.check` means `reach` returned a set and the specification
 checked on it: `check_sound` puts the specification on what that set denotes,
 and `reach_outer` is the outer approximation `holds_of_outer` carries it back
 across. Found by evaluation, it is the specification on the exact reachable set,
-at any instance of `Reach` and with nothing left to prove by hand. `reachExact`
-never mentions `S`, so the class leaves it explicit there, named `(S := S)`.
+at any instance of `Reach` and with nothing left to prove by hand. No argument
+fixes `S` for instance search, `P` being an output of it, so `S` is named, `(S := S)`.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -27,24 +27,24 @@ namespace CORALean
 
 open ContSet
 
-variable {Sys : ℕ → Type u} {Params : Type} {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {Sys : ℕ → Type u} {P : ℕ → Type} {O : Type} {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable {n : ℕ} {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Reach.holds_of_check [Reach Sys Params S] [Contains ContSet (SetUnion (S n))]
-    [IsDisjoint ContSet (SetUnion (S n))] (sys : Sys n) (p : Params) (X₀ : S n)
+theorem Reach.holds_of_check [Reach Sys P O S] [Contains ContSet (SetUnion (S n))]
+    [IsDisjoint ContSet (SetUnion (S n))] (sys : Sys n) (params : P n) (options : O)
     (spec : Specification ContSet) :
-    Reach.check sys p X₀ spec →
-    (spec.Holds (Reach.reachExact (S := S) sys p (construct X₀))) := by -- --- PROOF ---
+    Reach.check (S := S) sys params options spec →
+    (spec.Holds (Reach.reachExact (S := S) sys params)) := by -- --- PROOF ---
   unfold Reach.check
   -- `none` checks `false`, so only a returned set is left, and it encloses
-  cases hR : Reach.reach sys p X₀ with
+  cases hR : Reach.reach (S := S) sys params options with
   | none => intro h; exact absurd h Bool.false_ne_true
   | some R =>
     intro h
-    have hout := Reach.reach_outer sys p X₀
+    have hout := Reach.reach_outer (S := S) sys params options
     rw [hR] at hout
     exact spec.holds_of_outer hout (spec.check_sound _ h)
 

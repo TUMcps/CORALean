@@ -4,18 +4,23 @@ import CORALean.ContDynamics.Reach.Reach
 /-!
 # `NonlinearSys.WithSteps` instantiates `Reach`
 
-`reachExact` is `reachUnionExact`, `reach` is `reachUnion`, and the guarantee
-is `reachUnion_outer`. `reach` returns `none` where a step's linearization
-could not be trusted: the set it starts from, inflated by `2MΔt`, not shown
-inside its region at run time. That test is what lets `reach_outer` hold with
-no confinement hypothesis on any run. `ConvexSet` and `CompactSet` are asked of
-the representation, as `NeurNetContrSys`'s instance asks them, and discharge
-every side condition the linear step would otherwise put in `Params`.
+`params` is `Reach.Params` at real time, `options` `LinearSys.ReachOptions` — each
+step is a linear one, and CORA's `nonlinearSys` reads the same `timeStep`,
+`taylorTerms` and `zonotopeOrder`. `U` stays the system's, since each step's
+certificate is issued for it. `reachExact` is `reachUnionExact` on
+`[0, tFinal - tStart]`, the certificates counted from the run's start, `reach` is
+`reachUnion`, and the guarantee is `reachUnion_outer`. `reach` returns `none` where
+the horizon is no multiple of `timeStep`, or a step's linearization could not be
+trusted: the set it starts from, inflated by `2MΔt`, not shown inside its region
+at run time. That test is what lets `reach_outer` hold with no confinement
+hypothesis on any run. `ConvexSet` and `CompactSet` are asked of the
+representation, as `NeurNetContrSys`'s instance asks them, and discharge every side
+condition the linear step would otherwise put in `options`.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -24,6 +29,7 @@ every side condition the linear step would otherwise put in `Params`.
 namespace CORALean
 
 open CORALean.Real
+open ContSet
 
 variable {S Rg : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (Rg n) (Vec ℝ n)]
 variable {m : ℕ}
@@ -35,10 +41,12 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 -- ========================================  INSTANCES  ========================================= --
 
 noncomputable instance NonlinearSys.reachInstance :
-    Reach (NonlinearSys.WithSteps S Rg m) NonlinearSys.ReachParams S where
-  reachExact sys p X₀ := sys.reachUnionExact p X₀
-  reach sys p X₀ := sys.reachUnion p X₀
-  reach_outer sys p X₀ := sys.reachUnion_outer p X₀
+    Reach (NonlinearSys.WithSteps S Rg m) (fun n => Reach.Params (S n) ℝ)
+      (LinearSys.ReachOptions ℝ) S where
+  reachExact sys params := sys.reachUnionExact (params.tFinal - params.tStart)
+    (construct params.R0)
+  reach sys params options := sys.reachUnion params options
+  reach_outer sys params options := sys.reachUnion_outer params options
 
 end CORALean
 

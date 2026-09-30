@@ -1,12 +1,11 @@
-import CORALean.ContDynamics.NeurNetContrSysDT.Definitions.ReachParams
 import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Reach
 import CORALean.ContSet.SetUnion.SetUnion
 
 /-!
 # `NeurNetContrSysDT.reach`, packaged as `Reach`'s `SetUnion`
 
-The steps `0` through `p.K` of `reach`, one per branch of the `SetUnion` —
-the `Reach.reach` field of the instance, computable wherever `reach` is.
+The steps `0` through `K = tFinal - tStart` of `reach`, one per branch of the
+`SetUnion` — the `Reach.reach` field of the instance, computable wherever `reach` is.
 -/
 
 -- Authors:       Tobias Ladner
@@ -28,11 +27,13 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The steps `0` through `p.K` of `sys.reach`, at the shared initial set
-`X₀`. -/
-def NeurNetContrSysDT.reachUnion (sys : NeurNetContrSysDT 𝕋 S n)
-    (p : NeurNetContrSysDT.ReachParams) (X₀ : S n) : SetUnion (S n) :=
-  ⟨(List.range (p.K + 1)).map (fun k => sys.reach ⟨X₀, 0, k⟩ ⟨p.o, p.ho⟩)⟩
+/-- The steps `0` through `tFinal - tStart` of `reach`, from `R0`, one `SetUnion`
+branch each. -/
+def NeurNetContrSysDT.reachUnion (sys : NeurNetContrSysDT 𝕋 S n) (params : Reach.Params (S n) ℕ)
+    (options : NeurNetContrSysDT.ReachOptions) : SetUnion (S n) :=
+  let R₀ := params.R0                                               -- the paper's symbols
+  let K := params.tFinal - params.tStart                           -- steps
+  ⟨(List.range (K + 1)).map (fun k => sys.reach ⟨R₀, 0, k⟩ options)⟩  -- ⋃_{k ≤ K} R(k)
 
 end CORALean
 

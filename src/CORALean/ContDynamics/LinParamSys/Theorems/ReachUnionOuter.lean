@@ -8,7 +8,7 @@ import CORALean.ContSet.SetUnion.SetUnion
 /-!
 # `reachUnion` encloses `reachUnionExact`, one window at a time
 
-A time `t ∈ [0, tFinal]` falls in a window `τ_k` `reachUnion` keeps
+A time `t ∈ [0, tFinal - tStart]` falls in a window `τ_k` `reachUnion` keeps
 (`LinearSys.exists_reach_window`), and `reachStepk_outer` puts `e^{At} x₀` in
 that window's set, at whichever member `A` the run fixed. The order is
 `reachUnion`'s own, admissible by `reachOrder_admissible` and the raise:
@@ -22,7 +22,7 @@ that window's set, at whichever member `A` the run fixed. The order is
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   24-September-2026
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -43,27 +43,30 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)] [Mti
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- Every image of `X₀` under every member's flow, at every time of `[0, p.tFinal]`,
+/-- Every image of `R0` under every member's flow, at every time of `[0, tFinal - tStart]`,
 is in one of `reachUnion`'s windows. -/
-theorem LinParamSys.reachUnion_outer (sys : LinParamSys ℐ n) (p : LinearSys.ReachParams)
-    (X₀ : S n) :
-    sys.reachUnionExact p (construct X₀) ⊆ construct (sys.reachUnion p X₀) := by -- --- PROOF ---
+theorem LinParamSys.reachUnion_outer (sys : LinParamSys ℐ n)
+    (params : Reach.Params (S n) ℝ) {options : LinearSys.ReachStepOptions ℝ}
+    (hΔt : 0 < options.timeStep) :
+    sys.reachUnionExact (params.tFinal - params.tStart) (construct params.R0)
+      ⊆ construct (sys.reachUnion params options) := by -- --- PROOF ---
   rintro _ ⟨A, hA, t, ht, x₀, hx₀, rfl⟩
-  obtain ⟨k, hk, hkt, htk⟩ := LinearSys.exists_reach_window p.hΔt ht
+  obtain ⟨k, hk, hkt, htk⟩ := LinearSys.exists_reach_window hΔt ht
   -- the order `reachUnion` runs at, `m + 2` in `reachStepk_outer`'s naming
-  obtain ⟨m, hm⟩ : ∃ m, max p.η (sys.reachOrder p.Δt + 2) = m + 2 :=
-    ⟨max p.η (sys.reachOrder p.Δt + 2) - 2, by omega⟩
-  have hε : ‖(Interval.smul p.Δt sys.A).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1 := by
-    have hadm := sys.reachOrder_admissible p.Δt
-    have hle : ((sys.reachOrder p.Δt + 2 : ℕ) : ℝ) ≤ ((m + 2 : ℕ) : ℝ) := by
+  obtain ⟨m, hm⟩ : ∃ m, max options.taylorTerms (sys.reachOrder options.timeStep + 2) = m + 2 :=
+    ⟨max options.taylorTerms (sys.reachOrder options.timeStep + 2) - 2, by omega⟩
+  have hε : ‖(Interval.smul options.timeStep sys.A).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1 := by
+    have hadm := sys.reachOrder_admissible options.timeStep
+    have hle : ((sys.reachOrder options.timeStep + 2 : ℕ) : ℝ) ≤ ((m + 2 : ℕ) : ℝ) := by
       exact_mod_cast hm ▸ le_max_right _ _
     exact lt_of_le_of_lt (div_le_div_of_nonneg_left (norm_nonneg _) (by positivity)
       (by linarith)) hadm
   -- window `k` is `e^{[A] t_k} H^R(τ_0)`, and `k < N`
-  refine SetUnion.mem_construct.mpr ⟨sys.reachStepk p.Δt (m + 2) X₀ k, ?_, ?_⟩
+  refine SetUnion.mem_construct.mpr
+    ⟨sys.reachStepk options.timeStep (m + 2) params.R0 k, ?_, ?_⟩
   · rw [← hm]
     exact List.mem_map.mpr ⟨k, List.mem_range.mpr hk, rfl⟩
-  · exact sys.reachStepk_outer p.hΔt hε X₀ hA hkt htk (Set.mem_image_of_mem _ hx₀)
+  · exact sys.reachStepk_outer hΔt hε params.R0 hA hkt htk (Set.mem_image_of_mem _ hx₀)
 
 end CORALean
 

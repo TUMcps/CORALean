@@ -26,7 +26,6 @@ import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetBound
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetConvex
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetInnerOfOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetIsCompact
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetOfInitEqReachSet
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetSubsetReach
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetWitness

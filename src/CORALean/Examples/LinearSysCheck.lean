@@ -50,16 +50,14 @@ example :
         (construct (⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2))))) :=
   LinearSys.holds_of_check_wrappingFree (S := 𝒵) _ _ (by norm_num) _
 
-/-- The same through `Reach.check`, the parameters bundled as `LinearSys.ReachParams`. -/
+/-- The same through `Reach.check`, CORA's `reach(sys, params, options)` and then `check`. -/
 example :
     Reach.check (S := 𝒵) (⟨!![-1, 1; 0, -2]⟩ : LinearSys ℝ 2)
-      (⟨1, 1 / 10, 4, by norm_num⟩ : LinearSys.ReachParams)
-      (⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2))
+      ⟨(⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2)), 0, 1⟩ ⟨1 / 10, 4⟩
       (Specification.safeSet (⟨![-10, -10], ![10, 10]⟩ : Float.Interval (Vec ℝ 2))) →
     ((Specification.safeSet (⟨![-10, -10], ![10, 10]⟩ : Float.Interval (Vec ℝ 2))).Holds
       (Reach.reachExact (S := 𝒵) (⟨!![-1, 1; 0, -2]⟩ : LinearSys ℝ 2)
-        (⟨1, 1 / 10, 4, by norm_num⟩ : LinearSys.ReachParams)
-        (construct (⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2))))) :=
+        ⟨(⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2)), 0, 1⟩)) :=
   Reach.holds_of_check (S := 𝒵) _ _ _ _
 
 /-- With inputs in `[-1/10, 1/10]²`: the same box answers for every run under them. -/
@@ -67,15 +65,13 @@ example :
     Reach.check (S := 𝒵)
       (⟨⟨!![-1, 1; 0, -2]⟩, ⟨2, 0, ![![1 / 10, 0], ![0, 1 / 10]]⟩,
         Zonotope.centre_mem_construct _⟩ : LinearSys.WithInput ℝ 𝒵 2)
-      (⟨1, 1 / 10, 4, by norm_num⟩ : LinearSys.ReachParams)
-      (⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2))
+      ⟨(⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2)), 0, 1⟩ ⟨1 / 10, 4⟩
       (Specification.safeSet (⟨![-10, -10], ![10, 10]⟩ : Float.Interval (Vec ℝ 2))) →
     ((Specification.safeSet (⟨![-10, -10], ![10, 10]⟩ : Float.Interval (Vec ℝ 2))).Holds
       (Reach.reachExact (S := 𝒵)
         (⟨⟨!![-1, 1; 0, -2]⟩, ⟨2, 0, ![![1 / 10, 0], ![0, 1 / 10]]⟩,
           Zonotope.centre_mem_construct _⟩ : LinearSys.WithInput ℝ 𝒵 2)
-        (⟨1, 1 / 10, 4, by norm_num⟩ : LinearSys.ReachParams)
-        (construct (⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2))))) :=
+        ⟨(⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2)), 0, 1⟩)) :=
   Reach.holds_of_check (S := 𝒵) _ _ _ _
 
 /-- With inputs in a box off the origin, split at its centre: the same answer. -/
@@ -83,15 +79,13 @@ example :
     Reach.check (S := 𝒵)
       (⟨⟨!![-1, 1; 0, -2]⟩, ⟨2, ![1 / 5, 0], ![![1 / 10, 0], ![0, 1 / 10]]⟩⟩ :
         LinearSys.WithInputSplit ℝ 𝒵 2)
-      (⟨1, 1 / 10, 4, by norm_num⟩ : LinearSys.ReachParams)
-      (⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2))
+      ⟨(⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2)), 0, 1⟩ ⟨1 / 10, 4⟩
       (Specification.safeSet (⟨![-10, -10], ![10, 10]⟩ : Float.Interval (Vec ℝ 2))) →
     ((Specification.safeSet (⟨![-10, -10], ![10, 10]⟩ : Float.Interval (Vec ℝ 2))).Holds
       (Reach.reachExact (S := 𝒵)
         (⟨⟨!![-1, 1; 0, -2]⟩, ⟨2, ![1 / 5, 0], ![![1 / 10, 0], ![0, 1 / 10]]⟩⟩ :
           LinearSys.WithInputSplit ℝ 𝒵 2)
-        (⟨1, 1 / 10, 4, by norm_num⟩ : LinearSys.ReachParams)
-        (construct (⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2))))) :=
+        ⟨(⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2)), 0, 1⟩)) :=
   Reach.holds_of_check (S := 𝒵) _ _ _ _
 
 end CORALean.Real

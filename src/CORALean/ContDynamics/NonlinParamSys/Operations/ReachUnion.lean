@@ -16,7 +16,7 @@ dimension `n + q` — the parameter's coordinates tested with the state's.
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -35,15 +35,17 @@ variable [Mtimes (Mat ℝ) S] [OfInterval S] [Mtimes ℐ S] [∀ n, Contains (Rg
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `aug.reachUnion` from `X₀ × P`, each member projected to the first `n`
-coordinates, or `none` where the augmented run fails its region test. -/
+/-- `aug.reachUnion` from `R0 × P` over the same horizon and options, each member
+projected to the first `n` coordinates, or `none` where the augmented run fails. -/
 noncomputable def NonlinParamSys.WithSteps.reachUnion (sys : NonlinParamSys.WithSteps S Rg m q n)
-    (p : NonlinearSys.ReachParams) (X₀ : S n) : Option (SetUnion (S n)) :=
+    (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachOptions ℝ) :
+    Option (SetUnion (S n)) :=
+  let X₀ := params.R0                                                -- the paper's symbols
   let E := LinearMap.toMatrix' (blockPadLeft n q)                    -- x ↦ (x, 0)
   let F := LinearMap.toMatrix' (blockPadRight n q)                   -- p ↦ (0, p)
   let Pr := LinearMap.toMatrix' (blockLeft n q)                      -- (x, p) ↦ x
   let Z₀ := Mtimes.mtimes (𝕄 := Mat ℝ) E X₀ ⊞ Mtimes.mtimes (𝕄 := Mat ℝ) F sys.P  -- X₀ × P
-  (sys.aug.reachUnion p Z₀).map fun R =>                             -- the augmented run,
+  (sys.aug.reachUnion ⟨Z₀, params.tStart, params.tFinal⟩ options).map fun R =>  -- augmented,
     ⟨R.sets.map (Mtimes.mtimes (𝕄 := Mat ℝ) Pr)⟩                     --   projected back
 
 end CORALean

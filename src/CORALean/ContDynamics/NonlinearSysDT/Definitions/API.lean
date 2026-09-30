@@ -1,6 +1,5 @@
 import CORALean.ContDynamics.NonlinearSysDT.Definitions.LinStep
 import CORALean.ContDynamics.NonlinearSysDT.Definitions.ReachOptions
-import CORALean.ContDynamics.NonlinearSysDT.Definitions.ReachParams
 import CORALean.ContDynamics.NonlinearSysDT.Definitions.ReachUnionExact
 import CORALean.ContDynamics.NonlinearSysDT.Definitions.WithSteps
 
@@ -9,6 +8,6 @@ import CORALean.ContDynamics.NonlinearSysDT.Definitions.WithSteps
 
 `LinStep`: one linearization of `sys`, with the `AbstractionError` certificate
 that makes it conservative wherever the state stays in `R`. `WithSteps` bundles
-the system with a chain of them and checkable regions, `ReachParams` is what a
-`Reach` run takes, and `ReachUnionExact` is the set it encloses.
+the system with a chain of them and checkable regions, and `ReachUnionExact` is
+the set a `Reach` run encloses; `ReachOptions` is CORA's `options` for it.
 -/

@@ -1,11 +1,11 @@
-import CORALean.ContDynamics.LinearSysDT.Definitions.ReachParams
-import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSetOfInit
+import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
 
 /-!
-# The exact set `Reach LinearSysDT.WithInput` is asked to enclose
+# The exact set `Reach LinearSysDT` is asked to enclose
 
-Every state reachable in at most `K` steps from a bare initial set, `K` from
-`Reach`'s `Params` — the `Reach.reachExact` field of the instance.
+Every state reachable in at most `K` steps from `R₀` under inputs in `U`: `reachSet`
+at each step, united. Positional, as the mathematics: `Reach` reads `R₀`, `U` and
+`K = tFinal - tStart` off `params`, the system being time-invariant.
 -/
 
 -- Authors:       Tobias Ladner
@@ -24,10 +24,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Every state reachable in at most `p.K` steps from a bare initial set `X`. -/
-def LinearSysDT.WithInput.reachUnionExact (sys : LinearSysDT.WithInput 𝕋 S n)
-    (p : LinearSysDT.ReachParams) (X : Set (Vec ℝ n)) : Set (Vec ℝ n) :=
-  ⋃ k ≤ p.K, sys.reachSetOfInit X k
+/-- Every state reachable in at most `K` steps from `R₀` under inputs in `U`. -/
+def LinearSysDT.reachUnionExact (sys : LinearSysDT 𝕋 n) (R₀ U : S n) (K : ℕ) : Set (Vec ℝ n) :=
+  ⋃ k ≤ K, sys.reachSet R₀ U k
 
 end CORALean
 

@@ -1,12 +1,12 @@
-import CORALean.ContDynamics.NonlinearSysDT.Definitions.ReachParams
 import CORALean.ContDynamics.NonlinearSysDT.Definitions.WithSteps
 import CORALean.ContDynamics.NonlinearSysDT.Operations.Reach
+import CORALean.ContDynamics.Reach.Definitions.Params
 import CORALean.ContSet.SetUnion.SetUnion
 
 /-!
 # The steps of the loop as one union, or a run-time failure
 
-`reach` at steps `0` through `K`, one member of the `SetUnion` per step — the
+`reach` at steps `0` through `K = tFinal - tStart`, one member of the `SetUnion` per step — the
 `Reach.reach` field of the instance. Step `k`'s certificate is conservative only
 while the state stays in `(steps k).R`, so, as CORA does, the set step `k`
 starts from is tested against that step's region before the step is trusted:
@@ -34,14 +34,17 @@ variable [Mtimes (Mat ℝ) S] [Real.OfInterval S] [∀ n, Contains (Rg n) (S n)]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Steps `0` through `p.K` of `sys.sys.reach`, or `none` once the set some step
-`k < p.K` starts from is not shown inside `sys.region k`. -/
+/-- Steps `0` through `K = tFinal - tStart` of `sys.sys.reach`, or `none` once the set
+some step `k < K` starts from is not shown inside `sys.region k`. -/
 def NonlinearSysDT.WithSteps.reachUnion (sys : NonlinearSysDT.WithSteps S Rg m n)
-    (p : NonlinearSysDT.ReachParams) (X₀ : S n) : Option (SetUnion (S n)) :=
-  let R := fun k => sys.sys.reach ⟨X₀, sys.U, 0, k⟩ ⟨p.o, p.ho⟩ sys.steps -- R(k), k = 0, 1, …
-  let confined := (List.range p.K).all fun k =>                       -- R(k) ⊆ region k, k < K
+    (params : Reach.Params (S n) ℕ) (options : NonlinearSysDT.ReachOptions) :
+    Option (SetUnion (S n)) :=
+  let R₀ := params.R0                                                 -- the paper's symbols
+  let K := params.tFinal - params.tStart                             -- steps
+  let R := fun k => sys.sys.reach ⟨R₀, sys.U, 0, k⟩ options sys.steps -- R(k), k = 0, 1, …
+  let confined := (List.range K).all fun k =>                         -- R(k) ⊆ region k, k < K
     Contains.contains (sys.region k) (R k)
-  if confined then some ⟨(List.range (p.K + 1)).map R⟩ else none     -- ⋃_{k ≤ K} R(k), or fail
+  if confined then some ⟨(List.range (K + 1)).map R⟩ else none       -- ⋃_{k ≤ K} R(k), or fail
 
 end CORALean
 

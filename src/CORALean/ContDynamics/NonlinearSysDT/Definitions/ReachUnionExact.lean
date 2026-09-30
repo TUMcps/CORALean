@@ -1,4 +1,3 @@
-import CORALean.ContDynamics.NonlinearSysDT.Definitions.ReachParams
 import CORALean.ContDynamics.NonlinearSysDT.Definitions.WithSteps
 
 /-!
@@ -10,11 +9,12 @@ known only for its first `K` steps, `TrajectoryOn`, so no input is asked for
 past the horizon. The bare set is the representation `Set` itself, which
 `TrajectoryOn` accepts as it accepts any other. Nothing here mentions the
 linearizations: they are how `reach` encloses this set, not part of it.
+Positional, as the mathematics: `Reach` reads `K = tFinal - tStart` off `params`.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -30,12 +30,12 @@ variable {m n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Every state a run known for `p.K` steps is at, at a step `k ≤ p.K`, from a
-bare initial set `X` under inputs in `sys.U`. -/
-def NonlinearSysDT.WithSteps.reachUnionExact (sys : NonlinearSysDT.WithSteps S Rg m n)
-    (p : NonlinearSysDT.ReachParams) (X : Set (Vec ℝ n)) : Set (Vec ℝ n) :=
-  ⋃ k ≤ p.K, {y | ∃ (x : ℕ → Vec ℝ n) (u : ℕ → Vec ℝ m),
-    sys.sys.TrajectoryOn (S := fun k => Set (Vec ℝ k)) X (construct sys.U) p.K x u ∧ x k = y}
+/-- Every state a run known for `K` steps is at, at a step `k ≤ K`, from a bare
+initial set `X` under inputs in `sys.U`. -/
+def NonlinearSysDT.WithSteps.reachUnionExact (sys : NonlinearSysDT.WithSteps S Rg m n) (K : ℕ)
+    (X : Set (Vec ℝ n)) : Set (Vec ℝ n) :=
+  ⋃ k ≤ K, {y | ∃ (x : ℕ → Vec ℝ n) (u : ℕ → Vec ℝ m),
+    sys.sys.TrajectoryOn (S := fun k => Set (Vec ℝ k)) X (construct sys.U) K x u ∧ x k = y}
 
 end CORALean
 

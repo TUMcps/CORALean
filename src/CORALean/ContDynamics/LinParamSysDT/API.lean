@@ -1,8 +1,6 @@
 import CORALean.ContDynamics.LinParamSysDT.Definitions.ReachOptions
-import CORALean.ContDynamics.LinParamSysDT.Definitions.ReachParams
-import CORALean.ContDynamics.LinParamSysDT.Definitions.ReachSetOfInit
+import CORALean.ContDynamics.LinParamSysDT.Definitions.ReachSet
 import CORALean.ContDynamics.LinParamSysDT.Definitions.ReachUnionExact
-import CORALean.ContDynamics.LinParamSysDT.Definitions.WithInput
 import CORALean.ContDynamics.LinParamSysDT.Instances
 import CORALean.ContDynamics.LinParamSysDT.LinParamSysDT
 import CORALean.ContDynamics.LinParamSysDT.Operations.API
@@ -14,7 +12,7 @@ import CORALean.ContDynamics.LinParamSysDT.Theorems.API
 The system and what it denotes in `LinParamSysDT`, reachability in
 `Operations`, its guarantee in `Theorems`.
 
-`WithInput` pairs a system with the input set `Reach`'s `Params` cannot hold;
-`ReachParams`, `ReachSetOfInit` and `ReachUnionExact` are what `Reach` needs
-beyond that, and `Instances` is the instance itself.
+`ReachSet` is the set reachable in `k` steps at every matrix the set holds,
+`ReachUnionExact` the one `Reach` asks to be enclosed, every step up to the
+horizon, and `Instances` is the instance itself.
 -/

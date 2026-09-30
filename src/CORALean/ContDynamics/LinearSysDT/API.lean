@@ -9,11 +9,8 @@ import CORALean.ContDynamics.LinearSysDT.Definitions.ReachInnerFloat
 import CORALean.ContDynamics.LinearSysDT.Definitions.ReachInnerReduced
 import CORALean.ContDynamics.LinearSysDT.Definitions.ReachOptions
 import CORALean.ContDynamics.LinearSysDT.Definitions.ReachOrdersOptions
-import CORALean.ContDynamics.LinearSysDT.Definitions.ReachParams
 import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
-import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSetOfInit
 import CORALean.ContDynamics.LinearSysDT.Definitions.ReachUnionExact
-import CORALean.ContDynamics.LinearSysDT.Definitions.WithInput
 import CORALean.ContDynamics.LinearSysDT.Instances
 import CORALean.ContDynamics.LinearSysDT.Theorems.API
 import CORALean.ContDynamics.LinearSysDT.Complexity.API
@@ -28,9 +25,8 @@ encloses in `ReachSet`, what a run of it owes in `ReachError` and the inner appr
 that buys in `ReachInner`, the guarantees in `Theorems`, how large the owed
 error is in `Complexity`, and in `Cost` what running it costs.
 
-`WithInput` pairs a system with the input set `Reach`'s `Params` cannot hold;
-`ReachParams`, `ReachSetOfInit` and `ReachUnionExact` are what `Reach` needs
-beyond that, and `Instances` is the instance itself.
+`ReachUnionExact` is the set `Reach` asks to be enclosed, every step up to the
+horizon, and `Instances` is the instance itself.
 
 `ReachErrorReduced`/`ReachInnerReduced` are the same pair with the error
 reduced at every step, sound since it is *added* to the exact set.

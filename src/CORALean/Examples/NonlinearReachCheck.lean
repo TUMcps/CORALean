@@ -22,7 +22,7 @@ further — no confinement of any run — to answer for every trajectory.
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 namespace CORALean.Real
@@ -34,18 +34,18 @@ open ContSet
 /-- A discrete nonlinear system, its region tests and the check run by `Reach.check`. -/
 example (sys : NonlinearSysDT.WithSteps (fun n => Interval (Vec ℝ n))
       (fun n => Float.Interval (Vec ℝ n)) 1 2)
-    (p : NonlinearSysDT.ReachParams) (X₀ : Interval (Vec ℝ 2))
+    (params : Reach.Params (Interval (Vec ℝ 2)) ℕ) (options : NonlinearSysDT.ReachOptions)
     (spec : Specification (Float.Interval (Vec ℝ 2))) :
-    Reach.check (S := fun n => Interval (Vec ℝ n)) sys p X₀ spec →
-    (spec.Holds (Reach.reachExact (S := fun n => Interval (Vec ℝ n)) sys p (construct X₀))) :=
+    Reach.check (S := fun n => Interval (Vec ℝ n)) sys params options spec →
+    (spec.Holds (Reach.reachExact (S := fun n => Interval (Vec ℝ n)) sys params)) :=
   Reach.holds_of_check _ _ _ _
 
 /-- The continuous case, the ball test `2MΔt` about each step's start run by `reach`. -/
 example (sys : NonlinearSys.WithSteps 𝒵 (fun n => Float.Interval (Vec ℝ n)) 1 2)
-    (p : NonlinearSys.ReachParams) (X₀ : Zonotope (Vec ℝ 2))
+    (params : Reach.Params (Zonotope (Vec ℝ 2)) ℝ) (options : LinearSys.ReachOptions ℝ)
     (spec : Specification (Float.Interval (Vec ℝ 2))) :
-    Reach.check (S := 𝒵) sys p X₀ spec →
-    (spec.Holds (Reach.reachExact (S := 𝒵) sys p (construct X₀))) :=
+    Reach.check (S := 𝒵) sys params options spec →
+    (spec.Holds (Reach.reachExact (S := 𝒵) sys params)) :=
   Reach.holds_of_check _ _ _ _
 
 end CORALean.Real

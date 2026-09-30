@@ -26,7 +26,6 @@ import CORALean.ContDynamics.LinearSys.Definitions.VerifyIter
 import CORALean.ContDynamics.LinearSys.Definitions.ReachExact
 import CORALean.ContDynamics.LinearSys.Definitions.ReachOptions
 import CORALean.ContDynamics.LinearSys.Definitions.ReachStepOptions
-import CORALean.ContDynamics.LinearSys.Definitions.ReachParams
 import CORALean.ContDynamics.LinearSys.Definitions.WithInput
 import CORALean.ContDynamics.LinearSys.Definitions.WithInputReachExact
 import CORALean.ContDynamics.LinearSys.Definitions.WithInputSplit
@@ -49,7 +48,7 @@ interval, and the `Integral...` families reading those over
 `PerturbedIntegralTrajectory` instead. `IntegralTimeIntervalBackReachSetOfInput`
 is the set under one fixed input signal, [1, Thm. 1]'s intersection target.
 
-`ReachParams`/`ReachExact` are what `Reach` asks of it, homogeneous;
+`ReachExact` is what `Reach` asks of it, homogeneous;
 `WithInput`/`WithInputReachExact` the same with an input set holding the
 origin, `WithInputSplit`/`WithInputSplitReachExact` with one anywhere.
 `OrderAdmissibleFloat` is the order the float steps ask for, and
