@@ -1,5 +1,5 @@
 name = "CORALean"
-defaultTargets = ["CORALean", "Examples", "Demo", "Bench", "BenchFlint"]
+defaultTargets = ["CORALean", "Examples", "Demo", "Bench", "BenchFlint", "Oracle"]
 
 [leanOptions]
 pp.unicode.fun = true
@@ -80,3 +80,18 @@ name = "bench-flint"
 srcDir = "src"
 root = "CORALean.Examples.BenchFlintMain"
 moreLinkArgs = [".lake/flint/libcoralean_flint.a"]
+
+# The JSON-lines oracle CORA.cpp spawns as a persistent process, the same shape
+# as `Bench` once more: a library, in `defaultTargets`, so `lake build` elaborates
+# it for the price of an olean, and an executable for `lake exe oracle`.
+# `lake env lean --run src/CORALean/Examples/Oracle.lean` is the interpreter
+# backend `experiments/oracle/README.md` documents, needing no link step.
+[[lean_lib]]
+name = "Oracle"
+srcDir = "src"
+roots = ["CORALean.Examples.Oracle"]
+
+[[lean_exe]]
+name = "oracle"
+srcDir = "src"
+root = "CORALean.Examples.Oracle"
