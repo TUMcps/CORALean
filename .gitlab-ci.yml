@@ -60,7 +60,8 @@ build:
   # that has already spent minutes cloning is not worth restarting.
   interruptible: false
   before_script:
-    - apt-get update -qq && apt-get install -y -qq --no-install-recommends curl git ca-certificates
+    # `python3`, full as the conventions job's own comment explains, for the oracle's `check_sound.py`.
+    - apt-get update -qq && apt-get install -y -qq --no-install-recommends curl git ca-certificates python3
     # GitHub rate-limits anonymous clones per IP, and a shared university runner
     # reaches that limit. It answers 403, git reads that as "needs credentials",
     # and with prompts disabled the job dies at the ref listing. A token lifts
@@ -146,6 +147,11 @@ build:
     # `nearestUnsound`, the bench's false round-to-nearest axiom. `collectAxioms`
     # on the built tree, seconds once built, so here for the demo's reason.
     - sh scripts/check-axioms.sh
+    # The oracle's own regression, through the interpreter for the reason
+    # `check-demo.sh` is: under 5s once the tree is built, well inside this job.
+    - |
+      ORACLE="lake env lean --run src/CORALean/Examples/Oracle.lean" \
+        sh experiments/oracle/selftest.sh
   # Only for a failure of the runner itself. Not `script_failure`: the clone is
   # the one step that fails for reasons outside the tree and it retries itself
   # above, so a script failure here is a compile error, a warning, a demo whose
