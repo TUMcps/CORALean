@@ -27,7 +27,7 @@ argument `o`, which is a further theorem, not this one.
 
 -- Authors:       Tobias Ladner
 -- Written:       08-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -51,17 +51,17 @@ variable {n : ℕ}
 theorem LinearSysDT.reachOrders_step_subset_closedBall_of_reduceBoxOrder (sys : LinearSysDT ℝ n)
     (hn : 0 < n) {o : ℕ → ℕ} (ho : ∀ k, 0 < o k) {R₀ U : Zonotope (Vec ℝ n)}
     {r rU ε : ℝ} (hε : 0 ≤ ε) (k : ℕ)
-    (hR : (sys.reachOrders (S := 𝒵) o ho R₀ U k).construct
+    (hR : (sys.reachOrders (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct
         ⊆ Metric.closedBall (0 : Vec ℝ n) r)
     (hU : U.construct ⊆ Metric.closedBall (0 : Vec ℝ n) rU)
     (heq : o (k + 1) = Zonotope.reduceBoxOrder
-        (Zonotope.plus (Zonotope.mtimes sys.A (sys.reachOrders (S := 𝒵) o ho R₀ U k)) U)
+        (Zonotope.plus (Zonotope.mtimes sys.A (sys.reachOrders (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)) U)
         (Metric.closedBall (0 : Vec ℝ n) ε)) :
-    (sys.reachOrders (S := 𝒵) o ho R₀ U (k + 1)).construct
+    (sys.reachOrders (S := 𝒵) ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩).construct
       ⊆ Metric.closedBall (0 : Vec ℝ n) (‖sys.A‖ * r + rU + ε) := by -- --- PROOF ---
-  rw [show sys.reachOrders (S := 𝒵) o ho R₀ U (k + 1)
+  rw [show sys.reachOrders (S := 𝒵) ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩
       = Zonotope.reduce
-          (Zonotope.plus (Zonotope.mtimes sys.A (sys.reachOrders (S := 𝒵) o ho R₀ U k)) U)
+          (Zonotope.plus (Zonotope.mtimes sys.A (sys.reachOrders (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)) U)
           (o (k + 1))
       from rfl, heq]
   exact Zonotope.step_subset_closedBall_of_reduceBoxOrder sys.A hn hR hU hε

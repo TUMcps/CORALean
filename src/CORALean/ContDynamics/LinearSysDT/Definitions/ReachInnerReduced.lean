@@ -44,7 +44,7 @@ variable {n : ℕ}
 noncomputable def LinearSysDT.reachInnerReduced (sys : LinearSysDT ℝ n) (o : ℕ) (ho : 0 < o)
     (R₀ U : Zonotope (Vec ℝ n)) (k : ℕ) : Set (Vec ℝ n) :=
   minkowskiDiff (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct
-    (sys.reachErrorReduced o ho R₀ U k).construct
+    (sys.reachErrorReduced ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct
 
 end CORALean
 

@@ -31,11 +31,12 @@ variable {n : ℕ}
 
 /-- The same difference at a representation, `none` where the caller's
 generator representation `M` does not check out. -/
-noncomputable def LinearSysDT.reachInnerRep (sys : LinearSysDT ℝ n) (o : ℕ) (ho : 0 < o)
-    (R₀ U : Zonotope (Vec ℝ n)) (k : ℕ)
-    (M : Fin (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).h →
-      Fin (sys.reachError o ho R₀ U k).h → ℝ) : Option (Zonotope (Vec ℝ n)) :=
-  (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).minkDiffRep (sys.reachError o ho R₀ U k) M
+noncomputable def LinearSysDT.reachInnerRep (sys : LinearSysDT ℝ n)
+    (params : Reach.InputParams (Zonotope (Vec ℝ n)) (Zonotope (Vec ℝ n)) ℕ)
+    (options : LinearSysDT.ReachOptions)
+    (M : Fin (sys.reach (S := 𝒵) params options).h →
+      Fin (sys.reachError params options).h → ℝ) : Option (Zonotope (Vec ℝ n)) :=
+  (sys.reach (S := 𝒵) params options).minkDiffRep (sys.reachError params options) M
 
 end CORALean
 

@@ -20,7 +20,7 @@ anywhere else. `Zonotope` supplies `hinv` and `hdiff` both — see
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -41,7 +41,7 @@ theorem LinearSysDT.backReachForall_inner (sys : LinearSysDT 𝕋 n) {Ainv : Mat
     (hdiff : ∀ B V D, diff B V = some D →
       construct D ⊆ minkowskiDiff (construct B) (construct V))
     (hinv : ∀ s : S n, construct (mtimes Ainv s) ⊆ (toRealMat Ainv *ᵥ ·) '' construct s)
-    (T U : S n) : ∀ (k : ℕ) (R : S n), sys.backReachForall Ainv diff T U k = some R →
+    (T U : S n) : ∀ (k : ℕ) (R : S n), sys.backReachForall ⟨T, U, 0, k⟩ ⟨Ainv, diff⟩ = some R →
       construct R ⊆ sys.backReachSetForall T U k := by -- --- PROOF ---
   intro k
   induction k with
@@ -49,7 +49,7 @@ theorem LinearSysDT.backReachForall_inner (sys : LinearSysDT 𝕋 n) {Ainv : Mat
   | succ k ih =>
     intro R hR
     -- the step, taken apart: the set the run held, and the difference at it
-    have hR' : (sys.backReachForall Ainv diff T U k).bind
+    have hR' : (sys.backReachForall ⟨T, U, 0, k⟩ ⟨Ainv, diff⟩).bind
         (fun P => (diff P U).map (mtimes Ainv)) = some R := hR
     rw [Option.bind_eq_some_iff] at hR'
     obtain ⟨B, hB, hR'⟩ := hR'

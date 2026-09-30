@@ -1,3 +1,5 @@
+import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachExistsOptions
+import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachForallOptions
 import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachSetExists
 import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachSetForall
 import CORALean.ContDynamics.LinearSysDT.LinearSysDT
@@ -6,6 +8,7 @@ import CORALean.ContDynamics.LinearSysDT.Definitions.ReachInner
 import CORALean.ContDynamics.LinearSysDT.Definitions.ReachInnerFloat
 import CORALean.ContDynamics.LinearSysDT.Definitions.ReachInnerReduced
 import CORALean.ContDynamics.LinearSysDT.Definitions.ReachOptions
+import CORALean.ContDynamics.LinearSysDT.Definitions.ReachOrdersOptions
 import CORALean.ContDynamics.LinearSysDT.Definitions.ReachParams
 import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
 import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSetOfInit
@@ -20,8 +23,8 @@ import CORALean.ContDynamics.LinearSysDT.Cost.API
 # Discrete-time linear systems, collected
 
 The system and what it denotes in `LinearSysDT`, reachability in `Operations`
-at CORA's `options` in `ReachOptions`, the set reachability encloses in
-`ReachSet`, what a run of it owes in `ReachError` and the inner approximation
+at CORA's `options` in `ReachOptions` and its siblings, the set reachability
+encloses in `ReachSet`, what a run of it owes in `ReachError` and the inner approximation
 that buys in `ReachInner`, the guarantees in `Theorems`, how large the owed
 error is in `Complexity`, and in `Cost` what running it costs.
 

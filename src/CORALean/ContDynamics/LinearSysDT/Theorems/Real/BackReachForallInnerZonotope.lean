@@ -22,7 +22,7 @@ theorem to read `hinv` off.
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -41,8 +41,8 @@ variable {n : ℕ}
 theorem LinearSysDT.backReachForall_inner_zonotope (sys : LinearSysDT ℝ n) {Ainv : Mat ℝ n n}
     (hA : sys.A * Ainv = 1) (M : (Z₁ Z₂ : Zonotope (Vec ℝ n)) → Fin Z₁.h → Fin Z₂.h → ℝ)
     (T U : Zonotope (Vec ℝ n)) (k : ℕ) (R : Zonotope (Vec ℝ n))
-    (hR : sys.backReachForall (S := 𝒵) Ainv (fun Z₁ Z₂ => Z₁.minkDiffRep Z₂ (M Z₁ Z₂))
-      T U k = some R) :
+    (hR : sys.backReachForall (S := 𝒵) ⟨T, U, 0, k⟩
+      ⟨Ainv, fun Z₁ Z₂ => Z₁.minkDiffRep Z₂ (M Z₁ Z₂)⟩ = some R) :
     construct R ⊆ sys.backReachSetForall (S := 𝒵) T U k := by -- --- PROOF ---
   refine sys.backReachForall_inner (S := 𝒵) ?_ ?_ ?_ T U k R hR
   · simpa using hA

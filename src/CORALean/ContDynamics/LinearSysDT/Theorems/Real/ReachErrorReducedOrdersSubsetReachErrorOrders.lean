@@ -19,7 +19,7 @@ direction the error is used, since the error is *added* to the exact set.
 
 -- Authors:       Tobias Ladner
 -- Written:       08-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -39,19 +39,19 @@ variable {n : ℕ}
 unreduced recursion owes is owed by the reduced one too. -/
 theorem LinearSysDT.reachErrorReducedOrders_contains_reachErrorOrders (sys : LinearSysDT ℝ n)
     {o : ℕ → ℕ} (ho : ∀ k, 0 < o k) (R₀ U : Zonotope (Vec ℝ n)) (k : ℕ) :
-    (sys.reachErrorOrders o ho R₀ U k).construct
-      ⊆ (sys.reachErrorReducedOrders o ho R₀ U k).construct := by -- --- PROOF ---
+    (sys.reachErrorOrders ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct
+      ⊆ (sys.reachErrorReducedOrders ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct := by -- --- PROOF ---
   induction k with
   | zero => exact subset_rfl
   | succ k ih =>
     -- the step's own box is the same on both sides; only what is carried differs
     set B := Zonotope.reduceBox
-      ((Zonotope.mtimes sys.A (sys.reachOrders (S := 𝒵) o ho R₀ U k)).plus U) (o (k + 1))
-    have hl : sys.reachErrorOrders o ho R₀ U (k + 1)
-        = (Zonotope.mtimes sys.A (sys.reachErrorOrders o ho R₀ U k)).plus B := rfl
-    have hr : sys.reachErrorReducedOrders o ho R₀ U (k + 1)
+      ((Zonotope.mtimes sys.A (sys.reachOrders (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)).plus U) (o (k + 1))
+    have hl : sys.reachErrorOrders ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩
+        = (Zonotope.mtimes sys.A (sys.reachErrorOrders ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)).plus B := rfl
+    have hr : sys.reachErrorReducedOrders ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩
         = Zonotope.reduce ((Zonotope.mtimes sys.A
-            (sys.reachErrorReducedOrders o ho R₀ U k)).plus B) (o (k + 1)) := rfl
+            (sys.reachErrorReducedOrders ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)).plus B) (o (k + 1)) := rfl
     rw [hl, hr]
     -- `reduce` only grows what it is given, so it comes off first
     refine subset_trans ?_ (Zonotope.reduce_outer _ (o (k + 1)))

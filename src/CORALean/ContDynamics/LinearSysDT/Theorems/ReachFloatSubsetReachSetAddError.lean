@@ -89,7 +89,7 @@ theorem LinearSysDT.reach_float_subset_reachSet_add_error (sys : LinearSysDT �
     (hU : (0 : Vec ℝ n) ∈ U.E.construct) (k : ℕ) :
     (sys.reach (S := Zonotope 𝕋) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct ⊆
       sys.reachSet (S := fun n => Real.Zonotope (Vec ℝ n)) (nominal R₀) (nominal U) k
-        + (sys.reachErrorFloat o ho R₀ U k).construct := by -- --- PROOF ---
+        + (sys.reachErrorFloat ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct := by -- --- PROOF ---
   induction k with
   | zero =>
     intro x hx
@@ -123,8 +123,8 @@ theorem LinearSysDT.reach_float_subset_reachSet_add_error (sys : LinearSysDT �
     obtain ⟨nu, hnu, eu, heu, rfl⟩ := hu
     -- `mtimes` is exact at `Real`, so the carried error rides through `A` for free
     have hemem : toRealMat sys.A *ᵥ e ∈ (Real.Zonotope.mtimes (toRealMat sys.A)
-        (sys.reachErrorFloat o ho R₀ U k)).construct :=
-      (Real.Zonotope.mtimes_exact (toRealMat sys.A) (sys.reachErrorFloat o ho R₀ U k)) ▸
+        (sys.reachErrorFloat ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)).construct :=
+      (Real.Zonotope.mtimes_exact (toRealMat sys.A) (sys.reachErrorFloat ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)) ▸
         ⟨e, he, rfl⟩
     -- the exact part reassembles into `reachSet`'s own step
     have hA : toRealMat sys.A *ᵥ s + nu
@@ -136,7 +136,7 @@ theorem LinearSysDT.reach_float_subset_reachSet_add_error (sys : LinearSysDT �
       fun A B _ _ ha hb => (Real.Zonotope.plus_exact A B) ▸ Set.add_mem_add ha hb
     -- the four boxes and the carried error, each read into a real zonotope, assemble
     have hEmem : toRealMat sys.A *ᵥ e + (g₃ + (g₂ + (g₁ + eu)))
-        ∈ (sys.reachErrorFloat o ho R₀ U (k + 1)).construct :=
+        ∈ (sys.reachErrorFloat ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩).construct :=
       plusMem _ _ hemem (plusMem _ _ (aux_interval_construct_subset_nominal_zonotope _ hg₃)
         (plusMem _ _ (aux_interval_construct_subset_nominal_zonotope _ hg₂)
           (plusMem _ _ (aux_reduceGirardBox_construct_subset_nominal W o hg₁)

@@ -22,7 +22,7 @@ signal, and a state in `T` afterwards.
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -82,8 +82,8 @@ theorem BReach.step : BReach.T.minkDiffRep BReach.U (BReach.M BReach.T BReach.U)
 
 /-- One step of the run, which is the difference and then the image under the
 inverse — `some`, so the check passed. -/
-theorem BReach.run : BReach.sys.backReachForall (S := 𝒵) BReach.Ainv
-    (fun Z₁ Z₂ => Z₁.minkDiffRep Z₂ (BReach.M Z₁ Z₂)) BReach.T BReach.U 1 =
+theorem BReach.run : BReach.sys.backReachForall (S := 𝒵)
+    ⟨BReach.T, BReach.U, 0, 1⟩ ⟨BReach.Ainv, fun Z₁ Z₂ => Z₁.minkDiffRep Z₂ (BReach.M Z₁ Z₂)⟩ =
       some (Zonotope.mtimes BReach.Ainv BReach.D) := by
   show (BReach.T.minkDiffRep BReach.U (BReach.M BReach.T BReach.U)).map
       (Zonotope.mtimes BReach.Ainv) = _

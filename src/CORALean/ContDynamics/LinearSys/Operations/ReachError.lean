@@ -19,7 +19,7 @@ loses ground in two places, and each has its own accumulated zonotope:
 
 -- Authors:       Tobias Ladner
 -- Written:       23-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -38,7 +38,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 error boxes, each accumulated under `e^{AΔt}`. -/
 noncomputable def LinearSys.reachError (sys : LinearSys 𝕋 n) (Δt : ℝ) (η o : ℕ) (ho : 0 < o)
     (R₀ U : Zonotope (Vec ℝ n)) (k : ℕ) : Zonotope (Vec ℝ n) :=
-  ((sys.discretize Δt).reachError o ho R₀ (sys.inputSolution (S := 𝒵) Δt η U) k).plus
+  ((sys.discretize Δt).reachError ⟨R₀, sys.inputSolution (S := 𝒵) Δt η U, 0, k⟩ ⟨o, ho⟩).plus
     (sys.reachInputError Δt η U k)
 
 end CORALean

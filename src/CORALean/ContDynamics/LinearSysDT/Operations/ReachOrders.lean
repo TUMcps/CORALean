@@ -1,4 +1,5 @@
 import CORALean.ContDynamics.LinearSysDT.Operations.Reach
+import CORALean.ContDynamics.LinearSysDT.Definitions.ReachOrdersOptions
 
 /-!
 # `reach` with a per-step order
@@ -15,7 +16,7 @@ sequence. Expressible, as [1]'s tuning algorithm needs, not *chosen*.
 
 -- Authors:       Tobias Ladner
 -- Written:       18-August-2026
--- Last update:   08-September-2026
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -32,12 +33,18 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `reach` with the order re-chosen at every step: `o k` at step `k`, in place
-of the one `o` `reach` fixes for the whole run. -/
-def LinearSysDT.reachOrders (sys : LinearSysDT 𝕋 n) (o : ℕ → ℕ) (ho : ∀ k, 0 < o k)
-    (R₀ U : S n) : ℕ → S n
-  | 0 => R₀
-  | k + 1 => reduce (plus (mtimes sys.A (sys.reachOrders o ho R₀ U k)) U) (o (k + 1))
+/-- `reach` with the order re-chosen at every step: `zonotopeOrder k` at step
+`k`, in place of the one order `reach` fixes for the whole run. -/
+def LinearSysDT.reachOrders (sys : LinearSysDT 𝕋 n) (params : Reach.InputParams (S n) (S n) ℕ)
+    (options : LinearSysDT.ReachOrdersOptions) : S n :=
+  let R₀ := params.R0                                               -- the paper's symbols
+  let U := params.U
+  let o := options.zonotopeOrder
+  let N := params.tFinal - params.tStart                           -- steps, in sampling periods
+  let rec R : ℕ → S n                                              -- R_k, the run after k steps
+    | 0 => R₀
+    | k + 1 => reduce (plus (mtimes sys.A (R k)) U) (o (k + 1))    -- R_{k+1}
+  R N
 
 end CORALean
 

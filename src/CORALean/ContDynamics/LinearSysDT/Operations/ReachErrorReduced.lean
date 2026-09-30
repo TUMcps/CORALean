@@ -47,13 +47,21 @@ variable {n : ℕ}
 /-- What `reach` owes after `k` steps, reduced at every step: the same
 recursion as `reachError` with one `reduce` on top, which enlarges it and so
 keeps it sound where it is used. -/
-noncomputable def LinearSysDT.reachErrorReduced (sys : LinearSysDT ℝ n) (o : ℕ) (ho : 0 < o)
-    (R₀ U : Zonotope (Vec ℝ n)) : ℕ → Zonotope (Vec ℝ n)
-  | 0 => Zonotope.ofPoint 0
-  | k + 1 => Zonotope.reduce
-      ((Zonotope.mtimes sys.A (sys.reachErrorReduced o ho R₀ U k)).plus
-        (Zonotope.reduceBox
-          ((Zonotope.mtimes sys.A (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)).plus U) o)) o
+noncomputable def LinearSysDT.reachErrorReduced (sys : LinearSysDT ℝ n)
+    (params : Reach.InputParams (Zonotope (Vec ℝ n)) (Zonotope (Vec ℝ n)) ℕ)
+    (options : LinearSysDT.ReachOptions) :
+    Zonotope (Vec ℝ n) :=
+  let R₀ := params.R0                                               -- the paper's symbols
+  let U := params.U
+  let o := options.zonotopeOrder
+  let N := params.tFinal - params.tStart                           -- steps, in sampling periods
+  let rec E : ℕ → Zonotope (Vec ℝ n)  -- E_k
+    | 0 => Zonotope.ofPoint 0
+    | k + 1 => Zonotope.reduce
+        ((Zonotope.mtimes sys.A (E k)).plus
+          (Zonotope.reduceBox
+            ((Zonotope.mtimes sys.A (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ options)).plus U) o)) o
+  E N
 
 end CORALean
 

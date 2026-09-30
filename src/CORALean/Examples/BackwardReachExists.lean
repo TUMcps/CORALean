@@ -22,7 +22,7 @@ third spends the set the other way, turning a point of it into a run.
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   30-September-2026
 -- Last revision: ---
 
 
@@ -69,7 +69,7 @@ theorem BReachE.hneg : -construct BReachE.U ⊆ construct BReachE.U := by -- ---
 `[-0.6, 0.6]`, and the box excludes the point on its own. -/
 theorem BReachE.not_mem :
     (![(0.7:ℝ)] : Vec ℝ 1) ∉ construct (BReachE.sys.backReachExists (S := ℐ𝒱)
-      BReachE.Ainv BReachE.T BReachE.U 1) := by -- --- PROOF ---
+      ⟨BReachE.T, BReachE.U, 0, 1⟩ ⟨BReachE.Ainv⟩) := by -- --- PROOF ---
   intro h
   have hhi : (![(0.7:ℝ)] : Vec ℝ 1) 0 ≤
       ∑ k : Fin 1, max (BReachE.Ainv 0 k * (BReachE.T.inf k + BReachE.U.inf k))

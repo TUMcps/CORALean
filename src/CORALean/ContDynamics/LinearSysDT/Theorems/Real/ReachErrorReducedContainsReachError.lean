@@ -45,19 +45,19 @@ variable {n : ℕ}
 is owed by the reduced one too. -/
 theorem LinearSysDT.reachErrorReduced_contains_reachError (sys : LinearSysDT ℝ n) {o : ℕ}
     (ho : 0 < o) (R₀ U : Zonotope (Vec ℝ n)) (k : ℕ) :
-    (sys.reachError o ho R₀ U k).construct
-      ⊆ (sys.reachErrorReduced o ho R₀ U k).construct := by -- --- PROOF ---
+    (sys.reachError ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct
+      ⊆ (sys.reachErrorReduced ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct := by -- --- PROOF ---
   induction k with
   | zero => exact subset_rfl
   | succ k ih =>
     -- the step's own box is the same on both sides; only what is carried differs
     set B := Zonotope.reduceBox
       ((Zonotope.mtimes sys.A (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)).plus U) o
-    have hl : sys.reachError o ho R₀ U (k + 1)
-        = (Zonotope.mtimes sys.A (sys.reachError o ho R₀ U k)).plus B := rfl
-    have hr : sys.reachErrorReduced o ho R₀ U (k + 1)
+    have hl : sys.reachError ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩
+        = (Zonotope.mtimes sys.A (sys.reachError ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)).plus B := rfl
+    have hr : sys.reachErrorReduced ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩
         = Zonotope.reduce
-            ((Zonotope.mtimes sys.A (sys.reachErrorReduced o ho R₀ U k)).plus B) o := rfl
+            ((Zonotope.mtimes sys.A (sys.reachErrorReduced ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)).plus B) o := rfl
     rw [hl, hr]
     -- `reduce` only grows what it is given, so it comes off first
     refine subset_trans ?_ (Zonotope.reduce_outer _ o)
