@@ -216,6 +216,20 @@ def withDtype {α : Type} (dtypeStr : String)
     else
       throw s!"unknown dtype `{s}` -- valid forms: {String.intercalate ", " dtypeForms}"
 
+/-- What resolves a `dtype` string onto a scalar and hands it to `k`: `withDtype`, or one that
+knows more dtypes. -/
+abbrev Resolver : Type 1 :=
+  {α : Type} → String → ({𝕋 : Type} → [FloatOps 𝕋] → [SoundFloatArithmetic 𝕋] →
+    DtypeOps 𝕋 → Except String α) → Except String α
+
+/-- The dtypes an oracle executable serves: their names, for `ping`, and their resolver. -/
+structure DtypeSet where
+  forms : List String
+  resolve : Resolver
+
+/-- The dtypes of `lake exe oracle`. -/
+def sounds : DtypeSet := ⟨dtypeForms, withDtype⟩
+
 end CORALean.Oracle
 
 

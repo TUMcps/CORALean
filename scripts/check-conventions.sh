@@ -830,7 +830,8 @@ report "$out"
 out=$(awk -v LIST="$list" \
   -v ROOTS="CORALean CORALean.Global.Float.Instances.Flint.API CORALean.Examples.API \
     CORALean.Examples.Demo CORALean.Examples.Bench CORALean.Examples.BenchFlint \
-    CORALean.Examples.BenchFlintMain CORALean.Examples.Oracle CORALean.Examples.HardwareCheck" '
+    CORALean.Examples.BenchFlintMain CORALean.Examples.Oracle CORALean.Examples.HardwareCheck \
+    CORALean.Examples.Bench.OracleUnsound" '
 BEGIN { while ((getline f < LIST) > 0) if (f != "") ARGV[ARGC++] = f }
 function moduleOf(path,   m) {
   m = path; sub(/^src\//, "", m); sub(/\.lean$/, "", m); gsub("/", ".", m)

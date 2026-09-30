@@ -1,4 +1,7 @@
-import Lean.Data.Json
+import Lean.Data.Json.Basic
+import Lean.Data.Json.Parser
+import Lean.Data.Json.Printer
+import Lean.Data.Json.FromToJson
 
 /-!
 # Reading a request object, with messages that name the field

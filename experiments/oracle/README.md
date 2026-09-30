@@ -22,6 +22,15 @@ Without linking, the interpreter backend `experiments/README.md` documents for
 lake env lean --run src/CORALean/Examples/Oracle.lean < requests.jsonl
 ```
 
+## `lake exe oracle-unsound`
+
+The same protocol and ops, plus the dtype `nearest`: native binary64 with round-to-nearest in both
+directions and WITHOUT guarantees, which is what CORA computes with. It exists to compare a CORA.cpp
+run bit for bit with the same arithmetic, so that a difference can only be an algorithmic one. It is
+a separate executable under `Examples/Bench/` because `nearest` rests on the false axiom of
+`NearestUnsound/Axioms.lean`, which the sound `oracle` must never reach. `roundTo` is not offered for
+it. Self-test: see the header of `selftest.sh` (`requests-unsound.jsonl`, `expected-unsound.jsonl`).
+
 ## Protocol summary
 
 One JSON object per line on stdin, one line of `{"ok":true, ...}` or
