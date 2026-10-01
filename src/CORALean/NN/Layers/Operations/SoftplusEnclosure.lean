@@ -1,0 +1,40 @@
+import CORALean.NN.Layers.Definitions.Enclosure
+import CORALean.NN.Layers.Operations.OnePlusExpDown
+import CORALean.Global.Float.Log
+
+/-!
+# The softplus enclosure
+
+An enclosure of `log(1 + exp(β t)) / β` for a stored sharpness `β`. Below, `logDown` of
+`onePlusExpDown` at `β a` rounded down; above, `logUp` of `1 + expUp` at `β a` rounded up; both
+divided by `β`, rounded the same way. `k` is the exponential's reduction depth and `nl`, `kl` the
+logarithm's. Like `expUp` and `logDown`, the ends bracket the function only where their arguments
+are bounded, which `softplusRelaxation_sound` asks of the box.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       01-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open Float Float.FloatOps
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- The two ends of `softplus β`, at a stored sharpness. -/
+def softplusEnclosure (β : 𝕋) (k nl kl : ℕ) : Enclosure 𝕋 where
+  lo a := divDown (logDown nl kl (onePlusExpDown k (mulDown β a))) β
+  hi a := divUp (logUp nl kl (addUp one (expUp k (mulUp β a)))) β
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

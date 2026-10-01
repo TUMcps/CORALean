@@ -2,35 +2,34 @@
 <rect width="100%" height="100%" fill="white"/>
 <text x="150" y="20" font-weight="bold">(a) CORA methods per group</text>
 <text x="142" y="39" text-anchor="end">Set representations</text>
-<rect x="150.0" y="28" width="90.7" height="14" fill="rgb(69,150,255)"/>
-<text x="195.4" y="39" text-anchor="middle" font-size="9" fill="#000">130</text>
-<rect x="240.7" y="28" width="87.2" height="14" fill="rgb(176,210,255)"/>
-<text x="284.4" y="39" text-anchor="middle" font-size="9" fill="#000">125</text>
-<rect x="328.0" y="28" width="342.0" height="14" fill="rgb(255,255,255)"/>
-<text x="499.0" y="39" text-anchor="middle" font-size="9" fill="#000">490</text>
+<rect x="150.0" y="28" width="99.6" height="14" fill="rgb(69,150,255)"/>
+<text x="199.8" y="39" text-anchor="middle" font-size="9" fill="#000">142</text>
+<rect x="249.6" y="28" width="101.8" height="14" fill="rgb(176,210,255)"/>
+<text x="300.5" y="39" text-anchor="middle" font-size="9" fill="#000">145</text>
+<rect x="351.4" y="28" width="318.6" height="14" fill="rgb(255,255,255)"/>
+<text x="510.7" y="39" text-anchor="middle" font-size="9" fill="#000">454</text>
 <rect x="150" y="28" width="520.0" height="14" fill="none" stroke="#000" stroke-width="0.8"/>
-<text x="675.0" y="39" font-size="9" fill="#888">+163</text>
+<text x="675.0" y="39" font-size="9" fill="#888">+167</text>
 <text x="142" y="59" text-anchor="end">Cont. dynamics</text>
-<rect x="150.0" y="48" width="11.9" height="14" fill="rgb(69,150,255)"/>
-<rect x="161.9" y="48" width="16.8" height="14" fill="rgb(176,210,255)"/>
-<rect x="178.6" y="48" width="65.6" height="14" fill="rgb(255,255,255)"/>
-<text x="211.4" y="59" text-anchor="middle" font-size="9" fill="#000">94</text>
-<rect x="150" y="48" width="94.2" height="14" fill="none" stroke="#000" stroke-width="0.8"/>
-<text x="249.2" y="59" font-size="9" fill="#888">+24</text>
+<rect x="150.0" y="48" width="12.6" height="14" fill="rgb(69,150,255)"/>
+<rect x="162.6" y="48" width="18.2" height="14" fill="rgb(176,210,255)"/>
+<rect x="180.9" y="48" width="48.4" height="14" fill="rgb(255,255,255)"/>
+<text x="205.1" y="59" text-anchor="middle" font-size="9" fill="#000">69</text>
+<rect x="150" y="48" width="79.3" height="14" fill="none" stroke="#000" stroke-width="0.8"/>
+<text x="234.3" y="59" font-size="9" fill="#888">+46</text>
 <text x="142" y="79" text-anchor="end">Hybrid systems</text>
 <rect x="150.0" y="68" width="4.2" height="14" fill="rgb(69,150,255)"/>
-<rect x="154.2" y="68" width="4.9" height="14" fill="rgb(176,210,255)"/>
-<rect x="159.1" y="68" width="44.7" height="14" fill="rgb(255,255,255)"/>
-<text x="181.4" y="79" text-anchor="middle" font-size="9" fill="#000">64</text>
-<rect x="150" y="68" width="53.7" height="14" fill="none" stroke="#000" stroke-width="0.8"/>
-<text x="208.7" y="79" font-size="9" fill="#888">+12</text>
+<rect x="154.2" y="68" width="8.4" height="14" fill="rgb(176,210,255)"/>
+<rect x="162.6" y="68" width="23.9" height="14" fill="rgb(255,255,255)"/>
+<text x="174.6" y="79" text-anchor="middle" font-size="9" fill="#000">34</text>
+<rect x="150" y="68" width="36.5" height="14" fill="none" stroke="#000" stroke-width="0.8"/>
+<text x="191.5" y="79" font-size="9" fill="#888">+37</text>
 <text x="142" y="99" text-anchor="end">Neural networks</text>
-<rect x="150.0" y="88" width="14.7" height="14" fill="rgb(69,150,255)"/>
-<rect x="164.7" y="88" width="4.2" height="14" fill="rgb(176,210,255)"/>
-<rect x="168.8" y="88" width="38.4" height="14" fill="rgb(255,255,255)"/>
-<text x="188.0" y="99" text-anchor="middle" font-size="9" fill="#000">55</text>
-<rect x="150" y="88" width="57.2" height="14" fill="none" stroke="#000" stroke-width="0.8"/>
-<text x="212.2" y="99" font-size="9" fill="#888">+22</text>
+<rect x="150.0" y="88" width="21.8" height="14" fill="rgb(69,150,255)"/>
+<rect x="171.8" y="88" width="6.3" height="14" fill="rgb(176,210,255)"/>
+<rect x="178.1" y="88" width="21.8" height="14" fill="rgb(255,255,255)"/>
+<rect x="150" y="88" width="49.8" height="14" fill="none" stroke="#000" stroke-width="0.8"/>
+<text x="204.8" y="99" font-size="9" fill="#888">+33</text>
 <rect x="150" y="114" width="12" height="12" fill="rgb(69,150,255)" stroke="#000" stroke-width="0.8"/>
 <text x="168" y="124">proved, runnable at float</text>
 <rect x="340" y="114" width="12" height="12" fill="rgb(176,210,255)" stroke="#000" stroke-width="0.8"/>
@@ -65,14 +64,14 @@
 <text x="548" y="220">not yet</text>
 <text x="150" y="240" font-weight="bold">(c) Lean theorems</text>
 <text x="142" y="259" text-anchor="end">Lean theorems</text>
-<rect x="150.0" y="248" width="71.7" height="14" fill="rgb(0,114,189)"/>
-<text x="185.9" y="259" text-anchor="middle" font-size="9" fill="#fff">419</text>
-<rect x="221.7" y="248" width="243.6" height="14" fill="rgb(42,92,173)"/>
-<text x="343.5" y="259" text-anchor="middle" font-size="9" fill="#000">1423</text>
-<rect x="465.3" y="248" width="113.7" height="14" fill="rgb(84,69,158)"/>
-<text x="522.1" y="259" text-anchor="middle" font-size="9" fill="#000">664</text>
-<rect x="578.9" y="248" width="91.1" height="14" fill="rgb(126,47,142)"/>
-<text x="624.5" y="259" text-anchor="middle" font-size="9" fill="#000">532</text>
+<rect x="150.0" y="248" width="70.1" height="14" fill="rgb(0,114,189)"/>
+<text x="185.1" y="259" text-anchor="middle" font-size="9" fill="#fff">419</text>
+<rect x="220.1" y="248" width="246.9" height="14" fill="rgb(42,92,173)"/>
+<text x="343.6" y="259" text-anchor="middle" font-size="9" fill="#000">1475</text>
+<rect x="467.1" y="248" width="112.5" height="14" fill="rgb(84,69,158)"/>
+<text x="523.3" y="259" text-anchor="middle" font-size="9" fill="#000">672</text>
+<rect x="579.6" y="248" width="90.4" height="14" fill="rgb(126,47,142)"/>
+<text x="624.8" y="259" text-anchor="middle" font-size="9" fill="#000">540</text>
 <rect x="150" y="248" width="520.0" height="14" fill="none" stroke="#000" stroke-width="0.8"/>
 <rect x="150" y="274" width="12" height="12" fill="rgb(0,114,189)" stroke="#000" stroke-width="0.8"/>
 <text x="168" y="284">paper theorems</text>

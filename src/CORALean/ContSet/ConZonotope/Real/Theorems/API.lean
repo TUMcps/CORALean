@@ -53,6 +53,7 @@ import CORALean.ContSet.ConZonotope.Real.Theorems.LiftThenReduce
 import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsFeasibleIffIsLeast
 import CORALean.ContSet.ConZonotope.Real.Theorems.NonemptyIffIsLeast
 import CORALean.ContSet.ConZonotope.Real.Theorems.MemIffIsLeast
+import CORALean.ContSet.ConZonotope.Real.Theorems.EmptyExact
 
 /-!
 # What `ConZonotope` guarantees

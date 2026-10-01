@@ -29,6 +29,7 @@ import CORALean.ContSet.ZonoBundle.Real.Theorems.SplitBoxUnion
 import CORALean.ContSet.ZonoBundle.Real.Theorems.SplitPcaUnion
 import CORALean.ContSet.ZonoBundle.Real.Theorems.SplitFilUnion
 import CORALean.ContSet.ZonoBundle.Real.Theorems.SplitFlowUnion
+import CORALean.ContSet.ZonoBundle.Real.Theorems.EmptyExact
 
 /-!
 # What a zonotope bundle guarantees, collected

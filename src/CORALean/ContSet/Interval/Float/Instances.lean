@@ -1,6 +1,7 @@
 import CORALean.ContSet.ContSet.Definitions.CompactSet
 import CORALean.ContSet.ContSet.Definitions.ConvexSet
 import CORALean.ContSet.Interval.Float.Operations.IntersectionExact
+import CORALean.ContSet.Interval.Float.Theorems.IsCompact
 import CORALean.ContSet.Interval.Float.Theorems.LinCombOuter
 import CORALean.ContSet.Interval.Float.Theorems.MinkDiffInner
 import CORALean.ContSet.Interval.Float.Theorems.MtimesIntervalMatOuter
@@ -56,7 +57,7 @@ instance {α β ι : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β] [
 
 /-- At `Vec` alone, as over ℝ: the norm compactness bounds is not read
 coordinatewise. -/
-instance : CompactSet (Interval (Vec 𝕋 n)) (Vec ℝ n) := ⟨fun I => I.nominal.isCompact_construct⟩
+instance : CompactSet (Interval (Vec 𝕋 n)) (Vec ℝ n) := ⟨Interval.isCompact_construct⟩
 
 instance : Plus (Interval (Vec 𝕋 n)) (Vec ℝ n) where
   plus I₁ I₂ := (Interval.plus I₁ I₂).materialise

@@ -75,7 +75,7 @@ CORA methods of `contSet/@polyZonotope/`, one row each, and where CORALean answe
 | `stack` | — | — |  |
 | `subs` | — | — |  |
 | `sum` | — | — |  |
-| `supportFunc_` | — | — | definition only, no theorem: [`PolyZonotope.supportBound`](../../../src/CORALean/ContSet/PolyZonotope/Real/Operations/SupportBound.lean) |
+| `supportFunc_` | proved | [`PolyZonotope.supportBound`](../../../src/CORALean/ContSet/PolyZonotope/Real/Operations/SupportBound.lean), [`SupportBound`](../../../src/CORALean/Global/LinProg/LinProg.lean) | upper bound only: the `le` field of the returned `SupportBound` is the outer theorem; the dependent part's range bound is an argument (as CORA's interval method supplies it) |
 | `taylm` | — | — |  |
 | `volume_` | — | — |  |
 | `zonotope` | proved | [`PolyZonotope.zonotope`](../../../src/CORALean/ContSet/Conversion/Real/PolyZonotope_to_Zonotope.lean), [`PolyZonotope.zonotopeEven`](../../../src/CORALean/ContSet/Conversion/Real/PolyZonotope_to_Zonotope.lean), [`PolyZonotope.zonotope_contains`](../../../src/CORALean/ContSet/Conversion/Real/PolyZonotope_to_Zonotope.lean), [`PolyZonotope.zonotopeEven_contains`](../../../src/CORALean/ContSet/Conversion/Real/PolyZonotope_to_Zonotope.lean) |  |

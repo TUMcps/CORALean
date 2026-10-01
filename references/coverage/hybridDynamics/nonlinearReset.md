@@ -6,12 +6,12 @@ CORA methods of `hybridDynamics/@nonlinearReset/`, one row each, and where CORAL
 
 | Method | State | In CORALean | Note |
 |---|---|---|---|
-| `derivatives` | — | — |  |
-| `eq` | — | — |  |
+| `derivatives` | out-of-scope | n/a — matlab-runtime |  |
+| `eq` | out-of-scope | n/a — matlab-runtime |  |
 | `evaluate` | — | — |  |
-| `isequal` | — | — |  |
+| `isequal` | out-of-scope | n/a — matlab-runtime |  |
 | `lift` | — | — |  |
-| `ne` | — | — |  |
+| `ne` | out-of-scope | n/a — matlab-runtime |  |
 | `nonlinearReset` | — | — |  |
 | `resolve` | — | — |  |
 | `synchronize` | — | — |  |

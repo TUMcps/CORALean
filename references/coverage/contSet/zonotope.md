@@ -41,7 +41,7 @@ CORA methods of `contSet/@zonotope/`, one row each, and where CORALean answers t
 | `getPrintSetInfo` | out-of-scope | n/a — plotting/display |  |
 | `intersectStrip` | — | — |  |
 | `interval` | float | [`Zonotope.interval`](../../../src/CORALean/ContSet/Conversion/Real/Zonotope_to_Interval.lean), [`Zonotope.interval_contains`](../../../src/CORALean/ContSet/Conversion/Real/Zonotope_to_Interval.lean) · float: [`Zonotope.interval`](../../../src/CORALean/ContSet/Conversion/Float/Zonotope_to_Interval.lean), [`Zonotope.interval_contains`](../../../src/CORALean/ContSet/Conversion/Float/Zonotope_to_Interval.lean) |  |
-| `isBounded` | proved | [`Zonotope.isBounded_construct`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/IsBounded.lean) |  |
+| `isBounded` | float | [`Zonotope.isBounded_construct`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/IsBounded.lean) · float: [`Zonotope.construct`](../../../src/CORALean/ContSet/Zonotope/Float/Zonotope.lean), [`Zonotope.isCompact_construct`](../../../src/CORALean/ContSet/Zonotope/Float/Theorems/IsCompact.lean) | the float zonotope is compact (hence bounded) as compactness (`CompactSet` instance); compactness, not a separate boundedness statement |
 | `isFullDim` | proved | [`Zonotope.isFullDim_iff`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/IsFullDimIff.lean) | full-dimensional (nonempty interior, [`ContSet.IsFullDim`](../../../src/CORALean/ContSet/ContSet/Definitions/IsFullDim.lean)) iff the generators span the ambient space; stated at `construct` over a finite-dimensional normed space |
 | `isIntersecting_` | — | — |  |
 | `isemptyobject` | out-of-scope | n/a — matlab-runtime |  |
@@ -80,7 +80,7 @@ CORA methods of `contSet/@zonotope/`, one row each, and where CORALean answers t
 | `tensorMultiplication` | — | — |  |
 | `tensorMultiplication_zono` | — | — |  |
 | `underapproximate` | — | — |  |
-| `vertices_` | — | — | definition only, no theorem: [`Zonotope.corner`](../../../src/CORALean/ContSet/Conversion/Real/Zonotope_to_VPolytope.lean) |
+| `vertices_` | float | [`Zonotope.vPolytope`](../../../src/CORALean/ContSet/Conversion/Real/Zonotope_to_VPolytope.lean), [`Zonotope.vPolytope_exact`](../../../src/CORALean/ContSet/Conversion/Real/Zonotope_to_VPolytope.lean) · float: [`Zonotope.vPolytope`](../../../src/CORALean/ContSet/Conversion/Float/Zonotope_to_VPolytope.lean), [`Zonotope.vPolytope_contains`](../../../src/CORALean/ContSet/Conversion/Float/Zonotope_to_VPolytope.lean) | CORA's `vertices_` lists extreme points; the Lean list is the 2^h corners (a superset of them) with the same convex hull, which `vPolytope_exact` proves equal to the zonotope; the float statement is an outer one only |
 | `volumeRatio` | — | — |  |
 | `volume_` | — | — |  |
 | `zonoBundle` | float | [`Zonotope.zonoBundle`](../../../src/CORALean/ContSet/Conversion/Real/Zonotope_to_ZonoBundle.lean), [`Zonotope.zonoBundle_exact`](../../../src/CORALean/ContSet/Conversion/Real/Zonotope_to_ZonoBundle.lean) · float: [`Zonotope.zonoBundle`](../../../src/CORALean/ContSet/Conversion/Float/Zonotope_to_ZonoBundle.lean), [`Zonotope.zonoBundle_exact`](../../../src/CORALean/ContSet/Conversion/Float/Zonotope_to_ZonoBundle.lean) |  |

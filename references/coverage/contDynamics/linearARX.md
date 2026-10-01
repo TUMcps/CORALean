@@ -8,7 +8,7 @@ CORA methods of `contDynamics/@linearARX/`, one row each, and where CORALean ans
 |---|---|---|---|
 | `computeGO` | — | — |  |
 | `display` | out-of-scope | n/a — plotting/display |  |
-| `getPrintSystemInfo` | — | — |  |
+| `getPrintSystemInfo` | out-of-scope | n/a — plotting/display |  |
 | `identify` | — | — |  |
 | `linearARX` | — | — |  |
 | `reach` | float | [`LinearARX.reach_outer`](../../../src/CORALean/ContDynamics/LinearARX/Theorems/ReachOuter.lean), [`LinearARX.toLinearSysDT`](../../../src/CORALean/ContDynamics/LinearARX/Operations/ToLinearSysDT.lean) | route b — generic over `Scalar 𝕋` with `ExactScalar 𝕋` (float instance), computable (`toLinearSysDT` only places `0` and `1`) |

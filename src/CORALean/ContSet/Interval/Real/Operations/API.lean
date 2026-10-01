@@ -34,6 +34,17 @@ import CORALean.ContSet.Interval.Real.Operations.Origin
 import CORALean.ContSet.Interval.Real.Operations.Abs
 import CORALean.ContSet.Interval.Real.Operations.Empty
 import CORALean.ContSet.Interval.Real.Operations.Exp
+import CORALean.ContSet.Interval.Real.Operations.Sqrt
+import CORALean.ContSet.Interval.Real.Operations.Log
+import CORALean.ContSet.Interval.Real.Operations.Atan
+import CORALean.ContSet.Interval.Real.Operations.Sinh
+import CORALean.ContSet.Interval.Real.Operations.Asinh
+import CORALean.ContSet.Interval.Real.Operations.Tanh
+import CORALean.ContSet.Interval.Real.Operations.Asin
+import CORALean.ContSet.Interval.Real.Operations.Acos
+import CORALean.ContSet.Interval.Real.Operations.Sign
+import CORALean.ContSet.Interval.Real.Operations.RoundAway
+import CORALean.ContSet.Interval.Real.Operations.Round
 import CORALean.ContSet.Interval.Real.Operations.Le
 import CORALean.ContSet.Interval.Real.Operations.Lt
 import CORALean.ContSet.Interval.Real.Operations.Project

@@ -13,6 +13,9 @@ import CORALean.ContSet.EmptySet.Real.Theorems.VPolytopeExact
 import CORALean.ContSet.EmptySet.Real.Theorems.VerticesExact
 import CORALean.ContSet.EmptySet.Real.Theorems.VolumeEq
 import CORALean.ContSet.EmptySet.Real.Theorems.NotIsFullDim
+import CORALean.ContSet.EmptySet.Real.Theorems.IntervalExact
+import CORALean.ContSet.EmptySet.Real.Theorems.ContainsIff
+import CORALean.ContSet.EmptySet.Real.Theorems.ConvHullExact
 
 /-!
 # The empty set: theorems, collected

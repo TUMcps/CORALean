@@ -12,6 +12,7 @@ import CORALean.NN.Layers.Definitions.EvalPoly
 import CORALean.NN.Layers.Definitions.IdentityLayer
 import CORALean.NN.Layers.Definitions.InvSqrt
 import CORALean.NN.Layers.Definitions.InvSqrtRelaxation
+import CORALean.NN.Layers.Definitions.LeakyRelu
 import CORALean.NN.Layers.Definitions.LinearLayer
 import CORALean.NN.Layers.Definitions.LinearWithErrorLayer
 import CORALean.NN.Layers.Definitions.MaxPoolLayer
@@ -37,6 +38,8 @@ import CORALean.NN.Layers.Definitions.SigmoidRelaxation
 import CORALean.NN.Layers.Definitions.Softmax
 import CORALean.NN.Layers.Definitions.SoftmaxExactLayer
 import CORALean.NN.Layers.Definitions.SoftmaxLayer
+import CORALean.NN.Layers.Definitions.Softplus
+import CORALean.NN.Layers.Definitions.SoftplusBox
 import CORALean.NN.Layers.Definitions.SoundLayer
 import CORALean.NN.Layers.Definitions.TanhLayer
 import CORALean.NN.Layers.Definitions.TanhRelaxation

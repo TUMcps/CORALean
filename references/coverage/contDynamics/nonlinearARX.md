@@ -8,7 +8,7 @@ CORA methods of `contDynamics/@nonlinearARX/`, one row each, and where CORALean 
 |---|---|---|---|
 | `computeGO` | — | — |  |
 | `display` | out-of-scope | n/a — plotting/display |  |
-| `getPrintSystemInfo` | — | — |  |
+| `getPrintSystemInfo` | out-of-scope | n/a — plotting/display |  |
 | `identify` | — | — |  |
 | `nonlinearARX` | — | — |  |
 | `nonlinearSysDT` | — | — |  |

@@ -5,6 +5,9 @@ import CORALean.ContSet.SpectraShadow.Real.Theorems.MapExact
 import CORALean.ContSet.SpectraShadow.Real.Theorems.MtimesExact
 import CORALean.ContSet.SpectraShadow.Real.Theorems.CartProdExact
 import CORALean.ContSet.SpectraShadow.Real.Theorems.Convex
+import CORALean.ContSet.SpectraShadow.Real.Theorems.EmptyExact
+import CORALean.ContSet.SpectraShadow.Real.Theorems.InfExact
+import CORALean.ContSet.SpectraShadow.Real.Theorems.A0AddSumEq
 
 /-!
 # What a spectrahedral shadow guarantees, collected

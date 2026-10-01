@@ -23,6 +23,7 @@ import CORALean.ContSet.Interval.Float.Theorems.UminusExact
 import CORALean.ContSet.Interval.Float.Theorems.UplusExact
 import CORALean.ContSet.Interval.Float.Theorems.MinusOuter
 import CORALean.ContSet.Interval.Float.Theorems.InfimumMemConstruct
+import CORALean.ContSet.Interval.Float.Theorems.IsCompact
 import CORALean.ContSet.Interval.Float.Theorems.SupremumMemConstruct
 import CORALean.ContSet.Interval.Float.Theorems.OrOuter
 import CORALean.ContSet.Interval.Float.Theorems.ConvHullOuter
@@ -31,6 +32,8 @@ import CORALean.ContSet.Interval.Float.Theorems.OriginExact
 import CORALean.ContSet.Interval.Float.Theorems.AbsExact
 import CORALean.ContSet.Interval.Float.Theorems.EmptyExact
 import CORALean.ContSet.Interval.Float.Theorems.ExpOuter
+import CORALean.ContSet.Interval.Float.Theorems.LogOuter
+import CORALean.ContSet.Interval.Float.Theorems.SignOuter
 import CORALean.ContSet.Interval.Float.Theorems.LeSound
 import CORALean.ContSet.Interval.Float.Theorems.LtSound
 import CORALean.ContSet.Interval.Float.Theorems.ProjectHighDimOuter

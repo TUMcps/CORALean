@@ -7,6 +7,6 @@ CORA methods of `hybridDynamics/@abstractReset/`, one row each, and where CORALe
 | Method | State | In CORALean | Note |
 |---|---|---|---|
 | `abstractReset` | — | — |  |
-| `eq` | — | — |  |
-| `isequal` | — | — |  |
-| `ne` | — | — |  |
+| `eq` | out-of-scope | n/a — matlab-runtime |  |
+| `isequal` | out-of-scope | n/a — matlab-runtime |  |
+| `ne` | out-of-scope | n/a — matlab-runtime |  |
