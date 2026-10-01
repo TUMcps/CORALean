@@ -5,6 +5,8 @@ import CORALean.HybridDynamics.Operations.JumpIntersectionOfPoint
 import CORALean.HybridDynamics.Operations.TimeIntervalStep
 import CORALean.HybridDynamics.Operations.TimeIntervalStepInv
 import CORALean.HybridDynamics.Operations.TimeIntervalStepSplit
+import CORALean.HybridDynamics.Operations.TimeIntervalStepFloat
+import CORALean.HybridDynamics.Operations.TimeIntervalStepSplitFloat
 
 /-!
 # What a hybrid automaton computes, collected
@@ -15,7 +17,7 @@ enclosure is `LinearSys`'s, named again here only so that a statement about it
 reads its representation off the location; `TimeIntervalStepInv` cuts it to
 the invariant the same way, for a representation that has one, and
 `TimeIntervalStepSplit` computes its input contribution without asking the
-location's input set to hold the origin.
+location's input set to hold the origin; `…Float` are the two at float zonotopes.
 
 `JumpOfPoint`/`JumpIntersectionOfPoint` are the same pair at `OfPoint`, the weaker class
 the offset actually needs — what lets `ConPolyZono`, having no `OfInterval`

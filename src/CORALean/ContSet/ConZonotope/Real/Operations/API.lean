@@ -11,6 +11,14 @@ import CORALean.ContSet.ConZonotope.Real.Operations.MtimesEqMap
 import CORALean.ContSet.ConZonotope.Real.Operations.MtimesIntervalMat
 import CORALean.ContSet.ConZonotope.Real.Operations.LinComb
 import CORALean.ContSet.ConZonotope.Real.Operations.Reduce
+import CORALean.ContSet.ConZonotope.Real.Operations.KeepEmbed
+import CORALean.ContSet.ConZonotope.Real.Operations.KeepInvolvement
+import CORALean.ContSet.ConZonotope.Real.Operations.KeepMetric
+import CORALean.ContSet.ConZonotope.Real.Operations.KeepRows
+import CORALean.ContSet.ConZonotope.Real.Operations.KeepSlack
+import CORALean.ContSet.ConZonotope.Real.Operations.KeepSplit
+import CORALean.ContSet.ConZonotope.Real.Operations.ReduceKeep
+import CORALean.ContSet.ConZonotope.Real.Operations.ReduceKeepBy
 import CORALean.ContSet.ConZonotope.Real.Operations.OfPoint
 import CORALean.ContSet.ConZonotope.Real.Operations.Enclose
 import CORALean.ContSet.ConZonotope.Real.Operations.MinkDiffV

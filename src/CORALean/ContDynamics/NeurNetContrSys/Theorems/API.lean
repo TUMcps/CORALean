@@ -6,6 +6,7 @@ import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachOuter
 import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachSetOuter
 import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachSetSubsetReach
 import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachUnionOuter
+import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachFloatOuter
 
 /-!
 # What a sampled network in the loop guarantees
@@ -17,5 +18,6 @@ the result buys.
 
 `ReachSetOuter`/`ReachSetSubsetReach` restate `ReachOuter` on the reachable set
 rather than on one run — every run is in it, and it, in turn, is inside `reach`.
-`ReachOrderAdmissible`/`ReachUnionOuter` are `Instances`' guarantee.
+`ReachOrderAdmissible`/`ReachUnionOuter` are `Instances`' guarantee, `ReachFloatOuter` `ReachOuter`
+in floats.
 -/

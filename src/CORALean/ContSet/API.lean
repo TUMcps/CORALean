@@ -8,6 +8,7 @@ import CORALean.ContSet.InflatedContSet.API
 import CORALean.ContSet.Interval.API
 import CORALean.ContSet.Zonotope.API
 import CORALean.ContSet.ZonoBundle.API
+import CORALean.ContSet.SpectraShadow.API
 import CORALean.ContSet.Ellipsoid.API
 import CORALean.ContSet.Capsule.API
 import CORALean.ContSet.HPolytope.API

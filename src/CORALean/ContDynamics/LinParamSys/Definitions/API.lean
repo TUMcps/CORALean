@@ -3,6 +3,7 @@ import CORALean.ContDynamics.LinParamSys.Definitions.WithInput
 import CORALean.ContDynamics.LinParamSys.Definitions.WithInputReachUnionExact
 import CORALean.ContDynamics.LinParamSys.Definitions.WithInputSplit
 import CORALean.ContDynamics.LinParamSys.Definitions.WithInputSplitReachUnionExact
+import CORALean.ContDynamics.LinParamSys.Definitions.OrderAdmissibleFloat
 
 /-!
 # What `Reach (LinParamSys ℐ)` means
@@ -11,5 +12,5 @@ import CORALean.ContDynamics.LinParamSys.Definitions.WithInputSplitReachUnionExa
 initial set: homogeneous, constant-parameter, at every matrix the
 set `sys.A` holds; `WithInput` and `WithInputReachUnionExact` the same with an
 input set, `0 ∈ U` a field; `WithInputSplit` and its own `ReachUnionExact` drop
-that field, the input set anywhere.
+that field, the input set anywhere. `OrderAdmissibleFloat` is when a float order is sound.
 -/

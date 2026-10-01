@@ -12,6 +12,7 @@ import CORALean.ContDynamics.NonlinearSys.Definitions.AbstrReachOptions
 import CORALean.ContDynamics.NonlinearSys.Definitions.PolyReachOptions
 import CORALean.ContDynamics.NonlinearSys.Definitions.ReachUnionExact
 import CORALean.ContDynamics.NonlinearSys.Definitions.WithSteps
+import CORALean.ContDynamics.NonlinearSys.Definitions.FloatModel
 
 /-!
 # What `NonlinearSys` means beyond the system itself
@@ -24,5 +25,6 @@ iteration. `ReachSet` is the set the flow actually reaches. `WithSteps` bundles 
 system with a chain of `LinStep`s and checkable regions, and `ReachUnionExact` is
 the set a `Reach` run encloses. `RelinReachOptions`,
 `RelinDeltaReachOptions`, `AbstrReachOptions` and `PolyReachOptions` are CORA's
-`options` for the algorithms of those names.
+`options` for the algorithms of those names. `FloatModel` is what a float run evaluates in
+place of `f`, and `FloatModel.Encloses` ties it to `f`.
 -/

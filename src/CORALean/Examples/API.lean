@@ -5,6 +5,7 @@ import CORALean.Examples.BouncingBall
 import CORALean.Examples.BoundedHorizonInvariant
 import CORALean.Examples.CapsuleObstacle
 import CORALean.Examples.ConPolyZonoGuard
+import CORALean.Examples.ConZonotopeReduceKeep
 import CORALean.Examples.ConversionRoundTrip
 import CORALean.Examples.ConvNet
 import CORALean.Examples.ConvNetFloat

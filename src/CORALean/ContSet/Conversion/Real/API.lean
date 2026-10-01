@@ -38,6 +38,7 @@ import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
 import CORALean.ContSet.Conversion.Real.Interval_to_Ellipsoid
 import CORALean.ContSet.Conversion.Real.Interval_to_HPolytope
 import CORALean.ContSet.Conversion.Real.Interval_to_PolyZonotope
+import CORALean.ContSet.Conversion.Real.Interval_to_SpectraShadow
 import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
 import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
 import CORALean.ContSet.Conversion.Real.Interval_to_ZonoBundle
@@ -63,6 +64,7 @@ import CORALean.ContSet.Conversion.Real.Zonotope_to_Ellipsoid
 import CORALean.ContSet.Conversion.Real.Zonotope_to_HPolytope
 import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
 import CORALean.ContSet.Conversion.Real.Zonotope_to_PolyZonotope
+import CORALean.ContSet.Conversion.Real.Zonotope_to_SpectraShadow
 import CORALean.ContSet.Conversion.Real.Zonotope_to_VPolytope
 import CORALean.ContSet.Conversion.Real.Zonotope_to_ZonoBundle
 import CORALean.ContSet.Conversion.Real.ZonoBundle_to_ConPolyZono
@@ -92,7 +94,7 @@ out via `ZonoBundle.zonotope i` at a chosen component — a much bigger loss tha
 the rest, a bundle existing precisely because its intersection is tighter than
 any one member — and in via the same `X → Zonotope` leg its `Zonotope` pair
 already had, composed with the exact `Zonotope.zonoBundle`. 72 ordered pairs,
-among the nine, complete.
+among the nine, complete. `SpectraShadow` is only a target: from `Zonotope` and `Interval`.
 
 Where a conversion only encloses: a hull or zonotope reaching halfspaces is
 exact only on the caller's directions; a polynomial zonotope's own conversions

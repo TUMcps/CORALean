@@ -40,6 +40,9 @@ src/CORALean/
                    Real/ and Float/
     Ellipsoid/     a centre and a generator matrix, the one representation whose
                    support function is closed form; Real/ and Float/
+    SpectraShadow/ the projection of a spectrahedron: exact under sum, image and
+                   product, the representation a semidefinite program lands in;
+                   Real/ and Float/, the latter with `plus` alone
     Capsule/       a segment thickened by a ball, for an obstacle rather than a
                    reachable set: Real/ only, being closed under almost nothing
     Conversion/    one file per ordered pair, `<Source>_to_<Target>.lean`;

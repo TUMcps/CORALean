@@ -17,6 +17,16 @@ import CORALean.ContDynamics.LinParamSys.Operations.WithInputReachStepk
 import CORALean.ContDynamics.LinParamSys.Operations.WithInputReachUnion
 import CORALean.ContDynamics.LinParamSys.Operations.WithInputSplitReachStepk
 import CORALean.ContDynamics.LinParamSys.Operations.WithInputSplitReachUnion
+import CORALean.ContDynamics.LinParamSys.Operations.ReachOrderFloat
+import CORALean.ContDynamics.LinParamSys.Operations.ExpIntervalFloat
+import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepFloat
+import CORALean.ContDynamics.LinParamSys.Operations.DiscretizeEnclosureFloat
+import CORALean.ContDynamics.LinParamSys.Operations.InputTaylorSumFloat
+import CORALean.ContDynamics.LinParamSys.Operations.InputSolutionFloat
+import CORALean.ContDynamics.LinParamSys.Operations.SquaringsFloat
+import CORALean.ContDynamics.LinParamSys.Operations.ExpSquaringFloat
+import CORALean.ContDynamics.LinParamSys.Operations.ReachStepkFloat
+import CORALean.ContDynamics.LinParamSys.Operations.ReachFloat
 
 /-!
 # What a continuous-time linear system with a set-valued matrix computes
@@ -31,7 +41,9 @@ orders the first is built from. `ReachOrder`/`ReachUnion`/`WithInputReachUnion`/
 `ConstPropagate` do the same for a split input set's constant half.
 
 `DiscretizeEnclosure` is the step taken over a whole horizon instead: the
-exponential of the box, handed to `LinParamSysDT` so its recursion runs it.
+exponential of the box, handed to `LinParamSysDT` so its recursion runs it. `…Float` compute
+these at float interval matrices, `ExpIntervalFloat` the box's exponential at an order
+`ReachOrderFloat` finds; `ReachFloat` is `ReachUnion` by `ReachStepkFloat`'s scaling and squaring.
 
 At `ℐ` throughout: every factor is an interval matrix, the exponential and the
 correction matrix of a box being interval matrices themselves. `InputSolutionZono`

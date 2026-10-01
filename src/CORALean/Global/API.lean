@@ -7,6 +7,7 @@ import CORALean.Global.Hadamard
 import CORALean.Global.Partition
 import CORALean.Global.Sort
 import CORALean.Global.Block
+import CORALean.Global.BlockDiag
 import CORALean.Global.Corners
 import CORALean.Global.DropIdx
 import CORALean.Global.FoldInduction

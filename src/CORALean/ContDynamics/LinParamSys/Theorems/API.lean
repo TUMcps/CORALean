@@ -28,6 +28,17 @@ import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryToLinearSys
 import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryToLinParam
 import CORALean.ContDynamics.LinParamSys.Theorems.WithInputReachUnionOuter
 import CORALean.ContDynamics.LinParamSys.Theorems.WithInputSplitReachUnionOuter
+import CORALean.ContDynamics.LinParamSys.Theorems.ReachOrderFloatSpec
+import CORALean.ContDynamics.LinParamSys.Theorems.ExpMemExpIntervalFloat
+import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalStepFloatOuter
+import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryTimeIntervalFloatOuter
+import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryDiscretizeEnclosureFloat
+import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryDiscretizeEnclosureFloatMemReach
+import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetInputSolutionFloat
+import CORALean.ContDynamics.LinParamSys.Theorems.SquaringsFloatSpec
+import CORALean.ContDynamics.LinParamSys.Theorems.ExpMemExpSquaringFloat
+import CORALean.ContDynamics.LinParamSys.Theorems.ReachStepkFloatOuter
+import CORALean.ContDynamics.LinParamSys.Theorems.ReachFloatOuter
 
 /-!
 # What `LinParamSys` gives, collected
@@ -48,11 +59,11 @@ radius the enlarged set needs, `TrajectoryTimeIntervalOuter…` the step.
 The `…Split` pair drops `0 ∈ U` by splitting the input set, and
 `ConstTrajectoryDiscretizeEnclosure`/`…MemReach` carry one step to a whole
 horizon through `LinParamSysDT.reach` — together, [1, Alg. 4].
-`ConstTrajectoryToTrajectory`, `ToLinParam` and `TrajectoryToLinParam` are the
-readings' conversions: `'constParam'` is `'varParam'` at a constant function,
-and `LinearSys` is `LinParamSys` at a point. `InputSolutionZonoOuter` is
-`InputSolutionOuter` at a matrix zonotope instead, and
+`ConstTrajectoryToTrajectory`, `ToLinParam` and `TrajectoryToLinParam` convert: `'constParam'`
+is `'varParam'` at a constant, `LinearSys` `LinParamSys` at a point. `InputSolutionZonoOuter`
+is `InputSolutionOuter` at a matrix zonotope instead, and
 `ReachOrderAdmissible`/`ReachUnionOuter`/`WithInputReachUnionOuter` are `Instances`'.
+`…Float…` are the same guarantees of the float operations, at float interval matrices.
 
 ## References
 

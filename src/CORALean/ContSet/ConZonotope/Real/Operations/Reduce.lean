@@ -12,6 +12,7 @@ constraint enlarges the set, so both branches over-approximate.
 CORA reduces the generators and eliminates constraints by separate rules, each
 keeping the constraint block meaningful. Either would replace this without
 touching the guarantee, which is stated for the operation and not for the rule.
+`ConZonotope.reduceKeep` is the alternative that keeps the constraints.
 -/
 
 -- Authors:       Tobias Ladner

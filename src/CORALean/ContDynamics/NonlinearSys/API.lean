@@ -25,7 +25,7 @@ earlier paper's same loop at the centre, `PolyReach` the HSCC'13 original it des
 
 What CORA obtains from an interval Hessian is asked for as a certificate
 instead, so how the abstraction error was computed is outside the trusted base.
-`AbstractionErrorOfHessian` is the only file here that differentiates `f`, and it
-runs the other way: it *supplies* the certificate `AbstrErrLin` computes. Nothing
-that spends a certificate imports it, so the chain above stays derivative-free.
+`AbstractionErrorOfHessian` and `EnclosesOfHasFDerivAt` are the only files here that
+differentiate `f`, and both *supply* what the chain spends. `ReachFloat` is the float
+run, linearizing itself from a `FloatModel` of `f` and certifying its own steps.
 -/
