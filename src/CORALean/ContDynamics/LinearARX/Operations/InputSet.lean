@@ -10,7 +10,7 @@ encloses every ARX input and is where the conversion is looser than the ARX form
 
 -- Authors:       Tobias Ladner
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   01-October-2026
 -- Last revision: ---
 
 
@@ -20,7 +20,7 @@ namespace CORALean
 
 open ContSet Scalar Plus Mtimes
 
-variable {𝕋 : Type} [Scalar 𝕋] [Zero 𝕋] {dy du p : ℕ}
+variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {dy du p : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
 

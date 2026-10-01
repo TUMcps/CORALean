@@ -12,7 +12,7 @@ own location put it.
 
 -- Authors:       Tobias Ladner
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   01-October-2026
 -- Last revision: ---
 
 
@@ -31,7 +31,7 @@ variable {𝕋 : Type} [Scalar 𝕋] {k m : ℕ} {n : Fin k → ℕ} {L : Fin k 
 /-- A stay of every component, inputs as bound, is one stay of the product, whose state is the
 stack and whose input is `globalInput`. -/
 theorem ParallelHybridAutomaton.Stay.trajectory [ExactScalar 𝕋]
-    {P : ParallelHybridAutomaton S G k L 𝕋 n m}
+    {P : ParallelHybridAutomaton S G k L 𝕋 n m} (hself : P.SelfBindFree)
     (lift : ParallelHybridAutomaton.Lifting S G n m P.binds) {ℓ : ∀ i, L i} {τ : ℝ}
     {x u : ∀ i, ℝ → Vec ℝ (n i)} {g : ℝ → Vec ℝ m} (h : P.Stay ℓ τ x u g) :
     (P.locationProduct lift ℓ).Trajectory τ (fun t => stack fun i => x i t)
@@ -54,7 +54,7 @@ theorem ParallelHybridAutomaton.Stay.trajectory [ExactScalar 𝕋]
     simp only [hs]
     refine hd.congr_deriv ?_
     -- the merged matrix on the stack, and what the binding says the input is
-    have hm := P.mergeFlows_mulVec ℓ (fun i => x i t) i j
+    have hm := P.mergeFlows_mulVec hself ℓ (fun i => x i t) i j
     simp only [Pi.add_apply]
     show _ = (toRealMat (P.mergeFlows ℓ).A *ᵥ stack fun i => x i t) _ + _
     rw [hm]

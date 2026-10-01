@@ -1,3 +1,6 @@
+import CORALean.ContDynamics.LinearARX.Operations.InputMat
+import CORALean.HybridDynamics.Parallel.Operations.MergeFlows
+import CORALean.ContDynamics.LinearARX.Operations.ToLinearSysDT
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdmissibleOrderFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclosureFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrixFloat
@@ -72,7 +75,7 @@ have no float refinement yet (`pending #1`), only their steps' matrices; `reachE
 
 -- Authors:       Tobias Ladner
 -- Written:       23-September-2026
--- Last update:   30-September-2026
+-- Last update:   01-October-2026
 -- Last revision: ---
 
 
@@ -120,6 +123,40 @@ def cZ_of_H : ConZonotope D 2 := H.onCoefficients Z |>.conZonotopeOf Z
 def V_of_cZ : VPolytope D 2 := cZ.vPolytopeBox
 def cZ_of_V : ConZonotope D 2 := V.conZonotope
 def simplex2 : HPolytope D 2 := VPolytope.simplex D 2
+
+
+/-! ## A `LinearARX` and its companion matrix, at `D`
+
+`toLinearSysDT` and `inputMat` only place entries, `0` and `1`, so they are exact at a rounded
+scalar and their theorems are not restricted to ℝ (#117). -/
+
+/-- `Ā = (1, -1)`, `B̄ = (1, 1, 0)`, as in `LinearARXReach`. -/
+def arxD : LinearARX D 1 1 2 where
+  Abar i := Matrix.of fun _ _ => if i.val = 0 then d 1 0 else d (-1) 0
+  Bbar j := Matrix.of fun _ _ => if j.val = 2 then d 0 0 else d 1 0
+
+def arxA : Mat D 2 2 := arxD.toLinearSysDT.A
+def arxB : Mat D 2 1 := arxD.inputMat 0
+
+#eval arxA 0 0
+#eval arxA 0 1
+#eval arxA 1 0
+#eval arxA 1 1
+#eval arxB 1 0
+
+/-- Two scalar components `ẋ = x + u`, each input bound to the other's state: the merged flow is
+`[[1, 1], [1, 1]]`, built with no rounding arithmetic, at `D` (#117). -/
+def parP : ParallelHybridAutomaton (fun n => Interval (Vec D n)) (fun n => Interval (Vec D n)) 2
+    (fun _ => Unit) D (fun _ => 1) 0 where
+  comp _ := ⟨fun _ => ⟨zbox 1, ⟨fun _ _ => d 1 0⟩, zbox 1, []⟩⟩
+  binds i _ := .state i.rev 0
+
+def parA : Mat D 2 2 := (parP.mergeFlows (fun _ => ())).A
+
+#eval parA 0 0
+#eval parA 0 1
+#eval parA 1 0
+#eval parA 1 1
 
 
 /-! ## Every operation class each representation above instantiates -/

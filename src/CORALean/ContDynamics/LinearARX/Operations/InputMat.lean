@@ -1,4 +1,5 @@
 import CORALean.ContDynamics.LinearARX.LinearARX
+import CORALean.Global.ExactScalar
 
 /-!
 # The input matrices of the converted system
@@ -11,7 +12,7 @@ input's contribution to the next window, which enters in state coordinates as
 
 -- Authors:       Tobias Ladner
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   01-October-2026
 -- Last revision: ---
 
 
@@ -19,7 +20,7 @@ input's contribution to the next window, which enters in state coordinates as
 
 namespace CORALean
 
-variable {𝕋 : Type} [Scalar 𝕋] [Zero 𝕋] {dy du p : ℕ}
+variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {dy du p : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

@@ -11,7 +11,7 @@ replaced. That is the update `ParallelHybridAutomaton.Run.jump` writes, and it i
 
 -- Authors:       Tobias Ladner
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   01-October-2026
 -- Last revision: ---
 
 
@@ -44,7 +44,7 @@ theorem ParallelHybridAutomaton.liftTransition_reset [ExactScalar 𝕋]
   funext p
   obtain ⟨⟨i, j⟩, rfl⟩ := finSigmaFinEquiv.surjective p
   simp only [Transition.reset, Pi.add_apply, Matrix.mulVec, dotProduct,
-    ExactScalar.toRealMat_apply, ExactScalar.toRealVec_apply]
+    Scalar.toRealMat_apply, Scalar.toRealVec_apply]
   rw [← finSigmaFinEquiv.sum_comp, Fintype.sum_sigma]
   simp only [ParallelHybridAutomaton.liftTransition, Matrix.reindex_apply, Matrix.submatrix_apply,
     Equiv.symm_apply_apply, Matrix.of_apply, Equiv.piCongrLeft_apply_apply, hs]
@@ -52,10 +52,10 @@ theorem ParallelHybridAutomaton.liftTransition_reset [ExactScalar 𝕋]
   by_cases h : i = c
   · subst h
     rw [Function.update_self, Pi.add_apply, Matrix.mulVec, dotProduct,
-      ExactScalar.toRealVec_apply]
+      Scalar.toRealVec_apply]
     congr 1
     · rw [Finset.sum_eq_single i]
-      · simp [ExactScalar.toRealMat_apply]
+      · simp [Scalar.toRealMat_apply]
       · intro d _ hd
         refine Finset.sum_eq_zero fun s _ => ?_
         simp [hd, ExactScalar.toReal_zero]
@@ -65,7 +65,7 @@ theorem ParallelHybridAutomaton.liftTransition_reset [ExactScalar 𝕋]
     rw [Function.update_of_ne h]
     simp only [dif_neg h, ExactScalar.toReal_zero, add_zero]
     rw [← Fintype.sum_sigma (fun b : Σ i, Fin (n i) =>
-      ExactScalar.toReal (if (⟨i, j⟩ : Σ i, Fin (n i)) = b then 1 else 0) * x b.1 b.2)]
+      Scalar.toReal (if (⟨i, j⟩ : Σ i, Fin (n i)) = b then 1 else 0) * x b.1 b.2)]
     rw [Finset.sum_eq_single ⟨i, j⟩]
     · simp [ExactScalar.toReal_one]
     · intro b _ hb

@@ -1,5 +1,6 @@
 import CORALean.ContDynamics.LinearARX.LinearARX
 import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+import CORALean.Global.ExactScalar
 
 /-!
 # Conversion to a discrete-time linear system
@@ -17,7 +18,7 @@ loses the dependency between the copies of `u`.
 
 -- Authors:       Tobias Ladner
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   01-October-2026
 -- Last revision: ---
 
 
@@ -25,7 +26,7 @@ loses the dependency between the copies of `u`.
 
 namespace CORALean
 
-variable {𝕋 : Type} [Scalar 𝕋] [Zero 𝕋] [One 𝕋] {dy du p : ℕ}
+variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {dy du p : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

@@ -24,7 +24,7 @@ indexed by the type it stores, as the exact `Interval α` is, not by a dimension
 
 -- Authors:       Tobias Ladner
 -- Written:       16-August-2026
--- Last update:   24-September-2026
+-- Last update:   01-October-2026
 -- Last revision: ---
 
 
@@ -70,6 +70,9 @@ rather than naming `toRealMat`, so that at `𝕋 := ℝ` instance search sees th
 instance : Scalar 𝕋 where
   toRealMat M := fun i j => toReal (M i j)
   toRealVec v := fun i => toReal (v i)
+  toReal := toReal
+  toRealMat_apply _ _ _ := rfl
+  toRealVec_apply _ _ := rfl
 
 /-- The real ambient type a stored one denotes, and the reading: a vector of `𝕋`
 reads as a vector of ℝ, a matrix as a matrix. -/

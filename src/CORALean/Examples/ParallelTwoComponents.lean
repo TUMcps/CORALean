@@ -23,7 +23,7 @@ cannot be assembled there, and no `#eval` of the flow matrix is possible (#40).
 
 -- Authors:       Tobias Ladner
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   01-October-2026
 -- Last revision: ---
 
 
@@ -142,17 +142,26 @@ theorem PTC.invariant : PTC.product.Invariant PTC.R where
       exact (by norm_num : (0 : ℝ) ≤ 2)
     · simpa [Function.update_of_ne] using hz 1
 
+/-- No coordinate is bound to a state of its own component: `0` takes `1`'s, `1` is global. -/
+theorem PTC.selfBindFree : PTC.parallel.SelfBindFree := by -- --- PROOF ---
+  intro ℓ i j s h
+  fin_cases i
+  · exfalso
+    simp [PTC.parallel, PTC.binds] at h
+  · exfalso
+    simp [PTC.parallel, PTC.binds] at h
+
 /-- A parallel run is a run of the product, stacked. -/
 theorem PTC.run_toProduct {ℓ ℓ' : ∀ _ : Fin 2, Unit} {x y : ∀ _ : Fin 2, Vec ℝ 1}
     (run : PTC.parallel.Run ℓ x ℓ' y) : PTC.product.Run ℓ (stack x) ℓ' (stack y) :=
-  ParallelHybridAutomaton.Run.toProduct (P := PTC.parallel)
+  ParallelHybridAutomaton.Run.toProduct (P := PTC.parallel) PTC.selfBindFree
     (ParallelHybridAutomaton.boxLifting PTC.binds) run
 
 /-- Every tuple of states the parallel automaton reaches from the box, stacked, is in the box. -/
 theorem PTC.reachSet_subset (ℓ₀ ℓ : ∀ _ : Fin 2, Unit) :
     stack '' PTC.parallel.reachSet PTC.box ℓ₀ ℓ ⊆ construct (PTC.R ℓ) := by -- --- PROOF ---
   refine ParallelHybridAutomaton.reachSet_subset_invariant
-    (P := PTC.parallel) (lift := ParallelHybridAutomaton.boxLifting PTC.binds)
+    (P := PTC.parallel) PTC.selfBindFree (lift := ParallelHybridAutomaton.boxLifting PTC.binds)
     PTC.invariant (fun x hx => ?_) ℓ
   -- a stack of points of the boxes is in the stacked box
   change stack x ∈ (Interval.stackProd PTC.box).construct
