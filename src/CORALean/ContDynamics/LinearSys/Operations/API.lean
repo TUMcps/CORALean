@@ -88,6 +88,7 @@ import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
 import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInputStep
 import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInput
 import CORALean.ContDynamics.LinearSys.Operations.ReachWrappingFreeFloatInput
+import CORALean.ContDynamics.LinearSys.Operations.DiscretizeEnclosureFloat
 
 /-!
 # What a continuous-time linear system computes
@@ -103,7 +104,7 @@ vector rather than a whole signal.
 from an admissible error, one knob of adaptive tuning and not the algorithm.
 `DiscretizeEnclosure` is `Discretize` again, its matrix only enclosed: `e^{AΔt}`
 is transcendental, so where the exponential itself cannot be computed the
-result is a `LinParamSysDT` over an interval matrix rather than a `LinearSysDT`.
+result is a `LinParamSysDT` over an interval matrix rather than a `LinearSysDT`, real or float.
 
 `InputTaylorSumTail` is `InputTaylorSum` from order `1` instead of `0`, the split Wetzlinger et
 al.'s adaptive reachability needs, which keeps order `0` out as a term of its own.

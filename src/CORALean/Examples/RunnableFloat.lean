@@ -6,6 +6,8 @@ import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclosureFlo
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrixFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputRemainderFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputTermFloat
+import CORALean.ContDynamics.LinearSys.Operations.DiscretizeEnclosureFloat
+import CORALean.ContDynamics.LinParamSysDT.Operations.Reach
 import CORALean.ContDynamics.LinearSysDT.Operations.Reach
 import CORALean.ContDynamics.LinearSysDT.Operations.ReachHeld
 import CORALean.ContDynamics.LinearSysDT.Operations.ReachOrders
@@ -65,9 +67,9 @@ Not a guarantee: precision — `scripts/check-demo.sh` is what catches a silent
 widening; an enclosure the size of the state space satisfies every theorem
 here just as a tight one does.
 
-Left out, and why: `LinearSys`'s float runs are run in `RotationFloat`; the other
-continuous-time algorithms (`LinParamSys`, `NonlinearSys`, `Location.timeIntervalStep*`)
-have no float refinement yet (`pending #1`), only their steps' matrices; `reachErrorFloat`/
+Left out, and why: `LinearSys`'s float reaches are run in `RotationFloat`, its float
+sampling here; the continuous-time algorithms the allowlist marks `pending #1` have no
+float refinement yet; `reachErrorFloat`/
 `reachInnerFloat` are real-valued guarantee objects, legitimately `spec:`;
 `HPolytope.zonotope`/`vPolytopeBox`/`interval`/`conZonotope` and `verifyHalfspace`/
 `verifyConvex` each ask for a `FloatBound`/`SupportBound` a solver alone can supply.
@@ -260,6 +262,17 @@ def inputTermRun : Interval (Mat D 2 2) := MatExp.intervalInputTerm stepA stepR 
 def inputRemainderRun : Interval (Mat D 2 2) := MatExp.intervalInputRemainder stepA stepR 4
 
 
+/-! ## A continuous-time system sampled in floats (#1)
+
+The same `A` and `r`, sampled by `discretizeEnclosureFloat` into a `LinParamSysDT` over float
+interval matrices, and five steps of its `reach` under the input set `Z`. -/
+
+def ctSys : LinearSys D 2 := ⟨!![d (-1) 0, d (-4) 0; d 4 0, d (-1) 0]⟩
+def ctSysD : LinParamSysDT (fun m n => Interval (Mat D m n)) 2 :=
+  ctSys.discretizeEnclosureFloat stepR 4
+def ctReachRun : Zonotope D 2 := ctSysD.reach (S := Zonotope D) ⟨Z, Z, 0, 5⟩ ⟨2, two_pos⟩
+
+
 /-! ## The four Box operations `LinearSysDT.reachErrorFloat` sums
 
 Each used to return a `Real.Zonotope`, read back through `toReal`, and so was
@@ -331,6 +344,12 @@ def mixedEncloseRun : Zonotope D 2 := mixedNet.enclose Z
 #eval inputTermRun.inf 0 1
 #eval inputTermRun.sup 0 1
 #eval inputRemainderRun.sup 0 0
+
+-- A continuous-time system sampled in floats (#1): one entry of `[e^{Ar}]`, then five steps.
+#eval ctSysD.A.inf 0 0
+#eval ctSysD.A.sup 0 0
+#eval ctReachRun.h
+#eval ctReachRun.c 0
 
 
 /-! ## The float sigmoid enclosure tightens with its depth (#114)
