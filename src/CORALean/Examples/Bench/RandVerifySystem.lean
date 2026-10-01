@@ -1,0 +1,36 @@
+import CORALean.ContSet.Zonotope.Float.Zonotope
+
+/-!
+# `randverify`: the system, held in a number type
+
+`ẋ = A x + B u`, `y = C x` with `n = 5` states, 2 inputs and 2 outputs, `X0` as a zonotope (its
+box, centre and diagonal generators) and `U` as a box, all read exactly: nothing here is rounded.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       01-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Bench
+
+open CORALean CORALean.Float
+
+
+-- ========================================  MAIN TYPE  ========================================= --
+
+structure RandSystem (𝕋 : Type) where
+  A : Mat 𝕋 5 5
+  B : Mat 𝕋 5 2
+  C : Mat 𝕋 2 5
+  X0 : Zonotope 𝕋 5
+  U : Interval (Vec 𝕋 2)
+  dt : 𝕋
+
+end CORALean.Bench
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

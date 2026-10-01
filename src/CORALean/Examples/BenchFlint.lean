@@ -1,6 +1,8 @@
 import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatOuter
 import CORALean.Examples.Bench.FirstStepHead
 import CORALean.Examples.Bench.FirstStepPrec
+import CORALean.Examples.Bench.RandVerifyRun
+import CORALean.Examples.Bench.RandVerifyTypes
 import CORALean.Examples.Bench.Registry
 import CORALean.Global.Float.Instances.Flint.API
 
@@ -157,12 +159,28 @@ def aux_firstStepFlint (cfg : HeadlineConfig) (run : FirstStepRun) (dt : String)
       else throw s!"config field `{field}`: {d.mantissa} * 2^{d.exponent} needs more than {p} bits")
     (fun d => ⟨d.mantissa, d.exponent⟩) nt dt)
 
+/-- `randverify`'s `flint<p>` types, `Flint p` read as `aux_firstStepFlint` reads it; `none` for
+any other label, which `bench` runs. -/
+def aux_randVerifyFlint (label : String) (J : RandJob) : Option (IO Json) :=
+  match randTypeKind label with
+  | some ("flint", some p) =>
+    let nt : NumberType (Flint p) :=
+      { description := s!"flint {dyadicDescription (precToFormat p) p}" }
+    some (randVerifyRecord (firstStepHead "flint" s!"p{p}" p nt) nt
+      (fun field d => if fitsPrecision p d then pure ⟨d.mantissa, d.exponent⟩
+        else throw s!"config field `{field}`: {d.mantissa} * 2^{d.exponent} needs more \
+          than {p} bits")
+      (fun d => ⟨d.mantissa, d.exponent⟩) J)
+  | _ => none
+
 /-- `args.experiment` run at `Flint (resolvedPrec args)`, through `runAt` --
 `inst`/`instUnchecked`/`toD` mirror `Dyadic`'s in `Registry.lean`. -/
 def dispatchFlint (args : CliArgs) : IO Unit :=
   if args.experiment = "selftest" then aux_runSelftest else
   if args.experiment = "firststep" then
     runFirstStepWith args "results-flint" aux_firstStepFlint else
+  if args.experiment = "randverify" then
+    runRandVerifyWith args "-flint" aux_randVerifyFlint else
   let p := resolvedPrec args
   let inst : String → ExactDyadic → Except String (Flint p) := fun field d =>
     if fitsPrecision p d then pure ⟨d.mantissa, d.exponent⟩
