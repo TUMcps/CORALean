@@ -3,6 +3,8 @@ import CORALean.ContDynamics.LinearSys.Operations.ReachFloat
 import CORALean.ContDynamics.LinearSys.Operations.ReachTimePointWrappingFreeFloat
 import CORALean.Examples.Bench.Cli
 import CORALean.Examples.Bench.ContRollout
+import CORALean.Examples.Bench.FirstStepRun
+import CORALean.Examples.Bench.FirstStepTypes
 import CORALean.Examples.Bench.Ieee
 import CORALean.Examples.Bench.Mnist
 import CORALean.Examples.Bench.NearestUnsound.API
@@ -30,13 +32,13 @@ raw bit count, for a precision none of the five `--format` labels name), else
 `--format` mapped through `formatToPrec` (already validated by `parseArgs`),
 else `53` -- `binary64`, so the default agrees with native `Float`.
 
-`opcompare` is unrelated and intercepted ahead of `runAt`: `OpCompareRun.lean`
-needs every scalar's bound at once, not the one `--type` picks.
+`opcompare` and `firststep` are unrelated, intercepted ahead of `runAt`: both take every
+scalar they need from their own files, not the one `--type` picks.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       25-September-2026
--- Last update:   30-September-2026
+-- Last update:   01-October-2026
 -- Last revision: ---
 
 
@@ -234,6 +236,7 @@ def dispatchIeee (args : CliArgs) : IO Unit := do
 `runAt` is generic over; `opcompare` is intercepted ahead of it, see above. -/
 def dispatch (args : CliArgs) : IO Unit :=
   if args.experiment = "opcompare" then runOpCompare args else
+  if args.experiment = "firststep" then runFirstStepWith args "results" firstStepBenchRecord else
   match args.ty with
   | "float" =>
     let toExact := if args.exact then some (fun x => let d := Binary64.toDyadic x

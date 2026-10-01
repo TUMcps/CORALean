@@ -1,4 +1,6 @@
 import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatOuter
+import CORALean.Examples.Bench.FirstStepHead
+import CORALean.Examples.Bench.FirstStepPrec
 import CORALean.Examples.Bench.Registry
 import CORALean.Global.Float.Instances.Flint.API
 
@@ -6,14 +8,14 @@ import CORALean.Global.Float.Instances.Flint.API
 # `bench-flint`'s logic: parsing, dispatch, self-test, positive control
 
 The bulk of `bench-flint` (README, "FLINT backend (optional)"); `main` lives in
-`Examples/BenchFlintMain.lean` instead, so `check-axioms.lean` can import this
-file's `reachFloat_outer_flint` alongside `Examples/Bench.lean` without two
-top-level `main`s in one environment.
+`Examples/BenchFlintMain.lean`, so `check-axioms.lean` can import this file's
+`reachFloat_outer_flint` beside `Examples/Bench.lean` without two `main`s.
 
 `dispatchFlint` reuses `parseArgs` for every flag but `--type`, accepted only
 as `flint`, and `Registry.lean`'s `runAt` to run `args.experiment` at
 `Flint (resolvedPrec args)`, as `dispatch` runs it at `Dyadic p`.
 
+`bench-flint firststep` makes `firststep`'s `flint` runs, `bench` the rest.
 `bench-flint selftest` differential-tests instead: for `p` in `{2, 11, 24, 53,
 113}` and pseudo-random pairs (fixed seed, negative and past `2^64`, to reach
 the FFI's big-`Int` path), it compares `Flint p`'s six rounded operations
@@ -25,7 +27,7 @@ file and the `Flint` instances may reach.
 
 -- Authors:       Tobias Ladner
 -- Written:       28-September-2026
--- Last update:   30-September-2026
+-- Last update:   01-October-2026
 -- Last revision: ---
 
 
@@ -34,6 +36,7 @@ file and the `Flint` instances may reach.
 namespace CORALean.Bench
 
 open CORALean CORALean.Float
+open Lean (Json)
 
 /-- `argv` with `--type flint` dropped; an error if `--type` names anything
 else, since this exe only ever runs `Flint`. Not `aux_`: `main`, in
@@ -140,10 +143,26 @@ def aux_runSelftest : IO Unit := do
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
+/-- `firststep`'s `flint` records, `Flint p` at the same `p` as `Dyadic p`; `none` for any other
+type, which `bench` makes. -/
+def aux_firstStepFlint (cfg : HeadlineConfig) (run : FirstStepRun) (dt : String) :
+    Option Json :=
+  if run.ty ≠ "flint" then none else
+  -- `Flint p` at the width `Dyadic p` has, read as `Dyadic.toDyadicP` reads a config leaf
+  let p := run.sigBits
+  let nt : NumberType (Flint p) :=
+    { description := s!"flint {dyadicDescription (precToFormat p) p}" }
+  some (firstStepRecord cfg (firstStepHead "flint" s!"p{p}" p nt)
+    (fun field d => if fitsPrecision p d then pure ⟨d.mantissa, d.exponent⟩
+      else throw s!"config field `{field}`: {d.mantissa} * 2^{d.exponent} needs more than {p} bits")
+    (fun d => ⟨d.mantissa, d.exponent⟩) nt dt)
+
 /-- `args.experiment` run at `Flint (resolvedPrec args)`, through `runAt` --
 `inst`/`instUnchecked`/`toD` mirror `Dyadic`'s in `Registry.lean`. -/
 def dispatchFlint (args : CliArgs) : IO Unit :=
   if args.experiment = "selftest" then aux_runSelftest else
+  if args.experiment = "firststep" then
+    runFirstStepWith args "results-flint" aux_firstStepFlint else
   let p := resolvedPrec args
   let inst : String → ExactDyadic → Except String (Flint p) := fun field d =>
     if fitsPrecision p d then pure ⟨d.mantissa, d.exponent⟩
