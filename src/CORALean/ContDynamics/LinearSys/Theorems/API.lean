@@ -172,6 +172,8 @@ import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputInvariant
 import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputOuter
 import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputTimePointOuter
 import CORALean.ContDynamics.LinearSys.Theorems.ReachWrappingFreeFloatInputOuter
+import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeEnclosureFloat
+import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeEnclosureFloatReach
 
 /-!
 # What `LinearSys` guarantees
@@ -190,9 +192,9 @@ runs a step backwards, `Exists…Lt` shrinks its error, `SegmentsSum` feeds
 `TimeIntervalBound` a genuine `+`/`segments`, and `TimeIntervalWitness` its dual.
 `Restrict` is what makes the time domain a parameter worth having: a guarantee over one step
 applies to a run over all forward time by throwing the rest away. Only `discretize` and `reach`
-built on it ask for `Set.Ici 0`. `DiscretizeEnclosure`/`DiscretizeEnclosureReach` are
-`Discretize`/`ReachOuter` enclosed rather than computed; `DiscretizeMatZonotope` is the same at
-a matrix zonotope, `PostDeltaOuter` is `DeltaReachOuterInputSolution` again;
+built on it ask for `Set.Ici 0`. `DiscretizeEnclosure…` are `Discretize`/`ReachOuter` enclosed
+rather than computed, `…Float…` in floats; `DiscretizeMatZonotope` is the same at a matrix zonotope,
+`PostDeltaOuter` is `DeltaReachOuterInputSolution` again;
 `ReachOuterWindows` is the recursive `reach`'s, `ReachAdmissibleOuter` the same at an `η` raised
 until admissible, `Instances`' own guarantee; `ReachWrappingFreeOuter` and `WithInputReachOuter`
 are the wrapping-free scheme's and its `WithInput` sibling, built window by window, and
