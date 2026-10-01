@@ -127,10 +127,14 @@ conventions:
 
 build:
   extends: .lean-setup
-  # A push while a job is running does not cancel it. The project's "Auto-cancel
-  # redundant pipelines" setting only cancels jobs that opt in here, and a job
-  # that has already spent minutes cloning is not worth restarting.
-  interruptible: false
+  # A newer push to the same branch cancels this job: the project's "Auto-cancel
+  # redundant pipelines" setting acts only on jobs that opt in here, and a build
+  # of a superseded commit only holds the shared runner back from the one that
+  # counts. The release build below stays non-interruptible.
+  interruptible: true
+  # Twenty minutes on a quiet runner; the margin is for a runner shared with
+  # other pipelines, where a healthy build has run past an hour.
+  timeout: 90m
   script:
     - !reference [.lean-setup, script]
     # A warning is a failure: the tree is warning-free, and Mathlib's linters are
@@ -182,12 +186,13 @@ build:
   # the one step that fails for reasons outside the tree and it retries itself
   # above, so a script failure here is a compile error, a warning, a demo whose
   # numbers moved or a tainted axiom set — all deterministic, and retrying one
-  # costs three minutes to reach the same answer.
+  # costs three minutes to reach the same answer. Not `stuck_or_timeout_failure`
+  # either: a timeout means the runner is overloaded, and two more full builds
+  # add to exactly that load.
   retry:
     max: 2
     when:
       - runner_system_failure
-      - stuck_or_timeout_failure
   artifacts:
     when: always
     paths:
