@@ -1,4 +1,4 @@
-import CORALean.HybridDynamics.Parallel.Definitions.ExactScalar
+import CORALean.Global.ExactScalar
 import CORALean.HybridDynamics.Parallel.Definitions.Lifting
 
 /-!
@@ -12,7 +12,7 @@ labels are not in `Transition` (#40).
 
 -- Authors:       Tobias Ladner
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   01-October-2026
 -- Last revision: ---
 
 

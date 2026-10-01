@@ -9,7 +9,7 @@ At step `k` the window moves to `y(k+1..k+p)`, and the input terms of `y(k+p)` a
 
 -- Authors:       Tobias Ladner
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   01-October-2026
 -- Last revision: ---
 
 
@@ -19,7 +19,7 @@ namespace CORALean
 
 open Matrix Scalar
 
-variable {𝕋 : Type} [Scalar 𝕋] [Zero 𝕋] {dy du p : ℕ}
+variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {dy du p : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

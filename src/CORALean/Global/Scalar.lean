@@ -9,11 +9,15 @@ arithmetic an implementation runs, which is what lets one guarantee cover both.
 
 `toRealVec` is not `toRealMat` at a single column: a vector `Vec 𝕋 n` is a
 function `Fin n → 𝕋`, not a `Matrix`, so reading it needs its own field.
+
+`toReal` reads one entry, and the two entrywise laws say `toRealMat` and `toRealVec` are that
+reading applied to every entry. So a matrix built by placing existing entries, `0` and `1`
+(see `ExactScalar`) reads back as the real matrix of those entries, at any scalar, rounded or not.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       18-August-2026
--- Last update:   04-September-2026
+-- Last update:   01-October-2026
 -- Last revision: ---
 
 
@@ -27,11 +31,18 @@ namespace CORALean
 class Scalar (𝕋 : Type) where
   toRealMat {m n : ℕ} : Mat 𝕋 m n → Mat ℝ m n
   toRealVec {n : ℕ} : Vec 𝕋 n → Vec ℝ n
+  toReal : 𝕋 → ℝ
+  toRealMat_apply {m n : ℕ} (M : Mat 𝕋 m n) (i : Fin m) (j : Fin n) :
+    toRealMat M i j = toReal (M i j)
+  toRealVec_apply {n : ℕ} (v : Vec 𝕋 n) (i : Fin n) : toRealVec v i = toReal (v i)
 
 /-- ℝ stores itself. -/
 instance : Scalar ℝ where
   toRealMat M := M
   toRealVec v := v
+  toReal := id
+  toRealMat_apply _ _ _ := rfl
+  toRealVec_apply _ _ := rfl
 
 /-- True by `rfl`, but a proof about the real layer has to rewrite with it. -/
 @[simp] theorem Scalar.toRealMat_real {m n : ℕ} (M : Mat ℝ m n) : toRealMat M = M := rfl

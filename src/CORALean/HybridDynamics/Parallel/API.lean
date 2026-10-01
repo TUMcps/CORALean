@@ -1,5 +1,4 @@
 import CORALean.HybridDynamics.Parallel.ParallelHybridAutomaton
-import CORALean.HybridDynamics.Parallel.Instances
 import CORALean.HybridDynamics.Parallel.Definitions.API
 import CORALean.HybridDynamics.Parallel.Operations.API
 import CORALean.HybridDynamics.Parallel.Theorems.API

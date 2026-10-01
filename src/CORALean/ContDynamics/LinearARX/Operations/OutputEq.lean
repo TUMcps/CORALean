@@ -1,4 +1,5 @@
 import CORALean.ContDynamics.LinearARX.LinearARX
+import CORALean.Global.ExactScalar
 import CORALean.ContDynamics.OutputEq.OutputEq
 
 /-!
@@ -10,7 +11,7 @@ being already in the state's next window.
 
 -- Authors:       Tobias Ladner
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   01-October-2026
 -- Last revision: ---
 
 
@@ -18,7 +19,7 @@ being already in the state's next window.
 
 namespace CORALean
 
-variable {𝕋 : Type} [Scalar 𝕋] [Zero 𝕋] [One 𝕋] {dy du p : ℕ}
+variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {dy du p : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

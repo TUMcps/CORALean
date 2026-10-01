@@ -11,7 +11,7 @@ system need not have its window's blocks agree, nor its input be of the form `fe
 
 -- Authors:       Tobias Ladner
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   01-October-2026
 -- Last revision: ---
 
 
@@ -21,14 +21,14 @@ namespace CORALean
 
 open ContSet Scalar Plus Reduce Mtimes
 
-variable {dy du p : ℕ}
+variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {dy du p : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
-variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
+variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearARX.toLinearSysDT_trajectory (sys : LinearARX ℝ dy du p) {Y₀ : S (p * dy)}
+theorem LinearARX.toLinearSysDT_trajectory (sys : LinearARX 𝕋 dy du p) {Y₀ : S (p * dy)}
     {U : S du} {y : ℕ → Vec ℝ dy} {u : ℕ → Vec ℝ du} (traj : sys.Trajectory Y₀ U y u) :
     sys.toLinearSysDT.Trajectory Y₀ (sys.inputSet U) (LinearARX.stack p y) (sys.feed u) where
   init := traj.init
