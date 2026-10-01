@@ -42,6 +42,7 @@ import CORALean.NN.Layers.Operations.Pack
 import CORALean.NN.Layers.Operations.Relu
 import CORALean.NN.Layers.Operations.ReluSlope
 import CORALean.NN.Layers.Theorems.SigmoidRelaxationSound
+import CORALean.NN.Layers.Operations.SigmoidEnclosure
 import CORALean.NN.NeuralNetwork
 import CORALean.NN.Operations.Enclose
 import CORALean.NN.Operations.VerifySplit
@@ -293,6 +294,38 @@ def mixedEncloseRun : Zonotope D 2 := mixedNet.enclose Z
 #eval inputTermRun.inf 0 1
 #eval inputTermRun.sup 0 1
 #eval inputRemainderRun.sup 0 0
+
+
+/-! ## The float sigmoid enclosure tightens with its depth (#114)
+
+`sigmoidEnclosure k` at the point `1`: `σ 1 ≈ 0.7311`. Issue #114 reported `[0.5, 1]` at every
+depth; that does not reproduce, the width falling from `0.33` at `k = 0` to under `2⁻¹¹`
+at `k = 10` at `Dyadic 24` (where it levels off at `k = 12`, rounding-limited, near `10⁻⁴`), and
+at `Dyadic 53` to `2·10⁻⁷` at `k = 20`. Checked by kernel evaluation, over mantissas at the
+common exponent `-24`, so a regression to a constant or
+depth-ignoring enclosure fails the build. -/
+
+/-- `(lo, hi)` mantissas at exponent `-24` when both ends have that exponent. -/
+def sigmoidOneEnds (k : ℕ) : Option (ℤ × ℤ) :=
+  let E : Enclosure D := sigmoidEnclosure k
+  let lo := E.lo ⟨1, 0⟩
+  let hi := E.hi ⟨1, 0⟩
+  if lo.exponent = -24 ∧ hi.exponent = -24 then some (lo.mantissa, hi.mantissa) else none
+
+/-- Width at depth `k` below `bound` mantissa units (`2⁻²⁴` each), and `σ 1` bracketed
+(`0.7 ≤ lo`, `hi ≤ 0.75`). -/
+def sigmoidOneTight (k : ℕ) (bound : ℤ) : Bool :=
+  match sigmoidOneEnds k with
+  | some (l, h) => decide (h - l < bound ∧ 11744051 ≤ l ∧ h ≤ 12582912)
+  | none => false
+
+set_option maxRecDepth 4096 in
+example : sigmoidOneTight 10 4096 = true := rfl
+set_option maxRecDepth 4096 in
+example : sigmoidOneTight 6 65536 = true := rfl
+-- Strictly tighter with depth: `k = 4` is not under `10⁵` units, `k = 8` is.
+set_option maxRecDepth 4096 in
+example : (sigmoidOneTight 4 100000, sigmoidOneTight 8 100000) = (false, true) := rfl
 
 
 /-! ## A specification check, computed rather than asserted
