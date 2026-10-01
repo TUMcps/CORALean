@@ -29,6 +29,7 @@ import CORALean.ContSet.HPolytope.Real.Operations.Slab
 import CORALean.ContSet.HPolytope.Real.Operations.MemSlabIff
 import CORALean.ContSet.HPolytope.Real.Operations.MemSlabSelfIff
 import CORALean.ContSet.HPolytope.Real.Operations.Translate
+import CORALean.ContSet.HPolytope.Real.Operations.Minus
 import CORALean.ContSet.HPolytope.Real.Operations.UnitBox
 import CORALean.ContSet.HPolytope.Real.Operations.MemUnitBoxIff
 import CORALean.ContSet.HPolytope.Real.Operations.HalfScaled
@@ -38,6 +39,7 @@ import CORALean.ContSet.HPolytope.Real.Operations.RowsOfMemHalfScaledComap
 import CORALean.ContSet.HPolytope.Real.Operations.AbsLeOfUnitBoxRows
 import CORALean.ContSet.HPolytope.Real.Operations.OfPoint
 import CORALean.ContSet.HPolytope.Real.Operations.SupportBound
+import CORALean.ContSet.HPolytope.Real.Operations.Stack
 
 /-!
 # What `HPolytope` computes

@@ -8,6 +8,7 @@ import CORALean.ContSet.Ellipsoid.Real.Operations.Pullback
 import CORALean.ContSet.Ellipsoid.Real.Operations.ApplyMulVec
 import CORALean.ContSet.Ellipsoid.Real.Operations.SupportBound
 import CORALean.ContSet.Ellipsoid.Real.Operations.OfPoint
+import CORALean.ContSet.Ellipsoid.Real.Operations.Project
 
 /-!
 # What an ellipsoid computes, collected

@@ -22,6 +22,28 @@ import CORALean.ContSet.Interval.Real.Operations.Reindex
 import CORALean.ContSet.Interval.Real.Operations.SplitAt
 import CORALean.ContSet.Interval.Real.Operations.SupportBound
 import CORALean.ContSet.Interval.Real.Operations.SupportBoundEntrywise
+import CORALean.ContSet.Interval.Real.Operations.Uminus
+import CORALean.ContSet.Interval.Real.Operations.Uplus
+import CORALean.ContSet.Interval.Real.Operations.Minus
+import CORALean.ContSet.Interval.Real.Operations.Infimum
+import CORALean.ContSet.Interval.Real.Operations.Supremum
+import CORALean.ContSet.Interval.Real.Operations.Or
+import CORALean.ContSet.Interval.Real.Operations.ConvHull
+import CORALean.ContSet.Interval.Real.Operations.EnclosePoints
+import CORALean.ContSet.Interval.Real.Operations.Origin
+import CORALean.ContSet.Interval.Real.Operations.Abs
+import CORALean.ContSet.Interval.Real.Operations.Empty
+import CORALean.ContSet.Interval.Real.Operations.Exp
+import CORALean.ContSet.Interval.Real.Operations.Le
+import CORALean.ContSet.Interval.Real.Operations.Lt
+import CORALean.ContSet.Interval.Real.Operations.Project
+import CORALean.ContSet.Interval.Real.Operations.ProjectHighDim
+import CORALean.ContSet.Interval.Real.Operations.RepresentsaEmptySet
+import CORALean.ContSet.Interval.Real.Operations.RepresentsaOrigin
+import CORALean.ContSet.Interval.Real.Operations.RepresentsaPoint
+import CORALean.ContSet.Interval.Real.Operations.Times
+import CORALean.ContSet.Interval.Real.Operations.Norm
+import CORALean.ContSet.Interval.Real.Operations.Volume
 
 /-!
 # What `Interval` computes
@@ -45,4 +67,6 @@ bisects one coordinate at the midpoint, the concrete splitter
 `NeuralNetwork.holds_of_split` is verified at. `SupportBound` answers a
 direction corner by corner at `Vec ℝ n`; `SupportBoundEntrywise` is the same
 argument over any `Entrywise` type, giving `Interval (Mat ℝ m n)` one too.
+
+Also the containment tests, `empty`, the `representsa_*` tests, `exp`, `abs`, `times`, `project`.
 -/

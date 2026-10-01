@@ -3,12 +3,18 @@ import CORALean.ContSet.ZonoBundle.Real.Operations.Intersection
 /-!
 # `ZonoBundle.intersection` denotes exactly the intersection
 
-Appending the two families of zonotopes intersects what each bundle denoted:
+Appending the two families of zonotopes intersects what each bundle denoted [1, Sec. III]:
 `Fin.forall_fin_add` splits membership in the appended family the same way
 `Fin.append` splits the family itself.
 
 Stays a plain theorem rather than an instance obligation: `Instances` is what
 turns it into the `Intersection (ZonoBundle α) α` instance.
+
+## References
+
+* [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of
+      Reachable Sets". In Proc. of the 50th IEEE Conference on Decision and Control and
+      European Control Conference (CDC-ECC), pp. 6814-6821, 2011.
 -/
 
 -- Authors:       Tobias Ladner

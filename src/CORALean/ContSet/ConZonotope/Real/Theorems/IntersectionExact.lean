@@ -10,8 +10,14 @@ Each block keeps its own polytope, which `plus` already decomposes, so only the
 agreement rows add anything: they say the two points agree coordinate by
 coordinate, which is what membership in both means.
 
-Exact, and this is the whole case for constrained zonotopes — a zonotope
+Exact [1, Prop. 1], and this is the whole case for constrained zonotopes — a zonotope
 intersected with a zonotope is not a zonotope.
+
+## References
+
+* [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:
+      A new tool for set-based estimation and fault detection". Automatica, 69:126-136,
+      2016.
 -/
 
 -- Authors:       Tobias Ladner

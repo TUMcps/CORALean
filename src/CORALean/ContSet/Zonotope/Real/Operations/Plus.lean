@@ -3,7 +3,12 @@ import CORALean.ContSet.Zonotope.Real.Zonotope
 /-!
 # `Zonotope.plus`
 
-CORA's `@zonotope/plus`: centres add, generators concatenate.
+CORA's `@zonotope/plus`: centres add, generators concatenate [1, Sec. 2].
+
+## References
+
+* [1] A. Girard. "Reachability of Uncertain Linear Systems Using Zonotopes". In Hybrid
+      Systems: Computation and Control (HSCC), LNCS 3414, Springer, 2005, pp. 291-305.
 -/
 
 -- Authors:       Tobias Ladner

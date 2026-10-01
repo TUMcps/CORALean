@@ -13,11 +13,32 @@ every row asserting something links a file that proves something,
 every result cited somewhere is a row, every result one page defers to another
 is a row there, and the README's counts are the counts.
 
+Every row also carries a `Class` cell, which `scripts/formalization-stats.py`
+turns into the paper's figure. A row in scope and formalized says how the *paper's*
+statement fared (`correct`, `underspecified`, `proof-gap`, `fixed`, `false`), and
+everything but `correct` gives its reason in the cell; a row out of scope says
+why (`restated`, `mathlib`, `not-a-claim`, `done-differently`, `not-covered`),
+the five reasons the README allows; a row in scope and not yet formalized is `—`.
+The committed `experiments/paper/formalization-stats.json` must be what that
+script would write now, so the figure cannot lag the tables.
+
+`references/coverage/` is the other half: one table per CORA class, one row per CORA
+method (`contSet/@zonotope/plus.m`, ...), saying whether CORALean answers it
+(`proved`, `float`, `—`, or `out-of-scope` with one of a few documented reasons).
+Every method file of every listed class must have a row; every linked declaration
+must exist in the linked file; a `proved` row must link a theorem and a `float`
+row a float-layer theorem. The method inventory is committed
+(`references/coverage/cora-inventory.json`) so CI needs no CORA checkout, and is
+compared with one when `CORA_DIR` (default `~/CORA`) exists. See
+`references/coverage/README.md`.
+
 Exit status is 1 on any complaint, so it belongs in CI beside the conventions.
 `--fix` writes the counts it computed into the README's cells in place of the
 stale ones, so a count is never typed by hand; every other complaint it only
 reports, since each of those is a judgement about a page.
 """
+import json
+import os
 import re
 import sys
 from pathlib import Path, PurePosixPath
@@ -48,6 +69,21 @@ TRACKED = re.compile(r"tracked as\s+`([^`]+)`\s+on\s+\[[^\]]*\]\(([^)]+)\)")
 # A README row: the paper cell links the file, the last cell is the count —
 # formalized over in scope, then how many rows sit outside the count entirely.
 STATUS = re.compile(r"^(🟢|🟡|🔴|⚪)\s*(\d+)/(\d+)\s*\|\s*(\d+)$")
+
+# What a row says about the *paper's* statement, from the weakest finding up.
+# `correct`: formalized as printed. `underspecified`: not false, but a hypothesis,
+# definition or index is missing or misprinted and the formalization supplies it.
+# `proof-gap`: the statement is formalized as printed, but the printed proof or
+# derivation does not establish it. `fixed`: false (or ill-defined) as printed,
+# true after the correction the row names. `false`: false as printed and not
+# repairable in the paper's intent.
+VERDICTS = ("correct", "underspecified", "proof-gap", "fixed", "false")
+# Why a row sits outside the count; exactly the reasons references/README.md allows.
+OUT_OF_SCOPE = ("restated", "mathlib", "not-a-claim", "done-differently", "not-covered")
+CLASS = re.compile(r"^`([a-z-]+)`\s*(?:—\s*(.*\S))?$")
+STATS_JSON = ROOT / "experiments" / "paper" / "formalization-stats.json"
+# One directory per year of publication; `references/coverage/` is the other kind of page.
+PAPER_GLOB = "[0-9][0-9][0-9][0-9]/*.md"
 
 FLAT = lambda s: re.sub(r"\s+", " ", s).strip()
 
@@ -120,6 +156,7 @@ class Paper:
 
     def __init__(self, path, say):
         self.path = path
+        self.say = say
         self.name = path.name
         text = path.read_text(encoding="utf-8")
         head = text.split("\n## ", 1)[0]
@@ -150,16 +187,18 @@ class Paper:
         self.results = {}
         # `{result: (locator, page)}` for the rows that defer to another page.
         self.tracked = {}
+        # `{result: (class, reason)}`, see `VERDICTS` and `OUT_OF_SCOPE`.
+        self.verdicts = {}
         m = re.search(r"^## Results\s*$(.*?)(?=^## |\Z)", text, re.S | re.M)
         if not m:
             say(f"{self.rel}:1: no `## Results` section")
             return
         for cells in rows_of(m.group(1)):
-            if len(cells) != 3:
-                say(f"{self.rel}: `## Results` rows have three cells "
-                    f"(result, what it says, in CORALean): {cells[0][:40]}")
+            if len(cells) != 4:
+                say(f"{self.rel}: `## Results` rows have four cells (result, what it "
+                    f"says, in CORALean, class): {cells[0][:40]}")
                 continue
-            result, _, where = cells
+            result, _, where, klass = cells
             if result.lower() == "result":
                 continue  # the header
             result = locator(result)
@@ -181,6 +220,26 @@ class Paper:
             if tracked:
                 self.tracked[result] = (locator(tracked.group(1)), tracked.group(2))
             self.results[result] = links if links else (None if excluded else [])
+            self.verdicts[result] = self.parse_class(result, klass, excluded, bool(links))
+
+    def parse_class(self, result, cell, excluded, formalized):
+        """`(class, reason)` of one row's `Class` cell, complaining when it is
+        not one the row's state allows."""
+        m = CLASS.match(cell) if cell != "—" else None
+        klass, reason = (m.group(1), m.group(2) or "") if m else (cell, "")
+        if excluded:
+            allowed, hint = OUT_OF_SCOPE, "an out-of-scope row says why"
+        elif formalized:
+            allowed, hint = VERDICTS, "a formalized row says how the paper's statement fared"
+        else:
+            allowed, hint = ("—",), "a row in scope and not yet formalized is `—`"
+        if klass not in allowed:
+            self.say(f"{self.rel}: `{result}`: class `{cell[:30]}` is not one of "
+                     f"{', '.join(allowed)} ({hint})")
+        elif klass in VERDICTS and klass != "correct" and len(reason) < 10:
+            self.say(f"{self.rel}: `{result}` is `{klass}`, so its class cell gives the "
+                     "reason after a dash: `fixed` — what was wrong and what was done")
+        return klass, reason
 
     @property
     def rel(self):
@@ -223,6 +282,490 @@ def fix_count(text, name, old, new):
     return "\n".join(lines)
 
 
+def short_label(paper, papers):
+    """`Wetzlinger 2023 (fully)`: first author and year from the file name, and its
+    second word only where two pages would otherwise read the same."""
+    words = paper.path.stem.split("-")
+    year = paper.path.parent.name
+    clash = [q for q in papers if q.path.stem.split("-")[0] == words[0]
+             and q.path.parent.name == year]
+    return f"{words[0].capitalize()} {year}" + (f" ({words[1]})" if len(clash) > 1 else "")
+
+
+def stats(papers):
+    """Everything `scripts/formalization-stats.py` writes, as plain data: per paper
+    and in total, the rows in scope, the formalized ones by class, and the rows out
+    of scope by reason. Nothing here depends on the clock, so a committed copy is
+    either current or it is not."""
+    def tally(rows):
+        by = {k: 0 for k in VERDICTS}
+        out = {k: 0 for k in OUT_OF_SCOPE}
+        for r in rows:
+            k = r[0]
+            if k in by:
+                by[k] += 1
+            elif k in out:
+                out[k] += 1
+        return by, out
+
+    entries = []
+    for p in papers:
+        by, out = tally(p.verdicts.values())
+        entries.append({
+            "page": p.rel.relative_to(REFS.name).as_posix(),
+            "label": short_label(p, papers),
+            "year": int(p.path.parent.name),
+            "title": p.title,
+            "in_scope": len(p.counted),
+            "formalized": len(p.done),
+            "not_formalized": len(p.counted) - len(p.done),
+            "out_of_scope": len(p.excluded),
+            "out_of_scope_by_reason": out,
+            "by_class": by,
+            "findings": [{"result": r, "class": k, "reason": why}
+                         for r, (k, why) in p.verdicts.items()
+                         if k in VERDICTS and k != "correct"],
+        })
+    tot_by = {k: sum(e["by_class"][k] for e in entries) for k in VERDICTS}
+    tot_out = {k: sum(e["out_of_scope_by_reason"][k] for e in entries) for k in OUT_OF_SCOPE}
+    return {
+        "classes": list(VERDICTS),
+        "out_of_scope_reasons": list(OUT_OF_SCOPE),
+        "totals": {
+            "papers": len(entries),
+            "papers_with_findings": sum(1 for e in entries if e["findings"]),
+            "in_scope": sum(e["in_scope"] for e in entries),
+            "formalized": sum(e["formalized"] for e in entries),
+            "not_formalized": sum(e["not_formalized"] for e in entries),
+            "out_of_scope": sum(e["out_of_scope"] for e in entries),
+            "out_of_scope_by_reason": tot_out,
+            "by_class": tot_by,
+        },
+        "papers": entries,
+        "cora_coverage": coverage_stats(papers, coverage_tables(lambda m: None)),
+    }
+
+
+# --------------------------------------------------------------------------- #
+# CORA coverage: one row per CORA method                                       #
+# --------------------------------------------------------------------------- #
+
+COVERAGE = REFS / "coverage"
+INVENTORY = COVERAGE / "cora-inventory.json"
+# The CORA directories whose classes are tabulated: set representations, continuous
+# dynamics, hybrid dynamics and neural networks (`nn/@neuralNetwork`, and `nn/layers/`, one
+# row per layer file). `matrixSet/`, `specification/`, `discrDynamics/`, `converter/` and
+# `global/` are not part of the count; the README says why.
+CORA_GROUPS = ("contSet", "contDynamics", "hybridDynamics", "nn")
+# What a row says about a CORA method: a real-layer definition with a theorem about it
+# (`proved`), additionally a float-layer computable definition with a theorem (`float`),
+# not yet (`—`), or not CORALean's business (`out-of-scope`, with a reason).
+CORA_STATES = ("proved", "float", "—", "out-of-scope")
+CORA_OUT = ("plotting/display", "random/sampling", "solver-dependent",
+            "io/conversion-to-matlab-objects", "matlab-runtime", "deprecated")
+# The groups the paper's overview shows, one bar each.
+REPORT_GROUP = {"contSet": "contSet", "contDynamics": "contDynamics",
+                "hybridDynamics": "hybrid", "nn": "neuralNetworks"}
+REPORT_GROUPS = ("contSet", "contDynamics", "hybrid", "neuralNetworks")
+CORA_ISSUE = re.compile(r"^cora-issue\s+—\s*(.{10,})$")
+DECL = re.compile(
+    r"^(?:@\[[^\]\n]*\]\s*)*((?:(?:private|protected|noncomputable|partial|unsafe|nonrec)\s+)*)"
+    r"(def|theorem|lemma|abbrev|structure|inductive|class|instance)\s+([^\s({\[:]+)", re.M)
+COUNTS_BLOCK = re.compile(r"(<!-- coverage-counts -->\n)(.*?)(<!-- /coverage-counts -->)", re.S)
+
+
+def strip_block_comments(text):
+    """`text` without its (nested) `/- ... -/` comments, so a line of Lean quoted in a
+    docstring is not a declaration."""
+    out, depth, i = [], 0, 0
+    while i < len(text):
+        if text.startswith("/-", i):
+            depth += 1
+            i += 2
+        elif depth and text.startswith("-/", i):
+            depth -= 1
+            i += 2
+        else:
+            if not depth:
+                out.append(text[i])
+            i += 1
+    return "".join(out)
+
+
+_DECLS = {}
+
+
+def lean_decls(path):
+    """`[(name, kind, private)]` of the declarations written in one Lean file."""
+    path = Path(path)
+    if path not in _DECLS:
+        text = strip_block_comments(path.read_text(encoding="utf-8", errors="replace"))
+        _DECLS[path] = [(m.group(3), m.group(2), "private" in m.group(1))
+                        for m in DECL.finditer(text)]
+    return _DECLS[path]
+
+
+def is_float_path(path, name=""):
+    p = PurePosixPath(Path(path).as_posix())
+    return "Float" in p.parts or "Float" in p.stem or "Float" in name
+
+
+_ALLOW = None
+
+
+def noncomputable_allowlist():
+    """The names on `scripts/noncomputable-allowlist.txt`."""
+    global _ALLOW
+    if _ALLOW is None:
+        lines = (ROOT / "scripts" / "noncomputable-allowlist.txt").read_text(encoding="utf-8").splitlines()
+        _ALLOW = {l.split()[0] for l in lines if l.strip() and not l.startswith("#")}
+    return _ALLOW
+
+
+class CoraTable:
+    """One `references/coverage/<group>/<class>.md`: a row per CORA method."""
+
+    def __init__(self, path, say):
+        self.path, self.say = path, say
+        self.group, self.name = path.parent.name, path.stem
+        self.rows = {}   # method -> (state, third cell, note)
+        self.issues = 0
+        text = path.read_text(encoding="utf-8")
+        if not re.match(rf"# {re.escape(self.group)}/@?{re.escape(self.name)}\n", text):
+            say(f"{self.rel}:1: opens with `# {self.group}/@{self.name}` (`# nn/layers` for the layer files)")
+        for cells in rows_of(text):
+            if len(cells) != 4:
+                say(f"{self.rel}: rows have four cells (method, state, in CORALean, note): "
+                    f"{cells[0][:40]}")
+                continue
+            method, state, where, note = cells
+            if method == "Method":
+                continue
+            method = method.strip("`")
+            if method in self.rows:
+                say(f"{self.rel}: `{method}` is listed twice")
+            self.rows[method] = (state, where, note)
+            if CORA_ISSUE.match(note):
+                self.issues += 1
+            elif note.startswith("cora-issue"):
+                say(f"{self.rel}: `{method}`: a note starting `cora-issue` reads "
+                    "`cora-issue — <what CORA gets wrong, and where FINDINGS.md says so>`")
+
+    @property
+    def rel(self):
+        return PurePosixPath(self.path.relative_to(ROOT).as_posix())
+
+    def states(self):
+        return [v[0] for v in self.rows.values()]
+
+    def out_reasons(self):
+        out = {k: 0 for k in CORA_OUT}
+        for state, where, _ in self.rows.values():
+            if state == "out-of-scope":
+                m = re.match(r"^n/a — (\S+)$", where)
+                if m and m.group(1) in out:
+                    out[m.group(1)] += 1
+        return out
+
+    def check(self, inventory):
+        say = self.say
+        want = inventory.get(self.group, {}).get(self.name)
+        if want is None:
+            say(f"{self.rel}: `{self.group}/@{self.name}` is not in {INVENTORY.name}")
+        else:
+            for m in want:
+                if m not in self.rows:
+                    say(f"{self.rel}: no row for CORA method `{m}`")
+            for m in self.rows:
+                if m not in want:
+                    say(f"{self.rel}: `{m}` is not a method of `{self.group}/@{self.name}`")
+        for method, (state, where, note) in self.rows.items():
+            tag = f"{self.rel}: `{method}`"
+            if state not in CORA_STATES:
+                say(f"{tag}: state `{state}` is not one of {', '.join(CORA_STATES)}")
+                continue
+            links = LINK.findall(where)
+            if state == "out-of-scope":
+                m = re.match(r"^n/a — (\S+)$", where)
+                if not m or m.group(1) not in CORA_OUT:
+                    say(f"{tag}: an out-of-scope row reads `n/a — <reason>`, the reason one of "
+                        f"{', '.join(CORA_OUT)}")
+                continue
+            if state == "—":
+                if where != "—":
+                    say(f"{tag}: a row not yet done has `—` in the third cell (a definition "
+                        "without a theorem goes in the note)")
+            elif not links:
+                say(f"{tag}: a `{state}` row links the Lean declarations that answer it")
+            self.check_links(tag, state, where, note)
+
+    def check_generic(self, tag, found):
+        """Route (b) of `float`: no float counterpart, because the definition is generic over the
+        scalar (or the set representation) and the theorem is its soundness proof at every
+        instance. The checkable half: the linked definitions are not in the real layer, not
+        `noncomputable` and not on `noncomputable-allowlist.txt`, and a linked theorem or class
+        from outside the real layer names a scalar or a set representation as a parameter."""
+        say = self.say
+        defs = [(t, n) for t, n, k in found if k not in ("theorem", "lemma")]
+        if not defs:
+            say(f"{tag}: a `route b` row links the generic definition it runs")
+        for t, n in defs:
+            if "Real" in t.parts:
+                say(f"{tag}: route b, but `{n}` is in the real layer")
+            if n in noncomputable_allowlist():
+                say(f"{tag}: route b, but `{n}` is on the noncomputable allowlist")
+            for m in DECL.finditer(strip_block_comments(t.read_text(encoding="utf-8"))):
+                if m.group(3) == n and "noncomputable" in m.group(1):
+                    say(f"{tag}: route b, but `{n}` is `noncomputable`")
+        generic = re.compile(r"Scalar|FloatOps|ExactScalar|ContSet \(S n\)")
+        if not any("Real" not in t.parts and generic.search(t.read_text(encoding="utf-8"))
+                   for t, n, k in found):
+            say(f"{tag}: route b, but no linked declaration is stated for a generic scalar "
+                "or representation")
+
+    def check_links(self, tag, state, where, note):
+        """Every link exists and names a declaration the file really has; a `proved`
+        row carries a theorem and a `float` row a theorem in the float layer."""
+        say = self.say
+        found = []  # (target, name, kind)
+        for m in re.finditer(r"\[`([^`]+)`\]\(([^)]+)\)", where + " " + note):
+            name, link = m.group(1), m.group(2)
+            if not link.endswith(".lean"):
+                continue
+            target = (self.path.parent / link).resolve()
+            if not target.exists():
+                say(f"{tag}: links {link}, which does not exist")
+                continue
+            kinds = [k for n, k, priv in lean_decls(target) if n == name and not priv]
+            if not kinds:
+                say(f"{tag}: `{name}` is not declared in {target.name}")
+                continue
+            found.append((target, name, kinds[0]))
+        carries = [(t, n, k) for t, n, k in found if k in ("theorem", "lemma", "class", "structure")]
+        if state in ("proved", "float") and not carries:
+            say(f"{tag}: `{state}` needs a linked theorem (or the class whose fields carry "
+                "the guarantee); a definition alone is `—`")
+        route_b = note.startswith("route b —")
+        if route_b and state != "float":
+            say(f"{tag}: a `route b` note belongs on a `float` row")
+        if state == "float" and route_b:
+            self.check_generic(tag, found)
+        elif state == "float":
+            if not any(is_float_path(t, n) for t, n, k in carries):
+                say(f"{tag}: `float` needs a linked theorem in the float layer "
+                    "(a `Float/` path, or `Float` in the file or declaration name)")
+            if not any(is_float_path(t, n) for t, n, k in found if k not in ("theorem", "lemma")):
+                say(f"{tag}: `float` needs a linked float-layer definition")
+        if state == "proved" and where.count("float:"):
+            say(f"{tag}: lists a float layer, so the state is `float`")
+
+
+def cora_inventory():
+    try:
+        return json.loads(INVENTORY.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+
+
+def cora_checkout():
+    """The CORA checkout the inventory is compared with, if there is one."""
+    for cand in (os.environ.get("CORA_DIR"), str(Path.home() / "CORA")):
+        if cand and (Path(cand) / "contSet").is_dir():
+            return Path(cand)
+    return None
+
+
+def coverage_tables(say):
+    return [CoraTable(p, say) for g in CORA_GROUPS for p in sorted((COVERAGE / g).glob("*.md"))]
+
+
+def counts_of(table):
+    st = table.states()
+    return {"methods": len(st), "proved": st.count("proved"), "float": st.count("float"),
+            "not_yet": st.count("—"), "out_of_scope": st.count("out-of-scope")}
+
+
+def counts_block(tables):
+    lines = ["| Class | Group | Methods | proved | float | not yet | out of scope | CORA issues |",
+             "|---|---|---|---|---|---|---|---|"]
+    for t in tables:
+        c = counts_of(t)
+        lines.append(f"| [{t.name}]({t.group}/{t.name}.md) | {t.group} | {c['methods']} | "
+                     f"{c['proved']} | {c['float']} | {c['not_yet']} | {c['out_of_scope']} | {t.issues} |")
+    return "\n".join(lines) + "\n"
+
+
+def check_coverage(say, fix=False):
+    inventory = cora_inventory()
+    if not COVERAGE.is_dir() or not inventory:
+        say(f"{COVERAGE.relative_to(ROOT).as_posix()}: missing, or no {INVENTORY.name}")
+        return []
+    tables = coverage_tables(say)
+    have = {(t.group, t.name) for t in tables}
+    for g, classes in inventory.items():
+        for c in classes:
+            if (g, c) not in have:
+                say(f"references/coverage/{g}/{c}.md: no table for CORA class `{g}/@{c}`")
+    for t in tables:
+        t.check(inventory)
+    # The inventory against CORA itself, where a checkout exists.
+    cora = cora_checkout()
+    if cora:
+        for g in CORA_GROUPS:
+            on_disk = {d.name[1:]: sorted(f.stem for f in d.glob("*.m"))
+                       for d in sorted((cora / g).glob("@*")) if d.is_dir()}
+            if g == "nn":
+                # one row per layer file, however deep; `private/` helpers have none
+                on_disk = {"neuralNetwork": on_disk.get("neuralNetwork", []),
+                           "layers": sorted(f.stem for f in (cora / "nn" / "layers").rglob("*.m")
+                                            if "private" not in f.parts)}
+            if on_disk != inventory.get(g, {}):
+                a, b = on_disk, inventory.get(g, {})
+                diff = sorted(set(a) ^ set(b)) or sorted(c for c in a if a[c] != b.get(c))
+                say(f"{INVENTORY.relative_to(ROOT).as_posix()}: differs from {cora}/{g} "
+                    f"({', '.join(diff[:5])}); refresh it from the checkout")
+    readme = COVERAGE / "README.md"
+    if readme.exists():
+        text = readme.read_text(encoding="utf-8")
+        m = COUNTS_BLOCK.search(text)
+        if not m:
+            say("references/coverage/README.md: no `<!-- coverage-counts -->` block")
+        elif m.group(2) != counts_block(tables):
+            if fix:
+                readme.write_text(text[:m.start(2)] + counts_block(tables) + text[m.end(2):],
+                                  encoding="utf-8")
+                print("references/coverage/README.md: rewrote the counts")
+            else:
+                say("references/coverage/README.md: the counts table is not what the tables "
+                    "say; rerun `python3 scripts/check-references.py --fix`")
+    else:
+        say("references/coverage/README.md: missing")
+    return tables
+
+
+# --------------------------------------------------------------------------- #
+# Which CORA class a paper result lands on, and the theorem categories          #
+# --------------------------------------------------------------------------- #
+
+SRC_LEAN = SRC / "CORALean"
+SET_DIR = {"Zonotope": "zonotope", "Interval": "interval", "PolyZonotope": "polyZonotope",
+           "ConPolyZono": "conPolyZono", "ConZonotope": "conZonotope", "ZonoBundle": "zonoBundle",
+           "Ellipsoid": "ellipsoid", "Capsule": "capsule", "HPolytope": "polytope",
+           "VPolytope": "polytope", "EmptySet": "emptySet", "Fullspace": "fullspace"}
+SYS_DIR = {"LinearSys": "linearSys", "LinearSysDT": "linearSysDT", "LinParamSys": "linParamSys",
+           "LinParamSysDT": "linParamSys", "NonlinearSys": "nonlinearSys",
+           "NonlinearSysDT": "nonlinearSysDT", "NeurNetContrSys": "neurNetContrSys",
+           "NeurNetContrSysDT": "neurNetContrSys", "LinearARX": "linearARX",
+           "NonlinParamSys": "nonlinParamSys", "OutputEq": "contDynamics", "Reach": "contDynamics"}
+# Where a result lands when it is not about one CORA class.
+NON_CLASS = ("global", "specification", "examples", "other")
+
+
+def bucket(path):
+    """The CORA class (or `global`, `neuralNetwork`, `specification`) a linked Lean file
+    belongs to, from its path: `ContSet/Zonotope/...` is `zonotope`, a conversion
+    `ContSet/Conversion/Real/Zonotope_to_Interval.lean` is the source's method, `ContSet/`'s
+    own directories and unions and intersections are `contSet`, `HybridDynamics/Parallel`
+    is `parallelHybridAutomaton` and the rest of `HybridDynamics/` `hybridAutomaton`."""
+    try:
+        parts = Path(path).resolve().relative_to(SRC_LEAN).parts
+    except ValueError:
+        return "other"
+    top = parts[0]
+    if top == "ContSet" and len(parts) > 1:
+        if parts[1] == "Conversion":
+            return SET_DIR.get(Path(parts[-1]).stem.split("_to_")[0], "contSet")
+        return SET_DIR.get(parts[1], "contSet")
+    if top == "ContDynamics" and len(parts) > 1:
+        return SYS_DIR.get(parts[1], "contDynamics")
+    if top == "HybridDynamics":
+        return "parallelHybridAutomaton" if len(parts) > 1 and parts[1] == "Parallel" \
+            else "hybridAutomaton"
+    return {"Global": "global", "NN": "neuralNetwork", "Specification": "specification",
+            "Examples": "examples"}.get(top, "other")
+
+
+def linked_files(papers):
+    """The Lean files some row links, and the files linked by a formalized row."""
+    out = set()
+    for p in papers:
+        for links in p.results.values():
+            for link in links or []:
+                t = (p.path.parent / link).resolve()
+                if t.exists() and t.suffix == ".lean":
+                    out.add(t)
+    return out
+
+
+def theorem_categories(papers):
+    """Every public `theorem`/`lemma` under `src/CORALean`, in exactly one of: a float
+    refinement (a `Float/` path, or `Float` in the file or declaration name; wins over
+    everything), a proof helper (an `aux_*` name), a paper theorem (anything else in a file
+    some row links) or a lemma (the rest). `Examples/` is counted apart, not classified."""
+    linked = linked_files(papers)
+    cat = {"paper": 0, "float": 0, "helper": 0, "lemma": 0}
+    examples = 0
+    for path in sorted(SRC_LEAN.rglob("*.lean")):
+        decls = [(n, k) for n, k, priv in lean_decls(path) if k in ("theorem", "lemma") and not priv]
+        if "Examples" in path.relative_to(SRC_LEAN).parts:
+            examples += len(decls)
+            continue
+        for name, _ in decls:
+            if is_float_path(path, name):
+                cat["float"] += 1
+            elif any(seg.startswith("aux_") for seg in name.split(".")):
+                cat["helper"] += 1
+            elif path.resolve() in linked:
+                cat["paper"] += 1
+            else:
+                cat["lemma"] += 1
+    return {**cat, "total": sum(cat.values()), "examples": examples}
+
+
+def coverage_stats(papers, tables):
+    """The CORA coverage and theorem counts as plain data, with the paper findings
+    attributed to a CORA class by the file their row links."""
+    zero = lambda: {k: 0 for k in VERDICTS}
+    found = {}
+    for p in papers:
+        for result, (klass, _) in p.verdicts.items():
+            links = p.results.get(result)
+            if not links or klass not in VERDICTS:
+                continue
+            first = (p.path.parent / links[0]).resolve()
+            found.setdefault(bucket(first), zero())[klass] += 1
+    classes = []
+    for t in tables:
+        c = counts_of(t)
+        classes.append({
+            "group": t.group, "class": t.name, **c,
+            "needs_float": c["proved"],
+            "out_of_scope_by_reason": t.out_reasons(),
+            "cora_issues": t.issues,
+            "findings": found.get(t.name, zero()),
+        })
+    def agg(entries):
+        keys = ("methods", "proved", "float", "not_yet", "out_of_scope", "needs_float", "cora_issues")
+        out = {k: sum(e[k] for e in entries) for k in keys}
+        out["out_of_scope_by_reason"] = {r: sum(e["out_of_scope_by_reason"][r] for e in entries)
+                                         for r in CORA_OUT}
+        out["findings"] = {k: sum(e["findings"][k] for e in entries) for k in VERDICTS}
+        return out
+    groups = {g: agg([e for e in classes if REPORT_GROUP[e["group"]] == g])
+              for g in REPORT_GROUPS}
+    # Results on files that belong to no CORA class.
+    elsewhere = {b: found[b] for b in NON_CLASS if b in found}
+    return {
+        "states": list(CORA_STATES),
+        "out_of_scope_reasons": list(CORA_OUT),
+        "classes": classes,
+        "groups": groups,
+        "totals": agg(classes),
+        "findings_not_on_a_class": elsewhere,
+        "theorems": theorem_categories(papers),
+    }
+
+
 def main():
     problems = []
     say = problems.append
@@ -232,7 +775,7 @@ def main():
         return 1
 
     # One directory per year, so the pages sort by year and then by name.
-    papers = [Paper(p, say) for p in sorted(REFS.glob("*/*.md"))]
+    papers = [Paper(p, say) for p in sorted(REFS.glob(PAPER_GLOB))]
 
     by_entry = {}
     for paper in papers:
@@ -371,6 +914,14 @@ def main():
     # links out of `references/` in that section are prose, not entries
     listed_findings = {l for l in (LINK.findall(m.group(1)) if m else [])
                        if not l.startswith("../")}
+    # A paper error is recorded beside the result, so a page claiming one has to
+    # have the section the README indexes.
+    for paper in papers:
+        bad = sorted(r for r, (k, _) in paper.verdicts.items()
+                     if k in VERDICTS and k != "correct")
+        if bad and paper.rel.relative_to(REFS.name).as_posix() not in with_findings:
+            say(f"{paper.rel}: {', '.join('`' + b + '`' for b in bad[:3])} is not "
+                "`correct`, and the page has no `## Findings` section to say why")
     for miss in sorted(with_findings - listed_findings):
         say(f"references/README.md: {miss} has a `## Findings` section and is not "
             "listed under `## Findings` here")
@@ -434,6 +985,21 @@ def main():
             readme.write_text(text, encoding="utf-8")
             print("references/README.md: rewrote the count of " + ", ".join(fixed))
 
+    # --- CORA coverage ------------------------------------------------------ #
+
+    check_coverage(say, fix="--fix" in sys.argv[1:])
+
+    # The committed statistics are a function of the tables, so they are checked
+    # rather than trusted: regenerate with `python3 scripts/formalization-stats.py`.
+    want = stats(papers)
+    try:
+        have = json.loads(STATS_JSON.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        have = None
+    if have != want:
+        say(f"{STATS_JSON.relative_to(ROOT).as_posix()}: missing or stale — rerun "
+            "`python3 scripts/formalization-stats.py`")
+
     for line in problems:
         print(line)
     total = sum(len(p.counted) for p in papers)
@@ -442,8 +1008,15 @@ def main():
     if problems:
         print(f"references: {len(problems)} problem(s)")
         return 1
+    cov = want["cora_coverage"]["totals"]
+    print(f"coverage: {cov['methods']} CORA methods: {cov['proved']} proved, {cov['float']} float, "
+          f"{cov['not_yet']} not yet, {cov['out_of_scope']} out of scope")
+    by = want["totals"]["by_class"]
     print(f"references: {len(papers)} papers, {done}/{total} results formalized, "
           f"{out} out of scope, all checks passed")
+    print("references: formalized as " + ", ".join(f"{k} {by[k]}" for k in VERDICTS) +
+          "; out of scope as " + ", ".join(
+              f"{k} {v}" for k, v in want["totals"]["out_of_scope_by_reason"].items()))
     return 0
 
 

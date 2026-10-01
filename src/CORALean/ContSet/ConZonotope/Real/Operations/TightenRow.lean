@@ -3,13 +3,16 @@ import CORALean.ContSet.ConZonotope.Real.Operations.TightenCoeff
 /-!
 # `ConZonotope.tightenRow`
 
-[1, Alg. 1], lines 2, 6-8: the inner loop over columns, for row `i` fixed — every
+[1, Alg. 1], [2, Alg. 1], lines 2, 6-8: the inner loop over columns, for row `i` fixed — every
 coefficient met in turn with row `i`'s own bound.
 
 ## References
 
 * [1] V. Raghuraman and J. P. Koeln. "Set operations and order reductions for
       constrained zonotopes". Automatica, 139:110204, 2022. arXiv:2009.06039.
+* [2] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:
+      A new tool for set-based estimation and fault detection". Automatica, 69:126-136,
+      2016.
 -/
 
 -- Authors:       Tobias Ladner

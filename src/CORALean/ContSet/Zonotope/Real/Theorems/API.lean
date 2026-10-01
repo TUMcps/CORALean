@@ -98,6 +98,12 @@ import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOrder
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.ReducePCAOrderLe
 import CORALean.ContSet.Zonotope.Real.Theorems.ReducePCAOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.LineClKeepIsUnitDet
+import CORALean.ContSet.Zonotope.Real.Theorems.LineClBasisIsUnitDet
+import CORALean.ContSet.Zonotope.Real.Theorems.ReduceLineClOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.ReduceLineClOrderLe
+import CORALean.ContSet.Zonotope.Real.Theorems.ReduceHybridPCOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.ReduceHybridPCOrderLe
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceSignedInner
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceSubsetAddBox
 import CORALean.ContSet.Zonotope.Real.Theorems.ScaledRPI
@@ -113,6 +119,9 @@ import CORALean.ContSet.Zonotope.Real.Theorems.SumPair
 import CORALean.ContSet.Zonotope.Real.Theorems.SumSmulUpdate
 import CORALean.ContSet.Zonotope.Real.Theorems.SumUnivReduceBy
 import CORALean.ContSet.Zonotope.Real.Theorems.SupportBoundAttained
+import CORALean.ContSet.Zonotope.Real.Theorems.ProjectExact
+import CORALean.ContSet.Zonotope.Real.Theorems.ProjectHighDimExact
+import CORALean.ContSet.Zonotope.Real.Theorems.IsFullDimIff
 
 /-!
 # What `Zonotope` guarantees

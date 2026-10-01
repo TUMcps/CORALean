@@ -140,30 +140,30 @@ theorem aux_disjointRows_sound {P : HPolytope 𝕋 n} {X : Set (Vec ℝ n)} {bnd
 -- ========================================  INSTANCES  ========================================= --
 
 /-- Through the interval hull, so exact at a box and, for `contains`, at a zonotope. -/
-instance {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [IntervalOuter S 𝕋] :
+instance containsBoxOuter {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [IntervalOuter S 𝕋] :
     Contains (Interval (Vec 𝕋 n)) (S n) where
   contains I s := aux_containsBox I (IntervalOuter.interval s)
   contains_sound _ s h := (IntervalOuter.interval_outer s).trans (aux_containsBox_sound h)
 
 /-- Axis-aligned separation of the interval hull: conservative beyond a box. -/
-instance {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [IntervalOuter S 𝕋] :
+instance isDisjointBoxOuter {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [IntervalOuter S 𝕋] :
     IsDisjoint (Interval (Vec 𝕋 n)) (S n) where
   isDisjoint I s := aux_disjointBox I (IntervalOuter.interval s)
   isDisjoint_sound _ s h := (aux_disjointBox_sound h).mono_left (IntervalOuter.interval_outer s)
 
-instance : Contains (HPolytope 𝕋 n) (Interval (Vec 𝕋 n)) where
+instance containsPolytopeInterval : Contains (HPolytope 𝕋 n) (Interval (Vec 𝕋 n)) where
   contains P I := aux_containsRows P (aux_boxBound I)
   contains_sound _ I := aux_containsRows_sound (aux_boxBound_le I)
 
-instance : Contains (HPolytope 𝕋 n) (Zonotope 𝕋 n) where
+instance containsPolytopeZonotope : Contains (HPolytope 𝕋 n) (Zonotope 𝕋 n) where
   contains P Z := aux_containsRows P (aux_zonoBound Z)
   contains_sound _ Z := aux_containsRows_sound (aux_zonoBound_le Z)
 
-instance : IsDisjoint (HPolytope 𝕋 n) (Interval (Vec 𝕋 n)) where
+instance isDisjointPolytopeInterval : IsDisjoint (HPolytope 𝕋 n) (Interval (Vec 𝕋 n)) where
   isDisjoint P I := aux_disjointRows P (aux_boxBound I)
   isDisjoint_sound _ I := aux_disjointRows_sound (aux_boxBound_le I)
 
-instance : IsDisjoint (HPolytope 𝕋 n) (Zonotope 𝕋 n) where
+instance isDisjointPolytopeZonotope : IsDisjoint (HPolytope 𝕋 n) (Zonotope 𝕋 n) where
   isDisjoint P Z := aux_disjointRows P (aux_zonoBound Z)
   isDisjoint_sound _ Z := aux_disjointRows_sound (aux_zonoBound_le Z)
 

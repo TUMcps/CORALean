@@ -5,7 +5,7 @@ import CORALean.ContSet.HPolytope.Real.Operations.Eqs
 /-!
 # `ConZonotope.intersection`
 
-CORA's `@conZonotope/and_`, and the reason the representation exists: zonotopes
+CORA's `@conZonotope/and_` [1, Prop. 1], and the reason the representation exists: zonotopes
 are not closed under intersection and constrained zonotopes are, exactly.
 
 Both coefficient vectors are concatenated and each half keeps its own
@@ -16,6 +16,12 @@ the first generator block is then kept, the second having been pinned to it.
 Those rows are the one place a matrix is still assembled, because they are the
 one constraint that reads both blocks at once. At `Vec` only, since they read a
 generator coordinate by coordinate.
+
+## References
+
+* [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:
+      A new tool for set-based estimation and fault detection". Automatica, 69:126-136,
+      2016.
 -/
 
 -- Authors:       Tobias Ladner

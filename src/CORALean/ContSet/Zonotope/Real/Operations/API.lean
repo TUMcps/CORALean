@@ -35,6 +35,11 @@ import CORALean.ContSet.Zonotope.Real.Operations.ReduceMethC
 import CORALean.ContSet.Zonotope.Real.Operations.PCACovariance
 import CORALean.ContSet.Zonotope.Real.Operations.PCABasis
 import CORALean.ContSet.Zonotope.Real.Operations.ReducePCA
+import CORALean.ContSet.Zonotope.Real.Operations.LineClVolume
+import CORALean.ContSet.Zonotope.Real.Operations.LineClKeep
+import CORALean.ContSet.Zonotope.Real.Operations.LineClBasis
+import CORALean.ContSet.Zonotope.Real.Operations.ReduceLineCl
+import CORALean.ContSet.Zonotope.Real.Operations.ReduceHybridPC
 import CORALean.ContSet.Zonotope.Real.Operations.Reduce
 import CORALean.ContSet.Zonotope.Real.Operations.ReduceBox
 import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffAligned
@@ -53,6 +58,9 @@ import CORALean.ContSet.Zonotope.Real.Operations.EnclCoverLoop
 import CORALean.ContSet.Zonotope.Real.Operations.EnclGenSel
 import CORALean.ContSet.Zonotope.Real.Operations.ReduceBoxOrder
 import CORALean.ContSet.Zonotope.Real.Operations.AutoTuneSetOrder
+import CORALean.ContSet.Zonotope.Real.Operations.Project
+import CORALean.ContSet.Zonotope.Real.Operations.Embed
+import CORALean.ContSet.Zonotope.Real.Operations.ProjectHighDim
 
 /-!
 # What `Zonotope` computes

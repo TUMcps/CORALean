@@ -1,8 +1,10 @@
+import CORALean.ContSet.VPolytope.Float.Theorems.BoundDotLe
 import CORALean.ContSet.VPolytope.Float.Theorems.PlusOuter
 import CORALean.ContSet.VPolytope.Float.Theorems.MtimesOuter
 import CORALean.ContSet.VPolytope.Float.Theorems.NominalLinComb
 import CORALean.ContSet.VPolytope.Float.Theorems.LinCombOuter
 import CORALean.ContSet.VPolytope.Float.Theorems.IntersectionOuter
+import CORALean.ContSet.VPolytope.Float.Theorems.ProjectOuter
 
 /-!
 # What the float `VPolytope` guarantees

@@ -1,5 +1,6 @@
 import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
 import CORALean.ContSet.ConPolyZono.Float.Theorems.IntersectionD
+import CORALean.ContSet.ConPolyZono.Float.Theorems.ProjectOuter
 import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealAgreeRow
 import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealMatIntersectionA
 import CORALean.ContSet.ConPolyZono.Float.Theorems.NominalIntersectionB

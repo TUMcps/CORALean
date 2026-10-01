@@ -1,13 +1,17 @@
 import CORALean.ContSet.EmptySet.Real.EmptySet
 import CORALean.ContSet.EmptySet.Real.Instances
+import CORALean.ContSet.EmptySet.Real.Operations.API
+import CORALean.ContSet.EmptySet.Real.Theorems.API
 
 /-!
 # The empty set, collected
 
-The representation in `EmptySet` and the class instances in `Instances`.
+The representation in `EmptySet`, the class instances in `Instances`, CORA's
+dimension-changing and conversion methods in `Operations/` and what each guarantees in
+`Theorems/`.
 
-Neither `Operations/` nor `Theorems/`, and both absences are the same fact:
-there is one value of `EmptySet n` and one set it denotes, so every operation
-on it is that value again and every guarantee about it is `∅ ⊆ _`. The
-instances carry those proofs, a line each, rather than a file each.
+The class instances carry the proofs of the interface's inclusions, a line each: there is
+one value of `EmptySet n` and one set it denotes. What does not fit an interface class
+(`project`, `lift_`, `not`, the conversions) is a definition in `Operations/` with an
+equality in `Theorems/`.
 -/

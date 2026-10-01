@@ -1,0 +1,48 @@
+import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveLamAMul
+import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveLamAMulVec
+
+/-!
+# Partial solve zeroes row `r`
+
+[1, Sec. 4.2]: with `Λ_A` of eq. 29, `[Ã | b̃]` has an identically zero `r`-th row (the paper's
+first), the trivial constraint `0ᵀξ = 0` from substituting eq. 28 into row `r`.
+
+## References
+
+* [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:
+      A new tool for set-based estimation and fault detection". Automatica, 69:126-136,
+      2016.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       01-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+open Matrix
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+/-- [1, Sec. 4.2]: after eq. 29, row `r` of `[Ã | b̃]` is the trivial `0ᵀξ = 0`. -/
+theorem ConZonotope.partialSolve_zero_row {q h : ℕ} (A : Mat ℝ q h) (b : Vec ℝ q)
+    (r : Fin q) (j : Fin h) (hAj : A r j ≠ 0) :
+    (∀ l, (A - ConZonotope.partialSolveΛA A r j * A) r l = 0) ∧
+      (b - ConZonotope.partialSolveΛA A r j *ᵥ b) r = 0 := by -- --- PROOF ---
+  refine ⟨fun l => ?_, ?_⟩
+  · rw [Matrix.sub_apply, ConZonotope.partialSolveΛA_mul]
+    field_simp
+    ring
+  · rw [Pi.sub_apply, ConZonotope.partialSolveΛA_mulVec]
+    field_simp
+    ring
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

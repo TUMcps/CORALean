@@ -3,6 +3,8 @@ import CORALean.ContSet.Capsule.Real.Theorems.ConstructEqAdd
 import CORALean.ContSet.Capsule.Real.Theorems.Convex
 import CORALean.ContSet.Capsule.Real.Theorems.IsCompact
 import CORALean.ContSet.Capsule.Real.Theorems.OfPointMem
+import CORALean.ContSet.Capsule.Real.Theorems.OfPointMemIff
+import CORALean.ContSet.Capsule.Real.Theorems.CentreMemConstructIff
 
 /-!
 # What a capsule guarantees, collected

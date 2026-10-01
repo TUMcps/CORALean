@@ -48,11 +48,15 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Note on the derivatives with respect to a parameter of the solutions of a system of differential equations](1919/gronwall-annals-derivatives.md) | Gronwall | Annals of Mathematics, 20(4):292-296 | 1919 | 🟢 0/0 \| 6 |
 | [An embedding theorem for spaces of convex sets](1952/radstrom-embedding.md) | Rådström | Proc. Amer. Math. Soc. 3, pp. 165-169 | 1952 | 🟢 3/3 \| 2 |
 | [A state bounding observer based on zonotopes](2003/combastel-ecc-state-bounding-observer.md) | Combastel | ECC | 2003 | 🟢 5/5 \| 1 |
+| [Reachability of Uncertain Linear Systems Using Zonotopes](2005/girard-hscc-reachability-zonotopes.md) | Girard | HSCC, LNCS 3414, pp. 291-305 | 2005 | 🟡 3/7 \| 1 |
 | [Reachability Analysis and its Application to the Safety Assessment of Autonomous Cars](2010/althoff-thesis.md) | Althoff | PhD thesis, TU München | 2010 | 🟢 34/34 \| 2 |
+| [Zonotope Bundles for the Efficient Computation of Reachable Sets](2011/althoff-cdc-zonotope-bundles.md) | Althoff, Krogh | CDC-ECC, pp. 6814-6821 | 2011 | 🟡 14/16 \| 7 |
 | [Analyzing Reachability of Linear Dynamic Systems with Parametric Uncertainties](2011/althoff-reachability-parametric-uncertainties.md) | Althoff, Krogh, Stursberg | In A. Rauh and E. Auer (eds.), Modeling, Design, and Simulation of Systems with Uncertainties, Springer | 2011 | 🟢 4/4 \| 0 |
 | [Reachability Analysis of Nonlinear Systems using Conservative Polynomialization and Non-Convex Sets](2013/althoff-hscc-conservative-polynomialization.md) | Althoff | HSCC | 2013 | 🟢 6/6 \| 2 |
 | [On Computing the Minkowski Difference of Zonotopes](2015/althoff-arxiv-minkowski-difference.md) | Althoff | arXiv | 2015 | 🟢 16/16 \| 1 |
+| [Constrained zonotopes: A new tool for set-based estimation and fault detection](2016/scott-automatica-constrained-zonotopes.md) | Scott, Raimondo, Marseglia, Braatz | Automatica, 69:126-136 | 2016 | 🟡 9/10 \| 6 |
 | [Semi-Supervised Classification with Graph Convolutional Networks](2017/kipf-iclr-gcn.md) | Kipf, Welling | ICLR | 2017 | 🟢 1/1 \| 4 |
+| [Methods for Order Reduction of Zonotopes](2017/kopetzki-cdc-order-reduction.md) | Kopetzki, Schürmann, Althoff | CDC, pp. 5626-5633 | 2017 | 🟡 3/4 \| 4 |
 | [Utilizing Dependencies to Obtain Subsets of Reachable Sets](2020/kochdumper-hscc-utilizing-dependencies.md) | Kochdumper, Schürmann, Althoff | HSCC | 2020 | 🟢 11/11 \| 4 |
 | [Adaptive parameter tuning for reachability analysis of linear systems](2020/wetzlinger-cdc-adaptive-tuning.md) | Wetzlinger, Kochdumper, Althoff | CDC, pp. 5145–5152 | 2020 | 🟢 12/12 \| 1 |
 | [Sparse Polynomial Zonotopes: A Novel Set Representation for Reachability Analysis](2021/kochdumper-tac-sparse-polyzonotopes.md) | Kochdumper, Althoff | IEEE Transactions on Automatic Control | 2021 | 🟢 21/21 \| 6 |
@@ -70,6 +74,61 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Explaining Fast and Slow: Abstraction and Refinement of Provable Explanations](2025/bassan-icml-explaining-fast-and-slow.md) | Bassan, Elboher, Ladner, Althoff, Katz | ICML | 2025 | 🟢 14/14 \| 2 |
 | [Formal Verification of Graph Convolutional Networks with Uncertain Node Features and Uncertain Graph Structure](2025/ladner-tmlr-gcn.md) | Ladner, Eichelbeck, Althoff | TMLR | 2025 | 🟢 12/12 \| 7 |
 
+## CORA coverage
+
+The tables above are by paper. [coverage/](coverage/README.md) is by CORA method: one table
+per CORA class (`contSet`, `contDynamics`, `hybridDynamics`, `nn`), one row per method file
+(`~/CORA/contSet/@zonotope/plus.m`), saying whether CORALean answers it:
+
+* `proved`: a real-layer definition with an exact, outer or inner theorem;
+* `float`: additionally a float-layer computable definition with an outer (or inner) theorem;
+* `—`: not yet;
+* `out-of-scope`, with one of six reasons: `plotting/display`, `random/sampling`,
+  `solver-dependent`, `io/conversion-to-matlab-objects`, `matlab-runtime`, `deprecated`.
+  "Hard" is never a reason.
+
+A `proved` row without a float refinement is the float backlog. A row may carry a
+`cora-issue` note where [FINDINGS.md](../FINDINGS.md) records that CORA's own implementation
+is wrong. `scripts/check-references.py` checks the tables: every method file has a row,
+every link resolves to a declaration the file has, a `proved` row links a theorem, a `float`
+row a float-layer theorem, and the counts are the tables' counts.
+
+## Theorem categories
+
+`scripts/formalization-stats.py` also sorts every public theorem under `src/CORALean` into one
+of four categories, mechanically: **paper theorems** (anything in a real-layer file some row of
+these tables links), **float refinements** (a `Float/` path, or `Float` in the declaration or
+file name; takes precedence, even when a row links the file), **proof helpers** (`aux_*`) and
+**lemmas** (the rest). `Examples/` theorems are counted apart. The numbers are in
+`experiments/paper/formalization-stats.json` and drawn in the paper's overview figure; see
+`experiments/paper/latex/README.md`.
+
+## The `Class` column
+
+Every row ends in a `Class` cell, which is what the paper's figure on how much of
+CORA is formalized and where the papers were wrong is made from
+(`python3 scripts/formalization-stats.py`). The figure and the appendix break the classes
+down by CORA class, by the first Lean file a row links; the mapping is in
+[coverage/README.md](coverage/README.md#which-class-a-paper-result-lands-on).
+
+A result in scope and formalized says how the **paper's** statement fared:
+`correct` (as printed), `underspecified` (not false, but a hypothesis, definition
+or index is missing or misprinted and the formalization supplies it),
+`proof-gap` (the statement holds as printed, the printed proof does not establish
+it), `fixed` (false or ill-defined as printed, true after the correction the row
+names), `false` (false and not repairable). Anything but `correct` gives its
+reason in the cell after a dash, and the page's `## Findings` has the argument. A
+row takes the most severe class that applies, and when unsure takes the milder
+one: a claim that a paper is false has to be one the page can back.
+
+Algorithm listings (every `Alg. n` row, and `Heuristic` rows) are read as intentionally
+simplified pseudocode: a correction there counts as `underspecified`, never `fixed` or
+`proof-gap`.
+
+A result out of scope says which of the five reasons above it is:
+`restated`, `mathlib`, `not-a-claim`, `done-differently`, `not-covered`. A result
+in scope and not yet formalized is `—`.
+
 ## Findings
 
 Formalizing a paper turns things up. Where a printed result is wrong or a proof
@@ -80,9 +139,11 @@ pages carry one:
 <!-- findings -->
 * [An embedding theorem for spaces of convex sets](1952/radstrom-embedding.md)
 * [Reachability Analysis and its Application to the Safety Assessment of Autonomous Cars](2010/althoff-thesis.md)
+* [Zonotope Bundles for the Efficient Computation of Reachable Sets](2011/althoff-cdc-zonotope-bundles.md)
 * [Analyzing Reachability of Linear Dynamic Systems with Parametric Uncertainties](2011/althoff-reachability-parametric-uncertainties.md)
 * [Reachability Analysis of Nonlinear Systems using Conservative Polynomialization and Non-Convex Sets](2013/althoff-hscc-conservative-polynomialization.md)
 * [On Computing the Minkowski Difference of Zonotopes](2015/althoff-arxiv-minkowski-difference.md)
+* [Methods for Order Reduction of Zonotopes](2017/kopetzki-cdc-order-reduction.md)
 * [Utilizing Dependencies to Obtain Subsets of Reachable Sets](2020/kochdumper-hscc-utilizing-dependencies.md)
 * [Sparse Polynomial Zonotopes: A Novel Set Representation for Reachability Analysis](2021/kochdumper-tac-sparse-polyzonotopes.md)
 * [Adaptive parameter tuning for reachability analysis of linear systems](2020/wetzlinger-cdc-adaptive-tuning.md)

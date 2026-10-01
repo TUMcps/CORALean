@@ -1,9 +1,11 @@
+import CORALean.ContSet.Ellipsoid.Float.Theorems.BoundDotLe
 import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
 import CORALean.ContSet.Ellipsoid.Float.Theorems.MemGeneratorError
 import CORALean.ContSet.Ellipsoid.Float.Theorems.MtimesK
 import CORALean.ContSet.Ellipsoid.Float.Theorems.MtimesOuter
 import CORALean.ContSet.Ellipsoid.Float.Theorems.PlusK
 import CORALean.ContSet.Ellipsoid.Float.Theorems.PlusOuter
+import CORALean.ContSet.Ellipsoid.Float.Theorems.ProjectOuter
 
 /-!
 # What a float ellipsoid guarantees, collected

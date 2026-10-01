@@ -3,9 +3,15 @@ import CORALean.ContSet.ConZonotope.Real.Operations.Map
 /-!
 # `ConZonotope.map` is exactly the image under a linear map
 
-The same coefficients work in both directions and satisfy the same constraints,
+The same coefficients work in both directions [1, Prop. 1] and satisfy the same constraints,
 which the map never sees. So a constrained zonotope propagates through a linear
 system as exactly as a zonotope does.
+
+## References
+
+* [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:
+      A new tool for set-based estimation and fault detection". Automatica, 69:126-136,
+      2016.
 -/
 
 -- Authors:       Tobias Ladner

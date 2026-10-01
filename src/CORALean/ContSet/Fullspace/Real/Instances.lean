@@ -1,4 +1,5 @@
 import CORALean.ContSet.ContSet.Definitions.ConvexSet
+import CORALean.ContSet.Fullspace.Real.Operations.Centre
 import CORALean.ContSet.Fullspace.Real.Theorems.API
 
 /-!
@@ -63,7 +64,7 @@ instance : OfPoint (Fullspace n) (Vec ℝ n) where
 
 /-- Centred at the origin, which recentring then leaves where it is. -/
 instance : Recentre (Fullspace n) (Vec ℝ n) where
-  centre _ := 0
+  centre := Fullspace.centre
   recentre _ := ⟨⟩
   zero_mem_recentre _ := Set.mem_univ 0
   sub_centre_mem_recentre _ := Set.mem_univ _
@@ -71,6 +72,12 @@ instance : Recentre (Fullspace n) (Vec ℝ n) where
 instance : Mtimes (Mat ℝ) (fun n => Fullspace n) where
   mtimes _ _ := ⟨⟩
   mtimes_outer _ _ := fun x _ => Set.mem_univ x
+
+/-- CORA's `contains_` answers `true` for every operand (and throws at `R^0`, which
+nothing here does): everything is in the whole space. -/
+instance {S : Type} [ContSet S (Vec ℝ n)] : Contains (Fullspace n) S where
+  contains _ _ := true
+  contains_sound _ _ _ := Set.subset_univ _
 
 instance : Reindex (fun n => Fullspace n) where
   reindex _ _ := ⟨⟩

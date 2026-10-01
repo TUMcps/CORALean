@@ -14,6 +14,7 @@ import CORALean.ContSet.VPolytope.Real.Operations.MtimesMatPolytope
 import CORALean.ContSet.VPolytope.Real.Operations.Plus
 import CORALean.ContSet.VPolytope.Real.Operations.LeOfForallLe
 import CORALean.ContSet.VPolytope.Real.Operations.SupportBound
+import CORALean.ContSet.VPolytope.Real.Operations.Project
 
 /-!
 # What `VPolytope` computes

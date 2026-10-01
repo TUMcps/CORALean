@@ -1,5 +1,6 @@
 import CORALean.ContSet.ContSet.Theorems.DependencyPreservingChain
 import CORALean.ContSet.ContSet.Theorems.DependencyPreservingComp
+import CORALean.ContSet.ContSet.Theorems.EnlargeOuter
 import CORALean.ContSet.ContSet.Theorems.HausdorffDist2MulVecLinAddLe
 import CORALean.ContSet.ContSet.Theorems.HausdorffDistAddLe
 import CORALean.ContSet.ContSet.Theorems.HausdorffDistImageLe
@@ -14,9 +15,14 @@ import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffEnclSubsetAdd
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffEqIInter
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffInnerOfOuter
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffMono
+import CORALean.ContSet.ContSet.Theorems.MinusFromOuter
+import CORALean.ContSet.ContSet.Theorems.MinusOuter
 import CORALean.ContSet.ContSet.Theorems.SegmentsMinkowskiDiffSubset
 import CORALean.ContSet.ContSet.Theorems.SmulMemLinCombOfPoint
 import CORALean.ContSet.ContSet.Theorems.SubsetMinkowskiDiffIff
+import CORALean.ContSet.ContSet.Theorems.TimesOuter
+import CORALean.ContSet.ContSet.Theorems.UminusOuter
+import CORALean.ContSet.ContSet.Theorems.UplusExact
 
 /-!
 # What the set interface's classes and definitions give together

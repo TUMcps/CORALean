@@ -11,7 +11,10 @@ import CORALean.ContSet.HPolytope.Real.Theorems.ExtremePoints
 import CORALean.ContSet.HPolytope.Real.Theorems.IsClosed
 import CORALean.ContSet.HPolytope.Real.Theorems.MapEquivExact
 import CORALean.ContSet.HPolytope.Real.Theorems.TranslateExact
+import CORALean.ContSet.HPolytope.Real.Theorems.MinusExact
 import CORALean.ContSet.HPolytope.Real.Theorems.OfPointMem
+import CORALean.ContSet.HPolytope.Real.Theorems.OfPointMemIff
+import CORALean.ContSet.HPolytope.Real.Theorems.StackExact
 
 /-!
 # What `HPolytope` guarantees

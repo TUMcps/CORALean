@@ -4,9 +4,15 @@ import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 /-!
 # `ZonoBundle.mtimes` over-approximates the linear image
 
-Sound because `M (⋂ᵢ Zᵢ) ⊆ ⋂ᵢ M Zᵢ`: a point in every component maps into
+Sound because `M (⋂ᵢ Zᵢ) ⊆ ⋂ᵢ M Zᵢ` [1, Prop. 1]: a point in every component maps into
 every image, `Zonotope.mtimes_exact` reading that image back as the one
 component of the mapped bundle it came from.
+
+## References
+
+* [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of
+      Reachable Sets". In Proc. of the 50th IEEE Conference on Decision and Control and
+      European Control Conference (CDC-ECC), pp. 6814-6821, 2011.
 -/
 
 -- Authors:       Tobias Ladner

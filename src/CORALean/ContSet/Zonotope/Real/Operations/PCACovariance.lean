@@ -10,8 +10,8 @@ construction, and that symmetry is the whole point of the definition — it is
 the hypothesis a spectral decomposition needs, and `pcaCovariance_isHermitian`
 is where it is discharged.
 
-CORA builds the point cloud `[G, -G]` and calls `cov` on its transpose [1].
-That cloud has zero mean, as the file's own comment records, so the centring
+CORA builds the point cloud `[G, -G]` and calls `cov` on its transpose [1], as
+[2, Alg. 2] does. That cloud has zero mean, as the file's own comment records, so the centring
 `cov` performs subtracts nothing and what remains is `V Vᵀ / (2r - 1)`, which
 is `2 / (2r - 1)` times the matrix here. The factor is dropped: it is positive
 wherever CORA reaches this line — CORA returns early when nothing is dropped —
@@ -22,6 +22,9 @@ axes.
 
 * [1] `contSet/@zonotope/private/priv_reducePCA.m`, CORA (Sep. 2025). No paper
       behind the rule was confirmed.
+* [2] A.-K. Kopetzki, B. Schürmann and M. Althoff. "Methods for Order Reduction of
+      Zonotopes". In Proc. of the 56th IEEE Conference on Decision and Control (CDC), pp.
+      5626-5633, 2017.
 -/
 
 -- Authors:       Tobias Ladner

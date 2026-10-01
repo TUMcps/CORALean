@@ -98,6 +98,7 @@ import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullEC
 import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsConvHullIff
 import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullSingle
 import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHull
+import CORALean.ContSet.ConPolyZono.Real.Operations.Project
 
 /-!
 # What `ConPolyZono` computes

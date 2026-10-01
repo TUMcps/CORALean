@@ -13,6 +13,9 @@ import CORALean.ContSet.Ellipsoid.Real.Theorems.PlusScalingsAdmissible
 import CORALean.ContSet.Ellipsoid.Real.Theorems.SupportBoundAttained
 import CORALean.ContSet.Ellipsoid.Real.Theorems.IsGreatestSupport
 import CORALean.ContSet.Ellipsoid.Real.Theorems.OfPointMem
+import CORALean.ContSet.Ellipsoid.Real.Theorems.OfPointMemIff
+import CORALean.ContSet.Ellipsoid.Real.Theorems.CentreMemConstruct
+import CORALean.ContSet.Ellipsoid.Real.Theorems.ProjectExact
 
 /-!
 # What an ellipsoid guarantees, collected

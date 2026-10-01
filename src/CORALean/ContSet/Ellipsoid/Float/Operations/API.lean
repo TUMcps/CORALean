@@ -5,6 +5,7 @@ import CORALean.ContSet.Ellipsoid.Float.Operations.CenterResidual
 import CORALean.ContSet.Ellipsoid.Float.Operations.PlusG
 import CORALean.ContSet.Ellipsoid.Float.Operations.PlusGap
 import CORALean.ContSet.Ellipsoid.Float.Operations.Plus
+import CORALean.ContSet.Ellipsoid.Float.Operations.Project
 import CORALean.ContSet.Ellipsoid.Float.Operations.PullbackAbs
 import CORALean.ContSet.Ellipsoid.Float.Operations.AbsPullbackLe
 import CORALean.ContSet.Ellipsoid.Float.Operations.NominalBoundDot

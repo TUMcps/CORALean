@@ -4,7 +4,7 @@ import CORALean.Global.FoldInduction
 /-!
 # `ConZonotope.tighten`
 
-[1]'s Algorithm 1: the coefficient box `B∞(A,b) = {ξ | Aξ = b, ‖ξ‖∞ ≤ 1}` of a
+[1]'s Algorithm 1 ([2, Alg. 1]): the coefficient box `B∞(A,b) = {ξ | Aξ = b, ‖ξ‖∞ ≤ 1}` of a
 constrained zonotope `Zc = {G,c,A,b}` is not itself a box, but every row of `Aξ = b`
 tightens one further, and running every row once — the way Gauss-Jordan elimination
 does — gives an interval enclosure of it. `Thm. 2`'s `E_k` and `R_{r,c}` (eq. 12) are
@@ -17,6 +17,9 @@ separate procedure `Thm. 2` does not ask for and is not formalized here.
 
 * [1] V. Raghuraman and J. P. Koeln. "Set operations and order reductions for
       constrained zonotopes". Automatica, 139:110204, 2022. arXiv:2009.06039.
+* [2] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:
+      A new tool for set-based estimation and fault detection". Automatica, 69:126-136,
+      2016.
 -/
 
 -- Authors:       Tobias Ladner

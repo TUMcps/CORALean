@@ -85,6 +85,11 @@ else
   echo "repeatability.sh: FLINT shim not built, skipping the flint runs (README, \"FLINT backend\")"
 fi
 
+# ===== Formalization statistics (the figure on how much of CORA is formalized, and where the papers were wrong) =====
+section "formalization-stats"  # reads references/, needs no build and no results; writes experiments/paper/
+python3 scripts/check-references.py
+python3 scripts/formalization-stats.py
+
 # ===== All figures and tables -> paper_floats.pdf =====
 section paper_floats.pdf
 bash experiments/paper/make_paper.sh "$OUT" $NO_LATEX
