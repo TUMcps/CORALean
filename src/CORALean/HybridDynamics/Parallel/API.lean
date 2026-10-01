@@ -14,6 +14,7 @@ the single automaton, and `Run.toProduct` says every parallel run is a run of it
 single automaton's outer reachable sets bound the parallel one's.
 
 Linear flows only, as `Location` is; the product's invariant, input set and guards are lifted
-by a `Lifting` the caller supplies, since `ContSet` has no product. The converse of
+by a `Lifting` the caller supplies, since `ContSet` has no product; `boxLifting` is one, boxes
+for inputs and halfspace descriptions for invariants and guards. The converse of
 `Run.toProduct`, synchronization labels and nonlinear flows are not here (#40).
 -/
