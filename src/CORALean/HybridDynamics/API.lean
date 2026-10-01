@@ -3,6 +3,7 @@ import CORALean.HybridDynamics.Definitions.API
 import CORALean.HybridDynamics.Operations.API
 import CORALean.HybridDynamics.Theorems.API
 import CORALean.HybridDynamics.Cost.API
+import CORALean.HybridDynamics.Parallel.API
 
 /-!
 # Hybrid automata, collected
