@@ -4,6 +4,8 @@ import CORALean.ContSet.Zonotope.Float.Theorems.AbsLeAbsBoundError
 import CORALean.ContSet.Zonotope.Float.Theorems.PlusH
 import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.PlusSubsetAddBox
+import CORALean.ContSet.Zonotope.Float.Theorems.RecentreSubMem
+import CORALean.ContSet.Zonotope.Float.Theorems.RecentreZeroMem
 import CORALean.ContSet.Zonotope.Float.Theorems.LinCombH
 import CORALean.ContSet.Zonotope.Float.Theorems.PairSumBracket
 import CORALean.ContSet.Zonotope.Float.Theorems.PairDiffBracket

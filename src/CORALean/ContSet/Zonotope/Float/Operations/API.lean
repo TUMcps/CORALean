@@ -3,6 +3,7 @@ import CORALean.ContSet.Zonotope.Float.Operations.GeneratorError
 import CORALean.ContSet.Zonotope.Float.Operations.CenterResidual
 import CORALean.ContSet.Zonotope.Float.Operations.Plus
 import CORALean.ContSet.Zonotope.Float.Operations.PlusBox
+import CORALean.ContSet.Zonotope.Float.Operations.Recentre
 import CORALean.ContSet.Zonotope.Float.Operations.Midpoint
 import CORALean.ContSet.Zonotope.Float.Operations.MidpointResidual
 import CORALean.ContSet.Zonotope.Float.Operations.PairSum

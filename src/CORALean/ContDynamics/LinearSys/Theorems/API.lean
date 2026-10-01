@@ -165,6 +165,13 @@ import CORALean.ContDynamics.LinearSys.Theorems.SquaringsFloatSpec
 import CORALean.ContDynamics.LinearSys.Theorems.SampleTimeFloatMem
 import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpSquaringFloat
 import CORALean.ContDynamics.LinearSys.Theorems.ReachTimePointWrappingFreeFloatOuter
+import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
+import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecentre
+import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputStepInvariant
+import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputInvariant
+import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputOuter
+import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputTimePointOuter
+import CORALean.ContDynamics.LinearSys.Theorems.ReachWrappingFreeFloatInputOuter
 
 /-!
 # What `LinearSys` guarantees
@@ -189,5 +196,5 @@ a matrix zonotope, `PostDeltaOuter` is `DeltaReachOuterInputSolution` again;
 `ReachOuterWindows` is the recursive `reach`'s, `ReachAdmissibleOuter` the same at an `η` raised
 until admissible, `Instances`' own guarantee; `ReachWrappingFreeOuter` and `WithInputReachOuter`
 are the wrapping-free scheme's and its `WithInput` sibling, built window by window, and
-`…FloatOuter` the float runs'.
+`…FloatOuter` the float runs', `…FloatInput…` with inputs, through `TrajectorySubMem…`.
 -/

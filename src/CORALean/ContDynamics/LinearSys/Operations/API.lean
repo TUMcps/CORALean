@@ -83,6 +83,11 @@ import CORALean.ContDynamics.LinearSys.Operations.SquaringsFloat
 import CORALean.ContDynamics.LinearSys.Operations.SampleTimeFloat
 import CORALean.ContDynamics.LinearSys.Operations.ExpSquaringFloat
 import CORALean.ContDynamics.LinearSys.Operations.ReachTimePointWrappingFreeFloat
+import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumFloat
+import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
+import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInputStep
+import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInput
+import CORALean.ContDynamics.LinearSys.Operations.ReachWrappingFreeFloatInput
 
 /-!
 # What a continuous-time linear system computes
@@ -107,7 +112,7 @@ until admissible, `Instances`' own; `ReachStepkWrappingFree`/`ReachWrappingFree`
 the wrapping-free scheme's, kept but no longer `Instances`', `WithInputReach…` with
 `ParticularSolution`, `WithInputSplitReach…` with `ConstInputSolution` too; `PostDelta` is CORA's
 `postΔ`, `DeltaReach` plus an uncertain input's `InputSolution`, [1, Sec. 4.1]. `…Float` run them
-in `𝕋`, each named after its scheme.
+in `𝕋`, each named after its scheme, `…FloatInput` with an input `B U` and `InputSolutionFloat`.
 
 ## References
 
