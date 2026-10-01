@@ -10,6 +10,8 @@ to be run from the repository root.
 experiments/
   firststep/    configs.json, the number types and step sizes of `firststep` -- see
                 "The first step under many number formats" below.
+  randverify/   example.json, a synthetic instance for `randverify` (EXPLORATORY) -- see
+                "Random verification instances" below.
   config/       headline_*.json -- the single source of truth for the spiral
                 system, read by both the Lean harness (Lean.Json) and the
                 MATLAB/CORA scripts (jsondecode). See "Config format" below.
@@ -905,6 +907,61 @@ format that cannot hold either is `"status": "none"`, `reason` `not representabl
 `status` is `"ok"`, `"overflow-NaN"` (a stored scalar past the format's range, or a `NaN`),
 or `"none"`. The paper's results are on the data branch `results/paper`, under
 `experiments/results-paper/firststep/`. `repeatability.sh` runs it as its own section.
+
+## Random verification instances (`randverify`, exploratory)
+
+**Exploratory:** not part of `repeatability.sh`, and its results are not on `results/paper`.
+ARCH-COMP AFF-style random verification benchmarks (the ARCH24 RAND01 generator): `ẋ = A x + B u`,
+`y = C x` with 5 states, 2 inputs and 2 outputs, `X0` and `U` boxes (`u(t) ∈ U` arbitrary and
+time-varying, `U` not necessarily containing `0`), and four unsafe boxes in OUTPUT space over
+`[0, tFinal]`. Every instance is satisfiable, so the correct answer is "verified".
+
+```
+lake exe bench randverify --in <instance.json | dir> --types <list> --algs standard,wrappingfree \
+  --dt <q> --eta <k> --order <rho> --out DIR
+lake exe bench-flint randverify ... --types flint64,flint256     # the flint types
+```
+
+`--in` is an instance file, or a directory whose `*.json` are all run (default
+`experiments/randverify`). `--types` is a comma list of `dyadic<p>`, `binary16|32|64` (IEEE),
+`float` (hardware), `nearest` (binary64 round-to-nearest, the UNSOUND baseline) or
+`nearest<p>`, and `flint<p>` (`bench-flint` only); the default is `dyadic{12,16,24,32,53,64,
+128,256,1024}`, the three IEEE formats, `float`, `nearest`, `flint{64,128,256,1024}`, each
+executable skipping what it does not link. `--algs` is `standard` (`reachFloat`) and/or
+`wrappingfree` (`reachWrappingFreeFloat`). Defaults: `--dt 1/64`, `--eta 6`, `--order 20`; `dt`
+must divide `tend` (a multiple of 2^-6) into a natural number. At `dt = 1/64` an instance with
+`tend` around 5 means 320 windows and takes tens of seconds per type and algorithm.
+
+Output: `DIR/randverify/<instance>.json` (`<instance>-flint.json` from `bench-flint`), `{meta,
+results}`; `meta.instance.meta` carries whatever else the file holds (CORA's verify result and
+time). One `results` record per (type, algorithm): `type`, `format`, `significand_bits`,
+`number_type`, `instance`, `algorithm`, `status` (`ok`; `none` with a `reason`; `overflow-NaN`,
+a bound or hull past the format's range, `verified: false`), `verified` (`true`, `false`, or
+`null` for `none`), `distances` (four `{"num", "den"}` exact rationals, `null` if none),
+`distances_unrounded`, `unverifiable_from_rounding` (per unsafe box), `unsafe_rounded` (per box
+and dimension, whether outward rounding moved `lb`/`ub`), `windows` (the number `N`), `time_ms`
+(wall clock of reach, hull and distances) and `params` (`dt`, `eta`, `order`, `tend`).
+
+Reading is tolerant: numbers are JSON numbers, `"m*2^e"`, `"m/d"` or decimal strings, all
+converted exactly; `X0`, `U` and each unsafe box are `{lb, ub}` or `{inf, sup}` vectors (or an
+array of such intervals, or of `[lo, hi]`); `tend` is also read as `tFinal`.
+
+* The system is read EXACTLY into each format (`A`, `B`, `C`, `X0` bounds, its centre and radius,
+  `U`, `dt`). One a format cannot hold is `"status": "none"`, `reason` `not representable: ...`;
+  the system is never rounded.
+* Each unsafe box is rounded OUTWARD (lower down, upper up), which only enlarges it, so a reach
+  set disjoint from the enlarged box is disjoint from the original: sound.
+* Each window `R(tau_k)` is mapped to output space, `Y = C R` by `Zonotope.mtimes` (error box
+  included), and boxed by `Zonotope.interval`. That hull is the support function along the
+  facet normals `±e_i` of the unsafe boxes, which are boxes, so it loses nothing against a
+  support bound. The distance of a window to a box is the largest gap over dimensions and sides,
+  that of the box the smallest over windows, positive when separated, exact over the rounded
+  bounds; `verified` is all distances `> 0`.
+* `unverifiable_from_rounding[j]` (exercised by `experiments/randverify/tests/unverifiable-from-rounding-binary16.json`, a TEST instance, not a benchmark: binary16, `--algs wrappingfree --dt 1/16`) is true where the distance to the file's own box `j` is positive
+  and to the rounded one is not: outward rounding alone cost the proof.
+* The reach itself sits behind one function, `randVerifyReach` in
+  `src/CORALean/Examples/Bench/RandVerifyReach.lean`, which calls the verified reach with inputs
+  (`reachFloatInput` / `reachWrappingFreeFloatInput`), `U` taken as a zonotope in input space.
 
 ## Pinned versions
 

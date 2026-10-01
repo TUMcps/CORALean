@@ -46,8 +46,17 @@ structure CliArgs where
   net : Option String := none
   images : Option Nat := none
   /-- `--in`: `opcompare`'s own input file, `experiments/matlab-ops/inputs.json` if `none`, or
-  `firststep`'s, `experiments/firststep/configs.json` -- no other experiment reads it. -/
+  `firststep`'s, `experiments/firststep/configs.json`, or `randverify`'s instance file or
+  directory -- no other experiment reads it. -/
   inFile : Option String := none
+  /-- `randverify`'s own: `--types` (comma list), `--algs` (comma list), `--dt` (a rational
+  string), `--eta` and `--order`; `none` is the experiment's default. No other experiment reads
+  them. -/
+  types : Option String := none
+  algs : Option String := none
+  dt : Option String := none
+  eta : Option Nat := none
+  order : Option Nat := none
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -59,7 +68,7 @@ def parseArgs : List String → Except String CliArgs
   | [] => throw "usage: bench <experiment> [--type dyadic|ieee|float|nearest|fixed] \
       [--format binary64|binary32|binary16|binary8|binary4] [--prec P] [--digits F] \
       [--config FILE] [--reps N] [--out DIR] [--exact] [--net small|medium|large] \
-      [--images K] [--in FILE]"
+      [--images K] [--in FILE] [--types LIST] [--algs LIST] [--dt Q] [--eta K] [--order R]"
   | exp :: rest => go rest { experiment := exp }
 where
   go : List String → CliArgs → Except String CliArgs
@@ -92,6 +101,17 @@ where
       | some k => go rest { a with images := some k }
       | none => throw s!"`--images` needs a natural number, not `{v}`"
     | "--in" :: v :: rest, a => go rest { a with inFile := some v }
+    | "--types" :: v :: rest, a => go rest { a with types := some v }
+    | "--algs" :: v :: rest, a => go rest { a with algs := some v }
+    | "--dt" :: v :: rest, a => go rest { a with dt := some v }
+    | "--eta" :: v :: rest, a =>
+      match v.toNat? with
+      | some k => go rest { a with eta := some k }
+      | none => throw s!"`--eta` needs a natural number, not `{v}`"
+    | "--order" :: v :: rest, a =>
+      match v.toNat? with
+      | some k => go rest { a with order := some k }
+      | none => throw s!"`--order` needs a natural number, not `{v}`"
     | [flag], _ => throw s!"`{flag}` needs a value"
     | flag :: _, _ => throw s!"unrecognised argument `{flag}`"
 
