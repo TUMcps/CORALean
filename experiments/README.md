@@ -8,6 +8,8 @@ to be run from the repository root.
 
 ```
 experiments/
+  firststep/    configs.json, the number types and step sizes of `firststep` -- see
+                "The first step under many number formats" below.
   config/       headline_*.json -- the single source of truth for the spiral
                 system, read by both the Lean harness (Lean.Json) and the
                 MATLAB/CORA scripts (jsondecode). See "Config format" below.
@@ -873,6 +875,36 @@ round-to-nearest bit for bit, and every IEEE and hardware interval contains the
 exact value and both MATLAB results. The hardware intervals are about twice as
 wide in ulp as the IEEE ones, since they round to nearest and then step one ulp
 outward.
+
+## The first step under many number formats (`firststep`)
+
+The first time-interval enclosure `R_0` and the time-point set `X_1` of the headline spiral
+(`A`, `X0`, `eta`, `rho` of `experiments/config/headline_5turns.json`), one step of
+`LinearSys.reachFloat` -- `headline-b`'s own call, with `tFinal = dt` -- at each number
+type of `experiments/firststep/configs.json` and each of its step sizes (`dts`,
+`1/64`, `1/16`, `1/4`). It is the data of a qualitative figure: `R_0` drawn over each
+format's grid.
+
+```
+lake exe bench firststep --in experiments/firststep/configs.json --out DIR
+lake exe bench-flint firststep --in experiments/firststep/configs.json --out DIR  # flint runs
+```
+
+`bench` writes `DIR/firststep/results.json` (every run but `flint`) and `bench-flint`, built
+as in the README's "FLINT backend" section, `DIR/firststep/results-flint.json`. Each file is
+`{"meta", "results"}`; a `results` record holds `type`, `format` (`binary16`, `p<p>` for a
+significand width, `decimal<f>`), `significand_bits`, `number_type`, `dt`, `status`, `reason`,
+`eta_used`, `dt_represented`, and the sets `x0`, `R0`, `X1`, each `{c, G, E: {inf, sup}}`
+with every scalar the exact rational `{"num", "den"}` (decimal strings, `den > 0`), `null`
+for a value past the format's range.
+
+`x0` is the config's `X0` rounded outward into the format: the centre and the generators
+are rounded down, and what that loses goes into the error box `E`, so a format that holds
+`X0` exactly (a zero `E`) keeps it. `A` and `dt` are read exactly, as everywhere else, and a
+format that cannot hold either is `"status": "none"`, `reason` `not representable: ...`.
+`status` is `"ok"`, `"overflow-NaN"` (a stored scalar past the format's range, or a `NaN`),
+or `"none"`. The paper's results are on the data branch `results/paper`, under
+`experiments/results-paper/firststep/`. `repeatability.sh` runs it as its own section.
 
 ## Pinned versions
 

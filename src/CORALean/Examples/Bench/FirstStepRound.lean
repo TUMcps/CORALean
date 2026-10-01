@@ -1,0 +1,68 @@
+import CORALean.ContSet.Zonotope.Float.Zonotope
+import CORALean.Examples.Bench.Config
+import CORALean.Examples.Bench.Rational
+
+/-!
+# `firststep`: `X0` rounded outward into a number type
+
+`firststep` takes `X0 = c + Σ_j β_j g_j` from the config exactly, which a format may not hold
+(`1/8` at `FixedPoint 1`, `FixedPoint 2`, or at `E2M1`). `roundX0In` stores `c' = ⌊c⌋`, `g'_j =
+⌊g_j⌋` and puts what the rounding lost into the error box `E`: `c - c' ∈ [0, ⌈c⌉ - ⌊c⌋]` and
+`(g_j - g'_j) β_j ∈ ±(⌈g_j⌉ - ⌊g_j⌋)`, summed over `j` and rounded up, so that
+`E = [-W, W + w_c]` with `W = Σ_j w_{g_j}`. The set so stored contains the exact `X0`. Where the
+config's numbers are on the grid every width is zero and `E` is the point `0`, so the set is the
+one the checked read of `Rollout.buildX0` gives.
+
+`⌊x⌋`/`⌈x⌉` are `addDown x 0`/`addUp x 0` applied to `exactIn x`, the exact value of `x` held
+off the grid: the format's own rounded operation does the rounding.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       01-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Bench
+
+open CORALean CORALean.Float
+
+variable {𝕋 : Type} [FloatOps 𝕋]
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- `⌊x⌋` and `⌈x⌉` of the exact value `exactIn d`, in the format. -/
+def aux_downUp (exactIn : ExactDyadic → 𝕋) (d : String) : Except String (𝕋 × 𝕋) := do
+  let x := exactIn (← parseExact d)
+  pure (FloatOps.addDown x FloatOps.zero, FloatOps.addUp x FloatOps.zero)
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- The config's `X0`, rounded outward as the module docstring says. -/
+def roundX0In (cfg : HeadlineConfig) (exactIn : ExactDyadic → 𝕋) :
+    Except String (Zonotope 𝕋 2) := do
+  if cfg.x0Center.size ≠ 2 then throw "config `x0.center` must have exactly 2 entries"
+  for row in cfg.x0Generators do
+    if row.size ≠ 2 then throw "config `x0.generators` rows must each have exactly 2 entries"
+  let c ← cfg.x0Center.mapM (aux_downUp exactIn)
+  let g ← cfg.x0Generators.mapM (·.mapM (aux_downUp exactIn))
+  let z : 𝕋 := FloatOps.zero
+  let gAt (i j : ℕ) : 𝕋 × 𝕋 := ((g.getD j #[]).getD i (z, z))
+  let cAt (i : ℕ) : 𝕋 × 𝕋 := c.getD i (z, z)
+  let w (i : Fin 2) : 𝕋 := sumUp fun j : Fin cfg.x0Generators.size =>
+    subUp (gAt i j).2 (gAt i j).1
+  pure
+    { h := cfg.x0Generators.size
+      c := fun i => (cAt i).1
+      G := fun i j => (gAt i j).1
+      E := ⟨fun i => FloatOps.neg (w i),
+            fun i => FloatOps.addUp (w i) (subUp (cAt i).2 (cAt i).1)⟩ }
+
+end CORALean.Bench
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

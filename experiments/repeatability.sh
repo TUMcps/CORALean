@@ -76,6 +76,15 @@ if [ $DYADIC = 1 ]; then
   for net in small medium large; do for format in binary16 binary32 binary64; do bench nn-mnist --net $net --type dyadic --format $format; done; done
 fi
 
+# ===== First step under many number formats (qualitative figure): R_0 and X_1 =====
+section "firststep"  # the flint runs (= Dyadic bit for bit) need the optional bench-flint, skipped without it
+bench firststep --in experiments/firststep/configs.json
+if [ -f .lake/flint/libcoralean_flint.a ]; then
+  lake exe bench-flint firststep --in experiments/firststep/configs.json --out "$OUT"
+else
+  echo "repeatability.sh: FLINT shim not built, skipping the flint runs (README, \"FLINT backend\")"
+fi
+
 # ===== All figures and tables -> paper_floats.pdf =====
 section paper_floats.pdf
 bash experiments/paper/make_paper.sh "$OUT" $NO_LATEX

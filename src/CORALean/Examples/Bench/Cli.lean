@@ -22,7 +22,7 @@ anything to `dtdemo` or `nn-float32`.
 
 -- Authors:       Tobias Ladner
 -- Written:       25-September-2026
--- Last update:   28-September-2026
+-- Last update:   01-October-2026
 -- Last revision: ---
 
 
@@ -45,8 +45,8 @@ structure CliArgs where
   exact : Bool := false
   net : Option String := none
   images : Option Nat := none
-  /-- `--in`: `opcompare`'s own input file, `experiments/matlab-ops/inputs.json` if `none` --
-  no other experiment reads it. -/
+  /-- `--in`: `opcompare`'s own input file, `experiments/matlab-ops/inputs.json` if `none`, or
+  `firststep`'s, `experiments/firststep/configs.json` -- no other experiment reads it. -/
   inFile : Option String := none
 
 
