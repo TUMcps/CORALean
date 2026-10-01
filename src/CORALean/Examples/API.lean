@@ -22,6 +22,7 @@ import CORALean.Examples.GuardCutThenReset
 import CORALean.Examples.HPolytopePlus
 import CORALean.Examples.IEEERounding
 import CORALean.Examples.LagrangeRemainder
+import CORALean.Examples.LinearARXReach
 import CORALean.Examples.LinearSysCheck
 import CORALean.Examples.LinParamSysCheck
 import CORALean.Examples.LinParamUncertainMatrix
