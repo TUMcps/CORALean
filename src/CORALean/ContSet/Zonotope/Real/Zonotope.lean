@@ -5,7 +5,7 @@ import CORALean.ContSet.Interval.Real.Interval
 
 The matrix zonotope, `Zonotope (Mat ℝ m n)`, is [1, Eq. (8)].
 
-CORA's `zonotope`, with the same centre `c` and generator matrix `G`, denoting
+CORA's `zonotope` [2, Def. 1], with the same centre `c` and generator matrix `G`, denoting
 every point the generators reach from `c` with coefficients in `[-1, 1]`.
 
 Over any real module, not just `Vec ℝ n`: nothing about a centre plus a bounded
@@ -24,6 +24,8 @@ The generator count is a field, not a type index: operations grow it freely and
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
       Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
       Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
+* [2] A. Girard. "Reachability of Uncertain Linear Systems Using Zonotopes". In Hybrid
+      Systems: Computation and Control (HSCC), LNCS 3414, Springer, 2005, pp. 291-305.
 -/
 
 -- Authors:       Tobias Ladner

@@ -5,7 +5,7 @@ import CORALean.ContSet.Zonotope.Real.Operations.ReduceByBasis
 /-!
 # `Zonotope.reducePCA`
 
-CORA's `reduce(Z, 'pca', o)` [1]. Its partition is Girard's — CORA reaches it
+CORA's `reduce(Z, 'pca', o)` [1], which is [2, Alg. 2]. Its partition is Girard's — CORA reaches it
 through `pickedGenerators`, which ranks by `‖g‖₁ - ‖g‖∞` exactly as
 `girardSplit` does. What differs is the enclosure: the dropped block is boxed
 along the principal axes of the dropped generators themselves, instead of
@@ -23,6 +23,9 @@ sits, and the reason is recorded there.
 
 * [1] `contSet/@zonotope/private/priv_reducePCA.m`, CORA (Sep. 2025). No paper
       behind the rule was confirmed.
+* [2] A.-K. Kopetzki, B. Schürmann and M. Althoff. "Methods for Order Reduction of
+      Zonotopes". In Proc. of the 56th IEEE Conference on Decision and Control (CDC), pp.
+      5626-5633, 2017.
 -/
 
 -- Authors:       Tobias Ladner

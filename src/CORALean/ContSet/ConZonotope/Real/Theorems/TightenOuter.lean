@@ -6,7 +6,7 @@ import CORALean.ContSet.Interval.Real.Theorems.DivBetweenEndpoints
 # `ConZonotope.tighten` is sound
 
 Every feasible coefficient vector — one satisfying `Aξ = b` and `‖ξ‖∞ ≤ 1` — lies in the
-box Algorithm 1 returns. This is the guarantee `Thm. 2`'s `E_k` (eq. 12) draws on: a
+box Algorithm 1 [2, Alg. 1] returns. This is the guarantee `Thm. 2`'s `E_k` (eq. 12) draws on: a
 tightened bound is never so tight that it excludes a point the constraints actually
 admit.
 
@@ -20,6 +20,9 @@ row and across every row, by `Fin.foldl_induction`.
 
 * [1] V. Raghuraman and J. P. Koeln. "Set operations and order reductions for
       constrained zonotopes". Automatica, 139:110204, 2022. arXiv:2009.06039.
+* [2] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:
+      A new tool for set-based estimation and fault detection". Automatica, 69:126-136,
+      2016.
 -/
 
 -- Authors:       Tobias Ladner

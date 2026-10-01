@@ -3,7 +3,7 @@ import CORALean.ContSet.ConZonotope.Real.ConZonotope
 /-!
 # `ConZonotope.plus`
 
-CORA's `@conZonotope/plus`: centres add and generators concatenate, as for a
+CORA's `@conZonotope/plus` [1, Prop. 1]: centres add and generators concatenate, as for a
 zonotope, and each half of the concatenated coefficient vector answers only to
 its own constraints.
 
@@ -11,6 +11,12 @@ That last part is `comap` and `intersection` and nothing else — pull each poly
 along the projection onto its block, then intersect. No matrix rows are
 assembled and no sum has to be split, which is what carrying the constraints as
 a polytope buys.
+
+## References
+
+* [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:
+      A new tool for set-based estimation and fault detection". Automatica, 69:126-136,
+      2016.
 -/
 
 -- Authors:       Tobias Ladner

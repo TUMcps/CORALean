@@ -3,16 +3,19 @@ import CORALean.ContSet.ConZonotope.Real.Operations.RowBound
 /-!
 # `ConZonotope.tightenCoeff`
 
-[1, Alg. 1], lines 3-5: row `i`'s bound on coefficient `j`, met with the running box `E`
-— a no-op where the row does not mention `j`. `rowBound` is line 4's `Rⱼ ← (12)`; the
-`Rⱼ ← Rⱼ ∩ (12)` then `Eⱼ ← Eⱼ ∩ Rⱼ` of the paper's own lines 4-5 collapses to the one
-intersection here, since `Eⱼ` only ever narrows by meeting `Rⱼ` and both start at
-`[-1,1]`, so `Eⱼ` stays `Rⱼ` clipped to `[-1,1]` throughout.
+[1, Alg. 1], [2, Alg. 1], lines 3-5: row `i`'s bound on coefficient `j`, met with the
+running box `E` — a no-op where the row does not mention `j`. `rowBound` is line 4's
+`Rⱼ ← (12)`; the `Rⱼ ← Rⱼ ∩ (12)` then `Eⱼ ← Eⱼ ∩ Rⱼ` of the paper's own lines 4-5
+collapses to the one intersection here, since `Eⱼ` only ever narrows by meeting `Rⱼ` and
+both start at `[-1,1]`, so `Eⱼ` stays `Rⱼ` clipped to `[-1,1]` throughout.
 
 ## References
 
 * [1] V. Raghuraman and J. P. Koeln. "Set operations and order reductions for
       constrained zonotopes". Automatica, 139:110204, 2022. arXiv:2009.06039.
+* [2] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:
+      A new tool for set-based estimation and fault detection". Automatica, 69:126-136,
+      2016.
 -/
 
 -- Authors:       Tobias Ladner

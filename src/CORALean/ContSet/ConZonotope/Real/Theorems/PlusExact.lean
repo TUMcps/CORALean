@@ -3,11 +3,17 @@ import CORALean.ContSet.ConZonotope.Real.Operations.Plus
 /-!
 # `ConZonotope.plus` is exactly the Minkowski sum
 
-The witness is `Fin.append β₁ β₂`, as for a zonotope. What the constraints add is
+The witness is `Fin.append β₁ β₂`, as for a zonotope [1, Prop. 1]. What the constraints add is
 that the concatenated coefficients satisfy the combined polytope exactly when
 each half satisfies its own — which is `HPolytope.mem_intersection_iff` composed with the
 preimage being a preimage, and holds by `rfl` once `comap` is what pulls a block
 back.
+
+## References
+
+* [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:
+      A new tool for set-based estimation and fault detection". Automatica, 69:126-136,
+      2016.
 -/
 
 -- Authors:       Tobias Ladner

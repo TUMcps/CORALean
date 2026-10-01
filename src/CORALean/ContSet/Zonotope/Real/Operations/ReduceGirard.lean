@@ -4,13 +4,18 @@ import CORALean.ContSet.Zonotope.Real.Operations.ReduceBy
 /-!
 # `Zonotope.reduceGirard`
 
-CORA's `reduce(Z, 'girard', o)`: `girardSplit` ranks the generators by what
+CORA's `reduce(Z, 'girard', o)` [1, Sec. 3.4]: `girardSplit` ranks the generators by what
 boxing each would cost, and `reduceBy` boxes everything the ranking does not
 keep, bringing the count to `o * n`. At that order or below nothing happens.
 
 The `dite` is what `reduceBox` mirrors: the error the rule pays is the box in
 one branch and the origin in the other, and only a definition splitting the
 same way can name it.
+
+## References
+
+* [1] A. Girard. "Reachability of Uncertain Linear Systems Using Zonotopes". In Hybrid
+      Systems: Computation and Control (HSCC), LNCS 3414, Springer, 2005, pp. 291-305.
 -/
 
 -- Authors:       Tobias Ladner

@@ -1,0 +1,35 @@
+import CORALean.ContSet.EmptySet.Real.Operations.Volume
+import CORALean.ContSet.EmptySet.Real.Instances
+
+/-!
+# `EmptySet.volume` is the Lebesgue volume
+
+`0`, CORA's value, is the volume of `∅`.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       01-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+open ContSet
+
+variable {n m : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem EmptySet.volume_eq (E : EmptySet n) :
+    MeasureTheory.volume (construct E) = E.volume := by
+  change MeasureTheory.volume (∅ : Set (Vec ℝ n)) = 0
+  exact MeasureTheory.measure_empty
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

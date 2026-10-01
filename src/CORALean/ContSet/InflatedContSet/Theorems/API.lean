@@ -1,5 +1,6 @@
 import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
 import CORALean.ContSet.InflatedContSet.Theorems.MapSubset
+import CORALean.ContSet.InflatedContSet.Theorems.ImageSubset
 import CORALean.ContSet.InflatedContSet.Theorems.PlusSubset
 import CORALean.ContSet.InflatedContSet.Theorems.LinCombSubset
 

@@ -1,6 +1,7 @@
 import CORALean.ContSet.ConZonotope.Float.Operations.Plus
 import CORALean.ContSet.ConZonotope.Float.Operations.LinCombGDiff
 import CORALean.ContSet.ConZonotope.Float.Operations.LinComb
+import CORALean.ContSet.ConZonotope.Float.Operations.Project
 import CORALean.ContSet.ConZonotope.Float.Operations.Reduce
 
 /-!

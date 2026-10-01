@@ -118,6 +118,9 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxExpMidOuter
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ExpEdgeAcyclic
 import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxExpEvenOuterOfEdge
 import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxExpGreedyOuter
+import CORALean.ContSet.PolyZonotope.Real.Theorems.OfPointMemIff
+import CORALean.ContSet.PolyZonotope.Real.Theorems.CentreMemConstruct
+import CORALean.ContSet.PolyZonotope.Real.Theorems.IsBounded
 
 /-!
 # What `PolyZonotope` guarantees

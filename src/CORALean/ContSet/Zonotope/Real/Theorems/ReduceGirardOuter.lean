@@ -4,9 +4,15 @@ import CORALean.ContSet.Zonotope.Real.Theorems.ReduceByOuter
 /-!
 # Girard's reduction over-approximates
 
-Two cases: below the order there is nothing to do, and above it the rule is a
-partition like any other, so `reduceBy_outer` closes it. Girard's metric appears
+Girard's interval-hull argument [1, Sec. 3.4]. Two cases: below the order there is
+nothing to do, and above it the rule is a partition like any other, so
+`reduceBy_outer` closes it. Girard's metric appears
 nowhere — that is the point of stating the enclosure at an arbitrary partition.
+
+## References
+
+* [1] A. Girard. "Reachability of Uncertain Linear Systems Using Zonotopes". In Hybrid
+      Systems: Computation and Control (HSCC), LNCS 3414, Springer, 2005, pp. 291-305.
 -/
 
 -- Authors:       Tobias Ladner

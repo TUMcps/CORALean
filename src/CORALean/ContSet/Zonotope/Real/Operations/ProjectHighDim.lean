@@ -1,0 +1,39 @@
+import CORALean.ContSet.Zonotope.Real.Operations.Embed
+import CORALean.ContSet.Zonotope.Real.Operations.Map
+
+/-!
+# `Zonotope.projectHighDim_`
+
+CORA's `@zonotope/projectHighDim_`: the centre and every generator written into the
+coordinates `proj` of a zero vector of length `N`. `embed proj` is the zero-padding map, the
+selection matrix transposed; it is linear, so this is `map` at it. CORA's assignment
+`cnew(proj,:) = Z.c` overwrites on a repeated index, which `embed` sums instead, so the
+statement of `projectHighDim__exact` assumes `proj` injective, as CORA's callers do.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       01-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+open Matrix
+
+variable {n N : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+def Zonotope.projectHighDim_ (Z : Zonotope (Vec ℝ n)) (proj : Fin n → Fin N) :
+    Zonotope (Vec ℝ N) :=
+  Z.map (Zonotope.embed proj)
+
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

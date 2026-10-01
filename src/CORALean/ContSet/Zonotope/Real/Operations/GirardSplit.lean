@@ -5,13 +5,18 @@ import CORALean.Global.Sort
 /-!
 # `Zonotope.girardSplit`
 
-Girard's metric, `‖g‖₁ - ‖g‖∞`, measures what boxing a generator costs
+Girard's metric [1, Sec. 3.4], `‖g‖₁ - ‖g‖∞`, measures what boxing a generator costs
 directly, zero on an axis-aligned one. The split it drives keeps the `(o-1)*n`
 generators dearest to box and passes the rest on to be boxed.
 
 A definition of its own rather than a helper inside `reduceGirard`: one
 partition says both what the reduction keeps and what its error box absorbs, so
 `reduceGirard` and `reduceBox` read the same one from here.
+
+## References
+
+* [1] A. Girard. "Reachability of Uncertain Linear Systems Using Zonotopes". In Hybrid
+      Systems: Computation and Control (HSCC), LNCS 3414, Springer, 2005, pp. 291-305.
 -/
 
 -- Authors:       Tobias Ladner

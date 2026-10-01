@@ -28,6 +28,13 @@ import CORALean.ContSet.ConZonotope.Real.Operations.TightenCoeff
 import CORALean.ContSet.ConZonotope.Real.Operations.TightenRow
 import CORALean.ContSet.ConZonotope.Real.Operations.Tighten
 import CORALean.ContSet.ConZonotope.Real.Operations.Eliminate
+import CORALean.ContSet.ConZonotope.Real.Operations.Project
+import CORALean.ContSet.ConZonotope.Real.Operations.ConstraintReduce
+import CORALean.ContSet.ConZonotope.Real.Operations.PartialSolveLamG
+import CORALean.ContSet.ConZonotope.Real.Operations.PartialSolveLamA
+import CORALean.ContSet.ConZonotope.Real.Operations.PartialSolve
+import CORALean.ContSet.ConZonotope.Real.Operations.Rescale
+import CORALean.ContSet.ConZonotope.Real.Operations.Lift
 
 /-!
 # What `ConZonotope` computes
@@ -38,10 +45,9 @@ outer for the zonotope's reason rather than for the constraints'. `linComb` keep
 weighting each side's constraints by the interpolation parameter; between two nonempty sets it is
 the convex hull exactly, where the enclosing zonotope is only an enclosure of it.
 
-`enclose` keeps them too, for the aligned pair `linComb` also covers, at the same generator count
-— what it buys over `linComb` is a far smaller constraint system, one copy of `cZ₁.P`'s own rows
-rather than a halfScaled intersection of both sides'. The price is precision: `enclose` is only
-outer, where `linComb` is exact between nonempty sets. Neither replaces the other.
+`enclose` keeps them too, for the aligned pair `linComb` also covers, with one copy of `cZ₁.P`'s
+own rows rather than a halfScaled intersection of both sides'; it is only outer, where `linComb`
+is exact between nonempty sets.
 `reduce` is the one operation that still goes through the enclosing zonotope and gives the
 constraints up. CORA reduces the zonotope the constraint rows lift to and reads the rows back off
 it, which asks for the equality system CORA's constraints are and this representation's polytope
@@ -52,5 +58,6 @@ coefficient polytope the unit box and `P` make together, and `OfPoint` is the ce
 `HPolytope.fullspace`. `MinkDiffV` folds `intersection` over a zonotope translated by each of a
 polytope's vertices — Wetzlinger et al.'s Prop. 6, exact where every other difference here encloses.
 `rowBound`, `tightenCoeff`, `tightenRow` and `tighten` are Raghuraman and Koeln's Algorithm 1;
-`eliminate` is `Thm. 2`'s own construction against it, solving one row for one coefficient.
+`eliminate` is `Thm. 2`'s construction against it, solving one row for one coefficient.
+Scott et al.: `constraintReduce` Prop. 5, `partialSolve` 4.2, `rescale` Prop. 4, `lift` Prop. 3.
 -/

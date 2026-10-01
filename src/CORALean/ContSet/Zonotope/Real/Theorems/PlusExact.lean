@@ -3,13 +3,18 @@ import CORALean.ContSet.Zonotope.Real.Operations.Plus
 /-!
 # `Zonotope.plus` is exactly the Minkowski sum
 
-The witness is `Fin.append β₁ β₂`: concatenated generators take concatenated
+The witness is `Fin.append β₁ β₂` [1, Sec. 2]: concatenated generators take concatenated
 coefficients. `Fin.addCases` and `Fin.sum_univ_add` split the bound and the sum
 the same way, and splitting a coefficient vector the other way gives the
 converse, so concatenation loses nothing.
 
 No `plus_outer` here: the float `plus` displaces the centre, so it reproves this
 against the displaced centre rather than composing with it.
+
+## References
+
+* [1] A. Girard. "Reachability of Uncertain Linear Systems Using Zonotopes". In Hybrid
+      Systems: Computation and Control (HSCC), LNCS 3414, Springer, 2005, pp. 291-305.
 -/
 
 -- Authors:       Tobias Ladner

@@ -25,11 +25,45 @@ import CORALean.ContSet.Interval.Real.Theorems.MatPowOuter
 import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
 import CORALean.ContSet.Interval.Real.Theorems.NormLeAbsMax
 import CORALean.ContSet.Interval.Real.Theorems.MtimesIsNonempty
+import CORALean.ContSet.Interval.Real.Theorems.SupportBoundEntrywiseAttained
+import CORALean.ContSet.Interval.Real.Theorems.SupportBoundAttained
 import CORALean.ContSet.Interval.Real.Theorems.MtimesOuter
 import CORALean.ContSet.Interval.Real.Theorems.MtimesWidth
 import CORALean.ContSet.Interval.Real.Theorems.ReindexExact
 import CORALean.ContSet.Interval.Real.Theorems.SplitAtCover
 import CORALean.ContSet.Interval.Real.Theorems.HausdorffDist2AddLeBoxRadius
+import CORALean.ContSet.Interval.Real.Theorems.UminusExact
+import CORALean.ContSet.Interval.Real.Theorems.UplusExact
+import CORALean.ContSet.Interval.Real.Theorems.MinusEqPlusUminus
+import CORALean.ContSet.Interval.Real.Theorems.MinusOuter
+import CORALean.ContSet.Interval.Real.Theorems.MinusExact
+import CORALean.ContSet.Interval.Real.Theorems.InfimumMemConstruct
+import CORALean.ContSet.Interval.Real.Theorems.SupremumMemConstruct
+import CORALean.ContSet.Interval.Real.Theorems.OrOuter
+import CORALean.ContSet.Interval.Real.Theorems.ConvHullOuter
+import CORALean.ContSet.Interval.Real.Theorems.EnclosePointsOuter
+import CORALean.ContSet.Interval.Real.Theorems.OriginExact
+import CORALean.ContSet.Interval.Real.Theorems.AbsExact
+import CORALean.ContSet.Interval.Real.Theorems.ConstructEqSingleton
+import CORALean.ContSet.Interval.Real.Theorems.EmptyExact
+import CORALean.ContSet.Interval.Real.Theorems.ExistsMulEq
+import CORALean.ContSet.Interval.Real.Theorems.ExpExact
+import CORALean.ContSet.Interval.Real.Theorems.LeIffSubset
+import CORALean.ContSet.Interval.Real.Theorems.LeSubset
+import CORALean.ContSet.Interval.Real.Theorems.LtSubset
+import CORALean.ContSet.Interval.Real.Theorems.ProjectExact
+import CORALean.ContSet.Interval.Real.Theorems.ProjectHighDimExact
+import CORALean.ContSet.Interval.Real.Theorems.ProjectOuter
+import CORALean.ContSet.Interval.Real.Theorems.RepresentsaEmptySetIff
+import CORALean.ContSet.Interval.Real.Theorems.RepresentsaOriginIff
+import CORALean.ContSet.Interval.Real.Theorems.RepresentsaPointIff
+import CORALean.ContSet.Interval.Real.Theorems.SingletonOfInfEqSup
+import CORALean.ContSet.Interval.Real.Theorems.TimesExact
+import CORALean.ContSet.Interval.Real.Theorems.TimesOuter
+import CORALean.ContSet.Interval.Real.Theorems.VolumeEq
+import CORALean.ContSet.Interval.Real.Theorems.IsFullDimIff
+import CORALean.ContSet.Interval.Real.Theorems.NormLe
+import CORALean.ContSet.Interval.Real.Theorems.NormAttained
 
 /-!
 # What `Interval` guarantees

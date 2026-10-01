@@ -16,7 +16,7 @@ the spectral theorem for symmetric operators and carries no algorithm. Nothing
 at the `Real` layer is meant to run — a running PCA is a float-layer question,
 and would be a different definition with an error bound of its own.
 
-CORA reads the same axes off `svd(C)` [1]. On a positive-semidefinite `C` the
+CORA reads the same axes off `svd(C)` [1], as [2, Alg. 2] does. On a positive-semidefinite `C` the
 left singular vectors are eigenvectors, sorted by eigenvalue; Mathlib's are
 not sorted, and neither the order of the columns nor their signs changes the
 set `reduceByBasis` denotes.
@@ -24,6 +24,9 @@ set `reduceByBasis` denotes.
 ## References
 
 * [1] `contSet/@zonotope/private/priv_reducePCA.m`, CORA (Sep. 2025).
+* [2] A.-K. Kopetzki, B. Schürmann and M. Althoff. "Methods for Order Reduction of
+      Zonotopes". In Proc. of the 56th IEEE Conference on Decision and Control (CDC), pp.
+      5626-5633, 2017.
 -/
 
 -- Authors:       Tobias Ladner

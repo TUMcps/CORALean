@@ -8,7 +8,7 @@ import CORALean.Global.Block
 /-!
 # Constrained zonotopes: the representation
 
-CORA's `conZonotope`: a zonotope whose coefficients are cut down further. The
+CORA's `conZonotope` [1, Def. 3]: a zonotope whose coefficients are cut down further. The
 cutting is an `HPolytope` over the coefficient space rather than the matrix
 equation `A β = b`, so the constraints *are* a polytope rather than merely
 denoting one, and every polytope operation applies to them directly —
@@ -24,6 +24,12 @@ enclosure whatever `P` says.
 
 Over any real module, as a zonotope is: the constraints live on the coefficient
 space `Vec ℝ h`, whatever the generators point into.
+
+## References
+
+* [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:
+      A new tool for set-based estimation and fault detection". Automatica, 69:126-136,
+      2016.
 -/
 
 -- Authors:       Tobias Ladner

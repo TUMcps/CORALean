@@ -68,6 +68,12 @@ instance : Mtimes (Mat ℝ) (fun n => EmptySet n) where
     obtain ⟨-, -, y, hy, -⟩ := hx
     exact hy.elim
 
+/-- CORA's `isIntersecting_` answers `false` outright, so nothing is ever shared with
+the empty set and `true` is the right answer for every operand. -/
+instance {S : Type} [ContSet S (Vec ℝ n)] : IsDisjoint (EmptySet n) S where
+  isDisjoint _ _ := true
+  isDisjoint_sound _ _ _ := Set.disjoint_empty _
+
 /-- Exact, not merely outer: relabelling `∅` is `∅` by `Set.image_empty`. -/
 instance : Reindex (fun n => EmptySet n) where
   reindex _ _ := ⟨⟩

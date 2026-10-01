@@ -1,0 +1,31 @@
+import CORALean.ContSet.EmptySet.Real.EmptySet
+
+/-!
+# `EmptySet.vertices`
+
+CORA's `@emptySet/vertices_`: `zeros(dim(O),0)`, an `n × 0` matrix, which is a family of
+no vertices in `Vec ℝ n`.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       01-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {n m : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- `emptySet/vertices_`: no vertices. -/
+def EmptySet.vertices (_ : EmptySet n) : Fin 0 → Vec ℝ n := Fin.elim0
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

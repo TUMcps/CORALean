@@ -3,7 +3,7 @@ import CORALean.ContSet.Zonotope.Real.Operations.Map
 /-!
 # `Zonotope.map` is exactly the image under a linear map
 
-The same coefficients work in both directions — a linear map introduces no new
+The same coefficients work in both directions [1, Sec. 2] — a linear map introduces no new
 freedom and removes none — so linearity carried through the sum is the whole
 proof. A linear image of a zonotope is a zonotope, which is what the propagation
 loop rests on.
@@ -11,6 +11,11 @@ loop rests on.
 Every other image guarantee in this directory is this one at a particular linear
 map. No `map_outer`: the float `map` pays its rounding into the error box, so it
 reproves this alongside the spill rather than composing with it.
+
+## References
+
+* [1] A. Girard. "Reachability of Uncertain Linear Systems Using Zonotopes". In Hybrid
+      Systems: Computation and Control (HSCC), LNCS 3414, Springer, 2005, pp. 291-305.
 -/
 
 -- Authors:       Tobias Ladner

@@ -2,6 +2,7 @@ import CORALean.Global.Mathlib
 import CORALean.Global.Tensor
 import CORALean.Global.Scalar
 import CORALean.Global.ExactScalar
+import CORALean.Global.NegScalar
 import CORALean.Global.Entrywise
 import CORALean.Global.Hadamard
 import CORALean.Global.Partition

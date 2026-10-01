@@ -1,6 +1,7 @@
 import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
 import CORALean.ContSet.ConZonotope.Float.Theorems.PlusOuter
 import CORALean.ContSet.ConZonotope.Float.Theorems.LinCombOuter
+import CORALean.ContSet.ConZonotope.Float.Theorems.ProjectOuter
 import CORALean.ContSet.ConZonotope.Float.Theorems.ReduceOuter
 
 /-!

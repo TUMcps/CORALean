@@ -4,11 +4,16 @@ import CORALean.ContSet.Zonotope.Real.Zonotope
 # `Zonotope.map`
 
 A linear map applies to centre and generators alike, which is why a zonotope is
-closed under one and the generator count is untouched.
+closed under one [1, Sec. 2] and the generator count is untouched.
 
 Every multiplication a zonotope carries is this at a particular map — `mtimes`
 at `A *ᵥ ·`, matrix multiplication at `A * ·` or `· * A` — so none of them needs
 an exactness proof of its own.
+
+## References
+
+* [1] A. Girard. "Reachability of Uncertain Linear Systems Using Zonotopes". In Hybrid
+      Systems: Computation and Control (HSCC), LNCS 3414, Springer, 2005, pp. 291-305.
 -/
 
 -- Authors:       Tobias Ladner

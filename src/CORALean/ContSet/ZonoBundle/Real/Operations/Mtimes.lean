@@ -5,8 +5,14 @@ import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
 # `ZonoBundle.mtimes`
 
 CORA's `zonoBundle`/`mtimes`: the same `k`, each component multiplied on its
-own. An enclosure, and a cheap one — exact when `M` is injective, though that
+own [1, Prop. 1]. An enclosure, and a cheap one — exact when `M` is injective, though that
 is not proved here.
+
+## References
+
+* [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of
+      Reachable Sets". In Proc. of the 50th IEEE Conference on Decision and Control and
+      European Control Conference (CDC-ECC), pp. 6814-6821, 2011.
 -/
 
 -- Authors:       Tobias Ladner

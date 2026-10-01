@@ -1,13 +1,17 @@
 import CORALean.ContSet.Fullspace.Real.Fullspace
 import CORALean.ContSet.Fullspace.Real.Instances
+import CORALean.ContSet.Fullspace.Real.Operations.API
 import CORALean.ContSet.Fullspace.Real.Theorems.API
 
 /-!
 # The full space, collected
 
-The representation in `Fullspace`, its one guarantee in `Theorems` and the
-class instances in `Instances`.
+The representation in `Fullspace`, the class instances in `Instances`, CORA's
+dimension-changing and conversion methods in `Operations/` and what each guarantees in
+`Theorems/`.
 
-No `Operations/`: there is one value of `Fullspace n`, so every operation on it
-returns that value, and the instances say so in a line each.
+There is one value of `Fullspace n`, so every operation returns it and the interface
+instances say so in a line each; what does not fit an interface class (`project`,
+`lift_`, `not`, the conversions) is a definition in `Operations/` with an equality in
+`Theorems/`.
 -/

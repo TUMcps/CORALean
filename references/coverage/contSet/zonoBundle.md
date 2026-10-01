@@ -1,0 +1,52 @@
+# contSet/@zonoBundle
+
+CORA methods of `contSet/@zonoBundle/`, one row each, and where CORALean answers them. Conventions, states and the out-of-scope reasons are in [../README.md](../README.md).
+
+**CORALean counterpart:** `ZonoBundle`.
+
+| Method | State | In CORALean | Note |
+|---|---|---|---|
+| `and_` | float | [`ZonoBundle.intersection`](../../../src/CORALean/ContSet/ZonoBundle/Real/Operations/Intersection.lean), [`ZonoBundle.intersection_k`](../../../src/CORALean/ContSet/ZonoBundle/Real/Complexity/Intersection.lean), [`ZonoBundle.intersection_exact`](../../../src/CORALean/ContSet/ZonoBundle/Real/Theorems/IntersectionExact.lean) · float: [`ZonoBundle.intersection`](../../../src/CORALean/ContSet/ZonoBundle/Float/Operations/Intersection.lean), [`ZonoBundle.intersection_exact`](../../../src/CORALean/ContSet/ZonoBundle/Float/Theorems/IntersectionExact.lean) |  |
+| `cartProd_` | — | — |  |
+| `center` | — | — |  |
+| `conPolyZono` | float | [`ZonoBundle.conPolyZono`](../../../src/CORALean/ContSet/Conversion/Real/ZonoBundle_to_ConPolyZono.lean), [`ZonoBundle.conPolyZono_contains`](../../../src/CORALean/ContSet/Conversion/Real/ZonoBundle_to_ConPolyZono.lean) · float: [`ZonoBundle.conPolyZono`](../../../src/CORALean/ContSet/Conversion/Float/ZonoBundle_to_ConPolyZono.lean), [`ZonoBundle.conPolyZono_contains`](../../../src/CORALean/ContSet/Conversion/Float/ZonoBundle_to_ConPolyZono.lean) |  |
+| `conZonotope` | float | [`ZonoBundle.conZonotope`](../../../src/CORALean/ContSet/Conversion/Real/ZonoBundle_to_ConZonotope.lean), [`ZonoBundle.conZonotope_contains`](../../../src/CORALean/ContSet/Conversion/Real/ZonoBundle_to_ConZonotope.lean) · float: [`ZonoBundle.conZonotope`](../../../src/CORALean/ContSet/Conversion/Float/ZonoBundle_to_ConZonotope.lean), [`ZonoBundle.conZonotope_contains`](../../../src/CORALean/ContSet/Conversion/Float/ZonoBundle_to_ConZonotope.lean) |  |
+| `contains_` | — | — |  |
+| `convHull_` | — | — |  |
+| `copy` | out-of-scope | n/a — matlab-runtime |  |
+| `dim` | out-of-scope | n/a — matlab-runtime |  |
+| `display` | out-of-scope | n/a — plotting/display |  |
+| `empty` | — | — |  |
+| `enclose` | — | — |  |
+| `encloseTight` | — | — |  |
+| `enlarge` | — | — |  |
+| `generateRandom` | out-of-scope | n/a — random/sampling |  |
+| `getPrintSetInfo` | out-of-scope | n/a — plotting/display |  |
+| `interval` | float | [`ZonoBundle.interval`](../../../src/CORALean/ContSet/Conversion/Real/ZonoBundle_to_Interval.lean), [`ZonoBundle.interval_contains`](../../../src/CORALean/ContSet/Conversion/Real/ZonoBundle_to_Interval.lean) · float: [`ZonoBundle.interval`](../../../src/CORALean/ContSet/Conversion/Float/ZonoBundle_to_Interval.lean), [`ZonoBundle.interval_contains`](../../../src/CORALean/ContSet/Conversion/Float/ZonoBundle_to_Interval.lean) |  |
+| `isBounded` | proved | [`ZonoBundle.isBounded_construct`](../../../src/CORALean/ContSet/ZonoBundle/Real/Theorems/IsBounded.lean) | for `0 < k`, as CORA's bundle always has; an empty family denotes the whole space |
+| `isFullDim` | — | — |  |
+| `isIntersecting_` | — | — |  |
+| `isemptyobject` | out-of-scope | n/a — matlab-runtime |  |
+| `isequal` | — | — |  |
+| `lift_` | float | [`Reindex`](../../../src/CORALean/ContSet/ContSet/ContSet.lean), [`ZonoBundle.map_exact`](../../../src/CORALean/ContSet/ZonoBundle/Real/Theorems/MapExact.lean) · float: [`ZonoBundle.reindex`](../../../src/CORALean/ContSet/ZonoBundle/Float/Operations/Reindex.lean), [`ZonoBundle.reindex_exact`](../../../src/CORALean/ContSet/ZonoBundle/Float/Theorems/ReindexExact.lean) | CORA's `lift_` is `project` when `length(proj) == N` (a permutation of the coordinates) and throws `notDefined` otherwise, since new dimensions would be unbounded; `Reindex` is exactly the permutation case, an equality `reindexLin e '' construct s`.
+| `mtimes` | float | [`ZonoBundle.map`](../../../src/CORALean/ContSet/ZonoBundle/Real/Operations/Map.lean), [`ZonoBundle.mtimesMatZonotope`](../../../src/CORALean/ContSet/ZonoBundle/Real/Operations/MtimesMatZonotope.lean), [`ZonoBundle.mtimes`](../../../src/CORALean/ContSet/ZonoBundle/Real/Operations/Mtimes.lean), [`ZonoBundle.map_exact`](../../../src/CORALean/ContSet/ZonoBundle/Real/Theorems/MapExact.lean), [`ZonoBundle.mtimesMatZonotope_outer`](../../../src/CORALean/ContSet/ZonoBundle/Real/Theorems/MtimesMatZonotopeOuter.lean), [`ZonoBundle.mtimes_outer`](../../../src/CORALean/ContSet/ZonoBundle/Real/Theorems/MtimesOuter.lean) · float: [`ZonoBundle.mtimes`](../../../src/CORALean/ContSet/ZonoBundle/Float/Operations/Mtimes.lean), [`ZonoBundle.mtimes_outer`](../../../src/CORALean/ContSet/ZonoBundle/Float/Theorems/MtimesOuter.lean) |  |
+| `or` | — | — |  |
+| `origin` | proved | [`ZonoBundle.ofPoint`](../../../src/CORALean/ContSet/ZonoBundle/Real/Operations/OfPoint.lean), [`ZonoBundle.mem_ofPoint_iff`](../../../src/CORALean/ContSet/ZonoBundle/Real/Theorems/OfPointMemIff.lean) | `origin` is `ofPoint 0`, a bundle of the one zonotope `Zonotope.ofPoint 0` as in CORA; `mem_ofPoint_iff` says it denotes exactly `{0}` |
+| `plus` | float | [`ZonoBundle.plus`](../../../src/CORALean/ContSet/ZonoBundle/Real/Operations/Plus.lean), [`ZonoBundle.plus_outer`](../../../src/CORALean/ContSet/ZonoBundle/Real/Theorems/PlusOuter.lean) · float: [`ZonoBundle.plus`](../../../src/CORALean/ContSet/ZonoBundle/Float/Operations/Plus.lean), [`ZonoBundle.plus_outer`](../../../src/CORALean/ContSet/ZonoBundle/Float/Theorems/PlusOuter.lean) |  |
+| `polyZonotope` | float | [`ZonoBundle.polyZonotope`](../../../src/CORALean/ContSet/Conversion/Real/ZonoBundle_to_PolyZonotope.lean), [`ZonoBundle.polyZonotope_contains`](../../../src/CORALean/ContSet/Conversion/Real/ZonoBundle_to_PolyZonotope.lean) · float: [`ZonoBundle.polyZonotope`](../../../src/CORALean/ContSet/Conversion/Float/ZonoBundle_to_PolyZonotope.lean), [`ZonoBundle.polyZonotope_contains`](../../../src/CORALean/ContSet/Conversion/Float/ZonoBundle_to_PolyZonotope.lean) |  |
+| `polytope` | float | [`ZonoBundle.hPolytope`](../../../src/CORALean/ContSet/Conversion/Real/ZonoBundle_to_HPolytope.lean), [`ZonoBundle.vPolytope`](../../../src/CORALean/ContSet/Conversion/Real/ZonoBundle_to_VPolytope.lean), [`ZonoBundle.hPolytope_contains`](../../../src/CORALean/ContSet/Conversion/Real/ZonoBundle_to_HPolytope.lean), [`ZonoBundle.vPolytope_contains`](../../../src/CORALean/ContSet/Conversion/Real/ZonoBundle_to_VPolytope.lean) · float: [`ZonoBundle.hPolytope`](../../../src/CORALean/ContSet/Conversion/Float/ZonoBundle_to_HPolytope.lean), [`ZonoBundle.vPolytope`](../../../src/CORALean/ContSet/Conversion/Float/ZonoBundle_to_VPolytope.lean), [`ZonoBundle.hPolytope_contains`](../../../src/CORALean/ContSet/Conversion/Float/ZonoBundle_to_HPolytope.lean), [`ZonoBundle.vPolytope_contains`](../../../src/CORALean/ContSet/Conversion/Float/ZonoBundle_to_VPolytope.lean) |  |
+| `project` | — | — |  |
+| `quadMap` | — | — |  |
+| `randPoint_` | out-of-scope | n/a — random/sampling |  |
+| `reduce` | float | [`ZonoBundle.reduce`](../../../src/CORALean/ContSet/ZonoBundle/Real/Operations/Reduce.lean), [`ZonoBundle.reduce_outer`](../../../src/CORALean/ContSet/ZonoBundle/Real/Theorems/ReduceOuter.lean) · float: [`ZonoBundle.reduce`](../../../src/CORALean/ContSet/ZonoBundle/Float/Operations/Reduce.lean), [`ZonoBundle.reduce_outer`](../../../src/CORALean/ContSet/ZonoBundle/Float/Theorems/ReduceOuter.lean) |  |
+| `reduceCombined` | — | — |  |
+| `replace` | — | — |  |
+| `representsa_` | — | — |  |
+| `shrink` | — | — |  |
+| `spectraShadow` | — | — |  |
+| `split` | proved | [`ZonoBundle.split`](../../../src/CORALean/ContSet/ZonoBundle/Real/Operations/Split.lean), [`ZonoBundle.parallelotope`](../../../src/CORALean/ContSet/ZonoBundle/Real/Operations/Parallelotope.lean), [`ZonoBundle.enclosingBox`](../../../src/CORALean/ContSet/ZonoBundle/Real/Operations/EnclosingBox.lean), [`ZonoBundle.split_union`](../../../src/CORALean/ContSet/ZonoBundle/Real/Theorems/SplitUnion.lean), [`ZonoBundle.split_union_enclosingBox`](../../../src/CORALean/ContSet/ZonoBundle/Real/Theorems/SplitUnionEnclosingBox.lean), [`ZonoBundle.split_inter`](../../../src/CORALean/ContSet/ZonoBundle/Real/Theorems/SplitInter.lean) | the midpoint splits (`split(zB,N)`, the direction split) at `Λ = I`, respectively a rotation whose first column is the direction, exactly; the halfspace form that cuts at the offset `h.d` instead of the box midpoint is not covered |
+| `supportFunc_` | — | — | definition only, no theorem: [`ZonoBundle.supportBound`](../../../src/CORALean/ContSet/ZonoBundle/Real/Operations/SupportBound.lean) |
+| `vertices_` | — | — |  |
+| `volume_` | — | — |  |
+| `zonoBundle` | float | [`ZonoBundle.construct`](../../../src/CORALean/ContSet/ZonoBundle/Real/ZonoBundle.lean), [`ZonoBundle.convex_construct`](../../../src/CORALean/ContSet/ZonoBundle/Real/Theorems/Convex.lean), [`ZonoBundle.isCompact_construct`](../../../src/CORALean/ContSet/ZonoBundle/Real/Theorems/IsCompact.lean) · float: [`ZonoBundle.construct`](../../../src/CORALean/ContSet/ZonoBundle/Float/ZonoBundle.lean), [`ZonoBundle.convex_construct`](../../../src/CORALean/ContSet/ZonoBundle/Float/Theorems/Convex.lean), [`ZonoBundle.isCompact_construct`](../../../src/CORALean/ContSet/ZonoBundle/Float/Theorems/IsCompact.lean) |  |
+| `zonotope` | float | [`ZonoBundle.zonotope`](../../../src/CORALean/ContSet/Conversion/Real/ZonoBundle_to_Zonotope.lean), [`ZonoBundle.zonotope_contains`](../../../src/CORALean/ContSet/Conversion/Real/ZonoBundle_to_Zonotope.lean) · float: [`ZonoBundle.zonotope`](../../../src/CORALean/ContSet/Conversion/Float/ZonoBundle_to_Zonotope.lean), [`ZonoBundle.zonotope_contains`](../../../src/CORALean/ContSet/Conversion/Float/ZonoBundle_to_Zonotope.lean) |  |

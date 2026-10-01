@@ -1,0 +1,47 @@
+import CORALean.ContSet.Zonotope.Real.Operations.ReduceLineCl
+
+/-!
+# `Zonotope.reduceLineCl` bounds the generator count
+
+`reduceByBasis` appends one generator per axis, as `reduceBy` does, so the count is
+`(o - 1) * n + n = o * n` above the order and unchanged at or below it, the bound
+of `reducePCA_order_le`, here for [1, Alg. 3]. At `o = 0` there is nothing to state.
+
+## References
+
+* [1] A.-K. Kopetzki, B. Schürmann and M. Althoff. "Methods for Order Reduction of
+      Zonotopes". In Proc. of the 56th IEEE Conference on Decision and Control (CDC), pp.
+      5626-5633, 2017.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       01-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+open scoped Classical
+
+variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem Zonotope.reduceLineCl_order_le (Z : Zonotope (Vec ℝ n)) {o : ℕ} (ho : 0 < o) (ξ : ℝ)
+    (fuel runs : ℕ) : (Z.reduceLineCl o ξ fuel runs).h ≤ o * n := by -- --- PROOF ---
+  have hK : (o - 1) * n + n = o * n := by
+    rw [Nat.sub_one_mul, Nat.sub_add_cancel (Nat.le_mul_of_pos_left n ho)]
+  unfold Zonotope.reduceLineCl
+  split_ifs with hlt
+  · exact le_of_eq hK
+  · exact Nat.le_of_not_lt hlt
+
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

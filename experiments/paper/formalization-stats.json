@@ -1,0 +1,2418 @@
+{
+  "classes": [
+    "correct",
+    "underspecified",
+    "proof-gap",
+    "fixed",
+    "false"
+  ],
+  "out_of_scope_reasons": [
+    "restated",
+    "mathlib",
+    "not-a-claim",
+    "done-differently",
+    "not-covered"
+  ],
+  "totals": {
+    "papers": 28,
+    "papers_with_findings": 21,
+    "in_scope": 308,
+    "formalized": 300,
+    "not_formalized": 8,
+    "out_of_scope": 116,
+    "out_of_scope_by_reason": {
+      "restated": 78,
+      "mathlib": 5,
+      "not-a-claim": 20,
+      "done-differently": 4,
+      "not-covered": 9
+    },
+    "by_class": {
+      "correct": 216,
+      "underspecified": 45,
+      "proof-gap": 19,
+      "fixed": 20,
+      "false": 0
+    }
+  },
+  "papers": [
+    {
+      "page": "1919/gronwall-annals-derivatives.md",
+      "label": "Gronwall 1919",
+      "year": 1919,
+      "title": "Note on the derivatives with respect to a parameter of the solutions of a system of differential equations",
+      "in_scope": 0,
+      "formalized": 0,
+      "not_formalized": 0,
+      "out_of_scope": 6,
+      "out_of_scope_by_reason": {
+        "restated": 0,
+        "mathlib": 1,
+        "not-a-claim": 1,
+        "done-differently": 0,
+        "not-covered": 4
+      },
+      "by_class": {
+        "correct": 0,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": []
+    },
+    {
+      "page": "1952/radstrom-embedding.md",
+      "label": "Radstrom 1952",
+      "year": 1952,
+      "title": "An embedding theorem for spaces of convex sets",
+      "in_scope": 3,
+      "formalized": 3,
+      "not_formalized": 0,
+      "out_of_scope": 2,
+      "out_of_scope_by_reason": {
+        "restated": 0,
+        "mathlib": 0,
+        "not-a-claim": 0,
+        "done-differently": 0,
+        "not-covered": 2
+      },
+      "by_class": {
+        "correct": 0,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 3,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Lemma 1",
+          "class": "fixed",
+          "reason": "false as printed at `X = ∅`; formalized with `X` nonempty"
+        },
+        {
+          "result": "Lemma 2",
+          "class": "fixed",
+          "reason": "false as printed at `X = ∅`; formalized with `X` nonempty"
+        },
+        {
+          "result": "Lemma 3",
+          "class": "fixed",
+          "reason": "false as printed at `X = ∅`; formalized with `X` nonempty"
+        }
+      ]
+    },
+    {
+      "page": "2003/combastel-ecc-state-bounding-observer.md",
+      "label": "Combastel 2003",
+      "year": 2003,
+      "title": "A state bounding observer based on zonotopes",
+      "in_scope": 5,
+      "formalized": 5,
+      "not_formalized": 0,
+      "out_of_scope": 1,
+      "out_of_scope_by_reason": {
+        "restated": 0,
+        "mathlib": 0,
+        "not-a-claim": 1,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 5,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": []
+    },
+    {
+      "page": "2005/girard-hscc-reachability-zonotopes.md",
+      "label": "Girard 2005",
+      "year": 2005,
+      "title": "Reachability of Uncertain Linear Systems Using Zonotopes",
+      "in_scope": 7,
+      "formalized": 3,
+      "not_formalized": 4,
+      "out_of_scope": 1,
+      "out_of_scope_by_reason": {
+        "restated": 0,
+        "mathlib": 1,
+        "not-a-claim": 0,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 3,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": []
+    },
+    {
+      "page": "2010/althoff-thesis.md",
+      "label": "Althoff 2010",
+      "year": 2010,
+      "title": "Reachability Analysis and its Application to the Safety Assessment of Autonomous Cars",
+      "in_scope": 34,
+      "formalized": 34,
+      "not_formalized": 0,
+      "out_of_scope": 2,
+      "out_of_scope_by_reason": {
+        "restated": 0,
+        "mathlib": 0,
+        "not-a-claim": 2,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 25,
+        "underspecified": 5,
+        "proof-gap": 4,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Prop. 3.1",
+          "class": "proof-gap",
+          "reason": "printed proof pulls one `[−1,1]` out of two independent remainders; the bound holds for another reason"
+        },
+        {
+          "result": "Lemma 3.1",
+          "class": "underspecified",
+          "reason": "no hypothesis on `t`; at `t = 0` the `−1/t` branch is sound but not the exact value claimed"
+        },
+        {
+          "result": "Thm. 3.2",
+          "class": "underspecified",
+          "reason": "powers `(At)^i` carry no association and interval matrix product is not associative: a family of enclosures"
+        },
+        {
+          "result": "Prop. 3.4",
+          "class": "proof-gap",
+          "reason": "omitted proof rests on `A⁻¹E = E/‖A‖∞`, which fails for a general `A`; the claim holds by a direct argument"
+        },
+        {
+          "result": "Alg. 4",
+          "class": "underspecified",
+          "reason": "line 2 subtracts `P̃(r)`, which cancels only for a point (Alg. 3), not the box here; formalized with the point-case arrangement"
+        },
+        {
+          "result": "Prop. 3.6",
+          "class": "underspecified",
+          "reason": "the quadratic term is carried unconditionally, which presupposes `η ≥ 2`"
+        },
+        {
+          "result": "Cor. 3.2",
+          "class": "proof-gap",
+          "reason": "proof claims the Hessian range is independent of `z*`; it is not, but a bound valid at any `z*` is valid at the centre"
+        },
+        {
+          "result": "Prop. 3.8",
+          "class": "proof-gap",
+          "reason": "`Z₁ ∩ Z₂ = Z*` is read off `A+(B∩C) = (A+B)∩(A+C)`, false for sets; holds because `Z*` is convex"
+        },
+        {
+          "result": "Heuristic 3.1",
+          "class": "underspecified",
+          "reason": "measure printed as a product, but the sentence justifying it needs a sum; formalized as printed"
+        }
+      ]
+    },
+    {
+      "page": "2011/althoff-cdc-zonotope-bundles.md",
+      "label": "Althoff 2011 (cdc)",
+      "year": 2011,
+      "title": "Zonotope Bundles for the Efficient Computation of Reachable Sets",
+      "in_scope": 16,
+      "formalized": 14,
+      "not_formalized": 2,
+      "out_of_scope": 7,
+      "out_of_scope_by_reason": {
+        "restated": 4,
+        "mathlib": 0,
+        "not-a-claim": 3,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 9,
+        "underspecified": 3,
+        "proof-gap": 0,
+        "fixed": 2,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Prop. 7",
+          "class": "fixed",
+          "reason": "the printed iff is false in the \"if\" direction; see Findings"
+        },
+        {
+          "result": "Eq. 2",
+          "class": "fixed",
+          "reason": "the printed `Z_∩¹ ∩ Z_∩² = ∅` is false, the halves share the cut; see Findings"
+        },
+        {
+          "result": "Heuristic pca",
+          "class": "underspecified",
+          "reason": "the paper needs the bundle's vertices and the representation has no vertex computation, so they are an argument; no property of the axes is claimed beyond their variance"
+        },
+        {
+          "result": "Heuristic fil",
+          "class": "underspecified",
+          "reason": "\"short\" and \"nearly parallel\" carry no thresholds; the length stage is method C's and near-parallel subsets are left to lose the determinant search; no property is claimed"
+        },
+        {
+          "result": "Heuristic flow",
+          "class": "underspecified",
+          "reason": "\"most aligned\" is read as largest `|f_i|`, and the paper does not say what happens at `f = 0`, where the matrix is singular"
+        }
+      ]
+    },
+    {
+      "page": "2011/althoff-reachability-parametric-uncertainties.md",
+      "label": "Althoff 2011 (reachability)",
+      "year": 2011,
+      "title": "Analyzing Reachability of Linear Dynamic Systems with Parametric Uncertainties",
+      "in_scope": 4,
+      "formalized": 4,
+      "not_formalized": 0,
+      "out_of_scope": 0,
+      "out_of_scope_by_reason": {
+        "restated": 0,
+        "mathlib": 0,
+        "not-a-claim": 0,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 3,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 1,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Prop. 3",
+          "class": "fixed",
+          "reason": "printed generators `L^(j)` are off by a factor of two (confirmed erratum)"
+        }
+      ]
+    },
+    {
+      "page": "2013/althoff-hscc-conservative-polynomialization.md",
+      "label": "Althoff 2013",
+      "year": 2013,
+      "title": "Reachability Analysis of Nonlinear Systems using Conservative Polynomialization and Non-Convex Sets",
+      "in_scope": 6,
+      "formalized": 6,
+      "not_formalized": 0,
+      "out_of_scope": 2,
+      "out_of_scope_by_reason": {
+        "restated": 2,
+        "mathlib": 0,
+        "not-a-claim": 0,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 4,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 2,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Eq. 7",
+          "class": "fixed",
+          "reason": "Sec. 4.2 prints `=` for `varInputs`; only `⊇` holds (one-dimensional counterexample); formalized as an enclosure"
+        },
+        {
+          "result": "Prop. 2",
+          "class": "fixed",
+          "reason": "stretch factor `1+γⱼ` undershoots for `γⱼ < 0`; formalized as `1+|γⱼ|`"
+        }
+      ]
+    },
+    {
+      "page": "2015/althoff-arxiv-minkowski-difference.md",
+      "label": "Althoff 2015",
+      "year": 2015,
+      "title": "On Computing the Minkowski Difference of Zonotopes",
+      "in_scope": 16,
+      "formalized": 16,
+      "not_formalized": 0,
+      "out_of_scope": 1,
+      "out_of_scope_by_reason": {
+        "restated": 1,
+        "mathlib": 0,
+        "not-a-claim": 0,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 10,
+        "underspecified": 3,
+        "proof-gap": 1,
+        "fixed": 2,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Lemma 1",
+          "class": "underspecified",
+          "reason": "convexity is printed for the subtrahend; the argument needs it of the minuend"
+        },
+        {
+          "result": "Thm. 1",
+          "class": "proof-gap",
+          "reason": "eq. (8) is false for non-convex sets; the theorem holds since every set the recursion reaches is convex"
+        },
+        {
+          "result": "Prop. 2",
+          "class": "underspecified",
+          "reason": "needs a minimum H-representation and a full-dimensional difference, neither printed"
+        },
+        {
+          "result": "Alg. 1",
+          "class": "underspecified",
+          "reason": "line 11 loop test is printed the wrong way round; line 4 `µ ← inf` is no real number"
+        },
+        {
+          "result": "Prop. 5",
+          "class": "fixed",
+          "reason": "false for alignment factors outside `[0,1]` (one generator in ℝ); formalized with `0 ≤ γᵢ ≤ 1`"
+        },
+        {
+          "result": "Prop. 6",
+          "class": "fixed",
+          "reason": "false without `µ ≥ 0` (explicit pair in ℝ²); (23)'s normal is printed with the wrong sign"
+        }
+      ]
+    },
+    {
+      "page": "2016/scott-automatica-constrained-zonotopes.md",
+      "label": "Scott 2016",
+      "year": 2016,
+      "title": "Constrained zonotopes: A new tool for set-based estimation and fault detection",
+      "in_scope": 10,
+      "formalized": 9,
+      "not_formalized": 1,
+      "out_of_scope": 6,
+      "out_of_scope_by_reason": {
+        "restated": 1,
+        "mathlib": 0,
+        "not-a-claim": 3,
+        "done-differently": 0,
+        "not-covered": 2
+      },
+      "by_class": {
+        "correct": 9,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": []
+    },
+    {
+      "page": "2017/kipf-iclr-gcn.md",
+      "label": "Kipf 2017",
+      "year": 2017,
+      "title": "Semi-Supervised Classification with Graph Convolutional Networks",
+      "in_scope": 1,
+      "formalized": 1,
+      "not_formalized": 0,
+      "out_of_scope": 4,
+      "out_of_scope_by_reason": {
+        "restated": 0,
+        "mathlib": 0,
+        "not-a-claim": 4,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 1,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": []
+    },
+    {
+      "page": "2017/kopetzki-cdc-order-reduction.md",
+      "label": "Kopetzki 2017",
+      "year": 2017,
+      "title": "Methods for Order Reduction of Zonotopes",
+      "in_scope": 4,
+      "formalized": 3,
+      "not_formalized": 1,
+      "out_of_scope": 4,
+      "out_of_scope_by_reason": {
+        "restated": 3,
+        "mathlib": 0,
+        "not-a-claim": 1,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 2,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Alg. 3",
+          "class": "underspecified",
+          "reason": "the listing needs L invertible and does not say how it is initialised or what an empty cluster does"
+        }
+      ]
+    },
+    {
+      "page": "2020/kochdumper-hscc-utilizing-dependencies.md",
+      "label": "Kochdumper 2020",
+      "year": 2020,
+      "title": "Utilizing Dependencies to Obtain Subsets of Reachable Sets",
+      "in_scope": 11,
+      "formalized": 11,
+      "not_formalized": 0,
+      "out_of_scope": 4,
+      "out_of_scope_by_reason": {
+        "restated": 3,
+        "mathlib": 1,
+        "not-a-claim": 0,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 9,
+        "underspecified": 0,
+        "proof-gap": 2,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Lemma 3",
+          "class": "proof-gap",
+          "reason": "rests on monotonicity assumed of every primitive, false for `zono` and `postΔ`; carried as hypotheses"
+        },
+        {
+          "result": "Thm. 1",
+          "class": "proof-gap",
+          "reason": "printed proof route needs `reduce` monotone as a map of sets, which it is not; proved by another induction"
+        }
+      ]
+    },
+    {
+      "page": "2020/wetzlinger-cdc-adaptive-tuning.md",
+      "label": "Wetzlinger 2020",
+      "year": 2020,
+      "title": "Adaptive parameter tuning for reachability analysis of linear systems",
+      "in_scope": 12,
+      "formalized": 12,
+      "not_formalized": 0,
+      "out_of_scope": 1,
+      "out_of_scope_by_reason": {
+        "restated": 1,
+        "mathlib": 0,
+        "not-a-claim": 0,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 7,
+        "underspecified": 3,
+        "proof-gap": 1,
+        "fixed": 1,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Prop. 2",
+          "class": "fixed",
+          "reason": "needs `ε_P(Δt)/Δt → 0`, which Def. 1 does not give (a linear `ε_P` satisfies it); formalized with that hypothesis"
+        },
+        {
+          "result": "Thm. 1",
+          "class": "proof-gap",
+          "reason": "termination argument does not follow (steps may shrink geometrically); the error half is proved for runs that stay within `t_f`"
+        },
+        {
+          "result": "Alg. 1",
+          "class": "underspecified",
+          "reason": "nothing clips `Δtᵢ` to `t_f − tᵢ`"
+        },
+        {
+          "result": "Alg. 2",
+          "class": "underspecified",
+          "reason": "line 12 has the wrong connective (`∧` for `∨`); the step sweep has no iteration bound"
+        },
+        {
+          "result": "Alg. 3",
+          "class": "underspecified",
+          "reason": "line 7 has the wrong connective, twice, and returns the order reduced past the budget"
+        }
+      ]
+    },
+    {
+      "page": "2021/kochdumper-tac-sparse-polyzonotopes.md",
+      "label": "Kochdumper 2021",
+      "year": 2021,
+      "title": "Sparse Polynomial Zonotopes: A Novel Set Representation for Reachability Analysis",
+      "in_scope": 21,
+      "formalized": 21,
+      "not_formalized": 0,
+      "out_of_scope": 6,
+      "out_of_scope_by_reason": {
+        "restated": 5,
+        "mathlib": 0,
+        "not-a-claim": 0,
+        "done-differently": 0,
+        "not-covered": 1
+      },
+      "by_class": {
+        "correct": 15,
+        "underspecified": 5,
+        "proof-gap": 1,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Prop. 3",
+          "class": "underspecified",
+          "reason": "typo: zero exponent column written with `n` rows, the factor count `l` is meant"
+        },
+        {
+          "result": "Prop. 5",
+          "class": "proof-gap",
+          "reason": "proof calls an all-even monomial strictly positive; it is non-negative; the result is unaffected"
+        },
+        {
+          "result": "Prop. 6",
+          "class": "underspecified",
+          "reason": "typo (`n` for the factor count `p`), undefined overlines, and the independent block must be read as dependent"
+        },
+        {
+          "result": "Prop. 7",
+          "class": "underspecified",
+          "reason": "typo: factor box written with `n` rows, the factor count `p` is meant"
+        },
+        {
+          "result": "Prop. 9",
+          "class": "underspecified",
+          "reason": "typo in eq. (11): `n` rows where the factor count `p₁` is meant"
+        },
+        {
+          "result": "Alg. 1",
+          "class": "underspecified",
+          "reason": "`enlarge`'s stated domain `λ > 1` disagrees with every printed value (`0.1`); `p_d` is missing from `Require`"
+        }
+      ]
+    },
+    {
+      "page": "2021/wetzlinger-hscc-adaptive-tuning-nonlinear.md",
+      "label": "Wetzlinger 2021",
+      "year": 2021,
+      "title": "Adaptive Parameter Tuning for Reachability Analysis of Nonlinear Systems",
+      "in_scope": 5,
+      "formalized": 5,
+      "not_formalized": 0,
+      "out_of_scope": 1,
+      "out_of_scope_by_reason": {
+        "restated": 1,
+        "mathlib": 0,
+        "not-a-claim": 0,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 0,
+        "underspecified": 4,
+        "proof-gap": 1,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Lemma 3.1",
+          "class": "underspecified",
+          "reason": "typo: codomain `I ⊂ ℝⁿ` printed, `I ⊂ ℝ` meant"
+        },
+        {
+          "result": "Thm. 3.2",
+          "class": "underspecified",
+          "reason": "typo in eq. (15): compares the generator index `k` with `i*`; `i ≠ i*` is meant"
+        },
+        {
+          "result": "Prop. 1",
+          "class": "proof-gap",
+          "reason": "proof substitutes the truncated (6) while `λᵢ` ignores `η_abs`; formalized at the untruncated series"
+        },
+        {
+          "result": "Alg. 1",
+          "class": "underspecified",
+          "reason": "line 3 names no input expansion point; lines 5 and 13 index `τ` one step ahead"
+        },
+        {
+          "result": "Alg. 2",
+          "class": "underspecified",
+          "reason": "first-step loop tests a gain it has not computed and scales an uninitialized variable; eq. (32) prints `min` for `max`"
+        }
+      ]
+    },
+    {
+      "page": "2022/kochdumper-arxiv-nn-polyzono.md",
+      "label": "Kochdumper 2022",
+      "year": 2022,
+      "title": "Open- and Closed-Loop Neural Network Verification using Polynomial Zonotopes",
+      "in_scope": 4,
+      "formalized": 4,
+      "not_formalized": 0,
+      "out_of_scope": 3,
+      "out_of_scope_by_reason": {
+        "restated": 2,
+        "mathlib": 0,
+        "not-a-claim": 0,
+        "done-differently": 1,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 4,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": []
+    },
+    {
+      "page": "2022/raghuraman-koeln-constrained-zonotopes.md",
+      "label": "Raghuraman 2022",
+      "year": 2022,
+      "title": "Set operations and order reductions for constrained zonotopes",
+      "in_scope": 9,
+      "formalized": 9,
+      "not_formalized": 0,
+      "out_of_scope": 9,
+      "out_of_scope_by_reason": {
+        "restated": 9,
+        "mathlib": 0,
+        "not-a-claim": 0,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 8,
+        "underspecified": 0,
+        "proof-gap": 1,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Thm. 2",
+          "class": "proof-gap",
+          "reason": "the `⊆` direction is asserted in one line and needs a dependency-closure hypothesis the paper never states"
+        }
+      ]
+    },
+    {
+      "page": "2022/wetzlinger-nahs-abstraction-error.md",
+      "label": "Wetzlinger 2022",
+      "year": 2022,
+      "title": "Adaptive Reachability Algorithms for Nonlinear Systems Using Abstraction Error Analysis",
+      "in_scope": 13,
+      "formalized": 13,
+      "not_formalized": 0,
+      "out_of_scope": 2,
+      "out_of_scope_by_reason": {
+        "restated": 1,
+        "mathlib": 1,
+        "not-a-claim": 0,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 6,
+        "underspecified": 4,
+        "proof-gap": 1,
+        "fixed": 2,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Def. 4",
+          "class": "underspecified",
+          "reason": "the two forms in (28) agree only under convexity and cancellation, which `Alg. 1`'s zonotopes meet"
+        },
+        {
+          "result": "Lemma 2",
+          "class": "underspecified",
+          "reason": "proof uses one fixed linearization matrix `A`, which the statement does not say; formalized at fixed `A ≠ 0`"
+        },
+        {
+          "result": "Prop. 1",
+          "class": "underspecified",
+          "reason": "`h ≥ 0` is left implicit"
+        },
+        {
+          "result": "Lemma 3",
+          "class": "fixed",
+          "reason": "dichotomy false for merely smooth `f` (`exp(−1/h²)`); formalized for analytic `f`"
+        },
+        {
+          "result": "Thm. 2",
+          "class": "proof-gap",
+          "reason": "limit taken termwise in the series without uniform control in `p`; that step is a hypothesis here"
+        },
+        {
+          "result": "Def. 6",
+          "class": "fixed",
+          "reason": "eq. (40) prints a maximum where a minimum is meant (the maximum is `∞` for infinite series)"
+        },
+        {
+          "result": "Alg. 2",
+          "class": "underspecified",
+          "reason": "line 10 reads a gain that line 16 has not computed yet; the previous step's gain is meant"
+        }
+      ]
+    },
+    {
+      "page": "2023/kochdumper-constrained-polyzonotopes.md",
+      "label": "Kochdumper 2023",
+      "year": 2023,
+      "title": "Constrained Polynomial Zonotopes",
+      "in_scope": 17,
+      "formalized": 17,
+      "not_formalized": 0,
+      "out_of_scope": 7,
+      "out_of_scope_by_reason": {
+        "restated": 5,
+        "mathlib": 0,
+        "not-a-claim": 0,
+        "done-differently": 2,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 14,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 2,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Prop. 9",
+          "class": "fixed",
+          "reason": "false when exactly one operand is empty (one-dimensional counterexample); formalized with both nonempty"
+        },
+        {
+          "result": "Thm. 1",
+          "class": "fixed",
+          "reason": "false when an exponent matrix has an all-zero column (counterexample `8 ∉ union`); formalized with `NoZeroCol`"
+        },
+        {
+          "result": "Prop. 14",
+          "class": "underspecified",
+          "reason": "`v₂` divides by zero at `u = −l`, which includes `[−1,1]`; removable, never removed"
+        }
+      ]
+    },
+    {
+      "page": "2023/ladner-hscc-abstraction-refinement.md",
+      "label": "Ladner 2023 (hscc)",
+      "year": 2023,
+      "title": "Automatic Abstraction Refinement in Neural Network Verification using Sensitivity Analysis",
+      "in_scope": 27,
+      "formalized": 27,
+      "not_formalized": 0,
+      "out_of_scope": 9,
+      "out_of_scope_by_reason": {
+        "restated": 8,
+        "mathlib": 0,
+        "not-a-claim": 0,
+        "done-differently": 1,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 21,
+        "underspecified": 5,
+        "proof-gap": 1,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Def. 2.3",
+          "class": "underspecified",
+          "reason": "needs differentiability of every layer; differentiability of the network does not suffice"
+        },
+        {
+          "result": "Prop. 2.12",
+          "class": "underspecified",
+          "reason": "shares the independent generators, so it is a subset of the Cartesian product, not the product"
+        },
+        {
+          "result": "Prop. 3.3",
+          "class": "underspecified",
+          "reason": "`merge` leaves the all-zero column Def. 2.4 forbids: sorted, but not regular"
+        },
+        {
+          "result": "Prop. 3.4",
+          "class": "underspecified",
+          "reason": "computes exact addition at shared factors, a subset of the Minkowski sum; result not regular"
+        },
+        {
+          "result": "Prop. 3.5",
+          "class": "underspecified",
+          "reason": "regularity fails at all-zero columns, as at Prop. 3.3"
+        },
+        {
+          "result": "Thm. 4.14",
+          "class": "proof-gap",
+          "reason": "convergence needs a Lipschitz bound on every network tail, which the printed proof leaves out"
+        }
+      ]
+    },
+    {
+      "page": "2023/ladner-tmlr-network-reduction.md",
+      "label": "Ladner 2023 (tmlr)",
+      "year": 2023,
+      "title": "Fully Automatic Neural Network Reduction for Formal Verification",
+      "in_scope": 14,
+      "formalized": 14,
+      "not_formalized": 0,
+      "out_of_scope": 5,
+      "out_of_scope_by_reason": {
+        "restated": 4,
+        "mathlib": 0,
+        "not-a-claim": 1,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 11,
+        "underspecified": 2,
+        "proof-gap": 0,
+        "fixed": 1,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Eq. 6",
+          "class": "underspecified",
+          "reason": "does not say how disjointness of the dynamic buckets is ensured"
+        },
+        {
+          "result": "Alg. 1",
+          "class": "underspecified",
+          "reason": "need not terminate (a neuron fixed at `1` against ReLU's bucket at `0`); no bound on either loop"
+        },
+        {
+          "result": "Thm. 1",
+          "class": "fixed",
+          "reason": "\"for any reduction rate ρ\" fails where `Alg. 1` does not end; formalized for the runs that end"
+        }
+      ]
+    },
+    {
+      "page": "2023/wetzlinger-arxiv-backward-reachability.md",
+      "label": "Wetzlinger 2023 (arxiv)",
+      "year": 2023,
+      "title": "Backward Reachability Analysis of Perturbed Continuous-Time Linear Systems Using Set Propagation",
+      "in_scope": 11,
+      "formalized": 11,
+      "not_formalized": 0,
+      "out_of_scope": 8,
+      "out_of_scope_by_reason": {
+        "restated": 7,
+        "mathlib": 0,
+        "not-a-claim": 1,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 3,
+        "underspecified": 3,
+        "proof-gap": 2,
+        "fixed": 3,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Def. 6",
+          "class": "underspecified",
+          "reason": "quantifies over all input signals, for which no solution exists; needs Carathéodory's class"
+        },
+        {
+          "result": "Def. 7",
+          "class": "underspecified",
+          "reason": "as Def. 6: quantifies over signals for which no solution exists"
+        },
+        {
+          "result": "Prop. 1",
+          "class": "fixed",
+          "reason": "(23) of arXiv v1 sums from `i = 1`, dropping the first order, so the enclosure fails; v3 restores `i = 0`"
+        },
+        {
+          "result": "Prop. 3",
+          "class": "fixed",
+          "reason": "`⊇` false as printed (non-measurable signals empty the left side); equality for Carathéodory runs"
+        },
+        {
+          "result": "Thm. 1",
+          "class": "proof-gap",
+          "reason": "proof indexes (54) by the polytope instead of the row; the `⊆` also fails under v1's `Alg. 1`"
+        },
+        {
+          "result": "Alg. 1",
+          "class": "underspecified",
+          "reason": "v1 folds `p_(j)` with `min` where (46) needs `max`, and (44) drops the curvature term; v3 initialises `p` to `∞`, vacuous"
+        },
+        {
+          "result": "Prop. 5",
+          "class": "fixed",
+          "reason": "as printed `R^∃∀(−t) = ∅` whatever `X_end` is; equality for Carathéodory runs"
+        },
+        {
+          "result": "Thm. 2",
+          "class": "proof-gap",
+          "reason": "erodes a union slice by slice, which holds one way only (counterexample in ℝ); the conclusion is not refuted"
+        }
+      ]
+    },
+    {
+      "page": "2023/wetzlinger-fully-automated-verification.md",
+      "label": "Wetzlinger 2023 (fully)",
+      "year": 2023,
+      "title": "Fully-Automated Verification of Linear Systems Using Inner- and Outer-Approximations of Reachable Sets",
+      "in_scope": 19,
+      "formalized": 19,
+      "not_formalized": 0,
+      "out_of_scope": 6,
+      "out_of_scope_by_reason": {
+        "restated": 5,
+        "mathlib": 1,
+        "not-a-claim": 0,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 12,
+        "underspecified": 4,
+        "proof-gap": 3,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Alg. 1",
+          "class": "underspecified",
+          "reason": "typo: line 5 assigns `τ_{k+1}` but lines 9, 11 and 13 read `τ_k`"
+        },
+        {
+          "result": "Prop. 1",
+          "class": "proof-gap",
+          "reason": "proof step through the inner approximation does not carry the printed constant (a `√2` appears); a Minkowski-sum reading does"
+        },
+        {
+          "result": "Prop. 3",
+          "class": "underspecified",
+          "reason": "proof hats the set whose monotonicity it needs (notation slip); the claim is unaffected"
+        },
+        {
+          "result": "Alg. 2",
+          "class": "underspecified",
+          "reason": "`η_k` search is ill-defined at `η = 1`, line 23 does not feed the reduction back (eq. (28) double counts), line 27 hats `H(t_k)`"
+        },
+        {
+          "result": "Thm. 1",
+          "class": "proof-gap",
+          "reason": "proof lands every search but never bounds the number of steps"
+        },
+        {
+          "result": "Prop. 8",
+          "class": "underspecified",
+          "reason": "presupposes a feasible program; `min ∅` would make a `sInf`-valued reading false"
+        },
+        {
+          "result": "Lemma 3",
+          "class": "proof-gap",
+          "reason": "proof substitutes `Δt = 0` into the term whose rate it is about; its `O(Δt²)` step needs `η ≥ 1`; the claim holds"
+        }
+      ]
+    },
+    {
+      "page": "2023/wetzlinger-hscc-support-functions.md",
+      "label": "Wetzlinger 2023 (hscc)",
+      "year": 2023,
+      "title": "Fully-Automated Verification of Linear Systems Using Reachability Analysis with Support Functions",
+      "in_scope": 5,
+      "formalized": 5,
+      "not_formalized": 0,
+      "out_of_scope": 4,
+      "out_of_scope_by_reason": {
+        "restated": 3,
+        "mathlib": 0,
+        "not-a-claim": 1,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 3,
+        "underspecified": 2,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Def. 4",
+          "class": "underspecified",
+          "reason": "`Q` is semi-definite but written through `Q⁻¹`, which a singular `Q` does not admit"
+        },
+        {
+          "result": "Alg. 2",
+          "class": "underspecified",
+          "reason": "the falsification test is nested under the safety test and can never fire: it never returns unsafe"
+        }
+      ]
+    },
+    {
+      "page": "2024/ladner-aaai-exponent-relaxation.md",
+      "label": "Ladner 2024",
+      "year": 2024,
+      "title": "Exponent Relaxation of Polynomial Zonotopes and Its Applications in Formal Neural Network Verification",
+      "in_scope": 8,
+      "formalized": 8,
+      "not_formalized": 0,
+      "out_of_scope": 6,
+      "out_of_scope_by_reason": {
+        "restated": 5,
+        "mathlib": 0,
+        "not-a-claim": 1,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 7,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 1,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Thm. 1",
+          "class": "fixed",
+          "reason": "centre shift printed `+ξ_E/2`, is `−ξ_E/2` under the edge orientation; evenness of `E_{k₀,j}` omitted"
+        }
+      ]
+    },
+    {
+      "page": "2025/bassan-icml-explaining-fast-and-slow.md",
+      "label": "Bassan 2025",
+      "year": 2025,
+      "title": "Explaining Fast and Slow: Abstraction and Refinement of Provable Explanations",
+      "in_scope": 14,
+      "formalized": 14,
+      "not_formalized": 0,
+      "out_of_scope": 2,
+      "out_of_scope_by_reason": {
+        "restated": 2,
+        "mathlib": 0,
+        "not-a-claim": 0,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 13,
+        "underspecified": 0,
+        "proof-gap": 1,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Prop. 5",
+          "class": "proof-gap",
+          "reason": "minimality argued at the wrong candidate set (needs monotonicity in the pinned set, unstated); refinement must reach `f`"
+        }
+      ]
+    },
+    {
+      "page": "2025/ladner-tmlr-gcn.md",
+      "label": "Ladner 2025",
+      "year": 2025,
+      "title": "Formal Verification of Graph Convolutional Networks with Uncertain Node Features and Uncertain Graph Structure",
+      "in_scope": 12,
+      "formalized": 12,
+      "not_formalized": 0,
+      "out_of_scope": 7,
+      "out_of_scope_by_reason": {
+        "restated": 6,
+        "mathlib": 0,
+        "not-a-claim": 1,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 12,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": []
+    }
+  ],
+  "cora_coverage": {
+    "states": [
+      "proved",
+      "float",
+      "—",
+      "out-of-scope"
+    ],
+    "out_of_scope_reasons": [
+      "plotting/display",
+      "random/sampling",
+      "solver-dependent",
+      "io/conversion-to-matlab-objects",
+      "matlab-runtime",
+      "deprecated"
+    ],
+    "classes": [
+      {
+        "group": "contSet",
+        "class": "affine",
+        "methods": 1,
+        "proved": 0,
+        "float": 0,
+        "not_yet": 1,
+        "out_of_scope": 0,
+        "needs_float": 0,
+        "out_of_scope_by_reason": {
+          "plotting/display": 0,
+          "random/sampling": 0,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 0,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 0,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "contSet",
+        "class": "capsule",
+        "methods": 39,
+        "proved": 5,
+        "float": 0,
+        "not_yet": 26,
+        "out_of_scope": 8,
+        "needs_float": 5,
+        "out_of_scope_by_reason": {
+          "plotting/display": 3,
+          "random/sampling": 2,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 3,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 0,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "contSet",
+        "class": "conPolyZono",
+        "methods": 47,
+        "proved": 14,
+        "float": 9,
+        "not_yet": 16,
+        "out_of_scope": 8,
+        "needs_float": 14,
+        "out_of_scope_by_reason": {
+          "plotting/display": 3,
+          "random/sampling": 2,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 3,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 13,
+          "underspecified": 1,
+          "proof-gap": 0,
+          "fixed": 2,
+          "false": 0
+        }
+      },
+      {
+        "group": "contSet",
+        "class": "conZonotope",
+        "methods": 50,
+        "proved": 11,
+        "float": 8,
+        "not_yet": 20,
+        "out_of_scope": 11,
+        "needs_float": 11,
+        "out_of_scope_by_reason": {
+          "plotting/display": 4,
+          "random/sampling": 2,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 4,
+          "deprecated": 1
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 16,
+          "underspecified": 1,
+          "proof-gap": 1,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "contSet",
+        "class": "contSet",
+        "methods": 101,
+        "proved": 5,
+        "float": 17,
+        "not_yet": 51,
+        "out_of_scope": 28,
+        "needs_float": 5,
+        "out_of_scope_by_reason": {
+          "plotting/display": 9,
+          "random/sampling": 3,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 4,
+          "matlab-runtime": 3,
+          "deprecated": 9
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 8,
+          "underspecified": 1,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "contSet",
+        "class": "ellipsoid",
+        "methods": 50,
+        "proved": 8,
+        "float": 5,
+        "not_yet": 29,
+        "out_of_scope": 8,
+        "needs_float": 8,
+        "out_of_scope_by_reason": {
+          "plotting/display": 3,
+          "random/sampling": 2,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 3,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 1,
+          "underspecified": 1,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "contSet",
+        "class": "emptySet",
+        "methods": 30,
+        "proved": 17,
+        "float": 0,
+        "not_yet": 6,
+        "out_of_scope": 7,
+        "needs_float": 17,
+        "out_of_scope_by_reason": {
+          "plotting/display": 2,
+          "random/sampling": 2,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 3,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 0,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "contSet",
+        "class": "fullspace",
+        "methods": 33,
+        "proved": 17,
+        "float": 0,
+        "not_yet": 9,
+        "out_of_scope": 7,
+        "needs_float": 17,
+        "out_of_scope_by_reason": {
+          "plotting/display": 2,
+          "random/sampling": 2,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 3,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 0,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "contSet",
+        "class": "interval",
+        "methods": 110,
+        "proved": 8,
+        "float": 37,
+        "not_yet": 49,
+        "out_of_scope": 16,
+        "needs_float": 8,
+        "out_of_scope_by_reason": {
+          "plotting/display": 2,
+          "random/sampling": 3,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 2,
+          "matlab-runtime": 9,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 2,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "contSet",
+        "class": "levelSet",
+        "methods": 22,
+        "proved": 0,
+        "float": 0,
+        "not_yet": 16,
+        "out_of_scope": 6,
+        "needs_float": 0,
+        "out_of_scope_by_reason": {
+          "plotting/display": 2,
+          "random/sampling": 1,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 3,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 0,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "contSet",
+        "class": "polyZonotope",
+        "methods": 73,
+        "proved": 13,
+        "float": 10,
+        "not_yet": 37,
+        "out_of_scope": 13,
+        "needs_float": 13,
+        "out_of_scope_by_reason": {
+          "plotting/display": 4,
+          "random/sampling": 2,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 6,
+          "deprecated": 1
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 30,
+          "underspecified": 7,
+          "proof-gap": 1,
+          "fixed": 2,
+          "false": 0
+        }
+      },
+      {
+        "group": "contSet",
+        "class": "polygon",
+        "methods": 46,
+        "proved": 0,
+        "float": 0,
+        "not_yet": 40,
+        "out_of_scope": 6,
+        "needs_float": 0,
+        "out_of_scope_by_reason": {
+          "plotting/display": 2,
+          "random/sampling": 2,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 2,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 0,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "contSet",
+        "class": "polytope",
+        "methods": 58,
+        "proved": 12,
+        "float": 13,
+        "not_yet": 26,
+        "out_of_scope": 7,
+        "needs_float": 12,
+        "out_of_scope_by_reason": {
+          "plotting/display": 2,
+          "random/sampling": 2,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 3,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 5,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "contSet",
+        "class": "probZonotope",
+        "methods": 28,
+        "proved": 0,
+        "float": 0,
+        "not_yet": 22,
+        "out_of_scope": 6,
+        "needs_float": 0,
+        "out_of_scope_by_reason": {
+          "plotting/display": 2,
+          "random/sampling": 2,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 2,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 0,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "contSet",
+        "class": "spectraShadow",
+        "methods": 33,
+        "proved": 3,
+        "float": 1,
+        "not_yet": 21,
+        "out_of_scope": 8,
+        "needs_float": 3,
+        "out_of_scope_by_reason": {
+          "plotting/display": 3,
+          "random/sampling": 2,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 3,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 0,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "contSet",
+        "class": "taylm",
+        "methods": 51,
+        "proved": 0,
+        "float": 0,
+        "not_yet": 46,
+        "out_of_scope": 5,
+        "needs_float": 0,
+        "out_of_scope_by_reason": {
+          "plotting/display": 2,
+          "random/sampling": 1,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 2,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 0,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "contSet",
+        "class": "zonoBundle",
+        "methods": 44,
+        "proved": 3,
+        "float": 12,
+        "not_yet": 22,
+        "out_of_scope": 7,
+        "needs_float": 3,
+        "out_of_scope_by_reason": {
+          "plotting/display": 2,
+          "random/sampling": 2,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 3,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 11,
+          "underspecified": 3,
+          "proof-gap": 0,
+          "fixed": 2,
+          "false": 0
+        }
+      },
+      {
+        "group": "contSet",
+        "class": "zonotope",
+        "methods": 80,
+        "proved": 9,
+        "float": 18,
+        "not_yet": 41,
+        "out_of_scope": 12,
+        "needs_float": 9,
+        "out_of_scope_by_reason": {
+          "plotting/display": 2,
+          "random/sampling": 2,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 2,
+          "matlab-runtime": 4,
+          "deprecated": 2
+        },
+        "cora_issues": 1,
+        "findings": {
+          "correct": 32,
+          "underspecified": 7,
+          "proof-gap": 2,
+          "fixed": 3,
+          "false": 0
+        }
+      },
+      {
+        "group": "contSet",
+        "class": "zoo",
+        "methods": 12,
+        "proved": 0,
+        "float": 0,
+        "not_yet": 12,
+        "out_of_scope": 0,
+        "needs_float": 0,
+        "out_of_scope_by_reason": {
+          "plotting/display": 0,
+          "random/sampling": 0,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 0,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 0,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "contDynamics",
+        "class": "contDynamics",
+        "methods": 19,
+        "proved": 0,
+        "float": 2,
+        "not_yet": 12,
+        "out_of_scope": 5,
+        "needs_float": 0,
+        "out_of_scope_by_reason": {
+          "plotting/display": 2,
+          "random/sampling": 2,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 1,
+          "deprecated": 0
+        },
+        "cora_issues": 1,
+        "findings": {
+          "correct": 1,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "contDynamics",
+        "class": "linParamSys",
+        "methods": 11,
+        "proved": 2,
+        "float": 2,
+        "not_yet": 5,
+        "out_of_scope": 2,
+        "needs_float": 2,
+        "out_of_scope_by_reason": {
+          "plotting/display": 1,
+          "random/sampling": 0,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 1,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 4,
+          "underspecified": 2,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "contDynamics",
+        "class": "linProbSys",
+        "methods": 8,
+        "proved": 0,
+        "float": 0,
+        "not_yet": 6,
+        "out_of_scope": 2,
+        "needs_float": 0,
+        "out_of_scope_by_reason": {
+          "plotting/display": 2,
+          "random/sampling": 0,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 0,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 0,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "contDynamics",
+        "class": "linearARX",
+        "methods": 7,
+        "proved": 0,
+        "float": 1,
+        "not_yet": 5,
+        "out_of_scope": 1,
+        "needs_float": 0,
+        "out_of_scope_by_reason": {
+          "plotting/display": 1,
+          "random/sampling": 0,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 0,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 0,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "contDynamics",
+        "class": "linearSys",
+        "methods": 33,
+        "proved": 8,
+        "float": 6,
+        "not_yet": 14,
+        "out_of_scope": 5,
+        "needs_float": 8,
+        "out_of_scope_by_reason": {
+          "plotting/display": 1,
+          "random/sampling": 1,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 2,
+          "matlab-runtime": 1,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 23,
+          "underspecified": 10,
+          "proof-gap": 8,
+          "fixed": 3,
+          "false": 0
+        }
+      },
+      {
+        "group": "contDynamics",
+        "class": "linearSysDT",
+        "methods": 17,
+        "proved": 1,
+        "float": 4,
+        "not_yet": 11,
+        "out_of_scope": 1,
+        "needs_float": 1,
+        "out_of_scope_by_reason": {
+          "plotting/display": 1,
+          "random/sampling": 0,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 0,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 0,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "contDynamics",
+        "class": "neurNetContrSys",
+        "methods": 5,
+        "proved": 2,
+        "float": 1,
+        "not_yet": 1,
+        "out_of_scope": 1,
+        "needs_float": 2,
+        "out_of_scope_by_reason": {
+          "plotting/display": 1,
+          "random/sampling": 0,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 0,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 2,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "contDynamics",
+        "class": "nonlinDASys",
+        "methods": 13,
+        "proved": 0,
+        "float": 0,
+        "not_yet": 12,
+        "out_of_scope": 1,
+        "needs_float": 0,
+        "out_of_scope_by_reason": {
+          "plotting/display": 1,
+          "random/sampling": 0,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 0,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 0,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "contDynamics",
+        "class": "nonlinParamSys",
+        "methods": 9,
+        "proved": 1,
+        "float": 0,
+        "not_yet": 6,
+        "out_of_scope": 2,
+        "needs_float": 1,
+        "out_of_scope_by_reason": {
+          "plotting/display": 1,
+          "random/sampling": 0,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 1,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 0,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "contDynamics",
+        "class": "nonlinearARX",
+        "methods": 8,
+        "proved": 0,
+        "float": 0,
+        "not_yet": 7,
+        "out_of_scope": 1,
+        "needs_float": 0,
+        "out_of_scope_by_reason": {
+          "plotting/display": 1,
+          "random/sampling": 0,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 0,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 0,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "contDynamics",
+        "class": "nonlinearSys",
+        "methods": 18,
+        "proved": 6,
+        "float": 1,
+        "not_yet": 9,
+        "out_of_scope": 2,
+        "needs_float": 6,
+        "out_of_scope_by_reason": {
+          "plotting/display": 1,
+          "random/sampling": 0,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 1,
+          "deprecated": 0
+        },
+        "cora_issues": 1,
+        "findings": {
+          "correct": 9,
+          "underspecified": 7,
+          "proof-gap": 5,
+          "fixed": 3,
+          "false": 0
+        }
+      },
+      {
+        "group": "contDynamics",
+        "class": "nonlinearSysDT",
+        "methods": 11,
+        "proved": 4,
+        "float": 0,
+        "not_yet": 6,
+        "out_of_scope": 1,
+        "needs_float": 4,
+        "out_of_scope_by_reason": {
+          "plotting/display": 1,
+          "random/sampling": 0,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 0,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 0,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "hybridDynamics",
+        "class": "abstractReset",
+        "methods": 4,
+        "proved": 0,
+        "float": 0,
+        "not_yet": 4,
+        "out_of_scope": 0,
+        "needs_float": 0,
+        "out_of_scope_by_reason": {
+          "plotting/display": 0,
+          "random/sampling": 0,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 0,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 0,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "hybridDynamics",
+        "class": "hybridAutomaton",
+        "methods": 15,
+        "proved": 1,
+        "float": 1,
+        "not_yet": 8,
+        "out_of_scope": 5,
+        "needs_float": 1,
+        "out_of_scope_by_reason": {
+          "plotting/display": 2,
+          "random/sampling": 1,
+          "solver-dependent": 1,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 1,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 3,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "hybridDynamics",
+        "class": "hybridDynamics",
+        "methods": 2,
+        "proved": 0,
+        "float": 0,
+        "not_yet": 2,
+        "out_of_scope": 0,
+        "needs_float": 0,
+        "out_of_scope_by_reason": {
+          "plotting/display": 0,
+          "random/sampling": 0,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 0,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 0,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "hybridDynamics",
+        "class": "linearReset",
+        "methods": 10,
+        "proved": 0,
+        "float": 0,
+        "not_yet": 10,
+        "out_of_scope": 0,
+        "needs_float": 0,
+        "out_of_scope_by_reason": {
+          "plotting/display": 0,
+          "random/sampling": 0,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 0,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 0,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "hybridDynamics",
+        "class": "location",
+        "methods": 24,
+        "proved": 4,
+        "float": 0,
+        "not_yet": 18,
+        "out_of_scope": 2,
+        "needs_float": 4,
+        "out_of_scope_by_reason": {
+          "plotting/display": 1,
+          "random/sampling": 0,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 1,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 0,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "hybridDynamics",
+        "class": "nonlinearReset",
+        "methods": 9,
+        "proved": 0,
+        "float": 0,
+        "not_yet": 9,
+        "out_of_scope": 0,
+        "needs_float": 0,
+        "out_of_scope_by_reason": {
+          "plotting/display": 0,
+          "random/sampling": 0,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 0,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 0,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "hybridDynamics",
+        "class": "parallelHybridAutomaton",
+        "methods": 13,
+        "proved": 1,
+        "float": 4,
+        "not_yet": 5,
+        "out_of_scope": 3,
+        "needs_float": 1,
+        "out_of_scope_by_reason": {
+          "plotting/display": 1,
+          "random/sampling": 1,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 1,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 0,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "hybridDynamics",
+        "class": "transition",
+        "methods": 12,
+        "proved": 1,
+        "float": 1,
+        "not_yet": 8,
+        "out_of_scope": 2,
+        "needs_float": 1,
+        "out_of_scope_by_reason": {
+          "plotting/display": 1,
+          "random/sampling": 0,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 1,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 0,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "nn",
+        "class": "layers",
+        "methods": 43,
+        "proved": 3,
+        "float": 14,
+        "not_yet": 25,
+        "out_of_scope": 1,
+        "needs_float": 3,
+        "out_of_scope_by_reason": {
+          "plotting/display": 1,
+          "random/sampling": 0,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 0,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 0,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "nn",
+        "class": "neuralNetwork",
+        "methods": 61,
+        "proved": 3,
+        "float": 7,
+        "not_yet": 30,
+        "out_of_scope": 21,
+        "needs_float": 3,
+        "out_of_scope_by_reason": {
+          "plotting/display": 3,
+          "random/sampling": 2,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 15,
+          "matlab-runtime": 1,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 49,
+          "underspecified": 3,
+          "proof-gap": 2,
+          "fixed": 1,
+          "false": 0
+        }
+      }
+    ],
+    "groups": {
+      "contSet": {
+        "methods": 908,
+        "proved": 125,
+        "float": 130,
+        "not_yet": 490,
+        "out_of_scope": 163,
+        "needs_float": 125,
+        "cora_issues": 1,
+        "out_of_scope_by_reason": {
+          "plotting/display": 49,
+          "random/sampling": 34,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 8,
+          "matlab-runtime": 59,
+          "deprecated": 13
+        },
+        "findings": {
+          "correct": 118,
+          "underspecified": 21,
+          "proof-gap": 4,
+          "fixed": 9,
+          "false": 0
+        }
+      },
+      "contDynamics": {
+        "methods": 159,
+        "proved": 24,
+        "float": 17,
+        "not_yet": 94,
+        "out_of_scope": 24,
+        "needs_float": 24,
+        "cora_issues": 2,
+        "out_of_scope_by_reason": {
+          "plotting/display": 14,
+          "random/sampling": 3,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 2,
+          "matlab-runtime": 5,
+          "deprecated": 0
+        },
+        "findings": {
+          "correct": 39,
+          "underspecified": 19,
+          "proof-gap": 13,
+          "fixed": 6,
+          "false": 0
+        }
+      },
+      "hybrid": {
+        "methods": 89,
+        "proved": 7,
+        "float": 6,
+        "not_yet": 64,
+        "out_of_scope": 12,
+        "needs_float": 7,
+        "cora_issues": 0,
+        "out_of_scope_by_reason": {
+          "plotting/display": 5,
+          "random/sampling": 2,
+          "solver-dependent": 1,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 4,
+          "deprecated": 0
+        },
+        "findings": {
+          "correct": 3,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      "neuralNetworks": {
+        "methods": 104,
+        "proved": 6,
+        "float": 21,
+        "not_yet": 55,
+        "out_of_scope": 22,
+        "needs_float": 6,
+        "cora_issues": 0,
+        "out_of_scope_by_reason": {
+          "plotting/display": 4,
+          "random/sampling": 2,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 15,
+          "matlab-runtime": 1,
+          "deprecated": 0
+        },
+        "findings": {
+          "correct": 49,
+          "underspecified": 3,
+          "proof-gap": 2,
+          "fixed": 1,
+          "false": 0
+        }
+      }
+    },
+    "totals": {
+      "methods": 1260,
+      "proved": 162,
+      "float": 174,
+      "not_yet": 703,
+      "out_of_scope": 221,
+      "needs_float": 162,
+      "cora_issues": 3,
+      "out_of_scope_by_reason": {
+        "plotting/display": 72,
+        "random/sampling": 41,
+        "solver-dependent": 1,
+        "io/conversion-to-matlab-objects": 25,
+        "matlab-runtime": 69,
+        "deprecated": 13
+      },
+      "findings": {
+        "correct": 209,
+        "underspecified": 43,
+        "proof-gap": 19,
+        "fixed": 16,
+        "false": 0
+      }
+    },
+    "findings_not_on_a_class": {
+      "global": {
+        "correct": 4,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 4,
+        "false": 0
+      },
+      "specification": {
+        "correct": 1,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "examples": {
+        "correct": 2,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      }
+    },
+    "theorems": {
+      "paper": 419,
+      "float": 664,
+      "helper": 532,
+      "lemma": 1423,
+      "total": 3038,
+      "examples": 77
+    }
+  }
+}

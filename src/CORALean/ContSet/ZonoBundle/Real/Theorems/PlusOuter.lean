@@ -4,9 +4,15 @@ import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 /-!
 # `ZonoBundle.plus` over-approximates the Minkowski sum
 
-Sound because `(⋂ᵢ Aᵢ) + (⋂ⱼ Bⱼ) ⊆ ⋂ᵢⱼ (Aᵢ + Bⱼ)`: a point from each
+Sound because `(⋂ᵢ Aᵢ) + (⋂ⱼ Bⱼ) ⊆ ⋂ᵢⱼ (Aᵢ + Bⱼ)` [1, Prop. 2]: a point from each
 intersection sums into every pairwise `Zonotope.plus`, `Zonotope.plus_exact`
 reading that pairwise sum back as the two zonotopes it came from.
+
+## References
+
+* [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of
+      Reachable Sets". In Proc. of the 50th IEEE Conference on Decision and Control and
+      European Control Conference (CDC-ECC), pp. 6814-6821, 2011.
 -/
 
 -- Authors:       Tobias Ladner

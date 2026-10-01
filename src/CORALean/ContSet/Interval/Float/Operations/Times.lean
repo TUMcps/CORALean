@@ -1,0 +1,36 @@
+import CORALean.ContSet.Interval.Float.Operations.MulHi
+import CORALean.ContSet.Interval.Float.Operations.MulLo
+
+/-!
+# `Interval.times`
+
+The entrywise product, each coordinate the hull of the four corner products, rounded away from the
+box: `mulLo` and `mulHi`.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       01-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+open FloatOps
+
+variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+def Interval.times (I J : Interval (Vec 𝕋 n)) : Interval (Vec 𝕋 n) where
+  inf := fun i => Interval.mulLo (I.inf i) (I.sup i) (J.inf i) (J.sup i)
+  sup := fun i => Interval.mulHi (I.inf i) (I.sup i) (J.inf i) (J.sup i)
+
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

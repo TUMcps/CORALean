@@ -4,10 +4,16 @@ import CORALean.ContSet.Zonotope.Real.Operations.Plus
 /-!
 # `ZonoBundle.plus`
 
-CORA's `zonoBundle`/`plus`: every pair of zonotopes, one from each bundle,
+CORA's `zonoBundle`/`plus` [1, Prop. 2]: every pair of zonotopes, one from each bundle,
 summed and indexed through `finProdFinEquiv`. An *enclosure*, never exact — a
 sum of intersections is not an intersection of sums, and nothing here records
 that the same point of each intersection was the one summed in every pair.
+
+## References
+
+* [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of
+      Reachable Sets". In Proc. of the 50th IEEE Conference on Decision and Control and
+      European Control Conference (CDC-ECC), pp. 6814-6821, 2011.
 -/
 
 -- Authors:       Tobias Ladner
