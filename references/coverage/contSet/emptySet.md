@@ -8,8 +8,8 @@ CORA methods of `contSet/@emptySet/`, one row each, and where CORALean answers t
 |---|---|---|---|
 | `and_` | proved | [`EmptySet.and_`](../../../src/CORALean/ContSet/EmptySet/Real/Operations/And.lean), [`EmptySet.and_exact`](../../../src/CORALean/ContSet/EmptySet/Real/Theorems/AndExact.lean) | intersecting `∅` with any representation gives `∅`, exactly |
 | `center` | — | — |  |
-| `contains_` | — | — |  |
-| `convHull_` | — | — |  |
+| `contains_` | proved | [`EmptySet.contains_iff`](../../../src/CORALean/ContSet/EmptySet/Real/Theorems/ContainsIff.lean) | `true` iff the other set is empty, stated as an iff on the denotation; no `Contains` instance, as the representation has no emptiness test for an arbitrary operand |
+| `convHull_` | proved | [`EmptySet.convHull`](../../../src/CORALean/ContSet/EmptySet/Real/Operations/ConvHull.lean), [`EmptySet.convHull_exact`](../../../src/CORALean/ContSet/EmptySet/Real/Theorems/ConvHullExact.lean) | the other operand, exact for a `ConvexSet` |
 | `copy` | out-of-scope | n/a — matlab-runtime |  |
 | `dim` | out-of-scope | n/a — matlab-runtime |  |
 | `display` | out-of-scope | n/a — plotting/display |  |
@@ -17,7 +17,7 @@ CORA methods of `contSet/@emptySet/`, one row each, and where CORALean answers t
 | `emptySet` | proved | [`ConvexSet`](../../../src/CORALean/ContSet/ContSet/Definitions/ConvexSet.lean), [`CompactSet`](../../../src/CORALean/ContSet/ContSet/Definitions/CompactSet.lean) | the `ConvexSet` and `CompactSet` instances of `EmptySet` |
 | `generateRandom` | out-of-scope | n/a — random/sampling |  |
 | `getPrintSetInfo` | out-of-scope | n/a — plotting/display |  |
-| `interval` | — | — |  |
+| `interval` | proved | [`EmptySet.interval`](../../../src/CORALean/ContSet/EmptySet/Real/Operations/Interval.lean), [`EmptySet.interval_exact`](../../../src/CORALean/ContSet/EmptySet/Real/Theorems/IntervalExact.lean) | `Interval.empty`, a crossed box; exact for `0 < n` (at `n = 0` a box with no coordinates is the one point) |
 | `isBounded` | proved | [`CompactSet`](../../../src/CORALean/ContSet/ContSet/Definitions/CompactSet.lean) | the `CompactSet (EmptySet n)` instance (`isCompact_empty`) |
 | `isFullDim` | proved | [`EmptySet.not_isFullDim`](../../../src/CORALean/ContSet/EmptySet/Real/Theorems/NotIsFullDim.lean) | `false`: the interior of `∅` is empty, in every dimension |
 | `isIntersecting_` | proved | [`IsDisjoint`](../../../src/CORALean/ContSet/ContSet/ContSet.lean) | the `IsDisjoint (EmptySet n) S` instance (`EmptySet/Real/Instances.lean`): `false` for every operand, as CORA |

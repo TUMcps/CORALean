@@ -16,14 +16,14 @@ CORA methods of `contSet/@zonoBundle/`, one row each, and where CORALean answers
 | `copy` | out-of-scope | n/a — matlab-runtime |  |
 | `dim` | out-of-scope | n/a — matlab-runtime |  |
 | `display` | out-of-scope | n/a — plotting/display |  |
-| `empty` | — | — |  |
+| `empty` | proved | [`ZonoBundle.empty`](../../../src/CORALean/ContSet/ZonoBundle/Real/Operations/Empty.lean), [`ZonoBundle.empty_exact`](../../../src/CORALean/ContSet/ZonoBundle/Real/Theorems/EmptyExact.lean) | two disjoint point-zonotopes, for `0 < n`: a `Zonotope` always has a centre, so CORA's single `n × 0` zonotope has no counterpart, and at `n = 0` no bundle of nonempty zonotopes is empty |
 | `enclose` | — | — |  |
 | `encloseTight` | — | — |  |
 | `enlarge` | — | — |  |
 | `generateRandom` | out-of-scope | n/a — random/sampling |  |
 | `getPrintSetInfo` | out-of-scope | n/a — plotting/display |  |
 | `interval` | float | [`ZonoBundle.interval`](../../../src/CORALean/ContSet/Conversion/Real/ZonoBundle_to_Interval.lean), [`ZonoBundle.interval_contains`](../../../src/CORALean/ContSet/Conversion/Real/ZonoBundle_to_Interval.lean) · float: [`ZonoBundle.interval`](../../../src/CORALean/ContSet/Conversion/Float/ZonoBundle_to_Interval.lean), [`ZonoBundle.interval_contains`](../../../src/CORALean/ContSet/Conversion/Float/ZonoBundle_to_Interval.lean) |  |
-| `isBounded` | proved | [`ZonoBundle.isBounded_construct`](../../../src/CORALean/ContSet/ZonoBundle/Real/Theorems/IsBounded.lean) | for `0 < k`, as CORA's bundle always has; an empty family denotes the whole space |
+| `isBounded` | float | [`ZonoBundle.isBounded_construct`](../../../src/CORALean/ContSet/ZonoBundle/Real/Theorems/IsBounded.lean) · float: [`ZonoBundle.construct`](../../../src/CORALean/ContSet/ZonoBundle/Float/ZonoBundle.lean), [`ZonoBundle.isCompact_construct`](../../../src/CORALean/ContSet/ZonoBundle/Float/Theorems/IsCompact.lean) | for `0 < k`, as CORA's bundle always has; an empty family denotes the whole space; float boundedness is its compactness (proved from a member's, not a `CompactSet` instance: none exists at `k = 0`) |
 | `isFullDim` | — | — |  |
 | `isIntersecting_` | — | — |  |
 | `isemptyobject` | out-of-scope | n/a — matlab-runtime |  |
@@ -45,7 +45,7 @@ CORA methods of `contSet/@zonoBundle/`, one row each, and where CORALean answers
 | `shrink` | — | — |  |
 | `spectraShadow` | — | — |  |
 | `split` | proved | [`ZonoBundle.split`](../../../src/CORALean/ContSet/ZonoBundle/Real/Operations/Split.lean), [`ZonoBundle.parallelotope`](../../../src/CORALean/ContSet/ZonoBundle/Real/Operations/Parallelotope.lean), [`ZonoBundle.enclosingBox`](../../../src/CORALean/ContSet/ZonoBundle/Real/Operations/EnclosingBox.lean), [`ZonoBundle.split_union`](../../../src/CORALean/ContSet/ZonoBundle/Real/Theorems/SplitUnion.lean), [`ZonoBundle.split_union_enclosingBox`](../../../src/CORALean/ContSet/ZonoBundle/Real/Theorems/SplitUnionEnclosingBox.lean), [`ZonoBundle.split_inter`](../../../src/CORALean/ContSet/ZonoBundle/Real/Theorems/SplitInter.lean) | the midpoint splits (`split(zB,N)`, the direction split) at `Λ = I`, respectively a rotation whose first column is the direction, exactly; the halfspace form that cuts at the offset `h.d` instead of the box midpoint is not covered |
-| `supportFunc_` | — | — | definition only, no theorem: [`ZonoBundle.supportBound`](../../../src/CORALean/ContSet/ZonoBundle/Real/Operations/SupportBound.lean) |
+| `supportFunc_` | float | [`ZonoBundle.supportBound`](../../../src/CORALean/ContSet/ZonoBundle/Real/Operations/SupportBound.lean), [`SupportBound`](../../../src/CORALean/Global/LinProg/LinProg.lean) · float: [`ZonoBundle.boundDot`](../../../src/CORALean/ContSet/ZonoBundle/Float/Operations/SupportBound.lean), [`FloatBound`](../../../src/CORALean/Global/Float/FloatBound.lean) | upper bound only: the `le` field of the returned `SupportBound` / `FloatBound` is the outer theorem; the least of the members' bounds, where CORA solves an LP; needs `0 < k` |
 | `vertices_` | — | — |  |
 | `volume_` | — | — |  |
 | `zonoBundle` | float | [`ZonoBundle.construct`](../../../src/CORALean/ContSet/ZonoBundle/Real/ZonoBundle.lean), [`ZonoBundle.convex_construct`](../../../src/CORALean/ContSet/ZonoBundle/Real/Theorems/Convex.lean), [`ZonoBundle.isCompact_construct`](../../../src/CORALean/ContSet/ZonoBundle/Real/Theorems/IsCompact.lean) · float: [`ZonoBundle.construct`](../../../src/CORALean/ContSet/ZonoBundle/Float/ZonoBundle.lean), [`ZonoBundle.convex_construct`](../../../src/CORALean/ContSet/ZonoBundle/Float/Theorems/Convex.lean), [`ZonoBundle.isCompact_construct`](../../../src/CORALean/ContSet/ZonoBundle/Float/Theorems/IsCompact.lean) |  |

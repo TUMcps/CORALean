@@ -5,6 +5,7 @@ import CORALean.ContSet.Capsule.Real.Theorems.IsCompact
 import CORALean.ContSet.Capsule.Real.Theorems.OfPointMem
 import CORALean.ContSet.Capsule.Real.Theorems.OfPointMemIff
 import CORALean.ContSet.Capsule.Real.Theorems.CentreMemConstructIff
+import CORALean.ContSet.Capsule.Real.Theorems.EmptyExact
 
 /-!
 # What a capsule guarantees, collected

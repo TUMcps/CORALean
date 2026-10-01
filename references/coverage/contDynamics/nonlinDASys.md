@@ -8,8 +8,8 @@ CORA methods of `contDynamics/@nonlinDASys/`, one row each, and where CORALean a
 |---|---|---|---|
 | `consistentInitialState` | — | — |  |
 | `display` | out-of-scope | n/a — plotting/display |  |
-| `getPrintSystemInfo` | — | — |  |
-| `getfcn` | — | — |  |
+| `getPrintSystemInfo` | out-of-scope | n/a — plotting/display |  |
+| `getfcn` | out-of-scope | n/a — matlab-runtime |  |
 | `initReach` | — | — |  |
 | `linReach` | — | — |  |
 | `linReach_adaptive` | — | — |  |

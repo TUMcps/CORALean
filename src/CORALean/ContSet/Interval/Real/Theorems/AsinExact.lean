@@ -1,0 +1,38 @@
+import CORALean.ContSet.Interval.Real.Operations.Asin
+import CORALean.ContSet.Interval.Real.Theorems.MonotoneImageExact
+
+/-!
+# `Interval.asin` is exactly the image under `Real.arcsin`
+
+The arcsine is strictly increasing on `[-1, 1]`, so `Interval.monotoneImage_exact` applies. CORA
+returns a complex or NaN result outside `[-1, 1]`; here the domain is a hypothesis, both corners
+in `[-1, 1]`.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       01-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+
+variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem Interval.asin_exact (I : Interval (Vec ℝ n))
+    (hI : ∀ i, (-1 ≤ I.inf i ∧ I.inf i ≤ 1) ∧ (-1 ≤ I.sup i ∧ I.sup i ≤ 1)) :
+    I.asin.construct = (fun x i => Real.arcsin (x i)) '' I.construct := by
+  exact Interval.monotoneImage_exact Real.arcsin (Set.Icc (-1) 1) Set.ordConnected_Icc
+    (Real.strictMonoOn_arcsin) (Real.continuous_arcsin.continuousOn) I (hI)
+
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -7,35 +7,35 @@ CORA methods of `nn/layers/`, one row each, and where CORALean answers them. Con
 | Method | State | In CORALean | Note |
 |---|---|---|---|
 | `backpropZonotopeBatch` | — | — |  |
-| `computeApproxPoly` | — | — |  |
+| `computeApproxPoly` | proved | [`polyFit`](../../../src/CORALean/NN/Layers/Definitions/PolyFit.lean), [`sigmoidPolyRelaxation_sound`](../../../src/CORALean/NN/Layers/Theorems/Real/SigmoidPolyRelaxationSound.lean) | the fit is `polyFit` (CORA's default regression, noncomputable) and the error bound is sampled; soundness holds for any coefficients and is proved at the sigmoid (tanh by conjugation), not for an arbitrary activation |
 | `evaluateConZonotope` | — | — |  |
-| `evaluatePolyZonotope` | — | — |  |
-| `evaluatePolyZonotopeNeuron` | — | — |  |
+| `evaluatePolyZonotope` | float | [`Layer.activationPoly_sound`](../../../src/CORALean/NN/Layers/Theorems/ActivationPolySound.lean), [`Layer.sigmoidPoly_sound`](../../../src/CORALean/NN/Layers/Theorems/SigmoidPolySound.lean), [`Layer.activationPoly`](../../../src/CORALean/NN/Layers/Operations/ActivationPoly.lean) | route b — soundness stated for any `FloatOps 𝕋`, the layer pinned to `Float.PolyZonotope` (the only representation closed under `evalPoly`); activation layers only |
+| `evaluatePolyZonotopeNeuron` | float | [`Layer.activationPoly_sound`](../../../src/CORALean/NN/Layers/Theorems/ActivationPolySound.lean), [`Layer.activationPoly`](../../../src/CORALean/NN/Layers/Operations/ActivationPoly.lean) | route b — soundness stated for any `FloatOps 𝕋`, the layer pinned to `Float.PolyZonotope`; one fit per neuron, the soundness of each being `PolyRelaxation.Sound` |
 | `evaluateTaylm` | — | — |  |
-| `evaluateZonotopeBatch` | — | — |  |
+| `evaluateZonotopeBatch` | float | [`Layer.Sound.image_subset`](../../../src/CORALean/NN/Layers/Layer.lean), [`Layer`](../../../src/CORALean/NN/Layers/Layer.lean) | route b — stated for any set representation, no scalar named; the float layers instantiate it; one set per call, the batch being a vectorisation of the same enclosure |
 | `findRegionPolys` | — | — |  |
 | `getMergeBuckets` | — | — |  |
 | `instantiateFromString` | — | — |  |
-| `nnActLayerFromHandle` | — | — |  |
+| `nnActLayerFromHandle` | float | [`ActivationLayer.of_sound`](../../../src/CORALean/NN/Layers/Theorems/ActivationLayerOfSound.lean), [`ActivationLayer.of`](../../../src/CORALean/NN/Layers/Operations/ActivationLayerOf.lean) | route b — soundness stated for any `FloatOps 𝕋`; the activation function is a relaxation proved sound for `σ`, not a MATLAB function handle |
 | `nnActivationLayer` | float | [`Layer.activation_sound`](../../../src/CORALean/NN/Layers/Theorems/ActivationSound.lean), [`Layer.activation`](../../../src/CORALean/NN/Layers/Operations/Activation.lean) | route b — soundness stated for any `FloatOps 𝕋`; the layer runs at `Dyadic` (`Examples/RunnableFloat.lean`) |
 | `nnAvgPool2DLayer` | float | [`Layer.avgPool_sound`](../../../src/CORALean/NN/Layers/Theorems/AvgPoolSound.lean), [`Layer.avgPool`](../../../src/CORALean/NN/Layers/Operations/AvgPool.lean) | route b — soundness stated for any `FloatOps 𝕋`; the layer runs at `Dyadic` (`Examples/RunnableFloat.lean`) |
 | `nnBatchNormLayer` | float | [`Layer.batchNorm_sound`](../../../src/CORALean/NN/Layers/Theorems/BatchNormSound.lean), [`Layer.batchNorm_sound`](../../../src/CORALean/NN/Layers/Theorems/Real/BatchNormSound.lean), [`Layer.batchNorm`](../../../src/CORALean/NN/Layers/Operations/BatchNorm.lean) | route b — soundness stated for any `FloatOps 𝕋`; the layer runs at `Dyadic` (`Examples/RunnableFloat.lean`) |
 | `nnCompositeLayer` | float | [`Layer.comp_sound`](../../../src/CORALean/NN/Layers/Layer.lean), [`Layer.comp`](../../../src/CORALean/NN/Layers/Layer.lean) | route b — stated for any set representation, no scalar named; the float layers instantiate it (`Examples/RunnableFloat.lean`) |
 | `nnConv2DLayer` | float | [`Layer.conv_sound`](../../../src/CORALean/NN/Layers/Theorems/ConvSound.lean), [`Layer.conv`](../../../src/CORALean/NN/Layers/Operations/Conv.lean) | route b — soundness stated for any `FloatOps 𝕋`; the layer runs at `Dyadic` (`Examples/RunnableFloat.lean`) |
 | `nnConvTranspose2DLayer` | — | — |  |
-| `nnElementwiseAffineLayer` | — | — |  |
-| `nnExpLayer` | — | — |  |
+| `nnElementwiseAffineLayer` | float | [`Layer.elementwiseAffine_sound`](../../../src/CORALean/NN/Layers/Theorems/ElementwiseAffineSound.lean), [`Layer.elementwiseAffine`](../../../src/CORALean/NN/Layers/Operations/ElementwiseAffine.lean) | route b — soundness stated for any `FloatOps 𝕋`; `Layer.linear` at the diagonal of the scale; scale and offset are full vectors, CORA's scalar broadcast is the caller's `fun _ => c` |
+| `nnExpLayer` | float | [`Layer.exp_outer`](../../../src/CORALean/NN/Layers/Theorems/ExpSound.lean), [`expRelaxation_sound`](../../../src/CORALean/NN/Layers/Theorems/ExpRelaxationSound.lean), [`Layer.exp`](../../../src/CORALean/NN/Layers/Operations/Exp.lean) | route b — soundness stated for any `FloatOps 𝕋`, on the sets whose box has its right ends at most `2ᵏ/2`, which is `Float.expUp`'s range (no format bounds `exp` everywhere); the slope-zero monotone relaxation, not CORA's order-1 Singh polynomial |
 | `nnGCNLayer` | proved | [`GNN.gcn_exact`](../../../src/CORALean/NN/Graph/Theorems/ConvExact.lean), [`GNN.gcn_exact_of_adjacency`](../../../src/CORALean/NN/Graph/Theorems/ConvExactOfAdjacency.lean) |  |
 | `nnGNNGlobalPoolingLayer` | proved | [`GNN.sumPool_exact`](../../../src/CORALean/NN/Graph/Theorems/PoolingExact.lean) |  |
 | `nnGNNLayer` | — | — |  |
 | `nnGNNLinearLayer` | — | — |  |
-| `nnGNNProjectionLayer` | — | — |  |
-| `nnGeneratorReductionLayer` | — | — |  |
+| `nnGNNProjectionLayer` | proved | [`GNN.select`](../../../src/CORALean/NN/Graph/Operations/Select.lean), [`GNN.select_mul`](../../../src/CORALean/NN/Graph/Theorems/SelectMul.lean) | the projection matrix `eye(numNodes)(nodes_keep,:)` is `GNN.select`, and `select_mul` says it keeps the selected rows of the node features |
+| `nnGeneratorReductionLayer` | float | [`Layer.generatorReduction_sound`](../../../src/CORALean/NN/Layers/Theorems/GeneratorReductionSound.lean), [`Layer.generatorReduction`](../../../src/CORALean/NN/Layers/Operations/GeneratorReduction.lean) | route b — stated for any set representation with `Reduce`, which the float zonotope instantiates; the representation's `reduce`, not CORA's Girard-by-length rule |
 | `nnGroupSortLayer` | — | — |  |
 | `nnIdentityLayer` | float | [`Layer.identity_sound`](../../../src/CORALean/NN/Layers/Layer.lean), [`Layer.identity`](../../../src/CORALean/NN/Layers/Layer.lean) | route b — stated for any set representation, no scalar named; the float layers instantiate it (`Examples/RunnableFloat.lean`) |
 | `nnInvSqrtRootLayer` | proved | [`invSqrtRelaxation_sound`](../../../src/CORALean/NN/Layers/Theorems/Real/InvSqrtRelaxationSound.lean) |  |
 | `nnLayer` | float | [`Layer`](../../../src/CORALean/NN/Layers/Layer.lean) | route b — stated for any set representation, no scalar named; the float layers instantiate it (`Examples/RunnableFloat.lean`) |
-| `nnLeakyReLULayer` | — | — |  |
+| `nnLeakyReLULayer` | float | [`Layer.leakyRelu_sound`](../../../src/CORALean/NN/Layers/Theorems/LeakyReluSound.lean), [`leakyReluRelaxation_sound`](../../../src/CORALean/NN/Layers/Theorems/LeakyReluRelaxationSound.lean), [`Layer.leakyRelu`](../../../src/CORALean/NN/Layers/Operations/LeakyRelu.lean) | route b — soundness stated for any `FloatOps 𝕋`, for a stored `α ≤ 1`; the convex line-and-gap relaxation at a clamped slope, as ReLU's |
 | `nnLinearLayer` | float | [`Layer.linear_exact`](../../../src/CORALean/NN/Theorems/Real/LinearExact.lean), [`Layer.linear_sound`](../../../src/CORALean/NN/Layers/Theorems/LinearSound.lean), [`Layer.linear`](../../../src/CORALean/NN/Layers/Operations/Linear.lean) | route b — soundness stated for any `FloatOps 𝕋`; the layer runs at `Dyadic` (`Examples/RunnableFloat.lean`) |
 | `nnLipConstrLinearLayer` | — | — |  |
 | `nnMaxPool2DLayer` | float | [`Layer.maxPool_sound`](../../../src/CORALean/NN/Layers/Theorems/MaxPoolSound.lean), [`Layer.maxPool`](../../../src/CORALean/NN/Layers/Operations/MaxPool.lean) | route b — soundness stated for any `FloatOps 𝕋`; the layer runs at `Dyadic` (`Examples/RunnableFloat.lean`) |
@@ -44,8 +44,8 @@ CORA methods of `nn/layers/`, one row each, and where CORALean answers them. Con
 | `nnRootLayer` | — | — |  |
 | `nnSShapeLayer` | — | — |  |
 | `nnSigmoidLayer` | float | [`Layer.sigmoid_sound`](../../../src/CORALean/NN/Layers/Theorems/SigmoidSound.lean), [`sigmoidRelaxation_sound`](../../../src/CORALean/NN/Layers/Theorems/Real/SigmoidRelaxationSound.lean), [`sigmoidRelaxation_sound`](../../../src/CORALean/NN/Layers/Theorems/SigmoidRelaxationSound.lean), [`Layer.sigmoid`](../../../src/CORALean/NN/Layers/Operations/Sigmoid.lean) | route b — soundness stated for any `FloatOps 𝕋`; the layer runs at `Dyadic` (`Examples/RunnableFloat.lean`) |
-| `nnSoftPlusLayer` | — | — |  |
+| `nnSoftPlusLayer` | float | [`Layer.softplus_outer`](../../../src/CORALean/NN/Layers/Theorems/SoftplusSound.lean), [`softplusRelaxation_sound`](../../../src/CORALean/NN/Layers/Theorems/SoftplusRelaxationSound.lean), [`Layer.softplus`](../../../src/CORALean/NN/Layers/Operations/Softplus.lean) | route b — soundness stated for any `FloatOps 𝕋`, on the boxes `SoftplusBox` names (positive sharpness, `expUp` and `logDown` in their ranges); the slope-zero monotone relaxation |
 | `nnSoftmaxLayer` | float | [`Layer.softmax_sound`](../../../src/CORALean/NN/Layers/Theorems/Real/SoftmaxSound.lean), [`Layer.softmax_sound`](../../../src/CORALean/NN/Layers/Theorems/SoftmaxSound.lean), [`Layer.softmax`](../../../src/CORALean/NN/Layers/Operations/Softmax.lean) | route b — soundness stated for any `FloatOps 𝕋`; the layer runs at `Dyadic` (`Examples/RunnableFloat.lean`) |
-| `nnSquareLayer` | — | — |  |
+| `nnSquareLayer` | float | [`Layer.square_sound`](../../../src/CORALean/NN/Layers/Theorems/SquareSound.lean), [`squareRelaxation_sound`](../../../src/CORALean/NN/Layers/Theorems/SquareRelaxationSound.lean), [`Layer.square`](../../../src/CORALean/NN/Layers/Operations/Square.lean) | route b — soundness stated for any `FloatOps 𝕋`; the derivative-bracket relaxation with the chord slope, not CORA's polynomial regression |
 | `nnTanhLayer` | float | [`Layer.tanh_sound`](../../../src/CORALean/NN/Layers/Theorems/TanhSound.lean), [`tanhRelaxation_sound`](../../../src/CORALean/NN/Layers/Theorems/Real/TanhRelaxationSound.lean), [`tanhRelaxation_sound`](../../../src/CORALean/NN/Layers/Theorems/TanhRelaxationSound.lean), [`Layer.tanh`](../../../src/CORALean/NN/Layers/Operations/Tanh.lean) | route b — soundness stated for any `FloatOps 𝕋`; the layer runs at `Dyadic` (`Examples/RunnableFloat.lean`) |
 | `nnVisualizationLayer` | out-of-scope | n/a — plotting/display |  |

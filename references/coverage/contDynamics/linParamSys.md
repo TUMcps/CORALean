@@ -8,7 +8,7 @@ CORA methods of `contDynamics/@linParamSys/`, one row each, and where CORALean a
 |---|---|---|---|
 | `display` | out-of-scope | n/a — plotting/display |  |
 | `errorSolution` | — | — |  |
-| `getPrintSystemInfo` | — | — |  |
+| `getPrintSystemInfo` | out-of-scope | n/a — plotting/display |  |
 | `getfcn` | out-of-scope | n/a — matlab-runtime |  |
 | `initReach` | float | [`LinParamSys.timeIntervalStep`](../../../src/CORALean/ContDynamics/LinParamSys/Operations/TimeIntervalStep.lean), [`LinParamSys.timeIntervalStep_outer`](../../../src/CORALean/ContDynamics/LinParamSys/Theorems/TimeIntervalStepOuter.lean) · float: [`LinParamSys.timeIntervalStepFloat`](../../../src/CORALean/ContDynamics/LinParamSys/Operations/TimeIntervalStepFloat.lean), [`LinParamSys.timeIntervalStepFloat_outer`](../../../src/CORALean/ContDynamics/LinParamSys/Theorems/TimeIntervalStepFloatOuter.lean), [`LinParamSys.ConstTrajectory.timeIntervalFloat_outer`](../../../src/CORALean/ContDynamics/LinParamSys/Theorems/ConstTrajectoryTimeIntervalFloatOuter.lean) |  |
 | `initReach_inputDependence` | — | — |  |

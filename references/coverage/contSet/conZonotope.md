@@ -21,7 +21,7 @@ CORA methods of `contSet/@conZonotope/`, one row each, and where CORALean answer
 | `deleteZeros` | out-of-scope | n/a — deprecated |  |
 | `dim` | out-of-scope | n/a — matlab-runtime |  |
 | `display` | out-of-scope | n/a — plotting/display |  |
-| `empty` | — | — |  |
+| `empty` | proved | [`ConZonotope.empty`](../../../src/CORALean/ContSet/ConZonotope/Real/Operations/Empty.lean), [`ConZonotope.empty_exact`](../../../src/CORALean/ContSet/ConZonotope/Real/Theorems/EmptyExact.lean) | no generators and the unsatisfiable constraint `HPolytope.emptySet`; real layer only |
 | `enclose` | proved | [`ConZonotope.enclose`](../../../src/CORALean/ContSet/ConZonotope/Real/Operations/Enclose.lean), [`ConZonotope.enclose_outer`](../../../src/CORALean/ContSet/ConZonotope/Real/Theorems/EncloseOuter.lean) |  |
 | `generateRandom` | out-of-scope | n/a — random/sampling |  |
 | `generators` | — | — |  |
@@ -54,5 +54,5 @@ CORA methods of `contSet/@conZonotope/`, one row each, and where CORALean answer
 | `split` | — | — |  |
 | `supportFunc_` | — | — |  |
 | `vertices_` | — | — |  |
-| `zonoBundle` | proved | [`ConZonotope.zonoBundle`](../../../src/CORALean/ContSet/Conversion/Real/ConZonotope_to_ZonoBundle.lean), [`ConZonotope.zonoBundle_contains`](../../../src/CORALean/ContSet/Conversion/Real/ConZonotope_to_ZonoBundle.lean) |  |
+| `zonoBundle` | float | [`ConZonotope.zonoBundle`](../../../src/CORALean/ContSet/Conversion/Real/ConZonotope_to_ZonoBundle.lean), [`ConZonotope.zonoBundle_contains`](../../../src/CORALean/ContSet/Conversion/Real/ConZonotope_to_ZonoBundle.lean) · float: [`ConZonotope.zonoBundle`](../../../src/CORALean/ContSet/Conversion/Float/ConZonotope_to_ZonoBundle.lean), [`ConZonotope.zonoBundle_contains`](../../../src/CORALean/ContSet/Conversion/Float/ConZonotope_to_ZonoBundle.lean) | route a — float counterpart: constraints dropped, then the one-member bundle (exact). |
 | `zonotope` | float | [`ConZonotope.zonotope`](../../../src/CORALean/ContSet/Conversion/Real/ConZonotope_to_Zonotope.lean), [`ConZonotope.zonotope_contains`](../../../src/CORALean/ContSet/Conversion/Real/ConZonotope_to_Zonotope.lean) · float: [`ConZonotope.zonotope`](../../../src/CORALean/ContSet/Conversion/Float/ConZonotope_to_Zonotope.lean), [`ConZonotope.zonotope_contains`](../../../src/CORALean/ContSet/Conversion/Float/ConZonotope_to_Zonotope.lean) |  |

@@ -12,7 +12,7 @@ CORA methods of `contDynamics/@linearSysDT/`, one row each, and where CORALean a
 | `display` | out-of-scope | n/a — plotting/display |  |
 | `executeObserver` | — | — |  |
 | `falsify` | — | — |  |
-| `getPrintSystemInfo` | — | — |  |
+| `getPrintSystemInfo` | out-of-scope | n/a — plotting/display |  |
 | `identify` | — | — |  |
 | `isconform_dyn` | — | — |  |
 | `linearARX` | — | — |  |

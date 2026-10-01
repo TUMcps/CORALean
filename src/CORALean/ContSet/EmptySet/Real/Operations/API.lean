@@ -9,6 +9,8 @@ import CORALean.ContSet.EmptySet.Real.Operations.SupportFunc
 import CORALean.ContSet.EmptySet.Real.Operations.VPolytope
 import CORALean.ContSet.EmptySet.Real.Operations.Vertices
 import CORALean.ContSet.EmptySet.Real.Operations.Volume
+import CORALean.ContSet.EmptySet.Real.Operations.Interval
+import CORALean.ContSet.EmptySet.Real.Operations.ConvHull
 
 /-!
 # The empty set: operations, collected

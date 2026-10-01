@@ -35,6 +35,7 @@ import CORALean.NN.Layers.Theorems.Real.InvSqrtPos
 import CORALean.NN.Layers.Theorems.Real.InvSqrtRelaxationSound
 import CORALean.NN.Layers.Theorems.Real.LeSigmoidDerivHi
 import CORALean.NN.Layers.Theorems.Real.LeWindowMax
+import CORALean.NN.Layers.Theorems.Real.LeakyReluBoundsOfSlope
 import CORALean.NN.Layers.Theorems.Real.MaxPoolBounds
 import CORALean.NN.Layers.Theorems.Real.OfSamplingError
 import CORALean.NN.Layers.Theorems.Real.OfSamplingSound
@@ -64,6 +65,7 @@ import CORALean.NN.Layers.Theorems.Real.SoftmaxMemTightened
 import CORALean.NN.Layers.Theorems.Real.SoftmaxNonneg
 import CORALean.NN.Layers.Theorems.Real.SoftmaxSound
 import CORALean.NN.Layers.Theorems.Real.SoftmaxSumEqOne
+import CORALean.NN.Layers.Theorems.Real.SoftplusMono
 import CORALean.NN.Layers.Theorems.Real.SubMulBoundsOfDeriv
 import CORALean.NN.Layers.Theorems.Real.TanhEqSigmoid
 import CORALean.NN.Layers.Theorems.Real.TanhPolyRelaxationSound

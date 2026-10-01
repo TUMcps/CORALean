@@ -6,7 +6,7 @@ CORA methods of `contSet/@spectraShadow/`, one row each, and where CORALean answ
 
 | Method | State | In CORALean | Note |
 |---|---|---|---|
-| `Inf` | — | — |  |
+| `Inf` | proved | [`SpectraShadow.Inf`](../../../src/CORALean/ContSet/SpectraShadow/Real/Operations/Inf.lean), [`SpectraShadow.Inf_exact`](../../../src/CORALean/ContSet/SpectraShadow/Real/Theorems/InfExact.lean) | the inequality `[1] ⪰ 0` over `n` coefficients, as CORA's `[1 0 … 0]` |
 | `and_` | — | — |  |
 | `cartProd_` | proved | [`SpectraShadow.cartProd`](../../../src/CORALean/ContSet/SpectraShadow/Real/Operations/CartProd.lean), [`SpectraShadow.cartProd_exact`](../../../src/CORALean/ContSet/SpectraShadow/Real/Theorems/CartProdExact.lean) | exact at ℝ; no float counterpart yet |
 | `center` | — | — |  |
@@ -17,7 +17,7 @@ CORA methods of `contSet/@spectraShadow/`, one row each, and where CORALean answ
 | `copy` | out-of-scope | n/a — matlab-runtime |  |
 | `dim` | out-of-scope | n/a — matlab-runtime |  |
 | `display` | out-of-scope | n/a — plotting/display |  |
-| `empty` | — | — |  |
+| `empty` | proved | [`SpectraShadow.empty`](../../../src/CORALean/ContSet/SpectraShadow/Real/Operations/Empty.lean), [`SpectraShadow.empty_exact`](../../../src/CORALean/ContSet/SpectraShadow/Real/Theorems/EmptyExact.lean) | the inequality `[-1] ⪰ 0` over `n` coefficients, as CORA's `[-1 0 … 0]` |
 | `enclose` | — | — |  |
 | `generateESumRep` | — | — |  |
 | `generateRandom` | out-of-scope | n/a — random/sampling |  |

@@ -19,6 +19,7 @@ import CORALean.ContSet.ZonoBundle.Real.Operations.FlowIndex
 import CORALean.ContSet.ZonoBundle.Real.Operations.DirFlow
 import CORALean.ContSet.ZonoBundle.Real.Operations.Pool
 import CORALean.ContSet.ZonoBundle.Real.Operations.DirFil
+import CORALean.ContSet.ZonoBundle.Real.Operations.Empty
 
 /-!
 # What a zonotope bundle computes, collected

@@ -44,6 +44,12 @@ structure Relaxation.Sound (R : Relaxation 𝕋) (σ : ℝ → ℝ) : Prop where
   sound {l u : 𝕋} {t : ℝ} (hl : toReal l ≤ t) (hu : t ≤ toReal u) :
     |σ t - (toReal (R.slope l u) * t + toReal (R.offset l u))| ≤ toReal (R.error l u)
 
+/-- `Sound`, asked only of the boxes `P` holds on: for a function a machine enclosure can bracket
+only where its argument is bounded, as `exp` is by `Float.expUp`. -/
+structure Relaxation.SoundWhere (R : Relaxation 𝕋) (σ : ℝ → ℝ) (P : 𝕋 → 𝕋 → Prop) : Prop where
+  sound {l u : 𝕋} {t : ℝ} (hP : P l u) (hl : toReal l ≤ t) (hu : t ≤ toReal u) :
+    |σ t - (toReal (R.slope l u) * t + toReal (R.offset l u))| ≤ toReal (R.error l u)
+
 end CORALean
 
 

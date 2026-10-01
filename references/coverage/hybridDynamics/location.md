@@ -9,9 +9,9 @@ CORA methods of `hybridDynamics/@location/`, one row each, and where CORALean an
 | `adaptOptions` | — | — |  |
 | `calcBasis` | — | — |  |
 | `checkFlow` | — | — |  |
-| `derivatives` | — | — |  |
+| `derivatives` | out-of-scope | n/a — matlab-runtime |  |
 | `display` | out-of-scope | n/a — plotting/display |  |
-| `eq` | — | — |  |
+| `eq` | out-of-scope | n/a — matlab-runtime |  |
 | `eventFcn` | — | — |  |
 | `guardIntersect` | proved | [`Transition.jumpIntersection`](../../../src/CORALean/HybridDynamics/Operations/JumpIntersection.lean), [`Transition.jumpIntersection_outer`](../../../src/CORALean/HybridDynamics/Theorems/JumpIntersectionOuter.lean) |  |
 | `guardIntersect_conZonotope` | proved | [`Transition.jump_outer_conZonotope`](../../../src/CORALean/HybridDynamics/Theorems/JumpOuterConZonotope.lean) |  |
@@ -23,9 +23,9 @@ CORA methods of `hybridDynamics/@location/`, one row each, and where CORALean an
 | `guardIntersect_zonoGirard` | — | — |  |
 | `instantReset` | proved | [`Transition.reset`](../../../src/CORALean/HybridDynamics/Definitions/Transition.lean), [`Transition.reset_image_subset`](../../../src/CORALean/HybridDynamics/Theorems/ResetImageSubset.lean) |  |
 | `isemptyobject` | out-of-scope | n/a — matlab-runtime |  |
-| `isequal` | — | — |  |
+| `isequal` | out-of-scope | n/a — matlab-runtime |  |
 | `location` | — | — |  |
-| `ne` | — | — |  |
+| `ne` | out-of-scope | n/a — matlab-runtime |  |
 | `potInt` | — | — |  |
 | `potOut` | — | — |  |
 | `reach` | proved | [`Location.timeIntervalStep`](../../../src/CORALean/HybridDynamics/Operations/TimeIntervalStep.lean), [`Location.timeIntervalStepInv`](../../../src/CORALean/HybridDynamics/Operations/TimeIntervalStepInv.lean), [`Location.timeIntervalStepSplit`](../../../src/CORALean/HybridDynamics/Operations/TimeIntervalStepSplit.lean), [`Location.Trajectory.timeInterval_outer`](../../../src/CORALean/HybridDynamics/Theorems/FlowOuter.lean), [`Location.Trajectory.timeIntervalInv_outer`](../../../src/CORALean/HybridDynamics/Theorems/TimeIntervalInvOuter.lean), [`Location.Trajectory.timeInterval_outer_split`](../../../src/CORALean/HybridDynamics/Theorems/FlowOuterSplit.lean) | a stay runs in floats as `Location.timeIntervalStepFloat` and `timeIntervalStepSplitFloat` (`Location.Trajectory.timeIntervalFloat_outer`, `timeIntervalSplitFloat_outer`); `timeIntervalStepInv`, the cut to the invariant, is pending #1, so the row stays `proved` |

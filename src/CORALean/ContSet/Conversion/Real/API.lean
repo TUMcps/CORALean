@@ -1,4 +1,11 @@
+import CORALean.ContSet.Conversion.Real.Capsule_to_ConPolyZono
+import CORALean.ContSet.Conversion.Real.Capsule_to_Ellipsoid
+import CORALean.ContSet.Conversion.Real.Capsule_to_HPolytope
 import CORALean.ContSet.Conversion.Real.Capsule_to_Interval
+import CORALean.ContSet.Conversion.Real.Capsule_to_PolyZonotope
+import CORALean.ContSet.Conversion.Real.Capsule_to_SpectraShadow
+import CORALean.ContSet.Conversion.Real.Capsule_to_VPolytope
+import CORALean.ContSet.Conversion.Real.Capsule_to_Zonotope
 import CORALean.ContSet.Conversion.Real.ConPolyZono_to_ConZonotope
 import CORALean.ContSet.Conversion.Real.ConPolyZono_to_Ellipsoid
 import CORALean.ContSet.Conversion.Real.ConPolyZono_to_HPolytope
@@ -32,6 +39,7 @@ import CORALean.ContSet.Conversion.Real.HPolytope_to_PolyZonotope
 import CORALean.ContSet.Conversion.Real.HPolytope_to_VPolytope
 import CORALean.ContSet.Conversion.Real.HPolytope_to_Zonotope
 import CORALean.ContSet.Conversion.Real.HPolytope_to_ZonoBundle
+import CORALean.ContSet.Conversion.Real.Interval_to_Capsule
 import CORALean.ContSet.Conversion.Real.Interval_to_ConPolyZono
 import CORALean.ContSet.Conversion.Real.Interval_to_ConZonotope
 import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
@@ -96,8 +104,7 @@ any one member — and in via the same `X → Zonotope` leg its `Zonotope` pair
 already had, composed with the exact `Zonotope.zonoBundle`. 72 ordered pairs,
 among the nine, complete. `SpectraShadow` is only a target: from `Zonotope` and `Interval`.
 
-Where a conversion only encloses: a hull or zonotope reaching halfspaces is
-exact only on the caller's directions; a polynomial zonotope's own conversions
-are all enclosures, its sets not being convex. `Capsule` reaches only a box,
-closed under nothing else the interface names — the matrix's one remaining gap.
+Where a conversion only encloses: a zonotope reaching halfspaces is exact only on
+the caller's directions; a polynomial zonotope's conversions are all enclosures.
+`Capsule` reaches every target the box does, through `Capsule.interval`: coarser than CORA's own.
 -/

@@ -5,12 +5,16 @@ import CORALean.ContSet.Conversion.Float.ConZonotope_to_HPolytope
 import CORALean.ContSet.Conversion.Float.ConZonotope_to_Interval
 import CORALean.ContSet.Conversion.Float.ConZonotope_to_PolyZonotope
 import CORALean.ContSet.Conversion.Float.ConZonotope_to_VPolytope
+import CORALean.ContSet.Conversion.Float.ConZonotope_to_ZonoBundle
 import CORALean.ContSet.Conversion.Float.ConZonotope_to_Zonotope
 import CORALean.ContSet.Conversion.Float.ContSet_to_Interval
 import CORALean.ContSet.Conversion.Float.Ellipsoid_to_Interval
+import CORALean.ContSet.Conversion.Float.Ellipsoid_to_PolyZonotope
+import CORALean.ContSet.Conversion.Float.Ellipsoid_to_Zonotope
 import CORALean.ContSet.Conversion.Float.HPolytope_to_ConZonotope
 import CORALean.ContSet.Conversion.Float.HPolytope_to_Interval
 import CORALean.ContSet.Conversion.Float.HPolytope_to_VPolytope
+import CORALean.ContSet.Conversion.Float.HPolytope_to_ZonoBundle
 import CORALean.ContSet.Conversion.Float.HPolytope_to_Zonotope
 import CORALean.ContSet.Conversion.Float.Interval_to_ConPolyZono
 import CORALean.ContSet.Conversion.Float.Interval_to_ConZonotope
@@ -28,6 +32,7 @@ import CORALean.ContSet.Conversion.Float.PolyZonotope_to_Interval
 import CORALean.ContSet.Conversion.Float.VPolytope_to_ConZonotope
 import CORALean.ContSet.Conversion.Float.VPolytope_to_HPolytope
 import CORALean.ContSet.Conversion.Float.VPolytope_to_Interval
+import CORALean.ContSet.Conversion.Float.VPolytope_to_ZonoBundle
 import CORALean.ContSet.Conversion.Float.VPolytope_to_Zonotope
 import CORALean.ContSet.Conversion.Float.ZonoBundle_to_ConPolyZono
 import CORALean.ContSet.Conversion.Float.ZonoBundle_to_ConZonotope

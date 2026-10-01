@@ -43,7 +43,7 @@ CORA methods of `contSet/@contSet/`, one row each, and where CORALean answers th
 | `getPrintSetInfo` | out-of-scope | n/a — plotting/display |  |
 | `initEmptySet` | out-of-scope | n/a — deprecated |  |
 | `interval` | float | [`IntervalOuter`](../../../src/CORALean/ContSet/Conversion/Real/ContSet_to_Interval.lean) · float: [`IntervalOuter`](../../../src/CORALean/ContSet/Conversion/Float/ContSet_to_Interval.lean) |  |
-| `isBounded` | proved | [`CompactSet.isBounded_construct`](../../../src/CORALean/ContSet/ContSet/Theorems/IsBoundedConstruct.lean) |  |
+| `isBounded` | float | [`CompactSet.isBounded_construct`](../../../src/CORALean/ContSet/ContSet/Theorems/IsBoundedConstruct.lean), [`CompactSet`](../../../src/CORALean/ContSet/ContSet/Definitions/CompactSet.lean) · float: [`Zonotope.construct`](../../../src/CORALean/ContSet/Zonotope/Float/Zonotope.lean), [`Zonotope.isCompact_construct`](../../../src/CORALean/ContSet/Zonotope/Float/Theorems/IsCompact.lean) | the interface class is instantiated by the float interval and zonotope (`Float/Instances.lean`); boundedness of a float representation is proved via `CompactSet`, i.e. as compactness |
 | `isConHyperplane` | out-of-scope | n/a — deprecated |  |
 | `isFullDim` | — | — | definition only, no theorem: `ContSet.IsFullDim` (a nonempty interior of `construct`), characterised per class |
 | `isHyperplane` | out-of-scope | n/a — deprecated |  |

@@ -7,12 +7,12 @@ CORA methods of `nn/@neuralNetwork/`, one row each, and where CORALean answers t
 | Method | State | In CORALean | Note |
 |---|---|---|---|
 | `addVisualizationLayers` | out-of-scope | n/a — plotting/display |  |
-| `backprop` | — | — |  |
+| `backprop` | proved | [`Chain.backprop`](../../../src/CORALean/NN/Operations/Backprop.lean), [`Chain.backprop_eq_transpose_mulVec`](../../../src/CORALean/NN/Theorems/BackpropEqTranspose.lean), [`Chain.backprop_eq_fderiv_transpose`](../../../src/CORALean/NN/Theorems/BackpropEqFDerivTranspose.lean) | point gradient only: backprop is the transposed Jacobian `(sensitivity x)ᵀ g`, and `(D eval x)ᵀ g` where every layer is differentiable; the interval and zonotope batch variants stay `—` |
 | `backpropIntervalBatch` | — | — |  |
 | `backpropZonotopeBatch` | — | — |  |
 | `backpropZonotopeBatch_` | — | — |  |
 | `calcSensitivity` | proved | [`Chain.sensitivity`](../../../src/CORALean/NN/Operations/Sensitivity.lean), [`Chain.sensitivity_eq_fderiv`](../../../src/CORALean/NN/Theorems/SensitivityFDeriv.lean), [`Layer.sensitivity_eq_of_hasFDerivAt`](../../../src/CORALean/NN/Theorems/SensitivityOfMatrix.lean) |  |
-| `castWeights` | — | — |  |
+| `castWeights` | out-of-scope | n/a — io/conversion-to-matlab-objects |  |
 | `clearVisualizationLayerPlots` | out-of-scope | n/a — plotting/display |  |
 | `computeFGSMAttack` | — | — |  |
 | `computePGDAttack` | — | — |  |
@@ -53,17 +53,17 @@ CORA methods of `nn/@neuralNetwork/`, one row each, and where CORALean answers t
 | `readGNNnetwork` | out-of-scope | n/a — io/conversion-to-matlab-objects |  |
 | `readJSONNetwork` | out-of-scope | n/a — io/conversion-to-matlab-objects |  |
 | `readNNetNetwork` | out-of-scope | n/a — io/conversion-to-matlab-objects |  |
-| `readNetwork` | — | — |  |
-| `readONNXNetwork` | — | — |  |
-| `readSherlockNetwork` | — | — |  |
-| `readYMLNetwork` | — | — |  |
+| `readNetwork` | out-of-scope | n/a — io/conversion-to-matlab-objects |  |
+| `readONNXNetwork` | out-of-scope | n/a — io/conversion-to-matlab-objects |  |
+| `readSherlockNetwork` | out-of-scope | n/a — io/conversion-to-matlab-objects |  |
+| `readYMLNetwork` | out-of-scope | n/a — io/conversion-to-matlab-objects |  |
 | `reduceGNNForNode` | — | — |  |
 | `refine` | float | [`Schedule.refine`](../../../src/CORALean/NN/Operations/Refine.lean), [`Schedule.refineLoop`](../../../src/CORALean/NN/Operations/RefineLoop.lean), [`RefinableNetwork.image_subset_refine`](../../../src/CORALean/NN/Theorems/ImageSubsetRefine.lean), [`RefinableNetwork.image_subset_refineLoop`](../../../src/CORALean/NN/Theorems/ImageSubsetRefineLoop.lean) | route b — stated for any set representation, no scalar named; the float layers instantiate it (`Examples/RunnableFloat.lean`) |
-| `reset` | — | — |  |
-| `resetApproxOrder` | — | — |  |
-| `resetBounds` | — | — |  |
-| `resetGNN` | — | — |  |
-| `setInputSize` | — | — |  |
+| `reset` | out-of-scope | n/a — matlab-runtime |  |
+| `resetApproxOrder` | out-of-scope | n/a — matlab-runtime |  |
+| `resetBounds` | out-of-scope | n/a — matlab-runtime |  |
+| `resetGNN` | out-of-scope | n/a — matlab-runtime |  |
+| `setInputSize` | out-of-scope | n/a — matlab-runtime |  |
 | `train` | — | — |  |
 | `verify` | float | [`NeuralNetwork.verifySplit`](../../../src/CORALean/NN/Operations/VerifySplit.lean), [`NeuralNetwork.verifySplit_sound`](../../../src/CORALean/NN/Theorems/VerifySplitSound.lean) | route b — stated for any set representation, no scalar named; the float layers instantiate it (`Examples/RunnableFloat.lean`); verification by input splitting; a `true` verdict is sound whatever the splitter |
-| `visLossLandscape` | — | — |  |
+| `visLossLandscape` | out-of-scope | n/a — plotting/display |  |
