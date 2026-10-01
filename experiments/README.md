@@ -932,36 +932,85 @@ executable skipping what it does not link. `--algs` is `standard` (`reachFloat`)
 must divide `tend` (a multiple of 2^-6) into a natural number. At `dt = 1/64` an instance with
 `tend` around 5 means 320 windows and takes tens of seconds per type and algorithm.
 
+Instances stating the same system (equal `A`, `B`, `C`, `X0`, `U`, `tend`; the unsafe boxes may
+differ, as in a family below) are reached ONCE per type and algorithm and all checked against the
+same windows.
+
 Output: `DIR/randverify/<instance>.json` (`<instance>-flint.json` from `bench-flint`), `{meta,
 results}`; `meta.instance.meta` carries whatever else the file holds (CORA's verify result and
 time). One `results` record per (type, algorithm): `type`, `format`, `significand_bits`,
 `number_type`, `instance`, `algorithm`, `status` (`ok`; `none` with a `reason`; `overflow-NaN`,
-a bound or hull past the format's range, `verified: false`), `verified` (`true`, `false`, or
-`null` for `none`), `distances` (four `{"num", "den"}` exact rationals, `null` if none),
+a bound, window or hull past the format's range, `verified: false`), `verified` (`true`, `false`,
+or `null` for `none`), `distances` (per unsafe box `{"sign", "value", "window"}`: the signed
+distance, its value in scientific notation, and the closest window; `null` if none),
 `distances_unrounded`, `unverifiable_from_rounding` (per unsafe box), `unsafe_rounded` (per box
-and dimension, whether outward rounding moved `lb`/`ub`), `windows` (the number `N`), `time_ms`
-(wall clock of reach, hull and distances) and `params` (`dt`, `eta`, `order`, `tend`).
+and dimension, whether outward rounding moved `lb`/`ub`), `verified_hull`, `distances_hull` and
+`distances_hull_unrounded` (the former interval-hull test, exact `{"num", "den"}` rationals),
+`windows` (the number `N`), `time_reach_ms` (wall clock of the reach and the exact output
+windows, shared by `reach_shared` instances), `time_check_ms` (this instance's tests), `time_ms`
+(their sum) and `params` (`dt`, `eta`, `order`, `tend`).
 
 Reading is tolerant: numbers are JSON numbers, `"m*2^e"`, `"m/d"` or decimal strings, all
-converted exactly; `X0`, `U` and each unsafe box are `{lb, ub}` or `{inf, sup}` vectors (or an
-array of such intervals, or of `[lo, hi]`); `tend` is also read as `tFinal`.
+converted exactly; `X0`, `U` and each unsafe box are `{lb, ub}`, `{inf, sup}` or `{lowerbound,
+upperbound}` (CORA's export) vectors (or an array of such intervals, or of `[lo, hi]`); `tend` is
+also read as `tFinal`.
 
-* The system is read EXACTLY into each format (`A`, `B`, `C`, `X0` bounds, its centre and radius,
-  `U`, `dt`). One a format cannot hold is `"status": "none"`, `reason` `not representable: ...`;
-  the system is never rounded.
+* The system is read EXACTLY into each format (`A`, `B`, `C`, `U`, `dt`). One a format cannot hold
+  is `"status": "none"`, `reason` `not representable: ...`; the dynamics are never rounded. `X0` is
+  read as its centre and radius; where the format holds its bounds but not their midpoint (which
+  can need one bit more), the centre is rounded and the radius rounded up to cover the box, checked
+  exactly: a larger initial set, which is sound, and the record says `x0_enclosed: true`.
 * Each unsafe box is rounded OUTWARD (lower down, upper up), which only enlarges it, so a reach
   set disjoint from the enlarged box is disjoint from the original: sound.
-* Each window `R(tau_k)` is mapped to output space, `Y = C R` by `Zonotope.mtimes` (error box
-  included), and boxed by `Zonotope.interval`. That hull is the support function along the
-  facet normals `±e_i` of the unsafe boxes, which are boxes, so it loses nothing against a
-  support bound. The distance of a window to a box is the largest gap over dimensions and sides,
-  that of the box the smallest over windows, positive when separated, exact over the rounded
-  bounds; `verified` is all distances `> 0`.
-* `unverifiable_from_rounding[j]` (exercised by `experiments/randverify/tests/unverifiable-from-rounding-binary16.json`, a TEST instance, not a benchmark: binary16, `--algs wrappingfree --dt 1/16`) is true where the distance to the file's own box `j` is positive
-  and to the rounded one is not: outward rounding alone cost the proof.
+* Each window `R(tau_k)` is mapped to output space EXACTLY, `Y_k = C R(tau_k)` over the rationals
+  (centre, generators and error box of `R`, the error box as five more generators), and tested
+  against each unsafe box `S` by the separating-axis theorem in the plane: `Y_k` and `S` are
+  disjoint iff `0` is outside the polygon `Y_k + (-S)`, iff some facet normal `n` of it -- the
+  perpendicular `(-g_2, g_1)` of a generator of `Y_k`, or `+-e_1`, `+-e_2` -- has
+  `max_{y in Y_k} n.y < min_{s in S} n.s`. Every such comparison is exact, in integers, so
+  `verified` (every box separated from every window) is an exact decision on the computed windows,
+  not a conservative one: a box diagonal to a slanted window is separated even where their
+  interval hulls overlap, which the former hull test (kept as `verified_hull`) cannot see. The
+  signed distance per window is the largest `(min_S n.s - max_Y n.s) / |n|_2` over the normals,
+  positive exactly when separated and then a lower bound on the Euclidean distance; per box, the
+  smallest over the windows. Its `value` is a `Float` approximation, its `sign` exact.
+* `unverifiable_from_rounding[j]` (exercised by `experiments/randverify/tests/unverifiable-from-rounding-binary16.json`, a TEST instance, not a benchmark: binary16, `--algs wrappingfree --dt 1/16`) is true where box `j` is separated in its file's own bounds
+  and not in the rounded ones: outward rounding alone cost the proof.
 * The reach itself sits behind one function, `randVerifyReach` in
   `src/CORALean/Examples/Bench/RandVerifyReach.lean`, which calls the verified reach with inputs
   (`reachFloatInput` / `reachWrappingFreeFloatInput`), `U` taken as a zonotope in input space.
+
+### A difficulty family (`randverify-family`, exploratory)
+
+```
+lake exe bench randverify-family --in <instance.json> [--dt 1/256] [--eta 10] [--order 400] \
+  [--prec 1024] [--check DT,ETA,ORDER] --out DIR
+```
+
+writes `DIR/randverify-family/rand_family_1e-<i>.json` for `relError = 10^-i`, `i = 1, ..., 12`,
+each an instance `randverify` reads. The system, `X0`, `U` and `tend` are the source's, and so are
+the SHAPES (half-widths) of its unsafe boxes; their positions are new:
+
+1. A reference: the wrapping-free reach with inputs at `Dyadic P` (`--prec`), mapped exactly to
+   output space, `Y_k = C R(tau_k)` over the rationals. It is sound, so it contains the true
+   reachable set.
+2. Per unsafe box `S`, a direction `l = ((1 - t^2), 2t) / (1 + t^2)` with rational `t`, an exactly
+   unit vector, chosen (by a `Float` search over the circle) to maximise the support gap
+   `h(l) = min_{s in S} l.s - max_k max_{y in Y_k} l.y`, which is then computed exactly.
+3. `eps = relError * sum_i width_i(X0)`, exactly, and `S` translated by `(eps - h(l)) l`: since
+   `|l| = 1`, its gap becomes exactly `eps`. Each bound is stored as `"m*2^e"` rounded OUTWARD at
+   `2^-80`, which only enlarges the box; the stored box's gap `h_stored` is recomputed exactly
+   and recorded, `eps - 2^-79 <= h_stored <= eps`.
+
+As the true reachable set lies inside the reference, every family instance is SATISFIABLE, with
+true support gap `>= h_stored`. The gap is also computed on a second reference (`--check`, default
+half the step at the same `eta` and order); the change is recorded per box as
+`ref_change_check`, an indication of the reference's own overestimation `refErr`. The true gap is
+then in `[eps, eps + refErr]`. This is NOT CORA's placement: CORA's `generateRandomVerify` places a
+box to touch CORA's own `eps`-accurate outer set, so CORA's true gap is in `[0, eps]`. Each file's
+`family` object records `relError`, `eps`, per box `t`, `l`, `h_ref_source`, `h_stored`, `delta`,
+the check's gap and change, the reference's settings and timing, and the guarantee; `generator` is
+`"CORALean randverify-family from <source>"`.
 
 ## Pinned versions
 

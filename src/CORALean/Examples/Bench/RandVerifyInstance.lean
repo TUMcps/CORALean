@@ -12,7 +12,7 @@ verify result and time, among others -- echoed to the output unread.
 
 -- Authors:       Tobias Ladner
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   01-October-2026
 -- Last revision: ---
 
 
@@ -35,6 +35,7 @@ structure RandInstance where
   tend : ℚ
   unsafeSets : Array (Array (ℚ × ℚ))
   extra : Json
+deriving Inhabited
 
 end CORALean.Bench
 

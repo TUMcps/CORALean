@@ -57,6 +57,9 @@ structure CliArgs where
   dt : Option String := none
   eta : Option Nat := none
   order : Option Nat := none
+  /-- `randverify-family`'s own: the second reference's `DT,ETA,ORDER`, `none` for `dt / 2` at
+  the same `eta` and `order`. -/
+  check : Option String := none
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -68,7 +71,8 @@ def parseArgs : List String → Except String CliArgs
   | [] => throw "usage: bench <experiment> [--type dyadic|ieee|float|nearest|fixed] \
       [--format binary64|binary32|binary16|binary8|binary4] [--prec P] [--digits F] \
       [--config FILE] [--reps N] [--out DIR] [--exact] [--net small|medium|large] \
-      [--images K] [--in FILE] [--types LIST] [--algs LIST] [--dt Q] [--eta K] [--order R]"
+      [--images K] [--in FILE] [--types LIST] [--algs LIST] [--dt Q] [--eta K] [--order R] \
+      [--check DT,ETA,ORDER]"
   | exp :: rest => go rest { experiment := exp }
 where
   go : List String → CliArgs → Except String CliArgs
@@ -112,6 +116,7 @@ where
       match v.toNat? with
       | some k => go rest { a with order := some k }
       | none => throw s!"`--order` needs a natural number, not `{v}`"
+    | "--check" :: v :: rest, a => go rest { a with check := some v }
     | [flag], _ => throw s!"`{flag}` needs a value"
     | flag :: _, _ => throw s!"unrecognised argument `{flag}`"
 
