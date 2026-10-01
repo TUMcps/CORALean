@@ -25,6 +25,8 @@ machine reaches the API the same way, with nothing to pass along.
   gl.py mr close <iid> <text>      comment, then close unmerged
 
   gl.py pipes [ref]                recent pipelines
+  gl.py pipe cancel <pipeline-id>  cancel a running pipeline, e.g. one a newer push superseded
+  gl.py pipe retry <pipeline-id>   retry its failed or cancelled jobs
   gl.py jobs <pipeline-id>
   gl.py log <job-id>               trace, last 200 lines
 """
@@ -183,6 +185,10 @@ elif group == "pipes":
         q += "&ref=" + cmd
     for p in call("GET", q):
         print("%-9d %-10s %-28s %s" % (p["id"], p["status"], p["ref"], p["created_at"]))
+
+elif group == "pipe" and cmd in ("cancel", "retry") and rest:
+    p = call("POST", "/pipelines/%s/%s" % (rest[0], cmd))
+    print("%-9d %s" % (p["id"], p["status"]))
 
 elif group == "jobs":
     for j in call("GET", "/pipelines/%s/jobs" % cmd):
