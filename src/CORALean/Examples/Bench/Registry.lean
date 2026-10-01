@@ -11,6 +11,7 @@ import CORALean.Examples.Bench.NearestUnsound.API
 import CORALean.Examples.Bench.Nn
 import CORALean.Examples.Bench.OpCompareRun
 import CORALean.Examples.Bench.Output
+import CORALean.Examples.Bench.RandVerifyFamily
 import CORALean.Examples.Bench.RandVerifyRun
 import CORALean.Examples.Bench.RandVerifyTypes
 import CORALean.Global.Float.Instances.Binary64.API
@@ -34,8 +35,8 @@ raw bit count, for a precision none of the five `--format` labels name), else
 `--format` mapped through `formatToPrec` (already validated by `parseArgs`),
 else `53` -- `binary64`, so the default agrees with native `Float`.
 
-`opcompare`, `firststep` and `randverify` are unrelated, intercepted ahead of `runAt`: each
-takes every scalar it needs from their own files, not the one `--type` picks.
+`opcompare`, `firststep`, `randverify` and `randverify-family` are unrelated, intercepted ahead
+of `runAt`: each takes every scalar it needs from their own files, not the one `--type` picks.
 -/
 
 -- Authors:       Tobias Ladner
@@ -240,6 +241,7 @@ def dispatch (args : CliArgs) : IO Unit :=
   if args.experiment = "opcompare" then runOpCompare args else
   if args.experiment = "firststep" then runFirstStepWith args "results" firstStepBenchRecord else
   if args.experiment = "randverify" then runRandVerifyWith args "" randVerifyBenchRecord else
+  if args.experiment = "randverify-family" then runRandVerifyFamily args else
   match args.ty with
   | "float" =>
     let toExact := if args.exact then some (fun x => let d := Binary64.toDyadic x

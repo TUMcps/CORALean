@@ -161,16 +161,17 @@ def aux_firstStepFlint (cfg : HeadlineConfig) (run : FirstStepRun) (dt : String)
 
 /-- `randverify`'s `flint<p>` types, `Flint p` read as `aux_firstStepFlint` reads it; `none` for
 any other label, which `bench` runs. -/
-def aux_randVerifyFlint (label : String) (J : RandJob) : Option (IO Json) :=
+def aux_randVerifyFlint (label : String) (J : RandJob) (insts : Array RandInstance) :
+    Option (IO (Array Json)) :=
   match randTypeKind label with
   | some ("flint", some p) =>
     let nt : NumberType (Flint p) :=
       { description := s!"flint {dyadicDescription (precToFormat p) p}" }
-    some (randVerifyRecord (firstStepHead "flint" s!"p{p}" p nt) nt
+    some (randVerifyRecords (firstStepHead "flint" s!"p{p}" p nt) nt
       (fun field d => if fitsPrecision p d then pure ⟨d.mantissa, d.exponent⟩
         else throw s!"config field `{field}`: {d.mantissa} * 2^{d.exponent} needs more \
           than {p} bits")
-      (fun d => ⟨d.mantissa, d.exponent⟩) J)
+      (fun d => ⟨d.mantissa, d.exponent⟩) J insts)
   | _ => none
 
 /-- `args.experiment` run at `Flint (resolvedPrec args)`, through `runAt` --

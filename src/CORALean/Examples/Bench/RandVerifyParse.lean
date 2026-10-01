@@ -5,15 +5,15 @@ import CORALean.Examples.Bench.RandVerifyJsonNumber
 # `randverify`: reading an instance
 
 Tolerant of the field names: `A`, `B`, `C`; `X0` (`x0`, `R0`); `U` (`u`); `tend` (`tFinal`,
-`tfinal`, `T`); `unsafeSet` (`unsafe_set`, `unsafeSets`, `spec`). A box is `{lb, ub}` or
-`{inf, sup}` of vectors, or an array of `{lb, ub}` (scalars) or `[lo, hi]` per dimension; the
-unsafe sets are an array of such boxes in output space. A number is a JSON number or a string
-`parseRandString` reads.
+`tfinal`, `T`); `unsafeSet` (`unsafe_set`, `unsafeSets`, `spec`). A box is `{lb, ub}`, `{inf, sup}`
+or `{lowerbound, upperbound}` (CORA's export) of vectors, or an array of `{lb, ub}` (scalars) or
+`[lo, hi]` per dimension; the unsafe sets are an array of such boxes in output space. A number is a
+JSON number or a string `parseRandString` reads.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   01-October-2026
 -- Last revision: ---
 
 
@@ -33,8 +33,8 @@ def aux_aliasX0 := ["X0", "x0", "R0", "r0"]
 def aux_aliasU := ["U", "u"]
 def aux_aliasT := ["tend", "tFinal", "tfinal", "t_final", "T", "tEnd"]
 def aux_aliasUnsafe := ["unsafeSet", "unsafe_set", "unsafeSets", "unsafe_sets", "unsafe", "spec"]
-def aux_loKeys := ["inf", "lb", "lower", "min", "lo", "infimum"]
-def aux_hiKeys := ["sup", "ub", "upper", "max", "hi", "supremum"]
+def aux_loKeys := ["inf", "lb", "lower", "lowerbound", "lowerBound", "min", "lo", "infimum"]
+def aux_hiKeys := ["sup", "ub", "upper", "upperbound", "upperBound", "max", "hi", "supremum"]
 
 /-- The first of `names` that `j` has. -/
 def aux_find (j : Json) (names : List String) : Option Json :=
