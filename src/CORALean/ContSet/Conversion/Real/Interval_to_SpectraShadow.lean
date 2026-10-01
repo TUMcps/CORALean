@@ -1,0 +1,41 @@
+import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+import CORALean.ContSet.Conversion.Real.Zonotope_to_SpectraShadow
+
+/-!
+# A box as a spectrahedral shadow
+
+Through the zonotope, which loses nothing either time: a box is a zonotope with
+axis-aligned generators, and a zonotope is a spectrahedral shadow.
+
+Only the enclosing direction is stated, for `Interval.zonotope`'s reason: a box
+whose `sup` falls below its `inf` denotes nothing, while the set built from it
+denotes the box with the two swapped.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       01-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {n : ℕ}
+
+noncomputable def Interval.spectraShadow (I : Interval (Vec ℝ n)) : SpectraShadow (Vec ℝ n) :=
+  I.zonotope.spectraShadow
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem Interval.spectraShadow_contains (I : Interval (Vec ℝ n)) :
+    I.construct ⊆ I.spectraShadow.construct :=
+  subset_trans I.zonotope_contains (Zonotope.spectraShadow_exact _).subset
+
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

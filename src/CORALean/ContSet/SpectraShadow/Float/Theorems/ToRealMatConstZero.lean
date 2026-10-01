@@ -1,0 +1,35 @@
+import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
+
+/-!
+# The stored zero block reads as the zero matrix
+
+The block `plus` puts opposite a set's own matrices: a constant function of the
+stored `zero`, which `SoundFloatArithmetic` says reads as `0`.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       01-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+open FloatOps SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem SpectraShadow.toRealMat_const_zero {a : ℕ} :
+    toRealMat (fun (_ _ : Fin a) => (zero : 𝕋)) = 0 := by
+  ext i j
+  simp [toRealMat, toReal_zero]
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

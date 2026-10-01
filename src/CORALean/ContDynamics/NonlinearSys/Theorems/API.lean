@@ -55,6 +55,13 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.TuneDeltatInitGain
 import CORALean.ContDynamics.NonlinearSys.Theorems.VarInputsMono
 import CORALean.ContDynamics.NonlinearSys.Theorems.VarInputsOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachUnionOuter
+import CORALean.ContDynamics.NonlinearSys.Theorems.EnclosesOfHasFDerivAt
+import CORALean.ContDynamics.NonlinearSys.Theorems.LinInputFloatOuter
+import CORALean.ContDynamics.NonlinearSys.Theorems.ReachFloatOuter
+import CORALean.ContDynamics.NonlinearSys.Theorems.RegionFloatConfined
+import CORALean.ContDynamics.NonlinearSys.Theorems.RelinRunFloatOuter
+import CORALean.ContDynamics.NonlinearSys.Theorems.RelinStepFloatOuter
+import CORALean.ContDynamics.NonlinearSys.Theorems.SlopeRemainderAbstractionError
 
 /-!
 # What `NonlinearSys` guarantees
@@ -79,5 +86,5 @@ Rådström cancellation — `GlobalAbstrErrLeLocalAbstrErr` reads a run's off it
 coefficients, `GainDimTendstoPow` is the limit gain, `GainDimLePow` its bound, `GainOrderEqTopIff`
 the gain order's point; and `AbstrErrLoopFixed`, `SubsetAbstrReach`, `OptDeltatDescent`,
 `EstimateGainBracket`, `AdaptStepInvariant`, `SubsetCentreAbstrReach` and `TuneDeltatInitGain` are
-what both papers' algorithms are held to.
+what both papers' algorithms are held to. `ReachFloatOuter` is the float run's guarantee.
 -/

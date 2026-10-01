@@ -14,6 +14,7 @@ import CORALean.ContSet.Conversion.Float.Interval_to_ContSet
 import CORALean.ContSet.Conversion.Float.Interval_to_Ellipsoid
 import CORALean.ContSet.Conversion.Float.Interval_to_HPolytope
 import CORALean.ContSet.Conversion.Float.Interval_to_PolyZonotope
+import CORALean.ContSet.Conversion.Float.Interval_to_SpectraShadow
 import CORALean.ContSet.Conversion.Float.Interval_to_VPolytope
 import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
 import CORALean.ContSet.Conversion.Float.PolyZonotope_to_Interval
@@ -24,6 +25,7 @@ import CORALean.ContSet.Conversion.Float.VPolytope_to_Zonotope
 import CORALean.ContSet.Conversion.Float.Zonotope_to_ConZonotope
 import CORALean.ContSet.Conversion.Float.Zonotope_to_HPolytope
 import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+import CORALean.ContSet.Conversion.Float.Zonotope_to_SpectraShadow
 import CORALean.ContSet.Conversion.Float.Zonotope_to_VPolytope
 
 /-!

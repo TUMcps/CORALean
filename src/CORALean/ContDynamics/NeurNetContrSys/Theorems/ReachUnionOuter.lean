@@ -41,7 +41,7 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 /-- Every closed-loop run over `tFinal - tStart` periods of length `N · timeStep` from
 `R0` is inside `reachUnion` at every period boundary. -/
 theorem NeurNetContrSys.reachUnion_outer (sys : NeurNetContrSys 𝕋 S n)
-    (params : Reach.Params (S n) ℕ) {options : NeurNetContrSys.ReachOptions}
+    (params : Reach.Params (S n) ℕ) {options : NeurNetContrSys.ReachOptions ℝ}
     (hΔt : 0 < options.timeStep) :
     sys.reachUnionExact ((options.N : ℝ) * options.timeStep) (params.tFinal - params.tStart)
       (construct params.R0) ⊆ construct (sys.reachUnion params options) := by -- --- PROOF ---

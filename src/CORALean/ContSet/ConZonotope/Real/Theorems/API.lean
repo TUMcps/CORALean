@@ -12,6 +12,10 @@ import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombOuter
 import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombInner
 import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceOuter
 import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceOrder
+import CORALean.ContSet.ConZonotope.Real.Theorems.KeepRowsMem
+import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceKeepByOuter
+import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceKeepOrder
+import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceKeepOuter
 import CORALean.ContSet.ConZonotope.Real.Theorems.EncloseOuter
 import CORALean.ContSet.ConZonotope.Real.Theorems.Convex
 import CORALean.ContSet.ConZonotope.Real.Theorems.IsCompactDomain

@@ -39,7 +39,7 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 
 noncomputable instance NeurNetContrSys.WithPeriod.reachInstance :
     Reach (NeurNetContrSys.WithPeriod 𝕋 S) (fun n => Reach.Params (S n) ℕ)
-      NeurNetContrSys.ReachOptions S where
+      (NeurNetContrSys.ReachOptions ℝ) S where
   reachExact sys params := sys.sys.reachUnionExact sys.dt (params.tFinal - params.tStart)
     (construct params.R0)
   reach sys params options :=

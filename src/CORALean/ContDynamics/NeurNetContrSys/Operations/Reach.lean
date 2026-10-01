@@ -62,7 +62,7 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 /-- The reachable set at the end of `params.tFinal - params.tStart` control periods,
 each `options.N` steps of length `options.timeStep` under one held input set. -/
 noncomputable def NeurNetContrSys.reach (sys : NeurNetContrSys 𝕋 S n)
-    (params : Reach.Params (S n) ℕ) (options : NeurNetContrSys.ReachOptions) : S n :=
+    (params : Reach.Params (S n) ℕ) (options : NeurNetContrSys.ReachOptions ℝ) : S n :=
   let R₀ := params.R0                                               -- the paper's symbols
   let Δt := options.timeStep
   let N := options.N

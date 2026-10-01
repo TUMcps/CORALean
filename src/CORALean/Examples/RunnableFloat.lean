@@ -8,6 +8,15 @@ import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputRemainderF
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputTermFloat
 import CORALean.ContDynamics.LinearSys.Operations.DiscretizeEnclosureFloat
 import CORALean.ContDynamics.LinParamSysDT.Operations.Reach
+import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachFloat
+import CORALean.ContDynamics.LinParamSys.Operations.DiscretizeEnclosureFloat
+import CORALean.ContDynamics.LinParamSys.Operations.InputSolutionFloat
+import CORALean.ContDynamics.LinParamSys.Operations.ReachFloat
+import CORALean.ContDynamics.LinParamSys.Operations.ReachOrderFloat
+import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepFloat
+import CORALean.HybridDynamics.Operations.TimeIntervalStepSplitFloat
+import CORALean.ContDynamics.NonlinearSys.Theorems.ReachFloatOuter
+import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
 import CORALean.ContDynamics.LinearSysDT.Operations.Reach
 import CORALean.ContDynamics.LinearSysDT.Operations.ReachHeld
 import CORALean.ContDynamics.LinearSysDT.Operations.ReachOrders
@@ -67,10 +76,10 @@ Not a guarantee: precision — `scripts/check-demo.sh` is what catches a silent
 widening; an enclosure the size of the state space satisfies every theorem
 here just as a tight one does.
 
-Left out, and why: `LinearSys`'s float reaches are run in `RotationFloat`, its float
-sampling here; the continuous-time algorithms the allowlist marks `pending #1` have no
-float refinement yet; `reachErrorFloat`/
-`reachInnerFloat` are real-valued guarantee objects, legitimately `spec:`;
+Left out, and why: `LinearSys`'s float reaches are run in `RotationFloat`; its float sampling,
+a location's stay, `LinParamSys`' step, a network in the loop and
+`NonlinearSys.FloatModel.reachFloat` are run here; the `pending #1` algorithms have no float
+refinement yet; `reachErrorFloat`/`reachInnerFloat` are real-valued guarantee objects, `spec:`;
 `HPolytope.zonotope`/`vPolytopeBox`/`interval`/`conZonotope` and `verifyHalfspace`/
 `verifyConvex` each ask for a `FloatBound`/`SupportBound` a solver alone can supply.
 -/
@@ -272,6 +281,27 @@ def ctSysD : LinParamSysDT (fun m n => Interval (Mat D m n)) 2 :=
   ctSys.discretizeEnclosureFloat stepR 4
 def ctReachRun : Zonotope D 2 := ctSysD.reach (S := Zonotope D) ⟨Z, Z, 0, 5⟩ ⟨2, two_pos⟩
 
+/-- A location flowing by the same `A`, its input `Z` off the origin, and its stay over
+`[0, r]` from `Z` by the float step and by the split float step. -/
+def ctLoc : Location (Zonotope D) (Zonotope D) Unit D 2 := ⟨Z, ctSys, Z, []⟩
+def locStepRun : Zonotope D 2 := ctLoc.timeIntervalStepFloat stepR 4 Z
+def locSplitRun : Zonotope D 2 := ctLoc.timeIntervalStepSplitFloat stepR 4 Z
+
+/-- `A` known only to `±2⁻⁵` entrywise, as a `LinParamSys` over float interval matrices: an
+admissible order, one step of its flow, its input solution over `Z`, and five sampled steps. -/
+def lpA : Interval (Mat D 2 2) :=
+  ⟨!![d (-33) (-5), d (-129) (-5); d 127 (-5), d (-33) (-5)],
+    !![d (-31) (-5), d (-127) (-5); d 129 (-5), d (-31) (-5)]⟩
+def lpSys : LinParamSys (fun m n => Interval (Mat D m n)) 2 := ⟨lpA⟩
+def lpOrderRun : Option ℕ := lpSys.reachOrderFloat stepR stepR 2
+def lpStepRun : Zonotope D 2 := lpSys.timeIntervalStepFloat stepR 4 Z
+def lpInputRun : Zonotope D 2 := lpSys.inputSolutionFloat stepR 4 Z
+def lpReachRun : Zonotope D 2 :=
+  (lpSys.discretizeEnclosureFloat stepR 4).reach (S := Zonotope D) ⟨Z, lpInputRun, 0, 5⟩
+    ⟨2, two_pos⟩
+/-- Four windows of `[0, 2⁻³]` at every member, each from the first by scaling and squaring. -/
+def lpWindowsRun : Option (List (Zonotope D 2)) := lpSys.reachFloat ⟨Z, 0, 1 / 8⟩ ⟨stepR, 4, 2⟩
+
 
 /-! ## The four Box operations `LinearSysDT.reachErrorFloat` sums
 
@@ -318,11 +348,17 @@ def mixedNet : NeuralNetwork (Zonotope D) 2 2 :=
 
 def mixedEncloseRun : Zonotope D 2 := mixedNet.enclose Z
 
+/-- `ctSys` closed around `net`, two control periods of two float steps of `r` each (#1). -/
+def nnContrSys : NeurNetContrSys D (Zonotope D) 2 := ⟨ctSys, net⟩
+def nnContrReachRun : Zonotope D 2 := nnContrSys.reachFloat ⟨Z, 0, 2⟩ ⟨stepR, 2, 4, 2, two_pos⟩
+
 #eval reachRun.h
 #eval reachRun.c 0
 #eval encloseRun.c 0
 #eval mixedEncloseRun.c 0
 #eval mixedEncloseRun.interval.sup 0
+#eval nnContrReachRun.h
+#eval nnContrReachRun.c 0
 #eval plusBoxRun.sup 0
 
 -- A `SetUnion` of float zonotopes, pushed through `Mtimes`: two branches in, two branches out.
@@ -350,6 +386,156 @@ def mixedEncloseRun : Zonotope D 2 := mixedNet.enclose Z
 #eval ctSysD.A.sup 0 0
 #eval ctReachRun.h
 #eval ctReachRun.c 0
+#eval locStepRun.h
+#eval locSplitRun.h
+#eval locSplitRun.c 0
+#eval lpOrderRun
+#eval lpStepRun.h
+#eval lpInputRun.c 0
+#eval lpReachRun.h
+#eval lpReachRun.c 0
+#eval lpWindowsRun.map (·.length)
+#eval lpWindowsRun.map (·.map (·.h))
+
+
+/-! ## A nonlinear system re-linearized in floats (#1)
+
+Van der Pol, `ẋ₁ = x₂`, `ẋ₂ = (1 - x₁²) x₂ - x₁ + u`, from the box `[1.72, 1.78] × [1.22, 1.28]`
+under `u ∈ [-1/64, 1/64]`, four steps of `1/32`. The model is interval arithmetic on the field and
+on its slopes, `x₁² x₂ - x₁'² x₂' = x₁² (x₂ - x₂') + x₂' (x₁ + x₁') (x₁ - x₁')`, proved to enclose
+the real field below, so `reachFloat_outer` holds of the run. -/
+
+section VanDerPol
+
+open SoundFloatArithmetic
+
+/-- The real square's enclosure over `[a, b]`, crude at a sign change but sound. -/
+def sqLo (a b : D) : D := Float.Interval.mulLo a b a b
+def sqHi (a b : D) : D := Float.Interval.mulHi a b a b
+
+/-- Interval extensions of the field and of its slopes, in `D`. -/
+def vdpModel : NonlinearSys.FloatModel D 2 1 where
+  f X U :=
+    let wl := subDown one (sqHi (X.inf 0) (X.sup 0))                -- 1 - x₁²
+    let wh := subUp one (sqLo (X.inf 0) (X.sup 0))
+    let pl := Float.Interval.mulLo wl wh (X.inf 1) (X.sup 1)          -- (1 - x₁²) x₂
+    let ph := Float.Interval.mulHi wl wh (X.inf 1) (X.sup 1)
+    ⟨![X.inf 1, addDown (subDown pl (X.sup 0)) (U.inf 0)],
+      ![X.sup 1, addUp (subUp ph (X.inf 0)) (U.sup 0)]⟩
+  jacX X _ :=
+    let s0 := addDown (X.inf 0) (X.inf 0)                             -- x₁ + x₁'
+    let s1 := addUp (X.sup 0) (X.sup 0)
+    let ql := Float.Interval.mulLo (X.inf 1) (X.sup 1) s0 s1          -- x₂' (x₁ + x₁')
+    let qh := Float.Interval.mulHi (X.inf 1) (X.sup 1) s0 s1
+    ⟨!![zero, one; subDown (neg qh) one, subDown one (sqHi (X.inf 0) (X.sup 0))],
+      !![zero, one; subUp (neg ql) one, subUp one (sqLo (X.inf 0) (X.sup 0))]⟩
+  jacU _ _ := ⟨!![zero; one], !![zero; one]⟩
+
+/-- `x²`'s enclosure, `1 - x²`'s from it. -/
+theorem vdp_one_sub_sq_mem {a b : D} {y : ℝ} (h1 : toReal a ≤ y) (h2 : y ≤ toReal b) :
+    toReal (subDown one (sqHi a b)) ≤ 1 - y * y ∧
+      1 - y * y ≤ toReal (subUp one (sqLo a b)) := by -- --- PROOF ---
+  obtain ⟨l, u⟩ := Float.Interval.mul_between_corners h1 h2 h1 h2
+  have r1 := subDown_le_sub (one : D) (sqHi a b)
+  have r2 := sub_le_subUp (one : D) (sqLo a b)
+  rw [toReal_one] at r1 r2
+  unfold sqHi sqLo at *
+  exact ⟨by linarith, by linarith⟩
+
+/-- `vdpModel` encloses Van der Pol's field and its slopes over every box. -/
+theorem vdpModel_encloses : vdpModel.Encloses
+    ⟨fun x u => ![x 1, (1 - x 0 * x 0) * x 1 - x 0 + u 0]⟩ := by -- --- PROOF ---
+  refine ⟨fun X U x hx u hu => ?_, fun X U x hx x' hx' u hu u' hu' => ?_⟩
+  -- the field: `x₂`, then `(1 - x₁²) x₂ - x₁ + u` in three interval steps
+  · have hx0 : toReal (X.inf 0) ≤ (x 0 : ℝ) ∧ (x 0 : ℝ) ≤ toReal (X.sup 0) := hx 0
+    have hx1 : toReal (X.inf 1) ≤ (x 1 : ℝ) ∧ (x 1 : ℝ) ≤ toReal (X.sup 1) := hx 1
+    have hu0 : toReal (U.inf 0) ≤ (u 0 : ℝ) ∧ (u 0 : ℝ) ≤ toReal (U.sup 0) := hu 0
+    obtain ⟨w1, w2⟩ := vdp_one_sub_sq_mem hx0.1 hx0.2
+    obtain ⟨p1, p2⟩ := Float.Interval.mul_between_corners w1 w2 hx1.1 hx1.2
+    intro i
+    fin_cases i
+    · exact hx1
+    -- both faces: one rounding per interval operation, each the safe way
+    · have r1 := addDown_le_add (subDown (Float.Interval.mulLo (subDown one (sqHi (X.inf 0)
+        (X.sup 0))) (subUp one (sqLo (X.inf 0) (X.sup 0))) (X.inf 1) (X.sup 1)) (X.sup 0)) (U.inf 0)
+      have r2 := subDown_le_sub (Float.Interval.mulLo (subDown one (sqHi (X.inf 0) (X.sup 0)))
+        (subUp one (sqLo (X.inf 0) (X.sup 0))) (X.inf 1) (X.sup 1)) (X.sup 0)
+      have r3 := add_le_addUp (subUp (Float.Interval.mulHi (subDown one (sqHi (X.inf 0)
+        (X.sup 0))) (subUp one (sqLo (X.inf 0) (X.sup 0))) (X.inf 1) (X.sup 1)) (X.inf 0)) (U.sup 0)
+      have r4 := sub_le_subUp (Float.Interval.mulHi (subDown one (sqHi (X.inf 0) (X.sup 0)))
+        (subUp one (sqLo (X.inf 0) (X.sup 0))) (X.inf 1) (X.sup 1)) (X.inf 0)
+      constructor
+      · show toReal (addDown (subDown _ (X.sup 0)) (U.inf 0)) ≤ (1 - x 0 * x 0) * x 1 - x 0 + u 0
+        linarith [hx0.2, hu0.1]
+      · show (1 - x 0 * x 0) * x 1 - x 0 + u 0 ≤ toReal (addUp (subUp _ (X.inf 0)) (U.sup 0))
+        linarith [hx0.1, hu0.2]
+  -- the slopes: `x₂'(x₁ + x₁')` and `1 - x₁²` boxed, the rest constant
+  · have hx0 : toReal (X.inf 0) ≤ (x 0 : ℝ) ∧ (x 0 : ℝ) ≤ toReal (X.sup 0) := hx 0
+    have hy0 : toReal (X.inf 0) ≤ (x' 0 : ℝ) ∧ (x' 0 : ℝ) ≤ toReal (X.sup 0) := hx' 0
+    have hy1 : toReal (X.inf 1) ≤ (x' 1 : ℝ) ∧ (x' 1 : ℝ) ≤ toReal (X.sup 1) := hx' 1
+    have hs1 : toReal (addDown (X.inf 0) (X.inf 0)) ≤ (x 0 : ℝ) + x' 0 :=
+      le_trans (addDown_le_add _ _) (add_le_add hx0.1 hy0.1)
+    have hs2 : (x 0 : ℝ) + x' 0 ≤ toReal (addUp (X.sup 0) (X.sup 0)) :=
+      le_trans (add_le_add hx0.2 hy0.2) (add_le_addUp _ _)
+    obtain ⟨q1, q2⟩ := Float.Interval.mul_between_corners hy1.1 hy1.2 hs1 hs2
+    obtain ⟨w1, w2⟩ := vdp_one_sub_sq_mem hx0.1 hx0.2
+    refine ⟨!![0, 1; -(x' 1 * (x 0 + x' 0)) - 1, 1 - x 0 * x 0], fun q => ?_, !![0; 1],
+      fun q => ?_, ?_⟩
+    · obtain ⟨i, j⟩ := q
+      set qh := Float.Interval.mulHi (X.inf 1) (X.sup 1) (addDown (X.inf 0) (X.inf 0))
+        (addUp (X.sup 0) (X.sup 0))
+      set ql := Float.Interval.mulLo (X.inf 1) (X.sup 1) (addDown (X.inf 0) (X.inf 0))
+        (addUp (X.sup 0) (X.sup 0))
+      have n1 := subDown_le_sub (neg qh) (one : D)
+      have n2 := sub_le_subUp (neg ql) (one : D)
+      rw [toReal_neg, toReal_one] at n1 n2
+      -- entry by entry: two constants, then the two boxed slopes
+      fin_cases i <;> fin_cases j
+      · show toReal (zero : D) ≤ (0 : ℝ) ∧ (0 : ℝ) ≤ toReal (zero : D)
+        rw [toReal_zero]; exact ⟨le_rfl, le_rfl⟩
+      · show toReal (one : D) ≤ (1 : ℝ) ∧ (1 : ℝ) ≤ toReal (one : D)
+        rw [toReal_one]; exact ⟨le_rfl, le_rfl⟩
+      · show toReal (subDown (neg qh) one) ≤ -((x' 1 : ℝ) * (x 0 + x' 0)) - 1
+          ∧ -((x' 1 : ℝ) * (x 0 + x' 0)) - 1 ≤ toReal (subUp (neg ql) one)
+        constructor <;> linarith
+      · exact ⟨w1, w2⟩
+    · obtain ⟨i, j⟩ := q
+      fin_cases i <;> fin_cases j
+      · show toReal (zero : D) ≤ (0 : ℝ) ∧ (0 : ℝ) ≤ toReal (zero : D)
+        rw [toReal_zero]; exact ⟨le_rfl, le_rfl⟩
+      · show toReal (one : D) ≤ (1 : ℝ) ∧ (1 : ℝ) ≤ toReal (one : D)
+        rw [toReal_one]; exact ⟨le_rfl, le_rfl⟩
+    · funext i
+      -- each row is the slope identity, ring arithmetic once the sums are written out
+      fin_cases i
+      · simp [dotProduct]
+      · simp [dotProduct]; ring
+
+/-- `[1.72, 1.78] × [1.22, 1.28]`, `1/32` either side of `(7/4, 5/4)`. -/
+def vdpX₀ : Zonotope D 2 :=
+  ⟨2, ![d 7 (-2), d 5 (-2)], !![d 1 (-5), d 0 0; d 0 0, d 1 (-5)], zbox 2⟩
+
+/-- `u ∈ [-1/64, 1/64]`. -/
+def vdpU : Zonotope D 1 := ⟨1, ![d 0 0], !![d 1 (-6)], zbox 1⟩
+
+/-- Four re-linearized steps of `1/32`, Taylor order at least `4`, zonotope order `10`. -/
+def vdpReach : Option (List (Zonotope D 2)) :=
+  vdpModel.reachFloat { R0 := vdpX₀, U := vdpU, tFinal := 1 / 8 }
+    { timeStep := d 1 (-5), taylorTerms := 4, zonotopeOrder := 10 }
+
+/-- What a successful run is worth: every run of the real system, over every window. -/
+example {Rs : List (Zonotope D 2)} (h : vdpReach = some Rs) :=
+  vdpModel_encloses.reachFloat_outer h
+
+/-- A dyadic read through `Float`, for printing. -/
+def vdpF (x : D) : Float := Float.scaleB (Float.ofInt x.mantissa) x.exponent
+
+-- The windows' `x₂` ranges, falling at `ẋ₂ ≈ -4.3`, each about `0.2` wide.
+#eval vdpReach.map (·.length)
+#eval vdpReach.map (·.map fun Z =>
+  (vdpF ((Zonotope.interval Z).inf 1), vdpF ((Zonotope.interval Z).sup 1)))
+
+end VanDerPol
 
 
 /-! ## The float sigmoid enclosure tightens with its depth (#114)

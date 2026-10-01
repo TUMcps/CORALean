@@ -48,6 +48,14 @@ import CORALean.ContDynamics.NonlinearSys.Operations.PolyReachStep
 import CORALean.ContDynamics.NonlinearSys.Operations.PolyReachRun
 import CORALean.ContDynamics.NonlinearSys.Operations.PolyReachReach
 import CORALean.ContDynamics.NonlinearSys.Operations.ReachUnion
+import CORALean.ContDynamics.NonlinearSys.Operations.LinInputFloat
+import CORALean.ContDynamics.NonlinearSys.Operations.LinPointFloat
+import CORALean.ContDynamics.NonlinearSys.Operations.LinearizeFloat
+import CORALean.ContDynamics.NonlinearSys.Operations.ReachFloat
+import CORALean.ContDynamics.NonlinearSys.Operations.RegionFloat
+import CORALean.ContDynamics.NonlinearSys.Operations.RelinRunFloat
+import CORALean.ContDynamics.NonlinearSys.Operations.RelinStepFloat
+import CORALean.ContDynamics.NonlinearSys.Operations.SlopeRemainder
 
 /-!
 # What a linearization computes
@@ -71,5 +79,6 @@ whole error out of `postΔ`, `VarInputs` and the latter.
 
 `LocalAbstrErr` and `GlobalAbstrErr` measure what a step and a run add to the exact answer.
 `AbstrSolInf` is the untruncated set of those errors, `GainDim` and `Gain` how much of its width a
-smaller step keeps, `GainMax` that ratio off two boxes, `GainOrder` the limit order.
+smaller step keeps, `GainMax` that ratio off two boxes, `GainOrder` the limit order. The `…Float`
+files and `SlopeRemainder` are the float run, `ReachFloat`, linearizing itself from a `FloatModel`.
 -/

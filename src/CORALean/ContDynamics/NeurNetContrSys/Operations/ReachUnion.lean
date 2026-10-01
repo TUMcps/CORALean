@@ -36,7 +36,7 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 /-- The periods `0` through `tFinal - tStart` of `reach`, from `R0`, at `taylorTerms`
 raised to `reachOrder`'s order. -/
 noncomputable def NeurNetContrSys.reachUnion (sys : NeurNetContrSys 𝕋 S n)
-    (params : Reach.Params (S n) ℕ) (options : NeurNetContrSys.ReachOptions) : SetUnion (S n) :=
+    (params : Reach.Params (S n) ℕ) (options : NeurNetContrSys.ReachOptions ℝ) : SetUnion (S n) :=
   let R₀ := params.R0                                               -- the paper's symbols
   let Δt := options.timeStep
   let H := params.tFinal - params.tStart                           -- control periods

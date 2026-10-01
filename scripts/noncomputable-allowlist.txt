@@ -84,28 +84,28 @@ GNN.sqrtRow  real-layer: an ℝ-only part of NN (the graph layers, sensitivity a
 GNN.sqrtSlope  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
 GNN.uncertainAdj  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
 GNN.uncertainAdjPad  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
-LinParamSys.constInputSolution  pending #1: stated at the real interval-matrix family `ℐ` with `r : ℝ`; needs a float counterpart at `Interval (Mat 𝕋)`, whose operations all exist (`Float.MatExp.*`)
-LinParamSys.constPropagate  pending #1: stated at the real interval-matrix family `ℐ` with `r : ℝ`; needs a float counterpart at `Interval (Mat 𝕋)`, whose operations all exist (`Float.MatExp.*`)
-LinParamSys.discretizeEnclosure  pending #1: stated at the real interval-matrix family `ℐ` with `r : ℝ`; needs a float counterpart at `Interval (Mat 𝕋)`, whose operations all exist (`Float.MatExp.*`)
-LinParamSys.expEnclosure  pending #1: stated at the real interval-matrix family `ℐ` with `r : ℝ`; needs a float counterpart at `Interval (Mat 𝕋)`, whose operations all exist (`Float.MatExp.*`)
-LinParamSys.inputSolution  pending #1: stated at the real interval-matrix family `ℐ` with `r : ℝ`; needs a float counterpart at `Interval (Mat 𝕋)`, whose operations all exist (`Float.MatExp.*`)
+LinParamSys.constInputSolution  pending #1: the split input's constant half carried across windows at `ℐ`; needs a float `constPropagate` beside the float `particularSolution` (neither yet written)
+LinParamSys.constPropagate  pending #1: the split input's constant half carried across windows at `ℐ`; needs a float `constPropagate` beside the float `particularSolution` (neither yet written)
+LinParamSys.discretizeEnclosure  real-layer: the sampled system at `ℐ`; runs in floats as `LinParamSys.discretizeEnclosureFloat` (`ConstTrajectory.discretizeEnclosureFloat_mem_reach`)
+LinParamSys.expEnclosure  real-layer: `e^{[A]t}` at `ℐ`, its order raised by `reachOrder`; runs in floats as `LinParamSys.expIntervalFloat` at an order from `reachOrderFloat`
+LinParamSys.inputSolution  real-layer: the input solution at `ℐ`; runs in floats as `LinParamSys.inputSolutionFloat` (`inputReach_subset_inputSolutionFloat`)
 LinParamSys.inputSolutionZono  pending #1: needs a float matrix zonotope, which does not exist: `Float.Zonotope 𝕋 n` is indexed by dimension over `Vec 𝕋 n`, not by its ambient type
-LinParamSys.inputTaylorSum  pending #1: stated at the real interval-matrix family `ℐ` with `r : ℝ`; needs a float counterpart at `Interval (Mat 𝕋)`, whose operations all exist (`Float.MatExp.*`)
-LinParamSys.inputTaylorSumTail  pending #1: stated at the real interval-matrix family `ℐ` with `r : ℝ`; needs a float counterpart at `Interval (Mat 𝕋)`, whose operations all exist (`Float.MatExp.*`)
-LinParamSys.inputTerm  pending #1: stated at the real interval-matrix family `ℐ` with `r : ℝ`; needs a float counterpart at `Interval (Mat 𝕋)`, whose operations all exist (`Float.MatExp.*`)
+LinParamSys.inputTaylorSum  real-layer: the input solution's Taylor orders at `ℐ`; runs in floats as `LinParamSys.inputTaylorSumFloat`
+LinParamSys.inputTaylorSumTail  pending #1: the interval-matrix orders past the matrix-zonotope ones in `inputSolutionZono`; needs a float matrix zonotope first (see `inputSolutionZono`)
+LinParamSys.inputTerm  real-layer: `[A]ⁱ r^{i+1}/(i+1)!` at `ℐ`; runs in floats as `Float.MatExp.intervalInputTerm` at `sys.A`
 LinParamSys.inputTermZono  pending #1: needs a float matrix zonotope, which does not exist: `Float.Zonotope 𝕋 n` is indexed by dimension over `Vec 𝕋 n`, not by its ambient type
-LinParamSys.particularSolution  pending #1: stated at the real interval-matrix family `ℐ` with `r : ℝ`; needs a float counterpart at `Interval (Mat 𝕋)`, whose operations all exist (`Float.MatExp.*`)
-LinParamSys.reachInstance  pending #1: stated at the real interval-matrix family `ℐ` with `r : ℝ`; needs a float counterpart at `Interval (Mat 𝕋)`, whose operations all exist (`Float.MatExp.*`)
-LinParamSys.reachOrder  pending #1: stated at the real interval-matrix family `ℐ` with `r : ℝ`; needs a float counterpart at `Interval (Mat 𝕋)`, whose operations all exist (`Float.MatExp.*`)
-LinParamSys.reachStepk  pending #1: stated at the real interval-matrix family `ℐ` with `r : ℝ`; needs a float counterpart at `Interval (Mat 𝕋)`, whose operations all exist (`Float.MatExp.*`)
-LinParamSys.reachUnion  pending #1: stated at the real interval-matrix family `ℐ` with `r : ℝ`; needs a float counterpart at `Interval (Mat 𝕋)`, whose operations all exist (`Float.MatExp.*`)
-LinParamSys.timeIntervalStep  pending #1: stated at the real interval-matrix family `ℐ` with `r : ℝ`; needs a float counterpart at `Interval (Mat 𝕋)`, whose operations all exist (`Float.MatExp.*`)
-LinParamSys.WithInput.reachInstance  pending #1: stated at the real interval-matrix family `ℐ` with `r : ℝ`; needs a float counterpart at `Interval (Mat 𝕋)`, whose operations all exist (`Float.MatExp.*`)
-LinParamSys.WithInput.reachStepk  pending #1: stated at the real interval-matrix family `ℐ` with `r : ℝ`; needs a float counterpart at `Interval (Mat 𝕋)`, whose operations all exist (`Float.MatExp.*`)
-LinParamSys.WithInput.reachUnion  pending #1: stated at the real interval-matrix family `ℐ` with `r : ℝ`; needs a float counterpart at `Interval (Mat 𝕋)`, whose operations all exist (`Float.MatExp.*`)
-LinParamSys.WithInputSplit.reachInstance  pending #1: stated at the real interval-matrix family `ℐ` with `r : ℝ`; needs a float counterpart at `Interval (Mat 𝕋)`, whose operations all exist (`Float.MatExp.*`)
-LinParamSys.WithInputSplit.reachStepk  pending #1: stated at the real interval-matrix family `ℐ` with `r : ℝ`; needs a float counterpart at `Interval (Mat 𝕋)`, whose operations all exist (`Float.MatExp.*`)
-LinParamSys.WithInputSplit.reachUnion  pending #1: stated at the real interval-matrix family `ℐ` with `r : ℝ`; needs a float counterpart at `Interval (Mat 𝕋)`, whose operations all exist (`Float.MatExp.*`)
+LinParamSys.particularSolution  pending #1: the input's accumulation across windows at `ℐ`; needs a float `particularSolution`, `[e^{[A] t_k}] P^R(Δt)` summed from `reachStepkFloat` and `LinParamSys.inputSolutionFloat` (not yet written)
+LinParamSys.reachInstance  real-layer: the `Reach` instance over `reachUnion`; runs in floats as `LinParamSys.reachFloat`
+LinParamSys.reachOrder  real-layer: an admissible order by `⌈‖[A]r‖⌉`; runs in floats as `LinParamSys.reachOrderFloat`
+LinParamSys.reachStepk  real-layer: one window at `ℐ`; runs in floats as `LinParamSys.reachStepkFloat` (`reachStepkFloat_outer`)
+LinParamSys.reachUnion  real-layer: the homogeneous windows at `ℐ`; runs in floats as `LinParamSys.reachFloat` (`reachFloat_outer`)
+LinParamSys.timeIntervalStep  real-layer: one step at the real interval-matrix family `ℐ`; runs in floats as `LinParamSys.timeIntervalStepFloat` (`timeIntervalStepFloat_outer`)
+LinParamSys.WithInput.reachInstance  pending #1: the input's accumulation across windows at `ℐ`; needs a float `particularSolution`, `[e^{[A] t_k}] P^R(Δt)` summed from `reachStepkFloat` and `LinParamSys.inputSolutionFloat` (not yet written)
+LinParamSys.WithInput.reachStepk  pending #1: the input's accumulation across windows at `ℐ`; needs a float `particularSolution`, `[e^{[A] t_k}] P^R(Δt)` summed from `reachStepkFloat` and `LinParamSys.inputSolutionFloat` (not yet written)
+LinParamSys.WithInput.reachUnion  pending #1: the input's accumulation across windows at `ℐ`; needs a float `particularSolution`, `[e^{[A] t_k}] P^R(Δt)` summed from `reachStepkFloat` and `LinParamSys.inputSolutionFloat` (not yet written)
+LinParamSys.WithInputSplit.reachInstance  pending #1: the split input's constant half carried across windows at `ℐ`; needs a float `constPropagate` beside the float `particularSolution` (neither yet written)
+LinParamSys.WithInputSplit.reachStepk  pending #1: the split input's constant half carried across windows at `ℐ`; needs a float `constPropagate` beside the float `particularSolution` (neither yet written)
+LinParamSys.WithInputSplit.reachUnion  pending #1: the split input's constant half carried across windows at `ℐ`; needs a float `constPropagate` beside the float `particularSolution` (neither yet written)
 LinearSys.adaptTimeStep  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.adaptTimeStepOrder  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.adaptTimeStepSearch  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
@@ -196,9 +196,9 @@ LinearSysDT.reachErrorOrders  spec: what a run owes/what an inner approximation 
 LinearSysDT.reachErrorReduced  spec: what a run owes/what an inner approximation is, a real-valued guarantee object; `minkowskiDiff` computes nothing
 LinearSysDT.reachErrorReducedOrders  spec: what a run owes/what an inner approximation is, a real-valued guarantee object; `minkowskiDiff` computes nothing
 LinearSysDT.reachInnerRep  real-layer: an operation over the exact zonotope layer, noncomputable because its `reduce` is; the float run's counterpart goes through `Float.Zonotope.minkDiffRep`
-Location.timeIntervalStep  pending #1: a location's stay at the real `LinearSys.timeIntervalStep`; needs a float counterpart over `Float.Zonotope` from `timeIntervalStepFloat`
-Location.timeIntervalStepInv  pending #1: a location's stay at the real `LinearSys.timeIntervalStep`; needs a float counterpart over `Float.Zonotope` from `timeIntervalStepFloat`
-Location.timeIntervalStepSplit  pending #1: a location's stay at the real `LinearSys.timeIntervalStep`; needs a float counterpart over `Float.Zonotope` from `timeIntervalStepFloat`
+Location.timeIntervalStep  real-layer: a location's stay at the real `LinearSys.timeIntervalStep`; runs in floats as `Location.timeIntervalStepFloat` (`timeIntervalFloat_outer`)
+Location.timeIntervalStepInv  pending #1: the stay cut to the invariant by a homogeneous `Intersection`, which `Float.Zonotope` has no instance of; a float cut needs the stay converted to a float representation that intersects
+Location.timeIntervalStepSplit  real-layer: the split stay at the real exponential; runs in floats as `Location.timeIntervalStepSplitFloat` (`timeIntervalSplitFloat_outer`)
 MatExp.affineDynamicsError  pending #1: part of the adaptive linear scheme (`manualRun`, `autoRun`, `tunedRun`), stated over `Real.Zonotope` with ℝ-valued error terms; needs upward-rounded float error bounds and a float state
 MatExp.affineTimeIntervalOuter  pending #1: part of the adaptive linear scheme (`manualRun`, `autoRun`, `tunedRun`), stated over `Real.Zonotope` with ℝ-valued error terms; needs upward-rounded float error bounds and a float state
 MatExp.affineTimePointNext  pending #1: part of the adaptive linear scheme (`manualRun`, `autoRun`, `tunedRun`), stated over `Real.Zonotope` with ℝ-valued error terms; needs upward-rounded float error bounds and a float state
@@ -223,8 +223,8 @@ MatExp.expMatZonoTaylor  pending #1: needs a float matrix zonotope, which does n
 MatExp.expMatZonoTerm  pending #1: needs a float matrix zonotope, which does not exist: `Float.Zonotope 𝕋 n` is indexed by dimension over `Vec 𝕋 n`, not by its ambient type
 MatExp.expRemainder  real-layer: the exact remainder box `E(Δt, η)`; the float layer rounds it into `Float.MatExp.expRemainderBound`
 MatExp.expRemainderBound  real-layer: the exact remainder bound; runs in floats as `Float.MatExp.expRemainderBound`
-MatExp.expRemainderOrder  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
-MatExp.expRemainderStep  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+MatExp.expRemainderOrder  specification of the admissible order (an infimum over ℕ), not run: the computable searches are MatExp.tuneOrder and MatExp.tuneStep, whose results satisfy its admissibility predicate
+MatExp.expRemainderStep  specification of the admissible step (a Classical.choose), not run: the computable searches are MatExp.tuneOrder and MatExp.tuneStep, whose results satisfy its admissibility predicate
 MatExp.expTaylor  real-layer: the exact Taylor polynomial at a point matrix; enclosed in floats by `Float.MatExp.expIntervalTaylor` at the point interval
 MatExp.expW  pending #1: the tighter interval exponential through `expW`'s exact second-order closed form; no float counterpart yet: that closed form needs rounding outward
 MatExp.genMinus  pending #1: part of the adaptive linear scheme (`manualRun`, `autoRun`, `tunedRun`), stated over `Real.Zonotope` with ℝ-valued error terms; needs upward-rounded float error bounds and a float state
@@ -244,40 +244,40 @@ MatExp.particularSolutionTauError  pending #1: part of the adaptive linear schem
 MatExp.quadTerm  pending #1: the tighter interval exponential through `expW`'s exact second-order closed form; no float counterpart yet: that closed form needs rounding outward
 MatExp.quadTermHi  pending #1: the tighter interval exponential through `expW`'s exact second-order closed form; no float counterpart yet: that closed form needs rounding outward
 MatExp.quadTermLo  pending #1: the tighter interval exponential through `expW`'s exact second-order closed form; no float counterpart yet: that closed form needs rounding outward
-NeurNetContrSys.reach  pending #1: samples the plant by the exact `LinearSys.discretize`; needs a float counterpart through `discretizeEnclosureFloat` and `inputSolutionFloat`
-NeurNetContrSys.WithPeriod.reachInstance  pending #1: samples the plant by the exact `LinearSys.discretize`; needs a float counterpart through `discretizeEnclosureFloat` and `inputSolutionFloat`
-NeurNetContrSys.reachOrder  pending #1: samples the plant by the exact `LinearSys.discretize`; needs a float counterpart through `discretizeEnclosureFloat` and `inputSolutionFloat`
-NeurNetContrSys.reachUnion  pending #1: samples the plant by the exact `LinearSys.discretize`; needs a float counterpart through `discretizeEnclosureFloat` and `inputSolutionFloat`
+NeurNetContrSys.reach  real-layer: the closed loop sampled by the exact `LinearSys.discretize`; runs in floats as `NeurNetContrSys.reachFloat` (`reachFloat_outer`)
+NeurNetContrSys.WithPeriod.reachInstance  pending #1: the `Reach` instance's union over the real `reach` and its order by `⌈‖ΔtA‖⌉`; needs a float union over `NeurNetContrSys.reachFloat`, its order from `LinearSys.reachOrderFloat` (not yet written)
+NeurNetContrSys.reachOrder  pending #1: the `Reach` instance's union over the real `reach` and its order by `⌈‖ΔtA‖⌉`; needs a float union over `NeurNetContrSys.reachFloat`, its order from `LinearSys.reachOrderFloat` (not yet written)
+NeurNetContrSys.reachUnion  pending #1: the `Reach` instance's union over the real `reach` and its order by `⌈‖ΔtA‖⌉`; needs a float union over `NeurNetContrSys.reachFloat`, its order from `LinearSys.reachOrderFloat` (not yet written)
 NeurNetContrSysDT.reachCost  cost: an asserted running cost under `Cost/`, never meant to compute
 NeurNetContrSysDT.simulate  spec: an idealised real-valued closed-loop trajectory, used only in a correctness statement
-NonlinParamSys.WithSteps.reachUnion  pending #1: built on `NonlinearSys`, which stores `f` over ℝ and `LinStep` real `A`, `B`, so no float run exists until the class carries a float linearization (Jacobian and Lagrange-remainder enclosures)
-NonlinParamSys.reachInstance  pending #1: built on `NonlinearSys`, which stores `f` over ℝ and `LinStep` real `A`, `B`, so no float run exists until the class carries a float linearization (Jacobian and Lagrange-remainder enclosures)
-NonlinearSys.abstrErrPolyCandidates  pending #1: `NonlinearSys` stores `f` over ℝ and `LinStep` real `A`, `B`, so no float run exists until the class carries a float linearization (Jacobian and Lagrange-remainder enclosures)
-NonlinearSys.abstrErrPolySearch  pending #1: `NonlinearSys` stores `f` over ℝ and `LinStep` real `A`, `B`, so no float run exists until the class carries a float linearization (Jacobian and Lagrange-remainder enclosures)
+NonlinParamSys.WithSteps.reachUnion  pending #1: the parameter-as-state reduction to `NonlinearSys` at real certificates; a float run needs a `FloatModel` of the augmented field, after which `NonlinearSys.FloatModel.reachFloat` runs it, but no wrapper exists yet
+NonlinParamSys.reachInstance  pending #1: `Reach` for the parameter-as-state reduction at real certificates; see `NonlinParamSys.WithSteps.reachUnion`
+NonlinearSys.abstrErrPolyCandidates  pending #1: the `'poly'` (polynomialization) variant, over `Real.PolyZonotope` with real Hessian and third-order bounds; needs a float `PolyZonotope` quadMap chain and second/third-derivative enclosures in `FloatModel`, which carries Jacobian slopes only
+NonlinearSys.abstrErrPolySearch  pending #1: the `'poly'` (polynomialization) variant, over `Real.PolyZonotope` with real Hessian and third-order bounds; needs a float `PolyZonotope` quadMap chain and second/third-derivative enclosures in `FloatModel`, which carries Jacobian slopes only
 NonlinearSys.abstrReach  spec: the `Set` a run's windows denote, a union for theorems; what runs is the `…Run` it unions
-NonlinearSys.abstrRun  pending #1: `NonlinearSys` stores `f` over ℝ and `LinStep` real `A`, `B`, so no float run exists until the class carries a float linearization (Jacobian and Lagrange-remainder enclosures)
-NonlinearSys.abstrStep  pending #1: `NonlinearSys` stores `f` over ℝ and `LinStep` real `A`, `B`, so no float run exists until the class carries a float linearization (Jacobian and Lagrange-remainder enclosures)
-NonlinearSys.adaptLinPass  pending #1: `NonlinearSys` stores `f` over ℝ and `LinStep` real `A`, `B`, so no float run exists until the class carries a float linearization (Jacobian and Lagrange-remainder enclosures)
-NonlinearSys.adaptRun  pending #1: `NonlinearSys` stores `f` over ℝ and `LinStep` real `A`, `B`, so no float run exists until the class carries a float linearization (Jacobian and Lagrange-remainder enclosures)
-NonlinearSys.adaptStep  pending #1: `NonlinearSys` stores `f` over ℝ and `LinStep` real `A`, `B`, so no float run exists until the class carries a float linearization (Jacobian and Lagrange-remainder enclosures)
+NonlinearSys.abstrRun  pending #1: the on-the-fly abstraction loop of Wetzlinger et al., at a real `lin` callback and real `Δt`; needs its tuning and abstraction-error loop in floats, on top of `NonlinearSys.FloatModel`'s linearization
+NonlinearSys.abstrStep  pending #1: the on-the-fly abstraction loop of Wetzlinger et al., at a real `lin` callback and real `Δt`; needs its tuning and abstraction-error loop in floats, on top of `NonlinearSys.FloatModel`'s linearization
+NonlinearSys.adaptLinPass  pending #1: the on-the-fly abstraction loop of Wetzlinger et al., at a real `lin` callback and real `Δt`; needs its tuning and abstraction-error loop in floats, on top of `NonlinearSys.FloatModel`'s linearization
+NonlinearSys.adaptRun  pending #1: the on-the-fly abstraction loop of Wetzlinger et al., at a real `lin` callback and real `Δt`; needs its tuning and abstraction-error loop in floats, on top of `NonlinearSys.FloatModel`'s linearization
+NonlinearSys.adaptStep  pending #1: the on-the-fly abstraction loop of Wetzlinger et al., at a real `lin` callback and real `Δt`; needs its tuning and abstraction-error loop in floats, on top of `NonlinearSys.FloatModel`'s linearization
 NonlinearSys.centreAbstrReach  spec: the `Set` a run's windows denote, a union for theorems; what runs is the `…Run` it unions
-NonlinearSys.centreAbstrRun  pending #1: `NonlinearSys` stores `f` over ℝ and `LinStep` real `A`, `B`, so no float run exists until the class carries a float linearization (Jacobian and Lagrange-remainder enclosures)
-NonlinearSys.centreAbstrStep  pending #1: `NonlinearSys` stores `f` over ℝ and `LinStep` real `A`, `B`, so no float run exists until the class carries a float linearization (Jacobian and Lagrange-remainder enclosures)
-NonlinearSys.linPoint  pending #1: `NonlinearSys` stores `f` over ℝ and `LinStep` real `A`, `B`, so no float run exists until the class carries a float linearization (Jacobian and Lagrange-remainder enclosures)
-NonlinearSys.linReachPoly  pending #1: `NonlinearSys` stores `f` over ℝ and `LinStep` real `A`, `B`, so no float run exists until the class carries a float linearization (Jacobian and Lagrange-remainder enclosures)
+NonlinearSys.centreAbstrRun  pending #1: the on-the-fly abstraction loop of Wetzlinger et al., at a real `lin` callback and real `Δt`; needs its tuning and abstraction-error loop in floats, on top of `NonlinearSys.FloatModel`'s linearization
+NonlinearSys.centreAbstrStep  pending #1: the on-the-fly abstraction loop of Wetzlinger et al., at a real `lin` callback and real `Δt`; needs its tuning and abstraction-error loop in floats, on top of `NonlinearSys.FloatModel`'s linearization
+NonlinearSys.linPoint  real-layer: the expansion point at the real `f`; runs in floats as `NonlinearSys.FloatModel.linPointFloat`
+NonlinearSys.linReachPoly  pending #1: the `'poly'` (polynomialization) variant, over `Real.PolyZonotope` with real Hessian and third-order bounds; needs a float `PolyZonotope` quadMap chain and second/third-derivative enclosures in `FloatModel`, which carries Jacobian slopes only
 NonlinearSys.polyReachReach  spec: the `Set` a run's windows denote, a union for theorems; what runs is the `…Run` it unions
-NonlinearSys.polyReachRun  pending #1: `NonlinearSys` stores `f` over ℝ and `LinStep` real `A`, `B`, so no float run exists until the class carries a float linearization (Jacobian and Lagrange-remainder enclosures)
-NonlinearSys.polyReachStep  pending #1: `NonlinearSys` stores `f` over ℝ and `LinStep` real `A`, `B`, so no float run exists until the class carries a float linearization (Jacobian and Lagrange-remainder enclosures)
-NonlinearSys.reachInstance  pending #1: `NonlinearSys` stores `f` over ℝ and `LinStep` real `A`, `B`, so no float run exists until the class carries a float linearization (Jacobian and Lagrange-remainder enclosures)
-NonlinearSys.relinDeltaReach  pending #1: `NonlinearSys` stores `f` over ℝ and `LinStep` real `A`, `B`, so no float run exists until the class carries a float linearization (Jacobian and Lagrange-remainder enclosures)
-NonlinearSys.relinReach  pending #1: `NonlinearSys` stores `f` over ℝ and `LinStep` real `A`, `B`, so no float run exists until the class carries a float linearization (Jacobian and Lagrange-remainder enclosures)
-NonlinearSys.relinTimeInterval  pending #1: `NonlinearSys` stores `f` over ℝ and `LinStep` real `A`, `B`, so no float run exists until the class carries a float linearization (Jacobian and Lagrange-remainder enclosures)
-NonlinearSys.WithSteps.reachUnion  pending #1: `NonlinearSys` stores `f` over ℝ and `LinStep` real `A`, `B`, so no float run exists until the class carries a float linearization (Jacobian and Lagrange-remainder enclosures)
+NonlinearSys.polyReachRun  pending #1: the `'poly'` (polynomialization) variant, over `Real.PolyZonotope` with real Hessian and third-order bounds; needs a float `PolyZonotope` quadMap chain and second/third-derivative enclosures in `FloatModel`, which carries Jacobian slopes only
+NonlinearSys.polyReachStep  pending #1: the `'poly'` (polynomialization) variant, over `Real.PolyZonotope` with real Hessian and third-order bounds; needs a float `PolyZonotope` quadMap chain and second/third-derivative enclosures in `FloatModel`, which carries Jacobian slopes only
+NonlinearSys.reachInstance  real-layer: `Reach` for `WithSteps`, real certificates in the system; the float run is `NonlinearSys.FloatModel.reachFloat`, which takes a `FloatModel` rather than the system and so is no `Reach` instance
+NonlinearSys.relinDeltaReach  pending #1: CORA's `Rdiff`, read only by the `'poly'` variant; needs a float `LinearSys.deltaReach`, which is itself pending
+NonlinearSys.relinReach  real-layer: the re-linearization loop at caller-supplied certificates `LinStep`; runs in floats as `NonlinearSys.FloatModel.reachFloat`, which linearizes itself from a `FloatModel` (`Encloses.reachFloat_outer`)
+NonlinearSys.relinTimeInterval  real-layer: one step's window at a supplied certificate; the float run's is the first set `NonlinearSys.FloatModel.relinStepFloat` returns (`Encloses.relinStepFloat_outer`)
+NonlinearSys.WithSteps.reachUnion  real-layer: the `Reach` union at supplied certificates and regions; runs in floats as `NonlinearSys.FloatModel.reachFloat` (`Encloses.reachFloat_outer`)
 NonlinearSysDT.reachCost  cost: an asserted running cost under `Cost/`, never meant to compute
 Schedule.refineWorst  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
 Schedule.refineWorstNeurons  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
-abstrErr  pending #1: `NonlinearSys` stores `f` over ℝ and `LinStep` real `A`, `B`, so no float run exists until the class carries a float linearization (Jacobian and Lagrange-remainder enclosures)
-abstrErrLin  pending #1: `NonlinearSys` stores `f` over ℝ and `LinStep` real `A`, `B`, so no float run exists until the class carries a float linearization (Jacobian and Lagrange-remainder enclosures)
+abstrErr  pending #1: the `'poly'` variant's error over `Real.PolyZonotope` at real `D`, `E` and `postDelta`; needs a float `PolyZonotope` quadMap chain, a float `postDelta`, and second/third-derivative enclosures in `FloatModel`
+abstrErrLin  pending #1: the Hessian box of [Althoff 2010, Prop. 3.7] at a real `H`; the float run uses the first-order `NonlinearSys.FloatModel.slopeRemainder` instead, and this box in floats needs a Hessian enclosure `FloatModel` does not carry
 abstrSolInf  spec: the exact `Set` the abstraction error sums to, defined by a `HasSum`
 boxDiameter  spec: a norm or Hausdorff distance over ℝ, used only to state a guarantee
 containsBoxRealConZonotope  real-layer: `S` fixed to an exact real family so instance search finds it, `Real.ConZonotope` against a box
@@ -300,7 +300,7 @@ interpGain  pending #1: a nonlinear tuning heuristic in ℝ arithmetic; needs re
 isDisjointBoxRealConZonotope  real-layer: `S` fixed to an exact real family so instance search finds it, `Real.ConZonotope` against a box
 isDisjointBoxRealInterval  real-layer: `S` fixed to an exact real family so instance search finds it, `Real.Interval` against a box
 isDisjointBoxRealZonotope  real-layer: `S` fixed to an exact real family so instance search finds it, `Real.Zonotope` against a box
-lagrangeRemainder  pending #1: `NonlinearSys` stores `f` over ℝ and `LinStep` real `A`, `B`, so no float run exists until the class carries a float linearization (Jacobian and Lagrange-remainder enclosures)
+lagrangeRemainder  pending #1: the third-order box at a real bound `E`, read by the `'poly'` variant; needs a third-derivative enclosure `FloatModel` does not carry
 layerSensitivity  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
 localAbstrErr  spec: an abstraction-error measure of an exact `Set`, its box diameter
 mulVecL  spec: `Matrix.mulVec` as a continuous bilinear map, a proof device for differentiating the flow
@@ -315,7 +315,7 @@ toEuclidean  spec: a norm or Hausdorff distance over ℝ, used only to state a g
 tuneAbstrOrder  pending #1: a nonlinear tuning heuristic in ℝ arithmetic; needs restating over the scalar `𝕋` (a heuristic, so no soundness obligation)
 tuneDeltat  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 tuneDeltatInit  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
-varInputs  pending #1: `NonlinearSys` stores `f` over ℝ and `LinStep` real `A`, `B`, so no float run exists until the class carries a float linearization (Jacobian and Lagrange-remainder enclosures)
+varInputs  pending #1: the `'poly'` variant's input term over `Real.PolyZonotope` at a real Hessian `D`; needs a Hessian enclosure in `FloatModel` and a float `PolyZonotope.quadMapMixed`
 verifyConvex  spec: a real-valued certificate (support witness/bound), quantifying over arbitrary linear functionals
 verifyConvexStep  spec: a real-valued certificate (support witness/bound), quantifying over arbitrary linear functionals
 verifyHalfspace  spec: a real-valued certificate (support witness/bound), quantifying over arbitrary linear functionals

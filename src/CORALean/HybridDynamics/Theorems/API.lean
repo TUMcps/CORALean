@@ -1,6 +1,8 @@
 import CORALean.HybridDynamics.Theorems.FlowOuter
 import CORALean.HybridDynamics.Theorems.FlowOuterInputSolution
 import CORALean.HybridDynamics.Theorems.FlowOuterSplit
+import CORALean.HybridDynamics.Theorems.FlowOuterFloat
+import CORALean.HybridDynamics.Theorems.FlowOuterSplitFloat
 import CORALean.HybridDynamics.Theorems.HoldsAllOfInvariant
 import CORALean.HybridDynamics.Theorems.HoldsOfCheck
 import CORALean.HybridDynamics.Theorems.HoldsOfRun
@@ -43,7 +45,7 @@ The bounded-horizon reading: `RunOnToRun`/`RunExistsRunOn` relate `RunOn` to
 `InvariantOnOfInvariant` reads an `Invariant` as the constant-family case.
 
 `FlowOuterInputSolution` computes `FlowOuter`'s input contribution rather than
-naming it, `FlowOuterSplit` without asking `0 ∈ ℓ.U`, and
+naming it, `FlowOuterSplit` without asking `0 ∈ ℓ.U`, `…Float` the same in floats, and
 `InvariantOfEnclosureCut` is the criterion those buy, cut to `ℓ.inv` and with a
 model: uncut, `InvariantOfEnclosure`'s `hflow` has none under a nonzero drift.
 

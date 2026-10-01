@@ -1,0 +1,63 @@
+import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
+import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
+import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
+import CORALean.HybridDynamics.Operations.TimeIntervalStepFloat
+import CORALean.HybridDynamics.Theorems.LinearEmbedding
+
+/-!
+# A stay is enclosed by the float time-interval step
+
+`timeInterval_outer` with the float step in place of the exact one: the
+variation of constants splits `x t` into the free motion, which
+`timeIntervalStepFloat_outer` places in the float step at an order admissible
+for `[r, r]`, and the input's contribution, which the caller's `Ud` holds. The
+stay need not last `r`: any `t ≤ r` it reaches is covered.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       01-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open CORALean.Float SoundFloatArithmetic
+open Matrix ContSet NormedSpace MeasureTheory
+
+attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
+  Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
+
+variable {n : ℕ} {L 𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
+variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+/-- Every state a stay passes through by time `r` lies in the float step from
+`R₀` plus the input contribution `Ud` named by the caller. -/
+theorem Location.Trajectory.timeIntervalFloat_outer {ℓ : Location (Zonotope 𝕋) G L 𝕋 n}
+    {τ : ℝ} {x u : ℝ → Vec ℝ n} (traj : ℓ.Trajectory τ x u) {R₀ Ud : Zonotope 𝕋 n}
+    (h₀ : x 0 ∈ construct R₀) {r : 𝕋} {η : ℕ} (hr : 0 < toReal r)
+    (hη : ℓ.dynamics.OrderAdmissibleFloat r r η) {t : ℝ} (ht0 : 0 ≤ t) (htτ : t ≤ τ)
+    (htr : t ≤ toReal r)
+    (hUd : (∫ s in (0:ℝ)..t, exp ((t - s) • Scalar.toRealMat ℓ.dynamics.A) *ᵥ u s)
+      ∈ construct Ud) :
+    x t ∈ construct (Plus.plus (ℓ.timeIntervalStepFloat r η R₀) Ud) := by -- --- PROOF ---
+  have ltraj := traj.linearSys h₀
+  have hTt : Set.Icc (0:ℝ) t ⊆ Set.Icc 0 τ := Set.Icc_subset_Icc le_rfl htτ
+  -- the variation of constants, from `0` to `t`
+  have hvoc := ltraj.variation_of_constants hTt ht0
+    (ltraj.intervalIntegrable_input hTt ht0 (CompactSet.isBounded_construct ℓ.U))
+  rw [sub_zero] at hvoc
+  rw [hvoc]
+  exact Plus.plus_outer _ _ (Set.add_mem_add
+    (ℓ.dynamics.timeIntervalStepFloat_outer hr hη R₀ h₀ ht0 htr) hUd)
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
