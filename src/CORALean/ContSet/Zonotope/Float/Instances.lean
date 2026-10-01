@@ -7,6 +7,8 @@ import CORALean.ContSet.Zonotope.Float.Theorems.LinCombOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.MtimesIntervalMatOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.RecentreSubMem
+import CORALean.ContSet.Zonotope.Float.Theorems.RecentreZeroMem
 import CORALean.ContSet.Zonotope.Float.Theorems.ReduceOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.ReindexExact
 
@@ -33,7 +35,7 @@ neither `reduce` nor `linComb`.
 
 -- Authors:       Tobias Ladner
 -- Written:       18-August-2026
--- Last update:   03-September-2026
+-- Last update:   01-October-2026
 -- Last revision: ---
 
 
@@ -71,6 +73,14 @@ instance {n : ℕ} : Reduce (Zonotope 𝕋 n) (Vec ℝ n) where
   reduce_outer Z o := by
     rw [Zonotope.materialise_eq]
     exact Zonotope.reduce_outer Z o
+
+/-- `centre` is the stored centre read as reals: a field projection, and
+exactly the point `recentre` takes out, so nothing rounds. -/
+instance {n : ℕ} : Recentre (Zonotope 𝕋 n) (Vec ℝ n) where
+  centre Z := toRealVec Z.c
+  recentre := Zonotope.recentre
+  zero_mem_recentre := Zonotope.zero_mem_recentre
+  sub_centre_mem_recentre := Zonotope.sub_centre_mem_recentre
 
 /-- Exact, alone among the fields here: a relabelling moves stored floats and
 computes nothing, so the error box is carried across rather than grown. -/

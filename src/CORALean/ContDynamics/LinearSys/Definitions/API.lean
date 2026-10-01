@@ -31,6 +31,7 @@ import CORALean.ContDynamics.LinearSys.Definitions.WithInputReachExact
 import CORALean.ContDynamics.LinearSys.Definitions.WithInputSplit
 import CORALean.ContDynamics.LinearSys.Definitions.WithInputSplitReachExact
 import CORALean.ContDynamics.LinearSys.Definitions.OrderAdmissibleFloat
+import CORALean.ContDynamics.LinearSys.Definitions.ReachFloatInputInvariant
 
 /-!
 # What a continuous-time linear system means
@@ -51,7 +52,8 @@ is the set under one fixed input signal, [1, Thm. 1]'s intersection target.
 `ReachExact` is what `Reach` asks of it, homogeneous;
 `WithInput`/`WithInputReachExact` the same with an input set holding the
 origin, `WithInputSplit`/`WithInputSplitReachExact` with one anywhere.
-`OrderAdmissibleFloat` is the order the float steps ask for, and
+`OrderAdmissibleFloat` is the order the float steps ask for,
+`ReachFloatInputInvariant` what `reachFloatInput`'s loop state owes, and
 `ReachOptions` CORA's `options` for a reach run, `timeStep` and the orders,
 `ReachStepOptions` the two of them a scheme without order reduction reads.
 
