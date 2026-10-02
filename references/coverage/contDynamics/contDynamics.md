@@ -6,7 +6,7 @@ CORA methods of `contDynamics/@contDynamics/`, one row each, and where CORALean 
 
 | Method | State | In CORALean | Note |
 |---|---|---|---|
-| `conform` | — | — |  |
+| `conform` | out-of-scope | n/a — solver-dependent | dispatch to conformance synthesis by optimisation (`fmincon`/`linprog`) or RRT |
 | `contDynamics` | out-of-scope | n/a — matlab-runtime | abstract class constructor: stores only dimensions and a name, which are type indices in Lean |
 | `createTestSuite` | out-of-scope | n/a — random/sampling |  |
 | `derivatives` | out-of-scope | n/a — matlab-runtime |  |

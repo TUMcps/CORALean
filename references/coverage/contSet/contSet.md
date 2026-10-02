@@ -15,7 +15,7 @@ CORA methods of `contSet/@contSet/`, one row each, and where CORALean answers th
 | `cartProd` | out-of-scope | n/a — matlab-runtime | validating wrapper of `cartProd_` |
 | `cartProd_` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
 | `center` | float | [`Recentre`](../../../src/CORALean/ContSet/ContSet/ContSet.lean) | route b — the operation class is generic over the representation, and the float representations instantiate it (`Float/Instances.lean`) |
-| `compact` | — | — |  |
+| `compact` | out-of-scope | n/a — matlab-runtime | validating wrapper of `compact_` |
 | `compact_` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
 | `conPolyZono` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
 | `conZonotope` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
@@ -93,15 +93,15 @@ CORA methods of `contSet/@contSet/`, one row each, and where CORALean answers th
 | `reorder` | out-of-scope | n/a — matlab-runtime |  |
 | `representsa` | out-of-scope | n/a — matlab-runtime | validating wrapper of `representsa_` |
 | `representsa_` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
-| `representsa_emptyObject` | — | — |  |
+| `representsa_emptyObject` | out-of-scope | n/a — matlab-runtime | dispatch on `isemptyobject` |
 | `single` | out-of-scope | n/a — io/conversion-to-matlab-objects |  |
 | `sparse` | out-of-scope | n/a — io/conversion-to-matlab-objects |  |
-| `supportFunc` | proved | [`SupportBound`](../../../src/CORALean/Global/LinProg/LinProg.lean) |  |
-| `supportFunc_` | proved | [`SupportBound`](../../../src/CORALean/Global/LinProg/LinProg.lean) |  |
+| `supportFunc` | float | [`SupportBound`](../../../src/CORALean/Global/LinProg/LinProg.lean) · float: [`FloatBound`](../../../src/CORALean/Global/Float/FloatBound.lean), [`FloatBound.segments`](../../../src/CORALean/ContSet/ContSet/Float/Operations/SupportBound.lean) | route b — `FloatBound` is the float interface of `SupportBound`, instantiated by the `boundDot` of every float class (e.g. `Capsule.boundDot`) |
+| `supportFunc_` | float | [`SupportBound`](../../../src/CORALean/Global/LinProg/LinProg.lean) · float: [`FloatBound`](../../../src/CORALean/Global/Float/FloatBound.lean), [`FloatBound.segments`](../../../src/CORALean/ContSet/ContSet/Float/Operations/SupportBound.lean) | route b — `FloatBound` is the float interface of `SupportBound`, instantiated by the `boundDot` of every float class (e.g. `Capsule.boundDot`) |
 | `times` | float | [`ContSet.times`](../../../src/CORALean/ContSet/ContSet/Operations/Times.lean), [`ContSet.times_outer`](../../../src/CORALean/ContSet/ContSet/Theorems/TimesOuter.lean) | route b — `diag v * S` through any `Mtimes (Mat 𝕋) S`, generic over the scalar `𝕋` and the representation; `ExactScalar` makes the diagonal read as `diag v` |
 | `uminus` | float | [`ContSet.uminus`](../../../src/CORALean/ContSet/ContSet/Operations/Uminus.lean), [`ContSet.uminus_outer`](../../../src/CORALean/ContSet/ContSet/Theorems/UminusOuter.lean) | route b — `-1 * S` through any `Mtimes (Mat 𝕋) S`, generic over the scalar `𝕋` and the representation; `NegScalar` makes `-1` read as `-1` |
 | `uplus` | float | [`ContSet.uplus`](../../../src/CORALean/ContSet/ContSet/Operations/Uplus.lean), [`ContSet.uplus_exact`](../../../src/CORALean/ContSet/ContSet/Theorems/UplusExact.lean) | route b — the identity on any representation; exact, not only outer |
-| `vertices` | — | — |  |
+| `vertices` | out-of-scope | n/a — matlab-runtime | validating wrapper of `vertices_` |
 | `vertices_` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
 | `volume` | out-of-scope | n/a — matlab-runtime | validating wrapper of `volume_` |
 | `volume_` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |

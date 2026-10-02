@@ -11,7 +11,7 @@ CORA methods of `contDynamics/@linearSys/`, one row each, and where CORALean ans
 | `display` | out-of-scope | n/a — plotting/display |  |
 | `eq` | out-of-scope | n/a — matlab-runtime |  |
 | `errorSolution_adaptive` | — | — |  |
-| `falsify` | — | — |  |
+| `falsify` | out-of-scope | n/a — solver-dependent | optimisation and wall-clock search for a falsifying trajectory |
 | `full` | out-of-scope | n/a — io/conversion-to-matlab-objects |  |
 | `generateRandom` | out-of-scope | n/a — random/sampling |  |
 | `getPrintSystemInfo` | out-of-scope | n/a — plotting/display |  |

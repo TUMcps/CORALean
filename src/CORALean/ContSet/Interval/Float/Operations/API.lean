@@ -37,6 +37,9 @@ import CORALean.ContSet.Interval.Float.Operations.Abs
 import CORALean.ContSet.Interval.Float.Operations.Empty
 import CORALean.ContSet.Interval.Float.Operations.Exp
 import CORALean.ContSet.Interval.Float.Operations.Log
+import CORALean.ContSet.Interval.Float.Operations.Sqrt
+import CORALean.ContSet.Interval.Float.Operations.Asinh
+import CORALean.ContSet.Interval.Float.Operations.Acosh
 import CORALean.ContSet.Interval.Float.Operations.Sign
 import CORALean.ContSet.Interval.Float.Operations.Le
 import CORALean.ContSet.Interval.Float.Operations.Lt

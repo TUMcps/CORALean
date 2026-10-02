@@ -35,6 +35,9 @@ import CORALean.ContSet.Interval.Float.Theorems.AbsExact
 import CORALean.ContSet.Interval.Float.Theorems.EmptyExact
 import CORALean.ContSet.Interval.Float.Theorems.ExpOuter
 import CORALean.ContSet.Interval.Float.Theorems.LogOuter
+import CORALean.ContSet.Interval.Float.Theorems.SqrtOuter
+import CORALean.ContSet.Interval.Float.Theorems.AsinhOuter
+import CORALean.ContSet.Interval.Float.Theorems.AcoshOuter
 import CORALean.ContSet.Interval.Float.Theorems.SignOuter
 import CORALean.ContSet.Interval.Float.Theorems.LeSound
 import CORALean.ContSet.Interval.Float.Theorems.LtSound

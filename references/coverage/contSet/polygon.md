@@ -44,7 +44,7 @@ CORA methods of `contSet/@polygon/`, one row each, and where CORALean answers th
 | `randPoint_` | out-of-scope | n/a — random/sampling |  |
 | `removeCollinearPoints` | — | — | boundary operation |
 | `representsa_` | proved | [`Polygon.representsaEmptySet`](../../../src/CORALean/ContSet/Polygon/Real/Operations/RepresentsaEmptySet.lean), [`Polygon.representsaEmptySet_iff`](../../../src/CORALean/ContSet/Polygon/Real/Theorems/RepresentsaEmptySetIff.lean) | type `'emptySet'` only: empty iff no piece has a vertex; the types `point`, `origin` and `fullspace` are not given, and there is no tolerance; no float counterpart |
-| `simplify` | — | — | boundary operation on a polyshape |
+| `simplify` | out-of-scope | n/a — deprecated | the method itself emits `CORAwarning('CORA:deprecated')` (use `compact(polygon,'douglasPeucker',tol)`) |
 | `splitIntoConvexSets` | — | — | boundary operation: the triangulation not formalized |
 | `subtract` | — | — | polygon boolean operation on boundaries |
 | `supportFunc_` | proved | [`Polygon.supportBound`](../../../src/CORALean/ContSet/Polygon/Real/Operations/SupportBound.lean), [`SupportBound`](../../../src/CORALean/Global/LinProg/LinProg.lean) | upper bound only: the largest value of the direction over the vertices, outer by `Polygon.convexHull_vertices`; a polygon without a vertex is empty and gets `0` where CORA has `-Inf`; no float counterpart yet |

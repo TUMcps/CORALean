@@ -96,6 +96,12 @@ Rulings on borderline cases:
 * **Field setters and getters** (taylm `set`, `setName`, polytope `setVertices`, nn `getOrderPattern`, probZonotope `center`) are `matlab-runtime`, note "field setter" or "field getter".
 * **Validating wrappers** of an abstract `<m>_` (contSet `cartProd`, `convHull`, `lift`, `projectHighDim`, `volume`, `norm`, `representsa`, `boundaryPoint`) are `matlab-runtime`, note "validating wrapper of `<m>_`": argument checks, defaults, an empty-set fallback in a `try/catch`, and one call to `<m>_` (`boundaryPoint` throws). A wrapper with real per-class content stays in scope.
 * **Route b for verdicts and merges** is accepted where the definition is generic over `Scalar 𝕋` and computable and the guarantee is stated for that `𝕋`: `mergeInvariants` (guarantee `Lifting.mem_inv`) and hybridDynamics `verify` (`HybridAutomaton.holds_of_check`), as for the sibling rows already `float`.
+* **R-S: constructor rows of scalar-carrying structures** count as `float` by route b when the structure is generic over `Scalar 𝕋`, computable, and the row's theorem is stated for it: `linearARX` (`LinearARX 𝕋`, with the computable `toLinearSysDT`) and `neurNetContrSys` (`NeurNetContrSys 𝕋`). Not for structures whose `f` is a real function (`nonlinearARX`, `nonlinearSysDT`).
+* **R-FB: `FloatBound` is the float side of `SupportBound`.** The abstract contSet rows `supportFunc` and `supportFunc_` are `float` by route b through that interface, which each float class instantiates by its `boundDot`.
+* **Alias-stale rows** are linked to the declaration that already exists under another row: linearReset `nonlinearReset` (`Transition.toNonlinearReset`, `NonlinearReset.evaluate_toNonlinearReset`) and conZonotope `enclose` (the generic `ContSet.enclose`, as the float `ConZonotope` has `Plus`, `LinComb` and `Mtimes`).
+* **`deprecated` also covers a method that itself emits `CORAwarning('CORA:deprecated')`**, even if its help text does not say `DEPRECATED` (polygon `simplify`).
+* **`matlab-runtime`, further rows:** nonlinearSys `taylor` (symbolic derivative code generation), nn `instantiateFromString` (string dispatch), contSet `representsa_emptyObject` (dispatch on `isemptyobject`), contSet `compact` and `vertices` (validating wrappers of `compact_` and `vertices_`), nn `nnGNNLayer` (abstract class constructor). **`random/sampling`, further rows:** polytope `reduce` (its only method is `'rand'`), zonotope `orthVectors` (random completion columns). capsule `vertices_` stays in scope: a deterministic arc grid, not a random draw.
+* **Optimiser-driven workflows are `solver-dependent` when the result is determined by an external optimiser or a training loop** (`fmincon`, `linprog`, `quadprog`, genetic programming, decision-tree learning, a training loop): `falsify` (linearSys, linearSysDT, nonlinearSys, nonlinearSysDT, hybridAutomaton: a solver and wall-clock search), `confSynth_dyn`, `confSynth_gray`, `conform`, `estimateParameter`, nonlinearARX and hybridAutomaton `identify`, nn `train`. A method whose body is computed from sets or by a closed form stays in scope: `computeGO` (deterministic stacked output matrices), `isconform` and `isconform_dyn` (halfspace containment of unified outputs), and `identify` of the linear and nonlinear continuous or discrete systems (default algorithm `dmd`, an SVD fit; `opt`/`nested`/`sparse` are further options).
 
 ## Counts
 
@@ -103,46 +109,46 @@ Rulings on borderline cases:
 | Class | Group | Methods | proved | float | not yet | out of scope | CORA issues |
 |---|---|---|---|---|---|---|---|
 | [affine](contSet/affine.md) | contSet | 1 | 0 | 0 | 1 | 0 | 0 |
-| [capsule](contSet/capsule.md) | contSet | 39 | 4 | 16 | 9 | 10 | 2 |
+| [capsule](contSet/capsule.md) | contSet | 39 | 1 | 19 | 9 | 10 | 2 |
 | [conPolyZono](contSet/conPolyZono.md) | contSet | 47 | 8 | 17 | 14 | 8 | 0 |
-| [conZonotope](contSet/conZonotope.md) | contSet | 50 | 8 | 17 | 13 | 12 | 0 |
-| [contSet](contSet/contSet.md) | contSet | 101 | 6 | 19 | 7 | 69 | 0 |
+| [conZonotope](contSet/conZonotope.md) | contSet | 50 | 7 | 18 | 13 | 12 | 0 |
+| [contSet](contSet/contSet.md) | contSet | 101 | 4 | 21 | 4 | 72 | 0 |
 | [ellipsoid](contSet/ellipsoid.md) | contSet | 50 | 5 | 13 | 23 | 9 | 0 |
 | [emptySet](contSet/emptySet.md) | contSet | 30 | 8 | 14 | 1 | 7 | 0 |
 | [fullspace](contSet/fullspace.md) | contSet | 33 | 10 | 13 | 2 | 8 | 0 |
-| [interval](contSet/interval.md) | contSet | 110 | 14 | 68 | 10 | 18 | 0 |
+| [interval](contSet/interval.md) | contSet | 110 | 10 | 72 | 10 | 18 | 0 |
 | [levelSet](contSet/levelSet.md) | contSet | 22 | 8 | 0 | 6 | 8 | 0 |
 | [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 3 | 25 | 31 | 14 | 0 |
-| [polygon](contSet/polygon.md) | contSet | 46 | 4 | 14 | 22 | 6 | 0 |
-| [polytope](contSet/polytope.md) | contSet | 58 | 6 | 27 | 15 | 10 | 0 |
+| [polygon](contSet/polygon.md) | contSet | 46 | 4 | 14 | 21 | 7 | 0 |
+| [polytope](contSet/polytope.md) | contSet | 58 | 6 | 27 | 14 | 11 | 0 |
 | [probZonotope](contSet/probZonotope.md) | contSet | 28 | 0 | 0 | 20 | 8 | 0 |
 | [spectraShadow](contSet/spectraShadow.md) | contSet | 33 | 0 | 7 | 18 | 8 | 0 |
 | [taylm](contSet/taylm.md) | contSet | 51 | 12 | 14 | 14 | 11 | 0 |
 | [zonoBundle](contSet/zonoBundle.md) | contSet | 44 | 2 | 21 | 14 | 7 | 0 |
-| [zonotope](contSet/zonotope.md) | contSet | 80 | 10 | 32 | 25 | 13 | 1 |
+| [zonotope](contSet/zonotope.md) | contSet | 80 | 9 | 33 | 24 | 14 | 1 |
 | [zoo](contSet/zoo.md) | contSet | 12 | 0 | 0 | 10 | 2 | 0 |
-| [contDynamics](contDynamics/contDynamics.md) | contDynamics | 19 | 0 | 4 | 5 | 10 | 0 |
+| [contDynamics](contDynamics/contDynamics.md) | contDynamics | 19 | 0 | 4 | 4 | 11 | 0 |
 | [linParamSys](contDynamics/linParamSys.md) | contDynamics | 11 | 3 | 2 | 3 | 3 | 0 |
 | [linProbSys](contDynamics/linProbSys.md) | contDynamics | 8 | 0 | 0 | 4 | 4 | 0 |
-| [linearARX](contDynamics/linearARX.md) | contDynamics | 7 | 2 | 1 | 2 | 2 | 0 |
-| [linearSys](contDynamics/linearSys.md) | contDynamics | 33 | 7 | 7 | 10 | 9 | 0 |
-| [linearSysDT](contDynamics/linearSysDT.md) | contDynamics | 17 | 1 | 4 | 10 | 2 | 0 |
-| [neurNetContrSys](contDynamics/neurNetContrSys.md) | contDynamics | 5 | 2 | 2 | 0 | 1 | 0 |
+| [linearARX](contDynamics/linearARX.md) | contDynamics | 7 | 1 | 2 | 2 | 2 | 0 |
+| [linearSys](contDynamics/linearSys.md) | contDynamics | 33 | 7 | 7 | 9 | 10 | 0 |
+| [linearSysDT](contDynamics/linearSysDT.md) | contDynamics | 17 | 1 | 4 | 7 | 5 | 0 |
+| [neurNetContrSys](contDynamics/neurNetContrSys.md) | contDynamics | 5 | 1 | 3 | 0 | 1 | 0 |
 | [nonlinDASys](contDynamics/nonlinDASys.md) | contDynamics | 13 | 2 | 0 | 8 | 3 | 0 |
-| [nonlinParamSys](contDynamics/nonlinParamSys.md) | contDynamics | 9 | 3 | 0 | 3 | 3 | 0 |
-| [nonlinearARX](contDynamics/nonlinearARX.md) | contDynamics | 8 | 4 | 0 | 2 | 2 | 0 |
-| [nonlinearSys](contDynamics/nonlinearSys.md) | contDynamics | 18 | 4 | 3 | 5 | 6 | 1 |
-| [nonlinearSysDT](contDynamics/nonlinearSysDT.md) | contDynamics | 11 | 5 | 0 | 4 | 2 | 0 |
+| [nonlinParamSys](contDynamics/nonlinParamSys.md) | contDynamics | 9 | 3 | 0 | 2 | 4 | 0 |
+| [nonlinearARX](contDynamics/nonlinearARX.md) | contDynamics | 8 | 4 | 0 | 1 | 3 | 0 |
+| [nonlinearSys](contDynamics/nonlinearSys.md) | contDynamics | 18 | 4 | 3 | 3 | 8 | 1 |
+| [nonlinearSysDT](contDynamics/nonlinearSysDT.md) | contDynamics | 11 | 5 | 0 | 3 | 3 | 0 |
 | [abstractReset](hybridDynamics/abstractReset.md) | hybridDynamics | 4 | 0 | 0 | 0 | 4 | 0 |
-| [hybridAutomaton](hybridDynamics/hybridAutomaton.md) | hybridDynamics | 15 | 0 | 2 | 4 | 9 | 0 |
+| [hybridAutomaton](hybridDynamics/hybridAutomaton.md) | hybridDynamics | 15 | 0 | 2 | 2 | 11 | 0 |
 | [hybridDynamics](hybridDynamics/hybridDynamics.md) | hybridDynamics | 2 | 0 | 1 | 0 | 1 | 0 |
-| [linearReset](hybridDynamics/linearReset.md) | hybridDynamics | 10 | 0 | 3 | 4 | 3 | 0 |
+| [linearReset](hybridDynamics/linearReset.md) | hybridDynamics | 10 | 1 | 3 | 3 | 3 | 0 |
 | [location](hybridDynamics/location.md) | hybridDynamics | 24 | 1 | 4 | 12 | 7 | 0 |
 | [nonlinearReset](hybridDynamics/nonlinearReset.md) | hybridDynamics | 9 | 3 | 0 | 2 | 4 | 0 |
 | [parallelHybridAutomaton](hybridDynamics/parallelHybridAutomaton.md) | hybridDynamics | 13 | 1 | 5 | 1 | 6 | 0 |
 | [transition](hybridDynamics/transition.md) | hybridDynamics | 12 | 0 | 2 | 3 | 7 | 0 |
-| [layers](nn/layers.md) | nn | 43 | 6 | 24 | 12 | 1 | 0 |
-| [neuralNetwork](nn/neuralNetwork.md) | nn | 61 | 5 | 7 | 13 | 36 | 1 |
+| [layers](nn/layers.md) | nn | 43 | 6 | 24 | 10 | 3 | 0 |
+| [neuralNetwork](nn/neuralNetwork.md) | nn | 61 | 5 | 7 | 12 | 37 | 1 |
 <!-- /coverage-counts -->
 
 `python3 scripts/check-references.py --fix` rewrites the table above.
