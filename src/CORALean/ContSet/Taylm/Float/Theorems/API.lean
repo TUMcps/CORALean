@@ -15,6 +15,8 @@ import CORALean.ContSet.Taylm.Float.Theorems.SumOuter
 import CORALean.ContSet.Taylm.Float.Theorems.TimesOuter
 import CORALean.ContSet.Taylm.Float.Theorems.ToRealTermBounds
 import CORALean.ContSet.Taylm.Float.Theorems.UminusOuter
+import CORALean.ContSet.Taylm.Float.Theorems.UplusOuter
+import CORALean.ContSet.Taylm.Float.Theorems.EmptyExact
 import CORALean.ContSet.Taylm.Float.Theorems.BoundDotLe
 
 /-!

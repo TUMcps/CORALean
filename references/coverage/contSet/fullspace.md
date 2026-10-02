@@ -16,7 +16,7 @@ CORA methods of `contSet/@fullspace/`, one row each, and where CORALean answers 
 | `dim` | out-of-scope | n/a — matlab-runtime |  |
 | `display` | out-of-scope | n/a — plotting/display |  |
 | `enclosePoints` | proved | [`Fullspace.enclosePoints`](../../../src/CORALean/ContSet/Fullspace/Real/Operations/EnclosePoints.lean), [`Fullspace.range_subset_enclosePoints`](../../../src/CORALean/ContSet/Fullspace/Real/Theorems/EnclosePointsMem.lean) |  |
-| `eventFcn` | — | — |  |
+| `eventFcn` | out-of-scope | n/a — matlab-runtime | ODE event callback |
 | `fullspace` | proved | [`ConvexSet`](../../../src/CORALean/ContSet/ContSet/Definitions/ConvexSet.lean) | the `ConvexSet (Fullspace n)` instance (`convex_univ`) |
 | `generateRandom` | out-of-scope | n/a — random/sampling |  |
 | `getPrintSetInfo` | out-of-scope | n/a — plotting/display |  |

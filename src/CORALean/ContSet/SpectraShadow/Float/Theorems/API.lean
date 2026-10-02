@@ -3,8 +3,12 @@ import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatBlockDiag
 import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatConstZero
 import CORALean.ContSet.SpectraShadow.Float.Theorems.EmptyExact
 import CORALean.ContSet.SpectraShadow.Float.Theorems.InfExact
+import CORALean.ContSet.SpectraShadow.Float.Theorems.MtimesOuter
 import CORALean.ContSet.SpectraShadow.Float.Theorems.PlusOuter
 import CORALean.ContSet.SpectraShadow.Float.Theorems.ProjectOuter
+import CORALean.ContSet.SpectraShadow.Float.Theorems.PadLeftOuter
+import CORALean.ContSet.SpectraShadow.Float.Theorems.PadRightOuter
+import CORALean.ContSet.SpectraShadow.Float.Theorems.CartProdOuter
 import CORALean.ContSet.SpectraShadow.Float.Theorems.Convex
 
 /-!

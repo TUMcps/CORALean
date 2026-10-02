@@ -1,0 +1,40 @@
+import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
+
+/-!
+# `SpectraShadow.padLeft`
+
+A shadow put into the first `n` coordinates of a product, zero in the last `m`. Only zeros
+are stored beside the stored floats, and the error box gets exact zeros there, so nothing
+rounds.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       02-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+open FloatOps
+
+variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+def SpectraShadow.padLeft (S : SpectraShadow 𝕋 n) (m : ℕ) : SpectraShadow 𝕋 (n + m) where
+  k := S.k
+  m := S.m
+  A₀ := S.A₀
+  A := S.A
+  c := Fin.append S.c fun _ => zero
+  G := fun i j => Fin.append (fun i' => S.G i' j) (fun _ : Fin m => zero) i
+  E := ⟨Fin.append S.E.inf fun _ => zero, Fin.append S.E.sup fun _ => zero⟩
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

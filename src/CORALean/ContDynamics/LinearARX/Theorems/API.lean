@@ -1,5 +1,7 @@
 import CORALean.ContDynamics.LinearARX.Theorems.FeedMemInputSet
 import CORALean.ContDynamics.LinearARX.Theorems.OutputOuter
+import CORALean.ContDynamics.LinearARX.Theorems.SimulateTrajectory
+import CORALean.ContDynamics.LinearARX.Theorems.SimulateMemReach
 import CORALean.ContDynamics.LinearARX.Theorems.ReachOuter
 import CORALean.ContDynamics.LinearARX.Theorems.SumBlock
 import CORALean.ContDynamics.LinearARX.Theorems.ToLinearSysDTStep

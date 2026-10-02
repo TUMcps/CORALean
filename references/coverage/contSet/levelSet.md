@@ -16,7 +16,7 @@ CORA methods of `contSet/@levelSet/`, one row each, and where CORALean answers t
 | `display` | out-of-scope | n/a — plotting/display |  |
 | `empty` | proved | [`LevelSet.empty`](../../../src/CORALean/ContSet/LevelSet/Real/Operations/Empty.lean), [`LevelSet.construct_empty`](../../../src/CORALean/ContSet/LevelSet/Real/Theorems/ConstructEmpty.lean) | `1 ≤ 0`, as CORA; denotes `∅` exactly |
 | `enclosePoints` | — | — |  |
-| `eventFcn` | — | — |  |
+| `eventFcn` | out-of-scope | n/a — matlab-runtime | ODE event callback |
 | `generateRandom` | out-of-scope | n/a — random/sampling |  |
 | `isIntersecting_` | — | — |  |
 | `isemptyobject` | out-of-scope | n/a — matlab-runtime |  |

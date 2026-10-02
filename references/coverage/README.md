@@ -90,52 +90,59 @@ Only these, and the row says which:
 | `matlab-runtime` | MATLAB language plumbing: `copy`, `isemptyobject`, `size`, `length`, `subsref`, `subsasgn`, `reshape`, `parfor` variants, function-handle generators; also `eq`, `ne` and `isequal` of system, reset, location, transition and automaton objects, which compare MATLAB objects field by field (structural equality, not a mathematical claim; `isequal`/`eq` of two sets is one and stays in scope) |
 | `deprecated` | the method's own help text says `DEPRECATED` |
 
+Rulings on borderline cases:
+
+* **eventFcn** (polytope, fullspace, levelSet, location, transition) is `matlab-runtime`, note "ODE event callback": it returns the value, `isterminal` and `direction` of MATLAB's `ode45` event interface.
+* **Field setters and getters** (taylm `set`, `setName`, polytope `setVertices`, nn `getOrderPattern`, probZonotope `center`) are `matlab-runtime`, note "field setter" or "field getter".
+* **Validating wrappers** of an abstract `<m>_` (contSet `cartProd`, `convHull`, `lift`, `projectHighDim`, `volume`, `norm`, `representsa`, `boundaryPoint`) are `matlab-runtime`, note "validating wrapper of `<m>_`": argument checks, defaults, an empty-set fallback in a `try/catch`, and one call to `<m>_` (`boundaryPoint` throws). A wrapper with real per-class content stays in scope.
+* **Route b for verdicts and merges** is accepted where the definition is generic over `Scalar 𝕋` and computable and the guarantee is stated for that `𝕋`: `mergeInvariants` (guarantee `Lifting.mem_inv`) and hybridDynamics `verify` (`HybridAutomaton.holds_of_check`), as for the sibling rows already `float`.
+
 ## Counts
 
 <!-- coverage-counts -->
 | Class | Group | Methods | proved | float | not yet | out of scope | CORA issues |
 |---|---|---|---|---|---|---|---|
 | [affine](contSet/affine.md) | contSet | 1 | 0 | 0 | 1 | 0 | 0 |
-| [capsule](contSet/capsule.md) | contSet | 39 | 5 | 15 | 9 | 10 | 2 |
-| [conPolyZono](contSet/conPolyZono.md) | contSet | 47 | 9 | 15 | 15 | 8 | 0 |
+| [capsule](contSet/capsule.md) | contSet | 39 | 4 | 16 | 9 | 10 | 2 |
+| [conPolyZono](contSet/conPolyZono.md) | contSet | 47 | 8 | 16 | 15 | 8 | 0 |
 | [conZonotope](contSet/conZonotope.md) | contSet | 50 | 6 | 17 | 15 | 12 | 0 |
-| [contSet](contSet/contSet.md) | contSet | 101 | 6 | 19 | 17 | 59 | 0 |
+| [contSet](contSet/contSet.md) | contSet | 101 | 6 | 19 | 7 | 69 | 0 |
 | [ellipsoid](contSet/ellipsoid.md) | contSet | 50 | 5 | 13 | 23 | 9 | 0 |
-| [emptySet](contSet/emptySet.md) | contSet | 30 | 9 | 13 | 1 | 7 | 0 |
-| [fullspace](contSet/fullspace.md) | contSet | 33 | 10 | 13 | 3 | 7 | 0 |
+| [emptySet](contSet/emptySet.md) | contSet | 30 | 8 | 14 | 1 | 7 | 0 |
+| [fullspace](contSet/fullspace.md) | contSet | 33 | 10 | 13 | 2 | 8 | 0 |
 | [interval](contSet/interval.md) | contSet | 110 | 16 | 64 | 12 | 18 | 0 |
-| [levelSet](contSet/levelSet.md) | contSet | 22 | 8 | 0 | 7 | 7 | 0 |
-| [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 10 | 18 | 31 | 14 | 0 |
+| [levelSet](contSet/levelSet.md) | contSet | 22 | 8 | 0 | 6 | 8 | 0 |
+| [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 3 | 25 | 31 | 14 | 0 |
 | [polygon](contSet/polygon.md) | contSet | 46 | 4 | 14 | 22 | 6 | 0 |
-| [polytope](contSet/polytope.md) | contSet | 58 | 9 | 22 | 19 | 8 | 0 |
-| [probZonotope](contSet/probZonotope.md) | contSet | 28 | 0 | 0 | 22 | 6 | 0 |
-| [spectraShadow](contSet/spectraShadow.md) | contSet | 33 | 2 | 5 | 18 | 8 | 0 |
-| [taylm](contSet/taylm.md) | contSet | 51 | 14 | 11 | 17 | 9 | 0 |
+| [polytope](contSet/polytope.md) | contSet | 58 | 6 | 25 | 17 | 10 | 0 |
+| [probZonotope](contSet/probZonotope.md) | contSet | 28 | 0 | 0 | 20 | 8 | 0 |
+| [spectraShadow](contSet/spectraShadow.md) | contSet | 33 | 0 | 7 | 18 | 8 | 0 |
+| [taylm](contSet/taylm.md) | contSet | 51 | 12 | 14 | 14 | 11 | 0 |
 | [zonoBundle](contSet/zonoBundle.md) | contSet | 44 | 3 | 19 | 15 | 7 | 0 |
-| [zonotope](contSet/zonotope.md) | contSet | 80 | 14 | 27 | 26 | 13 | 1 |
+| [zonotope](contSet/zonotope.md) | contSet | 80 | 13 | 28 | 26 | 13 | 1 |
 | [zoo](contSet/zoo.md) | contSet | 12 | 0 | 0 | 10 | 2 | 0 |
-| [contDynamics](contDynamics/contDynamics.md) | contDynamics | 19 | 1 | 3 | 5 | 10 | 1 |
+| [contDynamics](contDynamics/contDynamics.md) | contDynamics | 19 | 0 | 4 | 5 | 10 | 0 |
 | [linParamSys](contDynamics/linParamSys.md) | contDynamics | 11 | 3 | 2 | 3 | 3 | 0 |
 | [linProbSys](contDynamics/linProbSys.md) | contDynamics | 8 | 0 | 0 | 4 | 4 | 0 |
-| [linearARX](contDynamics/linearARX.md) | contDynamics | 7 | 1 | 1 | 3 | 2 | 0 |
+| [linearARX](contDynamics/linearARX.md) | contDynamics | 7 | 2 | 1 | 2 | 2 | 0 |
 | [linearSys](contDynamics/linearSys.md) | contDynamics | 33 | 7 | 7 | 10 | 9 | 0 |
 | [linearSysDT](contDynamics/linearSysDT.md) | contDynamics | 17 | 1 | 4 | 10 | 2 | 0 |
-| [neurNetContrSys](contDynamics/neurNetContrSys.md) | contDynamics | 5 | 3 | 1 | 0 | 1 | 0 |
+| [neurNetContrSys](contDynamics/neurNetContrSys.md) | contDynamics | 5 | 2 | 2 | 0 | 1 | 0 |
 | [nonlinDASys](contDynamics/nonlinDASys.md) | contDynamics | 13 | 2 | 0 | 8 | 3 | 0 |
 | [nonlinParamSys](contDynamics/nonlinParamSys.md) | contDynamics | 9 | 3 | 0 | 3 | 3 | 0 |
-| [nonlinearARX](contDynamics/nonlinearARX.md) | contDynamics | 8 | 3 | 0 | 3 | 2 | 0 |
+| [nonlinearARX](contDynamics/nonlinearARX.md) | contDynamics | 8 | 4 | 0 | 2 | 2 | 0 |
 | [nonlinearSys](contDynamics/nonlinearSys.md) | contDynamics | 18 | 4 | 3 | 5 | 6 | 1 |
 | [nonlinearSysDT](contDynamics/nonlinearSysDT.md) | contDynamics | 11 | 5 | 0 | 4 | 2 | 0 |
 | [abstractReset](hybridDynamics/abstractReset.md) | hybridDynamics | 4 | 0 | 0 | 0 | 4 | 0 |
 | [hybridAutomaton](hybridDynamics/hybridAutomaton.md) | hybridDynamics | 15 | 0 | 2 | 4 | 9 | 0 |
-| [hybridDynamics](hybridDynamics/hybridDynamics.md) | hybridDynamics | 2 | 1 | 0 | 0 | 1 | 0 |
-| [linearReset](hybridDynamics/linearReset.md) | hybridDynamics | 10 | 2 | 1 | 4 | 3 | 0 |
-| [location](hybridDynamics/location.md) | hybridDynamics | 24 | 2 | 3 | 13 | 6 | 0 |
+| [hybridDynamics](hybridDynamics/hybridDynamics.md) | hybridDynamics | 2 | 0 | 1 | 0 | 1 | 0 |
+| [linearReset](hybridDynamics/linearReset.md) | hybridDynamics | 10 | 0 | 3 | 4 | 3 | 0 |
+| [location](hybridDynamics/location.md) | hybridDynamics | 24 | 1 | 4 | 12 | 7 | 0 |
 | [nonlinearReset](hybridDynamics/nonlinearReset.md) | hybridDynamics | 9 | 3 | 0 | 2 | 4 | 0 |
-| [parallelHybridAutomaton](hybridDynamics/parallelHybridAutomaton.md) | hybridDynamics | 13 | 2 | 4 | 1 | 6 | 0 |
-| [transition](hybridDynamics/transition.md) | hybridDynamics | 12 | 0 | 2 | 4 | 6 | 0 |
+| [parallelHybridAutomaton](hybridDynamics/parallelHybridAutomaton.md) | hybridDynamics | 13 | 1 | 5 | 1 | 6 | 0 |
+| [transition](hybridDynamics/transition.md) | hybridDynamics | 12 | 0 | 2 | 3 | 7 | 0 |
 | [layers](nn/layers.md) | nn | 43 | 6 | 24 | 12 | 1 | 0 |
-| [neuralNetwork](nn/neuralNetwork.md) | nn | 61 | 5 | 7 | 14 | 35 | 1 |
+| [neuralNetwork](nn/neuralNetwork.md) | nn | 61 | 5 | 7 | 13 | 36 | 1 |
 <!-- /coverage-counts -->
 
 `python3 scripts/check-references.py --fix` rewrites the table above.

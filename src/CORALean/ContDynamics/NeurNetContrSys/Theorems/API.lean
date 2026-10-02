@@ -7,6 +7,7 @@ import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachSetOuter
 import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachSetSubsetReach
 import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachUnionOuter
 import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachFloatOuter
+import CORALean.ContDynamics.NeurNetContrSys.Theorems.HoldsOfCheckFloat
 
 /-!
 # What a sampled network in the loop guarantees

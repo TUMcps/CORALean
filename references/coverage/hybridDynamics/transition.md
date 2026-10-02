@@ -10,7 +10,7 @@ CORA methods of `hybridDynamics/@transition/`, one row each, and where CORALean 
 | `derivatives` | out-of-scope | n/a — matlab-runtime |  |
 | `display` | out-of-scope | n/a — plotting/display |  |
 | `eq` | out-of-scope | n/a — matlab-runtime |  |
-| `eventFcn` | — | — |  |
+| `eventFcn` | out-of-scope | n/a — matlab-runtime | ODE event callback |
 | `guard2polytope` | — | — |  |
 | `isemptyobject` | out-of-scope | n/a — matlab-runtime |  |
 | `isequal` | out-of-scope | n/a — matlab-runtime |  |

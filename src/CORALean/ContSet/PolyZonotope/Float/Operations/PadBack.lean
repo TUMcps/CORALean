@@ -1,0 +1,41 @@
+import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
+import CORALean.ContSet.PolyZonotope.Real.Operations.PadE
+
+/-!
+# `PolyZonotope.padBack` over a floating-point scalar
+
+CORA's `restoreId` for the ids missing after a set's own: `r` further factors appended at
+exponent zero. The centre, both generator blocks and the error box are kept, so nothing
+rounds and the set is unchanged.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       02-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- `r` fresh factors appended after the set's own, at exponent zero. -/
+def PolyZonotope.padBack (r : ℕ) (pZ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 n where
+  p := pZ.p + r
+  h := pZ.h
+  q := pZ.q
+  c := pZ.c
+  G := pZ.G
+  E := Real.PolyZonotope.padE pZ.E r
+  GI := pZ.GI
+  err := pZ.err
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
