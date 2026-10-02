@@ -46,6 +46,13 @@ import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryExistsIntegralEq
 import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryExistsMemExpIntervalEnclosure
 import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryTimePointOuter
 import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryTimeIntervalStepOuter
+import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryExistsIntegralEqOfMeasurable
+import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryTimeIntervalStepOuterInputSolution
+import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryTimeIntervalStepFloatOuter
+import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryTimeIntervalStepFloatOuterInputSolution
+import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalStepZonoOuter
+import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryTimeIntervalZonoOuter
+import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryTimeIntervalStepIntervalOuter
 
 /-!
 # What `LinParamSys` gives, collected
@@ -60,14 +67,15 @@ puts the two together at its end, and `InputReachSubsetInputSolution` with
 of the step once `0 ∈ U`; `…TimeIntervalOuterInputSolution` is the whole step.
 
 `TrajectoryTimeIntervalStepOuter`/`…TimePointOuter` are CORA's own `'varParam'` step, input-free,
-through `TrajectoryExistsIntegralEq`/`…MeasurableParam`; with an input, `TrajectoryToLinearSys`
+through `TrajectoryExistsIntegralEq`/`…MeasurableParam`, `…InputSolution` with a measurable
+input, `…FloatOuter` at the float step; or `TrajectoryToLinearSys`
 pays the drift as input, `TrajectoryNormLe`/`…NormDriftLe` bounding it by Gronwall.
 The `…Split` pair drops `0 ∈ U` by splitting the input set, and
 `ConstTrajectoryDiscretizeEnclosure`/`…MemReach` carry one step to a whole
 horizon through `LinParamSysDT.reach` — together, [1, Alg. 4].
 `ConstTrajectoryToTrajectory`, `ToLinParam` and `TrajectoryToLinParam` convert: `'constParam'`
 is `'varParam'` at a constant, `LinearSys` `LinParamSys` at a point. `InputSolutionZonoOuter`
-is `InputSolutionOuter` at a matrix zonotope instead, and
+is `InputSolutionOuter` at a matrix zonotope instead, `…ZonoOuter` the step there, and
 `ReachOrderAdmissible`/`ReachUnionOuter`/`WithInputReachUnionOuter` are `Instances`'.
 `…Float…` are the same guarantees of the float operations, at float interval matrices.
 

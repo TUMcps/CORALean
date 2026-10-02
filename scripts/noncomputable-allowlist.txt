@@ -107,6 +107,7 @@ LinParamSys.WithInput.reachUnion  pending #1: the input's accumulation across wi
 LinParamSys.WithInputSplit.reachInstance  pending #1: the split input's constant half carried across windows at `ℐ`; needs a float `constPropagate` beside the float `particularSolution` (neither yet written)
 LinParamSys.WithInputSplit.reachStepk  pending #1: the split input's constant half carried across windows at `ℐ`; needs a float `constPropagate` beside the float `particularSolution` (neither yet written)
 LinParamSys.WithInputSplit.reachUnion  pending #1: the split input's constant half carried across windows at `ℐ`; needs a float `constPropagate` beside the float `particularSolution` (neither yet written)
+LinParamSys.timeIntervalStepZono  pending #1: one step at the real matrix-zonotope family `𝕄𝒵`; needs a float `MatExp.matZonoCorrectionMatrix`, the float step being at interval matrices only
 LinearSys.adaptTimeStep  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.adaptTimeStepOrder  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.adaptTimeStepSearch  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
@@ -238,6 +239,8 @@ MatExp.intervalCorrTerm  real-layer: one correction term over a real interval ma
 MatExp.intervalCorrectionMatrix  real-layer: `F` over a real interval matrix; runs in floats as `Float.MatExp.intervalCorrectionMatrix`
 MatExp.intervalInputRemainder  real-layer: `E(r)·r` over a real interval matrix; runs in floats as `Float.MatExp.intervalInputRemainder`
 MatExp.intervalMulVecSet  spec: the `Set` an entrywise-bounded matrix maps a set to
+MatExp.matZonoCorrTerm  pending #1: one order of `F` at a real matrix zonotope; needs the box of a float matrix-zonotope power
+MatExp.matZonoCorrectionMatrix  pending #1: `F` over a real matrix zonotope; needs a float `matZonoCorrTerm`
 MatExp.particularCoeff  pending #1: part of the adaptive linear scheme (`manualRun`, `autoRun`, `tunedRun`), stated over `Real.Zonotope` with ℝ-valued error terms; needs upward-rounded float error bounds and a float state
 MatExp.particularCoeffSum  pending #1: part of the adaptive linear scheme (`manualRun`, `autoRun`, `tunedRun`), stated over `Real.Zonotope` with ℝ-valued error terms; needs upward-rounded float error bounds and a float state
 MatExp.particularSolutionError  pending #1: part of the adaptive linear scheme (`manualRun`, `autoRun`, `tunedRun`), stated over `Real.Zonotope` with ℝ-valued error terms; needs upward-rounded float error bounds and a float state
