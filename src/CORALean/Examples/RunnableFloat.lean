@@ -7,6 +7,9 @@ import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatri
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputRemainderFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputTermFloat
 import CORALean.ContDynamics.LinearSys.Operations.DiscretizeEnclosureFloat
+import CORALean.ContDynamics.LinearSys.Operations.DiscretizeMatZonotopeFloat
+import CORALean.ContDynamics.LinParamSys.Operations.InputSolutionZonoFloat
+import CORALean.ContSet.MatZonotope.Float.Operations.OfInterval
 import CORALean.ContDynamics.LinParamSysDT.Operations.Reach
 import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachFloat
 import CORALean.ContDynamics.LinParamSys.Operations.DiscretizeEnclosureFloat
@@ -303,6 +306,23 @@ def lpReachRun : Zonotope D 2 :=
 def lpWindowsRun : Option (List (Zonotope D 2)) := lpSys.reachFloat ⟨Z, 0, 1 / 8⟩ ⟨stepR, 4, 2⟩
 
 
+/-! ## Matrix zonotopes in floats (#1)
+
+`lpA` as a float matrix zonotope, one generator per entry, scaled by `r` and enclosed by its
+exponential at order `3`; `ctSys` sampled through a matrix zonotope and five steps of its
+`reach`; and the matrix-zonotope input solution of `lpA` over `Z`. -/
+
+def mzA : MatZonotope D 2 2 := MatZonotope.ofInterval lpA
+def mzExpRun : MatZonotope D 2 2 :=
+  MatExp.expMatZonoEnclosure (MatZonotope.smul stepR stepR mzA) 3
+-- the system matrix itself sampled through a point matrix zonotope, and its reach
+def ctSysMZ : LinParamSysDT (fun m n => MatZonotope D m n) 2 :=
+  ctSys.discretizeMatZonotopeFloat stepR 4
+def ctMZReachRun : Zonotope D 2 := ctSysMZ.reach (S := Zonotope D) ⟨Z, Z, 0, 5⟩ ⟨2, two_pos⟩
+def lpMZSys : LinParamSys (fun m n => MatZonotope D m n) 2 := ⟨mzA⟩
+def lpMZInputRun : Zonotope D 2 := lpMZSys.inputSolutionZonoFloat stepR 4 Z
+
+
 /-! ## The four Box operations `LinearSysDT.reachErrorFloat` sums
 
 Each used to return a `Real.Zonotope`, read back through `toReal`, and so was
@@ -396,6 +416,17 @@ def nnContrReachRun : Zonotope D 2 := nnContrSys.reachFloat ⟨Z, 0, 2⟩ ⟨ste
 #eval lpReachRun.c 0
 #eval lpWindowsRun.map (·.length)
 #eval lpWindowsRun.map (·.map (·.h))
+
+-- Matrix zonotopes in floats (#1): `e^{rA}`'s enclosure, then a sampled reach and an input set.
+#eval mzExpRun.h
+#eval mzExpRun.c 0 0
+#eval mzExpRun.E.inf 0 0
+#eval mzExpRun.E.sup 0 0
+#eval ctSysMZ.A.c 0 0
+#eval ctMZReachRun.h
+#eval ctMZReachRun.c 0
+#eval lpMZInputRun.h
+#eval lpMZInputRun.c 0
 
 
 /-! ## A nonlinear system re-linearized in floats (#1)

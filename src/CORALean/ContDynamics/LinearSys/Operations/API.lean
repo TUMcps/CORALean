@@ -15,6 +15,7 @@ import CORALean.ContDynamics.LinearSys.Operations.Discretize
 import CORALean.ContDynamics.LinearSys.Operations.DiscretizeEnclosure
 import CORALean.ContDynamics.LinearSys.Operations.DiscretizeEnclosureFloat
 import CORALean.ContDynamics.LinearSys.Operations.DiscretizeMatZonotope
+import CORALean.ContDynamics.LinearSys.Operations.DiscretizeMatZonotopeFloat
 import CORALean.ContDynamics.LinearSys.Operations.ExpIntervalFloat
 import CORALean.ContDynamics.LinearSys.Operations.ExpSquaringFloat
 import CORALean.ContDynamics.LinearSys.Operations.GirardReach

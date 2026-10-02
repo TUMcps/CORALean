@@ -1,10 +1,12 @@
 import CORALean.ContSet.ContSet.Definitions.CompactSet
 import CORALean.ContSet.ContSet.Definitions.ConvexSet
 import CORALean.ContSet.Interval.Float.Instances
+import CORALean.ContSet.MatZonotope.Float.Instances
 import CORALean.ContSet.Zonotope.Float.Theorems.Convex
 import CORALean.ContSet.Zonotope.Float.Theorems.IsClosed
 import CORALean.ContSet.Zonotope.Float.Theorems.LinCombOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.MtimesIntervalMatOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.MtimesMatZonotopeOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.RecentreSubMem
@@ -104,6 +106,14 @@ instance : Mtimes (fun m n => Interval (Mat 𝕋 m n)) (Zonotope 𝕋) where
   mtimes_outer IM Z := by
     rw [Zonotope.materialise_eq]
     exact Zonotope.mtimesIntervalMat_outer IM Z
+
+/-- The same operation at a float matrix zonotope, what a `LinParamSys` or `LinParamSysDT`
+over `MatZonotope` multiplies a reachable set by, as `Real`'s `Mtimes 𝕄𝒵 𝒵` does. -/
+instance : Mtimes (fun m n => MatZonotope 𝕋 m n) (Zonotope 𝕋) where
+  mtimes M Z := (Zonotope.mtimesMatZonotope M Z).materialise
+  mtimes_outer M Z := by
+    rw [Zonotope.materialise_eq]
+    exact Zonotope.mtimesMatZonotope_outer M Z
 
 end CORALean.Float
 

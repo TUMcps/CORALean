@@ -19,6 +19,8 @@ import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeEnclosureReach
 import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeHorizon
 import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeInputSolution
 import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeMatZonotope
+import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeMatZonotopeFloat
+import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeMatZonotopeFloatReach
 import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeMatZonotopeReach
 import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeReachSetSubsetAddReachInputError
 import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeReachSetSubsetInputReach

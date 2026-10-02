@@ -1,6 +1,8 @@
 import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
 import CORALean.ContSet.Zonotope.Float.Theorems.AbsLeAbsBoundError
+import CORALean.ContSet.Zonotope.Float.Theorems.MtimesMatZonotopeOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.OfEntryBoundsOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.PlusH
 import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.PlusSubsetAddBox

@@ -37,8 +37,11 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalTaylorTail
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalWAttained
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalWOuter
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoEnclosure
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoEnclosureFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoRemainder
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoRemainderFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoTaylor
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoTaylorFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundAntitoneSucc
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundMono

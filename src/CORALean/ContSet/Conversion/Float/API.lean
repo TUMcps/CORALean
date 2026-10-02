@@ -28,6 +28,7 @@ import CORALean.ContSet.Conversion.Float.Interval_to_SpectraShadow
 import CORALean.ContSet.Conversion.Float.Interval_to_VPolytope
 import CORALean.ContSet.Conversion.Float.Interval_to_ZonoBundle
 import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+import CORALean.ContSet.Conversion.Float.MatZonotope_to_Interval
 import CORALean.ContSet.Conversion.Float.PolyZonotope_to_ConPolyZono
 import CORALean.ContSet.Conversion.Float.PolyZonotope_to_ConZonotope
 import CORALean.ContSet.Conversion.Float.PolyZonotope_to_Ellipsoid
