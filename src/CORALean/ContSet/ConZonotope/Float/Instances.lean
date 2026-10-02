@@ -3,10 +3,7 @@ import CORALean.ContSet.ConZonotope.Float.Theorems.API
 /-!
 # What the float `ConZonotope` instantiates
 
-The three operation classes, then `Reindex`, which is exact. `Mtimes` waits on `mtimes`,
-which waits on the
-float zonotope's rounding argument being factored so it can be reused rather
-than copied.
+The operation classes `Plus`, `LinComb`, `Reduce` and `Mtimes`, then `Reindex`, which is exact.
 
 No `Intersection`, unlike the exact layer: nothing here computes a constrained
 zonotope's intersection, so there is no `intersection` to wire — a fresh operation, out
@@ -49,6 +46,12 @@ instance : Reindex (ConZonotope 𝕋) where
   reindex_exact e cZ := by
     rw [ConZonotope.materialise_eq]
     exact ConZonotope.reindex_exact e cZ
+
+instance : Mtimes (Mat 𝕋) (ConZonotope 𝕋) where
+  mtimes M cZ := (ConZonotope.mtimes M cZ).materialise
+  mtimes_outer M cZ := by
+    simp only [ContSet.construct_mat, Set.biUnion_singleton, ConZonotope.materialise_eq]
+    exact ConZonotope.mtimes_outer M cZ
 
 end CORALean.Float
 

@@ -56,6 +56,10 @@ import CORALean.NN.Operations.StaticMergeBuckets
 import CORALean.NN.Operations.ToLayer
 import CORALean.NN.Operations.VerifySplit
 import CORALean.NN.Operations.VerifySplitWith
+import CORALean.NN.Operations.SmoothNetworkEval
+import CORALean.NN.Operations.SmoothNetworkNu
+import CORALean.NN.Operations.SmoothNetworkToNonlinearSysDT
+import CORALean.NN.Operations.ToNonlinearSysDT
 import CORALean.NN.Operations.WorstIndex
 
 /-!

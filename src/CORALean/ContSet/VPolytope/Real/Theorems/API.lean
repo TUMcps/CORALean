@@ -37,4 +37,7 @@ more than `D`.
 
 `MinkowskiDiffEqIInter` names no vertex representation of its own: a convex minuend's Minkowski
 difference by a `VPolytope` needs only its vertices checked, one at a time.
+
+`EncloseExact.lean` is deliberately not collected here: it states the generic `enclose` at the
+vertex representation's instances, which `Instances.lean` declares after importing this file.
 -/

@@ -79,6 +79,11 @@ import CORALean.ContSet.Interval.Real.Operations.Diag
 import CORALean.ContSet.Interval.Real.Operations.DiagVec
 import CORALean.ContSet.Interval.Real.Operations.QuadMap
 import CORALean.ContSet.Interval.Real.Operations.QuadMapMixed
+import CORALean.ContSet.Interval.Real.Operations.CoshLo
+import CORALean.ContSet.Interval.Real.Operations.CoshHi
+import CORALean.ContSet.Interval.Real.Operations.Cosh
+import CORALean.ContSet.Interval.Real.Operations.Prod1
+import CORALean.ContSet.Interval.Real.Operations.Kron
 
 /-!
 # What `Interval` computes

@@ -19,7 +19,7 @@ CORA methods of `contSet/@conPolyZono/`, one row each, and where CORALean answer
 | `display` | out-of-scope | n/a — plotting/display |  |
 | `ellipsoid` | float | [`ConPolyZono.ellipsoid`](../../../src/CORALean/ContSet/Conversion/Real/ConPolyZono_to_Ellipsoid.lean), [`ConPolyZono.ellipsoid_contains`](../../../src/CORALean/ContSet/Conversion/Real/ConPolyZono_to_Ellipsoid.lean) · float: [`ConPolyZono.ellipsoid`](../../../src/CORALean/ContSet/Conversion/Float/ConPolyZono_to_Ellipsoid.lean), [`ConPolyZono.ellipsoid_contains`](../../../src/CORALean/ContSet/Conversion/Float/ConPolyZono_to_Ellipsoid.lean) | route a; `σ` as for `polyZonotope.ellipsoid` |
 | `empty` | — | — |  |
-| `enclose` | — | — |  |
+| `enclose` | proved | [`ContSet.enclose`](../../../src/CORALean/ContSet/ContSet/Operations/Enclose.lean), [`ContSet.enclose_outer`](../../../src/CORALean/ContSet/ContSet/Theorems/EncloseOuter.lean) | generic over the representation: `linComb` of `S` and `mtimes M S` plus `S₂`; outer, coarser than CORA's hull wherever the representation's `linComb` is (CORA's compatible-identifier enclosure keeps more dependency); real layer only: the float constraint polynomial zonotope has no `LinComb` |
 | `exactPlus` | — | — |  |
 | `generateRandom` | out-of-scope | n/a — random/sampling |  |
 | `getPrintSetInfo` | out-of-scope | n/a — plotting/display |  |

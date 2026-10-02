@@ -7,14 +7,14 @@ import Mathlib.Analysis.InnerProductSpace.Basic
 # What `Capsule` instantiates
 
 `ContSet`, `ConvexSet`, `CompactSet`, `OfPoint` at `g = 0`, `r = 0`, `Reduce` as the identity, as
-CORA's empty `reduce` body is, and `Reindex`, CORA's `lift_` at a permutation.
+CORA's empty `reduce` body is, `Reindex`, CORA's `lift_` at a permutation, and the two outer
+operations `Plus` and `Mtimes`.
 
-No `Plus`, `Mtimes`, or `LinComb`: a capsule is closed under almost nothing.
-The Minkowski sum of two capsules is not a capsule (a segment thickened by two
-balls is not a ball), and an affine image of one is a segment thickened by an
-*ellipsoid*, since a linear map need not preserve the Euclidean ball. That is
-why CORA reaches for a capsule to describe an obstacle rather than to carry a
-reachable set through an operation.
+A capsule is closed under almost nothing, so `Plus` and `Mtimes` are enclosures, not exact. The
+Minkowski sum of two capsules is not a capsule (a segment thickened by two balls is not a ball),
+and an affine image of one is a segment thickened by an *ellipsoid*, since a linear map need not
+preserve the Euclidean ball; CORA absorbs the shorter generator and the ellipsoid into a larger
+radius. No `LinComb`.
 -/
 
 -- Authors:       Tobias Ladner
@@ -53,6 +53,19 @@ defines. -/
 instance : Reindex (fun n => Capsule n) where
   reindex := Capsule.reindex
   reindex_exact e C := Capsule.reindex_exact e C
+
+/-- CORA's capsule-plus-capsule, the shorter generator absorbed into the radius. -/
+noncomputable instance : Plus (Capsule n) (Vec ℝ n) where
+  plus := Capsule.plus
+  plus_outer := Capsule.plus_outer
+
+/-- CORA's `mtimes`, with the radius scaled by the Frobenius bound of the operator norm, not by
+CORA's `max(eig(M Mᵀ))`, the square of it (see `Capsule.mtimes_cora_counterexample`). -/
+noncomputable instance : Mtimes (Mat ℝ) (fun n => Capsule n) where
+  mtimes := Capsule.mtimes
+  mtimes_outer M C := by
+    simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
+    exact Capsule.mtimes_outer M C
 
 end CORALean.Real
 

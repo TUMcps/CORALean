@@ -17,7 +17,7 @@ CORA methods of `contSet/@zonoBundle/`, one row each, and where CORALean answers
 | `dim` | out-of-scope | n/a — matlab-runtime |  |
 | `display` | out-of-scope | n/a — plotting/display |  |
 | `empty` | float | [`ZonoBundle.empty`](../../../src/CORALean/ContSet/ZonoBundle/Real/Operations/Empty.lean), [`ZonoBundle.empty_exact`](../../../src/CORALean/ContSet/ZonoBundle/Real/Theorems/EmptyExact.lean) · float: [`ZonoBundle.empty`](../../../src/CORALean/ContSet/ZonoBundle/Float/Operations/Empty.lean), [`ZonoBundle.empty_exact`](../../../src/CORALean/ContSet/ZonoBundle/Float/Theorems/EmptyExact.lean) | two disjoint point-zonotopes, for `0 < n`: a `Zonotope` always has a centre, so CORA's single `n × 0` zonotope has no counterpart, and at `n = 0` no bundle of nonempty zonotopes is empty; route a — the points `0` and `e₀` stored as `zero` and `one`; as over ℝ it needs `0 < n` |
-| `enclose` | — | — |  |
+| `enclose` | float | [`ContSet.enclose`](../../../src/CORALean/ContSet/ContSet/Operations/Enclose.lean), [`ContSet.enclose_outer`](../../../src/CORALean/ContSet/ContSet/Theorems/EncloseOuter.lean) | route b — generic over the representation: `linComb` of `S` and `mtimes M S` plus `S₂`; outer, coarser than CORA's hull wherever the representation's `linComb` is; the real and float instances supply `Plus`, `Mtimes` and `LinComb` |
 | `encloseTight` | — | — |  |
 | `enlarge` | — | — |  |
 | `generateRandom` | out-of-scope | n/a — random/sampling |  |

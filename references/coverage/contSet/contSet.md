@@ -83,8 +83,8 @@ CORA methods of `contSet/@contSet/`, one row each, and where CORALean answers th
 | `projVertices` | out-of-scope | n/a — plotting/display |  |
 | `project` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
 | `projectHighDim` | — | — |  |
-| `projectHighDim_` | — | — |  |
-| `projectOnHyperplane` | — | — |  |
+| `projectHighDim_` | float | [`ContSet.projectHighDim_`](../../../src/CORALean/ContSet/ContSet/Operations/ProjectHighDim.lean), [`ContSet.projectHighDim_outer`](../../../src/CORALean/ContSet/ContSet/Theorems/ProjectHighDimOuter.lean) | route b — generic over the scalar and the set representation: `I(:, proj) * S` through `mtimes` at the selection matrix; outer, for injective `proj` (the zero-padded set); the per-class rows are the exact ones |
+| `projectOnHyperplane` | proved | [`ContSet.projectOnHyperplane`](../../../src/CORALean/ContSet/ContSet/Operations/ProjectOnHyperplane.lean), [`ContSet.projectOnHyperplane_outer`](../../../src/CORALean/ContSet/ContSet/Theorems/ProjectOnHyperplaneOuter.lean), [`ContSet.projectOnHyperplane_dot`](../../../src/CORALean/ContSet/ContSet/Theorems/ProjectOnHyperplaneDot.lean) | `(I - c cᵀ) S + d c` through `mtimes`, `plus` and `ofPoint`, for the hyperplane `{x \| c ⬝ x = d}` of unit normal `c` (CORA normalizes the constraint first; here that is the caller's); outer, the orthogonal projections of the points; real scalar only |
 | `quadMap` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
 | `randPoint` | out-of-scope | n/a — random/sampling |  |
 | `randPoint_` | out-of-scope | n/a — random/sampling |  |

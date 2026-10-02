@@ -1,6 +1,10 @@
 import CORALean.ContSet.ContSet.Theorems.DependencyPreservingChain
 import CORALean.ContSet.ContSet.Theorems.DependencyPreservingComp
+import CORALean.ContSet.ContSet.Theorems.EncloseOuter
 import CORALean.ContSet.ContSet.Theorems.EnlargeOuter
+import CORALean.ContSet.ContSet.Theorems.ProjectHighDimOuter
+import CORALean.ContSet.ContSet.Theorems.ProjectOnHyperplaneDot
+import CORALean.ContSet.ContSet.Theorems.ProjectOnHyperplaneOuter
 import CORALean.ContSet.ContSet.Theorems.HausdorffDist2MulVecLinAddLe
 import CORALean.ContSet.ContSet.Theorems.HausdorffDistAddLe
 import CORALean.ContSet.ContSet.Theorems.HausdorffDistImageLe

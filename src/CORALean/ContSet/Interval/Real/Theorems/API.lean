@@ -108,6 +108,9 @@ import CORALean.ContSet.Interval.Real.Theorems.DiagExact
 import CORALean.ContSet.Interval.Real.Theorems.DiagVecExact
 import CORALean.ContSet.Interval.Real.Theorems.QuadMapOuter
 import CORALean.ContSet.Interval.Real.Theorems.QuadMapMixedOuter
+import CORALean.ContSet.Interval.Real.Theorems.CoshExact
+import CORALean.ContSet.Interval.Real.Theorems.Prod1Exact
+import CORALean.ContSet.Interval.Real.Theorems.KronOuter
 
 /-!
 # What `Interval` guarantees

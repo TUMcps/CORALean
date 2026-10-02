@@ -6,7 +6,7 @@ CORA methods of `contSet/@spectraShadow/`, one row each, and where CORALean answ
 
 | Method | State | In CORALean | Note |
 |---|---|---|---|
-| `Inf` | proved | [`SpectraShadow.Inf`](../../../src/CORALean/ContSet/SpectraShadow/Real/Operations/Inf.lean), [`SpectraShadow.Inf_exact`](../../../src/CORALean/ContSet/SpectraShadow/Real/Theorems/InfExact.lean) | the inequality `[1] ⪰ 0` over `n` coefficients, as CORA's `[1 0 … 0]` |
+| `Inf` | float | [`SpectraShadow.Inf`](../../../src/CORALean/ContSet/SpectraShadow/Real/Operations/Inf.lean), [`SpectraShadow.Inf_exact`](../../../src/CORALean/ContSet/SpectraShadow/Real/Theorems/InfExact.lean) · float: [`SpectraShadow.Inf`](../../../src/CORALean/ContSet/SpectraShadow/Float/Operations/Inf.lean), [`SpectraShadow.Inf_exact`](../../../src/CORALean/ContSet/SpectraShadow/Float/Theorems/InfExact.lean) | the inequality `[1] ⪰ 0` over `n` coefficients, as CORA's `[1 0 … 0]`; float: the stored constants `one` and the origin box, exact (`= univ`); route a |
 | `and_` | — | — |  |
 | `cartProd_` | proved | [`SpectraShadow.cartProd`](../../../src/CORALean/ContSet/SpectraShadow/Real/Operations/CartProd.lean), [`SpectraShadow.cartProd_exact`](../../../src/CORALean/ContSet/SpectraShadow/Real/Theorems/CartProdExact.lean) | exact at ℝ; no float counterpart yet |
 | `center` | — | — |  |
@@ -17,7 +17,7 @@ CORA methods of `contSet/@spectraShadow/`, one row each, and where CORALean answ
 | `copy` | out-of-scope | n/a — matlab-runtime |  |
 | `dim` | out-of-scope | n/a — matlab-runtime |  |
 | `display` | out-of-scope | n/a — plotting/display |  |
-| `empty` | proved | [`SpectraShadow.empty`](../../../src/CORALean/ContSet/SpectraShadow/Real/Operations/Empty.lean), [`SpectraShadow.empty_exact`](../../../src/CORALean/ContSet/SpectraShadow/Real/Theorems/EmptyExact.lean) | the inequality `[-1] ⪰ 0` over `n` coefficients, as CORA's `[-1 0 … 0]` |
+| `empty` | float | [`SpectraShadow.empty`](../../../src/CORALean/ContSet/SpectraShadow/Real/Operations/Empty.lean), [`SpectraShadow.empty_exact`](../../../src/CORALean/ContSet/SpectraShadow/Real/Theorems/EmptyExact.lean) · float: [`SpectraShadow.empty`](../../../src/CORALean/ContSet/SpectraShadow/Float/Operations/Empty.lean), [`SpectraShadow.empty_exact`](../../../src/CORALean/ContSet/SpectraShadow/Float/Theorems/EmptyExact.lean) | the inequality `[-1] ⪰ 0` over `n` coefficients, as CORA's `[-1 0 … 0]`; float: `neg one` and the origin box, exact (`= ∅`); route a |
 | `enclose` | — | — |  |
 | `generateESumRep` | — | — |  |
 | `generateRandom` | out-of-scope | n/a — random/sampling |  |
@@ -26,13 +26,13 @@ CORA methods of `contSet/@spectraShadow/`, one row each, and where CORALean answ
 | `isBounded` | — | — |  |
 | `isFullDim` | — | — |  |
 | `isemptyobject` | out-of-scope | n/a — matlab-runtime |  |
-| `mtimes` | proved | [`SpectraShadow.mtimes`](../../../src/CORALean/ContSet/SpectraShadow/Real/Operations/Mtimes.lean), [`SpectraShadow.mtimes_exact`](../../../src/CORALean/ContSet/SpectraShadow/Real/Theorems/MtimesExact.lean) | exact at ℝ for a real matrix; no float counterpart yet |
+| `mtimes` | proved | [`SpectraShadow.mtimes`](../../../src/CORALean/ContSet/SpectraShadow/Real/Operations/Mtimes.lean), [`SpectraShadow.mtimes_exact`](../../../src/CORALean/ContSet/SpectraShadow/Real/Theorems/MtimesExact.lean) | exact at ℝ for a real matrix; no float counterpart, and none is possible in this representation: a float `mtimes` rounds every generator, a generator multiplies a coefficient `β` the inequality leaves unbounded, so no error box holds the rounding (`Float/SpectraShadow.lean`) |
 | `or` | — | — |  |
 | `plot` | out-of-scope | n/a — plotting/display |  |
 | `plus` | float | [`SpectraShadow.plus`](../../../src/CORALean/ContSet/SpectraShadow/Real/Operations/Plus.lean), [`SpectraShadow.plus_exact`](../../../src/CORALean/ContSet/SpectraShadow/Real/Theorems/PlusExact.lean) · float: [`SpectraShadow.plus`](../../../src/CORALean/ContSet/SpectraShadow/Float/Operations/Plus.lean), [`SpectraShadow.plus_outer`](../../../src/CORALean/ContSet/SpectraShadow/Float/Theorems/PlusOuter.lean) |  |
 | `polyZonotope` | — | — |  |
 | `polytope` | — | — |  |
-| `project` | proved | [`SpectraShadow.project`](../../../src/CORALean/ContSet/SpectraShadow/Real/Operations/Project.lean), [`SpectraShadow.project_exact`](../../../src/CORALean/ContSet/SpectraShadow/Real/Theorems/ProjectExact.lean) | exact for any `dims` (repeats and reorderings included): `map` at the selection map, the centre and generators at `dims` and the inequality untouched, as in CORA; no float counterpart (the float shadow has `plus` alone) |
+| `project` | float | [`SpectraShadow.project`](../../../src/CORALean/ContSet/SpectraShadow/Real/Operations/Project.lean), [`SpectraShadow.project_exact`](../../../src/CORALean/ContSet/SpectraShadow/Real/Theorems/ProjectExact.lean) · float: [`SpectraShadow.project`](../../../src/CORALean/ContSet/SpectraShadow/Float/Operations/Project.lean), [`SpectraShadow.project_outer`](../../../src/CORALean/ContSet/SpectraShadow/Float/Theorems/ProjectOuter.lean) | exact for any `dims` (repeats and reorderings included): `map` at the selection map, the centre and generators at `dims` and the inequality untouched, as in CORA; float: outer only, the error box projecting with `Interval.project`; route a |
 | `randPoint_` | out-of-scope | n/a — random/sampling |  |
 | `representsa_` | — | — |  |
 | `spectraShadow` | float | [`SpectraShadow.construct`](../../../src/CORALean/ContSet/SpectraShadow/Real/SpectraShadow.lean), [`SpectraShadow.convex_construct`](../../../src/CORALean/ContSet/SpectraShadow/Real/Theorems/Convex.lean) · float: [`SpectraShadow.construct`](../../../src/CORALean/ContSet/SpectraShadow/Float/SpectraShadow.lean), [`SpectraShadow.convex_construct`](../../../src/CORALean/ContSet/SpectraShadow/Float/Theorems/Convex.lean) |  |

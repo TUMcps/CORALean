@@ -92,6 +92,8 @@ import CORALean.NN.Theorems.SuffExplanationOfNeuronMerging
 import CORALean.NN.Theorems.SuffExplanationRefined
 import CORALean.NN.Theorems.SuffExplanationTransfer
 import CORALean.NN.Theorems.ToLayerSound
+import CORALean.NN.Theorems.SmoothNetworkCoraCounterexample
+import CORALean.NN.Theorems.SmoothNetworkOutputFnZero
 import CORALean.NN.Theorems.VerifySplitSound
 import CORALean.NN.Theorems.VerifySplitWithSound
 

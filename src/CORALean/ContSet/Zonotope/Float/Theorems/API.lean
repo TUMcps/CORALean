@@ -49,6 +49,7 @@ import CORALean.ContSet.Zonotope.Float.Theorems.IsClosed
 import CORALean.ContSet.Zonotope.Float.Theorems.ConstrSatSound
 import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
 import CORALean.ContSet.Zonotope.Float.Theorems.OriginExact
+import CORALean.ContSet.Zonotope.Float.Theorems.NormSqLe
 
 /-!
 # What `Zonotope` guarantees

@@ -12,6 +12,7 @@ import CORALean.ContSet.Polygon.Real.Theorems.VerticesHull
 import CORALean.ContSet.Polygon.Real.Theorems.ConvHullExact
 import CORALean.ContSet.Polygon.Real.Theorems.RepresentsaEmptySetIff
 import CORALean.ContSet.Polygon.Real.Theorems.IntervalContains
+import CORALean.ContSet.Polygon.Real.Theorems.TimesExact
 
 /-!
 # Polygon theorems, collected

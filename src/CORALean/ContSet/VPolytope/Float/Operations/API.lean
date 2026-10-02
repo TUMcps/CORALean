@@ -13,6 +13,8 @@ import CORALean.ContSet.VPolytope.Float.Operations.Project
 import CORALean.ContSet.VPolytope.Float.Operations.SupportBound
 import CORALean.ContSet.VPolytope.Float.Operations.Intersection
 import CORALean.ContSet.VPolytope.Float.Operations.EmptySet
+import CORALean.ContSet.VPolytope.Float.Operations.ConvHull
+import CORALean.ContSet.VPolytope.Float.Operations.EnclosePoints
 
 /-!
 # What the float `VPolytope` computes

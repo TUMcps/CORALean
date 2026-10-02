@@ -96,23 +96,23 @@ Only these, and the row says which:
 | Class | Group | Methods | proved | float | not yet | out of scope | CORA issues |
 |---|---|---|---|---|---|---|---|
 | [affine](contSet/affine.md) | contSet | 1 | 0 | 0 | 1 | 0 | 0 |
-| [capsule](contSet/capsule.md) | contSet | 39 | 4 | 12 | 13 | 10 | 1 |
-| [conPolyZono](contSet/conPolyZono.md) | contSet | 47 | 8 | 15 | 16 | 8 | 0 |
-| [conZonotope](contSet/conZonotope.md) | contSet | 50 | 7 | 16 | 15 | 12 | 0 |
-| [contSet](contSet/contSet.md) | contSet | 101 | 5 | 18 | 19 | 59 | 0 |
+| [capsule](contSet/capsule.md) | contSet | 39 | 5 | 15 | 9 | 10 | 2 |
+| [conPolyZono](contSet/conPolyZono.md) | contSet | 47 | 9 | 15 | 15 | 8 | 0 |
+| [conZonotope](contSet/conZonotope.md) | contSet | 50 | 6 | 17 | 15 | 12 | 0 |
+| [contSet](contSet/contSet.md) | contSet | 101 | 6 | 19 | 17 | 59 | 0 |
 | [ellipsoid](contSet/ellipsoid.md) | contSet | 50 | 5 | 13 | 23 | 9 | 0 |
 | [emptySet](contSet/emptySet.md) | contSet | 30 | 9 | 13 | 1 | 7 | 0 |
 | [fullspace](contSet/fullspace.md) | contSet | 33 | 10 | 13 | 3 | 7 | 0 |
-| [interval](contSet/interval.md) | contSet | 110 | 16 | 61 | 15 | 18 | 0 |
+| [interval](contSet/interval.md) | contSet | 110 | 16 | 64 | 12 | 18 | 0 |
 | [levelSet](contSet/levelSet.md) | contSet | 22 | 8 | 0 | 7 | 7 | 0 |
-| [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 11 | 16 | 32 | 14 | 0 |
-| [polygon](contSet/polygon.md) | contSet | 46 | 5 | 11 | 24 | 6 | 0 |
-| [polytope](contSet/polytope.md) | contSet | 58 | 12 | 18 | 20 | 8 | 0 |
+| [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 10 | 18 | 31 | 14 | 0 |
+| [polygon](contSet/polygon.md) | contSet | 46 | 4 | 14 | 22 | 6 | 0 |
+| [polytope](contSet/polytope.md) | contSet | 58 | 9 | 22 | 19 | 8 | 0 |
 | [probZonotope](contSet/probZonotope.md) | contSet | 28 | 0 | 0 | 22 | 6 | 0 |
-| [spectraShadow](contSet/spectraShadow.md) | contSet | 33 | 5 | 2 | 18 | 8 | 0 |
-| [taylm](contSet/taylm.md) | contSet | 51 | 14 | 10 | 18 | 9 | 0 |
-| [zonoBundle](contSet/zonoBundle.md) | contSet | 44 | 3 | 18 | 16 | 7 | 0 |
-| [zonotope](contSet/zonotope.md) | contSet | 80 | 15 | 25 | 27 | 13 | 1 |
+| [spectraShadow](contSet/spectraShadow.md) | contSet | 33 | 2 | 5 | 18 | 8 | 0 |
+| [taylm](contSet/taylm.md) | contSet | 51 | 14 | 11 | 17 | 9 | 0 |
+| [zonoBundle](contSet/zonoBundle.md) | contSet | 44 | 3 | 19 | 15 | 7 | 0 |
+| [zonotope](contSet/zonotope.md) | contSet | 80 | 14 | 27 | 26 | 13 | 1 |
 | [zoo](contSet/zoo.md) | contSet | 12 | 0 | 0 | 10 | 2 | 0 |
 | [contDynamics](contDynamics/contDynamics.md) | contDynamics | 19 | 1 | 3 | 5 | 10 | 1 |
 | [linParamSys](contDynamics/linParamSys.md) | contDynamics | 11 | 3 | 2 | 3 | 3 | 0 |
@@ -131,11 +131,11 @@ Only these, and the row says which:
 | [hybridDynamics](hybridDynamics/hybridDynamics.md) | hybridDynamics | 2 | 1 | 0 | 0 | 1 | 0 |
 | [linearReset](hybridDynamics/linearReset.md) | hybridDynamics | 10 | 2 | 1 | 4 | 3 | 0 |
 | [location](hybridDynamics/location.md) | hybridDynamics | 24 | 2 | 3 | 13 | 6 | 0 |
-| [nonlinearReset](hybridDynamics/nonlinearReset.md) | hybridDynamics | 9 | 0 | 0 | 5 | 4 | 0 |
+| [nonlinearReset](hybridDynamics/nonlinearReset.md) | hybridDynamics | 9 | 3 | 0 | 2 | 4 | 0 |
 | [parallelHybridAutomaton](hybridDynamics/parallelHybridAutomaton.md) | hybridDynamics | 13 | 2 | 4 | 1 | 6 | 0 |
 | [transition](hybridDynamics/transition.md) | hybridDynamics | 12 | 0 | 2 | 4 | 6 | 0 |
-| [layers](nn/layers.md) | nn | 43 | 5 | 24 | 13 | 1 | 0 |
-| [neuralNetwork](nn/neuralNetwork.md) | nn | 61 | 4 | 7 | 15 | 35 | 0 |
+| [layers](nn/layers.md) | nn | 43 | 6 | 24 | 12 | 1 | 0 |
+| [neuralNetwork](nn/neuralNetwork.md) | nn | 61 | 5 | 7 | 14 | 35 | 1 |
 <!-- /coverage-counts -->
 
 `python3 scripts/check-references.py --fix` rewrites the table above.

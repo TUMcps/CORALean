@@ -75,6 +75,7 @@ import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxExpMulti
 import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxExpGreedy
 import CORALean.ContSet.PolyZonotope.Float.Operations.Origin
 import CORALean.ContSet.PolyZonotope.Float.Operations.Reindex
+import CORALean.ContSet.PolyZonotope.Float.Operations.Project
 
 /-!
 # What `PolyZonotope` computes

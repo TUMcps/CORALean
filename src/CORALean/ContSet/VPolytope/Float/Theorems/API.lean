@@ -8,6 +8,8 @@ import CORALean.ContSet.VPolytope.Float.Theorems.ProjectOuter
 import CORALean.ContSet.VPolytope.Float.Theorems.ConstructEmptySet
 import CORALean.ContSet.VPolytope.Float.Theorems.Convex
 import CORALean.ContSet.VPolytope.Float.Theorems.IsCompact
+import CORALean.ContSet.VPolytope.Float.Theorems.ConvHullOuter
+import CORALean.ContSet.VPolytope.Float.Theorems.EnclosePointsExact
 
 /-!
 # What the float `VPolytope` guarantees

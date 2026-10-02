@@ -1,0 +1,47 @@
+import CORALean.ContSet.Interval.Float.Operations.Project
+import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
+
+/-!
+# `PolyZonotope.project` over a floating-point scalar
+
+CORA's `@polyZonotope/project` and [1, Prop. 2.11], at a family of coordinates: the centre and
+the rows of both generator blocks at the chosen coordinates, the exponent matrix and the factor
+counts untouched, and the error box projected with `Interval.project`. Selecting coordinates
+does no arithmetic, so nothing rounds. `dims` may repeat or reorder coordinates; one coordinate
+is `dims = fun _ => i` at `m = 1`.
+
+## References
+
+* [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural
+      Network Verification using Sensitivity Analysis". HSCC 2023.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       02-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+def PolyZonotope.project (pZ : PolyZonotope 𝕋 n) (dims : Fin m → Fin n) : PolyZonotope 𝕋 m where
+  p := pZ.p
+  h := pZ.h
+  q := pZ.q
+  c := fun k => pZ.c (dims k)
+  G := fun k l => pZ.G (dims k) l
+  E := pZ.E
+  GI := fun k j => pZ.GI (dims k) j
+  err := pZ.err.project dims
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

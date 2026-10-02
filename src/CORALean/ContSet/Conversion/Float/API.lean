@@ -57,6 +57,7 @@ import CORALean.ContSet.Conversion.Float.ZonoBundle_to_VPolytope
 import CORALean.ContSet.Conversion.Float.ZonoBundle_to_Zonotope
 import CORALean.ContSet.Conversion.Float.Zonotope_to_ConPolyZono
 import CORALean.ContSet.Conversion.Float.Zonotope_to_ConZonotope
+import CORALean.ContSet.Conversion.Float.Zonotope_to_MatZonotope
 import CORALean.ContSet.Conversion.Float.Zonotope_to_Ellipsoid
 import CORALean.ContSet.Conversion.Float.Zonotope_to_HPolytope
 import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
