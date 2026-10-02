@@ -7,7 +7,7 @@ CORA methods of `contSet/@polyZonotope/`, one row each, and where CORALean answe
 | Method | State | In CORALean | Note |
 |---|---|---|---|
 | `addedTermsHessian` | — | — |  |
-| `and_` | — | — |  |
+| `and_` | out-of-scope | n/a — matlab-runtime | throw-only stub: the body only throws `CORA:noops` |
 | `approxVolumeRatio` | — | — |  |
 | `cartProd_` | proved | [`PolyZonotope.cartProd`](../../../src/CORALean/ContSet/PolyZonotope/Real/Operations/CartProd.lean), [`PolyZonotope.exactCartProd`](../../../src/CORALean/ContSet/PolyZonotope/Real/Operations/ExactCartProd.lean), [`PolyZonotope.cartProd_exact`](../../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/CartProdExact.lean), [`PolyZonotope.exactCartProd_point`](../../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/ExactCartProdPoint.lean) |  |
 | `center` | proved | [`PolyZonotope.centre_mem_construct`](../../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/CentreMemConstruct.lean) | CORA returns the field `c` with no guarantee; `c` lies in the set under `NoZeroCol` on the exponent matrix, and not otherwise |
@@ -54,7 +54,7 @@ CORA methods of `contSet/@polyZonotope/`, one row each, and where CORALean answe
 | `plot3D` | out-of-scope | n/a — plotting/display |  |
 | `plus` | float | [`PolyZonotope.plus`](../../../src/CORALean/ContSet/PolyZonotope/Real/Operations/Plus.lean), [`PolyZonotope.plus_evalOn`](../../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/PlusEvalOn.lean), [`PolyZonotope.plus_exact`](../../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/PlusExact.lean) · float: [`PolyZonotope.plus`](../../../src/CORALean/ContSet/PolyZonotope/Float/Operations/Plus.lean), [`PolyZonotope.plus_outer`](../../../src/CORALean/ContSet/PolyZonotope/Float/Theorems/PlusOuter.lean) |  |
 | `polyMap` | float | [`PolyZonotope.evalPoly`](../../../src/CORALean/ContSet/PolyZonotope/Real/Operations/EvalPoly.lean), [`PolyZonotope.evalPoly_exact`](../../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/EvalPolyExact.lean) · float: [`PolyZonotope.evalPoly`](../../../src/CORALean/ContSet/PolyZonotope/Float/Operations/EvalPoly.lean), [`PolyZonotope.evalPoly_outer`](../../../src/CORALean/ContSet/PolyZonotope/Float/Theorems/EvalPolyOuter.lean) |  |
-| `polyZonotope` | proved | [`PolyZonotope.construct`](../../../src/CORALean/ContSet/PolyZonotope/Real/PolyZonotope.lean), [`PolyZonotope.mem_construct_iff`](../../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/MemConstruct.lean) |  |
+| `polyZonotope` | float | [`PolyZonotope.construct`](../../../src/CORALean/ContSet/PolyZonotope/Real/PolyZonotope.lean), [`PolyZonotope.mem_construct_iff`](../../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/MemConstruct.lean) · float: [`PolyZonotope.construct`](../../../src/CORALean/ContSet/PolyZonotope/Float/PolyZonotope.lean), [`PolyZonotope.isCompact_construct`](../../../src/CORALean/ContSet/PolyZonotope/Float/Theorems/IsCompact.lean) | route a — compactness only: not convex, as over ℝ |
 | `polygon` | — | — |  |
 | `polytope` | proved | [`PolyZonotope.hPolytope`](../../../src/CORALean/ContSet/Conversion/Real/PolyZonotope_to_HPolytope.lean), [`PolyZonotope.vPolytope`](../../../src/CORALean/ContSet/Conversion/Real/PolyZonotope_to_VPolytope.lean), [`PolyZonotope.hPolytope_contains`](../../../src/CORALean/ContSet/Conversion/Real/PolyZonotope_to_HPolytope.lean), [`PolyZonotope.vPolytope_contains`](../../../src/CORALean/ContSet/Conversion/Real/PolyZonotope_to_VPolytope.lean) |  |
 | `print` | out-of-scope | n/a — plotting/display |  |
@@ -66,7 +66,7 @@ CORA methods of `contSet/@polyZonotope/`, one row each, and where CORALean answe
 | `replaceId` | — | — |  |
 | `representsa_` | — | — |  |
 | `resolve` | — | — |  |
-| `restoreId` | — | — |  |
+| `restoreId` | proved | [`PolyZonotope.padBack`](../../../src/CORALean/ContSet/PolyZonotope/Real/Operations/PadBack.lean), [`PolyZonotope.padBack_exact`](../../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/PadBackExact.lean) | exact; ids are positional: `r` is the number of missing ids |
 | `restructure` | proved | [`PolyZonotope.restructure`](../../../src/CORALean/ContSet/PolyZonotope/Real/Operations/Restructure.lean), [`PolyZonotope.restructure_outer`](../../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/RestructureOuter.lean) |  |
 | `rmId` | — | — |  |
 | `split` | — | — |  |

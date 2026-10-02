@@ -7,7 +7,7 @@ CORA methods of `contDynamics/@contDynamics/`, one row each, and where CORALean 
 | Method | State | In CORALean | Note |
 |---|---|---|---|
 | `conform` | — | — |  |
-| `contDynamics` | — | — |  |
+| `contDynamics` | out-of-scope | n/a — matlab-runtime | abstract class constructor: stores only dimensions and a name, which are type indices in Lean |
 | `createTestSuite` | out-of-scope | n/a — random/sampling |  |
 | `derivatives` | out-of-scope | n/a — matlab-runtime |  |
 | `display` | out-of-scope | n/a — plotting/display |  |
@@ -15,7 +15,7 @@ CORA methods of `contDynamics/@contDynamics/`, one row each, and where CORALean 
 | `isconform` | — | — |  |
 | `isemptyobject` | out-of-scope | n/a — matlab-runtime |  |
 | `isequal` | out-of-scope | n/a — matlab-runtime |  |
-| `linReach` | — | — | cora-issue — the check `R([iΔt,(i+1)Δt]) ⊆ R_i` is made on a set computed under the very confinement it checks, so it establishes nothing; CORALean takes confinement from an a priori ball about the step's start ([FINDINGS](../../../FINDINGS.md), "Confinement of a run to a linearization's region") |
+| `linReach` | proved | [`NonlinearSys.linReachPoly`](../../../src/CORALean/ContDynamics/NonlinearSys/Operations/LinReachPoly.lean), [`NonlinearSys.Trajectory.linReachPoly_outer`](../../../src/CORALean/ContDynamics/NonlinearSys/Theorems/LinReachPolyOuter.lean) | cora-issue — the check `R([iΔt,(i+1)Δt]) ⊆ R_i` is made on a set computed under the very confinement it checks, so it establishes nothing; CORALean takes confinement from an a priori ball about the step's start ([FINDINGS](../../../FINDINGS.md), "Confinement of a run to a linearization's region") |
 | `linReachInner` | — | — |  |
 | `observe` | — | — |  |
 | `observe_stripBased` | — | — |  |

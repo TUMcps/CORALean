@@ -37,7 +37,7 @@ CORA methods of `contSet/@zonotope/`, one row each, and where CORALean answers t
 | `full` | out-of-scope | n/a — io/conversion-to-matlab-objects |  |
 | `generateRandom` | out-of-scope | n/a — random/sampling |  |
 | `generatorLength` | — | — |  |
-| `generators` | — | — |  |
+| `generators` | out-of-scope | n/a — matlab-runtime | field getter |
 | `getPrintSetInfo` | out-of-scope | n/a — plotting/display |  |
 | `intersectStrip` | — | — |  |
 | `interval` | float | [`Zonotope.interval`](../../../src/CORALean/ContSet/Conversion/Real/Zonotope_to_Interval.lean), [`Zonotope.interval_contains`](../../../src/CORALean/ContSet/Conversion/Real/Zonotope_to_Interval.lean) · float: [`Zonotope.interval`](../../../src/CORALean/ContSet/Conversion/Float/Zonotope_to_Interval.lean), [`Zonotope.interval_contains`](../../../src/CORALean/ContSet/Conversion/Float/Zonotope_to_Interval.lean) |  |
@@ -74,7 +74,7 @@ CORA methods of `contSet/@zonotope/`, one row each, and where CORALean answers t
 | `spectraShadow` | float | [`Zonotope.spectraShadow`](../../../src/CORALean/ContSet/Conversion/Real/Zonotope_to_SpectraShadow.lean), [`Zonotope.spectraShadow_exact`](../../../src/CORALean/ContSet/Conversion/Real/Zonotope_to_SpectraShadow.lean) · float: [`Zonotope.spectraShadow`](../../../src/CORALean/ContSet/Conversion/Float/Zonotope_to_SpectraShadow.lean), [`Zonotope.spectraShadow_contains`](../../../src/CORALean/ContSet/Conversion/Float/Zonotope_to_SpectraShadow.lean) |  |
 | `split` | proved | [`Zonotope.split`](../../../src/CORALean/ContSet/Zonotope/Real/Operations/Split.lean), [`Zonotope.split_intersection`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/SplitIntersection.lean), [`Zonotope.split_union`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/SplitUnion.lean) |  |
 | `splitFirstGen` | proved | [`Zonotope.split`](../../../src/CORALean/ContSet/Zonotope/Real/Operations/Split.lean), [`Zonotope.split_union`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/SplitUnion.lean), [`Zonotope.split_intersection`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/SplitIntersection.lean) | `split` at the first generator; the theorems hold at every generator index |
-| `splitLongestGen` | — | — |  |
+| `splitLongestGen` | proved | [`Zonotope.splitLongestGen`](../../../src/CORALean/ContSet/Zonotope/Real/Operations/SplitLongestGen.lean), [`Zonotope.longestGen`](../../../src/CORALean/ContSet/Zonotope/Real/Operations/LongestGen.lean), [`Zonotope.splitLongestGen_union`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/SplitLongestGenUnion.lean) | `split` at the first generator of maximal `Σ G(:,i)²`; exact |
 | `supportFunc_` | float | [`Zonotope.supportBound`](../../../src/CORALean/ContSet/Zonotope/Real/Operations/SupportBound.lean), [`Zonotope.supportBound_attained`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/SupportBoundAttained.lean) · float: [`Zonotope.boundDot`](../../../src/CORALean/ContSet/Conversion/Float/Zonotope_to_HPolytope.lean), [`Zonotope.boundDot_le`](../../../src/CORALean/ContSet/Conversion/Float/Zonotope_to_HPolytope.lean) | float is an upper bound only (no point of the set exceeds it); attainment is the real theorem |
 | `taylm` | proved | [`Zonotope.taylm`](../../../src/CORALean/ContSet/Conversion/Real/Zonotope_to_Taylm.lean), [`Zonotope.taylm_exact`](../../../src/CORALean/ContSet/Conversion/Real/Zonotope_to_Taylm.lean) | one variable per generator, no remainder; exact |
 | `tensorMultiplication` | — | — |  |

@@ -6,7 +6,7 @@ CORA methods of `hybridDynamics/@abstractReset/`, one row each, and where CORALe
 
 | Method | State | In CORALean | Note |
 |---|---|---|---|
-| `abstractReset` | — | — |  |
+| `abstractReset` | out-of-scope | n/a — matlab-runtime | abstract class constructor: stores only dimensions and a name, which are type indices in Lean |
 | `eq` | out-of-scope | n/a — matlab-runtime |  |
 | `isequal` | out-of-scope | n/a — matlab-runtime |  |
 | `ne` | out-of-scope | n/a — matlab-runtime |  |

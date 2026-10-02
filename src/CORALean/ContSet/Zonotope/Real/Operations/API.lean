@@ -62,6 +62,8 @@ import CORALean.ContSet.Zonotope.Real.Operations.ReduceMethC
 import CORALean.ContSet.Zonotope.Real.Operations.ReducePCA
 import CORALean.ContSet.Zonotope.Real.Operations.Shift
 import CORALean.ContSet.Zonotope.Real.Operations.Split
+import CORALean.ContSet.Zonotope.Real.Operations.LongestGen
+import CORALean.ContSet.Zonotope.Real.Operations.SplitLongestGen
 import CORALean.ContSet.Zonotope.Real.Operations.SplitRank
 import CORALean.ContSet.Zonotope.Real.Operations.SupportBound
 import CORALean.ContSet.Zonotope.Real.Operations.Rank

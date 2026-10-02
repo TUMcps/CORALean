@@ -6,5 +6,5 @@ CORA methods of `hybridDynamics/@hybridDynamics/`, one row each, and where CORAL
 
 | Method | State | In CORALean | Note |
 |---|---|---|---|
-| `hybridDynamics` | — | — |  |
+| `hybridDynamics` | out-of-scope | n/a — matlab-runtime | abstract class constructor: stores only dimensions and a name, which are type indices in Lean |
 | `verify` | proved | [`HybridAutomaton.holds_of_check`](../../../src/CORALean/HybridDynamics/Theorems/HoldsOfCheck.lean), [`HybridAutomaton.holds_of_invariant`](../../../src/CORALean/HybridDynamics/Theorems/HoldsOfRun.lean) | a `true` from `Specification.check` on the invariant implies the specification on the state every run ends in (true implies safe); checked on the location invariant, not on a computed reachable set as CORA's `verify` does |

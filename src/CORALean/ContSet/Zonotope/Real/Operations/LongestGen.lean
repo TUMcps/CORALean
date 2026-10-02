@@ -1,0 +1,37 @@
+import CORALean.ContSet.Zonotope.Real.Zonotope
+import CORALean.Global.Tensor
+import Mathlib.Data.List.MinMax
+import Mathlib.Data.Fintype.Basic
+
+/-!
+# `Zonotope.longestGen`
+
+The index CORA's `splitLongestGen` splits at: `[~,ind] = max(sum(G.^2, 1))`, the first generator
+of maximal squared Euclidean length. The choice is a computable `List.argmax` over the generator
+indices; only the real arithmetic is noncomputable. `none` when there is no generator, where CORA
+splits nothing either.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       02-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- The first generator of `Z` of maximal squared length `Σᵢ G(i,j)²`. -/
+noncomputable def Zonotope.longestGen (Z : Zonotope (Vec ℝ n)) : Option (Fin Z.h) :=
+  (List.finRange Z.h).argmax (fun j => ∑ i, Z.G j i ^ 2)
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
