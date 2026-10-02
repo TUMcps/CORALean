@@ -28,6 +28,7 @@ import CORALean.ContSet.ConPolyZono.Float.Operations.ReduceGirard
 import CORALean.ContSet.ConPolyZono.Float.Operations.Reduce
 import CORALean.ContSet.ConPolyZono.Float.Operations.Origin
 import CORALean.ContSet.ConPolyZono.Float.Operations.Reindex
+import CORALean.ContSet.ConPolyZono.Float.Operations.Empty
 
 /-!
 # What `ConPolyZono` computes

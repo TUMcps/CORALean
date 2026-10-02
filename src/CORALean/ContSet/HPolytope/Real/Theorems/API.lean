@@ -16,6 +16,7 @@ import CORALean.ContSet.HPolytope.Real.Theorems.OfPointMemIff
 import CORALean.ContSet.HPolytope.Real.Theorems.PlusOfOuter
 import CORALean.ContSet.HPolytope.Real.Theorems.StackExact
 import CORALean.ContSet.HPolytope.Real.Theorems.TranslateExact
+import CORALean.ContSet.HPolytope.Real.Theorems.LiftExact
 
 /-!
 # What `HPolytope` guarantees

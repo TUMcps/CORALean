@@ -120,15 +120,23 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TuneOrderIsSomeFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TuneOrderSpecFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TuneStepIsSomeFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TuneStepSpecFloat
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ContinuousPeanoBakerTerm
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalIntegrableMulPeanoBakerTerm
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntegralPowDivFactorialMul
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalIntegrableMulVec
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.PeanoBakerTermMemMatPow
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSubPeanoBakerSumLe
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMulVecEqOfNormLe
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMemExpIntervalEnclosureOfIntegral
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMemIntervalCorrectionMatrixOfIntegral
 
 /-!
 # What the exponential enclosures guarantee
 
-That `e^{Ar}` lies in `expEnclosure`, that the two interpolation errors lie in
-the correction matrices, and that the integrated series converges. Each holds
-only under `‖A‖r / (η + 2) < 1`. `ExpIntervalTaylor`/`ExpIntervalEnclosure` are
-the same two facts widened to every member of an interval matrix, the second
-checkable from the interval matrix alone via its `absMax`, and
+That `e^{Ar}` lies in `expEnclosure`, the two interpolation errors in the correction
+matrices, and that the integrated series converges, under `‖A‖r / (η + 2) < 1`.
+`ExpIntervalTaylor`/`ExpIntervalEnclosure` are the same two facts widened to every
+member of an interval matrix, checkable from it alone via its `absMax`, and
 `IntervalCorrectionMatrix`/`IntervalConstCorrectionMatrix`/`IntervalInputRemainder`
 are the corresponding three for a step's two correction matrices and input
 remainder. `ExpMatZonoEnclosure` is the same guarantee for a matrix zonotope,
@@ -145,4 +153,5 @@ chosen for an admissible error meets it, the order least of those.
 `ParticularRemainderErrorSuperlinear` are CDC 2020's `Lemma 1`, `Prop. 3`/`4` and `Thm. 2`.
 `ExpTaylorSmulMulVec`, `ContinuousExpDiff` and `RemainderEntryLe` serve an input solution, and
 `HausdorffDist2ParticularSolutionLe`/`HausdorffDist2AffineDynamicsLe` are eqs. (25) and (23).
+`…PeanoBaker…` expand a run whose matrix varies in a box, `ExistsMem…OfIntegral` enclose it.
 -/

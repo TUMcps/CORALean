@@ -36,6 +36,12 @@ import CORALean.ContSet.Zonotope.Float.Operations.ConstrSat
 import CORALean.ContSet.Zonotope.Float.Operations.Origin
 import CORALean.ContSet.Zonotope.Float.Operations.Point
 import CORALean.ContSet.Zonotope.Float.Operations.NormSq
+import CORALean.ContSet.Zonotope.Float.Operations.SplitHalf
+import CORALean.ContSet.Zonotope.Float.Operations.Split
+import CORALean.ContSet.Zonotope.Float.Operations.SplitFirstGen
+import CORALean.ContSet.Zonotope.Float.Operations.LongestGen
+import CORALean.ContSet.Zonotope.Float.Operations.SplitLongestGen
+import CORALean.ContSet.Zonotope.Float.Operations.QuadMap
 
 /-!
 # What `Zonotope` computes

@@ -41,6 +41,8 @@ import CORALean.ContSet.HPolytope.Float.Operations.SmulMemHalfScaledRight
 import CORALean.ContSet.HPolytope.Float.Operations.TranslateOuter
 import CORALean.ContSet.HPolytope.Float.Operations.Minus
 import CORALean.ContSet.HPolytope.Float.Operations.EmptySet
+import CORALean.ContSet.HPolytope.Float.Operations.CartProd
+import CORALean.ContSet.HPolytope.Float.Operations.Origin
 
 /-!
 # What the float `HPolytope` computes

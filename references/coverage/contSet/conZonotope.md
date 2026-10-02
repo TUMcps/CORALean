@@ -8,7 +8,7 @@ CORA methods of `contSet/@conZonotope/`, one row each, and where CORALean answer
 |---|---|---|---|
 | `and_` | proved | [`ConZonotope.intersection`](../../../src/CORALean/ContSet/ConZonotope/Real/Operations/Intersection.lean), [`ConZonotope.intersection_h`](../../../src/CORALean/ContSet/ConZonotope/Real/Complexity/Intersection.lean), [`ConZonotope.intersection_P_m`](../../../src/CORALean/ContSet/ConZonotope/Real/Complexity/Intersection.lean), [`ConZonotope.intersection_P_me`](../../../src/CORALean/ContSet/ConZonotope/Real/Complexity/Intersection.lean), [`ConZonotope.intersection_exact`](../../../src/CORALean/ContSet/ConZonotope/Real/Theorems/IntersectionExact.lean) |  |
 | `approximateBoundsWithGPU` | out-of-scope | n/a — matlab-runtime |  |
-| `cartProd_` | — | — |  |
+| `cartProd_` | proved | [`ConZonotope.cartProd`](../../../src/CORALean/ContSet/ConZonotope/Real/Operations/CartProd.lean), [`ConZonotope.cartProd_exact`](../../../src/CORALean/ContSet/ConZonotope/Real/Theorems/CartProdExact.lean) | exact: as `plus`, each half of the coefficient vector answers only to its own polytope (`comap`, `intersection`) |
 | `center` | — | — |  |
 | `compact_` | — | — |  |
 | `conIntersect` | — | — |  |
@@ -50,7 +50,7 @@ CORA methods of `contSet/@conZonotope/`, one row each, and where CORALean answer
 | `reduceConstraints` | proved | [`ConZonotope.eliminate`](../../../src/CORALean/ContSet/ConZonotope/Real/Operations/Eliminate.lean), [`ConZonotope.tighten`](../../../src/CORALean/ContSet/ConZonotope/Real/Operations/Tighten.lean), [`ConZonotope.eliminate_exact_of_dependClosed`](../../../src/CORALean/ContSet/ConZonotope/Real/Theorems/EliminateExact.lean), [`ConZonotope.tighten_outer`](../../../src/CORALean/ContSet/ConZonotope/Real/Theorems/TightenOuter.lean), [`ConZonotope.tighten_outer_safe`](../../../src/CORALean/ContSet/ConZonotope/Real/Theorems/TightenOuterSafe.lean) |  |
 | `representsa_` | — | — |  |
 | `rescale` | proved | [`ConZonotope.rescale`](../../../src/CORALean/ContSet/ConZonotope/Real/Operations/Rescale.lean), [`ConZonotope.rescale_exact`](../../../src/CORALean/ContSet/ConZonotope/Real/Theorems/RescaleExact.lean) |  |
-| `spectraShadow` | — | — |  |
+| `spectraShadow` | proved | [`ConZonotope.spectraShadow`](../../../src/CORALean/ContSet/Conversion/Real/ConZonotope_to_SpectraShadow.lean), [`ConZonotope.spectraShadow_exact`](../../../src/CORALean/ContSet/Conversion/Real/ConZonotope_to_SpectraShadow.lean) | exact: the box LMI `1 ± β_j ≥ 0` block-diagonal with the diagonal LMI of the coefficient polytope `P` |
 | `split` | — | — |  |
 | `supportFunc_` | — | — |  |
 | `vertices_` | proved | [`ConZonotope.vPolytope`](../../../src/CORALean/ContSet/Conversion/Real/ConZonotope_to_VPolytope.lean), [`ConZonotope.vPolytope_exact`](../../../src/CORALean/ContSet/Conversion/Real/ConZonotope_to_VPolytope.lean) | exact: the vertex list spans the set, for a nonempty domain (`hne`; CORA returns `[]` for an empty set); real layer only, the float conversion is the bounding box's vertices |

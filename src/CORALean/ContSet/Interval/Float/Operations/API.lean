@@ -75,6 +75,11 @@ import CORALean.ContSet.Interval.Float.Operations.WidthUp
 import CORALean.ContSet.Interval.Float.Operations.Prod1
 import CORALean.ContSet.Interval.Float.Operations.Partition
 import CORALean.ContSet.Interval.Float.Operations.Enlarge
+import CORALean.ContSet.Interval.Float.Operations.Recip
+import CORALean.ContSet.Interval.Float.Operations.Rdivide
+import CORALean.ContSet.Interval.Float.Operations.Mrdivide
+import CORALean.ContSet.Interval.Float.Operations.OfCenterRadius
+import CORALean.ContSet.Interval.Float.Operations.QuadMap
 
 /-!
 # What `Interval` computes

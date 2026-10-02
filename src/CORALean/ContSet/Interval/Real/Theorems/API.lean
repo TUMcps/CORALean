@@ -111,6 +111,12 @@ import CORALean.ContSet.Interval.Real.Theorems.QuadMapMixedOuter
 import CORALean.ContSet.Interval.Real.Theorems.CoshExact
 import CORALean.ContSet.Interval.Real.Theorems.Prod1Exact
 import CORALean.ContSet.Interval.Real.Theorems.KronOuter
+import CORALean.ContSet.Interval.Real.Theorems.RecipExact
+import CORALean.ContSet.Interval.Real.Theorems.RdivideExact
+import CORALean.ContSet.Interval.Real.Theorems.MrdivideExact
+import CORALean.ContSet.Interval.Real.Theorems.InvBetween
+import CORALean.ContSet.Interval.Real.Theorems.MatPowSmul
+import CORALean.ContSet.Interval.Real.Theorems.AbsMaxSmul
 
 /-!
 # What `Interval` guarantees
@@ -134,6 +140,6 @@ loss with every power. `SmulOuter` is `MulBetweenEndpoints` read back through
 `Entrywise`. `SplitAtCover` is why `splitAt` is sound to feed
 `NeuralNetwork.holds_of_split`: its two halves cover the box they bisected.
 `NormLeAbsMax` bounds the `l∞` operator norm uniformly over a box by its
-`AbsMax`, an exponential enclosure's own requirement. `HausdorffDist2AddLeBoxRadius`
-bounds a Minkowski sum's move by any box enclosing what got added.
+`AbsMax`, an exponential enclosure's own requirement; `MatPowSmul`/`AbsMaxSmul` scale both.
+`HausdorffDist2AddLeBoxRadius` bounds a Minkowski sum's move by a box holding the summand.
 -/

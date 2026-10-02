@@ -7,6 +7,7 @@ import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ParticularRemainderErr
 import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ParticularSolutionErrorBound
 import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ParticularSolutionTauErrorBound
 import CORALean.ContDynamics.LinearSys.MatExp.Definitions.StepAdmissible
+import CORALean.ContDynamics.LinearSys.MatExp.Definitions.PeanoBakerTerm
 
 /-!
 # What enclosing a matrix exponential means
@@ -17,4 +18,5 @@ Error measures that only state a result, never something an algorithm computes: 
 `HomogeneousRemainderError` — CDC 2020's `ε_P`/`ε_H` of eq. (21)-(22) and the two correction sets
 they are built from. `AffineTimeIntervalSolution` is the exact tube `affineTimeIntervalOuter`
 encloses. `OrderAdmissible`/`StepAdmissible` are the two tuning knobs' admissibility specs.
+`PeanoBakerTerm` is the series of a matrix that varies in time.
 -/
