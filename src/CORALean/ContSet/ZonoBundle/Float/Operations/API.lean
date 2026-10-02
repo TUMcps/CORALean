@@ -6,6 +6,8 @@ import CORALean.ContSet.ZonoBundle.Float.Operations.Reindex
 import CORALean.ContSet.ZonoBundle.Float.Operations.Reduce
 import CORALean.ContSet.ZonoBundle.Float.Operations.SupportBound
 import CORALean.ContSet.ZonoBundle.Float.Operations.Project
+import CORALean.ContSet.ZonoBundle.Float.Operations.Empty
+import CORALean.ContSet.ZonoBundle.Float.Operations.Origin
 
 /-!
 # What a float zonotope bundle computes, collected

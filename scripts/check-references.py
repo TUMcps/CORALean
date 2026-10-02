@@ -523,6 +523,22 @@ class CoraTable:
             say(f"{tag}: route b, but no linked declaration is stated for a generic scalar "
                 "or representation")
 
+    def check_scalar_free(self, tag, found):
+        """Route (b), scalar-free: the linked definitions hold no scalar and compute nothing
+        numeric (`EmptySet`, `Fullspace`), so there is nothing to generalise over. They may sit in
+        the real layer and need no generic theorem; they must still be computable: not
+        `noncomputable`, not on `noncomputable-allowlist.txt`."""
+        say = self.say
+        defs = [(t, n) for t, n, k in found if k not in ("theorem", "lemma")]
+        if not defs:
+            say(f"{tag}: a `route b (scalar-free)` row links the definition it runs")
+        for t, n in defs:
+            if n in noncomputable_allowlist():
+                say(f"{tag}: route b (scalar-free), but `{n}` is on the noncomputable allowlist")
+            for m in DECL.finditer(strip_block_comments(t.read_text(encoding="utf-8"))):
+                if m.group(3) == n and "noncomputable" in m.group(1):
+                    say(f"{tag}: route b (scalar-free), but `{n}` is `noncomputable`")
+
     def check_links(self, tag, state, where, note):
         """Every link exists and names a declaration the file really has; a `proved`
         row carries a theorem and a `float` row a theorem in the float layer."""
@@ -546,9 +562,12 @@ class CoraTable:
             say(f"{tag}: `{state}` needs a linked theorem (or the class whose fields carry "
                 "the guarantee); a definition alone is `—`")
         route_b = note.startswith("route b —")
-        if route_b and state != "float":
+        route_sf = note.startswith("route b (scalar-free) —")
+        if (route_b or route_sf) and state != "float":
             say(f"{tag}: a `route b` note belongs on a `float` row")
-        if state == "float" and route_b:
+        if state == "float" and route_sf:
+            self.check_scalar_free(tag, found)
+        elif state == "float" and route_b:
             self.check_generic(tag, found)
         elif state == "float":
             if not any(is_float_path(t, n) for t, n, k in carries):

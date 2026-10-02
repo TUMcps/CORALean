@@ -12,6 +12,7 @@ import CORALean.ContSet.VPolytope.Float.Operations.NominalBoundDot
 import CORALean.ContSet.VPolytope.Float.Operations.Project
 import CORALean.ContSet.VPolytope.Float.Operations.SupportBound
 import CORALean.ContSet.VPolytope.Float.Operations.Intersection
+import CORALean.ContSet.VPolytope.Float.Operations.EmptySet
 
 /-!
 # What the float `VPolytope` computes

@@ -200,7 +200,7 @@ LinearSysDT.reachErrorReduced  spec: what a run owes/what an inner approximation
 LinearSysDT.reachErrorReducedOrders  spec: what a run owes/what an inner approximation is, a real-valued guarantee object; `minkowskiDiff` computes nothing
 LinearSysDT.reachInnerRep  real-layer: an operation over the exact zonotope layer, noncomputable because its `reduce` is; the float run's counterpart goes through `Float.Zonotope.minkDiffRep`
 Location.timeIntervalStep  real-layer: a location's stay at the real `LinearSys.timeIntervalStep`; runs in floats as `Location.timeIntervalStepFloat` (`timeIntervalFloat_outer`)
-Location.timeIntervalStepInv  pending #1: the stay cut to the invariant by a homogeneous `Intersection`, which `Float.Zonotope` has no instance of; a float cut needs the stay converted to a float representation that intersects
+Location.timeIntervalStepInv  real-layer: the stay at the real exponential, cut to the invariant by a homogeneous `Intersection`; runs in floats as `Location.timeIntervalStepInvFloat` (`timeIntervalInvFloat_outer`), cut through a box
 Location.timeIntervalStepSplit  real-layer: the split stay at the real exponential; runs in floats as `Location.timeIntervalStepSplitFloat` (`timeIntervalSplitFloat_outer`)
 MatExp.affineDynamicsError  pending #1: part of the adaptive linear scheme (`manualRun`, `autoRun`, `tunedRun`), stated over `Real.Zonotope` with ℝ-valued error terms; needs upward-rounded float error bounds and a float state
 MatExp.affineTimeIntervalOuter  pending #1: part of the adaptive linear scheme (`manualRun`, `autoRun`, `tunedRun`), stated over `Real.Zonotope` with ℝ-valued error terms; needs upward-rounded float error bounds and a float state

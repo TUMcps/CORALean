@@ -36,9 +36,9 @@ CORA methods of `nn/@neuralNetwork/`, one row each, and where CORALean answers t
 | `getFromCellArray` | out-of-scope | n/a — io/conversion-to-matlab-objects |  |
 | `getInputNeuronOrder` | — | — |  |
 | `getNormalForm` | — | — |  |
-| `getNumMessagePassingSteps` | — | — |  |
-| `getNumNeurons` | — | — |  |
-| `getNumParams` | — | — |  |
+| `getNumMessagePassingSteps` | out-of-scope | n/a — matlab-runtime | a pure count of the network's layers, neurons or parameters (bookkeeping, no set semantics) |
+| `getNumNeurons` | out-of-scope | n/a — matlab-runtime | a pure count of the network's layers, neurons or parameters (bookkeeping, no set semantics) |
+| `getNumParams` | out-of-scope | n/a — matlab-runtime | a pure count of the network's layers, neurons or parameters (bookkeeping, no set semantics) |
 | `getOrderPattern` | — | — |  |
 | `getRefinableLayers` | — | — | definition only, no theorem: [`Schedule.refineLayer`](../../../src/CORALean/NN/Operations/RefineLayer.lean) is the refinement step (row `refine`), not the listing of refinable layers |
 | `importFromJSON` | out-of-scope | n/a — io/conversion-to-matlab-objects |  |

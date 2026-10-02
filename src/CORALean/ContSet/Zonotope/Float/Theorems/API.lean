@@ -42,9 +42,13 @@ import CORALean.ContSet.Zonotope.Float.Theorems.ReduceAndAbsorbByOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.ReindexNominal
 import CORALean.ContSet.Zonotope.Float.Theorems.ReindexExact
 import CORALean.ContSet.Zonotope.Float.Theorems.Convex
+import CORALean.ContSet.Zonotope.Float.Theorems.UnionSubsetLinComb
+import CORALean.ContSet.Zonotope.Float.Theorems.ConvexHullSubsetLinComb
 import CORALean.ContSet.Zonotope.Float.Theorems.IsCompact
 import CORALean.ContSet.Zonotope.Float.Theorems.IsClosed
 import CORALean.ContSet.Zonotope.Float.Theorems.ConstrSatSound
+import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
+import CORALean.ContSet.Zonotope.Float.Theorems.OriginExact
 
 /-!
 # What `Zonotope` guarantees

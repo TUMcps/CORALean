@@ -1,3 +1,6 @@
+import CORALean.ContSet.Fullspace.Real.Operations.Box
+import CORALean.ContSet.Fullspace.Real.Operations.Isequal
+import CORALean.ContSet.Fullspace.Real.Operations.Radius
 import CORALean.ContSet.Fullspace.Real.Operations.Centre
 import CORALean.ContSet.Fullspace.Real.Operations.And
 import CORALean.ContSet.Fullspace.Real.Operations.EnclosePoints

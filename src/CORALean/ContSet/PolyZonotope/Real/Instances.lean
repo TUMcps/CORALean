@@ -1,4 +1,6 @@
+import CORALean.ContSet.ContSet.Definitions.CompactSet
 import CORALean.ContSet.Interval.Real.Instances
+import CORALean.ContSet.PolyZonotope.Real.Theorems.IsCompact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombOuter
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MapExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MtimesExact
@@ -45,6 +47,10 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {n : ℕ}
 -- ========================================  INSTANCES  ========================================= --
 
 instance : ContSet (PolyZonotope α) α := ⟨PolyZonotope.construct⟩
+
+/-- Compact, not convex: the set is the image of a cube under a polynomial. -/
+instance {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α] : CompactSet (PolyZonotope α) α :=
+  ⟨PolyZonotope.isCompact_construct⟩
 
 instance : Plus (PolyZonotope α) α where
   plus := PolyZonotope.plus

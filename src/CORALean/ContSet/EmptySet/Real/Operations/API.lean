@@ -1,3 +1,5 @@
+import CORALean.ContSet.EmptySet.Real.Operations.Isequal
+import CORALean.ContSet.EmptySet.Real.Operations.Radius
 import CORALean.ContSet.EmptySet.Real.Operations.And
 import CORALean.ContSet.EmptySet.Real.Operations.Empty
 import CORALean.ContSet.EmptySet.Real.Operations.HPolytope

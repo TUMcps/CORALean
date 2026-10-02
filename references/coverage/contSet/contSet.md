@@ -6,39 +6,39 @@ CORA methods of `contSet/@contSet/`, one row each, and where CORALean answers th
 
 | Method | State | In CORALean | Note |
 |---|---|---|---|
-| `Inf` | — | — |  |
-| `affine` | — | — |  |
+| `Inf` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
+| `affine` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
 | `and` | float | [`Intersection`](../../../src/CORALean/ContSet/ContSet/ContSet.lean) | route b — the operation class is generic over the representation, and the float representations instantiate it (`Float/Instances.lean`) |
 | `and_` | float | [`Intersection`](../../../src/CORALean/ContSet/ContSet/ContSet.lean) | route b — the operation class is generic over the representation, and the float representations instantiate it (`Float/Instances.lean`) |
 | `boundaryPoint` | — | — |  |
-| `capsule` | — | — |  |
+| `capsule` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
 | `cartProd` | — | — |  |
-| `cartProd_` | — | — |  |
+| `cartProd_` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
 | `center` | float | [`Recentre`](../../../src/CORALean/ContSet/ContSet/ContSet.lean) | route b — the operation class is generic over the representation, and the float representations instantiate it (`Float/Instances.lean`) |
 | `compact` | — | — |  |
-| `compact_` | — | — |  |
-| `conPolyZono` | — | — |  |
-| `conZonotope` | — | — |  |
+| `compact_` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
+| `conPolyZono` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
+| `conZonotope` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
 | `contSet` | float | [`ContSet`](../../../src/CORALean/ContSet/ContSet/ContSet.lean) | route b — the operation class is generic over the representation, and the float representations instantiate it (`Float/Instances.lean`) |
 | `contains` | float | [`Contains`](../../../src/CORALean/ContSet/ContSet/ContSet.lean) | route b — the interface class is generic over the representation, and float representations instantiate it (`Specification/Instances.lean`) |
 | `contains_` | float | [`Contains`](../../../src/CORALean/ContSet/ContSet/ContSet.lean) | route b — the interface class is generic over the representation, and float representations instantiate it (`Specification/Instances.lean`) |
 | `convHull` | — | — |  |
-| `convHull_` | — | — |  |
+| `convHull_` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
 | `copy` | out-of-scope | n/a — matlab-runtime |  |
-| `cubMap` | — | — |  |
+| `cubMap` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
 | `decompose` | — | — |  |
 | `dim` | out-of-scope | n/a — matlab-runtime |  |
 | `display` | out-of-scope | n/a — plotting/display |  |
 | `double` | out-of-scope | n/a — io/conversion-to-matlab-objects |  |
-| `ellipsoid` | — | — |  |
-| `empty` | — | — |  |
-| `emptySet` | — | — |  |
-| `enclose` | — | — |  |
-| `enclosePoints` | — | — |  |
+| `ellipsoid` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
+| `empty` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
+| `emptySet` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
+| `enclose` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
+| `enclosePoints` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
 | `enlarge` | proved | [`ContSet.enlarge`](../../../src/CORALean/ContSet/ContSet/Operations/Enlarge.lean), [`ContSet.enlarge_outer`](../../../src/CORALean/ContSet/ContSet/Theorems/EnlargeOuter.lean) | scaling about `Recentre.centre` through `minus`, `times` and `plus`; outer over the image `c + f ⊙ (x - c)`. Not float: it needs `OfPoint`, which no float representation instantiates |
 | `eq` | — | — |  |
 | `full` | out-of-scope | n/a — io/conversion-to-matlab-objects |  |
-| `fullspace` | — | — |  |
+| `fullspace` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
 | `generateRandom` | out-of-scope | n/a — random/sampling |  |
 | `getPrintSetInfo` | out-of-scope | n/a — plotting/display |  |
 | `initEmptySet` | out-of-scope | n/a — deprecated |  |
@@ -56,43 +56,43 @@ CORA methods of `contSet/@contSet/`, one row each, and where CORALean answers th
 | `isZonotope` | out-of-scope | n/a — deprecated |  |
 | `isempty` | out-of-scope | n/a — deprecated |  |
 | `isemptyobject` | out-of-scope | n/a — matlab-runtime |  |
-| `isequal` | — | — |  |
-| `levelSet` | — | — |  |
+| `isequal` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
+| `levelSet` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
 | `lift` | — | — |  |
-| `lift_` | — | — |  |
+| `lift_` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
 | `linComb` | float | [`LinComb`](../../../src/CORALean/ContSet/ContSet/ContSet.lean) | route b — the operation class is generic over the representation, and the float representations instantiate it (`Float/Instances.lean`) |
 | `minkDiff` | float | [`MinkDiff`](../../../src/CORALean/ContSet/ContSet/ContSet.lean) | route b — the operation class is generic over the representation, and the float representations instantiate it (`Float/Instances.lean`) |
 | `minus` | proved | [`ContSet.minus`](../../../src/CORALean/ContSet/ContSet/Operations/Minus.lean), [`ContSet.minus_outer`](../../../src/CORALean/ContSet/ContSet/Theorems/MinusOuter.lean), [`ContSet.minusFrom`](../../../src/CORALean/ContSet/ContSet/Operations/MinusFrom.lean), [`ContSet.minusFrom_outer`](../../../src/CORALean/ContSet/ContSet/Theorems/MinusFromOuter.lean) | a vector subtrahend as `S + (-p)` and a vector minuend as `-S + p`, as CORA has both; a set subtrahend throws in CORA and is `minkDiff`. Not float: `OfPoint` takes a real point and no float representation instantiates it |
 | `mtimes` | float | [`Mtimes`](../../../src/CORALean/ContSet/ContSet/ContSet.lean) | route b — the operation class is generic over the representation, and the float representations instantiate it (`Float/Instances.lean`) |
 | `ne` | — | — |  |
 | `norm` | — | — |  |
-| `norm_` | — | — |  |
-| `or` | — | — |  |
-| `origin` | — | — |  |
+| `norm_` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
+| `or` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
+| `origin` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
 | `plot` | out-of-scope | n/a — plotting/display |  |
 | `plot1D` | out-of-scope | n/a — plotting/display |  |
 | `plot2D` | out-of-scope | n/a — plotting/display |  |
 | `plot3D` | out-of-scope | n/a — plotting/display |  |
 | `plotRandPoint` | out-of-scope | n/a — plotting/display |  |
 | `plus` | float | [`Plus`](../../../src/CORALean/ContSet/ContSet/ContSet.lean) | route b — the operation class is generic over the representation, and the float representations instantiate it (`Float/Instances.lean`) |
-| `polyZonotope` | — | — |  |
+| `polyZonotope` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
 | `polygon` | — | — |  |
-| `polytope` | — | — |  |
+| `polytope` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
 | `printSet` | out-of-scope | n/a — plotting/display |  |
-| `probZonotope` | — | — |  |
+| `probZonotope` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
 | `projVertices` | out-of-scope | n/a — plotting/display |  |
-| `project` | — | — |  |
+| `project` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
 | `projectHighDim` | — | — |  |
 | `projectHighDim_` | — | — |  |
 | `projectOnHyperplane` | — | — |  |
-| `quadMap` | — | — |  |
+| `quadMap` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
 | `randPoint` | out-of-scope | n/a — random/sampling |  |
 | `randPoint_` | out-of-scope | n/a — random/sampling |  |
 | `recompose` | — | — |  |
 | `reduce` | float | [`Reduce`](../../../src/CORALean/ContSet/ContSet/ContSet.lean) | route b — the operation class is generic over the representation, and the float representations instantiate it (`Float/Instances.lean`) |
 | `reorder` | — | — |  |
 | `representsa` | — | — |  |
-| `representsa_` | — | — |  |
+| `representsa_` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
 | `representsa_emptyObject` | — | — |  |
 | `single` | out-of-scope | n/a — io/conversion-to-matlab-objects |  |
 | `sparse` | out-of-scope | n/a — io/conversion-to-matlab-objects |  |
@@ -102,8 +102,8 @@ CORA methods of `contSet/@contSet/`, one row each, and where CORALean answers th
 | `uminus` | float | [`ContSet.uminus`](../../../src/CORALean/ContSet/ContSet/Operations/Uminus.lean), [`ContSet.uminus_outer`](../../../src/CORALean/ContSet/ContSet/Theorems/UminusOuter.lean) | route b — `-1 * S` through any `Mtimes (Mat 𝕋) S`, generic over the scalar `𝕋` and the representation; `NegScalar` makes `-1` read as `-1` |
 | `uplus` | float | [`ContSet.uplus`](../../../src/CORALean/ContSet/ContSet/Operations/Uplus.lean), [`ContSet.uplus_exact`](../../../src/CORALean/ContSet/ContSet/Theorems/UplusExact.lean) | route b — the identity on any representation; exact, not only outer |
 | `vertices` | — | — |  |
-| `vertices_` | — | — |  |
+| `vertices_` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
 | `volume` | — | — |  |
-| `volume_` | — | — |  |
-| `zonoBundle` | — | — |  |
-| `zonotope` | — | — |  |
+| `volume_` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
+| `zonoBundle` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
+| `zonotope` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |

@@ -1,5 +1,6 @@
 import CORALean.ContSet.Ellipsoid.Float.Theorems.PlusOuter
 import CORALean.ContSet.Ellipsoid.Float.Theorems.MtimesOuter
+import CORALean.ContSet.Ellipsoid.Float.Theorems.ReindexExact
 
 /-!
 # What `Ellipsoid` instantiates
@@ -61,6 +62,14 @@ instance : Mtimes (Mat 𝕋) (Ellipsoid 𝕋) where
   mtimes_outer M E := by
     simp only [ContSet.construct_mat, Set.biUnion_singleton, Ellipsoid.materialise_eq]
     exact Ellipsoid.mtimes_outer M E
+
+/-- Exact, alone among the fields here: a relabelling moves stored floats and
+computes nothing, so the error box is carried across rather than grown. -/
+instance : Reindex (Ellipsoid 𝕋) where
+  reindex e E := (Ellipsoid.reindex e E).materialise
+  reindex_exact e E := by
+    rw [Ellipsoid.materialise_eq]
+    exact Ellipsoid.reindex_exact e E
 
 end CORALean.Float
 

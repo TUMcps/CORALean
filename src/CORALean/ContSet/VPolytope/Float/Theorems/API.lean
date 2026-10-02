@@ -5,6 +5,9 @@ import CORALean.ContSet.VPolytope.Float.Theorems.NominalLinComb
 import CORALean.ContSet.VPolytope.Float.Theorems.LinCombOuter
 import CORALean.ContSet.VPolytope.Float.Theorems.IntersectionOuter
 import CORALean.ContSet.VPolytope.Float.Theorems.ProjectOuter
+import CORALean.ContSet.VPolytope.Float.Theorems.ConstructEmptySet
+import CORALean.ContSet.VPolytope.Float.Theorems.Convex
+import CORALean.ContSet.VPolytope.Float.Theorems.IsCompact
 
 /-!
 # What the float `VPolytope` guarantees

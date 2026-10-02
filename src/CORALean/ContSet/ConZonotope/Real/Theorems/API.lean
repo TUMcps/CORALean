@@ -26,6 +26,7 @@ import CORALean.ContSet.ConZonotope.Real.Theorems.LiftIff
 import CORALean.ContSet.ConZonotope.Real.Theorems.LiftThenReduce
 import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombInner
 import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombOuter
+import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombEqConvexHull
 import CORALean.ContSet.ConZonotope.Real.Theorems.MapExact
 import CORALean.ContSet.ConZonotope.Real.Theorems.MemConstruct
 import CORALean.ContSet.ConZonotope.Real.Theorems.MemIffIsLeast

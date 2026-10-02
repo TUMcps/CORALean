@@ -1,4 +1,8 @@
 import CORALean.ContSet.ContSet.ContSet
+import CORALean.ContSet.ContSet.Definitions.CompactSet
+import CORALean.ContSet.ContSet.Definitions.ConvexSet
+import CORALean.ContSet.Ellipsoid.Real.Theorems.Convex
+import CORALean.ContSet.Ellipsoid.Real.Theorems.IsCompact
 import CORALean.ContSet.Ellipsoid.Real.Theorems.MapExact
 import CORALean.ContSet.Ellipsoid.Real.Theorems.MtimesExact
 import CORALean.ContSet.Ellipsoid.Real.Theorems.PlusOuter
@@ -43,6 +47,10 @@ variable {n : ℕ}
 -- ========================================  INSTANCES  ========================================= --
 
 instance : ContSet (Ellipsoid n) (Vec ℝ n) := ⟨Ellipsoid.construct⟩
+
+instance : ConvexSet (Ellipsoid n) (Vec ℝ n) := ⟨Ellipsoid.convex_construct⟩
+
+instance : CompactSet (Ellipsoid n) (Vec ℝ n) := ⟨Ellipsoid.isCompact_construct⟩
 
 instance : OfPoint (Ellipsoid n) (Vec ℝ n) where
   ofPoint := Ellipsoid.ofPoint

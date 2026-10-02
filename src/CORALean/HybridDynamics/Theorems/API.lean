@@ -3,6 +3,7 @@ import CORALean.HybridDynamics.Theorems.FlowOuterInputSolution
 import CORALean.HybridDynamics.Theorems.FlowOuterSplit
 import CORALean.HybridDynamics.Theorems.FlowOuterFloat
 import CORALean.HybridDynamics.Theorems.FlowOuterSplitFloat
+import CORALean.HybridDynamics.Theorems.GuardIntersectFloatOuter
 import CORALean.HybridDynamics.Theorems.HoldsAllOfInvariant
 import CORALean.HybridDynamics.Theorems.HoldsOfCheck
 import CORALean.HybridDynamics.Theorems.HoldsOfRun
@@ -14,35 +15,44 @@ import CORALean.HybridDynamics.Theorems.JumpIntersectionOuter
 import CORALean.HybridDynamics.Theorems.JumpOuter
 import CORALean.HybridDynamics.Theorems.JumpOuterConZonotope
 import CORALean.HybridDynamics.Theorems.JumpOfPointOuter
+import CORALean.HybridDynamics.Theorems.JumpFloatOuter
 import CORALean.HybridDynamics.Theorems.JumpIntersectionOfPointOuter
 import CORALean.HybridDynamics.Theorems.LinearEmbedding
+import CORALean.HybridDynamics.Theorems.LocationReachFloatOuter
+import CORALean.HybridDynamics.Theorems.ReachFloatOuter
 import CORALean.HybridDynamics.Theorems.ReachLocationsOuter
 import CORALean.HybridDynamics.Theorems.ReachSetOuter
+import CORALean.HybridDynamics.Theorems.ReachSetEqIUnionRunUntil
 import CORALean.HybridDynamics.Theorems.ReachSetSubsetInvariant
+import CORALean.HybridDynamics.Theorems.ReachSetSubsetReachFloat
 import CORALean.HybridDynamics.Theorems.ResetImageSubset
 import CORALean.HybridDynamics.Theorems.RunExistsRunOn
+import CORALean.HybridDynamics.Theorems.RunIffExistsRunUntil
 import CORALean.HybridDynamics.Theorems.RunOnOuter
 import CORALean.HybridDynamics.Theorems.RunOnToRun
 import CORALean.HybridDynamics.Theorems.RunOuter
+import CORALean.HybridDynamics.Theorems.RunUntilMono
+import CORALean.HybridDynamics.Theorems.RunUntilToRunOn
 import CORALean.HybridDynamics.Theorems.TimeIntervalInvOuter
+import CORALean.HybridDynamics.Theorems.TimeIntervalInvFloatOuter
 import CORALean.HybridDynamics.Theorems.TrajectoryMemIccRight
 
 /-!
 # What a hybrid run guarantees, collected
 
-Read in the order a step is taken. `LinearEmbedding` makes a stay a linear
-trajectory, `FlowOuter` encloses it and `TimeIntervalInvOuter` cuts that to the
-invariant; `JumpOuter` intersects with the guard and applies the reset,
-`ResetImageSubset` restates it as a set inclusion, `JumpOuterConZonotope`
-discharges the one hypothesis `JumpOuter` leaves without an `Intersection` instance,
-and `JumpIntersectionOuter` is the case where one discharges it. `RunOuter` chains the
-two by induction on the run, and `HoldsOfRun`/`HoldsAllOfInvariant` turn the
-result into an answer, one specification or a list of them. `ReachSetOuter`/
+Read in the order a step is taken. `LinearEmbedding` makes a stay a linear trajectory,
+`FlowOuter` encloses it and `TimeIntervalInvOuter` cuts that to the invariant; `JumpOuter`
+intersects with the guard and applies the reset, `ResetImageSubset` restates it as a set
+inclusion, `JumpOuterConZonotope` discharges the one hypothesis `JumpOuter` leaves without an
+`Intersection` instance, and `JumpIntersectionOuter` is the case where one discharges it.
+`RunOuter` chains the two by induction on the run, and `HoldsOfRun`/`HoldsAllOfInvariant` turn
+the result into an answer, one specification or a list of them. `ReachSetOuter`/
 `ReachLocationsOuter`/`ReachSetSubsetInvariant` restate the same at a set of runs.
 
-The bounded-horizon reading: `RunOnToRun`/`RunExistsRunOn` relate `RunOn` to
-`Run`, `RunOnOuter` is `RunOuter` at an index, `HoldsOfRunOn` its corollary, and
-`InvariantOnOfInvariant` reads an `Invariant` as the constant-family case.
+The bounded-horizon reading: `RunOnToRun`/`RunExistsRunOn` relate `RunOn` to `Run`, `RunOnOuter`
+is `RunOuter` at an index, `HoldsOfRunOn` its corollary, and `InvariantOnOfInvariant` reads an
+`Invariant` as the constant-family case. By `RunIffExistsRunUntil`, `RunUntil` is a `Run` with a
+duration bound; `ReachFloatOuter`/`ReachSetSubsetReachFloat` enclose such runs in floats.
 
 `FlowOuterInputSolution` computes `FlowOuter`'s input contribution rather than
 naming it, `FlowOuterSplit` without asking `0 ∈ ℓ.U`, `…Float` the same in floats, and
