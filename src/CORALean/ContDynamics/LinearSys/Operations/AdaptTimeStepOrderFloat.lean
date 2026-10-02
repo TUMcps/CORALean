@@ -1,0 +1,63 @@
+import CORALean.ContDynamics.LinearSys.LinearSys
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrixFloat
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputRemainderFloat
+import CORALean.ContSet.Interval.Float.Operations.Point
+import CORALean.ContSet.Zonotope.Float.Instances
+import CORALean.ContSet.Zonotope.Float.Operations.ErrOp
+import CORALean.Global.Float.ToRat
+
+/-!
+# `Alg. 2` lines 4-5 in floats: the order sweep
+
+[1, Alg. 2]'s `adaptTimeStepOrder` computed in `𝕋`: sweep the order upward from `η` until
+one clears `ε_H ≤ ε_H,max` and `ε_P ≤ ε_P,max,i`, at eq. (21)-(22)'s own sets
+`e^{At_i} F_x X₀` and `e^{At_i} E Δt U`, `[e^{At_i}]` an interval matrix. The
+errors are the sup-norm `errOp`, read into ℚ through `ToRat`. Eq. (21)'s
+`F_u c_u` half is absent: the run carries the constant input separately. An
+order also has to pass the float side condition the step's enclosures need.
+
+## References
+
+* [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning
+      for reachability analysis of linear systems". CDC, 2020, pp. 5145–5152.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       02-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open CORALean.Float FloatOps
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- Lines 4-5: the coarsest order from `η` clearing both bounds, with its
+`ε_H` and `ε_P`, and `none` where the sweep reaches `Φ_prop,max` without one. -/
+def LinearSys.adaptTimeStepOrderFloat (sys : LinearSys 𝕋 n) (eAt : Interval (Mat 𝕋 n n))
+    (X₀ U : Zonotope 𝕋 n) (εHmax εPi : ℚ) (Δt : 𝕋) : ℕ → ℕ → Option (ℕ × ℚ × ℚ)
+  | _, 0 => none
+  | η, k + 1 =>
+    let eA := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) eAt     -- [e^{At_i}] ·
+    let nrm := MatExp.normUpperBound (Interval.smul Δt Δt (Interval.point sys.A))  -- ≥ ‖Δt A‖
+    let F := MatExp.intervalCorrectionMatrix (Interval.point sys.A) Δt η   -- F_x(Δt, η)
+    let E := MatExp.intervalInputRemainder (Interval.point sys.A) Δt η     -- E(Δt, η) Δt
+    let εH := ToRat.toRat                                                  -- 10. calc. HR⁺, ε_H
+      (eA (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) F X₀)).errOp
+    let εP := ToRat.toRat                                                  -- 11. calc. PR⁺, ε_P
+      (eA (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) E U)).errOp
+    if le nrm (half (nsmulDown (η + 2) one)) && decide (εH ≤ εHmax) && decide (εP ≤ εPi)
+    then some (η, εH, εP)                                                  -- 12. both inside
+    else sys.adaptTimeStepOrderFloat eAt X₀ U εHmax εPi Δt (η + 1) k
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

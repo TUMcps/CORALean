@@ -32,6 +32,10 @@ import CORALean.ContDynamics.LinearSys.Definitions.WithInputSplit
 import CORALean.ContDynamics.LinearSys.Definitions.WithInputSplitReachExact
 import CORALean.ContDynamics.LinearSys.Definitions.OrderAdmissibleFloat
 import CORALean.ContDynamics.LinearSys.Definitions.ReachFloatInputInvariant
+import CORALean.ContDynamics.LinearSys.Definitions.AdaptiveOptions
+import CORALean.ContDynamics.LinearSys.Definitions.AdaptiveState
+import CORALean.ContDynamics.LinearSys.Definitions.AdaptiveStepInfo
+import CORALean.ContDynamics.LinearSys.Definitions.AdaptiveInvariant
 
 /-!
 # What a continuous-time linear system means

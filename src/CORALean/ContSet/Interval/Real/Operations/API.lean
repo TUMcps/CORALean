@@ -82,6 +82,9 @@ import CORALean.ContSet.Interval.Real.Operations.QuadMapMixed
 import CORALean.ContSet.Interval.Real.Operations.CoshLo
 import CORALean.ContSet.Interval.Real.Operations.CoshHi
 import CORALean.ContSet.Interval.Real.Operations.Cosh
+import CORALean.ContSet.Interval.Real.Operations.MaxCos
+import CORALean.ContSet.Interval.Real.Operations.Cos
+import CORALean.ContSet.Interval.Real.Operations.Sin
 import CORALean.ContSet.Interval.Real.Operations.Prod1
 import CORALean.ContSet.Interval.Real.Operations.Kron
 import CORALean.ContSet.Interval.Real.Operations.Recip

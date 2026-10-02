@@ -109,6 +109,9 @@ import CORALean.ContSet.Interval.Real.Theorems.DiagVecExact
 import CORALean.ContSet.Interval.Real.Theorems.QuadMapOuter
 import CORALean.ContSet.Interval.Real.Theorems.QuadMapMixedOuter
 import CORALean.ContSet.Interval.Real.Theorems.CoshExact
+import CORALean.ContSet.Interval.Real.Theorems.ImageCosIcc
+import CORALean.ContSet.Interval.Real.Theorems.CosExact
+import CORALean.ContSet.Interval.Real.Theorems.SinExact
 import CORALean.ContSet.Interval.Real.Theorems.Prod1Exact
 import CORALean.ContSet.Interval.Real.Theorems.KronOuter
 import CORALean.ContSet.Interval.Real.Theorems.RecipExact
