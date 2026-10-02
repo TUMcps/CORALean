@@ -1,0 +1,34 @@
+import CORALean.ContSet.SpectraShadow.Real.Operations.Map
+
+/-!
+# `SpectraShadow.project`
+
+CORA's `@spectraShadow/project`: `spectraShadow(SpS.A, SpS.c(dims,:), SpS.G(dims,:))`, the
+centre and every generator at the chosen coordinates and the inequality untouched. `dims` may
+repeat or reorder coordinates. Reading coordinates is linear, so this is `map` at the selection
+map, and `project_exact` is `map_exact`.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       02-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {n m : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+def SpectraShadow.project (S : SpectraShadow (Vec ℝ n)) (dims : Fin m → Fin n) :
+    SpectraShadow (Vec ℝ m) :=
+  S.map (LinearMap.funLeft ℝ ℝ dims)
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

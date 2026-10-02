@@ -96,23 +96,23 @@ Only these, and the row says which:
 | Class | Group | Methods | proved | float | not yet | out of scope | CORA issues |
 |---|---|---|---|---|---|---|---|
 | [affine](contSet/affine.md) | contSet | 1 | 0 | 0 | 1 | 0 | 0 |
-| [capsule](contSet/capsule.md) | contSet | 39 | 13 | 0 | 17 | 9 | 0 |
-| [conPolyZono](contSet/conPolyZono.md) | contSet | 47 | 14 | 9 | 16 | 8 | 0 |
+| [capsule](contSet/capsule.md) | contSet | 39 | 16 | 0 | 14 | 9 | 1 |
+| [conPolyZono](contSet/conPolyZono.md) | contSet | 47 | 12 | 11 | 16 | 8 | 0 |
 | [conZonotope](contSet/conZonotope.md) | contSet | 50 | 11 | 9 | 19 | 11 | 0 |
-| [contSet](contSet/contSet.md) | contSet | 101 | 4 | 18 | 51 | 28 | 0 |
-| [ellipsoid](contSet/ellipsoid.md) | contSet | 50 | 6 | 7 | 28 | 9 | 0 |
+| [contSet](contSet/contSet.md) | contSet | 101 | 5 | 18 | 50 | 28 | 0 |
+| [ellipsoid](contSet/ellipsoid.md) | contSet | 50 | 7 | 8 | 26 | 9 | 0 |
 | [emptySet](contSet/emptySet.md) | contSet | 30 | 20 | 0 | 3 | 7 | 0 |
 | [fullspace](contSet/fullspace.md) | contSet | 33 | 20 | 0 | 6 | 7 | 0 |
 | [interval](contSet/interval.md) | contSet | 110 | 20 | 45 | 27 | 18 | 0 |
 | [levelSet](contSet/levelSet.md) | contSet | 22 | 0 | 0 | 16 | 6 | 0 |
-| [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 14 | 10 | 36 | 13 | 0 |
+| [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 12 | 12 | 36 | 13 | 0 |
 | [polygon](contSet/polygon.md) | contSet | 46 | 0 | 0 | 40 | 6 | 0 |
-| [polytope](contSet/polytope.md) | contSet | 58 | 11 | 14 | 26 | 7 | 0 |
+| [polytope](contSet/polytope.md) | contSet | 58 | 14 | 15 | 22 | 7 | 0 |
 | [probZonotope](contSet/probZonotope.md) | contSet | 28 | 0 | 0 | 22 | 6 | 0 |
-| [spectraShadow](contSet/spectraShadow.md) | contSet | 33 | 5 | 1 | 19 | 8 | 0 |
+| [spectraShadow](contSet/spectraShadow.md) | contSet | 33 | 6 | 1 | 18 | 8 | 0 |
 | [taylm](contSet/taylm.md) | contSet | 51 | 0 | 0 | 46 | 5 | 0 |
-| [zonoBundle](contSet/zonoBundle.md) | contSet | 44 | 3 | 14 | 20 | 7 | 0 |
-| [zonotope](contSet/zonotope.md) | contSet | 80 | 8 | 20 | 40 | 12 | 1 |
+| [zonoBundle](contSet/zonoBundle.md) | contSet | 44 | 3 | 15 | 19 | 7 | 0 |
+| [zonotope](contSet/zonotope.md) | contSet | 80 | 12 | 22 | 34 | 12 | 1 |
 | [zoo](contSet/zoo.md) | contSet | 12 | 0 | 0 | 12 | 0 | 0 |
 | [contDynamics](contDynamics/contDynamics.md) | contDynamics | 19 | 0 | 3 | 7 | 9 | 1 |
 | [linParamSys](contDynamics/linParamSys.md) | contDynamics | 11 | 2 | 2 | 4 | 3 | 0 |

@@ -7,8 +7,8 @@ import CORALean.ContSet.Ellipsoid.Float.Theorems.MtimesOuter
 `Mtimes` by instance search, and `Plus` once a caller has named the two
 scalings — the same pair of classes as over ℝ, and for the same reasons. An
 ellipsoid is closed under a linear image and under nothing else the interface
-names, and every enclosure of a sum, a combination or a reduction carries a free
-parameter.
+names, and every enclosure of a sum or a combination carries a free
+parameter; `Reduce` is the identity, as CORA's `reduce` body is empty.
 
 `ContSet` is not among them: `InflatedContSet` supplies it, which is what makes
 this the same interface as over ℝ.
@@ -37,6 +37,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 
 -- ========================================  INSTANCES  ========================================= --
+
+/-- CORA's `@ellipsoid/reduce` has an empty body and returns its input: storage and nothing
+more, as `Interval`'s does. -/
+instance {n : ℕ} : Reduce (Ellipsoid 𝕋 n) (Vec ℝ n) where
+  reduce E _ := E.materialise
+  reduce_outer E _ := by
+    rw [Ellipsoid.materialise_eq]
 
 /-- `Plus` at two scalings the caller chooses, together with the inequality that
 makes them sound. Deliberately not an `instance`, as over ℝ. -/

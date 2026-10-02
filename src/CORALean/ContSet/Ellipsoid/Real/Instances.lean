@@ -10,8 +10,8 @@ import CORALean.ContSet.Ellipsoid.Real.Theorems.OfPointMem
 `ContSet` and `Mtimes` by instance search, `OfPoint` at the degenerate case —
 `G` with no columns — and `Plus` only once a caller has named the parameter it
 carries. Otherwise closed under a linear image alone: a Minkowski sum of two
-ellipsoids is not one, nor is a `linComb`, and `reduce` would be a fitting
-problem, not a ranking.
+ellipsoids is not one, nor is a `linComb`. `Reduce` is the identity, as CORA's
+`reduce` body is empty.
 
 `Ellipsoid.plus_outer` holds at a fixed pair of scalings for every pair of
 ellipsoids, so fixing `s₁` and `s₂` — with the inequality they owe — yields a
@@ -47,6 +47,12 @@ instance : ContSet (Ellipsoid n) (Vec ℝ n) := ⟨Ellipsoid.construct⟩
 instance : OfPoint (Ellipsoid n) (Vec ℝ n) where
   ofPoint := Ellipsoid.ofPoint
   mem_ofPoint := Ellipsoid.mem_ofPoint
+
+/-- CORA's `@ellipsoid/reduce` has an empty body and returns its input, so this does nothing:
+no order to reduce to, and the identity is a sound enclosure of itself. -/
+instance : Reduce (Ellipsoid n) (Vec ℝ n) where
+  reduce E _ := E
+  reduce_outer _ _ := subset_rfl
 
 /-- `Plus` at two scalings the caller chooses, with the inequality that makes
 them sound. Deliberately not an `instance`: picking the pair is a precision

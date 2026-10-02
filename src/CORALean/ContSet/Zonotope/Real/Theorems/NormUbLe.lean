@@ -1,0 +1,35 @@
+import CORALean.ContSet.Zonotope.Real.Operations.NormUb
+import CORALean.ContSet.Interval.Real.Theorems.NormLe
+
+/-!
+# `Zonotope.normUb` bounds every member
+
+The box contains the zonotope (`interval_contains`) and `Interval.norm` bounds the box.
+An upper bound only, and not tight in general: a box is larger than its zonotope.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       02-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+open ContSet
+
+variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem Zonotope.norm₂_le_normUb {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n}
+    (hx : x ∈ Z.construct) : ‖x‖₂ ≤ Z.normUb :=
+  Interval.norm_le (Z.interval_contains hx)
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

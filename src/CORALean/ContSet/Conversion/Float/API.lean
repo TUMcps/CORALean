@@ -1,3 +1,4 @@
+import CORALean.ContSet.Conversion.Float.ConPolyZono_to_Ellipsoid
 import CORALean.ContSet.Conversion.Float.ConPolyZono_to_Interval
 import CORALean.ContSet.Conversion.Float.ConPolyZono_to_PolyZonotope
 import CORALean.ContSet.Conversion.Float.ConZonotope_to_ConPolyZono
@@ -12,6 +13,7 @@ import CORALean.ContSet.Conversion.Float.Ellipsoid_to_Interval
 import CORALean.ContSet.Conversion.Float.Ellipsoid_to_PolyZonotope
 import CORALean.ContSet.Conversion.Float.Ellipsoid_to_Zonotope
 import CORALean.ContSet.Conversion.Float.HPolytope_to_ConZonotope
+import CORALean.ContSet.Conversion.Float.HPolytope_to_Ellipsoid
 import CORALean.ContSet.Conversion.Float.HPolytope_to_Interval
 import CORALean.ContSet.Conversion.Float.HPolytope_to_VPolytope
 import CORALean.ContSet.Conversion.Float.HPolytope_to_ZonoBundle
@@ -28,8 +30,11 @@ import CORALean.ContSet.Conversion.Float.Interval_to_ZonoBundle
 import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
 import CORALean.ContSet.Conversion.Float.PolyZonotope_to_ConPolyZono
 import CORALean.ContSet.Conversion.Float.PolyZonotope_to_ConZonotope
+import CORALean.ContSet.Conversion.Float.PolyZonotope_to_Ellipsoid
 import CORALean.ContSet.Conversion.Float.PolyZonotope_to_Interval
+import CORALean.ContSet.Conversion.Float.PolyZonotope_to_Zonotope
 import CORALean.ContSet.Conversion.Float.VPolytope_to_ConZonotope
+import CORALean.ContSet.Conversion.Float.VPolytope_to_Ellipsoid
 import CORALean.ContSet.Conversion.Float.VPolytope_to_HPolytope
 import CORALean.ContSet.Conversion.Float.VPolytope_to_Interval
 import CORALean.ContSet.Conversion.Float.VPolytope_to_ZonoBundle
@@ -43,10 +48,11 @@ import CORALean.ContSet.Conversion.Float.ZonoBundle_to_VPolytope
 import CORALean.ContSet.Conversion.Float.ZonoBundle_to_Zonotope
 import CORALean.ContSet.Conversion.Float.Zonotope_to_ConPolyZono
 import CORALean.ContSet.Conversion.Float.Zonotope_to_ConZonotope
+import CORALean.ContSet.Conversion.Float.Zonotope_to_Ellipsoid
 import CORALean.ContSet.Conversion.Float.Zonotope_to_HPolytope
 import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
-import CORALean.ContSet.Conversion.Float.Zonotope_to_SpectraShadow
 import CORALean.ContSet.Conversion.Float.Zonotope_to_PolyZonotope
+import CORALean.ContSet.Conversion.Float.Zonotope_to_SpectraShadow
 import CORALean.ContSet.Conversion.Float.Zonotope_to_VPolytope
 import CORALean.ContSet.Conversion.Float.Zonotope_to_ZonoBundle
 

@@ -15,6 +15,10 @@ import CORALean.ContSet.VPolytope.Real.Theorems.PlusExact
 import CORALean.ContSet.VPolytope.Real.Theorems.PerturbSubset
 import CORALean.ContSet.VPolytope.Real.Theorems.SupportBoundAttained
 import CORALean.ContSet.VPolytope.Real.Theorems.ProjectExact
+import CORALean.ContSet.VPolytope.Real.Theorems.EnclosePointsExact
+import CORALean.ContSet.VPolytope.Real.Theorems.ConvHullExact
+import CORALean.ContSet.VPolytope.Real.Theorems.OrExact
+import CORALean.ContSet.VPolytope.Real.Theorems.IsFullDimIff
 
 /-!
 # What `VPolytope` guarantees

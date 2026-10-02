@@ -15,6 +15,9 @@ import CORALean.ContSet.VPolytope.Real.Operations.Plus
 import CORALean.ContSet.VPolytope.Real.Operations.LeOfForallLe
 import CORALean.ContSet.VPolytope.Real.Operations.SupportBound
 import CORALean.ContSet.VPolytope.Real.Operations.Project
+import CORALean.ContSet.VPolytope.Real.Operations.EnclosePoints
+import CORALean.ContSet.VPolytope.Real.Operations.ConvHull
+import CORALean.ContSet.VPolytope.Real.Operations.Or
 
 /-!
 # What `VPolytope` computes

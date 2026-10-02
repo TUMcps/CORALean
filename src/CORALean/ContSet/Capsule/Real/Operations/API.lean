@@ -1,6 +1,7 @@
 import CORALean.ContSet.Capsule.Real.Operations.OfPoint
 import CORALean.ContSet.Capsule.Real.Operations.SupportBound
 import CORALean.ContSet.Capsule.Real.Operations.Empty
+import CORALean.ContSet.Capsule.Real.Operations.Reindex
 
 /-!
 # What a capsule computes, collected

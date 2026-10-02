@@ -30,6 +30,7 @@ import CORALean.ContSet.Zonotope.Float.Operations.ReduceCombastel
 import CORALean.ContSet.Zonotope.Float.Operations.Reduce
 import CORALean.ContSet.Zonotope.Float.Operations.ReduceAndAbsorb
 import CORALean.ContSet.Zonotope.Float.Operations.Reindex
+import CORALean.ContSet.Zonotope.Float.Operations.ConstrSat
 
 /-!
 # What `Zonotope` computes

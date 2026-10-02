@@ -2,13 +2,18 @@ import CORALean.ContSet.Capsule.Real.Theorems.ConstructEqEmpty
 import CORALean.ContSet.Capsule.Real.Theorems.ConstructEqAdd
 import CORALean.ContSet.Capsule.Real.Theorems.Convex
 import CORALean.ContSet.Capsule.Real.Theorems.IsCompact
+import CORALean.ContSet.Capsule.Real.Theorems.IsFullDimIff
 import CORALean.ContSet.Capsule.Real.Theorems.OfPointMem
 import CORALean.ContSet.Capsule.Real.Theorems.OfPointMemIff
 import CORALean.ContSet.Capsule.Real.Theorems.CentreMemConstructIff
 import CORALean.ContSet.Capsule.Real.Theorems.EmptyExact
+import CORALean.ContSet.Capsule.Real.Theorems.ReindexExact
 
 /-!
 # What a capsule guarantees, collected
+
+`IsFullDimCora.lean` is deliberately not collected here: it states the CORA discrepancy at the
+`ContSet` instance, which `Instances.lean` declares after importing this file.
 
 `construct_eq_empty` and `construct_eq_add` are the shared case split, at
 `C.r < 0` and `0 ≤ C.r`; `convex_construct` and `isCompact_construct` both

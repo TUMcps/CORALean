@@ -23,6 +23,7 @@ import CORALean.ContSet.ContSet.Theorems.SubsetMinkowskiDiffIff
 import CORALean.ContSet.ContSet.Theorems.TimesOuter
 import CORALean.ContSet.ContSet.Theorems.UminusOuter
 import CORALean.ContSet.ContSet.Theorems.UplusExact
+import CORALean.ContSet.ContSet.Theorems.IsFullDimIffAffineSpan
 
 /-!
 # What the set interface's classes and definitions give together

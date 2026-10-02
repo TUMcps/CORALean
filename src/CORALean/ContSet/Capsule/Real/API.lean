@@ -3,6 +3,7 @@ import CORALean.ContSet.Capsule.Real.Operations.API
 import CORALean.ContSet.Capsule.Real.Theorems.API
 import CORALean.ContSet.Capsule.Real.Complexity.API
 import CORALean.ContSet.Capsule.Real.Instances
+import CORALean.ContSet.Capsule.Real.Theorems.IsFullDimCora
 
 /-!
 # Capsules, collected

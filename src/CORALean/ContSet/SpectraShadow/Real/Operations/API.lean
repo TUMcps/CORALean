@@ -4,6 +4,7 @@ import CORALean.ContSet.SpectraShadow.Real.Operations.Mtimes
 import CORALean.ContSet.SpectraShadow.Real.Operations.CartProd
 import CORALean.ContSet.SpectraShadow.Real.Operations.Empty
 import CORALean.ContSet.SpectraShadow.Real.Operations.Inf
+import CORALean.ContSet.SpectraShadow.Real.Operations.Project
 
 /-!
 # What a spectrahedral shadow computes, collected

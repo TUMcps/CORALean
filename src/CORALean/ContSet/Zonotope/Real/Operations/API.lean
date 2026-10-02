@@ -64,6 +64,13 @@ import CORALean.ContSet.Zonotope.Real.Operations.Shift
 import CORALean.ContSet.Zonotope.Real.Operations.Split
 import CORALean.ContSet.Zonotope.Real.Operations.SplitRank
 import CORALean.ContSet.Zonotope.Real.Operations.SupportBound
+import CORALean.ContSet.Zonotope.Real.Operations.Rank
+import CORALean.ContSet.Zonotope.Real.Operations.RepresentsaPoint
+import CORALean.ContSet.Zonotope.Real.Operations.RepresentsaOrigin
+import CORALean.ContSet.Zonotope.Real.Operations.ExactPlus
+import CORALean.ContSet.Zonotope.Real.Operations.NormUb
+import CORALean.ContSet.Zonotope.Real.Operations.Radius2
+import CORALean.ContSet.Zonotope.Real.Operations.ConstrSat
 
 /-!
 # What `Zonotope` computes

@@ -7,6 +7,7 @@ import CORALean.ContSet.ZonoBundle.Float.Theorems.ReduceOuter
 import CORALean.ContSet.ZonoBundle.Float.Theorems.ReduceOrder
 import CORALean.ContSet.ZonoBundle.Float.Theorems.Convex
 import CORALean.ContSet.ZonoBundle.Float.Theorems.IsCompact
+import CORALean.ContSet.ZonoBundle.Float.Theorems.ProjectOuter
 
 /-!
 # What a float zonotope bundle guarantees, collected
