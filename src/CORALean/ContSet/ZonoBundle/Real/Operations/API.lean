@@ -24,6 +24,7 @@ import CORALean.ContSet.ZonoBundle.Real.Operations.Reduce
 import CORALean.ContSet.ZonoBundle.Real.Operations.Split
 import CORALean.ContSet.ZonoBundle.Real.Operations.SupportBound
 import CORALean.ContSet.ZonoBundle.Real.Operations.Project
+import CORALean.ContSet.ZonoBundle.Real.Operations.CartProd
 
 /-!
 # What a zonotope bundle computes, collected

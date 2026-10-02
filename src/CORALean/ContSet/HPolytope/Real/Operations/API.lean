@@ -40,6 +40,7 @@ import CORALean.ContSet.HPolytope.Real.Operations.AbsLeOfUnitBoxRows
 import CORALean.ContSet.HPolytope.Real.Operations.OfPoint
 import CORALean.ContSet.HPolytope.Real.Operations.SupportBound
 import CORALean.ContSet.HPolytope.Real.Operations.Stack
+import CORALean.ContSet.HPolytope.Real.Operations.Lift
 
 /-!
 # What `HPolytope` computes

@@ -36,6 +36,7 @@ import CORALean.ContSet.ConZonotope.Real.Operations.PartialSolve
 import CORALean.ContSet.ConZonotope.Real.Operations.Rescale
 import CORALean.ContSet.ConZonotope.Real.Operations.Lift
 import CORALean.ContSet.ConZonotope.Real.Operations.Empty
+import CORALean.ContSet.ConZonotope.Real.Operations.CartProd
 
 /-!
 # What `ConZonotope` computes

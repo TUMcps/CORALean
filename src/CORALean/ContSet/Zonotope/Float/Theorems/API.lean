@@ -50,6 +50,10 @@ import CORALean.ContSet.Zonotope.Float.Theorems.ConstrSatSound
 import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
 import CORALean.ContSet.Zonotope.Float.Theorems.OriginExact
 import CORALean.ContSet.Zonotope.Float.Theorems.NormSqLe
+import CORALean.ContSet.Zonotope.Float.Theorems.SplitOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.SplitFirstGenOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.SplitLongestGenOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.QuadMapOuter
 
 /-!
 # What `Zonotope` guarantees

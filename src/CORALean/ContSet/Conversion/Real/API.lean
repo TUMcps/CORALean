@@ -92,6 +92,8 @@ import CORALean.ContSet.Conversion.Real.Taylm_to_ConPolyZono
 import CORALean.ContSet.Conversion.Real.Ellipsoid_to_LevelSet
 import CORALean.ContSet.Conversion.Real.HPolytope_to_LevelSet
 import CORALean.ContSet.Conversion.Real.Interval_to_LevelSet
+import CORALean.ContSet.Conversion.Real.HPolytope_to_SpectraShadow
+import CORALean.ContSet.Conversion.Real.ConZonotope_to_SpectraShadow
 
 /-!
 # Conversions between representations, collected

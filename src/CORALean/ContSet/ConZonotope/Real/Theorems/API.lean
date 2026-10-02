@@ -56,6 +56,7 @@ import CORALean.ContSet.ConZonotope.Real.Theorems.SumUnivLinComb
 import CORALean.ContSet.ConZonotope.Real.Theorems.TightenOuter
 import CORALean.ContSet.ConZonotope.Real.Theorems.TightenOuterSafe
 import CORALean.ContSet.ConZonotope.Real.Theorems.EmptyExact
+import CORALean.ContSet.ConZonotope.Real.Theorems.CartProdExact
 
 /-!
 # What `ConZonotope` guarantees

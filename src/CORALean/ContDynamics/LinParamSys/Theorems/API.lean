@@ -41,6 +41,11 @@ import CORALean.ContDynamics.LinParamSys.Theorems.SquaringsFloatSpec
 import CORALean.ContDynamics.LinParamSys.Theorems.ExpMemExpSquaringFloat
 import CORALean.ContDynamics.LinParamSys.Theorems.ReachStepkFloatOuter
 import CORALean.ContDynamics.LinParamSys.Theorems.ReachFloatOuter
+import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryExistsMeasurableParam
+import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryExistsIntegralEq
+import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryExistsMemExpIntervalEnclosure
+import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryTimePointOuter
+import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryTimeIntervalStepOuter
 
 /-!
 # What `LinParamSys` gives, collected
@@ -54,10 +59,9 @@ puts the two together at its end, and `InputReachSubsetInputSolution` with
 `ConstTrajectoryInputSolutionTimeIntervalOuter` extend that half to every time
 of the step once `0 ∈ U`; `…TimeIntervalOuterInputSolution` is the whole step.
 
-`TrajectoryToLinearSys` is the same move at `'varParam'`, at the cost of an
-input set enlarged by the parameter drift: `TrajectoryNormLe` bounds the
-state a priori by Gronwall, `TrajectoryNormDriftLe` turns that into the
-radius the enlarged set needs, `TrajectoryTimeIntervalOuter…` the step.
+`TrajectoryTimeIntervalStepOuter`/`…TimePointOuter` are CORA's own `'varParam'` step, input-free,
+through `TrajectoryExistsIntegralEq`/`…MeasurableParam`; with an input, `TrajectoryToLinearSys`
+pays the drift as input, `TrajectoryNormLe`/`…NormDriftLe` bounding it by Gronwall.
 The `…Split` pair drops `0 ∈ U` by splitting the input set, and
 `ConstTrajectoryDiscretizeEnclosure`/`…MemReach` carry one step to a whole
 horizon through `LinParamSysDT.reach` — together, [1, Alg. 4].

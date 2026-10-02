@@ -8,6 +8,8 @@ import CORALean.ContSet.ZonoBundle.Float.Operations.SupportBound
 import CORALean.ContSet.ZonoBundle.Float.Operations.Project
 import CORALean.ContSet.ZonoBundle.Float.Operations.Empty
 import CORALean.ContSet.ZonoBundle.Float.Operations.Origin
+import CORALean.ContSet.ZonoBundle.Float.Operations.Replace
+import CORALean.ContSet.ZonoBundle.Float.Operations.QuadMap
 
 /-!
 # What a float zonotope bundle computes, collected

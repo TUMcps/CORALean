@@ -15,9 +15,9 @@ the frozen exponential.
 
 This is not CORA's `'varParam'` branch. `Interval.matPow` admits a different
 member at each factor, which is tighter than freezing one and paying the
-mismatch; proving *that* set sound needs a Peano-Baker expansion of the
-time-ordered product with a remainder bound, which the tree has not got. This
-is the enclosure freezing does give, and it is sound at every `Â` at once.
+mismatch; `Trajectory.timeIntervalStep_outer` proves *that* set sound for an
+input-free run, through a Peano–Baker expansion. This is the enclosure freezing
+gives, sound at every `Â` at once and with an input, which that one is not.
 
 `Â` is a free choice; the box's centre makes the drift smallest, its radius
 bounding `‖A s - Â‖` uniformly.
@@ -25,7 +25,7 @@ bounding `‖A s - Â‖` uniformly.
 
 -- Authors:       Tobias Ladner
 -- Written:       08-September-2026
--- Last update:   ---
+-- Last update:   02-October-2026
 -- Last revision: ---
 
 

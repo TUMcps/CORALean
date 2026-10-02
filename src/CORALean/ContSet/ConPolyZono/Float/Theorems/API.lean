@@ -33,6 +33,7 @@ import CORALean.ContSet.ConPolyZono.Float.Theorems.ReduceOrder
 import CORALean.ContSet.ConPolyZono.Float.Theorems.IsCompact
 import CORALean.ContSet.ConPolyZono.Float.Theorems.OriginExact
 import CORALean.ContSet.ConPolyZono.Float.Theorems.ReindexExact
+import CORALean.ContSet.ConPolyZono.Float.Theorems.EmptyExact
 
 /-!
 # What `ConPolyZono` guarantees

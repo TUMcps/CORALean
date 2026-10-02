@@ -18,9 +18,9 @@ sets, carried to window `k` by the box `t_k • sys.A`'s exponential. Both halve
 hold at every time of a window, the input's through the frozen member's own
 `inputReach`, which `inputReach_mono` grows once the input set holds the origin.
 
-`'varParam'` is enclosed too, by freezing one member and paying the parameter
-mismatch into the input set — not by CORA's `expmIndMixed`, whose soundness
-needs a Peano-Baker expansion the tree has not got.
+`'varParam'` is enclosed two ways: input-free by the box's own step, CORA's
+`expmIndMixed` and `priv_tie`, through a Peano–Baker expansion of the run; and
+with an input by freezing one member and paying the mismatch into the input set.
 
 `Instances` is `Reach`'s, at `ℐ`: `LinearSys`'s windowed instances,
 `ConstTrajectory` in place of `Trajectory`.

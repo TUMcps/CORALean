@@ -39,6 +39,7 @@ import CORALean.ContSet.ConPolyZono.Real.Theorems.ConvHullSingleExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.ConvHullExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.OfPointMemIff
 import CORALean.ContSet.ConPolyZono.Real.Theorems.ProjectExact
+import CORALean.ContSet.ConPolyZono.Real.Theorems.EmptyExact
 
 /-!
 # What `ConPolyZono` guarantees

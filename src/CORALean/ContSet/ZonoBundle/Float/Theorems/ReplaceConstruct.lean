@@ -1,0 +1,43 @@
+import CORALean.ContSet.ZonoBundle.Float.Operations.Replace
+
+/-!
+# `ZonoBundle.replace` denotes `Z` and every other member, over a floating-point scalar
+
+Exact: the family is only rearranged, so the denotation is `Z`'s inflated set intersected with
+the inflated sets of the members other than `index`.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       02-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem ZonoBundle.replace_construct (zB : ZonoBundle 𝕋 n) (index : Fin zB.k)
+    (Z : Zonotope 𝕋 n) :
+    (zB.replace index Z).construct =
+      Z.construct ∩ ⋂ i : {i : Fin zB.k // i ≠ index}, (zB.Z i).construct := by -- --- PROOF ---
+  ext x
+  simp only [ZonoBundle.construct, ZonoBundle.replace, Set.mem_iInter, Set.mem_inter_iff]
+  constructor
+  · intro h
+    refine ⟨by simpa using h index, fun i => ?_⟩
+    simpa [Function.update_of_ne i.2] using h i.1
+  · rintro ⟨h1, h2⟩ i
+    by_cases hi : i = index
+    · subst hi; simpa using h1
+    · simpa [Function.update_of_ne hi] using h2 ⟨i, hi⟩
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

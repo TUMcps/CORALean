@@ -76,6 +76,11 @@ import CORALean.ContSet.Interval.Float.Theorems.Prod1Outer
 import CORALean.ContSet.Interval.Float.Theorems.PartitionCover
 import CORALean.ContSet.Interval.Float.Theorems.PartitionPiece
 import CORALean.ContSet.Interval.Float.Theorems.EnlargeOuter
+import CORALean.ContSet.Interval.Float.Theorems.RecipOuter
+import CORALean.ContSet.Interval.Float.Theorems.RdivideOuter
+import CORALean.ContSet.Interval.Float.Theorems.MrdivideOuter
+import CORALean.ContSet.Interval.Float.Theorems.OfCenterRadiusOuter
+import CORALean.ContSet.Interval.Float.Theorems.QuadMapOuter
 
 /-!
 # What `Interval` guarantees
