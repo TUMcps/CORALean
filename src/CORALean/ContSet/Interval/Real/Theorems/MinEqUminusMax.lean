@@ -1,0 +1,38 @@
+import CORALean.ContSet.Interval.Real.Operations.Min
+import CORALean.ContSet.Interval.Real.Operations.Max
+import CORALean.ContSet.Interval.Real.Operations.Uminus
+
+/-!
+# `Interval.min` is `-max(-I, -J)`
+
+CORA's definition of `min`, `-max(-I, -Y)`, agrees with the coordinatewise smaller bounds.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       01-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+open Entrywise
+
+variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem Interval.min_eq_uminus_max (I₁ I₂ : Interval α) :
+    I₁.min I₂ = (I₁.uminus.max I₂.uminus).uminus := by
+  have e : ∀ a b : ℝ, Min.min a b = -Max.max (-a) (-b) := fun a b => by
+    rw [← min_neg_neg, neg_neg, neg_neg]
+  unfold Interval.min Interval.max Interval.uminus
+  congr 1 <;> refine Entrywise.ext fun i => ?_ <;> simp [Entrywise.entry_neg, e]
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

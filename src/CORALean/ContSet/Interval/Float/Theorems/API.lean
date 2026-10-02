@@ -43,6 +43,11 @@ import CORALean.ContSet.Interval.Float.Theorems.RepresentsaOriginSound
 import CORALean.ContSet.Interval.Float.Theorems.RepresentsaPointSound
 import CORALean.ContSet.Interval.Float.Theorems.TimesOuter
 import CORALean.ContSet.Interval.Float.Theorems.IsFullDimSound
+import CORALean.ContSet.Interval.Float.Theorems.MaxExact
+import CORALean.ContSet.Interval.Float.Theorems.MinExact
+import CORALean.ContSet.Interval.Float.Theorems.IsequalSound
+import CORALean.ContSet.Interval.Float.Theorems.TransposeExact
+import CORALean.ContSet.Interval.Float.Theorems.CtransposeExact
 
 /-!
 # What `Interval` guarantees
@@ -59,4 +64,7 @@ The same for `uminus`, `uplus`, `minus`, `infimum`, `supremum`, `or`, `convHull_
 
 The same for `le`, `lt`, `empty`, `representsa_*`, `exp`, `abs`, `times`, `project` and
 `projectHighDim_`; `exp_outer` keeps `expUp`'s range hypothesis.
+
+The same for `max`, `min` (exact, under nonemptiness of the readings), `isequal` (sound when
+`true`) and `transpose`, `ctranspose` (exact).
 -/

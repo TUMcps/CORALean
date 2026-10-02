@@ -15,10 +15,10 @@
   ],
   "totals": {
     "papers": 28,
-    "papers_with_findings": 21,
+    "papers_with_findings": 22,
     "in_scope": 308,
-    "formalized": 300,
-    "not_formalized": 8,
+    "formalized": 308,
+    "not_formalized": 0,
     "out_of_scope": 116,
     "out_of_scope_by_reason": {
       "restated": 78,
@@ -28,10 +28,10 @@
       "not-covered": 9
     },
     "by_class": {
-      "correct": 216,
-      "underspecified": 45,
+      "correct": 218,
+      "underspecified": 49,
       "proof-gap": 19,
-      "fixed": 20,
+      "fixed": 22,
       "false": 0
     }
   },
@@ -133,8 +133,8 @@
       "year": 2005,
       "title": "Reachability of Uncertain Linear Systems Using Zonotopes",
       "in_scope": 7,
-      "formalized": 3,
-      "not_formalized": 4,
+      "formalized": 7,
+      "not_formalized": 0,
       "out_of_scope": 1,
       "out_of_scope_by_reason": {
         "restated": 0,
@@ -145,12 +145,33 @@
       },
       "by_class": {
         "correct": 3,
-        "underspecified": 0,
+        "underspecified": 2,
         "proof-gap": 0,
-        "fixed": 0,
+        "fixed": 2,
         "false": 0
       },
-      "findings": []
+      "findings": [
+        {
+          "result": "Lemma 1",
+          "class": "underspecified",
+          "reason": "β_r divides by ‖A‖, so `‖A‖ > 0` is supplied (at `A = 0` the radius is `rµ`)"
+        },
+        {
+          "result": "Lemma 2",
+          "class": "fixed",
+          "reason": "the printed bound is false (`x' = 100x`, `Z = [0,2]`, `r = 1/100`: distance ≥ 3e - 5, bound 1.02e); true with `(1/2 + r‖A‖)`; see Findings"
+        },
+        {
+          "result": "Alg. 1",
+          "class": "underspecified",
+          "reason": "the listing returns `R_N` while its loop and Thm. 1 end at `R_{N-1}` (returned here), assumes `T/r` an integer (`N = ⌈T/r⌉` here) and divides by ‖A‖"
+        },
+        {
+          "result": "Thm. 1",
+          "class": "fixed",
+          "reason": "the printed bound inherits Lemma 2's error and is false; true with `(1/2 + r‖A‖)`, still `O(r)`; see Findings"
+        }
+      ]
     },
     {
       "page": "2010/althoff-thesis.md",
@@ -229,8 +250,8 @@
       "year": 2011,
       "title": "Zonotope Bundles for the Efficient Computation of Reachable Sets",
       "in_scope": 16,
-      "formalized": 14,
-      "not_formalized": 2,
+      "formalized": 16,
+      "not_formalized": 0,
       "out_of_scope": 7,
       "out_of_scope_by_reason": {
         "restated": 4,
@@ -240,8 +261,8 @@
         "not-covered": 0
       },
       "by_class": {
-        "correct": 9,
-        "underspecified": 3,
+        "correct": 10,
+        "underspecified": 4,
         "proof-gap": 0,
         "fixed": 2,
         "false": 0
@@ -271,6 +292,11 @@
           "result": "Heuristic flow",
           "class": "underspecified",
           "reason": "\"most aligned\" is read as largest `|f_i|`, and the paper does not say what happens at `f = 0`, where the matrix is singular"
+        },
+        {
+          "result": "Sec. VI-A",
+          "class": "underspecified",
+          "reason": "neither the halfspace directions, the vertex enumeration nor the parallelotope directions are specified; they are arguments"
         }
       ]
     },
@@ -403,8 +429,8 @@
       "year": 2016,
       "title": "Constrained zonotopes: A new tool for set-based estimation and fault detection",
       "in_scope": 10,
-      "formalized": 9,
-      "not_formalized": 1,
+      "formalized": 10,
+      "not_formalized": 0,
       "out_of_scope": 6,
       "out_of_scope_by_reason": {
         "restated": 1,
@@ -414,7 +440,7 @@
         "not-covered": 2
       },
       "by_class": {
-        "correct": 9,
+        "correct": 10,
         "underspecified": 0,
         "proof-gap": 0,
         "fixed": 0,
@@ -453,8 +479,8 @@
       "year": 2017,
       "title": "Methods for Order Reduction of Zonotopes",
       "in_scope": 4,
-      "formalized": 3,
-      "not_formalized": 1,
+      "formalized": 4,
+      "not_formalized": 0,
       "out_of_scope": 4,
       "out_of_scope_by_reason": {
         "restated": 3,
@@ -465,7 +491,7 @@
       },
       "by_class": {
         "correct": 2,
-        "underspecified": 1,
+        "underspecified": 2,
         "proof-gap": 0,
         "fixed": 0,
         "false": 0
@@ -475,6 +501,11 @@
           "result": "Alg. 3",
           "class": "underspecified",
           "reason": "the listing needs L invertible and does not say how it is initialised or what an empty cluster does"
+        },
+        {
+          "result": "Alg. 4",
+          "class": "underspecified",
+          "reason": "the optimization is delegated to a solver whose result need not meet the constraint, so the result is checked against eq. 13, and eq. 13's `1/sᵢᵢ` and eq. 10's `C⁻¹` presume `sᵢᵢ ≠ 0` and `C` invertible, which are supplied"
         }
       ]
     },
@@ -1291,7 +1322,7 @@
         },
         "cora_issues": 0,
         "findings": {
-          "correct": 16,
+          "correct": 17,
           "underspecified": 1,
           "proof-gap": 1,
           "fixed": 0,
@@ -1406,11 +1437,11 @@
         "group": "contSet",
         "class": "interval",
         "methods": 110,
-        "proved": 16,
-        "float": 40,
-        "not_yet": 36,
+        "proved": 20,
+        "float": 45,
+        "not_yet": 27,
         "out_of_scope": 18,
-        "needs_float": 16,
+        "needs_float": 20,
         "out_of_scope_by_reason": {
           "plotting/display": 2,
           "random/sampling": 3,
@@ -1630,7 +1661,7 @@
         "cora_issues": 0,
         "findings": {
           "correct": 11,
-          "underspecified": 3,
+          "underspecified": 4,
           "proof-gap": 0,
           "fixed": 2,
           "false": 0
@@ -1656,7 +1687,7 @@
         "cora_issues": 1,
         "findings": {
           "correct": 32,
-          "underspecified": 7,
+          "underspecified": 8,
           "proof-gap": 2,
           "fixed": 3,
           "false": 0
@@ -1811,10 +1842,10 @@
         },
         "cora_issues": 0,
         "findings": {
-          "correct": 23,
-          "underspecified": 10,
+          "correct": 24,
+          "underspecified": 12,
           "proof-gap": 8,
-          "fixed": 3,
+          "fixed": 5,
           "false": 0
         }
       },
@@ -2264,11 +2295,11 @@
     "groups": {
       "contSet": {
         "methods": 908,
-        "proved": 145,
-        "float": 142,
-        "not_yet": 454,
+        "proved": 149,
+        "float": 147,
+        "not_yet": 445,
         "out_of_scope": 167,
-        "needs_float": 145,
+        "needs_float": 149,
         "cora_issues": 1,
         "out_of_scope_by_reason": {
           "plotting/display": 49,
@@ -2279,8 +2310,8 @@
           "deprecated": 13
         },
         "findings": {
-          "correct": 118,
-          "underspecified": 21,
+          "correct": 119,
+          "underspecified": 23,
           "proof-gap": 4,
           "fixed": 9,
           "false": 0
@@ -2303,10 +2334,10 @@
           "deprecated": 0
         },
         "findings": {
-          "correct": 39,
-          "underspecified": 19,
+          "correct": 40,
+          "underspecified": 21,
           "proof-gap": 13,
-          "fixed": 6,
+          "fixed": 8,
           "false": 0
         }
       },
@@ -2361,11 +2392,11 @@
     },
     "totals": {
       "methods": 1260,
-      "proved": 192,
-      "float": 197,
-      "not_yet": 588,
+      "proved": 196,
+      "float": 202,
+      "not_yet": 579,
       "out_of_scope": 283,
-      "needs_float": 192,
+      "needs_float": 196,
       "cora_issues": 3,
       "out_of_scope_by_reason": {
         "plotting/display": 84,
@@ -2376,10 +2407,10 @@
         "deprecated": 13
       },
       "findings": {
-        "correct": 209,
-        "underspecified": 43,
+        "correct": 211,
+        "underspecified": 47,
         "proof-gap": 19,
-        "fixed": 16,
+        "fixed": 18,
         "false": 0
       }
     },
@@ -2407,11 +2438,11 @@
       }
     },
     "theorems": {
-      "paper": 419,
-      "float": 672,
-      "helper": 540,
-      "lemma": 1475,
-      "total": 3106,
+      "paper": 446,
+      "float": 677,
+      "helper": 557,
+      "lemma": 1493,
+      "total": 3173,
       "examples": 77
     }
   }

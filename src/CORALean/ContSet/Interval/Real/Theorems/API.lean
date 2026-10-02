@@ -78,6 +78,23 @@ import CORALean.ContSet.Interval.Real.Theorems.VolumeEq
 import CORALean.ContSet.Interval.Real.Theorems.IsFullDimIff
 import CORALean.ContSet.Interval.Real.Theorems.NormLe
 import CORALean.ContSet.Interval.Real.Theorems.NormAttained
+import CORALean.ContSet.Interval.Real.Theorems.MaxExact
+import CORALean.ContSet.Interval.Real.Theorems.MinExact
+import CORALean.ContSet.Interval.Real.Theorems.MinEqUminusMax
+import CORALean.ContSet.Interval.Real.Theorems.EnlargeExact
+import CORALean.ContSet.Interval.Real.Theorems.CenterSubRadius
+import CORALean.ContSet.Interval.Real.Theorems.CenterAddRadius
+import CORALean.ContSet.Interval.Real.Theorems.MemOfCenterRadius
+import CORALean.ContSet.Interval.Real.Theorems.IntervalMatrixEq
+import CORALean.ContSet.Interval.Real.Theorems.NormSubCenterLe
+import CORALean.ContSet.Interval.Real.Theorems.SupSubCenter
+import CORALean.ContSet.Interval.Real.Theorems.Radius2IsLeast
+import CORALean.ContSet.Interval.Real.Theorems.IsequalConstructEq
+import CORALean.ContSet.Interval.Real.Theorems.IsequalIff
+import CORALean.ContSet.Interval.Real.Theorems.TransposeExact
+import CORALean.ContSet.Interval.Real.Theorems.CtransposeExact
+import CORALean.ContSet.Interval.Real.Theorems.Sum1Exact
+import CORALean.ContSet.Interval.Real.Theorems.Sum2Exact
 
 /-!
 # What `Interval` guarantees

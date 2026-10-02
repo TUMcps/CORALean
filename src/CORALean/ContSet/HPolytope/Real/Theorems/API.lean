@@ -1,20 +1,21 @@
-import CORALean.ContSet.HPolytope.Real.Theorems.MemConstruct
-import CORALean.ContSet.HPolytope.Real.Theorems.MemIntersection
-import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
-import CORALean.ContSet.HPolytope.Real.Theorems.PlusOfOuter
-import CORALean.ContSet.HPolytope.Real.Theorems.MinkDiffOfInner
-import CORALean.ContSet.HPolytope.Real.Theorems.LinCombOfOuter
-import CORALean.ContSet.HPolytope.Real.Theorems.MtimesOfOuter
 import CORALean.ContSet.HPolytope.Real.Theorems.ComapExact
 import CORALean.ContSet.HPolytope.Real.Theorems.Convex
+import CORALean.ContSet.HPolytope.Real.Theorems.ExistsConstructEqImageFst
 import CORALean.ContSet.HPolytope.Real.Theorems.ExtremePoints
+import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
 import CORALean.ContSet.HPolytope.Real.Theorems.IsClosed
+import CORALean.ContSet.HPolytope.Real.Theorems.LinCombOfOuter
 import CORALean.ContSet.HPolytope.Real.Theorems.MapEquivExact
-import CORALean.ContSet.HPolytope.Real.Theorems.TranslateExact
+import CORALean.ContSet.HPolytope.Real.Theorems.MemConstruct
+import CORALean.ContSet.HPolytope.Real.Theorems.MemIntersection
+import CORALean.ContSet.HPolytope.Real.Theorems.MinkDiffOfInner
 import CORALean.ContSet.HPolytope.Real.Theorems.MinusExact
+import CORALean.ContSet.HPolytope.Real.Theorems.MtimesOfOuter
 import CORALean.ContSet.HPolytope.Real.Theorems.OfPointMem
 import CORALean.ContSet.HPolytope.Real.Theorems.OfPointMemIff
+import CORALean.ContSet.HPolytope.Real.Theorems.PlusOfOuter
 import CORALean.ContSet.HPolytope.Real.Theorems.StackExact
+import CORALean.ContSet.HPolytope.Real.Theorems.TranslateExact
 
 /-!
 # What `HPolytope` guarantees

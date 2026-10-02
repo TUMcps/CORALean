@@ -48,6 +48,7 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderOrderLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderOrderSpec
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderStepSpec
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSmulTsum
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSubOneSubLeSqMulExp
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpTaylorSmulMulVec
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpTaylorTwo
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpWApply
@@ -55,6 +56,7 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.FactorialDownFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.FactorialMulPowLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.FactorialUpFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.HasSumExpRemainderMatEntry
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.HasSumExpTail2
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.HausdorffDist2AffineDynamicsLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.HausdorffDist2ParticularSolutionLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalConstCorrectionMatrix
@@ -69,12 +71,14 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IsBoundedParticularRemain
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MulMemMinmax
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpIntegralSubTaylorLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpIntegralTermLe
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpMulVecSubInterpolateLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSmulLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSmulSubOneLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSubExpTaylorLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormLeOfMemParticularRemainderSet
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormLeOfMemParticularSolutionOuter
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormLeOfMemParticularSolutionOuterCorrelated
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormMulNormExpIntegralSubLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSmulLeNormUpperBoundFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormUpperBoundFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ParticularRemainderErrorSuperlinear
@@ -89,6 +93,8 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.QuadTermAttained
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.QuadTermBetween
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.RemainderEntryLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ScalarTermLe
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SideConditionOfLeFloat
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.StepTestSpecFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SubLeZero
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SumExpTail2Le
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SumExpTailLe
@@ -107,8 +113,6 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoParticularSolution
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoParticularSolutionTauErrorZero
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TsumLeExpTail
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TsumMatrixEntryEq
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SideConditionOfLeFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.StepTestSpecFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TuneOrderIsSomeFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TuneOrderSpecFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TuneStepIsSomeFloat

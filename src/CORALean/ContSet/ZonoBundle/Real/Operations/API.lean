@@ -1,25 +1,26 @@
+import CORALean.ContSet.ZonoBundle.Real.Operations.Box
+import CORALean.ContSet.ZonoBundle.Real.Operations.DirBox
+import CORALean.ContSet.ZonoBundle.Real.Operations.DirFil
+import CORALean.ContSet.ZonoBundle.Real.Operations.DirFlow
+import CORALean.ContSet.ZonoBundle.Real.Operations.DirPca
+import CORALean.ContSet.ZonoBundle.Real.Operations.DirPcaCovariance
+import CORALean.ContSet.ZonoBundle.Real.Operations.EnclosingBox
+import CORALean.ContSet.ZonoBundle.Real.Operations.FacetLift
+import CORALean.ContSet.ZonoBundle.Real.Operations.FlowIndex
+import CORALean.ContSet.ZonoBundle.Real.Operations.GuardIntersect
 import CORALean.ContSet.ZonoBundle.Real.Operations.Intersection
-import CORALean.ContSet.ZonoBundle.Real.Operations.Plus
 import CORALean.ContSet.ZonoBundle.Real.Operations.LinComb
+import CORALean.ContSet.ZonoBundle.Real.Operations.Map
 import CORALean.ContSet.ZonoBundle.Real.Operations.Mtimes
 import CORALean.ContSet.ZonoBundle.Real.Operations.MtimesMatZonotope
-import CORALean.ContSet.ZonoBundle.Real.Operations.Map
 import CORALean.ContSet.ZonoBundle.Real.Operations.OfPoint
-import CORALean.ContSet.ZonoBundle.Real.Operations.SupportBound
-import CORALean.ContSet.ZonoBundle.Real.Operations.Reduce
-import CORALean.ContSet.ZonoBundle.Real.Operations.Box
-import CORALean.ContSet.ZonoBundle.Real.Operations.FacetLift
 import CORALean.ContSet.ZonoBundle.Real.Operations.Parallelotope
-import CORALean.ContSet.ZonoBundle.Real.Operations.Split
-import CORALean.ContSet.ZonoBundle.Real.Operations.EnclosingBox
-import CORALean.ContSet.ZonoBundle.Real.Operations.DirBox
-import CORALean.ContSet.ZonoBundle.Real.Operations.DirPcaCovariance
-import CORALean.ContSet.ZonoBundle.Real.Operations.DirPca
-import CORALean.ContSet.ZonoBundle.Real.Operations.FlowIndex
-import CORALean.ContSet.ZonoBundle.Real.Operations.DirFlow
+import CORALean.ContSet.ZonoBundle.Real.Operations.Plus
 import CORALean.ContSet.ZonoBundle.Real.Operations.Pool
-import CORALean.ContSet.ZonoBundle.Real.Operations.DirFil
 import CORALean.ContSet.ZonoBundle.Real.Operations.Empty
+import CORALean.ContSet.ZonoBundle.Real.Operations.Reduce
+import CORALean.ContSet.ZonoBundle.Real.Operations.Split
+import CORALean.ContSet.ZonoBundle.Real.Operations.SupportBound
 
 /-!
 # What a zonotope bundle computes, collected
