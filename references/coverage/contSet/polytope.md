@@ -36,7 +36,7 @@ CORA methods of `contSet/@polytope/`, one row each, and where CORALean answers t
 | `isemptyobject` | out-of-scope | n/a — matlab-runtime |  |
 | `isequal` | — | — |  |
 | `le` | — | — |  |
-| `levelSet` | — | — |  |
+| `levelSet` | proved | [`HPolytope.levelSet`](../../../src/CORALean/ContSet/Conversion/Real/HPolytope_to_LevelSet.lean), [`HPolytope.levelSet_exact`](../../../src/CORALean/ContSet/Conversion/Real/HPolytope_to_LevelSet.lean) | exact, from the halfspace form: `A x - b ≤ 0`; equality rows become `= 0` components where CORA throws `notSupported` |
 | `lift_` | — | — |  |
 | `matPolytope` | — | — |  |
 | `minkDiff` | proved | [`HPolytope.minkDiffOf`](../../../src/CORALean/ContSet/HPolytope/Real/Operations/MinkDiffOf.lean), [`HPolytope.minkDiffOf_m`](../../../src/CORALean/ContSet/HPolytope/Real/Complexity/MinkDiffOf.lean), [`HPolytope.minkDiffOf_me`](../../../src/CORALean/ContSet/HPolytope/Real/Complexity/MinkDiffOf.lean), [`HPolytope.minkDiffOf_inner`](../../../src/CORALean/ContSet/HPolytope/Real/Theorems/MinkDiffOfInner.lean), [`VPolytope.minkowskiDiff_eq_iInter`](../../../src/CORALean/ContSet/VPolytope/Real/Theorems/MinkowskiDiffEqIInter.lean) |  |

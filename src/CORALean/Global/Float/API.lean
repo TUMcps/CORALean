@@ -4,6 +4,10 @@ import CORALean.Global.Float.ToRat
 import CORALean.Global.Float.EuclideanNorm
 import CORALean.Global.Float.Exp
 import CORALean.Global.Float.Log
+import CORALean.Global.Float.ListSum
+import CORALean.Global.Float.PowUp
+import CORALean.Global.Float.PowDown
+import CORALean.Global.Float.DivFact
 import CORALean.Global.Float.Instances.API
 import CORALean.Global.Float.FloatBound
 

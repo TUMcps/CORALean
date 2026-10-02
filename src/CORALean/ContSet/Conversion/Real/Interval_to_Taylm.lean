@@ -1,0 +1,69 @@
+import CORALean.ContSet.Taylm.Real.Taylm
+import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+
+/-!
+# A box as an array of Taylor models
+
+CORA's constructor `taylm(int, max_order)`: coordinate `i` is the model
+`mid i + rad i · tᵢ` in its own variable, with no remainder. It encloses that affine map
+(`taylm_outer`), its range set contains the box (`taylm_contains`), and is the box when the
+box is nonempty (`taylm_exact`): an empty box (`sup < inf` somewhere) still yields the
+swapped interval, as CORA's does short of its own emptiness check.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       02-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {n : ℕ}
+
+noncomputable def Interval.taylm (I : Interval (Vec ℝ n)) (N : ℕ) : Fin n → Taylm n :=
+  fun i => ⟨[((I.inf i + I.sup i) / 2, 0), ((I.sup i - I.inf i) / 2, Pi.single i 1)], 0, 0, N⟩
+
+theorem Interval.taylm_outer (I : Interval (Vec ℝ n)) (N : ℕ) (i : Fin n) :
+    (I.taylm N i).Encloses fun t =>
+      (I.inf i + I.sup i) / 2 + (I.sup i - I.inf i) / 2 * t i := by
+  intro t _
+  simp [Interval.taylm, Taylm.poly, Taylm.monomial_zero, Taylm.monomial_single]
+
+/-- Through the box's zonotope, whose factors are the variables here. -/
+theorem Interval.taylm_contains (I : Interval (Vec ℝ n)) (N : ℕ) :
+    I.construct ⊆ Taylm.construct (I.taylm N) := by -- --- PROOF ---
+  intro x hx
+  obtain ⟨β, hβ, hxβ⟩ := I.zonotope_contains hx
+  refine ⟨β, hβ, fun i => ?_⟩
+  have hxi := congrFun hxβ i
+  simp only [Interval.zonotope, Pi.add_apply, Finset.sum_apply, Pi.smul_apply, smul_eq_mul,
+    mul_ite, mul_zero, Finset.sum_ite_eq, Finset.mem_univ, if_true] at hxi
+  simp only [Interval.taylm, Taylm.poly, Taylm.polyOf_cons, Taylm.polyOf_nil,
+    Taylm.monomial_zero, Taylm.monomial_single]
+  constructor <;> linarith
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem Interval.taylm_exact (I : Interval (Vec ℝ n)) (N : ℕ) (hI : ∀ i, I.inf i ≤ I.sup i) :
+    Taylm.construct (I.taylm N) = I.construct := by -- --- PROOF ---
+  refine Set.Subset.antisymm ?_ (Interval.taylm_contains I N)
+  rintro x ⟨t, ht, hx⟩ i
+  have hxi := hx i
+  simp only [Interval.taylm, Taylm.poly, Taylm.polyOf_cons, Taylm.polyOf_nil,
+    Taylm.monomial_zero, Taylm.monomial_single] at hxi
+  -- `x i = mid + rad · tᵢ` with `|tᵢ| ≤ 1` and `rad ≥ 0`
+  have hr : 0 ≤ (I.sup i - I.inf i) / 2 := by linarith [hI i]
+  have ht' := abs_le.1 (ht i)
+  have h1 : -((I.sup i - I.inf i) / 2) ≤ (I.sup i - I.inf i) / 2 * t i := by nlinarith
+  have h2 : (I.sup i - I.inf i) / 2 * t i ≤ (I.sup i - I.inf i) / 2 := by nlinarith
+  exact ⟨by show I.inf i ≤ x i; linarith [hxi.1, hxi.2],
+    by show x i ≤ I.sup i; linarith [hxi.1, hxi.2]⟩
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -1,0 +1,62 @@
+import CORALean.ContSet.Taylm.Real.Operations.Taylor
+import CORALean.ContSet.Taylm.Real.Theorems.ComposeOuter
+import CORALean.ContSet.Taylm.Real.Theorems.BoundsMem
+import CORALean.Global.TaylorRemainder
+
+/-!
+# `Taylm.taylor` encloses `g ∘ f`
+
+The Lagrange remainder lemma at a Taylor model: for `g` smooth to order `N + 1`
+between the centre and the model's range, with `|g⁽ᴺ⁺¹⁾| ≤ D` there, the expansion encloses
+`g ∘ f`. `taylor_remainder_abs_le` bounds the remainder by `D |f t - c|ᴺ⁺¹ / (N+1)!` and
+`reach` bounds `|f t - c|`. This is the one lemma every elementary function reduces to: what
+is left for each is its derivatives.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       02-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem Taylm.taylor_outer {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f) (g : ℝ → ℝ)
+    (c D : ℝ)
+    (hg : ∀ ξ ∈ Set.Icc (min c T.bounds.1) (max c T.bounds.2),
+      ContDiffAt ℝ (T.maxOrder + 1) g ξ)
+    (hD : ∀ ξ ∈ Set.Icc (min c T.bounds.1) (max c T.bounds.2),
+      |iteratedDeriv (T.maxOrder + 1) g ξ| ≤ D) :
+    (T.taylor g c D).Encloses fun t => g (f t) := by -- --- PROOF ---
+  unfold Taylm.taylor
+  refine Taylm.compose_outer h g c _ _ _ fun t ht => ?_
+  have hb := Taylm.bounds_mem h ht
+  -- the segment from the centre to `f t` lies in the hull the hypotheses cover
+  have hsub : Set.uIcc c (f t) ⊆ Set.Icc (min c T.bounds.1) (max c T.bounds.2) :=
+    Set.uIcc_subset_Icc ⟨min_le_left _ _, le_max_left _ _⟩
+      ⟨le_trans (min_le_right _ _) hb.1, le_trans hb.2 (le_max_right _ _)⟩
+  have hL := taylor_remainder_abs_le (fun ξ hξ => hg ξ (hsub hξ)) (fun ξ hξ => hD ξ (hsub hξ))
+  have hD0 : 0 ≤ D := le_trans (abs_nonneg _) (hD c (hsub Set.left_mem_uIcc))
+  have hy : |f t - c| ≤ T.reach c := by
+    rw [Taylm.reach, abs_le]
+    constructor
+    · have := neg_abs_le (T.bounds.1 - c)
+      have := le_max_left |T.bounds.1 - c| |T.bounds.2 - c|
+      linarith [hb.1]
+    · have := le_abs_self (T.bounds.2 - c)
+      have := le_max_right |T.bounds.1 - c| |T.bounds.2 - c|
+      linarith [hb.2]
+  refine le_trans hL ?_
+  gcongr
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

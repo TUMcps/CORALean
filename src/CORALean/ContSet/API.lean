@@ -8,16 +8,19 @@ import CORALean.ContSet.InflatedContSet.API
 import CORALean.ContSet.Interval.API
 import CORALean.ContSet.Zonotope.API
 import CORALean.ContSet.MatZonotope.API
+import CORALean.ContSet.Polygon.API
 import CORALean.ContSet.ZonoBundle.API
 import CORALean.ContSet.SpectraShadow.API
 import CORALean.ContSet.Ellipsoid.API
 import CORALean.ContSet.Capsule.API
+import CORALean.ContSet.LevelSet.API
 import CORALean.ContSet.HPolytope.API
 import CORALean.ContSet.VPolytope.API
 import CORALean.ContSet.Conversion.API
 import CORALean.ContSet.ConZonotope.API
 import CORALean.ContSet.PolyZonotope.API
 import CORALean.ContSet.ConPolyZono.API
+import CORALean.ContSet.Taylm.API
 
 /-!
 # Set representations, collected

@@ -674,7 +674,7 @@ SET_DIR = {"Zonotope": "zonotope", "Interval": "interval", "PolyZonotope": "poly
 SYS_DIR = {"LinearSys": "linearSys", "LinearSysDT": "linearSysDT", "LinParamSys": "linParamSys",
            "LinParamSysDT": "linParamSys", "NonlinearSys": "nonlinearSys",
            "NonlinearSysDT": "nonlinearSysDT", "NeurNetContrSys": "neurNetContrSys",
-           "NeurNetContrSysDT": "neurNetContrSys", "LinearARX": "linearARX",
+           "NeurNetContrSysDT": "neurNetContrSys", "LinearARX": "linearARX", "NonlinearARX": "nonlinearARX",
            "NonlinParamSys": "nonlinParamSys", "OutputEq": "contDynamics", "Reach": "contDynamics"}
 # Where a result lands when it is not about one CORA class.
 NON_CLASS = ("global", "specification", "examples", "other")

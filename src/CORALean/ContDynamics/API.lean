@@ -1,4 +1,5 @@
 import CORALean.ContDynamics.LinearARX.API
+import CORALean.ContDynamics.NonlinearARX.API
 import CORALean.ContDynamics.LinearSys.API
 import CORALean.ContDynamics.LinearSysDT.API
 import CORALean.ContDynamics.LinParamSys.API

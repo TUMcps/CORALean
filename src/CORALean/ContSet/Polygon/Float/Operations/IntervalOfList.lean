@@ -1,0 +1,38 @@
+import CORALean.ContSet.Polygon.Float.Polygon
+import CORALean.ContSet.Conversion.Float.VPolytope_to_Interval
+import CORALean.ContSet.Interval.Float.Operations.Or
+import CORALean.ContSet.Interval.Float.Operations.Empty
+
+/-!
+# `Polygon.intervalOfList`, over a floating-point scalar
+
+The hull of a list of pieces' boxes (`Interval.or`), the empty box for none.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       02-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+open FloatOps SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- The hull of a list of pieces' boxes. -/
+def Polygon.intervalOfList : List (VPolytope 𝕋 2) → Interval (Vec 𝕋 2)
+  | [] => Interval.empty 2
+  | [p] => VPolytope.interval p
+  | p :: q :: ps => (VPolytope.interval p).or (Polygon.intervalOfList (q :: ps))
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
