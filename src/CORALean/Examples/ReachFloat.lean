@@ -164,7 +164,8 @@ What stops it is `OfInterval`: `jump` calls `CORALean.Real`'s, converting an
 *exact* real box, and no float representation has that instance — one would have
 to round the box into the representation's own floats before an `InflatedContSet`
 error box exists to pay that rounding into, which is exactly what
-`CORALean.Float.OfInterval` is for instead. -/
+`CORALean.Float.OfInterval` is for instead. `Transition.jumpFloat` is the float
+route, `w` being stored floats already; `BouncingBallFloat` runs it. -/
 
 example {HA : HybridAutomaton (Zonotope 𝕋) (Zonotope 𝕋) L 𝕋 n} {R : L → Zonotope 𝕋 n}
     (hinv : HA.Invariant R) (spec : Specification (Set (Vec ℝ n))) {ℓ ℓ' : L}

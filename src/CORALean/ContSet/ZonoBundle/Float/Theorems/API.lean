@@ -3,11 +3,14 @@ import CORALean.ContSet.ZonoBundle.Float.Theorems.PlusOuter
 import CORALean.ContSet.ZonoBundle.Float.Theorems.LinCombOuter
 import CORALean.ContSet.ZonoBundle.Float.Theorems.MtimesOuter
 import CORALean.ContSet.ZonoBundle.Float.Theorems.ReindexExact
+import CORALean.ContSet.ZonoBundle.Float.Theorems.UnionSubsetLinComb
 import CORALean.ContSet.ZonoBundle.Float.Theorems.ReduceOuter
 import CORALean.ContSet.ZonoBundle.Float.Theorems.ReduceOrder
 import CORALean.ContSet.ZonoBundle.Float.Theorems.Convex
 import CORALean.ContSet.ZonoBundle.Float.Theorems.IsCompact
 import CORALean.ContSet.ZonoBundle.Float.Theorems.ProjectOuter
+import CORALean.ContSet.ZonoBundle.Float.Theorems.EmptyExact
+import CORALean.ContSet.ZonoBundle.Float.Theorems.OriginExact
 
 /-!
 # What a float zonotope bundle guarantees, collected

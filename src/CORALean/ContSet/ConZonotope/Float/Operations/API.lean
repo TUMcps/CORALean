@@ -3,6 +3,9 @@ import CORALean.ContSet.ConZonotope.Float.Operations.LinCombGDiff
 import CORALean.ContSet.ConZonotope.Float.Operations.LinComb
 import CORALean.ContSet.ConZonotope.Float.Operations.Project
 import CORALean.ContSet.ConZonotope.Float.Operations.Reduce
+import CORALean.ContSet.ConZonotope.Float.Operations.Empty
+import CORALean.ContSet.ConZonotope.Float.Operations.Origin
+import CORALean.ContSet.ConZonotope.Float.Operations.Reindex
 
 /-!
 # What the float `ConZonotope` computes

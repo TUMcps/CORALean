@@ -8,6 +8,11 @@ import CORALean.ContSet.ContSet.Theorems.HausdorffDistMulVecLinAddLe
 import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
 import CORALean.ContSet.ContSet.Theorems.IsClosedConstruct
 import CORALean.ContSet.ContSet.Theorems.IsCompactSegments
+import CORALean.ContSet.ContSet.Theorems.SegmentsEqConvexJoin
+import CORALean.ContSet.ContSet.Theorems.UnionSubsetSegments
+import CORALean.ContSet.ContSet.Theorems.ConvexHullUnionEqSegments
+import CORALean.ContSet.ContSet.Theorems.LinCombUnionSubset
+import CORALean.ContSet.ContSet.Theorems.LinCombConvexHullSubset
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddAssoc
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddSubset
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddSubsetAdd

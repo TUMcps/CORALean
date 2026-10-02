@@ -1,4 +1,8 @@
+import CORALean.ContSet.ContSet.Definitions.CompactSet
+import CORALean.ContSet.ContSet.Definitions.ConvexSet
 import CORALean.ContSet.VPolytope.Real.Operations.ConstructPoint
+import CORALean.ContSet.VPolytope.Real.Theorems.Convex
+import CORALean.ContSet.VPolytope.Real.Theorems.IsCompact
 import CORALean.ContSet.VPolytope.Real.Theorems.IntersectionOuter
 import CORALean.ContSet.VPolytope.Real.Theorems.LinCombOuter
 import CORALean.ContSet.VPolytope.Real.Theorems.MapExact
@@ -39,6 +43,12 @@ variable {n : ℕ}
 
 instance {α : Type} [AddCommGroup α] [Module ℝ α] : ContSet (VPolytope α) α :=
   ⟨VPolytope.construct⟩
+
+instance {α : Type} [AddCommGroup α] [Module ℝ α] : ConvexSet (VPolytope α) α :=
+  ⟨VPolytope.convex_construct⟩
+
+instance {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α] : CompactSet (VPolytope α) α :=
+  ⟨VPolytope.isCompact_construct⟩
 
 instance {α : Type} [AddCommGroup α] [Module ℝ α] : OfPoint (VPolytope α) α where
   ofPoint := VPolytope.point

@@ -1,4 +1,5 @@
 import CORALean.ContSet.Interval.Float.Theorems.BoundDotLe
+import CORALean.ContSet.Interval.Float.Theorems.ContractHalfspaceOuter
 import CORALean.ContSet.Interval.Float.Theorems.LeMulHi
 import CORALean.ContSet.Interval.Float.Theorems.LinCombOuter
 import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter

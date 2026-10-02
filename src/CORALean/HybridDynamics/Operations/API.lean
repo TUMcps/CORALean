@@ -7,6 +7,11 @@ import CORALean.HybridDynamics.Operations.TimeIntervalStepInv
 import CORALean.HybridDynamics.Operations.TimeIntervalStepSplit
 import CORALean.HybridDynamics.Operations.TimeIntervalStepFloat
 import CORALean.HybridDynamics.Operations.TimeIntervalStepSplitFloat
+import CORALean.HybridDynamics.Operations.TimeIntervalStepInvFloat
+import CORALean.HybridDynamics.Operations.GuardIntersectFloat
+import CORALean.HybridDynamics.Operations.JumpFloat
+import CORALean.HybridDynamics.Operations.LocationReachFloat
+import CORALean.HybridDynamics.Operations.ReachFloat
 
 /-!
 # What a hybrid automaton computes, collected
@@ -26,4 +31,9 @@ instance, jump at all (#38).
 `Jump`, `JumpOfPoint` and both `TimeIntervalStep`s read nothing of the guard or
 the invariant, so they leave that representation free. The three that call
 `Intersection.intersection` cannot: `Intersection` is homogeneous, so they ask for it in `S` (#39).
+
+At float zonotopes, which have no `Intersection` and no `Real.OfInterval`: the
+cuts go through a box, `TimeIntervalStepInvFloat` to the invariant and
+`GuardIntersectFloat` to a guard; `JumpFloat` resets; `LocationReachFloat` is a
+stay's time-interval sets, and `ReachFloat` the automaton's, CORA's `reach`.
 -/

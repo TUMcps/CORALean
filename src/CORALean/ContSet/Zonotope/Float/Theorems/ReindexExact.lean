@@ -1,5 +1,6 @@
 import CORALean.ContSet.Interval.Float.Theorems.ReindexExact
 import CORALean.ContSet.Zonotope.Float.Operations.Reindex
+import CORALean.ContSet.InflatedContSet.Theorems.ImageAdd
 import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
 
 /-!
@@ -29,19 +30,6 @@ open Pointwise SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
-/-- A linear map passes a Minkowski sum, which is what carries a guarantee
-stated on the nominal part and the error box separately to the set itself. -/
-theorem aux_image_add (f : Vec ℝ n →ₗ[ℝ] Vec ℝ m) (A B : Set (Vec ℝ n)) :
-    f '' (A + B) = f '' A + f '' B := by -- --- PROOF ---
-  apply Set.eq_of_subset_of_subset
-  · rintro _ ⟨_, ⟨a, ha, b, hb, rfl⟩, rfl⟩
-    exact ⟨f a, ⟨a, ha, rfl⟩, f b, ⟨b, hb, rfl⟩, (map_add f a b).symm⟩
-  · rintro _ ⟨_, ⟨a, ha, rfl⟩, _, ⟨b, hb, rfl⟩, rfl⟩
-    exact ⟨a + b, ⟨a, ha, b, hb, rfl⟩, map_add f a b⟩
-
-
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.reindex_exact (e : Fin m ≃ Fin n) (Z : Zonotope 𝕋 n) :
@@ -51,7 +39,7 @@ theorem Zonotope.reindex_exact (e : Fin m ≃ Fin n) (Z : Zonotope 𝕋 n) :
   have h : InflatedContSet.nominalSet (Z.reindex e)
       = reindexLin e '' InflatedContSet.nominalSet Z :=
     (Real.Zonotope.map_exact (reindexLin e) (InflatedContSet.nominal Z)).symm
-  rw [aux_image_add, Interval.reindex_exact e Z.E, h]
+  rw [InflatedContSet.image_add, Interval.reindex_exact e Z.E, h]
 
 end CORALean.Float
 

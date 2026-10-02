@@ -6,6 +6,10 @@ import CORALean.ContSet.Ellipsoid.Float.Theorems.MtimesOuter
 import CORALean.ContSet.Ellipsoid.Float.Theorems.PlusK
 import CORALean.ContSet.Ellipsoid.Float.Theorems.PlusOuter
 import CORALean.ContSet.Ellipsoid.Float.Theorems.ProjectOuter
+import CORALean.ContSet.Ellipsoid.Float.Theorems.Convex
+import CORALean.ContSet.Ellipsoid.Float.Theorems.IsCompact
+import CORALean.ContSet.Ellipsoid.Float.Theorems.OriginExact
+import CORALean.ContSet.Ellipsoid.Float.Theorems.ReindexExact
 
 /-!
 # What a float ellipsoid guarantees, collected

@@ -3,6 +3,7 @@ import CORALean.HybridDynamics.Definitions.Location
 import CORALean.HybridDynamics.Definitions.Invariant
 import CORALean.HybridDynamics.Definitions.InvariantOn
 import CORALean.HybridDynamics.Definitions.ReachSet
+import CORALean.HybridDynamics.Definitions.RunUntil
 
 /-!
 # What a hybrid automaton means

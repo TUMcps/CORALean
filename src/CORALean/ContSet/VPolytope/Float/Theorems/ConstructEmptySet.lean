@@ -1,0 +1,47 @@
+import CORALean.ContSet.VPolytope.Float.Operations.EmptySet
+import CORALean.ContSet.VPolytope.Real.Operations.ConstructEmptySet
+
+/-!
+# `VPolytope.emptySet` denotes `∅`
+
+The nominal part is the exact layer's empty vertex list, and the sum of `∅` with
+any box is `∅`.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       02-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+open Pointwise SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem VPolytope.construct_emptySet : (VPolytope.emptySet 𝕋 n).construct = ∅ := by -- --- PROOF ---
+  have h : InflatedContSet.nominal (VPolytope.emptySet 𝕋 n)
+      = Real.VPolytope.emptySet (Vec ℝ n) := by
+    rw [VPolytope.nominal_eq]
+    show (⟨0, _⟩ : Real.VPolytope (Vec ℝ n)) = ⟨0, _⟩
+    congr 1
+    funext l
+    exact l.elim0
+  have hN : InflatedContSet.nominalSet (VPolytope.emptySet 𝕋 n) = ∅ := by
+    unfold InflatedContSet.nominalSet
+    rw [h]
+    exact Real.VPolytope.construct_emptySet
+  show InflatedContSet.nominalSet (VPolytope.emptySet 𝕋 n)
+      + (VPolytope.emptySet 𝕋 n).E.construct = _
+  rw [hN, Set.empty_add]
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

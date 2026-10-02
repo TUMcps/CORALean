@@ -3,6 +3,13 @@ import CORALean.ContSet.ConZonotope.Float.Theorems.PlusOuter
 import CORALean.ContSet.ConZonotope.Float.Theorems.LinCombOuter
 import CORALean.ContSet.ConZonotope.Float.Theorems.ProjectOuter
 import CORALean.ContSet.ConZonotope.Float.Theorems.ReduceOuter
+import CORALean.ContSet.ConZonotope.Float.Theorems.UnionSubsetLinComb
+import CORALean.ContSet.ConZonotope.Float.Theorems.ConvexHullSubsetLinComb
+import CORALean.ContSet.ConZonotope.Float.Theorems.Convex
+import CORALean.ContSet.ConZonotope.Float.Theorems.EmptyExact
+import CORALean.ContSet.ConZonotope.Float.Theorems.IsCompact
+import CORALean.ContSet.ConZonotope.Float.Theorems.OriginExact
+import CORALean.ContSet.ConZonotope.Float.Theorems.ReindexExact
 
 /-!
 # What the float `ConZonotope` guarantees

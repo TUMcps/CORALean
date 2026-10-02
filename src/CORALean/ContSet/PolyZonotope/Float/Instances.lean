@@ -2,6 +2,7 @@ import CORALean.ContSet.PolyZonotope.Float.Theorems.LinCombOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.MtimesOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.PlusOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceOuter
+import CORALean.ContSet.PolyZonotope.Float.Theorems.ReindexExact
 
 /-!
 # What `PolyZonotope` instantiates
@@ -63,6 +64,14 @@ instance : Mtimes (Mat 𝕋) (PolyZonotope 𝕋) where
   mtimes_outer M pZ := by
     simp only [ContSet.construct_mat, Set.biUnion_singleton, PolyZonotope.materialise_eq]
     exact PolyZonotope.mtimes_outer M pZ
+
+/-- Exact, alone among the fields here: a relabelling moves stored floats and
+computes nothing, so the error box is carried across rather than grown. -/
+instance : Reindex (PolyZonotope 𝕋) where
+  reindex e pZ := (PolyZonotope.reindex e pZ).materialise
+  reindex_exact e pZ := by
+    rw [PolyZonotope.materialise_eq]
+    exact PolyZonotope.reindex_exact e pZ
 
 end CORALean.Float
 

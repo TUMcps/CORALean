@@ -10,6 +10,8 @@ import CORALean.ContSet.Ellipsoid.Float.Operations.PullbackAbs
 import CORALean.ContSet.Ellipsoid.Float.Operations.AbsPullbackLe
 import CORALean.ContSet.Ellipsoid.Float.Operations.NominalBoundDot
 import CORALean.ContSet.Ellipsoid.Float.Operations.SupportBound
+import CORALean.ContSet.Ellipsoid.Float.Operations.Origin
+import CORALean.ContSet.Ellipsoid.Float.Operations.Reindex
 
 /-!
 # What a float ellipsoid computes, collected

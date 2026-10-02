@@ -1,4 +1,5 @@
 import CORALean.ContSet.HPolytope.Float.Operations.Intersection
+import CORALean.ContSet.HPolytope.Float.Operations.ContractBox
 import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendLeft
 import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendRight
 import CORALean.ContSet.HPolytope.Float.Operations.MemIntersectionIff
@@ -39,6 +40,7 @@ import CORALean.ContSet.HPolytope.Float.Operations.HalfScaledRight
 import CORALean.ContSet.HPolytope.Float.Operations.SmulMemHalfScaledRight
 import CORALean.ContSet.HPolytope.Float.Operations.TranslateOuter
 import CORALean.ContSet.HPolytope.Float.Operations.Minus
+import CORALean.ContSet.HPolytope.Float.Operations.EmptySet
 
 /-!
 # What the float `HPolytope` computes

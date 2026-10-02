@@ -2,6 +2,7 @@ import CORALean.ContSet.ConPolyZono.Float.Theorems.IntersectionOuter
 import CORALean.ContSet.ConPolyZono.Float.Theorems.MtimesOuter
 import CORALean.ContSet.ConPolyZono.Float.Theorems.PlusOuter
 import CORALean.ContSet.ConPolyZono.Float.Theorems.ReduceOuter
+import CORALean.ContSet.ConPolyZono.Float.Theorems.ReindexExact
 
 /-!
 # What `ConPolyZono` instantiates
@@ -55,6 +56,14 @@ instance : Mtimes (Mat 𝕋) (ConPolyZono 𝕋) where
   mtimes_outer M cPZ := by
     simp only [ContSet.construct_mat, Set.biUnion_singleton, ConPolyZono.materialise_eq]
     exact ConPolyZono.mtimes_outer M cPZ
+
+/-- Exact, alone among the fields here: a relabelling moves stored floats and
+computes nothing, so the error box is carried across rather than grown. -/
+instance : Reindex (ConPolyZono 𝕋) where
+  reindex e cPZ := (ConPolyZono.reindex e cPZ).materialise
+  reindex_exact e cPZ := by
+    rw [ConPolyZono.materialise_eq]
+    exact ConPolyZono.reindex_exact e cPZ
 
 end CORALean.Float
 

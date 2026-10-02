@@ -2,6 +2,7 @@ import CORALean.ContSet.Interval.Float.Operations.BoundDot
 import CORALean.ContSet.Interval.Float.Operations.BoundNegProj
 import CORALean.ContSet.Interval.Float.Operations.BoundProj
 import CORALean.ContSet.Interval.Float.Operations.CentreMat
+import CORALean.ContSet.Interval.Float.Operations.ContractHalfspace
 import CORALean.ContSet.Interval.Float.Operations.Intersection
 import CORALean.ContSet.Interval.Float.Operations.IntersectionExact
 import CORALean.ContSet.Interval.Float.Operations.LinComb

@@ -49,6 +49,9 @@ import CORALean.ContSet.PolyZonotope.Float.Theorems.RelaxExpEvenOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.RelaxExpMultiOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.RelaxExpMidOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.RelaxExpGreedyOuter
+import CORALean.ContSet.PolyZonotope.Float.Theorems.IsCompact
+import CORALean.ContSet.PolyZonotope.Float.Theorems.OriginExact
+import CORALean.ContSet.PolyZonotope.Float.Theorems.ReindexExact
 
 /-!
 # What `PolyZonotope` guarantees

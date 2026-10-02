@@ -1,9 +1,11 @@
 import CORALean.ContSet.HPolytope.Float.Theorems.BoundOfDualLe
+import CORALean.ContSet.HPolytope.Float.Theorems.ContractBoxOuter
 import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 import CORALean.ContSet.HPolytope.Float.Theorems.PlusOfOuter
 import CORALean.ContSet.HPolytope.Float.Theorems.LinCombOfOuter
 import CORALean.ContSet.HPolytope.Float.Theorems.MtimesOfOuter
 import CORALean.ContSet.HPolytope.Float.Theorems.MinusOuter
+import CORALean.ContSet.HPolytope.Float.Theorems.ConstructEmptySet
 
 /-!
 # What the float `HPolytope` guarantees

@@ -2,6 +2,7 @@ import CORALean.Examples.BackwardReach
 import CORALean.Examples.BackwardReachExists
 import CORALean.Examples.BallLocalityEnumerated
 import CORALean.Examples.BouncingBall
+import CORALean.Examples.BouncingBallFloat
 import CORALean.Examples.BoundedHorizonInvariant
 import CORALean.Examples.CapsuleObstacle
 import CORALean.Examples.ConPolyZonoGuard
