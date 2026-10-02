@@ -11,9 +11,9 @@ CORA methods of `hybridDynamics/@hybridAutomaton/`, one row each, and where CORA
 | `display` | out-of-scope | n/a — plotting/display |  |
 | `dynamicsEncodingMILP` | out-of-scope | n/a — solver-dependent |  |
 | `eq` | out-of-scope | n/a — matlab-runtime |  |
-| `falsify` | — | — |  |
+| `falsify` | out-of-scope | n/a — solver-dependent | optimisation and wall-clock search for a falsifying trajectory |
 | `hybridAutomaton` | float | [`HybridAutomaton.RunOn.mem_of_invariantOn`](../../../src/CORALean/HybridDynamics/Theorems/RunOnOuter.lean), [`HybridAutomaton.Run.mem_of_invariant`](../../../src/CORALean/HybridDynamics/Theorems/RunOuter.lean), [`HybridAutomaton.invariant_of_enclosure`](../../../src/CORALean/HybridDynamics/Theorems/InvariantOfEnclosure.lean), [`HybridAutomaton.invariant_of_enclosure_cut`](../../../src/CORALean/HybridDynamics/Theorems/InvariantOfEnclosureCut.lean), [`HybridAutomaton`](../../../src/CORALean/HybridDynamics/HybridAutomaton.lean) | route b — the automaton, its runs and its invariants are generic over `Scalar 𝕋` and the location representations; instantiated at float in `Examples/ReachFloat.lean` |
-| `identify` | — | — |  |
+| `identify` | out-of-scope | n/a — solver-dependent | result determined by clustering and decision-tree learning |
 | `isemptyobject` | out-of-scope | n/a — matlab-runtime |  |
 | `isequal` | out-of-scope | n/a — matlab-runtime |  |
 | `ne` | out-of-scope | n/a — matlab-runtime |  |

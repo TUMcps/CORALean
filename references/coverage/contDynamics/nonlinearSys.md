@@ -8,7 +8,7 @@ CORA methods of `contDynamics/@nonlinearSys/`, one row each, and where CORALean 
 |---|---|---|---|
 | `display` | out-of-scope | n/a — plotting/display |  |
 | `eq` | out-of-scope | n/a — matlab-runtime |  |
-| `falsify` | — | — |  |
+| `falsify` | out-of-scope | n/a — solver-dependent | optimisation and wall-clock search for a falsifying trajectory |
 | `getPrintSystemInfo` | out-of-scope | n/a — plotting/display |  |
 | `getfcn` | out-of-scope | n/a — matlab-runtime |  |
 | `identify` | — | — |  |
@@ -23,4 +23,4 @@ CORA methods of `contDynamics/@nonlinearSys/`, one row each, and where CORALean 
 | `reachInner` | — | — |  |
 | `reach_adaptive` | proved | [`NonlinearSys.adaptRun`](../../../src/CORALean/ContDynamics/NonlinearSys/Operations/AdaptRun.lean), [`NonlinearSys.relinReach`](../../../src/CORALean/ContDynamics/NonlinearSys/Operations/RelinReach.lean), [`NonlinearSys.reachSet_subset_relinReach`](../../../src/CORALean/ContDynamics/NonlinearSys/Theorems/ReachSetSubsetRelinReach.lean), [`NonlinearSys.Trajectory.relinReach_evalOn`](../../../src/CORALean/ContDynamics/NonlinearSys/Theorems/RelinReachEvalOn.lean), [`NonlinearSys.Trajectory.relinReach_outer`](../../../src/CORALean/ContDynamics/NonlinearSys/Theorems/RelinReachOuter.lean), [`NonlinearSys.Trajectory.relinReach_outer_inputSolution`](../../../src/CORALean/ContDynamics/NonlinearSys/Theorems/RelinReachOuterInputSolution.lean) | the re-linearization loop runs in floats as `NonlinearSys.FloatModel.reachFloat` (`Encloses.reachFloat_outer`, `relinRunFloat_outer`); `adaptRun` is pending #1, so the row stays `proved` |
 | `simulate` | — | — |  |
-| `taylor` | — | — |  |
+| `taylor` | out-of-scope | n/a — matlab-runtime | symbolic derivative code generation (m-file, function handle) |

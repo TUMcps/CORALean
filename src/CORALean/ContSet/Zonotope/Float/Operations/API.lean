@@ -22,6 +22,7 @@ import CORALean.ContSet.Zonotope.Float.Operations.MtimesIntervalMat
 import CORALean.ContSet.Zonotope.Float.Operations.ShiftDown
 import CORALean.ContSet.Zonotope.Float.Operations.ShiftUp
 import CORALean.ContSet.Zonotope.Float.Operations.ErrorRadius
+import CORALean.ContSet.Zonotope.Float.Operations.Radius
 import CORALean.ContSet.Zonotope.Float.Operations.AbsorbError
 import CORALean.ContSet.Zonotope.Float.Operations.GirardSplit
 import CORALean.ContSet.Zonotope.Float.Operations.ReduceBy

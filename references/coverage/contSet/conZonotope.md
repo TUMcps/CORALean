@@ -22,7 +22,7 @@ CORA methods of `contSet/@conZonotope/`, one row each, and where CORALean answer
 | `dim` | out-of-scope | n/a — matlab-runtime |  |
 | `display` | out-of-scope | n/a — plotting/display |  |
 | `empty` | float | [`ConZonotope.empty`](../../../src/CORALean/ContSet/ConZonotope/Real/Operations/Empty.lean), [`ConZonotope.empty_exact`](../../../src/CORALean/ContSet/ConZonotope/Real/Theorems/EmptyExact.lean) · float: [`ConZonotope.empty`](../../../src/CORALean/ContSet/ConZonotope/Float/Operations/Empty.lean), [`ConZonotope.empty_exact`](../../../src/CORALean/ContSet/ConZonotope/Float/Theorems/EmptyExact.lean) | no generators and the unsatisfiable constraint `HPolytope.emptySet`; real layer only; route a — the unsatisfiable constraint is the float `HPolytope.emptySet` (`0 ≤ neg one`) |
-| `enclose` | proved | [`ConZonotope.enclose`](../../../src/CORALean/ContSet/ConZonotope/Real/Operations/Enclose.lean), [`ConZonotope.enclose_outer`](../../../src/CORALean/ContSet/ConZonotope/Real/Theorems/EncloseOuter.lean) |  |
+| `enclose` | float | [`ContSet.enclose`](../../../src/CORALean/ContSet/ContSet/Operations/Enclose.lean), [`ContSet.enclose_outer`](../../../src/CORALean/ContSet/ContSet/Theorems/EncloseOuter.lean) | route b — generic `linComb` of `S` and `mtimes M S` plus `S₂`, outer at every instance; the float `ConZonotope` instantiates `Plus`, `LinComb` and `Mtimes` (`ConZonotope/Float/Instances.lean`); coarser than CORA's aligned-constraints `enclose` wherever `linComb` is; the real `ConZonotope.enclose` is a separate declaration, not linked |
 | `generateRandom` | out-of-scope | n/a — random/sampling |  |
 | `generators` | out-of-scope | n/a — matlab-runtime | field getter |
 | `getPrintSetInfo` | out-of-scope | n/a — plotting/display |  |

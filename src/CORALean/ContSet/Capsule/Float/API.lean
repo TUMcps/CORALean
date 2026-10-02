@@ -6,6 +6,9 @@ import CORALean.ContSet.Capsule.Float.Operations.Reduce
 import CORALean.ContSet.Capsule.Float.Operations.Reindex
 import CORALean.ContSet.Capsule.Float.Operations.Project
 import CORALean.ContSet.Capsule.Float.Operations.BoundDot
+import CORALean.ContSet.Capsule.Float.Operations.Radius
+import CORALean.ContSet.Capsule.Float.Operations.Plus
+import CORALean.ContSet.Capsule.Float.Operations.Mtimes
 import CORALean.ContSet.Capsule.Float.Theorems.Convex
 import CORALean.ContSet.Capsule.Float.Theorems.IsCompact
 import CORALean.ContSet.Capsule.Float.Theorems.CentreMemConstructIff
@@ -15,6 +18,9 @@ import CORALean.ContSet.Capsule.Float.Theorems.ReduceOuter
 import CORALean.ContSet.Capsule.Float.Theorems.ReindexExact
 import CORALean.ContSet.Capsule.Float.Theorems.ProjectExact
 import CORALean.ContSet.Capsule.Float.Theorems.BoundDotLe
+import CORALean.ContSet.Capsule.Float.Theorems.RadiusLe
+import CORALean.ContSet.Capsule.Float.Theorems.PlusOuter
+import CORALean.ContSet.Capsule.Float.Theorems.MtimesOuter
 import CORALean.ContSet.Capsule.Float.Instances
 
 /-!

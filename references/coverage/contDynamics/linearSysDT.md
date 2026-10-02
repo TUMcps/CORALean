@@ -7,11 +7,11 @@ CORA methods of `contDynamics/@linearSysDT/`, one row each, and where CORALean a
 | Method | State | In CORALean | Note |
 |---|---|---|---|
 | `computeGO` | — | — |  |
-| `confSynth_dyn` | — | — |  |
-| `confSynth_gray` | — | — |  |
+| `confSynth_dyn` | out-of-scope | n/a — solver-dependent | result determined by `linprog`/`quadprog` |
+| `confSynth_gray` | out-of-scope | n/a — solver-dependent | result determined by `fmincon` |
 | `display` | out-of-scope | n/a — plotting/display |  |
 | `executeObserver` | — | — |  |
-| `falsify` | — | — |  |
+| `falsify` | out-of-scope | n/a — solver-dependent | optimisation and wall-clock search for a falsifying trajectory |
 | `getPrintSystemInfo` | out-of-scope | n/a — plotting/display |  |
 | `identify` | — | — |  |
 | `isconform_dyn` | — | — |  |

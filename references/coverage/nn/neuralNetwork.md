@@ -64,6 +64,6 @@ CORA methods of `nn/@neuralNetwork/`, one row each, and where CORALean answers t
 | `resetBounds` | out-of-scope | n/a — matlab-runtime |  |
 | `resetGNN` | out-of-scope | n/a — matlab-runtime |  |
 | `setInputSize` | out-of-scope | n/a — matlab-runtime |  |
-| `train` | — | — |  |
+| `train` | out-of-scope | n/a — solver-dependent | result determined by a training loop |
 | `verify` | float | [`NeuralNetwork.verifySplit`](../../../src/CORALean/NN/Operations/VerifySplit.lean), [`NeuralNetwork.verifySplit_sound`](../../../src/CORALean/NN/Theorems/VerifySplitSound.lean) | route b — stated for any set representation, no scalar named; the float layers instantiate it (`Examples/RunnableFloat.lean`); verification by input splitting; a `true` verdict is sound whatever the splitter |
 | `visLossLandscape` | out-of-scope | n/a — plotting/display |  |

@@ -2,6 +2,7 @@ import CORALean.ContSet.Conversion.Float.Capsule_to_ConPolyZono
 import CORALean.ContSet.Conversion.Float.Capsule_to_Ellipsoid
 import CORALean.ContSet.Conversion.Float.Capsule_to_HPolytope
 import CORALean.ContSet.Conversion.Float.Capsule_to_Interval
+import CORALean.ContSet.Conversion.Float.Interval_to_Capsule
 import CORALean.ContSet.Conversion.Float.Capsule_to_PolyZonotope
 import CORALean.ContSet.Conversion.Float.Capsule_to_SpectraShadow
 import CORALean.ContSet.Conversion.Float.Capsule_to_VPolytope

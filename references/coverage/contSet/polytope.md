@@ -54,7 +54,7 @@ CORA methods of `contSet/@polytope/`, one row each, and where CORALean answers t
 | `project` | float | [`VPolytope.project`](../../../src/CORALean/ContSet/VPolytope/Real/Operations/Project.lean), [`VPolytope.project_exact`](../../../src/CORALean/ContSet/VPolytope/Real/Theorems/ProjectExact.lean) · float: [`VPolytope.project`](../../../src/CORALean/ContSet/VPolytope/Float/Operations/Project.lean), [`VPolytope.project_outer`](../../../src/CORALean/ContSet/VPolytope/Float/Theorems/ProjectOuter.lean) | exact for any `dims` (repeats and reorderings included): `map` at the selection map; the V-representation branch only (`V(dims,:)`), the H-representation branch (Fourier-Motzkin) is not covered; float: outer only, as the error box projects with `Interval.project` |
 | `projectHighDim` | — | — |  |
 | `randPoint_` | out-of-scope | n/a — random/sampling |  |
-| `reduce` | — | — |  |
+| `reduce` | out-of-scope | n/a — random/sampling | the only method is `'rand'`: random directions |
 | `reduceOverDomain` | — | — |  |
 | `representsa_` | — | — |  |
 | `setVertices` | out-of-scope | n/a — matlab-runtime | field setter |

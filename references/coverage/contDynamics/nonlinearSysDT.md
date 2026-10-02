@@ -9,7 +9,7 @@ CORA methods of `contDynamics/@nonlinearSysDT/`, one row each, and where CORALea
 | `computeGO` | — | — |  |
 | `display` | out-of-scope | n/a — plotting/display |  |
 | `executeObserver` | — | — |  |
-| `falsify` | — | — |  |
+| `falsify` | out-of-scope | n/a — solver-dependent | optimisation and wall-clock search for a falsifying trajectory |
 | `getPrintSystemInfo` | out-of-scope | n/a — plotting/display |  |
 | `identify` | — | — |  |
 | `linReach` | proved | [`NonlinearSysDT.linearize`](../../../src/CORALean/ContDynamics/NonlinearSysDT/Operations/Linearize.lean), [`NonlinearSysDT.confinement_of_subset`](../../../src/CORALean/ContDynamics/NonlinearSysDT/Theorems/ConfinementOfSubset.lean), [`NonlinearSysDT.confinement_of_subset_on`](../../../src/CORALean/ContDynamics/NonlinearSysDT/Theorems/ConfinementOfSubsetOn.lean) |  |

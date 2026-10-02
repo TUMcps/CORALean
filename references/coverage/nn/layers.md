@@ -15,7 +15,7 @@ CORA methods of `nn/layers/`, one row each, and where CORALean answers them. Con
 | `evaluateZonotopeBatch` | float | [`Layer.Sound.image_subset`](../../../src/CORALean/NN/Layers/Layer.lean), [`Layer`](../../../src/CORALean/NN/Layers/Layer.lean) | route b — stated for any set representation, no scalar named; the float layers instantiate it; one set per call, the batch being a vectorisation of the same enclosure |
 | `findRegionPolys` | — | — |  |
 | `getMergeBuckets` | — | — |  |
-| `instantiateFromString` | — | — |  |
+| `instantiateFromString` | out-of-scope | n/a — matlab-runtime | string to layer constructor dispatch |
 | `nnActLayerFromHandle` | float | [`ActivationLayer.of_sound`](../../../src/CORALean/NN/Layers/Theorems/ActivationLayerOfSound.lean), [`ActivationLayer.of`](../../../src/CORALean/NN/Layers/Operations/ActivationLayerOf.lean) | route b — soundness stated for any `FloatOps 𝕋`; the activation function is a relaxation proved sound for `σ`, not a MATLAB function handle |
 | `nnActivationLayer` | float | [`Layer.activation_sound`](../../../src/CORALean/NN/Layers/Theorems/ActivationSound.lean), [`Layer.activation`](../../../src/CORALean/NN/Layers/Operations/Activation.lean) | route b — soundness stated for any `FloatOps 𝕋`; the layer runs at `Dyadic` (`Examples/RunnableFloat.lean`) |
 | `nnAvgPool2DLayer` | float | [`Layer.avgPool_sound`](../../../src/CORALean/NN/Layers/Theorems/AvgPoolSound.lean), [`Layer.avgPool`](../../../src/CORALean/NN/Layers/Operations/AvgPool.lean) | route b — soundness stated for any `FloatOps 𝕋`; the layer runs at `Dyadic` (`Examples/RunnableFloat.lean`) |
@@ -27,7 +27,7 @@ CORA methods of `nn/layers/`, one row each, and where CORALean answers them. Con
 | `nnExpLayer` | float | [`Layer.exp_outer`](../../../src/CORALean/NN/Layers/Theorems/ExpSound.lean), [`expRelaxation_sound`](../../../src/CORALean/NN/Layers/Theorems/ExpRelaxationSound.lean), [`Layer.exp`](../../../src/CORALean/NN/Layers/Operations/Exp.lean) | route b — soundness stated for any `FloatOps 𝕋`, on the sets whose box has its right ends at most `2ᵏ/2`, which is `Float.expUp`'s range (no format bounds `exp` everywhere); the slope-zero monotone relaxation, not CORA's order-1 Singh polynomial |
 | `nnGCNLayer` | proved | [`GNN.gcn_exact`](../../../src/CORALean/NN/Graph/Theorems/ConvExact.lean), [`GNN.gcn_exact_of_adjacency`](../../../src/CORALean/NN/Graph/Theorems/ConvExactOfAdjacency.lean) |  |
 | `nnGNNGlobalPoolingLayer` | proved | [`GNN.sumPool_exact`](../../../src/CORALean/NN/Graph/Theorems/PoolingExact.lean) |  |
-| `nnGNNLayer` | — | — |  |
+| `nnGNNLayer` | out-of-scope | n/a — matlab-runtime | abstract class constructor |
 | `nnGNNLinearLayer` | — | — |  |
 | `nnGNNProjectionLayer` | proved | [`GNN.select`](../../../src/CORALean/NN/Graph/Operations/Select.lean), [`GNN.select_mul`](../../../src/CORALean/NN/Graph/Theorems/SelectMul.lean) | the projection matrix `eye(numNodes)(nodes_keep,:)` is `GNN.select`, and `select_mul` says it keeps the selected rows of the node features |
 | `nnGeneratorReductionLayer` | float | [`Layer.generatorReduction_sound`](../../../src/CORALean/NN/Layers/Theorems/GeneratorReductionSound.lean), [`Layer.generatorReduction`](../../../src/CORALean/NN/Layers/Operations/GeneratorReduction.lean) | route b — stated for any set representation with `Reduce`, which the float zonotope instantiates; the representation's `reduce`, not CORA's Girard-by-length rule |
