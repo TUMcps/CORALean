@@ -1,4 +1,7 @@
 import CORALean.ContDynamics.NonlinearSys.NonlinearSys
+import Mathlib.Analysis.Calculus.Deriv.Add
+import Mathlib.Analysis.Calculus.Deriv.Comp
+import Mathlib.Analysis.InnerProductSpace.Basic
 
 /-!
 # A trajectory re-anchored at a later time

@@ -1,5 +1,6 @@
 import CORALean.ContSet.Conversion.Real.ConPolyZono_to_PolyZonotope
 import CORALean.ContSet.Conversion.Real.PolyZonotope_to_Zonotope
+import Mathlib.Order.BourbakiWitt
 
 /-!
 # A constrained polynomial zonotope as a zonotope

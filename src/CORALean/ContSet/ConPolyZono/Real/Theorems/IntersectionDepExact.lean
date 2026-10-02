@@ -2,6 +2,8 @@ import CORALean.ContSet.ConPolyZono.Real.Operations.Intersection
 import CORALean.ContSet.ConPolyZono.Real.Operations.IntersectionDep
 import CORALean.ContSet.ConPolyZono.Real.Operations.SatisfiesIntersectionDepIff
 import CORALean.ContSet.Interval.Real.Operations.Point
+import Mathlib.Algebra.Group.Pointwise.Set.Basic
+import Mathlib.Tactic.Abel
 
 /-!
 # Intersection up to a tolerance

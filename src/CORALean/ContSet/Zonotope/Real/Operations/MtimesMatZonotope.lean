@@ -1,4 +1,5 @@
 import CORALean.ContSet.Zonotope.Real.Operations.Bilin
+import Mathlib.LinearAlgebra.Matrix.ToLin
 
 /-!
 # `Zonotope.mtimesMatZonotope`

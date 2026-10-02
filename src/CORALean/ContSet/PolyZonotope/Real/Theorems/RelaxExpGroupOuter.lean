@@ -2,6 +2,7 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpGroup
 import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsSubMonomialLeSum
 import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
 import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
+import Mathlib.Tactic.Abel
 
 /-!
 # Merging any group of dependent generators over-approximates

@@ -1,4 +1,5 @@
 import CORALean.ContSet.Fullspace.Real.Fullspace
+import Mathlib.Analysis.InnerProductSpace.Basic
 
 /-!
 # The full space is bounded exactly in dimension zero

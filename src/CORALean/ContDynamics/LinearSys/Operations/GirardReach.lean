@@ -4,6 +4,8 @@ import CORALean.ContSet.Zonotope.Real.Operations.Cube
 import CORALean.ContSet.Zonotope.Real.Operations.LinComb
 import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
 import CORALean.ContSet.Zonotope.Real.Operations.Plus
+import Mathlib.Analysis.Matrix.Normed
+import Mathlib.Analysis.Normed.Algebra.Exponential
 
 /-!
 # `girardReach`: [1, Alg. 1]

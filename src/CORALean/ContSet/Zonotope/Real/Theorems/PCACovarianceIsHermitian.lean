@@ -1,4 +1,6 @@
 import CORALean.ContSet.Zonotope.Real.Operations.PCACovariance
+import Mathlib.Data.Real.Star
+import Mathlib.LinearAlgebra.Matrix.Hermitian
 
 /-!
 # The scatter matrix is Hermitian

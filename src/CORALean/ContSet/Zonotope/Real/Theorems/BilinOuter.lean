@@ -1,4 +1,8 @@
 import CORALean.ContSet.Zonotope.Real.Operations.Bilin
+import Mathlib.Algebra.BigOperators.Fin
+import Mathlib.Algebra.BigOperators.GroupWithZero.Action
+import Mathlib.Algebra.Module.Submodule.LinearMap
+import Mathlib.Tactic.Abel
 
 /-!
 # `bilin` over-approximates `f` applied across the two zonotopes

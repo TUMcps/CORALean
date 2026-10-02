@@ -1,4 +1,7 @@
 import CORALean.ContSet.Zonotope.Real.Instances
+import Mathlib.Analysis.Normed.Algebra.Exponential
+import Mathlib.Topology.Instances.Matrix
+import Mathlib.Analysis.Matrix.Normed
 
 /-!
 # `G^{(-)}_h`, eq. (23)

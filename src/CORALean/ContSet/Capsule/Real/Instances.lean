@@ -1,6 +1,7 @@
 import CORALean.ContSet.ContSet.Definitions.ConvexSet
 import CORALean.ContSet.ContSet.Definitions.CompactSet
 import CORALean.ContSet.Capsule.Real.Theorems.API
+import Mathlib.Analysis.InnerProductSpace.Basic
 
 /-!
 # What `Capsule` instantiates

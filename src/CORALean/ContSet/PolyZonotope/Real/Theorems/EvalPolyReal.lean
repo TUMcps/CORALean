@@ -1,4 +1,4 @@
-import CORALean.Global.Mathlib
+import Mathlib.Data.Real.Basic
 
 /-!
 # The reference evaluator: Horner's rule over `ℝ`

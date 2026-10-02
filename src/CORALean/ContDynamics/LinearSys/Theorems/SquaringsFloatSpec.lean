@@ -1,5 +1,7 @@
 import CORALean.ContDynamics.LinearSys.Definitions.OrderAdmissibleFloat
 import CORALean.ContDynamics.LinearSys.Operations.SquaringsFloat
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Tactic.Positivity
 
 /-!
 # A count `squaringsFloat` returns makes the scaled range admissible

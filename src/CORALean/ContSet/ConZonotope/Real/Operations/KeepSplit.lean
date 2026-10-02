@@ -2,6 +2,7 @@ import CORALean.ContSet.ConZonotope.Real.Operations.KeepInvolvement
 import CORALean.ContSet.ConZonotope.Real.Operations.KeepMetric
 import CORALean.Global.Partition
 import CORALean.Global.Sort
+import Mathlib.Data.Fin.Tuple.Sort
 
 /-!
 # `ConZonotope.keepSplit`

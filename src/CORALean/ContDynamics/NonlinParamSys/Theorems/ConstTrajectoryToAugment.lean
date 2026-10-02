@@ -1,4 +1,7 @@
 import CORALean.ContDynamics.NonlinParamSys.Operations.Augment
+import Mathlib.Analysis.Calculus.Deriv.Add
+import Mathlib.Analysis.Calculus.Deriv.Prod
+import Mathlib.Analysis.InnerProductSpace.Basic
 
 /-!
 # A constant-parameter trajectory is its augmented system's

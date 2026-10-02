@@ -1,4 +1,6 @@
 import CORALean.ContSet.Interval.Real.Interval
+import Mathlib.Analysis.Normed.Algebra.MatrixExponential
+import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 /-!
 # The series behind `exp (t • A)`, at the unscaled matrix, is summable
 

@@ -1,6 +1,7 @@
 import CORALean.ContSet.Zonotope.Real.Operations.GirardSplit
 import CORALean.ContSet.Zonotope.Real.Operations.LineClKeep
 import CORALean.ContSet.Zonotope.Real.Operations.LineClVolume
+import Mathlib.Analysis.Matrix.Spectrum
 
 /-!
 # `Zonotope.lineClBasis`

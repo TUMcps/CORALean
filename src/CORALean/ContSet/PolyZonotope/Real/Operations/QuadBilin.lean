@@ -1,4 +1,8 @@
 import CORALean.Global.Tensor
+import Mathlib.Algebra.Algebra.Basic
+import Mathlib.Data.Matrix.Mul
+import Mathlib.Data.Real.Basic
+import Mathlib.LinearAlgebra.BilinearMap
 
 /-!
 # The quadratic form family, bundled as a bilinear map

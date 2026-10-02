@@ -1,5 +1,6 @@
 import CORALean.ContSet.Interval.Real.Operations.Center
 import CORALean.ContSet.Zonotope.Real.Operations.RadiusReach
+import Mathlib.Data.Matrix.Mul
 
 /-!
 # Zonotopes: multiplication by an interval matrix

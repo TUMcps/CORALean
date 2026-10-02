@@ -5,6 +5,7 @@ import CORALean.ContSet.HPolytope.Real.Operations.Intersection
 import CORALean.ContSet.HPolytope.Real.Operations.MemUnitBoxIff
 import CORALean.ContSet.HPolytope.Real.Theorems.ExistsConstructEqImageFst
 import CORALean.ContSet.HPolytope.Real.Theorems.MemIntersection
+import Mathlib.Analysis.InnerProductSpace.Basic
 
 /-!
 # Constrained zonotopes are exactly the bounded polytopes

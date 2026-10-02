@@ -1,4 +1,4 @@
-import CORALean.Global.Mathlib
+import Mathlib.Analysis.Real.Sqrt
 
 /-!
 # The inverse square root, clamped at the degree bound the self-loop gives

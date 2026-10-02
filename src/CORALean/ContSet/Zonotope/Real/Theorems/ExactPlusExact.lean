@@ -1,4 +1,6 @@
 import CORALean.ContSet.Zonotope.Real.Operations.ExactPlus
+import Mathlib.Algebra.BigOperators.Fin
+import Mathlib.Tactic.Abel
 
 /-!
 # `exactPlus` is the sum over shared coefficients

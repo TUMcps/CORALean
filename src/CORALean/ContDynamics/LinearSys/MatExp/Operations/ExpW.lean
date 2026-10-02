@@ -1,4 +1,5 @@
 import CORALean.ContSet.Interval.Real.Interval
+import Mathlib.Data.Matrix.Mul
 
 /-!
 # The second-order Taylor term, exactly, at one matrix

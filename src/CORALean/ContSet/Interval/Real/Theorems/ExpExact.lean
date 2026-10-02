@@ -1,4 +1,5 @@
 import CORALean.ContSet.Interval.Real.Operations.Exp
+import Mathlib.Analysis.SpecialFunctions.Log.Basic
 
 /-!
 # `Interval.exp` is exactly the image under the exponential

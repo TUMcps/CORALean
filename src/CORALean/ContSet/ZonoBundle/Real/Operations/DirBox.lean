@@ -1,5 +1,6 @@
 import Mathlib.Data.Matrix.Basic
 import CORALean.Global.Tensor
+import Mathlib.Data.Real.Basic
 
 /-!
 # `ZonoBundle.dirBox`: the box heuristic

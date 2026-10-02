@@ -1,4 +1,4 @@
-import CORALean.Global.Mathlib
+import Mathlib.Data.Real.Basic
 
 /-!
 # Eq. (54): the interpolated gain

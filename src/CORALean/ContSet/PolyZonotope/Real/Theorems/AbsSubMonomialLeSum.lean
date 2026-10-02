@@ -1,4 +1,5 @@
 import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsSubMonomialLe
+import Mathlib.Data.Fin.VecNotation
 
 /-!
 # Two monomials drift by at most the sum of their `eDiff`s

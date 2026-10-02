@@ -1,6 +1,7 @@
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoExpRemainderBoundZero
 import CORALean.ContDynamics.LinearSys.Operations.TimePointStepError
 import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepError
+import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 
 /-!
 # Any admissible error is reachable, over the whole step

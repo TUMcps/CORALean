@@ -17,7 +17,7 @@ Mathlib's `Metric.hausdorffDist`, read at `‖·‖₂`
 `Def. 5` names. Every proposition bounding it is now formalized — `Prop. 1`-`5`
 and `Prop. 9`-`11` — all at `hausdorffDist₂`, `Prop. 10` also at the supremum
 norm `Vec ℝ n` itself carries, its argument being norm-agnostic. The
-bare `Metric.hausdorffDist` that `Global/Mathlib.lean` admits is used by six
+bare `Metric.hausdorffDist` of Mathlib is used by six
 files, the paper-independent
 [`hausdorffDist_image_le`](../../src/CORALean/ContSet/ContSet/Theorems/HausdorffDistImageLe.lean)
 among them.

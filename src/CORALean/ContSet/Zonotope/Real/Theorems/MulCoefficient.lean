@@ -1,4 +1,5 @@
 import CORALean.ContSet.Zonotope.Real.Theorems.Coefficient
+import Mathlib.Tactic.FieldSimp
 
 /-!
 # The coefficient hits its target

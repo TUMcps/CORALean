@@ -1,4 +1,7 @@
 import CORALean.ContSet.Zonotope.Real.Operations.Plus
+import Mathlib.Algebra.BigOperators.Fin
+import Mathlib.Algebra.Group.Pointwise.Set.Basic
+import Mathlib.Tactic.Abel
 
 /-!
 # `Zonotope.plus` is exactly the Minkowski sum

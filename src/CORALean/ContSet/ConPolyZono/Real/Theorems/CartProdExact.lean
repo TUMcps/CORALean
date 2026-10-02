@@ -2,6 +2,7 @@ import CORALean.ContSet.ConPolyZono.Real.Operations.CartProd
 import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsPlusIff
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
+import Mathlib.Algebra.Module.Prod
 
 /-!
 # `ConPolyZono.cartProd` is exactly the Cartesian product

@@ -1,5 +1,6 @@
 import CORALean.ContSet.ConPolyZono.Real.Operations.NoZeroCol
 import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
+import Mathlib.Algebra.BigOperators.GroupWithZero.Finset
 
 /-!
 # A column with no constant term vanishes at zero factors

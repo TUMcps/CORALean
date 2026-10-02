@@ -1,5 +1,6 @@
 import CORALean.ContSet.PolyZonotope.Real.Complexity.Mul
 import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPoly
+import Mathlib.Algebra.Ring.GeomSum
 
 /-!
 # `PolyZonotope.evalPoly`'s dependent-generator count

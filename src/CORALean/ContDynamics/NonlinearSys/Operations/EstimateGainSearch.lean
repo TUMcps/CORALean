@@ -1,4 +1,4 @@
-import CORALean.Global.Mathlib
+import Mathlib.Data.Real.Basic
 
 /-!
 # Bisection for `estimateGain`

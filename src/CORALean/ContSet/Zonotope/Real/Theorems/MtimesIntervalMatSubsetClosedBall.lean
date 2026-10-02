@@ -3,6 +3,9 @@ import CORALean.ContSet.Interval.Real.Operations.Radius
 import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
 import CORALean.ContSet.Zonotope.Real.Theorems.AbsLeAbsBound
 import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+import Mathlib.Algebra.BigOperators.Fin
+import Mathlib.Analysis.Normed.Ring.Basic
+import Mathlib.Tactic.Positivity
 
 /-!
 # An interval matrix of small entries moves a zonotope only a little

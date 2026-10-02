@@ -1,4 +1,7 @@
 import CORALean.ContDynamics.LinearSys.LinearSys
+import Mathlib.Analysis.Normed.Algebra.Exponential
+import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
+import Mathlib.Analysis.Matrix.Normed
 
 /-!
 # The variation-of-constants formula, as a function of time

@@ -1,4 +1,5 @@
 import CORALean.NN.Operations.GreedyExplanationStep
+import Mathlib.Data.Fintype.Basic
 
 /-!
 # [1, Alg. 1]: greedy minimal explanation search, at a sufficiency oracle

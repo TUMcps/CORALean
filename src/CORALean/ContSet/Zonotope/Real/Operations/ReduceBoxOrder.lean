@@ -1,4 +1,5 @@
 import CORALean.ContSet.Zonotope.Real.Definitions.ReduceBoxAdmissible
+import Mathlib.Order.Lattice.Nat
 
 /-!
 # Choosing the reduction order from an admissible error

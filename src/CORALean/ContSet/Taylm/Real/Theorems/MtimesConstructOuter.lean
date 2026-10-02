@@ -1,5 +1,6 @@
 import CORALean.ContSet.Taylm.Real.Theorems.MtimesOuter
 import CORALean.ContSet.Taylm.Real.Theorems.MemConstructIff
+import Mathlib.Data.Matrix.Mul
 
 /-!
 # `Taylm.mtimes` contains the image of the range set

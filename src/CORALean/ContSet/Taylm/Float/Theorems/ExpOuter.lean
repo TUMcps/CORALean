@@ -2,6 +2,7 @@ import CORALean.ContSet.Taylm.Float.Operations.Exp
 import CORALean.ContSet.Taylm.Float.Theorems.ComposeOuter
 import CORALean.ContSet.Taylm.Float.Theorems.BoundsMem
 import CORALean.Global.TaylorRemainder
+import Mathlib.Analysis.SpecialFunctions.ExpDeriv
 
 /-!
 # `Taylm.exp` encloses `exp ∘ f`

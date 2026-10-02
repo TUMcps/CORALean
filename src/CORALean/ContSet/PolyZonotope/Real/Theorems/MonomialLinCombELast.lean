@@ -1,4 +1,5 @@
 import CORALean.ContSet.PolyZonotope.Real.Operations.LinCombE
+import Mathlib.Algebra.BigOperators.Fin
 
 /-!
 # The centre-difference generator of `linComb` carries only the fresh factor

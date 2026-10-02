@@ -1,4 +1,7 @@
 import CORALean.Global.Tensor
+import Mathlib.Analysis.Normed.Ring.Basic
+import Mathlib.Data.Matrix.Mul
+import Mathlib.Topology.MetricSpace.Lipschitz
 
 
 /-!

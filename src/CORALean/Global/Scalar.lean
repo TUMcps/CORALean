@@ -1,4 +1,5 @@
 import CORALean.Global.Tensor
+import Mathlib.Data.Real.Basic
 
 /-!
 # The scalar a layer computes in

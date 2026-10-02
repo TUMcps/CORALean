@@ -1,5 +1,6 @@
 import CORALean.ContSet.Interval.Real.Operations.IsNonempty
 import CORALean.ContSet.Interval.Real.Operations.Mtimes
+import Mathlib.Algebra.Order.BigOperators.Group.Finset
 
 /-!
 # `Interval.mtimes` never returns crossed bounds

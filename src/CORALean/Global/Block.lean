@@ -1,4 +1,7 @@
 import CORALean.Global.Tensor
+import Mathlib.Algebra.Module.LinearMap.Defs
+import Mathlib.Data.Fin.Tuple.Basic
+import Mathlib.Data.Real.Basic
 
 /-!
 # Reading one block of a concatenated vector

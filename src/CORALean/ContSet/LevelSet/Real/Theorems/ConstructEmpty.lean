@@ -1,5 +1,6 @@
 import CORALean.ContSet.LevelSet.Real.Operations.Empty
 import CORALean.ContSet.LevelSet.Real.Theorems.MemConstruct
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
 
 /-!
 # `LevelSet.empty` denotes the empty set

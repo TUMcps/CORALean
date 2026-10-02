@@ -7,6 +7,7 @@ import CORALean.ContSet.ConPolyZono.Real.Operations.SumUnionE
 import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialEqZeroOfNoZeroCol
 import CORALean.ContSet.ConPolyZono.Real.Theorems.UnionDomainIff
 import CORALean.ContSet.Interval.Real.Operations.IsNonempty
+import Mathlib.Tactic.Module
 
 /-!
 # The union, exactly — under the hypothesis [1, Thm. 1] leaves out

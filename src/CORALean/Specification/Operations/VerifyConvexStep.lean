@@ -1,5 +1,6 @@
 import CORALean.Specification.Definitions.VerifyAnswer
 import CORALean.Specification.Operations.DiffPoint
+import Mathlib.Analysis.Convex.Hull
 
 /-!
 # [1, Alg. 3, l. 4-13]: one direction of the search

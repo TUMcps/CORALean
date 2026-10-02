@@ -1,4 +1,5 @@
 import CORALean.ContSet.Interval.Real.Interval
+import Mathlib.Data.Matrix.Mul
 
 /-!
 # `Ãᵢ`, eq. (19)-(20)

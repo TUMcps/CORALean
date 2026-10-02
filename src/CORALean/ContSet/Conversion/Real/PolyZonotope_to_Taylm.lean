@@ -1,5 +1,6 @@
 import CORALean.ContSet.Taylm.Real.Taylm
 import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
+import Mathlib.Algebra.BigOperators.Pi
 
 /-!
 # A polynomial zonotope as an array of Taylor models

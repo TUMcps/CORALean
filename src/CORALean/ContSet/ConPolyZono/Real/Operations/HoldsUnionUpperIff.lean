@@ -4,6 +4,7 @@ import CORALean.ContSet.ConPolyZono.Real.Operations.UnionUpperEC
 import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsSharedIff
 import CORALean.ContSet.ConPolyZono.Real.Operations.UnionConValue
 import CORALean.ContSet.ConPolyZono.Real.Operations.ProdAddCol
+import Mathlib.Tactic.FinCases
 
 /-!
 # What the two selector rows say

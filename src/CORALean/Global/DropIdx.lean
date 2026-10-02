@@ -1,4 +1,4 @@
-import CORALean.Global.Mathlib
+import Mathlib.Algebra.BigOperators.Fin
 
 /-!
 # Every index but one

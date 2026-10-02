@@ -1,4 +1,8 @@
 import CORALean.ContSet.Interval.Real.Interval
+import Mathlib.Topology.Instances.Matrix
+import Mathlib.Topology.MetricSpace.Pseudo.Defs
+import Mathlib.Analysis.Matrix.Normed
+import Mathlib.Analysis.Normed.Algebra.Exponential
 
 /-!
 # The matrix exponential, integrated

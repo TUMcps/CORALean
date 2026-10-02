@@ -1,5 +1,6 @@
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrCoeff
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrCoeffLowFloat
+import Mathlib.Algebra.Order.Ring.Star
 
 /-!
 # `MatExp.corrCoeffLow` bounds the correction coefficient from below

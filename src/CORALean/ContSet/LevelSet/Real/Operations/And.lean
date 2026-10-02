@@ -1,4 +1,5 @@
 import CORALean.ContSet.LevelSet.Real.LevelSet
+import Mathlib.Data.Fin.Tuple.Basic
 
 /-!
 # `LevelSet.and_`

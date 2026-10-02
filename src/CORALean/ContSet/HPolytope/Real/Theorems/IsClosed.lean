@@ -1,4 +1,5 @@
 import CORALean.ContSet.HPolytope.Real.HPolytope
+import Mathlib.Analysis.RCLike.Lemmas
 
 /-!
 # A halfspace description is closed

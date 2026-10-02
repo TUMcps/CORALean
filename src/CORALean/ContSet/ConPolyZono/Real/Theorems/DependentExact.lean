@@ -5,6 +5,7 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
 import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
+import Mathlib.Tactic.Abel
 
 /-!
 # Making the independent generators dependent loses nothing

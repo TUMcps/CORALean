@@ -4,6 +4,7 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.MtimesExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.PlusExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapMixedExact
+import Mathlib.LinearAlgebra.QuadraticForm.Basic
 
 /-!
 # `varInputs` holds every value the varying input part can take

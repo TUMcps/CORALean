@@ -1,4 +1,5 @@
 import CORALean.ContSet.ConPolyZono.Real.Operations.PadE
+import Mathlib.Algebra.BigOperators.Fin
 
 /-!
 # `padE` changes no monomial

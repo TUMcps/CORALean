@@ -1,4 +1,7 @@
 import CORALean.ContDynamics.LinearSys.LinearSys
+import Mathlib.Analysis.Normed.Algebra.Exponential
+import Mathlib.Topology.Instances.Matrix
+import Mathlib.Analysis.Matrix.Normed
 
 /-!
 # A one-step particular solution, propagated over a horizon

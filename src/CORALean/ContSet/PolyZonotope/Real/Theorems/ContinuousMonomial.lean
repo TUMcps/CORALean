@@ -1,4 +1,5 @@
 import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
+import Mathlib.Topology.Algebra.Ring.Real
 
 /-!
 # A monomial is continuous in the factors

@@ -1,4 +1,5 @@
 import CORALean.ContDynamics.LinearSys.LinearSys
+import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 
 /-!
 # A bounded, measurable signal is interval integrable

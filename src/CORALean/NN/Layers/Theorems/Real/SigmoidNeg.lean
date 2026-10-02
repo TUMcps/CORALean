@@ -1,4 +1,5 @@
 import CORALean.NN.Layers.Definitions.Sigmoid
+import Mathlib.Tactic.Positivity
 
 /-!
 # Mirroring the argument complements the logistic function

@@ -1,4 +1,6 @@
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpTaylor
+import Mathlib.Analysis.Normed.Algebra.MatrixExponential
+import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 
 /-!
 # The exponential's remainder is continuous in the time

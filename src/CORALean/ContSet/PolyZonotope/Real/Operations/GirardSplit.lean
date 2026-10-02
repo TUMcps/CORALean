@@ -1,6 +1,7 @@
 import CORALean.ContSet.PolyZonotope.Real.Operations.GirardMetric
 import CORALean.Global.Partition
 import CORALean.Global.Sort
+import Mathlib.Data.Fin.Tuple.Sort
 
 /-!
 # The generators a metric ranks first, against the rest

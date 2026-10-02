@@ -1,4 +1,4 @@
-import CORALean.Global.Mathlib
+import Mathlib.Data.Real.Basic
 
 /-!
 # Eq. (58)'s evaluation: increase `λ'` while the estimate falls

@@ -1,4 +1,5 @@
 import CORALean.ContSet.Interval.Real.Interval
+import Mathlib.Analysis.Matrix.Normed
 /-!
 # An entry never exceeds the `l∞` operator norm
 

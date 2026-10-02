@@ -1,5 +1,6 @@
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
 import CORALean.ContSet.Zonotope.Real.Instances
+import Mathlib.Analysis.Normed.Algebra.Exponential
 
 /-!
 # `H(τ_k)`, the exact tube

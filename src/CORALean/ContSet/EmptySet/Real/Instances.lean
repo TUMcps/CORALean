@@ -1,6 +1,7 @@
 import CORALean.ContSet.ContSet.Definitions.CompactSet
 import CORALean.ContSet.ContSet.Definitions.ConvexSet
 import CORALean.ContSet.EmptySet.Real.EmptySet
+import Mathlib.Analysis.InnerProductSpace.Basic
 
 /-!
 # What `EmptySet` instantiates

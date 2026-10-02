@@ -1,4 +1,6 @@
-import CORALean.Global.Mathlib
+import Mathlib.Algebra.BigOperators.Fin
+import Mathlib.Analysis.Normed.Order.Lattice
+import Mathlib.Tactic.Positivity
 
 /-!
 # `Prop. 2`: a particular-solution error budget over a fixed horizon

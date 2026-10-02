@@ -1,4 +1,7 @@
 import CORALean.ContDynamics.LinearSys.LinearSys
+import Mathlib.Analysis.Normed.Algebra.Exponential
+import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
+import Mathlib.Analysis.Matrix.Normed
 
 /-!
 # What one input signal contributes over one step

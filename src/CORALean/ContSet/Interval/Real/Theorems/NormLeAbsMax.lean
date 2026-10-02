@@ -1,5 +1,6 @@
 import CORALean.ContSet.Interval.Real.Operations.AbsMax
 import CORALean.ContSet.Interval.Real.Theorems.MemMat
+import Mathlib.Analysis.Matrix.Normed
 
 /-!
 # `Interval.absMax` dominates the norm of every member of the box

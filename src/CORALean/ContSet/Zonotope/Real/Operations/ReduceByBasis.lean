@@ -1,5 +1,6 @@
 import CORALean.ContSet.Zonotope.Real.Zonotope
 import CORALean.Global.Partition
+import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 
 /-!
 # `Zonotope.reduceByBasis`

@@ -1,5 +1,7 @@
 import CORALean.NN.Layers.Operations.Activation
 import CORALean.NN.Theorems.SensitivityOfMatrix
+import Mathlib.Analysis.Calculus.Deriv.Comp
+import Mathlib.Analysis.Calculus.FDeriv.Prod
 
 /-!
 # An activation layer's sensitivity is diagonal

@@ -1,5 +1,8 @@
 import CORALean.ContDynamics.NeurNetContrSys.NeurNetContrSys
 import CORALean.NN.Theorems.EncloseOuter
+import Mathlib.Analysis.Calculus.Deriv.Add
+import Mathlib.Analysis.Calculus.Deriv.Comp
+import Mathlib.Analysis.InnerProductSpace.Basic
 
 /-!
 # One control period is a linear run under the enclosed input set

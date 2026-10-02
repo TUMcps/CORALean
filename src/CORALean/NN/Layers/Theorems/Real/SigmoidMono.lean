@@ -1,4 +1,5 @@
 import CORALean.NN.Layers.Definitions.Sigmoid
+import Mathlib.Tactic.Positivity
 
 /-!
 # The logistic function is monotone

@@ -1,4 +1,7 @@
 import CORALean.Global.Tensor
+import Mathlib.Algebra.BigOperators.Fin
+import Mathlib.Algebra.Order.BigOperators.Ring.Finset
+import Mathlib.Data.Real.Basic
 
 /-!
 # Taylor models: the representation

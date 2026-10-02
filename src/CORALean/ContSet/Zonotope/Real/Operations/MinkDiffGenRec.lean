@@ -1,4 +1,5 @@
 import CORALean.ContSet.Zonotope.Real.Zonotope
+import Mathlib.Algebra.Group.Pointwise.Set.Basic
 
 /-!
 # `Zonotope.minkDiffGenRec`

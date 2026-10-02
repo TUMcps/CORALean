@@ -5,6 +5,7 @@ import CORALean.ContSet.ConZonotope.Real.Operations.LinComb
 import CORALean.ContSet.ConZonotope.Real.Operations.Mtimes
 import CORALean.ContSet.ConZonotope.Real.Operations.MtimesIntervalMat
 import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
+import Mathlib.Analysis.Normed.Algebra.Exponential
 
 /-!
 # `Alg. 1` lines 8-11: one iteration of the main loop

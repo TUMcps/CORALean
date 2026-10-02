@@ -1,5 +1,7 @@
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpW
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpTaylor
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
+import Mathlib.Data.Matrix.Basic
 
 /-!
 # The second-order truncation is `I + W(t)`

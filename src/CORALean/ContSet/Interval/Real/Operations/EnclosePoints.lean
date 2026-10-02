@@ -1,4 +1,5 @@
 import CORALean.ContSet.Interval.Real.Interval
+import Mathlib.Data.Finset.Lattice.Fold
 
 /-!
 # `Interval.enclosePoints`

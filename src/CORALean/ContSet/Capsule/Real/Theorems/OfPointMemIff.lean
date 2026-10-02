@@ -1,5 +1,6 @@
 import CORALean.ContSet.Capsule.Real.Operations.OfPoint
 import CORALean.ContSet.Capsule.Real.Theorems.OfPointMem
+import Mathlib.Analysis.Normed.Field.Basic
 
 /-!
 # `Capsule.ofPoint` denotes exactly one point

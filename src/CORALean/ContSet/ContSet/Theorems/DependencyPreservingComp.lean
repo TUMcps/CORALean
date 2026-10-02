@@ -1,4 +1,5 @@
 import CORALean.ContSet.ContSet.Definitions.DependencyPreserving
+import Mathlib.Order.BourbakiWitt
 
 /-!
 # [1, Lemma 2]: a composition preserves dependencies

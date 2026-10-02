@@ -1,4 +1,6 @@
 import CORALean.NN.Layers.Definitions.EvalPoly
+import Mathlib.Algebra.BigOperators.Ring.Finset
+import Mathlib.Tactic.Ring
 
 /-!
 # Rescaled coefficients are a conjugated polynomial

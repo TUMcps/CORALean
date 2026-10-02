@@ -1,6 +1,9 @@
 import CORALean.ContSet.Zonotope.Real.Operations.LinComb
 import CORALean.ContSet.Zonotope.Real.Theorems.PairCoeffDiff
 import CORALean.ContSet.Zonotope.Real.Theorems.PairCoeffSum
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
+import Mathlib.Data.Fintype.BigOperators
+import Mathlib.Tactic.Module
 
 /-!
 # The paired blocks recombine into the two original ones

@@ -1,4 +1,4 @@
-import CORALean.Global.Mathlib
+import Mathlib.Logic.Equiv.Fin.Basic
 
 /-!
 # Reading a two-dimensional array the other way round

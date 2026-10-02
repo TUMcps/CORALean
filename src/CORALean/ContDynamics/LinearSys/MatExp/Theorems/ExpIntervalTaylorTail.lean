@@ -3,6 +3,7 @@ import CORALean.ContSet.Interval.Real.Theorems.MatPowOuter
 import CORALean.ContSet.Interval.Real.Theorems.MemPoint
 import CORALean.ContSet.Interval.Real.Theorems.PlusOuter
 import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
+import Mathlib.Algebra.BigOperators.Intervals
 
 /-!
 # `expIntervalTaylorTail` encloses orders three and up of every member

@@ -1,5 +1,6 @@
 import CORALean.Global.Float.Instances.FixedPoint.Operations.ExactAdd
 import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealMk
+import Mathlib.Tactic.Positivity
 
 /-!
 # Addition is exact

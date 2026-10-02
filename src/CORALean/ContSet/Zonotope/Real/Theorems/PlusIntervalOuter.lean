@@ -1,5 +1,6 @@
 import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
 import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+import Mathlib.Order.BourbakiWitt
 
 /-!
 # `Zonotope.plus` at a box, [1, Prop. 2]

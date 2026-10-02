@@ -2,6 +2,7 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpMid
 import CORALean.ContSet.PolyZonotope.Real.Theorems.SubMonomialMemEDrift
 import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
 import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
 
 /-!
 # The recentred relaxation over-approximates, at any parity

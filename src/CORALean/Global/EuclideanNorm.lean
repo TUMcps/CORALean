@@ -1,4 +1,6 @@
 import CORALean.Global.Tensor
+import Mathlib.Analysis.InnerProductSpace.PiL2
+import Mathlib.Tactic.Positivity
 
 /-!
 # The Euclidean norm of a vector

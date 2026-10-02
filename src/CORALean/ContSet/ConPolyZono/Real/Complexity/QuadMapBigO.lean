@@ -1,5 +1,7 @@
 import CORALean.ContSet.ConPolyZono.Real.Complexity.QuadMap
-import CORALean.Global.Mathlib
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Analysis.Asymptotics.Defs
+import Mathlib.Tactic.Positivity
 
 /-!
 # `ConPolyZono.quadMap`'s dependent-generator count is `O(m ^ 2)`

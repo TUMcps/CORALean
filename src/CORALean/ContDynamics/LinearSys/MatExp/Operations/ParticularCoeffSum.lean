@@ -1,4 +1,5 @@
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeff
+import Mathlib.Order.Interval.Finset.Nat
 
 /-!
 # `Σᵢ Ãᵢ`, the correlated summand's single matrix

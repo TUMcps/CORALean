@@ -1,5 +1,4 @@
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOrderLeConZonotope
-import CORALean.Global.Mathlib
 
 /-!
 # `reach`'s size is `O(1)` in the step count, at `ConZonotope` too

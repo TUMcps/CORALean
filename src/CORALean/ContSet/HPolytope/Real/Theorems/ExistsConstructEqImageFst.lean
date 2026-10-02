@@ -1,6 +1,7 @@
 import CORALean.ContSet.HPolytope.Real.HPolytope
 import CORALean.Global.Tensor
 import Mathlib.Data.Finset.Fold
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
 
 /-!
 # A halfspace description's shadow is one

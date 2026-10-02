@@ -1,4 +1,5 @@
 import CORALean.ContSet.ContSet.ContSet
+import Mathlib.Analysis.RCLike.Lemmas
 
 /-!
 # Perturbing a linear image moves it no further than the perturbation reaches

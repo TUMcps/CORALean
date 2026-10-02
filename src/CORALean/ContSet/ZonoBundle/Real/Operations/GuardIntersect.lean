@@ -5,6 +5,7 @@ import CORALean.ContSet.HPolytope.Real.Operations.Intersection
 import CORALean.ContSet.HPolytope.Real.Operations.Stack
 import CORALean.ContSet.Interval.Real.Operations.EnclosePoints
 import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
+import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 
 /-!
 # `ZonoBundle.guardIntersect`: [1, Sec. VI-A]

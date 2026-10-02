@@ -1,6 +1,7 @@
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTerm
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermHi
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermLo
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
 
 /-!
 # The diagonal parabola attains both of its bounds

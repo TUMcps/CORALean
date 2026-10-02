@@ -3,6 +3,7 @@ import CORALean.ContSet.Interval.Float.Theorems.SubMemMatResidual
 import CORALean.ContSet.MatZonotope.Float.Operations.OfInterval
 import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
 import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
+import Mathlib.Data.Matrix.Basic
 
 /-!
 # `MatZonotope.ofInterval` contains the interval matrix

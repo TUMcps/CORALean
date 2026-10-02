@@ -1,4 +1,5 @@
-import CORALean.Global.Mathlib
+import Mathlib.Algebra.BigOperators.Pi
+import Mathlib.Data.Real.Basic
 
 /-!
 # A polynomial in the monomial basis, and what moves its coefficients

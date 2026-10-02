@@ -1,5 +1,9 @@
 import CORALean.ContSet.Zonotope.Real.Operations.LinComb
 import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
+import Mathlib.Algebra.BigOperators.Fin
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
+import Mathlib.Data.Matrix.Basic
+import Mathlib.Tactic.Module
 
 /-!
 # The points of `linComb Z (EZ)`, by their coefficients

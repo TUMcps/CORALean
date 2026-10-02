@@ -3,6 +3,8 @@ import CORALean.Global.EqSmulNCross
 import CORALean.ContSet.Zonotope.Real.Operations.FacetNormal
 import CORALean.ContSet.Zonotope.Real.Theorems.Convex
 import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed
+import Mathlib.Analysis.InnerProductSpace.Basic
+import Mathlib.Analysis.LocallyConvex.Separation
 
 /-!
 # [1, Thm. 2]: a zonotope is its cross-product halfspaces

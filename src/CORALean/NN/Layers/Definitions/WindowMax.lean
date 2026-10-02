@@ -1,4 +1,5 @@
-import CORALean.Global.Mathlib
+import Mathlib.Algebra.Order.BigOperators.Group.Finset
+import Mathlib.Data.Real.Basic
 
 /-!
 # The largest coordinate a pooling window reads

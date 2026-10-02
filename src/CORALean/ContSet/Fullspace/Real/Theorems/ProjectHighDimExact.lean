@@ -1,4 +1,5 @@
 import CORALean.ContSet.Fullspace.Real.Operations.ProjectHighDim
+import Mathlib.Data.Fintype.EquivFin
 
 /-!
 # `Fullspace.projectHighDim_` is exact

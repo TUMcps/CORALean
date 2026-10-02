@@ -1,4 +1,4 @@
-import CORALean.Global.Mathlib
+import Mathlib.Analysis.Complex.Exponential
 
 /-!
 # The exponential series without its first two orders

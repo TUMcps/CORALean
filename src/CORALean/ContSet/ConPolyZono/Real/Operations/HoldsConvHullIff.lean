@@ -3,6 +3,7 @@ import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullB
 import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullEC
 import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecBlkDiag
 import CORALean.ContSet.ConPolyZono.Real.Operations.ProdBlkDiag
+import Mathlib.Algebra.BigOperators.Fin
 
 /-!
 # The constraint system of the convex hull, split

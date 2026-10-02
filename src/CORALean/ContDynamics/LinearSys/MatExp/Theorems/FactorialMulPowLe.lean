@@ -1,4 +1,5 @@
 import CORALean.ContSet.Interval.Real.Interval
+import Mathlib.Tactic.Ring
 /-!
 # A factorial outgrows a power by at least one factor per step
 

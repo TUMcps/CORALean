@@ -1,4 +1,6 @@
 import CORALean.NN.Layers.Definitions.EvalPoly
+import Mathlib.Algebra.BigOperators.Fin
+import Mathlib.Tactic.Ring
 
 /-!
 # A degree-1 polynomial is an affine map

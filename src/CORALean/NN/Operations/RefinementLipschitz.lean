@@ -1,6 +1,8 @@
 import CORALean.NN.Definitions.RefinableNetwork
 import CORALean.NN.Layers.Layer
 import CORALean.NN.Operations.RefinableNetworkEval
+import Mathlib.Topology.EMetricSpace.Lipschitz
+import Mathlib.Topology.MetricSpace.Basic
 
 /-!
 # The Lipschitz hypothesis, asked of a layer instead of a tail

@@ -3,6 +3,7 @@ import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInputStep
 import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralAddMulVec
 import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationSubset
 import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
+import Mathlib.Algebra.Order.Ring.Star
 
 /-!
 # One pass of `reachFloatInput`'s loop keeps what its state owes

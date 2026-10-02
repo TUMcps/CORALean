@@ -3,6 +3,7 @@ import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
 import CORALean.ContSet.Interval.Real.Operations.Center
 import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
 import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+import Mathlib.Algebra.BigOperators.Fin
 
 /-!
 # A symmetric interval matrix map is `S · box(Z)`

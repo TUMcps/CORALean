@@ -1,4 +1,5 @@
 import CORALean.ContSet.Zonotope.Real.Zonotope
+import Mathlib.Data.Matrix.Mul
 
 /-!
 # `Zonotope.mtimes`

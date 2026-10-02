@@ -1,4 +1,7 @@
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSmulTsum
+import Mathlib.Analysis.Matrix.Normed
+import Mathlib.Analysis.SpecialFunctions.Exponential
+import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 
 /-!
 # `e^{tA}` stays within `t‖A‖e^{t‖A‖}` of the identity

@@ -1,4 +1,6 @@
 import CORALean.ContSet.Interval.Real.Interval
+import Mathlib.Analysis.Matrix.Normed
+import Mathlib.Tactic.Positivity
 /-!
 # One order of the integrated exponential, in terms of the exponential's own
 

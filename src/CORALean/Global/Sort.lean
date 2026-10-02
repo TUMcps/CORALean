@@ -1,4 +1,4 @@
-import CORALean.Global.Mathlib
+import Mathlib.Data.List.NodupEquivFin
 
 /-!
 # Ordering indices by a comparator

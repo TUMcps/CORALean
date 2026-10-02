@@ -1,4 +1,5 @@
 import CORALean.ContSet.HPolytope.Real.Operations.EmptySet
+import Mathlib.Tactic.Linarith
 
 /-!
 # `HPolytope.emptySet` denotes `∅`

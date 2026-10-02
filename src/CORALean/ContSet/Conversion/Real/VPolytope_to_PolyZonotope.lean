@@ -3,6 +3,7 @@ import CORALean.ContSet.Conversion.Real.Zonotope_to_PolyZonotope
 import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombExactOfDependent
 import CORALean.ContSet.PolyZonotope.Real.Theorems.OfPointMem
 import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
+import Mathlib.Analysis.Convex.Join
 
 /-!
 # A hull as a polynomial zonotope

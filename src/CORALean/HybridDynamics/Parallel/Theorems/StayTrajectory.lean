@@ -1,4 +1,7 @@
 import CORALean.HybridDynamics.Parallel.Theorems.MergeFlowsMulVec
+import Mathlib.Analysis.Calculus.Deriv.Add
+import Mathlib.Analysis.Calculus.Deriv.Prod
+import Mathlib.Analysis.InnerProductSpace.Basic
 
 /-!
 # A shared stay is a stay of the product

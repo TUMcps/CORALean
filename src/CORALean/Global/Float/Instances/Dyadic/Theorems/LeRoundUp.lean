@@ -1,6 +1,7 @@
 import CORALean.Global.Float.Instances.Dyadic.Operations.RoundDown
 import CORALean.Global.Float.Instances.Dyadic.Operations.RoundUp
 import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealShift
+import Mathlib.Analysis.Normed.Ring.Lemmas
 
 /-!
 # Rounding up never undershoots

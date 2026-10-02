@@ -1,4 +1,5 @@
 import CORALean.ContSet.Interval.Real.Interval
+import Mathlib.Tactic.FieldSimp
 /-!
 # `t^m - (t/r) r^m`, factored through `s = t/r`
 

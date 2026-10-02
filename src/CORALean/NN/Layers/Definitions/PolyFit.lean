@@ -1,5 +1,6 @@
 import CORALean.NN.Layers.Definitions.PolySampling
 import CORALean.Global.Tensor
+import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 
 /-!
 # A concrete fit: least squares over the sample grid

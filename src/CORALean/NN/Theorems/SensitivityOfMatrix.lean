@@ -1,4 +1,6 @@
 import CORALean.NN.Operations.LayerSensitivity
+import Mathlib.Analysis.Calculus.FDeriv.Basic
+import Mathlib.Analysis.RCLike.Lemmas
 
 /-!
 # Reading a layer's sensitivity off a matrix

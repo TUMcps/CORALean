@@ -1,4 +1,5 @@
 import CORALean.ContSet.Fullspace.Real.Fullspace
+import Mathlib.Topology.MetricSpace.Pseudo.Defs
 
 /-!
 # Full space is full-dimensional

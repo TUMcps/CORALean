@@ -1,6 +1,9 @@
 import CORALean.ContDynamics.LinearSys.Theorems.ContinuousOnState
 import CORALean.ContDynamics.LinearSys.Theorems.InputEqDerivWithin
 import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+import Mathlib.Analysis.Calculus.FDeriv.Measurable
+import Mathlib.MeasureTheory.Integral.IntegrableOn
+import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
 
 /-!
 # The input is measurable, with nothing assumed of it

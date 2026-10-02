@@ -1,4 +1,7 @@
 import CORALean.Global.CrossProduct
+import Mathlib.LinearAlgebra.AffineSpace.FiniteDimensional
+import Mathlib.LinearAlgebra.Matrix.DotProduct
+import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 
 /-!
 # The line `nX` spans

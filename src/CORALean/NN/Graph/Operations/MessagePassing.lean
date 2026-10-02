@@ -1,4 +1,5 @@
 import CORALean.NN.Graph.Operations.Degree
+import Mathlib.Analysis.Real.Sqrt
 
 /-!
 # `P = D̃^(-1/2) Ã D̃^(-1/2)`, entrywise

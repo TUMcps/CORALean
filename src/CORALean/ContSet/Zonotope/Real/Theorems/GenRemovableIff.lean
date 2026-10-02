@@ -1,5 +1,6 @@
 import CORALean.ContSet.Zonotope.Real.Zonotope
 import Mathlib.Data.Finset.Powerset
+import Mathlib.Data.Fintype.Card
 
 /-!
 # [1, Prop. 2]: the generator-removal count

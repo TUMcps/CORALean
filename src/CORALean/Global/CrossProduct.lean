@@ -1,4 +1,5 @@
-import CORALean.Global.Mathlib
+import Mathlib.Data.Real.Basic
+import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
 import CORALean.Global.Tensor
 
 /-!

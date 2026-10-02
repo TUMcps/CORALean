@@ -1,4 +1,5 @@
 import CORALean.ContDynamics.NonlinearSys.NonlinearSys
+import Mathlib.Analysis.InnerProductSpace.Basic
 
 /-!
 # A nonlinear trajectory restricts to any smaller time domain

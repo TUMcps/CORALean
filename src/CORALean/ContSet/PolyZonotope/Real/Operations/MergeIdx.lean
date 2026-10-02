@@ -1,4 +1,5 @@
 import CORALean.ContSet.PolyZonotope.Real.Operations.MergeKeep
+import Mathlib.Data.Finset.Sort
 
 /-!
 # The kept columns, indexed by a plain count

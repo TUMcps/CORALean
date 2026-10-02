@@ -3,6 +3,7 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpWApply
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.QuadTermBetween
 import CORALean.ContSet.Interval.Real.Theorems.MemMat
 import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
+import Mathlib.Tactic.Positivity
 
 /-!
 # `W(t)` of every member of an interval matrix lies in `expIntervalW`

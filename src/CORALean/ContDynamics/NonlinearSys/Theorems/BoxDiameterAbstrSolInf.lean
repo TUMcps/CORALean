@@ -1,6 +1,8 @@
 import CORALean.ContDynamics.NonlinearSys.Operations.AbstrSolInf
 import CORALean.ContSet.Zonotope.Real.Theorems.SupportBoundAttained
 import CORALean.Global.BoxDiameter
+import Mathlib.Analysis.Matrix.Normed
+import Mathlib.Tactic.Positivity
 
 /-!
 # The diameter of the set of abstraction errors

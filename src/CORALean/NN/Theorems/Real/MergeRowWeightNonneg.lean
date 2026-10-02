@@ -1,4 +1,5 @@
 import CORALean.NN.Operations.MergeRowWeight
+import Mathlib.Algebra.Order.BigOperators.Group.Finset
 
 /-!
 # A row weight is nonnegative

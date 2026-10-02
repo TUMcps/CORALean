@@ -1,5 +1,8 @@
 import CORALean.ContSet.Interval.Real.Operations.Sum1
 import CORALean.ContSet.Interval.Real.Operations.IsNonempty
+import Mathlib.Algebra.BigOperators.Ring.Finset
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
+import Mathlib.Algebra.Order.BigOperators.Group.Finset
 
 /-!
 # `Interval.sum₁` is exactly the set of column sums

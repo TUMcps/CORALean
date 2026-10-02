@@ -1,4 +1,5 @@
-import CORALean.Global.Mathlib
+import Mathlib.Analysis.Calculus.Deriv.MeanValue
+import Mathlib.Topology.Algebra.Module.ModuleTopology
 
 /-!
 # A slope out of a bound on the derivative

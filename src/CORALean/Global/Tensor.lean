@@ -1,4 +1,4 @@
-import CORALean.Global.Mathlib
+import Mathlib.LinearAlgebra.Matrix.Defs
 
 /-!
 # Arrays: vectors, matrices, tensors

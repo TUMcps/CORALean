@@ -1,4 +1,7 @@
 import CORALean.ContSet.Zonotope.Real.Zonotope
+import Mathlib.Analysis.Normed.Field.Basic
+import Mathlib.Tactic.LinearCombination
+import Mathlib.Tactic.Module
 
 /-!
 # Every face of a zonotope is centrally symmetric

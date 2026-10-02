@@ -1,5 +1,6 @@
 import CORALean.ContSet.Taylm.Real.Operations.Uminus
 import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNeg
+import Mathlib.Tactic.Linarith
 
 /-!
 # `Taylm.uminus` encloses the negation

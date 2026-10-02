@@ -1,5 +1,7 @@
 import CORALean.ContSet.Interval.Real.Operations.Ctranspose
 import CORALean.ContSet.Interval.Real.Theorems.TransposeExact
+import Mathlib.Data.Real.Star
+import Mathlib.LinearAlgebra.Matrix.ConjTranspose
 
 /-!
 # `Interval.ctranspose` is exactly the conjugate-transposed set

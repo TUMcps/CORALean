@@ -1,4 +1,7 @@
 import CORALean.ContSet.Interval.Real.Interval
+import Mathlib.Analysis.Normed.Group.Bounded
+import Mathlib.Analysis.Normed.Ring.Basic
+import Mathlib.Tactic.Positivity
 
 /-!
 # An interval is bounded

@@ -1,4 +1,5 @@
 import CORALean.ContSet.PolyZonotope.Real.Operations.Col
+import Mathlib.Data.Finset.Max
 
 /-!
 # The canonical representative of an exponent column

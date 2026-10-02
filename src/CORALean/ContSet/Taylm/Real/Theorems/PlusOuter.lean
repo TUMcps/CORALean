@@ -1,4 +1,5 @@
 import CORALean.ContSet.Taylm.Real.Operations.Plus
+import Mathlib.Tactic.Linarith
 
 /-!
 # `Taylm.plus` encloses the sum

@@ -1,4 +1,8 @@
 import CORALean.Global.Tensor
+import Mathlib.Algebra.Group.Pointwise.Set.BigOperators
+import Mathlib.Data.Matrix.Basic
+import Mathlib.Data.Real.Basic
+import Mathlib.Tactic.Linarith
 
 /-!
 # A member of a Minkowski sum of boxed segments is entrywise bounded

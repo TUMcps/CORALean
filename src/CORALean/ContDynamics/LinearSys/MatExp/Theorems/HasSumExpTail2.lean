@@ -1,4 +1,4 @@
-import CORALean.Global.Mathlib
+import Mathlib.Analysis.SpecialFunctions.Exponential
 
 /-!
 # The exponential series from its second order on, as a sum

@@ -1,5 +1,8 @@
 import CORALean.ContDynamics.LinearSys.LinearSys
 import CORALean.ContSet.Zonotope.Real.Instances
+import Mathlib.Analysis.Normed.Algebra.Exponential
+import Mathlib.Topology.Instances.Matrix
+import Mathlib.Analysis.Matrix.Normed
 
 /-!
 # `Alg. 2` line 3: the curvature radius `μ`

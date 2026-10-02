@@ -1,5 +1,6 @@
 import CORALean.ContSet.VPolytope.Real.Theorems.Convex
 import CORALean.ContSet.VPolytope.Real.Theorems.VertexMem
+import Mathlib.Analysis.Convex.Combination
 
 /-!
 # A vertex description denotes the convex hull of its vertices

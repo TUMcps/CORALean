@@ -1,4 +1,5 @@
 import CORALean.NN.Layers.Definitions.InvSqrt
+import Mathlib.Tactic.Positivity
 
 /-!
 # The clamped inverse square root is positive

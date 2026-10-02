@@ -1,4 +1,4 @@
-import CORALean.Global.Mathlib
+import Mathlib.Data.Nat.Log
 
 /-!
 # What running an operation costs

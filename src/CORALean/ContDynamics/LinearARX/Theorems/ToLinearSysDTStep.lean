@@ -1,6 +1,7 @@
 import CORALean.ContDynamics.LinearARX.Operations.Feed
 import CORALean.ContDynamics.LinearARX.Operations.ToLinearSysDT
 import CORALean.ContDynamics.LinearARX.Theorems.SumBlock
+import Mathlib.Analysis.Normed.Field.Basic
 
 /-!
 # The converted system takes the ARX step

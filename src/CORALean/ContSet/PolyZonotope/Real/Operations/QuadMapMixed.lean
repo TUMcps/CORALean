@@ -2,6 +2,7 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.Bilin
 import CORALean.ContSet.PolyZonotope.Real.Operations.CartProd
 import CORALean.ContSet.PolyZonotope.Real.Operations.Dependent
 import CORALean.ContSet.PolyZonotope.Real.Operations.QuadBilin
+import Mathlib.LinearAlgebra.Prod
 
 /-!
 # `PolyZonotope.quadMapMixed`

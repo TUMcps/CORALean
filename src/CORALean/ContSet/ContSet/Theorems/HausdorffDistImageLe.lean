@@ -1,4 +1,5 @@
 import CORALean.ContSet.ContSet.ContSet
+import Mathlib.Analysis.Normed.Operator.Basic
 
 /-!
 # A continuous linear map moves two sets no further apart than its norm says

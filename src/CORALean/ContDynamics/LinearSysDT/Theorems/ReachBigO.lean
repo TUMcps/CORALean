@@ -1,5 +1,5 @@
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOrderLe
-import CORALean.Global.Mathlib
+import Mathlib.Analysis.Asymptotics.Defs
 
 /-!
 # `reach`'s size is `O(1)` in the step count

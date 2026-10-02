@@ -1,5 +1,6 @@
 import CORALean.ContSet.ConZonotope.Real.Operations.Rescale
 import CORALean.ContSet.ConZonotope.Real.Operations.MemOfMatIff
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
 
 /-!
 # `ConZonotope.rescale` changes the representation, not the set

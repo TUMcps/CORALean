@@ -1,4 +1,5 @@
 import CORALean.ContSet.Interval.Real.Interval
+import Mathlib.Data.Matrix.Mul
 
 /-!
 # An interval matrix acting on a vector set

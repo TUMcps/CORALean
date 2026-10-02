@@ -1,4 +1,5 @@
-import CORALean.Global.Mathlib
+import Mathlib.Algebra.Field.Defs
+import Mathlib.Algebra.Group.Pointwise.Set.Basic
 
 /-!
 # A simplex, deliberately outside the trusted base

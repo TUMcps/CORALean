@@ -2,6 +2,7 @@ import CORALean.ContDynamics.NonlinearSys.Operations.GlobalAbstrErr
 import CORALean.ContDynamics.NonlinearSys.Operations.LocalAbstrErr
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffInnerOfOuter
 import CORALean.ContSet.ContSet.Theorems.SubsetMinkowskiDiffIff
+import Mathlib.Analysis.InnerProductSpace.Basic
 
 /-!
 # The two forms `[1, Def. 4]` gives the local abstraction error

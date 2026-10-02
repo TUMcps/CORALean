@@ -1,4 +1,7 @@
 import CORALean.Global.Tensor
+import Mathlib.Algebra.BigOperators.Fin
+import Mathlib.Data.Real.Basic
+import Mathlib.Tactic.Ring
 
 /-!
 # Choosing one of two per coordinate

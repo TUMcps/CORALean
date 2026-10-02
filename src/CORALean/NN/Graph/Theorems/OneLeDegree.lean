@@ -1,4 +1,5 @@
 import CORALean.NN.Graph.Operations.Degree
+import Mathlib.Tactic.Linarith
 
 /-!
 # A degree is never below one

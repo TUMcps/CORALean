@@ -1,4 +1,5 @@
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.FactorialMulPowLe
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
 
 /-!
 # The scalar core of the exponential's tail estimate

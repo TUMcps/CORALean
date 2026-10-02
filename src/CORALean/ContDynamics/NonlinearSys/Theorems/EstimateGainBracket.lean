@@ -1,4 +1,5 @@
 import CORALean.ContDynamics.NonlinearSys.Operations.EstimateGain
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
 
 /-!
 # What `estimateGain`'s bisection buys

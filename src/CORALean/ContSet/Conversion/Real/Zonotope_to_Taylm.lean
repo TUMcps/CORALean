@@ -1,5 +1,6 @@
 import CORALean.ContSet.Taylm.Real.Taylm
 import CORALean.ContSet.Zonotope.Real.Zonotope
+import Mathlib.Algebra.BigOperators.Pi
 
 /-!
 # A zonotope as an array of Taylor models

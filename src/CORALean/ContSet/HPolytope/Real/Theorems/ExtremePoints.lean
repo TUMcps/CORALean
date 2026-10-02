@@ -1,5 +1,8 @@
 import CORALean.ContSet.HPolytope.Real.Theorems.IsClosed
 import CORALean.ContSet.HPolytope.Real.Theorems.Convex
+import Mathlib.Analysis.Convex.Extreme
+import Mathlib.Analysis.InnerProductSpace.Basic
+import Mathlib.Tactic.Positivity
 
 /-!
 # Extreme points of a halfspace description

@@ -1,4 +1,5 @@
 import CORALean.NN.Layers.Theorems.Real.EvalPolyCoeff
+import Mathlib.Topology.ContinuousMap.Weierstrass
 
 /-!
 # Weierstrass, in the form a fit is handed in

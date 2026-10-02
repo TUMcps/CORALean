@@ -1,5 +1,7 @@
 import CORALean.ContDynamics.LinParamSys.LinParamSys
 import CORALean.ContSet.Interval.Real.Instances
+import Mathlib.Analysis.Normed.Algebra.Exponential
+import Mathlib.Topology.Instances.Matrix
 
 /-!
 # The exact set `Reach (LinParamSys ℐ)` is asked to enclose

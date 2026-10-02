@@ -1,5 +1,6 @@
 import CORALean.ContSet.Conversion.Real.ZonoBundle_to_Zonotope
 import CORALean.ContSet.Conversion.Real.Zonotope_to_PolyZonotope
+import Mathlib.Order.BourbakiWitt
 
 /-!
 # A bundle's polynomial zonotope, at one component

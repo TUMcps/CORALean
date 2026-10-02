@@ -1,5 +1,6 @@
 import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
 import CORALean.ContSet.MatZonotope.Float.MatZonotope
+import Mathlib.Data.Matrix.Basic
 
 /-!
 # Float matrix zonotope to interval matrix

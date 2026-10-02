@@ -1,6 +1,7 @@
 import CORALean.NN.Layers.Definitions.PolyDerivBound
 import CORALean.NN.Layers.Operations.PolyDerivRadiusUp
 import CORALean.NN.Layers.Theorems.PowRangeBounds
+import Mathlib.Tactic.Positivity
 
 /-!
 # A stored radius bounds the exact one

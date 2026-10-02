@@ -1,4 +1,5 @@
-import CORALean.Global.Mathlib
+import Mathlib.Algebra.BigOperators.Pi
+import Mathlib.Data.Real.Basic
 
 /-!
 # A sum with one term zeroed is the sum without it

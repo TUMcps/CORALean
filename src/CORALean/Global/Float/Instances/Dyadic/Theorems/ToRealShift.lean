@@ -1,4 +1,5 @@
 import CORALean.Global.Float.Instances.Dyadic.Dyadic
+import Mathlib.Algebra.Ring.CharZero
 
 /-!
 # Reading a dyadic after dropping bits into its exponent

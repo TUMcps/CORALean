@@ -1,4 +1,6 @@
-import CORALean.Global.Mathlib
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
+import Mathlib.Analysis.Convex.Caratheodory
+import Mathlib.LinearAlgebra.AffineSpace.FiniteDimensional
 
 /-!
 # Carathéodory's theorem, over a fixed index

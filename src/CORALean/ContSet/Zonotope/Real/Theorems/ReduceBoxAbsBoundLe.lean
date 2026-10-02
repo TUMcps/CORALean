@@ -1,6 +1,7 @@
 import CORALean.ContSet.Zonotope.Real.Operations.AbsBound
 import CORALean.ContSet.Zonotope.Real.Operations.ReduceBox
 import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
+import Mathlib.Tactic.Positivity
 
 /-!
 # `reduceBox` never reaches further than the zonotope it was cut from

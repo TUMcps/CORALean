@@ -1,4 +1,6 @@
 import CORALean.Global.Tensor
+import Mathlib.Data.Finset.Card
+import Mathlib.Data.Fintype.Basic
 
 /-!
 # How many neurons the buckets merge

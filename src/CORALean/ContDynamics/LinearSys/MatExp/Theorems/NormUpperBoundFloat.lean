@@ -1,5 +1,6 @@
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.NormUpperBoundFloat
 import CORALean.ContSet.Interval.Real.Operations.AbsMax
+import Mathlib.Analysis.Matrix.Normed
 
 /-!
 # `MatExp.normUpperBound` bounds the dominating matrix's `l∞` operator norm

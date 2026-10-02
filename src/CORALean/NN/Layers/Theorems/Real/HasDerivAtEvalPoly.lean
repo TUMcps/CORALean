@@ -1,4 +1,7 @@
 import CORALean.NN.Layers.Definitions.EvalPoly
+import Mathlib.Analysis.Analytic.Order
+import Mathlib.Analysis.InnerProductSpace.Basic
+import Mathlib.Topology.Algebra.Module.ModuleTopology
 
 /-!
 # A polynomial's derivative

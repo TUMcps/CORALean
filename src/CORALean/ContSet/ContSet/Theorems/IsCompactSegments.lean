@@ -1,4 +1,5 @@
 import CORALean.ContSet.ContSet.ContSet
+import Mathlib.Analysis.Normed.Module.Basic
 
 /-!
 # The segments between two compact sets are compact

@@ -1,5 +1,6 @@
 import CORALean.ContDynamics.NonlinearSys.Theorems.GlobalAbstrErrLeLocalAbstrErr
 import CORALean.ContDynamics.NonlinearSys.Theorems.GlobalAbstrErrStepOfSolver
+import Mathlib.Topology.GDelta.MetrizableSpace
 
 /-!
 # `[1, Lemma 2]` outright, for a solver of the form (10) at a fixed `A`

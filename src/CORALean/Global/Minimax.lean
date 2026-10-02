@@ -1,4 +1,4 @@
-import CORALean.Global.Mathlib
+import Mathlib.Analysis.Normed.Order.Lattice
 
 /-!
 # A minimax inequality over two compact sets

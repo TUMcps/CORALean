@@ -1,5 +1,7 @@
 import CORALean.ContDynamics.LinearSys.Theorems.FlowIci
 import CORALean.ContDynamics.LinearSys.Theorems.HasDerivWithinAtExpNegMulVec
+import Mathlib.Analysis.Calculus.FDeriv.Measurable
+import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 
 /-!
 # What `variation_of_constants` assumes about the input, discharged

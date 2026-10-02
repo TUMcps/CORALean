@@ -1,6 +1,7 @@
 import CORALean.ContSet.Interval.Real.Operations.IsNonempty
 import CORALean.ContSet.Interval.Real.Operations.MatMul
 import CORALean.ContSet.Interval.Real.Operations.Point
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
 
 /-!
 # A symmetric interval matrix times a point matrix, in closed form

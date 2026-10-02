@@ -1,4 +1,6 @@
-import CORALean.Global.Mathlib
+import Mathlib.Algebra.BigOperators.Fin
+import Mathlib.Data.Finset.Sort
+import Mathlib.Data.Matrix.Mul
 
 /-!
 # Splitting an index type into parts
