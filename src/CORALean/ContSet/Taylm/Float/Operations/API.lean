@@ -6,6 +6,10 @@ import CORALean.ContSet.Taylm.Float.Operations.ConstCoef
 import CORALean.ContSet.Taylm.Float.Operations.Exp
 import CORALean.ContSet.Taylm.Float.Operations.Log
 import CORALean.ContSet.Taylm.Float.Operations.LogCoef
+import CORALean.ContSet.Taylm.Float.Operations.TrigCoef
+import CORALean.ContSet.Taylm.Float.Operations.UnitRemainder
+import CORALean.ContSet.Taylm.Float.Operations.Sin
+import CORALean.ContSet.Taylm.Float.Operations.Cos
 import CORALean.ContSet.Taylm.Float.Operations.Minus
 import CORALean.ContSet.Taylm.Float.Operations.Mtimes
 import CORALean.ContSet.Taylm.Float.Operations.Plus

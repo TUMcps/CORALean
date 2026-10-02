@@ -196,6 +196,9 @@ import CORALean.ContDynamics.LinearSys.Theorems.WithInputReachOuter
 import CORALean.ContDynamics.LinearSys.Theorems.WithInputSplitReachOuter
 import CORALean.ContDynamics.LinearSys.Theorems.DeltaReachFloatOuter
 import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryPostDeltaFloatOuter
+import CORALean.ContDynamics.LinearSys.Theorems.AdaptiveStepFloatOuter
+import CORALean.ContDynamics.LinearSys.Theorems.AdaptiveRunFloatOuter
+import CORALean.ContDynamics.LinearSys.Theorems.ReachAdaptiveFloatOuter
 
 /-!
 # What `LinearSys` guarantees

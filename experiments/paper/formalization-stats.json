@@ -1437,11 +1437,11 @@
         "group": "contSet",
         "class": "interval",
         "methods": 110,
-        "proved": 10,
-        "float": 72,
-        "not_yet": 10,
+        "proved": 6,
+        "float": 78,
+        "not_yet": 8,
         "out_of_scope": 18,
-        "needs_float": 10,
+        "needs_float": 6,
         "out_of_scope_by_reason": {
           "plotting/display": 2,
           "random/sampling": 3,
@@ -1619,11 +1619,11 @@
         "group": "contSet",
         "class": "taylm",
         "methods": 51,
-        "proved": 12,
-        "float": 14,
+        "proved": 10,
+        "float": 16,
         "not_yet": 14,
         "out_of_scope": 11,
-        "needs_float": 12,
+        "needs_float": 10,
         "out_of_scope_by_reason": {
           "plotting/display": 2,
           "random/sampling": 1,
@@ -1671,11 +1671,11 @@
         "group": "contSet",
         "class": "zonotope",
         "methods": 80,
-        "proved": 9,
-        "float": 33,
+        "proved": 8,
+        "float": 34,
         "not_yet": 24,
         "out_of_scope": 14,
-        "needs_float": 9,
+        "needs_float": 8,
         "out_of_scope_by_reason": {
           "plotting/display": 2,
           "random/sampling": 3,
@@ -2295,11 +2295,11 @@
     "groups": {
       "contSet": {
         "methods": 908,
-        "proved": 97,
-        "float": 328,
-        "not_yet": 249,
+        "proved": 90,
+        "float": 337,
+        "not_yet": 247,
         "out_of_scope": 234,
-        "needs_float": 97,
+        "needs_float": 90,
         "cora_issues": 3,
         "out_of_scope_by_reason": {
           "plotting/display": 51,
@@ -2392,11 +2392,11 @@
     },
     "totals": {
       "methods": 1260,
-      "proved": 145,
-      "float": 401,
-      "not_yet": 340,
+      "proved": 138,
+      "float": 410,
+      "not_yet": 338,
       "out_of_scope": 374,
-      "needs_float": 145,
+      "needs_float": 138,
       "cora_issues": 5,
       "out_of_scope_by_reason": {
         "plotting/display": 86,
@@ -2439,10 +2439,10 @@
     },
     "theorems": {
       "paper": 446,
-      "float": 963,
-      "helper": 635,
-      "lemma": 1769,
-      "total": 3813,
+      "float": 993,
+      "helper": 638,
+      "lemma": 1772,
+      "total": 3849,
       "examples": 80
     }
   }

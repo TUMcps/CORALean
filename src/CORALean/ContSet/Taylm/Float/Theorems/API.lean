@@ -5,6 +5,10 @@ import CORALean.ContSet.Taylm.Float.Theorems.ConstOuter
 import CORALean.ContSet.Taylm.Float.Theorems.ExpOuter
 import CORALean.ContSet.Taylm.Float.Theorems.LogCoefMem
 import CORALean.ContSet.Taylm.Float.Theorems.LogOuter
+import CORALean.ContSet.Taylm.Float.Theorems.TrigCoefMem
+import CORALean.ContSet.Taylm.Float.Theorems.UnitRemainderLe
+import CORALean.ContSet.Taylm.Float.Theorems.SinOuter
+import CORALean.ContSet.Taylm.Float.Theorems.CosOuter
 import CORALean.ContSet.Taylm.Float.Theorems.MinusOuter
 import CORALean.ContSet.Taylm.Float.Theorems.MtimesOuter
 import CORALean.ContSet.Taylm.Float.Theorems.PlusOuter

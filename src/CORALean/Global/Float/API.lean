@@ -6,6 +6,10 @@ import CORALean.Global.Float.Exp
 import CORALean.Global.Float.Log
 import CORALean.Global.Float.Sqrt
 import CORALean.Global.Float.InverseHyperbolic
+import CORALean.Global.Float.SinCos
+import CORALean.Global.Float.TrigRange
+import CORALean.Global.Float.InverseTrig
+import CORALean.Global.Float.Tan
 import CORALean.Global.Float.ListSum
 import CORALean.Global.Float.PowUp
 import CORALean.Global.Float.PowDown
@@ -13,6 +17,7 @@ import CORALean.Global.Float.DivFact
 import CORALean.Global.Float.BilinUp
 import CORALean.Global.Float.Instances.API
 import CORALean.Global.Float.FloatBound
+import CORALean.Global.Float.RatUp
 
 /-!
 # The floating-point scalar, collected
@@ -20,7 +25,9 @@ import CORALean.Global.Float.FloatBound
 `FloatOps` gives the rounded operations, `SoundFloatArithmetic` says their
 directions are honest, `ToRat` decodes a scalar exactly into ℚ where one can,
 `Exp` and `Log` are the transcendentals built on top of
-them, and `Instances` supplies models of both classes.
+them, `SinCos` the sine and cosine by halving and doubling, `InverseTrig` the
+arctangent, arcsine and arccosine by a bisection on them, and `Instances`
+supplies models of both classes.
 
 `EuclideanNorm` is the third place the scalar is asked for something it has not
 got, and the three answers differ: `exp` is a construction, because no
