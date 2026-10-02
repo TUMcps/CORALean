@@ -103,7 +103,7 @@ Only these, and the row says which:
 | [ellipsoid](contSet/ellipsoid.md) | contSet | 50 | 3 | 12 | 26 | 9 | 0 |
 | [emptySet](contSet/emptySet.md) | contSet | 30 | 12 | 10 | 1 | 7 | 0 |
 | [fullspace](contSet/fullspace.md) | contSet | 33 | 12 | 11 | 3 | 7 | 0 |
-| [interval](contSet/interval.md) | contSet | 110 | 19 | 46 | 27 | 18 | 0 |
+| [interval](contSet/interval.md) | contSet | 110 | 16 | 61 | 15 | 18 | 0 |
 | [levelSet](contSet/levelSet.md) | contSet | 22 | 0 | 0 | 16 | 6 | 0 |
 | [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 9 | 15 | 36 | 13 | 0 |
 | [polygon](contSet/polygon.md) | contSet | 46 | 0 | 0 | 40 | 6 | 0 |

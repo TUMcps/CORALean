@@ -16,6 +16,7 @@ import CORALean.HybridDynamics.Parallel.Theorems.HPolytopeStackProdbe
 import CORALean.HybridDynamics.Parallel.Theorems.HPolytopeStackProdExact
 import CORALean.HybridDynamics.Parallel.Theorems.HPolytopeComapBlockProjExact
 import CORALean.HybridDynamics.Parallel.Theorems.BoxLifting
+import CORALean.HybridDynamics.Parallel.Theorems.IntervalStackProdFloatExact
 
 /-!
 # What a parallel hybrid automaton guarantees, collected

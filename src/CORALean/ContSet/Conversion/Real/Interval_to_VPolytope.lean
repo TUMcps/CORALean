@@ -1,4 +1,6 @@
 import CORALean.ContSet.VPolytope.Real.VPolytope
+import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
+import CORALean.ContSet.Interval.Real.Theorems.Convex
 import CORALean.ContSet.Interval.Real.Interval
 import CORALean.Global.Corners
 
@@ -91,6 +93,25 @@ theorem Interval.vPolytope_contains (I : Interval (Vec ℝ n)) :
         (fun σ : Fin n → Bool => (∏ j, (if σ j then t j else 1 - t j))
           * (if σ i then I.sup i else I.inf i)) fun _ => rfl,
       sum_prod_bool_mul t I.sup I.inf i, hval i]
+
+/-- Every corner of a nonempty box lies in the box, and the box is convex. -/
+theorem Interval.contains_vPolytope (I : Interval (Vec ℝ n)) (hI : ∀ j, I.inf j ≤ I.sup j) :
+    I.vPolytope.construct ⊆ I.construct := by -- --- PROOF ---
+  rw [VPolytope.construct_eq_convexHull]
+  refine convexHull_min ?_ I.convex_construct
+  rintro _ ⟨l, rfl⟩ j
+  show I.inf j ≤ I.corner (signEquiv n l) j ∧ I.corner (signEquiv n l) j ≤ I.sup j
+  unfold Interval.corner
+  split_ifs
+  · exact ⟨hI j, le_rfl⟩
+  · exact ⟨le_rfl, hI j⟩
+
+/-- The `2ⁿ` corners have the box as their convex hull: `vPolytope_contains` and
+`contains_vPolytope`, the latter for a nonempty box (`inf ≤ sup`), since the corners of an empty
+box are not in it. -/
+theorem Interval.vPolytope_exact (I : Interval (Vec ℝ n)) (hI : ∀ j, I.inf j ≤ I.sup j) :
+    I.vPolytope.construct = I.construct :=
+  Set.Subset.antisymm (I.contains_vPolytope hI) I.vPolytope_contains
 
 end CORALean.Real
 

@@ -52,6 +52,26 @@ import CORALean.ContSet.Interval.Float.Operations.Min
 import CORALean.ContSet.Interval.Float.Operations.Isequal
 import CORALean.ContSet.Interval.Float.Operations.Transpose
 import CORALean.ContSet.Interval.Float.Operations.Ctranspose
+import CORALean.ContSet.Interval.Float.Operations.Diag
+import CORALean.ContSet.Interval.Float.Operations.DiagVec
+import CORALean.ContSet.Interval.Float.Operations.Mask
+import CORALean.ContSet.Interval.Float.Operations.Tril
+import CORALean.ContSet.Interval.Float.Operations.Triu
+import CORALean.ContSet.Interval.Float.Operations.Horzcat
+import CORALean.ContSet.Interval.Float.Operations.Vertcat
+import CORALean.ContSet.Interval.Float.Operations.Center
+import CORALean.ContSet.Interval.Float.Operations.Radius
+import CORALean.ContSet.Interval.Float.Operations.Sum1
+import CORALean.ContSet.Interval.Float.Operations.Sum2
+import CORALean.ContSet.Interval.Float.Operations.Volume
+import CORALean.ContSet.Interval.Float.Operations.SplitAt
+import CORALean.ContSet.Interval.Float.Operations.Norm
+import CORALean.ContSet.Interval.Float.Operations.CenterLo
+import CORALean.ContSet.Interval.Float.Operations.CenterBox
+import CORALean.ContSet.Interval.Float.Operations.NormMag
+import CORALean.ContSet.Interval.Float.Operations.RadiusSq
+import CORALean.ContSet.Interval.Float.Operations.ProdUp
+import CORALean.ContSet.Interval.Float.Operations.WidthUp
 
 /-!
 # What `Interval` computes
@@ -68,4 +88,8 @@ The same eleven: `le`, `lt`, `empty`, three `representsa_*` tests, `exp`, `abs`,
 and `projectHighDim_`. Only `exp` and `times` round.
 
 The same four: `max`, `min`, `isequal` and `transpose` with `ctranspose`. None rounds.
+
+The same again: `center`, `rad`, `sum` (both axes), `volume_`, `split`, `norm_` and `radius`.
+All but `split` round, and `norm_` and `radius` stop at the squared length, the root being a
+certificate.
 -/

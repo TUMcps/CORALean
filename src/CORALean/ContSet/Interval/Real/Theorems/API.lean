@@ -95,6 +95,19 @@ import CORALean.ContSet.Interval.Real.Theorems.TransposeExact
 import CORALean.ContSet.Interval.Real.Theorems.CtransposeExact
 import CORALean.ContSet.Interval.Real.Theorems.Sum1Exact
 import CORALean.ContSet.Interval.Real.Theorems.Sum2Exact
+import CORALean.ContSet.Interval.Real.Theorems.AcoshExact
+import CORALean.ContSet.Interval.Real.Theorems.AtanhExact
+import CORALean.ContSet.Interval.Real.Theorems.TanExact
+import CORALean.ContSet.Interval.Real.Theorems.MaskExact
+import CORALean.ContSet.Interval.Real.Theorems.TrilExact
+import CORALean.ContSet.Interval.Real.Theorems.TriuExact
+import CORALean.ContSet.Interval.Real.Theorems.HorzcatExact
+import CORALean.ContSet.Interval.Real.Theorems.VertcatExact
+import CORALean.ContSet.Interval.Real.Theorems.PartitionExact
+import CORALean.ContSet.Interval.Real.Theorems.DiagExact
+import CORALean.ContSet.Interval.Real.Theorems.DiagVecExact
+import CORALean.ContSet.Interval.Real.Theorems.QuadMapOuter
+import CORALean.ContSet.Interval.Real.Theorems.QuadMapMixedOuter
 
 /-!
 # What `Interval` guarantees

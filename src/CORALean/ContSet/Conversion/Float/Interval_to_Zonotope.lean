@@ -1,4 +1,5 @@
 import CORALean.ContSet.Zonotope.Float.Zonotope
+import CORALean.ContSet.Interval.Float.Operations.Center
 
 /-!
 # A box as a zonotope, over a floating-point scalar
@@ -26,9 +27,6 @@ namespace CORALean.Float
 open Pointwise FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
-
-/-- Any point of the box would do; the midpoint keeps the generators small. -/
-def Interval.center (I : Interval (Vec 𝕋 n)) : Vec 𝕋 n := fun i => half (addUp (I.inf i) (I.sup i))
 
 /-- Far enough from the stored centre to reach both ends. -/
 def Interval.radiusFrom (I : Interval (Vec 𝕋 n)) : Vec 𝕋 n :=
