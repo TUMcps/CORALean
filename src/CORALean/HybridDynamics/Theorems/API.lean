@@ -36,6 +36,10 @@ import CORALean.HybridDynamics.Theorems.RunUntilToRunOn
 import CORALean.HybridDynamics.Theorems.TimeIntervalInvOuter
 import CORALean.HybridDynamics.Theorems.TimeIntervalInvFloatOuter
 import CORALean.HybridDynamics.Theorems.TrajectoryMemIccRight
+import CORALean.HybridDynamics.Theorems.NonlinearResetEvaluateToNonlinearReset
+import CORALean.HybridDynamics.Theorems.NonlinearResetFoldlUpdateOfNotMem
+import CORALean.HybridDynamics.Theorems.NonlinearResetLiftOfNotMem
+import CORALean.HybridDynamics.Theorems.NonlinearResetLiftBind
 
 /-!
 # What a hybrid run guarantees, collected

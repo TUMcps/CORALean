@@ -15,6 +15,7 @@ import CORALean.ContSet.Taylm.Float.Operations.Sum
 import CORALean.ContSet.Taylm.Float.Operations.TermBounds
 import CORALean.ContSet.Taylm.Float.Operations.Times
 import CORALean.ContSet.Taylm.Float.Operations.Uminus
+import CORALean.ContSet.Taylm.Float.Operations.BoundDot
 
 /-!
 # Float Taylor model operations, collected

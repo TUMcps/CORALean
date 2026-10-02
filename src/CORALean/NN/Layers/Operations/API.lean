@@ -26,6 +26,8 @@ import CORALean.NN.Layers.Operations.CurvLo
 import CORALean.NN.Layers.Operations.CurvMid
 import CORALean.NN.Layers.Operations.DoubleRounding
 import CORALean.NN.Layers.Operations.ElementwiseAffine
+import CORALean.NN.Layers.Operations.LipConstrLinear
+import CORALean.NN.Layers.Operations.LipConstrScale
 import CORALean.NN.Layers.Operations.EnclosureMid
 import CORALean.NN.Layers.Operations.EvalPolyDown
 import CORALean.NN.Layers.Operations.EvalPolyUp

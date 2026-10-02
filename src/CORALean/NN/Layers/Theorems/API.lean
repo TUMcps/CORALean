@@ -32,6 +32,8 @@ import CORALean.NN.Layers.Theorems.LeSigmoidDerivHi
 import CORALean.NN.Layers.Theorems.LeakyReluRelaxationSound
 import CORALean.NN.Layers.Theorems.LeakyReluSound
 import CORALean.NN.Layers.Theorems.LinearSound
+import CORALean.NN.Layers.Theorems.LipConstrLinearSound
+import CORALean.NN.Layers.Theorems.LipConstrScaleRowSumLe
 import CORALean.NN.Layers.Theorems.LinearWithErrorMem
 import CORALean.NN.Layers.Theorems.LinearWithErrorSound
 import CORALean.NN.Layers.Theorems.MaxPoolGapUpNonneg

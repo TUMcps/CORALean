@@ -8,6 +8,13 @@ import CORALean.ContSet.Capsule.Real.Theorems.OfPointMemIff
 import CORALean.ContSet.Capsule.Real.Theorems.CentreMemConstructIff
 import CORALean.ContSet.Capsule.Real.Theorems.EmptyExact
 import CORALean.ContSet.Capsule.Real.Theorems.ReindexExact
+import CORALean.ContSet.Capsule.Real.Theorems.NormSubCentreLe
+import CORALean.ContSet.Capsule.Real.Theorems.RadiusExact
+import CORALean.ContSet.Capsule.Real.Theorems.ProjectExact
+import CORALean.ContSet.Capsule.Real.Theorems.PlusOuter
+import CORALean.ContSet.Capsule.Real.Theorems.PlusVecExact
+import CORALean.ContSet.Capsule.Real.Theorems.MtimesOuter
+import CORALean.ContSet.Capsule.Real.Theorems.MtimesCoraCounterexample
 
 /-!
 # What a capsule guarantees, collected

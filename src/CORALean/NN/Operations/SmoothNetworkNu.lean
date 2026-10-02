@@ -1,0 +1,34 @@
+import CORALean.NN.Definitions.SmoothNetwork
+
+/-!
+# The dimension of the input CORA's conversion adds
+
+CORA's `dim_u`: one block per linear layer, the size of its bias.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       02-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- CORA's `dim_u`: the sizes of the linear layers' biases, added up. -/
+def SmoothNetwork.nu : ∀ {n k : ℕ}, SmoothNetwork n k → ℕ
+  | _, _, .output => 0
+  | _, _, .linear (m := m) _ _ rest => m + rest.nu
+  | _, _, .elementwiseAffine _ _ rest => rest.nu
+  | _, _, .tanh rest => rest.nu
+  | _, _, .relu rest => rest.nu
+  | _, _, .sigmoid rest => rest.nu
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

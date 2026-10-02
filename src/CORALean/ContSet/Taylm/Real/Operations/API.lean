@@ -30,6 +30,7 @@ import CORALean.ContSet.Taylm.Real.Operations.TermBounds
 import CORALean.ContSet.Taylm.Real.Operations.Times
 import CORALean.ContSet.Taylm.Real.Operations.Uminus
 import CORALean.ContSet.Taylm.Real.Operations.Uplus
+import CORALean.ContSet.Taylm.Real.Operations.SupportBound
 
 /-!
 # Taylor model operations, collected

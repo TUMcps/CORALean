@@ -35,6 +35,7 @@ import CORALean.ContSet.Zonotope.Float.Operations.Reindex
 import CORALean.ContSet.Zonotope.Float.Operations.ConstrSat
 import CORALean.ContSet.Zonotope.Float.Operations.Origin
 import CORALean.ContSet.Zonotope.Float.Operations.Point
+import CORALean.ContSet.Zonotope.Float.Operations.NormSq
 
 /-!
 # What `Zonotope` computes

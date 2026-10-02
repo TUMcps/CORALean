@@ -72,6 +72,10 @@ import CORALean.ContSet.Interval.Float.Theorems.NormNominalLe
 import CORALean.ContSet.Interval.Float.Theorems.NormLe
 import CORALean.ContSet.Interval.Float.Theorems.Radius2NominalLe
 import CORALean.ContSet.Interval.Float.Theorems.Norm2SubCenterLe
+import CORALean.ContSet.Interval.Float.Theorems.Prod1Outer
+import CORALean.ContSet.Interval.Float.Theorems.PartitionCover
+import CORALean.ContSet.Interval.Float.Theorems.PartitionPiece
+import CORALean.ContSet.Interval.Float.Theorems.EnlargeOuter
 
 /-!
 # What `Interval` guarantees

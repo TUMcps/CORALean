@@ -10,11 +10,8 @@ Two roundings in two places: the centre and generators into the ambient error
 box, the constraints into `P`, whose float form carries an interval right-hand
 side. One box, not two.
 
-`mtimes` and `intersection` are still missing. Both are reachable, and both want the same
-thing first: the float zonotope's `mtimes` argument stated about the
-*coefficients* rather than about the set, so a representation carrying extra
-conditions on them can reuse it instead of repeating thirty-five lines. `intersection`
-additionally needs its agreement rows widened by `E₂ ⊖ E₁`, which is exactly what
-an interval right-hand side is for — the two incoming boxes displace the point
-the rows pin together.
+`mtimes` keeps `P`, the constraints sitting on coefficients a linear map never sees, and its
+rounding goes into the box by the float zonotope's argument. `intersection` is still missing: it
+needs its agreement rows widened by `E₂ ⊖ E₁`, which is exactly what an interval right-hand
+side is for — the two incoming boxes displace the point the rows pin together.
 -/

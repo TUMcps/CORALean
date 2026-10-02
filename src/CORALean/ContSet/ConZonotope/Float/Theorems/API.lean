@@ -9,6 +9,7 @@ import CORALean.ContSet.ConZonotope.Float.Theorems.Convex
 import CORALean.ContSet.ConZonotope.Float.Theorems.EmptyExact
 import CORALean.ContSet.ConZonotope.Float.Theorems.IsCompact
 import CORALean.ContSet.ConZonotope.Float.Theorems.OriginExact
+import CORALean.ContSet.ConZonotope.Float.Theorems.MtimesOuter
 import CORALean.ContSet.ConZonotope.Float.Theorems.ReindexExact
 
 /-!

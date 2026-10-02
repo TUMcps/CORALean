@@ -4,6 +4,7 @@ import CORALean.HybridDynamics.Definitions.Invariant
 import CORALean.HybridDynamics.Definitions.InvariantOn
 import CORALean.HybridDynamics.Definitions.ReachSet
 import CORALean.HybridDynamics.Definitions.RunUntil
+import CORALean.HybridDynamics.Definitions.NonlinearReset
 
 /-!
 # What a hybrid automaton means
