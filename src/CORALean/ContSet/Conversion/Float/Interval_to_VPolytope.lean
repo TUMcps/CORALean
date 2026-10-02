@@ -52,6 +52,37 @@ theorem Interval.vPolytope_contains (I : Interval (Vec 𝕋 n)) :
   · show x + 0 = x
     rw [add_zero]
 
+/-- The corner list's convex hull is no larger than the box, for a nonempty one: the error box is
+the point `0`, and the nominal corners are the exact layer's, whose hull
+`Real.Interval.vPolytope_exact` shows to be the box. -/
+theorem Interval.contains_vPolytope (I : Interval (Vec 𝕋 n))
+    (hI : ∀ i, toReal (I.inf i) ≤ toReal (I.sup i)) :
+    (Interval.vPolytope I).construct ⊆ I.construct := by -- --- PROOF ---
+  rintro y ⟨x, hx, e, he, rfl⟩
+  have hV : (fun (l : Fin (2 ^ n)) (i : Fin n) =>
+        toReal (if signEquiv n l i then I.sup i else I.inf i))
+      = fun (l : Fin (2 ^ n)) => Real.Interval.corner I.nominal (signEquiv n l) := by
+    funext l i
+    exact apply_ite toReal _ _ _
+  have hx' : x ∈ Real.VPolytope.construct
+      ⟨2 ^ n, fun l i => toReal (if signEquiv n l i then I.sup i else I.inf i)⟩ := hx
+  rw [hV] at hx'
+  have hxI : x ∈ I.construct := Real.Interval.contains_vPolytope I.nominal hI hx'
+  have he0 : e = 0 := by
+    funext i
+    have h : toReal (zero : 𝕋) ≤ e i ∧ e i ≤ toReal (zero : 𝕋) := he i
+    rw [toReal_zero] at h
+    exact le_antisymm h.2 h.1
+  subst he0
+  simpa using hxI
+
+/-- Exact for a nonempty box: `vPolytope_contains` and `contains_vPolytope`. -/
+theorem Interval.vPolytope_exact (I : Interval (Vec 𝕋 n))
+    (hI : ∀ i, toReal (I.inf i) ≤ toReal (I.sup i)) :
+    (Interval.vPolytope I).construct = I.construct :=
+  Set.Subset.antisymm (Interval.contains_vPolytope I hI) (Interval.vPolytope_contains I)
+
+
 end CORALean.Float
 
 

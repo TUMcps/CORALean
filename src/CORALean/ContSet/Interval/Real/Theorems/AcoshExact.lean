@@ -1,0 +1,37 @@
+import CORALean.ContSet.Interval.Real.Operations.Acosh
+import CORALean.ContSet.Interval.Real.Theorems.MonotoneImageExact
+
+/-!
+# `Interval.acosh` is exactly the image under `Real.arcosh`
+
+The inverse hyperbolic cosine is strictly increasing and continuous for `1 ≤ x`, so
+`Interval.monotoneImage_exact` applies. CORA returns a complex or NaN result below `1`; here the
+domain is a hypothesis, both corners at least `1`.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       02-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem Interval.acosh_exact (I : Interval (Vec ℝ n))
+    (hI : ∀ i, 1 ≤ I.inf i ∧ 1 ≤ I.sup i) :
+    I.acosh.construct = (fun x i => Real.arcosh (x i)) '' I.construct := by
+  exact Interval.monotoneImage_exact Real.arcosh (Set.Ici 1) Set.ordConnected_Ici
+    (Real.strictMonoOn_arcosh.mono (fun _ hx => Set.mem_Ioi.2 (lt_of_lt_of_le one_pos hx)))
+    Real.continuousOn_arcosh I hI
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

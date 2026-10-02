@@ -9,6 +9,7 @@ import CORALean.HybridDynamics.Parallel.Operations.Unstack
 import CORALean.HybridDynamics.Parallel.Operations.BlockProj
 import CORALean.HybridDynamics.Parallel.Operations.IntervalStackProd
 import CORALean.HybridDynamics.Parallel.Operations.HPolytopeStackProd
+import CORALean.HybridDynamics.Parallel.Operations.IntervalStackProdFloat
 
 /-!
 # What a parallel hybrid automaton computes, collected

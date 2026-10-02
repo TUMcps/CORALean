@@ -66,6 +66,19 @@ import CORALean.ContSet.Interval.Real.Operations.Ctranspose
 import CORALean.ContSet.Interval.Real.Operations.OfCenterRadius
 import CORALean.ContSet.Interval.Real.Operations.Sum1
 import CORALean.ContSet.Interval.Real.Operations.Sum2
+import CORALean.ContSet.Interval.Real.Operations.Acosh
+import CORALean.ContSet.Interval.Real.Operations.Atanh
+import CORALean.ContSet.Interval.Real.Operations.Tan
+import CORALean.ContSet.Interval.Real.Operations.Mask
+import CORALean.ContSet.Interval.Real.Operations.Tril
+import CORALean.ContSet.Interval.Real.Operations.Triu
+import CORALean.ContSet.Interval.Real.Operations.Horzcat
+import CORALean.ContSet.Interval.Real.Operations.Vertcat
+import CORALean.ContSet.Interval.Real.Operations.Partition
+import CORALean.ContSet.Interval.Real.Operations.Diag
+import CORALean.ContSet.Interval.Real.Operations.DiagVec
+import CORALean.ContSet.Interval.Real.Operations.QuadMap
+import CORALean.ContSet.Interval.Real.Operations.QuadMapMixed
 
 /-!
 # What `Interval` computes

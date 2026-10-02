@@ -50,6 +50,28 @@ import CORALean.ContSet.Interval.Float.Theorems.MinExact
 import CORALean.ContSet.Interval.Float.Theorems.IsequalSound
 import CORALean.ContSet.Interval.Float.Theorems.TransposeExact
 import CORALean.ContSet.Interval.Float.Theorems.CtransposeExact
+import CORALean.ContSet.Interval.Float.Theorems.DiagExact
+import CORALean.ContSet.Interval.Float.Theorems.DiagVecExact
+import CORALean.ContSet.Interval.Float.Theorems.MaskExact
+import CORALean.ContSet.Interval.Float.Theorems.TrilExact
+import CORALean.ContSet.Interval.Float.Theorems.TriuExact
+import CORALean.ContSet.Interval.Float.Theorems.HorzcatExact
+import CORALean.ContSet.Interval.Float.Theorems.VertcatExact
+import CORALean.ContSet.Interval.Float.Theorems.CenterOuter
+import CORALean.ContSet.Interval.Float.Theorems.RadiusOuter
+import CORALean.ContSet.Interval.Float.Theorems.Sum1Outer
+import CORALean.ContSet.Interval.Float.Theorems.Sum2Outer
+import CORALean.ContSet.Interval.Float.Theorems.VolumeOuter
+import CORALean.ContSet.Interval.Float.Theorems.SplitAtCover
+import CORALean.ContSet.Interval.Float.Theorems.CenterGe
+import CORALean.ContSet.Interval.Float.Theorems.CenterLoLe
+import CORALean.ContSet.Interval.Float.Theorems.Sum1OuterImage
+import CORALean.ContSet.Interval.Float.Theorems.Sum2OuterImage
+import CORALean.ContSet.Interval.Float.Theorems.VolumeNominalLe
+import CORALean.ContSet.Interval.Float.Theorems.NormNominalLe
+import CORALean.ContSet.Interval.Float.Theorems.NormLe
+import CORALean.ContSet.Interval.Float.Theorems.Radius2NominalLe
+import CORALean.ContSet.Interval.Float.Theorems.Norm2SubCenterLe
 
 /-!
 # What `Interval` guarantees
@@ -69,4 +91,8 @@ The same for `le`, `lt`, `empty`, `representsa_*`, `exp`, `abs`, `times`, `proje
 
 The same for `max`, `min` (exact, under nonemptiness of the readings), `isequal` (sound when
 `true`) and `transpose`, `ctranspose` (exact).
+
+The same for `center`, `rad`, `sum`, `volume_`, `split`, `norm_` and `radius`: each bounds the
+exact layer's value in the direction its rounding goes. `norm_` and `radius` take a caller's `σ`
+with `normSq ≤ σ·σ`.
 -/

@@ -1437,11 +1437,11 @@
         "group": "contSet",
         "class": "interval",
         "methods": 110,
-        "proved": 19,
-        "float": 46,
-        "not_yet": 27,
+        "proved": 16,
+        "float": 61,
+        "not_yet": 15,
         "out_of_scope": 18,
-        "needs_float": 19,
+        "needs_float": 16,
         "out_of_scope_by_reason": {
           "plotting/display": 2,
           "random/sampling": 3,
@@ -2295,11 +2295,11 @@
     "groups": {
       "contSet": {
         "methods": 908,
-        "proved": 120,
-        "float": 205,
-        "not_yet": 385,
+        "proved": 117,
+        "float": 220,
+        "not_yet": 373,
         "out_of_scope": 198,
-        "needs_float": 120,
+        "needs_float": 117,
         "cora_issues": 2,
         "out_of_scope_by_reason": {
           "plotting/display": 49,
@@ -2392,11 +2392,11 @@
     },
     "totals": {
       "methods": 1260,
-      "proved": 165,
-      "float": 267,
-      "not_yet": 511,
+      "proved": 162,
+      "float": 282,
+      "not_yet": 499,
       "out_of_scope": 317,
-      "needs_float": 165,
+      "needs_float": 162,
       "cora_issues": 4,
       "out_of_scope_by_reason": {
         "plotting/display": 84,
@@ -2439,10 +2439,10 @@
     },
     "theorems": {
       "paper": 446,
-      "float": 756,
-      "helper": 565,
-      "lemma": 1533,
-      "total": 3300,
+      "float": 787,
+      "helper": 567,
+      "lemma": 1548,
+      "total": 3348,
       "examples": 77
     }
   }
