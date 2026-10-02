@@ -117,6 +117,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.ScaledRPI
 import CORALean.ContSet.Zonotope.Real.Theorems.ShiftMemIff
 import CORALean.ContSet.Zonotope.Real.Theorems.SplitIntersection
 import CORALean.ContSet.Zonotope.Real.Theorems.SplitUnion
+import CORALean.ContSet.Zonotope.Real.Theorems.SplitLongestGenUnion
 import CORALean.ContSet.Zonotope.Real.Theorems.StepSubsetClosedBall
 import CORALean.ContSet.Zonotope.Real.Theorems.StepSubsetClosedBallOfReduceBoxOrder
 import CORALean.ContSet.Zonotope.Real.Theorems.SubsetClosedBallOfAbsBoundLe

@@ -36,6 +36,8 @@ import CORALean.Global.HorizonErrorBudget
 import CORALean.Global.ConvergenceOrder
 import CORALean.Global.LinProg.API
 import CORALean.Global.TaylorRemainder
+import CORALean.Global.CoeffDomination
+import CORALean.Global.ElementaryDerivBounds
 
 /-!
 # Global definitions, collected

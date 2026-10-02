@@ -12,8 +12,8 @@ CORA methods of `contSet/@zoo/`, one row each, and where CORALean answers them. 
 | `mtimes` | — | — |  |
 | `plus` | — | — |  |
 | `rdivide` | — | — |  |
-| `subsasgn` | — | — |  |
-| `subsref` | — | — |  |
+| `subsasgn` | out-of-scope | n/a — matlab-runtime |  |
+| `subsref` | out-of-scope | n/a — matlab-runtime |  |
 | `times` | — | — |  |
 | `uminus` | — | — |  |
 | `uplus` | — | — |  |

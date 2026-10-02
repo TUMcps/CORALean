@@ -282,6 +282,10 @@ Schedule.refineWorstNeurons  real-layer: an ℝ-only part of NN (the graph layer
 abstrErr  pending #1: the `'poly'` variant's error over `Real.PolyZonotope` at real `D`, `E` and `postDelta`; needs a float `PolyZonotope` quadMap chain, a float `postDelta`, and second/third-derivative enclosures in `FloatModel`
 abstrErrLin  pending #1: the Hessian box of [Althoff 2010, Prop. 3.7] at a real `H`; the float run uses the first-order `NonlinearSys.FloatModel.slopeRemainder` instead, and this box in floats needs a Hessian enclosure `FloatModel` does not carry
 abstrSolInf  spec: the exact `Set` the abstraction error sums to, defined by a `HasSum`
+asinDom  real-layer: a polynomial over ℝ built by recursion, the derivative bound of a Taylm elementary function (`Taylm.tan`, `atan`, `asin`), reached only from the real layer
+asinPoly  real-layer: a polynomial over ℝ built by recursion, the derivative bound of a Taylm elementary function (`Taylm.tan`, `atan`, `asin`), reached only from the real layer
+atanDom  real-layer: a polynomial over ℝ built by recursion, the derivative bound of a Taylm elementary function (`Taylm.tan`, `atan`, `asin`), reached only from the real layer
+atanPoly  real-layer: a polynomial over ℝ built by recursion, the derivative bound of a Taylm elementary function (`Taylm.tan`, `atan`, `asin`), reached only from the real layer
 boxDiameter  spec: a norm or Hausdorff distance over ℝ, used only to state a guarantee
 containsBoxRealConZonotope  real-layer: `S` fixed to an exact real family so instance search finds it, `Real.ConZonotope` against a box
 containsBoxRealInterval  real-layer: `S` fixed to an exact real family so instance search finds it, `Real.Interval` against a box
@@ -308,6 +312,7 @@ layerSensitivity  real-layer: an ℝ-only part of NN (the graph layers, sensitiv
 localAbstrErr  spec: an abstraction-error measure of an exact `Set`, its box diameter
 mulVecL  spec: `Matrix.mulVec` as a continuous bilinear map, a proof device for differentiating the flow
 norm₂  spec: a norm or Hausdorff distance over ℝ, used only to state a guarantee
+odePoly  real-layer: a polynomial over ℝ built by recursion, the derivative bound of a Taylm elementary function (`Taylm.tan`, `atan`, `asin`), reached only from the real layer
 optDeltat  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 optDeltatSearch  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 reachSizeEstimate  pending #1: a nonlinear tuning heuristic in ℝ arithmetic; needs restating over the scalar `𝕋` (a heuristic, so no soundness obligation)
@@ -323,3 +328,5 @@ verifyConvex  spec: a real-valued certificate (support witness/bound), quantifyi
 verifyConvexStep  spec: a real-valued certificate (support witness/bound), quantifying over arbitrary linear functionals
 verifyHalfspace  spec: a real-valued certificate (support witness/bound), quantifying over arbitrary linear functionals
 worstIndex  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
+NonlinDASys.WithSteps.reachUnion  pending #1: `NonlinearSys.WithSteps.reachUnion` on the reduced system at real certificates; same reason as `NonlinParamSys.WithSteps.reachUnion`
+NonlinDASys.reachInstance  pending #1: `Reach` for the reduced run at real certificates; see `NonlinDASys.WithSteps.reachUnion`

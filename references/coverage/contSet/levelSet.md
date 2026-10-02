@@ -10,7 +10,7 @@ CORA methods of `contSet/@levelSet/`, one row each, and where CORALean answers t
 | `and_` | proved | [`LevelSet.and_`](../../../src/CORALean/ContSet/LevelSet/Real/Operations/And.lean), [`LevelSet.and_exact`](../../../src/CORALean/ContSet/LevelSet/Real/Theorems/AndExact.lean), [`Intersection`](../../../src/CORALean/ContSet/ContSet/ContSet.lean) | level set with level set only (CORA's `aux_and_ls`): the constraint lists stacked, each with its own operator, exactly `construct L₁ ∩ construct L₂`; CORA's branches against other representations (polytope via `levelSet(P)`, polynomial zonotopes, `conPolyZono`) are not modelled |
 | `compact_` | — | — |  |
 | `contains_` | proved | [`LevelSet.contains`](../../../src/CORALean/ContSet/LevelSet/Real/Operations/Contains.lean), [`LevelSet.contains_iff`](../../../src/CORALean/ContSet/LevelSet/Real/Theorems/ContainsIff.lean) | a point only (CORA's numeric branch), at tolerance 0, decided exactly by testing each component against its operator; CORA's `tol`, the array-of-points form and the set branch (an interval enclosure of `funHan`) are not modelled |
-| `convHull` | — | — |  |
+| `convHull` | out-of-scope | n/a — matlab-runtime | throw-only stub: the body only throws `CORA:noops` |
 | `copy` | out-of-scope | n/a — matlab-runtime |  |
 | `dim` | out-of-scope | n/a — matlab-runtime |  |
 | `display` | out-of-scope | n/a — plotting/display |  |
