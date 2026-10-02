@@ -16,6 +16,8 @@ import CORALean.ContSet.Ellipsoid.Real.Theorems.OfPointMem
 import CORALean.ContSet.Ellipsoid.Real.Theorems.OfPointMemIff
 import CORALean.ContSet.Ellipsoid.Real.Theorems.CentreMemConstruct
 import CORALean.ContSet.Ellipsoid.Real.Theorems.ProjectExact
+import CORALean.ContSet.Ellipsoid.Real.Theorems.RepresentsaPointIff
+import CORALean.ContSet.Ellipsoid.Real.Theorems.RepresentsaOriginIff
 
 /-!
 # What an ellipsoid guarantees, collected

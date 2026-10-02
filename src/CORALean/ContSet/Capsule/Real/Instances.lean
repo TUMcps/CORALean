@@ -5,7 +5,8 @@ import CORALean.ContSet.Capsule.Real.Theorems.API
 /-!
 # What `Capsule` instantiates
 
-`ContSet`, `ConvexSet`, `CompactSet`, and `OfPoint` at `g = 0`, `r = 0`.
+`ContSet`, `ConvexSet`, `CompactSet`, `OfPoint` at `g = 0`, `r = 0`, `Reduce` as the identity, as
+CORA's empty `reduce` body is, and `Reindex`, CORA's `lift_` at a permutation.
 
 No `Plus`, `Mtimes`, or `LinComb`: a capsule is closed under almost nothing.
 The Minkowski sum of two capsules is not a capsule (a segment thickened by two
@@ -39,6 +40,18 @@ instance : CompactSet (Capsule n) (Vec ℝ n) := ⟨Capsule.isCompact_construct�
 instance : OfPoint (Capsule n) (Vec ℝ n) where
   ofPoint := Capsule.ofPoint
   mem_ofPoint := Capsule.mem_ofPoint
+
+/-- CORA's `@capsule/reduce` has an empty body and returns its input: there is no order to reduce
+to, so doing nothing is the sound answer and the one CORA gives. -/
+instance : Reduce (Capsule n) (Vec ℝ n) where
+  reduce C _ := C
+  reduce_outer _ _ := subset_rfl
+
+/-- `Capsule.reindex`, CORA's `lift_` at a permutation of the coordinates; the one case CORA
+defines. -/
+instance : Reindex (fun n => Capsule n) where
+  reindex := Capsule.reindex
+  reindex_exact e C := Capsule.reindex_exact e C
 
 end CORALean.Real
 

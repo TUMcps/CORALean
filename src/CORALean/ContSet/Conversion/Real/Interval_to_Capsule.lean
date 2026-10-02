@@ -12,7 +12,7 @@ non-degenerate edge, which is the whole box when `n ≤ 1`), and in general the
 ball round the remaining edges is a ball, not a box.
 
 `Interval.capsuleAlong I k` fixes the axis `k` of the segment, and the enclosure
-holds for every `k`; `Interval.capsule` picks a widest axis as CORA does.
+holds for every `k`; `Interval.capsule` picks a widest axis as CORA does, by a computable `argmax`.
 For `n = 0` there is no axis, the capsule is the point.
 -/
 
@@ -34,13 +34,13 @@ noncomputable def Interval.capsuleAlong (I : Interval (Vec ℝ n)) (k : Fin n) :
   g := fun i => if i = k then (I.sup i - I.inf i) / 2 else 0
   r := Real.sqrt (∑ i, if i = k then 0 else ((I.sup i - I.inf i) / 2) ^ 2)
 
-/-- CORA's `capsule(interval)`: the segment runs along a widest edge. -/
+/-- CORA's `capsule(interval)`: the segment runs along a widest edge, the first one of maximal
+width. The choice is a computable `List.argmax` over the axes; only the real arithmetic is
+noncomputable. For `n = 0` there is no axis and the capsule is the point. -/
 noncomputable def Interval.capsule (I : Interval (Vec ℝ n)) : Capsule n :=
-  if h : 0 < n then
-    I.capsuleAlong (Classical.choose
-      (Finset.exists_max_image Finset.univ (fun i => I.sup i - I.inf i)
-        ⟨⟨0, h⟩, Finset.mem_univ _⟩))
-  else ⟨0, 0, 0⟩
+  match (List.finRange n).argmax (fun i => I.sup i - I.inf i) with
+  | some k => I.capsuleAlong k
+  | none => ⟨0, 0, 0⟩
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -86,9 +86,11 @@ theorem Interval.capsuleAlong_contains (I : Interval (Vec ℝ n)) (k : Fin n) :
 theorem Interval.capsule_contains (I : Interval (Vec ℝ n)) :
     I.construct ⊆ I.capsule.construct := by -- --- PROOF ---
   unfold Interval.capsule
-  split_ifs with h
-  · exact I.capsuleAlong_contains _
-  · obtain rfl : n = 0 := by omega
+  cases h : (List.finRange n).argmax (fun i => I.sup i - I.inf i) with
+  | some k => exact I.capsuleAlong_contains k
+  | none =>
+    have hn : List.finRange n = [] := List.argmax_eq_none.mp h
+    obtain rfl : n = 0 := by simpa [List.finRange_eq_nil_iff] using hn
     intro x _
     exact ⟨0, by simp, by simp⟩
 

@@ -42,6 +42,7 @@ import CORALean.ContSet.Zonotope.Float.Theorems.ReindexExact
 import CORALean.ContSet.Zonotope.Float.Theorems.Convex
 import CORALean.ContSet.Zonotope.Float.Theorems.IsCompact
 import CORALean.ContSet.Zonotope.Float.Theorems.IsClosed
+import CORALean.ContSet.Zonotope.Float.Theorems.ConstrSatSound
 
 /-!
 # What `Zonotope` guarantees

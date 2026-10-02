@@ -128,6 +128,14 @@ import CORALean.ContSet.Zonotope.Real.Theorems.SumSmulUpdate
 import CORALean.ContSet.Zonotope.Real.Theorems.SumUnivReduceBy
 import CORALean.ContSet.Zonotope.Real.Theorems.SupportBoundAttained
 import CORALean.ContSet.Zonotope.Real.Theorems.IsFullDimIff
+import CORALean.ContSet.Zonotope.Real.Theorems.RankEqFinrankIff
+import CORALean.ContSet.Zonotope.Real.Theorems.RankEqIff
+import CORALean.ContSet.Zonotope.Real.Theorems.RepresentsaPointIff
+import CORALean.ContSet.Zonotope.Real.Theorems.RepresentsaOriginIff
+import CORALean.ContSet.Zonotope.Real.Theorems.ExactPlusExact
+import CORALean.ContSet.Zonotope.Real.Theorems.NormUbLe
+import CORALean.ContSet.Zonotope.Real.Theorems.Radius2Bound
+import CORALean.ContSet.Zonotope.Real.Theorems.ConstrSatSound
 
 /-!
 # What `Zonotope` guarantees

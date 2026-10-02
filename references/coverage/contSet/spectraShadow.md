@@ -32,7 +32,7 @@ CORA methods of `contSet/@spectraShadow/`, one row each, and where CORALean answ
 | `plus` | float | [`SpectraShadow.plus`](../../../src/CORALean/ContSet/SpectraShadow/Real/Operations/Plus.lean), [`SpectraShadow.plus_exact`](../../../src/CORALean/ContSet/SpectraShadow/Real/Theorems/PlusExact.lean) · float: [`SpectraShadow.plus`](../../../src/CORALean/ContSet/SpectraShadow/Float/Operations/Plus.lean), [`SpectraShadow.plus_outer`](../../../src/CORALean/ContSet/SpectraShadow/Float/Theorems/PlusOuter.lean) |  |
 | `polyZonotope` | — | — |  |
 | `polytope` | — | — |  |
-| `project` | — | — |  |
+| `project` | proved | [`SpectraShadow.project`](../../../src/CORALean/ContSet/SpectraShadow/Real/Operations/Project.lean), [`SpectraShadow.project_exact`](../../../src/CORALean/ContSet/SpectraShadow/Real/Theorems/ProjectExact.lean) | exact for any `dims` (repeats and reorderings included): `map` at the selection map, the centre and generators at `dims` and the inequality untouched, as in CORA; no float counterpart (the float shadow has `plus` alone) |
 | `randPoint_` | out-of-scope | n/a — random/sampling |  |
 | `representsa_` | — | — |  |
 | `spectraShadow` | proved | [`SpectraShadow.construct`](../../../src/CORALean/ContSet/SpectraShadow/Real/SpectraShadow.lean), [`SpectraShadow.convex_construct`](../../../src/CORALean/ContSet/SpectraShadow/Real/Theorems/Convex.lean) |  |

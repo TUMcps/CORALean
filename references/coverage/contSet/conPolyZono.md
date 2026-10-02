@@ -17,7 +17,7 @@ CORA methods of `contSet/@conPolyZono/`, one row each, and where CORALean answer
 | `copy` | out-of-scope | n/a — matlab-runtime |  |
 | `dim` | out-of-scope | n/a — matlab-runtime |  |
 | `display` | out-of-scope | n/a — plotting/display |  |
-| `ellipsoid` | proved | [`ConPolyZono.ellipsoid`](../../../src/CORALean/ContSet/Conversion/Real/ConPolyZono_to_Ellipsoid.lean), [`ConPolyZono.ellipsoid_contains`](../../../src/CORALean/ContSet/Conversion/Real/ConPolyZono_to_Ellipsoid.lean) |  |
+| `ellipsoid` | float | [`ConPolyZono.ellipsoid`](../../../src/CORALean/ContSet/Conversion/Real/ConPolyZono_to_Ellipsoid.lean), [`ConPolyZono.ellipsoid_contains`](../../../src/CORALean/ContSet/Conversion/Real/ConPolyZono_to_Ellipsoid.lean) · float: [`ConPolyZono.ellipsoid`](../../../src/CORALean/ContSet/Conversion/Float/ConPolyZono_to_Ellipsoid.lean), [`ConPolyZono.ellipsoid_contains`](../../../src/CORALean/ContSet/Conversion/Float/ConPolyZono_to_Ellipsoid.lean) | route a; `σ` as for `polyZonotope.ellipsoid` |
 | `empty` | — | — |  |
 | `enclose` | — | — |  |
 | `exactPlus` | — | — |  |
@@ -52,4 +52,4 @@ CORA methods of `contSet/@conPolyZono/`, one row each, and where CORALean answer
 | `splitLongestGen` | — | — |  |
 | `supportFunc_` | — | — |  |
 | `vertices_` | — | — |  |
-| `zonotope` | proved | [`ConPolyZono.zonotope`](../../../src/CORALean/ContSet/Conversion/Real/ConPolyZono_to_Zonotope.lean), [`ConPolyZono.zonotope_contains`](../../../src/CORALean/ContSet/Conversion/Real/ConPolyZono_to_Zonotope.lean) |  |
+| `zonotope` | float | [`ConPolyZono.zonotope`](../../../src/CORALean/ContSet/Conversion/Real/ConPolyZono_to_Zonotope.lean), [`ConPolyZono.zonotope_contains`](../../../src/CORALean/ContSet/Conversion/Real/ConPolyZono_to_Zonotope.lean) · float: [`ConPolyZono.zonotope`](../../../src/CORALean/ContSet/Conversion/Float/PolyZonotope_to_Zonotope.lean), [`ConPolyZono.zonotope_contains`](../../../src/CORALean/ContSet/Conversion/Float/PolyZonotope_to_Zonotope.lean) | route a |

@@ -49,8 +49,8 @@ CORA methods of `contSet/@ellipsoid/`, one row each, and where CORALean answers 
 | `radius` | — | — |  |
 | `randPoint_` | out-of-scope | n/a — random/sampling |  |
 | `rank` | — | — |  |
-| `reduce` | — | — |  |
-| `representsa_` | — | — |  |
+| `reduce` | float | [`Reduce`](../../../src/CORALean/ContSet/ContSet/ContSet.lean) | route b — the operation class is generic over the representation, and the float ellipsoid instantiates it (`Ellipsoid/Float/Instances.lean`); CORA's `@ellipsoid/reduce` has an empty body, so `reduce E _ := E` (at float `E.materialise`), with `reduce_outer` by `subset_rfl` |
+| `representsa_` | proved | [`Ellipsoid.representsa_point`](../../../src/CORALean/ContSet/Ellipsoid/Real/Operations/RepresentsaPoint.lean) ([`Ellipsoid.representsa_point_iff`](../../../src/CORALean/ContSet/Ellipsoid/Real/Theorems/RepresentsaPointIff.lean)), [`Ellipsoid.representsa_origin`](../../../src/CORALean/ContSet/Ellipsoid/Real/Operations/RepresentsaOrigin.lean) ([`Ellipsoid.representsa_origin_iff`](../../../src/CORALean/ContSet/Ellipsoid/Real/Theorems/RepresentsaOriginIff.lean)), [`Ellipsoid.centre_mem_construct`](../../../src/CORALean/ContSet/Ellipsoid/Real/Theorems/CentreMemConstruct.lean) | only the types `point` and `origin` at tolerance `0` (`Q = 0`, that is `G = 0`, and `q = 0` for the origin) and `emptySet` (false: the centre lies in every ellipsoid); the other types are not covered |
 | `spectraShadow` | — | — |  |
 | `supportFunc_` | float | [`Ellipsoid.supportBound`](../../../src/CORALean/ContSet/Ellipsoid/Real/Operations/SupportBound.lean), [`Ellipsoid.supportBound_attained`](../../../src/CORALean/ContSet/Ellipsoid/Real/Theorems/SupportBoundAttained.lean) · float: [`Ellipsoid.boundDot`](../../../src/CORALean/ContSet/Ellipsoid/Float/Operations/SupportBound.lean), [`Ellipsoid.boundDot_le`](../../../src/CORALean/ContSet/Ellipsoid/Float/Theorems/BoundDotLe.lean) | float is an upper bound only, given a caller-supplied length bound `s` for the norm; attainment is the real theorem |
 | `vertices_` | — | — |  |

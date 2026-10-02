@@ -5,6 +5,7 @@ import CORALean.ContSet.ZonoBundle.Float.Operations.Mtimes
 import CORALean.ContSet.ZonoBundle.Float.Operations.Reindex
 import CORALean.ContSet.ZonoBundle.Float.Operations.Reduce
 import CORALean.ContSet.ZonoBundle.Float.Operations.SupportBound
+import CORALean.ContSet.ZonoBundle.Float.Operations.Project
 
 /-!
 # What a float zonotope bundle computes, collected

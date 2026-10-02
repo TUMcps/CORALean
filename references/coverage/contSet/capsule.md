@@ -23,12 +23,12 @@ CORA methods of `contSet/@capsule/`, one row each, and where CORALean answers th
 | `getPrintSetInfo` | out-of-scope | n/a — plotting/display |  |
 | `interval` | proved | [`Capsule.interval`](../../../src/CORALean/ContSet/Conversion/Real/Capsule_to_Interval.lean), [`Capsule.interval_contains`](../../../src/CORALean/ContSet/Conversion/Real/Capsule_to_Interval.lean) |  |
 | `isBounded` | proved | [`Capsule.isCompact_construct`](../../../src/CORALean/ContSet/Capsule/Real/Theorems/IsCompact.lean), [`CompactSet.isBounded_construct`](../../../src/CORALean/ContSet/ContSet/Theorems/IsBoundedConstruct.lean) | via compactness |
-| `isFullDim` | — | — |  |
+| `isFullDim` | proved | [`Capsule.isFullDim_iff`](../../../src/CORALean/ContSet/Capsule/Real/Theorems/IsFullDimIff.lean), [`Capsule.isFullDim_cora_counterexample`](../../../src/CORALean/ContSet/Capsule/Real/Theorems/IsFullDimCora.lean) | cora-issue — CORA returns `r > 0`, which misses a thin capsule that is full-dimensional anyway: `n = 1` with `r = 0` and `g ≠ 0` (the segment is an interval of the line), and `n = 0` with `r = 0` (the whole one-point space); the exact characterisation is `0 < r`, or `0 ≤ r` and (`n = 0`, or `n = 1` with `g ≠ 0`) ([FINDINGS](../../../FINDINGS.md), "Capsule `isFullDim`") |
 | `isIntersecting_` | — | — |  |
 | `isemptyobject` | out-of-scope | n/a — matlab-runtime |  |
 | `isequal` | — | — |  |
 | `isnan` | out-of-scope | n/a — matlab-runtime |  |
-| `lift_` | — | — |  |
+| `lift_` | proved | [`Reindex`](../../../src/CORALean/ContSet/ContSet/ContSet.lean), [`Capsule.reindex`](../../../src/CORALean/ContSet/Capsule/Real/Operations/Reindex.lean), [`Capsule.reindex_exact`](../../../src/CORALean/ContSet/Capsule/Real/Theorems/ReindexExact.lean) | CORA's `lift_` is `project` when `length(proj) == N` (a permutation of the coordinates) and throws `notDefined` otherwise, since new dimensions would be unbounded; `Reindex` is exactly the permutation case, an equality `reindexLin e '' construct s` (centre and direction composed with `e`, radius unchanged) |
 | `mtimes` | — | — |  |
 | `origin` | proved | [`Capsule.ofPoint`](../../../src/CORALean/ContSet/Capsule/Real/Operations/OfPoint.lean), [`Capsule.mem_ofPoint_iff`](../../../src/CORALean/ContSet/Capsule/Real/Theorems/OfPointMemIff.lean) | `origin` is `ofPoint 0`; `mem_ofPoint_iff` says it denotes exactly `{0}` |
 | `plot3D` | out-of-scope | n/a — plotting/display |  |
@@ -38,7 +38,7 @@ CORA methods of `contSet/@capsule/`, one row each, and where CORALean answers th
 | `project` | — | — |  |
 | `radius` | — | — |  |
 | `randPoint_` | out-of-scope | n/a — random/sampling |  |
-| `reduce` | — | — |  |
+| `reduce` | proved | [`Reduce`](../../../src/CORALean/ContSet/ContSet/ContSet.lean) | CORA's `@capsule/reduce` has an empty body (returns its input); the `Reduce (Capsule n)` instance is `reduce C _ := C`, with `reduce_outer` by `subset_rfl` (`Capsule/Real/Instances.lean`) |
 | `representsa_` | — | — |  |
 | `spectraShadow` | proved | [`Capsule.spectraShadow`](../../../src/CORALean/ContSet/Conversion/Real/Capsule_to_SpectraShadow.lean), [`Capsule.spectraShadow_contains`](../../../src/CORALean/ContSet/Conversion/Real/Capsule_to_SpectraShadow.lean) | outer, via the bounding box (`Capsule.interval`); coarser than CORA's conversion, which is the exact sum of the segment's and the ball's spectrahedral shadows. |
 | `supportFunc_` | proved | [`Capsule.supportBound`](../../../src/CORALean/ContSet/Capsule/Real/Operations/SupportBound.lean), [`SupportBound`](../../../src/CORALean/Global/LinProg/LinProg.lean) | upper bound only: the `le` field of the returned `SupportBound` is the outer theorem (every point of the capsule is under `val`) |
