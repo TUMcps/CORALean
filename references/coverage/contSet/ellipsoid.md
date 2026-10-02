@@ -8,7 +8,7 @@ CORA methods of `contSet/@ellipsoid/`, one row each, and where CORALean answers 
 |---|---|---|---|
 | `and_` | — | — |  |
 | `cartProd_` | — | — |  |
-| `center` | proved | [`Ellipsoid.centre_mem_construct`](../../../src/CORALean/ContSet/Ellipsoid/Real/Theorems/CentreMemConstruct.lean) | CORA returns the field `q`; it lies in the ellipsoid always |
+| `center` | float | [`Ellipsoid.centre_mem_construct`](../../../src/CORALean/ContSet/Ellipsoid/Real/Theorems/CentreMemConstruct.lean) · float: [`Ellipsoid.centre`](../../../src/CORALean/ContSet/Ellipsoid/Float/Operations/Centre.lean), [`Ellipsoid.centre_mem_construct`](../../../src/CORALean/ContSet/Ellipsoid/Float/Theorems/CentreMemConstruct.lean) | CORA returns the field `q`; it lies in the ellipsoid always. Float: the stored centre read as reals lies in the set when the error box holds `0` |
 | `conPolyZono` | proved | [`Ellipsoid.conPolyZono`](../../../src/CORALean/ContSet/Conversion/Real/Ellipsoid_to_ConPolyZono.lean), [`Ellipsoid.conPolyZono_exact`](../../../src/CORALean/ContSet/Conversion/Real/Ellipsoid_to_ConPolyZono.lean) |  |
 | `contains_` | — | — |  |
 | `convHull_` | — | — |  |
@@ -29,7 +29,7 @@ CORA methods of `contSet/@ellipsoid/`, one row each, and where CORALean answers 
 | `isBadDir` | — | — |  |
 | `isBigger` | — | — |  |
 | `isBounded` | float | [`Ellipsoid.isBounded_construct`](../../../src/CORALean/ContSet/Ellipsoid/Real/Theorems/IsBounded.lean) · float: [`Ellipsoid.construct`](../../../src/CORALean/ContSet/Ellipsoid/Float/Ellipsoid.lean), [`Ellipsoid.isCompact_construct`](../../../src/CORALean/ContSet/Ellipsoid/Float/Theorems/IsCompact.lean) | route a — float boundedness is its compactness (`InflatedContSet.isCompact_construct`: compact nominal ellipsoid plus compact box) |
-| `isFullDim` | — | — |  |
+| `isFullDim` | proved | [`Ellipsoid.isFullDim_iff`](../../../src/CORALean/ContSet/Ellipsoid/Real/Theorems/IsFullDimIff.lean) | nonempty interior iff `rank G = n`, stated at `construct`; exact, tolerance `0` |
 | `isIntersecting_` | — | — |  |
 | `isemptyobject` | out-of-scope | n/a — matlab-runtime |  |
 | `isequal` | — | — |  |
@@ -48,7 +48,7 @@ CORA methods of `contSet/@ellipsoid/`, one row each, and where CORALean answers 
 | `project` | float | [`Ellipsoid.project`](../../../src/CORALean/ContSet/Ellipsoid/Real/Operations/Project.lean), [`Ellipsoid.project_exact`](../../../src/CORALean/ContSet/Ellipsoid/Real/Theorems/ProjectExact.lean) · float: [`Ellipsoid.project`](../../../src/CORALean/ContSet/Ellipsoid/Float/Operations/Project.lean), [`Ellipsoid.project_outer`](../../../src/CORALean/ContSet/Ellipsoid/Float/Theorems/ProjectOuter.lean) | exact for any `dims` (repeats and reorderings included): `map` at the selection map, which is `P * E` with `P = I(dims,:)` as in CORA; float: outer only, as the error box projects with `Interval.project` |
 | `radius` | — | — |  |
 | `randPoint_` | out-of-scope | n/a — random/sampling |  |
-| `rank` | — | — |  |
+| `rank` | proved | [`Ellipsoid.rank`](../../../src/CORALean/ContSet/Ellipsoid/Real/Operations/Rank.lean), [`Ellipsoid.rank_shape`](../../../src/CORALean/ContSet/Ellipsoid/Real/Theorems/RankShape.lean) | exact rank of the generator matrix `G` (CORA's singular-value count at tolerance `0`, as for `zonotope rank`); equals the rank of CORA's `Q = G Gᵀ` (`Matrix.rank_self_mul_transpose`). An `Ellipsoid` is never empty, so CORA's `0` for an empty one does not arise |
 | `reduce` | float | [`Reduce`](../../../src/CORALean/ContSet/ContSet/ContSet.lean) | route b — the operation class is generic over the representation, and the float ellipsoid instantiates it (`Ellipsoid/Float/Instances.lean`); CORA's `@ellipsoid/reduce` has an empty body, so `reduce E _ := E` (at float `E.materialise`), with `reduce_outer` by `subset_rfl` |
 | `representsa_` | proved | [`Ellipsoid.representsa_point`](../../../src/CORALean/ContSet/Ellipsoid/Real/Operations/RepresentsaPoint.lean) ([`Ellipsoid.representsa_point_iff`](../../../src/CORALean/ContSet/Ellipsoid/Real/Theorems/RepresentsaPointIff.lean)), [`Ellipsoid.representsa_origin`](../../../src/CORALean/ContSet/Ellipsoid/Real/Operations/RepresentsaOrigin.lean) ([`Ellipsoid.representsa_origin_iff`](../../../src/CORALean/ContSet/Ellipsoid/Real/Theorems/RepresentsaOriginIff.lean)), [`Ellipsoid.centre_mem_construct`](../../../src/CORALean/ContSet/Ellipsoid/Real/Theorems/CentreMemConstruct.lean) | only the types `point` and `origin` at tolerance `0` (`Q = 0`, that is `G = 0`, and `q = 0` for the origin) and `emptySet` (false: the centre lies in every ellipsoid); the other types are not covered |
 | `spectraShadow` | — | — |  |

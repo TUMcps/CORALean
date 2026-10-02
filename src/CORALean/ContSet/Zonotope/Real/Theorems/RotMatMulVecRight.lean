@@ -1,0 +1,37 @@
+import CORALean.ContSet.Zonotope.Real.Operations.RotMat
+import Mathlib.Data.Matrix.Mul
+
+/-!
+# `rotMat` on the second coordinate
+
+On the coordinates `i ≠ j` the matrix is CORA's `R`: the second row is `(sin, cos)`.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       02-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+open Matrix
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+/-- `x_j ↦ sin x_i + cos x_j`. -/
+theorem rotMat_mulVec_right {n : ℕ} (i j : Fin n) (hij : i ≠ j) (angle : ℝ) (x : Vec ℝ n) :
+    (rotMat n i j angle *ᵥ x) j =
+      Real.sin angle * x i + Real.cos angle * x j := by
+  simp only [mulVec, dotProduct, rotMat, hij.symm, if_false, if_true]
+  rw [Finset.sum_eq_add_of_mem i j (Finset.mem_univ _) (Finset.mem_univ _) hij]
+  · simp [hij.symm]
+  · intro b _ hb; simp [hb.1, hb.2]
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

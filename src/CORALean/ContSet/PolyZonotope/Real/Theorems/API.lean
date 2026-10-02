@@ -5,6 +5,8 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialAdd
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MemConstruct
 import CORALean.ContSet.PolyZonotope.Real.Theorems.OfPointMem
 import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
+import CORALean.ContSet.PolyZonotope.Real.Theorems.NoIndepConstruct
+import CORALean.ContSet.PolyZonotope.Real.Theorems.NoIndepSubset
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ExistsPointOfQZero
 import CORALean.ContSet.PolyZonotope.Real.Theorems.SubsetAtMono
 import CORALean.ContSet.PolyZonotope.Real.Theorems.SubsetAtSubsetConstruct

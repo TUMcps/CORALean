@@ -7,6 +7,8 @@ import CORALean.ContSet.LevelSet.Real.Operations.Test
 import CORALean.ContSet.LevelSet.Real.Operations.Lift
 import CORALean.ContSet.LevelSet.Real.Operations.Mtimes
 import CORALean.ContSet.LevelSet.Real.Operations.Not
+import CORALean.ContSet.LevelSet.Real.Operations.Restrict
+import CORALean.ContSet.LevelSet.Real.Operations.SplitEquality
 
 /-!
 # Level set operations, collected

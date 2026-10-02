@@ -60,7 +60,9 @@ instance : Reduce (EmptySet n) (Vec ℝ n) where
   reduce E _ := E
   reduce_outer _ _ := by intro x hx; exact hx.elim
 
-instance : Mtimes (Mat ℝ) (fun n => EmptySet n) where
+/-- At every scalar `𝕋` with a matrix denotation (`Mat 𝕋`), not only `ℝ`: the guarantee
+is over what the matrix denotes, and the result ignores it. -/
+instance {𝕋 : Type} [Scalar 𝕋] : Mtimes (Mat 𝕋) (fun n => EmptySet n) where
   mtimes _ _ := ⟨⟩
   mtimes_outer _ _ := by
     -- the union is over images of `∅`, so a member of it holds a member of `∅`

@@ -16,7 +16,7 @@ all the run spends, it is what the mean value theorem gives for an interval
 Jacobian over a convex box (`Encloses.of_hasFDerivAt`), and for a polynomial field
 it is plain algebra. The price is the remainder: `slopeRemainder` is first order,
 `O(‖δ‖)` in the deviation from the expansion point where CORA's Hessian bound
-[1, Prop. 3.7] is `O(‖δ‖²)`; a Hessian enclosure would be a further field.
+[1, Prop. 3.7] is `O(‖δ‖²)`; `FloatHessModel` adds the Hessian enclosure.
 
 ## References
 

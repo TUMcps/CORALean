@@ -67,6 +67,10 @@ import CORALean.ContSet.Zonotope.Real.Operations.SplitLongestGen
 import CORALean.ContSet.Zonotope.Real.Operations.SplitRank
 import CORALean.ContSet.Zonotope.Real.Operations.SupportBound
 import CORALean.ContSet.Zonotope.Real.Operations.Rank
+import CORALean.ContSet.Zonotope.Real.Operations.RotMat
+import CORALean.ContSet.Zonotope.Real.Operations.Rotate
+import CORALean.ContSet.Zonotope.Real.Operations.Underapproximate
+import CORALean.ContSet.Zonotope.Real.Operations.UnderapproximateGen
 import CORALean.ContSet.Zonotope.Real.Operations.RepresentsaPoint
 import CORALean.ContSet.Zonotope.Real.Operations.RepresentsaOrigin
 import CORALean.ContSet.Zonotope.Real.Operations.ExactPlus

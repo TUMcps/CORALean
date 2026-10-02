@@ -20,7 +20,8 @@ by the second-order Lagrange term `½ δᵀ H(ξ) δ` from an interval Hessian [
 mean-value remainder. It is coarser: over a fixed box it is `O(‖δ‖)` in the
 deviation `δ = z - z✱` from the expansion point, the Hessian's `O(‖δ‖²)`; only
 the width of `[J] - A`, which shrinks with the box, makes up part of the gap.
-`abstrErrLin` stays the real layer's Hessian box.
+`abstrErrLin` stays the real layer's Hessian box; `FloatHessModel.hessRemainder` is its
+float run, where the model carries one.
 
 ## References
 

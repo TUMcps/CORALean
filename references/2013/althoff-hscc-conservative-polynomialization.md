@@ -54,4 +54,6 @@ signed-safe `1+|γⱼ|` throughout, which only widens the enclosure.
 
 These name the paper as a whole. A locator would put each in a row above.
 
+* [`FloatHessModel.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Definitions/FloatHessModel.lean)
+* [`LinReachAlg.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Definitions/LinReachAlg.lean)
 * [`PolyAbstractionError.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Definitions/PolyAbstractionError.lean)

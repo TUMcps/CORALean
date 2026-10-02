@@ -15,6 +15,7 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.LinCombE
 import CORALean.ContSet.PolyZonotope.Real.Operations.LinComb
 import CORALean.ContSet.PolyZonotope.Real.Operations.Dependent
 import CORALean.ContSet.PolyZonotope.Real.Operations.Point
+import CORALean.ContSet.PolyZonotope.Real.Operations.NoIndep
 import CORALean.ContSet.PolyZonotope.Real.Operations.OfPoint
 import CORALean.ContSet.PolyZonotope.Real.Operations.SubsetAt
 import CORALean.ContSet.PolyZonotope.Real.Operations.EvalOn

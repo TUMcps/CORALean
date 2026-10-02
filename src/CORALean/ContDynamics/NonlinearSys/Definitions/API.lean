@@ -13,6 +13,8 @@ import CORALean.ContDynamics.NonlinearSys.Definitions.PolyReachOptions
 import CORALean.ContDynamics.NonlinearSys.Definitions.ReachUnionExact
 import CORALean.ContDynamics.NonlinearSys.Definitions.WithSteps
 import CORALean.ContDynamics.NonlinearSys.Definitions.FloatModel
+import CORALean.ContDynamics.NonlinearSys.Definitions.FloatHessModel
+import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachAlg
 
 /-!
 # What `NonlinearSys` means beyond the system itself
@@ -26,5 +28,6 @@ system with a chain of `LinStep`s and checkable regions, and `ReachUnionExact` i
 the set a `Reach` run encloses. `RelinReachOptions`,
 `RelinDeltaReachOptions`, `AbstrReachOptions` and `PolyReachOptions` are CORA's
 `options` for the algorithms of those names. `FloatModel` is what a float run evaluates in
-place of `f`, and `FloatModel.Encloses` ties it to `f`.
+place of `f`, and `FloatModel.Encloses` ties it to `f`; `FloatHessModel` adds the Hessian, and
+`LinReachAlg` is CORA's `options.alg`.
 -/

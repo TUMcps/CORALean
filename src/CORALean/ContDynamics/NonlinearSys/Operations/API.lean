@@ -56,6 +56,12 @@ import CORALean.ContDynamics.NonlinearSys.Operations.RegionFloat
 import CORALean.ContDynamics.NonlinearSys.Operations.RelinRunFloat
 import CORALean.ContDynamics.NonlinearSys.Operations.RelinStepFloat
 import CORALean.ContDynamics.NonlinearSys.Operations.SlopeRemainder
+import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrPolyFloat
+import CORALean.ContDynamics.NonlinearSys.Operations.HessRemainder
+import CORALean.ContDynamics.NonlinearSys.Operations.LinReachFloat
+import CORALean.ContDynamics.NonlinearSys.Operations.LinReachRunFloat
+import CORALean.ContDynamics.NonlinearSys.Operations.OneStepFloat
+import CORALean.ContDynamics.NonlinearSys.Operations.ReachAlgFloat
 
 /-!
 # What a linearization computes
@@ -77,8 +83,8 @@ is subtracted exactly rather than boxed. `AbstrErrPolySearch` is `linReach`'s wh
 `LinReachPoly` runs both from a start set. `AbstrErr` is the other paper's `abstrErr`, one step's
 whole error out of `postΔ`, `VarInputs` and the latter.
 
-`LocalAbstrErr` and `GlobalAbstrErr` measure what a step and a run add to the exact answer.
-`AbstrSolInf` is the untruncated set of those errors, `GainDim` and `Gain` how much of its width a
-smaller step keeps, `GainMax` that ratio off two boxes, `GainOrder` the limit order. The `…Float`
-files and `SlopeRemainder` are the float run, `ReachFloat`, linearizing itself from a `FloatModel`.
+`LocalAbstrErr` and `GlobalAbstrErr` measure what a step and a run add to the exact answer,
+`AbstrSolInf` the untruncated set of those errors, `GainDim`/`Gain`/`GainMax`/`GainOrder` how much
+of its width a smaller step keeps. The `…Float` files are the float runs: `ReachFloat` from a
+`FloatModel`, `ReachAlgFloat` at `alg = 'lin'` or `'poly'` from a `FloatHessModel`.
 -/
