@@ -131,6 +131,12 @@ import CORALean.ContSet.Zonotope.Real.Theorems.SupportBoundAttained
 import CORALean.ContSet.Zonotope.Real.Theorems.IsFullDimIff
 import CORALean.ContSet.Zonotope.Real.Theorems.RankEqFinrankIff
 import CORALean.ContSet.Zonotope.Real.Theorems.RankEqIff
+import CORALean.ContSet.Zonotope.Real.Theorems.RotateExact
+import CORALean.ContSet.Zonotope.Real.Theorems.RotMatMulVecLeft
+import CORALean.ContSet.Zonotope.Real.Theorems.RotMatMulVecRight
+import CORALean.ContSet.Zonotope.Real.Theorems.RotMatMulVecOther
+import CORALean.ContSet.Zonotope.Real.Theorems.UnderapproximateMem
+import CORALean.ContSet.Zonotope.Real.Theorems.UnderapproximateConvexHullSubset
 import CORALean.ContSet.Zonotope.Real.Theorems.RepresentsaPointIff
 import CORALean.ContSet.Zonotope.Real.Theorems.RepresentsaOriginIff
 import CORALean.ContSet.Zonotope.Real.Theorems.ExactPlusExact

@@ -37,6 +37,7 @@ inductive CompOp where
   | le
   | lt
   | eq
+  deriving DecidableEq
 
 /-- What the comparison of a value with zero says. -/
 def CompOp.holds : CompOp → ℝ → Prop

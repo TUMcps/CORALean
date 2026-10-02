@@ -194,6 +194,8 @@ import CORALean.ContDynamics.LinearSys.Theorems.VerifyConvexUnsafe
 import CORALean.ContDynamics.LinearSys.Theorems.WeightedIntegral
 import CORALean.ContDynamics.LinearSys.Theorems.WithInputReachOuter
 import CORALean.ContDynamics.LinearSys.Theorems.WithInputSplitReachOuter
+import CORALean.ContDynamics.LinearSys.Theorems.DeltaReachFloatOuter
+import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryPostDeltaFloatOuter
 
 /-!
 # What `LinearSys` guarantees

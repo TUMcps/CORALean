@@ -119,7 +119,7 @@ LinearSys.autoTuneOrder  pending #1: a continuous-time algorithm at a real matri
 LinearSys.autoTuneSearch  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.bundleReach  pending #1: a continuous-time algorithm at a real matrix exponential, over `Real.ZonoBundle`; needs a float zonotope bundle and a float `e^{Ar}`
 LinearSys.constInputSolution  real-layer: a constant input's contribution via `∫e^{Aσ}dσ` and `F̃`; the float layer encloses it as `inputSolutionFloat` at `[0, ũ]` (`reachFloatInput`)
-LinearSys.deltaReach  pending #1: the step's state differences at the real exponential, read by `NonlinearSys`; needs a float counterpart from `timePointStepFloat` and `intervalCorrectionMatrix`
+LinearSys.deltaReach  real-layer: the step's state differences at the real exponential; runs in floats as `LinearSys.deltaReachFloat` (`deltaReachFloat_outer`)
 LinearSys.discretize  real-layer: the exact sampled system `e^{AΔt}`, transcendental; its float refinement is `LinearSys.discretizeEnclosureFloat`
 LinearSys.discretizeEnclosure  real-layer: the sampled system at the real `expEnclosure`; runs in floats as `LinearSys.discretizeEnclosureFloat`
 LinearSys.discretizeMatZonotope  real-layer: the sampled system at the real matrix-zonotope exponential, `Δt : ℝ`; runs in floats as `LinearSys.discretizeMatZonotopeFloat` (`Trajectory.discretizeMatZonotopeFloat_mem_reach`)
@@ -151,7 +151,7 @@ LinearSys.minBackReachRun  pending #1: backward reachability over `Real.ConZonot
 LinearSys.minBackReachStep  pending #1: backward reachability over `Real.ConZonotope`/`Real.HPolytope` at the real exponential; needs float constrained zonotopes and a float `e^{A t_k}`
 LinearSys.minBackReachSupport  pending #1: backward reachability over `Real.ConZonotope`/`Real.HPolytope` at the real exponential; needs float constrained zonotopes and a float `e^{A t_k}`
 LinearSys.minBackReachTimeInterval  spec: the `Set` a run's windows denote, a union for theorems; what runs is the `…Run` it unions
-LinearSys.postDelta  pending #1: the step's state differences at the real exponential, read by `NonlinearSys`; needs a float counterpart from `timePointStepFloat` and `intervalCorrectionMatrix`
+LinearSys.postDelta  real-layer: `deltaReach` plus the input's share at the real exponential; runs in floats as `LinearSys.postDeltaFloat` (`Trajectory.postDeltaFloat_outer`)
 LinearSys.particularSolution  real-layer: `P^R(t_{k+1})` accumulated; in floats, the input scan of `LinearSys.reachWrappingFreeFloatInput`
 LinearSys.propagateInputSolution  spec: the exact propagated input set, a `Set` image under the real exponential
 LinearSys.reach  real-layer: the exact layer's recursive reach; runs in floats as `LinearSys.reachFloat` (`reachFloat_outer`)
@@ -255,8 +255,8 @@ NeurNetContrSysDT.reachCost  cost: an asserted running cost under `Cost/`, never
 NeurNetContrSysDT.simulate  spec: an idealised real-valued closed-loop trajectory, used only in a correctness statement
 NonlinParamSys.WithSteps.reachUnion  pending #1: the parameter-as-state reduction to `NonlinearSys` at real certificates; a float run needs a `FloatModel` of the augmented field, after which `NonlinearSys.FloatModel.reachFloat` runs it, but no wrapper exists yet
 NonlinParamSys.reachInstance  pending #1: `Reach` for the parameter-as-state reduction at real certificates; see `NonlinParamSys.WithSteps.reachUnion`
-NonlinearSys.abstrErrPolyCandidates  pending #1: the `'poly'` (polynomialization) variant, over `Real.PolyZonotope` with real Hessian and third-order bounds; needs a float `PolyZonotope` quadMap chain and second/third-derivative enclosures in `FloatModel`, which carries Jacobian slopes only
-NonlinearSys.abstrErrPolySearch  pending #1: the `'poly'` (polynomialization) variant, over `Real.PolyZonotope` with real Hessian and third-order bounds; needs a float `PolyZonotope` quadMap chain and second/third-derivative enclosures in `FloatModel`, which carries Jacobian slopes only
+NonlinearSys.abstrErrPolyCandidates  real-layer: the `'poly'` error loop's candidates over `Real.PolyZonotope`; the float step checks its region first, so one pass of `NonlinearSys.FloatHessModel.abstrErrPolyFloat` (`Encloses.abstrErrPolyFloat_outer`) replaces the loop
+NonlinearSys.abstrErrPolySearch  real-layer: the search over `abstrErrPolyCandidates`; the float step needs none, see `NonlinearSys.FloatHessModel.linReachFloat`
 NonlinearSys.abstrReach  spec: the `Set` a run's windows denote, a union for theorems; what runs is the `…Run` it unions
 NonlinearSys.abstrRun  pending #1: the on-the-fly abstraction loop of Wetzlinger et al., at a real `lin` callback and real `Δt`; needs its tuning and abstraction-error loop in floats, on top of `NonlinearSys.FloatModel`'s linearization
 NonlinearSys.abstrStep  pending #1: the on-the-fly abstraction loop of Wetzlinger et al., at a real `lin` callback and real `Δt`; needs its tuning and abstraction-error loop in floats, on top of `NonlinearSys.FloatModel`'s linearization
@@ -267,20 +267,20 @@ NonlinearSys.centreAbstrReach  spec: the `Set` a run's windows denote, a union f
 NonlinearSys.centreAbstrRun  pending #1: the on-the-fly abstraction loop of Wetzlinger et al., at a real `lin` callback and real `Δt`; needs its tuning and abstraction-error loop in floats, on top of `NonlinearSys.FloatModel`'s linearization
 NonlinearSys.centreAbstrStep  pending #1: the on-the-fly abstraction loop of Wetzlinger et al., at a real `lin` callback and real `Δt`; needs its tuning and abstraction-error loop in floats, on top of `NonlinearSys.FloatModel`'s linearization
 NonlinearSys.linPoint  real-layer: the expansion point at the real `f`; runs in floats as `NonlinearSys.FloatModel.linPointFloat`
-NonlinearSys.linReachPoly  pending #1: the `'poly'` (polynomialization) variant, over `Real.PolyZonotope` with real Hessian and third-order bounds; needs a float `PolyZonotope` quadMap chain and second/third-derivative enclosures in `FloatModel`, which carries Jacobian slopes only
+NonlinearSys.linReachPoly  real-layer: the `'poly'` step at a supplied Hessian and third-order bound; runs in floats as `NonlinearSys.FloatHessModel.linReachFloat` at `.poly` (`Encloses.linReachFloat_outer`)
 NonlinearSys.polyReachReach  spec: the `Set` a run's windows denote, a union for theorems; what runs is the `…Run` it unions
-NonlinearSys.polyReachRun  pending #1: the `'poly'` (polynomialization) variant, over `Real.PolyZonotope` with real Hessian and third-order bounds; needs a float `PolyZonotope` quadMap chain and second/third-derivative enclosures in `FloatModel`, which carries Jacobian slopes only
-NonlinearSys.polyReachStep  pending #1: the `'poly'` (polynomialization) variant, over `Real.PolyZonotope` with real Hessian and third-order bounds; needs a float `PolyZonotope` quadMap chain and second/third-derivative enclosures in `FloatModel`, which carries Jacobian slopes only
+NonlinearSys.polyReachRun  real-layer: [Althoff 2013, Alg. 1]'s loop at supplied derivative bundles; runs in floats as `NonlinearSys.FloatHessModel.reachAlgFloat` at `.poly` (`Encloses.reachAlgFloat_outer`)
+NonlinearSys.polyReachStep  real-layer: [Althoff 2013, Alg. 1]'s step at supplied derivative bundles; runs in floats as `NonlinearSys.FloatHessModel.linReachFloat` at `.poly` (`Encloses.linReachFloat_outer`)
 NonlinearSys.reachInstance  real-layer: `Reach` for `WithSteps`, real certificates in the system; the float run is `NonlinearSys.FloatModel.reachFloat`, which takes a `FloatModel` rather than the system and so is no `Reach` instance
-NonlinearSys.relinDeltaReach  pending #1: CORA's `Rdiff`, read only by the `'poly'` variant; needs a float `LinearSys.deltaReach`, which is itself pending
+NonlinearSys.relinDeltaReach  real-layer: CORA's `Rdiff` at supplied certificates, read only by the `'poly'` variant; the float step computes it as `LinearSys.postDeltaFloat` inside `NonlinearSys.FloatHessModel.linReachFloat`
 NonlinearSys.relinReach  real-layer: the re-linearization loop at caller-supplied certificates `LinStep`; runs in floats as `NonlinearSys.FloatModel.reachFloat`, which linearizes itself from a `FloatModel` (`Encloses.reachFloat_outer`)
 NonlinearSys.relinTimeInterval  real-layer: one step's window at a supplied certificate; the float run's is the first set `NonlinearSys.FloatModel.relinStepFloat` returns (`Encloses.relinStepFloat_outer`)
 NonlinearSys.WithSteps.reachUnion  real-layer: the `Reach` union at supplied certificates and regions; runs in floats as `NonlinearSys.FloatModel.reachFloat` (`Encloses.reachFloat_outer`)
 NonlinearSysDT.reachCost  cost: an asserted running cost under `Cost/`, never meant to compute
 Schedule.refineWorst  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
 Schedule.refineWorstNeurons  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
-abstrErr  pending #1: the `'poly'` variant's error over `Real.PolyZonotope` at real `D`, `E` and `postDelta`; needs a float `PolyZonotope` quadMap chain, a float `postDelta`, and second/third-derivative enclosures in `FloatModel`
-abstrErrLin  pending #1: the Hessian box of [Althoff 2010, Prop. 3.7] at a real `H`; the float run uses the first-order `NonlinearSys.FloatModel.slopeRemainder` instead, and this box in floats needs a Hessian enclosure `FloatModel` does not carry
+abstrErr  real-layer: [Kochdumper 2020, Alg. 2]'s error over `Real.PolyZonotope` at real `D`, `E`; the float step's counterpart is `NonlinearSys.FloatHessModel.abstrErrPolyFloat` (`Encloses.abstrErrPolyFloat_outer`)
+abstrErrLin  real-layer: the Hessian box of [Althoff 2010, Prop. 3.7] at a real `H`; runs in floats as `NonlinearSys.FloatHessModel.hessRemainder` (`Encloses.hessRemainder_abstractionError`)
 abstrSolInf  spec: the exact `Set` the abstraction error sums to, defined by a `HasSum`
 asinDom  real-layer: a polynomial over ℝ built by recursion, the derivative bound of a Taylm elementary function (`Taylm.tan`, `atan`, `asin`), reached only from the real layer
 asinPoly  real-layer: a polynomial over ℝ built by recursion, the derivative bound of a Taylm elementary function (`Taylm.tan`, `atan`, `asin`), reached only from the real layer
@@ -307,7 +307,7 @@ interpGain  pending #1: a nonlinear tuning heuristic in ℝ arithmetic; needs re
 isDisjointBoxRealConZonotope  real-layer: `S` fixed to an exact real family so instance search finds it, `Real.ConZonotope` against a box
 isDisjointBoxRealInterval  real-layer: `S` fixed to an exact real family so instance search finds it, `Real.Interval` against a box
 isDisjointBoxRealZonotope  real-layer: `S` fixed to an exact real family so instance search finds it, `Real.Zonotope` against a box
-lagrangeRemainder  pending #1: the third-order box at a real bound `E`, read by the `'poly'` variant; needs a third-derivative enclosure `FloatModel` does not carry
+lagrangeRemainder  pending #1: the third-order box at a real bound `E`; no float model carries a third-derivative enclosure, and the float `'poly'` step uses the second-order Lagrange form over `FloatHessModel.hess` instead
 layerSensitivity  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
 localAbstrErr  spec: an abstraction-error measure of an exact `Set`, its box diameter
 mulVecL  spec: `Matrix.mulVec` as a continuous bilinear map, a proof device for differentiating the flow
@@ -323,7 +323,7 @@ toEuclidean  spec: a norm or Hausdorff distance over ℝ, used only to state a g
 tuneAbstrOrder  pending #1: a nonlinear tuning heuristic in ℝ arithmetic; needs restating over the scalar `𝕋` (a heuristic, so no soundness obligation)
 tuneDeltat  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 tuneDeltatInit  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
-varInputs  pending #1: the `'poly'` variant's input term over `Real.PolyZonotope` at a real Hessian `D`; needs a Hessian enclosure in `FloatModel` and a float `PolyZonotope.quadMapMixed`
+varInputs  pending #1: the `'poly'` variant's input term over `Real.PolyZonotope` at a real Hessian `D`; needs a float `PolyZonotope.quadMapMixed`, the float `'poly'` step boxing these products instead (`FloatHessModel.abstrErrPolyFloat`)
 verifyConvex  spec: a real-valued certificate (support witness/bound), quantifying over arbitrary linear functionals
 verifyConvexStep  spec: a real-valued certificate (support witness/bound), quantifying over arbitrary linear functionals
 verifyHalfspace  spec: a real-valued certificate (support witness/bound), quantifying over arbitrary linear functionals

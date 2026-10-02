@@ -19,6 +19,7 @@ import CORALean.ContDynamics.LinParamSys.Operations.ReachOrderFloat
 import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepFloat
 import CORALean.HybridDynamics.Operations.TimeIntervalStepSplitFloat
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachFloatOuter
+import CORALean.ContDynamics.NonlinearSys.Theorems.ReachAlgFloatOuter
 import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
 import CORALean.ContDynamics.LinearSysDT.Operations.Reach
 import CORALean.ContDynamics.LinearSysDT.Operations.ReachHeld
@@ -564,6 +565,121 @@ def vdpF (x : D) : Float := Float.scaleB (Float.ofInt x.mantissa) x.exponent
 -- The windows' `x₂` ranges, falling at `ẋ₂ ≈ -4.3`, each about `0.2` wide.
 #eval vdpReach.map (·.length)
 #eval vdpReach.map (·.map fun Z =>
+  (vdpF ((Zonotope.interval Z).inf 1), vdpF ((Zonotope.interval Z).sup 1)))
+
+/-! ### The same system with its Hessian: CORA's `'lin'` bound and `'poly'` (#25)
+
+`f₂`'s Hessian in `(x₁, x₂, u)` has `-2x₂` and `-2x₁` off the input block; the model
+takes `x₂` at the state and `x₁` at the expansion point, which is what makes the
+second-order expansion exact for the cubic term. -/
+
+/-- `[-2b, -2a]` for `y ∈ [a, b]`, `-2y` boxed. -/
+def vdpNegTwoLo (b : D) : D := subDown (neg b) b
+def vdpNegTwoHi (a : D) : D := subUp (neg a) a
+
+/-- `vdpModel` with the Hessian boxes of both components. -/
+def vdpHessModel : NonlinearSys.FloatHessModel D 2 1 :=
+  { vdpModel with
+    hess := fun X _ => ![⟨fun _ _ => zero, fun _ _ => zero⟩,
+      ⟨!![vdpNegTwoLo (X.sup 1), vdpNegTwoLo (X.sup 0), zero;
+          vdpNegTwoLo (X.sup 0), zero, zero; zero, zero, zero],
+        !![vdpNegTwoHi (X.inf 1), vdpNegTwoHi (X.inf 0), zero;
+          vdpNegTwoHi (X.inf 0), zero, zero; zero, zero, zero]⟩] }
+
+/-- Four steps of `1/32` at `alg`, as `vdpReach`. -/
+def vdpReachAlg (alg : NonlinearSys.LinReachAlg) : Option (List (Zonotope D 2)) :=
+  vdpHessModel.reachAlgFloat alg { R0 := vdpX₀, U := vdpU, tFinal := 1 / 8 }
+    { timeStep := d 1 (-5), taylorTerms := 4, zonotopeOrder := 10 }
+
+/-- The slope matrix between two points of a box lies in the model's Jacobian box. -/
+theorem vdp_jacX_mem {X : Interval (Vec D 2)} {U : Interval (Vec D 1)} {x x' : Vec ℝ 2}
+    (hx : x ∈ X.construct) (hx' : x' ∈ X.construct) :
+    !![0, 1; -(x' 1 * (x 0 + x' 0)) - 1, 1 - x 0 * x 0]
+      ∈ (vdpModel.jacX X U).construct := by -- --- PROOF ---
+  have hx0 : toReal (X.inf 0) ≤ (x 0 : ℝ) ∧ (x 0 : ℝ) ≤ toReal (X.sup 0) := hx 0
+  have hy0 : toReal (X.inf 0) ≤ (x' 0 : ℝ) ∧ (x' 0 : ℝ) ≤ toReal (X.sup 0) := hx' 0
+  have hy1 : toReal (X.inf 1) ≤ (x' 1 : ℝ) ∧ (x' 1 : ℝ) ≤ toReal (X.sup 1) := hx' 1
+  have hs1 : toReal (addDown (X.inf 0) (X.inf 0)) ≤ (x 0 : ℝ) + x' 0 :=
+    le_trans (addDown_le_add _ _) (add_le_add hx0.1 hy0.1)
+  have hs2 : (x 0 : ℝ) + x' 0 ≤ toReal (addUp (X.sup 0) (X.sup 0)) :=
+    le_trans (add_le_add hx0.2 hy0.2) (add_le_addUp _ _)
+  obtain ⟨q1, q2⟩ := Float.Interval.mul_between_corners hy1.1 hy1.2 hs1 hs2
+  obtain ⟨w1, w2⟩ := vdp_one_sub_sq_mem hx0.1 hx0.2
+  intro q
+  obtain ⟨i, j⟩ := q
+  set qh := Float.Interval.mulHi (X.inf 1) (X.sup 1) (addDown (X.inf 0) (X.inf 0))
+    (addUp (X.sup 0) (X.sup 0))
+  set ql := Float.Interval.mulLo (X.inf 1) (X.sup 1) (addDown (X.inf 0) (X.inf 0))
+    (addUp (X.sup 0) (X.sup 0))
+  have n1 := subDown_le_sub (neg qh) (one : D)
+  have n2 := sub_le_subUp (neg ql) (one : D)
+  rw [toReal_neg, toReal_one] at n1 n2
+  -- entry by entry: two constants, then the two boxed slopes
+  fin_cases i <;> fin_cases j
+  · show toReal (zero : D) ≤ (0 : ℝ) ∧ (0 : ℝ) ≤ toReal (zero : D)
+    rw [toReal_zero]; exact ⟨le_rfl, le_rfl⟩
+  · show toReal (one : D) ≤ (1 : ℝ) ∧ (1 : ℝ) ≤ toReal (one : D)
+    rw [toReal_one]; exact ⟨le_rfl, le_rfl⟩
+  · show toReal (subDown (neg qh) one) ≤ -((x' 1 : ℝ) * (x 0 + x' 0)) - 1
+      ∧ -((x' 1 : ℝ) * (x 0 + x' 0)) - 1 ≤ toReal (subUp (neg ql) one)
+    constructor <;> linarith
+  · exact ⟨w1, w2⟩
+
+/-- `-2y ∈ [-2b, -2a]` for `y ∈ [a, b]`, each end rounded outward. -/
+theorem vdp_negTwo_mem {a b : D} {y : ℝ} (h1 : toReal a ≤ y) (h2 : y ≤ toReal b) :
+    toReal (vdpNegTwoLo b) ≤ -2 * y ∧ -2 * y ≤ toReal (vdpNegTwoHi a) := by -- --- PROOF ---
+  have r1 := subDown_le_sub (neg b) b
+  have r2 := sub_le_subUp (neg a) a
+  rw [toReal_neg] at r1 r2
+  unfold vdpNegTwoLo vdpNegTwoHi
+  constructor <;> linarith
+
+/-- `vdpHessModel` encloses Van der Pol to second order: the Jacobian at the point,
+and the Hessian with `x₂` at the state and `x₁` at the expansion point. -/
+theorem vdpHessModel_encloses : vdpHessModel.Encloses
+    ⟨fun x u => ![x 1, (1 - x 0 * x 0) * x 1 - x 0 + u 0]⟩ where
+  toEncloses := vdpModel_encloses
+  taylor_mem X U xs us hxs _ x hx u _ := by
+    have hp : toRealVec xs ∈ (Interval.point xs).construct := Interval.mem_point (α := Vec D 2) xs
+    have hx0 : toReal (X.inf 0) ≤ (toRealVec xs 0 : ℝ) ∧ toRealVec xs 0 ≤ toReal (X.sup 0) := hxs 0
+    have hx1 : toReal (X.inf 1) ≤ (x 1 : ℝ) ∧ (x 1 : ℝ) ≤ toReal (X.sup 1) := hx 1
+    obtain ⟨a1, a2⟩ := vdp_negTwo_mem hx0.1 hx0.2
+    obtain ⟨b1, b2⟩ := vdp_negTwo_mem hx1.1 hx1.2
+    refine ⟨_, vdp_jacX_mem (U := Interval.point us) hp hp, !![0; 1], fun q => ?_,
+      ![0, !![-2 * x 1, -2 * toRealVec xs 0, 0; -2 * toRealVec xs 0, 0, 0; 0, 0, 0]],
+      fun i q => ?_, ?_⟩
+    -- the input's Jacobian is constant
+    · obtain ⟨i, j⟩ := q
+      fin_cases i <;> fin_cases j
+      · show toReal (zero : D) ≤ (0 : ℝ) ∧ (0 : ℝ) ≤ toReal (zero : D)
+        rw [toReal_zero]; exact ⟨le_rfl, le_rfl⟩
+      · show toReal (one : D) ≤ (1 : ℝ) ∧ (1 : ℝ) ≤ toReal (one : D)
+        rw [toReal_one]; exact ⟨le_rfl, le_rfl⟩
+    -- the Hessians, entry by entry
+    · obtain ⟨j, k⟩ := q
+      have z : toReal (zero : D) ≤ (0 : ℝ) ∧ (0 : ℝ) ≤ toReal (zero : D) := by
+        rw [toReal_zero]; exact ⟨le_rfl, le_rfl⟩
+      fin_cases i <;> fin_cases j <;> fin_cases k
+      all_goals first
+        | exact z
+        | exact ⟨b1, b2⟩
+        | exact ⟨a1, a2⟩
+    -- the expansion, ring arithmetic once the sums are written out
+    · funext i
+      fin_cases i
+      · simp [toRealVec, dotProduct, Matrix.mulVec, Fin.sum_univ_succ, Fin.append, Fin.addCases]
+      · simp [toRealVec, dotProduct, Matrix.mulVec, Fin.sum_univ_succ, Fin.append, Fin.addCases]
+        ring
+
+/-- What a successful run is worth, at either `alg`. -/
+example {alg : NonlinearSys.LinReachAlg} {Rs : List (Zonotope D 2)}
+    (h : vdpReachAlg alg = some Rs) :=
+  vdpHessModel_encloses.reachAlgFloat_outer h
+
+-- `'lin'` with the Hessian, then `'poly'` at `errorOrder = 2`, each window about `0.22` wide.
+#eval (vdpReachAlg .lin).map (·.map fun Z =>
+  (vdpF ((Zonotope.interval Z).inf 1), vdpF ((Zonotope.interval Z).sup 1)))
+#eval (vdpReachAlg (.poly 2)).map (·.map fun Z =>
   (vdpF ((Zonotope.interval Z).inf 1), vdpF ((Zonotope.interval Z).sup 1)))
 
 end VanDerPol

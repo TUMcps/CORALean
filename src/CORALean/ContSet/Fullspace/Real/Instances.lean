@@ -69,7 +69,9 @@ instance : Recentre (Fullspace n) (Vec ℝ n) where
   zero_mem_recentre _ := Set.mem_univ 0
   sub_centre_mem_recentre _ := Set.mem_univ _
 
-instance : Mtimes (Mat ℝ) (fun n => Fullspace n) where
+/-- At every scalar `𝕋` with a matrix denotation (`Mat 𝕋`), not only `ℝ`: the guarantee
+is over what the matrix denotes, and the result ignores it. -/
+instance {𝕋 : Type} [Scalar 𝕋] : Mtimes (Mat 𝕋) (fun n => Fullspace n) where
   mtimes _ _ := ⟨⟩
   mtimes_outer _ _ := fun x _ => Set.mem_univ x
 

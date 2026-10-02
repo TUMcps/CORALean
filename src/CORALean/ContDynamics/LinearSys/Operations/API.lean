@@ -92,6 +92,8 @@ import CORALean.ContDynamics.LinearSys.Operations.WithInputReach
 import CORALean.ContDynamics.LinearSys.Operations.WithInputReachStepk
 import CORALean.ContDynamics.LinearSys.Operations.WithInputSplitReach
 import CORALean.ContDynamics.LinearSys.Operations.WithInputSplitReachStepk
+import CORALean.ContDynamics.LinearSys.Operations.DeltaReachFloat
+import CORALean.ContDynamics.LinearSys.Operations.PostDeltaFloat
 
 /-!
 # What a continuous-time linear system computes

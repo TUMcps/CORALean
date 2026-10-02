@@ -7,6 +7,10 @@ import CORALean.ContSet.LevelSet.Real.Theorems.ConstructInf
 import CORALean.ContSet.LevelSet.Real.Theorems.ForallAppendHolds
 import CORALean.ContSet.LevelSet.Real.Theorems.PlusExact
 import CORALean.ContSet.LevelSet.Real.Theorems.NotExact
+import CORALean.ContSet.LevelSet.Real.Theorems.RestrictConstruct
+import CORALean.ContSet.LevelSet.Real.Theorems.SplitEqualityExact
+import CORALean.ContSet.LevelSet.Real.Theorems.SplitEqualityFstOp
+import CORALean.ContSet.LevelSet.Real.Theorems.SplitEqualitySndOp
 import CORALean.ContSet.LevelSet.Real.Theorems.LiftExact
 import CORALean.ContSet.LevelSet.Real.Theorems.MtimesExact
 

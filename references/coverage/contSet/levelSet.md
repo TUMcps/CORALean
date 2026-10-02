@@ -26,5 +26,5 @@ CORA methods of `contSet/@levelSet/`, one row each, and where CORALean answers t
 | `not` | proved | [`LevelSet.not`](../../../src/CORALean/ContSet/LevelSet/Real/Operations/Not.lean), [`LevelSet.not_exact`](../../../src/CORALean/ContSet/LevelSet/Real/Theorems/NotExact.lean) | single constraint with `≤` or `<` only (`-f < 0` / `-f ≤ 0`), the complement exactly; every other level set is `none` where CORA throws `notSupported` |
 | `plot` | out-of-scope | n/a — plotting/display |  |
 | `representsa_` | — | — |  |
-| `splitEquality` | — | — |  |
+| `splitEquality` | proved | [`LevelSet.splitEquality`](../../../src/CORALean/ContSet/LevelSet/Real/Operations/SplitEquality.lean), [`LevelSet.splitEquality_exact`](../../../src/CORALean/ContSet/LevelSet/Real/Theorems/SplitEqualityExact.lean) | exact: the level set is the intersection of the equality part and the rest, each keeping its constraints in order; CORA's `[]` for an empty part is the level set with no constraints (the whole space) |
 | `tightenDomain` | — | — |  |

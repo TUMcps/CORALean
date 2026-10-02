@@ -62,6 +62,12 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.RegionFloatConfined
 import CORALean.ContDynamics.NonlinearSys.Theorems.RelinRunFloatOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.RelinStepFloatOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.SlopeRemainderAbstractionError
+import CORALean.ContDynamics.NonlinearSys.Theorems.AbstrErrPolyFloatOuter
+import CORALean.ContDynamics.NonlinearSys.Theorems.HessRemainderAbstractionError
+import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachFloatOuter
+import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachRunFloatOuter
+import CORALean.ContDynamics.NonlinearSys.Theorems.OneStepFloatOuter
+import CORALean.ContDynamics.NonlinearSys.Theorems.ReachAlgFloatOuter
 
 /-!
 # What `NonlinearSys` guarantees

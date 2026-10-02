@@ -8,6 +8,7 @@ import CORALean.Global.Float.ListSum
 import CORALean.Global.Float.PowUp
 import CORALean.Global.Float.PowDown
 import CORALean.Global.Float.DivFact
+import CORALean.Global.Float.BilinUp
 import CORALean.Global.Float.Instances.API
 import CORALean.Global.Float.FloatBound
 

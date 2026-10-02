@@ -17,6 +17,8 @@ import CORALean.ContSet.ZonoBundle.Real.Operations.OfPoint
 import CORALean.ContSet.ZonoBundle.Real.Operations.Parallelotope
 import CORALean.ContSet.ZonoBundle.Real.Operations.Plus
 import CORALean.ContSet.ZonoBundle.Real.Operations.Pool
+import CORALean.ContSet.ZonoBundle.Real.Operations.Replace
+import CORALean.ContSet.ZonoBundle.Real.Operations.QuadMap
 import CORALean.ContSet.ZonoBundle.Real.Operations.Empty
 import CORALean.ContSet.ZonoBundle.Real.Operations.Reduce
 import CORALean.ContSet.ZonoBundle.Real.Operations.Split

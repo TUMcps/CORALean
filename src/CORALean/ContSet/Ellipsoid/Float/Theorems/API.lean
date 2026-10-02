@@ -9,6 +9,7 @@ import CORALean.ContSet.Ellipsoid.Float.Theorems.ProjectOuter
 import CORALean.ContSet.Ellipsoid.Float.Theorems.Convex
 import CORALean.ContSet.Ellipsoid.Float.Theorems.IsCompact
 import CORALean.ContSet.Ellipsoid.Float.Theorems.OriginExact
+import CORALean.ContSet.Ellipsoid.Float.Theorems.CentreMemConstruct
 import CORALean.ContSet.Ellipsoid.Float.Theorems.ReindexExact
 
 /-!
