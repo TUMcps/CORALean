@@ -46,6 +46,11 @@ import CORALean.ContSet.Interval.Float.Operations.RepresentsaOrigin
 import CORALean.ContSet.Interval.Float.Operations.RepresentsaPoint
 import CORALean.ContSet.Interval.Float.Operations.Times
 import CORALean.ContSet.Interval.Float.Operations.IsFullDim
+import CORALean.ContSet.Interval.Float.Operations.Max
+import CORALean.ContSet.Interval.Float.Operations.Min
+import CORALean.ContSet.Interval.Float.Operations.Isequal
+import CORALean.ContSet.Interval.Float.Operations.Transpose
+import CORALean.ContSet.Interval.Float.Operations.Ctranspose
 
 /-!
 # What `Interval` computes
@@ -60,4 +65,6 @@ The same nine (`uminus`, `uplus`, `minus`, `infimum`, `supremum`, `or`, `convHul
 
 The same eleven: `le`, `lt`, `empty`, three `representsa_*` tests, `exp`, `abs`, `times`, `project`
 and `projectHighDim_`. Only `exp` and `times` round.
+
+The same four: `max`, `min`, `isequal` and `transpose` with `ctranspose`. None rounds.
 -/

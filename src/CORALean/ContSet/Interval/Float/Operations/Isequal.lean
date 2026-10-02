@@ -1,0 +1,30 @@
+import CORALean.ContSet.Interval.Float.Operations.Le
+
+/-!
+# `Interval.isequal`
+
+The equality test at float: containment each way, by the certified `le`. Certified in one direction
+only, so `true` is a proof and `false` is no refutation.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       01-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+def Interval.isequal (I J : Interval (Vec 𝕋 n)) : Bool := Interval.le I J && Interval.le J I
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

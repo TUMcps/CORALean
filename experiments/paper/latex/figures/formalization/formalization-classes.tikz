@@ -25,11 +25,11 @@
     legend columns=3, legend to name=classlegend,
     legend style={legend cell align=left, align=left, draw=none, font=\scriptsize, inner sep=0pt, /tikz/every even column/.append style={column sep=0.6ex}, /tikz/every odd column/.append style={column sep=0pt}},
     legend image code/.code={\draw[#1, draw=black, line width=0.4pt] (0cm,-0.6ex) rectangle (1.2ex,0.6ex);}]
-\addplot+[draw=none, fill=CORAcolorReachSet] coordinates {(0,0) (0,1) (0,2) (9,3) (9,4) (18,5) (7,6) (0,7) (0,8) (40,9) (0,10) (10,11) (0,12) (14,13) (0,14) (1,15) (0,16) (14,17) (20,18) (0,19) (0,20) (3,21) (2,22) (0,23) (1,24) (6,25) (4,26) (1,27) (0,28) (0,29) (0,30) (1,31) (0,32) (0,33) (0,34) (1,35) (0,36) (0,37) (0,38) (0,39) (4,40) (1,41) (0,42) (24,43) (7,44)};
+\addplot+[draw=none, fill=CORAcolorReachSet] coordinates {(0,0) (0,1) (0,2) (9,3) (9,4) (18,5) (7,6) (0,7) (0,8) (45,9) (0,10) (10,11) (0,12) (14,13) (0,14) (1,15) (0,16) (14,17) (20,18) (0,19) (0,20) (3,21) (2,22) (0,23) (1,24) (6,25) (4,26) (1,27) (0,28) (0,29) (0,30) (1,31) (0,32) (0,33) (0,34) (1,35) (0,36) (0,37) (0,38) (0,39) (4,40) (1,41) (0,42) (24,43) (7,44)};
 \addlegendentry{proved, runnable at float}
-\addplot+[draw=none, fill=CORAcolorReachSet2] coordinates {(0,0) (0,1) (13,2) (14,3) (11,4) (4,5) (6,6) (20,7) (20,8) (16,9) (0,10) (14,11) (0,12) (11,13) (0,14) (5,15) (0,16) (3,17) (8,18) (0,19) (0,20) (0,21) (2,22) (0,23) (0,24) (8,25) (1,26) (2,27) (0,28) (3,29) (0,30) (6,31) (4,32) (0,33) (0,34) (1,35) (1,36) (3,37) (4,38) (0,39) (2,40) (1,41) (0,42) (5,43) (4,44)};
+\addplot+[draw=none, fill=CORAcolorReachSet2] coordinates {(0,0) (0,1) (13,2) (14,3) (11,4) (4,5) (6,6) (20,7) (20,8) (20,9) (0,10) (14,11) (0,12) (11,13) (0,14) (5,15) (0,16) (3,17) (8,18) (0,19) (0,20) (0,21) (2,22) (0,23) (0,24) (8,25) (1,26) (2,27) (0,28) (3,29) (0,30) (6,31) (4,32) (0,33) (0,34) (1,35) (1,36) (3,37) (4,38) (0,39) (2,40) (1,41) (0,42) (5,43) (4,44)};
 \addlegendentry{proved, needs float}
-\addplot+[draw=none, fill=white] coordinates {(0,0) (1,1) (17,2) (16,3) (19,4) (51,5) (28,6) (3,7) (6,8) (36,9) (16,10) (36,11) (40,12) (26,13) (22,14) (19,15) (46,16) (20,17) (40,18) (12,19) (0,20) (7,21) (4,22) (4,23) (4,24) (10,25) (10,26) (1,27) (10,28) (3,29) (6,30) (5,31) (5,32) (0,33) (1,34) (4,35) (1,36) (4,37) (14,38) (5,39) (1,40) (4,41) (0,42) (13,43) (18,44)};
+\addplot+[draw=none, fill=white] coordinates {(0,0) (1,1) (17,2) (16,3) (19,4) (51,5) (28,6) (3,7) (6,8) (27,9) (16,10) (36,11) (40,12) (26,13) (22,14) (19,15) (46,16) (20,17) (40,18) (12,19) (0,20) (7,21) (4,22) (4,23) (4,24) (10,25) (10,26) (1,27) (10,28) (3,29) (6,30) (5,31) (5,32) (0,33) (1,34) (4,35) (1,36) (4,37) (14,38) (5,39) (1,40) (4,41) (0,42) (13,43) (18,44)};
 \addlegendentry{not yet}
 \draw[black, line width=0.4pt] ([yshift=-2.5pt]axis cs:0,1) rectangle ([yshift=2.5pt]axis cs:1,1);
 \draw[black, line width=0.4pt] ([yshift=-2.5pt]axis cs:0,2) rectangle ([yshift=2.5pt]axis cs:30,2);
@@ -130,9 +130,9 @@
 \node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:10,7) {20};
 \node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:10,8) {20};
 \node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:23,8) {6};
-\node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:20,9) {40};
-\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:48,9) {16};
-\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:74,9) {36};
+\node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:22.5,9) {45};
+\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:55,9) {20};
+\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:78.5,9) {27};
 \node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:8,10) {16};
 \node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:5,11) {10};
 \node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:17,11) {14};

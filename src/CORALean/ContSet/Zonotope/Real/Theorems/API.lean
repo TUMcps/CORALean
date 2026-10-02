@@ -7,6 +7,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.AbsPairCoeffDiffLeOne
 import CORALean.ContSet.Zonotope.Real.Theorems.AbsPairCoeffSumLeOne
 import CORALean.ContSet.Zonotope.Real.Theorems.AbsWeightedLe
 import CORALean.ContSet.Zonotope.Real.Theorems.AdaptSetOrderBudget
+import CORALean.ContSet.Zonotope.Real.Theorems.AlignedWithOfSmul
 import CORALean.ContSet.Zonotope.Real.Theorems.AutoTuneSetOrderLe
 import CORALean.ContSet.Zonotope.Real.Theorems.BilinOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
@@ -15,6 +16,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.ClosedBallSubsetDiagonal
 import CORALean.ContSet.Zonotope.Real.Theorems.Coefficient
 import CORALean.ContSet.Zonotope.Real.Theorems.ContinuousAffine
 import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+import CORALean.ContSet.Zonotope.Real.Theorems.CubeExact
 import CORALean.ContSet.Zonotope.Real.Theorems.EnclGenSelSubset
 import CORALean.ContSet.Zonotope.Real.Theorems.ExistsAutoTuneSetOrder
 import CORALean.ContSet.Zonotope.Real.Theorems.FaceCentrallySymmetric
@@ -33,7 +35,10 @@ import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDistIntervalLe
 import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
 import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed
 import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
+import CORALean.ContSet.Zonotope.Real.Theorems.IsLUBNormFoldMaxAbsBound
 import CORALean.ContSet.Zonotope.Real.Theorems.LinCombOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.LineClBasisIsUnitDet
+import CORALean.ContSet.Zonotope.Real.Theorems.LineClKeepIsUnitDet
 import CORALean.ContSet.Zonotope.Real.Theorems.LmtimesSingletonOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
 import CORALean.ContSet.Zonotope.Real.Theorems.MatMulLeftExact
@@ -41,9 +46,8 @@ import CORALean.ContSet.Zonotope.Real.Theorems.MatMulOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.MatMulRightExact
 import CORALean.ContSet.Zonotope.Real.Theorems.MatPowOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+import CORALean.ContSet.Zonotope.Real.Theorems.MemLinCombMtimesIff
 import CORALean.ContSet.Zonotope.Real.Theorems.MethCVolumeLe
-import CORALean.ContSet.Zonotope.Real.Theorems.QuadTaylorOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.AlignedWithOfSmul
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedExact
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedInner
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedNotInner
@@ -51,11 +55,11 @@ import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffGenRecExact
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffOrEmptyInner
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffOrEmptyNeEmpty
-import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffStretchInner
-import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffStretchEq
-import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffStretchOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffRepInner
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffScaledInner
+import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffStretchEq
+import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffStretchInner
+import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffStretchOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkowskiDiffApplyLe
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkowskiDiffHRepEq
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkowskiDiffNotZonotope
@@ -77,6 +81,9 @@ import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 import CORALean.ContSet.Zonotope.Real.Theorems.PlusIntervalExact
 import CORALean.ContSet.Zonotope.Real.Theorems.PlusIntervalOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.PlusSubsetClosedBall
+import CORALean.ContSet.Zonotope.Real.Theorems.ProjectExact
+import CORALean.ContSet.Zonotope.Real.Theorems.ProjectHighDimExact
+import CORALean.ContSet.Zonotope.Real.Theorems.QuadTaylorOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.RecentreSubMem
 import CORALean.ContSet.Zonotope.Real.Theorems.RecentreZeroMem
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBoxAbsBoundLe
@@ -88,22 +95,22 @@ import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBoxOrderSpec
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceByBasisOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceByOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBySubsetAddBox
+import CORALean.ContSet.Zonotope.Real.Theorems.ReduceCoOptDirOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.ReduceCoOptSVDOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceCombastelOrderLe
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceCombastelOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceGirardOrderLe
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceGirardOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.ReduceHybridPCOrderLe
+import CORALean.ContSet.Zonotope.Real.Theorems.ReduceHybridPCOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.ReduceLineClOrderLe
+import CORALean.ContSet.Zonotope.Real.Theorems.ReduceLineClOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceMethCOrderLe
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceMethCOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOrder
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.ReducePCAOrderLe
 import CORALean.ContSet.Zonotope.Real.Theorems.ReducePCAOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.LineClKeepIsUnitDet
-import CORALean.ContSet.Zonotope.Real.Theorems.LineClBasisIsUnitDet
-import CORALean.ContSet.Zonotope.Real.Theorems.ReduceLineClOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.ReduceLineClOrderLe
-import CORALean.ContSet.Zonotope.Real.Theorems.ReduceHybridPCOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.ReduceHybridPCOrderLe
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceSignedInner
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceSubsetAddBox
 import CORALean.ContSet.Zonotope.Real.Theorems.ScaledRPI
@@ -113,14 +120,13 @@ import CORALean.ContSet.Zonotope.Real.Theorems.SplitUnion
 import CORALean.ContSet.Zonotope.Real.Theorems.StepSubsetClosedBall
 import CORALean.ContSet.Zonotope.Real.Theorems.StepSubsetClosedBallOfReduceBoxOrder
 import CORALean.ContSet.Zonotope.Real.Theorems.SubsetClosedBallOfAbsBoundLe
+import CORALean.ContSet.Zonotope.Real.Theorems.SubsetOfMulEqOneOfSumAbsLe
 import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMul
 import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
 import CORALean.ContSet.Zonotope.Real.Theorems.SumPair
 import CORALean.ContSet.Zonotope.Real.Theorems.SumSmulUpdate
 import CORALean.ContSet.Zonotope.Real.Theorems.SumUnivReduceBy
 import CORALean.ContSet.Zonotope.Real.Theorems.SupportBoundAttained
-import CORALean.ContSet.Zonotope.Real.Theorems.ProjectExact
-import CORALean.ContSet.Zonotope.Real.Theorems.ProjectHighDimExact
 import CORALean.ContSet.Zonotope.Real.Theorems.IsFullDimIff
 
 /-!

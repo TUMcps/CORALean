@@ -1,0 +1,33 @@
+import CORALean.ContSet.Interval.Real.Interval
+
+/-!
+# `Interval.sum₁`
+
+CORA's `@interval/sum` of an interval matrix along dimension 1: the bounds are summed down each
+column, `sum(I.inf, 1)` and `sum(I.sup, 1)`. CORA keeps the result as a `1 × n` matrix; here it is
+the vector of the same entries.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       01-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {m n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+def Interval.sum₁ (I : Interval (Mat ℝ m n)) : Interval (Vec ℝ n) where
+  inf := fun j => ∑ i, I.inf i j
+  sup := fun j => ∑ i, I.sup i j
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

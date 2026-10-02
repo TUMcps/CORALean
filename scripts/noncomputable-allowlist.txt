@@ -117,11 +117,13 @@ LinearSys.autoStep  pending #1: part of the adaptive linear scheme (`manualRun`,
 LinearSys.autoTuneDeltaT  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.autoTuneOrder  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.autoTuneSearch  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
+LinearSys.bundleReach  pending #1: a continuous-time algorithm at a real matrix exponential, over `Real.ZonoBundle`; needs a float zonotope bundle and a float `e^{Ar}`
 LinearSys.constInputSolution  real-layer: a constant input's contribution via `∫e^{Aσ}dσ` and `F̃`; the float layer encloses it as `inputSolutionFloat` at `[0, ũ]` (`reachFloatInput`)
 LinearSys.deltaReach  pending #1: the step's state differences at the real exponential, read by `NonlinearSys`; needs a float counterpart from `timePointStepFloat` and `intervalCorrectionMatrix`
 LinearSys.discretize  real-layer: the exact sampled system `e^{AΔt}`, transcendental; its float refinement is `LinearSys.discretizeEnclosureFloat`
 LinearSys.discretizeEnclosure  real-layer: the sampled system at the real `expEnclosure`; runs in floats as `LinearSys.discretizeEnclosureFloat`
 LinearSys.discretizeMatZonotope  pending #1: needs a float matrix zonotope, which does not exist: `Float.Zonotope 𝕋 n` is indexed by dimension over `Vec 𝕋 n`, not by its ambient type
+LinearSys.girardReach  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.inputReach  spec: the exact input reachable set, defined by integrals over admissible inputs
 LinearSys.inputSolution  real-layer: the input solution at real matrices; runs in floats as `LinearSys.inputSolutionFloat`
 LinearSys.inputSolutionInner  spec: what a constant input contributes over a step, an image under the exact `∫₀^Δt e^{Aσ}dσ`

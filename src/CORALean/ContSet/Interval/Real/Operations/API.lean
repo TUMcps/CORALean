@@ -55,6 +55,17 @@ import CORALean.ContSet.Interval.Real.Operations.RepresentsaPoint
 import CORALean.ContSet.Interval.Real.Operations.Times
 import CORALean.ContSet.Interval.Real.Operations.Norm
 import CORALean.ContSet.Interval.Real.Operations.Volume
+import CORALean.ContSet.Interval.Real.Operations.Max
+import CORALean.ContSet.Interval.Real.Operations.Min
+import CORALean.ContSet.Interval.Real.Operations.Enlarge
+import CORALean.ContSet.Interval.Real.Operations.IntervalMatrix
+import CORALean.ContSet.Interval.Real.Operations.Isequal
+import CORALean.ContSet.Interval.Real.Operations.Radius2
+import CORALean.ContSet.Interval.Real.Operations.Transpose
+import CORALean.ContSet.Interval.Real.Operations.Ctranspose
+import CORALean.ContSet.Interval.Real.Operations.OfCenterRadius
+import CORALean.ContSet.Interval.Real.Operations.Sum1
+import CORALean.ContSet.Interval.Real.Operations.Sum2
 
 /-!
 # What `Interval` computes
@@ -69,15 +80,15 @@ matrices, not vectors), and `MatPow` is its plain recursive power — no lawful
 a box by a real, corner-swapped for a negative one. `AbsMax` is a single matrix
 dominating every member of the box, for bounding its norm uniformly.
 
-`Point` and `Center`/`Radius` are the two readings of a box the enclosure
-proofs elsewhere want: the degenerate one, and the centre-plus-deviation split.
+`Point` and `Center`/`Radius` are the degenerate reading of a box and the
+centre-plus-deviation split the enclosure proofs elsewhere want.
 `Recentre` shifts by that same centre, sound only on a nonempty box — see
 `Instances.lean` for why that keeps the class itself uninstantiated.
-`IsNonempty` is the predicate `Theorems/IsNonempty` characterises. `SplitAt`
-bisects one coordinate at the midpoint, the concrete splitter
-`NeuralNetwork.holds_of_split` is verified at. `SupportBound` answers a
-direction corner by corner at `Vec ℝ n`; `SupportBoundEntrywise` is the same
-argument over any `Entrywise` type, giving `Interval (Mat ℝ m n)` one too.
+`IsNonempty` is the predicate `Theorems/IsNonempty` characterises. `SplitAt` bisects
+one coordinate at the midpoint, the splitter `NeuralNetwork.holds_of_split` is
+verified at. `SupportBound` answers a direction corner by corner at `Vec ℝ n`;
+`SupportBoundEntrywise` is the same over any `Entrywise` type.
 
-Also the containment tests, `empty`, the `representsa_*` tests, `exp`, `abs`, `times`, `project`.
+Also the containment tests, `empty`, `representsa_*`, `exp`, `abs`, `times`, `project`, `max`,
+`min`, `enlarge`, `radius₂`, `isequal`, `transpose`, `sum₁`, `sum₂`, `intervalMatrix`.
 -/
