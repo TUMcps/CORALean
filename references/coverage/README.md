@@ -118,7 +118,7 @@ Only these, and the row says which:
 | [linParamSys](contDynamics/linParamSys.md) | contDynamics | 11 | 2 | 2 | 4 | 3 | 0 |
 | [linProbSys](contDynamics/linProbSys.md) | contDynamics | 8 | 0 | 0 | 4 | 4 | 0 |
 | [linearARX](contDynamics/linearARX.md) | contDynamics | 7 | 0 | 1 | 4 | 2 | 0 |
-| [linearSys](contDynamics/linearSys.md) | contDynamics | 33 | 8 | 6 | 10 | 9 | 0 |
+| [linearSys](contDynamics/linearSys.md) | contDynamics | 33 | 7 | 7 | 10 | 9 | 0 |
 | [linearSysDT](contDynamics/linearSysDT.md) | contDynamics | 17 | 1 | 4 | 10 | 2 | 0 |
 | [neurNetContrSys](contDynamics/neurNetContrSys.md) | contDynamics | 5 | 2 | 1 | 1 | 1 | 0 |
 | [nonlinDASys](contDynamics/nonlinDASys.md) | contDynamics | 13 | 0 | 0 | 10 | 3 | 0 |

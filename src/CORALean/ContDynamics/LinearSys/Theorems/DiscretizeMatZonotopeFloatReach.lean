@@ -1,0 +1,51 @@
+import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeMatZonotopeFloat
+import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuter
+
+/-!
+# `discretizeMatZonotopeFloat`'s trajectory lands in `reach`
+
+`discretizeMatZonotopeFloat` handed to `LinParamSysDT.reach_outer`: at the float
+matrix-zonotope family, `LinParamSysDT.reach` is the discrete recursion run in floats,
+and the sampled continuous run is inside it at every sample time.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       02-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open CORALean.Float SoundFloatArithmetic
+open Matrix ContSet
+
+variable {n : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
+variable [Mtimes (fun m n => MatZonotope 𝕋 m n) S]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+/-- Every sample `x (k Δt)` of a run lies in the float-sampled system's `reach`
+after `k` steps under the sampled inputs `Ud`. -/
+theorem LinearSys.Trajectory.discretizeMatZonotopeFloat_mem_reach {sys : LinearSys 𝕋 n}
+    {T : Set ℝ} {R₀ U Ud : S n} {x u : ℝ → Vec ℝ n} {Δt : 𝕋} {η : ℕ}
+    (traj : sys.Trajectory T R₀ U x u) (hΔt : 0 ≤ toReal Δt) (hT : Set.Ici 0 ⊆ T)
+    (hU : Bornology.IsBounded (construct U))
+    (hUd : ∀ k : ℕ, sys.stepInput u (toReal Δt) k ∈ construct Ud)
+    (hε : toReal (MatExp.normUpperBound
+      (MatZonotope.smul Δt Δt (MatZonotope.point sys.A)).interval) / ((η : ℝ) + 2) ≤ 1 / 2)
+    {o : ℕ} (ho : 0 < o) (k : ℕ) :
+    x (k * toReal Δt) ∈ construct ((sys.discretizeMatZonotopeFloat Δt η).reach ⟨R₀, Ud, 0, k⟩
+      ⟨o, ho⟩) :=
+  (sys.discretizeMatZonotopeFloat Δt η).reach_outer ho R₀ Ud
+    (traj.discretizeMatZonotopeFloat hΔt hT hU hUd hε) k
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

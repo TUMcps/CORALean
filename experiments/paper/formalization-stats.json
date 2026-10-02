@@ -1827,11 +1827,11 @@
         "group": "contDynamics",
         "class": "linearSys",
         "methods": 33,
-        "proved": 8,
-        "float": 6,
+        "proved": 7,
+        "float": 7,
         "not_yet": 10,
         "out_of_scope": 9,
-        "needs_float": 8,
+        "needs_float": 7,
         "out_of_scope_by_reason": {
           "plotting/display": 2,
           "random/sampling": 1,
@@ -2319,11 +2319,11 @@
       },
       "contDynamics": {
         "methods": 159,
-        "proved": 26,
-        "float": 18,
+        "proved": 25,
+        "float": 19,
         "not_yet": 69,
         "out_of_scope": 46,
-        "needs_float": 26,
+        "needs_float": 25,
         "cora_issues": 2,
         "out_of_scope_by_reason": {
           "plotting/display": 25,
@@ -2392,11 +2392,11 @@
     },
     "totals": {
       "methods": 1260,
-      "proved": 205,
-      "float": 211,
+      "proved": 204,
+      "float": 212,
       "not_yet": 561,
       "out_of_scope": 283,
-      "needs_float": 205,
+      "needs_float": 204,
       "cora_issues": 4,
       "out_of_scope_by_reason": {
         "plotting/display": 84,
@@ -2439,10 +2439,10 @@
     },
     "theorems": {
       "paper": 446,
-      "float": 687,
+      "float": 716,
       "helper": 564,
       "lemma": 1513,
-      "total": 3210,
+      "total": 3239,
       "examples": 77
     }
   }

@@ -1,6 +1,8 @@
 import CORALean.ContSet.Zonotope.Float.Operations.AbsBoundError
 import CORALean.ContSet.Zonotope.Float.Operations.GeneratorError
 import CORALean.ContSet.Zonotope.Float.Operations.CenterResidual
+import CORALean.ContSet.Zonotope.Float.Operations.MtimesMatZonotope
+import CORALean.ContSet.Zonotope.Float.Operations.OfEntryBounds
 import CORALean.ContSet.Zonotope.Float.Operations.Plus
 import CORALean.ContSet.Zonotope.Float.Operations.PlusBox
 import CORALean.ContSet.Zonotope.Float.Operations.Project

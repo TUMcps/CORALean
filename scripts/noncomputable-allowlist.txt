@@ -90,11 +90,11 @@ LinParamSys.constPropagate  pending #1: the split input's constant half carried 
 LinParamSys.discretizeEnclosure  real-layer: the sampled system at `ℐ`; runs in floats as `LinParamSys.discretizeEnclosureFloat` (`ConstTrajectory.discretizeEnclosureFloat_mem_reach`)
 LinParamSys.expEnclosure  real-layer: `e^{[A]t}` at `ℐ`, its order raised by `reachOrder`; runs in floats as `LinParamSys.expIntervalFloat` at an order from `reachOrderFloat`
 LinParamSys.inputSolution  real-layer: the input solution at `ℐ`; runs in floats as `LinParamSys.inputSolutionFloat` (`inputReach_subset_inputSolutionFloat`)
-LinParamSys.inputSolutionZono  pending #1: needs a float matrix zonotope, which does not exist: `Float.Zonotope 𝕋 n` is indexed by dimension over `Vec 𝕋 n`, not by its ambient type
+LinParamSys.inputSolutionZono  real-layer: the input solution at the real matrix-zonotope family `𝕄𝒵` with `r : ℝ`; runs in floats as `LinParamSys.inputSolutionZonoFloat` (`inputReach_subset_inputSolutionZonoFloat`)
 LinParamSys.inputTaylorSum  real-layer: the input solution's Taylor orders at `ℐ`; runs in floats as `LinParamSys.inputTaylorSumFloat`
-LinParamSys.inputTaylorSumTail  pending #1: the interval-matrix orders past the matrix-zonotope ones in `inputSolutionZono`; needs a float matrix zonotope first (see `inputSolutionZono`)
+LinParamSys.inputTaylorSumTail  real-layer: the interval-matrix orders past the matrix-zonotope ones in `inputSolutionZono`, at `r : ℝ`; runs in floats as `LinParamSys.inputTaylorSumTailFloat`
 LinParamSys.inputTerm  real-layer: `[A]ⁱ r^{i+1}/(i+1)!` at `ℐ`; runs in floats as `Float.MatExp.intervalInputTerm` at `sys.A`
-LinParamSys.inputTermZono  pending #1: needs a float matrix zonotope, which does not exist: `Float.Zonotope 𝕋 n` is indexed by dimension over `Vec 𝕋 n`, not by its ambient type
+LinParamSys.inputTermZono  real-layer: a matrix-zonotope order of the input solution at `r : ℝ`; runs in floats as `LinParamSys.inputTermZonoFloat` (`smul_pow_mem_inputTermZonoFloat`)
 LinParamSys.particularSolution  pending #1: the input's accumulation across windows at `ℐ`; needs a float `particularSolution`, `[e^{[A] t_k}] P^R(Δt)` summed from `reachStepkFloat` and `LinParamSys.inputSolutionFloat` (not yet written)
 LinParamSys.reachInstance  real-layer: the `Reach` instance over `reachUnion`; runs in floats as `LinParamSys.reachFloat`
 LinParamSys.reachOrder  real-layer: an admissible order by `⌈‖[A]r‖⌉`; runs in floats as `LinParamSys.reachOrderFloat`
@@ -122,7 +122,7 @@ LinearSys.constInputSolution  real-layer: a constant input's contribution via `�
 LinearSys.deltaReach  pending #1: the step's state differences at the real exponential, read by `NonlinearSys`; needs a float counterpart from `timePointStepFloat` and `intervalCorrectionMatrix`
 LinearSys.discretize  real-layer: the exact sampled system `e^{AΔt}`, transcendental; its float refinement is `LinearSys.discretizeEnclosureFloat`
 LinearSys.discretizeEnclosure  real-layer: the sampled system at the real `expEnclosure`; runs in floats as `LinearSys.discretizeEnclosureFloat`
-LinearSys.discretizeMatZonotope  pending #1: needs a float matrix zonotope, which does not exist: `Float.Zonotope 𝕋 n` is indexed by dimension over `Vec 𝕋 n`, not by its ambient type
+LinearSys.discretizeMatZonotope  real-layer: the sampled system at the real matrix-zonotope exponential, `Δt : ℝ`; runs in floats as `LinearSys.discretizeMatZonotopeFloat` (`Trajectory.discretizeMatZonotopeFloat_mem_reach`)
 LinearSys.girardReach  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.inputReach  spec: the exact input reachable set, defined by integrals over admissible inputs
 LinearSys.inputSolution  real-layer: the input solution at real matrices; runs in floats as `LinearSys.inputSolutionFloat`
@@ -220,10 +220,10 @@ MatExp.expIntervalTaylor  real-layer: the interval Taylor sum; runs in floats as
 MatExp.expIntervalTaylorExact  pending #1: the tighter interval exponential through `expW`'s exact second-order closed form; no float counterpart yet: that closed form needs rounding outward
 MatExp.expIntervalTaylorTail  pending #1: the tighter interval exponential through `expW`'s exact second-order closed form; no float counterpart yet: that closed form needs rounding outward
 MatExp.expIntervalW  pending #1: the tighter interval exponential through `expW`'s exact second-order closed form; no float counterpart yet: that closed form needs rounding outward
-MatExp.expMatZonoEnclosure  pending #1: needs a float matrix zonotope, which does not exist: `Float.Zonotope 𝕋 n` is indexed by dimension over `Vec 𝕋 n`, not by its ambient type
-MatExp.expMatZonoRemainder  pending #1: needs a float matrix zonotope, which does not exist: `Float.Zonotope 𝕋 n` is indexed by dimension over `Vec 𝕋 n`, not by its ambient type
-MatExp.expMatZonoTaylor  pending #1: needs a float matrix zonotope, which does not exist: `Float.Zonotope 𝕋 n` is indexed by dimension over `Vec 𝕋 n`, not by its ambient type
-MatExp.expMatZonoTerm  pending #1: needs a float matrix zonotope, which does not exist: `Float.Zonotope 𝕋 n` is indexed by dimension over `Vec 𝕋 n`, not by its ambient type
+MatExp.expMatZonoEnclosure  real-layer: the exponential of a real matrix zonotope; runs in floats as `Float.MatExp.expMatZonoEnclosure` (`exp_mem_expMatZonoEnclosure`)
+MatExp.expMatZonoRemainder  real-layer: the tail box as a real matrix zonotope; runs in floats as the interval matrix `Float.MatExp.expMatZonoRemainder` (`mem_expMatZonoRemainder`)
+MatExp.expMatZonoTaylor  real-layer: the Taylor sum of a real matrix zonotope; runs in floats as `Float.MatExp.expMatZonoTaylor` (`expTaylor_mem_expMatZonoTaylor`)
+MatExp.expMatZonoTerm  real-layer: one Taylor order of a real matrix zonotope; runs in floats as `Float.MatExp.expMatZonoTerm`
 MatExp.expRemainder  real-layer: the exact remainder box `E(Δt, η)`; the float layer rounds it into `Float.MatExp.expRemainderBound`
 MatExp.expRemainderBound  real-layer: the exact remainder bound; runs in floats as `Float.MatExp.expRemainderBound`
 MatExp.expRemainderOrder  specification of the admissible order (an infimum over ℕ), not run: the computable searches are MatExp.tuneOrder and MatExp.tuneStep, whose results satisfy its admissibility predicate

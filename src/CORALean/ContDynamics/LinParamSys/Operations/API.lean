@@ -4,10 +4,13 @@ import CORALean.ContDynamics.LinParamSys.Operations.DiscretizeEnclosure
 import CORALean.ContDynamics.LinParamSys.Operations.ExpEnclosure
 import CORALean.ContDynamics.LinParamSys.Operations.InputSolution
 import CORALean.ContDynamics.LinParamSys.Operations.InputSolutionZono
+import CORALean.ContDynamics.LinParamSys.Operations.InputSolutionZonoFloat
 import CORALean.ContDynamics.LinParamSys.Operations.InputTaylorSum
 import CORALean.ContDynamics.LinParamSys.Operations.InputTaylorSumTail
+import CORALean.ContDynamics.LinParamSys.Operations.InputTaylorSumTailFloat
 import CORALean.ContDynamics.LinParamSys.Operations.InputTerm
 import CORALean.ContDynamics.LinParamSys.Operations.InputTermZono
+import CORALean.ContDynamics.LinParamSys.Operations.InputTermZonoFloat
 import CORALean.ContDynamics.LinParamSys.Operations.ParticularSolution
 import CORALean.ContDynamics.LinParamSys.Operations.ReachOrder
 import CORALean.ContDynamics.LinParamSys.Operations.ReachStepk

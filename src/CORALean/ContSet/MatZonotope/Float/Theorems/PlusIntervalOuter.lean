@@ -1,0 +1,37 @@
+import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
+import CORALean.ContSet.MatZonotope.Float.Operations.PlusInterval
+
+/-!
+# `MatZonotope.plusInterval` over-approximates the sum
+
+Reassociation and `matPlus_outer`: the interval's point joins the box's.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       02-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+open Pointwise SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem MatZonotope.plusInterval_outer (Z : MatZonotope 𝕋 m n) (I : Interval (Mat 𝕋 m n)) :
+    Z.construct + I.construct ⊆ (MatZonotope.plusInterval Z I).construct := by
+  rintro _ ⟨_, ⟨a, ha, e, he, rfl⟩, x, hx, rfl⟩
+  refine ⟨a, ha, e + x, Interval.matPlus_outer _ _ he hx, ?_⟩
+  show a + (e + x) = a + e + x
+  abel
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
