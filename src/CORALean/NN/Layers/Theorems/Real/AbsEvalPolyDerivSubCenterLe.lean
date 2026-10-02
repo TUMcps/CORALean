@@ -1,4 +1,7 @@
 import CORALean.NN.Layers.Definitions.PolyDerivBound
+import Mathlib.Algebra.Order.BigOperators.Group.Finset
+import Mathlib.Tactic.Linarith
+import Mathlib.Tactic.Ring
 
 /-!
 # A fit's derivative around its centre

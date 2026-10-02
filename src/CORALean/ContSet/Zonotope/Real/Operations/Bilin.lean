@@ -1,4 +1,6 @@
 import CORALean.ContSet.Zonotope.Real.Zonotope
+import Mathlib.Algebra.Module.LinearMap.Defs
+import Mathlib.Logic.Equiv.Fin.Basic
 
 /-!
 # `Zonotope.bilin`

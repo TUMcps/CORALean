@@ -2,6 +2,7 @@ import CORALean.ContDynamics.LinearSys.Definitions.ManualState
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.CurvatureEnclosure
 import CORALean.ContDynamics.LinearSys.Operations.InputSolution
 import CORALean.ContDynamics.LinearSys.Operations.StepInputConst
+import Mathlib.Analysis.Normed.Algebra.Exponential
 
 /-!
 # `Alg. 1` lines 5-11: one iteration of the main loop

@@ -1,5 +1,6 @@
 import CORALean.ContSet.ConZonotope.Real.Operations.MemOfMatIff
 import Mathlib.Data.Matrix.ColumnRowPartitioned
+import Mathlib.Analysis.RCLike.Lemmas
 
 /-!
 # A linear program with a minimum-norm solution

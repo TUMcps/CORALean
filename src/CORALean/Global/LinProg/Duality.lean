@@ -1,4 +1,6 @@
 import CORALean.Global.LinProg.LinProg
+import Mathlib.Algebra.Order.BigOperators.Group.Finset
+import Mathlib.Tactic.Linarith
 
 /-!
 # Where a bound comes from: weak duality

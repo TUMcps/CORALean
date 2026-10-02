@@ -1,5 +1,6 @@
 import CORALean.ContSet.PolyZonotope.Real.Operations.SubsetAt
 import CORALean.Global.LinProg.LinProg
+import Mathlib.Algebra.Order.BigOperators.Group.Finset
 
 /-!
 # `PolyZonotope.supportBound`

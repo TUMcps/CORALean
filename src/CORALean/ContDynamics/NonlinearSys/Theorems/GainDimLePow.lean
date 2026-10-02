@@ -1,5 +1,6 @@
 import CORALean.ContDynamics.NonlinearSys.Operations.GainDim
 import CORALean.ContDynamics.NonlinearSys.Operations.GainOrderDim
+import Mathlib.Analysis.Normed.Order.Lattice
 
 /-!
 # The gain is under `δ^{q+1}` while the coefficients hold still

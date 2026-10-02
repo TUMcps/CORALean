@@ -1,6 +1,7 @@
 import CORALean.ContDynamics.LinearSys.Theorems.FlowIoi
 import CORALean.ContDynamics.LinearSys.Theorems.HasDerivWithinAtExpNegMulVec
 import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
 
 /-!
 # Every trajectory is its matrix exponential plus its inputs

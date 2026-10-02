@@ -1,4 +1,5 @@
 import CORALean.ContSet.HPolytope.Real.Operations.HalfScaled
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
 
 /-!
 # Membership in `HPolytope.halfScaled`

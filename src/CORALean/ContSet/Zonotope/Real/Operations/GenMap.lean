@@ -1,4 +1,6 @@
 import CORALean.ContSet.Zonotope.Real.Zonotope
+import Mathlib.Algebra.BigOperators.GroupWithZero.Action
+import Mathlib.Algebra.Module.LinearMap.Defs
 
 /-!
 # `Zonotope.genMap`

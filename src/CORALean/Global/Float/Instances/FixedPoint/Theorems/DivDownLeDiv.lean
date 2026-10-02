@@ -1,6 +1,7 @@
 import CORALean.Global.Float.Instances.FixedPoint.Operations.DivDown
 import CORALean.Global.Float.Instances.FixedPoint.Theorems.MantissaPos
 import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealMk
+import Mathlib.Data.Int.ConditionallyCompleteOrder
 
 /-!
 # Division, rounded down, never overshoots

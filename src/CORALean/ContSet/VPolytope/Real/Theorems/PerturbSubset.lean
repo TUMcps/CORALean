@@ -1,4 +1,5 @@
 import CORALean.ContSet.VPolytope.Real.VPolytope
+import Mathlib.Analysis.Convex.Combination
 
 /-!
 # Moving the vertices moves the hull no further

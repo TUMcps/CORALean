@@ -1,4 +1,6 @@
 import CORALean.ContSet.HPolytope.Real.HPolytope
+import Mathlib.Analysis.Convex.Basic
+import Mathlib.Tactic.Linarith
 
 /-!
 # A halfspace description is convex

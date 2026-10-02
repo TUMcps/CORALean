@@ -1,4 +1,5 @@
 import CORALean.ContSet.PolyZonotope.Real.Operations.UsedFactors
+import Mathlib.Data.Finset.Sort
 
 /-!
 # A kept-factor vector, read back over every factor

@@ -1,4 +1,5 @@
 import CORALean.Global.Float.Exp
+import Mathlib.Analysis.SpecialFunctions.Log.Basic
 
 /-!
 # A directed-rounding logarithm

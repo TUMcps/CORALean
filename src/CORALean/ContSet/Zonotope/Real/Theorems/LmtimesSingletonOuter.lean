@@ -1,5 +1,6 @@
 import CORALean.ContSet.Zonotope.Real.Operations.LinMtimes
 import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
+import Mathlib.Order.BourbakiWitt
 
 /-!
 # A one-element set of maps applied to a zonotope

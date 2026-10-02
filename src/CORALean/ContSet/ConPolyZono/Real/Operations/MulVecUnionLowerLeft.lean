@@ -9,6 +9,7 @@ import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendELeft
 import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendERight
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
 
 /-!
 # A row of the first operand's block of the union's lower constraint

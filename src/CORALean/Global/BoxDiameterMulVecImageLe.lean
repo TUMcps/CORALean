@@ -1,5 +1,6 @@
 import CORALean.Global.BoxDiameter
-import CORALean.Global.Mathlib
+import Mathlib.Analysis.Matrix.Normed
+import Mathlib.Tactic.Positivity
 
 /-!
 # Applying a matrix cannot widen a box diameter past its operator norm

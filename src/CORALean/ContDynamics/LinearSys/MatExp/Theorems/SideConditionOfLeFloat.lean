@@ -1,4 +1,6 @@
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.OrderTestFloat
+import Mathlib.Tactic.Positivity
+import Mathlib.Analysis.Normed.Algebra.Exponential
 
 /-!
 # The float side condition certified by `le` is the real one

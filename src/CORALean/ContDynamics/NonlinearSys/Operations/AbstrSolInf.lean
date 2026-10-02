@@ -1,4 +1,7 @@
 import CORALean.Global.Tensor
+import Mathlib.Data.Matrix.Mul
+import Mathlib.Topology.Algebra.InfiniteSum.Defs
+import Mathlib.Topology.MetricSpace.Pseudo.Defs
 
 /-!
 # The non-truncated set of abstraction errors

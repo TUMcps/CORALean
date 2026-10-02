@@ -804,8 +804,8 @@ causes it is the part a later reader cannot reconstruct.
 `set_option ... in` goes above the docstring. Between the docstring and the
 declaration it silently detaches the two.
 
-Mathlib is imported only in `Global/Mathlib.lean`, one lemma group at a time. A
-new lemma may mean a new import there.
+Import Mathlib modules in the file that uses them, never through a shared file:
+a shared import list rebuilds every importer when any import is added to it.
 
 ### `aux_sum_univ_<op>`
 
@@ -967,5 +967,4 @@ code:
 -- Last revision: ---
 ```
 
-Files that only collect or re-export do not: every `API.lean`,
-`Global/Mathlib.lean`, `CORALean.lean`.
+Files that only collect or re-export do not: every `API.lean`, `CORALean.lean`.

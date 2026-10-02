@@ -1,4 +1,6 @@
 import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
+import Mathlib.Data.Fintype.BigOperators
+import Mathlib.Logic.Equiv.Fin.Basic
 
 /-!
 # A sum over replicated indices, block by block

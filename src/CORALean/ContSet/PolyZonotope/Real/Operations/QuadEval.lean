@@ -1,4 +1,6 @@
 import CORALean.Global.Tensor
+import Mathlib.Data.Matrix.Mul
+import Mathlib.Data.Real.Basic
 
 /-!
 # The quadratic map itself

@@ -1,5 +1,6 @@
 import CORALean.ContSet.ContSet.ContSet
 import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffAligned
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
 
 /-!
 # `Zonotope.minkDiffAligned` needs its scaling in `[0, 1]`

@@ -1,4 +1,7 @@
 import CORALean.ContSet.Zonotope.Real.Operations.QuadTaylor
+import Mathlib.Algebra.BigOperators.Fin
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
+import Mathlib.Data.Matrix.Basic
 
 /-!
 # `quadTaylor` encloses the second-order Taylor sum of every matrix a zonotope denotes

@@ -1,4 +1,6 @@
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpTaylor
+import Mathlib.Analysis.Normed.Algebra.Exponential
+import Mathlib.Topology.Instances.Matrix
 
 /-!
 # The exponential remainder, entrywise

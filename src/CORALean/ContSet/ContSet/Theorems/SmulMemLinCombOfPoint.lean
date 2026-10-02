@@ -1,4 +1,5 @@
 import CORALean.ContSet.ContSet.ContSet
+import Mathlib.Tactic.Linarith
 
 /-!
 # The segment from the origin to a point, without a `segment` field

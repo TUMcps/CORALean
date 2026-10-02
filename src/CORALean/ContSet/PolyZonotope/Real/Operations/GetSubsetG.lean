@@ -1,4 +1,5 @@
 import CORALean.ContSet.PolyZonotope.Real.Operations.MaxExp
+import Mathlib.Logic.Equiv.Fin.Basic
 
 /-!
 # The dependent generators of `getSubset`

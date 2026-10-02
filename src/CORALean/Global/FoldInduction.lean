@@ -1,4 +1,4 @@
-import CORALean.Global.Mathlib
+import Mathlib.Data.Nat.Notation
 
 /-!
 # A property carried through `Fin.foldl`

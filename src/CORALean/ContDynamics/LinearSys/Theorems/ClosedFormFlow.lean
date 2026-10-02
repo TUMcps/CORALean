@@ -2,6 +2,9 @@ import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormContinuousOn
 import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormZero
 import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
 import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+import Mathlib.Analysis.SpecialFunctions.Exponential
+import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
+import Mathlib.MeasureTheory.Integral.Prod
 
 /-!
 # The closed form satisfies the raw integral equation, for any bounded input

@@ -1,4 +1,5 @@
 import CORALean.Specification.Specification
+import Mathlib.Analysis.Convex.Hull
 
 /-!
 # The origin in the hull of differences forces an intersection

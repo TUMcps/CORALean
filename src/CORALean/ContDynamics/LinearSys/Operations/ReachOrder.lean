@@ -1,4 +1,5 @@
 import CORALean.ContDynamics.LinearSys.LinearSys
+import Mathlib.Analysis.Matrix.Normed
 
 /-!
 # An order admissible for a window and its matrix

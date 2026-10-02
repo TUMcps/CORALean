@@ -1,5 +1,6 @@
 import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ExpRemainderMat
 import CORALean.Global.Err
+import Mathlib.Analysis.Matrix.Normed
 
 /-!
 # `particularSolutionError`'s explicit bound

@@ -8,6 +8,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
 import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
 import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMul
 import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
+import Mathlib.Algebra.BigOperators.Fin
 
 /-!
 # Multiplying by an interval matrix over-approximates every matrix in it

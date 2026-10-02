@@ -1,4 +1,5 @@
 import CORALean.NN.Definitions.Chain
+import Mathlib.Analysis.Calculus.FDeriv.Defs
 
 /-!
 # Differentiable layer by layer, along the forward pass

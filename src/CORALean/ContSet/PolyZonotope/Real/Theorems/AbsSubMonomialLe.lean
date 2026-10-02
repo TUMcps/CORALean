@@ -1,4 +1,5 @@
 import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsSubPowLeEDiff
+import Mathlib.Algebra.Order.BigOperators.Ring.Finset
 
 /-!
 # Two monomials that agree off one factor drift by at most `eDiff`

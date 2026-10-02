@@ -1,4 +1,6 @@
 import CORALean.ContSet.ZonoBundle.Real.Operations.DirPcaCovariance
+import Mathlib.Data.Real.Star
+import Mathlib.LinearAlgebra.Matrix.Hermitian
 
 /-!
 # The vertex scatter matrix is Hermitian

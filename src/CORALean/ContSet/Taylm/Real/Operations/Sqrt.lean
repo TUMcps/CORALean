@@ -1,5 +1,6 @@
 import CORALean.ContSet.Taylm.Real.Operations.Taylor
 import CORALean.ContSet.Taylm.Real.Operations.ConstCoef
+import Mathlib.Analysis.SpecialFunctions.Pow.Real
 
 /-!
 # `Taylm.sqrt`

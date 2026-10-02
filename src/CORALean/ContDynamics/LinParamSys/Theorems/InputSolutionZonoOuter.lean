@@ -11,6 +11,7 @@ import CORALean.ContSet.Interval.Real.Theorems.NormLeAbsMax
 import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
 import CORALean.ContSet.Zonotope.Real.Theorems.MatPowOuter
+import Mathlib.Algebra.Order.Ring.Star
 
 /-!
 # `inputSolutionZono` contains what the input contributes at every matrix of the set

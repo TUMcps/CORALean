@@ -1,4 +1,4 @@
-import CORALean.Global.Mathlib
+import Mathlib.Analysis.Real.Sqrt
 
 /-!
 # Batch normalization's statistics, folded

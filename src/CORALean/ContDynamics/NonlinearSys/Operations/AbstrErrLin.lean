@@ -1,5 +1,6 @@
 import CORALean.ContSet.Interval.Real.Interval
 import CORALean.ContSet.Zonotope.Real.Zonotope
+import Mathlib.Data.Matrix.Mul
 
 /-!
 # The linearization error of a second-order expansion

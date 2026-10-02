@@ -1,4 +1,5 @@
 import CORALean.ContSet.Zonotope.Real.Zonotope
+import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
 
 /-!
 # `Zonotope.lineClKeep`

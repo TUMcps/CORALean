@@ -1,4 +1,5 @@
 import CORALean.Global.Float.Instances.Dyadic.Operations.Shift
+import Mathlib.Analysis.Normed.Field.Basic
 
 /-!
 # The real quotient, read as an integer quotient at a shifted scale

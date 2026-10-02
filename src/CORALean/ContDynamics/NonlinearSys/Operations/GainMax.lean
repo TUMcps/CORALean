@@ -1,4 +1,5 @@
 import CORALean.Global.Tensor
+import Mathlib.Data.Real.Basic
 
 /-!
 # `gainMax`: the gain of a step size, read off two boxes

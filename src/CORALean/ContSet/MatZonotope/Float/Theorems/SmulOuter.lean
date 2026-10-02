@@ -3,6 +3,7 @@ import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
 import CORALean.ContSet.MatZonotope.Float.Operations.Smul
 import CORALean.ContSet.MatZonotope.Float.Theorems.OfEntryBoundsOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
+import Mathlib.LinearAlgebra.BilinearMap
 
 /-!
 # `MatZonotope.smul` over-approximates scaling by every scalar in `[cLo, cHi]`

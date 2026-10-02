@@ -1,4 +1,5 @@
 import CORALean.NN.Layers.Definitions.LeakyRelu
+import Mathlib.Tactic.Linarith
 
 /-!
 # Leaky ReLU between a line and the line raised

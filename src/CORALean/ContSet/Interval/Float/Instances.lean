@@ -10,6 +10,7 @@ import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 import CORALean.ContSet.Interval.Float.Theorems.ReindexExact
 import CORALean.ContSet.Interval.Real.Theorems.Convex
 import CORALean.ContSet.Interval.Real.Theorems.IsCompact
+import Mathlib.Analysis.InnerProductSpace.Basic
 
 /-!
 # What `Interval` instantiates

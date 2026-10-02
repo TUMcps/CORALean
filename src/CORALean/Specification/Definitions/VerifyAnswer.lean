@@ -1,4 +1,3 @@
-import CORALean.Global.Mathlib
 
 /-!
 # What a verification run concludes

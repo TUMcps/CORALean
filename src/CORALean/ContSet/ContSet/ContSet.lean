@@ -1,4 +1,5 @@
 import CORALean.Global.Scalar
+import Mathlib.LinearAlgebra.Matrix.ToLin
 
 /-!
 # Set representations

@@ -1,4 +1,5 @@
 import CORALean.ContSet.PolyZonotope.Real.Operations.ExtE
+import Mathlib.Logic.Equiv.Fin.Basic
 
 /-!
 # The exponent matrix of `bilin`

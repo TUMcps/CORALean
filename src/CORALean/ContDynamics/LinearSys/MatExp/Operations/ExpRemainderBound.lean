@@ -1,4 +1,5 @@
 import CORALean.ContSet.Interval.Real.Interval
+import Mathlib.Analysis.Matrix.Normed
 
 /-!
 # The matrix exponential's Taylor remainder, bounded

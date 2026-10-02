@@ -1,4 +1,5 @@
 import CORALean.ContSet.Interval.Real.Interval
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.Inverse
 
 /-!
 # `Interval.asin`

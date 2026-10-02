@@ -5,6 +5,7 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundMono
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSubExpTaylorLe
 import CORALean.ContSet.Interval.Real.Theorems.MemMat
 import CORALean.ContSet.Interval.Real.Theorems.NormLeAbsMax
+import Mathlib.Algebra.Order.Ring.Star
 
 /-!
 # The matrix exponential lies in the sharper interval enclosure

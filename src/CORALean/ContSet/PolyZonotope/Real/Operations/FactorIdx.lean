@@ -1,4 +1,5 @@
 import CORALean.ContSet.PolyZonotope.Real.Operations.UsedFactors
+import Mathlib.Data.Finset.Sort
 
 /-!
 # The kept factors, indexed by a plain count

@@ -1,4 +1,5 @@
 import CORALean.Global.Tensor
+import Mathlib.Data.Finset.Defs
 
 /-!
 # [1, Alg. 2, l. 4-19]: the refinement loop answering one query

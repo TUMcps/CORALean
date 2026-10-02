@@ -1,4 +1,5 @@
 import CORALean.ContDynamics.LinearSys.LinearSys
+import Mathlib.Analysis.InnerProductSpace.Basic
 
 /-!
 # The state is continuous wherever the flow holds

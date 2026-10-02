@@ -1,4 +1,5 @@
 import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+import Mathlib.Analysis.Matrix.Normed
 
 /-!
 # `mtimes` scales the sup-norm ball by the operator norm

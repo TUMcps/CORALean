@@ -1,4 +1,5 @@
 import CORALean.ContSet.ConPolyZono.Real.Operations.Map
+import Mathlib.Algebra.Module.Equiv.Basic
 
 /-!
 # `ConPolyZono.project`

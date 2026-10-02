@@ -1,4 +1,4 @@
-import CORALean.Global.Mathlib
+import Mathlib.Topology.MetricSpace.Pseudo.Defs
 
 /-!
 # `Assumption 1`: a step error converges to zero

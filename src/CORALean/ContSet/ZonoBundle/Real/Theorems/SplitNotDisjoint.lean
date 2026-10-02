@@ -1,5 +1,6 @@
 import CORALean.ContSet.ZonoBundle.Real.Theorems.SplitInter
 import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 
 /-!
 # The halves of a split bundle need not be disjoint

@@ -1,5 +1,6 @@
 import CORALean.ContSet.PolyZonotope.Real.Operations.PadBack
 import CORALean.ContSet.PolyZonotope.Real.Operations.Point
+import Mathlib.Algebra.BigOperators.Fin
 
 /-!
 # `padBack` moves no point

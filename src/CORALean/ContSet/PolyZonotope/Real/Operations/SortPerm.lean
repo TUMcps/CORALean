@@ -1,4 +1,6 @@
 import CORALean.ContSet.PolyZonotope.Real.Operations.ColLex
+import Mathlib.Data.Fin.Tuple.Sort
+import Mathlib.Order.PiLex
 
 /-!
 # The permutation that sorts an exponent matrix

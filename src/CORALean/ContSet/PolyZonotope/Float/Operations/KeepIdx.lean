@@ -1,4 +1,5 @@
 import CORALean.ContSet.PolyZonotope.Float.Operations.RepKeep
+import Mathlib.Data.Finset.Sort
 
 /-!
 # The kept columns, indexed by a plain count, over a floating-point scalar

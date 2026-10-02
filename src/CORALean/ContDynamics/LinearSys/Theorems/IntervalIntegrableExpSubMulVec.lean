@@ -1,4 +1,6 @@
 import CORALean.ContDynamics.LinearSys.Operations.InputReach
+import Mathlib.Analysis.Matrix.Normed
+import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 
 /-!
 # An admissible input against the exponential is interval integrable

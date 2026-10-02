@@ -1,4 +1,5 @@
 import CORALean.NN.Layers.Layer
+import Mathlib.Topology.MetricSpace.Lipschitz
 
 /-!
 # What an activation layer does to a distance

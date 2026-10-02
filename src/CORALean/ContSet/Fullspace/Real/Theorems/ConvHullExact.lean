@@ -1,6 +1,7 @@
 import CORALean.ContSet.Fullspace.Real.Operations.ConvHull
 import CORALean.ContSet.Fullspace.Real.Fullspace
 import CORALean.ContSet.ContSet.ContSet
+import Mathlib.Analysis.Convex.Hull
 
 /-!
 # `Fullspace.convHull` is the convex hull

@@ -1,5 +1,6 @@
 import CORALean.NN.Layers.Operations.TapMat
 import CORALean.NN.Layers.Theorems.TapEntryDot
+import Mathlib.Data.Matrix.Mul
 
 /-!
 # A stencil matrix times a vector

@@ -1,4 +1,7 @@
 import CORALean.Global.Float.SoundFloatArithmetic
+import Mathlib.Analysis.Complex.Exponential
+import Mathlib.Analysis.Normed.Field.Basic
+import Mathlib.Tactic.Positivity
 
 /-!
 # A directed-rounding exponential

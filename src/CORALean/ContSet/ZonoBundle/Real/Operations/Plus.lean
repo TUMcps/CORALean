@@ -1,5 +1,6 @@
 import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
 import CORALean.ContSet.Zonotope.Real.Operations.Plus
+import Mathlib.Logic.Equiv.Fin.Basic
 
 /-!
 # `ZonoBundle.plus`

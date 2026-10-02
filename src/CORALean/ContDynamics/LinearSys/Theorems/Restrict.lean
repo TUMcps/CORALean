@@ -1,4 +1,5 @@
 import CORALean.ContDynamics.LinearSys.LinearSys
+import Mathlib.Analysis.InnerProductSpace.Basic
 
 /-!
 # A trajectory restricts to any smaller time domain

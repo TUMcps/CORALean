@@ -1,5 +1,6 @@
 import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
 import CORALean.ContSet.Conversion.Real.Zonotope_to_ZonoBundle
+import Mathlib.Order.BourbakiWitt
 
 /-!
 # A box as a bundle of one

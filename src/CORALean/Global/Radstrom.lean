@@ -1,4 +1,8 @@
-import CORALean.Global.Mathlib
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Analysis.Convex.Combination
+import Mathlib.Analysis.RCLike.Basic
+import Mathlib.Analysis.SpecificLimits.Basic
+import Mathlib.Tactic.Positivity
 
 /-!
 # Rådström's cancellation law

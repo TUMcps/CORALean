@@ -1,6 +1,7 @@
 import CORALean.ContDynamics.LinearSys.LinearSys
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrectionMatrix
 import CORALean.ContSet.Interval.Real.Instances
+import Mathlib.Analysis.Normed.Algebra.Exponential
 
 /-!
 # The state differences a step spans

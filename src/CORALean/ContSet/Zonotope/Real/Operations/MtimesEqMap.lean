@@ -1,5 +1,6 @@
 import CORALean.ContSet.Zonotope.Real.Operations.Map
 import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
+import Mathlib.LinearAlgebra.Matrix.ToLin
 
 /-!
 # `Zonotope.mtimes` is `map` at the matrix's linear map

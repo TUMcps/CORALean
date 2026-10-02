@@ -1,4 +1,6 @@
 import CORALean.Global.Tensor
+import Mathlib.Algebra.Module.LinearMap.Defs
+import Mathlib.Data.Real.Basic
 
 /-!
 # Bounds on a linear objective

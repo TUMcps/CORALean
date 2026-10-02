@@ -1,6 +1,7 @@
 import CORALean.ContSet.Interval.Real.Operations.ConvHull
 import CORALean.ContSet.Interval.Real.Theorems.OrOuter
 import CORALean.ContSet.Interval.Real.Theorems.Convex
+import Mathlib.Analysis.Convex.Hull
 
 /-!
 # `Interval.convHull` contains the convex hull of the union

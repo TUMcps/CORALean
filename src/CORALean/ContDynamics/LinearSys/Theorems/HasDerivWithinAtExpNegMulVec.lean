@@ -1,4 +1,9 @@
 import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+import Mathlib.Analysis.Calculus.Deriv.Add
+import Mathlib.Analysis.Calculus.Deriv.Comp
+import Mathlib.Analysis.Calculus.Deriv.Mul
+import Mathlib.Analysis.Matrix.Normed
+import Mathlib.Analysis.SpecialFunctions.Exponential
 
 /-!
 # The substitution that cancels the dynamics

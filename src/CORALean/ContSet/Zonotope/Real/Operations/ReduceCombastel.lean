@@ -1,5 +1,6 @@
 import CORALean.ContSet.Zonotope.Real.Operations.ReduceBy
 import CORALean.Global.Sort
+import Mathlib.Data.Fin.Tuple.Sort
 
 /-!
 # `Zonotope.reduceCombastel`

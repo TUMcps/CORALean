@@ -1,6 +1,7 @@
 import CORALean.ContSet.ConPolyZono.Real.Operations.Domain
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ContinuousMonomial
 import CORALean.ContSet.Zonotope.Real.Theorems.ClosedBallEq
+import Mathlib.Analysis.Normed.Order.Lattice
 
 /-!
 # The coefficient domain of a constrained polynomial zonotope is compact

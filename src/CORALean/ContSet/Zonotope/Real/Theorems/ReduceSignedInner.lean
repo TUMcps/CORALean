@@ -1,4 +1,5 @@
 import CORALean.ContSet.Zonotope.Real.Zonotope
+import Mathlib.Algebra.Module.BigOperators
 
 /-!
 # A `{-1,0,1}`-signed regrouping of generators is an inner-approximation

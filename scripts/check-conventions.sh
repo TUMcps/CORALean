@@ -316,8 +316,7 @@ function closeBlock(e,   len) {
 
 function check(f,   i, n, collector, want, dir, cap) {
   endRun(f)
-  collector = (f ~ /\/API\.lean$/) || (f == "src/CORALean.lean") ||
-              (f == "src/CORALean/Global/Mathlib.lean")
+  collector = (f ~ /\/API\.lean$/) || (f == "src/CORALean.lean")
 
   for (a in useAux)
     if (!(a in declAux))
@@ -1070,6 +1069,35 @@ FNR == 1 { if (nf > 0) checkfile(); split("", L); nf = 0; fname = FILENAME }
 END { if (nf > 0) checkfile() }
 ' | sort)
 report "$out"
+
+# Mathlib is imported in the file that uses it, never through a shared one: a
+# shared file makes every importer rebuild when any import is added to it. So no
+# file may be `Global/Mathlib.lean`, and none may hold nothing but `import
+# Mathlib.*` lines (comments and blanks aside).
+out=$(printf '%s\n' "$files" | awk '
+$0 == "src/CORALean/Global/Mathlib.lean" {
+  print $0 ": a shared Mathlib import file — import Mathlib modules in the file that uses them"
+}' )
+out="$out
+$(awk '
+FNR == 1 { if (n > 0 && other == 0) print prev ": holds only `import Mathlib.*` lines —" \
+             " import Mathlib modules in the file that uses them"
+           prev = FILENAME; n = 0; other = 0; inb = 0 }
+{
+  s = $0
+  if (inb) { if (s ~ /-\//) { inb = 0; sub(/^.*-\//, "", s) } else next }
+  while (s ~ /\/-/) {
+    pre = s; sub(/\/-.*$/, "", pre); post = s; sub(/^.*\/-/, "", post)
+    if (post ~ /-\//) { sub(/^.*-\//, "", post); s = pre post } else { s = pre; inb = 1 }
+  }
+  sub(/--.*$/, "", s)
+  if (s ~ /^[ \t]*$/) next
+  if (s ~ /^import Mathlib\./) n++; else other++
+}
+END { if (n > 0 && other == 0) print prev ": holds only `import Mathlib.*` lines —" \
+        " import Mathlib modules in the file that uses them" }
+' $files)"
+report "$(printf '%s' "$out" | sed '/^$/d')"
 
 if [ "$status" -eq 0 ]; then
   printf 'conventions: %s files, all checks passed\n' "$(printf '%s\n' "$files" | wc -l | tr -d ' ')"

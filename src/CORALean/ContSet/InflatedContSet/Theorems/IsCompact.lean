@@ -1,6 +1,7 @@
 import CORALean.ContSet.ContSet.Definitions.CompactSet
 import CORALean.ContSet.InflatedContSet.InflatedContSet
 import CORALean.ContSet.Interval.Real.Theorems.IsCompact
+import Mathlib.Analysis.InnerProductSpace.Basic
 
 /-!
 # An inflated representation of a compact set is compact

@@ -1,4 +1,6 @@
 import CORALean.Global.Tensor
+import Mathlib.Data.Real.Basic
+import Mathlib.LinearAlgebra.Pi
 
 /-!
 # The direction a rival label closes the gap in

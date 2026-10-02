@@ -1,4 +1,5 @@
 import CORALean.ContSet.PolyZonotope.Real.Operations.ExpEdge
+import Mathlib.Algebra.Order.BigOperators.Group.Finset
 
 /-!
 # The generator graph has no cycles

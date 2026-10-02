@@ -1,4 +1,5 @@
 import CORALean.Global.Float.Instances.FixedPoint.Operations.Le
+import Mathlib.Tactic.Positivity
 
 /-!
 # Comparison agrees with ℝ

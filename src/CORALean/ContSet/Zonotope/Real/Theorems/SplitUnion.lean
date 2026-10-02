@@ -1,5 +1,6 @@
 import CORALean.ContSet.Zonotope.Real.Operations.Split
 import CORALean.ContSet.Zonotope.Real.Theorems.SumSmulUpdate
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
 
 /-!
 # A split loses nothing

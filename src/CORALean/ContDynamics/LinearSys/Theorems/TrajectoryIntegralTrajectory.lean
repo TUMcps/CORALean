@@ -2,6 +2,8 @@ import CORALean.ContDynamics.LinearSys.Definitions.IntegralTrajectory
 import CORALean.ContDynamics.LinearSys.Theorems.FlowIci
 import CORALean.ContDynamics.LinearSys.Theorems.FlowIoi
 import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+import Mathlib.Analysis.Matrix.Normed
+import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
 
 /-!
 # Every `Trajectory` is an `IntegralTrajectory`

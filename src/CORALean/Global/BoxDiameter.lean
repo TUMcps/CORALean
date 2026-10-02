@@ -1,4 +1,5 @@
 import CORALean.Global.Tensor
+import Mathlib.Analysis.Normed.Ring.Lemmas
 
 /-!
 # `d(box(S))`, the width of the tightest box over a set

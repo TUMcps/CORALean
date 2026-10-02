@@ -1,4 +1,5 @@
 import CORALean.ContSet.Zonotope.Real.Operations.Map
+import Mathlib.Algebra.Module.Equiv.Basic
 
 /-!
 # `Zonotope.project`

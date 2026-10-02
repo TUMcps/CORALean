@@ -1,5 +1,6 @@
 import CORALean.ContDynamics.NonlinearSys.Theorems.BoxDiameterAbstrSolInf
 import CORALean.ContDynamics.NonlinearSys.Theorems.GainDimTendstoPow
+import Mathlib.Analysis.Normed.Group.FunctionSeries
 
 /-!
 # The limit gain at a fixed linearization

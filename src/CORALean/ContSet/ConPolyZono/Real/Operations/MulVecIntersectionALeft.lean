@@ -1,4 +1,5 @@
 import CORALean.ContSet.ConPolyZono.Real.Operations.IntersectionA
+import Mathlib.Algebra.BigOperators.Fin
 
 /-!
 # `intersectionA` on the inherited rows

@@ -4,6 +4,7 @@ import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormZero
 import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableMulVecAdd
 import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableOfMemBounded
 import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+import Mathlib.Analysis.ODE.Gronwall
 
 /-!
 # A run of the integral equation *is* the closed form, point by point

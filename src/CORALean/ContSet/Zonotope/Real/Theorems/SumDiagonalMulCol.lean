@@ -1,4 +1,5 @@
 import CORALean.ContSet.Zonotope.Real.Zonotope
+import Mathlib.Data.Matrix.Diagonal
 
 /-!
 # A diagonal block of generators, read down a column

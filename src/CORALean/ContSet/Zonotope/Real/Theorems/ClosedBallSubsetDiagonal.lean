@@ -1,4 +1,6 @@
 import CORALean.ContSet.Zonotope.Real.Zonotope
+import Mathlib.Analysis.Normed.Ring.Basic
+import Mathlib.Data.Matrix.Diagonal
 
 /-!
 # A ball is a zonotope in the supremum norm

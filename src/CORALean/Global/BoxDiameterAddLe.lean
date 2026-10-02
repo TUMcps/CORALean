@@ -1,4 +1,6 @@
 import CORALean.Global.BoxDiameter
+import Mathlib.Analysis.Normed.Group.Pointwise
+import Mathlib.Tactic.Positivity
 
 /-!
 # The box diameter of a Minkowski sum, against the diameters of its summands

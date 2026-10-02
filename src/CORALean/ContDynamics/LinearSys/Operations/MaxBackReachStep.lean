@@ -4,6 +4,7 @@ import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachInit
 import CORALean.ContSet.ConZonotope.Real.Operations.LinComb
 import CORALean.ContSet.ConZonotope.Real.Operations.Mtimes
 import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
+import Mathlib.Analysis.Normed.Algebra.Exponential
 
 /-!
 # `Alg. 2` lines 7-12: one iteration of the main loop

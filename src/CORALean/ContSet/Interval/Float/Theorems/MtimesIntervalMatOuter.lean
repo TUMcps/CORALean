@@ -1,6 +1,7 @@
 import CORALean.ContSet.Interval.Float.Operations.MtimesIntervalMat
 import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
 import CORALean.ContSet.Interval.Real.Theorems.MtimesIntervalMatOuter
+import Mathlib.Order.BourbakiWitt
 
 /-!
 # `Interval.mtimesIntervalMat` over-approximates every matrix in the box

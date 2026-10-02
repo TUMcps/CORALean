@@ -1,4 +1,5 @@
 import CORALean.ContSet.Zonotope.Real.Zonotope
+import Mathlib.Analysis.Normed.Module.Basic
 
 /-!
 # A zonotope is bounded

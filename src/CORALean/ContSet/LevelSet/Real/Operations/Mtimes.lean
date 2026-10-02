@@ -1,4 +1,5 @@
 import CORALean.ContSet.LevelSet.Real.LevelSet
+import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 
 /-!
 # `LevelSet.mtimes`

@@ -1,4 +1,4 @@
-import CORALean.Global.Mathlib
+import Mathlib.Data.Nat.Notation
 
 /-!
 # The weights of a softmax layer

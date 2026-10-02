@@ -1,5 +1,7 @@
 import CORALean.ContSet.Zonotope.Real.Complexity.Bilin
-import CORALean.Global.Mathlib
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Analysis.Asymptotics.Defs
+import Mathlib.Tactic.Positivity
 
 /-!
 # `bilin`'s cost is `O(m ^ 2)`

@@ -1,6 +1,7 @@
 import CORALean.ContDynamics.LinearSys.LinearSys
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBound
 import CORALean.ContSet.Zonotope.Real.Operations.AbsBound
+import Mathlib.Analysis.Normed.Algebra.Exponential
 
 /-!
 # How far `timeIntervalStep` reaches past the states the step actually visits

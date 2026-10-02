@@ -1,4 +1,5 @@
 import CORALean.ContSet.ZonoBundle.Real.Theorems.DirPcaCovarianceIsHermitian
+import Mathlib.Analysis.Matrix.Spectrum
 
 /-!
 # `ZonoBundle.dirPca`: the pca heuristic

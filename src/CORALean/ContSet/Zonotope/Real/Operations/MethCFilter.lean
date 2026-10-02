@@ -1,6 +1,7 @@
 import CORALean.ContSet.Zonotope.Real.Zonotope
 import CORALean.Global.Partition
 import CORALean.Global.Sort
+import Mathlib.Data.Fin.Tuple.Sort
 
 /-!
 # `Zonotope.methCFilter`

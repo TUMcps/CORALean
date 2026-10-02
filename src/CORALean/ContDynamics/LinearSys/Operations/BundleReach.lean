@@ -6,6 +6,8 @@ import CORALean.ContSet.ZonoBundle.Real.Operations.Mtimes
 import CORALean.ContSet.ZonoBundle.Real.Operations.Plus
 import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
 import CORALean.ContSet.Zonotope.Real.Operations.Plus
+import Mathlib.Analysis.Normed.Algebra.Exponential
+import Mathlib.Topology.Instances.Matrix
 
 /-!
 # `bundleReach`: [1, Alg. 1]

@@ -1,4 +1,4 @@
-import CORALean.Global.Mathlib
+import Mathlib.Analysis.RCLike.Lemmas
 import CORALean.Global.Tensor
 
 /-!

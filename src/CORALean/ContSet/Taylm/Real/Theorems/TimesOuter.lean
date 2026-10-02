@@ -3,6 +3,7 @@ import CORALean.ContSet.Taylm.Real.Theorems.PolyOfMulTerms
 import CORALean.ContSet.Taylm.Real.Theorems.PolyOfFilter
 import CORALean.ContSet.Taylm.Real.Theorems.PolyBoundsMem
 import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
+import Mathlib.Tactic.LinearCombination
 
 /-!
 # `Taylm.times` encloses the product

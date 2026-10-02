@@ -1,5 +1,6 @@
 import CORALean.ContDynamics.NonlinearSys.Operations.RegionFloat
 import CORALean.ContDynamics.NonlinearSys.Theorems.ConfinedOfBall
+import Mathlib.Analysis.Calculus.Deriv.Prod
 
 /-!
 # A run stays in the box `regionFloat` returns

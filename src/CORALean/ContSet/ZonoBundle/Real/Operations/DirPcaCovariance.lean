@@ -1,5 +1,6 @@
 import CORALean.Global.Tensor
 import Mathlib.Data.Matrix.Basic
+import Mathlib.Data.Real.Basic
 
 /-!
 # `ZonoBundle.dirPcaCovariance`: the scatter of a vertex cloud

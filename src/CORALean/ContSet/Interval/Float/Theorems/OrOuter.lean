@@ -1,6 +1,7 @@
 import CORALean.ContSet.Interval.Float.Operations.Or
 import CORALean.ContSet.Interval.Real.Operations.Or
 import CORALean.ContSet.Interval.Real.Theorems.OrOuter
+import Mathlib.Order.BourbakiWitt
 
 /-!
 # `Interval.or` contains the union

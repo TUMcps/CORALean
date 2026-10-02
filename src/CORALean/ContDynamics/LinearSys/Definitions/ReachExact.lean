@@ -1,4 +1,6 @@
 import CORALean.ContDynamics.LinearSys.LinearSys
+import Mathlib.Analysis.Normed.Algebra.Exponential
+import Mathlib.Topology.Instances.Matrix
 
 /-!
 # The exact set `Reach LinearSys` is asked to enclose

@@ -1,6 +1,7 @@
 import CORALean.ContSet.Zonotope.Real.Operations.Split
 import CORALean.ContSet.Zonotope.Real.Theorems.Convex
 import CORALean.ContSet.Zonotope.Real.Theorems.SumSmulUpdate
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
 
 /-!
 # What a split costs: where the two halves overlap

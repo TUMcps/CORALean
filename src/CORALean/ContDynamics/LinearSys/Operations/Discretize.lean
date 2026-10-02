@@ -1,5 +1,8 @@
 import CORALean.ContDynamics.LinearSys.LinearSys
 import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+import Mathlib.Analysis.Normed.Algebra.Exponential
+import Mathlib.Topology.Instances.Matrix
+import Mathlib.Analysis.Matrix.Normed
 
 /-!
 # Sampling a continuous-time linear system

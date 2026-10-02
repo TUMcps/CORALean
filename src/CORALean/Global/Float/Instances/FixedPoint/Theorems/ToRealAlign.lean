@@ -1,4 +1,5 @@
 import CORALean.Global.Float.Instances.FixedPoint.FixedPoint
+import Mathlib.Tactic.Positivity
 
 /-!
 # A fixed-point value read at any larger digit count

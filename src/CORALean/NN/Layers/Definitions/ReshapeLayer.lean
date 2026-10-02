@@ -1,4 +1,4 @@
-import CORALean.Global.Mathlib
+import Mathlib.Data.Set.Prod
 
 /-!
 # The weights of a reshape layer

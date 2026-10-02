@@ -1,5 +1,6 @@
 import CORALean.ContDynamics.LinearSysDT.Cost.Reach
-import CORALean.Global.Mathlib
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Analysis.Asymptotics.Defs
 
 /-!
 # A step of `reach` is `O(n ^ 3)`

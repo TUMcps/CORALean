@@ -1,4 +1,5 @@
 import CORALean.ContSet.Zonotope.Real.Operations.AbsBound
+import Mathlib.Algebra.Order.BigOperators.Group.Finset
 
 /-!
 # A coordinate of a zonotope never leaves `absBound`

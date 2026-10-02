@@ -1,4 +1,5 @@
 import CORALean.Global.Tensor
+import Mathlib.Analysis.Real.Sqrt
 
 /-!
 # Capsules: the representation

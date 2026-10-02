@@ -1,4 +1,6 @@
 import CORALean.ContSet.ContSet.ContSet
+import Mathlib.Analysis.Calculus.Deriv.Basic
+import Mathlib.Topology.Algebra.Module.ModuleTopology
 
 /-!
 # Continuous-time nonlinear systems: the representation

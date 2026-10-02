@@ -1,5 +1,6 @@
 import CORALean.ContSet.ZonoBundle.Real.Operations.Map
 import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
+import Mathlib.Data.Set.Lattice.Image
 
 /-!
 # `ZonoBundle.map` is exactly the image, under a bijective map

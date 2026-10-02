@@ -1,4 +1,5 @@
 import CORALean.ContSet.PolyZonotope.Real.Operations.LinCombE
+import Mathlib.Algebra.BigOperators.Fin
 
 /-!
 # The first block of `linCombE` keeps the original monomials

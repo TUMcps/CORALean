@@ -1,5 +1,7 @@
 import CORALean.NN.Operations.ChainEval
 import CORALean.NN.Operations.DifferentiableChain
+import Mathlib.Analysis.Calculus.FDeriv.Comp
+import Mathlib.Analysis.InnerProductSpace.Basic
 
 /-!
 # A differentiable chain evaluates differentiably

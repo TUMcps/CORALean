@@ -1,5 +1,7 @@
 import CORALean.ContSet.ZonoBundle.Real.Complexity.Plus
-import CORALean.Global.Mathlib
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Analysis.Asymptotics.Defs
+import Mathlib.Tactic.Positivity
 
 /-!
 # `ZonoBundle.plus`'s bundle size is `O(m ^ 2)`

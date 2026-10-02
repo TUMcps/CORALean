@@ -1,4 +1,5 @@
 import CORALean.ContDynamics.LinearSys.LinearSys
+import Mathlib.Algebra.CharP.Defs
 
 /-!
 # Every time of the horizon falls in a window `reach` keeps

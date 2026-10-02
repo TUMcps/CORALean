@@ -2,6 +2,8 @@ import CORALean.ContSet.ConPolyZono.Real.Operations.UnionConCol
 import CORALean.ContSet.ConPolyZono.Real.Operations.UnionConCoef
 import CORALean.ContSet.ConPolyZono.Real.Operations.UnionMeanSq
 import CORALean.ContSet.ConPolyZono.Real.Operations.ProdUnionWithSel
+import Mathlib.Algebra.BigOperators.Fin
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
 
 /-!
 # What the selector constraint's row evaluates to

@@ -1,4 +1,5 @@
 import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
+import Mathlib.Order.Lattice.Nat
 
 /-!
 # `PolyZonotope.maxExp`

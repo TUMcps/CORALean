@@ -1,5 +1,7 @@
 import CORALean.ContSet.Taylm.Real.Operations.Compose
 import CORALean.ContSet.Taylm.Real.Operations.Reach
+import Mathlib.Analysis.Calculus.IteratedDeriv.Defs
+import Mathlib.Analysis.InnerProductSpace.Basic
 
 /-!
 # The Taylor expansion of a function at a Taylor model

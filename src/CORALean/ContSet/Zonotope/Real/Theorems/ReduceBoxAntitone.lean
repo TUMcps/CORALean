@@ -6,6 +6,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
 import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
 import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
 import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
+import Mathlib.Order.BourbakiWitt
 
 /-!
 # `reduceBox` shrinks as the order rises

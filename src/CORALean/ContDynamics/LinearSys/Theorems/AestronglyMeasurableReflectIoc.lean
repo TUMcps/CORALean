@@ -1,4 +1,5 @@
 import CORALean.ContDynamics.LinearSys.LinearSys
+import Mathlib.MeasureTheory.Integral.Prod
 
 /-!
 # Measurability survives reflection about the step's endpoint

@@ -1,5 +1,6 @@
 import CORALean.ContSet.Zonotope.Real.Operations.Cube
 import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+import Mathlib.Analysis.Normed.Ring.Basic
 
 /-!
 # `□(ρ)` is exactly the sup-norm ball

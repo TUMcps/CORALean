@@ -1,5 +1,6 @@
 import CORALean.ContSet.PolyZonotope.Real.Operations.Map
 import CORALean.ContSet.PolyZonotope.Real.Operations.Mtimes
+import Mathlib.LinearAlgebra.Matrix.ToLin
 
 /-!
 # `PolyZonotope.mtimes` is `map` at the matrix's linear map

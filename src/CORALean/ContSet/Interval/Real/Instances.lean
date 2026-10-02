@@ -10,6 +10,7 @@ import CORALean.ContSet.Interval.Real.Theorems.MtimesOuter
 import CORALean.ContSet.Interval.Real.Theorems.MinkDiffExact
 import CORALean.ContSet.Interval.Real.Theorems.PlusExact
 import CORALean.ContSet.Interval.Real.Theorems.ReindexExact
+import Mathlib.Analysis.InnerProductSpace.Basic
 
 /-!
 # What `Interval` instantiates

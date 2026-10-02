@@ -1,5 +1,6 @@
 import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
 import CORALean.ContSet.Interval.Real.Interval
+import Mathlib.Algebra.Order.BigOperators.Group.Finset
 
 /-!
 # A zonotope as a box

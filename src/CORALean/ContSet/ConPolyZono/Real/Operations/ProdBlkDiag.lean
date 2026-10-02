@@ -1,4 +1,5 @@
 import CORALean.ContSet.ConPolyZono.Real.Operations.BlkDiag
+import Mathlib.Data.Fintype.BigOperators
 
 /-!
 # The monomial of a block-diagonal column

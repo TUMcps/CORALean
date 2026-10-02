@@ -1,6 +1,7 @@
 import CORALean.NN.Layers.Operations.RelaxationOfDeriv
 import CORALean.NN.Layers.Theorems.AbsSubLeSpread
 import CORALean.NN.Layers.Theorems.Real.SubMulBoundsOfDeriv
+import Mathlib.Analysis.InnerProductSpace.Basic
 
 /-!
 # The relaxation a derivative bracket buys is sound

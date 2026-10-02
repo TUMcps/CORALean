@@ -1,6 +1,7 @@
 import CORALean.Global.Float.Instances.FixedPoint.Operations.RoundUp
 import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealAlign
 import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealMk
+import Mathlib.Data.Int.ConditionallyCompleteOrder
 
 /-!
 # Rounding up never undershoots

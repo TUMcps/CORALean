@@ -1,5 +1,6 @@
 import CORALean.Specification.Specification
 import CORALean.Global.LinProg.LinProg
+import Mathlib.Tactic.Linarith
 
 /-!
 # A direction certifies that an unsafe set is avoided

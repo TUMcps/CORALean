@@ -1,4 +1,4 @@
-import CORALean.Global.Mathlib
+import Mathlib.Analysis.Asymptotics.Defs
 
 /-!
 # Def. 1: superlinear decrease

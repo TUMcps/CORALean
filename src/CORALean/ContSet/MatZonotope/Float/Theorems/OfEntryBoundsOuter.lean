@@ -2,6 +2,7 @@ import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
 import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
 import CORALean.ContSet.Interval.Float.Theorems.SubMemMatResidual
 import CORALean.ContSet.MatZonotope.Float.Operations.OfEntryBounds
+import Mathlib.Data.Matrix.Basic
 
 /-!
 # `MatZonotope.ofEntryBounds` contains the exact matrix zonotope it brackets

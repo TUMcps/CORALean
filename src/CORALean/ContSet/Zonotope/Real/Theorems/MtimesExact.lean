@@ -1,5 +1,6 @@
 import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
 import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
+import Mathlib.LinearAlgebra.Matrix.ToLin
 
 /-!
 # A matrix times a zonotope is exact

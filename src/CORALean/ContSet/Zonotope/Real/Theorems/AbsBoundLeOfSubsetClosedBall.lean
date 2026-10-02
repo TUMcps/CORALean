@@ -1,5 +1,7 @@
 import CORALean.ContSet.Zonotope.Real.Operations.AbsBound
 import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+import Mathlib.Analysis.Normed.Ring.Lemmas
+import Mathlib.Tactic.Positivity
 
 /-!
 # `absBound` is what a sup-norm ball around a zonotope has to reach

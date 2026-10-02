@@ -1,4 +1,3 @@
-import CORALean.Global.Mathlib
 import Mathlib.Analysis.Calculus.Taylor
 
 /-!

@@ -1,4 +1,5 @@
 import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
+import Mathlib.Algebra.Order.BigOperators.GroupWithZero.Finset
 
 /-!
 # A signed power difference carries its sign to the whole monomial

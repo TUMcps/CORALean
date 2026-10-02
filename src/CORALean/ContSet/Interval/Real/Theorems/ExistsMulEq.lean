@@ -1,5 +1,6 @@
 import CORALean.ContSet.Interval.Real.Operations.MulLo
 import CORALean.ContSet.Interval.Real.Operations.MulHi
+import Mathlib.Analysis.Normed.Order.Lattice
 
 /-!
 # Every value between the corner products is a product

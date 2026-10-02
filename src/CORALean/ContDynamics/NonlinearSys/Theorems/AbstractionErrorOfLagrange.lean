@@ -1,6 +1,11 @@
 import CORALean.ContDynamics.NonlinearSys.Definitions.AbstractionError
 import CORALean.ContDynamics.NonlinearSys.Operations.LagrangeRemainder
 import CORALean.ContSet.Interval.Real.Instances
+import Mathlib.Algebra.EuclideanDomain.Basic
+import Mathlib.Algebra.EuclideanDomain.Field
+import Mathlib.Analysis.Calculus.Deriv.Pow
+import Mathlib.Analysis.Calculus.MeanValue
+import Mathlib.Topology.Algebra.Module.ModuleTopology
 
 /-!
 # A twice-differentiable field, taken one order further

@@ -1,4 +1,5 @@
 import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
+import Mathlib.Algebra.BigOperators.Pi
 
 /-!
 # Membership in a polynomial zonotope, coordinatewise

@@ -2,6 +2,7 @@ import CORALean.ContSet.Interval.Real.Operations.IsNonempty
 import CORALean.ContSet.Interval.Real.Theorems.MtimesWidth
 import CORALean.NN.Definitions.MergeBucket
 import CORALean.NN.Theorems.Real.MergeBucketWidth
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
 
 /-!
 # What the tolerance buys

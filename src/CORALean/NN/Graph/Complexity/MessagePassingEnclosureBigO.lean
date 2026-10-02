@@ -1,4 +1,6 @@
-import CORALean.Global.Mathlib
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Analysis.Asymptotics.Defs
+import Mathlib.Tactic.Positivity
 import CORALean.NN.Graph.Complexity.MessagePassingEnclosure
 
 /-!

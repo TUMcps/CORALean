@@ -1,4 +1,5 @@
 import CORALean.ContSet.ContSet.Definitions.CompactSet
+import Mathlib.Topology.MetricSpace.HausdorffDistance
 
 /-!
 # Adding a set to both sides cannot move them apart

@@ -1,6 +1,7 @@
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsPowEntryLeAbsMatPow
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.HasSumExpRemainderMatEntry
 import CORALean.Global.SuperlinearDecrease
+import Mathlib.Tactic.Positivity
 
 /-!
 # `Lemma 1` at eq. (15)-(16)'s own remainder: `E(φΔt,η) ⊆ φ·E(Δt,η)`

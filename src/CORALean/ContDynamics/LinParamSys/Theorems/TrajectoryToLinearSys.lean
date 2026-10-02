@@ -1,5 +1,6 @@
 import CORALean.ContDynamics.LinParamSys.LinParamSys
 import CORALean.ContDynamics.LinearSys.LinearSys
+import Mathlib.Analysis.Calculus.Deriv.Add
 
 /-!
 # A time-varying run is a run at any frozen matrix, with the drift as input

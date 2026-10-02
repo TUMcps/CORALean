@@ -1,4 +1,5 @@
 import CORALean.ContSet.Interval.Real.Operations.Plus
+import Mathlib.Algebra.Group.Pointwise.Set.Basic
 
 /-!
 # `Interval.plus` encloses the Minkowski sum

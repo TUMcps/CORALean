@@ -1,5 +1,7 @@
 import CORALean.ContSet.Zonotope.Real.Zonotope
 import CORALean.ContSet.Interval.Real.Interval
+import Mathlib.Algebra.BigOperators.Pi
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
 
 /-!
 # A box as a zonotope

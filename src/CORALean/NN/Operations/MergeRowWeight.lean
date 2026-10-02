@@ -1,4 +1,7 @@
 import CORALean.Global.Tensor
+import Mathlib.Algebra.BigOperators.Group.Finset.Defs
+import Mathlib.Data.Fintype.Basic
+import Mathlib.Data.Real.Basic
 
 /-!
 # The factor a merge's cost scales by

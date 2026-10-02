@@ -2,6 +2,7 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.ReduceBox
 import CORALean.ContSet.PolyZonotope.Real.Theorems.CompactExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalOnMono
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceByEvalOn
+import Mathlib.Order.BourbakiWitt
 
 /-!
 # CORA's `reduce` preserves dependencies, up to the factors it drops

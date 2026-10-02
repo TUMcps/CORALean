@@ -1,4 +1,7 @@
 import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
+import Mathlib.Data.Fin.VecNotation
+import Mathlib.Tactic.FinCases
 
 /-!
 # Intersection detection: the printed converse is false

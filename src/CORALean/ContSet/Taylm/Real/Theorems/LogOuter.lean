@@ -1,5 +1,6 @@
 import CORALean.ContSet.Taylm.Real.Operations.Log
 import CORALean.ContSet.Taylm.Real.Theorems.TaylorOuter
+import Mathlib.Analysis.SpecialFunctions.Log.Deriv
 
 /-!
 # `Taylm.log` encloses `log ∘ f`

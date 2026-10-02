@@ -1,5 +1,6 @@
 import CORALean.NN.Definitions.RefinableLayer
 import CORALean.NN.Layers.Layer
+import Mathlib.Topology.MetricSpace.Pseudo.Pi
 
 /-!
 # What it takes for one layer's refinement to converge

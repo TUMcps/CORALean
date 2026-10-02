@@ -1,4 +1,6 @@
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.FactorialUpFloat
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Tactic.Positivity
 
 /-!
 # `MatExp.factorialUp` bounds a factorial from above

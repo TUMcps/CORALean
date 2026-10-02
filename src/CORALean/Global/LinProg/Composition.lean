@@ -1,4 +1,6 @@
 import CORALean.Global.LinProg.LinProg
+import Mathlib.Analysis.Convex.Hull
+import Mathlib.Tactic.Linarith
 
 /-!
 # How a bound travels across set operations

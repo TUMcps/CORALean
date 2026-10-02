@@ -1,5 +1,6 @@
 import CORALean.ContSet.Interval.Real.Operations.Center
 import CORALean.ContSet.Interval.Real.Operations.Radius
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
 
 /-!
 # `Interval.center_add_radius`

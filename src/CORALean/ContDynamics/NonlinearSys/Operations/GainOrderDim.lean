@@ -1,4 +1,6 @@
 import CORALean.Global.Tensor
+import Mathlib.Data.ENat.Lattice
+import Mathlib.Data.Real.Basic
 
 /-!
 # The gain order of one dimension

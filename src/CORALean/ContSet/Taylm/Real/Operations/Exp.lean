@@ -1,5 +1,6 @@
 import CORALean.ContSet.Taylm.Real.Operations.Taylor
 import CORALean.ContSet.Taylm.Real.Operations.ConstCoef
+import Mathlib.Analysis.Complex.Exponential
 
 /-!
 # `Taylm.exp`

@@ -1,4 +1,6 @@
 import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceCon
+import Mathlib.Algebra.Module.BigOperators
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
 
 /-!
 # `ConPolyZono.reduceCon` over-approximates the set

@@ -1,4 +1,7 @@
 import CORALean.ContSet.Interval.Real.Interval
+import Mathlib.Analysis.Normed.Algebra.Exponential
+import Mathlib.Topology.Instances.Matrix
+import Mathlib.Analysis.Matrix.Normed
 /-!
 # The exponential of a scaled matrix, as one series in the unscaled matrix
 

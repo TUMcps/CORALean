@@ -1,4 +1,5 @@
 import CORALean.ContSet.ConPolyZono.Real.Operations.UnitCol
+import Mathlib.Logic.Equiv.Fin.Basic
 
 /-!
 # `ConPolyZono.unionCrossCol`

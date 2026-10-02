@@ -1,6 +1,8 @@
 import CORALean.ContDynamics.LinearSys.Theorems.ContinuousOnState
 import CORALean.ContDynamics.LinearSys.Theorems.InputEqDerivWithin
 import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+import Mathlib.Analysis.Calculus.FDeriv.Measurable
+import Mathlib.MeasureTheory.Integral.Prod
 
 /-!
 # The input is measurable, in the reflected form a step needs

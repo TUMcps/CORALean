@@ -1,4 +1,6 @@
 import CORALean.ContSet.Zonotope.Real.Zonotope
+import Mathlib.Data.Matrix.Mul
+import Mathlib.Logic.Equiv.Fin.Basic
 
 /-!
 # `Zonotope.quadTaylor`

@@ -1,4 +1,5 @@
 import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
+import Mathlib.Algebra.Order.BigOperators.Ring.Finset
 
 /-!
 # `PolyZonotope.abs_monomial_le_one`

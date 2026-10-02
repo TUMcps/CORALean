@@ -1,4 +1,5 @@
 import CORALean.Global.Tensor
+import Mathlib.Analysis.Normed.Ring.Lemmas
 
 /-!
 # Def. 3: convergence order of a classical ODE solver

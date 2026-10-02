@@ -1,5 +1,6 @@
 import CORALean.ContSet.ContSet.ContSet
 import Mathlib.Analysis.Convex.Join
+import Mathlib.Tactic.Linarith
 
 /-!
 # `segments` is Mathlib's convex join

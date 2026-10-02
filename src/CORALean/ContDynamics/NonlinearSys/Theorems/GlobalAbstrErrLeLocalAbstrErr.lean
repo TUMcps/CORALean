@@ -1,6 +1,7 @@
 import CORALean.ContDynamics.NonlinearSys.Operations.GlobalAbstrErr
 import CORALean.ContDynamics.NonlinearSys.Operations.LocalAbstrErr
 import Mathlib.Analysis.SpecialFunctions.Exp
+import Mathlib.Tactic.Positivity
 
 /-!
 # Lemma 2: the global abstraction error from the worst local one

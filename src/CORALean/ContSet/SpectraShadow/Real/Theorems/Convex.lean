@@ -1,4 +1,6 @@
 import CORALean.ContSet.SpectraShadow.Real.SpectraShadow
+import Mathlib.Analysis.Convex.Basic
+import Mathlib.Analysis.RCLike.Basic
 
 /-!
 # A spectrahedral shadow is convex

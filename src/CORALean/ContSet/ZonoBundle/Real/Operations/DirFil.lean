@@ -2,6 +2,7 @@ import CORALean.ContSet.ZonoBundle.Real.Operations.Pool
 import CORALean.ContSet.Zonotope.Real.Operations.MethCFilter
 import Mathlib.Data.List.Sublists
 import Mathlib.Data.List.MinMax
+import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
 
 /-!
 # `ZonoBundle.dirFil`: the generator filtering heuristic

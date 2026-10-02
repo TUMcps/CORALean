@@ -1,4 +1,4 @@
-import CORALean.Global.Mathlib
+import Mathlib.Data.Set.Defs
 
 /-!
 # Dependency preservation

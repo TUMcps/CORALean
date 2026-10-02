@@ -1,4 +1,5 @@
 import CORALean.Specification.Definitions.VerifyAnswer
+import Mathlib.Data.Real.Basic
 
 /-!
 # [1, Alg. 2]: verifying a halfspace safe set, one round at a time

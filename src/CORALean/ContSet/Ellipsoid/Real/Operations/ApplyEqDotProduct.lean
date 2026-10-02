@@ -1,4 +1,6 @@
 import CORALean.ContSet.Ellipsoid.Real.Operations.DualVec
+import Mathlib.Data.Matrix.Mul
+import Mathlib.LinearAlgebra.Pi
 
 /-!
 # A functional applied is the dot product with its `dualVec`

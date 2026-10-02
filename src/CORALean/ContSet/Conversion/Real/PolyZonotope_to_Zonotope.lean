@@ -1,5 +1,10 @@
 import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
 import CORALean.ContSet.Zonotope.Real.Zonotope
+import Mathlib.Algebra.BigOperators.Fin
+import Mathlib.Algebra.Module.NatInt
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
+import Mathlib.Data.Nat.SuccPred
+import Mathlib.Logic.Function.CompTypeclasses
 
 /-!
 # A polynomial zonotope as a zonotope

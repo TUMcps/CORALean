@@ -1,5 +1,6 @@
 import CORALean.ContSet.ContSet.ContSet
 import CORALean.ContSet.VPolytope.Real.VPolytope
+import Mathlib.Analysis.Convex.Combination
 
 /-!
 # A convex minuend needs only the vertices of the subtrahend

@@ -3,6 +3,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.Convex
 import CORALean.ContSet.VPolytope.Real.VPolytope
 import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
 import CORALean.Global.Corners
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
 
 /-!
 # A zonotope as its corners

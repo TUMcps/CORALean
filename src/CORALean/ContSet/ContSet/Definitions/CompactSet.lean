@@ -1,4 +1,5 @@
 import CORALean.ContSet.ContSet.ContSet
+import Mathlib.Analysis.Normed.Module.Basic
 
 /-!
 # Representations that denote a compact set

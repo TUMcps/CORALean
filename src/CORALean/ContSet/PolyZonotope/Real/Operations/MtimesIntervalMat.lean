@@ -1,5 +1,6 @@
 import CORALean.ContSet.Interval.Real.Operations.Center
 import CORALean.ContSet.PolyZonotope.Real.Operations.RadiusReach
+import Mathlib.Data.Matrix.Mul
 
 /-!
 # Polynomial zonotopes: multiplication by an interval matrix

@@ -1,5 +1,6 @@
 import CORALean.Global.DropIdx
 import CORALean.Global.Tensor
+import Mathlib.Data.Real.Basic
 
 /-!
 # `ConPolyZono.reduceConG`

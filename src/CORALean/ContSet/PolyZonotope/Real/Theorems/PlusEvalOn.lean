@@ -2,6 +2,8 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.EvalOn
 import CORALean.ContSet.PolyZonotope.Real.Operations.PlusBox
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
+import Mathlib.Algebra.Group.Pointwise.Set.Basic
+import Mathlib.Tactic.Abel
 
 /-!
 # Adding a whole set to an evaluated one, [1, (23)]

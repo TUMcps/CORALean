@@ -1,5 +1,6 @@
 import CORALean.NN.Operations.Sensitivity
 import CORALean.NN.Theorems.EvalDifferentiable
+import Mathlib.Topology.Algebra.Module.ModuleTopology
 
 /-!
 # The sensitivity is the derivative, wherever there is one
