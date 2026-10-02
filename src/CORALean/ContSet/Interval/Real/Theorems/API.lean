@@ -117,6 +117,8 @@ import CORALean.ContSet.Interval.Real.Theorems.MrdivideExact
 import CORALean.ContSet.Interval.Real.Theorems.InvBetween
 import CORALean.ContSet.Interval.Real.Theorems.MatPowSmul
 import CORALean.ContSet.Interval.Real.Theorems.AbsMaxSmul
+import CORALean.ContSet.Interval.Real.Theorems.ExistsMeasurableMulVecEq
+import CORALean.ContSet.Interval.Real.Theorems.ExistsNormEqAbsMax
 
 /-!
 # What `Interval` guarantees
@@ -128,8 +130,7 @@ interface field asks for. `MemMat` is membership at an interval matrix, read by
 row and column, and `MemCenter` is the one point a box always offers a layer
 that has to commit to a value. `RecentreZeroMem`/`RecentreSubMem` need that
 same nonemptiness to place the origin, a crossed box denoting `∅` instead.
-`MtimesIsNonempty` is why an image box needs no hypothesis before it is used
-as one. `MtimesWidth` is how far apart its bounds are, for an error tolerance.
+`MtimesIsNonempty`/`MtimesWidth`: an image box is non-empty, and how wide it is.
 `DivBetweenEndpoints` solves `MulBetweenEndpoints` back for the point. `MulBetweenCorners` is
 the scalar fact `mtimes*` products against an interval matrix share, and `MatMulOuter` is its
 use on `matMul`, an enclosure since a product's `k`-summands bound independently.
@@ -140,6 +141,7 @@ loss with every power. `SmulOuter` is `MulBetweenEndpoints` read back through
 `Entrywise`. `SplitAtCover` is why `splitAt` is sound to feed
 `NeuralNetwork.holds_of_split`: its two halves cover the box they bisected.
 `NormLeAbsMax` bounds the `l∞` operator norm uniformly over a box by its
-`AbsMax`, an exponential enclosure's own requirement; `MatPowSmul`/`AbsMaxSmul` scale both.
-`HausdorffDist2AddLeBoxRadius` bounds a Minkowski sum's move by a box holding the summand.
+`AbsMax`, attained (`ExistsNormEqAbsMax`); `MatPowSmul`/`AbsMaxSmul` scale both, and
+`ExistsMeasurableMulVecEq` picks a member measurably. `HausdorffDist2AddLeBoxRadius` bounds
+a Minkowski sum's move by a box holding the summand.
 -/

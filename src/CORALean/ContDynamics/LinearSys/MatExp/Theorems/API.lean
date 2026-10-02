@@ -129,6 +129,14 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSubPeanoBakerSumLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMulVecEqOfNormLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMemExpIntervalEnclosureOfIntegral
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMemIntervalCorrectionMatrixOfIntegral
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ContinuousPeanoBakerInputTerm
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsPeanoBakerExpansion
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntegralMemSmulOfMemSmul
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.PeanoBakerInputTermMem
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.RescaledPeanoBakerTermMemMatPow
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMemIntervalCorrectionMatrixOfRemainder
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMemCorrectionMatrixOfRemainderFloat
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MatZonoCorrectionMatrix
 
 /-!
 # What the exponential enclosures guarantee
@@ -153,5 +161,5 @@ chosen for an admissible error meets it, the order least of those.
 `ParticularRemainderErrorSuperlinear` are CDC 2020's `Lemma 1`, `Prop. 3`/`4` and `Thm. 2`.
 `ExpTaylorSmulMulVec`, `ContinuousExpDiff` and `RemainderEntryLe` serve an input solution, and
 `HausdorffDist2ParticularSolutionLe`/`HausdorffDist2AffineDynamicsLe` are eqs. (25) and (23).
-`…PeanoBaker…` expand a run whose matrix varies in a box, `ExistsMem…OfIntegral` enclose it.
+`…PeanoBaker…` expand a run whose matrix varies in a box, `ExistsMem…` enclose it.
 -/

@@ -18,14 +18,13 @@ member of the enclosure plus a member of `F` applied to its start
 (`MatExp.exists_mem_intervalCorrectionMatrix_of_integral`).
 
 Input-free only: with an input, `A(s) x(s)` is the velocity minus `u(s)`, and
-`Trajectory` does not make `u` measurable to recover it. Real only: the float
-step's guarantee is per member's exponential (`exp_mem_expIntervalFloat`), and
-a Peano–Baker matrix is no member's exponential.
+`Trajectory` does not make `u` measurable to recover it; with a measurable `u`,
+`…TimeIntervalStepOuterInputSolution`. The float step is `…TimeIntervalStepFloatOuter`.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   02-October-2026
 -- Last revision: ---
 
 

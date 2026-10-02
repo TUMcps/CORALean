@@ -81,6 +81,8 @@ import CORALean.ContSet.Interval.Float.Theorems.RdivideOuter
 import CORALean.ContSet.Interval.Float.Theorems.MrdivideOuter
 import CORALean.ContSet.Interval.Float.Theorems.OfCenterRadiusOuter
 import CORALean.ContSet.Interval.Float.Theorems.QuadMapOuter
+import CORALean.ContSet.Interval.Float.Theorems.MatMulSubset
+import CORALean.ContSet.Interval.Float.Theorems.MatPowSubset
 
 /-!
 # What `Interval` guarantees
@@ -103,5 +105,5 @@ The same for `max`, `min` (exact, under nonemptiness of the readings), `isequal`
 
 The same for `center`, `rad`, `sum`, `volume_`, `split`, `norm_` and `radius`: each bounds the
 exact layer's value in the direction its rounding goes. `norm_` and `radius` take a caller's `σ`
-with `normSq ≤ σ·σ`.
+with `normSq ≤ σ·σ`. `MatMulSubset`/`MatPowSubset` hold a whole real box, not only members.
 -/
