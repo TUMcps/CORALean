@@ -12,6 +12,7 @@ import CORALean.ContSet.PolyZonotope.Float.Theorems.MtimesOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.RepIdem
 import CORALean.ContSet.PolyZonotope.Float.Theorems.FiberEqZeroOfNotMem
 import CORALean.ContSet.PolyZonotope.Float.Theorems.SumMask
+import CORALean.ContSet.PolyZonotope.Float.Theorems.SupportBoundLe
 import CORALean.ContSet.PolyZonotope.Float.Theorems.FiberDownLe
 import CORALean.ContSet.PolyZonotope.Float.Theorems.LeFiberUp
 import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactGensOuter
@@ -21,6 +22,7 @@ import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.DependentQ
 import CORALean.ContSet.PolyZonotope.Float.Theorems.ZeroMemDependentErr
 import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsLeErrorBound
+import CORALean.ContSet.PolyZonotope.Float.Theorems.CentreMemConstruct
 import CORALean.ContSet.PolyZonotope.Float.Theorems.DependentNominal
 import CORALean.ContSet.PolyZonotope.Float.Theorems.DependentOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.LinCombH
@@ -33,6 +35,7 @@ import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadMapENominal
 import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadMapOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.MulGClose
 import CORALean.ContSet.PolyZonotope.Float.Theorems.MulOuter
+import CORALean.ContSet.PolyZonotope.Float.Theorems.NoIndepSubset
 import CORALean.ContSet.PolyZonotope.Float.Theorems.EvalPolyOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceByH
 import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsDroppedLeDropRadius
@@ -51,7 +54,9 @@ import CORALean.ContSet.PolyZonotope.Float.Theorems.RelaxExpMidOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.RelaxExpGreedyOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.IsCompact
 import CORALean.ContSet.PolyZonotope.Float.Theorems.OriginExact
+import CORALean.ContSet.PolyZonotope.Float.Theorems.PadBackExact
 import CORALean.ContSet.PolyZonotope.Float.Theorems.ReindexExact
+import CORALean.ContSet.PolyZonotope.Float.Theorems.RestructureOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.ProjectOuter
 
 /-!

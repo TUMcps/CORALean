@@ -1,9 +1,11 @@
 import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
 import CORALean.ContSet.PolyZonotope.Float.Operations.CenterResidual
+import CORALean.ContSet.PolyZonotope.Float.Operations.Centre
 import CORALean.ContSet.PolyZonotope.Float.Operations.Plus
 import CORALean.ContSet.PolyZonotope.Float.Operations.MtimesResidual
 import CORALean.ContSet.PolyZonotope.Float.Operations.Mtimes
 import CORALean.ContSet.PolyZonotope.Float.Operations.RepKeep
+import CORALean.ContSet.PolyZonotope.Float.Operations.SupportBound
 import CORALean.ContSet.PolyZonotope.Float.Operations.KeepIdx
 import CORALean.ContSet.PolyZonotope.Float.Operations.FiberDown
 import CORALean.ContSet.PolyZonotope.Float.Operations.FiberUp
@@ -37,6 +39,8 @@ import CORALean.ContSet.PolyZonotope.Float.Operations.MulGUp
 import CORALean.ContSet.PolyZonotope.Float.Operations.MulGDiff
 import CORALean.ContSet.PolyZonotope.Float.Operations.MulE
 import CORALean.ContSet.PolyZonotope.Float.Operations.Mul
+import CORALean.ContSet.PolyZonotope.Float.Operations.NominalSupportBound
+import CORALean.ContSet.PolyZonotope.Float.Operations.NoIndep
 import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPolyBoundS
 import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPolyStep
 import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPolyP
@@ -74,7 +78,9 @@ import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxGapMulti
 import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxExpMulti
 import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxExpGreedy
 import CORALean.ContSet.PolyZonotope.Float.Operations.Origin
+import CORALean.ContSet.PolyZonotope.Float.Operations.PadBack
 import CORALean.ContSet.PolyZonotope.Float.Operations.Reindex
+import CORALean.ContSet.PolyZonotope.Float.Operations.Restructure
 import CORALean.ContSet.PolyZonotope.Float.Operations.Project
 
 /-!

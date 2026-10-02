@@ -1,0 +1,33 @@
+import CORALean.ContSet.Taylm.Float.Taylm
+
+/-!
+# `Taylm.empty`
+
+The empty model in each coordinate: no terms and the crossed remainder, lower bound `one`
+and upper bound `zero`.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       02-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+open FloatOps
+
+variable {𝕋 : Type} [FloatOps 𝕋]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+def Taylm.empty (n : ℕ) : Fin n → Taylm 𝕋 n :=
+  fun _ => ⟨[], one, zero, 0⟩
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -7,6 +7,7 @@ import CORALean.ContSet.Taylm.Real.Operations.Const
 import CORALean.ContSet.Taylm.Real.Operations.ConstCoef
 import CORALean.ContSet.Taylm.Real.Operations.Cos
 import CORALean.ContSet.Taylm.Real.Operations.Cosh
+import CORALean.ContSet.Taylm.Real.Operations.Empty
 import CORALean.ContSet.Taylm.Real.Operations.Degree
 import CORALean.ContSet.Taylm.Real.Operations.Exp
 import CORALean.ContSet.Taylm.Real.Operations.Log

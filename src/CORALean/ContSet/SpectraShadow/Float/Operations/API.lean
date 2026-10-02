@@ -1,6 +1,10 @@
 import CORALean.ContSet.SpectraShadow.Float.Operations.CenterResidual
+import CORALean.ContSet.SpectraShadow.Float.Operations.CartProd
 import CORALean.ContSet.SpectraShadow.Float.Operations.Empty
 import CORALean.ContSet.SpectraShadow.Float.Operations.Inf
+import CORALean.ContSet.SpectraShadow.Float.Operations.Mtimes
+import CORALean.ContSet.SpectraShadow.Float.Operations.PadLeft
+import CORALean.ContSet.SpectraShadow.Float.Operations.PadRight
 import CORALean.ContSet.SpectraShadow.Float.Operations.Plus
 import CORALean.ContSet.SpectraShadow.Float.Operations.Project
 

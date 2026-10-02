@@ -8,17 +8,12 @@ The exact layer's linear matrix inequality, centre and generators held in `𝕋`
 plus the error box that makes it an `InflatedContSet`. The nominal part is the
 shadow those stored floats describe, the matrices read entrywise as reals.
 
-Nothing about the inequality rounds. Its matrices are stored, never computed, and
-`plus` lays them along a diagonal with exact zeros between: the only arithmetic a
-spectrahedral shadow ever does is on the centre, whose rounding the box absorbs,
-as the zonotope's does. A rounded *generator* would not be absorbable — the
-variables `β` of a shadow range over everything the inequality admits, which is
-generally unbounded, so an entrywise bound on the generators' rounding scales
-with no bound — and that is why this layer has no `mtimes`.
-
-The inequality's matrices are the data a semidefinite solver is run on, so a
-solver's own rounding is the caller's to certify: what this layer states is that
-the stored matrices are exactly the ones the set is read from.
+Nothing about the inequality rounds: its matrices are stored, never computed, and the
+only arithmetic is on the centre, whose rounding the box absorbs. A rounded *generator*
+would not be absorbable, the variables `β` being unbounded, so `mtimes` never multiplies
+two stored matrices: it ties the point to new free variables by equalities in the
+inequality and multiplies only the error box. A solver's own rounding is the caller's
+to certify.
 -/
 
 -- Authors:       Tobias Ladner

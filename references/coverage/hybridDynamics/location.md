@@ -12,7 +12,7 @@ CORA methods of `hybridDynamics/@location/`, one row each, and where CORALean an
 | `derivatives` | out-of-scope | n/a — matlab-runtime |  |
 | `display` | out-of-scope | n/a — plotting/display |  |
 | `eq` | out-of-scope | n/a — matlab-runtime |  |
-| `eventFcn` | — | — |  |
+| `eventFcn` | out-of-scope | n/a — matlab-runtime | ODE event callback |
 | `guardIntersect` | float | [`Transition.jumpIntersection`](../../../src/CORALean/HybridDynamics/Operations/JumpIntersection.lean), [`Transition.jumpIntersection_outer`](../../../src/CORALean/HybridDynamics/Theorems/JumpIntersectionOuter.lean) · float: [`Location.guardIntersectFloat`](../../../src/CORALean/HybridDynamics/Operations/GuardIntersectFloat.lean), [`Location.guardIntersectFloat_outer`](../../../src/CORALean/HybridDynamics/Theorems/GuardIntersectFloatOuter.lean) | float side is CORA's `'box'` method: each time-interval set boxed, cut to the invariant and the guard by `HPolytope.contractBox` (one pass of interval constraint propagation per row), the cuts not certified empty joined by their box hull |
 | `guardIntersect_conZonotope` | proved | [`Transition.jump_outer_conZonotope`](../../../src/CORALean/HybridDynamics/Theorems/JumpOuterConZonotope.lean) |  |
 | `guardIntersect_hyperplaneMap` | — | — |  |
@@ -24,7 +24,7 @@ CORA methods of `hybridDynamics/@location/`, one row each, and where CORALean an
 | `instantReset` | float | [`Transition.reset`](../../../src/CORALean/HybridDynamics/Definitions/Transition.lean), [`Transition.reset_image_subset`](../../../src/CORALean/HybridDynamics/Theorems/ResetImageSubset.lean) · float: [`Transition.jumpFloat`](../../../src/CORALean/HybridDynamics/Operations/JumpFloat.lean), [`Transition.jumpFloat_outer`](../../../src/CORALean/HybridDynamics/Theorems/JumpFloatOuter.lean) |  |
 | `isemptyobject` | out-of-scope | n/a — matlab-runtime |  |
 | `isequal` | out-of-scope | n/a — matlab-runtime |  |
-| `location` | proved | [`Location`](../../../src/CORALean/HybridDynamics/Definitions/Location.lean), [`Location.Trajectory.timeInterval_outer`](../../../src/CORALean/HybridDynamics/Theorems/FlowOuter.lean) | the structure, and the theorem that every state of a stay lies in the time-interval enclosure |
+| `location` | float | [`Location`](../../../src/CORALean/HybridDynamics/Definitions/Location.lean), [`Location.Trajectory.timeInterval_outer`](../../../src/CORALean/HybridDynamics/Theorems/FlowOuter.lean) · float: [`Location.timeIntervalStepFloat`](../../../src/CORALean/HybridDynamics/Operations/TimeIntervalStepFloat.lean), [`Location.Trajectory.timeIntervalFloat_outer`](../../../src/CORALean/HybridDynamics/Theorems/FlowOuterFloat.lean) | route a — the float twin of the linked time-interval enclosure; the structure, and the theorem that every state of a stay lies in the time-interval enclosure |
 | `ne` | out-of-scope | n/a — matlab-runtime |  |
 | `potInt` | — | — |  |
 | `potOut` | — | — |  |

@@ -7,7 +7,7 @@ CORA methods of `contSet/@probZonotope/`, one row each, and where CORALean answe
 | Method | State | In CORALean | Note |
 |---|---|---|---|
 | `abs` | — | — |  |
-| `center` | — | — |  |
+| `center` | out-of-scope | n/a — matlab-runtime | field getter |
 | `dim` | out-of-scope | n/a — matlab-runtime |  |
 | `display` | out-of-scope | n/a — plotting/display |  |
 | `enclose` | — | — |  |
@@ -30,7 +30,7 @@ CORA methods of `contSet/@probZonotope/`, one row each, and where CORALean answe
 | `reduce` | — | — |  |
 | `representsa_` | — | — |  |
 | `sigma` | — | — |  |
-| `singleGenPlot` | — | — |  |
+| `singleGenPlot` | out-of-scope | n/a — plotting/display |  |
 | `sup` | — | — |  |
 | `vertices_` | — | — |  |
 | `zonotope` | — | — |  |

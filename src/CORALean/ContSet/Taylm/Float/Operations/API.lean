@@ -1,6 +1,7 @@
 import CORALean.ContSet.Taylm.Float.Operations.Bounds
 import CORALean.ContSet.Taylm.Float.Operations.Compose
 import CORALean.ContSet.Taylm.Float.Operations.Const
+import CORALean.ContSet.Taylm.Float.Operations.Empty
 import CORALean.ContSet.Taylm.Float.Operations.ConstCoef
 import CORALean.ContSet.Taylm.Float.Operations.Exp
 import CORALean.ContSet.Taylm.Float.Operations.Log
@@ -15,6 +16,7 @@ import CORALean.ContSet.Taylm.Float.Operations.Sum
 import CORALean.ContSet.Taylm.Float.Operations.TermBounds
 import CORALean.ContSet.Taylm.Float.Operations.Times
 import CORALean.ContSet.Taylm.Float.Operations.Uminus
+import CORALean.ContSet.Taylm.Float.Operations.Uplus
 import CORALean.ContSet.Taylm.Float.Operations.BoundDot
 
 /-!

@@ -7,6 +7,7 @@ import CORALean.ContSet.Taylm.Real.Theorems.ComposeOuter
 import CORALean.ContSet.Taylm.Real.Theorems.ConstOuter
 import CORALean.ContSet.Taylm.Real.Theorems.CosOuter
 import CORALean.ContSet.Taylm.Real.Theorems.CoshOuter
+import CORALean.ContSet.Taylm.Real.Theorems.EmptyExact
 import CORALean.ContSet.Taylm.Real.Theorems.ExpOuter
 import CORALean.ContSet.Taylm.Real.Theorems.LogOuter
 import CORALean.ContSet.Taylm.Real.Theorems.MemConstructIff
