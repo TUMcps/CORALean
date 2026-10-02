@@ -1,0 +1,34 @@
+import CORALean.ContSet.Taylm.Real.Operations.Pow
+import CORALean.ContSet.Taylm.Real.Theorems.TimesOuter
+import CORALean.ContSet.Taylm.Real.Theorems.ConstOuter
+
+/-!
+# `Taylm.pow` encloses the power
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       02-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem Taylm.pow_outer {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f) :
+    ∀ k : ℕ, (T.pow k).Encloses fun t => f t ^ k := by
+  intro k
+  induction k with
+  | zero => simpa only [Taylm.pow, pow_zero] using Taylm.const_outer (n := n) 1 T.maxOrder
+  | succ k ih => simpa only [Taylm.pow, pow_succ] using Taylm.times_outer ih h
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

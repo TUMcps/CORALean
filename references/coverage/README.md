@@ -96,23 +96,23 @@ Only these, and the row says which:
 | Class | Group | Methods | proved | float | not yet | out of scope | CORA issues |
 |---|---|---|---|---|---|---|---|
 | [affine](contSet/affine.md) | contSet | 1 | 0 | 0 | 1 | 0 | 0 |
-| [capsule](contSet/capsule.md) | contSet | 39 | 16 | 0 | 14 | 9 | 1 |
+| [capsule](contSet/capsule.md) | contSet | 39 | 4 | 12 | 14 | 9 | 1 |
 | [conPolyZono](contSet/conPolyZono.md) | contSet | 47 | 8 | 15 | 16 | 8 | 0 |
 | [conZonotope](contSet/conZonotope.md) | contSet | 50 | 7 | 16 | 16 | 11 | 0 |
 | [contSet](contSet/contSet.md) | contSet | 101 | 5 | 18 | 19 | 59 | 0 |
-| [ellipsoid](contSet/ellipsoid.md) | contSet | 50 | 3 | 12 | 26 | 9 | 0 |
+| [ellipsoid](contSet/ellipsoid.md) | contSet | 50 | 4 | 12 | 25 | 9 | 0 |
 | [emptySet](contSet/emptySet.md) | contSet | 30 | 12 | 10 | 1 | 7 | 0 |
 | [fullspace](contSet/fullspace.md) | contSet | 33 | 12 | 11 | 3 | 7 | 0 |
 | [interval](contSet/interval.md) | contSet | 110 | 16 | 61 | 15 | 18 | 0 |
-| [levelSet](contSet/levelSet.md) | contSet | 22 | 0 | 0 | 16 | 6 | 0 |
-| [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 9 | 15 | 36 | 13 | 0 |
-| [polygon](contSet/polygon.md) | contSet | 46 | 0 | 0 | 40 | 6 | 0 |
-| [polytope](contSet/polytope.md) | contSet | 58 | 12 | 17 | 22 | 7 | 0 |
+| [levelSet](contSet/levelSet.md) | contSet | 22 | 7 | 0 | 9 | 6 | 0 |
+| [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 10 | 15 | 35 | 13 | 0 |
+| [polygon](contSet/polygon.md) | contSet | 46 | 5 | 11 | 24 | 6 | 0 |
+| [polytope](contSet/polytope.md) | contSet | 58 | 13 | 17 | 21 | 7 | 0 |
 | [probZonotope](contSet/probZonotope.md) | contSet | 28 | 0 | 0 | 22 | 6 | 0 |
 | [spectraShadow](contSet/spectraShadow.md) | contSet | 33 | 5 | 2 | 18 | 8 | 0 |
-| [taylm](contSet/taylm.md) | contSet | 51 | 0 | 0 | 46 | 5 | 0 |
+| [taylm](contSet/taylm.md) | contSet | 51 | 5 | 10 | 31 | 5 | 0 |
 | [zonoBundle](contSet/zonoBundle.md) | contSet | 44 | 1 | 18 | 18 | 7 | 0 |
-| [zonotope](contSet/zonotope.md) | contSet | 80 | 11 | 25 | 32 | 12 | 1 |
+| [zonotope](contSet/zonotope.md) | contSet | 80 | 12 | 25 | 31 | 12 | 1 |
 | [zoo](contSet/zoo.md) | contSet | 12 | 0 | 0 | 12 | 0 | 0 |
 | [contDynamics](contDynamics/contDynamics.md) | contDynamics | 19 | 0 | 3 | 7 | 9 | 1 |
 | [linParamSys](contDynamics/linParamSys.md) | contDynamics | 11 | 3 | 2 | 3 | 3 | 0 |
@@ -123,7 +123,7 @@ Only these, and the row says which:
 | [neurNetContrSys](contDynamics/neurNetContrSys.md) | contDynamics | 5 | 3 | 1 | 0 | 1 | 0 |
 | [nonlinDASys](contDynamics/nonlinDASys.md) | contDynamics | 13 | 0 | 0 | 10 | 3 | 0 |
 | [nonlinParamSys](contDynamics/nonlinParamSys.md) | contDynamics | 9 | 3 | 0 | 3 | 3 | 0 |
-| [nonlinearARX](contDynamics/nonlinearARX.md) | contDynamics | 8 | 0 | 0 | 6 | 2 | 0 |
+| [nonlinearARX](contDynamics/nonlinearARX.md) | contDynamics | 8 | 3 | 0 | 3 | 2 | 0 |
 | [nonlinearSys](contDynamics/nonlinearSys.md) | contDynamics | 18 | 6 | 1 | 5 | 6 | 1 |
 | [nonlinearSysDT](contDynamics/nonlinearSysDT.md) | contDynamics | 11 | 5 | 0 | 4 | 2 | 0 |
 | [abstractReset](hybridDynamics/abstractReset.md) | hybridDynamics | 4 | 0 | 0 | 1 | 3 | 0 |

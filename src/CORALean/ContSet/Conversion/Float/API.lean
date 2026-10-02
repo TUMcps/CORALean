@@ -1,3 +1,11 @@
+import CORALean.ContSet.Conversion.Float.Capsule_to_ConPolyZono
+import CORALean.ContSet.Conversion.Float.Capsule_to_Ellipsoid
+import CORALean.ContSet.Conversion.Float.Capsule_to_HPolytope
+import CORALean.ContSet.Conversion.Float.Capsule_to_Interval
+import CORALean.ContSet.Conversion.Float.Capsule_to_PolyZonotope
+import CORALean.ContSet.Conversion.Float.Capsule_to_SpectraShadow
+import CORALean.ContSet.Conversion.Float.Capsule_to_VPolytope
+import CORALean.ContSet.Conversion.Float.Capsule_to_Zonotope
 import CORALean.ContSet.Conversion.Float.ConPolyZono_to_Ellipsoid
 import CORALean.ContSet.Conversion.Float.ConPolyZono_to_Interval
 import CORALean.ContSet.Conversion.Float.ConPolyZono_to_PolyZonotope
@@ -56,6 +64,7 @@ import CORALean.ContSet.Conversion.Float.Zonotope_to_PolyZonotope
 import CORALean.ContSet.Conversion.Float.Zonotope_to_SpectraShadow
 import CORALean.ContSet.Conversion.Float.Zonotope_to_VPolytope
 import CORALean.ContSet.Conversion.Float.Zonotope_to_ZonoBundle
+import CORALean.ContSet.Conversion.Float.Taylm_to_Interval
 
 /-!
 # Conversions over a floating-point scalar, collected
@@ -80,5 +89,5 @@ other, each checked by a multiplication and neither trusted.
 
 `ContSet_to_Interval` and `Interval_to_ContSet` carry `𝕋` as an `outParam`, so a
 caller still writes only `IntervalOuter S`. `ConZonotope.vPolytopeBox` goes
-through a box, vertex enumeration needing an equality test on reals.
+through a box, vertex enumeration needing an equality test on reals; `Taylm` reaches a box too.
 -/

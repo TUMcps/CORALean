@@ -45,6 +45,8 @@ src/CORALean/
                    Real/ and Float/, the latter with `plus` alone
     Capsule/       a segment thickened by a ball, for an obstacle rather than a
                    reachable set: Real/ only, being closed under almost nothing
+    Taylm/         a polynomial over `[-1, 1]ⁿ` and a remainder interval, enclosing
+                   a function rather than describing a set; Real/ and Float/
     Conversion/    one file per ordered pair, `<Source>_to_<Target>.lean`;
                    Real/ and Float/
   Specification/   what a computed set is checked against — a safe set or an
@@ -93,8 +95,8 @@ representations of equal standing cannot each import the other, so
 is a cycle Lean rejects. One file per ordered pair keeps a new pair to a file
 rather than a directory, and keeps every representation independent of every
 other. `Real/` holds every ordered pair of the nine representations its own
-collector names — 72 files — and `Capsule_to_Interval` besides; `Float/` holds
-the 25 pairs written so far. The declaration is named for the target, as in CORA,
+collector names — 72 files — and `Capsule_to_Interval` and the `Taylm` pairs
+besides; `Float/` holds the pairs written so far. The declaration is named for the target, as in CORA,
 where `interval(zonotope)` is how a zonotope becomes a box.
 
 Two of those files hold a class instead of a conversion: `ContSet_to_Interval`

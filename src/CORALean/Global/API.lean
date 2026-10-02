@@ -36,6 +36,7 @@ import CORALean.Global.ErrorConvergesToZero
 import CORALean.Global.HorizonErrorBudget
 import CORALean.Global.ConvergenceOrder
 import CORALean.Global.LinProg.API
+import CORALean.Global.TaylorRemainder
 
 /-!
 # Global definitions, collected

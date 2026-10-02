@@ -1,4 +1,5 @@
 import CORALean.ContSet.Capsule.Real.API
+import CORALean.ContSet.Capsule.Float.API
 
 /-!
 # Capsules
@@ -8,7 +9,7 @@ CORA's `capsule`: a segment thickened by a Euclidean ball, `{c + t g | t ∈
 reachable set through an operation — `Instances.lean` says why almost nothing
 is closed under it.
 
-Real layer only: nothing here rounds, so a float layer would only ever widen a
-real capsule's radius, which every existing conversion already does through
-`Interval`.
+Over ℝ and over a floating-point scalar. The float layer stores the same three fields in `𝕋`
+and rounds only where it must: `Capsule.interval`, the bounding box every conversion goes
+through, rounds its bounds outward.
 -/

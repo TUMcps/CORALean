@@ -83,6 +83,15 @@ import CORALean.ContSet.Conversion.Real.ZonoBundle_to_Interval
 import CORALean.ContSet.Conversion.Real.ZonoBundle_to_PolyZonotope
 import CORALean.ContSet.Conversion.Real.ZonoBundle_to_VPolytope
 import CORALean.ContSet.Conversion.Real.ZonoBundle_to_Zonotope
+import CORALean.ContSet.Conversion.Real.Taylm_to_Interval
+import CORALean.ContSet.Conversion.Real.Interval_to_Taylm
+import CORALean.ContSet.Conversion.Real.Zonotope_to_Taylm
+import CORALean.ContSet.Conversion.Real.PolyZonotope_to_Taylm
+import CORALean.ContSet.Conversion.Real.Taylm_to_PolyZonotope
+import CORALean.ContSet.Conversion.Real.Taylm_to_ConPolyZono
+import CORALean.ContSet.Conversion.Real.Ellipsoid_to_LevelSet
+import CORALean.ContSet.Conversion.Real.HPolytope_to_LevelSet
+import CORALean.ContSet.Conversion.Real.Interval_to_LevelSet
 
 /-!
 # Conversions between representations, collected
@@ -103,8 +112,9 @@ the rest, a bundle existing precisely because its intersection is tighter than
 any one member — and in via the same `X → Zonotope` leg its `Zonotope` pair
 already had, composed with the exact `Zonotope.zonoBundle`. 72 ordered pairs,
 among the nine, complete. `SpectraShadow` is only a target: from `Zonotope` and `Interval`.
-
+`LevelSet` is one too, exact from `Ellipsoid`, `HPolytope` and `Interval`.
 Where a conversion only encloses: a zonotope reaching halfspaces is exact only on
 the caller's directions; a polynomial zonotope's conversions are all enclosures.
 `Capsule` reaches every target the box does, through `Capsule.interval`: coarser than CORA's own.
+`Taylm` reaches `Interval` (outer), `PolyZonotope`, `ConPolyZono`; is reached exactly from three.
 -/

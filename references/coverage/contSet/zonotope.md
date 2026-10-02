@@ -76,7 +76,7 @@ CORA methods of `contSet/@zonotope/`, one row each, and where CORALean answers t
 | `splitFirstGen` | proved | [`Zonotope.split`](../../../src/CORALean/ContSet/Zonotope/Real/Operations/Split.lean), [`Zonotope.split_union`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/SplitUnion.lean), [`Zonotope.split_intersection`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/SplitIntersection.lean) | `split` at the first generator; the theorems hold at every generator index |
 | `splitLongestGen` | — | — |  |
 | `supportFunc_` | float | [`Zonotope.supportBound`](../../../src/CORALean/ContSet/Zonotope/Real/Operations/SupportBound.lean), [`Zonotope.supportBound_attained`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/SupportBoundAttained.lean) · float: [`Zonotope.boundDot`](../../../src/CORALean/ContSet/Conversion/Float/Zonotope_to_HPolytope.lean), [`Zonotope.boundDot_le`](../../../src/CORALean/ContSet/Conversion/Float/Zonotope_to_HPolytope.lean) | float is an upper bound only (no point of the set exceeds it); attainment is the real theorem |
-| `taylm` | — | — |  |
+| `taylm` | proved | [`Zonotope.taylm`](../../../src/CORALean/ContSet/Conversion/Real/Zonotope_to_Taylm.lean), [`Zonotope.taylm_exact`](../../../src/CORALean/ContSet/Conversion/Real/Zonotope_to_Taylm.lean) | one variable per generator, no remainder; exact |
 | `tensorMultiplication` | — | — |  |
 | `tensorMultiplication_zono` | — | — |  |
 | `underapproximate` | — | — |  |
