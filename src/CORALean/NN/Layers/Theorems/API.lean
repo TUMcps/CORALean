@@ -97,6 +97,7 @@ import CORALean.NN.Layers.Theorems.ToRealPadCoeffs
 import CORALean.NN.Layers.Theorems.ToRealPolyDerivCenter
 import CORALean.NN.Layers.Theorems.ToRealTapEntry
 import CORALean.NN.Layers.Theorems.ToRelaxationSound
+import CORALean.NN.Layers.Theorems.SShapeDerBoundsSound
 
 /-!
 # What the standard layers enclose, collected

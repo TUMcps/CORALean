@@ -15,7 +15,7 @@ CORA methods of `contSet/@ellipsoid/`, one row each, and where CORALean answers 
 | `copy` | out-of-scope | n/a — matlab-runtime |  |
 | `dim` | out-of-scope | n/a — matlab-runtime |  |
 | `display` | out-of-scope | n/a — plotting/display |  |
-| `distance` | — | — |  |
+| `distance` | out-of-scope | n/a — solver-dependent | ellipsoid and polytope arguments call optimisation routines (`priv_distanceEllipsoid`, `priv_distancePolytope`); only the point case is a closed form |
 | `ellipsoid` | float | [`Ellipsoid.construct`](../../../src/CORALean/ContSet/Ellipsoid/Real/Ellipsoid.lean), [`Ellipsoid.construct_eq_image`](../../../src/CORALean/ContSet/Ellipsoid/Real/Theorems/ConstructEqImage.lean), [`Ellipsoid.convex_construct`](../../../src/CORALean/ContSet/Ellipsoid/Real/Theorems/Convex.lean), [`Ellipsoid.isClosed_construct`](../../../src/CORALean/ContSet/Ellipsoid/Real/Theorems/IsClosed.lean), [`Ellipsoid.isCompact_construct`](../../../src/CORALean/ContSet/Ellipsoid/Real/Theorems/IsCompact.lean) · float: [`Ellipsoid.construct`](../../../src/CORALean/ContSet/Ellipsoid/Float/Ellipsoid.lean), [`Ellipsoid.convex_construct`](../../../src/CORALean/ContSet/Ellipsoid/Float/Theorems/Convex.lean), [`Ellipsoid.isCompact_construct`](../../../src/CORALean/ContSet/Ellipsoid/Float/Theorems/IsCompact.lean) | route a — the generic `InflatedContSet` theorems carry the nominal ellipsoid's convexity and compactness across the error box |
 | `ellipsoidNorm` | — | — |  |
 | `empty` | — | — |  |

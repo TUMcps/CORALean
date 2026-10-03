@@ -6,7 +6,7 @@ CORA methods of `hybridDynamics/@transition/`, one row each, and where CORALean 
 
 | Method | State | In CORALean | Note |
 |---|---|---|---|
-| `convGuard` | — | — |  |
+| `convGuard` | float | [`Transition.convGuard`](../../../src/CORALean/HybridDynamics/Operations/TransitionConvGuard.lean), [`Transition.convGuard_guard_exact`](../../../src/CORALean/HybridDynamics/Theorems/TransitionConvGuardExact.lean) | route b — the `'polytope'` branch, generic over the float scalar: the guard becomes the stacked-rows intersection with the invariant, exact (`=`). The `'conZonotope'` branch and the conversion of a non-polytope guard are not modelled |
 | `derivatives` | out-of-scope | n/a — matlab-runtime |  |
 | `display` | out-of-scope | n/a — plotting/display |  |
 | `eq` | out-of-scope | n/a — matlab-runtime |  |

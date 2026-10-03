@@ -345,3 +345,5 @@ Chain.pgdStep  real-layer: one pass of `Chain.pgdAttack`, built on `Chain.fgsmAt
 Chain.pgdAttack  real-layer: iterated `Chain.fgsmAttack`, ℝ-only for the same reason
 groupSort  real-layer: the numeric function of CORA's `nnGroupSortLayer`, which has no enclosure there; sorts reals with the classical order, ℝ-only
 NonlinearSys.splitReach  real-layer: the splitting of Althoff et al.'s CDC 2008 linearization loop halves a `Real.Zonotope` with `Zonotope.split`, which `FloatOps` cannot do exactly; a float split rounds and needs an inflation of its own design
+NonlinDASys.consistentInitialState  real-layer: Newton's method on a real constraint, with a real matrix inverse and norm; the generic `newtonIterate` it calls is computable
+NonlinDASys.steadyState  real-layer: Newton's method on real dynamics and constraint, with a real matrix inverse; the generic `newtonIterate` it calls is computable

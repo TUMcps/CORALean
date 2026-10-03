@@ -66,6 +66,17 @@ import CORALean.NN.Operations.ToNonlinearSysDT
 import CORALean.NN.Operations.WorstIndex
 import CORALean.NN.Operations.SnakeOrder
 import CORALean.NN.Operations.InputNeuronOrder
+import CORALean.NN.Operations.WeightLayerEval
+import CORALean.NN.Operations.WeightNetworkEval
+import CORALean.NN.Operations.WeightAccEval
+import CORALean.NN.Operations.WeightAccPushLinear
+import CORALean.NN.Operations.WeightAccPushAffine
+import CORALean.NN.Operations.WeightAccLayer
+import CORALean.NN.Operations.WeightNetworkNormalFormAux
+import CORALean.NN.Operations.WeightNetworkNormalForm
+import CORALean.NN.Operations.RefinableNetworkLayers
+import CORALean.NN.Operations.RefinableNetworkRefinableLayers
+import CORALean.NN.Operations.ActivationKindMergeValues
 
 /-!
 # What a network does, collected

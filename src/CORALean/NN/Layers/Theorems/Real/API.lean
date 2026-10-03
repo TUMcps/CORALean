@@ -73,6 +73,8 @@ import CORALean.NN.Layers.Theorems.Real.TanhRelaxationSound
 import CORALean.NN.Layers.Theorems.Real.RootRelaxationSound
 import CORALean.NN.Layers.Theorems.Real.TendstoSamplingError
 import CORALean.NN.Layers.Theorems.Real.WindowMaxLe
+import CORALean.NN.Layers.Theorems.Real.SigmoidDerivSShape
+import CORALean.NN.Layers.Theorems.Real.TanhDerivSShape
 
 /-!
 # What holds of the standard layers only at ℝ, collected
