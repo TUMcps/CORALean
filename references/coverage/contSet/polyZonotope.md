@@ -38,7 +38,7 @@ CORA methods of `contSet/@polyZonotope/`, one row each, and where CORALean answe
 | `isIntersecting_` | — | — |  |
 | `isPolytope` | — | — |  |
 | `isemptyobject` | out-of-scope | n/a — matlab-runtime |  |
-| `isequal` | — | — |  |
+| `isequal` | proved | [`PolyZonotope.isequal`](../../../src/CORALean/ContSet/PolyZonotope/Real/Operations/Isequal.lean), [`PolyZonotope.isequal_construct`](../../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/IsequalConstruct.lean) | sound, not exact: tolerance `0` (CORA's default is `eps`) and a structural test, the same counts, centre, generators, exponent matrix and independent generators, in order; CORA first `compact_(.,'all')`es both, aligns the identifiers (`mergeExpMatrix`) and compares up to column order, none of which is modelled; equal data denote the same set, the converse fails; an instance of `Isequal`; Prop-valued, not runnable |
 | `jacobian` | — | — |  |
 | `jacobianHandle` | out-of-scope | n/a — matlab-runtime |  |
 | `levelSet` | — | — |  |

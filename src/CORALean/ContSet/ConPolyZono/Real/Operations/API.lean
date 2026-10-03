@@ -1,3 +1,4 @@
+import CORALean.ContSet.ConPolyZono.Real.Operations.Isequal
 import CORALean.ContSet.ConPolyZono.Real.Operations.PadE
 import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialPadE
 import CORALean.ContSet.ConPolyZono.Real.Operations.AppendE

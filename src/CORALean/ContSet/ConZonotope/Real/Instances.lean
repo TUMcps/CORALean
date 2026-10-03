@@ -1,3 +1,4 @@
+import CORALean.ContSet.ConZonotope.Real.Theorems.IsequalConstruct
 import CORALean.ContSet.ContSet.Definitions.CompactSet
 import CORALean.ContSet.ContSet.Definitions.ConvexSet
 import CORALean.ContSet.Interval.Real.Instances
@@ -99,6 +100,11 @@ noncomputable instance : Mtimes ℐ 𝒞 where
 instance : Reindex 𝒞 where
   reindex e C := ConZonotope.map (reindexLin e) C
   reindex_exact e C := (ConZonotope.map_exact (reindexLin e) C).symm
+
+/-- `ConZonotope.isequal`, structural at tolerance `0`: sound, not exact. -/
+instance {α : Type} [AddCommGroup α] [Module ℝ α] : Isequal (ConZonotope α) where
+  isequal := ConZonotope.isequal
+  isequal_construct _ _ := ConZonotope.isequal_construct
 
 end CORALean.Real
 

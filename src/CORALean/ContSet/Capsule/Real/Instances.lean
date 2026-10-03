@@ -1,3 +1,4 @@
+import CORALean.ContSet.Capsule.Real.Theorems.IsequalConstruct
 import CORALean.ContSet.ContSet.Definitions.ConvexSet
 import CORALean.ContSet.ContSet.Definitions.CompactSet
 import CORALean.ContSet.Capsule.Real.Theorems.API
@@ -72,6 +73,11 @@ noncomputable instance : Mtimes (Mat ℝ) (fun n => Capsule n) where
 noncomputable instance : LinComb (Capsule n) (Vec ℝ n) where
   linComb := Capsule.convHull
   linComb_outer := Capsule.convHull_outer
+
+/-- `Capsule.isequal`, structural at tolerance `0`: sound, not exact. -/
+instance : Isequal (Capsule n) where
+  isequal := Capsule.isequal
+  isequal_construct _ _ := Capsule.isequal_construct
 
 end CORALean.Real
 

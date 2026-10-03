@@ -1,3 +1,4 @@
+import CORALean.ContSet.Ellipsoid.Real.Theorems.IsequalConstruct
 import CORALean.ContSet.ContSet.ContSet
 import CORALean.ContSet.ContSet.Definitions.CompactSet
 import CORALean.ContSet.ContSet.Definitions.ConvexSet
@@ -82,6 +83,11 @@ condition to preserve — so a reindexing needs no more than any other map does.
 noncomputable instance : Reindex (fun n => Ellipsoid n) where
   reindex e E := Ellipsoid.map (reindexLin e) E
   reindex_exact e E := (Ellipsoid.map_exact (reindexLin e) E).symm
+
+/-- `Ellipsoid.isequal`, structural at tolerance `0`: sound, not exact. -/
+instance : Isequal (Ellipsoid n) where
+  isequal := Ellipsoid.isequal
+  isequal_construct _ _ := Ellipsoid.isequal_construct
 
 end CORALean.Real
 

@@ -2,6 +2,7 @@ import CORALean.Global.LinProg.LinProg
 import CORALean.Global.LinProg.Duality
 import CORALean.Global.LinProg.Composition
 import CORALean.Global.LinProg.Simplex
+import CORALean.Global.LinProg.Farkas
 
 /-!
 # Linear programming, collected

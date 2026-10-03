@@ -1,3 +1,4 @@
+import CORALean.ContSet.Zonotope.Real.Theorems.EnclosePointsStursbergMem
 import CORALean.ContSet.Zonotope.Real.Theorems.AbsBoundLeOfSubsetClosedBall
 import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
 import CORALean.ContSet.Zonotope.Real.Theorems.AbsLeAbsBound
@@ -160,6 +161,28 @@ import CORALean.ContSet.Zonotope.Real.Theorems.AndOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.IsequalConstruct
 import CORALean.ContSet.Zonotope.Real.Theorems.FilterGenConstruct
 import CORALean.ContSet.Zonotope.Real.Theorems.CompactZerosExact
+import CORALean.ContSet.Zonotope.Real.Theorems.SubsetOfCert
+import CORALean.ContSet.Zonotope.Real.Theorems.ContainsSTSound
+import CORALean.ContSet.Zonotope.Real.Theorems.SubsetConvexHullOfCert
+import CORALean.ContSet.Zonotope.Real.Theorems.ExistsSubsetOfDisjunctiveCert
+import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDistLeOfReduceCert
+import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDistLeOfReduceInnerCert
+import CORALean.ContSet.Zonotope.Real.Theorems.ReduceUnderApproxSadraddiniInner
+import CORALean.ContSet.Zonotope.Real.Theorems.ZonotopeNormIsNorm
+import CORALean.ContSet.Zonotope.Real.Theorems.ZonotopeNormTFAE
+import CORALean.ContSet.Zonotope.Real.Theorems.ZonotopeNormBallEq
+import CORALean.ContSet.Zonotope.Real.Theorems.ZonotopeNormSphereSubsetImage
+import CORALean.ContSet.Zonotope.Real.Theorems.ZonotopeNormEqPolyNorm
+import CORALean.ContSet.Zonotope.Real.Theorems.NotExistsPolyNormOfDegenerate
+import CORALean.ContSet.Zonotope.Real.Theorems.ZonotopeNormEquivNorm
+import CORALean.ContSet.Zonotope.Real.Theorems.SubsetIffZonotopeNormLe
+import CORALean.ContSet.Zonotope.Real.Theorems.IsGreatestZonotopeNormCorner
+import CORALean.ContSet.Zonotope.Real.Theorems.InradiusEqInvContainmentRadius
+import CORALean.ContSet.Zonotope.Real.Theorems.ParallelotopeEqAbsMulVecLe
+import CORALean.ContSet.Zonotope.Real.Theorems.ParallelotopeEqAbsMulVecLeCounterexample
+import CORALean.ContSet.Zonotope.Real.Theorems.ConstructEqConvexHullCorner
+import CORALean.ContSet.Zonotope.Real.Theorems.VenumIff
+import CORALean.ContSet.Zonotope.Real.Theorems.PolymaxIff
 
 /-!
 # What `Zonotope` guarantees

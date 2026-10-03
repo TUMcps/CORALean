@@ -1,3 +1,4 @@
+import CORALean.ContSet.ConPolyZono.Real.Theorems.IsequalConstruct
 import CORALean.ContSet.ConPolyZono.Real.Theorems.HoldsPointIff
 import CORALean.ContSet.ConPolyZono.Real.Theorems.HoldsMono
 import CORALean.ContSet.ConPolyZono.Real.Theorems.HoldsCongr

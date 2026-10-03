@@ -7,7 +7,7 @@ CORA methods of `hybridDynamics/@location/`, one row each, and where CORALean an
 | Method | State | In CORALean | Note |
 |---|---|---|---|
 | `adaptOptions` | out-of-scope | n/a — matlab-runtime | struct-field plumbing over `options` and the `config_<class>_reach` lists |
-| `calcBasis` | — | — |  |
+| `calcBasis` | proved | [`Location.calcBasisBox`](../../../src/CORALean/HybridDynamics/Operations/CalcBasisBox.lean), [`Location.calcBasisBox_orthogonal`](../../../src/CORALean/HybridDynamics/Theorems/CalcBasisBoxOrthogonal.lean) | method `'box'` only (`eye(sys.nrOfDims)`, exact: the identity, orthogonal); `'pca'` (SVD of the reachable set's generators, projected on a hyperplane guard) and `'flow'` (Gram-Schmidt of the flow direction) are not covered, and CORA returns one basis per entry of `options.enclose`; noncomputable-free but real-valued, not runnable at float |
 | `checkFlow` | — | — |  |
 | `derivatives` | out-of-scope | n/a — matlab-runtime |  |
 | `display` | out-of-scope | n/a — plotting/display |  |

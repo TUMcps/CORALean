@@ -1,3 +1,6 @@
+import CORALean.ContSet.Capsule.Real.Operations.ContainsPoint
+import CORALean.ContSet.Capsule.Real.Operations.SegDist
+import CORALean.ContSet.Capsule.Real.Operations.IsIntersecting
 import CORALean.ContSet.Capsule.Real.Operations.OfPoint
 import CORALean.ContSet.Capsule.Real.Operations.SupportBound
 import CORALean.ContSet.Capsule.Real.Operations.Empty

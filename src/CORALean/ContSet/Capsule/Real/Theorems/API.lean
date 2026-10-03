@@ -1,3 +1,7 @@
+import CORALean.ContSet.Capsule.Real.Theorems.MemConstructIffNorm
+import CORALean.ContSet.Capsule.Real.Theorems.ContainsPointIff
+import CORALean.ContSet.Capsule.Real.Theorems.SegDistMem
+import CORALean.ContSet.Capsule.Real.Theorems.IsIntersectingIff
 import CORALean.ContSet.Capsule.Real.Theorems.ConstructEqEmpty
 import CORALean.ContSet.Capsule.Real.Theorems.ConstructEqAdd
 import CORALean.ContSet.Capsule.Real.Theorems.Convex

@@ -1,3 +1,5 @@
+import CORALean.ContSet.ContSet.Operations.Eq
+import CORALean.ContSet.ContSet.Operations.Ne
 import CORALean.ContSet.ContSet.Operations.Enclose
 import CORALean.ContSet.ContSet.Operations.Enlarge
 import CORALean.ContSet.ContSet.Operations.EnlargeScalar

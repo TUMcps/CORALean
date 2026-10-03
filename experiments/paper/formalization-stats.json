@@ -14,25 +14,25 @@
     "not-covered"
   ],
   "totals": {
-    "papers": 34,
-    "papers_with_findings": 27,
-    "in_scope": 384,
-    "formalized": 379,
-    "not_formalized": 5,
-    "out_of_scope": 196,
+    "papers": 36,
+    "papers_with_findings": 29,
+    "in_scope": 431,
+    "formalized": 422,
+    "not_formalized": 9,
+    "out_of_scope": 216,
     "out_of_scope_by_reason": {
-      "restated": 104,
+      "restated": 112,
       "mathlib": 8,
-      "not-a-claim": 60,
+      "not-a-claim": 72,
       "done-differently": 7,
       "not-covered": 17
     },
     "by_class": {
-      "correct": 269,
-      "underspecified": 61,
-      "proof-gap": 21,
-      "fixed": 28,
-      "false": 0
+      "correct": 293,
+      "underspecified": 67,
+      "proof-gap": 22,
+      "fixed": 39,
+      "false": 1
     }
   },
   "papers": [
@@ -765,6 +765,77 @@
       ]
     },
     {
+      "page": "2019/sadraddini-cdc-polytope-containment.md",
+      "label": "Sadraddini 2019",
+      "year": 2019,
+      "title": "Linear Encodings for Polytope Containment Problems",
+      "in_scope": 23,
+      "formalized": 22,
+      "not_formalized": 1,
+      "out_of_scope": 16,
+      "out_of_scope_by_reason": {
+        "restated": 5,
+        "mathlib": 0,
+        "not-a-claim": 11,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 13,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 8,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Eq. 4",
+          "class": "fixed",
+          "reason": "false for a non-square X (the right side is a cylinder along ker X†; (0, 1) for X = (1, 0)ᵀ); exact with the equality row; see Findings"
+        },
+        {
+          "result": "Eq. 7",
+          "class": "fixed",
+          "reason": "ill-typed as printed (H₂ missing on the w block), the offset x̄₁ is dropped, and without the range row (I - X₂X₂†)(X₁p₁ + x̄₁ - x̄₂) = 0 it is false (X₂ = 0); exact with all three; see Findings"
+        },
+        {
+          "result": "Lemma 1",
+          "class": "fixed",
+          "reason": "false at an empty inbody: {x₁ ≤ -1, -x₁ ≤ -1, x₂ ≤ 0} = ∅ lies in the unit box, ker Hₓ = {0}, and no Λ ≥ 0 assembles the row (0, -1); true for X ≠ ∅; see Findings"
+        },
+        {
+          "result": "Prop. 1",
+          "class": "fixed",
+          "reason": "at N = 1 this is `Lemma 1`, false at an empty summand; true when every P_{x,i} is nonempty; see Findings"
+        },
+        {
+          "result": "Prop. 3",
+          "class": "fixed",
+          "reason": "false at an empty P_{y,i}, where {H y ≤ 0·h} is a cone rather than 0·P (P₁ = {0}, P₂ = ∅ in ℝ²); true for nonempty bounded P_{y,i}; see Findings"
+        },
+        {
+          "result": "Cor. 3",
+          "class": "fixed",
+          "reason": "`Prop. 3`'s gap: false at an empty P_{y,i}; true for nonempty bounded ones; see Findings"
+        },
+        {
+          "result": "Prop. 4",
+          "class": "fixed",
+          "reason": "\"if\" fails at an empty P_{y,i} (`Prop. 3`'s data with δ = (1, 0)) and \"only if\" at an empty Pₓ; true with both nonempty and P_{y,i} bounded; see Findings"
+        },
+        {
+          "result": "Prop. 5",
+          "class": "underspecified",
+          "reason": "two indices of (39) are misprinted (`Λ₃H₄ = H_BallΓ₄` for `Λ₄H₂`, `Λ₃h₂ ≤ h₂ + H₁β₃` for `h₁`); read as `Prop. 2` gives them"
+        },
+        {
+          "result": "Prop. 7",
+          "class": "fixed",
+          "reason": "the row Λ₂g ≤ εh_Ball - H_Ball x̄ + H_Ball βₓ has the wrong sign on x̄ (it certifies F_proj ⊆ -x̄ + X₀ ⊕ εP_Ball): in ℝ¹, F = [-4, 2], X = [0, 2], ε = 2 is feasible while d_H = 4; true with + H_Ball x̄; see Findings"
+        }
+      ]
+    },
+    {
       "page": "2020/kochdumper-hscc-utilizing-dependencies.md",
       "label": "Kochdumper 2020",
       "year": 2020,
@@ -904,6 +975,82 @@
           "result": "Alg. 1",
           "class": "underspecified",
           "reason": "`enlarge`'s stated domain `λ > 1` disagrees with every printed value (`0.1`); `p_d` is missing from `Require`"
+        }
+      ]
+    },
+    {
+      "page": "2021/kulmburg-ejc-zonotope-containment.md",
+      "label": "Kulmburg 2021",
+      "year": 2021,
+      "title": "On the co-NP-Completeness of the Zonotope Containment Problem",
+      "in_scope": 24,
+      "formalized": 21,
+      "not_formalized": 3,
+      "out_of_scope": 4,
+      "out_of_scope_by_reason": {
+        "restated": 3,
+        "mathlib": 0,
+        "not-a-claim": 1,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 11,
+        "underspecified": 5,
+        "proof-gap": 1,
+        "fixed": 3,
+        "false": 1
+      },
+      "findings": [
+        {
+          "result": "Lemma 1",
+          "class": "fixed",
+          "reason": "the unit ball is P only with the origin inside (every hᵢ > 0): P = [1, 2] has hᵢ ≠ 0 and S_P(0) = 0; true with hᵢ > 0; see Findings"
+        },
+        {
+          "result": "Remark 2",
+          "class": "false",
+          "reason": "S_Z needs every hᵢ ≠ 0 (`Def. 3`), and a degenerate Z centred at 0 admits no such representation (it would contain an open set around 0); no norm has it as unit ball; see Findings"
+        },
+        {
+          "result": "Eq. 20",
+          "class": "underspecified",
+          "reason": "the cube is misprinted [-1, -1]ⁿ, and n > 0 is needed (at n = 0, d = 0 and every cube fits)"
+        },
+        {
+          "result": "Lemma 3",
+          "class": "underspecified",
+          "reason": "b ≠ 0 is missing: at b = 0, H = ℝⁿ and no cube is largest"
+        },
+        {
+          "result": "Eq. 29",
+          "class": "fixed",
+          "reason": "Σ[-1, 1]·2 = [-2, 2] but {2x ≤ 1, -2x ≤ 1} = [-1/2, 1/2]; {Vx ≤ 1} is the parallelotope of Z⁻¹'s columns, the reading the reduction needs; see Findings"
+        },
+        {
+          "result": "Eq. 30",
+          "class": "fixed",
+          "reason": "the first equality is false (the rows ±eᵢ have ‖·‖₁ = 1, the corner (1, 1) has 2); the inequality R₁(Π) ≤ nR∞(Π), all that is used, holds; see Findings"
+        },
+        {
+          "result": "Lemma 5",
+          "class": "proof-gap",
+          "reason": "the printed proof divides by β (λᵢ = (α/β)μᵢ), undefined at β = 0, where the slice is {0} for another reason"
+        },
+        {
+          "result": "Alg. 1",
+          "class": "underspecified",
+          "reason": "the listing takes any zonotopes, but ‖·‖_{Z₂} exists only for non-degenerate Z₂ (`Def. 4`)"
+        },
+        {
+          "result": "Alg. 2",
+          "class": "underspecified",
+          "reason": "the listing tests the sign vector x ∈ ℝ^{m₁} itself against c₂ ∈ ℝⁿ, writes νᵢ for ηᵢ, and needs the facets of Z₂ moved to the origin for the signs to be right"
+        },
+        {
+          "result": "Eq. 47",
+          "class": "underspecified",
+          "reason": "G₂x is misprinted for G₁x, the inbody's generators"
         }
       ]
     },
@@ -1510,11 +1657,11 @@
         "group": "contSet",
         "class": "capsule",
         "methods": 39,
-        "proved": 0,
+        "proved": 2,
         "float": 25,
-        "not_yet": 4,
+        "not_yet": 2,
         "out_of_scope": 10,
-        "needs_float": 0,
+        "needs_float": 2,
         "out_of_scope_by_reason": {
           "plotting/display": 3,
           "random/sampling": 2,
@@ -1536,11 +1683,11 @@
         "group": "contSet",
         "class": "conPolyZono",
         "methods": 47,
-        "proved": 9,
+        "proved": 10,
         "float": 20,
-        "not_yet": 10,
+        "not_yet": 9,
         "out_of_scope": 8,
-        "needs_float": 9,
+        "needs_float": 10,
         "out_of_scope_by_reason": {
           "plotting/display": 3,
           "random/sampling": 2,
@@ -1562,11 +1709,11 @@
         "group": "contSet",
         "class": "conZonotope",
         "methods": 50,
-        "proved": 7,
+        "proved": 8,
         "float": 21,
-        "not_yet": 10,
+        "not_yet": 9,
         "out_of_scope": 12,
-        "needs_float": 7,
+        "needs_float": 8,
         "out_of_scope_by_reason": {
           "plotting/display": 4,
           "random/sampling": 2,
@@ -1588,11 +1735,11 @@
         "group": "contSet",
         "class": "contSet",
         "methods": 101,
-        "proved": 2,
+        "proved": 4,
         "float": 24,
-        "not_yet": 3,
+        "not_yet": 1,
         "out_of_scope": 72,
-        "needs_float": 2,
+        "needs_float": 4,
         "out_of_scope_by_reason": {
           "plotting/display": 9,
           "random/sampling": 3,
@@ -1692,11 +1839,11 @@
         "group": "contSet",
         "class": "interval",
         "methods": 110,
-        "proved": 2,
+        "proved": 3,
         "float": 84,
-        "not_yet": 6,
+        "not_yet": 5,
         "out_of_scope": 18,
-        "needs_float": 2,
+        "needs_float": 3,
         "out_of_scope_by_reason": {
           "plotting/display": 2,
           "random/sampling": 3,
@@ -1744,11 +1891,11 @@
         "group": "contSet",
         "class": "polyZonotope",
         "methods": 73,
-        "proved": 9,
+        "proved": 10,
         "float": 27,
-        "not_yet": 23,
+        "not_yet": 22,
         "out_of_scope": 14,
-        "needs_float": 9,
+        "needs_float": 10,
         "out_of_scope_by_reason": {
           "plotting/display": 4,
           "random/sampling": 2,
@@ -1811,10 +1958,10 @@
         },
         "cora_issues": 1,
         "findings": {
-          "correct": 5,
-          "underspecified": 0,
+          "correct": 13,
+          "underspecified": 1,
           "proof-gap": 0,
-          "fixed": 0,
+          "fixed": 9,
           "false": 0
         }
       },
@@ -1926,11 +2073,11 @@
         "group": "contSet",
         "class": "zonotope",
         "methods": 80,
-        "proved": 5,
+        "proved": 9,
         "float": 42,
-        "not_yet": 19,
+        "not_yet": 15,
         "out_of_scope": 14,
-        "needs_float": 5,
+        "needs_float": 9,
         "out_of_scope_by_reason": {
           "plotting/display": 2,
           "random/sampling": 3,
@@ -1941,11 +2088,11 @@
         },
         "cora_issues": 1,
         "findings": {
-          "correct": 42,
-          "underspecified": 10,
+          "correct": 55,
+          "underspecified": 14,
           "proof-gap": 3,
-          "fixed": 5,
-          "false": 0
+          "fixed": 6,
+          "false": 1
         }
       },
       {
@@ -2394,11 +2541,11 @@
         "group": "hybridDynamics",
         "class": "location",
         "methods": 24,
-        "proved": 0,
+        "proved": 1,
         "float": 8,
-        "not_yet": 8,
+        "not_yet": 7,
         "out_of_scope": 8,
-        "needs_float": 0,
+        "needs_float": 1,
         "out_of_scope_by_reason": {
           "plotting/display": 1,
           "random/sampling": 0,
@@ -2550,11 +2697,11 @@
     "groups": {
       "contSet": {
         "methods": 908,
-        "proved": 66,
+        "proved": 78,
         "float": 405,
-        "not_yet": 201,
+        "not_yet": 189,
         "out_of_scope": 236,
-        "needs_float": 66,
+        "needs_float": 78,
         "cora_issues": 9,
         "out_of_scope_by_reason": {
           "plotting/display": 51,
@@ -2565,11 +2712,11 @@
           "deprecated": 14
         },
         "findings": {
-          "correct": 155,
-          "underspecified": 31,
+          "correct": 176,
+          "underspecified": 36,
           "proof-gap": 5,
-          "fixed": 14,
-          "false": 0
+          "fixed": 24,
+          "false": 1
         }
       },
       "contDynamics": {
@@ -2598,11 +2745,11 @@
       },
       "hybrid": {
         "methods": 89,
-        "proved": 7,
+        "proved": 8,
         "float": 23,
-        "not_yet": 15,
+        "not_yet": 14,
         "out_of_scope": 44,
-        "needs_float": 7,
+        "needs_float": 8,
         "cora_issues": 0,
         "out_of_scope_by_reason": {
           "plotting/display": 5,
@@ -2647,11 +2794,11 @@
     },
     "totals": {
       "methods": 1260,
-      "proved": 114,
+      "proved": 127,
       "float": 500,
-      "not_yet": 267,
+      "not_yet": 254,
       "out_of_scope": 379,
-      "needs_float": 114,
+      "needs_float": 127,
       "cora_issues": 11,
       "out_of_scope_by_reason": {
         "plotting/display": 86,
@@ -2662,19 +2809,19 @@
         "deprecated": 14
       },
       "findings": {
-        "correct": 262,
-        "underspecified": 59,
+        "correct": 283,
+        "underspecified": 64,
         "proof-gap": 21,
-        "fixed": 24,
-        "false": 0
+        "fixed": 34,
+        "false": 1
       }
     },
     "findings_not_on_a_class": {
       "global": {
-        "correct": 4,
-        "underspecified": 1,
-        "proof-gap": 0,
-        "fixed": 4,
+        "correct": 7,
+        "underspecified": 2,
+        "proof-gap": 1,
+        "fixed": 5,
         "false": 0
       },
       "specification": {
@@ -2693,11 +2840,11 @@
       }
     },
     "theorems": {
-      "paper": 543,
+      "paper": 609,
       "float": 1106,
-      "helper": 670,
-      "lemma": 1882,
-      "total": 4201,
+      "helper": 673,
+      "lemma": 1906,
+      "total": 4294,
       "examples": 80
     }
   }
