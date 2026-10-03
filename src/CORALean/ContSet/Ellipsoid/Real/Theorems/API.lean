@@ -19,6 +19,8 @@ import CORALean.ContSet.Ellipsoid.Real.Theorems.ProjectExact
 import CORALean.ContSet.Ellipsoid.Real.Theorems.RepresentsaPointIff
 import CORALean.ContSet.Ellipsoid.Real.Theorems.RepresentsaOriginIff
 import CORALean.ContSet.Ellipsoid.Real.Theorems.RankShape
+import CORALean.ContSet.Ellipsoid.Real.Theorems.CartProdOuter
+import CORALean.ContSet.Ellipsoid.Real.Theorems.CartProdVecExact
 import CORALean.ContSet.Ellipsoid.Real.Theorems.IsFullDimIff
 
 /-!

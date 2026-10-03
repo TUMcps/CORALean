@@ -142,6 +142,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.RepresentsaOriginIff
 import CORALean.ContSet.Zonotope.Real.Theorems.ExactPlusExact
 import CORALean.ContSet.Zonotope.Real.Theorems.NormUbLe
 import CORALean.ContSet.Zonotope.Real.Theorems.Radius2Bound
+import CORALean.ContSet.Zonotope.Real.Theorems.NormSubCentreLeSumGeneratorLength
 import CORALean.ContSet.Zonotope.Real.Theorems.ConstrSatSound
 import CORALean.ContSet.Zonotope.Real.Theorems.CartProdExact
 import CORALean.ContSet.Zonotope.Real.Theorems.SplitFirstGenUnion

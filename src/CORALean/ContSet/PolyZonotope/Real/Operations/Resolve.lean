@@ -1,0 +1,37 @@
+import CORALean.ContSet.PolyZonotope.Real.Operations.GetSubset
+
+/-!
+# `PolyZonotope.resolve`
+
+CORA's `@polyZonotope/resolve.m` for one factor: substitute the value `x` for the factor `id`,
+`G .* prod(x.^eMx, 1)`, and fold the columns that no longer depend on any factor into the
+centre. Here it is `getSubset` at the degenerate interval `[x, x]` (centre `x`, radius `0`),
+which substitutes the value into every monomial and keeps the factor as a column of the
+exponent matrix. Identity is positional, so a resolved factor is not removed from the list as
+CORA removes its `id`, and `compact` is the operation that folds and drops what is constant. A
+list of factors is the iteration.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       03-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- Factor `k` fixed at the value `x`. -/
+def PolyZonotope.resolve (pZ : PolyZonotope α) (k : Fin pZ.p) (x : ℝ) : PolyZonotope α :=
+  pZ.getSubset k x 0
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

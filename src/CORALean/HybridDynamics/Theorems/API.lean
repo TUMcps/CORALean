@@ -41,6 +41,10 @@ import CORALean.HybridDynamics.Theorems.NonlinearResetEvaluateToNonlinearReset
 import CORALean.HybridDynamics.Theorems.NonlinearResetFoldlUpdateOfNotMem
 import CORALean.HybridDynamics.Theorems.NonlinearResetLiftOfNotMem
 import CORALean.HybridDynamics.Theorems.NonlinearResetLiftBind
+import CORALean.HybridDynamics.Theorems.NonlinearResetEvaluateSynchronize
+import CORALean.HybridDynamics.Theorems.LinearResetLiftBind
+import CORALean.HybridDynamics.Theorems.LinearResetLiftOfNotMem
+import CORALean.HybridDynamics.Theorems.LinearResetSynchronizeApply
 
 /-!
 # What a hybrid run guarantees, collected

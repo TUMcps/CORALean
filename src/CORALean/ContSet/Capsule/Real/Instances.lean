@@ -14,7 +14,8 @@ A capsule is closed under almost nothing, so `Plus` and `Mtimes` are enclosures,
 Minkowski sum of two capsules is not a capsule (a segment thickened by two balls is not a ball),
 and an affine image of one is a segment thickened by an *ellipsoid*, since a linear map need not
 preserve the Euclidean ball; CORA absorbs the shorter generator and the ellipsoid into a larger
-radius. No `LinComb`.
+radius. `LinComb` is CORA's `convHull_`, also an enclosure: the hull of two capsules is no
+capsule.
 -/
 
 -- Authors:       Tobias Ladner
@@ -66,6 +67,11 @@ noncomputable instance : Mtimes (Mat ℝ) (fun n => Capsule n) where
   mtimes_outer M C := by
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact Capsule.mtimes_outer M C
+
+/-- CORA's `convHull_`, a ball around the segment between the two centres. -/
+noncomputable instance : LinComb (Capsule n) (Vec ℝ n) where
+  linComb := Capsule.convHull
+  linComb_outer := Capsule.convHull_outer
 
 end CORALean.Real
 

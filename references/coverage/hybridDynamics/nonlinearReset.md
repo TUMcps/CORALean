@@ -14,4 +14,4 @@ CORA methods of `hybridDynamics/@nonlinearReset/`, one row each, and where CORAL
 | `ne` | out-of-scope | n/a — matlab-runtime |  |
 | `nonlinearReset` | proved | [`NonlinearReset`](../../../src/CORALean/HybridDynamics/Definitions/NonlinearReset.lean), [`Transition.toNonlinearReset`](../../../src/CORALean/HybridDynamics/Operations/TransitionToNonlinearReset.lean), [`NonlinearReset.evaluate_toNonlinearReset`](../../../src/CORALean/HybridDynamics/Theorems/NonlinearResetEvaluateToNonlinearReset.lean) | the reset is the function `f(x, u)` itself, the dimensions are type indices and the derivative handles are not stored; the theorem says the affine reset of a `Transition` is one, at every point; scalar-free, so no float counterpart |
 | `resolve` | — | — |  |
-| `synchronize` | — | — |  |
+| `synchronize` | proved | [`NonlinearReset.synchronize`](../../../src/CORALean/HybridDynamics/Operations/NonlinearResetSynchronize.lean), [`NonlinearReset.evaluate_synchronize`](../../../src/CORALean/HybridDynamics/Theorems/NonlinearResetEvaluateSynchronize.lean) | exact: `f = Σ f_i(x, u) + x(idStates)`, definitionally; scalar-free, no float counterpart |

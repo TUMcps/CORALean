@@ -28,6 +28,7 @@ import CORALean.ContSet.Conversion.Real.Ellipsoid_to_ConZonotope
 import CORALean.ContSet.Conversion.Real.Ellipsoid_to_HPolytope
 import CORALean.ContSet.Conversion.Real.Ellipsoid_to_Interval
 import CORALean.ContSet.Conversion.Real.Ellipsoid_to_PolyZonotope
+import CORALean.ContSet.Conversion.Real.Ellipsoid_to_SpectraShadow
 import CORALean.ContSet.Conversion.Real.Ellipsoid_to_VPolytope
 import CORALean.ContSet.Conversion.Real.Ellipsoid_to_Zonotope
 import CORALean.ContSet.Conversion.Real.Ellipsoid_to_ZonoBundle

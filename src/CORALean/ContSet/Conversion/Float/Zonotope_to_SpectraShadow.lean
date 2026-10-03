@@ -66,11 +66,13 @@ theorem Zonotope.aux_toRealMat_one {h : ℕ} :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.spectraShadow_contains (Z : Zonotope 𝕋 n) :
-    Z.construct ⊆ Z.spectraShadow.construct := by -- --- PROOF ---
-  -- the box is carried over, so only the nominal parts are compared
-  refine mono_subset (fun x hx => ?_) subset_rfl
-  obtain ⟨β, hP, hx'⟩ := (Real.Zonotope.spectraShadow_exact (nominal Z)).subset hx
+/-- The stored inequality at a point of the cube is positive semidefinite: the exact layer's, read
+through the stored entries. -/
+theorem Zonotope.posSemidef_spectraShadow (Z : Zonotope 𝕋 n) (β : Fin Z.h → ℝ)
+    (hβ : ∀ j, |β j| ≤ 1) :
+    (toRealMat Z.spectraShadow.A₀
+        + ∑ j : Fin Z.h, β j • toRealMat (Z.spectraShadow.A j)).PosSemidef := by -- --- PROOF ---
+  have hP := (Real.Zonotope.posSemidef_spectraShadow_iff (nominal Z) β).mpr hβ
   -- the stored matrices read as the exact layer's
   have h₀ : toRealMat Z.spectraShadow.A₀ = (nominal Z).spectraShadow.A₀ := by
     have h := SpectraShadow.toRealMat_blockDiag (𝕋 := 𝕋)
@@ -86,15 +88,24 @@ theorem Zonotope.spectraShadow_contains (Z : Zonotope 𝕋 n) :
     exact h
   -- so the two inequalities are the same matrix, at the same variables
   have e : toRealMat Z.spectraShadow.A₀
-        + ∑ j : Fin Z.h, (β : Fin Z.h → ℝ) j • toRealMat (Z.spectraShadow.A j)
-      = (nominal Z).spectraShadow.A₀
-        + ∑ j : Fin Z.h, (β : Fin Z.h → ℝ) j • (nominal Z).spectraShadow.A j := by
+        + ∑ j : Fin Z.h, β j • toRealMat (Z.spectraShadow.A j)
+      = (nominal Z).spectraShadow.A₀ + ∑ j : Fin Z.h, β j • (nominal Z).spectraShadow.A j := by
     rw [h₀]
     exact congrArg _ (Finset.sum_congr rfl fun j _ => congrArg _ (hA j))
+  exact (Iff.of_eq (congrArg Matrix.PosSemidef e)).mpr hP
+
+
+theorem Zonotope.spectraShadow_contains (Z : Zonotope 𝕋 n) :
+    Z.construct ⊆ Z.spectraShadow.construct := by -- --- PROOF ---
+  -- the box is carried over, so only the nominal parts are compared
+  refine mono_subset (fun x hx => ?_) subset_rfl
+  obtain ⟨β, hP, hx'⟩ := (Real.Zonotope.spectraShadow_exact (nominal Z)).subset hx
   change x = toRealVec Z.c
     + ∑ j : Fin Z.h, (β : Fin Z.h → ℝ) j • (fun i => toReal (Z.G i j) : Vec ℝ n) at hx'
   exact SpectraShadow.mem_nominalSet_iff.mpr
-    ⟨β, (Iff.of_eq (congrArg Matrix.PosSemidef e)).mpr hP, fun i => (congrFun hx' i).trans
+    ⟨β, Zonotope.posSemidef_spectraShadow Z β
+      ((Real.Zonotope.posSemidef_spectraShadow_iff (nominal Z) β).mp hP),
+      fun i => (congrFun hx' i).trans
       (Entrywise.add_sum_smul_apply (toRealVec Z.c) (fun j i => toReal (Z.G i j)) β i)⟩
 
 end CORALean.Float
