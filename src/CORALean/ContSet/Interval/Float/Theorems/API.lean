@@ -44,6 +44,12 @@ import CORALean.ContSet.Interval.Float.Theorems.TanOuter
 import CORALean.ContSet.Interval.Float.Theorems.CosOuter
 import CORALean.ContSet.Interval.Float.Theorems.SinOuter
 import CORALean.ContSet.Interval.Float.Theorems.AcoshOuter
+import CORALean.ContSet.Interval.Float.Theorems.SinhOuter
+import CORALean.ContSet.Interval.Float.Theorems.CoshOuter
+import CORALean.ContSet.Interval.Float.Theorems.TanhOuter
+import CORALean.ContSet.Interval.Float.Theorems.AtanhOuter
+import CORALean.ContSet.Interval.Float.Theorems.KronOuter
+import CORALean.ContSet.Interval.Float.Theorems.AppendConstruct
 import CORALean.ContSet.Interval.Float.Theorems.SignOuter
 import CORALean.ContSet.Interval.Float.Theorems.LeSound
 import CORALean.ContSet.Interval.Float.Theorems.LtSound

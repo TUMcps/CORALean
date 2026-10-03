@@ -1,0 +1,123 @@
+import CORALean.ContSet.ConPolyZono.Float.Operations.CartProd
+import CORALean.Global.Float.GenBlockDiag
+import CORALean.ContSet.ConPolyZono.Real.Theorems.CartProdExact
+import CORALean.ContSet.ConPolyZono.Real.Theorems.MapExact
+import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealMatPlusA
+import CORALean.ContSet.ConPolyZono.Float.Theorems.NominalPlusB
+import CORALean.ContSet.Zonotope.Float.Theorems.CartProdExact
+import CORALean.ContSet.InflatedContSet.Theorems.AppendConstruct
+
+/-!
+# `ConPolyZono.cartProd` is exact
+
+The stored operands' sets, paired and read through `Fin.append`, are the product's set. Nothing
+rounds: the nominal part is the exact layer's `cartProd` mapped through the append, field by
+field, and the error box is the stack of the two.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       02-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+open Pointwise FloatOps SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+theorem ConPolyZono.aux_realG_left (cPZ₁ : ConPolyZono 𝕋 n₁) (cPZ₂ : ConPolyZono 𝕋 n₂)
+    (l : Fin cPZ₁.h) :
+    (Real.ConPolyZono.cartProd (InflatedContSet.nominal cPZ₁) (InflatedContSet.nominal cPZ₂)).G
+      (Fin.castAdd cPZ₂.h l) = ((InflatedContSet.nominal cPZ₁).G l, 0) := by
+  dsimp only [Real.ConPolyZono.cartProd]
+  exact Fin.append_left (m := cPZ₁.h) (n := cPZ₂.h) _ _ l
+
+theorem ConPolyZono.aux_realG_right (cPZ₁ : ConPolyZono 𝕋 n₁) (cPZ₂ : ConPolyZono 𝕋 n₂)
+    (l : Fin cPZ₂.h) :
+    (Real.ConPolyZono.cartProd (InflatedContSet.nominal cPZ₁) (InflatedContSet.nominal cPZ₂)).G
+      (Fin.natAdd cPZ₁.h l) = (0, (InflatedContSet.nominal cPZ₂).G l) := by
+  dsimp only [Real.ConPolyZono.cartProd]
+  exact Fin.append_right (m := cPZ₁.h) (n := cPZ₂.h) _ _ l
+
+theorem ConPolyZono.aux_realGI_left (cPZ₁ : ConPolyZono 𝕋 n₁) (cPZ₂ : ConPolyZono 𝕋 n₂)
+    (l : Fin cPZ₁.q) :
+    (Real.ConPolyZono.cartProd (InflatedContSet.nominal cPZ₁) (InflatedContSet.nominal cPZ₂)).GI
+      (Fin.castAdd cPZ₂.q l) = ((InflatedContSet.nominal cPZ₁).GI l, 0) := by
+  dsimp only [Real.ConPolyZono.cartProd]
+  exact Fin.append_left (m := cPZ₁.q) (n := cPZ₂.q) _ _ l
+
+theorem ConPolyZono.aux_realGI_right (cPZ₁ : ConPolyZono 𝕋 n₁) (cPZ₂ : ConPolyZono 𝕋 n₂)
+    (l : Fin cPZ₂.q) :
+    (Real.ConPolyZono.cartProd (InflatedContSet.nominal cPZ₁) (InflatedContSet.nominal cPZ₂)).GI
+      (Fin.natAdd cPZ₁.q l) = (0, (InflatedContSet.nominal cPZ₂).GI l) := by
+  dsimp only [Real.ConPolyZono.cartProd]
+  exact Fin.append_right (m := cPZ₁.q) (n := cPZ₂.q) _ _ l
+
+/-- The nominal constrained polynomial zonotope of the product is the exact product, mapped
+through the append. -/
+theorem ConPolyZono.aux_nominal_cartProd (cPZ₁ : ConPolyZono 𝕋 n₁) (cPZ₂ : ConPolyZono 𝕋 n₂) :
+    InflatedContSet.nominal (cPZ₁.cartProd cPZ₂) =
+      Real.ConPolyZono.map (appendLinear n₁ n₂)
+        (Real.ConPolyZono.cartProd (InflatedContSet.nominal cPZ₁)
+          (InflatedContSet.nominal cPZ₂)) := by -- --- PROOF ---
+  show (⟨_, _, _, _, _, _, _, _, _, _, _, _⟩ : Real.ConPolyZono (Vec ℝ (n₁ + n₂))) =
+    ⟨_, _, _, _, _, _, _, _, _, _, _, _⟩
+  congr 1
+  · -- the centres
+    rw [appendLinear_apply]
+    exact toRealVec_append cPZ₁.c cPZ₂.c
+  · -- the dependent generators, column by column
+    funext l
+    refine Fin.addCases (fun l => ?_) (fun l => ?_) l
+    · show (fun i => toReal (genBlockDiag cPZ₁.G cPZ₂.G i (Fin.castAdd cPZ₂.h l))) = _
+      rw [toReal_genBlockDiag_left, ConPolyZono.aux_realG_left, appendLinear_apply]
+      rfl
+    · show (fun i => toReal (genBlockDiag cPZ₁.G cPZ₂.G i (Fin.natAdd cPZ₁.h l))) = _
+      rw [toReal_genBlockDiag_right, ConPolyZono.aux_realG_right, appendLinear_apply]
+      rfl
+  · -- the independent generators, column by column
+    funext l
+    refine Fin.addCases (fun l => ?_) (fun l => ?_) l
+    · show (fun i => toReal (genBlockDiag cPZ₁.GI cPZ₂.GI i (Fin.castAdd cPZ₂.q l))) = _
+      rw [toReal_genBlockDiag_left, ConPolyZono.aux_realGI_left, appendLinear_apply]
+      rfl
+    · show (fun i => toReal (genBlockDiag cPZ₁.GI cPZ₂.GI i (Fin.natAdd cPZ₁.q l))) = _
+      rw [toReal_genBlockDiag_right, ConPolyZono.aux_realGI_right, appendLinear_apply]
+      rfl
+  · -- the constraint matrix
+    exact ConPolyZono.toRealMat_plusA _ _
+  · -- the right-hand sides
+    exact ConPolyZono.nominal_plusB _ _
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem ConPolyZono.cartProd_exact (cPZ₁ : ConPolyZono 𝕋 n₁) (cPZ₂ : ConPolyZono 𝕋 n₂) :
+    (cPZ₁.cartProd cPZ₂).construct = (fun p : Vec ℝ n₁ × Vec ℝ n₂ => Fin.append p.1 p.2) ''
+      (cPZ₁.construct ×ˢ cPZ₂.construct) := by -- --- PROOF ---
+  -- the nominal part: the exact product, mapped through the append
+  have hN : InflatedContSet.nominalSet (cPZ₁.cartProd cPZ₂) =
+      (appendLinear n₁ n₂) ''
+        (InflatedContSet.nominalSet cPZ₁ ×ˢ InflatedContSet.nominalSet cPZ₂) := by
+    unfold InflatedContSet.nominalSet
+    rw [ConPolyZono.aux_nominal_cartProd]
+    show (Real.ConPolyZono.map _ _).construct = _ ''
+      (Real.ConPolyZono.construct _ ×ˢ Real.ConPolyZono.construct _)
+    rw [← Real.ConPolyZono.map_exact, Real.ConPolyZono.cartProd_exact]
+  have hφ : ⇑(appendLinear n₁ n₂) = fun p : Vec ℝ n₁ × Vec ℝ n₂ => Fin.append p.1 p.2 :=
+    funext appendLinear_apply
+  rw [hφ] at hN
+  -- the error box is the stack of the two, and stacking distributes over the sum
+  exact CORALean.Float.InflatedContSet.append_construct (s₁ := cPZ₁) (s₂ := cPZ₂) hN rfl
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

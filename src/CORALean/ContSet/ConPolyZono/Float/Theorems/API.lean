@@ -22,6 +22,8 @@ import CORALean.ContSet.ConPolyZono.Float.Theorems.NominalPlusB
 import CORALean.ContSet.ConPolyZono.Float.Theorems.SatisfiesPlusIff
 import CORALean.ContSet.ConPolyZono.Float.Theorems.PlusH
 import CORALean.ContSet.ConPolyZono.Float.Theorems.PlusOuter
+import CORALean.ContSet.ConPolyZono.Float.Theorems.SatisfiesLinCombIff
+import CORALean.ContSet.ConPolyZono.Float.Theorems.LinCombOuter
 import CORALean.ContSet.ConPolyZono.Float.Theorems.MtimesH
 import CORALean.ContSet.ConPolyZono.Float.Theorems.SatisfiesMtimes
 import CORALean.ContSet.ConPolyZono.Float.Theorems.MtimesOuter
@@ -34,6 +36,7 @@ import CORALean.ContSet.ConPolyZono.Float.Theorems.IsCompact
 import CORALean.ContSet.ConPolyZono.Float.Theorems.OriginExact
 import CORALean.ContSet.ConPolyZono.Float.Theorems.ReindexExact
 import CORALean.ContSet.ConPolyZono.Float.Theorems.EmptyExact
+import CORALean.ContSet.ConPolyZono.Float.Theorems.CartProdExact
 
 /-!
 # What `ConPolyZono` guarantees

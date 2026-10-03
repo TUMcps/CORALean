@@ -2,11 +2,13 @@ import CORALean.ContSet.ConZonotope.Float.Operations.Plus
 import CORALean.ContSet.ConZonotope.Float.Operations.LinCombGDiff
 import CORALean.ContSet.ConZonotope.Float.Operations.LinComb
 import CORALean.ContSet.ConZonotope.Float.Operations.Mtimes
+import CORALean.ContSet.ConZonotope.Float.Operations.Intersection
 import CORALean.ContSet.ConZonotope.Float.Operations.Project
 import CORALean.ContSet.ConZonotope.Float.Operations.Reduce
 import CORALean.ContSet.ConZonotope.Float.Operations.Empty
 import CORALean.ContSet.ConZonotope.Float.Operations.Origin
 import CORALean.ContSet.ConZonotope.Float.Operations.Reindex
+import CORALean.ContSet.ConZonotope.Float.Operations.CartProd
 
 /-!
 # What the float `ConZonotope` computes
@@ -18,5 +20,8 @@ is the centre's and the centre generator's. `reduce` goes through the enclosing
 zonotope and gives the constraints up, as it does over ℝ.
 
 `mtimes` keeps the constraints, which sit on the coefficients, and pays the rounding of centre and
-generators into the box as `Zonotope.mtimes` does. `intersection` is not here.
+generators into the box as `Zonotope.mtimes` does. `intersection` copies both
+operands' constraints and writes the agreement rows, whose right-hand side is the
+one thing it computes: an interval holding every difference of the two nominal
+points their error boxes allow, rounded outward.
 -/

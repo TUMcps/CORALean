@@ -111,6 +111,12 @@ import CORALean.NN.Layers.Operations.SumOffDown
 import CORALean.NN.Layers.Operations.SumOffUp
 import CORALean.NN.Layers.Operations.Tanh
 import CORALean.NN.Layers.Operations.TanhRelaxation
+import CORALean.NN.Layers.Operations.Root
+import CORALean.NN.Layers.Operations.RootEnclosure
+import CORALean.NN.Layers.Operations.RootRelaxation
+import CORALean.NN.Layers.Operations.InvSqrtRoot
+import CORALean.NN.Layers.Operations.InvSqrtRootEnclosure
+import CORALean.NN.Layers.Operations.InvSqrtRootRelaxation
 import CORALean.NN.Layers.Operations.TapEntry
 import CORALean.NN.Layers.Operations.TapMat
 import CORALean.NN.Layers.Operations.TransposeEquiv

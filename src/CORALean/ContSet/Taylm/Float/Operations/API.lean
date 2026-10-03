@@ -5,6 +5,9 @@ import CORALean.ContSet.Taylm.Float.Operations.Empty
 import CORALean.ContSet.Taylm.Float.Operations.ConstCoef
 import CORALean.ContSet.Taylm.Float.Operations.Exp
 import CORALean.ContSet.Taylm.Float.Operations.Log
+import CORALean.ContSet.Taylm.Float.Operations.Hyperbolic
+import CORALean.ContSet.Taylm.Float.Operations.Sinh
+import CORALean.ContSet.Taylm.Float.Operations.Cosh
 import CORALean.ContSet.Taylm.Float.Operations.LogCoef
 import CORALean.ContSet.Taylm.Float.Operations.TrigCoef
 import CORALean.ContSet.Taylm.Float.Operations.UnitRemainder

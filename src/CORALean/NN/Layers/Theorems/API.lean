@@ -78,6 +78,10 @@ import CORALean.NN.Layers.Theorems.SumIteZero
 import CORALean.NN.Layers.Theorems.SumOffDownLe
 import CORALean.NN.Layers.Theorems.TanhRelaxationSound
 import CORALean.NN.Layers.Theorems.TanhSound
+import CORALean.NN.Layers.Theorems.RootRelaxationSound
+import CORALean.NN.Layers.Theorems.RootSound
+import CORALean.NN.Layers.Theorems.InvSqrtRootRelaxationSound
+import CORALean.NN.Layers.Theorems.InvSqrtRootSound
 import CORALean.NN.Layers.Theorems.TapEntryDot
 import CORALean.NN.Layers.Theorems.TapEntryEqZero
 import CORALean.NN.Layers.Theorems.TapMatMulVec

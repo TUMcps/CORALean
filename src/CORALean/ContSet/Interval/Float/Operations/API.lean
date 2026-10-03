@@ -46,6 +46,14 @@ import CORALean.ContSet.Interval.Float.Operations.Tan
 import CORALean.ContSet.Interval.Float.Operations.Cos
 import CORALean.ContSet.Interval.Float.Operations.Sin
 import CORALean.ContSet.Interval.Float.Operations.Acosh
+import CORALean.ContSet.Interval.Float.Operations.Sinh
+import CORALean.ContSet.Interval.Float.Operations.CoshLo
+import CORALean.ContSet.Interval.Float.Operations.CoshHi
+import CORALean.ContSet.Interval.Float.Operations.Cosh
+import CORALean.ContSet.Interval.Float.Operations.Tanh
+import CORALean.ContSet.Interval.Float.Operations.Atanh
+import CORALean.ContSet.Interval.Float.Operations.Kron
+import CORALean.ContSet.Interval.Float.Operations.Append
 import CORALean.ContSet.Interval.Float.Operations.Sign
 import CORALean.ContSet.Interval.Float.Operations.Le
 import CORALean.ContSet.Interval.Float.Operations.Lt

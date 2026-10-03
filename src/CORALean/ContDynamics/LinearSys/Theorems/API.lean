@@ -76,6 +76,7 @@ import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationEq
 import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationSubset
 import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolution
 import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
+import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemInputSolutionFloat
 import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetParticularSolution
 import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionInnerConverges
 import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionInnerSubsetInputReach

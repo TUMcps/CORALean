@@ -4,6 +4,7 @@ import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorErrorMonomial
 import CORALean.ContSet.PolyZonotope.Float.Theorems.PlusH
 import CORALean.ContSet.PolyZonotope.Float.Theorems.PlusQ
 import CORALean.ContSet.PolyZonotope.Float.Theorems.PlusOuter
+import CORALean.ContSet.PolyZonotope.Float.Theorems.ExactPlusOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.MtimesH
 import CORALean.ContSet.PolyZonotope.Float.Theorems.MtimesQ
 import CORALean.ContSet.PolyZonotope.Float.Theorems.MulVecSplit
@@ -27,6 +28,7 @@ import CORALean.ContSet.PolyZonotope.Float.Theorems.DependentNominal
 import CORALean.ContSet.PolyZonotope.Float.Theorems.DependentOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.LinCombH
 import CORALean.ContSet.PolyZonotope.Float.Theorems.LinCombQ
+import CORALean.ContSet.PolyZonotope.Float.Theorems.LinCombNominalAt
 import CORALean.ContSet.PolyZonotope.Float.Theorems.LinCombOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadDownLe
 import CORALean.ContSet.PolyZonotope.Float.Theorems.LeQuadUp
@@ -58,6 +60,7 @@ import CORALean.ContSet.PolyZonotope.Float.Theorems.PadBackExact
 import CORALean.ContSet.PolyZonotope.Float.Theorems.ReindexExact
 import CORALean.ContSet.PolyZonotope.Float.Theorems.RestructureOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.ProjectOuter
+import CORALean.ContSet.PolyZonotope.Float.Theorems.CartProdExact
 
 /-!
 # What `PolyZonotope` guarantees

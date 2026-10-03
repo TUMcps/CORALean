@@ -70,6 +70,7 @@ import CORALean.NN.Layers.Theorems.Real.SubMulBoundsOfDeriv
 import CORALean.NN.Layers.Theorems.Real.TanhEqSigmoid
 import CORALean.NN.Layers.Theorems.Real.TanhPolyRelaxationSound
 import CORALean.NN.Layers.Theorems.Real.TanhRelaxationSound
+import CORALean.NN.Layers.Theorems.Real.RootRelaxationSound
 import CORALean.NN.Layers.Theorems.Real.TendstoSamplingError
 import CORALean.NN.Layers.Theorems.Real.WindowMaxLe
 

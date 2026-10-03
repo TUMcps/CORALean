@@ -57,6 +57,12 @@ import CORALean.ContSet.Zonotope.Float.Theorems.SplitOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.SplitFirstGenOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.SplitLongestGenOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.QuadMapOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.NominalCartProdC
+import CORALean.ContSet.Zonotope.Float.Theorems.NominalCartProdG
+import CORALean.ContSet.Zonotope.Float.Theorems.CartProdExact
+import CORALean.ContSet.Zonotope.Float.Theorems.ExactPlusOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.RepresentsaPointSound
+import CORALean.ContSet.Zonotope.Float.Theorems.RepresentsaOriginSound
 
 /-!
 # What `Zonotope` guarantees

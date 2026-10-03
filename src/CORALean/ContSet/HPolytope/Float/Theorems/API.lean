@@ -5,9 +5,11 @@ import CORALean.ContSet.HPolytope.Float.Theorems.PlusOfOuter
 import CORALean.ContSet.HPolytope.Float.Theorems.LinCombOfOuter
 import CORALean.ContSet.HPolytope.Float.Theorems.MtimesOfOuter
 import CORALean.ContSet.HPolytope.Float.Theorems.MinusOuter
+import CORALean.ContSet.HPolytope.Float.Theorems.MinkDiffOfInner
 import CORALean.ContSet.HPolytope.Float.Theorems.ConstructEmptySet
 import CORALean.ContSet.HPolytope.Float.Theorems.CartProdExact
 import CORALean.ContSet.HPolytope.Float.Theorems.OriginExact
+import CORALean.ContSet.HPolytope.Float.Theorems.LiftExact
 
 /-!
 # What the float `HPolytope` guarantees

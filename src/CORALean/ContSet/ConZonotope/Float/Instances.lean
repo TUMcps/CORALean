@@ -3,16 +3,14 @@ import CORALean.ContSet.ConZonotope.Float.Theorems.API
 /-!
 # What the float `ConZonotope` instantiates
 
-The operation classes `Plus`, `LinComb`, `Reduce` and `Mtimes`, then `Reindex`, which is exact.
-
-No `Intersection`, unlike the exact layer: nothing here computes a constrained
-zonotope's intersection, so there is no `intersection` to wire — a fresh operation, out
-of scope here.
+The operation classes `Plus`, `LinComb`, `Intersection`, `Reduce` and `Mtimes`, then
+`Reindex`, which is exact. `Intersection` is outer here where the exact layer's is
+exact: the agreement rows' right-hand side is an interval rounded outward.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   08-September-2026
+-- Last update:   02-October-2026
 -- Last revision: ---
 
 
@@ -34,6 +32,12 @@ instance : Plus (ConZonotope 𝕋 n) (Vec ℝ n) where
 instance : LinComb (ConZonotope 𝕋 n) (Vec ℝ n) where
   linComb := ConZonotope.linComb
   linComb_outer := ConZonotope.linComb_outer
+
+instance : Intersection (ConZonotope 𝕋 n) (Vec ℝ n) where
+  intersection cZ₁ cZ₂ := (cZ₁.intersection cZ₂).materialise
+  intersection_outer cZ₁ cZ₂ := by
+    rw [ConZonotope.materialise_eq]
+    exact ConZonotope.intersection_outer cZ₁ cZ₂
 
 instance : Reduce (ConZonotope 𝕋 n) (Vec ℝ n) where
   reduce := ConZonotope.reduce

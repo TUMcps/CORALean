@@ -19,6 +19,7 @@ import CORALean.ContSet.ConPolyZono.Float.Operations.Dependent
 import CORALean.ContSet.ConPolyZono.Float.Operations.PlusA
 import CORALean.ContSet.ConPolyZono.Float.Operations.PlusB
 import CORALean.ContSet.ConPolyZono.Float.Operations.Plus
+import CORALean.ContSet.ConPolyZono.Float.Operations.LinComb
 import CORALean.ContSet.ConPolyZono.Float.Operations.MtimesResidual
 import CORALean.ContSet.ConPolyZono.Float.Operations.Mtimes
 import CORALean.ContSet.ConPolyZono.Float.Operations.DropRadius
@@ -29,12 +30,13 @@ import CORALean.ContSet.ConPolyZono.Float.Operations.Reduce
 import CORALean.ContSet.ConPolyZono.Float.Operations.Origin
 import CORALean.ContSet.ConPolyZono.Float.Operations.Reindex
 import CORALean.ContSet.ConPolyZono.Float.Operations.Empty
+import CORALean.ContSet.ConPolyZono.Float.Operations.CartProd
 
 /-!
 # What `ConPolyZono` computes
 
-`plus` and `mtimes` pay their rounding into the error box and touch the
-constraint system only by copying — `plus` places the two matrices
+`plus`, `linComb` and `mtimes` pay their rounding into the error box and touch the
+constraint system only by copying — `plus` and `linComb` place the two matrices
 block-diagonally, `mtimes` leaves them alone. `dependent` copies everything and
 rounds nothing at all.
 

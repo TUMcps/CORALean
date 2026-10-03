@@ -1,0 +1,52 @@
+import CORALean.ContSet.Zonotope.Float.Operations.Plus
+import CORALean.ContSet.Zonotope.Float.Operations.GeneratorError
+import CORALean.ContSet.Zonotope.Float.Operations.ExactPlusGap
+
+/-!
+# `Zonotope.exactPlus`, over a floating-point scalar
+
+CORA's `@zonotope/exactPlus`: the first `m = min(h₁, h₂, k)` generator columns of the two operands
+share their coefficients and are added pairwise, the remaining columns of each follow, and the
+centres add. Only the added entries round: the centre as in `plus` (its residual goes into the
+box), and each pairwise column sum, stored rounded down, whose gap to the sum rounded up
+(`exactPlusGap`) is a generator error, paid into the box by `generatorError` since the
+coefficients range over `[-1, 1]`. A copied column costs nothing.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       02-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+open FloatOps
+
+variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+def Zonotope.exactPlus (Z₁ Z₂ : Zonotope 𝕋 n) (k : ℕ) : Zonotope 𝕋 n :=
+  let m := min (min Z₁.h Z₂.h) k
+  have hm₁ : m ≤ Z₁.h := (min_le_left _ _).trans (min_le_left _ _)
+  have hm₂ : m ≤ Z₂.h := (min_le_left _ _).trans (min_le_right _ _)
+  -- the shared columns, added pairwise and rounded down
+  let shared : Mat 𝕋 n m := fun i j =>
+    addDown (Z₁.G i (Fin.castLE hm₁ j)) (Z₂.G i (Fin.castLE hm₂ j))
+  -- the rest of each operand's columns, copied
+  let rest₁ : Mat 𝕋 n (Z₁.h - m) := fun i j => Z₁.G i ⟨m + j, by have := j.2; omega⟩
+  let rest₂ : Mat 𝕋 n (Z₂.h - m) := fun i j => Z₂.G i ⟨m + j, by have := j.2; omega⟩
+  { h := m + (Z₁.h - m) + (Z₂.h - m)
+    c := fun i => addDown (Z₁.c i) (Z₂.c i)
+    G := fun i => Fin.append (Fin.append (shared i) (rest₁ i)) (rest₂ i)
+    E := ((Z₁.E.plus Z₂.E).plus (Zonotope.centerResidual Z₁.c Z₂.c)).plus
+      (Zonotope.generatorError (Z₁.exactPlusGap Z₂ k)) }
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
