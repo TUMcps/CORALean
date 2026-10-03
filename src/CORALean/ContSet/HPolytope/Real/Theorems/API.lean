@@ -21,6 +21,35 @@ import CORALean.ContSet.HPolytope.Real.Theorems.MldivideCoraCounterexample
 import CORALean.ContSet.HPolytope.Real.Theorems.NormalizeConstraintsExact
 import CORALean.ContSet.HPolytope.Real.Theorems.NormalizeRowsExact
 import CORALean.ContSet.HPolytope.Real.Theorems.ProjectHighDimExact
+import CORALean.ContSet.HPolytope.Real.Theorems.MemIneqsOfCert
+import CORALean.ContSet.HPolytope.Real.Theorems.IneqsSubsetIff
+import CORALean.ContSet.HPolytope.Real.Theorems.IneqsSubsetIffCounterexample
+import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeSubsetOfCert
+import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeSubsetIffOfInjective
+import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeCertNecessary
+import CORALean.ContSet.HPolytope.Real.Theorems.SumAHPolytopeSubsetIneqsIff
+import CORALean.ContSet.HPolytope.Real.Theorems.SumAHPolytopeSubsetIneqsIffCounterexample
+import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeSubsetSumOfCert
+import CORALean.ContSet.HPolytope.Real.Theorems.EqZeroOfMulVecNonpos
+import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeSubsetConvexHullOfCert
+import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeSubsetConvexHullOfCertCounterexample
+import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeSubsetConvexHullAHOfCert
+import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeSubsetConvexHullAHOfCertCounterexample
+import CORALean.ContSet.HPolytope.Real.Theorems.ExistsSubsetIffDisjunctiveCert
+import CORALean.ContSet.HPolytope.Real.Theorems.ExistsSubsetIffDisjunctiveCertCounterexample
+import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeSubsetAddBallOfCert
+import CORALean.ContSet.HPolytope.Real.Theorems.HausdorffDistLeOfSubsetAddBall
+import CORALean.ContSet.HPolytope.Real.Theorems.ProjectionInnerOfCert
+import CORALean.ContSet.HPolytope.Real.Theorems.ProjectionInnerOfCertCounterexample
+import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeEqOfLeftInverse
+import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeEqOfLeftInverseCounterexample
+import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeImageAffine
+import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeAddEq
+import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeInterEq
+import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeInterEqCounterexample
+import CORALean.ContSet.HPolytope.Real.Theorems.PolyNormLeIff
+import CORALean.ContSet.HPolytope.Real.Theorems.PolyNormIsAsymmNorm
+import CORALean.ContSet.HPolytope.Real.Theorems.PolyNormIsAsymmNormCounterexample
 
 /-!
 # What `HPolytope` guarantees

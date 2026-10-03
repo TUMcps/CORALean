@@ -1,4 +1,5 @@
 import CORALean.ContSet.HPolytope.Real.HPolytope
+import CORALean.ContSet.HPolytope.Real.Definitions.API
 import CORALean.ContSet.HPolytope.Real.Operations.API
 import CORALean.ContSet.HPolytope.Real.Theorems.API
 import CORALean.ContSet.HPolytope.Real.Complexity.API

@@ -1,3 +1,11 @@
+import CORALean.ContSet.Interval.Real.Theorems.BoundaryRatioIsGreatest
+import CORALean.ContSet.Interval.Real.Theorems.DivMemCornerHull
+import CORALean.ContSet.Interval.Real.Theorems.ArgEqArctanOfRePos
+import CORALean.ContSet.Interval.Real.Theorems.ArgEqPiDivTwoSubArctanOfImPos
+import CORALean.ContSet.Interval.Real.Theorems.ArgEqNegPiDivTwoSubArctanOfImNeg
+import CORALean.ContSet.Interval.Real.Theorems.Atan2EnclosureOfPosInfX
+import CORALean.ContSet.Interval.Real.Theorems.Atan2EnclosureOfPosInfY
+import CORALean.ContSet.Interval.Real.Theorems.Atan2EnclosureOfNegSupY
 import CORALean.ContSet.Interval.Real.Theorems.AbsMulLoMulHiLe
 import CORALean.ContSet.Interval.Real.Theorems.MemMat
 import CORALean.ContSet.Interval.Real.Theorems.Convex

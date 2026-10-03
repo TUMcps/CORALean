@@ -1,3 +1,4 @@
+import CORALean.ContSet.Zonotope.Real.Theorems.IsequalConstruct
 import CORALean.ContSet.ContSet.Definitions.CompactSet
 import CORALean.ContSet.ContSet.Definitions.ConvexSet
 import CORALean.ContSet.Interval.Real.Instances
@@ -154,6 +155,11 @@ noncomputable instance {α : Type} [AddCommGroup α] [Module ℝ α] :
       | empty => exact Set.empty_subset _
       | of D => exact Zonotope.minkDiffOrEmpty_inner Z₁ Z₂ hE
     all_goals exact Set.empty_subset _
+
+/-- `Zonotope.isequal`, structural at tolerance `0`: sound, not exact. -/
+instance {α : Type} [AddCommGroup α] [Module ℝ α] : Isequal (Zonotope α) where
+  isequal := Zonotope.isequal
+  isequal_construct _ _ := Zonotope.isequal_construct
 
 end CORALean.Real
 

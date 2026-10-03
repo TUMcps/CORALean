@@ -249,6 +249,13 @@ class IsDisjoint (T S : Type) {α : outParam Type} [ContSet T α] [ContSet S α]
   isDisjoint_sound (t : T) (s : S) :
     isDisjoint t s = true → Disjoint (construct s) (construct t)
 
+/-- CORA's `isequal`: `isequal s t` only if `s` and `t` denote one set. Conservative like
+`Contains`: structural tests (tolerance `0`) fail on different representations of one set.
+Prop-valued, as those tests are. -/
+class Isequal (S : Type) {α : outParam Type} [ContSet S α] where
+  isequal : S → S → Prop
+  isequal_construct (s t : S) : isequal s t → construct s = construct t
+
 end CORALean
 
 

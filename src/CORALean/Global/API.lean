@@ -42,6 +42,14 @@ import CORALean.Global.CoeffDomination
 import CORALean.Global.ElementaryDerivBounds
 import CORALean.Global.EvalList
 import CORALean.Global.OdeList
+import CORALean.Global.SumMulVecImageSubset
+import CORALean.Global.CoeffNorm
+import CORALean.Global.CubeSubsetHalfspaceIff
+import CORALean.Global.L1CircumradiusEqInvInradiusPolar
+import CORALean.Global.L1NormLeCardMulNorm
+import CORALean.Global.L1NormLeCardMulNormCounterexample
+import CORALean.Global.SliceEqSmulConvexHull
+import CORALean.Global.ChooseLeExpMulDivPow
 
 /-!
 # Global definitions, collected

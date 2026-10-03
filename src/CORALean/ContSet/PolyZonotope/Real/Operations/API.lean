@@ -1,3 +1,4 @@
+import CORALean.ContSet.PolyZonotope.Real.Operations.Isequal
 import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
 import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
 import CORALean.ContSet.PolyZonotope.Real.Operations.Map

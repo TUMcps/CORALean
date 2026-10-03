@@ -1,0 +1,48 @@
+import CORALean.ContSet.Zonotope.Real.Definitions.ZonotopeNorm
+import Mathlib.Data.Matrix.Mul
+
+/-!
+# `Zonotope.polymax`
+
+`[1, Alg. 2]` (maximal polyhedral norm), CORA's `contains_(Z, S, 'exact:polymax')`: for
+each facet `ηᵢ x ≤ hᵢ` of `Z₂`, the vertex of `Z₁` furthest along `ηᵢ` takes the sign of
+`ηᵢ gⱼ / hᵢ` per generator; `Z₁ ⊆ Z₂` iff none of these `s` vertices has
+`‖v - c₂‖_{Z₂} > 1`. `halfspace(Z₂)` is supplied, as the representation of `Z₂` moved to the
+origin (`[1, Def. 3]` needs `0` inside for the signs to be right). The printed listing tests
+`‖x - c₂‖` at the sign vector `x ∈ ℝ^{m₁}` itself and writes `νᵢ` for `ηᵢ`; it is the vertex
+`c₁ + G₁ x` that is tested here.
+
+## References
+
+* [1] A. Kulmburg and M. Althoff. "On the co-NP-Completeness of the Zonotope Containment
+      Problem". European Journal of Control, 62:84-91, 2021.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       03-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+open Matrix
+
+variable {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- `[1, Alg. 2]` against the facets `{H x ≤ h}` of `Z₂ - c₂`. -/
+noncomputable def Zonotope.polymax (Z₁ Z₂ : Zonotope (Vec ℝ n)) {s : ℕ} (H : Mat ℝ s n)
+    (h : Vec ℝ s) : Bool :=
+  let x : Fin s → Fin Z₁.h → ℝ := fun i j => if (H *ᵥ Z₁.G j) i / h i ≥ 0 then 1 else -1
+  let v : Fin s → Vec ℝ n := fun i => Z₁.c + ∑ j, x i j • Z₁.G j
+  if ∀ i, ¬ Z₂.zonotopeNorm (v i - Z₂.c) > 1 then true else false
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

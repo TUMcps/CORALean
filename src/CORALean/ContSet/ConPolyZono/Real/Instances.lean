@@ -1,3 +1,4 @@
+import CORALean.ContSet.ConPolyZono.Real.Theorems.IsequalConstruct
 import CORALean.ContSet.ContSet.Definitions.CompactSet
 import CORALean.ContSet.ConPolyZono.Real.Theorems.IntersectionExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.IsCompact
@@ -89,6 +90,11 @@ scoped notation "𝒞𝒫𝒵" => fun n => ConPolyZono (Vec ℝ n)
 instance : Reindex 𝒞𝒫𝒵 where
   reindex e cPZ := ConPolyZono.map (reindexLin e) cPZ
   reindex_exact e cPZ := (ConPolyZono.map_exact (reindexLin e) cPZ).symm
+
+/-- `ConPolyZono.isequal`, structural at tolerance `0`: sound, not exact. -/
+instance : Isequal (ConPolyZono α) where
+  isequal := ConPolyZono.isequal
+  isequal_construct _ _ := ConPolyZono.isequal_construct
 
 end CORALean.Real
 

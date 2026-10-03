@@ -1,3 +1,4 @@
+import CORALean.ContSet.PolyZonotope.Real.Theorems.IsequalConstruct
 import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ContinuousMonomial
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialZero

@@ -114,23 +114,23 @@ Rulings on borderline cases:
 | Class | Group | Methods | proved | float | not yet | out of scope | CORA issues |
 |---|---|---|---|---|---|---|---|
 | [affine](contSet/affine.md) | contSet | 1 | 0 | 0 | 1 | 0 | 0 |
-| [capsule](contSet/capsule.md) | contSet | 39 | 0 | 25 | 4 | 10 | 3 |
-| [conPolyZono](contSet/conPolyZono.md) | contSet | 47 | 9 | 20 | 10 | 8 | 1 |
-| [conZonotope](contSet/conZonotope.md) | contSet | 50 | 7 | 21 | 10 | 12 | 0 |
-| [contSet](contSet/contSet.md) | contSet | 101 | 2 | 24 | 3 | 72 | 0 |
+| [capsule](contSet/capsule.md) | contSet | 39 | 2 | 25 | 2 | 10 | 3 |
+| [conPolyZono](contSet/conPolyZono.md) | contSet | 47 | 10 | 20 | 9 | 8 | 1 |
+| [conZonotope](contSet/conZonotope.md) | contSet | 50 | 8 | 21 | 9 | 12 | 0 |
+| [contSet](contSet/contSet.md) | contSet | 101 | 4 | 24 | 1 | 72 | 0 |
 | [ellipsoid](contSet/ellipsoid.md) | contSet | 50 | 5 | 17 | 18 | 10 | 0 |
 | [emptySet](contSet/emptySet.md) | contSet | 30 | 3 | 19 | 1 | 7 | 0 |
 | [fullspace](contSet/fullspace.md) | contSet | 33 | 5 | 18 | 2 | 8 | 0 |
-| [interval](contSet/interval.md) | contSet | 110 | 2 | 84 | 6 | 18 | 1 |
+| [interval](contSet/interval.md) | contSet | 110 | 3 | 84 | 5 | 18 | 1 |
 | [levelSet](contSet/levelSet.md) | contSet | 22 | 2 | 6 | 6 | 8 | 0 |
-| [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 9 | 27 | 23 | 14 | 2 |
+| [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 10 | 27 | 22 | 14 | 2 |
 | [polygon](contSet/polygon.md) | contSet | 46 | 1 | 17 | 21 | 7 | 0 |
 | [polytope](contSet/polytope.md) | contSet | 58 | 6 | 30 | 10 | 12 | 1 |
 | [probZonotope](contSet/probZonotope.md) | contSet | 28 | 0 | 0 | 20 | 8 | 0 |
 | [spectraShadow](contSet/spectraShadow.md) | contSet | 33 | 0 | 7 | 18 | 8 | 0 |
 | [taylm](contSet/taylm.md) | contSet | 51 | 9 | 25 | 6 | 11 | 0 |
 | [zonoBundle](contSet/zonoBundle.md) | contSet | 44 | 1 | 23 | 13 | 7 | 0 |
-| [zonotope](contSet/zonotope.md) | contSet | 80 | 5 | 42 | 19 | 14 | 1 |
+| [zonotope](contSet/zonotope.md) | contSet | 80 | 9 | 42 | 15 | 14 | 1 |
 | [zoo](contSet/zoo.md) | contSet | 12 | 0 | 0 | 10 | 2 | 0 |
 | [contDynamics](contDynamics/contDynamics.md) | contDynamics | 19 | 0 | 4 | 4 | 11 | 0 |
 | [linParamSys](contDynamics/linParamSys.md) | contDynamics | 11 | 3 | 3 | 1 | 4 | 0 |
@@ -148,7 +148,7 @@ Rulings on borderline cases:
 | [hybridAutomaton](hybridDynamics/hybridAutomaton.md) | hybridDynamics | 15 | 0 | 2 | 2 | 11 | 0 |
 | [hybridDynamics](hybridDynamics/hybridDynamics.md) | hybridDynamics | 2 | 0 | 1 | 0 | 1 | 0 |
 | [linearReset](hybridDynamics/linearReset.md) | hybridDynamics | 10 | 2 | 4 | 1 | 3 | 0 |
-| [location](hybridDynamics/location.md) | hybridDynamics | 24 | 0 | 8 | 8 | 8 | 0 |
+| [location](hybridDynamics/location.md) | hybridDynamics | 24 | 1 | 8 | 7 | 8 | 0 |
 | [nonlinearReset](hybridDynamics/nonlinearReset.md) | hybridDynamics | 9 | 4 | 0 | 1 | 4 | 0 |
 | [parallelHybridAutomaton](hybridDynamics/parallelHybridAutomaton.md) | hybridDynamics | 13 | 1 | 5 | 1 | 6 | 0 |
 | [transition](hybridDynamics/transition.md) | hybridDynamics | 12 | 0 | 3 | 2 | 7 | 0 |

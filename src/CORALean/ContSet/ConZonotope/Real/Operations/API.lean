@@ -1,3 +1,4 @@
+import CORALean.ContSet.ConZonotope.Real.Operations.Isequal
 import CORALean.ContSet.ConZonotope.Real.Operations.OfMat
 import CORALean.ContSet.ConZonotope.Real.Operations.MemOfMatIff
 import CORALean.ContSet.ConZonotope.Real.Operations.Domain

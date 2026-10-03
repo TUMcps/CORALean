@@ -1,3 +1,4 @@
+import CORALean.HybridDynamics.Operations.CalcBasisBox
 import CORALean.HybridDynamics.Operations.Jump
 import CORALean.HybridDynamics.Operations.JumpIntersection
 import CORALean.HybridDynamics.Operations.JumpOfPoint

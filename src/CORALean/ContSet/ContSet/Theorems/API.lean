@@ -1,3 +1,5 @@
+import CORALean.ContSet.ContSet.Theorems.EqConstruct
+import CORALean.ContSet.ContSet.Theorems.NeOfConstructNe
 import CORALean.ContSet.ContSet.Theorems.DependencyPreservingChain
 import CORALean.ContSet.ContSet.Theorems.DependencyPreservingComp
 import CORALean.ContSet.ContSet.Theorems.EncloseOuter

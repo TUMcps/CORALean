@@ -1,3 +1,4 @@
+import CORALean.ContSet.PolyZonotope.Real.Theorems.IsequalConstruct
 import CORALean.ContSet.ContSet.Definitions.CompactSet
 import CORALean.ContSet.Interval.Real.Instances
 import CORALean.ContSet.PolyZonotope.Real.Theorems.IsCompact
@@ -89,6 +90,11 @@ noncomputable instance : Mtimes ℐ 𝒫𝒵 where
 instance : Reindex 𝒫𝒵 where
   reindex e pZ := PolyZonotope.map (reindexLin e) pZ
   reindex_exact e pZ := (PolyZonotope.map_exact (reindexLin e) pZ).symm
+
+/-- `PolyZonotope.isequal`, structural at tolerance `0`: sound, not exact. -/
+instance : Isequal (PolyZonotope α) where
+  isequal := PolyZonotope.isequal
+  isequal_construct _ _ := PolyZonotope.isequal_construct
 
 end CORALean.Real
 
