@@ -18,6 +18,8 @@ import CORALean.ContSet.EmptySet.Real.Theorems.NotIsFullDim
 import CORALean.ContSet.EmptySet.Real.Theorems.IntervalExact
 import CORALean.ContSet.EmptySet.Real.Theorems.ContainsIff
 import CORALean.ContSet.EmptySet.Real.Theorems.ConvHullExact
+import CORALean.ContSet.EmptySet.Real.Theorems.IsBoundedIff
+import CORALean.ContSet.EmptySet.Real.Theorems.IsFullDimTestIff
 
 /-!
 # The empty set: theorems, collected

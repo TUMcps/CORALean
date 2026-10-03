@@ -9,6 +9,15 @@ CORA's constructor `taylm(int, max_order)`: coordinate `i` is the model
 (`taylm_outer`), its range set contains the box (`taylm_contains`), and is the box when the
 box is nonempty (`taylm_exact`): an empty box (`sup < inf` somewhere) still yields the
 swapped interval, as CORA's does short of its own emptiness check.
+
+[1, Eq. 11]: `T = 0.5(a̅ + a̲) + 0.5(a̅ - a̲)x + [0, 0]` with `x ∈ [-1, 1]`, whose range is the
+interval (`taylm_exact`).
+
+## References
+
+* [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA
+      2018". In Proc. of the 5th International Workshop on Applied Verification of Continuous
+      and Hybrid Systems (ARCH18), EPiC Series in Computing, vol. 54, pp. 145-173, 2018.
 -/
 
 -- Authors:       Tobias Ladner

@@ -7,6 +7,13 @@ import Mathlib.Analysis.SpecialFunctions.Pow.Real
 
 CORA's `sqrt`: the expansion at the constant part, the `(N+1)`-th derivative of `x^(1/2)`
 being `(1/2)(1/2 - 1)⋯ x^(1/2 - N - 1)`, largest in magnitude at the bottom of the range.
+
+The square root of [1, Def. 3 (sqrt)], under its condition that the range is positive.
+
+## References
+
+* [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion
+      Methods". International Journal of Pure and Applied Mathematics, 4(4):379-452, 2003.
 -/
 
 -- Authors:       Tobias Ladner

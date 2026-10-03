@@ -8,6 +8,13 @@ import Mathlib.Analysis.SpecialFunctions.Log.Basic
 CORA's `log`: the expansion at the constant part, `|log⁽ᴺ⁺¹⁾ ξ| = N! / ξᴺ⁺¹`, largest at the
 bottom of the range. Meaningful where that bottom is positive, which `LogOuter` assumes as
 CORA's `CORA:outOfDomain` check does.
+
+The logarithm of [1, Def. 3 (log)], eq. (2.5), under its condition that the range is positive.
+
+## References
+
+* [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion
+      Methods". International Journal of Pure and Applied Mathematics, 4(4):379-452, 2003.
 -/
 
 -- Authors:       Tobias Ladner

@@ -7,6 +7,13 @@ import CORALean.Global.ElementaryDerivBounds
 # `Taylm.cosh` encloses `cosh ∘ f`
 
 The magnitude bounds the hull, and `cosh` is monotone in `|x|`.
+
+[1, Def. 3 (cosh)]: the result is a Taylor model of `cosh ∘ f`.
+
+## References
+
+* [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion
+      Methods". International Journal of Pure and Applied Mathematics, 4(4):379-452, 2003.
 -/
 
 -- Authors:       Tobias Ladner

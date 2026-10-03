@@ -1,0 +1,59 @@
+import CORALean.ContSet.Taylm.Real.Definitions.CodeList
+import Mathlib.Analysis.SpecialFunctions.Exp
+import Mathlib.Algebra.BigOperators.Fin
+
+/-!
+# The scaling constant of a code list
+
+[1, Thm. 2]'s second claim, that a code list keeps the `(n+1)`-st order scaling, carried through
+the operations whose constants `Thm. 1`'s lemmas give in closed form: `+`, `·`, negation,
+constants, and the intrinsics `exp`, `sin`, `cos`, whose derivative bounds need no domain.
+`ScalingFragment` is that part of the code lists; `codeScale N e C` the constant a run of `e`
+from inputs scaled by `C` is scaled by — a function of `N` and `C`, never of `h`.
+
+## References
+
+* [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion
+      Methods". International Journal of Pure and Applied Mathematics, 4(4):379-452, 2003.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       03-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+/-- The code lists `codeScale` follows: only `exp`, `sin` and `cos` among the intrinsics. -/
+def Taylm.CodeList.ScalingFragment {α : Type} {m : ℕ} : Taylm.CodeList α m → Prop
+  | .var _ => True
+  | .const _ => True
+  | .add a b => a.ScalingFragment ∧ b.ScalingFragment
+  | .mul a b => a.ScalingFragment ∧ b.ScalingFragment
+  | .neg a => a.ScalingFragment
+  | .intr s a => (s = .exp ∨ s = .sin ∨ s = .cos) ∧ a.ScalingFragment
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- The scaling constant of a run of `e` at order `N` from inputs scaled by `C`. -/
+noncomputable def Taylm.codeScale {m : ℕ} (N : ℕ) (C : ℝ) : Taylm.CodeList ℝ m → ℝ
+  | .var _ => C
+  | .const c => |c|
+  | .add a b => Taylm.codeScale N C a + Taylm.codeScale N C b
+  | .mul a b => 4 * (Taylm.codeScale N C a * Taylm.codeScale N C b)
+  | .neg a => Taylm.codeScale N C a
+  | .intr .exp a =>
+    Real.exp (Taylm.codeScale N C a) * ∑ k : Fin (N + 1), (8 * Taylm.codeScale N C a) ^ (k : ℕ)
+      + Real.exp (3 * Taylm.codeScale N C a) * (2 * Taylm.codeScale N C a) ^ (N + 1)
+  | .intr _ a =>
+    1 * ∑ k : Fin (N + 1), (8 * Taylm.codeScale N C a) ^ (k : ℕ)
+      + 1 * (2 * Taylm.codeScale N C a) ^ (N + 1)
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

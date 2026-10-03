@@ -1,3 +1,4 @@
+import CORALean.ContSet.Interval.Real.Theorems.AbsMulLoMulHiLe
 import CORALean.ContSet.Interval.Real.Theorems.MemMat
 import CORALean.ContSet.Interval.Real.Theorems.Convex
 import CORALean.ContSet.Interval.Real.Theorems.IsBounded
@@ -122,6 +123,9 @@ import CORALean.ContSet.Interval.Real.Theorems.MatPowSmul
 import CORALean.ContSet.Interval.Real.Theorems.AbsMaxSmul
 import CORALean.ContSet.Interval.Real.Theorems.ExistsMeasurableMulVecEq
 import CORALean.ContSet.Interval.Real.Theorems.ExistsNormEqAbsMax
+import CORALean.ContSet.Interval.Real.Theorems.PowerBetween
+import CORALean.ContSet.Interval.Real.Theorems.PowerExact
+import CORALean.ContSet.Interval.Real.Theorems.Atan2CoraCounterexample
 
 /-!
 # What `Interval` guarantees

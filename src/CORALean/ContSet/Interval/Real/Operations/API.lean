@@ -90,6 +90,8 @@ import CORALean.ContSet.Interval.Real.Operations.Kron
 import CORALean.ContSet.Interval.Real.Operations.Recip
 import CORALean.ContSet.Interval.Real.Operations.Rdivide
 import CORALean.ContSet.Interval.Real.Operations.Mrdivide
+import CORALean.ContSet.Interval.Real.Operations.Power
+import CORALean.ContSet.Interval.Real.Operations.Atan2
 
 /-!
 # What `Interval` computes

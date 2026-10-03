@@ -98,6 +98,8 @@ Rulings on borderline cases:
 * **Route b for verdicts and merges** is accepted where the definition is generic over `Scalar 𝕋` and computable and the guarantee is stated for that `𝕋`: `mergeInvariants` (guarantee `Lifting.mem_inv`) and hybridDynamics `verify` (`HybridAutomaton.holds_of_check`), as for the sibling rows already `float`.
 * **R-S: constructor rows of scalar-carrying structures** count as `float` by route b when the structure is generic over `Scalar 𝕋`, computable, and the row's theorem is stated for it: `linearARX` (`LinearARX 𝕋`, with the computable `toLinearSysDT`) and `neurNetContrSys` (`NeurNetContrSys 𝕋`). Not for structures whose `f` is a real function (`nonlinearARX`, `nonlinearSysDT`).
 * **R-FB: `FloatBound` is the float side of `SupportBound`.** The abstract contSet rows `supportFunc` and `supportFunc_` are `float` by route b through that interface, which each float class instantiates by its `boundDot`.
+* **R-SF: scalar-free Bool and constant rows are `float` by route b** (emptySet and fullspace `isBounded`, `isFullDim`, `center`, `radius`, `volume_`, `enclosePoints`, the constructor rows) when the Lean definition is computable and generic: it holds no scalar, so there is nothing to round, and the note says `route b (scalar-free) —`. A row whose result is `Inf` (fullspace `radius`, `volume_`, `supportFunc_`) stays `proved`, as does one with no computable definition (fullspace `representsa_`, a family of statements over CORA's type names).
+* **R-LS: symbolic levelSet rows are `float` by route b** (`Inf`, `empty`, `and_`, `lift_`, `splitEquality`, the constructor) only when the Lean definition is computable and never evaluates the real function: it restructures the symbolic data (lists appended, variables renamed, rows filtered). `contains_` (noncomputable, evaluates the function) and `not` (negates it) stay `proved`.
 * **R-SIM: a DT `simulate` row is `float`** when an interval-valued run `simulateBox` (the system's step applied to float `Interval.point` start and inputs, with directed rounding) is linked with `simulate_mem_simulateBox` (the real trajectory lies in the float boxes): linearSysDT, linearARX and neurNetContrSys. The guarantee is an enclosure, so the row note says "outer". Not for nonlinearSysDT and nonlinearARX, whose `f` is a real function with no interval step.
 * **Alias-stale rows** are linked to the declaration that already exists under another row: linearReset `nonlinearReset` (`Transition.toNonlinearReset`, `NonlinearReset.evaluate_toNonlinearReset`) and conZonotope `enclose` (the generic `ContSet.enclose`, as the float `ConZonotope` has `Plus`, `LinComb` and `Mtimes`).
 * **`deprecated` also covers a method that itself emits `CORAwarning('CORA:deprecated')`**, even if its help text does not say `DEPRECATED` (polygon `simplify`).
@@ -110,21 +112,21 @@ Rulings on borderline cases:
 | Class | Group | Methods | proved | float | not yet | out of scope | CORA issues |
 |---|---|---|---|---|---|---|---|
 | [affine](contSet/affine.md) | contSet | 1 | 0 | 0 | 1 | 0 | 0 |
-| [capsule](contSet/capsule.md) | contSet | 39 | 6 | 19 | 4 | 10 | 3 |
+| [capsule](contSet/capsule.md) | contSet | 39 | 0 | 25 | 4 | 10 | 3 |
 | [conPolyZono](contSet/conPolyZono.md) | contSet | 47 | 5 | 20 | 14 | 8 | 0 |
 | [conZonotope](contSet/conZonotope.md) | contSet | 50 | 4 | 21 | 13 | 12 | 0 |
 | [contSet](contSet/contSet.md) | contSet | 101 | 2 | 24 | 3 | 72 | 0 |
 | [ellipsoid](contSet/ellipsoid.md) | contSet | 50 | 5 | 15 | 21 | 9 | 0 |
-| [emptySet](contSet/emptySet.md) | contSet | 30 | 8 | 14 | 1 | 7 | 0 |
-| [fullspace](contSet/fullspace.md) | contSet | 33 | 10 | 13 | 2 | 8 | 0 |
-| [interval](contSet/interval.md) | contSet | 110 | 1 | 83 | 8 | 18 | 0 |
-| [levelSet](contSet/levelSet.md) | contSet | 22 | 8 | 0 | 6 | 8 | 0 |
+| [emptySet](contSet/emptySet.md) | contSet | 30 | 3 | 19 | 1 | 7 | 0 |
+| [fullspace](contSet/fullspace.md) | contSet | 33 | 5 | 18 | 2 | 8 | 0 |
+| [interval](contSet/interval.md) | contSet | 110 | 2 | 84 | 6 | 18 | 1 |
+| [levelSet](contSet/levelSet.md) | contSet | 22 | 2 | 6 | 6 | 8 | 0 |
 | [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 4 | 27 | 28 | 14 | 0 |
-| [polygon](contSet/polygon.md) | contSet | 46 | 4 | 14 | 21 | 7 | 0 |
+| [polygon](contSet/polygon.md) | contSet | 46 | 1 | 17 | 21 | 7 | 0 |
 | [polytope](contSet/polytope.md) | contSet | 58 | 3 | 30 | 14 | 11 | 0 |
 | [probZonotope](contSet/probZonotope.md) | contSet | 28 | 0 | 0 | 20 | 8 | 0 |
 | [spectraShadow](contSet/spectraShadow.md) | contSet | 33 | 0 | 7 | 18 | 8 | 0 |
-| [taylm](contSet/taylm.md) | contSet | 51 | 4 | 22 | 14 | 11 | 0 |
+| [taylm](contSet/taylm.md) | contSet | 51 | 8 | 25 | 7 | 11 | 0 |
 | [zonoBundle](contSet/zonoBundle.md) | contSet | 44 | 1 | 22 | 14 | 7 | 0 |
 | [zonotope](contSet/zonotope.md) | contSet | 80 | 6 | 37 | 23 | 14 | 1 |
 | [zoo](contSet/zoo.md) | contSet | 12 | 0 | 0 | 10 | 2 | 0 |

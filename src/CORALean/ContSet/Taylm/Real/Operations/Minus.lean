@@ -6,6 +6,14 @@ import CORALean.ContSet.Taylm.Real.Operations.Uminus
 
 CORA's `minus`, as `plus` of the negation; CORA subtracts the remainders, which is the
 same interval.
+
+The difference of [1, Eq. 7], with the scalars through `smul`.
+
+## References
+
+* [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA
+      2018". In Proc. of the 5th International Workshop on Applied Verification of Continuous
+      and Hybrid Systems (ARCH18), EPiC Series in Computing, vol. 54, pp. 145-173, 2018.
 -/
 
 -- Authors:       Tobias Ladner

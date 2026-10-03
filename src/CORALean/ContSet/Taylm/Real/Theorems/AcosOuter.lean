@@ -7,6 +7,13 @@ import CORALean.Global.ElementaryDerivBounds
 # `Taylm.acos` encloses `acos ∘ f`
 
 Where the magnitude is below one, so that the hull stays inside `(-1, 1)`.
+
+[1, Def. 3 (arccos)]: a Taylor model of `arccos ∘ f`.
+
+## References
+
+* [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion
+      Methods". International Journal of Pure and Applied Mathematics, 4(4):379-452, 2003.
 -/
 
 -- Authors:       Tobias Ladner

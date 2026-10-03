@@ -7,6 +7,13 @@ import CORALean.Global.ElementaryDerivBounds
 # `Taylm.atan` encloses `atan ∘ f`
 
 No domain condition: `atan` is smooth on `ℝ`.
+
+[1, Def. 3 (arctan)]: a Taylor model of `arctan ∘ f`, with no condition on the range.
+
+## References
+
+* [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion
+      Methods". International Journal of Pure and Applied Mathematics, 4(4):379-452, 2003.
 -/
 
 -- Authors:       Tobias Ladner

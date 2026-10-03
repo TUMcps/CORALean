@@ -99,6 +99,9 @@ import CORALean.ContSet.Interval.Float.Theorems.QuadMapOuter
 import CORALean.ContSet.Interval.Float.Theorems.MatMulSubset
 import CORALean.ContSet.Interval.Float.Theorems.MatPowSubset
 import CORALean.ContSet.Interval.Float.Theorems.EvalListMem
+import CORALean.ContSet.Interval.Float.Theorems.PowHiLe
+import CORALean.ContSet.Interval.Float.Theorems.PowLoLe
+import CORALean.ContSet.Interval.Float.Theorems.PowerOuter
 
 /-!
 # What `Interval` guarantees

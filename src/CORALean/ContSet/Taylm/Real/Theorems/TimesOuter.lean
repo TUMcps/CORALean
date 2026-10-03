@@ -10,6 +10,13 @@ import Mathlib.Tactic.LinearCombination
 
 `fg - kept = dropped + p₁(g - p₂) + p₂(f - p₁) + (f - p₁)(g - p₂)`, each summand in the
 interval `times` adds for it.
+
+The product of [1, Def. 2] is a Taylor model of `f·g`.
+
+## References
+
+* [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion
+      Methods". International Journal of Pure and Applied Mathematics, 4(4):379-452, 2003.
 -/
 
 -- Authors:       Tobias Ladner
