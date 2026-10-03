@@ -1,4 +1,6 @@
 import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
+import CORALean.ContSet.Ellipsoid.Real.Operations.CartProd
+import CORALean.ContSet.Ellipsoid.Real.Operations.CartProdVec
 import CORALean.ContSet.Ellipsoid.Real.Operations.Rank
 import CORALean.ContSet.Ellipsoid.Real.Operations.Map
 import CORALean.ContSet.Ellipsoid.Real.Operations.Mtimes

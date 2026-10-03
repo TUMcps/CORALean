@@ -26,7 +26,7 @@ CORA methods of `contSet/@contSet/`, one row each, and where CORALean answers th
 | `convHull_` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
 | `copy` | out-of-scope | n/a — matlab-runtime |  |
 | `cubMap` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
-| `decompose` | — | — |  |
+| `decompose` | float | [`ContSet.decompose`](../../../src/CORALean/ContSet/ContSet/Operations/Decompose.lean), [`ContSet.decompose_outer`](../../../src/CORALean/ContSet/ContSet/Theorems/DecomposeOuter.lean), [`ContSet.project`](../../../src/CORALean/ContSet/ContSet/Operations/Project.lean), [`ContSet.project_outer`](../../../src/CORALean/ContSet/ContSet/Theorems/ProjectOuter.lean) | route b — generic over the scalar and the set representation: each block is `project` onto a run of consecutive coordinates, `I(dims, :) * S` through `mtimes` at the selection matrix; outer (the projection of every point lies in the block), a block being a block of coordinates (zero-based start and length) |
 | `dim` | out-of-scope | n/a — matlab-runtime |  |
 | `display` | out-of-scope | n/a — plotting/display |  |
 | `double` | out-of-scope | n/a — io/conversion-to-matlab-objects |  |

@@ -76,6 +76,7 @@ import CORALean.ContSet.Zonotope.Real.Operations.RepresentsaOrigin
 import CORALean.ContSet.Zonotope.Real.Operations.ExactPlus
 import CORALean.ContSet.Zonotope.Real.Operations.NormUb
 import CORALean.ContSet.Zonotope.Real.Operations.Radius2
+import CORALean.ContSet.Zonotope.Real.Operations.GeneratorLength
 import CORALean.ContSet.Zonotope.Real.Operations.ConstrSat
 import CORALean.ContSet.Zonotope.Real.Operations.CartProd
 import CORALean.ContSet.Zonotope.Real.Operations.SplitFirstGen

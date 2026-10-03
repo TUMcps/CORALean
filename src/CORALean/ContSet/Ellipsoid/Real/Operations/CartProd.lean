@@ -1,0 +1,37 @@
+import CORALean.ContSet.Conversion.Real.Ellipsoid_to_Interval
+import CORALean.ContSet.Conversion.Real.Interval_to_Ellipsoid
+
+/-!
+# `Ellipsoid.cartProd`
+
+CORA's `@ellipsoid/cartProd_.m`, which supports `'outer'` only: for two ellipsoids it is
+`ellipsoid(cartProd_(interval(E), interval(S), 'exact'))`, the ellipsoid enclosing the product
+of the two bounding boxes (the product of two ellipsoids is not an ellipsoid). The `'inner'` and
+`'exact'` modes throw. A point operand, which CORA also handles, is `Ellipsoid.cartProdVec`.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       03-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {n m : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- The ellipsoid of the product of the two bounding boxes, as CORA's `'outer'` mode. -/
+noncomputable def Ellipsoid.cartProd (E₁ : Ellipsoid n) (E₂ : Ellipsoid m) : Ellipsoid (n + m) :=
+  let I₁ := E₁.interval
+  let I₂ := E₂.interval
+  Interval.ellipsoid ⟨Fin.append I₁.inf I₂.inf, Fin.append I₁.sup I₂.sup⟩
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

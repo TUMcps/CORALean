@@ -36,7 +36,7 @@ CORA methods of `contSet/@zonotope/`, one row each, and where CORALean answers t
 | `filterOut` | — | — | definition only, no theorem: [`Zonotope.methCFilter`](../../../src/CORALean/ContSet/Zonotope/Real/Operations/MethCFilter.lean) |
 | `full` | out-of-scope | n/a — io/conversion-to-matlab-objects |  |
 | `generateRandom` | out-of-scope | n/a — random/sampling |  |
-| `generatorLength` | — | — |  |
+| `generatorLength` | proved | [`Zonotope.generatorLength`](../../../src/CORALean/ContSet/Zonotope/Real/Operations/GeneratorLength.lean), [`Zonotope.norm₂_sub_centre_le_sum_generatorLength`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/NormSubCentreLeSumGeneratorLength.lean) | `vecnorm(G)`, the Euclidean length of generator `j`; every point of the zonotope is within the sum of the lengths of the centre (the triangle inequality `Zonotope.radius₂` takes the smaller of this and a box bound) |
 | `generators` | out-of-scope | n/a — matlab-runtime | field getter |
 | `getPrintSetInfo` | out-of-scope | n/a — plotting/display |  |
 | `intersectStrip` | — | — |  |

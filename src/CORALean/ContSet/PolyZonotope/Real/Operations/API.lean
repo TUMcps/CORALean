@@ -9,6 +9,8 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.MtimesIntervalMat
 import CORALean.ContSet.PolyZonotope.Real.Operations.PlusE
 import CORALean.ContSet.PolyZonotope.Real.Operations.Plus
 import CORALean.ContSet.PolyZonotope.Real.Operations.ExactPlus
+import CORALean.ContSet.PolyZonotope.Real.Operations.Stack
+import CORALean.ContSet.PolyZonotope.Real.Operations.Resolve
 import CORALean.ContSet.PolyZonotope.Real.Operations.CartProd
 import CORALean.ContSet.PolyZonotope.Real.Operations.ExactCartProd
 import CORALean.ContSet.PolyZonotope.Real.Operations.LinCombE

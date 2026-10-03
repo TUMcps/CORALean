@@ -25,6 +25,8 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.PlusExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.PlusMono
 import CORALean.ContSet.PolyZonotope.Real.Theorems.PlusEvalOn
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ExactPlusPoint
+import CORALean.ContSet.PolyZonotope.Real.Theorems.StackPoint
+import CORALean.ContSet.PolyZonotope.Real.Theorems.ResolvePoint
 import CORALean.ContSet.PolyZonotope.Real.Theorems.CartProdExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ExactCartProdPoint
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MapExact

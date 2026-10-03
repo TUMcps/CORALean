@@ -3,6 +3,8 @@ import CORALean.ContSet.ContSet.Operations.Enlarge
 import CORALean.ContSet.ContSet.Operations.Minus
 import CORALean.ContSet.ContSet.Operations.MinusFrom
 import CORALean.ContSet.ContSet.Operations.ProjectHighDim
+import CORALean.ContSet.ContSet.Operations.Project
+import CORALean.ContSet.ContSet.Operations.Decompose
 import CORALean.ContSet.ContSet.Operations.ProjectOnHyperplane
 import CORALean.ContSet.ContSet.Operations.SupportBoundSegments
 import CORALean.ContSet.ContSet.Operations.Times

@@ -17,6 +17,13 @@ import CORALean.ContSet.Capsule.Real.Theorems.ConstructSubsetOfDistLe
 import CORALean.ContSet.Capsule.Real.Theorems.PlusVecExact
 import CORALean.ContSet.Capsule.Real.Theorems.MtimesOuter
 import CORALean.ContSet.Capsule.Real.Theorems.MtimesCoraCounterexample
+import CORALean.ContSet.Capsule.Real.Theorems.ConvHullOuter
+import CORALean.ContSet.Capsule.Real.Theorems.EncloseOuter
+import CORALean.ContSet.Capsule.Real.Theorems.EncloseCoraCounterexample
+import CORALean.ContSet.Capsule.Real.Theorems.RepresentsaPointIff
+import CORALean.ContSet.Capsule.Real.Theorems.RepresentsaOriginIff
+import CORALean.ContSet.Capsule.Real.Theorems.IsequalConstruct
+import CORALean.ContSet.Capsule.Real.Theorems.EnclosePointsMem
 
 /-!
 # What a capsule guarantees, collected
