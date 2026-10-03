@@ -78,6 +78,7 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Backward Reachability Analysis of Perturbed Continuous-Time Linear Systems Using Set Propagation](2023/wetzlinger-arxiv-backward-reachability.md) | Wetzlinger, Althoff | arXiv:2310.19083 | 2023 | 🟢 11/11 \| 8 |
 | [Fully-Automated Verification of Linear Systems Using Inner- and Outer-Approximations of Reachable Sets](2023/wetzlinger-fully-automated-verification.md) | Wetzlinger, Kochdumper, Bak, Althoff | IEEE Transactions on Automatic Control, vol. 68, no. 12, pp. 7771–7786 | 2023 | 🟢 19/19 \| 6 |
 | [Fully-Automated Verification of Linear Systems Using Reachability Analysis with Support Functions](2023/wetzlinger-hscc-support-functions.md) | Wetzlinger, Kochdumper, Bak, Althoff | HSCC | 2023 | 🟢 5/5 \| 4 |
+| [Search-based and Stochastic Solutions to the Zonotope and Ellipsotope Containment Problems](2024/kulmburg-ecc-zonotope-ellipsotope-containment.md) | Kulmburg, Brkan, Althoff | ECC | 2024 | 🟡 13/18 \| 9 |
 | [Exponent Relaxation of Polynomial Zonotopes and Its Applications in Formal Neural Network Verification](2024/ladner-aaai-exponent-relaxation.md) | Ladner, Althoff | AAAI | 2024 | 🟢 8/8 \| 6 |
 | [Explaining Fast and Slow: Abstraction and Refinement of Provable Explanations](2025/bassan-icml-explaining-fast-and-slow.md) | Bassan, Elboher, Ladner, Althoff, Katz | ICML | 2025 | 🟢 14/14 \| 2 |
 | [Formal Verification of Graph Convolutional Networks with Uncertain Node Features and Uncertain Graph Structure](2025/ladner-tmlr-gcn.md) | Ladner, Eichelbeck, Althoff | TMLR | 2025 | 🟢 12/12 \| 7 |
@@ -172,6 +173,7 @@ pages carry one:
 * [Backward Reachability Analysis of Perturbed Continuous-Time Linear Systems Using Set Propagation](2023/wetzlinger-arxiv-backward-reachability.md)
 * [Fully-Automated Verification of Linear Systems Using Inner- and Outer-Approximations of Reachable Sets](2023/wetzlinger-fully-automated-verification.md)
 * [Fully-Automated Verification of Linear Systems Using Reachability Analysis with Support Functions](2023/wetzlinger-hscc-support-functions.md)
+* [Search-based and Stochastic Solutions to the Zonotope and Ellipsotope Containment Problems](2024/kulmburg-ecc-zonotope-ellipsotope-containment.md)
 * [Exponent Relaxation of Polynomial Zonotopes and Its Applications in Formal Neural Network Verification](2024/ladner-aaai-exponent-relaxation.md)
 * [Explaining Fast and Slow: Abstraction and Refinement of Provable Explanations](2025/bassan-icml-explaining-fast-and-slow.md)
 * [Formal Verification of Graph Convolutional Networks with Uncertain Node Features and Uncertain Graph Structure](2025/ladner-tmlr-gcn.md)

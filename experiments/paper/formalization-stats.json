@@ -14,24 +14,24 @@
     "not-covered"
   ],
   "totals": {
-    "papers": 36,
-    "papers_with_findings": 29,
-    "in_scope": 431,
-    "formalized": 422,
-    "not_formalized": 9,
-    "out_of_scope": 216,
+    "papers": 37,
+    "papers_with_findings": 30,
+    "in_scope": 449,
+    "formalized": 435,
+    "not_formalized": 14,
+    "out_of_scope": 225,
     "out_of_scope_by_reason": {
-      "restated": 112,
+      "restated": 118,
       "mathlib": 8,
-      "not-a-claim": 72,
+      "not-a-claim": 75,
       "done-differently": 7,
       "not-covered": 17
     },
     "by_class": {
-      "correct": 293,
+      "correct": 303,
       "underspecified": 67,
       "proof-gap": 22,
-      "fixed": 39,
+      "fixed": 42,
       "false": 1
     }
   },
@@ -1524,6 +1524,47 @@
       ]
     },
     {
+      "page": "2024/kulmburg-ecc-zonotope-ellipsotope-containment.md",
+      "label": "Kulmburg 2024",
+      "year": 2024,
+      "title": "Search-based and Stochastic Solutions to the Zonotope and Ellipsotope Containment Problems",
+      "in_scope": 18,
+      "formalized": 13,
+      "not_formalized": 5,
+      "out_of_scope": 9,
+      "out_of_scope_by_reason": {
+        "restated": 6,
+        "mathlib": 0,
+        "not-a-claim": 3,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 10,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 3,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Prop. 2.2",
+          "class": "fixed",
+          "reason": "the unit circle is ∂E_p(G), not E_p(G) (at G = 1 in ℝ¹ it misses 0); the unit ball is E_p(G)"
+        },
+        {
+          "result": "Eq. 11",
+          "class": "fixed",
+          "reason": "the support of c + G B_p along λ is ‖Gᵀλ‖_{p*} + λᵀ(c - d), not ‖(Gᵀλ, λᵀ(c - d))‖_{p*}: at p = 2 in ℝ¹ the radius is 2 and the formula gives √2; exact with the sum; see Findings"
+        },
+        {
+          "result": "Thm. 4.3",
+          "class": "fixed",
+          "reason": "Ê ⊆ E is not random: with Ê ⊄ E, one sample of [-1, 1]² returns P_Shs ≈ 0.086 > 0 = P(Ê ⊆ E); the proof picks ε = 1 - r_Shs after sampling; true at a fixed ε; see Findings"
+        }
+      ]
+    },
+    {
       "page": "2024/ladner-aaai-exponent-relaxation.md",
       "label": "Ladner 2024",
       "year": 2024,
@@ -1943,11 +1984,11 @@
         "group": "contSet",
         "class": "polytope",
         "methods": 58,
-        "proved": 6,
+        "proved": 8,
         "float": 30,
-        "not_yet": 10,
+        "not_yet": 8,
         "out_of_scope": 12,
-        "needs_float": 6,
+        "needs_float": 8,
         "out_of_scope_by_reason": {
           "plotting/display": 3,
           "random/sampling": 3,
@@ -1961,7 +2002,7 @@
           "correct": 13,
           "underspecified": 1,
           "proof-gap": 0,
-          "fixed": 9,
+          "fixed": 10,
           "false": 0
         }
       },
@@ -2021,11 +2062,11 @@
         "group": "contSet",
         "class": "taylm",
         "methods": 51,
-        "proved": 9,
-        "float": 25,
+        "proved": 5,
+        "float": 29,
         "not_yet": 6,
         "out_of_scope": 11,
-        "needs_float": 9,
+        "needs_float": 5,
         "out_of_scope_by_reason": {
           "plotting/display": 2,
           "random/sampling": 1,
@@ -2088,7 +2129,7 @@
         },
         "cora_issues": 1,
         "findings": {
-          "correct": 55,
+          "correct": 59,
           "underspecified": 14,
           "proof-gap": 3,
           "fixed": 6,
@@ -2697,11 +2738,11 @@
     "groups": {
       "contSet": {
         "methods": 908,
-        "proved": 78,
-        "float": 405,
-        "not_yet": 189,
+        "proved": 76,
+        "float": 409,
+        "not_yet": 187,
         "out_of_scope": 236,
-        "needs_float": 78,
+        "needs_float": 76,
         "cora_issues": 9,
         "out_of_scope_by_reason": {
           "plotting/display": 51,
@@ -2712,10 +2753,10 @@
           "deprecated": 14
         },
         "findings": {
-          "correct": 176,
+          "correct": 180,
           "underspecified": 36,
           "proof-gap": 5,
-          "fixed": 24,
+          "fixed": 25,
           "false": 1
         }
       },
@@ -2794,11 +2835,11 @@
     },
     "totals": {
       "methods": 1260,
-      "proved": 127,
-      "float": 500,
-      "not_yet": 254,
+      "proved": 125,
+      "float": 504,
+      "not_yet": 252,
       "out_of_scope": 379,
-      "needs_float": 127,
+      "needs_float": 125,
       "cora_issues": 11,
       "out_of_scope_by_reason": {
         "plotting/display": 86,
@@ -2809,19 +2850,19 @@
         "deprecated": 14
       },
       "findings": {
-        "correct": 283,
+        "correct": 287,
         "underspecified": 64,
         "proof-gap": 21,
-        "fixed": 34,
+        "fixed": 35,
         "false": 1
       }
     },
     "findings_not_on_a_class": {
       "global": {
-        "correct": 7,
+        "correct": 13,
         "underspecified": 2,
         "proof-gap": 1,
-        "fixed": 5,
+        "fixed": 7,
         "false": 0
       },
       "specification": {
@@ -2840,11 +2881,11 @@
       }
     },
     "theorems": {
-      "paper": 609,
-      "float": 1106,
-      "helper": 673,
-      "lemma": 1906,
-      "total": 4294,
+      "paper": 624,
+      "float": 1118,
+      "helper": 683,
+      "lemma": 1918,
+      "total": 4343,
       "examples": 80
     }
   }

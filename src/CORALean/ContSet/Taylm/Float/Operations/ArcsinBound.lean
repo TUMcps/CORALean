@@ -1,0 +1,38 @@
+import CORALean.ContSet.Interval.Float.Operations.EvalList
+import CORALean.Global.RecList
+import CORALean.Global.Float.InvSqrtOneSub
+import CORALean.Global.Float.PowUp
+
+/-!
+# A bound of the `(N+1)`-th derivative of `arcsin` and `arccos`, rounded up
+
+`|arcsin⁽ᴺ⁺¹⁾| = |arccos⁽ᴺ⁺¹⁾| ≤ asinDom N (m) · (√(1 - m²))⁻⁽²ᴺ⁺¹⁾` on `|x| ≤ m < 1`: the
+integer polynomial `recL [1, 0, 1] (j ↦ 2j+1) N` by `Interval.evalList` on `[m, m]`, the power
+of `invSqrtOneSubHi`, the product rounded up. `q` is the precision of the square root.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       03-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+open FloatOps
+
+variable {𝕋 : Type} [FloatOps 𝕋]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+def Taylm.arcsinBound (q : ℕ) (m : 𝕋) (N : ℕ) : 𝕋 :=
+  mulUp (Interval.evalList m m (recL [1, 0, 1] (fun j => 2 * (j : ℤ) + 1) N)).2
+    (powUp (invSqrtOneSubHi q m) (2 * N + 1))
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

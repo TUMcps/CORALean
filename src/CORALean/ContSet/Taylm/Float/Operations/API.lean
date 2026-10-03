@@ -34,6 +34,16 @@ import CORALean.ContSet.Taylm.Float.Operations.Tanh
 import CORALean.ContSet.Taylm.Float.Operations.Trace
 import CORALean.ContSet.Taylm.Float.Operations.Prod
 import CORALean.ContSet.Taylm.Float.Operations.Det
+import CORALean.ContSet.Taylm.Float.Operations.Taylor
+import CORALean.ContSet.Taylm.Float.Operations.MagUp
+import CORALean.ContSet.Taylm.Float.Operations.Atan
+import CORALean.ContSet.Taylm.Float.Operations.ArcsinCoef
+import CORALean.ContSet.Taylm.Float.Operations.ArcsinBound
+import CORALean.ContSet.Taylm.Float.Operations.Asin
+import CORALean.ContSet.Taylm.Float.Operations.Acos
+import CORALean.ContSet.Taylm.Float.Operations.SqrtCoef
+import CORALean.ContSet.Taylm.Float.Operations.SqrtBound
+import CORALean.ContSet.Taylm.Float.Operations.Sqrt
 
 /-!
 # Float Taylor model operations, collected
