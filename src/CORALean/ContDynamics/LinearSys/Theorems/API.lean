@@ -110,6 +110,8 @@ import CORALean.ContDynamics.LinearSys.Theorems.MemExpNegImageIff
 import CORALean.ContDynamics.LinearSys.Theorems.MinBackReachTimeIntervalOuter
 import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
 import CORALean.ContDynamics.LinearSys.Theorems.NormLeOfMemInputReach
+import CORALean.ContDynamics.LinearSys.Theorems.OneStepTimeIntervalOuter
+import CORALean.ContDynamics.LinearSys.Theorems.OneStepTimePointOuter
 import CORALean.ContDynamics.LinearSys.Theorems.PerturbedIntegralTrajectoryClosedForm
 import CORALean.ContDynamics.LinearSys.Theorems.PerturbedSuperposition
 import CORALean.ContDynamics.LinearSys.Theorems.PostDeltaOuter
@@ -188,6 +190,7 @@ import CORALean.ContDynamics.LinearSys.Theorems.TimePointSubsetReachFloat
 import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryDeltaReachOuter
 import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryIntegralTrajectory
 import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecentre
+import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachShift
 import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryTimeIntervalOuter
 import CORALean.ContDynamics.LinearSys.Theorems.TunedRunErrorBudget
 import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants

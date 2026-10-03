@@ -2,19 +2,20 @@
 
 CORA methods of `contSet/@zoo/`, one row each, and where CORALean answers them. Conventions, states and the out-of-scope reasons are in [../README.md](../README.md).
 
-**CORALean counterpart:** none.
+**CORALean counterpart:** `Zoo` (real layer only): an optional Taylor model (CORA's `taylm(int)`) and an optional interval (`interval`), each enclosing one function over the normalized box. CORA's other members are not modelled: `taylm(bnb)`, `taylm(bnbAdv)` and `taylm(linQuad)` differ from `taylm(int)` only in the range bound `interval` reads, and `affine(·)` is not linked to `Taylm` at order one (CORA's `@affine` is affine arithmetic with a fresh noise symbol per nonlinear operation, a different representation). Only the zoo-by-zoo operand forms are covered; the `double` and `interval` operand forms are not.
 
 | Method | State | In CORALean | Note |
 |---|---|---|---|
-| `interval` | — | — |  |
-| `minus` | — | — |  |
-| `mrdivide` | — | — |  |
-| `mtimes` | — | — |  |
-| `plus` | — | — |  |
-| `rdivide` | — | — |  |
+| `interval` | proved | [`Zoo.interval`](../../../src/CORALean/ContSet/Zoo/Real/Operations/Interval.lean), [`Zoo.interval_outer`](../../../src/CORALean/ContSet/Zoo/Real/Theorems/IntervalOuter.lean) | outer: the intersection of the members' interval enclosures contains the function's values (`none` is CORA's `(-∞, ∞)`, no member); the Taylor model's enclosure is its `'int'` range bound (`Taylm.interval`) |
+| `minus` | proved | [`Zoo.minus`](../../../src/CORALean/ContSet/Zoo/Real/Operations/Minus.lean), [`Zoo.minus_outer`](../../../src/CORALean/ContSet/Zoo/Real/Theorems/MinusOuter.lean) | outer: as `plus`; zoo with zoo only |
+| `mrdivide` | proved | [`Zoo.rdivide`](../../../src/CORALean/ContSet/Zoo/Real/Operations/Rdivide.lean), [`Zoo.rdivide_outer`](../../../src/CORALean/ContSet/Zoo/Real/Theorems/RdivideOuter.lean) | outer: CORA's `mrdivide` is `rdivide`, so as `rdivide`, with the same CORA failure for two zoos (FINDINGS.md) |
+| `mtimes` | proved | [`Zoo.times`](../../../src/CORALean/ContSet/Zoo/Real/Operations/Times.lean), [`Zoo.times_outer`](../../../src/CORALean/ContSet/Zoo/Real/Theorems/TimesOuter.lean) | outer: for scalar zoos CORA's zoo-by-zoo `mtimes` multiplies the members as `times` (`Zoo.times`, whose theorem is linked); the `double` and `interval` operands are not here |
+| `plus` | proved | [`Zoo.plus`](../../../src/CORALean/ContSet/Zoo/Real/Operations/Plus.lean), [`Zoo.plus_outer`](../../../src/CORALean/ContSet/Zoo/Real/Theorems/PlusOuter.lean) | outer: members combined as `priv_combineZooObjects` (kept where both zoos have them); zoo with zoo only, the `double` and `interval` operands are not here |
+| `rdivide` | proved | [`Zoo.rdivide`](../../../src/CORALean/ContSet/Zoo/Real/Operations/Rdivide.lean), [`Zoo.rdivide_outer`](../../../src/CORALean/ContSet/Zoo/Real/Theorems/RdivideOuter.lean) | outer: under the members' own denominator conditions (the Taylor model's sign condition, no zero in the interval); zoo by zoo only. cora-issue — CORA calls `combineZooObjects`, which does not exist, so zoo `./` zoo fails at run time (FINDINGS.md) |
 | `subsasgn` | out-of-scope | n/a — matlab-runtime |  |
 | `subsref` | out-of-scope | n/a — matlab-runtime |  |
-| `times` | — | — |  |
-| `uminus` | — | — |  |
-| `uplus` | — | — |  |
-| `zoo` | — | — |  |
+| `times` | proved | [`Zoo.times`](../../../src/CORALean/ContSet/Zoo/Real/Operations/Times.lean), [`Zoo.times_outer`](../../../src/CORALean/ContSet/Zoo/Real/Theorems/TimesOuter.lean) | outer: as `plus`; zoo with zoo only. cora-issue — CORA calls `combineZooObjects`, which does not exist, so `.*` of two zoos fails at run time (FINDINGS.md) |
+| `uminus` | proved | [`Zoo.uminus`](../../../src/CORALean/ContSet/Zoo/Real/Operations/Uminus.lean), [`Zoo.uminus_outer`](../../../src/CORALean/ContSet/Zoo/Real/Theorems/UminusOuter.lean) | outer: every member negated (the interval's is exact, the Taylor model's an enclosure) |
+| `uplus` | proved | [`Zoo.uplus`](../../../src/CORALean/ContSet/Zoo/Real/Operations/Uplus.lean), [`Zoo.uplus_outer`](../../../src/CORALean/ContSet/Zoo/Real/Theorems/UplusOuter.lean) | outer: the zoo itself |
+| `zoo` | — | — | definition only, no theorem: `Zoo` and `Zoo.Encloses` (src/CORALean/ContSet/Zoo/Real/Zoo.lean), the structure and its enclosure predicate; CORA's constructor builds the members from an interval domain (`taylm(int, ...)`, `affine(...)`), which is not done |
+|
