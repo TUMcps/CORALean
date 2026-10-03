@@ -14,24 +14,24 @@
     "not-covered"
   ],
   "totals": {
-    "papers": 28,
-    "papers_with_findings": 22,
-    "in_scope": 308,
-    "formalized": 308,
-    "not_formalized": 0,
-    "out_of_scope": 116,
+    "papers": 31,
+    "papers_with_findings": 25,
+    "in_scope": 350,
+    "formalized": 345,
+    "not_formalized": 5,
+    "out_of_scope": 128,
     "out_of_scope_by_reason": {
-      "restated": 78,
+      "restated": 86,
       "mathlib": 5,
-      "not-a-claim": 20,
+      "not-a-claim": 24,
       "done-differently": 4,
       "not-covered": 9
     },
     "by_class": {
-      "correct": 218,
-      "underspecified": 49,
-      "proof-gap": 19,
-      "fixed": 22,
+      "correct": 244,
+      "underspecified": 55,
+      "proof-gap": 21,
+      "fixed": 25,
       "false": 0
     }
   },
@@ -174,8 +174,100 @@
       ]
     },
     {
+      "page": "2008/althoff-cdc-conservative-linearization.md",
+      "label": "Althoff 2008",
+      "year": 2008,
+      "title": "Reachability Analysis of Nonlinear Systems with Uncertain Parameters using Conservative Linearization",
+      "in_scope": 12,
+      "formalized": 11,
+      "not_formalized": 1,
+      "out_of_scope": 3,
+      "out_of_scope_by_reason": {
+        "restated": 2,
+        "mathlib": 0,
+        "not-a-claim": 1,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 5,
+        "underspecified": 3,
+        "proof-gap": 2,
+        "fixed": 1,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Prop. 2",
+          "class": "proof-gap",
+          "reason": "the proof says `max(|J_i(ξ(z), p)|)` is not affected by `z*`; the range of `ξ` grows when `z* ∉ Z`, and the claim holds because a bound valid at any `z*` is valid at the centre; see Findings"
+        },
+        {
+          "result": "Sec. V",
+          "class": "underspecified",
+          "reason": "`ĉ` is the centre of `R(0) × U` and `f` is n-dimensional, so the sum is read as moving the state block only"
+        },
+        {
+          "result": "Eq. 7",
+          "class": "fixed",
+          "reason": "`L̂ ≤ L̄` does not give (6): at `A = [[1, 1], [0, 2]]`, `r = 1`, `θ = (1, 1)` the corner `L̄` leaves the box; corrected to a test on `A⁻¹(e^{Ar} - I)` itself; see Findings"
+        },
+        {
+          "result": "Prop. 3",
+          "class": "proof-gap",
+          "reason": "`Z₁ ∩ Z₂ = Z*` is read off `(Z* + S₁) ∩ (Z* + S₂) = Z* + (S₁ ∩ S₂)`, false for sets; it holds because `Z*` is convex; see Findings"
+        },
+        {
+          "result": "Sec. VI-A",
+          "class": "underspecified",
+          "reason": "printed as a product, but \"less than one implies (7) holds\" needs both factors below one, which a product under one does not give; formalized as printed"
+        },
+        {
+          "result": "Fig. 1",
+          "class": "underspecified",
+          "reason": "the figure's split-and-repeat has no bound; a fuel bound makes it terminate"
+        }
+      ]
+    },
+    {
+      "page": "2010/althoff-nahs-zonotopes-polytopes.md",
+      "label": "Althoff 2010 (nahs)",
+      "year": 2010,
+      "title": "Computing Reachable Sets of Hybrid Systems Using a Combination of Zonotopes and Polytopes",
+      "in_scope": 13,
+      "formalized": 13,
+      "not_formalized": 0,
+      "out_of_scope": 6,
+      "out_of_scope_by_reason": {
+        "restated": 4,
+        "mathlib": 0,
+        "not-a-claim": 2,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 11,
+        "underspecified": 2,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Alg. 1",
+          "class": "underspecified",
+          "reason": "the loop runs \"while `R^h ≠ ∅` or `t < t_f`\", which never stops before `t_f` and, past it, only once the set has left the invariant; the text means \"and\", and `t` is never assigned"
+        },
+        {
+          "result": "Sec. 5.4.2",
+          "class": "underspecified",
+          "reason": "no rule for singular choices, which `Θ̃ = |det|⁻¹` cannot rank, nor for fewer than `n` generators; singular choices are dropped and `Γ = I` is the fallback"
+        }
+      ]
+    },
+    {
       "page": "2010/althoff-thesis.md",
-      "label": "Althoff 2010",
+      "label": "Althoff 2010 (thesis)",
       "year": 2010,
       "title": "Reachability Analysis and its Application to the Safety Assessment of Autonomous Cars",
       "in_scope": 34,
@@ -328,6 +420,47 @@
           "result": "Prop. 3",
           "class": "fixed",
           "reason": "printed generators `L^(j)` are off by a factor of two (confirmed erratum)"
+        }
+      ]
+    },
+    {
+      "page": "2012/althoff-hscc-avoiding-intersection.md",
+      "label": "Althoff 2012",
+      "year": 2012,
+      "title": "Avoiding Geometric Intersection Operations in Reachability Analysis of Hybrid Systems",
+      "in_scope": 17,
+      "formalized": 13,
+      "not_formalized": 4,
+      "out_of_scope": 3,
+      "out_of_scope_by_reason": {
+        "restated": 2,
+        "mathlib": 0,
+        "not-a-claim": 1,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 10,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 2,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Prop. 1",
+          "class": "underspecified",
+          "reason": "\"minimized\" holds only in the limit `η → ∞`, which is what the proposition goes on to state and what is proved; at a fixed `η` another `b` makes the error `0`; see Findings"
+        },
+        {
+          "result": "Thm. 1",
+          "class": "fixed",
+          "reason": "the printed set lets each `Q^(i)` range over its matrix zonotope on its own, and then the enclosure fails (`λ = (1, -1)` against the segment from `(-1, -1)` to `(1, 1)`); it holds with the factors shared, as the proof assumes; see Findings"
+        },
+        {
+          "result": "Sec. 5.2",
+          "class": "fixed",
+          "reason": "`ω̲ ≥ 0` does not exclude an intersection, the zonotope may touch the closed halfspace; corrected to `ω̲ > 0`; see Findings"
         }
       ]
     },
@@ -1660,7 +1793,7 @@
         },
         "cora_issues": 0,
         "findings": {
-          "correct": 11,
+          "correct": 12,
           "underspecified": 4,
           "proof-gap": 0,
           "fixed": 2,
@@ -1686,10 +1819,10 @@
         },
         "cora_issues": 1,
         "findings": {
-          "correct": 32,
-          "underspecified": 8,
-          "proof-gap": 2,
-          "fixed": 3,
+          "correct": 42,
+          "underspecified": 10,
+          "proof-gap": 3,
+          "fixed": 5,
           "false": 0
         }
       },
@@ -1842,7 +1975,7 @@
         },
         "cora_issues": 0,
         "findings": {
-          "correct": 24,
+          "correct": 27,
           "underspecified": 12,
           "proof-gap": 8,
           "fixed": 5,
@@ -1998,10 +2131,10 @@
         },
         "cora_issues": 1,
         "findings": {
-          "correct": 9,
-          "underspecified": 7,
-          "proof-gap": 5,
-          "fixed": 3,
+          "correct": 14,
+          "underspecified": 9,
+          "proof-gap": 6,
+          "fixed": 4,
           "false": 0
         }
       },
@@ -2076,8 +2209,8 @@
         },
         "cora_issues": 0,
         "findings": {
-          "correct": 3,
-          "underspecified": 0,
+          "correct": 10,
+          "underspecified": 2,
           "proof-gap": 0,
           "fixed": 0,
           "false": 0
@@ -2310,10 +2443,10 @@
           "deprecated": 14
         },
         "findings": {
-          "correct": 119,
-          "underspecified": 23,
-          "proof-gap": 4,
-          "fixed": 9,
+          "correct": 130,
+          "underspecified": 25,
+          "proof-gap": 5,
+          "fixed": 11,
           "false": 0
         }
       },
@@ -2334,10 +2467,10 @@
           "deprecated": 0
         },
         "findings": {
-          "correct": 40,
-          "underspecified": 21,
-          "proof-gap": 13,
-          "fixed": 8,
+          "correct": 48,
+          "underspecified": 23,
+          "proof-gap": 14,
+          "fixed": 9,
           "false": 0
         }
       },
@@ -2358,8 +2491,8 @@
           "deprecated": 0
         },
         "findings": {
-          "correct": 3,
-          "underspecified": 0,
+          "correct": 10,
+          "underspecified": 2,
           "proof-gap": 0,
           "fixed": 0,
           "false": 0
@@ -2407,10 +2540,10 @@
         "deprecated": 14
       },
       "findings": {
-        "correct": 211,
-        "underspecified": 47,
-        "proof-gap": 19,
-        "fixed": 18,
+        "correct": 237,
+        "underspecified": 53,
+        "proof-gap": 21,
+        "fixed": 21,
         "false": 0
       }
     },
@@ -2438,11 +2571,11 @@
       }
     },
     "theorems": {
-      "paper": 446,
+      "paper": 474,
       "float": 1063,
-      "helper": 641,
-      "lemma": 1800,
-      "total": 3950,
+      "helper": 647,
+      "lemma": 1795,
+      "total": 3979,
       "examples": 80
     }
   }

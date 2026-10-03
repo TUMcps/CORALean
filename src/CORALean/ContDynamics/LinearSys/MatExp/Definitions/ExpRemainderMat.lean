@@ -5,7 +5,7 @@ import Mathlib.Topology.Instances.Matrix
 /-!
 # The exponential remainder, entrywise
 
-`E(Δt,η)` of [1]'s eq. (18), the subject of `Lemma 1`: the matrix
+`E(Δt,η)` of [1]'s eq. (18), the subject of `Lemma 1`, first the `W(t)` of [2, Eq. 6]: the matrix
 `e^{|A|Δt} − Σᵢ₌₀^η (|A|Δt)ⁱ/i!`, built from `A`'s entrywise absolute value
 rather than bounded by a single scalar under an operator norm. It is a
 *different* quantity from `expRemainderBound (Δt • A) η` — sharper, entry by
@@ -20,6 +20,10 @@ radius, `expRemainderInterval`: the matrices entrywise within it of `0`.
       Verification of Linear Systems Using Inner- and Outer-Approximations of
       Reachable Sets". IEEE Transactions on Automatic Control, vol. 68, no. 12,
       2023, pp. 7771–7786.
+* [2] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in
+      Reachability Analysis of Hybrid Systems". In Proc. of the 15th ACM
+      International Conference on Hybrid Systems: Computation and Control (HSCC),
+      2012, pp. 45-54.
 -/
 
 -- Authors:       Tobias Ladner

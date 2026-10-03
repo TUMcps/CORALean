@@ -19,6 +19,15 @@ check on the computed sets — not by CORA's own check, which is circular.
 is a parameter: the linear run produced constrains its input on the same set, so
 confinement over one step buys a linear run over one step —
 `linearize_horizon`'s whole content.
+
+This is the step [1, Sec. IV-A] takes by superposition.
+
+## References
+
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Nonlinear
+      Systems with Uncertain Parameters using Conservative Linearization". In
+      Proc. of the 47th IEEE Conference on Decision and Control (CDC), 2008,
+      pp. 4042-4048.
 -/
 
 -- Authors:       Tobias Ladner

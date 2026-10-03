@@ -18,6 +18,14 @@ back into the reach they came from.
 At a singular `P` the statement is simply unavailable: Mathlib's `P⁻¹` is then
 zero, the new block collapses, and nothing encloses. CORA reaches the same
 place by a pseudoinverse and does not test for it.
+
+This is [1, Prop. 9].
+
+## References
+
+* [1] M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid
+      Systems Using a Combination of Zonotopes and Polytopes". Nonlinear
+      Analysis: Hybrid Systems, 4(2):233-249, 2010.
 -/
 
 -- Authors:       Tobias Ladner

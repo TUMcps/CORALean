@@ -18,6 +18,7 @@ import CORALean.HybridDynamics.Operations.NonlinearResetSynchronize
 import CORALean.HybridDynamics.Operations.LinearResetLift
 import CORALean.HybridDynamics.Operations.LinearResetSynchronize
 import CORALean.HybridDynamics.Operations.TransitionToNonlinearReset
+import CORALean.HybridDynamics.Operations.SdcFlow
 
 /-!
 # What a hybrid automaton computes, collected

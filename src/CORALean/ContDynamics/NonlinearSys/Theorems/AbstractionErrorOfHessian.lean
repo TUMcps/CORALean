@@ -8,7 +8,7 @@ import Mathlib.Topology.Algebra.Module.ModuleTopology
 /-!
 # A twice-differentiable field supplies its own certificate
 
-[1, Prop. 3.7], and the one place in the directory where `f` is differentiated:
+[1, Prop. 3.7] = [2, Prop. 1], and the one place in the directory where `f` is differentiated:
 `abstrErrLin` is an `AbstractionError` once `A` and `B` really are the derivative
 at `(xs, us)` and `H` really bounds the second derivative. No theorem that
 *spends* a certificate imports it, so `AbstractionError` and the reachability
@@ -18,7 +18,7 @@ never meets any of this.
 `C` carries the regularity the printed proposition leaves implicit: the two
 `HasFDerivAt` hypotheses are two-sided at every point of it, so `C` is read as an
 open convex neighbourhood of `Z` and of the expansion point, and the segment
-`Z ∪ {zs}` spans lies inside it. The thesis's `ξ(z, z✱)` is exactly that segment.
+`Z ∪ {zs}` spans lies inside it, the segment of `ξ(z, z✱)` in [2, Eq. 2]'s remainder.
 
 `hA` pins `Ff i zs` on every stacked vector, which is what makes `A` and `B` the
 Jacobian blocks rather than merely one pair among many. The parameter box `P` of
@@ -29,6 +29,10 @@ the bound is over states and inputs alone.
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety
       Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [2] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Nonlinear
+      Systems with Uncertain Parameters using Conservative Linearization". In
+      Proc. of the 47th IEEE Conference on Decision and Control (CDC), 2008,
+      pp. 4042-4048.
 -/
 
 -- Authors:       Tobias Ladner

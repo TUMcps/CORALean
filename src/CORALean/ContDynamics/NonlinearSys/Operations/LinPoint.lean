@@ -6,7 +6,8 @@ import CORALean.ContSet.ContSet.ContSet
 
 Line 3 of [1, Alg. 1], which its eq. (6) spells out: the state expansion point
 is the centre of the set the step starts from, carried half a step along the
-field, and the input expansion point is the centre of the input set.
+field, and the input expansion point is the centre of the input set — [2, Sec. V]'s
+`z✱ = ĉ + (r/2) f(ĉ, mid(p))`, read as moving the state block of `ĉ` alone.
 
 Half a step and not none: the linearization is meant to be good over the whole
 of `[t_k, t_{k+1}]`, so the point is put where the flow is in the middle of it.
@@ -24,6 +25,10 @@ ordinary-differential specialization [1] gives directly under its `Alg. 1`.
 * [1] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive
       Reachability Algorithms for Nonlinear Systems Using Abstraction Error
       Analysis". Nonlinear Analysis: Hybrid Systems, vol. 46, 2022, p. 101252.
+* [2] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Nonlinear
+      Systems with Uncertain Parameters using Conservative Linearization". In
+      Proc. of the 47th IEEE Conference on Decision and Control (CDC), 2008,
+      pp. 4042-4048.
 -/
 
 -- Authors:       Tobias Ladner

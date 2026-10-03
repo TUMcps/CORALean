@@ -3,8 +3,9 @@ import CORALean.HybridDynamics.Definitions.Location
 /-!
 # Hybrid automata: the automaton and its runs
 
-CORA's `hybridAutomaton`, and [1, Def. 3.3]: the locations, indexed by a type. Finiteness is never
-used and so is not required; `Fin k` is the intended index.
+CORA's `hybridAutomaton`, and [1, Def. 3.3], first [2, Def. 1], and [3, Def. 1] without
+invariants: the locations, indexed by a type. Finiteness is never used and so is not
+required; `Fin k` is the intended index.
 
 A run alternates: flow inside a location over `[0, τ]` staying in its invariant,
 then a jump through a transition whose guard the endpoint meets, landing at the
@@ -23,6 +24,13 @@ no meaning without the stay that brought the state to the guard.
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety
       Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [2] M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid
+      Systems Using a Combination of Zonotopes and Polytopes". Nonlinear
+      Analysis: Hybrid Systems, 4(2):233-249, 2010.
+* [3] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in
+      Reachability Analysis of Hybrid Systems". In Proc. of the 15th ACM
+      International Conference on Hybrid Systems: Computation and Control (HSCC),
+      2012, pp. 45-54.
 -/
 
 -- Authors:       Tobias Ladner

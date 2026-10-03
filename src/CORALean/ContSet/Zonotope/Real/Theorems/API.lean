@@ -146,6 +146,16 @@ import CORALean.ContSet.Zonotope.Real.Theorems.NormSubCentreLeSumGeneratorLength
 import CORALean.ContSet.Zonotope.Real.Theorems.ConstrSatSound
 import CORALean.ContSet.Zonotope.Real.Theorems.CartProdExact
 import CORALean.ContSet.Zonotope.Real.Theorems.SplitFirstGenUnion
+import CORALean.ContSet.Zonotope.Real.Theorems.EnclosePolytopesOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.MethodCOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.OverApproxIndexLeIff
+import CORALean.ContSet.Zonotope.Real.Theorems.ParallelotopeOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.HalfspaceRangeNonnegNotDisjoint
+import CORALean.ContSet.Zonotope.Real.Theorems.HalfspaceRangeSound
+import CORALean.ContSet.Zonotope.Real.Theorems.QuadMapMatZonoNotOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.QuadMapMatZonoOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.QuadMapOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.UnitIntervalMulOuter
 
 /-!
 # What `Zonotope` guarantees

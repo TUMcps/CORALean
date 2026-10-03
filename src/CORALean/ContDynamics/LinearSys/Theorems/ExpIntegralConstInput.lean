@@ -6,7 +6,7 @@ import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMulVec
 `expIntegral_mulVec` reads `∫₀ᵗ e^{Aσ}v dσ`, where a run's input meets the
 propagator `e^{A(t-s)}` instead; the substitution `σ = t - s` is the whole
 difference. So a constant input over `[0,t]` contributes exactly
-`(∫₀ᵗ e^{Aσ}dσ)v`, with no matrix inverse anywhere — which is what lets an
+`(∫₀ᵗ e^{Aσ}dσ)v`, [2, Eq. 5]'s `Γ(t)u_c`, with no matrix inverse anywhere — which is what lets an
 input set be split into a constant and a remainder holding the origin.
 
 Stated apart from either caller: the point-matrix split of [1, Alg. 3] and the
@@ -17,6 +17,10 @@ alone — no system and no input set enter.
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety
       Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [2] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in
+      Reachability Analysis of Hybrid Systems". In Proc. of the 15th ACM
+      International Conference on Hybrid Systems: Computation and Control (HSCC),
+      2012, pp. 45-54.
 -/
 
 -- Authors:       Tobias Ladner

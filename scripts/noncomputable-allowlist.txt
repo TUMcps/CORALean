@@ -339,3 +339,4 @@ Layer.lipConstrScale  real-layer: an ℝ-only part of NN (the weight norm divide
 Layer.lipConstrLinear  real-layer: an ℝ-only part of NN, `Layer.linear` at the rescaled real weights `N W`; see `Layer.lipConstrScale`
 SmoothNetwork.eval  real-layer: an ℝ-only part of NN, the exact function of the networks CORA's `nonlinearSysDT` accepts (the real `tanh`, `relu` and `sigmoid`), never run
 SmoothNetwork.outputFn  real-layer: an ℝ-only part of NN, the output function of CORA's `nonlinearSysDT` over the real activations, never run
+NonlinearSys.splitReach  real-layer: the splitting of Althoff et al.'s CDC 2008 linearization loop halves a `Real.Zonotope` with `Zonotope.split`, which `FloatOps` cannot do exactly; a float split rounds and needs an inflation of its own design

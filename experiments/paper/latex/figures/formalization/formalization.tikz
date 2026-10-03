@@ -68,29 +68,29 @@
     yticklabel style={font=\scriptsize},
     title={(b) Formalized paper results},
     title style={at={(0,1)}, xshift=-1.55cm, yshift=0.3cm, anchor=south west, font=\footnotesize\bfseries},
-    xmax=308,
+    xmax=350,
     legend columns=3, legend to name=resultlegend,
     legend style={legend cell align=left, align=left, draw=none, font=\scriptsize, inner sep=0pt, /tikz/every even column/.append style={column sep=0.6ex}, /tikz/every odd column/.append style={column sep=0pt}},
     legend image code/.code={\draw[#1, draw=black, line width=0.4pt] (0cm,-0.6ex) rectangle (1.2ex,0.6ex);}]
-\addplot+[draw=none, fill=CORAcolorSafe] coordinates {(218,0)};
+\addplot+[draw=none, fill=CORAcolorSafe] coordinates {(244,0)};
 \addlegendentry{correct}
-\addplot+[draw=none, fill=CORAcolorUnknown] coordinates {(19,0)};
+\addplot+[draw=none, fill=CORAcolorUnknown] coordinates {(21,0)};
 \addlegendentry{proof gap}
-\addplot+[draw=none, fill=CORAcolorHighlight1] coordinates {(49,0)};
+\addplot+[draw=none, fill=CORAcolorHighlight1] coordinates {(55,0)};
 \addlegendentry{underspecified}
-\addplot+[draw=none, fill=CORAcolorUnsafe] coordinates {(22,0)};
+\addplot+[draw=none, fill=CORAcolorUnsafe] coordinates {(25,0)};
 \addlegendentry{fixed}
 \addplot+[draw=none, fill=CORAcolorDarkRed] coordinates {(0,0)};
 \addlegendentry{false}
-\addplot+[draw=none, fill=white] coordinates {(0,0)};
+\addplot+[draw=none, fill=white] coordinates {(5,0)};
 \addlegendentry{not yet}
-\draw[black, line width=0.4pt] ([yshift=-5.5pt]axis cs:0,0) rectangle ([yshift=5.5pt]axis cs:308,0);
-\node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:308,0) {308\hspace{0.8em}\textcolor{black!40}{+116}};
+\draw[black, line width=0.4pt] ([yshift=-5.5pt]axis cs:0,0) rectangle ([yshift=5.5pt]axis cs:350,0);
+\node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:350,0) {350\hspace{0.8em}\textcolor{black!40}{+128}};
 \end{axis}
-\begin{axis}[at={(results.south west)}, anchor=south west, height=0.55cm, width=2.44cm, xmin=0, xmax=308, enlarge y limits={abs=0.7}, hide axis, clip=false]
+\begin{axis}[at={(results.south west)}, anchor=south west, height=0.55cm, width=2.44cm, xmin=0, xmax=350, enlarge y limits={abs=0.7}, hide axis, clip=false]
 \addplot[draw=none] coordinates {(0,0) (0,0)};
-\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:109,0) {218};
-\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:261.5,0) {49};
+\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:122,0) {244};
+\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:292.5,0) {55};
 \end{axis}
 
 \begin{axis}[name=theorems,
@@ -109,25 +109,25 @@
     yticklabel style={font=\scriptsize},
     title={(c) Lean theorems},
     title style={at={(0,1)}, xshift=-1.55cm, yshift=0.3cm, anchor=south west, font=\footnotesize\bfseries},
-    xmax=3950,
+    xmax=3979,
     legend columns=2, legend to name=theoremlegend,
     legend style={legend cell align=left, align=left, draw=none, font=\scriptsize, inner sep=0pt, /tikz/every even column/.append style={column sep=0.6ex}, /tikz/every odd column/.append style={column sep=0pt}},
     legend image code/.code={\draw[#1, draw=black, line width=0.4pt] (0cm,-0.6ex) rectangle (1.2ex,0.6ex);}]
-\addplot+[draw=none, fill=CORAcolorBlue] coordinates {(446,0)};
+\addplot+[draw=none, fill=CORAcolorBlue] coordinates {(474,0)};
 \addlegendentry{paper theorems}
-\addplot+[draw=none, fill=CORAcolorBlue!66.67!CORAcolorPurple] coordinates {(1800,0)};
+\addplot+[draw=none, fill=CORAcolorBlue!66.67!CORAcolorPurple] coordinates {(1795,0)};
 \addlegendentry{lemmas}
 \addplot+[draw=none, fill=CORAcolorBlue!33.33!CORAcolorPurple] coordinates {(1063,0)};
 \addlegendentry{float refinements}
-\addplot+[draw=none, fill=CORAcolorPurple] coordinates {(641,0)};
+\addplot+[draw=none, fill=CORAcolorPurple] coordinates {(647,0)};
 \addlegendentry{proof helpers}
-\draw[black, line width=0.4pt] ([yshift=-5.5pt]axis cs:0,0) rectangle ([yshift=5.5pt]axis cs:3950,0);
-\node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:3950,0) {3950};
+\draw[black, line width=0.4pt] ([yshift=-5.5pt]axis cs:0,0) rectangle ([yshift=5.5pt]axis cs:3979,0);
+\node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:3979,0) {3979};
 \end{axis}
-\begin{axis}[at={(theorems.south west)}, anchor=south west, height=0.55cm, width=2.44cm, xmin=0, xmax=3950, enlarge y limits={abs=0.7}, hide axis, clip=false]
+\begin{axis}[at={(theorems.south west)}, anchor=south west, height=0.55cm, width=2.44cm, xmin=0, xmax=3979, enlarge y limits={abs=0.7}, hide axis, clip=false]
 \addplot[draw=none] coordinates {(0,0) (0,0)};
-\node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:1346,0) {1800};
-\node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:2777.5,0) {1063};
+\node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:1371.5,0) {1795};
+\node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:2800.5,0) {1063};
 \end{axis}
 
 \node[anchor=north west, inner sep=0pt] at ([xshift=-2.55cm, yshift=-0.9cm]methods.south west) {\ref*{coveragelegend}};

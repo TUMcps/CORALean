@@ -1,0 +1,50 @@
+import CORALean.ContSet.Zonotope.Real.Zonotope
+import Mathlib.Analysis.SpecialFunctions.Pow.Real
+import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
+
+/-!
+# `Zonotope.overApproxIndex`, the over-approximation index `Θ`
+
+[1, Sec. 5.3.1]: how much an enclosure `S_red` of `S_orig` gives away, as the `n`-th root
+of the volume ratio, `Θ = (V(S_red) / V(S_orig))^{1/n}`, the edge-length ratio of two cubes
+of those volumes, so that indices in different dimensions compare. One `let` per volume.
+
+The paper weights both sets by `W = diag(w)` first and then assumes, "from now on", that
+they are already in that normalized space, `W = I`; so does this, a caller weighting the
+sets by mapping them. Volumes are Lebesgue measure read as reals, finite for a zonotope;
+the index is meaningful only where `V(S_orig) > 0`, which nothing here asks.
+
+Real only: a specification, measure-theoretic, with nothing to round.
+
+## References
+
+* [1] M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid
+      Systems Using a Combination of Zonotopes and Polytopes". Nonlinear
+      Analysis: Hybrid Systems, 4(2):233-249, 2010.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       03-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- [1, Sec. 5.3.1]'s `Θ = (V(S_red) / V(S_orig))^{1/n}`, at `W = I`. -/
+noncomputable def Zonotope.overApproxIndex (Sred Sorig : Zonotope (Vec ℝ n)) : ℝ :=
+  let Vred : ℝ := (MeasureTheory.volume Sred.construct).toReal
+  let Vorig : ℝ := (MeasureTheory.volume Sorig.construct).toReal
+  (Vred / Vorig) ^ ((n : ℝ)⁻¹)
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

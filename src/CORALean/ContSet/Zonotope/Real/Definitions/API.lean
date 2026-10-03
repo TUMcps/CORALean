@@ -1,5 +1,6 @@
 import CORALean.ContSet.Zonotope.Real.Definitions.Aligned
 import CORALean.ContSet.Zonotope.Real.Definitions.ReduceBoxAdmissible
+import CORALean.ContSet.Zonotope.Real.Definitions.OverApproxIndex
 
 /-!
 # What a zonotope means beyond its own construction

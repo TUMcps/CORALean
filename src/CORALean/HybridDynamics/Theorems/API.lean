@@ -45,6 +45,12 @@ import CORALean.HybridDynamics.Theorems.NonlinearResetEvaluateSynchronize
 import CORALean.HybridDynamics.Theorems.LinearResetLiftBind
 import CORALean.HybridDynamics.Theorems.LinearResetLiftOfNotMem
 import CORALean.HybridDynamics.Theorems.LinearResetSynchronizeApply
+import CORALean.HybridDynamics.Theorems.HasDerivAtSdcFlow
+import CORALean.HybridDynamics.Theorems.MemConstFlowHitSet
+import CORALean.HybridDynamics.Theorems.MemHitSet
+import CORALean.HybridDynamics.Theorems.TendstoSdcFlowError
+import CORALean.HybridDynamics.Theorems.HasDerivAtHitJacobian
+import CORALean.HybridDynamics.Theorems.HasDerivAtHitPoint
 
 /-!
 # What a hybrid run guarantees, collected

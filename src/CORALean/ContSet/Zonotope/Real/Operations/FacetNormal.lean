@@ -16,10 +16,15 @@ norm is there to make the rows comparable, which nothing here needs.
 The `2·C(p, n-1)` rows of the printed `C` are these `C(p, n-1)` normals and
 their negatives, which is why every statement over them takes an absolute value.
 
+The rows first appeared in [2, Thm. 7] and, at `p = n`, [2, Lemma 6].
+
 ## References
 
 * [1] M. Althoff. "On Computing the Minkowski Difference of Zonotopes".
       arXiv, 2015.
+* [2] M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid
+      Systems Using a Combination of Zonotopes and Polytopes". Nonlinear
+      Analysis: Hybrid Systems, 4(2):233-249, 2010.
 -/
 
 -- Authors:       Tobias Ladner

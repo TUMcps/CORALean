@@ -3,7 +3,7 @@ import CORALean.ContSet.Zonotope.Real.Zonotope
 /-!
 # `Zonotope.split`
 
-Splitting a zonotope along its `j`-th generator [1, Prop. 3.8]: halve that
+Splitting a zonotope along its `j`-th generator [1, Prop. 3.8], first [2, Prop. 3]: halve that
 generator and shift the centre by `∓g_j/2`, which cuts the coefficient cube at
 `β_j = 0` and leaves every other coefficient alone.
 
@@ -23,6 +23,10 @@ design choice rather than a translation of this one.
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety
       Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [2] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Nonlinear
+      Systems with Uncertain Parameters using Conservative Linearization". In
+      Proc. of the 47th IEEE Conference on Decision and Control (CDC), 2008,
+      pp. 4042-4048.
 -/
 
 -- Authors:       Tobias Ladner

@@ -5,7 +5,7 @@ import Mathlib.Data.Matrix.Mul
 /-!
 # The linearization error of a second-order expansion
 
-CORA's `priv_abstrerr_lin` at `tensorOrder = 2`, which is [1, Prop. 3.7]: the box
+CORA's `priv_abstrerr_lin` at `tensorOrder = 2`, [1, Prop. 3.7] = [2, Prop. 1]: the box
 `[-l, l]` with `lᵢ = ½ γᵀ Hᵢ γ`, where `γ` bounds `|z - z✱|` over the set the step
 runs on and `Hᵢ` bounds the second derivative of coordinate `i` entrywise.
 
@@ -25,6 +25,10 @@ the mixed derivatives. `d` is free here and `n + m` at the use site.
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety
       Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [2] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Nonlinear
+      Systems with Uncertain Parameters using Conservative Linearization". In
+      Proc. of the 47th IEEE Conference on Decision and Control (CDC), 2008,
+      pp. 4042-4048.
 -/
 
 -- Authors:       Tobias Ladner

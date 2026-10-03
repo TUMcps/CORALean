@@ -4,7 +4,7 @@ import CORALean.ContSet.Interval.Real.Instances
 /-!
 # The centre is the best expansion point
 
-[1, Cor. 3.2]: `abstrErrLin`'s box is smallest at `zs = Z.c`. The radius `γ`
+[1, Cor. 3.2], first [2, Prop. 2]: `abstrErrLin`'s box is smallest at `zs = Z.c`. The radius `γ`
 carries `|c - zs|` as an additive term in every coordinate, and a quadratic form
 with nonnegative entries is monotone in a nonnegative argument, so any other
 expansion point only inflates the box.
@@ -25,6 +25,10 @@ on both sides here.
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety
       Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [2] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Nonlinear
+      Systems with Uncertain Parameters using Conservative Linearization". In
+      Proc. of the 47th IEEE Conference on Decision and Control (CDC), 2008,
+      pp. 4042-4048.
 -/
 
 -- Authors:       Tobias Ladner
