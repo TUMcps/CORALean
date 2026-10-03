@@ -183,6 +183,9 @@ import CORALean.ContSet.Zonotope.Real.Theorems.ParallelotopeEqAbsMulVecLeCounter
 import CORALean.ContSet.Zonotope.Real.Theorems.ConstructEqConvexHullCorner
 import CORALean.ContSet.Zonotope.Real.Theorems.VenumIff
 import CORALean.ContSet.Zonotope.Real.Theorems.PolymaxIff
+import CORALean.ContSet.Zonotope.Real.Theorems.ContainsDFSIff
+import CORALean.ContSet.Zonotope.Real.Theorems.IsGreatestCoeffNormCorner
+import CORALean.ContSet.Zonotope.Real.Theorems.NaiveVertexSampleLe
 
 /-!
 # What `Zonotope` guarantees

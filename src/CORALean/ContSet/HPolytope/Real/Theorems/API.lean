@@ -50,6 +50,11 @@ import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeInterEqCounterexample
 import CORALean.ContSet.HPolytope.Real.Theorems.PolyNormLeIff
 import CORALean.ContSet.HPolytope.Real.Theorems.PolyNormIsAsymmNorm
 import CORALean.ContSet.HPolytope.Real.Theorems.PolyNormIsAsymmNormCounterexample
+import CORALean.ContSet.HPolytope.Real.Theorems.IsGreatestPolyNormEllipsotope
+import CORALean.ContSet.HPolytope.Real.Theorems.IsGreatestPolyNormEllipsotopeCounterexample
+import CORALean.ContSet.HPolytope.Real.Theorems.ReduceOverDomainRows
+import CORALean.ContSet.HPolytope.Real.Theorems.ReduceOverDomainOuter
+import CORALean.ContSet.HPolytope.Real.Theorems.ReduceOverDomainInner
 
 /-!
 # What `HPolytope` guarantees

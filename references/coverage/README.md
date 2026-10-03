@@ -125,10 +125,10 @@ Rulings on borderline cases:
 | [levelSet](contSet/levelSet.md) | contSet | 22 | 2 | 6 | 6 | 8 | 0 |
 | [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 10 | 27 | 22 | 14 | 2 |
 | [polygon](contSet/polygon.md) | contSet | 46 | 1 | 17 | 21 | 7 | 0 |
-| [polytope](contSet/polytope.md) | contSet | 58 | 6 | 30 | 10 | 12 | 1 |
+| [polytope](contSet/polytope.md) | contSet | 58 | 8 | 30 | 8 | 12 | 1 |
 | [probZonotope](contSet/probZonotope.md) | contSet | 28 | 0 | 0 | 20 | 8 | 0 |
 | [spectraShadow](contSet/spectraShadow.md) | contSet | 33 | 0 | 7 | 18 | 8 | 0 |
-| [taylm](contSet/taylm.md) | contSet | 51 | 9 | 25 | 6 | 11 | 0 |
+| [taylm](contSet/taylm.md) | contSet | 51 | 5 | 29 | 6 | 11 | 0 |
 | [zonoBundle](contSet/zonoBundle.md) | contSet | 44 | 1 | 23 | 13 | 7 | 0 |
 | [zonotope](contSet/zonotope.md) | contSet | 80 | 9 | 42 | 15 | 14 | 1 |
 | [zoo](contSet/zoo.md) | contSet | 12 | 0 | 0 | 10 | 2 | 0 |

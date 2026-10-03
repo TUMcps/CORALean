@@ -34,6 +34,16 @@ import CORALean.ContSet.Taylm.Float.Theorems.TanhOuter
 import CORALean.ContSet.Taylm.Float.Theorems.TraceOuter
 import CORALean.ContSet.Taylm.Float.Theorems.ProdOuter
 import CORALean.ContSet.Taylm.Float.Theorems.DetOuter
+import CORALean.ContSet.Taylm.Float.Theorems.TaylorOuter
+import CORALean.ContSet.Taylm.Float.Theorems.AbsLeMagUp
+import CORALean.ContSet.Taylm.Float.Theorems.AtanOuter
+import CORALean.ContSet.Taylm.Float.Theorems.ArcsinCoefMem
+import CORALean.ContSet.Taylm.Float.Theorems.ArcsinBoundGe
+import CORALean.ContSet.Taylm.Float.Theorems.AsinOuter
+import CORALean.ContSet.Taylm.Float.Theorems.AcosOuter
+import CORALean.ContSet.Taylm.Float.Theorems.SqrtCoefMem
+import CORALean.ContSet.Taylm.Float.Theorems.SqrtBoundGe
+import CORALean.ContSet.Taylm.Float.Theorems.SqrtOuter
 
 /-!
 # Float Taylor model guarantees, collected

@@ -45,6 +45,7 @@ import CORALean.ContSet.HPolytope.Real.Operations.MldivideCora
 import CORALean.ContSet.HPolytope.Real.Operations.NormalizeConstraints
 import CORALean.ContSet.HPolytope.Real.Operations.NormalizeRows
 import CORALean.ContSet.HPolytope.Real.Operations.ProjectHighDim
+import CORALean.ContSet.HPolytope.Real.Operations.ReduceOverDomain
 
 /-!
 # What `HPolytope` computes

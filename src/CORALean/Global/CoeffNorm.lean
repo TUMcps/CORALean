@@ -16,12 +16,15 @@ bounded piece of it is compact.
 
 Off `range G` the infimum is over `∅`, and reads `0`; every statement here that needs a
 preimage asks for one, and at a surjective `G` that is every point. That this is a norm
-there is `[1, Thm. 1]`.
+there is `[1, Thm. 1]`, and at any coefficient norm `[2, Prop. 2.2]`.
 
 ## References
 
 * [1] A. Kulmburg and M. Althoff. "On the co-NP-Completeness of the Zonotope Containment
       Problem". European Journal of Control, 62:84-91, 2021.
+* [2] A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the
+      Zonotope and Ellipsotope Containment Problems". In Proc. of the European Control
+      Conference (ECC), 2024. doi:10.23919/ECC64448.2024.10590884.
 -/
 
 -- Authors:       Tobias Ladner

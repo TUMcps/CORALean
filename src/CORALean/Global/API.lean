@@ -50,6 +50,21 @@ import CORALean.Global.L1NormLeCardMulNorm
 import CORALean.Global.L1NormLeCardMulNormCounterexample
 import CORALean.Global.SliceEqSmulConvexHull
 import CORALean.Global.ChooseLeExpMulDivPow
+import CORALean.Global.CoeffNormBallEq
+import CORALean.Global.CoeffNormBallEqCounterexample
+import CORALean.Global.EllipsotopeSubsetIff
+import CORALean.Global.EllipsotopeSupport
+import CORALean.Global.ThetaUniform
+import CORALean.Global.ShenmaierBound
+import CORALean.Global.ShenmaierHalfspace
+import CORALean.Global.ShenmaierHalfspaceNotSubset
+import CORALean.Global.ShenmaierHalfspaceProb
+import CORALean.Global.ShenmaierHalfspaceCounterexample
+import CORALean.Global.ShenmaierVertex
+import CORALean.Global.ShenmaierVertexNotSubset
+import CORALean.Global.RecList
+import CORALean.Global.SqrtDeriv
+import CORALean.Global.IteratedDerivArccos
 
 /-!
 # Global definitions, collected

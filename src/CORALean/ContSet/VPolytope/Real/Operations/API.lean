@@ -19,6 +19,7 @@ import CORALean.ContSet.VPolytope.Real.Operations.EnclosePoints
 import CORALean.ContSet.VPolytope.Real.Operations.ConvHull
 import CORALean.ContSet.VPolytope.Real.Operations.Or
 import CORALean.ContSet.VPolytope.Real.Operations.ProjectHighDim
+import CORALean.ContSet.VPolytope.Real.Operations.Center
 
 /-!
 # What `VPolytope` computes

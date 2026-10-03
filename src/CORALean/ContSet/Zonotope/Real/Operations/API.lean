@@ -97,6 +97,7 @@ import CORALean.ContSet.Zonotope.Real.Operations.ContainsST
 import CORALean.ContSet.Zonotope.Real.Operations.ReduceUnderApproxSadraddini
 import CORALean.ContSet.Zonotope.Real.Operations.Venum
 import CORALean.ContSet.Zonotope.Real.Operations.Polymax
+import CORALean.ContSet.Zonotope.Real.Operations.ContainsDFS
 
 /-!
 # What `Zonotope` computes
