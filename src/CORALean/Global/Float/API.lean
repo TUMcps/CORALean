@@ -21,6 +21,7 @@ import CORALean.Global.Float.BilinUp
 import CORALean.Global.Float.Instances.API
 import CORALean.Global.Float.FloatBound
 import CORALean.Global.Float.RatUp
+import CORALean.Global.Float.IntRound
 
 /-!
 # The floating-point scalar, collected

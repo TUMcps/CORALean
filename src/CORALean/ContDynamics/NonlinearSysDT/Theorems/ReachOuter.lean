@@ -22,10 +22,11 @@ open Matrix ContSet Scalar Plus Reduce Mtimes
 variable {n m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
-variable [Mtimes (Mat ℝ) S] [Real.OfInterval S]
+variable {𝕋 : Type} [CORALean.Float.FloatOps 𝕋] [CORALean.Float.SoundFloatArithmetic 𝕋]
+variable [Mtimes (Mat 𝕋) S] [CORALean.Float.OfInterval S 𝕋]
 
-omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
-  [Real.OfInterval S] in
+omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
+  [CORALean.Float.OfInterval S 𝕋] in
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
@@ -43,7 +44,7 @@ theorem NonlinearSysDT.Trajectory.aux_toTrajectoryOn {sys : NonlinearSysDT n m} 
 
 /-- `reach` contains every trajectory of the total run, at every step. -/
 theorem NonlinearSysDT.reach_outer (sys : NonlinearSysDT n m) {U : S m} {o : ℕ} (ho : 0 < o)
-    (steps : ℕ → sys.LinStep U) (R₀ : S n) {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ m}
+    (steps : ℕ → sys.LinStep 𝕋 U) (R₀ : S n) {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ m}
     (traj : sys.Trajectory R₀ U x u) (hR : ∀ k, x k ∈ (steps k).R) (k : ℕ) :
     x k ∈ construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps) :=
   sys.reach_outer_on ho steps R₀ (traj.aux_toTrajectoryOn k) (fun i _ => hR i) k le_rfl

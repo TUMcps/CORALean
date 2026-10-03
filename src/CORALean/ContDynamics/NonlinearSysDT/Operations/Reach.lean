@@ -37,7 +37,8 @@ namespace CORALean
 variable {n m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
-variable [Mtimes (Mat ℝ) S] [Real.OfInterval S]
+variable {𝕋 : Type} [CORALean.Float.FloatOps 𝕋] [CORALean.Float.SoundFloatArithmetic 𝕋]
+variable [Mtimes (Mat 𝕋) S] [CORALean.Float.OfInterval S 𝕋]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -45,7 +46,7 @@ variable [Mtimes (Mat ℝ) S] [Real.OfInterval S]
 /-- The reachable set at time `tFinal`, from `R₀` at `tStart` under the per-step
 linearizations `steps`, held at maximum order `zonotopeOrder`. -/
 def NonlinearSysDT.reach (sys : NonlinearSysDT n m) (params : Reach.InputParams (S n) (S m) ℕ)
-    (options : NonlinearSysDT.ReachOptions) (steps : ℕ → sys.LinStep params.U) : S n :=
+    (options : NonlinearSysDT.ReachOptions) (steps : ℕ → sys.LinStep 𝕋 params.U) : S n :=
   let R₀ := params.R0                                               -- the paper's symbols
   let N := params.tFinal - params.tStart                           -- steps, in sampling periods
   let step := fun (i : ℕ) (R : S n) => (NonlinearSysDT.linearize (steps i).A).reach

@@ -33,10 +33,11 @@ open ContSet
 /-- `sys` with its input set `U`, a chain of linearizations `steps`, and for
 each step a checkable region inside the one its certificate was issued for. -/
 structure NonlinearSysDT.WithSteps (S Rg : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)]
-    [∀ n, ContSet (Rg n) (Vec ℝ n)] (m n : ℕ) where
+    [∀ n, ContSet (Rg n) (Vec ℝ n)] (𝕋 : Type) [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
+    (m n : ℕ) where
   sys : NonlinearSysDT n m
   U : S m
-  steps : ℕ → sys.LinStep U
+  steps : ℕ → sys.LinStep 𝕋 U
   region : ℕ → Rg n
   region_subset (i : ℕ) : construct (region i) ⊆ (steps i).R
 

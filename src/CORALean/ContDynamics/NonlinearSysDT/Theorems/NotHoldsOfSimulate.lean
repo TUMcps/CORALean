@@ -27,14 +27,15 @@ open Matrix ContSet Scalar Plus Reduce Mtimes
 variable {n m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
-variable [Mtimes (Mat ℝ) S] [Real.OfInterval S]
+variable {𝕋 : Type} [CORALean.Float.FloatOps 𝕋] [CORALean.Float.SoundFloatArithmetic 𝕋]
+variable [Mtimes (Mat 𝕋) S] [CORALean.Float.OfInterval S 𝕋]
 variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NonlinearSysDT.not_holds_of_simulate (sys : NonlinearSysDT n m) {U : S m} {o : ℕ}
-    (ho : 0 < o) (steps : ℕ → sys.LinStep U) (R₀ : S n) (spec : Specification ContSet)
+    (ho : 0 < o) (steps : ℕ → sys.LinStep 𝕋 U) (R₀ : S n) (spec : Specification ContSet)
     {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ construct R₀) {u : ℕ → Vec ℝ m} (hu : ∀ k, u k ∈ construct U)
     (hR : ∀ k, sys.simulate x₀ u k ∈ (steps k).R) (k : ℕ)
     (hbad : ¬ spec.Holds {sys.simulate x₀ u k}) :

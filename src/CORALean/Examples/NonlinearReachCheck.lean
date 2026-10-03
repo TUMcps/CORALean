@@ -33,7 +33,7 @@ open ContSet
 
 /-- A discrete nonlinear system, its region tests and the check run by `Reach.check`. -/
 example (sys : NonlinearSysDT.WithSteps (fun n => Interval (Vec ℝ n))
-      (fun n => Float.Interval (Vec ℝ n)) 1 2)
+      (fun n => Float.Interval (Vec ℝ n)) ℝ 1 2)
     (params : Reach.Params (Interval (Vec ℝ 2)) ℕ) (options : NonlinearSysDT.ReachOptions)
     (spec : Specification (Float.Interval (Vec ℝ 2))) :
     Reach.check (S := fun n => Interval (Vec ℝ n)) sys params options spec →

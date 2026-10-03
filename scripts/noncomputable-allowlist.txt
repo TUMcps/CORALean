@@ -39,6 +39,7 @@
 # continuous-time name cites the float definition that runs in its place.
 BReach.D  real-layer: a worked example over the real specification layer, proved and never run
 Chain.sensitivity  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
+getInputNeuronOrder  real-layer: ranks by the sort of the real sensitivity (`Chain.sensitivity`), ℝ-only for the same reason
 Chain.backprop  real-layer: the transposed-Jacobian pull-back of `Chain.sensitivity`, ℝ-only for the same reason
 DMZ.A0  real-layer: a worked example over the real specification layer, proved and never run
 DMZ.R0  real-layer: a worked example over the real specification layer, proved and never run

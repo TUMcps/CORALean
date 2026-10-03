@@ -40,7 +40,7 @@ variable {n m : ℕ}
 /-- Every set the run holds is at order `o`: one linear step ends in a
 `reduce`, and the caller's hypothesis covers the set before the first. -/
 theorem NonlinearSysDT.aux_reach_h_le (sys : NonlinearSysDT n m) {U : Zonotope (Vec ℝ m)}
-    {o : ℕ} (ho : 0 < o) (steps : ℕ → sys.LinStep (S := 𝒵) U) (R₀ : Zonotope (Vec ℝ n))
+    {o : ℕ} (ho : 0 < o) (steps : ℕ → sys.LinStep ℝ (S := 𝒵) U) (R₀ : Zonotope (Vec ℝ n))
     (hR₀ : R₀.h ≤ o * n) : ∀ k, (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps).h ≤ o * n
   | 0 => hR₀
   | _ + 1 => LinearSysDT.reach_order_le _ ho _ _ 0
@@ -57,7 +57,7 @@ theorem NonlinearSysDT.aux_stepBound_mono (n o : ℕ) {hU hU' : ℕ} (h : hU ≤
 /-- `k` re-linearized steps cost at most `k` worst-case linear steps. Nothing
 asserted here: it is `LinearSysDT.reachCost_le` at one step, `k` times. -/
 theorem NonlinearSysDT.reachCost_le (sys : NonlinearSysDT n m) {U : Zonotope (Vec ℝ m)}
-    {o : ℕ} (ho : 0 < o) (steps : ℕ → sys.LinStep (S := 𝒵) U) (R₀ : Zonotope (Vec ℝ n))
+    {o : ℕ} (ho : 0 < o) (steps : ℕ → sys.LinStep ℝ (S := 𝒵) U) (R₀ : Zonotope (Vec ℝ n))
     (hU : ℕ) (hR₀ : R₀.h ≤ o * n) (hL : ∀ j, ((steps j).linInput).h ≤ hU) (k : ℕ) :
     sys.reachCost o ho steps R₀ k ≤ k • LinearSysDT.reachStepBound n hU o := by -- --- PROOF ---
   induction k with

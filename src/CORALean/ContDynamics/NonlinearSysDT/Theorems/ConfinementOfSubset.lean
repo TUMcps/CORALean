@@ -36,7 +36,8 @@ open Matrix ContSet Scalar Plus Reduce Mtimes
 variable {n m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
-variable [Mtimes (Mat ℝ) S] [Real.OfInterval S]
+variable {𝕋 : Type} [CORALean.Float.FloatOps 𝕋] [CORALean.Float.SoundFloatArithmetic 𝕋]
+variable [Mtimes (Mat 𝕋) S] [CORALean.Float.OfInterval S 𝕋]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -45,7 +46,7 @@ variable [Mtimes (Mat ℝ) S] [Real.OfInterval S]
 checks `hsub`, that each step's computed reachable set lies inside its own
 certified region, instead of assuming confinement of the trajectory. -/
 theorem NonlinearSysDT.confinement_of_subset (sys : NonlinearSysDT n m) {U : S m} {o : ℕ}
-    (ho : 0 < o) (steps : ℕ → sys.LinStep U) (R₀ : S n)
+    (ho : 0 < o) (steps : ℕ → sys.LinStep 𝕋 U) (R₀ : S n)
     (hsub : ∀ k, construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps) ⊆ (steps k).R)
     {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ m} (traj : sys.Trajectory R₀ U x u) (k : ℕ) :
     x k ∈ (steps k).R := by -- --- PROOF ---

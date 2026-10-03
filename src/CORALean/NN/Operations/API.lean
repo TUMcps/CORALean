@@ -64,6 +64,8 @@ import CORALean.NN.Operations.SmoothNetworkNu
 import CORALean.NN.Operations.SmoothNetworkToNonlinearSysDT
 import CORALean.NN.Operations.ToNonlinearSysDT
 import CORALean.NN.Operations.WorstIndex
+import CORALean.NN.Operations.SnakeOrder
+import CORALean.NN.Operations.InputNeuronOrder
 
 /-!
 # What a network does, collected

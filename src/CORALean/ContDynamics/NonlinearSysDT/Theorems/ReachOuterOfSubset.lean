@@ -30,7 +30,8 @@ open Matrix ContSet Scalar Plus Reduce Mtimes
 variable {n m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
-variable [Mtimes (Mat ℝ) S] [Real.OfInterval S]
+variable {𝕋 : Type} [CORALean.Float.FloatOps 𝕋] [CORALean.Float.SoundFloatArithmetic 𝕋]
+variable [Mtimes (Mat 𝕋) S] [CORALean.Float.OfInterval S 𝕋]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -38,7 +39,7 @@ variable [Mtimes (Mat ℝ) S] [Real.OfInterval S]
 /-- `reach` contains every trajectory whose per-step regions pass `hsub`, the
 check a caller can actually run against the computed sets. -/
 theorem NonlinearSysDT.reach_outer_of_subset (sys : NonlinearSysDT n m) {U : S m} {o : ℕ}
-    (ho : 0 < o) (steps : ℕ → sys.LinStep U) (R₀ : S n)
+    (ho : 0 < o) (steps : ℕ → sys.LinStep 𝕋 U) (R₀ : S n)
     (hsub : ∀ k, construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps) ⊆ (steps k).R)
     {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ m} (traj : sys.Trajectory R₀ U x u) (k : ℕ) :
     x k ∈ construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps) :=

@@ -23,7 +23,8 @@ open ContSet Scalar Plus Reduce Mtimes
 variable {dy du p : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
-variable [Mtimes (Mat ℝ) S] [Real.OfInterval S]
+variable {𝕋 : Type} [CORALean.Float.FloatOps 𝕋] [CORALean.Float.SoundFloatArithmetic 𝕋]
+variable [Mtimes (Mat 𝕋) S] [CORALean.Float.OfInterval S 𝕋]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -33,7 +34,7 @@ theorem NonlinearARX.simulate_mem_reach (sys : NonlinearARX dy du p) {o : ℕ} (
     (hV : ∀ v : Vec ℝ ((p + 1) * du),
       (∀ a : Fin (p + 1), (fun b => v (finProdFinEquiv (a, b))) ∈ construct U) →
         v ∈ construct V)
-    (steps : ℕ → sys.toNonlinearSysDT.LinStep V)
+    (steps : ℕ → sys.toNonlinearSysDT.LinStep 𝕋 V)
     {y₀ : Vec ℝ (p * dy)} (hy₀ : y₀ ∈ construct Y₀) {u : ℕ → Vec ℝ du}
     (hu : ∀ k, u k ∈ construct U)
     (hR : ∀ k, NonlinearARX.stack p (sys.simulate y₀ u) k ∈ (steps k).R) (k : ℕ) :

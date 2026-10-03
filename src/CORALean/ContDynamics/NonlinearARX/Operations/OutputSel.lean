@@ -1,4 +1,5 @@
 import CORALean.ContDynamics.NonlinearARX.NonlinearARX
+import CORALean.Global.Float.FloatOps
 
 /-!
 # Reading the output off the window
@@ -17,14 +18,16 @@ it, as `LinearARX.outputEq`'s `C`, over `ℝ`.
 
 namespace CORALean
 
-variable {dy du p : ℕ}
+variable {dy du p : ℕ} {𝕋 : Type} [CORALean.Float.FloatOps 𝕋]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def NonlinearARX.outputSel (_sys : NonlinearARX dy du p) : Mat ℝ dy (p * dy) :=
+def NonlinearARX.outputSel (_sys : NonlinearARX dy du p) : Mat 𝕋 dy (p * dy) :=
   Matrix.of fun r c =>
-    if (finProdFinEquiv.symm c).1.val = 0 ∧ (finProdFinEquiv.symm c).2 = r then 1 else 0
+    if (finProdFinEquiv.symm c).1.val = 0 ∧ (finProdFinEquiv.symm c).2 = r then
+      CORALean.Float.FloatOps.one
+    else CORALean.Float.FloatOps.zero
 
 end CORALean
 

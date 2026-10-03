@@ -1,5 +1,7 @@
 import CORALean.ContDynamics.NonlinearSys.Definitions.AbstractionError
 import CORALean.ContDynamics.NonlinearSysDT.NonlinearSysDT
+import CORALean.ContSet.Interval.Float.Instances
+import CORALean.Global.Float.Instances.Real.Instances
 
 /-!
 # One linearization of a discrete step
@@ -26,9 +28,9 @@ with.
 
 namespace CORALean
 
-open Matrix ContSet
+open Matrix ContSet Scalar
 
-variable {n m : ℕ}
+variable {n m : ℕ} {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 
@@ -36,14 +38,19 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- One linearization of `sys`, with the certificate that makes it conservative
 wherever the state stays in `R`. -/
-structure NonlinearSysDT.LinStep (sys : NonlinearSysDT n m) (U : S m) where
-  A : Mat ℝ n n
-  B : Mat ℝ n m
-  xs : Vec ℝ n
-  us : Vec ℝ m
+structure NonlinearSysDT.LinStep (sys : NonlinearSysDT n m) (𝕋 : Type) [Float.FloatOps 𝕋]
+    [Float.SoundFloatArithmetic 𝕋] (U : S m) where
+  A : Mat 𝕋 n n
+  B : Mat 𝕋 n m
+  xs : Vec 𝕋 n
+  us : Vec 𝕋 m
+  /-- A box enclosing the constant `f(x✱,u✱) - A x✱`. -/
+  c : Float.Interval (Vec 𝕋 n)
   R : Set (Vec ℝ n)
   L : S n
-  cert : AbstractionError sys.f A B xs us R (construct U) L
+  cert : AbstractionError sys.f (toRealMat A) (toRealMat B) (toRealVec xs) (toRealVec us) R
+    (construct U) L
+  c_mem : sys.f (toRealVec xs) (toRealVec us) - toRealMat A *ᵥ toRealVec xs ∈ construct c
 
 end CORALean
 
