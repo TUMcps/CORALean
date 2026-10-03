@@ -1,0 +1,62 @@
+import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
+
+/-!
+# `ConPolyZono.isequal`, over a floating-point scalar
+
+The structural test at tolerance `0`, as over ℝ: the same numbers of factors, generators and
+constraints, the centre, the generators, the exponent matrices, the constraint matrix, the two ends
+of the constraint interval and of the error box equal, each stored number by the certified `le`
+in both directions. Certified in one direction only: `true` is a proof, `false` refutes nothing.
+Not CORA's test, which compacts and reorders first.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       03-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+open FloatOps
+
+variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+def ConPolyZono.isequal (Z S : ConPolyZono 𝕋 n) : Bool :=
+  if e : Z.p = S.p ∧ Z.h = S.h ∧ Z.q = S.q ∧ Z.m = S.m ∧ Z.s = S.s then
+    -- the centre, the error box and the two generator blocks, entry by entry
+    (List.finRange n).all (fun i =>
+      (le (Z.c i) (S.c i) && le (S.c i) (Z.c i)) &&
+      (le (Z.err.inf i) (S.err.inf i) && le (S.err.inf i) (Z.err.inf i)) &&
+      (le (Z.err.sup i) (S.err.sup i) && le (S.err.sup i) (Z.err.sup i)) &&
+      (List.finRange Z.h).all (fun j =>
+        le (Z.G i j) (S.G i (Fin.cast e.2.1 j)) && le (S.G i (Fin.cast e.2.1 j)) (Z.G i j)) &&
+      (List.finRange Z.q).all fun j =>
+        le (Z.GI i j) (S.GI i (Fin.cast e.2.2.1 j)) &&
+          le (S.GI i (Fin.cast e.2.2.1 j)) (Z.GI i j)) &&
+    -- the constraint interval and matrix
+    (List.finRange Z.m).all (fun r =>
+      (le (Z.b.inf r) (S.b.inf (Fin.cast e.2.2.2.1 r)) &&
+        le (S.b.inf (Fin.cast e.2.2.2.1 r)) (Z.b.inf r)) &&
+      (le (Z.b.sup r) (S.b.sup (Fin.cast e.2.2.2.1 r)) &&
+        le (S.b.sup (Fin.cast e.2.2.2.1 r)) (Z.b.sup r)) &&
+      (List.finRange Z.s).all fun j =>
+        le (Z.A r j) (S.A (Fin.cast e.2.2.2.1 r) (Fin.cast e.2.2.2.2 j)) &&
+          le (S.A (Fin.cast e.2.2.2.1 r) (Fin.cast e.2.2.2.2 j)) (Z.A r j)) &&
+    -- the exponent matrices of the generators and of the constraints
+    (List.finRange Z.p).all (fun k =>
+      (List.finRange Z.h).all (fun j =>
+        Z.E k j == S.E (Fin.cast e.1 k) (Fin.cast e.2.1 j)) &&
+      (List.finRange Z.s).all fun j =>
+        Z.EC k j == S.EC (Fin.cast e.1 k) (Fin.cast e.2.2.2.2 j))
+  else false
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

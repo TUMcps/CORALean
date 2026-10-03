@@ -1,3 +1,4 @@
+import CORALean.ContSet.ConPolyZono.Float.Theorems.IsequalSound
 import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
 import CORALean.ContSet.ConPolyZono.Float.Theorems.IntersectionD
 import CORALean.ContSet.ConPolyZono.Float.Theorems.ProjectOuter
@@ -7,6 +8,7 @@ import CORALean.ContSet.ConPolyZono.Float.Theorems.NominalIntersectionB
 import CORALean.ContSet.ConPolyZono.Float.Theorems.NominalIntersectionDep
 import CORALean.ContSet.ConPolyZono.Float.Theorems.IntersectionDepOuter
 import CORALean.ContSet.ConPolyZono.Float.Theorems.IntersectionOuter
+import CORALean.ContSet.ConPolyZono.Float.Theorems.SplitOuter
 import CORALean.ContSet.ConPolyZono.Float.Theorems.Merge
 import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactGensOuter
 import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactConsOuter

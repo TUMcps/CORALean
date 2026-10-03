@@ -1,4 +1,5 @@
 import CORALean.ContSet.ContSet.API
+import CORALean.ContSet.Equality.API
 import CORALean.ContSet.WithEmpty.API
 import CORALean.ContSet.SetUnion.API
 import CORALean.ContSet.SetIntersection.API

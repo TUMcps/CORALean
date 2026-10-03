@@ -1,0 +1,37 @@
+import CORALean.ContSet.PolyZonotope.Float.Operations.SplitDepFactor
+import CORALean.ContSet.PolyZonotope.Float.Operations.LongestFactor
+
+/-!
+# `PolyZonotope.splitLongestGen`, over a floating-point scalar
+
+The two halves of `pZ` along the factor of its longest generator, or the set twice where it has no
+dependent generator.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       03-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+open FloatOps
+
+variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+def PolyZonotope.splitLongestGen (pZ : PolyZonotope 𝕋 n) :
+    PolyZonotope 𝕋 n × PolyZonotope 𝕋 n :=
+  match pZ.longestFactor with
+  | some k => pZ.splitDepFactor k
+  | none => (pZ, pZ)
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

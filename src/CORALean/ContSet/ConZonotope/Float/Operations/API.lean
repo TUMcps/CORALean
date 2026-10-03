@@ -1,8 +1,10 @@
+import CORALean.ContSet.ConZonotope.Float.Operations.Isequal
 import CORALean.ContSet.ConZonotope.Float.Operations.Plus
 import CORALean.ContSet.ConZonotope.Float.Operations.LinCombGDiff
 import CORALean.ContSet.ConZonotope.Float.Operations.LinComb
 import CORALean.ContSet.ConZonotope.Float.Operations.Mtimes
 import CORALean.ContSet.ConZonotope.Float.Operations.Intersection
+import CORALean.ContSet.ConZonotope.Float.Operations.Split
 import CORALean.ContSet.ConZonotope.Float.Operations.Project
 import CORALean.ContSet.ConZonotope.Float.Operations.Reduce
 import CORALean.ContSet.ConZonotope.Float.Operations.Empty

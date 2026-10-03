@@ -1,3 +1,5 @@
+import CORALean.ContSet.HPolytope.Float.Theorems.ProjectHighDimExact
+import CORALean.ContSet.HPolytope.Float.Theorems.IsequalNominal
 import CORALean.ContSet.HPolytope.Float.Theorems.BoundOfDualLe
 import CORALean.ContSet.HPolytope.Float.Theorems.ContractBoxOuter
 import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
