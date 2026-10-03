@@ -1,8 +1,10 @@
+import CORALean.ContSet.ConPolyZono.Float.Operations.Isequal
 import CORALean.ContSet.ConPolyZono.Float.Operations.AgreeRow
 import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionA
 import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionAgree
 import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionB
 import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionDep
+import CORALean.ContSet.ConPolyZono.Float.Operations.Split
 import CORALean.ContSet.ConPolyZono.Float.Operations.Intersection
 import CORALean.ContSet.ConPolyZono.Float.Operations.MergedCol
 import CORALean.ContSet.ConPolyZono.Float.Operations.MergedColUp

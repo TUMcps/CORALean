@@ -1,3 +1,13 @@
+import CORALean.ContSet.PolyZonotope.Float.Operations.SplitLongestGen
+import CORALean.ContSet.PolyZonotope.Float.Operations.LongestFactor
+import CORALean.ContSet.PolyZonotope.Float.Operations.SplitDepFactor
+import CORALean.ContSet.PolyZonotope.Float.Operations.Resolve
+import CORALean.ContSet.PolyZonotope.Float.Operations.GetSubset
+import CORALean.ContSet.PolyZonotope.Float.Operations.GetSubsetGDiff
+import CORALean.ContSet.PolyZonotope.Float.Operations.GetSubsetGDown
+import CORALean.ContSet.PolyZonotope.Float.Operations.GetSubsetCoef
+import CORALean.ContSet.PolyZonotope.Float.Operations.MaxExp
+import CORALean.ContSet.PolyZonotope.Float.Operations.Isequal
 import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
 import CORALean.ContSet.PolyZonotope.Float.Operations.CenterResidual
 import CORALean.ContSet.PolyZonotope.Float.Operations.Centre

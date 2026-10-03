@@ -1,3 +1,7 @@
+import CORALean.ContSet.Taylm.Float.Theorems.RdivideOuter
+import CORALean.ContSet.Taylm.Float.Theorems.InvOuter
+import CORALean.ContSet.Taylm.Float.Theorems.InvBoundGe
+import CORALean.ContSet.Taylm.Float.Theorems.InvCoefMem
 import CORALean.ContSet.Taylm.Float.Theorems.AbsPolyOfRoundLe
 import CORALean.ContSet.Taylm.Float.Theorems.BoundsMem
 import CORALean.ContSet.Taylm.Float.Theorems.CodeEvalEncloses

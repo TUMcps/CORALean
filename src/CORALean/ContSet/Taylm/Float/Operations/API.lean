@@ -1,3 +1,7 @@
+import CORALean.ContSet.Taylm.Float.Operations.Rdivide
+import CORALean.ContSet.Taylm.Float.Operations.Inv
+import CORALean.ContSet.Taylm.Float.Operations.InvBound
+import CORALean.ContSet.Taylm.Float.Operations.InvCoef
 import CORALean.ContSet.Taylm.Float.Operations.BelowPow
 import CORALean.ContSet.Taylm.Float.Operations.Bounds
 import CORALean.ContSet.Taylm.Float.Operations.CodeEval
