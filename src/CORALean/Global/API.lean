@@ -65,6 +65,7 @@ import CORALean.Global.ShenmaierVertexNotSubset
 import CORALean.Global.RecList
 import CORALean.Global.SqrtDeriv
 import CORALean.Global.IteratedDerivArccos
+import CORALean.Global.TaylorLagrangeConvex
 
 /-!
 # Global definitions, collected

@@ -22,6 +22,7 @@ import CORALean.ContSet.PolyZonotope.API
 import CORALean.ContSet.ConPolyZono.API
 import CORALean.ContSet.Taylm.API
 import CORALean.ContSet.Zoo.API
+import CORALean.ContSet.ProbZonotope.API
 
 /-!
 # Set representations, collected

@@ -3,7 +3,7 @@ import CORALean.ContDynamics.LinearSys.LinearSys
 /-!
 # The set a continuous run actually reaches
 
-The definition is [1, Def. 3.1].
+The definition is [1, Def. 3.1], and [2, Def. 1] at `t = r`, `T = [0, r]`, for `ẋ = Ax + u`.
 
 Every state a trajectory of `sys` visits at time `t`, quantified over the runs
 themselves: no enclosure, nothing an implementation may widen, nothing a
@@ -24,6 +24,9 @@ and `ReachSetSubsetTimeIntervalInputSolution` put it inside what is computed.
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety
       Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [2] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems
+      using Enclosing Hulls of Probability Density Functions". In Proc. of the European Control
+      Conference (ECC), pp. 625-630, 2009.
 -/
 
 -- Authors:       Tobias Ladner

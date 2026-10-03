@@ -54,7 +54,7 @@ ENTRY = re.compile(r"^\s*\*\s*\[(\d+)\]\s*(.*)$")
 CITE = re.compile(r"\[(\d+)((?:,\s*)[^\]\n]*)?\]")
 LOCATOR = re.compile(
     r"^(Thm\.|Prop\.|Lemma|Def\.|Cor\.|Sec\.|Eq\.|Alg\.|Ch\.|Table|Fig\.|Remark|"
-    r"Heuristic|Assumption|§|pp?\.)", re.I
+    r"Heuristic|Assumption|Example|§|pp?\.)", re.I
 )
 LINK = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
 # A row that asserts something, as against one naming a definition, a section or

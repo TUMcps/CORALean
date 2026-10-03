@@ -13,10 +13,24 @@ import CORALean.ContSet.LevelSet.Real.Theorems.SplitEqualityFstOp
 import CORALean.ContSet.LevelSet.Real.Theorems.SplitEqualitySndOp
 import CORALean.ContSet.LevelSet.Real.Theorems.LiftExact
 import CORALean.ContSet.LevelSet.Real.Theorems.MtimesExact
+import CORALean.ContSet.LevelSet.Real.Theorems.TaylorSeriesMem
+import CORALean.ContSet.LevelSet.Real.Theorems.IntersectLevelSetBoxSubset
+import CORALean.ContSet.LevelSet.Real.Theorems.IntersectLevelSetBoxExact
+import CORALean.ContSet.LevelSet.Real.Theorems.IntersectLevelSetBoxCounterexample
+import CORALean.ContSet.LevelSet.Real.Theorems.IntersectLevelSetBoxParabola
+import CORALean.ContSet.LevelSet.Real.Theorems.GuardIntersectSolvableSubset
+import CORALean.ContSet.LevelSet.Real.Theorems.GuardIntersectUnsolvableSubset
+import CORALean.ContSet.LevelSet.Real.Theorems.GuardIntersectUnsolvableCounterexample
+import CORALean.ContSet.LevelSet.Real.Theorems.SolvedGuardSinCounterexample
+import CORALean.ContSet.LevelSet.Real.Theorems.SolvedGuardSinOfNeZero
+import CORALean.ContSet.LevelSet.Real.Theorems.OutsideInvariantOfRangeBound
+import CORALean.ContSet.LevelSet.Real.Theorems.GuardDisjointOfRangeBound
 
 /-!
 # What a level set guarantees, collected
 
-Every operation here is exact: a level set is closed under intersection, preimage and, for an
-invertible map or a translation, image, because each is a substitution in `f`.
+Every operation on a level set here is exact: a level set is closed under intersection, preimage
+and, for an invertible map or a translation, image, because each is a substitution in `f`. The
+guard-intersection models are not level sets but Taylor models over a box, and what is proved of
+them is an enclosure of the box cut by the guard, exact only in `IntersectLevelSetBoxExact`.
 -/

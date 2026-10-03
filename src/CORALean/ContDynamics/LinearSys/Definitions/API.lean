@@ -38,6 +38,7 @@ import CORALean.ContDynamics.LinearSys.Definitions.AdaptiveOptions
 import CORALean.ContDynamics.LinearSys.Definitions.AdaptiveState
 import CORALean.ContDynamics.LinearSys.Definitions.AdaptiveStepInfo
 import CORALean.ContDynamics.LinearSys.Definitions.AdaptiveInvariant
+import CORALean.ContDynamics.LinearSys.Definitions.NoiseCovariance
 
 /-!
 # What a continuous-time linear system means
