@@ -7,6 +7,13 @@ import Mathlib.Analysis.SpecialFunctions.Log.Deriv
 
 Where the range and the centre are positive, CORA's domain check: there `log` is smooth on
 the whole hull, and `log⁽ᴺ⁺¹⁾ = (x⁻¹)⁽ᴺ⁾` is `iter_deriv_inv`.
+
+[1, Def. 3 (log)]: the result is a Taylor model of `log ∘ f`.
+
+## References
+
+* [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion
+      Methods". International Journal of Pure and Applied Mathematics, 4(4):379-452, 2003.
 -/
 
 -- Authors:       Tobias Ladner

@@ -20,6 +20,8 @@ import CORALean.ContSet.Fullspace.Real.Theorems.ConvHullExact
 import CORALean.ContSet.Fullspace.Real.Theorems.DisjointIff
 import CORALean.ContSet.Fullspace.Real.Theorems.NotDisjointIff
 import CORALean.ContSet.Fullspace.Real.Theorems.SupportFuncEq
+import CORALean.ContSet.Fullspace.Real.Theorems.IsBoundedIff
+import CORALean.ContSet.Fullspace.Real.Theorems.IsFullDimTestIff
 
 /-!
 # The full space: theorems, collected

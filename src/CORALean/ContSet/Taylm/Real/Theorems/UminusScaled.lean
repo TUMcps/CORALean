@@ -1,0 +1,43 @@
+import CORALean.ContSet.Taylm.Real.Operations.Uminus
+import CORALean.ContSet.Taylm.Real.Definitions.Scaled
+
+/-!
+# `Taylm.uminus` keeps the scaling
+
+Negation changes no magnitude: the coefficients' and the remainder ends' (swapped) are the same.
+A step of [1, Thm. 1] for subtraction, which is a sum with a negation.
+
+## References
+
+* [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion
+      Methods". International Journal of Pure and Applied Mathematics, 4(4):379-452, 2003.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       03-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem Taylm.uminus_scaled {T : Taylm n} {h C : ℝ} (hT : T.Scaled h C) :
+    T.uminus.Scaled h C := by -- --- PROOF ---
+  obtain ⟨w, i, s⟩ := hT
+  refine ⟨?_, by simpa [Taylm.uminus] using s, by simpa [Taylm.uminus] using i⟩
+  have : Taylm.weight T.uminus.terms h = Taylm.weight T.terms h := by
+    simp [Taylm.uminus, Taylm.weight, Function.comp_def]
+  rw [this]
+  exact w
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

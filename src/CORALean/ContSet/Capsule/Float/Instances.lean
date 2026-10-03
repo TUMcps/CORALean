@@ -4,6 +4,7 @@ import CORALean.ContSet.Capsule.Float.Theorems.ReduceOuter
 import CORALean.ContSet.Capsule.Float.Theorems.ReindexExact
 import CORALean.ContSet.Capsule.Float.Theorems.PlusOuter
 import CORALean.ContSet.Capsule.Float.Theorems.MtimesOuter
+import CORALean.ContSet.Capsule.Float.Theorems.ConvHullOuter
 import CORALean.ContSet.ContSet.Definitions.ConvexSet
 import CORALean.ContSet.ContSet.Definitions.CompactSet
 
@@ -51,6 +52,11 @@ which takes about `log₂ √a` steps, then converges quadratically. -/
 instance : Plus (Capsule 𝕋 n) (Vec ℝ n) where
   plus := Capsule.plus 100
   plus_outer := Capsule.plus_outer 100
+
+/-- CORA's `convHull_`, 100 Newton steps as for `Plus`. -/
+instance : LinComb (Capsule 𝕋 n) (Vec ℝ n) where
+  linComb := Capsule.convHull 100
+  linComb_outer := Capsule.convHull_outer 100
 
 instance : Mtimes (Mat 𝕋) (Capsule 𝕋) where
   mtimes M C := Capsule.mtimes 100 M C

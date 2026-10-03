@@ -13,6 +13,8 @@ import CORALean.ContSet.EmptySet.Real.Operations.Vertices
 import CORALean.ContSet.EmptySet.Real.Operations.Volume
 import CORALean.ContSet.EmptySet.Real.Operations.Interval
 import CORALean.ContSet.EmptySet.Real.Operations.ConvHull
+import CORALean.ContSet.EmptySet.Real.Operations.IsBounded
+import CORALean.ContSet.EmptySet.Real.Operations.IsFullDimTest
 
 /-!
 # The empty set: operations, collected

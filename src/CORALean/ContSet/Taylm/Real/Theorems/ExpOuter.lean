@@ -4,6 +4,13 @@ import Mathlib.Analysis.SpecialFunctions.ExpDeriv
 
 /-!
 # `Taylm.exp` encloses `exp ∘ f`
+
+[1, Def. 3 (exp)]: the result is a Taylor model of `exp ∘ f`.
+
+## References
+
+* [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion
+      Methods". International Journal of Pure and Applied Mathematics, 4(4):379-452, 2003.
 -/
 
 -- Authors:       Tobias Ladner

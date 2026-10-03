@@ -7,6 +7,18 @@ CORA's `plus` of two models over the same variables: the term lists side by side
 remainders added. CORA merges equal monomials afterwards (`priv_compress`); that changes
 the list, not the polynomial, and is not done here. Not the Minkowski sum of the two range
 sets: the variables are shared, which is why this is no `Plus` instance.
+
+This is the addition of [1, Def. 2], `(P₁ + P₂, I₁ + I₂)`.
+
+The sum of [2, Eq. 6], with the scalars through `smul`.
+
+## References
+
+* [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion
+      Methods". International Journal of Pure and Applied Mathematics, 4(4):379-452, 2003.
+* [2] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA
+      2018". In Proc. of the 5th International Workshop on Applied Verification of Continuous
+      and Hybrid Systems (ARCH18), EPiC Series in Computing, vol. 54, pp. 145-173, 2018.
 -/
 
 -- Authors:       Tobias Ladner

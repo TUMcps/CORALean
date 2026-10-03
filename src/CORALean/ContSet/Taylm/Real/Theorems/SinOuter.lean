@@ -6,6 +6,13 @@ import CORALean.Global.ElementaryDerivBounds
 # `Taylm.sin` encloses `sin ∘ f`
 
 Every derivative of `sin` is bounded by one.
+
+[1, Def. 3 (sin)]: the result is a Taylor model of `sin ∘ f`.
+
+## References
+
+* [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion
+      Methods". International Journal of Pure and Applied Mathematics, 4(4):379-452, 2003.
 -/
 
 -- Authors:       Tobias Ladner

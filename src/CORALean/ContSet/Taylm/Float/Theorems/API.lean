@@ -1,10 +1,14 @@
 import CORALean.ContSet.Taylm.Float.Theorems.AbsPolyOfRoundLe
 import CORALean.ContSet.Taylm.Float.Theorems.BoundsMem
+import CORALean.ContSet.Taylm.Float.Theorems.CodeEvalEncloses
 import CORALean.ContSet.Taylm.Float.Theorems.ComposeOuter
 import CORALean.ContSet.Taylm.Float.Theorems.ConstOuter
 import CORALean.ContSet.Taylm.Float.Theorems.ExpOuter
+import CORALean.ContSet.Taylm.Float.Theorems.IntrinsicEncloses
 import CORALean.ContSet.Taylm.Float.Theorems.LogCoefMem
 import CORALean.ContSet.Taylm.Float.Theorems.LogOuter
+import CORALean.ContSet.Taylm.Float.Theorems.RangeBoundMem
+import CORALean.ContSet.Taylm.Float.Theorems.ToRealLeOfBelowPow
 import CORALean.ContSet.Taylm.Float.Theorems.TrigCoefMem
 import CORALean.ContSet.Taylm.Float.Theorems.UnitRemainderLe
 import CORALean.ContSet.Taylm.Float.Theorems.SinOuter
@@ -27,10 +31,14 @@ import CORALean.ContSet.Taylm.Float.Theorems.EmptyExact
 import CORALean.ContSet.Taylm.Float.Theorems.BoundDotLe
 import CORALean.ContSet.Taylm.Float.Theorems.TanOuter
 import CORALean.ContSet.Taylm.Float.Theorems.TanhOuter
+import CORALean.ContSet.Taylm.Float.Theorems.TraceOuter
+import CORALean.ContSet.Taylm.Float.Theorems.ProdOuter
+import CORALean.ContSet.Taylm.Float.Theorems.DetOuter
 
 /-!
 # Float Taylor model guarantees, collected
 
 Each float operation encloses what its exact counterpart does; `abs_polyOf_round_le` is the
-one rounding argument they all pay through.
+one rounding argument they all pay through. `codeEval_encloses` carries the enclosure through a
+code list, `rangeBound_mem` through range bounding.
 -/

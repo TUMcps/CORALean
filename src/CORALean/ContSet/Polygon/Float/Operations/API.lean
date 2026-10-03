@@ -10,6 +10,9 @@ import CORALean.ContSet.Polygon.Float.Operations.Or
 import CORALean.ContSet.Polygon.Float.Operations.Plus
 import CORALean.ContSet.Polygon.Float.Operations.Project
 import CORALean.ContSet.Polygon.Float.Operations.Times
+import CORALean.ContSet.Polygon.Float.Operations.BoundDot
+import CORALean.ContSet.Polygon.Float.Operations.Vertices
+import CORALean.ContSet.Polygon.Float.Operations.RepresentsaEmptySet
 
 /-!
 # Float polygon operations, collected

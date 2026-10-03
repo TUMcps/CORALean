@@ -98,6 +98,9 @@ import CORALean.ContSet.Interval.Float.Operations.Mrdivide
 import CORALean.ContSet.Interval.Float.Operations.OfCenterRadius
 import CORALean.ContSet.Interval.Float.Operations.QuadMap
 import CORALean.ContSet.Interval.Float.Operations.EvalList
+import CORALean.ContSet.Interval.Float.Operations.PowHi
+import CORALean.ContSet.Interval.Float.Operations.PowLo
+import CORALean.ContSet.Interval.Float.Operations.Power
 
 /-!
 # What `Interval` computes

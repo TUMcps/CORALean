@@ -6,6 +6,18 @@ import Mathlib.Tactic.Linarith
 
 Of the two functions, at the same point of the box: the shared variables are what makes the
 sum exact on the polynomials.
+
+The sum of [1, Def. 2] is a Taylor model of `f + g`.
+
+[2, Eq. 6]: with `smul_outer`, `αT₁ + βT₂` encloses `αf + βg`.
+
+## References
+
+* [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion
+      Methods". International Journal of Pure and Applied Mathematics, 4(4):379-452, 2003.
+* [2] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA
+      2018". In Proc. of the 5th International Workshop on Applied Verification of Continuous
+      and Hybrid Systems (ARCH18), EPiC Series in Computing, vol. 54, pp. 145-173, 2018.
 -/
 
 -- Authors:       Tobias Ladner

@@ -4,6 +4,14 @@ import CORALean.ContSet.Taylm.Real.Theorems.UminusOuter
 
 /-!
 # `Taylm.minus` encloses the difference
+
+[1, Eq. 7]: the difference encloses `f - g`.
+
+## References
+
+* [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA
+      2018". In Proc. of the 5th International Workshop on Applied Verification of Continuous
+      and Hybrid Systems (ARCH18), EPiC Series in Computing, vol. 54, pp. 145-173, 2018.
 -/
 
 -- Authors:       Tobias Ladner
