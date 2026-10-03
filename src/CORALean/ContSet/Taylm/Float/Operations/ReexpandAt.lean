@@ -1,0 +1,40 @@
+import CORALean.ContSet.Taylm.Float.Operations.ReexpCoef
+import CORALean.Global.Float.ListSum
+
+/-!
+# `Taylm.reexpandAt`
+
+One variable of the re-expansion: `sₖ` replaced by `m + r · sₖ`, every term binomially expanded in
+the exponent of that variable, `(m + r sₖ)ᵉ = Σⱼ C(e, j) mᵉ⁻ʲ rʲ sₖʲ`. Each coefficient is the
+term's times the bracketed binomial one; the upper corner is stored and the width goes to the
+remainder, a monomial being at most one in magnitude on the box.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       03-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+open FloatOps
+
+variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+def Taylm.reexpandAt (k : Fin n) (m r : 𝕋) (T : Taylm 𝕋 n) : Taylm 𝕋 n :=
+  -- what storing the upper corners costs, summed over the new terms
+  let err := listSumUp ((T.reexpPairs k).map fun p =>
+    subUp (Taylm.reexpCoef k m r p).2 (Taylm.reexpCoef k m r p).1)
+  ⟨(T.reexpPairs k).map fun p => ((Taylm.reexpCoef k m r p).2, Function.update p.1.2 k p.2),
+    subDown T.remInf err, addUp T.remSup err, T.maxOrder⟩
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

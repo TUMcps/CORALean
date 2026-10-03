@@ -1,0 +1,38 @@
+import CORALean.ContSet.ConPolyZono.Float.Operations.SplitLongestGen
+import CORALean.ContSet.ConPolyZono.Float.Theorems.SplitDepFactorOuter
+
+/-!
+# `ConPolyZono.splitLongestGen` covers the set
+
+`splitDepFactor_outer` at whichever factor the float ranking chose, the set being its own cover
+where there is none. Outer, not exact.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       03-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+open FloatOps SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem ConPolyZono.splitLongestGen_outer (cPZ : ConPolyZono 𝕋 n) :
+    cPZ.construct ⊆ cPZ.splitLongestGen.1.construct ∪ cPZ.splitLongestGen.2.construct := by
+  unfold ConPolyZono.splitLongestGen
+  cases cPZ.longestFactor with
+  | some k => exact ConPolyZono.splitDepFactor_outer cPZ k
+  | none => exact fun y hy => Or.inl hy
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

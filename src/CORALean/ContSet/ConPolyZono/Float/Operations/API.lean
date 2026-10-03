@@ -33,6 +33,12 @@ import CORALean.ContSet.ConPolyZono.Float.Operations.Origin
 import CORALean.ContSet.ConPolyZono.Float.Operations.Reindex
 import CORALean.ContSet.ConPolyZono.Float.Operations.Empty
 import CORALean.ContSet.ConPolyZono.Float.Operations.CartProd
+import CORALean.ContSet.ConPolyZono.Float.Operations.ToPolyZonotope
+import CORALean.ContSet.ConPolyZono.Float.Operations.ConsPolyZonotope
+import CORALean.ContSet.ConPolyZono.Float.Operations.GetSubset
+import CORALean.ContSet.ConPolyZono.Float.Operations.LongestFactor
+import CORALean.ContSet.ConPolyZono.Float.Operations.SplitDepFactor
+import CORALean.ContSet.ConPolyZono.Float.Operations.SplitLongestGen
 
 /-!
 # What `ConPolyZono` computes

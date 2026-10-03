@@ -48,6 +48,11 @@ import CORALean.ContSet.Taylm.Float.Operations.Acos
 import CORALean.ContSet.Taylm.Float.Operations.SqrtCoef
 import CORALean.ContSet.Taylm.Float.Operations.SqrtBound
 import CORALean.ContSet.Taylm.Float.Operations.Sqrt
+import CORALean.ContSet.Taylm.Float.Operations.BinomCoef
+import CORALean.ContSet.Taylm.Float.Operations.ReexpPairs
+import CORALean.ContSet.Taylm.Float.Operations.ReexpCoef
+import CORALean.ContSet.Taylm.Float.Operations.ReexpandAt
+import CORALean.ContSet.Taylm.Float.Operations.Reexpand
 
 /-!
 # Float Taylor model operations, collected

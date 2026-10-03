@@ -11,6 +11,7 @@ import CORALean.ContSet.ContSet.Operations.ProjectHighDim
 import CORALean.ContSet.ContSet.Operations.Project
 import CORALean.ContSet.ContSet.Operations.Decompose
 import CORALean.ContSet.ContSet.Operations.ProjectOnHyperplane
+import CORALean.ContSet.ContSet.Operations.ProjectOnHyperplaneFloat
 import CORALean.ContSet.ContSet.Operations.SupportBoundSegments
 import CORALean.ContSet.ContSet.Operations.Times
 import CORALean.ContSet.ContSet.Operations.Uminus

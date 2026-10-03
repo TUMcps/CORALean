@@ -18,6 +18,8 @@ import CORALean.ContSet.Ellipsoid.Float.Operations.RepresentsaOrigin
 import CORALean.ContSet.Ellipsoid.Float.Operations.Isequal
 import CORALean.ContSet.Ellipsoid.Float.Operations.Vertices
 import CORALean.ContSet.Ellipsoid.Float.Operations.NormUb
+import CORALean.ContSet.Ellipsoid.Float.Operations.CartProd
+import CORALean.ContSet.Ellipsoid.Float.Operations.CartProdVec
 
 /-!
 # What a float ellipsoid computes, collected
