@@ -129,6 +129,13 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.OfPointMemIff
 import CORALean.ContSet.PolyZonotope.Real.Theorems.CentreMemConstruct
 import CORALean.ContSet.PolyZonotope.Real.Theorems.IsBounded
 import CORALean.ContSet.PolyZonotope.Real.Theorems.IsCompact
+import CORALean.ContSet.PolyZonotope.Real.Theorems.IsFullDimCoraCounterexample
+import CORALean.ContSet.PolyZonotope.Real.Theorems.IsFullDimRank
+import CORALean.ContSet.PolyZonotope.Real.Theorems.RmIdConstruct
+import CORALean.ContSet.PolyZonotope.Real.Theorems.SplitDepFactorUnion
+import CORALean.ContSet.PolyZonotope.Real.Theorems.SplitLongestGenUnion
+import CORALean.ContSet.PolyZonotope.Real.Theorems.SumCoraCounterexample
+import CORALean.ContSet.PolyZonotope.Real.Theorems.SumPoint
 
 /-!
 # What `PolyZonotope` guarantees

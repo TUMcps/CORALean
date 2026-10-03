@@ -1,0 +1,85 @@
+import CORALean.ContSet.Taylm.Real.Operations.LdbLoop
+import CORALean.ContSet.Taylm.Real.Theorems.LdbStepLower
+import CORALean.ContSet.Taylm.Real.Theorems.LdbStepReduce
+import CORALean.ContSet.Taylm.Real.Theorems.LdbStepWitness
+import CORALean.ContSet.Taylm.Real.Theorems.LdbStepSub
+import CORALean.ContSet.Taylm.Real.Theorems.ExistsNormalized
+import CORALean.ContSet.Taylm.Real.Theorems.ReexpandOuter
+
+/-!
+# The LDB iteration bounds the minimum
+
+[1, Sec. 2]: `M` is a lower bound of the minimum on every box the iteration passes through. On the
+last box by `ldbStep_lower`; a point cut off earlier is above that step's `Min`, which a kept
+point is below, and the kept point is in the next box, where the induction holds.
+
+## References
+
+* [1] K. Makino and M. Berz. "Verified Global Optimization with Taylor Model-based Range
+      Bounders". Transactions on Computers, 11(4):1611-1618, 2005.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       03-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem Taylm.ldbLoop_le {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f) (ε : ℝ) :
+    ∀ (fuel : ℕ) (B : Fin n → ℝ × ℝ), (∀ k, -1 ≤ (B k).1 ∧ (B k).2 ≤ 1) →
+      ∀ t, Taylm.InBox B t → Taylm.ldbLoop T ε fuel B ≤ f t := by -- --- PROOF ---
+  intro fuel
+  induction fuel with
+  | zero =>
+    intro B hB t ht
+    obtain ⟨s, hs, rfl⟩ := Taylm.exists_normalized ht
+    have hB' : ∀ k, -1 ≤ (B k).1 ∧ (B k).1 ≤ (B k).2 ∧ (B k).2 ≤ 1 := fun k =>
+      ⟨(hB k).1, le_trans (ht k).1 (ht k).2, (hB k).2⟩
+    exact Taylm.ldbStep_lower (Taylm.reexpand_outer h hB') hs
+  | succ fuel ih =>
+    intro B hB t ht
+    have hB' : ∀ k, -1 ≤ (B k).1 ∧ (B k).1 ≤ (B k).2 ∧ (B k).2 ≤ 1 := fun k =>
+      ⟨(hB k).1, le_trans (ht k).1 (ht k).2, (hB k).2⟩
+    have hE := Taylm.reexpand_outer h hB'
+    obtain ⟨s, hs, rfl⟩ := Taylm.exists_normalized ht
+    simp only [Taylm.ldbLoop]
+    split_ifs with hd
+    · set R := (T.reexpand B).ldbStep.2.2
+      -- the kept box lies in the current one
+      have hrad : ∀ k, 0 ≤ Taylm.boxRad B k := fun k => by
+        simp only [Taylm.boxRad]; linarith [(hB' k).2.1]
+      have hsub : ∀ k, -1 ≤ Taylm.boxMid B k + Taylm.boxRad B k * (R k).1 ∧
+          Taylm.boxMid B k + Taylm.boxRad B k * (R k).2 ≤ 1 := by
+        intro k
+        have hR := Taylm.ldbStep_sub (T.reexpand B) k
+        have := hrad k
+        simp only [Taylm.boxMid, Taylm.boxRad] at this ⊢
+        constructor <;> nlinarith [(hB' k).1, (hB' k).2.1, (hB' k).2.2, hR.1, hR.2]
+      have himg : ∀ q, Taylm.InBox R q → Taylm.InBox (fun k =>
+          (Taylm.boxMid B k + Taylm.boxRad B k * (R k).1,
+            Taylm.boxMid B k + Taylm.boxRad B k * (R k).2))
+          (fun k => Taylm.boxMid B k + Taylm.boxRad B k * q k) := by
+        intro q hq k
+        exact ⟨by nlinarith [(hq k).1, hrad k], by nlinarith [(hq k).2, hrad k]⟩
+      by_cases hin : Taylm.InBox R s
+      · exact ih _ hsub _ (himg s hin)
+      · -- the point was cut: a kept point is lower still
+        have hlt := Taylm.ldbStep_reduce hE hs hin
+        obtain ⟨q, hq, hqR, hgq⟩ := Taylm.ldbStep_witness hE
+        have := ih _ hsub _ (himg q hqR)
+        linarith
+    · exact Taylm.ldbStep_lower hE hs
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

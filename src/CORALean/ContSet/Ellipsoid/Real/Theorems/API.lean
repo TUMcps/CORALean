@@ -22,6 +22,9 @@ import CORALean.ContSet.Ellipsoid.Real.Theorems.RankShape
 import CORALean.ContSet.Ellipsoid.Real.Theorems.CartProdOuter
 import CORALean.ContSet.Ellipsoid.Real.Theorems.CartProdVecExact
 import CORALean.ContSet.Ellipsoid.Real.Theorems.IsFullDimIff
+import CORALean.ContSet.Ellipsoid.Real.Theorems.IsequalConstruct
+import CORALean.ContSet.Ellipsoid.Real.Theorems.VerticesExact
+import CORALean.ContSet.Ellipsoid.Real.Theorems.NormUbLe
 
 /-!
 # What an ellipsoid guarantees, collected

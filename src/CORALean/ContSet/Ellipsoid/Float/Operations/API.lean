@@ -15,6 +15,9 @@ import CORALean.ContSet.Ellipsoid.Float.Operations.Centre
 import CORALean.ContSet.Ellipsoid.Float.Operations.Reindex
 import CORALean.ContSet.Ellipsoid.Float.Operations.RepresentsaPoint
 import CORALean.ContSet.Ellipsoid.Float.Operations.RepresentsaOrigin
+import CORALean.ContSet.Ellipsoid.Float.Operations.Isequal
+import CORALean.ContSet.Ellipsoid.Float.Operations.Vertices
+import CORALean.ContSet.Ellipsoid.Float.Operations.NormUb
 
 /-!
 # What a float ellipsoid computes, collected

@@ -50,6 +50,7 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [A state bounding observer based on zonotopes](2003/combastel-ecc-state-bounding-observer.md) | Combastel | ECC | 2003 | 🟢 5/5 \| 1 |
 | [Taylor Models and Other Validated Functional Inclusion Methods](2003/makino-ijpam-taylor-models.md) | Makino, Berz | International Journal of Pure and Applied Mathematics, 4(4):379-452 | 2003 | 🟢 20/20 \| 24 |
 | [Reachability of Uncertain Linear Systems Using Zonotopes](2005/girard-hscc-reachability-zonotopes.md) | Girard | HSCC, LNCS 3414, pp. 291-305 | 2005 | 🟢 7/7 \| 1 |
+| [Verified Global Optimization with Taylor Model-based Range Bounders](2005/makino-tc-global-optimization.md) | Makino, Berz | Transactions on Computers, 11(4):1611-1618 | 2005 | 🟢 3/3 \| 6 |
 | [Reachability Analysis of Nonlinear Systems with Uncertain Parameters using Conservative Linearization](2008/althoff-cdc-conservative-linearization.md) | Althoff, Stursberg, Buss | CDC, pp. 4042-4048 | 2008 | 🟡 11/12 \| 3 |
 | [Computing Reachable Sets of Hybrid Systems Using a Combination of Zonotopes and Polytopes](2010/althoff-nahs-zonotopes-polytopes.md) | Althoff, Stursberg, Buss | Nonlinear Analysis: Hybrid Systems, 4(2):233-249 | 2010 | 🟢 13/13 \| 6 |
 | [Reachability Analysis and its Application to the Safety Assessment of Autonomous Cars](2010/althoff-thesis.md) | Althoff | PhD thesis, TU München | 2010 | 🟢 34/34 \| 2 |

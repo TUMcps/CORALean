@@ -1,5 +1,6 @@
 import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 import CORALean.ContSet.Zonotope.Float.Theorems.RadiusLe
+import CORALean.ContSet.Zonotope.Float.Theorems.GeneratorLengthLe
 import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
 import CORALean.ContSet.Zonotope.Float.Theorems.AbsLeAbsBoundError
 import CORALean.ContSet.Zonotope.Float.Theorems.MtimesMatZonotopeOuter
@@ -63,6 +64,9 @@ import CORALean.ContSet.Zonotope.Float.Theorems.CartProdExact
 import CORALean.ContSet.Zonotope.Float.Theorems.ExactPlusOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.RepresentsaPointSound
 import CORALean.ContSet.Zonotope.Float.Theorems.RepresentsaOriginSound
+import CORALean.ContSet.Zonotope.Float.Theorems.AndOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.IsequalSound
+import CORALean.ContSet.Zonotope.Float.Theorems.CompactZerosExact
 
 /-!
 # What `Zonotope` guarantees

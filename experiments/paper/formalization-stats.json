@@ -14,21 +14,21 @@
     "not-covered"
   ],
   "totals": {
-    "papers": 33,
+    "papers": 34,
     "papers_with_findings": 27,
-    "in_scope": 381,
-    "formalized": 376,
+    "in_scope": 384,
+    "formalized": 379,
     "not_formalized": 5,
-    "out_of_scope": 190,
+    "out_of_scope": 196,
     "out_of_scope_by_reason": {
-      "restated": 103,
+      "restated": 104,
       "mathlib": 8,
-      "not-a-claim": 55,
+      "not-a-claim": 60,
       "done-differently": 7,
       "not-covered": 17
     },
     "by_class": {
-      "correct": 266,
+      "correct": 269,
       "underspecified": 61,
       "proof-gap": 21,
       "fixed": 28,
@@ -228,6 +228,31 @@
           "reason": "the printed bound inherits Lemma 2's error and is false; true with `(1/2 + r‖A‖)`, still `O(r)`; see Findings"
         }
       ]
+    },
+    {
+      "page": "2005/makino-tc-global-optimization.md",
+      "label": "Makino 2005",
+      "year": 2005,
+      "title": "Verified Global Optimization with Taylor Model-based Range Bounders",
+      "in_scope": 3,
+      "formalized": 3,
+      "not_formalized": 0,
+      "out_of_scope": 6,
+      "out_of_scope_by_reason": {
+        "restated": 1,
+        "mathlib": 0,
+        "not-a-claim": 5,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 3,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": []
     },
     {
       "page": "2008/althoff-cdc-conservative-linearization.md",
@@ -1511,11 +1536,11 @@
         "group": "contSet",
         "class": "conPolyZono",
         "methods": 47,
-        "proved": 5,
+        "proved": 9,
         "float": 20,
-        "not_yet": 14,
+        "not_yet": 10,
         "out_of_scope": 8,
-        "needs_float": 5,
+        "needs_float": 9,
         "out_of_scope_by_reason": {
           "plotting/display": 3,
           "random/sampling": 2,
@@ -1524,7 +1549,7 @@
           "matlab-runtime": 3,
           "deprecated": 0
         },
-        "cora_issues": 0,
+        "cora_issues": 1,
         "findings": {
           "correct": 13,
           "underspecified": 1,
@@ -1537,11 +1562,11 @@
         "group": "contSet",
         "class": "conZonotope",
         "methods": 50,
-        "proved": 4,
+        "proved": 7,
         "float": 21,
-        "not_yet": 13,
+        "not_yet": 10,
         "out_of_scope": 12,
-        "needs_float": 4,
+        "needs_float": 7,
         "out_of_scope_by_reason": {
           "plotting/display": 4,
           "random/sampling": 2,
@@ -1578,7 +1603,7 @@
         },
         "cora_issues": 0,
         "findings": {
-          "correct": 28,
+          "correct": 31,
           "underspecified": 7,
           "proof-gap": 0,
           "fixed": 3,
@@ -1590,8 +1615,8 @@
         "class": "ellipsoid",
         "methods": 50,
         "proved": 5,
-        "float": 15,
-        "not_yet": 21,
+        "float": 17,
+        "not_yet": 19,
         "out_of_scope": 9,
         "needs_float": 5,
         "out_of_scope_by_reason": {
@@ -1719,11 +1744,11 @@
         "group": "contSet",
         "class": "polyZonotope",
         "methods": 73,
-        "proved": 4,
+        "proved": 9,
         "float": 27,
-        "not_yet": 28,
+        "not_yet": 23,
         "out_of_scope": 14,
-        "needs_float": 4,
+        "needs_float": 9,
         "out_of_scope_by_reason": {
           "plotting/display": 4,
           "random/sampling": 2,
@@ -1732,7 +1757,7 @@
           "matlab-runtime": 7,
           "deprecated": 1
         },
-        "cora_issues": 0,
+        "cora_issues": 2,
         "findings": {
           "correct": 30,
           "underspecified": 7,
@@ -1771,11 +1796,11 @@
         "group": "contSet",
         "class": "polytope",
         "methods": 58,
-        "proved": 3,
+        "proved": 6,
         "float": 30,
-        "not_yet": 14,
+        "not_yet": 11,
         "out_of_scope": 11,
-        "needs_float": 3,
+        "needs_float": 6,
         "out_of_scope_by_reason": {
           "plotting/display": 3,
           "random/sampling": 3,
@@ -1784,7 +1809,7 @@
           "matlab-runtime": 5,
           "deprecated": 0
         },
-        "cora_issues": 0,
+        "cora_issues": 1,
         "findings": {
           "correct": 5,
           "underspecified": 0,
@@ -1849,11 +1874,11 @@
         "group": "contSet",
         "class": "taylm",
         "methods": 51,
-        "proved": 8,
+        "proved": 9,
         "float": 25,
-        "not_yet": 7,
+        "not_yet": 6,
         "out_of_scope": 11,
-        "needs_float": 8,
+        "needs_float": 9,
         "out_of_scope_by_reason": {
           "plotting/display": 2,
           "random/sampling": 1,
@@ -1876,8 +1901,8 @@
         "class": "zonoBundle",
         "methods": 44,
         "proved": 1,
-        "float": 22,
-        "not_yet": 14,
+        "float": 23,
+        "not_yet": 13,
         "out_of_scope": 7,
         "needs_float": 1,
         "out_of_scope_by_reason": {
@@ -1901,11 +1926,11 @@
         "group": "contSet",
         "class": "zonotope",
         "methods": 80,
-        "proved": 6,
-        "float": 37,
-        "not_yet": 23,
+        "proved": 5,
+        "float": 42,
+        "not_yet": 19,
         "out_of_scope": 14,
-        "needs_float": 6,
+        "needs_float": 5,
         "out_of_scope_by_reason": {
           "plotting/display": 2,
           "random/sampling": 3,
@@ -2525,12 +2550,12 @@
     "groups": {
       "contSet": {
         "methods": 908,
-        "proved": 51,
-        "float": 397,
-        "not_yet": 226,
+        "proved": 66,
+        "float": 405,
+        "not_yet": 203,
         "out_of_scope": 234,
-        "needs_float": 51,
-        "cora_issues": 5,
+        "needs_float": 66,
+        "cora_issues": 9,
         "out_of_scope_by_reason": {
           "plotting/display": 51,
           "random/sampling": 36,
@@ -2540,7 +2565,7 @@
           "deprecated": 14
         },
         "findings": {
-          "correct": 152,
+          "correct": 155,
           "underspecified": 31,
           "proof-gap": 5,
           "fixed": 14,
@@ -2622,12 +2647,12 @@
     },
     "totals": {
       "methods": 1260,
-      "proved": 96,
-      "float": 483,
-      "not_yet": 307,
+      "proved": 111,
+      "float": 491,
+      "not_yet": 284,
       "out_of_scope": 374,
-      "needs_float": 96,
-      "cora_issues": 7,
+      "needs_float": 111,
+      "cora_issues": 11,
       "out_of_scope_by_reason": {
         "plotting/display": 86,
         "random/sampling": 43,
@@ -2637,7 +2662,7 @@
         "deprecated": 14
       },
       "findings": {
-        "correct": 259,
+        "correct": 262,
         "underspecified": 59,
         "proof-gap": 21,
         "fixed": 24,
@@ -2668,11 +2693,11 @@
       }
     },
     "theorems": {
-      "paper": 527,
-      "float": 1095,
-      "helper": 658,
-      "lemma": 1830,
-      "total": 4110,
+      "paper": 543,
+      "float": 1105,
+      "helper": 670,
+      "lemma": 1865,
+      "total": 4183,
       "examples": 80
     }
   }

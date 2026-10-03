@@ -17,6 +17,10 @@ import CORALean.ContSet.HPolytope.Real.Theorems.PlusOfOuter
 import CORALean.ContSet.HPolytope.Real.Theorems.StackExact
 import CORALean.ContSet.HPolytope.Real.Theorems.TranslateExact
 import CORALean.ContSet.HPolytope.Real.Theorems.LiftExact
+import CORALean.ContSet.HPolytope.Real.Theorems.MldivideCoraCounterexample
+import CORALean.ContSet.HPolytope.Real.Theorems.NormalizeConstraintsExact
+import CORALean.ContSet.HPolytope.Real.Theorems.NormalizeRowsExact
+import CORALean.ContSet.HPolytope.Real.Theorems.ProjectHighDimExact
 
 /-!
 # What `HPolytope` guarantees

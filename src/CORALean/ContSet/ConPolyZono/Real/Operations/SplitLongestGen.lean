@@ -1,0 +1,37 @@
+import CORALean.ContSet.ConPolyZono.Real.Operations.SplitDepFactor
+import CORALean.ContSet.ConPolyZono.Real.Operations.LongestFactor
+
+/-!
+# `ConPolyZono.splitLongestGen`
+
+CORA's `@conPolyZono/splitLongestGen`: `splitDepFactor` at the factor `longestFactor` picks.
+CORA also returns the factor; it is `longestFactor`. A set with no factor to split is returned
+twice, where CORA's `max` of an empty vector errors.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       03-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- The two halves of `cPZ` along the factor of its longest generators. -/
+noncomputable def ConPolyZono.splitLongestGen (cPZ : ConPolyZono (Vec ℝ n)) :
+    ConPolyZono (Vec ℝ n) × ConPolyZono (Vec ℝ n) :=
+  match cPZ.longestFactor with
+  | some r => cPZ.splitDepFactor r
+  | none => (cPZ, cPZ)
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

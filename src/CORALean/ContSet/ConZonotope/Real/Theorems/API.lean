@@ -57,6 +57,9 @@ import CORALean.ContSet.ConZonotope.Real.Theorems.TightenOuter
 import CORALean.ContSet.ConZonotope.Real.Theorems.TightenOuterSafe
 import CORALean.ContSet.ConZonotope.Real.Theorems.EmptyExact
 import CORALean.ContSet.ConZonotope.Real.Theorems.CartProdExact
+import CORALean.ContSet.ConZonotope.Real.Theorems.CompactExact
+import CORALean.ContSet.ConZonotope.Real.Theorems.ConIntersectExact
+import CORALean.ContSet.ConZonotope.Real.Theorems.SplitUnion
 
 /-!
 # What `ConZonotope` guarantees

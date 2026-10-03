@@ -41,6 +41,10 @@ import CORALean.ContSet.HPolytope.Real.Operations.OfPoint
 import CORALean.ContSet.HPolytope.Real.Operations.SupportBound
 import CORALean.ContSet.HPolytope.Real.Operations.Stack
 import CORALean.ContSet.HPolytope.Real.Operations.Lift
+import CORALean.ContSet.HPolytope.Real.Operations.MldivideCora
+import CORALean.ContSet.HPolytope.Real.Operations.NormalizeConstraints
+import CORALean.ContSet.HPolytope.Real.Operations.NormalizeRows
+import CORALean.ContSet.HPolytope.Real.Operations.ProjectHighDim
 
 /-!
 # What `HPolytope` computes
