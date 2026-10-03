@@ -40,6 +40,11 @@ import CORALean.ContSet.ConPolyZono.Real.Theorems.ConvHullExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.OfPointMemIff
 import CORALean.ContSet.ConPolyZono.Real.Theorems.ProjectExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.EmptyExact
+import CORALean.ContSet.ConPolyZono.Real.Theorems.IsFullDimCoraCounterexample
+import CORALean.ContSet.ConPolyZono.Real.Theorems.IsFullDimRank
+import CORALean.ContSet.ConPolyZono.Real.Theorems.SplitDepFactorUnion
+import CORALean.ContSet.ConPolyZono.Real.Theorems.SplitLongestGenUnion
+import CORALean.ContSet.ConPolyZono.Real.Theorems.SplitUnion
 
 /-!
 # What `ConPolyZono` guarantees

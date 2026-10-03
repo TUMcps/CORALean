@@ -88,6 +88,10 @@ import CORALean.ContSet.Zonotope.Real.Operations.HalfspaceRange
 import CORALean.ContSet.Zonotope.Real.Operations.QuadMap
 import CORALean.ContSet.Zonotope.Real.Operations.QuadMapMatZono
 import CORALean.ContSet.Zonotope.Real.Operations.UnitIntervalMul
+import CORALean.ContSet.Zonotope.Real.Operations.And
+import CORALean.ContSet.Zonotope.Real.Operations.Isequal
+import CORALean.ContSet.Zonotope.Real.Operations.FilterGen
+import CORALean.ContSet.Zonotope.Real.Operations.CompactZeros
 
 /-!
 # What `Zonotope` computes

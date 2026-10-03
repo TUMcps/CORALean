@@ -25,6 +25,7 @@ import CORALean.ContSet.Zonotope.Float.Operations.ShiftDown
 import CORALean.ContSet.Zonotope.Float.Operations.ShiftUp
 import CORALean.ContSet.Zonotope.Float.Operations.ErrorRadius
 import CORALean.ContSet.Zonotope.Float.Operations.Radius
+import CORALean.ContSet.Zonotope.Float.Operations.GeneratorLength
 import CORALean.ContSet.Zonotope.Float.Operations.AbsorbError
 import CORALean.ContSet.Zonotope.Float.Operations.GirardSplit
 import CORALean.ContSet.Zonotope.Float.Operations.ReduceBy
@@ -53,6 +54,10 @@ import CORALean.ContSet.Zonotope.Float.Operations.ExactPlusGap
 import CORALean.ContSet.Zonotope.Float.Operations.ExactPlus
 import CORALean.ContSet.Zonotope.Float.Operations.RepresentsaPoint
 import CORALean.ContSet.Zonotope.Float.Operations.RepresentsaOrigin
+import CORALean.ContSet.Zonotope.Float.Operations.And
+import CORALean.ContSet.Zonotope.Float.Operations.Isequal
+import CORALean.ContSet.Zonotope.Float.Operations.KeepColumn
+import CORALean.ContSet.Zonotope.Float.Operations.CompactZeros
 
 /-!
 # What `Zonotope` computes

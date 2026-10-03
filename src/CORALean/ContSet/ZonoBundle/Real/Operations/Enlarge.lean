@@ -1,0 +1,36 @@
+import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
+import CORALean.ContSet.Zonotope.Real.Instances
+import CORALean.ContSet.ContSet.Operations.Enlarge
+
+/-!
+# `ZonoBundle.enlarge`
+
+CORA's `@zonoBundle/enlarge.m`: each zonotope of the bundle is enlarged about its *own* centre
+(`enlarge(zB.Z{i}, factor)`), so the result is the intersection of the enlarged members, not the
+enlargement of the intersection about a common centre: the members' centres differ in general,
+and so do the maps `x ↦ cᵢ + f ⊙ (x - cᵢ)`.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       03-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+def ZonoBundle.enlarge (zB : ZonoBundle (Vec ℝ n)) (factor : Vec ℝ n) : ZonoBundle (Vec ℝ n) where
+  k := zB.k
+  Z := fun i => ContSet.enlarge (S := fun n => Zonotope (Vec ℝ n)) (zB.Z i) factor
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

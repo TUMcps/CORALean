@@ -156,6 +156,10 @@ import CORALean.ContSet.Zonotope.Real.Theorems.QuadMapMatZonoNotOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.QuadMapMatZonoOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.QuadMapOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.UnitIntervalMulOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.AndOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.IsequalConstruct
+import CORALean.ContSet.Zonotope.Real.Theorems.FilterGenConstruct
+import CORALean.ContSet.Zonotope.Real.Theorems.CompactZerosExact
 
 /-!
 # What `Zonotope` guarantees

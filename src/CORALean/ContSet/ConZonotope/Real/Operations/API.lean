@@ -37,6 +37,12 @@ import CORALean.ContSet.ConZonotope.Real.Operations.Rescale
 import CORALean.ContSet.ConZonotope.Real.Operations.Lift
 import CORALean.ContSet.ConZonotope.Real.Operations.Empty
 import CORALean.ContSet.ConZonotope.Real.Operations.CartProd
+import CORALean.ContSet.ConZonotope.Real.Operations.Compact
+import CORALean.ContSet.ConZonotope.Real.Operations.CompactEmbed
+import CORALean.ContSet.ConZonotope.Real.Operations.CompactEqs
+import CORALean.ContSet.ConZonotope.Real.Operations.CompactGens
+import CORALean.ContSet.ConZonotope.Real.Operations.ConIntersect
+import CORALean.ContSet.ConZonotope.Real.Operations.Split
 
 /-!
 # What `ConZonotope` computes

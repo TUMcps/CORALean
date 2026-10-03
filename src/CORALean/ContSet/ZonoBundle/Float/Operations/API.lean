@@ -11,6 +11,7 @@ import CORALean.ContSet.ZonoBundle.Float.Operations.Origin
 import CORALean.ContSet.ZonoBundle.Float.Operations.Replace
 import CORALean.ContSet.ZonoBundle.Float.Operations.QuadMap
 import CORALean.ContSet.ZonoBundle.Float.Operations.CartProd
+import CORALean.ContSet.ZonoBundle.Float.Operations.Enlarge
 
 /-!
 # What a float zonotope bundle computes, collected

@@ -1,0 +1,46 @@
+import CORALean.ContSet.Taylm.Real.Operations.CosyGo
+import CORALean.ContSet.Taylm.Real.Theorems.ExistsLeGlobalMin
+import CORALean.ContSet.Taylm.Real.Definitions.GoodBox
+import Mathlib.Tactic.Linarith
+
+/-!
+# COSY-GO's upper end is above the minimum
+
+[1, Sec. 4]: some point of `X` has a value at most the upper end, so `cosyGo` encloses the
+minimum.
+
+## References
+
+* [1] K. Makino and M. Berz. "Verified Global Optimization with Taylor Model-based Range
+      Bounders". Transactions on Computers, 11(4):1611-1618, 2005.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       03-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem Taylm.exists_le_cosyGo {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f)
+    {X : Fin n → ℝ × ℝ} (hX : Taylm.GoodBox X) (hX' : ∀ k, (X k).1 ≤ (X k).2) (ε : ℝ)
+    (ldbFuel fuel : ℕ) :
+    ∃ p, Taylm.InBox X p ∧ f p ≤ (T.cosyGo X ε ldbFuel fuel).2 := by -- --- PROOF ---
+  refine Taylm.exists_le_globalMin (fun p hp => ?_) hX' fuel
+  have hpbox : p ∈ Taylm.box n := fun k => abs_le.2
+    ⟨le_trans (hX k).1 (hp k).1, le_trans (hp k).2 (hX k).2.2.2⟩
+  have := h p hpbox
+  linarith [this.2]
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

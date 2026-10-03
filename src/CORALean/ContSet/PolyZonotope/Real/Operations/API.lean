@@ -123,6 +123,13 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.ExpEdge
 import CORALean.ContSet.PolyZonotope.Real.Operations.DecidableExpEdge
 import CORALean.ContSet.PolyZonotope.Real.Operations.ExpGreedySel
 import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpGreedy
+import CORALean.ContSet.PolyZonotope.Real.Operations.IsFullDimCora
+import CORALean.ContSet.PolyZonotope.Real.Operations.LongestFactor
+import CORALean.ContSet.PolyZonotope.Real.Operations.RmId
+import CORALean.ContSet.PolyZonotope.Real.Operations.SplitDepFactor
+import CORALean.ContSet.PolyZonotope.Real.Operations.SplitLongestGen
+import CORALean.ContSet.PolyZonotope.Real.Operations.Sum
+import CORALean.ContSet.PolyZonotope.Real.Operations.SumCora
 
 /-!
 # What `PolyZonotope` computes

@@ -19,6 +19,7 @@ import CORALean.ContSet.VPolytope.Real.Theorems.EnclosePointsExact
 import CORALean.ContSet.VPolytope.Real.Theorems.ConvHullExact
 import CORALean.ContSet.VPolytope.Real.Theorems.OrExact
 import CORALean.ContSet.VPolytope.Real.Theorems.IsFullDimIff
+import CORALean.ContSet.VPolytope.Real.Theorems.ProjectHighDimExact
 
 /-!
 # What `VPolytope` guarantees

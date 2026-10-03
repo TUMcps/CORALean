@@ -100,6 +100,11 @@ import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullSingle
 import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHull
 import CORALean.ContSet.ConPolyZono.Real.Operations.Project
 import CORALean.ContSet.ConPolyZono.Real.Operations.Empty
+import CORALean.ContSet.ConPolyZono.Real.Operations.IsFullDimCora
+import CORALean.ContSet.ConPolyZono.Real.Operations.LongestFactor
+import CORALean.ContSet.ConPolyZono.Real.Operations.Split
+import CORALean.ContSet.ConPolyZono.Real.Operations.SplitDepFactor
+import CORALean.ContSet.ConPolyZono.Real.Operations.SplitLongestGen
 
 /-!
 # What `ConPolyZono` computes

@@ -1,6 +1,7 @@
 import CORALean.ContSet.Taylm.Real.Definitions.Box
 import CORALean.ContSet.Taylm.Real.Definitions.CodeList
 import CORALean.ContSet.Taylm.Real.Definitions.CodeScale
+import CORALean.ContSet.Taylm.Real.Definitions.GoodBox
 import CORALean.ContSet.Taylm.Real.Definitions.IsTaylorModel
 import CORALean.ContSet.Taylm.Real.Definitions.Scaled
 

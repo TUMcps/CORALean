@@ -68,6 +68,7 @@ import CORALean.ContSet.Conversion.Real.VPolytope_to_PolyZonotope
 import CORALean.ContSet.Conversion.Real.VPolytope_to_Zonotope
 import CORALean.ContSet.Conversion.Real.VPolytope_to_ZonoBundle
 import CORALean.ContSet.Conversion.Real.Zonotope_to_ConPolyZono
+import CORALean.ContSet.Conversion.Real.Zonotope_to_Capsule
 import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
 import CORALean.ContSet.Conversion.Real.Zonotope_to_Ellipsoid
 import CORALean.ContSet.Conversion.Real.Zonotope_to_HPolytope
