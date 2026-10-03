@@ -10,6 +10,9 @@ import CORALean.Global.Float.SinCos
 import CORALean.Global.Float.TrigRange
 import CORALean.Global.Float.InverseTrig
 import CORALean.Global.Float.Tan
+import CORALean.Global.Float.Hyperbolic
+import CORALean.Global.Float.Atanh
+import CORALean.Global.Float.GenBlockDiag
 import CORALean.Global.Float.ListSum
 import CORALean.Global.Float.PowUp
 import CORALean.Global.Float.PowDown

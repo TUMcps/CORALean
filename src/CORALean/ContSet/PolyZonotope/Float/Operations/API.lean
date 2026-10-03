@@ -2,6 +2,7 @@ import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
 import CORALean.ContSet.PolyZonotope.Float.Operations.CenterResidual
 import CORALean.ContSet.PolyZonotope.Float.Operations.Centre
 import CORALean.ContSet.PolyZonotope.Float.Operations.Plus
+import CORALean.ContSet.PolyZonotope.Float.Operations.ExactPlus
 import CORALean.ContSet.PolyZonotope.Float.Operations.MtimesResidual
 import CORALean.ContSet.PolyZonotope.Float.Operations.Mtimes
 import CORALean.ContSet.PolyZonotope.Float.Operations.RepKeep
@@ -82,15 +83,16 @@ import CORALean.ContSet.PolyZonotope.Float.Operations.PadBack
 import CORALean.ContSet.PolyZonotope.Float.Operations.Reindex
 import CORALean.ContSet.PolyZonotope.Float.Operations.Restructure
 import CORALean.ContSet.PolyZonotope.Float.Operations.Project
+import CORALean.ContSet.PolyZonotope.Float.Operations.CartProd
 
 /-!
 # What `PolyZonotope` computes
 
-`plus`, `linComb` and `mtimes` pay their rounding into the error box rather than into new
-generators. `linComb` pays nothing on the dependent side: halving and negation are exact, so
-all three dependent blocks are copies, and only the two centre-derived vectors and the paired
-independent block round. `quadMap` cannot: a quadratic map is not additive, so a box cannot
-travel through it beside the nominal part, and `dependent` empties the box into generators first.
+`plus`, `exactPlus`, `linComb` and `mtimes` pay their rounding into the error box rather than
+into new generators. `linComb` pays nothing on the dependent side: halving and negation are
+exact, so all three dependent blocks are copies. `quadMap` cannot: a quadratic map is not
+additive, so a box cannot travel through it beside the nominal part, and `dependent` empties
+the box into generators first.
 
 `mul` carries that past degree two, spending it on one rounded product per
 generator entry; `evalPoly` chains `mul` and prices the chaining itself.

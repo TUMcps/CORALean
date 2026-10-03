@@ -40,9 +40,13 @@ import CORALean.ContSet.HPolytope.Float.Operations.HalfScaledRight
 import CORALean.ContSet.HPolytope.Float.Operations.SmulMemHalfScaledRight
 import CORALean.ContSet.HPolytope.Float.Operations.TranslateOuter
 import CORALean.ContSet.HPolytope.Float.Operations.Minus
+import CORALean.ContSet.HPolytope.Float.Operations.MinkDiffOf
 import CORALean.ContSet.HPolytope.Float.Operations.EmptySet
 import CORALean.ContSet.HPolytope.Float.Operations.CartProd
 import CORALean.ContSet.HPolytope.Float.Operations.Origin
+import CORALean.ContSet.HPolytope.Float.Operations.LiftCols
+import CORALean.ContSet.HPolytope.Float.Operations.MulVecLiftCols
+import CORALean.ContSet.HPolytope.Float.Operations.Lift
 
 /-!
 # What the float `HPolytope` computes
@@ -58,7 +62,9 @@ negation are exact, and the rest computes nothing.
 Rounding, and where it goes: `translate` moves each bound by what its row reads
 off the shift, an inequality absorbing that upward and an equality outward at
 both ends of its interval. This is what the interval right-hand side is for, and
-the only operation here that needs it.
+the only operation here that needs it. `minkDiffOf` shifts each inequality bound
+inward by a certified support bound of the subtrahend, rounding downward so the
+result stays inside the exact difference.
 
 Enclosing on chosen directions: `plusOf`, `linCombOf`, `mtimesOf` and
 `intervalOf`, whose rows nobody can predict from the inputs' — `ofBounds` is

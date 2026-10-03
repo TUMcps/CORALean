@@ -9,6 +9,9 @@ import CORALean.ContSet.Taylm.Float.Theorems.TrigCoefMem
 import CORALean.ContSet.Taylm.Float.Theorems.UnitRemainderLe
 import CORALean.ContSet.Taylm.Float.Theorems.SinOuter
 import CORALean.ContSet.Taylm.Float.Theorems.CosOuter
+import CORALean.ContSet.Taylm.Float.Theorems.HyperbolicOuter
+import CORALean.ContSet.Taylm.Float.Theorems.SinhOuter
+import CORALean.ContSet.Taylm.Float.Theorems.CoshOuter
 import CORALean.ContSet.Taylm.Float.Theorems.MinusOuter
 import CORALean.ContSet.Taylm.Float.Theorems.MtimesOuter
 import CORALean.ContSet.Taylm.Float.Theorems.PlusOuter

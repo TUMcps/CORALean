@@ -43,6 +43,7 @@ import CORALean.NN.Layers.Definitions.SoftplusBox
 import CORALean.NN.Layers.Definitions.SoundLayer
 import CORALean.NN.Layers.Definitions.TanhLayer
 import CORALean.NN.Layers.Definitions.TanhRelaxation
+import CORALean.NN.Layers.Definitions.RootRelaxation
 import CORALean.NN.Layers.Definitions.WindowMax
 
 /-!

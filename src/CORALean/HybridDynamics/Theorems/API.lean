@@ -16,6 +16,7 @@ import CORALean.HybridDynamics.Theorems.JumpOuter
 import CORALean.HybridDynamics.Theorems.JumpOuterConZonotope
 import CORALean.HybridDynamics.Theorems.JumpOfPointOuter
 import CORALean.HybridDynamics.Theorems.JumpFloatOuter
+import CORALean.HybridDynamics.Theorems.JumpFloatOuterConZonotope
 import CORALean.HybridDynamics.Theorems.JumpIntersectionOfPointOuter
 import CORALean.HybridDynamics.Theorems.LinearEmbedding
 import CORALean.HybridDynamics.Theorems.LocationReachFloatOuter

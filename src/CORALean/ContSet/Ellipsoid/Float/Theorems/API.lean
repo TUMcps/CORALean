@@ -11,6 +11,8 @@ import CORALean.ContSet.Ellipsoid.Float.Theorems.IsCompact
 import CORALean.ContSet.Ellipsoid.Float.Theorems.OriginExact
 import CORALean.ContSet.Ellipsoid.Float.Theorems.CentreMemConstruct
 import CORALean.ContSet.Ellipsoid.Float.Theorems.ReindexExact
+import CORALean.ContSet.Ellipsoid.Float.Theorems.RepresentsaPointSound
+import CORALean.ContSet.Ellipsoid.Float.Theorems.RepresentsaOriginSound
 
 /-!
 # What a float ellipsoid guarantees, collected

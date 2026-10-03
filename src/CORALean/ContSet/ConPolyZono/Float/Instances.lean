@@ -1,4 +1,5 @@
 import CORALean.ContSet.ConPolyZono.Float.Theorems.IntersectionOuter
+import CORALean.ContSet.ConPolyZono.Float.Theorems.LinCombOuter
 import CORALean.ContSet.ConPolyZono.Float.Theorems.MtimesOuter
 import CORALean.ContSet.ConPolyZono.Float.Theorems.PlusOuter
 import CORALean.ContSet.ConPolyZono.Float.Theorems.ReduceOuter
@@ -7,7 +8,7 @@ import CORALean.ContSet.ConPolyZono.Float.Theorems.ReindexExact
 /-!
 # What `ConPolyZono` instantiates
 
-`Plus`, `Mtimes`, `Reduce` and `Intersection`, as over ℝ. `ContSet` is not among them —
+`Plus`, `LinComb`, `Mtimes`, `Reduce` and `Intersection`, as over ℝ. `ContSet` is not among them —
 `InflatedContSet` supplies it, which is what makes this the same class the exact
 layer instantiates.
 
@@ -39,6 +40,12 @@ instance {n : ℕ} : Plus (ConPolyZono 𝕋 n) (Vec ℝ n) where
   plus_outer cPZ₁ cPZ₂ := by
     rw [ConPolyZono.materialise_eq]
     exact ConPolyZono.plus_outer cPZ₁ cPZ₂
+
+instance {n : ℕ} : LinComb (ConPolyZono 𝕋 n) (Vec ℝ n) where
+  linComb cPZ₁ cPZ₂ := (cPZ₁.linComb cPZ₂).materialise
+  linComb_outer cPZ₁ cPZ₂ := by
+    rw [ConPolyZono.materialise_eq]
+    exact ConPolyZono.linComb_outer cPZ₁ cPZ₂
 
 -- `reduce` is computable here, `sortPerm` asking its comparator for no laws
 instance {n : ℕ} : Reduce (ConPolyZono 𝕋 n) (Vec ℝ n) where

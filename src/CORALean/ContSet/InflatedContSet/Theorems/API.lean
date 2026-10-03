@@ -7,6 +7,7 @@ import CORALean.ContSet.InflatedContSet.Theorems.Convex
 import CORALean.ContSet.InflatedContSet.Theorems.IsCompact
 import CORALean.ContSet.InflatedContSet.Theorems.IsBounded
 import CORALean.ContSet.InflatedContSet.Theorems.ImageAdd
+import CORALean.ContSet.InflatedContSet.Theorems.AppendConstruct
 
 /-!
 # What the error box guarantees

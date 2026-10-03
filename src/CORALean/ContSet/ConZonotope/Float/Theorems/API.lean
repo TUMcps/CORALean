@@ -10,7 +10,9 @@ import CORALean.ContSet.ConZonotope.Float.Theorems.EmptyExact
 import CORALean.ContSet.ConZonotope.Float.Theorems.IsCompact
 import CORALean.ContSet.ConZonotope.Float.Theorems.OriginExact
 import CORALean.ContSet.ConZonotope.Float.Theorems.MtimesOuter
+import CORALean.ContSet.ConZonotope.Float.Theorems.IntersectionOuter
 import CORALean.ContSet.ConZonotope.Float.Theorems.ReindexExact
+import CORALean.ContSet.ConZonotope.Float.Theorems.CartProdExact
 
 /-!
 # What the float `ConZonotope` guarantees

@@ -48,6 +48,11 @@ import CORALean.ContSet.Zonotope.Float.Operations.QuadMap
 import CORALean.ContSet.Zonotope.Float.Operations.ErrOp
 import CORALean.ContSet.Zonotope.Float.Operations.AdaptSetOrderLoop
 import CORALean.ContSet.Zonotope.Float.Operations.AdaptSetOrder
+import CORALean.ContSet.Zonotope.Float.Operations.CartProd
+import CORALean.ContSet.Zonotope.Float.Operations.ExactPlusGap
+import CORALean.ContSet.Zonotope.Float.Operations.ExactPlus
+import CORALean.ContSet.Zonotope.Float.Operations.RepresentsaPoint
+import CORALean.ContSet.Zonotope.Float.Operations.RepresentsaOrigin
 
 /-!
 # What `Zonotope` computes

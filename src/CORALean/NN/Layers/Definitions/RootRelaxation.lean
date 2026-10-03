@@ -1,0 +1,31 @@
+import CORALean.NN.Layers.Operations.RelaxationOfMonotone
+import Mathlib.Analysis.SpecialFunctions.Sqrt
+
+/-!
+# The square root's relaxation over ℝ
+
+The square root is monotone, so `Relaxation.ofMonotone` at its own values gives CORA's `nnRootLayer`
+relaxation: the range over the box at slope zero. A specification, as the exact sigmoid and tanh
+relaxations are.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       02-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- The range of `Real.sqrt` over the box, at slope zero. -/
+noncomputable def rootRelaxation : Relaxation ℝ := Relaxation.ofMonotone (Enclosure.exact Real.sqrt)
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
