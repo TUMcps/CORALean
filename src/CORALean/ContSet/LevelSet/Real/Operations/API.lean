@@ -9,10 +9,15 @@ import CORALean.ContSet.LevelSet.Real.Operations.Mtimes
 import CORALean.ContSet.LevelSet.Real.Operations.Not
 import CORALean.ContSet.LevelSet.Real.Operations.Restrict
 import CORALean.ContSet.LevelSet.Real.Operations.SplitEquality
+import CORALean.ContSet.LevelSet.Real.Operations.IntersectLevelSetBox
+import CORALean.ContSet.LevelSet.Real.Operations.GuardIntersectSolvable
+import CORALean.ContSet.LevelSet.Real.Operations.GuardIntersectUnsolvable
 
 /-!
 # Level set operations, collected
 
 CORA's `and_`, `contains_` (at a point), `Inf`, `empty`, `lift_` and `not`, and the image under an
-invertible matrix and a translation, which CORA does not define.
+invertible matrix and a translation, which CORA does not define. `intersectLevelSetBox` and the two
+`guardIntersect…` models enclose a box cut by an equality constraint, as CORA's `and_` does
+for a level set and a polynomial zonotope.
 -/

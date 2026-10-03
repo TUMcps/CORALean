@@ -1,0 +1,38 @@
+import CORALean.ContSet.ProbZonotope.Real.ProbZonotope
+
+/-!
+# `ProbZonotope.ofGenerators`
+
+CORA's constructor `probZonotope(Z, g)` with its `sigma`: from the mean zonotope `Z` and the
+probabilistic generators `g⁽¹…ᑫ⁾`, the covariance `Σ = g gᵀ`. [1, Def. 4] builds the
+G-zonotope with uncertain mean `Z ⊞ (0, g⁽¹…ᑫ⁾)` the same way. `Theorems.OfGeneratorsLaws` reads
+its laws as those of `μ + g N`, `μ ∈ Z`.
+
+## References
+
+* [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems
+      using Enclosing Hulls of Probability Density Functions". In Proc. of the European Control
+      Conference (ECC), pp. 625-630, 2009.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       03-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+namespace CORALean.Real
+
+variable {n q : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+def ProbZonotope.ofGenerators (Z : Zonotope (Vec ℝ n)) (g : Mat ℝ n q) : ProbZonotope n :=
+  ⟨Z, g * g.transpose⟩
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

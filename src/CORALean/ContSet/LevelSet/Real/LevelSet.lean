@@ -15,6 +15,16 @@ of a zonotope is, so stacking constraints stays inside one type.
 
 No convexity, boundedness or interval extension is assumed: a level set is whatever `f`
 makes it, and `f` is arbitrary. Real layer only, since a real function has no machine form.
+
+This is how [1, Eq. 1] and [1, Eq. 2] model a hybrid automaton's guards and invariants: a guard
+`{x | g(x) = 0}` is one `=` constraint, an invariant `{x | s(x) ≤ 0_w}` is `w` constraints with
+`≤`. [1] asks `g` and `s` to be Lipschitz; the set needs nothing of them.
+
+## References
+
+* [1] N. Kochdumper and M. Althoff. "Reachability Analysis for Hybrid Systems with Nonlinear
+      Guard Sets". In Proc. of the 23rd ACM International Conference on Hybrid Systems:
+      Computation and Control (HSCC), 2020.
 -/
 
 -- Authors:       Tobias Ladner

@@ -14,24 +14,24 @@
     "not-covered"
   ],
   "totals": {
-    "papers": 37,
-    "papers_with_findings": 30,
-    "in_scope": 449,
-    "formalized": 435,
-    "not_formalized": 14,
-    "out_of_scope": 225,
+    "papers": 39,
+    "papers_with_findings": 32,
+    "in_scope": 480,
+    "formalized": 457,
+    "not_formalized": 23,
+    "out_of_scope": 236,
     "out_of_scope_by_reason": {
-      "restated": 118,
+      "restated": 123,
       "mathlib": 8,
-      "not-a-claim": 75,
+      "not-a-claim": 80,
       "done-differently": 7,
-      "not-covered": 17
+      "not-covered": 18
     },
     "by_class": {
-      "correct": 303,
-      "underspecified": 67,
+      "correct": 312,
+      "underspecified": 73,
       "proof-gap": 22,
-      "fixed": 42,
+      "fixed": 49,
       "false": 1
     }
   },
@@ -307,6 +307,62 @@
           "result": "Fig. 1",
           "class": "underspecified",
           "reason": "the figure's split-and-repeat has no bound; a fuel bound makes it terminate"
+        }
+      ]
+    },
+    {
+      "page": "2009/althoff-ecc-enclosing-hulls.md",
+      "label": "Althoff 2009",
+      "year": 2009,
+      "title": "Safety Assessment for Stochastic Linear Systems using Enclosing Hulls of Probability Density Functions",
+      "in_scope": 15,
+      "formalized": 9,
+      "not_formalized": 6,
+      "out_of_scope": 5,
+      "out_of_scope_by_reason": {
+        "restated": 3,
+        "mathlib": 0,
+        "not-a-claim": 2,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 3,
+        "underspecified": 3,
+        "proof-gap": 0,
+        "fixed": 3,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Sec. II",
+          "class": "fixed",
+          "reason": "the printed form is the one for the drift `-A`: in `ℝ¹` with `λ = C = t = 1`, `Σ_s = (e² - 1)/2` and the formula gives `(1 - e⁻²)/2`; see Findings"
+        },
+        {
+          "result": "Prop. 1",
+          "class": "fixed",
+          "reason": "the normalization is `(2π)^{-n/2}`, not `(2π)^{-q/2}` (in `ℝ¹` with `q = 2` the printed function integrates to `(2π)^{-1/2}`), and `q > n` does not make `Σ` invertible, rank `n` does; see Findings"
+        },
+        {
+          "result": "Eq. 4",
+          "class": "underspecified",
+          "reason": "`Σ₁ + Σ₂` is the covariance of a sum of independent summands, which the paper leaves implicit; see Findings"
+        },
+        {
+          "result": "Prop. 2",
+          "class": "underspecified",
+          "reason": "the probability is `erf(m/√2)ⁿ` only for independent generators, `det G̲ ≠ 0`; at `G̲ = 0` it is `1`; see Findings"
+        },
+        {
+          "result": "Sec. V",
+          "class": "underspecified",
+          "reason": "`𝒵` has no single density `f_𝒵`; for each mean in `Z` the probability of `Ψ` is at most, not exactly, `1 - erf(γ/√2)ⁿ`; see Findings"
+        },
+        {
+          "result": "Eq. 7",
+          "class": "fixed",
+          "reason": "the volumes need the heights `hᵢ^max` as factors: for `X ~ N(0, 10⁻⁴)` and `B = η = [-0.03, 0.03]`, `p̄ = 1 - p² + 0.06 < p = P(X ∈ B)`; see Findings"
         }
       ]
     },
@@ -836,8 +892,69 @@
       ]
     },
     {
+      "page": "2020/kochdumper-hscc-nonlinear-guards.md",
+      "label": "Kochdumper 2020 (hscc)",
+      "year": 2020,
+      "title": "Reachability Analysis for Hybrid Systems with Nonlinear Guard Sets",
+      "in_scope": 16,
+      "formalized": 13,
+      "not_formalized": 3,
+      "out_of_scope": 6,
+      "out_of_scope_by_reason": {
+        "restated": 2,
+        "mathlib": 0,
+        "not-a-claim": 3,
+        "done-differently": 0,
+        "not-covered": 1
+      },
+      "by_class": {
+        "correct": 6,
+        "underspecified": 3,
+        "proof-gap": 0,
+        "fixed": 4,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Sec. 4.1",
+          "class": "underspecified",
+          "reason": "`∀i : lᵢ > 0` holds vacuously for an invariant with no constraints (`w = 0`, the whole space); one positive `lᵢ` is what is needed; see Findings"
+        },
+        {
+          "result": "Thm. 1",
+          "class": "fixed",
+          "reason": "the equality needs `p_k` not to depend on `x(k)` (`I = [0, 1]`, `p(x) = x/2`: the cut is `{0}`, the model `[0, ½]`); see Findings"
+        },
+        {
+          "result": "Def. 7",
+          "class": "underspecified",
+          "reason": "Lipschitz continuity does not make `∇f(c)` exist, and at `κ = 0` the first-order term is counted twice; `C^{κ+1}` and `κ ≥ 1` are supplied; see Findings"
+        },
+        {
+          "result": "Example 2",
+          "class": "fixed",
+          "reason": "the whole line `x₁ = 0` is in `G`, where `-sin(x₁)/x₁` is undefined; equal off it; see Findings"
+        },
+        {
+          "result": "Prop. 1",
+          "class": "underspecified",
+          "reason": "rests on `Def. 7`'s enclosure, so `D_g` must be `C^{κ+1}` and `κ ≥ 1`"
+        },
+        {
+          "result": "Prop. 2",
+          "class": "fixed",
+          "reason": "(11) prints `+ v(x)` where solving for `x(k)` gives `- v(x)`: for `g = x₂ + x₁²` on `[-1, 1] × [-2, 2]` the model is `x₂ = x₁²` and misses `(1, -1) ∈ I ∩ G`; `a(k) ≠ 0` supplied; see Findings"
+        },
+        {
+          "result": "Eq. 14",
+          "class": "fixed",
+          "reason": "one `ξ̃` shared by all coordinates is false for vector-valued `r` (`r = [x₁² - x₁, x₁³]ᵀ` on `[-1, 1] × {0}`, `γ = 0`), and a non-convex `F` need not contain the segment the remainder point lies on; true per coordinate over a convex enclosure; see Findings"
+        }
+      ]
+    },
+    {
       "page": "2020/kochdumper-hscc-utilizing-dependencies.md",
-      "label": "Kochdumper 2020",
+      "label": "Kochdumper 2020 (hscc)",
       "year": 2020,
       "title": "Utilizing Dependencies to Obtain Subsets of Reachable Sets",
       "in_scope": 11,
@@ -1791,10 +1908,10 @@
         },
         "cora_issues": 0,
         "findings": {
-          "correct": 31,
-          "underspecified": 7,
+          "correct": 39,
+          "underspecified": 13,
           "proof-gap": 0,
-          "fixed": 3,
+          "fixed": 8,
           "false": 0
         }
       },
@@ -2010,11 +2127,11 @@
         "group": "contSet",
         "class": "probZonotope",
         "methods": 28,
-        "proved": 0,
+        "proved": 6,
         "float": 0,
-        "not_yet": 20,
+        "not_yet": 14,
         "out_of_scope": 8,
-        "needs_float": 0,
+        "needs_float": 6,
         "out_of_scope_by_reason": {
           "plotting/display": 3,
           "random/sampling": 2,
@@ -2285,10 +2402,10 @@
         },
         "cora_issues": 0,
         "findings": {
-          "correct": 27,
+          "correct": 28,
           "underspecified": 12,
           "proof-gap": 8,
-          "fixed": 5,
+          "fixed": 6,
           "false": 0
         }
       },
@@ -2522,7 +2639,7 @@
           "correct": 10,
           "underspecified": 2,
           "proof-gap": 0,
-          "fixed": 0,
+          "fixed": 1,
           "false": 0
         }
       },
@@ -2738,11 +2855,11 @@
     "groups": {
       "contSet": {
         "methods": 908,
-        "proved": 88,
+        "proved": 94,
         "float": 409,
-        "not_yet": 175,
+        "not_yet": 169,
         "out_of_scope": 236,
-        "needs_float": 88,
+        "needs_float": 94,
         "cora_issues": 11,
         "out_of_scope_by_reason": {
           "plotting/display": 51,
@@ -2753,10 +2870,10 @@
           "deprecated": 14
         },
         "findings": {
-          "correct": 180,
-          "underspecified": 36,
+          "correct": 188,
+          "underspecified": 42,
           "proof-gap": 5,
-          "fixed": 25,
+          "fixed": 30,
           "false": 1
         }
       },
@@ -2777,10 +2894,10 @@
           "deprecated": 0
         },
         "findings": {
-          "correct": 48,
+          "correct": 49,
           "underspecified": 23,
           "proof-gap": 14,
-          "fixed": 9,
+          "fixed": 10,
           "false": 0
         }
       },
@@ -2804,7 +2921,7 @@
           "correct": 10,
           "underspecified": 2,
           "proof-gap": 0,
-          "fixed": 0,
+          "fixed": 1,
           "false": 0
         }
       },
@@ -2835,11 +2952,11 @@
     },
     "totals": {
       "methods": 1260,
-      "proved": 138,
+      "proved": 144,
       "float": 504,
-      "not_yet": 239,
+      "not_yet": 233,
       "out_of_scope": 379,
-      "needs_float": 138,
+      "needs_float": 144,
       "cora_issues": 13,
       "out_of_scope_by_reason": {
         "plotting/display": 86,
@@ -2850,10 +2967,10 @@
         "deprecated": 14
       },
       "findings": {
-        "correct": 287,
-        "underspecified": 64,
+        "correct": 296,
+        "underspecified": 70,
         "proof-gap": 21,
-        "fixed": 35,
+        "fixed": 42,
         "false": 1
       }
     },
@@ -2881,11 +2998,11 @@
       }
     },
     "theorems": {
-      "paper": 624,
+      "paper": 654,
       "float": 1118,
-      "helper": 689,
-      "lemma": 1934,
-      "total": 4365,
+      "helper": 702,
+      "lemma": 1936,
+      "total": 4410,
       "examples": 80
     }
   }

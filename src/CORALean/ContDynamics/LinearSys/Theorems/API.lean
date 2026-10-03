@@ -209,6 +209,8 @@ import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryPostDeltaFloatOuter
 import CORALean.ContDynamics.LinearSys.Theorems.AdaptiveStepFloatOuter
 import CORALean.ContDynamics.LinearSys.Theorems.AdaptiveRunFloatOuter
 import CORALean.ContDynamics.LinearSys.Theorems.ReachAdaptiveFloatOuter
+import CORALean.ContDynamics.LinearSys.Theorems.NoiseCovarianceDiagonal
+import CORALean.ContDynamics.LinearSys.Theorems.NoiseCovarianceDiagonalCounterexample
 
 /-!
 # What `LinearSys` guarantees
