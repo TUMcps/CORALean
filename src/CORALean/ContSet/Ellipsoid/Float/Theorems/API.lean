@@ -16,6 +16,8 @@ import CORALean.ContSet.Ellipsoid.Float.Theorems.RepresentsaOriginSound
 import CORALean.ContSet.Ellipsoid.Float.Theorems.IsequalSound
 import CORALean.ContSet.Ellipsoid.Float.Theorems.VerticesOuter
 import CORALean.ContSet.Ellipsoid.Float.Theorems.NormUbLe
+import CORALean.ContSet.Ellipsoid.Float.Theorems.CartProdOuter
+import CORALean.ContSet.Ellipsoid.Float.Theorems.CartProdVecExact
 
 /-!
 # What a float ellipsoid guarantees, collected

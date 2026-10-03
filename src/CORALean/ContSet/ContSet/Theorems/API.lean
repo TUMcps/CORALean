@@ -10,6 +10,7 @@ import CORALean.ContSet.ContSet.Theorems.ProjectOuter
 import CORALean.ContSet.ContSet.Theorems.DecomposeOuter
 import CORALean.ContSet.ContSet.Theorems.ProjectOnHyperplaneDot
 import CORALean.ContSet.ContSet.Theorems.ProjectOnHyperplaneOuter
+import CORALean.ContSet.ContSet.Theorems.ProjectOnHyperplaneFloatOuter
 import CORALean.ContSet.ContSet.Theorems.HausdorffDist2MulVecLinAddLe
 import CORALean.ContSet.ContSet.Theorems.HausdorffDistAddLe
 import CORALean.ContSet.ContSet.Theorems.HausdorffDistImageLe

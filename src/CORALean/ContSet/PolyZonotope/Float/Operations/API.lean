@@ -94,6 +94,9 @@ import CORALean.ContSet.PolyZonotope.Float.Operations.Reindex
 import CORALean.ContSet.PolyZonotope.Float.Operations.Restructure
 import CORALean.ContSet.PolyZonotope.Float.Operations.Project
 import CORALean.ContSet.PolyZonotope.Float.Operations.CartProd
+import CORALean.ContSet.PolyZonotope.Float.Operations.BlockPadLeft
+import CORALean.ContSet.PolyZonotope.Float.Operations.BlockPadRight
+import CORALean.ContSet.PolyZonotope.Float.Operations.Stack
 
 /-!
 # What `PolyZonotope` computes

@@ -48,6 +48,10 @@ import CORALean.ContSet.Taylm.Float.Theorems.AcosOuter
 import CORALean.ContSet.Taylm.Float.Theorems.SqrtCoefMem
 import CORALean.ContSet.Taylm.Float.Theorems.SqrtBoundGe
 import CORALean.ContSet.Taylm.Float.Theorems.SqrtOuter
+import CORALean.ContSet.Taylm.Float.Theorems.BinomCoefMem
+import CORALean.ContSet.Taylm.Float.Theorems.PolyOfReexpPairs
+import CORALean.ContSet.Taylm.Float.Theorems.ReexpandAtOuter
+import CORALean.ContSet.Taylm.Float.Theorems.ReexpandOuter
 
 /-!
 # Float Taylor model guarantees, collected

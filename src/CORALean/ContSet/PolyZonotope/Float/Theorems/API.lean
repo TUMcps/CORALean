@@ -5,6 +5,8 @@ import CORALean.ContSet.PolyZonotope.Float.Theorems.GetSubsetOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.GetSubsetGClose
 import CORALean.ContSet.PolyZonotope.Float.Theorems.GetSubsetCoefMem
 import CORALean.ContSet.PolyZonotope.Float.Theorems.IsequalSound
+import CORALean.ContSet.PolyZonotope.Float.Theorems.GetSubsetGClose
+import CORALean.ContSet.PolyZonotope.Float.Theorems.GetSubsetCoefMem
 import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
 import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorError
 import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorErrorMonomial
@@ -68,6 +70,9 @@ import CORALean.ContSet.PolyZonotope.Float.Theorems.ReindexExact
 import CORALean.ContSet.PolyZonotope.Float.Theorems.RestructureOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.ProjectOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.CartProdExact
+import CORALean.ContSet.PolyZonotope.Float.Theorems.BlockPadLeftNominal
+import CORALean.ContSet.PolyZonotope.Float.Theorems.BlockPadRightNominal
+import CORALean.ContSet.PolyZonotope.Float.Theorems.StackOuter
 
 /-!
 # What `PolyZonotope` guarantees
