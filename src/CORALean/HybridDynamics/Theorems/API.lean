@@ -51,6 +51,10 @@ import CORALean.HybridDynamics.Theorems.MemHitSet
 import CORALean.HybridDynamics.Theorems.TendstoSdcFlowError
 import CORALean.HybridDynamics.Theorems.HasDerivAtHitJacobian
 import CORALean.HybridDynamics.Theorems.HasDerivAtHitPoint
+import CORALean.HybridDynamics.Theorems.LocationPotIntComplete
+import CORALean.HybridDynamics.Theorems.LocationPotOutOuter
+import CORALean.HybridDynamics.Theorems.GuardIntersectNondetFloatOuter
+import CORALean.HybridDynamics.Theorems.TransitionConvGuardExact
 
 /-!
 # What a hybrid run guarantees, collected

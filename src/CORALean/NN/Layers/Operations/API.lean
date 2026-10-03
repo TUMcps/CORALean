@@ -122,6 +122,7 @@ import CORALean.NN.Layers.Operations.InvSqrtRootRelaxation
 import CORALean.NN.Layers.Operations.TapEntry
 import CORALean.NN.Layers.Operations.TapMat
 import CORALean.NN.Layers.Operations.TransposeEquiv
+import CORALean.NN.Layers.Operations.SShapeDerBounds
 
 /-!
 # The standard layers, collected

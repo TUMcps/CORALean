@@ -7,7 +7,12 @@ import CORALean.NN.Definitions.RefinableNetwork
 import CORALean.NN.Definitions.RefinableNetworkImage
 import CORALean.NN.Definitions.Schedule
 import CORALean.NN.Definitions.SmoothNetwork
+import CORALean.NN.Definitions.WeightAcc
+import CORALean.NN.Definitions.WeightLayer
+import CORALean.NN.Definitions.WeightNetwork
 import CORALean.NN.Definitions.InputOrderMethod
+import CORALean.NN.Definitions.ActivationKind
+import CORALean.NN.Definitions.ActivationKindFn
 
 /-!
 # What a network means, collected

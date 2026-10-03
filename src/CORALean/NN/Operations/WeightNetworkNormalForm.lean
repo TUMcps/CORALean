@@ -1,0 +1,35 @@
+import CORALean.NN.Operations.WeightNetworkNormalFormAux
+
+/-!
+# `neuralNetwork.getNormalForm`
+
+CORA's `getNormalForm`: the network with consecutive affine layers fused, `W = W₂ W₁` and
+`b = W₂ b₁ + b₂`, so that linear layers and activations alternate. Not modelled: CORA's early
+return for a network already in that form, which computes the same function.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       03-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open Matrix
+
+variable {α : Type} [Semiring α] {n m k d : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- The fused network, started from nothing accumulated. -/
+def WeightNetwork.normalForm (N : WeightNetwork α n k) : WeightNetwork α n k :=
+  N.normalFormAux .id
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -100,6 +100,13 @@ import CORALean.NN.Theorems.VerifySplitSound
 import CORALean.NN.Theorems.VerifySplitWithSound
 import CORALean.NN.Theorems.SnakeOrderMultiset
 import CORALean.NN.Theorems.InputNeuronOrderPerm
+import CORALean.NN.Theorems.WeightAccPushLinearEval
+import CORALean.NN.Theorems.WeightAccPushAffineEval
+import CORALean.NN.Theorems.WeightAccLayerEval
+import CORALean.NN.Theorems.WeightNetworkNormalFormAuxEval
+import CORALean.NN.Theorems.WeightNetworkNormalFormEval
+import CORALean.NN.Theorems.RefinableNetworkMemRefinableLayers
+import CORALean.NN.Theorems.ActivationKindMergeValuesIff
 
 /-!
 # What a network's enclosure guarantees, collected

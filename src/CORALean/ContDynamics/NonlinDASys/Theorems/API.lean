@@ -5,6 +5,9 @@ import CORALean.ContDynamics.NonlinDASys.Theorems.ReachYUnionSubsetImage
 import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryOfNonlinearSys
 import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryToNonlinearSys
 import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryYEq
+import CORALean.ContDynamics.NonlinDASys.Theorems.NewtonIterateSpec
+import CORALean.ContDynamics.NonlinDASys.Theorems.ConsistentInitialStateSpec
+import CORALean.ContDynamics.NonlinDASys.Theorems.SteadyStateSpec
 
 /-!
 # What `NonlinDASys` guarantees
