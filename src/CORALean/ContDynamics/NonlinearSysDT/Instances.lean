@@ -29,13 +29,14 @@ open ContSet
 variable {S Rg : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (Rg n) (Vec ℝ n)]
 variable {m : ℕ}
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
-variable [Mtimes (Mat ℝ) S] [Real.OfInterval S] [∀ n, Contains (Rg n) (S n)]
+variable {𝕋 : Type} [CORALean.Float.FloatOps 𝕋] [CORALean.Float.SoundFloatArithmetic 𝕋]
+variable [Mtimes (Mat 𝕋) S] [CORALean.Float.OfInterval S 𝕋] [∀ n, Contains (Rg n) (S n)]
 
 
 -- ========================================  INSTANCES  ========================================= --
 
 instance NonlinearSysDT.reachInstance :
-    Reach (NonlinearSysDT.WithSteps S Rg m) (fun n => Reach.Params (S n) ℕ)
+    Reach (NonlinearSysDT.WithSteps S Rg 𝕋 m) (fun n => Reach.Params (S n) ℕ)
       NonlinearSysDT.ReachOptions S where
   reachExact sys params := sys.reachUnionExact (params.tFinal - params.tStart)
     (construct params.R0)

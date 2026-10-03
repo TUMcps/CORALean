@@ -40,6 +40,8 @@ import CORALean.Global.LinProg.API
 import CORALean.Global.TaylorRemainder
 import CORALean.Global.CoeffDomination
 import CORALean.Global.ElementaryDerivBounds
+import CORALean.Global.EvalList
+import CORALean.Global.OdeList
 
 /-!
 # Global definitions, collected

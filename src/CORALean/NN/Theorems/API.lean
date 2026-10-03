@@ -98,6 +98,8 @@ import CORALean.NN.Theorems.SmoothNetworkCoraCounterexample
 import CORALean.NN.Theorems.SmoothNetworkOutputFnZero
 import CORALean.NN.Theorems.VerifySplitSound
 import CORALean.NN.Theorems.VerifySplitWithSound
+import CORALean.NN.Theorems.SnakeOrderMultiset
+import CORALean.NN.Theorems.InputNeuronOrderPerm
 
 /-!
 # What a network's enclosure guarantees, collected

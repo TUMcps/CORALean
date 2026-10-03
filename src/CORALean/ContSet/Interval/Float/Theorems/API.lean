@@ -98,6 +98,7 @@ import CORALean.ContSet.Interval.Float.Theorems.OfCenterRadiusOuter
 import CORALean.ContSet.Interval.Float.Theorems.QuadMapOuter
 import CORALean.ContSet.Interval.Float.Theorems.MatMulSubset
 import CORALean.ContSet.Interval.Float.Theorems.MatPowSubset
+import CORALean.ContSet.Interval.Float.Theorems.EvalListMem
 
 /-!
 # What `Interval` guarantees

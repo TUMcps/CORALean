@@ -82,14 +82,18 @@ theorem Example.quadraticCert (p q r : ℝ) (U : Interval (Vec ℝ 1)) :
 
 /-- One linearization at `p`, over the box representation. -/
 def Example.quadraticLinStep (p q r : ℝ) (U : Interval (Vec ℝ 1)) :
-    Example.quadraticStep.LinStep (S := fun n => Interval (Vec ℝ n)) U where
+    Example.quadraticStep.LinStep ℝ (S := fun n => Interval (Vec ℝ n)) U where
   A := Example.quadraticA p
   B := Example.quadraticB
   xs := ![p]
   us := ![q]
+  c := CORALean.Float.Interval.point
+    (Example.quadraticStep.f ![p] ![q] - Example.quadraticA p *ᵥ ![p])
   R := Example.quadraticRegion p r
   L := Example.quadraticL r
   cert := Example.quadraticCert p q r U
+  c_mem := CORALean.Float.Interval.mem_point
+    (Example.quadraticStep.f ![p] ![q] - Example.quadraticA p *ᵥ ![p])
 
 -- anonymous, since their content is that `reach_outer` applies with a real certificate
 

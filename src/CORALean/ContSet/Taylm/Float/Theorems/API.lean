@@ -25,6 +25,8 @@ import CORALean.ContSet.Taylm.Float.Theorems.UminusOuter
 import CORALean.ContSet.Taylm.Float.Theorems.UplusOuter
 import CORALean.ContSet.Taylm.Float.Theorems.EmptyExact
 import CORALean.ContSet.Taylm.Float.Theorems.BoundDotLe
+import CORALean.ContSet.Taylm.Float.Theorems.TanOuter
+import CORALean.ContSet.Taylm.Float.Theorems.TanhOuter
 
 /-!
 # Float Taylor model guarantees, collected

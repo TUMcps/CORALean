@@ -43,7 +43,7 @@ variable {n m : ℕ}
 /-- What `reach` costs over `k` re-linearized steps at `𝒵`: per step one step
 of the linear run, at that step's own matrix and its own input set. -/
 noncomputable def NonlinearSysDT.reachCost (sys : NonlinearSysDT n m)
-    {U : Zonotope (Vec ℝ m)} (o : ℕ) (ho : 0 < o) (steps : ℕ → sys.LinStep (S := 𝒵) U)
+    {U : Zonotope (Vec ℝ m)} (o : ℕ) (ho : 0 < o) (steps : ℕ → sys.LinStep ℝ (S := 𝒵) U)
     (R₀ : Zonotope (Vec ℝ n)) : ℕ → Cost
   | 0 => 0
   | k + 1 =>

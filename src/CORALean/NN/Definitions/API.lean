@@ -7,6 +7,7 @@ import CORALean.NN.Definitions.RefinableNetwork
 import CORALean.NN.Definitions.RefinableNetworkImage
 import CORALean.NN.Definitions.Schedule
 import CORALean.NN.Definitions.SmoothNetwork
+import CORALean.NN.Definitions.InputOrderMethod
 
 /-!
 # What a network means, collected

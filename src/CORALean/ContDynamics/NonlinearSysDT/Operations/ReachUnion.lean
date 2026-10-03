@@ -29,14 +29,15 @@ namespace CORALean
 variable {S Rg : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (Rg n) (Vec ℝ n)]
 variable {m n : ℕ}
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
-variable [Mtimes (Mat ℝ) S] [Real.OfInterval S] [∀ n, Contains (Rg n) (S n)]
+variable {𝕋 : Type} [CORALean.Float.FloatOps 𝕋] [CORALean.Float.SoundFloatArithmetic 𝕋]
+variable [Mtimes (Mat 𝕋) S] [CORALean.Float.OfInterval S 𝕋] [∀ n, Contains (Rg n) (S n)]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Steps `0` through `K = tFinal - tStart` of `sys.sys.reach`, or `none` once the set
 some step `k < K` starts from is not shown inside `sys.region k`. -/
-def NonlinearSysDT.WithSteps.reachUnion (sys : NonlinearSysDT.WithSteps S Rg m n)
+def NonlinearSysDT.WithSteps.reachUnion (sys : NonlinearSysDT.WithSteps S Rg 𝕋 m n)
     (params : Reach.Params (S n) ℕ) (options : NonlinearSysDT.ReachOptions) :
     Option (SetUnion (S n)) :=
   let R₀ := params.R0                                                 -- the paper's symbols

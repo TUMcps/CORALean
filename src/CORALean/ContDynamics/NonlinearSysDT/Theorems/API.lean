@@ -3,6 +3,7 @@ import CORALean.ContDynamics.NonlinearSysDT.Theorems.ConfinementOfSubsetOn
 import CORALean.ContDynamics.NonlinearSysDT.Theorems.HoldsOfCheck
 import CORALean.ContDynamics.NonlinearSysDT.Theorems.HoldsOfReach
 import CORALean.ContDynamics.NonlinearSysDT.Theorems.HoldsOfReachOfSubset
+import CORALean.ContDynamics.NonlinearSysDT.Theorems.LinStepLinInputOuter
 import CORALean.ContDynamics.NonlinearSysDT.Theorems.NotHoldsOfSimulate
 import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachOuter
 import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachOuterOfSubset

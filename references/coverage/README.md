@@ -124,7 +124,7 @@ Rulings on borderline cases:
 | [polytope](contSet/polytope.md) | contSet | 58 | 3 | 30 | 14 | 11 | 0 |
 | [probZonotope](contSet/probZonotope.md) | contSet | 28 | 0 | 0 | 20 | 8 | 0 |
 | [spectraShadow](contSet/spectraShadow.md) | contSet | 33 | 0 | 7 | 18 | 8 | 0 |
-| [taylm](contSet/taylm.md) | contSet | 51 | 6 | 20 | 14 | 11 | 0 |
+| [taylm](contSet/taylm.md) | contSet | 51 | 4 | 22 | 14 | 11 | 0 |
 | [zonoBundle](contSet/zonoBundle.md) | contSet | 44 | 1 | 22 | 14 | 7 | 0 |
 | [zonotope](contSet/zonotope.md) | contSet | 80 | 6 | 37 | 23 | 14 | 1 |
 | [zoo](contSet/zoo.md) | contSet | 12 | 0 | 0 | 10 | 2 | 0 |
@@ -137,9 +137,9 @@ Rulings on borderline cases:
 | [neurNetContrSys](contDynamics/neurNetContrSys.md) | contDynamics | 5 | 0 | 4 | 0 | 1 | 0 |
 | [nonlinDASys](contDynamics/nonlinDASys.md) | contDynamics | 13 | 2 | 0 | 8 | 3 | 0 |
 | [nonlinParamSys](contDynamics/nonlinParamSys.md) | contDynamics | 9 | 3 | 0 | 2 | 4 | 0 |
-| [nonlinearARX](contDynamics/nonlinearARX.md) | contDynamics | 8 | 4 | 0 | 1 | 3 | 0 |
+| [nonlinearARX](contDynamics/nonlinearARX.md) | contDynamics | 8 | 3 | 1 | 1 | 3 | 0 |
 | [nonlinearSys](contDynamics/nonlinearSys.md) | contDynamics | 18 | 4 | 3 | 3 | 8 | 1 |
-| [nonlinearSysDT](contDynamics/nonlinearSysDT.md) | contDynamics | 11 | 5 | 0 | 3 | 3 | 0 |
+| [nonlinearSysDT](contDynamics/nonlinearSysDT.md) | contDynamics | 11 | 2 | 3 | 3 | 3 | 0 |
 | [abstractReset](hybridDynamics/abstractReset.md) | hybridDynamics | 4 | 0 | 0 | 0 | 4 | 0 |
 | [hybridAutomaton](hybridDynamics/hybridAutomaton.md) | hybridDynamics | 15 | 0 | 2 | 2 | 11 | 0 |
 | [hybridDynamics](hybridDynamics/hybridDynamics.md) | hybridDynamics | 2 | 0 | 1 | 0 | 1 | 0 |
@@ -149,7 +149,7 @@ Rulings on borderline cases:
 | [parallelHybridAutomaton](hybridDynamics/parallelHybridAutomaton.md) | hybridDynamics | 13 | 1 | 5 | 1 | 6 | 0 |
 | [transition](hybridDynamics/transition.md) | hybridDynamics | 12 | 0 | 2 | 3 | 7 | 0 |
 | [layers](nn/layers.md) | nn | 43 | 7 | 26 | 7 | 3 | 0 |
-| [neuralNetwork](nn/neuralNetwork.md) | nn | 61 | 7 | 7 | 10 | 37 | 1 |
+| [neuralNetwork](nn/neuralNetwork.md) | nn | 61 | 8 | 7 | 9 | 37 | 1 |
 <!-- /coverage-counts -->
 
 `python3 scripts/check-references.py --fix` rewrites the table above.

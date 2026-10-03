@@ -25,7 +25,8 @@ open ContSet
 variable {n m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
-variable [Mtimes (Mat ℝ) S] [Real.OfInterval S]
+variable {𝕋 : Type} [CORALean.Float.FloatOps 𝕋] [CORALean.Float.SoundFloatArithmetic 𝕋]
+variable [Mtimes (Mat 𝕋) S] [CORALean.Float.OfInterval S 𝕋]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -33,7 +34,7 @@ variable [Mtimes (Mat ℝ) S] [Real.OfInterval S]
 /-- Confinement below `K` of a run known up to `K`, from each step's computed
 set lying inside that step's certified region. -/
 theorem NonlinearSysDT.confinement_of_subset_on (sys : NonlinearSysDT n m) {U : S m} {o : ℕ}
-    (ho : 0 < o) (steps : ℕ → sys.LinStep U) (R₀ : S n) {K : ℕ}
+    (ho : 0 < o) (steps : ℕ → sys.LinStep 𝕋 U) (R₀ : S n) {K : ℕ}
     (hsub : ∀ k < K, construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps) ⊆ (steps k).R)
     {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ m} (traj : sys.TrajectoryOn R₀ U K x u) :
     ∀ k < K, x k ∈ (steps k).R := by -- --- PROOF ---

@@ -34,7 +34,7 @@ CORA methods of `nn/@neuralNetwork/`, one row each, and where CORALean answers t
 | `generateFromString` | out-of-scope | n/a — io/conversion-to-matlab-objects |  |
 | `generateRandom` | out-of-scope | n/a — random/sampling |  |
 | `getFromCellArray` | out-of-scope | n/a — io/conversion-to-matlab-objects |  |
-| `getInputNeuronOrder` | — | — |  |
+| `getInputNeuronOrder` | proved | [`getInputNeuronOrder`](../../../src/CORALean/NN/Operations/InputNeuronOrder.lean), [`InputOrderMethod`](../../../src/CORALean/NN/Definitions/InputOrderMethod.lean), [`snakeOrder`](../../../src/CORALean/NN/Operations/SnakeOrder.lean), [`getInputNeuronOrder_perm`](../../../src/CORALean/NN/Theorems/InputNeuronOrderPerm.lean), [`snakeOrder_coe`](../../../src/CORALean/NN/Theorems/SnakeOrderMultiset.lean) | the three methods `in-order`, `snake`, `sensitivity`, with 0-based indices; the claim is that the result is a permutation of the ranked neurons (`n`, or `h * w` given `inputSize`) for every method, `snake` through the spiral visiting each cell once, `sensitivity` through a stable sort of the channel-averaged mean absolute sensitivity ([`Chain.sensitivity`](../../../src/CORALean/NN/Operations/Sensitivity.lean)); that the sort is ascending, so that the least sensitive neuron comes first, is not a theorem; `snake` without `inputSize` is empty where CORA errors |
 | `getNormalForm` | — | — |  |
 | `getNumMessagePassingSteps` | out-of-scope | n/a — matlab-runtime | a pure count of the network's layers, neurons or parameters (bookkeeping, no set semantics) |
 | `getNumNeurons` | out-of-scope | n/a — matlab-runtime | a pure count of the network's layers, neurons or parameters (bookkeeping, no set semantics) |
