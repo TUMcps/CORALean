@@ -4,18 +4,18 @@
 <text x="142" y="39" text-anchor="end">Set representations</text>
 <rect x="150.0" y="28" width="316.5" height="14" fill="rgb(69,150,255)"/>
 <text x="308.2" y="39" text-anchor="middle" font-size="9" fill="#000">409</text>
-<rect x="466.5" y="28" width="58.8" height="14" fill="rgb(176,210,255)"/>
-<text x="495.9" y="39" text-anchor="middle" font-size="9" fill="#000">76</text>
-<rect x="525.3" y="28" width="144.7" height="14" fill="rgb(255,255,255)"/>
-<text x="597.6" y="39" text-anchor="middle" font-size="9" fill="#000">187</text>
+<rect x="466.5" y="28" width="68.1" height="14" fill="rgb(176,210,255)"/>
+<text x="500.5" y="39" text-anchor="middle" font-size="9" fill="#000">88</text>
+<rect x="534.6" y="28" width="135.4" height="14" fill="rgb(255,255,255)"/>
+<text x="602.3" y="39" text-anchor="middle" font-size="9" fill="#000">175</text>
 <rect x="150" y="28" width="520.0" height="14" fill="none" stroke="#000" stroke-width="0.8"/>
 <text x="675.0" y="39" font-size="9" fill="#888">+236</text>
 <text x="142" y="59" text-anchor="end">Cont. dynamics</text>
 <rect x="150.0" y="48" width="28.6" height="14" fill="rgb(69,150,255)"/>
 <text x="164.3" y="59" text-anchor="middle" font-size="9" fill="#000">37</text>
-<rect x="178.6" y="48" width="18.6" height="14" fill="rgb(176,210,255)"/>
-<rect x="197.2" y="48" width="30.2" height="14" fill="rgb(255,255,255)"/>
-<text x="212.3" y="59" text-anchor="middle" font-size="9" fill="#000">39</text>
+<rect x="178.6" y="48" width="19.3" height="14" fill="rgb(176,210,255)"/>
+<rect x="198.0" y="48" width="29.4" height="14" fill="rgb(255,255,255)"/>
+<text x="212.7" y="59" text-anchor="middle" font-size="9" fill="#000">38</text>
 <rect x="150" y="48" width="77.4" height="14" fill="none" stroke="#000" stroke-width="0.8"/>
 <text x="232.4" y="59" font-size="9" fill="#888">+59</text>
 <text x="142" y="79" text-anchor="end">Hybrid systems</text>
@@ -66,14 +66,14 @@
 <text x="548" y="220">not yet</text>
 <text x="150" y="240" font-weight="bold">(c) Lean theorems</text>
 <text x="142" y="259" text-anchor="end">Lean theorems</text>
-<rect x="150.0" y="248" width="74.7" height="14" fill="rgb(0,114,189)"/>
-<text x="187.4" y="259" text-anchor="middle" font-size="9" fill="#fff">624</text>
-<rect x="224.7" y="248" width="229.6" height="14" fill="rgb(42,92,173)"/>
-<text x="339.5" y="259" text-anchor="middle" font-size="9" fill="#000">1918</text>
-<rect x="454.4" y="248" width="133.9" height="14" fill="rgb(84,69,158)"/>
+<rect x="150.0" y="248" width="74.3" height="14" fill="rgb(0,114,189)"/>
+<text x="187.2" y="259" text-anchor="middle" font-size="9" fill="#fff">624</text>
+<rect x="224.3" y="248" width="230.4" height="14" fill="rgb(42,92,173)"/>
+<text x="339.5" y="259" text-anchor="middle" font-size="9" fill="#000">1934</text>
+<rect x="454.7" y="248" width="133.2" height="14" fill="rgb(84,69,158)"/>
 <text x="521.3" y="259" text-anchor="middle" font-size="9" fill="#000">1118</text>
-<rect x="588.2" y="248" width="81.8" height="14" fill="rgb(126,47,142)"/>
-<text x="629.1" y="259" text-anchor="middle" font-size="9" fill="#000">683</text>
+<rect x="587.9" y="248" width="82.1" height="14" fill="rgb(126,47,142)"/>
+<text x="629.0" y="259" text-anchor="middle" font-size="9" fill="#000">689</text>
 <rect x="150" y="248" width="520.0" height="14" fill="none" stroke="#000" stroke-width="0.8"/>
 <rect x="150" y="274" width="12" height="12" fill="rgb(0,114,189)" stroke="#000" stroke-width="0.8"/>
 <text x="168" y="284">paper theorems</text>

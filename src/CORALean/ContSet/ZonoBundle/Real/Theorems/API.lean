@@ -2,6 +2,8 @@ import CORALean.ContSet.ZonoBundle.Real.Theorems.BoxOuter
 import CORALean.ContSet.ZonoBundle.Real.Theorems.Convex
 import CORALean.ContSet.ZonoBundle.Real.Theorems.DirPcaCovarianceIsHermitian
 import CORALean.ContSet.ZonoBundle.Real.Theorems.EnclosingBoxContains
+import CORALean.ContSet.ZonoBundle.Real.Theorems.EnclosingParallelotopeOuter
+import CORALean.ContSet.ZonoBundle.Real.Theorems.IntervalAllContains
 import CORALean.ContSet.ZonoBundle.Real.Theorems.FacetLiftOuter
 import CORALean.ContSet.ZonoBundle.Real.Theorems.FacetLiftStack
 import CORALean.ContSet.ZonoBundle.Real.Theorems.FacetLiftStackOuter
@@ -22,6 +24,8 @@ import CORALean.ContSet.ZonoBundle.Real.Theorems.OfPointMemIff
 import CORALean.ContSet.ZonoBundle.Real.Theorems.PlusOuter
 import CORALean.ContSet.ZonoBundle.Real.Theorems.ReduceOrder
 import CORALean.ContSet.ZonoBundle.Real.Theorems.ReduceOuter
+import CORALean.ContSet.ZonoBundle.Real.Theorems.ReduceCombinedOuter
+import CORALean.ContSet.ZonoBundle.Real.Theorems.ShrinkOuter
 import CORALean.ContSet.ZonoBundle.Real.Theorems.SplitBoxUnion
 import CORALean.ContSet.ZonoBundle.Real.Theorems.SplitFilUnion
 import CORALean.ContSet.ZonoBundle.Real.Theorems.SplitFlowUnion

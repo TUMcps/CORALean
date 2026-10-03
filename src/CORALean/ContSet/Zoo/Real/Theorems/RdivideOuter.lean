@@ -1,0 +1,47 @@
+import CORALean.ContSet.Zoo.Real.Operations.Rdivide
+import CORALean.ContSet.Taylm.Real.Theorems.RdivideOuter
+import CORALean.ContSet.Interval.Real.Theorems.RdivideExact
+
+/-!
+# `Zoo.rdivide` encloses the quotient
+
+Under the members' own conditions on the denominator: the Taylor model's sign condition of
+`Taylm.rdivide_outer`, and for the interval, that no denominator entry contains zero
+(`Interval.rdivide_exact`).
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       03-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem Zoo.rdivide_outer {Z₁ Z₂ : Zoo n} {f g : Vec ℝ n → ℝ} (h₁ : Z₁.Encloses f)
+    (h₂ : Z₂.Encloses g)
+    (hT : ∀ T, Z₂.taylm = some T →
+      0 < min T.constCoef T.bounds.1 ∨ max T.constCoef T.bounds.2 < 0)
+    (hI : ∀ I, Z₂.ivl = some I → ∀ i, 0 < I.inf i ∨ I.sup i < 0) :
+    (Z₁.rdivide Z₂).Encloses fun t => f t / g t := by -- --- PROOF ---
+  refine ⟨fun T hT' => ?_, fun I hI' t ht => ?_⟩
+  · obtain ⟨a, b, ha, hb, rfl⟩ := Option.map₂_eq_some_iff.1 hT'
+    exact Taylm.rdivide_outer (h₁.1 a ha) (h₂.1 b hb) (hT b hb)
+  · obtain ⟨a, b, ha, hb, rfl⟩ := Option.map₂_eq_some_iff.1 hI'
+    have m₁ := h₁.2 a ha t ht
+    have m₂ := h₂.2 b hb t ht
+    rw [Interval.rdivide_exact (fun i => (m₁ i).1.trans (m₁ i).2)
+      (fun i => (m₂ i).1.trans (m₂ i).2) (hI b hb)]
+    exact ⟨_, m₁, _, m₂, rfl⟩
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
