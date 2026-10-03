@@ -53,6 +53,8 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapDepExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinPoint
 import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinExact
+import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinOuterMem
+import CORALean.ContSet.PolyZonotope.Real.Theorems.MatMapOuter
 import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinSubsetAt
 import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinSubsetAtSubsetImage2
 import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapMixedExact
@@ -84,6 +86,7 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.ReindexPoint
 import CORALean.ContSet.PolyZonotope.Real.Theorems.SortPoint
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MergePoint
 import CORALean.ContSet.PolyZonotope.Real.Theorems.SortPlusPoint
+import CORALean.ContSet.PolyZonotope.Real.Theorems.ShiftExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ShiftPoint
 import CORALean.ContSet.PolyZonotope.Real.Theorems.PowSortPoint
 import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolySortTailPoint

@@ -67,6 +67,9 @@ import CORALean.NN.Layers.Theorems.SigmoidPolyRelaxationSound
 import CORALean.NN.Layers.Theorems.SigmoidPolySound
 import CORALean.NN.Layers.Theorems.SigmoidRelaxationSound
 import CORALean.NN.Layers.Theorems.SigmoidSound
+import CORALean.NN.Layers.Theorems.GroupSortChunkGroupSort
+import CORALean.NN.Layers.Theorems.GroupSortPerm
+import CORALean.NN.Layers.Theorems.GroupSortSorted
 import CORALean.NN.Layers.Theorems.SoftmaxLeRawUpper
 import CORALean.NN.Layers.Theorems.SoftmaxSound
 import CORALean.NN.Layers.Theorems.SoftplusRelaxationSound

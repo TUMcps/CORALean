@@ -2,6 +2,8 @@ import CORALean.ContDynamics.LinearSysDT.Operations.Reach
 import CORALean.ContDynamics.LinearSysDT.Operations.ReachOrders
 import CORALean.ContDynamics.LinearSysDT.Operations.ReachHeld
 import CORALean.ContDynamics.LinearSysDT.Operations.Simulate
+import CORALean.ContDynamics.LinearSysDT.Operations.SimulateBoxFloat
+import CORALean.ContDynamics.LinearSysDT.Operations.SimulateBoxIn
 import CORALean.ContDynamics.LinearSysDT.Operations.BackReachExists
 import CORALean.ContDynamics.LinearSysDT.Operations.BackReachForall
 import CORALean.ContDynamics.LinearSysDT.Operations.ReachError

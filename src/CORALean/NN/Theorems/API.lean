@@ -66,6 +66,8 @@ import CORALean.NN.Theorems.Robustness
 import CORALean.NN.Theorems.ScheduleHeadCons
 import CORALean.NN.Theorems.BackpropEqFDerivTranspose
 import CORALean.NN.Theorems.BackpropEqTranspose
+import CORALean.NN.Theorems.FgsmAttackDistLe
+import CORALean.NN.Theorems.PgdAttackMemBox
 import CORALean.NN.Theorems.SensitivityActivation
 import CORALean.NN.Theorems.SensitivityFDeriv
 import CORALean.NN.Theorems.SensitivityLinear

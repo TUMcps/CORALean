@@ -94,6 +94,8 @@ import CORALean.NN.Layers.Operations.SigmoidPolyDerivBound
 import CORALean.NN.Layers.Operations.SigmoidPolyRelaxation
 import CORALean.NN.Layers.Operations.SigmoidRelaxation
 import CORALean.NN.Layers.Operations.SigmoidSlope
+import CORALean.NN.Layers.Operations.GroupSort
+import CORALean.NN.Layers.Operations.GroupSortChunk
 import CORALean.NN.Layers.Operations.Softmax
 import CORALean.NN.Layers.Operations.SoftmaxBox
 import CORALean.NN.Layers.Operations.SoftmaxDenomDown

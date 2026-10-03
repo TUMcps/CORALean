@@ -39,6 +39,9 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMap
 import CORALean.ContSet.PolyZonotope.Real.Operations.BilinE
 import CORALean.ContSet.PolyZonotope.Real.Operations.BilinG
 import CORALean.ContSet.PolyZonotope.Real.Operations.Bilin
+import CORALean.ContSet.PolyZonotope.Real.Operations.BilinGI
+import CORALean.ContSet.PolyZonotope.Real.Operations.BilinOuter
+import CORALean.ContSet.PolyZonotope.Real.Operations.MatMap
 import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapMixed
 import CORALean.ContSet.PolyZonotope.Real.Operations.PadE
 import CORALean.ContSet.PolyZonotope.Real.Operations.PadFrontE

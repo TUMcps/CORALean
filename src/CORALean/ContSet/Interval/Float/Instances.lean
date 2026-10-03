@@ -3,6 +3,8 @@ import CORALean.ContSet.ContSet.Definitions.ConvexSet
 import CORALean.ContSet.Interval.Float.Operations.IntersectionExact
 import CORALean.ContSet.Interval.Float.Theorems.IsCompact
 import CORALean.ContSet.Interval.Float.Theorems.LinCombOuter
+import CORALean.ContSet.Interval.Float.Operations.Center
+import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 import CORALean.ContSet.Interval.Float.Theorems.MinkDiffInner
 import CORALean.ContSet.Interval.Float.Theorems.MtimesIntervalMatOuter
 import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
@@ -22,7 +24,8 @@ in differs. `ConvexSet` and `CompactSet` cost no float proof: `construct` is
 `I.nominal` unchanged. `Intersection` is exact here too, nothing rounding.
 
 `reduce` gives up no order, as over ℝ: an interval has none to give up. No
-`OfPoint`: it would round a real point into `𝕋`, an operation this layer lacks.
+`OfPoint`: it would round a real point into `𝕋`, an operation this layer lacks; `OfScalarPoint`
+takes the point already in `𝕋`, which `Interval.point` holds exactly.
 
 Every field returns a `materialise`d interval. The bounds are function types, so
 the one an operation returns is a closure over the one it was given, and a loop
@@ -111,6 +114,15 @@ instance : Mtimes (fun m n => Interval (Mat 𝕋 m n)) (fun n => Interval (Vec �
   mtimes_outer IM I := by
     rw [Interval.materialise_eq]
     exact Interval.mtimesIntervalMat_outer IM I
+
+/-- A zero-width box at the stored point, nothing rounded. -/
+instance : OfScalarPoint 𝕋 (fun n => Interval (Vec 𝕋 n)) where
+  ofVec v := Interval.point v
+  mem_ofVec v := Interval.mem_point v
+
+/-- The rounded midpoint: any point of the box would do, as `enlarge` is sound about any. -/
+instance : ScalarCentre 𝕋 (fun n => Interval (Vec 𝕋 n)) where
+  centreVec I := Interval.center I
 
 end CORALean.Float
 

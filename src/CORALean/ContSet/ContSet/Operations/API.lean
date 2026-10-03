@@ -1,6 +1,9 @@
 import CORALean.ContSet.ContSet.Operations.Enclose
 import CORALean.ContSet.ContSet.Operations.Enlarge
+import CORALean.ContSet.ContSet.Operations.EnlargeScalar
 import CORALean.ContSet.ContSet.Operations.Minus
+import CORALean.ContSet.ContSet.Operations.MinusFromScalar
+import CORALean.ContSet.ContSet.Operations.MinusScalar
 import CORALean.ContSet.ContSet.Operations.MinusFrom
 import CORALean.ContSet.ContSet.Operations.ProjectHighDim
 import CORALean.ContSet.ContSet.Operations.Project
