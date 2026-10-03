@@ -17,10 +17,15 @@ the second.
 `Intersection.intersection` is homogeneous, so this is one of the two places that ask a location's
 invariant to be in the state's own family, `Location S S L 𝕋 n` (#39).
 
+It is also the loop body of [2, Alg. 1].
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety
       Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [2] M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid
+      Systems Using a Combination of Zonotopes and Polytopes". Nonlinear
+      Analysis: Hybrid Systems, 4(2):233-249, 2010.
 -/
 
 -- Authors:       Tobias Ladner

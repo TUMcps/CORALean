@@ -19,9 +19,14 @@ behind that rule was confirmed, so its source file is what is cited.
 pseudoinverse; a caller passes an invertible `P` or gets no enclosure, which is
 `reduceMethC`'s reason for testing the determinant before it calls this.
 
+Kept and dropped are [2, Prop. 9]'s `Ž` and `Z̃`, the centre going with `Ž`.
+
 ## References
 
 * [1] `contSet/@zonotope/private/priv_reduceMethC.m`, CORA (Sep. 2025).
+* [2] M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid
+      Systems Using a Combination of Zonotopes and Polytopes". Nonlinear
+      Analysis: Hybrid Systems, 4(2):233-249, 2010.
 -/
 
 -- Authors:       Tobias Ladner

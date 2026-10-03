@@ -68,6 +68,9 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachFloatOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachRunFloatOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.OneStepFloatOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachAlgFloatOuter
+import CORALean.ContDynamics.NonlinearSys.Theorems.AdmissibleLinErrorNotSufficient
+import CORALean.ContDynamics.NonlinearSys.Theorems.ErrReachSubsetOfAbsLe
+import CORALean.ContDynamics.NonlinearSys.Theorems.SplitReachOuter
 
 /-!
 # What `NonlinearSys` guarantees

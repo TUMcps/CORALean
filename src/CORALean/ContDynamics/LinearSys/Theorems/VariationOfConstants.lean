@@ -6,9 +6,9 @@ import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
 /-!
 # Every trajectory is its matrix exponential plus its inputs
 
-`x(t) = e^{At} x(0) + ∫₀ᵗ e^{A(t-s)} u(s) ds`, the closed form reachability is
-built on: the first term moves the initial set, the second is everything the
-inputs contributed.
+`x(t) = e^{At} x(0) + ∫₀ᵗ e^{A(t-s)} u(s) ds`, [1, Eq. 5] at a constant input, the closed
+form reachability is built on: the first term moves the initial set, the second is
+everything the inputs contributed.
 
 Proved by the substitution `y(s) = e^{-As} x(s)`, whose derivative
 `hasDerivWithinAt_expNeg_mulVec` gives as `e^{-As} u(s)` — the dynamics cancel —
@@ -21,6 +21,13 @@ constraining `u` pointwise only.
 Mathlib's matrix exponential needs a norm on `Mat`, which is a choice rather
 than an instance. Only completeness of the `l∞` operator norm is used here, so
 any other would serve.
+
+## References
+
+* [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in
+      Reachability Analysis of Hybrid Systems". In Proc. of the 15th ACM
+      International Conference on Hybrid Systems: Computation and Control (HSCC),
+      2012, pp. 45-54.
 -/
 
 -- Authors:       Tobias Ladner

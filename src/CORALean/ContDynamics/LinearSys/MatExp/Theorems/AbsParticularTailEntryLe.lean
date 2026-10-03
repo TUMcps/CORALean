@@ -9,13 +9,13 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TsumMatrixEntryEq
 /-!
 # `Σ_{i>η} Ãᵢ` is entrywise under `E(Δt,η)·Δt`
 
-The step [1, `Prop. 11`]'s display `(18)` takes without proof: `expIntegral`'s own
-*infinite* tail past the truncation order is dominated, entry for entry, by the
-*finite* `E(Δt,η)Δt` eq. (20)'s remainder block carries. The two series are
-different — `Aⁱ Δtⁱ⁺¹/(i+1)!` against `(|A|Δt)ⁱ/i!` scaled by `Δt` — but they
-match power for power once `abs_pow_entry_le_absMat_pow_entry` replaces `Aⁱ` by
-`|A|ⁱ`, and `(i+1)! ≥ i!` finishes each term. No `Δt ≤ 1` is needed: the two
-`Δt`-powers are already equal, `Δt · Δtⁱ = Δtⁱ⁺¹`.
+The step [1, `Prop. 11`]'s display `(18)` takes without proof, and [2, Eq. 7]'s `Ẽ(t) =
+Ê(t)t`: `expIntegral`'s own *infinite* tail past the truncation order is dominated, entry
+for entry, by the *finite* `E(Δt,η)Δt` eq. (20)'s remainder block carries. The two series
+are different — `Aⁱ Δtⁱ⁺¹/(i+1)!` against `(|A|Δt)ⁱ/i!` scaled by `Δt` — but they match
+power for power once `abs_pow_entry_le_absMat_pow_entry` replaces `Aⁱ` by `|A|ⁱ`, and
+`(i+1)! ≥ i!` finishes each term. No `Δt ≤ 1` is needed: the two `Δt`-powers are already
+equal, `Δt · Δtⁱ = Δtⁱ⁺¹`.
 
 `MatExp.tsum_entry_eq` reads both sides one entry at a time, `aux_summable_entry`
 being the summability that goes with it.
@@ -25,6 +25,10 @@ being the summability that goes with it.
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear
       Systems Using Inner- and Outer-Approximations of Reachable Sets". IEEE Transactions on
       Automatic Control, vol. 68, no. 12, 2023, pp. 7771–7786.
+* [2] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in
+      Reachability Analysis of Hybrid Systems". In Proc. of the 15th ACM
+      International Conference on Hybrid Systems: Computation and Control (HSCC),
+      2012, pp. 45-54.
 -/
 
 -- Authors:       Tobias Ladner

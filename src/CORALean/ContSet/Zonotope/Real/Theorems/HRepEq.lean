@@ -20,10 +20,15 @@ separation is a positive linear form; `exists_edge_of_cone` moves it to an edge
 of that cone, which `n` independent generators annihilate; and `eq_smul_nCross`
 says the edge is a multiple of their cross product.
 
+The theorem first appeared as [2, Thm. 7], and its parallelotope case as [2, Lemma 6].
+
 ## References
 
 * [1] M. Althoff. "On Computing the Minkowski Difference of Zonotopes".
       arXiv, 2015.
+* [2] M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid
+      Systems Using a Combination of Zonotopes and Polytopes". Nonlinear
+      Analysis: Hybrid Systems, 4(2):233-249, 2010.
 -/
 
 -- Authors:       Tobias Ladner

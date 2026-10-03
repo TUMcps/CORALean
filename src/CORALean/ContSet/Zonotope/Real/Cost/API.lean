@@ -4,6 +4,9 @@ import CORALean.ContSet.Zonotope.Real.Cost.Mtimes
 import CORALean.ContSet.Zonotope.Real.Cost.Map
 import CORALean.ContSet.Zonotope.Real.Cost.ReduceBy
 import CORALean.ContSet.Zonotope.Real.Cost.ReduceGirard
+import CORALean.ContSet.Zonotope.Real.Cost.ExhaustiveSearch
+import CORALean.ContSet.Zonotope.Real.Cost.ExhaustiveSearchBigO
+import CORALean.ContSet.Zonotope.Real.Cost.ExhaustiveSearchFilteredBigO
 
 /-!
 # What running `Zonotope`'s operations costs

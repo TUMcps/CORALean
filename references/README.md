@@ -49,9 +49,12 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [An embedding theorem for spaces of convex sets](1952/radstrom-embedding.md) | Rådström | Proc. Amer. Math. Soc. 3, pp. 165-169 | 1952 | 🟢 3/3 \| 2 |
 | [A state bounding observer based on zonotopes](2003/combastel-ecc-state-bounding-observer.md) | Combastel | ECC | 2003 | 🟢 5/5 \| 1 |
 | [Reachability of Uncertain Linear Systems Using Zonotopes](2005/girard-hscc-reachability-zonotopes.md) | Girard | HSCC, LNCS 3414, pp. 291-305 | 2005 | 🟢 7/7 \| 1 |
+| [Reachability Analysis of Nonlinear Systems with Uncertain Parameters using Conservative Linearization](2008/althoff-cdc-conservative-linearization.md) | Althoff, Stursberg, Buss | CDC, pp. 4042-4048 | 2008 | 🟡 11/12 \| 3 |
+| [Computing Reachable Sets of Hybrid Systems Using a Combination of Zonotopes and Polytopes](2010/althoff-nahs-zonotopes-polytopes.md) | Althoff, Stursberg, Buss | Nonlinear Analysis: Hybrid Systems, 4(2):233-249 | 2010 | 🟢 13/13 \| 6 |
 | [Reachability Analysis and its Application to the Safety Assessment of Autonomous Cars](2010/althoff-thesis.md) | Althoff | PhD thesis, TU München | 2010 | 🟢 34/34 \| 2 |
 | [Zonotope Bundles for the Efficient Computation of Reachable Sets](2011/althoff-cdc-zonotope-bundles.md) | Althoff, Krogh | CDC-ECC, pp. 6814-6821 | 2011 | 🟢 16/16 \| 7 |
 | [Analyzing Reachability of Linear Dynamic Systems with Parametric Uncertainties](2011/althoff-reachability-parametric-uncertainties.md) | Althoff, Krogh, Stursberg | In A. Rauh and E. Auer (eds.), Modeling, Design, and Simulation of Systems with Uncertainties, Springer | 2011 | 🟢 4/4 \| 0 |
+| [Avoiding Geometric Intersection Operations in Reachability Analysis of Hybrid Systems](2012/althoff-hscc-avoiding-intersection.md) | Althoff, Krogh | HSCC, pp. 45-54 | 2012 | 🟡 13/17 \| 3 |
 | [Reachability Analysis of Nonlinear Systems using Conservative Polynomialization and Non-Convex Sets](2013/althoff-hscc-conservative-polynomialization.md) | Althoff | HSCC | 2013 | 🟢 6/6 \| 2 |
 | [On Computing the Minkowski Difference of Zonotopes](2015/althoff-arxiv-minkowski-difference.md) | Althoff | arXiv | 2015 | 🟢 16/16 \| 1 |
 | [Constrained zonotopes: A new tool for set-based estimation and fault detection](2016/scott-automatica-constrained-zonotopes.md) | Scott, Raimondo, Marseglia, Braatz | Automatica, 69:126-136 | 2016 | 🟢 10/10 \| 6 |
@@ -139,9 +142,12 @@ pages carry one:
 <!-- findings -->
 * [Reachability of Uncertain Linear Systems Using Zonotopes](2005/girard-hscc-reachability-zonotopes.md)
 * [An embedding theorem for spaces of convex sets](1952/radstrom-embedding.md)
+* [Reachability Analysis of Nonlinear Systems with Uncertain Parameters using Conservative Linearization](2008/althoff-cdc-conservative-linearization.md)
 * [Reachability Analysis and its Application to the Safety Assessment of Autonomous Cars](2010/althoff-thesis.md)
+* [Computing Reachable Sets of Hybrid Systems Using a Combination of Zonotopes and Polytopes](2010/althoff-nahs-zonotopes-polytopes.md)
 * [Zonotope Bundles for the Efficient Computation of Reachable Sets](2011/althoff-cdc-zonotope-bundles.md)
 * [Analyzing Reachability of Linear Dynamic Systems with Parametric Uncertainties](2011/althoff-reachability-parametric-uncertainties.md)
+* [Avoiding Geometric Intersection Operations in Reachability Analysis of Hybrid Systems](2012/althoff-hscc-avoiding-intersection.md)
 * [Reachability Analysis of Nonlinear Systems using Conservative Polynomialization and Non-Convex Sets](2013/althoff-hscc-conservative-polynomialization.md)
 * [On Computing the Minkowski Difference of Zonotopes](2015/althoff-arxiv-minkowski-difference.md)
 * [Methods for Order Reduction of Zonotopes](2017/kopetzki-cdc-order-reduction.md)

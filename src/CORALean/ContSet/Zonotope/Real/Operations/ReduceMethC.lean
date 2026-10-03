@@ -6,7 +6,8 @@ import CORALean.ContSet.Zonotope.Real.Operations.ReduceByBasis
 /-!
 # `Zonotope.reduceMethC`
 
-CORA's `reduce(Z, 'methC', o)` [1]. Its partition is Girard's — CORA reaches it
+CORA's `reduce(Z, 'methC', o)` [1], descended from [2, Sec. 5.4.2]'s method C,
+`Zonotope.methodC`. Its partition is Girard's — CORA reaches it
 through `pickedGenerators`, which ranks by `‖g‖₁ - ‖g‖∞` exactly as
 `girardSplit` does. What differs is the enclosure: the dropped block is boxed
 along `n` of the dropped generators themselves, prefiltered by length and then
@@ -26,6 +27,9 @@ result encloses nothing. Here that case boxes along the axes instead.
 
 * [1] `contSet/@zonotope/private/priv_reduceMethC.m`, CORA (Sep. 2025). No
       paper behind the rule was confirmed.
+* [2] M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid
+      Systems Using a Combination of Zonotopes and Polytopes". Nonlinear
+      Analysis: Hybrid Systems, 4(2):233-249, 2010.
 -/
 
 -- Authors:       Tobias Ladner

@@ -3,7 +3,8 @@ import CORALean.ContDynamics.NonlinearSys.NonlinearSys
 /-!
 # The set a nonlinear run actually reaches
 
-The definition is [1, Def. 6], and [2, Def. 8]'s `Rᵉ_{X₀}(t)` is the same set.
+The definition is [1, Def. 6], and [2, Def. 8]'s `Rᵉ_{X₀}(t)` is the same set, as is
+[3, Def. 1]'s `R_e(r)`, its time-varying parameters being inputs here.
 
 `LinearSys.reachSet` at a nonlinear field: every state some trajectory of `sys`
 visits at time `t`, quantified over the runs rather than over an enclosure of
@@ -15,10 +16,9 @@ claim sits in the other inclusion, of this set in a computed one.
 only where its own certificate was issued, so the theorems about it carry a
 confinement hypothesis where the linear ones carry none.
 
-`Theorems.ReachSetOuter` puts every trajectory into it,
-`ReachSetConfinementOfSubset` keeps it inside each step's certified region, and
-`ReachSetSubsetRelinReach` and `ReachSetSubsetRelinTimeInterval` put it inside
-what is computed.
+`ReachSetOuter` puts every trajectory into it, `ReachSetConfinementOfSubset` keeps
+it inside each step's certified region, and `ReachSetSubsetRelinReach` and
+`ReachSetSubsetRelinTimeInterval` put it inside what is computed.
 
 ## References
 
@@ -27,6 +27,10 @@ what is computed.
 * [2] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set
       Representation for Reachability Analysis". IEEE Transactions on Automatic
       Control, 2021.
+* [3] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Nonlinear
+      Systems with Uncertain Parameters using Conservative Linearization". In
+      Proc. of the 47th IEEE Conference on Decision and Control (CDC), 2008,
+      pp. 4042-4048.
 -/
 
 -- Authors:       Tobias Ladner

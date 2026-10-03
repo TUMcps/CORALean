@@ -80,6 +80,14 @@ import CORALean.ContSet.Zonotope.Real.Operations.GeneratorLength
 import CORALean.ContSet.Zonotope.Real.Operations.ConstrSat
 import CORALean.ContSet.Zonotope.Real.Operations.CartProd
 import CORALean.ContSet.Zonotope.Real.Operations.SplitFirstGen
+import CORALean.ContSet.Zonotope.Real.Operations.EnclosePolytopes
+import CORALean.ContSet.Zonotope.Real.Operations.MethodC
+import CORALean.ContSet.Zonotope.Real.Operations.MethodCBasis
+import CORALean.ContSet.Zonotope.Real.Operations.Parallelotope
+import CORALean.ContSet.Zonotope.Real.Operations.HalfspaceRange
+import CORALean.ContSet.Zonotope.Real.Operations.QuadMap
+import CORALean.ContSet.Zonotope.Real.Operations.QuadMapMatZono
+import CORALean.ContSet.Zonotope.Real.Operations.UnitIntervalMul
 
 /-!
 # What `Zonotope` computes

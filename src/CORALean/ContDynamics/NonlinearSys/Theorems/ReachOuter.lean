@@ -5,7 +5,7 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.Restrict
 /-!
 # The nonlinear reachable set is the linearized one
 
-The payoff: nothing new is computed for a nonlinear system. Once `linearize` has
+The payoff, [1, Sec. IV-A]: nothing new is computed for a nonlinear system. Once `linearize` has
 turned the run into a linear one, `LinearSys.Trajectory.reach_outer` is the whole
 proof and the enclosing set is the linear system's `reach`.
 
@@ -19,6 +19,13 @@ everywhere `discretize` is.
 of all forward time; the `_horizon` and `_inputSolution` variants relax each of
 those in turn. Neither discharges confinement — `confinement_of_subset` does,
 over the steps of a re-linearization loop.
+
+## References
+
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Nonlinear
+      Systems with Uncertain Parameters using Conservative Linearization". In
+      Proc. of the 47th IEEE Conference on Decision and Control (CDC), 2008,
+      pp. 4042-4048.
 -/
 
 -- Authors:       Tobias Ladner

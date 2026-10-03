@@ -8,11 +8,17 @@ The flow method of [1, Heuristic flow]: start from `Λ = I` and replace the colu
 the flow direction `f` by `f` itself. Invertible exactly when that column of `f` is nonzero, i.e.
 for any `f ≠ 0`; at `f = 0` the replaced column is zero, which the paper does not consider.
 
+The rule first appeared in [2, Sec. 6.2], with `f` normalized, which changes no
+enclosure.
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of
       Reachable Sets". In Proc. of the 50th IEEE Conference on Decision and Control and
       European Control Conference (CDC-ECC), pp. 6814-6821, 2011.
+* [2] M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid
+      Systems Using a Combination of Zonotopes and Polytopes". Nonlinear
+      Analysis: Hybrid Systems, 4(2):233-249, 2010.
 -/
 
 -- Authors:       Tobias Ladner

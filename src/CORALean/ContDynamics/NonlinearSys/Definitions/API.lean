@@ -15,6 +15,7 @@ import CORALean.ContDynamics.NonlinearSys.Definitions.WithSteps
 import CORALean.ContDynamics.NonlinearSys.Definitions.FloatModel
 import CORALean.ContDynamics.NonlinearSys.Definitions.FloatHessModel
 import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachAlg
+import CORALean.ContDynamics.NonlinearSys.Definitions.AdmissibleLinError
 
 /-!
 # What `NonlinearSys` means beyond the system itself

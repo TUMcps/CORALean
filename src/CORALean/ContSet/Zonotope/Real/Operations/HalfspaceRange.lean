@@ -1,0 +1,47 @@
+import CORALean.ContSet.Zonotope.Real.Zonotope
+import Mathlib.Data.Matrix.Mul
+
+/-!
+# `Zonotope.halfspaceRange`
+
+[1, Sec. 5.2]: where a zonotope lies against a halfspace `H = {x | nᵀx ≤ d}`, read off
+the one-dimensional zonotope `(nᵀ ⊗ Z) ⊕ (-d) = ω_c ⊕ ([-1, 1] ⊗ ω⁽¹⁾) ⊕ ... ⊕ ([-1, 1] ⊗ ω⁽ᵖ⁾)`
+as the interval `[ω̲, ω̄] = [ω_c - Σᵢ |ω⁽ⁱ⁾|, ω_c + Σᵢ |ω⁽ⁱ⁾|]`, one `let` per printed quantity.
+The paper uses it to bound the times a reachable set meets the guard.
+
+## References
+
+* [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in
+      Reachability Analysis of Hybrid Systems". In Proc. of the 15th ACM
+      International Conference on Hybrid Systems: Computation and Control (HSCC),
+      2012, pp. 45-54.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       03-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+open Matrix
+
+variable {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- [1, Sec. 5.2]: `[ω̲, ω̄]`, the range of `nᵀx - d` over `Z`. -/
+noncomputable def Zonotope.halfspaceRange (nv : Vec ℝ n) (d : ℝ) (Z : Zonotope (Vec ℝ n)) :
+    ℝ × ℝ :=
+  let ωc := nv ⬝ᵥ Z.c - d                  -- the centre of `(nᵀ ⊗ Z) ⊕ (-d)`
+  let ω : Fin Z.h → ℝ := fun i => nv ⬝ᵥ Z.G i  -- its generators
+  (ωc - ∑ i, |ω i|, ωc + ∑ i, |ω i|)
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
