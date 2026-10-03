@@ -23,6 +23,8 @@ import CORALean.ContDynamics.LinearSys.Definitions.MaxBackReachState
 import CORALean.ContDynamics.LinearSys.Definitions.MinBackReachState
 import CORALean.ContDynamics.LinearSys.Definitions.TunedState
 import CORALean.ContDynamics.LinearSys.Definitions.VerifyIter
+import CORALean.ContDynamics.LinearSys.Definitions.VerifySpec
+import CORALean.ContDynamics.LinearSys.Definitions.VerifySound
 import CORALean.ContDynamics.LinearSys.Definitions.ReachExact
 import CORALean.ContDynamics.LinearSys.Definitions.ReachOptions
 import CORALean.ContDynamics.LinearSys.Definitions.ReachStepOptions

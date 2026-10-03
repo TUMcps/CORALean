@@ -1,4 +1,5 @@
 import CORALean.ContDynamics.LinearARX.Operations.Simulate
+import CORALean.ContDynamics.LinearARX.Theorems.StackSimulateZero
 
 /-!
 # A simulated run is a trajectory
@@ -30,21 +31,7 @@ theorem LinearARX.simulate_trajectory (sys : LinearARX 𝕋 dy du p) {Y₀ : S (
     {y₀ : Vec ℝ (p * dy)} (hy₀ : y₀ ∈ construct Y₀) {u : ℕ → Vec ℝ du}
     (hu : ∀ k, u k ∈ construct U) : sys.Trajectory Y₀ U (sys.simulate y₀ u) u where
   init := by
-    -- the window of the first `p` outputs is `y₀` itself
-    have h : LinearARX.stack p (sys.simulate y₀ u) 0 = y₀ := by
-      funext r
-      have hlt : (0 + (finProdFinEquiv.symm r).1 : ℕ) < p := by
-        simpa using (finProdFinEquiv.symm r).1.isLt
-      have hs : sys.simulate y₀ u (0 + (finProdFinEquiv.symm r).1 : ℕ)
-          = fun b => y₀ (finProdFinEquiv (⟨0 + (finProdFinEquiv.symm r).1, hlt⟩, b)) := by
-        rw [LinearARX.simulate, dif_pos hlt]
-      show sys.simulate y₀ u (0 + (finProdFinEquiv.symm r).1 : ℕ) (finProdFinEquiv.symm r).2 = _
-      rw [hs]
-      have hf : (⟨0 + (finProdFinEquiv.symm r).1, hlt⟩, (finProdFinEquiv.symm r).2)
-          = finProdFinEquiv.symm r := Prod.ext (Fin.ext (zero_add _)) rfl
-      show y₀ (finProdFinEquiv (⟨0 + (finProdFinEquiv.symm r).1, hlt⟩, _)) = _
-      rw [hf, Equiv.apply_symm_apply]
-    rw [h]
+    rw [LinearARX.stack_simulate_zero]
     exact hy₀
   input := hu
   step k hk := by

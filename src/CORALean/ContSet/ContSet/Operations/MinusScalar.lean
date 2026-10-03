@@ -1,0 +1,38 @@
+import CORALean.ContSet.ContSet.ContSet
+import CORALean.Global.NegScalar
+
+/-!
+# CORA's `minus` with a vector subtrahend, at any scalar
+
+`S + (-p)` as `ContSet.minus` has it, the point now a vector of the representation's own scalar
+and entering through `OfScalarPoint`, so a float representation runs it. Negation is exact in
+every format, hence `NegScalar` and no rounding.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       03-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open ContSet Scalar
+
+variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] [NegScalar 𝕋] {S : ℕ → Type}
+variable [∀ n, ContSet (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] {n : ℕ}
+variable [∀ n, Plus (S n) (Vec ℝ n)] [OfScalarPoint 𝕋 S]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- CORA's `minus` for a numeric `p`: `S = S + (-p)`. -/
+def ContSet.minusScalar (s : S n) (p : Vec 𝕋 n) : S n :=
+  Plus.plus s (OfScalarPoint.ofVec (𝕋 := 𝕋) (-p))
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

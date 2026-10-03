@@ -2,6 +2,7 @@ import CORALean.ContSet.ContSet.Definitions.CompactSet
 import CORALean.ContSet.ContSet.Definitions.ConvexSet
 import CORALean.ContSet.Interval.Float.Instances
 import CORALean.ContSet.MatZonotope.Float.Instances
+import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
 import CORALean.ContSet.Zonotope.Float.Theorems.Convex
 import CORALean.ContSet.Zonotope.Float.Theorems.IsClosed
 import CORALean.ContSet.Zonotope.Float.Theorems.LinCombOuter
@@ -83,6 +84,19 @@ instance {n : ℕ} : Recentre (Zonotope 𝕋 n) (Vec ℝ n) where
   recentre := Zonotope.recentre
   zero_mem_recentre := Zonotope.zero_mem_recentre
   sub_centre_mem_recentre := Zonotope.sub_centre_mem_recentre
+
+/-- The point zonotope: no generators and the origin error box, exactly the stored point. -/
+instance : OfScalarPoint 𝕋 (Zonotope 𝕋) where
+  ofVec v := Zonotope.point v
+  mem_ofVec v := by
+    have h := Zonotope.construct_point v
+    show toRealVec v ∈ (Zonotope.point v).construct
+    rw [h]
+    exact Set.mem_singleton _
+
+/-- The stored centre. -/
+instance : ScalarCentre 𝕋 (Zonotope 𝕋) where
+  centreVec Z := Z.c
 
 /-- Exact, alone among the fields here: a relabelling moves stored floats and
 computes nothing, so the error box is carried across rather than grown. -/

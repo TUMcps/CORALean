@@ -1,0 +1,37 @@
+import CORALean.ContSet.ContSet.ContSet
+import CORALean.ContSet.ContSet.Operations.Uminus
+import CORALean.Global.NegScalar
+
+/-!
+# CORA's `minus` with a vector minuend, at any scalar
+
+`-S + p`, as `ContSet.minusFrom`, the point a vector of the representation's own scalar.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       03-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open ContSet Scalar
+
+variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] [NegScalar 𝕋] {S : ℕ → Type}
+variable [∀ n, ContSet (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] {n : ℕ}
+variable [∀ n, Plus (S n) (Vec ℝ n)] [OfScalarPoint 𝕋 S]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- CORA's `minus` for a numeric minuend `p`: `S = -S + p`. -/
+def ContSet.minusFromScalar (p : Vec 𝕋 n) (s : S n) : S n :=
+  Plus.plus (ContSet.uminus (𝕋 := 𝕋) s) (OfScalarPoint.ofVec (𝕋 := 𝕋) p)
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

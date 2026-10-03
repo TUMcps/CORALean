@@ -185,6 +185,21 @@ class OfPoint (S : Type) (α : outParam Type) [AddCommGroup α] [Module ℝ α]
   ofPoint : α → S
   mem_ofPoint (v : α) : v ∈ construct (ofPoint v)
 
+/-- A singleton, from a point *of the representation's own scalar*. `OfPoint` takes a real
+point, which a float representation cannot store; this takes what it can, and says it holds the
+real point that value reads as. -/
+class OfScalarPoint (𝕋 : Type) [Scalar 𝕋] (S : ℕ → Type)
+    [∀ n, ContSet (S n) (Vec ℝ n)] where
+  ofVec {n : ℕ} : Vec 𝕋 n → S n
+  mem_ofVec {n : ℕ} (v : Vec 𝕋 n) : Scalar.toRealVec v ∈ construct (ofVec v)
+
+/-- A point of the representation's scalar the set is centred on, as CORA's `center`. No law:
+what an algorithm does with the point (CORA's `enlarge`) is sound for any point, the centre only
+decides how tight the result is. -/
+class ScalarCentre (𝕋 : Type) [Scalar 𝕋] (S : ℕ → Type)
+    [∀ n, ContSet (S n) (Vec ℝ n)] where
+  centreVec {n : ℕ} : S n → Vec 𝕋 n
+
 /-- A set taken apart into a point of the ambient space and a set holding the
 origin. Every representation with a centre has this; no class offered it. -/
 class Recentre (S : Type) (α : outParam Type) [AddCommGroup α] [Module ℝ α]

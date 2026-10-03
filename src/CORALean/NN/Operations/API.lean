@@ -51,6 +51,9 @@ import CORALean.NN.Operations.ScheduleCons
 import CORALean.NN.Operations.ScheduleHead
 import CORALean.NN.Operations.ScheduleTail
 import CORALean.NN.Operations.Backprop
+import CORALean.NN.Operations.FgsmAttack
+import CORALean.NN.Operations.PgdAttack
+import CORALean.NN.Operations.PgdStep
 import CORALean.NN.Operations.Sensitivity
 import CORALean.NN.Operations.StaticMergeBuckets
 import CORALean.NN.Operations.ToLayer

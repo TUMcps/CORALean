@@ -32,6 +32,7 @@ import CORALean.NN.Graph.Theorems.GcnStepsOuter
 import CORALean.NN.Graph.Theorems.GcnStepsP
 import CORALean.NN.Graph.Theorems.GcnStepsPoint
 import CORALean.NN.Graph.Theorems.GcnUncertainOuter
+import CORALean.NN.Graph.Theorems.LinearPolyZonotopeExact
 import CORALean.NN.Graph.Theorems.MatMulBilinApply
 import CORALean.NN.Graph.Theorems.MemBallEnumIff
 import CORALean.NN.Graph.Theorems.MemBallSelf

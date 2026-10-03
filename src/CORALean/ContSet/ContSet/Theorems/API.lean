@@ -2,6 +2,7 @@ import CORALean.ContSet.ContSet.Theorems.DependencyPreservingChain
 import CORALean.ContSet.ContSet.Theorems.DependencyPreservingComp
 import CORALean.ContSet.ContSet.Theorems.EncloseOuter
 import CORALean.ContSet.ContSet.Theorems.EnlargeOuter
+import CORALean.ContSet.ContSet.Theorems.EnlargeScalarOuter
 import CORALean.ContSet.ContSet.Theorems.ProjectHighDimOuter
 import CORALean.ContSet.ContSet.Theorems.ProjectOuter
 import CORALean.ContSet.ContSet.Theorems.DecomposeOuter
@@ -28,6 +29,8 @@ import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffInnerOfOuter
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffMono
 import CORALean.ContSet.ContSet.Theorems.MinusFromOuter
 import CORALean.ContSet.ContSet.Theorems.MinusOuter
+import CORALean.ContSet.ContSet.Theorems.MinusFromScalarOuter
+import CORALean.ContSet.ContSet.Theorems.MinusScalarOuter
 import CORALean.ContSet.ContSet.Theorems.SegmentsMinkowskiDiffSubset
 import CORALean.ContSet.ContSet.Theorems.SmulMemLinCombOfPoint
 import CORALean.ContSet.ContSet.Theorems.SubsetMinkowskiDiffIff

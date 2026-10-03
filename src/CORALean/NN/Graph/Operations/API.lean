@@ -15,6 +15,10 @@ import CORALean.NN.Graph.Operations.GcnLin
 import CORALean.NN.Graph.Operations.GcnShared
 import CORALean.NN.Graph.Operations.GcnSteps
 import CORALean.NN.Graph.Operations.GcnUncertain
+import CORALean.NN.Graph.Operations.Linear
+import CORALean.NN.Graph.Operations.LinearBias
+import CORALean.NN.Graph.Operations.LinearLin
+import CORALean.NN.Graph.Operations.LinearPolyZonotope
 import CORALean.NN.Graph.Operations.Mask
 import CORALean.NN.Graph.Operations.MatMulBilin
 import CORALean.NN.Graph.Operations.MessagePassing

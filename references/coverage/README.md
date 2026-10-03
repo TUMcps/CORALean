@@ -98,6 +98,7 @@ Rulings on borderline cases:
 * **Route b for verdicts and merges** is accepted where the definition is generic over `Scalar 𝕋` and computable and the guarantee is stated for that `𝕋`: `mergeInvariants` (guarantee `Lifting.mem_inv`) and hybridDynamics `verify` (`HybridAutomaton.holds_of_check`), as for the sibling rows already `float`.
 * **R-S: constructor rows of scalar-carrying structures** count as `float` by route b when the structure is generic over `Scalar 𝕋`, computable, and the row's theorem is stated for it: `linearARX` (`LinearARX 𝕋`, with the computable `toLinearSysDT`) and `neurNetContrSys` (`NeurNetContrSys 𝕋`). Not for structures whose `f` is a real function (`nonlinearARX`, `nonlinearSysDT`).
 * **R-FB: `FloatBound` is the float side of `SupportBound`.** The abstract contSet rows `supportFunc` and `supportFunc_` are `float` by route b through that interface, which each float class instantiates by its `boundDot`.
+* **R-SIM: a DT `simulate` row is `float`** when an interval-valued run `simulateBox` (the system's step applied to float `Interval.point` start and inputs, with directed rounding) is linked with `simulate_mem_simulateBox` (the real trajectory lies in the float boxes): linearSysDT, linearARX and neurNetContrSys. The guarantee is an enclosure, so the row note says "outer". Not for nonlinearSysDT and nonlinearARX, whose `f` is a real function with no interval step.
 * **Alias-stale rows** are linked to the declaration that already exists under another row: linearReset `nonlinearReset` (`Transition.toNonlinearReset`, `NonlinearReset.evaluate_toNonlinearReset`) and conZonotope `enclose` (the generic `ContSet.enclose`, as the float `ConZonotope` has `Plus`, `LinComb` and `Mtimes`).
 * **`deprecated` also covers a method that itself emits `CORAwarning('CORA:deprecated')`**, even if its help text does not say `DEPRECATED` (polygon `simplify`).
 * **`matlab-runtime`, further rows:** nonlinearSys `taylor` (symbolic derivative code generation), nn `instantiateFromString` (string dispatch), contSet `representsa_emptyObject` (dispatch on `isemptyobject`), contSet `compact` and `vertices` (validating wrappers of `compact_` and `vertices_`), nn `nnGNNLayer` (abstract class constructor). **`random/sampling`, further rows:** polytope `reduce` (its only method is `'rand'`), zonotope `orthVectors` (random completion columns). capsule `vertices_` stays in scope: a deterministic arc grid, not a random draw.
@@ -112,13 +113,13 @@ Rulings on borderline cases:
 | [capsule](contSet/capsule.md) | contSet | 39 | 6 | 19 | 4 | 10 | 3 |
 | [conPolyZono](contSet/conPolyZono.md) | contSet | 47 | 5 | 20 | 14 | 8 | 0 |
 | [conZonotope](contSet/conZonotope.md) | contSet | 50 | 4 | 21 | 13 | 12 | 0 |
-| [contSet](contSet/contSet.md) | contSet | 101 | 4 | 22 | 3 | 72 | 0 |
+| [contSet](contSet/contSet.md) | contSet | 101 | 2 | 24 | 3 | 72 | 0 |
 | [ellipsoid](contSet/ellipsoid.md) | contSet | 50 | 5 | 15 | 21 | 9 | 0 |
 | [emptySet](contSet/emptySet.md) | contSet | 30 | 8 | 14 | 1 | 7 | 0 |
 | [fullspace](contSet/fullspace.md) | contSet | 33 | 10 | 13 | 2 | 8 | 0 |
 | [interval](contSet/interval.md) | contSet | 110 | 1 | 83 | 8 | 18 | 0 |
 | [levelSet](contSet/levelSet.md) | contSet | 22 | 8 | 0 | 6 | 8 | 0 |
-| [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 3 | 27 | 29 | 14 | 0 |
+| [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 4 | 27 | 28 | 14 | 0 |
 | [polygon](contSet/polygon.md) | contSet | 46 | 4 | 14 | 21 | 7 | 0 |
 | [polytope](contSet/polytope.md) | contSet | 58 | 3 | 30 | 14 | 11 | 0 |
 | [probZonotope](contSet/probZonotope.md) | contSet | 28 | 0 | 0 | 20 | 8 | 0 |
@@ -130,10 +131,10 @@ Rulings on borderline cases:
 | [contDynamics](contDynamics/contDynamics.md) | contDynamics | 19 | 0 | 4 | 4 | 11 | 0 |
 | [linParamSys](contDynamics/linParamSys.md) | contDynamics | 11 | 3 | 2 | 3 | 3 | 0 |
 | [linProbSys](contDynamics/linProbSys.md) | contDynamics | 8 | 0 | 0 | 4 | 4 | 0 |
-| [linearARX](contDynamics/linearARX.md) | contDynamics | 7 | 1 | 2 | 2 | 2 | 0 |
-| [linearSys](contDynamics/linearSys.md) | contDynamics | 33 | 5 | 9 | 9 | 10 | 0 |
-| [linearSysDT](contDynamics/linearSysDT.md) | contDynamics | 17 | 1 | 4 | 7 | 5 | 0 |
-| [neurNetContrSys](contDynamics/neurNetContrSys.md) | contDynamics | 5 | 1 | 3 | 0 | 1 | 0 |
+| [linearARX](contDynamics/linearARX.md) | contDynamics | 7 | 0 | 3 | 2 | 2 | 0 |
+| [linearSys](contDynamics/linearSys.md) | contDynamics | 33 | 6 | 9 | 8 | 10 | 0 |
+| [linearSysDT](contDynamics/linearSysDT.md) | contDynamics | 17 | 0 | 5 | 7 | 5 | 0 |
+| [neurNetContrSys](contDynamics/neurNetContrSys.md) | contDynamics | 5 | 0 | 4 | 0 | 1 | 0 |
 | [nonlinDASys](contDynamics/nonlinDASys.md) | contDynamics | 13 | 2 | 0 | 8 | 3 | 0 |
 | [nonlinParamSys](contDynamics/nonlinParamSys.md) | contDynamics | 9 | 3 | 0 | 2 | 4 | 0 |
 | [nonlinearARX](contDynamics/nonlinearARX.md) | contDynamics | 8 | 4 | 0 | 1 | 3 | 0 |
@@ -147,8 +148,8 @@ Rulings on borderline cases:
 | [nonlinearReset](hybridDynamics/nonlinearReset.md) | hybridDynamics | 9 | 4 | 0 | 1 | 4 | 0 |
 | [parallelHybridAutomaton](hybridDynamics/parallelHybridAutomaton.md) | hybridDynamics | 13 | 1 | 5 | 1 | 6 | 0 |
 | [transition](hybridDynamics/transition.md) | hybridDynamics | 12 | 0 | 2 | 3 | 7 | 0 |
-| [layers](nn/layers.md) | nn | 43 | 5 | 26 | 9 | 3 | 0 |
-| [neuralNetwork](nn/neuralNetwork.md) | nn | 61 | 5 | 7 | 12 | 37 | 1 |
+| [layers](nn/layers.md) | nn | 43 | 7 | 26 | 7 | 3 | 0 |
+| [neuralNetwork](nn/neuralNetwork.md) | nn | 61 | 7 | 7 | 10 | 37 | 1 |
 <!-- /coverage-counts -->
 
 `python3 scripts/check-references.py --fix` rewrites the table above.

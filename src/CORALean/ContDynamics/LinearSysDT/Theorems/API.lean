@@ -32,6 +32,8 @@ import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetWitness
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachUnionOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.API
 import CORALean.ContDynamics.LinearSysDT.Theorems.SimulateMemReach
+import CORALean.ContDynamics.LinearSysDT.Theorems.SimulateMemSimulateBoxFloat
+import CORALean.ContDynamics.LinearSysDT.Theorems.MemSimulateBoxIn
 import CORALean.ContDynamics.LinearSysDT.Theorems.SimulateTrajectory
 
 /-!
