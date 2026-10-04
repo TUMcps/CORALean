@@ -30,6 +30,13 @@ import CORALean.ContSet.ConZonotope.Float.Theorems.QuadMapGClose
 import CORALean.ContSet.ConZonotope.Float.Theorems.QuadMapCBetween
 import CORALean.ContSet.ConZonotope.Float.Theorems.QuadMapDepNominal
 import CORALean.ContSet.ConZonotope.Float.Theorems.QuadMapOuter
+import CORALean.ContSet.ConZonotope.Float.Theorems.BoxSubset
+import CORALean.ContSet.ConZonotope.Float.Theorems.CentreBetween
+import CORALean.ContSet.ConZonotope.Float.Theorems.CornerMem
+import CORALean.ContSet.ConZonotope.Float.Theorems.MemInterior
+import CORALean.ContSet.ConZonotope.Float.Theorems.ContainsPointSound
+import CORALean.ContSet.ConZonotope.Float.Theorems.IsFullDimSound
+import CORALean.ContSet.ConZonotope.Float.Theorems.RepresentsaEmptySetSound
 
 /-!
 # What the float `ConZonotope` guarantees

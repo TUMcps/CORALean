@@ -1,0 +1,51 @@
+import CORALean.ContSet.Zonotope.Float.Operations.BallB
+import CORALean.ContSet.Zonotope.Float.Operations.BallCert
+import CORALean.ContSet.Zonotope.Float.Operations.StBeta
+import CORALean.ContSet.Zonotope.Float.Operations.StDelta
+import CORALean.ContSet.Zonotope.Float.Operations.StGamma
+import CORALean.ContSet.Zonotope.Float.Operations.StLeftover
+import CORALean.ContSet.Zonotope.Float.Operations.StUsed
+
+/-!
+# `Zonotope.containsZonotope`, over a floating-point scalar
+
+CORA's `'approx:st'` containment (Sadraddini and Tedrake): `Z₁ ⊆ Z₂` if `G₁ = G₂ Γ`,
+`c₁ - c₂ = G₂ β₀` and the row sums of `|Γ|` plus `|β₀|` are at most one. Rounding cannot confirm
+the two equalities, so approximate `Γ = H G₁` and `β₀ = H (c₁ - c₂ - e₂)` are formed with a right
+inverse `H` of `G₂` the caller proposes, and what they leave over is absorbed: the residuals
+`G₁ - G₂ Γ`, `c₁ - e₂ - c₂ - G₂ β₀` and the first set's error box, each bounded by directed
+roundings, must fit in the box of radius `B` that `Zonotope.ballCert` reaches with coefficients of
+size at most `δ`, and the budget `|β₀ₖ| + ∑ⱼ |Γₖⱼ| + δ` must stay at most one. `e₂` is the second
+set's error box's lower corner, whose box must be nonempty. `δ` is half the slack the first two
+terms leave, so a set touching the boundary of the other is not accepted. `true` proves
+`Z₁ ⊆ Z₂`; `false` refutes nothing.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+open FloatOps
+
+variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+def Zonotope.containsZonotope (Z₂ Z₁ : Zonotope 𝕋 n) (H : Mat 𝕋 Z₂.h n) : Bool :=
+  let δ := Z₂.stDelta Z₁ H
+  Zonotope.ballCert Z₂.G H (Zonotope.ballB H δ) δ
+    && (List.finRange Z₂.h).all (fun k => le (addUp (Z₂.stUsed Z₁ H k) δ) one)
+    && (List.finRange n).all (fun i => le (Z₂.stLeftover Z₁ H i) (Zonotope.ballB H δ))
+    && (List.finRange n).all fun i => le (Z₂.E.inf i) (Z₂.E.sup i)
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

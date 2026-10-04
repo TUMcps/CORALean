@@ -15,6 +15,9 @@ import CORALean.ContSet.ZonoBundle.Float.Operations.CartProd
 import CORALean.ContSet.ZonoBundle.Float.Operations.Enlarge
 import CORALean.ContSet.ZonoBundle.Float.Operations.Isequal
 import CORALean.ContSet.ZonoBundle.Float.Operations.Split
+import CORALean.ContSet.ZonoBundle.Float.Operations.IsFullDim
+import CORALean.ContSet.ZonoBundle.Float.Operations.RepresentsaEmptySet
+import CORALean.ContSet.ZonoBundle.Float.Operations.ContainsPoint
 
 /-!
 # What a float zonotope bundle computes, collected

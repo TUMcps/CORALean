@@ -76,6 +76,21 @@ import CORALean.ContSet.Zonotope.Float.Theorems.MethCResidualBound
 import CORALean.ContSet.Zonotope.Float.Theorems.MethCQBound
 import CORALean.ContSet.Zonotope.Float.Theorems.MethCReachBound
 import CORALean.ContSet.Zonotope.Float.Theorems.ReduceMethCOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.BallCertReach
+import CORALean.ContSet.Zonotope.Float.Theorems.ContainsPointSound
+import CORALean.ContSet.Zonotope.Float.Theorems.DeviationBound
+import CORALean.ContSet.Zonotope.Float.Theorems.InteriorPointSound
+import CORALean.ContSet.Zonotope.Float.Theorems.BoxSubset
+import CORALean.ContSet.Zonotope.Float.Theorems.MemInterior
+import CORALean.ContSet.Zonotope.Float.Theorems.IsFullDimSound
+import CORALean.ContSet.Zonotope.Float.Theorems.RightInvQBound
+import CORALean.ContSet.Zonotope.Float.Theorems.PointBetween
+import CORALean.ContSet.Zonotope.Float.Theorems.MulResidualBound
+import CORALean.ContSet.Zonotope.Float.Theorems.ErrBoundLe
+import CORALean.ContSet.Zonotope.Float.Theorems.EntryDeviationBound
+import CORALean.ContSet.Zonotope.Float.Theorems.ContainsZonotopeSound
+import CORALean.ContSet.Zonotope.Float.Theorems.UnderapproximateInner
+import CORALean.ContSet.Zonotope.Float.Theorems.ReduceUnderApproxInner
 
 /-!
 # What `Zonotope` guarantees

@@ -116,6 +116,8 @@ import CORALean.ContSet.PolyZonotope.Float.Operations.JacobianGap
 import CORALean.ContSet.PolyZonotope.Float.Operations.Jacobian
 import CORALean.ContSet.PolyZonotope.Float.Operations.SplitParallelotope
 import CORALean.ContSet.PolyZonotope.Float.Operations.Split
+import CORALean.ContSet.PolyZonotope.Float.Operations.IsFullDim
+import CORALean.ContSet.PolyZonotope.Float.Operations.IsFullDimWith
 
 /-!
 # What `PolyZonotope` computes

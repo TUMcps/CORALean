@@ -241,6 +241,8 @@ import CORALean.ContSet.Zonotope.Real.Theorems.CubMapMixedCoeff
 import CORALean.ContSet.Zonotope.Real.Theorems.CubMapMixedOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.AffineExact
 import CORALean.ContSet.Zonotope.Real.Theorems.BasisReach
+import CORALean.ContSet.Zonotope.Real.Theorems.RightInvReach
+import CORALean.ContSet.Zonotope.Real.Theorems.ContainsViaReach
 
 /-!
 # What `Zonotope` guarantees

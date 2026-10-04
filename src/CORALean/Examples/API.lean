@@ -22,6 +22,7 @@ import CORALean.Examples.ExpRelaxGreedy
 import CORALean.Examples.FeedForward
 import CORALean.Examples.FeedForwardFloat
 import CORALean.Examples.FixedPointDemo
+import CORALean.Examples.FullDimCertFloat
 import CORALean.Examples.GuardCutThenReset
 import CORALean.Examples.HPolytopePlus
 import CORALean.Examples.IEEERounding
