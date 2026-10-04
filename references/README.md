@@ -54,6 +54,7 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Ellipsoidal Toolbox (ET)](2006/kurzhanskiy-cdc-ellipsoidal-toolbox.md) | Kurzhanskiy, Varaiya | CDC, pp. 1498-1503 | 2006 | 🟢 6/6 \| 14 |
 | [Reachability Analysis of Nonlinear Systems with Uncertain Parameters using Conservative Linearization](2008/althoff-cdc-conservative-linearization.md) | Althoff, Stursberg, Buss | CDC, pp. 4042-4048 | 2008 | 🟡 11/12 \| 3 |
 | [Safety Assessment for Stochastic Linear Systems using Enclosing Hulls of Probability Density Functions](2009/althoff-ecc-enclosing-hulls.md) | Althoff, Stursberg, Buss | ECC, pp. 625-630 | 2009 | 🟡 9/15 \| 5 |
+| [Interval predictor models: Identification and reliability](2009/campi-automatica-interval-predictor-models.md) | Campi, Calafiore, Garatti | Automatica, 45(2):382-392 | 2009 | 🟡 4/8 \| 27 |
 | [On the Hyperbox – Hyperplane Intersection Problem](2009/lara-infocomp-hyperbox-hyperplane.md) | Lara, Flores, Calderon | INFOCOMP Journal of Computer Science, 8(4):21-27 | 2009 | 🟢 18/18 \| 17 |
 | [Computing Reachable Sets of Hybrid Systems Using a Combination of Zonotopes and Polytopes](2010/althoff-nahs-zonotopes-polytopes.md) | Althoff, Stursberg, Buss | Nonlinear Analysis: Hybrid Systems, 4(2):233-249 | 2010 | 🟢 13/13 \| 6 |
 | [Reachability Analysis and its Application to the Safety Assessment of Autonomous Cars](2010/althoff-thesis.md) | Althoff | PhD thesis, TU München | 2010 | 🟢 34/34 \| 2 |
@@ -76,6 +77,7 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Forward Inner-Approximated Reachability of Non-Linear Continuous Systems](2017/goubault-hscc-forward-inner-reachability.md) | Goubault, Putot | HSCC, pp. 1-10 | 2017 | 🟡 3/4 \| 17 |
 | [Semi-Supervised Classification with Graph Convolutional Networks](2017/kipf-iclr-gcn.md) | Kipf, Welling | ICLR | 2017 | 🟢 1/1 \| 4 |
 | [Methods for Order Reduction of Zonotopes](2017/kopetzki-cdc-order-reduction.md) | Kopetzki, Schürmann, Althoff | CDC, pp. 5626-5633 | 2017 | 🟢 4/4 \| 4 |
+| [Zonotopic Fault Detection Observer with H− Performance](2017/wang-ccc-fault-detection-observer.md) | Wang, Zhou, Puig, Cembrano, Wang | CCC, pp. 7230-7235 | 2017 | 🟡 11/15 \| 20 |
 | [Implementation of Taylor Models in CORA 2018](2018/althoff-arch-taylor-models.md) | Althoff, Grebenyuk, Kochdumper | ARCH18, EPiC Series in Computing 54, pp. 145-173 | 2018 | 🟢 11/11 \| 38 |
 | [AI2: Safety and Robustness Certification of Neural Networks with Abstract Interpretation](2018/gehr-sp-ai2.md) | Gehr, Mirman, Drachsler-Cohen, Tsankov, Chaudhuri, Vechev | IEEE S&P, pp. 3-18 | 2018 | 🟢 11/11 \| 4 |
 | [Fast and Effective Robustness Certification](2018/singh-neurips-deepz.md) | Singh, Gehr, Mirman, Püschel, Vechev | NeurIPS | 2018 | 🟢 8/8 \| 6 |
@@ -93,6 +95,7 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Sparse Polynomial Zonotopes: A Novel Set Representation for Reachability Analysis](2021/kochdumper-tac-sparse-polyzonotopes.md) | Kochdumper, Althoff | IEEE Transactions on Automatic Control | 2021 | 🟢 21/21 \| 6 |
 | [On the co-NP-Completeness of the Zonotope Containment Problem](2021/kulmburg-ejc-zonotope-containment.md) | Kulmburg, Althoff | European Journal of Control, 62:84-91 | 2021 | 🟡 21/24 \| 4 |
 | [Adaptive Parameter Tuning for Reachability Analysis of Nonlinear Systems](2021/wetzlinger-hscc-adaptive-tuning-nonlinear.md) | Wetzlinger, Kulmburg, Althoff | HSCC | 2021 | 🟢 5/5 \| 1 |
+| [Benchmarks for the Formal Verification of Power Systems](2022/althoff-arch-power-systems.md) | Althoff | ARCH22, EPiC Series in Computing, vol. 90, pp. 26-43 | 2022 | 🟢 3/3 \| 18 |
 | [Open- and Closed-Loop Neural Network Verification using Polynomial Zonotopes](2022/kochdumper-arxiv-nn-polyzono.md) | Kochdumper, Schilling, Althoff, Bak | arXiv:2207.02715; NFM 2023, LNCS, pp. 16-36 | 2022 | 🟢 4/4 \| 3 |
 | [Set operations and order reductions for constrained zonotopes](2022/raghuraman-koeln-constrained-zonotopes.md) | Raghuraman, Koeln | Automatica, 139:110204 | 2022 | 🟢 9/9 \| 9 |
 | [Adaptive Reachability Algorithms for Nonlinear Systems Using Abstraction Error Analysis](2022/wetzlinger-nahs-abstraction-error.md) | Wetzlinger, Kulmburg, Le Penven, Althoff | Nonlinear Analysis: Hybrid Systems, 46:101252 | 2022 | 🟢 13/13 \| 2 |
@@ -242,6 +245,8 @@ pages carry one:
 * [A Box-Consistency Contractor Based on Extremal Functions](2010/trombettoni-cp-box-consistency.md)
 * [On the Hyperbox – Hyperplane Intersection Problem](2009/lara-infocomp-hyperbox-hyperplane.md)
 * [Model Predictive Control with Signal Temporal Logic Specifications](2014/raman-cdc-mpc-stl.md)
+* [Benchmarks for the Formal Verification of Power Systems](2022/althoff-arch-power-systems.md)
+* [Zonotopic Fault Detection Observer with H− Performance](2017/wang-ccc-fault-detection-observer.md)
 
 [FINDINGS.md](../FINDINGS.md) is the other half, and stays at the root: the
 places this formalization parts from CORA on purpose, which belong to no paper.

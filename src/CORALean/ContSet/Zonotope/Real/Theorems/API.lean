@@ -243,6 +243,9 @@ import CORALean.ContSet.Zonotope.Real.Theorems.AffineExact
 import CORALean.ContSet.Zonotope.Real.Theorems.BasisReach
 import CORALean.ContSet.Zonotope.Real.Theorems.RightInvReach
 import CORALean.ContSet.Zonotope.Real.Theorems.ContainsViaReach
+import CORALean.ContSet.Zonotope.Real.Theorems.FaultResidualFaultObserve
+import CORALean.ContSet.Zonotope.Real.Theorems.FaultObservePRadiusLe
+import CORALean.ContSet.Zonotope.Real.Theorems.FaultObservePRadiusCounterexample
 
 /-!
 # What `Zonotope` guarantees

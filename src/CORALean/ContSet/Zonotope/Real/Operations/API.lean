@@ -121,6 +121,8 @@ import CORALean.ContSet.Zonotope.Real.Operations.CubIdx
 import CORALean.ContSet.Zonotope.Real.Operations.CubFold
 import CORALean.ContSet.Zonotope.Real.Operations.CubMap
 import CORALean.ContSet.Zonotope.Real.Operations.CubMapMixed
+import CORALean.ContSet.Zonotope.Real.Operations.FaultObserve
+import CORALean.ContSet.Zonotope.Real.Operations.FaultResidual
 
 /-!
 # What `Zonotope` computes

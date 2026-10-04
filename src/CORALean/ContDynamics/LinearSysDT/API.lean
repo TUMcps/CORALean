@@ -32,6 +32,8 @@ import CORALean.ContDynamics.LinearSysDT.Definitions.ObserveIntervalStateFloat
 import CORALean.ContDynamics.LinearSysDT.Definitions.IntervalEstimateState
 import CORALean.ContDynamics.LinearSysDT.Definitions.ReachErrorSet
 import CORALean.ContDynamics.LinearSysDT.Definitions.HinfLmi
+import CORALean.ContDynamics.LinearSysDT.Definitions.FaultRadiusLmi
+import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusLmi
 
 /-!
 # Discrete-time linear systems, collected
