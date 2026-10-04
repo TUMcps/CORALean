@@ -28,6 +28,16 @@ import CORALean.ContSet.Ellipsoid.Real.Theorems.NormUbLe
 import CORALean.ContSet.Ellipsoid.Real.Theorems.VolumeEqSquare
 import CORALean.ContSet.Ellipsoid.Real.Theorems.VolumeEqZero
 import CORALean.ContSet.Ellipsoid.Real.Theorems.EllipsoidNormLeOneIff
+import CORALean.ContSet.Ellipsoid.Real.Theorems.ShapeMtimes
+import CORALean.ContSet.Ellipsoid.Real.Theorems.SupportFuncEq
+import CORALean.ContSet.Ellipsoid.Real.Theorems.AffineImageExact
+import CORALean.ContSet.Ellipsoid.Real.Theorems.MinkowskiDiffNonemptyIff
+import CORALean.ContSet.Ellipsoid.Real.Theorems.InterHyperplaneEq
+import CORALean.ContSet.Ellipsoid.Real.Theorems.IsGreatestDot
+import CORALean.ContSet.Ellipsoid.Real.Theorems.DistPointEqMax
+import CORALean.ContSet.Ellipsoid.Real.Theorems.DistPointNonnegCounterexample
+import CORALean.ContSet.Ellipsoid.Real.Theorems.DistEllipsoidEqMax
+import CORALean.ContSet.Ellipsoid.Real.Theorems.DistHyperplaneEq
 
 /-!
 # What an ellipsoid guarantees, collected

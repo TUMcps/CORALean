@@ -1,3 +1,6 @@
+import CORALean.ContSet.Taylm.Real.Theorems.GetSymsMem
+import CORALean.ContSet.Taylm.Real.Theorems.MmulOuter
+import CORALean.ContSet.Taylm.Real.Theorems.MpowerOuter
 import CORALean.ContSet.Taylm.Real.Theorems.AbsConstCoefLe
 import CORALean.ContSet.Taylm.Real.Theorems.AbsLeMag
 import CORALean.ContSet.Taylm.Real.Theorems.AbsPolyBoundsLe

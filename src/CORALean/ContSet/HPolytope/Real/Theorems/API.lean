@@ -85,6 +85,7 @@ import CORALean.ContSet.HPolytope.Real.Theorems.MinkowskiDiffIneqsEq
 import CORALean.ContSet.HPolytope.Real.Theorems.SimplexRowsRedundantCounterexample
 import CORALean.ContSet.HPolytope.Real.Theorems.SuccLeOfIsBounded
 import CORALean.ContSet.HPolytope.Real.Theorems.TightRedundantCounterexample
+import CORALean.ContSet.HPolytope.Real.Theorems.IsGreatestBallRadius
 
 /-!
 # What `HPolytope` guarantees

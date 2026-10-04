@@ -33,8 +33,7 @@ theorem Polygon.aux_convHullOfList_outer :
         (Polygon.convHullOfList ps).construct
   | [] => by simp
   | [p] => by
-    simp only [Set.mem_iUnion, List.mem_singleton, exists_prop, exists_eq_left,
-      Set.iUnion_iUnion_eq_left]
+    simp only [List.mem_singleton, Set.iUnion_iUnion_eq_left]
     exact convexHull_min (fun x hx => hx) (VPolytope.convex_construct p)
   | p :: q :: ps => by
     have hrec := Polygon.aux_convHullOfList_outer (q :: ps)

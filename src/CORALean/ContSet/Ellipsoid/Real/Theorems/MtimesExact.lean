@@ -7,6 +7,15 @@ The same unit-ball point works in both directions — a matrix in front of `G`
 introduces no freedom and removes none — so associativity of `M (G u)` is the
 whole proof. Exact for every `M`, singular ones included, where the shape-matrix
 form would have had to take a square root of `M Q Mᵀ` to say the same thing.
+
+In the shape-matrix form this is [1, Lemma 2], `T E(E, ē) = E(T E Tᵀ, T ē)`;
+`Ellipsoid.shape_mtimes` is the shape.
+
+## References
+
+* [1] V. Gaßmann and M. Althoff. "Scalable Zonotope-Ellipsoid Conversions using the Euclidean
+      Zonotope Norm". In Proc. of the 2020 American Control Conference (ACC), pp. 4715-4721,
+      2020.
 -/
 
 -- Authors:       Tobias Ladner

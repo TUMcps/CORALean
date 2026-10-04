@@ -4,6 +4,9 @@ import CORALean.ContSet.ProbZonotope.Real.Operations.Mtimes
 import CORALean.ContSet.ProbZonotope.Real.Operations.Mean
 import CORALean.ContSet.ProbZonotope.Real.Operations.ConfidenceZonotope
 import CORALean.ContSet.ProbZonotope.Real.Operations.Zonotope
+import CORALean.ContSet.ProbZonotope.Real.Operations.Project
+import CORALean.ContSet.ProbZonotope.Real.Operations.VPolytope
+import CORALean.ContSet.ProbZonotope.Real.Operations.RepresentsaEmptySet
 
 /-!
 # Probabilistic zonotope operations, collected

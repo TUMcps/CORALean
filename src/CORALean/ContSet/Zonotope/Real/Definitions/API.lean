@@ -2,6 +2,7 @@ import CORALean.ContSet.Zonotope.Real.Definitions.Aligned
 import CORALean.ContSet.Zonotope.Real.Definitions.ReduceBoxAdmissible
 import CORALean.ContSet.Zonotope.Real.Definitions.OverApproxIndex
 import CORALean.ContSet.Zonotope.Real.Definitions.ZonotopeNorm
+import CORALean.ContSet.Zonotope.Real.Definitions.MaxNormSq
 
 /-!
 # What a zonotope means beyond its own construction

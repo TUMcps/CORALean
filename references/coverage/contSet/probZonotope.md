@@ -14,23 +14,23 @@ CORA methods of `contSet/@probZonotope/`, one row each, and where CORALean answe
 | `enclosingProbability` | — | — |  |
 | `generateRandom` | out-of-scope | n/a — random/sampling |  |
 | `generators` | — | — |  |
-| `interval` | — | — |  |
+| `interval` | — | — | cora-issue — the box is `c ± Σ\|G\|` with `G` the covariance's eigen factor (`generators.m`), so the deterministic generators `Z(:,2:end)` are ignored although the help says it overapproximates the probabilistic zonotope (FINDINGS.md) |
 | `isemptyobject` | out-of-scope | n/a — matlab-runtime |  |
 | `max` | — | — |  |
 | `mean` | proved | [`ProbZonotope.mean`](../../../src/CORALean/ContSet/ProbZonotope/Real/Operations/Mean.lean), [`ProbZonotope.mean_exact`](../../../src/CORALean/ContSet/ProbZonotope/Real/Theorems/MeanExact.lean) | the zonotope of possible means, exactly the set of the laws' expectations |
 | `mtimes` | proved | [`ProbZonotope.mtimes`](../../../src/CORALean/ContSet/ProbZonotope/Real/Operations/Mtimes.lean), [`ProbZonotope.mtimes_laws`](../../../src/CORALean/ContSet/ProbZonotope/Real/Theorems/MtimesLaws.lean) | numeric branch: `(M Z, M Σ Mᵀ)`, and the images of the laws under `x ↦ Mx` are exactly the laws of the result, for a positive semidefinite `Σ`; the interval-matrix branch is not modelled |
 | `plot` | out-of-scope | n/a — plotting/display |  |
 | `plus` | proved | [`ProbZonotope.plus`](../../../src/CORALean/ContSet/ProbZonotope/Real/Operations/Plus.lean), [`ProbZonotope.plus_laws`](../../../src/CORALean/ContSet/ProbZonotope/Real/Theorems/PlusLaws.lean) | probabilistic zonotope plus probabilistic zonotope: `(Z₁ ⊕ Z₂, Σ₁ + Σ₂)`, and the convolutions of the operands' laws (independent sums) are exactly the laws of the result, for positive semidefinite covariances; the zonotope and vector summands are not modelled |
-| `polytope` | — | — |  |
+| `polytope` | proved | [`ProbZonotope.vPolytope`](../../../src/CORALean/ContSet/ProbZonotope/Real/Operations/VPolytope.lean), [`ProbZonotope.vPolytope_exact`](../../../src/CORALean/ContSet/ProbZonotope/Real/Theorems/VPolytopeExact.lean) | CORA's `polytope(zonotope(probZ.Z))`: the mean zonotope only (the covariance and the probabilistic generators play no part), exactly, as the corner polytope (V-representation); no H-representation at probZonotope |
 | `probReduce` | — | — |  |
 | `probZonotope` | proved | [`ProbZonotope`](../../../src/CORALean/ContSet/ProbZonotope/Real/ProbZonotope.lean), [`ProbZonotope.ofGenerators`](../../../src/CORALean/ContSet/ProbZonotope/Real/Operations/OfGenerators.lean), [`ProbZonotope.ofGenerators_laws`](../../../src/CORALean/ContSet/ProbZonotope/Real/Theorems/OfGeneratorsLaws.lean) | the mean zonotope and the covariance `g gᵀ`; its laws are those of `μ + g N`, `μ ∈ Z`; CORA's `g` and `gamma` are not stored, `gamma` being the argument of `zonotope` |
-| `project` | — | — |  |
+| `project` | proved | [`ProbZonotope.project`](../../../src/CORALean/ContSet/ProbZonotope/Real/Operations/Project.lean), [`ProbZonotope.project_laws`](../../../src/CORALean/ContSet/ProbZonotope/Real/Theorems/ProjectLaws.lean) | `Z(dims, :)` and `cov(dims, dims)`; the images of the laws under the coordinate projection are exactly the laws of the result (any `dims`, repeats included), for a positive semidefinite covariance: `mtimes` at the selection matrix |
 | `pyramid` | — | — |  |
 | `randPoint_` | out-of-scope | n/a — random/sampling |  |
 | `reduce` | — | — |  |
-| `representsa_` | — | — |  |
+| `representsa_` | proved | [`ProbZonotope.representsaEmptySet`](../../../src/CORALean/ContSet/ProbZonotope/Real/Operations/RepresentsaEmptySet.lean), [`ProbZonotope.representsaEmptySet_iff`](../../../src/CORALean/ContSet/ProbZonotope/Real/Theorems/RepresentsaEmptySetIff.lean) | type `emptySet` only: CORA's `isempty(Z) && isempty(g)` is `false` here, as the mean zonotope holds its centre, and `representsaEmptySet_iff` says `false` is the verdict on the family of laws (never empty); `probZonotope` (true), `hyperplane` and `fullspace` (false) are constants not modelled, as a probabilistic zonotope stands for laws, not a set |
 | `sigma` | proved | [`ProbZonotope.ofGenerators`](../../../src/CORALean/ContSet/ProbZonotope/Real/Operations/OfGenerators.lean), [`gZonotopeLaw_eq`](../../../src/CORALean/ContSet/ProbZonotope/Real/Theorems/GZonotopeLawEq.lean) | `g gᵀ`, the covariance of `g N`: the law of `c + g N` is `N(c, g gᵀ)` |
 | `singleGenPlot` | out-of-scope | n/a — plotting/display |  |
-| `sup` | — | — |  |
-| `vertices_` | — | — |  |
+| `sup` | — | — | cora-issue — `sup` reads `interval`, which ignores the deterministic generators `Z(:,2:end)` (FINDINGS.md) |
+| `vertices_` | proved | [`ProbZonotope.vPolytope`](../../../src/CORALean/ContSet/ProbZonotope/Real/Operations/VPolytope.lean), [`ProbZonotope.vPolytope_exact`](../../../src/CORALean/ContSet/ProbZonotope/Real/Theorems/VPolytopeExact.lean) | CORA lists the corners of the mean zonotope `Z` (pruned by a convex hull once more generators than dimensions are in); the Lean list is the `2^h` corners, whose hull `vPolytope_exact` proves equal to the zonotope of possible means; the covariance plays no part |
 | `zonotope` | proved | [`ProbZonotope.zonotope`](../../../src/CORALean/ContSet/ProbZonotope/Real/Operations/Zonotope.lean), [`ProbZonotope.zonotope_prob`](../../../src/CORALean/ContSet/ProbZonotope/Real/Theorems/ZonotopeProb.lean) | the confidence set `Z ⊕ (0, m g)`: every law puts at least `P[-m ≤ N(0, 1) ≤ m]ⁿ` (CORA's `erf(m/√2)ⁿ`) on it, for `m > 0`; `g` the symmetric square root of `Σ` where CORA takes an eigendecomposition, which spans the same Gaussian |

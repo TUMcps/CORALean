@@ -15,7 +15,7 @@ computational-geometry routine. A polygon is built here from convex pieces (`Pol
 never from a boundary. Consequently the methods that read the boundary (`getHoles`,
 `getRegions`, `simplify`, `triangulation`, `splitIntoConvexSets`, `expandBoundaries`,
 `removeCollinearPoints`, `isConvex`, `area`, ...) and those that are polygon boolean operations
-(`and_`, `minus`, `mldivide`, `subtract`) have no counterpart.
+(`and_`, `mldivide`, `subtract`) have no counterpart; `minus` by a vector is `Polygon.minus`.
 
 The semantics is the union, so `SetUnion`'s `Plus` and `Reduce` instances are `Polygon`'s.
 `Float/` is the same alias at the float polytope.
