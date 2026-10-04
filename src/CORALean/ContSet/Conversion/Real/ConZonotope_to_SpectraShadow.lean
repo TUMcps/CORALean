@@ -39,6 +39,7 @@ def ConZonotope.spectraShadow (cZ : ConZonotope α) : SpectraShadow α where
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
+omit [AddCommGroup α] in
 /-- The inequality holds when both blocks' do: the box and the polytope. -/
 theorem ConZonotope.aux_posSemidef_spectraShadow_iff (cZ : ConZonotope α) (β : Fin cZ.h → ℝ) :
     (cZ.spectraShadow.A₀ + ∑ j, β j • cZ.spectraShadow.A j).PosSemidef

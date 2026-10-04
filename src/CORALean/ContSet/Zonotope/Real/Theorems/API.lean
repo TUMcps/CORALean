@@ -189,6 +189,13 @@ import CORALean.ContSet.Zonotope.Real.Theorems.NaiveVertexSampleLe
 import CORALean.ContSet.Zonotope.Real.Theorems.IntersectStripOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.VolumeEqSquare
 import CORALean.ContSet.Zonotope.Real.Theorems.VolumeEqZero
+import CORALean.ContSet.Zonotope.Real.Theorems.BallSubsetOfAxisTest
+import CORALean.ContSet.Zonotope.Real.Theorems.BallSubsetOfAxisTestCounterexample
+import CORALean.ContSet.Zonotope.Real.Theorems.MaxNormSqEqSign
+import CORALean.ContSet.Zonotope.Real.Theorems.MaxNormSqLeOfDual
+import CORALean.ContSet.Zonotope.Real.Theorems.SignSumCovariance
+import CORALean.ContSet.Zonotope.Real.Theorems.SqNormLeMaxNormSq
+import CORALean.ContSet.Zonotope.Real.Theorems.SqNormSumEqGram
 
 /-!
 # What `Zonotope` guarantees

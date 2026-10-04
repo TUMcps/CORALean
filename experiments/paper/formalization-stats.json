@@ -14,24 +14,24 @@
     "not-covered"
   ],
   "totals": {
-    "papers": 40,
-    "papers_with_findings": 33,
-    "in_scope": 529,
-    "formalized": 505,
-    "not_formalized": 24,
-    "out_of_scope": 251,
+    "papers": 42,
+    "papers_with_findings": 35,
+    "in_scope": 551,
+    "formalized": 524,
+    "not_formalized": 27,
+    "out_of_scope": 279,
     "out_of_scope_by_reason": {
-      "restated": 130,
-      "mathlib": 8,
-      "not-a-claim": 88,
+      "restated": 143,
+      "mathlib": 10,
+      "not-a-claim": 98,
       "done-differently": 7,
-      "not-covered": 18
+      "not-covered": 21
     },
     "by_class": {
-      "correct": 344,
-      "underspecified": 78,
+      "correct": 360,
+      "underspecified": 79,
       "proof-gap": 22,
-      "fixed": 59,
+      "fixed": 61,
       "false": 2
     }
   },
@@ -253,6 +253,37 @@
         "false": 0
       },
       "findings": []
+    },
+    {
+      "page": "2006/kurzhanskiy-cdc-ellipsoidal-toolbox.md",
+      "label": "Kurzhanskiy 2006",
+      "year": 2006,
+      "title": "Ellipsoidal Toolbox (ET)",
+      "in_scope": 6,
+      "formalized": 6,
+      "not_formalized": 0,
+      "out_of_scope": 14,
+      "out_of_scope_by_reason": {
+        "restated": 5,
+        "mathlib": 0,
+        "not-a-claim": 6,
+        "done-differently": 0,
+        "not-covered": 3
+      },
+      "by_class": {
+        "correct": 5,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 1,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Sec. II (sign of the distance)",
+          "class": "fixed",
+          "reason": "on the boundary, or for touching sets, the value is `0`; see Findings"
+        }
+      ]
     },
     {
       "page": "2008/althoff-cdc-conservative-linearization.md",
@@ -888,6 +919,42 @@
           "result": "Prop. 7",
           "class": "fixed",
           "reason": "the row Λ₂g ≤ εh_Ball - H_Ball x̄ + H_Ball βₓ has the wrong sign on x̄ (it certifies F_proj ⊆ -x̄ + X₀ ⊕ εP_Ball): in ℝ¹, F = [-4, 2], X = [0, 2], ε = 2 is feasible while d_H = 4; true with + H_Ball x̄; see Findings"
+        }
+      ]
+    },
+    {
+      "page": "2020/gassmann-acc-zonotope-ellipsoid.md",
+      "label": "Gassmann 2020",
+      "year": 2020,
+      "title": "Scalable Zonotope-Ellipsoid Conversions using the Euclidean Zonotope Norm",
+      "in_scope": 16,
+      "formalized": 13,
+      "not_formalized": 3,
+      "out_of_scope": 14,
+      "out_of_scope_by_reason": {
+        "restated": 8,
+        "mathlib": 2,
+        "not-a-claim": 4,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 11,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 1,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Def. 4",
+          "class": "underspecified",
+          "reason": "`min(b²)` is the squared inradius only for normalized rows, which the derivation assumes and the definition omits; see Findings"
+        },
+        {
+          "result": "Lemma 5",
+          "class": "fixed",
+          "reason": "as printed the test checks `ν eᵢ` itself, which bounds nothing for a zonotope off the origin; true from the centre; see Findings"
         }
       ]
     },
@@ -1896,8 +1963,8 @@
         "class": "affine",
         "methods": 1,
         "proved": 0,
-        "float": 0,
-        "not_yet": 1,
+        "float": 1,
+        "not_yet": 0,
         "out_of_scope": 0,
         "needs_float": 0,
         "out_of_scope_by_reason": {
@@ -2040,10 +2107,10 @@
         },
         "cora_issues": 0,
         "findings": {
-          "correct": 1,
+          "correct": 9,
           "underspecified": 1,
           "proof-gap": 0,
-          "fixed": 0,
+          "fixed": 1,
           "false": 0
         }
       },
@@ -2052,8 +2119,8 @@
         "class": "emptySet",
         "methods": 30,
         "proved": 3,
-        "float": 19,
-        "not_yet": 1,
+        "float": 20,
+        "not_yet": 0,
         "out_of_scope": 7,
         "needs_float": 3,
         "out_of_scope_by_reason": {
@@ -2078,8 +2145,8 @@
         "class": "fullspace",
         "methods": 33,
         "proved": 5,
-        "float": 18,
-        "not_yet": 2,
+        "float": 19,
+        "not_yet": 1,
         "out_of_scope": 8,
         "needs_float": 5,
         "out_of_scope_by_reason": {
@@ -2104,8 +2171,8 @@
         "class": "interval",
         "methods": 110,
         "proved": 3,
-        "float": 84,
-        "not_yet": 5,
+        "float": 85,
+        "not_yet": 4,
         "out_of_scope": 18,
         "needs_float": 3,
         "out_of_scope_by_reason": {
@@ -2181,20 +2248,20 @@
         "group": "contSet",
         "class": "polygon",
         "methods": 46,
-        "proved": 1,
+        "proved": 2,
         "float": 17,
-        "not_yet": 21,
-        "out_of_scope": 7,
-        "needs_float": 1,
+        "not_yet": 18,
+        "out_of_scope": 9,
+        "needs_float": 2,
         "out_of_scope_by_reason": {
           "plotting/display": 2,
           "random/sampling": 2,
           "solver-dependent": 0,
           "io/conversion-to-matlab-objects": 0,
-          "matlab-runtime": 2,
+          "matlab-runtime": 4,
           "deprecated": 1
         },
-        "cora_issues": 0,
+        "cora_issues": 1,
         "findings": {
           "correct": 0,
           "underspecified": 0,
@@ -2222,8 +2289,8 @@
         },
         "cora_issues": 3,
         "findings": {
-          "correct": 40,
-          "underspecified": 6,
+          "correct": 41,
+          "underspecified": 7,
           "proof-gap": 0,
           "fixed": 15,
           "false": 1
@@ -2233,11 +2300,11 @@
         "group": "contSet",
         "class": "probZonotope",
         "methods": 28,
-        "proved": 6,
+        "proved": 10,
         "float": 0,
-        "not_yet": 14,
+        "not_yet": 10,
         "out_of_scope": 8,
-        "needs_float": 6,
+        "needs_float": 10,
         "out_of_scope_by_reason": {
           "plotting/display": 3,
           "random/sampling": 2,
@@ -2246,7 +2313,7 @@
           "matlab-runtime": 3,
           "deprecated": 0
         },
-        "cora_issues": 0,
+        "cora_issues": 2,
         "findings": {
           "correct": 0,
           "underspecified": 0,
@@ -2259,11 +2326,11 @@
         "group": "contSet",
         "class": "spectraShadow",
         "methods": 33,
-        "proved": 0,
+        "proved": 1,
         "float": 7,
-        "not_yet": 18,
+        "not_yet": 17,
         "out_of_scope": 8,
-        "needs_float": 0,
+        "needs_float": 1,
         "out_of_scope_by_reason": {
           "plotting/display": 3,
           "random/sampling": 2,
@@ -2285,11 +2352,11 @@
         "group": "contSet",
         "class": "taylm",
         "methods": 51,
-        "proved": 3,
-        "float": 31,
-        "not_yet": 6,
+        "proved": 4,
+        "float": 32,
+        "not_yet": 4,
         "out_of_scope": 11,
-        "needs_float": 3,
+        "needs_float": 4,
         "out_of_scope_by_reason": {
           "plotting/display": 2,
           "random/sampling": 1,
@@ -2352,10 +2419,10 @@
         },
         "cora_issues": 1,
         "findings": {
-          "correct": 59,
+          "correct": 66,
           "underspecified": 14,
           "proof-gap": 3,
-          "fixed": 6,
+          "fixed": 7,
           "false": 1
         }
       },
@@ -2363,11 +2430,11 @@
         "group": "contSet",
         "class": "zoo",
         "methods": 12,
-        "proved": 9,
+        "proved": 10,
         "float": 0,
-        "not_yet": 1,
+        "not_yet": 0,
         "out_of_scope": 2,
-        "needs_float": 9,
+        "needs_float": 10,
         "out_of_scope_by_reason": {
           "plotting/display": 0,
           "random/sampling": 0,
@@ -2961,25 +3028,25 @@
     "groups": {
       "contSet": {
         "methods": 908,
-        "proved": 91,
-        "float": 437,
-        "not_yet": 144,
-        "out_of_scope": 236,
-        "needs_float": 91,
-        "cora_issues": 16,
+        "proved": 99,
+        "float": 442,
+        "not_yet": 129,
+        "out_of_scope": 238,
+        "needs_float": 99,
+        "cora_issues": 19,
         "out_of_scope_by_reason": {
           "plotting/display": 51,
           "random/sampling": 36,
           "solver-dependent": 2,
           "io/conversion-to-matlab-objects": 8,
-          "matlab-runtime": 125,
+          "matlab-runtime": 127,
           "deprecated": 14
         },
         "findings": {
-          "correct": 220,
-          "underspecified": 47,
+          "correct": 236,
+          "underspecified": 48,
           "proof-gap": 5,
-          "fixed": 40,
+          "fixed": 42,
           "false": 2
         }
       },
@@ -3058,25 +3125,25 @@
     },
     "totals": {
       "methods": 1260,
-      "proved": 141,
-      "float": 532,
-      "not_yet": 208,
-      "out_of_scope": 379,
-      "needs_float": 141,
-      "cora_issues": 18,
+      "proved": 149,
+      "float": 537,
+      "not_yet": 193,
+      "out_of_scope": 381,
+      "needs_float": 149,
+      "cora_issues": 21,
       "out_of_scope_by_reason": {
         "plotting/display": 86,
         "random/sampling": 45,
         "solver-dependent": 15,
         "io/conversion-to-matlab-objects": 30,
-        "matlab-runtime": 189,
+        "matlab-runtime": 191,
         "deprecated": 14
       },
       "findings": {
-        "correct": 328,
-        "underspecified": 75,
+        "correct": 344,
+        "underspecified": 76,
         "proof-gap": 21,
-        "fixed": 52,
+        "fixed": 54,
         "false": 2
       }
     },
@@ -3104,11 +3171,11 @@
       }
     },
     "theorems": {
-      "paper": 716,
-      "float": 1162,
-      "helper": 747,
-      "lemma": 1963,
-      "total": 4588,
+      "paper": 742,
+      "float": 1164,
+      "helper": 755,
+      "lemma": 1969,
+      "total": 4630,
       "examples": 80
     }
   }

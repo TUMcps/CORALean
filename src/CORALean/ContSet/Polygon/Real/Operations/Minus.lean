@@ -1,0 +1,31 @@
+import CORALean.ContSet.Polygon.Real.Operations.Plus
+import CORALean.ContSet.ContSet.Operations.Minus
+import CORALean.ContSet.SetUnion.Instances
+
+/-!
+# `Polygon.minus`
+
+CORA's `@polygon/minus` for a numeric subtrahend: `pgon + (-p)`, which is `ContSet.minus` at the
+polygon, the point entering as a union of one singleton (`OfPoint (SetUnion S)`). CORA throws
+for a polygon subtrahend (`minkDiff` is the Minkowski difference), so that case is not defined
+here either.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+namespace CORALean.Real
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+def Polygon.minus (P : Polygon) (p : Vec ℝ 2) : Polygon := ContSet.minus P p
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

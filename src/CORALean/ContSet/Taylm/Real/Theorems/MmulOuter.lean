@@ -1,0 +1,42 @@
+import Mathlib.Data.Matrix.Mul
+import CORALean.ContSet.Taylm.Real.Operations.Mmul
+import CORALean.ContSet.Taylm.Real.Theorems.SumOuter
+import CORALean.ContSet.Taylm.Real.Theorems.TimesOuter
+
+/-!
+# `Taylm.mmul` encloses the matrix product
+
+Entry `(i, j)` encloses the `(i, j)` entry of the product of the matrices of the enclosed
+functions, pointwise.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+open Matrix
+
+variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem Taylm.mmul_outer {a b c : ℕ} {A : Fin a → Fin b → Taylm n} {B : Fin b → Fin c → Taylm n}
+    {F : Fin a → Fin b → Vec ℝ n → ℝ} {G : Fin b → Fin c → Vec ℝ n → ℝ}
+    (hA : ∀ i k, (A i k).Encloses (F i k)) (hB : ∀ k j, (B k j).Encloses (G k j)) (i : Fin a)
+    (j : Fin c) :
+    (Taylm.mmul A B i j).Encloses fun t =>
+      (Matrix.of (fun i k => F i k t) * Matrix.of (fun k j => G k j t)) i j := by
+  simp only [Matrix.mul_apply, Matrix.of_apply]
+  exact Taylm.sum_outer fun k => Taylm.times_outer (hA i k) (hB k j)
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

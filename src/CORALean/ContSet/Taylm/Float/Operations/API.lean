@@ -1,3 +1,5 @@
+import CORALean.ContSet.Taylm.Float.Operations.Mmul
+import CORALean.ContSet.Taylm.Float.Operations.Mpower
 import CORALean.ContSet.Taylm.Float.Operations.Rdivide
 import CORALean.ContSet.Taylm.Float.Operations.Inv
 import CORALean.ContSet.Taylm.Float.Operations.InvBound

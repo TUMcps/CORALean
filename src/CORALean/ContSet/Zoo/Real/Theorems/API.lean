@@ -5,6 +5,7 @@ import CORALean.ContSet.Zoo.Real.Theorems.RdivideOuter
 import CORALean.ContSet.Zoo.Real.Theorems.TimesOuter
 import CORALean.ContSet.Zoo.Real.Theorems.UminusOuter
 import CORALean.ContSet.Zoo.Real.Theorems.UplusOuter
+import CORALean.ContSet.Zoo.Real.Theorems.OfIntervalEncloses
 
 /-!
 # Zoos: the theorems

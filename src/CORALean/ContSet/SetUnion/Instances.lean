@@ -8,6 +8,7 @@ what it denotes. `Mtimes`, `Plus` and `Reduce` follow whenever the member
 type `S` has them, each the branch-wise operation from `Operations/` paired
 with the guarantee `Theorems/` proves for it.
 
+`OfPoint` is a one-member union.
 `Contains`/`IsDisjoint` lift both ways. As the *computed* set, `S := SetUnion
 S'`: exact, checking every member. As the *container*, `T := SetUnion T'`:
 `contains` by any member (conservative), `isDisjoint` by every member
@@ -15,9 +16,9 @@ S'`: exact, checking every member. As the *container*, `T := SetUnion T'`:
 the container pair carries `(priority := low)`: the computed-set reading is
 tried first, the same rule `SetIntersection` uses for its own two pairs.
 
-Computable throughout: every field here is `List.map`/`List.all`/`List.any`
-over whatever `S`'s own instance computes, so a float member type makes every
-instance below compute in turn, with nothing rounded and no error box to carry.
+Computable throughout: every field here is `List.map`/`List.all`/`List.any` over whatever `S`'s
+own instance computes, so a float member type makes every instance compute in turn, with nothing
+rounded and no error box to carry.
 -/
 
 -- Authors:       Tobias Ladner
@@ -50,6 +51,11 @@ instance [Plus S α] : Plus (SetUnion S) α where
 instance [Reduce S α] : Reduce (SetUnion S) α where
   reduce := SetUnion.reduce
   reduce_outer := SetUnion.reduce_outer
+
+/-- A singleton is a union of one singleton. -/
+instance [OfPoint S α] : OfPoint (SetUnion S) α where
+  ofPoint v := ⟨[OfPoint.ofPoint v]⟩
+  mem_ofPoint v := SetUnion.mem_construct.mpr ⟨_, List.mem_singleton_self _, OfPoint.mem_ofPoint v⟩
 
 variable {T α : Type} [ContSet T α] [ContSet S α]
 

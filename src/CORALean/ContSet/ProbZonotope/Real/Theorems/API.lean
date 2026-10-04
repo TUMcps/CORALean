@@ -13,6 +13,9 @@ import CORALean.ContSet.ProbZonotope.Real.Theorems.ConfidenceZonotopeProb
 import CORALean.ContSet.ProbZonotope.Real.Theorems.ZonotopeProb
 import CORALean.ContSet.ProbZonotope.Real.Theorems.UnsafeProbLe
 import CORALean.ContSet.ProbZonotope.Real.Theorems.UnsafeProbPrintedCounterexample
+import CORALean.ContSet.ProbZonotope.Real.Theorems.ProjectLaws
+import CORALean.ContSet.ProbZonotope.Real.Theorems.VPolytopeExact
+import CORALean.ContSet.ProbZonotope.Real.Theorems.RepresentsaEmptySetIff
 
 /-!
 # What a probabilistic zonotope guarantees, collected

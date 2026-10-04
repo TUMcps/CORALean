@@ -1,3 +1,5 @@
+import CORALean.ContSet.Taylm.Float.Theorems.MmulOuter
+import CORALean.ContSet.Taylm.Float.Theorems.MpowerOuter
 import CORALean.ContSet.Taylm.Float.Theorems.RdivideOuter
 import CORALean.ContSet.Taylm.Float.Theorems.InvOuter
 import CORALean.ContSet.Taylm.Float.Theorems.InvBoundGe

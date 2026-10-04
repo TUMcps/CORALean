@@ -12,6 +12,7 @@ import CORALean.ContSet.Polygon.Real.Operations.IntervalOfList
 import CORALean.ContSet.Polygon.Real.Operations.Interval
 import CORALean.ContSet.Polygon.Real.Operations.Times
 import CORALean.ContSet.Polygon.Real.Operations.SupportBound
+import CORALean.ContSet.Polygon.Real.Operations.Minus
 
 /-!
 # Polygon operations, collected

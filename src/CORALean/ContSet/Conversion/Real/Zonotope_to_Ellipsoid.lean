@@ -1,5 +1,9 @@
 import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
 import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+import CORALean.ContSet.Zonotope.Real.Theorems.SqNormLeMaxNormSq
+import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+import Mathlib.Analysis.SpecialFunctions.Pow.Real
+import Mathlib.LinearAlgebra.Matrix.DotProduct
 
 /-!
 # A zonotope as an ellipsoid
@@ -14,6 +18,18 @@ Loose by a factor of `√h` in the worst direction and exact in none, since a
 zonotope is not an ellipsoid. Tighter enclosures exist — CORA's are the
 minimum-volume and minimum-trace ones — and both are optimisation problems
 rather than conversions.
+
+CORA's `'outer:norm'` and `'inner:norm'` are [1, Thm. 1] and [1, Thm. 3]: shape `r E₀` for a
+factor `F` of the initial guess `E₀ = F Fᵀ` (`m G Gᵀ` and `G Gᵀ`) and a bound `r` on the maximum,
+or below the minimum, norm of `F⁻¹ Z` ([1, Def. 3], [1, Def. 4]). `ellipsoidNorm` and
+`ellipsoidInnerNorm` take `F` and `r`; the guarantees hold for every invertible `F`, the paper's
+`E₀^{-1/2}` among them, and every bound — exact or `[1, Lemma 3]`'s.
+
+## References
+
+* [1] V. Gaßmann and M. Althoff. "Scalable Zonotope-Ellipsoid Conversions using the Euclidean
+      Zonotope Norm". In Proc. of the 2020 American Control Conference (ACC), pp. 4715-4721,
+      2020.
 -/
 
 -- Authors:       Tobias Ladner
@@ -85,6 +101,75 @@ theorem Zonotope.ellipsoid_contains (Z : Zonotope (Vec ℝ n)) :
     have hne : Real.sqrt (Z.h : ℝ) ≠ 0 :=
       ne_of_gt (Real.sqrt_pos.mpr (by exact_mod_cast j.pos))
     field_simp
+
+/-- [1, Thm. 1]: `E(r E₀, z̄)` with `E₀ = F Fᵀ`, as the generator `√r F`. -/
+noncomputable def Zonotope.ellipsoidNorm (Z : Zonotope (Vec ℝ n)) (F : Mat ℝ n n) (r : ℝ) :
+    Ellipsoid n where
+  k := n
+  q := Z.c
+  G := √r • F
+
+/-- [1, Thm. 1]: `r` bounding `⌈F⁻¹ Z⌉²` makes `E(r F Fᵀ, z̄)` enclose `Z`. -/
+theorem Zonotope.ellipsoidNorm_contains (Z : Zonotope (Vec ℝ n)) (F : Mat ℝ n n) (r : ℝ)
+    (hF : IsUnit F.det)
+    (hr : (⟨Z.h, F⁻¹ *ᵥ Z.c, fun j => F⁻¹ *ᵥ Z.G j⟩ : Zonotope (Vec ℝ n)).maxNormSq ≤ r) :
+    Z.construct ⊆ (Z.ellipsoidNorm F r).construct := by -- --- PROOF ---
+  rintro _ ⟨β, hβ, rfl⟩
+  -- the transformed point `v = F⁻¹ ∑ βⱼ gⱼ` is no longer than `√r`
+  set v : Vec ℝ n := ∑ j, β j • (F⁻¹ *ᵥ Z.G j) with hv
+  have hvle : ‖v‖₂ ^ 2 ≤ r :=
+    le_trans (Zonotope.sq_norm₂_le_maxNormSq ⟨Z.h, F⁻¹ *ᵥ Z.c, fun j => F⁻¹ *ᵥ Z.G j⟩ hβ) hr
+  have hFv : F *ᵥ v = ∑ j, β j • Z.G j := by
+    simp only [hv, Matrix.mulVec_sum, Matrix.mulVec_smul, Matrix.mulVec_mulVec,
+      Matrix.mul_nonsing_inv F hF, Matrix.one_mulVec]
+  have hr0 : 0 ≤ r := le_trans (sq_nonneg _) hvle
+  rcases hr0.eq_or_lt with hr0 | hrpos
+  -- `r = 0`: the point is the centre
+  · subst hr0
+    have hv0 : v = 0 := by
+      rw [← dotProduct_self_eq_zero, dotProduct_self]
+      nlinarith [norm₂_nonneg v]
+    refine ⟨0, by rw [norm₂_zero]; exact zero_le_one, ?_⟩
+    rw [Matrix.mulVec_zero, ← hFv, hv0, Matrix.mulVec_zero]
+    rfl
+  -- otherwise `u = v / √r` is in the unit ball and `√r F u = F v`
+  · have hs : 0 < √r := Real.sqrt_pos.mpr hrpos
+    refine ⟨(√r)⁻¹ • v, ?_, ?_⟩
+    · show ‖((√r)⁻¹ • v : Vec ℝ n)‖₂ ≤ 1
+      rw [norm₂_smul, abs_of_pos (inv_pos.mpr hs), inv_mul_le_iff₀ hs, mul_one]
+      calc ‖v‖₂ = √(‖v‖₂ ^ 2) := (Real.sqrt_sq (norm₂_nonneg v)).symm
+        _ ≤ √r := Real.sqrt_le_sqrt hvle
+    · show Z.c + ∑ j, β j • Z.G j = Z.c + (√r • F) *ᵥ ((√r)⁻¹ • v)
+      rw [Matrix.smul_mulVec, Matrix.mulVec_smul, smul_smul, mul_inv_cancel₀ hs.ne', one_smul,
+        hFv]
+
+/-- [1, Thm. 3]: `E(l E₀, z̄)` with `E₀ = F Fᵀ`, as the generator `√l F`. -/
+noncomputable def Zonotope.ellipsoidInnerNorm (Z : Zonotope (Vec ℝ n)) (F : Mat ℝ n n) (l : ℝ) :
+    Ellipsoid n where
+  k := n
+  q := Z.c
+  G := √l • F
+
+/-- [1, Thm. 3]: a ball of radius `√l` around the centre of `F⁻¹ Z` puts `E(l F Fᵀ, z̄)` in
+`Z`; `l ≤ ⌊F⁻¹ Z⌋²` is what that ball says. -/
+theorem Zonotope.contains_ellipsoidInnerNorm (Z : Zonotope (Vec ℝ n)) (F : Mat ℝ n n) (l : ℝ)
+    (hF : IsUnit F.det)
+    (hball : ∀ x : Vec ℝ n, ‖x‖₂ ≤ √l → F⁻¹ *ᵥ Z.c + x ∈
+      (⟨Z.h, F⁻¹ *ᵥ Z.c, fun j => F⁻¹ *ᵥ Z.G j⟩ : Zonotope (Vec ℝ n)).construct) :
+    (Z.ellipsoidInnerNorm F l).construct ⊆ Z.construct := by -- --- PROOF ---
+  rintro _ ⟨u, hu, rfl⟩
+  -- `√l u` is in the ball, so a point of `F⁻¹ Z`; map it back with `F`
+  have hx : ‖√l • u‖₂ ≤ √l := by
+    rw [norm₂_smul, abs_of_nonneg (Real.sqrt_nonneg l)]
+    exact mul_le_of_le_one_right (Real.sqrt_nonneg l) hu
+  obtain ⟨β, hβ, heq⟩ := hball _ hx
+  refine ⟨β, hβ, ?_⟩
+  have hmap := congrArg (F *ᵥ ·) heq
+  simp only [Matrix.mulVec_add, Matrix.mulVec_sum, Matrix.mulVec_smul, Matrix.mulVec_mulVec,
+    Matrix.mul_nonsing_inv F hF, Matrix.one_mulVec] at hmap
+  show Z.c + (√l • F) *ᵥ u = Z.c + ∑ j, β j • Z.G j
+  rw [Matrix.smul_mulVec, ← Matrix.mulVec_smul]
+  exact hmap
 
 end CORALean.Real
 

@@ -137,7 +137,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.linReachFloat_outer
     obtain ⟨hΔt, hout⟩ := NonlinearSys.oneStepFloat_outer hrest
     exact ⟨hΔt, fun traj => hout traj fun t ht => hlin (hconf hΔt traj t ht) (traj.input t ht)⟩
   | poly errorOrder =>
-    simp only [Option.bind_eq_bind, Option.bind_eq_some_iff] at hrest
+    simp only [Option.bind_eq_some_iff] at hrest
     obtain ⟨η, hη, hone⟩ := hrest
     obtain ⟨hΔt, hout⟩ := NonlinearSys.oneStepFloat_outer hone
     refine ⟨hΔt, fun {x u} traj => hout traj fun t ht => ?_⟩

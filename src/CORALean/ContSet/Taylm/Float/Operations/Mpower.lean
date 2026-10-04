@@ -1,0 +1,35 @@
+import CORALean.ContSet.Taylm.Float.Operations.Mmul
+import CORALean.ContSet.Taylm.Float.Operations.Const
+
+/-!
+# `Taylm.mpower`, float
+
+Float analogue of the real `Taylm.mpower`: a positive exponent repeats `mmul`, `0` is the identity
+matrix as constant models.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+open FloatOps in
+def Taylm.mpower {k : ℕ} (A : Fin k → Fin k → Taylm 𝕋 n) :
+    ℕ → Fin k → Fin k → Taylm 𝕋 n
+  | 0 => fun i j => Taylm.const n (if i = j then one else zero) 0
+  | e + 1 => (fun P => Taylm.mmul P A)^[e] A
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

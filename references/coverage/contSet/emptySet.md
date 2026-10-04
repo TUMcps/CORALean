@@ -7,7 +7,7 @@ CORA methods of `contSet/@emptySet/`, one row each, and where CORALean answers t
 | Method | State | In CORALean | Note |
 |---|---|---|---|
 | `and_` | float | [`EmptySet.and_`](../../../src/CORALean/ContSet/EmptySet/Real/Operations/And.lean), [`EmptySet.and_exact`](../../../src/CORALean/ContSet/EmptySet/Real/Theorems/AndExact.lean) | route b (scalar-free) — holds no scalar and computes nothing numeric; intersecting `∅` with any representation gives `∅`, exactly |
-| `center` | — | — |  |
+| `center` | float | [`EmptySet.centre`](../../../src/CORALean/ContSet/EmptySet/Real/Operations/Centre.lean), [`EmptySet.centre_isSome_iff`](../../../src/CORALean/ContSet/EmptySet/Real/Theorems/CentreIsSomeIff.lean) | route b (scalar-free) — holds no scalar and computes nothing numeric; CORA returns the empty `n × 0` matrix, `none` here: no centre, and `centre_isSome_iff` says a centre exists exactly when the set has a point |
 | `contains_` | proved | [`EmptySet.contains_iff`](../../../src/CORALean/ContSet/EmptySet/Real/Theorems/ContainsIff.lean) | `true` iff the other set is empty, stated as an iff on the denotation; no `Contains` instance, as the representation has no emptiness test for an arbitrary operand |
 | `convHull_` | float | [`EmptySet.convHull`](../../../src/CORALean/ContSet/EmptySet/Real/Operations/ConvHull.lean), [`EmptySet.convHull_exact`](../../../src/CORALean/ContSet/EmptySet/Real/Theorems/ConvHullExact.lean) | route b (scalar-free) — holds no scalar and computes nothing numeric; the other operand, exact for a `ConvexSet` |
 | `copy` | out-of-scope | n/a — matlab-runtime |  |
