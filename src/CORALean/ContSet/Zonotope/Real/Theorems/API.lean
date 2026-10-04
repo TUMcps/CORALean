@@ -227,6 +227,8 @@ import CORALean.ContSet.Zonotope.Real.Theorems.QuadMapIntOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.ConvexHullUnionSubsetLinComb
 import CORALean.ContSet.Zonotope.Real.Theorems.ScalarIntervalMulOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.SumTermsMem
+import CORALean.ContSet.Zonotope.Real.Theorems.OfOneParamPolyContains
+import CORALean.ContSet.Zonotope.Real.Theorems.IntervalZonotopeSubset
 
 /-!
 # What `Zonotope` guarantees

@@ -12,6 +12,13 @@ The loop body of CORA's `priv_observe_interval` with the fixed gain `L`:
 `x ← A x + B u + L (y - C x)` (the input `u` already in state coordinates, as in
 `LinearSysDT`), `R_x ← (A - L C) R_x`, `R_wv ← R_wv + box(D)`, `D ← (A - L C) D`.
 
+[1, Alg. 1], lines 6-9, one `let` each.
+
+## References
+
+* [1] M. Althoff. "Guaranteed State Estimation in CORA 2021". In Proc. of the 8th
+      International Workshop on Applied Verification of Continuous and Hybrid Systems (ARCH21),
+      EPiC Series in Computing, vol. 80, pp. 161-175, 2021.
 -/
 
 -- Authors:       Tobias Ladner

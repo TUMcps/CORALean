@@ -24,6 +24,8 @@ import CORALean.ContDynamics.LinearSysDT.Theorems.Real.QuadFormLeOfLmi
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntersectDescriptorOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObserveDescriptorOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.DescriptorObserverDecay
+import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObservePropagationOuter
+import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObserveIntervalCoraCounterexample
 
 /-!
 # What holds of `LinearSysDT` only at `𝕋 := ℝ`, collected

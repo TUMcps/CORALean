@@ -9,6 +9,14 @@ import CORALean.ContSet.Interval.Real.Theorems.TimesExact
 a reciprocal, and `recip_exact` makes the reciprocals those of the denominator's points. The
 numerator may contain `0`; the denominator avoids it in every coordinate, as CORA's `±Inf` and
 `NaN` branches, which `ℝ` cannot hold, are the cases where it does not.
+
+[1, Eq. 3] on boxes away from `0`, `[x]/[y] = [x]·(1/[y])`.
+
+## References
+
+* [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In
+      Proc. of the 3rd International Workshop on Applied Verification for Continuous and Hybrid
+      Systems (ARCH16), EPiC Series in Computing, vol. 43, pp. 91-105, 2017.
 -/
 
 -- Authors:       Tobias Ladner

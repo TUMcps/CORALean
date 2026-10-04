@@ -7,6 +7,14 @@ import CORALean.ContSet.Interval.Real.Theorems.MonotoneImageExact
 The square root is increasing on `[0, ∞)`, so `Interval.monotoneImage_exact` applies. CORA throws
 `outOfDomain` when a lower bound is negative (and returns NaN internally); here the domain is a
 hypothesis, both corners nonnegative.
+
+[1, Eq. 5], its first case.
+
+## References
+
+* [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In
+      Proc. of the 3rd International Workshop on Applied Verification for Continuous and Hybrid
+      Systems (ARCH16), EPiC Series in Computing, vol. 43, pp. 91-105, 2017.
 -/
 
 -- Authors:       Tobias Ladner

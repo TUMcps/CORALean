@@ -23,6 +23,7 @@ import CORALean.ContSet.VPolytope.Real.Operations.Or
 import CORALean.ContSet.VPolytope.Real.Operations.ProjectHighDim
 import CORALean.ContSet.VPolytope.Real.Operations.Center
 import CORALean.ContSet.VPolytope.Real.Operations.CartProd
+import CORALean.ContSet.VPolytope.Real.Operations.KNeZeroOfNonempty
 
 /-!
 # What `VPolytope` computes

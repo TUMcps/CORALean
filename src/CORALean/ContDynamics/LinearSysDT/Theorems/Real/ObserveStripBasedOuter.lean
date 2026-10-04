@@ -10,10 +10,15 @@ from `x_0 ∈ R₀` with `ω_k ∈ W`, whose outputs meet every strip `|C x_k - 
 the observer's set at every step, whatever the gains and the order. Induction on `k`:
 `observeStep_outer` at the one state `x_k`, then `reduce_outer`.
 
+[2, Eq. 4], over time: the strip-based observer encloses the true state.
+
 ## References
 
 * [1] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state
       estimation for uncertain systems". Automatica, 49(11):3418-3424, 2013.
+* [2] M. Althoff. "Guaranteed State Estimation in CORA 2021". In Proc. of the 8th
+      International Workshop on Applied Verification of Continuous and Hybrid Systems (ARCH21),
+      EPiC Series in Computing, vol. 80, pp. 161-175, 2021.
 -/
 
 -- Authors:       Tobias Ladner

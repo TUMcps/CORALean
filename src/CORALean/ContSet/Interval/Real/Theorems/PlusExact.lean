@@ -9,6 +9,14 @@ Coordinatewise. Splitting a point of the sum is the only work: `I₁` takes
 
 Both boxes must be `IsNonempty`: `[1, 0] + [0, 10]` is `∅` as a set but `[1, 10]`
 by the definition. `plus_outer` is the half that needs no such hypothesis.
+
+[1, Eq. 2] for scalars and [1, Eq. 17] for matrices, `α` being either.
+
+## References
+
+* [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In
+      Proc. of the 3rd International Workshop on Applied Verification for Continuous and Hybrid
+      Systems (ARCH16), EPiC Series in Computing, vol. 43, pp. 91-105, 2017.
 -/
 
 -- Authors:       Tobias Ladner

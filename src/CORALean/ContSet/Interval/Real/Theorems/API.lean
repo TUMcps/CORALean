@@ -142,6 +142,13 @@ import CORALean.ContSet.Interval.Real.Theorems.DiracOuter
 import CORALean.ContSet.Interval.Real.Theorems.DiracOffZero
 import CORALean.ContSet.Interval.Real.Theorems.StlIntervalExact
 import CORALean.ContSet.Interval.Real.Theorems.DiracZeroMem
+import CORALean.ContSet.Interval.Real.Theorems.ModSubModCases
+import CORALean.ContSet.Interval.Real.Theorems.SinByRegionsExact
+import CORALean.ContSet.Interval.Real.Theorems.CosByRegionsExact
+import CORALean.ContSet.Interval.Real.Theorems.TanUnboundedOfPole
+import CORALean.ContSet.Interval.Real.Theorems.TanByRegionsExact
+import CORALean.ContSet.Interval.Real.Theorems.CotByRegionsExact
+import CORALean.ContSet.Interval.Real.Theorems.InvImageIccCases
 
 /-!
 # What `Interval` guarantees

@@ -13,10 +13,15 @@ import CORALean.ContSet.Zonotope.Real.Theorems.IntersectStripSeqOuter
 is exact ([1, Eq. 2], `mtimes_exact` and `plus_exact`), the update outer
 (`intersectStripSeq_outer`, [1, Eq. 3], or `intersectStrip_outer` all at once), for every gain.
 
+[2, Eq. 4]: the correction keeps `S_p ∩ Ŝ`.
+
 ## References
 
 * [1] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state
       estimation for uncertain systems". Automatica, 49(11):3418-3424, 2013.
+* [2] M. Althoff. "Guaranteed State Estimation in CORA 2021". In Proc. of the 8th
+      International Workshop on Applied Verification of Continuous and Hybrid Systems (ARCH21),
+      EPiC Series in Computing, vol. 80, pp. 161-175, 2021.
 -/
 
 -- Authors:       Tobias Ladner

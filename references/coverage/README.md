@@ -117,8 +117,8 @@ Rulings on borderline cases:
 |---|---|---|---|---|---|---|---|
 | [affine](contSet/affine.md) | contSet | 1 | 0 | 1 | 0 | 0 | 0 |
 | [capsule](contSet/capsule.md) | contSet | 39 | 2 | 26 | 1 | 10 | 3 |
-| [conPolyZono](contSet/conPolyZono.md) | contSet | 47 | 11 | 26 | 2 | 8 | 2 |
-| [conZonotope](contSet/conZonotope.md) | contSet | 50 | 10 | 25 | 3 | 12 | 1 |
+| [conPolyZono](contSet/conPolyZono.md) | contSet | 47 | 12 | 26 | 1 | 8 | 3 |
+| [conZonotope](contSet/conZonotope.md) | contSet | 50 | 12 | 25 | 1 | 12 | 1 |
 | [contSet](contSet/contSet.md) | contSet | 101 | 1 | 27 | 1 | 72 | 0 |
 | [ellipsoid](contSet/ellipsoid.md) | contSet | 50 | 11 | 20 | 9 | 10 | 3 |
 | [emptySet](contSet/emptySet.md) | contSet | 30 | 3 | 20 | 0 | 7 | 0 |
@@ -127,19 +127,19 @@ Rulings on borderline cases:
 | [levelSet](contSet/levelSet.md) | contSet | 22 | 6 | 6 | 2 | 8 | 2 |
 | [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 16 | 35 | 8 | 14 | 3 |
 | [polygon](contSet/polygon.md) | contSet | 46 | 2 | 17 | 18 | 9 | 1 |
-| [polytope](contSet/polytope.md) | contSet | 58 | 11 | 33 | 2 | 12 | 4 |
+| [polytope](contSet/polytope.md) | contSet | 58 | 12 | 33 | 1 | 12 | 4 |
 | [probZonotope](contSet/probZonotope.md) | contSet | 28 | 15 | 0 | 5 | 8 | 3 |
 | [spectraShadow](contSet/spectraShadow.md) | contSet | 33 | 1 | 7 | 17 | 8 | 0 |
 | [taylm](contSet/taylm.md) | contSet | 51 | 5 | 33 | 1 | 12 | 0 |
-| [zonoBundle](contSet/zonoBundle.md) | contSet | 44 | 5 | 25 | 7 | 7 | 3 |
+| [zonoBundle](contSet/zonoBundle.md) | contSet | 44 | 12 | 25 | 0 | 7 | 4 |
 | [zonotope](contSet/zonotope.md) | contSet | 80 | 12 | 46 | 8 | 14 | 2 |
 | [zoo](contSet/zoo.md) | contSet | 12 | 10 | 0 | 0 | 2 | 0 |
-| [contDynamics](contDynamics/contDynamics.md) | contDynamics | 19 | 2 | 4 | 2 | 11 | 0 |
+| [contDynamics](contDynamics/contDynamics.md) | contDynamics | 19 | 2 | 4 | 2 | 11 | 1 |
 | [linParamSys](contDynamics/linParamSys.md) | contDynamics | 11 | 3 | 3 | 1 | 4 | 0 |
 | [linProbSys](contDynamics/linProbSys.md) | contDynamics | 8 | 2 | 0 | 1 | 5 | 1 |
 | [linearARX](contDynamics/linearARX.md) | contDynamics | 7 | 1 | 3 | 1 | 2 | 0 |
 | [linearSys](contDynamics/linearSys.md) | contDynamics | 33 | 11 | 11 | 1 | 10 | 1 |
-| [linearSysDT](contDynamics/linearSysDT.md) | contDynamics | 17 | 6 | 5 | 0 | 6 | 0 |
+| [linearSysDT](contDynamics/linearSysDT.md) | contDynamics | 17 | 6 | 5 | 0 | 6 | 1 |
 | [neurNetContrSys](contDynamics/neurNetContrSys.md) | contDynamics | 5 | 0 | 4 | 0 | 1 | 0 |
 | [nonlinDASys](contDynamics/nonlinDASys.md) | contDynamics | 13 | 4 | 0 | 6 | 3 | 5 |
 | [nonlinParamSys](contDynamics/nonlinParamSys.md) | contDynamics | 9 | 3 | 0 | 2 | 4 | 0 |

@@ -7,6 +7,13 @@ import CORALean.ContSet.Interval.Real.Operations.Point
 CORA's `priv_observe_interval` initialisation, `x = center(R0)`, `R_x = R0`, `R_wv = 0`,
 `D = -L V + W`, then `observeIntervalStep` at the measurement `y k` and input `u k`.
 
+[1, Alg. 1], lines 1-2 and the loop.
+
+## References
+
+* [1] M. Althoff. "Guaranteed State Estimation in CORA 2021". In Proc. of the 8th
+      International Workshop on Applied Verification of Continuous and Hybrid Systems (ARCH21),
+      EPiC Series in Computing, vol. 80, pp. 161-175, 2021.
 -/
 
 -- Authors:       Tobias Ladner

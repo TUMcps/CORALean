@@ -57,6 +57,10 @@ import CORALean.ContSet.HPolytope.Real.Operations.MoveToEq
 import CORALean.ContSet.HPolytope.Real.Operations.AtoAeState
 import CORALean.ContSet.HPolytope.Real.Operations.CompactAtoAe
 import CORALean.ContSet.HPolytope.Real.Operations.RepresentsaFullspace
+import CORALean.ContSet.HPolytope.Real.Operations.IsLPCentre
+import CORALean.ContSet.HPolytope.Real.Operations.Volume
+import CORALean.ContSet.HPolytope.Real.Operations.RowsRhs
+import CORALean.ContSet.HPolytope.Real.Operations.RowNorm
 
 /-!
 # What `HPolytope` computes

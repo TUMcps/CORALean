@@ -7,6 +7,14 @@ import CORALean.ContSet.Interval.Real.Theorems.MonotoneImageExact
 The arcsine is strictly increasing on `[-1, 1]`, so `Interval.monotoneImage_exact` applies. CORA
 returns a complex or NaN result outside `[-1, 1]`; here the domain is a hypothesis, both corners
 in `[-1, 1]`.
+
+[1, Eq. 6], its first case.
+
+## References
+
+* [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In
+      Proc. of the 3rd International Workshop on Applied Verification for Continuous and Hybrid
+      Systems (ARCH16), EPiC Series in Computing, vol. 43, pp. 91-105, 2017.
 -/
 
 -- Authors:       Tobias Ladner

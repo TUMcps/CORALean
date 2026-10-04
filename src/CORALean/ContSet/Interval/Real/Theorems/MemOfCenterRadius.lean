@@ -5,6 +5,14 @@ import CORALean.ContSet.Interval.Real.Operations.OfCenterRadius
 
 `x` is in `[c - r, c + r]` iff each entry is within the matching entry of `r` of the one of `c`.
 This is the meaning of CORA's `intervalMatrix(C, Δ)`.
+
+[1, Sec. 2]: `[x] = mid([x]) ⊕ rad([x]) ⊗ [-1, 1]`, membership read off the centre and radius.
+
+## References
+
+* [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In
+      Proc. of the 3rd International Workshop on Applied Verification for Continuous and Hybrid
+      Systems (ARCH16), EPiC Series in Computing, vol. 43, pp. 91-105, 2017.
 -/
 
 -- Authors:       Tobias Ladner

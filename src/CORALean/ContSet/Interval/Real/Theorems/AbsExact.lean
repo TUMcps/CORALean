@@ -5,6 +5,14 @@ import CORALean.ContSet.Interval.Real.Operations.Abs
 
 A point `y` of the new box is `x` or `-x` for a member `x`: the first if `y ≤ sup`, the second
 otherwise, in which case `y ≤ -inf`. Needs no nonemptiness.
+
+[1, Eq. 10], all three cases.
+
+## References
+
+* [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In
+      Proc. of the 3rd International Workshop on Applied Verification for Continuous and Hybrid
+      Systems (ARCH16), EPiC Series in Computing, vol. 43, pp. 91-105, 2017.
 -/
 
 -- Authors:       Tobias Ladner

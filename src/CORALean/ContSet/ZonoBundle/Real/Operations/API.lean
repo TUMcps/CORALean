@@ -33,6 +33,17 @@ import CORALean.ContSet.ZonoBundle.Real.Operations.Enlarge
 import CORALean.ContSet.ZonoBundle.Real.Operations.Isequal
 import CORALean.ContSet.ZonoBundle.Real.Operations.IsequalCora
 import CORALean.ContSet.ZonoBundle.Real.Operations.AllMembersFullDim
+import CORALean.ContSet.ZonoBundle.Real.Operations.IsCentre
+import CORALean.ContSet.ZonoBundle.Real.Operations.ContainsAll
+import CORALean.ContSet.ZonoBundle.Real.Operations.IsIntervalCora
+import CORALean.ContSet.ZonoBundle.Real.Operations.RepresentsaEmptySet
+import CORALean.ContSet.ZonoBundle.Real.Operations.Volume
+import CORALean.ContSet.ZonoBundle.Real.Operations.EncloseTight
+import CORALean.ContSet.ZonoBundle.Real.Operations.ConvHull
+import CORALean.ContSet.ZonoBundle.Real.Operations.RepresentsaOrigin
+import CORALean.ContSet.ZonoBundle.Real.Operations.EncloseTightPoints
+import CORALean.ContSet.ZonoBundle.Real.Operations.EncloseTightVertices
+import CORALean.ContSet.ZonoBundle.Real.Operations.EncloseTightVerticesNonempty
 
 /-!
 # What a zonotope bundle computes, collected

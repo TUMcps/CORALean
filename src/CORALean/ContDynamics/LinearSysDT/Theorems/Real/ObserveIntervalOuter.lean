@@ -14,6 +14,14 @@ observer's box at every step, provided the initial error `x_0 - center(R₀)` li
 `e_{k+1} = (A - L C) e_k + (w_k - L v_k)`; unrolled, `e_k = (A - L C)^k e_0` plus the sum of
 `(A - L C)^m d_{k-1-m}` with `d_j ∈ D`, and each term lies in the box of `(A - L C)^m D`.
 
+[1, Alg. 1] encloses the true state when `S_{x,0}` holds the initial error `x_0 - x̂_0`;
+as printed, `S_{x,0} ← X_0`, it need not (`observeInterval_cora_counterexample`).
+
+## References
+
+* [1] M. Althoff. "Guaranteed State Estimation in CORA 2021". In Proc. of the 8th
+      International Workshop on Applied Verification of Continuous and Hybrid Systems (ARCH21),
+      EPiC Series in Computing, vol. 80, pp. 161-175, 2021.
 -/
 
 -- Authors:       Tobias Ladner

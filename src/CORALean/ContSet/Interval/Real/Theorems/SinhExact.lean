@@ -7,6 +7,14 @@ import CORALean.ContSet.Interval.Real.Theorems.MonotoneImageExact
 
 The hyperbolic sine is strictly increasing and continuous on all of `ℝ`, so
 `Interval.monotoneImage_exact` applies. No domain condition.
+
+[1, Eq. 7].
+
+## References
+
+* [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In
+      Proc. of the 3rd International Workshop on Applied Verification for Continuous and Hybrid
+      Systems (ARCH16), EPiC Series in Computing, vol. 43, pp. 91-105, 2017.
 -/
 
 -- Authors:       Tobias Ladner

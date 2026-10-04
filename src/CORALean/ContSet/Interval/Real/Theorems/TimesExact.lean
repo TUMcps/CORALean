@@ -8,6 +8,14 @@ import CORALean.ContSet.Interval.Real.Theorems.IsNonempty
 `times_outer` is the inclusion; the other direction picks each coordinate's factors by
 `exists_mul_eq`. Needs both boxes nonempty: with a crossed coordinate the corner hull is an
 interval nobody multiplies into.
+
+[1, Eq. 2]: the product is the hull of the four corner products, exactly.
+
+## References
+
+* [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In
+      Proc. of the 3rd International Workshop on Applied Verification for Continuous and Hybrid
+      Systems (ARCH16), EPiC Series in Computing, vol. 43, pp. 91-105, 2017.
 -/
 
 -- Authors:       Tobias Ladner

@@ -71,6 +71,10 @@ import CORALean.ContDynamics.LinearSys.MatExp.Operations.TuneOrderFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.TuneStepFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.MatZonoCorrTerm
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.MatZonoCorrectionMatrix
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.OneParamD
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.OneParamF
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpmOneParam
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.InputOneParam
 
 /-!
 # What enclosing a matrix exponential computes
