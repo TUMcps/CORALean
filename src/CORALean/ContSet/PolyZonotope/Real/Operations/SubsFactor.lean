@@ -1,0 +1,35 @@
+import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
+
+/-!
+# `PolyZonotope.subsFactor`
+
+The factor of the result that a factor of `pZin` is: the one of `pZ` it shares its identifier with
+(`Idx`, given by `share`), or a new one after `pZ`'s.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- The factor of the result that `pZin`'s factor `j` is. -/
+def PolyZonotope.subsFactor (pZ : PolyZonotope α) {nu : ℕ} (pZin : PolyZonotope (Vec ℝ nu))
+    (share : Fin pZin.p → Option (Fin pZ.p)) (j : Fin pZin.p) : Fin (pZ.p + pZin.p) :=
+  match share j with
+  | some k => Fin.castAdd pZin.p k
+  | none => Fin.natAdd pZ.p j
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

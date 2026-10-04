@@ -125,14 +125,14 @@ Rulings on borderline cases:
 | [fullspace](contSet/fullspace.md) | contSet | 33 | 5 | 19 | 1 | 8 | 0 |
 | [interval](contSet/interval.md) | contSet | 110 | 3 | 85 | 4 | 18 | 1 |
 | [levelSet](contSet/levelSet.md) | contSet | 22 | 2 | 6 | 6 | 8 | 0 |
-| [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 9 | 35 | 15 | 14 | 2 |
+| [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 12 | 35 | 12 | 14 | 2 |
 | [polygon](contSet/polygon.md) | contSet | 46 | 2 | 17 | 18 | 9 | 1 |
 | [polytope](contSet/polytope.md) | contSet | 58 | 11 | 33 | 2 | 12 | 4 |
 | [probZonotope](contSet/probZonotope.md) | contSet | 28 | 15 | 0 | 5 | 8 | 3 |
 | [spectraShadow](contSet/spectraShadow.md) | contSet | 33 | 1 | 7 | 17 | 8 | 0 |
 | [taylm](contSet/taylm.md) | contSet | 51 | 4 | 32 | 4 | 11 | 0 |
 | [zonoBundle](contSet/zonoBundle.md) | contSet | 44 | 5 | 25 | 7 | 7 | 3 |
-| [zonotope](contSet/zonotope.md) | contSet | 80 | 10 | 46 | 10 | 14 | 1 |
+| [zonotope](contSet/zonotope.md) | contSet | 80 | 12 | 46 | 8 | 14 | 2 |
 | [zoo](contSet/zoo.md) | contSet | 12 | 10 | 0 | 0 | 2 | 0 |
 | [contDynamics](contDynamics/contDynamics.md) | contDynamics | 19 | 2 | 4 | 2 | 11 | 0 |
 | [linParamSys](contDynamics/linParamSys.md) | contDynamics | 11 | 3 | 3 | 1 | 4 | 0 |
@@ -144,7 +144,7 @@ Rulings on borderline cases:
 | [nonlinDASys](contDynamics/nonlinDASys.md) | contDynamics | 13 | 4 | 0 | 6 | 3 | 0 |
 | [nonlinParamSys](contDynamics/nonlinParamSys.md) | contDynamics | 9 | 3 | 0 | 2 | 4 | 0 |
 | [nonlinearARX](contDynamics/nonlinearARX.md) | contDynamics | 8 | 3 | 1 | 1 | 3 | 0 |
-| [nonlinearSys](contDynamics/nonlinearSys.md) | contDynamics | 18 | 4 | 3 | 3 | 8 | 1 |
+| [nonlinearSys](contDynamics/nonlinearSys.md) | contDynamics | 18 | 4 | 3 | 3 | 8 | 2 |
 | [nonlinearSysDT](contDynamics/nonlinearSysDT.md) | contDynamics | 11 | 2 | 3 | 3 | 3 | 0 |
 | [abstractReset](hybridDynamics/abstractReset.md) | hybridDynamics | 4 | 0 | 0 | 0 | 4 | 0 |
 | [hybridAutomaton](hybridDynamics/hybridAutomaton.md) | hybridDynamics | 15 | 0 | 2 | 2 | 11 | 0 |

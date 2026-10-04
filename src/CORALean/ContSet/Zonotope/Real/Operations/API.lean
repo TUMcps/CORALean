@@ -25,6 +25,9 @@ import CORALean.ContSet.Zonotope.Real.Operations.MethCBasis
 import CORALean.ContSet.Zonotope.Real.Operations.MethCFilter
 import CORALean.ContSet.Zonotope.Real.Operations.MethCVolume
 import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffAligned
+import CORALean.ContSet.Zonotope.Real.Operations.Aligned
+import CORALean.ContSet.Zonotope.Real.Operations.BackReachAligned
+import CORALean.ContSet.Zonotope.Real.Operations.CombineGens
 import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffGenRec
 import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffOrEmpty
 import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffRep
@@ -78,6 +81,8 @@ import CORALean.ContSet.Zonotope.Real.Operations.ExactPlus
 import CORALean.ContSet.Zonotope.Real.Operations.NormUb
 import CORALean.ContSet.Zonotope.Real.Operations.Radius2
 import CORALean.ContSet.Zonotope.Real.Operations.GeneratorLength
+import CORALean.ContSet.Zonotope.Real.Operations.BoundaryPoint
+import CORALean.ContSet.Zonotope.Real.Operations.Abs
 import CORALean.ContSet.Zonotope.Real.Operations.ConstrSat
 import CORALean.ContSet.Zonotope.Real.Operations.CartProd
 import CORALean.ContSet.Zonotope.Real.Operations.SplitFirstGen
@@ -95,6 +100,7 @@ import CORALean.ContSet.Zonotope.Real.Operations.FilterGen
 import CORALean.ContSet.Zonotope.Real.Operations.CompactZeros
 import CORALean.ContSet.Zonotope.Real.Operations.ContainsST
 import CORALean.ContSet.Zonotope.Real.Operations.ReduceUnderApproxSadraddini
+import CORALean.ContSet.Zonotope.Real.Operations.ReduceUnderApproxYang
 import CORALean.ContSet.Zonotope.Real.Operations.Venum
 import CORALean.ContSet.Zonotope.Real.Operations.Polymax
 import CORALean.ContSet.Zonotope.Real.Operations.ContainsDFS
