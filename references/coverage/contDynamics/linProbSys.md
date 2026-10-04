@@ -13,4 +13,4 @@ CORA methods of `contDynamics/@linProbSys/`, one row each, and where CORALean an
 | `linProbSys` | — | — |  |
 | `plot` | out-of-scope | n/a — plotting/display |  |
 | `post` | — | — |  |
-| `simulate` | — | — |  |
+| `simulate` | out-of-scope | n/a — random/sampling | draws `mvnrnd(mu,Sigma)` as the noise input at every step |

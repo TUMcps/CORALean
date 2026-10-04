@@ -1,10 +1,11 @@
+import CORALean.ContDynamics.LinearARX.Operations.ComputeGO
 import CORALean.ContDynamics.LinearARX.Operations.Feed
+import CORALean.ContDynamics.LinearARX.Operations.FeedBox
 import CORALean.ContDynamics.LinearARX.Operations.InputMat
 import CORALean.ContDynamics.LinearARX.Operations.InputSet
 import CORALean.ContDynamics.LinearARX.Operations.OutputEq
 import CORALean.ContDynamics.LinearARX.Operations.Simulate
 import CORALean.ContDynamics.LinearARX.Operations.SimulateBoxFloat
-import CORALean.ContDynamics.LinearARX.Operations.FeedBox
 import CORALean.ContDynamics.LinearARX.Operations.ToLinearSysDT
 
 /-!

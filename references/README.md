@@ -66,6 +66,7 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Semi-Supervised Classification with Graph Convolutional Networks](2017/kipf-iclr-gcn.md) | Kipf, Welling | ICLR | 2017 | 🟢 1/1 \| 4 |
 | [Methods for Order Reduction of Zonotopes](2017/kopetzki-cdc-order-reduction.md) | Kopetzki, Schürmann, Althoff | CDC, pp. 5626-5633 | 2017 | 🟢 4/4 \| 4 |
 | [Implementation of Taylor Models in CORA 2018](2018/althoff-arch-taylor-models.md) | Althoff, Grebenyuk, Kochdumper | ARCH18, EPiC Series in Computing 54, pp. 145-173 | 2018 | 🟢 11/11 \| 38 |
+| [Set-membership approach and Kalman observer based on zonotopes for discrete-time descriptor systems](2018/wang-automatica-descriptor-observer.md) | Wang, Puig, Cembrano | Automatica, 93:435-443 | 2018 | 🟡 16/18 \| 9 |
 | [Linear Encodings for Polytope Containment Problems](2019/sadraddini-cdc-polytope-containment.md) | Sadraddini, Tedrake | CDC, pp. 4367-4372 | 2019 | 🟡 22/23 \| 16 |
 | [Scalable Zonotope-Ellipsoid Conversions using the Euclidean Zonotope Norm](2020/gassmann-acc-zonotope-ellipsoid.md) | Gaßmann, Althoff | ACC, pp. 4715-4721 | 2020 | 🟡 13/16 \| 14 |
 | [Reachability Analysis for Hybrid Systems with Nonlinear Guard Sets](2020/kochdumper-hscc-nonlinear-guards.md) | Kochdumper, Althoff | HSCC | 2020 | 🟡 13/16 \| 6 |
@@ -185,6 +186,7 @@ pages carry one:
 * [Exponent Relaxation of Polynomial Zonotopes and Its Applications in Formal Neural Network Verification](2024/ladner-aaai-exponent-relaxation.md)
 * [Implementation of Polyhedral Operations in CORA 2024](2024/wetzlinger-arch-polyhedral-operations.md)
 * [Zonotopic guaranteed state estimation for uncertain systems](2013/le-automatica-zonotopic-estimation.md)
+* [Set-membership approach and Kalman observer based on zonotopes for discrete-time descriptor systems](2018/wang-automatica-descriptor-observer.md)
 * [Explaining Fast and Slow: Abstraction and Refinement of Provable Explanations](2025/bassan-icml-explaining-fast-and-slow.md)
 * [Formal Verification of Graph Convolutional Networks with Uncertain Node Features and Uncertain Graph Structure](2025/ladner-tmlr-gcn.md)
 * [Reachability Analysis for Hybrid Systems with Nonlinear Guard Sets](2020/kochdumper-hscc-nonlinear-guards.md)

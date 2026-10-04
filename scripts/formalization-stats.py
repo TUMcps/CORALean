@@ -26,7 +26,7 @@ Writes `experiments/paper/formalization-stats.json` and, under
 
 * `figures/formalization/formalization.tikz`, the paper's overview figure in pgfplots, in the
   CORA colours of `cora-macs.sty`: (a) on the left, CORA methods per group (proved and runnable
-  at float, proved and needing float, not yet; one black border round each bar, the
+  at float, proved and needing float, not yet; one thin rounded border round each bar, the
   out-of-scope count as "+n" after it), (b) and (c) stacked on the right: how the papers'
   results fared (and the in-scope ones not yet formalized), and what the Lean theorems are;
 * `figures/formalization/formalization-caption.tex`, its caption, with the out-of-scope reasons
@@ -98,7 +98,7 @@ def blue_to_purple(i, n):
 
 
 # bar segments, left of the bar first. (key, label, TikZ colour, rgb). A bar has no
-# per-segment outline, one black border round the whole bar.
+# per-segment outline, one thin rounded border round the whole bar.
 def seg(key, label, name):
     return (key, label, name, CORA[name])
 
@@ -126,6 +126,7 @@ THEOREMS = [
 ]
 OUT_LEGEND = "+n: out of scope, not in the bar"
 BAR = 6  # bar width in pt
+OUTLINE = "0.2pt"  # the thin black outline of a bar and of a legend image
 
 # what a bar is called; the groups are CORA's own directories. `LABEL` is the main
 # figure's, `HEADING` the appendix's italic group headings.
@@ -162,9 +163,9 @@ def panel(name, entries, segments, height, xlabel, legend, title=None, at=None, 
 
     `entries` is `[(label, counts, out)]`: `counts` is `{key: n}`, or `None` for a heading
     row (a label and no bar), and `out` the number of out-of-scope methods written after the
-    bar as `+n` (`None`: nothing). The segments have no outline; one black border runs round
-    each whole bar. A segment wide enough (`width_cm` is the axis width, for that decision)
-    carries its value, in white on a dark segment. With `bare` the axis has no frame, ticks
+    bar as `+n` (`None`: nothing). The segments have no outline; one thin black border with
+    rounded corners runs round each whole bar, the fills clipped to it. A segment wide enough
+    (`width_cm` is the axis width, for that decision) carries its value, in white on a dark segment. With `bare` the axis has no frame, ticks
     or x label (a single row of bars), and `total` writes the bar total after it. The labels
     are text, so the figure is legible without colour.
     """
@@ -204,13 +205,15 @@ def panel(name, entries, segments, height, xlabel, legend, title=None, at=None, 
                  "legend style={legend cell align=left, align=left, draw=none, font=\\scriptsize, "
                  "inner sep=0pt, /tikz/every even column/.append style={column sep=0.6ex}, "
                  "/tikz/every odd column/.append style={column sep=0pt}}",
-                 "legend image code/.code={\\draw[#1, draw=black, line width=0.4pt] "
-                 "(0cm,-0.6ex) rectangle (1.2ex,0.6ex);}"]
+                 "legend image code/.code={\\draw[#1, draw=black, line width=" + OUTLINE + ", "
+                 "rounded corners=1pt] (0cm,-0.6ex) rectangle (1.2ex,0.6ex);}"]
     out.append("\\begin{axis}[" + ",\n    ".join(opts) + "]")
+    # the segments are filled by hand, clipped to the bar's rounded outline, so the fills meet
+    # the outline exactly; the legend gets one image per segment instead of a plot
+    out.append(f"\\addplot[draw=none, forget plot] coordinates {{(0,0) (0,{n - 1})}};")
     for key, label, color, _ in segments:
-        pts = " ".join(f"({(c or {}).get(key, 0)},{i})" for i, (_, c, _) in enumerate(entries))
-        out.append(f"\\addplot+[draw=none, fill={color}] coordinates {{{pts}}};")
         if legend:
+            out.append(f"\\addlegendimage{{fill={color}}}")
             out.append(f"\\addlegendentry{{{label}}}")
     if legend and out_legend:
         out.append("\\addlegendimage{empty legend}")
@@ -222,16 +225,24 @@ def panel(name, entries, segments, height, xlabel, legend, title=None, at=None, 
         if c is None:
             continue
         tot = sum(c.values())
+        lo, hi = f"[yshift=-{half:g}pt]axis cs:", f"[yshift={half:g}pt]axis cs:"
+        radius = f"rounded corners={min(1.5, bar / 4):g}pt"
+        if tot:
+            out.append(f"\\begin{{scope}}\\clip[{radius}] ({lo}0,{i}) rectangle ({hi}{tot},{i});")
         start = 0
-        for key, _, _, rgb in segments:
+        for key, _, color, rgb in segments:
             v = c.get(key, 0)
+            if v:
+                out.append(f"\\fill[{color}] ({lo}{start:g},{i}) rectangle ({hi}{start + v:g},{i});")
             if v and (len(str(v)) * 0.13 + 0.06) <= v * scale:
                 col = "white" if luminance(rgb) < 0.6 else "black"
                 numbers.append(f"\\node[font={MONO}, text={col}, inner sep=0pt] "
                                f"at (axis cs:{start + v / 2:g},{i}) {{{v}}};")
             start += v
-        out.append(f"\\draw[black, line width=0.4pt] ([yshift=-{half:g}pt]axis cs:0,{i}) "
-                   f"rectangle ([yshift={half:g}pt]axis cs:{tot},{i});")
+        if tot:
+            out.append("\\end{scope}")
+            out.append(f"\\draw[black, line width={OUTLINE}, {radius}] ({lo}0,{i}) "
+                       f"rectangle ({hi}{tot},{i});")
         text = (f"{tot}" if total else "") + (f"\\hspace{{{'0.8em' if total else '0em'}}}\\textcolor{{{OUT_GREY}}}{{+{o}}}" if o else "")
         if text:
             out.append(f"\\node[anchor=west, font={MONO}, inner sep=3pt] "
@@ -295,14 +306,14 @@ def tikz(data):
                        title_at=f"at={{(0,1)}}, xshift=-{lab_b}cm, yshift=0.3cm")
     return f"""% Generated by scripts/formalization-stats.py from references/ and src/; do not edit.
 % (a) CORA methods per group, on the left; (b) how the printed results of the papers fared, and
-% (c) what the Lean theorems are, stacked on the right. One black border round each bar; a segment
+% (c) what the Lean theorems are, stacked on the right. One thin rounded border round each bar; a segment
 % wide enough carries its value; the number "+n" after a bar counts the items out of scope, which
 % are not in the bar (a bar of (b) and (c) is followed by its total). The figure is sized in
 % \\linewidth and needs no \\resizebox.
 \\begin{{tikzpicture}}
 \\footnotesize
-\\pgfplotsset{{every axis/.append style={{xbar stacked, scale only axis,
-    bar width={BAR}pt, y dir=reverse, enlarge y limits={{abs=0.7}}, xmin=0}}}}
+\\pgfplotsset{{every axis/.append style={{scale only axis,
+    y dir=reverse, enlarge y limits={{abs=0.7}}, xmin=0}}}}
 
 {p_methods}
 
@@ -339,12 +350,12 @@ def tikz_classes(data):
                  width_cm=0.5 * LINEWIDTH_CM, xmax=f"{1.12 * xmax:.0f}", font="\\scriptsize",
                  legend_columns=3, bar=5)
     return f"""% Generated by scripts/formalization-stats.py from references/coverage/; do not edit.
-% CORA methods per class, grouped by CORA's directories; one black border round each bar; the
+% CORA methods per class, grouped by CORA's directories; one thin rounded border round each bar; the
 % number "+n" after a bar counts the methods out of scope, which are not in the bar.
 \\begin{{tikzpicture}}
 \\footnotesize
-\\pgfplotsset{{every axis/.append style={{xbar stacked, scale only axis,
-    bar width=5pt, y dir=reverse, enlarge y limits={{abs=0.7}}, xmin=0}}}}
+\\pgfplotsset{{every axis/.append style={{scale only axis,
+    y dir=reverse, enlarge y limits={{abs=0.7}}, xmin=0}}}}
 
 {body}
 
@@ -374,8 +385,8 @@ def tikz_findings(data):
 % Findings of the papers per group of CORA classes, by the first Lean file a result links.
 \\begin{{tikzpicture}}
 \\footnotesize
-\\pgfplotsset{{every axis/.append style={{xbar stacked, scale only axis,
-    bar width=8pt, y dir=reverse, enlarge y limits={{abs=0.7}}, xmin=0}}}}
+\\pgfplotsset{{every axis/.append style={{scale only axis,
+    y dir=reverse, enlarge y limits={{abs=0.7}}, xmin=0}}}}
 
 {body}
 

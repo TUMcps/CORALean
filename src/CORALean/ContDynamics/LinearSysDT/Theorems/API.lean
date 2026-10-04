@@ -3,19 +3,22 @@ import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachForallInner
 import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachSetExistsPreimage
 import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachSetExistsTrajectory
 import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachSetForallTrajectory
+import CORALean.ContDynamics.LinearSysDT.Theorems.ComputeGOOutput
+import CORALean.ContDynamics.LinearSysDT.Theorems.ComputeGOState
 import CORALean.ContDynamics.LinearSysDT.Theorems.HeldToTrajectory
 import CORALean.ContDynamics.LinearSysDT.Theorems.HoldsOfCheck
 import CORALean.ContDynamics.LinearSysDT.Theorems.HoldsOfOutput
 import CORALean.ContDynamics.LinearSysDT.Theorems.HoldsOfReach
 import CORALean.ContDynamics.LinearSysDT.Theorems.HoldsOfSeparating
+import CORALean.ContDynamics.LinearSysDT.Theorems.MemSimulateBoxIn
 import CORALean.ContDynamics.LinearSysDT.Theorems.NotHoldsOfSimulate
 import CORALean.ContDynamics.LinearSysDT.Theorems.OutputOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachBigO
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachBigOConZonotope
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOneOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachFloatSubsetReachSetAddError
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachFloatZeroMemError
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachInnerFloatInner
+import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOneOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOrderLe
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOrderLeConZonotope
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOrdersConstEqReach
@@ -33,8 +36,8 @@ import CORALean.ContDynamics.LinearSysDT.Theorems.ReachUnionOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.API
 import CORALean.ContDynamics.LinearSysDT.Theorems.SimulateMemReach
 import CORALean.ContDynamics.LinearSysDT.Theorems.SimulateMemSimulateBoxFloat
-import CORALean.ContDynamics.LinearSysDT.Theorems.MemSimulateBoxIn
 import CORALean.ContDynamics.LinearSysDT.Theorems.SimulateTrajectory
+import CORALean.ContDynamics.LinearSysDT.Theorems.TrajectoryStateEq
 
 /-!
 # What `LinearSysDT` guarantees

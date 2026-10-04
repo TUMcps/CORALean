@@ -102,6 +102,9 @@ import CORALean.ContSet.Zonotope.Real.Operations.IntersectStrip
 import CORALean.ContSet.Zonotope.Real.Operations.Volume
 import CORALean.ContSet.Zonotope.Real.Operations.IntersectStripSeq
 import CORALean.ContSet.Zonotope.Real.Operations.Inclusion
+import CORALean.ContSet.Zonotope.Real.Operations.IntersectDescriptor
+import CORALean.ContSet.Zonotope.Real.Operations.ObserveDescriptor
+import CORALean.ContSet.Zonotope.Real.Operations.ObserveDescriptorCurrent
 
 /-!
 # What `Zonotope` computes
