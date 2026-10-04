@@ -19,6 +19,12 @@ import CORALean.ContDynamics.LinearSysDT.Operations.SimulateBoxIn
 import CORALean.ContDynamics.LinearSysDT.Operations.ObserveIntervalStep
 import CORALean.ContDynamics.LinearSysDT.Operations.ObserveIntervalState
 import CORALean.ContDynamics.LinearSysDT.Operations.ObserveInterval
+import CORALean.ContDynamics.LinearSysDT.Operations.Identify
+import CORALean.ContDynamics.LinearSysDT.Operations.IdentifyCandidate
+import CORALean.ContDynamics.LinearSysDT.Operations.ToLinearSys
+import CORALean.ContDynamics.LinearSysDT.Operations.NominalState
+import CORALean.ContDynamics.LinearSysDT.Operations.ConformReach
+import CORALean.ContDynamics.LinearSysDT.Operations.ConformAdd
 
 /-!
 # What `LinearSysDT` computes

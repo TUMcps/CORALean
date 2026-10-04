@@ -56,6 +56,10 @@ import CORALean.ContDynamics.LinearSys.Operations.ReachFloat
 import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInput
 import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInputStep
 import CORALean.ContDynamics.LinearSys.Operations.ReachInnerRep
+import CORALean.ContDynamics.LinearSys.Operations.CanonicalForm
+import CORALean.ContDynamics.LinearSys.Operations.ErrorEdge
+import CORALean.ContDynamics.LinearSys.Operations.ErrorSolutionAdaptive
+import CORALean.ContDynamics.LinearSys.Operations.ErrorSolutionOrder
 import CORALean.ContDynamics.LinearSys.Operations.ReachInputError
 import CORALean.ContDynamics.LinearSys.Operations.ReachOrder
 import CORALean.ContDynamics.LinearSys.Operations.ReachOrderFloat
@@ -101,6 +105,8 @@ import CORALean.ContDynamics.LinearSys.Operations.AdaptTimeStepFloat
 import CORALean.ContDynamics.LinearSys.Operations.AdaptiveStepFloat
 import CORALean.ContDynamics.LinearSys.Operations.AdaptiveRunFloat
 import CORALean.ContDynamics.LinearSys.Operations.ReachAdaptiveFloat
+import CORALean.ContDynamics.LinearSys.Operations.Identify
+import CORALean.ContDynamics.LinearSys.Operations.IdentifyCandidate
 
 /-!
 # What a continuous-time linear system computes

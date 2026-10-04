@@ -82,6 +82,15 @@ import CORALean.Global.TraceGainLe
 import CORALean.Global.TraceMulVecMulVecSelf
 import CORALean.Global.VecMulVecMulVecSelf
 import CORALean.Global.UltimateBoundOfRecurrence
+import CORALean.Global.DmdBlocks
+import CORALean.Global.DmdBlocksMulVec
+import CORALean.Global.DmdBlocksStack
+import CORALean.Global.DmdCandidate
+import CORALean.Global.DmdCandidateFit
+import CORALean.Global.DmdRegressor
+import CORALean.Global.DmdSelect
+import CORALean.Global.DmdSelectLe
+import CORALean.Global.DmdStack
 
 /-!
 # Global definitions, collected
@@ -101,7 +110,8 @@ fixed index, the minimax inequality a parametrized infimum's continuity gives
 over two compact sets, when a set-based evaluation shrinks superlinearly, when a
 step error converges to zero, a fixed horizon's error budget, the classical
 convergence order a point-valued ODE solver either has or does not, and the
-linear programming every set representation ends up asking for.
+linear programming every set representation ends up asking for, and the dynamic mode
+decomposition `identify` is built on (`Dmd…`).
 
 `Float/` is deliberately not collected here — it holds the floating-point
 scalar, and importing it would put that in reach of every `Real` file.

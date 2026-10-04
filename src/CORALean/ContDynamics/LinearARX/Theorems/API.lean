@@ -28,6 +28,7 @@ import CORALean.ContDynamics.LinearARX.Theorems.StackSimulateZero
 import CORALean.ContDynamics.LinearARX.Theorems.SumBlock
 import CORALean.ContDynamics.LinearARX.Theorems.ToLinearSysDTStep
 import CORALean.ContDynamics.LinearARX.Theorems.ToLinearSysDTTrajectory
+import CORALean.ContDynamics.LinearARX.Theorems.OfCharpolyStep
 
 /-!
 # What the conversion guarantees

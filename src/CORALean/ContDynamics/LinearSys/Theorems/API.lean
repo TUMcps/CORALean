@@ -44,7 +44,13 @@ import CORALean.ContDynamics.LinearSys.Theorems.ExistsTimePointStepErrorLt
 import CORALean.ContDynamics.LinearSys.Theorems.ExistsTimePointStepInnerInner
 import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralAddMulVec
 import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
+import CORALean.ContDynamics.LinearSys.Theorems.CanonicalFormCNeOne
+import CORALean.ContDynamics.LinearSys.Theorems.CanonicalFormOuterOutput
+import CORALean.ContDynamics.LinearSys.Theorems.CanonicalFormOuterState
+import CORALean.ContDynamics.LinearSys.Theorems.IsCanonicalFormCanonical
 import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemConstInputSolution
+import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemErrorSolutionAdaptive
+import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemErrorSolutionAdaptiveStatic
 import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemInputReach
 import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMulVec
 import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
@@ -211,6 +217,8 @@ import CORALean.ContDynamics.LinearSys.Theorems.AdaptiveRunFloatOuter
 import CORALean.ContDynamics.LinearSys.Theorems.ReachAdaptiveFloatOuter
 import CORALean.ContDynamics.LinearSys.Theorems.NoiseCovarianceDiagonal
 import CORALean.ContDynamics.LinearSys.Theorems.NoiseCovarianceDiagonalCounterexample
+import CORALean.ContDynamics.LinearSys.Theorems.IdentifyCandidateFit
+import CORALean.ContDynamics.LinearSys.Theorems.IdentifyLeCandidate
 
 /-!
 # What `LinearSys` guarantees

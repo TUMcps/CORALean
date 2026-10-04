@@ -2,6 +2,7 @@ import CORALean.ContDynamics.NonlinDASys.Definitions.Index1
 import CORALean.ContDynamics.NonlinDASys.Definitions.ReachUnionExact
 import CORALean.ContDynamics.NonlinDASys.Definitions.ReducedModel
 import CORALean.ContDynamics.NonlinDASys.Definitions.WithSteps
+import CORALean.ContDynamics.NonlinDASys.Definitions.LinInclusion
 
 /-!
 # What `NonlinDASys` means beyond the system itself

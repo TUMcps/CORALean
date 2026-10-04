@@ -221,6 +221,11 @@ import CORALean.ContSet.Zonotope.Real.Theorems.ObserveDescriptorFWRadiusLe
 import CORALean.ContSet.Zonotope.Real.Theorems.PRadiusLtOfLmi
 import CORALean.ContSet.Zonotope.Real.Theorems.PRadiusLtOfLmiCounterexample
 import CORALean.ContSet.Zonotope.Real.Theorems.IntersectStripWangFRadCoraCounterexample
+import CORALean.ContSet.Zonotope.Real.Theorems.QuadMapIntEq
+import CORALean.ContSet.Zonotope.Real.Theorems.QuadMapIntOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.ConvexHullUnionSubsetLinComb
+import CORALean.ContSet.Zonotope.Real.Theorems.ScalarIntervalMulOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.SumTermsMem
 
 /-!
 # What `Zonotope` guarantees

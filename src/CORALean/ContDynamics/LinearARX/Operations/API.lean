@@ -15,6 +15,7 @@ import CORALean.ContDynamics.LinearARX.Operations.OutputEq
 import CORALean.ContDynamics.LinearARX.Operations.Simulate
 import CORALean.ContDynamics.LinearARX.Operations.SimulateBoxFloat
 import CORALean.ContDynamics.LinearARX.Operations.ToLinearSysDT
+import CORALean.ContDynamics.LinearARX.Operations.OfCharpoly
 
 /-!
 # Linear ARX models: the conversion

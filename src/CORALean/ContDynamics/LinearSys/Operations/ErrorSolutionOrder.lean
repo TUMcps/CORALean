@@ -1,0 +1,65 @@
+import CORALean.ContDynamics.LinearSys.Operations.ErrorEdge
+
+/-!
+# The order of the adaptive error solution
+
+CORA's loop of `errorSolution_adaptive`: raise `η` from `2` until the gain `1 − former/edge`
+of the dominant edge `d`, the coordinate of the longest edge at order `1`, falls below
+`ζ` (`options.zetaTabs`) or that edge was `0`. Neither `Nat.find` nor `Classical.choose`:
+the comparisons go through the caller's `lt`, `fuel` bounds the loop CORA leaves open,
+and `none` is a loop out of fuel. The first coordinate of maximal edge is taken, as
+MATLAB's `max` does. The terms are those of [1, Prop. 11].
+
+## References
+
+* [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated
+      Verification of Linear Systems Using Inner- and Outer-Approximations of
+      Reachable Sets". IEEE Transactions on Automatic Control, vol. 68, no. 12,
+      2023, pp. 7771–7786.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open CORALean.Real
+open Matrix Scalar
+
+variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- The loop from order `η` on: `edge η` is the dominant edge at `η`, one step older the
+`former` one. -/
+noncomputable def aux_errorSolutionOrder (lt : ℝ → ℝ → Bool) (ζ : ℝ) (edge : ℕ → ℝ) :
+    ℕ → ℕ → Option ℕ
+  | _, 0 => none
+  | η, fuel + 1 =>
+    if (lt (1 - edge (η - 1) / edge η) ζ || !lt 0 (edge (η - 1))) = true then some η
+    else aux_errorSolutionOrder lt ζ edge (η + 1) fuel
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- The order `options.tt_err` CORA stores for a step, from `V`'s generators. -/
+noncomputable def LinearSys.errorSolutionOrder (sys : LinearSys 𝕋 n) (lt : ℝ → ℝ → Bool)
+    (ζ Δt : ℝ) (V : Zonotope (Vec ℝ n)) (fuel : ℕ) : Option ℕ :=
+  let edge := sys.errorEdge Δt V                                     -- RerrorInt_etanoF
+  let crit := (List.finRange n).foldl (fun best d => match best with  -- [~,critDimnoF] = max(...)
+    | none => some d
+    | some b => if lt (edge 1 b) (edge 1 d) then some d else some b) none
+  match crit with
+  | none => none
+  | some d => aux_errorSolutionOrder lt ζ (fun η => edge η d) 2 fuel -- loop from eta = 2
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

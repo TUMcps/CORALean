@@ -25,6 +25,7 @@ import CORALean.HybridDynamics.Operations.LocationPotOut
 import CORALean.HybridDynamics.Operations.GuardIntersectNondetFloat
 import CORALean.HybridDynamics.Operations.GuardIntersectPolytopeFloat
 import CORALean.HybridDynamics.Operations.TransitionConvGuard
+import CORALean.HybridDynamics.Operations.TrajectoryError
 
 /-!
 # What a hybrid automaton computes, collected
