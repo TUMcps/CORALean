@@ -14,6 +14,15 @@ import CORALean.ContSet.Polygon.Real.Theorems.RepresentsaEmptySetIff
 import CORALean.ContSet.Polygon.Real.Theorems.IntervalContains
 import CORALean.ContSet.Polygon.Real.Theorems.TimesExact
 import CORALean.ContSet.Polygon.Real.Theorems.MinusExact
+import CORALean.ContSet.Polygon.Real.Theorems.IsFullDimIff
+import CORALean.ContSet.Polygon.Real.Theorems.AndOuter
+import CORALean.ContSet.Polygon.Real.Theorems.IsConvexIff
+import CORALean.ContSet.Polygon.Real.Theorems.IsIntersectingIff
+import CORALean.ContSet.Polygon.Real.Theorems.IsequalPiecesSound
+import CORALean.ContSet.Polygon.Real.Theorems.SplitIntoConvexSetsExact
+import CORALean.ContSet.Polygon.Real.Theorems.VolumeLePieceAreas
+import CORALean.ContSet.Polygon.Real.Theorems.AndRegion
+import CORALean.ContSet.Polygon.Real.Theorems.VolumeEqPieceAreas
 
 /-!
 # Polygon theorems, collected

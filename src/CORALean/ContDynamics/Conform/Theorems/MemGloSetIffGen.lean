@@ -1,5 +1,5 @@
 import CORALean.ContDynamics.Conform.Theorems.GloSetTemplateZono
-import Mathlib.Tactic.FieldSimp
+import CORALean.ContDynamics.Conform.Theorems.MemTemplateZonoIffGen
 import Mathlib.Tactic.Linarith
 
 /-!
@@ -32,36 +32,6 @@ open Matrix
 variable {n p q k : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
-/-- Membership in a stretched template, with `βⱼ = αⱼ λⱼ` in place of `λⱼ`. -/
-theorem aux_mem_templateZono_iff_gen {m : ℕ} {ι : Type} [Fintype ι] (c : Vec ℝ m)
-    (G : ι → Vec ℝ m) (α : ι → ℝ) (hα : ∀ j, 0 ≤ α j) (y : Vec ℝ m) :
-    y ∈ Conform.templateZono c G α ↔
-      ∃ β : ι → ℝ, (∀ j, |β j| ≤ α j) ∧ y = c + ∑ j, β j • G j := by -- --- PROOF ---
-  constructor
-  · rintro ⟨l, hl, rfl⟩
-    refine ⟨fun j => l j * α j, fun j => ?_, by simp only [smul_smul]⟩
-    rw [abs_mul, abs_of_nonneg (hα j)]
-    exact mul_le_of_le_one_left (hα j) (hl j)
-  · rintro ⟨β, hβ, rfl⟩
-    -- `λⱼ = βⱼ / αⱼ`, and `0` where `αⱼ = 0` (then `βⱼ = 0` too)
-    refine ⟨fun j => β j / α j, fun j => ?_, ?_⟩
-    · rcases (hα j).lt_or_eq with hpos | hzero
-      · rw [abs_div, abs_of_pos hpos, div_le_one hpos]
-        exact hβ j
-      · simp [← hzero]
-    · congr 1
-      refine Finset.sum_congr rfl fun j _ => ?_
-      rw [smul_smul]
-      congr 1
-      show β j = β j / α j * α j
-      rcases (hα j).lt_or_eq with hpos | hzero
-      · field_simp
-      · have : β j = 0 := abs_nonpos_iff.mp (hzero ▸ hβ j)
-        simp [this, ← hzero]
-
-
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Lemma 4]: `y ∈ Ȳ` iff (19a) and (19b) hold for some `β`. -/
@@ -77,7 +47,7 @@ theorem Conform.mem_gloSet_iff_gen {ιx ιu : Type} [Fintype ιx] [Fintype ιu] 
         y - yb = (Cb *ᵥ dx + ∑ i, Db i *ᵥ du)
           + ∑ j, β j • Sum.elim (fun j => Cb *ᵥ Gx j)
               (fun r : Fin (k + 1) × ιu => Db r.1 *ᵥ Gu r.2) j := by -- --- PROOF ---
-  rw [Conform.gloSet_templateZono, aux_mem_templateZono_iff_gen _ _ _
+  rw [Conform.gloSet_templateZono, Conform.mem_templateZono_iff_gen _ _ _
     fun j => by rcases j with x | r <;> simp [hαx, hαu]]
   refine exists_congr fun β => and_congr (forall_congr' fun j => ?_) ?_
   · rw [abs_le]

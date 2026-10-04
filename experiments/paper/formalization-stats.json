@@ -14,24 +14,24 @@
     "not-covered"
   ],
   "totals": {
-    "papers": 58,
-    "papers_with_findings": 48,
-    "in_scope": 747,
-    "formalized": 702,
-    "not_formalized": 45,
-    "out_of_scope": 460,
+    "papers": 61,
+    "papers_with_findings": 51,
+    "in_scope": 784,
+    "formalized": 738,
+    "not_formalized": 46,
+    "out_of_scope": 511,
     "out_of_scope_by_reason": {
-      "restated": 221,
-      "mathlib": 12,
-      "not-a-claim": 181,
+      "restated": 235,
+      "mathlib": 13,
+      "not-a-claim": 215,
       "done-differently": 7,
-      "not-covered": 39
+      "not-covered": 41
     },
     "by_class": {
-      "correct": 488,
-      "underspecified": 111,
-      "proof-gap": 26,
-      "fixed": 75,
+      "correct": 517,
+      "underspecified": 114,
+      "proof-gap": 27,
+      "fixed": 78,
       "false": 2
     }
   },
@@ -722,6 +722,52 @@
         "false": 0
       },
       "findings": []
+    },
+    {
+      "page": "2013/mullier-rc-general-inner-approximation.md",
+      "label": "Mullier 2013",
+      "year": 2013,
+      "title": "General Inner Approximation of Vector-valued Functions",
+      "in_scope": 15,
+      "formalized": 14,
+      "not_formalized": 1,
+      "out_of_scope": 15,
+      "out_of_scope_by_reason": {
+        "restated": 5,
+        "mathlib": 1,
+        "not-a-claim": 8,
+        "done-differently": 0,
+        "not-covered": 1
+      },
+      "by_class": {
+        "correct": 10,
+        "underspecified": 1,
+        "proof-gap": 1,
+        "fixed": 2,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Cor. 3.1",
+          "class": "proof-gap",
+          "reason": "the proof's step \"(5) implies (i)\" fails on faces of `∂u` with `u₂` at a bound (`innerTest_step_counterexample`); the corollary holds on the slice `v ↦ f₁:ᵣ(v, ũ₂)`; see Findings"
+        },
+        {
+          "result": "Eq. 10",
+          "class": "underspecified",
+          "reason": "`C` as printed is `m × r` and `C J_{f₁:ᵣ}` is `m × m`; the test needs the `r × r` block `C₁ = J₁(ũ)⁻¹`, which CORA takes"
+        },
+        {
+          "result": "Eq. 13",
+          "class": "fixed",
+          "reason": "at any `xₖₗ = 0` the constraint reads `0 > (a sum ≥ 0)`, so (13) is infeasible once `m ≥ 2`; read as (14), the implication `xₖₗ = 1 ⇒ …`, it is sound"
+        },
+        {
+          "result": "Eq. 16",
+          "class": "fixed",
+          "reason": "`+μ` allows a column sum of `⟨aₖₗ⟩ + μ`: the all-ones `2 × 2` matrix at `x = I` is feasible and singular; the sign of (15) repairs it"
+        }
+      ]
     },
     {
       "page": "2014/althoff-tac-nonlinear-dae.md",
@@ -2549,6 +2595,42 @@
       ]
     },
     {
+      "page": "2025/kochdumper-hscc-hybrid-automata-identification.md",
+      "label": "Kochdumper 2025",
+      "year": 2025,
+      "title": "Robust Identification of Hybrid Automata from Noisy Data",
+      "in_scope": 9,
+      "formalized": 9,
+      "not_formalized": 0,
+      "out_of_scope": 17,
+      "out_of_scope_by_reason": {
+        "restated": 1,
+        "mathlib": 0,
+        "not-a-claim": 15,
+        "done-differently": 0,
+        "not-covered": 1
+      },
+      "by_class": {
+        "correct": 7,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 1,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Eq. 5",
+          "class": "fixed",
+          "reason": "with data in columns `ΦᵀΦ` is `(2w + 1) × (2w + 1)` of rank at most `v`, singular once `2w + 1 > v`; the solution is `ẊΦᵀ(ΦΦᵀ)⁻¹`; see Findings"
+        },
+        {
+          "result": "Thm. 1",
+          "class": "underspecified",
+          "reason": "\"executable\" is not defined; formalized as the three properties of the proof sketch, for transitions across every surface of a leaf to every leaf; see Findings"
+        }
+      ]
+    },
+    {
       "page": "2025/ladner-tmlr-gcn.md",
       "label": "Ladner 2025",
       "year": 2025,
@@ -2572,6 +2654,37 @@
         "false": 0
       },
       "findings": []
+    },
+    {
+      "page": "2025/luetzow-jmlr-zono-conformal-prediction.md",
+      "label": "Luetzow 2025",
+      "year": 2025,
+      "title": "Zono-Conformal Prediction: Zonotope-Based Uncertainty Quantification for Regression and Classification Tasks",
+      "in_scope": 13,
+      "formalized": 13,
+      "not_formalized": 0,
+      "out_of_scope": 19,
+      "out_of_scope_by_reason": {
+        "restated": 8,
+        "mathlib": 0,
+        "not-a-claim": 11,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 12,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Prop. 8",
+          "class": "underspecified",
+          "reason": "at `α* = 0` (23) is unbounded and has no solution to read `δ` from; see Findings"
+        }
+      ]
     },
     {
       "page": "2026/luetzow-tac-reachset-conformant-identification.md",
@@ -2861,13 +2974,13 @@
         "methods": 22,
         "proved": 6,
         "float": 6,
-        "not_yet": 2,
-        "out_of_scope": 8,
+        "not_yet": 1,
+        "out_of_scope": 9,
         "needs_float": 6,
         "out_of_scope_by_reason": {
           "plotting/display": 2,
           "random/sampling": 1,
-          "solver-dependent": 0,
+          "solver-dependent": 1,
           "io/conversion-to-matlab-objects": 0,
           "matlab-runtime": 5,
           "deprecated": 0
@@ -2911,11 +3024,11 @@
         "group": "contSet",
         "class": "polygon",
         "methods": 46,
-        "proved": 2,
+        "proved": 9,
         "float": 17,
-        "not_yet": 18,
+        "not_yet": 11,
         "out_of_scope": 9,
-        "needs_float": 2,
+        "needs_float": 9,
         "out_of_scope_by_reason": {
           "plotting/display": 2,
           "random/sampling": 2,
@@ -2924,7 +3037,7 @@
           "matlab-runtime": 4,
           "deprecated": 1
         },
-        "cora_issues": 1,
+        "cora_issues": 2,
         "findings": {
           "correct": 0,
           "underspecified": 0,
@@ -2937,11 +3050,11 @@
         "group": "contSet",
         "class": "polytope",
         "methods": 58,
-        "proved": 12,
+        "proved": 13,
         "float": 33,
-        "not_yet": 1,
+        "not_yet": 0,
         "out_of_scope": 12,
-        "needs_float": 12,
+        "needs_float": 13,
         "out_of_scope_by_reason": {
           "plotting/display": 3,
           "random/sampling": 3,
@@ -3134,8 +3247,8 @@
         },
         "cora_issues": 1,
         "findings": {
-          "correct": 32,
-          "underspecified": 4,
+          "correct": 44,
+          "underspecified": 5,
           "proof-gap": 1,
           "fixed": 3,
           "false": 0
@@ -3472,8 +3585,8 @@
         },
         "cora_issues": 0,
         "findings": {
-          "correct": 10,
-          "underspecified": 3,
+          "correct": 14,
+          "underspecified": 4,
           "proof-gap": 0,
           "fixed": 1,
           "false": 0
@@ -3509,11 +3622,11 @@
         "group": "hybridDynamics",
         "class": "linearReset",
         "methods": 10,
-        "proved": 2,
+        "proved": 3,
         "float": 4,
-        "not_yet": 1,
+        "not_yet": 0,
         "out_of_scope": 3,
-        "needs_float": 2,
+        "needs_float": 3,
         "out_of_scope_by_reason": {
           "plotting/display": 0,
           "random/sampling": 0,
@@ -3561,11 +3674,11 @@
         "group": "hybridDynamics",
         "class": "nonlinearReset",
         "methods": 9,
-        "proved": 4,
+        "proved": 5,
         "float": 0,
-        "not_yet": 1,
+        "not_yet": 0,
         "out_of_scope": 4,
-        "needs_float": 4,
+        "needs_float": 5,
         "out_of_scope_by_reason": {
           "plotting/display": 0,
           "random/sampling": 0,
@@ -3574,7 +3687,7 @@
           "matlab-runtime": 4,
           "deprecated": 0
         },
-        "cora_issues": 0,
+        "cora_issues": 1,
         "findings": {
           "correct": 0,
           "underspecified": 0,
@@ -3691,16 +3804,16 @@
     "groups": {
       "contSet": {
         "methods": 908,
-        "proved": 144,
+        "proved": 152,
         "float": 451,
-        "not_yet": 74,
-        "out_of_scope": 239,
-        "needs_float": 144,
-        "cora_issues": 30,
+        "not_yet": 65,
+        "out_of_scope": 240,
+        "needs_float": 152,
+        "cora_issues": 31,
         "out_of_scope_by_reason": {
           "plotting/display": 51,
           "random/sampling": 36,
-          "solver-dependent": 2,
+          "solver-dependent": 3,
           "io/conversion-to-matlab-objects": 8,
           "matlab-runtime": 128,
           "deprecated": 14
@@ -3730,8 +3843,8 @@
           "deprecated": 0
         },
         "findings": {
-          "correct": 116,
-          "underspecified": 39,
+          "correct": 128,
+          "underspecified": 40,
           "proof-gap": 16,
           "fixed": 20,
           "false": 0
@@ -3739,12 +3852,12 @@
       },
       "hybrid": {
         "methods": 89,
-        "proved": 10,
+        "proved": 12,
         "float": 24,
-        "not_yet": 11,
+        "not_yet": 9,
         "out_of_scope": 44,
-        "needs_float": 10,
-        "cora_issues": 1,
+        "needs_float": 12,
+        "cora_issues": 2,
         "out_of_scope_by_reason": {
           "plotting/display": 5,
           "random/sampling": 2,
@@ -3754,8 +3867,8 @@
           "deprecated": 0
         },
         "findings": {
-          "correct": 10,
-          "underspecified": 3,
+          "correct": 14,
+          "underspecified": 4,
           "proof-gap": 0,
           "fixed": 1,
           "false": 0
@@ -3788,23 +3901,23 @@
     },
     "totals": {
       "methods": 1260,
-      "proved": 217,
+      "proved": 227,
       "float": 549,
-      "not_yet": 111,
-      "out_of_scope": 383,
-      "needs_float": 217,
-      "cora_issues": 44,
+      "not_yet": 100,
+      "out_of_scope": 384,
+      "needs_float": 227,
+      "cora_issues": 46,
       "out_of_scope_by_reason": {
         "plotting/display": 86,
         "random/sampling": 46,
-        "solver-dependent": 15,
+        "solver-dependent": 16,
         "io/conversion-to-matlab-objects": 30,
         "matlab-runtime": 192,
         "deprecated": 14
       },
       "findings": {
-        "correct": 456,
-        "underspecified": 100,
+        "correct": 472,
+        "underspecified": 102,
         "proof-gap": 23,
         "fixed": 68,
         "false": 2
@@ -3812,10 +3925,10 @@
     },
     "findings_not_on_a_class": {
       "global": {
-        "correct": 17,
-        "underspecified": 4,
-        "proof-gap": 3,
-        "fixed": 7,
+        "correct": 30,
+        "underspecified": 5,
+        "proof-gap": 4,
+        "fixed": 10,
         "false": 0
       },
       "specification": {
@@ -3834,11 +3947,11 @@
       }
     },
     "theorems": {
-      "paper": 953,
+      "paper": 987,
       "float": 1176,
-      "helper": 906,
-      "lemma": 2149,
-      "total": 5184,
+      "helper": 928,
+      "lemma": 2166,
+      "total": 5257,
       "examples": 80
     }
   }

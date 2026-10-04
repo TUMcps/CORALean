@@ -5,6 +5,7 @@ import CORALean.ContDynamics.Conform.Definitions.IntervalNorm
 import CORALean.ContDynamics.Conform.Definitions.ReachOut
 import CORALean.ContDynamics.Conform.Definitions.State
 import CORALean.ContDynamics.Conform.Definitions.TemplateZono
+import CORALean.ContDynamics.Conform.Definitions.ZonoConformal
 
 /-!
 # What a reachset-conformance statement is about
