@@ -14,11 +14,16 @@ import CORALean.HybridDynamics.Operations.JumpFloat
 import CORALean.HybridDynamics.Operations.LocationReachFloat
 import CORALean.HybridDynamics.Operations.ReachFloat
 import CORALean.HybridDynamics.Operations.NonlinearResetEvaluate
+import CORALean.HybridDynamics.Operations.NonlinearResetEvaluateFloat
 import CORALean.HybridDynamics.Operations.NonlinearResetLift
+import CORALean.HybridDynamics.Operations.NonlinearResetLiftFloat
 import CORALean.HybridDynamics.Operations.NonlinearResetSynchronize
+import CORALean.HybridDynamics.Operations.NonlinearResetSynchronizeFloat
 import CORALean.HybridDynamics.Operations.LinearResetLift
 import CORALean.HybridDynamics.Operations.LinearResetSynchronize
+import CORALean.HybridDynamics.Operations.LinearResetSynchronizeFloat
 import CORALean.HybridDynamics.Operations.TransitionToNonlinearReset
+import CORALean.HybridDynamics.Operations.TransitionToNonlinearResetFloat
 import CORALean.HybridDynamics.Operations.SdcFlow
 import CORALean.HybridDynamics.Operations.LocationPotInt
 import CORALean.HybridDynamics.Operations.LocationPotOut
@@ -37,6 +42,7 @@ import CORALean.HybridDynamics.Operations.Scatter
 import CORALean.HybridDynamics.Operations.LinearResetResolveUpdate
 import CORALean.HybridDynamics.Operations.LinearResetResolve
 import CORALean.HybridDynamics.Operations.NonlinearResetResolve
+import CORALean.HybridDynamics.Operations.NonlinearResetResolveFloat
 import CORALean.HybridDynamics.Operations.NonlinearResetGlobalColumns
 import CORALean.HybridDynamics.Operations.NonlinearResetGlobalRank
 import CORALean.HybridDynamics.Operations.NonlinearResetResolveCORA

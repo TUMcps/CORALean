@@ -1,5 +1,6 @@
 import CORALean.ContDynamics.NonlinParamSys.Operations.Augment
 import CORALean.ContDynamics.NonlinParamSys.Operations.ReachUnion
+import CORALean.ContDynamics.NonlinParamSys.Operations.ReachFloat
 
 /-!
 # What `NonlinParamSys` computes

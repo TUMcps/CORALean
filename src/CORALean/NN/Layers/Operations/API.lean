@@ -99,6 +99,8 @@ import CORALean.NN.Layers.Operations.SigmoidRelaxation
 import CORALean.NN.Layers.Operations.SigmoidSlope
 import CORALean.NN.Layers.Operations.GroupSort
 import CORALean.NN.Layers.Operations.GroupSortChunk
+import CORALean.NN.Layers.Operations.GroupSortChunkFloat
+import CORALean.NN.Layers.Operations.GroupSortFloat
 import CORALean.NN.Layers.Operations.Softmax
 import CORALean.NN.Layers.Operations.SoftmaxBox
 import CORALean.NN.Layers.Operations.SoftmaxDenomDown
@@ -129,6 +131,7 @@ import CORALean.NN.Layers.Operations.TapEntry
 import CORALean.NN.Layers.Operations.TapMat
 import CORALean.NN.Layers.Operations.TransposeEquiv
 import CORALean.NN.Layers.Operations.SShapeDerBounds
+import CORALean.NN.Layers.Operations.SShapeDerBoundsFloat
 
 /-!
 # The standard layers, collected

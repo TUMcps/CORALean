@@ -25,6 +25,7 @@ import CORALean.NN.Graph.Operations.MessagePassing
 import CORALean.NN.Graph.Operations.MessagePassingEnclosure
 import CORALean.NN.Graph.Operations.OnesRow
 import CORALean.NN.Graph.Operations.Select
+import CORALean.NN.Graph.Operations.SelectMat
 import CORALean.NN.Graph.Operations.SqrtBroadcast
 import CORALean.NN.Graph.Operations.SqrtCol
 import CORALean.NN.Graph.Operations.SqrtConst

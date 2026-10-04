@@ -1,4 +1,6 @@
+import CORALean.ContDynamics.LinearARX.Theorems.ComputeGOFloatOuter
 import CORALean.ContDynamics.LinearARX.Theorems.ComputeGOOutput
+import CORALean.ContDynamics.LinearARX.Theorems.SumRangeFloatMem
 import CORALean.ContDynamics.LinearARX.Theorems.FeedMemFeedBox
 import CORALean.ContDynamics.LinearARX.Theorems.Alg1EqReachWindow
 import CORALean.ContDynamics.LinearARX.Theorems.Alg2EqReachWindow

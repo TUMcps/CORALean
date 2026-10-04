@@ -135,28 +135,28 @@ Rulings on borderline cases:
 | [zonoBundle](contSet/zonoBundle.md) | contSet | 44 | 9 | 28 | 0 | 7 | 4 |
 | [zonotope](contSet/zonotope.md) | contSet | 80 | 12 | 47 | 7 | 14 | 2 |
 | [zoo](contSet/zoo.md) | contSet | 12 | 0 | 10 | 0 | 2 | 0 |
-| [contDynamics](contDynamics/contDynamics.md) | contDynamics | 19 | 2 | 4 | 2 | 11 | 1 |
-| [linParamSys](contDynamics/linParamSys.md) | contDynamics | 11 | 3 | 3 | 1 | 4 | 0 |
+| [contDynamics](contDynamics/contDynamics.md) | contDynamics | 19 | 0 | 6 | 2 | 11 | 1 |
+| [linParamSys](contDynamics/linParamSys.md) | contDynamics | 11 | 2 | 4 | 1 | 4 | 0 |
 | [linProbSys](contDynamics/linProbSys.md) | contDynamics | 8 | 2 | 0 | 1 | 5 | 1 |
-| [linearARX](contDynamics/linearARX.md) | contDynamics | 7 | 1 | 3 | 1 | 2 | 0 |
-| [linearSys](contDynamics/linearSys.md) | contDynamics | 33 | 11 | 11 | 1 | 10 | 1 |
-| [linearSysDT](contDynamics/linearSysDT.md) | contDynamics | 17 | 6 | 5 | 0 | 6 | 1 |
+| [linearARX](contDynamics/linearARX.md) | contDynamics | 7 | 0 | 4 | 1 | 2 | 0 |
+| [linearSys](contDynamics/linearSys.md) | contDynamics | 33 | 6 | 16 | 1 | 10 | 1 |
+| [linearSysDT](contDynamics/linearSysDT.md) | contDynamics | 17 | 4 | 7 | 0 | 6 | 1 |
 | [neurNetContrSys](contDynamics/neurNetContrSys.md) | contDynamics | 5 | 0 | 4 | 0 | 1 | 0 |
-| [nonlinDASys](contDynamics/nonlinDASys.md) | contDynamics | 13 | 4 | 0 | 6 | 3 | 5 |
-| [nonlinParamSys](contDynamics/nonlinParamSys.md) | contDynamics | 9 | 3 | 0 | 2 | 4 | 0 |
-| [nonlinearARX](contDynamics/nonlinearARX.md) | contDynamics | 8 | 3 | 1 | 1 | 3 | 0 |
+| [nonlinDASys](contDynamics/nonlinDASys.md) | contDynamics | 13 | 3 | 1 | 6 | 3 | 5 |
+| [nonlinParamSys](contDynamics/nonlinParamSys.md) | contDynamics | 9 | 1 | 2 | 2 | 4 | 0 |
+| [nonlinearARX](contDynamics/nonlinearARX.md) | contDynamics | 8 | 0 | 4 | 1 | 3 | 0 |
 | [nonlinearSys](contDynamics/nonlinearSys.md) | contDynamics | 18 | 5 | 3 | 2 | 8 | 2 |
-| [nonlinearSysDT](contDynamics/nonlinearSysDT.md) | contDynamics | 11 | 4 | 3 | 1 | 3 | 0 |
+| [nonlinearSysDT](contDynamics/nonlinearSysDT.md) | contDynamics | 11 | 2 | 5 | 1 | 3 | 0 |
 | [abstractReset](hybridDynamics/abstractReset.md) | hybridDynamics | 4 | 0 | 0 | 0 | 4 | 0 |
 | [hybridAutomaton](hybridDynamics/hybridAutomaton.md) | hybridDynamics | 15 | 0 | 2 | 2 | 11 | 0 |
 | [hybridDynamics](hybridDynamics/hybridDynamics.md) | hybridDynamics | 2 | 0 | 1 | 0 | 1 | 0 |
-| [linearReset](hybridDynamics/linearReset.md) | hybridDynamics | 10 | 3 | 4 | 0 | 3 | 0 |
-| [location](hybridDynamics/location.md) | hybridDynamics | 24 | 1 | 9 | 6 | 8 | 0 |
-| [nonlinearReset](hybridDynamics/nonlinearReset.md) | hybridDynamics | 9 | 5 | 0 | 0 | 4 | 1 |
-| [parallelHybridAutomaton](hybridDynamics/parallelHybridAutomaton.md) | hybridDynamics | 13 | 1 | 5 | 1 | 6 | 0 |
-| [transition](hybridDynamics/transition.md) | hybridDynamics | 12 | 2 | 3 | 0 | 7 | 1 |
-| [layers](nn/layers.md) | nn | 43 | 9 | 29 | 2 | 3 | 2 |
-| [neuralNetwork](nn/neuralNetwork.md) | nn | 61 | 10 | 8 | 6 | 37 | 1 |
+| [linearReset](hybridDynamics/linearReset.md) | hybridDynamics | 10 | 1 | 6 | 0 | 3 | 0 |
+| [location](hybridDynamics/location.md) | hybridDynamics | 24 | 0 | 10 | 6 | 8 | 0 |
+| [nonlinearReset](hybridDynamics/nonlinearReset.md) | hybridDynamics | 9 | 0 | 5 | 0 | 4 | 1 |
+| [parallelHybridAutomaton](hybridDynamics/parallelHybridAutomaton.md) | hybridDynamics | 13 | 0 | 6 | 1 | 6 | 0 |
+| [transition](hybridDynamics/transition.md) | hybridDynamics | 12 | 1 | 4 | 0 | 7 | 1 |
+| [layers](nn/layers.md) | nn | 43 | 6 | 32 | 2 | 3 | 2 |
+| [neuralNetwork](nn/neuralNetwork.md) | nn | 61 | 8 | 10 | 6 | 37 | 1 |
 <!-- /coverage-counts -->
 
 `python3 scripts/check-references.py --fix` rewrites the table above.

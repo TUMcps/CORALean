@@ -45,6 +45,8 @@ import CORALean.NN.Graph.Theorems.NotMemBallOfIsolated
 import CORALean.NN.Graph.Theorems.OneLeDegree
 import CORALean.NN.Graph.Theorems.PoolingExact
 import CORALean.NN.Graph.Theorems.SelectMul
+import CORALean.NN.Graph.Theorems.SelectMatMul
+import CORALean.NN.Graph.Theorems.SelectMatToReal
 import CORALean.NN.Graph.Theorems.SelectMulTranspose
 import CORALean.NN.Graph.Theorems.SmulEdgeHalf
 import CORALean.NN.Graph.Theorems.SqrtAffine

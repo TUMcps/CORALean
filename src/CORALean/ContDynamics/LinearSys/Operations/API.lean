@@ -46,6 +46,7 @@ import CORALean.ContDynamics.LinearSys.Operations.MinBackReachStep
 import CORALean.ContDynamics.LinearSys.Operations.MinBackReachSupport
 import CORALean.ContDynamics.LinearSys.Operations.MinBackReachTimeInterval
 import CORALean.ContDynamics.LinearSys.Operations.OneStep
+import CORALean.ContDynamics.LinearSys.Operations.NonlinearSysFloatModel
 import CORALean.ContDynamics.LinearSys.Operations.ParticularSolution
 import CORALean.ContDynamics.LinearSys.Operations.PostDelta
 import CORALean.ContDynamics.LinearSys.Operations.PropagateInputSolution
@@ -57,9 +58,12 @@ import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInput
 import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInputStep
 import CORALean.ContDynamics.LinearSys.Operations.ReachInnerRep
 import CORALean.ContDynamics.LinearSys.Operations.CanonicalForm
+import CORALean.ContDynamics.LinearSys.Operations.CanonicalFormFloat
 import CORALean.ContDynamics.LinearSys.Operations.ErrorEdge
 import CORALean.ContDynamics.LinearSys.Operations.ErrorSolutionAdaptive
 import CORALean.ContDynamics.LinearSys.Operations.ErrorSolutionOrder
+import CORALean.ContDynamics.LinearSys.Operations.EntryIsFloat
+import CORALean.ContDynamics.LinearSys.Operations.IsCanonicalFormFloat
 import CORALean.ContDynamics.LinearSys.Operations.ReachInputError
 import CORALean.ContDynamics.LinearSys.Operations.ReachOrder
 import CORALean.ContDynamics.LinearSys.Operations.ReachOrderFloat
@@ -93,6 +97,11 @@ import CORALean.ContDynamics.LinearSys.Operations.TunedStep
 import CORALean.ContDynamics.LinearSys.Operations.Verify
 import CORALean.ContDynamics.LinearSys.Operations.VerifyRun
 import CORALean.ContDynamics.LinearSys.Operations.VerifyStep
+import CORALean.ContDynamics.LinearSys.Operations.VerifyFloat
+import CORALean.ContDynamics.LinearSys.Operations.VerifyRunFloat
+import CORALean.ContDynamics.LinearSys.Operations.VerifyStepFloat
+import CORALean.ContDynamics.LinearSys.Operations.MaximumFold
+import CORALean.ContDynamics.LinearSys.Operations.MinimumFold
 import CORALean.ContDynamics.LinearSys.Operations.WithInputReach
 import CORALean.ContDynamics.LinearSys.Operations.WithInputReachStepk
 import CORALean.ContDynamics.LinearSys.Operations.WithInputSplitReach

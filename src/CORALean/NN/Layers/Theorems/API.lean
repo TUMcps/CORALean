@@ -73,6 +73,9 @@ import CORALean.NN.Layers.Theorems.SigmoidSound
 import CORALean.NN.Layers.Theorems.GroupSortChunkGroupSort
 import CORALean.NN.Layers.Theorems.GroupSortPerm
 import CORALean.NN.Layers.Theorems.GroupSortSorted
+import CORALean.NN.Layers.Theorems.GroupSortChunkFloatGroupSortFloat
+import CORALean.NN.Layers.Theorems.GroupSortFloatPerm
+import CORALean.NN.Layers.Theorems.GroupSortFloatSorted
 import CORALean.NN.Layers.Theorems.SoftmaxLeRawUpper
 import CORALean.NN.Layers.Theorems.SoftmaxSound
 import CORALean.NN.Layers.Theorems.SoftplusRelaxationSound
@@ -104,6 +107,7 @@ import CORALean.NN.Layers.Theorems.ToRealPolyDerivCenter
 import CORALean.NN.Layers.Theorems.ToRealTapEntry
 import CORALean.NN.Layers.Theorems.ToRelaxationSound
 import CORALean.NN.Layers.Theorems.SShapeDerBoundsSound
+import CORALean.NN.Layers.Theorems.SShapeDerBoundsFloatSound
 import CORALean.NN.Layers.Theorems.SelectMatMulVecAddZero
 import CORALean.NN.Layers.Theorems.SShapeUnimodal
 

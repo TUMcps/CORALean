@@ -5,6 +5,7 @@ import CORALean.HybridDynamics.Definitions.InvariantOn
 import CORALean.HybridDynamics.Definitions.ReachSet
 import CORALean.HybridDynamics.Definitions.RunUntil
 import CORALean.HybridDynamics.Definitions.NonlinearReset
+import CORALean.HybridDynamics.Definitions.NonlinearResetFloatModel
 import CORALean.HybridDynamics.Definitions.ConstFlowHitSet
 import CORALean.HybridDynamics.Definitions.HitSet
 import CORALean.HybridDynamics.Definitions.SdcInput
