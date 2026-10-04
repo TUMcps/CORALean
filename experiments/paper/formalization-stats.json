@@ -2407,11 +2407,11 @@
         "group": "contSet",
         "class": "conZonotope",
         "methods": 50,
-        "proved": 11,
-        "float": 24,
+        "proved": 10,
+        "float": 25,
         "not_yet": 3,
         "out_of_scope": 12,
-        "needs_float": 11,
+        "needs_float": 10,
         "out_of_scope_by_reason": {
           "plotting/display": 4,
           "random/sampling": 2,
@@ -2459,11 +2459,11 @@
         "group": "contSet",
         "class": "ellipsoid",
         "methods": 50,
-        "proved": 8,
+        "proved": 11,
         "float": 20,
-        "not_yet": 12,
+        "not_yet": 9,
         "out_of_scope": 10,
-        "needs_float": 8,
+        "needs_float": 11,
         "out_of_scope_by_reason": {
           "plotting/display": 3,
           "random/sampling": 2,
@@ -2472,7 +2472,7 @@
           "matlab-runtime": 4,
           "deprecated": 0
         },
-        "cora_issues": 2,
+        "cora_issues": 3,
         "findings": {
           "correct": 9,
           "underspecified": 1,
@@ -3343,11 +3343,11 @@
         "group": "nn",
         "class": "layers",
         "methods": 43,
-        "proved": 8,
-        "float": 27,
-        "not_yet": 5,
+        "proved": 9,
+        "float": 29,
+        "not_yet": 2,
         "out_of_scope": 3,
-        "needs_float": 8,
+        "needs_float": 9,
         "out_of_scope_by_reason": {
           "plotting/display": 1,
           "random/sampling": 0,
@@ -3356,7 +3356,7 @@
           "matlab-runtime": 2,
           "deprecated": 0
         },
-        "cora_issues": 0,
+        "cora_issues": 1,
         "findings": {
           "correct": 0,
           "underspecified": 0,
@@ -3369,11 +3369,11 @@
         "group": "nn",
         "class": "neuralNetwork",
         "methods": 61,
-        "proved": 9,
+        "proved": 10,
         "float": 8,
-        "not_yet": 7,
+        "not_yet": 6,
         "out_of_scope": 37,
-        "needs_float": 9,
+        "needs_float": 10,
         "out_of_scope_by_reason": {
           "plotting/display": 4,
           "random/sampling": 2,
@@ -3395,12 +3395,12 @@
     "groups": {
       "contSet": {
         "methods": 908,
-        "proved": 117,
-        "float": 449,
-        "not_yet": 104,
+        "proved": 119,
+        "float": 450,
+        "not_yet": 101,
         "out_of_scope": 238,
-        "needs_float": 117,
-        "cora_issues": 24,
+        "needs_float": 119,
+        "cora_issues": 25,
         "out_of_scope_by_reason": {
           "plotting/display": 51,
           "random/sampling": 36,
@@ -3467,12 +3467,12 @@
       },
       "neuralNetworks": {
         "methods": 104,
-        "proved": 17,
-        "float": 35,
-        "not_yet": 12,
+        "proved": 19,
+        "float": 37,
+        "not_yet": 8,
         "out_of_scope": 40,
-        "needs_float": 17,
-        "cora_issues": 1,
+        "needs_float": 19,
+        "cora_issues": 2,
         "out_of_scope_by_reason": {
           "plotting/display": 5,
           "random/sampling": 2,
@@ -3492,12 +3492,12 @@
     },
     "totals": {
       "methods": 1260,
-      "proved": 172,
-      "float": 545,
-      "not_yet": 161,
+      "proved": 176,
+      "float": 548,
+      "not_yet": 154,
       "out_of_scope": 382,
-      "needs_float": 172,
-      "cora_issues": 27,
+      "needs_float": 176,
+      "cora_issues": 29,
       "out_of_scope_by_reason": {
         "plotting/display": 86,
         "random/sampling": 46,
@@ -3539,10 +3539,10 @@
     },
     "theorems": {
       "paper": 871,
-      "float": 1166,
+      "float": 1176,
       "helper": 807,
-      "lemma": 2043,
-      "total": 4887,
+      "lemma": 2057,
+      "total": 4911,
       "examples": 80
     }
   }

@@ -1,0 +1,209 @@
+import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
+import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+import CORALean.Global.Float.FloatBound
+
+/-!
+# A float constrained zonotope's nominal set, bounded at any dual weights
+
+The coefficient program `max (Gᵀa)ᵀβ` over `|βⱼ| ≤ 1`, `β ∈ P` is bounded by weak
+duality at *any* nonnegative weights `y, zu, zl` of `P`'s rows: with the residual
+`r = Gᵀa - Aᵀy - Aeᵀzu + Aeᵀzl`,
+
+  `(Gᵀa)ᵀβ = rᵀβ + yᵀ(Aβ) + zuᵀ(Aeβ) - zlᵀ(Aeβ) ≤ Σ |rⱼ| + yᵀb + zuᵀbe.sup - zlᵀbe.inf`,
+
+the unit box paying for the residual. Nothing asks the weights to be optimal or
+the residual to vanish: `rⱼ` is enclosed in rounded arithmetic and `|rⱼ|` bounded
+by the larger end, and every weight is clamped at zero, so even its sign is not
+trusted. Sound for every weight vector; tight only for optimal ones.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+open Matrix FloatOps SoundFloatArithmetic InflatedContSet
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- A proposed weight, made admissible. -/
+def ConZonotope.aux_clamp (w : 𝕋) : 𝕋 := maximum zero w
+
+/-- An upper end of the residual's `j`-th entry. -/
+def ConZonotope.aux_resUp (cZ : ConZonotope 𝕋 n) (a : Vec 𝕋 n) (y : Vec 𝕋 cZ.P.m)
+    (zu zl : Vec 𝕋 cZ.P.me) (j : Fin cZ.h) : 𝕋 :=
+  addUp (dotUp a fun i => cZ.G i j)
+    (addUp (neg (dotDown y fun k => cZ.P.A k j))
+      (addUp (neg (dotDown zu fun k => cZ.P.Ae k j)) (dotUp zl fun k => cZ.P.Ae k j)))
+
+/-- A lower end of the residual's `j`-th entry. -/
+def ConZonotope.aux_resDown (cZ : ConZonotope 𝕋 n) (a : Vec 𝕋 n) (y : Vec 𝕋 cZ.P.m)
+    (zu zl : Vec 𝕋 cZ.P.me) (j : Fin cZ.h) : 𝕋 :=
+  addDown (dotDown a fun i => cZ.G i j)
+    (addDown (neg (dotUp y fun k => cZ.P.A k j))
+      (addDown (neg (dotUp zu fun k => cZ.P.Ae k j)) (dotDown zl fun k => cZ.P.Ae k j)))
+
+theorem ConZonotope.aux_clamp_nonneg (w : 𝕋) :
+    0 ≤ toReal (ConZonotope.aux_clamp w) := by
+  rw [ConZonotope.aux_clamp, toReal_maximum, toReal_zero]
+  exact le_max_left _ _
+
+/-- A weighted sum of rows applied to `β`, read column by column. -/
+theorem ConZonotope.aux_sum_swap {p q : ℕ} (u : Fin p → ℝ) (M : Fin p → Fin q → ℝ)
+    (β : Fin q → ℝ) :
+    ∑ k, u k * ∑ j, M k j * β j = ∑ j, β j * ∑ k, u k * M k j := by
+  simp_rw [Finset.mul_sum]
+  rw [Finset.sum_comm]
+  exact Finset.sum_congr rfl fun _ _ => Finset.sum_congr rfl fun _ _ => by ring
+
+/-- The upper and lower ends enclose the exact residual. -/
+theorem ConZonotope.aux_res_encl (cZ : ConZonotope 𝕋 n) (a : Vec 𝕋 n) (y : Vec 𝕋 cZ.P.m)
+    (zu zl : Vec 𝕋 cZ.P.me) (j : Fin cZ.h) :
+    let r := (∑ i, toReal (a i) * toReal (cZ.G i j))
+      - (∑ k, toReal (y k) * toReal (cZ.P.A k j))
+      - (∑ k, toReal (zu k) * toReal (cZ.P.Ae k j))
+      + ∑ k, toReal (zl k) * toReal (cZ.P.Ae k j)
+    toReal (ConZonotope.aux_resDown cZ a y zu zl j) ≤ r
+      ∧ r ≤ toReal (ConZonotope.aux_resUp cZ a y zu zl j) := by -- --- PROOF ---
+  intro r
+  -- each of the four products, enclosed by its rounded dot product
+  have h1 := le_dotUp a fun i => cZ.G i j
+  have h2 := dotDown_le a fun i => cZ.G i j
+  have h3 := le_dotUp y fun k => cZ.P.A k j
+  have h4 := dotDown_le y fun k => cZ.P.A k j
+  have h5 := le_dotUp zu fun k => cZ.P.Ae k j
+  have h6 := dotDown_le zu fun k => cZ.P.Ae k j
+  have h7 := le_dotUp zl fun k => cZ.P.Ae k j
+  have h8 := dotDown_le zl fun k => cZ.P.Ae k j
+  refine ⟨?_, ?_⟩
+  -- the lower end, its three additions rounded down
+  · have e1 := addDown_le_add (neg (dotUp zu fun k => cZ.P.Ae k j))
+      (dotDown zl fun k => cZ.P.Ae k j)
+    have e2 := addDown_le_add (neg (dotUp y fun k => cZ.P.A k j))
+      (addDown (neg (dotUp zu fun k => cZ.P.Ae k j)) (dotDown zl fun k => cZ.P.Ae k j))
+    have e3 := addDown_le_add (dotDown a fun i => cZ.G i j)
+      (addDown (neg (dotUp y fun k => cZ.P.A k j))
+        (addDown (neg (dotUp zu fun k => cZ.P.Ae k j)) (dotDown zl fun k => cZ.P.Ae k j)))
+    rw [toReal_neg] at e1 e2
+    rw [ConZonotope.aux_resDown]
+    linarith
+  -- the upper end, its three additions rounded up
+  · have e1 := add_le_addUp (neg (dotDown zu fun k => cZ.P.Ae k j))
+      (dotUp zl fun k => cZ.P.Ae k j)
+    have e2 := add_le_addUp (neg (dotDown y fun k => cZ.P.A k j))
+      (addUp (neg (dotDown zu fun k => cZ.P.Ae k j)) (dotUp zl fun k => cZ.P.Ae k j))
+    have e3 := add_le_addUp (dotUp a fun i => cZ.G i j)
+      (addUp (neg (dotDown y fun k => cZ.P.A k j))
+        (addUp (neg (dotDown zu fun k => cZ.P.Ae k j)) (dotUp zl fun k => cZ.P.Ae k j)))
+    rw [toReal_neg] at e1 e2
+    rw [ConZonotope.aux_resUp]
+    linarith
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- The coefficient program bounded at the given weights, each clamped at zero,
+the residual paid by the unit box. Sound for every weight vector. -/
+def ConZonotope.nominalBoundWeights (cZ : ConZonotope 𝕋 n) {c : Vec ℝ n →ₗ[ℝ] ℝ}
+    (a : Vec 𝕋 n) (hc : ∀ x : Vec ℝ n, c x = ∑ j, toReal (a j) * x j)
+    (y₀ : Vec 𝕋 cZ.P.m) (zu₀ zl₀ : Vec 𝕋 cZ.P.me) : FloatBound 𝕋 (nominalSet cZ) c :=
+  let y : Vec 𝕋 cZ.P.m := fun k => ConZonotope.aux_clamp (y₀ k)
+  let zu : Vec 𝕋 cZ.P.me := fun k => ConZonotope.aux_clamp (zu₀ k)
+  let zl : Vec 𝕋 cZ.P.me := fun k => ConZonotope.aux_clamp (zl₀ k)
+  let R : Vec 𝕋 cZ.h := fun j =>
+    maximum (ConZonotope.aux_resUp cZ a y zu zl j) (neg (ConZonotope.aux_resDown cZ a y zu zl j))
+  { val := addUp (dotUp a cZ.c) (addUp (dotUp y cZ.P.b) (addUp (dotUp zu cZ.P.be.sup)
+      (addUp (dotUp zl fun k => neg (cZ.P.be.inf k)) (sumUp R))))
+    le := by
+      intro x hx
+      obtain ⟨β, hβ, hP, hxβ⟩ := ConZonotope.mem_nominalSet_iff.mp hx
+      obtain ⟨hle, heq⟩ := HPolytope.mem_construct_iff.mp hP
+      -- the clamped weights are admissible, whatever was proposed
+      have hy : ∀ k, 0 ≤ toReal (y k) := fun k => ConZonotope.aux_clamp_nonneg _
+      have hzu : ∀ k, 0 ≤ toReal (zu k) := fun k => ConZonotope.aux_clamp_nonneg _
+      have hzl : ∀ k, 0 ≤ toReal (zl k) := fun k => ConZonotope.aux_clamp_nonneg _
+      -- the rows' images of `β`, spelt as sums
+      have hAβ : ∀ k, (toRealMat cZ.P.A *ᵥ β) k = ∑ j, toReal (cZ.P.A k j) * β j :=
+        fun _ => rfl
+      have hAeβ : ∀ k, (toRealMat cZ.P.Ae *ᵥ β) k = ∑ j, toReal (cZ.P.Ae k j) * β j :=
+        fun _ => rfl
+      -- the residual, column by column
+      set D : Fin cZ.h → ℝ := fun j => ∑ i, toReal (a i) * toReal (cZ.G i j) with hD
+      set Y : Fin cZ.h → ℝ := fun j => ∑ k, toReal (y k) * toReal (cZ.P.A k j) with hY
+      set U : Fin cZ.h → ℝ := fun j => ∑ k, toReal (zu k) * toReal (cZ.P.Ae k j) with hU
+      set L : Fin cZ.h → ℝ := fun j => ∑ k, toReal (zl k) * toReal (cZ.P.Ae k j) with hL
+      -- `c x` is the centre's reading plus the coefficients against `Gᵀa`
+      have hcx : c x = (∑ i, toReal (a i) * toReal (cZ.c i)) + ∑ j, β j * D j := by
+        rw [hc x]
+        simp_rw [hxβ, mul_add, Finset.sum_add_distrib]
+        rw [ConZonotope.aux_sum_swap (fun i => toReal (a i)) (fun i j => toReal (cZ.G i j)) β]
+      -- the split of `βᵀD` into residual and rows
+      have hsplit : ∑ j, β j * D j
+          = (∑ j, β j * (D j - Y j - U j + L j)) + (∑ j, β j * Y j) + (∑ j, β j * U j)
+            - ∑ j, β j * L j := by
+        simp only [mul_add, mul_sub, Finset.sum_add_distrib, Finset.sum_sub_distrib]
+        ring
+      -- weak duality, row block by row block
+      have hYb : ∑ j, β j * Y j ≤ toReal (dotUp y cZ.P.b) := by
+        rw [hY, ← ConZonotope.aux_sum_swap (fun k => toReal (y k))
+          (fun k j => toReal (cZ.P.A k j)) β]
+        refine le_trans (Finset.sum_le_sum fun k _ => ?_) (le_dotUp _ _)
+        rw [← hAβ]
+        exact mul_le_mul_of_nonneg_left (hle k) (hy k)
+      have hUb : ∑ j, β j * U j ≤ toReal (dotUp zu cZ.P.be.sup) := by
+        rw [hU, ← ConZonotope.aux_sum_swap (fun k => toReal (zu k))
+          (fun k j => toReal (cZ.P.Ae k j)) β]
+        refine le_trans (Finset.sum_le_sum fun k _ => ?_) (le_dotUp _ _)
+        rw [← hAeβ]
+        exact mul_le_mul_of_nonneg_left (heq k).2 (hzu k)
+      -- the lower edge of an equality row, read through its negated row
+      have hLb : -toReal (dotUp zl fun k => neg (cZ.P.be.inf k)) ≤ ∑ j, β j * L j := by
+        rw [hL, ← ConZonotope.aux_sum_swap (fun k => toReal (zl k))
+          (fun k j => toReal (cZ.P.Ae k j)) β]
+        have hd := le_dotUp zl fun k => neg (cZ.P.be.inf k)
+        simp only [toReal_neg, mul_neg, Finset.sum_neg_distrib] at hd
+        refine le_trans (neg_le.mp hd) (Finset.sum_le_sum fun k _ => ?_)
+        rw [← hAeβ]
+        exact mul_le_mul_of_nonneg_left (heq k).1 (hzl k)
+      -- the box pays for the residual
+      have hRb : ∑ j, β j * (D j - Y j - U j + L j) ≤ toReal (sumUp R) := by
+        refine le_trans (Finset.sum_le_sum fun j _ => ?_) (sum_le_sumUp R)
+        obtain ⟨hlo, hhi⟩ := ConZonotope.aux_res_encl cZ a y zu zl j
+        have habs : |D j - Y j - U j + L j| ≤ toReal (R j) := by
+          show _ ≤ toReal (maximum _ _)
+          rw [toReal_maximum, toReal_neg]
+          refine abs_le.mpr ⟨?_, ?_⟩
+          · have := le_max_right (toReal (ConZonotope.aux_resUp cZ a y zu zl j))
+              (-toReal (ConZonotope.aux_resDown cZ a y zu zl j))
+            linarith
+          · exact le_trans hhi (le_max_left _ _)
+        -- `|βⱼ| ≤ 1` is the box
+        calc β j * (D j - Y j - U j + L j) ≤ |β j * (D j - Y j - U j + L j)| := le_abs_self _
+          _ = |β j| * |D j - Y j - U j + L j| := abs_mul _ _
+          _ ≤ 1 * |D j - Y j - U j + L j| :=
+            mul_le_mul_of_nonneg_right (hβ j) (abs_nonneg _)
+          _ ≤ toReal (R j) := by rw [one_mul]; exact habs
+      -- the four outer additions, each rounded up
+      have hc0 := le_dotUp a cZ.c
+      have r1 := add_le_addUp (dotUp zl fun k => neg (cZ.P.be.inf k)) (sumUp R)
+      have r2 := add_le_addUp (dotUp zu cZ.P.be.sup)
+        (addUp (dotUp zl fun k => neg (cZ.P.be.inf k)) (sumUp R))
+      have r3 := add_le_addUp (dotUp y cZ.P.b) (addUp (dotUp zu cZ.P.be.sup)
+        (addUp (dotUp zl fun k => neg (cZ.P.be.inf k)) (sumUp R)))
+      have r4 := add_le_addUp (dotUp a cZ.c) (addUp (dotUp y cZ.P.b)
+        (addUp (dotUp zu cZ.P.be.sup) (addUp (dotUp zl fun k => neg (cZ.P.be.inf k)) (sumUp R))))
+      rw [hcx, hsplit]
+      linarith }
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

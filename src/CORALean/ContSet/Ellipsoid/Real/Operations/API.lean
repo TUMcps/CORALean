@@ -23,6 +23,11 @@ import CORALean.ContSet.Ellipsoid.Real.Operations.Radius
 import CORALean.ContSet.Ellipsoid.Real.Operations.IsBigger
 import CORALean.ContSet.Ellipsoid.Real.Operations.IsBiggerCora
 import CORALean.ContSet.Ellipsoid.Real.Operations.IntersectStripGollamudi1D
+import CORALean.ContSet.Ellipsoid.Real.Operations.Enclose
+import CORALean.ContSet.Ellipsoid.Real.Operations.MinkDiffPoint
+import CORALean.ContSet.Ellipsoid.Real.Operations.ContainsPoint
+import CORALean.ContSet.Ellipsoid.Real.Operations.IsOrOuter
+import CORALean.ContSet.Ellipsoid.Real.Operations.Enclose2
 
 /-!
 # What an ellipsoid computes, collected

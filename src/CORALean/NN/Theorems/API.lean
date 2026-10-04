@@ -32,6 +32,8 @@ import CORALean.NN.Theorems.ImageSubsetEncloseAt
 import CORALean.NN.Theorems.ImageSubsetRefine
 import CORALean.NN.Theorems.ImageSubsetRefineLayer
 import CORALean.NN.Theorems.ImageSubsetRefineLoop
+import CORALean.NN.Theorems.IntervalChainBackpropAdjoint
+import CORALean.NN.Theorems.IntervalChainFwdHasDerivAt
 import CORALean.NN.Theorems.IsMinSuffExplanationGreedyAbstractExplanation
 import CORALean.NN.Theorems.IsMinSuffExplanationGreedyMinimalExplanation
 import CORALean.NN.Theorems.LinearLipschitz

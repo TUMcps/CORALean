@@ -11,6 +11,7 @@ import CORALean.ContSet.HPolytope.Float.Operations.PlusOf
 import CORALean.ContSet.HPolytope.Float.Operations.LinCombOf
 import CORALean.ContSet.HPolytope.Float.Operations.MtimesOf
 import CORALean.ContSet.HPolytope.Float.Operations.DualBound
+import CORALean.ContSet.HPolytope.Float.Operations.DualWeights
 import CORALean.ContSet.HPolytope.Float.Operations.RowLin
 import CORALean.ContSet.HPolytope.Float.Operations.OfBounds
 import CORALean.ContSet.HPolytope.Float.Operations.SubsetOfBounds
@@ -72,5 +73,6 @@ result stays inside the exact difference.
 Enclosing on chosen directions: `plusOf`, `linCombOf`, `mtimesOf` and
 `intervalOf`, whose rows nobody can predict from the inputs' — `ofBounds` is
 their shared shape and `DualBound` is where a halfspace description certifies a
-direction for itself.
+direction for itself. `dualWeights` proposes the weights such a certificate needs,
+by the exact simplex at ℚ on the floats' own values; it is the driver, never a proof.
 -/

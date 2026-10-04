@@ -18,6 +18,9 @@ import CORALean.NN.Operations.GreedyMinimalExplanation
 import CORALean.NN.Operations.GrowBucketTolerance
 import CORALean.NN.Operations.InitMergeBuckets
 import CORALean.NN.Operations.InMergeBucket
+import CORALean.NN.Operations.IntervalChainBackprop
+import CORALean.NN.Operations.IntervalChainFwd
+import CORALean.NN.Operations.IntervalChainJvp
 import CORALean.NN.Operations.LayerRefinable
 import CORALean.NN.Operations.LayerSensitivity
 import CORALean.NN.Operations.MaxOver

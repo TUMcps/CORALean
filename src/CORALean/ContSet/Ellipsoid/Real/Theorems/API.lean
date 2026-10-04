@@ -44,6 +44,12 @@ import CORALean.ContSet.Ellipsoid.Real.Theorems.IsGreatestRadius
 import CORALean.ContSet.Ellipsoid.Real.Theorems.IsBiggerIffSubset
 import CORALean.ContSet.Ellipsoid.Real.Theorems.IsBiggerCoraCounterexample
 import CORALean.ContSet.Ellipsoid.Real.Theorems.IntersectStripGollamudi1DCounterexample
+import CORALean.ContSet.Ellipsoid.Real.Theorems.EncloseOuter
+import CORALean.ContSet.Ellipsoid.Real.Theorems.EncloseCoraCounterexample
+import CORALean.ContSet.Ellipsoid.Real.Theorems.MinkDiffPointExact
+import CORALean.ContSet.Ellipsoid.Real.Theorems.ContainsPointIff
+import CORALean.ContSet.Ellipsoid.Real.Theorems.SegmentsSubsetOfIsOrOuter
+import CORALean.ContSet.Ellipsoid.Real.Theorems.Enclose2Outer
 
 /-!
 # What an ellipsoid guarantees, collected

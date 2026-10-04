@@ -14,6 +14,10 @@ import CORALean.ContSet.ConZonotope.Float.Theorems.MtimesOuter
 import CORALean.ContSet.ConZonotope.Float.Theorems.IntersectionOuter
 import CORALean.ContSet.ConZonotope.Float.Theorems.SplitOuter
 import CORALean.ContSet.ConZonotope.Float.Theorems.ReindexExact
+import CORALean.ContSet.ConZonotope.Float.Theorems.BoundDotLe
+import CORALean.ContSet.ConZonotope.Float.Theorems.BoundDotWeightsLe
+import CORALean.ContSet.ConZonotope.Float.Theorems.SeparatesAlongSound
+import CORALean.ContSet.ConZonotope.Float.Theorems.IsDisjointLPSound
 import CORALean.ContSet.ConZonotope.Float.Theorems.CartProdExact
 
 /-!
