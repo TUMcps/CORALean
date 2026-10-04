@@ -19,6 +19,10 @@ import CORALean.ContSet.Ellipsoid.Real.Operations.Vertices
 import CORALean.ContSet.Ellipsoid.Real.Operations.NormUb
 import CORALean.ContSet.Ellipsoid.Real.Operations.Volume
 import CORALean.ContSet.Ellipsoid.Real.Operations.EllipsoidNorm
+import CORALean.ContSet.Ellipsoid.Real.Operations.Radius
+import CORALean.ContSet.Ellipsoid.Real.Operations.IsBigger
+import CORALean.ContSet.Ellipsoid.Real.Operations.IsBiggerCora
+import CORALean.ContSet.Ellipsoid.Real.Operations.IntersectStripGollamudi1D
 
 /-!
 # What an ellipsoid computes, collected

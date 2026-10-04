@@ -14,6 +14,7 @@ import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachSubsetReachSetAddErr
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ExactUncertainSetEq
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObserveStepOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObserveStripBasedOuter
+import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObserveIntervalOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.QuadFormLeOfLmi
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntersectDescriptorOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObserveDescriptorOuter
