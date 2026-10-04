@@ -57,6 +57,7 @@ import CORALean.ContSet.ConPolyZono.Float.Theorems.UnionOuter
 import CORALean.ContSet.ConPolyZono.Float.Theorems.ConvHullSatisfies
 import CORALean.ContSet.ConPolyZono.Float.Theorems.ConvHullSingleOuter
 import CORALean.ContSet.ConPolyZono.Float.Theorems.ConvHullOuter
+import CORALean.ContSet.ConPolyZono.Float.Theorems.IsFullDimSound
 
 /-!
 # What `ConPolyZono` guarantees

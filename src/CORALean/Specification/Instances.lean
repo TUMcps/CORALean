@@ -9,7 +9,24 @@ import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 import CORALean.ContSet.Interval.Float.Theorems.IsFullDimSound
 import CORALean.ContSet.Polygon.Float.Theorems.IsDisjointSound
 import CORALean.ContSet.Polygon.Float.Theorems.IsFullDimSound
+import CORALean.ContSet.VPolytope.Float.Instances
+import CORALean.ContSet.VPolytope.Float.Operations.IsFullDim
+import CORALean.ContSet.VPolytope.Float.Theorems.IsFullDimSound
 import CORALean.ContSet.ZonoBundle.Float.Instances
+import CORALean.ContSet.ConPolyZono.Float.Instances
+import CORALean.ContSet.ConPolyZono.Float.Operations.IsFullDim
+import CORALean.ContSet.ConPolyZono.Float.Theorems.IsFullDimSound
+import CORALean.ContSet.ConZonotope.Float.Instances
+import CORALean.ContSet.ConZonotope.Float.Theorems.IsFullDimSound
+import CORALean.ContSet.HPolytope.Float.Theorems.IsFullDimSound
+import CORALean.ContSet.PolyZonotope.Float.Instances
+import CORALean.ContSet.PolyZonotope.Float.Operations.IsFullDim
+import CORALean.ContSet.PolyZonotope.Float.Theorems.IsFullDimSound
+import CORALean.ContSet.ZonoBundle.Float.Theorems.IsFullDimSound
+import CORALean.ContSet.Zonotope.Float.Operations.ContainsZonotope
+import CORALean.ContSet.Zonotope.Float.Operations.IsFullDim
+import CORALean.ContSet.Zonotope.Float.Theorems.ContainsZonotopeSound
+import CORALean.ContSet.Zonotope.Float.Theorems.IsFullDimSound
 import CORALean.Global.Float.Instances.Real.Instances
 
 /-!
@@ -291,6 +308,55 @@ instance fullDimTestCapsule : FullDimTest (Capsule 𝕋 n) where
 instance fullDimTestPolygon : FullDimTest (Polygon 𝕋) where
   isFullDim := Polygon.isFullDim
   isFullDim_sound _ h := Polygon.isFullDim_sound h
+
+/-- Sadraddini and Tedrake's `'approx:st'`, made rounding-proof: approximate coefficients from the
+default right inverse of the container's generators, the leftover absorbed by a certified box.
+Strict: a set touching the container's boundary is not accepted. -/
+instance containsZonotopeZonotope : Contains (Zonotope 𝕋 n) (Zonotope 𝕋 n) where
+  contains Z₂ Z₁ := Z₂.containsZonotope Z₁ (Zonotope.rightInvCandidate Z₂.G)
+  contains_sound _ _ h := Zonotope.containsZonotope_sound h
+
+/-- A checked right inverse of the generator matrix: a box of positive radius around the centre
+is reached with coefficients in `[-1, 1]`. -/
+instance fullDimTestZonotope : FullDimTest (Zonotope 𝕋 n) where
+  isFullDim := Zonotope.isFullDim
+  isFullDim_sound _ h := Zonotope.isFullDim_sound h
+
+/-- The origin proposed as the interior point: `true` where every row is strictly slack there. A
+caller with a better point (a Chebyshev centre) calls `HPolytope.isFullDim` itself. -/
+instance fullDimTestHPolytope : FullDimTest (HPolytope 𝕋 n) where
+  isFullDim P := P.isFullDim fun _ => zero
+  isFullDim_sound _ h := HPolytope.isFullDim_sound h
+
+/-- The default right inverse of the vertex matrix bordered with a row of ones: `true` for
+vertices that affinely span the space, certified. -/
+instance fullDimTestVPolytope : FullDimTest (VPolytope 𝕋 n) where
+  isFullDim := VPolytope.isFullDim
+  isFullDim_sound _ h := VPolytope.isFullDim_sound h
+
+/-- The default right inverse, and the origin as the coefficient point: `true` where it lies
+strictly inside the constraints. A caller with a better point calls `ConZonotope.isFullDim`. -/
+instance fullDimTestConZonotope : FullDimTest (ConZonotope 𝕋 n) where
+  isFullDim cZ := cZ.isFullDim (Zonotope.rightInvCandidate cZ.G) fun _ => zero
+  isFullDim_sound _ h := ConZonotope.isFullDim_sound h
+
+/-- The default right inverse of the independent generators. -/
+instance fullDimTestPolyZonotope : FullDimTest (PolyZonotope 𝕋 n) where
+  isFullDim := PolyZonotope.isFullDim
+  isFullDim_sound _ h := PolyZonotope.isFullDim_sound h
+
+/-- The default right inverse of the independent generators, the factors `0` satisfying the
+constraints. -/
+instance fullDimTestConPolyZono : FullDimTest (ConPolyZono 𝕋 n) where
+  isFullDim := ConPolyZono.isFullDim
+  isFullDim_sound _ h := ConPolyZono.isFullDim_sound h
+
+/-- The default right inverse of every member, and the first member's centre as the common point:
+`true` where it is strictly inside every member. A bundle without members is the whole space. -/
+instance fullDimTestZonoBundle : FullDimTest (ZonoBundle 𝕋 n) where
+  isFullDim zB := zB.isFullDim (fun i => Zonotope.rightInvCandidate (zB.Z i).G)
+    (if hk : 0 < zB.k then (zB.Z ⟨0, hk⟩).c else fun _ => zero)
+  isFullDim_sound _ h := ZonoBundle.isFullDim_sound h
 
 /-- Every pair of pieces separated along an edge normal, the gap certified by `ltStrict`. -/
 instance isDisjointPolygon : IsDisjoint (Polygon 𝕋) (Polygon 𝕋) where

@@ -66,6 +66,30 @@ import CORALean.ContSet.Zonotope.Float.Operations.MethCResidual
 import CORALean.ContSet.Zonotope.Float.Operations.MethCQ
 import CORALean.ContSet.Zonotope.Float.Operations.MethCReach
 import CORALean.ContSet.Zonotope.Float.Operations.ReduceMethC
+import CORALean.ContSet.Zonotope.Float.Operations.BallB
+import CORALean.ContSet.Zonotope.Float.Operations.BallCert
+import CORALean.ContSet.Zonotope.Float.Operations.ContainsPoint
+import CORALean.ContSet.Zonotope.Float.Operations.Deviation
+import CORALean.ContSet.Zonotope.Float.Operations.InteriorPoint
+import CORALean.ContSet.Zonotope.Float.Operations.IsFullDim
+import CORALean.ContSet.Zonotope.Float.Operations.RightInvCandidate
+import CORALean.ContSet.Zonotope.Float.Operations.RightInvQ
+import CORALean.ContSet.Zonotope.Float.Operations.RightInvResidual
+import CORALean.ContSet.Zonotope.Float.Operations.IsFullDimWith
+import CORALean.ContSet.Zonotope.Float.Operations.PointLo
+import CORALean.ContSet.Zonotope.Float.Operations.PointHi
+import CORALean.ContSet.Zonotope.Float.Operations.MulResidual
+import CORALean.ContSet.Zonotope.Float.Operations.ErrBound
+import CORALean.ContSet.Zonotope.Float.Operations.EntryDeviation
+import CORALean.ContSet.Zonotope.Float.Operations.ContainsZonotope
+import CORALean.ContSet.Zonotope.Float.Operations.StGamma
+import CORALean.ContSet.Zonotope.Float.Operations.StBeta
+import CORALean.ContSet.Zonotope.Float.Operations.StUsed
+import CORALean.ContSet.Zonotope.Float.Operations.StDelta
+import CORALean.ContSet.Zonotope.Float.Operations.StLeftover
+import CORALean.ContSet.Zonotope.Float.Operations.Underapproximate
+import CORALean.ContSet.Zonotope.Float.Operations.UnderapproximateCandidate
+import CORALean.ContSet.Zonotope.Float.Operations.ReduceUnderApprox
 
 /-!
 # What `Zonotope` computes

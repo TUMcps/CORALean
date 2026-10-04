@@ -1,0 +1,44 @@
+import CORALean.ContSet.ZonoBundle.Float.Operations.RepresentsaEmptySet
+import CORALean.ContSet.ConZonotope.Float.Theorems.RepresentsaEmptySetSound
+import CORALean.ContSet.ZonoBundle.Float.Theorems.BoundDotLPLe
+
+/-!
+# A `true` from `ZonoBundle.representsa_emptySet` proves the intersection empty
+
+The bundle's points are the enclosed program's (`ZonoBundle.conZonotopeAll_contains`), which a
+`true` proves empty.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+open FloatOps SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem ZonoBundle.representsa_emptySet_sound {zB : ZonoBundle 𝕋 n}
+    (h : zB.representsa_emptySet = true) : zB.construct = ∅ := by -- --- PROOF ---
+  unfold ZonoBundle.representsa_emptySet at h
+  split at h
+  · rename_i hk
+    refine Set.eq_empty_of_forall_notMem fun x hx => ?_
+    have := ConZonotope.representsa_emptySet_sound h
+    have hmem := zB.conZonotopeAll_contains hk hx
+    rw [this] at hmem
+    exact hmem
+  · exact absurd h (by simp)
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

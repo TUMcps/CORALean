@@ -31,6 +31,13 @@ import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapCDown
 import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapCUp
 import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapDep
 import CORALean.ContSet.ConZonotope.Float.Operations.QuadMap
+import CORALean.ContSet.ConZonotope.Float.Operations.InteriorCert
+import CORALean.ContSet.ConZonotope.Float.Operations.InteriorMargin
+import CORALean.ContSet.ConZonotope.Float.Operations.RepresentsaEmptySet
+import CORALean.ContSet.ConZonotope.Float.Operations.CentreLo
+import CORALean.ContSet.ConZonotope.Float.Operations.CentreHi
+import CORALean.ContSet.ConZonotope.Float.Operations.IsFullDim
+import CORALean.ContSet.ConZonotope.Float.Operations.ContainsPoint
 
 /-!
 # What the float `ConZonotope` computes
