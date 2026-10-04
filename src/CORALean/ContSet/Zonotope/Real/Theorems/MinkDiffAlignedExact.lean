@@ -18,15 +18,21 @@ of the two generator families, which `hh` alone does not fix.
 equality fails in both directions, and `minkDiffAligned_not_inner` is the
 witness. Inside it, no hypothesis beyond the paper's alignment is needed.
 
+[2, Prop. 3] is the same statement for [2, Def. 1]'s aligned zonotopes, `Z ⊖ Z' =
+([(1 - α₁)g₁, …, (1 - α_N)g_N], c - c')`, with `αᵢ ∈ [0, 1]` part of the definition.
+
 ## References
 
 * [1] M. Althoff. "On Computing the Minkowski Difference of Zonotopes".
       arXiv, 2015.
+* [2] L. Yang and N. Ozay. "Scalable zonotopic under-approximation of backward
+      reachable sets for uncertain linear systems". IEEE Control Systems Letters,
+      6:1555-1560, 2022.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       13-September-2026
--- Last update:   ---
+-- Last update:   04-October-2026
 -- Last revision: ---
 
 

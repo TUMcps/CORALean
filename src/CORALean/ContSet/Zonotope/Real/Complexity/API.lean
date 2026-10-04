@@ -8,6 +8,7 @@ import CORALean.ContSet.Zonotope.Real.Complexity.Bilin
 import CORALean.ContSet.Zonotope.Real.Complexity.ReduceBy
 import CORALean.ContSet.Zonotope.Real.Complexity.ReduceBox
 import CORALean.ContSet.Zonotope.Real.Complexity.BilinBigO
+import CORALean.ContSet.Zonotope.Real.Complexity.BackReachAligned
 
 /-!
 # How large `Zonotope`'s results are

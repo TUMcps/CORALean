@@ -30,6 +30,7 @@ import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffEnclSubsetAdd
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffEqIInter
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffInnerOfOuter
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffNotSubsetOfDiscontinuous
+import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddCancel
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffMono
 import CORALean.ContSet.ContSet.Theorems.MinusFromOuter
 import CORALean.ContSet.ContSet.Theorems.MinusOuter

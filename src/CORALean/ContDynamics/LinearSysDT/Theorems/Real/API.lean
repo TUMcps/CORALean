@@ -1,4 +1,9 @@
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.BackReachForallInnerZonotope
+import CORALean.ContDynamics.LinearSysDT.Theorems.Real.BackReachSetRobustSucc
+import CORALean.ContDynamics.LinearSysDT.Theorems.Real.BackReachAlignedInner
+import CORALean.ContDynamics.LinearSysDT.Theorems.Real.BackReachAlignedOuter
+import CORALean.ContDynamics.LinearSysDT.Theorems.Real.BackReachAlignedControl
+import CORALean.ContDynamics.LinearSysDT.Theorems.Real.BackReachAlignedFeedback
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachErrorReducedContainsReachError
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachErrorReducedOrdersSubsetReachErrorOrders
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachHeldOuter
@@ -28,7 +33,9 @@ Each statement here rests on a `Zonotope` operation that is exact only at the ex
 through `mtimes_exact`/`plus_exact`/`reduce_outer`, which a machine scalar pays into an error box
 instead. `ReachInnerRepInner` is `ReachInnerInner` composed with `minkDiffRep_inner`, and
 `BackReachForallInnerZonotope` is the backward step at the one representation that can run it,
-`mtimes_exact` giving its invertibility hypothesis.
+`mtimes_exact` giving its invertibility hypothesis. `BackReachAligned*` is Yang and Ozay's
+robust backward recursion at aligned zonotopes, inside and around `backReachSetRobust`, whose
+step `BackReachSetRobustSucc` reads as a difference, a sum and a preimage.
 
 `ReachHeldOuter` is the zero-order-hold run in closed form. The `ClosedBall` three bound `reach`'s
 width against `Zonotope.Real`'s own bounds, `StepSubsetClosedBall`/`ReduceBoxAbsBoundLe` among them.

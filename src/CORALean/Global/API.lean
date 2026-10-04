@@ -38,6 +38,15 @@ import CORALean.Global.HorizonErrorBudget
 import CORALean.Global.ConvergenceOrder
 import CORALean.Global.LinProg.API
 import CORALean.Global.TaylorRemainder
+import CORALean.Global.CoordinatePath
+import CORALean.Global.MeanValueAE
+import CORALean.Global.RobustMeanValueAE
+import CORALean.Global.KaucherInner
+import CORALean.Global.KaucherInnerCoraCounterexample
+import CORALean.Global.KaucherInnerBoxCounterexample
+import CORALean.Global.LieDerivative
+import CORALean.Global.PreconditionInner
+import CORALean.Global.ProductInnerRangeCounterexample
 import CORALean.Global.CoeffDomination
 import CORALean.Global.ElementaryDerivBounds
 import CORALean.Global.EvalList

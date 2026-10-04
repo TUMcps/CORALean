@@ -136,6 +136,13 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.RmIdConstruct
 import CORALean.ContSet.PolyZonotope.Real.Theorems.SplitDepFactorUnion
 import CORALean.ContSet.PolyZonotope.Real.Theorems.SplitLongestGenUnion
 import CORALean.ContSet.PolyZonotope.Real.Theorems.SplitOuter
+import CORALean.ContSet.PolyZonotope.Real.Theorems.BoxOutOuter
+import CORALean.ContSet.PolyZonotope.Real.Theorems.OuterApproxOuter
+import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialReplaceId
+import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialSplit
+import CORALean.ContSet.PolyZonotope.Real.Theorems.PartZonotopeOuter
+import CORALean.ContSet.PolyZonotope.Real.Theorems.SubsPoint
+import CORALean.ContSet.PolyZonotope.Real.Theorems.SubsConstruct
 import CORALean.ContSet.PolyZonotope.Real.Theorems.SumCoraCounterexample
 import CORALean.ContSet.PolyZonotope.Real.Theorems.SumPoint
 import CORALean.ContSet.PolyZonotope.Real.Theorems.RepresentsaPointConstruct

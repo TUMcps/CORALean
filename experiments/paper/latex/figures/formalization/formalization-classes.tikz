@@ -99,8 +99,8 @@
 \node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:14,10) {\hspace{0em}\textcolor{black!40}{+8}};
 \begin{scope}\clip([yshift=-2.5pt]axis cs:0,11) [rounded corners=1.25pt] -- ([yshift=-2.5pt]axis cs:59,11) -- ([yshift=2.5pt]axis cs:59,11) [sharp corners] -- ([yshift=2.5pt]axis cs:0,11) -- cycle;
 \fill[CORAcolorReachSet] ([yshift=-2.5pt]axis cs:0,11) rectangle ([yshift=2.5pt]axis cs:35,11);
-\fill[CORAcolorReachSet2] ([yshift=-2.5pt]axis cs:35,11) rectangle ([yshift=2.5pt]axis cs:44,11);
-\fill[white] ([yshift=-2.5pt]axis cs:44,11) rectangle ([yshift=2.5pt]axis cs:59,11);
+\fill[CORAcolorReachSet2] ([yshift=-2.5pt]axis cs:35,11) rectangle ([yshift=2.5pt]axis cs:47,11);
+\fill[white] ([yshift=-2.5pt]axis cs:47,11) rectangle ([yshift=2.5pt]axis cs:59,11);
 \end{scope}
 \draw[black, line width=0.2pt] ([yshift=-2.5pt]axis cs:0,11) [rounded corners=1.25pt] -- ([yshift=-2.5pt]axis cs:59,11) -- ([yshift=2.5pt]axis cs:59,11) [sharp corners] -- ([yshift=2.5pt]axis cs:0,11) -- cycle;
 \node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:59,11) {\hspace{0em}\textcolor{black!40}{+14}};
@@ -147,8 +147,8 @@
 \node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:37,17) {\hspace{0em}\textcolor{black!40}{+7}};
 \begin{scope}\clip([yshift=-2.5pt]axis cs:0,18) [rounded corners=1.25pt] -- ([yshift=-2.5pt]axis cs:66,18) -- ([yshift=2.5pt]axis cs:66,18) [sharp corners] -- ([yshift=2.5pt]axis cs:0,18) -- cycle;
 \fill[CORAcolorReachSet] ([yshift=-2.5pt]axis cs:0,18) rectangle ([yshift=2.5pt]axis cs:46,18);
-\fill[CORAcolorReachSet2] ([yshift=-2.5pt]axis cs:46,18) rectangle ([yshift=2.5pt]axis cs:56,18);
-\fill[white] ([yshift=-2.5pt]axis cs:56,18) rectangle ([yshift=2.5pt]axis cs:66,18);
+\fill[CORAcolorReachSet2] ([yshift=-2.5pt]axis cs:46,18) rectangle ([yshift=2.5pt]axis cs:58,18);
+\fill[white] ([yshift=-2.5pt]axis cs:58,18) rectangle ([yshift=2.5pt]axis cs:66,18);
 \end{scope}
 \draw[black, line width=0.2pt] ([yshift=-2.5pt]axis cs:0,18) [rounded corners=1.25pt] -- ([yshift=-2.5pt]axis cs:66,18) -- ([yshift=2.5pt]axis cs:66,18) [sharp corners] -- ([yshift=2.5pt]axis cs:0,18) -- cycle;
 \node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:66,18) {\hspace{0em}\textcolor{black!40}{+14}};
@@ -314,8 +314,8 @@
 \node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:3,10) {6};
 \node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:11,10) {6};
 \node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:17.5,11) {35};
-\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:39.5,11) {9};
-\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:51.5,11) {15};
+\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:41,11) {12};
+\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:53,11) {12};
 \node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:8.5,12) {17};
 \node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:28,12) {18};
 \node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:16.5,13) {33};
@@ -331,8 +331,8 @@
 \node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:27.5,17) {5};
 \node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:33.5,17) {7};
 \node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:23,18) {46};
-\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:51,18) {10};
-\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:61,18) {10};
+\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:52,18) {12};
+\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:62,18) {8};
 \node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:5,19) {10};
 \node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:2,21) {4};
 \node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:5.5,25) {11};

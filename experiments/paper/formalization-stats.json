@@ -14,24 +14,24 @@
     "not-covered"
   ],
   "totals": {
-    "papers": 48,
-    "papers_with_findings": 39,
-    "in_scope": 636,
-    "formalized": 595,
-    "not_formalized": 41,
-    "out_of_scope": 335,
+    "papers": 51,
+    "papers_with_findings": 42,
+    "in_scope": 662,
+    "formalized": 618,
+    "not_formalized": 44,
+    "out_of_scope": 369,
     "out_of_scope_by_reason": {
-      "restated": 177,
+      "restated": 191,
       "mathlib": 11,
-      "not-a-claim": 114,
+      "not-a-claim": 131,
       "done-differently": 7,
-      "not-covered": 26
+      "not-covered": 29
     },
     "by_class": {
-      "correct": 412,
-      "underspecified": 93,
-      "proof-gap": 24,
-      "fixed": 64,
+      "correct": 427,
+      "underspecified": 96,
+      "proof-gap": 25,
+      "fixed": 68,
       "false": 2
     }
   },
@@ -831,6 +831,37 @@
       "findings": []
     },
     {
+      "page": "2017/goubault-hscc-forward-inner-reachability.md",
+      "label": "Goubault 2017",
+      "year": 2017,
+      "title": "Forward Inner-Approximated Reachability of Non-Linear Continuous Systems",
+      "in_scope": 4,
+      "formalized": 3,
+      "not_formalized": 1,
+      "out_of_scope": 17,
+      "out_of_scope_by_reason": {
+        "restated": 9,
+        "mathlib": 0,
+        "not-a-claim": 8,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 2,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Eq. 18",
+          "class": "underspecified",
+          "reason": "the inner approximation is per component, `pro ]z[ᵢ` inside the `i`-th projection, as Sec. 4 measures it; read as the box of all components it is false; see Findings"
+        }
+      ]
+    },
+    {
       "page": "2017/kipf-iclr-gcn.md",
       "label": "Kipf 2017",
       "year": 2017,
@@ -1138,6 +1169,42 @@
           "result": "Lemma 5",
           "class": "fixed",
           "reason": "as printed the test checks `ν eᵢ` itself, which bounds nothing for a zonotope off the origin; true from the centre; see Findings"
+        }
+      ]
+    },
+    {
+      "page": "2020/goubault-lcss-robust-underapproximations.md",
+      "label": "Goubault 2020",
+      "year": 2020,
+      "title": "Robust Under-Approximations and Application to Reachability of Non-Linear Control Systems With Disturbances",
+      "in_scope": 7,
+      "formalized": 5,
+      "not_formalized": 2,
+      "out_of_scope": 5,
+      "out_of_scope_by_reason": {
+        "restated": 0,
+        "mathlib": 0,
+        "not-a-claim": 5,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 3,
+        "underspecified": 1,
+        "proof-gap": 1,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Thm. 1",
+          "class": "proof-gap",
+          "reason": "the printed proof of (2) takes `f` monotone on the box and uses the corners `x̲`, `x̄`, which fails for `m ≥ 2` with partials of different signs (`f = x₁ - x₂`); each coordinate moved the way its own partial points closes it; see Findings"
+        },
+        {
+          "result": "Thm. 2",
+          "class": "underspecified",
+          "reason": "(3) needs `x_A` and (4) `x_E` nonempty, while the paper's `IR` contains the empty interval (over no disturbance every `z` is robustly reached)"
         }
       ]
     },
@@ -1586,6 +1653,57 @@
           "result": "Alg. 2",
           "class": "underspecified",
           "reason": "line 10 reads a gain that line 16 has not computed yet; the previous step's gain is meant"
+        }
+      ]
+    },
+    {
+      "page": "2022/yang-lcss-zonotopic-underapproximation.md",
+      "label": "Yang 2022",
+      "year": 2022,
+      "title": "Scalable Zonotopic Under-approximation of Backward Reachable Sets for Uncertain Linear Systems",
+      "in_scope": 15,
+      "formalized": 15,
+      "not_formalized": 0,
+      "out_of_scope": 12,
+      "out_of_scope_by_reason": {
+        "restated": 5,
+        "mathlib": 0,
+        "not-a-claim": 4,
+        "done-differently": 0,
+        "not-covered": 3
+      },
+      "by_class": {
+        "correct": 10,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 4,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Prop. 1",
+          "class": "underspecified",
+          "reason": "(min-out) ranges its constraint over `i = 0, 1, …, N`; there is no `g₀`, read as `1, …, N`"
+        },
+        {
+          "result": "Prop. 2",
+          "class": "fixed",
+          "reason": "(max-in) is built from `W`'s halfspaces, which bound the zonotope inside `W`, not `EW`: false at `E = ½`, `W = Z = [-1, 1]`; true with `EW`'s halfspaces; see Findings"
+        },
+        {
+          "result": "Prop. 4",
+          "class": "fixed",
+          "reason": "the right inclusion inherits `Prop. 2`'s use of `W`'s halfspaces and fails with them (`Z ⊖ EW = [-½, ½] ⊄ Z ⊖ Z̲ = {0}` on its counterexample); true with `EW`'s"
+        },
+        {
+          "result": "Prop. 5",
+          "class": "fixed",
+          "reason": "the outer half inherits `Prop. 2`'s use of `W`'s halfspaces: at `A = 1`, `B = 0`, `K = 0` on its counterexample `X₁ = [-½, ½] ⊄ Z̄₁ = {0}`; true with `EW`'s"
+        },
+        {
+          "result": "Eq. 16",
+          "class": "fixed",
+          "reason": "the two sets are not equal, only the projection is inside `U(x, Z̲_k)`, which is what finding one input needs; see Findings"
         }
       ]
     },
@@ -2330,7 +2448,7 @@
         },
         "cora_issues": 0,
         "findings": {
-          "correct": 45,
+          "correct": 46,
           "underspecified": 13,
           "proof-gap": 0,
           "fixed": 13,
@@ -2471,11 +2589,11 @@
         "group": "contSet",
         "class": "polyZonotope",
         "methods": 73,
-        "proved": 9,
+        "proved": 12,
         "float": 35,
-        "not_yet": 15,
+        "not_yet": 12,
         "out_of_scope": 14,
-        "needs_float": 9,
+        "needs_float": 12,
         "out_of_scope_by_reason": {
           "plotting/display": 4,
           "random/sampling": 2,
@@ -2653,11 +2771,11 @@
         "group": "contSet",
         "class": "zonotope",
         "methods": 80,
-        "proved": 10,
+        "proved": 12,
         "float": 46,
-        "not_yet": 10,
+        "not_yet": 8,
         "out_of_scope": 14,
-        "needs_float": 10,
+        "needs_float": 12,
         "out_of_scope_by_reason": {
           "plotting/display": 2,
           "random/sampling": 3,
@@ -2666,12 +2784,12 @@
           "matlab-runtime": 5,
           "deprecated": 2
         },
-        "cora_issues": 1,
+        "cora_issues": 2,
         "findings": {
-          "correct": 81,
-          "underspecified": 17,
+          "correct": 88,
+          "underspecified": 18,
           "proof-gap": 3,
-          "fixed": 8,
+          "fixed": 10,
           "false": 1
         }
       },
@@ -2850,10 +2968,10 @@
         },
         "cora_issues": 0,
         "findings": {
-          "correct": 6,
+          "correct": 8,
           "underspecified": 2,
           "proof-gap": 0,
-          "fixed": 0,
+          "fixed": 2,
           "false": 0
         }
       },
@@ -2978,9 +3096,9 @@
           "matlab-runtime": 5,
           "deprecated": 0
         },
-        "cora_issues": 1,
+        "cora_issues": 2,
         "findings": {
-          "correct": 15,
+          "correct": 16,
           "underspecified": 9,
           "proof-gap": 6,
           "fixed": 4,
@@ -3277,12 +3395,12 @@
     "groups": {
       "contSet": {
         "methods": 908,
-        "proved": 112,
+        "proved": 117,
         "float": 449,
-        "not_yet": 109,
+        "not_yet": 104,
         "out_of_scope": 238,
-        "needs_float": 112,
-        "cora_issues": 23,
+        "needs_float": 117,
+        "cora_issues": 24,
         "out_of_scope_by_reason": {
           "plotting/display": 51,
           "random/sampling": 36,
@@ -3292,10 +3410,10 @@
           "deprecated": 14
         },
         "findings": {
-          "correct": 253,
-          "underspecified": 51,
+          "correct": 261,
+          "underspecified": 52,
           "proof-gap": 5,
-          "fixed": 43,
+          "fixed": 45,
           "false": 2
         }
       },
@@ -3306,7 +3424,7 @@
         "not_yet": 32,
         "out_of_scope": 60,
         "needs_float": 30,
-        "cora_issues": 1,
+        "cora_issues": 2,
         "out_of_scope_by_reason": {
           "plotting/display": 25,
           "random/sampling": 6,
@@ -3316,10 +3434,10 @@
           "deprecated": 0
         },
         "findings": {
-          "correct": 72,
+          "correct": 75,
           "underspecified": 28,
           "proof-gap": 15,
-          "fixed": 12,
+          "fixed": 14,
           "false": 0
         }
       },
@@ -3374,12 +3492,12 @@
     },
     "totals": {
       "methods": 1260,
-      "proved": 167,
+      "proved": 172,
       "float": 545,
-      "not_yet": 166,
+      "not_yet": 161,
       "out_of_scope": 382,
-      "needs_float": 167,
-      "cora_issues": 25,
+      "needs_float": 172,
+      "cora_issues": 27,
       "out_of_scope_by_reason": {
         "plotting/display": 86,
         "random/sampling": 46,
@@ -3389,18 +3507,18 @@
         "deprecated": 14
       },
       "findings": {
-        "correct": 384,
-        "underspecified": 84,
+        "correct": 395,
+        "underspecified": 85,
         "proof-gap": 22,
-        "fixed": 57,
+        "fixed": 61,
         "false": 2
       }
     },
     "findings_not_on_a_class": {
       "global": {
-        "correct": 13,
-        "underspecified": 2,
-        "proof-gap": 2,
+        "correct": 17,
+        "underspecified": 4,
+        "proof-gap": 3,
         "fixed": 7,
         "false": 0
       },
@@ -3420,11 +3538,11 @@
       }
     },
     "theorems": {
-      "paper": 838,
+      "paper": 871,
       "float": 1166,
-      "helper": 788,
-      "lemma": 2029,
-      "total": 4821,
+      "helper": 807,
+      "lemma": 2043,
+      "total": 4887,
       "examples": 80
     }
   }

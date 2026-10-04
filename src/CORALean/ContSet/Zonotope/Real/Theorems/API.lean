@@ -1,5 +1,10 @@
 import CORALean.ContSet.Zonotope.Real.Theorems.EnclosePointsStursbergMem
 import CORALean.ContSet.Zonotope.Real.Theorems.AbsBoundLeOfSubsetClosedBall
+import CORALean.ContSet.Zonotope.Real.Theorems.AbsCornerMem
+import CORALean.ContSet.Zonotope.Real.Theorems.AbsLeAbsCorner
+import CORALean.ContSet.Zonotope.Real.Theorems.AbsAbs
+import CORALean.ContSet.Zonotope.Real.Theorems.BoundaryPointFrontier
+import CORALean.ContSet.Zonotope.Real.Theorems.ReduceUnderApproxDispatchCounterexample
 import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
 import CORALean.ContSet.Zonotope.Real.Theorems.AbsLeAbsBound
 import CORALean.ContSet.Zonotope.Real.Theorems.AbsMaxOfPoint
@@ -53,6 +58,14 @@ import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedExact
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedInner
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedNotInner
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedBounds
+import CORALean.ContSet.Zonotope.Real.Theorems.MinkowskiDiffNotSubsetMinkDiffAligned
+import CORALean.ContSet.Zonotope.Real.Theorems.ImageSubsetAlignedOfMinOut
+import CORALean.ContSet.Zonotope.Real.Theorems.AlignedSubsetOfMaxIn
+import CORALean.ContSet.Zonotope.Real.Theorems.AlignedSubsetOfMaxInCounterexample
+import CORALean.ContSet.Zonotope.Real.Theorems.AlignedSubsetMinkowskiDiffOfCert
+import CORALean.ContSet.Zonotope.Real.Theorems.MemBackReachAlignedSuccIff
+import CORALean.ContSet.Zonotope.Real.Theorems.CombineGensInner
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffGenRecExact
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffOrEmptyInner
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffOrEmptyNeEmpty
@@ -168,6 +181,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.ExistsSubsetOfDisjunctiveCert
 import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDistLeOfReduceCert
 import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDistLeOfReduceInnerCert
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceUnderApproxSadraddiniInner
+import CORALean.ContSet.Zonotope.Real.Theorems.ReduceUnderApproxYangInner
 import CORALean.ContSet.Zonotope.Real.Theorems.ZonotopeNormIsNorm
 import CORALean.ContSet.Zonotope.Real.Theorems.ZonotopeNormTFAE
 import CORALean.ContSet.Zonotope.Real.Theorems.ZonotopeNormBallEq

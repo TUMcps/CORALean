@@ -41,6 +41,12 @@ BReach.D  real-layer: a worked example over the real specification layer, proved
 Chain.sensitivity  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
 LinearARX.computeGO  real-layer: the GO parameters as real matrices, powers of the real window matrix; the guarantee is a statement about runs over ℝ
 LinearSysDT.computeGO  real-layer: the GO parameters as real matrices, powers of the real state matrix; the guarantee is a statement about runs over ℝ
+kaucherMulDualZ  real-layer: the three Kaucher products of HSCC'17 Eq. 18 over ℝ, branching on the sign of a real bound; the guarantee is a statement about a real flow's range
+kaucherInnerStep  real-layer: HSCC'17 Eq. 18 over ℝ, built from `kaucherMulDualZ`; ℝ-only for the same reason
+lieDeriv  spec: the Lie derivative `Dg · V`, a Fréchet derivative applied to a field, never run
+lieIter  spec: the iterated Lie derivatives of HSCC'17 Eq. 7-8, built from `lieDeriv`, never run
+jacLift  spec: the Jacobian lift `Dg(z) v` of HSCC'17 Eq. 11, a Fréchet derivative, never run
+augField  spec: the variational field `(f(z), Df(z) v)` of HSCC'17 Eq. 9-10, a Fréchet derivative, never run
 getInputNeuronOrder  real-layer: ranks by the sort of the real sensitivity (`Chain.sensitivity`), ℝ-only for the same reason
 Chain.backprop  real-layer: the transposed-Jacobian pull-back of `Chain.sensitivity`, ℝ-only for the same reason
 DMZ.A0  real-layer: a worked example over the real specification layer, proved and never run
