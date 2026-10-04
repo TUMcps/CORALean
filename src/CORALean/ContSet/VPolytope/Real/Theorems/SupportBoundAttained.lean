@@ -15,11 +15,17 @@ A non-empty vertex list is a hypothesis and not a technicality: `k = 0` denotes
 rather than `-∞`. `0 < P.k` says exactly what has to hold for the claim to mean
 anything.
 
+The maximizing vertex is the support vector of [2, Eq. 34].
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated
       Verification of Linear Systems Using Reachability Analysis with Support
       Functions". HSCC, 2023, Article 5.
+* [2] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral
+      Operations in CORA 2024". In Proc. of the 11th International Workshop on Applied
+      Verification for Continuous and Hybrid Systems (ARCH24), EPiC Series in Computing,
+      vol. 103, pp. 163-181, 2024.
 -/
 
 -- Authors:       Tobias Ladner

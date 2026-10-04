@@ -25,6 +25,9 @@ import CORALean.ContSet.Ellipsoid.Real.Theorems.IsFullDimIff
 import CORALean.ContSet.Ellipsoid.Real.Theorems.IsequalConstruct
 import CORALean.ContSet.Ellipsoid.Real.Theorems.VerticesExact
 import CORALean.ContSet.Ellipsoid.Real.Theorems.NormUbLe
+import CORALean.ContSet.Ellipsoid.Real.Theorems.VolumeEqSquare
+import CORALean.ContSet.Ellipsoid.Real.Theorems.VolumeEqZero
+import CORALean.ContSet.Ellipsoid.Real.Theorems.EllipsoidNormLeOneIff
 
 /-!
 # What an ellipsoid guarantees, collected

@@ -58,6 +58,7 @@ import CORALean.ContSet.Zonotope.Float.Operations.And
 import CORALean.ContSet.Zonotope.Float.Operations.Isequal
 import CORALean.ContSet.Zonotope.Float.Operations.KeepColumn
 import CORALean.ContSet.Zonotope.Float.Operations.CompactZeros
+import CORALean.ContSet.Zonotope.Float.Operations.IntersectStrip
 
 /-!
 # What `Zonotope` computes

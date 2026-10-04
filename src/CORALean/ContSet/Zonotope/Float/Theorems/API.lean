@@ -67,6 +67,7 @@ import CORALean.ContSet.Zonotope.Float.Theorems.RepresentsaOriginSound
 import CORALean.ContSet.Zonotope.Float.Theorems.AndOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.IsequalSound
 import CORALean.ContSet.Zonotope.Float.Theorems.CompactZerosExact
+import CORALean.ContSet.Zonotope.Float.Theorems.IntersectStripOuter
 
 /-!
 # What `Zonotope` guarantees

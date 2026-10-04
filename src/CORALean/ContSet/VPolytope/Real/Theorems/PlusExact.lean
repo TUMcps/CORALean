@@ -8,6 +8,15 @@ All of the content is `convexHull_add`: the hull of a sum is the sum of the
 hulls. What is left is that the pairwise vertex sums range over exactly the sum
 of the two vertex sets, which `finProdFinEquiv` makes a bijection rather than a
 counting argument.
+
+This is [1, Eq. 25], the Minkowski sum of two V-polytopes as all pairwise sums of their points.
+
+## References
+
+* [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral
+      Operations in CORA 2024". In Proc. of the 11th International Workshop on Applied
+      Verification for Continuous and Hybrid Systems (ARCH24), EPiC Series in Computing,
+      vol. 103, pp. 163-181, 2024.
 -/
 
 -- Authors:       Tobias Ladner

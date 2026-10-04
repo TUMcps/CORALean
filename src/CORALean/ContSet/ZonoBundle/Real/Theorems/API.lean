@@ -41,6 +41,8 @@ import CORALean.ContSet.ZonoBundle.Real.Theorems.QuadMapOuter
 import CORALean.ContSet.ZonoBundle.Real.Theorems.CartProdExact
 import CORALean.ContSet.ZonoBundle.Real.Theorems.EnlargeOuter
 import CORALean.ContSet.ZonoBundle.Real.Theorems.ConstructEnlarge
+import CORALean.ContSet.ZonoBundle.Real.Theorems.IsequalConstruct
+import CORALean.ContSet.ZonoBundle.Real.Theorems.IsequalCoraCounterexample
 
 /-!
 # What a zonotope bundle guarantees, collected

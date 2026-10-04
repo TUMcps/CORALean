@@ -1,0 +1,47 @@
+import CORALean.ContSet.HPolytope.Real.Operations.SimplexRows
+import CORALean.ContSet.HPolytope.Real.Operations.Ineqs
+import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+
+/-!
+# `HPolytope.generateRandomH`
+
+[1, Alg. 3]: the rows of `HPolytope.simplexRows`, all with offset `1`, mapped by
+`x ↦ M x + z` (line 7). The image is written in halfspaces, `⟨A M⁻¹, 1 + A M⁻¹ z⟩`, which is the
+image when `M` is invertible — what line 6 samples, and what `generateRandomH_isBounded` asks.
+
+## References
+
+* [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral
+      Operations in CORA 2024". In Proc. of the 11th International Workshop on Applied
+      Verification for Continuous and Hybrid Systems (ARCH24), EPiC Series in Computing,
+      vol. 103, pp. 163-181, 2024.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       03-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+open Matrix
+
+variable {n m : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+noncomputable def HPolytope.generateRandomH (ℓ : Fin m → Vec ℝ n) (M : Mat ℝ n n) (z : Vec ℝ n) :
+    HPolytope (Vec ℝ n) :=
+  -- lines 1-5
+  let A : Mat ℝ (n + 1 + m) n := HPolytope.simplexRows ℓ
+  -- line 7: `M ⟨A, 1⟩ + z`
+  HPolytope.ineqs (A * M⁻¹) (1 + (A * M⁻¹) *ᵥ z)
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

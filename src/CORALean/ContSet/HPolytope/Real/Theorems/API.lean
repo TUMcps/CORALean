@@ -55,6 +55,36 @@ import CORALean.ContSet.HPolytope.Real.Theorems.IsGreatestPolyNormEllipsotopeCou
 import CORALean.ContSet.HPolytope.Real.Theorems.ReduceOverDomainRows
 import CORALean.ContSet.HPolytope.Real.Theorems.ReduceOverDomainOuter
 import CORALean.ContSet.HPolytope.Real.Theorems.ReduceOverDomainInner
+import CORALean.ContSet.HPolytope.Real.Theorems.AffineHullBasisSpec
+import CORALean.ContSet.HPolytope.Real.Theorems.ChebyshevNotUnique
+import CORALean.ContSet.HPolytope.Real.Theorems.ExistsPosStepStrict
+import CORALean.ContSet.HPolytope.Real.Theorems.GenerateRandomHBoundedFullDim
+import CORALean.ContSet.HPolytope.Real.Theorems.ImageIneqsOfFactor
+import CORALean.ContSet.HPolytope.Real.Theorems.ImageIneqsOfInvertible
+import CORALean.ContSet.HPolytope.Real.Theorems.IneqsAddEqProjection
+import CORALean.ContSet.HPolytope.Real.Theorems.IneqsBlockDiagEq
+import CORALean.ContSet.HPolytope.Real.Theorems.IneqsDegenerateChebyshevCounterexample
+import CORALean.ContSet.HPolytope.Real.Theorems.IneqsEqDropIffSupportFunc
+import CORALean.ContSet.HPolytope.Real.Theorems.IneqsEqEmptyIff
+import CORALean.ContSet.HPolytope.Real.Theorems.IneqsEqIffSupportFunc
+import CORALean.ContSet.HPolytope.Real.Theorems.IneqsEqImageRestrict
+import CORALean.ContSet.HPolytope.Real.Theorems.IneqsEqOfStrict
+import CORALean.ContSet.HPolytope.Real.Theorems.IneqsEqOfStrictCounterexample
+import CORALean.ContSet.HPolytope.Real.Theorems.IneqsInterNonemptyIff
+import CORALean.ContSet.HPolytope.Real.Theorems.IneqsSubsetIffSupportFunc
+import CORALean.ContSet.HPolytope.Real.Theorems.IneqsUnitRowsMinimal
+import CORALean.ContSet.HPolytope.Real.Theorems.InteriorNonemptyIffChebyshev
+import CORALean.ContSet.HPolytope.Real.Theorems.InteriorRestrictNonempty
+import CORALean.ContSet.HPolytope.Real.Theorems.IsBoundedIffSimplexSupportFunc
+import CORALean.ContSet.HPolytope.Real.Theorems.IsFullDimCoraCounterexample
+import CORALean.ContSet.HPolytope.Real.Theorems.IsequalNondegDuplicateCounterexample
+import CORALean.ContSet.HPolytope.Real.Theorems.IsequalNondegIff
+import CORALean.ContSet.HPolytope.Real.Theorems.IsequalNondegPrintedCounterexample
+import CORALean.ContSet.HPolytope.Real.Theorems.IsGreatestSignedUnit
+import CORALean.ContSet.HPolytope.Real.Theorems.MinkowskiDiffIneqsEq
+import CORALean.ContSet.HPolytope.Real.Theorems.SimplexRowsRedundantCounterexample
+import CORALean.ContSet.HPolytope.Real.Theorems.SuccLeOfIsBounded
+import CORALean.ContSet.HPolytope.Real.Theorems.TightRedundantCounterexample
 
 /-!
 # What `HPolytope` guarantees

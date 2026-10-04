@@ -14,25 +14,25 @@
     "not-covered"
   ],
   "totals": {
-    "papers": 39,
-    "papers_with_findings": 32,
-    "in_scope": 480,
-    "formalized": 457,
-    "not_formalized": 23,
-    "out_of_scope": 236,
+    "papers": 40,
+    "papers_with_findings": 33,
+    "in_scope": 529,
+    "formalized": 505,
+    "not_formalized": 24,
+    "out_of_scope": 251,
     "out_of_scope_by_reason": {
-      "restated": 123,
+      "restated": 130,
       "mathlib": 8,
-      "not-a-claim": 80,
+      "not-a-claim": 88,
       "done-differently": 7,
       "not-covered": 18
     },
     "by_class": {
-      "correct": 312,
-      "underspecified": 73,
+      "correct": 344,
+      "underspecified": 78,
       "proof-gap": 22,
-      "fixed": 49,
-      "false": 1
+      "fixed": 59,
+      "false": 2
     }
   },
   "papers": [
@@ -1713,6 +1713,112 @@
       ]
     },
     {
+      "page": "2024/wetzlinger-arch-polyhedral-operations.md",
+      "label": "Wetzlinger 2024",
+      "year": 2024,
+      "title": "Implementation of Polyhedral Operations in CORA 2024",
+      "in_scope": 49,
+      "formalized": 48,
+      "not_formalized": 1,
+      "out_of_scope": 15,
+      "out_of_scope_by_reason": {
+        "restated": 7,
+        "mathlib": 0,
+        "not-a-claim": 8,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 32,
+        "underspecified": 5,
+        "proof-gap": 0,
+        "fixed": 10,
+        "false": 1
+      },
+      "findings": [
+        {
+          "result": "Table 1 (⊕)",
+          "class": "fixed",
+          "reason": "four cells fail at `∅`, degenerate and bounded by the paper's own convention; true with the first summand nonempty; see Findings"
+        },
+        {
+          "result": "Table 1 (⊖)",
+          "class": "fixed",
+          "reason": "four cells fail at a subtrahend `∅`; true with it nonempty; see Findings"
+        },
+        {
+          "result": "Table 1 (×)",
+          "class": "fixed",
+          "reason": "`D × B` is not bounded in general and `D × NB` not unbounded at `∅`; a degenerate factor gives a degenerate product and a nonempty one carries unboundedness; see Findings"
+        },
+        {
+          "result": "Table 1 (conv)",
+          "class": "fixed",
+          "reason": "four cells fail at `∅`; true with both operands nonempty; see Findings"
+        },
+        {
+          "result": "Sec. 4.1 (support vector)",
+          "class": "false",
+          "reason": "a halfspace tight at a vertex need not define a facet; no restriction of the claim is stated to repair it; see Findings"
+        },
+        {
+          "result": "Sec. 4.1 (interval hull)",
+          "class": "fixed",
+          "reason": "false at an empty polytope, whose interval hull is empty; true for a nonempty one; see Findings"
+        },
+        {
+          "result": "Eq. 7",
+          "class": "fixed",
+          "reason": "false when a list repeats a point, which is then redundant by its copy; true for distinct points; see Findings"
+        },
+        {
+          "result": "Alg. 1",
+          "class": "underspecified",
+          "reason": "line 4 prints the failure condition as `ρ = b₁(j)`, which no row of a minimal representation meets; see Findings"
+        },
+        {
+          "result": "Eq. 9",
+          "class": "underspecified",
+          "reason": "the optimum of (10) over a cone is `0` or `-∞`, never a negative number; read as \"some feasible `y` has `bᵀ y < 0`\""
+        },
+        {
+          "result": "Eq. 18",
+          "class": "fixed",
+          "reason": "the display has the test reversed; the text beside it is right; see Findings"
+        },
+        {
+          "result": "Eq. 20",
+          "class": "fixed",
+          "reason": "without pivoting the first `r` columns of `Q` need not span the column space; see Findings"
+        },
+        {
+          "result": "Alg. 2",
+          "class": "underspecified",
+          "reason": "line 8 appends `x_iter` unscaled, so `B` is orthogonal, not orthonormal; the maximizer is not specified beyond (22); see Findings"
+        },
+        {
+          "result": "Eq. 24",
+          "class": "underspecified",
+          "reason": "the dimensions are misprinted (`D` is `r × r`, the identity block `I_{n-r}`, and `U [I_r 0]` is `m × n` only with zero rows below); see Findings"
+        },
+        {
+          "result": "Eq. 30",
+          "class": "fixed",
+          "reason": "false when exactly one operand is empty, by the paper's own definition of `conv`; see Findings"
+        },
+        {
+          "result": "Eq. 37",
+          "class": "fixed",
+          "reason": "false when exactly one operand is empty, under [1, Table 3]'s `conv`; see Findings"
+        },
+        {
+          "result": "Alg. 3",
+          "class": "underspecified",
+          "reason": "a unit direction equal to a row already present is redundant; the claim needs `ℓ` distinct from them; see Findings"
+        }
+      ]
+    },
+    {
       "page": "2025/bassan-icml-explaining-fast-and-slow.md",
       "label": "Bassan 2025",
       "year": 2025,
@@ -1815,11 +1921,11 @@
         "group": "contSet",
         "class": "capsule",
         "methods": 39,
-        "proved": 1,
+        "proved": 2,
         "float": 26,
-        "not_yet": 2,
+        "not_yet": 1,
         "out_of_scope": 10,
-        "needs_float": 1,
+        "needs_float": 2,
         "out_of_scope_by_reason": {
           "plotting/display": 3,
           "random/sampling": 2,
@@ -1908,10 +2014,10 @@
         },
         "cora_issues": 0,
         "findings": {
-          "correct": 39,
+          "correct": 44,
           "underspecified": 13,
           "proof-gap": 0,
-          "fixed": 8,
+          "fixed": 13,
           "false": 0
         }
       },
@@ -1919,11 +2025,11 @@
         "group": "contSet",
         "class": "ellipsoid",
         "methods": 50,
-        "proved": 3,
-        "float": 19,
-        "not_yet": 18,
+        "proved": 5,
+        "float": 20,
+        "not_yet": 15,
         "out_of_scope": 10,
-        "needs_float": 3,
+        "needs_float": 5,
         "out_of_scope_by_reason": {
           "plotting/display": 3,
           "random/sampling": 2,
@@ -2101,11 +2207,11 @@
         "group": "contSet",
         "class": "polytope",
         "methods": 58,
-        "proved": 7,
+        "proved": 8,
         "float": 31,
-        "not_yet": 8,
+        "not_yet": 7,
         "out_of_scope": 12,
-        "needs_float": 7,
+        "needs_float": 8,
         "out_of_scope_by_reason": {
           "plotting/display": 3,
           "random/sampling": 3,
@@ -2114,13 +2220,13 @@
           "matlab-runtime": 5,
           "deprecated": 0
         },
-        "cora_issues": 1,
+        "cora_issues": 3,
         "findings": {
-          "correct": 13,
-          "underspecified": 1,
+          "correct": 40,
+          "underspecified": 6,
           "proof-gap": 0,
-          "fixed": 10,
-          "false": 0
+          "fixed": 15,
+          "false": 1
         }
       },
       {
@@ -2206,8 +2312,8 @@
         "class": "zonoBundle",
         "methods": 44,
         "proved": 4,
-        "float": 23,
-        "not_yet": 10,
+        "float": 24,
+        "not_yet": 9,
         "out_of_scope": 7,
         "needs_float": 4,
         "out_of_scope_by_reason": {
@@ -2218,7 +2324,7 @@
           "matlab-runtime": 3,
           "deprecated": 0
         },
-        "cora_issues": 2,
+        "cora_issues": 3,
         "findings": {
           "correct": 12,
           "underspecified": 4,
@@ -2231,11 +2337,11 @@
         "group": "contSet",
         "class": "zonotope",
         "methods": 80,
-        "proved": 9,
-        "float": 42,
-        "not_yet": 15,
+        "proved": 10,
+        "float": 45,
+        "not_yet": 11,
         "out_of_scope": 14,
-        "needs_float": 9,
+        "needs_float": 10,
         "out_of_scope_by_reason": {
           "plotting/display": 2,
           "random/sampling": 3,
@@ -2855,12 +2961,12 @@
     "groups": {
       "contSet": {
         "methods": 908,
-        "proved": 86,
-        "float": 432,
-        "not_yet": 154,
+        "proved": 91,
+        "float": 437,
+        "not_yet": 144,
         "out_of_scope": 236,
-        "needs_float": 86,
-        "cora_issues": 13,
+        "needs_float": 91,
+        "cora_issues": 16,
         "out_of_scope_by_reason": {
           "plotting/display": 51,
           "random/sampling": 36,
@@ -2870,11 +2976,11 @@
           "deprecated": 14
         },
         "findings": {
-          "correct": 188,
-          "underspecified": 42,
+          "correct": 220,
+          "underspecified": 47,
           "proof-gap": 5,
-          "fixed": 30,
-          "false": 1
+          "fixed": 40,
+          "false": 2
         }
       },
       "contDynamics": {
@@ -2952,12 +3058,12 @@
     },
     "totals": {
       "methods": 1260,
-      "proved": 136,
-      "float": 527,
-      "not_yet": 218,
+      "proved": 141,
+      "float": 532,
+      "not_yet": 208,
       "out_of_scope": 379,
-      "needs_float": 136,
-      "cora_issues": 15,
+      "needs_float": 141,
+      "cora_issues": 18,
       "out_of_scope_by_reason": {
         "plotting/display": 86,
         "random/sampling": 45,
@@ -2967,11 +3073,11 @@
         "deprecated": 14
       },
       "findings": {
-        "correct": 296,
-        "underspecified": 70,
+        "correct": 328,
+        "underspecified": 75,
         "proof-gap": 21,
-        "fixed": 42,
-        "false": 1
+        "fixed": 52,
+        "false": 2
       }
     },
     "findings_not_on_a_class": {
@@ -2998,11 +3104,11 @@
       }
     },
     "theorems": {
-      "paper": 654,
-      "float": 1160,
-      "helper": 716,
-      "lemma": 1956,
-      "total": 4486,
+      "paper": 716,
+      "float": 1162,
+      "helper": 747,
+      "lemma": 1963,
+      "total": 4588,
       "examples": 80
     }
   }

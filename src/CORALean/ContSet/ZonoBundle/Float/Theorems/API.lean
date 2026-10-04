@@ -16,6 +16,7 @@ import CORALean.ContSet.ZonoBundle.Float.Theorems.QuadMapOuter
 import CORALean.ContSet.ZonoBundle.Float.Theorems.CartProdExact
 import CORALean.ContSet.ZonoBundle.Float.Theorems.EnlargeOuter
 import CORALean.ContSet.ZonoBundle.Float.Theorems.ConstructEnlarge
+import CORALean.ContSet.ZonoBundle.Float.Theorems.IsequalSound
 
 /-!
 # What a float zonotope bundle guarantees, collected

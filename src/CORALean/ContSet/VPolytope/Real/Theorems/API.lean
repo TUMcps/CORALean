@@ -21,6 +21,23 @@ import CORALean.ContSet.VPolytope.Real.Theorems.OrExact
 import CORALean.ContSet.VPolytope.Real.Theorems.IsFullDimIff
 import CORALean.ContSet.VPolytope.Real.Theorems.ProjectHighDimExact
 import CORALean.ContSet.VPolytope.Real.Theorems.CenterMem
+import CORALean.ContSet.VPolytope.Real.Theorems.CartProdExact
+import CORALean.ContSet.VPolytope.Real.Theorems.ConstructEqDropIff
+import CORALean.ContSet.VPolytope.Real.Theorems.ConstructEqIffCounterexample
+import CORALean.ContSet.VPolytope.Real.Theorems.ConstructEqIffOfInjective
+import CORALean.ContSet.VPolytope.Real.Theorems.InterIneqsNonemptyIff
+import CORALean.ContSet.VPolytope.Real.Theorems.InterNonemptyIff
+import CORALean.ContSet.VPolytope.Real.Theorems.InteriorEqEmptyIffRankLt
+import CORALean.ContSet.VPolytope.Real.Theorems.NotSubsetOfNotIsBounded
+import CORALean.ContSet.VPolytope.Real.Theorems.RestrictAffineHull
+import CORALean.ContSet.VPolytope.Real.Theorems.SegmentsConvHullCounterexample
+import CORALean.ContSet.VPolytope.Real.Theorems.SegmentsEqConvHull
+import CORALean.ContSet.VPolytope.Real.Theorems.SpanQrColsCounterexample
+import CORALean.ContSet.VPolytope.Real.Theorems.SpanQrColsEqOfIndep
+import CORALean.ContSet.VPolytope.Real.Theorems.SubsetIffVertexMem
+import CORALean.ContSet.VPolytope.Real.Theorems.SubsetIneqsIff
+import CORALean.ContSet.VPolytope.Real.Theorems.SuccLeOfInteriorNonempty
+import CORALean.ContSet.VPolytope.Real.Theorems.SupportFuncEq
 
 /-!
 # What `VPolytope` guarantees
