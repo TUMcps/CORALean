@@ -21,7 +21,7 @@ is.
 |---|---|---|---|
 | `Def. 1` | (Zonotopes, Kühn 1998) `Z = {c + Σᵢ λᵢ G₍·,ᵢ₎ \| λᵢ ∈ [-1, 1]} = ⟨c, G⟩`. | n/a — restated from Kühn 1998; tracked as `Def. 1` on [Girard 2005](../2005/girard-hscc-reachability-zonotopes.md) | `restated` |
 | `Def. 2` | (Interval norm, Althoff 2023) `‖Z‖_I = 1ᵀ\|G\|1`. | n/a — restated from Althoff 2023; tracked as `Eq. 11` on [Althoff 2023](../2023/althoff-arch-reachset-conformance.md) | `restated` |
-| `Eq. 1` | (Interval predictor models, Campi et al. 2009, Problem 1) `min μr + γ` s.t. `\|y - cᵀψ̃(x)\| ≤ r‖ψ̃(x)‖₂ + γ` on the data. | n/a — restated from Campi, Calafiore and Garatti 2009 | `restated` |
+| `Eq. 1` | (Interval predictor models, Campi et al. 2009, Problem 1) `min μr + γ` s.t. `\|y - cᵀψ̃(x)\| ≤ r‖ψ̃(x)‖₂ + γ` on the data. | n/a — restated; tracked as `Sec. 3` on [Campi, Calafiore, Garatti 2009](../2009/campi-automatica-interval-predictor-models.md) (Problem 1.a) | `restated` |
 | `Eq. 2` | (Marginal coverage) `E{η(M_cal)} ≥ 1 - ε`. | n/a — the definition of the guarantee | `not-a-claim` |
 | `Eq. 3` | (Split conformal prediction) `Y_CP(x) = {y \| s(x, y) ≤ q_ε}`, `q_ε` the `1 - n_out/n_m` empirical quantile of the scores, `n_out = n_m - ⌈(n_m + 1)(1 - ε)⌉` (4); scores (5), (6). | n/a — restated from Angelopoulos and Bates 2023 and the works cited with (5), (6) | `restated` |
 | `Eq. 7` | (Convex scenario program) `argmin J(θ)` s.t. `g(δ, θ) ≤ 0` for the samples kept, assumed non-degenerate with a unique optimum. | n/a — a problem statement | `not-a-claim` |

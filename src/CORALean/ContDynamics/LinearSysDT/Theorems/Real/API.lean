@@ -48,6 +48,13 @@ import CORALean.ContDynamics.LinearSysDT.Theorems.Real.PeakDisturbanceLe
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.LpvLmiOfVertices
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.LpvLmiOfVerticesCounterexample
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObserveDescriptorLPVOuter
+import CORALean.ContDynamics.LinearSysDT.Theorems.Real.FaultErrorEq
+import CORALean.ContDynamics.LinearSysDT.Theorems.Real.FaultObserveOuter
+import CORALean.ContDynamics.LinearSysDT.Theorems.Real.FaultObserveCounterexample
+import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ZeroMemFaultResidual
+import CORALean.ContDynamics.LinearSysDT.Theorems.Real.QuadFormLeOfFaultRadiusLmi
+import CORALean.ContDynamics.LinearSysDT.Theorems.Real.HMinusOfLmi
+import CORALean.ContDynamics.LinearSysDT.Theorems.Real.FaultRadiusLmiCoraCounterexample
 
 /-!
 # What holds of `LinearSysDT` only at `𝕋 := ℝ`, collected

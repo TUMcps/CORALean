@@ -128,6 +128,20 @@ import CORALean.Global.MulVecPosNegBounds
 import CORALean.Global.NonnegOfNonnegRecurrence
 import CORALean.Global.DoubleSumPosDef
 import CORALean.Global.DoubleSumPosDefCounterexample
+import CORALean.Global.GeneratorPowerRewrite
+import CORALean.Global.InfiniteBusField
+import CORALean.Global.InfiniteBusEquilibrium
+import CORALean.Global.RobustInvariant
+import CORALean.Global.RegionOfAttraction
+import CORALean.Global.MemOfReachSubset
+import CORALean.Global.SubsetRegionOfAttraction
+import CORALean.Global.RegionOfAttractionCounterexample
+import CORALean.Global.IpmBall
+import CORALean.Global.IpmEllipsoid
+import CORALean.Global.IpmBallEq
+import CORALean.Global.IpmEllipsoidEq
+import CORALean.Global.IpmBallConsistentIff
+import CORALean.Global.IpmBallExample
 
 /-!
 # Global definitions, collected
@@ -146,9 +160,10 @@ turns an outer approximation into an inner one, Carathéodory's theorem over a
 fixed index, the minimax inequality a parametrized infimum's continuity gives
 over two compact sets, when a set-based evaluation shrinks superlinearly, when a
 step error converges to zero, a fixed horizon's error budget, the classical
-convergence order a point-valued ODE solver either has or does not, and the
-linear programming every set representation ends up asking for, and the dynamic mode
-decomposition `identify` is built on (`Dmd…`).
+convergence order a point-valued ODE solver either has or does not, the linear
+programming every set representation ends up asking for, the dynamic mode decomposition
+`identify` is built on (`Dmd…`), power-system identities, regions of attraction, and
+interval predictor models (`Ipm…`).
 
 `Float/` is deliberately not collected here — it holds the floating-point
 scalar, and importing it would put that in reach of every `Real` file.
