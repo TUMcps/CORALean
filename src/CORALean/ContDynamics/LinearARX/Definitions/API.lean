@@ -1,4 +1,5 @@
 import CORALean.ContDynamics.LinearARX.Definitions.GO
+import CORALean.ContDynamics.LinearARX.Definitions.GOFloat
 import CORALean.ContDynamics.LinearARX.Definitions.ReachOut
 import CORALean.ContDynamics.LinearARX.Definitions.ReachWindow
 

@@ -1,3 +1,4 @@
+import CORALean.ContDynamics.NonlinearSysDT.Definitions.FloatModel
 import CORALean.ContDynamics.NonlinearSysDT.Definitions.LinStep
 import CORALean.ContDynamics.NonlinearSysDT.Definitions.ReachOptions
 import CORALean.ContDynamics.NonlinearSysDT.Definitions.ReachUnionExact

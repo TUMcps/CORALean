@@ -1,6 +1,5 @@
-import CORALean.Global.Tensor
+import CORALean.Global.ExactScalar
 import Mathlib.Data.Matrix.Mul
-import Mathlib.Data.Real.Basic
 
 /-!
 # `Location.calcBasisBox`
@@ -22,13 +21,15 @@ basis per entry of `options.enclose`, of which this is the `'box'` entry.
 
 namespace CORALean
 
-variable {n : ℕ}
+variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {n : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `eye(n)`, the `'box'` basis of `n` dimensions. -/
-def Location.calcBasisBox (n : ℕ) : Mat ℝ n n := fun i j => if i = j then 1 else 0
+/-- `eye(n)`, the `'box'` basis of `n` dimensions. Generic over the scalar: it places `0` and `1`
+only, which every float format holds exactly. -/
+def Location.calcBasisBox (𝕋 : Type) [Scalar 𝕋] [ExactScalar 𝕋] (n : ℕ) : Mat 𝕋 n n :=
+  fun i j => if i = j then 1 else 0
 
 end CORALean
 

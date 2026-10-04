@@ -11,23 +11,23 @@
 <rect x="150" y="28" width="520.0" height="14" fill="none" stroke="#000" stroke-width="0.8"/>
 <text x="675.0" y="39" font-size="9" fill="#888">+240</text>
 <text x="142" y="59" text-anchor="end">Cont. dynamics</text>
-<rect x="150.0" y="48" width="28.8" height="14" fill="rgb(69,150,255)"/>
-<text x="164.4" y="59" text-anchor="middle" font-size="9" fill="#000">37</text>
-<rect x="178.8" y="48" width="34.3" height="14" fill="rgb(176,210,255)"/>
-<text x="195.9" y="59" text-anchor="middle" font-size="9" fill="#000">44</text>
+<rect x="150.0" y="48" width="43.6" height="14" fill="rgb(69,150,255)"/>
+<text x="171.8" y="59" text-anchor="middle" font-size="9" fill="#000">56</text>
+<rect x="193.6" y="48" width="19.5" height="14" fill="rgb(176,210,255)"/>
 <rect x="213.1" y="48" width="14.0" height="14" fill="rgb(255,255,255)"/>
 <rect x="150" y="48" width="77.1" height="14" fill="none" stroke="#000" stroke-width="0.8"/>
 <text x="232.1" y="59" font-size="9" fill="#888">+60</text>
 <text x="142" y="79" text-anchor="end">Hybrid systems</text>
-<rect x="150.0" y="68" width="18.7" height="14" fill="rgb(69,150,255)"/>
-<rect x="168.7" y="68" width="9.3" height="14" fill="rgb(176,210,255)"/>
+<rect x="150.0" y="68" width="26.5" height="14" fill="rgb(69,150,255)"/>
+<text x="163.2" y="79" text-anchor="middle" font-size="9" fill="#000">34</text>
+<rect x="176.5" y="68" width="1.6" height="14" fill="rgb(176,210,255)"/>
 <rect x="178.0" y="68" width="7.0" height="14" fill="rgb(255,255,255)"/>
 <rect x="150" y="68" width="35.0" height="14" fill="none" stroke="#000" stroke-width="0.8"/>
 <text x="190.0" y="79" font-size="9" fill="#888">+44</text>
 <text x="142" y="99" text-anchor="end">Neural networks</text>
-<rect x="150.0" y="88" width="28.8" height="14" fill="rgb(69,150,255)"/>
-<text x="164.4" y="99" text-anchor="middle" font-size="9" fill="#000">37</text>
-<rect x="178.8" y="88" width="14.8" height="14" fill="rgb(176,210,255)"/>
+<rect x="150.0" y="88" width="32.7" height="14" fill="rgb(69,150,255)"/>
+<text x="166.3" y="99" text-anchor="middle" font-size="9" fill="#000">42</text>
+<rect x="182.7" y="88" width="10.9" height="14" fill="rgb(176,210,255)"/>
 <rect x="193.6" y="88" width="6.2" height="14" fill="rgb(255,255,255)"/>
 <rect x="150" y="88" width="49.8" height="14" fill="none" stroke="#000" stroke-width="0.8"/>
 <text x="204.8" y="99" font-size="9" fill="#888">+40</text>
@@ -66,14 +66,14 @@
 <text x="548" y="220">not yet</text>
 <text x="150" y="240" font-weight="bold">(c) Lean theorems</text>
 <text x="142" y="259" text-anchor="end">Lean theorems</text>
-<rect x="150.0" y="248" width="98.5" height="14" fill="rgb(0,114,189)"/>
-<text x="199.2" y="259" text-anchor="middle" font-size="9" fill="#fff">1047</text>
-<rect x="248.5" y="248" width="208.3" height="14" fill="rgb(42,92,173)"/>
-<text x="352.6" y="259" text-anchor="middle" font-size="9" fill="#000">2214</text>
-<rect x="456.8" y="248" width="122.3" height="14" fill="rgb(84,69,158)"/>
-<text x="517.9" y="259" text-anchor="middle" font-size="9" fill="#000">1300</text>
-<rect x="579.0" y="248" width="91.0" height="14" fill="rgb(126,47,142)"/>
-<text x="624.5" y="259" text-anchor="middle" font-size="9" fill="#000">967</text>
+<rect x="150.0" y="248" width="97.7" height="14" fill="rgb(0,114,189)"/>
+<text x="198.8" y="259" text-anchor="middle" font-size="9" fill="#fff">1047</text>
+<rect x="247.7" y="248" width="207.0" height="14" fill="rgb(42,92,173)"/>
+<text x="351.2" y="259" text-anchor="middle" font-size="9" fill="#000">2218</text>
+<rect x="454.6" y="248" width="125.1" height="14" fill="rgb(84,69,158)"/>
+<text x="517.2" y="259" text-anchor="middle" font-size="9" fill="#000">1341</text>
+<rect x="579.8" y="248" width="90.2" height="14" fill="rgb(126,47,142)"/>
+<text x="624.9" y="259" text-anchor="middle" font-size="9" fill="#000">967</text>
 <rect x="150" y="248" width="520.0" height="14" fill="none" stroke="#000" stroke-width="0.8"/>
 <rect x="150" y="274" width="12" height="12" fill="rgb(0,114,189)" stroke="#000" stroke-width="0.8"/>
 <text x="168" y="284">paper theorems</text>

@@ -1,7 +1,10 @@
 import CORALean.ContDynamics.NonlinearARX.Operations.Feed
+import CORALean.ContDynamics.NonlinearARX.Operations.FeedFloat
 import CORALean.ContDynamics.NonlinearARX.Operations.OutputSel
 import CORALean.ContDynamics.NonlinearARX.Operations.Simulate
+import CORALean.ContDynamics.NonlinearARX.Operations.SimulateBoxFloat
 import CORALean.ContDynamics.NonlinearARX.Operations.ToNonlinearSysDT
+import CORALean.ContDynamics.NonlinearARX.Operations.ToNonlinearSysDTFloat
 
 /-!
 # Nonlinear ARX models: the conversion

@@ -11,6 +11,7 @@ import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachOuterOn
 import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachUnionOuter
 import CORALean.ContDynamics.NonlinearSysDT.Theorems.SimulateMemReach
 import CORALean.ContDynamics.NonlinearSysDT.Theorems.SimulateTrajectory
+import CORALean.ContDynamics.NonlinearSysDT.Theorems.SimulateMemSimulateBoxFloat
 import CORALean.ContDynamics.NonlinearSysDT.Theorems.ComputeGOState
 import CORALean.ContDynamics.NonlinearSysDT.Theorems.ComputeGOOutput
 import CORALean.ContDynamics.NonlinearSysDT.Theorems.IdentifyCandidateFit

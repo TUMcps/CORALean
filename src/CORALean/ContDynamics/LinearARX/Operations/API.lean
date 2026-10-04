@@ -1,4 +1,6 @@
 import CORALean.ContDynamics.LinearARX.Operations.ComputeGO
+import CORALean.ContDynamics.LinearARX.Operations.ComputeGOFloat
+import CORALean.ContDynamics.LinearARX.Operations.SumRangeFloat
 import CORALean.ContDynamics.LinearARX.Operations.Aext
 import CORALean.ContDynamics.LinearARX.Operations.Alg1
 import CORALean.ContDynamics.LinearARX.Operations.Alg1State

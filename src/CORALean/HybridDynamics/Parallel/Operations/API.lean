@@ -5,6 +5,8 @@ import CORALean.HybridDynamics.Parallel.Operations.MergeInvariants
 import CORALean.HybridDynamics.Parallel.Operations.MergeInputSets
 import CORALean.HybridDynamics.Parallel.Operations.LocationProduct
 import CORALean.HybridDynamics.Parallel.Operations.Product
+import CORALean.HybridDynamics.Parallel.Operations.ReachFloat
+import CORALean.HybridDynamics.Parallel.Operations.ReachFloat
 import CORALean.HybridDynamics.Parallel.Operations.Unstack
 import CORALean.HybridDynamics.Parallel.Operations.BlockProj
 import CORALean.HybridDynamics.Parallel.Operations.IntervalStackProd

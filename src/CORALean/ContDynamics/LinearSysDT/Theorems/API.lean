@@ -3,6 +3,7 @@ import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachForallInner
 import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachSetExistsPreimage
 import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachSetExistsTrajectory
 import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachSetForallTrajectory
+import CORALean.ContDynamics.LinearSysDT.Theorems.ComputeGOFloatOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.ComputeGOOutput
 import CORALean.ContDynamics.LinearSysDT.Theorems.ComputeGOState
 import CORALean.ContDynamics.LinearSysDT.Theorems.HeldToTrajectory
@@ -43,6 +44,12 @@ import CORALean.ContDynamics.LinearSysDT.Theorems.IdentifyLeCandidate
 import CORALean.ContDynamics.LinearSysDT.Theorems.DiscretizeToLinearSys
 import CORALean.ContDynamics.LinearSysDT.Theorems.ExpIntegralToLinearSys
 import CORALean.ContDynamics.LinearSysDT.Theorems.IsConformDynOfModel
+import CORALean.ContDynamics.LinearSysDT.Theorems.ErrMatFloatMem
+import CORALean.ContDynamics.LinearSysDT.Theorems.IntersectStripSeqFloatOuter
+import CORALean.ContDynamics.LinearSysDT.Theorems.ObserveStepFloatOuter
+import CORALean.ContDynamics.LinearSysDT.Theorems.ObserveStripBasedFloatOuter
+import CORALean.ContDynamics.LinearSysDT.Theorems.ObservePropagationFloatOuter
+import CORALean.ContDynamics.LinearSysDT.Theorems.ObserveIntervalFloatOuter
 
 /-!
 # What `LinearSysDT` guarantees

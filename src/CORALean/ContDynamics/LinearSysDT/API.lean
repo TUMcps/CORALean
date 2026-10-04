@@ -7,6 +7,7 @@ import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachSetExists
 import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachSetForall
 import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachSetRobust
 import CORALean.ContDynamics.LinearSysDT.Definitions.GO
+import CORALean.ContDynamics.LinearSysDT.Definitions.GOFloat
 import CORALean.ContDynamics.LinearSysDT.Definitions.ReachInner
 import CORALean.ContDynamics.LinearSysDT.Definitions.ReachInnerFloat
 import CORALean.ContDynamics.LinearSysDT.Definitions.ReachInnerReduced
@@ -23,9 +24,11 @@ import CORALean.ContDynamics.LinearSysDT.Cost.API
 import CORALean.ContDynamics.LinearSysDT.Definitions.ConsistentSet
 import CORALean.ContDynamics.LinearSysDT.Definitions.ExactUncertainSet
 import CORALean.ContDynamics.LinearSysDT.Definitions.ObserveStripOptions
+import CORALean.ContDynamics.LinearSysDT.Definitions.ObserveStripOptionsFloat
 import CORALean.ContDynamics.LinearSysDT.Definitions.DescriptorPredictSet
 import CORALean.ContDynamics.LinearSysDT.Definitions.MeasurementSet
 import CORALean.ContDynamics.LinearSysDT.Definitions.ObserveIntervalState
+import CORALean.ContDynamics.LinearSysDT.Definitions.ObserveIntervalStateFloat
 import CORALean.ContDynamics.LinearSysDT.Definitions.IntervalEstimateState
 import CORALean.ContDynamics.LinearSysDT.Definitions.ReachErrorSet
 import CORALean.ContDynamics.LinearSysDT.Definitions.HinfLmi

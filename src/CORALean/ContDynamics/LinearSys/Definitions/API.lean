@@ -26,6 +26,9 @@ import CORALean.ContDynamics.LinearSys.Definitions.TunedState
 import CORALean.ContDynamics.LinearSys.Definitions.VerifyIter
 import CORALean.ContDynamics.LinearSys.Definitions.VerifySpec
 import CORALean.ContDynamics.LinearSys.Definitions.VerifySound
+import CORALean.ContDynamics.LinearSys.Definitions.VerifyIterFloat
+import CORALean.ContDynamics.LinearSys.Definitions.VerifySpecFloat
+import CORALean.ContDynamics.LinearSys.Definitions.VerifySoundFloat
 import CORALean.ContDynamics.LinearSys.Definitions.ReachExact
 import CORALean.ContDynamics.LinearSys.Definitions.ReachOptions
 import CORALean.ContDynamics.LinearSys.Definitions.ReachStepOptions

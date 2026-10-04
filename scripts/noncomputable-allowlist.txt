@@ -137,7 +137,7 @@ LinearSys.autoTuneDeltaT  pending #1: a continuous-time algorithm at a real matr
 LinearSys.autoTuneOrder  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.autoTuneSearch  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.bundleReach  pending #1: a continuous-time algorithm at a real matrix exponential, over `Real.ZonoBundle`; needs a float zonotope bundle and a float `e^{Ar}`
-LinearSys.canonicalForm  real-layer: the canonical form at real vectors and `Recentre`; the float layer has no scalar arithmetic on a point to run `B uVec + c` in, as `outputSet` is passed its shift already applied
+LinearSys.canonicalForm  real-layer: the canonical form at real vectors and `Recentre`; runs in floats as `LinearSys.canonicalFormFloat`, the offsets as boxes (`canonicalFormFloat_state_outer`, `canonicalFormFloat_output_outer`)
 LinearSys.constInputSolution  real-layer: a constant input's contribution via `∫e^{Aσ}dσ` and `F̃`; the float layer encloses it as `inputSolutionFloat` at `[0, ũ]` (`reachFloatInput`)
 LinearSys.deltaReach  real-layer: the step's state differences at the real exponential; runs in floats as `LinearSys.deltaReachFloat` (`deltaReachFloat_outer`)
 LinearSys.discretize  real-layer: the exact sampled system `e^{AΔt}`, transcendental; its float refinement is `LinearSys.discretizeEnclosureFloat`
@@ -207,9 +207,9 @@ LinearSys.tunedInit  pending #1: part of the adaptive linear scheme (`manualRun`
 LinearSys.tunedReach  spec: the `Set` a run's windows denote, a union for theorems; what runs is the `…Run` it unions
 LinearSys.tunedRun  pending #1: part of the adaptive linear scheme (`manualRun`, `autoRun`, `tunedRun`), stated over `Real.Zonotope` with ℝ-valued error terms; needs upward-rounded float error bounds and a float state
 LinearSys.tunedStep  pending #1: part of the adaptive linear scheme (`manualRun`, `autoRun`, `tunedRun`), stated over `Real.Zonotope` with ℝ-valued error terms; needs upward-rounded float error bounds and a float state
-LinearSys.verify  pending #1: the verification loop over `Real.Zonotope`/`Real.ConZonotope` with ℝ tolerances; needs a float counterpart over the float representations
-LinearSys.verifyRun  pending #1: the verification loop over `Real.Zonotope`/`Real.ConZonotope` with ℝ tolerances; needs a float counterpart over the float representations
-LinearSys.verifyStep  pending #1: the verification loop over `Real.Zonotope`/`Real.ConZonotope` with ℝ tolerances; needs a float counterpart over the float representations
+LinearSys.verify  real-layer: the verification loop over `Real.Zonotope`/`Real.ConZonotope` with ℝ tolerances; runs in floats as `LinearSys.verifyFloat` (`verifyFloat_safe`, `verifyFloat_violated`)
+LinearSys.verifyRun  real-layer: the verification loop over `Real.Zonotope`/`Real.ConZonotope` with ℝ tolerances; runs in floats as `LinearSys.verifyRunFloat`
+LinearSys.verifyStep  real-layer: one iteration of the verification loop over `Real.Zonotope`/`Real.ConZonotope` with ℝ tolerances; runs in floats as `LinearSys.verifyStepFloat`
 LinearSys.WithInput.reach  real-layer: the reach with inputs; runs in floats as `LinearSys.reachWrappingFreeFloatInput` (or `reachFloatInput`)
 LinearSys.WithInput.reachInstance  real-layer: the `Reach` instance over `WithInput.reach`; runs in floats as `LinearSys.reachWrappingFreeFloatInput`
 LinearSys.WithInput.reachStepk  real-layer: one window with inputs; in floats, an entry of `LinearSys.reachWrappingFreeFloatInput`'s list
@@ -221,8 +221,8 @@ LinearSysDT.conformReach  real-layer: the conformance check's nominal run and de
 LinearSysDT.identify  real-layer: the dynamic mode decomposition at a real SVD factorization (an argument, not computed); no float SVD exists to run it on
 LinearSysDT.identifyCandidate  real-layer: the dynamic mode decomposition at a real SVD factorization (an argument, not computed); no float SVD exists to run it on
 LinearSysDT.nominalState  real-layer: the conformance check's nominal run and deviation sets at real matrices; no float counterpart yet
-LinearSysDT.observeStripBased  pending #1: the strip-based observer over `Real.Zonotope`, noncomputable because its `reduce` is; needs a float counterpart of `intersectStrip`/`intersectStripSeq`
-LinearSysDT.observePropagation  pending #1: the set-propagation observer over `Real.Zonotope`, noncomputable because its `reduce` is; needs a float counterpart of `Zonotope.reduce`
+LinearSysDT.observeStripBased  real-layer: the strip-based observer over `Real.Zonotope`, noncomputable because its `reduce` is; runs in floats as `LinearSysDT.observeStripBasedFloat` (`observeStripBasedFloat_outer`)
+LinearSysDT.observePropagation  real-layer: the set-propagation observer over `Real.Zonotope`, noncomputable because its `reduce` is; runs in floats as `LinearSysDT.observePropagationFloat` (`observePropagationFloat_outer`)
 LinearSysDT.reachCost  cost: an asserted running cost under `Cost/`, never meant to compute
 LinearSysDT.reachError  spec: what a run owes/what an inner approximation is, a real-valued guarantee object; `minkowskiDiff` computes nothing
 LinearSysDT.reachErrorFloat  spec: what a float run owes, summed from the four Box operations' float error terms into a real accumulator; the terms are now computed in 𝕋, this recursion over them is not
@@ -290,8 +290,8 @@ NeurNetContrSys.reachOrder  pending #1: the `Reach` instance's union over the re
 NeurNetContrSys.reachUnion  pending #1: the `Reach` instance's union over the real `reach` and its order by `⌈‖ΔtA‖⌉`; needs a float union over `NeurNetContrSys.reachFloat`, its order from `LinearSys.reachOrderFloat` (not yet written)
 NeurNetContrSysDT.reachCost  cost: an asserted running cost under `Cost/`, never meant to compute
 NeurNetContrSysDT.simulate  spec: an idealised real-valued closed-loop trajectory, used only in a correctness statement
-NonlinParamSys.WithSteps.reachUnion  pending #1: the parameter-as-state reduction to `NonlinearSys` at real certificates; a float run needs a `FloatModel` of the augmented field, after which `NonlinearSys.FloatModel.reachFloat` runs it, but no wrapper exists yet
-NonlinParamSys.reachInstance  pending #1: `Reach` for the parameter-as-state reduction at real certificates; see `NonlinParamSys.WithSteps.reachUnion`
+NonlinParamSys.WithSteps.reachUnion  real-layer: the parameter-as-state reduction to `NonlinearSys` at real certificates; runs in floats as `NonlinParamSys.reachFloat` (`reachFloat_outer`)
+NonlinParamSys.reachInstance  real-layer: `Reach` for the parameter-as-state reduction at real certificates; see `NonlinParamSys.WithSteps.reachUnion`
 NonlinearSys.abstrErrPolyCandidates  real-layer: the `'poly'` error loop's candidates over `Real.PolyZonotope`; the float step checks its region first, so one pass of `NonlinearSys.FloatHessModel.abstrErrPolyFloat` (`Encloses.abstrErrPolyFloat_outer`) replaces the loop
 NonlinearSys.abstrErrPolySearch  real-layer: the search over `abstrErrPolyCandidates`; the float step needs none, see `NonlinearSys.FloatHessModel.linReachFloat`
 NonlinearSys.abstrReach  spec: the `Set` a run's windows denote, a union for theorems; what runs is the `…Run` it unions
@@ -366,8 +366,8 @@ verifyConvex  spec: a real-valued certificate (support witness/bound), quantifyi
 verifyConvexStep  spec: a real-valued certificate (support witness/bound), quantifying over arbitrary linear functionals
 verifyHalfspace  spec: a real-valued certificate (support witness/bound), quantifying over arbitrary linear functionals
 worstIndex  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
-NonlinDASys.WithSteps.reachUnion  pending #1: `NonlinearSys.WithSteps.reachUnion` on the reduced system at real certificates; same reason as `NonlinParamSys.WithSteps.reachUnion`
-NonlinDASys.reachInstance  pending #1: `Reach` for the reduced run at real certificates; see `NonlinDASys.WithSteps.reachUnion`
+NonlinDASys.WithSteps.reachUnion  real-layer: `NonlinearSys.WithSteps.reachUnion` on the reduced system at real certificates; runs in floats as `NonlinDASys.reachFloat` (`reachFloat_outer`)
+NonlinDASys.reachInstance  real-layer: `Reach` for the reduced run at real certificates; see `NonlinDASys.WithSteps.reachUnion`
 Transition.toNonlinearReset  real-layer: reads `Transition.reset`, which is noncomputable, the affine reset at the real matrix; scalar-free like `NonlinearReset`
 ContSet.projectOnHyperplane  real-layer: an ℝ-only part of ContSet (it multiplies the entries of the supplied unit normal, which a float run would round), with no scalar-generic form yet
 Layer.lipConstrScale  real-layer: an ℝ-only part of NN (the weight norm divides and takes absolute values of the stored weights, which a float layer would round), with no scalar-generic form yet

@@ -47,7 +47,11 @@ import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
 import CORALean.ContDynamics.LinearSys.Theorems.CanonicalFormCNeOne
 import CORALean.ContDynamics.LinearSys.Theorems.CanonicalFormOuterOutput
 import CORALean.ContDynamics.LinearSys.Theorems.CanonicalFormOuterState
+import CORALean.ContDynamics.LinearSys.Theorems.CanonicalFormFloatOutputOuter
+import CORALean.ContDynamics.LinearSys.Theorems.CanonicalFormFloatStateOuter
 import CORALean.ContDynamics.LinearSys.Theorems.IsCanonicalFormCanonical
+import CORALean.ContDynamics.LinearSys.Theorems.EntryIsFloatSound
+import CORALean.ContDynamics.LinearSys.Theorems.IsCanonicalFormFloatSound
 import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemConstInputSolution
 import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemErrorSolutionAdaptive
 import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemErrorSolutionAdaptiveStatic
@@ -118,6 +122,7 @@ import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
 import CORALean.ContDynamics.LinearSys.Theorems.NormLeOfMemInputReach
 import CORALean.ContDynamics.LinearSys.Theorems.OneStepTimeIntervalOuter
 import CORALean.ContDynamics.LinearSys.Theorems.OneStepTimePointOuter
+import CORALean.ContDynamics.LinearSys.Theorems.NonlinearSysFloatModelEncloses
 import CORALean.ContDynamics.LinearSys.Theorems.PerturbedIntegralTrajectoryClosedForm
 import CORALean.ContDynamics.LinearSys.Theorems.PerturbedSuperposition
 import CORALean.ContDynamics.LinearSys.Theorems.PostDeltaOuter
@@ -207,6 +212,14 @@ import CORALean.ContDynamics.LinearSys.Theorems.VerifySpecOfVerifyRun
 import CORALean.ContDynamics.LinearSys.Theorems.NotVerifySpecOfVerifyRun
 import CORALean.ContDynamics.LinearSys.Theorems.VerifySafe
 import CORALean.ContDynamics.LinearSys.Theorems.VerifyViolated
+import CORALean.ContDynamics.LinearSys.Theorems.VerifyFloatSafe
+import CORALean.ContDynamics.LinearSys.Theorems.VerifyFloatViolated
+import CORALean.ContDynamics.LinearSys.Theorems.VerifySpecFloatOfVerifyStepFloat
+import CORALean.ContDynamics.LinearSys.Theorems.NotVerifySpecFloatOfVerifyStepFloat
+import CORALean.ContDynamics.LinearSys.Theorems.VerifySpecFloatOfVerifyRunFloat
+import CORALean.ContDynamics.LinearSys.Theorems.NotVerifySpecFloatOfVerifyRunFloat
+import CORALean.ContDynamics.LinearSys.Theorems.MaximumFoldToReal
+import CORALean.ContDynamics.LinearSys.Theorems.MinimumFoldToReal
 import CORALean.ContDynamics.LinearSys.Theorems.WeightedIntegral
 import CORALean.ContDynamics.LinearSys.Theorems.WithInputReachOuter
 import CORALean.ContDynamics.LinearSys.Theorems.WithInputSplitReachOuter
