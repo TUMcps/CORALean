@@ -9,6 +9,14 @@ The hyperbolic cosine is continuous and even, decreasing on `(-∞, 0]` and incr
 On one coordinate `[a, b]` the image is the interval from `coshLo` to `coshHi`, by the intermediate
 value theorem on the monotone piece that carries the target value. A crossed coordinate
 (`b < a`) would give a nonempty box for an empty one, so the statement is for a nonempty box.
+
+[1, Eq. 7], all three cases.
+
+## References
+
+* [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In
+      Proc. of the 3rd International Workshop on Applied Verification for Continuous and Hybrid
+      Systems (ARCH16), EPiC Series in Computing, vol. 43, pp. 91-105, 2017.
 -/
 
 -- Authors:       Tobias Ladner

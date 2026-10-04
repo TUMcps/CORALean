@@ -44,6 +44,23 @@ import CORALean.ContSet.ZonoBundle.Real.Theorems.ConstructEnlarge
 import CORALean.ContSet.ZonoBundle.Real.Theorems.IsequalConstruct
 import CORALean.ContSet.ZonoBundle.Real.Theorems.IsequalCoraCounterexample
 import CORALean.ContSet.ZonoBundle.Real.Theorems.IsFullDimAllMembers
+import CORALean.ContSet.ZonoBundle.Real.Theorems.IsCentreMem
+import CORALean.ContSet.ZonoBundle.Real.Theorems.ContainsAllIff
+import CORALean.ContSet.ZonoBundle.Real.Theorems.IsIntervalCoraCounterexample
+import CORALean.ContSet.ZonoBundle.Real.Theorems.IsBoxOfForall
+import CORALean.ContSet.ZonoBundle.Real.Theorems.EncloseTightOuter
+import CORALean.ContSet.ZonoBundle.Real.Theorems.ConvHullExact
+import CORALean.ContSet.ZonoBundle.Real.Theorems.RepresentsaEmptySetIff
+import CORALean.ContSet.ZonoBundle.Real.Theorems.RepresentsaOriginIff
+import CORALean.ContSet.ZonoBundle.Real.Theorems.ExistsConZonotope
+import CORALean.ContSet.ZonoBundle.Real.Theorems.ExistsHPolytope
+import CORALean.ContSet.ZonoBundle.Real.Theorems.RepresentsaConvexSet
+import CORALean.ContSet.ZonoBundle.Real.Theorems.ConstructNeUniv
+import CORALean.ContSet.ZonoBundle.Real.Theorems.VolumeEqHPolytope
+import CORALean.ContSet.ZonoBundle.Real.Theorems.VolumeLtTop
+import CORALean.ContSet.ZonoBundle.Real.Theorems.VolumeLeMember
+import CORALean.ContSet.ZonoBundle.Real.Theorems.EncloseTightPointsMem
+import CORALean.ContSet.ZonoBundle.Real.Theorems.ExistsHPolytopeConvHull
 
 /-!
 # What a zonotope bundle guarantees, collected

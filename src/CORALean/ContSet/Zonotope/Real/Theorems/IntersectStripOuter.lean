@@ -12,10 +12,16 @@ point `x = c + G β` with `|C x - y| ≤ φ` is `(I - Λ C) x + Λ (C x)`, and `
 `γ ∈ [-1, 1]^p`, so the coefficients `β` on the old generators and `γ` on the strip ones reach it.
 Outer only: the result in general holds more than the intersection, so no equality is claimed.
 
+[2, Eq. 3] and [2, Eq. 4] in one: the strips met all at once with the predicted set,
+over-approximated.
+
 ## References
 
 * [1] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state
       estimation for uncertain systems". Automatica, 49(11):3418-3424, 2013.
+* [2] M. Althoff. "Guaranteed State Estimation in CORA 2021". In Proc. of the 8th
+      International Workshop on Applied Verification of Continuous and Hybrid Systems (ARCH21),
+      EPiC Series in Computing, vol. 80, pp. 161-175, 2021.
 -/
 
 -- Authors:       Tobias Ladner

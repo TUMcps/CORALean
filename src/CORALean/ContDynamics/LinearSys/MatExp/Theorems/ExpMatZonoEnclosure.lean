@@ -22,6 +22,14 @@ from the matrix zonotope alone, before any particular `A` is fixed, and
 
 The order `η` is unconstrained beyond that — a bigger one is a tighter
 enclosure, never a different guarantee.
+
+[1, Eq. 3]: `e^{A r} ∈ Σ_{i=0}^η (A r)ⁱ/i! ⊕ E(r)` over a matrix zonotope of `A r`.
+
+## References
+
+* [1] M. Althoff and J. M. Dolan. "Reachability Computation of Low-Order Models for the Safety
+      Verification of High-Order Road Vehicle Models". In Proc. of the American Control
+      Conference, pp. 3559-3566, 2012.
 -/
 
 -- Authors:       Tobias Ladner

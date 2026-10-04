@@ -10,6 +10,14 @@ import Mathlib.Topology.Algebra.Monoid
 For a nonempty box. Each bound is attained at a point of `{a, 0, b}` inside
 `[a, b]` (the lower bound `0` of an even power at `x = 0`), and the power is
 continuous, so the intermediate value theorem fills everything between.
+
+[1, Eq. 9], all three cases, for `k ≥ 1`; at `k = 0` the range is `{1}`.
+
+## References
+
+* [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In
+      Proc. of the 3rd International Workshop on Applied Verification for Continuous and Hybrid
+      Systems (ARCH16), EPiC Series in Computing, vol. 43, pp. 91-105, 2017.
 -/
 
 -- Authors:       Tobias Ladner

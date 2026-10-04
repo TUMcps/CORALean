@@ -114,6 +114,8 @@ import CORALean.ContSet.Zonotope.Real.Operations.ObserveDescriptorCurrent
 import CORALean.ContSet.Zonotope.Real.Operations.QuadMapInt
 import CORALean.ContSet.Zonotope.Real.Operations.ScalarIntervalMul
 import CORALean.ContSet.Zonotope.Real.Operations.SumTerms
+import CORALean.ContSet.Zonotope.Real.Operations.OfOneParamPoly
+import CORALean.ContSet.Zonotope.Real.Operations.IsBox
 
 /-!
 # What `Zonotope` computes

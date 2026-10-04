@@ -222,6 +222,7 @@ LinearSysDT.identify  real-layer: the dynamic mode decomposition at a real SVD f
 LinearSysDT.identifyCandidate  real-layer: the dynamic mode decomposition at a real SVD factorization (an argument, not computed); no float SVD exists to run it on
 LinearSysDT.nominalState  real-layer: the conformance check's nominal run and deviation sets at real matrices; no float counterpart yet
 LinearSysDT.observeStripBased  pending #1: the strip-based observer over `Real.Zonotope`, noncomputable because its `reduce` is; needs a float counterpart of `intersectStrip`/`intersectStripSeq`
+LinearSysDT.observePropagation  pending #1: the set-propagation observer over `Real.Zonotope`, noncomputable because its `reduce` is; needs a float counterpart of `Zonotope.reduce`
 LinearSysDT.reachCost  cost: an asserted running cost under `Cost/`, never meant to compute
 LinearSysDT.reachError  spec: what a run owes/what an inner approximation is, a real-valued guarantee object; `minkowskiDiff` computes nothing
 LinearSysDT.reachErrorFloat  spec: what a float run owes, summed from the four Box operations' float error terms into a real accumulator; the terms are now computed in 𝕋, this recursion over them is not
@@ -238,6 +239,8 @@ MatExp.affineDynamicsError  pending #1: part of the adaptive linear scheme (`man
 MatExp.affineTimeIntervalOuter  pending #1: part of the adaptive linear scheme (`manualRun`, `autoRun`, `tunedRun`), stated over `Real.Zonotope` with ℝ-valued error terms; needs upward-rounded float error bounds and a float state
 MatExp.affineTimePointNext  pending #1: part of the adaptive linear scheme (`manualRun`, `autoRun`, `tunedRun`), stated over `Real.Zonotope` with ℝ-valued error terms; needs upward-rounded float error bounds and a float state
 MatExp.constCorrTerm  real-layer: the constant-input correction `F̃`; the float layer needs none, enclosing that contribution as `inputSolutionFloat` at `[0, ũ]` (`reachFloatInput`)
+MatExp.expmOneParam  real-layer: the matrix zonotope `K(r)` of Althoff and Dolan's Thm. 1 at real matrices, divided by factorials; no float counterpart yet
+MatExp.inputOneParam  real-layer: the one-parameter partial input solution's zonotope at real matrices, divided by factorials; no float counterpart yet
 MatExp.constCorrectionMatrix  real-layer: the constant-input correction `F̃`; the float layer needs none, enclosing that contribution as `inputSolutionFloat` at `[0, ũ]` (`reachFloatInput`)
 MatExp.corrCoeff  real-layer: the correction coefficient by `rpow`; the float layer uses its lower bound `Float.MatExp.corrCoeffLow`
 MatExp.corrCritical  real-layer: the stationary point `i^{-1/(i-1)}` by `rpow`; the float layer bounds past it in `Float.MatExp.corrCoeffLow`

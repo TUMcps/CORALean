@@ -25,6 +25,7 @@ import CORALean.ContDynamics.LinearSysDT.Operations.ToLinearSys
 import CORALean.ContDynamics.LinearSysDT.Operations.NominalState
 import CORALean.ContDynamics.LinearSysDT.Operations.ConformReach
 import CORALean.ContDynamics.LinearSysDT.Operations.ConformAdd
+import CORALean.ContDynamics.LinearSysDT.Operations.ObservePropagation
 
 /-!
 # What `LinearSysDT` computes

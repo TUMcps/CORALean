@@ -10,6 +10,14 @@ exactly `mtimesIntervalMat`'s row sum with a second matrix index riding along.
 
 **Breaks the `mtimes*` family on purpose**: every `mtimes` in the tree ends in a
 set of vectors, and this one ends in a set of matrices.
+
+[1, Eq. 16]: `([X][Y])ᵢⱼ = Σₖ [X]ᵢₖ[Y]ₖⱼ`.
+
+## References
+
+* [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In
+      Proc. of the 3rd International Workshop on Applied Verification for Continuous and Hybrid
+      Systems (ARCH16), EPiC Series in Computing, vol. 43, pp. 91-105, 2017.
 -/
 
 -- Authors:       Tobias Ladner

@@ -6,6 +6,14 @@ import CORALean.ContSet.Interval.Real.Operations.Intersection
 Intersecting two boxes, coordinatewise and exactly: a point is in both when
 each of its coordinates clears both lower bounds and stays under both upper
 ones.
+
+[1, Eq. 1]: `[x] ∩ [y] = [max(x̲, y̲), min(x̅, y̅)]`, empty when crossed.
+
+## References
+
+* [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In
+      Proc. of the 3rd International Workshop on Applied Verification for Continuous and Hybrid
+      Systems (ARCH16), EPiC Series in Computing, vol. 43, pp. 91-105, 2017.
 -/
 
 -- Authors:       Tobias Ladner

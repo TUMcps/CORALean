@@ -7,6 +7,14 @@ import Mathlib.Analysis.SpecialFunctions.Log.Basic
 `exp` is a strictly increasing bijection onto `(0, ∞)`, so a point of the new box has a logarithm,
 and that logarithm lies in the old one. Needs no nonemptiness: a crossed box maps to a crossed
 one.
+
+[1, Eq. 4]: `e^[x] = [e^x̲, e^x̅]`.
+
+## References
+
+* [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In
+      Proc. of the 3rd International Workshop on Applied Verification for Continuous and Hybrid
+      Systems (ARCH16), EPiC Series in Computing, vol. 43, pp. 91-105, 2017.
 -/
 
 -- Authors:       Tobias Ladner

@@ -6,6 +6,14 @@ import CORALean.ContSet.Interval.Real.Theorems.PlusExact
 
 Both boxes `IsNonempty`, as `plus_exact` needs: `[1, 0] - [0, 10]` is `∅` as a set but `[-9, 0]` by
 the definition. `minus_outer` is the half that needs no such hypothesis.
+
+[1, Eq. 2]: `[x] - [y] = [x̲ - y̅, x̅ - y̲]`.
+
+## References
+
+* [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In
+      Proc. of the 3rd International Workshop on Applied Verification for Continuous and Hybrid
+      Systems (ARCH16), EPiC Series in Computing, vol. 43, pp. 91-105, 2017.
 -/
 
 -- Authors:       Tobias Ladner

@@ -100,6 +100,10 @@ import CORALean.ContSet.Interval.Real.Operations.Lift
 import CORALean.ContSet.Interval.Real.Operations.Dirac
 import CORALean.ContSet.Interval.Real.Operations.StlInterval
 import CORALean.ContSet.Interval.Real.Operations.EBoxConstruct
+import CORALean.ContSet.Interval.Real.Operations.SinByRegions
+import CORALean.ContSet.Interval.Real.Operations.CosByRegions
+import CORALean.ContSet.Interval.Real.Operations.TanByRegions
+import CORALean.ContSet.Interval.Real.Operations.CotByRegions
 
 /-!
 # What `Interval` computes

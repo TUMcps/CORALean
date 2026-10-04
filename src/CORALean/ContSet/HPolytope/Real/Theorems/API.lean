@@ -93,6 +93,10 @@ import CORALean.ContSet.HPolytope.Real.Theorems.MoveToEqConstruct
 import CORALean.ContSet.HPolytope.Real.Theorems.AtoAeStateSpec
 import CORALean.ContSet.HPolytope.Real.Theorems.CompactAtoAeExact
 import CORALean.ContSet.HPolytope.Real.Theorems.RepresentsaFullspaceIff
+import CORALean.ContSet.HPolytope.Real.Theorems.IsLPCentreMem
+import CORALean.ContSet.HPolytope.Real.Theorems.VolumeInterval
+import CORALean.ContSet.HPolytope.Real.Theorems.MemIffRows
+import CORALean.ContSet.HPolytope.Real.Theorems.VolumeLtTop
 
 /-!
 # What `HPolytope` guarantees

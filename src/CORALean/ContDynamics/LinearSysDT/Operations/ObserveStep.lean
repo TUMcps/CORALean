@@ -15,10 +15,15 @@ import CORALean.ContSet.Zonotope.Real.Operations.IntersectStripSeq
 `intersectStrip`. CORA's prediction also adds the known input, `u` here in state coordinates
 (`B u` folded, as `LinearSysDT` folds it); the paper's system has none, `u = 0`.
 
+[2, Eq. 4]: the strip-based observer's prediction and correction, steps 1 and 3 of its Sec. 2.1.
+
 ## References
 
 * [1] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state
       estimation for uncertain systems". Automatica, 49(11):3418-3424, 2013.
+* [2] M. Althoff. "Guaranteed State Estimation in CORA 2021". In Proc. of the 8th
+      International Workshop on Applied Verification of Continuous and Hybrid Systems (ARCH21),
+      EPiC Series in Computing, vol. 80, pp. 161-175, 2021.
 -/
 
 -- Authors:       Tobias Ladner

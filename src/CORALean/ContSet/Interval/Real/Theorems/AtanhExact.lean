@@ -9,6 +9,14 @@ The inverse hyperbolic tangent is strictly increasing and continuous on `(-1, 1)
 `±Inf` at the endpoints; here the domain is a hypothesis, both corners in `(-1, 1)`. Mathlib has
 no continuity lemma for `artanh`, so `aux_continuousOn_artanh` proves it from
 `artanh x = ½ log ((1 + x) / (1 - x))`.
+
+[1, Eq. 8], its first case.
+
+## References
+
+* [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In
+      Proc. of the 3rd International Workshop on Applied Verification for Continuous and Hybrid
+      Systems (ARCH16), EPiC Series in Computing, vol. 43, pp. 91-105, 2017.
 -/
 
 -- Authors:       Tobias Ladner

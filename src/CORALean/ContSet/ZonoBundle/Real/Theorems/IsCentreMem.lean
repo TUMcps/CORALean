@@ -1,0 +1,37 @@
+import CORALean.ContSet.ZonoBundle.Real.Operations.IsCentre
+import CORALean.ContSet.HPolytope.Real.Theorems.IsLPCentreMem
+
+/-!
+# The centre of a zonotope bundle lies in it
+
+The centre is `c + G β` for a coefficient vector `β` feasible in the domain of `conZonotope(zB)`,
+which denotes the bundle exactly (`conZonotopeAll_exact`).
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem ZonoBundle.IsCentre.mem {zB : ZonoBundle (Vec ℝ n)} {hk : 0 < zB.k} {x : Vec ℝ n}
+    (hx : zB.IsCentre hk x) : x ∈ zB.construct := by
+  obtain ⟨β, hβ, rfl⟩ := hx
+  rw [← ZonoBundle.conZonotopeAll_exact zB hk]
+  obtain ⟨hb, hP⟩ := ConZonotope.mem_domain_iff.mp hβ.mem
+  exact ⟨β, hb, hP, rfl⟩
+
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -7,6 +7,14 @@ import CORALean.ContSet.Interval.Real.Theorems.MonotoneImageExact
 The inverse hyperbolic cosine is strictly increasing and continuous for `1 ≤ x`, so
 `Interval.monotoneImage_exact` applies. CORA returns a complex or NaN result below `1`; here the
 domain is a hypothesis, both corners at least `1`.
+
+[1, Eq. 8], its first case.
+
+## References
+
+* [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In
+      Proc. of the 3rd International Workshop on Applied Verification for Continuous and Hybrid
+      Systems (ARCH16), EPiC Series in Computing, vol. 43, pp. 91-105, 2017.
 -/
 
 -- Authors:       Tobias Ladner

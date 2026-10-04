@@ -14,6 +14,14 @@ Outer and never exact: the `k` summands are bounded independently although they
 come from one and the same pair of matrices, so a product entry that would need
 two different `k`-corners at once is admitted. The usual interval-arithmetic
 dependency loss, and why Althoff §3.3.2 moves to matrix zonotopes.
+
+[1, Eq. 16], an enclosure, as the paper defines it.
+
+## References
+
+* [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In
+      Proc. of the 3rd International Workshop on Applied Verification for Continuous and Hybrid
+      Systems (ARCH16), EPiC Series in Computing, vol. 43, pp. 91-105, 2017.
 -/
 
 -- Authors:       Tobias Ladner

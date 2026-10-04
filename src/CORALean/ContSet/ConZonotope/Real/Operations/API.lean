@@ -52,6 +52,10 @@ import CORALean.ContSet.ConZonotope.Real.Operations.RepresentsaPoint
 import CORALean.ContSet.ConZonotope.Real.Operations.RepresentsaOrigin
 import CORALean.ContSet.ConZonotope.Real.Operations.RepresentsaEmptySet
 import CORALean.ContSet.ConZonotope.Real.Operations.IsFullDimCora
+import CORALean.ContSet.ConZonotope.Real.Operations.ContainsPoint
+import CORALean.ContSet.ConZonotope.Real.Operations.IsCentre
+import CORALean.ContSet.ConZonotope.Real.Operations.Stack
+import CORALean.ContSet.ConZonotope.Real.Operations.NullPolytope
 
 /-!
 # What `ConZonotope` computes

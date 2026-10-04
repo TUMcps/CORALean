@@ -114,6 +114,9 @@ import CORALean.ContSet.ConPolyZono.Real.Operations.MinkDiff
 import CORALean.ContSet.ConPolyZono.Real.Operations.Rescale
 import CORALean.ContSet.ConPolyZono.Real.Operations.UnitBox
 import CORALean.ContSet.ConPolyZono.Real.Operations.RescaleStep
+import CORALean.ContSet.ConPolyZono.Real.Operations.ExtPolyZonotope
+import CORALean.ContSet.ConPolyZono.Real.Operations.ContainsPoint
+import CORALean.ContSet.ConPolyZono.Real.Operations.ContainsPointCora
 
 /-!
 # What `ConPolyZono` computes

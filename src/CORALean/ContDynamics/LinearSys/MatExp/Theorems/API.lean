@@ -142,6 +142,11 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSubExpTaylorMemExpRema
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MulExpIntegral
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MulExpIntegralEq
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderMatMono
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.OneParamPowEq
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.OneParamSumPowEq
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpTaylorMemExpmOneParam
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMemExpmOneParam
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.InputOneParamContains
 
 /-!
 # What the exponential enclosures guarantee

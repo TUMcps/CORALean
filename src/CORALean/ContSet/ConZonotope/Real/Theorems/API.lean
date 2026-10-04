@@ -67,6 +67,9 @@ import CORALean.ContSet.ConZonotope.Real.Theorems.RepresentsaPointIff
 import CORALean.ContSet.ConZonotope.Real.Theorems.RepresentsaOriginIff
 import CORALean.ContSet.ConZonotope.Real.Theorems.RepresentsaEmptySetIff
 import CORALean.ContSet.ConZonotope.Real.Theorems.IsFullDimCoraCounterexample
+import CORALean.ContSet.ConZonotope.Real.Theorems.ContainsPointIff
+import CORALean.ContSet.ConZonotope.Real.Theorems.IsCentreMem
+import CORALean.ContSet.ConZonotope.Real.Theorems.IsCentreIffOfEqZero
 
 /-!
 # What `ConZonotope` guarantees

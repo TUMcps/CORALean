@@ -7,6 +7,14 @@ import CORALean.ContSet.Interval.Real.Theorems.MonotoneImageExact
 The logarithm is increasing on `(0, ∞)`, so `Interval.monotoneImage_exact` applies. CORA returns
 `-Inf` at `0` and throws `outOfDomain` below it; `Real.log 0 = 0` is junk, so the domain is a
 hypothesis, both corners positive.
+
+[1, Eq. 5], its first case, at `x̲ > 0`.
+
+## References
+
+* [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In
+      Proc. of the 3rd International Workshop on Applied Verification for Continuous and Hybrid
+      Systems (ARCH16), EPiC Series in Computing, vol. 43, pp. 91-105, 2017.
 -/
 
 -- Authors:       Tobias Ladner
