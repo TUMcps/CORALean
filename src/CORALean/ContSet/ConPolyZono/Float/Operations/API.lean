@@ -46,6 +46,20 @@ import CORALean.ContSet.ConPolyZono.Float.Operations.SupportBound
 import CORALean.ContSet.ConPolyZono.Float.Operations.MinkDiff
 import CORALean.ContSet.ConPolyZono.Float.Operations.ExactPlus
 import CORALean.ContSet.ConPolyZono.Float.Operations.QuadMap
+import CORALean.ContSet.ConPolyZono.Float.Operations.UnionConInt
+import CORALean.ContSet.ConPolyZono.Float.Operations.UnionConCoef
+import CORALean.ContSet.ConPolyZono.Float.Operations.UnionConErr
+import CORALean.ContSet.ConPolyZono.Float.Operations.UnionUpperA
+import CORALean.ContSet.ConPolyZono.Float.Operations.UnionUpperB
+import CORALean.ContSet.ConPolyZono.Float.Operations.UnionLowerA
+import CORALean.ContSet.ConPolyZono.Float.Operations.UnionLowerB
+import CORALean.ContSet.ConPolyZono.Float.Operations.Union
+import CORALean.ContSet.ConPolyZono.Float.Operations.ConvHullBlkDiag
+import CORALean.ContSet.ConPolyZono.Float.Operations.ConvHullA
+import CORALean.ContSet.ConPolyZono.Float.Operations.ConvHullB
+import CORALean.ContSet.ConPolyZono.Float.Operations.ConvHullG
+import CORALean.ContSet.ConPolyZono.Float.Operations.ConvHullSingle
+import CORALean.ContSet.ConPolyZono.Float.Operations.ConvHull
 
 /-!
 # What `ConPolyZono` computes

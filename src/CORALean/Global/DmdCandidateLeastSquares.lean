@@ -10,13 +10,16 @@ reset fit, the same way. With the economy SVD (`UᵀU = I`, `VᵀV = I`, `Σ = d
 `r` the rank) this is `dmdCandidate Ẋ U s V r`, CORA's `aux_dynamicModeDecomposition` at full
 rank and `priv_identifyDMD` for `linearSys`/`linearSysDT`: `A Φ = Ẋ V Vᵀ`, so
 `(Ẋ - A Φ) Φᵀ = (Ẋ V - Ẋ V Vᵀ V) Σ Uᵀ = 0`, the normal equations. No full row rank of `Φ` is
-needed; the rank-adapted candidates (fewer singular values) are not least-squares fits.
+needed; the rank-adapted candidates (fewer singular values) are not least-squares fits. The
+same formula is [2, Eq. 7], `A ≈ X' Ṽ Σ̃⁻¹ Ũᵀ`, for the snapshots of `x_{k+1} = A x_k`.
 
 ## References
 
 * [1] N. Kochdumper, M. A. Foughali, P. Habermehl and E. Asarin. "Robust Identification of
       Hybrid Automata from Noisy Data". In Proc. of the 28th ACM International Conference on
       Hybrid Systems: Computation and Control (HSCC), pp. 1-11, 2025.
+* [2] J. L. Proctor, S. L. Brunton and J. N. Kutz. "Dynamic mode decomposition with control".
+      SIAM Journal on Applied Dynamical Systems, 15(1):142-161, 2016 (arXiv:1409.6358).
 -/
 
 -- Authors:       Tobias Ladner

@@ -60,6 +60,12 @@ import CORALean.ContSet.Zonotope.Float.Operations.KeepColumn
 import CORALean.ContSet.Zonotope.Float.Operations.CompactZeros
 import CORALean.ContSet.Zonotope.Float.Operations.IntersectStrip
 import CORALean.ContSet.Zonotope.Float.Operations.Abs
+import CORALean.ContSet.Zonotope.Float.Operations.MethCBasis
+import CORALean.ContSet.Zonotope.Float.Operations.BasisInverse
+import CORALean.ContSet.Zonotope.Float.Operations.MethCResidual
+import CORALean.ContSet.Zonotope.Float.Operations.MethCQ
+import CORALean.ContSet.Zonotope.Float.Operations.MethCReach
+import CORALean.ContSet.Zonotope.Float.Operations.ReduceMethC
 
 /-!
 # What `Zonotope` computes

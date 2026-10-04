@@ -48,6 +48,15 @@ import CORALean.ContSet.ConPolyZono.Float.Theorems.SupportBoundLe
 import CORALean.ContSet.ConPolyZono.Float.Theorems.MinkDiffOuter
 import CORALean.ContSet.ConPolyZono.Float.Theorems.ExactPlusOuter
 import CORALean.ContSet.ConPolyZono.Float.Theorems.QuadMapOuter
+import CORALean.ContSet.ConPolyZono.Float.Theorems.UnionConIntEq
+import CORALean.ContSet.ConPolyZono.Float.Theorems.UnionUpperHolds
+import CORALean.ContSet.ConPolyZono.Float.Theorems.UnionLowerHolds
+import CORALean.ContSet.ConPolyZono.Float.Theorems.UnionSatisfies
+import CORALean.ContSet.ConPolyZono.Float.Theorems.UnionPointMem
+import CORALean.ContSet.ConPolyZono.Float.Theorems.UnionOuter
+import CORALean.ContSet.ConPolyZono.Float.Theorems.ConvHullSatisfies
+import CORALean.ContSet.ConPolyZono.Float.Theorems.ConvHullSingleOuter
+import CORALean.ContSet.ConPolyZono.Float.Theorems.ConvHullOuter
 
 /-!
 # What `ConPolyZono` guarantees

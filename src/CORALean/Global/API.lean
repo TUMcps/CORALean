@@ -106,6 +106,17 @@ import CORALean.Global.DmdRegressor
 import CORALean.Global.DmdSelect
 import CORALean.Global.DmdSelectLe
 import CORALean.Global.DmdStack
+import CORALean.Global.DmdPinv
+import CORALean.Global.DmdReduced
+import CORALean.Global.DmdcData
+import CORALean.Global.DmdcFit
+import CORALean.Global.DmdcReduced
+import CORALean.Global.DmdcAlgorithm
+import CORALean.Global.DmdcCounterexamples
+import CORALean.Global.DmdcExample1
+import CORALean.Global.SindyData
+import CORALean.Global.SindyThreshold
+import CORALean.Global.SindyFixedPoint
 import CORALean.Global.DescProd
 import CORALean.Global.DescProdState
 import CORALean.Global.Jacobian

@@ -89,6 +89,7 @@ import CORALean.ContSet.PolyZonotope.Float.Theorems.PartZonotopeNominal
 import CORALean.ContSet.PolyZonotope.Float.Theorems.PartZonotopeOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.PolygonOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.JacobianOuter
+import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitOuter
 
 /-!
 # What `PolyZonotope` guarantees
