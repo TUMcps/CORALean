@@ -13,6 +13,11 @@ import CORALean.ContSet.HPolytope.Float.Theorems.ConstructEmptySet
 import CORALean.ContSet.HPolytope.Float.Theorems.CartProdExact
 import CORALean.ContSet.HPolytope.Float.Theorems.OriginExact
 import CORALean.ContSet.HPolytope.Float.Theorems.LiftExact
+import CORALean.ContSet.HPolytope.Float.Theorems.RepresentsaFullspaceSound
+import CORALean.ContSet.HPolytope.Float.Theorems.RowScalePos
+import CORALean.ContSet.HPolytope.Float.Theorems.ReduceOverDomainRows
+import CORALean.ContSet.HPolytope.Float.Theorems.ReduceOverDomainOuter
+import CORALean.ContSet.HPolytope.Float.Theorems.ReduceOverDomainInner
 
 /-!
 # What the float `HPolytope` guarantees

@@ -85,6 +85,8 @@ import CORALean.ContSet.Conversion.Float.Zonotope_to_SpectraShadow
 import CORALean.ContSet.Conversion.Float.Zonotope_to_Taylm
 import CORALean.ContSet.Conversion.Float.Zonotope_to_VPolytope
 import CORALean.ContSet.Conversion.Float.Zonotope_to_ZonoBundle
+import CORALean.ContSet.Conversion.Float.HPolytope_to_LevelSet
+import CORALean.ContSet.Conversion.Float.ZonoBundle_to_SpectraShadow
 
 /-!
 # Conversions over a floating-point scalar, collected

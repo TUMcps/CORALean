@@ -42,6 +42,12 @@ import CORALean.ContSet.ConPolyZono.Float.Theorems.CartProdExact
 import CORALean.ContSet.ConPolyZono.Float.Theorems.GetSubsetOuter
 import CORALean.ContSet.ConPolyZono.Float.Theorems.SplitDepFactorOuter
 import CORALean.ContSet.ConPolyZono.Float.Theorems.SplitLongestGenOuter
+import CORALean.ContSet.ConPolyZono.Float.Theorems.CentreMemConstruct
+import CORALean.ContSet.ConPolyZono.Float.Theorems.RepresentsaPointSubset
+import CORALean.ContSet.ConPolyZono.Float.Theorems.SupportBoundLe
+import CORALean.ContSet.ConPolyZono.Float.Theorems.MinkDiffOuter
+import CORALean.ContSet.ConPolyZono.Float.Theorems.ExactPlusOuter
+import CORALean.ContSet.ConPolyZono.Float.Theorems.QuadMapOuter
 
 /-!
 # What `ConPolyZono` guarantees

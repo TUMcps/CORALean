@@ -17,6 +17,7 @@ import CORALean.ContSet.VPolytope.Float.Operations.EmptySet
 import CORALean.ContSet.VPolytope.Float.Operations.ConvHull
 import CORALean.ContSet.VPolytope.Float.Operations.EnclosePoints
 import CORALean.ContSet.VPolytope.Float.Operations.Origin
+import CORALean.ContSet.VPolytope.Float.Operations.CenterBox
 
 /-!
 # What the float `VPolytope` computes

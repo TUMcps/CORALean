@@ -1,0 +1,59 @@
+import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+import CORALean.ContSet.LevelSet.Real.Theorems.ForallAppendHolds
+
+/-!
+# A float polytope as a level set
+
+CORA's `levelSet(polytope)` on the stored floats: the affine function `A x - b`, every
+component `<= 0`. A float equality row carries an interval right-hand side, so it becomes two
+components, `Ae x - be.sup <= 0` and `be.inf - Ae x <= 0`, where the exact layer has one `=`.
+The level set holds its constraint function as data and nothing is rounded: the stored numbers
+are read as reals, and the conversion denotes exactly the float polytope's set.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+open Matrix FloatOps SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+/-- `levelSet(P)`: `A x - b ≤ 0`, then `Ae x - be.sup ≤ 0` and `be.inf - Ae x ≤ 0`. -/
+def HPolytope.levelSet (P : HPolytope 𝕋 n) : Real.LevelSet n where
+  m := P.m + (P.me + P.me)
+  f x := Fin.append (fun i => (toRealMat P.A *ᵥ x) i - toReal (P.b i))
+    (Fin.append (fun r => (toRealMat P.Ae *ᵥ x) r - toReal (P.be.sup r))
+      fun r => toReal (P.be.inf r) - (toRealMat P.Ae *ᵥ x) r)
+  op := Fin.append (fun _ => .le) (Fin.append (fun _ => .le) fun _ => .le)
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem HPolytope.levelSet_exact (P : HPolytope 𝕋 n) :
+    P.levelSet.construct = P.construct := by -- --- PROOF ---
+  ext x
+  show (∀ i, Real.CompOp.holds (Fin.append (fun _ => .le) (Fin.append (fun _ => .le)
+    fun _ => .le) i) (Fin.append (fun i => (toRealMat P.A *ᵥ x) i - toReal (P.b i))
+      (Fin.append (fun r => (toRealMat P.Ae *ᵥ x) r - toReal (P.be.sup r))
+        fun r => toReal (P.be.inf r) - (toRealMat P.Ae *ᵥ x) r) i)) ↔ _
+  -- the three blocks of components, each its own family of rows
+  rw [Real.LevelSet.forall_append_holds, Real.LevelSet.forall_append_holds,
+    HPolytope.mem_construct_iff]
+  simp only [Real.CompOp.holds, sub_nonpos]
+  constructor
+  · rintro ⟨h1, h2, h3⟩
+    exact ⟨h1, fun r => ⟨h3 r, h2 r⟩⟩
+  · rintro ⟨h1, h2⟩
+    exact ⟨h1, fun r => (h2 r).2, fun r => (h2 r).1⟩
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

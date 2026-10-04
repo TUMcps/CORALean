@@ -16,6 +16,11 @@ import CORALean.ContSet.ConZonotope.Float.Operations.SupportBound
 import CORALean.ContSet.ConZonotope.Float.Operations.SeparatesAlong
 import CORALean.ContSet.ConZonotope.Float.Operations.IsDisjointLP
 import CORALean.ContSet.ConZonotope.Float.Operations.CartProd
+import CORALean.ContSet.ConZonotope.Float.Operations.MinkDiffV
+import CORALean.ContSet.ConZonotope.Float.Operations.ConIntersect
+import CORALean.ContSet.ConZonotope.Float.Operations.Rescale
+import CORALean.ContSet.ConZonotope.Float.Operations.Compact
+import CORALean.ContSet.ConZonotope.Float.Operations.IntersectStrip
 
 /-!
 # What the float `ConZonotope` computes
