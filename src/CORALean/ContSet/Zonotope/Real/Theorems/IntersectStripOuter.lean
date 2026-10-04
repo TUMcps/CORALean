@@ -7,10 +7,15 @@ import Mathlib.Tactic.Abel
 /-!
 # `Zonotope.intersectStrip` encloses the zonotope's intersection with the strips
 
-For every weight matrix `Λ` (Prop. 1 of Le et al., ISIC 2013). A point `x = c + G β` with
-`|C x - y| ≤ φ` is `(I - Λ C) x + Λ (C x)`, and `C x = y + φ ⊙ γ` with `γ ∈ [-1, 1]^p`, so the
-coefficients `β` on the old generators and `γ` on the strip ones reach it. Outer only: the result
-in general holds more than the intersection, so no equality is claimed.
+For every weight matrix `Λ`; at a single strip and a gain column `λ` this is [1, Prop. 6]. A
+point `x = c + G β` with `|C x - y| ≤ φ` is `(I - Λ C) x + Λ (C x)`, and `C x = y + φ ⊙ γ` with
+`γ ∈ [-1, 1]^p`, so the coefficients `β` on the old generators and `γ` on the strip ones reach it.
+Outer only: the result in general holds more than the intersection, so no equality is claimed.
+
+## References
+
+* [1] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state
+      estimation for uncertain systems". Automatica, 49(11):3418-3424, 2013.
 -/
 
 -- Authors:       Tobias Ladner

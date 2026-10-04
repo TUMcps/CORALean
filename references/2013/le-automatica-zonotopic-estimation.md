@@ -1,0 +1,57 @@
+# Zonotopic guaranteed state estimation for uncertain systems
+
+V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state estimation for uncertain systems". Automatica, 49(11):3418-3424, 2013.
+
+**Source:** https://centralesupelec.hal.science/hal-00876455/document (the accepted manuscript on HAL, "Preprint submitted to Automatica July 24, 2013", 7 pages after HAL's cover page, read in full; text extracted with `pypdf`). The typeset article (doi:10.1016/j.automatica.2013.08.014) was not reachable. CORA also cites the same authors' "Zonotope-based set-membership estimation for multi-output uncertain systems" (ISIC 2013) for `PRad-A`, `PRad-B` and `@zonotope/intersectStrip`; that paper could not be obtained (its HAL record, hal-00826654, has no file) and has no page here.  
+**Inventory:** confirmed (against the manuscript: Properties 1-6, Definitions 1-2 and Algorithms 1-2, each with its own counter, and Equations 1-9; Sec. 2's notation defines the P-radius; Sec. 5 is the example)
+
+The set-membership observer behind CORA's strip-based estimators: predict with the system
+matrix, then meet the zonotope with one measurement strip after the other at a gain `λᵢ`
+(`intersectStripSeq`, `observe_stripBased`), every gain giving an enclosure. The gain is
+chosen offline by a matrix inequality that makes the P-radius `L_k = max ‖z - p_k‖²_P` contract
+up to the noise, `L_k ≤ β L_{k-1} + ψ + φ₁²`; that chain (Eqs. 5-9) is formalized for one
+output, from the inequality at the vertices of the interval matrix `[A]` to the bound on the
+P-radius. The tools it borrows from Alamo et al. (2005), the interval zonotope inclusion and the
+strip intersection, are formalized here too, that paper not having a page. The multi-output
+gain design of Sec. 4.2 is not. Two misprints in unnumbered lines are under Findings; no
+numbered result is wrong.
+
+## Results
+
+| Result | What it says | In CORALean | Class |
+|---|---|---|---|
+| `Sec. 2` | Notation: intervals, interval matrices `[M]` with `mid`, `rad` and the vertex set `vert[M]`, the row-sum diagonal matrix `rs(M)`, strips `{x \| \|cᵀx - y\| ≤ φ}`, zonotopes `p ⊕ H Bᵐ`; the P-radius of a zonotope is `L = max_{z ∈ Z} ‖z - p‖²_P` for `P = Pᵀ ≻ 0`. | [`PRadius.lean`](../../src/CORALean/ContSet/Zonotope/Real/Definitions/PRadius.lean) — the P-radius, as the supremum, at any `P` | `correct` |
+| `Prop. 1` | The Minkowski sum of two zonotopes is `(p₁ + p₂) ⊕ [H₁ H₂] Bᵐ¹⁺ᵐ²`. | n/a — restated; tracked as `Sec. 2` on [Girard 2005](../2005/girard-hscc-reachability-zonotopes.md) | `restated` |
+| `Prop. 2` | The image of a zonotope under a linear map `K` is `K p ⊕ (K H) Bᵐ`. | n/a — restated; tracked as `Sec. 2` on [Girard 2005](../2005/girard-hscc-reachability-zonotopes.md) | `restated` |
+| `Prop. 3` | (Reduction, after Combastel 2003 and Alamo et al. 2005) Sorting the generators by decreasing Euclidean norm, keeping the first `s - n` and replacing the rest `Ĥ_Q` by `rs(Ĥ_Q)` gives `Z ⊆ p ⊕ [Ĥ_T rs(Ĥ_Q)] Bˢ`. | n/a — restated; tracked as `Sec. 3.2` on [Combastel 2003](../2003/combastel-ecc-state-bounding-observer.md) | `restated` |
+| `Prop. 4` | (Zonotope inclusion, after Alamo et al. 2005) The family `p ⊕ [M] Bᵐ`, `[M]` an interval matrix, lies in `p ⊕ [mid[M] rs(rad[M])] Bᵐ⁺ⁿ`. | [`Inclusion.lean`](../../src/CORALean/ContSet/Zonotope/Real/Operations/Inclusion.lean), [`InclusionOuter.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/InclusionOuter.lean) — the union over `M ∈ [M]` of `p + M Bᵐ` | `correct` |
+| `Prop. 5` | For an interval matrix `[M]` and a real `N`, `mid([M] N) = mid[M] N` and `rad([M] N) = rad[M] \|N\|`. | [`MulMatEntryImage.lean`](../../src/CORALean/ContSet/Interval/Real/Theorems/MulMatEntryImage.lean) — read as the interval hull of `{M N \| M ∈ [M]}`, entry by entry, and proved exact: each entry ranges over exactly `mid ± rad`; `[M]` nonempty | `correct` |
+| `Prop. 6` | (After Alamo et al. 2005) For a zonotope `Z = p ⊕ H Bʳ`, a strip `S = {x \| \|cᵀx - y\| ≤ φ}` and any `λ`, `Z ∩ S ⊆ p̂(λ) ⊕ Ĥ(λ) Bʳ⁺¹` with `p̂(λ) = p + λ(y - cᵀp)`, `Ĥ(λ) = [(I - λcᵀ)H φλ]`. | [`IntersectStrip.lean`](../../src/CORALean/ContSet/Zonotope/Real/Operations/IntersectStrip.lean), [`IntersectStripOuter.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/IntersectStripOuter.lean) — CORA's `intersectStrip` at a numeric gain: any number of strips at once with a gain matrix `Λ`, of which this is the one-strip case | `correct` |
+| `Eq. 1` | The system `x_{k+1} = A x_k + ω_k`, `y_k = C x_k + v_k`, `A` constant and unknown in an interval matrix `[A]` that is quadratically stable, `(C, A)` detectable, `ω_k ∈ W = F Bⁿʷ`, `v_k ∈ V = Φ Bⁿʸ`, `x₀ ∈ X₀`. | n/a — the paper's setting | `not-a-claim` |
+| `Def. 1` | The consistent state set `X_{y_k} = {x \| y_k - C x ∈ V}`. | [`ConsistentSet.lean`](../../src/CORALean/ContDynamics/LinearSysDT/Definitions/ConsistentSet.lean) | `correct` |
+| `Def. 2` | The exact uncertain set `X_k = (A X_{k-1} ⊕ W) ∩ X_{y_k}`, `k ≥ 1`, "is equal to the set of states that are consistent with the measured output vectors and the initial state set `X₀`". | [`ExactUncertainSet.lean`](../../src/CORALean/ContDynamics/LinearSysDT/Definitions/ExactUncertainSet.lean), [`ExactUncertainSetEq.lean`](../../src/CORALean/ContDynamics/LinearSysDT/Theorems/Real/ExactUncertainSetEq.lean) — the equality, against the runs from `X₀` that meet every measurement `y_1`, …, `y_k`; at the one (unknown) `A` | `correct` |
+| `Alg. 1` | Step 1, prediction `X̄_k = A X̂_{k-1} ⊕ W`; Step 2, for `i = 1, …, n_y`, the intersection of `X̂_{k/i-1}` with the strip of `y_{k/i}` outer-approximated as `X̂_{k/i}`, from `X̂_{k/0} = X̄_k`; the estimate is `X̂_{k/n_y}`. | [`ObserveStep.lean`](../../src/CORALean/ContDynamics/LinearSysDT/Operations/ObserveStep.lean), [`ObserveStepOuter.lean`](../../src/CORALean/ContDynamics/LinearSysDT/Theorems/Real/ObserveStepOuter.lean), [`ObserveStripBased.lean`](../../src/CORALean/ContDynamics/LinearSysDT/Operations/ObserveStripBased.lean), [`ObserveStripBasedOuter.lean`](../../src/CORALean/ContDynamics/LinearSysDT/Theorems/Real/ObserveStripBasedOuter.lean) — the step encloses `(A S ⊕ W) ∩` strips for every `S ⊆ X̂_{k-1}` (so `X_k ⊆ X̂_k` from `X_{k-1} ⊆ X̂_{k-1}`, `V` lying in the strips), at every gain; the loop is CORA's `observe_stripBased`, which also meets `X₀` with `y₀`, adds a known input and reduces after each step | `correct` |
+| `Eq. 2` | `X̄_k = A p̂_{k-1} ⊕ [A Ĥ_{k-1} F] Bʳ⁺ⁿʷ`. | n/a — `Prop. 1` and `Prop. 2` at the prediction; tracked as `Sec. 2` on [Girard 2005](../2005/girard-hscc-reachability-zonotopes.md) | `restated` |
+| `Eq. 3` | The strips one at a time: `p̂_{k/i} = p̂_{k/i-1} + λᵢ(y_{k/i} - cᵢᵀ p̂_{k/i-1})`, `Ĥ_{k/i} = [κᵢ Ĥ_{k/i-1} φᵢλᵢ]`, `κᵢ = I - λᵢcᵢᵀ`, from `p̂_{k/0} = A p̂_{k-1}`, `Ĥ_{k/0} = [A Ĥ_{k-1} F]`, outer-approximating the intersection with every strip. | [`IntersectStripSeq.lean`](../../src/CORALean/ContSet/Zonotope/Real/Operations/IntersectStripSeq.lean), [`IntersectStripSeqOuter.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/IntersectStripSeqOuter.lean) — CORA's intersection method I; gain `λᵢ` may be computed from the zonotope it meets | `correct` |
+| `Eq. 4` | The design condition on the P-radius, `L_k ≤ β L_{k-1} + max_γ ‖F γ‖²₂ + φ₁²`, `β ∈ (0, 1]`, a relaxation of `L_k ≤ β L_{k-1}`. | n/a — the condition the gain is chosen to meet; that the gain of `Eq. 9` meets it is `Eq. 5` to `Eq. 9` | `not-a-claim` |
+| `Eq. 5` | `Eq. 4` in the equivalent form `max_ẑ ‖Ĥ_k(λ₁) ẑ‖²_P ≤ max_z β ‖Ĥ_{k-1} z‖²_P + max_γ ‖F γ‖²₂ + φ₁²`, the maxima over the unit boxes. | [`PRadiusPredictStripLe.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/PRadiusPredictStripLe.lean) — the P-radius (`Sec. 2`) of the zonotope of `Eq. 3` at one strip bounded, a point of it being its centre plus `Ĥ_k(λ₁) ẑ` | `correct` |
+| `Eq. 6` | A sufficient condition for `Eq. 5`: `‖Ĥ_k(λ₁) ẑ‖²_P - β ‖Ĥ_{k-1} z‖²_P - ‖F γ‖²₂ - φ₁² ≤ 0` for all `ẑ = (z, γ, η)` in the box. | [`PRadiusPredictStripLe.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/PRadiusPredictStripLe.lean) | `correct` |
+| `Eq. 7` | Adding `φ₁²(1 - η²) ≥ 0` gives a sufficient condition for `Eq. 6`. | [`PRadiusPredictStripLe.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/PRadiusPredictStripLe.lean) — `η² ≤ 1` | `correct` |
+| `Eq. 8` | `Eq. 7` as the quadratic form `[θ; γ; η]ᵀ J [θ; γ; η] ≤ 0` for all `θ, γ, η`, `θ = Ĥ_{k-1} z`, with `A₁₁ = Aᵀκ₁ᵀPκ₁A - βP`, `A₁₂ = Aᵀκ₁ᵀPκ₁F`, `A₁₃ = Aᵀκ₁ᵀPφ₁λ₁`, `A₂₂ = Fᵀκ₁ᵀPκ₁F - FᵀF`, `A₂₃ = Fᵀκ₁ᵀPφ₁λ₁`, `A₃₃ = φ₁²λ₁ᵀPλ₁ - φ₁²`. | [`PRadiusPredictStripLe.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/PRadiusPredictStripLe.lean), [`QuadFormLeOfLmi.lean`](../../src/CORALean/ContDynamics/LinearSysDT/Theorems/Real/QuadFormLeOfLmi.lean) — the form written out, `‖κ₁Aθ + κ₁Fγ + φ₁λ₁η‖²_P ≤ β‖θ‖²_P + ‖Fγ‖²₂ + φ₁²η²`; the first file takes it as hypothesis, the second proves it | `correct` |
+| `Eq. 9` | `max τ` subject to `τ > 0`, `(1 - β)P/(φ₁² + ψ) ≽ τ I` and, at every vertex `Gᵢ` of `[A]`, `[βP 0 0 GᵢᵀP - Gᵢᵀc₁Yᵀ; ∗ FᵀF 0 FᵀP - Fᵀc₁Yᵀ; ∗ ∗ φ₁² Yᵀφ₁; ∗ ∗ ∗ P] ≽ 0`, `Y = Pλ₁`; checking the vertices suffices for all `A ∈ [A]`, `[A]` being convex. | [`QuadFormLeOfLmi.lean`](../../src/CORALean/ContDynamics/LinearSysDT/Theorems/Real/QuadFormLeOfLmi.lean), [`ConstructSubsetConvexHullVertices.lean`](../../src/CORALean/ContSet/Interval/Real/Theorems/ConstructSubsetConvexHullVertices.lean) — the inequality at the vertices gives `Eq. 8` at `λ₁ = P⁻¹Y` and every `A` in their hull, which holds `[A]`; the objective `max τ` selects among feasible gains and is not a claim | `correct` |
+| `Alg. 2` | (Sec. 4.2) The gains one output at a time: `λ₁` by `Eq. 9`, then `λⱼ` from the previous ones by a matrix inequality in the products `κⱼ ⋯ κ₁` that bounds `‖Ĥ_{k/j} ẑ‖²_P` by `β ‖Ĥ_{k-1} z‖²_P + ψ + φ₁² + … + φⱼ²`. | — | — |
+| `Sec. 5` | The example of Alamo et al. (2005) in two outputs: gains, bounds, widths and volumes against segment and volume minimization (Figs. 2-6), run times (Table 1). | n/a — an experiment | `not-a-claim` |
+
+## Findings
+
+**Two misprints in unnumbered lines.** Neither touches a numbered result.
+
+* Between `Eq. 7` and `Eq. 8` the expansion reads `Ĥ_k(λ₁) ẑ = (I - λ₁c₁ᵀ)A Ĥ_{k-1} z + F γ + φ₁λ₁η`.
+  By `Eq. 3`, `Ĥ_{k/1} = [κ₁ Ĥ_{k/0} φ₁λ₁]` with `Ĥ_{k/0} = [A Ĥ_{k-1} F]`, so the middle term is
+  `κ₁ F γ`; the entries `A₁₂ = Aᵀκ₁ᵀPκ₁F` and `A₂₂ = Fᵀκ₁ᵀPκ₁F` of `Eq. 8` already have it, and
+  [`PRadiusPredictStripLe.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/PRadiusPredictStripLe.lean)
+  uses `κ₁ F`.
+* After `Eq. 9` the limit of `L_k ≤ β L_{k-1} + ψ + φ₁²` is given as `L∞ = (φ₁² + ψ)/(1 - β)` "with
+  the additional hypothesis on the convergence of the `{L_k}` sequence", for `β ∈ (0, 1]`. At
+  `β = 1` the quotient is undefined, and for `β < 1` no convergence is needed: the recursion
+  gives `L_k ≤ βᵏ L_0 + (φ₁² + ψ)/(1 - β)` directly, an upper bound and not an equality.

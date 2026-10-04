@@ -100,6 +100,8 @@ import CORALean.ContSet.Zonotope.Real.Operations.Polymax
 import CORALean.ContSet.Zonotope.Real.Operations.ContainsDFS
 import CORALean.ContSet.Zonotope.Real.Operations.IntersectStrip
 import CORALean.ContSet.Zonotope.Real.Operations.Volume
+import CORALean.ContSet.Zonotope.Real.Operations.IntersectStripSeq
+import CORALean.ContSet.Zonotope.Real.Operations.Inclusion
 
 /-!
 # What `Zonotope` computes

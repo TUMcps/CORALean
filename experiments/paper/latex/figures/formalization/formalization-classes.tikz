@@ -25,11 +25,11 @@
     legend columns=3, legend to name=classlegend,
     legend style={legend cell align=left, align=left, draw=none, font=\scriptsize, inner sep=0pt, /tikz/every even column/.append style={column sep=0.6ex}, /tikz/every odd column/.append style={column sep=0pt}},
     legend image code/.code={\draw[#1, draw=black, line width=0.4pt] (0cm,-0.6ex) rectangle (1.2ex,0.6ex);}]
-\addplot+[draw=none, fill=CORAcolorReachSet] coordinates {(0,0) (1,1) (26,2) (25,3) (23,4) (27,5) (20,6) (20,7) (19,8) (85,9) (6,10) (34,11) (17,12) (31,13) (0,14) (7,15) (32,16) (24,17) (45,18) (0,19) (0,20) (4,21) (3,22) (0,23) (3,24) (11,25) (5,26) (4,27) (0,28) (0,29) (1,30) (3,31) (3,32) (0,33) (0,34) (2,35) (1,36) (4,37) (8,38) (0,39) (5,40) (3,41) (0,42) (27,43) (8,44)};
+\addplot+[draw=none, fill=CORAcolorReachSet] coordinates {(0,0) (1,1) (26,2) (26,3) (24,4) (27,5) (20,6) (20,7) (19,8) (85,9) (6,10) (35,11) (17,12) (33,13) (0,14) (7,15) (32,16) (25,17) (46,18) (0,19) (0,20) (4,21) (3,22) (0,23) (3,24) (11,25) (5,26) (4,27) (0,28) (0,29) (1,30) (3,31) (3,32) (0,33) (0,34) (2,35) (1,36) (4,37) (8,38) (0,39) (5,40) (3,41) (0,42) (27,43) (8,44)};
 \addlegendentry{proved, runnable at float}
-\addplot+[draw=none, fill=CORAcolorReachSet2] coordinates {(0,0) (0,1) (2,2) (10,3) (11,4) (1,5) (5,6) (3,7) (5,8) (3,9) (2,10) (8,11) (2,12) (8,13) (10,14) (1,15) (4,16) (4,17) (10,18) (10,19) (0,20) (0,21) (3,22) (0,23) (0,24) (6,25) (0,26) (0,27) (4,28) (3,29) (3,30) (4,31) (2,32) (0,33) (0,34) (0,35) (0,36) (2,37) (1,38) (4,39) (1,40) (0,41) (0,42) (8,43) (9,44)};
+\addplot+[draw=none, fill=CORAcolorReachSet2] coordinates {(0,0) (0,1) (2,2) (10,3) (11,4) (1,5) (5,6) (3,7) (5,8) (3,9) (2,10) (8,11) (2,12) (9,13) (10,14) (1,15) (4,16) (4,17) (10,18) (10,19) (0,20) (2,21) (3,22) (0,23) (0,24) (6,25) (1,26) (0,27) (4,28) (3,29) (3,30) (4,31) (2,32) (0,33) (0,34) (0,35) (0,36) (2,37) (1,38) (4,39) (1,40) (0,41) (0,42) (8,43) (9,44)};
 \addlegendentry{proved, needs float}
-\addplot+[draw=none, fill=white] coordinates {(0,0) (0,1) (1,2) (4,3) (4,4) (1,5) (15,6) (0,7) (1,8) (4,9) (6,10) (17,11) (18,12) (7,13) (10,14) (17,15) (4,16) (9,17) (11,18) (0,19) (0,20) (4,21) (1,22) (4,23) (2,24) (6,25) (6,26) (0,27) (6,28) (2,29) (1,30) (3,31) (3,32) (0,33) (0,34) (2,35) (0,36) (1,37) (7,38) (1,39) (1,40) (2,41) (0,42) (5,43) (7,44)};
+\addplot+[draw=none, fill=white] coordinates {(0,0) (0,1) (1,2) (3,3) (3,4) (1,5) (15,6) (0,7) (1,8) (4,9) (6,10) (16,11) (18,12) (4,13) (10,14) (17,15) (4,16) (8,17) (10,18) (0,19) (0,20) (2,21) (1,22) (4,23) (2,24) (6,25) (5,26) (0,27) (6,28) (2,29) (1,30) (3,31) (3,32) (0,33) (0,34) (2,35) (0,36) (1,37) (7,38) (1,39) (1,40) (2,41) (0,42) (5,43) (7,44)};
 \addlegendentry{not yet}
 \draw[black, line width=0.4pt] ([yshift=-2.5pt]axis cs:0,1) rectangle ([yshift=2.5pt]axis cs:1,1);
 \draw[black, line width=0.4pt] ([yshift=-2.5pt]axis cs:0,2) rectangle ([yshift=2.5pt]axis cs:29,2);
@@ -116,12 +116,10 @@
 \begin{axis}[at={(classes.south west)}, anchor=south west, height=13.50cm, width=0.5\linewidth, xmin=0, xmax=103, enlarge y limits={abs=0.7}, hide axis, clip=false]
 \addplot[draw=none] coordinates {(0,0) (0,44)};
 \node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:13,2) {26};
-\node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:12.5,3) {25};
-\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:30,3) {10};
-\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:37,3) {4};
-\node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:11.5,4) {23};
-\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:28.5,4) {11};
-\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:36,4) {4};
+\node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:13,3) {26};
+\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:31,3) {10};
+\node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:12,4) {24};
+\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:29.5,4) {11};
 \node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:13.5,5) {27};
 \node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:10,6) {20};
 \node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:22.5,6) {5};
@@ -133,14 +131,14 @@
 \node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:90,9) {4};
 \node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:3,10) {6};
 \node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:11,10) {6};
-\node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:17,11) {34};
-\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:38,11) {8};
-\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:50.5,11) {17};
+\node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:17.5,11) {35};
+\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:39,11) {8};
+\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:51,11) {16};
 \node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:8.5,12) {17};
 \node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:28,12) {18};
-\node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:15.5,13) {31};
-\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:35,13) {8};
-\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:42.5,13) {7};
+\node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:16.5,13) {33};
+\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:37.5,13) {9};
+\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:44,13) {4};
 \node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:5,14) {10};
 \node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:15,14) {10};
 \node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:3.5,15) {7};
@@ -148,21 +146,20 @@
 \node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:16,16) {32};
 \node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:34,16) {4};
 \node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:38,16) {4};
-\node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:12,17) {24};
-\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:26,17) {4};
-\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:32.5,17) {9};
-\node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:22.5,18) {45};
-\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:50,18) {10};
-\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:60.5,18) {11};
+\node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:12.5,17) {25};
+\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:27,17) {4};
+\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:33,17) {8};
+\node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:23,18) {46};
+\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:51,18) {10};
+\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:61,18) {10};
 \node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:5,19) {10};
 \node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:2,21) {4};
-\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:6,21) {4};
 \node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:2,23) {4};
 \node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:5.5,25) {11};
 \node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:14,25) {6};
 \node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:20,25) {6};
 \node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:2.5,26) {5};
-\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:8,26) {6};
+\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:8.5,26) {5};
 \node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:2,27) {4};
 \node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:2,28) {4};
 \node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:7,28) {6};

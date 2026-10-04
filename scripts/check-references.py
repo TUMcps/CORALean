@@ -370,7 +370,7 @@ REPORT_GROUPS = ("contSet", "contDynamics", "hybrid", "neuralNetworks")
 CORA_ISSUE = re.compile(r"^cora-issue\s+—\s*(.{10,})$")
 DECL = re.compile(
     r"^(?:@\[[^\]\n]*\]\s*)*((?:(?:private|protected|noncomputable|partial|unsafe|nonrec)\s+)*)"
-    r"(def|theorem|lemma|abbrev|structure|inductive|class|instance)\s+([^\s({\[:]+)", re.M)
+    r"(def|theorem|lemma|abbrev|structure|inductive|class|instance)\s+(?:\(priority\s*:=\s*\w+\)\s+)?([^\s({\[:]+)", re.M)
 COUNTS_BLOCK = re.compile(r"(<!-- coverage-counts -->\n)(.*?)(<!-- /coverage-counts -->)", re.S)
 
 

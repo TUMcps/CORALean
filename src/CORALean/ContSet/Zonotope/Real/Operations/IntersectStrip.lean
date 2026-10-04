@@ -4,13 +4,19 @@ import Mathlib.Data.Matrix.Mul
 /-!
 # `Zonotope.intersectStrip`
 
-CORA's `@zonotope/intersectStrip` for a numeric weight matrix `Λ` (`aux_zonotopeFromLambda`,
-Prop. 1 of Le et al., ISIC 2013). The strips `|C x - y| ≤ φ` meet the zonotope `c + G [-1, 1]^h`
+CORA's `@zonotope/intersectStrip` for a numeric weight matrix `Λ` (`aux_zonotopeFromLambda`, which
+CORA attributes to Prop. 1 of the same authors' ISIC 2013 paper; [1, Prop. 6] is its one-strip
+case, `Λ` a single column `λ`). The strips `|C x - y| ≤ φ` meet the zonotope `c + G [-1, 1]^h`
 in a set that the zonotope with centre `c + Λ (y - C c)` and generators
 `[(I - Λ C) G, Λ diag(φ)]` encloses, whatever `Λ` is. Only this branch is modelled: the named
 methods that choose `Λ` (`'normGen'`, `'svd'`, `'radius'`, `'alamo-volume'`, `'alamo-FRad'`,
 `'wang-FRad'`, `'bravo'`) are tuning, as `Λ` is any matrix here, and the soundness does not depend
 on it.
+
+## References
+
+* [1] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state
+      estimation for uncertain systems". Automatica, 49(11):3418-3424, 2013.
 -/
 
 -- Authors:       Tobias Ladner

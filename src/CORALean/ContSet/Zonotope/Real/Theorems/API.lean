@@ -196,6 +196,9 @@ import CORALean.ContSet.Zonotope.Real.Theorems.MaxNormSqLeOfDual
 import CORALean.ContSet.Zonotope.Real.Theorems.SignSumCovariance
 import CORALean.ContSet.Zonotope.Real.Theorems.SqNormLeMaxNormSq
 import CORALean.ContSet.Zonotope.Real.Theorems.SqNormSumEqGram
+import CORALean.ContSet.Zonotope.Real.Theorems.IntersectStripSeqOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.InclusionOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.PRadiusPredictStripLe
 
 /-!
 # What `Zonotope` guarantees

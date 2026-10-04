@@ -194,6 +194,7 @@ LinearSys.WithInput.reachStepk  real-layer: one window with inputs; in floats, a
 LinearSys.WithInputSplit.reach  real-layer: the reach with the input split at its centre; runs in floats as `LinearSys.reachWrappingFreeFloatInput`, which splits the same way
 LinearSys.WithInputSplit.reachInstance  real-layer: the `Reach` instance over `WithInputSplit.reach`; runs in floats as `LinearSys.reachWrappingFreeFloatInput`
 LinearSys.WithInputSplit.reachStepk  real-layer: one split window; in floats, an entry of `LinearSys.reachWrappingFreeFloatInput`'s list
+LinearSysDT.observeStripBased  pending #1: the strip-based observer over `Real.Zonotope`, noncomputable because its `reduce` is; needs a float counterpart of `intersectStrip`/`intersectStripSeq`
 LinearSysDT.reachCost  cost: an asserted running cost under `Cost/`, never meant to compute
 LinearSysDT.reachError  spec: what a run owes/what an inner approximation is, a real-valued guarantee object; `minkowskiDiff` computes nothing
 LinearSysDT.reachErrorFloat  spec: what a float run owes, summed from the four Box operations' float error terms into a real accumulator; the terms are now computed in 𝕋, this recursion over them is not

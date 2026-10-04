@@ -14,21 +14,21 @@
     "not-covered"
   ],
   "totals": {
-    "papers": 42,
+    "papers": 43,
     "papers_with_findings": 35,
-    "in_scope": 551,
-    "formalized": 524,
-    "not_formalized": 27,
-    "out_of_scope": 279,
+    "in_scope": 565,
+    "formalized": 537,
+    "not_formalized": 28,
+    "out_of_scope": 286,
     "out_of_scope_by_reason": {
-      "restated": 143,
+      "restated": 147,
       "mathlib": 10,
-      "not-a-claim": 98,
+      "not-a-claim": 101,
       "done-differently": 7,
       "not-covered": 21
     },
     "by_class": {
-      "correct": 360,
+      "correct": 373,
       "underspecified": 79,
       "proof-gap": 22,
       "fixed": 61,
@@ -667,6 +667,31 @@
           "reason": "stretch factor `1+γⱼ` undershoots for `γⱼ < 0`; formalized as `1+|γⱼ|`"
         }
       ]
+    },
+    {
+      "page": "2013/le-automatica-zonotopic-estimation.md",
+      "label": "Le 2013",
+      "year": 2013,
+      "title": "Zonotopic guaranteed state estimation for uncertain systems",
+      "in_scope": 14,
+      "formalized": 13,
+      "not_formalized": 1,
+      "out_of_scope": 7,
+      "out_of_scope_by_reason": {
+        "restated": 4,
+        "mathlib": 0,
+        "not-a-claim": 3,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 13,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": []
     },
     {
       "page": "2015/althoff-arxiv-minkowski-difference.md",
@@ -2015,8 +2040,8 @@
         "class": "conPolyZono",
         "methods": 47,
         "proved": 10,
-        "float": 25,
-        "not_yet": 4,
+        "float": 26,
+        "not_yet": 3,
         "out_of_scope": 8,
         "needs_float": 10,
         "out_of_scope_by_reason": {
@@ -2041,8 +2066,8 @@
         "class": "conZonotope",
         "methods": 50,
         "proved": 11,
-        "float": 23,
-        "not_yet": 4,
+        "float": 24,
+        "not_yet": 3,
         "out_of_scope": 12,
         "needs_float": 11,
         "out_of_scope_by_reason": {
@@ -2185,7 +2210,7 @@
         },
         "cora_issues": 1,
         "findings": {
-          "correct": 4,
+          "correct": 5,
           "underspecified": 0,
           "proof-gap": 0,
           "fixed": 0,
@@ -2223,8 +2248,8 @@
         "class": "polyZonotope",
         "methods": 73,
         "proved": 8,
-        "float": 34,
-        "not_yet": 17,
+        "float": 35,
+        "not_yet": 16,
         "out_of_scope": 14,
         "needs_float": 8,
         "out_of_scope_by_reason": {
@@ -2274,11 +2299,11 @@
         "group": "contSet",
         "class": "polytope",
         "methods": 58,
-        "proved": 8,
-        "float": 31,
-        "not_yet": 7,
+        "proved": 9,
+        "float": 33,
+        "not_yet": 4,
         "out_of_scope": 12,
-        "needs_float": 8,
+        "needs_float": 9,
         "out_of_scope_by_reason": {
           "plotting/display": 3,
           "random/sampling": 3,
@@ -2379,8 +2404,8 @@
         "class": "zonoBundle",
         "methods": 44,
         "proved": 4,
-        "float": 24,
-        "not_yet": 9,
+        "float": 25,
+        "not_yet": 8,
         "out_of_scope": 7,
         "needs_float": 4,
         "out_of_scope_by_reason": {
@@ -2405,8 +2430,8 @@
         "class": "zonotope",
         "methods": 80,
         "proved": 10,
-        "float": 45,
-        "not_yet": 11,
+        "float": 46,
+        "not_yet": 10,
         "out_of_scope": 14,
         "needs_float": 10,
         "out_of_scope_by_reason": {
@@ -2419,7 +2444,7 @@
         },
         "cora_issues": 1,
         "findings": {
-          "correct": 66,
+          "correct": 74,
           "underspecified": 14,
           "proof-gap": 3,
           "fixed": 7,
@@ -2456,11 +2481,11 @@
         "group": "contDynamics",
         "class": "contDynamics",
         "methods": 19,
-        "proved": 0,
+        "proved": 2,
         "float": 4,
-        "not_yet": 4,
+        "not_yet": 2,
         "out_of_scope": 11,
-        "needs_float": 0,
+        "needs_float": 2,
         "out_of_scope_by_reason": {
           "plotting/display": 3,
           "random/sampling": 2,
@@ -2586,11 +2611,11 @@
         "group": "contDynamics",
         "class": "linearSysDT",
         "methods": 17,
-        "proved": 0,
+        "proved": 1,
         "float": 5,
-        "not_yet": 6,
+        "not_yet": 5,
         "out_of_scope": 6,
-        "needs_float": 0,
+        "needs_float": 1,
         "out_of_scope_by_reason": {
           "plotting/display": 2,
           "random/sampling": 1,
@@ -2601,7 +2626,7 @@
         },
         "cora_issues": 0,
         "findings": {
-          "correct": 0,
+          "correct": 4,
           "underspecified": 0,
           "proof-gap": 0,
           "fixed": 0,
@@ -3028,11 +3053,11 @@
     "groups": {
       "contSet": {
         "methods": 908,
-        "proved": 99,
-        "float": 442,
-        "not_yet": 129,
+        "proved": 100,
+        "float": 449,
+        "not_yet": 121,
         "out_of_scope": 238,
-        "needs_float": 99,
+        "needs_float": 100,
         "cora_issues": 19,
         "out_of_scope_by_reason": {
           "plotting/display": 51,
@@ -3043,7 +3068,7 @@
           "deprecated": 14
         },
         "findings": {
-          "correct": 236,
+          "correct": 245,
           "underspecified": 48,
           "proof-gap": 5,
           "fixed": 42,
@@ -3052,11 +3077,11 @@
       },
       "contDynamics": {
         "methods": 159,
-        "proved": 25,
+        "proved": 28,
         "float": 37,
-        "not_yet": 38,
+        "not_yet": 35,
         "out_of_scope": 59,
-        "needs_float": 25,
+        "needs_float": 28,
         "cora_issues": 1,
         "out_of_scope_by_reason": {
           "plotting/display": 25,
@@ -3067,7 +3092,7 @@
           "deprecated": 0
         },
         "findings": {
-          "correct": 49,
+          "correct": 53,
           "underspecified": 23,
           "proof-gap": 14,
           "fixed": 10,
@@ -3125,11 +3150,11 @@
     },
     "totals": {
       "methods": 1260,
-      "proved": 149,
-      "float": 537,
-      "not_yet": 193,
+      "proved": 153,
+      "float": 544,
+      "not_yet": 182,
       "out_of_scope": 381,
-      "needs_float": 149,
+      "needs_float": 153,
       "cora_issues": 21,
       "out_of_scope_by_reason": {
         "plotting/display": 86,
@@ -3140,7 +3165,7 @@
         "deprecated": 14
       },
       "findings": {
-        "correct": 344,
+        "correct": 357,
         "underspecified": 76,
         "proof-gap": 21,
         "fixed": 54,
@@ -3171,11 +3196,11 @@
       }
     },
     "theorems": {
-      "paper": 742,
-      "float": 1164,
-      "helper": 755,
+      "paper": 752,
+      "float": 1165,
+      "helper": 757,
       "lemma": 1969,
-      "total": 4630,
+      "total": 4643,
       "examples": 80
     }
   }

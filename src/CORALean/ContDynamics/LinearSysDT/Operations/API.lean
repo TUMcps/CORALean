@@ -13,6 +13,8 @@ import CORALean.ContDynamics.LinearSysDT.Operations.ReachErrorReduced
 import CORALean.ContDynamics.LinearSysDT.Operations.ReachErrorReducedOrders
 import CORALean.ContDynamics.LinearSysDT.Operations.ReachInnerRep
 import CORALean.ContDynamics.LinearSysDT.Operations.ReachUnion
+import CORALean.ContDynamics.LinearSysDT.Operations.ObserveStep
+import CORALean.ContDynamics.LinearSysDT.Operations.ObserveStripBased
 
 /-!
 # What `LinearSysDT` computes

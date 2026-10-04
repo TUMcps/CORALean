@@ -10,7 +10,7 @@ CORA methods of `contDynamics/@linearSysDT/`, one row each, and where CORALean a
 | `confSynth_dyn` | out-of-scope | n/a — solver-dependent | result determined by `linprog`/`quadprog` |
 | `confSynth_gray` | out-of-scope | n/a — solver-dependent | result determined by `fmincon` |
 | `display` | out-of-scope | n/a — plotting/display |  |
-| `executeObserver` | — | — |  |
+| `executeObserver` | proved | [`LinearSysDT.observeStripBased`](../../../src/CORALean/ContDynamics/LinearSysDT/Operations/ObserveStripBased.lean), [`LinearSysDT.observeStripBased_outer`](../../../src/CORALean/ContDynamics/LinearSysDT/Theorems/Real/ObserveStripBasedOuter.lean) | the strip-based estimators `FRad-A`, `FRad-B`, `PRad-A` to `PRad-D` and `VolMin-A` only, through `observe_stripBased`; the others are not covered |
 | `falsify` | out-of-scope | n/a — solver-dependent | optimisation and wall-clock search for a falsifying trajectory |
 | `getPrintSystemInfo` | out-of-scope | n/a — plotting/display |  |
 | `identify` | — | — |  |
