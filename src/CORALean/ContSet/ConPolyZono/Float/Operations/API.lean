@@ -39,6 +39,13 @@ import CORALean.ContSet.ConPolyZono.Float.Operations.GetSubset
 import CORALean.ContSet.ConPolyZono.Float.Operations.LongestFactor
 import CORALean.ContSet.ConPolyZono.Float.Operations.SplitDepFactor
 import CORALean.ContSet.ConPolyZono.Float.Operations.SplitLongestGen
+import CORALean.ContSet.ConPolyZono.Float.Operations.Centre
+import CORALean.ContSet.ConPolyZono.Float.Operations.RepresentsaPoint
+import CORALean.ContSet.ConPolyZono.Float.Operations.NominalSupportBound
+import CORALean.ContSet.ConPolyZono.Float.Operations.SupportBound
+import CORALean.ContSet.ConPolyZono.Float.Operations.MinkDiff
+import CORALean.ContSet.ConPolyZono.Float.Operations.ExactPlus
+import CORALean.ContSet.ConPolyZono.Float.Operations.QuadMap
 
 /-!
 # What `ConPolyZono` computes

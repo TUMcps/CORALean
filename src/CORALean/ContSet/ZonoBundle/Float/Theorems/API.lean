@@ -18,6 +18,7 @@ import CORALean.ContSet.ZonoBundle.Float.Theorems.EnlargeOuter
 import CORALean.ContSet.ZonoBundle.Float.Theorems.ConstructEnlarge
 import CORALean.ContSet.ZonoBundle.Float.Theorems.IsequalSound
 import CORALean.ContSet.ZonoBundle.Float.Theorems.BoundDotLPLe
+import CORALean.ContSet.ZonoBundle.Float.Theorems.SplitOuter
 
 /-!
 # What a float zonotope bundle guarantees, collected

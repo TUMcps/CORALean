@@ -7,6 +7,7 @@ import CORALean.ContSet.SpectraShadow.Float.Operations.PadLeft
 import CORALean.ContSet.SpectraShadow.Float.Operations.PadRight
 import CORALean.ContSet.SpectraShadow.Float.Operations.Plus
 import CORALean.ContSet.SpectraShadow.Float.Operations.Project
+import CORALean.ContSet.SpectraShadow.Float.Operations.Inter
 
 /-!
 # What a float spectrahedral shadow computes, collected

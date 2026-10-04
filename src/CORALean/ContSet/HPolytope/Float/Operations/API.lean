@@ -51,6 +51,9 @@ import CORALean.ContSet.HPolytope.Float.Operations.Origin
 import CORALean.ContSet.HPolytope.Float.Operations.LiftCols
 import CORALean.ContSet.HPolytope.Float.Operations.MulVecLiftCols
 import CORALean.ContSet.HPolytope.Float.Operations.Lift
+import CORALean.ContSet.HPolytope.Float.Operations.RepresentsaFullspace
+import CORALean.ContSet.HPolytope.Float.Operations.RowScale
+import CORALean.ContSet.HPolytope.Float.Operations.ReduceOverDomain
 
 /-!
 # What the float `HPolytope` computes

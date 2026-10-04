@@ -10,6 +10,7 @@ import CORALean.ContSet.SpectraShadow.Float.Theorems.PadLeftOuter
 import CORALean.ContSet.SpectraShadow.Float.Theorems.PadRightOuter
 import CORALean.ContSet.SpectraShadow.Float.Theorems.CartProdOuter
 import CORALean.ContSet.SpectraShadow.Float.Theorems.Convex
+import CORALean.ContSet.SpectraShadow.Float.Theorems.InterOuter
 
 /-!
 # What a float spectrahedral shadow guarantees, collected

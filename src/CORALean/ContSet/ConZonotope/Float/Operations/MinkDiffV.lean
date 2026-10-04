@@ -1,0 +1,50 @@
+import CORALean.ContSet.ConZonotope.Float.Operations.Intersection
+import CORALean.ContSet.Conversion.Float.Zonotope_to_ConZonotope
+import CORALean.ContSet.Zonotope.Float.Operations.Plus
+import CORALean.ContSet.Zonotope.Float.Operations.Point
+
+/-!
+# `ConZonotope.minkDiffV` over a floating-point scalar
+
+[1, Prop. 6] on the stored floats: `Z ⊖ ⟨v⟩_V` for a zonotope `Z` and a polytope given by its
+nonempty vertex list `v`, as the translated zonotopes `Z − vᵢ` intersected one at a time, the
+way CORA's `@conZonotope/minkDiff`, method `'exact'`, folds. The translation is the float
+`Zonotope.plus` with the point `−vᵢ` (negation is exact, the centre's rounding goes into the
+error box), and the intersection is the float `ConZonotope.intersection`, so the result is
+outer, not exact.
+
+## References
+
+* [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear
+      Systems Using Inner- and Outer-Approximations of Reachable Sets". IEEE Transactions on
+      Automatic Control, vol. 68, no. 12, 2023, pp. 7771–7786.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+open FloatOps
+
+variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- [1, Prop. 6]: `Z ⊖ ⟨v⟩_V`, the translated zonotopes `Z − v i` intersected in turn. -/
+def ConZonotope.minkDiffV {k : ℕ} (Z : Zonotope 𝕋 n) (v : Fin (k + 1) → Vec 𝕋 n) :
+    ConZonotope 𝕋 n :=
+  let shifted : Fin (k + 1) → ConZonotope 𝕋 n :=                 -- Z − v i
+    fun i => (Z.plus (Zonotope.point fun r => neg (v i r))).conZonotope
+  Fin.foldl k (fun cZ i => cZ.intersection (shifted i.succ)) (shifted 0)
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

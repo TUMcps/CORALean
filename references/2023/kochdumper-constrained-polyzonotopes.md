@@ -121,6 +121,7 @@ would leave *both* branches unsatisfiable rather than only its own.
 These name the paper as a whole. A locator would put each in a row above.
 
 * [`API.lean`](../../src/CORALean/ContSet/ConPolyZono/API.lean)
+* [`ExactPlus.lean`](../../src/CORALean/ContSet/ConPolyZono/Float/Operations/ExactPlus.lean)
 * [`ExactPlus.lean`](../../src/CORALean/ContSet/ConPolyZono/Real/Operations/ExactPlus.lean)
 * [`RepresentsaPoint.lean`](../../src/CORALean/ContSet/ConPolyZono/Real/Operations/RepresentsaPoint.lean)
 * [`SupportBound.lean`](../../src/CORALean/ContSet/ConPolyZono/Real/Operations/SupportBound.lean)

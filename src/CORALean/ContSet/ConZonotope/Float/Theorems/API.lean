@@ -19,6 +19,11 @@ import CORALean.ContSet.ConZonotope.Float.Theorems.BoundDotWeightsLe
 import CORALean.ContSet.ConZonotope.Float.Theorems.SeparatesAlongSound
 import CORALean.ContSet.ConZonotope.Float.Theorems.IsDisjointLPSound
 import CORALean.ContSet.ConZonotope.Float.Theorems.CartProdExact
+import CORALean.ContSet.ConZonotope.Float.Theorems.MinkDiffVOuter
+import CORALean.ContSet.ConZonotope.Float.Theorems.ConIntersectOuter
+import CORALean.ContSet.ConZonotope.Float.Theorems.RescaleOuter
+import CORALean.ContSet.ConZonotope.Float.Theorems.CompactExact
+import CORALean.ContSet.ConZonotope.Float.Theorems.IntersectStripOuter
 
 /-!
 # What the float `ConZonotope` guarantees

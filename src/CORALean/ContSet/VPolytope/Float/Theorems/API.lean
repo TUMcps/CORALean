@@ -12,6 +12,7 @@ import CORALean.ContSet.VPolytope.Float.Theorems.IsCompact
 import CORALean.ContSet.VPolytope.Float.Theorems.ConvHullOuter
 import CORALean.ContSet.VPolytope.Float.Theorems.EnclosePointsExact
 import CORALean.ContSet.VPolytope.Float.Theorems.OriginExact
+import CORALean.ContSet.VPolytope.Float.Theorems.CenterBoxMeets
 
 /-!
 # What the float `VPolytope` guarantees

@@ -1,0 +1,32 @@
+import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
+
+/-!
+# `ConPolyZono.representsa_point` over a floating-point scalar
+
+`conPolyZono/representsa_` at `point`, as CORA tests it: no generator column of either block.
+The test reads two sizes and no stored number, so it is the same `Bool` as the exact layer's on
+the nominal set; what it guarantees at float is `construct_subset_of_representsa_point`.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- `conPolyZono/representsa_` at `point`: no generator column of either block. -/
+def ConPolyZono.representsa_point (cPZ : ConPolyZono 𝕋 n) : Bool := cPZ.h == 0 && cPZ.q == 0
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
