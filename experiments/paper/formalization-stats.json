@@ -14,24 +14,24 @@
     "not-covered"
   ],
   "totals": {
-    "papers": 67,
-    "papers_with_findings": 57,
-    "in_scope": 865,
-    "formalized": 819,
+    "papers": 70,
+    "papers_with_findings": 60,
+    "in_scope": 908,
+    "formalized": 862,
     "not_formalized": 46,
-    "out_of_scope": 588,
+    "out_of_scope": 631,
     "out_of_scope_by_reason": {
-      "restated": 257,
+      "restated": 260,
       "mathlib": 13,
-      "not-a-claim": 267,
+      "not-a-claim": 303,
       "done-differently": 8,
-      "not-covered": 43
+      "not-covered": 47
     },
     "by_class": {
-      "correct": 571,
-      "underspecified": 130,
+      "correct": 600,
+      "underspecified": 139,
       "proof-gap": 27,
-      "fixed": 89,
+      "fixed": 94,
       "false": 2
     }
   },
@@ -398,6 +398,62 @@
       ]
     },
     {
+      "page": "2009/lara-infocomp-hyperbox-hyperplane.md",
+      "label": "Lara 2009",
+      "year": 2009,
+      "title": "On the Hyperbox – Hyperplane Intersection Problem",
+      "in_scope": 18,
+      "formalized": 18,
+      "not_formalized": 0,
+      "out_of_scope": 17,
+      "out_of_scope_by_reason": {
+        "restated": 1,
+        "mathlib": 0,
+        "not-a-claim": 16,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 12,
+        "underspecified": 6,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Cor. 6.3 1",
+          "class": "underspecified",
+          "reason": "\"at its edges\" holds for the upward edges of a low vertex, see the findings"
+        },
+        {
+          "result": "Alg. 2",
+          "class": "underspecified",
+          "reason": "needs `α ≥ 0`, see the findings"
+        },
+        {
+          "result": "Lemma 6.5",
+          "class": "underspecified",
+          "reason": "\"has a solution\" holds as a solution adjacent to its vertices, see the findings"
+        },
+        {
+          "result": "Sec. 6.2",
+          "class": "underspecified",
+          "reason": "needs the plane to meet the box, see the findings"
+        },
+        {
+          "result": "Sec. 6.3 (scaling)",
+          "class": "underspecified",
+          "reason": "for a negative `βᵢ` the interval's bounds are crossed, see the findings"
+        },
+        {
+          "result": "Sec. 6.3 (general problem)",
+          "class": "underspecified",
+          "reason": "a coordinate sort is also needed, see the findings"
+        }
+      ]
+    },
+    {
       "page": "2010/althoff-nahs-zonotopes-polytopes.md",
       "label": "Althoff 2010 (nahs)",
       "year": 2010,
@@ -501,6 +557,42 @@
           "result": "Heuristic 3.1",
           "class": "underspecified",
           "reason": "measure printed as a product, but the sentence justifying it needs a sum; formalized as printed"
+        }
+      ]
+    },
+    {
+      "page": "2010/trombettoni-cp-box-consistency.md",
+      "label": "Trombettoni 2010",
+      "year": 2010,
+      "title": "A Box-Consistency Contractor Based on Extremal Functions",
+      "in_scope": 9,
+      "formalized": 9,
+      "not_formalized": 0,
+      "out_of_scope": 10,
+      "out_of_scope_by_reason": {
+        "restated": 2,
+        "mathlib": 0,
+        "not-a-claim": 6,
+        "done-differently": 0,
+        "not-covered": 2
+      },
+      "by_class": {
+        "correct": 7,
+        "underspecified": 2,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Sec. 3 (extremal functions)",
+          "class": "underspecified",
+          "reason": "sufficiency needs `f(x, ·)` continuous, see the findings"
+        },
+        {
+          "result": "Sec. 3 (extremal bounds)",
+          "class": "underspecified",
+          "reason": "the extremal sums start at `i = 1`, dropping the constant term `g[Y]` and the example carry"
         }
       ]
     },
@@ -832,6 +924,62 @@
           "result": "Eq. 20",
           "class": "fixed",
           "reason": "one `ξ` shared by all rows, as in `Eq. 10`: `Lᵈ` holds the counterexample's remainder and the set does not; true with one `ξ` per row"
+        }
+      ]
+    },
+    {
+      "page": "2014/raman-cdc-mpc-stl.md",
+      "label": "Raman 2014",
+      "year": 2014,
+      "title": "Model Predictive Control with Signal Temporal Logic Specifications",
+      "in_scope": 16,
+      "formalized": 16,
+      "not_formalized": 0,
+      "out_of_scope": 16,
+      "out_of_scope_by_reason": {
+        "restated": 0,
+        "mathlib": 0,
+        "not-a-claim": 14,
+        "done-differently": 0,
+        "not-covered": 2
+      },
+      "by_class": {
+        "correct": 10,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 5,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Sec. II-C",
+          "class": "fixed",
+          "reason": "`≡` fails at `ρ = 0`, see the findings"
+        },
+        {
+          "result": "Sec. IV-B.3 (temporal)",
+          "class": "underspecified",
+          "reason": "needs `N ≥ t + bound(φ)`, see the findings"
+        },
+        {
+          "result": "Sec. IV-B.3 (until)",
+          "class": "fixed",
+          "reason": "the unbounded until's recursion is the strict one, see the findings"
+        },
+        {
+          "result": "Sec. IV-B.3 (correctness)",
+          "class": "fixed",
+          "reason": "the until recursion corrected and the horizon assumed, see the findings"
+        },
+        {
+          "result": "Eq. 5",
+          "class": "fixed",
+          "reason": "only the \"if\" holds, see the findings"
+        },
+        {
+          "result": "Sec. V (correctness)",
+          "class": "fixed",
+          "reason": "the until recursion corrected and the horizon assumed; `r > 0` is sufficient, not necessary, see the findings"
         }
       ]
     },
@@ -3252,8 +3400,8 @@
         },
         "cora_issues": 1,
         "findings": {
-          "correct": 25,
-          "underspecified": 2,
+          "correct": 44,
+          "underspecified": 10,
           "proof-gap": 0,
           "fixed": 1,
           "false": 0
@@ -4110,8 +4258,8 @@
           "deprecated": 14
         },
         "findings": {
-          "correct": 286,
-          "underspecified": 57,
+          "correct": 305,
+          "underspecified": 65,
           "proof-gap": 5,
           "fixed": 49,
           "false": 2
@@ -4207,8 +4355,8 @@
         "deprecated": 14
       },
       "findings": {
-        "correct": 501,
-        "underspecified": 111,
+        "correct": 520,
+        "underspecified": 119,
         "proof-gap": 23,
         "fixed": 75,
         "false": 2
@@ -4223,10 +4371,10 @@
         "false": 0
       },
       "specification": {
-        "correct": 13,
-        "underspecified": 7,
+        "correct": 23,
+        "underspecified": 8,
         "proof-gap": 0,
-        "fixed": 0,
+        "fixed": 5,
         "false": 0
       },
       "examples": {
@@ -4238,11 +4386,11 @@
       }
     },
     "theorems": {
-      "paper": 1090,
+      "paper": 1142,
       "float": 1422,
-      "helper": 969,
-      "lemma": 2218,
-      "total": 5699,
+      "helper": 987,
+      "lemma": 2221,
+      "total": 5772,
       "examples": 80
     }
   }

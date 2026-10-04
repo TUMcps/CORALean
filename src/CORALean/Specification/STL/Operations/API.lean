@@ -14,6 +14,7 @@ import CORALean.Specification.STL.Operations.RTLBigOr
 import CORALean.Specification.STL.Operations.RTLFinally
 import CORALean.Specification.STL.Operations.SampToCNF
 import CORALean.Specification.STL.Operations.SampToFormula
+import CORALean.Specification.STL.Operations.DFormulaBound
 
 /-!
 # Signal and reachset temporal logic: the operations

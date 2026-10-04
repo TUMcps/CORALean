@@ -75,6 +75,23 @@ import CORALean.Specification.STL.Theorems.UntilZeroEquiv
 import CORALean.Specification.STL.Theorems.UpsilonAnd
 import CORALean.Specification.STL.Theorems.UpsilonOfPform
 import CORALean.Specification.STL.Theorems.UpsilonOfPformCounterexample
+import CORALean.Specification.STL.Theorems.UntilEncNonstrictIff
+import CORALean.Specification.STL.Theorems.UntilDecompIff
+import CORALean.Specification.STL.Theorems.UntilRobNonstrictLeIff
+import CORALean.Specification.STL.Theorems.ZEncIffSat
+import CORALean.Specification.STL.Theorems.REncEqRob
+import CORALean.Specification.STL.Theorems.ZEncCounterexample
+import CORALean.Specification.STL.Theorems.REncCounterexample
+import CORALean.Specification.STL.Theorems.RobSound
+import CORALean.Specification.STL.Theorems.RobCounterexample
+import CORALean.Specification.STL.Theorems.SatCongr
+import CORALean.Specification.STL.Theorems.EventuallySatIff
+import CORALean.Specification.STL.Theorems.PredEncodingIff
+import CORALean.Specification.STL.Theorems.ConjEncodingIff
+import CORALean.Specification.STL.Theorems.DisjEncodingIff
+import CORALean.Specification.STL.Theorems.RobustConjEncoding
+import CORALean.Specification.STL.Theorems.RobustDisjEncoding
+import CORALean.Specification.STL.Theorems.RobustSelectorCounterexample
 
 /-!
 # Signal and reachset temporal logic: the theorems
@@ -82,7 +99,8 @@ import CORALean.Specification.STL.Theorems.UpsilonOfPformCounterexample
 The results of [1] that are formalized, one file each: the properties of a sound and complete
 transformation, its soundness and completeness on c-divisible reach sequences ([1, Lemma 2]), the
 rewriting rules of [1, Table 1], and the lemmas about traces and sets they use. The `aux_` lemmas
-are re-exported too.
+are re-exported too. Beside them, the mixed-integer encodings of discrete-time STL: each
+constraint gadget, and the encodings deciding the formula and computing its robustness.
 
 ## References
 
