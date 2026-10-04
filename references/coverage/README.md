@@ -118,15 +118,15 @@ Rulings on borderline cases:
 |---|---|---|---|---|---|---|---|
 | [affine](contSet/affine.md) | contSet | 1 | 0 | 1 | 0 | 0 | 0 |
 | [capsule](contSet/capsule.md) | contSet | 39 | 0 | 28 | 1 | 10 | 3 |
-| [conPolyZono](contSet/conPolyZono.md) | contSet | 47 | 6 | 32 | 1 | 8 | 3 |
-| [conZonotope](contSet/conZonotope.md) | contSet | 50 | 7 | 31 | 0 | 12 | 2 |
+| [conPolyZono](contSet/conPolyZono.md) | contSet | 47 | 4 | 34 | 1 | 8 | 3 |
+| [conZonotope](contSet/conZonotope.md) | contSet | 50 | 6 | 32 | 0 | 12 | 2 |
 | [contSet](contSet/contSet.md) | contSet | 101 | 0 | 28 | 1 | 72 | 0 |
 | [ellipsoid](contSet/ellipsoid.md) | contSet | 50 | 3 | 28 | 9 | 10 | 3 |
 | [emptySet](contSet/emptySet.md) | contSet | 30 | 2 | 21 | 0 | 7 | 0 |
 | [fullspace](contSet/fullspace.md) | contSet | 33 | 4 | 20 | 1 | 8 | 0 |
 | [interval](contSet/interval.md) | contSet | 110 | 1 | 91 | 0 | 18 | 1 |
 | [levelSet](contSet/levelSet.md) | contSet | 22 | 3 | 9 | 1 | 9 | 2 |
-| [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 8 | 44 | 7 | 14 | 3 |
+| [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 7 | 45 | 7 | 14 | 3 |
 | [polygon](contSet/polygon.md) | contSet | 46 | 0 | 26 | 11 | 9 | 2 |
 | [polytope](contSet/polytope.md) | contSet | 58 | 7 | 39 | 0 | 12 | 4 |
 | [probZonotope](contSet/probZonotope.md) | contSet | 28 | 5 | 10 | 5 | 8 | 3 |

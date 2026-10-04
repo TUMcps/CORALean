@@ -72,6 +72,10 @@ import CORALean.ContSet.Zonotope.Float.Theorems.AbsCornerMem
 import CORALean.ContSet.Zonotope.Float.Theorems.AbsNominal
 import CORALean.ContSet.Zonotope.Float.Theorems.AbsCornerMemNominalSet
 import CORALean.ContSet.Zonotope.Float.Theorems.AbsLeAbsBoundNominalSet
+import CORALean.ContSet.Zonotope.Float.Theorems.MethCResidualBound
+import CORALean.ContSet.Zonotope.Float.Theorems.MethCQBound
+import CORALean.ContSet.Zonotope.Float.Theorems.MethCReachBound
+import CORALean.ContSet.Zonotope.Float.Theorems.ReduceMethCOuter
 
 /-!
 # What `Zonotope` guarantees

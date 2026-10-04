@@ -7,11 +7,14 @@ If `X2 = G X1` for some `G` — the data was produced by a map of the regressors
 `X1 = V S Wᵀ` with orthonormal `V`, `W` and nonzero `s`, the candidate of full rank `r`
 satisfies `M X1 = X2`: `X2 W S⁻¹ Vᵀ V S Wᵀ = X2 W Wᵀ = G V S Wᵀ W Wᵀ = X2`. No claim for
 lower ranks, nor that the fit is the least-squares one when the data is not consistent.
-The source is [1].
+The source is [1]; without input it is the claim of [2, Eq. 7] that `X' Ṽ Σ̃⁻¹ Ũᵀ` recovers `A`
+from the snapshots of `x_{k+1} = A x_k`.
 
 ## References
 
 * [1] `contDynamics/@linearSysDT/private/priv_identifyDMD.m`
+* [2] J. L. Proctor, S. L. Brunton and J. N. Kutz. "Dynamic mode decomposition with control".
+      SIAM Journal on Applied Dynamical Systems, 15(1):142-161, 2016 (arXiv:1409.6358).
 -/
 
 -- Authors:       Tobias Ladner

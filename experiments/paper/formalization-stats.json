@@ -14,24 +14,24 @@
     "not-covered"
   ],
   "totals": {
-    "papers": 65,
-    "papers_with_findings": 55,
-    "in_scope": 832,
-    "formalized": 786,
+    "papers": 67,
+    "papers_with_findings": 57,
+    "in_scope": 865,
+    "formalized": 819,
     "not_formalized": 46,
-    "out_of_scope": 559,
+    "out_of_scope": 588,
     "out_of_scope_by_reason": {
-      "restated": 255,
+      "restated": 257,
       "mathlib": 13,
-      "not-a-claim": 241,
+      "not-a-claim": 267,
       "done-differently": 8,
-      "not-covered": 42
+      "not-covered": 43
     },
     "by_class": {
-      "correct": 548,
-      "underspecified": 123,
+      "correct": 571,
+      "underspecified": 130,
       "proof-gap": 27,
-      "fixed": 86,
+      "fixed": 89,
       "false": 2
     }
   },
@@ -888,6 +888,108 @@
           "result": "Prop. 6",
           "class": "fixed",
           "reason": "false without `µ ≥ 0` (explicit pair in ℝ²); (23)'s normal is printed with the wrong sign"
+        }
+      ]
+    },
+    {
+      "page": "2016/brunton-pnas-sindy.md",
+      "label": "Brunton 2016",
+      "year": 2016,
+      "title": "Discovering governing equations from data by sparse identification of nonlinear dynamical systems",
+      "in_scope": 9,
+      "formalized": 9,
+      "not_formalized": 0,
+      "out_of_scope": 12,
+      "out_of_scope_by_reason": {
+        "restated": 0,
+        "mathlib": 0,
+        "not-a-claim": 11,
+        "done-differently": 0,
+        "not-covered": 1
+      },
+      "by_class": {
+        "correct": 8,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Sec. 3.1",
+          "class": "underspecified",
+          "reason": "\"a small number\" is not a quantity; `p · n + 1` is what holds for every regression, and the printed `10` suffices only when it is at least that; for `λ ≤ 0` nothing is thresholded; the efficiency claim is not a result"
+        }
+      ]
+    },
+    {
+      "page": "2016/proctor-siads-dmd-control.md",
+      "label": "Proctor 2016",
+      "year": 2016,
+      "title": "Dynamic mode decomposition with control",
+      "in_scope": 24,
+      "formalized": 24,
+      "not_formalized": 0,
+      "out_of_scope": 17,
+      "out_of_scope_by_reason": {
+        "restated": 2,
+        "mathlib": 0,
+        "not-a-claim": 15,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 15,
+        "underspecified": 6,
+        "proof-gap": 0,
+        "fixed": 3,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Eq. 3",
+          "class": "fixed",
+          "reason": "printed with `X` and `X'` swapped; the recursion gives `X' = A X`, as the text above (2) and the use in (4) say; see Findings"
+        },
+        {
+          "result": "Eq. 7",
+          "class": "underspecified",
+          "reason": "\"≈\" is not quantified for the truncated `Ā`; the exact data and full rank case is formalized, a truncation below the rank is neither a fit nor a pseudo-inverse solution and not covered"
+        },
+        {
+          "result": "Eq. 13",
+          "class": "fixed",
+          "reason": "for `λ = 0` the mode `Ũ w` is in general no eigenvector of `Ā` (it is a projected mode, as in Tu et al.); `X' Ṽ Σ̃⁻¹ w` is one whenever nonzero; real eigenpairs only; see Findings"
+        },
+        {
+          "result": "Eq. 18",
+          "class": "underspecified",
+          "reason": "as `Eq. 7`: \"≈\", and the truncated `Ā`, are not quantified; exact data and full rank are formalized"
+        },
+        {
+          "result": "Sec. III-B",
+          "class": "underspecified",
+          "reason": "\"incorrect\" is not a quantity; formalized as the paper's own example"
+        },
+        {
+          "result": "Eq. 24",
+          "class": "fixed",
+          "reason": "the `λ = 0` case of `Eq. 13` again; see Findings"
+        },
+        {
+          "result": "Eq. 26",
+          "class": "underspecified",
+          "reason": "as `Eq. 7`; the truncation `p` is not covered"
+        },
+        {
+          "result": "Eq. 32",
+          "class": "underspecified",
+          "reason": "an eigenvector of `Ā` only if `Û` spans the columns of `X'` (the output SVD untruncated); real eigenpairs"
+        },
+        {
+          "result": "Eq. 36",
+          "class": "underspecified",
+          "reason": "as `Eq. 32`"
         }
       ]
     },
@@ -2979,11 +3081,11 @@
         "group": "contSet",
         "class": "conPolyZono",
         "methods": 47,
-        "proved": 6,
-        "float": 32,
+        "proved": 4,
+        "float": 34,
         "not_yet": 1,
         "out_of_scope": 8,
-        "needs_float": 6,
+        "needs_float": 4,
         "out_of_scope_by_reason": {
           "plotting/display": 3,
           "random/sampling": 2,
@@ -3005,11 +3107,11 @@
         "group": "contSet",
         "class": "conZonotope",
         "methods": 50,
-        "proved": 7,
-        "float": 31,
+        "proved": 6,
+        "float": 32,
         "not_yet": 0,
         "out_of_scope": 12,
-        "needs_float": 7,
+        "needs_float": 6,
         "out_of_scope_by_reason": {
           "plotting/display": 4,
           "random/sampling": 2,
@@ -3187,11 +3289,11 @@
         "group": "contSet",
         "class": "polyZonotope",
         "methods": 73,
-        "proved": 8,
-        "float": 44,
+        "proved": 7,
+        "float": 45,
         "not_yet": 7,
         "out_of_scope": 14,
-        "needs_float": 8,
+        "needs_float": 7,
         "out_of_scope_by_reason": {
           "plotting/display": 4,
           "random/sampling": 2,
@@ -3993,11 +4095,11 @@
     "groups": {
       "contSet": {
         "methods": 908,
-        "proved": 68,
-        "float": 548,
+        "proved": 64,
+        "float": 552,
         "not_yet": 52,
         "out_of_scope": 240,
-        "needs_float": 68,
+        "needs_float": 64,
         "cora_issues": 36,
         "out_of_scope_by_reason": {
           "plotting/display": 51,
@@ -4090,11 +4192,11 @@
     },
     "totals": {
       "methods": 1260,
-      "proved": 109,
-      "float": 680,
+      "proved": 105,
+      "float": 684,
       "not_yet": 87,
       "out_of_scope": 384,
-      "needs_float": 109,
+      "needs_float": 105,
       "cora_issues": 52,
       "out_of_scope_by_reason": {
         "plotting/display": 86,
@@ -4114,10 +4216,10 @@
     },
     "findings_not_on_a_class": {
       "global": {
-        "correct": 32,
-        "underspecified": 5,
+        "correct": 55,
+        "underspecified": 12,
         "proof-gap": 4,
-        "fixed": 11,
+        "fixed": 14,
         "false": 0
       },
       "specification": {
@@ -4136,11 +4238,11 @@
       }
     },
     "theorems": {
-      "paper": 1047,
-      "float": 1391,
-      "helper": 967,
+      "paper": 1090,
+      "float": 1422,
+      "helper": 969,
       "lemma": 2218,
-      "total": 5623,
+      "total": 5699,
       "examples": 80
     }
   }

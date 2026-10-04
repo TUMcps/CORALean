@@ -24,6 +24,12 @@ import CORALean.ContSet.ConZonotope.Float.Theorems.ConIntersectOuter
 import CORALean.ContSet.ConZonotope.Float.Theorems.RescaleOuter
 import CORALean.ContSet.ConZonotope.Float.Theorems.CompactExact
 import CORALean.ContSet.ConZonotope.Float.Theorems.IntersectStripOuter
+import CORALean.ContSet.ConZonotope.Float.Theorems.DependentNominal
+import CORALean.ContSet.ConZonotope.Float.Theorems.QuadBilBracket
+import CORALean.ContSet.ConZonotope.Float.Theorems.QuadMapGClose
+import CORALean.ContSet.ConZonotope.Float.Theorems.QuadMapCBetween
+import CORALean.ContSet.ConZonotope.Float.Theorems.QuadMapDepNominal
+import CORALean.ContSet.ConZonotope.Float.Theorems.QuadMapOuter
 
 /-!
 # What the float `ConZonotope` guarantees

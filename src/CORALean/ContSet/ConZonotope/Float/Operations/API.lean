@@ -21,6 +21,16 @@ import CORALean.ContSet.ConZonotope.Float.Operations.ConIntersect
 import CORALean.ContSet.ConZonotope.Float.Operations.Rescale
 import CORALean.ContSet.ConZonotope.Float.Operations.Compact
 import CORALean.ContSet.ConZonotope.Float.Operations.IntersectStrip
+import CORALean.ContSet.ConZonotope.Float.Operations.Dependent
+import CORALean.ContSet.ConZonotope.Float.Operations.QuadBilDown
+import CORALean.ContSet.ConZonotope.Float.Operations.QuadBilUp
+import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapGDown
+import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapGUp
+import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapGDiff
+import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapCDown
+import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapCUp
+import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapDep
+import CORALean.ContSet.ConZonotope.Float.Operations.QuadMap
 
 /-!
 # What the float `ConZonotope` computes
