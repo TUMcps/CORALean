@@ -168,6 +168,11 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.HasFDerivAtPoint
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ConstructOfQZero
 import CORALean.ContSet.PolyZonotope.Real.Theorems.AreaFormula
 import CORALean.ContSet.PolyZonotope.Real.Theorems.VolumeEqOfDetNonnegInjOn
+import CORALean.ContSet.PolyZonotope.Real.Theorems.CubMapDepPoint
+import CORALean.ContSet.PolyZonotope.Real.Theorems.CubMapDepOnExact
+import CORALean.ContSet.PolyZonotope.Real.Theorems.CubMapDepExact
+import CORALean.ContSet.PolyZonotope.Real.Theorems.CubMapExact
+import CORALean.ContSet.PolyZonotope.Real.Theorems.CubMapMixedExact
 
 /-!
 # What `PolyZonotope` guarantees

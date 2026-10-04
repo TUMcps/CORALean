@@ -10,10 +10,16 @@ CORA's `zonotope(interval)`: the centre, and one generator per coordinate
 carrying that coordinate's radius. `n` generators, and no loss — a box is a
 zonotope with axis-aligned generators.
 
-Only the enclosing direction is stated. A box whose `sup` falls below its `inf`
+The enclosing direction holds of every box. A box whose `sup` falls below its `inf`
 denotes nothing, while the zonotope built from it denotes the box with the two
-swapped, so the reverse inclusion would need the box to be nonempty and is not
-what any caller wants.
+swapped, so equality, `zonotope_exact`, needs `inf ≤ sup`: that a box, an `ℓ∞` ball
+in particular, is exactly one zonotope [1, Sec. VI-A (ℓ∞)].
+
+## References
+
+* [1] T. Gehr, M. Mirman, D. Drachsler-Cohen, P. Tsankov, S. Chaudhuri and M. Vechev. "AI2:
+      Safety and Robustness Certification of Neural Networks with Abstract Interpretation".
+      IEEE S&P 2018, pp. 3-18.
 -/
 
 -- Authors:       Tobias Ladner
@@ -86,6 +92,30 @@ theorem Interval.zonotope_contains (I : Interval (Vec ℝ n)) :
     (fun i => if i = j then (I.sup i - I.inf i) / 2 else 0 : Vec ℝ n)) i
   rw [Pi.add_apply, hsum]
   exact (hb2 i).symm
+
+/-- A nonempty box is exactly its zonotope. -/
+theorem Interval.zonotope_exact (I : Interval (Vec ℝ n)) (hI : ∀ i, I.inf i ≤ I.sup i) :
+    I.zonotope.construct = I.construct := by -- --- PROOF ---
+  refine Set.Subset.antisymm ?_ (Interval.zonotope_contains I)
+  rintro x ⟨β, hβ, rfl⟩ i
+  -- only the diagonal generator reaches coordinate `i`, at a coefficient in `[-1, 1]`
+  have hsum : (∑ j : Fin n, β j •
+        (fun i => if i = j then (I.sup i - I.inf i) / 2 else 0 : Vec ℝ n)) i
+      = β i * ((I.sup i - I.inf i) / 2) := by
+    rw [Finset.sum_apply, Finset.sum_eq_single i]
+    · simp
+    · intro j _ hj
+      simp only [Pi.smul_apply, smul_eq_mul, if_neg (Ne.symm hj), mul_zero]
+    · intro hc
+      exact absurd (Finset.mem_univ i) hc
+  change I.inf i ≤ (I.inf i + I.sup i) / 2 + (∑ j : Fin n, β j •
+      (fun i => if i = j then (I.sup i - I.inf i) / 2 else 0 : Vec ℝ n)) i
+    ∧ (I.inf i + I.sup i) / 2 + (∑ j : Fin n, β j •
+      (fun i => if i = j then (I.sup i - I.inf i) / 2 else 0 : Vec ℝ n)) i ≤ I.sup i
+  rw [hsum]
+  have hw : 0 ≤ (I.sup i - I.inf i) / 2 := by linarith [hI i]
+  have hb := abs_le.mp (hβ i)
+  constructor <;> nlinarith [hb.1, hb.2]
 
 end CORALean.Real
 

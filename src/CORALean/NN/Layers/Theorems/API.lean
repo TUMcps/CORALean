@@ -104,6 +104,8 @@ import CORALean.NN.Layers.Theorems.ToRealPolyDerivCenter
 import CORALean.NN.Layers.Theorems.ToRealTapEntry
 import CORALean.NN.Layers.Theorems.ToRelaxationSound
 import CORALean.NN.Layers.Theorems.SShapeDerBoundsSound
+import CORALean.NN.Layers.Theorems.SelectMatMulVecAddZero
+import CORALean.NN.Layers.Theorems.SShapeUnimodal
 
 /-!
 # What the standard layers enclose, collected

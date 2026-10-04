@@ -117,6 +117,10 @@ import CORALean.ContSet.Zonotope.Real.Operations.SumTerms
 import CORALean.ContSet.Zonotope.Real.Operations.OfOneParamPoly
 import CORALean.ContSet.Zonotope.Real.Operations.IsBox
 import CORALean.ContSet.Zonotope.Real.Operations.IntersectDescriptorLPV
+import CORALean.ContSet.Zonotope.Real.Operations.CubIdx
+import CORALean.ContSet.Zonotope.Real.Operations.CubFold
+import CORALean.ContSet.Zonotope.Real.Operations.CubMap
+import CORALean.ContSet.Zonotope.Real.Operations.CubMapMixed
 
 /-!
 # What `Zonotope` computes

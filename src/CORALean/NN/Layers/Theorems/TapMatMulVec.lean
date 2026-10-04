@@ -6,7 +6,15 @@ import Mathlib.Data.Matrix.Mul
 # A stencil matrix times a vector
 
 Row `j` of the product is the weighted sum over output `j`'s taps, the weights read into ℝ:
-`tapEntry_dot` at that row, which is why the taps of every row must be injective.
+`tapEntry_dot` at that row, which is why the taps of every row must be injective. At a
+convolution's stencil this is [1, Sec. II (Conv to CAT)]: Appendix A's `W^F`, whose entries are
+`Σ W_{i'j'k'} [l = idx(i', j', k')]`, times `x` is the convolution, at any injective stencil.
+
+## References
+
+* [1] T. Gehr, M. Mirman, D. Drachsler-Cohen, P. Tsankov, S. Chaudhuri and M. Vechev. "AI2:
+      Safety and Robustness Certification of Neural Networks with Abstract Interpretation".
+      IEEE S&P 2018, pp. 3-18.
 -/
 
 -- Authors:       Tobias Ladner

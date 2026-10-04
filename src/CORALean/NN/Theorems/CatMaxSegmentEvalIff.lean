@@ -1,0 +1,117 @@
+import CORALean.NN.Layers.Definitions.WindowMax
+import CORALean.NN.Layers.Theorems.Real.LeWindowMax
+import CORALean.NN.Layers.Theorems.Real.WindowMaxLe
+import CORALean.NN.Layers.Theorems.SelectMatMulVec
+import CORALean.NN.Operations.CatMaxSegment
+
+/-!
+# One max-pooling step replaces its window by the maximum
+
+[1, Sec. II (MaxPool to CAT)]: `fᵢ` keeps the coordinates before and after its window and puts
+the window's maximum in its place, and maps a point to nothing else. The case that applies is
+the first position holding a maximum: its guard holds, every earlier one fails, and its
+selection keeps that coordinate. A maximum exists, the window being nonempty.
+
+## References
+
+* [1] T. Gehr, M. Mirman, D. Drachsler-Cohen, P. Tsankov, S. Chaudhuri and M. Vechev. "AI2:
+      Safety and Robustness Certification of Neural Networks with Abstract Interpretation".
+      IEEE S&P 2018, pp. 3-18.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open Matrix Float Float.FloatOps Float.SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- The guard is that `x P` dominates every `x (g q)`. -/
+theorem aux_holds_foldr_ge {N : ℕ} (P : Fin N) (x : Vec ℝ N) :
+    ∀ {j : ℕ} (g : Fin j → Fin N),
+      (Fin.foldr j (fun q acc => CatCond.and (.ge P (g q)) acc) (.ge P P)).Holds x
+        ↔ ∀ q, x (g q) ≤ x P := by -- --- PROOF ---
+  intro j
+  induction j with
+  | zero => intro g; simp [Fin.foldr_zero, CatCond.Holds]
+  | succ j ih =>
+    intro g
+    rw [Fin.foldr_succ]
+    show x (g 0) ≤ x P ∧ _ ↔ _
+    rw [ih (fun q => g q.succ), Fin.forall_fin_succ]
+
+/-- The selection of position `p`, read off coordinate by coordinate. -/
+theorem aux_eval_select (a k b : ℕ) (p : Fin (k + 1)) (x : Vec ℝ (a + (k + 1) + b)) :
+    toRealMat (selectMat (𝕋 := 𝕋) fun r : Fin (a + 1 + b) =>
+        (⟨if r.val < a then r.val else if r.val = a then a + p.val else r.val + k,
+          by have := r.isLt; have := p.isLt; split_ifs <;> omega⟩ : Fin (a + (k + 1) + b))) *ᵥ x
+      + toRealVec (fun _ => (zero : 𝕋))
+      = fun r => if _h : r.val < a then x ⟨r.val, by omega⟩
+          else if r.val = a then x ⟨a + p.val, by omega⟩
+          else x ⟨r.val + k, by have := r.isLt; omega⟩ := by -- --- PROOF ---
+  funext r
+  rw [Pi.add_apply, selectMat_mulVec]
+  show _ + toReal (zero : 𝕋) = _
+  rw [toReal_zero, add_zero]
+  split_ifs <;> rfl
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem Cat.maxSegment_eval_iff (a k b : ℕ) (x : Vec ℝ (a + (k + 1) + b))
+    (y : Vec ℝ (a + 1 + b)) :
+    (Cat.maxSegment (𝕋 := 𝕋) a k b).Eval x y ↔
+      y = fun r => if _h : r.val < a then x ⟨r.val, by omega⟩
+        else if r.val = a then Real.windowMax (fun q : Fin (k + 1) => x ⟨a + q.val, by omega⟩)
+        else x ⟨r.val + k, by have := r.isLt; omega⟩ := by -- --- PROOF ---
+  set w : Fin (k + 1) → ℝ := fun q => x ⟨a + q.val, by omega⟩ with hw
+  have hguard := fun p : Fin (k + 1) => aux_holds_foldr_ge (⟨a + p.val, by omega⟩ :
+    Fin (a + (k + 1) + b)) x (fun q : Fin (k + 1) => ⟨a + q.val, by omega⟩)
+  -- at a dominating position, its coordinate is the maximum
+  have hmax : ∀ p, (∀ q, w q ≤ w p) → w p = Real.windowMax w := fun p hp =>
+    le_antisymm (Real.le_windowMax w p) (Real.windowMax_le hp)
+  constructor
+  · rintro (_ | ⟨E, f, p, hp, -, hy⟩ | _)
+    cases hy
+    rw [aux_eval_select]
+    have hp' : ∀ q, w q ≤ w p := (hguard p).mp hp
+    funext r
+    split_ifs with h1 h2
+    · rfl
+    · exact hmax p hp'
+    · rfl
+  · rintro rfl
+    -- the first position holding a maximum
+    classical
+    have hex : ∃ n, ∃ h : n < k + 1, ∀ q, w q ≤ w ⟨n, h⟩ := by
+      obtain ⟨p, -, hp⟩ := Finset.exists_max_image Finset.univ w Finset.univ_nonempty
+      exact ⟨p.val, p.isLt, fun q => hp q (Finset.mem_univ q)⟩
+    obtain ⟨hlt, hp⟩ := Nat.find_spec hex
+    set p : Fin (k + 1) := ⟨Nat.find hex, hlt⟩
+    refine Cat.Eval.cases _ _ p ((hguard p).mpr hp) (fun j hj hholds => ?_) ?_
+    · exact Nat.find_min hex (show j.val < Nat.find hex from hj) ⟨j.isLt, (hguard j).mp hholds⟩
+    · have hy := Cat.Eval.affine (selectMat (𝕋 := 𝕋) fun r : Fin (a + 1 + b) =>
+        (⟨if r.val < a then r.val else if r.val = a then a + p.val else r.val + k,
+          by have := r.isLt; have := p.isLt; split_ifs <;> omega⟩ : Fin (a + (k + 1) + b)))
+        (fun _ => zero) x
+      rw [aux_eval_select] at hy
+      convert hy using 2 with r
+      split_ifs with h1 h2
+      · rfl
+      · exact (hmax p hp).symm
+      · rfl
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

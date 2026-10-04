@@ -48,6 +48,9 @@ import CORALean.NN.Layers.Definitions.RootRelaxation
 import CORALean.NN.Layers.Definitions.TaylmArray
 import CORALean.NN.Layers.Definitions.WindowMax
 import CORALean.NN.Layers.Definitions.SShape
+import CORALean.NN.Layers.Definitions.DeepZRelu
+import CORALean.NN.Layers.Definitions.DeepZSShape
+import CORALean.NN.Layers.Definitions.SShapedPrinted
 
 /-!
 # What the standard layers mean, collected
@@ -68,4 +71,7 @@ squares and chooses by existence, and `ActivationPoly`, `ActivationPolyRefinable
 **Layer kinds.** `LinearLayer` through `SigmoidPolyLayer` are the weights of each standard kind,
 its `Enclose` instance in `Instances.lean`; `SoftmaxExactLayer` and `ActivationPolyExactLayer` are
 the two exact ones, their instances here, being noncomputable.
+
+**DeepZ.** `DeepZRelu` and `DeepZSShape` are its transformers over ℝ, `SShapedPrinted` the
+class its footnote defines.
 -/

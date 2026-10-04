@@ -109,6 +109,15 @@ import CORALean.NN.Theorems.WeightNetworkNormalFormAuxEval
 import CORALean.NN.Theorems.WeightNetworkNormalFormEval
 import CORALean.NN.Theorems.RefinableNetworkMemRefinableLayers
 import CORALean.NN.Theorems.ActivationKindMergeValuesIff
+import CORALean.NN.Theorems.CatTransformerOuter
+import CORALean.NN.Theorems.CatReluOnEvalIff
+import CORALean.NN.Theorems.CatImageSubsetOfTransformer
+import CORALean.NN.Theorems.SubsetCnfOfMeetEqBot
+import CORALean.NN.Theorems.CatEvalAffineIff
+import CORALean.NN.Theorems.CatEvalCompIff
+import CORALean.NN.Theorems.CatMaxSegmentEvalIff
+import CORALean.NN.Theorems.CatMaxSegmentsEvalIff
+import CORALean.NN.Theorems.CatMaxPoolEvalIff
 
 /-!
 # What a network's enclosure guarantees, collected
@@ -116,7 +125,6 @@ import CORALean.NN.Theorems.ActivationKindMergeValuesIff
 `EncloseOuter`/`ImageSubset` are the graph induction; `Verified` composes `holds_of_outer`, read by
 `MemSafeSet`/`NotMemUnsafeSet`, and `HoldsOfCheck` computes it; `Robustness` builds on `MarginDir`,
 `Misclassified`, `DisjointMisclassifiedOfBounds`, `Classifies`; `HoldsOfSplit`/`VerifySplit*` split.
-
 `LinearWithErrorZero`, `NeuronMergingOuter`, `NeuronMergingNetworkOuter`, `MergeError*` are
 neuron merging [1]: error-free linear layers, bucket containment, the Minkowski split, tolerated
 by `ExistsMergeTolerance`; `MergeBucketMono`/`MergeBucketCardMono`/`ExistsMergeBucketAll` grow it.
@@ -134,6 +142,7 @@ identified with `fderiv` wherever `EvalDifferentiable` holds, which `Sensitivity
 to `SensitivityLinear`/`SensitivityActivation`; `ReluNotDifferentiable` is why ReLU gets none.
 `AtScheduleEval`/`EncloseAtOuter`/`EncloseAtInflate` are the refinement loop [3, Thm. 4.14], its
 hypothesis discharged by the `...Converges` files at one, two [3, Prop. 4.13] and three layers.
+`Cat*` is AI2: `CatTransformerOuter` is [4, Thm. 1], the `...EvalIff` files the CAT forms' values.
 
 ## References
 
@@ -144,4 +153,7 @@ hypothesis discharged by the `...Converges` files at one, two [3, Prop. 4.13] an
       ICML 2025.
 * [3] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural
       Network Verification using Sensitivity Analysis". HSCC 2023.
+* [4] T. Gehr, M. Mirman, D. Drachsler-Cohen, P. Tsankov, S. Chaudhuri and M. Vechev. "AI2:
+      Safety and Robustness Certification of Neural Networks with Abstract Interpretation".
+      IEEE S&P 2018, pp. 3-18.
 -/

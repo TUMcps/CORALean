@@ -235,6 +235,11 @@ import CORALean.ContSet.Zonotope.Real.Theorems.ReduceRowSumCounterexample
 import CORALean.ContSet.Zonotope.Real.Theorems.IntersectDescriptorLPVEq
 import CORALean.ContSet.Zonotope.Real.Theorems.IntersectDescriptorHdPRadiusLe
 import CORALean.ContSet.Zonotope.Real.Theorems.IntersectDescriptorHdPRadiusCounterexample
+import CORALean.ContSet.Zonotope.Real.Theorems.CubMapCoeff
+import CORALean.ContSet.Zonotope.Real.Theorems.CubMapOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.CubMapMixedCoeff
+import CORALean.ContSet.Zonotope.Real.Theorems.CubMapMixedOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.AffineExact
 
 /-!
 # What `Zonotope` guarantees
