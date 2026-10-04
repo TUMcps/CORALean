@@ -12,6 +12,19 @@ import CORALean.ContSet.Polygon.Float.Theorems.TimesOuter
 import CORALean.ContSet.Polygon.Float.Theorems.BoundDotLe
 import CORALean.ContSet.Polygon.Float.Theorems.VerticesOuter
 import CORALean.ContSet.Polygon.Float.Theorems.RepresentsaEmptySetSound
+import CORALean.ContSet.Polygon.Float.Theorems.AndOuter
+import CORALean.ContSet.Polygon.Float.Theorems.MinusOuter
+import CORALean.ContSet.Polygon.Float.Theorems.SplitIntoConvexSetsUnion
+import CORALean.ContSet.Polygon.Float.Theorems.IsFullDimSound
+import CORALean.ContSet.Polygon.Float.Theorems.ContainsPointSound
+import CORALean.ContSet.Polygon.Float.Theorems.InTriangleSound
+import CORALean.ContSet.Polygon.Float.Theorems.IsDisjointSound
+import CORALean.ContSet.Polygon.Float.Theorems.IsequalPiecesSound
+import CORALean.ContSet.Polygon.Float.Theorems.OrientBoundsLe
+import CORALean.ContSet.Polygon.Float.Theorems.PieceHoldsSound
+import CORALean.ContSet.Polygon.Float.Theorems.PieceSubsetSound
+import CORALean.ContSet.Polygon.Float.Theorems.IsConvexSound
+import CORALean.ContSet.Polygon.Float.Theorems.VolumeLe
 
 /-!
 # Float polygon theorems, collected

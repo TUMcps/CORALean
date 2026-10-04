@@ -1,0 +1,40 @@
+import CORALean.ContSet.Polygon.Float.Operations.CrossCertified
+
+/-!
+# `Polygon.isFullDim`, over a floating-point scalar
+
+The region has an interior point when some piece has three vertices that are not collinear and
+a nonempty error box. The cross product `(b - a) × (c - a)` is six products of stored
+coordinates, bracketed by directed roundings, and certified nonzero by `ltStrict` on one side
+of `0`; the box's `inf ≤ sup` by `le`. Only `true` is certain; CORA's count of boundary vertices
+(R-PG) is not what is tested.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+open FloatOps
+
+variable {𝕋 : Type} [FloatOps 𝕋]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- Some piece with a nonempty box and three vertices certified not collinear. -/
+def Polygon.isFullDim (P : Polygon 𝕋) : Bool :=
+  P.sets.any fun p =>
+    ((List.finRange 2).all fun i => le (p.E.inf i) (p.E.sup i)) &&
+      (List.finRange p.k).any fun a => (List.finRange p.k).any fun b =>
+        (List.finRange p.k).any fun c => Polygon.crossCertified p a b c
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

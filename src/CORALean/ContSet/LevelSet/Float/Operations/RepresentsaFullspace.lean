@@ -1,0 +1,41 @@
+import CORALean.ContSet.LevelSet.Real.LevelSet
+import CORALean.ContSet.Interval.Float.Interval
+
+/-!
+# `LevelSet.representsa_fullspace` at float bounds
+
+The float form of the real test of the same name: the bounds `(lb, ub)` of each row's range
+over the whole space are stored floats. A row holds everywhere when `ub ≤ 0` (for `≤`), `ub < 0`
+(for `<`) or `lb = ub = 0` (for `=`, both comparisons both ways) is certified by `le`, resp.
+`ltStrict`. Sufficient only: `true` proves the set is everything, `false` says nothing.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+open FloatOps
+
+variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+def LevelSet.representsa_fullspace (L : CORALean.Real.LevelSet n) (O : Fin L.m → 𝕋 × 𝕋) :
+    Bool :=
+  (List.finRange L.m).all fun i =>
+    match L.op i with
+    | .eq => (le (O i).1 zero && le zero (O i).1) && (le (O i).2 zero && le zero (O i).2)
+    | .le => le (O i).2 zero
+    | .lt => ltStrict (O i).2 zero
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

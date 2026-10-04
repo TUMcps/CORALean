@@ -10,7 +10,18 @@ import CORALean.ContSet.SpectraShadow.Float.Theorems.PadLeftOuter
 import CORALean.ContSet.SpectraShadow.Float.Theorems.PadRightOuter
 import CORALean.ContSet.SpectraShadow.Float.Theorems.CartProdOuter
 import CORALean.ContSet.SpectraShadow.Float.Theorems.Convex
+import CORALean.ContSet.SpectraShadow.Float.Theorems.ConstructSubsetAbsorb
 import CORALean.ContSet.SpectraShadow.Float.Theorems.InterOuter
+import CORALean.ContSet.SpectraShadow.Float.Theorems.LmiBlockDiagDiagonal
+import CORALean.ContSet.SpectraShadow.Float.Theorems.TieInterOuter
+import CORALean.ContSet.SpectraShadow.Float.Theorems.ContainsPointSound
+import CORALean.ContSet.SpectraShadow.Float.Theorems.PosSemidefOfDiagDominant
+import CORALean.ContSet.SpectraShadow.Float.Theorems.DualBoundLe
+import CORALean.ContSet.SpectraShadow.Float.Theorems.IsBoundedSound
+import CORALean.ContSet.SpectraShadow.Float.Theorems.MemBase
+import CORALean.ContSet.SpectraShadow.Float.Theorems.RepresentsaEmptySetSound
+import CORALean.ContSet.SpectraShadow.Float.Theorems.RepresentsaOriginSound
+import CORALean.ContSet.SpectraShadow.Float.Theorems.RepresentsaPointSound
 
 /-!
 # What a float spectrahedral shadow guarantees, collected

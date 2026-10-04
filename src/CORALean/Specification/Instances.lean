@@ -1,8 +1,14 @@
+import CORALean.ContSet.Capsule.Float.Instances
+import CORALean.ContSet.Capsule.Float.Theorems.IsFullDimSound
 import CORALean.ContSet.Conversion.Float.ContSet_to_Interval
+import CORALean.ContSet.ContSet.Definitions.FullDimTest
 import CORALean.ContSet.Conversion.Float.Zonotope_to_HPolytope
 import CORALean.ContSet.Conversion.Real.ContSet_to_Interval
 import CORALean.ContSet.HPolytope.Float.Instances
 import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+import CORALean.ContSet.Interval.Float.Theorems.IsFullDimSound
+import CORALean.ContSet.Polygon.Float.Theorems.IsDisjointSound
+import CORALean.ContSet.Polygon.Float.Theorems.IsFullDimSound
 import CORALean.ContSet.ZonoBundle.Float.Instances
 import CORALean.Global.Float.Instances.Real.Instances
 
@@ -22,6 +28,9 @@ The box-against-`IntervalOuter` instance above is generic over a family `S : ℕ
 which instance search cannot read off a real-layer family written as a lambda
 (`Real.Zonotope (Vec ℝ n)` does not unify with `S n`): fixing `S` to each exact real
 representation below is what makes those fire.
+
+`FullDimTest` at the float representations with a sound full-dimension test: a `true` is an
+interior point of the set, certified by `ltStrict`.
 -/
 
 -- Authors:       Tobias Ladner
@@ -267,6 +276,26 @@ noncomputable instance isDisjointBoxRealConZonotope :
   isDisjoint I s := aux_disjointBox I (IntervalOuter.interval (S := 𝒞) s)
   isDisjoint_sound _ s h :=
     (aux_disjointBox_sound h).mono_left (IntervalOuter.interval_outer (S := 𝒞) s)
+
+/-- Every width certified positive by `ltStrict`. -/
+instance fullDimTestInterval : FullDimTest (Interval (Vec 𝕋 n)) where
+  isFullDim := Interval.isFullDim
+  isFullDim_sound _ h := Interval.isFullDim_sound h
+
+/-- The exact characterisation, each comparison certified. -/
+instance fullDimTestCapsule : FullDimTest (Capsule 𝕋 n) where
+  isFullDim := Capsule.isFullDim
+  isFullDim_sound _ h := Capsule.isFullDim_sound h
+
+/-- A piece with a nonempty box and three vertices whose cross product is certified nonzero. -/
+instance fullDimTestPolygon : FullDimTest (Polygon 𝕋) where
+  isFullDim := Polygon.isFullDim
+  isFullDim_sound _ h := Polygon.isFullDim_sound h
+
+/-- Every pair of pieces separated along an edge normal, the gap certified by `ltStrict`. -/
+instance isDisjointPolygon : IsDisjoint (Polygon 𝕋) (Polygon 𝕋) where
+  isDisjoint P Q := Polygon.isDisjoint P Q
+  isDisjoint_sound _ _ h := (Polygon.isDisjoint_sound h).symm
 
 end CORALean.Float
 

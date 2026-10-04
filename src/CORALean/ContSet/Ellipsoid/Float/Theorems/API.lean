@@ -18,6 +18,15 @@ import CORALean.ContSet.Ellipsoid.Float.Theorems.VerticesOuter
 import CORALean.ContSet.Ellipsoid.Float.Theorems.NormUbLe
 import CORALean.ContSet.Ellipsoid.Float.Theorems.CartProdOuter
 import CORALean.ContSet.Ellipsoid.Float.Theorems.CartProdVecExact
+import CORALean.ContSet.Ellipsoid.Float.Theorems.ContainsPointSound
+import CORALean.ContSet.Ellipsoid.Float.Theorems.MinkDiffPointOuter
+import CORALean.ContSet.Ellipsoid.Float.Theorems.RadiusLe
+import CORALean.ContSet.Ellipsoid.Float.Theorems.IsFullDimSound
+import CORALean.ContSet.Ellipsoid.Float.Theorems.EncloseOuter
+import CORALean.ContSet.Ellipsoid.Float.Theorems.Enclose2Outer
+import CORALean.ContSet.Ellipsoid.Float.Theorems.IsBiggerSound
+import CORALean.ContSet.Ellipsoid.Float.Theorems.EllipsoidNormLeEllipsoidNormUb
+import CORALean.ContSet.Ellipsoid.Float.Theorems.VolumeLe
 
 /-!
 # What a float ellipsoid guarantees, collected

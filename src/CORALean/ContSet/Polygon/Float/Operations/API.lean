@@ -13,6 +13,20 @@ import CORALean.ContSet.Polygon.Float.Operations.Times
 import CORALean.ContSet.Polygon.Float.Operations.BoundDot
 import CORALean.ContSet.Polygon.Float.Operations.Vertices
 import CORALean.ContSet.Polygon.Float.Operations.RepresentsaEmptySet
+import CORALean.ContSet.Polygon.Float.Operations.And
+import CORALean.ContSet.Polygon.Float.Operations.Minus
+import CORALean.ContSet.Polygon.Float.Operations.SplitIntoConvexSets
+import CORALean.ContSet.Polygon.Float.Operations.CrossCertified
+import CORALean.ContSet.Polygon.Float.Operations.IsFullDim
+import CORALean.ContSet.Polygon.Float.Operations.ContainsPoint
+import CORALean.ContSet.Polygon.Float.Operations.InTriangle
+import CORALean.ContSet.Polygon.Float.Operations.IsDisjoint
+import CORALean.ContSet.Polygon.Float.Operations.IsequalPieces
+import CORALean.ContSet.Polygon.Float.Operations.OrientBounds
+import CORALean.ContSet.Polygon.Float.Operations.PieceHolds
+import CORALean.ContSet.Polygon.Float.Operations.PieceSubset
+import CORALean.ContSet.Polygon.Float.Operations.IsConvex
+import CORALean.ContSet.Polygon.Float.Operations.Volume
 
 /-!
 # Float polygon operations, collected
