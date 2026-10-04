@@ -7,6 +7,11 @@ import CORALean.ContSet.ProbZonotope.Real.Operations.Zonotope
 import CORALean.ContSet.ProbZonotope.Real.Operations.Project
 import CORALean.ContSet.ProbZonotope.Real.Operations.VPolytope
 import CORALean.ContSet.ProbZonotope.Real.Operations.RepresentsaEmptySet
+import CORALean.ContSet.ProbZonotope.Real.Operations.Max
+import CORALean.ContSet.ProbZonotope.Real.Operations.Generators
+import CORALean.ContSet.ProbZonotope.Real.Operations.ProbReduce
+import CORALean.ContSet.ProbZonotope.Real.Operations.ReduceGirard
+import CORALean.ContSet.ProbZonotope.Real.Operations.Enclose
 
 /-!
 # Probabilistic zonotope operations, collected

@@ -114,8 +114,8 @@ FINDINGS = RESULT_CLASSES[1:]
 # the bar of (b) is every result in scope: the formalized ones by how they fared, then the rest
 RESULTS = RESULT_CLASSES + [seg("not_yet", "not yet", "white")]
 COVERAGE = [
-    seg("float", "proved, runnable at float", "CORAcolorReachSet"),
-    seg("proved", "proved, needs float", "CORAcolorReachSet2"),
+    seg("float", "proved, at float", "CORAcolorReachSet"),
+    seg("proved", "proved, real only", "CORAcolorReachSet2"),
     seg("not_yet", "not yet", "white"),
 ]
 THEOREMS = [
@@ -127,6 +127,7 @@ THEOREMS = [
 OUT_LEGEND = "+n: out of scope, not in the bar"
 BAR = 6  # bar width in pt
 OUTLINE = "0.2pt"  # the thin black outline of a bar and of a legend image
+MIN_SEG = 0.04  # cm: the narrowest a non-empty segment is drawn, so that it stays visible
 
 # what a bar is called; the groups are CORA's own directories. `LABEL` is the main
 # figure's, `HEADING` the appendix's italic group headings.
@@ -158,7 +159,8 @@ def luminance(rgb):
 
 def panel(name, entries, segments, height, xlabel, legend, title=None, at=None, xmax=None,
           font=None, width=None, ylabels=True, out_legend=False, legend_columns=1, bar=BAR,
-          title_at="at={(0,1)}", xtick=None, width_cm=4.0, bare=False, total=False, grid=True):
+          title_at="at={(0.5,1)}", xtick=None, width_cm=4.0, bare=False, total=False, grid=True,
+          framed=False):
     """One pgfplots axis of stacked horizontal bars.
 
     `entries` is `[(label, counts, out)]`: `counts` is `{key: n}`, or `None` for a heading
@@ -187,23 +189,29 @@ def panel(name, entries, segments, height, xlabel, legend, title=None, at=None, 
         opts += ["axis line style={draw=none}", "xtick=\\empty", "xticklabels={}",
                  "tick style={draw=none}"]
     else:
-        opts += [f"xlabel={{{xlabel}}}", "axis lines*=left", "tick label style={font=\\scriptsize}",
-                 "xlabel style={font=\\footnotesize}"]
+        if xlabel:
+            opts += [f"xlabel={{{xlabel}}}", "xlabel style={font=\\footnotesize}"]
+        opts.append("tick label style={font=\\scriptsize}")
+        # a framed axis is the paper's rounded box (cora-macs.sty), ticks along the bottom
+        opts += ["rounded axis", "xtick pos=bottom"] if framed else ["axis lines*=left"]
         if grid:
             opts += ["xmajorgrids=true", "major x grid style={draw=black!15, line width=0.4pt}"]
     if font:
         opts.append(f"yticklabel style={{font={font}}}")
     if title:
         opts.append(f"title={{{title}}}")
-        opts.append(f"title style={{{title_at}, anchor=south west, font=\\footnotesize\\bfseries}}")
+        # as the paper's other figures: \\footnotesize, upright, centred over the plot
+        opts.append(f"title style={{{title_at}, anchor=south, font=\\footnotesize}}")
     if xtick:
         opts.append(f"xtick={{{xtick}}}")
     if xmax:
         opts.append(f"xmax={xmax}")
     if legend:
         opts += [f"legend columns={legend_columns}, legend to name={legend}",
-                 "legend style={legend cell align=left, align=left, draw=none, font=\\scriptsize, "
-                 "inner sep=0pt, /tikz/every even column/.append style={column sep=0.6ex}, "
+                 # framed as the legends of the paper's other figures, with rounded corners
+                 "legend style={legend cell align=left, align=left, draw=white!15!black, "
+                 "rounded corners, font=\\scriptsize, inner sep=1.5pt, "
+                 "/tikz/every even column/.append style={column sep=0.5ex}, "
                  "/tikz/every odd column/.append style={column sep=0pt}}",
                  "legend image code/.code={\\draw[#1, draw=black, line width=" + OUTLINE + ", "
                  "rounded corners=1pt] (0cm,-0.6ex) rectangle (1.2ex,0.6ex);}"]
@@ -224,29 +232,39 @@ def panel(name, entries, segments, height, xlabel, legend, title=None, at=None, 
     for i, (_, c, o) in enumerate(entries):
         if c is None:
             continue
+        # every non-empty segment is drawn at least MIN_SEG wide, so a count of 1 or 2 stays
+        # visible; the bar grows by what the small segments gain
+        widths = {key: max(c.get(key, 0), MIN_SEG / scale) if c.get(key, 0) else 0
+                  for key, *_ in segments}
         tot = sum(c.values())
+        end = sum(widths.values())
         lo, hi = f"[yshift=-{half:g}pt]axis cs:", f"[yshift={half:g}pt]axis cs:"
-        radius = f"rounded corners={min(1.5, bar / 4):g}pt"
+        r = f"{min(1.5, bar / 4):g}pt"
+        # the bar's outline: rounded corners, square on the left where it meets the y axis
+        if not bare:
+            shape = (f"({lo}0,{i}) [rounded corners={r}] -- ({lo}{end:g},{i}) -- ({hi}{end:g},{i}) "
+                     f"[sharp corners] -- ({hi}0,{i}) -- cycle")
+        else:
+            shape = f"[rounded corners={r}] ({lo}0,{i}) rectangle ({hi}{end:g},{i})"
         if tot:
-            out.append(f"\\begin{{scope}}\\clip[{radius}] ({lo}0,{i}) rectangle ({hi}{tot},{i});")
+            out.append(f"\\begin{{scope}}\\clip{shape};")
         start = 0
         for key, _, color, rgb in segments:
-            v = c.get(key, 0)
+            v, w = c.get(key, 0), widths[key]
             if v:
-                out.append(f"\\fill[{color}] ({lo}{start:g},{i}) rectangle ({hi}{start + v:g},{i});")
+                out.append(f"\\fill[{color}] ({lo}{start:g},{i}) rectangle ({hi}{start + w:g},{i});")
             if v and (len(str(v)) * 0.13 + 0.06) <= v * scale:
                 col = "white" if luminance(rgb) < 0.6 else "black"
                 numbers.append(f"\\node[font={MONO}, text={col}, inner sep=0pt] "
-                               f"at (axis cs:{start + v / 2:g},{i}) {{{v}}};")
-            start += v
+                               f"at (axis cs:{start + w / 2:g},{i}) {{{v}}};")
+            start += w
         if tot:
             out.append("\\end{scope}")
-            out.append(f"\\draw[black, line width={OUTLINE}, {radius}] ({lo}0,{i}) "
-                       f"rectangle ({hi}{tot},{i});")
+            out.append(f"\\draw[black, line width={OUTLINE}] {shape};")
         text = (f"{tot}" if total else "") + (f"\\hspace{{{'0.8em' if total else '0em'}}}\\textcolor{{{OUT_GREY}}}{{+{o}}}" if o else "")
         if text:
             out.append(f"\\node[anchor=west, font={MONO}, inner sep=3pt] "
-                       f"at (axis cs:{tot},{i}) {{{text}}};")
+                       f"at (axis cs:{end:g},{i}) {{{text}}};")
     out.append("\\end{axis}")
     if numbers:
         over = [f"at={{({name}.south west)}}", "anchor=south west", f"height={height}",
@@ -275,40 +293,45 @@ def tikz(data):
     """The overview figure: (a) on the left, (b) and (c) stacked on the right.
 
     It is sized in \\linewidth, so it fits the paper's column without a resize: (a) takes
-    0.55 of it (its labels included), the right column 0.41 (the "+n" included).
+    0.50 of it (its labels included) in the paper's rounded axis, the right column, from 0.59
+    on, the rest (the "+n" included); (b) and (c) have no row labels, their
+    titles name the bar.
     """
     methods, theorems, results, groups = overview_entries(data)
     mmax = max(sum(c.values()) for _, c, _ in methods)
     tmax = sum(theorems[0][1].values())
     rmax = sum(results[0][1].values())
-    lab_a, lab_b = 2.55, 1.55  # width of the row labels of (a), of (b) and (c), in cm
+    lab_a = 2.55  # width of the row labels of (a), in cm; (b) and (c) have none, their titles say it
     wa = 0.50 * LINEWIDTH_CM - lab_a
-    wb = 0.20 * LINEWIDTH_CM
-    xb = 0.53  # (b) and (c) start at this fraction of the line, their labels included
-    p_methods = panel("methods", methods, COVERAGE, "3.4cm",
-                      "CORA methods in scope", "coveragelegend",
+    TAIL = 1.0  # cm right of the bars of (b) and (c) for the "+n"; their titles
+    # are centred on the whole column, the bars and this tail together
+    xb = 0.59  # (b) and (c) start at this fraction of the line: a clear gap after (a)
+    wb = (1 - xb) * LINEWIDTH_CM - TAIL  # what is left after the "+n"
+    p_methods = panel("methods", methods, COVERAGE, "3.4cm", "", "coveragelegend",
                       title="(a) CORA methods per group",
                       at=f"at={{({lab_a}cm,0cm)}}, anchor=north west",
                       width=f"0.50\\linewidth-{lab_a}cm", width_cm=wa,
-                      xmax="1000", bar=11,
-                      title_at=f"at={{(0,1)}}, xshift=-{lab_a}cm", xtick="0,200,400,600,800")
-    right = f"at={{({xb}\\linewidth+{lab_b}cm,0cm)}}, anchor=north west"
+                      xmax="1000", bar=11, framed=True, legend_columns=3,
+                      title_at=f"at={{(0.5,1)}}, xshift=-{lab_a / 2:g}cm, yshift=0.5ex",  # over axis and labels
+                      xtick="0,200,400,600,800")
+    # raised so that the title of (b), drawn 2mm into its axis, shares the baseline of (a)'s
+    right = f"at={{({xb}\\linewidth,2mm+0.5ex)}}, anchor=north west"
     p_results = panel("results", results, RESULTS, "0.55cm", "", "resultlegend",
-                      title="(b) Formalized paper results", ylabels=True, at=right,
+                      title="(b) Formalized paper results", ylabels=False, at=right,
                       width=f"{wb:.2f}cm", width_cm=wb, xmax=f"{rmax}", legend_columns=3,
-                      bar=11, bare=True, total=True, font="\\scriptsize",
-                      title_at=f"at={{(0,1)}}, xshift=-{lab_b}cm, yshift=0.3cm")
+                      bar=11, bare=True, font="\\scriptsize",
+                      title_at=f"at={{(0.5,1)}}, xshift={TAIL / 2:g}cm, yshift=-2mm")
     p_theorems = panel("theorems", theorems, THEOREMS, "0.55cm", "", "theoremlegend",
-                       title="(c) Lean theorems", ylabels=True,
-                       at="at={(results.south west)}, anchor=north west, yshift=-2.3cm",
+                       title="(c) Lean theorems", ylabels=False,
+                       at="at={(results.south west)}, anchor=north west, yshift=-2.55cm",
                        width=f"{wb:.2f}cm", width_cm=wb, xmax=tmax, legend_columns=2, bar=11,
-                       bare=True, total=True, font="\\scriptsize",
-                       title_at=f"at={{(0,1)}}, xshift=-{lab_b}cm, yshift=0.3cm")
+                       bare=True, font="\\scriptsize",
+                       title_at=f"at={{(0.5,1)}}, xshift={TAIL / 2:g}cm, yshift=-2mm")
     return f"""% Generated by scripts/formalization-stats.py from references/ and src/; do not edit.
 % (a) CORA methods per group, on the left; (b) how the printed results of the papers fared, and
 % (c) what the Lean theorems are, stacked on the right. One thin rounded border round each bar; a segment
 % wide enough carries its value; the number "+n" after a bar counts the items out of scope, which
-% are not in the bar (a bar of (b) and (c) is followed by its total). The figure is sized in
+% are not in the bar. The figure is sized in
 % \\linewidth and needs no \\resizebox.
 \\begin{{tikzpicture}}
 \\footnotesize
@@ -321,9 +344,9 @@ def tikz(data):
 
 {p_theorems}
 
-\\node[anchor=north west, inner sep=0pt] at ([xshift=-{lab_a}cm, yshift=-0.9cm]methods.south west) {{\\ref*{{coveragelegend}}}};
-\\node[anchor=north west, inner sep=0pt] at ([xshift=-{lab_b}cm, yshift=-0.2cm]results.south west) {{\\ref*{{resultlegend}}}};
-\\node[anchor=north west, inner sep=0pt] at ([xshift=-{lab_b}cm, yshift=-0.2cm]theorems.south west) {{\\ref*{{theoremlegend}}}};
+\\node[anchor=north, inner sep=0pt] at ([xshift=-{lab_a / 2:g}cm, yshift=-0.6cm]methods.south) {{\\ref*{{coveragelegend}}}};
+\\node[anchor=north west, inner sep=0pt] at ([yshift=-0.2cm]results.south west) {{\\ref*{{resultlegend}}}};
+\\node[anchor=north west, inner sep=0pt] at ([yshift=-0.2cm]theorems.south west) {{\\ref*{{theoremlegend}}}};
 \\end{{tikzpicture}}
 """
 

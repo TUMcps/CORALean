@@ -129,6 +129,9 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.LongestFactor
 import CORALean.ContSet.PolyZonotope.Real.Operations.RmId
 import CORALean.ContSet.PolyZonotope.Real.Operations.SplitDepFactor
 import CORALean.ContSet.PolyZonotope.Real.Operations.SplitLongestGen
+import CORALean.ContSet.PolyZonotope.Real.Operations.SplitParallelotope
+import CORALean.ContSet.PolyZonotope.Real.Operations.Split
+import CORALean.ContSet.PolyZonotope.Real.Operations.SplitAll
 import CORALean.ContSet.PolyZonotope.Real.Operations.Sum
 import CORALean.ContSet.PolyZonotope.Real.Operations.SumCora
 import CORALean.ContSet.PolyZonotope.Real.Operations.RepresentsaPoint

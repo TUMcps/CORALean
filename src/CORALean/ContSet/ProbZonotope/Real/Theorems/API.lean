@@ -16,6 +16,11 @@ import CORALean.ContSet.ProbZonotope.Real.Theorems.UnsafeProbPrintedCounterexamp
 import CORALean.ContSet.ProbZonotope.Real.Theorems.ProjectLaws
 import CORALean.ContSet.ProbZonotope.Real.Theorems.VPolytopeExact
 import CORALean.ContSet.ProbZonotope.Real.Theorems.RepresentsaEmptySetIff
+import CORALean.ContSet.ProbZonotope.Real.Theorems.GaussPdfLeMaxIff
+import CORALean.ContSet.ProbZonotope.Real.Theorems.GeneratorsMulTranspose
+import CORALean.ContSet.ProbZonotope.Real.Theorems.ProbReduceEq
+import CORALean.ContSet.ProbZonotope.Real.Theorems.ReduceGirardLawsOuter
+import CORALean.ContSet.ProbZonotope.Real.Theorems.EncloseMeanOuter
 
 /-!
 # What a probabilistic zonotope guarantees, collected
