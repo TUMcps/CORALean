@@ -67,6 +67,12 @@ import CORALean.Global.SqrtDeriv
 import CORALean.Global.IteratedDerivArccos
 import CORALean.Global.TaylorLagrangeConvex
 import CORALean.Global.NearestPointSeparates
+import CORALean.Global.PosDefSchurComplement
+import CORALean.Global.SumVecMulVecCol
+import CORALean.Global.TraceGainLe
+import CORALean.Global.TraceMulVecMulVecSelf
+import CORALean.Global.VecMulVecMulVecSelf
+import CORALean.Global.UltimateBoundOfRecurrence
 
 /-!
 # Global definitions, collected

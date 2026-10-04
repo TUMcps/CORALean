@@ -55,6 +55,7 @@ import CORALean.HybridDynamics.Theorems.HasDerivAtHitPoint
 import CORALean.HybridDynamics.Theorems.LocationPotIntComplete
 import CORALean.HybridDynamics.Theorems.LocationPotOutOuter
 import CORALean.HybridDynamics.Theorems.GuardIntersectNondetFloatOuter
+import CORALean.HybridDynamics.Theorems.GuardIntersectPolytopeFloatOuter
 import CORALean.HybridDynamics.Theorems.TransitionConvGuardExact
 import CORALean.HybridDynamics.Theorems.ResetTaylorMem
 import CORALean.HybridDynamics.Theorems.ResetTaylorCounterexample

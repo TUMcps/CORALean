@@ -4,6 +4,7 @@ import CORALean.ContSet.Zonotope.Real.Definitions.OverApproxIndex
 import CORALean.ContSet.Zonotope.Real.Definitions.ZonotopeNorm
 import CORALean.ContSet.Zonotope.Real.Definitions.MaxNormSq
 import CORALean.ContSet.Zonotope.Real.Definitions.PRadius
+import CORALean.ContSet.Zonotope.Real.Definitions.FWRadius
 
 /-!
 # What a zonotope means beyond its own construction

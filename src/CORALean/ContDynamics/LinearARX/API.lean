@@ -1,3 +1,4 @@
+import CORALean.ContDynamics.LinearARX.Definitions.GO
 import CORALean.ContDynamics.LinearARX.LinearARX
 import CORALean.ContDynamics.LinearARX.Operations.API
 import CORALean.ContDynamics.LinearARX.Theorems.API

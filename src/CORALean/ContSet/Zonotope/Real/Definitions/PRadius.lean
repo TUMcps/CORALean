@@ -6,7 +6,8 @@ import Mathlib.Algebra.Order.Archimedean.Real.Basic
 # The P-radius of a zonotope
 
 [1, Sec. 2]: `L = max_{z ∈ Z} ‖z - p‖²_P` for `P = Pᵀ ≻ 0`, the largest squared `P`-distance of a
-point of `Z = p ⊕ H Bᵐ` from its centre. Written as the supremum; a zonotope is
+point of `Z = p ⊕ H Bᵐ` from its centre; Wang et al. call it the W-radius [2, Def. 5],
+`ℓ_W = max_{z ∈ Z} ‖z - p‖²_{2,W}`. Written as the supremum; a zonotope is
 compact, so it is attained. `P` is any matrix here: what is proved about it says which `P` it
 needs.
 
@@ -14,6 +15,8 @@ needs.
 
 * [1] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state
       estimation for uncertain systems". Automatica, 49(11):3418-3424, 2013.
+* [2] Y. Wang, V. Puig and G. Cembrano. "Set-membership approach and Kalman observer based on
+      zonotopes for discrete-time descriptor systems". Automatica, 93:435-443, 2018.
 -/
 
 -- Authors:       Tobias Ladner

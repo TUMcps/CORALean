@@ -15,6 +15,9 @@ import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ExactUncertainSetEq
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObserveStepOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObserveStripBasedOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.QuadFormLeOfLmi
+import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntersectDescriptorOuter
+import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObserveDescriptorOuter
+import CORALean.ContDynamics.LinearSysDT.Theorems.Real.DescriptorObserverDecay
 
 /-!
 # What holds of `LinearSysDT` only at `𝕋 := ℝ`, collected

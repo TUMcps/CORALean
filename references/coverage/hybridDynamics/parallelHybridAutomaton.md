@@ -17,5 +17,5 @@ CORA methods of `hybridDynamics/@parallelHybridAutomaton/`, one row each, and wh
 | `ne` | out-of-scope | n/a — matlab-runtime |  |
 | `parallelHybridAutomaton` | float | [`ParallelHybridAutomaton.Run.mem_of_invariant`](../../../src/CORALean/HybridDynamics/Parallel/Theorems/RunMemOfInvariant.lean), [`ParallelHybridAutomaton`](../../../src/CORALean/HybridDynamics/Parallel/ParallelHybridAutomaton.lean) | route b — generic over `Scalar 𝕋` with `ExactScalar 𝕋` (float instance), computable; `mergeFlows` is run at `Dyadic` in `Examples/RunnableFloat.lean` |
 | `reach` | proved | [`ParallelHybridAutomaton.reachSet`](../../../src/CORALean/HybridDynamics/Parallel/Definitions/ReachSet.lean), [`ParallelHybridAutomaton.reachSet_subset_invariant`](../../../src/CORALean/HybridDynamics/Parallel/Theorems/ReachSetSubsetInvariant.lean) |  |
-| `simulate` | — | — |  |
+| `simulate` | — | — | R-CTSIM: simulates each location by the continuous `simulate`, which calls `ode45` or `ode15s` |
 | `simulateRandom` | out-of-scope | n/a — random/sampling |  |

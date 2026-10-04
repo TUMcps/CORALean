@@ -105,7 +105,7 @@ Rulings on borderline cases:
 * **Alias-stale rows** are linked to the declaration that already exists under another row: linearReset `nonlinearReset` (`Transition.toNonlinearReset`, `NonlinearReset.evaluate_toNonlinearReset`) and conZonotope `enclose` (the generic `ContSet.enclose`, as the float `ConZonotope` has `Plus`, `LinComb` and `Mtimes`).
 * **`deprecated` also covers a method that itself emits `CORAwarning('CORA:deprecated')`**, even if its help text does not say `DEPRECATED` (polygon `simplify`).
 * **`matlab-runtime`, further rows:** nonlinearSys `taylor` (symbolic derivative code generation), nn `instantiateFromString` (string dispatch), contSet `representsa_emptyObject` (dispatch on `isemptyobject`), contSet `compact` and `vertices` (validating wrappers of `compact_` and `vertices_`), nn `nnGNNLayer` (abstract class constructor). **`random/sampling`, further rows:** polytope `reduce` (its only method is `'rand'`), zonotope `orthVectors` (random completion columns). capsule `vertices_` stays in scope: a deterministic arc grid, not a random draw.
-* **R-CTSIM: continuous-time `simulate` rows that call `ode45` stay `—`** (linearSys, nonlinearSys, nonlinParamSys): formalizing them as the exact flow would claim more than the numerical integrator computes.
+* **R-CTSIM: continuous-time `simulate` rows that call `ode45` or `ode15s` stay `—`** (linearSys, nonlinearSys, nonlinParamSys, nonlinDASys): formalizing them as the exact flow would claim more than the numerical integrator computes. The same holds for the rows that run the continuous `simulate` per location: hybridAutomaton, location and parallelHybridAutomaton `simulate`, and hybridAutomaton `bestInitialMode` (which also resamples by `interp1`).
 * **Optimiser-driven workflows are `solver-dependent` when the result is determined by an external optimiser or a training loop** (`fmincon`, `linprog`, `quadprog`, genetic programming, decision-tree learning, a training loop): `falsify` (linearSys, linearSysDT, nonlinearSys, nonlinearSysDT, hybridAutomaton: a solver and wall-clock search), `confSynth_dyn`, `confSynth_gray`, `conform`, `estimateParameter`, nonlinearARX and hybridAutomaton `identify`, nn `train`. A method whose body is computed from sets or by a closed form stays in scope: `computeGO` (deterministic stacked output matrices), `isconform` and `isconform_dyn` (halfspace containment of unified outputs), and `identify` of the linear and nonlinear continuous or discrete systems (default algorithm `dmd`, an SVD fit; `opt`/`nested`/`sparse` are further options).
 * **R-WE: `empty` of a representation that cannot denote `∅`** (zonotope, ellipsoid, polyZonotope) is answered by `WithEmpty.empty`, the wrapper's own empty member, and counts as `float` by route b (scalar-free): the wrapper holds no scalar and is generic over the class, `WithEmpty.construct_empty` says it denotes `∅`, and the note says why the representation itself has no such member (the zonotope's centre and the polynomial zonotope's factor vector `0` are always members; an ellipsoid has no empty shape).
 * **R-VS: capsule `vertices_` returns sampled boundary points, not vertices** (a capsule has none): `proved` (or `float`) only with a theorem that the returned points lie on the boundary (`Capsule.vertices_mem_frontier`), and the row note says "points on the boundary, not vertices"; no exactness is claimed, the hull of the points is inside the capsule, not equal to it.
@@ -136,10 +136,10 @@ Rulings on borderline cases:
 | [zoo](contSet/zoo.md) | contSet | 12 | 10 | 0 | 0 | 2 | 0 |
 | [contDynamics](contDynamics/contDynamics.md) | contDynamics | 19 | 2 | 4 | 2 | 11 | 0 |
 | [linParamSys](contDynamics/linParamSys.md) | contDynamics | 11 | 3 | 3 | 1 | 4 | 0 |
-| [linProbSys](contDynamics/linProbSys.md) | contDynamics | 8 | 0 | 0 | 4 | 4 | 0 |
-| [linearARX](contDynamics/linearARX.md) | contDynamics | 7 | 0 | 3 | 2 | 2 | 0 |
+| [linProbSys](contDynamics/linProbSys.md) | contDynamics | 8 | 0 | 0 | 3 | 5 | 0 |
+| [linearARX](contDynamics/linearARX.md) | contDynamics | 7 | 1 | 3 | 1 | 2 | 0 |
 | [linearSys](contDynamics/linearSys.md) | contDynamics | 33 | 6 | 11 | 6 | 10 | 0 |
-| [linearSysDT](contDynamics/linearSysDT.md) | contDynamics | 17 | 1 | 5 | 5 | 6 | 0 |
+| [linearSysDT](contDynamics/linearSysDT.md) | contDynamics | 17 | 2 | 5 | 4 | 6 | 0 |
 | [neurNetContrSys](contDynamics/neurNetContrSys.md) | contDynamics | 5 | 0 | 4 | 0 | 1 | 0 |
 | [nonlinDASys](contDynamics/nonlinDASys.md) | contDynamics | 13 | 4 | 0 | 6 | 3 | 0 |
 | [nonlinParamSys](contDynamics/nonlinParamSys.md) | contDynamics | 9 | 3 | 0 | 2 | 4 | 0 |
@@ -150,7 +150,7 @@ Rulings on borderline cases:
 | [hybridAutomaton](hybridDynamics/hybridAutomaton.md) | hybridDynamics | 15 | 0 | 2 | 2 | 11 | 0 |
 | [hybridDynamics](hybridDynamics/hybridDynamics.md) | hybridDynamics | 2 | 0 | 1 | 0 | 1 | 0 |
 | [linearReset](hybridDynamics/linearReset.md) | hybridDynamics | 10 | 2 | 4 | 1 | 3 | 0 |
-| [location](hybridDynamics/location.md) | hybridDynamics | 24 | 1 | 8 | 7 | 8 | 0 |
+| [location](hybridDynamics/location.md) | hybridDynamics | 24 | 1 | 9 | 6 | 8 | 0 |
 | [nonlinearReset](hybridDynamics/nonlinearReset.md) | hybridDynamics | 9 | 4 | 0 | 1 | 4 | 0 |
 | [parallelHybridAutomaton](hybridDynamics/parallelHybridAutomaton.md) | hybridDynamics | 13 | 1 | 5 | 1 | 6 | 0 |
 | [transition](hybridDynamics/transition.md) | hybridDynamics | 12 | 0 | 3 | 2 | 7 | 0 |

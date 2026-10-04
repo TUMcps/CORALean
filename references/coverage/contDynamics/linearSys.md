@@ -10,7 +10,7 @@ CORA methods of `contDynamics/@linearSys/`, one row each, and where CORALean ans
 | `canonicalForm` | — | — |  |
 | `display` | out-of-scope | n/a — plotting/display |  |
 | `eq` | out-of-scope | n/a — matlab-runtime |  |
-| `errorSolution_adaptive` | — | — |  |
+| `errorSolution_adaptive` | — | — | not an alias of `LinearSys.inputSolution`: the remainder `E = [-W, W]` is `\|e^{\|A\|Δt} − ∑ \|A\|^i Δt^i/i!\|` entrywise and the order is chosen by the gain of the dominant edge of the generator sums, whereas `inputSolution` bounds the remainder by a norm series |
 | `falsify` | out-of-scope | n/a — solver-dependent | optimisation and wall-clock search for a falsifying trajectory |
 | `full` | out-of-scope | n/a — io/conversion-to-matlab-objects |  |
 | `generateRandom` | out-of-scope | n/a — random/sampling |  |

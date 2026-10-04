@@ -199,6 +199,14 @@ import CORALean.ContSet.Zonotope.Real.Theorems.SqNormSumEqGram
 import CORALean.ContSet.Zonotope.Real.Theorems.IntersectStripSeqOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.InclusionOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.PRadiusPredictStripLe
+import CORALean.ContSet.Zonotope.Real.Theorems.FWRadiusSqEqTrace
+import CORALean.ContSet.Zonotope.Real.Theorems.IntersectDescriptorFWRadiusLe
+import CORALean.ContSet.Zonotope.Real.Theorems.IntersectDescriptorPRadiusLe
+import CORALean.ContSet.Zonotope.Real.Theorems.ObserveDescriptorCurrentEq
+import CORALean.ContSet.Zonotope.Real.Theorems.ObserveDescriptorFWRadiusLe
+import CORALean.ContSet.Zonotope.Real.Theorems.PRadiusLtOfLmi
+import CORALean.ContSet.Zonotope.Real.Theorems.PRadiusLtOfLmiCounterexample
+import CORALean.ContSet.Zonotope.Real.Theorems.IntersectStripWangFRadCoraCounterexample
 
 /-!
 # What `Zonotope` guarantees

@@ -57,7 +57,7 @@ CORA methods of `nn/@neuralNetwork/`, one row each, and where CORALean answers t
 | `readONNXNetwork` | out-of-scope | n/a — io/conversion-to-matlab-objects |  |
 | `readSherlockNetwork` | out-of-scope | n/a — io/conversion-to-matlab-objects |  |
 | `readYMLNetwork` | out-of-scope | n/a — io/conversion-to-matlab-objects |  |
-| `reduceGNNForNode` | — | — |  |
+| `reduceGNNForNode` | — | — | needs the receptive-field lemma of a message-passing network (the output at the node is unchanged by dropping nodes beyond the BFS distance); not formalized |
 | `refine` | float | [`Schedule.refine`](../../../src/CORALean/NN/Operations/Refine.lean), [`Schedule.refineLoop`](../../../src/CORALean/NN/Operations/RefineLoop.lean), [`RefinableNetwork.image_subset_refine`](../../../src/CORALean/NN/Theorems/ImageSubsetRefine.lean), [`RefinableNetwork.image_subset_refineLoop`](../../../src/CORALean/NN/Theorems/ImageSubsetRefineLoop.lean) | route b — stated for any set representation, no scalar named; the float layers instantiate it (`Examples/RunnableFloat.lean`) |
 | `reset` | out-of-scope | n/a — matlab-runtime |  |
 | `resetApproxOrder` | out-of-scope | n/a — matlab-runtime |  |

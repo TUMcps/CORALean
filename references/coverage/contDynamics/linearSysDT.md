@@ -6,7 +6,7 @@ CORA methods of `contDynamics/@linearSysDT/`, one row each, and where CORALean a
 
 | Method | State | In CORALean | Note |
 |---|---|---|---|
-| `computeGO` | — | — |  |
+| `computeGO` | proved | [`LinearSysDT.computeGO`](../../../src/CORALean/ContDynamics/LinearSysDT/Operations/ComputeGO.lean), [`LinearSysDT.computeGO_state`](../../../src/CORALean/ContDynamics/LinearSysDT/Theorems/ComputeGOState.lean), [`LinearSysDT.computeGO_output`](../../../src/CORALean/ContDynamics/LinearSysDT/Theorems/ComputeGOOutput.lean) | exact: for every run, `x(k+1) = A{k} x(0) + ∑_j B{k,j} u(j)` and `y(k) = C{k} x(0) + ∑_j D{k,j} u(j)`. Real layer (`noncomputable`: real matrix powers), not float. Time-invariant branch only, with the input in state coordinates (`B = 1`) and the output equation `OutputEq`; not kept: the time-varying branch, `F`, `E` (linearization error) and the reference signals |
 | `confSynth_dyn` | out-of-scope | n/a — solver-dependent | result determined by `linprog`/`quadprog` |
 | `confSynth_gray` | out-of-scope | n/a — solver-dependent | result determined by `fmincon` |
 | `display` | out-of-scope | n/a — plotting/display |  |
