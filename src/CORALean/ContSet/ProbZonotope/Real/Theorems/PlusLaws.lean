@@ -1,3 +1,4 @@
+import CORALean.ContSet.ProbZonotope.Real.Theorems.ConvMultivariateGaussian
 import CORALean.ContSet.ProbZonotope.Real.Operations.Plus
 import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 
@@ -33,23 +34,6 @@ open scoped RealInnerProductSpace
 variable {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
-/-- `N(a, Σ₁) ∗ N(b, Σ₂) = N(a + b, Σ₁ + Σ₂)`. -/
-theorem aux_conv_multivariateGaussian (a b : EuclideanSpace ℝ (Fin n)) {S₁ S₂ : Mat ℝ n n}
-    (h₁ : S₁.PosSemidef) (h₂ : S₂.PosSemidef) :
-    multivariateGaussian a S₁ ∗ multivariateGaussian b S₂
-      = multivariateGaussian (a + b) (S₁ + S₂) := by -- --- PROOF ---
-  apply Measure.ext_of_charFun
-  funext t
-  rw [charFun_conv, charFun_multivariateGaussian h₁, charFun_multivariateGaussian h₂,
-    charFun_multivariateGaussian (h₁.add h₂), ← Complex.exp_add, inner_add_right, add_mulVec,
-    dotProduct_add]
-  congr 1
-  push_cast
-  ring
-
-
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ProbZonotope.plus_laws (P₁ P₂ : ProbZonotope n) (h₁ : P₁.cov.PosSemidef)
@@ -62,14 +46,14 @@ theorem ProbZonotope.plus_laws (P₁ P₂ : ProbZonotope n) (h₁ : P₁.cov.Pos
     · rw [ProbZonotope.plus, ← Zonotope.plus_exact]
       exact Set.add_mem_add ha hb
     · beta_reduce
-      rw [aux_conv_multivariateGaussian _ _ h₁ h₂, ← WithLp.toLp_add]
+      rw [conv_multivariateGaussian _ _ h₁ h₂, ← WithLp.toLp_add]
       rfl
   · rintro ⟨μ, hμ, rfl⟩
     rw [ProbZonotope.plus, ← Zonotope.plus_exact] at hμ
     obtain ⟨a, ha, b, hb, rfl⟩ := hμ
     refine ⟨_, ⟨a, ha, rfl⟩, _, ⟨b, hb, rfl⟩, ?_⟩
     beta_reduce
-    rw [aux_conv_multivariateGaussian _ _ h₁ h₂, ← WithLp.toLp_add]
+    rw [conv_multivariateGaussian _ _ h₁ h₂, ← WithLp.toLp_add]
     rfl
 
 end CORALean.Real

@@ -1,3 +1,16 @@
+import CORALean.ContSet.Interval.Float.Operations.BoundaryRatioAt
+import CORALean.ContSet.Interval.Float.Operations.BoundaryRatioStep
+import CORALean.ContSet.Interval.Float.Operations.BoundaryRatio
+import CORALean.ContSet.Interval.Float.Operations.BoundaryPoint
+import CORALean.ContSet.Interval.Float.Operations.Atan2Lo
+import CORALean.ContSet.Interval.Float.Operations.Atan2Hi
+import CORALean.ContSet.Interval.Float.Operations.Atan2
+import CORALean.ContSet.Interval.Float.Operations.EBox
+import CORALean.ContSet.Interval.Float.Operations.EBoxConstruct
+import CORALean.ContSet.Interval.Float.Operations.Inf
+import CORALean.ContSet.Interval.Float.Operations.Lift
+import CORALean.ContSet.Interval.Float.Operations.StlInterval
+import CORALean.ContSet.Interval.Float.Operations.Dirac
 import CORALean.ContSet.Interval.Float.Operations.BoundDot
 import CORALean.ContSet.Interval.Float.Operations.BoundNegProj
 import CORALean.ContSet.Interval.Float.Operations.BoundProj

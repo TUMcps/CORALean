@@ -1,0 +1,41 @@
+import CORALean.ContSet.PolyZonotope.Float.Operations.ReplaceId
+import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+import CORALean.ContSet.PolyZonotope.Real.Theorems.ReplaceIdExact
+import CORALean.ContSet.PolyZonotope.Float.Theorems.ReplaceIdSubset
+
+/-!
+# An injective renaming changes nothing, in float too
+
+Renaming factors injectively denotes the same set: equality, the error box as it was.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+/-- An injective renaming denotes the same set. -/
+theorem PolyZonotope.replaceId_exact (pZ : PolyZonotope 𝕋 n) {p' : ℕ} (f : Fin pZ.p → Fin p')
+    (hf : Function.Injective f) : (pZ.replaceId f).construct = pZ.construct := by -- --- PROOF ---
+  have h : nominalSet (pZ.replaceId f) = ((nominal pZ).replaceId f).construct := rfl
+  show nominalSet (pZ.replaceId f) + (pZ.replaceId f).err.construct
+    = nominalSet pZ + pZ.err.construct
+  rw [h]
+  exact congrArg (· + pZ.err.construct) (Real.PolyZonotope.replaceId_exact (nominal pZ) f hf)
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

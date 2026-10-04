@@ -73,6 +73,22 @@ import CORALean.ContSet.PolyZonotope.Float.Theorems.CartProdExact
 import CORALean.ContSet.PolyZonotope.Float.Theorems.BlockPadLeftNominal
 import CORALean.ContSet.PolyZonotope.Float.Theorems.BlockPadRightNominal
 import CORALean.ContSet.PolyZonotope.Float.Theorems.StackOuter
+import CORALean.ContSet.PolyZonotope.Float.Theorems.RmIdConstruct
+import CORALean.ContSet.PolyZonotope.Float.Theorems.ReplaceIdExact
+import CORALean.ContSet.PolyZonotope.Float.Theorems.OnlyIdPoint
+import CORALean.ContSet.PolyZonotope.Float.Theorems.RepresentsaPointSound
+import CORALean.ContSet.PolyZonotope.Float.Theorems.SumOuter
+import CORALean.ContSet.PolyZonotope.Float.Theorems.OnlyIdOuter
+import CORALean.ContSet.PolyZonotope.Float.Theorems.ReplaceIdSubset
+import CORALean.ContSet.PolyZonotope.Float.Theorems.RmIdSubset
+import CORALean.ContSet.PolyZonotope.Float.Theorems.RepresentsaEmptySetSound
+import CORALean.ContSet.PolyZonotope.Float.Theorems.SumErrMem
+import CORALean.ContSet.PolyZonotope.Float.Theorems.BoxOutOuter
+import CORALean.ContSet.PolyZonotope.Float.Theorems.OuterApproxOuter
+import CORALean.ContSet.PolyZonotope.Float.Theorems.PartZonotopeNominal
+import CORALean.ContSet.PolyZonotope.Float.Theorems.PartZonotopeOuter
+import CORALean.ContSet.PolyZonotope.Float.Theorems.PolygonOuter
+import CORALean.ContSet.PolyZonotope.Float.Theorems.JacobianOuter
 
 /-!
 # What `PolyZonotope` guarantees

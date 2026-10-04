@@ -1,3 +1,5 @@
+import CORALean.ContSet.ProbZonotope.Real.Theorems.ConvMultivariateGaussian
+import CORALean.ContSet.ProbZonotope.Real.Theorems.MapMultivariateGaussian
 import CORALean.ContSet.ProbZonotope.Real.Theorems.GZonotopeLawEq
 import CORALean.ContSet.ProbZonotope.Real.Theorems.IntegrableExpNegNormSq
 import CORALean.ContSet.ProbZonotope.Real.Theorems.StdGaussianEqWithDensity

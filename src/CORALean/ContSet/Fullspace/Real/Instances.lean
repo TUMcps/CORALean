@@ -1,6 +1,7 @@
 import CORALean.ContSet.ContSet.Definitions.ConvexSet
 import CORALean.ContSet.Fullspace.Real.Operations.Centre
 import CORALean.ContSet.Fullspace.Real.Theorems.API
+import CORALean.ContSet.WithEmpty.WithEmpty
 
 /-!
 # What `Fullspace` instantiates
@@ -80,6 +81,18 @@ nothing here does): everything is in the whole space. -/
 instance {S : Type} [ContSet S (Vec ℝ n)] : Contains (Fullspace n) S where
   contains _ _ := true
   contains_sound _ _ _ := Set.subset_univ _
+
+/-- CORA's `isIntersecting_` answers `~isemptyobject(S)`: the whole space meets every nonempty set.
+The wrapper `WithEmpty` is the representation that can say it: disjoint (`true`) exactly at its own
+`empty` member; an `of s` answers `false`, which refutes nothing (`s` may denote `∅`). -/
+instance {S : Type} [ContSet S (Vec ℝ n)] : IsDisjoint (Fullspace n) (WithEmpty S) where
+  isDisjoint _ s := match s with
+    | .empty => true
+    | .of _ => false
+  isDisjoint_sound _ s h := by
+    cases s with
+    | empty => exact Set.empty_disjoint _
+    | of s => exact absurd h (by simp)
 
 instance : Reindex (fun n => Fullspace n) where
   reindex _ _ := ⟨⟩

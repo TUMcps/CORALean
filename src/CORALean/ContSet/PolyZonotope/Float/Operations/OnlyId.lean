@@ -1,0 +1,44 @@
+import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
+import CORALean.ContSet.Interval.Float.Operations.Origin
+import Mathlib.Data.Finset.Sort
+
+/-!
+# `PolyZonotope.onlyId`, over a floating-point scalar
+
+CORA's `@polyZonotope/onlyId`: the part that depends on the identifiers in `S` alone (a generator
+belongs to it when its exponent column is `0` outside `S`; it keeps the centre and drops the
+independent block) and the remainder (the other generators, centre `0`, the independent block).
+The generator columns of the other part are zeroed, not deleted. The error box goes to the
+remainder, the first part carries the empty box `Interval.origin`. Nothing rounds.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+open FloatOps
+
+variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- `(pZ_id, pZ_r)`: the generators that depend on `S` alone, and the rest. -/
+def PolyZonotope.onlyId (pZ : PolyZonotope 𝕋 n) (S : Finset (Fin pZ.p)) :
+    PolyZonotope 𝕋 n × PolyZonotope 𝕋 n :=
+  let mask : Fin pZ.h → Bool := fun i => decide (∀ k, k ∉ S → pZ.E k i = 0)
+  (⟨S.card, pZ.h, 0, pZ.c, fun i j => if mask j then pZ.G i j else zero,
+      fun k' i => pZ.E (S.orderIsoOfFin rfl k').1 i, fun _ j => j.elim0, Interval.origin n⟩,
+   ⟨pZ.p, pZ.h, pZ.q, fun _ => zero, fun i j => if mask j then zero else pZ.G i j, pZ.E, pZ.GI,
+      pZ.err⟩)
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -1,3 +1,12 @@
+import CORALean.ContSet.Capsule.Float.Operations.PiStep
+import CORALean.ContSet.Capsule.Float.Operations.ArcBox
+import CORALean.ContSet.Capsule.Float.Operations.Vertices
+import CORALean.ContSet.Capsule.Float.Theorems.PiStepMem
+import CORALean.ContSet.Capsule.Float.Theorems.ArcBoxMem
+import CORALean.ContSet.Capsule.Float.Theorems.VerticesOuter
+import CORALean.ContSet.Capsule.Float.Theorems.VerticesPoint
+import CORALean.ContSet.Capsule.Float.Operations.IsDisjoint
+import CORALean.ContSet.Capsule.Float.Theorems.IsDisjointSound
 import CORALean.ContSet.Capsule.Float.Capsule
 import CORALean.ContSet.Capsule.Float.Operations.Origin
 import CORALean.ContSet.Capsule.Float.Operations.Empty
