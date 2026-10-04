@@ -1,0 +1,39 @@
+import CORALean.ContSet.VPolytope.Real.Theorems.IsBounded
+
+/-!
+# An unbounded set lies in no V-polytope
+
+[1, Sec. 4.2 (unbounded)]: H-polyhedron in V-polytope containment can be disproved at once when the
+polyhedron is unbounded, a V-polytope being bounded.
+
+## References
+
+* [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral
+      Operations in CORA 2024". In Proc. of the 11th International Workshop on Applied
+      Verification for Continuous and Hybrid Systems (ARCH24), EPiC Series in Computing,
+      vol. 103, pp. 163-181, 2024.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       03-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem VPolytope.not_subset_of_not_isBounded {S : Set α} (hS : ¬ Bornology.IsBounded S)
+    (P : VPolytope α) : ¬ S ⊆ P.construct :=
+  fun h => hS (P.isBounded_construct.subset h)
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

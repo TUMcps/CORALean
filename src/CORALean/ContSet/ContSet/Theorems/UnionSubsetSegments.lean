@@ -7,6 +7,16 @@ import CORALean.ContSet.ContSet.ContSet
 contains both of them: take the parameter at `1` and at `0`, with any point of the other set.
 With `LinComb` that is what an enclosure of CORA's `or` rests on: `linComb_outer` says only that
 the segments lie in the result, which by itself says nothing about the operands.
+
+[1, Eq. 37] encloses a union by the convex hull; with the `conv` of [1, Table 3], which is
+`segments`, that needs both operands nonempty, as here.
+
+## References
+
+* [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral
+      Operations in CORA 2024". In Proc. of the 11th International Workshop on Applied
+      Verification for Continuous and Hybrid Systems (ARCH24), EPiC Series in Computing,
+      vol. 103, pp. 163-181, 2024.
 -/
 
 -- Authors:       Tobias Ladner

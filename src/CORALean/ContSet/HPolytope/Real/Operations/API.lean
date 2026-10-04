@@ -46,6 +46,10 @@ import CORALean.ContSet.HPolytope.Real.Operations.NormalizeConstraints
 import CORALean.ContSet.HPolytope.Real.Operations.NormalizeRows
 import CORALean.ContSet.HPolytope.Real.Operations.ProjectHighDim
 import CORALean.ContSet.HPolytope.Real.Operations.ReduceOverDomain
+import CORALean.ContSet.HPolytope.Real.Operations.AffineHullBasis
+import CORALean.ContSet.HPolytope.Real.Operations.GenerateRandomH
+import CORALean.ContSet.HPolytope.Real.Operations.IsequalNondeg
+import CORALean.ContSet.HPolytope.Real.Operations.SimplexRows
 
 /-!
 # What `HPolytope` computes

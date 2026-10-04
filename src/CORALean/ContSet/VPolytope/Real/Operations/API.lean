@@ -20,6 +20,7 @@ import CORALean.ContSet.VPolytope.Real.Operations.ConvHull
 import CORALean.ContSet.VPolytope.Real.Operations.Or
 import CORALean.ContSet.VPolytope.Real.Operations.ProjectHighDim
 import CORALean.ContSet.VPolytope.Real.Operations.Center
+import CORALean.ContSet.VPolytope.Real.Operations.CartProd
 
 /-!
 # What `VPolytope` computes

@@ -10,6 +10,16 @@ the two serves.
 
 A halfspace description is convex, so here `linComb` and the convex hull agree;
 the distinction the interface keeps is for representations that are not.
+
+This is the template enclosure of the convex hull of two H-polytopes, [1, Eq. 31], with any
+upper bounds in place of the support function values the paper takes.
+
+## References
+
+* [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral
+      Operations in CORA 2024". In Proc. of the 11th International Workshop on Applied
+      Verification for Continuous and Hybrid Systems (ARCH24), EPiC Series in Computing,
+      vol. 103, pp. 163-181, 2024.
 -/
 
 -- Authors:       Tobias Ladner

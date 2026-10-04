@@ -6,6 +6,15 @@ import CORALean.ContSet.HPolytope.Real.Theorems.MemIntersection
 `mem_intersection_iff` read as a set equality. Intersection is the operation a halfspace
 description is exact under and a vertex description is not, which is why the
 tree converts to this representation to intersect.
+
+This is [1, Eq. 36]: the intersection of two H-polytopes stacks their constraints.
+
+## References
+
+* [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral
+      Operations in CORA 2024". In Proc. of the 11th International Workshop on Applied
+      Verification for Continuous and Hybrid Systems (ARCH24), EPiC Series in Computing,
+      vol. 103, pp. 163-181, 2024.
 -/
 
 -- Authors:       Tobias Ladner

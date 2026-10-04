@@ -2,6 +2,7 @@ import CORALean.ContSet.ContSet.Definitions.CompactSet
 import CORALean.ContSet.ContSet.Definitions.ConvexSet
 import CORALean.ContSet.ContSet.Definitions.DependencyPreserving
 import CORALean.ContSet.ContSet.Definitions.IsFullDim
+import CORALean.ContSet.ContSet.Definitions.SupportFunc
 
 /-!
 # What the set interface asks of a representation, without computing anything

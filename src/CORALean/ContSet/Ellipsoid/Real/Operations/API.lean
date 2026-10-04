@@ -17,6 +17,8 @@ import CORALean.ContSet.Ellipsoid.Real.Operations.RepresentsaOrigin
 import CORALean.ContSet.Ellipsoid.Real.Operations.Isequal
 import CORALean.ContSet.Ellipsoid.Real.Operations.Vertices
 import CORALean.ContSet.Ellipsoid.Real.Operations.NormUb
+import CORALean.ContSet.Ellipsoid.Real.Operations.Volume
+import CORALean.ContSet.Ellipsoid.Real.Operations.EllipsoidNorm
 
 /-!
 # What an ellipsoid computes, collected

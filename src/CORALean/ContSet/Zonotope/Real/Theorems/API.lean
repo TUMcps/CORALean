@@ -186,6 +186,9 @@ import CORALean.ContSet.Zonotope.Real.Theorems.PolymaxIff
 import CORALean.ContSet.Zonotope.Real.Theorems.ContainsDFSIff
 import CORALean.ContSet.Zonotope.Real.Theorems.IsGreatestCoeffNormCorner
 import CORALean.ContSet.Zonotope.Real.Theorems.NaiveVertexSampleLe
+import CORALean.ContSet.Zonotope.Real.Theorems.IntersectStripOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.VolumeEqSquare
+import CORALean.ContSet.Zonotope.Real.Theorems.VolumeEqZero
 
 /-!
 # What `Zonotope` guarantees

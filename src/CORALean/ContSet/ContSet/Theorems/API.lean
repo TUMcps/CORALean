@@ -41,6 +41,19 @@ import CORALean.ContSet.ContSet.Theorems.TimesOuter
 import CORALean.ContSet.ContSet.Theorems.UminusOuter
 import CORALean.ContSet.ContSet.Theorems.UplusExact
 import CORALean.ContSet.ContSet.Theorems.IsFullDimIffAffineSpan
+import CORALean.ContSet.ContSet.Theorems.AddProperties
+import CORALean.ContSet.ContSet.Theorems.AddPropertiesCounterexample
+import CORALean.ContSet.ContSet.Theorems.ImageLinearMapProperties
+import CORALean.ContSet.ContSet.Theorems.InterProperties
+import CORALean.ContSet.ContSet.Theorems.InteriorEqEmptyIffForallBall
+import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffProperties
+import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffPropertiesCounterexample
+import CORALean.ContSet.ContSet.Theorems.ProdProperties
+import CORALean.ContSet.ContSet.Theorems.ProdPropertiesCounterexample
+import CORALean.ContSet.ContSet.Theorems.PropertyFacts
+import CORALean.ContSet.ContSet.Theorems.SegmentsProperties
+import CORALean.ContSet.ContSet.Theorems.SegmentsPropertiesCounterexample
+import CORALean.ContSet.ContSet.Theorems.SupportFuncLeCoeIff
 
 /-!
 # What the set interface's classes and definitions give together
