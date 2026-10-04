@@ -1,0 +1,35 @@
+import CORALean.Global.Tensor
+import Mathlib.Analysis.Calculus.FDeriv.Basic
+import Mathlib.LinearAlgebra.Matrix.ToLin
+
+/-!
+# The Jacobian matrix
+
+The matrix of the Fréchet derivative of `g : ℝⁿ → ℝᵐ` at `x`, the `∂g/∂x` of CORA's symbolic
+`jacobian` files. `fderiv` is `0` where `g` is not differentiable, so a statement about this
+matrix assumes differentiability where it needs it.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+variable {n m : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- The Jacobian of `g` at `x`. -/
+noncomputable def jacobianMat (g : Vec ℝ n → Vec ℝ m) (x : Vec ℝ n) : Mat ℝ m n :=
+  LinearMap.toMatrix' (fderiv ℝ g x).toLinearMap
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

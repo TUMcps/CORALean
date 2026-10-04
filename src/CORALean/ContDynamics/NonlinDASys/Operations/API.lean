@@ -6,6 +6,7 @@ import CORALean.ContDynamics.NonlinDASys.Operations.SteadyState
 import CORALean.ContDynamics.NonlinDASys.Operations.JointReachSet
 import CORALean.ContDynamics.NonlinDASys.Operations.LinError
 import CORALean.ContDynamics.NonlinDASys.Operations.LinErrorCora
+import CORALean.ContDynamics.NonlinDASys.Operations.OutputSetLinearCora
 
 /-!
 # What `NonlinDASys` computes

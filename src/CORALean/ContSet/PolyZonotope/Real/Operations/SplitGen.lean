@@ -1,0 +1,35 @@
+import CORALean.ContSet.PolyZonotope.Real.Operations.SplitLongestIndepGen
+
+/-!
+# `PolyZonotope.splitGen`
+
+`containsPointSet` calls `splitLongestGen` and, when it throws (no dependent generator),
+`aux_splitLongestIndepGen`. `splitGen` is that `try ... catch`, `splitLongestGen`'s own `none`
+(no dependent generator or no factor) being sent to the independent split.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+noncomputable def PolyZonotope.splitGen (pZ : PolyZonotope (Vec ℝ n)) :
+    PolyZonotope (Vec ℝ n) × PolyZonotope (Vec ℝ n) :=
+  match pZ.longestFactor with
+  | some k => pZ.splitDepFactor k
+  | none => pZ.splitLongestIndepGen
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

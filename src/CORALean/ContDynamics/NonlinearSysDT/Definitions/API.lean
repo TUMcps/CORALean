@@ -2,6 +2,7 @@ import CORALean.ContDynamics.NonlinearSysDT.Definitions.LinStep
 import CORALean.ContDynamics.NonlinearSysDT.Definitions.ReachOptions
 import CORALean.ContDynamics.NonlinearSysDT.Definitions.ReachUnionExact
 import CORALean.ContDynamics.NonlinearSysDT.Definitions.WithSteps
+import CORALean.ContDynamics.NonlinearSysDT.Definitions.GO
 
 /-!
 # What `NonlinearSysDT` means beyond the system itself
