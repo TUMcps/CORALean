@@ -62,12 +62,14 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Reachability Analysis of Nonlinear Systems using Conservative Polynomialization and Non-Convex Sets](2013/althoff-hscc-conservative-polynomialization.md) | Althoff | HSCC | 2013 | 🟢 6/6 \| 2 |
 | [Zonotopic guaranteed state estimation for uncertain systems](2013/le-automatica-zonotopic-estimation.md) | Le, Stoica, Alamo, Camacho, Dumur | Automatica, 49(11):3418-3424 | 2013 | 🟡 13/14 \| 7 |
 | [On Computing the Minkowski Difference of Zonotopes](2015/althoff-arxiv-minkowski-difference.md) | Althoff | arXiv | 2015 | 🟢 16/16 \| 1 |
+| [STL Model Checking of Continuous and Hybrid Systems](2016/roehm-atva-stl-model-checking.md) | Roehm, Oehlerking, Heinz, Althoff | ATVA, LNCS 9938, pp. 412-427 | 2016 | 🟡 18/19 \| 3 |
 | [Constrained zonotopes: A new tool for set-based estimation and fault detection](2016/scott-automatica-constrained-zonotopes.md) | Scott, Raimondo, Marseglia, Braatz | Automatica, 69:126-136 | 2016 | 🟢 10/10 \| 6 |
 | [Semi-Supervised Classification with Graph Convolutional Networks](2017/kipf-iclr-gcn.md) | Kipf, Welling | ICLR | 2017 | 🟢 1/1 \| 4 |
 | [Methods for Order Reduction of Zonotopes](2017/kopetzki-cdc-order-reduction.md) | Kopetzki, Schürmann, Althoff | CDC, pp. 5626-5633 | 2017 | 🟢 4/4 \| 4 |
 | [Implementation of Taylor Models in CORA 2018](2018/althoff-arch-taylor-models.md) | Althoff, Grebenyuk, Kochdumper | ARCH18, EPiC Series in Computing 54, pp. 145-173 | 2018 | 🟢 11/11 \| 38 |
 | [Set-membership approach and Kalman observer based on zonotopes for discrete-time descriptor systems](2018/wang-automatica-descriptor-observer.md) | Wang, Puig, Cembrano | Automatica, 93:435-443 | 2018 | 🟡 16/18 \| 9 |
 | [Linear Encodings for Polytope Containment Problems](2019/sadraddini-cdc-polytope-containment.md) | Sadraddini, Tedrake | CDC, pp. 4367-4372 | 2019 | 🟡 22/23 \| 16 |
+| [Reachability Analysis of Large Linear Systems with Uncertain Inputs in the Krylov Subspace](2020/althoff-tac-krylov.md) | Althoff | IEEE Transactions on Automatic Control, 65(2):477-492 | 2020 | 🟡 7/13 \| 16 |
 | [Scalable Zonotope-Ellipsoid Conversions using the Euclidean Zonotope Norm](2020/gassmann-acc-zonotope-ellipsoid.md) | Gaßmann, Althoff | ACC, pp. 4715-4721 | 2020 | 🟡 13/16 \| 14 |
 | [Reachability Analysis for Hybrid Systems with Nonlinear Guard Sets](2020/kochdumper-hscc-nonlinear-guards.md) | Kochdumper, Althoff | HSCC | 2020 | 🟡 13/16 \| 6 |
 | [Utilizing Dependencies to Obtain Subsets of Reachable Sets](2020/kochdumper-hscc-utilizing-dependencies.md) | Kochdumper, Schürmann, Althoff | HSCC | 2020 | 🟢 11/11 \| 4 |
@@ -81,12 +83,14 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Constrained Polynomial Zonotopes](2023/kochdumper-constrained-polyzonotopes.md) | Kochdumper, Althoff | Acta Informatica | 2023 | 🟢 17/17 \| 7 |
 | [Automatic Abstraction Refinement in Neural Network Verification using Sensitivity Analysis](2023/ladner-hscc-abstraction-refinement.md) | Ladner, Althoff | HSCC | 2023 | 🟢 27/27 \| 9 |
 | [Fully Automatic Neural Network Reduction for Formal Verification](2023/ladner-tmlr-network-reduction.md) | Ladner, Althoff | TMLR | 2023 | 🟢 14/14 \| 5 |
+| [Reachability Analysis of ARMAX Models](2023/luetzow-cdc-armax.md) | Lützow, Althoff | CDC, pp. 7027-7034 | 2023 | 🟢 14/14 \| 5 |
 | [Backward Reachability Analysis of Perturbed Continuous-Time Linear Systems Using Set Propagation](2023/wetzlinger-arxiv-backward-reachability.md) | Wetzlinger, Althoff | arXiv:2310.19083 | 2023 | 🟢 11/11 \| 8 |
 | [Fully-Automated Verification of Linear Systems Using Inner- and Outer-Approximations of Reachable Sets](2023/wetzlinger-fully-automated-verification.md) | Wetzlinger, Kochdumper, Bak, Althoff | IEEE Transactions on Automatic Control, vol. 68, no. 12, pp. 7771–7786 | 2023 | 🟢 19/19 \| 6 |
 | [Fully-Automated Verification of Linear Systems Using Reachability Analysis with Support Functions](2023/wetzlinger-hscc-support-functions.md) | Wetzlinger, Kochdumper, Bak, Althoff | HSCC | 2023 | 🟢 5/5 \| 4 |
 | [Search-based and Stochastic Solutions to the Zonotope and Ellipsotope Containment Problems](2024/kulmburg-ecc-zonotope-ellipsotope-containment.md) | Kulmburg, Brkan, Althoff | ECC | 2024 | 🟡 13/18 \| 9 |
 | [Exponent Relaxation of Polynomial Zonotopes and Its Applications in Formal Neural Network Verification](2024/ladner-aaai-exponent-relaxation.md) | Ladner, Althoff | AAAI | 2024 | 🟢 8/8 \| 6 |
 | [Implementation of Polyhedral Operations in CORA 2024](2024/wetzlinger-arch-polyhedral-operations.md) | Wetzlinger, Kotsev, Kulmburg, Althoff | ARCH24, EPiC Series in Computing 103, pp. 163-181 | 2024 | 🟡 48/49 \| 15 |
+| [Inner Approximations of Reachable Sets for Nonlinear Systems using the Minkowski Difference](2024/wetzlinger-lcss-inner-minkowski-difference.md) | Wetzlinger, Kulmburg, Althoff | IEEE Control Systems Letters, 8:2033-2038 | 2024 | 🟡 3/7 \| 16 |
 | [Explaining Fast and Slow: Abstraction and Refinement of Provable Explanations](2025/bassan-icml-explaining-fast-and-slow.md) | Bassan, Elboher, Ladner, Althoff, Katz | ICML | 2025 | 🟢 14/14 \| 2 |
 | [Formal Verification of Graph Convolutional Networks with Uncertain Node Features and Uncertain Graph Structure](2025/ladner-tmlr-gcn.md) | Ladner, Eichelbeck, Althoff | TMLR | 2025 | 🟢 12/12 \| 7 |
 
@@ -153,6 +157,7 @@ heading — beside the result, where someone checking that result will be. These
 pages carry one:
 
 <!-- findings -->
+* [STL Model Checking of Continuous and Hybrid Systems](2016/roehm-atva-stl-model-checking.md)
 * [Ellipsoidal Toolbox (ET)](2006/kurzhanskiy-cdc-ellipsoidal-toolbox.md)
 * [Reachability of Uncertain Linear Systems Using Zonotopes](2005/girard-hscc-reachability-zonotopes.md)
 * [Taylor Models and Other Validated Functional Inclusion Methods](2003/makino-ijpam-taylor-models.md)
@@ -191,6 +196,9 @@ pages carry one:
 * [Formal Verification of Graph Convolutional Networks with Uncertain Node Features and Uncertain Graph Structure](2025/ladner-tmlr-gcn.md)
 * [Reachability Analysis for Hybrid Systems with Nonlinear Guard Sets](2020/kochdumper-hscc-nonlinear-guards.md)
 * [Safety Assessment for Stochastic Linear Systems using Enclosing Hulls of Probability Density Functions](2009/althoff-ecc-enclosing-hulls.md)
+* [Reachability Analysis of ARMAX Models](2023/luetzow-cdc-armax.md)
+* [Inner Approximations of Reachable Sets for Nonlinear Systems using the Minkowski Difference](2024/wetzlinger-lcss-inner-minkowski-difference.md)
+* [Reachability Analysis of Large Linear Systems with Uncertain Inputs in the Krylov Subspace](2020/althoff-tac-krylov.md)
 
 [FINDINGS.md](../FINDINGS.md) is the other half, and stays at the root: the
 places this formalization parts from CORA on purpose, which belong to no paper.

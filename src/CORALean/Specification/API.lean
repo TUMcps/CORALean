@@ -2,6 +2,7 @@ import CORALean.Specification.Definitions.API
 import CORALean.Specification.Instances
 import CORALean.Specification.Operations.API
 import CORALean.Specification.Specification
+import CORALean.Specification.STL.API
 import CORALean.Specification.Theorems.API
 
 /-!

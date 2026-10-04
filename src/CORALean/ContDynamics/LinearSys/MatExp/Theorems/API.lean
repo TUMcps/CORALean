@@ -138,6 +138,7 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMemIntervalCorrecti
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMemCorrectionMatrixOfRemainderFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MatZonoCorrectionMatrix
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSubExpTaylorMemExpRemainderInterval
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MulExpIntegral
 
 /-!
 # What the exponential enclosures guarantee

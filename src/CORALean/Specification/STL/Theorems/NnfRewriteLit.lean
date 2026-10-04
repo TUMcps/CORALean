@@ -1,0 +1,39 @@
+import CORALean.Specification.STL.Definitions.NnfRewrite
+
+/-!
+# A literal rewrites to sampled time
+
+[1, Lemma 4]: a non-temporal literal `ϱ` is already sampled time, and so are `F(0,1) ϱ` and
+`G(0,1) ϱ`.
+
+## References
+
+* [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and
+      Hybrid Systems". ATVA, LNCS 9938, pp. 412-427, 2016.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open scoped NNReal
+
+variable {X : Type}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem STL.Nnf.hasSampledRewrite_lit (ϱ : Pform X) : (STL.Nnf.lit ϱ).HasSampledRewrite :=
+  ⟨⟨.lit ϱ, fun _ h => h⟩, ⟨.fin ϱ, fun _ h => h⟩, ⟨.glob ϱ, fun _ h => h⟩⟩
+
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
