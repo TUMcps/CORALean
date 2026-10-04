@@ -153,6 +153,44 @@ import CORALean.ContSet.Interval.Real.Theorems.HullIsLeast
 import CORALean.ContSet.Interval.Real.Theorems.HullAdd
 import CORALean.ContSet.Interval.Real.Theorems.HullImageOfNonneg
 import CORALean.ContSet.Interval.Real.Theorems.ImageOfNonnegCounterexample
+import CORALean.ContSet.Interval.Real.Theorems.ExtremalLoIsLeast
+import CORALean.ContSet.Interval.Real.Theorems.ExtremalHiIsGreatest
+import CORALean.ContSet.Interval.Real.Theorems.ZeroMemExtremal
+import CORALean.ContSet.Interval.Real.Theorems.PolyBoxReviseLeftLe
+import CORALean.ContSet.Interval.Real.Theorems.PolyBoxReviseRightGe
+import CORALean.ContSet.Interval.Real.Theorems.PolyBoxReviseIsContractor
+import CORALean.ContSet.Interval.Real.Theorems.ExistsZeroIffExtrema
+import CORALean.ContSet.Interval.Real.Theorems.ExistsZeroIffExtremaCounterexample
+import CORALean.ContSet.Interval.Real.Theorems.NaturalExtensionDependency
+import CORALean.ContSet.Interval.Real.Theorems.ExtremalExample
+import CORALean.ContSet.Interval.Real.Theorems.PolyBoxRewriteRemarks
+import CORALean.ContSet.Interval.Real.Theorems.MemExtremePointsInterHyperplaneIff
+import CORALean.ContSet.Interval.Real.Theorems.ExploreBNStepSpec
+import CORALean.ContSet.Interval.Real.Theorems.ExploreBNVisitsSumLe
+import CORALean.ContSet.Interval.Real.Theorems.MemExploreBNVisits
+import CORALean.ContSet.Interval.Real.Theorems.ExploreBNEqExtremePoints
+import CORALean.ContSet.Interval.Real.Theorems.CornerSumAddLe
+import CORALean.ContSet.Interval.Real.Theorems.CornerSumUpdate
+import CORALean.ContSet.Interval.Real.Theorems.CornerSumMono
+import CORALean.ContSet.Interval.Real.Theorems.EdgeMemHyperplaneIff
+import CORALean.ContSet.Interval.Real.Theorems.CardPrefixFace
+import CORALean.ContSet.Interval.Real.Theorems.ExistsUniqueBorderVertex
+import CORALean.ContSet.Interval.Real.Theorems.MemExtremePointsComplementIff
+import CORALean.ContSet.Interval.Real.Theorems.MemExtremePointsTranslateIff
+import CORALean.ContSet.Interval.Real.Theorems.MemExtremePointsScaleIff
+import CORALean.ContSet.Interval.Real.Theorems.ScaleBoxCounterexample
+import CORALean.ContSet.Interval.Real.Theorems.ExploreBNNegCounterexample
+import CORALean.ContSet.Interval.Real.Theorems.ExploreBNUnorderedCounterexample
+import CORALean.ContSet.Interval.Real.Theorems.ExploreBNSort
+import CORALean.ContSet.Interval.Real.Theorems.VertexEdgeSolutionIff
+import CORALean.ContSet.Interval.Real.Theorems.VertexEdgeSolutionCounterexample
+import CORALean.ContSet.Interval.Real.Theorems.ExtremePointsFaceEq5
+import CORALean.ContSet.Interval.Real.Theorems.FaceInterHyperplaneNonempty
+import CORALean.ContSet.Interval.Real.Theorems.PrefixFacePartition
+import CORALean.ContSet.Interval.Real.Theorems.PieceHasBorderVertex
+import CORALean.ContSet.Interval.Real.Theorems.PieceSolutionCounterexample
+import CORALean.ContSet.Interval.Real.Theorems.BoxPlaneIntersectNaiveEq
+import CORALean.ContSet.Interval.Real.Theorems.ExploreBNVisitsLengthLeCard
 
 /-!
 # What `Interval` guarantees

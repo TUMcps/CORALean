@@ -104,6 +104,15 @@ import CORALean.ContSet.Interval.Real.Operations.SinByRegions
 import CORALean.ContSet.Interval.Real.Operations.CosByRegions
 import CORALean.ContSet.Interval.Real.Operations.TanByRegions
 import CORALean.ContSet.Interval.Real.Operations.CotByRegions
+import CORALean.ContSet.Interval.Real.Operations.ExtremalLo
+import CORALean.ContSet.Interval.Real.Operations.ExtremalHi
+import CORALean.ContSet.Interval.Real.Operations.PolyBoxReviseLeft
+import CORALean.ContSet.Interval.Real.Operations.PolyBoxReviseRight
+import CORALean.ContSet.Interval.Real.Operations.PolyBoxRevise
+import CORALean.ContSet.Interval.Real.Operations.FindSolutions
+import CORALean.ContSet.Interval.Real.Operations.ExploreBNVisits
+import CORALean.ContSet.Interval.Real.Operations.ExploreBN
+import CORALean.ContSet.Interval.Real.Operations.BoxPlaneIntersectNaive
 
 /-!
 # What `Interval` computes

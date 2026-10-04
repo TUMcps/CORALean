@@ -1,0 +1,42 @@
+import CORALean.ContSet.Interval.Real.Interval
+import Mathlib.Data.Real.Basic
+
+/-!
+# `Interval.polyBoxReviseRight`
+
+[1, Sec. 3 (three cases)] computes the left bound and leaves the right one to "a symmetric
+process": the same three cases at `x̅`, the bound becoming the largest root of the selected
+extremal function in `[x]`. The search is the argument `root`, held to
+`Interval.IsRightRootBound`.
+
+## References
+
+* [1] G. Trombettoni, Y. Papegay, G. Chabert and O. Pourtallier. "A Box-Consistency Contractor
+      Based on Extremal Functions". In Proc. of the 16th International Conference on Principles
+      and Practice of Constraint Programming (CP 2010), LNCS 6308, pp. 491-498, 2010.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- The right bound `r` of `[x̲, x̅]`, the three cases read at `x̅`. -/
+noncomputable def Interval.polyBoxReviseRight (gLo gHi : ℝ → ℝ) (root : (ℝ → ℝ) → ℝ → ℝ → ℝ)
+    (xl xu : ℝ) : ℝ :=
+  if gLo xu ≤ 0 ∧ 0 ≤ gHi xu then xu                -- 1. no contraction
+  else if 0 < gLo xu then root gLo xl xu            -- 2. `g̲` selected
+  else root gHi xl xu                               -- 3. `g̅(x̅) < 0`: `g̅` selected
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
