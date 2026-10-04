@@ -151,6 +151,20 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.RepresentsaEmptySet
 import CORALean.ContSet.PolyZonotope.Real.Operations.ReplaceId
 import CORALean.ContSet.PolyZonotope.Real.Operations.OnlyId
 import CORALean.ContSet.PolyZonotope.Real.Operations.Jacobian
+import CORALean.ContSet.PolyZonotope.Real.Operations.ZonotopeCora
+import CORALean.ContSet.PolyZonotope.Real.Operations.SplitLongestIndepGen
+import CORALean.ContSet.PolyZonotope.Real.Operations.ContainsPointSet
+import CORALean.ContSet.PolyZonotope.Real.Operations.Volume
+import CORALean.ContSet.PolyZonotope.Real.Operations.AddedTerms
+import CORALean.ContSet.PolyZonotope.Real.Operations.Polygon
+import CORALean.ContSet.PolyZonotope.Real.Operations.CoraWeight
+import CORALean.ContSet.PolyZonotope.Real.Operations.SplitGen
+import CORALean.ContSet.PolyZonotope.Real.Operations.SplitMany
+import CORALean.ContSet.PolyZonotope.Real.Operations.PolygonRound
+import CORALean.ContSet.PolyZonotope.Real.Operations.PolygonPieces
+import CORALean.ContSet.PolyZonotope.Real.Operations.JacobianMat
+import CORALean.ContSet.PolyZonotope.Real.Operations.JacobianDetIntegral
+import CORALean.ContSet.PolyZonotope.Real.Operations.AddedTermsHessian
 
 /-!
 # What `PolyZonotope` computes

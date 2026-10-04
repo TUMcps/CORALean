@@ -91,6 +91,12 @@ import CORALean.Global.DmdRegressor
 import CORALean.Global.DmdSelect
 import CORALean.Global.DmdSelectLe
 import CORALean.Global.DmdStack
+import CORALean.Global.DescProd
+import CORALean.Global.DescProdState
+import CORALean.Global.Jacobian
+import CORALean.Global.LinResidual
+import CORALean.Global.StackSelect
+import CORALean.Global.StackSelectMulVec
 
 /-!
 # Global definitions, collected

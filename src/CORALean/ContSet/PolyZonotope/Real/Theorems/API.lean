@@ -152,6 +152,22 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.ReplaceIdSubset
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ReplaceIdExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.OnlyIdPoint
 import CORALean.ContSet.PolyZonotope.Real.Theorems.JacobianHasDerivAt
+import CORALean.ContSet.PolyZonotope.Real.Theorems.ZonotopeCoraContains
+import CORALean.ContSet.PolyZonotope.Real.Theorems.SplitGenCover
+import CORALean.ContSet.PolyZonotope.Real.Theorems.ContainsPointSetSound
+import CORALean.ContSet.PolyZonotope.Real.Theorems.VolumeNegExample
+import CORALean.ContSet.PolyZonotope.Real.Theorems.VolumeLeOfDetNonneg
+import CORALean.ContSet.PolyZonotope.Real.Theorems.AddedTermsPoint
+import CORALean.ContSet.PolyZonotope.Real.Theorems.AddedTermsHessianHasDerivAt
+import CORALean.ContSet.PolyZonotope.Real.Theorems.PolygonOuter
+import CORALean.ContSet.PolyZonotope.Real.Theorems.SplitLongestIndepGenCover
+import CORALean.ContSet.PolyZonotope.Real.Theorems.VolumeOfQZero
+import CORALean.ContSet.PolyZonotope.Real.Theorems.DifferentiablePoint
+import CORALean.ContSet.PolyZonotope.Real.Theorems.ContinuousPoint
+import CORALean.ContSet.PolyZonotope.Real.Theorems.HasFDerivAtPoint
+import CORALean.ContSet.PolyZonotope.Real.Theorems.ConstructOfQZero
+import CORALean.ContSet.PolyZonotope.Real.Theorems.AreaFormula
+import CORALean.ContSet.PolyZonotope.Real.Theorems.VolumeEqOfDetNonnegInjOn
 
 /-!
 # What `PolyZonotope` guarantees

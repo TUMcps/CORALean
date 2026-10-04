@@ -43,6 +43,13 @@ LinearARX.computeGO  real-layer: the GO parameters as real matrices, powers of t
 LinearSys.identify  real-layer: the dynamic mode decomposition at a real SVD factorization (an argument, not computed); no float SVD exists to run it on
 LinearSys.identifyCandidate  real-layer: the dynamic mode decomposition at a real SVD factorization (an argument, not computed); no float SVD exists to run it on
 LinearSysDT.computeGO  real-layer: the GO parameters as real matrices, powers of the real state matrix; the guarantee is a statement about runs over ℝ
+NonlinDASys.outputSetLinearCora  real-layer: the zeroth and first order of CORA's output set, from a real Jacobian (`fderiv`); a statement about a real output function
+NonlinearSys.identify  real-layer: the dynamic mode decomposition at a real SVD factorization (an argument, not computed); no float SVD exists to run it on
+NonlinearSys.identifyCandidate  real-layer: the dynamic mode decomposition at a real SVD factorization (an argument, not computed); no float SVD exists to run it on
+NonlinearSysDT.computeGO  real-layer: the GO parameters along a real reference run, from real Jacobians (`fderiv`); the guarantee is an identity about runs over ℝ
+NonlinearSysDT.identify  real-layer: the dynamic mode decomposition at a real SVD factorization (an argument, not computed); no float SVD exists to run it on
+NonlinearSysDT.identifyCandidate  real-layer: the dynamic mode decomposition at a real SVD factorization (an argument, not computed); no float SVD exists to run it on
+jacobianMat  real-layer: the matrix of a real Fréchet derivative; no float derivative exists to run it on
 kaucherMulDualZ  real-layer: the three Kaucher products of HSCC'17 Eq. 18 over ℝ, branching on the sign of a real bound; the guarantee is a statement about a real flow's range
 kaucherInnerStep  real-layer: HSCC'17 Eq. 18 over ℝ, built from `kaucherMulDualZ`; ℝ-only for the same reason
 lieDeriv  spec: the Lie derivative `Dg · V`, a Fréchet derivative applied to a field, never run
@@ -336,6 +343,7 @@ isDisjointBoxRealInterval  real-layer: `S` fixed to an exact real family so inst
 isDisjointBoxRealZonotope  real-layer: `S` fixed to an exact real family so instance search finds it, `Real.Zonotope` against a box
 lagrangeRemainder  pending #1: the third-order box at a real bound `E`; no float model carries a third-derivative enclosure, and the float `'poly'` step uses the second-order Lagrange form over `FloatHessModel.hess` instead
 layerSensitivity  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
+linResidual  real-layer: the residual of a first-order expansion, from real Jacobians (`fderiv`); a statement about real functions
 localAbstrErr  spec: an abstraction-error measure of an exact `Set`, its box diameter
 mulVecL  spec: `Matrix.mulVec` as a continuous bilinear map, a proof device for differentiating the flow
 norm₂  spec: a norm or Hausdorff distance over ℝ, used only to state a guarantee

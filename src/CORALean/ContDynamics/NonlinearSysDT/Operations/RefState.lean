@@ -1,0 +1,33 @@
+import CORALean.ContDynamics.NonlinearSysDT.NonlinearSysDT
+
+/-!
+# The reference run of a discrete-time system
+
+`x_ref(:,k+1) = nlnsysDT.mFile(x_ref(:,k), u_ref(:,k))` of `computeGO`, from `x_ref(:,1) = x0`.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+variable {n m : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- The states reached from `x0` under the reference inputs `u_ref`. -/
+def NonlinearSysDT.refState (sys : NonlinearSysDT n m) (x0 : Vec ℝ n) (u_ref : ℕ → Vec ℝ m) :
+    ℕ → Vec ℝ n
+  | 0 => x0
+  | k + 1 => sys.f (sys.refState x0 u_ref k) (u_ref k)
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

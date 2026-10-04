@@ -2575,11 +2575,11 @@
         "group": "contSet",
         "class": "conPolyZono",
         "methods": 47,
-        "proved": 10,
+        "proved": 11,
         "float": 26,
-        "not_yet": 3,
+        "not_yet": 2,
         "out_of_scope": 8,
-        "needs_float": 10,
+        "needs_float": 11,
         "out_of_scope_by_reason": {
           "plotting/display": 3,
           "random/sampling": 2,
@@ -2783,11 +2783,11 @@
         "group": "contSet",
         "class": "polyZonotope",
         "methods": 73,
-        "proved": 12,
+        "proved": 16,
         "float": 35,
-        "not_yet": 12,
+        "not_yet": 8,
         "out_of_scope": 14,
-        "needs_float": 12,
+        "needs_float": 16,
         "out_of_scope_by_reason": {
           "plotting/display": 4,
           "random/sampling": 2,
@@ -2796,7 +2796,7 @@
           "matlab-runtime": 7,
           "deprecated": 1
         },
-        "cora_issues": 2,
+        "cora_issues": 3,
         "findings": {
           "correct": 30,
           "underspecified": 7,
@@ -3212,7 +3212,7 @@
           "matlab-runtime": 1,
           "deprecated": 0
         },
-        "cora_issues": 2,
+        "cora_issues": 5,
         "findings": {
           "correct": 6,
           "underspecified": 5,
@@ -3277,11 +3277,11 @@
         "group": "contDynamics",
         "class": "nonlinearSys",
         "methods": 18,
-        "proved": 4,
+        "proved": 5,
         "float": 3,
-        "not_yet": 3,
+        "not_yet": 2,
         "out_of_scope": 8,
-        "needs_float": 4,
+        "needs_float": 5,
         "out_of_scope_by_reason": {
           "plotting/display": 2,
           "random/sampling": 0,
@@ -3303,11 +3303,11 @@
         "group": "contDynamics",
         "class": "nonlinearSysDT",
         "methods": 11,
-        "proved": 2,
+        "proved": 4,
         "float": 3,
-        "not_yet": 3,
+        "not_yet": 1,
         "out_of_scope": 3,
-        "needs_float": 2,
+        "needs_float": 4,
         "out_of_scope_by_reason": {
           "plotting/display": 2,
           "random/sampling": 0,
@@ -3589,12 +3589,12 @@
     "groups": {
       "contSet": {
         "methods": 908,
-        "proved": 128,
+        "proved": 133,
         "float": 451,
-        "not_yet": 90,
+        "not_yet": 85,
         "out_of_scope": 239,
-        "needs_float": 128,
-        "cora_issues": 27,
+        "needs_float": 133,
+        "cora_issues": 28,
         "out_of_scope_by_reason": {
           "plotting/display": 51,
           "random/sampling": 36,
@@ -3613,12 +3613,12 @@
       },
       "contDynamics": {
         "methods": 159,
-        "proved": 41,
+        "proved": 44,
         "float": 37,
-        "not_yet": 21,
+        "not_yet": 18,
         "out_of_scope": 60,
-        "needs_float": 41,
-        "cora_issues": 6,
+        "needs_float": 44,
+        "cora_issues": 9,
         "out_of_scope_by_reason": {
           "plotting/display": 25,
           "random/sampling": 6,
@@ -3686,12 +3686,12 @@
     },
     "totals": {
       "methods": 1260,
-      "proved": 198,
+      "proved": 206,
       "float": 549,
-      "not_yet": 130,
+      "not_yet": 122,
       "out_of_scope": 383,
-      "needs_float": 198,
-      "cora_issues": 36,
+      "needs_float": 206,
+      "cora_issues": 40,
       "out_of_scope_by_reason": {
         "plotting/display": 86,
         "random/sampling": 46,
@@ -3734,9 +3734,9 @@
     "theorems": {
       "paper": 913,
       "float": 1176,
-      "helper": 842,
-      "lemma": 2113,
-      "total": 5044,
+      "helper": 857,
+      "lemma": 2141,
+      "total": 5087,
       "examples": 80
     }
   }

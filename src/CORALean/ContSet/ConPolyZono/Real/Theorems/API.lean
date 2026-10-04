@@ -53,6 +53,8 @@ import CORALean.ContSet.ConPolyZono.Real.Theorems.MinkDiffConstruct
 import CORALean.ContSet.ConPolyZono.Real.Theorems.MinkDiffOuter
 import CORALean.ContSet.ConPolyZono.Real.Theorems.MinkDiffInnerOfConvex
 import CORALean.ContSet.ConPolyZono.Real.Theorems.MinkDiffNotInner
+import CORALean.ContSet.ConPolyZono.Real.Theorems.RescaleExact
+import CORALean.ContSet.ConPolyZono.Real.Theorems.GetSubsetSatisfies
 
 /-!
 # What `ConPolyZono` guarantees

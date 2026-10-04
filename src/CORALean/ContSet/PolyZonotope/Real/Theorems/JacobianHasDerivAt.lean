@@ -11,7 +11,8 @@ Moving the factor `k` along the line `t ↦ update a k t`, the point of the poly
 the derivative `point (jacobian k) a` at `t = aₖ`. Each monomial is `tᵉ` times the other factors'
 powers, with derivative `e tᵉ⁻¹` times the same, which is the monomial of the lowered exponent
 matrix; for `e = 0` both sides are `0` since the coefficient is `0` (the natural subtraction does
-not matter there). At `Vec ℝ n`, where the derivative is taken in the sup norm.
+not matter there). In any real normed space, in particular `Vec ℝ n`, where the derivative is
+taken in the sup norm.
 -/
 
 -- Authors:       Tobias Ladner
@@ -24,7 +25,7 @@ not matter there). At `Vec ℝ n`, where the derivative is taken in the sup norm
 
 namespace CORALean.Real
 
-variable {n : ℕ}
+variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
@@ -55,7 +56,7 @@ theorem PolyZonotope.aux_monomial_jacobian {p h : ℕ} (E : Fin p → Fin h → 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.jacobian_hasDerivAt (pZ : PolyZonotope (Vec ℝ n)) (k : Fin pZ.p)
+theorem PolyZonotope.jacobian_hasDerivAt (pZ : PolyZonotope α) (k : Fin pZ.p)
     (a : Fin pZ.p → ℝ) :
     HasDerivAt (fun t => pZ.point (Function.update a k t)) ((pZ.jacobian k).point a)
       (a k) := by -- --- PROOF ---
@@ -75,7 +76,7 @@ theorem PolyZonotope.jacobian_hasDerivAt (pZ : PolyZonotope (Vec ℝ n)) (k : Fi
   have hsum := (HasDerivAt.fun_sum hterm).const_add pZ.c
   refine hsum.congr_deriv ?_
   -- the derivative's point is the sum of the scaled generators at the lowered monomials
-  show _ = (0 : Vec ℝ n) + ∑ i, PolyZonotope.monomial (pZ.jacobian k).E a i
+  show _ = (0 : α) + ∑ i, PolyZonotope.monomial (pZ.jacobian k).E a i
     • ((pZ.E k i : ℝ) • pZ.G i)
   rw [zero_add]
   exact Finset.sum_congr rfl fun i _ => by rw [smul_smul, mul_comm]

@@ -117,7 +117,7 @@ Rulings on borderline cases:
 |---|---|---|---|---|---|---|---|
 | [affine](contSet/affine.md) | contSet | 1 | 0 | 1 | 0 | 0 | 0 |
 | [capsule](contSet/capsule.md) | contSet | 39 | 2 | 26 | 1 | 10 | 3 |
-| [conPolyZono](contSet/conPolyZono.md) | contSet | 47 | 10 | 26 | 3 | 8 | 2 |
+| [conPolyZono](contSet/conPolyZono.md) | contSet | 47 | 11 | 26 | 2 | 8 | 2 |
 | [conZonotope](contSet/conZonotope.md) | contSet | 50 | 10 | 25 | 3 | 12 | 1 |
 | [contSet](contSet/contSet.md) | contSet | 101 | 1 | 27 | 1 | 72 | 0 |
 | [ellipsoid](contSet/ellipsoid.md) | contSet | 50 | 11 | 20 | 9 | 10 | 3 |
@@ -125,7 +125,7 @@ Rulings on borderline cases:
 | [fullspace](contSet/fullspace.md) | contSet | 33 | 5 | 19 | 1 | 8 | 0 |
 | [interval](contSet/interval.md) | contSet | 110 | 7 | 85 | 0 | 18 | 1 |
 | [levelSet](contSet/levelSet.md) | contSet | 22 | 6 | 6 | 2 | 8 | 2 |
-| [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 12 | 35 | 12 | 14 | 2 |
+| [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 16 | 35 | 8 | 14 | 3 |
 | [polygon](contSet/polygon.md) | contSet | 46 | 2 | 17 | 18 | 9 | 1 |
 | [polytope](contSet/polytope.md) | contSet | 58 | 11 | 33 | 2 | 12 | 4 |
 | [probZonotope](contSet/probZonotope.md) | contSet | 28 | 15 | 0 | 5 | 8 | 3 |
@@ -141,11 +141,11 @@ Rulings on borderline cases:
 | [linearSys](contDynamics/linearSys.md) | contDynamics | 33 | 11 | 11 | 1 | 10 | 1 |
 | [linearSysDT](contDynamics/linearSysDT.md) | contDynamics | 17 | 6 | 5 | 0 | 6 | 0 |
 | [neurNetContrSys](contDynamics/neurNetContrSys.md) | contDynamics | 5 | 0 | 4 | 0 | 1 | 0 |
-| [nonlinDASys](contDynamics/nonlinDASys.md) | contDynamics | 13 | 4 | 0 | 6 | 3 | 2 |
+| [nonlinDASys](contDynamics/nonlinDASys.md) | contDynamics | 13 | 4 | 0 | 6 | 3 | 5 |
 | [nonlinParamSys](contDynamics/nonlinParamSys.md) | contDynamics | 9 | 3 | 0 | 2 | 4 | 0 |
 | [nonlinearARX](contDynamics/nonlinearARX.md) | contDynamics | 8 | 3 | 1 | 1 | 3 | 0 |
-| [nonlinearSys](contDynamics/nonlinearSys.md) | contDynamics | 18 | 4 | 3 | 3 | 8 | 2 |
-| [nonlinearSysDT](contDynamics/nonlinearSysDT.md) | contDynamics | 11 | 2 | 3 | 3 | 3 | 0 |
+| [nonlinearSys](contDynamics/nonlinearSys.md) | contDynamics | 18 | 5 | 3 | 2 | 8 | 2 |
+| [nonlinearSysDT](contDynamics/nonlinearSysDT.md) | contDynamics | 11 | 4 | 3 | 1 | 3 | 0 |
 | [abstractReset](hybridDynamics/abstractReset.md) | hybridDynamics | 4 | 0 | 0 | 0 | 4 | 0 |
 | [hybridAutomaton](hybridDynamics/hybridAutomaton.md) | hybridDynamics | 15 | 0 | 2 | 2 | 11 | 0 |
 | [hybridDynamics](hybridDynamics/hybridDynamics.md) | hybridDynamics | 2 | 0 | 1 | 0 | 1 | 0 |
