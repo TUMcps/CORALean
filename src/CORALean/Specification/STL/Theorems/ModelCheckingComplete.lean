@@ -1,0 +1,50 @@
+import CORALean.Specification.STL.Theorems.SampSatToCNF
+import CORALean.Specification.STL.Theorems.SampNodupToCNF
+import CORALean.Specification.STL.Theorems.CNFUpsilonSoundComplete
+
+/-!
+# Model checking a sampled time formula is complete
+
+[1, Thm. 1]: for a sampled time formula the transformation is also complete: `R ⊨ᵣ ψ ⇔ C(R) ⊨ₜ ϕ`,
+by [1, Lemma 2] and the equivalence of the normal form. [1] says it for "`ϕ` equivalent to a
+sampled time formula", which the rewriting of Table 1, only an implication, does not give; this is
+the case of a sampled time `ϕ` itself.
+
+## References
+
+* [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and
+      Hybrid Systems". ATVA, LNCS 9938, pp. 412-427, 2016.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open scoped NNReal
+
+variable {X : Type}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem STL.model_checking_complete_sampled {c : ℝ≥0} (hc : 0 < c) (s : STL.Samp X) :
+    ∃ cnf : STL.CNF X, (∀ clause ∈ cnf, (clause.map STL.Branch.j).Nodup) ∧
+      ∀ (T : Finset ℝ≥0) (R : ℝ≥0 → Set X), (∀ t, (R t).Nonempty) →
+        ReachSequence.FinRep T R → ReachSequence.CDivisible c T →
+          ((cnf.upsilon c).Sat R ↔
+            (s.toFormula c).HoldsOn (ReachSequence.traceSet R)) := by
+  refine ⟨s.toCNF true, s.nodup_toCNF true, fun T R hne hT hT' => ?_⟩
+  rw [STL.CNF.upsilon_sound_complete hc hne hT hT' (s.toCNF true) (s.nodup_toCNF true)]
+  exact forall₂_congr fun ξ _ => by simpa using STL.Samp.sat_toCNF c s true ξ
+
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

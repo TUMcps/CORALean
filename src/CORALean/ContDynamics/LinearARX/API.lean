@@ -1,5 +1,6 @@
 import CORALean.ContDynamics.LinearARX.Definitions.GO
 import CORALean.ContDynamics.LinearARX.LinearARX
+import CORALean.ContDynamics.LinearARX.Definitions.API
 import CORALean.ContDynamics.LinearARX.Operations.API
 import CORALean.ContDynamics.LinearARX.Theorems.API
 
@@ -10,7 +11,7 @@ The model and its trajectories in `LinearARX`, the conversion to `LinearSysDT` i
 `Operations`, and in `Theorems` that every ARX trajectory is one of the converted
 system, so that its reach encloses the ARX outputs.
 
-Left: ARX-form reach, its containment in the reach after conversion (the
-conversion repeats each output in `p` windows and loses that dependency), the
-converse of the trajectory correspondence, and `tvp`.
+`Definitions` holds the exact ARMAX reachable sets, which `Theorems` shows the two
+algorithms of the ARMAX paper compute (`tvp` is their parametrization). Left: a
+representation-level ARX reach, the converse of the trajectory correspondence.
 -/

@@ -14,24 +14,24 @@
     "not-covered"
   ],
   "totals": {
-    "papers": 44,
-    "papers_with_findings": 36,
-    "in_scope": 583,
-    "formalized": 553,
-    "not_formalized": 30,
-    "out_of_scope": 295,
+    "papers": 48,
+    "papers_with_findings": 39,
+    "in_scope": 636,
+    "formalized": 595,
+    "not_formalized": 41,
+    "out_of_scope": 335,
     "out_of_scope_by_reason": {
-      "restated": 149,
-      "mathlib": 10,
-      "not-a-claim": 107,
+      "restated": 177,
+      "mathlib": 11,
+      "not-a-claim": 114,
       "done-differently": 7,
-      "not-covered": 22
+      "not-covered": 26
     },
     "by_class": {
-      "correct": 382,
-      "underspecified": 84,
-      "proof-gap": 23,
-      "fixed": 62,
+      "correct": 412,
+      "underspecified": 93,
+      "proof-gap": 24,
+      "fixed": 64,
       "false": 2
     }
   },
@@ -750,6 +750,62 @@
       ]
     },
     {
+      "page": "2016/roehm-atva-stl-model-checking.md",
+      "label": "Roehm 2016",
+      "year": 2016,
+      "title": "STL Model Checking of Continuous and Hybrid Systems",
+      "in_scope": 19,
+      "formalized": 18,
+      "not_formalized": 1,
+      "out_of_scope": 3,
+      "out_of_scope_by_reason": {
+        "restated": 0,
+        "mathlib": 0,
+        "not-a-claim": 3,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 12,
+        "underspecified": 6,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Sec. 3",
+          "class": "underspecified",
+          "reason": "the `⇔` fails if some `R(t)` is empty, see the findings"
+        },
+        {
+          "result": "Eq. 10",
+          "class": "underspecified",
+          "reason": "needs a state at every time, see the findings"
+        },
+        {
+          "result": "Lemma 2",
+          "class": "underspecified",
+          "reason": "every `R(t)` non-empty and the `j` of a clause distinct, see the findings"
+        },
+        {
+          "result": "Table 1",
+          "class": "underspecified",
+          "reason": "the side conditions on `i` and `j` are not printed, and the last `F_I` row lacks a parenthesis, see the findings"
+        },
+        {
+          "result": "Lemma 4",
+          "class": "underspecified",
+          "reason": "an empty interval `i > j` has no rule in Table 1, and is `⊥` or `⊤`"
+        },
+        {
+          "result": "Thm. 1",
+          "class": "underspecified",
+          "reason": "a state at every time, and the completeness only where no rewriting happens, see the findings"
+        }
+      ]
+    },
+    {
       "page": "2016/scott-automatica-constrained-zonotopes.md",
       "label": "Scott 2016",
       "year": 2016,
@@ -1005,6 +1061,47 @@
           "result": "Prop. 7",
           "class": "fixed",
           "reason": "the row Λ₂g ≤ εh_Ball - H_Ball x̄ + H_Ball βₓ has the wrong sign on x̄ (it certifies F_proj ⊆ -x̄ + X₀ ⊕ εP_Ball): in ℝ¹, F = [-4, 2], X = [0, 2], ε = 2 is feasible while d_H = 4; true with + H_Ball x̄; see Findings"
+        }
+      ]
+    },
+    {
+      "page": "2020/althoff-tac-krylov.md",
+      "label": "Althoff 2020",
+      "year": 2020,
+      "title": "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the Krylov Subspace",
+      "in_scope": 13,
+      "formalized": 7,
+      "not_formalized": 6,
+      "out_of_scope": 16,
+      "out_of_scope_by_reason": {
+        "restated": 12,
+        "mathlib": 1,
+        "not-a-claim": 2,
+        "done-differently": 0,
+        "not-covered": 1
+      },
+      "by_class": {
+        "correct": 4,
+        "underspecified": 2,
+        "proof-gap": 1,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Alg. 1",
+          "class": "underspecified",
+          "reason": "the happy breakdown (line 10) names no action; read as stopping at ξ = k, so that only columns with h_{k+1,k} ≠ 0 are formed"
+        },
+        {
+          "result": "Thm. III.1",
+          "class": "underspecified",
+          "reason": "ε_norm is computed per vector (Appendix B: h_{ξ+1,ξ} and ω come from that vector's Arnoldi run), and one ε_norm for c and every g⁽ⁱ⁾ holds only as their maximum; the formalization takes one bound per vector, as Thm. IV.1 does"
+        },
+        {
+          "result": "Prop. B.1",
+          "class": "proof-gap",
+          "reason": "the monotonicity of ϕ(t) = (e^{νt} - 1)/(νt) is argued from ϕ̇ ∈ ν]0, 0.5]e^{νt}, which fails for ν < 0 (at νt = -10, ϕ̇/ν ≈ 0.0100 against 0.5e^{-10} ≈ 2.3·10⁻⁵); ϕ ≤ 1 there follows from x + 1 ≤ eˣ instead; see Findings"
         }
       ]
     },
@@ -1631,6 +1728,47 @@
       ]
     },
     {
+      "page": "2023/luetzow-cdc-armax.md",
+      "label": "Luetzow 2023",
+      "year": 2023,
+      "title": "Reachability Analysis of ARMAX Models",
+      "in_scope": 14,
+      "formalized": 14,
+      "not_formalized": 0,
+      "out_of_scope": 5,
+      "out_of_scope_by_reason": {
+        "restated": 3,
+        "mathlib": 0,
+        "not-a-claim": 1,
+        "done-differently": 0,
+        "not-covered": 1
+      },
+      "by_class": {
+        "correct": 11,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 2,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Eq. 12",
+          "class": "fixed",
+          "reason": "the reachable windows are not Y(k) × ⋯ × Y(k₊): with y(k) = ũ(k) + ũ(k-1), p = 2, ũ ∈ [-1, 1], (2, -2) is in Y(2) × Y(3) and not a window; (12) holds for the windows themselves, and each Y(k+j) is their projection; see Findings"
+        },
+        {
+          "result": "Alg. 2",
+          "class": "underspecified",
+          "reason": "line 18 needs B̃ᵢ(k_init + p) at i = k_init, …, k_init + p - 1, and lines 14-15 refresh only i < 2p: correct for k_init = p, stale for k_init > p; see Findings"
+        },
+        {
+          "result": "Thm. 3",
+          "class": "fixed",
+          "reason": "false for k_init > p: y(k) = y(k-1) + ũ(k), p = 1, ũ ∈ [-1, 1], k_init = 2 returns [-2, 2] at k = 3, where y(3) = 3 is reachable; true at k_init = p; see Findings"
+        }
+      ]
+    },
+    {
       "page": "2023/wetzlinger-arxiv-backward-reachability.md",
       "label": "Wetzlinger 2023 (arxiv)",
       "year": 2023,
@@ -1867,7 +2005,7 @@
     },
     {
       "page": "2024/wetzlinger-arch-polyhedral-operations.md",
-      "label": "Wetzlinger 2024",
+      "label": "Wetzlinger 2024 (arch)",
       "year": 2024,
       "title": "Implementation of Polyhedral Operations in CORA 2024",
       "in_scope": 49,
@@ -1970,6 +2108,31 @@
           "reason": "a unit direction equal to a row already present is redundant; the claim needs `ℓ` distinct from them; see Findings"
         }
       ]
+    },
+    {
+      "page": "2024/wetzlinger-lcss-inner-minkowski-difference.md",
+      "label": "Wetzlinger 2024 (lcss)",
+      "year": 2024,
+      "title": "Inner Approximations of Reachable Sets for Nonlinear Systems using the Minkowski Difference",
+      "in_scope": 7,
+      "formalized": 3,
+      "not_formalized": 4,
+      "out_of_scope": 16,
+      "out_of_scope_by_reason": {
+        "restated": 13,
+        "mathlib": 0,
+        "not-a-claim": 1,
+        "done-differently": 0,
+        "not-covered": 2
+      },
+      "by_class": {
+        "correct": 3,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": []
     },
     {
       "page": "2025/bassan-icml-explaining-fast-and-slow.md",
@@ -2167,7 +2330,7 @@
         },
         "cora_issues": 0,
         "findings": {
-          "correct": 44,
+          "correct": 45,
           "underspecified": 13,
           "proof-gap": 0,
           "fixed": 13,
@@ -2635,10 +2798,10 @@
         },
         "cora_issues": 0,
         "findings": {
-          "correct": 0,
-          "underspecified": 0,
+          "correct": 11,
+          "underspecified": 1,
           "proof-gap": 0,
-          "fixed": 0,
+          "fixed": 2,
           "false": 0
         }
       },
@@ -2661,9 +2824,9 @@
         },
         "cora_issues": 0,
         "findings": {
-          "correct": 28,
-          "underspecified": 12,
-          "proof-gap": 8,
+          "correct": 33,
+          "underspecified": 14,
+          "proof-gap": 9,
           "fixed": 6,
           "false": 0
         }
@@ -2817,7 +2980,7 @@
         },
         "cora_issues": 1,
         "findings": {
-          "correct": 14,
+          "correct": 15,
           "underspecified": 9,
           "proof-gap": 6,
           "fixed": 4,
@@ -3129,7 +3292,7 @@
           "deprecated": 14
         },
         "findings": {
-          "correct": 252,
+          "correct": 253,
           "underspecified": 51,
           "proof-gap": 5,
           "fixed": 43,
@@ -3153,10 +3316,10 @@
           "deprecated": 0
         },
         "findings": {
-          "correct": 55,
-          "underspecified": 25,
-          "proof-gap": 14,
-          "fixed": 10,
+          "correct": 72,
+          "underspecified": 28,
+          "proof-gap": 15,
+          "fixed": 12,
           "false": 0
         }
       },
@@ -3226,10 +3389,10 @@
         "deprecated": 14
       },
       "findings": {
-        "correct": 366,
-        "underspecified": 81,
-        "proof-gap": 21,
-        "fixed": 55,
+        "correct": 384,
+        "underspecified": 84,
+        "proof-gap": 22,
+        "fixed": 57,
         "false": 2
       }
     },
@@ -3242,8 +3405,8 @@
         "false": 0
       },
       "specification": {
-        "correct": 1,
-        "underspecified": 1,
+        "correct": 13,
+        "underspecified": 7,
         "proof-gap": 0,
         "fixed": 0,
         "false": 0
@@ -3257,11 +3420,11 @@
       }
     },
     "theorems": {
-      "paper": 763,
+      "paper": 838,
       "float": 1166,
-      "helper": 764,
-      "lemma": 2002,
-      "total": 4695,
+      "helper": 788,
+      "lemma": 2029,
+      "total": 4821,
       "examples": 80
     }
   }

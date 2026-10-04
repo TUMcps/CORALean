@@ -29,6 +29,7 @@ import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddSubsetAdd
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffEnclSubsetAdd
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffEqIInter
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffInnerOfOuter
+import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffNotSubsetOfDiscontinuous
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffMono
 import CORALean.ContSet.ContSet.Theorems.MinusFromOuter
 import CORALean.ContSet.ContSet.Theorems.MinusOuter
@@ -58,8 +59,7 @@ import CORALean.ContSet.ContSet.Theorems.SupportFuncLeCoeIff
 /-!
 # What the set interface's classes and definitions give together
 
-`smul_mem_linComb_ofPoint`: `LinComb` and `OfPoint` together already give the segment from the
-origin to a point, so no class needs a `segment` field.
+`smul_mem_linComb_ofPoint`: `LinComb` and `OfPoint` give the segment from the origin to a point.
 
 `DependencyPreserving.comp` and `.chain` are the closure properties a parameterized representation
 is judged by: composing two dependency-preserving operations keeps the property, and a whole loop
@@ -71,8 +71,9 @@ and — the point of the whole group — `minkowskiDiff_inner_of_outer`, which t
 approximation with a bounded error set into an inner approximation of the exact set, what
 an inner reachability algorithm is built on. Althoff's Prop. 3 and Prop. 4 are
 `minkowskiDiff_add_subset_add` and `minkowskiDiff_encl_subset_add`, his Lemma 1
-`minkowskiDiff_eq_iInter`, his Thm. 1's recursion step `minkowskiDiff_add_assoc`; and
-`segments_minkowskiDiff_subset` is Wetzlinger and Althoff's Lemma 1.
+`minkowskiDiff_eq_iInter`, his Thm. 1's step `minkowskiDiff_add_assoc`; Wetzlinger and
+Althoff's Lemma 1 is `segments_minkowskiDiff_subset`, and with Kulmburg their Remark 1
+`minkowskiDiff_not_subset_of_discontinuous`.
 
 `hausdorffDist_add_le`, `hausdorffDist_image_le` and `hausdorffDist_mulVecLin_add_le` are the
 three distances here rather than inclusions: adding the same compact set to both sides, moving two

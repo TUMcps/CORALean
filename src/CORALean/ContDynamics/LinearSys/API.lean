@@ -1,6 +1,7 @@
 import CORALean.ContDynamics.LinearSys.LinearSys
 import CORALean.ContDynamics.LinearSys.Definitions.API
 import CORALean.ContDynamics.LinearSys.Instances
+import CORALean.ContDynamics.LinearSys.Krylov.API
 import CORALean.ContDynamics.LinearSys.MatExp.API
 import CORALean.ContDynamics.LinearSys.Operations.API
 import CORALean.ContDynamics.LinearSys.Theorems.API

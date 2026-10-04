@@ -4,13 +4,14 @@ import CORALean.ContSet.ContSet.ContSet
 # Linear ARX models: the representation
 
 CORA's `linearARX` [1], `y(k) = ∑_{i=1}^p Ā_i y(k-i) + ∑_{i=1}^{p+1} B̄_i u(k-i+1)`, in the
-outputs and not in a state. `Abar i` is `Ā_{i+1}` and `Bbar j` is `B̄_{j+1}`, so lag
-`j` of the input, `u(k-j)`, is `Bbar j`, and `Bbar 0` is the feedthrough.
+outputs and not in a state: the ARMAX model of [2, Def. 5], its input the combined `ũ`.
+`Abar i` is `Ā_{i+1}` and `Bbar j` is `B̄_{j+1}`, so lag `j` of the input, `u(k-j)`, is
+`Bbar j`, and `Bbar 0` is the feedthrough.
 
 Time is counted in sampling periods, as in `LinearSysDT`, which is why no `dt` is
-stored. Left out: CORA's `tvp` parametrization (`A_tilde`, `B_tilde`), a second
-way of writing the same model that only reach reads. No `B`-versus-`c` choice: a
-constant offset folds into the input set, as it does for every system here.
+stored. CORA's `tvp` parametrization (`A_tilde`, `B_tilde`) is not stored: it is
+computed from this one (`Aext`, `Btilde`). No `B`-versus-`c` choice: a constant
+offset folds into the input set, as it does for every system here.
 
 `stack y k` is the window `(y(k), …, y(k+p-1))`, block `a` holding `y(k+a)`, the
 state the conversion to `LinearSysDT` carries. `Trajectory` is the ARX recursion
@@ -20,6 +21,8 @@ input in `U`; the conversion is not used to state it.
 ## References
 
 * [1] `contDynamics/@linearARX/linearARX.m`
+* [2] L. Lützow and M. Althoff. "Reachability Analysis of ARMAX Models". In Proc. of the
+  62nd IEEE Conference on Decision and Control (CDC), 2023, pp. 7027-7034.
 -/
 
 -- Authors:       Tobias Ladner
