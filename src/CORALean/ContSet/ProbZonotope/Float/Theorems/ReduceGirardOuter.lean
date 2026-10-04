@@ -1,0 +1,37 @@
+import CORALean.ContSet.ProbZonotope.Float.Operations.ReduceGirard
+import CORALean.ContSet.Zonotope.Float.Theorems.ReduceGirardOuter
+
+/-!
+# `ProbZonotope.reduceGirard` keeps the laws
+
+Outer: every law of `P` is a law of the reduced model, as the mean zonotope grows and the
+covariance is kept.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+open MeasureTheory ProbabilityTheory Matrix WithLp FloatOps SoundFloatArithmetic
+open scoped Pointwise
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem ProbZonotope.reduceGirard_laws_outer (P : ProbZonotope 𝕋 n) (o : ℕ) :
+    P.laws ⊆ (P.reduceGirard o).laws := by
+  rintro m ⟨μ, hμ, S, hS, hp, rfl⟩
+  exact ⟨μ, Zonotope.reduceGirard_outer P.Z o hμ, S, hS, hp, rfl⟩
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -1,0 +1,40 @@
+import CORALean.Global.Float.InverseTrig
+import CORALean.Global.Float.IntRound
+
+/-!
+# `Capsule.piStep`: bounds of `π / 499`
+
+The step of CORA's `linspace` over a half circle. `π = 2 arccos 0`, bounded below and above by the
+sums `acosDown`, `acosUp` at `0`; the quotient by `499` rounded down with a divisor at least `499`
+(`intUp`), and up with one at most `499` (`intDown`) when `ltStrict` certifies it positive, `π`
+itself otherwise.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+open FloatOps
+
+variable {𝕋 : Type} [FloatOps 𝕋]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+def Capsule.piStep (p k : ℕ) : 𝕋 × 𝕋 :=
+  -- `π` from below and above
+  let piLo := addDown (acosDown p k (zero : 𝕋)) (acosDown p k zero)
+  let piHi := addUp (acosUp p k (zero : 𝕋)) (acosUp p k zero)
+  (divDown piLo (intUp 499),
+    if ltStrict zero (intDown 499 : 𝕋) = true then divUp piHi (intDown 499) else piHi)
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

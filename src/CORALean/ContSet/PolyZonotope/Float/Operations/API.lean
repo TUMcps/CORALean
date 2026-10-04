@@ -97,6 +97,23 @@ import CORALean.ContSet.PolyZonotope.Float.Operations.CartProd
 import CORALean.ContSet.PolyZonotope.Float.Operations.BlockPadLeft
 import CORALean.ContSet.PolyZonotope.Float.Operations.BlockPadRight
 import CORALean.ContSet.PolyZonotope.Float.Operations.Stack
+import CORALean.ContSet.PolyZonotope.Float.Operations.RmId
+import CORALean.ContSet.PolyZonotope.Float.Operations.ReplaceId
+import CORALean.ContSet.PolyZonotope.Float.Operations.OnlyId
+import CORALean.ContSet.PolyZonotope.Float.Operations.RepresentsaPoint
+import CORALean.ContSet.PolyZonotope.Float.Operations.SumErr
+import CORALean.ContSet.PolyZonotope.Float.Operations.RepresentsaEmptySet
+import CORALean.ContSet.PolyZonotope.Float.Operations.Sum
+import CORALean.ContSet.PolyZonotope.Float.Operations.BoxOutRadius
+import CORALean.ContSet.PolyZonotope.Float.Operations.BoxOut
+import CORALean.ContSet.PolyZonotope.Float.Operations.OuterApprox
+import CORALean.ContSet.PolyZonotope.Float.Operations.PartPatterns
+import CORALean.ContSet.PolyZonotope.Float.Operations.PartZonotope
+import CORALean.ContSet.PolyZonotope.Float.Operations.PolygonRound
+import CORALean.ContSet.PolyZonotope.Float.Operations.PolygonPieces
+import CORALean.ContSet.PolyZonotope.Float.Operations.Polygon
+import CORALean.ContSet.PolyZonotope.Float.Operations.JacobianGap
+import CORALean.ContSet.PolyZonotope.Float.Operations.Jacobian
 
 /-!
 # What `PolyZonotope` computes

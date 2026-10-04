@@ -68,6 +68,10 @@ import CORALean.ContSet.Zonotope.Float.Theorems.AndOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.IsequalSound
 import CORALean.ContSet.Zonotope.Float.Theorems.CompactZerosExact
 import CORALean.ContSet.Zonotope.Float.Theorems.IntersectStripOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.AbsCornerMem
+import CORALean.ContSet.Zonotope.Float.Theorems.AbsNominal
+import CORALean.ContSet.Zonotope.Float.Theorems.AbsCornerMemNominalSet
+import CORALean.ContSet.Zonotope.Float.Theorems.AbsLeAbsBoundNominalSet
 
 /-!
 # What `Zonotope` guarantees

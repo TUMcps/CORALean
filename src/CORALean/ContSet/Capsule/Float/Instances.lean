@@ -1,4 +1,5 @@
 import CORALean.ContSet.Capsule.Float.Theorems.Convex
+import CORALean.ContSet.Capsule.Float.Theorems.IsDisjointSound
 import CORALean.ContSet.Capsule.Float.Theorems.IsCompact
 import CORALean.ContSet.Capsule.Float.Theorems.ReduceOuter
 import CORALean.ContSet.Capsule.Float.Theorems.ReindexExact
@@ -57,6 +58,11 @@ instance : Plus (Capsule 𝕋 n) (Vec ℝ n) where
 instance : LinComb (Capsule 𝕋 n) (Vec ℝ n) where
   linComb := Capsule.convHull 100
   linComb_outer := Capsule.convHull_outer 100
+
+/-- CORA's `isIntersecting_` of two capsules, one-sidedly, 100 Newton steps as for `Plus`. -/
+instance : IsDisjoint (Capsule 𝕋 n) (Capsule 𝕋 n) where
+  isDisjoint := Capsule.isDisjoint 100
+  isDisjoint_sound _ _ h := (Capsule.isDisjoint_sound 100 h).symm
 
 instance : Mtimes (Mat 𝕋) (Capsule 𝕋) where
   mtimes M C := Capsule.mtimes 100 M C

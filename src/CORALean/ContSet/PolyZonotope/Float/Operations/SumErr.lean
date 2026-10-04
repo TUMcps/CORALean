@@ -1,0 +1,38 @@
+import CORALean.ContSet.PolyZonotope.Float.Operations.CenterResidual
+import CORALean.ContSet.Interval.Float.Operations.Plus
+import CORALean.ContSet.Interval.Float.Operations.Residual
+import CORALean.ContSet.Interval.Float.Operations.Origin
+import CORALean.ContSet.PolyZonotope.Real.Operations.Sum
+
+/-!
+# `PolyZonotope.sumErr`, over a floating-point scalar
+
+The sum of `m` error boxes by `Interval.plus`, the error box of `PolyZonotope.sum`.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+open FloatOps
+
+variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- The sum of `m` error boxes, by `Interval.plus`. -/
+def PolyZonotope.sumErr : (m : ℕ) → (Fin m → Interval (Vec 𝕋 n)) → Interval (Vec 𝕋 n)
+  | 0, _ => Interval.origin n
+  | m + 1, f => (f 0).plus (PolyZonotope.sumErr m fun i => f i.succ)
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

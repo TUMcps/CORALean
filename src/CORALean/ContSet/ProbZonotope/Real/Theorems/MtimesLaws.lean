@@ -1,3 +1,4 @@
+import CORALean.ContSet.ProbZonotope.Real.Theorems.MapMultivariateGaussian
 import CORALean.ContSet.ProbZonotope.Real.Operations.Mtimes
 import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 
@@ -31,38 +32,6 @@ open scoped RealInnerProductSpace
 variable {n m : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
-/-- `L N(a, Σ) = N(La, LΣLᵀ)`. -/
-theorem aux_map_multivariateGaussian (M : Mat ℝ m n) (a : EuclideanSpace ℝ (Fin n))
-    {S : Mat ℝ n n} (hS : S.PosSemidef) :
-    (multivariateGaussian a S).map (fun x => toLp 2 (M *ᵥ ofLp x))
-      = multivariateGaussian (toLp 2 (M *ᵥ ofLp a)) (M * S * Mᵀ) := by -- --- PROOF ---
-  have hmeas : Measurable (fun x : EuclideanSpace ℝ (Fin n) => toLp 2 (M *ᵥ ofLp x)) := by
-    fun_prop
-  have hMS : (M * S * Mᵀ).PosSemidef := by
-    simpa [Matrix.mul_assoc] using hS.mul_mul_conjTranspose_same M
-  haveI : IsProbabilityMeasure ((multivariateGaussian a S).map
-      (fun x => toLp 2 (M *ᵥ ofLp x))) := Measure.isProbabilityMeasure_map hmeas.aemeasurable
-  -- `⟨Mx, t⟩ = ⟨x, Mᵀt⟩`
-  have hin : ∀ (x : EuclideanSpace ℝ (Fin n)) (t : EuclideanSpace ℝ (Fin m)),
-      ⟪toLp 2 (M *ᵥ ofLp x), t⟫ = ⟪x, toLp 2 (Mᵀ *ᵥ ofLp t)⟫ := by
-    intro x t
-    simp only [EuclideanSpace.inner_eq_star_dotProduct, star_trivial]
-    rw [dotProduct_mulVec, mulVec_transpose, dotProduct_comm]
-  apply Measure.ext_of_charFun
-  funext t
-  rw [charFun_apply, integral_map hmeas.aemeasurable (by fun_prop)]
-  simp_rw [hin]
-  rw [← charFun_apply, charFun_multivariateGaussian hS, charFun_multivariateGaussian hMS]
-  congr 1
-  have h1 : ⟪toLp 2 (Mᵀ *ᵥ ofLp t), a⟫ = ⟪t, toLp 2 (M *ᵥ ofLp a)⟫ := by
-    rw [real_inner_comm, ← hin, real_inner_comm]
-  have h2 : ofLp t ⬝ᵥ (M * S * Mᵀ) *ᵥ ofLp t = (Mᵀ *ᵥ ofLp t) ⬝ᵥ S *ᵥ (Mᵀ *ᵥ ofLp t) := by
-    rw [← mulVec_mulVec, ← mulVec_mulVec, dotProduct_mulVec, ← mulVec_transpose]
-  rw [h1, h2]
-
-
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ProbZonotope.mtimes_laws (M : Mat ℝ m n) (P : ProbZonotope n) (h : P.cov.PosSemidef) :
@@ -75,14 +44,14 @@ theorem ProbZonotope.mtimes_laws (M : Mat ℝ m n) (P : ProbZonotope n) (h : P.c
     · rw [ProbZonotope.mtimes, ← Zonotope.mtimes_exact]
       exact ⟨a, ha, rfl⟩
     · beta_reduce
-      rw [aux_map_multivariateGaussian M _ h, WithLp.ofLp_toLp]
+      rw [map_multivariateGaussian M _ h, WithLp.ofLp_toLp]
       rfl
   · rintro ⟨μ, hμ, rfl⟩
     rw [ProbZonotope.mtimes, ← Zonotope.mtimes_exact] at hμ
     obtain ⟨a, ha, rfl⟩ := hμ
     refine ⟨_, ⟨a, ha, rfl⟩, ?_⟩
     beta_reduce
-    rw [aux_map_multivariateGaussian M _ h, WithLp.ofLp_toLp]
+    rw [map_multivariateGaussian M _ h, WithLp.ofLp_toLp]
     rfl
 
 end CORALean.Real

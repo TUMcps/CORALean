@@ -1,6 +1,7 @@
 import CORALean.ContSet.ContSet.Definitions.CompactSet
 import CORALean.ContSet.ContSet.Definitions.ConvexSet
 import CORALean.ContSet.EmptySet.Real.EmptySet
+import CORALean.ContSet.WithEmpty.WithEmpty
 import Mathlib.Analysis.InnerProductSpace.Basic
 
 /-!
@@ -76,6 +77,18 @@ the empty set and `true` is the right answer for every operand. -/
 instance {S : Type} [ContSet S (Vec ℝ n)] : IsDisjoint (EmptySet n) S where
   isDisjoint _ _ := true
   isDisjoint_sound _ _ _ := Set.disjoint_empty _
+
+/-- CORA's `contains_` answers `isemptyobject(S)`. The wrapper `WithEmpty` is the representation
+that can say it: `true` exactly at its own `empty` member, which `∅` contains; an `of s` answers
+`false`, which refutes nothing (`s` may denote `∅` too). -/
+instance {S : Type} [ContSet S (Vec ℝ n)] : Contains (EmptySet n) (WithEmpty S) where
+  contains _ s := match s with
+    | .empty => true
+    | .of _ => false
+  contains_sound _ s h := by
+    cases s with
+    | empty => exact Set.Subset.refl _
+    | of s => exact absurd h (by simp)
 
 /-- Exact, not merely outer: relabelling `∅` is `∅` by `Set.image_empty`. -/
 instance : Reindex (fun n => EmptySet n) where
