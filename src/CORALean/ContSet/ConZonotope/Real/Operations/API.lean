@@ -56,6 +56,9 @@ import CORALean.ContSet.ConZonotope.Real.Operations.ContainsPoint
 import CORALean.ContSet.ConZonotope.Real.Operations.IsCentre
 import CORALean.ContSet.ConZonotope.Real.Operations.Stack
 import CORALean.ContSet.ConZonotope.Real.Operations.NullPolytope
+import CORALean.ContSet.ConZonotope.Real.Operations.CubLinearAt
+import CORALean.ContSet.ConZonotope.Real.Operations.CubMap
+import CORALean.ContSet.ConZonotope.Real.Operations.CubMapMixed
 
 /-!
 # What `ConZonotope` computes

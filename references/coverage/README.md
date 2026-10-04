@@ -119,21 +119,21 @@ Rulings on borderline cases:
 | [affine](contSet/affine.md) | contSet | 1 | 0 | 1 | 0 | 0 | 0 |
 | [capsule](contSet/capsule.md) | contSet | 39 | 2 | 26 | 1 | 10 | 3 |
 | [conPolyZono](contSet/conPolyZono.md) | contSet | 47 | 12 | 26 | 1 | 8 | 3 |
-| [conZonotope](contSet/conZonotope.md) | contSet | 50 | 12 | 25 | 1 | 12 | 1 |
+| [conZonotope](contSet/conZonotope.md) | contSet | 50 | 13 | 25 | 0 | 12 | 2 |
 | [contSet](contSet/contSet.md) | contSet | 101 | 1 | 27 | 1 | 72 | 0 |
 | [ellipsoid](contSet/ellipsoid.md) | contSet | 50 | 11 | 20 | 9 | 10 | 3 |
 | [emptySet](contSet/emptySet.md) | contSet | 30 | 3 | 20 | 0 | 7 | 0 |
 | [fullspace](contSet/fullspace.md) | contSet | 33 | 5 | 19 | 1 | 8 | 0 |
 | [interval](contSet/interval.md) | contSet | 110 | 7 | 85 | 0 | 18 | 1 |
 | [levelSet](contSet/levelSet.md) | contSet | 22 | 6 | 6 | 1 | 9 | 2 |
-| [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 16 | 35 | 8 | 14 | 3 |
+| [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 17 | 35 | 7 | 14 | 3 |
 | [polygon](contSet/polygon.md) | contSet | 46 | 9 | 17 | 11 | 9 | 2 |
 | [polytope](contSet/polytope.md) | contSet | 58 | 13 | 33 | 0 | 12 | 4 |
 | [probZonotope](contSet/probZonotope.md) | contSet | 28 | 15 | 0 | 5 | 8 | 3 |
 | [spectraShadow](contSet/spectraShadow.md) | contSet | 33 | 11 | 7 | 7 | 8 | 4 |
 | [taylm](contSet/taylm.md) | contSet | 51 | 5 | 33 | 1 | 12 | 0 |
 | [zonoBundle](contSet/zonoBundle.md) | contSet | 44 | 12 | 25 | 0 | 7 | 4 |
-| [zonotope](contSet/zonotope.md) | contSet | 80 | 12 | 46 | 8 | 14 | 2 |
+| [zonotope](contSet/zonotope.md) | contSet | 80 | 13 | 46 | 7 | 14 | 2 |
 | [zoo](contSet/zoo.md) | contSet | 12 | 10 | 0 | 0 | 2 | 0 |
 | [contDynamics](contDynamics/contDynamics.md) | contDynamics | 19 | 2 | 4 | 2 | 11 | 1 |
 | [linParamSys](contDynamics/linParamSys.md) | contDynamics | 11 | 3 | 3 | 1 | 4 | 0 |
@@ -155,7 +155,7 @@ Rulings on borderline cases:
 | [nonlinearReset](hybridDynamics/nonlinearReset.md) | hybridDynamics | 9 | 5 | 0 | 0 | 4 | 1 |
 | [parallelHybridAutomaton](hybridDynamics/parallelHybridAutomaton.md) | hybridDynamics | 13 | 1 | 5 | 1 | 6 | 0 |
 | [transition](hybridDynamics/transition.md) | hybridDynamics | 12 | 2 | 3 | 0 | 7 | 1 |
-| [layers](nn/layers.md) | nn | 43 | 9 | 29 | 2 | 3 | 1 |
+| [layers](nn/layers.md) | nn | 43 | 9 | 29 | 2 | 3 | 2 |
 | [neuralNetwork](nn/neuralNetwork.md) | nn | 61 | 10 | 8 | 6 | 37 | 1 |
 <!-- /coverage-counts -->
 

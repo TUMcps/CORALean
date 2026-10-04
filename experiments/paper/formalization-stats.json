@@ -14,24 +14,24 @@
     "not-covered"
   ],
   "totals": {
-    "papers": 63,
-    "papers_with_findings": 53,
-    "in_scope": 813,
-    "formalized": 767,
+    "papers": 65,
+    "papers_with_findings": 55,
+    "in_scope": 832,
+    "formalized": 786,
     "not_formalized": 46,
-    "out_of_scope": 549,
+    "out_of_scope": 559,
     "out_of_scope_by_reason": {
-      "restated": 250,
+      "restated": 255,
       "mathlib": 13,
-      "not-a-claim": 237,
-      "done-differently": 7,
+      "not-a-claim": 241,
+      "done-differently": 8,
       "not-covered": 42
     },
     "by_class": {
-      "correct": 532,
-      "underspecified": 121,
+      "correct": 548,
+      "underspecified": 123,
       "proof-gap": 27,
-      "fixed": 85,
+      "fixed": 86,
       "false": 2
     }
   },
@@ -1138,6 +1138,73 @@
           "result": "Eq. 38",
           "class": "underspecified",
           "reason": "as printed the test never passes, `1/B(T)` excluding `0` and `L_q` holding it"
+        }
+      ]
+    },
+    {
+      "page": "2018/gehr-sp-ai2.md",
+      "label": "Gehr 2018",
+      "year": 2018,
+      "title": "AI2: Safety and Robustness Certification of Neural Networks with Abstract Interpretation",
+      "in_scope": 11,
+      "formalized": 11,
+      "not_formalized": 0,
+      "out_of_scope": 4,
+      "out_of_scope_by_reason": {
+        "restated": 1,
+        "mathlib": 0,
+        "not-a-claim": 3,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 10,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Sec. II (MaxPool to CAT)",
+          "class": "underspecified",
+          "reason": "Appendix A ranges `i` over `m/p · n/p · r` segments where `m/p · n/q · r` are meant"
+        }
+      ]
+    },
+    {
+      "page": "2018/singh-neurips-deepz.md",
+      "label": "Singh 2018",
+      "year": 2018,
+      "title": "Fast and Effective Robustness Certification",
+      "in_scope": 8,
+      "formalized": 8,
+      "not_formalized": 0,
+      "out_of_scope": 6,
+      "out_of_scope_by_reason": {
+        "restated": 4,
+        "mathlib": 0,
+        "not-a-claim": 1,
+        "done-differently": 1,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 6,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 1,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Thm. 3.1",
+          "class": "underspecified",
+          "reason": "`O` is not defined beyond Fig. 1's parallelograms; formalized over the bands of every slope"
+        },
+        {
+          "result": "Thm. 3.2",
+          "class": "fixed",
+          "reason": "the footnote's S-shape has the curvature reversed; true with `f″(x) ≥ 0 ⇔ x ≤ x′`"
         }
       ]
     },
@@ -2938,11 +3005,11 @@
         "group": "contSet",
         "class": "conZonotope",
         "methods": 50,
-        "proved": 12,
+        "proved": 13,
         "float": 25,
-        "not_yet": 1,
+        "not_yet": 0,
         "out_of_scope": 12,
-        "needs_float": 12,
+        "needs_float": 13,
         "out_of_scope_by_reason": {
           "plotting/display": 4,
           "random/sampling": 2,
@@ -2951,7 +3018,7 @@
           "matlab-runtime": 5,
           "deprecated": 1
         },
-        "cora_issues": 1,
+        "cora_issues": 2,
         "findings": {
           "correct": 17,
           "underspecified": 1,
@@ -3083,7 +3150,7 @@
         },
         "cora_issues": 1,
         "findings": {
-          "correct": 24,
+          "correct": 25,
           "underspecified": 2,
           "proof-gap": 0,
           "fixed": 1,
@@ -3120,11 +3187,11 @@
         "group": "contSet",
         "class": "polyZonotope",
         "methods": 73,
-        "proved": 16,
+        "proved": 17,
         "float": 35,
-        "not_yet": 8,
+        "not_yet": 7,
         "out_of_scope": 14,
-        "needs_float": 16,
+        "needs_float": 17,
         "out_of_scope_by_reason": {
           "plotting/display": 4,
           "random/sampling": 2,
@@ -3302,11 +3369,11 @@
         "group": "contSet",
         "class": "zonotope",
         "methods": 80,
-        "proved": 12,
+        "proved": 13,
         "float": 46,
-        "not_yet": 8,
+        "not_yet": 7,
         "out_of_scope": 14,
-        "needs_float": 12,
+        "needs_float": 13,
         "out_of_scope_by_reason": {
           "plotting/display": 2,
           "random/sampling": 3,
@@ -3317,7 +3384,7 @@
         },
         "cora_issues": 2,
         "findings": {
-          "correct": 92,
+          "correct": 93,
           "underspecified": 21,
           "proof-gap": 3,
           "fixed": 12,
@@ -3887,7 +3954,7 @@
           "matlab-runtime": 2,
           "deprecated": 0
         },
-        "cora_issues": 1,
+        "cora_issues": 2,
         "findings": {
           "correct": 0,
           "underspecified": 0,
@@ -3915,10 +3982,10 @@
         },
         "cora_issues": 1,
         "findings": {
-          "correct": 49,
-          "underspecified": 3,
+          "correct": 63,
+          "underspecified": 5,
           "proof-gap": 2,
-          "fixed": 1,
+          "fixed": 2,
           "false": 0
         }
       }
@@ -3926,12 +3993,12 @@
     "groups": {
       "contSet": {
         "methods": 908,
-        "proved": 162,
+        "proved": 165,
         "float": 451,
-        "not_yet": 55,
+        "not_yet": 52,
         "out_of_scope": 240,
-        "needs_float": 162,
-        "cora_issues": 35,
+        "needs_float": 165,
+        "cora_issues": 36,
         "out_of_scope_by_reason": {
           "plotting/display": 51,
           "random/sampling": 36,
@@ -3941,7 +4008,7 @@
           "deprecated": 14
         },
         "findings": {
-          "correct": 284,
+          "correct": 286,
           "underspecified": 57,
           "proof-gap": 5,
           "fixed": 49,
@@ -4003,7 +4070,7 @@
         "not_yet": 8,
         "out_of_scope": 40,
         "needs_float": 19,
-        "cora_issues": 2,
+        "cora_issues": 3,
         "out_of_scope_by_reason": {
           "plotting/display": 5,
           "random/sampling": 2,
@@ -4013,22 +4080,22 @@
           "deprecated": 0
         },
         "findings": {
-          "correct": 49,
-          "underspecified": 3,
+          "correct": 63,
+          "underspecified": 5,
           "proof-gap": 2,
-          "fixed": 1,
+          "fixed": 2,
           "false": 0
         }
       }
     },
     "totals": {
       "methods": 1260,
-      "proved": 237,
+      "proved": 240,
       "float": 549,
-      "not_yet": 90,
+      "not_yet": 87,
       "out_of_scope": 384,
-      "needs_float": 237,
-      "cora_issues": 50,
+      "needs_float": 240,
+      "cora_issues": 52,
       "out_of_scope_by_reason": {
         "plotting/display": 86,
         "random/sampling": 46,
@@ -4038,10 +4105,10 @@
         "deprecated": 14
       },
       "findings": {
-        "correct": 485,
-        "underspecified": 109,
+        "correct": 501,
+        "underspecified": 111,
         "proof-gap": 23,
-        "fixed": 74,
+        "fixed": 75,
         "false": 2
       }
     },
@@ -4069,11 +4136,11 @@
       }
     },
     "theorems": {
-      "paper": 1023,
+      "paper": 1047,
       "float": 1176,
-      "helper": 952,
-      "lemma": 2200,
-      "total": 5351,
+      "helper": 969,
+      "lemma": 2212,
+      "total": 5404,
       "examples": 80
     }
   }

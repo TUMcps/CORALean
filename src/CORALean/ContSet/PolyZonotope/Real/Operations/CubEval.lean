@@ -1,0 +1,35 @@
+import CORALean.Global.Tensor
+import Mathlib.Data.Matrix.Mul
+import Mathlib.Data.Real.Basic
+
+/-!
+# The cubic map itself
+
+CORA's `cubMap` computes `{ z = (xᵀ T x) * x | x ∈ S }`: with the tensor `T{i,k}` the `i`-th
+output is `zᵢ = Σₖ xₖ · (xᵀ T{i,k} x)`. `cubEval` is that map; shared by the zonotope,
+polynomial zonotope and constrained zonotope `cubMap`.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+open Matrix
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- The cubic map `x ↦ (Σₖ xₖ · xᵀ T{i,k} x)ᵢ`. -/
+def PolyZonotope.cubEval {n m : ℕ} (T : Fin m → Fin n → Mat ℝ n n) (x : Vec ℝ n) : Vec ℝ m :=
+  fun i => ∑ k, x k * (x ⬝ᵥ (T i k *ᵥ x))
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

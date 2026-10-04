@@ -80,6 +80,11 @@ import CORALean.NN.Operations.WeightNetworkNormalForm
 import CORALean.NN.Operations.RefinableNetworkLayers
 import CORALean.NN.Operations.RefinableNetworkRefinableLayers
 import CORALean.NN.Operations.ActivationKindMergeValues
+import CORALean.NN.Operations.CatTransformer
+import CORALean.NN.Operations.CatReluOn
+import CORALean.NN.Operations.CatMaxSegment
+import CORALean.NN.Operations.CatMaxSegments
+import CORALean.NN.Operations.CatMaxPool
 
 /-!
 # What a network does, collected
@@ -88,7 +93,6 @@ import CORALean.NN.Operations.ActivationKindMergeValues
 `Enclose` over a spec's check (a checker); `ChainEval` is an exact chain's composite. `ExplainBox`
 is the set an explanation query asks over, `GreedyMinimalExplanation` (`GreedyExplanationStep`)
 and `GreedyAbstractExplanation` (`ExplanationRefineLoop`) the searches for one.
-
 `LayerSensitivity` and `Sensitivity` backpropagate the Jacobian a refinement heuristic weights a
 neuron's error by; `DifferentiableChain` is when `SensitivityFDeriv` makes it the derivative.
 
@@ -105,9 +109,13 @@ Network reduction, written once over the scalar: `BucketTolerance` is [1, Alg. 1
 `CompressionPreprocessing` is [1, Alg. 3], `ReducedLinearIdentity` its kernel.
 `ReducedLinearToLayer`/`ReducibleNetworkToNetwork` lay a reducible network out as layers;
 `MergeRowWeight`/`Bucketed` are a merge's cost factor and count.
+`CatTransformer` is [2, Fig. 8]; `CatReluOn`, `CatMaxPool` (`CatMaxSegment(s)`) AI2's CAT forms.
 
 ## References
 
 * [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for
       Formal Verification". TMLR. arXiv:2305.01932.
+* [2] T. Gehr, M. Mirman, D. Drachsler-Cohen, P. Tsankov, S. Chaudhuri and M. Vechev. "AI2:
+      Safety and Robustness Certification of Neural Networks with Abstract Interpretation".
+      IEEE S&P 2018, pp. 3-18.
 -/

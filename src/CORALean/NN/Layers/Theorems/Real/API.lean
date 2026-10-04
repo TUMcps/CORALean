@@ -75,6 +75,16 @@ import CORALean.NN.Layers.Theorems.Real.TendstoSamplingError
 import CORALean.NN.Layers.Theorems.Real.WindowMaxLe
 import CORALean.NN.Layers.Theorems.Real.SigmoidDerivSShape
 import CORALean.NN.Layers.Theorems.Real.TanhDerivSShape
+import CORALean.NN.Layers.Theorems.Real.DeepZReluEq
+import CORALean.NN.Layers.Theorems.Real.DeepZReluSound
+import CORALean.NN.Layers.Theorems.Real.ReluBandAreaLe
+import CORALean.NN.Layers.Theorems.Real.ReluGapOfSlopeEqIte
+import CORALean.NN.Layers.Theorems.Real.SShapeBandSound
+import CORALean.NN.Layers.Theorems.Real.DeepZSShapeSound
+import CORALean.NN.Layers.Theorems.Real.SShapeBandAreaLe
+import CORALean.NN.Layers.Theorems.Real.DeepZSShapeCubeNotSound
+import CORALean.NN.Layers.Theorems.Real.DeepZSShapeSigmoidSound
+import CORALean.NN.Layers.Theorems.Real.DeepZSShapeTanhSound
 
 /-!
 # What holds of the standard layers only at ℝ, collected
@@ -89,4 +99,6 @@ so a fit within any `ε` exists (`ExistsPolyRelaxationErrorLt`), and `Activation
 `ActivationPolySigmoidConvergent` are the exact layer's enclosure and convergence.
 `ReluSlopeNonneg`/`ReluSlopeLeOne` put the default ReLU slope in `[0, 1]`, which only the exact
 order decides; `BatchNormSound` is batch normalization at the fold `Real.sqrt` computes.
+`DeepZ*`, `ReluBand*`, `SShapeBand*` and `ReluGapOfSlopeEqIte` are DeepZ's transformers: sound,
+of least area, and `DeepZSShapeCubeNotSound` unsound for the S-shape its footnote prints.
 -/

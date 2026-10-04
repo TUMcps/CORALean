@@ -9,7 +9,14 @@ kernel output `j` uses, which is the whole of what weight sharing is. The stenci
 stored kernel rather than summing it, so the layer encloses exactly the convolution the stored
 kernel denotes, and everything after — the product with the set, the bias — rounds inside
 `mtimes` and `plus` as the linear layer's does. A stride, padding or channel layout never
-appears: it is only which taps each output reads.
+appears: it is only which taps each output reads. This is [1, Sec. II (Conv to CAT)]'s
+treatment of a convolution as the fully connected layer at `W^F`, `b^F`.
+
+## References
+
+* [1] T. Gehr, M. Mirman, D. Drachsler-Cohen, P. Tsankov, S. Chaudhuri and M. Vechev. "AI2:
+      Safety and Robustness Certification of Neural Networks with Abstract Interpretation".
+      IEEE S&P 2018, pp. 3-18.
 -/
 
 -- Authors:       Tobias Ladner

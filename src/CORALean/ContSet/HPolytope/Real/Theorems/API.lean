@@ -97,6 +97,7 @@ import CORALean.ContSet.HPolytope.Real.Theorems.IsLPCentreMem
 import CORALean.ContSet.HPolytope.Real.Theorems.VolumeInterval
 import CORALean.ContSet.HPolytope.Real.Theorems.MemIffRows
 import CORALean.ContSet.HPolytope.Real.Theorems.VolumeLtTop
+import CORALean.ContSet.HPolytope.Real.Theorems.ExistsConstructEqImageAffine
 
 /-!
 # What `HPolytope` guarantees

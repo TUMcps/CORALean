@@ -6,7 +6,14 @@ import Mathlib.Tactic.Linarith
 
 Above the line of slope `λ` through the origin, and below it raised by `reluGapOfSlope`: the
 two ends of the relaxation before recentring. Stated for an arbitrary slope in `[0, 1]`, which is
-all convexity gives and all a layer needs, whatever precision it chose its slope in.
+all convexity gives and all a layer needs, whatever precision it chose its slope in. With
+`reluGapOfSlope_eq_ite` naming the gap, these are the two families of parallelograms of
+[1, Fig. 1], each sound over its range of slopes.
+
+## References
+
+* [1] G. Singh, T. Gehr, M. Mirman, M. Püschel and M. Vechev. "Fast and Effective Robustness
+      Certification". NeurIPS 2018.
 -/
 
 -- Authors:       Tobias Ladner

@@ -165,6 +165,14 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.PolygonPieces
 import CORALean.ContSet.PolyZonotope.Real.Operations.JacobianMat
 import CORALean.ContSet.PolyZonotope.Real.Operations.JacobianDetIntegral
 import CORALean.ContSet.PolyZonotope.Real.Operations.AddedTermsHessian
+import CORALean.ContSet.PolyZonotope.Real.Operations.CubEval
+import CORALean.ContSet.PolyZonotope.Real.Operations.CubEvalMixed
+import CORALean.ContSet.PolyZonotope.Real.Operations.CubPair
+import CORALean.ContSet.PolyZonotope.Real.Operations.CubQuad
+import CORALean.ContSet.PolyZonotope.Real.Operations.CubMapDep
+import CORALean.ContSet.PolyZonotope.Real.Operations.CubMapDepSingle
+import CORALean.ContSet.PolyZonotope.Real.Operations.CubMap
+import CORALean.ContSet.PolyZonotope.Real.Operations.CubMapMixed
 
 /-!
 # What `PolyZonotope` computes
