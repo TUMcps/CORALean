@@ -6,6 +6,7 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeOfMemInputCorre
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeOfMemStateCorrectionSet
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeOfMemSum
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsParticularTailEntryLe
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegralSubSumMemAdaptiveRemainder
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsPowEntryLeAbsMatPow
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AdmissibleOrderFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AffineDynamicsErrorIsBigO
@@ -139,6 +140,8 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMemCorrectionMatrix
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MatZonoCorrectionMatrix
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSubExpTaylorMemExpRemainderInterval
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MulExpIntegral
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MulExpIntegralEq
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderMatMono
 
 /-!
 # What the exponential enclosures guarantee

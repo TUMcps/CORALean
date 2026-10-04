@@ -136,12 +136,12 @@ Rulings on borderline cases:
 | [zoo](contSet/zoo.md) | contSet | 12 | 10 | 0 | 0 | 2 | 0 |
 | [contDynamics](contDynamics/contDynamics.md) | contDynamics | 19 | 2 | 4 | 2 | 11 | 0 |
 | [linParamSys](contDynamics/linParamSys.md) | contDynamics | 11 | 3 | 3 | 1 | 4 | 0 |
-| [linProbSys](contDynamics/linProbSys.md) | contDynamics | 8 | 0 | 0 | 3 | 5 | 0 |
+| [linProbSys](contDynamics/linProbSys.md) | contDynamics | 8 | 2 | 0 | 1 | 5 | 1 |
 | [linearARX](contDynamics/linearARX.md) | contDynamics | 7 | 1 | 3 | 1 | 2 | 0 |
-| [linearSys](contDynamics/linearSys.md) | contDynamics | 33 | 6 | 11 | 6 | 10 | 0 |
-| [linearSysDT](contDynamics/linearSysDT.md) | contDynamics | 17 | 2 | 5 | 4 | 6 | 0 |
+| [linearSys](contDynamics/linearSys.md) | contDynamics | 33 | 11 | 11 | 1 | 10 | 1 |
+| [linearSysDT](contDynamics/linearSysDT.md) | contDynamics | 17 | 6 | 5 | 0 | 6 | 0 |
 | [neurNetContrSys](contDynamics/neurNetContrSys.md) | contDynamics | 5 | 0 | 4 | 0 | 1 | 0 |
-| [nonlinDASys](contDynamics/nonlinDASys.md) | contDynamics | 13 | 4 | 0 | 6 | 3 | 0 |
+| [nonlinDASys](contDynamics/nonlinDASys.md) | contDynamics | 13 | 4 | 0 | 6 | 3 | 2 |
 | [nonlinParamSys](contDynamics/nonlinParamSys.md) | contDynamics | 9 | 3 | 0 | 2 | 4 | 0 |
 | [nonlinearARX](contDynamics/nonlinearARX.md) | contDynamics | 8 | 3 | 1 | 1 | 3 | 0 |
 | [nonlinearSys](contDynamics/nonlinearSys.md) | contDynamics | 18 | 4 | 3 | 3 | 8 | 2 |

@@ -3,6 +3,7 @@ import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalReachSet
 import CORALean.ContDynamics.LinearSys.Definitions.IntegralReachSet
 import CORALean.ContDynamics.LinearSys.Definitions.IntegralTimeIntervalReachSet
 import CORALean.ContDynamics.LinearSys.Definitions.ClosedForm
+import CORALean.ContDynamics.LinearSys.Definitions.IsCanonicalForm
 import CORALean.ContDynamics.LinearSys.Definitions.IntegralTrajectory
 import CORALean.ContDynamics.LinearSys.Definitions.PerturbedTrajectory
 import CORALean.ContDynamics.LinearSys.Definitions.PerturbedIntegralTrajectory

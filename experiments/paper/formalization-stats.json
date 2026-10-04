@@ -14,24 +14,24 @@
     "not-covered"
   ],
   "totals": {
-    "papers": 51,
-    "papers_with_findings": 42,
-    "in_scope": 662,
-    "formalized": 618,
+    "papers": 52,
+    "papers_with_findings": 43,
+    "in_scope": 680,
+    "formalized": 636,
     "not_formalized": 44,
-    "out_of_scope": 369,
+    "out_of_scope": 385,
     "out_of_scope_by_reason": {
-      "restated": 191,
-      "mathlib": 11,
-      "not-a-claim": 131,
+      "restated": 200,
+      "mathlib": 12,
+      "not-a-claim": 137,
       "done-differently": 7,
       "not-covered": 29
     },
     "by_class": {
-      "correct": 427,
-      "underspecified": 96,
+      "correct": 436,
+      "underspecified": 102,
       "proof-gap": 25,
-      "fixed": 68,
+      "fixed": 71,
       "false": 2
     }
   },
@@ -597,8 +597,8 @@
       "year": 2012,
       "title": "Avoiding Geometric Intersection Operations in Reachability Analysis of Hybrid Systems",
       "in_scope": 17,
-      "formalized": 13,
-      "not_formalized": 4,
+      "formalized": 14,
+      "not_formalized": 3,
       "out_of_scope": 3,
       "out_of_scope_by_reason": {
         "restated": 2,
@@ -609,7 +609,7 @@
       },
       "by_class": {
         "correct": 10,
-        "underspecified": 1,
+        "underspecified": 2,
         "proof-gap": 0,
         "fixed": 2,
         "false": 0
@@ -629,6 +629,11 @@
           "result": "Sec. 5.2",
           "class": "fixed",
           "reason": "`ω̲ ≥ 0` does not exclude an intersection, the zonotope may touch the closed halfspace; corrected to `ω̲ > 0`; see Findings"
+        },
+        {
+          "result": "Eq. 13",
+          "class": "underspecified",
+          "reason": "the right-hand side is an enclosure, not the set (cut at `η`, `Ê` for the rest), and `y` starts at the same `x₀` as `x`; see Findings"
         }
       ]
     },
@@ -692,6 +697,72 @@
         "false": 0
       },
       "findings": []
+    },
+    {
+      "page": "2014/althoff-tac-nonlinear-dae.md",
+      "label": "Althoff 2014",
+      "year": 2014,
+      "title": "Reachability Analysis of Nonlinear Differential-Algebraic Systems",
+      "in_scope": 18,
+      "formalized": 17,
+      "not_formalized": 1,
+      "out_of_scope": 16,
+      "out_of_scope_by_reason": {
+        "restated": 9,
+        "mathlib": 1,
+        "not-a-claim": 6,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 9,
+        "underspecified": 5,
+        "proof-gap": 0,
+        "fixed": 3,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Eq. 10",
+          "class": "fixed",
+          "reason": "one `ξ` is shared by all rows `i`, which Eq. 8's mean value theorem does not give: `f = (p(x₁), q(x₁))` on `R^z = [-½, 1]²` at `z* = 0`, `z = (1, 0)` has its remainder outside the set; true with one `ξ` per row; see Findings"
+        },
+        {
+          "result": "Eq. 11",
+          "class": "fixed",
+          "reason": "one `ξ` shared by all rows `j`, as in `Eq. 10`; true with one `ξ` per row"
+        },
+        {
+          "result": "Eq. 12",
+          "class": "underspecified",
+          "reason": "the remainder set shares one `ξ` across rows (`Eq. 11`); read at the exact remainder, which the set with one `ξ` per row holds"
+        },
+        {
+          "result": "Eq. 13",
+          "class": "underspecified",
+          "reason": "`L` of `Eq. 15` shares one `ξ`; read as any set holding the exact error `ℓᵈ - CF⁻¹ℓᵃ`, which `L` with one `ξ` per row does"
+        },
+        {
+          "result": "Eq. 15",
+          "class": "underspecified",
+          "reason": "one `ξ` for all rows of `f` and `g` (`Eq. 10`); read with one `ξ` per row"
+        },
+        {
+          "result": "Eq. 16",
+          "class": "underspecified",
+          "reason": "`L` as in `Eq. 13`"
+        },
+        {
+          "result": "Prop. 1",
+          "class": "underspecified",
+          "reason": "the run must stay in the region `R^z` the errors are taken over, which the proof assumes (`∀ x ∈ Rᵈ(τ_k), y ∈ Rᵃ(τ_k)`) and the computed sets do not establish; a hypothesis here. And `L` as in `Eq. 13`"
+        },
+        {
+          "result": "Eq. 20",
+          "class": "fixed",
+          "reason": "one `ξ` shared by all rows, as in `Eq. 10`: `Lᵈ` holds the counterexample's remainder and the set does not; true with one `ξ` per row"
+        }
+      ]
     },
     {
       "page": "2015/althoff-arxiv-minkowski-difference.md",
@@ -2786,7 +2857,7 @@
         },
         "cora_issues": 2,
         "findings": {
-          "correct": 88,
+          "correct": 91,
           "underspecified": 18,
           "proof-gap": 3,
           "fixed": 10,
@@ -2875,11 +2946,11 @@
         "group": "contDynamics",
         "class": "linProbSys",
         "methods": 8,
-        "proved": 0,
+        "proved": 2,
         "float": 0,
-        "not_yet": 3,
+        "not_yet": 1,
         "out_of_scope": 5,
-        "needs_float": 0,
+        "needs_float": 2,
         "out_of_scope_by_reason": {
           "plotting/display": 3,
           "random/sampling": 1,
@@ -2888,7 +2959,7 @@
           "matlab-runtime": 1,
           "deprecated": 0
         },
-        "cora_issues": 0,
+        "cora_issues": 1,
         "findings": {
           "correct": 0,
           "underspecified": 0,
@@ -2927,11 +2998,11 @@
         "group": "contDynamics",
         "class": "linearSys",
         "methods": 33,
-        "proved": 6,
+        "proved": 11,
         "float": 11,
-        "not_yet": 6,
+        "not_yet": 1,
         "out_of_scope": 10,
-        "needs_float": 6,
+        "needs_float": 11,
         "out_of_scope_by_reason": {
           "plotting/display": 2,
           "random/sampling": 1,
@@ -2940,7 +3011,7 @@
           "matlab-runtime": 4,
           "deprecated": 0
         },
-        "cora_issues": 0,
+        "cora_issues": 1,
         "findings": {
           "correct": 33,
           "underspecified": 14,
@@ -2953,11 +3024,11 @@
         "group": "contDynamics",
         "class": "linearSysDT",
         "methods": 17,
-        "proved": 2,
+        "proved": 6,
         "float": 5,
-        "not_yet": 4,
+        "not_yet": 0,
         "out_of_scope": 6,
-        "needs_float": 2,
+        "needs_float": 6,
         "out_of_scope_by_reason": {
           "plotting/display": 2,
           "random/sampling": 1,
@@ -3018,12 +3089,12 @@
           "matlab-runtime": 1,
           "deprecated": 0
         },
-        "cora_issues": 0,
+        "cora_issues": 2,
         "findings": {
-          "correct": 0,
-          "underspecified": 0,
+          "correct": 6,
+          "underspecified": 5,
           "proof-gap": 0,
-          "fixed": 0,
+          "fixed": 3,
           "false": 0
         }
       },
@@ -3177,7 +3248,7 @@
         "cora_issues": 0,
         "findings": {
           "correct": 10,
-          "underspecified": 2,
+          "underspecified": 3,
           "proof-gap": 0,
           "fixed": 1,
           "false": 0
@@ -3410,7 +3481,7 @@
           "deprecated": 14
         },
         "findings": {
-          "correct": 261,
+          "correct": 264,
           "underspecified": 52,
           "proof-gap": 5,
           "fixed": 45,
@@ -3419,12 +3490,12 @@
       },
       "contDynamics": {
         "methods": 159,
-        "proved": 30,
+        "proved": 41,
         "float": 37,
-        "not_yet": 32,
+        "not_yet": 21,
         "out_of_scope": 60,
-        "needs_float": 30,
-        "cora_issues": 2,
+        "needs_float": 41,
+        "cora_issues": 6,
         "out_of_scope_by_reason": {
           "plotting/display": 25,
           "random/sampling": 6,
@@ -3434,10 +3505,10 @@
           "deprecated": 0
         },
         "findings": {
-          "correct": 75,
-          "underspecified": 28,
+          "correct": 81,
+          "underspecified": 33,
           "proof-gap": 15,
-          "fixed": 14,
+          "fixed": 17,
           "false": 0
         }
       },
@@ -3459,7 +3530,7 @@
         },
         "findings": {
           "correct": 10,
-          "underspecified": 2,
+          "underspecified": 3,
           "proof-gap": 0,
           "fixed": 1,
           "false": 0
@@ -3492,12 +3563,12 @@
     },
     "totals": {
       "methods": 1260,
-      "proved": 176,
+      "proved": 187,
       "float": 548,
-      "not_yet": 154,
+      "not_yet": 143,
       "out_of_scope": 382,
-      "needs_float": 176,
-      "cora_issues": 29,
+      "needs_float": 187,
+      "cora_issues": 33,
       "out_of_scope_by_reason": {
         "plotting/display": 86,
         "random/sampling": 46,
@@ -3507,10 +3578,10 @@
         "deprecated": 14
       },
       "findings": {
-        "correct": 395,
-        "underspecified": 85,
+        "correct": 404,
+        "underspecified": 91,
         "proof-gap": 22,
-        "fixed": 61,
+        "fixed": 64,
         "false": 2
       }
     },
@@ -3538,11 +3609,11 @@
       }
     },
     "theorems": {
-      "paper": 871,
+      "paper": 882,
       "float": 1176,
-      "helper": 807,
-      "lemma": 2057,
-      "total": 4911,
+      "helper": 824,
+      "lemma": 2084,
+      "total": 4966,
       "examples": 80
     }
   }

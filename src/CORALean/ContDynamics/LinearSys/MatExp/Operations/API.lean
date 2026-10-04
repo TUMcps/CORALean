@@ -55,6 +55,8 @@ import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeff
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeffSum
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionError
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionOuter
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdaptiveIntegral
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdaptiveRemainder
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionOuterCorrelated
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionTauError
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.PowDownFloat

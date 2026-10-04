@@ -8,6 +8,14 @@ import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryYEq
 import CORALean.ContDynamics.NonlinDASys.Theorems.NewtonIterateSpec
 import CORALean.ContDynamics.NonlinDASys.Theorems.ConsistentInitialStateSpec
 import CORALean.ContDynamics.NonlinDASys.Theorems.SteadyStateSpec
+import CORALean.ContDynamics.NonlinDASys.Theorems.ExistsLagrangeRemainder
+import CORALean.ContDynamics.NonlinDASys.Theorems.SharedLagrangePointCounterexample
+import CORALean.ContDynamics.NonlinDASys.Theorems.AlgDeviationEq
+import CORALean.ContDynamics.NonlinDASys.Theorems.MemLinInclusion
+import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryDerivMemLinInclusion
+import CORALean.ContDynamics.NonlinDASys.Theorems.JointReachSetOuter
+import CORALean.ContDynamics.NonlinDASys.Theorems.LinErrorOuter
+import CORALean.ContDynamics.NonlinDASys.Theorems.LinErrorCoraCounterexample
 
 /-!
 # What `NonlinDASys` guarantees

@@ -1,0 +1,37 @@
+import CORALean.Global.DmdStack
+
+/-!
+# The blocks of a stacked matrix are the blocks
+
+`dmdBlocks (dmdStack A B c) = (A, B, c)`.
+The source is [1].
+
+## References
+
+* [1] `contDynamics/@linearSysDT/private/priv_identifyDMD.m`
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+variable {n m : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem dmdBlocks_dmdStack (A : Mat ℝ n n) (B : Mat ℝ n m) (c : Vec ℝ n) :
+    dmdBlocks (dmdStack A B c) = (A, B, c) := by
+  simp [dmdBlocks, dmdStack, Fin.append_left, Fin.append_right, Fin.snoc_castSucc,
+    Fin.snoc_last]
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -59,6 +59,7 @@ import CORALean.HybridDynamics.Theorems.GuardIntersectPolytopeFloatOuter
 import CORALean.HybridDynamics.Theorems.TransitionConvGuardExact
 import CORALean.HybridDynamics.Theorems.ResetTaylorMem
 import CORALean.HybridDynamics.Theorems.ResetTaylorCounterexample
+import CORALean.HybridDynamics.Theorems.TrajectoryErrorOuter
 
 /-!
 # What a hybrid run guarantees, collected
