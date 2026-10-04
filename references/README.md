@@ -62,6 +62,7 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Avoiding Geometric Intersection Operations in Reachability Analysis of Hybrid Systems](2012/althoff-hscc-avoiding-intersection.md) | Althoff, Krogh | HSCC, pp. 45-54 | 2012 | 🟡 14/17 \| 3 |
 | [Reachability Analysis of Nonlinear Systems using Conservative Polynomialization and Non-Convex Sets](2013/althoff-hscc-conservative-polynomialization.md) | Althoff | HSCC | 2013 | 🟢 6/6 \| 2 |
 | [Zonotopic guaranteed state estimation for uncertain systems](2013/le-automatica-zonotopic-estimation.md) | Le, Stoica, Alamo, Camacho, Dumur | Automatica, 49(11):3418-3424 | 2013 | 🟡 13/14 \| 7 |
+| [General Inner Approximation of Vector-valued Functions](2013/mullier-rc-general-inner-approximation.md) | Mullier, Goubault, Kieffer, Putot | Reliable Computing, 18:117-143 | 2013 | 🟡 14/15 \| 15 |
 | [Reachability Analysis of Nonlinear Differential-Algebraic Systems](2014/althoff-tac-nonlinear-dae.md) | Althoff, Krogh | IEEE Transactions on Automatic Control, 59(2):371-383 | 2014 | 🟡 17/18 \| 16 |
 | [On Computing the Minkowski Difference of Zonotopes](2015/althoff-arxiv-minkowski-difference.md) | Althoff | arXiv | 2015 | 🟢 16/16 \| 1 |
 | [STL Model Checking of Continuous and Hybrid Systems](2016/roehm-atva-stl-model-checking.md) | Roehm, Oehlerking, Heinz, Althoff | ATVA, LNCS 9938, pp. 412-427 | 2016 | 🟡 18/19 \| 3 |
@@ -101,7 +102,9 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Implementation of Polyhedral Operations in CORA 2024](2024/wetzlinger-arch-polyhedral-operations.md) | Wetzlinger, Kotsev, Kulmburg, Althoff | ARCH24, EPiC Series in Computing 103, pp. 163-181 | 2024 | 🟡 48/49 \| 15 |
 | [Inner Approximations of Reachable Sets for Nonlinear Systems using the Minkowski Difference](2024/wetzlinger-lcss-inner-minkowski-difference.md) | Wetzlinger, Kulmburg, Althoff | IEEE Control Systems Letters, 8:2033-2038 | 2024 | 🟡 3/7 \| 16 |
 | [Explaining Fast and Slow: Abstraction and Refinement of Provable Explanations](2025/bassan-icml-explaining-fast-and-slow.md) | Bassan, Elboher, Ladner, Althoff, Katz | ICML | 2025 | 🟢 14/14 \| 2 |
+| [Robust Identification of Hybrid Automata from Noisy Data](2025/kochdumper-hscc-hybrid-automata-identification.md) | Kochdumper, Foughali, Habermehl, Asarin | HSCC, pp. 1-11 | 2025 | 🟢 9/9 \| 17 |
 | [Formal Verification of Graph Convolutional Networks with Uncertain Node Features and Uncertain Graph Structure](2025/ladner-tmlr-gcn.md) | Ladner, Eichelbeck, Althoff | TMLR | 2025 | 🟢 12/12 \| 7 |
+| [Zono-Conformal Prediction: Zonotope-Based Uncertainty Quantification for Regression and Classification Tasks](2025/luetzow-jmlr-zono-conformal-prediction.md) | Lützow, Eichelbeck, Kochenderfer, Althoff | Journal of Machine Learning Research, 26(294):1-37 | 2025 | 🟢 13/13 \| 19 |
 | [Reachset-Conformant System Identification](2026/luetzow-tac-reachset-conformant-identification.md) | Lützow, Althoff | IEEE Transactions on Automatic Control, 71(5):3014-3029 | 2026 | 🟡 13/14 \| 11 |
 
 ## CORA coverage
@@ -218,6 +221,9 @@ pages carry one:
 * [Reachability Analysis of Nonlinear Differential-Algebraic Systems](2014/althoff-tac-nonlinear-dae.md)
 * [Implementation of Interval Arithmetic in CORA 2016](2017/althoff-arch-interval-arithmetic.md)
 * [Guaranteed State Estimation in CORA 2021](2021/althoff-arch-state-estimation.md)
+* [General Inner Approximation of Vector-valued Functions](2013/mullier-rc-general-inner-approximation.md)
+* [Zono-Conformal Prediction: Zonotope-Based Uncertainty Quantification for Regression and Classification Tasks](2025/luetzow-jmlr-zono-conformal-prediction.md)
+* [Robust Identification of Hybrid Automata from Noisy Data](2025/kochdumper-hscc-hybrid-automata-identification.md)
 
 [FINDINGS.md](../FINDINGS.md) is the other half, and stays at the root: the
 places this formalization parts from CORA on purpose, which belong to no paper.

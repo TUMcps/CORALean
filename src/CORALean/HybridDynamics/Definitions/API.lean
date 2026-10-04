@@ -12,6 +12,8 @@ import CORALean.HybridDynamics.Definitions.HitHessian
 import CORALean.HybridDynamics.Definitions.HitJacobian
 import CORALean.HybridDynamics.Definitions.HitPoint
 import CORALean.HybridDynamics.Definitions.ResetTaylor
+import CORALean.HybridDynamics.Definitions.IdentHA
+import CORALean.HybridDynamics.Definitions.ResolveSource
 
 /-!
 # What a hybrid automaton means

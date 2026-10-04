@@ -31,6 +31,15 @@ import CORALean.HybridDynamics.Operations.TransitionSynchronize
 import CORALean.HybridDynamics.Operations.TransitionSynchronizeGuard
 import CORALean.HybridDynamics.Operations.TransitionSynchronizeTarget
 import CORALean.HybridDynamics.Operations.TransitionSynchronizeTargetCORA
+import CORALean.HybridDynamics.Operations.IdentGuard
+import CORALean.HybridDynamics.Operations.SplitTreeRegions
+import CORALean.HybridDynamics.Operations.Scatter
+import CORALean.HybridDynamics.Operations.LinearResetResolveUpdate
+import CORALean.HybridDynamics.Operations.LinearResetResolve
+import CORALean.HybridDynamics.Operations.NonlinearResetResolve
+import CORALean.HybridDynamics.Operations.NonlinearResetGlobalColumns
+import CORALean.HybridDynamics.Operations.NonlinearResetGlobalRank
+import CORALean.HybridDynamics.Operations.NonlinearResetResolveCORA
 
 /-!
 # What a hybrid automaton computes, collected

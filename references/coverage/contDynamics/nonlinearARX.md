@@ -6,7 +6,7 @@ CORA methods of `contDynamics/@nonlinearARX/`, one row each, and where CORALean 
 
 | Method | State | In CORALean | Note |
 |---|---|---|---|
-| `computeGO` | — | — |  |
+| `computeGO` | — | — | not formalized: the stacked matrices `A{k}, B{k,j}, F, C, D, E` of the output-error linearization along the reference `y_ref(k) = f(y_last, u(k))`, from the Jacobians `[A_lin, B_lin] = jacobian(y_last, u)` at every step and the recursion `A_k{j+1} = A_k{j} A_tilde{k-j}`; `NonlinearARX` stores `f` only (its derivative is taken at the converted `NonlinearSysDT`), and the guarantee is the first-order error propagation of the stacked system, for which no statement exists |
 | `display` | out-of-scope | n/a — plotting/display |  |
 | `getPrintSystemInfo` | out-of-scope | n/a — plotting/display |  |
 | `identify` | out-of-scope | n/a — solver-dependent | result determined by genetic programming (`rungp`) |

@@ -76,7 +76,7 @@ CORA methods of `contSet/@contSet/`, one row each, and where CORALean answers th
 | `plotRandPoint` | out-of-scope | n/a — plotting/display |  |
 | `plus` | float | [`Plus`](../../../src/CORALean/ContSet/ContSet/ContSet.lean) | route b — the operation class is generic over the representation, and the float representations instantiate it (`Float/Instances.lean`) |
 | `polyZonotope` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
-| `polygon` | — | — |  |
+| `polygon` | — | — | not formalized: `polygon(vertices(S))` for a two-dimensional `S`, then `convHull_` inside a `try` if `S` is convex; the vertex list is the per-class `vertices_`, which the interface classes of `ContSet/ContSet` do not carry (there is no `Vertices` class), so only the per-class rows could be linked, not the dispatching one |
 | `polytope` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
 | `printSet` | out-of-scope | n/a — plotting/display |  |
 | `probZonotope` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |

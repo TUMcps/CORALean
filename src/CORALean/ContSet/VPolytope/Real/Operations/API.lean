@@ -24,6 +24,8 @@ import CORALean.ContSet.VPolytope.Real.Operations.ProjectHighDim
 import CORALean.ContSet.VPolytope.Real.Operations.Center
 import CORALean.ContSet.VPolytope.Real.Operations.CartProd
 import CORALean.ContSet.VPolytope.Real.Operations.KNeZeroOfNonempty
+import CORALean.ContSet.VPolytope.Real.Operations.HausdorffDist
+import CORALean.ContSet.VPolytope.Real.Operations.DistPoint
 
 /-!
 # What `VPolytope` computes

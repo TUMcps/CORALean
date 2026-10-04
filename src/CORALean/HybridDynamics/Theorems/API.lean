@@ -68,6 +68,12 @@ import CORALean.HybridDynamics.Theorems.TransitionSynchronizeTargetCORACounterex
 import CORALean.HybridDynamics.Theorems.ResetTaylorMem
 import CORALean.HybridDynamics.Theorems.ResetTaylorCounterexample
 import CORALean.HybridDynamics.Theorems.TrajectoryErrorOuter
+import CORALean.HybridDynamics.Theorems.IdentGuardEq
+import CORALean.HybridDynamics.Theorems.SplitTreeExecutable
+import CORALean.HybridDynamics.Theorems.LinearResetResolveApply
+import CORALean.HybridDynamics.Theorems.NonlinearResetResolveApply
+import CORALean.HybridDynamics.Theorems.NonlinearResetResolveCORACounterexample
+import CORALean.HybridDynamics.Theorems.NonlinearResetResolveCORASharedInputs
 
 /-!
 # What a hybrid run guarantees, collected

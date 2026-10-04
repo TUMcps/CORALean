@@ -1,0 +1,38 @@
+import CORALean.HybridDynamics.Definitions.NonlinearReset
+import CORALean.HybridDynamics.Definitions.ResolveSource
+import Mathlib.Algebra.BigOperators.Fin
+import Mathlib.Data.Finset.Card
+
+/-!
+# `NonlinearReset.globalRank`
+
+The position of a globally bound input among the globally bound ones, in the order of
+`idxCompInput`: the index of `u_sym(1:numGlobalInputs)` that CORA's `subs(f_sym,
+u_sym(idxGlobalInput), u_sym(1:numGlobalInputs))` replaces it by.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+variable {N g k : ℕ} {n m p : Fin k → ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+def NonlinearReset.globalRank (inputBinds : ∀ i, Fin (m i) → ResolveSource k p g)
+    (ij : Σ i, Fin (m i)) : ℕ :=
+  (Finset.univ.filter fun ij' : (Σ i, Fin (m i)) =>
+    (∃ a, inputBinds ij'.1 ij'.2 = .global a) ∧
+      finSigmaFinEquiv ij' < finSigmaFinEquiv ij).card
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
