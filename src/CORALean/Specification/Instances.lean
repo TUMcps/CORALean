@@ -3,6 +3,7 @@ import CORALean.ContSet.Conversion.Float.Zonotope_to_HPolytope
 import CORALean.ContSet.Conversion.Real.ContSet_to_Interval
 import CORALean.ContSet.HPolytope.Float.Instances
 import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+import CORALean.ContSet.ZonoBundle.Float.Instances
 import CORALean.Global.Float.Instances.Real.Instances
 
 /-!
@@ -12,13 +13,10 @@ import CORALean.Global.Float.Instances.Real.Instances
 among them: a box against anything boxable (`IntervalOuter`), and a halfspace polytope
 against a box or a zonotope, both of which answer a direction with no solver.
 
-Box against box, `contains` is exact and `isDisjoint` exact up to one margin; against
-anything else, as exact as its interval hull, which for a zonotope's `contains` loses
-only rounding. A polytope `contains` by bounding the set along every row —
-`holds_safeSet_of_bounds` computed — exact up to rounding; `isDisjoint` looks for one
-row the set lies strictly beyond — `holds_unsafeSet_of_separating` at the row's
-direction, `verifyConvex`'s `safe` exit at a fixed direction list — and so is exact
-only for a halfspace. `ltStrict`'s margin is what makes a separation strict.
+Box against box, `contains` is exact and `isDisjoint` exact up to one margin. A polytope `contains`
+by bounding the set along every row, exact up to rounding; `isDisjoint` looks for one row the set
+lies strictly beyond, so is exact only for a halfspace. Two boxable sets, or a zonotope bundle (one
+member's hull), are separated by their hulls: CORA's `'approx'` `isIntersecting_`.
 
 The box-against-`IntervalOuter` instance above is generic over a family `S : ℕ → Type`,
 which instance search cannot read off a real-layer family written as a lambda
@@ -28,7 +26,7 @@ representation below is what makes those fire.
 
 -- Authors:       Tobias Ladner
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   04-October-2026
 -- Last revision: ---
 
 
@@ -150,6 +148,63 @@ instance isDisjointBoxOuter {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)
     IsDisjoint (Interval (Vec 𝕋 n)) (S n) where
   isDisjoint I s := aux_disjointBox I (IntervalOuter.interval s)
   isDisjoint_sound _ s h := (aux_disjointBox_sound h).mono_left (IntervalOuter.interval_outer s)
+
+/-- Each set through its interval hull, `'approx'` `isIntersecting_`: `true` separates the hulls,
+`false` says nothing. Low priority, so the box and polytope instances above come first. -/
+instance (priority := 50) isDisjointBoxBoxOuter {T S : ℕ → Type}
+    [∀ n, ContSet (T n) (Vec ℝ n)] [∀ n, ContSet (S n) (Vec ℝ n)]
+    [IntervalOuter T 𝕋] [IntervalOuter S 𝕋] : IsDisjoint (T n) (S n) where
+  isDisjoint t s := aux_disjointBox (IntervalOuter.interval t) (IntervalOuter.interval s)
+  isDisjoint_sound t s h :=
+    (aux_disjointBox_sound h).mono (IntervalOuter.interval_outer s)
+      (IntervalOuter.interval_outer t)
+
+/-- Some member's hull of `zB` strictly to one side of `B`. -/
+def aux_disjointBundleBox (zB : ZonoBundle 𝕋 n) (B : Interval (Vec 𝕋 n)) : Bool :=
+  (List.finRange zB.k).any fun i => aux_disjointBox (zB.Z i).interval B
+
+theorem aux_disjointBundleBox_sound {zB : ZonoBundle 𝕋 n} {B : Interval (Vec 𝕋 n)}
+    (h : aux_disjointBundleBox zB B = true) :
+    Disjoint B.construct zB.construct := by
+  simp only [aux_disjointBundleBox, List.any_eq_true, List.mem_finRange, true_and] at h
+  obtain ⟨i, hi⟩ := h
+  exact (aux_disjointBox_sound hi).mono_right
+    ((Set.iInter_subset _ i).trans (Zonotope.interval_contains (zB.Z i)))
+
+/-- Some member of `zB'` and some member of `zB` with disjoint hulls. -/
+def aux_disjointBundles (zB zB' : ZonoBundle 𝕋 n) : Bool :=
+  (List.finRange zB'.k).any fun j => aux_disjointBundleBox zB (zB'.Z j).interval
+
+theorem aux_disjointBundles_sound {zB zB' : ZonoBundle 𝕋 n}
+    (h : aux_disjointBundles zB zB' = true) :
+    Disjoint zB'.construct zB.construct := by
+  simp only [aux_disjointBundles, List.any_eq_true, List.mem_finRange, true_and] at h
+  obtain ⟨j, hj⟩ := h
+  exact (aux_disjointBundleBox_sound hj).mono_left
+    ((Set.iInter_subset _ j).trans (Zonotope.interval_contains (zB'.Z j)))
+
+-- A bundle's three pairings: with a boxable set on either side, and with a bundle.
+
+/-- A bundle lies in each member, so one member's hull apart from the other hull suffices; the
+bundle has no total box of its own (`k = 0` is the whole space). -/
+instance (priority := 50) isDisjointZonoBundleOuter {S : ℕ → Type}
+    [∀ n, ContSet (S n) (Vec ℝ n)] [IntervalOuter S 𝕋] : IsDisjoint (ZonoBundle 𝕋 n) (S n) where
+  isDisjoint zB s := aux_disjointBundleBox zB (IntervalOuter.interval s)
+  isDisjoint_sound _ s h :=
+    (aux_disjointBundleBox_sound h).mono_left (IntervalOuter.interval_outer s)
+
+-- the same with the bundle second
+instance (priority := 50) isDisjointOuterZonoBundle {T : ℕ → Type}
+    [∀ n, ContSet (T n) (Vec ℝ n)] [IntervalOuter T 𝕋] : IsDisjoint (T n) (ZonoBundle 𝕋 n) where
+  isDisjoint t zB := aux_disjointBundleBox zB (IntervalOuter.interval t)
+  isDisjoint_sound t _ h :=
+    (aux_disjointBundleBox_sound h).symm.mono_right (IntervalOuter.interval_outer t)
+
+-- and a bundle against a bundle
+instance (priority := 50) isDisjointZonoBundleZonoBundle :
+    IsDisjoint (ZonoBundle 𝕋 n) (ZonoBundle 𝕋 n) where
+  isDisjoint := aux_disjointBundles
+  isDisjoint_sound _ _ := aux_disjointBundles_sound
 
 instance containsPolytopeInterval : Contains (HPolytope 𝕋 n) (Interval (Vec 𝕋 n)) where
   contains P I := aux_containsRows P (aux_boxBound I)

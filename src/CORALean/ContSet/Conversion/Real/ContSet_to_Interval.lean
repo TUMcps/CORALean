@@ -1,7 +1,15 @@
+import CORALean.ContSet.Conversion.Real.Capsule_to_Interval
+import CORALean.ContSet.Conversion.Real.ConPolyZono_to_Interval
 import CORALean.ContSet.Conversion.Real.ConZonotope_to_Interval
+import CORALean.ContSet.Conversion.Real.PolyZonotope_to_Interval
+import CORALean.ContSet.Conversion.Real.VPolytope_to_Interval
 import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
+import CORALean.ContSet.Capsule.Real.Instances
+import CORALean.ContSet.ConPolyZono.Real.Instances
 import CORALean.ContSet.ConZonotope.Real.Instances
 import CORALean.ContSet.Interval.Real.Instances
+import CORALean.ContSet.PolyZonotope.Real.Instances
+import CORALean.ContSet.VPolytope.Real.Instances
 import CORALean.ContSet.Zonotope.Real.Instances
 
 /-!
@@ -12,15 +20,15 @@ coordinate bounds — a network's activation layer does, for every neuron, befor
 it can relax anything — cannot name the source, so it asks for this instead, and
 the instance list below is what answers.
 
-Not every representation has one, and that is the point: `HPolytope` and
-`VPolytope` reach their box through `2n` linear programs, so their `interval`
-takes the certificates as arguments and cannot be a total function of the
-representation alone. A pipeline that wants them supplies the box itself.
+Not every representation has one, and that is the point: `HPolytope` reaches
+its box through `2n` linear programs, so its `interval` takes the certificates
+as arguments and cannot be a total function of the representation alone. A pipeline
+that wants them supplies the box itself.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   04-October-2026
 -- Last revision: ---
 
 
@@ -51,6 +59,23 @@ instance : IntervalOuter 𝒵 where
 instance : IntervalOuter (fun n => ConZonotope (Vec ℝ n)) where
   interval C := C.interval
   interval_outer C := ConZonotope.interval_contains C
+
+instance : IntervalOuter (fun n => Capsule n) where
+  interval C := C.interval
+  interval_outer C := Capsule.interval_contains C
+
+instance : IntervalOuter (fun n => ConPolyZono (Vec ℝ n)) where
+  interval C := C.interval
+  interval_outer C := ConPolyZono.interval_contains C
+
+instance : IntervalOuter (fun n => PolyZonotope (Vec ℝ n)) where
+  interval P := P.interval
+  interval_outer P := PolyZonotope.interval_contains P
+
+/-- The box of a vertex list: the extreme coordinates of its vertices. -/
+noncomputable instance : IntervalOuter (fun n => VPolytope (Vec ℝ n)) where
+  interval P := P.interval
+  interval_outer P := VPolytope.interval_contains P
 
 end CORALean.Real
 

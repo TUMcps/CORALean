@@ -1,8 +1,16 @@
+import CORALean.ContSet.Conversion.Float.Capsule_to_Interval
+import CORALean.ContSet.Conversion.Float.ConPolyZono_to_Interval
 import CORALean.ContSet.Conversion.Float.ConZonotope_to_Interval
+import CORALean.ContSet.Conversion.Float.PolyZonotope_to_Interval
+import CORALean.ContSet.Conversion.Float.VPolytope_to_Interval
 import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
 import CORALean.ContSet.Conversion.Real.ContSet_to_Interval
+import CORALean.ContSet.Capsule.Float.Instances
+import CORALean.ContSet.ConPolyZono.Float.Instances
 import CORALean.ContSet.ConZonotope.Float.Instances
 import CORALean.ContSet.Interval.Float.Instances
+import CORALean.ContSet.PolyZonotope.Float.Instances
+import CORALean.ContSet.VPolytope.Float.Instances
 import CORALean.ContSet.Zonotope.Float.Instances
 import CORALean.Global.Float.Instances.Real.Instances
 
@@ -18,9 +26,9 @@ function of that neuron's range.
 back in the scalar the representation stores rather than in ℝ; a caller writes
 `IntervalOuter S` and the family it propagates says which scalar that is.
 
-The instance list is the exact layer's, minus the polytopes for the same reason:
-a box from halfspaces or vertices is `2n` linear programs, so `interval` there
-takes certificates and is no function of the representation alone.
+The instance list is the exact layer's, minus `HPolytope`: a box from halfspaces
+is `2n` linear programs, so `interval` there takes certificates and is no function
+of the representation alone. A vertex list needs none (`boundProj`/`boundNegProj`).
 
 An exact representation is one at `𝕋 := ℝ`, through its own class: that is what lets an
 algorithm written once over the scalar run on `Real.Zonotope` as well as on a float one.
@@ -28,7 +36,7 @@ algorithm written once over the scalar run on `Real.Zonotope` as well as on a fl
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   23-September-2026
+-- Last update:   04-October-2026
 -- Last revision: ---
 
 
@@ -62,6 +70,23 @@ instance : IntervalOuter (fun n => Zonotope 𝕋 n) 𝕋 where
 instance : IntervalOuter (fun n => ConZonotope 𝕋 n) 𝕋 where
   interval C := C.interval
   interval_outer C := ConZonotope.interval_contains C
+
+instance : IntervalOuter (fun n => Capsule 𝕋 n) 𝕋 where
+  interval C := C.interval
+  interval_outer C := Capsule.interval_contains C
+
+instance : IntervalOuter (fun n => ConPolyZono 𝕋 n) 𝕋 where
+  interval C := C.interval
+  interval_outer C := ConPolyZono.interval_contains C
+
+instance : IntervalOuter (fun n => PolyZonotope 𝕋 n) 𝕋 where
+  interval P := P.interval
+  interval_outer P := PolyZonotope.interval_contains P
+
+/-- The box of a vertex list: the bounds `boundProj`/`boundNegProj` of every coordinate. -/
+instance : IntervalOuter (fun n => VPolytope 𝕋 n) 𝕋 where
+  interval P := P.interval
+  interval_outer P := VPolytope.interval_contains P
 
 /-- An exact representation boxes itself at `𝕋 := ℝ`, the box its exact class returns. -/
 instance {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real.IntervalOuter S] :

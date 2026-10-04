@@ -15,6 +15,9 @@ import CORALean.ContDynamics.LinearSysDT.Instances
 import CORALean.ContDynamics.LinearSysDT.Theorems.API
 import CORALean.ContDynamics.LinearSysDT.Complexity.API
 import CORALean.ContDynamics.LinearSysDT.Cost.API
+import CORALean.ContDynamics.LinearSysDT.Definitions.ConsistentSet
+import CORALean.ContDynamics.LinearSysDT.Definitions.ExactUncertainSet
+import CORALean.ContDynamics.LinearSysDT.Definitions.ObserveStripOptions
 
 /-!
 # Discrete-time linear systems, collected

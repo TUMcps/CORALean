@@ -1,5 +1,6 @@
 import CORALean.ContSet.HPolytope.Float.Operations.ProjectHighDim
 import CORALean.ContSet.HPolytope.Float.Operations.Isequal
+import CORALean.ContSet.HPolytope.Float.Operations.Not
 import CORALean.ContSet.HPolytope.Float.Operations.Intersection
 import CORALean.ContSet.HPolytope.Float.Operations.ContractBox
 import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendLeft

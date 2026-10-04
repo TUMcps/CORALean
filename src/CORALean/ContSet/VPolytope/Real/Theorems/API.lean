@@ -10,6 +10,7 @@ import CORALean.ContSet.VPolytope.Real.Theorems.MapExact
 import CORALean.ContSet.VPolytope.Real.Theorems.MinkowskiDiffEqIInter
 import CORALean.ContSet.VPolytope.Real.Theorems.MtimesExact
 import CORALean.ContSet.VPolytope.Real.Theorems.BilinOuter
+import CORALean.ContSet.VPolytope.Real.Theorems.MatPolytopeExact
 import CORALean.ContSet.VPolytope.Real.Theorems.MtimesMatPolytopeOuter
 import CORALean.ContSet.VPolytope.Real.Theorems.PlusExact
 import CORALean.ContSet.VPolytope.Real.Theorems.PerturbSubset

@@ -10,6 +10,8 @@ import CORALean.ContSet.VPolytope.Real.Operations.Map
 import CORALean.ContSet.VPolytope.Real.Operations.Mtimes
 import CORALean.ContSet.VPolytope.Real.Operations.MtimesEqMap
 import CORALean.ContSet.VPolytope.Real.Operations.Bilin
+import CORALean.ContSet.VPolytope.Real.Operations.ColLin
+import CORALean.ContSet.VPolytope.Real.Operations.MatPolytope
 import CORALean.ContSet.VPolytope.Real.Operations.MtimesMatPolytope
 import CORALean.ContSet.VPolytope.Real.Operations.Plus
 import CORALean.ContSet.VPolytope.Real.Operations.LeOfForallLe
