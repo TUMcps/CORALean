@@ -61,6 +61,12 @@ import CORALean.ContSet.ConZonotope.Real.Theorems.CartProdExact
 import CORALean.ContSet.ConZonotope.Real.Theorems.CompactExact
 import CORALean.ContSet.ConZonotope.Real.Theorems.ConIntersectExact
 import CORALean.ContSet.ConZonotope.Real.Theorems.SplitUnion
+import CORALean.ContSet.ConZonotope.Real.Theorems.IntersectStripExact
+import CORALean.ContSet.ConZonotope.Real.Theorems.QuadMapOuter
+import CORALean.ContSet.ConZonotope.Real.Theorems.RepresentsaPointIff
+import CORALean.ContSet.ConZonotope.Real.Theorems.RepresentsaOriginIff
+import CORALean.ContSet.ConZonotope.Real.Theorems.RepresentsaEmptySetIff
+import CORALean.ContSet.ConZonotope.Real.Theorems.IsFullDimCoraCounterexample
 
 /-!
 # What `ConZonotope` guarantees

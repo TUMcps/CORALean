@@ -107,6 +107,7 @@ Rulings on borderline cases:
 * **`matlab-runtime`, further rows:** nonlinearSys `taylor` (symbolic derivative code generation), nn `instantiateFromString` (string dispatch), contSet `representsa_emptyObject` (dispatch on `isemptyobject`), contSet `compact` and `vertices` (validating wrappers of `compact_` and `vertices_`), nn `nnGNNLayer` (abstract class constructor). **`random/sampling`, further rows:** polytope `reduce` (its only method is `'rand'`), zonotope `orthVectors` (random completion columns). capsule `vertices_` stays in scope: a deterministic arc grid, not a random draw.
 * **R-CTSIM: continuous-time `simulate` rows that call `ode45` stay `—`** (linearSys, nonlinearSys, nonlinParamSys): formalizing them as the exact flow would claim more than the numerical integrator computes.
 * **Optimiser-driven workflows are `solver-dependent` when the result is determined by an external optimiser or a training loop** (`fmincon`, `linprog`, `quadprog`, genetic programming, decision-tree learning, a training loop): `falsify` (linearSys, linearSysDT, nonlinearSys, nonlinearSysDT, hybridAutomaton: a solver and wall-clock search), `confSynth_dyn`, `confSynth_gray`, `conform`, `estimateParameter`, nonlinearARX and hybridAutomaton `identify`, nn `train`. A method whose body is computed from sets or by a closed form stays in scope: `computeGO` (deterministic stacked output matrices), `isconform` and `isconform_dyn` (halfspace containment of unified outputs), and `identify` of the linear and nonlinear continuous or discrete systems (default algorithm `dmd`, an SVD fit; `opt`/`nested`/`sparse` are further options).
+* **R-WE: `empty` of a representation that cannot denote `∅`** (zonotope, ellipsoid, polyZonotope) is answered by `WithEmpty.empty`, the wrapper's own empty member, and counts as `float` by route b (scalar-free): the wrapper holds no scalar and is generic over the class, `WithEmpty.construct_empty` says it denotes `∅`, and the note says why the representation itself has no such member (the zonotope's centre and the polynomial zonotope's factor vector `0` are always members; an ellipsoid has no empty shape).
 
 ## Counts
 
@@ -115,15 +116,15 @@ Rulings on borderline cases:
 |---|---|---|---|---|---|---|---|
 | [affine](contSet/affine.md) | contSet | 1 | 0 | 0 | 1 | 0 | 0 |
 | [capsule](contSet/capsule.md) | contSet | 39 | 1 | 26 | 2 | 10 | 3 |
-| [conPolyZono](contSet/conPolyZono.md) | contSet | 47 | 5 | 25 | 9 | 8 | 1 |
-| [conZonotope](contSet/conZonotope.md) | contSet | 50 | 6 | 23 | 9 | 12 | 0 |
+| [conPolyZono](contSet/conPolyZono.md) | contSet | 47 | 10 | 25 | 4 | 8 | 2 |
+| [conZonotope](contSet/conZonotope.md) | contSet | 50 | 11 | 23 | 4 | 12 | 1 |
 | [contSet](contSet/contSet.md) | contSet | 101 | 1 | 27 | 1 | 72 | 0 |
 | [ellipsoid](contSet/ellipsoid.md) | contSet | 50 | 3 | 19 | 18 | 10 | 0 |
 | [emptySet](contSet/emptySet.md) | contSet | 30 | 3 | 19 | 1 | 7 | 0 |
 | [fullspace](contSet/fullspace.md) | contSet | 33 | 5 | 18 | 2 | 8 | 0 |
 | [interval](contSet/interval.md) | contSet | 110 | 3 | 84 | 5 | 18 | 1 |
 | [levelSet](contSet/levelSet.md) | contSet | 22 | 2 | 6 | 6 | 8 | 0 |
-| [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 4 | 33 | 22 | 14 | 2 |
+| [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 8 | 34 | 17 | 14 | 2 |
 | [polygon](contSet/polygon.md) | contSet | 46 | 1 | 17 | 21 | 7 | 0 |
 | [polytope](contSet/polytope.md) | contSet | 58 | 7 | 31 | 8 | 12 | 1 |
 | [probZonotope](contSet/probZonotope.md) | contSet | 28 | 6 | 0 | 14 | 8 | 0 |

@@ -1,0 +1,30 @@
+import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
+
+/-!
+# `ConPolyZono.centre`
+
+CORA's `@conPolyZono/center`: the field `c`, with no guarantee that it lies in the set.
+`centre_mem_construct` says when it does.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       03-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+def ConPolyZono.centre (cPZ : ConPolyZono α) : α := cPZ.c
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
