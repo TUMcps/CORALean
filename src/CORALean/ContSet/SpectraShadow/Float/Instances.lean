@@ -6,7 +6,7 @@ import CORALean.ContSet.SpectraShadow.Float.Theorems.API
 
 `ContSet` is not among them — `InflatedContSet` supplies it, which is what makes
 this the same class the exact layer instantiates. Then `ConvexSet` and `Plus`, as
-over ℝ.
+over ℝ, and `Intersection`, which the float layer's tied form makes rounding-free.
 
 No `Mtimes`: the float `mtimes` would round every generator, and a generator's
 rounding multiplies a variable the inequality does not bound, so no box holds what
@@ -42,6 +42,13 @@ instance {n : ℕ} : Plus (SpectraShadow 𝕋 n) (Vec ℝ n) where
   plus_outer S₁ S₂ := by
     rw [SpectraShadow.materialise_eq]
     exact SpectraShadow.plus_outer S₁ S₂
+
+/-- Both error boxes absorbed into the inequality, the two points tied to one: nothing rounds. -/
+instance {n : ℕ} : Intersection (SpectraShadow 𝕋 n) (Vec ℝ n) where
+  intersection S₁ S₂ := (S₁.inter S₂).materialise
+  intersection_outer S₁ S₂ := by
+    rw [SpectraShadow.materialise_eq]
+    exact SpectraShadow.inter_outer S₁ S₂
 
 end CORALean.Float
 

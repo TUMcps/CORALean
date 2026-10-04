@@ -8,6 +8,17 @@ import CORALean.ContSet.SpectraShadow.Float.Operations.PadRight
 import CORALean.ContSet.SpectraShadow.Float.Operations.Plus
 import CORALean.ContSet.SpectraShadow.Float.Operations.Project
 import CORALean.ContSet.SpectraShadow.Float.Operations.Inter
+import CORALean.ContSet.SpectraShadow.Float.Operations.Absorb
+import CORALean.ContSet.SpectraShadow.Float.Operations.Inter
+import CORALean.ContSet.SpectraShadow.Float.Operations.TieInter
+import CORALean.ContSet.SpectraShadow.Float.Operations.ContainsPoint
+import CORALean.ContSet.SpectraShadow.Float.Operations.Base
+import CORALean.ContSet.SpectraShadow.Float.Operations.DualBound
+import CORALean.ContSet.SpectraShadow.Float.Operations.DualCertified
+import CORALean.ContSet.SpectraShadow.Float.Operations.IsBounded
+import CORALean.ContSet.SpectraShadow.Float.Operations.RepresentsaEmptySet
+import CORALean.ContSet.SpectraShadow.Float.Operations.RepresentsaOrigin
+import CORALean.ContSet.SpectraShadow.Float.Operations.RepresentsaPoint
 
 /-!
 # What a float spectrahedral shadow computes, collected

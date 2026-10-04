@@ -20,6 +20,15 @@ import CORALean.ContSet.Ellipsoid.Float.Operations.Vertices
 import CORALean.ContSet.Ellipsoid.Float.Operations.NormUb
 import CORALean.ContSet.Ellipsoid.Float.Operations.CartProd
 import CORALean.ContSet.Ellipsoid.Float.Operations.CartProdVec
+import CORALean.ContSet.Ellipsoid.Float.Operations.ContainsPoint
+import CORALean.ContSet.Ellipsoid.Float.Operations.MinkDiffPoint
+import CORALean.ContSet.Ellipsoid.Float.Operations.Radius
+import CORALean.ContSet.Ellipsoid.Float.Operations.IsFullDim
+import CORALean.ContSet.Ellipsoid.Float.Operations.Enclose
+import CORALean.ContSet.Ellipsoid.Float.Operations.Enclose2
+import CORALean.ContSet.Ellipsoid.Float.Operations.IsBigger
+import CORALean.ContSet.Ellipsoid.Float.Operations.EllipsoidNormUb
+import CORALean.ContSet.Ellipsoid.Float.Operations.Volume
 
 /-!
 # What a float ellipsoid computes, collected

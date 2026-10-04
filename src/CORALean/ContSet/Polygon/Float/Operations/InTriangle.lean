@@ -1,0 +1,38 @@
+import CORALean.ContSet.Polygon.Float.Operations.OrientBounds
+
+/-!
+# `Polygon.inTriangle`
+
+A point lies in the triangle `a b c`: the triangle's orientation is certified positive by
+`ltStrict`, and the three orientations of the point against its edges (`b c x`, `c a x`,
+`a b x`) are certified nonnegative by `le`. These are the barycentric coordinates times the
+triangle's orientation, so `true` is certain; a triangle of the other orientation is the same
+triangle with two corners swapped, which a search over corners also tries.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+open FloatOps
+
+variable {𝕋 : Type} [FloatOps 𝕋]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+def Polygon.inTriangle (a b c x : Vec 𝕋 2) : Bool :=
+  ltStrict zero (Polygon.orientBounds a b c).1 &&
+    le zero (Polygon.orientBounds b c x).1 && le zero (Polygon.orientBounds c a x).1 &&
+      le zero (Polygon.orientBounds a b x).1
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

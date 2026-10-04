@@ -1,0 +1,48 @@
+import CORALean.ContSet.Ellipsoid.Float.Operations.GeneratorError
+import CORALean.Global.Float.EuclideanNorm
+
+/-!
+# `Ellipsoid.isBigger`, over a floating-point scalar
+
+CORA's `@ellipsoid/isBigger` (`E₂` fits into `E₁` up to the centres) compares the shape matrices
+by a simultaneous diagonalisation, which rounding cannot decide. A sound test instead checks a
+caller-proposed factor `T` with `G₂ ≈ G₁ T`: its Frobenius norm at most `1` (so `T u` stays in
+the unit ball), and the residual `G₂ - G₁ T`, bracketed by directed roundings, together with
+`E₂`'s error box inside `E₁`'s (the residual's reach bounded by `generatorError`). Only `true` is
+certain.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+open FloatOps
+
+variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+def Ellipsoid.isBigger (E₁ E₂ : Ellipsoid 𝕋 n) (T : Mat 𝕋 E₁.k E₂.k) : Bool :=
+  -- the residual `G₂ - G₁ T` between its two roundings, and its magnitude
+  let lo : Mat 𝕋 n E₂.k := fun i j =>
+    subDown (E₂.G i j) (dotUp (fun l => E₁.G i l) fun l => T l j)
+  let hi : Mat 𝕋 n E₂.k := fun i j =>
+    subUp (E₂.G i j) (dotDown (fun l => E₁.G i l) fun l => T l j)
+  let gap : Mat 𝕋 n E₂.k := fun i j => maximum (hi i j) (neg (lo i j))
+  let reach : Vec 𝕋 n := radius gap
+  le (sumUp fun i => sqSumUp fun j => absolute (T i j)) one &&
+    (List.finRange n).all fun i =>
+      le (E₁.err.inf i) (subDown (E₂.err.inf i) (reach i)) &&
+        le (addUp (E₂.err.sup i) (reach i)) (E₁.err.sup i)
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
