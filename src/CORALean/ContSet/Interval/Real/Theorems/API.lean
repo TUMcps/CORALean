@@ -136,6 +136,12 @@ import CORALean.ContSet.Interval.Real.Theorems.PowerExact
 import CORALean.ContSet.Interval.Real.Theorems.Atan2CoraCounterexample
 import CORALean.ContSet.Interval.Real.Theorems.MulMatEntryImage
 import CORALean.ContSet.Interval.Real.Theorems.ConstructSubsetConvexHullVertices
+import CORALean.ContSet.Interval.Real.Theorems.InfExact
+import CORALean.ContSet.Interval.Real.Theorems.LiftExact
+import CORALean.ContSet.Interval.Real.Theorems.DiracOuter
+import CORALean.ContSet.Interval.Real.Theorems.DiracOffZero
+import CORALean.ContSet.Interval.Real.Theorems.StlIntervalExact
+import CORALean.ContSet.Interval.Real.Theorems.DiracZeroMem
 
 /-!
 # What `Interval` guarantees

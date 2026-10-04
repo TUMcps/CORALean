@@ -14,24 +14,24 @@
     "not-covered"
   ],
   "totals": {
-    "papers": 52,
-    "papers_with_findings": 43,
-    "in_scope": 680,
-    "formalized": 636,
-    "not_formalized": 44,
-    "out_of_scope": 385,
+    "papers": 55,
+    "papers_with_findings": 46,
+    "in_scope": 721,
+    "formalized": 676,
+    "not_formalized": 45,
+    "out_of_scope": 426,
     "out_of_scope_by_reason": {
-      "restated": 200,
+      "restated": 213,
       "mathlib": 12,
-      "not-a-claim": 137,
+      "not-a-claim": 156,
       "done-differently": 7,
-      "not-covered": 29
+      "not-covered": 38
     },
     "by_class": {
-      "correct": 436,
-      "underspecified": 102,
-      "proof-gap": 25,
-      "fixed": 71,
+      "correct": 467,
+      "underspecified": 106,
+      "proof-gap": 26,
+      "fixed": 75,
       "false": 2
     }
   },
@@ -1779,6 +1779,62 @@
       ]
     },
     {
+      "page": "2023/althoff-arch-reachset-conformance.md",
+      "label": "Althoff 2023",
+      "year": 2023,
+      "title": "Checking and Establishing Reachset Conformance in CORA 2023",
+      "in_scope": 12,
+      "formalized": 12,
+      "not_formalized": 0,
+      "out_of_scope": 13,
+      "out_of_scope_by_reason": {
+        "restated": 4,
+        "mathlib": 0,
+        "not-a-claim": 9,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 6,
+        "underspecified": 2,
+        "proof-gap": 1,
+        "fixed": 3,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Sec. 2.2",
+          "class": "fixed",
+          "reason": "the falsification test is `y ∉ R ⊕ (-V)`: at `R = {0}`, `V = [0, 1]`, `y = -1`, `y ⊕ V` meets `R` yet `y ∉ R ⊕ V`; the two agree for `V = -V`; see Findings"
+        },
+        {
+          "result": "Table 2",
+          "class": "fixed",
+          "reason": "the capsule's axis test `< r` rejects points at distance exactly `r` from the axis: `c = 0`, `g = (1, 0)`, `r = 1`, `x = (0, 1)` is in the capsule and fails all three disjuncts; with `≤ r` the test is exact; see Findings"
+        },
+        {
+          "result": "Eq. 7",
+          "class": "fixed",
+          "reason": "false for (2)'s inner approximation, whose disturbance is one constant on `[0, t]`: at `A = [0 1; 0 0]`, `h = 1`, `k = 1`, `X̃₀ = {0}`, `W_c = {0} × [-1, 1]` the left side is a segment and the right a parallelogram; it holds with the disturbance constant per step, the set the rest of the paper uses; see Findings"
+        },
+        {
+          "result": "Eq. 8",
+          "class": "underspecified",
+          "reason": "exact for the discrete-time model (`Sec. 3`), and for the continuous one with the disturbance held constant per step; for (2)'s set it is reached through (7), which fails there (`Eq. 7`)"
+        },
+        {
+          "result": "Eq. 11",
+          "class": "underspecified",
+          "reason": "d)'s first right-hand term prints `c` for `c₁`"
+        },
+        {
+          "result": "Thm. 1",
+          "class": "proof-gap",
+          "reason": "the proof takes `N(t_k)` independent of `α`, citing [46, Thm. 1], whose argument needs `α > 0`; the program allows `αᵢ = 0`, where a generator and its normals vanish. The statement holds there, with the template's normals; the template must span the output space; see Findings"
+        }
+      ]
+    },
+    {
       "page": "2023/kochdumper-constrained-polyzonotopes.md",
       "label": "Kochdumper 2023",
       "year": 2023,
@@ -1913,6 +1969,42 @@
           "result": "Thm. 1",
           "class": "fixed",
           "reason": "\"for any reduction rate ρ\" fails where `Alg. 1` does not end; formalized for the runs that end"
+        }
+      ]
+    },
+    {
+      "page": "2023/liu-tro-guarantees-real-robotic.md",
+      "label": "Liu 2023",
+      "year": 2023,
+      "title": "Guarantees for Real Robotic Systems: Unifying Formal Controller Synthesis and Reachset-Conformant Identification",
+      "in_scope": 15,
+      "formalized": 15,
+      "not_formalized": 0,
+      "out_of_scope": 17,
+      "out_of_scope_by_reason": {
+        "restated": 5,
+        "mathlib": 0,
+        "not-a-claim": 6,
+        "done-differently": 0,
+        "not-covered": 6
+      },
+      "by_class": {
+        "correct": 13,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 1,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Eq. 7",
+          "class": "fixed",
+          "reason": "`u[i]` enters through `A^{k-i} B`, not `Aⁱ B`: at `A = 2`, `B = C = 1`, `D = 0`, `X[0] = W = V = {0}`, `u = (1, 0)`, `y[2] = 2` is reachable and the printed set is `{1}`; the disturbance term and everything derived from (7) are unaffected; see Findings"
+        },
+        {
+          "result": "Thm. 1",
+          "class": "underspecified",
+          "reason": "the template `[E₀ G'_W ⋯ G'_V]` must span the output space, else every `nX` vanishes and (1) divides by zero; the proof cancels `det(diag(α))` and needs `α > 0`, the statement holds at `α ≥ 0` (a vanished generator's normals are still the template's); see Findings"
         }
       ]
     },
@@ -2378,6 +2470,37 @@
         "false": 0
       },
       "findings": []
+    },
+    {
+      "page": "2026/luetzow-tac-reachset-conformant-identification.md",
+      "label": "Luetzow 2026",
+      "year": 2026,
+      "title": "Reachset-Conformant System Identification",
+      "in_scope": 14,
+      "formalized": 13,
+      "not_formalized": 1,
+      "out_of_scope": 11,
+      "out_of_scope_by_reason": {
+        "restated": 4,
+        "mathlib": 0,
+        "not-a-claim": 4,
+        "done-differently": 0,
+        "not-covered": 3
+      },
+      "by_class": {
+        "correct": 12,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Thm. 2",
+          "class": "underspecified",
+          "reason": "\"solved\" holds in the sense the proof gives: feasible points are conformant and the objective is the cost; the program's optimum is Problem 1.1's for linear models (`Ê = {0}`), for nonlinear ones only that of the stricter (23); see Findings"
+        }
+      ]
     }
   ],
   "cora_coverage": {
@@ -2444,7 +2567,7 @@
           "correct": 0,
           "underspecified": 0,
           "proof-gap": 0,
-          "fixed": 0,
+          "fixed": 1,
           "false": 0
         }
       },
@@ -2608,11 +2731,11 @@
         "group": "contSet",
         "class": "interval",
         "methods": 110,
-        "proved": 3,
+        "proved": 7,
         "float": 85,
-        "not_yet": 4,
+        "not_yet": 0,
         "out_of_scope": 18,
-        "needs_float": 3,
+        "needs_float": 7,
         "out_of_scope_by_reason": {
           "plotting/display": 2,
           "random/sampling": 3,
@@ -2634,11 +2757,11 @@
         "group": "contSet",
         "class": "levelSet",
         "methods": 22,
-        "proved": 2,
+        "proved": 6,
         "float": 6,
-        "not_yet": 6,
+        "not_yet": 2,
         "out_of_scope": 8,
-        "needs_float": 2,
+        "needs_float": 6,
         "out_of_scope_by_reason": {
           "plotting/display": 2,
           "random/sampling": 1,
@@ -2647,7 +2770,7 @@
           "matlab-runtime": 5,
           "deprecated": 0
         },
-        "cora_issues": 0,
+        "cora_issues": 2,
         "findings": {
           "correct": 0,
           "underspecified": 0,
@@ -2790,17 +2913,17 @@
         "group": "contSet",
         "class": "taylm",
         "methods": 51,
-        "proved": 4,
-        "float": 32,
-        "not_yet": 4,
-        "out_of_scope": 11,
-        "needs_float": 4,
+        "proved": 5,
+        "float": 33,
+        "not_yet": 1,
+        "out_of_scope": 12,
+        "needs_float": 5,
         "out_of_scope_by_reason": {
           "plotting/display": 2,
           "random/sampling": 1,
           "solver-dependent": 0,
           "io/conversion-to-matlab-objects": 0,
-          "matlab-runtime": 8,
+          "matlab-runtime": 9,
           "deprecated": 0
         },
         "cora_issues": 0,
@@ -2909,10 +3032,10 @@
         },
         "cora_issues": 0,
         "findings": {
-          "correct": 1,
-          "underspecified": 0,
-          "proof-gap": 0,
-          "fixed": 0,
+          "correct": 32,
+          "underspecified": 4,
+          "proof-gap": 1,
+          "fixed": 3,
           "false": 0
         }
       },
@@ -3388,11 +3511,11 @@
         "group": "hybridDynamics",
         "class": "transition",
         "methods": 12,
-        "proved": 0,
+        "proved": 2,
         "float": 3,
-        "not_yet": 2,
+        "not_yet": 0,
         "out_of_scope": 7,
-        "needs_float": 0,
+        "needs_float": 2,
         "out_of_scope_by_reason": {
           "plotting/display": 1,
           "random/sampling": 0,
@@ -3401,7 +3524,7 @@
           "matlab-runtime": 6,
           "deprecated": 0
         },
-        "cora_issues": 0,
+        "cora_issues": 1,
         "findings": {
           "correct": 0,
           "underspecified": 0,
@@ -3466,25 +3589,25 @@
     "groups": {
       "contSet": {
         "methods": 908,
-        "proved": 119,
-        "float": 450,
-        "not_yet": 101,
-        "out_of_scope": 238,
-        "needs_float": 119,
-        "cora_issues": 25,
+        "proved": 128,
+        "float": 451,
+        "not_yet": 90,
+        "out_of_scope": 239,
+        "needs_float": 128,
+        "cora_issues": 27,
         "out_of_scope_by_reason": {
           "plotting/display": 51,
           "random/sampling": 36,
           "solver-dependent": 2,
           "io/conversion-to-matlab-objects": 8,
-          "matlab-runtime": 127,
+          "matlab-runtime": 128,
           "deprecated": 14
         },
         "findings": {
           "correct": 264,
           "underspecified": 52,
           "proof-gap": 5,
-          "fixed": 45,
+          "fixed": 46,
           "false": 2
         }
       },
@@ -3505,21 +3628,21 @@
           "deprecated": 0
         },
         "findings": {
-          "correct": 81,
-          "underspecified": 33,
-          "proof-gap": 15,
-          "fixed": 17,
+          "correct": 112,
+          "underspecified": 37,
+          "proof-gap": 16,
+          "fixed": 20,
           "false": 0
         }
       },
       "hybrid": {
         "methods": 89,
-        "proved": 8,
+        "proved": 10,
         "float": 24,
-        "not_yet": 13,
+        "not_yet": 11,
         "out_of_scope": 44,
-        "needs_float": 8,
-        "cora_issues": 0,
+        "needs_float": 10,
+        "cora_issues": 1,
         "out_of_scope_by_reason": {
           "plotting/display": 5,
           "random/sampling": 2,
@@ -3563,25 +3686,25 @@
     },
     "totals": {
       "methods": 1260,
-      "proved": 187,
-      "float": 548,
-      "not_yet": 143,
-      "out_of_scope": 382,
-      "needs_float": 187,
-      "cora_issues": 33,
+      "proved": 198,
+      "float": 549,
+      "not_yet": 130,
+      "out_of_scope": 383,
+      "needs_float": 198,
+      "cora_issues": 36,
       "out_of_scope_by_reason": {
         "plotting/display": 86,
         "random/sampling": 46,
         "solver-dependent": 15,
         "io/conversion-to-matlab-objects": 30,
-        "matlab-runtime": 191,
+        "matlab-runtime": 192,
         "deprecated": 14
       },
       "findings": {
-        "correct": 404,
-        "underspecified": 91,
-        "proof-gap": 22,
-        "fixed": 64,
+        "correct": 435,
+        "underspecified": 95,
+        "proof-gap": 23,
+        "fixed": 68,
         "false": 2
       }
     },
@@ -3609,11 +3732,11 @@
       }
     },
     "theorems": {
-      "paper": 882,
+      "paper": 913,
       "float": 1176,
-      "helper": 824,
-      "lemma": 2084,
-      "total": 4966,
+      "helper": 842,
+      "lemma": 2113,
+      "total": 5044,
       "examples": 80
     }
   }

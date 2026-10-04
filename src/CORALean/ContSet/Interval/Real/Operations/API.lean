@@ -94,6 +94,12 @@ import CORALean.ContSet.Interval.Real.Operations.Rdivide
 import CORALean.ContSet.Interval.Real.Operations.Mrdivide
 import CORALean.ContSet.Interval.Real.Operations.Power
 import CORALean.ContSet.Interval.Real.Operations.Atan2
+import CORALean.ContSet.Interval.Real.Operations.EBox
+import CORALean.ContSet.Interval.Real.Operations.Inf
+import CORALean.ContSet.Interval.Real.Operations.Lift
+import CORALean.ContSet.Interval.Real.Operations.Dirac
+import CORALean.ContSet.Interval.Real.Operations.StlInterval
+import CORALean.ContSet.Interval.Real.Operations.EBoxConstruct
 
 /-!
 # What `Interval` computes

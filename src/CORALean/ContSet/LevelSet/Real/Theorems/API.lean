@@ -25,6 +25,14 @@ import CORALean.ContSet.LevelSet.Real.Theorems.SolvedGuardSinCounterexample
 import CORALean.ContSet.LevelSet.Real.Theorems.SolvedGuardSinOfNeZero
 import CORALean.ContSet.LevelSet.Real.Theorems.OutsideInvariantOfRangeBound
 import CORALean.ContSet.LevelSet.Real.Theorems.GuardDisjointOfRangeBound
+import CORALean.ContSet.LevelSet.Real.Theorems.IsIntersectingUniformOuter
+import CORALean.ContSet.LevelSet.Real.Theorems.IsIntersectingCellOuter
+import CORALean.ContSet.LevelSet.Real.Theorems.IsIntersectingCellCounterexample
+import CORALean.ContSet.LevelSet.Real.Theorems.RepresentsaEmptySetSound
+import CORALean.ContSet.LevelSet.Real.Theorems.RepresentsaFullspaceSound
+import CORALean.ContSet.LevelSet.Real.Theorems.CompactExact
+import CORALean.ContSet.LevelSet.Real.Theorems.IsequalSound
+import CORALean.ContSet.LevelSet.Real.Theorems.IsequalCoraCounterexample
 
 /-!
 # What a level set guarantees, collected

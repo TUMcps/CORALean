@@ -87,6 +87,8 @@ import CORALean.ContSet.Taylm.Real.Operations.Trace
 import CORALean.ContSet.Taylm.Real.Operations.Prod
 import CORALean.ContSet.Taylm.Real.Operations.Det
 import CORALean.ContSet.Taylm.Real.Operations.WidestCoord
+import CORALean.ContSet.Taylm.Real.Operations.RepresentsaEmptySet
+import CORALean.ContSet.Taylm.Real.Operations.RepresentsaPoint
 
 /-!
 # Taylor model operations, collected

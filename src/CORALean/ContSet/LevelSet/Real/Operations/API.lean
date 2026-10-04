@@ -12,6 +12,12 @@ import CORALean.ContSet.LevelSet.Real.Operations.SplitEquality
 import CORALean.ContSet.LevelSet.Real.Operations.IntersectLevelSetBox
 import CORALean.ContSet.LevelSet.Real.Operations.GuardIntersectSolvable
 import CORALean.ContSet.LevelSet.Real.Operations.GuardIntersectUnsolvable
+import CORALean.ContSet.LevelSet.Real.Operations.IsIntersectingUniform
+import CORALean.ContSet.LevelSet.Real.Operations.IsIntersectingCell
+import CORALean.ContSet.LevelSet.Real.Operations.RepresentsaEmptySet
+import CORALean.ContSet.LevelSet.Real.Operations.RepresentsaFullspace
+import CORALean.ContSet.LevelSet.Real.Operations.Compact
+import CORALean.ContSet.LevelSet.Real.Operations.Isequal
 
 /-!
 # Level set operations, collected

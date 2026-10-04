@@ -84,9 +84,11 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Set operations and order reductions for constrained zonotopes](2022/raghuraman-koeln-constrained-zonotopes.md) | Raghuraman, Koeln | Automatica, 139:110204 | 2022 | 🟢 9/9 \| 9 |
 | [Adaptive Reachability Algorithms for Nonlinear Systems Using Abstraction Error Analysis](2022/wetzlinger-nahs-abstraction-error.md) | Wetzlinger, Kulmburg, Le Penven, Althoff | Nonlinear Analysis: Hybrid Systems, 46:101252 | 2022 | 🟢 13/13 \| 2 |
 | [Scalable Zonotopic Under-approximation of Backward Reachable Sets for Uncertain Linear Systems](2022/yang-lcss-zonotopic-underapproximation.md) | Yang, Ozay | IEEE Control Systems Letters, 6:1555-1560 | 2022 | 🟢 15/15 \| 12 |
+| [Checking and Establishing Reachset Conformance in CORA 2023](2023/althoff-arch-reachset-conformance.md) | Althoff | ARCH23, EPiC Series in Computing 96, pp. 9-33 | 2023 | 🟢 12/12 \| 13 |
 | [Constrained Polynomial Zonotopes](2023/kochdumper-constrained-polyzonotopes.md) | Kochdumper, Althoff | Acta Informatica | 2023 | 🟢 17/17 \| 7 |
 | [Automatic Abstraction Refinement in Neural Network Verification using Sensitivity Analysis](2023/ladner-hscc-abstraction-refinement.md) | Ladner, Althoff | HSCC | 2023 | 🟢 27/27 \| 9 |
 | [Fully Automatic Neural Network Reduction for Formal Verification](2023/ladner-tmlr-network-reduction.md) | Ladner, Althoff | TMLR | 2023 | 🟢 14/14 \| 5 |
+| [Guarantees for Real Robotic Systems: Unifying Formal Controller Synthesis and Reachset-Conformant Identification](2023/liu-tro-guarantees-real-robotic.md) | Liu, Schürmann, Althoff | IEEE Transactions on Robotics, 39(5):3776-3790 | 2023 | 🟢 15/15 \| 17 |
 | [Reachability Analysis of ARMAX Models](2023/luetzow-cdc-armax.md) | Lützow, Althoff | CDC, pp. 7027-7034 | 2023 | 🟢 14/14 \| 5 |
 | [Backward Reachability Analysis of Perturbed Continuous-Time Linear Systems Using Set Propagation](2023/wetzlinger-arxiv-backward-reachability.md) | Wetzlinger, Althoff | arXiv:2310.19083 | 2023 | 🟢 11/11 \| 8 |
 | [Fully-Automated Verification of Linear Systems Using Inner- and Outer-Approximations of Reachable Sets](2023/wetzlinger-fully-automated-verification.md) | Wetzlinger, Kochdumper, Bak, Althoff | IEEE Transactions on Automatic Control, vol. 68, no. 12, pp. 7771–7786 | 2023 | 🟢 19/19 \| 6 |
@@ -97,6 +99,7 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Inner Approximations of Reachable Sets for Nonlinear Systems using the Minkowski Difference](2024/wetzlinger-lcss-inner-minkowski-difference.md) | Wetzlinger, Kulmburg, Althoff | IEEE Control Systems Letters, 8:2033-2038 | 2024 | 🟡 3/7 \| 16 |
 | [Explaining Fast and Slow: Abstraction and Refinement of Provable Explanations](2025/bassan-icml-explaining-fast-and-slow.md) | Bassan, Elboher, Ladner, Althoff, Katz | ICML | 2025 | 🟢 14/14 \| 2 |
 | [Formal Verification of Graph Convolutional Networks with Uncertain Node Features and Uncertain Graph Structure](2025/ladner-tmlr-gcn.md) | Ladner, Eichelbeck, Althoff | TMLR | 2025 | 🟢 12/12 \| 7 |
+| [Reachset-Conformant System Identification](2026/luetzow-tac-reachset-conformant-identification.md) | Lützow, Althoff | IEEE Transactions on Automatic Control, 71(5):3014-3029 | 2026 | 🟡 13/14 \| 11 |
 
 ## CORA coverage
 
@@ -199,6 +202,9 @@ pages carry one:
 * [Implementation of Polyhedral Operations in CORA 2024](2024/wetzlinger-arch-polyhedral-operations.md)
 * [Zonotopic guaranteed state estimation for uncertain systems](2013/le-automatica-zonotopic-estimation.md)
 * [Set-membership approach and Kalman observer based on zonotopes for discrete-time descriptor systems](2018/wang-automatica-descriptor-observer.md)
+* [Guarantees for Real Robotic Systems: Unifying Formal Controller Synthesis and Reachset-Conformant Identification](2023/liu-tro-guarantees-real-robotic.md)
+* [Checking and Establishing Reachset Conformance in CORA 2023](2023/althoff-arch-reachset-conformance.md)
+* [Reachset-Conformant System Identification](2026/luetzow-tac-reachset-conformant-identification.md)
 * [Explaining Fast and Slow: Abstraction and Refinement of Provable Explanations](2025/bassan-icml-explaining-fast-and-slow.md)
 * [Formal Verification of Graph Convolutional Networks with Uncertain Node Features and Uncertain Graph Structure](2025/ladner-tmlr-gcn.md)
 * [Reachability Analysis for Hybrid Systems with Nonlinear Guard Sets](2020/kochdumper-hscc-nonlinear-guards.md)
