@@ -38,6 +38,12 @@ import CORALean.ContSet.Ellipsoid.Real.Theorems.DistPointEqMax
 import CORALean.ContSet.Ellipsoid.Real.Theorems.DistPointNonnegCounterexample
 import CORALean.ContSet.Ellipsoid.Real.Theorems.DistEllipsoidEqMax
 import CORALean.ContSet.Ellipsoid.Real.Theorems.DistHyperplaneEq
+import CORALean.ContSet.Ellipsoid.Real.Theorems.DotTranspose
+import CORALean.ContSet.Ellipsoid.Real.Theorems.IsUnitShape
+import CORALean.ContSet.Ellipsoid.Real.Theorems.IsGreatestRadius
+import CORALean.ContSet.Ellipsoid.Real.Theorems.IsBiggerIffSubset
+import CORALean.ContSet.Ellipsoid.Real.Theorems.IsBiggerCoraCounterexample
+import CORALean.ContSet.Ellipsoid.Real.Theorems.IntersectStripGollamudi1DCounterexample
 
 /-!
 # What an ellipsoid guarantees, collected

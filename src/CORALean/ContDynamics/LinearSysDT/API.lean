@@ -23,6 +23,7 @@ import CORALean.ContDynamics.LinearSysDT.Definitions.ExactUncertainSet
 import CORALean.ContDynamics.LinearSysDT.Definitions.ObserveStripOptions
 import CORALean.ContDynamics.LinearSysDT.Definitions.DescriptorPredictSet
 import CORALean.ContDynamics.LinearSysDT.Definitions.MeasurementSet
+import CORALean.ContDynamics.LinearSysDT.Definitions.ObserveIntervalState
 
 /-!
 # Discrete-time linear systems, collected

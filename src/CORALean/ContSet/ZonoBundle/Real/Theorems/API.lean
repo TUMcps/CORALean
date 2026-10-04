@@ -43,6 +43,7 @@ import CORALean.ContSet.ZonoBundle.Real.Theorems.EnlargeOuter
 import CORALean.ContSet.ZonoBundle.Real.Theorems.ConstructEnlarge
 import CORALean.ContSet.ZonoBundle.Real.Theorems.IsequalConstruct
 import CORALean.ContSet.ZonoBundle.Real.Theorems.IsequalCoraCounterexample
+import CORALean.ContSet.ZonoBundle.Real.Theorems.IsFullDimAllMembers
 
 /-!
 # What a zonotope bundle guarantees, collected

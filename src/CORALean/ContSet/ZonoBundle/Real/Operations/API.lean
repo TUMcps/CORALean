@@ -32,6 +32,7 @@ import CORALean.ContSet.ZonoBundle.Real.Operations.CartProd
 import CORALean.ContSet.ZonoBundle.Real.Operations.Enlarge
 import CORALean.ContSet.ZonoBundle.Real.Operations.Isequal
 import CORALean.ContSet.ZonoBundle.Real.Operations.IsequalCora
+import CORALean.ContSet.ZonoBundle.Real.Operations.AllMembersFullDim
 
 /-!
 # What a zonotope bundle computes, collected

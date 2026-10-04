@@ -16,6 +16,9 @@ import CORALean.ContDynamics.LinearSysDT.Operations.ObserveStripBased
 import CORALean.ContDynamics.LinearSysDT.Operations.Simulate
 import CORALean.ContDynamics.LinearSysDT.Operations.SimulateBoxFloat
 import CORALean.ContDynamics.LinearSysDT.Operations.SimulateBoxIn
+import CORALean.ContDynamics.LinearSysDT.Operations.ObserveIntervalStep
+import CORALean.ContDynamics.LinearSysDT.Operations.ObserveIntervalState
+import CORALean.ContDynamics.LinearSysDT.Operations.ObserveInterval
 
 /-!
 # What `LinearSysDT` computes

@@ -2178,11 +2178,11 @@
         "group": "contSet",
         "class": "ellipsoid",
         "methods": 50,
-        "proved": 5,
+        "proved": 8,
         "float": 20,
-        "not_yet": 15,
+        "not_yet": 12,
         "out_of_scope": 10,
-        "needs_float": 5,
+        "needs_float": 8,
         "out_of_scope_by_reason": {
           "plotting/display": 3,
           "random/sampling": 2,
@@ -2191,7 +2191,7 @@
           "matlab-runtime": 4,
           "deprecated": 0
         },
-        "cora_issues": 0,
+        "cora_issues": 2,
         "findings": {
           "correct": 9,
           "underspecified": 1,
@@ -2464,11 +2464,11 @@
         "group": "contSet",
         "class": "zonoBundle",
         "methods": 44,
-        "proved": 4,
+        "proved": 5,
         "float": 25,
-        "not_yet": 8,
+        "not_yet": 7,
         "out_of_scope": 7,
-        "needs_float": 4,
+        "needs_float": 5,
         "out_of_scope_by_reason": {
           "plotting/display": 2,
           "random/sampling": 2,
@@ -3114,12 +3114,12 @@
     "groups": {
       "contSet": {
         "methods": 908,
-        "proved": 108,
+        "proved": 112,
         "float": 449,
-        "not_yet": 113,
+        "not_yet": 109,
         "out_of_scope": 238,
-        "needs_float": 108,
-        "cora_issues": 21,
+        "needs_float": 112,
+        "cora_issues": 23,
         "out_of_scope_by_reason": {
           "plotting/display": 51,
           "random/sampling": 36,
@@ -3211,12 +3211,12 @@
     },
     "totals": {
       "methods": 1260,
-      "proved": 163,
+      "proved": 167,
       "float": 545,
-      "not_yet": 170,
+      "not_yet": 166,
       "out_of_scope": 382,
-      "needs_float": 163,
-      "cora_issues": 23,
+      "needs_float": 167,
+      "cora_issues": 25,
       "out_of_scope_by_reason": {
         "plotting/display": 86,
         "random/sampling": 46,
@@ -3259,9 +3259,9 @@
     "theorems": {
       "paper": 763,
       "float": 1166,
-      "helper": 760,
-      "lemma": 1994,
-      "total": 4683,
+      "helper": 764,
+      "lemma": 2002,
+      "total": 4695,
       "examples": 80
     }
   }
