@@ -2,6 +2,7 @@ import CORALean.NN.Layers.Operations.Activation
 import CORALean.NN.Layers.Operations.ActivationLayerOf
 import CORALean.NN.Layers.Operations.ActivationPoly
 import CORALean.NN.Layers.Operations.ActivationPolyRefinable
+import CORALean.NN.Layers.Operations.ActivationTaylm
 import CORALean.NN.Layers.Operations.AllOver
 import CORALean.NN.Layers.Operations.AvgPool
 import CORALean.NN.Layers.Operations.BatchNorm
@@ -21,6 +22,7 @@ import CORALean.NN.Layers.Operations.ConjSlopeHigh
 import CORALean.NN.Layers.Operations.ConjSlopeLow
 import CORALean.NN.Layers.Operations.ConjTBound
 import CORALean.NN.Layers.Operations.Conv
+import CORALean.NN.Layers.Operations.ConvTranspose
 import CORALean.NN.Layers.Operations.CurvHi
 import CORALean.NN.Layers.Operations.CurvLo
 import CORALean.NN.Layers.Operations.CurvMid
@@ -77,6 +79,7 @@ import CORALean.NN.Layers.Operations.Relu
 import CORALean.NN.Layers.Operations.ReluGapUp
 import CORALean.NN.Layers.Operations.ReluRelaxation
 import CORALean.NN.Layers.Operations.ReluSlope
+import CORALean.NN.Layers.Operations.ReluStar
 import CORALean.NN.Layers.Operations.Reshape
 import CORALean.NN.Layers.Operations.SampleDevLo
 import CORALean.NN.Layers.Operations.SampleDevUp
@@ -109,6 +112,9 @@ import CORALean.NN.Layers.Operations.SquareDerivLo
 import CORALean.NN.Layers.Operations.SquareEnclosure
 import CORALean.NN.Layers.Operations.SquareRelaxation
 import CORALean.NN.Layers.Operations.SquareSlope
+import CORALean.NN.Layers.Operations.StarSetCoraRowBounds
+import CORALean.NN.Layers.Operations.StarSetReluNeuron
+import CORALean.NN.Layers.Operations.StarSetRowBounds
 import CORALean.NN.Layers.Operations.SumOffDown
 import CORALean.NN.Layers.Operations.SumOffUp
 import CORALean.NN.Layers.Operations.Tanh

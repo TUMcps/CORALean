@@ -1,4 +1,5 @@
 import CORALean.NN.Definitions.Chain
+import CORALean.NN.Definitions.IntervalChain
 import CORALean.NN.Definitions.MergeBucket
 import CORALean.NN.Definitions.ReducibleNetwork
 import CORALean.NN.Definitions.Reduction

@@ -10,6 +10,11 @@ import CORALean.ContSet.ConZonotope.Float.Operations.Reduce
 import CORALean.ContSet.ConZonotope.Float.Operations.Empty
 import CORALean.ContSet.ConZonotope.Float.Operations.Origin
 import CORALean.ContSet.ConZonotope.Float.Operations.Reindex
+import CORALean.ContSet.ConZonotope.Float.Operations.NominalBoundWeights
+import CORALean.ContSet.ConZonotope.Float.Operations.BoundDotWeights
+import CORALean.ContSet.ConZonotope.Float.Operations.SupportBound
+import CORALean.ContSet.ConZonotope.Float.Operations.SeparatesAlong
+import CORALean.ContSet.ConZonotope.Float.Operations.IsDisjointLP
 import CORALean.ContSet.ConZonotope.Float.Operations.CartProd
 
 /-!
@@ -26,4 +31,10 @@ generators into the box as `Zonotope.mtimes` does. `intersection` copies both
 operands' constraints and writes the agreement rows, whose right-hand side is the
 one thing it computes: an interval holding every difference of the two nominal
 points their error boxes allow, rounded outward.
+
+`boundDot` bounds a direction by a dual certificate of the coefficient program,
+weights from `HPolytope.dualWeights`, checked in rounded arithmetic with the unit
+box paying for the residual: sound at every weight, an upper bound only.
+`isDisjointLP` asks the same simplex for a separating direction and checks it with
+two such bounds: `true` proves the sets disjoint, `false` decides nothing.
 -/

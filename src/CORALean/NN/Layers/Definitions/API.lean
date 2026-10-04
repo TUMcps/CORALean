@@ -41,9 +41,11 @@ import CORALean.NN.Layers.Definitions.SoftmaxLayer
 import CORALean.NN.Layers.Definitions.Softplus
 import CORALean.NN.Layers.Definitions.SoftplusBox
 import CORALean.NN.Layers.Definitions.SoundLayer
+import CORALean.NN.Layers.Definitions.StarSet
 import CORALean.NN.Layers.Definitions.TanhLayer
 import CORALean.NN.Layers.Definitions.TanhRelaxation
 import CORALean.NN.Layers.Definitions.RootRelaxation
+import CORALean.NN.Layers.Definitions.TaylmArray
 import CORALean.NN.Layers.Definitions.WindowMax
 import CORALean.NN.Layers.Definitions.SShape
 

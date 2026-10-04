@@ -1,0 +1,35 @@
+import CORALean.NN.Layers.Definitions.StarSet
+
+/-!
+# The bounds of one neuron of a star set
+
+CORA's `nnReLULayer/evaluateConZonotopeNeuron` with `options.nn.bound_approx` (its default) bounds
+the neuron `j` over the factor box `[l, u]`: the centre of the row `c_j + G_j α` and its radius
+`Σ |G_jk| (u_k - l_k) / 2`, and `l = centre - radius`, `u = centre + radius`. The centre of the
+box is `(l + u) / 2`, which is what the row's centre is taken at here. CORA's code takes
+`c_j + G_j (u - l) / 2` instead, which is the same only where `l = 0`: see
+`StarSet.coraRowBounds`.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+noncomputable def StarSet.rowBounds {n : ℕ} (s : StarSet n) (j : Fin n) : ℝ × ℝ :=
+  let c_ := s.c j + ∑ k, s.G j k * ((s.l k + s.u k) / 2)
+  let r := ∑ k, |s.G j k * ((s.u k - s.l k) / 2)|
+  (c_ - r, c_ + r)
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

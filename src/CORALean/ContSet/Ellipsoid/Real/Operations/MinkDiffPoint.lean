@@ -1,0 +1,35 @@
+import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+
+/-!
+# `Ellipsoid.minkDiffPoint`
+
+CORA's `@ellipsoid/minkDiff` with a numeric column subtrahend: `s = sum(S,2)` is the vector
+itself and the result is `ellipsoid(E.Q, E.q - s)`, the same shape at the shifted centre. Here
+the generator matrix is kept and the centre shifted. The ellipsoid-minus-ellipsoid branch
+(`priv_minkDiffEllipsoid`: `isBigger`, directions `L` filtered by `isBadDir`, an intersection or
+union of the per-direction ellipsoids) is not formalized.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- `minkDiff(E, s)` for a vector `s`: `ellipsoid(E.Q, E.q - s)`. -/
+def Ellipsoid.minkDiffPoint (E : Ellipsoid n) (s : Vec ℝ n) : Ellipsoid n :=
+  ⟨E.k, E.q - s, E.G⟩
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

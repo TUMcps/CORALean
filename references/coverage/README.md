@@ -118,9 +118,9 @@ Rulings on borderline cases:
 | [affine](contSet/affine.md) | contSet | 1 | 0 | 1 | 0 | 0 | 0 |
 | [capsule](contSet/capsule.md) | contSet | 39 | 2 | 26 | 1 | 10 | 3 |
 | [conPolyZono](contSet/conPolyZono.md) | contSet | 47 | 10 | 26 | 3 | 8 | 2 |
-| [conZonotope](contSet/conZonotope.md) | contSet | 50 | 11 | 24 | 3 | 12 | 1 |
+| [conZonotope](contSet/conZonotope.md) | contSet | 50 | 10 | 25 | 3 | 12 | 1 |
 | [contSet](contSet/contSet.md) | contSet | 101 | 1 | 27 | 1 | 72 | 0 |
-| [ellipsoid](contSet/ellipsoid.md) | contSet | 50 | 8 | 20 | 12 | 10 | 2 |
+| [ellipsoid](contSet/ellipsoid.md) | contSet | 50 | 11 | 20 | 9 | 10 | 3 |
 | [emptySet](contSet/emptySet.md) | contSet | 30 | 3 | 20 | 0 | 7 | 0 |
 | [fullspace](contSet/fullspace.md) | contSet | 33 | 5 | 19 | 1 | 8 | 0 |
 | [interval](contSet/interval.md) | contSet | 110 | 3 | 85 | 4 | 18 | 1 |
@@ -154,8 +154,8 @@ Rulings on borderline cases:
 | [nonlinearReset](hybridDynamics/nonlinearReset.md) | hybridDynamics | 9 | 4 | 0 | 1 | 4 | 0 |
 | [parallelHybridAutomaton](hybridDynamics/parallelHybridAutomaton.md) | hybridDynamics | 13 | 1 | 5 | 1 | 6 | 0 |
 | [transition](hybridDynamics/transition.md) | hybridDynamics | 12 | 0 | 3 | 2 | 7 | 0 |
-| [layers](nn/layers.md) | nn | 43 | 8 | 27 | 5 | 3 | 0 |
-| [neuralNetwork](nn/neuralNetwork.md) | nn | 61 | 9 | 8 | 7 | 37 | 1 |
+| [layers](nn/layers.md) | nn | 43 | 9 | 29 | 2 | 3 | 1 |
+| [neuralNetwork](nn/neuralNetwork.md) | nn | 61 | 10 | 8 | 6 | 37 | 1 |
 <!-- /coverage-counts -->
 
 `python3 scripts/check-references.py --fix` rewrites the table above.

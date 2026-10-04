@@ -5,6 +5,7 @@ import CORALean.NN.Layers.Theorems.ActivationLayerOfSound
 import CORALean.NN.Layers.Theorems.ActivationOuterWhere
 import CORALean.NN.Layers.Theorems.ActivationPolySound
 import CORALean.NN.Layers.Theorems.ActivationSound
+import CORALean.NN.Layers.Theorems.ActivationTaylmSound
 import CORALean.NN.Layers.Theorems.AllOverApply
 import CORALean.NN.Layers.Theorems.AtPatternSound
 import CORALean.NN.Layers.Theorems.AvgPoolSound
@@ -14,6 +15,7 @@ import CORALean.NN.Layers.Theorems.ClampUnitNonneg
 import CORALean.NN.Layers.Theorems.CoarseBounds
 import CORALean.NN.Layers.Theorems.CoeffListCoord
 import CORALean.NN.Layers.Theorems.ConvSound
+import CORALean.NN.Layers.Theorems.ConvTransposeSound
 import CORALean.NN.Layers.Theorems.DegLeDegOf
 import CORALean.NN.Layers.Theorems.DoubleRoundingSound
 import CORALean.NN.Layers.Theorems.ElementwiseAffineSound
@@ -54,6 +56,7 @@ import CORALean.NN.Layers.Theorems.Real.API
 import CORALean.NN.Layers.Theorems.ReluGapOfSlopeLe
 import CORALean.NN.Layers.Theorems.ReluRelaxationSound
 import CORALean.NN.Layers.Theorems.ReluSound
+import CORALean.NN.Layers.Theorems.ReluStarSound
 import CORALean.NN.Layers.Theorems.ReshapeExact
 import CORALean.NN.Layers.Theorems.ReshapeSound
 import CORALean.NN.Layers.Theorems.SampleBoundsOfCover
@@ -76,6 +79,9 @@ import CORALean.NN.Layers.Theorems.SoftplusRelaxationSound
 import CORALean.NN.Layers.Theorems.SoftplusSound
 import CORALean.NN.Layers.Theorems.SquareRelaxationSound
 import CORALean.NN.Layers.Theorems.SquareSound
+import CORALean.NN.Layers.Theorems.StarSetCoraRowBoundsUnsound
+import CORALean.NN.Layers.Theorems.StarSetReluNeuronOuter
+import CORALean.NN.Layers.Theorems.StarSetRowBoundsMem
 import CORALean.NN.Layers.Theorems.SumEraseLeSumOffUp
 import CORALean.NN.Layers.Theorems.SumIteZero
 import CORALean.NN.Layers.Theorems.SumOffDownLe
