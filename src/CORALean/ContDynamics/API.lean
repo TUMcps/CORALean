@@ -1,3 +1,4 @@
+import CORALean.ContDynamics.Conform.API
 import CORALean.ContDynamics.LinearARX.API
 import CORALean.ContDynamics.NonlinearARX.API
 import CORALean.ContDynamics.LinearSys.API
@@ -17,9 +18,9 @@ import CORALean.ContDynamics.Reach.API
 /-!
 # Systems and their reachability, collected
 
-One directory per system class, and `OutputEq`, which is not one. The algorithms
-are written against the `ContSet` interfaces alone, so none names a
-representation, and they sit in `CORALean`, in neither arithmetic layer. The
+One directory per system class, and `OutputEq` and `Conform` (reachset conformance), which
+are not one. The algorithms are written against the `ContSet` interfaces alone, so none
+names a representation, and they sit in `CORALean`, in neither arithmetic layer. The
 `*Zonotope` and `*ConZonotope` theorems are the exceptions: they say what is
 left once a representation that does have the required properties is put in.
 

@@ -1,0 +1,40 @@
+import CORALean.HybridDynamics.Theorems.TransitionGuard2PolytopeExact
+import CORALean.ContSet.Conversion.Real.Interval_to_HPolytope
+import CORALean.ContSet.HPolytope.Real.Instances
+import CORALean.ContSet.Interval.Real.Instances
+
+/-!
+# `Transition.guard2polytope` of a box guard
+
+A box guard, converted by `Interval.hPolytope`, is the same guard: exact
+(`Interval.hPolytope_exact`).
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open ContSet
+
+variable {L : Type} {𝕋 : Type} {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+/-- A box guard, converted by `Interval.hPolytope`, is the same guard: exact. -/
+theorem Transition.guard2polytope_interval
+    (e : Transition (fun n => Real.Interval (Vec ℝ n)) L 𝕋 n) :
+    construct (e.guard2polytope (P := fun n => Real.HPolytope (Vec ℝ n))
+      Real.Interval.hPolytope).guard = construct e.guard :=
+  Transition.guard2polytope_exact _ (fun g => Real.Interval.hPolytope_exact g) e
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

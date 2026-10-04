@@ -112,6 +112,8 @@ import CORALean.ContSet.Taylm.Real.Theorems.ProdOuter
 import CORALean.ContSet.Taylm.Real.Theorems.DetOuter
 import CORALean.ContSet.Taylm.Real.Theorems.WeightAppend
 import CORALean.ContSet.Taylm.Real.Theorems.WeightNonneg
+import CORALean.ContSet.Taylm.Real.Theorems.RepresentsaEmptySetIff
+import CORALean.ContSet.Taylm.Real.Theorems.RepresentsaPointConstruct
 
 /-!
 # Taylor model guarantees, collected

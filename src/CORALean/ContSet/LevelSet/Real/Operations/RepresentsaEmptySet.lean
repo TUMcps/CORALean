@@ -1,0 +1,43 @@
+import CORALean.ContSet.LevelSet.Real.LevelSet
+import Mathlib.Data.EReal.Basic
+
+/-!
+# `LevelSet.representsa_emptySet`
+
+CORA's `@levelSet/representsa_` at `emptySet`: `O = ls.funHan(interval.Inf(n))`, the interval
+evaluation of the function at the whole space, and a verdict per row from its bounds. Those
+bounds can be infinite (`x²` is `[0, ∞]` there), and CORALean has no interval evaluation of a
+real function, so `O i = (inf, sup)` is the argument, in `EReal`, assumed to enclose the row's
+range (`Theorems/RepresentsaEmptySetSound`).
+`aux_representsa_emptySet` starts at `res = true` and turns it `false` on the first row that may
+be satisfiable: `==` when `0 ∈ O(i)`, `<=` when `O.inf(i) ≤ 0`, `<` when `O.inf(i) < 0`; so `true`
+needs every row infeasible. The type `levelSet` (`true`), `probZonotope` (`false`) and the throw
+for other types are not modelled.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+def LevelSet.representsa_emptySet (L : LevelSet n) (O : Fin L.m → EReal × EReal) : Prop :=
+  ∀ i, match L.op i with
+    | .eq => ¬((O i).1 ≤ 0 ∧ 0 ≤ (O i).2)
+    | .le => ¬((O i).1 ≤ 0)
+    | .lt => ¬((O i).1 < 0)
+
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

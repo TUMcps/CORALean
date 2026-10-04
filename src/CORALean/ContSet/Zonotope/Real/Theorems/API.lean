@@ -40,6 +40,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDist2ReduceLe
 import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDistIntervalLe
 import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
 import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed
+import CORALean.ContSet.Zonotope.Real.Theorems.MemScaleIff
 import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
 import CORALean.ContSet.Zonotope.Real.Theorems.IsLUBNormFoldMaxAbsBound
 import CORALean.ContSet.Zonotope.Real.Theorems.LinCombOuter
