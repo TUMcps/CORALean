@@ -116,6 +116,7 @@ import CORALean.ContSet.Zonotope.Real.Operations.ScalarIntervalMul
 import CORALean.ContSet.Zonotope.Real.Operations.SumTerms
 import CORALean.ContSet.Zonotope.Real.Operations.OfOneParamPoly
 import CORALean.ContSet.Zonotope.Real.Operations.IsBox
+import CORALean.ContSet.Zonotope.Real.Operations.IntersectDescriptorLPV
 
 /-!
 # What `Zonotope` computes

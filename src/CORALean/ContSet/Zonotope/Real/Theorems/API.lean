@@ -229,6 +229,12 @@ import CORALean.ContSet.Zonotope.Real.Theorems.ScalarIntervalMulOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.SumTermsMem
 import CORALean.ContSet.Zonotope.Real.Theorems.OfOneParamPolyContains
 import CORALean.ContSet.Zonotope.Real.Theorems.IntervalZonotopeSubset
+import CORALean.ContSet.Zonotope.Real.Theorems.IntervalAttained
+import CORALean.ContSet.Zonotope.Real.Theorems.IntervalEqHull
+import CORALean.ContSet.Zonotope.Real.Theorems.ReduceRowSumCounterexample
+import CORALean.ContSet.Zonotope.Real.Theorems.IntersectDescriptorLPVEq
+import CORALean.ContSet.Zonotope.Real.Theorems.IntersectDescriptorHdPRadiusLe
+import CORALean.ContSet.Zonotope.Real.Theorems.IntersectDescriptorHdPRadiusCounterexample
 
 /-!
 # What `Zonotope` guarantees

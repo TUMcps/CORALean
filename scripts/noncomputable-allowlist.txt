@@ -407,3 +407,5 @@ LinearSysDT.toLinearSys  real-layer: the converted system at a real matrix logar
 LinProbSys.initReachCov  real-layer: CORA's input covariance at a diagonal `A`, real exponential; kept to state the finding that it is the printed, wrong-sign form
 LinProbSys.post  real-layer: one step of the probabilistic reach loop at the real matrix exponential and `Real.ProbZonotope`; a Gaussian process has no float counterpart
 Transition.synchronize  real-layer: the synchronized transition at the real scalar, `LinearReset.synchronize` for the reset and `HPolytope.intersection` at the real `FloatOps` for the guard; the computable guard and target steps are `Transition.synchronizeGuard` and `Transition.synchronizeTarget`
+LinearSysDT.intervalObserverCoord  real-layer: the transformed interval observer of Tang et al. 2019 at the real matrix inverse `S⁻¹` of its coordinate transformation; no float counterpart of the inverse
+LinearSysDT.intervalObserverTransformed  real-layer: the bounds of `LinearSysDT.intervalObserverCoord` mapped back through the real matrix inverse `S⁻¹`; no float counterpart of the inverse

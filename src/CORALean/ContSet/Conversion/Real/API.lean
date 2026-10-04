@@ -59,6 +59,12 @@ import CORALean.ContSet.Conversion.Real.PolyZonotope_to_Interval
 import CORALean.ContSet.Conversion.Real.PolyZonotope_to_VPolytope
 import CORALean.ContSet.Conversion.Real.PolyZonotope_to_Zonotope
 import CORALean.ContSet.Conversion.Real.PolyZonotope_to_ZonoBundle
+import CORALean.ContSet.Conversion.Real.SpectraShadow_to_ConPolyZono
+import CORALean.ContSet.Conversion.Real.SpectraShadow_to_ConZonotope
+import CORALean.ContSet.Conversion.Real.SpectraShadow_to_Interval
+import CORALean.ContSet.Conversion.Real.SpectraShadow_to_PolyZonotope
+import CORALean.ContSet.Conversion.Real.SpectraShadow_to_ZonoBundle
+import CORALean.ContSet.Conversion.Real.SpectraShadow_to_Zonotope
 import CORALean.ContSet.Conversion.Real.VPolytope_to_ConPolyZono
 import CORALean.ContSet.Conversion.Real.VPolytope_to_ConZonotope
 import CORALean.ContSet.Conversion.Real.VPolytope_to_Ellipsoid

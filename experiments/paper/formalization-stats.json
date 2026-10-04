@@ -14,24 +14,24 @@
     "not-covered"
   ],
   "totals": {
-    "papers": 61,
-    "papers_with_findings": 51,
-    "in_scope": 784,
-    "formalized": 738,
+    "papers": 63,
+    "papers_with_findings": 53,
+    "in_scope": 813,
+    "formalized": 767,
     "not_formalized": 46,
-    "out_of_scope": 511,
+    "out_of_scope": 549,
     "out_of_scope_by_reason": {
-      "restated": 235,
+      "restated": 250,
       "mathlib": 13,
-      "not-a-claim": 215,
+      "not-a-claim": 237,
       "done-differently": 7,
-      "not-covered": 41
+      "not-covered": 42
     },
     "by_class": {
-      "correct": 517,
-      "underspecified": 114,
+      "correct": 532,
+      "underspecified": 121,
       "proof-gap": 27,
-      "fixed": 78,
+      "fixed": 85,
       "false": 2
     }
   },
@@ -1270,6 +1270,128 @@
           "result": "Prop. 7",
           "class": "fixed",
           "reason": "the row Λ₂g ≤ εh_Ball - H_Ball x̄ + H_Ball βₓ has the wrong sign on x̄ (it certifies F_proj ⊆ -x̄ + X₀ ⊕ εP_Ball): in ℝ¹, F = [-4, 2], X = [0, 2], ε = 2 is feasible while d_H = 4; true with + H_Ball x̄; see Findings"
+        }
+      ]
+    },
+    {
+      "page": "2019/tang-tac-interval-estimation.md",
+      "label": "Tang 2019",
+      "year": 2019,
+      "title": "Interval estimation methods for discrete-time linear time-invariant systems",
+      "in_scope": 18,
+      "formalized": 18,
+      "not_formalized": 0,
+      "out_of_scope": 22,
+      "out_of_scope_by_reason": {
+        "restated": 9,
+        "mathlib": 0,
+        "not-a-claim": 13,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 9,
+        "underspecified": 6,
+        "proof-gap": 0,
+        "fixed": 3,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Property 4",
+          "class": "underspecified",
+          "reason": "the sums run from `j = 0`; the generators are `j = 1, …, m`"
+        },
+        {
+          "result": "Alg. 1",
+          "class": "underspecified",
+          "reason": "line 3 starts `S_w`, `S_v` at `∅`, which would make every box of line 5 empty; read as `{0}`"
+        },
+        {
+          "result": "Thm. 3",
+          "class": "fixed",
+          "reason": "the zero run `e₀ = 0`, `d ≡ 0` makes both sides `0`, at an instance where Eq. 16 holds; with `≤` it holds; see Findings"
+        },
+        {
+          "result": "Eq. 35",
+          "class": "underspecified",
+          "reason": "the sum runs over `i = 0, …, s`; it is over the columns `j = 1, …, s`"
+        },
+        {
+          "result": "Remark 2",
+          "class": "fixed",
+          "reason": "without absolute values the row sum cancels: `H = [1 -1]`, `q = n_x = 1` gives `H⁻ = 0`; see Findings"
+        },
+        {
+          "result": "Thm. 6",
+          "class": "underspecified",
+          "reason": "Eq. 34b prints the generators `E`, `-LF` for the sets `⟨0, D_w⟩`, `⟨0, D_v⟩` of Eq. 9; read as `E D_w`, `-LF D_v`, as the proof's Eq. 50 uses them"
+        },
+        {
+          "result": "Lemma 5",
+          "class": "fixed",
+          "reason": "`A = [1 1; 1 1]` maps `[0, 1]²` onto a segment, not the box `[0, 2]²`; the hull equality holds and is what the proof of `Thm. 7` uses; see Findings"
+        },
+        {
+          "result": "Thm. 7",
+          "class": "underspecified",
+          "reason": "the hypothesis `A - LC ≥ 0` of `Thm. 4`, which the proof uses, is missing from the statement; without it the inequality fails (`A - LC = -1`); see Findings"
+        },
+        {
+          "result": "Thm. 8",
+          "class": "underspecified",
+          "reason": "the hypotheses of `Thm. 5` (`S` invertible, `R ≥ 0`), under which Eq. 42 is defined and an interval observer and which the proof's Eq. 71 uses, are missing from the statement"
+        }
+      ]
+    },
+    {
+      "page": "2019/wang-tac-descriptor-lpv-estimation.md",
+      "label": "Wang 2019",
+      "year": 2019,
+      "title": "Zonotopic set-membership state estimation for discrete-time descriptor LPV systems",
+      "in_scope": 11,
+      "formalized": 11,
+      "not_formalized": 0,
+      "out_of_scope": 16,
+      "out_of_scope_by_reason": {
+        "restated": 6,
+        "mathlib": 0,
+        "not-a-claim": 9,
+        "done-differently": 0,
+        "not-covered": 1
+      },
+      "by_class": {
+        "correct": 6,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 4,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Remark 1",
+          "class": "fixed",
+          "reason": "the run `d ≡ 0` at `H_d = 1` has peak `0` and worst case `1`; the second equality holds only as `≤`; see Findings"
+        },
+        {
+          "result": "Thm. 2",
+          "class": "fixed",
+          "reason": "Eq. 20's top-left block is `I`, so it is never `≼ 0` and the theorem is vacuous; with Eq. 26, the printed Eq. 19 gives `(I - ΛC)NFH_d` and `ΛFH_d` one coefficient though the zonotope has two, and Eq. 21a fails (`ϱ_k = 9/5 > 1/2`); see Findings"
+        },
+        {
+          "result": "Lemma 2",
+          "class": "fixed",
+          "reason": "`r = 2`, `Γ₁₁ = Γ₂₂ = 1`, `Γ₁₂ = Γ₂₁ = -1` meet Eqs. 28a-28b and give `0` at `μ = (1/2, 1/2)`; see Findings"
+        },
+        {
+          "result": "Cor. 2",
+          "class": "fixed",
+          "reason": "two vertices with `Ψ₁₁, Ψ₂₂ ≻ 0` and `2Ψ₁₁ + Ψ₁₂ + Ψ₂₁ ≽ 0` whose Eq. 19 at `ρ = (1/2, 1/2)` is indefinite; see Findings"
+        },
+        {
+          "result": "Thm. 3",
+          "class": "underspecified",
+          "reason": "the hypotheses are `Thm. 2`'s, left implicit, and `‖d‖²_∞` must be the worst case `max_b ‖H_d b‖²`, Eq. 3's right side, which the radius bound is about; the peak of a run can be smaller (`Remark 1`)"
         }
       ]
     },
@@ -2961,10 +3083,10 @@
         },
         "cora_issues": 1,
         "findings": {
-          "correct": 22,
+          "correct": 24,
           "underspecified": 2,
           "proof-gap": 0,
-          "fixed": 0,
+          "fixed": 1,
           "false": 0
         }
       },
@@ -3102,11 +3224,11 @@
         "group": "contSet",
         "class": "spectraShadow",
         "methods": 33,
-        "proved": 1,
+        "proved": 11,
         "float": 7,
-        "not_yet": 17,
+        "not_yet": 7,
         "out_of_scope": 8,
-        "needs_float": 1,
+        "needs_float": 11,
         "out_of_scope_by_reason": {
           "plotting/display": 3,
           "random/sampling": 2,
@@ -3115,7 +3237,7 @@
           "matlab-runtime": 3,
           "deprecated": 0
         },
-        "cora_issues": 0,
+        "cora_issues": 4,
         "findings": {
           "correct": 0,
           "underspecified": 0,
@@ -3195,10 +3317,10 @@
         },
         "cora_issues": 2,
         "findings": {
-          "correct": 91,
-          "underspecified": 19,
+          "correct": 92,
+          "underspecified": 21,
           "proof-gap": 3,
-          "fixed": 10,
+          "fixed": 12,
           "false": 1
         }
       },
@@ -3377,10 +3499,10 @@
         },
         "cora_issues": 1,
         "findings": {
-          "correct": 9,
-          "underspecified": 4,
+          "correct": 19,
+          "underspecified": 9,
           "proof-gap": 0,
-          "fixed": 2,
+          "fixed": 5,
           "false": 0
         }
       },
@@ -3804,12 +3926,12 @@
     "groups": {
       "contSet": {
         "methods": 908,
-        "proved": 152,
+        "proved": 162,
         "float": 451,
-        "not_yet": 65,
+        "not_yet": 55,
         "out_of_scope": 240,
-        "needs_float": 152,
-        "cora_issues": 31,
+        "needs_float": 162,
+        "cora_issues": 35,
         "out_of_scope_by_reason": {
           "plotting/display": 51,
           "random/sampling": 36,
@@ -3819,10 +3941,10 @@
           "deprecated": 14
         },
         "findings": {
-          "correct": 281,
-          "underspecified": 55,
+          "correct": 284,
+          "underspecified": 57,
           "proof-gap": 5,
-          "fixed": 46,
+          "fixed": 49,
           "false": 2
         }
       },
@@ -3843,10 +3965,10 @@
           "deprecated": 0
         },
         "findings": {
-          "correct": 128,
-          "underspecified": 40,
+          "correct": 138,
+          "underspecified": 45,
           "proof-gap": 16,
-          "fixed": 20,
+          "fixed": 23,
           "false": 0
         }
       },
@@ -3901,12 +4023,12 @@
     },
     "totals": {
       "methods": 1260,
-      "proved": 227,
+      "proved": 237,
       "float": 549,
-      "not_yet": 100,
+      "not_yet": 90,
       "out_of_scope": 384,
-      "needs_float": 227,
-      "cora_issues": 46,
+      "needs_float": 237,
+      "cora_issues": 50,
       "out_of_scope_by_reason": {
         "plotting/display": 86,
         "random/sampling": 46,
@@ -3916,19 +4038,19 @@
         "deprecated": 14
       },
       "findings": {
-        "correct": 472,
-        "underspecified": 102,
+        "correct": 485,
+        "underspecified": 109,
         "proof-gap": 23,
-        "fixed": 68,
+        "fixed": 74,
         "false": 2
       }
     },
     "findings_not_on_a_class": {
       "global": {
-        "correct": 30,
+        "correct": 32,
         "underspecified": 5,
         "proof-gap": 4,
-        "fixed": 10,
+        "fixed": 11,
         "false": 0
       },
       "specification": {
@@ -3947,11 +4069,11 @@
       }
     },
     "theorems": {
-      "paper": 987,
+      "paper": 1023,
       "float": 1176,
-      "helper": 928,
-      "lemma": 2166,
-      "total": 5257,
+      "helper": 952,
+      "lemma": 2200,
+      "total": 5351,
       "examples": 80
     }
   }

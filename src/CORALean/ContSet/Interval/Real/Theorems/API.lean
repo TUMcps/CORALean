@@ -149,6 +149,10 @@ import CORALean.ContSet.Interval.Real.Theorems.TanUnboundedOfPole
 import CORALean.ContSet.Interval.Real.Theorems.TanByRegionsExact
 import CORALean.ContSet.Interval.Real.Theorems.CotByRegionsExact
 import CORALean.ContSet.Interval.Real.Theorems.InvImageIccCases
+import CORALean.ContSet.Interval.Real.Theorems.HullIsLeast
+import CORALean.ContSet.Interval.Real.Theorems.HullAdd
+import CORALean.ContSet.Interval.Real.Theorems.HullImageOfNonneg
+import CORALean.ContSet.Interval.Real.Theorems.ImageOfNonnegCounterexample
 
 /-!
 # What `Interval` guarantees

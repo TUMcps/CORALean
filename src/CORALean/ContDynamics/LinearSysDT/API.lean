@@ -26,6 +26,9 @@ import CORALean.ContDynamics.LinearSysDT.Definitions.ObserveStripOptions
 import CORALean.ContDynamics.LinearSysDT.Definitions.DescriptorPredictSet
 import CORALean.ContDynamics.LinearSysDT.Definitions.MeasurementSet
 import CORALean.ContDynamics.LinearSysDT.Definitions.ObserveIntervalState
+import CORALean.ContDynamics.LinearSysDT.Definitions.IntervalEstimateState
+import CORALean.ContDynamics.LinearSysDT.Definitions.ReachErrorSet
+import CORALean.ContDynamics.LinearSysDT.Definitions.HinfLmi
 
 /-!
 # Discrete-time linear systems, collected

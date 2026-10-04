@@ -74,6 +74,8 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Implementation of Taylor Models in CORA 2018](2018/althoff-arch-taylor-models.md) | Althoff, Grebenyuk, Kochdumper | ARCH18, EPiC Series in Computing 54, pp. 145-173 | 2018 | 🟢 11/11 \| 38 |
 | [Set-membership approach and Kalman observer based on zonotopes for discrete-time descriptor systems](2018/wang-automatica-descriptor-observer.md) | Wang, Puig, Cembrano | Automatica, 93:435-443 | 2018 | 🟡 16/18 \| 9 |
 | [Linear Encodings for Polytope Containment Problems](2019/sadraddini-cdc-polytope-containment.md) | Sadraddini, Tedrake | CDC, pp. 4367-4372 | 2019 | 🟡 22/23 \| 16 |
+| [Interval estimation methods for discrete-time linear time-invariant systems](2019/tang-tac-interval-estimation.md) | Tang, Wang, Wang, Raïssi, Shen | IEEE Transactions on Automatic Control, 64(11):4717-4724 | 2019 | 🟢 18/18 \| 22 |
+| [Zonotopic set-membership state estimation for discrete-time descriptor LPV systems](2019/wang-tac-descriptor-lpv-estimation.md) | Wang, Wang, Puig, Cembrano | IEEE Transactions on Automatic Control, 64(5):2092-2099 | 2019 | 🟢 11/11 \| 16 |
 | [Reachability Analysis of Large Linear Systems with Uncertain Inputs in the Krylov Subspace](2020/althoff-tac-krylov.md) | Althoff | IEEE Transactions on Automatic Control, 65(2):477-492 | 2020 | 🟡 7/13 \| 16 |
 | [Scalable Zonotope-Ellipsoid Conversions using the Euclidean Zonotope Norm](2020/gassmann-acc-zonotope-ellipsoid.md) | Gaßmann, Althoff | ACC, pp. 4715-4721 | 2020 | 🟡 13/16 \| 14 |
 | [Robust Under-Approximations and Application to Reachability of Non-Linear Control Systems With Disturbances](2020/goubault-lcss-robust-underapproximations.md) | Goubault, Putot | IEEE Control Systems Letters, 4(4):928-933 | 2020 | 🟡 5/7 \| 5 |
@@ -224,6 +226,8 @@ pages carry one:
 * [General Inner Approximation of Vector-valued Functions](2013/mullier-rc-general-inner-approximation.md)
 * [Zono-Conformal Prediction: Zonotope-Based Uncertainty Quantification for Regression and Classification Tasks](2025/luetzow-jmlr-zono-conformal-prediction.md)
 * [Robust Identification of Hybrid Automata from Noisy Data](2025/kochdumper-hscc-hybrid-automata-identification.md)
+* [Interval estimation methods for discrete-time linear time-invariant systems](2019/tang-tac-interval-estimation.md)
+* [Zonotopic set-membership state estimation for discrete-time descriptor LPV systems](2019/wang-tac-descriptor-lpv-estimation.md)
 
 [FINDINGS.md](../FINDINGS.md) is the other half, and stays at the root: the
 places this formalization parts from CORA on purpose, which belong to no paper.

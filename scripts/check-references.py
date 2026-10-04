@@ -53,13 +53,13 @@ ENTRY = re.compile(r"^\s*\*\s*\[(\d+)\]\s*(.*)$")
 # one: `[0, r]` is an interval and `[1, 2]` a pair of cites, neither a result.
 CITE = re.compile(r"\[(\d+)((?:,\s*)[^\]\n]*)?\]")
 LOCATOR = re.compile(
-    r"^(Thm\.|Prop\.|Lemma|Def\.|Cor\.|Sec\.|Eq\.|Alg\.|Ch\.|Table|Fig\.|Remark|"
+    r"^(Thm\.|Prop\.|Property|Lemma|Def\.|Cor\.|Sec\.|Eq\.|Alg\.|Ch\.|Table|Fig\.|Remark|"
     r"Heuristic|Assumption|Example|§|pp?\.)", re.I
 )
 LINK = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
 # A row that asserts something, as against one naming a definition, a section or
 # an algorithm. Only these are held to linking a file that proves something.
-CLAIM = re.compile(r"^(Thm\.|Prop\.|Lemma|Cor\.)", re.I)
+CLAIM = re.compile(r"^(Thm\.|Prop\.|Property|Lemma|Cor\.)", re.I)
 # A file proves something if it declares a theorem, or discharges a field of a
 # structure that carries its own guarantee -- `SupportBound`'s `le := by ...`.
 PROOF = re.compile(r"^(theorem|lemma)\s|:=\s*by\b", re.M)
