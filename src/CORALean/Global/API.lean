@@ -112,6 +112,11 @@ import CORALean.Global.Jacobian
 import CORALean.Global.LinResidual
 import CORALean.Global.StackSelect
 import CORALean.Global.StackSelectMulVec
+import CORALean.Global.ExistsPosLeOfPosDef
+import CORALean.Global.MulVecPosNegBounds
+import CORALean.Global.NonnegOfNonnegRecurrence
+import CORALean.Global.DoubleSumPosDef
+import CORALean.Global.DoubleSumPosDefCounterexample
 
 /-!
 # Global definitions, collected

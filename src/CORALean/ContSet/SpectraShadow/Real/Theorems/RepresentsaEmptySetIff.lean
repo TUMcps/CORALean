@@ -1,0 +1,44 @@
+import CORALean.ContSet.SpectraShadow.Real.Operations.RepresentsaEmptySet
+
+/-!
+# `SpectraShadow.representsa_emptySet` is emptiness
+
+The inequality has no solution exactly when the set is `∅`.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+open Matrix
+
+variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem SpectraShadow.representsa_emptySet_iff (S : SpectraShadow α) :
+    S.representsa_emptySet ↔ S.construct = ∅ := by -- --- PROOF ---
+  unfold SpectraShadow.representsa_emptySet
+  constructor
+  · -- a point would give a solution
+    intro h
+    apply Set.eq_empty_of_forall_notMem
+    rintro x ⟨β, hβ, -⟩
+    exact h ⟨β, hβ⟩
+  · -- a solution gives a point
+    rintro h ⟨β, hβ⟩
+    have : (S.c + ∑ i, β i • S.G i) ∈ S.construct := ⟨β, hβ, rfl⟩
+    rw [h] at this
+    exact this
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -130,7 +130,7 @@ Rulings on borderline cases:
 | [polygon](contSet/polygon.md) | contSet | 46 | 9 | 17 | 11 | 9 | 2 |
 | [polytope](contSet/polytope.md) | contSet | 58 | 13 | 33 | 0 | 12 | 4 |
 | [probZonotope](contSet/probZonotope.md) | contSet | 28 | 15 | 0 | 5 | 8 | 3 |
-| [spectraShadow](contSet/spectraShadow.md) | contSet | 33 | 1 | 7 | 17 | 8 | 0 |
+| [spectraShadow](contSet/spectraShadow.md) | contSet | 33 | 11 | 7 | 7 | 8 | 4 |
 | [taylm](contSet/taylm.md) | contSet | 51 | 5 | 33 | 1 | 12 | 0 |
 | [zonoBundle](contSet/zonoBundle.md) | contSet | 44 | 12 | 25 | 0 | 7 | 4 |
 | [zonotope](contSet/zonotope.md) | contSet | 80 | 12 | 46 | 8 | 14 | 2 |

@@ -26,6 +26,13 @@ import CORALean.ContDynamics.LinearSysDT.Operations.NominalState
 import CORALean.ContDynamics.LinearSysDT.Operations.ConformReach
 import CORALean.ContDynamics.LinearSysDT.Operations.ConformAdd
 import CORALean.ContDynamics.LinearSysDT.Operations.ObservePropagation
+import CORALean.ContDynamics.LinearSysDT.Operations.IntervalEstimateStep
+import CORALean.ContDynamics.LinearSysDT.Operations.IntervalEstimateState
+import CORALean.ContDynamics.LinearSysDT.Operations.IntervalEstimate
+import CORALean.ContDynamics.LinearSysDT.Operations.IntervalObserver
+import CORALean.ContDynamics.LinearSysDT.Operations.IntervalObserverCoord
+import CORALean.ContDynamics.LinearSysDT.Operations.IntervalObserverTransformed
+import CORALean.ContDynamics.LinearSysDT.Operations.ObserveDescriptorLPV
 
 /-!
 # What `LinearSysDT` computes
