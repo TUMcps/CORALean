@@ -46,6 +46,13 @@ import CORALean.ContSet.ConPolyZono.Real.Theorems.IsFullDimRank
 import CORALean.ContSet.ConPolyZono.Real.Theorems.SplitDepFactorUnion
 import CORALean.ContSet.ConPolyZono.Real.Theorems.SplitLongestGenUnion
 import CORALean.ContSet.ConPolyZono.Real.Theorems.SplitUnion
+import CORALean.ContSet.ConPolyZono.Real.Theorems.CentreMemConstruct
+import CORALean.ContSet.ConPolyZono.Real.Theorems.ExactPlusConstruct
+import CORALean.ContSet.ConPolyZono.Real.Theorems.RepresentsaPointSubset
+import CORALean.ContSet.ConPolyZono.Real.Theorems.MinkDiffConstruct
+import CORALean.ContSet.ConPolyZono.Real.Theorems.MinkDiffOuter
+import CORALean.ContSet.ConPolyZono.Real.Theorems.MinkDiffInnerOfConvex
+import CORALean.ContSet.ConPolyZono.Real.Theorems.MinkDiffNotInner
 
 /-!
 # What `ConPolyZono` guarantees

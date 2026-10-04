@@ -106,6 +106,11 @@ import CORALean.ContSet.ConPolyZono.Real.Operations.LongestFactor
 import CORALean.ContSet.ConPolyZono.Real.Operations.Split
 import CORALean.ContSet.ConPolyZono.Real.Operations.SplitDepFactor
 import CORALean.ContSet.ConPolyZono.Real.Operations.SplitLongestGen
+import CORALean.ContSet.ConPolyZono.Real.Operations.Centre
+import CORALean.ContSet.ConPolyZono.Real.Operations.ExactPlus
+import CORALean.ContSet.ConPolyZono.Real.Operations.SupportBound
+import CORALean.ContSet.ConPolyZono.Real.Operations.RepresentsaPoint
+import CORALean.ContSet.ConPolyZono.Real.Operations.MinkDiff
 
 /-!
 # What `ConPolyZono` computes

@@ -44,6 +44,14 @@ import CORALean.ContSet.ConZonotope.Real.Operations.CompactEqs
 import CORALean.ContSet.ConZonotope.Real.Operations.CompactGens
 import CORALean.ContSet.ConZonotope.Real.Operations.ConIntersect
 import CORALean.ContSet.ConZonotope.Real.Operations.Split
+import CORALean.ContSet.ConZonotope.Real.Operations.StripMat
+import CORALean.ContSet.ConZonotope.Real.Operations.IntersectStrip
+import CORALean.ContSet.ConZonotope.Real.Operations.QuadMap
+import CORALean.ContSet.ConZonotope.Real.Operations.SupportBound
+import CORALean.ContSet.ConZonotope.Real.Operations.RepresentsaPoint
+import CORALean.ContSet.ConZonotope.Real.Operations.RepresentsaOrigin
+import CORALean.ContSet.ConZonotope.Real.Operations.RepresentsaEmptySet
+import CORALean.ContSet.ConZonotope.Real.Operations.IsFullDimCora
 
 /-!
 # What `ConZonotope` computes

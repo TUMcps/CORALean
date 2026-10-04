@@ -35,3 +35,10 @@ appendix algorithm as their Alg. 1 and the elimination as their Thm. 2.
 | `Alg. 1` | (Appendix) Iterative interval arithmetic over the rows of Aξ = b: from E = [-1, 1], R = [-∞, ∞], refine R_j := R_j ∩ (a_{ij}^{-1}b_i - Σ_{k≠j} a_{ij}^{-1}a_{ik}E_k) and E_j := E_j ∩ R_j for every i, j with a_{ij} ≠ 0, so that B∞(A, b) ⊂ E ⊂ [-1, 1]; E ∩ R = ∅ shows Z = ∅. | [`Tighten.lean`](../../src/CORALean/ContSet/ConZonotope/Real/Operations/Tighten.lean), [`TightenRow.lean`](../../src/CORALean/ContSet/ConZonotope/Real/Operations/TightenRow.lean), [`TightenCoeff.lean`](../../src/CORALean/ContSet/ConZonotope/Real/Operations/TightenCoeff.lean), [`TightenOuter.lean`](../../src/CORALean/ContSet/ConZonotope/Real/Theorems/TightenOuter.lean) — one pass over the rows, with the box E and its soundness B∞(A, b) ⊂ E; the separate R of (A.1), the emptiness test and the iteration are not | `correct` |
 | `Sec. 5` | Set-based state estimation for discrete-time linear systems, X_k = (AX_{k-1} + B_w W) ∩_C (y_k - D_v V), by constrained zonotopes with reduction, against ROBP, zonotopic and polytopic estimators (Figs. 3-6, Table 1). | n/a — an application to state estimation, a subject CORALean does not cover | `not-covered` |
 | `Sec. 6` | Set-based fault detection with the constrained-zonotope estimator (Fig. 7). | n/a — an application to fault detection, a subject CORALean does not cover | `not-covered` |
+
+## Cited without a result
+
+These name the paper as a whole. A locator would put each in a row above.
+
+* [`QuadMap.lean`](../../src/CORALean/ContSet/ConZonotope/Real/Operations/QuadMap.lean)
+* [`SupportBound.lean`](../../src/CORALean/ContSet/ConZonotope/Real/Operations/SupportBound.lean)

@@ -137,6 +137,13 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.SplitDepFactorUnion
 import CORALean.ContSet.PolyZonotope.Real.Theorems.SplitLongestGenUnion
 import CORALean.ContSet.PolyZonotope.Real.Theorems.SumCoraCounterexample
 import CORALean.ContSet.PolyZonotope.Real.Theorems.SumPoint
+import CORALean.ContSet.PolyZonotope.Real.Theorems.RepresentsaPointConstruct
+import CORALean.ContSet.PolyZonotope.Real.Theorems.RepresentsaEmptySetIff
+import CORALean.ContSet.PolyZonotope.Real.Theorems.ReplaceIdPoint
+import CORALean.ContSet.PolyZonotope.Real.Theorems.ReplaceIdSubset
+import CORALean.ContSet.PolyZonotope.Real.Theorems.ReplaceIdExact
+import CORALean.ContSet.PolyZonotope.Real.Theorems.OnlyIdPoint
+import CORALean.ContSet.PolyZonotope.Real.Theorems.JacobianHasDerivAt
 
 /-!
 # What `PolyZonotope` guarantees

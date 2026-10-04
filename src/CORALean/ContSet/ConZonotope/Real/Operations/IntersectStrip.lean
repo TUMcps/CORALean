@@ -1,0 +1,52 @@
+import CORALean.ContSet.ConZonotope.Real.Operations.StripMat
+import CORALean.ContSet.ConZonotope.Real.Operations.OfMat
+import CORALean.ContSet.HPolytope.Real.Operations.Intersection
+import CORALean.ContSet.HPolytope.Real.Operations.Comap
+import CORALean.ContSet.HPolytope.Real.Operations.Eqs
+import CORALean.Global.Block
+
+/-!
+# `ConZonotope.intersectStrip`
+
+CORA's `@conZonotope/intersectStrip` (after Alanwar et al., as its header cites) with a numeric
+gain, `aux_conZonotopeFromLambda`: the intersection of a constrained zonotope with the strip
+`{x | |C x - y| ≤ φ}` of `s` parallel slabs, in CG-Rep, the gain form being Alamo et al.'s for
+zonotopes. The strip enters as `s` new factors `ν` and `s` equality rows
+`C G ξ - φ ν = y - C c`; the centre moves to `c + Λ (y - C c)`, the generators become
+`[(I - Λ C) G, φ₁ Λ₁, …, φₛ Λₛ]`, and the old constraints keep acting on the old factors.
+
+The gain `Λ` is an argument and any `Λ` works. CORA's `'normGen'`, `'alamo-FRad'` and
+`'wang-FRad'` are closed forms for one choice of `Λ` (a matrix inverse), and `'svd'`, `'radius'`
+and `'bravo'` are optimiser or search driven; none of them is part of this operation.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       03-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+open Matrix
+
+variable {n s : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- `aux_conZonotopeFromLambda`: `cZ ∩ {x | |C x - y| ≤ φ}` for the gain `Λ`. -/
+def ConZonotope.intersectStrip (cZ : ConZonotope (Vec ℝ n)) (C : Mat ℝ s n) (φ y : Vec ℝ s)
+    (Λ : Mat ℝ n s) : ConZonotope (Vec ℝ n) where
+  h := cZ.h + s
+  c := cZ.c + Λ *ᵥ (y - C *ᵥ cZ.c)
+  G := Fin.append (fun j => (1 - Λ * C) *ᵥ cZ.G j) fun i => φ i • fun k => Λ k i
+  P := (cZ.P.comap (blockLeft cZ.h s)).intersection
+        (HPolytope.eqs (cZ.stripMat C φ) (y - C *ᵥ cZ.c))
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
