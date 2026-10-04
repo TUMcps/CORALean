@@ -86,6 +86,13 @@ import CORALean.ContSet.HPolytope.Real.Theorems.SimplexRowsRedundantCounterexamp
 import CORALean.ContSet.HPolytope.Real.Theorems.SuccLeOfIsBounded
 import CORALean.ContSet.HPolytope.Real.Theorems.TightRedundantCounterexample
 import CORALean.ContSet.HPolytope.Real.Theorems.IsGreatestBallRadius
+import CORALean.ContSet.HPolytope.Real.Theorems.RestrictConstruct
+import CORALean.ContSet.HPolytope.Real.Theorems.CompactZerosExact
+import CORALean.ContSet.HPolytope.Real.Theorems.CompactAlignedIneqExact
+import CORALean.ContSet.HPolytope.Real.Theorems.MoveToEqConstruct
+import CORALean.ContSet.HPolytope.Real.Theorems.AtoAeStateSpec
+import CORALean.ContSet.HPolytope.Real.Theorems.CompactAtoAeExact
+import CORALean.ContSet.HPolytope.Real.Theorems.RepresentsaFullspaceIff
 
 /-!
 # What `HPolytope` guarantees

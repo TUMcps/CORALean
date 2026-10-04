@@ -135,6 +135,7 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.IsFullDimRank
 import CORALean.ContSet.PolyZonotope.Real.Theorems.RmIdConstruct
 import CORALean.ContSet.PolyZonotope.Real.Theorems.SplitDepFactorUnion
 import CORALean.ContSet.PolyZonotope.Real.Theorems.SplitLongestGenUnion
+import CORALean.ContSet.PolyZonotope.Real.Theorems.SplitOuter
 import CORALean.ContSet.PolyZonotope.Real.Theorems.SumCoraCounterexample
 import CORALean.ContSet.PolyZonotope.Real.Theorems.SumPoint
 import CORALean.ContSet.PolyZonotope.Real.Theorems.RepresentsaPointConstruct

@@ -1,0 +1,40 @@
+import CORALean.ContSet.PolyZonotope.Real.Operations.Split
+import CORALean.ContSet.Zonotope.Real.Theorems.ReduceMethCOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.SplitUnion
+
+/-!
+# The halves of `split` cover the polynomial zonotope
+
+The parallelotope encloses `zonotope(pZ)` (`reduceMethC_outer`), which encloses `pZ`
+(`zonotope_contains`); its two halves cover it exactly (`Zonotope.split_union`), and the
+polynomial zonotope of a zonotope denotes it (`Zonotope.polyZonotope_exact`). So the union of
+the two halves, along any generator, is an over-approximation of `pZ`, not equal to it.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem PolyZonotope.split_outer (pZ : PolyZonotope (Vec ℝ n))
+    (j : Fin pZ.splitParallelotope.h) :
+    pZ.construct ⊆ (pZ.split j).1.construct ∪ (pZ.split j).2.construct := by
+  unfold PolyZonotope.split
+  rw [← Zonotope.polyZonotope_exact, ← Zonotope.polyZonotope_exact,
+    Zonotope.split_union pZ.splitParallelotope j]
+  exact (pZ.zonotope_contains).trans (Zonotope.reduceMethC_outer _ 1)
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

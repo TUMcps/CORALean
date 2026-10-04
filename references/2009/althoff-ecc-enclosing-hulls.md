@@ -90,3 +90,9 @@ volume is not a probability: for `X ~ N(0, σ²)` with `σ = 1/100`, `γ = 3` an
 `1 - erf(γ/√2)^{2n}` for the tail is kept as the hypothesis on `P(X ∉ η)`, not proved.
 [`UnsafeProbPrintedCounterexample.lean`](../../src/CORALean/ContSet/ProbZonotope/Real/Theorems/UnsafeProbPrintedCounterexample.lean),
 [`UnsafeProbLe.lean`](../../src/CORALean/ContSet/ProbZonotope/Real/Theorems/UnsafeProbLe.lean)
+
+## Cited without a result
+
+These name the paper as a whole. A locator would put each in a row above.
+
+* [`Max.lean`](../../src/CORALean/ContSet/ProbZonotope/Real/Operations/Max.lean)

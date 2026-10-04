@@ -50,6 +50,13 @@ import CORALean.ContSet.HPolytope.Real.Operations.AffineHullBasis
 import CORALean.ContSet.HPolytope.Real.Operations.GenerateRandomH
 import CORALean.ContSet.HPolytope.Real.Operations.IsequalNondeg
 import CORALean.ContSet.HPolytope.Real.Operations.SimplexRows
+import CORALean.ContSet.HPolytope.Real.Operations.Restrict
+import CORALean.ContSet.HPolytope.Real.Operations.CompactZeros
+import CORALean.ContSet.HPolytope.Real.Operations.CompactAlignedIneq
+import CORALean.ContSet.HPolytope.Real.Operations.MoveToEq
+import CORALean.ContSet.HPolytope.Real.Operations.AtoAeState
+import CORALean.ContSet.HPolytope.Real.Operations.CompactAtoAe
+import CORALean.ContSet.HPolytope.Real.Operations.RepresentsaFullspace
 
 /-!
 # What `HPolytope` computes
