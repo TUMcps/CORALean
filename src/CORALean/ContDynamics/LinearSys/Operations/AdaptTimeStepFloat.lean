@@ -11,6 +11,10 @@ accumulate `ε_P`, eq. (9). The clip is CORA's `maxTimeStep`, not [1]'s, whose
 it into a candidate. Nothing rests on the candidate being exact: the run reads
 the step it took back through `ToRat`, and clips the window it reports.
 
+Tuning only: `adaptiveStepFloat` re-checks the step and order it is given, and
+`adaptiveStepFloat_outer` holds for any. A NaN read through `ToRat` is `1.5 · 2 ^ 1024`. The clip
+replaces a NaN `Δt` by the horizon.
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

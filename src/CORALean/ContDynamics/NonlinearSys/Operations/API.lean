@@ -65,6 +65,7 @@ import CORALean.ContDynamics.NonlinearSys.Operations.ReachAlgFloat
 import CORALean.ContDynamics.NonlinearSys.Operations.SplitReach
 import CORALean.ContDynamics.NonlinearSys.Operations.Identify
 import CORALean.ContDynamics.NonlinearSys.Operations.IdentifyCandidate
+import CORALean.ContDynamics.NonlinearSys.Operations.ReachFloatChecked
 
 /-!
 # What a linearization computes

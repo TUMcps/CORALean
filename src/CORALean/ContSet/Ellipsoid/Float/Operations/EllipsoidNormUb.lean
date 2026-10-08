@@ -1,5 +1,6 @@
 import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
 import CORALean.Global.Float.Sqrt
+import CORALean.Global.Float.NoNaN
 import CORALean.Global.Float.ToRat
 
 /-!
@@ -9,8 +10,9 @@ An upper bound on CORA's `@ellipsoid/ellipsoidNorm` (full-rank branch, `sqrt(p�
 solve `Q \ p` no rounded arithmetic does exactly. The caller proposes generator coefficients `u`
 with `G u = p`, checked exactly in ℚ (`ToRat`); then `p` lies on the boundary of the ellipsoid
 scaled by `‖u‖₂`, so its ellipsoid norm is at most that length, rounded up (`normUp`). `none`
-when the equation fails. Of the nominal ellipsoid, as CORA's (the shape matrix alone); not the
-norm itself, which is the least such length.
+when the equation fails, or when `G`, `p` or `u` holds a NaN: `toRat` reads it as the number
+`1.5 · 2 ^ 1024`, of which the equation could hold. Of the nominal ellipsoid, as CORA's (the
+shape matrix alone); not the norm itself, which is the least such length.
 -/
 
 -- Authors:       Tobias Ladner
@@ -35,7 +37,8 @@ def Ellipsoid.ellipsoidNormUb (prec : ℕ) (E : Ellipsoid 𝕋 n) (p : Vec 𝕋 
     Option 𝕋 :=
   let image : Vec ℚ n := fun i => ∑ j, toRat (E.G i j) * toRat (u j)
   let solves : Bool := (List.finRange n).all fun i => decide (image i = toRat (p i))
-  if solves then some (normUp prec u) else none
+  let finite : Bool := noNaN (𝕋 := 𝕋) E.G && noNaN (𝕋 := 𝕋) p && noNaN (𝕋 := 𝕋) u
+  if solves && finite then some (normUp prec u) else none
 
 end CORALean.Float
 

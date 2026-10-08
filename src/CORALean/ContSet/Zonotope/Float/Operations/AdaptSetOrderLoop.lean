@@ -10,6 +10,9 @@ the box a reduction one order down absorbs, measured by `errOp`, still clears
 the share `εSi`, and keep the last order that did. The comparison is in ℚ,
 through `ToRat`, so it is exact; the measure is the sup-norm `errOp`.
 
+A NaN `errOp` reads through `ToRat` as `1.5 · 2 ^ 1024`, fails `≤ εSi` and keeps the higher
+order. Tightness only: every order is a `reduce`.
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

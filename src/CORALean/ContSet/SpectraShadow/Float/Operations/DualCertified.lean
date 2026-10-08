@@ -1,4 +1,5 @@
 import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
+import CORALean.Global.Float.NoNaN
 import CORALean.Global.Float.ToRat
 
 /-!
@@ -39,7 +40,10 @@ def SpectraShadow.dualCertified (S : SpectraShadow 𝕋 n) (a : Vec 𝕋 n) (Y :
   let traceQ : Mat 𝕋 S.k S.k → ℚ := fun A => ∑ r, ∑ j, toRat (A r j) * toRat (Y j r)
   let target : Fin S.m → ℚ := fun l => -∑ r, toRat (a r) * toRat (S.G r l)
   let equalities : Bool := (List.finRange S.m).all fun l => decide (traceQ (S.A l) = target l)
-  symmetric && dominant && equalities
+  -- no NaN among the floats `toRat` reads: it would take it for the number `1.5 * 2 ^ 1024`
+  let finite : Bool := noNaN (𝕋 := 𝕋) Y && noNaN (𝕋 := 𝕋) a && noNaN (𝕋 := 𝕋) S.G &&
+    (List.finRange S.m).all fun l => noNaN (𝕋 := 𝕋) (S.A l)
+  symmetric && dominant && equalities && finite
 
 end CORALean.Float
 

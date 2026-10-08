@@ -16,6 +16,10 @@ errors are the sup-norm `errOp`, read into ℚ through `ToRat`. Eq. (21)'s
 `F_u c_u` half is absent: the run carries the constant input separately. An
 order also has to pass the float side condition the step's enclosures need.
 
+Tuning only: `adaptiveStepFloat` re-checks the step and order it is given, and
+`adaptiveStepFloat_outer` holds for any. A NaN read through `ToRat` is `1.5 · 2 ^ 1024`.
+A NaN `errOp` fails the budgets, and the float test `le nrm …` is false on a NaN: the sweep goes on.
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

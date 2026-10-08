@@ -18,7 +18,8 @@ import CORALean.ContSet.Zonotope.Float.Operations.AdaptSetOrder
 accumulated share, and `R([t_i,t_{i+1}])` is their sum. What the tuning picks
 is a candidate only: the step must be positive and `Φ_prop,i` admissible for
 the float enclosures, both decided exactly in ℚ, and every set is a sound
-float step.
+float step. `toRat` reads a NaN as the number `1.5 · 2 ^ 1024`, so the step and the norm
+bound `nrm` are also refused if `isNaN`.
 
 ## References
 
@@ -58,7 +59,8 @@ def LinearSys.adaptiveStepFloat (sys : LinearSys 𝕋 n) (X₀ V : Zonotope 𝕋
   let (Δt, η, εH, εP) ← sys.adaptTimeStepFloat eAt X₀ Ũ options.εHmax    -- 5. Alg. 2
     options.εPmax s.εP tf s.t s.Δt options.μ options.ηmax options.fuel
   let nrm := MatExp.normUpperBound (Interval.smul Δt Δt (Interval.point sys.A))  -- ≥ ‖Δt A‖
-  if 0 < ToRat.toRat Δt ∧ 2 ≤ η ∧ ToRat.toRat nrm / ((η : ℚ) + 2) ≤ 1 / 2 then  -- admissible
+  if 0 < ToRat.toRat Δt ∧ 2 ≤ η ∧ ToRat.toRat nrm / ((η : ℚ) + 2) ≤ 1 / 2  -- admissible
+      ∧ ToRat.isNaN Δt = false ∧ ToRat.isNaN nrm = false then              -- not read from a NaN
     let HR₀ := sys.timeIntervalStepFloat Δt η X₀                    -- 6. HR([0,Δt_i])
     let PuR := sys.inputSolutionFloat Δt η seg                      -- P̃^R([0,Δt_i]), from [0, ũ]
     let Pu := sys.inputSolutionFloat Δt η ũ                         -- P̃(Δt_i)

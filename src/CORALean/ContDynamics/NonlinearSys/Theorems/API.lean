@@ -74,6 +74,7 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.ErrReachSubsetOfAbsLe
 import CORALean.ContDynamics.NonlinearSys.Theorems.SplitReachOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.IdentifyCandidateFit
 import CORALean.ContDynamics.NonlinearSys.Theorems.IdentifyLeCandidate
+import CORALean.ContDynamics.NonlinearSys.Theorems.ReachFloatCheckedEqSome
 
 /-!
 # What `NonlinearSys` guarantees

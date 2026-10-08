@@ -63,6 +63,7 @@ instance {fmt : IEEEFormat} : SoundFloatArithmetic (IEEE fmt) where
 instance {fmt : IEEEFormat} : ToRat (IEEE fmt) where
   toRat x := x.toDyadic.toRat
   toReal_toRat x := Dyadic.cast_toRat x.toDyadic
+  isNaN _ := false
 
 end CORALean.Float
 

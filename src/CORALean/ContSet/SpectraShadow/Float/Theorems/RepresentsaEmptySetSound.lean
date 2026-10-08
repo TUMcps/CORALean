@@ -31,7 +31,7 @@ theorem SpectraShadow.representsa_emptySet_sound {S : SpectraShadow 𝕋 n} {Y :
     (h : S.representsa_emptySet Y = true) : S.construct = ∅ := by -- --- PROOF ---
   simp only [SpectraShadow.representsa_emptySet, SpectraShadow.dualCertified, Bool.and_eq_true,
     List.all_eq_true, List.mem_finRange, forall_const, decide_eq_true_eq] at h
-  obtain ⟨⟨⟨hsym, hdom⟩, heq⟩, hneg⟩ := h
+  obtain ⟨⟨⟨⟨⟨hsym, hdom⟩, heq⟩, -⟩, hneg⟩, -⟩ := h
   refine Set.eq_empty_of_forall_notMem fun x hx => ?_
   obtain ⟨y, hy, -, -, -⟩ := hx
   obtain ⟨β, hP, -⟩ := SpectraShadow.mem_nominalSet_iff.mp hy

@@ -70,6 +70,7 @@ so this is proved, not assumed — `trustedHardware` is not involved. -/
 instance : ToRat Float where
   toRat x := (Binary64.toDyadic x).toRat
   toReal_toRat x := Dyadic.cast_toRat (Binary64.toDyadic x)
+  isNaN := Float.isNaN
 
 end CORALean.Float
 

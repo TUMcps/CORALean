@@ -7,7 +7,9 @@ CORA's `steps = (tFinal - tStart) / timeStep`, taken in ℚ where it is exact, a
 kept only if it is a natural number — the check CORA's `validateOptions` makes to
 a tolerance of `1e-9` (`change_intsteps`), here made exactly — and only for a
 positive `timeStep`, CORA's `gezero` check. `none` otherwise, no rounding. A float
-algorithm reaches ℚ from its scalar through `ToRat`.
+algorithm reaches ℚ from its scalar through `ToRat`, which reads a NaN `timeStep` as
+`1.5 · 2 ^ 1024`: a count `≥ 1` then needs `tFinal - tStart` to be a multiple of that, and any
+step run with the NaN returns a NaN, which the `…Checked` entry points reject.
 -/
 
 -- Authors:       Tobias Ladner

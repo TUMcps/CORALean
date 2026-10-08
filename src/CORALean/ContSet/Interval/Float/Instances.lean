@@ -1,4 +1,5 @@
 import CORALean.ContSet.ContSet.Definitions.CompactSet
+import CORALean.Global.Float.NoNaN
 import CORALean.ContSet.ContSet.Definitions.ConvexSet
 import CORALean.ContSet.Interval.Float.Operations.IntersectionExact
 import CORALean.ContSet.Interval.Float.Theorems.IsCompact
@@ -123,6 +124,10 @@ instance : OfScalarPoint 𝕋 (fun n => Interval (Vec 𝕋 n)) where
 /-- The rounded midpoint: any point of the box would do, as `enlarge` is sound about any. -/
 instance : ScalarCentre 𝕋 (fun n => Interval (Vec 𝕋 n)) where
   centreVec I := Interval.center I
+
+/-- The floats of the lower and the upper bound, for `ifNoNaN`. -/
+instance {α : Type} [Floats 𝕋 α] : Floats 𝕋 (Interval α) :=
+  ⟨fun I => Floats.floats I.inf ++ Floats.floats I.sup⟩
 
 end CORALean.Float
 

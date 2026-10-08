@@ -119,6 +119,11 @@ import CORALean.ContDynamics.LinearSys.Operations.AdaptiveRunFloat
 import CORALean.ContDynamics.LinearSys.Operations.ReachAdaptiveFloat
 import CORALean.ContDynamics.LinearSys.Operations.Identify
 import CORALean.ContDynamics.LinearSys.Operations.IdentifyCandidate
+import CORALean.ContDynamics.LinearSys.Operations.ReachFloatChecked
+import CORALean.ContDynamics.LinearSys.Operations.ReachWrappingFreeFloatChecked
+import CORALean.ContDynamics.LinearSys.Operations.ReachTimePointWrappingFreeFloatChecked
+import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInputChecked
+import CORALean.ContDynamics.LinearSys.Operations.ReachAdaptiveFloatChecked
 
 /-!
 # What a continuous-time linear system computes

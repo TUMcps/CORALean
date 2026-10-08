@@ -8,6 +8,11 @@ clears both bounds, the admissible share `ε_P,max,i` of eq. (10) recomputed in
 ℚ at each new `Δt_i`, read back through `ToRat`. [1]'s loop has no iteration
 bound, so `fuel` is an argument and the result an `Option`.
 
+Tuning only: `adaptiveStepFloat` re-checks the step and order it is given, and
+`adaptiveStepFloat_outer` holds for any. A NaN read through `ToRat` is `1.5 · 2 ^ 1024`.
+A NaN `Δt` inflates the share `ε_P,max,i` and may be accepted here,
+but `adaptiveStepFloat` refuses it.
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

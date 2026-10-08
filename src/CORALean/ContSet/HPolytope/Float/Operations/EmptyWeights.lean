@@ -15,6 +15,9 @@ The weights are read back as `dualWeights` reads its own.
 
 Nothing here is trusted: `ConZonotope.boundDotWeights` clamps every weight at zero and encloses the
 residual it actually has, so a bad proposal costs the `true` only.
+
+A NaN among the stored data reads through `ToRat` as `1.5 · 2 ^ 1024`, so the program solved
+is another one. That costs tightness only: the checker sees the NaN in rounded arithmetic.
 -/
 
 -- Authors:       Tobias Ladner

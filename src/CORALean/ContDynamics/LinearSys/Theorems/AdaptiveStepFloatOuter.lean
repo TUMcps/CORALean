@@ -66,7 +66,7 @@ theorem LinearSys.adaptiveStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zon
   obtain ⟨sq, hsq, ⟨Δt, η, εH, εP⟩, -, h⟩ := h
   dsimp only at h
   split_ifs at h with hcheck
-  obtain ⟨hΔ, hη2, hnrm⟩ := hcheck
+  obtain ⟨hΔ, hη2, hnrm, -, -⟩ := hcheck
   simp only [Option.some.injEq, Prod.mk.injEq] at h
   obtain ⟨rfl, rfl⟩ := h
   set A := Scalar.toRealMat sys.A with hA

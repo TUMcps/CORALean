@@ -46,6 +46,8 @@ theorem Ellipsoid.ellipsoidNorm_le_ellipsoidNormUb {prec : ℕ} {E : Ellipsoid �
   simp only [Ellipsoid.ellipsoidNormUb] at h
   split_ifs at h with hsol
   simp only [Option.some.injEq] at h
+  rw [Bool.and_eq_true] at hsol
+  obtain ⟨hsol, -⟩ := hsol
   subst h
   simp only [List.all_eq_true, List.mem_finRange, forall_const, decide_eq_true_eq] at hsol
   -- the equation read as reals: `G u = p`

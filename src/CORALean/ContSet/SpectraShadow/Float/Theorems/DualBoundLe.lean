@@ -50,7 +50,7 @@ theorem SpectraShadow.dualBound_le {S : SpectraShadow 𝕋 n} {a : Vec 𝕋 n} {
     ∀ x ∈ S.construct, ∑ r, toReal (a r) * x r ≤ toReal (S.dualBound a Y) := by -- --- PROOF ---
   simp only [SpectraShadow.dualCertified, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const, decide_eq_true_eq] at h
-  obtain ⟨⟨hsym, hdom⟩, heq⟩ := h
+  obtain ⟨⟨⟨hsym, hdom⟩, heq⟩, -⟩ := h
   rintro _ ⟨y, hy, e, he, rfl⟩
   obtain ⟨β, hP, hyβ⟩ := SpectraShadow.mem_nominalSet_iff.mp hy
   -- `Y` read as reals is positive semidefinite

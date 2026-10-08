@@ -107,11 +107,13 @@ scoped instance {p : ℕ} : SoundFloatArithmetic (NearestDyadic p) where
 scoped instance : ToRat NearestFloat where
   toRat a := (Binary64.toDyadic a.val).toRat
   toReal_toRat a := Dyadic.cast_toRat (Binary64.toDyadic a.val)
+  isNaN a := a.val.isNaN
 
 /-- The stored dyadic, decoded exactly. -/
 scoped instance {p : ℕ} : ToRat (NearestDyadic p) where
   toRat a := a.val.toRat
   toReal_toRat a := Dyadic.cast_toRat a.val
+  isNaN _ := false
 
 end CORALean.Bench.NearestUnsound
 
