@@ -60,6 +60,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedInner
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedNotInner
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedBounds
+import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedBoundsCounterexample
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkowskiDiffNotSubsetMinkDiffAligned
 import CORALean.ContSet.Zonotope.Real.Theorems.ImageSubsetAlignedOfMinOut
 import CORALean.ContSet.Zonotope.Real.Theorems.AlignedSubsetOfMaxIn
@@ -73,6 +74,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffOrEmptyNeEmpty
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffRepInner
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffScaledInner
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffStretchEq
+import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffStretchEqCounterexample
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffStretchInner
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffStretchInnerHRep
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffStretchOuter

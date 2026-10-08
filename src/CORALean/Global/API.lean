@@ -35,6 +35,7 @@ import CORALean.Global.Minimax
 import CORALean.Global.SuperlinearDecrease
 import CORALean.Global.ErrorConvergesToZero
 import CORALean.Global.HorizonErrorBudget
+import CORALean.Global.HorizonErrorBudgetCounterexample
 import CORALean.Global.ConvergenceOrder
 import CORALean.Global.LinProg.API
 import CORALean.Global.TaylorRemainder

@@ -48,6 +48,7 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachEvalOn
 import CORALean.ContDynamics.NonlinearSys.Theorems.RelinTimeIntervalOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.Restrict
 import CORALean.ContDynamics.NonlinearSys.Theorems.RowNormExpansionOfAnalytic
+import CORALean.ContDynamics.NonlinearSys.Theorems.RowNormExpansionCounterexample
 import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
 import CORALean.ContDynamics.NonlinearSys.Theorems.SubsetAbstrReach
 import CORALean.ContDynamics.NonlinearSys.Theorems.SubsetCentreAbstrReach

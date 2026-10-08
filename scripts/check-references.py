@@ -22,6 +22,17 @@ the five reasons the README allows; a row in scope and not yet formalized is `�
 A `correct` row is formalized *as printed*, so its note may not use the vocabulary of a
 departure (`HEDGE`) unless an `**As printed:**` marker says why the printed statement
 follows all the same.
+
+`fixed` and `underspecified` are told apart by the input the printed statement fails on
+(#120). `fixed`: the statement is false on a NON-DEGENERATE input -- one the paper's setting
+admits, not an empty set, zero dimension, zero generators, a zero norm or the like -- and
+the formalization proves the corrected statement. `underspecified`: not false in the
+paper's setting, or false only on a degenerate input the paper's conventions exclude (the
+note then names the hypothesis supplied), or a typo, a missing index, a listing that
+needs a bound. A `fixed` row backs its claim with a Lean counterexample: its third cell
+says `**Counterexample:** `Decl`` for a theorem the row's linked files declare (a theorem,
+so no `sorry` and no axiom, which `check-axioms.sh` sees). The rare row for which none is
+written says `**No counterexample:** <why>` instead, the reason at least 40 characters.
 The committed `experiments/paper/formalization-stats.json` must be what that
 script would write now, so the figure cannot lag the tables.
 
@@ -77,9 +88,12 @@ STATUS = re.compile(r"^(🟢|🟡|🔴|⚪)\s*(\d+)/(\d+)\s*\|\s*(\d+)$")
 # `correct`: formalized as printed. `underspecified`: not false, but a hypothesis,
 # definition or index is missing or misprinted and the formalization supplies it.
 # `proof-gap`: the statement is formalized as printed, but the printed proof or
-# derivation does not establish it. `fixed`: false (or ill-defined) as printed,
-# true after the correction the row names. `false`: false as printed and not
-# repairable in the paper's intent.
+# derivation does not establish it. `fixed`: false as printed on a NON-DEGENERATE input
+# (not the empty set, dimension 0, zero generators, a zero norm, ...), true after the
+# correction the row names, and backed by a Lean counterexample theorem (see
+# `COUNTEREXAMPLE`). `false`: false as printed and not repairable in the paper's intent.
+# Degenerate edge cases the paper's setting excludes are `underspecified`, whose note
+# names the hypothesis the formalization supplies.
 VERDICTS = ("correct", "underspecified", "proof-gap", "fixed", "false")
 # Why a row sits outside the count; exactly the reasons references/README.md allows.
 OUT_OF_SCOPE = ("restated", "mathlib", "not-a-claim", "done-differently", "not-covered")
@@ -92,6 +106,10 @@ CLASS = re.compile(r"^`([a-z-]+)`\s*(?:—\s*(.*\S))?$")
 HEDGE = re.compile(r"done differently|no counterpart|not covered|stated at `point`|only the\b|"
                    r"rather than|not the printed|not modell?ed|not transcribed", re.I)
 AS_PRINTED = re.compile(r"\*\*As printed:\*\*\s*(\S.{39,})")
+# A `fixed` row names the Lean counterexample theorem(s) in its third cell, or says why
+# there is none. The named theorems must be declared in a file the row links.
+COUNTEREXAMPLE = re.compile(r"\*\*Counterexample:\*\*\s*((?:`[^`\n]+`(?:\s*,\s*|\s+and\s+)?)+)")
+NO_COUNTEREXAMPLE = re.compile(r"\*\*No counterexample:\*\*\s*(\S.{39,})")
 STATS_JSON = ROOT / "experiments" / "paper" / "formalization-stats.json"
 # One directory per year of publication; `references/coverage/` is the other kind of page.
 PAPER_GLOB = "[0-9][0-9][0-9][0-9]/*.md"
@@ -234,6 +252,8 @@ class Paper:
             self.verdicts[result] = self.parse_class(result, klass, excluded, bool(links))
             if self.verdicts[result][0] == "correct":
                 self.check_hedge(result, where)
+            elif self.verdicts[result][0] == "fixed":
+                self.check_counterexample(result, where, links)
 
     def parse_class(self, result, cell, excluded, formalized):
         """`(class, reason)` of one row's `Class` cell, complaining when it is
@@ -253,6 +273,27 @@ class Paper:
             self.say(f"{self.rel}: `{result}` is `{klass}`, so its class cell gives the "
                      "reason after a dash: `fixed` — what was wrong and what was done")
         return klass, reason
+
+    def check_counterexample(self, result, where, links):
+        """A `fixed` row is false on a non-degenerate input, so it links a Lean theorem
+        that says so: `**Counterexample:** `Decl`` with `Decl` a theorem declared in a
+        linked file, or `**No counterexample:** <why>` for the rare row without one."""
+        m = COUNTEREXAMPLE.search(where)
+        if not m:
+            if not NO_COUNTEREXAMPLE.search(where):
+                self.say(f"{self.rel}: `{result}` is `fixed`, so it names its Lean counterexample "
+                         "theorem after `**Counterexample:**` (or says `**No counterexample:** <why>`)")
+            return
+        declared = set()
+        for link in links:
+            target = (self.path.parent / link).resolve()
+            if target.exists():
+                declared |= {n.rsplit(".", 1)[-1] for n, kind, _ in lean_decls(target)
+                             if kind in ("theorem", "lemma")}
+        for name in re.findall(r"`([^`]+)`", m.group(1)):
+            if name.rsplit(".", 1)[-1] not in declared:
+                self.say(f"{self.rel}: `{result}`: counterexample `{name}` is not a theorem "
+                         "declared in a file the row links")
 
     def check_hedge(self, result, where):
         """A `correct` row's note may not admit that the Lean theorem differs from the
