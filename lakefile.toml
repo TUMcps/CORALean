@@ -1,6 +1,6 @@
 name = "CORALean"
 defaultTargets = ["CORALean", "Examples", "Demo", "Bench", "BenchFlint", "Oracle", "HardwareCheck",
-  "OracleUnsound"]
+  "FlintCheck", "OracleUnsound"]
 
 [leanOptions]
 pp.unicode.fun = true
@@ -110,6 +110,21 @@ roots = ["CORALean.Examples.HardwareCheck"]
 name = "hardwarecheck"
 srcDir = "src"
 root = "CORALean.Examples.HardwareCheck"
+
+# The empirical check of `trustedFlint`, the shape of `bench-flint`: a library, in
+# `defaultTargets`, so its Lean side is elaborated on every commit with no FLINT, and an executable,
+# outside `defaultTargets`, linked against the shim archive only by `lake build flintcheck`
+# (README, "FLINT backend (optional)"; CI job `flint-check`).
+[[lean_lib]]
+name = "FlintCheck"
+srcDir = "src"
+roots = ["CORALean.Examples.FlintCheck"]
+
+[[lean_exe]]
+name = "flintcheck"
+srcDir = "src"
+root = "CORALean.Examples.FlintCheck"
+moreLinkArgs = [".lake/flint/libcoralean_flint.a"]
 
 # The same oracle with the dtype `nearest`, round-to-nearest WITHOUT guarantees, for comparing CORA.cpp
 # against the same arithmetic. Under `Examples/Bench/`: the false axiom behind it may not reach `oracle`.

@@ -205,6 +205,80 @@ build:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
+# The optional FLINT backend (README, "FLINT backend (optional)"): `trustedFlint` is a claim about C
+# that no proof reaches, and `build` above only elaborates the Lean side of it. This job builds
+# FLINT, links `flintcheck` and `bench-flint` against it, and runs the sampled check of the axiom
+# (rounding direction, tightest result, the shim's `Int`/`fmpz` conversion, against exact rationals),
+# `bench-flint selftest` (against `Dyadic p`) and a one-repetition benchmark.
+#
+# Not in every pipeline: building GMP, MPFR and FLINT from source is several minutes on top of the
+# Lean setup. It runs on schedules, automatically on a merge request that touches the backend, its
+# shim, its scripts or this job, and by hand (`when: manual`, never blocking) on any other. The FLINT
+# prefix is cached on the install script's hash, so the source build is paid once per version bump,
+# where the Mathlib and Lean caches the comment at the top declines are far larger.
+flint-check:
+  extends: .lean-setup
+  interruptible: true
+  timeout: 90m
+  variables:
+    FLINT_PREFIX: "$CI_PROJECT_DIR/.flint-prefix"
+    LAKE_ARTIFACT_CACHE: "true"
+  cache:
+    key:
+      files:
+        - scripts/install-flint.sh
+    paths:
+      - .flint-prefix/
+  before_script:
+    - !reference [.lean-setup, before_script]
+    # A C compiler, make and the binutils the shim script uses (`ld`, `objcopy`, `nm`, `ar`);
+    # `xz-utils` unpacks the GMP and MPFR tarballs, `m4` is GMP's configure's.
+    - apt-get install -y -qq --no-install-recommends build-essential binutils xz-utils m4
+  script:
+    - !reference [.lean-setup, script]
+    - set -o pipefail
+    - |
+      if [ -f "$FLINT_PREFIX/lib/libflint.a" ] && [ -f "$FLINT_PREFIX/lib/libmpfr.a" ] \
+          && [ -f "$FLINT_PREFIX/lib/libgmp.a" ]; then
+        echo "FLINT prefix restored from the cache"
+      else
+        sh -n scripts/install-flint.sh
+        bash scripts/install-flint.sh 2>&1 | tail -n 200
+      fi
+    - bash scripts/build-flint-shim.sh
+    - lake build flintcheck bench-flint 2>&1 | tee flint-build.log
+    - "! grep -q '^warning: src/' flint-build.log"
+    # What `trustedFlint` assumes, sampled; exits 1 on any violation.
+    - .lake/build/bin/flintcheck | tee flintcheck.log
+    # Against `Dyadic p` at every op and precision, then a short run through the whole algorithm.
+    - .lake/build/bin/bench-flint selftest | tee bench-flint-selftest.log
+    - .lake/build/bin/bench-flint headline-a --reps 1 --out flint-bench | tee bench-flint-smoke.log
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+  artifacts:
+    when: always
+    paths:
+      - flint-build.log
+      - flintcheck.log
+      - bench-flint-selftest.log
+      - bench-flint-smoke.log
+    expire_in: 1 week
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes:
+        - src/CORALean/Global/Float/Instances/Flint/**/*
+        - src/CORALean/Examples/FlintCheck.lean
+        - src/CORALean/Examples/BenchFlint*.lean
+        - scripts/install-flint.sh
+        - scripts/build-flint-shim.sh
+        - .gitlab-ci.yml
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: manual
+      allow_failure: true
+
 # Release binaries: only on a tag pipeline, `vX.Y.Z`. Two jobs, since the release step wants
 # `release-cli`'s image and the build wants Lean's. `release-oracle-build` links `oracle` and
 # `oracle-unsound`, runs both self-tests against the linked binaries and uploads them to the Generic
