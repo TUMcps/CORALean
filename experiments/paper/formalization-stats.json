@@ -29,9 +29,9 @@
     },
     "by_class": {
       "correct": 602,
-      "underspecified": 142,
+      "underspecified": 158,
       "proof-gap": 27,
-      "fixed": 96,
+      "fixed": 80,
       "false": 2
     }
   },
@@ -79,26 +79,26 @@
       },
       "by_class": {
         "correct": 0,
-        "underspecified": 0,
+        "underspecified": 3,
         "proof-gap": 0,
-        "fixed": 3,
+        "fixed": 0,
         "false": 0
       },
       "findings": [
         {
           "result": "Lemma 1",
-          "class": "fixed",
-          "reason": "false as printed at `X = ∅`; formalized with `X` nonempty"
+          "class": "underspecified",
+          "reason": "fails only at `X = ∅`, which the paper's setting (nonempty sets) excludes; `X` nonempty is supplied"
         },
         {
           "result": "Lemma 2",
-          "class": "fixed",
-          "reason": "false as printed at `X = ∅`; formalized with `X` nonempty"
+          "class": "underspecified",
+          "reason": "fails only at `X = ∅`, which the paper's setting (nonempty sets) excludes; `X` nonempty is supplied"
         },
         {
           "result": "Lemma 3",
-          "class": "fixed",
-          "reason": "false as printed at `X = ∅`; formalized with `X` nonempty"
+          "class": "underspecified",
+          "reason": "fails only at `X = ∅`, which the paper's setting (nonempty sets) excludes; `X` nonempty is supplied"
         }
       ]
     },
@@ -440,16 +440,16 @@
       },
       "by_class": {
         "correct": 12,
-        "underspecified": 6,
+        "underspecified": 4,
         "proof-gap": 0,
-        "fixed": 0,
+        "fixed": 2,
         "false": 0
       },
       "findings": [
         {
           "result": "Cor. 6.3 1",
-          "class": "underspecified",
-          "reason": "\"at its edges\" holds for the upward edges of a low vertex, see the findings"
+          "class": "fixed",
+          "reason": "\"at its edges\" is false for every edge at a vertex that is not low: it holds for the upward edges of a low vertex, see the findings"
         },
         {
           "result": "Alg. 2",
@@ -458,8 +458,8 @@
         },
         {
           "result": "Lemma 6.5",
-          "class": "underspecified",
-          "reason": "\"has a solution\" holds as a solution adjacent to its vertices, see the findings"
+          "class": "fixed",
+          "reason": "\"has a solution\" is false for a piece's own face, which can miss the plane; it holds as a solution adjacent to its vertices, see the findings"
         },
         {
           "result": "Sec. 6.2",
@@ -603,16 +603,16 @@
       },
       "by_class": {
         "correct": 7,
-        "underspecified": 2,
+        "underspecified": 1,
         "proof-gap": 0,
-        "fixed": 0,
+        "fixed": 1,
         "false": 0
       },
       "findings": [
         {
           "result": "Sec. 3 (extremal functions)",
-          "class": "underspecified",
-          "reason": "sufficiency needs `f(x, ·)` continuous, see the findings"
+          "class": "fixed",
+          "reason": "sufficiency is false for `f(x, ·)` not continuous, needs `f(x, ·)` continuous, see the findings"
         },
         {
           "result": "Sec. 3 (extremal bounds)",
@@ -970,9 +970,9 @@
       },
       "by_class": {
         "correct": 10,
-        "underspecified": 1,
+        "underspecified": 0,
         "proof-gap": 0,
-        "fixed": 5,
+        "fixed": 6,
         "false": 0
       },
       "findings": [
@@ -983,8 +983,8 @@
         },
         {
           "result": "Sec. IV-B.3 (temporal)",
-          "class": "underspecified",
-          "reason": "needs `N ≥ t + bound(φ)`, see the findings"
+          "class": "fixed",
+          "reason": "false for a horizon shorter than the bound, where the truncated window reads steps the formula does not; needs `N ≥ t + bound(φ)`, see the findings"
         },
         {
           "result": "Sec. IV-B.3 (until)",
@@ -1393,15 +1393,15 @@
       },
       "by_class": {
         "correct": 8,
-        "underspecified": 2,
+        "underspecified": 1,
         "proof-gap": 0,
-        "fixed": 1,
+        "fixed": 2,
         "false": 0
       },
       "findings": [
         {
           "result": "Eq. 10",
-          "class": "underspecified",
+          "class": "fixed",
           "reason": "the enclosure needs a fault-free output `f_k = 0`, which the statement for the system with faults omits; a fault `f_k = 1` in one dimension (`A = 0`, `C = L = E = 1`) moves the zonotope to `{1}` and misses `x_{k+1} = 0`; see Findings"
         },
         {
@@ -1603,9 +1603,9 @@
       },
       "by_class": {
         "correct": 13,
-        "underspecified": 1,
+        "underspecified": 6,
         "proof-gap": 0,
-        "fixed": 8,
+        "fixed": 3,
         "false": 0
       },
       "findings": [
@@ -1621,28 +1621,28 @@
         },
         {
           "result": "Lemma 1",
-          "class": "fixed",
-          "reason": "false at an empty inbody: {x₁ ≤ -1, -x₁ ≤ -1, x₂ ≤ 0} = ∅ lies in the unit box, ker Hₓ = {0}, and no Λ ≥ 0 assembles the row (0, -1); true for X ≠ ∅; see Findings"
+          "class": "underspecified",
+          "reason": "fails only at an empty inbody ({x₁ ≤ -1, -x₁ ≤ -1, x₂ ≤ 0} = ∅ lies in the unit box, and no Λ ≥ 0 assembles the row (0, -1)), which the paper's setting excludes; `X ≠ ∅` is supplied; see Findings"
         },
         {
           "result": "Prop. 1",
-          "class": "fixed",
-          "reason": "at N = 1 this is `Lemma 1`, false at an empty summand; true when every P_{x,i} is nonempty; see Findings"
+          "class": "underspecified",
+          "reason": "at N = 1 this is `Lemma 1`, failing only at an empty summand, which the paper's setting excludes; every P_{x,i} nonempty is supplied; see Findings"
         },
         {
           "result": "Prop. 3",
-          "class": "fixed",
-          "reason": "false at an empty P_{y,i}, where {H y ≤ 0·h} is a cone rather than 0·P (P₁ = {0}, P₂ = ∅ in ℝ²); true for nonempty bounded P_{y,i}; see Findings"
+          "class": "underspecified",
+          "reason": "fails only at an empty P_{y,i}, where {H y ≤ 0·h} is a cone rather than 0·P (P₁ = {0}, P₂ = ∅ in ℝ²), which the paper's setting excludes; nonempty bounded P_{y,i} is supplied; see Findings"
         },
         {
           "result": "Cor. 3",
-          "class": "fixed",
-          "reason": "`Prop. 3`'s gap: false at an empty P_{y,i}; true for nonempty bounded ones; see Findings"
+          "class": "underspecified",
+          "reason": "`Prop. 3`'s gap: fails only at an empty P_{y,i}, which the paper's setting excludes; nonempty bounded ones are supplied; see Findings"
         },
         {
           "result": "Prop. 4",
-          "class": "fixed",
-          "reason": "\"if\" fails at an empty P_{y,i} (`Prop. 3`'s data with δ = (1, 0)) and \"only if\" at an empty Pₓ; true with both nonempty and P_{y,i} bounded; see Findings"
+          "class": "underspecified",
+          "reason": "\"if\" fails only at an empty P_{y,i} (`Prop. 3`'s data with δ = (1, 0)) and \"only if\" only at an empty Pₓ, which the paper's setting excludes; both nonempty and P_{y,i} bounded are supplied; see Findings"
         },
         {
           "result": "Prop. 5",
@@ -1674,9 +1674,9 @@
       },
       "by_class": {
         "correct": 9,
-        "underspecified": 6,
+        "underspecified": 7,
         "proof-gap": 0,
-        "fixed": 3,
+        "fixed": 2,
         "false": 0
       },
       "findings": [
@@ -1692,8 +1692,8 @@
         },
         {
           "result": "Thm. 3",
-          "class": "fixed",
-          "reason": "the zero run `e₀ = 0`, `d ≡ 0` makes both sides `0`, at an instance where Eq. 16 holds; with `≤` it holds; see Findings"
+          "class": "underspecified",
+          "reason": "fails only at the zero run `e₀ = 0`, `d ≡ 0`, where both sides are `0`, at an instance where Eq. 16 holds (a zero norm the strict `<` excludes); with `≤` it holds; see Findings"
         },
         {
           "result": "Eq. 35",
@@ -2407,7 +2407,7 @@
         {
           "result": "Def. 6",
           "class": "fixed",
-          "reason": "eq. (40) prints a maximum where a minimum is meant (the maximum is `∞` for infinite series)"
+          "reason": "eq. (40) prints a maximum where a minimum is meant (the maximum is `∞` for infinite series), so the printed definition gives the wrong gain order on ordinary inputs"
         },
         {
           "result": "Alg. 2",
@@ -2541,21 +2541,21 @@
       },
       "by_class": {
         "correct": 13,
-        "underspecified": 1,
+        "underspecified": 3,
         "proof-gap": 0,
-        "fixed": 2,
+        "fixed": 0,
         "false": 0
       },
       "findings": [
         {
           "result": "Prop. 9",
-          "class": "fixed",
-          "reason": "false when exactly one operand is empty (one-dimensional counterexample); formalized with both nonempty"
+          "class": "underspecified",
+          "reason": "fails only when exactly one operand is empty (one-dimensional counterexample), which the paper's setting excludes; both nonempty is supplied"
         },
         {
           "result": "Thm. 1",
-          "class": "fixed",
-          "reason": "false when an exponent matrix has an all-zero column (counterexample `8 ∉ union`); formalized with `NoZeroCol`"
+          "class": "underspecified",
+          "reason": "fails only when an exponent matrix has an all-zero column (`8 ∉ union`), which the paper's definition of the representation forbids; `NoZeroCol` is supplied"
         },
         {
           "result": "Prop. 14",
@@ -2638,9 +2638,9 @@
       },
       "by_class": {
         "correct": 11,
-        "underspecified": 2,
+        "underspecified": 3,
         "proof-gap": 0,
-        "fixed": 1,
+        "fixed": 0,
         "false": 0
       },
       "findings": [
@@ -2656,8 +2656,8 @@
         },
         {
           "result": "Thm. 1",
-          "class": "fixed",
-          "reason": "\"for any reduction rate ρ\" fails where `Alg. 1` does not end; formalized for the runs that end"
+          "class": "underspecified",
+          "reason": "\"for any reduction rate ρ\" presumes `Alg. 1` ends, which it need not (see `Alg. 1`); formalized for the runs that end"
         }
       ]
     },
@@ -2756,9 +2756,9 @@
       },
       "by_class": {
         "correct": 3,
-        "underspecified": 3,
+        "underspecified": 5,
         "proof-gap": 2,
-        "fixed": 3,
+        "fixed": 1,
         "false": 0
       },
       "findings": [
@@ -2779,8 +2779,8 @@
         },
         {
           "result": "Prop. 3",
-          "class": "fixed",
-          "reason": "`⊇` false as printed (non-measurable signals empty the left side); equality for Carathéodory runs"
+          "class": "underspecified",
+          "reason": "the input signals are left unrestricted, and `⊇` fails for non-measurable ones (they empty the left side), as at `Def. 6`; Carathéodory runs are supplied, and equality holds for them"
         },
         {
           "result": "Thm. 1",
@@ -2794,8 +2794,8 @@
         },
         {
           "result": "Prop. 5",
-          "class": "fixed",
-          "reason": "as printed `R^∃∀(−t) = ∅` whatever `X_end` is; equality for Carathéodory runs"
+          "class": "underspecified",
+          "reason": "the input signals are left unrestricted, and for non-measurable ones `R^∃∀(−t) = ∅` whatever `X_end` is, as at `Def. 7`; Carathéodory runs are supplied, and equality holds for them"
         },
         {
           "result": "Thm. 2",
@@ -2991,31 +2991,31 @@
       },
       "by_class": {
         "correct": 32,
-        "underspecified": 5,
+        "underspecified": 12,
         "proof-gap": 0,
-        "fixed": 10,
+        "fixed": 3,
         "false": 1
       },
       "findings": [
         {
           "result": "Table 1 (⊕)",
-          "class": "fixed",
-          "reason": "four cells fail at `∅`, degenerate and bounded by the paper's own convention; true with the first summand nonempty; see Findings"
+          "class": "underspecified",
+          "reason": "four cells fail only at `∅`, degenerate and bounded by the paper's own convention; the first summand nonempty is supplied; see Findings"
         },
         {
           "result": "Table 1 (⊖)",
-          "class": "fixed",
-          "reason": "four cells fail at a subtrahend `∅`; true with it nonempty; see Findings"
+          "class": "underspecified",
+          "reason": "four cells fail only at a subtrahend `∅`, which the paper's convention excludes; it nonempty is supplied; see Findings"
         },
         {
           "result": "Table 1 (×)",
-          "class": "fixed",
-          "reason": "`D × B` is not bounded in general and `D × NB` not unbounded at `∅`; a degenerate factor gives a degenerate product and a nonempty one carries unboundedness; see Findings"
+          "class": "underspecified",
+          "reason": "`D × B` is not bounded in general and `D × NB` not unbounded only at `∅`; a degenerate factor gives a degenerate product, and nonempty factors are supplied; see Findings"
         },
         {
           "result": "Table 1 (conv)",
-          "class": "fixed",
-          "reason": "four cells fail at `∅`; true with both operands nonempty; see Findings"
+          "class": "underspecified",
+          "reason": "four cells fail only at `∅`, which the paper's convention excludes; both operands nonempty is supplied; see Findings"
         },
         {
           "result": "Sec. 4.1 (support vector)",
@@ -3024,8 +3024,8 @@
         },
         {
           "result": "Sec. 4.1 (interval hull)",
-          "class": "fixed",
-          "reason": "false at an empty polytope, whose interval hull is empty; true for a nonempty one; see Findings"
+          "class": "underspecified",
+          "reason": "fails only at an empty polytope, whose interval hull is empty, which the paper's setting excludes; a nonempty one is supplied; see Findings"
         },
         {
           "result": "Eq. 7",
@@ -3064,13 +3064,13 @@
         },
         {
           "result": "Eq. 30",
-          "class": "fixed",
-          "reason": "false when exactly one operand is empty, by the paper's own definition of `conv`; see Findings"
+          "class": "underspecified",
+          "reason": "fails only when exactly one operand is empty, by the paper's own definition of `conv`; both operands nonempty is supplied; see Findings"
         },
         {
           "result": "Eq. 37",
-          "class": "fixed",
-          "reason": "false when exactly one operand is empty, under [1, Table 3]'s `conv`; see Findings"
+          "class": "underspecified",
+          "reason": "fails only when exactly one operand is empty, under [1, Table 3]'s `conv`; both operands nonempty is supplied; see Findings"
         },
         {
           "result": "Alg. 3",
@@ -3347,9 +3347,9 @@
         "cora_issues": 3,
         "findings": {
           "correct": 12,
-          "underspecified": 1,
+          "underspecified": 3,
           "proof-gap": 0,
-          "fixed": 2,
+          "fixed": 0,
           "false": 0
         }
       },
@@ -3399,9 +3399,9 @@
         "cora_issues": 0,
         "findings": {
           "correct": 46,
-          "underspecified": 13,
+          "underspecified": 18,
           "proof-gap": 0,
-          "fixed": 13,
+          "fixed": 8,
           "false": 0
         }
       },
@@ -3503,9 +3503,9 @@
         "cora_issues": 1,
         "findings": {
           "correct": 44,
-          "underspecified": 10,
+          "underspecified": 7,
           "proof-gap": 0,
-          "fixed": 1,
+          "fixed": 4,
           "false": 0
         }
       },
@@ -3607,9 +3607,9 @@
         "cora_issues": 4,
         "findings": {
           "correct": 41,
-          "underspecified": 7,
+          "underspecified": 14,
           "proof-gap": 0,
-          "fixed": 15,
+          "fixed": 8,
           "false": 1
         }
       },
@@ -3737,9 +3737,9 @@
         "cora_issues": 2,
         "findings": {
           "correct": 94,
-          "underspecified": 22,
+          "underspecified": 21,
           "proof-gap": 3,
-          "fixed": 12,
+          "fixed": 13,
           "false": 1
         }
       },
@@ -3893,9 +3893,9 @@
         "cora_issues": 1,
         "findings": {
           "correct": 35,
-          "underspecified": 14,
+          "underspecified": 16,
           "proof-gap": 9,
-          "fixed": 6,
+          "fixed": 4,
           "false": 0
         }
       },
@@ -3919,9 +3919,9 @@
         "cora_issues": 1,
         "findings": {
           "correct": 26,
-          "underspecified": 10,
+          "underspecified": 11,
           "proof-gap": 0,
-          "fixed": 6,
+          "fixed": 5,
           "false": 0
         }
       },
@@ -4335,9 +4335,9 @@
         "cora_issues": 1,
         "findings": {
           "correct": 62,
-          "underspecified": 5,
+          "underspecified": 6,
           "proof-gap": 2,
-          "fixed": 2,
+          "fixed": 1,
           "false": 0
         }
       }
@@ -4361,9 +4361,9 @@
         },
         "findings": {
           "correct": 301,
-          "underspecified": 66,
+          "underspecified": 76,
           "proof-gap": 5,
-          "fixed": 49,
+          "fixed": 39,
           "false": 2
         }
       },
@@ -4385,9 +4385,9 @@
         },
         "findings": {
           "correct": 142,
-          "underspecified": 46,
+          "underspecified": 49,
           "proof-gap": 16,
-          "fixed": 24,
+          "fixed": 21,
           "false": 0
         }
       },
@@ -4433,9 +4433,9 @@
         },
         "findings": {
           "correct": 62,
-          "underspecified": 5,
+          "underspecified": 6,
           "proof-gap": 2,
-          "fixed": 2,
+          "fixed": 1,
           "false": 0
         }
       }
@@ -4458,25 +4458,25 @@
       },
       "findings": {
         "correct": 519,
-        "underspecified": 121,
+        "underspecified": 135,
         "proof-gap": 23,
-        "fixed": 76,
+        "fixed": 62,
         "false": 2
       }
     },
     "findings_not_on_a_class": {
       "global": {
         "correct": 60,
-        "underspecified": 13,
+        "underspecified": 16,
         "proof-gap": 4,
-        "fixed": 15,
+        "fixed": 12,
         "false": 0
       },
       "specification": {
         "correct": 22,
-        "underspecified": 8,
+        "underspecified": 7,
         "proof-gap": 0,
-        "fixed": 5,
+        "fixed": 6,
         "false": 0
       },
       "examples": {
@@ -4488,11 +4488,11 @@
       }
     },
     "theorems": {
-      "paper": 1144,
+      "paper": 1149,
       "float": 1474,
       "helper": 998,
-      "lemma": 2255,
-      "total": 5871,
+      "lemma": 2254,
+      "total": 5875,
       "examples": 80
     }
   }

@@ -11,6 +11,7 @@ for the eigenvalue `0` of `Ã = Ũᵀ X' Ṽ Σ̃⁻¹` the dynamic mode is `Ũ 
 no eigenvector of `Ā = X' Ṽ Σ̃⁻¹ Ũᵀ`: for `X = [1, 0]ᵀ` and `X' = [0, 1]ᵀ` the matrix `Ã` is
 `0`, `w = 1` an eigenvector for `0`, and `Ā Ũ w = [0, 1]ᵀ ≠ 0`. The mode of [1, Eq. 13],
 `X' Ṽ Σ̃⁻¹ w`, is an eigenvector for `0` whenever it is nonzero (`dmd_mode_vec`).
+[1, Eq. 24] repeats the case `λ = 0` for the modes with known `B`, and at `B = 0` it is this one.
 
 ## References
 

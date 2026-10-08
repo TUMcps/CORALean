@@ -157,14 +157,37 @@ down by CORA class, by the first Lean file a row links; the mapping is in
 [coverage/README.md](coverage/README.md#which-class-a-paper-result-lands-on).
 
 A result in scope and formalized says how the **paper's** statement fared:
-`correct` (as printed), `underspecified` (not false, but a hypothesis, definition
-or index is missing or misprinted and the formalization supplies it),
+`correct` (as printed), `underspecified` (not false in the paper's setting, but a hypothesis, definition
+or index is missing or misprinted, or a degenerate input is not excluded, and the
+formalization supplies it),
 `proof-gap` (the statement holds as printed, the printed proof does not establish
-it), `fixed` (false or ill-defined as printed, true after the correction the row
-names), `false` (false and not repairable). Anything but `correct` gives its
+it), `fixed` (false on a non-degenerate input as printed, true after the correction the
+row names, with a Lean counterexample linked), `false` (false and not repairable). Anything but `correct` gives its
 reason in the cell after a dash, and the page's `## Findings` has the argument. A
 row takes the most severe class that applies, and when unsure takes the milder
 one: a claim that a paper is false has to be one the page can back.
+
+**`fixed` and `underspecified` differ by the input the printed statement fails on.**
+`fixed` is reserved for a statement that is false on a **non-degenerate input** — one
+the paper's setting admits — and whose corrected form the formalization proves. A
+degenerate edge case the paper's setting excludes is `underspecified`, with the
+hypothesis the formalization supplies named in the note: the empty set (or an empty
+operand), dimension zero, zero generators, an all-zero exponent column, a zero norm or a
+zero run, and the like. `underspecified` otherwise keeps its meaning: not false in the
+paper's setting, but a hypothesis, definition or index is missing and the formalization
+supplies it. A statement that is false on a non-degenerate input because a hypothesis is
+missing (a function that need not be continuous, a horizon shorter than the formula's
+bound) is `fixed`, not `underspecified`. Properties of the input class that the
+statement leaves open, such as the class of input signals, are `underspecified`.
+
+**A `fixed` row links its counterexample.** The row's third cell names, after
+`**Counterexample:**`, a Lean theorem declared in a file the row links, which exhibits a
+non-degenerate input on which the printed statement fails (the file is named for the
+theorem, `FooCounterexample.lean`/`foo_counterexample` where it can be, or `not_*`/`*_ne_*`
+for a negation of the printed statement). `scripts/check-references.py` fails a `fixed`
+row without the marker, and one whose named theorem is not declared in a linked file. A
+row for which no counterexample is written says `**No counterexample:** <why>` with a
+reason of at least 40 characters; these stay rare, and each is a debt.
 
 Algorithm listings (every `Alg. n` row, and `Heuristic` rows) are read as intentionally
 simplified pseudocode: a correction there counts as `underspecified`, never `fixed` or
