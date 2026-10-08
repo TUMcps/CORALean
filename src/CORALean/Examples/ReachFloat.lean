@@ -25,16 +25,16 @@ their own. `LinearSysDT.reach`, `NeurNetContrSysDT.reach` and the whole hybrid
 automaton are written against `Scalar 𝕋` and the operation classes, so a float
 representation supplies them the same way an exact one does.
 
-The `def`s below are `def` rather than `noncomputable def`. Since `Layer` stores
-no function, so are `Sigmoid`, `Tanh`, `Softmax`, `maxPool` and `SigmoidPoly`,
-whose `PolyRelaxation` stores floats and names `Real.sigmoid` only in a proof.
+The `def`s below are `def` rather than `noncomputable def`, as are `Sigmoid`,
+`Tanh`, `Softmax`, `maxPool` and `SigmoidPoly`: `Layer` stores no function.
 
 An algorithm needs a float counterpart precisely where it computes a *real number
 that is no set operation*, only a set operation having an error box to pay its
 rounding into. In `ContDynamics` that is `MatExp/Enclosures.lean` and what
 depends on it: `LinearSys.discretize` is `exp (Δt • A)` and asks for
 `Mtimes (Mat ℝ) S`, which no float representation can have, and the four step
-operations ask for `Mtimes ℐ S` at the *exact* interval-matrix family.
+operations ask for `Mtimes ℐ S` at the *exact* interval-matrix family. Those
+have their own `reachFloat` (`LinearSys`, `NonlinearSys`, ...), not read off here.
 -/
 
 -- Authors:       Tobias Ladner

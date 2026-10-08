@@ -51,7 +51,9 @@ Nearly every operation over-approximates the set it claims to, and the float
 layer refines each such theorem by rounding "outward" — and runs: every float
 operation is a `def`, save the interface instantiated at ℝ itself, which is a
 specification proxy rather than a representation. Continuous-time reachability
-has no float counterpart at all; see `Examples/ReachFloat.lean` for the split.
+has its own `reachFloat` (`LinearSys`, `LinParamSys`, `NonlinearSys`, the hybrid
+automaton), while discrete-time reachability needs none; see
+`Examples/ReachFloat.lean` for the split.
 Outside the set representations, the neural network layers among them, an
 algorithm is written once over the scalar instead, and run at ℝ and at a
 machine scalar alike.
