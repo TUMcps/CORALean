@@ -14,6 +14,10 @@ A class of its own, beside `SoundFloatArithmetic` rather than inside it, since
 ℝ, an instance of that class, has no computable rational to decode to; every
 machine format has one, and each instance proves the equation from its own
 `toReal`. ℚ rather than a dyadic, since `FixedPoint` is decimal.
+
+A hardware NaN decodes, as any bit pattern does, to the finite `1.5 · 2 ^ 1024`, so `toRat`
+never says a value is not a number; `isNaN` does, and is `false` at a format without NaN.
+A decision in ℚ that is not a tuning choice tests it first (`NoNaN.lean` tests a result).
 -/
 
 -- Authors:       Tobias Ladner
@@ -33,6 +37,9 @@ namespace CORALean.Float
 class ToRat (𝕋 : Type) [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] where
   toRat : 𝕋 → ℚ
   toReal_toRat (x : 𝕋) : ((toRat x : ℚ) : ℝ) = SoundFloatArithmetic.toReal x
+  /-- Native `Float.isNaN`; `false` at a format with no NaN. A NaN's `toRat` is a
+  number like another, so this is the only way to tell it apart. -/
+  isNaN : 𝕋 → Bool
 
 end CORALean.Float
 

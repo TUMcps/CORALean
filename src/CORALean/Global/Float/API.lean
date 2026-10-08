@@ -1,6 +1,7 @@
 import CORALean.Global.Float.FloatOps
 import CORALean.Global.Float.SoundFloatArithmetic
 import CORALean.Global.Float.ToRat
+import CORALean.Global.Float.NoNaN
 import CORALean.Global.Float.EuclideanNorm
 import CORALean.Global.Float.Exp
 import CORALean.Global.Float.Log

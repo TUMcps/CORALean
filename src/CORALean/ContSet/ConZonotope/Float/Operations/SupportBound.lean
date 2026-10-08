@@ -12,6 +12,9 @@ Either way an upper bound only, never claimed to be the support function.
 
 CORA's `supportFunc_` of a `conZonotope` solves the same program with `linprog`
 and returns its value: this is that, read as a bound.
+
+A NaN among the stored data reads through `ToRat` as `1.5 · 2 ^ 1024`, so the program solved
+is another one. That costs tightness only: the checker sees the NaN in rounded arithmetic.
 -/
 
 -- Authors:       Tobias Ladner

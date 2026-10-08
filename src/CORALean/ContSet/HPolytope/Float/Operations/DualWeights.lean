@@ -11,15 +11,17 @@ reads the stored rows back into ℚ through `ToRat`, so the simplex sees exactly
 the program the floats denote, solves its dual there with `dualCandidate`, and
 rounds the weights into `𝕋` with `ratUp`.
 
-The program is `max dᵀβ` over the polytope within the unit box `|βⱼ| ≤ 1`, a
-constrained zonotope's coefficient domain. The box rows keep it bounded, so the
-dual is feasible; their weights are then dropped, since the checker pays for the
-box itself, by the residual against `Σ |rⱼ|`. An interval equality row is two
-inequalities, `Ae β ≤ be.sup` and `-Ae β ≤ -be.inf`, with a weight each.
+The program is `max dᵀβ` over the polytope within the unit box `|βⱼ| ≤ 1`, a constrained
+zonotope's coefficient domain. The box rows keep it bounded, so the dual is feasible; their
+weights are then dropped, the checker paying for the box by the residual against `Σ |rⱼ|`. An
+interval equality row is two inequalities, `Ae β ≤ be.sup` and `-Ae β ≤ -be.inf`, a weight each.
 
 Nothing here is trusted: a negative, badly rounded or missing (`none`, the pivot
 budget ran out) weight costs tightness only, because the checker clamps every
 weight at zero and encloses the residual it actually has, in rounded arithmetic.
+
+A NaN in the stored data reads through `ToRat` as `1.5 · 2 ^ 1024`: another program, which
+costs tightness only, the checker seeing the NaN in rounded arithmetic.
 -/
 
 -- Authors:       Tobias Ladner

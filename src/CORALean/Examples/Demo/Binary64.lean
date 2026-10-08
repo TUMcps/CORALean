@@ -1,5 +1,6 @@
 import CORALean.Examples.Demo.Reach
 import CORALean.Global.Float.Instances.Binary64.API
+import CORALean.Global.Float.NoNaN
 
 /-!
 # The same run at native binary64
@@ -78,9 +79,14 @@ this run exists to show. -/
 def showExact (d : Dyadic 53) : String :=
   if d.mantissa = 0 then "0" else toString d.mantissa ++ "*2^" ++ toString d.exponent
 
+/-- `Rb k` if no float of it is a NaN. The table reports a hardware run only then, which is
+what the trust base asks of a `Float` result (README, item 2); `ifNoNaN` makes the test. -/
+def RbChecked (k : ℕ) : Option (Zonotope Float 2) := ifNoNaN (𝕋 := Float) (Rb k)
+
 def reachRowB (k : ℕ) : String :=
-  let Z := Rb k
-  pad 4 (toString k) ++ pad 7 (toString Z.h) ++ "  " ++ showBoxB Z.interval
+  match RbChecked k with
+  | none => pad 4 (toString k) ++ "rejected: a float of the result is a NaN"
+  | some Z => pad 4 (toString k) ++ pad 7 (toString Z.h) ++ "  " ++ showBoxB Z.interval
 
 /-- The width of one coordinate of the error box, differenced as dyadics rather
 than as floats: `subUp` would add a step of its own and report the width of a
@@ -90,8 +96,10 @@ def widthB {n : ℕ} (I : Interval (Vec Float n)) (i : Fin n) : Dyadic 53 :=
     (CORALean.Float.Dyadic.neg (Binary64.toDyadic (I.inf i)))
 
 def errorRowB (k : ℕ) : String :=
-  let E := (Rb k).E
-  pad 4 (toString k) ++ pad 28 (showExact (widthB E 0)) ++ pad 26 (showExact (widthB E 1))
+  match RbChecked k with
+  | none => pad 4 (toString k) ++ "rejected: a float of the result is a NaN"
+  | some Z =>
+    pad 4 (toString k) ++ pad 28 (showExact (widthB Z.E 0)) ++ pad 26 (showExact (widthB Z.E 1))
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

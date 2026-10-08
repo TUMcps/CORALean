@@ -10,6 +10,10 @@ errors are ℚ, exact; the step is read back through `ToRat`. Which order comes
 out affects how tight the result is, never whether it is sound: every order is
 a `reduce`.
 
+A NaN `Δt` or `errOp` reads through `ToRat` as `1.5 · 2 ^ 1024`, which exhausts the budget
+`ε_S` and keeps higher orders. The order and `ε_S` do not enter `adaptiveStepFloat_outer`, so
+a NaN here costs tightness only.
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

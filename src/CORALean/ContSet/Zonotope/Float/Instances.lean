@@ -1,4 +1,5 @@
 import CORALean.ContSet.ContSet.Definitions.CompactSet
+import CORALean.Global.Float.NoNaN
 import CORALean.ContSet.ContSet.Definitions.ConvexSet
 import CORALean.ContSet.Interval.Float.Instances
 import CORALean.ContSet.MatZonotope.Float.Instances
@@ -128,6 +129,10 @@ instance : Mtimes (fun m n => MatZonotope 𝕋 m n) (Zonotope 𝕋) where
   mtimes_outer M Z := by
     rw [Zonotope.materialise_eq]
     exact Zonotope.mtimesMatZonotope_outer M Z
+
+/-- Centre, generators and error box, for `ifNoNaN`. -/
+instance {n : ℕ} : Floats 𝕋 (Zonotope 𝕋 n) :=
+  ⟨fun Z => Floats.floats Z.c ++ Floats.floats Z.G ++ Floats.floats Z.E⟩
 
 end CORALean.Float
 

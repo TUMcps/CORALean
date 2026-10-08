@@ -77,6 +77,7 @@ instance {f : ℕ} : SoundFloatArithmetic (FixedPoint f) where
 instance {f : ℕ} : ToRat (FixedPoint f) where
   toRat x := (x.m : ℚ) / 10 ^ x.d
   toReal_toRat _ := rfl
+  isNaN _ := false
 
 end CORALean.Float
 

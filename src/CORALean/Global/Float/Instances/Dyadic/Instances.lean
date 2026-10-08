@@ -77,6 +77,7 @@ instance {p : ℕ} : SoundFloatArithmetic (Dyadic p) where
 instance {p : ℕ} : ToRat (Dyadic p) where
   toRat := Dyadic.toRat
   toReal_toRat := Dyadic.cast_toRat
+  isNaN _ := false
 
 end CORALean.Float
 

@@ -234,6 +234,11 @@ import CORALean.ContDynamics.LinearSys.Theorems.NoiseCovarianceDiagonal
 import CORALean.ContDynamics.LinearSys.Theorems.NoiseCovarianceDiagonalCounterexample
 import CORALean.ContDynamics.LinearSys.Theorems.IdentifyCandidateFit
 import CORALean.ContDynamics.LinearSys.Theorems.IdentifyLeCandidate
+import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatCheckedEqSome
+import CORALean.ContDynamics.LinearSys.Theorems.ReachWrappingFreeFloatCheckedEqSome
+import CORALean.ContDynamics.LinearSys.Theorems.ReachTimePointWrappingFreeFloatCheckedEqSome
+import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputCheckedEqSome
+import CORALean.ContDynamics.LinearSys.Theorems.ReachAdaptiveFloatCheckedEqSome
 
 /-!
 # What `LinearSys` guarantees

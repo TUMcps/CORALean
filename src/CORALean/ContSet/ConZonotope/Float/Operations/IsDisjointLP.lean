@@ -13,6 +13,9 @@ when the optimum is `s > 0`.
 The verdict is `separatesAlong`'s, at `a` and at `-a` (so the sign need not be
 right), with the error boxes paid by `boundDot`. One-sided: `true` proves the
 sets disjoint whatever direction the simplex returned; `false` says nothing.
+
+A NaN among the stored data reads through `ToRat` as `1.5 · 2 ^ 1024`, so the program solved
+is another one. That costs tightness only: the checker sees the NaN in rounded arithmetic.
 -/
 
 -- Authors:       Tobias Ladner

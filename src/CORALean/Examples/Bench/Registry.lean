@@ -1,6 +1,6 @@
-import CORALean.ContDynamics.LinearSys.Operations.ReachWrappingFreeFloat
-import CORALean.ContDynamics.LinearSys.Operations.ReachFloat
-import CORALean.ContDynamics.LinearSys.Operations.ReachTimePointWrappingFreeFloat
+import CORALean.ContDynamics.LinearSys.Operations.ReachFloatChecked
+import CORALean.ContDynamics.LinearSys.Operations.ReachTimePointWrappingFreeFloatChecked
+import CORALean.ContDynamics.LinearSys.Operations.ReachWrappingFreeFloatChecked
 import CORALean.Examples.Bench.Cli
 import CORALean.Examples.Bench.ContRollout
 import CORALean.Examples.Bench.FirstStepRun
@@ -21,14 +21,14 @@ import CORALean.Global.Float.Instances.FixedPoint.API
 /-!
 # `dtdemo`, `headline-a`, `headline-b`, `exp2-timepoint`
 
-`dispatch` is the one place `main` calls into; every experiment name it knows
-goes through `runAt`, generic in the scalar `𝕋`, instantiated once at
-`Dyadic p` and once at `Float` by `dispatch` itself. `dtdemo` is
-`LinearSysDT.reach` on `Rollout.buildSystem`'s placeholder Euler
+`dispatch` is the one place `main` calls into; every experiment name it knows goes through
+`runAt`, generic in the scalar `𝕋`, instantiated once at `Dyadic p` and once at `Float` by
+`dispatch` itself. `dtdemo` is `LinearSysDT.reach` on `Rollout.buildSystem`'s placeholder Euler
 discretization. The other three run the verified continuous-time algorithms
-(`ContRollout.buildContSystem`'s exact `A`, `X0`) through `aux_runTiTp`, shared
-over the one difference between them, `aux_algoHeadlineA`/`B`/`Exp2` -- which
-call of `reachWrappingFreeFloat`/`reachTimePointWrappingFreeFloat`/`reachFloat` each is.
+(`ContRollout.buildContSystem`'s exact `A`, `X0`) through `aux_runTiTp`, shared over the one
+difference between them, `aux_algoHeadlineA`/`B`/`Exp2` -- which call of
+`reachWrappingFreeFloat`/`reachTimePointWrappingFreeFloat`/`reachFloat` each is, as `…Checked`;
+a result holding a NaN is not reported (nor is `dtdemo`'s).
 
 A `dyadic` run's significand width, `resolvedPrec`, is `--prec` if given (a
 raw bit count, for a precision none of the five `--format` labels name), else
@@ -61,7 +61,7 @@ def outPath (outDir configPath experiment ty format : String) : System.FilePath 
 
 /-- Loads the config, builds the system, times and runs `rollout`, and writes
 the result -- everything `dtdemo` needs at whichever scalar `dispatch` picked. -/
-def runDtdemo {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] (args : CliArgs)
+def runDtdemo {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] (args : CliArgs)
     (inst : String → ExactDyadic → Except String 𝕋) (instUnchecked : ExactDyadic → 𝕋)
     (toD : 𝕋 → Float) (format : String) (toExact : Option (𝕋 → String)) (sig : ℕ) :
     IO Unit := do
@@ -73,7 +73,11 @@ def runDtdemo {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] (args : 
     | .ok v => pure v
     | .error e => throw (IO.userError e)
   let reps := args.reps.getD cfg.reps
-  let (samples, medianNs, _checksum, steps) ← timeRollout toD S cfg.rho cfg.steps reps
+  let (samples, medianNs, _checksum, unchecked) ← timeRollout toD S cfg.rho cfg.steps reps
+  -- the rollout is reported only if no float of it is a NaN, as the `…Checked` calls do
+  let steps ← match ifNoNaN (𝕋 := 𝕋) unchecked with
+    | some ok => pure ok
+    | none => throw (IO.userError s!"{args.config}: dtdemo: a float of the result is a NaN")
   let out := outPath args.outDir args.config "dtdemo" args.ty format
   writeRun out "dtdemo" "reach" args.ty format sig configJ cfg.eta samples medianNs toD
     toExact dtFloat steps
@@ -100,8 +104,8 @@ def aux_options {𝕋 : Type} (dt : 𝕋) (cfg : HeadlineConfig) : LinearSys.Rea
 def aux_algoHeadlineA {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋]
     (sys : LinearSys 𝕋 2) (X0 : Zonotope 𝕋 2) (dt : 𝕋) (cfg : HeadlineConfig) :
     Unit → Option (List (Zonotope 𝕋 2) × List (Zonotope 𝕋 2)) :=
-  fun _ => match sys.reachWrappingFreeFloat (aux_params X0 dt cfg) (aux_options dt cfg),
-      sys.reachTimePointWrappingFreeFloat (aux_params X0 dt cfg) (aux_options dt cfg) with
+  fun _ => match sys.reachWrappingFreeFloatChecked (aux_params X0 dt cfg) (aux_options dt cfg),
+      sys.reachTimePointWrappingFreeFloatChecked (aux_params X0 dt cfg) (aux_options dt cfg) with
     | some ti, some tp => some (ti, tp)
     | _, _ => none
 
@@ -110,14 +114,14 @@ directly -- `headline-b`'s whole algorithm call. -/
 def aux_algoHeadlineB {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋]
     (sys : LinearSys 𝕋 2) (X0 : Zonotope 𝕋 2) (dt : 𝕋) (cfg : HeadlineConfig) :
     Unit → Option (List (Zonotope 𝕋 2) × List (Zonotope 𝕋 2)) :=
-  fun _ => sys.reachFloat (aux_params X0 dt cfg) (aux_options dt cfg)
+  fun _ => sys.reachFloatChecked (aux_params X0 dt cfg) (aux_options dt cfg)
 
 /-- Scheme (b) again, keeping only the time-point half -- `exp2-timepoint`'s
 whole algorithm call, for the precision ablation at every `--format`. -/
 def aux_algoExp2 {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋]
     (sys : LinearSys 𝕋 2) (X0 : Zonotope 𝕋 2) (dt : 𝕋) (cfg : HeadlineConfig) :
     Unit → Option (List (Zonotope 𝕋 2) × List (Zonotope 𝕋 2)) :=
-  fun _ => (sys.reachFloat (aux_params X0 dt cfg) (aux_options dt cfg)).map
+  fun _ => (sys.reachFloatChecked (aux_params X0 dt cfg) (aux_options dt cfg)).map
     fun (_, Rtp) => ([], Rtp)
 
 /-- Loads the config, builds the continuous-time system, checks `eta` is
@@ -159,7 +163,8 @@ def aux_runTiTp {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat
     | none =>
       writeRunNone out experiment scheme args.ty format sig configJ
         s!"the algorithm returned none despite an admissible order eta = {etaUsed} -- \
-          likely a window's squaring search failed" nt.metaFields
+          likely a window's squaring search failed, or a float of the result is a NaN \
+          (the `…Checked` calls report no result holding one)" nt.metaFields
       IO.eprintln s!"{experiment}: wrote {out}.json (status: none)"
       IO.Process.exit 1
     | some (ti, tp) =>
