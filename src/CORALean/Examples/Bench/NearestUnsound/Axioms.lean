@@ -16,8 +16,9 @@ library result may be one. Only files under `Examples/Bench/` may import this,
 which `scripts/check-conventions.sh` enforces, and `scripts/check-axioms.sh`
 asks Lean of every library declaration whether its proof reaches it.
 
-Contrast `Binary64.trustedHardware`, the library's one assumption: it is true of
-IEEE 754 hardware on a finite run. CORALean has exactly these two axioms.
+Contrast `Binary64.trustedHardware`: true of IEEE 754 hardware only while values
+stay in binary64's normal range. CORALean has exactly three axioms: this one,
+`trustedHardware` and `trustedFlint`.
 -/
 
 -- Authors:       Tobias Ladner

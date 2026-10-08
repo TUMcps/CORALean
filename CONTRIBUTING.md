@@ -1,5 +1,10 @@
 # Contributing
 
+**How this code was written.** Most of it was written by AI agents (Claude) under
+human direction and review. Lean's kernel checks every proof, so the review effort
+goes into whether the statements and definitions match the papers and CORA, which
+the kernel cannot judge.
+
 ## Source layout
 
 ```
@@ -42,9 +47,9 @@ src/CORALean/
                    support function is closed form; Real/ and Float/
     SpectraShadow/ the projection of a spectrahedron: exact under sum, image and
                    product, the representation a semidefinite program lands in;
-                   Real/ and Float/, the latter with `plus` alone
+                   Real/ and Float/
     Capsule/       a segment thickened by a ball, for an obstacle rather than a
-                   reachable set: Real/ only, being closed under almost nothing
+                   reachable set: Real/ and Float/, being closed under almost nothing
     Taylm/         a polynomial over `[-1, 1]ⁿ` and a remainder interval, enclosing
                    a function rather than describing a set; Real/ and Float/
     Conversion/    one file per ordered pair, `<Source>_to_<Target>.lean`;
@@ -113,9 +118,10 @@ these files by exact path. That is a dependency, not a cycle: the conversion imp
 the representation's own files, never its `API.lean`.
 
 A representation holds one directory per arithmetic layer, named for the
-namespace it declares, and keeps it when only one layer is written: `Capsule`
-has a `Real/` and no `Float/`. That split is permanent, and it is the only one:
-the scalar is a folder only where the data of a type differs by layer, which is
+namespace it declares, and keeps it when only one layer is written: `SpectraShadow`
+and `Capsule` each hold a `Real/` and a `Float/`, and a representation with only
+the first would still hold the folder. That split is permanent, and it is the only
+one: the scalar is a folder only where the data of a type differs by layer, which is
 exactly `ContSet/`'s representations — a float zonotope stores an error box a
 real one has no use for. Everywhere else an object is written once over the
 scalar `𝕋`, ℝ among its instances, and no `Real/` or `Float/` folder appears:
@@ -384,7 +390,7 @@ out of a job of its own — with no cache a second job rebuilds everything.
 
 ## Targets
 
-Three, all named in `lakefile.toml`, and `check-conventions.sh` walks the import
+Eight, all named in `lakefile.toml`, and `check-conventions.sh` walks the import
 graph from each of their roots, so a new one belongs in both files.
 
 `CORALean` is the development. `Examples` is the worked examples, built
@@ -712,15 +718,17 @@ obligation is a theorem, nothing overflows, and a result computed there rests on
 binary64 is Lean's `Float`, compiled to a machine double and fast — and opaque
 in the logic, so the ten obligations are bundled into one property,
 `TrustedHardware`, and assumed in one line in
-`Global/Float/Instances/Binary64/Axioms.lean` — the one file in the tree that
-may carry an `axiom`, and the one `check-conventions.sh` names. A result that
+`Global/Float/Instances/Binary64/Definitions/Axioms.lean` — one of the three files
+in the tree that may carry an `axiom` (see the end of this section), and one of
+those `check-conventions.sh` names. A result that
 reaches `Float` therefore reports exactly one name beyond Lean's own, and a
 verified model of binary64 would discharge it without another line changing.
 
 The assumptions are true of IEEE 754 binary64 on a run in which every value
 stays finite and nothing underflows into the subnormals. Neither restriction can
-be written into the class, whose obligations are unconditional, and neither is
-checked at runtime. Prefer `Dyadic` where the cost is bearable, reach for
+be written into the class, whose obligations are unconditional; instead
+`Binary64/Operations/InRange.lean` checks them at runtime, and an operation that
+leaves the range returns NaN, which propagates. Prefer `Dyadic` where the cost is bearable, reach for
 `Float` where it is not, and say which a number came from.
 
 Directed rounding is achieved without a rounding mode and without C of its own:

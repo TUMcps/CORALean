@@ -15,3 +15,6 @@ experiments/matlab-ops/inputs.json
 experiments/matlab-ops/matlab_results.json
 experiments/matlab-ops/coralean_results.json
 /release/
+
+# Per-user Claude Code permissions.
+.claude/settings.local.json

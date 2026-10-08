@@ -3,8 +3,9 @@ import CORALean.ContSet.Interval.Float.Interval
 /-!
 # `Interval.matPlus`
 
-`Interval.plus`'s counterpart at `Mat 𝕋 m n`: the float layer has no `Entrywise`
-class to state one addition generically over (see `Interval.lean`), so the
+`Interval.plus`'s counterpart at `Mat 𝕋 m n`: the float layer has no counterpart of
+the exact layer's `Entrywise` class to state one addition generically over (see
+`Interval.lean`), so the
 matrix case gets its own name rather than overloading the `Vec` one. Each bound
 rounds away from the interval, `inf` down and `sup` up, exactly as `plus` does.
 -/

@@ -49,6 +49,7 @@ conventions:
   script:
     - sh scripts/check-conventions.sh
     - python3 scripts/check-references.py
+    - python3 scripts/check-findings.py
     - python3 scripts/formalization-stats.py --check
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
