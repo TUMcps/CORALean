@@ -137,9 +137,9 @@ axiom's inequality, read on the NaN's decoding, fails (for `mulUp`, `divUp`, `ha
    operands, which by 2 have non-NaN ancestors. The unrounded conjuncts (`neg`, `minimum`,
    `maximum`, `≤`, `0.0`, `1.0`) are true on every non-NaN pattern, infinities included, because
    `toReal` is monotone and sign-symmetric there.
-4. **The final check.** A reported value is trusted only if it holds no NaN. This is the caller's
-   test: the library's theorems conclude about `some Rs` whatever `Rs` holds, and `reachFloat`
-   and its kin carry no NaN test. The bench records one (`overflows` in `Examples/Bench/NumberType.lean`,
+4. **The final check.** A reported value is trusted only if it holds no NaN. For the entry points
+   that have a `…Checked` form (below) the library makes this test itself; for any other it is the
+   caller's, since the unchecked theorems conclude about `some Rs` whatever `Rs` holds. The bench records one (`overflows` in `Examples/Bench/NumberType.lean`,
    `nonFinite` flags and `overflowStep` in the output; a stderr line in `Timing.lean`, `Nn.lean`
    and `Mnist.lean`), and prints a NaN as `"NaN"`. A verdict decided by `≤` tests rejects a NaN among the operands it
    compares by itself, by 3; a value it does not compare is not covered by that.
@@ -155,17 +155,32 @@ axiom's inequality, read on the NaN's decoding, fails (for `mulUp`, `divUp`, `ha
   and is sampled, not proved, by `hardwarecheck` (a sample, on the CI machine and compiler). It
   assumes round-to-nearest-even, no extended precision, no fused multiply-add contraction and no
   fast-math in the code the compiler emits for `Binary64`'s operations. See 4.
-* **A NaN that is read as a number.** `ToRat.toRat` and `toReal` decode a NaN to the finite
-  rational `1.5 · 2 ^ 1024`; no NaN test happens after that. Floats produced by operations and then
-  read through `ToRat.toRat` are compared or accumulated in ℚ in `AdaptSetOrder(Loop)`,
-  `AdaptTimeStep*Float`, `AdaptiveStepFloat` and the `ConZonotope`/`HPolytope` LP
-  weights; there the NaN has been replaced by a huge positive number and the argument above does not
-  see it. For an error bound compared with `≤` against a budget, a huge number rejects, so these
-  tests err conservatively, but this has been read at those sites and not proved for each. **This is
-  a gap in the argument as stated in 2.**
-* **Results that do not end in a float.** The argument covers values that are floats at the end. A
-  `Bool`, `Nat` or `ℚ` derived from a computed float through `ToRat` (item above) is not covered.
-* **NaN inputs.** `hardwarecheck` does not claim the axiom for them, and neither does this section.
+* **A NaN that is read as a number, at the sites that are only argued.** `ToRat.toRat` and
+  `toReal` decode a NaN to the finite rational `1.5 · 2 ^ 1024`. `ToRat.isNaN` tells it apart, and
+  the decisions in ℚ that bear on soundness test it: `adaptiveStepFloat` (the step and its norm
+  bound), `Ellipsoid.ellipsoidNormUb`, `SpectraShadow.dualCertified` and `representsa_emptySet`
+  reject a NaN among the floats they read. The other `toRat` sites are tuning or proposal only
+  (`AdaptSetOrder(Loop)`, `AdaptTimeStepFloat`, `AdaptTimeStepOrderFloat`,
+  `AdaptTimeStepSearchFloat`, the `HPolytope` and `ConZonotope` LP weights and the `isDisjointLP`
+  separator): their results are re-checked by a decision above, or by a float checker that accepts
+  any weights, and the theorems hold for any tuning choice, so a NaN there costs tightness only.
+  This is read against the theorems, not a separate proof. The `Reach.steps` calls in the
+  `reach*Float` functions read a NaN `timeStep` as `1.5 · 2 ^ 1024`; a step count of one or more
+  then needs `tFinal − tStart` to be a multiple of that, and any step run returns NaN floats, which
+  the `…Checked` entry points reject. That last point is argued, not proved.
+* **The final NaN check covers only the entry points that have a `…Checked` form.**
+  `LinearSys.reachFloatChecked`, `reachWrappingFreeFloatChecked`,
+  `reachTimePointWrappingFreeFloatChecked`, `reachFloatInputChecked`, `reachAdaptiveFloatChecked`,
+  `LinParamSys.reachFloatChecked`, `NonlinearSys.FloatModel.reachFloatChecked`,
+  `NonlinearSys.FloatHessModel.reachAlgFloatChecked`, `NonlinDASys.reachFloatChecked`,
+  `NonlinParamSys.reachFloatChecked` and `Location.reachFloatChecked` return `none` if a float of
+  the result is a NaN (`checkNoNaN`, `Global/Float/NoNaN.lean`), and each `…Checked_eq_some` says a
+  `some` is the unchecked `some`. `HybridAutomaton`, `ParallelHybridAutomaton` and
+  `NeurNetContrSys` have no checked form yet and still need the caller's test. A `Bool`, `Nat` or
+  `ℚ` derived from a float is covered only where the deriving function tests for NaN, as the four
+  named in the item above do.
+* **NaN inputs.** `hardwarecheck` does not claim the axiom for them, and neither does this section. `ellipsoidNormUb`, `dualCertified`, `representsa_emptySet` and
+  `adaptiveStepFloat` return `none` or `false` on one.
 * **Subnormal inputs** are covered (`toReal` reads them exactly) but a subnormal *result* is NaN,
   so a run that needs the subnormal range is rejected, not trusted.
 
