@@ -15,7 +15,8 @@ once the implicit leading one is counted.
 The decoding is the standard one: sign bit, an 11-bit exponent field biased by
 1023, and 52 stored significand bits whose leading one is implicit unless that
 field is zero. The same formula is applied when the field is `0x7FF`, where the
-bit pattern is an infinity or a NaN and the dyadic it returns denotes nothing;
+bit pattern is an infinity or a NaN and the dyadic it returns (`2 ^ 1024`, `1.5 * 2 ^ 1024`) is no
+value of the machine;
 `Axioms` is where that costs something.
 -/
 
