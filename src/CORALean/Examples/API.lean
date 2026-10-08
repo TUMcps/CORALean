@@ -67,4 +67,5 @@ executable that is run rather than a use site that is compiled.
 `BenchFlintMain.lean` is deliberately not collected here, for the same reason.
 `Oracle.lean` is deliberately not collected here, for the same reason.
 `HardwareCheck.lean` is deliberately not collected here, for the same reason.
+`FlintCheck.lean` is deliberately not collected here, for the same reason.
 -/

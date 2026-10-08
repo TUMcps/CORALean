@@ -270,7 +270,21 @@ lake build bench-flint              # or: lake exe bench-flint <experiment> --ty
 `bench-flint selftest` differential-tests `Flint p` against `Dyadic p` at every
 op, precision and a few thousand pseudo-random operands (including values past
 `2^64` and negative, to exercise the FFI's `Int` conversion), and reports any
-mismatch by exact value — none found so far.
+mismatch by exact value. `lake exe flintcheck` (`Examples/FlintCheck.lean`)
+checks `trustedFlint` itself, against exact rationals rather than `Dyadic p`'s
+code: for random and structured operands (bit lengths around `p`, ties,
+cancellation, a far-smaller addend that only matters as a sticky bit) at
+`p` from 2 to 200, each directed `arf_add`/`arf_mul`/`arf_div` result must lie
+on the claimed side of the exact value, have at most `p` significant bits, and
+equal the nearest such number on that side; and `a + 0`, `a * 1` must return a
+mantissa past `2^64` and an exponent past `2^64` unchanged, which is the shim's
+`Int`/`fmpz` conversion. It exits non-zero on any violation. Linking FLINT is
+what makes this a CI job of its own, `flint-check`: it builds FLINT, runs
+`flintcheck`, `bench-flint selftest` and a one-repetition `headline-a`, on
+schedules, on a merge request touching the backend or its scripts, and on
+request (manual) for any other. No violation has been found (last run locally:
+FLINT 3.6.0, about 150,000 comparisons per run, seed `20261008`); the job is what
+keeps that a checked claim rather than a local one.
 
 The one thing trusted beyond `Dyadic p`'s own theorems is `trustedFlint`
 (`Global/Float/Instances/Flint/Definitions/Axioms.lean`): that FLINT's directed
