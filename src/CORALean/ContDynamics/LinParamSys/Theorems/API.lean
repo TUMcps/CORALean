@@ -41,6 +41,7 @@ import CORALean.ContDynamics.LinParamSys.Theorems.SquaringsFloatSpec
 import CORALean.ContDynamics.LinParamSys.Theorems.ExpMemExpSquaringFloat
 import CORALean.ContDynamics.LinParamSys.Theorems.ReachStepkFloatOuter
 import CORALean.ContDynamics.LinParamSys.Theorems.ReachFloatOuter
+import CORALean.ContDynamics.LinParamSys.Theorems.ReachFloatCheckedEqSome
 import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryExistsMeasurableParam
 import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryExistsIntegralEq
 import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryExistsMemExpIntervalEnclosure

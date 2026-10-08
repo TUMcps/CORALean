@@ -2,6 +2,7 @@ import CORALean.ContDynamics.NonlinParamSys.Theorems.ConstTrajectoryToAugment
 import CORALean.ContDynamics.NonlinParamSys.Theorems.ConstTrajectoryToTrajectory
 import CORALean.ContDynamics.NonlinParamSys.Theorems.ReachUnionOuter
 import CORALean.ContDynamics.NonlinParamSys.Theorems.ReachFloatOuter
+import CORALean.ContDynamics.NonlinParamSys.Theorems.ReachFloatCheckedEqSome
 import CORALean.ContDynamics.NonlinParamSys.Theorems.ToNonlinParam
 import CORALean.ContDynamics.NonlinParamSys.Theorems.ToNonlinearSys
 import CORALean.ContDynamics.NonlinParamSys.Theorems.TrajectoryOfNonlinearSys

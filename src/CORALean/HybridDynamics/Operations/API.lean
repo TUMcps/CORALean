@@ -12,6 +12,7 @@ import CORALean.HybridDynamics.Operations.TimeIntervalStepInvFloat
 import CORALean.HybridDynamics.Operations.GuardIntersectFloat
 import CORALean.HybridDynamics.Operations.JumpFloat
 import CORALean.HybridDynamics.Operations.LocationReachFloat
+import CORALean.HybridDynamics.Operations.LocationReachFloatChecked
 import CORALean.HybridDynamics.Operations.ReachFloat
 import CORALean.HybridDynamics.Operations.NonlinearResetEvaluate
 import CORALean.HybridDynamics.Operations.NonlinearResetEvaluateFloat

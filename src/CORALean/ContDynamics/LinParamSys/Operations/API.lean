@@ -30,6 +30,7 @@ import CORALean.ContDynamics.LinParamSys.Operations.SquaringsFloat
 import CORALean.ContDynamics.LinParamSys.Operations.ExpSquaringFloat
 import CORALean.ContDynamics.LinParamSys.Operations.ReachStepkFloat
 import CORALean.ContDynamics.LinParamSys.Operations.ReachFloat
+import CORALean.ContDynamics.LinParamSys.Operations.ReachFloatChecked
 import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepZono
 
 /-!
