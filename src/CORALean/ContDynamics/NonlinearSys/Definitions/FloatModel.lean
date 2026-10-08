@@ -49,7 +49,8 @@ structure NonlinearSys.FloatModel (𝕋 : Type) (n m : ℕ) where
   jacU : Interval (Vec 𝕋 n) → Interval (Vec 𝕋 m) → Interval (Mat 𝕋 n m)
 
 /-- `fm` encloses `sys` over every box: its value, and the slope between any two
-points of the box. -/
+points of the box. A user-supplied hypothesis, checked by no run: trusted unless proved, as
+`vdpModel_encloses` (`Examples/RunnableFloat.lean`) does. See the README's trust base. -/
 structure NonlinearSys.FloatModel.Encloses (fm : NonlinearSys.FloatModel 𝕋 n m)
     (sys : NonlinearSys n m) : Prop where
   f_mem (X : Interval (Vec 𝕋 n)) (U : Interval (Vec 𝕋 m)) :

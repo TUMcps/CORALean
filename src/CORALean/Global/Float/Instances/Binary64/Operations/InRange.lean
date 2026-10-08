@@ -8,7 +8,8 @@ zero or at least `2 ^ -1022` in magnitude. Past the top, `∞` denotes no number
 bottom a halving is no longer exact. So every rounded operation passes its result through this,
 which keeps a value in range and turns any other into NaN. A NaN propagates through every
 operation after it, `minimum` and `maximum` included, so a run that leaves the range ends in NaN
-and is detected at run time rather than trusted.
+and is detected at run time rather than trusted, provided the result is inspected: the
+library's theorems do not test for NaN. See the README's trust base.
 -/
 
 -- Authors:       Tobias Ladner

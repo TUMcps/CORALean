@@ -64,12 +64,11 @@ soundness obligations are theorems; `IEEE fmt`, the same at a real binary
 format — binary64, binary32, binary16, OCP E4M3 or E2M1, subnormals included —
 whose values past the format's range are detected and reported as overflow,
 never silently continued; and native binary64, which is fast and whose
-obligations are assumed instead — all ten as a single `TrustedHardware` axiom in
-`Global/Float/Instances/Binary64/Definitions/Axioms.lean`, the only file here that assumes
-anything. Every `Float` result carries that one name in `#print axioms`. The
-hardware instance is only trusted while all values remain in the normal range of
-binary64; operations that overflow or underflow return NaN, which propagates to
-the result, so such runs are detected at run time.
+obligations are assumed instead, all ten as a single `TrustedHardware` axiom. Every `Float`
+result carries that one name in `#print axioms`. The hardware instance is only trusted while all
+values remain in the normal range of binary64: operations that overflow or underflow return NaN,
+which propagates, so such runs can be detected. What exactly that covers, and the other
+things a float result trusts, is under "The trust base of float and hardware results" below.
 
 The Minkowski difference is the exception, and worth knowing about before
 reading the interfaces: a difference is a *guarantee* — the states from which
@@ -77,6 +76,141 @@ everything still lands where it should — so an implementation may only ever
 return a **subset**, and `MinkDiff` accordingly owes an inner approximation. Its
 float counterpart rounds inward, the only operation in that layer which does.
 
+
+## The trust base of float and hardware results
+
+Everything a float or hardware result depends on beyond the Lean kernel is listed here, and
+nowhere else. A result at `ℝ`, `Dyadic p`, `IEEE fmt` or `FixedPoint k` depends on none of it:
+`#print axioms` shows only Lean's own.
+
+### 1. The three axioms
+
+CORALean declares exactly three `axiom`s, one per file; `scripts/check-axioms.lean` asks Lean
+(`Lean.collectAxioms`) to confirm that no other exists.
+
+| Axiom | File | Says | Status |
+|---|---|---|---|
+| `Binary64.trustedHardware` | `src/CORALean/Global/Float/Instances/Binary64/Definitions/Axioms.lean` | The ten conjuncts of `TrustedHardware` (`.../Definitions/TrustedHardware.lean`): native `Float` negation, `minimum`, `maximum`, `≤`, `0.0`, `1.0`, `half`, and the upward `addUp`, `mulUp`, `divUp` (positive divisor) are what `SoundFloatArithmetic` asks of a scalar, read through `Binary64.toReal`. | The library's own: every `Float` result carries it. **False as a proposition** outside the normal range (below). |
+| `Flint.trustedFlint` | `.../Instances/Flint/Definitions/Axioms.lean` | FLINT's directed `arf_add`/`arf_mul`/`arf_div` round as documented, and the C shim's `Int`/`fmpz` conversion is exact. | True of FLINT; **opt-in**: reached only by `bench-flint` and `Examples/BenchFlint.lean`. |
+| `Bench.nearestUnsound` | `src/CORALean/Examples/Bench/NearestUnsound/Axioms.lean` | Round-to-nearest rounds in the direction an operation's name says. | **False by design**, **bench-only**: it exists to run the unchanged library on CORA's own arithmetic. A result that reaches it proves nothing. |
+
+`sh scripts/check-axioms.sh` keeps the last two out. It asserts that these three are the only axioms
+declared; that the named headline guarantees do not reach `nearestUnsound`; that no declaration of
+any library module outside `Examples/Bench/` reaches `nearestUnsound`, and none outside the FLINT
+backend and its bench reaches `trustedFlint`; that the two unsound instantiations and the FLINT one
+do reach theirs (positive controls, so the sweep is not vacuous); and that the oracle's entry
+declarations reach neither. `scripts/check-conventions.sh` additionally refuses the import that
+would let `NearestUnsound` in. Nothing keeps `trustedHardware` out: it is the library's one
+assumption, and what this section is about.
+
+### 2. `trustedHardware` is false outside the normal range, and a hardware run is sound anyway
+
+`Float` is opaque, so the axiom can only be stated about the bits, through `toReal`, which reads
+any pattern, an infinity or a NaN included, as `m · 2 ^ e`: `+∞` is `2 ^ 1024`, and a NaN is
+`1.5 · 2 ^ 1024` (Lean's `toBits` reports every NaN as the one pattern `0x7FF8…`). Stated
+unconditionally the axiom is therefore false. `lake exe hardwarecheck` shows this: of the samples
+whose result the model puts outside the normal range, the `litFalse` column counts those where the
+axiom's inequality, read on the NaN's decoding, fails (for `mulUp`, `divUp`, `half`, `addUp`, and
+`neg` of a NaN). The results are claimed sound by a meta-level argument, not a theorem:
+
+> If the final value contains no NaN, every instance of `trustedHardware` that the proof used is
+> true.
+
+*What it relies on.* Each step was checked against the code.
+
+1. **Gating.** Every rounded operation returns NaN unless its result is in range
+   (`Binary64/Operations/InRange.lean`, `StepUp.lean`). `addUp`, `addDown`, `mulUp`, `mulDown`,
+   `divUp`, `divDown` pass the machine result through `stepUp`, which keeps a zero, and otherwise a
+   normal float whose one-ulp step is also normal, and returns NaN for a subnormal, an infinity or a
+   NaN. `mulUp` and `divUp` also return NaN where the machine result is zero and the exact one is not
+   (`a, b ≠ 0` for the product, `a ≠ 0` for the quotient). `half` is NaN unless the result is normal
+   or an exact zero. So a non-NaN result of a rounded operation is a zero or a normal float, and the
+   instance of its conjunct at those operands is true on IEEE 754 binary64.
+2. **Propagation.** A NaN input gives a NaN output in every one of them (`NaN + x`, `NaN * x`,
+   `NaN / x` are NaN and `stepUp` and `inRange` refuse a NaN), and so do `neg` (the sign flips; it
+   stays a NaN) and `minimum`/`maximum` (an unordered pair returns `a + b`). An infinity input is
+   absorbed likewise, except `divUp 0 (+∞) = 0`, which is exact. Hence a non-NaN float has only
+   non-NaN ancestors: if the output holds no NaN, no operation in its dependency cone received or
+   produced one.
+3. **Tests.** `≤` on a NaN is false. A branch taken on `a ≤ b` is the only thing the class lets a
+   proof use about it (`toReal_le_of_le`, the true direction), and a true `a ≤ b` has non-NaN
+   operands, which by 2 have non-NaN ancestors. The unrounded conjuncts (`neg`, `minimum`,
+   `maximum`, `≤`, `0.0`, `1.0`) are true on every non-NaN pattern, infinities included, because
+   `toReal` is monotone and sign-symmetric there.
+4. **The final check.** A reported value is trusted only if it holds no NaN. This is the caller's
+   test: the library's theorems conclude about `some Rs` whatever `Rs` holds, and `reachFloat`
+   and its kin carry no NaN test. The bench records one (`overflows` in `Examples/Bench/NumberType.lean`,
+   `nonFinite` flags and `overflowStep` in the output; a stderr line in `Timing.lean`, `Nn.lean`
+   and `Mnist.lean`), and prints a NaN as `"NaN"`. A verdict decided by `≤` tests rejects a NaN among the operands it
+   compares by itself, by 3; a value it does not compare is not covered by that.
+5. **The proof's shape.** The proof of the guarantee used the axiom only at the operands of
+   operations the run performed, on the dependency cone of the output and of the true tests. This
+   is a property of how the library's proofs go (structural induction on the definitions, one
+   field per operation), read off the code, not enforced by the kernel: nothing stops a proof from
+   instantiating a field at a float the run never computed.
+
+*What it does not cover.*
+
+* **The machine.** That an instance with in-range operands is true is `TrustedHardware`'s content
+  and is sampled, not proved, by `hardwarecheck` (a sample, on the CI machine and compiler). It
+  assumes round-to-nearest-even, no extended precision, no fused multiply-add contraction and no
+  fast-math in the code the compiler emits for `Binary64`'s operations. See 4.
+* **A NaN that is read as a number.** `ToRat.toRat` and `toReal` decode a NaN to the finite
+  rational `1.5 · 2 ^ 1024`; no NaN test happens after that. Floats produced by operations and then
+  read through `ToRat.toRat` are compared or accumulated in ℚ in `AdaptSetOrder(Loop)`,
+  `AdaptTimeStep*Float`, `AdaptiveStepFloat` and the `ConZonotope`/`HPolytope` LP
+  weights; there the NaN has been replaced by a huge positive number and the argument above does not
+  see it. For an error bound compared with `≤` against a budget, a huge number rejects, so these
+  tests err conservatively, but this has been read at those sites and not proved for each. **This is
+  a gap in the argument as stated in 2.**
+* **Results that do not end in a float.** The argument covers values that are floats at the end. A
+  `Bool`, `Nat` or `ℚ` derived from a computed float through `ToRat` (item above) is not covered.
+* **NaN inputs.** `hardwarecheck` does not claim the axiom for them, and neither does this section.
+* **Subnormal inputs** are covered (`toReal` reads them exactly) but a subnormal *result* is NaN,
+  so a run that needs the subnormal range is rejected, not trusted.
+
+### 3. `NonlinearSys.FloatModel.Encloses`
+
+`NonlinearSys.FloatModel` (`src/CORALean/ContDynamics/NonlinearSys/Definitions/FloatModel.lean`)
+is the interval extension of the field `f` and of its two Jacobian blocks that a float run
+evaluates in place of `f`. `FloatModel.Encloses fm sys` (same file, lines 51-60) says `fm.f X U`
+holds `sys.f` over every box and the Jacobian boxes hold the slope between any two points of it.
+`reachFloat_outer` (`.../Theorems/ReachFloatOuter.lean`) and every theorem about
+`reachFloat`/`relinRunFloat` take it as a **hypothesis**. It is **user-supplied and unchecked**: a
+`FloatModel` is a function, and no run compares it with `f`. A wrong model gives a correct-looking
+`reachFloat` result that encloses nothing. (`NonlinearSysDT.FloatModel.Encloses` and
+`NonlinearARX.FloatModel.Encloses` are the same hypothesis for the discrete-time classes.)
+
+It is discharged by a Lean proof about the model, against the scalar's own obligations:
+`FloatModel.Encloses.of_hasFDerivAt` (`.../Theorems/EnclosesOfHasFDerivAt.lean`) reduces it to the
+function boxes holding `f` and the Jacobian boxes holding the derivative at every point of the box;
+for a polynomial field the slope is plain algebra. One example discharges it:
+`vdpModel_encloses` and `vdpHessModel_encloses` in `src/CORALean/Examples/RunnableFloat.lean`, for
+Van der Pol at `Dyadic 24`, where the proof uses only theorems. No example discharges it at
+hardware `Float`, and no other example in `src/CORALean/Examples` builds a `FloatModel`. A
+model at `Float` would have to be proved against `trustedHardware`, and so carries its qualification.
+
+### 4. The compiled path
+
+What is verified is the Lean definition: the kernel checks that the definition satisfies the
+theorem. What runs is something else. Lean's code generator turns the definition into C
+(`.lake/build/ir/`, see above), a C compiler turns that into machine code, and the Lean runtime
+supplies `Float`, `Int` and `Nat` arithmetic, `Float.toBits`/`ofBits`, GMP. All three are
+unverified, and nothing here proves the compiled code computes the definition's value. The
+`Float` path additionally depends on the machine's rounding mode and on the compiler not
+reassociating or fusing the operations. The only check is sampling: `hardwarecheck` linked
+against the emitted C. `lake env lean --run` runs the toolchain's precompiled primitives
+instead, and tests less.
+
+### 5. The oracle serves only software scalars
+
+`lake exe oracle` resolves every request's `dtype` in `withDtype`
+(`src/CORALean/Examples/Oracle/Dtype.lean`): `binary64` and `ieee:binary64` are the axiom-free
+`IEEE .binary64`, never hardware `Float`; the others are `IEEE .binary32/.binary16/.e4m3/.e2m1`,
+`Dyadic p` and `FixedPoint k`. No arm instantiates `Float`, `Flint` or a nearest-rounding scalar,
+and `scripts/check-axioms.sh` checks that the oracle's entry declarations reach neither
+`nearestUnsound` nor `trustedFlint`. The hardware `Float` path is the `bench` executable
+(`--type float`) and `hardwarecheck`.
 
 ## Testing the hardware axiom
 
