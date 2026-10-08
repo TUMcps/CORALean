@@ -9,6 +9,7 @@ import CORALean.ContDynamics.LinearSys.Operations.AutoTuneDeltaT
 import CORALean.ContDynamics.LinearSys.Operations.AutoTuneOrder
 import CORALean.ContDynamics.LinearSys.Operations.AutoTuneSearch
 import CORALean.ContDynamics.LinearSys.Operations.BundleReach
+import CORALean.ContDynamics.LinearSys.Operations.ReachBox
 import CORALean.ContDynamics.LinearSys.Operations.ConstInputSolution
 import CORALean.ContDynamics.LinearSys.Operations.DeltaReach
 import CORALean.ContDynamics.LinearSys.Operations.Discretize
@@ -39,6 +40,7 @@ import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachPoly
 import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachRun
 import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachStep
 import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachTimeInterval
+import CORALean.ContDynamics.LinearSys.Operations.MaxBackReach
 import CORALean.ContDynamics.LinearSys.Operations.MinBackReachInit
 import CORALean.ContDynamics.LinearSys.Operations.MinBackReachP
 import CORALean.ContDynamics.LinearSys.Operations.MinBackReachRun
@@ -49,6 +51,7 @@ import CORALean.ContDynamics.LinearSys.Operations.OneStep
 import CORALean.ContDynamics.LinearSys.Operations.NonlinearSysFloatModel
 import CORALean.ContDynamics.LinearSys.Operations.ParticularSolution
 import CORALean.ContDynamics.LinearSys.Operations.PostDelta
+import CORALean.ContDynamics.LinearSys.Operations.PostDeltaSplit
 import CORALean.ContDynamics.LinearSys.Operations.PropagateInputSolution
 import CORALean.ContDynamics.LinearSys.Operations.Reach
 import CORALean.ContDynamics.LinearSys.Operations.ReachAdmissible

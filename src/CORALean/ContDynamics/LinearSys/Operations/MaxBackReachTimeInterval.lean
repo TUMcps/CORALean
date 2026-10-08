@@ -7,11 +7,9 @@ import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachRun
 iterations' inner approximated time-interval solutions. Nothing here searches, so no fuel:
 `ω` and `η` are fixed by [1, Assumption 1] and the loop is bounded by `ω`.
 
-Three departures, all inherited from the pieces this assembles. `P₁`, `P₂` are supplied rather
-than computed inside, as `CZ` is to `Alg. 1`. (22)'s `‖·‖₂` is the spectral norm and this
-tree's matrices carry the ℓ^∞ operator norm, so `maxBackReachMu` takes the Frobenius norm,
-which dominates it. And line 14's union is no constrained zonotope, so the result is a `Set`,
-as in `Alg. 1`.
+Lines 1-2 and 6-14 of it: the two polytopes `P₁`, `P₂` of lines 3-5 are taken here, and
+`LinearSys.maxBackReach` is the whole listing, computing them first. Line 14's union is no
+constrained zonotope, so the result is a `Set`, as in `Alg. 1`.
 
 `ρ` is the caller's support oracle for a polytope — the linear program of (9). `Zw` is (26),
 the constant centre trajectory's contribution over one interval.

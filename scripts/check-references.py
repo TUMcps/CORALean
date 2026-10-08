@@ -19,6 +19,9 @@ statement fared (`correct`, `underspecified`, `proof-gap`, `fixed`, `false`), an
 everything but `correct` gives its reason in the cell; a row out of scope says
 why (`restated`, `mathlib`, `not-a-claim`, `done-differently`, `not-covered`),
 the five reasons the README allows; a row in scope and not yet formalized is `—`.
+A `correct` row is formalized *as printed*, so its note may not use the vocabulary of a
+departure (`HEDGE`) unless an `**As printed:**` marker says why the printed statement
+follows all the same.
 The committed `experiments/paper/formalization-stats.json` must be what that
 script would write now, so the figure cannot lag the tables.
 
@@ -81,6 +84,14 @@ VERDICTS = ("correct", "underspecified", "proof-gap", "fixed", "false")
 # Why a row sits outside the count; exactly the reasons references/README.md allows.
 OUT_OF_SCOPE = ("restated", "mathlib", "not-a-claim", "done-differently", "not-covered")
 CLASS = re.compile(r"^`([a-z-]+)`\s*(?:—\s*(.*\S))?$")
+# A `correct` row is formalized *as printed*, so its note may not say otherwise. These
+# phrases are the textual proxy for a note admitting the Lean theorem is not the printed
+# one (#119). A row may still use one where the printed statement follows directly from
+# what is proved -- a stronger theorem, a representation that denotes the same set -- and
+# then says so after an explicit `**As printed:**` marker, with the reason.
+HEDGE = re.compile(r"done differently|no counterpart|not covered|stated at `point`|only the\b|"
+                   r"rather than|not the printed|not modell?ed|not transcribed", re.I)
+AS_PRINTED = re.compile(r"\*\*As printed:\*\*\s*(\S.{39,})")
 STATS_JSON = ROOT / "experiments" / "paper" / "formalization-stats.json"
 # One directory per year of publication; `references/coverage/` is the other kind of page.
 PAPER_GLOB = "[0-9][0-9][0-9][0-9]/*.md"
@@ -221,6 +232,8 @@ class Paper:
                 self.tracked[result] = (locator(tracked.group(1)), tracked.group(2))
             self.results[result] = links if links else (None if excluded else [])
             self.verdicts[result] = self.parse_class(result, klass, excluded, bool(links))
+            if self.verdicts[result][0] == "correct":
+                self.check_hedge(result, where)
 
     def parse_class(self, result, cell, excluded, formalized):
         """`(class, reason)` of one row's `Class` cell, complaining when it is
@@ -240,6 +253,16 @@ class Paper:
             self.say(f"{self.rel}: `{result}` is `{klass}`, so its class cell gives the "
                      "reason after a dash: `fixed` — what was wrong and what was done")
         return klass, reason
+
+    def check_hedge(self, result, where):
+        """A `correct` row's note may not admit that the Lean theorem differs from the
+        printed statement, except after an `**As printed:**` marker that says why the
+        printed statement follows anyway."""
+        m = HEDGE.search(where)
+        if m and not AS_PRINTED.search(where):
+            self.say(f"{self.rel}: `{result}` is `correct`, but its note says `{m.group(0)}`: "
+                     "prove the printed statement, reclassify the row, or say why the printed "
+                     "statement follows after `**As printed:**`")
 
     @property
     def rel(self):

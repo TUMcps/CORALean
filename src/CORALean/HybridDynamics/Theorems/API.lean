@@ -81,6 +81,7 @@ import CORALean.HybridDynamics.Theorems.NonlinearResetResolveApply
 import CORALean.HybridDynamics.Theorems.NonlinearResetFloatModelEnclosesResolve
 import CORALean.HybridDynamics.Theorems.NonlinearResetResolveCORACounterexample
 import CORALean.HybridDynamics.Theorems.NonlinearResetResolveCORASharedInputs
+import CORALean.HybridDynamics.Theorems.UrgentRunToRun
 
 /-!
 # What a hybrid run guarantees, collected

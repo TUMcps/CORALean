@@ -6,16 +6,15 @@ import CORALean.NN.Operations.WorstIndex
 /-!
 # Which layer to refine next
 
-The paper's layer-wise heuristic [1, Def. 4.6]: `aux_layerRank` sums `refinementRank`
-over a layer's neurons, `NeuralNetwork.aux_layerRank` reads that at the network's
-actual sensitivity, `aux_worstLayer` names the largest of `k + 1` such ranks, and
-`refineWorst` spends a `refineLayer` step there.
+The paper's layer-wise heuristic [1, Def. 4.6]: `aux_layerRank` is [1, Eq. 28]'s
+`‖σ_k‖₂`, the Euclidean norm of a layer's per-neuron `refinementRank`s, as CORA's
+`norm(...)` takes it; `NeuralNetwork.aux_layerRank` reads that at the network's actual
+sensitivity, `aux_worstLayer` names the largest of `k + 1` such ranks (`k̃ = argmax_k
+‖σ_k‖₂`), and `refineWorst` spends a `refineLayer` step there.
 
 Nothing here is proved and nothing here can be wrong: `encloseAt_outer` holds
 at *every* schedule, so this file only decides where the next order is spent —
-the same freedom `reduceBy_outer` has at every partition. [1, Eq. 28] and
-CORA's `norm(...)` take the 2-norm of the per-neuron ranks instead; the
-aggregate only has to order layers, so which of the two is used is free.
+the same freedom `reduceBy_outer` has at every partition.
 
 ## References
 
@@ -38,10 +37,10 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m k : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- A layer's own rank, its neurons' summed: what the layer-wise rule ranks
-layers by, the neurons of the layer it names all moving together. -/
+/-- A layer's own rank, `‖σ_k‖₂` of its neurons' ranks [1, Eq. 28]: what the
+layer-wise rule ranks layers by, the neurons of the layer it names all moving together. -/
 noncomputable def aux_layerRank (J : Mat ℝ m n) (d : Vec ℝ n) : ℝ :=
-  ∑ j, refinementRank J d j
+  Real.sqrt (∑ j, refinementRank J d j ^ 2)
 
 /-- The rank at what CORA actually backpropagates: the network's sensitivity at
 a point of the input set, weighing the errors the layer's relaxation leaves. -/

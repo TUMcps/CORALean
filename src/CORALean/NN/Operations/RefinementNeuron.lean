@@ -11,8 +11,8 @@ best-ranked `(layer, neuron)` pair names a layer, and every neuron of that layer
 whose rank clears `ω` times the best rank moves up an order. At `ω = 1` that is
 the single best neuron, at `ω = 0` the whole layer, which is [1, Def. 4.6].
 
-`refinementRank` is read per neuron here, where `layerRank` sums it away. The
-sum orders layers and cannot say which neuron inside one deserves the order; by
+`refinementRank` is read per neuron here, where `layerRank` folds it into `‖σ_k‖₂`. The
+norm orders layers and cannot say which neuron inside one deserves the order; by
 [1, Lemma 4.3] a layer costs no more generators than its largest order anyway,
 so the two rules differ in the time spent and not in the size of the set.
 

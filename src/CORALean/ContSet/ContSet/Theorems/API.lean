@@ -26,6 +26,7 @@ import CORALean.ContSet.ContSet.Theorems.LinCombConvexHullSubset
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddAssoc
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddSubset
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddSubsetAdd
+import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddSubsetAddOfSubset
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffEnclSubsetAdd
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffEqIInter
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffInnerOfOuter
