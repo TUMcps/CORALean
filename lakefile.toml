@@ -1,6 +1,6 @@
 name = "CORALean"
 defaultTargets = ["CORALean", "Examples", "Demo", "Bench", "BenchFlint", "Oracle", "HardwareCheck",
-  "FlintCheck", "OracleUnsound"]
+  "FlintCheck", "RunCheck", "OracleUnsound"]
 
 [leanOptions]
 pp.unicode.fun = true
@@ -96,6 +96,20 @@ roots = ["CORALean.Examples.Oracle"]
 name = "oracle"
 srcDir = "src"
 root = "CORALean.Examples.Oracle"
+
+# `Examples/RunnableFloat.lean` proves each algorithm compiles at a float scalar; this runs them.
+# A library, in `defaultTargets`, so `lake build` elaborates it, and an executable for
+# `lake exe runcheck`. `scripts/check-runcheck.sh` runs it through the interpreter instead, for
+# the reason `check-demo.sh` does, and diffs it against `scripts/runcheck-expected.txt`.
+[[lean_lib]]
+name = "RunCheck"
+srcDir = "src"
+roots = ["CORALean.Examples.RunCheck"]
+
+[[lean_exe]]
+name = "runcheck"
+srcDir = "src"
+root = "CORALean.Examples.RunCheck"
 
 # The empirical check of `TrustedHardware`, the same shape again: a library, in
 # `defaultTargets`, so `lake build` elaborates it for the price of an olean, and an

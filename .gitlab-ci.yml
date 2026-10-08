@@ -157,6 +157,10 @@ build:
     # outside the tree — and rebuild the library from scratch, twenty minutes
     # for the sake of a step that costs under a second once the tree is built.
     - sh scripts/check-demo.sh
+    # Runs every algorithm `Examples/RunnableFloat.lean` only compiles, and fails
+    # on a NaN, a missing value, a changed result or a def that is not run. About
+    # 20 s through the interpreter, so here for the demo's reason.
+    - sh scripts/check-runcheck.sh
     # What no build and no text check can say: whether a proof term reaches
     # `nearestUnsound`, the bench's false round-to-nearest axiom. `collectAxioms`
     # on the built tree, seconds once built, so here for the demo's reason.
