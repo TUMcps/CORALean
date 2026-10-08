@@ -162,6 +162,7 @@ LinearSys.manualReach  spec: the `Set` a run's windows denote, a union for theor
 LinearSys.manualRun  pending #1: part of the adaptive linear scheme (`manualRun`, `autoRun`, `tunedRun`), stated over `Real.Zonotope` with ℝ-valued error terms; needs upward-rounded float error bounds and a float state
 LinearSys.manualStep  pending #1: part of the adaptive linear scheme (`manualRun`, `autoRun`, `tunedRun`), stated over `Real.Zonotope` with ℝ-valued error terms; needs upward-rounded float error bounds and a float state
 LinearSys.maxBackReachCZ  pending #1: backward reachability over `Real.ConZonotope`/`Real.HPolytope` at the real exponential; needs float constrained zonotopes and a float `e^{A t_k}`
+LinearSys.maxBackReach  spec: the backward paper's `Alg. 2` as a `Set`, lines 3-5 computed and then `maxBackReachTimeInterval`'s union; what runs is the `…Run` it unions
 LinearSys.maxBackReachInit  pending #1: backward reachability over `Real.ConZonotope`/`Real.HPolytope` at the real exponential; needs float constrained zonotopes and a float `e^{A t_k}`
 LinearSys.maxBackReachMu  pending #1: backward reachability over `Real.ConZonotope`/`Real.HPolytope` at the real exponential; needs float constrained zonotopes and a float `e^{A t_k}`
 LinearSys.maxBackReachPoly  pending #1: backward reachability over `Real.ConZonotope`/`Real.HPolytope` at the real exponential; needs float constrained zonotopes and a float `e^{A t_k}`
@@ -175,9 +176,11 @@ LinearSys.minBackReachStep  pending #1: backward reachability over `Real.ConZono
 LinearSys.minBackReachSupport  pending #1: backward reachability over `Real.ConZonotope`/`Real.HPolytope` at the real exponential; needs float constrained zonotopes and a float `e^{A t_k}`
 LinearSys.minBackReachTimeInterval  spec: the `Set` a run's windows denote, a union for theorems; what runs is the `…Run` it unions
 LinearSys.postDelta  real-layer: `deltaReach` plus the input's share at the real exponential; runs in floats as `LinearSys.postDeltaFloat` (`Trajectory.postDeltaFloat_outer`)
+LinearSys.postDeltaSplit  real-layer: `postDelta` with the input set split at a constant, at the real exponential; runs in floats as `LinearSys.postDeltaFloat`, which splits the same way
 LinearSys.particularSolution  real-layer: `P^R(t_{k+1})` accumulated; in floats, the input scan of `LinearSys.reachWrappingFreeFloatInput`
 LinearSys.propagateInputSolution  spec: the exact propagated input set, a `Set` image under the real exponential
 LinearSys.reach  real-layer: the exact layer's recursive reach; runs in floats as `LinearSys.reachFloat` (`reachFloat_outer`)
+LinearSys.reachBox  pending #1: the thesis's wrapping-free reach with `box()`, at a real matrix exponential over `Real.Zonotope`; needs a float `e^{Ar}` loop
 LinearSys.reachAdmissible  real-layer: `reach` at an order raised until admissible; `LinearSys.reachFloat` raises it by `reachOrderFloat`
 LinearSys.reachWrappingFree  real-layer: the wrapping-free reach; runs in floats as `LinearSys.reachWrappingFreeFloat`
 LinearSys.reachWrappingFreeInstance  real-layer: the `Reach` instance over `reachWrappingFree`; runs in floats as `LinearSys.reachWrappingFreeFloat`

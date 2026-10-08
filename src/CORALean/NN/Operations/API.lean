@@ -42,6 +42,9 @@ import CORALean.NN.Operations.RefinableNetworkLength
 import CORALean.NN.Operations.Refine
 import CORALean.NN.Operations.RefineLayer
 import CORALean.NN.Operations.RefineLoop
+import CORALean.NN.Operations.EncloseReduceAt
+import CORALean.NN.Operations.RefineVerifyFrom
+import CORALean.NN.Operations.RefineVerify
 import CORALean.NN.Operations.RefinementLipschitz
 import CORALean.NN.Operations.RefinementNeuron
 import CORALean.NN.Operations.RefinementRank

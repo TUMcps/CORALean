@@ -74,6 +74,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffRepInner
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffScaledInner
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffStretchEq
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffStretchInner
+import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffStretchInnerHRep
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffStretchOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkowskiDiffApplyLe
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkowskiDiffHRepEq

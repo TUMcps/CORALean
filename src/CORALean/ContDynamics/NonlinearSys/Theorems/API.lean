@@ -3,6 +3,7 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.AbstrErrLoopFixed
 import CORALean.ContDynamics.NonlinearSys.Theorems.AbstrErrMono
 import CORALean.ContDynamics.NonlinearSys.Theorems.AbstrErrPolySearchEqSome
 import CORALean.ContDynamics.NonlinearSys.Theorems.AbstractionErrorOfHessian
+import CORALean.ContDynamics.NonlinearSys.Theorems.TaylorLagrangeSegment
 import CORALean.ContDynamics.NonlinearSys.Theorems.AbstractionErrorOfLagrange
 import CORALean.ContDynamics.NonlinearSys.Theorems.AbstractionErrorOfPoly
 import CORALean.ContDynamics.NonlinearSys.Theorems.AdaptStepInvariant

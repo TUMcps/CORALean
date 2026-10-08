@@ -16,19 +16,19 @@
   "totals": {
     "papers": 73,
     "papers_with_findings": 62,
-    "in_scope": 934,
-    "formalized": 880,
-    "not_formalized": 54,
-    "out_of_scope": 696,
+    "in_scope": 931,
+    "formalized": 869,
+    "not_formalized": 62,
+    "out_of_scope": 700,
     "out_of_scope_by_reason": {
       "restated": 268,
       "mathlib": 13,
       "not-a-claim": 360,
-      "done-differently": 8,
+      "done-differently": 12,
       "not-covered": 47
     },
     "by_class": {
-      "correct": 613,
+      "correct": 602,
       "underspecified": 142,
       "proof-gap": 27,
       "fixed": 96,
@@ -290,19 +290,19 @@
       "label": "Althoff 2008",
       "year": 2008,
       "title": "Reachability Analysis of Nonlinear Systems with Uncertain Parameters using Conservative Linearization",
-      "in_scope": 12,
-      "formalized": 11,
+      "in_scope": 11,
+      "formalized": 10,
       "not_formalized": 1,
-      "out_of_scope": 3,
+      "out_of_scope": 4,
       "out_of_scope_by_reason": {
         "restated": 2,
         "mathlib": 0,
         "not-a-claim": 1,
-        "done-differently": 0,
+        "done-differently": 1,
         "not-covered": 0
       },
       "by_class": {
-        "correct": 5,
+        "correct": 4,
         "underspecified": 3,
         "proof-gap": 2,
         "fixed": 1,
@@ -2085,19 +2085,19 @@
       "label": "Kochdumper 2021",
       "year": 2021,
       "title": "Sparse Polynomial Zonotopes: A Novel Set Representation for Reachability Analysis",
-      "in_scope": 21,
-      "formalized": 21,
+      "in_scope": 19,
+      "formalized": 19,
       "not_formalized": 0,
-      "out_of_scope": 6,
+      "out_of_scope": 8,
       "out_of_scope_by_reason": {
         "restated": 5,
         "mathlib": 0,
         "not-a-claim": 0,
-        "done-differently": 0,
+        "done-differently": 2,
         "not-covered": 1
       },
       "by_class": {
-        "correct": 15,
+        "correct": 13,
         "underspecified": 5,
         "proof-gap": 1,
         "fixed": 0,
@@ -2305,8 +2305,8 @@
       "year": 2022,
       "title": "Open- and Closed-Loop Neural Network Verification using Polynomial Zonotopes",
       "in_scope": 4,
-      "formalized": 4,
-      "not_formalized": 0,
+      "formalized": 3,
+      "not_formalized": 1,
       "out_of_scope": 3,
       "out_of_scope_by_reason": {
         "restated": 2,
@@ -2316,7 +2316,7 @@
         "not-covered": 0
       },
       "by_class": {
-        "correct": 4,
+        "correct": 3,
         "underspecified": 0,
         "proof-gap": 0,
         "fixed": 0,
@@ -2360,9 +2360,9 @@
       "label": "Wetzlinger 2022",
       "year": 2022,
       "title": "Adaptive Reachability Algorithms for Nonlinear Systems Using Abstraction Error Analysis",
-      "in_scope": 13,
+      "in_scope": 14,
       "formalized": 13,
-      "not_formalized": 0,
+      "not_formalized": 1,
       "out_of_scope": 2,
       "out_of_scope_by_reason": {
         "restated": 1,
@@ -2528,19 +2528,19 @@
       "label": "Kochdumper 2023",
       "year": 2023,
       "title": "Constrained Polynomial Zonotopes",
-      "in_scope": 17,
-      "formalized": 17,
+      "in_scope": 16,
+      "formalized": 16,
       "not_formalized": 0,
-      "out_of_scope": 7,
+      "out_of_scope": 8,
       "out_of_scope_by_reason": {
         "restated": 5,
         "mathlib": 0,
         "not-a-claim": 0,
-        "done-differently": 2,
+        "done-differently": 3,
         "not-covered": 0
       },
       "by_class": {
-        "correct": 14,
+        "correct": 13,
         "underspecified": 1,
         "proof-gap": 0,
         "fixed": 2,
@@ -2871,8 +2871,8 @@
       "year": 2023,
       "title": "Fully-Automated Verification of Linear Systems Using Reachability Analysis with Support Functions",
       "in_scope": 5,
-      "formalized": 5,
-      "not_formalized": 0,
+      "formalized": 3,
+      "not_formalized": 2,
       "out_of_scope": 4,
       "out_of_scope_by_reason": {
         "restated": 3,
@@ -2882,7 +2882,7 @@
         "not-covered": 0
       },
       "by_class": {
-        "correct": 3,
+        "correct": 1,
         "underspecified": 2,
         "proof-gap": 0,
         "fixed": 0,
@@ -2948,8 +2948,8 @@
       "year": 2024,
       "title": "Exponent Relaxation of Polynomial Zonotopes and Its Applications in Formal Neural Network Verification",
       "in_scope": 8,
-      "formalized": 8,
-      "not_formalized": 0,
+      "formalized": 6,
+      "not_formalized": 2,
       "out_of_scope": 6,
       "out_of_scope_by_reason": {
         "restated": 5,
@@ -2959,7 +2959,7 @@
         "not-covered": 0
       },
       "by_class": {
-        "correct": 7,
+        "correct": 5,
         "underspecified": 0,
         "proof-gap": 0,
         "fixed": 1,
@@ -3177,8 +3177,8 @@
       "year": 2025,
       "title": "Formal Verification of Graph Convolutional Networks with Uncertain Node Features and Uncertain Graph Structure",
       "in_scope": 12,
-      "formalized": 12,
-      "not_formalized": 0,
+      "formalized": 10,
+      "not_formalized": 2,
       "out_of_scope": 7,
       "out_of_scope_by_reason": {
         "restated": 6,
@@ -3188,7 +3188,7 @@
         "not-covered": 0
       },
       "by_class": {
-        "correct": 12,
+        "correct": 10,
         "underspecified": 0,
         "proof-gap": 0,
         "fixed": 0,
@@ -3346,7 +3346,7 @@
         },
         "cora_issues": 3,
         "findings": {
-          "correct": 13,
+          "correct": 12,
           "underspecified": 1,
           "proof-gap": 0,
           "fixed": 2,
@@ -3554,7 +3554,7 @@
         },
         "cora_issues": 3,
         "findings": {
-          "correct": 30,
+          "correct": 26,
           "underspecified": 7,
           "proof-gap": 1,
           "fixed": 2,
@@ -3892,7 +3892,7 @@
         },
         "cora_issues": 1,
         "findings": {
-          "correct": 36,
+          "correct": 35,
           "underspecified": 14,
           "proof-gap": 9,
           "fixed": 6,
@@ -3944,7 +3944,7 @@
         },
         "cora_issues": 0,
         "findings": {
-          "correct": 2,
+          "correct": 1,
           "underspecified": 0,
           "proof-gap": 0,
           "fixed": 0,
@@ -4048,7 +4048,7 @@
         },
         "cora_issues": 2,
         "findings": {
-          "correct": 16,
+          "correct": 15,
           "underspecified": 9,
           "proof-gap": 6,
           "fixed": 4,
@@ -4334,7 +4334,7 @@
         },
         "cora_issues": 1,
         "findings": {
-          "correct": 63,
+          "correct": 62,
           "underspecified": 5,
           "proof-gap": 2,
           "fixed": 2,
@@ -4360,7 +4360,7 @@
           "deprecated": 14
         },
         "findings": {
-          "correct": 306,
+          "correct": 301,
           "underspecified": 66,
           "proof-gap": 5,
           "fixed": 49,
@@ -4384,7 +4384,7 @@
           "deprecated": 0
         },
         "findings": {
-          "correct": 145,
+          "correct": 142,
           "underspecified": 46,
           "proof-gap": 16,
           "fixed": 24,
@@ -4432,7 +4432,7 @@
           "deprecated": 0
         },
         "findings": {
-          "correct": 63,
+          "correct": 62,
           "underspecified": 5,
           "proof-gap": 2,
           "fixed": 2,
@@ -4457,7 +4457,7 @@
         "deprecated": 14
       },
       "findings": {
-        "correct": 528,
+        "correct": 519,
         "underspecified": 121,
         "proof-gap": 23,
         "fixed": 76,
@@ -4473,14 +4473,14 @@
         "false": 0
       },
       "specification": {
-        "correct": 23,
+        "correct": 22,
         "underspecified": 8,
         "proof-gap": 0,
         "fixed": 5,
         "false": 0
       },
       "examples": {
-        "correct": 2,
+        "correct": 1,
         "underspecified": 0,
         "proof-gap": 0,
         "fixed": 0,
@@ -4488,11 +4488,11 @@
       }
     },
     "theorems": {
-      "paper": 1161,
+      "paper": 1144,
       "float": 1461,
-      "helper": 994,
-      "lemma": 2224,
-      "total": 5840,
+      "helper": 998,
+      "lemma": 2255,
+      "total": 5858,
       "examples": 80
     }
   }

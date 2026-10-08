@@ -25,6 +25,7 @@ import CORALean.ContSet.HPolytope.Real.Theorems.MemIneqsOfCert
 import CORALean.ContSet.HPolytope.Real.Theorems.IneqsSubsetIff
 import CORALean.ContSet.HPolytope.Real.Theorems.IneqsSubsetIffCounterexample
 import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeSubsetOfCert
+import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeSubsetOfExistsCert
 import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeSubsetIffOfInjective
 import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeCertNecessary
 import CORALean.ContSet.HPolytope.Real.Theorems.SumAHPolytopeSubsetIneqsIff

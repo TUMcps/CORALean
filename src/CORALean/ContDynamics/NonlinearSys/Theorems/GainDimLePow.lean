@@ -5,8 +5,8 @@ import Mathlib.Analysis.Normed.Order.Lattice
 /-!
 # The gain is under `δ^{q+1}` while the coefficients hold still
 
-`[1, (42)]`, the second half of `[1, Prop. 2]`: if every `Q⁽ᵖ⁾ᵢ` is constant on `[0,h]`,
-then `φᵢ(t;δ) ≤ δ^{qᵢ+1}` for every `t` in it. `[1, Prop. 1]` and `[1, Lemma 3]` put the
+`[1, (42)]`, the second half of `[1, Prop. 2 (gain bound)]`: if every `Q⁽ᵖ⁾ᵢ` is constant
+on `[0,h]`, then `φᵢ(t;δ) ≤ δ^{qᵢ+1}` for every `t` in it. `[1, Prop. 1]` and `[1, Lemma 3]` put the
 width in the shape asked here, `e p` standing for `p + q⁽ᵖ⁾ᵢ` and `Q p` for the constant
 value of `Q⁽ᵖ⁾ᵢ`; `hQ0` is `[1, Lemma 3]`'s convention that a vanishing coefficient has
 `a⁽ᵖ⁾ᵢ = 0`, and `hsum` is the majorant `boxDiameter_abstrSolInf` already builds.

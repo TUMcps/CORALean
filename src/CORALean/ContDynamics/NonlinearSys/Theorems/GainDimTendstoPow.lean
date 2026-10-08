@@ -17,7 +17,7 @@ That factorisation is the hypothesis, and it is what `[1, Lemma 3]` and
 coefficient survives at `t = 0` — `[1, (40)]` prints a maximum; see the paper
 page's finding. `[1]`'s proof then passes to the limit inside that series
 without uniform control over `p`, which is the step the hypothesis stands in
-for; `[1, Prop. 2]`'s constant-`Q⁽ᵖ⁾ᵢ` case is where it is elementary.
+for; `[1, Prop. 2 (gain bound)]`'s constant-`Q⁽ᵖ⁾ᵢ` case is where it is elementary.
 
 `g 0 ≠ 0` is also the nonvanishing `[1, Def. 5]` defers to its readers, `[1, (19)]`'s
 `Ψᵢ > 0`. Only `δ ≥ 0` is used: `[1]`'s `δ ∈ [0,1]` is what makes the limit a

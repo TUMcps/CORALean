@@ -54,6 +54,7 @@ import CORALean.NN.Graph.Theorems.SubmatrixMulOfClosed
 import CORALean.NN.Graph.Theorems.SumPoolLinApply
 import CORALean.NN.Graph.Theorems.UncertainAdjExact
 import CORALean.NN.Graph.Theorems.UncertainDegreeBounds
+import CORALean.NN.Graph.Theorems.SumPoolLinPermInvariant
 
 /-!
 # What the graph layers guarantee

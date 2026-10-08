@@ -2,6 +2,7 @@ import CORALean.ContSet.Taylm.Real.Operations.GetSyms
 import CORALean.ContSet.Taylm.Real.Operations.Mmul
 import CORALean.ContSet.Taylm.Real.Operations.Mpower
 import CORALean.ContSet.Taylm.Real.Operations.Acos
+import CORALean.ContSet.Taylm.Real.Operations.AcosPrinted
 import CORALean.ContSet.Taylm.Real.Operations.Antideriv
 import CORALean.ContSet.Taylm.Real.Operations.AntiderivPrinted
 import CORALean.ContSet.Taylm.Real.Operations.ArcsinShift

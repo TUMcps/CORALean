@@ -1,4 +1,5 @@
 import CORALean.NN.Graph.Complexity.API
+import CORALean.NN.Graph.Definitions.API
 import CORALean.NN.Graph.Operations.API
 import CORALean.NN.Graph.Theorems.API
 

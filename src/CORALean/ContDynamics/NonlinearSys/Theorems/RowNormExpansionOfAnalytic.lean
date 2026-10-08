@@ -9,7 +9,7 @@ import Mathlib.Analysis.InnerProductSpace.Basic
 near `0` or equals `h^{q⁽ᵖ⁾ᵢ}‖a⁽ᵖ⁾ᵢ + b⁽ᵖ⁾ᵢ(h)‖₁` with `a⁽ᵖ⁾ᵢ ≠ 0` and
 `b⁽ᵖ⁾ᵢ(h) = O(h)`. `Q⁽ᵖ⁾ᵢ(h) = ‖a⁽ᵖ⁾ᵢ + b⁽ᵖ⁾ᵢ(h)‖₁` is then non-negative, being
 a sum of absolute values, and continuous at `0` — the regularity `[1, Thm. 2]`
-and `[1, Prop. 2]` read off it, in place of `[1]`'s "piecewise smooth".
+and `[1, Prop. 2 (derivative)]` read off it, in place of `[1]`'s "piecewise smooth".
 
 **Analytic, where `[1]` says smooth.** The dichotomy is false for a merely smooth `f`:
 `h ↦ exp(-1/h²)`, extended by `0`, is smooth, vanishes nowhere but at `0`, and is under

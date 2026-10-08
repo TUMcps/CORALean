@@ -5,6 +5,7 @@ import CORALean.ContSet.Taylm.Real.Theorems.AbsConstCoefLe
 import CORALean.ContSet.Taylm.Real.Theorems.AbsLeMag
 import CORALean.ContSet.Taylm.Real.Theorems.AbsPolyBoundsLe
 import CORALean.ContSet.Taylm.Real.Theorems.AcosOuter
+import CORALean.ContSet.Taylm.Real.Theorems.AcosPrintedOuter
 import CORALean.ContSet.Taylm.Real.Theorems.AntiderivOuter
 import CORALean.ContSet.Taylm.Real.Theorems.AntiderivPrintedCounterexample
 import CORALean.ContSet.Taylm.Real.Theorems.ArcsinEqAddArcsinShiftIff
@@ -32,6 +33,7 @@ import CORALean.ContSet.Taylm.Real.Theorems.ExistsLeCosyGo
 import CORALean.ContSet.Taylm.Real.Theorems.ExistsLeGlobalMin
 import CORALean.ContSet.Taylm.Real.Theorems.ExistsNormalized
 import CORALean.ContSet.Taylm.Real.Theorems.ExpOuter
+import CORALean.ContSet.Taylm.Real.Theorems.ExpLagrangeMem
 import CORALean.ContSet.Taylm.Real.Theorems.ExpScaled
 import CORALean.ContSet.Taylm.Real.Theorems.GlobalMinLe
 import CORALean.ContSet.Taylm.Real.Theorems.GoLowerBoundLe
