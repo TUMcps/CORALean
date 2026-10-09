@@ -105,6 +105,7 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Set operations and order reductions for constrained zonotopes](2022/raghuraman-koeln-constrained-zonotopes.md) | Raghuraman, Koeln | Automatica, 139:110204 | 2022 | 🟡 9/11 \| 9 |
 | [Adaptive Reachability Algorithms for Nonlinear Systems Using Abstraction Error Analysis](2022/wetzlinger-nahs-abstraction-error.md) | Wetzlinger, Kulmburg, Le Penven, Althoff | Nonlinear Analysis: Hybrid Systems, 46:101252 | 2022 | 🟡 13/14 \| 2 |
 | [Scalable Zonotopic Under-approximation of Backward Reachable Sets for Uncertain Linear Systems](2022/yang-lcss-zonotopic-underapproximation.md) | Yang, Ozay | IEEE Control Systems Letters, 6:1555-1560 | 2022 | 🟢 15/15 \| 12 |
+| [Privacy-Preserving Set-Based Estimation Using Partially Homomorphic Encryption](2023/alanwar-ejc-privacy-preserving-estimation.md) | Alanwar, Gaßmann, He, Said, Sandberg, Johansson, Althoff | European Journal of Control | 2023 | 🟢 4/4 \| 24 |
 | [Distributed Set-Based Observers Using Diffusion Strategies](2023/alanwar-jfi-diffusion-observers.md) | Alanwar, Rath, Said, Johansson, Althoff | Journal of the Franklin Institute, 360(10):6976-6993 | 2023 | 🟡 6/8 \| 13 |
 | [Checking and Establishing Reachset Conformance in CORA 2023](2023/althoff-arch-reachset-conformance.md) | Althoff | ARCH23, EPiC Series in Computing 96, pp. 9-33 | 2023 | 🟢 12/12 \| 13 |
 | [Constrained Polynomial Zonotopes](2023/kochdumper-constrained-polyzonotopes.md) | Kochdumper, Althoff | Acta Informatica | 2023 | 🟢 16/16 \| 11 |
@@ -320,6 +321,7 @@ pages carry one:
 * [On the parameterized computation of minimum volume outer ellipsoid of Minkowski sum of ellipsoids](2018/halder-cdc-minkowski-sum-ellipsoids.md)
 * [Distributed Set-Based Observers Using Diffusion Strategies](2023/alanwar-jfi-diffusion-observers.md)
 * [Approximability of the Containment Problem for Zonotopes and Ellipsotopes](2025/kulmburg-tac-approximability-containment.md)
+* [Privacy-Preserving Set-Based Estimation Using Partially Homomorphic Encryption](2023/alanwar-ejc-privacy-preserving-estimation.md)
 
 [FINDINGS.md](../FINDINGS.md) is the other half, and stays at the root: the
 places this formalization parts from CORA on purpose, which belong to no paper.

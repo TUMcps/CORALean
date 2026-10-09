@@ -46,6 +46,8 @@ import CORALean.ContSet.ConZonotope.Real.Operations.ConIntersect
 import CORALean.ContSet.ConZonotope.Real.Operations.Split
 import CORALean.ContSet.ConZonotope.Real.Operations.StripMat
 import CORALean.ContSet.ConZonotope.Real.Operations.IntersectStrip
+import CORALean.ContSet.ConZonotope.Real.Operations.IntersectStripFamily
+import CORALean.ContSet.ConZonotope.Real.Operations.IntersectMany
 import CORALean.ContSet.ConZonotope.Real.Operations.QuadMap
 import CORALean.ContSet.ConZonotope.Real.Operations.SupportBound
 import CORALean.ContSet.ConZonotope.Real.Operations.RepresentsaPoint

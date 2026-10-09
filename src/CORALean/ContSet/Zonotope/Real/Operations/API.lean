@@ -107,6 +107,8 @@ import CORALean.ContSet.Zonotope.Real.Operations.ContainsDFS
 import CORALean.ContSet.Zonotope.Real.Operations.IntersectStrip
 import CORALean.ContSet.Zonotope.Real.Operations.Volume
 import CORALean.ContSet.Zonotope.Real.Operations.IntersectStripSeq
+import CORALean.ContSet.Zonotope.Real.Operations.IntersectStripFamily
+import CORALean.ContSet.Zonotope.Real.Operations.IntersectWeighted
 import CORALean.ContSet.Zonotope.Real.Operations.Inclusion
 import CORALean.ContSet.Zonotope.Real.Operations.IntersectDescriptor
 import CORALean.ContSet.Zonotope.Real.Operations.ObserveDescriptor
