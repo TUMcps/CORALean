@@ -23,6 +23,7 @@ import CORALean.HybridDynamics.Theorems.LinearEmbedding
 import CORALean.HybridDynamics.Theorems.LocationReachFloatOuter
 import CORALean.HybridDynamics.Theorems.LocationReachFloatCheckedEqSome
 import CORALean.HybridDynamics.Theorems.ReachFloatOuter
+import CORALean.HybridDynamics.Theorems.ReachFloatCheckedEqSome
 import CORALean.HybridDynamics.Theorems.ReachLocationsOuter
 import CORALean.HybridDynamics.Theorems.ReachSetOuter
 import CORALean.HybridDynamics.Theorems.ReachSetEqIUnionRunUntil

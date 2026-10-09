@@ -2,6 +2,7 @@ import CORALean.ContDynamics.Conform.Definitions.Conformant
 import CORALean.ContDynamics.Conform.Definitions.DevSet
 import CORALean.ContDynamics.Conform.Definitions.Glo
 import CORALean.ContDynamics.Conform.Definitions.IntervalNorm
+import CORALean.ContDynamics.Conform.Definitions.PassesBF
 import CORALean.ContDynamics.Conform.Definitions.ReachOut
 import CORALean.ContDynamics.Conform.Definitions.State
 import CORALean.ContDynamics.Conform.Definitions.TemplateZono

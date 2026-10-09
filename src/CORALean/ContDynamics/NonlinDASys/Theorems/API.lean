@@ -19,6 +19,7 @@ import CORALean.ContDynamics.NonlinDASys.Theorems.JointReachSetOuter
 import CORALean.ContDynamics.NonlinDASys.Theorems.LinErrorOuter
 import CORALean.ContDynamics.NonlinDASys.Theorems.LinErrorCoraCounterexample
 import CORALean.ContDynamics.NonlinDASys.Theorems.OutputSetLinearCoraCounterexample
+import CORALean.ContDynamics.NonlinDASys.Theorems.OutputSetLinearOuter
 
 /-!
 # What `NonlinDASys` guarantees

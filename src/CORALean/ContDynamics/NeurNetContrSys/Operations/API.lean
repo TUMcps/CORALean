@@ -2,6 +2,7 @@ import CORALean.ContDynamics.NeurNetContrSys.Operations.Reach
 import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachOrder
 import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachUnion
 import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachFloat
+import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachFloatChecked
 import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachUnionFloat
 
 /-!

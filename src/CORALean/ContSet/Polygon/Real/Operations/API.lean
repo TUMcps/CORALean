@@ -20,6 +20,8 @@ import CORALean.ContSet.Polygon.Real.Operations.IsIntersecting
 import CORALean.ContSet.Polygon.Real.Operations.IsequalPieces
 import CORALean.ContSet.Polygon.Real.Operations.SplitIntoConvexSets
 import CORALean.ContSet.Polygon.Real.Operations.Volume
+import CORALean.ContSet.Polygon.Real.Operations.RegionCenter
+import CORALean.ContSet.Polygon.Real.Operations.Center
 import CORALean.ContSet.Polygon.Real.Operations.PieceAreas
 
 /-!

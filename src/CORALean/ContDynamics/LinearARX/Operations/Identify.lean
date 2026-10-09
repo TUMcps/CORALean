@@ -1,0 +1,44 @@
+import CORALean.ContDynamics.LinearARX.Operations.IdentifyBlocks
+import CORALean.ContDynamics.LinearARX.Operations.IdentifyCandidate
+import CORALean.Global.DmdSelect
+
+/-!
+# `identify` of `LinearARX`, algorithm `dmd`
+
+CORA's `identify` with `options.alg = 'dmd'` [1]: every rank `1, …, rankMax` gives a candidate
+`[A B]`, and the one of least `computeError` is the system (`err`, compared by `lt`; both
+arguments). The interpolation to a uniform step (`uniformTimeStepSize`) is not modelled, and
+`'opt'` is a solver.
+
+## References
+
+* [1] `contDynamics/@linearARX/private/priv_identifyDMD.m`
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       09-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+variable {dy du p N r : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- `sys = linearARX.identify(traj)`, line by line of `priv_identifyDMD`. -/
+noncomputable def LinearARX.identify (lt : ℝ → ℝ → Bool)
+    (err : Mat ℝ dy (p * dy + (p + 1) * du) → ℝ) (yNext : Fin N → Vec ℝ dy)
+    (V : Mat ℝ (p * dy + (p + 1) * du) r) (s : Fin r → ℝ) (W : Mat ℝ N r) :
+    Option (LinearARX ℝ dy du p) :=
+  let Alist := LinearARX.identifyCandidate yNext V s W          -- Alist{rank}
+  (dmdSelect lt err Alist r).map LinearARX.identifyBlocks          -- best rank, A_, B_
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

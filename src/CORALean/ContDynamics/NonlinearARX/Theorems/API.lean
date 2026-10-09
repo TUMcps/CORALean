@@ -1,4 +1,6 @@
+import CORALean.ContDynamics.NonlinearARX.Theorems.ComputeGOOutput
 import CORALean.ContDynamics.NonlinearARX.Theorems.OutputOuter
+import CORALean.ContDynamics.NonlinearARX.Theorems.OutputSelMulVec
 import CORALean.ContDynamics.NonlinearARX.Theorems.ReachOuter
 import CORALean.ContDynamics.NonlinearARX.Theorems.SimulateTrajectory
 import CORALean.ContDynamics.NonlinearARX.Theorems.SimulateMemSimulateBoxFloat
@@ -12,5 +14,6 @@ import CORALean.ContDynamics.NonlinearARX.Theorems.FloatModelEnclosesToNonlinear
 
 `ToNonlinearSysDTTrajectory` maps an ARX trajectory to a trajectory of the converted
 system, through `ToNonlinearSysDTStep`; `ReachOuter` and `OutputOuter` then read
-`NonlinearSysDT.reach_outer` back against the ARX outputs.
+`NonlinearSysDT.reach_outer` back against the ARX outputs. `ComputeGOOutput` is the exact
+identity of the output-error linearization.
 -/

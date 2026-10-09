@@ -18,6 +18,10 @@ import CORALean.ContDynamics.LinearARX.Operations.Simulate
 import CORALean.ContDynamics.LinearARX.Operations.SimulateBoxFloat
 import CORALean.ContDynamics.LinearARX.Operations.ToLinearSysDT
 import CORALean.ContDynamics.LinearARX.Operations.OfCharpoly
+import CORALean.ContDynamics.LinearARX.Operations.Identify
+import CORALean.ContDynamics.LinearARX.Operations.IdentifyBlocks
+import CORALean.ContDynamics.LinearARX.Operations.IdentifyCandidate
+import CORALean.ContDynamics.LinearARX.Operations.IdentifyRegressor
 
 /-!
 # Linear ARX models: the conversion
@@ -29,4 +33,7 @@ input signal that results and `OutputEq` reads `y(k)` back out of the window.
 Lützow and Althoff (CDC 2023): `Aext`, `Bext` and `Btilde` are the window recursion's
 parameters (Eq. 9-10), `Alg1`/`Alg2` the two reachability algorithms over plain sets, and
 `OfObserver` the state-space-to-ARMAX conversion (Prop. 2).
+
+`identify` (algorithm `dmd`) is `Identify`, with `IdentifyRegressor`, `IdentifyCandidate` and
+`IdentifyBlocks` its steps.
 -/

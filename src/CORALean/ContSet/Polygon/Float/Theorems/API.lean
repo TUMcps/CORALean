@@ -25,6 +25,7 @@ import CORALean.ContSet.Polygon.Float.Theorems.PieceHoldsSound
 import CORALean.ContSet.Polygon.Float.Theorems.PieceSubsetSound
 import CORALean.ContSet.Polygon.Float.Theorems.IsConvexSound
 import CORALean.ContSet.Polygon.Float.Theorems.VolumeLe
+import CORALean.ContSet.Polygon.Float.Theorems.CenterMem
 
 /-!
 # Float polygon theorems, collected
