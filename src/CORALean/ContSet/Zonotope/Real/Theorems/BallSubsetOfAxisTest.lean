@@ -12,13 +12,16 @@ test points combine: `x = ∑ (xᵢ/ν) ν eᵢ`, and `∑ |xᵢ|/ν ≤ √n �
 coefficients in the box. The printed test checks `ν eᵢ ∈ Z` itself, which is the statement only
 for a zonotope centred at the origin (`ball_subset_of_axis_test_counterexample`). The printed
 proof calls the hull of `±ν eᵢ` a rotated hypercube; for `n ≥ 3` it is a cross-polytope, whose
-inscribed ball has the same radius `ν/√n`.
+inscribed ball has the same radius `ν/√n`. The test is Goffin's, [2, Eq. 17], and the ball it gives
+[2, Eq. 18]: `conv{±γ eᵢ} ⊇ E(γ²/n, 0)`, at the centre `0` the paper assumes and the radius
+`γ = 1/√(n(1+ε))` of [2, Sec. 4.4].
 
 ## References
 
 * [1] V. Gaßmann and M. Althoff. "Scalable Zonotope-Ellipsoid Conversions using the Euclidean
       Zonotope Norm". In Proc. of the 2020 American Control Conference (ACC), pp. 4715-4721,
       2020.
+* [2] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.
 -/
 
 -- Authors:       Tobias Ladner

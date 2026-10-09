@@ -1,0 +1,40 @@
+import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+
+/-!
+# Elementary symmetric polynomials of the reciprocal eigenvalues
+
+The `eᵣ = eᵣ(1/λ₁, …, 1/λ_d)` of [1, Eq. 23], the `r`-th elementary symmetric polynomial of
+the reciprocals: the sum over the `r`-element subsets of the product of their entries, with
+`e₀ = 1` by convention. They are the coefficients through which the polynomial form of
+[1, Eq. 18] is read in the proof of [1, Thm. 2].
+
+## References
+
+* [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of
+      Minkowski sum of ellipsoids". In Proc. of the 57th IEEE Conference on Decision and
+      Control (CDC), pp. 4040-4045, 2018. arXiv:1803.08157.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       08-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {ι : Type*} [Fintype ι]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- `eᵣ(x)`, the sum over `r`-element subsets of the product of the entries ([1, Eq. 23]). -/
+noncomputable def Ellipsoid.halderElemSymm (x : ι → ℝ) (r : ℕ) : ℝ :=
+  ∑ s ∈ Finset.powersetCard r Finset.univ, ∏ i ∈ s, x i
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -136,6 +136,7 @@ import CORALean.NN.Layers.Operations.TapMat
 import CORALean.NN.Layers.Operations.TransposeEquiv
 import CORALean.NN.Layers.Operations.SShapeDerBounds
 import CORALean.NN.Layers.Operations.SShapeDerBoundsFloat
+import CORALean.NN.Layers.Operations.ApproxArea
 
 /-!
 # The standard layers, collected

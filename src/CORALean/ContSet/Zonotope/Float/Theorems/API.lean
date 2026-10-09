@@ -27,6 +27,7 @@ import CORALean.ContSet.Zonotope.Float.Theorems.MtimesIntervalMatOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.AbsResidualLe
 import CORALean.ContSet.Zonotope.Float.Theorems.MulVecSplit
 import CORALean.ContSet.Zonotope.Float.Theorems.LowerDotLe
+import CORALean.ContSet.Zonotope.Float.Theorems.MtimesIntervalMatSubsetAddBox
 import CORALean.ContSet.Zonotope.Float.Theorems.RotMatMem
 import CORALean.ContSet.Zonotope.Float.Theorems.RotateOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.ZeroMemMtimesError

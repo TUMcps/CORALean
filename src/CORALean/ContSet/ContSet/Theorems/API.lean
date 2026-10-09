@@ -30,6 +30,10 @@ import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddSubsetAddOfSubset
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffEnclSubsetAdd
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffEqIInter
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffInnerOfOuter
+import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffImageSubsetImageOfContracting
+import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffImageSubsetImageOfConvex
+import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffMulVecImageSubsetOfContracting
+import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffMulVecImageSubsetOfConvex
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffNotSubsetOfDiscontinuous
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddCancel
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffMono
@@ -57,6 +61,10 @@ import CORALean.ContSet.ContSet.Theorems.PropertyFacts
 import CORALean.ContSet.ContSet.Theorems.SegmentsProperties
 import CORALean.ContSet.ContSet.Theorems.SegmentsPropertiesCounterexample
 import CORALean.ContSet.ContSet.Theorems.SupportFuncLeCoeIff
+import CORALean.ContSet.ContSet.Theorems.DimReduceOuter
+import CORALean.ContSet.ContSet.Theorems.DimReduceTight
+import CORALean.ContSet.ContSet.Theorems.HyperplaneSliceEq
+import CORALean.ContSet.ContSet.Theorems.SubsetHyperplanePolyhedron
 
 /-!
 # What the set interface's classes and definitions give together

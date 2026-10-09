@@ -121,6 +121,8 @@ import CORALean.NN.Theorems.CatEvalCompIff
 import CORALean.NN.Theorems.CatMaxSegmentEvalIff
 import CORALean.NN.Theorems.CatMaxSegmentsEvalIff
 import CORALean.NN.Theorems.CatMaxPoolEvalIff
+import CORALean.NN.Theorems.SetBasedLossGradient
+import CORALean.NN.Theorems.SetBasedLossGradientCounterexample
 
 /-!
 # What a network's enclosure guarantees, collected

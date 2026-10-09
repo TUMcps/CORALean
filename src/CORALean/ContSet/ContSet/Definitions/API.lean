@@ -4,6 +4,9 @@ import CORALean.ContSet.ContSet.Definitions.DependencyPreserving
 import CORALean.ContSet.ContSet.Definitions.FullDimTest
 import CORALean.ContSet.ContSet.Definitions.IsFullDim
 import CORALean.ContSet.ContSet.Definitions.SupportFunc
+import CORALean.ContSet.ContSet.Definitions.DimReduce
+import CORALean.ContSet.ContSet.Definitions.HyperplanePolyhedron
+import CORALean.ContSet.ContSet.Definitions.IsBoundIntersect2D
 
 /-!
 # What the set interface asks of a representation, without computing anything

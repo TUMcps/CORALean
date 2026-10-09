@@ -17,7 +17,7 @@ worth storing.
 Loose by a factor of `√h` in the worst direction and exact in none, since a
 zonotope is not an ellipsoid. Tighter enclosures exist — CORA's are the
 minimum-volume and minimum-trace ones — and both are optimisation problems
-rather than conversions.
+rather than conversions. This one is the initial ellipse `E₀ = (m/2) G Gᵀ` of [2, Sec. 4.1].
 
 CORA's `'outer:norm'` and `'inner:norm'` are [1, Thm. 1] and [1, Thm. 3]: shape `r E₀` for a
 factor `F` of the initial guess `E₀ = F Fᵀ` (`m G Gᵀ` and `G Gᵀ`) and a bound `r` on the maximum,
@@ -30,6 +30,7 @@ or below the minimum, norm of `F⁻¹ Z` ([1, Def. 3], [1, Def. 4]). `ellipsoidN
 * [1] V. Gaßmann and M. Althoff. "Scalable Zonotope-Ellipsoid Conversions using the Euclidean
       Zonotope Norm". In Proc. of the 2020 American Control Conference (ACC), pp. 4715-4721,
       2020.
+* [2] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.
 -/
 
 -- Authors:       Tobias Ladner
@@ -170,6 +171,67 @@ theorem Zonotope.contains_ellipsoidInnerNorm (Z : Zonotope (Vec ℝ n)) (F : Mat
   show Z.c + (√l • F) *ᵥ u = Z.c + ∑ j, β j • Z.G j
   rw [Matrix.smul_mulVec, ← Matrix.mulVec_smul]
   exact hmap
+
+/-- [2, Sec. 4.1]: `E(n diag(β₁², …, β_n²), c)` with `βᵢ = ∑ⱼ |Gᵢⱼ|`, the box's ellipsoid. -/
+noncomputable def Zonotope.ellipsoidBox (Z : Zonotope (Vec ℝ n)) : Ellipsoid n where
+  k := n
+  q := Z.c
+  G := Matrix.diagonal fun i => Real.sqrt n * ∑ j, |Z.G j i|
+
+/-- [2, Sec. 4.1]: the zonotope lies in the ellipsoid of its bounding box,
+`Z ⊆ [c − β, c + β] ⊆ E(n diag(β²), c)`. -/
+theorem Zonotope.ellipsoidBox_contains (Z : Zonotope (Vec ℝ n)) :
+    Z.construct ⊆ Z.ellipsoidBox.construct := by -- --- PROOF ---
+  rintro _ ⟨β, hβ, rfl⟩
+  -- the offset in coordinate `i` is at most the box radius `bᵢ = ∑ⱼ |Gⱼᵢ|`
+  set b : Fin n → ℝ := fun i => ∑ j, |Z.G j i| with hb
+  have hoff : ∀ i, |(∑ j, β j • Z.G j) i| ≤ b i := by
+    intro i
+    simp only [Finset.sum_apply, Pi.smul_apply, smul_eq_mul]
+    refine (Finset.abs_sum_le_sum_abs _ _).trans (Finset.sum_le_sum fun j _ => ?_)
+    rw [abs_mul]
+    exact mul_le_of_le_one_left (abs_nonneg _) (hβ j)
+  -- coordinates of the ball point: `oᵢ / (√n bᵢ)`, or `0` on a degenerate axis
+  set o : Vec ℝ n := ∑ j, β j • Z.G j with ho
+  refine ⟨fun i => if b i = 0 then 0 else o i / (Real.sqrt n * b i), ?_, ?_⟩
+  · -- each squared coordinate is at most `1/n`
+    have hu : ∀ i, (if b i = 0 then 0 else o i / (Real.sqrt n * b i)) ^ 2 ≤ 1 / (n : ℝ) := by
+      intro i
+      have hn : (0:ℝ) < n := by exact_mod_cast i.pos
+      by_cases h0 : b i = 0
+      · simp [h0]
+      · have hbpos : 0 < b i := lt_of_le_of_ne
+          (Finset.sum_nonneg fun j _ => abs_nonneg _) (Ne.symm h0)
+        simp only [h0, if_false]
+        have hsq : Real.sqrt n ^ 2 = n := Real.sq_sqrt hn.le
+        rw [div_pow, mul_pow, hsq, div_le_div_iff₀ (by positivity) hn]
+        have := sq_le_sq' (abs_le.1 (hoff i)).1 (abs_le.1 (hoff i)).2
+        nlinarith [mul_nonneg hn.le (sq_nonneg (b i))]
+    -- so the squares sum to at most `1`
+    have hsum : ∑ i, (if b i = 0 then 0 else o i / (Real.sqrt n * b i)) ^ 2 ≤ 1 := by
+      calc _ ≤ ∑ _i : Fin n, 1 / (n : ℝ) := Finset.sum_le_sum fun i _ => hu i
+        _ = (n : ℝ) * (1 / (n : ℝ)) := by
+            rw [Finset.sum_const, Finset.card_univ, Fintype.card_fin, nsmul_eq_mul]
+        _ ≤ 1 := by
+            rcases Nat.eq_zero_or_pos n with h0 | h0
+            · rw [h0]; norm_num
+            · have hh : (0:ℝ) < n := by exact_mod_cast h0
+              exact le_of_eq (by rw [mul_one_div, div_self hh.ne'])
+    calc ‖fun i => if b i = 0 then 0 else o i / (Real.sqrt n * b i)‖₂ ≤ Real.sqrt 1 :=
+          Real.sqrt_le_sqrt hsum
+      _ = 1 := Real.sqrt_one
+  · -- and the diagonal generator maps it back to the offset
+    funext i
+    show (Z.c + o) i = Z.c i + (Matrix.diagonal (fun i => Real.sqrt n * b i) *ᵥ
+      fun i => if b i = 0 then 0 else o i / (Real.sqrt n * b i)) i
+    rw [Matrix.mulVec_diagonal]
+    by_cases h0 : b i = 0
+    · have : o i = 0 := abs_nonpos_iff.1 (by simpa [h0] using hoff i)
+      simp [h0, this]
+    · have hn : (0:ℝ) < n := by exact_mod_cast i.pos
+      simp only [h0, if_false, Pi.add_apply]
+      have : Real.sqrt n ≠ 0 := (Real.sqrt_pos.2 hn).ne'
+      field_simp
 
 end CORALean.Real
 

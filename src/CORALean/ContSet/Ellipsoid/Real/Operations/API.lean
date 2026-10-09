@@ -36,6 +36,16 @@ import CORALean.ContSet.Ellipsoid.Real.Operations.EnclosePointsNt
 import CORALean.ContSet.Ellipsoid.Real.Operations.EnclosePointsMaxDist
 import CORALean.ContSet.Ellipsoid.Real.Operations.EnclosePointsCov
 import CORALean.ContSet.Ellipsoid.Real.Operations.IsIntersectingPoint
+import CORALean.ContSet.Ellipsoid.Real.Operations.CutPrecision
+import CORALean.ContSet.Ellipsoid.Real.Operations.CutShape
+import CORALean.ContSet.Ellipsoid.Real.Operations.HalderElemSymm
+import CORALean.ContSet.Ellipsoid.Real.Operations.HalderInvSum
+import CORALean.ContSet.Ellipsoid.Real.Operations.HalderLamSum
+import CORALean.ContSet.Ellipsoid.Real.Operations.HalderLogDet
+import CORALean.ContSet.Ellipsoid.Real.Operations.HalderMu
+import CORALean.ContSet.Ellipsoid.Real.Operations.HalderStationarity
+import CORALean.ContSet.Ellipsoid.Real.Operations.HalderStep
+import CORALean.ContSet.Ellipsoid.Real.Operations.OfShape
 
 /-!
 # What an ellipsoid computes, collected

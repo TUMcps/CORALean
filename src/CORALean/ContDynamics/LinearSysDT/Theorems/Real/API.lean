@@ -57,6 +57,7 @@ import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ZeroMemFaultResidual
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.QuadFormLeOfFaultRadiusLmi
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.HMinusOfLmi
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.FaultRadiusLmiCoraCounterexample
+import CORALean.ContDynamics.LinearSysDT.Theorems.Real.RadiusUltimateBoundOfContraction
 
 /-!
 # What holds of `LinearSysDT` only at `𝕋 := ℝ`, collected

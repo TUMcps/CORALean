@@ -16,6 +16,7 @@ import CORALean.NN.Definitions.ActivationKind
 import CORALean.NN.Definitions.ActivationKindFn
 import CORALean.NN.Definitions.Cat
 import CORALean.NN.Definitions.CatDomain
+import CORALean.NN.Definitions.SetBasedLoss
 
 /-!
 # What a network means, collected
