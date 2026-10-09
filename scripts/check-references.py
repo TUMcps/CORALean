@@ -73,6 +73,7 @@ LOCATOR = re.compile(
 LINK = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
 # A row that asserts something, as against one naming a definition, a section or
 # an algorithm. Only these are held to linking a file that proves something.
+# Exported for use in formalization-stats.py.
 CLAIM = re.compile(r"^(Thm\.|Prop\.|Property|Lemma|Cor\.)", re.I)
 # A file proves something if it declares a theorem, or discharges a field of a
 # structure that carries its own guarantee -- `SupportBound`'s `le := by ...`.
@@ -105,6 +106,12 @@ CLASS = re.compile(r"^`([a-z-]+)`\s*(?:—\s*(.*\S))?$")
 # then says so after an explicit `**As printed:**` marker, with the reason.
 HEDGE = re.compile(r"done differently|no counterpart|not covered|stated at `point`|only the\b|"
                    r"rather than|not the printed|not modell?ed|not transcribed", re.I)
+# A row in scope and not done may still say what part of it exists: the Lean files that are
+# there are linked (and checked like any link), and `missing:` says what is not.
+PARTIAL = re.compile(r"^—\s+partial:\s*\S.*;\s*missing:\s*\S.{9,}$", re.S)
+# A running time stated in a result's second cell: `complexity O(n⁵)`, `in O(ph log h)`,
+# `in time linear`. Sizes (`O(h) generators`) are not running times and pass.
+RUNNING_TIME = re.compile(r"complexity\s*`?O\(|\bin `?O\(|in time linear|\bat complexity\b", re.I)
 AS_PRINTED = re.compile(r"\*\*As printed:\*\*\s*(\S.{39,})")
 # A `fixed` row names the Lean counterexample theorem(s) in its third cell, or says why
 # there is none. The named theorems must be declared in a file the row links.
@@ -214,6 +221,7 @@ class Paper:
         self.general = set(LINK.findall(m.group(1))) if m else None
 
         self.results = {}
+        self.partials = {}  # Lean files a `— partial:` note links, checked but not counted
         # `{result: (locator, page)}` for the rows that defer to another page.
         self.tracked = {}
         # `{result: (class, reason)}`, see `VERDICTS` and `OUT_OF_SCOPE`.
@@ -227,7 +235,7 @@ class Paper:
                 say(f"{self.rel}: `## Results` rows have four cells (result, what it "
                     f"says, in CORALean, class): {cells[0][:40]}")
                 continue
-            result, _, where, klass = cells
+            result, says, where, klass = cells
             if result.lower() == "result":
                 continue  # the header
             result = locator(result)
@@ -236,9 +244,13 @@ class Paper:
             # Only a link at a Lean file is a formalization; an `n/a` note may
             # well link the page where the result is really tracked.
             links = [l for l in LINK.findall(where) if l.endswith(".lean")]
-            planned = where.strip() in {"—", "-"}
+            # `—` alone, or `— partial: <what exists, linked>; missing: <what is left>`
+            planned = where.strip() in {"—", "-"} or where.strip().startswith("— ")
             excluded = where.startswith("n/a")
-            if links and planned:
+            if planned and where.strip() not in {"—", "-"} and not PARTIAL.search(where):
+                say(f"{self.rel}: `{result}`: a `—` row with a note reads `— partial: <the "
+                    "Lean declarations that exist, linked>; missing: <what is left>`")
+            elif links and planned and not PARTIAL.search(where):
                 say(f"{self.rel}: `{result}` is both linked and marked unformalized")
             elif excluded:
                 links = []
@@ -248,10 +260,15 @@ class Paper:
             tracked = TRACKED.search(where)
             if tracked:
                 self.tracked[result] = (locator(tracked.group(1)), tracked.group(2))
+            if planned and links:
+                self.partials[result] = links
+                links = []
             self.results[result] = links if links else (None if excluded else [])
-            self.verdicts[result] = self.parse_class(result, klass, excluded, bool(links))
+            self.verdicts[result] = self.parse_class(result, klass, excluded,
+                                                    bool(links) and not planned)
             if self.verdicts[result][0] == "correct":
                 self.check_hedge(result, where)
+                self.check_complexity(result, says, where)
             elif self.verdicts[result][0] == "fixed":
                 self.check_counterexample(result, where, links)
 
@@ -294,6 +311,15 @@ class Paper:
             if name.rsplit(".", 1)[-1] not in declared:
                 self.say(f"{self.rel}: `{result}`: counterexample `{name}` is not a theorem "
                          "declared in a file the row links")
+
+    def check_complexity(self, result, says, where):
+        """A running time printed beside a result is a row of its own, so a `correct` row's
+        second cell does not carry one (references/README.md, "A complexity statement is a
+        row of its own"). A result whose statement *is* the bound links its `Cost/` file."""
+        if RUNNING_TIME.search(says) and "/Cost/" not in where:
+            self.say(f"{self.rel}: `{result}` states a running time in its own row; give it a "
+                     f"row `{result} (complexity)` (`not-a-claim`, or `Cost/` if the result is "
+                     "the bound)")
 
     def check_hedge(self, result, where):
         """A `correct` row's note may not admit that the Lean theorem differs from the
@@ -372,9 +398,50 @@ def stats(papers):
                 out[k] += 1
         return by, out
 
+    def tally_by_kind(paper):
+        """Separate results into claims and definitions with counts."""
+        # Initialize structure with keys for in_scope, formalized, and all verdict classes
+        claims = {"in_scope": 0, "formalized": 0}
+        defs = {"in_scope": 0, "formalized": 0}
+        for k in VERDICTS:
+            claims[k] = 0
+            defs[k] = 0
+
+        for result, (klass, _) in paper.verdicts.items():
+            is_claim = CLAIM.match(result)
+            kind = claims if is_claim else defs
+
+            # Track in_scope: anything in p.counted (result has a non-None value in paper.results)
+            links = paper.results.get(result)
+            if links is not None:
+                kind["in_scope"] += 1
+                # Track formalized: anything in p.done (has links)
+                if links:
+                    kind["formalized"] += 1
+                    # Only count by class if formalized and it's a verdict class
+                    if klass in VERDICTS:
+                        kind[klass] += 1
+
+        return claims, defs
+
     entries = []
     for p in papers:
         by, out = tally(p.verdicts.values())
+        claims, defs = tally_by_kind(p)
+
+        # Sanity check: claims + definitions should equal existing totals
+        claims_in_scope = claims["in_scope"]
+        defs_in_scope = defs["in_scope"]
+        if claims_in_scope + defs_in_scope != len(p.counted):
+            raise ValueError(f"{p.rel}: claims in_scope {claims_in_scope} + definitions in_scope {defs_in_scope} "
+                           f"!= {len(p.counted)} (expected in_scope total)")
+
+        claims_formalized = claims["formalized"]
+        defs_formalized = defs["formalized"]
+        if claims_formalized + defs_formalized != len(p.done):
+            raise ValueError(f"{p.rel}: claims formalized {claims_formalized} + definitions formalized {defs_formalized} "
+                           f"!= {len(p.done)} (expected formalized total)")
+
         entries.append({
             "page": p.rel.relative_to(REFS.name).as_posix(),
             "label": short_label(p, papers),
@@ -386,12 +453,40 @@ def stats(papers):
             "out_of_scope": len(p.excluded),
             "out_of_scope_by_reason": out,
             "by_class": by,
+            "claims": claims,
+            "definitions": defs,
             "findings": [{"result": r, "class": k, "reason": why}
                          for r, (k, why) in p.verdicts.items()
                          if k in VERDICTS and k != "correct"],
         })
     tot_by = {k: sum(e["by_class"][k] for e in entries) for k in VERDICTS}
     tot_out = {k: sum(e["out_of_scope_by_reason"][k] for e in entries) for k in OUT_OF_SCOPE}
+
+    # Build totals for claims and definitions
+    tot_claims = {"in_scope": 0, "formalized": 0}
+    tot_defs = {"in_scope": 0, "formalized": 0}
+    for k in VERDICTS:
+        tot_claims[k] = 0
+        tot_defs[k] = 0
+
+    for e in entries:
+        tot_claims["in_scope"] += e["claims"]["in_scope"]
+        tot_claims["formalized"] += e["claims"]["formalized"]
+        tot_defs["in_scope"] += e["definitions"]["in_scope"]
+        tot_defs["formalized"] += e["definitions"]["formalized"]
+        for k in VERDICTS:
+            tot_claims[k] += e["claims"].get(k, 0)
+            tot_defs[k] += e["definitions"].get(k, 0)
+
+    # Sanity check at global level
+    if tot_claims["in_scope"] + tot_defs["in_scope"] != sum(e["in_scope"] for e in entries):
+        raise ValueError(f"Global: claims in_scope {tot_claims['in_scope']} + definitions in_scope {tot_defs['in_scope']} "
+                       f"!= {sum(e['in_scope'] for e in entries)} (expected in_scope total)")
+
+    if tot_claims["formalized"] + tot_defs["formalized"] != sum(e["formalized"] for e in entries):
+        raise ValueError(f"Global: claims formalized {tot_claims['formalized']} + definitions formalized {tot_defs['formalized']} "
+                       f"!= {sum(e['formalized'] for e in entries)} (expected formalized total)")
+
     return {
         "classes": list(VERDICTS),
         "out_of_scope_reasons": list(OUT_OF_SCOPE),
@@ -404,6 +499,8 @@ def stats(papers):
             "out_of_scope": sum(e["out_of_scope"] for e in entries),
             "out_of_scope_by_reason": tot_out,
             "by_class": tot_by,
+            "claims": tot_claims,
+            "definitions": tot_defs,
         },
         "papers": entries,
         "cora_coverage": coverage_stats(papers, coverage_tables(lambda m: None)),
@@ -772,7 +869,7 @@ def linked_files(papers):
     """The Lean files some row links, and the files linked by a formalized row."""
     out = set()
     for p in papers:
-        for links in p.results.values():
+        for links in [*p.results.values(), *p.partials.values()]:
             for link in links or []:
                 t = (p.path.parent / link).resolve()
                 if t.exists() and t.suffix == ".lean":
@@ -920,7 +1017,7 @@ def main():
     # --- `references/` against the tree ------------------------------------- #
 
     for paper in papers:
-        for result, links in sorted(paper.results.items()):
+        for result, links in sorted({**paper.results, **paper.partials}.items()):
             targets = []
             for link in links or []:
                 target = (paper.path.parent / link).resolve()

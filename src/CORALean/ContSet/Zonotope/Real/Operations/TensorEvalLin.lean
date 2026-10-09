@@ -1,0 +1,47 @@
+import CORALean.ContSet.Zonotope.Real.Operations.TensorEval
+import Mathlib.Algebra.Module.LinearMap.Defs
+import Mathlib.Algebra.BigOperators.Ring.Finset
+import Mathlib.Algebra.BigOperators.Pi
+import Mathlib.Tactic.Ring
+
+/-!
+# `Zonotope.tensorEvalLin`
+
+The tensor product at a fixed point `x` is linear in the tensor, which is what lets
+`tensorMultiplication_zono` treat the centre and the generators of a matrix zonotope of tensors one
+by one.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       08-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- `M ↦ Mᵢⱼₖₗ xⱼ xₖ xₗ`, linear in `M`. -/
+noncomputable def Zonotope.tensorEvalLin (x : Vec ℝ n) :
+    Zonotope.Tensor3 n →ₗ[ℝ] Vec ℝ n where
+  toFun M := Zonotope.tensorEval M x
+  map_add' M N := by
+    funext d
+    simp only [Zonotope.tensorEval, Pi.add_apply, add_mul, Finset.sum_add_distrib]
+  map_smul' c M := by
+    funext d
+    simp only [Zonotope.tensorEval, Pi.smul_apply, smul_eq_mul, RingHom.id_apply, Finset.mul_sum]
+    refine Finset.sum_congr rfl fun a _ => Finset.sum_congr rfl fun b _ =>
+      Finset.sum_congr rfl fun e _ => ?_
+    ring
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

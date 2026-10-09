@@ -28,6 +28,14 @@ import CORALean.ContSet.Ellipsoid.Real.Operations.MinkDiffPoint
 import CORALean.ContSet.Ellipsoid.Real.Operations.ContainsPoint
 import CORALean.ContSet.Ellipsoid.Real.Operations.IsOrOuter
 import CORALean.ContSet.Ellipsoid.Real.Operations.Enclose2
+import CORALean.ContSet.Ellipsoid.Real.Operations.NormExact
+import CORALean.ContSet.Ellipsoid.Real.Operations.Generators
+import CORALean.ContSet.Ellipsoid.Real.Operations.AndPoint
+import CORALean.ContSet.Ellipsoid.Real.Operations.EnclosePointsOriented
+import CORALean.ContSet.Ellipsoid.Real.Operations.EnclosePointsNt
+import CORALean.ContSet.Ellipsoid.Real.Operations.EnclosePointsMaxDist
+import CORALean.ContSet.Ellipsoid.Real.Operations.EnclosePointsCov
+import CORALean.ContSet.Ellipsoid.Real.Operations.IsIntersectingPoint
 
 /-!
 # What an ellipsoid computes, collected

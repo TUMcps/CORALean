@@ -16,22 +16,40 @@
   "totals": {
     "papers": 73,
     "papers_with_findings": 62,
-    "in_scope": 931,
-    "formalized": 869,
-    "not_formalized": 62,
-    "out_of_scope": 700,
+    "in_scope": 940,
+    "formalized": 868,
+    "not_formalized": 72,
+    "out_of_scope": 716,
     "out_of_scope_by_reason": {
       "restated": 268,
       "mathlib": 13,
-      "not-a-claim": 360,
+      "not-a-claim": 376,
       "done-differently": 12,
       "not-covered": 47
     },
     "by_class": {
-      "correct": 602,
-      "underspecified": 158,
-      "proof-gap": 27,
-      "fixed": 80,
+      "correct": 600,
+      "underspecified": 156,
+      "proof-gap": 28,
+      "fixed": 82,
+      "false": 2
+    },
+    "claims": {
+      "in_scope": 359,
+      "formalized": 331,
+      "correct": 210,
+      "underspecified": 59,
+      "proof-gap": 28,
+      "fixed": 34,
+      "false": 0
+    },
+    "definitions": {
+      "in_scope": 581,
+      "formalized": 537,
+      "correct": 390,
+      "underspecified": 97,
+      "proof-gap": 0,
+      "fixed": 48,
       "false": 2
     }
   },
@@ -59,6 +77,24 @@
         "fixed": 0,
         "false": 0
       },
+      "claims": {
+        "in_scope": 0,
+        "formalized": 0,
+        "correct": 0,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 0,
+        "formalized": 0,
+        "correct": 0,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
       "findings": []
     },
     {
@@ -80,6 +116,24 @@
       "by_class": {
         "correct": 0,
         "underspecified": 3,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 3,
+        "formalized": 3,
+        "correct": 0,
+        "underspecified": 3,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 0,
+        "formalized": 0,
+        "correct": 0,
+        "underspecified": 0,
         "proof-gap": 0,
         "fixed": 0,
         "false": 0
@@ -125,6 +179,24 @@
         "fixed": 0,
         "false": 0
       },
+      "claims": {
+        "in_scope": 0,
+        "formalized": 0,
+        "correct": 0,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 5,
+        "formalized": 5,
+        "correct": 5,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
       "findings": []
     },
     {
@@ -145,7 +217,25 @@
       },
       "by_class": {
         "correct": 14,
-        "underspecified": 3,
+        "underspecified": 2,
+        "proof-gap": 0,
+        "fixed": 4,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 3,
+        "formalized": 3,
+        "correct": 0,
+        "underspecified": 2,
+        "proof-gap": 0,
+        "fixed": 1,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 17,
+        "formalized": 17,
+        "correct": 14,
+        "underspecified": 0,
         "proof-gap": 0,
         "fixed": 3,
         "false": 0
@@ -168,8 +258,8 @@
         },
         {
           "result": "Thm. 1",
-          "class": "underspecified",
-          "reason": "needs the polynomial parts bounded uniformly in `h`, which the printed hypotheses (only the remainders `O(hⁿ⁺¹)`, `x_h` free) do not give"
+          "class": "fixed",
+          "reason": "needs the polynomial parts bounded uniformly in `h`, which the printed hypotheses (only the remainders `O(hⁿ⁺¹)`, `x_h` free) do not give; the product's remainder is not `O(h²)` at `x_h = 1/h`"
         },
         {
           "result": "Thm. 2",
@@ -206,6 +296,24 @@
         "fixed": 2,
         "false": 0
       },
+      "claims": {
+        "in_scope": 3,
+        "formalized": 3,
+        "correct": 0,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 2,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 4,
+        "formalized": 4,
+        "correct": 3,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
       "findings": [
         {
           "result": "Lemma 1",
@@ -234,9 +342,9 @@
       "label": "Makino 2005",
       "year": 2005,
       "title": "Verified Global Optimization with Taylor Model-based Range Bounders",
-      "in_scope": 3,
+      "in_scope": 4,
       "formalized": 3,
-      "not_formalized": 0,
+      "not_formalized": 1,
       "out_of_scope": 6,
       "out_of_scope_by_reason": {
         "restated": 1,
@@ -246,6 +354,24 @@
         "not-covered": 0
       },
       "by_class": {
+        "correct": 3,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 0,
+        "formalized": 0,
+        "correct": 0,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 4,
+        "formalized": 3,
         "correct": 3,
         "underspecified": 0,
         "proof-gap": 0,
@@ -271,6 +397,24 @@
         "not-covered": 3
       },
       "by_class": {
+        "correct": 5,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 1,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 0,
+        "formalized": 0,
+        "correct": 0,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 6,
+        "formalized": 6,
         "correct": 5,
         "underspecified": 0,
         "proof-gap": 0,
@@ -305,6 +449,24 @@
         "correct": 4,
         "underspecified": 3,
         "proof-gap": 2,
+        "fixed": 1,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 3,
+        "formalized": 3,
+        "correct": 1,
+        "underspecified": 0,
+        "proof-gap": 2,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 8,
+        "formalized": 7,
+        "correct": 3,
+        "underspecified": 3,
+        "proof-gap": 0,
         "fixed": 1,
         "false": 0
       },
@@ -364,6 +526,24 @@
         "fixed": 3,
         "false": 0
       },
+      "claims": {
+        "in_scope": 4,
+        "formalized": 2,
+        "correct": 0,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 1,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 11,
+        "formalized": 7,
+        "correct": 3,
+        "underspecified": 2,
+        "proof-gap": 0,
+        "fixed": 2,
+        "false": 0
+      },
       "findings": [
         {
           "result": "Sec. II",
@@ -402,9 +582,9 @@
       "label": "Campi 2009",
       "year": 2009,
       "title": "Interval predictor models: Identification and reliability",
-      "in_scope": 8,
+      "in_scope": 9,
       "formalized": 4,
-      "not_formalized": 4,
+      "not_formalized": 5,
       "out_of_scope": 27,
       "out_of_scope_by_reason": {
         "restated": 1,
@@ -414,6 +594,24 @@
         "not-covered": 0
       },
       "by_class": {
+        "correct": 4,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 3,
+        "formalized": 0,
+        "correct": 0,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 6,
+        "formalized": 4,
         "correct": 4,
         "underspecified": 0,
         "proof-gap": 0,
@@ -443,6 +641,24 @@
         "underspecified": 4,
         "proof-gap": 0,
         "fixed": 2,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 7,
+        "formalized": 7,
+        "correct": 5,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 2,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 11,
+        "formalized": 11,
+        "correct": 7,
+        "underspecified": 4,
+        "proof-gap": 0,
+        "fixed": 0,
         "false": 0
       },
       "findings": [
@@ -486,16 +702,34 @@
       "in_scope": 13,
       "formalized": 13,
       "not_formalized": 0,
-      "out_of_scope": 6,
+      "out_of_scope": 8,
       "out_of_scope_by_reason": {
         "restated": 4,
         "mathlib": 0,
-        "not-a-claim": 2,
+        "not-a-claim": 4,
         "done-differently": 0,
         "not-covered": 0
       },
       "by_class": {
         "correct": 11,
+        "underspecified": 2,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 7,
+        "formalized": 7,
+        "correct": 7,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 6,
+        "formalized": 6,
+        "correct": 4,
         "underspecified": 2,
         "proof-gap": 0,
         "fixed": 0,
@@ -520,8 +754,8 @@
       "year": 2010,
       "title": "Reachability Analysis and its Application to the Safety Assessment of Autonomous Cars",
       "in_scope": 34,
-      "formalized": 34,
-      "not_formalized": 0,
+      "formalized": 33,
+      "not_formalized": 1,
       "out_of_scope": 2,
       "out_of_scope_by_reason": {
         "restated": 0,
@@ -531,9 +765,27 @@
         "not-covered": 0
       },
       "by_class": {
-        "correct": 25,
+        "correct": 24,
         "underspecified": 5,
         "proof-gap": 4,
+        "fixed": 0,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 16,
+        "formalized": 16,
+        "correct": 9,
+        "underspecified": 3,
+        "proof-gap": 4,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 18,
+        "formalized": 17,
+        "correct": 15,
+        "underspecified": 2,
+        "proof-gap": 0,
         "fixed": 0,
         "false": 0
       },
@@ -608,6 +860,24 @@
         "fixed": 1,
         "false": 0
       },
+      "claims": {
+        "in_scope": 0,
+        "formalized": 0,
+        "correct": 0,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 9,
+        "formalized": 9,
+        "correct": 7,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 1,
+        "false": 0
+      },
       "findings": [
         {
           "result": "Sec. 3 (extremal functions)",
@@ -642,6 +912,24 @@
         "underspecified": 4,
         "proof-gap": 0,
         "fixed": 2,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 7,
+        "formalized": 7,
+        "correct": 6,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 1,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 9,
+        "formalized": 9,
+        "correct": 4,
+        "underspecified": 4,
+        "proof-gap": 0,
+        "fixed": 1,
         "false": 0
       },
       "findings": [
@@ -700,6 +988,24 @@
         "fixed": 1,
         "false": 0
       },
+      "claims": {
+        "in_scope": 1,
+        "formalized": 1,
+        "correct": 0,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 1,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 3,
+        "formalized": 3,
+        "correct": 3,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
       "findings": [
         {
           "result": "Prop. 3",
@@ -731,6 +1037,24 @@
         "fixed": 0,
         "false": 0
       },
+      "claims": {
+        "in_scope": 1,
+        "formalized": 1,
+        "correct": 1,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 2,
+        "formalized": 2,
+        "correct": 2,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
       "findings": []
     },
     {
@@ -738,14 +1062,14 @@
       "label": "Althoff 2012 (hscc)",
       "year": 2012,
       "title": "Avoiding Geometric Intersection Operations in Reachability Analysis of Hybrid Systems",
-      "in_scope": 17,
+      "in_scope": 18,
       "formalized": 14,
-      "not_formalized": 3,
-      "out_of_scope": 3,
+      "not_formalized": 4,
+      "out_of_scope": 4,
       "out_of_scope_by_reason": {
         "restated": 2,
         "mathlib": 0,
-        "not-a-claim": 1,
+        "not-a-claim": 2,
         "done-differently": 0,
         "not-covered": 0
       },
@@ -754,6 +1078,24 @@
         "underspecified": 2,
         "proof-gap": 0,
         "fixed": 2,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 6,
+        "formalized": 4,
+        "correct": 2,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 1,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 12,
+        "formalized": 10,
+        "correct": 8,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 1,
         "false": 0
       },
       "findings": [
@@ -787,11 +1129,11 @@
       "in_scope": 6,
       "formalized": 6,
       "not_formalized": 0,
-      "out_of_scope": 2,
+      "out_of_scope": 4,
       "out_of_scope_by_reason": {
         "restated": 2,
         "mathlib": 0,
-        "not-a-claim": 0,
+        "not-a-claim": 2,
         "done-differently": 0,
         "not-covered": 0
       },
@@ -800,6 +1142,24 @@
         "underspecified": 0,
         "proof-gap": 0,
         "fixed": 2,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 3,
+        "formalized": 3,
+        "correct": 2,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 1,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 3,
+        "formalized": 3,
+        "correct": 2,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 1,
         "false": 0
       },
       "findings": [
@@ -838,6 +1198,24 @@
         "fixed": 0,
         "false": 0
       },
+      "claims": {
+        "in_scope": 3,
+        "formalized": 3,
+        "correct": 3,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 11,
+        "formalized": 10,
+        "correct": 10,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
       "findings": []
     },
     {
@@ -860,6 +1238,24 @@
         "correct": 10,
         "underspecified": 1,
         "proof-gap": 1,
+        "fixed": 2,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 3,
+        "formalized": 3,
+        "correct": 2,
+        "underspecified": 0,
+        "proof-gap": 1,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 12,
+        "formalized": 11,
+        "correct": 8,
+        "underspecified": 1,
+        "proof-gap": 0,
         "fixed": 2,
         "false": 0
       },
@@ -894,17 +1290,35 @@
       "in_scope": 18,
       "formalized": 17,
       "not_formalized": 1,
-      "out_of_scope": 16,
+      "out_of_scope": 17,
       "out_of_scope_by_reason": {
         "restated": 9,
         "mathlib": 1,
-        "not-a-claim": 6,
+        "not-a-claim": 7,
         "done-differently": 0,
         "not-covered": 0
       },
       "by_class": {
         "correct": 9,
         "underspecified": 5,
+        "proof-gap": 0,
+        "fixed": 3,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 5,
+        "formalized": 5,
+        "correct": 4,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 13,
+        "formalized": 12,
+        "correct": 5,
+        "underspecified": 4,
         "proof-gap": 0,
         "fixed": 3,
         "false": 0
@@ -960,15 +1374,33 @@
       "in_scope": 16,
       "formalized": 16,
       "not_formalized": 0,
-      "out_of_scope": 16,
+      "out_of_scope": 17,
       "out_of_scope_by_reason": {
         "restated": 0,
         "mathlib": 0,
-        "not-a-claim": 14,
+        "not-a-claim": 15,
         "done-differently": 0,
         "not-covered": 2
       },
       "by_class": {
+        "correct": 10,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 6,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 0,
+        "formalized": 0,
+        "correct": 0,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 16,
+        "formalized": 16,
         "correct": 10,
         "underspecified": 0,
         "proof-gap": 0,
@@ -1031,6 +1463,24 @@
         "fixed": 2,
         "false": 0
       },
+      "claims": {
+        "in_scope": 13,
+        "formalized": 13,
+        "correct": 8,
+        "underspecified": 2,
+        "proof-gap": 1,
+        "fixed": 2,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 3,
+        "formalized": 3,
+        "correct": 2,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
       "findings": [
         {
           "result": "Lemma 1",
@@ -1087,6 +1537,24 @@
         "fixed": 0,
         "false": 0
       },
+      "claims": {
+        "in_scope": 0,
+        "formalized": 0,
+        "correct": 0,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 9,
+        "formalized": 9,
+        "correct": 8,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
       "findings": [
         {
           "result": "Sec. 3.1",
@@ -1112,6 +1580,24 @@
         "not-covered": 0
       },
       "by_class": {
+        "correct": 15,
+        "underspecified": 6,
+        "proof-gap": 0,
+        "fixed": 3,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 0,
+        "formalized": 0,
+        "correct": 0,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 24,
+        "formalized": 24,
         "correct": 15,
         "underspecified": 6,
         "proof-gap": 0,
@@ -1189,6 +1675,24 @@
         "fixed": 0,
         "false": 0
       },
+      "claims": {
+        "in_scope": 4,
+        "formalized": 4,
+        "correct": 1,
+        "underspecified": 3,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 15,
+        "formalized": 14,
+        "correct": 11,
+        "underspecified": 3,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
       "findings": [
         {
           "result": "Sec. 3",
@@ -1227,19 +1731,37 @@
       "label": "Scott 2016",
       "year": 2016,
       "title": "Constrained zonotopes: A new tool for set-based estimation and fault detection",
-      "in_scope": 10,
+      "in_scope": 13,
       "formalized": 10,
-      "not_formalized": 0,
-      "out_of_scope": 6,
+      "not_formalized": 3,
+      "out_of_scope": 8,
       "out_of_scope_by_reason": {
         "restated": 1,
         "mathlib": 0,
-        "not-a-claim": 3,
+        "not-a-claim": 5,
         "done-differently": 0,
         "not-covered": 2
       },
       "by_class": {
         "correct": 10,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 7,
+        "formalized": 6,
+        "correct": 6,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 6,
+        "formalized": 4,
+        "correct": 4,
         "underspecified": 0,
         "proof-gap": 0,
         "fixed": 0,
@@ -1265,6 +1787,24 @@
       },
       "by_class": {
         "correct": 17,
+        "underspecified": 2,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 1,
+        "formalized": 1,
+        "correct": 1,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 18,
+        "formalized": 18,
+        "correct": 16,
         "underspecified": 2,
         "proof-gap": 0,
         "fixed": 0,
@@ -1306,6 +1846,24 @@
         "fixed": 0,
         "false": 0
       },
+      "claims": {
+        "in_scope": 0,
+        "formalized": 0,
+        "correct": 0,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 4,
+        "formalized": 3,
+        "correct": 2,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
       "findings": [
         {
           "result": "Eq. 18",
@@ -1337,6 +1895,24 @@
         "fixed": 0,
         "false": 0
       },
+      "claims": {
+        "in_scope": 0,
+        "formalized": 0,
+        "correct": 0,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 1,
+        "formalized": 1,
+        "correct": 1,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
       "findings": []
     },
     {
@@ -1356,6 +1932,24 @@
         "not-covered": 0
       },
       "by_class": {
+        "correct": 2,
+        "underspecified": 2,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 0,
+        "formalized": 0,
+        "correct": 0,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 4,
+        "formalized": 4,
         "correct": 2,
         "underspecified": 2,
         "proof-gap": 0,
@@ -1392,6 +1986,24 @@
         "not-covered": 0
       },
       "by_class": {
+        "correct": 8,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 2,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 0,
+        "formalized": 0,
+        "correct": 0,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 15,
+        "formalized": 11,
         "correct": 8,
         "underspecified": 1,
         "proof-gap": 0,
@@ -1439,6 +2051,24 @@
         "fixed": 0,
         "false": 0
       },
+      "claims": {
+        "in_scope": 0,
+        "formalized": 0,
+        "correct": 0,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 11,
+        "formalized": 11,
+        "correct": 8,
+        "underspecified": 3,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
       "findings": [
         {
           "result": "Eq. 5",
@@ -1480,6 +2110,24 @@
         "fixed": 0,
         "false": 0
       },
+      "claims": {
+        "in_scope": 1,
+        "formalized": 1,
+        "correct": 1,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 10,
+        "formalized": 10,
+        "correct": 9,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
       "findings": [
         {
           "result": "Sec. II (MaxPool to CAT)",
@@ -1509,6 +2157,24 @@
         "underspecified": 1,
         "proof-gap": 0,
         "fixed": 1,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 2,
+        "formalized": 2,
+        "correct": 0,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 1,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 6,
+        "formalized": 6,
+        "correct": 6,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
         "false": 0
       },
       "findings": [
@@ -1545,6 +2211,24 @@
         "underspecified": 5,
         "proof-gap": 1,
         "fixed": 1,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 9,
+        "formalized": 9,
+        "correct": 6,
+        "underspecified": 1,
+        "proof-gap": 1,
+        "fixed": 1,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 9,
+        "formalized": 7,
+        "correct": 3,
+        "underspecified": 4,
+        "proof-gap": 0,
+        "fixed": 0,
         "false": 0
       },
       "findings": [
@@ -1606,6 +2290,24 @@
         "underspecified": 6,
         "proof-gap": 0,
         "fixed": 3,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 18,
+        "formalized": 17,
+        "correct": 10,
+        "underspecified": 6,
+        "proof-gap": 0,
+        "fixed": 1,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 5,
+        "formalized": 5,
+        "correct": 3,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 2,
         "false": 0
       },
       "findings": [
@@ -1674,9 +2376,27 @@
       },
       "by_class": {
         "correct": 9,
-        "underspecified": 7,
+        "underspecified": 6,
+        "proof-gap": 0,
+        "fixed": 3,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 13,
+        "formalized": 13,
+        "correct": 7,
+        "underspecified": 4,
         "proof-gap": 0,
         "fixed": 2,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 5,
+        "formalized": 5,
+        "correct": 2,
+        "underspecified": 2,
+        "proof-gap": 0,
+        "fixed": 1,
         "false": 0
       },
       "findings": [
@@ -1717,7 +2437,7 @@
         },
         {
           "result": "Thm. 7",
-          "class": "underspecified",
+          "class": "fixed",
           "reason": "the hypothesis `A - LC ≥ 0` of `Thm. 4`, which the proof uses, is missing from the statement; without it the inequality fails (`A - LC = -1`); see Findings"
         },
         {
@@ -1748,6 +2468,24 @@
         "underspecified": 1,
         "proof-gap": 0,
         "fixed": 4,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 6,
+        "formalized": 6,
+        "correct": 2,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 3,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 5,
+        "formalized": 5,
+        "correct": 4,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 1,
         "false": 0
       },
       "findings": [
@@ -1801,6 +2539,24 @@
         "fixed": 0,
         "false": 0
       },
+      "claims": {
+        "in_scope": 11,
+        "formalized": 6,
+        "correct": 4,
+        "underspecified": 1,
+        "proof-gap": 1,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 2,
+        "formalized": 1,
+        "correct": 0,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
       "findings": [
         {
           "result": "Alg. 1",
@@ -1842,6 +2598,24 @@
         "fixed": 1,
         "false": 0
       },
+      "claims": {
+        "in_scope": 8,
+        "formalized": 8,
+        "correct": 7,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 1,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 8,
+        "formalized": 5,
+        "correct": 4,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
       "findings": [
         {
           "result": "Def. 4",
@@ -1875,6 +2649,24 @@
         "correct": 3,
         "underspecified": 1,
         "proof-gap": 1,
+        "fixed": 0,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 3,
+        "formalized": 2,
+        "correct": 0,
+        "underspecified": 1,
+        "proof-gap": 1,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 4,
+        "formalized": 3,
+        "correct": 3,
+        "underspecified": 0,
+        "proof-gap": 0,
         "fixed": 0,
         "false": 0
       },
@@ -1912,6 +2704,24 @@
         "underspecified": 3,
         "proof-gap": 0,
         "fixed": 4,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 3,
+        "formalized": 3,
+        "correct": 0,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 2,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 13,
+        "formalized": 10,
+        "correct": 6,
+        "underspecified": 2,
+        "proof-gap": 0,
+        "fixed": 2,
         "false": 0
       },
       "findings": [
@@ -1975,6 +2785,24 @@
         "fixed": 0,
         "false": 0
       },
+      "claims": {
+        "in_scope": 6,
+        "formalized": 6,
+        "correct": 4,
+        "underspecified": 0,
+        "proof-gap": 2,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 5,
+        "formalized": 5,
+        "correct": 5,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
       "findings": [
         {
           "result": "Lemma 3",
@@ -2009,6 +2837,24 @@
         "underspecified": 3,
         "proof-gap": 1,
         "fixed": 1,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 7,
+        "formalized": 7,
+        "correct": 5,
+        "underspecified": 0,
+        "proof-gap": 1,
+        "fixed": 1,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 5,
+        "formalized": 5,
+        "correct": 2,
+        "underspecified": 3,
+        "proof-gap": 0,
+        "fixed": 0,
         "false": 0
       },
       "findings": [
@@ -2062,6 +2908,24 @@
         "fixed": 0,
         "false": 0
       },
+      "claims": {
+        "in_scope": 0,
+        "formalized": 0,
+        "correct": 0,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 4,
+        "formalized": 4,
+        "correct": 1,
+        "underspecified": 3,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
       "findings": [
         {
           "result": "Eq. 3",
@@ -2088,11 +2952,11 @@
       "in_scope": 19,
       "formalized": 19,
       "not_formalized": 0,
-      "out_of_scope": 8,
+      "out_of_scope": 10,
       "out_of_scope_by_reason": {
         "restated": 5,
         "mathlib": 0,
-        "not-a-claim": 0,
+        "not-a-claim": 2,
         "done-differently": 2,
         "not-covered": 1
       },
@@ -2100,6 +2964,24 @@
         "correct": 13,
         "underspecified": 5,
         "proof-gap": 1,
+        "fixed": 0,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 15,
+        "formalized": 15,
+        "correct": 10,
+        "underspecified": 4,
+        "proof-gap": 1,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 4,
+        "formalized": 4,
+        "correct": 3,
+        "underspecified": 1,
+        "proof-gap": 0,
         "fixed": 0,
         "false": 0
       },
@@ -2157,6 +3039,24 @@
         "underspecified": 5,
         "proof-gap": 1,
         "fixed": 3,
+        "false": 1
+      },
+      "claims": {
+        "in_scope": 12,
+        "formalized": 9,
+        "correct": 6,
+        "underspecified": 1,
+        "proof-gap": 1,
+        "fixed": 1,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 12,
+        "formalized": 12,
+        "correct": 5,
+        "underspecified": 4,
+        "proof-gap": 0,
+        "fixed": 2,
         "false": 1
       },
       "findings": [
@@ -2235,6 +3135,24 @@
         "fixed": 0,
         "false": 0
       },
+      "claims": {
+        "in_scope": 3,
+        "formalized": 3,
+        "correct": 0,
+        "underspecified": 2,
+        "proof-gap": 1,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 2,
+        "formalized": 2,
+        "correct": 0,
+        "underspecified": 2,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
       "findings": [
         {
           "result": "Lemma 3.1",
@@ -2286,6 +3204,24 @@
         "fixed": 1,
         "false": 0
       },
+      "claims": {
+        "in_scope": 0,
+        "formalized": 0,
+        "correct": 0,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 3,
+        "formalized": 3,
+        "correct": 1,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 1,
+        "false": 0
+      },
       "findings": [
         {
           "result": "Sec. 3.1.2",
@@ -2322,6 +3258,24 @@
         "fixed": 0,
         "false": 0
       },
+      "claims": {
+        "in_scope": 1,
+        "formalized": 1,
+        "correct": 1,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 3,
+        "formalized": 2,
+        "correct": 2,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
       "findings": []
     },
     {
@@ -2329,9 +3283,9 @@
       "label": "Raghuraman 2022",
       "year": 2022,
       "title": "Set operations and order reductions for constrained zonotopes",
-      "in_scope": 9,
+      "in_scope": 11,
       "formalized": 9,
-      "not_formalized": 0,
+      "not_formalized": 2,
       "out_of_scope": 9,
       "out_of_scope_by_reason": {
         "restated": 9,
@@ -2344,6 +3298,24 @@
         "correct": 8,
         "underspecified": 0,
         "proof-gap": 1,
+        "fixed": 0,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 8,
+        "formalized": 8,
+        "correct": 7,
+        "underspecified": 0,
+        "proof-gap": 1,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 3,
+        "formalized": 1,
+        "correct": 1,
+        "underspecified": 0,
+        "proof-gap": 0,
         "fixed": 0,
         "false": 0
       },
@@ -2376,6 +3348,24 @@
         "underspecified": 4,
         "proof-gap": 1,
         "fixed": 2,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 8,
+        "formalized": 7,
+        "correct": 3,
+        "underspecified": 2,
+        "proof-gap": 1,
+        "fixed": 1,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 6,
+        "formalized": 6,
+        "correct": 3,
+        "underspecified": 2,
+        "proof-gap": 0,
+        "fixed": 1,
         "false": 0
       },
       "findings": [
@@ -2439,6 +3429,24 @@
         "fixed": 4,
         "false": 0
       },
+      "claims": {
+        "in_scope": 7,
+        "formalized": 7,
+        "correct": 3,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 3,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 8,
+        "formalized": 8,
+        "correct": 7,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 1,
+        "false": 0
+      },
       "findings": [
         {
           "result": "Prop. 1",
@@ -2490,6 +3498,24 @@
         "fixed": 3,
         "false": 0
       },
+      "claims": {
+        "in_scope": 2,
+        "formalized": 2,
+        "correct": 1,
+        "underspecified": 0,
+        "proof-gap": 1,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 10,
+        "formalized": 10,
+        "correct": 5,
+        "underspecified": 2,
+        "proof-gap": 0,
+        "fixed": 3,
+        "false": 0
+      },
       "findings": [
         {
           "result": "Sec. 2.2",
@@ -2531,17 +3557,35 @@
       "in_scope": 16,
       "formalized": 16,
       "not_formalized": 0,
-      "out_of_scope": 8,
+      "out_of_scope": 11,
       "out_of_scope_by_reason": {
         "restated": 5,
         "mathlib": 0,
-        "not-a-claim": 0,
+        "not-a-claim": 3,
         "done-differently": 3,
         "not-covered": 0
       },
       "by_class": {
         "correct": 13,
         "underspecified": 3,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 14,
+        "formalized": 14,
+        "correct": 11,
+        "underspecified": 3,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 2,
+        "formalized": 2,
+        "correct": 2,
+        "underspecified": 0,
         "proof-gap": 0,
         "fixed": 0,
         "false": 0
@@ -2572,11 +3616,11 @@
       "in_scope": 27,
       "formalized": 27,
       "not_formalized": 0,
-      "out_of_scope": 9,
+      "out_of_scope": 10,
       "out_of_scope_by_reason": {
         "restated": 8,
         "mathlib": 0,
-        "not-a-claim": 0,
+        "not-a-claim": 1,
         "done-differently": 1,
         "not-covered": 0
       },
@@ -2584,6 +3628,24 @@
         "correct": 21,
         "underspecified": 5,
         "proof-gap": 1,
+        "fixed": 0,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 13,
+        "formalized": 13,
+        "correct": 8,
+        "underspecified": 4,
+        "proof-gap": 1,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 14,
+        "formalized": 14,
+        "correct": 13,
+        "underspecified": 1,
+        "proof-gap": 0,
         "fixed": 0,
         "false": 0
       },
@@ -2643,6 +3705,24 @@
         "fixed": 0,
         "false": 0
       },
+      "claims": {
+        "in_scope": 6,
+        "formalized": 6,
+        "correct": 5,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 8,
+        "formalized": 8,
+        "correct": 6,
+        "underspecified": 2,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
       "findings": [
         {
           "result": "Eq. 6",
@@ -2684,6 +3764,24 @@
         "fixed": 1,
         "false": 0
       },
+      "claims": {
+        "in_scope": 2,
+        "formalized": 2,
+        "correct": 1,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 13,
+        "formalized": 13,
+        "correct": 12,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 1,
+        "false": 0
+      },
       "findings": [
         {
           "result": "Eq. 7",
@@ -2720,6 +3818,24 @@
         "fixed": 2,
         "false": 0
       },
+      "claims": {
+        "in_scope": 9,
+        "formalized": 9,
+        "correct": 8,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 1,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 5,
+        "formalized": 5,
+        "correct": 3,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 1,
+        "false": 0
+      },
       "findings": [
         {
           "result": "Eq. 12",
@@ -2746,11 +3862,11 @@
       "in_scope": 11,
       "formalized": 11,
       "not_formalized": 0,
-      "out_of_scope": 8,
+      "out_of_scope": 9,
       "out_of_scope_by_reason": {
         "restated": 7,
         "mathlib": 0,
-        "not-a-claim": 1,
+        "not-a-claim": 2,
         "done-differently": 0,
         "not-covered": 0
       },
@@ -2759,6 +3875,24 @@
         "underspecified": 5,
         "proof-gap": 2,
         "fixed": 1,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 7,
+        "formalized": 7,
+        "correct": 2,
+        "underspecified": 2,
+        "proof-gap": 2,
+        "fixed": 1,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 4,
+        "formalized": 4,
+        "correct": 1,
+        "underspecified": 3,
+        "proof-gap": 0,
+        "fixed": 0,
         "false": 0
       },
       "findings": [
@@ -2821,9 +3955,27 @@
         "not-covered": 0
       },
       "by_class": {
-        "correct": 12,
+        "correct": 11,
         "underspecified": 4,
-        "proof-gap": 3,
+        "proof-gap": 4,
+        "fixed": 0,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 16,
+        "formalized": 16,
+        "correct": 10,
+        "underspecified": 2,
+        "proof-gap": 4,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 3,
+        "formalized": 3,
+        "correct": 1,
+        "underspecified": 2,
+        "proof-gap": 0,
         "fixed": 0,
         "false": 0
       },
@@ -2859,6 +4011,11 @@
           "reason": "presupposes a feasible program; `min ∅` would make a `sInf`-valued reading false"
         },
         {
+          "result": "Prop. 11",
+          "class": "proof-gap",
+          "reason": "the proof uses eq. (20)'s soundness `P^U(Δt_k) ⊆ P̂^U(Δt_k)`, which neither [1] nor this tree establishes (the tail `Σ_{i>η} Ãᵢūᵢ` carries a different `ūᵢ` per `i`, and convexity of `U₀` gives no single `v ∈ Δt_kU₀` with `|M| ≤ E`); proved here under it, open without it"
+        },
+        {
           "result": "Lemma 3",
           "class": "proof-gap",
           "reason": "proof substitutes `Δt = 0` into the term whose rate it is about; its `O(Δt²)` step needs `η ≥ 1`; the claim holds"
@@ -2882,6 +4039,24 @@
         "not-covered": 0
       },
       "by_class": {
+        "correct": 1,
+        "underspecified": 2,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 0,
+        "formalized": 0,
+        "correct": 0,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 5,
+        "formalized": 3,
         "correct": 1,
         "underspecified": 2,
         "proof-gap": 0,
@@ -2922,6 +4097,24 @@
         "underspecified": 0,
         "proof-gap": 0,
         "fixed": 3,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 6,
+        "formalized": 3,
+        "correct": 1,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 2,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 12,
+        "formalized": 10,
+        "correct": 9,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 1,
         "false": 0
       },
       "findings": [
@@ -2965,6 +4158,24 @@
         "fixed": 1,
         "false": 0
       },
+      "claims": {
+        "in_scope": 5,
+        "formalized": 4,
+        "correct": 3,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 1,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 3,
+        "formalized": 2,
+        "correct": 2,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
       "findings": [
         {
           "result": "Thm. 1",
@@ -2978,9 +4189,9 @@
       "label": "Wetzlinger 2024 (arch)",
       "year": 2024,
       "title": "Implementation of Polyhedral Operations in CORA 2024",
-      "in_scope": 49,
+      "in_scope": 50,
       "formalized": 48,
-      "not_formalized": 1,
+      "not_formalized": 2,
       "out_of_scope": 15,
       "out_of_scope_by_reason": {
         "restated": 7,
@@ -2990,6 +4201,24 @@
         "not-covered": 0
       },
       "by_class": {
+        "correct": 32,
+        "underspecified": 12,
+        "proof-gap": 0,
+        "fixed": 3,
+        "false": 1
+      },
+      "claims": {
+        "in_scope": 0,
+        "formalized": 0,
+        "correct": 0,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 50,
+        "formalized": 48,
         "correct": 32,
         "underspecified": 12,
         "proof-gap": 0,
@@ -3102,6 +4331,24 @@
         "fixed": 0,
         "false": 0
       },
+      "claims": {
+        "in_scope": 3,
+        "formalized": 0,
+        "correct": 0,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 4,
+        "formalized": 3,
+        "correct": 3,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
       "findings": []
     },
     {
@@ -3124,6 +4371,24 @@
         "correct": 13,
         "underspecified": 0,
         "proof-gap": 1,
+        "fixed": 0,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 5,
+        "formalized": 5,
+        "correct": 4,
+        "underspecified": 0,
+        "proof-gap": 1,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 9,
+        "formalized": 9,
+        "correct": 9,
+        "underspecified": 0,
+        "proof-gap": 0,
         "fixed": 0,
         "false": 0
       },
@@ -3154,6 +4419,24 @@
       "by_class": {
         "correct": 7,
         "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 1,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 2,
+        "formalized": 2,
+        "correct": 1,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 7,
+        "formalized": 7,
+        "correct": 6,
+        "underspecified": 0,
         "proof-gap": 0,
         "fixed": 1,
         "false": 0
@@ -3194,6 +4477,24 @@
         "fixed": 0,
         "false": 0
       },
+      "claims": {
+        "in_scope": 8,
+        "formalized": 7,
+        "correct": 7,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 4,
+        "formalized": 3,
+        "correct": 3,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
       "findings": []
     },
     {
@@ -3215,6 +4516,24 @@
       "by_class": {
         "correct": 12,
         "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 8,
+        "formalized": 8,
+        "correct": 7,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 5,
+        "formalized": 5,
+        "correct": 5,
+        "underspecified": 0,
         "proof-gap": 0,
         "fixed": 0,
         "false": 0
@@ -3246,6 +4565,24 @@
       "by_class": {
         "correct": 12,
         "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 9,
+        "formalized": 8,
+        "correct": 7,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 5,
+        "formalized": 5,
+        "correct": 5,
+        "underspecified": 0,
         "proof-gap": 0,
         "fixed": 0,
         "false": 0
@@ -3399,9 +4736,9 @@
         "cora_issues": 0,
         "findings": {
           "correct": 46,
-          "underspecified": 18,
+          "underspecified": 17,
           "proof-gap": 0,
-          "fixed": 8,
+          "fixed": 9,
           "false": 0
         }
       },
@@ -3409,15 +4746,15 @@
         "group": "contSet",
         "class": "ellipsoid",
         "methods": 50,
-        "proved": 3,
-        "float": 28,
-        "not_yet": 9,
-        "out_of_scope": 10,
-        "needs_float": 3,
+        "proved": 6,
+        "float": 30,
+        "not_yet": 2,
+        "out_of_scope": 12,
+        "needs_float": 6,
         "out_of_scope_by_reason": {
           "plotting/display": 3,
           "random/sampling": 2,
-          "solver-dependent": 1,
+          "solver-dependent": 3,
           "io/conversion-to-matlab-objects": 0,
           "matlab-runtime": 4,
           "deprecated": 0
@@ -3541,13 +4878,13 @@
         "methods": 73,
         "proved": 6,
         "float": 46,
-        "not_yet": 7,
-        "out_of_scope": 14,
+        "not_yet": 6,
+        "out_of_scope": 15,
         "needs_float": 6,
         "out_of_scope_by_reason": {
           "plotting/display": 4,
           "random/sampling": 2,
-          "solver-dependent": 0,
+          "solver-dependent": 1,
           "io/conversion-to-matlab-objects": 0,
           "matlab-runtime": 7,
           "deprecated": 1
@@ -3721,11 +5058,11 @@
         "group": "contSet",
         "class": "zonotope",
         "methods": 80,
-        "proved": 8,
+        "proved": 10,
         "float": 51,
-        "not_yet": 7,
+        "not_yet": 5,
         "out_of_scope": 14,
-        "needs_float": 8,
+        "needs_float": 10,
         "out_of_scope_by_reason": {
           "plotting/display": 2,
           "random/sampling": 3,
@@ -3734,7 +5071,7 @@
           "matlab-runtime": 5,
           "deprecated": 2
         },
-        "cora_issues": 2,
+        "cora_issues": 3,
         "findings": {
           "correct": 94,
           "underspecified": 21,
@@ -3892,9 +5229,9 @@
         },
         "cora_issues": 1,
         "findings": {
-          "correct": 35,
+          "correct": 34,
           "underspecified": 16,
-          "proof-gap": 9,
+          "proof-gap": 10,
           "fixed": 4,
           "false": 0
         }
@@ -3919,9 +5256,9 @@
         "cora_issues": 1,
         "findings": {
           "correct": 26,
-          "underspecified": 11,
+          "underspecified": 10,
           "proof-gap": 0,
-          "fixed": 5,
+          "fixed": 6,
           "false": 0
         }
       },
@@ -4126,7 +5463,7 @@
         },
         "cora_issues": 0,
         "findings": {
-          "correct": 14,
+          "correct": 13,
           "underspecified": 4,
           "proof-gap": 0,
           "fixed": 1,
@@ -4345,25 +5682,25 @@
     "groups": {
       "contSet": {
         "methods": 908,
-        "proved": 51,
-        "float": 565,
-        "not_yet": 52,
-        "out_of_scope": 240,
-        "needs_float": 51,
-        "cora_issues": 36,
+        "proved": 56,
+        "float": 567,
+        "not_yet": 42,
+        "out_of_scope": 243,
+        "needs_float": 56,
+        "cora_issues": 37,
         "out_of_scope_by_reason": {
           "plotting/display": 51,
           "random/sampling": 36,
-          "solver-dependent": 3,
+          "solver-dependent": 6,
           "io/conversion-to-matlab-objects": 8,
           "matlab-runtime": 128,
           "deprecated": 14
         },
         "findings": {
           "correct": 301,
-          "underspecified": 76,
+          "underspecified": 75,
           "proof-gap": 5,
-          "fixed": 39,
+          "fixed": 40,
           "false": 2
         }
       },
@@ -4384,10 +5721,10 @@
           "deprecated": 0
         },
         "findings": {
-          "correct": 142,
-          "underspecified": 49,
-          "proof-gap": 16,
-          "fixed": 21,
+          "correct": 141,
+          "underspecified": 48,
+          "proof-gap": 17,
+          "fixed": 22,
           "false": 0
         }
       },
@@ -4408,7 +5745,7 @@
           "deprecated": 0
         },
         "findings": {
-          "correct": 14,
+          "correct": 13,
           "underspecified": 4,
           "proof-gap": 0,
           "fixed": 1,
@@ -4442,25 +5779,25 @@
     },
     "totals": {
       "methods": 1260,
-      "proved": 92,
-      "float": 697,
-      "not_yet": 87,
-      "out_of_scope": 384,
-      "needs_float": 92,
-      "cora_issues": 52,
+      "proved": 97,
+      "float": 699,
+      "not_yet": 77,
+      "out_of_scope": 387,
+      "needs_float": 97,
+      "cora_issues": 53,
       "out_of_scope_by_reason": {
         "plotting/display": 86,
         "random/sampling": 46,
-        "solver-dependent": 16,
+        "solver-dependent": 19,
         "io/conversion-to-matlab-objects": 30,
         "matlab-runtime": 192,
         "deprecated": 14
       },
       "findings": {
-        "correct": 519,
-        "underspecified": 135,
-        "proof-gap": 23,
-        "fixed": 62,
+        "correct": 517,
+        "underspecified": 133,
+        "proof-gap": 24,
+        "fixed": 64,
         "false": 2
       }
     },
@@ -4488,11 +5825,11 @@
       }
     },
     "theorems": {
-      "paper": 1149,
+      "paper": 1177,
       "float": 1474,
-      "helper": 998,
-      "lemma": 2254,
-      "total": 5875,
+      "helper": 1006,
+      "lemma": 2244,
+      "total": 5901,
       "examples": 80
     }
   }

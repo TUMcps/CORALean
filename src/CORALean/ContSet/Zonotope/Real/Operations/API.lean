@@ -123,6 +123,12 @@ import CORALean.ContSet.Zonotope.Real.Operations.CubMap
 import CORALean.ContSet.Zonotope.Real.Operations.CubMapMixed
 import CORALean.ContSet.Zonotope.Real.Operations.FaultObserve
 import CORALean.ContSet.Zonotope.Real.Operations.FaultResidual
+import CORALean.ContSet.Zonotope.Real.Operations.Tensor3
+import CORALean.ContSet.Zonotope.Real.Operations.TensorLists
+import CORALean.ContSet.Zonotope.Real.Operations.TensorEval
+import CORALean.ContSet.Zonotope.Real.Operations.TensorEvalLin
+import CORALean.ContSet.Zonotope.Real.Operations.TensorMultiplication
+import CORALean.ContSet.Zonotope.Real.Operations.TensorMultiplicationZono
 
 /-!
 # What `Zonotope` computes

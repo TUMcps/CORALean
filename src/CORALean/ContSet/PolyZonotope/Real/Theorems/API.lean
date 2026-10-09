@@ -97,6 +97,7 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolySortSorted
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceByOuter
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceByEvalOn
 import CORALean.ContSet.PolyZonotope.Real.Theorems.DropIndepStretchOuter
+import CORALean.ContSet.PolyZonotope.Real.Theorems.DropIndepStretchPrintedCounterexample
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceGirardOuter
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceGirardDependentOuter
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceDependentOuter
@@ -119,6 +120,7 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.SubMonomialMemEDrift
 import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxExpOuter
 import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsSubMonomialLeSum
 import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxExpEvenOuter
+import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxExpEvenPrintedCounterexample
 import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxExpMultiOuter
 import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxExpGroupOuter
 import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxWidthGroupLeChain

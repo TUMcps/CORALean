@@ -2,6 +2,7 @@ import CORALean.ContDynamics.LinearSysDT.Theorems.Real.BackReachForallInnerZonot
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.BackReachSetRobustSucc
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.BackReachAlignedInner
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.BackReachAlignedOuter
+import CORALean.ContDynamics.LinearSysDT.Theorems.Real.BackReachAlignedOuterCounterexample
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.BackReachAlignedControl
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.BackReachAlignedFeedback
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachErrorReducedContainsReachError
@@ -34,6 +35,7 @@ import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntervalEstimateLeOfBound
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntervalEstimateLeZonotope
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntervalObserverOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntervalEstimateLeIntervalObserver
+import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntervalEstimateLeObserverCounterexample
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntervalObserverTransformedOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntervalEstimateLeIntervalObserverTransformed
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.DissipationOfHinfLmi
