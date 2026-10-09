@@ -44,9 +44,11 @@ LinearSys.identify  real-layer: the dynamic mode decomposition at a real SVD fac
 LinearSys.identifyCandidate  real-layer: the dynamic mode decomposition at a real SVD factorization (an argument, not computed); no float SVD exists to run it on
 LinearSysDT.computeGO  real-layer: the GO parameters as real matrices, powers of the real state matrix; the guarantee is a statement about runs over ℝ
 NonlinDASys.outputSetLinearCora  real-layer: the zeroth and first order of CORA's output set, from a real Jacobian (`fderiv`); a statement about a real output function
+NonlinDASys.outputSetLinear  real-layer: the zeroth and first order of the output set, from real Jacobians (`fderiv`); a statement about a real output function
 NonlinearSys.identify  real-layer: the dynamic mode decomposition at a real SVD factorization (an argument, not computed); no float SVD exists to run it on
 NonlinearSys.identifyCandidate  real-layer: the dynamic mode decomposition at a real SVD factorization (an argument, not computed); no float SVD exists to run it on
 NonlinearSysDT.computeGO  real-layer: the GO parameters along a real reference run, from real Jacobians (`fderiv`); the guarantee is an identity about runs over ℝ
+NonlinearARX.computeGO  real-layer: the output-error linearization at real Jacobians (`fderiv`) of the converted system; no float Jacobian of a real `f` exists to run it on
 NonlinearSysDT.identify  real-layer: the dynamic mode decomposition at a real SVD factorization (an argument, not computed); no float SVD exists to run it on
 NonlinearSysDT.identifyCandidate  real-layer: the dynamic mode decomposition at a real SVD factorization (an argument, not computed); no float SVD exists to run it on
 jacobianMat  real-layer: the matrix of a real Fréchet derivative; no float derivative exists to run it on
@@ -125,16 +127,6 @@ LinParamSys.WithInput.reachUnion  real-layer: the windows with inputs at `ℐ`; 
 LinParamSys.WithInputSplit.reachInstance  real-layer: the `Reach` instance over `WithInputSplit.reachUnion`; runs in floats as `LinParamSys.reachFloatInputSplit` (`reachFloatInputSplit_outer`)
 LinParamSys.WithInputSplit.reachStepk  real-layer: one window with the input split at `ℐ`; runs in floats as `LinParamSys.reachStepkFloatInputSplit`, an entry of `LinParamSys.reachFloatInputSplit`'s list (`reachFloatInputSplit_outer`)
 LinParamSys.WithInputSplit.reachUnion  real-layer: the windows with the input split at `ℐ`; runs in floats as `LinParamSys.reachFloatInputSplit` (`reachFloatInputSplit_outer`)
-LinParamSys.timeIntervalStepZono  pending #1: one step at the real matrix-zonotope family `𝕄𝒵`; waits on #128 (generic float zonotope), which folds `Float.MatZonotope` into `Float.Zonotope`, so no operation is added to `Float.MatZonotope` meanwhile
-LinearSys.adaptTimeStep  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
-LinearSys.adaptTimeStepOrder  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
-LinearSys.adaptTimeStepSearch  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
-LinParamSys.WithInput.reachInstance  pending #1: the input's accumulation across windows at `ℐ`; needs a float `particularSolution`, `[e^{[A] t_k}] P^R(Δt)` summed from `reachStepkFloat` and `LinParamSys.inputSolutionFloat` (not yet written)
-LinParamSys.WithInput.reachStepk  pending #1: the input's accumulation across windows at `ℐ`; needs a float `particularSolution`, `[e^{[A] t_k}] P^R(Δt)` summed from `reachStepkFloat` and `LinParamSys.inputSolutionFloat` (not yet written)
-LinParamSys.WithInput.reachUnion  pending #1: the input's accumulation across windows at `ℐ`; needs a float `particularSolution`, `[e^{[A] t_k}] P^R(Δt)` summed from `reachStepkFloat` and `LinParamSys.inputSolutionFloat` (not yet written)
-LinParamSys.WithInputSplit.reachInstance  pending #1: the split input's constant half carried across windows at `ℐ`; needs a float `constPropagate` beside the float `particularSolution` (neither yet written)
-LinParamSys.WithInputSplit.reachStepk  pending #1: the split input's constant half carried across windows at `ℐ`; needs a float `constPropagate` beside the float `particularSolution` (neither yet written)
-LinParamSys.WithInputSplit.reachUnion  pending #1: the split input's constant half carried across windows at `ℐ`; needs a float `constPropagate` beside the float `particularSolution` (neither yet written)
 LinParamSys.timeIntervalStepZono  pending #1: one step at the real matrix-zonotope family `𝕄𝒵`; needs a float `MatExp.matZonoCorrectionMatrix`, the float step being at interval matrices only
 LinearSys.adaptTimeStep  real-layer: a tuning selector, CDC'20 `Alg. 2`, in ℝ arithmetic; runs in floats as `LinearSys.adaptTimeStepFloat`, and `adaptiveStepFloat_outer` holds for whatever it picks
 LinearSys.adaptTimeStepOrder  real-layer: a tuning selector, Alg. 2's order sweep, in ℝ arithmetic; runs in floats as `LinearSys.adaptTimeStepOrderFloat`, measuring `ε_H`, `ε_P` by `errOp` of the float sets, and `adaptiveStepFloat_outer` holds for whatever it picks
@@ -146,12 +138,6 @@ LinearSys.autoStep  real-layer: one iteration of TAC'23 `Alg. 2` over `Real.Zono
 LinearSys.autoTuneDeltaT  real-layer: a tuning selector, TAC'23 `Alg. 2` lines 5-15, in ℝ arithmetic; runs in floats as `LinearSys.autoTuneDeltaTFloat`, and `autoStepFloat_outer` holds for whatever it picks
 LinearSys.autoTuneOrder  real-layer: a tuning selector, TAC'23 `Alg. 2` lines 9-15, in ℝ arithmetic; runs in floats as `LinearSys.autoTuneOrderFloat`, and `autoStepFloat_outer` holds for whatever it picks
 LinearSys.autoTuneSearch  real-layer: a tuning selector, TAC'23 `Alg. 2` lines 6-15, in ℝ arithmetic; runs in floats as `LinearSys.autoTuneSearchFloat`, and `autoStepFloat_outer` holds for whatever it picks
-LinearSys.bundleReach  pending #1: a continuous-time algorithm at a real matrix exponential, over `Real.ZonoBundle`; needs a float zonotope bundle and a float `e^{Ar}`
-LinearSys.autoRun  pending #1: part of the adaptive linear scheme (`manualRun`, `autoRun`, `tunedRun`), stated over `Real.Zonotope` with ℝ-valued error terms; needs upward-rounded float error bounds and a float state
-LinearSys.autoStep  pending #1: part of the adaptive linear scheme (`manualRun`, `autoRun`, `tunedRun`), stated over `Real.Zonotope` with ℝ-valued error terms; needs upward-rounded float error bounds and a float state
-LinearSys.autoTuneDeltaT  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
-LinearSys.autoTuneOrder  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
-LinearSys.autoTuneSearch  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 LinearSys.bundleReach  real-layer: [1, Alg. 1] at the real exponential `e^{Ar}`, over `Real.ZonoBundle`; runs in floats as `LinearSys.bundleReachFloat` (`bundleReachFloat_outer`)
 LinearSys.canonicalForm  real-layer: the canonical form at real vectors and `Recentre`; runs in floats as `LinearSys.canonicalFormFloat`, the offsets as boxes (`canonicalFormFloat_state_outer`, `canonicalFormFloat_output_outer`)
 LinearSys.constInputSolution  real-layer: a constant input's contribution via `∫e^{Aσ}dσ` and `F̃`; the float layer encloses it as `inputSolutionFloat` at `[0, ũ]` (`reachFloatInput`)
@@ -177,9 +163,6 @@ LinearSys.manualInit  real-layer: TAC'23 `Alg. 1` lines 1-2 over `Real.Zonotope`
 LinearSys.manualReach  spec: the `Set` a run's windows denote, a union for theorems; what runs is the `…Run` it unions
 LinearSys.manualRun  real-layer: the loop of TAC'23 `Alg. 1` over `Real.Zonotope`; runs in floats as `LinearSys.manualRunFloat` (`manualRunFloat_outer`), from `LinearSys.manualReachFloat` (`manualReachFloat_outer`)
 LinearSys.manualStep  real-layer: one iteration of TAC'23 `Alg. 1` over `Real.Zonotope` at the real exponential; runs in floats as `LinearSys.manualStepFloat` (`manualStepFloat_outer`)
-LinearSys.maxBackReachCZ  pending #1: backward reachability over `Real.ConZonotope`/`Real.HPolytope` at the real exponential; needs float constrained zonotopes and a float `e^{A t_k}`
-LinearSys.manualRun  pending #1: part of the adaptive linear scheme (`manualRun`, `autoRun`, `tunedRun`), stated over `Real.Zonotope` with ℝ-valued error terms; needs upward-rounded float error bounds and a float state
-LinearSys.manualStep  pending #1: part of the adaptive linear scheme (`manualRun`, `autoRun`, `tunedRun`), stated over `Real.Zonotope` with ℝ-valued error terms; needs upward-rounded float error bounds and a float state
 LinearSys.maxBackReachCZ  pending #1: line 11's `CZ(P ⊖ Ẑ_W(τ_k))` is exact in `ℝ` and feeds an INNER approximation (`maxBackReachTimeInterval_inner`, `⊆`); the float `HPolytope.minkDiffOf` rounds inward but the float `HPolytope.conZonotope` only encloses (`P ⊆ result`), and no conversion into a `ConZonotope` from inside exists
 LinearSys.maxBackReach  spec: the backward paper's `Alg. 2` as a `Set`, lines 3-5 computed and then `maxBackReachTimeInterval`'s union; what runs is the `…Run` it unions
 LinearSys.maxBackReachInit  pending #1: `Z̲_U(t₀) = (∫₀^{t₀} e^{As}ds) U` is the INNER part of `Alg. 2` (`maxBackReachTimeInterval_inner`, `⊆`); a float counterpart must round inward, but the integral is only an interval matrix, and the inner image of a set under a matrix known to an interval is the intersection of its images over it, which no float set representation holds (they enclose)
@@ -221,13 +204,9 @@ LinearSys.timePoint  spec: the exact time-point sets `e^{A k Δt} X₀`; `Linear
 LinearSys.timePointBound  spec: a support-function certificate for the exact integral reachable set, a proof object with nothing to run
 LinearSys.timePointStep  real-layer: `e^{Ar} X₀ ⊕ inputSolution`; runs in floats as `timePointStepFloat` ⊕ `inputSolutionFloat`, composed in `reachFloatInput`
 LinearSys.timePointStepError  real-layer: an ℝ-valued error estimate from norms of exact matrices; runs in floats rounded up as `LinearSys.timePointStepErrorFloat` (`timePointStepError_le_float`)
-LinearSys.timePointStepErrorBox  pending #1: an inner approximation's error over `Real.Zonotope` at the exact `discretize`; needs a float counterpart, as `LinearSysDT.reachErrorFloat` is for the discrete case
-LinearSys.timePointStepInnerRep  pending #1: an inner approximation's error over `Real.Zonotope` at the exact `discretize`; needs a float counterpart, as `LinearSysDT.reachErrorFloat` is for the discrete case
 LinearSys.timePointStepRemainderError  real-layer: an ℝ-valued error estimate from norms of exact matrices; runs in floats rounded up as `LinearSys.timePointStepRemainderErrorFloat` (`timePointStepRemainderError_le_float`)
-LinearSys.timePointStepError  pending #1: an ℝ-valued error estimate from norms of exact matrices, read by the adaptive schemes; needs an upward-rounded float bound
 LinearSys.timePointStepErrorBox  real-layer: the exact error box over `Real.Zonotope`; runs in floats as `LinearSys.timePointStepErrorBoxFloat`, rounded up (`timePointStepErrorBox_subset_float`)
 LinearSys.timePointStepInnerRep  pending #1: `Real.Zonotope.minkDiffRep` of the step by its error box. The float difference exists (`Float.Zonotope.minkDiffRep`, `minkDiffRep_inner`) and so does the box (`LinearSys.timePointStepErrorBoxFloat`, an outer enclosure, the right direction to subtract), but the float step is an outer enclosure of `timePointStep` through the interval matrix `[e^{AΔt}]`; its excess over the exact step (width of `[e^{AΔt}]`, `inputSolutionFloat`'s rounding) is bounded by nothing, and removing it needs the inner perturbation statement the real layer lacks (`ĒX ⊖ box ⊆ EX` for `E = Ē + Δ`, `‖Ē⁻¹Δ‖ < 1`)
-LinearSys.timePointStepRemainderError  pending #1: an ℝ-valued error estimate from norms of exact matrices, read by the adaptive schemes; needs an upward-rounded float bound
 LinearSys.trajectoryError  real-layer: `E_err` of the mapping-based guard intersection at the real matrix exponential of `|A|tmax` and `Real.Zonotope`; no float counterpart yet
 LinearSys.tunedInit  real-layer: CDC'20 `Alg. 1` lines 1-3 over `Real.Zonotope`; runs in floats as the initial state of `LinearSys.reachAdaptiveFloat` (`reachAdaptiveFloat_outer`)
 LinearSys.tunedReach  spec: the `Set` a run's windows denote, a union for theorems; what runs is the `…Run` it unions
@@ -246,6 +225,8 @@ LinearSysDT.conformAdd  real-layer: the conformance check's nominal run and devi
 LinearSysDT.conformReach  real-layer: the conformance check's nominal run and deviation sets at real matrices; no float counterpart yet
 LinearSysDT.identify  real-layer: the dynamic mode decomposition at a real SVD factorization (an argument, not computed); no float SVD exists to run it on
 LinearSysDT.identifyCandidate  real-layer: the dynamic mode decomposition at a real SVD factorization (an argument, not computed); no float SVD exists to run it on
+LinearARX.identify  real-layer: the dynamic mode decomposition at a real SVD factorization (an argument, not computed); no float SVD exists to run it on
+LinearARX.identifyCandidate  real-layer: the dynamic mode decomposition at a real SVD factorization (an argument, not computed); no float SVD exists to run it on
 LinearSysDT.nominalState  real-layer: the conformance check's nominal run and deviation sets at real matrices; no float counterpart yet
 LinearSysDT.observeStripBased  real-layer: the strip-based observer over `Real.Zonotope`, noncomputable because its `reduce` is; runs in floats as `LinearSysDT.observeStripBasedFloat` (`observeStripBasedFloat_outer`)
 LinearSysDT.observePropagation  real-layer: the set-propagation observer over `Real.Zonotope`, noncomputable because its `reduce` is; runs in floats as `LinearSysDT.observePropagationFloat` (`observePropagationFloat_outer`)
@@ -290,10 +271,8 @@ MatExp.expRemainderBound  real-layer: the exact remainder bound; runs in floats 
 MatExp.expRemainderOrder  specification of the admissible order (an infimum over ℕ), not run: the computable searches are MatExp.tuneOrder and MatExp.tuneStep, whose results satisfy its admissibility predicate
 MatExp.expRemainderStep  specification of the admissible step (a Classical.choose), not run: the computable searches are MatExp.tuneOrder and MatExp.tuneStep, whose results satisfy its admissibility predicate
 MatExp.expTaylor  real-layer: the exact Taylor polynomial at a point matrix; enclosed in floats by `Float.MatExp.expIntervalTaylor` at the point interval
-MatExp.expW  pending #1: the tighter interval exponential through `expW`'s exact second-order closed form; no float counterpart yet: that closed form needs rounding outward
 MatExp.genMinus  real-layer: the generators `(e^{AΔt} - I)G_h` at the real exponential; runs in floats as `Float.MatExp.genMinus`, held as magnitudes (`abs_genMinus_le`), read only by `affineDynamicsError`
 MatExp.expW  real-layer: `W(t)` at a real point matrix; runs in floats as `Float.MatExp.expW` (`expW_mem`)
-MatExp.genMinus  pending #1: part of the adaptive linear scheme (`manualRun`, `autoRun`, `tunedRun`), stated over `Real.Zonotope` with ℝ-valued error terms; needs upward-rounded float error bounds and a float state
 MatExp.inputRemainder  real-layer: `E(r)·r` at a point matrix; runs in floats as `Float.MatExp.intervalInputRemainder` at the point interval
 MatExp.intervalConstCorrTerm  real-layer: the constant-input correction `F̃`; the float layer needs none, enclosing that contribution as `inputSolutionFloat` at `[0, ũ]` (`reachFloatInput`)
 MatExp.intervalConstCorrectionMatrix  real-layer: the constant-input correction `F̃`; the float layer needs none, enclosing that contribution as `inputSolutionFloat` at `[0, ũ]` (`reachFloatInput`)
@@ -309,10 +288,6 @@ MatExp.particularSolutionError  real-layer: eq. (25), a tuning quantity of TAC'2
 MatExp.particularSolutionOuter  spec: the exact `Set` the adaptive scheme's particular-solution bound is stated against
 MatExp.particularSolutionOuterCorrelated  spec: the exact `Set` the adaptive scheme's particular-solution bound is stated against
 MatExp.particularSolutionTauError  real-layer: eq. (26), a tuning quantity of TAC'23 `Alg. 2`, `err` of an exact `Set` at the real `e^{A t_k}`; runs in floats as `LinearSys.particularSolutionTauErrorFloat`, `err` bounded above by the Euclidean `Zonotope.errUp` (`err_le_errUp`)
-MatExp.quadTerm  pending #1: the tighter interval exponential through `expW`'s exact second-order closed form; no float counterpart yet: that closed form needs rounding outward
-MatExp.quadTermHi  pending #1: the tighter interval exponential through `expW`'s exact second-order closed form; no float counterpart yet: that closed form needs rounding outward
-MatExp.quadTermLo  pending #1: the tighter interval exponential through `expW`'s exact second-order closed form; no float counterpart yet: that closed form needs rounding outward
-MatExp.particularSolutionTauError  pending #1: part of the adaptive linear scheme (`manualRun`, `autoRun`, `tunedRun`), stated over `Real.Zonotope` with ℝ-valued error terms; needs upward-rounded float error bounds and a float state
 MatExp.quadTerm  real-layer: the diagonal factor `γ` at a real point; runs in floats as `Float.MatExp.quadTerm` (`quadTerm_mem`)
 MatExp.quadTermHi  real-layer: the greatest `γ` on a real box; runs in floats as `Float.MatExp.quadTermHi` (`quadTermHi_ge`)
 MatExp.quadTermLo  real-layer: the least `γ` on a real box; runs in floats as `Float.MatExp.quadTermLo` (`quadTermLo_le`)
@@ -393,10 +368,6 @@ toEuclidean  spec: a norm or Hausdorff distance over ℝ, used only to state a g
 tuneAbstrOrder  real-layer: a tuning heuristic in ℝ arithmetic; runs in floats as `tuneAbstrOrderFloat`, restated over the scalar `𝕋` (a heuristic, so no soundness statement)
 tuneDeltat  real-layer: a tuning heuristic in ℝ arithmetic; runs in floats as `tuneDeltatFloat`, restated over the scalar `𝕋` (a heuristic, so no soundness statement)
 tuneDeltatInit  real-layer: a tuning heuristic in ℝ arithmetic; runs in floats as `tuneDeltatInitFloat`, restated over the scalar `𝕋` (a heuristic, so no soundness statement)
-varInputs  pending #1: the `'poly'` variant's input term over `Real.PolyZonotope` at a real Hessian `D`; the float `PolyZonotope` has `cartProd` and `quadMap` but no `bilin`, hence no `quadMapMixed` to pair the two independent operands, and the float `'poly'` step boxes these products instead (`FloatHessModel.abstrErrPolyFloat`)
-tuneAbstrOrder  pending #1: a nonlinear tuning heuristic in ℝ arithmetic; needs restating over the scalar `𝕋` (a heuristic, so no soundness obligation)
-tuneDeltat  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
-tuneDeltatInit  pending #1: a continuous-time algorithm at a real matrix exponential; blocked on re-indexing the float `Interval` by its ambient type so a float interval matrix exists (decided on #1)
 varInputs  real-layer: the `'poly'` variant's input term over `Real.PolyZonotope` at a real Hessian `D`; runs in floats as `varInputsFloat` (`varInputsFloat_outer`), through the float `PolyZonotope.bilin` and `quadMapMixed` (`quadMapMixed_outer`)
 verifyConvex  spec: a real-valued certificate (support witness/bound), quantifying over arbitrary linear functionals
 verifyConvexStep  spec: a real-valued certificate (support witness/bound), quantifying over arbitrary linear functionals
@@ -454,3 +425,4 @@ dmdcEx1B  real-layer: the input matrix of Example 1 of Proctor et al. 2016 at re
 sindyStep  real-layer: one pass of sequential thresholded least squares, comparing real coefficients with the threshold (`Real.decidableLT`); the regression is an argument, as MATLAB's backslash is not computed here
 sindy  real-layer: sequential thresholded least squares at real coefficients, the regression an argument; no float counterpart
 sindyBig  real-layer: the entries at least the threshold in magnitude, a filter on real comparisons
+NonlinParamSys.linearize  real-layer: the matrix zonotopes of real Jacobians (`fderiv`) over the parameter box; no float Jacobian of a real `f` exists to run it on

@@ -173,10 +173,11 @@ axiom's inequality, read on the NaN's decoding, fails (for `mulUp`, `divUp`, `ha
   `reachTimePointWrappingFreeFloatChecked`, `reachFloatInputChecked`, `reachAdaptiveFloatChecked`,
   `LinParamSys.reachFloatChecked`, `NonlinearSys.FloatModel.reachFloatChecked`,
   `NonlinearSys.FloatHessModel.reachAlgFloatChecked`, `NonlinDASys.reachFloatChecked`,
-  `NonlinParamSys.reachFloatChecked` and `Location.reachFloatChecked` return `none` if a float of
+  `NonlinParamSys.reachFloatChecked`, `Location.reachFloatChecked`,
+  `HybridAutomaton.reachFloatChecked`, `ParallelHybridAutomaton.reachFloatChecked` and
+  `NeurNetContrSys.reachFloatChecked` return `none` if a float of
   the result is a NaN (`checkNoNaN`, `Global/Float/NoNaN.lean`), and each `…Checked_eq_some` says a
-  `some` is the unchecked `some`. `HybridAutomaton`, `ParallelHybridAutomaton` and
-  `NeurNetContrSys` have no checked form yet and still need the caller's test. A `Bool`, `Nat` or
+  `some` is the unchecked `some`. A `Bool`, `Nat` or
   `ℚ` derived from a float is covered only where the deriving function tests for NaN, as the four
   named in the item above do.
 * **NaN inputs.** `hardwarecheck` does not claim the axiom for them, and neither does this section. `ellipsoidNormUb`, `dualCertified`, `representsa_emptySet` and

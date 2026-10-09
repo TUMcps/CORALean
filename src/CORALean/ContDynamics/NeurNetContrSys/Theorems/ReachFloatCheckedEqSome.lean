@@ -1,0 +1,39 @@
+import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachFloatChecked
+import CORALean.Global.Float.NoNaN
+
+/-!
+# A checked `reachFloat` that returns a result returns the unchecked one
+
+`reachFloatChecked` is `reachFloat` followed by `checkNoNaN`, so a `some` of it is the
+unchecked `some`, and none of its floats is a NaN. Whatever is proved of `reachFloat` is
+proved of the checked result, which has passed the NaN test as well.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       09-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open CORALean.Float
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem NeurNetContrSys.reachFloatChecked_eq_some (sys : NeurNetContrSys 𝕋 (Zonotope 𝕋) n)
+    (params : Reach.Params (Zonotope 𝕋 n) ℕ) (options : NeurNetContrSys.ReachOptions 𝕋)
+    {R : Zonotope 𝕋 n} (h : sys.reachFloatChecked params options = some R) :
+    sys.reachFloat params options = R ∧ noNaN (𝕋 := 𝕋) R = true := by
+  obtain ⟨rfl, hx⟩ := ifNoNaN_eq_some h
+  exact ⟨rfl, hx⟩
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

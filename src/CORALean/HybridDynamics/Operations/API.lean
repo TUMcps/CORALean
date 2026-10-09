@@ -14,6 +14,7 @@ import CORALean.HybridDynamics.Operations.JumpFloat
 import CORALean.HybridDynamics.Operations.LocationReachFloat
 import CORALean.HybridDynamics.Operations.LocationReachFloatChecked
 import CORALean.HybridDynamics.Operations.ReachFloat
+import CORALean.HybridDynamics.Operations.ReachFloatChecked
 import CORALean.HybridDynamics.Operations.NonlinearResetEvaluate
 import CORALean.HybridDynamics.Operations.NonlinearResetEvaluateFloat
 import CORALean.HybridDynamics.Operations.NonlinearResetLift

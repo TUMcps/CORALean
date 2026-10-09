@@ -94,6 +94,7 @@ import CORALean.ContSet.Interval.Real.Theorems.EnlargeExact
 import CORALean.ContSet.Interval.Real.Theorems.CenterSubRadius
 import CORALean.ContSet.Interval.Real.Theorems.CenterAddRadius
 import CORALean.ContSet.Interval.Real.Theorems.MemOfCenterRadius
+import CORALean.ContSet.Interval.Real.Theorems.ExistsCoeffOfMem
 import CORALean.ContSet.Interval.Real.Theorems.IntervalMatrixEq
 import CORALean.ContSet.Interval.Real.Theorems.NormSubCenterLe
 import CORALean.ContSet.Interval.Real.Theorems.SupSubCenter

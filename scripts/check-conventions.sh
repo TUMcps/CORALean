@@ -133,6 +133,10 @@ BEGIN {
     if (line == "" || line ~ /^#/) continue
     name = line
     sub(/[ \t].*$/, "", name)
+    # One line per name: a merge that keeps an old reason beside a new one
+    # (a stale `pending` next to its `real-layer`) inflates every count read here.
+    if (name in allowNC)
+      say(ALLOWLIST ":" allowFNR ": duplicate allowlist entry `" name "` (first at line " allowLine[name] ")")
     allowNC[name] = 1
     allowLine[name] = allowFNR
   }

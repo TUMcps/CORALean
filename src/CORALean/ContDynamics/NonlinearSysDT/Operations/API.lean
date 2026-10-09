@@ -8,6 +8,8 @@ import CORALean.ContDynamics.NonlinearSysDT.Operations.ComputeGO
 import CORALean.ContDynamics.NonlinearSysDT.Operations.RefState
 import CORALean.ContDynamics.NonlinearSysDT.Operations.Identify
 import CORALean.ContDynamics.NonlinearSysDT.Operations.IdentifyCandidate
+import CORALean.ContDynamics.NonlinearSysDT.Operations.ObserveStepFloat
+import CORALean.ContDynamics.NonlinearSysDT.Operations.ObserveStripBasedFloat
 
 /-!
 # What `NonlinearSysDT` computes
@@ -16,4 +18,6 @@ import CORALean.ContDynamics.NonlinearSysDT.Operations.IdentifyCandidate
 fresh linear system and `LinInput`'s widened input set. `ReachUnion` is its
 steps as `Reach` runs them, `none` once a run-time region test fails.
 `Simulate` samples one run directly against `sys.f`, no linearization needed.
+`ObserveStripBasedFloat` is the strip-based observer of `executeObserver`, whose prediction is
+`Reach`'s step (`ObserveStepFloat`).
 -/

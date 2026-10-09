@@ -122,6 +122,8 @@ import CORALean.Global.SindyFixedPoint
 import CORALean.Global.DescProd
 import CORALean.Global.DescProdState
 import CORALean.Global.Jacobian
+import CORALean.Global.JacobianMatAffine
+import CORALean.Global.JacobianMatParam
 import CORALean.Global.LinResidual
 import CORALean.Global.StackSelect
 import CORALean.Global.StackSelectMulVec

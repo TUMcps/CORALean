@@ -5,6 +5,7 @@ import CORALean.HybridDynamics.Parallel.Theorems.RunToProduct
 import CORALean.HybridDynamics.Parallel.Theorems.RunMemOfInvariant
 import CORALean.HybridDynamics.Parallel.Theorems.ReachSetSubsetInvariant
 import CORALean.HybridDynamics.Parallel.Theorems.ReachFloatOuter
+import CORALean.HybridDynamics.Parallel.Theorems.ReachFloatCheckedEqSome
 import CORALean.HybridDynamics.Parallel.Theorems.UnstackStack
 import CORALean.HybridDynamics.Parallel.Theorems.StackUnstack
 import CORALean.HybridDynamics.Parallel.Theorems.StackApply

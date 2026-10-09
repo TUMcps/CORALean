@@ -16,6 +16,8 @@ import CORALean.ContDynamics.NonlinearSysDT.Theorems.ComputeGOState
 import CORALean.ContDynamics.NonlinearSysDT.Theorems.ComputeGOOutput
 import CORALean.ContDynamics.NonlinearSysDT.Theorems.IdentifyCandidateFit
 import CORALean.ContDynamics.NonlinearSysDT.Theorems.IdentifyLeCandidate
+import CORALean.ContDynamics.NonlinearSysDT.Theorems.ObserveStepFloatOuter
+import CORALean.ContDynamics.NonlinearSysDT.Theorems.ObserveStripBasedFloatOuter
 
 /-!
 # What `NonlinearSysDT` guarantees
@@ -35,6 +37,8 @@ caller checks `hsub` instead of assuming confinement of the trajectory. Sound at
 passes; CORA's enlarge-and-retry search for one that does is not implemented here.
 `ConfinementOfSubsetOn` is the same for a run known up to a bound, and `ReachUnionOuter` spends it
 on the tests `reachUnion` runs.
+
+`ObserveStepFloatOuter`/`ObserveStripBasedFloatOuter`: the observer's set holds the true state.
 
 No `output_outer`/`holds_of_output`: `OutputEq` is the *linear* map `C x + D u`,
 and a nonlinear `g` needs its own enclosure — the same problem as enclosing

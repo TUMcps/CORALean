@@ -45,6 +45,7 @@ import CORALean.ContDynamics.Conform.Theorems.ZcpIntervalNorm
 import CORALean.ContDynamics.Conform.Theorems.ZcpRegressionLp
 import CORALean.ContDynamics.Conform.Theorems.ZcpRegressionMilp
 import CORALean.ContDynamics.Conform.Theorems.ZcpSetEq
+import CORALean.ContDynamics.Conform.Theorems.PassesBFOfConformant
 
 /-!
 # What reachset conformance and its identification guarantee, collected
@@ -58,9 +59,9 @@ conformance at every horizon from one-step residuals.
 
 Any model: `reachSetOf_glo` and `reachSetOf_subset` reach through the general linear
 output approximation, `mem_gloSet_iff_hRep` and `mem_gloSet_iff_gen` are the two
-constraint forms, `white_conformant` the soundness of the white-box program and
-`costU_le` its cheap lower bound. The `*Counterexample`, `*Ne*` files are the printed
-statements that do not hold.
+constraint forms, `passesBF_of_conformant` the brute-force check's soundness, `white_conformant`
+the soundness of the white-box program and `costU_le` its cheap lower bound. The
+`*Counterexample`, `*Ne*` files are the printed statements that do not hold.
 
 Zono-conformal prediction: `zcpSet_eq`, `mem_zcpSet_iff` and `intervalNorm_zcpSet` describe the
 prediction zonotope, `zcp_regression_lp` and `zcp_classification_lp` make its identification a

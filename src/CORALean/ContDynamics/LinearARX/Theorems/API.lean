@@ -31,6 +31,10 @@ import CORALean.ContDynamics.LinearARX.Theorems.SumBlock
 import CORALean.ContDynamics.LinearARX.Theorems.ToLinearSysDTStep
 import CORALean.ContDynamics.LinearARX.Theorems.ToLinearSysDTTrajectory
 import CORALean.ContDynamics.LinearARX.Theorems.OfCharpolyStep
+import CORALean.ContDynamics.LinearARX.Theorems.IdentifyBlocksMulVec
+import CORALean.ContDynamics.LinearARX.Theorems.IdentifyCandidateFit
+import CORALean.ContDynamics.LinearARX.Theorems.IdentifyCandidateLeastSquares
+import CORALean.ContDynamics.LinearARX.Theorems.IdentifyLeCandidate
 
 /-!
 # What the conversion guarantees
@@ -43,4 +47,7 @@ Everything is at `ℝ`: `Scalar` has no law relating a block matrix to its entri
 The ARMAX form (Lützow and Althoff, CDC 2023): `StackEqTvp` (Thm. 1) and the `Btilde` lemmas
 (Lemmas 1-3) give `ReachWindowEq` (Eq. 12), which `Alg1EqReachWindow`/`Alg2EqReachWindow`
 reach; `ReachWindowNeProd` and `Alg2NeReachWindow` are where the paper is wrong.
+
+`identify`: `IdentifyCandidateFit` (consistent data is reproduced), `IdentifyCandidateLeastSquares`
+(any data) and `IdentifyLeCandidate` (the selected rank is no worse).
 -/

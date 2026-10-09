@@ -23,6 +23,8 @@ import CORALean.ContSet.Polygon.Real.Theorems.SplitIntoConvexSetsExact
 import CORALean.ContSet.Polygon.Real.Theorems.VolumeLePieceAreas
 import CORALean.ContSet.Polygon.Real.Theorems.AndRegion
 import CORALean.ContSet.Polygon.Real.Theorems.VolumeEqPieceAreas
+import CORALean.ContSet.Polygon.Real.Theorems.RegionCenterMem
+import CORALean.ContSet.Polygon.Real.Theorems.CenterMem
 
 /-!
 # Polygon theorems, collected

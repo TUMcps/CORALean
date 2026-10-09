@@ -55,6 +55,11 @@ instance {𝕋 : Type} {n m : ℕ} : Floats 𝕋 (Mat 𝕋 n m) :=
 instance {𝕋 α β : Type} [Floats 𝕋 α] [Floats 𝕋 β] : Floats 𝕋 (α × β) :=
   ⟨fun p => floats p.1 ++ floats p.2⟩
 
+/-- A pair whose first component is a label, a location or a location tuple, stores the floats
+of its second: the label carries none. Tried only where `Floats 𝕋 L` has no instance. -/
+instance (priority := low) {𝕋 L α : Type} [Floats 𝕋 α] : Floats 𝕋 (L × α) :=
+  ⟨fun p => floats p.2⟩
+
 instance {𝕋 α : Type} [Floats 𝕋 α] : Floats 𝕋 (List α) := ⟨fun l => (l.map floats).flatten⟩
 
 instance {𝕋 α : Type} [Floats 𝕋 α] : Floats 𝕋 (Array α) := ⟨fun a => floats a.toList⟩
