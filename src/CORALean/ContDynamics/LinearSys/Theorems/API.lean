@@ -24,6 +24,8 @@ import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeEnclosure
 import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeEnclosureFloat
 import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeEnclosureFloatHorizon
 import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeEnclosureFloatReach
+import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeEnclosureFloatReachSubsetAddErrorFloat
+import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeEnclosureFloatReachSucc
 import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeEnclosureReach
 import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeHorizon
 import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeInputSolution
@@ -107,6 +109,7 @@ import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionSetConverges
 import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionSetPrintedCounterexample
 import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionSetDistInner
 import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionSubsetConstInputAddErrorBox
+import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionFloatSubsetAddBox
 import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuter
 import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuterSplit
 import CORALean.ContDynamics.LinearSys.Theorems.IntegralBackReachSetExistsForallEq
@@ -155,6 +158,7 @@ import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatOuter
 import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatTimePointOuter
 import CORALean.ContDynamics.LinearSys.Theorems.ReachInnerInner
 import CORALean.ContDynamics.LinearSys.Theorems.ReachInnerRepInner
+import CORALean.ContDynamics.LinearSys.Theorems.ReachInnerRepFloatInner
 import CORALean.ContDynamics.LinearSys.Theorems.ReachInputErrorSubsetFloat
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderAdmissible
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
@@ -211,6 +215,14 @@ import CORALean.ContDynamics.LinearSys.Theorems.TimePointOuter
 import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepFloatOuter
 import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepInnerInner
 import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepInnerRepInner
+import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepInnerRepFloatInner
+import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepInputFloatSubsetAddExcess
+import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepInputFloatSubsetAddInnerErrorFloat
+import CORALean.ContDynamics.LinearSys.Theorems.ZeroMemDiscretizeEnclosureFloatReachError
+import CORALean.ContDynamics.LinearSys.Theorems.ZeroMemInputSolutionFloatError
+import CORALean.ContDynamics.LinearSys.Theorems.ZeroMemInputTaylorSumFloatError
+import CORALean.ContDynamics.LinearSys.Theorems.ZeroMemIntervalInputRemainder
+import CORALean.ContDynamics.LinearSys.Theorems.ZeroMemTimePointStepInputFloatError
 import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepInnerSubsetIntegralReachSet
 import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepErrorBoxSubsetFloat
 import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepErrorNonneg

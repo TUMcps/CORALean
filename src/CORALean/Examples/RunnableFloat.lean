@@ -1,4 +1,8 @@
 import CORALean.ContDynamics.LinearARX.Operations.InputMat
+import CORALean.ContSet.ProbZonotope.Float.Operations.ProbReduce
+import CORALean.ContSet.SpectraShadow.Float.Operations.ConvHull
+import CORALean.ContSet.SpectraShadow.Float.Operations.Or
+import CORALean.ContSet.Conversion.Float.Zonotope_to_SpectraShadow
 import CORALean.HybridDynamics.Parallel.Operations.MergeFlows
 import CORALean.ContDynamics.LinearARX.Operations.ToLinearSysDT
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdmissibleOrderFloat
@@ -24,6 +28,8 @@ import CORALean.ContSet.Zonotope.Float.Operations.AutoTuneSetOrder
 import CORALean.ContDynamics.LinearSys.Operations.BundleReachFloat
 import CORALean.ContDynamics.LinearSys.Operations.DiscretizeEnclosureFloat
 import CORALean.ContDynamics.LinearSys.Operations.ReachInputErrorFloat
+import CORALean.ContDynamics.LinearSys.Operations.ReachInnerRepFloat
+import CORALean.ContDynamics.LinearSys.Operations.TimePointStepInnerRepFloat
 import CORALean.ContDynamics.NonlinearSys.Operations.VarInputsFloat
 import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapMixed
 import CORALean.ContDynamics.LinearSys.Operations.DiscretizeMatZonotopeFloat
@@ -325,6 +331,15 @@ def zB_mtimes : ZonoBundle D 2 := Mtimes.mtimes (identityMat D 2) zB
 -- `Ellipsoid`: `Mtimes` alone — the rest of its operations have no float file yet
 def E_mtimes : Ellipsoid D 2 := Mtimes.mtimes (identityMat D 2) E
 
+-- `ProbZonotope`: the mean zonotope `Z` and the identity covariance, then `probReduce`
+def probZ : ProbZonotope D 2 := ⟨Z, Interval.point !![d 1 0, d 0 0; d 0 0, d 1 0]⟩
+def probZ_probReduce : ProbZonotope D 2 := probZ.probReduce
+
+-- `SpectraShadow`: the shadow of `Z`, and its convex hull with the shadow of `Z + Z`
+def spS : SpectraShadow D 2 := Z.spectraShadow
+def spS_convHull : SpectraShadow D 2 := spS.convHull_ Z_plus.spectraShadow
+def spS_or : SpectraShadow D 2 := spS.or Z_plus.spectraShadow
+
 
 /-! ## The matrices a continuous-time step multiplies by (#1, phase 3)
 
@@ -404,6 +419,44 @@ def lpInputWindowsRun : Option (List (Zonotope D 2)) :=
   lpSys.reachFloatInput lpInputSet ⟨Z, 0, 1 / 8⟩ ⟨stepR, 4, 2⟩
 def lpSplitWindowsRun : Option (List (Zonotope D 2)) :=
   lpSys.reachFloatInputSplit Z ⟨Z, 0, 1 / 8⟩ ⟨stepR, 4, 2⟩
+
+
+/-! ## The continuous-time inner approximation in floats (#129)
+
+`ẋ = -x + u` from `[1, 2]` under `|u| ≤ 2⁻⁶`: one step of `r = ⅛`, and five sampled steps at
+order `2`. Each is a float outer set, its budget, and their certified difference, `M` writing
+every budget generator in the outer set's first and `H` the least-squares right inverse
+`gᵀ/‖g‖²`, the margin shrunk by `15/16`. -/
+
+def ctInnerSys : LinearSys D 1 := ⟨!![d (-1) 0]⟩
+def ctInnerX : Zonotope D 1 := ⟨1, ![d 3 (-1)], !![d 1 (-1)], zbox 1⟩
+def ctInnerU : Zonotope D 1 := ⟨1, ![d 0 0], !![d 1 (-6)], zbox 1⟩
+-- one step: the float step, its budget, and the step minus its budget
+def ctInnerStep : Zonotope D 1 :=
+  ctInnerSys.timePointStepInputFloat (d 1 (-3)) 4 ctInnerX ctInnerU
+def ctInnerStepError : Zonotope D 1 :=
+  ctInnerSys.timePointStepInnerErrorFloat (d 1 (-3)) 4 ctInnerX ctInnerU
+def ctInnerStepOpt : Option (Zonotope D 1) :=
+  let S := ctInnerSys.timePointStepInputFloat (d 1 (-3)) 4 ctInnerX ctInnerU
+  let B := ctInnerSys.timePointStepInnerErrorFloat (d 1 (-3)) 4 ctInnerX ctInnerU
+  ctInnerSys.timePointStepInnerRepFloat (d 1 (-3)) 4 ctInnerX ctInnerU
+    (fun i j => if i.val = 0 then divUp (absolute (B.G 0 j)) (absolute (S.G 0 i)) else d 0 0)
+    (d 15 (-4)) (fun i _ => divDown (S.G 0 i) (sumUp fun k => mulUp (S.G 0 k) (S.G 0 k)))
+def ctInnerStepRun : Zonotope D 1 := ctInnerStepOpt.getD (Zonotope.point ![d 0 0])
+-- five sampled steps: the float run, its budget, and the run minus its budget
+def ctInnerReach : Zonotope D 1 :=
+  (ctInnerSys.discretizeEnclosureFloat (d 1 (-3)) 4).reach (S := Zonotope D)
+    ⟨ctInnerX, ctInnerSys.inputSolutionFloat (d 1 (-3)) 4 ctInnerU, 0, 5⟩ ⟨2, two_pos⟩
+def ctInnerReachError : Zonotope D 1 :=
+  ctInnerSys.reachErrorFloat (d 1 (-3)) 4 2 two_pos ctInnerX ctInnerU 5
+def ctInnerReachOpt : Option (Zonotope D 1) :=
+  let R := (ctInnerSys.discretizeEnclosureFloat (d 1 (-3)) 4).reach (S := Zonotope D)
+    ⟨ctInnerX, ctInnerSys.inputSolutionFloat (d 1 (-3)) 4 ctInnerU, 0, 5⟩ ⟨2, two_pos⟩
+  let B := ctInnerSys.reachErrorFloat (d 1 (-3)) 4 2 two_pos ctInnerX ctInnerU 5
+  ctInnerSys.reachInnerRepFloat (d 1 (-3)) 4 2 two_pos ctInnerX ctInnerU 5
+    (fun i j => if i.val = 0 then divUp (absolute (B.G 0 j)) (absolute (R.G 0 i)) else d 0 0)
+    (d 15 (-4)) (fun i _ => divDown (R.G 0 i) (sumUp fun k => mulUp (R.G 0 k) (R.G 0 k)))
+def ctInnerReachRun : Zonotope D 1 := ctInnerReachOpt.getD (Zonotope.point ![d 0 0])
 
 
 /-! ## Matrix zonotopes in floats (#1)

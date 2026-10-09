@@ -1,7 +1,9 @@
 import CORALean.ContSet.SpectraShadow.Real.SpectraShadow
+import CORALean.ContSet.SpectraShadow.Real.Definitions.API
 import CORALean.ContSet.SpectraShadow.Real.Operations.API
 import CORALean.ContSet.SpectraShadow.Real.Theorems.API
 import CORALean.ContSet.SpectraShadow.Real.Instances
+import CORALean.ContSet.SpectraShadow.Real.Theorems.EncloseExact
 
 /-!
 # Spectrahedral shadows, collected

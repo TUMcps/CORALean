@@ -35,6 +35,26 @@ import CORALean.ContSet.SpectraShadow.Real.Theorems.SupportFuncLeSupportBound
 import CORALean.ContSet.SpectraShadow.Real.Theorems.SupportFuncNeTopIff
 import CORALean.ContSet.SpectraShadow.Real.Theorems.TraceLmiMul
 import CORALean.ContSet.SpectraShadow.Real.Theorems.TraceMulNonneg
+import CORALean.ContSet.SpectraShadow.Real.Theorems.ConeConstruct
+import CORALean.ContSet.SpectraShadow.Real.Theorems.EqBlockSum
+import CORALean.ContSet.SpectraShadow.Real.Theorems.SingletonOneConstruct
+import CORALean.ContSet.SpectraShadow.Real.Theorems.HyperplaneOneConstruct
+import CORALean.ContSet.SpectraShadow.Real.Theorems.ConvHullExact
+import CORALean.ContSet.SpectraShadow.Real.Theorems.OrExact
+import CORALean.ContSet.SpectraShadow.Real.Theorems.LinCombOuter
+import CORALean.ContSet.SpectraShadow.Real.Theorems.ArrowMatQuadForm
+import CORALean.ContSet.SpectraShadow.Real.Theorems.ArrowMatIsHermitian
+import CORALean.ContSet.SpectraShadow.Real.Theorems.ArrowMatPosSemidefOfPos
+import CORALean.ContSet.SpectraShadow.Real.Theorems.ArrowMatPosSemidefZero
+import CORALean.ContSet.SpectraShadow.Real.Theorems.ArrowMatPosSemidefNecessary
+import CORALean.ContSet.SpectraShadow.Real.Theorems.TranslateMem
+import CORALean.ContSet.SpectraShadow.Real.Theorems.PolytopeOuter
+import CORALean.ContSet.SpectraShadow.Real.Theorems.PolytopeInner
+import CORALean.ContSet.SpectraShadow.Real.Theorems.IsFullDimIffAffineSpan
+import CORALean.ContSet.SpectraShadow.Real.Theorems.NotIsFullDimOfGZero
+import CORALean.ContSet.SpectraShadow.Real.Theorems.FullDimShortcutPointExample
+import CORALean.ContSet.SpectraShadow.Real.Theorems.FullDimShortcutThinLine
+import CORALean.ContSet.SpectraShadow.Real.Theorems.GenerateESumRepExact
 
 /-!
 # What a spectrahedral shadow guarantees, collected
@@ -47,4 +67,6 @@ The support function is bounded by the dual certificate (`supportFunc_le_support
 duality) and equals it under complementary slackness; `isBounded`, `representsa_` at
 `emptySet`, `origin` and `point`, and `containsPoint` at tolerance `0` are exact; and
 `CoraCounterexamples` states three places where CORA's own code answers differently.
+`EncloseExact.lean` is deliberately not collected here: it states the generic `enclose` at the
+instances, which this API feeds.
 -/

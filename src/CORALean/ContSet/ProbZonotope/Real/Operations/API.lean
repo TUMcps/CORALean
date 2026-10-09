@@ -12,6 +12,14 @@ import CORALean.ContSet.ProbZonotope.Real.Operations.Generators
 import CORALean.ContSet.ProbZonotope.Real.Operations.ProbReduce
 import CORALean.ContSet.ProbZonotope.Real.Operations.ReduceGirard
 import CORALean.ContSet.ProbZonotope.Real.Operations.Enclose
+import CORALean.ContSet.ProbZonotope.Real.Operations.Abs
+import CORALean.ContSet.ProbZonotope.Real.Operations.IntervalCora
+import CORALean.ContSet.ProbZonotope.Real.Operations.Interval
+import CORALean.ContSet.ProbZonotope.Real.Operations.Sup
+import CORALean.ContSet.ProbZonotope.Real.Operations.SupCora
+import CORALean.ContSet.ProbZonotope.Real.Operations.PyramidLevels
+import CORALean.ContSet.ProbZonotope.Real.Operations.Pyramid
+import CORALean.ContSet.ProbZonotope.Real.Operations.UnitMean
 
 /-!
 # Probabilistic zonotope operations, collected

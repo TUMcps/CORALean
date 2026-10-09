@@ -1,0 +1,43 @@
+import CORALean.ContSet.ProbZonotope.Real.Operations.UnitMean
+import CORALean.ContSet.ProbZonotope.Real.Operations.IntervalCora
+import CORALean.ContSet.ProbZonotope.Real.Theorems.GeneratorsMulTranspose
+
+/-!
+# CORA's `interval` of `[-1, 1]` with no covariance is the origin
+
+Its probabilistic generators are `0` (a zero covariance has the factor `G Gᵀ = 0`, so `G = 0`), and
+`interval.m` boxes the centre `0` by `Σ|G| = 0`.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       09-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+namespace CORALean.Real
+
+open Matrix
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+theorem aux_unitMean_generators : ProbZonotope.unitMean.generators = 0 := by
+  -- `G Gᵀ = 0` forces `G = 0`
+  have h := ProbZonotope.unitMean.generators_mul_transpose Matrix.PosSemidef.zero
+  exact Matrix.self_mul_conjTranspose_eq_zero.1 (by simpa [ProbZonotope.unitMean] using h)
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem ProbZonotope.unitMean_intervalCora : ProbZonotope.unitMean.intervalCora = ⟨0, 0⟩ := by
+  -- both bounds are the centre `0`
+  unfold ProbZonotope.intervalCora
+  rw [aux_unitMean_generators]
+  refine congrArg₂ Interval.mk ?_ ?_ <;> funext i <;> simp [ProbZonotope.unitMean]
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

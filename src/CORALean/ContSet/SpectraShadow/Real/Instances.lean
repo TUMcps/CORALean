@@ -6,12 +6,12 @@ import CORALean.ContSet.SpectraShadow.Real.Theorems.API
 
 `ContSet`, `ConvexSet` — a shadow of a convex cone's slice — `Plus` and `Mtimes`,
 both from the exactness theorems, which the classes' outer obligations only keep
-the first half of.
+the first half of, and `LinComb` at the convex hull `convHull_`, whose set is exact.
 
 No `CompactSet`: the set is unbounded as soon as the inequality leaves a
-variable free, and boundedness is not something the type records. No `Intersection`,
-`LinComb` or `Reduce`: the first needs the existential-sum form CORA keeps beside
-`A`, `c` and `G`, and the other two have nothing to compute that is cheap.
+variable free, and boundedness is not something the type records. No `Intersection`
+or `Reduce`: `inter` and the exactness theorem exist, but are not collected into the class
+yet, and `Reduce` has nothing to compute that is cheap.
 -/
 
 -- Authors:       Tobias Ladner
@@ -42,6 +42,12 @@ instance : Mtimes (Mat ℝ) (fun n => SpectraShadow (Vec ℝ n)) where
   mtimes_outer M S := by
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact (SpectraShadow.mtimes_exact M S).subset
+
+/-- CORA's `linComb` is not the convex hull, but for a shadow, which is convex, the segments are
+inside it, and `convHull_` is what `enclose` and `or` ask for. -/
+instance {n : ℕ} : LinComb (SpectraShadow (Vec ℝ n)) (Vec ℝ n) where
+  linComb := SpectraShadow.convHull_
+  linComb_outer := SpectraShadow.segments_subset_convHull
 
 end CORALean.Real
 
