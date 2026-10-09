@@ -1,5 +1,4 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.ExtG
-import CORALean.ContSet.PolyZonotope.Float.Operations.QuadUp
+import CORALean.ContSet.PolyZonotope.Float.Operations.BilinGUp
 
 /-!
 # `quadMap`'s generators, rounded up
@@ -27,9 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 def PolyZonotope.quadMapGUp (Q : Fin m → Mat 𝕋 n n) (pZ : PolyZonotope 𝕋 n) :
     Mat 𝕋 m ((pZ.h + 1) * (pZ.h + 1)) :=
-  fun k l => PolyZonotope.quadUp (fun r => PolyZonotope.extG pZ r (finProdFinEquiv.symm l).1)
-    (mulVecDown (Q k) fun r => PolyZonotope.extG pZ r (finProdFinEquiv.symm l).2)
-    (mulVecUp (Q k) fun r => PolyZonotope.extG pZ r (finProdFinEquiv.symm l).2)
+  PolyZonotope.bilinGUp Q pZ pZ
 
 end CORALean.Float
 

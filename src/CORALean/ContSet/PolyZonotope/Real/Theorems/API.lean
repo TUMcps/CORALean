@@ -60,6 +60,7 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.MatMapOuter
 import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinSubsetAt
 import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinSubsetAtSubsetImage2
 import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapMixedExact
+import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadBilinApply
 import CORALean.ContSet.PolyZonotope.Real.Theorems.PadBackPoint
 import CORALean.ContSet.PolyZonotope.Real.Theorems.PadBackExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.PadBackSubsetAt

@@ -2,6 +2,7 @@ import CORALean.ContSet.ConPolyZono.Float.Operations.QuadMap
 import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
 import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsPadEIff
 import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsLeErrorBound
+import CORALean.ContSet.PolyZonotope.Float.Theorems.BilinGClose
 import CORALean.ContSet.PolyZonotope.Float.Theorems.LeQuadUp
 import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorErrorMonomial
 import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadDownLe
@@ -50,37 +51,8 @@ theorem ConPolyZono.aux_quadMapG_close (Q : Fin k → Mat 𝕋 n n) (pZ : PolyZo
     (i : Fin k) (l : Fin ((pZ.h + 1) * (pZ.h + 1))) :
     |Real.PolyZonotope.quadMapG (fun k => toRealMat (Q k)) (nominal pZ) l i
         - toReal (PolyZonotope.quadMapGDown Q pZ i l)|
-      ≤ toReal (PolyZonotope.quadMapGDiff Q pZ i l) := by -- --- PROOF ---
-  set l₁ := (finProdFinEquiv.symm l).1 with hl₁
-  set l₂ := (finProdFinEquiv.symm l).2 with hl₂
-  -- the exact bilinear form, with both vectors read back through `toReal`
-  have hexact : Real.PolyZonotope.quadMapG (fun k => toRealMat (Q k)) (nominal pZ) l i
-      = ∑ r, toReal (PolyZonotope.extG pZ r l₁)
-          * ∑ r', toReal (Q i r r') * toReal (PolyZonotope.extG pZ r' l₂) := by
-    show (∑ r, Real.PolyZonotope.extG (nominal pZ) l₁ r
-        * ∑ r', toRealMat (Q i) r r' * Real.PolyZonotope.extG (nominal pZ) l₂ r') = _
-    refine Finset.sum_congr rfl fun r _ => ?_
-    rw [PolyZonotope.toReal_extG pZ r l₁]
-    exact congrArg _ (Finset.sum_congr rfl fun r' _ => by
-      rw [PolyZonotope.toReal_extG pZ r' l₂]; rfl)
-  have hw : ∀ r, toReal (mulVecDown (Q i) (fun r' => PolyZonotope.extG pZ r' l₂) r)
-        ≤ (∑ r', toReal (Q i r r') * toReal (PolyZonotope.extG pZ r' l₂))
-      ∧ (∑ r', toReal (Q i r r') * toReal (PolyZonotope.extG pZ r' l₂))
-        ≤ toReal (mulVecUp (Q i) (fun r' => PolyZonotope.extG pZ r' l₂) r) :=
-    fun r => ⟨dotDown_le (Q i r) _, le_dotUp (Q i r) _⟩
-  -- the middle vector enters as a pair of bounds, picked per term, bracketing the bilinear form
-  have hlo := PolyZonotope.quadDown_le (g := fun r => PolyZonotope.extG pZ r l₁) hw
-  have hhi := PolyZonotope.le_quadUp (g := fun r => PolyZonotope.extG pZ r l₁) hw
-  have hgap := sub_le_subUp (PolyZonotope.quadMapGUp Q pZ i l)
-    (PolyZonotope.quadMapGDown Q pZ i l)
-  rw [hexact, abs_le]
-  constructor
-  · simp only [PolyZonotope.quadMapGDiff]
-    simp only [PolyZonotope.quadMapGDown, PolyZonotope.quadMapGUp] at hlo hhi hgap ⊢
-    linarith
-  · simp only [PolyZonotope.quadMapGDiff]
-    simp only [PolyZonotope.quadMapGDown, PolyZonotope.quadMapGUp] at hlo hhi hgap ⊢
-    linarith
+      ≤ toReal (PolyZonotope.quadMapGDiff Q pZ i l) :=
+  PolyZonotope.bilinG_close Q pZ pZ i l
 
 /-- The dependent form of a float polynomial zonotope, at its factors `a`, then the coefficients
 `β`, then the error coordinates, is the nominal point plus the error. -/
@@ -174,8 +146,8 @@ theorem ConPolyZono.quadMap_outer (Q : Fin k → Mat 𝕋 n n) (cPZ : ConPolyZon
               * Real.PolyZonotope.monomial (PolyZonotope.quadMapE D) a' l := by
       rw [← Finset.sum_add_distrib]
       exact Finset.sum_congr rfl fun l _ => by ring
-    simp only [Pi.add_apply, ConPolyZono.quadMap, PolyZonotope.quadMapDep, toReal_zero,
-      Finset.univ_eq_empty, Finset.sum_empty, add_zero, zero_add]
+    simp only [Pi.add_apply, ConPolyZono.quadMap, PolyZonotope.quadMapDep, PolyZonotope.bilin,
+      toReal_zero, Finset.univ_eq_empty, Finset.sum_empty, add_zero, zero_add]
     simp only [Real.PolyZonotope.point, Real.PolyZonotope.quadMapDep, Real.PolyZonotope.bilin,
       Pi.zero_apply, Pi.add_apply, Finset.sum_apply, Pi.smul_apply, smul_eq_mul, zero_add]
     exact hsum.trans (Finset.sum_congr rfl fun l _ => mul_comm _ _)

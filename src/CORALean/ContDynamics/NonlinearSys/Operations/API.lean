@@ -53,10 +53,14 @@ import CORALean.ContDynamics.NonlinearSys.Operations.LinPointFloat
 import CORALean.ContDynamics.NonlinearSys.Operations.LinearizeFloat
 import CORALean.ContDynamics.NonlinearSys.Operations.ReachFloat
 import CORALean.ContDynamics.NonlinearSys.Operations.RegionFloat
+import CORALean.ContDynamics.NonlinearSys.Operations.RelinRunAtFloat
 import CORALean.ContDynamics.NonlinearSys.Operations.RelinRunFloat
+import CORALean.ContDynamics.NonlinearSys.Operations.RelinStepAtFloat
 import CORALean.ContDynamics.NonlinearSys.Operations.RelinStepFloat
 import CORALean.ContDynamics.NonlinearSys.Operations.SlopeRemainder
 import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrPolyFloat
+import CORALean.ContDynamics.NonlinearSys.Operations.HalfMat
+import CORALean.ContDynamics.NonlinearSys.Operations.VarInputsFloat
 import CORALean.ContDynamics.NonlinearSys.Operations.HessRemainder
 import CORALean.ContDynamics.NonlinearSys.Operations.LinReachFloat
 import CORALean.ContDynamics.NonlinearSys.Operations.LinReachRunFloat
@@ -67,6 +71,23 @@ import CORALean.ContDynamics.NonlinearSys.Operations.SplitReach
 import CORALean.ContDynamics.NonlinearSys.Operations.Identify
 import CORALean.ContDynamics.NonlinearSys.Operations.IdentifyCandidate
 import CORALean.ContDynamics.NonlinearSys.Operations.ReachFloatChecked
+import CORALean.ContDynamics.NonlinearSys.Operations.InterpGainFloat
+import CORALean.ContDynamics.NonlinearSys.Operations.EstimateGainSearchFloat
+import CORALean.ContDynamics.NonlinearSys.Operations.EstimateGainFloat
+import CORALean.ContDynamics.NonlinearSys.Operations.GainMaxFloat
+import CORALean.ContDynamics.NonlinearSys.Operations.ReachSizeEstimateFloat
+import CORALean.ContDynamics.NonlinearSys.Operations.OptDeltatSearchFloat
+import CORALean.ContDynamics.NonlinearSys.Operations.OptDeltatFloat
+import CORALean.ContDynamics.NonlinearSys.Operations.TuneAbstrOrderFloat
+import CORALean.ContDynamics.NonlinearSys.Operations.TuneDeltatInitFloat
+import CORALean.ContDynamics.NonlinearSys.Operations.TuneDeltatFloat
+import CORALean.ContDynamics.NonlinearSys.Operations.OrderStepFloat
+import CORALean.ContDynamics.NonlinearSys.Operations.AdaptLinPassFloat
+import CORALean.ContDynamics.NonlinearSys.Operations.AdaptStepFloat
+import CORALean.ContDynamics.NonlinearSys.Operations.AdaptRunFloat
+import CORALean.ContDynamics.NonlinearSys.Operations.CentreAbstrStepFloat
+import CORALean.ContDynamics.NonlinearSys.Operations.CentreAbstrRunFloat
+import CORALean.ContDynamics.NonlinearSys.Operations.LagrangeRemainderFloat
 
 /-!
 # What a linearization computes

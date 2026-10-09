@@ -1,4 +1,5 @@
 import CORALean.ContDynamics.NonlinearSys.Operations.LagrangeRemainder
+import CORALean.ContDynamics.NonlinearSys.Theorems.ZonotopeRadiusAttained
 import CORALean.ContSet.Conversion.Real.Interval_to_PolyZonotope
 
 /-!
@@ -49,57 +50,21 @@ theorem aux_coord_eq (Z : Zonotope (Vec ℝ d)) (β : Fin Z.h → ℝ) (zs : Vec
   simp only [Pi.smul_apply, smul_eq_mul]
   ring
 
-/-- `γ` is `max |z - z✱|` over the set, so it grows with the set and not with the
-representation: the point attaining it on the left is a point of the right. -/
+/-- `γ` grows with the set and not with the representation: the point attaining it on the
+left is a point of the right. -/
 theorem aux_radius_le {Z₁ Z₂ : Zonotope (Vec ℝ d)} (hZ : Z₁.construct ⊆ Z₂.construct)
     (zs : Vec ℝ d) (j : Fin d) :
     |Z₁.c j - zs j| + ∑ k, |Z₁.G k j|
       ≤ |Z₂.c j - zs j| + ∑ k, |Z₂.G k j| := by -- --- PROOF ---
-  -- the sign that turns coordinate `j` of the centre offset into its absolute value
-  set s : ℝ := if 0 ≤ Z₁.c j - zs j then 1 else -1 with hsdef
-  have hs1 : s = 1 ∨ s = -1 := by rw [hsdef]; split_ifs <;> simp
-  have hsabs : |s| = 1 := by rcases hs1 with h | h <;> simp [h]
-  have hsc : s * (Z₁.c j - zs j) = |Z₁.c j - zs j| := by
-    rw [hsdef]
-    split_ifs with h
-    · rw [one_mul, abs_of_nonneg h]
-    · rw [neg_one_mul, abs_of_neg (lt_of_not_ge h)]
-  -- and the coefficients that turn every generator's contribution into its own
-  set β : Fin Z₁.h → ℝ := fun k => if 0 ≤ s * Z₁.G k j then 1 else -1 with hβdef
-  have hb : ∀ k, |β k| ≤ 1 := by
-    intro k
-    simp only [hβdef]
-    split_ifs <;> simp
-  have hg : ∀ k, s * (β k * Z₁.G k j) = |Z₁.G k j| := by
-    intro k
-    have habs : |s * Z₁.G k j| = |Z₁.G k j| := by rw [abs_mul, hsabs, one_mul]
-    simp only [hβdef]
-    split_ifs with h
-    · rw [← habs, abs_of_nonneg h]; ring
-    · rw [← habs, abs_of_neg (lt_of_not_ge h)]; ring
   -- that point is in `Z₁`, hence in `Z₂`, where the same coordinate is bounded by `γ₂`
-  obtain ⟨β', hb', heq⟩ := hZ (show Z₁.c + ∑ k, β k • Z₁.G k ∈ Z₁.construct from ⟨β, hb, rfl⟩)
-  have hlhs : s * ((Z₁.c + ∑ k, β k • Z₁.G k) j - zs j)
-      = |Z₁.c j - zs j| + ∑ k, |Z₁.G k j| := by
-    rw [aux_coord_eq, mul_add, hsc, Finset.mul_sum]
-    exact congrArg _ (Finset.sum_congr rfl fun k _ => hg k)
-  have hrhs : |(Z₂.c + ∑ k, β' k • Z₂.G k) j - zs j| ≤ |Z₂.c j - zs j| + ∑ k, |Z₂.G k j| := by
-    rw [aux_coord_eq]
-    refine le_trans (abs_add_le _ _) (add_le_add le_rfl ?_)
-    refine le_trans (Finset.abs_sum_le_sum_abs _ _) (Finset.sum_le_sum fun k _ => ?_)
-    rw [abs_mul]
-    exact mul_le_of_le_one_left (abs_nonneg _) (hb' k)
-  -- the left radius is attained, the right one only bounds, and the point is shared
-  calc |Z₁.c j - zs j| + ∑ k, |Z₁.G k j|
-      = s * ((Z₁.c + ∑ k, β k • Z₁.G k) j - zs j) := hlhs.symm
-    _ ≤ |(Z₁.c + ∑ k, β k • Z₁.G k) j - zs j| := by
-        rcases hs1 with h | h
-        · rw [h, one_mul]
-          exact le_abs_self _
-        · rw [h, neg_one_mul]
-          exact neg_le_abs _
-    _ = |(Z₂.c + ∑ k, β' k • Z₂.G k) j - zs j| := by rw [heq]
-    _ ≤ _ := hrhs
+  obtain ⟨z, hz, hle⟩ := Real.Zonotope.radius_attained Z₁ zs j
+  obtain ⟨β', hb', rfl⟩ := hZ hz
+  refine le_trans hle ?_
+  rw [aux_coord_eq]
+  refine le_trans (abs_add_le _ _) (add_le_add le_rfl ?_)
+  refine le_trans (Finset.abs_sum_le_sum_abs _ _) (Finset.sum_le_sum fun k _ => ?_)
+  rw [abs_mul]
+  exact mul_le_of_le_one_left (abs_nonneg _) (hb' k)
 
 /-- An entrywise nonnegative form is nonnegative, and monotone, at nonnegative
 arguments. -/

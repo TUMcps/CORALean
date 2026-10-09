@@ -2,13 +2,15 @@ import CORALean.NN.Layers.Operations.Softmax
 import CORALean.NN.Layers.Theorems.SoftmaxLeRawUpper
 import CORALean.NN.Layers.Theorems.Real.SoftmaxMemTightened
 import CORALean.NN.Layers.Theorems.Real.SoftmaxNonneg
+import CORALean.NN.Layers.Theorems.SoftmaxRawLowerLe
 import CORALean.NN.Layers.Theorems.SumEraseLeSumOffUp
 
 /-!
 # What the softmax layer encloses
 
-`Real.softmax`: the normalization at a raw lower bound of zero, which `softmax_nonneg` gives,
-and the rounded raw upper bound, each end rounded outward on the way.
+`Real.softmax`: the normalization at a raw lower bound of zero, which `softmax_nonneg` gives, the
+rounded raw lower bound where `softmaxExpInRange` licenses it, and the rounded raw upper bound,
+each end rounded outward on the way.
 -/
 
 -- Authors:       Tobias Ladner
@@ -47,11 +49,13 @@ theorem Layer.softmax_sound (k : ℕ) :
     have hsub := subDown_le_sub (one : 𝕋) (sumOffUp i fun j => softmaxRawUpper k I j)
     rw [toReal_one] at hsub
     have hmax : max (0:ℝ) (1 - ∑ j ∈ Finset.univ.erase i, ru j) ≤ Real.softmax x i := hlo
-    show toReal (maximum zero (subDown one (sumOffUp i fun j => softmaxRawUpper k I j)))
+    show toReal (maximum (softmaxRawLower k I i)
+        (maximum zero (subDown one (sumOffUp i fun j => softmaxRawUpper k I j))))
       ≤ Real.softmax x i
-    rw [toReal_maximum, toReal_zero]
-    exact max_le (le_trans (le_max_left _ _) hmax)
-      (le_trans (by linarith) (le_trans (le_max_right _ _) hmax))
+    rw [toReal_maximum, toReal_maximum, toReal_zero]
+    exact max_le (softmaxRawLower_le k I hbox i)
+      (max_le (le_trans (le_max_left _ _) hmax)
+        (le_trans (by linarith) (le_trans (le_max_right _ _) hmax)))
   · -- `1` is what the same identity gives at a raw lower bound of zero
     have hone : (1:ℝ) - ∑ j ∈ Finset.univ.erase i, (0:ℝ) = 1 := by
       rw [Finset.sum_const_zero, sub_zero]

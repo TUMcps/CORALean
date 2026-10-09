@@ -1,0 +1,51 @@
+import CORALean.ContDynamics.LinearSys.Operations.MinBackReachRunFloat
+import CORALean.ContSet.ConZonotope.Float.Operations.SupportBound
+import CORALean.ContSet.HPolytope.Float.Operations.RowLin
+import CORALean.ContSet.Zonotope.Float.Operations.LowerDot
+
+/-!
+# `Alg. 1` lines 12-13 in floats: one direction's support value at a step
+
+`minBackReachSupport` computed in `𝕋`: [1, Alg. 1] lines 12-13, eq. (44): `ρ(R̂^∃(-τ_k;u_j(·)),
+N_(j,·))`, the step's own support value less what the direction's input trajectory takes off it.
+The first term is rounded up (`ConZonotope.boundDot`, checked in ℚ against the float values) and
+the second down (`Zonotope.lowerDot`), so the difference, rounded up, is above the real one. The
+exact layer takes a support oracle; here it is computed, which is why `ToRat 𝕋` is asked.
+
+## References
+
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
+      Perturbed Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
+      2023.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       08-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open CORALean.Float FloatOps
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n q : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- Lines 12-13, eq. (44): `ρ(R̂^∃(-τ_k;u_j(·)), N_(j,·))`, rounded up. -/
+def LinearSys.minBackReachSupportFloat (sys : LinearSys 𝕋 n)
+    (CZ : ConZonotope 𝕋 n) (W₀ U₀ : Zonotope 𝕋 n) (Zw : 𝕋 → Zonotope 𝕋 n) (N : Mat 𝕋 q n)
+    (t₀ Δt : 𝕋) (η ν k : ℕ) (j : Fin q) : 𝕋 :=
+  let s := sys.minBackReachRunFloat CZ W₀ U₀ Zw t₀ Δt η ν k
+  let ρR := (s.R.boundDot (c := rowLin N j) (N j) fun _ => rfl).val   -- ρ(R̂^∃, N_(j,·)), up
+  let ρU := s.ZU₀.lowerDot fun i => neg (N j i)                      -- ρ(Ẑ_{U₀}, -N_(j,·)), down
+  subUp ρR ρU
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

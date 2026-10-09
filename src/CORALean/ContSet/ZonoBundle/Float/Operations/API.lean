@@ -2,6 +2,7 @@ import CORALean.ContSet.ZonoBundle.Float.Operations.Intersection
 import CORALean.ContSet.ZonoBundle.Float.Operations.Plus
 import CORALean.ContSet.ZonoBundle.Float.Operations.LinComb
 import CORALean.ContSet.ZonoBundle.Float.Operations.Mtimes
+import CORALean.ContSet.ZonoBundle.Float.Operations.MtimesIntervalMat
 import CORALean.ContSet.ZonoBundle.Float.Operations.Reindex
 import CORALean.ContSet.ZonoBundle.Float.Operations.Reduce
 import CORALean.ContSet.ZonoBundle.Float.Operations.SupportBound

@@ -1,3 +1,5 @@
+import CORALean.ContDynamics.LinearSys.Definitions.AutoInvariantFloat
+import CORALean.ContDynamics.LinearSys.Definitions.AutoStateFloat
 import CORALean.ContDynamics.LinearSys.Definitions.ReachSet
 import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalReachSet
 import CORALean.ContDynamics.LinearSys.Definitions.IntegralReachSet
@@ -43,6 +45,8 @@ import CORALean.ContDynamics.LinearSys.Definitions.AdaptiveState
 import CORALean.ContDynamics.LinearSys.Definitions.AdaptiveStepInfo
 import CORALean.ContDynamics.LinearSys.Definitions.AdaptiveInvariant
 import CORALean.ContDynamics.LinearSys.Definitions.NoiseCovariance
+import CORALean.ContDynamics.LinearSys.Definitions.ManualStateFloat
+import CORALean.ContDynamics.LinearSys.Definitions.ManualInvariantFloat
 
 /-!
 # What a continuous-time linear system means

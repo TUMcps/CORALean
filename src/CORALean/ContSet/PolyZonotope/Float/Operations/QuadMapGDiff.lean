@@ -1,3 +1,4 @@
+import CORALean.ContSet.PolyZonotope.Float.Operations.BilinGDiff
 import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapGDown
 import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapGUp
 
@@ -28,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 /-- How far a stored generator can be from the exact bilinear form. -/
 def PolyZonotope.quadMapGDiff (Q : Fin m → Mat 𝕋 n n) (pZ : PolyZonotope 𝕋 n) :
     Mat 𝕋 m ((pZ.h + 1) * (pZ.h + 1)) :=
-  fun k l => subUp (PolyZonotope.quadMapGUp Q pZ k l) (PolyZonotope.quadMapGDown Q pZ k l)
+  PolyZonotope.bilinGDiff Q pZ pZ
 
 end CORALean.Float
 

@@ -63,10 +63,13 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.EnclosesOfHasFDerivAt
 import CORALean.ContDynamics.NonlinearSys.Theorems.LinInputFloatOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachFloatOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.RegionFloatConfined
+import CORALean.ContDynamics.NonlinearSys.Theorems.RelinRunAtFloatOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.RelinRunFloatOuter
+import CORALean.ContDynamics.NonlinearSys.Theorems.RelinStepAtFloatOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.RelinStepFloatOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.SlopeRemainderAbstractionError
 import CORALean.ContDynamics.NonlinearSys.Theorems.AbstrErrPolyFloatOuter
+import CORALean.ContDynamics.NonlinearSys.Theorems.VarInputsFloatOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.HessRemainderAbstractionError
 import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachFloatOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachRunFloatOuter
@@ -79,6 +82,13 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.SplitReachOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.IdentifyCandidateFit
 import CORALean.ContDynamics.NonlinearSys.Theorems.IdentifyLeCandidate
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachFloatCheckedEqSome
+import CORALean.ContDynamics.NonlinearSys.Theorems.OrderStepFloatOuter
+import CORALean.ContDynamics.NonlinearSys.Theorems.ZonotopeRadiusAttained
+import CORALean.ContDynamics.NonlinearSys.Theorems.AdaptStepFloatOuter
+import CORALean.ContDynamics.NonlinearSys.Theorems.AdaptRunFloatOuter
+import CORALean.ContDynamics.NonlinearSys.Theorems.CentreAbstrStepFloatOuter
+import CORALean.ContDynamics.NonlinearSys.Theorems.CentreAbstrRunFloatOuter
+import CORALean.ContDynamics.NonlinearSys.Theorems.LagrangeRemainderFloatOuter
 
 /-!
 # What `NonlinearSys` guarantees

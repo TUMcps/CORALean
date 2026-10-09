@@ -45,6 +45,13 @@ import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapGUp
 import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapGDiff
 import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapDep
 import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMap
+import CORALean.ContSet.PolyZonotope.Float.Operations.BilinE
+import CORALean.ContSet.PolyZonotope.Float.Operations.BilinGDown
+import CORALean.ContSet.PolyZonotope.Float.Operations.BilinGUp
+import CORALean.ContSet.PolyZonotope.Float.Operations.BilinGDiff
+import CORALean.ContSet.PolyZonotope.Float.Operations.Bilin
+import CORALean.ContSet.PolyZonotope.Float.Operations.MixedForm
+import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapMixed
 import CORALean.ContSet.PolyZonotope.Float.Operations.MulGDown
 import CORALean.ContSet.PolyZonotope.Float.Operations.MulGUp
 import CORALean.ContSet.PolyZonotope.Float.Operations.MulGDiff

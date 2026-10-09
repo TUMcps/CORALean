@@ -1,4 +1,6 @@
 import CORALean.ContSet.Zonotope.Float.Operations.AbsBoundError
+import CORALean.ContSet.Zonotope.Float.Operations.AutoTuneSetOrder
+import CORALean.ContSet.Zonotope.Float.Operations.ErrUp
 import CORALean.ContSet.Zonotope.Float.Operations.GeneratorError
 import CORALean.ContSet.Zonotope.Float.Operations.CenterResidual
 import CORALean.ContSet.Zonotope.Float.Operations.MtimesMatZonotope
@@ -19,6 +21,8 @@ import CORALean.ContSet.Zonotope.Float.Operations.MtimesResidual
 import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
 import CORALean.ContSet.Zonotope.Float.Operations.MtimesBox
 import CORALean.ContSet.Zonotope.Float.Operations.MtimesIntervalMat
+import CORALean.ContSet.Zonotope.Float.Operations.ReduceBoxError
+import CORALean.ContSet.Zonotope.Float.Operations.LowerDot
 import CORALean.ContSet.Zonotope.Float.Operations.RotMat
 import CORALean.ContSet.Zonotope.Float.Operations.Rotate
 import CORALean.ContSet.Zonotope.Float.Operations.ShiftDown
@@ -88,6 +92,8 @@ import CORALean.ContSet.Zonotope.Float.Operations.StUsed
 import CORALean.ContSet.Zonotope.Float.Operations.StDelta
 import CORALean.ContSet.Zonotope.Float.Operations.StLeftover
 import CORALean.ContSet.Zonotope.Float.Operations.Underapproximate
+import CORALean.ContSet.Zonotope.Float.Operations.MinkDiffRep
+import CORALean.ContSet.Zonotope.Float.Operations.MinkDiffRepCandidate
 import CORALean.ContSet.Zonotope.Float.Operations.UnderapproximateCandidate
 import CORALean.ContSet.Zonotope.Float.Operations.ReduceUnderApprox
 

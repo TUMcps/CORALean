@@ -1,5 +1,5 @@
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclosureFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeNorm
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryExpSubExpTaylorLeFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalTaylorFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSubExpTaylorLe
@@ -36,29 +36,6 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
-/-- The pointwise tail bound, taken uniformly at `normUpperBound A` and already
-rounded to a float. -/
-theorem aux_entry_le_expRemainderBound (A : Interval (Mat 𝕋 n n)) (η : ℕ) {M : Mat ℝ n n}
-    (hM : M ∈ A.construct) (hε : toReal (MatExp.normUpperBound A) / ((η : ℝ) + 2) ≤ 1 / 2)
-    (i j : Fin n) :
-    |exp M i j - Real.MatExp.expTaylor M η i j|
-      ≤ toReal (MatExp.expRemainderBound (MatExp.normUpperBound A) η) := by -- --- PROOF ---
-  have hnorm : ‖M‖ ≤ toReal (MatExp.normUpperBound A) :=
-    le_trans (Real.Interval.norm_le_absMax hM) (MatExp.norm_absMax_le_normUpperBound A)
-  have hnn : (0 : ℝ) ≤ toReal (MatExp.normUpperBound A) := le_trans (norm_nonneg M) hnorm
-  have h2 : (0 : ℝ) < (η : ℝ) + 2 := by positivity
-  have hfrac : ‖M‖ / ((η : ℝ) + 2) ≤ toReal (MatExp.normUpperBound A) / ((η : ℝ) + 2) := by gcongr
-  have hεM : ‖M‖ / ((η : ℝ) + 2) < 1 := lt_of_le_of_lt (le_trans hfrac hε) (by norm_num)
-  calc |exp M i j - Real.MatExp.expTaylor M η i j|
-      = |(exp M - Real.MatExp.expTaylor M η) i j| := by rw [Matrix.sub_apply]
-    _ ≤ ‖exp M - Real.MatExp.expTaylor M η‖ := Real.abs_entry_le_norm _ i j
-    _ ≤ Real.MatExp.expRemainderBound M η := Real.norm_exp_sub_expTaylor_le M η hεM
-    _ ≤ toReal (MatExp.expRemainderBound (MatExp.normUpperBound A) η) :=
-        MatExp.expRemainderBound_le η hnorm hnn hε
-
-
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem MatExp.exp_mem_expIntervalEnclosure (A : Interval (Mat 𝕋 n n)) (η : ℕ) {M : Mat ℝ n n}
@@ -67,7 +44,7 @@ theorem MatExp.exp_mem_expIntervalEnclosure (A : Interval (Mat 𝕋 n n)) (η : 
   refine Real.Interval.mem_mat_iff.mpr fun i j => ?_
   have htay := Real.Interval.mem_mat_iff.mp (MatExp.expTaylor_mem_expIntervalTaylor A hM η) i j
   simp only [Interval.nominal, RealImage.realImage, toRealMat] at htay
-  have hb := aux_entry_le_expRemainderBound A η hM hε i j
+  have hb := MatExp.abs_entry_exp_sub_expTaylor_le A η hM hε i j
   rw [abs_le] at hb
   constructor
   · show toReal (subDown ((MatExp.expIntervalTaylor A η).inf i j)

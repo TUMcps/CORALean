@@ -29,16 +29,22 @@ open CORALean.Real
 
 -- ========================================  MAIN TYPE  ========================================= --
 
-/-- What one iteration of [1, Alg. 1] hands the next. -/
-structure LinearSys.MinBackReachState (n : ℕ) where
+/-- What one iteration of [1, Alg. 1] hands the next, over the time type `T`, the zonotope type
+`Z` and the constrained-zonotope type `C` of whichever layer runs it: the real one at `ℝ` and
+`Real.Zonotope`, the float one at `𝕋` and `Float.Zonotope`. -/
+structure LinearSys.MinBackReachStateOf (T Z C : Type) where
   /-- `t_k`, line 8. -/
-  t : ℝ
+  t : T
   /-- `Ẑ_{W₀}(-t_k)`, line 9. -/
-  ZW₀ : Zonotope (Vec ℝ n)
+  ZW₀ : Z
   /-- `Ẑ_{U₀}(-t_k)`, line 12. -/
-  ZU₀ : Zonotope (Vec ℝ n)
+  ZU₀ : Z
   /-- `R̂^∃(-τ_{k-1})`, line 11. -/
-  R : ConZonotope (Vec ℝ n)
+  R : C
+
+/-- The state over the reals. -/
+abbrev LinearSys.MinBackReachState (n : ℕ) : Type :=
+  LinearSys.MinBackReachStateOf ℝ (Zonotope (Vec ℝ n)) (ConZonotope (Vec ℝ n))
 
 end CORALean
 

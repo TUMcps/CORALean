@@ -1,3 +1,4 @@
+import CORALean.ContSet.Zonotope.Float.Theorems.ErrLeErrUp
 import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 import CORALean.ContSet.Zonotope.Float.Theorems.RadiusLe
 import CORALean.ContSet.Zonotope.Float.Theorems.GeneratorLengthLe
@@ -23,6 +24,9 @@ import CORALean.ContSet.Zonotope.Float.Theorems.MtimesH
 import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.MtimesSubsetAddBox
 import CORALean.ContSet.Zonotope.Float.Theorems.MtimesIntervalMatOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.AbsResidualLe
+import CORALean.ContSet.Zonotope.Float.Theorems.MulVecSplit
+import CORALean.ContSet.Zonotope.Float.Theorems.LowerDotLe
 import CORALean.ContSet.Zonotope.Float.Theorems.RotMatMem
 import CORALean.ContSet.Zonotope.Float.Theorems.RotateOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.ZeroMemMtimesError
@@ -90,7 +94,9 @@ import CORALean.ContSet.Zonotope.Float.Theorems.ErrBoundLe
 import CORALean.ContSet.Zonotope.Float.Theorems.EntryDeviationBound
 import CORALean.ContSet.Zonotope.Float.Theorems.ContainsZonotopeSound
 import CORALean.ContSet.Zonotope.Float.Theorems.UnderapproximateInner
+import CORALean.ContSet.Zonotope.Float.Theorems.MinkDiffRepInner
 import CORALean.ContSet.Zonotope.Float.Theorems.ReduceUnderApproxInner
+import CORALean.ContSet.Zonotope.Float.Theorems.SumAbsBoundLeSumUpAbsBoundError
 
 /-!
 # What `Zonotope` guarantees

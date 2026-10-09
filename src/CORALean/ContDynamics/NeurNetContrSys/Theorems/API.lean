@@ -6,6 +6,7 @@ import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachOuter
 import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachSetOuter
 import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachSetSubsetReach
 import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachUnionOuter
+import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachUnionFloatOuter
 import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachFloatOuter
 import CORALean.ContDynamics.NeurNetContrSys.Theorems.HoldsOfCheckFloat
 
