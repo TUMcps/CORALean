@@ -102,6 +102,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.PlusSubsetClosedBall
 import CORALean.ContSet.Zonotope.Real.Theorems.ProjectExact
 import CORALean.ContSet.Zonotope.Real.Theorems.ProjectHighDimExact
 import CORALean.ContSet.Zonotope.Real.Theorems.QuadTaylorOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.QuadTaylorPrintedCounterexample
 import CORALean.ContSet.Zonotope.Real.Theorems.RecentreSubMem
 import CORALean.ContSet.Zonotope.Real.Theorems.RecentreZeroMem
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBoxAbsBoundLe
@@ -249,6 +250,8 @@ import CORALean.ContSet.Zonotope.Real.Theorems.ContainsViaReach
 import CORALean.ContSet.Zonotope.Real.Theorems.FaultResidualFaultObserve
 import CORALean.ContSet.Zonotope.Real.Theorems.FaultObservePRadiusLe
 import CORALean.ContSet.Zonotope.Real.Theorems.FaultObservePRadiusCounterexample
+import CORALean.ContSet.Zonotope.Real.Theorems.TensorMultiplicationOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.TensorMultiplicationZonoOuter
 
 /-!
 # What `Zonotope` guarantees

@@ -106,6 +106,7 @@ import CORALean.ContSet.Taylm.Real.Theorems.TaylorScaled
 import CORALean.ContSet.Taylm.Real.Theorems.TermBoundsMem
 import CORALean.ContSet.Taylm.Real.Theorems.TimesOuter
 import CORALean.ContSet.Taylm.Real.Theorems.TimesScaled
+import CORALean.ContSet.Taylm.Real.Theorems.TimesScalingCounterexample
 import CORALean.ContSet.Taylm.Real.Theorems.UminusOuter
 import CORALean.ContSet.Taylm.Real.Theorems.UminusScaled
 import CORALean.ContSet.Taylm.Real.Theorems.UplusOuter

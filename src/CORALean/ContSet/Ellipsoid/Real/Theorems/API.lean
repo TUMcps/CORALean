@@ -50,6 +50,11 @@ import CORALean.ContSet.Ellipsoid.Real.Theorems.MinkDiffPointExact
 import CORALean.ContSet.Ellipsoid.Real.Theorems.ContainsPointIff
 import CORALean.ContSet.Ellipsoid.Real.Theorems.SegmentsSubsetOfIsOrOuter
 import CORALean.ContSet.Ellipsoid.Real.Theorems.Enclose2Outer
+import CORALean.ContSet.Ellipsoid.Real.Theorems.IsGreatestNorm
+import CORALean.ContSet.Ellipsoid.Real.Theorems.GeneratorsMulTranspose
+import CORALean.ContSet.Ellipsoid.Real.Theorems.AndPointExact
+import CORALean.ContSet.Ellipsoid.Real.Theorems.EnclosePointsCovMem
+import CORALean.ContSet.Ellipsoid.Real.Theorems.IsIntersectingPointIff
 
 /-!
 # What an ellipsoid guarantees, collected

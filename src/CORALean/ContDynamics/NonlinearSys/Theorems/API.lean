@@ -15,6 +15,7 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.GainDimLePow
 import CORALean.ContDynamics.NonlinearSys.Theorems.GainDimTendstoPow
 import CORALean.ContDynamics.NonlinearSys.Theorems.GainDimTendstoPowConst
 import CORALean.ContDynamics.NonlinearSys.Theorems.GainOrderEqTopIff
+import CORALean.ContDynamics.NonlinearSys.Theorems.GainOrderMaxCounterexample
 import CORALean.ContDynamics.NonlinearSys.Theorems.GlobalAbstrErrEqLocalAbstrErr
 import CORALean.ContDynamics.NonlinearSys.Theorems.GlobalAbstrErrLeLocalAbstrErr
 import CORALean.ContDynamics.NonlinearSys.Theorems.GlobalAbstrErrLeLocalAbstrErrOfSolver
@@ -56,6 +57,7 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.TrajectoryIffNonlinearSys
 import CORALean.ContDynamics.NonlinearSys.Theorems.TuneDeltatInitGain
 import CORALean.ContDynamics.NonlinearSys.Theorems.VarInputsMono
 import CORALean.ContDynamics.NonlinearSys.Theorems.VarInputsOuter
+import CORALean.ContDynamics.NonlinearSys.Theorems.VarInputsEqCounterexample
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachUnionOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.EnclosesOfHasFDerivAt
 import CORALean.ContDynamics.NonlinearSys.Theorems.LinInputFloatOuter
