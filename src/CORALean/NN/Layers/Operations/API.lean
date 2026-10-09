@@ -28,6 +28,10 @@ import CORALean.NN.Layers.Operations.CurvLo
 import CORALean.NN.Layers.Operations.CurvMid
 import CORALean.NN.Layers.Operations.DoubleRounding
 import CORALean.NN.Layers.Operations.ElementwiseAffine
+import CORALean.NN.Layers.Operations.FindRegionLeft
+import CORALean.NN.Layers.Operations.FindRegionLoop
+import CORALean.NN.Layers.Operations.FindRegionPolys
+import CORALean.NN.Layers.Operations.FindRegionRight
 import CORALean.NN.Layers.Operations.LipConstrLinear
 import CORALean.NN.Layers.Operations.LipConstrScale
 import CORALean.NN.Layers.Operations.EnclosureMid
@@ -51,6 +55,7 @@ import CORALean.NN.Layers.Operations.LeakyReluRelaxation
 import CORALean.NN.Layers.Operations.LeakyReluSlope
 import CORALean.NN.Layers.Operations.Linear
 import CORALean.NN.Layers.Operations.LinearWithError
+import CORALean.NN.Layers.Operations.LowerRegionOrder
 import CORALean.NN.Layers.Operations.MaxPool
 import CORALean.NN.Layers.Operations.MaxPoolGapUp
 import CORALean.NN.Layers.Operations.MulRangeDown
@@ -68,6 +73,7 @@ import CORALean.NN.Layers.Operations.PolyRelaxationOfSampling
 import CORALean.NN.Layers.Operations.PolyRelaxationPadTo
 import CORALean.NN.Layers.Operations.PolyRelaxationToRelaxation
 import CORALean.NN.Layers.Operations.PowRange
+import CORALean.NN.Layers.Operations.RegionPolyOfRelaxation
 import CORALean.NN.Layers.Operations.RelaxationBox
 import CORALean.NN.Layers.Operations.RelaxationOfAffineConj
 import CORALean.NN.Layers.Operations.RelaxationOfAntitone

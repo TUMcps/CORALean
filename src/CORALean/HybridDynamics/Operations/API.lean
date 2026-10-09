@@ -31,6 +31,9 @@ import CORALean.HybridDynamics.Operations.LocationPotInt
 import CORALean.HybridDynamics.Operations.LocationPotOut
 import CORALean.HybridDynamics.Operations.GuardIntersectNondetFloat
 import CORALean.HybridDynamics.Operations.GuardIntersectPolytopeFloat
+import CORALean.HybridDynamics.Operations.GuardIntersectZonoGirardFloat
+import CORALean.HybridDynamics.Operations.ZonoGirardUpperFloat
+import CORALean.HybridDynamics.Operations.CheckFlowFloat
 import CORALean.HybridDynamics.Operations.TransitionConvGuard
 import CORALean.HybridDynamics.Operations.TrajectoryError
 import CORALean.HybridDynamics.Operations.TransitionGuard2Polytope

@@ -5826,8 +5826,8 @@
         "class": "location",
         "methods": 24,
         "proved": 0,
-        "float": 10,
-        "not_yet": 6,
+        "float": 12,
+        "not_yet": 4,
         "out_of_scope": 8,
         "needs_float": 0,
         "out_of_scope_by_reason": {
@@ -5838,7 +5838,7 @@
           "matlab-runtime": 7,
           "deprecated": 0
         },
-        "cora_issues": 0,
+        "cora_issues": 2,
         "findings": {
           "correct": 0,
           "underspecified": 0,
@@ -5930,14 +5930,14 @@
         "class": "layers",
         "methods": 43,
         "proved": 6,
-        "float": 32,
-        "not_yet": 2,
-        "out_of_scope": 3,
+        "float": 33,
+        "not_yet": 0,
+        "out_of_scope": 4,
         "needs_float": 6,
         "out_of_scope_by_reason": {
           "plotting/display": 1,
           "random/sampling": 0,
-          "solver-dependent": 0,
+          "solver-dependent": 1,
           "io/conversion-to-matlab-objects": 0,
           "matlab-runtime": 2,
           "deprecated": 0
@@ -5955,20 +5955,20 @@
         "group": "nn",
         "class": "neuralNetwork",
         "methods": 61,
-        "proved": 8,
-        "float": 10,
-        "not_yet": 6,
-        "out_of_scope": 37,
-        "needs_float": 8,
+        "proved": 9,
+        "float": 11,
+        "not_yet": 0,
+        "out_of_scope": 41,
+        "needs_float": 9,
         "out_of_scope_by_reason": {
           "plotting/display": 4,
           "random/sampling": 2,
-          "solver-dependent": 1,
+          "solver-dependent": 2,
           "io/conversion-to-matlab-objects": 20,
-          "matlab-runtime": 10,
+          "matlab-runtime": 13,
           "deprecated": 0
         },
-        "cora_issues": 1,
+        "cora_issues": 2,
         "findings": {
           "correct": 68,
           "underspecified": 7,
@@ -6030,11 +6030,11 @@
       "hybrid": {
         "methods": 89,
         "proved": 2,
-        "float": 34,
-        "not_yet": 9,
+        "float": 36,
+        "not_yet": 7,
         "out_of_scope": 44,
         "needs_float": 2,
-        "cora_issues": 2,
+        "cora_issues": 4,
         "out_of_scope_by_reason": {
           "plotting/display": 5,
           "random/sampling": 2,
@@ -6053,18 +6053,18 @@
       },
       "neuralNetworks": {
         "methods": 104,
-        "proved": 14,
-        "float": 42,
-        "not_yet": 8,
-        "out_of_scope": 40,
-        "needs_float": 14,
-        "cora_issues": 3,
+        "proved": 15,
+        "float": 44,
+        "not_yet": 0,
+        "out_of_scope": 45,
+        "needs_float": 15,
+        "cora_issues": 4,
         "out_of_scope_by_reason": {
           "plotting/display": 5,
           "random/sampling": 2,
-          "solver-dependent": 1,
+          "solver-dependent": 3,
           "io/conversion-to-matlab-objects": 20,
-          "matlab-runtime": 12,
+          "matlab-runtime": 15,
           "deprecated": 0
         },
         "findings": {
@@ -6078,18 +6078,18 @@
     },
     "totals": {
       "methods": 1260,
-      "proved": 102,
-      "float": 711,
-      "not_yet": 58,
-      "out_of_scope": 389,
-      "needs_float": 102,
-      "cora_issues": 56,
+      "proved": 103,
+      "float": 715,
+      "not_yet": 48,
+      "out_of_scope": 394,
+      "needs_float": 103,
+      "cora_issues": 59,
       "out_of_scope_by_reason": {
         "plotting/display": 86,
         "random/sampling": 47,
-        "solver-dependent": 20,
+        "solver-dependent": 22,
         "io/conversion-to-matlab-objects": 30,
-        "matlab-runtime": 192,
+        "matlab-runtime": 195,
         "deprecated": 14
       },
       "findings": {
@@ -6124,11 +6124,11 @@
       }
     },
     "theorems": {
-      "paper": 1265,
-      "float": 1604,
-      "helper": 1047,
-      "lemma": 2319,
-      "total": 6235,
+      "paper": 1266,
+      "float": 1607,
+      "helper": 1050,
+      "lemma": 2332,
+      "total": 6255,
       "examples": 80
     }
   }

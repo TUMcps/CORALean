@@ -8,6 +8,8 @@ import CORALean.HybridDynamics.Definitions.UrgentRun
 import CORALean.HybridDynamics.Definitions.NonlinearReset
 import CORALean.HybridDynamics.Definitions.NonlinearResetFloatModel
 import CORALean.HybridDynamics.Definitions.ConstFlowHitSet
+import CORALean.HybridDynamics.Definitions.CheckFlow
+import CORALean.HybridDynamics.Definitions.GuardIntersectZonoGirard
 import CORALean.HybridDynamics.Definitions.HitSet
 import CORALean.HybridDynamics.Definitions.SdcInput
 import CORALean.HybridDynamics.Definitions.HitHessian

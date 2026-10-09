@@ -59,6 +59,8 @@ import CORALean.ContDynamics.LinParamSys.Operations.ReachFloatInput
 import CORALean.ContDynamics.LinParamSys.Operations.ReachFloatInputSplit
 import CORALean.ContDynamics.LinParamSys.Operations.ReachOrderFloat
 import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepFloat
+import CORALean.HybridDynamics.Operations.CheckFlowFloat
+import CORALean.HybridDynamics.Operations.GuardIntersectZonoGirardFloat
 import CORALean.HybridDynamics.Operations.TimeIntervalStepSplitFloat
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachFloatOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachAlgFloatOuter
@@ -111,6 +113,10 @@ import CORALean.NN.Layers.Theorems.SigmoidRelaxationSound
 import CORALean.NN.Layers.Operations.SigmoidEnclosure
 import CORALean.NN.Layers.Operations.SoftmaxBox
 import CORALean.NN.NeuralNetwork
+import CORALean.NN.Layers.Operations.FindRegionPolys
+import CORALean.NN.Layers.Operations.PolyRelaxationPadTo
+import CORALean.NN.Layers.Operations.RelaxationToPoly
+import CORALean.NN.Operations.PropagateBounds
 import CORALean.NN.Operations.Enclose
 import CORALean.NN.Operations.VerifySplit
 import CORALean.NN.Theorems.HoldsOfCheck
@@ -394,6 +400,17 @@ def ctLoc : Location (Zonotope D) (Zonotope D) Unit D 2 := ⟨Z, ctSys, Z, []⟩
 def locStepRun : Zonotope D 2 := ctLoc.timeIntervalStepFloat stepR 4 Z
 def locSplitRun : Zonotope D 2 := ctLoc.timeIntervalStepSplitFloat stepR 4 Z
 
+/-- The guard hyperplane `x₁ = 9/8` of unit normal `e₁`: the cut of `Z` along `e₂` and the
+Girard and Le Guernic bundle over the identity basis, and the reach sets of `ctLoc` that
+`checkFlowFloat` keeps (the flow at the plane has an outward component). -/
+def hpNormal : Vec D 2 := ![d 1 0, d 0 0]
+def hpOffset : D := d 9 (-3)
+def hpBasis : Mat D 2 2 := !![d 1 0, d 0 0; d 0 0, d 1 0]
+def zonoGirardUpperRun : D := Location.zonoGirardUpperFloat Z hpNormal hpOffset ![d 0 0, d 1 0]
+def zonoGirardRun : ZonoBundle D 2 :=
+  Location.guardIntersectZonoGirardFloat [hpBasis] Z [] hpNormal hpOffset
+def checkFlowRun : List (Zonotope D 2) := ctLoc.checkFlowFloat hpNormal hpOffset [Z]
+
 /-- `A` known only to `±2⁻⁵` entrywise, as a `LinParamSys` over float interval matrices: an
 admissible order, one step of its flow, its input solution over `Z`, and five sampled steps. -/
 def lpA : Interval (Mat D 2 2) :=
@@ -605,6 +622,34 @@ def mixedNet : NeuralNetwork (Zonotope D) 2 2 :=
           (.layer (⟨identityMat D 2, fun _ => d 0 0⟩ : LinearLayer D 2 2) .output))))
 
 def mixedEncloseRun : Zonotope D 2 := mixedNet.enclose Z
+
+/-- `net` at the interval hull representation: the stretch `propagateBounds` pushes bounds
+through. -/
+def netBox : NeuralNetwork (fun n => Interval (Vec D n)) 2 2 :=
+  .layer (⟨identityMat D 2, fun _ => d 0 0⟩ : LinearLayer D 2 2)
+    (.layer (⟨reluSlope, rfl⟩ : ReluLayer D 2 2) .output)
+
+/-- The bounds `[0, 1]²` of the first layer, met with the bounds `[-1/2, 1/2]²` the next held. -/
+def propagateBoundsRun : Interval (Vec D 2) :=
+  netBox.propagateBounds ⟨fun _ => d 0 0, fun _ => d 1 0⟩
+    (some ⟨fun _ => d (-1) (-1), fun _ => d 1 (-1)⟩)
+
+/-- A fit per order for `findRegionPolys`: the order-1 sigmoid relaxation padded to each
+degree, a stand-in that is not sound below order `1`. -/
+def regionFit : (o : ℕ) → PolyRelaxation D o := fun o =>
+  (sigmoidRelaxation (𝕋 := D) 2).toPoly.padTo o
+
+/-- Stored polynomials of the two infinite ends of `[-4, 4]`. -/
+def regionStart : RegionPoly D := ⟨none, some (d (-4) 0), 0, fun _ => d 0 0, d 1 (-1)⟩
+def regionEnd : RegionPoly D := ⟨some (d 4 0), none, 0, fun _ => d 1 0, d 1 (-1)⟩
+
+/-- Order `1`, tolerance `1/16`, fuel `64`. -/
+def findRegionPolysRun : Option (List (RegionPoly D)) :=
+  findRegionPolys regionFit 1 (d 1 (-4)) 64 (d (-4) 0) (d 4 0) regionStart regionEnd
+
+#eval propagateBoundsRun.inf 0
+#eval propagateBoundsRun.sup 0
+#eval findRegionPolysRun.map List.length
 
 /-- `ctSys` closed around `net`, two control periods of two float steps of `r` each (#1). -/
 def nnContrSys : NeurNetContrSys D (Zonotope D) 2 := ⟨ctSys, net⟩

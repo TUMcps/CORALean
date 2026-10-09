@@ -6,6 +6,7 @@ import CORALean.NN.Graph.Theorems.BallEnumInjective
 import CORALean.NN.Graph.Theorems.BallEqOfSuccEq
 import CORALean.NN.Graph.Theorems.BallMono
 import CORALean.NN.Graph.Theorems.BallMonoOfSupport
+import CORALean.NN.Graph.Theorems.BallSubsetReduceKeep
 import CORALean.NN.Graph.Theorems.BallSubsetSucc
 import CORALean.NN.Graph.Theorems.ConvExact
 import CORALean.NN.Graph.Theorems.ConvExactOfAdjacency
@@ -44,6 +45,9 @@ import CORALean.NN.Graph.Theorems.MessagePassingSubmatrixOfBallUncertain
 import CORALean.NN.Graph.Theorems.NotMemBallOfIsolated
 import CORALean.NN.Graph.Theorems.OneLeDegree
 import CORALean.NN.Graph.Theorems.PoolingExact
+import CORALean.NN.Graph.Theorems.ReduceGNNForNodeExact
+import CORALean.NN.Graph.Theorems.ReduceKeepZeroStepsCora
+import CORALean.NN.Graph.Theorems.ReducedStepsRow
 import CORALean.NN.Graph.Theorems.SelectMul
 import CORALean.NN.Graph.Theorems.SelectMatMul
 import CORALean.NN.Graph.Theorems.SelectMatToReal
