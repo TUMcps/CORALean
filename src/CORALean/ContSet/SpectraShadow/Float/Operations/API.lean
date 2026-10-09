@@ -19,6 +19,13 @@ import CORALean.ContSet.SpectraShadow.Float.Operations.IsBounded
 import CORALean.ContSet.SpectraShadow.Float.Operations.RepresentsaEmptySet
 import CORALean.ContSet.SpectraShadow.Float.Operations.RepresentsaOrigin
 import CORALean.ContSet.SpectraShadow.Float.Operations.RepresentsaPoint
+import CORALean.ContSet.SpectraShadow.Float.Operations.ArrowMat
+import CORALean.ContSet.SpectraShadow.Float.Operations.Cone
+import CORALean.ContSet.SpectraShadow.Float.Operations.SingletonOne
+import CORALean.ContSet.SpectraShadow.Float.Operations.HyperplaneOne
+import CORALean.ContSet.SpectraShadow.Float.Operations.ConvHull
+import CORALean.ContSet.SpectraShadow.Float.Operations.Or
+import CORALean.ContSet.SpectraShadow.Float.Operations.PolytopeOuter
 
 /-!
 # What a float spectrahedral shadow computes, collected
@@ -29,8 +36,7 @@ centre, with `centerResidual` the box that rounding costs.
 `Inf` and `empty`, the two constant `1 × 1` inequalities with the origin box, and
 `project`, which reads the stored centre and generator rows at the chosen coordinates.
 
-`mtimes` and `cartProd` are absent. The first rounds every generator, and a
-generator's rounding multiplies a variable the inequality leaves unbounded, so no
-box holds it. The second is absent as in every float representation: the product
-lives in another ambient dimension, which only `Mtimes` crosses.
+`mtimes` ties the point to new free variables and multiplies only the error box, so no stored
+generator is rounded; `cartProd`, `inter` and `convHull_` (and `or`) are built from the same
+exact pieces, with `plus` rounding the centre alone.
 -/

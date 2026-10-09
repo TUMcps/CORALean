@@ -22,6 +22,11 @@ import CORALean.ContSet.SpectraShadow.Float.Theorems.MemBase
 import CORALean.ContSet.SpectraShadow.Float.Theorems.RepresentsaEmptySetSound
 import CORALean.ContSet.SpectraShadow.Float.Theorems.RepresentsaOriginSound
 import CORALean.ContSet.SpectraShadow.Float.Theorems.RepresentsaPointSound
+import CORALean.ContSet.SpectraShadow.Float.Theorems.ConeOuter
+import CORALean.ContSet.SpectraShadow.Float.Theorems.ConvHullOuter
+import CORALean.ContSet.SpectraShadow.Float.Theorems.OrOuter
+import CORALean.ContSet.SpectraShadow.Float.Theorems.LinCombOuter
+import CORALean.ContSet.SpectraShadow.Float.Theorems.PolytopeOuter
 
 /-!
 # What a float spectrahedral shadow guarantees, collected

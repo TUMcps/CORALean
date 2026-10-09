@@ -1,4 +1,5 @@
 import CORALean.ContSet.SpectraShadow.Real.Operations.Inter
+import CORALean.ContSet.SpectraShadow.Real.Theorems.EqBlockSum
 import CORALean.ContSet.SpectraShadow.Real.Theorems.PlusExact
 
 /-!
@@ -26,24 +27,6 @@ variable {n : ℕ}
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
-/-- The diagonal block is linear in the vector it carries. -/
-theorem SpectraShadow.aux_eq_block_sum {ι : Type} (s : Finset ι) (β : ι → ℝ) (g : ι → Vec ℝ n) :
-    ∑ i ∈ s, β i • blockDiag 0 (diagonal (g i)) (diagonal (-(g i)))
-      = blockDiag 0 (diagonal (∑ i ∈ s, β i • g i))
-        (diagonal (-(∑ i ∈ s, β i • g i))) := by -- --- PROOF ---
-  have hd : ∀ h : ι → Vec ℝ n, ∑ i ∈ s, β i • (diagonal (h i) : Mat ℝ n n)
-      = diagonal (∑ i ∈ s, β i • h i) := fun h => by
-    ext j k
-    simp only [Matrix.sum_apply, Matrix.smul_apply, diagonal_apply, Finset.sum_apply,
-      Pi.smul_apply, smul_eq_mul]
-    split_ifs <;> simp
-  simp_rw [← blockDiag_smul]
-  rw [← blockDiag_sum, hd, show ∑ i ∈ s, β i • (diagonal (-(g i)) : Mat ℝ n n)
-      = diagonal (-(∑ i ∈ s, β i • g i)) by
-    rw [hd (fun i => -(g i))]
-    congr 1
-    simp [Finset.sum_neg_distrib]]
 
 /-- `inter`'s inequality: `plus`'s, and the diagonal block at the difference of the two points. -/
 theorem SpectraShadow.aux_lmi_inter (S₁ S₂ : SpectraShadow (Vec ℝ n))
@@ -80,7 +63,7 @@ theorem SpectraShadow.aux_lmi_inter (S₁ S₂ : SpectraShadow (Vec ℝ n))
       simp_rw [← blockDiag_smul]
       rw [← blockDiag_sum]
     -- the first block is `plus`'s, the second is the diagonal block at the summed vector
-    rw [hcomb, ← blockDiag_add, SpectraShadow.aux_eq_block_sum, hsum]
+    rw [hcomb, ← blockDiag_add, SpectraShadow.eq_block_sum, hsum]
     congr 1
     rw [← blockDiag_add]
     congr 1 <;> (ext j k; by_cases hjk : j = k <;> simp [hjk]; ring)

@@ -36,6 +36,9 @@ import CORALean.ContDynamics.LinearSys.Operations.GirardReach
 import CORALean.ContDynamics.LinearSys.Operations.InputReach
 import CORALean.ContDynamics.LinearSys.Operations.InputSolution
 import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
+import CORALean.ContDynamics.LinearSys.Operations.InputSolutionBoxFloat
+import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumBoxFloat
+import CORALean.ContDynamics.LinearSys.Operations.InputTermBoxFloat
 import CORALean.ContDynamics.LinearSys.Operations.InputSolutionInner
 import CORALean.ContDynamics.LinearSys.Operations.InputSolutionSet
 import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSum
@@ -76,10 +79,13 @@ import CORALean.ContDynamics.LinearSys.Operations.PropagateInputSolution
 import CORALean.ContDynamics.LinearSys.Operations.Reach
 import CORALean.ContDynamics.LinearSys.Operations.ReachAdmissible
 import CORALean.ContDynamics.LinearSys.Operations.ReachError
+import CORALean.ContDynamics.LinearSys.Operations.ReachErrorFloat
+import CORALean.ContDynamics.LinearSys.Operations.ReachExcessFloat
 import CORALean.ContDynamics.LinearSys.Operations.ReachFloat
 import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInput
 import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInputStep
 import CORALean.ContDynamics.LinearSys.Operations.ReachInnerRep
+import CORALean.ContDynamics.LinearSys.Operations.ReachInnerRepFloat
 import CORALean.ContDynamics.LinearSys.Operations.CanonicalForm
 import CORALean.ContDynamics.LinearSys.Operations.CanonicalFormFloat
 import CORALean.ContDynamics.LinearSys.Operations.ErrorEdge
@@ -114,6 +120,10 @@ import CORALean.ContDynamics.LinearSys.Operations.TimePointStepError
 import CORALean.ContDynamics.LinearSys.Operations.TimePointStepErrorBoxFloat
 import CORALean.ContDynamics.LinearSys.Operations.TimePointStepFloat
 import CORALean.ContDynamics.LinearSys.Operations.TimePointStepInnerRep
+import CORALean.ContDynamics.LinearSys.Operations.TimePointStepExcessFloat
+import CORALean.ContDynamics.LinearSys.Operations.TimePointStepInnerErrorFloat
+import CORALean.ContDynamics.LinearSys.Operations.TimePointStepInnerRepFloat
+import CORALean.ContDynamics.LinearSys.Operations.TimePointStepInputFloat
 import CORALean.ContDynamics.LinearSys.Operations.TimePointStepRemainderError
 import CORALean.ContDynamics.LinearSys.Operations.TunedInit
 import CORALean.ContDynamics.LinearSys.Operations.TunedReach

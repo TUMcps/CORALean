@@ -18,6 +18,18 @@ import CORALean.ContSet.SpectraShadow.Real.Operations.RepresentsaOrigin
 import CORALean.ContSet.SpectraShadow.Real.Operations.RepresentsaPoint
 import CORALean.ContSet.SpectraShadow.Real.Operations.SupportBound
 import CORALean.ContSet.SpectraShadow.Real.Operations.SupportFuncCoraAllZero
+import CORALean.ContSet.SpectraShadow.Real.Operations.ArrowMat
+import CORALean.ContSet.SpectraShadow.Real.Operations.Cone
+import CORALean.ContSet.SpectraShadow.Real.Operations.SingletonOne
+import CORALean.ContSet.SpectraShadow.Real.Operations.HyperplaneOne
+import CORALean.ContSet.SpectraShadow.Real.Operations.ConvHull
+import CORALean.ContSet.SpectraShadow.Real.Operations.Or
+import CORALean.ContSet.SpectraShadow.Real.Operations.Translate
+import CORALean.ContSet.SpectraShadow.Real.Operations.PolytopeOuter
+import CORALean.ContSet.SpectraShadow.Real.Operations.PolytopeInner
+import CORALean.ContSet.SpectraShadow.Real.Operations.GFro
+import CORALean.ContSet.SpectraShadow.Real.Operations.FullDimShortcut
+import CORALean.ContSet.SpectraShadow.Real.Operations.GenerateESumRep
 
 /-!
 # What a spectrahedral shadow computes, collected

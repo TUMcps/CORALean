@@ -23,6 +23,19 @@ import CORALean.ContSet.ProbZonotope.Real.Theorems.GeneratorsMulTranspose
 import CORALean.ContSet.ProbZonotope.Real.Theorems.ProbReduceEq
 import CORALean.ContSet.ProbZonotope.Real.Theorems.ReduceGirardLawsOuter
 import CORALean.ContSet.ProbZonotope.Real.Theorems.EncloseMeanOuter
+import CORALean.ContSet.ProbZonotope.Real.Theorems.AbsLeCorner
+import CORALean.ContSet.ProbZonotope.Real.Theorems.AbsNotMem
+import CORALean.ContSet.ProbZonotope.Real.Theorems.IntervalProb
+import CORALean.ContSet.ProbZonotope.Real.Theorems.UnitMeanIntervalCora
+import CORALean.ContSet.ProbZonotope.Real.Theorems.IntervalCoraNotMem
+import CORALean.ContSet.ProbZonotope.Real.Theorems.SupCoraLt
+import CORALean.ContSet.ProbZonotope.Real.Theorems.SupIsLUB
+import CORALean.ContSet.ProbZonotope.Real.Theorems.SqrtMulVecMemZonotope
+import CORALean.ContSet.ProbZonotope.Real.Theorems.MemZonotopeOfQuadLt
+import CORALean.ContSet.ProbZonotope.Real.Theorems.MaxAnti
+import CORALean.ContSet.ProbZonotope.Real.Theorems.LeAddSumOfLevels
+import CORALean.ContSet.ProbZonotope.Real.Theorems.PyramidOuter
+import CORALean.ContSet.ProbZonotope.Real.Theorems.PyramidNotGeProb
 
 /-!
 # What a probabilistic zonotope guarantees, collected

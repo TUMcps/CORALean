@@ -148,6 +148,15 @@ def ofUnion {n : ℕ} (U : SetUnion (Zonotope 𝕋 n)) : Out :=
   ⟨s!"branches={U.sets.length} " ++ "; ".intercalate (U.sets.map fun Z => (ofZono Z).text),
     U.sets.flatMap zonoF, false⟩
 
+-- probabilistic zonotopes and spectrahedral shadows
+def ofProbZ {n : ℕ} (P : ProbZonotope 𝕋 n) : Out :=
+  ⟨s!"mean {(ofZono P.Z).text} cov inf={matS P.cov.inf} sup={matS P.cov.sup}",
+    zonoF P.Z ++ matF P.cov.inf ++ matF P.cov.sup, false⟩
+
+def ofSpS {n : ℕ} (S : SpectraShadow 𝕋 n) : Out :=
+  ⟨s!"k={S.k} m={S.m} c={vecS S.c} E={boxS S.E}",
+    matF S.A₀ ++ vecF S.c ++ matF S.G ++ boxF S.E, false⟩
+
 -- matrix zonotopes and lists of windows (`none` is a missing value)
 def ofMZ {m n : ℕ} (M : MatZonotope 𝕋 m n) : Out :=
   ⟨s!"h={M.h} c={matS M.c} E inf={matS M.E.inf} sup={matS M.E.sup}",
@@ -315,6 +324,11 @@ def dyadicRows : StateT Nat IO Unit := do
   row "zB_reindex" (ofBundle RunnableFloat.zB_reindex)
   row "zB_mtimes" (ofBundle RunnableFloat.zB_mtimes)
   row "E_mtimes" (ofEll RunnableFloat.E_mtimes)
+  row "probZ" (ofProbZ RunnableFloat.probZ)
+  row "probZ_probReduce" (ofProbZ RunnableFloat.probZ_probReduce)
+  row "spS" (ofSpS RunnableFloat.spS)
+  row "spS_convHull" (ofSpS RunnableFloat.spS_convHull)
+  row "spS_or" (ofSpS RunnableFloat.spS_or)
   -- the continuous-time step matrices
   row "stepA" (ofIMat RunnableFloat.stepA)
   row "stepOrderRun" (ofOptNat RunnableFloat.stepOrderRun)
@@ -331,6 +345,18 @@ def dyadicRows : StateT Nat IO Unit := do
   row "minkDiffSubtrahend" (ofZono RunnableFloat.minkDiffSubtrahend)
   row "minkDiffOpt" (ofBool RunnableFloat.minkDiffOpt.isSome)
   row "minkDiffRun" (ofZono RunnableFloat.minkDiffRun)
+  -- the continuous-time inner approximation (#129)
+  row "ctInnerSys" (ofMat RunnableFloat.ctInnerSys.A)
+  row "ctInnerX" (ofZono RunnableFloat.ctInnerX)
+  row "ctInnerU" (ofZono RunnableFloat.ctInnerU)
+  row "ctInnerStep" (ofZono RunnableFloat.ctInnerStep)
+  row "ctInnerStepError" (ofZono RunnableFloat.ctInnerStepError)
+  row "ctInnerStepOpt" (ofOptZono RunnableFloat.ctInnerStepOpt)
+  row "ctInnerStepRun" (ofZono RunnableFloat.ctInnerStepRun)
+  row "ctInnerReach" (ofZono RunnableFloat.ctInnerReach)
+  row "ctInnerReachError" (ofZono RunnableFloat.ctInnerReachError)
+  row "ctInnerReachOpt" (ofOptZono RunnableFloat.ctInnerReachOpt)
+  row "ctInnerReachRun" (ofZono RunnableFloat.ctInnerReachRun)
   row "ctLoc" (ofZono RunnableFloat.ctLoc.inv)
   row "locStepRun" (ofZono RunnableFloat.locStepRun)
   row "locSplitRun" (ofZono RunnableFloat.locSplitRun)

@@ -129,8 +129,8 @@ Rulings on borderline cases:
 | [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 6 | 46 | 6 | 15 | 3 |
 | [polygon](contSet/polygon.md) | contSet | 46 | 0 | 27 | 10 | 9 | 2 |
 | [polytope](contSet/polytope.md) | contSet | 58 | 6 | 40 | 0 | 12 | 4 |
-| [probZonotope](contSet/probZonotope.md) | contSet | 28 | 5 | 10 | 5 | 8 | 3 |
-| [spectraShadow](contSet/spectraShadow.md) | contSet | 33 | 0 | 18 | 7 | 8 | 4 |
+| [probZonotope](contSet/probZonotope.md) | contSet | 28 | 8 | 11 | 0 | 9 | 4 |
+| [spectraShadow](contSet/spectraShadow.md) | contSet | 33 | 2 | 22 | 0 | 9 | 5 |
 | [taylm](contSet/taylm.md) | contSet | 51 | 1 | 37 | 1 | 12 | 0 |
 | [zonoBundle](contSet/zonoBundle.md) | contSet | 44 | 6 | 31 | 0 | 7 | 4 |
 | [zonotope](contSet/zonotope.md) | contSet | 80 | 10 | 51 | 5 | 14 | 3 |
@@ -139,7 +139,7 @@ Rulings on borderline cases:
 | [linParamSys](contDynamics/linParamSys.md) | contDynamics | 11 | 0 | 6 | 1 | 4 | 0 |
 | [linProbSys](contDynamics/linProbSys.md) | contDynamics | 8 | 2 | 0 | 1 | 5 | 1 |
 | [linearARX](contDynamics/linearARX.md) | contDynamics | 7 | 1 | 4 | 0 | 2 | 0 |
-| [linearSys](contDynamics/linearSys.md) | contDynamics | 33 | 5 | 17 | 1 | 10 | 1 |
+| [linearSys](contDynamics/linearSys.md) | contDynamics | 33 | 4 | 18 | 1 | 10 | 1 |
 | [linearSysDT](contDynamics/linearSysDT.md) | contDynamics | 17 | 4 | 7 | 0 | 6 | 1 |
 | [neurNetContrSys](contDynamics/neurNetContrSys.md) | contDynamics | 5 | 0 | 4 | 0 | 1 | 0 |
 | [nonlinDASys](contDynamics/nonlinDASys.md) | contDynamics | 13 | 4 | 1 | 5 | 3 | 5 |
