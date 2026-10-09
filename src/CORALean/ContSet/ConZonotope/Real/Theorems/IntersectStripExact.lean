@@ -5,11 +5,19 @@ import CORALean.ContSet.ConZonotope.Real.Theorems.PlusExact
 /-!
 # `ConZonotope.intersectStrip` is exactly the intersection with the strip
 
+[1, Lemma 2] at one strip.
+
 For every gain `Λ`, not only the optimal ones: on the equality rows the factor of `Λ` vanishes,
 `x₀ + Λ (y - C x₀ + φ ν) = x₀`, so the new representation names the same points as the old one
 whose image lies in the strip (CORA's `aux_conZonotopeFromLambda`). The strip's widths are
 nonnegative (`0 ≤ φ`); with a negative width the strip `|C x - y| ≤ φ` is empty and the new factor
 `ν ∈ [-1, 1]` would still reach points.
+
+## References
+
+* [1] A. Alanwar, V. Gaßmann, X. He, H. Said, H. Sandberg, K. H. Johansson and M. Althoff.
+      "Privacy-Preserving Set-Based Estimation Using Partially Homomorphic Encryption".
+      European Journal of Control, 2023.
 -/
 
 -- Authors:       Tobias Ladner

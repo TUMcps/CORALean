@@ -62,6 +62,8 @@ import CORALean.ContSet.ConZonotope.Real.Theorems.CompactExact
 import CORALean.ContSet.ConZonotope.Real.Theorems.ConIntersectExact
 import CORALean.ContSet.ConZonotope.Real.Theorems.SplitUnion
 import CORALean.ContSet.ConZonotope.Real.Theorems.IntersectStripExact
+import CORALean.ContSet.ConZonotope.Real.Theorems.IntersectStripFamilyExact
+import CORALean.ContSet.ConZonotope.Real.Theorems.IntersectManyExact
 import CORALean.ContSet.ConZonotope.Real.Theorems.QuadMapOuter
 import CORALean.ContSet.ConZonotope.Real.Theorems.RepresentsaPointIff
 import CORALean.ContSet.ConZonotope.Real.Theorems.RepresentsaOriginIff

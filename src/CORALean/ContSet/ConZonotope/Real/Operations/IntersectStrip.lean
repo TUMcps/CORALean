@@ -8,7 +8,7 @@ import CORALean.Global.Block
 /-!
 # `ConZonotope.intersectStrip`
 
-CORA's `@conZonotope/intersectStrip` (after Alanwar et al., as its header cites) with a numeric
+CORA's `@conZonotope/intersectStrip` [1, Lemma 2] with a numeric
 gain, `aux_conZonotopeFromLambda`: the intersection of a constrained zonotope with the strip
 `{x | |C x - y| ≤ φ}` of `s` parallel slabs, in CG-Rep, the gain form being Alamo et al.'s for
 zonotopes. The strip enters as `s` new factors `ν` and `s` equality rows
@@ -18,6 +18,12 @@ zonotopes. The strip enters as `s` new factors `ν` and `s` equality rows
 The gain `Λ` is an argument and any `Λ` works. CORA's `'normGen'`, `'alamo-FRad'` and
 `'wang-FRad'` are closed forms for one choice of `Λ` (a matrix inverse), and `'svd'`, `'radius'`
 and `'bravo'` are optimiser or search driven; none of them is part of this operation.
+
+## References
+
+* [1] A. Alanwar, V. Gaßmann, X. He, H. Said, H. Sandberg, K. H. Johansson and M. Althoff.
+      "Privacy-Preserving Set-Based Estimation Using Partially Homomorphic Encryption".
+      European Journal of Control, 2023.
 -/
 
 -- Authors:       Tobias Ladner

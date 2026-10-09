@@ -206,6 +206,8 @@ import CORALean.ContSet.Zonotope.Real.Theorems.ContainsDFSIff
 import CORALean.ContSet.Zonotope.Real.Theorems.IsGreatestCoeffNormCorner
 import CORALean.ContSet.Zonotope.Real.Theorems.NaiveVertexSampleLe
 import CORALean.ContSet.Zonotope.Real.Theorems.IntersectStripOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.IntersectStripFamilyOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.IntersectWeightedOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.VolumeEqSquare
 import CORALean.ContSet.Zonotope.Real.Theorems.VolumeEqZero
 import CORALean.ContSet.Zonotope.Real.Theorems.BallSubsetOfAxisTest
