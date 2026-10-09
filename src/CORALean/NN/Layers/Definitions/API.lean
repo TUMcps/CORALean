@@ -51,6 +51,10 @@ import CORALean.NN.Layers.Definitions.SShape
 import CORALean.NN.Layers.Definitions.DeepZRelu
 import CORALean.NN.Layers.Definitions.DeepZSShape
 import CORALean.NN.Layers.Definitions.SShapedPrinted
+import CORALean.NN.Layers.Definitions.ApproxError
+import CORALean.NN.Layers.Definitions.ApproxErrorRelaxation
+import CORALean.NN.Layers.Definitions.SecantSlope
+import CORALean.NN.Layers.Definitions.EncloseNonlinearPrinted
 
 /-!
 # What the standard layers mean, collected

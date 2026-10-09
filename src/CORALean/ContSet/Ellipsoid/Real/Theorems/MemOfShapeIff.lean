@@ -1,0 +1,101 @@
+import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+import CORALean.ContSet.Ellipsoid.Real.Operations.OfShape
+import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
+import Mathlib.Tactic.Abel
+import Mathlib.Tactic.FieldSimp
+import Mathlib.Tactic.Linarith
+import Mathlib.Tactic.Positivity
+import Mathlib.Tactic.Ring
+
+/-!
+# The points of an ellipsoid of given shape
+
+For positive-definite `Q`, `x` is in `Ellipsoid.ofShape Q q` iff `(x − q)ᵀ Q⁻¹ (x − q) ≤ 1`:
+the two descriptions of an ellipsoid, as the affine image of the unit ball under `N = Q^(1/2)`
+and as a sublevel set of the quadratic form of `Q⁻¹` ([1, Eq. 5], [2, Sec. 1.1 (ellipse)]).
+With `x − q = N u`, `(N u)ᵀ Q⁻¹ (N u) = uᵀ u`, since `Q⁻¹ = N⁻¹ N⁻¹`.
+
+## References
+
+* [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of
+      Minkowski sum of ellipsoids". In Proc. of the 57th IEEE Conference on Decision and
+      Control (CDC), pp. 4040-4045, 2018. arXiv:1803.08157.
+* [2] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       08-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+open Matrix
+open scoped MatrixOrder
+
+variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+/-- [2, Sec. 1.1 (ellipse)]: `x ∈ E(Q, q)` iff `(x − q)ᵀ Q⁻¹ (x − q) ≤ 1`. -/
+theorem Ellipsoid.mem_ofShape_iff {Q : Mat ℝ n n} (hQ : Q.PosDef) (q x : Vec ℝ n) :
+    x ∈ (Ellipsoid.ofShape Q q).construct ↔ (x - q) ⬝ᵥ Q⁻¹ *ᵥ (x - q) ≤ 1 := by -- --- PROOF ---
+  set N : Mat ℝ n n := CFC.sqrt Q with hN
+  have hNh : N.IsHermitian := (CFC.sqrt_nonneg Q).posSemidef.isHermitian
+  have hNT : Nᵀ = N := by
+    have h := hNh.eq
+    simpa [conjTranspose_eq_transpose_of_trivial] using h
+  have hNN : N * N = Q := CFC.sqrt_mul_sqrt_self Q hQ.posSemidef.nonneg
+  -- `N` is invertible, with `Q⁻¹ = N⁻¹ N⁻¹`
+  have hQu : IsUnit Q.det := (isUnit_iff_isUnit_det Q).1 hQ.isUnit
+  have hNu : IsUnit N.det := by
+    have : IsUnit (N * N).det := hNN ▸ hQu
+    rw [det_mul] at this
+    exact (IsUnit.mul_iff.1 this).1
+  have hNi : N * N⁻¹ = 1 := mul_nonsing_inv N hNu
+  have hNi' : N⁻¹ * N = 1 := nonsing_inv_mul N hNu
+  have hQi : Q⁻¹ = N⁻¹ * N⁻¹ := by
+    rw [← hNN, Matrix.mul_inv_rev]
+  have hNiT : (N⁻¹)ᵀ = N⁻¹ := by rw [transpose_nonsing_inv, hNT]
+  -- the quadratic form of `Q⁻¹` at `N u` is `uᵀ u`
+  have hq : ∀ u : Vec ℝ n, (N *ᵥ u) ⬝ᵥ Q⁻¹ *ᵥ (N *ᵥ u) = u ⬝ᵥ u := by
+    intro u
+    have h1 : N⁻¹ * N⁻¹ * N = N⁻¹ := by rw [Matrix.mul_assoc, hNi', Matrix.mul_one]
+    rw [mulVec_mulVec, hQi, h1, dotProduct_mulVec, ← mulVec_transpose, hNiT, mulVec_mulVec, hNi',
+      one_mulVec]
+  -- the Euclidean ball is the sublevel set of `uᵀ u`
+  have hnorm : ∀ u : Vec ℝ n, ‖u‖₂ ≤ 1 ↔ u ⬝ᵥ u ≤ 1 := by
+    intro u
+    unfold norm₂
+    rw [Real.sqrt_le_iff]
+    simp only [dotProduct, sq]
+    constructor
+    · rintro ⟨-, h⟩; linarith
+    · intro h; exact ⟨zero_le_one, by linarith⟩
+  constructor
+  · -- a point `q + N u` of the ball image has form `uᵀ u ≤ 1`
+    rintro ⟨u, hu, rfl⟩
+    show (q + N *ᵥ u - q) ⬝ᵥ Q⁻¹ *ᵥ (q + N *ᵥ u - q) ≤ 1
+    rw [add_sub_cancel_left, hq]
+    exact (hnorm u).1 hu
+  · -- conversely `u = N⁻¹ (x − q)` is in the ball and maps to `x`
+    intro h
+    obtain ⟨u, hu⟩ : ∃ u : Vec ℝ n, u = N⁻¹ *ᵥ (x - q) := ⟨_, rfl⟩
+    refine ⟨u, (hnorm _).2 ?_, ?_⟩
+    all_goals subst hu
+    · have := hq (N⁻¹ *ᵥ (x - q))
+      rw [mulVec_mulVec, hNi, one_mulVec] at this
+      rw [← this]
+      exact h
+    · show x = q + N *ᵥ (N⁻¹ *ᵥ (x - q))
+      rw [mulVec_mulVec, hNi, one_mulVec]
+      abel
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

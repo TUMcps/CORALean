@@ -129,6 +129,9 @@ import CORALean.ContSet.Zonotope.Real.Operations.TensorEval
 import CORALean.ContSet.Zonotope.Real.Operations.TensorEvalLin
 import CORALean.ContSet.Zonotope.Real.Operations.TensorMultiplication
 import CORALean.ContSet.Zonotope.Real.Operations.TensorMultiplicationZono
+import CORALean.ContSet.Zonotope.Real.Operations.CorrectedStep
+import CORALean.ContSet.Zonotope.Real.Operations.CorrectedStepDistributed
+import CORALean.ContSet.Zonotope.Real.Operations.Affine
 
 /-!
 # What `Zonotope` computes

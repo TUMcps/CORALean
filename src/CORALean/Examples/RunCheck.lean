@@ -400,6 +400,7 @@ def dyadicRows2 : StateT Nat IO Unit := do
   -- the inputs above absorb nothing; this one absorbs the second generator
   row "reduceByBoxRun (absorbs one)" (ofZono (RunnableFloat.Z.reduceByBox
     (Partition.split 1 1 : Split (Fin RunnableFloat.Z.h) into (Fin 1) ⊕ (Fin 1))))
+  row "mtimesIntervalMatBoxRun" (ofBox RunnableFloat.mtimesIntervalMatBoxRun)
   -- discrete time and networks
   row "sys" (ofMat RunnableFloat.sys.A)
   row "reachRun" (ofZono RunnableFloat.reachRun)

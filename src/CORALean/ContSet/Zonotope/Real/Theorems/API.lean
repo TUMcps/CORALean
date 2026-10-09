@@ -252,6 +252,31 @@ import CORALean.ContSet.Zonotope.Real.Theorems.FaultObservePRadiusLe
 import CORALean.ContSet.Zonotope.Real.Theorems.FaultObservePRadiusCounterexample
 import CORALean.ContSet.Zonotope.Real.Theorems.TensorMultiplicationOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.TensorMultiplicationZonoOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.CorrectedStepOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.CorrectedStepDistributedOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.CorrectedStepPRadiusLe
+import CORALean.ContSet.Zonotope.Real.Theorems.DistributedObserveSound
+import CORALean.ContSet.Zonotope.Real.Theorems.FRadiusEqFrobenius
+import CORALean.ContSet.Zonotope.Real.Theorems.FRadiusGradient
+import CORALean.ContSet.Zonotope.Real.Theorems.FRadiusGradientCounterexample
+import CORALean.ContSet.Zonotope.Real.Theorems.FRadiusHasDerivAt
+import CORALean.ContSet.Zonotope.Real.Theorems.FderivEqGradient
+import CORALean.ContSet.Zonotope.Real.Theorems.UpdateEqAddSingle
+import CORALean.ContSet.Zonotope.Real.Theorems.GradientAffine
+import CORALean.ContSet.Zonotope.Real.Theorems.GradientWeights
+import CORALean.ContSet.Zonotope.Real.Theorems.GradientBias
+import CORALean.ContSet.Zonotope.Real.Theorems.DerivLine
+import CORALean.ContSet.Zonotope.Real.Theorems.AbsDetLeVolume
+import CORALean.ContSet.Zonotope.Real.Theorems.ExistsSigns
+import CORALean.ContSet.Zonotope.Real.Theorems.GeneratorHullEq
+import CORALean.ContSet.Zonotope.Real.Theorems.GeneratorHullEqConstruct
+import CORALean.ContSet.Zonotope.Real.Theorems.GeneratorHullNormalize
+import CORALean.ContSet.Zonotope.Real.Theorems.GeneratorHullSymm
+import CORALean.ContSet.Zonotope.Real.Theorems.GeneratorHullSymmetric
+import CORALean.ContSet.Zonotope.Real.Theorems.GeneratorHullTranslate
+import CORALean.ContSet.Zonotope.Real.Theorems.HyperplanePolyhedronEqZonotope
+import CORALean.ContSet.Zonotope.Real.Theorems.InterHyperplaneIff
+import CORALean.ContSet.Zonotope.Real.Theorems.SegmentSumEq
 
 /-!
 # What `Zonotope` guarantees

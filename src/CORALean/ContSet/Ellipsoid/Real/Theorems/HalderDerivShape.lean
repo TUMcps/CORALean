@@ -1,0 +1,65 @@
+import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+import Mathlib.Analysis.Matrix.PosDef
+import Mathlib.Analysis.Matrix.Order
+import Mathlib.Analysis.Calculus.Deriv.Inv
+import Mathlib.Analysis.Calculus.Deriv.Mul
+import Mathlib.Analysis.Calculus.Deriv.Add
+
+/-!
+# The derivative of the shape matrix in the parameter
+
+[1, Eq. 15]: for `Q(β) = (1 + 1/β) Q₁ + (1 + β) Q₂` and `R = Q₁⁻¹ Q₂`,
+`∂Q/∂β = −(1/β²) Q₁ (I − β² R)`: the derivative of `Q₁/β + β Q₂` is `−Q₁/β² + Q₂`, and
+`Q₁ R = Q₂`. Stated entrywise, since a matrix is a function of its entries.
+
+## References
+
+* [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of
+      Minkowski sum of ellipsoids". In Proc. of the 57th IEEE Conference on Decision and
+      Control (CDC), pp. 4040-4045, 2018. arXiv:1803.08157.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       08-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+open Matrix
+
+variable {n : Type*} [Fintype n] [DecidableEq n]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+/-- [1, Eq. 15]: every entry of `Q(β)` has derivative that of `−(1/β²) Q₁ (I − β² R)`. -/
+theorem Ellipsoid.halder_deriv_shape {Q₁ Q₂ : Matrix n n ℝ} (h₁ : Q₁.PosDef) {β : ℝ}
+    (hβ : 0 < β) (i j : n) :
+    HasDerivAt (fun b : ℝ => (((1 + 1 / b) • Q₁ + (1 + b) • Q₂) i j))
+      ((-(1 / β ^ 2) • (Q₁ * (1 - β ^ 2 • (Q₁⁻¹ * Q₂))) : Matrix n n ℝ) i j)
+      β := by -- --- PROOF ---
+  have hQ : Q₁ * (Q₁⁻¹ * Q₂) = Q₂ := by
+    rw [← mul_assoc, mul_nonsing_inv Q₁ ((isUnit_iff_isUnit_det Q₁).1 h₁.isUnit), one_mul]
+  -- the right side is `−Q₁/β² + Q₂` entrywise
+  have hrhs : (-(1 / β ^ 2) • (Q₁ * (1 - β ^ 2 • (Q₁⁻¹ * Q₂))) : Matrix n n ℝ) i j
+      = -(1 / β ^ 2) * Q₁ i j + Q₂ i j := by
+    rw [mul_sub, mul_one, mul_smul_comm, hQ]
+    simp only [Matrix.smul_apply, Matrix.sub_apply, smul_eq_mul]
+    field_simp
+    ring
+  rw [hrhs]
+  have h := (((hasDerivAt_inv hβ.ne').const_add 1).mul_const (Q₁ i j)).add
+    (((hasDerivAt_id β).const_add 1).mul_const (Q₂ i j))
+  refine (h.congr_deriv ?_).congr_of_eventuallyEq ?_
+  · simp
+  · filter_upwards with b
+    simp [one_div]
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

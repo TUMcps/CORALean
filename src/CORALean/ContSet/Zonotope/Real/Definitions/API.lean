@@ -5,6 +5,10 @@ import CORALean.ContSet.Zonotope.Real.Definitions.ZonotopeNorm
 import CORALean.ContSet.Zonotope.Real.Definitions.MaxNormSq
 import CORALean.ContSet.Zonotope.Real.Definitions.PRadius
 import CORALean.ContSet.Zonotope.Real.Definitions.FWRadius
+import CORALean.ContSet.Zonotope.Real.Definitions.FRadius
+import CORALean.ContSet.Zonotope.Real.Definitions.Gradient
+import CORALean.ContSet.Zonotope.Real.Definitions.GeneratorHull
+import CORALean.ContSet.Zonotope.Real.Definitions.SegmentSum
 
 /-!
 # What a zonotope means beyond its own construction

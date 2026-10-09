@@ -23,6 +23,7 @@ import CORALean.ContSet.Zonotope.Float.Operations.MtimesBox
 import CORALean.ContSet.Zonotope.Float.Operations.MtimesIntervalMat
 import CORALean.ContSet.Zonotope.Float.Operations.ReduceBoxError
 import CORALean.ContSet.Zonotope.Float.Operations.LowerDot
+import CORALean.ContSet.Zonotope.Float.Operations.MtimesIntervalMatBox
 import CORALean.ContSet.Zonotope.Float.Operations.RotMat
 import CORALean.ContSet.Zonotope.Float.Operations.Rotate
 import CORALean.ContSet.Zonotope.Float.Operations.ShiftDown
@@ -103,7 +104,8 @@ import CORALean.ContSet.Zonotope.Float.Operations.ReduceUnderApprox
 Each pays its rounding into the error box rather than into new generators,
 except where a diagonal block is being appended anyway.
 
-`PlusBox`, `MtimesBox`, `ReduceByBox` and `ReduceGirardBox` are the reverse of
-that: real-valued zonotopes bounding how far an operation's result reaches
-*beyond* the exact operation on its operand, for `reachErrorFloat`'s own use.
+`PlusBox`, `MtimesBox`, `MtimesIntervalMatBox`, `ReduceByBox` and
+`ReduceGirardBox` are the reverse of that: sets computed in `𝕋` bounding how
+far an operation's result reaches *beyond* the exact operation on its operand,
+for an inner approximation's error budget (`reachErrorFloat`).
 -/

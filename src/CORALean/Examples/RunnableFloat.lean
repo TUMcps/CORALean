@@ -88,6 +88,7 @@ import CORALean.ContSet.VPolytope.Float.Instances
 import CORALean.ContSet.ZonoBundle.Float.Instances
 import CORALean.ContSet.Zonotope.Float.Operations.MinkDiffRep
 import CORALean.ContSet.Zonotope.Float.Operations.MtimesBox
+import CORALean.ContSet.Zonotope.Float.Operations.MtimesIntervalMatBox
 import CORALean.ContSet.Zonotope.Float.Operations.PlusBox
 import CORALean.ContSet.Zonotope.Float.Operations.ReduceByBox
 import CORALean.ContSet.Zonotope.Float.Operations.ReduceGirardBox
@@ -514,6 +515,9 @@ def mtimesBoxRun : Interval (Vec D 2) := Zonotope.mtimesBox (identityMat D 2) Z
 def reduceByBoxRun : Zonotope D 2 :=
   Z.reduceByBox (Partition.split 2 0 : Split (Fin Z.h) into (Fin 2) ⊕ (Fin 0))
 def reduceGirardBoxRun : Zonotope D 2 := Zonotope.reduceGirardBox Z 1
+-- what `[e^{AΔt}] Z` holds beyond `A Z` for every `A` in the interval matrix (#129)
+def mtimesIntervalMatBoxRun : Interval (Vec D 2) :=
+  Zonotope.mtimesIntervalMatBox expEnclosureRun Z
 
 
 /-! ## Discrete-time reach and a network, run rather than only compiled

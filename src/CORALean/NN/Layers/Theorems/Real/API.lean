@@ -85,6 +85,16 @@ import CORALean.NN.Layers.Theorems.Real.SShapeBandAreaLe
 import CORALean.NN.Layers.Theorems.Real.DeepZSShapeCubeNotSound
 import CORALean.NN.Layers.Theorems.Real.DeepZSShapeSigmoidSound
 import CORALean.NN.Layers.Theorems.Real.DeepZSShapeTanhSound
+import CORALean.NN.Layers.Theorems.Real.ApproxAreaLe
+import CORALean.NN.Layers.Theorems.Real.ApproxErrorEnclosure
+import CORALean.NN.Layers.Theorems.Real.ApproxErrorIsExtreme
+import CORALean.NN.Layers.Theorems.Real.ApproxErrorRelaxationSound
+import CORALean.NN.Layers.Theorems.Real.ApproxErrorRelu
+import CORALean.NN.Layers.Theorems.Real.ApproxErrorSigmoid
+import CORALean.NN.Layers.Theorems.Real.ApproxErrorTanh
+import CORALean.NN.Layers.Theorems.Real.ExistsCriticalExtreme
+import CORALean.NN.Layers.Theorems.Real.EqPmArtanhOfTanh
+import CORALean.NN.Layers.Theorems.Real.EncloseNonlinearPrintedCounterexample
 
 /-!
 # What holds of the standard layers only at ℝ, collected

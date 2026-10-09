@@ -53,6 +53,7 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Verified Global Optimization with Taylor Model-based Range Bounders](2005/makino-tc-global-optimization.md) | Makino, Berz | Transactions on Computers, 11(4):1611-1618 | 2005 | 🟡 3/4 \| 6 |
 | [Ellipsoidal Toolbox (ET)](2006/kurzhanskiy-cdc-ellipsoidal-toolbox.md) | Kurzhanskiy, Varaiya | CDC, pp. 1498-1503 | 2006 | 🟢 6/6 \| 14 |
 | [Reachability Analysis of Nonlinear Systems with Uncertain Parameters using Conservative Linearization](2008/althoff-cdc-conservative-linearization.md) | Althoff, Stursberg, Buss | CDC, pp. 4042-4048 | 2008 | 🟡 10/11 \| 4 |
+| [Zonotope/Hyperplane Intersection for Hybrid Systems Reachability Analysis](2008/girard-hscc-zonotope-hyperplane.md) | Girard, Le Guernic | HSCC, LNCS 4981, pp. 215-228 | 2008 | 🟡 5/7 \| 13 |
 | [Safety Assessment for Stochastic Linear Systems using Enclosing Hulls of Probability Density Functions](2009/althoff-ecc-enclosing-hulls.md) | Althoff, Stursberg, Buss | ECC, pp. 625-630 | 2009 | 🟡 9/15 \| 5 |
 | [Interval predictor models: Identification and reliability](2009/campi-automatica-interval-predictor-models.md) | Campi, Calafiore, Garatti | Automatica, 45(2):382-392 | 2009 | 🟡 4/9 \| 27 |
 | [On the Hyperbox – Hyperplane Intersection Problem](2009/lara-infocomp-hyperbox-hyperplane.md) | Lara, Flores, Calderon | INFOCOMP Journal of Computer Science, 8(4):21-27 | 2009 | 🟢 18/18 \| 17 |
@@ -63,6 +64,7 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Analyzing Reachability of Linear Dynamic Systems with Parametric Uncertainties](2011/althoff-reachability-parametric-uncertainties.md) | Althoff, Krogh, Stursberg | In A. Rauh and E. Auer (eds.), Modeling, Design, and Simulation of Systems with Uncertainties, Springer | 2011 | 🟢 4/4 \| 0 |
 | [Reachability Computation of Low-Order Models for the Safety Verification of High-Order Road Vehicle Models](2012/althoff-acc-low-order-models.md) | Althoff, Dolan | ACC, pp. 3559-3566 | 2012 | 🟢 3/3 \| 11 |
 | [Avoiding Geometric Intersection Operations in Reachability Analysis of Hybrid Systems](2012/althoff-hscc-avoiding-intersection.md) | Althoff, Krogh | HSCC, pp. 45-54 | 2012 | 🟡 14/18 \| 4 |
+| [Goffin's algorithm for zonotopes](2012/cerny-kybernetika-goffin-zonotopes.md) | Černý | Kybernetika, 48(5):890-906 | 2012 | 🟡 20/28 \| 18 |
 | [Reachability Analysis of Nonlinear Systems using Conservative Polynomialization and Non-Convex Sets](2013/althoff-hscc-conservative-polynomialization.md) | Althoff | HSCC | 2013 | 🟢 6/6 \| 4 |
 | [Zonotopic guaranteed state estimation for uncertain systems](2013/le-automatica-zonotopic-estimation.md) | Le, Stoica, Alamo, Camacho, Dumur | Automatica, 49(11):3418-3424 | 2013 | 🟡 13/14 \| 7 |
 | [General Inner Approximation of Vector-valued Functions](2013/mullier-rc-general-inner-approximation.md) | Mullier, Goubault, Kieffer, Putot | Reliable Computing, 18:117-143 | 2013 | 🟡 14/15 \| 15 |
@@ -80,8 +82,10 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Zonotopic Fault Detection Observer with H− Performance](2017/wang-ccc-fault-detection-observer.md) | Wang, Zhou, Puig, Cembrano, Wang | CCC, pp. 7230-7235 | 2017 | 🟡 11/15 \| 20 |
 | [Implementation of Taylor Models in CORA 2018](2018/althoff-arch-taylor-models.md) | Althoff, Grebenyuk, Kochdumper | ARCH18, EPiC Series in Computing 54, pp. 145-173 | 2018 | 🟢 11/11 \| 38 |
 | [AI2: Safety and Robustness Certification of Neural Networks with Abstract Interpretation](2018/gehr-sp-ai2.md) | Gehr, Mirman, Drachsler-Cohen, Tsankov, Chaudhuri, Vechev | IEEE S&P, pp. 3-18 | 2018 | 🟢 11/11 \| 4 |
+| [On the parameterized computation of minimum volume outer ellipsoid of Minkowski sum of ellipsoids](2018/halder-cdc-minkowski-sum-ellipsoids.md) | Halder | CDC, pp. 4040-4045 | 2018 | 🟡 28/30 \| 13 |
 | [Fast and Effective Robustness Certification](2018/singh-neurips-deepz.md) | Singh, Gehr, Mirman, Püschel, Vechev | NeurIPS | 2018 | 🟢 8/8 \| 6 |
 | [Set-membership approach and Kalman observer based on zonotopes for discrete-time descriptor systems](2018/wang-automatica-descriptor-observer.md) | Wang, Puig, Cembrano | Automatica, 93:435-443 | 2018 | 🟡 16/18 \| 9 |
+| [A distributed set-membership approach based on zonotopes for interconnected systems](2018/wang-cdc-distributed-set-membership.md) | Wang, Alamo, Puig, Cembrano | IEEE CDC, pp. 668-673 | 2018 | 🟢 4/4 \| 12 |
 | [Linear Encodings for Polytope Containment Problems](2019/sadraddini-cdc-polytope-containment.md) | Sadraddini, Tedrake | CDC, pp. 4367-4372 | 2019 | 🟡 22/23 \| 16 |
 | [Interval estimation methods for discrete-time linear time-invariant systems](2019/tang-tac-interval-estimation.md) | Tang, Wang, Wang, Raïssi, Shen | IEEE Transactions on Automatic Control, 64(11):4717-4724 | 2019 | 🟢 18/18 \| 22 |
 | [Zonotopic set-membership state estimation for discrete-time descriptor LPV systems](2019/wang-tac-descriptor-lpv-estimation.md) | Wang, Wang, Puig, Cembrano | IEEE Transactions on Automatic Control, 64(5):2092-2099 | 2019 | 🟢 11/11 \| 16 |
@@ -115,6 +119,7 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Inner Approximations of Reachable Sets for Nonlinear Systems using the Minkowski Difference](2024/wetzlinger-lcss-inner-minkowski-difference.md) | Wetzlinger, Kulmburg, Althoff | IEEE Control Systems Letters, 8:2033-2038 | 2024 | 🟡 3/7 \| 16 |
 | [Explaining Fast and Slow: Abstraction and Refinement of Provable Explanations](2025/bassan-icml-explaining-fast-and-slow.md) | Bassan, Elboher, Ladner, Althoff, Katz | ICML | 2025 | 🟢 14/14 \| 2 |
 | [Robust Identification of Hybrid Automata from Noisy Data](2025/kochdumper-hscc-hybrid-automata-identification.md) | Kochdumper, Foughali, Habermehl, Asarin | HSCC, pp. 1-11 | 2025 | 🟢 9/9 \| 17 |
+| [Set-Based Training for Neural Network Verification](2025/koller-tmlr-set-based-training.md) | Koller, Ladner, Althoff | TMLR | 2025 | 🟡 13/18 \| 24 |
 | [Formal Verification of Graph Convolutional Networks with Uncertain Node Features and Uncertain Graph Structure](2025/ladner-tmlr-gcn.md) | Ladner, Eichelbeck, Althoff | TMLR | 2025 | 🟡 10/12 \| 7 |
 | [Zono-Conformal Prediction: Zonotope-Based Uncertainty Quantification for Regression and Classification Tasks](2025/luetzow-jmlr-zono-conformal-prediction.md) | Lützow, Eichelbeck, Kochenderfer, Althoff | Journal of Machine Learning Research, 26(294):1-37 | 2025 | 🟢 13/13 \| 19 |
 | [Reachset-Conformant System Identification](2026/luetzow-tac-reachset-conformant-identification.md) | Lützow, Althoff | IEEE Transactions on Automatic Control, 71(5):3014-3029 | 2026 | 🟡 13/14 \| 11 |
@@ -306,6 +311,10 @@ pages carry one:
 * [Model Predictive Control with Signal Temporal Logic Specifications](2014/raman-cdc-mpc-stl.md)
 * [Benchmarks for the Formal Verification of Power Systems](2022/althoff-arch-power-systems.md)
 * [Zonotopic Fault Detection Observer with H− Performance](2017/wang-ccc-fault-detection-observer.md)
+* [A distributed set-membership approach based on zonotopes for interconnected systems](2018/wang-cdc-distributed-set-membership.md)
+* [Set-Based Training for Neural Network Verification](2025/koller-tmlr-set-based-training.md)
+* [Goffin's algorithm for zonotopes](2012/cerny-kybernetika-goffin-zonotopes.md)
+* [On the parameterized computation of minimum volume outer ellipsoid of Minkowski sum of ellipsoids](2018/halder-cdc-minkowski-sum-ellipsoids.md)
 
 [FINDINGS.md](../FINDINGS.md) is the other half, and stays at the root: the
 places this formalization parts from CORA on purpose, which belong to no paper.
