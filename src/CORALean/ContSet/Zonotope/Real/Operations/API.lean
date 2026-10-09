@@ -133,6 +133,12 @@ import CORALean.ContSet.Zonotope.Real.Operations.CorrectedStep
 import CORALean.ContSet.Zonotope.Real.Operations.CorrectedStepDistributed
 import CORALean.ContSet.Zonotope.Real.Operations.Affine
 
+import CORALean.ContSet.Zonotope.Real.Operations.AndAveraging
+import CORALean.ContSet.Zonotope.Real.Operations.AveragingWeights
+import CORALean.ContSet.Zonotope.Real.Operations.LuenbergerUpdate
+import CORALean.ContSet.Zonotope.Real.Operations.LuenbergerGain
+import CORALean.ContSet.Zonotope.Real.Operations.StripGain
+
 /-!
 # What `Zonotope` computes
 

@@ -147,6 +147,12 @@ import CORALean.Global.IpmEllipsoidEq
 import CORALean.Global.IpmBallConsistentIff
 import CORALean.Global.IpmBallExample
 
+import CORALean.Global.EllipsotopeCentreShift
+import CORALean.Global.ExistsGadgetRadii
+import CORALean.Global.ZonotopeSubsetEllipsotopeOfLR
+import CORALean.Global.ZonotopeSubsetEllipsotopeOfLRCentre
+import CORALean.Global.TerminalSetRowConstraints
+
 /-!
 # Global definitions, collected
 
