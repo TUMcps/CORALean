@@ -1,4 +1,5 @@
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSmulTsum
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSubOneLeExpNorm
 import Mathlib.Analysis.Matrix.Normed
 import Mathlib.Analysis.SpecialFunctions.Exponential
 import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
@@ -50,47 +51,6 @@ theorem aux_real_exp_sub_one_le_mul_exp (x : ℝ) :
   rw [← Real.exp_add, add_neg_cancel, Real.exp_zero, mul_sub, mul_one] at h2
   linarith
 
-/-- One term of `exp x - 1`'s tail, bounded by the matching term of
-`Real.exp ‖x‖ - 1`. -/
-theorem aux_norm_exp_tail_term_le (x : Mat ℝ n n) (i : ℕ) :
-    ‖(((Nat.factorial (i + 1) : ℝ))⁻¹) • x ^ (i + 1)‖
-      ≤ ((Nat.factorial (i + 1) : ℝ))⁻¹ * ‖x‖ ^ (i + 1) := by
-  rw [norm_smul, Real.norm_eq_abs, abs_of_nonneg (by positivity)]
-  exact mul_le_mul_of_nonneg_left (norm_pow_le' x (Nat.succ_pos i)) (by positivity)
-
--- the `Real.exp_eq_exp_ℝ` rewrite against the four local matrix instances is what is slow
-set_option maxHeartbeats 400000 in
-/-- `exp x` sits at most `Real.exp ‖x‖ - 1` away from the identity: the matrix
-series is dominated termwise by the real exponential's own. -/
-theorem aux_norm_exp_sub_one_le (x : Mat ℝ n n) :
-    ‖exp x - 1‖ ≤ Real.exp ‖x‖ - 1 := by -- --- PROOF ---
-  -- `exp x`'s own series, and its `i = 0` term split off
-  set f : ℕ → Mat ℝ n n := fun i => ((Nat.factorial i : ℝ)⁻¹) • x ^ i with hf
-  have hsum : Summable f := expSeries_summable' (𝕂 := ℝ) x
-  have hnorm : Summable (fun i => ‖f i‖) := norm_expSeries_summable' (𝕂 := ℝ) x
-  have hx : exp x = ∑' i : ℕ, f i := by rw [exp_eq_tsum (𝕂 := ℝ)]
-  have htail : exp x - 1 = ∑' i : ℕ, f (i + 1) := by
-    rw [hx, ← hsum.sum_add_tsum_nat_add 1]
-    simp [hf]
-  -- the matching real series at `‖x‖`, split the same way
-  set g : ℕ → ℝ := fun i => ((Nat.factorial i : ℝ)⁻¹) • ‖x‖ ^ i with hg
-  have hgsum : Summable g := expSeries_summable' (𝕂 := ℝ) ‖x‖
-  have hRealExp : Real.exp ‖x‖ = ∑' i : ℕ, g i := by
-    have h : Real.exp = fun y : ℝ => ∑' i : ℕ, ((Nat.factorial i : ℝ)⁻¹) • y ^ i := by
-      rw [Real.exp_eq_exp_ℝ]; exact exp_eq_tsum (𝕂 := ℝ) (𝔸 := ℝ)
-    rw [h]
-  have htailR : Real.exp ‖x‖ - 1 = ∑' i : ℕ, g (i + 1) := by
-    rw [hRealExp, ← hgsum.sum_add_tsum_nat_add 1]
-    simp [hg]
-  -- the norm of the matrix tail is under the sum of norms, then term by term
-  rw [htail, htailR]
-  calc ‖∑' i : ℕ, f (i + 1)‖
-      ≤ ∑' i : ℕ, ‖f (i + 1)‖ :=
-        norm_tsum_le_tsum_norm ((summable_nat_add_iff 1).mpr hnorm)
-    _ ≤ ∑' i : ℕ, g (i + 1) :=
-        Summable.tsum_le_tsum (fun i => aux_norm_exp_tail_term_le x i)
-          ((summable_nat_add_iff 1).mpr hnorm) ((summable_nat_add_iff 1).mpr hgsum)
-
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
@@ -98,7 +58,7 @@ theorem aux_norm_exp_sub_one_le (x : Mat ℝ n n) :
 with no bound on `t‖A‖` at all. -/
 theorem norm_exp_smul_sub_one_le (A : Mat ℝ n n) {t : ℝ} (ht : 0 ≤ t) :
     ‖exp (t • A) - 1‖ ≤ t * ‖A‖ * Real.exp (t * ‖A‖) := by -- --- PROOF ---
-  have h1 : ‖exp (t • A) - 1‖ ≤ Real.exp ‖t • A‖ - 1 := aux_norm_exp_sub_one_le (t • A)
+  have h1 : ‖exp (t • A) - 1‖ ≤ Real.exp ‖t • A‖ - 1 := norm_exp_sub_one_le_exp_norm (t • A)
   have h2 : ‖t • A‖ = t * ‖A‖ := by rw [norm_smul, Real.norm_eq_abs, abs_of_nonneg ht]
   rw [h2] at h1
   have h3 := aux_real_exp_sub_one_le_mul_exp (t * ‖A‖)

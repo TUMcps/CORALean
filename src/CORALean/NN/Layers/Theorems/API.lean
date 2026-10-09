@@ -77,6 +77,7 @@ import CORALean.NN.Layers.Theorems.GroupSortChunkFloatGroupSortFloat
 import CORALean.NN.Layers.Theorems.GroupSortFloatPerm
 import CORALean.NN.Layers.Theorems.GroupSortFloatSorted
 import CORALean.NN.Layers.Theorems.SoftmaxLeRawUpper
+import CORALean.NN.Layers.Theorems.SoftmaxRawLowerLe
 import CORALean.NN.Layers.Theorems.SoftmaxSound
 import CORALean.NN.Layers.Theorems.SoftplusRelaxationSound
 import CORALean.NN.Layers.Theorems.SoftplusSound

@@ -1,13 +1,14 @@
+import CORALean.NN.Layers.Operations.SoftmaxRawLower
 import CORALean.NN.Layers.Operations.SoftmaxRawUpper
 import CORALean.NN.Layers.Operations.SumOffUp
 
 /-!
 # Softmax's box
 
-The lower bound is the normalization and nothing else — `y i ≥ 1 - ∑_{j≠i} ru j`, which needs
-only upper bounds and so only `expDown` — and the upper the raw bound capped at one, the `1`
-being what the same identity gives at a raw lower bound of zero. The constraint the standard
-treatment throws away is therefore the only lower bound this layer has.
+The lower bound is the larger of the normalization — `y i ≥ 1 - ∑_{j≠i} ru j`, which needs only
+upper bounds and so only `expDown` — and the raw lower bound, which needs `expUp` and so is
+computed only where `softmaxExpInRange` licenses it, and is zero elsewhere. The upper is the raw
+bound capped at one, the `1` being what the same identity gives at a raw lower bound of zero.
 -/
 
 -- Authors:       Tobias Ladner
@@ -27,10 +28,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The normalization below, the raw bound capped at one above. -/
+/-- The larger of the raw bound and the normalization below, the raw bound capped at one above. -/
 def softmaxBox (k : ℕ) (I : Interval (Vec 𝕋 n)) : Interval (Vec 𝕋 n) where
   inf := fun i =>
-    maximum zero (subDown one (sumOffUp i fun j => softmaxRawUpper k I j))
+    maximum (softmaxRawLower k I i)
+      (maximum zero (subDown one (sumOffUp i fun j => softmaxRawUpper k I j)))
   sup := fun i => minimum (softmaxRawUpper k I i) one
 
 end CORALean

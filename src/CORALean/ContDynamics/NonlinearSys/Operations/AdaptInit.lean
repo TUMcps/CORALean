@@ -31,8 +31,8 @@ variable {S : ℕ → Type}
 
 /-- The state [1, Alg. 2] needs before its first step, which [1] describes for
 `k = 1` in prose rather than in the algorithm. -/
-def NonlinearSys.adaptInit (X₀ : S n) (h₀ φ₀ rabs₀ : ℝ) (κ₀ : ℕ) :
-    NonlinearSys.AdaptState S n :=
+def NonlinearSys.adaptInit {T τ : Type} [Zero T] (X₀ : S n) (h₀ φ₀ rabs₀ : τ) (κ₀ : ℕ) :
+    NonlinearSys.AdaptState S n T τ :=
   { t := 0, R := X₀, Rτ := X₀, h := h₀, φ := φ₀, κ := κ₀, rabs := rabs₀ }
 
 end CORALean

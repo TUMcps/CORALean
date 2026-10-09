@@ -2,6 +2,7 @@ import CORALean.ContDynamics.NonlinearSys.Operations.VarInputs
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MapExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.MtimesExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.PlusExact
+import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadBilinApply
 import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapMixedExact
 import Mathlib.LinearAlgebra.QuadraticForm.Basic
@@ -46,17 +47,6 @@ open Matrix Pointwise
 variable {n m o : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
-/-- The bilinear form family in coordinates, which is the shape `[1]` writes its
-second-order terms in. -/
-theorem aux_quadBilin_apply (D : Fin n → Mat ℝ o o) (x y : Vec ℝ o) (i : Fin n) :
-    PolyZonotope.quadBilin D x y i = ∑ j, ∑ k, D i j k * (x j * y k) := by
-  simp only [PolyZonotope.quadBilin, LinearMap.mk₂_apply, dotProduct, Matrix.mulVec,
-    Finset.mul_sum]
-  exact Finset.sum_congr rfl fun j _ => Finset.sum_congr rfl fun k _ => by ring
-
-
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Every value `[1, Eq. 7]` admits lies in `varInputs` at the same three sets. -/
@@ -72,7 +62,7 @@ theorem varInputs_outer (B : Mat ℝ n m) (D : Fin n → Mat ℝ o o)
       = PolyZonotope.quadBilin D z zΔ i + PolyZonotope.quadBilin D zΔ z i
         + PolyZonotope.quadBilin D zΔ zΔ i := by
     intro i
-    rw [aux_quadBilin_apply, aux_quadBilin_apply, aux_quadBilin_apply]
+    rw [PolyZonotope.quadBilin_apply, PolyZonotope.quadBilin_apply, PolyZonotope.quadBilin_apply]
     simp only [mul_add, Finset.sum_add_distrib]
   have hval : (fun i => (B *ᵥ uΔ) i
         + (2 : ℝ)⁻¹ * ∑ j, ∑ k, D i j k * (z j * zΔ k + zΔ j * z k + zΔ j * zΔ k))

@@ -1,4 +1,5 @@
 import CORALean.ContSet.ConZonotope.Float.Theorems.API
+import CORALean.ContSet.Interval.Float.Instances
 
 /-!
 # What the float `ConZonotope` instantiates
@@ -56,6 +57,13 @@ instance : Mtimes (Mat 𝕋) (ConZonotope 𝕋) where
   mtimes_outer M cZ := by
     simp only [ContSet.construct_mat, Set.biUnion_singleton, ConZonotope.materialise_eq]
     exact ConZonotope.mtimes_outer M cZ
+
+/-- The same operation at a float interval matrix, as `Zonotope`'s is. -/
+instance : Mtimes (fun m n => Interval (Mat 𝕋 m n)) (ConZonotope 𝕋) where
+  mtimes IM cZ := (ConZonotope.mtimesIntervalMat IM cZ).materialise
+  mtimes_outer IM cZ := by
+    rw [ConZonotope.materialise_eq]
+    exact ConZonotope.mtimesIntervalMat_outer IM cZ
 
 end CORALean.Float
 

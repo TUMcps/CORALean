@@ -2,6 +2,7 @@ import CORALean.ContSet.ZonoBundle.Float.Theorems.IntersectionExact
 import CORALean.ContSet.ZonoBundle.Float.Theorems.PlusOuter
 import CORALean.ContSet.ZonoBundle.Float.Theorems.LinCombOuter
 import CORALean.ContSet.ZonoBundle.Float.Theorems.MtimesOuter
+import CORALean.ContSet.ZonoBundle.Float.Theorems.MtimesIntervalMatOuter
 import CORALean.ContSet.ZonoBundle.Float.Theorems.ReindexExact
 import CORALean.ContSet.ZonoBundle.Float.Theorems.UnionSubsetLinComb
 import CORALean.ContSet.ZonoBundle.Float.Theorems.ReduceOuter

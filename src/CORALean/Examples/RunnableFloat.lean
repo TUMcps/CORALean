@@ -3,23 +3,63 @@ import CORALean.HybridDynamics.Parallel.Operations.MergeFlows
 import CORALean.ContDynamics.LinearARX.Operations.ToLinearSysDT
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdmissibleOrderFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclosureFloat
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclosureExactFloat
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalWFloat
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpWFloat
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermHiFloat
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermLoFloat
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrixFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputRemainderFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputTermFloat
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.GenMinusFloat
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalConstCorrectionMatrixFloat
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.CurvatureEnclosureFloat
+import CORALean.ContDynamics.LinearSys.Operations.AffineDynamicsErrorFloat
+import CORALean.ContDynamics.LinearSys.Operations.AffineTimeIntervalOuterFloat
+import CORALean.ContDynamics.LinearSys.Operations.AutoReachFloat
+import CORALean.ContDynamics.LinearSys.Operations.ParticularSolutionErrorFloat
+import CORALean.ContDynamics.LinearSys.Operations.ParticularSolutionTauErrorFloat
+import CORALean.ContSet.Zonotope.Float.Operations.AutoTuneSetOrder
+import CORALean.ContDynamics.LinearSys.Operations.BundleReachFloat
 import CORALean.ContDynamics.LinearSys.Operations.DiscretizeEnclosureFloat
+import CORALean.ContDynamics.LinearSys.Operations.ReachInputErrorFloat
+import CORALean.ContDynamics.NonlinearSys.Operations.VarInputsFloat
+import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapMixed
 import CORALean.ContDynamics.LinearSys.Operations.DiscretizeMatZonotopeFloat
+import CORALean.ContDynamics.LinearSys.Operations.AffineTimePointNextFloat
+import CORALean.ContDynamics.LinearSys.Operations.ErrorSolutionAdaptiveFloat
+import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumTailFloat
+import CORALean.ContDynamics.LinearSys.Operations.ErrorSolutionOrderFloat
+import CORALean.ContDynamics.LinearSys.Operations.GirardReachFloat
+import CORALean.ContDynamics.LinearSys.Operations.ManualReachFloat
+import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepCurvatureErrorFloat
+import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepEpsFloat
+import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepErrorFloat
+import CORALean.ContDynamics.LinearSys.Operations.TimePointStepErrorFloat
+import CORALean.ContDynamics.LinearSys.Operations.TimePointStepRemainderErrorFloat
+import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachMuFloat
+import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachPolyFloat
+import CORALean.ContDynamics.LinearSys.Operations.MinBackReachPFloat
 import CORALean.ContDynamics.LinParamSys.Operations.InputSolutionZonoFloat
 import CORALean.ContSet.MatZonotope.Float.Operations.OfInterval
 import CORALean.ContDynamics.LinParamSysDT.Operations.Reach
 import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachFloat
+import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachUnionFloat
 import CORALean.ContDynamics.LinParamSys.Operations.DiscretizeEnclosureFloat
 import CORALean.ContDynamics.LinParamSys.Operations.InputSolutionFloat
 import CORALean.ContDynamics.LinParamSys.Operations.ReachFloat
+import CORALean.ContDynamics.LinParamSys.Operations.ReachFloatInput
+import CORALean.ContDynamics.LinParamSys.Operations.ReachFloatInputSplit
 import CORALean.ContDynamics.LinParamSys.Operations.ReachOrderFloat
 import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepFloat
 import CORALean.HybridDynamics.Operations.TimeIntervalStepSplitFloat
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachFloatOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachAlgFloatOuter
+import CORALean.ContDynamics.NonlinearSys.Theorems.AdaptRunFloatOuter
+import CORALean.ContDynamics.NonlinearSys.Theorems.CentreAbstrRunFloatOuter
+import CORALean.ContDynamics.NonlinearSys.Operations.LagrangeRemainderFloat
+import CORALean.ContDynamics.NonlinearSys.Operations.TuneDeltatFloat
 import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
 import CORALean.ContDynamics.LinearSysDT.Operations.Reach
 import CORALean.ContDynamics.LinearSysDT.Operations.ReachHeld
@@ -46,6 +86,7 @@ import CORALean.ContSet.PolyZonotope.Float.Instances
 import CORALean.ContSet.SetUnion.Instances
 import CORALean.ContSet.VPolytope.Float.Instances
 import CORALean.ContSet.ZonoBundle.Float.Instances
+import CORALean.ContSet.Zonotope.Float.Operations.MinkDiffRep
 import CORALean.ContSet.Zonotope.Float.Operations.MtimesBox
 import CORALean.ContSet.Zonotope.Float.Operations.PlusBox
 import CORALean.ContSet.Zonotope.Float.Operations.ReduceByBox
@@ -61,6 +102,7 @@ import CORALean.NN.Layers.Operations.Relu
 import CORALean.NN.Layers.Operations.ReluSlope
 import CORALean.NN.Layers.Theorems.SigmoidRelaxationSound
 import CORALean.NN.Layers.Operations.SigmoidEnclosure
+import CORALean.NN.Layers.Operations.SoftmaxBox
 import CORALean.NN.NeuralNetwork
 import CORALean.NN.Operations.Enclose
 import CORALean.NN.Operations.VerifySplit
@@ -81,9 +123,9 @@ widening; an enclosure the size of the state space satisfies every theorem
 here just as a tight one does.
 
 Left out, and why: `LinearSys`'s float reaches are run in `RotationFloat`; its float sampling,
-a location's stay, `LinParamSys`' step, a network in the loop and
-`NonlinearSys.FloatModel.reachFloat` are run here; the `pending #1` algorithms have no float
-refinement yet; `reachErrorFloat`/`reachInnerFloat` are real-valued guarantee objects, `spec:`;
+a location's stay, `LinParamSys`' step, a network in the loop and the nonlinear block are run
+here, bar `varInputs` (`pending #1`), which has no float refinement yet;
+`reachErrorFloat`/`reachInnerFloat` are real-valued guarantee objects, `spec:`;
 `HPolytope.zonotope`/`vPolytopeBox`/`interval`/`conZonotope` and `verifyHalfspace`/
 `verifyConvex` each ask for a `FloatBound`/`SupportBound` a solver alone can supply.
 -/
@@ -212,6 +254,20 @@ def matExpA : Interval (Mat D 2 2) :=
 
 def expEnclosureRun : Interval (Mat D 2 2) := MatExp.expIntervalEnclosure matExpA 4
 
+-- the exact second-order interval exponential, at t = 1/2 (#1)
+def expWRun : Interval (Mat D 2 2) := MatExp.expW matExpA.inf (d 1 (-1))
+
+def expIntervalWRun : Interval (Mat D 2 2) := MatExp.expIntervalW matExpA (d 1 (-1))
+
+def expEnclosureExactRun : Interval (Mat D 2 2) :=
+  MatExp.expIntervalEnclosureExact matExpA (d 1 (-1)) 4
+
+-- the diagonal factor γ(a) = a t + ½ a² t² at a = 1, and its bounds over [-3, 1]
+def quadTermRun : Interval D := MatExp.quadTerm (d 1 (-1)) (d 1 0)
+
+def quadTermBoundsRun : Interval D :=
+  ⟨MatExp.quadTermLo (d 1 (-1)) (d (-3) 0) (d 1 0), MatExp.quadTermHi (d 1 (-1)) (d (-3) 0) (d 1 0)⟩
+
 def mtimesIntervalMatRun : Interval (Vec D 2) :=
   Mtimes.mtimes (𝕄 := fun m n => Interval (Mat D m n)) (S := fun n => Interval (Vec D n))
     matExpA I
@@ -241,6 +297,15 @@ def pZ_plus : PolyZonotope D 2 := Plus.plus pZ pZ
 def pZ_linComb : PolyZonotope D 2 := LinComb.linComb pZ pZ
 def pZ_reduce : PolyZonotope D 2 := Reduce.reduce pZ 1
 def pZ_mtimes : PolyZonotope D 2 := Mtimes.mtimes (identityMat D 2) pZ
+
+-- the quadratic map `x ↦ xᵀ x` of `pZ`, its two-operand pairings, and the varying input part
+def pZ_quadMap : PolyZonotope D 2 := PolyZonotope.quadMap (fun _ : Fin 2 => identityMat D 2) pZ
+def pZ_bilin : PolyZonotope D 2 :=
+  PolyZonotope.bilin (fun _ : Fin 2 => identityMat D 2) pZ.dependent pZ.dependent rfl
+def pZ_quadMapMixed : PolyZonotope D 2 :=
+  PolyZonotope.quadMapMixed (fun _ : Fin 2 => identityMat D 2) pZ pZ
+def pZ_varInputs : PolyZonotope D 2 :=
+  varInputsFloat (identityMat D 2) (fun _ : Fin 2 => identityMat D 2) pZ pZ pZ
 
 -- `ConPolyZono`: `Plus`, `Reduce`, `Intersection`, `Mtimes`
 def cpZ_plus : ConPolyZono D 2 := Plus.plus cpZ cpZ
@@ -285,6 +350,28 @@ def ctSysD : LinParamSysDT (fun m n => Interval (Mat D m n)) 2 :=
   ctSys.discretizeEnclosureFloat stepR 4
 def ctReachRun : Zonotope D 2 := ctSysD.reach (S := Zonotope D) ⟨Z, Z, 0, 5⟩ ⟨2, two_pos⟩
 
+-- what the input enclosures of five sampled steps owe, and the box one step pays (#1)
+def ctErrorBoxRun : Zonotope D 2 := ctSys.timePointStepErrorBoxFloat stepR 4 Z
+def ctInputErrorRun : Zonotope D 2 := ctSys.reachInputErrorFloat stepR 4 Z 5
+
+/-- The float Minkowski difference at a checked representation: the box `[-2, 2]²` minus a box of
+half-width `½` at `x₀ = ⅛`, its generators written in the minuend's by `M = ¼ I`, certified with
+the right inverse `H = ½ I` and the margin shrunk by `15/16`. -/
+def minkDiffMinuend : Zonotope D 2 where
+  h := 2
+  c := ![d 0 0, d 0 0]
+  G := !![d 1 1, d 0 0; d 0 0, d 1 1]
+  E := zbox 2
+def minkDiffSubtrahend : Zonotope D 2 where
+  h := 2
+  c := ![d 1 (-3), d 0 0]
+  G := !![d 1 (-1), d 0 0; d 0 0, d 1 (-1)]
+  E := zbox 2
+def minkDiffOpt : Option (Zonotope D 2) :=
+  minkDiffMinuend.minkDiffRep minkDiffSubtrahend (fun i j => if i = j then d 1 (-2) else d 0 0)
+    (d 15 (-4)) !![d 1 (-1), d 0 0; d 0 0, d 1 (-1)]
+def minkDiffRun : Zonotope D 2 := minkDiffOpt.getD (Zonotope.point ![d 0 0, d 0 0])
+
 /-- A location flowing by the same `A`, its input `Z` off the origin, and its stay over
 `[0, r]` from `Z` by the float step and by the split float step. -/
 def ctLoc : Location (Zonotope D) (Zonotope D) Unit D 2 := ⟨Z, ctSys, Z, []⟩
@@ -306,6 +393,17 @@ def lpReachRun : Zonotope D 2 :=
 /-- Four windows of `[0, 2⁻³]` at every member, each from the first by scaling and squaring. -/
 def lpWindowsRun : Option (List (Zonotope D 2)) := lpSys.reachFloat ⟨Z, 0, 1 / 8⟩ ⟨stepR, 4, 2⟩
 
+/-- The same four windows with an input: `Z` re-centred at the origin, whose contribution
+`P^R(t_{k+1})` accumulates by `particularSolutionFloat`; then `Z` itself, split at its centre,
+the constant half carried across windows by `constPropagateFloat`. -/
+def lpInputSet : Zonotope D 2 := Recentre.recentre Z
+def lpParticularRun : Option (Zonotope D 2) := lpSys.particularSolutionFloat stepR 4 2 lpInputSet 2
+def lpConstRun : Zonotope D 2 := lpSys.constPropagateFloat stepR 4 2 (Z.c) 3
+def lpInputWindowsRun : Option (List (Zonotope D 2)) :=
+  lpSys.reachFloatInput lpInputSet ⟨Z, 0, 1 / 8⟩ ⟨stepR, 4, 2⟩
+def lpSplitWindowsRun : Option (List (Zonotope D 2)) :=
+  lpSys.reachFloatInputSplit Z ⟨Z, 0, 1 / 8⟩ ⟨stepR, 4, 2⟩
+
 
 /-! ## Matrix zonotopes in floats (#1)
 
@@ -322,6 +420,88 @@ def ctSysMZ : LinParamSysDT (fun m n => MatZonotope D m n) 2 :=
 def ctMZReachRun : Zonotope D 2 := ctSysMZ.reach (S := Zonotope D) ⟨Z, Z, 0, 5⟩ ⟨2, two_pos⟩
 def lpMZSys : LinParamSys (fun m n => MatZonotope D m n) 2 := ⟨mzA⟩
 def lpMZInputRun : Zonotope D 2 := lpMZSys.inputSolutionZonoFloat stepR 4 Z
+
+
+/-! ## The fully-automated scheme's `Alg. 1` and the step error estimates, in floats (#1)
+
+`ctSys` under the input `Z`, entered through the identity: four windows of `[0, 2⁻³]` at the
+fixed step `r`, order `4` and zonotope order `2`; the four `ℝ`-valued estimates the adaptive
+schemes tune against, rounded up at `r`, order `4` and `Z`; a step whose order is searched
+for against an admissible remainder; Girard's scheme over `[0, 2⁻³]` at inputs of norm at
+most `2⁻⁴`; CORA's `errorSolution_adaptive` with its order, `Z` dynamic and static; and the
+input solution's orders `1 … 4` and `H(t_{k+1})` from `Z`, under the constant `Z`'s centre. -/
+
+def manualReachRun : Option (List (Zonotope D 2)) :=
+  ctSys.manualReachFloat (identityMat D 2) { R0 := Z, U := Z, tFinal := 1 / 8 } ⟨stepR, 4, 2⟩
+def curvatureErrorRun : D := ctSys.timeIntervalStepCurvatureErrorFloat stepR 4 Z
+def intervalErrorRun : D := ctSys.timeIntervalStepErrorFloat stepR 4 Z
+def pointErrorRun : D := ctSys.timePointStepErrorFloat stepR 4 Z
+def remainderErrorRun : D := ctSys.timePointStepRemainderErrorFloat stepR 4 Z
+/-- One step from `Z` at the first order whose remainder bound is under `2⁻²⁰`. -/
+def stepEpsRun : Option (Zonotope D 2) := ctSys.timeIntervalStepEpsFloat stepR (d 1 (-20)) 20 Z
+def girardRun : Option (List (Zonotope D 2)) := ctSys.girardReachFloat Z (d 1 (-4)) stepR (1 / 8)
+def errorSolutionRun : Zonotope D 2 := ctSys.errorSolutionAdaptiveFloat stepR 4 Z (some Z)
+def errorOrderRun : Option ℕ := ctSys.errorSolutionOrderFloat (d 1 (-4)) stepR Z 20
+def inputTailRun : Zonotope D 2 := ctSys.inputTaylorSumTailFloat stepR Z 4
+def timePointNextRun : Zonotope D 2 := ctSys.affineTimePointNextFloat Z Z.c stepR 4
+
+
+/-! ## The fully-automated scheme's `Alg. 2`, its curvature enclosure and its tuning, in floats (#1)
+
+`ctSys` under the input `Z` and horizon `2⁻³`: the curvature enclosure of eq. (15)-(16) with its
+integrated correction `G`, and eq. (22)'s set, at `r` and order `4` from `Z` and the constant
+`Z`'s centre; the Euclidean radius of `Z`'s box; the three tuning quantities, at `[e^{A r}]`
+for `e^{A t_k}`; the zonotope order, the step size and order searched for, one iteration and
+the whole loop. -/
+
+def constCorrectionRun : Interval (Mat D 2 2) :=
+  MatExp.intervalConstCorrectionMatrix (Interval.point ctSys.A) stepR 4
+def curvatureRun : Zonotope D 2 := MatExp.curvatureEnclosure (Interval.point ctSys.A) Z Z.c stepR 4
+def timeIntervalOuterRun : Zonotope D 2 := ctSys.affineTimeIntervalOuterFloat Z Z.c stepR 4
+def errUpRun : D := Z.errUp
+/-- `‖G^{(-)}_h‖₂` of `Z`'s generators at `[e^{A r}]`, from above. -/
+def genMinusRun : D := genOpNormUp 64 (MatExp.genMinus (ctSys.expIntervalFloat stepR stepR 4) Z)
+def affineErrorRun : D := ctSys.affineDynamicsErrorFloat Z Z.c stepR 4
+def particularErrorRun : D :=
+  ctSys.particularSolutionErrorFloat (ctSys.expIntervalFloat stepR stepR 4) Z stepR 4
+def particularTauErrorRun : D :=
+  ctSys.particularSolutionTauErrorFloat (ctSys.expIntervalFloat stepR stepR 4) Z stepR 4
+/-- The zonotope order that clears a share of `1/100`. -/
+def setOrderRun : Option ℕ := Zonotope.autoTuneSetOrder Z (1 / 100) 0 (Z.h + 1)
+/-- Lines 5-15 from `t_k = 0` at `Δt_{k-1} = 2⁻³`, `ε_max = 1`, `ζ = 1/2`. -/
+def autoTuneRun : Option (D × ℕ) :=
+  ctSys.autoTuneDeltaTFloat (ctSys.expIntervalFloat zero zero 4) Z Z.c 0 (1 / 8) 1 (1 / 2) 0
+    (d 1 (-3)) 20 30 Z
+/-- One iteration of `Alg. 2` from `Z` under the input `Z`, horizon `2⁻³`. -/
+def autoStepRun : Option (LinearSys.AutoStateFloat D 2 × Zonotope D 2) :=
+  ctSys.autoStepFloat Z Z (d 1 (-3)) 1 (1 / 2) 20 30 (LinearSys.autoInitFloat Z (d 1 (-3)))
+def autoReachRun : Option (List (ℚ × ℚ × Zonotope D 2)) :=
+  ctSys.autoReachFloat Z Z (d 1 (-3)) 1 (1 / 2) 20 30 10
+
+/-! ## Zonotope bundles and backward reachability in floats (#1)
+
+`ctSys` once more. `bundleReachFloat` propagates a one-member bundle and `Z` through three steps
+of `[e^{Ar}]` at order `4`. The minimal backward reachable set's algorithm runs from the
+state before the first iteration, through one step and two, with `cZ` as the target set, `Z` for
+both input sets and a constant `Z` as the centre trajectory's contribution; its support value
+and `p` are read in the direction of the first coordinate, `N = I`. The Taylor order is `4`
+and the matrix exponentials are squared twice. -/
+
+def bundleRun : List (ZonoBundle D 2) := ctSys.bundleReachFloat zB Z stepR 4 3
+def minBackInitRun : LinearSys.MinBackReachStateOf D (Zonotope D 2) (ConZonotope D 2) :=
+  ctSys.minBackReachInitFloat Z Z (d 0 0) 4
+def minBackStepRun : LinearSys.MinBackReachStateOf D (Zonotope D 2) (ConZonotope D 2) :=
+  ctSys.minBackReachStepFloat cZ Z Z (fun _ => Z) stepR 4 2 minBackInitRun
+def minBackRunRun : LinearSys.MinBackReachStateOf D (Zonotope D 2) (ConZonotope D 2) :=
+  ctSys.minBackReachRunFloat cZ Z Z (fun _ => Z) (d 0 0) stepR 4 2 2
+def minBackSupportRun : D :=
+  ctSys.minBackReachSupportFloat cZ Z Z (fun _ => Z) (identityMat D 2) (d 0 0) stepR 4 2 2 0
+def minBackPRun : Fin 2 → D :=
+  ctSys.minBackReachPFloat cZ Z Z (fun _ => Z) (identityMat D 2) (d 0 0) stepR 4 2 2
+/-- The maximal set's curvature radius for `Z` as `box(X_end)`, and the target polytope `H` eroded
+by `Z` as `F box(X_end)` and by the ball of that radius. -/
+def maxBackMuRun : D := ctSys.maxBackReachMuFloat stepR 4 4 Z
+def maxBackPolyRun : HPolytope D 2 := LinearSys.maxBackReachPolyFloat 4 H Z maxBackMuRun
 
 
 /-! ## The four Box operations `LinearSysDT.reachErrorFloat` sums
@@ -372,6 +552,9 @@ def mixedEncloseRun : Zonotope D 2 := mixedNet.enclose Z
 /-- `ctSys` closed around `net`, two control periods of two float steps of `r` each (#1). -/
 def nnContrSys : NeurNetContrSys D (Zonotope D) 2 := ⟨ctSys, net⟩
 def nnContrReachRun : Zonotope D 2 := nnContrSys.reachFloat ⟨Z, 0, 2⟩ ⟨stepR, 2, 4, 2, two_pos⟩
+/-- The same loop's set at every period boundary `0, 1, 2`, at an order `reachOrderFloat` finds. -/
+def nnContrUnionRun : Option (List (Zonotope D 2)) :=
+  nnContrSys.reachUnionFloat ⟨Z, 0, 2⟩ ⟨stepR, 2, 4, 2, two_pos⟩
 
 #eval reachRun.h
 #eval reachRun.c 0
@@ -380,6 +563,8 @@ def nnContrReachRun : Zonotope D 2 := nnContrSys.reachFloat ⟨Z, 0, 2⟩ ⟨ste
 #eval mixedEncloseRun.interval.sup 0
 #eval nnContrReachRun.h
 #eval nnContrReachRun.c 0
+#eval nnContrUnionRun.map (·.length)
+#eval ((nnContrUnionRun.getD []).getD 2 Z).c 0
 #eval plusBoxRun.sup 0
 
 -- A `SetUnion` of float zonotopes, pushed through `Mtimes`: two branches in, two branches out.
@@ -410,6 +595,7 @@ def nnContrReachRun : Zonotope D 2 := nnContrSys.reachFloat ⟨Z, 0, 2⟩ ⟨ste
 #eval locStepRun.h
 #eval locSplitRun.h
 #eval locSplitRun.c 0
+-- `LinParamSys` over float interval matrices: order, step, input solution, then the windows
 #eval lpOrderRun
 #eval lpStepRun.h
 #eval lpInputRun.c 0
@@ -417,6 +603,28 @@ def nnContrReachRun : Zonotope D 2 := nnContrSys.reachFloat ⟨Z, 0, 2⟩ ⟨ste
 #eval lpReachRun.c 0
 #eval lpWindowsRun.map (·.length)
 #eval lpWindowsRun.map (·.map (·.h))
+#eval lpParticularRun.map (·.h)
+#eval (lpParticularRun.getD Z).c 0
+#eval lpConstRun.h
+#eval lpConstRun.c 0
+#eval lpInputWindowsRun.map (·.length)
+#eval ((lpInputWindowsRun.getD []).getD 3 Z).c 0
+#eval lpSplitWindowsRun.map (·.length)
+#eval ((lpSplitWindowsRun.getD []).getD 3 Z).c 0
+
+-- `Alg. 1` of the fully-automated scheme: four windows; then the four error estimates.
+#eval manualReachRun.map (·.length)
+#eval manualReachRun.map (·.map (·.h))
+#eval curvatureErrorRun
+#eval intervalErrorRun
+#eval pointErrorRun
+#eval remainderErrorRun
+#eval stepEpsRun.map (·.h)
+#eval girardRun.map (·.map (·.h))
+#eval errorSolutionRun.h
+#eval errorOrderRun
+#eval inputTailRun.h
+#eval timePointNextRun.c 0
 
 -- Matrix zonotopes in floats (#1): `e^{rA}`'s enclosure, then a sampled reach and an input set.
 #eval mzExpRun.h
@@ -682,6 +890,66 @@ example {alg : NonlinearSys.LinReachAlg} {Rs : List (Zonotope D 2)}
 #eval (vdpReachAlg (.poly 2)).map (·.map fun Z =>
   (vdpF ((Zonotope.interval Z).inf 1), vdpF ((Zonotope.interval Z).sup 1)))
 
+/-! ### The rest of the nonlinear block: centre linearization, adaptive tuning, cubic remainder
+
+`centreAbstrRunFloat` linearizes at the centre of each step's start set, as [Wetzlinger et al.,
+HSCC 2021, Alg. 1] does. `adaptRunFloat` is [Wetzlinger et al., 2022, Alg. 1-2]'s loop: each step
+chooses its own size from the gain of the last one (`tuneDeltat`'s `optDeltatFloat`,
+`estimateGainFloat`, `tuneAbstrOrderFloat`), whatever it chooses `adaptRunFloat_outer` holds. The
+tuning constants are `ζ_δ = 1/2`, `ζ_h = ζ_φ = 1/4`, `ζ_Z = 1/8`, `ζ_K = 1/2`. -/
+
+/-- Four steps of `1/32`, each linearized at its start set's centre. -/
+def vdpCentreReach : Option (List (Zonotope D 2)) :=
+  vdpModel.centreAbstrRunFloat vdpU { timeStep := d 1 (-5), taylorTerms := 4, zonotopeOrder := 10 }
+    4 vdpX₀
+
+/-- What a successful run is worth: every run of the real system, over every window. -/
+example {Rs : List (Zonotope D 2)} (h : vdpCentreReach = some Rs) :=
+  vdpModel_encloses.centreAbstrRunFloat_outer 4 h
+
+#eval vdpCentreReach.map (·.map fun Z =>
+  (vdpF ((Zonotope.interval Z).inf 1), vdpF ((Zonotope.interval Z).sup 1)))
+
+/-- The adaptive loop from `vdpX₀` to `t = 1/8`: first horizon `1/32` (a step of `1/16` fails the
+region check), last gain `7/8`, order `1`. The options' own step size is not read: every step
+takes the one the tuning picked. -/
+def vdpAdaptRun : Option (List (NonlinearSys.AdaptState (Zonotope D) 2 ℚ D)) :=
+  vdpHessModel.adaptRunFloat vdpU { timeStep := d 1 (-5), taylorTerms := 4, zonotopeOrder := 10 }
+    (d 15 (-4)) (d 7 (-3)) (d 1 (-3)) (d 1 (-1)) 20 20 2 (1 / 8) 4
+    (NonlinearSys.adaptInit vdpX₀ (d 1 (-5)) (d 7 (-3)) (d 1 (-6)) 1)
+
+/-- What a successful run is worth: every run of the real system, over each window the tuning
+chose. -/
+example {ss : List (NonlinearSys.AdaptState (Zonotope D) 2 ℚ D)} (h : vdpAdaptRun = some ss) :=
+  vdpHessModel_encloses.adaptRunFloat_outer 4 h
+
+-- The times reached, the orders chosen, and each window's `x₂` range.
+#eval vdpAdaptRun.map (·.map fun st => (st.t, st.κ))
+#eval vdpAdaptRun.map (·.map fun st =>
+  (vdpF ((Zonotope.interval st.Rτ).inf 1), vdpF ((Zonotope.interval st.Rτ).sup 1)))
+
+/-- The third derivatives of `f₂` in `(x₁, x₂, u)` are `-2` at the permutations of `(x₁, x₁, x₂)`
+and `0` elsewhere; `f₁ = x₂` has none. -/
+def vdpThird : Fin 2 → Fin 3 → Mat D 3 3 := fun i j k l =>
+  if i = 1 ∧ j.val + k.val + l.val = 1 then d 2 0 else zero
+
+/-- The cubic box over the start set about its centre, in the second coordinate alone. -/
+def vdpLagrange : Interval (Vec D 2) :=
+  lagrangeRemainderFloat vdpThird (n := 2) (Zonotope.cartProd vdpX₀ vdpU)
+    (Fin.append vdpX₀.c vdpU.c)
+
+#eval (vdpF (vdpLagrange.inf 1), vdpF (vdpLagrange.sup 1))
+
+/-! The tuning heuristics on their own: the optimal step for a start radius `1/32` and error
+radius `1/64`, and the gain read back from two radii. -/
+
+#eval
+  let o := optDeltatFloat (𝕋 := D) 20 20 (d 1 (-1)) (d 1 (-3)) (d 5 (-2)) (d 1 (-2)) (d 1 (-5))
+    (d 1 (-6)) (d 1 (-4)) 4
+  (vdpF o.1, o.2)
+#eval vdpF (estimateGainFloat (d 1 (-1)) (d 4 0) (d 1 (-6)) (d 1 (-7)) 2 10)
+
+
 end VanDerPol
 
 
@@ -761,6 +1029,24 @@ example : safeBox.check (net.enclose Z) →
 #eval checkSafeHull
 #eval checkSafeUnion
 #eval verifySplitRun
+
+/-! ## Softmax's raw lower bound
+
+Three coordinates on `[0, 1/4]`: the normalization alone gives `1 - 2 ru`, the raw lower bound
+`(1 + 2 exp (1/4))⁻¹`, both at `k = 10`. -/
+
+def softmaxIn : Interval (Vec D 3) := ⟨fun _ => d 0 0, fun _ => d 1 (-2)⟩
+
+/-- The lower bound `softmaxBox` had before the raw lower bound. -/
+def softmaxNormLower : D :=
+  maximum zero (subDown one (sumOffUp (0 : Fin 3) fun j => softmaxRawUpper 10 softmaxIn j))
+
+def softmaxRawLowerRun : D := softmaxRawLower 10 softmaxIn 0
+def softmaxBoxRun : Interval (Vec D 3) := softmaxBox 10 softmaxIn
+
+#eval softmaxNormLower
+#eval softmaxRawLowerRun
+#eval (softmaxBoxRun.inf 0)
 
 end CORALean.RunnableFloat
 

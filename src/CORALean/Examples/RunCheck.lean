@@ -83,6 +83,10 @@ def boxF {n : ℕ} (I : Interval (Vec 𝕋 n)) : List Float := vecF I.inf ++ vec
 
 def ofBox {n : ℕ} (I : Interval (Vec 𝕋 n)) : Out := ⟨boxS I, boxF I, false⟩
 
+/-- A scalar interval: its two bounds. -/
+def ofScalarBox (I : Interval 𝕋) : Out :=
+  ⟨"[" ++ sc I.inf ++ ", " ++ sc I.sup ++ "]", [ToF.toF I.inf, ToF.toF I.sup], false⟩
+
 def ofIMat {m n : ℕ} (M : Interval (Mat 𝕋 m n)) : Out :=
   ⟨"inf " ++ matS M.inf ++ " / sup " ++ matS M.sup,
     matF M.inf ++ matF M.sup, false⟩
@@ -129,6 +133,17 @@ def ofBundle {n : ℕ} (B : ZonoBundle 𝕋 n) : Out :=
   ⟨s!"k={B.k} members: " ++ "; ".intercalate (hulls.map fun Z => (ofZono Z).text),
     hulls.flatMap zonoF, false⟩
 
+/-- The three sets and the time of a minimal backward reachable set's loop state. -/
+def ofMinState {n : ℕ} (s : LinearSys.MinBackReachStateOf 𝕋 (Zonotope 𝕋 n) (ConZonotope 𝕋 n)) :
+    Out :=
+  ⟨s!"t={sc s.t} ZW0: " ++ (ofZono s.ZW₀).text ++ " ZU0: " ++ (ofZono s.ZU₀).text ++ " R: "
+      ++ (ofCZ s.R).text,
+    ToF.toF s.t :: zonoF s.ZW₀ ++ zonoF s.ZU₀ ++ (ofCZ s.R).vals, false⟩
+
+def ofBundles {n : ℕ} (L : List (ZonoBundle 𝕋 n)) : Out :=
+  ⟨s!"bundles={L.length} last: " ++ (L.getLast?.map fun B => (ofBundle B).text).getD "-",
+    L.flatMap fun B => (ofBundle B).vals, L.isEmpty⟩
+
 def ofUnion {n : ℕ} (U : SetUnion (Zonotope 𝕋 n)) : Out :=
   ⟨s!"branches={U.sets.length} " ++ "; ".intercalate (U.sets.map fun Z => (ofZono Z).text),
     U.sets.flatMap zonoF, false⟩
@@ -157,6 +172,33 @@ def ofOptNat (o : Option ℕ) : Out :=
 def ofMat {m n : ℕ} (M : Mat (Dyadic 24) m n) : Out :=
   ⟨matS M, matF M, false⟩
 def ofD (x : Dyadic 24) : Out := ⟨sc x, [ToF.toF x], false⟩
+/-- An exact rational read as a `Float`, for printing. -/
+def qF (q : ℚ) : Float := Float.ofInt q.num / Float.ofNat q.den
+def ofOptZono {n : ℕ} (o : Option (Zonotope (Dyadic 24) n)) : Out :=
+  match o with
+  | none => ⟨"none", [], true⟩
+  | some Z => ofZono Z
+def ofOptStepOrder (o : Option (Dyadic 24 × ℕ)) : Out :=
+  match o with
+  | none => ⟨"none", [], true⟩
+  | some (Δt, η) => ⟨s!"step={sc Δt} order={η}", [ToF.toF Δt], false⟩
+/-- A step of `Alg. 2`: the time it reached, the step taken and the window. -/
+def ofAutoStep (o : Option (LinearSys.AutoStateFloat (Dyadic 24) 2 × Zonotope (Dyadic 24) 2)) :
+    Out :=
+  match o with
+  | none => ⟨"none", [], true⟩
+  | some (s, R) =>
+    ⟨s!"t={fl (qF s.t)} step={sc s.Δt} eps_a={fl (qF s.εa)} eps_r={fl (qF s.εr)} window: "
+      ++ (ofZono R).text, ToF.toF s.Δt :: zonoF R, false⟩
+/-- The windows `Alg. 2` returns, each with the times it covers. -/
+def ofTimedWindows (o : Option (List (ℚ × ℚ × Zonotope (Dyadic 24) 2))) : Out :=
+  match o with
+  | none => ⟨"none", [], true⟩
+  | some L =>
+    ⟨s!"windows={L.length} spans: " ++ " ".intercalate (L.map fun w =>
+        s!"[{fl (qF w.1)}, {fl (qF w.2.1)}]") ++ " last: "
+        ++ (L.getLast?.map fun w => (ofZono w.2.2).text).getD "-",
+      L.flatMap fun w => zonoF w.2.2, L.isEmpty⟩
 def ofWindowsBox (o : Option (List (Zonotope (Dyadic 24) 2))) (i : Fin 2) : Out :=
   match o with
   | none => ⟨"none", [], true⟩
@@ -235,6 +277,11 @@ def dyadicRows : StateT Nat IO Unit := do
   row "matExpA" (ofIMat RunnableFloat.matExpA)
   -- the interval-matrix chain, then the polytopes
   row "expEnclosureRun" (ofIMat RunnableFloat.expEnclosureRun)
+  row "expWRun" (ofIMat RunnableFloat.expWRun)
+  row "expIntervalWRun" (ofIMat RunnableFloat.expIntervalWRun)
+  row "expEnclosureExactRun" (ofIMat RunnableFloat.expEnclosureExactRun)
+  row "quadTermRun" (ofScalarBox RunnableFloat.quadTermRun)
+  row "quadTermBoundsRun" (ofScalarBox RunnableFloat.quadTermBoundsRun)
   row "mtimesIntervalMatRun" (ofBox RunnableFloat.mtimesIntervalMatRun)
   row "mtimesIntervalMatZonoRun" (ofZono RunnableFloat.mtimesIntervalMatZonoRun)
   row "H_reduce" (ofHP RunnableFloat.H_reduce)
@@ -252,6 +299,10 @@ def dyadicRows : StateT Nat IO Unit := do
   row "pZ_linComb" (ofPZ RunnableFloat.pZ_linComb)
   row "pZ_reduce" (ofPZ RunnableFloat.pZ_reduce)
   row "pZ_mtimes" (ofPZ RunnableFloat.pZ_mtimes)
+  row "pZ_quadMap" (ofPZ RunnableFloat.pZ_quadMap)
+  row "pZ_bilin" (ofPZ RunnableFloat.pZ_bilin)
+  row "pZ_quadMapMixed" (ofPZ RunnableFloat.pZ_quadMapMixed)
+  row "pZ_varInputs" (ofPZ RunnableFloat.pZ_varInputs)
   row "cpZ_plus" (ofCPZ RunnableFloat.cpZ_plus)
   row "cpZ_reduce" (ofCPZ RunnableFloat.cpZ_reduce)
   row "cpZ_intersection" (ofCPZ RunnableFloat.cpZ_intersection)
@@ -274,6 +325,12 @@ def dyadicRows : StateT Nat IO Unit := do
   row "ctSys" (ofMat RunnableFloat.ctSys.A)
   row "ctSysD" (ofIMat RunnableFloat.ctSysD.A)
   row "ctReachRun" (ofZono RunnableFloat.ctReachRun)
+  row "ctErrorBoxRun" (ofZono RunnableFloat.ctErrorBoxRun)
+  row "ctInputErrorRun" (ofZono RunnableFloat.ctInputErrorRun)
+  row "minkDiffMinuend" (ofZono RunnableFloat.minkDiffMinuend)
+  row "minkDiffSubtrahend" (ofZono RunnableFloat.minkDiffSubtrahend)
+  row "minkDiffOpt" (ofBool RunnableFloat.minkDiffOpt.isSome)
+  row "minkDiffRun" (ofZono RunnableFloat.minkDiffRun)
   row "ctLoc" (ofZono RunnableFloat.ctLoc.inv)
   row "locStepRun" (ofZono RunnableFloat.locStepRun)
   row "locSplitRun" (ofZono RunnableFloat.locSplitRun)
@@ -285,13 +342,56 @@ def dyadicRows : StateT Nat IO Unit := do
   row "lpInputRun" (ofZono RunnableFloat.lpInputRun)
   row "lpReachRun" (ofZono RunnableFloat.lpReachRun)
   row "lpWindowsRun" (ofWindows RunnableFloat.lpWindowsRun)
+  row "lpInputSet" (ofZono RunnableFloat.lpInputSet)
+  row "lpParticularRun" (ofWindows (RunnableFloat.lpParticularRun.map fun Z => [Z]))
+  row "lpConstRun" (ofZono RunnableFloat.lpConstRun)
+  row "lpInputWindowsRun" (ofWindows RunnableFloat.lpInputWindowsRun)
+  row "lpSplitWindowsRun" (ofWindows RunnableFloat.lpSplitWindowsRun)
   -- matrix zonotopes
   row "mzA" (ofMZ RunnableFloat.mzA)
   row "mzExpRun" (ofMZ RunnableFloat.mzExpRun)
   row "ctSysMZ" (ofMZ RunnableFloat.ctSysMZ.A)
   row "ctMZReachRun" (ofZono RunnableFloat.ctMZReachRun)
+
+/-- The second half of the `Dyadic 24` rows, apart so that each fits the elaborator's budget. -/
+def dyadicRows2 : StateT Nat IO Unit := do
+  -- the fully-automated scheme's `Alg. 1` and the step error estimates
+  row "manualReachRun" (ofWindows RunnableFloat.manualReachRun)
+  row "curvatureErrorRun" (ofD RunnableFloat.curvatureErrorRun)
+  row "intervalErrorRun" (ofD RunnableFloat.intervalErrorRun)
+  row "pointErrorRun" (ofD RunnableFloat.pointErrorRun)
+  row "remainderErrorRun" (ofD RunnableFloat.remainderErrorRun)
+  row "stepEpsRun" (ofOptZono RunnableFloat.stepEpsRun)
+  row "girardRun" (ofWindows RunnableFloat.girardRun)
+  row "errorSolutionRun" (ofZono RunnableFloat.errorSolutionRun)
+  row "errorOrderRun" (ofOptNat RunnableFloat.errorOrderRun)
+  row "inputTailRun" (ofZono RunnableFloat.inputTailRun)
+  row "timePointNextRun" (ofZono RunnableFloat.timePointNextRun)
+  -- `Alg. 2`, its curvature enclosure and its tuning
+  row "constCorrectionRun" (ofIMat RunnableFloat.constCorrectionRun)
+  row "curvatureRun" (ofZono RunnableFloat.curvatureRun)
+  row "timeIntervalOuterRun" (ofZono RunnableFloat.timeIntervalOuterRun)
+  row "errUpRun" (ofD RunnableFloat.errUpRun)
+  row "genMinusRun" (ofD RunnableFloat.genMinusRun)
+  row "affineErrorRun" (ofD RunnableFloat.affineErrorRun)
+  row "particularErrorRun" (ofD RunnableFloat.particularErrorRun)
+  row "particularTauErrorRun" (ofD RunnableFloat.particularTauErrorRun)
+  row "setOrderRun" (ofOptNat RunnableFloat.setOrderRun)
+  row "autoTuneRun" (ofOptStepOrder RunnableFloat.autoTuneRun)
+  row "autoStepRun" (ofAutoStep RunnableFloat.autoStepRun)
+  row "autoReachRun" (ofTimedWindows RunnableFloat.autoReachRun)
   row "lpMZSys" (ofMZ RunnableFloat.lpMZSys.A)
   row "lpMZInputRun" (ofZono RunnableFloat.lpMZInputRun)
+  -- zonotope bundles and backward reachability
+  row "bundleRun" (ofBundles RunnableFloat.bundleRun)
+  row "minBackInitRun" (ofMinState RunnableFloat.minBackInitRun)
+  row "minBackStepRun" (ofMinState RunnableFloat.minBackStepRun)
+  row "minBackRunRun" (ofMinState RunnableFloat.minBackRunRun)
+  row "minBackSupportRun" (ofD RunnableFloat.minBackSupportRun)
+  row "minBackPRun" ⟨s!"({sc (RunnableFloat.minBackPRun 0)}, {sc (RunnableFloat.minBackPRun 1)})",
+    [ToF.toF (RunnableFloat.minBackPRun 0), ToF.toF (RunnableFloat.minBackPRun 1)], false⟩
+  row "maxBackMuRun" (ofD RunnableFloat.maxBackMuRun)
+  row "maxBackPolyRun" (ofHP RunnableFloat.maxBackPolyRun)
   -- the four Box operations
   row "plusBoxRun" (ofBox RunnableFloat.plusBoxRun)
   row "mtimesBoxRun" (ofBox RunnableFloat.mtimesBoxRun)
@@ -310,6 +410,7 @@ def dyadicRows : StateT Nat IO Unit := do
   row "mixedEncloseRun" (ofZono RunnableFloat.mixedEncloseRun)
   row "nnContrSys" (ofMat RunnableFloat.nnContrSys.plant.A)
   row "nnContrReachRun" (ofZono RunnableFloat.nnContrReachRun)
+  row "nnContrUnionRun" (ofWindows RunnableFloat.nnContrUnionRun)
   -- Van der Pol
   row "vdpModel" (ofBox
     (RunnableFloat.vdpModel.f RunnableFloat.vdpX₀.interval RunnableFloat.vdpU.interval))
@@ -324,6 +425,11 @@ def dyadicRows : StateT Nat IO Unit := do
     (RunnableFloat.vdpHessModel.reachAlgFloat (.poly 2)
       { R0 := RunnableFloat.vdpX₀, U := RunnableFloat.vdpU, tFinal := 1 / 32 }
       { timeStep := RunnableFloat.d 1 (-5), taylorTerms := 4, zonotopeOrder := 10 }) 1)
+  -- the rest of the nonlinear block: centre linearization, the adaptive loop, the cubic box
+  row "vdpCentreReach" (ofWindowsBox RunnableFloat.vdpCentreReach 1)
+  row "vdpAdaptRun" (ofWindowsBox (RunnableFloat.vdpAdaptRun.map (List.map (·.Rτ))) 1)
+  row "vdpThird" (ofMat (RunnableFloat.vdpThird 1 0))
+  row "vdpLagrange" (ofBox RunnableFloat.vdpLagrange)
   -- sigmoid enclosure depth
   for k in [4, 8, 10] do
     let o := RunnableFloat.sigmoidOneEnds k
@@ -333,6 +439,10 @@ def dyadicRows : StateT Nat IO Unit := do
   row "sigmoidOneTight" ⟨s!"(10,4096)={RunnableFloat.sigmoidOneTight 10 4096} (4,1e5)=" ++
     s!"{RunnableFloat.sigmoidOneTight 4 100000} (8,1e5)={RunnableFloat.sigmoidOneTight 8 100000}",
     [], false⟩
+  row "softmaxIn" (ofBox RunnableFloat.softmaxIn)
+  row "softmaxNormLower" (ofD RunnableFloat.softmaxNormLower)
+  row "softmaxRawLowerRun" (ofD RunnableFloat.softmaxRawLowerRun)
+  row "softmaxBoxRun" (ofBox RunnableFloat.softmaxBoxRun)
   -- specifications
   row "safeBox" (ofBox RunnableFloat.safeBox.set)
   row "halfAbove" (ofHP (RunnableFloat.halfAbove 10))
@@ -412,7 +522,7 @@ end CORALean.RunCheck
 
 open CORALean.RunCheck in
 def main : IO UInt32 := do
-  let ((), bad) ← (do dyadicRows; floatRows : StateT Nat IO Unit).run 0
+  let ((), bad) ← (do dyadicRows; dyadicRows2; floatRows : StateT Nat IO Unit).run 0
   IO.println s!"== {bad} row(s) not ok =="
   return if bad = 0 then 0 else 1
 

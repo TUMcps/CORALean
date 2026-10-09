@@ -3,6 +3,7 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputRemainderFlo
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputTermFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSmulLeNormUpperBoundFloat
 import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
+import CORALean.ContDynamics.LinearSys.Theorems.InputRemainderSubsetFloat
 import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolution
 import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
 import CORALean.ContSet.ContSet.Theorems.IsClosedConstruct
@@ -88,26 +89,6 @@ theorem LinearSys.aux_inputTaylorSum_subset (sys : LinearSys 𝕋 n) {r : 𝕋} 
     exact (Set.add_subset_add ih (hterm (i + 1))).trans
       (Plus.plus_outer (sys.inputTaylorSumFloat r V i) _)
 
-/-- The remainder's closed convex hull, inside the float product. -/
-theorem LinearSys.aux_inputRemainder_subset (sys : LinearSys 𝕋 n) {r : 𝕋} (hr : 0 ≤ toReal r)
-    {η : ℕ} (hη : sys.OrderAdmissibleFloat r r η) (V : Zonotope 𝕋 n) :
-    construct (Mtimes.mtimes (𝕄 := fun m k => Real.Interval (Mat ℝ m k))
-      (S := fun k => Set (Vec ℝ k))
-      (Real.MatExp.inputRemainder (Scalar.toRealMat sys.A) (toReal r) η)
-      (V.construct : Set (Vec ℝ n)))
-      ⊆ construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-        (MatExp.intervalInputRemainder (Interval.point sys.A) r η) V) := by -- --- PROOF ---
-  set Z := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-    (MatExp.intervalInputRemainder (Interval.point sys.A) r η) V
-  refine closure_minimal (convexHull_min ?_ (ConvexSet.convex_construct Z))
-    (CompactSet.isClosed_construct Z)
-  refine Set.iUnion₂_subset fun A hA => ?_
-  exact (Set.subset_biUnion_of_mem (u := fun A => (A *ᵥ ·) '' V.construct)
-    (MatExp.inputRemainder_subset_intervalInputRemainder _ hr η hη.2
-      (Interval.mem_point sys.A) hA)).trans
-    (Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := Zonotope 𝕋)
-      (MatExp.intervalInputRemainder (Interval.point sys.A) r η) V)
-
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
@@ -125,7 +106,7 @@ theorem LinearSys.inputReach_subset_inputSolutionFloat (sys : LinearSys 𝕋 n) 
           / ((η : ℝ) + 2) := div_le_div_of_nonneg_right hnorm hpos.le
       _ ≤ 1 / 2 := hη.2
       _ < 1 := by norm_num
-  have hrem := sys.aux_inputRemainder_subset hΔt.le hη V
+  have hrem := sys.inputRemainder_subset_float hΔt.le hη V
   have hexact := sys.inputReach_subset_inputSolution (S := fun k => Set (Vec ℝ k)) hΔt η hε
     (U := V.construct) (ConvexSet.convex_construct V) (CompactSet.isClosed_construct V)
     (CompactSet.isBounded_construct V) (convex_convexHull ℝ _).closure isClosed_closure

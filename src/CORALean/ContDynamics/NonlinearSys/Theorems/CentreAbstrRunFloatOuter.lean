@@ -1,0 +1,44 @@
+import CORALean.ContDynamics.NonlinearSys.Operations.CentreAbstrRunFloat
+import CORALean.ContDynamics.NonlinearSys.Theorems.RelinRunFloatOuter
+
+/-!
+# The float run linearized at the centre holds every run of the real system
+
+`relinRunAtFloat_outer` at `x✱ = center(R)` for each step's start set.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       08-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open CORALean.Float SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n m : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+/-- `k` successful steps return `k` sets, and every run of `sys` on `[0, kΔt]` from `R`
+under inputs in `U` is, at every time of step `j`, in the `j`-th of them. -/
+theorem NonlinearSys.FloatModel.Encloses.centreAbstrRunFloat_outer
+    {fm : NonlinearSys.FloatModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
+    {U : Zonotope 𝕋 m} {options : LinearSys.ReachOptions 𝕋} :
+    ∀ (k : ℕ) {R : Zonotope 𝕋 n} {Rs : List (Zonotope 𝕋 n)},
+      fm.centreAbstrRunFloat U options k R = some Rs → Rs.length = k ∧
+        ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
+          sys.Trajectory (S := fun k => Set (Vec ℝ k))
+            (Set.Icc 0 ((k : ℝ) * toReal options.timeStep)) R.construct U.construct x u →
+          ∀ (j : ℕ) (hj : j < Rs.length), ∀ t ∈ Set.Icc ((j : ℝ) * toReal options.timeStep)
+            (((j : ℝ) + 1) * toReal options.timeStep), x t ∈ Rs[j].construct :=
+  fun k _ _ hrun => h.relinRunAtFloat_outer k hrun
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -1,9 +1,11 @@
 import CORALean.ContSet.ContSet.Definitions.ConvexSet
+import CORALean.ContSet.Interval.Float.Instances
 import CORALean.ContSet.ZonoBundle.Float.Theorems.Convex
 import CORALean.ContSet.ZonoBundle.Float.Theorems.IntersectionExact
 import CORALean.ContSet.ZonoBundle.Float.Theorems.PlusOuter
 import CORALean.ContSet.ZonoBundle.Float.Theorems.LinCombOuter
 import CORALean.ContSet.ZonoBundle.Float.Theorems.MtimesOuter
+import CORALean.ContSet.ZonoBundle.Float.Theorems.MtimesIntervalMatOuter
 import CORALean.ContSet.ZonoBundle.Float.Theorems.ReindexExact
 import CORALean.ContSet.ZonoBundle.Float.Theorems.ReduceOuter
 
@@ -86,6 +88,13 @@ instance : Mtimes (Mat 𝕋) (ZonoBundle 𝕋) where
   mtimes_outer M zB := by
     simp only [ContSet.construct_mat, Set.biUnion_singleton, ZonoBundle.materialise_eq]
     exact ZonoBundle.mtimes_outer M zB
+
+/-- The same operation at a float interval matrix, member by member, as `Zonotope`'s is. -/
+instance : Mtimes (fun m n => Interval (Mat 𝕋 m n)) (ZonoBundle 𝕋) where
+  mtimes IM zB := (ZonoBundle.mtimesIntervalMat IM zB).materialise
+  mtimes_outer IM zB := by
+    rw [ZonoBundle.materialise_eq]
+    exact ZonoBundle.mtimesIntervalMat_outer IM zB
 
 end CORALean.Float
 

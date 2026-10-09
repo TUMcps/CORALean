@@ -1,0 +1,54 @@
+import CORALean.ContDynamics.NonlinearSys.Operations.HalfMat
+import CORALean.ContSet.PolyZonotope.Float.Operations.Mtimes
+import CORALean.ContSet.PolyZonotope.Float.Operations.Plus
+import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMap
+import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapMixed
+
+/-!
+# `varInputs`, the time-varying part of a polynomialized input, in floats
+
+Splitting the abstraction's input at a step into a part fixed at `ts` and a part varying inside
+`τs` leaves `v∆(z∆, z, u∆) = B u∆ + ½(D[z, z∆] + D[z∆, z] + D[z∆, z∆]) + …`, whose set of values
+is `[1, Eq. 7]`. This is `varInputs` over `Float.PolyZonotope`, one named `let` per printed
+term: `B ⊗ U∆`, and half the sum of the three quadratic pairings, `quadMapMixed` twice and
+`quadMap` once. The halving is `mtimes` by `½ I`, which is exact in a binary format and so costs
+the error box nothing it does not already carry.
+
+## References
+
+* [1] M. Althoff. "Reachability Analysis of Nonlinear Systems using Conservative
+      Polynomialization and Non-Convex Sets". HSCC 2013.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       08-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open CORALean.Float FloatOps
+
+variable {𝕋 : Type} [FloatOps 𝕋] {n m o : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- Every value the time-varying input part can take over a step, given the step's three ranges,
+enclosed. -/
+def varInputsFloat (B : Mat 𝕋 n m) (D : Fin n → Mat 𝕋 o o)
+    (Rz RzΔ : PolyZonotope 𝕋 o) (UΔ : PolyZonotope 𝕋 m) : PolyZonotope 𝕋 n :=
+  let BU := PolyZonotope.mtimes B UΔ                       -- B ⊗ U∆
+  let DzzΔ := PolyZonotope.quadMapMixed D Rz RzΔ           -- D[z, z∆]
+  let DzΔz := PolyZonotope.quadMapMixed D RzΔ Rz           -- D[z∆, z]
+  let DzΔzΔ := PolyZonotope.quadMap D RzΔ                  -- D[z∆, z∆]
+  let quad := (DzzΔ.plus DzΔz).plus DzΔzΔ                  -- the three pairings
+  BU.plus (PolyZonotope.mtimes (halfMat n) quad)           -- B U∆ + ½ (…)
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

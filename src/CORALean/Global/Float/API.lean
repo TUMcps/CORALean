@@ -1,4 +1,5 @@
 import CORALean.Global.Float.FloatOps
+import CORALean.Global.Float.GenOpNorm
 import CORALean.Global.Float.SoundFloatArithmetic
 import CORALean.Global.Float.ToRat
 import CORALean.Global.Float.NoNaN

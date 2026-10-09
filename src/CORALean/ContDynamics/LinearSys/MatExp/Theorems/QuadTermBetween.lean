@@ -1,6 +1,7 @@
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTerm
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermHi
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermLo
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.VertexSign
 import Mathlib.Algebra.Order.Archimedean.Real.Basic
 
 /-!
@@ -36,17 +37,6 @@ tightness theorem is where `t ≠ 0` is paid.
 namespace CORALean.Real
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
-/-- `t + c t²` is `t² (c - (-1/t))`, so it takes the sign of `c` against the
-vertex — and vanishes at `t = 0`, where `-1/t` reads as `0`. -/
-theorem aux_vertex_sign {t c : ℝ} : t + c * t ^ 2 = t ^ 2 * (c - -1 / t) := by
-  rcases eq_or_ne t 0 with rfl | ht
-  · ring
-  · field_simp
-    ring
-
-
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The parabola's value on a box never leaves `[quadTermLo, quadTermHi]`. -/
@@ -69,7 +59,7 @@ theorem MatExp.quadTerm_between {t a b x : ℝ} (h₁ : a ≤ x) (h₂ : x ≤ b
       rcases hv with hv | hv
       · -- `-1/t < a` makes `u = t + (x + a) t²/2` non-negative, so `γ a` is least
         have hu : 0 ≤ t + a * t ^ 2 := by
-          rw [aux_vertex_sign]; exact mul_nonneg ht2 (by linarith)
+          rw [MatExp.vertex_sign]; exact mul_nonneg ht2 (by linarith)
         have hu2 : 0 ≤ t + (x + a) * t ^ 2 / 2 := by
           nlinarith [mul_nonneg (sub_nonneg.2 h₁) ht2]
         have hstep := mul_nonneg (sub_nonneg.2 h₁) hu2
@@ -78,7 +68,7 @@ theorem MatExp.quadTerm_between {t a b x : ℝ} (h₁ : a ≤ x) (h₂ : x ≤ b
         nlinarith [hstep]
       · -- `b < -1/t` makes `v = t + (x + b) t²/2` non-positive, so `γ b` is least
         have hv' : t + b * t ^ 2 ≤ 0 := by
-          rw [aux_vertex_sign]
+          rw [MatExp.vertex_sign]
           exact mul_nonpos_of_nonneg_of_nonpos ht2 (by linarith)
         have hv2 : t + (x + b) * t ^ 2 / 2 ≤ 0 := by
           nlinarith [mul_nonneg (sub_nonneg.2 h₂) ht2]

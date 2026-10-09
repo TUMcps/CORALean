@@ -1,0 +1,39 @@
+import CORALean.ContDynamics.LinearSys.Operations.TimePointStepErrorFloat
+import CORALean.ContSet.Zonotope.Float.Zonotope
+
+/-!
+# A step's error ball, as a float zonotope
+
+`timePointStepErrorBox` in `𝕋`: the box `[-ε, ε]ⁿ` as the zonotope with one generator `ε eᵢ`
+per coordinate, `ε` the upward-rounded radius `timePointStepErrorFloat`. Centred at the origin
+with a zero error box, so its denotation is exactly that box: the error is paid once, in `ε`,
+rounded up, which is the direction an inner approximation needs of the set it takes off.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       08-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open CORALean.Float FloatOps
+
+variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- The box `timePointStepErrorFloat` bounds a point of: its radius times each unit vector. -/
+def LinearSys.timePointStepErrorBoxFloat (sys : LinearSys 𝕋 n) (r : 𝕋) (η : ℕ)
+    (U : Zonotope 𝕋 n) : Zonotope 𝕋 n :=
+  let ε := sys.timePointStepErrorFloat r η U                         -- the radius, rounded up
+  ⟨n, fun _ => zero, diagonalBlock fun _ => ε, Interval.point fun _ => zero⟩
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

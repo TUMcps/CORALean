@@ -1,0 +1,45 @@
+import CORALean.ContDynamics.LinearSys.Definitions.ManualStateFloat
+import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+import CORALean.ContSet.Interval.Float.Operations.Point
+
+/-!
+# `Alg. 1` lines 1-2 in floats: the loop state before the first iteration
+
+`manualInit`, [1, Alg. 1] lines 1-2, computed in `𝕋`: `t₀ = 0`, bracketed by `[0, 0]`,
+`H(t₀) = X₀`, and both input shares the point `{0}`.
+
+## References
+
+* [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of
+      Linear Systems Using Inner- and Outer-Approximations of Reachable Sets". IEEE
+      Transactions on Automatic Control, vol. 68, no. 12, 2023, pp. 7771–7786.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       08-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open CORALean.Float FloatOps
+
+variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- Lines 1-2, before the first iteration. -/
+def LinearSys.manualInitFloat (X₀ : Zonotope 𝕋 n) : LinearSys.ManualStateFloat 𝕋 n :=
+  { t := 0, tLo := zero, tHi := zero                                -- 1. t₀ ← 0
+    H := X₀                                                         -- 2. H(t₀) ← X₀
+    Pu := Interval.point fun _ => zero                              -- 2. P^u(t₀) ← 0
+    PU := (Interval.point fun _ => zero).zonotope }                 -- 2. P̂^U(t₀) ← 0
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

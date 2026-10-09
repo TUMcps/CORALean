@@ -27,22 +27,23 @@ namespace CORALean
 -- ========================================  MAIN TYPE  ========================================= --
 
 /-- What one step of [1, Alg. 2] hands the next: its own outputs, and the
-inputs those become. -/
-structure NonlinearSys.AdaptState (S : ℕ → Type) (n : ℕ) where
+inputs those become. The time `T` and the scalar `τ` of the tuning quantities are
+`ℝ` for the exact layer; a float run keeps `t_k` exactly in `ℚ` and the rest in `𝕋`. -/
+structure NonlinearSys.AdaptState (S : ℕ → Type) (n : ℕ) (T : Type := ℝ) (τ : Type := ℝ) where
   /-- `t_k`. -/
-  t : ℝ
+  t : T
   /-- `R(t_k)`, line 17, as line 18 reduced it. -/
   R : S n
   /-- `R(τ_k)`, line 17, as line 18 reduced it. -/
   Rτ : S n
   /-- `h_{k-1}`, the finite time horizon of the last step. -/
-  h : ℝ
+  h : τ
   /-- `φ⁽¹⁾_{k-1}`, the gain of the last step, line 16. -/
-  φ : ℝ
+  φ : τ
   /-- `κ_k`, the abstraction order, line 13. -/
   κ : ℕ
   /-- `r^{(λ*)}_{abs,k'}` of the last evaluation of eq. (47). -/
-  rabs : ℝ
+  rabs : τ
 
 end CORALean
 

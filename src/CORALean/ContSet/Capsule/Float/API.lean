@@ -15,6 +15,7 @@ import CORALean.ContSet.Capsule.Float.Operations.Reduce
 import CORALean.ContSet.Capsule.Float.Operations.Reindex
 import CORALean.ContSet.Capsule.Float.Operations.Project
 import CORALean.ContSet.Capsule.Float.Operations.BoundDot
+import CORALean.ContSet.Capsule.Float.Operations.BoundDotUp
 import CORALean.ContSet.Capsule.Float.Operations.Radius
 import CORALean.ContSet.Capsule.Float.Operations.Plus
 import CORALean.ContSet.Capsule.Float.Operations.Mtimes

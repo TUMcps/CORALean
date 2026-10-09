@@ -44,6 +44,11 @@ import CORALean.ContSet.PolyZonotope.Float.Theorems.LeQuadUp
 import CORALean.ContSet.PolyZonotope.Float.Theorems.ToRealExtG
 import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadMapENominal
 import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadMapOuter
+import CORALean.ContSet.PolyZonotope.Float.Theorems.BilinGClose
+import CORALean.ContSet.PolyZonotope.Float.Theorems.BilinRefines
+import CORALean.ContSet.PolyZonotope.Float.Theorems.BilinOuter
+import CORALean.ContSet.PolyZonotope.Float.Theorems.NominalSetCartProd
+import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadMapMixedOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.MulGClose
 import CORALean.ContSet.PolyZonotope.Float.Theorems.MulOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.NoIndepSubset

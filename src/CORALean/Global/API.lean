@@ -1,3 +1,4 @@
+import CORALean.Global.ErrLeNormOfAbsLe
 import CORALean.Global.Tensor
 import CORALean.Global.Scalar
 import CORALean.Global.ExactScalar

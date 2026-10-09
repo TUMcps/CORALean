@@ -1,4 +1,5 @@
 import CORALean.ContDynamics.LinParamSys.Operations.ReachFloat
+import CORALean.ContDynamics.LinParamSys.Theorems.MapMEqSome
 import CORALean.ContDynamics.LinParamSys.Theorems.ReachOrderFloatSpec
 import CORALean.ContDynamics.LinParamSys.Theorems.ReachStepkFloatOuter
 import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalStepFloatOuter
@@ -32,34 +33,6 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
-/-- A `mapM` into `Option` that succeeds has one result per entry, each the
-function's value there. -/
-theorem LinParamSys.aux_mapM_some {α β : Type} {f : α → Option β} :
-    ∀ {l : List α} {l' : List β}, l.mapM f = some l' →
-      ∃ hlen : l'.length = l.length, ∀ (i : ℕ) (hi : i < l'.length),
-        f (l[i]'(hlen ▸ hi)) = some l'[i] := by -- --- PROOF ---
-  intro l
-  induction l with
-  | nil =>
-    intro l' h
-    simp only [List.mapM_nil, Option.pure_def, Option.some.injEq] at h
-    subst h
-    exact ⟨rfl, fun i hi => absurd hi (Nat.not_lt_zero i)⟩
-  | cons a l ih =>
-    intro l' h
-    simp only [List.mapM_cons, Option.bind_eq_bind, Option.bind_eq_some_iff, Option.pure_def,
-      Option.some.injEq] at h
-    obtain ⟨b, hb, bs, hbs, rfl⟩ := h
-    obtain ⟨hlen, hget⟩ := ih hbs
-    -- the head is `f a`, the tail the induction's
-    refine ⟨by simp [hlen], fun i hi => ?_⟩
-    cases i with
-    | zero => exact hb
-    | succ i => exact hget i (Nat.lt_of_succ_lt_succ hi)
-
-
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinParamSys.reachFloat_outer (sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n)
@@ -77,7 +50,7 @@ theorem LinParamSys.reachFloat_outer (sys : LinParamSys (fun m n => Interval (Ma
   obtain ⟨N, hN, η', hη', hRs⟩ := h
   obtain ⟨hΔt, hNΔt⟩ := Reach.steps_spec_toReal hN
   have hadm := (LinParamSys.reachOrderFloat_spec hη').1
-  obtain ⟨hlen, hget⟩ := LinParamSys.aux_mapM_some hRs
+  obtain ⟨hlen, hget⟩ := LinParamSys.mapM_eq_some hRs
   rw [List.length_range] at hlen
   refine ⟨N, hNΔt, hlen, fun k hk A hA x₀ hx₀ s ⟨hs0, hs⟩ => ?_⟩
   -- `e^{As} x₀` is in the first window, reduced or not

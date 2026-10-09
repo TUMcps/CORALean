@@ -36,6 +36,7 @@ import CORALean.NN.Layers.Operations.EvalPolyUp
 import CORALean.NN.Layers.Operations.Exp
 import CORALean.NN.Layers.Operations.ExpEnclosure
 import CORALean.NN.Layers.Operations.ExpRelaxation
+import CORALean.NN.Layers.Operations.ExpUpLimit
 import CORALean.NN.Layers.Operations.FitHi
 import CORALean.NN.Layers.Operations.FitLo
 import CORALean.NN.Layers.Operations.GeneratorReduction
@@ -104,6 +105,9 @@ import CORALean.NN.Layers.Operations.GroupSortFloat
 import CORALean.NN.Layers.Operations.Softmax
 import CORALean.NN.Layers.Operations.SoftmaxBox
 import CORALean.NN.Layers.Operations.SoftmaxDenomDown
+import CORALean.NN.Layers.Operations.SoftmaxDenomUp
+import CORALean.NN.Layers.Operations.SoftmaxExpInRange
+import CORALean.NN.Layers.Operations.SoftmaxRawLower
 import CORALean.NN.Layers.Operations.SoftmaxRawUpper
 import CORALean.NN.Layers.Operations.Softplus
 import CORALean.NN.Layers.Operations.SoftplusEnclosure

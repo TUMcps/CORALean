@@ -25,7 +25,7 @@ Where the listing is read with care:
   `|cⱼ| + Σᵢ|gᵢⱼ|` is attained, so their maximum is the supremum of the infinity norm;
 * `β_r` divides by `‖A‖`, which the theorems take positive.
 
-No float refinement: the step is taken at the exact `e^{rA}` and `e^{r‖A‖}`.
+Taken at the exact `e^{rA}` and `e^{r‖A‖}`; it runs in floats as `girardReachFloat`.
 
 ## References
 

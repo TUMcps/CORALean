@@ -11,6 +11,7 @@ import CORALean.ContSet.ConZonotope.Float.Theorems.EmptyExact
 import CORALean.ContSet.ConZonotope.Float.Theorems.IsCompact
 import CORALean.ContSet.ConZonotope.Float.Theorems.OriginExact
 import CORALean.ContSet.ConZonotope.Float.Theorems.MtimesOuter
+import CORALean.ContSet.ConZonotope.Float.Theorems.MtimesIntervalMatOuter
 import CORALean.ContSet.ConZonotope.Float.Theorems.IntersectionOuter
 import CORALean.ContSet.ConZonotope.Float.Theorems.SplitOuter
 import CORALean.ContSet.ConZonotope.Float.Theorems.ReindexExact
