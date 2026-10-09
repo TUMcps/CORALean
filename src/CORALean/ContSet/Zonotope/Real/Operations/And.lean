@@ -9,7 +9,7 @@ CORA's `@zonotope/and_` with method `'conZonotope'`: both zonotopes are converte
 zonotopes, intersected exactly, and the result is enclosed by a zonotope, here by dropping the
 constraints (`ConZonotope.zonotope`). An outer enclosure, not the intersection: a zonotope is not
 closed under intersection. CORA's interval shortcut (both operands boxes, `'exact'` interval
-intersection) and the method `'averaging'` are not covered.
+intersection) is not covered; the method `'averaging'` is `Zonotope.andAveraging`.
 -/
 
 -- Authors:       Tobias Ladner

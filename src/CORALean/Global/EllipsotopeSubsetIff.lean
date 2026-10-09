@@ -9,11 +9,18 @@ import CORALean.Global.CoeffNormBallEq
 bound pointwise, `E_q(H, d)` being `{x | ‖x - d‖_{E_q(H)} ≤ 1}` (`coeffNorm_ball_eq`). Any
 norms on either coefficient space.
 
+The containment half of [2, Thm. 12] is the same statement: `r ≤ 1` iff `Ê ⊆ E`, at a
+non-degenerate circumbody (`H` onto). Not proved: that `r` is the smallest scaling, nor the
+degenerate-circumbody convention.
+
 ## References
 
 * [1] A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the
       Zonotope and Ellipsotope Containment Problems". In Proc. of the European Control
       Conference (ECC), 2024. doi:10.23919/ECC64448.2024.10590884.
+* [2] A. Kulmburg, L. Schäfer and M. Althoff. "Approximability of the Containment Problem for
+      Zonotopes and Ellipsotopes". IEEE Transactions on Automatic Control, 2025.
+      doi:10.1109/TAC.2025.3583624. arXiv:2404.11185.
 -/
 
 -- Authors:       Tobias Ladner

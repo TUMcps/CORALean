@@ -278,6 +278,13 @@ import CORALean.ContSet.Zonotope.Real.Theorems.HyperplanePolyhedronEqZonotope
 import CORALean.ContSet.Zonotope.Real.Theorems.InterHyperplaneIff
 import CORALean.ContSet.Zonotope.Real.Theorems.SegmentSumEq
 
+import CORALean.ContSet.Zonotope.Real.Theorems.AndAveragingOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.AveragingWeightsOptimal
+import CORALean.ContSet.Zonotope.Real.Theorems.LuenbergerUpdateOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.LuenbergerGainEqMulStripGain
+import CORALean.ContSet.Zonotope.Real.Theorems.LuenbergerGainOptimal
+import CORALean.ContSet.Zonotope.Real.Theorems.StripGainOptimal
+
 /-!
 # What `Zonotope` guarantees
 

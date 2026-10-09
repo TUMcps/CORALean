@@ -12,11 +12,16 @@ ball, and its boundary as the unit sphere — the printed "unit circle coincides
 `E_p(G)`" is the ball (`coeffNorm_ball_eq_counterexample`). At the supremum norm this is
 the zonotope's `Cor. 1` of Kulmburg and Althoff.
 
+[2, Prop. 7] is the same statement.
+
 ## References
 
 * [1] A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the
       Zonotope and Ellipsotope Containment Problems". In Proc. of the European Control
       Conference (ECC), 2024. doi:10.23919/ECC64448.2024.10590884.
+* [2] A. Kulmburg, L. Schäfer and M. Althoff. "Approximability of the Containment Problem for
+      Zonotopes and Ellipsotopes". IEEE Transactions on Automatic Control, 2025.
+      doi:10.1109/TAC.2025.3583624. arXiv:2404.11185.
 -/
 
 -- Authors:       Tobias Ladner

@@ -14,40 +14,40 @@
     "not-covered"
   ],
   "totals": {
-    "papers": 78,
-    "papers_with_findings": 66,
-    "in_scope": 1027,
-    "formalized": 938,
-    "not_formalized": 89,
-    "out_of_scope": 796,
+    "papers": 81,
+    "papers_with_findings": 68,
+    "in_scope": 1057,
+    "formalized": 951,
+    "not_formalized": 106,
+    "out_of_scope": 858,
     "out_of_scope_by_reason": {
-      "restated": 302,
-      "mathlib": 15,
-      "not-a-claim": 409,
+      "restated": 317,
+      "mathlib": 17,
+      "not-a-claim": 454,
       "done-differently": 12,
       "not-covered": 58
     },
     "by_class": {
-      "correct": 654,
-      "underspecified": 164,
+      "correct": 662,
+      "underspecified": 169,
       "proof-gap": 30,
       "fixed": 86,
       "false": 4
     },
     "claims": {
-      "in_scope": 389,
-      "formalized": 352,
-      "correct": 220,
-      "underspecified": 64,
+      "in_scope": 411,
+      "formalized": 359,
+      "correct": 223,
+      "underspecified": 68,
       "proof-gap": 30,
       "fixed": 36,
       "false": 2
     },
     "definitions": {
-      "in_scope": 638,
-      "formalized": 586,
-      "correct": 434,
-      "underspecified": 100,
+      "in_scope": 646,
+      "formalized": 592,
+      "correct": 439,
+      "underspecified": 101,
       "proof-gap": 0,
       "fixed": 50,
       "false": 2
@@ -1936,6 +1936,49 @@
       ]
     },
     {
+      "page": "2017/bak-formats-time-triggered-conversion.md",
+      "label": "Bak 2017",
+      "year": 2017,
+      "title": "Time-Triggered Conversion of Guards for Reachability Analysis of Hybrid Automata",
+      "in_scope": 4,
+      "formalized": 0,
+      "not_formalized": 4,
+      "out_of_scope": 18,
+      "out_of_scope_by_reason": {
+        "restated": 0,
+        "mathlib": 0,
+        "not-a-claim": 18,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 0,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 4,
+        "formalized": 0,
+        "correct": 0,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 0,
+        "formalized": 0,
+        "correct": 0,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": []
+    },
+    {
       "page": "2017/goubault-hscc-forward-inner-reachability.md",
       "label": "Goubault 2017",
       "year": 2017,
@@ -3706,6 +3749,65 @@
       ]
     },
     {
+      "page": "2023/alanwar-jfi-diffusion-observers.md",
+      "label": "Alanwar 2023",
+      "year": 2023,
+      "title": "Distributed Set-Based Observers Using Diffusion Strategies",
+      "in_scope": 8,
+      "formalized": 6,
+      "not_formalized": 2,
+      "out_of_scope": 13,
+      "out_of_scope_by_reason": {
+        "restated": 6,
+        "mathlib": 2,
+        "not-a-claim": 5,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 3,
+        "underspecified": 3,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 4,
+        "formalized": 4,
+        "correct": 2,
+        "underspecified": 2,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 4,
+        "formalized": 2,
+        "correct": 1,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Prop. 1",
+          "class": "underspecified",
+          "reason": "tr(Ḡʲ Ḡʲᵀ) > 0 is missing: a zero generator matrix leaves 1 / tr undefined; supplied"
+        },
+        {
+          "result": "Prop. 2",
+          "class": "underspecified",
+          "reason": "the invertibility of Γ Ĝ Ĝᵀ Γᵀ + R Rᵀ, which the formula writes as a quotient, is missing; supplied"
+        },
+        {
+          "result": "Eq. 38",
+          "class": "underspecified",
+          "reason": "the same invertibility as `Prop. 2` is missing; supplied"
+        }
+      ]
+    },
+    {
       "page": "2023/althoff-arch-reachset-conformance.md",
       "label": "Althoff 2023",
       "year": 2023,
@@ -4754,6 +4856,60 @@
       ]
     },
     {
+      "page": "2025/kulmburg-tac-approximability-containment.md",
+      "label": "Kulmburg 2025",
+      "year": 2025,
+      "title": "Approximability of the Containment Problem for Zonotopes and Ellipsotopes",
+      "in_scope": 18,
+      "formalized": 7,
+      "not_formalized": 11,
+      "out_of_scope": 31,
+      "out_of_scope_by_reason": {
+        "restated": 9,
+        "mathlib": 0,
+        "not-a-claim": 22,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 5,
+        "underspecified": 2,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 14,
+        "formalized": 3,
+        "correct": 1,
+        "underspecified": 2,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 4,
+        "formalized": 4,
+        "correct": 4,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Lemma 14",
+          "class": "underspecified",
+          "reason": "the proof takes r through the ellipsotope norm (`Prop. 7`), which needs the circumbody non-degenerate (H onto), as the formalization assumes; the degenerate case is `Thm. 12`'s convention"
+        },
+        {
+          "result": "Lemma 26",
+          "class": "underspecified",
+          "reason": "n = 0 is not excluded, where no such L exists (the setting has n > 1, Eq. 62); the proof ends at L ≥ n - 1 for an open bound and equates Eq. 70 with 2 · 1/2ᵖ ≤ n for 2^{1-1/p} ≤ n; see Findings"
+        }
+      ]
+    },
+    {
       "page": "2025/ladner-tmlr-gcn.md",
       "label": "Ladner 2025",
       "year": 2025,
@@ -5372,8 +5528,8 @@
         },
         "cora_issues": 3,
         "findings": {
-          "correct": 112,
-          "underspecified": 24,
+          "correct": 115,
+          "underspecified": 27,
           "proof-gap": 3,
           "fixed": 14,
           "false": 1
@@ -5996,8 +6152,8 @@
           "deprecated": 14
         },
         "findings": {
-          "correct": 349,
-          "underspecified": 82,
+          "correct": 352,
+          "underspecified": 85,
           "proof-gap": 7,
           "fixed": 43,
           "false": 4
@@ -6093,8 +6249,8 @@
         "deprecated": 14
       },
       "findings": {
-        "correct": 571,
-        "underspecified": 141,
+        "correct": 574,
+        "underspecified": 144,
         "proof-gap": 26,
         "fixed": 68,
         "false": 4
@@ -6102,8 +6258,8 @@
     },
     "findings_not_on_a_class": {
       "global": {
-        "correct": 60,
-        "underspecified": 16,
+        "correct": 65,
+        "underspecified": 18,
         "proof-gap": 4,
         "fixed": 12,
         "false": 0
@@ -6124,11 +6280,11 @@
       }
     },
     "theorems": {
-      "paper": 1266,
+      "paper": 1279,
       "float": 1607,
-      "helper": 1050,
+      "helper": 1058,
       "lemma": 2332,
-      "total": 6255,
+      "total": 6276,
       "examples": 80
     }
   }
