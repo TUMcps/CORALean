@@ -156,6 +156,16 @@ def ofProbZ {n : ℕ} (P : ProbZonotope 𝕋 n) : Out :=
 def ofSpS {n : ℕ} (S : SpectraShadow 𝕋 n) : Out :=
   ⟨s!"k={S.k} m={S.m} c={vecS S.c} E={boxS S.E}",
     matF S.A₀ ++ vecF S.c ++ matF S.G ++ boxF S.E, false⟩
+-- the regions of a piecewise polynomial fit: their number, largest error and spans
+def ofRegions (o : Option (List (RegionPoly 𝕋))) : Out :=
+  match o with
+  | none => ⟨"none", [], true⟩
+  | some L =>
+    let errs := L.map fun r => ToF.toF r.err
+    let spans := L.map fun r =>
+      s!"[{(r.lo.map sc).getD "-inf"}, {(r.hi.map sc).getD "inf"}]"
+    ⟨s!"regions={L.length} max err={fl (errs.foldl max 0)} spans: " ++ " ".intercalate spans,
+      errs, L.isEmpty⟩
 
 -- matrix zonotopes and lists of windows (`none` is a missing value)
 def ofMZ {m n : ℕ} (M : MatZonotope 𝕋 m n) : Out :=
@@ -360,6 +370,12 @@ def dyadicRows : StateT Nat IO Unit := do
   row "ctLoc" (ofZono RunnableFloat.ctLoc.inv)
   row "locStepRun" (ofZono RunnableFloat.locStepRun)
   row "locSplitRun" (ofZono RunnableFloat.locSplitRun)
+  row "hpNormal" (⟨vecS RunnableFloat.hpNormal, vecF RunnableFloat.hpNormal, false⟩ : Out)
+  row "hpOffset" (ofD RunnableFloat.hpOffset)
+  row "hpBasis" (ofMat RunnableFloat.hpBasis)
+  row "zonoGirardUpperRun" (ofD RunnableFloat.zonoGirardUpperRun)
+  row "zonoGirardRun" (ofBundle RunnableFloat.zonoGirardRun)
+  row "checkFlowRun" (ofWindows (some RunnableFloat.checkFlowRun))
   -- the parametric system
   row "lpA" (ofIMat RunnableFloat.lpA)
   row "lpSys" (ofIMat RunnableFloat.lpSys.A)
@@ -438,6 +454,13 @@ def dyadicRows2 : StateT Nat IO Unit := do
   row "nnContrSys" (ofMat RunnableFloat.nnContrSys.plant.A)
   row "nnContrReachRun" (ofZono RunnableFloat.nnContrReachRun)
   row "nnContrUnionRun" (ofWindows RunnableFloat.nnContrUnionRun)
+  row "netBox" (ofBox (RunnableFloat.netBox.enclose RunnableFloat.Z.interval))
+  row "propagateBoundsRun" (ofBox RunnableFloat.propagateBoundsRun)
+  row "regionFit"
+    (ofD ((RunnableFloat.regionFit 1).error (RunnableFloat.d 0 0) (RunnableFloat.d 1 0)))
+  row "regionStart" (ofD RunnableFloat.regionStart.err)
+  row "regionEnd" (ofD RunnableFloat.regionEnd.err)
+  row "findRegionPolysRun" (ofRegions RunnableFloat.findRegionPolysRun)
   -- Van der Pol
   row "vdpModel" (ofBox
     (RunnableFloat.vdpModel.f RunnableFloat.vdpX₀.interval RunnableFloat.vdpU.interval))

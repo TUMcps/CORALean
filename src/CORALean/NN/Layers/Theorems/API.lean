@@ -24,6 +24,10 @@ import CORALean.NN.Layers.Theorems.EvalPolyShiftConst
 import CORALean.NN.Layers.Theorems.ExistsGridClose
 import CORALean.NN.Layers.Theorems.ExpRelaxationSound
 import CORALean.NN.Layers.Theorems.ExpSound
+import CORALean.NN.Layers.Theorems.FindRegionLeftFits
+import CORALean.NN.Layers.Theorems.FindRegionLoopCover
+import CORALean.NN.Layers.Theorems.FindRegionPolysCover
+import CORALean.NN.Layers.Theorems.FindRegionRightFits
 import CORALean.NN.Layers.Theorems.GeneratorReductionSound
 import CORALean.NN.Layers.Theorems.GridMemOfChecked
 import CORALean.NN.Layers.Theorems.LeEvalPolyUp
@@ -38,6 +42,7 @@ import CORALean.NN.Layers.Theorems.LipConstrLinearSound
 import CORALean.NN.Layers.Theorems.LipConstrScaleRowSumLe
 import CORALean.NN.Layers.Theorems.LinearWithErrorMem
 import CORALean.NN.Layers.Theorems.LinearWithErrorSound
+import CORALean.NN.Layers.Theorems.LowerRegionOrderFits
 import CORALean.NN.Layers.Theorems.MaxPoolGapUpNonneg
 import CORALean.NN.Layers.Theorems.MaxPoolSound
 import CORALean.NN.Layers.Theorems.MulRangeDownLe
@@ -53,6 +58,7 @@ import CORALean.NN.Layers.Theorems.PadToSound
 import CORALean.NN.Layers.Theorems.PolyDerivRadiusLe
 import CORALean.NN.Layers.Theorems.PowRangeBounds
 import CORALean.NN.Layers.Theorems.Real.API
+import CORALean.NN.Layers.Theorems.RegionPolyOfRelaxationFits
 import CORALean.NN.Layers.Theorems.ReluGapOfSlopeLe
 import CORALean.NN.Layers.Theorems.ReluRelaxationSound
 import CORALean.NN.Layers.Theorems.ReluSound

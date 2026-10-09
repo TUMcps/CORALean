@@ -23,6 +23,7 @@ import CORALean.NN.Layers.Definitions.PolyFit
 import CORALean.NN.Layers.Definitions.PolyOfSampling
 import CORALean.NN.Layers.Definitions.PolyRelaxation
 import CORALean.NN.Layers.Definitions.PolySampling
+import CORALean.NN.Layers.Definitions.RegionPoly
 import CORALean.NN.Layers.Definitions.Relaxation
 import CORALean.NN.Layers.Definitions.Relu
 import CORALean.NN.Layers.Definitions.ReluLayer

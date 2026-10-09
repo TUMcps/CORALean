@@ -29,6 +29,7 @@ import CORALean.NN.Operations.MergeRows
 import CORALean.NN.Operations.MergeRowWeight
 import CORALean.NN.Operations.MinOver
 import CORALean.NN.Operations.NetworkConvergent
+import CORALean.NN.Operations.PropagateBounds
 import CORALean.NN.Operations.Raise
 import CORALean.NN.Operations.Ratio
 import CORALean.NN.Operations.ReducedLinearIdentity

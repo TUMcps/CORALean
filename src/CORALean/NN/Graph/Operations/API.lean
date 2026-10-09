@@ -24,6 +24,9 @@ import CORALean.NN.Graph.Operations.MatMulBilin
 import CORALean.NN.Graph.Operations.MessagePassing
 import CORALean.NN.Graph.Operations.MessagePassingEnclosure
 import CORALean.NN.Graph.Operations.OnesRow
+import CORALean.NN.Graph.Operations.ReduceGNNForNode
+import CORALean.NN.Graph.Operations.ReduceKeep
+import CORALean.NN.Graph.Operations.ReducedSteps
 import CORALean.NN.Graph.Operations.Select
 import CORALean.NN.Graph.Operations.SelectMat
 import CORALean.NN.Graph.Operations.SqrtBroadcast

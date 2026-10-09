@@ -9,6 +9,7 @@ import CORALean.NN.Theorems.DisjointMisclassifiedOfBounds
 import CORALean.NN.Theorems.EncloseAtInflate
 import CORALean.NN.Theorems.EncloseAtOuter
 import CORALean.NN.Theorems.EncloseReduceAtOuter
+import CORALean.NN.Theorems.PropagateBoundsOuter
 import CORALean.NN.Theorems.RefineVerifyFromSound
 import CORALean.NN.Theorems.RefineVerifySound
 import CORALean.NN.Theorems.EncloseNotMonotone
