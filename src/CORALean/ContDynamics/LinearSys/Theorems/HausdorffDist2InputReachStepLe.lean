@@ -1,4 +1,5 @@
-import CORALean.ContDynamics.LinearSys.Theorems.HausdorffDist2InputReachLe
+import CORALean.ContDynamics.LinearSys.Theorems.HausdorffDist2InputReachLeOfConvex
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ZeroMemParticularSolutionOuter
 import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationEq
 import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
 import CORALean.Global.EuclideanHausdorffDistAddLe
@@ -9,8 +10,9 @@ import CORALean.Global.EuclideanHausdorffDistAddLe
 Eq. (24)'s displayed recursion `ε^U_{k+1} = ε^U_k + Δε^U_k(Δt_k,η_k)`, one step of it. The exact
 `P^U(t_k+Δt_k)` really does split as `P^U(t_k) ⊕ e^{At_k}P^U(Δt_k)` — `inputReach_separation_eq`,
 Althoff's `Prop. 3.2` — so the recursively computed `P̂^U(t_k) ⊕ e^{At_k}P̂^U(Δt_k)` is compared
-summand by summand: `hausdorffDist₂_add_le` for the split, `hausdorffDist₂_inputReach_le`
-(`Prop. 11`) for the new summand, and the error at `t_k` is the hypothesis eq. (24) reads it as.
+summand by summand: `hausdorffDist₂_add_le` for the split, `hausdorffDist₂_inputReach_le_of_convex`
+(`Prop. 11`, without eq. (20)'s soundness) for the new summand, and the error at `t_k` is the
+hypothesis eq. (24) reads it as.
 
 Compactness of the four sets is what `Def. 5` asks of everything it measures, and is what makes
 the nearest points in `hausdorffDist₂_add_le` exist. Eq. (21)'s accumulation over the horizon is
@@ -57,8 +59,8 @@ theorem LinearSys.hausdorffDist₂_inputReach_step_le (sys : LinearSys 𝕋 n) {
     (hcQ : IsCompact Pk) (hQne : Pk.Nonempty)
     (hcQΔ : IsCompact (MatExp.particularSolutionOuter (toRealMat sys.A) (construct U) 0 Δt η))
     (hstep : hausdorffDist₂ (sys.inputReach U tk) Pk ≤ εk)
-    (houter : sys.inputReach U Δt
-      ⊆ MatExp.particularSolutionOuter (toRealMat sys.A) (construct U) 0 Δt η) :
+    (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
+    (h0 : (0 : Vec ℝ n) ∈ construct U) :
     hausdorffDist₂ (sys.inputReach U (tk + Δt))
         (Pk + (fun x => exp (tk • toRealMat sys.A) *ᵥ x)
           '' MatExp.particularSolutionOuter (toRealMat sys.A) (construct U) 0 Δt η)
@@ -68,7 +70,7 @@ theorem LinearSys.hausdorffDist₂_inputReach_step_le (sys : LinearSys 𝕋 n) {
   have hPne : (sys.inputReach U tk).Nonempty := ⟨_, sys.expIntegral_mem_inputReach htk hc⟩
   have hPΔne : (sys.inputReach U Δt).Nonempty := ⟨_, sys.expIntegral_mem_inputReach hΔt.le hc⟩
   have hQΔne : (MatExp.particularSolutionOuter (toRealMat sys.A) (construct U) 0 Δt η).Nonempty :=
-    hPΔne.imp fun _ hz => houter hz
+    ⟨0, MatExp.zero_mem_particularSolutionOuter _ h0 0 Δt η⟩
   have hcont : Continuous (fun x : Vec ℝ n => exp (tk • toRealMat sys.A) *ᵥ x) :=
     (mulVecL (exp (tk • toRealMat sys.A))).continuous
   -- Althoff's `Prop. 3.2`: the exact set really is the sum the recursion mirrors
@@ -79,7 +81,7 @@ theorem LinearSys.hausdorffDist₂_inputReach_step_le (sys : LinearSys 𝕋 n) {
   rw [hsep]
   refine (hausdorffDist₂_add_le hcP hPne hcQ hQne (hcPΔ.image hcont) (hPΔne.image _)
     (hcQΔ.image hcont) (hQΔne.image _)).trans (add_le_add hstep ?_)
-  exact sys.hausdorffDist₂_inputReach_le tk hbdd hΔt η houter
+  exact sys.hausdorffDist₂_inputReach_le_of_convex tk hconv hclosed hbdd h0 hΔt η
 
 end CORALean
 

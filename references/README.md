@@ -50,12 +50,12 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [A state bounding observer based on zonotopes](2003/combastel-ecc-state-bounding-observer.md) | Combastel | ECC | 2003 | 🟢 5/5 \| 1 |
 | [Taylor Models and Other Validated Functional Inclusion Methods](2003/makino-ijpam-taylor-models.md) | Makino, Berz | International Journal of Pure and Applied Mathematics, 4(4):379-452 | 2003 | 🟢 20/20 \| 24 |
 | [Reachability of Uncertain Linear Systems Using Zonotopes](2005/girard-hscc-reachability-zonotopes.md) | Girard | HSCC, LNCS 3414, pp. 291-305 | 2005 | 🟢 7/7 \| 1 |
-| [Verified Global Optimization with Taylor Model-based Range Bounders](2005/makino-tc-global-optimization.md) | Makino, Berz | Transactions on Computers, 11(4):1611-1618 | 2005 | 🟡 3/4 \| 6 |
+| [Verified Global Optimization with Taylor Model-based Range Bounders](2005/makino-tc-global-optimization.md) | Makino, Berz | Transactions on Computers, 11(4):1611-1618 | 2005 | 🟢 4/4 \| 6 |
 | [Ellipsoidal Toolbox (ET)](2006/kurzhanskiy-cdc-ellipsoidal-toolbox.md) | Kurzhanskiy, Varaiya | CDC, pp. 1498-1503 | 2006 | 🟢 6/6 \| 14 |
 | [Reachability Analysis of Nonlinear Systems with Uncertain Parameters using Conservative Linearization](2008/althoff-cdc-conservative-linearization.md) | Althoff, Stursberg, Buss | CDC, pp. 4042-4048 | 2008 | 🟡 10/11 \| 4 |
 | [Zonotope/Hyperplane Intersection for Hybrid Systems Reachability Analysis](2008/girard-hscc-zonotope-hyperplane.md) | Girard, Le Guernic | HSCC, LNCS 4981, pp. 215-228 | 2008 | 🟡 5/7 \| 13 |
 | [Safety Assessment for Stochastic Linear Systems using Enclosing Hulls of Probability Density Functions](2009/althoff-ecc-enclosing-hulls.md) | Althoff, Stursberg, Buss | ECC, pp. 625-630 | 2009 | 🟡 9/15 \| 5 |
-| [Interval predictor models: Identification and reliability](2009/campi-automatica-interval-predictor-models.md) | Campi, Calafiore, Garatti | Automatica, 45(2):382-392 | 2009 | 🟡 4/9 \| 27 |
+| [Interval predictor models: Identification and reliability](2009/campi-automatica-interval-predictor-models.md) | Campi, Calafiore, Garatti | Automatica, 45(2):382-392 | 2009 | 🟡 5/9 \| 27 |
 | [On the Hyperbox – Hyperplane Intersection Problem](2009/lara-infocomp-hyperbox-hyperplane.md) | Lara, Flores, Calderon | INFOCOMP Journal of Computer Science, 8(4):21-27 | 2009 | 🟢 18/18 \| 17 |
 | [Computing Reachable Sets of Hybrid Systems Using a Combination of Zonotopes and Polytopes](2010/althoff-nahs-zonotopes-polytopes.md) | Althoff, Stursberg, Buss | Nonlinear Analysis: Hybrid Systems, 4(2):233-249 | 2010 | 🟢 13/13 \| 8 |
 | [Reachability Analysis and its Application to the Safety Assessment of Autonomous Cars](2010/althoff-thesis.md) | Althoff | PhD thesis, TU München | 2010 | 🟡 33/34 \| 2 |
@@ -63,18 +63,18 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Zonotope Bundles for the Efficient Computation of Reachable Sets](2011/althoff-cdc-zonotope-bundles.md) | Althoff, Krogh | CDC-ECC, pp. 6814-6821 | 2011 | 🟢 16/16 \| 7 |
 | [Analyzing Reachability of Linear Dynamic Systems with Parametric Uncertainties](2011/althoff-reachability-parametric-uncertainties.md) | Althoff, Krogh, Stursberg | In A. Rauh and E. Auer (eds.), Modeling, Design, and Simulation of Systems with Uncertainties, Springer | 2011 | 🟢 4/4 \| 0 |
 | [Reachability Computation of Low-Order Models for the Safety Verification of High-Order Road Vehicle Models](2012/althoff-acc-low-order-models.md) | Althoff, Dolan | ACC, pp. 3559-3566 | 2012 | 🟢 3/3 \| 11 |
-| [Avoiding Geometric Intersection Operations in Reachability Analysis of Hybrid Systems](2012/althoff-hscc-avoiding-intersection.md) | Althoff, Krogh | HSCC, pp. 45-54 | 2012 | 🟡 14/18 \| 4 |
+| [Avoiding Geometric Intersection Operations in Reachability Analysis of Hybrid Systems](2012/althoff-hscc-avoiding-intersection.md) | Althoff, Krogh | HSCC, pp. 45-54 | 2012 | 🟡 15/18 \| 6 |
 | [Goffin's algorithm for zonotopes](2012/cerny-kybernetika-goffin-zonotopes.md) | Černý | Kybernetika, 48(5):890-906 | 2012 | 🟡 20/28 \| 18 |
-| [Reachability Analysis of Nonlinear Systems using Conservative Polynomialization and Non-Convex Sets](2013/althoff-hscc-conservative-polynomialization.md) | Althoff | HSCC | 2013 | 🟢 6/6 \| 4 |
+| [Reachability Analysis of Nonlinear Systems using Conservative Polynomialization and Non-Convex Sets](2013/althoff-hscc-conservative-polynomialization.md) | Althoff | HSCC | 2013 | 🟢 6/6 \| 5 |
 | [Zonotopic guaranteed state estimation for uncertain systems](2013/le-automatica-zonotopic-estimation.md) | Le, Stoica, Alamo, Camacho, Dumur | Automatica, 49(11):3418-3424 | 2013 | 🟡 13/14 \| 7 |
 | [General Inner Approximation of Vector-valued Functions](2013/mullier-rc-general-inner-approximation.md) | Mullier, Goubault, Kieffer, Putot | Reliable Computing, 18:117-143 | 2013 | 🟡 14/15 \| 15 |
 | [Reachability Analysis of Nonlinear Differential-Algebraic Systems](2014/althoff-tac-nonlinear-dae.md) | Althoff, Krogh | IEEE Transactions on Automatic Control, 59(2):371-383 | 2014 | 🟡 17/18 \| 17 |
 | [Model Predictive Control with Signal Temporal Logic Specifications](2014/raman-cdc-mpc-stl.md) | Raman, Donzé, Maasoumy, Murray, Sangiovanni-Vincentelli, Seshia | CDC, pp. 81-87 | 2014 | 🟢 16/16 \| 17 |
-| [On Computing the Minkowski Difference of Zonotopes](2015/althoff-arxiv-minkowski-difference.md) | Althoff | arXiv | 2015 | 🟢 16/16 \| 1 |
+| [On Computing the Minkowski Difference of Zonotopes](2015/althoff-arxiv-minkowski-difference.md) | Althoff | arXiv | 2015 | 🟢 16/16 \| 2 |
 | [Discovering governing equations from data by sparse identification of nonlinear dynamical systems](2016/brunton-pnas-sindy.md) | Brunton, Proctor, Kutz | Proceedings of the National Academy of Sciences, 113(15):3932-3937 | 2016 | 🟢 9/9 \| 12 |
 | [Dynamic mode decomposition with control](2016/proctor-siads-dmd-control.md) | Proctor, Brunton, Kutz | SIAM Journal on Applied Dynamical Systems, 15(1):142-161 | 2016 | 🟢 24/24 \| 17 |
 | [STL Model Checking of Continuous and Hybrid Systems](2016/roehm-atva-stl-model-checking.md) | Roehm, Oehlerking, Heinz, Althoff | ATVA, LNCS 9938, pp. 412-427 | 2016 | 🟡 18/19 \| 3 |
-| [Constrained zonotopes: A new tool for set-based estimation and fault detection](2016/scott-automatica-constrained-zonotopes.md) | Scott, Raimondo, Marseglia, Braatz | Automatica, 69:126-136 | 2016 | 🟡 10/13 \| 8 |
+| [Constrained zonotopes: A new tool for set-based estimation and fault detection](2016/scott-automatica-constrained-zonotopes.md) | Scott, Raimondo, Marseglia, Braatz | Automatica, 69:126-136 | 2016 | 🟢 13/13 \| 8 |
 | [Implementation of Interval Arithmetic in CORA 2016](2017/althoff-arch-interval-arithmetic.md) | Althoff, Grebenyuk | ARCH16, EPiC Series in Computing 43, pp. 91-105 | 2017 | 🟢 19/19 \| 6 |
 | [Time-Triggered Conversion of Guards for Reachability Analysis of Hybrid Automata](2017/bak-formats-time-triggered-conversion.md) | Bak, Bogomolov, Althoff | FORMATS, LNCS 10419, pp. 133-150 | 2017 | 🔴 0/4 \| 18 |
 | [Forward Inner-Approximated Reachability of Non-Linear Continuous Systems](2017/goubault-hscc-forward-inner-reachability.md) | Goubault, Putot | HSCC, pp. 1-10 | 2017 | 🟡 3/4 \| 17 |
@@ -97,19 +97,19 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Utilizing Dependencies to Obtain Subsets of Reachable Sets](2020/kochdumper-hscc-utilizing-dependencies.md) | Kochdumper, Schürmann, Althoff | HSCC | 2020 | 🟢 11/11 \| 4 |
 | [Adaptive parameter tuning for reachability analysis of linear systems](2020/wetzlinger-cdc-adaptive-tuning.md) | Wetzlinger, Kochdumper, Althoff | CDC, pp. 5145–5152 | 2020 | 🟢 12/12 \| 1 |
 | [Guaranteed State Estimation in CORA 2021](2021/althoff-arch-state-estimation.md) | Althoff | ARCH21, EPiC Series in Computing 80, pp. 161-175 | 2021 | 🟢 4/4 \| 17 |
-| [Sparse Polynomial Zonotopes: A Novel Set Representation for Reachability Analysis](2021/kochdumper-tac-sparse-polyzonotopes.md) | Kochdumper, Althoff | IEEE Transactions on Automatic Control | 2021 | 🟢 19/19 \| 10 |
+| [Sparse Polynomial Zonotopes: A Novel Set Representation for Reachability Analysis](2021/kochdumper-tac-sparse-polyzonotopes.md) | Kochdumper, Althoff | IEEE Transactions on Automatic Control | 2021 | 🟢 19/19 \| 14 |
 | [On the co-NP-Completeness of the Zonotope Containment Problem](2021/kulmburg-ejc-zonotope-containment.md) | Kulmburg, Althoff | European Journal of Control, 62:84-91 | 2021 | 🟡 21/24 \| 4 |
 | [Adaptive Parameter Tuning for Reachability Analysis of Nonlinear Systems](2021/wetzlinger-hscc-adaptive-tuning-nonlinear.md) | Wetzlinger, Kulmburg, Althoff | HSCC | 2021 | 🟢 5/5 \| 1 |
 | [Benchmarks for the Formal Verification of Power Systems](2022/althoff-arch-power-systems.md) | Althoff | ARCH22, EPiC Series in Computing, vol. 90, pp. 26-43 | 2022 | 🟢 3/3 \| 18 |
 | [Open- and Closed-Loop Neural Network Verification using Polynomial Zonotopes](2022/kochdumper-arxiv-nn-polyzono.md) | Kochdumper, Schilling, Althoff, Bak | arXiv:2207.02715; NFM 2023, LNCS, pp. 16-36 | 2022 | 🟡 3/4 \| 3 |
-| [Set operations and order reductions for constrained zonotopes](2022/raghuraman-koeln-constrained-zonotopes.md) | Raghuraman, Koeln | Automatica, 139:110204 | 2022 | 🟡 9/11 \| 9 |
+| [Set operations and order reductions for constrained zonotopes](2022/raghuraman-koeln-constrained-zonotopes.md) | Raghuraman, Koeln | Automatica, 139:110204 | 2022 | 🟢 11/11 \| 9 |
 | [Adaptive Reachability Algorithms for Nonlinear Systems Using Abstraction Error Analysis](2022/wetzlinger-nahs-abstraction-error.md) | Wetzlinger, Kulmburg, Le Penven, Althoff | Nonlinear Analysis: Hybrid Systems, 46:101252 | 2022 | 🟡 13/14 \| 2 |
 | [Scalable Zonotopic Under-approximation of Backward Reachable Sets for Uncertain Linear Systems](2022/yang-lcss-zonotopic-underapproximation.md) | Yang, Ozay | IEEE Control Systems Letters, 6:1555-1560 | 2022 | 🟢 15/15 \| 12 |
 | [Privacy-Preserving Set-Based Estimation Using Partially Homomorphic Encryption](2023/alanwar-ejc-privacy-preserving-estimation.md) | Alanwar, Gaßmann, He, Said, Sandberg, Johansson, Althoff | European Journal of Control | 2023 | 🟢 4/4 \| 24 |
 | [Distributed Set-Based Observers Using Diffusion Strategies](2023/alanwar-jfi-diffusion-observers.md) | Alanwar, Rath, Said, Johansson, Althoff | Journal of the Franklin Institute, 360(10):6976-6993 | 2023 | 🟡 6/8 \| 13 |
 | [Checking and Establishing Reachset Conformance in CORA 2023](2023/althoff-arch-reachset-conformance.md) | Althoff | ARCH23, EPiC Series in Computing 96, pp. 9-33 | 2023 | 🟢 12/12 \| 13 |
 | [Constrained Polynomial Zonotopes](2023/kochdumper-constrained-polyzonotopes.md) | Kochdumper, Althoff | Acta Informatica | 2023 | 🟢 16/16 \| 11 |
-| [Automatic Abstraction Refinement in Neural Network Verification using Sensitivity Analysis](2023/ladner-hscc-abstraction-refinement.md) | Ladner, Althoff | HSCC | 2023 | 🟢 27/27 \| 10 |
+| [Automatic Abstraction Refinement in Neural Network Verification using Sensitivity Analysis](2023/ladner-hscc-abstraction-refinement.md) | Ladner, Althoff | HSCC | 2023 | 🟢 28/28 \| 12 |
 | [Fully Automatic Neural Network Reduction for Formal Verification](2023/ladner-tmlr-network-reduction.md) | Ladner, Althoff | TMLR | 2023 | 🟢 14/14 \| 5 |
 | [Guarantees for Real Robotic Systems: Unifying Formal Controller Synthesis and Reachset-Conformant Identification](2023/liu-tro-guarantees-real-robotic.md) | Liu, Schürmann, Althoff | IEEE Transactions on Robotics, 39(5):3776-3790 | 2023 | 🟢 15/15 \| 17 |
 | [Reachability Analysis of ARMAX Models](2023/luetzow-cdc-armax.md) | Lützow, Althoff | CDC, pp. 7027-7034 | 2023 | 🟢 14/14 \| 5 |
@@ -118,7 +118,7 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Fully-Automated Verification of Linear Systems Using Reachability Analysis with Support Functions](2023/wetzlinger-hscc-support-functions.md) | Wetzlinger, Kochdumper, Bak, Althoff | HSCC | 2023 | 🟡 3/5 \| 4 |
 | [Search-based and Stochastic Solutions to the Zonotope and Ellipsotope Containment Problems](2024/kulmburg-ecc-zonotope-ellipsotope-containment.md) | Kulmburg, Brkan, Althoff | ECC | 2024 | 🟡 13/18 \| 9 |
 | [Exponent Relaxation of Polynomial Zonotopes and Its Applications in Formal Neural Network Verification](2024/ladner-aaai-exponent-relaxation.md) | Ladner, Althoff | AAAI | 2024 | 🟡 6/8 \| 6 |
-| [Implementation of Polyhedral Operations in CORA 2024](2024/wetzlinger-arch-polyhedral-operations.md) | Wetzlinger, Kotsev, Kulmburg, Althoff | ARCH24, EPiC Series in Computing 103, pp. 163-181 | 2024 | 🟡 48/50 \| 15 |
+| [Implementation of Polyhedral Operations in CORA 2024](2024/wetzlinger-arch-polyhedral-operations.md) | Wetzlinger, Kotsev, Kulmburg, Althoff | ARCH24, EPiC Series in Computing 103, pp. 163-181 | 2024 | 🟡 49/50 \| 15 |
 | [Inner Approximations of Reachable Sets for Nonlinear Systems using the Minkowski Difference](2024/wetzlinger-lcss-inner-minkowski-difference.md) | Wetzlinger, Kulmburg, Althoff | IEEE Control Systems Letters, 8:2033-2038 | 2024 | 🟡 3/7 \| 16 |
 | [Explaining Fast and Slow: Abstraction and Refinement of Provable Explanations](2025/bassan-icml-explaining-fast-and-slow.md) | Bassan, Elboher, Ladner, Althoff, Katz | ICML | 2025 | 🟢 14/14 \| 2 |
 | [Robust Identification of Hybrid Automata from Noisy Data](2025/kochdumper-hscc-hybrid-automata-identification.md) | Kochdumper, Foughali, Habermehl, Asarin | HSCC, pp. 1-11 | 2025 | 🟢 9/9 \| 17 |
@@ -322,6 +322,7 @@ pages carry one:
 * [Distributed Set-Based Observers Using Diffusion Strategies](2023/alanwar-jfi-diffusion-observers.md)
 * [Approximability of the Containment Problem for Zonotopes and Ellipsotopes](2025/kulmburg-tac-approximability-containment.md)
 * [Privacy-Preserving Set-Based Estimation Using Partially Homomorphic Encryption](2023/alanwar-ejc-privacy-preserving-estimation.md)
+* [Constrained zonotopes: A new tool for set-based estimation and fault detection](2016/scott-automatica-constrained-zonotopes.md)
 
 [FINDINGS.md](../FINDINGS.md) is the other half, and stays at the root: the
 places this formalization parts from CORA on purpose, which belong to no paper.

@@ -145,6 +145,9 @@ import CORALean.Global.IpmEllipsoid
 import CORALean.Global.IpmBallEq
 import CORALean.Global.IpmEllipsoidEq
 import CORALean.Global.IpmBallConsistentIff
+import CORALean.Global.IpmEllipsoidConsistentIffLmi
+import CORALean.Global.IpmEllipsoidMeanSqHalfWidthLe
+import CORALean.Global.Norm2MulVecLeErrOfMemClosureConvexHull
 import CORALean.Global.IpmBallExample
 
 import CORALean.Global.EllipsotopeCentreShift

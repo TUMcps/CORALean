@@ -153,6 +153,10 @@ import CORALean.ContSet.Zonotope.Real.Operations.DominantLengthFilter
 import CORALean.ContSet.Zonotope.Real.Operations.DominantShortlist
 import CORALean.ContSet.Zonotope.Real.Operations.DominantScore
 import CORALean.ContSet.Zonotope.Real.Operations.DominantDirections
+import CORALean.ContSet.Zonotope.Real.Operations.OfEchelon
+import CORALean.ContSet.Zonotope.Real.Operations.ReduceScottStep
+import CORALean.ContSet.Zonotope.Real.Operations.QuadMapPairIdx
+import CORALean.ContSet.Zonotope.Real.Operations.QuadMapTri
 
 /-!
 # What `Zonotope` computes

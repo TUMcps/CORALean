@@ -12,8 +12,8 @@ e^{At_k}P̂^U(Δt)` of `Alg. 1` line 10 before its reduction, solved. The reduct
 share is eq. (28) and is accounted separately.
 
 Compactness of the exact solution at each `t_k` is what `Def. 5` asks of everything it
-measures, as for the single step; eq. (20)'s soundness stays the hypothesis `Prop. 11`
-leaves it, [1] citing it onward rather than proving it.
+measures, as for the single step. Eq. (20)'s soundness is not assumed: the step uses
+`Prop. 11`'s bound for `U₀` convex, closed and containing `0`.
 
 ## References
 
@@ -79,17 +79,16 @@ theorem LinearSys.hausdorffDist₂_inputReach_run_le (sys : LinearSys 𝕋 n) {U
     (hne : (construct U).Nonempty)
     (hcP : ∀ t : ℝ, 0 ≤ t → IsCompact (sys.inputReach U t))
     (hcQΔ : IsCompact (MatExp.particularSolutionOuter (toRealMat sys.A) (construct U) 0 Δt η))
-    (houter : sys.inputReach U Δt
-      ⊆ MatExp.particularSolutionOuter (toRealMat sys.A) (construct U) 0 Δt η) (k : ℕ) :
+    (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
+    (h0 : (0 : Vec ℝ n) ∈ construct U) (k : ℕ) :
     hausdorffDist₂ (sys.inputReach U ((k : ℝ) * Δt))
         (∑ j ∈ Finset.range k, (fun x => exp (((j : ℝ) * Δt) • toRealMat sys.A) *ᵥ x)
           '' MatExp.particularSolutionOuter (toRealMat sys.A) (construct U) 0 Δt η)
       ≤ ∑ j ∈ Finset.range k, MatExp.particularSolutionError
           (toRealMat sys.A) ((j : ℝ) * Δt) (construct U) Δt η := by -- --- PROOF ---
   obtain ⟨c, hc⟩ := hne
-  have hPΔne : (sys.inputReach U Δt).Nonempty := ⟨_, sys.expIntegral_mem_inputReach hΔt.le hc⟩
   have hQΔne : (MatExp.particularSolutionOuter (toRealMat sys.A) (construct U) 0 Δt η).Nonempty :=
-    hPΔne.imp fun _ hz => houter hz
+    ⟨0, MatExp.zero_mem_particularSolutionOuter _ h0 0 Δt η⟩
   have hcont : ∀ t : ℝ, Continuous (fun x : Vec ℝ n => exp (t • toRealMat sys.A) *ᵥ x) :=
     fun t => (mulVecL (exp (t • toRealMat sys.A))).continuous
   have hsumc := aux_isCompact_sum_range
@@ -107,7 +106,7 @@ theorem LinearSys.hausdorffDist₂_inputReach_run_le (sys : LinearSys 𝕋 n) {U
     rw [Finset.sum_range_succ, Finset.sum_range_succ,
       show ((k + 1 : ℕ) : ℝ) * Δt = (k : ℝ) * Δt + Δt by push_cast; ring]
     exact sys.hausdorffDist₂_inputReach_step_le (by positivity) hΔt η hbdd ⟨c, hc⟩
-      (hcP _ (by positivity)) (hcP _ hΔt.le) (hsumc k).1 (hsumc k).2 hcQΔ ih houter
+      (hcP _ (by positivity)) (hcP _ hΔt.le) (hsumc k).1 (hsumc k).2 hcQΔ ih hconv hclosed h0
 
 end CORALean
 

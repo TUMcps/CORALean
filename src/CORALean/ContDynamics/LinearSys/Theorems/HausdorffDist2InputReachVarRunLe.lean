@@ -73,9 +73,8 @@ theorem LinearSys.hausdorffDist₂_inputReach_run_var_le (sys : LinearSys 𝕋 n
     (hcP : ∀ t : ℝ, 0 ≤ t → IsCompact (sys.inputReach U t))
     (hcQΔ : ∀ j, IsCompact
       (MatExp.particularSolutionOuter (toRealMat sys.A) (construct U) 0 (Δt j) (η j)))
-    (houter : ∀ j, sys.inputReach U (Δt j)
-      ⊆ MatExp.particularSolutionOuter (toRealMat sys.A) (construct U) 0 (Δt j) (η j))
-    (k : ℕ) :
+    (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
+    (h0 : (0 : Vec ℝ n) ∈ construct U) (k : ℕ) :
     hausdorffDist₂ (sys.inputReach U (∑ i ∈ Finset.range k, Δt i))
         (∑ j ∈ Finset.range k,
           (fun x => exp ((∑ i ∈ Finset.range j, Δt i) • toRealMat sys.A) *ᵥ x)
@@ -88,8 +87,7 @@ theorem LinearSys.hausdorffDist₂_inputReach_run_var_le (sys : LinearSys 𝕋 n
     fun j => Finset.sum_nonneg fun i _ => (hΔt i).le
   have hQΔne : ∀ j, (MatExp.particularSolutionOuter (toRealMat sys.A) (construct U) 0
       (Δt j) (η j)).Nonempty := fun j =>
-    (⟨_, sys.expIntegral_mem_inputReach (hΔt j).le hc⟩ : (sys.inputReach U (Δt j)).Nonempty).imp
-      fun _ hz => houter j hz
+    ⟨0, MatExp.zero_mem_particularSolutionOuter _ h0 0 (Δt j) (η j)⟩
   have hcont : ∀ t : ℝ, Continuous (fun x : Vec ℝ n => exp (t • toRealMat sys.A) *ᵥ x) :=
     fun t => (mulVecL (exp (t • toRealMat sys.A))).continuous
   have hsumc := aux_isCompact_sum_range_var
@@ -106,7 +104,7 @@ theorem LinearSys.hausdorffDist₂_inputReach_run_var_le (sys : LinearSys 𝕋 n
   | succ k ih =>
     rw [Finset.sum_range_succ, Finset.sum_range_succ, Finset.sum_range_succ]
     exact sys.hausdorffDist₂_inputReach_step_le (hsum_nn k) (hΔt k) (η k) hbdd ⟨c, hc⟩
-      (hcP _ (hsum_nn k)) (hcP _ (hΔt k).le) (hsumc k).1 (hsumc k).2 (hcQΔ k) ih (houter k)
+      (hcP _ (hsum_nn k)) (hcP _ (hΔt k).le) (hsumc k).1 (hsumc k).2 (hcQΔ k) ih hconv hclosed h0
 
 end CORALean
 

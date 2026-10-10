@@ -7,6 +7,8 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeOfMemInputCorre
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeOfMemStateCorrectionSet
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeOfMemSum
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsParticularTailEntryLe
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsExpRemainderEntryLe
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ZeroMemParticularSolutionOuter
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CurvatureEnclosureFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegralSubSumMemAdaptiveRemainder
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsPowEntryLeAbsMatPow

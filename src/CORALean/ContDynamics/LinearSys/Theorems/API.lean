@@ -77,6 +77,9 @@ import CORALean.ContDynamics.LinearSys.Theorems.GirardReachEq
 import CORALean.ContDynamics.LinearSys.Theorems.GirardReachOuter
 import CORALean.ContDynamics.LinearSys.Theorems.HasDerivWithinAtExpNegMulVec
 import CORALean.ContDynamics.LinearSys.Theorems.HausdorffDist2InputReachLe
+import CORALean.ContDynamics.LinearSys.Theorems.InputReachMemAddClosureConvexHull
+import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetClosureConvexHull
+import CORALean.ContDynamics.LinearSys.Theorems.HausdorffDist2InputReachLeOfConvex
 import CORALean.ContDynamics.LinearSys.Theorems.HausdorffDist2InputReachRunLe
 import CORALean.ContDynamics.LinearSys.Theorems.HausdorffDist2InputReachStepLe
 import CORALean.ContDynamics.LinearSys.Theorems.HausdorffDist2InputReachTauLe

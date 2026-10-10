@@ -1,0 +1,47 @@
+import CORALean.ContSet.VPolytope.Real.VPolytope
+
+/-!
+# A V-representation of `∅` has no points
+
+[1, Sec. 3 (minimal representation)]: "empty sets are ... in minimal representation". For points
+this holds of every V-representation of `∅`: a V-polytope with a point contains it, so one
+describing `∅` has none, the least count there is, and nothing to remove.
+
+## References
+
+* [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral
+      Operations in CORA 2024". In Proc. of the 11th International Workshop on Applied
+      Verification for Continuous and Hybrid Systems (ARCH24), EPiC Series in Computing,
+      vol. 103, pp. 163-181, 2024.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       10-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+/-- [1, Sec. 3 (minimal representation)]: a V-representation of `∅` lists no points. -/
+theorem VPolytope.k_eq_zero_of_construct_eq_empty (P : VPolytope α) (hP : P.construct = ∅) :
+    P.k = 0 := by -- --- PROOF ---
+  by_contra hk
+  -- the first point is a convex combination of the points, weight one on itself
+  have hmem : P.V ⟨0, Nat.pos_of_ne_zero hk⟩ ∈ P.construct :=
+    ⟨Pi.single ⟨0, Nat.pos_of_ne_zero hk⟩ 1, fun j => by
+      rw [Pi.single_apply]; split_ifs <;> norm_num, by simp, by simp [Pi.single_apply]⟩
+  rw [hP] at hmem
+  exact hmem
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

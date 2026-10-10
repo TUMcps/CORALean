@@ -7,6 +7,7 @@ import CORALean.ContSet.PolyZonotope.Real.Complexity.Bilin
 import CORALean.ContSet.PolyZonotope.Real.Complexity.BilinBigO
 import CORALean.ContSet.PolyZonotope.Real.Complexity.Mul
 import CORALean.ContSet.PolyZonotope.Real.Complexity.EvalPoly
+import CORALean.ContSet.PolyZonotope.Real.Complexity.EvalPolySort
 import CORALean.ContSet.PolyZonotope.Real.Complexity.QuadMap
 import CORALean.ContSet.PolyZonotope.Real.Complexity.PadFront
 import CORALean.ContSet.PolyZonotope.Real.Complexity.PadBack

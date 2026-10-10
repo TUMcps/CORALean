@@ -28,6 +28,9 @@ import CORALean.ContSet.ConZonotope.Real.Operations.RowBound
 import CORALean.ContSet.ConZonotope.Real.Operations.TightenCoeff
 import CORALean.ContSet.ConZonotope.Real.Operations.TightenRow
 import CORALean.ContSet.ConZonotope.Real.Operations.Tighten
+import CORALean.ContSet.ConZonotope.Real.Operations.TightenCoeffER
+import CORALean.ContSet.ConZonotope.Real.Operations.TightenPassER
+import CORALean.ContSet.ConZonotope.Real.Operations.TightenER
 import CORALean.ContSet.ConZonotope.Real.Operations.Eliminate
 import CORALean.ContSet.ConZonotope.Real.Operations.Project
 import CORALean.ContSet.ConZonotope.Real.Operations.ConstraintReduce

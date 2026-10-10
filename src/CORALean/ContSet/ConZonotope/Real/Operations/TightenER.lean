@@ -1,0 +1,43 @@
+import CORALean.ContSet.ConZonotope.Real.Operations.TightenPassER
+
+/-!
+# `ConZonotope.tightenER`
+
+[1, Alg. 1 (R)], [1, Alg. 1 (iteration)], [2, Alg. 1] with both outputs, `E` and `R`, run `k + 1`
+times: line 1's `E = [-1, 1]`, `R = [-∞, +∞]`, then the pass of lines 2-10, then the pass again on
+its own output `k` more times. At `k = 0` it is the algorithm as listed; [2] says it "can be applied
+iteratively to further refine E", and [1] repeats that, which is `k > 0`.
+
+## References
+
+* [1] V. Raghuraman and J. P. Koeln. "Set operations and order reductions for
+      constrained zonotopes". Automatica, 139:110204, 2022. arXiv:2009.06039.
+* [2] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:
+      A new tool for set-based estimation and fault detection". Automatica, 69:126-136,
+      2016.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       10-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- [1, Alg. 1 (R)], [1, Alg. 1 (iteration)] with `E` and `R`, applied `k + 1` times. -/
+noncomputable def ConZonotope.tightenER {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc) (k : ℕ) :
+    Interval (Vec ℝ ng) × ((Fin ng → EReal) × (Fin ng → EReal)) :=
+  let E₀ : Interval (Vec ℝ ng) := ⟨fun _ => -1, fun _ => 1⟩                  -- 1. Ej ← [-1,1]
+  let R₀ : (Fin ng → EReal) × (Fin ng → EReal) := (fun _ => ⊥, fun _ => ⊤)  -- 1. Rj ← [-∞,∞]
+  (ConZonotope.tightenPassER A b)^[k + 1] (E₀, R₀)                           -- 2-10, k + 1 times
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -304,6 +304,13 @@ import CORALean.ContSet.Zonotope.Real.Theorems.DominantDirectionsDetEqZeroOfOrth
 import CORALean.ContSet.Zonotope.Real.Theorems.FacetNormalDotSelfPos
 import CORALean.ContSet.Zonotope.Real.Theorems.MinnormOffsetNonneg
 import CORALean.ContSet.Zonotope.Real.Theorems.MinnormOffsetMulSqrt
+import CORALean.ContSet.Zonotope.Real.Theorems.OfEchelonReduceScottStepOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.ReduceScottStepMulVec
+import CORALean.ContSet.Zonotope.Real.Theorems.ReduceScottStepAbsLe
+import CORALean.ContSet.Zonotope.Real.Theorems.OfEchelonInvEq
+import CORALean.ContSet.Zonotope.Real.Theorems.QuadMapTriOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.ReduceScottParallelotopeVolume
+import CORALean.ContSet.Zonotope.Real.Theorems.ReduceScottVolumeSum
 
 /-!
 # What `Zonotope` guarantees

@@ -110,8 +110,10 @@ HEDGE = re.compile(r"done differently|no counterpart|not covered|stated at `poin
 # there are linked (and checked like any link), and `missing:` says what is not.
 PARTIAL = re.compile(r"^—\s+partial:\s*\S.*;\s*missing:\s*\S.{9,}$", re.S)
 # A running time stated in a result's second cell: `complexity O(n⁵)`, `in O(ph log h)`,
-# `in time linear`. Sizes (`O(h) generators`) are not running times and pass.
-RUNNING_TIME = re.compile(r"complexity\s*`?O\(|\bin `?O\(|in time linear|\bat complexity\b", re.I)
+# `in time linear`, `the O(n²) complexity`. Sizes (`O(h) generators`) are not running times
+# and pass.
+RUNNING_TIME = re.compile(r"complexity\s*`?O\(|\bin `?O\(|in time linear|\bat complexity\b|"
+                          r"\bO\([^|\n]*?\)`?\s+complexity\b", re.I)
 AS_PRINTED = re.compile(r"\*\*As printed:\*\*\s*(\S.{39,})")
 # A `fixed` row names the Lean counterexample theorem(s) in its third cell, or says why
 # there is none. The named theorems must be declared in a file the row links.
@@ -266,9 +268,10 @@ class Paper:
             self.results[result] = links if links else (None if excluded else [])
             self.verdicts[result] = self.parse_class(result, klass, excluded,
                                                     bool(links) and not planned)
+            if not excluded:
+                self.check_complexity(result, says, where)
             if self.verdicts[result][0] == "correct":
                 self.check_hedge(result, where)
-                self.check_complexity(result, says, where)
             elif self.verdicts[result][0] == "fixed":
                 self.check_counterexample(result, where, links)
 
@@ -313,8 +316,8 @@ class Paper:
                          "declared in a file the row links")
 
     def check_complexity(self, result, says, where):
-        """A running time printed beside a result is a row of its own, so a `correct` row's
-        second cell does not carry one (references/README.md, "A complexity statement is a
+        """A running time printed beside a result is a row of its own, so no row in scope
+        (formalized in any class, or `—`) carries one in its second cell (references/README.md, "A complexity statement is a
         row of its own"). A result whose statement *is* the bound links its `Cost/` file."""
         if RUNNING_TIME.search(says) and "/Cost/" not in where:
             self.say(f"{self.rel}: `{result}` states a running time in its own row; give it a "

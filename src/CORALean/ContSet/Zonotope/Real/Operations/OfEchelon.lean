@@ -1,0 +1,42 @@
+import CORALean.ContSet.Zonotope.Real.Zonotope
+import Mathlib.Data.Matrix.Mul
+
+/-!
+# `Zonotope.ofEchelon`
+
+[1, Sec. 4.3 (new reduction)]: the state of the generator reduction of Sec. 4.3. The generators of
+`Z = {G, c}` are reordered as `[T V]`, `T ∈ ℝ^{n×n}` invertible, and kept as `T` and
+`R = T⁻¹V`, so that `Z = {[T TR], c}`. This is that zonotope: the `n` columns of `T`, then
+`T r` for every column `r` of `R`. "`Z̃` can be recovered after the update as `{[T TR], c}`."
+
+## References
+
+* [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:
+      A new tool for set-based estimation and fault detection". Automatica, 69:126-136,
+      2016.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       10-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+open Matrix
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- [1, Sec. 4.3 (new reduction)]: `{[T TR], c}`, `R` given by its `k` columns. -/
+def Zonotope.ofEchelon {n k : ℕ} (c : Vec ℝ n) (T : Mat ℝ n n) (R : Fin k → Vec ℝ n) :
+    Zonotope (Vec ℝ n) :=
+  ⟨n + k, c, Fin.append (fun i a => T a i) (fun l => T *ᵥ R l)⟩
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

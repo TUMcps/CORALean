@@ -56,6 +56,19 @@ import CORALean.ContSet.ConZonotope.Real.Theorems.RescaleExact
 import CORALean.ContSet.ConZonotope.Real.Theorems.SumUnivLinComb
 import CORALean.ContSet.ConZonotope.Real.Theorems.TightenOuter
 import CORALean.ContSet.ConZonotope.Real.Theorems.TightenOuterSafe
+import CORALean.ContSet.ConZonotope.Real.Theorems.TightenEROuter
+import CORALean.ContSet.ConZonotope.Real.Theorems.TightenERZeroFst
+import CORALean.ContSet.ConZonotope.Real.Theorems.TightenEREmpty
+import CORALean.ContSet.ConZonotope.Real.Theorems.TightenERRefine
+import CORALean.ContSet.ConZonotope.Real.Theorems.TightenERNotSuperset
+import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveConstructEq
+import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveRowIndep
+import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveEqOfRZero
+import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveRZeroCounterexample
+import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructEqComapLift
+import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveHausdorffEq
+import CORALean.ContSet.ConZonotope.Real.Theorems.HausdorffEstimateIsMinOn
+import CORALean.ContSet.ConZonotope.Real.Theorems.HausdorffEstimateReducedIff
 import CORALean.ContSet.ConZonotope.Real.Theorems.EmptyExact
 import CORALean.ContSet.ConZonotope.Real.Theorems.CartProdExact
 import CORALean.ContSet.ConZonotope.Real.Theorems.CompactExact
@@ -99,5 +112,5 @@ hypothesis as the paper's own `max`/`min` do; `ExistsIsGreatestIneqs` supplies t
 `TightenOuter` is `tighten`'s soundness, Algorithm 1's own guarantee; `TightenOuterSafe` is the
 same restricted to a dependency-closed set, and `EliminateExact` is `Thm. 2` itself under it.
 Scott et al.'s Props. 2-5, Sec. 4.2-4.3: `NonemptyIffIsLeast`, `LiftIff`, `RescaleExact`,
-`ConstraintReduceOuter`, `EliminateOuter`, `LiftThenReduce`.
+`ConstraintReduceOuter`, `EliminateOuter`, `LiftThenReduce`; Algorithm 1 with `R` is `TightenER*`.
 -/

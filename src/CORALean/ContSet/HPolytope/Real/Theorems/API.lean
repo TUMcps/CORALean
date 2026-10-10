@@ -100,6 +100,8 @@ import CORALean.ContSet.HPolytope.Real.Theorems.MemIffRows
 import CORALean.ContSet.HPolytope.Real.Theorems.VolumeLtTop
 import CORALean.ContSet.HPolytope.Real.Theorems.ExistsConstructEqImageAffine
 import CORALean.ContSet.HPolytope.Real.Theorems.BallSubsetIneqsIff
+import CORALean.ContSet.HPolytope.Real.Theorems.EmptyRedundantCounterexample
+import CORALean.ContSet.HPolytope.Real.Theorems.EmptySetRowsMinimal
 
 /-!
 # What `HPolytope` guarantees
