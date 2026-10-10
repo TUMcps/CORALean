@@ -41,6 +41,7 @@ import CORALean.ContSet.Zonotope.Float.Theorems.ReduceByOuterRefines
 import CORALean.ContSet.Zonotope.Float.Theorems.ReduceByH
 import CORALean.ContSet.Zonotope.Float.Theorems.AbsAbsorbedLeRadius
 import CORALean.ContSet.Zonotope.Float.Theorems.ReduceByOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.ReduceByCoeff
 import CORALean.ContSet.Zonotope.Float.Theorems.ReduceBySubsetAddBox
 import CORALean.ContSet.Zonotope.Float.Theorems.ReduceGirardOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.ReduceCombastelOuter

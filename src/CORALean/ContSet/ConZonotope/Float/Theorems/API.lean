@@ -4,6 +4,8 @@ import CORALean.ContSet.ConZonotope.Float.Theorems.PlusOuter
 import CORALean.ContSet.ConZonotope.Float.Theorems.LinCombOuter
 import CORALean.ContSet.ConZonotope.Float.Theorems.ProjectOuter
 import CORALean.ContSet.ConZonotope.Float.Theorems.ReduceOuter
+import CORALean.ContSet.ConZonotope.Float.Theorems.ReduceLiftByOuter
+import CORALean.ContSet.ConZonotope.Float.Theorems.ReduceLiftOuter
 import CORALean.ContSet.ConZonotope.Float.Theorems.UnionSubsetLinComb
 import CORALean.ContSet.ConZonotope.Float.Theorems.ConvexHullSubsetLinComb
 import CORALean.ContSet.ConZonotope.Float.Theorems.Convex

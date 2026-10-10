@@ -8,6 +8,9 @@ import CORALean.ContSet.ConZonotope.Float.Operations.Intersection
 import CORALean.ContSet.ConZonotope.Float.Operations.Split
 import CORALean.ContSet.ConZonotope.Float.Operations.Project
 import CORALean.ContSet.ConZonotope.Float.Operations.Reduce
+import CORALean.ContSet.ConZonotope.Float.Operations.LiftEq
+import CORALean.ContSet.ConZonotope.Float.Operations.ReduceLiftBy
+import CORALean.ContSet.ConZonotope.Float.Operations.ReduceLift
 import CORALean.ContSet.ConZonotope.Float.Operations.Empty
 import CORALean.ContSet.ConZonotope.Float.Operations.Origin
 import CORALean.ContSet.ConZonotope.Float.Operations.Reindex

@@ -12,12 +12,11 @@ coefficients are `keepRows`. The fresh coefficients are unconstrained.
 
 Where `ConZonotope.reduce` forgets `P` before reducing, this removes the dropped
 coefficients from the domain and boxes what they contributed. CORA's
-`@conZonotope/reduce` does neither: it lifts the set to the zonotope `[G; A]`, reduces
-that, and reads `A` and `b` back off the result, which asks for the equality system
-CORA's representation carries and this one does not. Here the constraints stay a
-polytope, each row projected on its own (`keepRows`), so that a row survives
-intact wherever the dropped generators are unconstrained, which CORA's lifting
-cannot promise. The two are not comparable as sets.
+`@conZonotope/reduce` lifts the equality rows with the generators and reduces that
+zonotope; that is `ConZonotope.reduceLiftBy`, which uses this for the inequality rows and
+the lifted box. Here, with no lifting, every row is a polytope row projected on its own
+(`keepRows`), so that a row survives intact wherever the dropped generators are
+unconstrained. The two are not comparable as sets.
 -/
 
 -- Authors:       Tobias Ladner

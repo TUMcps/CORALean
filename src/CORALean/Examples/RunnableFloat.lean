@@ -133,6 +133,7 @@ import CORALean.NN.Operations.Enclose
 import CORALean.NN.Operations.VerifySplit
 import CORALean.NN.Theorems.HoldsOfCheck
 import CORALean.Specification.Instances
+import CORALean.ContSet.ConZonotope.Float.Operations.ReduceLift
 
 /-!
 # Every runnable algorithm, instantiated at a concrete float representation
@@ -1241,6 +1242,22 @@ def goodE₁ : Ellipsoid D 2 := ⟨2, ![d 0 0, d 0 0], !![d 2 0, d 0 0; d 0 0, d
 def goodE₂ : Ellipsoid D 2 := ⟨2, ![d 0 0, d 0 0], !![d 1 0, d 0 0; d 0 0, d 1 0], zbox 2⟩
 def isGoodDirRun : Bool := goodE₁.isGoodDir goodE₂ ![d 1 0, d 0 0] (d 1 (-2))
 
+/-! ## `ConZonotope.reduceLift`, constraints kept
+
+Four generators in the plane, one inequality `β₀ ≤ ½` and one equality `β₂ + β₃ = 0`, reduced at
+order `1`: the lifted zonotope `[G; Aₑ]` has three rows and keeps no generator, so its four are
+boxed into `3`, the equality row read back off the box, the inequality row left with the kept
+generators and their slack. -/
+
+def cZ_eqs : ConZonotope D 2 where
+  h := 4
+  c := ![d 1 0, d 0 0]
+  G := ![![d 1 0, d 0 0], ![d 0 0, d 1 0], ![d 1 (-1), d 1 (-1)], ![d 1 (-2), d (-1) (-1)]]
+  P := { m := 1, A := ![![d 1 0, d 0 0, d 0 0, d 0 0]], b := ![d 1 (-1)],
+         me := 1, Ae := ![![d 0 0, d 0 0, d 1 0, d 1 0]], be := zbox 1 }
+  E := zbox 2
+
+def cZ_reduceLift : ConZonotope D 2 := cZ_eqs.reduceLift 1
 
 end CORALean.RunnableFloat
 
