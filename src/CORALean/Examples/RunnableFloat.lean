@@ -1,4 +1,6 @@
 import CORALean.ContDynamics.LinearARX.Operations.InputMat
+import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachRunFloat
+import CORALean.ContDynamics.LinearSys.Operations.ReachBoxFloatChecked
 import CORALean.ContSet.ProbZonotope.Float.Operations.ProbReduce
 import CORALean.ContSet.SpectraShadow.Float.Operations.ConvHull
 import CORALean.ContSet.SpectraShadow.Float.Operations.Or
@@ -1176,6 +1178,35 @@ def softmaxBoxRun : Interval (Vec D 3) := softmaxBox 10 softmaxIn
 #eval softmaxNormLower
 #eval softmaxRawLowerRun
 #eval (softmaxBoxRun.inf 0)
+
+/-! ## The wrapping-free reach with `box()` in floats
+
+The thesis's `Alg. 2` for `ctSys` from `Z` under the re-centred input `lpInputSet`, at step
+`2⁻⁵`, Taylor order `4` and `3` further windows after the first, NaN-gated. -/
+
+def reachBoxRun : Option (List (Zonotope D 2)) :=
+  ctSys.reachBoxFloatChecked Z lpInputSet stepR 4 3
+
+/-! ## The maximal backward reachable set from the inside, in floats
+
+`Alg. 2` of the backward paper for `ctSys`, the target the box polytope `H` (the box of `Z`), the
+conversion box that box's own, the input and the disturbance the same small box `backW`, with
+step `2⁻⁵`, Taylor order `4` and `t₀ = 0`: the state before the first iteration, after it, and
+after two. -/
+
+def backW : Zonotope D 2 where
+  h := 2
+  c := ![d 0 0, d 0 0]
+  G := !![d 1 (-8), d 0 0; d 0 0, d 1 (-8)]
+  E := zbox 2
+
+def backBx : Interval (Vec D 2) := Z.interval
+def backInitRun : Option (LinearSys.MaxBackReachStateFloat D 2) :=
+  ctSys.maxBackReachInitFloat backW backW (d 0 0) 4
+def backStepRun : Option (LinearSys.MaxBackReachStateFloat D 2) :=
+  backInitRun.bind (ctSys.maxBackReachStepFloat backBx H H backW backW (fun _ _ => backW) stepR 4)
+def backRunRun : Option (LinearSys.MaxBackReachStateFloat D 2) :=
+  ctSys.maxBackReachRunFloat backBx H H backW backW (fun _ _ => backW) (d 0 0) stepR 4 2
 
 end CORALean.RunnableFloat
 

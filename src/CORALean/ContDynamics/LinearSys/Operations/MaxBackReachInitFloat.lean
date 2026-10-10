@@ -1,0 +1,67 @@
+import CORALean.ContDynamics.LinearSys.Definitions.MaxBackReachStateFloat
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdaptiveIntegralFloat
+import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
+import CORALean.ContDynamics.LinearSys.Operations.ReachOrderFloat
+import CORALean.ContSet.ConZonotope.Float.Operations.Origin
+import CORALean.ContSet.Interval.Float.Operations.Magnitude
+import CORALean.ContSet.Zonotope.Float.Operations.MtimesIntervalMatBox
+import CORALean.ContSet.Zonotope.Float.Operations.Origin
+import CORALean.ContSet.Zonotope.Float.Instances
+
+/-!
+# `Alg. 2` lines 1-2 in floats: the loop state before the first iteration
+
+`maxBackReachInit` computed in `𝕋`: the two particular solutions accumulated up to `t₀`. The
+integral `∫₀^{t₀} e^{As}ds` is only known to an interval matrix (`MatExp.adaptiveIntegral`),
+and an inner set cannot be had as the image under it, so `Z̲_U(t₀)` is the outer float image
+with its excess over the exact set recorded, `UErr`: a later step makes room for it
+(`maxBackReachStepFloat`). `Ẑ_{W₀}(t₀)` is `inputSolutionFloat`, an outer set, which is the
+direction a set that is subtracted wants. `η` is raised with `reachOrderFloat` to the first order
+the float remainder bound at `t₀ · A` admits; `none` when that search fails.
+The lines are those of [1, Alg. 2].
+
+## References
+
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
+      Perturbed Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
+      2023.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       10-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open CORALean.Float
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- Lines 1-2: the two particular solutions accumulated up to `t₀`, before the first
+iteration. -/
+def LinearSys.maxBackReachInitFloat (sys : LinearSys 𝕋 n) (U W₀ : Zonotope 𝕋 n) (t₀ : 𝕋)
+    (η : ℕ) : Option (LinearSys.MaxBackReachStateFloat 𝕋 n) := do
+  let η' ← sys.reachOrderFloat t₀ t₀ η                              -- η, raised until admissible
+  let I := MatExp.adaptiveIntegral (Interval.point sys.A) t₀ η'     -- [∫₀^{t₀} e^{As}ds]
+  let ZU := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) I U     -- 2. Z̲_U(t₀)
+  let ZW₀ := sys.inputSolutionFloat t₀ η' W₀                        -- 2. Ẑ_{W₀}(t₀)
+  pure { tLo := t₀                                                  -- 1. τ = [t₀, t_end]
+         tHi := t₀
+         ZU := ZU
+         UErr := (Zonotope.mtimesIntervalMatBox I U).magnitude      -- what ZU lies outside by
+         ZW₀ := ZW₀
+         ZW := Zonotope.origin n
+         RH := ConZonotope.origin n
+         RU := Zonotope.origin n }
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

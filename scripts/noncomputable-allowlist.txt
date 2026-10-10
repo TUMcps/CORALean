@@ -165,13 +165,13 @@ LinearSys.manualInit  real-layer: TAC'23 `Alg. 1` lines 1-2 over `Real.Zonotope`
 LinearSys.manualReach  spec: the `Set` a run's windows denote, a union for theorems; what runs is the `…Run` it unions
 LinearSys.manualRun  real-layer: the loop of TAC'23 `Alg. 1` over `Real.Zonotope`; runs in floats as `LinearSys.manualRunFloat` (`manualRunFloat_outer`), from `LinearSys.manualReachFloat` (`manualReachFloat_outer`)
 LinearSys.manualStep  real-layer: one iteration of TAC'23 `Alg. 1` over `Real.Zonotope` at the real exponential; runs in floats as `LinearSys.manualStepFloat` (`manualStepFloat_outer`)
-LinearSys.maxBackReachCZ  pending #1: line 11's `CZ(P ⊖ Ẑ_W(τ_k))` is exact in `ℝ` and feeds an INNER approximation (`maxBackReachTimeInterval_inner`, `⊆`); the float `HPolytope.minkDiffOf` rounds inward but the float `HPolytope.conZonotope` only encloses (`P ⊆ result`), and no conversion into a `ConZonotope` from inside exists
+LinearSys.maxBackReachCZ  real-layer: line 11's `CZ(P ⊖ Ẑ_W(τ_k))` over `Real.Zonotope` at a caller-supplied support oracle; runs in floats from the inside as `LinearSys.maxBackReachCZFloat`, inside it (`maxBackReachCZFloat_subset`)
 LinearSys.maxBackReach  spec: the backward paper's `Alg. 2` as a `Set`, lines 3-5 computed and then `maxBackReachTimeInterval`'s union; what runs is the `…Run` it unions
-LinearSys.maxBackReachInit  pending #1: `Z̲_U(t₀) = (∫₀^{t₀} e^{As}ds) U` is the INNER part of `Alg. 2` (`maxBackReachTimeInterval_inner`, `⊆`); a float counterpart must round inward, but the integral is only an interval matrix, and the inner image of a set under a matrix known to an interval is the intersection of its images over it, which no float set representation holds (they enclose)
+LinearSys.maxBackReachInit  real-layer: [1, Alg. 2] lines 1-2 over `Real.Zonotope` at the real integral; runs in floats as `LinearSys.maxBackReachInitFloat`, whose `Z̲_U(t₀)` is an outer float set recorded with its excess (`maxBackReachInitFloat_encloses`)
 LinearSys.maxBackReachMu  real-layer: the spectral norm `‖(e^{AΔt} - I)G‖₂` at the real exponential; runs in floats as `LinearSys.maxBackReachMuFloat`, an upper bound (`maxBackReachMu_le_muFloat`)
 LinearSys.maxBackReachPoly  real-layer: `X ⊖ F box(X_end) ⊖ B_μ` at real supports; runs in floats as `LinearSys.maxBackReachPolyFloat`, inside it (`maxBackReachPolyFloat_inner`)
-LinearSys.maxBackReachRun  pending #1: the loop of `maxBackReachInit` and `maxBackReachStep`, both blocked on rounding inward (`maxBackReachTimeInterval_inner`, `⊆`); see them
-LinearSys.maxBackReachStep  pending #1: lines 7-12 combine `maxBackReachCZ`, an inner `Z̲_U` and `ConZonotope.linComb`/`mtimes` at `e^{-At_{k+1}}` for an INNER approximation (`maxBackReachTimeInterval_inner`, `⊆`); the float `ConZonotope.linComb` and `mtimes` at an interval matrix only enclose, so no float step can stay inside
+LinearSys.maxBackReachRun  real-layer: the loop of `maxBackReachInit` and `maxBackReachStep` over the real exponential; runs in floats as `LinearSys.maxBackReachRunFloat`, inside it (`maxBackReachRunFloat_inner`)
+LinearSys.maxBackReachStep  real-layer: [1, Alg. 2] lines 7-12 over `Real.ConZonotope` at the real exponential; runs in floats from the inside as `LinearSys.maxBackReachStepFloat`, inside it (`maxBackReachStepFloat_encloses`)
 LinearSys.maxBackReachTimeInterval  spec: the `Set` a run's windows denote, a union for theorems; what runs is the `…Run` it unions
 LinearSys.minBackReachInit  real-layer: [1, Alg. 1] over `Real.Zonotope`/`Real.ConZonotope` at the real exponential and a caller-supplied support oracle; runs in floats as `LinearSys.minBackReachInitFloat`
 LinearSys.minBackReachP  real-layer: [1, Alg. 1] over `Real.Zonotope`/`Real.ConZonotope` at the real exponential and a caller-supplied support oracle; runs in floats as `LinearSys.minBackReachPFloat`
@@ -184,7 +184,7 @@ LinearSys.postDeltaSplit  real-layer: `postDelta` with the input set split at a 
 LinearSys.particularSolution  real-layer: `P^R(t_{k+1})` accumulated; in floats, the input scan of `LinearSys.reachWrappingFreeFloatInput`
 LinearSys.propagateInputSolution  spec: the exact propagated input set, a `Set` image under the real exponential
 LinearSys.reach  real-layer: the exact layer's recursive reach; runs in floats as `LinearSys.reachFloat` (`reachFloat_outer`)
-LinearSys.reachBox  pending #1: the thesis's wrapping-free reach with `box()`, at a real matrix exponential over `Real.Zonotope`; needs a float `e^{Ar}` loop
+LinearSys.reachBox  real-layer: the thesis's `Alg. 2` over `Real.Zonotope` at the real exponential; runs in floats as `LinearSys.reachBoxFloat` (`reachBoxFloat_outer`)
 LinearSys.reachAdmissible  real-layer: `reach` at an order raised until admissible; `LinearSys.reachFloat` raises it by `reachOrderFloat`
 LinearSys.reachWrappingFree  real-layer: the wrapping-free reach; runs in floats as `LinearSys.reachWrappingFreeFloat`
 LinearSys.reachWrappingFreeInstance  real-layer: the `Reach` instance over `reachWrappingFree`; runs in floats as `LinearSys.reachWrappingFreeFloat`

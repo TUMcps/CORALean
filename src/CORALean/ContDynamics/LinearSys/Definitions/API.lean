@@ -47,6 +47,8 @@ import CORALean.ContDynamics.LinearSys.Definitions.AdaptiveInvariant
 import CORALean.ContDynamics.LinearSys.Definitions.NoiseCovariance
 import CORALean.ContDynamics.LinearSys.Definitions.ManualStateFloat
 import CORALean.ContDynamics.LinearSys.Definitions.ManualInvariantFloat
+import CORALean.ContDynamics.LinearSys.Definitions.MaxBackReachStateFloat
+import CORALean.ContDynamics.LinearSys.Definitions.MaxBackReachStateFloatEncloses
 
 /-!
 # What a continuous-time linear system means

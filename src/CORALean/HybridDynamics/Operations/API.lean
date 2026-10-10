@@ -51,6 +51,7 @@ import CORALean.HybridDynamics.Operations.NonlinearResetResolveFloat
 import CORALean.HybridDynamics.Operations.NonlinearResetGlobalColumns
 import CORALean.HybridDynamics.Operations.NonlinearResetGlobalRank
 import CORALean.HybridDynamics.Operations.NonlinearResetResolveCORA
+import CORALean.HybridDynamics.Operations.ReachGuard
 
 /-!
 # What a hybrid automaton computes, collected
@@ -74,5 +75,6 @@ the invariant, so they leave that representation free. The three that call
 At float zonotopes, which have no `Intersection` and no `Real.OfInterval`: the
 cuts go through a box, `TimeIntervalStepInvFloat` to the invariant and
 `GuardIntersectFloat` to a guard; `JumpFloat` resets; `LocationReachFloat` is a
-stay's time-interval sets, and `ReachFloat` the automaton's, CORA's `reach`.
+stay's time-interval sets, and `ReachFloat` the automaton's, CORA's `reach`. `ReachGuard` is a
+stay's sets up to leaving the invariant and their enclosure at a guard, its operators passed in.
 -/

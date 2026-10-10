@@ -1,0 +1,56 @@
+import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachCZ
+import CORALean.ContDynamics.LinearSys.Theorems.MaxBackReachCZFloatInner
+import CORALean.ContDynamics.LinearSys.Theorems.MinkowskiDiffSubsetMaxBackReachCZ
+
+/-!
+# The float `CZ(P ⊖ Ẑ_W(τ_k))` is inside the exact layer's
+
+`maxBackReachCZFloat_inner` puts the float set in `P ⊖ Ẑ_W`, and that difference is inside the
+exact layer's `maxBackReachCZ` (`minkowskiDiff_subset_maxBackReachCZ`). The erosion is monotone
+in the right directions: a float polytope inside the exact one, and an exact subtrahend inside
+the float one, leave the float difference inside the exact.
+The lines are those of [1, Alg. 2].
+
+## References
+
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
+      Perturbed Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
+      2023.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       10-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open CORALean.Float FloatOps SoundFloatArithmetic
+open scoped Matrix
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+/-- Line 11 in floats is inside the exact layer's `CZ(P ⊖ Ẑ_W(τ_k))`, for a float polytope inside
+the exact one and an exact disturbance set inside the float one. -/
+theorem LinearSys.maxBackReachCZFloat_subset
+    (ρ : ∀ (P : Real.HPolytope (Vec ℝ n)) (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound P.construct c)
+    (Bx : Interval (Vec 𝕋 n)) (P : HPolytope 𝕋 n) (ZW : Zonotope 𝕋 n)
+    (Pr : Real.HPolytope (Vec ℝ n)) (ZWr : Real.Zonotope (Vec ℝ n))
+    (hP : P.construct ⊆ Pr.construct) (hZ : ZWr.construct ⊆ ZW.construct)
+    (hker : ∀ i, ∀ y ∈ ZW.construct, (toRealMat P.Ae *ᵥ y) i = 0)
+    (hkerr : ∀ (i : Fin Pr.me) (y : Vec ℝ n), Pr.Ae i y = 0) :
+    (LinearSys.maxBackReachCZFloat Bx P ZW).construct ⊆
+      (LinearSys.maxBackReachCZ ρ Pr ZWr).construct := fun _ hx =>
+  LinearSys.minkowskiDiff_subset_maxBackReachCZ ρ Pr ZWr hkerr
+    (fun y hy => hP (LinearSys.maxBackReachCZFloat_inner Bx P ZW hker hx y (hZ hy)))
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -13,6 +13,8 @@ import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetSplitFloat
 import CORALean.ContDynamics.LinearSys.Theorems.InputRemainderSubsetFloat
 import CORALean.ContDynamics.LinearSys.Theorems.BundleReachFloatOuter
 import CORALean.ContDynamics.LinearSys.Theorems.ReachBoxOuter
+import CORALean.ContDynamics.LinearSys.Theorems.ReachBoxFloatOuter
+import CORALean.ContDynamics.LinearSys.Theorems.ReachBoxFloatCheckedEqSome
 import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormContinuousOn
 import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormFlow
 import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormZero
@@ -79,6 +81,7 @@ import CORALean.ContDynamics.LinearSys.Theorems.HasDerivWithinAtExpNegMulVec
 import CORALean.ContDynamics.LinearSys.Theorems.HausdorffDist2InputReachLe
 import CORALean.ContDynamics.LinearSys.Theorems.InputReachMemAddClosureConvexHull
 import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetClosureConvexHull
+import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetParticularSolutionOuterOfDominant
 import CORALean.ContDynamics.LinearSys.Theorems.HausdorffDist2InputReachLeOfConvex
 import CORALean.ContDynamics.LinearSys.Theorems.HausdorffDist2InputReachRunLe
 import CORALean.ContDynamics.LinearSys.Theorems.HausdorffDist2InputReachStepLe
@@ -287,6 +290,15 @@ import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemErrorSolutionAdapt
 import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemErrorSolutionAdaptiveFloatStatic
 import CORALean.ContDynamics.LinearSys.Theorems.InputTaylorSumTailSubsetFloat
 import CORALean.ContDynamics.LinearSys.Theorems.AffineTimePointNextFloatOuter
+import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemAdaptiveIntegralFloat
+import CORALean.ContDynamics.LinearSys.Theorems.MaxBackReachCZFloatInner
+import CORALean.ContDynamics.LinearSys.Theorems.MaxBackReachCZFloatSubset
+import CORALean.ContDynamics.LinearSys.Theorems.MinkowskiDiffSubsetMaxBackReachCZ
+import CORALean.ContDynamics.LinearSys.Theorems.MaxBackReachInitFloatEncloses
+import CORALean.ContDynamics.LinearSys.Theorems.MaxBackReachStepFloatEncloses
+import CORALean.ContDynamics.LinearSys.Theorems.MaxBackReachRunFloatEncloses
+import CORALean.ContDynamics.LinearSys.Theorems.MaxBackReachRunFloatInner
+import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionSubsetInputSolutionFloat
 
 /-!
 # What `LinearSys` guarantees

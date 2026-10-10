@@ -140,7 +140,7 @@ Rulings on borderline cases:
 | [linParamSys](contDynamics/linParamSys.md) | contDynamics | 11 | 0 | 6 | 1 | 4 | 0 |
 | [linProbSys](contDynamics/linProbSys.md) | contDynamics | 8 | 2 | 0 | 1 | 5 | 1 |
 | [linearARX](contDynamics/linearARX.md) | contDynamics | 7 | 1 | 4 | 0 | 2 | 0 |
-| [linearSys](contDynamics/linearSys.md) | contDynamics | 33 | 4 | 18 | 1 | 10 | 1 |
+| [linearSys](contDynamics/linearSys.md) | contDynamics | 33 | 3 | 19 | 1 | 10 | 1 |
 | [linearSysDT](contDynamics/linearSysDT.md) | contDynamics | 17 | 4 | 7 | 0 | 6 | 1 |
 | [neurNetContrSys](contDynamics/neurNetContrSys.md) | contDynamics | 5 | 0 | 4 | 0 | 1 | 0 |
 | [nonlinDASys](contDynamics/nonlinDASys.md) | contDynamics | 13 | 4 | 1 | 5 | 3 | 5 |

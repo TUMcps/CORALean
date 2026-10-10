@@ -23,6 +23,8 @@ import CORALean.ContDynamics.LinearSys.Operations.ParticularSolutionErrorFloat
 import CORALean.ContDynamics.LinearSys.Operations.ParticularSolutionTauErrorFloat
 import CORALean.ContDynamics.LinearSys.Operations.BundleReachFloat
 import CORALean.ContDynamics.LinearSys.Operations.ReachBox
+import CORALean.ContDynamics.LinearSys.Operations.ReachBoxFloat
+import CORALean.ContDynamics.LinearSys.Operations.ReachBoxFloatChecked
 import CORALean.ContDynamics.LinearSys.Operations.ConstInputSolution
 import CORALean.ContDynamics.LinearSys.Operations.DeltaReach
 import CORALean.ContDynamics.LinearSys.Operations.Discretize
@@ -172,6 +174,11 @@ import CORALean.ContDynamics.LinearSys.Operations.ErrorEdgeFloat
 import CORALean.ContDynamics.LinearSys.Operations.ErrorSolutionOrderFloat
 import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumTailFloat
 import CORALean.ContDynamics.LinearSys.Operations.AffineTimePointNextFloat
+import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachCZFloat
+import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachErosionFloat
+import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachInitFloat
+import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachStepFloat
+import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachRunFloat
 
 /-!
 # What a continuous-time linear system computes

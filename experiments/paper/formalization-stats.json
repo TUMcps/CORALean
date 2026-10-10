@@ -17,8 +17,8 @@
     "papers": 82,
     "papers_with_findings": 70,
     "in_scope": 1062,
-    "formalized": 965,
-    "not_formalized": 97,
+    "formalized": 966,
+    "not_formalized": 96,
     "out_of_scope": 892,
     "out_of_scope_by_reason": {
       "restated": 319,
@@ -29,7 +29,7 @@
     },
     "by_class": {
       "correct": 671,
-      "underspecified": 173,
+      "underspecified": 174,
       "proof-gap": 30,
       "fixed": 87,
       "false": 4
@@ -45,9 +45,9 @@
     },
     "definitions": {
       "in_scope": 646,
-      "formalized": 599,
+      "formalized": 600,
       "correct": 442,
-      "underspecified": 104,
+      "underspecified": 105,
       "proof-gap": 0,
       "fixed": 51,
       "false": 2
@@ -797,8 +797,8 @@
       "year": 2010,
       "title": "Reachability Analysis and its Application to the Safety Assessment of Autonomous Cars",
       "in_scope": 34,
-      "formalized": 33,
-      "not_formalized": 1,
+      "formalized": 34,
+      "not_formalized": 0,
       "out_of_scope": 2,
       "out_of_scope_by_reason": {
         "restated": 0,
@@ -809,7 +809,7 @@
       },
       "by_class": {
         "correct": 24,
-        "underspecified": 5,
+        "underspecified": 6,
         "proof-gap": 4,
         "fixed": 0,
         "false": 0
@@ -825,9 +825,9 @@
       },
       "definitions": {
         "in_scope": 18,
-        "formalized": 17,
+        "formalized": 18,
         "correct": 15,
-        "underspecified": 2,
+        "underspecified": 3,
         "proof-gap": 0,
         "fixed": 0,
         "false": 0
@@ -872,6 +872,11 @@
           "result": "Prop. 3.8",
           "class": "proof-gap",
           "reason": "`Z₁ ∩ Z₂ = Z*` is read off `A+(B∩C) = (A+B)∩(A+C)`, false for sets; holds because `Z*` is convex"
+        },
+        {
+          "result": "Alg. 5",
+          "class": "underspecified",
+          "reason": "the loop runs \"while `R^H ≠ ∅` or `t < t_f`\", which does not stop before `t_f`; the text (Fig. 3.20, \"until invariant is left\") means \"and\", and `t`, never assigned, is read as `kr`"
         },
         {
           "result": "Heuristic 3.1",
@@ -4410,7 +4415,7 @@
         {
           "result": "Prop. 11",
           "class": "proof-gap",
-          "reason": "the proof uses eq. (20)'s soundness `P^U(Δt_k) ⊆ P̂^U(Δt_k)`, which neither [1] nor this tree establishes; the bound itself holds without it, from the weaker `P^U(Δt_k) ⊆ cl conv P̂^U(Δt_k)`; see Findings"
+          "reason": "the proof uses eq. (20)'s soundness `P^U(Δt_k) ⊆ P̂^U(Δt_k)`, which [1] does not prove and this tree proves only where one point of `U₀` dominates (a scalar input, a box); the bound itself holds without it, from the weaker `P^U(Δt_k) ⊆ cl conv P̂^U(Δt_k)`; see Findings"
         },
         {
           "result": "Lemma 3",
@@ -5739,11 +5744,11 @@
         "group": "contDynamics",
         "class": "linearSys",
         "methods": 33,
-        "proved": 4,
-        "float": 18,
+        "proved": 3,
+        "float": 19,
         "not_yet": 1,
         "out_of_scope": 10,
-        "needs_float": 4,
+        "needs_float": 3,
         "out_of_scope_by_reason": {
           "plotting/display": 2,
           "random/sampling": 1,
@@ -5989,7 +5994,7 @@
         "cora_issues": 0,
         "findings": {
           "correct": 13,
-          "underspecified": 4,
+          "underspecified": 5,
           "proof-gap": 0,
           "fixed": 1,
           "false": 0
@@ -6231,11 +6236,11 @@
       },
       "contDynamics": {
         "methods": 159,
-        "proved": 25,
-        "float": 62,
+        "proved": 24,
+        "float": 63,
         "not_yet": 12,
         "out_of_scope": 60,
-        "needs_float": 25,
+        "needs_float": 24,
         "cora_issues": 12,
         "out_of_scope_by_reason": {
           "plotting/display": 25,
@@ -6271,7 +6276,7 @@
         },
         "findings": {
           "correct": 13,
-          "underspecified": 4,
+          "underspecified": 5,
           "proof-gap": 0,
           "fixed": 1,
           "false": 0
@@ -6304,11 +6309,11 @@
     },
     "totals": {
       "methods": 1260,
-      "proved": 109,
-      "float": 720,
+      "proved": 108,
+      "float": 721,
       "not_yet": 37,
       "out_of_scope": 394,
-      "needs_float": 109,
+      "needs_float": 108,
       "cora_issues": 63,
       "out_of_scope_by_reason": {
         "plotting/display": 86,
@@ -6320,7 +6325,7 @@
       },
       "findings": {
         "correct": 582,
-        "underspecified": 148,
+        "underspecified": 149,
         "proof-gap": 26,
         "fixed": 69,
         "false": 4
@@ -6350,11 +6355,11 @@
       }
     },
     "theorems": {
-      "paper": 1322,
-      "float": 1632,
-      "helper": 1118,
-      "lemma": 2363,
-      "total": 6435,
+      "paper": 1324,
+      "float": 1662,
+      "helper": 1121,
+      "lemma": 2365,
+      "total": 6472,
       "examples": 80
     }
   }

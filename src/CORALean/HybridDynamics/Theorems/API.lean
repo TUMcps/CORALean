@@ -90,12 +90,13 @@ import CORALean.HybridDynamics.Theorems.NonlinearResetFloatModelEnclosesResolve
 import CORALean.HybridDynamics.Theorems.NonlinearResetResolveCORACounterexample
 import CORALean.HybridDynamics.Theorems.NonlinearResetResolveCORASharedInputs
 import CORALean.HybridDynamics.Theorems.UrgentRunToRun
+import CORALean.HybridDynamics.Theorems.ReachGuardOuter
 
 /-!
 # What a hybrid run guarantees, collected
 
-Read in the order a step is taken. `LinearEmbedding` makes a stay a linear trajectory,
-`FlowOuter` encloses it and `TimeIntervalInvOuter` cuts that to the invariant; `JumpOuter`
+In step order: `LinearEmbedding` makes a stay a linear trajectory, `FlowOuter` encloses it and
+`TimeIntervalInvOuter` (`ReachGuardOuter`, a whole stay) cuts that to the invariant; `JumpOuter`
 intersects with the guard and applies the reset, `ResetImageSubset` restates it as a set
 inclusion, `JumpOuterConZonotope` discharges the one hypothesis `JumpOuter` leaves without an
 `Intersection` instance, and `JumpIntersectionOuter` is the case where one discharges it.
