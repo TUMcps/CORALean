@@ -127,14 +127,14 @@ Rulings on borderline cases:
 | [fullspace](contSet/fullspace.md) | contSet | 33 | 5 | 20 | 0 | 8 | 0 |
 | [interval](contSet/interval.md) | contSet | 110 | 1 | 91 | 0 | 18 | 1 |
 | [levelSet](contSet/levelSet.md) | contSet | 22 | 4 | 9 | 0 | 9 | 2 |
-| [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 6 | 47 | 5 | 15 | 4 |
+| [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 6 | 47 | 5 | 15 | 5 |
 | [polygon](contSet/polygon.md) | contSet | 46 | 0 | 27 | 10 | 9 | 2 |
 | [polytope](contSet/polytope.md) | contSet | 58 | 6 | 40 | 0 | 12 | 4 |
 | [probZonotope](contSet/probZonotope.md) | contSet | 28 | 8 | 11 | 0 | 9 | 4 |
 | [spectraShadow](contSet/spectraShadow.md) | contSet | 33 | 2 | 22 | 0 | 9 | 5 |
 | [taylm](contSet/taylm.md) | contSet | 51 | 2 | 37 | 0 | 12 | 0 |
 | [zonoBundle](contSet/zonoBundle.md) | contSet | 44 | 6 | 31 | 0 | 7 | 4 |
-| [zonotope](contSet/zonotope.md) | contSet | 80 | 15 | 51 | 0 | 14 | 5 |
+| [zonotope](contSet/zonotope.md) | contSet | 80 | 11 | 55 | 0 | 14 | 5 |
 | [zoo](contSet/zoo.md) | contSet | 12 | 0 | 10 | 0 | 2 | 0 |
 | [contDynamics](contDynamics/contDynamics.md) | contDynamics | 19 | 1 | 6 | 1 | 11 | 1 |
 | [linParamSys](contDynamics/linParamSys.md) | contDynamics | 11 | 0 | 6 | 1 | 4 | 0 |

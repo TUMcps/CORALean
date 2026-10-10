@@ -5414,7 +5414,7 @@
           "matlab-runtime": 7,
           "deprecated": 1
         },
-        "cora_issues": 4,
+        "cora_issues": 5,
         "findings": {
           "correct": 27,
           "underspecified": 7,
@@ -5583,11 +5583,11 @@
         "group": "contSet",
         "class": "zonotope",
         "methods": 80,
-        "proved": 15,
-        "float": 51,
+        "proved": 11,
+        "float": 55,
         "not_yet": 0,
         "out_of_scope": 14,
-        "needs_float": 15,
+        "needs_float": 11,
         "out_of_scope_by_reason": {
           "plotting/display": 2,
           "random/sampling": 3,
@@ -6207,12 +6207,12 @@
     "groups": {
       "contSet": {
         "methods": 908,
-        "proved": 71,
-        "float": 574,
+        "proved": 67,
+        "float": 578,
         "not_yet": 18,
         "out_of_scope": 245,
-        "needs_float": 71,
-        "cora_issues": 42,
+        "needs_float": 67,
+        "cora_issues": 43,
         "out_of_scope_by_reason": {
           "plotting/display": 51,
           "random/sampling": 37,
@@ -6304,12 +6304,12 @@
     },
     "totals": {
       "methods": 1260,
-      "proved": 113,
-      "float": 716,
+      "proved": 109,
+      "float": 720,
       "not_yet": 37,
       "out_of_scope": 394,
-      "needs_float": 113,
-      "cora_issues": 62,
+      "needs_float": 109,
+      "cora_issues": 63,
       "out_of_scope_by_reason": {
         "plotting/display": 86,
         "random/sampling": 47,
@@ -6351,10 +6351,10 @@
     },
     "theorems": {
       "paper": 1322,
-      "float": 1623,
-      "helper": 1116,
-      "lemma": 2362,
-      "total": 6423,
+      "float": 1632,
+      "helper": 1118,
+      "lemma": 2363,
+      "total": 6435,
       "examples": 80
     }
   }
