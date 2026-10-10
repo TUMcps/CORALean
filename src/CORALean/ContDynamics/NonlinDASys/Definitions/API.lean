@@ -3,6 +3,8 @@ import CORALean.ContDynamics.NonlinDASys.Definitions.ReachUnionExact
 import CORALean.ContDynamics.NonlinDASys.Definitions.ReducedModel
 import CORALean.ContDynamics.NonlinDASys.Definitions.WithSteps
 import CORALean.ContDynamics.NonlinDASys.Definitions.LinInclusion
+import CORALean.ContDynamics.NonlinDASys.Definitions.LinPoint
+import CORALean.ContDynamics.NonlinDASys.Definitions.LinPointCertifies
 
 /-!
 # What `NonlinDASys` means beyond the system itself
