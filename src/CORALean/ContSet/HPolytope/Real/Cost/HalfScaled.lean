@@ -1,0 +1,44 @@
+import CORALean.ContSet.HPolytope.Real.Operations.HalfScaled
+import CORALean.Global.Cost
+
+/-!
+# `HPolytope.halfScaledCost`
+
+Asserted, not proved: `Operations/HalfScaled.lean` rewrites every one of the
+`m + me` rows `A x ≤ b` as `A x - (b/2) t x ≤ b/2`. Rows are functionals and the
+definition does not fix how they are held, so this count **reads each row as a
+dense vector of length `d`**, the dimension of the coefficient space, and is
+exactly as good as that reading. Per row, `b / 2` is one division, `(b/2) • t`
+is `d` products and the subtraction from `A` is `d` more: `2 * d + 1`.
+
+A row held as an unevaluated composition would pay nothing here and more when
+read; that cost is the reader's, not this operation's.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       10-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- What `HPolytope.halfScaled` costs on `m` inequality and `me` equality rows
+over a coefficient space of dimension `d`, rows dense: `2 * d + 1` each. -/
+def HPolytope.halfScaledCost (m me d : ℕ) : Cost := ⟨(m + me) * (2 * d + 1)⟩
+
+/-- Monotone in the row counts and the dimension, so a bound on the operand's
+size gives a bound on the cost. -/
+theorem HPolytope.halfScaledCost_mono {m m' me me' d d' : ℕ} (hm : m ≤ m') (hme : me ≤ me')
+    (hd : d ≤ d') : HPolytope.halfScaledCost m me d ≤ HPolytope.halfScaledCost m' me' d' :=
+  Nat.mul_le_mul (Nat.add_le_add hm hme) (Nat.succ_le_succ (Nat.mul_le_mul_left _ hd))
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
