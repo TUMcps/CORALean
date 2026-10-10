@@ -177,6 +177,8 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.CubMapDepOnExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.CubMapDepExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.CubMapExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.CubMapMixedExact
+import CORALean.ContSet.PolyZonotope.Real.Theorems.SquareExampleConstruct
+import CORALean.ContSet.PolyZonotope.Real.Theorems.UnionSubsetConvHull
 
 /-!
 # What `PolyZonotope` guarantees

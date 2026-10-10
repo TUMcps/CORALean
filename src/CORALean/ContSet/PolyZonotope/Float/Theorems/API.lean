@@ -96,6 +96,7 @@ import CORALean.ContSet.PolyZonotope.Float.Theorems.PolygonOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.JacobianOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.IsFullDimSound
+import CORALean.ContSet.PolyZonotope.Float.Theorems.ConvHullOuter
 
 /-!
 # What `PolyZonotope` guarantees

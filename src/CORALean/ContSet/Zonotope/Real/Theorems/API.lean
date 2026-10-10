@@ -286,6 +286,24 @@ import CORALean.ContSet.Zonotope.Real.Theorems.LuenbergerUpdateOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.LuenbergerGainEqMulStripGain
 import CORALean.ContSet.Zonotope.Real.Theorems.LuenbergerGainOptimal
 import CORALean.ContSet.Zonotope.Real.Theorems.StripGainOptimal
+import CORALean.ContSet.Zonotope.Real.Theorems.EncloseManyBasisIsUnit
+import CORALean.ContSet.Zonotope.Real.Theorems.EncloseManyOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.MinnormBallSubset
+import CORALean.ContSet.Zonotope.Real.Theorems.ExistsMinnormFacet
+import CORALean.ContSet.Zonotope.Real.Theorems.LeMinnormOfBallSubset
+import CORALean.ContSet.Zonotope.Real.Theorems.MinnormPointDist
+import CORALean.ContSet.Zonotope.Real.Theorems.MinnormPointMem
+import CORALean.ContSet.Zonotope.Real.Theorems.MinnormPointNotMemStep
+import CORALean.ContSet.Zonotope.Real.Theorems.VolumeRatioGeOne
+import CORALean.ContSet.Zonotope.Real.Theorems.FilterOutCovered
+import CORALean.ContSet.Zonotope.Real.Theorems.FilterOutPair
+import CORALean.ContSet.Zonotope.Real.Theorems.DominantDirectionsMemShortlist
+import CORALean.ContSet.Zonotope.Real.Theorems.DominantDirectionsScoreLe
+import CORALean.ContSet.Zonotope.Real.Theorems.DominantDirectionsOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.DominantDirectionsDetEqZeroOfOrthogonal
+import CORALean.ContSet.Zonotope.Real.Theorems.FacetNormalDotSelfPos
+import CORALean.ContSet.Zonotope.Real.Theorems.MinnormOffsetNonneg
+import CORALean.ContSet.Zonotope.Real.Theorems.MinnormOffsetMulSqrt
 
 /-!
 # What `Zonotope` guarantees

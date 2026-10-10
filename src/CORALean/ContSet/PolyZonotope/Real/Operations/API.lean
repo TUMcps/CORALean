@@ -173,6 +173,8 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.CubMapDep
 import CORALean.ContSet.PolyZonotope.Real.Operations.CubMapDepSingle
 import CORALean.ContSet.PolyZonotope.Real.Operations.CubMap
 import CORALean.ContSet.PolyZonotope.Real.Operations.CubMapMixed
+import CORALean.ContSet.PolyZonotope.Real.Operations.SquareExample
+import CORALean.ContSet.PolyZonotope.Real.Operations.ConvHull
 
 /-!
 # What `PolyZonotope` computes

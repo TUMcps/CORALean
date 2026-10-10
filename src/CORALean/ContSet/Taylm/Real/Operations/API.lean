@@ -90,6 +90,11 @@ import CORALean.ContSet.Taylm.Real.Operations.Det
 import CORALean.ContSet.Taylm.Real.Operations.WidestCoord
 import CORALean.ContSet.Taylm.Real.Operations.RepresentsaEmptySet
 import CORALean.ContSet.Taylm.Real.Operations.RepresentsaPoint
+import CORALean.ContSet.Taylm.Real.Operations.BernsteinBasis
+import CORALean.ContSet.Taylm.Real.Operations.BernsteinEntry
+import CORALean.ContSet.Taylm.Real.Operations.BernsteinDegree
+import CORALean.ContSet.Taylm.Real.Operations.BernsteinCoeff
+import CORALean.ContSet.Taylm.Real.Operations.OptBernstein
 
 /-!
 # Taylor model operations, collected

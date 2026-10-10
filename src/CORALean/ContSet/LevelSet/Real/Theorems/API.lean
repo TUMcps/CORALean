@@ -33,6 +33,7 @@ import CORALean.ContSet.LevelSet.Real.Theorems.RepresentsaFullspaceSound
 import CORALean.ContSet.LevelSet.Real.Theorems.CompactExact
 import CORALean.ContSet.LevelSet.Real.Theorems.IsequalSound
 import CORALean.ContSet.LevelSet.Real.Theorems.IsequalCoraCounterexample
+import CORALean.ContSet.LevelSet.Real.Theorems.TightenDomainLinearIsContractor
 
 /-!
 # What a level set guarantees, collected

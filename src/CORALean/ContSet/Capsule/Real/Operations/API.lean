@@ -18,6 +18,7 @@ import CORALean.ContSet.Capsule.Real.Operations.RepresentsaOrigin
 import CORALean.ContSet.Capsule.Real.Operations.Isequal
 import CORALean.ContSet.Capsule.Real.Operations.EnclosePoints
 import CORALean.ContSet.Capsule.Real.Operations.Vertices
+import CORALean.ContSet.Capsule.Real.Operations.Volume
 
 /-!
 # What a capsule computes, collected

@@ -1,6 +1,8 @@
 import CORALean.ContSet.Zonotope.Real.Theorems.IsequalConstruct
 import CORALean.ContSet.ContSet.Definitions.CompactSet
 import CORALean.ContSet.ContSet.Definitions.ConvexSet
+import CORALean.ContSet.ContSet.Definitions.ExactVertices
+import CORALean.ContSet.Conversion.Real.Zonotope_to_VPolytope
 import CORALean.ContSet.Interval.Real.Instances
 import CORALean.ContSet.WithEmpty.WithEmpty
 import CORALean.ContSet.Zonotope.Real.Theorems.Convex
@@ -57,6 +59,10 @@ instance {α : Type} [AddCommGroup α] [Module ℝ α] : ContSet (Zonotope α) �
 
 instance {α : Type} [AddCommGroup α] [Module ℝ α] : ConvexSet (Zonotope α) α :=
   ⟨Zonotope.convex_construct⟩
+
+/-- The `2^h` sign corners, whose hull is the zonotope (`vPolytope_exact`). -/
+noncomputable instance {α : Type} [AddCommGroup α] [Module ℝ α] : ExactVertices (Zonotope α) α :=
+  ⟨Zonotope.vPolytope, Zonotope.vPolytope_exact⟩
 
 /-- Compactness, not the closed-and-bounded pair: an affine image of the
 coefficient cube is what a zonotope is, and only compactness survives it. -/

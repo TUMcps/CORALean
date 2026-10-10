@@ -318,6 +318,7 @@ def dyadicRows : StateT Nat IO Unit := do
   row "pZ_linComb" (ofPZ RunnableFloat.pZ_linComb)
   row "pZ_reduce" (ofPZ RunnableFloat.pZ_reduce)
   row "pZ_mtimes" (ofPZ RunnableFloat.pZ_mtimes)
+  row "pZ_convHull" (ofPZ RunnableFloat.pZ_convHull)
   row "pZ_quadMap" (ofPZ RunnableFloat.pZ_quadMap)
   row "pZ_bilin" (ofPZ RunnableFloat.pZ_bilin)
   row "pZ_quadMapMixed" (ofPZ RunnableFloat.pZ_quadMapMixed)
