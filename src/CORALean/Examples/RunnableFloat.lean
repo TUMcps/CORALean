@@ -92,6 +92,11 @@ import CORALean.ContSet.Conversion.Float.Zonotope_to_HPolytope
 import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
 import CORALean.ContSet.Conversion.Float.Zonotope_to_VPolytope
 import CORALean.ContSet.Ellipsoid.Float.Instances
+import CORALean.ContSet.Ellipsoid.Float.Operations.IsGoodDir
+import CORALean.ContSet.Ellipsoid.Float.Operations.Polygon
+import CORALean.ContSet.Polygon.Float.Operations.Triangulation
+import CORALean.ContSet.Polygon.Float.Operations.QuadMap
+import CORALean.ContSet.Polygon.Float.Operations.QuadMapMixed
 import CORALean.ContSet.HPolytope.Float.Instances
 import CORALean.ContSet.PolyZonotope.Float.Instances
 import CORALean.ContSet.SetUnion.Instances
@@ -1207,6 +1212,35 @@ def backStepRun : Option (LinearSys.MaxBackReachStateFloat D 2) :=
   backInitRun.bind (ctSys.maxBackReachStepFloat backBx H H backW backW (fun _ _ => backW) stepR 4)
 def backRunRun : Option (LinearSys.MaxBackReachStateFloat D 2) :=
   ctSys.maxBackReachRunFloat backBx H H backW backW (fun _ _ => backW) (d 0 0) stepR 4 2
+
+/-! ## Polygons
+
+A triangle, a segment and a point as one-piece polygons: the vertex triangulation of the triangle
+(all `3 ^ 3` vertex triples), the quadratic map `x ↦ (xᵀ x, xᵀ x)` of the segment, the mixed map of
+the segment and the point, and the polygon an ellipsoid's certified support points span. -/
+
+def polyTri : VPolytope D 2 := ⟨3, ![![d 0 0, d 0 0], ![d 1 0, d 0 0], ![d 0 0, d 1 0]], zbox 2⟩
+def polySeg : VPolytope D 2 := ⟨2, ![![d 0 0, d 0 0], ![d 1 0, d 0 0]], zbox 2⟩
+def polyP : Polygon D := Polygon.ofPieces [polyTri]
+def polyS : Polygon D := Polygon.ofPieces [polySeg]
+def polyPt : Polygon D := Polygon.ofPieces [⟨1, ![![d 1 0, d 0 0]], zbox 2⟩]
+def polyQ : Fin 2 → Mat D 2 2 := fun _ => identityMat D 2
+def polyTriangulation : Polygon D := Polygon.triangulation polyP
+def polyQuadMap : Polygon D := polyS.quadMap polyQ 0 fun _ _ => false
+def polyQuadMapMixed : Polygon D := polyS.quadMapMixed polyPt polyQ 0 fun _ _ => false
+def E_polygon : Polygon D :=
+  E.polygon [![d 1 0, d 0 0], ![d 0 0, d 1 0], ![d (-1) 0, d 0 0], ![d 0 0, d (-1) 0]]
+
+
+/-! ## An ellipsoid's bad directions
+
+`Q₁ = 4 I` against `Q₂ = I`: the eigenvalue bound `1/4` certifies the direction `(1, 0)` good
+(`sqrt(4)/sqrt(1) = 2` is below `1/λ = 4`). -/
+
+def goodE₁ : Ellipsoid D 2 := ⟨2, ![d 0 0, d 0 0], !![d 2 0, d 0 0; d 0 0, d 2 0], zbox 2⟩
+def goodE₂ : Ellipsoid D 2 := ⟨2, ![d 0 0, d 0 0], !![d 1 0, d 0 0; d 0 0, d 1 0], zbox 2⟩
+def isGoodDirRun : Bool := goodE₁.isGoodDir goodE₂ ![d 1 0, d 0 0] (d 1 (-2))
+
 
 end CORALean.RunnableFloat
 

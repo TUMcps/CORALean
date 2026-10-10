@@ -46,6 +46,8 @@ import CORALean.ContSet.Ellipsoid.Real.Operations.HalderMu
 import CORALean.ContSet.Ellipsoid.Real.Operations.HalderStationarity
 import CORALean.ContSet.Ellipsoid.Real.Operations.HalderStep
 import CORALean.ContSet.Ellipsoid.Real.Operations.OfShape
+import CORALean.ContSet.Ellipsoid.Real.Operations.Polygon
+import CORALean.ContSet.Ellipsoid.Real.Operations.IsBadDir
 
 /-!
 # What an ellipsoid computes, collected

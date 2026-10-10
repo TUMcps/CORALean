@@ -23,6 +23,12 @@ import CORALean.ContSet.Polygon.Real.Operations.Volume
 import CORALean.ContSet.Polygon.Real.Operations.RegionCenter
 import CORALean.ContSet.Polygon.Real.Operations.Center
 import CORALean.ContSet.Polygon.Real.Operations.PieceAreas
+import CORALean.ContSet.Polygon.Real.Operations.Triangulation
+import CORALean.ContSet.Polygon.Real.Operations.QuadMap
+import CORALean.ContSet.Polygon.Real.Operations.QuadMapMixed
+import CORALean.ContSet.Polygon.Real.Operations.Subtract
+import CORALean.ContSet.Polygon.Real.Operations.MinkDiff
+import CORALean.ContSet.Polygon.Real.Operations.HausdorffDist
 
 /-!
 # Polygon operations, collected

@@ -27,6 +27,8 @@ import CORALean.ContSet.Ellipsoid.Float.Theorems.Enclose2Outer
 import CORALean.ContSet.Ellipsoid.Float.Theorems.IsBiggerSound
 import CORALean.ContSet.Ellipsoid.Float.Theorems.EllipsoidNormLeEllipsoidNormUb
 import CORALean.ContSet.Ellipsoid.Float.Theorems.VolumeLe
+import CORALean.ContSet.Ellipsoid.Float.Theorems.PolygonInner
+import CORALean.ContSet.Ellipsoid.Float.Theorems.IsGoodDirSound
 
 /-!
 # What a float ellipsoid guarantees, collected

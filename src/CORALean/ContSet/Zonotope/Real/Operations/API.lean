@@ -157,6 +157,7 @@ import CORALean.ContSet.Zonotope.Real.Operations.OfEchelon
 import CORALean.ContSet.Zonotope.Real.Operations.ReduceScottStep
 import CORALean.ContSet.Zonotope.Real.Operations.QuadMapPairIdx
 import CORALean.ContSet.Zonotope.Real.Operations.QuadMapTri
+import CORALean.ContSet.Zonotope.Real.Operations.Walk
 
 /-!
 # What `Zonotope` computes

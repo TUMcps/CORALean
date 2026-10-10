@@ -159,6 +159,13 @@ def ofUnion {n : ℕ} (U : SetUnion (Zonotope 𝕋 n)) : Out :=
   ⟨s!"branches={U.sets.length} " ++ "; ".intercalate (U.sets.map fun Z => (ofZono Z).text),
     U.sets.flatMap zonoF, false⟩
 
+/-- A polygon's piece count and the first piece's vertex count: the pieces that came from a
+zonotope have `2 ^ h` corners, too many to list or to bound. -/
+def ofPolygon {n : ℕ} (P : SetUnion (VPolytope 𝕋 n)) : Out :=
+  match P.sets.head? with
+  | none => ⟨"pieces=0", [], true⟩
+  | some p => ⟨s!"pieces={P.sets.length} k={p.k}", [], false⟩
+
 -- probabilistic zonotopes and spectrahedral shadows
 def ofProbZ {n : ℕ} (P : ProbZonotope 𝕋 n) : Out :=
   ⟨s!"mean {(ofZono P.Z).text} cov inf={matS P.cov.inf} sup={matS P.cov.sup}",
@@ -530,6 +537,20 @@ def dyadicRows2 : StateT Nat IO Unit := do
   row "backInitRun" (ofMaxState RunnableFloat.backInitRun)
   row "backStepRun" (ofMaxState RunnableFloat.backStepRun)
   row "backRunRun" (ofMaxState RunnableFloat.backRunRun)
+  -- polygons
+  row "polyTri" (ofVP RunnableFloat.polyTri)
+  row "polySeg" (ofVP RunnableFloat.polySeg)
+  row "polyP" (ofPolygon RunnableFloat.polyP)
+  row "polyS" (ofPolygon RunnableFloat.polyS)
+  row "polyPt" (ofPolygon RunnableFloat.polyPt)
+  row "polyQ" (ofMat (RunnableFloat.polyQ 0))
+  row "polyTriangulation" (ofPolygon RunnableFloat.polyTriangulation)
+  row "polyQuadMap" (ofPolygon RunnableFloat.polyQuadMap)
+  row "polyQuadMapMixed" (ofPolygon RunnableFloat.polyQuadMapMixed)
+  row "E_polygon" (ofPolygon RunnableFloat.E_polygon)
+  row "goodE₁" (ofEll RunnableFloat.goodE₁)
+  row "goodE₂" (ofEll RunnableFloat.goodE₂)
+  row "isGoodDirRun" (ofBool RunnableFloat.isGoodDirRun)
 
 /-! ## Hardware `Float`
 

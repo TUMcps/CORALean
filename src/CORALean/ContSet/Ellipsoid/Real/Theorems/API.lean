@@ -105,6 +105,10 @@ import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderPolyExpand
 import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderPolyPrintedCounterexample
 import CORALean.ContSet.Ellipsoid.Real.Theorems.CutVolumeRatioLe
 import CORALean.ContSet.Ellipsoid.Real.Theorems.VolumeMtimes
+import CORALean.ContSet.Ellipsoid.Real.Theorems.PolygonInner
+import CORALean.ContSet.Ellipsoid.Real.Theorems.IsBadDirIff
+import CORALean.ContSet.Ellipsoid.Real.Theorems.QuadEq
+import CORALean.ContSet.Ellipsoid.Real.Theorems.QuadNonnegOfDominant
 
 /-!
 # What an ellipsoid guarantees, collected

@@ -11,10 +11,11 @@ by its vertices, denoting their union. A region with holes is such a union too.
 
 What is **not** formalized is the conversion from CORA's `polyshape` (boundary vertex lists with
 holes) into convex pieces, a triangulation. A polygon is built here from convex pieces
-(`Polygon.ofPieces`), never from a boundary. Methods that read the boundary (`getHoles`,
-`simplify`, `triangulation`, `removeCollinearPoints`, `mldivide`, ...) have no counterpart
-(R-PG in `references/coverage/README.md`); those a region-level statement captures are stated
-against the region the pieces denote. `minus` by a vector is `Polygon.minus`.
+(`Polygon.ofPieces`), never from a boundary. Methods that read the boundary
+(`removeCollinearPoints`, `compact_`, ...) have no counterpart (R-PG in
+`references/coverage/README.md`); those a region-level statement captures are stated against the
+region the pieces denote, among them `triangulation` (a cover by vertex triangles) and the
+difference `subtract` (a region). `minus` by a vector is `Polygon.minus`.
 
 The semantics is the union, so `SetUnion`'s `Plus` and `Reduce` instances are `Polygon`'s.
 `Float/` is the same alias at the float polytope.

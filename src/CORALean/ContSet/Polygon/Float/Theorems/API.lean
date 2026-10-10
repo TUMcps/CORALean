@@ -26,6 +26,9 @@ import CORALean.ContSet.Polygon.Float.Theorems.PieceSubsetSound
 import CORALean.ContSet.Polygon.Float.Theorems.IsConvexSound
 import CORALean.ContSet.Polygon.Float.Theorems.VolumeLe
 import CORALean.ContSet.Polygon.Float.Theorems.CenterMem
+import CORALean.ContSet.Polygon.Float.Theorems.TriangulationExact
+import CORALean.ContSet.Polygon.Float.Theorems.QuadMapOuter
+import CORALean.ContSet.Polygon.Float.Theorems.QuadMapMixedOuter
 
 /-!
 # Float polygon theorems, collected
