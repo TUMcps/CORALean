@@ -1,0 +1,50 @@
+import CORALean.ContSet.PolyZonotope.Float.Operations.SplitIndepGen
+import CORALean.ContSet.PolyZonotope.Float.Operations.SplitLongestGen
+
+/-!
+# `PolyZonotope.splitLongestGenAll`, over a floating-point scalar
+
+CORA's `aux_splitLongestGen_` in `@polyZonotope/contains_`: the longest generator among the
+dependent and the independent ones, by `sum([G, GI].^2, 1)` rounded up and the first of equal
+ones winning, is split, a dependent one by `splitLongestGen`, an independent one by
+`splitIndepGen`. With no generator at all the set is returned alone; CORA's `max` of an empty
+row errors there.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       10-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+open FloatOps
+
+variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- The pieces of `pZ` split along its longest generator, dependent or independent. -/
+def PolyZonotope.splitLongestGenAll (pZ : PolyZonotope 𝕋 n) : List (PolyZonotope 𝕋 n) :=
+  -- len = sum([pZ.G, pZ.GI].^2, 1)
+  let len : Fin (pZ.h + pZ.q) → 𝕋 := Fin.append
+    (fun l => sumUp fun i => mulUp (pZ.G l i) (pZ.G l i))
+    (fun j => sumUp fun i => mulUp (pZ.GI j i) (pZ.GI j i))
+  -- [~, ind] = max(len)
+  match (List.finRange (pZ.h + pZ.q)).foldl (fun best l => match best with
+    | none => some l
+    | some b => if le (len l) (len b) then some b else some l) none with
+  | none => [pZ]
+  | some l =>
+    if hl : l.val < pZ.h then [pZ.splitLongestGen.1, pZ.splitLongestGen.2]
+    else [(pZ.splitIndepGen ⟨l.val - pZ.h, by have := l.isLt; omega⟩).1,
+      (pZ.splitIndepGen ⟨l.val - pZ.h, by have := l.isLt; omega⟩).2]
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

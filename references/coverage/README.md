@@ -127,7 +127,7 @@ Rulings on borderline cases:
 | [fullspace](contSet/fullspace.md) | contSet | 33 | 5 | 20 | 0 | 8 | 0 |
 | [interval](contSet/interval.md) | contSet | 110 | 1 | 91 | 0 | 18 | 1 |
 | [levelSet](contSet/levelSet.md) | contSet | 22 | 4 | 9 | 0 | 9 | 2 |
-| [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 6 | 47 | 5 | 15 | 5 |
+| [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 6 | 49 | 3 | 15 | 6 |
 | [polygon](contSet/polygon.md) | contSet | 46 | 4 | 29 | 2 | 11 | 5 |
 | [polytope](contSet/polytope.md) | contSet | 58 | 6 | 40 | 0 | 12 | 4 |
 | [probZonotope](contSet/probZonotope.md) | contSet | 28 | 8 | 11 | 0 | 9 | 4 |

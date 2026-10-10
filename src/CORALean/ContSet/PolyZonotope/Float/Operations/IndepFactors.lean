@@ -1,0 +1,39 @@
+import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
+import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
+import CORALean.ContSet.PolyZonotope.Real.Operations.PlusE
+
+/-!
+# `PolyZonotope.indepFactors`
+
+The map CORA's `@polyZonotope/contains_` tests containment against, `aux_funcPoly(x) =
+c + Σ G(:,i)·prod(x₁.^E(:,i)) + GI·x₂`, as a polynomial zonotope without independent
+generators: the independent generators become dependent ones, each with a factor of its own to
+the first power, after the dependent factors. Nothing is rounded and the error box is kept, so
+the dependent point map of the result at `(α, β)` is the nominal set's point at `(α, β)`. Unlike
+`dependent`, the error box is not turned into generators, which would enlarge the set.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       10-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+variable {𝕋 : Type} {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- The independent generators as dependent ones with factors of their own. -/
+def PolyZonotope.indepFactors (pZ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 n :=
+  ⟨pZ.p + pZ.q, pZ.h + pZ.q, 0, pZ.c, Fin.append pZ.G pZ.GI,
+    Real.PolyZonotope.plusE pZ.E (Real.PolyZonotope.identE pZ.q), Fin.elim0, pZ.err⟩
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

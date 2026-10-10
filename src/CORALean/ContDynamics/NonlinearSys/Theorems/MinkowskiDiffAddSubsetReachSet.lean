@@ -15,10 +15,12 @@ The proof's representation (21), `x(Δt) = R_con + e^{AΔt} x(0) + z(x(0))` with
 `R̂_err`, is restated from the conservative-linearization papers and is a hypothesis here
 (`herr`, for `M = e^{AΔt}` invertible and `v = R_con`), as are the solutions themselves
 (`hex`, from each `x₀`, under one admissible input `u₀`) and the Lipschitz constant of the
-field along them (`hLip`). What [1] adds is proved: Grönwall makes `x₀ ↦ x(Δt)` continuous, so
-`z` is, and `minkowskiDiff_subset_of_continuous_of_convex` gives the inclusion. The printed
-proof applies [1, Lemma 1] with `A = R_aff(Δt)`, which is not convex for a nonconvex `X₀`;
-the convexity of `R̂_err` is what carries it.
+field along them (`hLip`); `Trajectory.sub_mem_inputSolution` derives (21) from a
+linearization (`minkowskiDiff_inputSolution_subset_reachSet`). What [1] adds is proved:
+Grönwall makes `x₀ ↦ x(Δt)` continuous, so `z` is, and
+`minkowskiDiff_subset_of_continuous_of_convex` gives the inclusion. The printed proof applies
+[1, Lemma 1] with `A = R_aff(Δt)`, which is not convex for a nonconvex `X₀`; the convexity of
+`R̂_err` is what carries it.
 
 ## References
 
@@ -29,7 +31,7 @@ the convexity of `R̂_err` is what carries it.
 
 -- Authors:       Tobias Ladner
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   10-October-2026
 -- Last revision: ---
 
 

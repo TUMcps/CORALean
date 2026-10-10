@@ -161,6 +161,9 @@ import CORALean.Global.BrouwerClosedBall
 import CORALean.Global.Brouwer
 import CORALean.Global.JacobiExistence
 import CORALean.Global.InnerRangeTestClosed
+import CORALean.Global.JacobiSlice
+import CORALean.Global.JacobiSliceExistence
+import CORALean.Global.MulVecInjectiveOfResidual
 /-!
 # Global definitions, collected
 

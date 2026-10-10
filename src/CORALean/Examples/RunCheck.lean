@@ -571,6 +571,12 @@ def dyadicRows2 : StateT Nat IO Unit := do
     ⟨fun _ => RunnableFloat.d 1 0, fun _ => RunnableFloat.d 2 0⟩
     ⟨fun _ => RunnableFloat.d 0 0, fun _ => RunnableFloat.d 1 (-4)⟩))
   row "arxBoxes" (ofBox (RunnableFloat.arxBoxes 3))
+  -- a polynomial zonotope's inner approximation and approximate containment
+  row "pZinner" (ofPZ RunnableFloat.pZinner)
+  row "pZ_innerApprox" (ofWindows (some RunnableFloat.pZ_innerApprox))
+  row "pZ_containsPointApprox" (ofBool RunnableFloat.pZ_containsPointApprox)
+  row "pZinnerS" (ofPZ RunnableFloat.pZinnerS)
+  row "pZ_containsSetApprox" (ofBool RunnableFloat.pZ_containsSetApprox)
 
 /-! ## Hardware `Float`
 
