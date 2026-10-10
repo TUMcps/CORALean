@@ -37,12 +37,24 @@
 # its ambient type, so `Interval (Mat 𝕋 m n)` and its operations exist; each
 # line names what its own counterpart still needs. A `real-layer:` line on a
 # continuous-time name cites the float definition that runs in its place.
+andDisc  real-layer: a worked example over the real layer (reals, trigonometric or differential-algebraic objects), proved and never run
+andHalf  real-layer: a worked example over the real layer (reals, trigonometric or differential-algebraic objects), proved and never run
+arxSys  real-layer: a worked example over the real layer (reals, trigonometric or differential-algebraic objects), proved and never run
 BReach.D  real-layer: a worked example over the real specification layer, proved and never run
 Chain.sensitivity  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
+daeRed  real-layer: a worked example over the real layer (reals, trigonometric or differential-algebraic objects), proved and never run
+daeSys  real-layer: a worked example over the real layer (reals, trigonometric or differential-algebraic objects), proved and never run
+levelDisc  real-layer: a worked example over the real layer (reals, trigonometric or differential-algebraic objects), proved and never run
+levelEmpty  real-layer: a worked example over the real layer (reals, trigonometric or differential-algebraic objects), proved and never run
+levelPoint  real-layer: a worked example over the real layer (reals, trigonometric or differential-algebraic objects), proved and never run
+levelSet  real-layer: a worked example over the real layer (reals, trigonometric or differential-algebraic objects), proved and never run
 LinearARX.computeGO  real-layer: the GO parameters as real matrices, powers of the real window matrix; the guarantee is a statement about runs over ℝ
 LinearSys.identify  real-layer: the dynamic mode decomposition at a real SVD factorization (an argument, not computed); no float SVD exists to run it on
 LinearSys.identifyCandidate  real-layer: the dynamic mode decomposition at a real SVD factorization (an argument, not computed); no float SVD exists to run it on
 LinearSysDT.computeGO  real-layer: the GO parameters as real matrices, powers of the real state matrix; the guarantee is a statement about runs over ℝ
+linProbInput  real-layer: a worked example over the real layer (reals, trigonometric or differential-algebraic objects), proved and never run
+linProbState  real-layer: a worked example over the real layer (reals, trigonometric or differential-algebraic objects), proved and never run
+linProbSys  real-layer: a worked example over the real layer (reals, trigonometric or differential-algebraic objects), proved and never run
 NonlinDASys.outputSetLinearCora  real-layer: the zeroth and first order of CORA's output set, from a real Jacobian (`fderiv`); a statement about a real output function
 NonlinDASys.outputSetLinear  real-layer: the zeroth and first order of the output set, from real Jacobians (`fderiv`); a statement about a real output function
 NonlinearSys.identify  real-layer: the dynamic mode decomposition at a real SVD factorization (an argument, not computed); no float SVD exists to run it on

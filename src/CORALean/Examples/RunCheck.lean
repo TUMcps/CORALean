@@ -554,6 +554,23 @@ def dyadicRows2 : StateT Nat IO Unit := do
   row "cZ_eqs" (ofHP RunnableFloat.cZ_eqs.P)
   row "cZ_reduceLift" (ofCZ RunnableFloat.cZ_reduceLift)
   row "cZ_reduceLift_P" (ofHP RunnableFloat.cZ_reduceLift.P)
+  -- the components with a worked example of their own
+  row "zAnd" (ofZono RunnableFloat.zAnd)
+  row "polyAnd" (ofPolygon RunnableFloat.polyAnd)
+  row "interSum" (ofUnion ⟨RunnableFloat.interSum.sets⟩)
+  row "lsContainsRun" (ofBool RunnableFloat.lsContainsRun)
+  row "tlmI" (ofBox RunnableFloat.tlmI)
+  row "tlmX" (ofScalarBox ⟨RunnableFloat.tlmX.bounds.1, RunnableFloat.tlmX.bounds.2⟩)
+  row "tlmSq" (ofScalarBox ⟨RunnableFloat.tlmSq.bounds.1, RunnableFloat.tlmSq.bounds.2⟩)
+  row "tlmSum" (ofScalarBox ⟨RunnableFloat.tlmSum.bounds.1, RunnableFloat.tlmSum.bounds.2⟩)
+  row "tlmSqBox" (ofScalarBox RunnableFloat.tlmSqBox)
+  row "tlmSumBox" (ofScalarBox RunnableFloat.tlmSumBox)
+  row "eqBoolRun" (ofBool RunnableFloat.eqBoolRun)
+  row "eqBoolSelf" (ofBool RunnableFloat.eqBoolSelf)
+  row "arxModel" (ofBox (RunnableFloat.arxModel.f
+    ⟨fun _ => RunnableFloat.d 1 0, fun _ => RunnableFloat.d 2 0⟩
+    ⟨fun _ => RunnableFloat.d 0 0, fun _ => RunnableFloat.d 1 (-4)⟩))
+  row "arxBoxes" (ofBox (RunnableFloat.arxBoxes 3))
 
 /-! ## Hardware `Float`
 
