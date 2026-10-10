@@ -34,7 +34,8 @@ theorem Zonotope.sum_absBound_le_sumUp_absBoundError (Z : Zonotope 𝕋 n) :
   refine le_trans (Finset.sum_le_sum fun j _ => ?_) (sum_le_sumUp _)
   rw [Real.Zonotope.absBound, Zonotope.nominal_c, Zonotope.nominal_G, Zonotope.absBoundError]
   have hc : |toRealVec Z.c j| = toReal (absolute (Z.c j)) := (toReal_absolute _).symm
-  have hG : ∑ l, |toReal (Z.G j l)| ≤ toReal (radius Z.G j) := sum_abs_le_radius j
+  have hG : ∑ l, |toReal (Z.G l j)| ≤ toReal (radius (fun i j => Z.G j i) j) :=
+    sum_abs_le_radius (d := fun i j => Z.G j i) j
   have hE : 0 ≤ toReal (maximum (absolute (Z.E.inf j)) (absolute (Z.E.sup j))) := by
     rw [toReal_maximum, toReal_absolute]
     exact le_max_of_le_left (abs_nonneg _)

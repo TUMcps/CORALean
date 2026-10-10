@@ -32,11 +32,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 /-- A point of the nominal zonotope reaches no further than `|c| + Σ|G|`, rounded up. -/
 theorem Zonotope.aux_abs_le_nominal {Z : Zonotope 𝕋 n} {z : Vec ℝ n}
     (hz : z ∈ nominalSet Z) (j : Fin n) :
-    |z j| ≤ toReal (addUp (absolute (Z.c j)) (radius Z.G j)) := by -- --- PROOF ---
+    |z j| ≤ toReal (addUp (absolute (Z.c j)) (radius (fun i j => Z.G j i) j)) := by -- --- PROOF ---
   obtain ⟨β, hβ, hzβ⟩ := Zonotope.mem_nominalSet_iff.mp hz
-  have hgen := abs_sum_le_radius (d := Z.G) (Δ := fun i j => toReal (Z.G i j))
+  have hgen := abs_sum_le_radius (d := fun i j => Z.G j i) (Δ := fun i j => toReal (Z.G j i))
     (fun _ _ => le_refl _) hβ j
-  have hup := add_le_addUp (absolute (Z.c j)) (radius Z.G j)
+  have hup := add_le_addUp (absolute (Z.c j)) (radius (fun i j => Z.G j i) j)
   rw [toReal_absolute] at hup
   rw [hzβ j]
   exact le_trans (le_trans (abs_add_le _ _) (by linarith)) hup
@@ -53,7 +53,7 @@ theorem Zonotope.abs_residual_le (IM : Interval (Mat 𝕋 m n)) {Z : Zonotope �
       mulUp (maximum (absolute ((Interval.matResidual IM.inf IM.sup
           (Interval.centreMat IM)).inf i j))
         (absolute ((Interval.matResidual IM.inf IM.sup (Interval.centreMat IM)).sup i j)))
-      (addUp (absolute (Z.c j)) (radius Z.G j))) := by -- --- PROOF ---
+      (addUp (absolute (Z.c j)) (radius (fun i j => Z.G j i) j))) := by -- --- PROOF ---
   set Rs := Interval.matResidual IM.inf IM.sup (Interval.centreMat IM)
   show |∑ j, R i j * z j| ≤ _
   refine le_trans (Finset.abs_sum_le_sum_abs _ _) (le_trans ?_ (sum_le_sumUp _))

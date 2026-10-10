@@ -90,6 +90,8 @@ import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpmOneParam
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.InputOneParam
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeffSumFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdaptiveIntegralFloat
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.MatZonoCorrTermFloat
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.MatZonoCorrectionMatrixFloat
 
 /-!
 # What enclosing a matrix exponential computes

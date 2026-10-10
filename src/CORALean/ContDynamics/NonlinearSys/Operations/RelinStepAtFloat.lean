@@ -63,7 +63,7 @@ def NonlinearSys.FloatModel.relinStepAtFloat (fm : NonlinearSys.FloatModel 𝕋 
     ⟨fun i => minimum (Ub.inf i) (us i), fun i => maximum (Ub.sup i) (us i)⟩
   let AB := fm.linearizeFloat xs us                                 -- A, B
   let V := fm.linInputFloat AB.1 AB.2 xs X U U'                     -- f(z✱) - A x✱ ⊕ B U ⊕ L
-  let pt := fun v => (⟨0, v, fun _ j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ : Zonotope 𝕋 n)
+  let pt := fun v => (⟨0, v, fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ : Zonotope 𝕋 n)
   let lin : LinearSys 𝕋 n := ⟨AB.1⟩                                 -- δ̇ = A δ + ũ, ũ ∈ V
   let S ← lin.reachFloatInput (identityMat 𝕋 n)                     -- one step from R - x✱
     ⟨R ⊞ pt fun i => neg (xs i), V, 0, ToRat.toRat Δt⟩ options

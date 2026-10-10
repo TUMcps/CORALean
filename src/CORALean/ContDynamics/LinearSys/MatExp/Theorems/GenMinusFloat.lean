@@ -39,7 +39,7 @@ theorem aux_abs_le_maximum_absolute {x : ℝ} {lo hi : 𝕋} (h1 : toReal lo ≤
 /-- An entry of `(E - I_n)G_l` is under the float entry in magnitude. -/
 theorem MatExp.abs_genMinus_le {eA : Interval (Mat 𝕋 n n)} {E : Mat ℝ n n}
     (hE : E ∈ eA.construct) (H : Zonotope 𝕋 n) (l : Fin H.h) (j : Fin n) :
-    |((E - 1) *ᵥ fun i => toReal (H.G i l)) j|
+    |((E - 1) *ᵥ fun i => toReal (H.G l i)) j|
       ≤ toReal (MatExp.genMinus eA H l j) := by -- --- PROOF ---
   -- the member's entries are between the float box's
   have hent := Real.Interval.mem_mat_iff.mp hE
@@ -69,13 +69,13 @@ theorem MatExp.abs_genMinus_le {eA : Interval (Mat 𝕋 n n)} {E : Mat ℝ n n}
       rw [this]
       exact aux_abs_le_maximum_absolute h1 h2
   -- the entry is a sum of products, each under the float product, and the float sum rounds up
-  show |∑ k, (E - 1) j k * toReal (H.G k l)| ≤ _
-  calc |∑ k, (E - 1) j k * toReal (H.G k l)|
-      ≤ ∑ k, |(E - 1) j k * toReal (H.G k l)| := Finset.abs_sum_le_sum_abs _ _
+  show |∑ k, (E - 1) j k * toReal (H.G l k)| ≤ _
+  calc |∑ k, (E - 1) j k * toReal (H.G l k)|
+      ≤ ∑ k, |(E - 1) j k * toReal (H.G l k)| := Finset.abs_sum_le_sum_abs _ _
     _ ≤ ∑ k, toReal (mulUp (maximum
           (absolute (if j = k then subDown (eA.inf j k) one else eA.inf j k))
           (absolute (if j = k then subUp (eA.sup j k) one else eA.sup j k)))
-          (absolute (H.G k l))) := by
+          (absolute (H.G l k))) := by
         refine Finset.sum_le_sum fun k _ => ?_
         rw [abs_mul]
         exact le_trans (mul_le_mul (hterm k) (by rw [toReal_absolute]) (abs_nonneg _)

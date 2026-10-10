@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 def Zonotope.mtimes (M : Mat 𝕋 m n) (Z : Zonotope 𝕋 n) : Zonotope 𝕋 m where
   h := Z.h
   c := mulVecDown M Z.c
-  G := matMulDown M Z.G
+  G := fun j => mulVecDown M (Z.G j)
   E := (Interval.mtimes M Z.E).plus (Zonotope.mtimesResidual M Z)
 
 end CORALean.Float

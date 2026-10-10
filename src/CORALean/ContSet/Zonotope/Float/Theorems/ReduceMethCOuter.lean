@@ -57,11 +57,13 @@ theorem Zonotope.reduceMethC_outer (Z : Zonotope 𝕋 n) (o : ℕ) :
     rwa [toReal_half, toReal_one] at this
   -- the coordinates of the point's offset in the basis
   obtain ⟨w, hw, hwb⟩ := Real.Zonotope.basis_reach (toRealMat P) (toRealMat H) hqle
-    (fun i => Zonotope.methCQ_bound H P i) (fun l => ∑ j, toReal (Z.G l j) * β j)
-    (fun i => Zonotope.methCReach_bound H Z.G hβ i)
-  set ρ := addUp (Zonotope.methCReach H Z.G) (Zonotope.methCReach H Z.G) with hρ
+    (fun i => Zonotope.methCQ_bound H P i) (fun l => ∑ j, toReal (Z.G j l) * β j)
+    (fun i => Zonotope.methCReach_bound H (fun i j => Z.G j i) hβ i)
+  set ρ := addUp (Zonotope.methCReach H (fun i j => Z.G j i))
+    (Zonotope.methCReach H (fun i j => Z.G j i)) with hρ
   have hρge : ∀ k, |w k| ≤ toReal ρ := fun k => by
-    have := add_le_addUp (Zonotope.methCReach H Z.G) (Zonotope.methCReach H Z.G)
+    have := add_le_addUp (Zonotope.methCReach H (fun i j => Z.G j i))
+      (Zonotope.methCReach H (fun i j => Z.G j i))
     linarith [hwb k]
   -- the same coordinates as coefficients over `ρ`
   set β' : Fin n → ℝ := fun k => if toReal ρ = 0 then 0 else w k / toReal ρ with hβ'
@@ -94,7 +96,7 @@ theorem Zonotope.reduceMethC_outer (Z : Zonotope 𝕋 n) (o : ℕ) :
     Interval.plus_outer _ _ ⟨e, he, _, hshort, rfl⟩, ?_⟩
   funext i
   -- the offset `G β` is `P w`, read at coordinate `i`
-  have hPw : ∑ k, toReal (P i k) * w k = ∑ j, toReal (Z.G i j) * β j := by
+  have hPw : ∑ k, toReal (P i k) * w k = ∑ j, toReal (Z.G j i) * β j := by
     have := congrFun hw i
     simpa [Matrix.mulVec, dotProduct, toRealMat] using this
   have hsplit : ∑ k, (toReal ρ * toReal (P i k) - toReal (mulDown ρ (P i k))) * β' k

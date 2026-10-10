@@ -129,7 +129,7 @@ LinParamSys.WithInput.reachUnion  real-layer: the windows with inputs at `ℐ`; 
 LinParamSys.WithInputSplit.reachInstance  real-layer: the `Reach` instance over `WithInputSplit.reachUnion`; runs in floats as `LinParamSys.reachFloatInputSplit` (`reachFloatInputSplit_outer`)
 LinParamSys.WithInputSplit.reachStepk  real-layer: one window with the input split at `ℐ`; runs in floats as `LinParamSys.reachStepkFloatInputSplit`, an entry of `LinParamSys.reachFloatInputSplit`'s list (`reachFloatInputSplit_outer`)
 LinParamSys.WithInputSplit.reachUnion  real-layer: the windows with the input split at `ℐ`; runs in floats as `LinParamSys.reachFloatInputSplit` (`reachFloatInputSplit_outer`)
-LinParamSys.timeIntervalStepZono  pending #1: one step at the real matrix-zonotope family `𝕄𝒵`; needs a float `MatExp.matZonoCorrectionMatrix`, the float step being at interval matrices only
+LinParamSys.timeIntervalStepZono  real-layer: one step at the real matrix-zonotope family `𝕄𝒵`; runs in floats as `LinParamSys.timeIntervalStepZonoFloat` (`timeIntervalStepZonoFloat_outer`)
 LinearSys.adaptTimeStep  real-layer: a tuning selector, CDC'20 `Alg. 2`, in ℝ arithmetic; runs in floats as `LinearSys.adaptTimeStepFloat`, and `adaptiveStepFloat_outer` holds for whatever it picks
 LinearSys.adaptTimeStepOrder  real-layer: a tuning selector, Alg. 2's order sweep, in ℝ arithmetic; runs in floats as `LinearSys.adaptTimeStepOrderFloat`, measuring `ε_H`, `ε_P` by `errOp` of the float sets, and `adaptiveStepFloat_outer` holds for whatever it picks
 LinearSys.adaptTimeStepSearch  real-layer: a tuning selector, Alg. 2's step sweep, in ℝ arithmetic; runs in floats as `LinearSys.adaptTimeStepSearchFloat`, and `adaptiveStepFloat_outer` holds for whatever it picks
@@ -282,8 +282,8 @@ MatExp.intervalCorrTerm  real-layer: one correction term over a real interval ma
 MatExp.intervalCorrectionMatrix  real-layer: `F` over a real interval matrix; runs in floats as `Float.MatExp.intervalCorrectionMatrix`
 MatExp.intervalInputRemainder  real-layer: `E(r)·r` over a real interval matrix; runs in floats as `Float.MatExp.intervalInputRemainder`
 MatExp.intervalMulVecSet  spec: the `Set` an entrywise-bounded matrix maps a set to
-MatExp.matZonoCorrTerm  pending #1: one order of `F` at a real matrix zonotope; needs the box of a float matrix-zonotope power
-MatExp.matZonoCorrectionMatrix  pending #1: `F` over a real matrix zonotope; needs a float `matZonoCorrTerm`
+MatExp.matZonoCorrTerm  real-layer: one order of `F` at a real matrix zonotope; runs in floats as `Float.MatExp.matZonoCorrTerm`
+MatExp.matZonoCorrectionMatrix  real-layer: `F` over a real matrix zonotope; runs in floats as `Float.MatExp.matZonoCorrectionMatrix`
 MatExp.particularCoeff  real-layer: `Ãᵢ = Aⁱ Δt^{i+1}/(i+1)!` as a real matrix, `LinearSys.inputTerm`'s twin; enclosed in floats by `Float.MatExp.intervalInputTerm` at the point interval (`smul_pow_mem_intervalInputTerm`)
 MatExp.particularCoeffSum  real-layer: `Σᵢ Ãᵢ` as a real matrix; runs in floats as `Float.MatExp.particularCoeffSum` (`particularCoeffSum_mem`)
 MatExp.particularSolutionError  real-layer: eq. (25), a tuning quantity of TAC'23 `Alg. 2`, `err` of exact `Set`s at the real `e^{A t_k}`; runs in floats as `LinearSys.particularSolutionErrorFloat`, `err` bounded above by the Euclidean `Zonotope.errUp` (`err_le_errUp`)

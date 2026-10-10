@@ -53,9 +53,9 @@ theorem Zonotope.plus_subset_add_box (Z₁ Z₂ : Zonotope 𝕋 n)
   rintro _ ⟨y₁, hy₁, y₂, hy₂, rfl⟩
   obtain ⟨β, hβ, hy₁eq⟩ := Zonotope.mem_nominalSet_iff.mp hy₁
   -- the two halves of `β`, read back onto `Z₁` and `Z₂`'s own generators
-  set p₁ : Vec ℝ n := fun i => toReal (Z₁.c i) + ∑ l, toReal (Z₁.G i l) * β (Fin.castAdd Z₂.h l)
+  set p₁ : Vec ℝ n := fun i => toReal (Z₁.c i) + ∑ l, toReal (Z₁.G l i) * β (Fin.castAdd Z₂.h l)
     with hp₁def
-  set p₂ : Vec ℝ n := fun i => toReal (Z₂.c i) + ∑ l, toReal (Z₂.G i l) * β (Fin.natAdd Z₁.h l)
+  set p₂ : Vec ℝ n := fun i => toReal (Z₂.c i) + ∑ l, toReal (Z₂.G l i) * β (Fin.natAdd Z₁.h l)
     with hp₂def
   -- the point `plus`'s stored centre misses the exact sum by
   set d : Vec ℝ n := fun i =>
@@ -85,11 +85,11 @@ theorem Zonotope.plus_subset_add_box (Z₁ Z₂ : Zonotope 𝕋 n)
   refine ⟨_, Set.add_mem_add hp₁ hp₂, _, hbox, ?_⟩
   funext i
   have hsum := Zonotope.aux_sum_univ_plus_box (Z₁ := Z₁) (Z₂ := Z₂)
-    (fun x => toReal (Fin.append (Z₁.G i) (Z₂.G i) x) * β x)
+    (fun x => toReal (Fin.append Z₁.G Z₂.G x i) * β x)
   simp only [Fin.append_left, Fin.append_right] at hsum
   have hy₁i : y₁ i = toReal (addDown (Z₁.c i) (Z₂.c i))
-      + (∑ l, toReal (Z₁.G i l) * β (Fin.castAdd Z₂.h l)
-         + ∑ l, toReal (Z₂.G i l) * β (Fin.natAdd Z₁.h l)) :=
+      + (∑ l, toReal (Z₁.G l i) * β (Fin.castAdd Z₂.h l)
+         + ∑ l, toReal (Z₂.G l i) * β (Fin.natAdd Z₁.h l)) :=
     (hy₁eq i).trans (congrArg (toReal (addDown (Z₁.c i) (Z₂.c i)) + ·) hsum)
   show p₁ i + p₂ i + (d i + y₂ i) = y₁ i + y₂ i
   rw [hy₁i, hp₁def, hp₂def, hddef]

@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 def Zonotope.splitHalf (Z : Zonotope 𝕋 n) (j : Fin Z.h) (s : Vec 𝕋 n) : Zonotope 𝕋 n where
   h := Z.h
   c := fun i => addDown (Z.c i) (s i)
-  G := fun i => Function.update (Z.G i) j (half (Z.G i j))
+  G := Function.update Z.G j fun i => half (Z.G j i)
   E := Z.E.plus (Zonotope.centerResidual Z.c s)
 
 end CORALean.Float

@@ -71,7 +71,7 @@ def aux_paramsJson (J : RandJob) : Json :=
 /-- Every stored number of `R`. -/
 def aux_entries (R : Zonotope 𝕋 5) : List 𝕋 :=
   (List.finRange 5).flatMap fun i =>
-    [R.c i, R.E.inf i, R.E.sup i] ++ (List.finRange R.h).map fun j => R.G i j
+    [R.c i, R.E.inf i, R.E.sup i] ++ (List.finRange R.h).map fun j => R.G j i
 
 /-- The windows, whether any is past the range, the exact windows and the hulls over ℚ. -/
 def aux_reachAll (nonFinite : 𝕋 → Bool) (J : RandJob) (S : RandSystem 𝕋) :

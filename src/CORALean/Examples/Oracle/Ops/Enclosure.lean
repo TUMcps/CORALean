@@ -67,8 +67,8 @@ def handleEnclosure (dops : DtypeOps 𝕋) (req : Json) :
   let h' := Zp.h
   let newCols : Array (Fin n × 𝕋) := (List.finRange n).toArray.filterMap (aux_foldRow dops Zp)
   let hFinal := h' + newCols.size
-  let G : Mat 𝕋 n hFinal := Matrix.of fun (i : Fin n) (l : Fin hFinal) =>
-    if hlt : l.val < h' then Zp.G i ⟨l.val, hlt⟩ else
+  let G : Fin hFinal → Vec 𝕋 n := fun (l : Fin hFinal) (i : Fin n) =>
+    if hlt : l.val < h' then Zp.G ⟨l.val, hlt⟩ i else
       let (row, val) := newCols.getD (l.val - h') (i, FloatOps.zero)
       if row = i then val else FloatOps.zero
   let Z' : Zonotope 𝕋 n :=

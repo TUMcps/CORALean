@@ -1,0 +1,48 @@
+import CORALean.ContDynamics.LinParamSys.LinParamSys
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoEnclosureFloat
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.MatZonoCorrectionMatrixFloat
+import CORALean.ContSet.Zonotope.Float.Instances
+import CORALean.ContSet.Zonotope.Float.Operations.MatSmul
+
+/-!
+# One step of the homogeneous flow at a float matrix zonotope, as a float zonotope
+
+`LinParamSys.timeIntervalStepZono` computed in `𝕋`, CORA's `initReach` with `obj.A` a
+`matZonotope`: `linComb(R, e^{[A]Δt} R) ⊕ F R`, the exponential kept as a matrix
+zonotope (`expMatZonoEnclosure` at `Δt • A`, `matSmul` at the point range `[Δt, Δt]`),
+and the correction `F` the boxed powers give (`matZonoCorrectionMatrix`). `Δt` is a
+float and its own value is the step.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       09-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open CORALean.Float
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- `linComb(R, e^{[A]Δt} R) ⊕ F R` over every `A` in the matrix zonotope `sys.A`, at
+Taylor order `η`. -/
+def LinParamSys.timeIntervalStepZonoFloat
+    (sys : LinParamSys (fun m n => GZonotope (Mat 𝕋 m n)) n) (Δt : 𝕋) (η : ℕ)
+    (R : Zonotope 𝕋 n) : Zonotope 𝕋 n :=
+  let Ar := GZonotope.matSmul Δt Δt sys.A                                -- A * stepSize
+  let eAr := MatExp.expMatZonoEnclosure Ar η                             -- mappingMatrixSet
+  let F := MatExp.matZonoCorrectionMatrix sys.A Δt η                     -- priv_tie's F
+  LinComb.linComb R (Mtimes.mtimes (𝕄 := fun m n => GZonotope (Mat 𝕋 m n)) eAr R) ⊞
+    Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) F R          -- linComb(R, e R) ⊕ F R
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -47,7 +47,8 @@ structure Ellipsoid (𝕋 : Type) (n : ℕ) where
   err : Interval (Vec 𝕋 n)
 
 instance [SoundFloatArithmetic 𝕋] :
-    InflatedContSet (Ellipsoid 𝕋 n) (CORALean.Real.Ellipsoid n) 𝕋 n where
+    InflatedContSet (Ellipsoid 𝕋 n) (CORALean.Real.Ellipsoid n)
+      (Vec 𝕋 n) (Vec ℝ n) where
   nominal E := ⟨E.k, toRealVec E.q, toRealMat E.G⟩
   error E := E.err
 

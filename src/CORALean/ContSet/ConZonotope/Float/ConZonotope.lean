@@ -44,7 +44,8 @@ structure ConZonotope (𝕋 : Type) (n : ℕ) where
   E : Interval (Vec 𝕋 n)
 
 instance [SoundFloatArithmetic 𝕋] :
-    InflatedContSet (ConZonotope 𝕋 n) (CORALean.Real.ConZonotope (Vec ℝ n)) 𝕋 n where
+    InflatedContSet (ConZonotope 𝕋 n) (CORALean.Real.ConZonotope (Vec ℝ n))
+      (Vec 𝕋 n) (Vec ℝ n) where
   -- generators transpose: stored as a matrix here, a family of vectors there
   nominal cZ := ⟨cZ.h, toRealVec cZ.c, fun j i => toReal (cZ.G i j), cZ.P.nominal⟩
   error cZ := cZ.E

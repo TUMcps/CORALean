@@ -70,9 +70,9 @@ theorem ConZonotope.conIntersect_outer (cZ₁ : ConZonotope 𝕋 n) (cZ₂ : Con
   rintro x ⟨⟨y₁, hy₁', e₁, he₁, hx₁⟩, y₂, hy₂', e₂, he₂, hx₂⟩
   obtain ⟨β₁, hβ₁, hP₁, hy₁⟩ := ConZonotope.mem_nominalSet_iff.mp hy₁'
   obtain ⟨β₂, hβ₂, hP₂, hy₂⟩ := ConZonotope.mem_nominalSet_iff.mp hy₂'
-  set W := Zonotope.mtimes M ⟨cZ₁.h, cZ₁.c, cZ₁.G, cZ₁.E⟩ with hW
+  set W := Zonotope.mtimes M ⟨cZ₁.h, cZ₁.c, fun j i => cZ₁.G i j, cZ₁.E⟩ with hW
   -- the float image's nominal point at `β₁`, and what is left of `M x`
-  set yW : Vec ℝ m := fun i => toReal (W.c i) + ∑ j, toReal (W.G i j) * β₁ j with hyW
+  set yW : Vec ℝ m := fun i => toReal (W.c i) + ∑ j, toReal (W.G j i) * β₁ j with hyW
   set eW : Vec ℝ m := fun i => (toRealMat M *ᵥ x) i - yW i with heW
   have hxk : ∀ k, x k = toReal (cZ₁.c k) + ∑ j, toReal (cZ₁.G k j) * β₁ j + e₁ k := by
     intro k
@@ -127,7 +127,7 @@ theorem ConZonotope.conIntersect_outer (cZ₁ : ConZonotope 𝕋 n) (cZ₂ : Con
     · rw [blockLeft_append]; exact hP₁
     · rw [blockRight_append]; exact hP₂
     -- the agreement row: the two nominal points differ by exactly `e₂ - eW`
-    · have hrow : (toRealMat (fun i => Fin.append (W.G i) fun j => neg (cZ₂.G i j))
+    · have hrow : (toRealMat (fun i => Fin.append (fun j => W.G j i) fun j => neg (cZ₂.G i j))
             *ᵥ Fin.append β₁ β₂) i
           = (yW i - toReal (W.c i)) - (y₂ i - toReal (cZ₂.c i)) := by
         rw [hy₂ i]

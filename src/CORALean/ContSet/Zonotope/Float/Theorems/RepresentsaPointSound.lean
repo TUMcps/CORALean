@@ -32,7 +32,7 @@ theorem Zonotope.representsa_point_sound {Z : Zonotope 𝕋 n}
     forall_const] at h
   obtain ⟨hG, hE⟩ := h
   -- every stored generator entry is squeezed to `0`
-  have hG0 : ∀ i j, toReal (Z.G i j) = 0 := fun i j => le_antisymm
+  have hG0 : ∀ i j, toReal (Z.G j i) = 0 := fun i j => le_antisymm
     (by simpa [toReal_zero] using toReal_le_of_le (hG j i).1)
     (by simpa [toReal_zero] using toReal_le_of_le (hG j i).2)
   obtain ⟨v, hv⟩ := Interval.representsa_point_sound hE

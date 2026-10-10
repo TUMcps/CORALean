@@ -51,20 +51,20 @@ theorem Zonotope.reduceBy_outer_refines (Z : Zonotope 𝕋 n)
     ((nominal Z).reduceBy part).construct ⊆ nominalSet (Z.reduceBy part) := by -- --- PROOF ---
   intro x hxmem
   obtain ⟨β, hβ, hx⟩ := Real.Zonotope.mem_construct_iff.mp hxmem
-  have hnonneg : ∀ i, (0:ℝ) ≤ ∑ l, |toReal (Z.G i (part.right l))| :=
+  have hnonneg : ∀ i, (0:ℝ) ≤ ∑ l, |toReal (Z.G (part.right l) i)| :=
     fun i => Finset.sum_nonneg fun l _ => abs_nonneg _
-  have hle : ∀ i, (∑ l, |toReal (Z.G i (part.right l))|)
-      ≤ toReal (radius (fun i l => Z.G i (part.right l)) i) :=
-    fun i => sum_abs_le_radius (d := fun i l => Z.G i (part.right l)) i
-  have hbound : ∀ i, |(∑ l, |toReal (Z.G i (part.right l))|) * β (Fin.natAdd q i)|
-      ≤ toReal (radius (fun i l => Z.G i (part.right l)) i) := by
+  have hle : ∀ i, (∑ l, |toReal (Z.G (part.right l) i)|)
+      ≤ toReal (radius (fun i l => Z.G (part.right l) i) i) :=
+    fun i => sum_abs_le_radius (d := fun i l => Z.G (part.right l) i) i
+  have hbound : ∀ i, |(∑ l, |toReal (Z.G (part.right l) i)|) * β (Fin.natAdd q i)|
+      ≤ toReal (radius (fun i l => Z.G (part.right l) i) i) := by
     intro i
     rw [abs_mul, abs_of_nonneg (hnonneg i)]
     exact le_trans (mul_le_of_le_one_right (hnonneg i) (hβ _)) (hle i)
   -- the witness: kept coefficients, plus one per coordinate scaled to the rounded radius
   refine Zonotope.mem_nominalSet_iff.mpr ⟨Fin.append (fun l => β (Fin.castAdd n l)) (fun i =>
-      Real.Zonotope.coefficient (toReal (radius (fun i l => Z.G i (part.right l)) i))
-        ((∑ l, |toReal (Z.G i (part.right l))|) * β (Fin.natAdd q i))), ?_, fun i => ?_⟩
+      Real.Zonotope.coefficient (toReal (radius (fun i l => Z.G (part.right l) i) i))
+        ((∑ l, |toReal (Z.G (part.right l) i)|) * β (Fin.natAdd q i))), ?_, fun i => ?_⟩
   · refine Fin.addCases (fun l => ?_) (fun i => ?_)
     · simpa using hβ _
     · simp only [Fin.append_right]
@@ -72,8 +72,8 @@ theorem Zonotope.reduceBy_outer_refines (Z : Zonotope 𝕋 n)
   · rw [hx i, Real.Zonotope.sum_univ_reduceBy, Zonotope.aux_sum_univ_reduceBy]
     simp only [Real.Zonotope.reduceBy, Zonotope.reduceBy, Fin.append_left, Fin.append_right,
       toReal_diagonalBlock]
-    -- the exact block is indexed generator-first, the float one coordinate-first
-    rw [Real.Zonotope.sum_diagonal_mul', Real.Zonotope.sum_diagonal_mul]
+    -- both blocks are indexed generator-first
+    rw [Real.Zonotope.sum_diagonal_mul', Real.Zonotope.sum_diagonal_mul']
     simp only [toRealVec]
     rw [Real.Zonotope.mul_coefficient (hbound i)]
     -- what is left is the `nominal` projections, which are definitional

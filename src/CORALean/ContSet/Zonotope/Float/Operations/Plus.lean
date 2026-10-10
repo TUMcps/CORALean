@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 def Zonotope.plus (Z₁ Z₂ : Zonotope 𝕋 n) : Zonotope 𝕋 n where
   h := Z₁.h + Z₂.h
   c := fun i => addDown (Z₁.c i) (Z₂.c i)
-  G := fun i => Fin.append (Z₁.G i) (Z₂.G i)
+  G := Fin.append Z₁.G Z₂.G
   E := (Z₁.E.plus Z₂.E).plus (Zonotope.centerResidual Z₁.c Z₂.c)
 
 end CORALean.Float

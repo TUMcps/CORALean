@@ -30,7 +30,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 def Zonotope.abs (Z : Zonotope 𝕋 n) : Zonotope 𝕋 n where
   h := Z.h
   c := fun i => absolute (Z.c i)
-  G := fun i j => absolute (Z.G i j)
+  G := fun j i => absolute (Z.G j i)
   E := Z.E
 
 end CORALean.Float

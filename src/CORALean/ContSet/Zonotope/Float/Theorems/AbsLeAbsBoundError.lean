@@ -28,13 +28,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- The nominal part never leaves the centre-plus-generators bound, rounded up. -/
 theorem Zonotope.aux_abs_nominal_le (Z : Zonotope 𝕋 n) {x : Vec ℝ n}
     (hx : x ∈ nominalSet Z) (j : Fin n) :
-    |x j| ≤ toReal (addUp (absolute (Z.c j)) (radius Z.G j)) := by -- --- PROOF ---
+    |x j| ≤ toReal (addUp (absolute (Z.c j)) (radius (fun i j => Z.G j i) j)) := by -- --- PROOF ---
   obtain ⟨β, hβ, hxeq⟩ := Zonotope.mem_nominalSet_iff.mp hx
   refine le_trans ?_ (add_le_addUp _ _)
   rw [hxeq j, toReal_absolute]
   refine (abs_add_le _ _).trans ?_
   gcongr
-  exact abs_sum_le_radius (fun _ _ => le_refl _) hβ j
+  exact abs_sum_le_radius (d := fun i j => Z.G j i) (fun _ _ => le_refl _) hβ j
 
 /-- A point of the box never leaves whichever corner is farther from the origin. -/
 theorem Zonotope.aux_abs_error_le (Z : Zonotope 𝕋 n) {x : Vec ℝ n}
@@ -56,7 +56,7 @@ theorem Zonotope.abs_le_absBoundError {Z : Zonotope 𝕋 n} {x : Vec ℝ n}
   obtain ⟨xnom, hxnom, xerr, hxerr, rfl⟩ := hx
   calc |xnom j + xerr j|
       ≤ |xnom j| + |xerr j| := abs_add_le _ _
-    _ ≤ toReal (addUp (absolute (Z.c j)) (radius Z.G j))
+    _ ≤ toReal (addUp (absolute (Z.c j)) (radius (fun i j => Z.G j i) j))
         + toReal (maximum (absolute (Z.E.inf j)) (absolute (Z.E.sup j))) :=
         add_le_add (Zonotope.aux_abs_nominal_le Z hxnom j) (Zonotope.aux_abs_error_le Z hxerr j)
     _ ≤ toReal (Zonotope.absBoundError Z j) := add_le_addUp _ _

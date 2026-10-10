@@ -30,7 +30,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 def PolyZonotope.zonotope (pZ : PolyZonotope 𝕋 n) : Zonotope 𝕋 n where
   h := pZ.h + pZ.q
   c := pZ.c
-  G := fun i => Fin.append (pZ.G i) (pZ.GI i)
+  G := fun j i => Fin.append (pZ.G i) (pZ.GI i) j
   E := pZ.err
 
 def ConPolyZono.zonotope (cPZ : ConPolyZono 𝕋 n) : Zonotope 𝕋 n :=

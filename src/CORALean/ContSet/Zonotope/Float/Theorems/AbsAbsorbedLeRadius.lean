@@ -25,9 +25,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q r : ℕ}
 theorem Zonotope.abs_absorbed_le_radius (Z : Zonotope 𝕋 n)
     (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) {β : Vec ℝ Z.h}
     (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) :
-    |∑ l, toReal (Z.G i (part.right l)) * β (part.right l)|
-      ≤ toReal (radius (fun i l => Z.G i (part.right l)) i) := by
-  exact abs_sum_le_radius (d := fun i l => Z.G i (part.right l))
+    |∑ l, toReal (Z.G (part.right l) i) * β (part.right l)|
+      ≤ toReal (radius (fun i l => Z.G (part.right l) i) i) := by
+  exact abs_sum_le_radius (d := fun i l => Z.G (part.right l) i)
     (fun _ _ => le_refl _) (fun l => hβ (part.right l)) i
 
 end CORALean.Float

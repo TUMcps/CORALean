@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- The two halves of `Z` along the generator of maximal `‖g_jᵀ G‖₁`. -/
 def Zonotope.splitFirstGen (Z : Zonotope 𝕋 n) : Zonotope 𝕋 n × Zonotope 𝕋 n :=
-  let h := fun j => sumUp fun k => absolute (dotUp (fun i => Z.G i j) (fun i => Z.G i k))
+  let h := fun j => sumUp fun k => absolute (dotUp (Z.G j) (Z.G k))
   let index := (List.finRange Z.h).foldl
     (fun best j => match best with
       | none => some j

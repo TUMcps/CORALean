@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 def Zonotope.representsa_point (Z : Zonotope 𝕋 n) : Bool :=
   (((List.finRange Z.h).all fun j => (List.finRange n).all fun i =>
-    FloatOps.le (Z.G i j) zero && FloatOps.le zero (Z.G i j)) &&
+    FloatOps.le (Z.G j i) zero && FloatOps.le zero (Z.G j i)) &&
     Z.E.representsa_point)
 
 end CORALean.Float

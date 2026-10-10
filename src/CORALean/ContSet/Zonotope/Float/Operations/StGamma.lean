@@ -24,7 +24,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def Zonotope.stGamma (Z₂ Z₁ : Zonotope 𝕋 n) (H : Mat 𝕋 Z₂.h n) : Mat 𝕋 Z₂.h Z₁.h :=
-  fun k j => dotDown (H k) fun l => Z₁.G l j
+  fun k j => dotDown (H k) (Z₁.G j)
 
 end CORALean.Float
 

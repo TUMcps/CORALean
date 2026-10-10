@@ -41,7 +41,7 @@ theorem Zonotope.aux_mulVec_bounds (A : Mat 𝕋 m n) (v : Vec 𝕋 n) (i : Fin 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.mtimesMatZonotope_outer (M : MatZonotope 𝕋 m n) (Z : Zonotope 𝕋 n) :
+theorem Zonotope.mtimesMatZonotope_outer (M : GZonotope (Mat 𝕋 m n)) (Z : Zonotope 𝕋 n) :
     (⋃ A ∈ M.construct, (A *ᵥ ·) '' Z.construct)
       ⊆ (Zonotope.mtimesMatZonotope M Z).construct := by -- --- PROOF ---
   intro y hy
@@ -49,15 +49,15 @@ theorem Zonotope.mtimesMatZonotope_outer (M : MatZonotope 𝕋 m n) (Z : Zonotop
   obtain ⟨_, ⟨a, ha, e, he, rfl⟩, x, hx, rfl⟩ := hy
   obtain ⟨z, hz, f, hf, rfl⟩ := hx
   -- `nominal Z` spelled out, so that its generator count is `Z.h` to `simp` below
-  let Zn : CORALean.Real.Zonotope (Vec ℝ n) := ⟨Z.h, toRealVec Z.c, fun j i => toReal (Z.G i j)⟩
+  let Zn : CORALean.Real.Zonotope (Vec ℝ n) := ⟨Z.h, toRealVec Z.c, fun j i => toReal (Z.G j i)⟩
   set R := CORALean.Real.Zonotope.mtimesMatZonotope M.nominal Zn
   -- `h` first, with no expected type, as `Real.Zonotope.mtimesMatZonotope_outer` itself does
   have h := CORALean.Real.Zonotope.mtimesMatZonotope_outer M.nominal Zn
   have haz : a *ᵥ z ∈ R.construct := h (Set.mem_biUnion ha ⟨z, hz, rfl⟩)
   -- the matrix zonotope's nominal part, boxed: its nominal part with a zero box
   have ha' : a ∈ ({ M with E := Interval.point fun _ _ => zero } :
-      MatZonotope 𝕋 m n).interval.construct := by
-    refine MatZonotope.interval_contains _ ⟨a, ha, 0, ?_, add_zero a⟩
+      GZonotope (Mat 𝕋 m n)).interval.construct := by
+    refine GZonotope.interval_contains _ ⟨a, ha, 0, ?_, add_zero a⟩
     refine Interval.mem_mat_iff.mpr fun i j => ?_
     show toReal (zero : 𝕋) ≤ 0 ∧ 0 ≤ toReal (zero : 𝕋)
     rw [toReal_zero]
@@ -70,17 +70,18 @@ theorem Zonotope.mtimesMatZonotope_outer (M : MatZonotope 𝕋 m n) (Z : Zonotop
       (Set.mem_biUnion he ⟨z + f, hx, rfl⟩), rfl⟩
   -- each generator block of `bilin`, bracketed by the same directed products
   have hG : ∀ i k, toReal (Fin.append (Fin.append (fun l => mulVecDown (M.G l) Z.c)
-        (fun j => mulVecDown M.c (fun i => Z.G i j)))
+        (fun j => mulVecDown M.c (Z.G j)))
         (fun k => mulVecDown (M.G (finProdFinEquiv.symm k).1)
-          (fun i => Z.G i (finProdFinEquiv.symm k).2)) k i) ≤ R.G k i
+          (Z.G (finProdFinEquiv.symm k).2)) k i) ≤ R.G k i
       ∧ R.G k i ≤ toReal (Fin.append (Fin.append (fun l => mulVecUp (M.G l) Z.c)
-        (fun j => mulVecUp M.c (fun i => Z.G i j)))
+        (fun j => mulVecUp M.c (Z.G j)))
         (fun k => mulVecUp (M.G (finProdFinEquiv.symm k).1)
-          (fun i => Z.G i (finProdFinEquiv.symm k).2)) k i) := by
+          (Z.G (finProdFinEquiv.symm k).2)) k i) := by
     intro i k
     refine Fin.addCases (fun k' => Fin.addCases (fun l => ?_) (fun l => ?_) k') (fun l => ?_) k
       <;> simp only [R, Zn, CORALean.Real.Zonotope.mtimesMatZonotope,
-        CORALean.Real.Zonotope.bilin, MatZonotope.nominal, Fin.append_left, Fin.append_right]
+        CORALean.Real.Zonotope.bilin, GZonotope.nominal, realImage_mat, Fin.append_left,
+        Fin.append_right]
       <;> exact Zonotope.aux_mulVec_bounds _ _ i
   -- the nominal image rounded, the two error terms in the box
   have hmem : a *ᵥ z + (a *ᵥ f + e *ᵥ (z + f)) ∈ (Zonotope.mtimesMatZonotope M Z).construct :=

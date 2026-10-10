@@ -50,7 +50,8 @@ structure PolyZonotope (𝕋 : Type) (n : ℕ) where
   err : Interval (Vec 𝕋 n)
 
 instance [SoundFloatArithmetic 𝕋] :
-    InflatedContSet (PolyZonotope 𝕋 n) (CORALean.Real.PolyZonotope (Vec ℝ n)) 𝕋 n where
+    InflatedContSet (PolyZonotope 𝕋 n) (CORALean.Real.PolyZonotope (Vec ℝ n))
+      (Vec 𝕋 n) (Vec ℝ n) where
   -- generators transpose: stored as a matrix here, a family of vectors there
   nominal pZ := ⟨pZ.p, pZ.h, pZ.q, toRealVec pZ.c, fun l i => toReal (pZ.G i l), pZ.E,
     fun j i => toReal (pZ.GI i j)⟩

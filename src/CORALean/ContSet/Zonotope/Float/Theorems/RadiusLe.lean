@@ -37,11 +37,11 @@ theorem Zonotope.radius_le (k : ℕ) (Z : Zonotope 𝕋 n) {x : Vec ℝ n} (hx :
     rw [toReal_maximum, toReal_absolute, toReal_absolute]
     exact le_trans h (le_abs_self _)
   have hvec : z + e - toRealVec Z.c =
-      (∑ j, β j • fun i => toReal (Z.G i j)) + e := by
+      (∑ j, β j • fun i => toReal (Z.G j i)) + e := by
     funext i
     simp only [Pi.sub_apply, Pi.add_apply, Finset.sum_apply, Pi.smul_apply, smul_eq_mul]
     rw [hz i, toRealVec]
-    rw [Finset.sum_congr rfl fun j _ => mul_comm (β j) (toReal (Z.G i j))]
+    rw [Finset.sum_congr rfl fun j _ => mul_comm (β j) (toReal (Z.G j i))]
     ring
   have hErr := norm₂_le_normUp k herr
   have herr₀ : ∀ i, 0 ≤ toReal (maximum (absolute (Z.E.inf i)) (absolute (Z.E.sup i))) := by
@@ -53,25 +53,25 @@ theorem Zonotope.radius_le (k : ℕ) (Z : Zonotope 𝕋 n) {x : Vec ℝ n} (hx :
   refine le_min ?_ ?_
   · -- the generator lengths
     rw [hvec]
-    have hsum : ‖∑ j, β j • fun i => toReal (Z.G i j)‖₂ ≤
-        toReal (sumUp fun j => normUp k fun i => Z.G i j) := by
+    have hsum : ‖∑ j, β j • fun i => toReal (Z.G j i)‖₂ ≤
+        toReal (sumUp fun j => normUp k (Z.G j)) := by
       refine le_trans (norm₂_sum_le _ _) (le_trans ?_ (sum_le_sumUp _))
       refine Finset.sum_le_sum fun j _ => ?_
       rw [norm₂_smul]
       exact le_trans (mul_le_of_le_one_left (norm₂_nonneg _) (hβ j))
         (norm₂_le_normUp k fun _ => le_rfl)
-    have h₁ := add_le_addUp (sumUp fun j => normUp k fun i => Z.G i j)
+    have h₁ := add_le_addUp (sumUp fun j => normUp k (Z.G j))
       (normUp k fun i => maximum (absolute (Z.E.inf i)) (absolute (Z.E.sup i)))
     exact le_trans (norm₂_add_le _ _) (le_trans (add_le_add hsum hErr) h₁)
   · -- the box
     refine norm₂_le_normUp k fun i => ?_
-    have hgen := abs_sum_le_radius (d := Z.G) (Δ := fun i j => toReal (Z.G i j))
+    have hgen := abs_sum_le_radius (d := fun i j => Z.G j i) (Δ := fun i j => toReal (Z.G j i))
       (fun _ _ => le_refl _) hβ i
-    have h₁ := add_le_addUp (CORALean.Float.radius Z.G i)
+    have h₁ := add_le_addUp (CORALean.Float.radius (fun i j => Z.G j i) i)
       (maximum (absolute (Z.E.inf i)) (absolute (Z.E.sup i)))
     have h₂ : |e i| ≤ toReal (maximum (absolute (Z.E.inf i)) (absolute (Z.E.sup i))) :=
       by rw [← abs_of_nonneg (herr₀ i)]; exact herr i
-    have hv : (z + e - toRealVec Z.c) i = ∑ j, toReal (Z.G i j) * β j + e i := by
+    have hv : (z + e - toRealVec Z.c) i = ∑ j, toReal (Z.G j i) * β j + e i := by
       simp only [Pi.sub_apply, Pi.add_apply, toRealVec]
       rw [hz i]; ring
     rw [hv]

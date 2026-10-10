@@ -30,7 +30,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n₁ n₂ : ℕ}
 def Zonotope.cartProd (Z₁ : Zonotope 𝕋 n₁) (Z₂ : Zonotope 𝕋 n₂) : Zonotope 𝕋 (n₁ + n₂) where
   h := Z₁.h + Z₂.h
   c := Fin.append Z₁.c Z₂.c
-  G := genBlockDiag Z₁.G Z₂.G
+  G := fun j i => genBlockDiag (fun i j => Z₁.G j i) (fun i j => Z₂.G j i) i j
   E := Interval.append Z₁.E Z₂.E
 
 end CORALean.Float

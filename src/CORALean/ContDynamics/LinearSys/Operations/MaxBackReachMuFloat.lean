@@ -49,7 +49,7 @@ def LinearSys.maxBackReachMuFloat (sys : LinearSys 𝕋 n) (Δt : 𝕋) (η p : 
   let mag : Mat 𝕋 n n := fun i k =>                                 -- |e^{AΔt} - I|, entrywise
     maximum (absolute (EI.inf i k)) (absolute (EI.sup i k))
   let m : Mat 𝕋 n B.h := fun i j =>                                 -- |(e^{AΔt} - I)G|, entrywise
-    sumUp fun k => mulUp (mag i k) (absolute (B.G k j))
+    sumUp fun k => mulUp (mag i k) (absolute (B.G j k))
   let frobSq := sumUp fun i => sqSumUp (m i)                        -- ‖(e^{AΔt} - I)G‖_F², up
   mulUp (sqrtUp p (nsmulUp B.h one)) (sqrtUp p frobSq)              -- √γ ‖·‖_F
 

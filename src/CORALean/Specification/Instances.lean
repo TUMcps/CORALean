@@ -313,7 +313,7 @@ instance fullDimTestPolygon : FullDimTest (Polygon 𝕋) where
 default right inverse of the container's generators, the leftover absorbed by a certified box.
 Strict: a set touching the container's boundary is not accepted. -/
 instance containsZonotopeZonotope : Contains (Zonotope 𝕋 n) (Zonotope 𝕋 n) where
-  contains Z₂ Z₁ := Z₂.containsZonotope Z₁ (Zonotope.rightInvCandidate Z₂.G)
+  contains Z₂ Z₁ := Z₂.containsZonotope Z₁ (Zonotope.rightInvCandidate fun i j => Z₂.G j i)
   contains_sound _ _ h := Zonotope.containsZonotope_sound h
 
 /-- A checked right inverse of the generator matrix: a box of positive radius around the centre
@@ -354,7 +354,7 @@ instance fullDimTestConPolyZono : FullDimTest (ConPolyZono 𝕋 n) where
 /-- The default right inverse of every member, and the first member's centre as the common point:
 `true` where it is strictly inside every member. A bundle without members is the whole space. -/
 instance fullDimTestZonoBundle : FullDimTest (ZonoBundle 𝕋 n) where
-  isFullDim zB := zB.isFullDim (fun i => Zonotope.rightInvCandidate (zB.Z i).G)
+  isFullDim zB := zB.isFullDim (fun i => Zonotope.rightInvCandidate fun r j => (zB.Z i).G j r)
     (if hk : 0 < zB.k then (zB.Z ⟨0, hk⟩).c else fun _ => zero)
   isFullDim_sound _ h := ZonoBundle.isFullDim_sound h
 

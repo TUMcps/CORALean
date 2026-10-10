@@ -42,7 +42,7 @@ def LinearSys.errorEdgeFloat (sys : LinearSys 𝕋 n) (Δt : 𝕋) (V : Zonotope
   let Ã := fun i : Fin (η + 1) => MatExp.intervalInputTerm (Interval.point sys.A) Δt i  -- [Ãᵢ]
   fun d => sumUp fun i : Fin (η + 1) => sumUp fun j : Fin V.h =>      -- Σᵢ Σⱼ
     sumUp fun k => mulUp (maximum (absolute ((Ã i).inf d k)) (absolute ((Ã i).sup d k)))
-      (absolute (V.G k j))                                             -- ≥ |(Ãᵢ G_j)_d|
+      (absolute (V.G j k))                                             -- ≥ |(Ãᵢ G_j)_d|
 
 end CORALean
 

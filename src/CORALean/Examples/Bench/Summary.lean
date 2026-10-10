@@ -41,7 +41,7 @@ def aux_eRadius (toD : 𝕋 → Float) (Z : Zonotope 𝕋 2) (i : Fin 2) : Float
 /-- `Σ_j |G_ij|` at dimension `i` -- the nominal hull's half-width, CORA's own
 formula halved. -/
 def aux_nominalHalfWidth (toD : 𝕋 → Float) (Z : Zonotope 𝕋 2) (i : Fin 2) : Float :=
-  (Array.ofFn fun j => (toD (Z.G i j)).abs).foldl (· + ·) 0.0
+  (Array.ofFn fun j => (toD (Z.G j i)).abs).foldl (· + ·) 0.0
 
 /-- The larger of the two dimensions' values of `f`, `0.0` on an empty run. -/
 def aux_maxOverDims (f : Zonotope 𝕋 2 → Fin 2 → Float) (Z : Zonotope 𝕋 2) : Float :=
@@ -83,7 +83,7 @@ def aux_isBlowup (e : Float) : Bool := decide (e > 1.0) || aux_notFinite e
 /-- Whether any number `Z` stores is past the type's range: centre, generators, error box. -/
 def zonoOverflows (overflows : 𝕋 → Bool) (Z : Zonotope 𝕋 2) : Bool :=
   (List.finRange 2).any fun i => overflows (Z.c i) || overflows (Z.E.inf i) ||
-    overflows (Z.E.sup i) || (List.finRange Z.h).any fun j => overflows (Z.G i j)
+    overflows (Z.E.sup i) || (List.finRange Z.h).any fun j => overflows (Z.G j i)
 
 /-- The first step whose set stores a value past the range, `none` if none does. -/
 def firstOverflowStep (overflows : 𝕋 → Bool) (steps : Array (Zonotope 𝕋 2)) : Option ℕ :=

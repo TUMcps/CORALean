@@ -31,8 +31,8 @@ generator spanning the half-difference of the centres. -/
 def Zonotope.linCombG (add sub : 𝕋 → 𝕋 → 𝕋) (Z₁ Z₂ : Zonotope 𝕋 n) :
     Mat 𝕋 n (Z₁.h + Z₂.h + 1) :=
   fun i => Fin.append
-    (Fin.append (Zonotope.pairSum add (Z₁.G i) (Z₂.G i))
-      (Zonotope.pairDiff sub (Z₁.G i) (Z₂.G i)))
+    (Fin.append (Zonotope.pairSum add (fun j => Z₁.G j i) (fun j => Z₂.G j i))
+      (Zonotope.pairDiff sub (fun j => Z₁.G j i) (fun j => Z₂.G j i)))
     (fun _ : Fin 1 => half (sub (Z₁.c i) (Z₂.c i)))
 
 end CORALean.Float

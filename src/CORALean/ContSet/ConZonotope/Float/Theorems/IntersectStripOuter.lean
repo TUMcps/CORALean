@@ -84,7 +84,7 @@ theorem ConZonotope.intersectStrip_outer (cZ : ConZonotope 𝕋 n) (C : Mat 𝕋
     intro k
     have h : y₁ k + e k = x k := congrFun hx k
     rw [← h, hy₁ k]
-  set W := Zonotope.mtimes C ⟨cZ.h, cZ.c, cZ.G, cZ.E⟩ with hW
+  set W := Zonotope.mtimes C ⟨cZ.h, cZ.c, fun j i => cZ.G i j, cZ.E⟩ with hW
   -- the exact entries of `C G`
   set CG : Mat ℝ s cZ.h := fun k j => ∑ l, toReal (C k l) * toReal (cZ.G l j) with hCG
   have hCx : ∀ k, (toRealMat C *ᵥ x) k = (∑ l, toReal (C k l) * toReal (cZ.c l))
@@ -113,7 +113,7 @@ theorem ConZonotope.intersectStrip_outer (cZ : ConZonotope 𝕋 n) (C : Mat 𝕋
     · field_simp
   -- the image's nominal point at `ξ`, and what is left of `C x`, inside the image's box
   set eW : Vec ℝ s := fun k =>
-    (toRealMat C *ᵥ x) k - (toReal (W.c k) + ∑ j, toReal (W.G k j) * ξ j) with heW
+    (toRealMat C *ᵥ x) k - (toReal (W.c k) + ∑ j, toReal (W.G j k) * ξ j) with heW
   have heWmem : eW ∈ W.E.construct := by
     have hgen : ∀ k j, |CG k j - toReal (matMulDown C cZ.G k j)|
         ≤ toReal (matMulDiff C cZ.G k j) := by
@@ -200,15 +200,15 @@ theorem ConZonotope.intersectStrip_outer (cZ : ConZonotope 𝕋 n) (C : Mat 𝕋
       ⟨_, Interval.mtimes_outer C cZ.E ⟨e, he, rfl⟩, rfl⟩, rfl⟩
   -- the strip rows, and the old ones on the first block
   have hPnew : Fin.append ξ ν ∈ ((cZ.P.padLeft s).intersection (HPolytope.eqs
-      (fun k => Fin.append (W.G k) fun l => if l = k then neg (φ k) else zero)
+      (fun k => Fin.append (fun j => W.G j k) fun l => if l = k then neg (φ k) else zero)
       ⟨fun k => subDown (subDown (y k) (W.c k)) (W.E.sup k),
        fun k => subUp (subUp (y k) (W.c k)) (W.E.inf k)⟩)).construct := by
     refine HPolytope.mem_intersection_iff.mpr ⟨HPolytope.mem_padLeft_iff.mpr ?_,
       HPolytope.mem_eqs_iff.mpr fun k => ?_⟩
     · rw [blockLeft_append]; exact hP
-    · have hrow : (toRealMat (fun k => Fin.append (W.G k) fun l => if l = k then neg (φ k)
-            else zero) *ᵥ Fin.append ξ ν) k
-          = ∑ j, toReal (W.G k j) * ξ j - toReal (φ k) * ν k := by
+    · have hrow : (toRealMat (fun k => Fin.append (fun j => W.G j k) fun l =>
+            if l = k then neg (φ k) else zero) *ᵥ Fin.append ξ ν) k
+          = ∑ j, toReal (W.G j k) * ξ j - toReal (φ k) * ν k := by
         simp only [mulVec, dotProduct, toRealMat, Fin.sum_univ_add, Fin.append_left,
           Fin.append_right]
         rw [Finset.sum_eq_single k (fun l _ hl => by rw [if_neg hl, toReal_zero, zero_mul])
@@ -217,13 +217,13 @@ theorem ConZonotope.intersectStrip_outer (cZ : ConZonotope 𝕋 n) (C : Mat 𝕋
       -- the row is `y - W.c - eW`, and `eW` is inside the image's box
       have hb : toReal (W.E.inf k) ≤ eW k ∧ eW k ≤ toReal (W.E.sup k) := heWmem k
       have he' := hνeq k
-      have hk : ∑ j, toReal (W.G k j) * ξ j - toReal (φ k) * ν k
+      have hk : ∑ j, toReal (W.G j k) * ξ j - toReal (φ k) * ν k
           = toReal (y k) - toReal (W.c k) - eW k := by
         simp only [heW]; linarith
       show toReal (subDown (subDown (y k) (W.c k)) (W.E.sup k))
-          ≤ (toRealMat (fun k => Fin.append (W.G k) fun l => if l = k then neg (φ k)
+          ≤ (toRealMat (fun k => Fin.append (fun j => W.G j k) fun l => if l = k then neg (φ k)
             else zero) *ᵥ Fin.append ξ ν) k
-        ∧ (toRealMat (fun k => Fin.append (W.G k) fun l => if l = k then neg (φ k)
+        ∧ (toRealMat (fun k => Fin.append (fun j => W.G j k) fun l => if l = k then neg (φ k)
             else zero) *ᵥ Fin.append ξ ν) k ≤ toReal (subUp (subUp (y k) (W.c k)) (W.E.inf k))
       rw [hrow, hk]
       have h1 := subDown_le_sub (y k) (W.c k)

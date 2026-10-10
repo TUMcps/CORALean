@@ -118,8 +118,8 @@ theorem LinearSys.maxBackReachMu_le_muFloat (sys : LinearSys 𝕋 n) {Δt : 𝕋
     rw [toReal_maximum, toReal_absolute, toReal_absolute]
     exact abs_le_max_abs_abs hik.1 hik.2
   -- the generator matrix `G` of the stored zonotope, entrywise
-  set G : Matrix (Fin n) (Fin B.h) ℝ := Matrix.of fun i j => toReal (B.G i j) with hG
-  set m : Mat 𝕋 n B.h := fun i j => sumUp fun k => mulUp (mag i k) (absolute (B.G k j)) with hm
+  set G : Matrix (Fin n) (Fin B.h) ℝ := Matrix.of fun i j => toReal (B.G j i) with hG
+  set m : Mat 𝕋 n B.h := fun i j => sumUp fun k => mulUp (mag i k) (absolute (B.G j k)) with hm
   have hMG : ∀ i j, |(M * G) i j| ≤ toReal (m i j) := fun i j => by
     rw [Matrix.mul_apply]
     refine le_trans (Finset.abs_sum_le_sum_abs _ _) (le_trans ?_ (sum_le_sumUp _))

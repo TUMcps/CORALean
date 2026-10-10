@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋]
 
 /-- Every scalar a zonotope stores. -/
 def aux_scalars (Z : Zonotope 𝕋 2) : List 𝕋 :=
-  List.ofFn Z.c ++ (List.ofFn fun i => List.ofFn fun j => Z.G i j).flatten ++
+  List.ofFn Z.c ++ (List.ofFn fun i => List.ofFn fun j => Z.G j i).flatten ++
     List.ofFn Z.E.inf ++ List.ofFn Z.E.sup
 
 /-- The sets of a successful step: `R_0` from `Rti`, `X_1` from `Rtp`, and the status they earn. -/

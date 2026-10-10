@@ -48,7 +48,7 @@ import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachMuFloat
 import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachPolyFloat
 import CORALean.ContDynamics.LinearSys.Operations.MinBackReachPFloat
 import CORALean.ContDynamics.LinParamSys.Operations.InputSolutionZonoFloat
-import CORALean.ContSet.MatZonotope.Float.Operations.OfInterval
+import CORALean.ContSet.Zonotope.Float.Operations.OfIntervalMat
 import CORALean.ContDynamics.LinParamSysDT.Operations.Reach
 import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachFloat
 import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachUnionFloat
@@ -457,8 +457,8 @@ def ctInnerStepOpt : Option (Zonotope D 1) :=
   let S := ctInnerSys.timePointStepInputFloat (d 1 (-3)) 4 ctInnerX ctInnerU
   let B := ctInnerSys.timePointStepInnerErrorFloat (d 1 (-3)) 4 ctInnerX ctInnerU
   ctInnerSys.timePointStepInnerRepFloat (d 1 (-3)) 4 ctInnerX ctInnerU
-    (fun i j => if i.val = 0 then divUp (absolute (B.G 0 j)) (absolute (S.G 0 i)) else d 0 0)
-    (d 15 (-4)) (fun i _ => divDown (S.G 0 i) (sumUp fun k => mulUp (S.G 0 k) (S.G 0 k)))
+    (fun i j => if i.val = 0 then divUp (absolute (B.G j 0)) (absolute (S.G i 0)) else d 0 0)
+    (d 15 (-4)) (fun i _ => divDown (S.G i 0) (sumUp fun k => mulUp (S.G k 0) (S.G k 0)))
 def ctInnerStepRun : Zonotope D 1 := ctInnerStepOpt.getD (Zonotope.point ![d 0 0])
 -- five sampled steps: the float run, its budget, and the run minus its budget
 def ctInnerReach : Zonotope D 1 :=
@@ -471,8 +471,8 @@ def ctInnerReachOpt : Option (Zonotope D 1) :=
     ⟨ctInnerX, ctInnerSys.inputSolutionFloat (d 1 (-3)) 4 ctInnerU, 0, 5⟩ ⟨2, two_pos⟩
   let B := ctInnerSys.reachErrorFloat (d 1 (-3)) 4 2 two_pos ctInnerX ctInnerU 5
   ctInnerSys.reachInnerRepFloat (d 1 (-3)) 4 2 two_pos ctInnerX ctInnerU 5
-    (fun i j => if i.val = 0 then divUp (absolute (B.G 0 j)) (absolute (R.G 0 i)) else d 0 0)
-    (d 15 (-4)) (fun i _ => divDown (R.G 0 i) (sumUp fun k => mulUp (R.G 0 k) (R.G 0 k)))
+    (fun i j => if i.val = 0 then divUp (absolute (B.G j 0)) (absolute (R.G i 0)) else d 0 0)
+    (d 15 (-4)) (fun i _ => divDown (R.G i 0) (sumUp fun k => mulUp (R.G k 0) (R.G k 0)))
 def ctInnerReachRun : Zonotope D 1 := ctInnerReachOpt.getD (Zonotope.point ![d 0 0])
 
 
@@ -482,14 +482,14 @@ def ctInnerReachRun : Zonotope D 1 := ctInnerReachOpt.getD (Zonotope.point ![d 0
 exponential at order `3`; `ctSys` sampled through a matrix zonotope and five steps of its
 `reach`; and the matrix-zonotope input solution of `lpA` over `Z`. -/
 
-def mzA : MatZonotope D 2 2 := MatZonotope.ofInterval lpA
-def mzExpRun : MatZonotope D 2 2 :=
-  MatExp.expMatZonoEnclosure (MatZonotope.smul stepR stepR mzA) 3
+def mzA : GZonotope (Mat D 2 2) := GZonotope.ofIntervalMat lpA
+def mzExpRun : GZonotope (Mat D 2 2) :=
+  MatExp.expMatZonoEnclosure (GZonotope.matSmul stepR stepR mzA) 3
 -- the system matrix itself sampled through a point matrix zonotope, and its reach
-def ctSysMZ : LinParamSysDT (fun m n => MatZonotope D m n) 2 :=
+def ctSysMZ : LinParamSysDT (fun m n => GZonotope (Mat D m n)) 2 :=
   ctSys.discretizeMatZonotopeFloat stepR 4
 def ctMZReachRun : Zonotope D 2 := ctSysMZ.reach (S := Zonotope D) ⟨Z, Z, 0, 5⟩ ⟨2, two_pos⟩
-def lpMZSys : LinParamSys (fun m n => MatZonotope D m n) 2 := ⟨mzA⟩
+def lpMZSys : LinParamSys (fun m n => GZonotope (Mat D m n)) 2 := ⟨mzA⟩
 def lpMZInputRun : Zonotope D 2 := lpMZSys.inputSolutionZonoFloat stepR 4 Z
 
 

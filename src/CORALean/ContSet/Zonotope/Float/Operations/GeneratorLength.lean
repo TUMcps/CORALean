@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- The length of generator `j`, rounded up. -/
 def Zonotope.generatorLength (k : ℕ) (Z : Zonotope 𝕋 n) (j : Fin Z.h) : 𝕋 :=
-  normUp k fun i => Z.G i j
+  normUp k (Z.G j)
 
 end CORALean.Float
 

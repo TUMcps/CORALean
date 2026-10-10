@@ -31,8 +31,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 def Zonotope.compactZeros (Z : Zonotope 𝕋 n) : Zonotope 𝕋 n where
   h := (Finset.univ.filter fun j => Z.keepColumn j = true).card
   c := Z.c
-  G := fun i j =>
-    Z.G i ((Finset.univ.filter fun j => Z.keepColumn j = true).orderEmbOfFin rfl j)
+  G := fun j =>
+    Z.G ((Finset.univ.filter fun j => Z.keepColumn j = true).orderEmbOfFin rfl j)
   E := Z.E
 
 end CORALean.Float

@@ -1,9 +1,9 @@
 import CORALean.ContSet.Interval.Float.Operations.MatPlus
 import CORALean.ContSet.Interval.Float.Operations.MatResidual
-import CORALean.ContSet.MatZonotope.Float.MatZonotope
+import CORALean.ContSet.Zonotope.Float.Zonotope
 
 /-!
-# `MatZonotope.ofEntryBounds`
+# `GZonotope.ofEntryBoundsMat`
 
 How every operation here rounds: it computes, entry by entry, floats either side of the
 exact centre and of each exact generator, and this stores the lower ones. The centre's gap
@@ -14,7 +14,7 @@ width, so the widths summed upward bound the rest, as a symmetric box. Both join
 
 -- Authors:       Tobias Ladner
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   09-October-2026
 -- Last revision: ---
 
 
@@ -30,8 +30,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {m n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The lower bounds stored, the gaps to the upper ones paid into the box beside `E`. -/
-def MatZonotope.ofEntryBounds {h : ℕ} (cLo cHi : Mat 𝕋 m n) (GLo GHi : Fin h → Mat 𝕋 m n)
-    (E : Interval (Mat 𝕋 m n)) : MatZonotope 𝕋 m n :=
+def GZonotope.ofEntryBoundsMat {h : ℕ} (cLo cHi : Mat 𝕋 m n) (GLo GHi : Fin h → Mat 𝕋 m n)
+    (E : Interval (Mat 𝕋 m n)) : GZonotope (Mat 𝕋 m n) :=
   let W : Mat 𝕋 m n := fun i j => sumUp fun k => subUp (GHi k i j) (GLo k i j)   -- Σ widths
   let Ec := Interval.matResidual cLo cHi cLo                                       -- centre gap
   { h := h

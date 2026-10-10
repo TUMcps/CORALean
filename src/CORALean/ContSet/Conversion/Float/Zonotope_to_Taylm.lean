@@ -25,7 +25,7 @@ open Pointwise FloatOps SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 def Zonotope.taylm (Z : Zonotope 𝕋 n) (N : ℕ) : Fin n → Taylm 𝕋 Z.h :=
-  fun i => ⟨(Z.c i, 0) :: List.ofFn (fun j => (Z.G i j, Pi.single j 1)),
+  fun i => ⟨(Z.c i, 0) :: List.ofFn (fun j => (Z.G j i, Pi.single j 1)),
     Z.E.inf i, Z.E.sup i, N⟩
 
 variable [SoundFloatArithmetic 𝕋]
@@ -34,7 +34,7 @@ variable [SoundFloatArithmetic 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 theorem Zonotope.aux_taylm_poly (Z : Zonotope 𝕋 n) (N : ℕ) (i : Fin n) (t : Vec ℝ Z.h) :
-    (Z.taylm N i).nominal.poly t = toReal (Z.c i) + ∑ j, toReal (Z.G i j) * t j := by
+    (Z.taylm N i).nominal.poly t = toReal (Z.c i) + ∑ j, toReal (Z.G j i) * t j := by
   simp only [Zonotope.taylm, Taylm.nominal, Real.Taylm.poly, List.map_cons, List.map_ofFn,
     Real.Taylm.polyOf_cons, Real.Taylm.polyOf_ofFn, Real.Taylm.monomial_zero,
     Function.comp_def, Real.Taylm.monomial_single, mul_one]
@@ -47,10 +47,10 @@ theorem Zonotope.taylm_exact (Z : Zonotope 𝕋 n) (N : ℕ) :
   ext x
   constructor
   · rintro ⟨t, ht, hx⟩
-    have hp : (fun i => toReal (Z.c i) + ∑ j, toReal (Z.G i j) * t j)
+    have hp : (fun i => toReal (Z.c i) + ∑ j, toReal (Z.G j i) * t j)
         ∈ InflatedContSet.nominalSet Z :=
       Zonotope.mem_nominalSet_iff.mpr ⟨t, ht, fun i => rfl⟩
-    refine ⟨_, hp, x - fun i => toReal (Z.c i) + ∑ j, toReal (Z.G i j) * t j, fun i => ?_, ?_⟩
+    refine ⟨_, hp, x - fun i => toReal (Z.c i) + ∑ j, toReal (Z.G j i) * t j, fun i => ?_, ?_⟩
     · have := hx i
       rw [Zonotope.aux_taylm_poly] at this
       exact this

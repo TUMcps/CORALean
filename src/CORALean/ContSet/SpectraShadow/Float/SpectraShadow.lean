@@ -45,7 +45,8 @@ structure SpectraShadow (𝕋 : Type) (n : ℕ) where
   E : Interval (Vec 𝕋 n)
 
 instance [SoundFloatArithmetic 𝕋] :
-    InflatedContSet (SpectraShadow 𝕋 n) (CORALean.Real.SpectraShadow (Vec ℝ n)) 𝕋 n where
+    InflatedContSet (SpectraShadow 𝕋 n) (CORALean.Real.SpectraShadow (Vec ℝ n))
+      (Vec 𝕋 n) (Vec ℝ n) where
   -- generators transpose: stored as a matrix here, a family of vectors there
   nominal S := ⟨S.k, S.m, toRealMat S.A₀, fun i => toRealMat (S.A i), toRealVec S.c,
     fun j i => toReal (S.G i j)⟩

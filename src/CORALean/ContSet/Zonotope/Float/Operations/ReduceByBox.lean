@@ -37,7 +37,7 @@ def Zonotope.reduceByBox (Z : Zonotope 𝕋 n)
     (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) : Zonotope 𝕋 n where
   h := n
   c := fun _ => zero
-  G := diagonalBlock (radius fun i l => Z.G i (part.right l))
+  G := diagonalBlock (radius fun i l => Z.G (part.right l) i)
   E := ⟨fun _ => zero, fun _ => zero⟩
 
 end CORALean.Float

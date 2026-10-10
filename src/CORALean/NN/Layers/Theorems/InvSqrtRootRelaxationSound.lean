@@ -34,7 +34,7 @@ theorem invSqrtRootRelaxation_sound (p : ℕ) :
     have hup := le_sqrtUp p (maximum a one)
     rw [hm] at hup
     have h1 : 1 ≤ Real.sqrt (max (toReal a) 1) := by
-      rw [Real.le_sqrt (by norm_num) (by positivity)]; simpa using le_max_right (toReal a) 1
+      rw [Real.le_sqrt (by norm_num) (by positivity)]; simp
     have hs : 0 < toReal (sqrtUp p (maximum a one)) := by linarith
     refine le_trans (divDown_le_div _ _ hs) ?_
     rw [toReal_one, Real.invSqrt, inv_eq_one_div]
@@ -44,7 +44,7 @@ theorem invSqrtRootRelaxation_sound (p : ℕ) :
     have hdn := sqrtDown_le p (maximum a one)
     rw [hm] at hdn
     have h1 : 1 ≤ Real.sqrt (max (toReal a) 1) := by
-      rw [Real.le_sqrt (by norm_num) (by positivity)]; simpa using le_max_right (toReal a) 1
+      rw [Real.le_sqrt (by norm_num) (by positivity)]; simp
     have hd : toReal (maximum one (sqrtDown p (maximum a one))) ≤ Real.sqrt (max (toReal a) 1) := by
       rw [toReal_maximum, toReal_one]; exact max_le h1 hdn
     have hd1 : 1 ≤ toReal (maximum one (sqrtDown p (maximum a one))) := by

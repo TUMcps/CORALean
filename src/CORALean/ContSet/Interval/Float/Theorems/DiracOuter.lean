@@ -65,7 +65,7 @@ theorem Interval.dirac_zero_outer (I : Interval (Vec 𝕋 m)) {x : Vec ℝ m}
         · exact ne_of_lt (lt_of_le_of_lt (hx i).2 h)
       simp [hne, toReal_zero]
     · dsimp only at hu
-      simp only [hm, if_false] at hu
+      simp only [hm] at hu
       exact absurd hu (by simp)
 
 end CORALean.Float

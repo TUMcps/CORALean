@@ -39,20 +39,20 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 /-- The exact image, regrouped so the centre and each generator appear once. -/
 theorem Zonotope.aux_mulVec_nominal (M : Mat 𝕋 m n) (Z : Zonotope 𝕋 n) (β : Vec ℝ Z.h)
-    {x : Vec ℝ n} (hx : ∀ k, x k = toReal (Z.c k) + ∑ j, toReal (Z.G k j) * β j) (i : Fin m) :
+    {x : Vec ℝ n} (hx : ∀ k, x k = toReal (Z.c k) + ∑ j, toReal (Z.G j k) * β j) (i : Fin m) :
     (toRealMat M *ᵥ x) i = (∑ k, toReal (M i k) * toReal (Z.c k))
-      + ∑ j, (∑ k, toReal (M i k) * toReal (Z.G k j)) * β j := by -- --- PROOF ---
+      + ∑ j, (∑ k, toReal (M i k) * toReal (Z.G j k)) * β j := by -- --- PROOF ---
   show ∑ k, toReal (M i k) * x k = _
   calc ∑ k, toReal (M i k) * x k
       = ∑ k, (toReal (M i k) * toReal (Z.c k)
-              + ∑ j, toReal (M i k) * toReal (Z.G k j) * β j) := by
+              + ∑ j, toReal (M i k) * toReal (Z.G j k) * β j) := by
         refine Finset.sum_congr rfl fun k _ => ?_
         rw [hx k, mul_add, Finset.mul_sum]
         exact congrArg _ (Finset.sum_congr rfl fun j _ => by ring)
     _ = (∑ k, toReal (M i k) * toReal (Z.c k))
-        + ∑ k, ∑ j, toReal (M i k) * toReal (Z.G k j) * β j := Finset.sum_add_distrib
+        + ∑ k, ∑ j, toReal (M i k) * toReal (Z.G j k) * β j := Finset.sum_add_distrib
     _ = (∑ k, toReal (M i k) * toReal (Z.c k))
-        + ∑ j, (∑ k, toReal (M i k) * toReal (Z.G k j)) * β j := by
+        + ∑ j, (∑ k, toReal (M i k) * toReal (Z.G j k)) * β j := by
         rw [Finset.sum_comm]
         exact congrArg _ (Finset.sum_congr rfl fun j _ => (Finset.sum_mul _ _ _).symm)
 
@@ -64,36 +64,42 @@ theorem Zonotope.aux_mtimes_nominal (M : Mat 𝕋 m n) (Z : Zonotope 𝕋 n) :
   rintro _ ⟨x, hx', rfl⟩
   obtain ⟨β, hβ, hx⟩ := Zonotope.mem_nominalSet_iff.mp hx'
   -- the generators are wrong by this much, entrywise
-  have hgen : ∀ i j, |(∑ k, toReal (M i k) * toReal (Z.G k j))
-      - toReal (matMulDown M Z.G i j)| ≤ toReal (matMulDiff M Z.G i j) := by
+  have hgen : ∀ i j, |(∑ k, toReal (M i k) * toReal (Z.G j k))
+      - toReal (matMulDown M (fun i j => Z.G j i) i j)|
+        ≤ toReal (matMulDiff M (fun i j => Z.G j i) i j) := by
     intro i j
     -- ascribed, so these are about `matMul*` rather than the `dot*` they unfold to
-    have hlo : toReal (matMulDown M Z.G i j) ≤ ∑ k, toReal (M i k) * toReal (Z.G k j) :=
-      dotDown_le (M i) (fun k => Z.G k j)
-    have hhi : ∑ k, toReal (M i k) * toReal (Z.G k j) ≤ toReal (matMulUp M Z.G i j) :=
-      le_dotUp (M i) (fun k => Z.G k j)
-    have hgap := sub_le_subUp (matMulUp M Z.G i j) (matMulDown M Z.G i j)
+    have hlo : toReal (matMulDown M (fun i j => Z.G j i) i j)
+        ≤ ∑ k, toReal (M i k) * toReal (Z.G j k) :=
+      dotDown_le (M i) (fun k => Z.G j k)
+    have hhi : ∑ k, toReal (M i k) * toReal (Z.G j k)
+        ≤ toReal (matMulUp M (fun i j => Z.G j i) i j) :=
+      le_dotUp (M i) (fun k => Z.G j k)
+    have hgap := sub_le_subUp (matMulUp M (fun i j => Z.G j i) i j)
+      (matMulDown M (fun i j => Z.G j i) i j)
     rw [abs_le]
     exact ⟨by simp only [matMulDiff]; linarith, by simp only [matMulDiff]; linarith⟩
   refine ⟨fun i => toReal ((Zonotope.mtimes M Z).c i)
-            + ∑ j : Fin Z.h, toReal ((Zonotope.mtimes M Z).G i j) * β j,
+            + ∑ j : Fin Z.h, toReal ((Zonotope.mtimes M Z).G j i) * β j,
           Zonotope.mem_nominalSet_iff.mpr ⟨β, hβ, fun _ => rfl⟩,
           _, Interval.plus_outer _ _
             ⟨_, Interval.sub_mem_residual (fun i => ⟨dotDown_le (M i) Z.c, le_dotUp (M i) Z.c⟩),
              _, Zonotope.mem_generatorError hgen hβ, rfl⟩, ?_⟩
   funext i
   -- the stored generators and their errors recombine into the exact ones
-  have hsum : (∑ j, toReal (matMulDown M Z.G i j) * β j)
-      + (∑ j, (∑ k, toReal (M i k) * toReal (Z.G k j)
-          - toReal (matMulDown M Z.G i j)) * β j)
-      = ∑ j, (∑ k, toReal (M i k) * toReal (Z.G k j)) * β j := by
+  have hsum : (∑ j, toReal (mulVecDown M (Z.G j) i) * β j)
+      + (∑ j, (∑ k, toReal (M i k) * toReal (Z.G j k)
+          - toReal (matMulDown M (fun i j => Z.G j i) i j)) * β j)
+      = ∑ j, (∑ k, toReal (M i k) * toReal (Z.G j k)) * β j := by
     rw [← Finset.sum_add_distrib]
-    exact Finset.sum_congr rfl fun j _ => by ring
+    -- a stored generator is the matrix product's column
+    exact Finset.sum_congr rfl fun j _ => by
+      rw [show mulVecDown M (Z.G j) i = matMulDown M (fun i j => Z.G j i) i j from rfl]; ring
   show toReal ((Zonotope.mtimes M Z).c i)
-        + ∑ j : Fin Z.h, toReal ((Zonotope.mtimes M Z).G i j) * β j
+        + ∑ j : Fin Z.h, toReal ((Zonotope.mtimes M Z).G j i) * β j
       + ((∑ k, toReal (M i k) * toReal (Z.c k) - toReal (mulVecDown M Z.c i))
-        + ∑ j, (∑ k, toReal (M i k) * toReal (Z.G k j)
-            - toReal (matMulDown M Z.G i j)) * β j)
+        + ∑ j, (∑ k, toReal (M i k) * toReal (Z.G j k)
+            - toReal (matMulDown M (fun i j => Z.G j i) i j)) * β j)
     = (toRealMat M *ᵥ x) i
   rw [Zonotope.aux_mulVec_nominal M Z β hx i]
   simp only [Zonotope.mtimes]

@@ -33,8 +33,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 def Zonotope.radius (k : ℕ) (Z : Zonotope 𝕋 n) : 𝕋 :=
   let err := fun i => maximum (absolute (Z.E.inf i)) (absolute (Z.E.sup i))
   let errLength := normUp k err
-  let generatorSum := addUp (sumUp fun j => normUp k fun i => Z.G i j) errLength
-  let boxLength := normUp k fun i => addUp (CORALean.Float.radius Z.G i) (err i)
+  let generatorSum := addUp (sumUp fun j => normUp k (Z.G j)) errLength
+  let boxLength :=
+    normUp k fun i => addUp (CORALean.Float.radius (fun i j => Z.G j i) i) (err i)
   minimum generatorSum boxLength
 
 end CORALean.Float

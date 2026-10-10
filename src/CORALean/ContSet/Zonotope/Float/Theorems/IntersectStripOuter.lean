@@ -66,7 +66,7 @@ theorem Zonotope.intersectStrip_outer (C : Mat 𝕋 p n) (φ y : Vec 𝕋 p) (Λ
     (Set.mem_iUnion₂.mpr ⟨_, hA, Set.mem_image_of_mem _ hx⟩)
   -- `C x` is a point of the strip zonotope
   let strip : Zonotope 𝕋 p :=
-    { h := p, c := y, G := fun i j => if i = j then φ i else zero, E := Interval.origin p }
+    { h := p, c := y, G := fun j i => if i = j then φ i else zero, E := Interval.origin p }
   have hCx : toRealMat C *ᵥ x ∈ strip.construct := by
     refine ⟨toRealMat C *ᵥ x, ?_, 0, ?_, add_zero _⟩
     · -- the coefficients `(C x - y)_i / φ_i` lie in `[-1, 1]` and reach `C x`

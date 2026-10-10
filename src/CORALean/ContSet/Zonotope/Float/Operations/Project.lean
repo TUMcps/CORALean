@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 def Zonotope.project (Z : Zonotope 𝕋 n) (dims : Fin m → Fin n) : Zonotope 𝕋 m where
   h := Z.h
   c := fun k => Z.c (dims k)
-  G := fun k j => Z.G (dims k) j
+  G := fun j k => Z.G j (dims k)
   E := Z.E.project dims
 
 end CORALean.Float

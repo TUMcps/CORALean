@@ -168,6 +168,8 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AdaptiveRemainderSubsetIn
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ParticularCoeffSumMemFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AdaptiveIntegralOuterRefines
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.VertexSign
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MatZonoCorrTermFloat
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MatZonoCorrectionMatrixFloat
 
 /-!
 # What the exponential enclosures guarantee

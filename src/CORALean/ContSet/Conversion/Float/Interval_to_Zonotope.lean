@@ -80,22 +80,21 @@ theorem Interval.subset_nominal_zonotope (I : Interval (Vec 𝕋 n)) :
   · funext i
     have hsum : (∑ j : Fin n, (if toReal (I.radiusFrom j) = 0 then (0:ℝ)
           else (x j - toReal (I.center j)) / toReal (I.radiusFrom j)) •
-            (fun i => toReal (diagonalBlock I.radiusFrom i j) : Vec ℝ n)) i
+            (fun i => toReal (diagonalBlock I.radiusFrom j i) : Vec ℝ n)) i
         = (if toReal (I.radiusFrom i) = 0 then (0:ℝ)
             else (x i - toReal (I.center i)) / toReal (I.radiusFrom i))
           * toReal (I.radiusFrom i) := by
       rw [Finset.sum_apply, Finset.sum_eq_single i]
       · simp [toReal_diagonalBlock, Matrix.diagonal_apply_eq, toRealVec]
       · intro j _ hj
-        have hij : i ≠ j := Ne.symm hj
-        simp [toReal_diagonalBlock, Matrix.diagonal_apply_ne _ hij]
+        simp [toReal_diagonalBlock, Matrix.diagonal_apply_ne _ hj]
       · intro hc
         exact absurd (Finset.mem_univ i) hc
     -- the goal spelled out, so `hsum` matches it
     show x i = ((fun i => toReal (I.center i) : Vec ℝ n)
       + ∑ j : Fin n, (if toReal (I.radiusFrom j) = 0 then (0:ℝ)
         else (x j - toReal (I.center j)) / toReal (I.radiusFrom j)) •
-          (fun i => toReal (diagonalBlock I.radiusFrom i j) : Vec ℝ n)) i
+          (fun i => toReal (diagonalBlock I.radiusFrom j i) : Vec ℝ n)) i
     rw [Pi.add_apply, hsum]
     by_cases h : toReal (I.radiusFrom i) = 0
     · rw [if_pos h, zero_mul, add_zero]

@@ -244,7 +244,7 @@ def parseMatColsFixed (c : Nat) (j : Json) : Except String (Σ r : Nat, Mat 𝕋
   pure ⟨r, aux_mkMat r c vals⟩
 
 /-- `j` as a matrix with the already-known row count `r` -- `cols` read off the request:
-`Zonotope.G`'s own shape, `n` fixed and `h` discovered. -/
+CORA's generator matrix, `n` fixed and `h` discovered. -/
 def parseMatRowsFixed (r : Nat) (j : Json) : Except String (Σ c : Nat, Mat 𝕋 r c) := do
   let jr ← natField j "rows"
   let c ← natField j "cols"
@@ -273,14 +273,14 @@ def parseZonotope (j : Json) : Except String (DynZonotope 𝕋) := do
   let ⟨n, cVec⟩ ← parseVec readD (← field j "c")
   let ⟨h, gMat⟩ ← parseMatRowsFixed readD n (← field j "G")
   let eBox ← parseIntervalVecFixed readD n (← field j "E")
-  pure ⟨n, { h := h, c := cVec, G := gMat, E := eBox }⟩
+  pure ⟨n, { h := h, c := cVec, G := fun j i => gMat i j, E := eBox }⟩
 
 /-- The same, at an already-known `n` -- the second zonotope of a two-operand op. -/
 def parseZonotopeFixed (n : Nat) (j : Json) : Except String (Zonotope 𝕋 n) := do
   let cVec ← parseVecFixed readD n (← field j "c")
   let ⟨h, gMat⟩ ← parseMatRowsFixed readD n (← field j "G")
   let eBox ← parseIntervalVecFixed readD n (← field j "E")
-  pure { h := h, c := cVec, G := gMat, E := eBox }
+  pure { h := h, c := cVec, G := fun j i => gMat i j, E := eBox }
 
 variable (showD : 𝕋 → String)
 
@@ -304,7 +304,8 @@ def printIntervalMat {r c : Nat} (I : Interval (Mat 𝕋 r c)) : Json :=
 
 def printZonotope {n : Nat} (Z : Zonotope 𝕋 n) : Json :=
   Json.mkObj
-    [("c", printVec showD Z.c), ("G", printMat showD Z.G), ("E", printIntervalVec showD Z.E)]
+    [("c", printVec showD Z.c), ("G", printMat showD fun i j => Z.G j i),
+      ("E", printIntervalVec showD Z.E)]
 
 end CORALean.Oracle
 

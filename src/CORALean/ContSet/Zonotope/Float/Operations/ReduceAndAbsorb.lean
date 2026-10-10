@@ -32,9 +32,9 @@ def Zonotope.reduceAndAbsorbBy (Z : Zonotope 𝕋 n)
     (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) : Zonotope 𝕋 n where
   h := q + n
   c := Z.shiftDown
-  G := fun i => Fin.append (fun l => Z.G i (part.left l))
-                  (diagonalBlock (fun i => addUp (radius (fun i l => Z.G i (part.right l)) i)
-                    (Z.errorRadius i)) i)
+  G := Fin.append (fun l => Z.G (part.left l))
+         (diagonalBlock fun i => addUp (radius (fun i l => Z.G (part.right l) i) i)
+           (Z.errorRadius i))
   E := Interval.residual Z.shiftDown Z.shiftUp Z.shiftDown
 
 end CORALean.Float

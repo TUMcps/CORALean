@@ -72,7 +72,7 @@ def NonlinearSys.FloatHessModel.linReachFloat (fm : NonlinearSys.FloatHessModel 
   | .poly errorOrder => do
     let lin : LinearSys 𝕋 n := ⟨A⟩                                  -- linsys
     let η ← lin.reachOrderFloat Δt Δt options.taylorTerms           -- taylorTerms, admissible
-    let Rdelta := R ⊞ (⟨0, fun i => neg (xs i), fun _ j => j.elim0,  -- Rinit + (-p.x)
+    let Rdelta := R ⊞ (⟨0, fun i => neg (xs i), fun j => j.elim0,  -- Rinit + (-p.x)
       ⟨fun _ => zero, fun _ => zero⟩⟩ : Zonotope 𝕋 n)
     let Rdiff := lin.postDeltaFloat Δt η Rdelta Vlin                -- aux_deltaReach
     let Zdelta := Reduce.reduce Rdelta errorOrder                   -- reduce(Rdelta, errorOrder)

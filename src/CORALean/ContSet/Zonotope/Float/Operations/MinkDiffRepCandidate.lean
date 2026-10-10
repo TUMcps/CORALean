@@ -38,8 +38,8 @@ def Zonotope.minkDiffRepCandidate (Z₁ Z₂ : Zonotope 𝕋 n) (M : Fin Z₁.h 
   let rowSum := fun i => sumUp fun j => maximum (M i j) (neg (M i j))  -- ∑ⱼ |Mᵢⱼ|, rounded up
   let margin := fun i => maximum zero (subDown one (rowSum i))  -- 1 - ∑ⱼ |Mᵢⱼ|, rounded down
   let scale := fun i => mulDown ρ (margin i)  -- shrunk by ρ
-  let G := fun r i =>  -- scale i · gᵢ, rounded towards zero
-    if le zero (Z₁.G r i) then mulDown (scale i) (Z₁.G r i) else mulUp (scale i) (Z₁.G r i)
+  let G := fun i r =>  -- scale i · gᵢ, rounded towards zero
+    if le zero (Z₁.G i r) then mulDown (scale i) (Z₁.G i r) else mulUp (scale i) (Z₁.G i r)
   { h := Z₁.h, c := c, G := G, E := Interval.origin n }
 
 end CORALean.Float

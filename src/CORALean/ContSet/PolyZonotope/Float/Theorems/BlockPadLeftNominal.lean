@@ -33,14 +33,20 @@ theorem PolyZonotope.nominal_blockPadLeft (n₂ : ℕ) (pZ : PolyZonotope 𝕋 n
   show (⟨_, _, _, _, _, _, _⟩ : Real.PolyZonotope (Vec ℝ (n + n₂))) = ⟨_, _, _, _, _, _, _⟩
   congr 1
   · funext j
-    refine Fin.addCases (fun i => ?_) (fun i => ?_) j <;> simp [PolyZonotope.blockPadLeft,
-      CORALean.blockPadLeft, toRealVec, toReal_zero] <;> rfl
+    refine Fin.addCases (fun i => ?_) (fun i => ?_) j
+    · simp [PolyZonotope.blockPadLeft, CORALean.blockPadLeft, toRealVec]
+      rfl
+    · simp [PolyZonotope.blockPadLeft, CORALean.blockPadLeft, toRealVec, toReal_zero]
   · funext l j
-    refine Fin.addCases (fun i => ?_) (fun i => ?_) j <;> simp [PolyZonotope.blockPadLeft,
-      CORALean.blockPadLeft, toRealVec, toReal_zero] <;> rfl
+    refine Fin.addCases (fun i => ?_) (fun i => ?_) j
+    · simp [PolyZonotope.blockPadLeft, CORALean.blockPadLeft]
+      rfl
+    · simp [PolyZonotope.blockPadLeft, CORALean.blockPadLeft, toReal_zero]
   · funext l j
-    refine Fin.addCases (fun i => ?_) (fun i => ?_) j <;> simp [PolyZonotope.blockPadLeft,
-      CORALean.blockPadLeft, toRealVec, toReal_zero] <;> rfl
+    refine Fin.addCases (fun i => ?_) (fun i => ?_) j
+    · simp [PolyZonotope.blockPadLeft, CORALean.blockPadLeft]
+      rfl
+    · simp [PolyZonotope.blockPadLeft, CORALean.blockPadLeft, toReal_zero]
 
 end CORALean.Float
 

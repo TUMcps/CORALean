@@ -23,6 +23,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
+omit [SoundFloatArithmetic 𝕋] in
 theorem Interval.dirac_eq_zero_of_off (n : ℕ) (I : Interval (Vec 𝕋 m)) (i : Fin m)
     (h : (ltStrict zero (I.inf i) || ltStrict (I.sup i) zero) = true) :
     (Interval.dirac n I).lo i = some zero ∧ (Interval.dirac n I).hi i = some zero := by

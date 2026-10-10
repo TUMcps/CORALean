@@ -107,7 +107,7 @@ theorem Zonotope.aux_zero_mem_mtimesResidual (M : Mat ð•‹ m n) (Z : Zonotope ð
   Zonotope.aux_zero_mem_interval_plus'
     (Zonotope.aux_zero_mem_residual_self
       (fun i => le_trans (dotDown_le (M i) Z.c) (le_dotUp (M i) Z.c)))
-    (Zonotope.aux_zero_mem_generatorError (matMulDiff M Z.G))
+    (Zonotope.aux_zero_mem_generatorError (matMulDiff M (fun i j => Z.G j i)))
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

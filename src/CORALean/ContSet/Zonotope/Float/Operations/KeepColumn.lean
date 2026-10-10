@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- Whether column `j` is not certified zero. -/
 def Zonotope.keepColumn (Z : Zonotope 𝕋 n) (j : Fin Z.h) : Bool :=
-  !(List.finRange n).all fun i => le (Z.G i j) zero && le zero (Z.G i j)
+  !(List.finRange n).all fun i => le (Z.G j i) zero && le zero (Z.G j i)
 
 end CORALean.Float
 

@@ -33,7 +33,8 @@ def Zonotope.stLeftover (Z₂ Z₁ : Zonotope 𝕋 n) (H : Mat 𝕋 Z₂.h n) (i
   addUp (addUp
     (Zonotope.entryDeviation Z₁.c Z₂.E.inf (Z₂.pointLo (Z₂.stBeta Z₁ H))
       (Z₂.pointHi (Z₂.stBeta Z₁ H)) i)
-    (sumUp fun j => Zonotope.mulResidual Z₁.G Z₂.G (Z₂.stGamma Z₁ H) i j))
+    (sumUp fun j => Zonotope.mulResidual (fun i j => Z₁.G j i) (fun i j => Z₂.G j i)
+      (Z₂.stGamma Z₁ H) i j))
     (Zonotope.errBound Z₁.E i)
 
 end CORALean.Float

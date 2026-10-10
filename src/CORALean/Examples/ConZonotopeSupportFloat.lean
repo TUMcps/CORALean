@@ -65,9 +65,9 @@ def shifted : ConZonotope D 2 := { square eqRow with c := ![d 1 (-1), d 1 (-1)] 
 /-- A flat box `[-2, 2] × [-1/8, 1/8]` and a thin parallelogram along the
 diagonal, no rounding error yet. -/
 def bundle : ZonoBundle D 2 :=
-  ⟨2, ![⟨2, ![d 0 0, d 0 0], !![d 2 0, d 0 0; d 0 0, d 1 (-3)],
+  ⟨2, ![⟨2, ![d 0 0, d 0 0], ![![d 2 0, d 0 0], ![d 0 0, d 1 (-3)]],
           ⟨fun _ => d 0 0, fun _ => d 0 0⟩⟩,
-        ⟨2, ![d 0 0, d 0 0], !![d 2 0, d 1 (-3); d 2 0, d (-1) (-3)],
+        ⟨2, ![d 0 0, d 0 0], ![![d 2 0, d 2 0], ![d 1 (-3), d (-1) (-3)]],
           ⟨fun _ => d 0 0, fun _ => d 0 0⟩⟩]⟩
 
 /-- Direction `(1, 0)`. -/

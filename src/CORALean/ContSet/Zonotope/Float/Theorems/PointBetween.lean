@@ -27,13 +27,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.point_between (Z : Zonotope 𝕋 n) (β : Vec 𝕋 Z.h) (i : Fin n) :
-    toReal (Z.pointLo β i) ≤ toReal (Z.c i) + ∑ j, toReal (Z.G i j) * toReal (β j)
-      ∧ toReal (Z.c i) + ∑ j, toReal (Z.G i j) * toReal (β j)
+    toReal (Z.pointLo β i) ≤ toReal (Z.c i) + ∑ j, toReal (Z.G j i) * toReal (β j)
+      ∧ toReal (Z.c i) + ∑ j, toReal (Z.G j i) * toReal (β j)
         ≤ toReal (Z.pointHi β i) := by -- --- PROOF ---
-  have h1 := addDown_le_add (Z.c i) (dotDown (fun j => Z.G i j) β)
-  have h2 := add_le_addUp (Z.c i) (dotUp (fun j => Z.G i j) β)
-  have h3 := dotDown_le (fun j => Z.G i j) β
-  have h4 := le_dotUp (fun j => Z.G i j) β
+  have h1 := addDown_le_add (Z.c i) (dotDown (fun j => Z.G j i) β)
+  have h2 := add_le_addUp (Z.c i) (dotUp (fun j => Z.G j i) β)
+  have h3 := dotDown_le (fun j => Z.G j i) β
+  have h4 := le_dotUp (fun j => Z.G j i) β
   exact ⟨by simp only [Zonotope.pointLo]; linarith, by simp only [Zonotope.pointHi]; linarith⟩
 
 end CORALean.Float

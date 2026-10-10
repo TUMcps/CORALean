@@ -1,8 +1,8 @@
 import CORALean.ContSet.Interval.Float.Operations.MatPlus
-import CORALean.ContSet.MatZonotope.Float.MatZonotope
+import CORALean.ContSet.Zonotope.Float.Zonotope
 
 /-!
-# `MatZonotope.plusInterval`
+# `GZonotope.matPlusInterval`
 
 An interval matrix added to a matrix zonotope goes straight into the box, which is an
 interval matrix already: the nominal part is untouched and only the box's bounds round.
@@ -11,7 +11,7 @@ How the exponential's remainder joins its Taylor sum.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   09-October-2026
 -- Last revision: ---
 
 
@@ -24,8 +24,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {m n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def MatZonotope.plusInterval (Z : MatZonotope 𝕋 m n) (I : Interval (Mat 𝕋 m n)) :
-    MatZonotope 𝕋 m n :=
+def GZonotope.matPlusInterval (Z : GZonotope (Mat 𝕋 m n)) (I : Interval (Mat 𝕋 m n)) :
+    GZonotope (Mat 𝕋 m n) :=
   { Z with E := Interval.matPlus Z.E I }
 
 end CORALean.Float

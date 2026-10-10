@@ -50,16 +50,19 @@ theorem Zonotope.containsZonotope_sound {Z₂ Z₁ : Zonotope 𝕋 n} {H : Mat �
     ⟨le_refl _, toReal_le_of_le (hE i)⟩
   -- every entry's leftover (centre residual, `G₁ - G₂ Γ`, error box) fits in `B`
   have hres' : ∀ i, |toReal (Z₁.c i) - toReal (Z₂.E.inf i)
-        - (toReal (Z₂.c i) + (toRealMat Z₂.G *ᵥ toRealVec (Z₂.stBeta Z₁ H)) i)|
-      + ∑ j, |(toRealMat Z₁.G - toRealMat Z₂.G * toRealMat (Z₂.stGamma Z₁ H)) i j|
+        - (toReal (Z₂.c i) + (toRealMat (fun i j => Z₂.G j i) *ᵥ toRealVec (Z₂.stBeta Z₁ H)) i)|
+      + ∑ j, |(toRealMat (fun i j => Z₁.G j i)
+          - toRealMat (fun i j => Z₂.G j i) * toRealMat (Z₂.stGamma Z₁ H)) i j|
       + |e₁ i| ≤ toReal (Zonotope.ballB H (Z₂.stDelta Z₁ H)) := by
     intro i
     have a1 := Zonotope.entryDeviation_bound Z₁.c Z₂.E.inf (Z₂.pointLo (Z₂.stBeta Z₁ H))
       (Z₂.pointHi (Z₂.stBeta Z₁ H)) i
       (Zonotope.point_between Z₂ (Z₂.stBeta Z₁ H) i).1
       (Zonotope.point_between Z₂ (Z₂.stBeta Z₁ H) i).2
-    have a2 : ∑ j, |(toRealMat Z₁.G - toRealMat Z₂.G * toRealMat (Z₂.stGamma Z₁ H)) i j|
-        ≤ toReal (sumUp fun j => Zonotope.mulResidual Z₁.G Z₂.G (Z₂.stGamma Z₁ H) i j) :=
+    have a2 : ∑ j, |(toRealMat (fun i j => Z₁.G j i)
+          - toRealMat (fun i j => Z₂.G j i) * toRealMat (Z₂.stGamma Z₁ H)) i j|
+        ≤ toReal (sumUp fun j => Zonotope.mulResidual (fun i j => Z₁.G j i)
+          (fun i j => Z₂.G j i) (Z₂.stGamma Z₁ H) i j) :=
       le_trans (Finset.sum_le_sum fun j _ => Zonotope.mulResidual_bound _ _ _ i j)
         (sum_le_sumUp _)
     have a3 := Zonotope.abs_le_errBound Z₁.E he₁ i
@@ -68,13 +71,15 @@ theorem Zonotope.containsZonotope_sound {Z₂ Z₁ : Zonotope 𝕋 n} {H : Mat �
     simp only [Zonotope.stLeftover] at a4
     have a5 := add_le_addUp (addUp (Zonotope.entryDeviation Z₁.c Z₂.E.inf
       (Z₂.pointLo (Z₂.stBeta Z₁ H)) (Z₂.pointHi (Z₂.stBeta Z₁ H)) i)
-      (sumUp fun j => Zonotope.mulResidual Z₁.G Z₂.G (Z₂.stGamma Z₁ H) i j))
+      (sumUp fun j => Zonotope.mulResidual (fun i j => Z₁.G j i) (fun i j => Z₂.G j i)
+        (Z₂.stGamma Z₁ H) i j))
       (Zonotope.errBound Z₁.E i)
     have a6 := add_le_addUp (Zonotope.entryDeviation Z₁.c Z₂.E.inf
       (Z₂.pointLo (Z₂.stBeta Z₁ H)) (Z₂.pointHi (Z₂.stBeta Z₁ H)) i)
-      (sumUp fun j => Zonotope.mulResidual Z₁.G Z₂.G (Z₂.stGamma Z₁ H) i j)
-    have a7 : (toRealMat Z₂.G *ᵥ toRealVec (Z₂.stBeta Z₁ H)) i
-        = ∑ j, toReal (Z₂.G i j) * toReal (Z₂.stBeta Z₁ H j) := rfl
+      (sumUp fun j => Zonotope.mulResidual (fun i j => Z₁.G j i) (fun i j => Z₂.G j i)
+        (Z₂.stGamma Z₁ H) i j)
+    have a7 : (toRealMat (fun i j => Z₂.G j i) *ᵥ toRealVec (Z₂.stBeta Z₁ H)) i
+        = ∑ j, toReal (Z₂.G j i) * toReal (Z₂.stBeta Z₁ H j) := rfl
     rw [a7]
     linarith
   -- the coefficient budget
@@ -95,21 +100,21 @@ theorem Zonotope.containsZonotope_sound {Z₂ Z₁ : Zonotope 𝕋 n} {H : Mat �
     simp only [Zonotope.stUsed] at b1 b2
     linarith
   -- the real lemma gives coefficients for the second set
-  obtain ⟨γ, hγ, hxγ⟩ := CORALean.Real.Zonotope.contains_via_reach (toRealMat Z₁.G)
-    (toRealMat Z₂.G) (toRealMat (Z₂.stGamma Z₁ H)) (toRealVec (Z₂.stBeta Z₁ H))
+  obtain ⟨γ, hγ, hxγ⟩ := CORALean.Real.Zonotope.contains_via_reach (toRealMat (fun i j => Z₁.G j i))
+    (toRealMat (fun i j => Z₂.G j i)) (toRealMat (Z₂.stGamma Z₁ H)) (toRealVec (Z₂.stBeta Z₁ H))
     (toRealVec Z₁.c) (toRealVec Z₂.c) e₁ (fun i => toReal (Z₂.E.inf i))
     (fun d hd => by
       obtain ⟨β', h1, h2⟩ := hreach d hd
       exact ⟨β', h1, h2⟩)
     hres' hcoef β hβ
   -- assemble: the point is a nominal point of `Z₂` plus the error corner
-  refine Set.mem_add.mpr ⟨toRealVec Z₂.c + toRealMat Z₂.G *ᵥ γ, ?_, _, he₂, ?_⟩
+  refine Set.mem_add.mpr ⟨toRealVec Z₂.c + toRealMat (fun i j => Z₂.G j i) *ᵥ γ, ?_, _, he₂, ?_⟩
   · exact Zonotope.mem_nominalSet_iff.mpr ⟨γ, hγ, fun i => rfl⟩
   · funext i
     have hi := congrFun hxγ i
     have hp'' := hp' i
     simp only [Pi.add_apply] at hi ⊢
-    have hmv : (toRealMat Z₁.G *ᵥ β) i = ∑ j, toReal (Z₁.G i j) * β j := rfl
+    have hmv : (toRealMat (fun i j => Z₁.G j i) *ᵥ β) i = ∑ j, toReal (Z₁.G j i) * β j := rfl
     rw [hmv] at hi
     have e1 : toRealVec Z₁.c i = toReal (Z₁.c i) := rfl
     have e2 : toRealVec Z₂.c i = toReal (Z₂.c i) := rfl

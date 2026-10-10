@@ -87,6 +87,12 @@ instance : RealImage (Vec 𝕋 n) (Vec ℝ n) := ⟨toRealVec⟩
 
 instance : RealImage (Mat 𝕋 m n) (Mat ℝ m n) := ⟨toRealMat⟩
 
+/-- The reading at `Vec`, by name, for a proof that unfolds a generic `nominal`. -/
+theorem realImage_vec (v : Vec 𝕋 n) : RealImage.realImage v = toRealVec v := rfl
+
+/-- The reading at `Mat`, by name, for a proof that unfolds a generic `nominal`. -/
+theorem realImage_mat (M : Mat 𝕋 m n) : RealImage.realImage M = toRealMat M := rfl
+
 /-! ## What the derived operations inherit -/
 
 theorem toReal_strictMargin_pos : 0 < toReal (strictMargin : 𝕋) := by -- --- PROOF ---

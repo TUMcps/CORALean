@@ -47,35 +47,35 @@ theorem Zonotope.aux_exactPlus_gap (Z₁ Z₂ : Zonotope 𝕋 n) (k : ℕ) (i : 
     (j : Fin (min (min Z₁.h Z₂.h) k + (Z₁.h - min (min Z₁.h Z₂.h) k) +
       (Z₂.h - min (min Z₁.h Z₂.h) k))) :
     |((Real.Zonotope.exactPlus (nominal Z₁) (nominal Z₂) k).G j) i
-        - toReal ((Z₁.exactPlus Z₂ k).G i j)| ≤
+        - toReal ((Z₁.exactPlus Z₂ k).G j i)| ≤
       toReal (Z₁.exactPlusGap Z₂ k i j) := by -- --- PROOF ---
   refine Fin.addCases (fun j => ?_) (fun j => ?_) j
   · refine Fin.addCases (fun j => ?_) (fun j => ?_) j
     · -- a shared column: the stored sum is rounded down, the gap is up minus down
       have e1 : ((nominal Z₁).exactPlus (nominal Z₂) k).G (Fin.castAdd _ (Fin.castAdd _ j)) i =
-          toReal (Z₁.G i (Fin.castLE (min_le_left _ _ |>.trans (min_le_left _ _)) j)) +
-            toReal (Z₂.G i (Fin.castLE (min_le_left _ _ |>.trans (min_le_right _ _)) j)) := by
+          toReal (Z₁.G (Fin.castLE (min_le_left _ _ |>.trans (min_le_left _ _)) j) i) +
+            toReal (Z₂.G (Fin.castLE (min_le_left _ _ |>.trans (min_le_right _ _)) j) i) := by
         simp only [Real.Zonotope.exactPlus, Fin.append_left, Pi.add_apply]
         rfl
-      have e2 : (Z₁.exactPlus Z₂ k).G i (Fin.castAdd _ (Fin.castAdd _ j)) =
-          addDown (Z₁.G i (Fin.castLE (min_le_left _ _ |>.trans (min_le_left _ _)) j))
-            (Z₂.G i (Fin.castLE (min_le_left _ _ |>.trans (min_le_right _ _)) j)) := by
+      have e2 : (Z₁.exactPlus Z₂ k).G (Fin.castAdd _ (Fin.castAdd _ j)) i =
+          addDown (Z₁.G (Fin.castLE (min_le_left _ _ |>.trans (min_le_left _ _)) j) i)
+            (Z₂.G (Fin.castLE (min_le_left _ _ |>.trans (min_le_right _ _)) j) i) := by
         simp only [Zonotope.exactPlus, Fin.append_left]
       have e3 : Z₁.exactPlusGap Z₂ k i (Fin.castAdd _ (Fin.castAdd _ j)) =
-          subUp (addUp (Z₁.G i (Fin.castLE (min_le_left _ _ |>.trans (min_le_left _ _)) j))
-            (Z₂.G i (Fin.castLE (min_le_left _ _ |>.trans (min_le_right _ _)) j)))
-            (addDown (Z₁.G i (Fin.castLE (min_le_left _ _ |>.trans (min_le_left _ _)) j))
-              (Z₂.G i (Fin.castLE (min_le_left _ _ |>.trans (min_le_right _ _)) j))) := by
+          subUp (addUp (Z₁.G (Fin.castLE (min_le_left _ _ |>.trans (min_le_left _ _)) j) i)
+            (Z₂.G (Fin.castLE (min_le_left _ _ |>.trans (min_le_right _ _)) j) i))
+            (addDown (Z₁.G (Fin.castLE (min_le_left _ _ |>.trans (min_le_left _ _)) j) i)
+              (Z₂.G (Fin.castLE (min_le_left _ _ |>.trans (min_le_right _ _)) j) i)) := by
         simp only [Zonotope.exactPlusGap, Fin.append_left]
       erw [e1, e2, e3]
       exact Zonotope.aux_pairSum_gap _ _
     · -- a copied column of the first operand: exact
       have e1 : ((nominal Z₁).exactPlus (nominal Z₂) k).G (Fin.castAdd _ (Fin.natAdd _ j)) i =
-          toReal (Z₁.G i ⟨min (min Z₁.h Z₂.h) k + j, by have := j.2; omega⟩) := by
+          toReal (Z₁.G ⟨min (min Z₁.h Z₂.h) k + j, by have := j.2; omega⟩ i) := by
         simp only [Real.Zonotope.exactPlus, Fin.append_left, Fin.append_right]
         rfl
-      have e2 : (Z₁.exactPlus Z₂ k).G i (Fin.castAdd _ (Fin.natAdd _ j)) =
-          Z₁.G i ⟨min (min Z₁.h Z₂.h) k + j, by have := j.2; omega⟩ := by
+      have e2 : (Z₁.exactPlus Z₂ k).G (Fin.castAdd _ (Fin.natAdd _ j)) i =
+          Z₁.G ⟨min (min Z₁.h Z₂.h) k + j, by have := j.2; omega⟩ i := by
         simp only [Zonotope.exactPlus, Fin.append_left, Fin.append_right]
       have e3 : Z₁.exactPlusGap Z₂ k i (Fin.castAdd _ (Fin.natAdd _ j)) = zero := by
         simp only [Zonotope.exactPlusGap, Fin.append_left, Fin.append_right]
@@ -83,11 +83,11 @@ theorem Zonotope.aux_exactPlus_gap (Z₁ Z₂ : Zonotope 𝕋 n) (k : ℕ) (i : 
       simp [toReal_zero]
   · -- a copied column of the second operand: exact
     have e1 : ((nominal Z₁).exactPlus (nominal Z₂) k).G (Fin.natAdd _ j) i =
-        toReal (Z₂.G i ⟨min (min Z₁.h Z₂.h) k + j, by have := j.2; omega⟩) := by
+        toReal (Z₂.G ⟨min (min Z₁.h Z₂.h) k + j, by have := j.2; omega⟩ i) := by
       simp only [Real.Zonotope.exactPlus, Fin.append_right]
       rfl
-    have e2 : (Z₁.exactPlus Z₂ k).G i (Fin.natAdd _ j) =
-        Z₂.G i ⟨min (min Z₁.h Z₂.h) k + j, by have := j.2; omega⟩ := by
+    have e2 : (Z₁.exactPlus Z₂ k).G (Fin.natAdd _ j) i =
+        Z₂.G ⟨min (min Z₁.h Z₂.h) k + j, by have := j.2; omega⟩ i := by
       simp only [Zonotope.exactPlus, Fin.append_right]
     have e3 : Z₁.exactPlusGap Z₂ k i (Fin.natAdd _ j) = zero := by
       simp only [Zonotope.exactPlusGap, Fin.append_right]
@@ -103,19 +103,19 @@ theorem Zonotope.exactPlus_outer (Z₁ Z₂ : Zonotope 𝕋 n) (k : ℕ) :
   rintro _ ⟨y, ⟨δ, hδ, rfl⟩, _, ⟨e₁, he₁, e₂, he₂, rfl⟩, rfl⟩
   set F := Z₁.exactPlus Z₂ k with hF
   -- the stored nominal point on the same coefficients
-  have hp : (fun i => toReal (F.c i) + ∑ j, toReal (F.G i j) * δ j) ∈ nominalSet F :=
+  have hp : (fun i => toReal (F.c i) + ∑ j, toReal (F.G j i) * δ j) ∈ nominalSet F :=
     Zonotope.mem_nominalSet_iff.mpr ⟨δ, hδ, fun _ => rfl⟩
   -- the centre's rounding, and the shared columns' rounding
   have hr₁ : (fun i => (toReal (Z₁.c i) + toReal (Z₂.c i)) - toReal (F.c i)) ∈
       (Zonotope.centerResidual Z₁.c Z₂.c).construct :=
     Interval.sub_mem_residual (fun i => ⟨addDown_le_add _ _, add_le_addUp _ _⟩)
   have hr₂ : (fun i => ∑ j, (((Real.Zonotope.exactPlus (nominal Z₁) (nominal Z₂) k).G j) i
-      - toReal (F.G i j)) * δ j) ∈ (Zonotope.generatorError (Z₁.exactPlusGap Z₂ k)).construct :=
+      - toReal (F.G j i)) * δ j) ∈ (Zonotope.generatorError (Z₁.exactPlusGap Z₂ k)).construct :=
     Zonotope.mem_generatorError (fun i j => Zonotope.aux_exactPlus_gap Z₁ Z₂ k i j) hδ
   -- the box absorbs the two incoming boxes and both roundings
   have hE : e₁ + e₂ + (fun i => (toReal (Z₁.c i) + toReal (Z₂.c i)) - toReal (F.c i))
       + (fun i => ∑ j, (((Real.Zonotope.exactPlus (nominal Z₁) (nominal Z₂) k).G j) i
-        - toReal (F.G i j)) * δ j) ∈ F.E.construct :=
+        - toReal (F.G j i)) * δ j) ∈ F.E.construct :=
     Interval.plus_outer _ _ ⟨_, Interval.plus_outer _ _ ⟨_, Interval.plus_outer _ _
       ⟨e₁, he₁, e₂, he₂, rfl⟩, _, hr₁, rfl⟩, _, hr₂, rfl⟩
   refine ⟨_, hp, _, hE, ?_⟩
@@ -125,8 +125,8 @@ theorem Zonotope.exactPlus_outer (Z₁ Z₂ : Zonotope 𝕋 n) (k : ℕ) :
   have hc : ((nominal Z₁).exactPlus (nominal Z₂) k).c i = toReal (Z₁.c i) + toReal (Z₂.c i) :=
     rfl
   have hs : ∑ x, δ x * ((nominal Z₁).exactPlus (nominal Z₂) k).G x i =
-      ∑ j, toReal (F.G i j) * δ j + ∑ j, (((nominal Z₁).exactPlus (nominal Z₂) k).G j i
-        - toReal (F.G i j)) * δ j := by
+      ∑ j, toReal (F.G j i) * δ j + ∑ j, (((nominal Z₁).exactPlus (nominal Z₂) k).G j i
+        - toReal (F.G j i)) * δ j := by
     erw [← Finset.sum_add_distrib]
     exact Finset.sum_congr rfl fun j _ => by ring
   rw [hc, hs]

@@ -32,7 +32,7 @@ theorem Zonotope.lowerDot_le (Z : Zonotope 𝕋 n) (a : Vec 𝕋 n)
     (hE : ∀ i, toReal (Z.E.inf i) ≤ toReal (Z.E.sup i)) :
     ∃ x ∈ Z.construct, toReal (Z.lowerDot a) ≤ ∑ i, toReal (a i) * x i := by -- --- PROOF ---
   -- the generator signs and the box corner the support formula names
-  set s : Fin Z.h → ℝ := fun j => ∑ i, toReal (a i) * toReal (Z.G i j) with hs
+  set s : Fin Z.h → ℝ := fun j => ∑ i, toReal (a i) * toReal (Z.G j i) with hs
   set β : Vec ℝ Z.h := fun j => if 0 ≤ s j then 1 else -1 with hβ
   set e : Vec ℝ n := fun i =>
     if toReal (a i) * toReal (Z.E.inf i) ≤ toReal (a i) * toReal (Z.E.sup i)
@@ -49,7 +49,7 @@ theorem Zonotope.lowerDot_le (Z : Zonotope 𝕋 n) (a : Vec 𝕋 n)
     by_cases h : toReal (a i) * toReal (Z.E.inf i) ≤ toReal (a i) * toReal (Z.E.sup i)
     · rw [show e i = toReal (Z.E.inf i) from if_pos h]; exact ⟨le_rfl, hE i⟩
     · rw [show e i = toReal (Z.E.sup i) from if_neg h]; exact ⟨hE i, le_rfl⟩
-  set z : Vec ℝ n := fun i => toReal (Z.c i) + ∑ j, toReal (Z.G i j) * β j with hz
+  set z : Vec ℝ n := fun i => toReal (Z.c i) + ∑ j, toReal (Z.G j i) * β j with hz
   refine ⟨z + e, ⟨z, Zonotope.mem_nominalSet_iff.mpr ⟨β, hβ1, fun i => rfl⟩, e, hemem, rfl⟩, ?_⟩
   -- the value at that point
   have hval : ∑ i, toReal (a i) * (z + e) i
@@ -59,7 +59,7 @@ theorem Zonotope.lowerDot_le (Z : Zonotope 𝕋 n) (a : Vec 𝕋 n)
         = ∑ i, toReal (a i) * toReal (Z.c i) + ∑ j, |s j| := by
       calc ∑ i, toReal (a i) * z i
           = ∑ i, toReal (a i) * toReal (Z.c i)
-            + ∑ i, ∑ j, toReal (a i) * toReal (Z.G i j) * β j := by
+            + ∑ i, ∑ j, toReal (a i) * toReal (Z.G j i) * β j := by
             rw [← Finset.sum_add_distrib]
             refine Finset.sum_congr rfl fun i _ => ?_
             simp only [hz, mul_add, Finset.mul_sum]
@@ -79,11 +79,11 @@ theorem Zonotope.lowerDot_le (Z : Zonotope 𝕋 n) (a : Vec 𝕋 n)
   have hc : toReal (dotDown a Z.c) ≤ ∑ i, toReal (a i) * toReal (Z.c i) := dotDown_le a Z.c
   -- the generators: `max(0, lo, -hi)` is below `|aᵀGⱼ|`
   have hg : toReal (sumDown fun j => maximum zero
-      (maximum (dotDown a fun i => Z.G i j) (neg (dotUp a fun i => Z.G i j)))) ≤ ∑ j, |s j| := by
+      (maximum (dotDown a fun i => Z.G j i) (neg (dotUp a fun i => Z.G j i)))) ≤ ∑ j, |s j| := by
     refine le_trans (sumDown_le_sum _) (Finset.sum_le_sum fun j _ => ?_)
     rw [toReal_maximum, toReal_maximum, toReal_neg, toReal_zero]
-    have hlo := dotDown_le a fun i => Z.G i j
-    have hhi := le_dotUp a fun i => Z.G i j
+    have hlo := dotDown_le a fun i => Z.G j i
+    have hhi := le_dotUp a fun i => Z.G j i
     refine max_le (abs_nonneg _) (max_le ?_ ?_)
     · exact le_trans hlo (le_abs_self _)
     · exact le_trans (neg_le_neg hhi) (neg_le_abs _)

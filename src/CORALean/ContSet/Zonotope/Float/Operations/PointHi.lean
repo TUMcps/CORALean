@@ -24,7 +24,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def Zonotope.pointHi (Z : Zonotope 𝕋 n) (β : Vec 𝕋 Z.h) : Vec 𝕋 n := fun i =>
-  addUp (Z.c i) (dotUp (fun j => Z.G i j) β)
+  addUp (Z.c i) (dotUp (fun j => Z.G j i) β)
 
 end CORALean.Float
 

@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 def Zonotope.reindex (e : Fin m ≃ Fin n) (Z : Zonotope 𝕋 n) : Zonotope 𝕋 m where
   h := Z.h
   c := fun i => Z.c (e i)
-  G := fun i j => Z.G (e i) j
+  G := fun j i => Z.G j (e i)
   E := Z.E.reindex e
 
 end CORALean.Float

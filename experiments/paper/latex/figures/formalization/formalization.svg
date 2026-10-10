@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="750" height="330" font-family="sans-serif" font-size="11">
 <rect width="100%" height="100%" fill="white"/>
-<text x="150" y="20" font-weight="bold">(a) CORA methods per group</text>
+<text x="150" y="20" font-weight="bold">(a) CORA functions</text>
 <text x="142" y="39" text-anchor="end">Set representations</text>
 <rect x="150.0" y="28" width="449.4" height="14" fill="rgb(69,150,255)"/>
 <text x="374.7" y="39" text-anchor="middle" font-size="9" fill="#000">573</text>
@@ -37,7 +37,7 @@
 <rect x="530" y="114" width="12" height="12" fill="rgb(255,255,255)" stroke="#000" stroke-width="0.8"/>
 <text x="548" y="124">not yet</text>
 <text x="150" y="148" font-size="10" fill="#888">+n: out of scope, not in the bar</text>
-<text x="150" y="160" font-weight="bold">(b) Paper results</text>
+<text x="150" y="160" font-weight="bold">(b) Formalized paper statements</text>
 <text x="142" y="179" text-anchor="end">Paper results</text>
 <rect x="150.0" y="168" width="325.9" height="14" fill="rgb(120,197,127)"/>
 <text x="313.0" y="179" text-anchor="middle" font-size="9" fill="#000">665</text>
@@ -65,14 +65,14 @@
 <text x="548" y="220">not yet</text>
 <text x="150" y="240" font-weight="bold">(c) Lean theorems</text>
 <text x="142" y="259" text-anchor="end">Lean theorems</text>
-<rect x="150.0" y="248" width="106.2" height="14" fill="rgb(0,114,189)"/>
+<rect x="150.0" y="248" width="106.1" height="14" fill="rgb(0,114,189)"/>
 <text x="203.1" y="259" text-anchor="middle" font-size="9" fill="#fff">1284</text>
-<rect x="256.2" y="248" width="192.9" height="14" fill="rgb(42,92,173)"/>
-<text x="352.7" y="259" text-anchor="middle" font-size="9" fill="#000">2331</text>
-<rect x="449.1" y="248" width="133.0" height="14" fill="rgb(84,69,158)"/>
-<text x="515.6" y="259" text-anchor="middle" font-size="9" fill="#000">1607</text>
+<rect x="256.1" y="248" width="192.7" height="14" fill="rgb(42,92,173)"/>
+<text x="352.5" y="259" text-anchor="middle" font-size="9" fill="#000">2331</text>
+<rect x="448.9" y="248" width="133.3" height="14" fill="rgb(84,69,158)"/>
+<text x="515.5" y="259" text-anchor="middle" font-size="9" fill="#000">1612</text>
 <rect x="582.1" y="248" width="87.9" height="14" fill="rgb(126,47,142)"/>
-<text x="626.0" y="259" text-anchor="middle" font-size="9" fill="#000">1063</text>
+<text x="626.1" y="259" text-anchor="middle" font-size="9" fill="#000">1063</text>
 <rect x="150" y="248" width="520.0" height="14" fill="none" stroke="#000" stroke-width="0.8"/>
 <rect x="150" y="274" width="12" height="12" fill="rgb(0,114,189)" stroke="#000" stroke-width="0.8"/>
 <text x="168" y="284">paper theorems</text>

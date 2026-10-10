@@ -52,7 +52,7 @@ theorem Zonotope.aux_plus_nominal (Z₁ : Zonotope 𝕋 n) (Z₂ : Zonotope 𝕋
   obtain ⟨β₁, hβ₁, hz₁⟩ := Zonotope.mem_nominalSet_iff.mp hz₁'
   obtain ⟨β₂, hβ₂, hz₂⟩ := Zonotope.mem_nominalSet_iff.mp hz₂'
   refine ⟨fun i => toReal ((Z₁.plus Z₂).c i)
-            + ∑ j, toReal ((Z₁.plus Z₂).G i j) * Fin.append β₁ β₂ j,
+            + ∑ j, toReal ((Z₁.plus Z₂).G j i) * Fin.append β₁ β₂ j,
           Zonotope.mem_nominalSet_iff.mpr ⟨Fin.append β₁ β₂, ?_, fun _ => rfl⟩,
           fun i => toReal (Z₁.c i) + toReal (Z₂.c i) - toReal ((Z₁.plus Z₂).c i), ?_, ?_⟩
   · refine Fin.addCases (fun l => ?_) (fun l => ?_)
