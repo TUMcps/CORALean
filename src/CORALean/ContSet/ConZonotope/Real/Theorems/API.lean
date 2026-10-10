@@ -50,6 +50,9 @@ import CORALean.ContSet.ConZonotope.Real.Theorems.ProjectExact
 import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceKeepByOuter
 import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceKeepOrder
 import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceKeepOuter
+import CORALean.ContSet.ConZonotope.Real.Theorems.MemLiftEqOfMem
+import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceLiftByOuter
+import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceLiftOuter
 import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceOrder
 import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceOuter
 import CORALean.ContSet.ConZonotope.Real.Theorems.RescaleExact

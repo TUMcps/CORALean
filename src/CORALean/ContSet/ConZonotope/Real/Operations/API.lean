@@ -20,6 +20,9 @@ import CORALean.ContSet.ConZonotope.Real.Operations.KeepSlack
 import CORALean.ContSet.ConZonotope.Real.Operations.KeepSplit
 import CORALean.ContSet.ConZonotope.Real.Operations.ReduceKeep
 import CORALean.ContSet.ConZonotope.Real.Operations.ReduceKeepBy
+import CORALean.ContSet.ConZonotope.Real.Operations.LiftEq
+import CORALean.ContSet.ConZonotope.Real.Operations.ReduceLiftBy
+import CORALean.ContSet.ConZonotope.Real.Operations.ReduceLift
 import CORALean.ContSet.ConZonotope.Real.Operations.OfPoint
 import CORALean.ContSet.ConZonotope.Real.Operations.Enclose
 import CORALean.ContSet.ConZonotope.Real.Operations.MinkDiffV

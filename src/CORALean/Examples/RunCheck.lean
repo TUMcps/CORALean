@@ -551,6 +551,9 @@ def dyadicRows2 : StateT Nat IO Unit := do
   row "goodE₁" (ofEll RunnableFloat.goodE₁)
   row "goodE₂" (ofEll RunnableFloat.goodE₂)
   row "isGoodDirRun" (ofBool RunnableFloat.isGoodDirRun)
+  row "cZ_eqs" (ofHP RunnableFloat.cZ_eqs.P)
+  row "cZ_reduceLift" (ofCZ RunnableFloat.cZ_reduceLift)
+  row "cZ_reduceLift_P" (ofHP RunnableFloat.cZ_reduceLift.P)
 
 /-! ## Hardware `Float`
 
