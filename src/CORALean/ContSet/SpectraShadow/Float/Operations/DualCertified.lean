@@ -38,7 +38,7 @@ def SpectraShadow.dualCertified (S : SpectraShadow 𝕋 n) (a : Vec 𝕋 n) (Y :
     le (sumUp fun j => if j = i then zero else absolute (Y i j)) (Y i i)
   -- `tr(Aₗ Y) = -aᵀ Gₗ`, exactly
   let traceQ : Mat 𝕋 S.k S.k → ℚ := fun A => ∑ r, ∑ j, toRat (A r j) * toRat (Y j r)
-  let target : Fin S.m → ℚ := fun l => -∑ r, toRat (a r) * toRat (S.G r l)
+  let target : Fin S.m → ℚ := fun l => -∑ r, toRat (a r) * toRat (S.G l r)
   let equalities : Bool := (List.finRange S.m).all fun l => decide (traceQ (S.A l) = target l)
   -- no NaN among the floats `toRat` reads: it would take it for the number `1.5 * 2 ^ 1024`
   let finite : Bool := noNaN (𝕋 := 𝕋) Y && noNaN (𝕋 := 𝕋) a && noNaN (𝕋 := 𝕋) S.G &&

@@ -83,7 +83,7 @@ theorem SpectraShadow.aux_plus_nominal (S₁ S₂ : SpectraShadow 𝕋 n) :
   obtain ⟨β₁, hP₁, hz₁⟩ := SpectraShadow.mem_nominalSet_iff.mp hz₁'
   obtain ⟨β₂, hP₂, hz₂⟩ := SpectraShadow.mem_nominalSet_iff.mp hz₂'
   refine ⟨fun i => toReal ((S₁.plus S₂).c i)
-            + ∑ j, toReal ((S₁.plus S₂).G i j) * Fin.append β₁ β₂ j,
+            + ∑ j, toReal ((S₁.plus S₂).G j i) * Fin.append β₁ β₂ j,
           SpectraShadow.mem_nominalSet_iff.mpr
             ⟨Fin.append β₁ β₂, ?_, fun _ => rfl⟩,
           fun i => toReal (S₁.c i) + toReal (S₂.c i) - toReal ((S₁.plus S₂).c i), ?_, ?_⟩

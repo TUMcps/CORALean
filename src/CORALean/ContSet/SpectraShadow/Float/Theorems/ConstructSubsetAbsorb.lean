@@ -60,7 +60,7 @@ theorem SpectraShadow.construct_subset_absorb (S : SpectraShadow 𝕋 n) :
         simp [toReal_zero, toReal_neg, hunit] <;> linarith [hb.1, hb.2]
   · -- the point is the old one plus the error
     show y r + e r = toReal (S.c r) + ∑ l : Fin (S.m + n),
-      toReal (Fin.append (S.G r) (fun i => if r = i then (one : 𝕋) else zero) l)
+      toReal (Fin.append S.G (fun (i r' : Fin n) => if r' = i then (one : 𝕋) else zero) l r)
         * (Fin.append β e : Fin (S.m + n) → ℝ) l
     rw [Fin.sum_univ_add, hyβ r]
     simp [Fin.append_left, Fin.append_right, hunit, add_assoc]

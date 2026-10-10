@@ -43,7 +43,7 @@ def Zonotope.spectraShadow (Z : Zonotope 𝕋 n) : SpectraShadow 𝕋 n where
     (fun i j => if i = j then one else zero)
   A := fun j => blockDiag zero (Zonotope.unitDiag one j) (Zonotope.unitDiag (neg one) j)
   c := Z.c
-  G := fun i j => Z.G j i
+  G := Z.G
   E := Z.E
 
 variable [SoundFloatArithmetic 𝕋]

@@ -79,23 +79,23 @@ theorem SpectraShadow.containsPoint_sound {S : SpectraShadow 𝕋 n} {p : Vec �
       exact abs_le'.mpr ⟨by linarith, by linarith⟩
   have hPSD := SpectraShadow.posSemidef_of_diagDominant M hMsym hMdom
   -- the nominal point `c + G β`, and the remainder in the box
-  refine ⟨fun r => toReal (S.c r) + ∑ j, toReal (S.G r j) * toRealVec β j,
+  refine ⟨fun r => toReal (S.c r) + ∑ j, toReal (S.G j r) * toRealVec β j,
     SpectraShadow.mem_nominalSet_iff.mpr ⟨toRealVec β, hPSD, fun _ => rfl⟩,
-    fun r => toReal (p r) - (toReal (S.c r) + ∑ j, toReal (S.G r j) * toRealVec β j),
+    fun r => toReal (p r) - (toReal (S.c r) + ∑ j, toReal (S.G j r) * toRealVec β j),
     fun r => ?_, ?_⟩
   · -- the remainder lies between the two roundings the test compared with the box
     obtain ⟨l₁, l₂⟩ := hbox r
-    have d₁ := le_dotUp (fun j => S.G r j) β
-    have d₂ := dotDown_le (fun j => S.G r j) β
-    have a₁ := add_le_addUp (S.c r) (dotUp (fun j => S.G r j) β)
-    have a₂ := addDown_le_add (S.c r) (dotDown (fun j => S.G r j) β)
-    have s₁ := subDown_le_sub (p r) (addUp (S.c r) (dotUp (fun j => S.G r j) β))
-    have s₂ := sub_le_subUp (p r) (addDown (S.c r) (dotDown (fun j => S.G r j) β))
+    have d₁ := le_dotUp (fun j => S.G j r) β
+    have d₂ := dotDown_le (fun j => S.G j r) β
+    have a₁ := add_le_addUp (S.c r) (dotUp (fun j => S.G j r) β)
+    have a₂ := addDown_le_add (S.c r) (dotDown (fun j => S.G j r) β)
+    have s₁ := subDown_le_sub (p r) (addUp (S.c r) (dotUp (fun j => S.G j r) β))
+    have s₂ := sub_le_subUp (p r) (addDown (S.c r) (dotDown (fun j => S.G j r) β))
     have b₁ := toReal_le_of_le l₁
     have b₂ := toReal_le_of_le l₂
     show toReal (S.E.inf r)
-        ≤ toReal (p r) - (toReal (S.c r) + ∑ j, toReal (S.G r j) * toReal (β j))
-      ∧ toReal (p r) - (toReal (S.c r) + ∑ j, toReal (S.G r j) * toReal (β j))
+        ≤ toReal (p r) - (toReal (S.c r) + ∑ j, toReal (S.G j r) * toReal (β j))
+      ∧ toReal (p r) - (toReal (S.c r) + ∑ j, toReal (S.G j r) * toReal (β j))
         ≤ toReal (S.E.sup r)
     constructor <;> linarith
   · -- the point is the nominal point plus the remainder

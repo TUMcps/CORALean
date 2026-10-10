@@ -38,9 +38,9 @@ def SpectraShadow.tieInter (S₁ S₂ : SpectraShadow 𝕋 n) : SpectraShadow �
   let tie₁Const : Vec 𝕋 (n + n) := Fin.append (fun r => neg (S₁.c r)) S₁.c
   let tie₂Const : Vec 𝕋 (n + n) := Fin.append (fun r => neg (S₂.c r)) S₂.c
   let tie₁Gen : Fin S₁.m → Vec 𝕋 (n + n) := fun j =>
-    Fin.append (fun r => neg (S₁.G r j)) fun r => S₁.G r j
+    Fin.append (fun r => neg (S₁.G j r)) fun r => S₁.G j r
   let tie₂Gen : Fin S₂.m → Vec 𝕋 (n + n) := fun j =>
-    Fin.append (fun r => neg (S₂.G r j)) fun r => S₂.G r j
+    Fin.append (fun r => neg (S₂.G j r)) fun r => S₂.G j r
   let tieZ : Fin n → Vec 𝕋 (n + n) := fun i => Fin.append (unit i) fun r => neg (unit i r)
   -- the two inequalities side by side for `β₁`, `β₂`; nothing of them for `z`
   let X : Fin ((S₁.m + S₂.m) + n) → Mat 𝕋 (S₁.k + S₂.k) (S₁.k + S₂.k) :=
@@ -55,7 +55,7 @@ def SpectraShadow.tieInter (S₁ S₂ : SpectraShadow 𝕋 n) : SpectraShadow �
       (diagonalBlock (Fin.append tie₁Const tie₂Const))
     A := fun l => blockDiag zero (X l) (diagonalBlock (d l))
     c := fun _ => zero
-    G := fun r => Fin.append (fun _ => zero) fun i => unit i r
+    G := Fin.append (fun _ _ => zero) unit
     E := Interval.origin n }
 
 end CORALean.Float
