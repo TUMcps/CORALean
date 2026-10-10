@@ -1,6 +1,8 @@
 import CORALean.ContSet.HPolytope.Real.Cost.Plus
 import CORALean.ContSet.HPolytope.Real.Cost.Mtimes
 import CORALean.ContSet.HPolytope.Real.Cost.Intersection
+import CORALean.ContSet.HPolytope.Real.Cost.Comap
+import CORALean.ContSet.HPolytope.Real.Cost.HalfScaled
 
 /-!
 # What running `HPolytope`'s operations costs
@@ -9,18 +11,16 @@ Scalar-operation counts against `Global/Cost.lean`'s model, one `def` per
 operation, every one **asserted**. `Complexity/` is the other directory and the
 other kind of claim: how large a *result* is, which is proved.
 
-Three operations, and each one turns out cheap for the same reason: a halfspace
-description stores rows as linear functionals `α →ₗ[ℝ] ℝ`, so `plusOf` and
-`mtimesOf` never compute a bound themselves — they take one in as a
-`SupportBound` certificate the caller already holds, and only combine or relabel
-its `.val`. `intersectionCost` is zero for a different reason, the same one
-`HPolytope.intersectionCost`'s own file gives: the constraint lists concatenate.
+Three operations are cheap for one reason: rows are linear functionals, so `plusOf`
+and `mtimesOf` take a `SupportBound` certificate in and only relabel its `.val`,
+and `intersectionCost` is zero because the constraint lists concatenate.
 
-`comap`, `halfScaled` and `minkDiffOf` are **not** counted, and `ConZonotope`'s
-own `Cost/API.lean` already says why: what precomposing or scaling a row costs
-depends on whether that row is held as a dense vector or as a composition kept
-unevaluated, which the representation does not fix. A number here would be a
-guess presented as a bound.
+`comap` and `halfScaled` are counted under a stated reading. What precomposing
+or scaling a row costs depends on whether that row is held as a dense vector or
+as a composition kept unevaluated, which the representation does not fix. So
+`comapCost` takes the price of one row's precomposition as a parameter, and
+`halfScaledCost` **reads rows as dense vectors** of the coefficient dimension;
+both are exactly as good as that reading. `minkDiffOf` is left out.
 
 Conversions are left out too. `ofBounds` and `ofPoint` place data rather than
 compute it, as `Zonotope`'s constructors do; `vPolytope` and `vPolytopeBox`

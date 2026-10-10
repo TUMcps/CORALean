@@ -12,27 +12,37 @@ import CORALean.ContSet.PolyZonotope.Real.Cost.Compact
 import CORALean.ContSet.PolyZonotope.Real.Cost.ReduceBy
 import CORALean.ContSet.PolyZonotope.Real.Cost.ReduceGirard
 import CORALean.ContSet.PolyZonotope.Real.Cost.Reduce
+import CORALean.ContSet.PolyZonotope.Real.Cost.CartProd
+import CORALean.ContSet.PolyZonotope.Real.Cost.EDiff
+import CORALean.ContSet.PolyZonotope.Real.Cost.EDrift
+import CORALean.ContSet.PolyZonotope.Real.Cost.RelaxWidth
+import CORALean.ContSet.PolyZonotope.Real.Cost.RelaxWidthMulti
+import CORALean.ContSet.PolyZonotope.Real.Cost.RelaxWidthGroup
+import CORALean.ContSet.PolyZonotope.Real.Cost.RelaxDrift
+import CORALean.ContSet.PolyZonotope.Real.Cost.RelaxExp
+import CORALean.ContSet.PolyZonotope.Real.Cost.RelaxExpEven
+import CORALean.ContSet.PolyZonotope.Real.Cost.RelaxExpMid
+import CORALean.ContSet.PolyZonotope.Real.Cost.RelaxExpMulti
+import CORALean.ContSet.PolyZonotope.Real.Cost.RelaxExpGroup
+import CORALean.ContSet.PolyZonotope.Real.Cost.RelaxExpGreedy
 
 /-!
 # What running `PolyZonotope`'s operations costs
 
 Scalar-operation counts against `Global/Cost.lean`'s model, one `def` per
-operation, every one of them **asserted** — read off the operation's definition
-by hand, never `rfl` against it. `Complexity/` is the other directory and the
-other kind of claim: how large a *result* is, which is proved.
+operation, every one **asserted**, never `rfl` against the definition.
+`Complexity/` is the other kind of claim: how large a *result* is, proved.
 
-This is where a cost model earns its keep. `Complexity/Bilin.lean` proves the
-result of a pairing carries `(h₁+1)(h₂+1)` generators, and `bilinCost` says
-every one of them is computed, so `mul` and `quadMap` are quadratic in a count
-that `plus` grows and only `reduce` brings down. `compactCost` is quadratic for
-its own reason — a pairwise merge over exponent columns — which is why
-`reduceCost` is the two squares added.
+`Complexity/Bilin.lean` proves a pairing's result carries `(h₁+1)(h₂+1)`
+generators, and `bilinCost` says every one is computed, so `mul` and `quadMap`
+are quadratic in a count that `plus` grows and only `reduce` brings down.
+`compactCost` is quadratic for its own reason, a pairwise merge over exponent
+columns. `bilinCost` and `mapCost` take one application's price as a parameter.
 
-`bilinCost` and `mapCost` take the cost of one application of their map as an
-argument, since a bound on an arbitrary linear or bilinear map is not something
-this directory can have; `mtimesCost`, `mulCost` and `quadMapDepCost` are them
-at a map whose count is known.
-
-Each count is monotone in the operand sizes it takes, which is what lets a
-caller substitute a bound on a size for the size.
+The relax family is counted at `Vec ℝ n`. `eDiffCost` and `eDriftCost` price
+exponent arithmetic, comparisons and parities on `ℕ`, at unit. No relaxation
+depends on the generator count `h`: each merges a named pair or group, and what
+it copies is free. `relaxExpGreedyCost` takes the selection's price as a
+parameter, `sel` being an argument of the operation; `cartProd` only places data.
+Each count is monotone in the sizes it takes.
 -/
