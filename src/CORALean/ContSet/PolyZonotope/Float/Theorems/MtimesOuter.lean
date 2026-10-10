@@ -60,13 +60,13 @@ theorem PolyZonotope.aux_mtimes_nominal (M : Mat 𝕋 m n) (pZ : PolyZonotope �
     Interval.sub_mem_residual (fun i => ⟨dotDown_le (M i) pZ.c, le_dotUp (M i) pZ.c⟩)
   -- the two generator blocks' shortfalls, each bounded by a coefficient inside `[-1,1]`
   have hdepBox : (fun i => ∑ l, ((∑ k, toReal (M i k) * toReal (pZ.G l k))
-        - toReal (matMulDown M (fun i l => pZ.G l i) i l)) * Real.PolyZonotope.monomial pZ.E a l)
+        - toReal (mulVecDown M (pZ.G l) i)) * Real.PolyZonotope.monomial pZ.E a l)
       ∈ (PolyZonotope.generatorError (matMulDiff M (fun i l => pZ.G l i))).construct :=
-    PolyZonotope.mem_generatorError_monomial (PolyZonotope.matMul_close M (fun i l => pZ.G l i)) ha
+    PolyZonotope.mem_generatorError_monomial (PolyZonotope.matMul_close M pZ.G) ha
   have hindBox : (fun i => ∑ j, ((∑ k, toReal (M i k) * toReal (pZ.GI j k))
-        - toReal (matMulDown M (fun i j => pZ.GI j i) i j)) * β j)
+        - toReal (mulVecDown M (pZ.GI j) i)) * β j)
       ∈ (PolyZonotope.generatorError (matMulDiff M (fun i j => pZ.GI j i))).construct :=
-    PolyZonotope.mem_generatorError (PolyZonotope.matMul_close M (fun i j => pZ.GI j i)) hβ
+    PolyZonotope.mem_generatorError (PolyZonotope.matMul_close M pZ.GI) hβ
   refine ⟨fun i => toReal ((PolyZonotope.mtimes M pZ).c i)
             + (∑ l : Fin pZ.h, toReal ((PolyZonotope.mtimes M pZ).G l i)
                 * Real.PolyZonotope.monomial pZ.E a l)
@@ -78,20 +78,17 @@ theorem PolyZonotope.aux_mtimes_nominal (M : Mat 𝕋 m n) (pZ : PolyZonotope �
   -- the stored generators and their errors recombine into the exact ones
   have hdep : (∑ l, toReal (mulVecDown M (pZ.G l) i) * Real.PolyZonotope.monomial pZ.E a l)
       + (∑ l, ((∑ k, toReal (M i k) * toReal (pZ.G l k))
-          - toReal (matMulDown M (fun i l => pZ.G l i) i l)) * Real.PolyZonotope.monomial pZ.E a l)
+          - toReal (mulVecDown M (pZ.G l) i)) * Real.PolyZonotope.monomial pZ.E a l)
       = ∑ l, (∑ k, toReal (M i k) * toReal (pZ.G l k))
           * Real.PolyZonotope.monomial pZ.E a l := by
     rw [← Finset.sum_add_distrib]
-    -- a stored generator is the matrix product's column
-    exact Finset.sum_congr rfl fun l _ => by
-      rw [show mulVecDown M (pZ.G l) i = matMulDown M (fun i l => pZ.G l i) i l from rfl]; ring
+    exact Finset.sum_congr rfl fun l _ => by ring
   have hind : (∑ j, toReal (mulVecDown M (pZ.GI j) i) * β j)
       + (∑ j, ((∑ k, toReal (M i k) * toReal (pZ.GI j k))
-          - toReal (matMulDown M (fun i j => pZ.GI j i) i j)) * β j)
+          - toReal (mulVecDown M (pZ.GI j) i)) * β j)
       = ∑ j, (∑ k, toReal (M i k) * toReal (pZ.GI j k)) * β j := by
     rw [← Finset.sum_add_distrib]
-    exact Finset.sum_congr rfl fun j _ => by
-      rw [show mulVecDown M (pZ.GI j) i = matMulDown M (fun i j => pZ.GI j i) i j from rfl]; ring
+    exact Finset.sum_congr rfl fun j _ => by ring
   -- the goal spelled out, so the two recombinations line up with it term by term
   show toReal ((PolyZonotope.mtimes M pZ).c i)
         + (∑ l : Fin pZ.h, toReal ((PolyZonotope.mtimes M pZ).G l i)
@@ -99,13 +96,12 @@ theorem PolyZonotope.aux_mtimes_nominal (M : Mat 𝕋 m n) (pZ : PolyZonotope �
         + ∑ j : Fin pZ.q, toReal ((PolyZonotope.mtimes M pZ).GI j i) * β j
       + (((∑ k, toReal (M i k) * toReal (pZ.c k)) - toReal (mulVecDown M pZ.c i)
           + ∑ l, ((∑ k, toReal (M i k) * toReal (pZ.G l k))
-              - toReal (matMulDown M (fun i l => pZ.G l i) i l))
+              - toReal (mulVecDown M (pZ.G l) i))
             * Real.PolyZonotope.monomial pZ.E a l)
         + ∑ j, ((∑ k, toReal (M i k) * toReal (pZ.GI j k))
-            - toReal (matMulDown M (fun i j => pZ.GI j i) i j)) * β j)
+            - toReal (mulVecDown M (pZ.GI j) i)) * β j)
     = (toRealMat M *ᵥ x) i
-  rw [PolyZonotope.mulVec_split M pZ.c (fun i l => pZ.G l i) (fun i j => pZ.GI j i)
-    (Real.PolyZonotope.monomial pZ.E a) β hx i]
+  rw [PolyZonotope.mulVec_split M pZ.c pZ.G pZ.GI (Real.PolyZonotope.monomial pZ.E a) β hx i]
   simp only [PolyZonotope.mtimes]
   linarith [hdep, hind]
 

@@ -39,7 +39,7 @@ theorem ZonoBundle.cartProd_exact (zB₁ : ZonoBundle 𝕋 n₁) (zB₂ : ZonoBu
         (xy.1 ∈ (zB₁.Z (finProdFinEquiv.symm p).1).construct ∧
           xy.2 ∈ (zB₂.Z (finProdFinEquiv.symm p).2).construct) ∧ Fin.append xy.1 xy.2 = z := by
     intro p
-    show z ∈ ((zB₁.Z (finProdFinEquiv.symm p).1).cartProd
+    show z ∈ (Zonotope.cartProd (zB₁.Z (finProdFinEquiv.symm p).1)
       (zB₂.Z (finProdFinEquiv.symm p).2)).construct ↔ _
     rw [Zonotope.cartProd_exact]
     rfl

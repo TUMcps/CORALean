@@ -34,8 +34,8 @@ theorem ConPolyZono.mem_nominalSet_iff [SoundFloatArithmetic 𝕋] {cPZ : ConPol
     {x : Vec ℝ n} :
     x ∈ InflatedContSet.nominalSet cPZ ↔ ∃ a : Fin cPZ.p → ℝ, ∃ β : Fin cPZ.q → ℝ,
       (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1) ∧ cPZ.satisfies a ∧ ∀ i, x i = toReal (cPZ.c i)
-        + (∑ l, toReal (cPZ.G i l) * Real.PolyZonotope.monomial cPZ.E a l)
-        + ∑ j, toReal (cPZ.GI i j) * β j :=
+        + (∑ l, toReal (cPZ.G l i) * Real.PolyZonotope.monomial cPZ.E a l)
+        + ∑ j, toReal (cPZ.GI j i) * β j :=
   Real.ConPolyZono.mem_construct_iff
 
 end CORALean.Float

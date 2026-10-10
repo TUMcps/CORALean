@@ -28,9 +28,9 @@ def ConPolyZono.toPolyZonotope (cPZ : ConPolyZono 𝕋 n) : PolyZonotope 𝕋 n 
   h := cPZ.h
   q := cPZ.q
   c := cPZ.c
-  G := fun l i => cPZ.G i l
+  G := cPZ.G
   E := cPZ.E
-  GI := fun j i => cPZ.GI i j
+  GI := cPZ.GI
   err := cPZ.err
 
 end CORALean.Float

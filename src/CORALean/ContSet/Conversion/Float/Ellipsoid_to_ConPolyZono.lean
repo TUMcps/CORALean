@@ -36,9 +36,10 @@ def Ellipsoid.conPolyZono (E : Ellipsoid 𝕋 n) : ConPolyZono 𝕋 n where
   m := 1
   s := E.k + 1
   c := E.q
-  G := E.G
+  -- the ellipsoid stores its generators as a matrix, one per column
+  G := fun l i => E.G i l
   E := Real.ConPolyZono.padE (Real.PolyZonotope.identE E.k) 1
-  GI := fun _ => Fin.elim0
+  GI := Fin.elim0
   A := fun _ j => if j.val < E.k then one else neg (half one)
   b := ⟨fun _ => half one, fun _ => half one⟩
   EC := fun r c => if r = c then (if c.val < E.k then 2 else 1) else 0

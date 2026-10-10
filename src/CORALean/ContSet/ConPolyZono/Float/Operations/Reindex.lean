@@ -33,9 +33,9 @@ def ConPolyZono.reindex (e : Fin m ≃ Fin n) (cPZ : ConPolyZono 𝕋 n) : ConPo
   m := cPZ.m
   s := cPZ.s
   c := fun i => cPZ.c (e i)
-  G := fun i j => cPZ.G (e i) j
+  G := fun j i => cPZ.G j (e i)
   E := cPZ.E
-  GI := fun i j => cPZ.GI (e i) j
+  GI := fun j i => cPZ.GI j (e i)
   A := cPZ.A
   b := cPZ.b
   EC := cPZ.EC

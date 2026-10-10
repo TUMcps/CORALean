@@ -36,9 +36,9 @@ def ConPolyZono.intersectionDep (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) : ConPolyZo
   m := cPZ₁.m + cPZ₂.m + n
   s := cPZ₁.s + cPZ₂.s + (cPZ₁.h + cPZ₂.h)
   c := cPZ₁.c
-  G := fun i => Fin.append (cPZ₁.G i) fun _ => zero
+  G := Fin.append cPZ₁.G fun _ _ => zero
   E := Real.PolyZonotope.plusE cPZ₁.E cPZ₂.E
-  GI := fun _ => Fin.elim0
+  GI := Fin.elim0
   A := ConPolyZono.intersectionA cPZ₁ cPZ₂
   b := ConPolyZono.intersectionB cPZ₁ cPZ₂
   EC := Real.ConPolyZono.appendE (Real.PolyZonotope.plusE cPZ₁.EC cPZ₂.EC)

@@ -35,7 +35,7 @@ def ConPolyZono.nominalSupportBound (cPZ : ConPolyZono 𝕋 n) {c : Vec ℝ n �
       {α | (∀ k, |α k| ≤ 1) ∧ (InflatedContSet.nominal cPZ).satisfies α}) c) :
     FloatBound 𝕋 (nominalSet cPZ) c :=
   let extent : Fin cPZ.q → 𝕋 := fun j =>
-    maximum (dotUp a fun i => cPZ.GI i j) (neg (dotDown a fun i => cPZ.GI i j))
+    maximum (dotUp a (cPZ.GI j)) (neg (dotDown a (cPZ.GI j)))
   { val := addUp u.val (sumUp extent)
     le := fun x hx => le_trans
       (((InflatedContSet.nominal cPZ).supportBound c u.toSupportBound).le x hx)
@@ -44,16 +44,16 @@ def ConPolyZono.nominalSupportBound (cPZ : ConPolyZono 𝕋 n) {c : Vec ℝ n �
       have h₂ : ∀ j, |c ((InflatedContSet.nominal cPZ).GI j)| ≤ toReal (extent j) := by
         intro j
         have hval : c ((InflatedContSet.nominal cPZ).GI j)
-            = ∑ k, toReal (a k) * toReal (cPZ.GI k j) := hc _
+            = ∑ k, toReal (a k) * toReal (cPZ.GI j k) := hc _
         rw [hval, toReal_maximum, toReal_neg]
         refine abs_le.mpr ⟨?_, ?_⟩
-        · have hdown := dotDown_le a fun i => cPZ.GI i j
-          have hm := le_max_right (toReal (dotUp a fun i => cPZ.GI i j))
-            (-toReal (dotDown a fun i => cPZ.GI i j))
+        · have hdown := dotDown_le a (cPZ.GI j)
+          have hm := le_max_right (toReal (dotUp a (cPZ.GI j)))
+            (-toReal (dotDown a (cPZ.GI j)))
           linarith
-        · have hup := le_dotUp a fun i => cPZ.GI i j
-          have hm := le_max_left (toReal (dotUp a fun i => cPZ.GI i j))
-            (-toReal (dotDown a fun i => cPZ.GI i j))
+        · have hup := le_dotUp a (cPZ.GI j)
+          have hm := le_max_left (toReal (dotUp a (cPZ.GI j)))
+            (-toReal (dotDown a (cPZ.GI j)))
           linarith
       -- their total, summed upward once, then added to the dependent bound
       have h₃ : (∑ j, |c ((InflatedContSet.nominal cPZ).GI j)|) ≤ toReal (sumUp extent) :=

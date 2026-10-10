@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 def ZonoBundle.containsPoint (zB : ZonoBundle 𝕋 n) (H : (i : Fin zB.k) → Mat 𝕋 (zB.Z i).h n)
     (p : Vec 𝕋 n) : Bool :=
-  (List.finRange zB.k).all fun i => (zB.Z i).containsPoint (H i) p
+  (List.finRange zB.k).all fun i => Zonotope.containsPoint (zB.Z i) (H i) p
 
 end CORALean.Float
 

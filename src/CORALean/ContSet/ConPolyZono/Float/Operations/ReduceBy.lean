@@ -35,10 +35,10 @@ def ConPolyZono.reduceBy (cPZ : ConPolyZono 𝕋 n)
   m := cPZ.m
   s := cPZ.s
   c := cPZ.c
-  G := fun i l => cPZ.G i (partD.left l)
+  G := fun l => cPZ.G (partD.left l)
   E := fun k l => cPZ.E k (partD.left l)
-  GI := fun i => Fin.append (fun j => cPZ.GI i (partI.left j))
-    (diagonalBlock (cPZ.dropRadius partD partI) i)
+  GI := Fin.append (fun j => cPZ.GI (partI.left j))
+    fun j i => diagonalBlock (cPZ.dropRadius partD partI) i j
   A := cPZ.A
   b := cPZ.b
   EC := cPZ.EC

@@ -25,11 +25,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Girard's metric on one generator, `‖g‖₁ - ‖g‖∞`, in `𝕋`, over a bare matrix
+/-- Girard's metric on one generator, `‖g‖₁ - ‖g‖∞`, in `𝕋`, over a bare family
 so that either block and their concatenation are ranked by this one line. Zero
 on the axis-aligned generators, which a box reproduces for free. -/
-def PolyZonotope.girardMetric {m : ℕ} (G : Mat 𝕋 n m) (l : Fin m) : 𝕋 :=
-  subDown (sumUp fun i => absolute (G i l)) (maximumOver fun i => absolute (G i l))
+def PolyZonotope.girardMetric {m : ℕ} (G : Fin m → Vec 𝕋 n) (l : Fin m) : 𝕋 :=
+  subDown (sumUp fun i => absolute (G l i)) (maximumOver fun i => absolute (G l i))
 
 end CORALean.Float
 

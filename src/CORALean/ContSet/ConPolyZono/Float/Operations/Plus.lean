@@ -38,9 +38,9 @@ def ConPolyZono.plus (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n w
   m := cPZ₁.m + cPZ₂.m
   s := cPZ₁.s + cPZ₂.s
   c := fun i => addDown (cPZ₁.c i) (cPZ₂.c i)
-  G := fun i => Fin.append (cPZ₁.G i) (cPZ₂.G i)
+  G := Fin.append cPZ₁.G cPZ₂.G
   E := Real.PolyZonotope.plusE cPZ₁.E cPZ₂.E
-  GI := fun i => Fin.append (cPZ₁.GI i) (cPZ₂.GI i)
+  GI := Fin.append cPZ₁.GI cPZ₂.GI
   A := ConPolyZono.plusA cPZ₁.A cPZ₂.A
   b := ConPolyZono.plusB cPZ₁.b cPZ₂.b
   EC := Real.PolyZonotope.plusE cPZ₁.EC cPZ₂.EC

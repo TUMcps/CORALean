@@ -120,7 +120,7 @@ theorem ConPolyZono.quadMap_outer (Q : Fin k → Mat 𝕋 n n) (cPZ : ConPolyZon
   refine ⟨fun i => toReal ((cPZ.quadMap Q).c i)
       + (∑ l : Fin ((D.h + 1) * (D.h + 1)), toReal (PolyZonotope.quadMapGDown Q D i l)
           * Real.PolyZonotope.monomial (PolyZonotope.quadMapE D) a' l)
-      + ∑ j : Fin 0, toReal ((cPZ.quadMap Q).GI i j) * (Fin.elim0 j : ℝ),
+      + ∑ j : Fin 0, toReal ((cPZ.quadMap Q).GI j i) * (Fin.elim0 j : ℝ),
     ConPolyZono.mem_nominalSet_iff.mpr ⟨a', Fin.elim0, ha'b, fun j => j.elim0, ?_, fun _ => rfl⟩,
     _, hbox, ?_⟩
   · -- the padded constraints read only the first block, which is `a`

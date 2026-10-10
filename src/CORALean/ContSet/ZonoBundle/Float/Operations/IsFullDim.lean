@@ -30,7 +30,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 def ZonoBundle.isFullDim (zB : ZonoBundle 𝕋 n) (H : (i : Fin zB.k) → Mat 𝕋 (zB.Z i).h n)
     (x₀ : Vec 𝕋 n) : Bool :=
-  (List.finRange zB.k).all fun i => (zB.Z i).interiorPoint (H i) x₀
+  (List.finRange zB.k).all fun i => Zonotope.interiorPoint (zB.Z i) (H i) x₀
 
 end CORALean.Float
 

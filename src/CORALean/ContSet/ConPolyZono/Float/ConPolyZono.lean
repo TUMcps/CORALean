@@ -6,25 +6,25 @@ import CORALean.ContSet.InflatedContSet.InflatedContSet
 
 CORA's `conPolyZono` with its five counts, its two generator blocks and its
 constraint system `A μ(α) ∈ b`, plus the error box that makes it an
-`InflatedContSet`.
+`InflatedContSet`. `GConPolyZono 𝕋 α` is generic over its ambient type,
+generators a family, as the exact layer's `ConPolyZono α` is; `𝕋` stays, the
+constraint system being scalar at every ambient type. `ConPolyZono 𝕋 n` is the
+reducible vector case.
 
-`A` and `b` move to `𝕋` and are read back exactly. That is sound because the
-nominal set is *defined* as what the stored floats denote — the constraint of
-the nominal set is the constraint those floats state, not a rounding of some
-other one.
+`A` and `b` move to `𝕋` and are read back exactly: the nominal set is *defined*
+as what the stored floats denote, so its constraint is the one they state.
 
 Rounding therefore has two channels. The centre and the generators have no
 slack, so theirs goes into the ambient error box; the constraint bounds do, `b`
 being an interval, so theirs goes into `b`, widened outward and hence enclosing.
 `plus` and `mtimes` copy the constraint block and pay nothing; `intersection` and
-`compact` need both at once. `intersection`'s agreement rows relate two nominal points as
-far apart as their error boxes allow, and the rounding of `c₂ - c₁` is added to
-that tolerance, downward on the low side and upward on the high.
+`compact` need both at once. `intersection`'s agreement rows relate two nominal points
+as far apart as their error boxes allow, plus the rounding of `c₂ - c₁`, directed outward.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   04-September-2026
+-- Last update:   10-October-2026
 -- Last revision: ---
 
 
@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
-structure ConPolyZono (𝕋 : Type) (n : ℕ) where
+structure GConPolyZono (𝕋 α : Type) where
   /-- The dependent factors, shared by the generators and the constraints. -/
   p : ℕ
   /-- The dependent generators. -/
@@ -50,24 +50,30 @@ structure ConPolyZono (𝕋 : Type) (n : ℕ) where
   m : ℕ
   /-- The constraint generators. -/
   s : ℕ
-  c : Vec 𝕋 n
-  G : Mat 𝕋 n h
+  c : α
+  G : Fin h → α
   E : Fin p → Fin h → ℕ
-  GI : Mat 𝕋 n q
+  GI : Fin q → α
   A : Mat 𝕋 m s
   /-- Interval-valued, as over ℝ, and this is one of the two places a float
   operation may pay its rounding. -/
   b : Interval (Vec 𝕋 m)
   EC : Fin p → Fin s → ℕ
-  err : Interval (Vec 𝕋 n)
+  err : Interval α
 
-instance [SoundFloatArithmetic 𝕋] :
-    InflatedContSet (ConPolyZono 𝕋 n) (CORALean.Real.ConPolyZono (Vec ℝ n))
-      (Vec 𝕋 n) (Vec ℝ n) where
-  -- generators transpose: stored as a matrix here, a family of vectors there
-  nominal cPZ := ⟨cPZ.p, cPZ.h, cPZ.q, cPZ.m, cPZ.s, toRealVec cPZ.c,
-    fun l i => toReal (cPZ.G i l), cPZ.E, fun j i => toReal (cPZ.GI i j), toRealMat cPZ.A,
-    cPZ.b.nominal, cPZ.EC⟩
+abbrev ConPolyZono (𝕋 : Type) (n : ℕ) := GConPolyZono 𝕋 (Vec 𝕋 n)
+
+/-- The exact constrained polynomial zonotope the stored floats describe, read
+through `RealImage`. -/
+abbrev GConPolyZono.nominal {α β : Type} [RealImage α β] [SoundFloatArithmetic 𝕋]
+    (cPZ : GConPolyZono 𝕋 α) : CORALean.Real.ConPolyZono β :=
+  ⟨cPZ.p, cPZ.h, cPZ.q, cPZ.m, cPZ.s, RealImage.realImage cPZ.c,
+    fun l => RealImage.realImage (cPZ.G l), cPZ.E, fun j => RealImage.realImage (cPZ.GI j),
+    toRealMat cPZ.A, cPZ.b.nominal, cPZ.EC⟩
+
+instance {α β : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β] [SoundFloatArithmetic 𝕋] :
+    InflatedContSet (GConPolyZono 𝕋 α) (CORALean.Real.ConPolyZono β) α β where
+  nominal := GConPolyZono.nominal
   error cPZ := cPZ.err
 
 /-- What this set's own factors must satisfy, spelt in its own fields: the
@@ -102,9 +108,9 @@ rather than `Mat`s. -/
 
 def ConPolyZono.materialise (cPZ : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n :=
   let c : Vector 𝕋 n := Vector.ofFn cPZ.c
-  let G : Vector (Vector 𝕋 cPZ.h) n := Vector.ofFn fun i => Vector.ofFn fun l => cPZ.G i l
+  let G : Vector (Vector 𝕋 n) cPZ.h := Vector.ofFn fun l => Vector.ofFn (cPZ.G l)
   let E : Vector (Vector ℕ cPZ.h) cPZ.p := Vector.ofFn fun k => Vector.ofFn fun l => cPZ.E k l
-  let GI : Vector (Vector 𝕋 cPZ.q) n := Vector.ofFn fun i => Vector.ofFn fun j => cPZ.GI i j
+  let GI : Vector (Vector 𝕋 n) cPZ.q := Vector.ofFn fun j => Vector.ofFn (cPZ.GI j)
   let A : Vector (Vector 𝕋 cPZ.s) cPZ.m := Vector.ofFn fun i => Vector.ofFn fun l => cPZ.A i l
   let EC : Vector (Vector ℕ cPZ.s) cPZ.p := Vector.ofFn fun k => Vector.ofFn fun l => cPZ.EC k l
   -- every field now reads out of a stored vector, so nothing is left as a closure
@@ -114,9 +120,9 @@ def ConPolyZono.materialise (cPZ : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n :=
     m := cPZ.m
     s := cPZ.s
     c := fun i => c[i.val]'i.isLt
-    G := fun i l => (G[i.val]'i.isLt)[l.val]'l.isLt
+    G := fun l i => (G[l.val]'l.isLt)[i.val]'i.isLt
     E := fun k l => (E[k.val]'k.isLt)[l.val]'l.isLt
-    GI := fun i j => (GI[i.val]'i.isLt)[j.val]'j.isLt
+    GI := fun j i => (GI[j.val]'j.isLt)[i.val]'i.isLt
     A := fun i l => (A[i.val]'i.isLt)[l.val]'l.isLt
     b := cPZ.b.materialise
     EC := fun k l => (EC[k.val]'k.isLt)[l.val]'l.isLt

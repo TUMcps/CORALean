@@ -44,9 +44,9 @@ def ConPolyZono.dependent (cPZ : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n where
   m := cPZ.m
   s := cPZ.s
   c := cPZ.c
-  G := fun i => Fin.append (cPZ.G i) (cPZ.GI i)
+  G := Fin.append cPZ.G cPZ.GI
   E := Real.PolyZonotope.plusE cPZ.E (Real.PolyZonotope.identE cPZ.q)
-  GI := fun _ => Fin.elim0
+  GI := Fin.elim0
   A := cPZ.A
   b := cPZ.b
   EC := Real.ConPolyZono.padE cPZ.EC cPZ.q

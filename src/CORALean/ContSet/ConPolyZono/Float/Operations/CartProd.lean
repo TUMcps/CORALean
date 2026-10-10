@@ -37,9 +37,9 @@ def ConPolyZono.cartProd (cPZ₁ : ConPolyZono 𝕋 n₁) (cPZ₂ : ConPolyZono 
   m := cPZ₁.m + cPZ₂.m
   s := cPZ₁.s + cPZ₂.s
   c := Fin.append cPZ₁.c cPZ₂.c
-  G := genBlockDiag cPZ₁.G cPZ₂.G
+  G := fun l i => genBlockDiag (fun i l => cPZ₁.G l i) (fun i l => cPZ₂.G l i) i l
   E := Real.PolyZonotope.plusE cPZ₁.E cPZ₂.E
-  GI := genBlockDiag cPZ₁.GI cPZ₂.GI
+  GI := fun j i => genBlockDiag (fun i j => cPZ₁.GI j i) (fun i j => cPZ₂.GI j i) i j
   A := ConPolyZono.plusA cPZ₁.A cPZ₂.A
   b := ConPolyZono.plusB cPZ₁.b cPZ₂.b
   EC := Real.PolyZonotope.plusE cPZ₁.EC cPZ₂.EC

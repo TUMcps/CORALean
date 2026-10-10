@@ -29,7 +29,7 @@ def ZonoBundle.cartProd (zB₁ : ZonoBundle 𝕋 n₁) (zB₂ : ZonoBundle 𝕋 
   k := zB₁.k * zB₂.k
   Z := fun p =>
     let ij := finProdFinEquiv.symm p
-    (zB₁.Z ij.1).cartProd (zB₂.Z ij.2)
+    Zonotope.cartProd (zB₁.Z ij.1) (zB₂.Z ij.2)
 
 end CORALean.Float
 

@@ -40,17 +40,16 @@ theorem ConPolyZono.aux_exactPlus_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) (
   obtain ⟨a, β, ha, hβ, hs, hy⟩ := Real.ConPolyZono.mem_construct_iff.mp hy
   -- the float point at the same factors and coefficients, off by the centre's rounding
   refine ⟨fun i => toReal ((cPZ₁.exactPlus cPZ₂ hp).c i)
-            + (∑ l, toReal ((cPZ₁.exactPlus cPZ₂ hp).G i l)
+            + (∑ l, toReal ((cPZ₁.exactPlus cPZ₂ hp).G l i)
                 * Real.PolyZonotope.monomial (cPZ₁.exactPlus cPZ₂ hp).E a l)
-            + ∑ j, toReal ((cPZ₁.exactPlus cPZ₂ hp).GI i j) * β j,
+            + ∑ j, toReal ((cPZ₁.exactPlus cPZ₂ hp).GI j i) * β j,
           ConPolyZono.mem_nominalSet_iff.mpr ⟨a, β, ha, hβ, hs, fun _ => rfl⟩,
           fun i => toReal (cPZ₁.c i) + toReal (cPZ₂.c i)
             - toReal ((cPZ₁.exactPlus cPZ₂ hp).c i),
           Interval.sub_mem_residual fun i => ⟨addDown_le_add _ _, add_le_addUp _ _⟩, ?_⟩
   funext i
   -- the stored blocks read back as the exact layer's appended ones, entry by entry
-  have hG : ∀ l : Fin (cPZ₁.h + cPZ₂.h),
-      toReal (Fin.append (fun l i => cPZ₁.G i l) (fun l i => cPZ₂.G i l) l i)
+  have hG : ∀ l : Fin (cPZ₁.h + cPZ₂.h), toReal (Fin.append cPZ₁.G cPZ₂.G l i)
       = Fin.append (nominal cPZ₁).G (nominal cPZ₂).G l i :=
     Fin.addCases
       (fun l => by
@@ -60,8 +59,7 @@ theorem ConPolyZono.aux_exactPlus_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) (
         rw [Fin.append_right]
         exact (congrFun (Fin.append_right (nominal cPZ₁).G (nominal cPZ₂).G l) i).symm
   -- the independent blocks likewise
-  have hGI : ∀ j : Fin (cPZ₁.q + cPZ₂.q),
-      toReal (Fin.append (fun j i => cPZ₁.GI i j) (fun j i => cPZ₂.GI i j) j i)
+  have hGI : ∀ j : Fin (cPZ₁.q + cPZ₂.q), toReal (Fin.append cPZ₁.GI cPZ₂.GI j i)
       = Fin.append (nominal cPZ₁).GI (nominal cPZ₂).GI j i :=
     Fin.addCases
       (fun j => by

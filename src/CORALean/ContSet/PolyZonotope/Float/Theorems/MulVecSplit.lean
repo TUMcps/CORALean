@@ -14,7 +14,7 @@ at its own fields.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   05-September-2026
+-- Last update:   10-October-2026
 -- Last revision: ---
 
 
@@ -30,19 +30,19 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.mulVec_split {hh qq : ℕ} (M : Mat 𝕋 m n) (c : Vec 𝕋 n)
-    (G : Mat 𝕋 n hh) (GI : Mat 𝕋 n qq) (t : Vec ℝ hh) (β : Vec ℝ qq) {x : Vec ℝ n}
-    (hx : ∀ k, x k = toReal (c k) + (∑ l, toReal (G k l) * t l)
-            + ∑ j, toReal (GI k j) * β j) (i : Fin m) :
+    (G : Fin hh → Vec 𝕋 n) (GI : Fin qq → Vec 𝕋 n) (t : Vec ℝ hh) (β : Vec ℝ qq) {x : Vec ℝ n}
+    (hx : ∀ k, x k = toReal (c k) + (∑ l, toReal (G l k) * t l)
+            + ∑ j, toReal (GI j k) * β j) (i : Fin m) :
     (toRealMat M *ᵥ x) i
       = (∑ k, toReal (M i k) * toReal (c k))
-        + (∑ l, (∑ k, toReal (M i k) * toReal (G k l)) * t l)
-        + ∑ j, (∑ k, toReal (M i k) * toReal (GI k j)) * β j := by -- --- PROOF ---
+        + (∑ l, (∑ k, toReal (M i k) * toReal (G l k)) * t l)
+        + ∑ j, (∑ k, toReal (M i k) * toReal (GI j k)) * β j := by -- --- PROOF ---
   -- unfold `x`, then regroup each of its three summands against the outer sum
   show ∑ k, toReal (M i k) * x k = _
   calc ∑ k, toReal (M i k) * x k
       = ∑ k, (toReal (M i k) * toReal (c k)
-              + (∑ l, toReal (M i k) * toReal (G k l) * t l)
-              + ∑ j, toReal (M i k) * toReal (GI k j) * β j) := by
+              + (∑ l, toReal (M i k) * toReal (G l k) * t l)
+              + ∑ j, toReal (M i k) * toReal (GI j k) * β j) := by
         refine Finset.sum_congr rfl fun k _ => ?_
         rw [hx k, mul_add, mul_add, Finset.mul_sum, Finset.mul_sum]
         refine congrArg₂ _ (congrArg₂ _ rfl ?_) ?_
@@ -50,12 +50,12 @@ theorem PolyZonotope.mulVec_split {hh qq : ℕ} (M : Mat 𝕋 m n) (c : Vec 𝕋
         · exact Finset.sum_congr rfl fun j _ => (mul_assoc _ _ _).symm
     -- then the three sums separated, and each index swapped to the outside
     _ = (∑ k, toReal (M i k) * toReal (c k))
-        + (∑ k, ∑ l, toReal (M i k) * toReal (G k l) * t l)
-        + ∑ k, ∑ j, toReal (M i k) * toReal (GI k j) * β j := by
+        + (∑ k, ∑ l, toReal (M i k) * toReal (G l k) * t l)
+        + ∑ k, ∑ j, toReal (M i k) * toReal (GI j k) * β j := by
         rw [Finset.sum_add_distrib, Finset.sum_add_distrib]
     _ = (∑ k, toReal (M i k) * toReal (c k))
-        + (∑ l, (∑ k, toReal (M i k) * toReal (G k l)) * t l)
-        + ∑ j, (∑ k, toReal (M i k) * toReal (GI k j)) * β j := by
+        + (∑ l, (∑ k, toReal (M i k) * toReal (G l k)) * t l)
+        + ∑ j, (∑ k, toReal (M i k) * toReal (GI j k)) * β j := by
         refine congrArg₂ _ (congrArg₂ _ rfl ?_) ?_
         · rw [Finset.sum_comm]
           exact Finset.sum_congr rfl fun l _ => (Finset.sum_mul _ _ _).symm

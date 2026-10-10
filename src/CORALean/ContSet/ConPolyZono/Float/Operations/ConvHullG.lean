@@ -32,10 +32,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- A copy of the centre per weight, then the generators plain and weighted. -/
-def ConPolyZono.convHullG (a : ℕ) {h : ℕ} (c : Vec 𝕋 n) (G : Mat 𝕋 n h) :
-    Mat 𝕋 n (a + (a * h + a * h)) :=
-  fun i => Fin.append (fun _ => c i)
-    (Fin.append (Real.ConPolyZono.repVec a (G i)) (Real.ConPolyZono.repVec a (G i)))
+def ConPolyZono.convHullG (a : ℕ) {h : ℕ} (c : Vec 𝕋 n) (G : Fin h → Vec 𝕋 n) :
+    Fin (a + (a * h + a * h)) → Vec 𝕋 n :=
+  Fin.append (fun _ => c) (Fin.append (Real.ConPolyZono.repVec a G) (Real.ConPolyZono.repVec a G))
 
 end CORALean.Float
 

@@ -27,17 +27,15 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- file-local: only `reduceGirard` below needs these
-/-- Girard's metric on one generator, `‖g‖₁ - ‖g‖∞`, in `𝕋`, over a bare matrix
+/-- Girard's metric on one generator, `‖g‖₁ - ‖g‖∞`, in `𝕋`, over a bare family
 so that either block and their concatenation are ranked by this one line. Zero
 on the axis-aligned generators, which a box reproduces for free. -/
-def ConPolyZono.aux_girardMetric {m : ℕ} (G : Mat 𝕋 n m) (l : Fin m) : 𝕋 :=
-  subDown (sumUp fun i => absolute (G i l)) (maximumOver fun i => absolute (G i l))
+def ConPolyZono.aux_girardMetric {m : ℕ} (G : Fin m → Vec 𝕋 n) (l : Fin m) : 𝕋 :=
+  subDown (sumUp fun i => absolute (G l i)) (maximumOver fun i => absolute (G l i))
 
-/-- CORA's `[G, GI]`: the two blocks as one matrix, which is what it ranks.
-Generators carry the second index here, so concatenating them appends along a
-row. -/
-def ConPolyZono.aux_concatGens (cPZ : ConPolyZono 𝕋 n) : Mat 𝕋 n (cPZ.h + cPZ.q) :=
-  fun i => Fin.append (cPZ.G i) (cPZ.GI i)
+/-- CORA's `[G, GI]`: the two blocks as one family, which is what it ranks. -/
+def ConPolyZono.aux_concatGens (cPZ : ConPolyZono 𝕋 n) : Fin (cPZ.h + cPZ.q) → Vec 𝕋 n :=
+  Fin.append cPZ.G cPZ.GI
 
 /-- The `k` generators a metric ranks first, against the rest. Clamped to the
 block, so the split is total and no order hypothesis travels with it; the

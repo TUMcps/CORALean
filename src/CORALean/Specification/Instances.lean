@@ -187,7 +187,7 @@ instance (priority := 50) isDisjointBoxBoxOuter {T S : ℕ → Type}
 
 /-- Some member's hull of `zB` strictly to one side of `B`. -/
 def aux_disjointBundleBox (zB : ZonoBundle 𝕋 n) (B : Interval (Vec 𝕋 n)) : Bool :=
-  (List.finRange zB.k).any fun i => aux_disjointBox (zB.Z i).interval B
+  (List.finRange zB.k).any fun i => aux_disjointBox (Zonotope.interval (zB.Z i)) B
 
 theorem aux_disjointBundleBox_sound {zB : ZonoBundle 𝕋 n} {B : Interval (Vec 𝕋 n)}
     (h : aux_disjointBundleBox zB B = true) :
@@ -199,7 +199,7 @@ theorem aux_disjointBundleBox_sound {zB : ZonoBundle 𝕋 n} {B : Interval (Vec 
 
 /-- Some member of `zB'` and some member of `zB` with disjoint hulls. -/
 def aux_disjointBundles (zB zB' : ZonoBundle 𝕋 n) : Bool :=
-  (List.finRange zB'.k).any fun j => aux_disjointBundleBox zB (zB'.Z j).interval
+  (List.finRange zB'.k).any fun j => aux_disjointBundleBox zB (Zonotope.interval (zB'.Z j))
 
 theorem aux_disjointBundles_sound {zB zB' : ZonoBundle 𝕋 n}
     (h : aux_disjointBundles zB zB' = true) :
